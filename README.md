@@ -40,7 +40,7 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [teorth/equational_theories](https://github.com/teorth/equational_theories) — Terence Tao's project mapping relations between equational theories of magmas | `tentative/equational-theories.jsonl` | `leanprover/lean4:v4.29.1` | 13,193 |
 | [AlexKontorovich/PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) — the Prime Number Theorem and related results | `tentative/primenumbertheoremand.jsonl` | `leanprover/lean4:v4.32.2` | 8,028 |
 | [dwrensha/compfiles](https://github.com/dwrensha/compfiles) — catalog of competition problems formalized in Lean | `tentative/compfiles.jsonl` | `leanprover/lean4:v4.34.0-rc1` | 6,042 |
-| [Prove2Me](https://prove2.me) — collaborative Lean formalization platform (missions + captains); harvested via its API, `source_url` links to each theorem's own Prove2Me page | `tentative/prove2me.jsonl` | mixed (recorded per-row) | growing to ~54,577 — see note below |
+| [Prove2Me](https://prove2.me) — collaborative Lean formalization platform (missions + captains); harvested via its API, `source_url` links to each theorem's own Prove2Me page | `tentative/prove2me-001.jsonl` … `prove2me-040.jsonl` (40 files, split by byte size — one file would be ~1.7GB) | mixed (recorded per-row): 38,170 on `v4.33.1`, 12,019 on `v4.29.0`, 4,268 on `v4.30.0` | 54,457 |
 | [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures) — DeepMind's formalized-conjectures benchmark (Erdős problems, Ben Green's 100 open problems, etc.); only the already-proven subset harvests here | `tentative/formal-conjectures.jsonl` | `leanprover/lean4:v4.33.1` | 2,584 |
 | [fpvandoorn/Carleson](https://github.com/fpvandoorn/Carleson) — Carleson's theorem on pointwise convergence of Fourier series | `tentative/carleson.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 2,510 |
 | [ImperialCollegeLondon/FLT](https://github.com/ImperialCollegeLondon/FLT) — Kevin Buzzard et al.'s formalization of Fermat's Last Theorem (ongoing; lemmas proven so far) | `tentative/flt.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 2,198 |
@@ -48,7 +48,10 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [teorth/pfr](https://github.com/teorth/pfr) — Terence Tao, Yaël Dillies & Bhavik Mehta's formalization of the Polynomial Freiman-Ruzsa conjecture | `tentative/pfr.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 921 |
 | CompeteMath's own certified problems | `trusted/competemath.jsonl` | mixed (recorded per-row) | 262 |
 
-**~281,000 total**
+**279,969 indexed and searchable** (a small number of harvested declarations
+with no extractable proof body — mostly `axiom`/opaque-style entries the
+syntactic extractor can't pull a proof out of — are dropped at import
+rather than counted here; see `import-tengoku.ts`'s validation).
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
@@ -97,6 +100,16 @@ failures — a full pull of 50,000+ theorems is on the order of an hour:
 export PROVE2ME_API_KEY=...
 python3 tools/harvest_prove2me.py --out data/tentative/prove2me.jsonl
 # or bound it for a quicker partial pull: --max 500
+```
+
+A full pull is a single large JSONL file (~1.7GB for the current corpus) — too
+big for GitHub's 100MB per-file limit. `split_jsonl.py` shards any JSONL file
+into git-friendly pieces by cumulative byte size (this is how
+`prove2me-001.jsonl` … `prove2me-040.jsonl` were produced):
+
+```bash
+python3 tools/split_jsonl.py --in data/tentative/prove2me.jsonl \
+  --out-prefix data/tentative/prove2me --max-bytes 41943040
 ```
 
 `export-competemath-theorems.ts` produces `data/trusted/competemath.jsonl`
