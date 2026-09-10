@@ -39,9 +39,19 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 
 | File | Status | Source | Toolchain | Count |
 |---|---|---|---|---|
-| `tentative/compfiles.jsonl` | tentative | [dwrensha/compfiles](https://github.com/dwrensha/compfiles) | `leanprover/lean4:v4.34.0-rc1` | 6,042 |
+| `tentative/compfiles.jsonl` | tentative | [dwrensha/compfiles](https://github.com/dwrensha/compfiles) — catalog of competition problems formalized in Lean | `leanprover/lean4:v4.34.0-rc1` | 6,042 |
+| `tentative/equational-theories.jsonl` | tentative | [teorth/equational_theories](https://github.com/teorth/equational_theories) — Terence Tao's project mapping relations between equational theories of magmas | `leanprover/lean4:v4.29.1` | 13,193 |
+| `tentative/primenumbertheoremand.jsonl` | tentative | [AlexKontorovich/PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) — the Prime Number Theorem and related results | `leanprover/lean4:v4.32.2` | 8,028 |
+| `tentative/formal-conjectures.jsonl` | tentative | [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures) — DeepMind's formalized-conjectures benchmark (Erdős problems, Ben Green's 100 open problems, etc.); only the already-proven subset harvests here — the sorry-filter (below) correctly excludes their ~1,000 genuinely open conjectures | `leanprover/lean4:v4.33.1` | 2,584 |
+| `tentative/carleson.jsonl` | tentative | [fpvandoorn/Carleson](https://github.com/fpvandoorn/Carleson) — Carleson's theorem on pointwise convergence of Fourier series | `leanprover/lean4:v4.34.0-rc2` | 2,510 |
+| `tentative/flt.jsonl` | tentative | [ImperialCollegeLondon/FLT](https://github.com/ImperialCollegeLondon/FLT) — Kevin Buzzard et al.'s formalization of Fermat's Last Theorem (ongoing; lemmas proven so far) | `leanprover/lean4:v4.34.0-rc2` | 2,198 |
+| `tentative/pfr.jsonl` | tentative | [teorth/pfr](https://github.com/teorth/pfr) — Terence Tao, Yaël Dillies & Bhavik Mehta's formalization of the Polynomial Freiman-Ruzsa conjecture | `leanprover/lean4:v4.34.0-rc2` | 921 |
 | `tentative/prove2me.jsonl` | tentative | [Prove2Me](https://prove2.me) — a collaborative Lean formalization platform (missions + captains); 300 of its 50,000+ ACCEPTED proofs so far, `source_url` links to each theorem's own Prove2Me page | mixed (recorded per-row) | 300 |
 | `trusted/competemath.jsonl` | trusted | CompeteMath's own certified problems | mixed (recorded per-row) | 262 |
+
+**35,776 total.** Considered and deliberately excluded: `leanprover-community/lean-liquid` (the Liquid Tensor Experiment) — its `leanpkg.toml` pins `lean:3.48.0`, i.e. it's **Lean 3**, not Lean 4, and syntactically incompatible with everything else here.
+
+Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files.
 
 ## Why `v4.34.0-rc2` is the target toolchain going forward
 
