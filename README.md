@@ -1,6 +1,6 @@
 # Tengoku (天国)
 
-A growing corpus of Lean 4 **theorems and their proofs** — real, complete
+An expanding knowledge-tree of Lean 4 **theorems and their proofs** — real, complete
 proofs — harvested from open formalization libraries
 and from CompeteMath's own research.
 
