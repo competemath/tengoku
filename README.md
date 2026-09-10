@@ -128,8 +128,36 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [frenzymath/qrcp-bounded-coherence-obstruction](https://github.com/frenzymath/qrcp-bounded-coherence-obstruction) — bounded-coherence obstruction results | `tentative/qrcp-bounded-coherence.jsonl` | `leanprover/lean4:v4.30.0-rc2` | 103 |
 | [ImperialCollegeLondon/IUM](https://github.com/ImperialCollegeLondon/IUM) — "Introduction to University Mathematics" course | `tentative/ium.jsonl` | `leanprover/lean4:v4.17.0` | 17 |
 | [fpvandoorn/HausdorffSchoolLean](https://github.com/fpvandoorn/HausdorffSchoolLean) — Sept 2023 Hausdorff School tutorial materials, Bonn | `tentative/hausdorffschoollean.jsonl` | `leanprover/lean4:v4.0.0` | 14 |
+| [Verified-zkEVM/evm-asm](https://github.com/Verified-zkEVM/evm-asm) — verified EVM assembly semantics | `tentative/evm-asm.jsonl` | `leanprover/lean4:v4.33.0` | 29,092 |
+| [CBirkbeck/AINTLIB](https://github.com/CBirkbeck/AINTLIB) — a monorepo aggregating several of Chris Birkbeck's own number-theory projects; only the content unique to it (ModularCurves, FltRegularBernoulli, HasseWeil, DedekindResidue, NagellLutz) is included here — the rest duplicates the standalone repos already listed | `tentative/aintlib.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 30,131 |
+| [CBirkbeck/LeanBridge](https://github.com/CBirkbeck/LeanBridge) — modular forms / LMFDB q-expansion computations, staged for eventual upstreaming to Mathlib (`ForMathlib/`) | `tentative/leanbridge-001.jsonl` … `leanbridge-015.jsonl` (split by byte size — one file would be ~600MB, by far the largest single library here since some LMFDB coefficient certificates run 400KB+ each) | `leanprover/lean4:v4.31.0` | 10,980 |
+| [CBirkbeck/uniform-sheafy-tate-domains-lean](https://github.com/CBirkbeck/uniform-sheafy-tate-domains-lean) — adic spaces / uniform sheafy Tate domains (supersedes and extends Adic-Spaces below) | `tentative/uniform-sheafy-tate-domains.jsonl` | `leanprover/lean4:v4.33.0` | 5,801 |
+| [Verified-zkEVM/CompPoly](https://github.com/Verified-zkEVM/CompPoly) — computable polynomial arithmetic | `tentative/compply.jsonl` | `leanprover/lean4:v4.33.1` | 4,899 |
+| [CBirkbeck/LeanModularForms](https://github.com/CBirkbeck/LeanModularForms) — modular forms | `tentative/leanmodularforms.jsonl` | `leanprover/lean4:v4.31.0-rc2` | 3,698 |
+| [Verified-zkEVM/PolyFun](https://github.com/Verified-zkEVM/PolyFun) — polynomial functional representations | `tentative/polyfun.jsonl` | `leanprover/lean4:v4.33.1` | 4,029 |
+| [CBirkbeck/CertifyingInvariantsNF](https://github.com/CBirkbeck/CertifyingInvariantsNF) — certifying ideal-arithmetic invariants of number fields | `tentative/certifyinginvariantsnf.jsonl` | `leanprover/lean4:v4.30.0-rc1` | 2,257 |
+| [CBirkbeck/TauCeti](https://github.com/CBirkbeck/TauCeti) — the actual source of the library previously found only vendored (partially) inside `ai-safety-formalization-atlas`, now properly attributed | `tentative/tauceti.jsonl` | `leanprover/lean4:v4.31.0` | 1,022 |
+| [Verified-zkEVM/clean](https://github.com/Verified-zkEVM/clean) — zkVM circuit correctness | `tentative/zkevm-clean.jsonl` | `leanprover/lean4:v4.33.1` | 1,735 |
+| [Verified-zkEVM/riscv-zkvm](https://github.com/Verified-zkEVM/riscv-zkvm) — RISC-V zkVM verification | `tentative/riscv-zkvm.jsonl` | `leanprover/lean4:v4.33.0` | 1,396 |
+| [CBirkbeck/padic-L-functions](https://github.com/CBirkbeck/padic-L-functions) — p-adic L-functions | `tentative/padic-l-functions.jsonl` | `leanprover/lean4:v4.31.0-rc1` | 1,414 |
+| [CBirkbeck/LocalClassFieldTheory](https://github.com/CBirkbeck/LocalClassFieldTheory) — local class field theory | `tentative/localclassfieldtheory.jsonl` | `leanprover/lean4:v4.7.0-rc2` | 556 |
+| [CBirkbeck/ModularForms_Lean4](https://github.com/CBirkbeck/ModularForms_Lean4) — modular forms (earlier project, predates LeanModularForms) | `tentative/modularforms-lean4.jsonl` | `leanprover/lean4:v4.5.0-rc1` | 579 |
+| [frenzymath/Archon-FirstProof-Results](https://github.com/frenzymath/Archon-FirstProof-Results) — results from frenzymath's Archon autoformalization agent | `tentative/archon-firstproof-results.jsonl` | `leanprover/lean4:v4.28.0` | 222 |
+| [frenzymath/Archon-FirstProof-problem6-augmentation](https://github.com/frenzymath/Archon-FirstProof-problem6-augmentation) | `tentative/archon-firstproof-p6.jsonl` | `leanprover/lean4:v4.28.0` | 108 |
+| [Verified-zkEVM/leanerVM](https://github.com/Verified-zkEVM/leanerVM) | `tentative/leanervm.jsonl` | `leanprover/lean4:v4.33.1` | 81 |
+| [CBirkbeck/GLn_F_q](https://github.com/CBirkbeck/GLn_F_q) — GL_n(F_q) representation theory | `tentative/gln-f-q.jsonl` | `leanprover/lean4:v4.8.0-rc2` | 62 |
+| [CBirkbeck/NewtonPoly](https://github.com/CBirkbeck/NewtonPoly) — Newton polygons | `tentative/newtonpoly.jsonl` | `leanprover/lean4:v4.28.0-rc1` | 65 |
+| [CBirkbeck/ModFormDims](https://github.com/CBirkbeck/ModFormDims) — dimension formulas for modular forms | `tentative/modformdims.jsonl` | `leanprover/lean4:v4.13.0-rc3` | 84 |
+| [Verified-zkEVM/ExtTreeMapLemmas](https://github.com/Verified-zkEVM/ExtTreeMapLemmas) | `tentative/exttreemaplemmas.jsonl` | `leanprover/lean4:v4.29.1` | 19 |
+| [Verified-zkEVM/zkLean](https://github.com/Verified-zkEVM/zkLean) | `tentative/zklean.jsonl` | `leanprover/lean4:v4.25.2` | 49 |
+| [CBirkbeck/power_residue_symbols](https://github.com/CBirkbeck/power_residue_symbols) | `tentative/power-residue-symbols.jsonl` | `leanprover/lean4:v4.7.0-rc2` | 44 |
+| [CBirkbeck/chebotarev-density](https://github.com/CBirkbeck/chebotarev-density) — the Chebotarev density theorem | `tentative/chebotarev-density.jsonl` | `leanprover/lean4:v4.32.0-rc1` | 32 |
+| [frenzymath/reap](https://github.com/frenzymath/reap) | `tentative/frenzymath-reap.jsonl` | `leanprover/lean4:v4.28.0-rc1` | 11 |
+| [WuProver/GroebnerTactic](https://github.com/WuProver/GroebnerTactic) | `tentative/groebner-tactic.jsonl` | `leanprover/lean4:v4.29.0-rc8` | 8 |
+| [frenzymath/jixia](https://github.com/frenzymath/jixia) | `tentative/frenzymath-jixia.jsonl` | `leanprover/lean4:v4.29.0` | 10 |
+| [frenzymath/interactive](https://github.com/frenzymath/interactive) | `tentative/frenzymath-interactive.jsonl` | `leanprover/lean4:v4.16.0` | 1 |
 
-**482,839 indexed and searchable** across 92 libraries (a small number of
+**582,724 indexed and searchable** across 120 libraries (a small number of
 harvested declarations with no extractable proof body — mostly
 `axiom`/opaque-style entries the syntactic extractor can't pull a proof
 out of — are dropped at import rather than counted here; see
@@ -193,6 +221,18 @@ declarations, already covered directly by the real mathlib harvest above).
   repos around Lean, not Lean source themselves (no root or discoverable
   `lean-toolchain`); would need a different pipeline than `harvest.py`'s
   clone-and-scan, same category as the AI-lab training corpora above.
+- CBirkbeck/Adic-Spaces — 94% of its declaration names (2,836/3,028)
+  overlap with uniform-sheafy-tate-domains-lean, which has since
+  superseded and extended it. Kept the superset, dropped this one.
+- CBirkbeck/AINTLIB's own ModularCurves/FltRegularBernoulli/HasseWeil/
+  DedekindResidue/NagellLutz content is included above; its
+  AdicSpaces/LeanModularForms/PadicLFunctions/Chebotarev/FltRegular
+  subdirectories (88-99% name-overlap, checked directly) were excluded —
+  it's CBirkbeck's own monorepo aggregating his other already-listed repos.
+- frenzymath/requests, frenzymath/openai_client, math-inc/FormalQualBench,
+  CBirkbeck/EGAI, CBirkbeck/hopf-s6-blueprint — real Lean 4 repos, zero
+  theorem/lemma declarations (tooling/scaffolding only).
+- CBirkbeck/ANT — confirmed Lean 3 (`leanpkg.toml`).
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
