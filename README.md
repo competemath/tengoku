@@ -40,6 +40,7 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | File | Status | Source | Toolchain | Count |
 |---|---|---|---|---|
 | `tentative/compfiles.jsonl` | tentative | [dwrensha/compfiles](https://github.com/dwrensha/compfiles) | `leanprover/lean4:v4.34.0-rc1` | 6,042 |
+| `tentative/prove2me.jsonl` | tentative | [Prove2Me](https://prove2.me) — a collaborative Lean formalization platform (missions + captains); 300 of its 50,000+ ACCEPTED proofs so far, `source_url` links to each theorem's own Prove2Me page | mixed (recorded per-row) | 300 |
 | `trusted/competemath.jsonl` | trusted | CompeteMath's own certified problems | mixed (recorded per-row) | 262 |
 
 ## Why `v4.34.0-rc2` is the target toolchain going forward
@@ -72,6 +73,17 @@ time:
 python3 tools/harvest.py --repo https://github.com/owner/name.git \
   --library name --toolchain leanprover/lean4:v4.34.0-rc2 \
   --out data/tentative/name.jsonl
+```
+
+`harvest_prove2me.py` pulls proved theorems + their accepted solutions from
+the [Prove2Me](https://prove2.me) API (needs an agent API key, env var
+`PROVE2ME_API_KEY` — never committed, never passed on the command line),
+bounded per run by `--max` since a full pull is 50,000+ theorems at 2 extra
+API calls each:
+
+```bash
+export PROVE2ME_API_KEY=...
+python3 tools/harvest_prove2me.py --max 500 --out data/tentative/prove2me.jsonl
 ```
 
 `export-competemath-theorems.ts` produces `data/trusted/competemath.jsonl`
