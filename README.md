@@ -65,8 +65,30 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [emilyriehl/infinity-cosmos](https://github.com/emilyriehl/infinity-cosmos) — basic formal theory of ∞-cosmoi | `tentative/infinity-cosmos.jsonl` | `leanprover/lean4:v4.34.0-rc1` | 134 |
 | [CBirkbeck/DirichletNonvanishing](https://github.com/CBirkbeck/DirichletNonvanishing) — non-vanishing of Dirichlet L-functions on Re(s)=1 | `tentative/dirichletnonvanishing.jsonl` | `leanprover/lean4:v4.13.0-rc3` | 118 |
 | [YaelDillies/LeanCamCombi](https://github.com/YaelDillies/LeanCamCombi) — Cambridge combinatorics courses | `tentative/leancamcombi.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 61 |
+| [Robby955/FormalSLT](https://github.com/Robby955/FormalSLT) — statistical learning theory (concentration, generalization bounds) | `tentative/formalslt.jsonl` | `leanprover/lean4:v4.32.2` | 8,583 |
+| [math-inc/Sphere-Packing-Lean](https://github.com/math-inc/Sphere-Packing-Lean) — sphere packing optimality in dimensions 8 and 24 (Viazovska et al.) | `tentative/sphere-packing-ext.jsonl` | `leanprover/lean4:v4.28.0` | 2,818 |
+| [formal-applied-math/formal-mathfin](https://github.com/formal-applied-math/formal-mathfin) — formally verified mathematical finance (Black-Scholes, FTAP, Merton) | `tentative/formal-mathfin.jsonl` | `leanprover/lean4:v4.32.0` | 2,885 |
+| [Lean-MoDS/StatsMLlib](https://github.com/Lean-MoDS/StatsMLlib) — probability/statistics/ML (concentration, empirical processes, random matrices) | `tentative/statsmllib.jsonl` | `leanprover/lean4:v4.33.0` | 2,218 |
+| [thefundamentaltheor3m/Sphere-Packing-Lean](https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean) — sphere packing optimality in dimension 8 (the original project) | `tentative/sphere-packing-orig.jsonl` | `leanprover/lean4:v4.32.0` | 923 |
+| [mbrcic/ai-safety-formalization-atlas](https://github.com/mbrcic/ai-safety-formalization-atlas) — AI-safety-relevant claims formalized as Lean proofs | `tentative/aisafety-atlas.jsonl` | `leanprover/lean4:v4.33.0` | 715 |
+| [logical-intelligence/erdos-unit-distance](https://github.com/logical-intelligence/erdos-unit-distance) — a second, independent formalization of Alpöge's disproof of the Erdős unit-distance conjecture | `tentative/erdos-unit-distance-2.jsonl` | `leanprover/lean4:v4.29.1` | 706 |
+| [math-inc/strongpnt](https://github.com/math-inc/strongpnt) — the strong Prime Number Theorem, AI-formalized | `tentative/strongpnt.jsonl` | `leanprover/lean4:v4.21.0` | 1,077 |
+| [YuanheZ/lean-stat-learning-theory](https://github.com/YuanheZ/lean-stat-learning-theory) — sorry-free statistical learning theory library | `tentative/leanslt.jsonl` | `leanprover/lean4:v4.32.0` | 1,663 |
+| [urikol/QuantumOptimization](https://github.com/urikol/QuantumOptimization) — machine-verified quantum-optimization formalizations | `tentative/quantumoptimization.jsonl` | `leanprover/lean4:v4.28.0` | 1,400 |
+| [djvelleman/HTPILeanPackage](https://github.com/djvelleman/HTPILeanPackage) — tactics and exercises for "How to Prove It" | `tentative/htpi.jsonl` | `leanprover/lean4:v4.33.0` | 384 |
+| [project-numina/LeanGeo](https://github.com/project-numina/LeanGeo) — geometry competition problems | `tentative/leangeo.jsonl` | `leanprover/lean4:v4.15.0` | 395 |
+| [math-inc/FrontierMathOpen-Hypergraphs](https://github.com/math-inc/FrontierMathOpen-Hypergraphs) — an Epoch AI FrontierMath hypergraph/Ramsey-theoretic problem | `tentative/frontiermath-hypergraphs.jsonl` | `leanprover/lean4:v4.28.0` | 340 |
+| [ctchou/AutomataTheory](https://github.com/ctchou/AutomataTheory) — finite automata theory | `tentative/automatatheory.jsonl` | `leanprover/lean4:v4.24.0-rc1` | 231 |
+| [AnandGokhale/LeanForControl](https://github.com/AnandGokhale/LeanForControl) — database of control-theory proofs | `tentative/leanforcontrol.jsonl` | `leanprover/lean4:v4.30.0-rc2` | 184 |
+| [math-inc/Erdos1196](https://github.com/math-inc/Erdos1196) — Erdős Problem #1196 (bound on ∑1/(a·log a) for primitive sets) | `tentative/erdos1196.jsonl` | `leanprover/lean4:v4.30.0-rc1` | 122 |
+| [kim-em/erdos-unit-distance](https://github.com/kim-em/erdos-unit-distance) — Kim Morrison's formalization of Alpöge's disproof of the Erdős unit-distance conjecture | `tentative/erdos-unit-distance-1.jsonl` | `leanprover/lean4:v4.32.2` | 102 |
+| [harmonic-ai/IMO2025](https://github.com/harmonic-ai/IMO2025) — Harmonic's Aristotle system, 5 of 6 IMO 2025 problems | `tentative/imo2025-harmonic.jsonl` | `leanprover/lean4:v4.20.0-rc5` | 95 |
+| [MoonshotAI/CombiBench](https://github.com/MoonshotAI/CombiBench) — combinatorics competition benchmark | `tentative/combibench.jsonl` | `leanprover/lean4:v4.24.0` | 14 |
+| [optpku/CAM-Bench](https://github.com/optpku/CAM-Bench) — competition/applied-math proof targets | `tentative/cambench.jsonl` | `leanprover/lean4:v4.28.0` | 11 |
+| [math-inc/KakeyaFiniteFields](https://github.com/math-inc/KakeyaFiniteFields) — the Kakeya set problem over finite fields | `tentative/kakeya-finitefields.jsonl` | `leanprover/lean4:v4.26.0-rc2` | 9 |
+| [shetzl/autth](https://github.com/shetzl/autth) — finite automata and context-free grammars | `tentative/autth.jsonl` | `leanprover/lean4:v4.12.0-rc1` | 3 |
 
-**359,180 indexed and searchable** across 29 libraries (a small number of
+**384,058 indexed and searchable** across 51 libraries (a small number of
 harvested declarations with no extractable proof body — mostly
 `axiom`/opaque-style entries the syntactic extractor can't pull a proof
 out of — are dropped at import rather than counted here; see
@@ -79,9 +101,25 @@ excluded from `flt-anthropic.jsonl` to avoid double-counting and
 misattribution; only the repo's own `Theorems/` and `Definitions/` content
 is included.
 
-**Considered and not harvested**: CBirkbeck/WeilConverse turned out to be
-an empty Lake template (two files, no actual content) rather than the
-formalization its name suggests — checked directly, nothing to harvest.
+Two more per-repo vendoring exclusions from this round, same reasoning as
+Anthropic's FLT repo above: `mbrcic/ai-safety-formalization-atlas` vendors
+a third-party `TauCeti` library under `vendor/` (136 declarations, unclear
+provenance — excluded rather than mislabeled or half-researched), and
+`formal-applied-math/formal-mathfin` vendors a `upstream/mathlib/` copy (22
+declarations, already covered directly by the real mathlib harvest above).
+
+**Considered and not harvested**:
+- CBirkbeck/WeilConverse — an empty Lake template (two files, no actual
+  content) rather than the formalization its name suggests.
+- jsm28/IMOLean — genuinely statement-only: every `theorem result := by
+  sorry` in the repo is an *unsolved* posed IMO problem, by design (it's a
+  formalization-conventions repo, not a proof corpus).
+- jsm28/bmo2-2020-lean — confirmed Lean 3 (`leanpkg.toml`, no
+  `lean-toolchain`).
+- Sphere-AI-Lab/FormalMATH-Bench, cmu-l3/minictx-eval — Python evaluation
+  harnesses with no `.lean` source of their own (the latter references
+  Mathlib/PFR/SciLean/PhysLean as submodules, already covered above); would
+  need a different pipeline than `harvest.py`'s clone-and-scan.
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
