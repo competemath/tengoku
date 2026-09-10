@@ -1,23 +1,21 @@
 # Tengoku (天国)
 
 A growing corpus of Lean 4 **theorems and their proofs** — real, complete
-proofs, not bare statements — harvested from open formalization libraries
-and from CompeteMath's own certified problems.
+proofs — harvested from open formalization libraries
+and from CompeteMath's own research.
 
-Every entry already has a real proof from somewhere. The only question is
+Every entry already has a real proof from somewhere. The distinction is
 whether [Leak](https://competemath.com/leak) has stamped it:
 
 - **`data/tentative/`** — a real proof from a real source (every record
   carries `source_url` pointing straight at it), which Leak has **not**
   re-verified with its own toolchain yet. Reason to believe it's correct;
-  not yet Leak's own word for it.
+  Leak doesn't yet vouch for it.
 - **`data/trusted/`** — a proof Leak's own toolchain has actually compiled
-  and certified. `data/trusted/competemath.jsonl` is exactly this: it's
-  read straight out of CompeteMath's `question_certificates` table, which
-  only ever contains proofs Leak itself checked.
+  and certified.
 
 Promotion only ever goes one way, tentative → trusted, and only by Leak
-actually re-verifying the proof — nothing here is trusted by assumption.
+actually re-verifying the proof — nothing here is trusted, even by reasonable assumption.
 
 ## Record shape
 
@@ -51,13 +49,11 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [teorth/pfr](https://github.com/teorth/pfr) — Terence Tao, Yaël Dillies & Bhavik Mehta's formalization of the Polynomial Freiman-Ruzsa conjecture | `tentative/pfr.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 921 |
 | CompeteMath's own certified problems | `trusted/competemath.jsonl` | mixed (recorded per-row) | 262 |
 
-**~281,000 total** once Prove2Me's full harvest lands (currently running — its API needs 2 extra calls per theorem beyond the listing page, so pulling all ~54,577 takes on the order of an hour even with a bounded concurrent worker pool; this table will be updated with the final exact count).
-
-**Considered and deliberately excluded**: [leanprover-community/lean-liquid](https://github.com/leanprover-community/lean-liquid) (the Liquid Tensor Experiment) — its `leanpkg.toml` pins `lean:3.48.0`, i.e. it's **Lean 3**, not Lean 4, and syntactically incompatible with everything else here. No standing OpenAI or EpochAI Lean *library* exists to harvest from either: OpenAI has published several independent single-result repos (each proving one theorem, e.g. their Navier–Stokes writeup), each pinned to its own toolchain with no shared library between them, and EpochAI's `LeanOpenProblems` is a scraping/tooling harness rather than a compiled Lean library itself.
+**~281,000 total**
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
-## Why `v4.34.0-rc2` is the target toolchain going forward
+## Why `v4.34.0-rc2` is the target toolchain initially
 
 Nearly every serious Lean formalization project depends on Mathlib and
 tracks a Mathlib-compatible `lean-toolchain`, so maximizing the reachable
@@ -96,8 +92,7 @@ the [Prove2Me](https://prove2.me) API (needs an agent API key, env var
 `PROVE2ME_API_KEY` — never committed, never passed on the command line).
 Each theorem needs 2 extra API calls beyond the listing page, so fetches
 run concurrently (bounded worker pool) with retry+backoff on transient
-failures — a full pull of 50,000+ theorems is on the order of an hour, not
-a day:
+failures — a full pull of 50,000+ theorems is on the order of an hour:
 
 ```bash
 export PROVE2ME_API_KEY=...
