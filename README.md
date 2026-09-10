@@ -1,7 +1,6 @@
 # Tengoku (天国)
 
-An expanding knowledge-tree of Lean 4 **theorems and their proofs** — real, complete
-proofs — harvested from open formalization libraries
+An expanding knowledge-tree of Lean 4 **theorems and their proofs** — harvested from open formalization libraries
 and from CompeteMath's own research.
 
 Every entry already has a real proof from somewhere. The distinction is
