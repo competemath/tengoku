@@ -172,8 +172,9 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [teorth/newton](https://github.com/teorth/newton) | `tentative/teorth-newton.jsonl` | `leanprover/lean4:v4.5.0-rc1` | 25 |
 | [teorth/equational](https://github.com/teorth/equational) — an earlier/smaller companion to equational_theories | `tentative/teorth-equational.jsonl` | `leanprover/lean4:v4.12.0-rc1` | 24 |
 | [YaelDillies/chandra-furst-lipton](https://github.com/YaelDillies/chandra-furst-lipton) — corner-free sets / communication complexity | `tentative/chandra-furst-lipton.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 10 |
+| [ByteDance-Seed/Seed-Prover](https://github.com/ByteDance-Seed/Seed-Prover) — 5 of the 2025 IMO problems (`imo2025/`) plus a solved Erdős-problem lemma battery (`erdos_1051.lean`); its `miniCTX-v2/` subdirectory (11,490 declarations) vendors copies of ConNF/FLT/PhysLean/Seymour/Carleson/Foundation/Mathlib already listed above and was excluded | `tentative/seed-prover.jsonl` | `leanprover/lean4:v4.14.0` (the `imo2025` subproject's own pin — `erdos_1051.lean` didn't carry its own) | 347 |
 
-**588,672 indexed and searchable** across 136 libraries (a small number of
+**589,019 indexed and searchable** across 137 libraries (a small number of
 harvested declarations with no extractable proof body — mostly
 `axiom`/opaque-style entries the syntactic extractor can't pull a proof
 out of — are dropped at import rather than counted here; see
@@ -270,6 +271,24 @@ declarations, already covered directly by the real mathlib harvest above).
   discoverable anywhere in its tree (its `2ltt/` subdir has plain `.lean`
   files but no toolchain declaration) — ambiguous Lean version, not worth
   guessing.
+
+**Final disposition on the large-scale AI-lab "training corpora"**: checked
+directly (repo language + structure) rather than assumed. LeanDojo,
+Goedel-Prover, SorryDB are Python (extraction tool, model code, and a
+sorry-*indexer* respectively — the last one by definition isn't a proof
+source). davidsyin/leannavigator, albertqjiang/MMA, kfdong/STP,
+RickySkywalker/TheoremLlama, ByteDance-Seed/DeltaProver, and
+ByteDance-Seed/BFS-Prover are all Python/notebook repos with no `.lean`
+source of their own. DeepSeek-Prover-V1/-ProverBench, InternLM
+Lean-Workbook, Kimina-Prover-Promptset, NuminaMath-LEAN, NVIDIA
+Nemotron-Math-Proofs, Herald, and MUSTARD are all published exclusively as
+HuggingFace datasets with no companion GitHub repo carrying committed
+`.lean` files — same category, would need a HF-dataset pipeline rather
+than `harvest.py`'s git clone-and-scan. phanerozoic/Lean4-Mathlib and
+WhiteGiverPlus/lean-github-big would be redundant even if legitimate
+(they're repackagings of Mathlib4 and LEAN-GitHub, both already covered
+directly or by the same reasoning). Only ByteDance-Seed/Seed-Prover turned
+out to carry real committed Lean proofs, and that's harvested above.
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
