@@ -156,8 +156,24 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [WuProver/GroebnerTactic](https://github.com/WuProver/GroebnerTactic) | `tentative/groebner-tactic.jsonl` | `leanprover/lean4:v4.29.0-rc8` | 8 |
 | [frenzymath/jixia](https://github.com/frenzymath/jixia) | `tentative/frenzymath-jixia.jsonl` | `leanprover/lean4:v4.29.0` | 10 |
 | [frenzymath/interactive](https://github.com/frenzymath/interactive) | `tentative/frenzymath-interactive.jsonl` | `leanprover/lean4:v4.16.0` | 1 |
+| [teorth/analysis](https://github.com/teorth/analysis) — Terence Tao's Lean companion to his "Analysis I" textbook | `tentative/tao-analysis.jsonl` | `leanprover/lean4:v4.29.0-rc8` | 1,481 |
+| [teorth/IEANTN](https://github.com/teorth/IEANTN) — Terence Tao's analytic number theory notes/solutions | `tentative/ieantn.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 1,522 |
+| [teorth/sendov](https://github.com/teorth/sendov) — work toward Sendov's conjecture | `tentative/sendov.jsonl` | `leanprover/lean4:v4.34.0-rc1` | 678 |
+| [YaelDillies/apap](https://github.com/YaelDillies/apap) — "Arithmetic Progressions - Almost Periodicity" (Kelley-Meka bound on Roth numbers) | `tentative/apap.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 622 |
+| [teorth/estimate_tools](https://github.com/teorth/estimate_tools) — Terence Tao's asymptotic-estimate tooling | `tentative/estimate-tools.jsonl` | `leanprover/lean4:v4.20.0-rc5` | 221 |
+| [YaelDillies/ClassFieldTheory](https://github.com/YaelDillies/ClassFieldTheory) — 2025 Clay Summer School class field theory repo | `tentative/classfieldtheory.jsonl` | `leanprover/lean4:v4.25.0-rc2` | 327 |
+| [YaelDillies/mean-fourier](https://github.com/YaelDillies/mean-fourier) | `tentative/mean-fourier.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 287 |
+| [teorth/symmetric_project](https://github.com/teorth/symmetric_project) | `tentative/symmetric-project.jsonl` | `leanprover/lean4:v4.2.0-rc1` | 188 |
+| [leanprover-community/add-combi](https://github.com/leanprover-community/add-combi) — additive-combinatorics sublibrary | `tentative/add-combi.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 176 |
+| [YaelDillies/misc-yd](https://github.com/YaelDillies/misc-yd) — Yaël Dillies's miscellaneous results | `tentative/misc-yd.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 138 |
+| [YaelDillies/toric](https://github.com/YaelDillies/toric) — toric varieties | `tentative/toric.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 95 |
+| [YaelDillies/gibbs-measure](https://github.com/YaelDillies/gibbs-measure) | `tentative/gibbs-measure.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 94 |
+| [YaelDillies/forbidden-matrix](https://github.com/YaelDillies/forbidden-matrix) | `tentative/forbidden-matrix.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 60 |
+| [teorth/newton](https://github.com/teorth/newton) | `tentative/teorth-newton.jsonl` | `leanprover/lean4:v4.5.0-rc1` | 25 |
+| [teorth/equational](https://github.com/teorth/equational) — an earlier/smaller companion to equational_theories | `tentative/teorth-equational.jsonl` | `leanprover/lean4:v4.12.0-rc1` | 24 |
+| [YaelDillies/chandra-furst-lipton](https://github.com/YaelDillies/chandra-furst-lipton) — corner-free sets / communication complexity | `tentative/chandra-furst-lipton.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 10 |
 
-**582,724 indexed and searchable** across 120 libraries (a small number of
+**588,672 indexed and searchable** across 136 libraries (a small number of
 harvested declarations with no extractable proof body — mostly
 `axiom`/opaque-style entries the syntactic extractor can't pull a proof
 out of — are dropped at import rather than counted here; see
@@ -233,6 +249,27 @@ declarations, already covered directly by the real mathlib harvest above).
   CBirkbeck/EGAI, CBirkbeck/hopf-s6-blueprint — real Lean 4 repos, zero
   theorem/lemma declarations (tooling/scaffolding only).
 - CBirkbeck/ANT — confirmed Lean 3 (`leanpkg.toml`).
+- rookie-joe/PDA ("FormL4") — no discoverable `lean-toolchain`; its
+  directory structure (`annotation/`, `code/`, `data/`) is an ML
+  annotation/training pipeline, not a Lean project.
+- leanprover-community/NNG4 (the Natural Number Game) — checked directly:
+  182 `.lean` files but only 31 real `theorem`/`lemma` declarations
+  between them (its level content is mostly `example`s for the player to
+  fill in, which this pipeline doesn't harvest by design), several
+  containing `sorry`. Not a meaningful addition.
+- leanprover-community/lean-sensitivity, leanprover-community/mathzoo —
+  both confirmed Lean 3 (`leanpkg.toml`). The sensitivity conjecture proof
+  is already covered via mathlib4's own `Archive/Sensitivity.lean`.
+- sthamann/tfpt — final decision: skip permanently. It does have a real
+  `rh/lean` subdirectory with a valid toolchain, but the surrounding repo
+  (900+ oddly-named, sequentially-numbered Python scripts spanning
+  cosmology, number theory, and cryptography) reads as a large-scale
+  speculative research farm rather than a peer-reviewed-adjacent
+  formalization effort.
+- annenkov/two-level — final decision: skip. No `lean-toolchain`
+  discoverable anywhere in its tree (its `2ltt/` subdir has plain `.lean`
+  files but no toolchain declaration) — ambiguous Lean version, not worth
+  guessing.
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
