@@ -87,8 +87,38 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [optpku/CAM-Bench](https://github.com/optpku/CAM-Bench) — competition/applied-math proof targets | `tentative/cambench.jsonl` | `leanprover/lean4:v4.28.0` | 11 |
 | [math-inc/KakeyaFiniteFields](https://github.com/math-inc/KakeyaFiniteFields) — the Kakeya set problem over finite fields | `tentative/kakeya-finitefields.jsonl` | `leanprover/lean4:v4.26.0-rc2` | 9 |
 | [shetzl/autth](https://github.com/shetzl/autth) — finite automata and context-free grammars | `tentative/autth.jsonl` | `leanprover/lean4:v4.12.0-rc1` | 3 |
+| [ColinBundschu/mass-gap](https://github.com/ColinBundschu/mass-gap) — Yang-Mills mass gap over compact simple groups | `tentative/mass-gap.jsonl` | `leanprover/lean4:v4.32.2` | 11,043 |
+| [LionSR/TNLean](https://github.com/LionSR/TNLean) — tensor-network theory | `tentative/tnlean.jsonl` | `leanprover/lean4:v4.34.0-rc1` | 10,383 |
+| [siqiliu-tsinghua/tautology](https://github.com/siqiliu-tsinghua/tautology) — the reals constructed and formalized from nothing, without Mathlib | `tentative/tautology.jsonl` | `leanprover/lean4:v4.30.0` | 9,658 |
+| [Verified-zkEVM/VCVio](https://github.com/Verified-zkEVM/VCVio) — machine-checked cryptographic proofs | `tentative/vcvio.jsonl` | `leanprover/lean4:v4.33.1` | 6,621 |
+| [Verified-zkEVM/ArkLib](https://github.com/Verified-zkEVM/ArkLib) — formally verified arguments-of-knowledge (SNARK-adjacent) library | `tentative/arklib.jsonl` | `leanprover/lean4:v4.33.1` | 4,562 |
+| [schildep/verified-3d-mesh-intersection](https://github.com/schildep/verified-3d-mesh-intersection) — formally verified 3D mesh intersection (CSG) algorithm correctness | `tentative/verified-3d-mesh-intersection.jsonl` | `leanprover/lean4:v4.15.0` | 3,753 |
+| [EvolvingPrograms/erdos-simonovits-degeneracy](https://github.com/EvolvingPrograms/erdos-simonovits-degeneracy) — machine-checked disproof of the Erdős–Simonovits degeneracy conjecture | `tentative/erdos-simonovits-degeneracy.jsonl` | `leanprover/lean4:v4.32.0` | 1,435 |
+| [uda-lab/leray-hopf](https://github.com/uda-lab/leray-hopf) — Leray–Hopf weak solutions for Navier–Stokes | `tentative/leray-hopf.jsonl` | `leanprover/lean4:v4.31.0-rc2` | 1,151 |
+| [schildep/verified-polygon-intersection](https://github.com/schildep/verified-polygon-intersection) — formally verified polygon intersection algorithm correctness | `tentative/verified-polygon-intersection.jsonl` | `leanprover/lean4:v4.15.0` | 942 |
+| [VTrelat/ZFLean](https://github.com/VTrelat/ZFLean) — practical framework for set-theoretic development | `tentative/zflean.jsonl` | `leanprover/lean4:v4.33.0` | 890 |
+| [Zetetic-Dhruv/formal-learning-theory-kernel](https://github.com/Zetetic-Dhruv/formal-learning-theory-kernel) — a kernel for synthetic formalization of statistical learning theory | `tentative/formal-learning-theory-kernel.jsonl` | `leanprover/lean4:v4.29.0-rc6` | 651 |
+| [Shreyas4991/Algolean](https://github.com/Shreyas4991/Algolean) — algorithms & complexity library | `tentative/algolean.jsonl` | `leanprover/lean4:v4.33.0` | 364 |
+| [WuProver/groebner_proj](https://github.com/WuProver/groebner_proj) — Gröbner basis theory | `tentative/groebner-proj.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 327 |
+| [jsm28/AperiodicMonotilesLean](https://github.com/jsm28/AperiodicMonotilesLean) — the aperiodic "hat tile"/einstein monotile | `tentative/aperiodicmonotiles.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 311 |
+| [ProofOfKeags/btc-verified](https://github.com/ProofOfKeags/btc-verified) — verified Bitcoin protocol components | `tentative/btc-verified.jsonl` | `leanprover/lean4:v4.30.0-rc2` | 218 |
+| [teorth/expdb](https://github.com/teorth/expdb) — analytic number theory exponent database | `tentative/expdb.jsonl` | `leanprover/lean4:v4.32.0` | 194 |
+| [b-mehta/ABC-Exceptions](https://github.com/b-mehta/ABC-Exceptions) — constructions of exceptions to the ABC conjecture | `tentative/abc-exceptions.jsonl` | `leanprover/lean4:v4.21.0-rc3` | 192 |
+| [a2435191/lean-logic-formalization](https://github.com/a2435191/lean-logic-formalization) — formalization of van den Dries's "Logic Notes" | `tentative/lean-logic-formalization.jsonl` | `leanprover/lean4:v4.20.0-rc5` | 174 |
+| [verified-optimization/CvxLean](https://github.com/verified-optimization/CvxLean) — convex optimization modeling with verified correctness | `tentative/cvxlean.jsonl` | `leanprover/lean4:v4.8.0-rc1` | 150 |
+| [hanwenzhu/miller-rabin](https://github.com/hanwenzhu/miller-rabin) — Miller–Rabin primality test correctness proof | `tentative/miller-rabin.jsonl` | `leanprover/lean4:v4.22.0` | 80 |
+| [lengyijun/goldbach_tm](https://github.com/lengyijun/goldbach_tm) — Goldbach conjecture encoded as a 25-state Turing machine | `tentative/goldbach-tm.jsonl` | `leanprover/lean4:v4.14.0-rc2` | 83 |
+| [vltanh/lean4-analysis-tao](https://github.com/vltanh/lean4-analysis-tao) — formalization of Tao's "Analysis I" | `tentative/lean4-analysis-tao.jsonl` | `leanprover/lean4:v4.29.0` | 66 |
+| [keilambda/ttfpi](https://github.com/keilambda/ttfpi) — "Type Theory and Formal Proof: An Introduction" | `tentative/ttfpi.jsonl` | `leanprover/lean4:v4.13.0` | 49 |
+| [math-inc/RiemannHypothesisCurves](https://github.com/math-inc/RiemannHypothesisCurves) — the Riemann Hypothesis for curves (function-field analogue) | `tentative/riemannhypothesiscurves.jsonl` | `leanprover/lean4:v4.26.0-rc2` | 49 |
+| [math-inc/ZkLinalg](https://github.com/math-inc/ZkLinalg) — formal security proof of Reed-Solomon IOP-of-proximity constructions | `tentative/zklinalg.jsonl` | `leanprover/lean4:v4.24.0` | 48 |
+| [lenianiva/Prismriver](https://github.com/lenianiva/Prismriver) — music theory formalization + DSL | `tentative/prismriver.jsonl` | `leanprover/lean4:v4.28.0` | 52 |
+| [PnVDiscord/software-foundations-lean](https://github.com/PnVDiscord/software-foundations-lean) — "Software Foundations" ported to Lean 4 | `tentative/software-foundations-lean.jsonl` | `leanprover/lean4:v4.21.0` | 37 |
+| [jsm28/IMOShortlist2024Lean](https://github.com/jsm28/IMOShortlist2024Lean) — 2024 IMO Shortlist formalizations | `tentative/imoshortlist2024.jsonl` | `leanprover/lean4:v4.22.0-rc3` | 34 |
+| [stepchowfun/proofs](https://github.com/stepchowfun/proofs) — general formally verified mathematics | `tentative/stepchowfun-proofs.jsonl` | `leanprover/lean4:v4.33.1` | 26 |
+| [T-Brick/lean-wasm](https://github.com/T-Brick/lean-wasm) — formalization of the WebAssembly spec | `tentative/lean-wasm.jsonl` | `leanprover/lean4:v4.25.0` | 11 |
 
-**384,058 indexed and searchable** across 51 libraries (a small number of
+**437,612 indexed and searchable** across 81 libraries (a small number of
 harvested declarations with no extractable proof body — mostly
 `axiom`/opaque-style entries the syntactic extractor can't pull a proof
 out of — are dropped at import rather than counted here; see
@@ -120,6 +150,25 @@ declarations, already covered directly by the real mathlib harvest above).
   harnesses with no `.lean` source of their own (the latter references
   Mathlib/PFR/SciLean/PhysLean as submodules, already covered above); would
   need a different pipeline than `harvest.py`'s clone-and-scan.
+- nasqret/DeGiorgi-Explained — confirmed a direct GitHub fork of
+  scottnarmstrong/DeGiorgi (byte-identical declaration set, 1,181 names
+  overlapping 1,181) — already have it under `degiorgi.jsonl`, harvesting
+  the fork too would just double-count the same proofs.
+- yangky11/miniF2F-lean4 — confirmed statement-only, same reasoning as
+  IMOLean: every theorem is `:= by sorry`, it's a benchmark for provers to
+  attempt, not a solved-proof corpus.
+- opencompl/lean-gap — genuinely zero `theorem`/`lemma` declarations
+  anywhere in the repo; it's an AST + semantics embedding of the GAP
+  language (`def`/`inductive` only), nothing proof-shaped to harvest.
+- annenkov/two-level, sthamann/tfpt — skipped this round. `two-level` has
+  no discoverable `lean-toolchain` anywhere in its tree (ambiguous Lean
+  version, possibly a very old pre-Lake setup). `tfpt` does have a real
+  `rh/lean` subdirectory with a valid toolchain, but the surrounding repo
+  (900+ oddly-named, sequentially-numbered Python scripts spanning
+  cosmology, number theory, and cryptography) looks like a large-scale
+  speculative research farm rather than a peer-reviewed-adjacent
+  formalization effort — flagged for manual review before deciding whether
+  its Lean content specifically is worth including.
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
