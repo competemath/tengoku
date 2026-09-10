@@ -47,11 +47,41 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [leanprover-community/batteries](https://github.com/leanprover-community/batteries) — the community standard library (Mathlib's own foundation) | `tentative/batteries.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 1,960 |
 | [teorth/pfr](https://github.com/teorth/pfr) — Terence Tao, Yaël Dillies & Bhavik Mehta's formalization of the Polynomial Freiman-Ruzsa conjecture | `tentative/pfr.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 921 |
 | CompeteMath's own certified problems | `trusted/competemath.jsonl` | mixed (recorded per-row) | 262 |
+| [anthropics/fermats-last-theorem](https://github.com/anthropics/fermats-last-theorem) — Claude's complete, independent Lean 4 formalization of Fermat's Last Theorem (Sept 2026) | `tentative/flt-anthropic-001.jsonl` … `flt-anthropic-003.jsonl` (split by byte size — one file would be ~110MB) | `leanprover/lean4:v4.33.1` | 48,501 |
+| [leanprover-community/physlib](https://github.com/leanprover-community/physlib) — physics results (classical mechanics, QFT, quantum info) | `tentative/physlib.jsonl` | `leanprover/lean4:v4.33.0` | 10,571 |
+| [FormalizedFormalLogic/Foundation](https://github.com/FormalizedFormalLogic/Foundation) — first/second-order logic completeness, Gödel's incompleteness theorems, modal logic | `tentative/foundation.jsonl` | `leanprover/lean4:v4.33.1` | 5,559 |
+| [leanprover-community/con-nf](https://github.com/leanprover-community/con-nf) — consistency of Quine's New Foundations set theory | `tentative/con-nf.jsonl` | `leanprover/lean4:v4.21.0-rc3` | 2,785 |
+| [mortarsanjaya/IMOSLLean4](https://github.com/mortarsanjaya/IMOSLLean4) — IMO Shortlist problems (2006+, all categories except Geometry) | `tentative/imoshortlist.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 2,330 |
+| [sinhp/HoTTLean](https://github.com/sinhp/HoTTLean) — sorry-free groupoid model of homotopy type theory | `tentative/hottlean.jsonl` | `leanprover/lean4:v4.25.0-rc2` | 2,122 |
+| [lecopivo/SciLean](https://github.com/lecopivo/SciLean) — scientific computing (differential equations, automatic differentiation) | `tentative/scilean.jsonl` | `leanprover/lean4:v4.28.0-rc1` | 1,833 |
+| [leanprover-community/sphere-eversion](https://github.com/leanprover-community/sphere-eversion) — existence of sphere eversions | `tentative/sphere-eversion.jsonl` | `leanprover/lean4:v4.33.0` | 892 |
+| [RemyDegenne/brownian-motion](https://github.com/RemyDegenne/brownian-motion) — construction of Brownian motion, Kolmogorov–Chentsov continuity | `tentative/brownian-motion.jsonl` | `leanprover/lean4:v4.33.0-rc1` | 1,441 |
+| [scottnarmstrong/DeGiorgi](https://github.com/scottnarmstrong/DeGiorgi) — De Giorgi–Nash–Moser elliptic PDE regularity theory | `tentative/degiorgi.jsonl` | `leanprover/lean4:v4.29.0-rc6` | 1,192 |
+| [trishullab/PutnamBench](https://github.com/trishullab/PutnamBench) — Putnam Competition (1962–2025) formalizations, Lean 4 subset | `tentative/putnambench.jsonl` | `leanprover/lean4:v4.27.0` | 524 |
+| [Ivan-Sergeyev/seymour](https://github.com/Ivan-Sergeyev/seymour) — Seymour's decomposition theorem for regular matroids | `tentative/seymour.jsonl` | `leanprover/lean4:v4.18.0` | 468 |
+| [mo271/FormalBook](https://github.com/mo271/FormalBook) — formalizing "Proofs from THE BOOK" (Aigner–Ziegler) | `tentative/formalbook.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 279 |
+| [loganrjmurphy/LeanEuclid](https://github.com/loganrjmurphy/LeanEuclid) — autoformalization benchmark for Euclidean geometry | `tentative/leaneuclid.jsonl` | `leanprover/lean4:v4.19.0` | 206 |
+| [leanprover-community/flt-regular](https://github.com/leanprover-community/flt-regular) — Kummer's proof of FLT for regular primes | `tentative/flt-regular.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 195 |
+| [emilyriehl/infinity-cosmos](https://github.com/emilyriehl/infinity-cosmos) — basic formal theory of ∞-cosmoi | `tentative/infinity-cosmos.jsonl` | `leanprover/lean4:v4.34.0-rc1` | 134 |
+| [CBirkbeck/DirichletNonvanishing](https://github.com/CBirkbeck/DirichletNonvanishing) — non-vanishing of Dirichlet L-functions on Re(s)=1 | `tentative/dirichletnonvanishing.jsonl` | `leanprover/lean4:v4.13.0-rc3` | 118 |
+| [YaelDillies/LeanCamCombi](https://github.com/YaelDillies/LeanCamCombi) — Cambridge combinatorics courses | `tentative/leancamcombi.jsonl` | `leanprover/lean4:v4.34.0-rc2` | 61 |
 
-**279,969 indexed and searchable** (a small number of harvested declarations
-with no extractable proof body — mostly `axiom`/opaque-style entries the
-syntactic extractor can't pull a proof out of — are dropped at import
-rather than counted here; see `import-tengoku.ts`'s validation).
+**359,180 indexed and searchable** across 29 libraries (a small number of
+harvested declarations with no extractable proof body — mostly
+`axiom`/opaque-style entries the syntactic extractor can't pull a proof
+out of — are dropped at import rather than counted here; see
+`import-tengoku.ts`'s validation).
+
+**Note on anthropics/fermats-last-theorem**: that repo's own tree also
+contains a `P2M/` directory vendoring ~552,000 declarations from Prove2Me
+(already harvested here directly, under `library: "prove2me"`) — those are
+excluded from `flt-anthropic.jsonl` to avoid double-counting and
+misattribution; only the repo's own `Theorems/` and `Definitions/` content
+is included.
+
+**Considered and not harvested**: CBirkbeck/WeilConverse turned out to be
+an empty Lake template (two files, no actual content) rather than the
+formalization its name suggests — checked directly, nothing to harvest.
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
