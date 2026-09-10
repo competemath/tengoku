@@ -117,8 +117,19 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 | [jsm28/IMOShortlist2024Lean](https://github.com/jsm28/IMOShortlist2024Lean) — 2024 IMO Shortlist formalizations | `tentative/imoshortlist2024.jsonl` | `leanprover/lean4:v4.22.0-rc3` | 34 |
 | [stepchowfun/proofs](https://github.com/stepchowfun/proofs) — general formally verified mathematics | `tentative/stepchowfun-proofs.jsonl` | `leanprover/lean4:v4.33.1` | 26 |
 | [T-Brick/lean-wasm](https://github.com/T-Brick/lean-wasm) — formalization of the WebAssembly spec | `tentative/lean-wasm.jsonl` | `leanprover/lean4:v4.25.0` | 11 |
+| [facebookresearch/atlas-lean](https://github.com/facebookresearch/atlas-lean) — Meta/FAIR's Atlas project | `tentative/atlas-lean.jsonl` | `leanprover/lean4:v4.29.0` | 20,335 |
+| [frenzymath/Poincare-Conjecture](https://github.com/frenzymath/Poincare-Conjecture) — background lemmas toward Perelman's proof, organized by source textbook (do Carmo, Lee, Hatcher, Evans, Gilbarg–Trudinger, Chow–Knopf, Topping, Morgan–Tian, and Kleiner–Lott's exposition of Perelman's argument) | `tentative/poincare-conjecture.jsonl` | `leanprover/lean4:v4.32.1` | 18,748 |
+| [frenzymath/FormalPantheon](https://github.com/frenzymath/FormalPantheon) — three named results: bounded gaps between primes, "period three implies chaos", and Waring's problem | `tentative/formalpantheon.jsonl` | `leanprover/lean4:v4.32.0` | 4,735 |
+| [WuProver/lean_characteristic_set](https://github.com/WuProver/lean_characteristic_set) — characteristic sets in algebraic geometry | `tentative/lean-characteristic-set.jsonl` | `leanprover/lean4:v4.29.0-rc6` | 394 |
+| [frenzymath/Anderson-Conjecture](https://github.com/frenzymath/Anderson-Conjecture) | `tentative/anderson-conjecture.jsonl` | `leanprover/lean4:v4.29.0-rc8` | 263 |
+| [fpvandoorn/LeanCourse24](https://github.com/fpvandoorn/LeanCourse24) — Floris van Doorn's Bonn Lean course, winter 2024/25 | `tentative/leancourse24.jsonl` | `leanprover/lean4:v4.13.0-rc3` | 269 |
+| [WuProver/MonomialOrderedPolynomial](https://github.com/WuProver/MonomialOrderedPolynomial) — monomial orderings for polynomial rings | `tentative/monomial-ordered-polynomial.jsonl` | `leanprover/lean4:v4.29.0-rc8` | 238 |
+| [ImperialCollegeLondon/formalising-mathematics-2024](https://github.com/ImperialCollegeLondon/formalising-mathematics-2024) — Kevin Buzzard's Lean 4 undergraduate course, 2024 | `tentative/formalising-math-2024.jsonl` | `leanprover/lean4:v4.5.0-rc1` | 111 |
+| [frenzymath/qrcp-bounded-coherence-obstruction](https://github.com/frenzymath/qrcp-bounded-coherence-obstruction) — bounded-coherence obstruction results | `tentative/qrcp-bounded-coherence.jsonl` | `leanprover/lean4:v4.30.0-rc2` | 103 |
+| [ImperialCollegeLondon/IUM](https://github.com/ImperialCollegeLondon/IUM) — "Introduction to University Mathematics" course | `tentative/ium.jsonl` | `leanprover/lean4:v4.17.0` | 17 |
+| [fpvandoorn/HausdorffSchoolLean](https://github.com/fpvandoorn/HausdorffSchoolLean) — Sept 2023 Hausdorff School tutorial materials, Bonn | `tentative/hausdorffschoollean.jsonl` | `leanprover/lean4:v4.0.0` | 14 |
 
-**437,612 indexed and searchable** across 81 libraries (a small number of
+**482,839 indexed and searchable** across 92 libraries (a small number of
 harvested declarations with no extractable proof body — mostly
 `axiom`/opaque-style entries the syntactic extractor can't pull a proof
 out of — are dropped at import rather than counted here; see
@@ -169,6 +180,19 @@ declarations, already covered directly by the real mathlib harvest above).
   speculative research farm rather than a peer-reviewed-adjacent
   formalization effort — flagged for manual review before deciding whether
   its Lean content specifically is worth including.
+- frenzymath/FATE-M, FATE-H, FATE-X — confirmed statement-only benchmarks
+  (abstract-algebra problems posed as `theorem ... := by sorry`), same
+  reasoning as miniF2F/IMOLean.
+- frenzymath/metalib, frenzymath/TreeSearch — real repos but pure tooling
+  (a handful of `.lean` files, zero `theorem`/`lemma` declarations between
+  them); nothing proof-shaped to harvest.
+- ImperialCollegeLondon/formalising-mathematics-2022 and -2023 — confirmed
+  Lean 3 (`leanpkg.toml`). Only the 2024 edition is Lean 4.
+- davidsyin/leannavigator, albertqjiang/MMA, kfdong/STP,
+  RickySkywalker/TheoremLlama — all confirmed Python/notebook tooling
+  repos around Lean, not Lean source themselves (no root or discoverable
+  `lean-toolchain`); would need a different pipeline than `harvest.py`'s
+  clone-and-scan, same category as the AI-lab training corpora above.
 
 Every harvested file is filtered for `sorry`: a declaration whose proof contains `sorry` anywhere isn't proven, no matter how confident-looking the rest of it is, and is silently dropped rather than mislabeled as tentative (see `lean_extract.py`'s `_contains_sorry`). This matters most for mixed-status sources like `formal-conjectures`, which stores solved and open problems side by side in the same files, and for Prove2Me, whose own theorem-listing endpoint always returns the posed (`sorry`) form — the real proof is fetched separately, from that theorem's own accepted submission.
 
