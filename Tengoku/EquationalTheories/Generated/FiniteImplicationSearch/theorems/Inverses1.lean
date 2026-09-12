@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (39 theorems)
+-- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (40 theorems)
 import Tengoku.EquationalTheories.Deps.Superposition
 import Tengoku.Data.Set.Finite.Basic
 import Tengoku.Tactic.TypeStar
@@ -1113,5 +1113,33 @@ theorem _root_.Finite.Equation481_implies_Equation1488 (G : Type*) [Magma G] [Fi
   have step12 (X0 X1 : G) : (X0 ◇ X0) = (X1 ◇ X1) := superpose step8 step8
   have step17 (X0 : G) : sK0 ≠ ((sK1 ◇ sK0) ◇ (sK1 ◇ (X0 ◇ X0))) := superpose step12 step9
   subsumption step17 step10
+
+theorem _root_.Finite.Equation481_implies_Equation1496 (G : Type*) [Magma G] [Finite G] (h : Equation481 G) : Equation1496 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, sK2, nh⟩ := nh
+  have step8 (X0 X1 X2 : G) : (X1 ◇ (X0 ◇ (X1 ◇ (X2 ◇ X2)))) = X0 := mod_symm (h ..)
+  have step9 : sK0 ≠ ((sK1 ◇ sK0) ◇ (sK1 ◇ (sK2 ◇ sK2))) := mod_symm nh
+  have step10 (X Y Z : G) : ((Y ◇ X) ◇ (Y ◇ (Z ◇ Z))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (Y ◇ (Z ◇ Z)))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => (s ◇ (Y ◇ (Z ◇ Z)))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step12 (X0 X1 : G) : (X1 ◇ X1) = (X0 ◇ X0) := superpose step8 step8
+  have step20 (X0 : G) : sK0 ≠ ((sK1 ◇ sK0) ◇ (sK1 ◇ (X0 ◇ X0))) := superpose step12 step9
+  subsumption step20 step10
 
 end EquationalTheories
