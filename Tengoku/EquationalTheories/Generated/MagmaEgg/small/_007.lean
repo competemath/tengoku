@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (20 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (21 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
 
@@ -461,5 +461,33 @@ theorem Equation1495_implies_Equation2 (G: Type _) [Magma G] (h: Equation1495 G)
   have h24 := h v13 v4 x
   have h25 := h v12 x y
   T (T (h x y y) (C (T (T (T (T (T (T h25 (C (T (T h24 h23) h22) h14)) (S (h v4 x y))) (C (T (h x y x) (C (T (T (T h25 (C (T (T (T (T (T (T h24 h23) h22) h21) h18) h8) h6) h14)) h17) h11) (R v2))) h9)) (S (h v2 x x))) (h v2 v1 y)) (C (S (h y y x)) h0)) (R (M y v1)))) h0
+
+theorem Equation2179_implies_Equation2 (G: Type _) [Magma G] (h: Equation2179 G) : Equation2 G
+:= fun x y =>
+  have h0 := S (h y y y)
+  let v1 := M y y
+  let v2 := M (M y x) y
+  have h3 := h x x y
+  have h4 := S h3
+  have h5 := h x x x
+  have h6 := S h5
+  have h7 := C h6 h6
+  let v8 := M x x
+  let v9 := M v8 x
+  have h10 := h v9 v8 x
+  let v11 := M x y
+  let v12 := M v11 x
+  have h13 := R v12
+  have h14 := C h13 (T h10 h7)
+  have h15 := S h10
+  have h16 := C h5 h5
+  have h17 := S (h v8 x x)
+  have h18 := h v8 x y
+  have h19 := S h18
+  have h20 := C (R v9) (T (T (T (T h3 (C h13 (T h16 h15))) h19) h16) h15)
+  have h21 := C (T (T (T h20 h17) h16) h15) (T (T (T (T h10 h7) h18) h14) h4)
+  have h22 := C h13 (T (T (T (T (T (T (h v12 v9 x) (C h21 (T (T h19 h16) h15))) h21) h20) h17) h16) h15)
+  have h23 := h v11 x y
+  T (T (h x y y) (C (R (M v1 y)) (T (T (T (T (T (T (T (T (T (T h23 h22) h19) h16) h15) (h v9 x y)) (C h13 (T (T (T (T h20 h17) h18) h14) h4))) (C h13 (T (h x y x) (C (R v2) (T (T (T h23 h22) h14) h4))))) (S (h v2 x y))) (h v2 v1 y)) (C h0 (S (h y y x)))))) h0
 
 end EquationalTheories
