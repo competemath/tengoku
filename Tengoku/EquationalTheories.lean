@@ -2,3 +2,4 @@ import Tengoku.EquationalTheories.Deps
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.InversesManual
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._000
+import Tengoku.EquationalTheories.Generated.MagmaEgg.small._001
