@@ -1,2 +1,3 @@
 import Tengoku.EquationalTheories.Deps
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1
+import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.InversesManual
