@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (27 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (28 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
 
@@ -625,5 +625,34 @@ theorem Equation3959_implies_Equation3776 (G: Type _) [Magma G] (h: Equation3959
   let v18 := M y v17
   have h19 := h y v17 v6
   T (T (T (T h16 (C (T (T (T (T (T (T h19 (h (M v17 v15) v6 v6)) (C (T (T (T (T (T (C h7 (S h19)) (h v6 v18 v1)) (C (T (T (T (C (R v18) (T (T h13 h11) h10)) (h v18 v0 y)) (C (C (R v0) (S h16)) h5)) (S (h x v0 y))) h12)) (h (M x v0) v1 x)) (C (T (C (T (T h14 (h (M z v15) v6 v6)) (C (T (T (T (C h7 (S h14)) h13) h11) h10) h7)) (S (h z x x))) (S (h v1 v0 v0))) (R x))) (S (h z v1 x))) h7)) (h v8 v6 z)) (C (C h7 (S (h y z z))) (R z))) (S (h y v6 z))) (C h5 (T h2 h4))) h5)) (S (h (M x (M v3 y)) y y))) (S h4)) (S h2)
+
+theorem Equation2891_implies_Equation2677 (G: Type _) [Magma G] (h: Equation2891 G) : Equation2677 G
+:= fun x y z =>
+  let v0 := M y z
+  have h1 := R y
+  let v2 := M z v0
+  let v3 := M x y
+  let v4 := M v3 v0
+  have h5 := h x v3 v4
+  have h6 := S h5
+  have h7 := R v3
+  have h8 := h (M (M x (M v3 v4)) v4) x y
+  have h9 := S h8
+  have h10 := R x
+  have h11 := C (C h5 h1) h10
+  let v12 := M v4 z
+  let v13 := M v3 x
+  have h14 := h v13 v12 y
+  have h15 := S h14
+  have h16 := R v12
+  have h17 := h v3 y z
+  have h18 := R v13
+  have h19 := C (C h6 h1) h10
+  have h20 := C (T (C (T h5 (C (T h8 h19) h7)) h1) (C (C h18 h17) h1)) h16
+  have h21 := C (T (C (C h18 (S h17)) h1) (C (T (C (T h11 h9) h7) h6) h1)) h16
+  have h22 := h v3 y v3
+  let v23 := M v3 (M y v3)
+  have h24 := h v23 x y
+  T (T (T (T h5 (C (T (T (T h8 h19) h14) h21) h7)) (C (T (T (T h20 h15) (C h22 h10)) (S h24)) h7)) (h (M v23 v3) z v0)) (C (C (T (T (C (T (T (C (T (T (T h24 (C (S h22) h10)) h14) h21) h7) (C (T (T (T h20 h15) h11) h9) h7)) h6) (R v2)) (h (M x v2) y z)) (C (S (h x z v0)) h1)) (R v0)) (R z))
 
 end EquationalTheories
