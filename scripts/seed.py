@@ -153,7 +153,11 @@ def main():
         "-- Tengoku: one self-contained tree. This file imports all of it.",
         "-- Seeded from the packages listed in SEED.md; grown by verified translations.",
     ]
-    root.write_text("\n".join(header + lines + extra) + "\n", encoding="utf-8")
+    # Mathlib's root ends with a `set_option` after its imports; an import
+    # after that is a parse error, so the extra roots go after the LAST import.
+    last_import = max((i for i, l in enumerate(lines) if IMPORT_RE.match(l)), default=len(lines) - 1)
+    lines = lines[: last_import + 1] + extra + lines[last_import + 1 :]
+    root.write_text("\n".join(header + lines) + "\n", encoding="utf-8")
 
     # Lake project: a single root, no dependencies. Options: the toolchain
     # defaults plus the two Mathlib settings that change what ELABORATES

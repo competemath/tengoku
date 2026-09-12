@@ -8375,7 +8375,6 @@ public import Tengoku.Util.TransImports
 public import Tengoku.Util.WhatsNew
 public import Tengoku.Util.WithWeakNamespace
 
-set_option linter.style.longLine false
 public import Tengoku.Std
 public import Tengoku.Tactic.Aesop
 public import Tengoku.Meta.Qq
@@ -8384,3 +8383,5 @@ public import Tengoku.Testing.Random
 public import Tengoku.Search.LeanSearchClient
 public import Tengoku.Meta.ImportGraph
 public import Tengoku.Meta.Cli
+
+set_option linter.style.longLine false
