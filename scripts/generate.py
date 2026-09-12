@@ -116,6 +116,68 @@ def map_imports(text: str, corpus_prefix: str, lib_ns: str, deps_available: set[
     return IMPORT_RE.sub(sub, text)
 
 
+DECL_NAME_RE = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s+)*(?:def|theorem|lemma|abbrev|instance|opaque|axiom|inductive|structure|class)\s+([A-Za-z_][\w'.]*)", re.M)
+IMPORT_LINE_RE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s")
+
+
+def deps_declared(deps_dir: Path) -> tuple[set[str], set[str]]:
+    """Names and (whitespace-normalised) lines every Deps module already provides."""
+    names, lines = set(), set()
+    for f in deps_dir.glob("*.lean"):
+        text = f.read_text(encoding="utf-8")
+        names.update(n.removeprefix("_root_.") for n in DECL_NAME_RE.findall(text))
+        lines.update(" ".join(l.split()) for l in text.splitlines() if l.strip() and not l.lstrip().startswith("--"))
+    return names, lines
+
+
+def top_level_chunks(text: str) -> list[list[str]]:
+    """Split a file prefix at column-0 lines; attribute/doc-comment lead-ins and
+    the inside of block comments stay with the declaration they belong to."""
+    out: list[list[str]] = []
+    cur: list[str] = []
+    depth = 0
+
+    def lead_in_only(lines: list[str]) -> bool:
+        return all(not l.strip() or l.startswith(("@[", "/--", "/-", "--")) or l.strip().endswith("-/") for l in lines)
+
+    for line in text.splitlines():
+        if line and not line[0].isspace() and depth == 0 and cur and not lead_in_only(cur):
+            out.append(cur)
+            cur = []
+        cur.append(line)
+        depth += line.count("/-") - line.count("-/")
+    if cur:
+        out.append(cur)
+    return out
+
+
+def dedupe_prefix(prefix: str, deps_names: set[str], deps_lines: set[str]) -> str:
+    """A context written by an agent (no prelude marker) is a self-contained
+    script: `import Mathlib`, its own `class Magma`, `abbrev EquationN`, the
+    `◇` notation. Inside the tree those come from the library's Deps modules,
+    so imports go and any top-level declaration Deps already provides is
+    dropped — an `import` after line 1 or a second `class Magma` in the same
+    namespace fails the build. Universe declarations are per-file and kept."""
+    kept = []
+    for chunk in top_level_chunks(prefix):
+        body = "\n".join(chunk)
+        code = [l for l in chunk if l.strip() and not l.lstrip().startswith(("--", "/-", "@[")) and not l.strip().endswith("-/")]
+        if not code:
+            continue
+        if any(IMPORT_LINE_RE.match(l) for l in code):
+            continue
+        if code[0].startswith("universe"):
+            kept.append(body)
+            continue
+        m = DECL_NAME_RE.search(body)
+        if m and m.group(1).removeprefix("_root_.") in deps_names:
+            continue
+        if " ".join(chunk[0].split()) in deps_lines:
+            continue
+        kept.append(body)
+    return "\n".join(kept)
+
+
 def regenerate_equations(corpus: Path, corpus_prefix: str) -> list[str]:
     out = []
     for f in sorted((corpus / corpus_prefix / "Equations").glob("*.lean")):
@@ -189,6 +251,7 @@ def main():
         )
         deps_mods = sorted(p.stem for p in deps_dir.glob("*.lean"))
         (lib_dir / "Deps.lean").write_text("\n".join(f"import Tengoku.{lib_ns}.Deps.{m}" for m in deps_mods) + "\n", encoding="utf-8")
+        deps_names, deps_lines = deps_declared(deps_dir)
 
         # ---- One module per original source file
         by_file: dict[str, list[dict]] = {}
@@ -208,19 +271,21 @@ def main():
                 m = re.search(r"#L(\d+)", r.get("source_url") or "")
                 return int(m.group(1)) if m else 0
             recs.sort(key=line_of)
-            # The file's own declarations: everything after the prelude marker in the
-            # first record's context. Contexts that differ (an agent's fix) are noted;
-            # the build decides.
-            first = recs[0]["context"]
-            m = FILE_MARKER_RE.search(first)
-            file_prefix = first[m.end():] if m else first
-            file_prefix = "\n".join(l for l in file_prefix.splitlines() if not l.startswith("set_option linter.all false"))
-            for r in recs[1:]:
+            # The file's own declarations: everything after the prelude marker in
+            # a record's context (a marker-bearing record is preferred: its prefix
+            # is the original file's, not an agent's self-contained rewrite).
+            # Contexts that differ (an agent's fix) are noted; the build decides.
+            def own_prefix(r):
                 mm = FILE_MARKER_RE.search(r["context"])
-                other = r["context"][mm.end():] if mm else r["context"]
-                if other.strip() != file_prefix.strip():
+                text = r["context"][mm.end():] if mm else r["context"]
+                text = "\n".join(l for l in text.splitlines() if not l.startswith("set_option linter.all false"))
+                return dedupe_prefix(text, deps_names, deps_lines)
+            first_rec = next((r for r in recs if FILE_MARKER_RE.search(r["context"])), recs[0])
+            file_prefix = own_prefix(first_rec)
+            for r in recs:
+                if r is not first_rec and own_prefix(r).strip() != file_prefix.strip():
                     warnings += 1
-                    print(f"  note: {r['name']}: context differs from {recs[0]['name']}'s in {source_path} — using the first; the build decides")
+                    print(f"  note: {r['name']}: context differs from {first_rec['name']}'s in {source_path} — using {first_rec['name']}'s; the build decides")
             theorems = "\n\n".join(f"{strip_corpus_attrs(r['statement'])}\n{r['proof']}" for r in recs)
             # Import what the ORIGINAL file imported, mapped into the tree —
             # not the whole tree: builds stay proportional to the file, and a

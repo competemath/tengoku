@@ -9,31 +9,7 @@ set_option linter.all false
 
 namespace EquationalTheories
 
-import Mathlib
-
-
-class Magma (α : Type _) where
-  /-- `a ◇ b` denotes a binary operation of `a` and `b`. -/
-  op : α → α → α
-
-@[inherit_doc] infix:65 " ◇ " => Magma.op
-
-scoped instance MagmaToMul.inst {α : Type _} [Magma α] : Mul α where
-  mul := Magma.op
-
-scoped instance MagmaToAdd.inst {α : Type _} [Magma α] : Add α where
-  add := Magma.op
-
-scoped instance MulToMagma.inst {α : Type _} [Mul α] : Magma α where
-  op := (· * ·)
-
-scoped instance AddToMagma.inst {α : Type _} [Add α] : Magma α where
-  op := (· + ·)
-
 universe uEq
-
-abbrev Equation1443 (G : Type uEq) [Magma G] : Prop := ∀ x y z : G, x = (x ◇ y) ◇ (x ◇ (x ◇ z))
-abbrev Equation1630 (G : Type uEq) [Magma G] : Prop := ∀ x y : G, x = (x ◇ x) ◇ ((x ◇ x) ◇ y)
 
 set_option linter.unusedVariables false
 
