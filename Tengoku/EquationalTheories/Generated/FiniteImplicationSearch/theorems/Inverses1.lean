@@ -1,0 +1,831 @@
+-- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (29 theorems)
+import Tengoku.EquationalTheories.Deps.Superposition
+import Tengoku.Data.Set.Finite.Basic
+import Tengoku.Tactic.TypeStar
+import Tengoku.Tactic.ByContra
+import Tengoku.EquationalTheories.Deps
+
+set_option linter.all false
+
+namespace EquationalTheories
+
+set_option linter.unusedVariables false
+
+theorem _root_.Finite.Equation1076_implies_Equation3 (G : Type*) [Magma G] [Finite G] (h : Equation1076 G) : Equation3 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, nh⟩ := nh
+  have step9 (X0 X1 : G) : (X1 ◇ ((X0 ◇ (X0 ◇ X1)) ◇ X1)) = X0 := mod_symm (h ..)
+  have step10 : sK0 ≠ (sK0 ◇ sK0) := mod_symm nh
+  have step11 (X Y : G) : ((Y ◇ (X ◇ Y)) ◇ ((Y ◇ (X ◇ Y)) ◇ Y)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => (s ◇ (s ◇ Y))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step12 (X Y : G) : (((Y ◇ X) ◇ ((Y ◇ X) ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => ((s ◇ (s ◇ Y)) ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => ((s ◇ (s ◇ Y)) ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step13 (X0 X1 : G) : (((X0 ◇ (X0 ◇ X1)) ◇ X1) ◇ ((X1 ◇ X0) ◇ ((X0 ◇ (X0 ◇ X1)) ◇ X1))) = X1 := superpose step9 step9
+  have step15 (X0 X1 : G) : ((X1 ◇ X0) ◇ ((X1 ◇ X0) ◇ X1)) = (X1 ◇ ((((X1 ◇ X0) ◇ ((X1 ◇ X0) ◇ X1)) ◇ X0) ◇ X1)) := superpose step12 step9
+  have step75 (X0 : G) : ((X0 ◇ X0) ◇ ((X0 ◇ X0) ◇ X0)) = (X0 ◇ (X0 ◇ X0)) := superpose step12 step15
+  have step91 (X0 : G) : ((X0 ◇ (X0 ◇ X0)) ◇ X0) = X0 := superpose step75 step12
+  have step92 (X0 : G) : (((X0 ◇ (X0 ◇ X0)) ◇ X0) ◇ ((X0 ◇ (X0 ◇ X0)) ◇ ((X0 ◇ (X0 ◇ X0)) ◇ X0))) = X0 := superpose step75 step13
+  have step102 (X0 : G) : (((X0 ◇ (X0 ◇ X0)) ◇ X0) ◇ X0) = X0 := superpose step11 step92
+  have step103 (X0 : G) : (X0 ◇ X0) = X0 := superpose step91 step102
+  have step175 : sK0 ≠ sK0 := superpose step103 step10
+  subsumption step175 rfl
+
+theorem _root_.Finite.Equation1086_implies_Equation1832 (G : Type*) [Magma G] [Finite G] (h : Equation1086 G) : Equation1832 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, nh⟩ := nh
+  have step11 (X Y : G) : ((Y ◇ (X ◇ Y)) ◇ (Y ◇ Y)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (Y ◇ Y))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => (s ◇ (Y ◇ Y))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  exact nh (step11 sK0 sK0).symm
+
+theorem _root_.Finite.Equation1086_implies_Equation1898 (G : Type*) [Magma G] [Finite G] (h : Equation1086 G) : Equation1898 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 : sK0 ≠ ((sK1 ◇ (sK0 ◇ sK1)) ◇ (sK1 ◇ sK1)) := nh
+  have step11 (X Y : G) : ((Y ◇ (X ◇ Y)) ◇ (Y ◇ Y)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (Y ◇ Y))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => (s ◇ (Y ◇ Y))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  exact step10 (step11 sK0 sK1).symm
+
+theorem _root_.Finite.Equation1086_implies_Equation2710 (G : Type*) [Magma G] [Finite G] (h : Equation1086 G) : Equation2710 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step12 (X Y : G) : (((Y ◇ X) ◇ (Y ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => ((s ◇ (Y ◇ Y)) ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => ((s ◇ (Y ◇ Y)) ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  exact nh (step12 sK0 sK1).symm
+
+theorem _root_.Finite.Equation1110_implies_Equation8 (G : Type*) [Magma G] [Finite G] (h : Equation1110 G) : Equation8 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, nh⟩ := nh
+  have step11 : sK0 ≠ (sK0 ◇ (sK0 ◇ sK0)) := mod_symm nh
+  have step12 (X Y : G) : ((Y ◇ ((Y ◇ X) ◇ Y)) ◇ (Y ◇ ((Y ◇ X) ◇ Y))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ ((Y ◇ s) ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ ((Y ◇ s) ◇ Y))) (fun s => (s ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step14 (X Y : G) : ((Y ◇ ((Y ◇ X) ◇ (Y ◇ X))) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => ((Y ◇ (s ◇ s)) ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => ((Y ◇ (s ◇ s)) ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step15 (X0 X1 : G) : (((X1 ◇ ((X1 ◇ X0) ◇ (X1 ◇ X0))) ◇ (X0 ◇ X0)) ◇ (X1 ◇ ((X1 ◇ X0) ◇ (X1 ◇ X0)))) = X1 := superpose step14 step14
+  have step74 (X0 : G) : (X0 ◇ X0) = (X0 ◇ ((X0 ◇ X0) ◇ (((X0 ◇ X0) ◇ X0) ◇ ((X0 ◇ X0) ◇ X0)))) := superpose step14 step15
+  have step160 (X0 : G) : ((X0 ◇ X0) ◇ (((X0 ◇ X0) ◇ X0) ◇ ((X0 ◇ X0) ◇ X0))) = ((X0 ◇ ((X0 ◇ X0) ◇ X0)) ◇ (X0 ◇ ((X0 ◇ X0) ◇ X0))) := superpose step74 step12
+  have step167 (X0 : G) : ((X0 ◇ X0) ◇ (((X0 ◇ X0) ◇ X0) ◇ ((X0 ◇ X0) ◇ X0))) = X0 := superpose step12 step160
+  have step201 (X0 : G) : (X0 ◇ (X0 ◇ X0)) = X0 := superpose step167 step14
+  have step244 : sK0 ≠ sK0 := superpose step201 step11
+  subsumption step244 rfl
+
+theorem _root_.Finite.Equation1112_implies_Equation8 (G : Type*) [Magma G] [Finite G] (h : Equation1112 G) : Equation8 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, nh⟩ := nh
+  have step8 (X0 X1 : G) : (X1 ◇ ((X1 ◇ (X0 ◇ X1)) ◇ X0)) = X0 := mod_symm (h ..)
+  have step9 : sK0 ≠ (sK0 ◇ (sK0 ◇ sK0)) := mod_symm nh
+  have step10 (X Y : G) : ((Y ◇ ((Y ◇ X) ◇ Y)) ◇ (Y ◇ X)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => ((Y ◇ (s ◇ Y)) ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => ((Y ◇ (s ◇ Y)) ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step13 (X0 : G) : (X0 ◇ X0) = (X0 ◇ (X0 ◇ (X0 ◇ X0))) := superpose step8 step10
+  have step16 (X0 : G) : (X0 ◇ (X0 ◇ X0)) = ((X0 ◇ ((X0 ◇ X0) ◇ X0)) ◇ (X0 ◇ X0)) := superpose step13 step10
+  have step18 (X0 : G) : (X0 ◇ (X0 ◇ X0)) = X0 := superpose step10 step16
+  have step20 : sK0 ≠ sK0 := superpose step18 step9
+  subsumption step20 rfl
+
+theorem _root_.Finite.Equation1113_implies_Equation2534 (G : Type*) [Magma G] [Finite G] (h : Equation1113 G) : Equation2534 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step9 : sK0 ≠ ((sK1 ◇ ((sK1 ◇ sK0) ◇ sK1)) ◇ sK1) := mod_symm nh
+  have step10 (X Y : G) : ((Y ◇ ((Y ◇ X) ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ ((Y ◇ s) ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ ((Y ◇ s) ◇ Y))) (fun s => (s ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step13 : sK0 ≠ sK0 := superpose step10 step9
+  subsumption step13 rfl
+
+theorem _root_.Finite.Equation1117_implies_Equation2538 (G : Type*) [Magma G] [Finite G] (h : Equation1117 G) : Equation2538 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, sK2, nh⟩ := nh
+  have step9 : sK0 ≠ ((sK1 ◇ ((sK1 ◇ sK0) ◇ sK2)) ◇ sK2) := mod_symm nh
+  have step10 (X Y Z : G) : ((Y ◇ ((Y ◇ X) ◇ Z)) ◇ Z) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Z)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ ((Y ◇ s) ◇ Z))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ ((Y ◇ s) ◇ Z))) (fun s => (s ◇ Z)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step15 : sK0 ≠ sK0 := superpose step10 step9
+  subsumption step15 rfl
+
+theorem _root_.Finite.Equation115_implies_Equation2707 (G : Type*) [Magma G] [Finite G] (h : Equation115 G) : Equation2707 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 : sK0 ≠ (((sK1 ◇ sK0) ◇ (sK1 ◇ sK0)) ◇ sK1) := mod_symm nh
+  have step12 (X Y : G) : (((Y ◇ X) ◇ (Y ◇ X)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => ((s ◇ s) ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => ((s ◇ s) ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step15 : sK0 ≠ sK0 := superpose step12 step10
+  subsumption step15 rfl
+
+theorem _root_.Finite.Equation115_implies_Equation4273 (G : Type*) [Magma G] [Finite G] (h : Equation115 G) : Equation4273 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step9 (X0 X1 : G) : (X1 ◇ ((X0 ◇ X0) ◇ X1)) = X0 := mod_symm (h ..)
+  have step10 : (sK0 ◇ (sK0 ◇ sK0)) ≠ (sK1 ◇ (sK0 ◇ sK1)) := mod_symm nh
+  have step11 (X Y : G) : ((Y ◇ (X ◇ Y)) ◇ (Y ◇ (X ◇ Y))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => (s ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step17 (X0 X1 X2 : G) : (X1 ◇ (X0 ◇ X1)) = (X2 ◇ (X0 ◇ X2)) := superpose step11 step9
+  have step49 (X0 : G) : (sK0 ◇ (sK0 ◇ sK0)) ≠ (X0 ◇ (sK0 ◇ X0)) := superpose step17 step10
+  subsumption step49 step17
+
+theorem _root_.Finite.Equation118_implies_Equation222 (G : Type*) [Magma G] [Finite G] (h : Equation118 G) : Equation222 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 : sK0 ≠ ((sK1 ◇ (sK0 ◇ sK1)) ◇ sK1) := mod_symm nh
+  have step11 (X Y : G) : ((Y ◇ (X ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => (s ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step16 : sK0 ≠ sK0 := superpose step11 step10
+  subsumption step16 rfl
+
+theorem _root_.Finite.Equation118_implies_Equation274 (G : Type*) [Magma G] [Finite G] (h : Equation118 G) : Equation274 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 : sK0 ≠ (((sK1 ◇ sK0) ◇ sK1) ◇ sK1) := mod_symm nh
+  have step11 (X Y : G) : ((Y ◇ (X ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => (s ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step15 (X0 X1 : G) : ((X1 ◇ X0) ◇ X1) = (X1 ◇ (X0 ◇ X1)) := superpose step11 step11
+  have step17 : sK0 ≠ ((sK1 ◇ (sK0 ◇ sK1)) ◇ sK1) := superpose step15 step10
+  subsumption step17 step11
+
+theorem _root_.Finite.Equation118_implies_Equation4435 (G : Type*) [Magma G] [Finite G] (h : Equation118 G) : Equation4435 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 : (sK0 ◇ (sK1 ◇ sK0)) ≠ ((sK0 ◇ sK1) ◇ sK0) := mod_symm nh
+  have step11 (X Y : G) : ((Y ◇ (X ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => (s ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step15 (X0 X1 : G) : (X1 ◇ (X0 ◇ X1)) = ((X1 ◇ X0) ◇ X1) := superpose step11 step11
+  have step25 : (sK0 ◇ (sK1 ◇ sK0)) ≠ (sK0 ◇ (sK1 ◇ sK0)) := superpose step15 step10
+  subsumption step25 rfl
+
+theorem _root_.Finite.Equation1276_implies_Equation4273 (G : Type*) [Magma G] [Finite G] (h : Equation1276 G) : Equation4273 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step9 (X0 X1 : G) : (X1 ◇ (((X0 ◇ X0) ◇ X0) ◇ X1)) = X0 := mod_symm (h ..)
+  have step10 : (sK0 ◇ (sK0 ◇ sK0)) ≠ (sK1 ◇ (sK0 ◇ sK1)) := mod_symm nh
+  have step11 (X Y : G) : (((Y ◇ (X ◇ Y)) ◇ (Y ◇ (X ◇ Y))) ◇ (Y ◇ (X ◇ Y))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => ((s ◇ s) ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ (s ◇ Y))) (fun s => ((s ◇ s) ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step17 (X0 X1 X2 : G) : (X1 ◇ (X0 ◇ X1)) = (X2 ◇ (X0 ◇ X2)) := superpose step11 step9
+  have step40 (X0 : G) : (sK0 ◇ (sK0 ◇ sK0)) ≠ (X0 ◇ (sK0 ◇ X0)) := superpose step17 step10
+  subsumption step40 step17
+
+theorem _root_.Finite.Equation1289_implies_Equation2507 (G : Type*) [Magma G] [Finite G] (h : Equation1289 G) : Equation2507 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step11 : sK0 ≠ ((sK1 ◇ ((sK0 ◇ sK1) ◇ sK1)) ◇ sK1) := mod_symm nh
+  have step12 (X Y : G) : ((Y ◇ ((X ◇ Y) ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ ((s ◇ Y) ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ ((s ◇ Y) ◇ Y))) (fun s => (s ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step18 : sK0 ≠ sK0 := superpose step12 step11
+  subsumption step18 rfl
+
+theorem _root_.Finite.Equation1289_implies_Equation3116 (G : Type*) [Magma G] [Finite G] (h : Equation1289 G) : Equation3116 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step11 : sK0 ≠ ((((sK1 ◇ sK0) ◇ sK1) ◇ sK1) ◇ sK1) := mod_symm nh
+  have step14 (X Y : G) : ((((Y ◇ X) ◇ Y) ◇ Y) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (((s ◇ Y) ◇ Y) ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => (((s ◇ Y) ◇ Y) ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step21 : sK0 ≠ sK0 := superpose step14 step11
+  subsumption step21 rfl
+
+theorem _root_.Finite.Equation1289_implies_Equation4435 (G : Type*) [Magma G] [Finite G] (h : Equation1289 G) : Equation4435 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 (X0 X1 : G) : (X1 ◇ (((X0 ◇ X1) ◇ X1) ◇ X1)) = X0 := mod_symm (h ..)
+  have step11 : (sK0 ◇ (sK1 ◇ sK0)) ≠ ((sK0 ◇ sK1) ◇ sK0) := mod_symm nh
+  have step14 (X Y : G) : ((((Y ◇ X) ◇ Y) ◇ Y) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (((s ◇ Y) ◇ Y) ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => (((s ◇ Y) ◇ Y) ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step21 (X0 X1 : G) : (X1 ◇ (X0 ◇ X1)) = ((X1 ◇ X0) ◇ X1) := superpose step14 step10
+  have step33 : (sK0 ◇ (sK1 ◇ sK0)) ≠ (sK0 ◇ (sK1 ◇ sK0)) := superpose step21 step11
+  subsumption step33 rfl
+
+theorem _root_.Finite.Equation1431_implies_Equation1428 (G : Type*) [Magma G] [Finite G] (h : Equation1431 G) : Equation1428 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step8 (X0 X1 : G) : ((X0 ◇ X0) ◇ (X1 ◇ (X0 ◇ X0))) = X0 := mod_symm (h ..)
+  have step9 : sK0 ≠ ((sK0 ◇ sK0) ◇ (sK0 ◇ (sK1 ◇ sK0))) := mod_symm nh
+  have step10 (X Y : G) : ((X ◇ (Y ◇ X)) ◇ (X ◇ (Y ◇ X))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (s ◇ (Y ◇ s))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (s ◇ (Y ◇ s))) (fun s => (s ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step14 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X0)) = (X0 ◇ (X2 ◇ X0)) := superpose step10 step8
+  have step29 (X0 : G) : sK0 ≠ ((sK0 ◇ sK0) ◇ (sK0 ◇ (X0 ◇ sK0))) := superpose step14 step9
+  have step41 : sK0 ≠ sK0 := superpose step8 step29
+  subsumption step41 rfl
+
+theorem _root_.Finite.Equation1431_implies_Equation4269 (G : Type*) [Magma G] [Finite G] (h : Equation1431 G) : Equation4269 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step8 (X0 X1 : G) : ((X0 ◇ X0) ◇ (X1 ◇ (X0 ◇ X0))) = X0 := mod_symm (h ..)
+  have step9 : (sK0 ◇ (sK0 ◇ sK0)) ≠ (sK0 ◇ (sK1 ◇ sK0)) := mod_symm nh
+  have step10 (X Y : G) : ((X ◇ (Y ◇ X)) ◇ (X ◇ (Y ◇ X))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (s ◇ (Y ◇ s))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (s ◇ (Y ◇ s))) (fun s => (s ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step14 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X0)) = (X0 ◇ (X2 ◇ X0)) := superpose step10 step8
+  have step33 (X0 : G) : (sK0 ◇ (sK0 ◇ sK0)) ≠ (sK0 ◇ (X0 ◇ sK0)) := superpose step14 step9
+  subsumption step33 step14
+
+theorem _root_.Finite.Equation1491_implies_Equation65 (G : Type*) [Magma G] [Finite G] (h : Equation1491 G) : Equation65 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step9 : sK0 ≠ (sK1 ◇ (sK0 ◇ (sK1 ◇ sK0))) := mod_symm nh
+  have step10 (X Y : G) : (Y ◇ (X ◇ (Y ◇ X))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (s ◇ (Y ◇ s))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (s ◇ (Y ◇ s))) (fun s => (Y ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step12 : sK0 ≠ sK0 := superpose step10 step9
+  subsumption step12 rfl
+
+theorem _root_.Finite.Equation1515_implies_Equation4590 (G : Type*) [Magma G] [Finite G] (h : Equation1515 G) : Equation4590 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step8 (X0 X1 : G) : ((X1 ◇ X1) ◇ (X0 ◇ (X0 ◇ X0))) = X0 := mod_symm (h ..)
+  have step9 : ((sK0 ◇ sK0) ◇ sK0) ≠ ((sK1 ◇ sK1) ◇ sK0) := mod_symm nh
+  have step10 (X Y : G) : (((Y ◇ Y) ◇ X) ◇ (((Y ◇ Y) ◇ X) ◇ ((Y ◇ Y) ◇ X))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (s ◇ s))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => ((Y ◇ Y) ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => ((Y ◇ Y) ◇ s)) (fun s => (s ◇ (s ◇ s))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step12 (X0 X1 X2 : G) : ((X1 ◇ X1) ◇ X0) = ((X2 ◇ X2) ◇ X0) := superpose step10 step8
+  have step25 (X0 : G) : ((sK0 ◇ sK0) ◇ sK0) ≠ ((X0 ◇ X0) ◇ sK0) := superpose step12 step9
+  subsumption step25 step12
+
+theorem _root_.Finite.Equation1519_implies_Equation2128 (G : Type*) [Magma G] [Finite G] (h : Equation1519 G) : Equation2128 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step9 : sK0 ≠ (((sK1 ◇ sK1) ◇ sK0) ◇ (sK1 ◇ sK1)) := mod_symm nh
+  have step10 (X Y : G) : (((Y ◇ Y) ◇ X) ◇ (Y ◇ Y)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (Y ◇ Y))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => ((Y ◇ Y) ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => ((Y ◇ Y) ◇ s)) (fun s => (s ◇ (Y ◇ Y))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step13 : sK0 ≠ sK0 := superpose step10 step9
+  subsumption step13 rfl
+
+theorem _root_.Finite.Equation1523_implies_Equation2132 (G : Type*) [Magma G] [Finite G] (h : Equation1523 G) : Equation2132 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, sK2, nh⟩ := nh
+  have step9 : sK0 ≠ (((sK1 ◇ sK1) ◇ sK0) ◇ (sK2 ◇ sK2)) := mod_symm nh
+  have step10 (X Y Z : G) : (((Y ◇ Y) ◇ X) ◇ (Z ◇ Z)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (Z ◇ Z))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => ((Y ◇ Y) ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => ((Y ◇ Y) ◇ s)) (fun s => (s ◇ (Z ◇ Z))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step21 : sK0 ≠ sK0 := superpose step10 step9
+  subsumption step21 rfl
+
+theorem _root_.Finite.Equation1526_implies_Equation1223 (G : Type*) [Magma G] [Finite G] (h : Equation1526 G) : Equation1223 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, nh⟩ := nh
+  have step10 : sK0 ≠ (sK0 ◇ (((sK0 ◇ sK0) ◇ sK0) ◇ sK0)) := mod_symm nh
+  have step12 (X Y : G) : (Y ◇ (((Y ◇ Y) ◇ X) ◇ Y)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => ((Y ◇ Y) ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => ((Y ◇ Y) ◇ s)) (fun s => (Y ◇ (s ◇ Y))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step19 : sK0 ≠ sK0 := superpose step12 step10
+  subsumption step19 rfl
+
+theorem _root_.Finite.Equation1526_implies_Equation1323 (G : Type*) [Magma G] [Finite G] (h : Equation1526 G) : Equation1323 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 : sK0 ≠ (sK1 ◇ (((sK1 ◇ sK1) ◇ sK0) ◇ sK1)) := mod_symm nh
+  have step12 (X Y : G) : (Y ◇ (((Y ◇ Y) ◇ X) ◇ Y)) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (Y ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => ((Y ◇ Y) ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => ((Y ◇ Y) ◇ s)) (fun s => (Y ◇ (s ◇ Y))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step19 : sK0 ≠ sK0 := superpose step12 step10
+  subsumption step19 rfl
+
+theorem _root_.Finite.Equation1526_implies_Equation2744 (G : Type*) [Magma G] [Finite G] (h : Equation1526 G) : Equation2744 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step10 : sK0 ≠ (((sK1 ◇ sK1) ◇ (sK1 ◇ sK0)) ◇ sK1) := mod_symm nh
+  have step11 (X Y : G) : (((Y ◇ Y) ◇ (Y ◇ X)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => ((Y ◇ Y) ◇ (Y ◇ s))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => ((Y ◇ Y) ◇ (Y ◇ s))) (fun s => (s ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step17 : sK0 ≠ sK0 := superpose step11 step10
+  subsumption step17 rfl
+
+theorem _root_.Finite.Equation1630_implies_Equation4268 (G : Type*) [Magma G] [Finite G] (h : Equation1630 G) : Equation4268 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step8 (X0 X1 : G) : ((X0 ◇ X0) ◇ ((X0 ◇ X0) ◇ X1)) = X0 := mod_symm (h ..)
+  have step9 : (sK0 ◇ (sK0 ◇ sK0)) ≠ (sK0 ◇ (sK0 ◇ sK1)) := mod_symm nh
+  have step10 (X Y : G) : ((X ◇ (X ◇ Y)) ◇ (X ◇ (X ◇ Y))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (s ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (s ◇ (s ◇ Y))) (fun s => (s ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step17 (X0 X1 X2 : G) : (X0 ◇ (X0 ◇ X1)) = (X0 ◇ (X0 ◇ X2)) := superpose step10 step8
+  have step34 (X0 : G) : (sK0 ◇ (sK0 ◇ sK0)) ≠ (sK0 ◇ (sK0 ◇ X0)) := superpose step17 step9
+  subsumption step34 step17
+
+theorem _root_.Finite.Equation1648_implies_Equation206 (G : Type*) [Magma G] [Finite G] (h : Equation1648 G) : Equation206 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step9 : sK0 ≠ ((sK0 ◇ (sK0 ◇ sK1)) ◇ sK1) := mod_symm nh
+  have step10 (X Y : G) : ((X ◇ (X ◇ Y)) ◇ Y) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ Y)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (s ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (s ◇ (s ◇ Y))) (fun s => (s ◇ Y)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step12 : sK0 ≠ sK0 := superpose step10 step9
+  subsumption step12 rfl
+
+theorem _root_.Finite.Equation1692_implies_Equation63 (G : Type*) [Magma G] [Finite G] (h : Equation1692 G) : Equation63 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step9 : sK0 ≠ (sK1 ◇ (sK0 ◇ (sK0 ◇ sK1))) := mod_symm nh
+  have step10 (X Y : G) : (Y ◇ (X ◇ (X ◇ Y))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (s ◇ (s ◇ Y))) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (s ◇ (s ◇ Y))) (fun s => (Y ◇ s)) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step13 : sK0 ≠ sK0 := superpose step10 step9
+  subsumption step13 rfl
+
+end EquationalTheories

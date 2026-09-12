@@ -37,6 +37,55 @@ EQUATION_LINE_RE = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)*equation\s+(\d+)\s*:=\s*(
 UNSAFE_MODULE_RE = re.compile(r"^\s*(?:scoped\s+)?(initialize|builtin_initialize|register_simp_attr|register_option|register_label_attr|register_tag_attr|register_parametric_attr)\b", re.M)
 
 
+# Namespacing a corpus module (`namespace EquationalTheories … end`) keeps its
+# own names (Magma, EquationN, FreeMagma) from clashing with seeded ones — but
+# a corpus file also EXTENDS outside namespaces (`def Lean.MVarId.congrWith`,
+# `theorem Eq.comm'`), and inside the wrapper those would silently become
+# `EquationalTheories.Lean.MVarId.congrWith`, breaking every `m.congrWith`.
+# A dotted declaration whose head is an outside namespace gets `_root_.`;
+# a module that opens an outside namespace block is left unwrapped.
+TOOLCHAIN_ROOTS = set("""
+Lean Init Std Eq Ne HEq Nat Int List Array String Char Option Prod Sum Fin Function Sigma PSigma Subtype Quot Quotient
+Decidable Bool Iff And Or Not Exists True False Unit PUnit IO Task Id StateT ReaderT ExceptT Except Monad Functor
+Applicative HashMap HashSet RBMap ByteArray Float UInt8 UInt16 UInt32 UInt64 USize Empty PEmpty Classical WellFounded Acc
+Setoid Equivalence Inhabited Nonempty Subsingleton DecidableEq BEq Hashable Ord LT LE Add Mul Sub Div Neg HAdd HMul HSub HDiv
+Membership Singleton Insert EmptyCollection Union Inter SDiff HasSubset Coe CoeFun CoeSort Zero One Dvd Mod Pow HPow Append
+GetElem Bind Pure Seq SeqLeft SeqRight ToString Repr Format Syntax Name Expr Level MVarId FVarId Meta Elab Tactic Term Command
+""".split())
+
+
+def seed_heads(out: Path) -> set[str]:
+    """First segments of every declaration/namespace in the seeded tree."""
+    heads = set(TOOLCHAIN_ROOTS)
+    rx = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s+)*(?:namespace|def|theorem|lemma|abbrev|instance|opaque|axiom|inductive|structure|class)\s+([A-Za-z_][\w']*)", re.M)
+    for f in (out / "Tengoku").rglob("*.lean"):
+        if "EquationalTheories" in f.parts or "CompeteMath" in f.parts:
+            continue
+        try:
+            heads.update(rx.findall(f.read_text(encoding="utf-8", errors="ignore")))
+        except OSError:
+            pass
+    return heads
+
+
+DECL_HEAD_RE = re.compile(r"^(\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local)\s+)*(?:def|theorem|lemma|abbrev|instance|opaque|axiom|inductive|structure|class)\s+)([A-Za-z_][\w']*)\.", re.M)
+NAMESPACE_RE = re.compile(r"^\s*namespace\s+([A-Za-z_][\w']*)", re.M)
+
+
+def rootify(body: str, external: set[str]) -> str:
+    return DECL_HEAD_RE.sub(lambda m: f"{m.group(1)}{'_root_.' if m.group(2) in external else ''}{m.group(2)}.", body)
+
+
+def opens_external_namespace(body: str, external: set[str]) -> bool:
+    return any(h in external for h in NAMESPACE_RE.findall(body))
+
+
+def wrap(body: str, lib_ns: str, external: set[str]) -> str:
+    if opens_external_namespace(body, external):
+        return f"-- left unwrapped: this module opens an outside namespace block\n{body.strip()}\n"
+    return f"namespace {lib_ns}\n\n{rootify(body, external).strip()}\n\nend {lib_ns}\n"
+
+
 def pascal(library: str) -> str:
     return "".join(p[:1].upper() + p[1:] for p in re.split(r"[-_ ]+", library) if p)
 
@@ -109,6 +158,7 @@ def main():
         lib_dir = out / "Tengoku" / lib_ns
         deps_dir = lib_dir / "Deps"
         deps_dir.mkdir(parents=True, exist_ok=True)
+        external = seed_heads(out)
 
         # ---- Deps: the corpus modules any context pasted verbatim, plus all equations
         pasted = set()
@@ -127,13 +177,13 @@ def main():
             leaf = mod.split(".")[-1]
             (deps_dir / f"{leaf}.lean").write_text(
                 f"-- {lib_ns}/Deps/{leaf}: verbatim from {mod} (imports mapped, corpus bookkeeping attributes stripped)\n"
-                f"{imports}\nimport Tengoku.Init\n\nset_option linter.all false\n\nnamespace {lib_ns}\n\n{rest.strip()}\n\nend {lib_ns}\n",
+                f"{imports}\nimport Tengoku.Init\n\nset_option linter.all false\n\n{wrap(rest, lib_ns, external)}",
                 encoding="utf-8",
             )
         eqs = regenerate_equations(corpus, corpus_prefix)
         (deps_dir / "Equations.lean").write_text(
             f"-- {lib_ns}/Deps/Equations: every `equation N := law` of the corpus, in the exact shape its `equation` command produces\n"
-            f"import Tengoku.{lib_ns}.Deps.Magma\n\nset_option linter.all false\n\nnamespace {lib_ns}\n\nuniverse uEq\n\n" + "\n".join(eqs) + f"\n\nend {lib_ns}\n",
+            f"import Tengoku.{lib_ns}.Deps.Magma\n\nset_option linter.all false\n\n" + wrap("universe uEq\n\n" + "\n".join(eqs), lib_ns, external),
             encoding="utf-8",
         )
         deps_mods = sorted(p.stem for p in deps_dir.glob("*.lean"))
@@ -183,7 +233,7 @@ def main():
             mod_path.parent.mkdir(parents=True, exist_ok=True)
             mod_path.write_text(
                 f"-- {mod_name}: verified translations of {source_path} ({len(recs)} theorem{'s' if len(recs) != 1 else ''})\n"
-                f"{imports}\n\nset_option linter.all false\n\nnamespace {lib_ns}\n\n{file_prefix.strip()}\n\n{theorems}\n\nend {lib_ns}\n",
+                f"{imports}\n\nset_option linter.all false\n\n{wrap(f'{file_prefix.strip()}\n\n{theorems}', lib_ns, external)}",
                 encoding="utf-8",
             )
             modules.append(mod_name)
