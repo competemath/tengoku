@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._010: verified translations of equational_theories/Generated/MagmaEgg/small/_010.lean (10 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._010: verified translations of equational_theories/Generated/MagmaEgg/small/_010.lean (11 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
 
@@ -482,5 +482,54 @@ theorem Equation522_implies_Equation1507 (G: Type _) [Magma G] (h: Equation522 G
   have h45 := h z z v1
   have h46 := R v3
   T (h x v2 v2) (C (R v2) (T (T (T (S (h y v2 x)) (h y v3 z)) (C h46 (C h46 (T (T (T (T (C h13 (T (T (T (T (T (C h42 (T h45 (C h13 (C h13 (T h43 h33))))) (C h42 (T (T (T (C h13 (C h13 (T h21 h44))) (S h45)) h21) h44))) (C h42 (T (T (T h43 h33) (h z y y)) (C h42 (T (T (T (C h42 (C h42 (T h32 h40))) h41) h32) h40))))) h41) h32) h40)) (C h13 (T (T (T (C h15 (C h15 (T (T h31 h30) h37))) (S h32)) h31) h30))) h24) h16) h22)))) (S (h v1 v3 v0))))
+
+theorem Equation1960_implies_Equation2 (G: Type _) [Magma G] (h: Equation1960 G) : Equation2 G
+:= fun x y =>
+  let v0 := M x y
+  let v1 := M y x
+  have h2 := R v0
+  have h3 := h y x x
+  have h4 := h x (M x v0) y
+  have h5 := T h4 (C (S h3) h2)
+  have h6 := R (M v0 y)
+  let v7 := M x x
+  have h8 := h x (M x v7) x
+  have h9 := R v7
+  have h10 := h x x x
+  have h11 := T (C h10 h9) (S h8)
+  have h12 := R y
+  have h13 := T h8 (C (S h10) h9)
+  have h14 := h y (M x v1) x
+  have h15 := R v1
+  have h16 := h x x y
+  have h17 := T (C h16 h15) (S h14)
+  have h18 := T (C h3 h2) (S h4)
+  have h19 := T h14 (C (S h16) h15)
+  let v20 := M y y
+  have h21 := S (h y v20 v20)
+  have h22 := h y (M x v20) y
+  have h23 := R v20
+  have h24 := h y x y
+  have h25 := T (C h24 h23) (S h22)
+  have h26 := C (S h24) h23
+  have h27 := T h22 h26
+  have h28 := C h11 h19
+  have h29 := C h13 h12
+  have h30 := C (T (C (T (T (T h29 h28) (C h5 h17)) (C h18 h27)) (R (M v20 y))) (S (h v20 x y))) h25
+  have h31 := h y v0 v20
+  have h32 := C (T (T h31 h30) (C h23 (T h31 h30))) (R (M y v20))
+  have h33 := h y v7 v0
+  have h34 := R x
+  have h35 := h v0 x y
+  have h36 := T (C (T h35 (C (T (T (T (C h5 h18) (C h18 h13)) (C h13 h11)) (C h11 h34)) h6)) h5) (S h33)
+  have h37 := C h36 h27
+  have h38 := C h11 h13
+  have h39 := C h13 h34
+  have h40 := C (T (C (T (T (T h39 h38) (C h5 h11)) (C h18 h5)) h6) (S h35)) h18
+  have h41 := S (h v7 x x)
+  have h42 := T h39 h38
+  have h43 := C (T (C h42 (R (M v7 x))) h41) h11
+  have h44 := h x v7 v7
+  T (T (T (T (T (T h44 h43) (C h42 (T h44 h43))) h41) (C (T (h x v0 v1) (C (T (C (T h29 h28) (R (M v1 x))) (S (h v1 x x))) h17)) h34)) (C (T (C (T (T (C h12 h13) (C h19 h11)) (C h17 h5)) (T (T (T h33 h40) (h (M v0 x) x y)) (C (T (T (T (T (C h34 (T (T (T (T (T (C (T h33 h40) h36) h37) h32) h21) h22) h26)) (C h5 h25)) (C h18 h19)) (C h13 h17)) (C h11 h12)) (T (T h37 h32) h21)))) (C (T (T (C h19 h18) (C h17 h13)) (C h12 h11)) h6)) h5)) (S (h y v1 v0))
 
 end EquationalTheories
