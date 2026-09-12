@@ -8,3 +8,4 @@ import Tengoku.EquationalTheories.Generated.MagmaEgg.small._007
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._010
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._011
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._016
+import Tengoku.EquationalTheories.Generated.MagmaEgg.small._017
