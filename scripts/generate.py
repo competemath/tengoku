@@ -250,6 +250,17 @@ def main():
         )
         print(f"{library}: {len(records)} records -> {len(modules)} file modules on disk, {len(deps_mods)} Deps modules ({len(eqs)} equations); {warnings} context notes")
 
+    # Tengoku/All.lean: everything, for tools that index or import "the whole
+    # tree" (loogle, the verifier's injected import). A legacy-style file can
+    # import both the module-system root and the legacy translation modules;
+    # the root itself cannot.
+    libs = sorted(p.stem for p in (out / "Tengoku").glob("*.lean") if p.stem not in {"All", "Init", "Tactic", "Std", "Widgets"} and (out / "Tengoku" / p.stem).is_dir() and (out / "Tengoku" / p.stem / "Deps.lean").exists())
+    (out / "Tengoku" / "All.lean").write_text(
+        "-- Everything in the tree: the seeded root plus every library of verified additions.\nimport Tengoku\n" + "\n".join(f"import Tengoku.{l}" for l in libs) + "\n",
+        encoding="utf-8",
+    )
+    print(f"Tengoku/All.lean: root + {', '.join(libs) or 'no additions yet'}")
+
 
 if __name__ == "__main__":
     main()
