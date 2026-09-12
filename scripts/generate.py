@@ -30,7 +30,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from seed import PACKAGES, IMPORT_RE, module_map  # noqa: E402
 
-DATA_TIERS = ("staging", "trusted")
+# Only TRUSTED records become modules of the tree. A staging record (both
+# gates passed, module not yet proven to build) is promoted by
+# scripts/promote.py, which builds its module before moving it here; nothing
+# staging or tentative is ever importable through Tengoku.All.
+DATA_TIERS = ("trusted",)
 FILE_MARKER_RE = re.compile(r"^-- \[Emissary\] (\S+), everything before line \d+[^\n]*\n", re.M)
 PRELUDE_MODULE_RE = re.compile(r"^-- \[Emissary prelude\] (\S+) — verbatim", re.M)
 EQUATION_LINE_RE = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)*equation\s+(\d+)\s*:=\s*(.+?)\s*$", re.M)
@@ -215,8 +219,7 @@ def main():
                     if r.get("source_path") and r.get("context") is not None:
                         records.append(r)
         if not records:
-            print(f"{library}: no records with source_path/context — nothing to generate")
-            continue
+            print(f"{library}: no trusted records with source_path/context — modules on disk are removed, Deps kept")
 
         lib_dir = out / "Tengoku" / lib_ns
         deps_dir = lib_dir / "Deps"
@@ -244,7 +247,8 @@ def main():
                 encoding="utf-8",
             )
         eqs = regenerate_equations(corpus, corpus_prefix)
-        (deps_dir / "Equations.lean").write_text(
+        if eqs and (deps_dir / "Magma.lean").exists():  # the abbrevs need Magma; without it the file would not build
+            (deps_dir / "Equations.lean").write_text(
             f"-- {lib_ns}/Deps/Equations: every `equation N := law` of the corpus, in the exact shape its `equation` command produces\n"
             f"import Tengoku.{lib_ns}.Deps.Magma\n\nset_option linter.all false\n\n" + wrap("universe uEq\n\n" + "\n".join(eqs), lib_ns, external),
             encoding="utf-8",
@@ -296,13 +300,34 @@ def main():
                 mapped = map_imports(orig.read_text(encoding="utf-8"), corpus_prefix, lib_ns, deps_available)
                 orig_imports = [l.strip() for l in mapped.splitlines() if re.match(r"\s*(public |private |meta )*import ", l)]
                 orig_imports = [re.sub(r"^(public |private |meta )+", "", l) for l in orig_imports]
-            imports = "\n".join(dict.fromkeys(orig_imports + [f"import Tengoku.{lib_ns}.Deps"]))
+            # The Deps this file's records pasted (plus Magma/Equations, which
+            # every equation abbrev needs) — not the Deps aggregator, so a corpus
+            # module first pasted by some OTHER file does not rebuild this one.
+            needed = {m.split(".")[-1] for r in recs for m in PRELUDE_MODULE_RE.findall(r["context"])} & deps_available
+            needed |= {d for d in ("Magma", "Equations") if d in deps_mods}
+            dep_imports = [f"import Tengoku.{lib_ns}.Deps.{d}" for d in sorted(needed)]
+            imports = "\n".join(dict.fromkeys(orig_imports + dep_imports))
             mod_path.parent.mkdir(parents=True, exist_ok=True)
             mod_path.write_text(
                 f"-- {mod_name}: verified translations of {source_path} ({len(recs)} theorem{'s' if len(recs) != 1 else ''})\n"
                 f"{imports}\n\nset_option linter.all false\n\n{wrap(f'{file_prefix.strip()}\n\n{theorems}', lib_ns, external)}",
                 encoding="utf-8",
             )
+        # A module on disk that no trusted record backs any more is removed —
+        # a file whose records went back to staging must not stay importable.
+        def mod_path_of(source_path: str) -> Path:
+            rel = Path(source_path)
+            if rel.parts and rel.parts[0] == corpus_prefix:
+                rel = Path(*rel.parts[1:])
+            return lib_dir / rel
+        backed = {mod_path_of(sp) for sp in by_file}
+        stale = [mod_path_of(args.only)] if args.only else [
+            p for p in lib_dir.rglob("*.lean") if "Deps" not in p.relative_to(lib_dir).parts and p.name != "Deps.lean"
+        ]
+        for p in stale:
+            if p not in backed and p.exists():
+                p.unlink()
+                print(f"  removed {p.relative_to(out)}: no trusted record backs it")
         # The aggregator lists every file module on disk (not just this run's),
         # so a `--only` regeneration keeps the whole library importable.
         modules = sorted(
