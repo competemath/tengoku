@@ -18,14 +18,19 @@ on:
     # Only what can change the build. The Emissary app pushes a data/ commit
     # for every banked theorem (every couple of minutes during a run); those
     # never touch a module and must not each cost a build + a cache release.
+    # Infra changes build immediately. Translation modules arrive with every
+    # banked theorem (every couple of minutes during a run) and are picked up
+    # by the schedule below instead, so they cost one build per half hour,
+    # not one per theorem.
     paths:
-      - "Tengoku/**"
       - "Tengoku.lean"
       - "lakefile.toml"
       - "lake-manifest.json"
       - "lean-toolchain"
       - "scripts/cache.sh"
       - ".github/workflows/build.yml"
+  schedule:
+    - cron: "*/30 * * * *"
   workflow_dispatch:
     inputs:
       resume:

@@ -134,6 +134,7 @@ def main():
     ap.add_argument("--corpus", required=True, help="checkout of the corpus (dir containing e.g. equational_theories/)")
     ap.add_argument("--libraries", nargs="*", default=["equational-theories"])
     ap.add_argument("--out", default=".")
+    ap.add_argument("--only", default=None, help="regenerate just this source_path's module (Deps and the aggregator are still refreshed)")
     args = ap.parse_args()
     out = Path(args.out).resolve()
     corpus = Path(args.corpus).expanduser().resolve()
@@ -193,9 +194,10 @@ def main():
         by_file: dict[str, list[dict]] = {}
         for r in records:
             by_file.setdefault(r["source_path"], []).append(r)
-        modules = []
         warnings = 0
         for source_path, recs in sorted(by_file.items()):
+            if args.only and source_path != args.only:
+                continue
             rel = Path(source_path)
             if rel.parts and rel.parts[0] == corpus_prefix:
                 rel = Path(*rel.parts[1:])
@@ -236,11 +238,17 @@ def main():
                 f"{imports}\n\nset_option linter.all false\n\n{wrap(f'{file_prefix.strip()}\n\n{theorems}', lib_ns, external)}",
                 encoding="utf-8",
             )
-            modules.append(mod_name)
+        # The aggregator lists every file module on disk (not just this run's),
+        # so a `--only` regeneration keeps the whole library importable.
+        modules = sorted(
+            f"Tengoku.{lib_ns}." + ".".join(p.relative_to(lib_dir).with_suffix("").parts)
+            for p in lib_dir.rglob("*.lean")
+            if "Deps" not in p.relative_to(lib_dir).parts and p.name != "Deps.lean"
+        )
         (out / "Tengoku" / f"{lib_ns}.lean").write_text(
             f"import Tengoku.{lib_ns}.Deps\n" + "\n".join(f"import {m}" for m in modules) + "\n", encoding="utf-8"
         )
-        print(f"{library}: {len(records)} records -> {len(modules)} file modules, {len(deps_mods)} Deps modules ({len(eqs)} equations); {warnings} context notes")
+        print(f"{library}: {len(records)} records -> {len(modules)} file modules on disk, {len(deps_mods)} Deps modules ({len(eqs)} equations); {warnings} context notes")
 
 
 if __name__ == "__main__":
