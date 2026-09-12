@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._001: verified translations of equational_theories/Generated/MagmaEgg/small/_001.lean (59 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._001: verified translations of equational_theories/Generated/MagmaEgg/small/_001.lean (60 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
 
@@ -361,5 +361,11 @@ theorem Equation3758_implies_Equation332 (G: Type _) [Magma G] (h: Equation3758 
 := fun x y =>
   let v0 := M x x
   T (T (T (h x y) (h (M y y) v0)) (C (R (M v0 v0)) (S (h y y)))) (S (h y v0))
+
+theorem Equation3776_implies_Equation3620 (G: Type _) [Magma G] (h: Equation3776 G) : Equation3620 G
+:= fun x y z =>
+  let v0 := M z y
+  let v1 := M v0 x
+  T (T (T (h x y v0) (h (M y v0) v1 v0)) (C (R (M v1 v0)) (S (h v0 z y)))) (S (h z v1 v0))
 
 end EquationalTheories
