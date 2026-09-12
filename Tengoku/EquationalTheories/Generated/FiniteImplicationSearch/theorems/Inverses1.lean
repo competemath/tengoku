@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (65 theorems)
+-- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (66 theorems)
 import Tengoku.EquationalTheories.Deps.Superposition
 import Tengoku.Data.Set.Finite.Basic
 import Tengoku.Tactic.TypeStar
@@ -1862,5 +1862,34 @@ theorem _root_.Finite.Equation713_implies_Equation1426 (G : Type*) [Magma G] [Fi
   have step93 (X0 : G) : ((X0 ◇ X0) ◇ (X0 ◇ (X0 ◇ X0))) = X0 := superpose step91 step67
   have step158 : sK0 ≠ sK0 := superpose step93 step10
   subsumption step158 rfl
+
+theorem _root_.Finite.Equation713_implies_Equation359 (G : Type*) [Magma G] [Finite G] (h : Equation713 G) : Equation359 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, nh⟩ := nh
+  have step9 (X0 X1 : G) : (X1 ◇ (X1 ◇ ((X1 ◇ X0) ◇ X0))) = X0 := mod_symm (h ..)
+  have step10 : (sK0 ◇ sK0) ≠ ((sK0 ◇ sK0) ◇ sK0) := mod_symm nh
+  have step12 (X Y : G) : (Y ◇ ((Y ◇ (Y ◇ X)) ◇ (Y ◇ X))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (Y ◇ ((Y ◇ s) ◇ s))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => (Y ◇ ((Y ◇ s) ◇ s))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step14 (X0 X1 : G) : ((X1 ◇ X0) ◇ X0) = (X1 ◇ (X0 ◇ (X1 ◇ ((X1 ◇ X0) ◇ X0)))) := superpose step9 step12
+  have step26 (X0 : G) : (X0 ◇ X0) = ((X0 ◇ X0) ◇ X0) := superpose step9 step14
+  have step65 : (sK0 ◇ sK0) ≠ (sK0 ◇ sK0) := superpose step26 step10
+  subsumption step65 rfl
 
 end EquationalTheories
