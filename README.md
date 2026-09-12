@@ -29,7 +29,11 @@ whether [Leak](https://competemath.com/about/leak) has stamped it:
   Tengoku's target toolchain, dual-gated (compiles cleanly, AND its own
   independent entailment check confirms it proves at least as much as the
   original). Not yet promoted into `trusted` — that promotion is a separate,
-  deliberate step, same as tentative → trusted.
+  deliberate step, same as tentative → trusted: `scripts/promote.py`
+  generates the record's module in the tree and `lake build`s it (no errors,
+  no `sorry`); only then does the record move to `data/trusted/`. A staging
+  record is never part of any tree module, so nothing that imports the tree
+  (`Tengoku.All`) can see it.
 - **`data/trusted/`** — a proof Leak's own toolchain has actually compiled
   and certified. Mathlib lives here by definition: it *is* the target
   toolchain's own library (`v4.34.0-rc2`), compiled by that toolchain's
