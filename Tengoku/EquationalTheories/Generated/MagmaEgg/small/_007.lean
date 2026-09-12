@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (17 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (18 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
 
@@ -385,5 +385,24 @@ theorem Equation3557_implies_Equation41 (G: Type _) [Magma G] (h: Equation3557 G
   have h18 := S h16
   have h19 := C h8 (C h13 h8)
   T (T (T (T (T (T (T (T h13 (h x v15 v1)) (C (R v15) (T (T h17 (C h12 (T (T (T h9 h19) h18) (C (h v1 v1 z) h8)))) (S (h (M v15 z) v1 x))))) (S (h z v15 v1))) (C h5 (T (T (T (T (T (h v1 v1 x) (C (T (T h9 h19) h18) (T (T h16 h14) h10))) h17) (C h12 (T (T h9 (C h8 (C (h x x v0) h8))) (S (h (M v1 v0) x x))))) (S (h v0 v1 x))) (C h4 h7)))) (S (h v6 z v1))) (h v6 z v3)) (C h5 (T (C (S h4) (R v3)) (S (h v2 v0 v1))))) (S (h y z v0))
+
+theorem Equation1710_implies_Equation1865 (G: Type _) [Magma G] (h: Equation1710 G) : Equation1865 G
+:= fun x y z =>
+  let v0 := M y y
+  let v1 := M z z
+  let v2 := M v1 v1
+  let v3 := M v2 v0
+  let v4 := M x v0
+  let v5 := M v4 v1
+  have h6 := R v3
+  let v7 := M v0 v5
+  let v8 := M x x
+  have h9 := h v1 v4 v4
+  let v10 := M (M v4 v4) v4
+  let v11 := M (M v5 v5) v5
+  have h12 := S (h y y v1)
+  let v13 := M v2 y
+  let v14 := M v8 v4
+  T (T (T (T (T (h x v0 v0) (C (T (h (M v0 x) v4 x) (C (S (h v0 x y)) (R v14))) (R (M (M v0 v0) v0)))) (S (h v14 v0 v0))) (h v14 v5 v3)) (C (T (T (T (T (S (h v1 v4 x)) (h v1 v0 v1)) (C (T (h (M v0 v1) v2 v1) (C (S (h v1 v1 y)) (S (h v1 v1 z)))) (T (h v3 v13 y) (C (T (C (T (T (h v13 v0 x) (C (T h12 (h y y y)) (R (M v8 v0)))) (S (h (M v0 y) v0 x))) h6) (S (h y v0 v1))) h12)))) (h v3 v11 v5)) (C (T (C (T (T (h v11 v1 x) (C (T (T (T (C h9 (R v11)) (S (h v10 v5 v5))) (h v10 v5 y)) (C (S h9) (R v7))) (R (M v8 v1)))) (S (h v7 v1 x))) h6) (S (h v5 v0 v1))) (S (h v5 v5 v5)))) (R (M (M v3 v3) v5)))) (S (h v5 v5 v3))
 
 end EquationalTheories
