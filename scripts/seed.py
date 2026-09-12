@@ -161,6 +161,10 @@ pp.unicode.fun = true
 
 [[lean_lib]]
 name = "Tengoku"
+# Every module under Tengoku/ is built — not just what the root file imports.
+# The seeded root is a module-system file and cannot import the generated
+# (legacy) translation modules; they are reached as `import Tengoku.<Library>`.
+globs = ["Tengoku", "Tengoku.+"]
 """,
         encoding="utf-8",
     )

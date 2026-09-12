@@ -32,6 +32,12 @@ case "$cmd" in
     gh release create "$tag" -R "$REPO" --title "build cache $sha" --notes "Compiled .lake/build for $sha ($(cat lean-toolchain)). Fetch with scripts/cache.sh get." "$tmp"/tengoku-cache.tar.zst.part-*
     rm -rf "$tmp"
     echo "published $tag"
+    # Keep the newest KEEP caches; each is gigabytes and `get` only ever needs
+    # a recent one (Lake rebuilds the difference).
+    KEEP="${TENGOKU_CACHE_KEEP:-5}"
+    gh release list -R "$REPO" --limit 200 --json tagName,createdAt \
+      --jq '[.[] | select(.tagName | startswith("cache-"))] | sort_by(.createdAt) | reverse | .['"$KEEP"':] | .[].tagName' \
+      | while read -r old; do [ -n "$old" ] && gh release delete "$old" -R "$REPO" --yes --cleanup-tag && echo "pruned $old"; done || true
     ;;
   get)
     want="${2:-HEAD}"

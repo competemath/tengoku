@@ -46,6 +46,13 @@ tree builds on the pinned toolchain with no errors and no `sorry`. The seed
 and every later addition are trusted for the same reason — the same kernel
 compiled them, in this tree.
 
+**Layout of additions:** verified translations are generated into
+`Tengoku/<Library>/…` by `scripts/generate.py` (one module per original source
+file, plus `Deps/` for the definitions they rely on, all under the library's
+namespace). Every module under `Tengoku/` is built. The seeded root
+`Tengoku.lean` is a module-system file and cannot import these legacy-style
+modules, so they are imported directly: `import Tengoku.EquationalTheories`.
+
 **Cache:** nobody builds the tree from scratch. CI builds every push to
 `main` and publishes the compiled `.lake/build` as a release tagged
 `cache-<sha>`; `scripts/cache.sh get` fetches the newest cache in your

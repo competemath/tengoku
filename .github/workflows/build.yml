@@ -15,6 +15,17 @@ name: build
 on:
   push:
     branches: [main]
+    # Only what can change the build. The Emissary app pushes a data/ commit
+    # for every banked theorem (every couple of minutes during a run); those
+    # never touch a module and must not each cost a build + a cache release.
+    paths:
+      - "Tengoku/**"
+      - "Tengoku.lean"
+      - "lakefile.toml"
+      - "lake-manifest.json"
+      - "lean-toolchain"
+      - "scripts/cache.sh"
+      - ".github/workflows/build.yml"
   workflow_dispatch:
     inputs:
       resume:
