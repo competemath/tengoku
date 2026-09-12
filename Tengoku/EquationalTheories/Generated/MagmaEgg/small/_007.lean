@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (15 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._007: verified translations of equational_theories/Generated/MagmaEgg/small/_007.lean (16 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
 
@@ -335,5 +335,31 @@ theorem Equation881_implies_Equation2 (G: Type _) [Magma G] (h: Equation881 G) :
   let v23 := M v3 v3
   let v24 := M v23 x
   T (T h21 (C (R x) (T (T (h v19 y x) (C (R y) (T (C (T (T (T (C h22 (T (h y x x) (C h21 (h v23 x x)))) (S (h x v19 (M v24 v24)))) h12) h10) (T (T (T (C h22 (T h21 (C h21 (h v19 x x)))) (S (h x v19 (M v20 v20)))) h15) h18)) (C (T (T (T (C h9 (T h5 (C h0 h8))) (S h12)) h15) h18) (T (T (T (C h9 (T h17 (C h0 h16))) (S h15)) h12) h10))))) (S (h v4 y x))))) h1
+
+theorem Equation3354_implies_Equation41 (G: Type _) [Magma G] (h: Equation3354 G) : Equation41 G
+:= fun x y z =>
+  let v0 := M x x
+  have h1 := S (h z (M y v0) x)
+  let v2 := M y x
+  have h3 := R x
+  have h4 := h y x x
+  have h5 := S h4
+  have h6 := h x x v2
+  have h7 := C h3 (T h6 (C h3 h5))
+  have h8 := h x x x
+  have h9 := C h3 (S h8)
+  have h10 := h x x v0
+  let v11 := M y z
+  have h12 := h y v0 v11
+  have h13 := h y v11 x
+  have h14 := R v11
+  have h15 := h x v11 x
+  have h16 := R v0
+  have h17 := h x v0 v11
+  have h18 := T (T (T (T h10 h9) h17) (C h16 (C h16 (T (T h15 (C h14 (C h14 (T (T (T h10 h9) h7) h5)))) (S h13))))) (S h12)
+  have h19 := C h18 (C h18 (T (T (T (T (T (T h10 h9) h7) h5) (h y x z)) (C h3 (C h3 (h y z x)))) (S (h z x (M z v2)))))
+  have h20 := h x v0 x
+  have h21 := R z
+  T (T (T (T (T (T (T (h x x (M x v11)) (C h3 (S (h x x v11)))) h20) h19) h1) (C h21 (T (T h12 (C h16 (C h16 (T (T h13 (C h14 (C h14 (T (T (T h4 (C h3 (T (C h3 h4) (S h6)))) (C h3 h8)) (S h10))))) (S h15))))) (S h17)))) (C h21 (T (T h20 h19) h1))) (S (h y z v0))
 
 end EquationalTheories
