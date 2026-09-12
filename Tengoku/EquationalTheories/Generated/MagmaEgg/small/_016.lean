@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._016: verified translations of equational_theories/Generated/MagmaEgg/small/_016.lean (6 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._016: verified translations of equational_theories/Generated/MagmaEgg/small/_016.lean (7 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
 
@@ -523,5 +523,97 @@ theorem Equation1910_implies_Equation3147 (G: Type _) [Magma G] (h: Equation1910
   have h87 := h y y y
   have h88 := S h84
   T (T (T h84 (C (T (T (h v82 v0 v0) (C (C h80 h88) h70)) (C h45 h70)) h80)) (C (C h28 (T h61 h15)) (T (T (T (T (T (T (T (T (T (T (C (T h87 (C (R v86) (T h78 (C (T h83 (C (T (C h85 h79) h88) h88)) h80)))) h87) (S (h (M x x) v86 v0))) (C (T h84 (C h85 h78)) h84)) (S h83)) (h v81 v0 v0)) (C (T (T (T (T (C h80 h79) h61) h15) h77) h76) (T (T (T (T (T (T (T (T (T (T (T h61 h15) h77) h76) (C h45 (R (M v62 v1)))) (C h28 h71)) (C h45 (R (M v62 v3)))) (C h28 (T h69 h59))) (C h45 (R (M v5 v1)))) (C h25 (T h68 h63))) (C h25 h53)) h57))) (S (h v62 v1 v1))) h61) h15) h11) h7))) (S (h v3 v1 v3))
+
+theorem Equation522_implies_Equation1293 (G: Type _) [Magma G] (h: Equation522 G) : Equation1293 G
+:= fun x y z =>
+  let v0 := M x y
+  let v1 := M v0 z
+  let v2 := M v1 z
+  let v3 := M y v2
+  have h4 := h v2 z z
+  have h5 := S h4
+  have h6 := h z v0 v2
+  have h7 := S h6
+  have h8 := R (M v2 (M z v2))
+  have h9 := h v0 v3 z
+  have h10 := S h9
+  have h11 := h v1 z z
+  have h12 := S h11
+  have h13 := h v2 v2 v1
+  have h14 := S h13
+  have h15 := h v1 v2 z
+  have h16 := S h15
+  have h17 := R v2
+  have h18 := C h17 h16
+  have h19 := h z v2 v2
+  have h20 := R v1
+  have h21 := C h20 (T h19 h18)
+  have h22 := C h17 (C h17 h21)
+  have h23 := T h22 h14
+  have h24 := R z
+  have h25 := C h24 (C h24 h23)
+  have h26 := h v2 z v2
+  have h27 := R v3
+  have h28 := C h27 (C h27 (T (T (T h22 h14) h26) (C h24 (T (C h24 (T (T (T h22 h14) h26) h25)) h12))))
+  have h29 := h v2 v3 v2
+  have h30 := T (T h29 h28) h10
+  have h31 := S h29
+  have h32 := S h19
+  have h33 := C h17 h15
+  have h34 := C h20 (T h33 h32)
+  have h35 := C h17 (C h17 h34)
+  have h36 := S h26
+  have h37 := T h13 h35
+  have h38 := C h24 (C h24 h37)
+  have h39 := C h27 (C h27 (T (T (T (C h24 (T h11 (C h24 (T (T (T h38 h36) h13) h35)))) h36) h13) h35))
+  have h40 := R v0
+  have h41 := C h40 (T (T (T (C h24 (T (T (T (T h9 h39) h31) h26) h25)) h12) h15) (C h30 h8))
+  have h42 := C h17 (T h41 h7)
+  have h43 := T (T h9 h39) h31
+  have h44 := C h40 (T (T (T (C h43 h8) h16) h11) (C h24 (T (T (T (T h38 h36) h29) h28) h10)))
+  have h45 := h z v1 v0
+  have h46 := S h45
+  have h47 := C h20 (T (T (T h22 h14) h21) (C h20 (T (T (T h33 h32) h6) h44)))
+  have h48 := C h20 h37
+  have h49 := C h17 (T (T (T (T h48 h47) h46) h6) h44)
+  have h50 := h v1 z v2
+  have h51 := h v1 v2 v2
+  have h52 := C h20 h23
+  have h53 := C h20 (T (T (T (C h20 (T (T (T h41 h7) h19) h18)) h34) h13) h35)
+  have h54 := C h17 (T (T (T (T h41 h7) h45) h53) h52)
+  have h55 := R (M v0 (M z v0))
+  have h56 := h z v0 v0
+  have h57 := C h17 (T h6 h44)
+  have h58 := C h24 (T (T (T (T (T h57 h54) (C h17 (T (T (T (T h48 h47) h46) h56) (C h43 (T (C h43 h55) h54))))) (S h51)) h50) (C h24 (C h24 (T h49 h42))))
+  have h59 := R y
+  have h60 := C h59 (T h58 h5)
+  have h61 := C h24 (T (T (T (T (T (C h24 (C h24 (T h57 h54))) (S h50)) h51) (C h17 (T (T (T (T (C h30 (T h49 (C h30 h55))) (S h56)) h45) h53) h52))) h49) h42)
+  have h62 := h v2 v3 z
+  have h63 := S h62
+  have h64 := h v2 y z
+  have h65 := S h64
+  have h66 := C h59 (T h4 h61)
+  have h67 := C h59 h66
+  have h68 := C h27 (T (T (T h67 h65) h4) h61)
+  have h69 := C h59 h60
+  have h70 := h y v3 v3
+  have h71 := C h27 (C h27 (T (C h59 (T (T (T (C h27 (T (T h70 (C h27 (T (T (T (C h27 h68) h63) h64) h69))) h68)) h63) h4) h61)) h60))
+  have h72 := h v3 v3 y
+  have h73 := h v3 v2 v3
+  have h74 := S h73
+  have h75 := C h17 (T h72 h71)
+  have h76 := C h17 h75
+  have h77 := S h72
+  have h78 := C h27 (T (T (T h58 h5) h64) h69)
+  have h79 := C h27 (C h27 (T h66 (C h59 (T (T (T h58 h5) h62) (C h27 (T (T h78 (C h27 (T (T (T h67 h65) h62) (C h27 h78)))) (S h70)))))))
+  have h80 := C h17 (T h79 h77)
+  have h81 := C h17 (T (T (T h76 h74) h72) h71)
+  have h82 := h y v2 v2
+  have h83 := h y y v2
+  have h84 := S h82
+  have h85 := C h17 (T (T (T h79 h77) h73) (C h17 h80))
+  have h86 := C h59 (C h59 (T (T h75 h85) h84))
+  have h87 := R x
+  T (T (h x v3 v2) (C h27 (C h27 (T (T (T (T (T (T (T (C h30 (T (T (T (T (C h87 (T h64 (C h59 (T (T h60 h73) (C h17 (T h85 h84)))))) (C h87 (T (T (T (T (T (C h59 (T (T (C h17 (T h82 h81)) h74) h66)) h65) h29) h28) h10) (C h87 (T h83 h86))))) (S (h y x y))) h83) h86)) (C h43 (R (M y (M y y))))) (C h30 (T (T (T (T (C h59 (C h59 (T (T h82 h81) h80))) (S h83)) h82) h81) h80))) (C h43 (R (M v2 v3)))) h76) h74) h72) h71)))) (S (h v3 v3 v3))
 
 end EquationalTheories
