@@ -4,27 +4,27 @@ Tengoku is an AI-first, open-source, universally accessible formal mathematics l
 
 Built initially as an evolution and expansion of Mathlib, Tengoku was created to address the data-sparsity bottlenecks that currently limit the capabilities of Automated Theorem Provers (ATPs). Current formal libraries, while rigorous, are often sparse and fragmented, making it hard for hobbyists and curious individuals to contribute at their full potential. Tengoku seeds and unifies these disparate libraries into a single, rich environment.
 
-Tengoku and the wider CompeteMath ecosystem are developed by a single individual, passionate about positive, meaningful impact and problem-solving. 
+Tengoku and the wider [CompeteMath](https://competemath.com/about) ecosystem are developed by a single individual, passionate about positive, meaningful impact and problem-solving. 
 There is no intention of generating money with this project. Tengoku and the wider CompeteMath ecosystem are not affiliated with, nor do they support, any particular organization, corporate entity, or political group. Any prospective partners or donors should know that Tengoku will not allow any influence over the governance of this 
 repository, nor its accessibility, integrity of contents, or Tengoku's goals below.
 
 Rather than relying on ideological declarations about the future of AI math, Tengoku focuses on practical, transparent infrastructure with three core goals:
 
-Universal Contribution: Make it seamless for anyone to contribute to the formalization of mathematics, with or without AI assistance.
+1) Universal Contribution: Make it seamless for anyone to contribute to the formalization of mathematics, with or without AI assistance.
 
-Autonomous Verification: Proofs generated using our harness are autonomously processed and verified by Leak, objectively assessing the mathematical value they bring to the library. A manual request to add a proof to Tengoku is never rejected without reason, and it is usually because there is already a relatively short, equivalent proof
+2) Autonomous Verification: Proofs generated using our harness are autonomously processed and verified by Leak, objectively assessing the mathematical value they bring to the library. A manual request to add a proof to Tengoku is never rejected without reason, and it is usually because there is already a relatively short, equivalent proof
 within the Tengoku environment at the time, or there is evidence of plagiarism / foul intent.
 
-Transparent, Comprehensive Authorship: Authorship shouldn't be a casualty of AI assistance. Tengoku explicitly attributes both the human author and the Leak system. When submitting manually, contributors can link their identity (GitHub, LinkedIn, ORCID, CompeteMath userId, or personal website). This provenance is permanently embedded as a docstring under every theorem and lemma in the tree.
-Every entry already has a real proof from somewhere. The distinction is
-whether [Leak](https://competemath.com/about/leak) has stamped it:
+3) Transparent, Comprehensive Authorship: Authorship shouldn't be a casualty of AI assistance. Tengoku explicitly attributes both the human author and the Leak system. When submitting manually, contributors can link their identity (GitHub, LinkedIn, ORCID, CompeteMath userId, or personal website). This provenance is permanently embedded as a docstring under every theorem and lemma in the tree.
+
+Every entry already has a real proof from somewhere. The distinction is whether [Leak](https://competemath.com/about/leak) has stamped it:
 
 - **`data/tentative/`** — a real proof from a real source (every record
   carries `source_url` pointing straight at it), which Leak has **not**
   re-verified with its own toolchain yet. Reason to believe it's correct;
   Leak doesn't yet vouch for it.
 - **`data/staging/`** — a *translation* of a real proof, produced by
-  Emissary-Archangel: the original theorem lived under one Lean toolchain,
+  [Emissary-Archangel](https://github.com/competemath/emissary-archangel): the original theorem lived under one Lean toolchain,
   and this is a from-scratch restatement + reproof of the same claim under
   Tengoku's target toolchain, dual-gated (compiles cleanly, AND its own
   independent entailment check confirms it proves at least as much as the
