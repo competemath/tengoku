@@ -18,7 +18,10 @@ whether [Leak](https://competemath.com/leak) has stamped it:
   original). Not yet promoted into `trusted` — that promotion is a separate,
   deliberate step, same as tentative → trusted.
 - **`data/trusted/`** — a proof Leak's own toolchain has actually compiled
-  and certified.
+  and certified. Mathlib lives here by definition: it *is* the target
+  toolchain's own library (`v4.34.0-rc2`), compiled by that toolchain's
+  kernel as part of building it — there is no stronger certificate to wait
+  for.
 
 Promotion only ever goes one way (tentative → trusted, staging → trusted),
 and only by Leak actually re-verifying the proof — nothing here is trusted,
@@ -44,7 +47,7 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
 
 | Source | Files | Toolchain | Count |
 |---|---|---|---|
-| [leanprover-community/mathlib4](https://github.com/leanprover-community/mathlib4) — the community mathematics library itself | `tentative/mathlib-*.jsonl` (47 files, split by top-level module — `algebra`, `analysis`, `topology`, `numbertheory`, etc. — since one file would be ~120MB) | `leanprover/lean4:v4.34.0-rc2` | 188,989 |
+| [leanprover-community/mathlib4](https://github.com/leanprover-community/mathlib4) — the community mathematics library itself | `trusted/mathlib-*.jsonl` (47 files, split by top-level module — `algebra`, `analysis`, `topology`, `numbertheory`, etc. — since one file would be ~120MB) | `leanprover/lean4:v4.34.0-rc2` | 188,989 |
 | [teorth/equational_theories](https://github.com/teorth/equational_theories) — Terence Tao's project mapping relations between equational theories of magmas | `tentative/equational-theories.jsonl` | `leanprover/lean4:v4.29.1` | 13,193 |
 | [AlexKontorovich/PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) — the Prime Number Theorem and related results | `tentative/primenumbertheoremand.jsonl` | `leanprover/lean4:v4.32.2` | 8,028 |
 | [dwrensha/compfiles](https://github.com/dwrensha/compfiles) — catalog of competition problems formalized in Lean | `tentative/compfiles.jsonl` | `leanprover/lean4:v4.34.0-rc1` | 6,042 |

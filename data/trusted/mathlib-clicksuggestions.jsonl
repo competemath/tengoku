@@ -1,0 +1,1 @@
+{"name": "Nat.my_inj", "statement": "lemma Nat.my_inj (n m : Nat) (h : n.succ = m.succ) : n = m", "proof": ":= Nat.succ.inj h", "status": "trusted", "library": "mathlib", "source_url": "https://github.com/leanprover-community/mathlib4/blob/217ba069a556ad9de837366b35c2ec1bec1de384/MathlibTest/ClickSuggestions/Test.lean#L169", "toolchain": "leanprover/lean4:v4.34.0-rc2"}
