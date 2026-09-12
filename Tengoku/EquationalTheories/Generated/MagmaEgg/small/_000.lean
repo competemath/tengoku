@@ -1,6 +1,6 @@
 -- Tengoku.EquationalTheories.Generated.MagmaEgg.small._000: verified translations of equational_theories/Generated/MagmaEgg/small/_000.lean (17 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
-import Tengoku.EquationalTheories.Deps
+import Tengoku.EquationalTheories.Deps.Equations
 
 set_option linter.all false
 

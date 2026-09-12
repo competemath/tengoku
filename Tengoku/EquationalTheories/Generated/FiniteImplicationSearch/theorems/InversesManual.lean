@@ -3,7 +3,8 @@ import Tengoku.EquationalTheories.Deps.Superposition
 import Tengoku.Data.Set.Finite.Basic
 import Tengoku.Tactic.TypeStar
 import Tengoku.Tactic.ByContra
-import Tengoku.EquationalTheories.Deps
+import Tengoku.EquationalTheories.Deps.Equations
+import Tengoku.EquationalTheories.Deps.Magma
 
 set_option linter.all false
 
