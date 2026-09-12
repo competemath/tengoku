@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
+
 # Tengoku (天国)
 
 Tengoku is an AI-first, open-source, universally accessible formal mathematics library for Lean 4.
