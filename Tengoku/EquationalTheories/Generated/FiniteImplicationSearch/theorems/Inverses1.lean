@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (36 theorems)
+-- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (37 theorems)
 import Tengoku.EquationalTheories.Deps.Superposition
 import Tengoku.Data.Set.Finite.Basic
 import Tengoku.Tactic.TypeStar
@@ -1015,5 +1015,37 @@ theorem _root_.Finite.Equation477_implies_Equation1492 (G : Type*) [Magma G] [Fi
     simp [S]
   have step13 : sK0 ≠ sK0 := superpose step10 step9
   subsumption step13 rfl
+
+theorem _root_.Finite.Equation477_implies_Equation1519 (G : Type*) [Magma G] [Finite G] (h : Equation477 G) : Equation1519 G
+:= by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, nh⟩ := nh
+  have step8 (X0 X1 : G) : (X1 ◇ (X0 ◇ (X1 ◇ (X1 ◇ X1)))) = X0 := mod_symm (h ..)
+  have step9 : sK0 ≠ ((sK1 ◇ sK1) ◇ (sK0 ◇ (sK1 ◇ sK1))) := mod_symm nh
+  have step10 (X Y : G) : ((Y ◇ X) ◇ (Y ◇ (Y ◇ Y))) = X := by
+    let S : Set G := Set.univ
+    have m1 : S.MapsTo (fun s => (s ◇ (Y ◇ (Y ◇ Y)))) S := by
+      intro
+      simp [S]
+    have m2 : S.MapsTo (fun s => (Y ◇ s)) S := by
+      intro
+      simp [S]
+    have linv : S.LeftInvOn (fun s => (Y ◇ s)) (fun s => (s ◇ (Y ◇ (Y ◇ Y)))) := by
+      intro a ha
+      simp [S]
+      simp [← h]
+    have t := linv.surjOn m1
+    rw [Set.Finite.surjOn_iff_bijOn_of_mapsTo (Set.toFinite _) m2] at t
+    have rinv := Set.InjOn.rightInvOn_of_leftInvOn t.injOn linv m2 m1
+    apply rinv _
+    simp [S]
+  have step11 (X0 X1 : G) : (X1 ◇ (X1 ◇ X1)) = (X0 ◇ ((X1 ◇ X0) ◇ ((X1 ◇ X0) ◇ (X1 ◇ X0)))) := superpose step10 step10
+  have step17 (X0 : G) : (X0 ◇ (X0 ◇ X0)) = ((X0 ◇ X0) ◇ ((X0 ◇ (X0 ◇ X0)) ◇ (X0 ◇ X0))) := superpose step10 step11
+  have step45 (X0 : G) : ((X0 ◇ X0) ◇ ((X0 ◇ X0) ◇ (X0 ◇ X0))) = (((X0 ◇ (X0 ◇ X0)) ◇ (X0 ◇ X0)) ◇ ((X0 ◇ (X0 ◇ X0)) ◇ ((X0 ◇ (X0 ◇ X0)) ◇ (X0 ◇ (X0 ◇ X0))))) := superpose step17 step11
+  have step47 (X0 : G) : (X0 ◇ X0) = ((X0 ◇ X0) ◇ ((X0 ◇ X0) ◇ (X0 ◇ X0))) := superpose step10 step45
+  have step125 (X0 X1 : G) : ((X0 ◇ X0) ◇ (X1 ◇ (X0 ◇ X0))) = X1 := superpose step47 step8
+  have step174 : sK0 ≠ sK0 := superpose step125 step9
+  subsumption step174 rfl
 
 end EquationalTheories
