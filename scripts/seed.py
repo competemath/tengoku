@@ -41,6 +41,10 @@ PACKAGES = {
 # Non-.lean assets a package's sources read at compile time (include_str).
 ASSETS = {
     "proofwidgets": [("widget/js", "Tengoku/widget/js")],
+    # Mathlib's Tactic/Widget modules `include_str` files from `widget/src/…`
+    # three levels above themselves — the PACKAGE root, which in the tree is
+    # the repository root.
+    "mathlib": [("widget", "widget")],
 }
 KEEP = {"EquationalTheories", "CompeteMath"}  # subtrees that are not seed
 
@@ -120,10 +124,15 @@ def main():
             p.unlink()
 
     n = 0
+    # Lean disambiguates a colliding auto-generated instance name by appending
+    # `_<module root>` (`instToJsonPUnit_mathlib`); under the new root that
+    # suffix is `_tengoku`, and the one explicit reference to it must follow.
+    inst_suffix = re.compile(r"\b(inst[A-Za-z0-9_]*?)_mathlib\b")
     for target, (pkg, f) in sorted(planned.items()):
         target.parent.mkdir(parents=True, exist_ok=True)
         text = f.read_text(encoding="utf-8")
-        target.write_text(rewrite_imports(text, roots), encoding="utf-8")
+        text = inst_suffix.sub(r"\1_tengoku", rewrite_imports(text, roots))
+        target.write_text(text, encoding="utf-8")
         n += 1
     for pkg, assets in ASSETS.items():
         for rel_src, rel_dst in assets:
@@ -146,18 +155,21 @@ def main():
     ]
     root.write_text("\n".join(header + lines + extra) + "\n", encoding="utf-8")
 
-    # Lake project: a single root, no dependencies. Options are the toolchain
-    # defaults (plus Mathlib's harmless pretty-printing preference): the seeded
-    # sources come from packages written against different settings — Mathlib
-    # forbids autoImplicit, Batteries relies on it — and the permissive default
-    # is the one every one of them elaborates under. Stricter-than-author
-    # settings only break files; the compiled result is the same either way.
+    # Lake project: a single root, no dependencies. Options: the toolchain
+    # defaults plus the two Mathlib settings that change what ELABORATES
+    # (`maxSynthPendingDepth = 3` — without it a dozen Mathlib modules fail
+    # instance synthesis) or how things print. NOT Mathlib's `autoImplicit =
+    # false`: the seeded sources come from packages written against different
+    # settings — Mathlib forbids autoImplicit, Batteries relies on it — and the
+    # permissive default is the one every one of them elaborates under.
+    # Stricter-than-author settings only break files.
     (out / "lakefile.toml").write_text(
         """name = "tengoku"
 defaultTargets = ["Tengoku"]
 
 [leanOptions]
 pp.unicode.fun = true
+maxSynthPendingDepth = 3
 
 [[lean_lib]]
 name = "Tengoku"

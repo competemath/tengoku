@@ -21,7 +21,7 @@ namespace Lean
 deriving instance FromJson, ToJson for PUnit
 
 -- See https://github.com/leanprover/lean4/issues/10295
-attribute [nolint unusedArguments] Lean.instToJsonPUnit_mathlib.toJson
+attribute [nolint unusedArguments] Lean.instToJsonPUnit_tengoku.toJson
 
 instance {n : Nat} : FromJson (Fin n) where
   fromJson? j := do
