@@ -5,7 +5,7 @@ Tengoku is an AI-first, open-source, universally accessible formal mathematics l
 Built initially as an evolution and expansion of Mathlib, Tengoku was created to address the data-sparsity bottlenecks that currently limit the capabilities of Automated Theorem Provers (ATPs). Current formal libraries, while rigorous, are often sparse and fragmented, making it hard for hobbyists and curious individuals to contribute at their full potential. Tengoku seeds and unifies these disparate libraries into a single, rich environment.
 
 Tengoku and the wider [CompeteMath](https://competemath.com/about) ecosystem are developed by a single individual, passionate about positive, meaningful impact and problem-solving. 
-There is no intention of generating money with this project. Tengoku and the wider CompeteMath ecosystem are not affiliated with, nor do they support, any particular organization, corporate entity, or political group. Any prospective partners or donors should know that Tengoku will not allow any influence over the governance of this 
+There is no intention of generating money with this project. Tengoku and the wider CompeteMath ecosystem are not affiliated with, nor do they support, any particular organization, corporate entity, or political group. Anyone considering donating or partnering with us should know that Tengoku will not allow any influence over the governance of this 
 repository, nor its accessibility, integrity of contents, or Tengoku's goals below.
 
 Rather than relying on ideological declarations about the future of AI math, Tengoku focuses on practical, transparent infrastructure with three core goals:
