@@ -4,3 +4,4 @@ import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inv
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._000
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._001
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._006
+import Tengoku.EquationalTheories.Generated.MagmaEgg.small._007
