@@ -1,0 +1,3 @@
+
+# Lake build outputs (published as release caches, never committed)
+.lake/

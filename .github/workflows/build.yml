@@ -1,0 +1,107 @@
+# Builds the Tengoku tree and publishes the compiled cache to this repository's
+# releases (tag `cache-<sha>`), so nobody — human, Leak service, or CI — has to
+# compile the tree from scratch. `scripts/cache.sh get` fetches it.
+#
+# Trusted := it is in the tree and this build finishes with no errors and no
+# `sorry`. Warnings are reported, not fatal (linters are style, not truth).
+#
+# The one-time seed build is hours of compile; GitHub-hosted jobs are capped at
+# 6 hours, so the build is RESUMABLE: whatever was compiled is saved to the
+# Actions cache even when the job runs out of time, and the workflow re-triggers
+# itself until the whole tree is built. After that, incremental builds finish in
+# minutes and every push to main publishes a fresh cache.
+name: build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      resume:
+        description: "internal: continuation of an unfinished build"
+        required: false
+        default: "false"
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write # release assets (the cache)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    outputs:
+      complete: ${{ steps.build.outputs.complete }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan (toolchain pinned by lean-toolchain)
+        run: |
+          curl -sSfL https://github.com/leanprover/elan/releases/latest/download/elan-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          ./elan-init -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Free disk space (the tree's build is several GB)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      # Restore whatever earlier jobs compiled: exact tree first, then any
+      # earlier state of this branch (Lake rebuilds only what differs).
+      - name: Restore partial build
+        uses: actions/cache/restore@v4
+        with:
+          path: .lake/build
+          key: lake-${{ hashFiles('lean-toolchain') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ hashFiles('lean-toolchain') }}-
+
+      - name: Tools for the cache (zstd)
+        run: sudo apt-get install -y -q zstd >/dev/null
+
+      - name: Seed from the last published cache (if any)
+        if: ${{ github.event.inputs.resume != 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/cache.sh get || echo "no published cache yet — building from source"
+
+      - name: Build
+        id: build
+        shell: bash
+        run: |
+          set -o pipefail
+          # Leave headroom before the job cap so the cache-save step always runs.
+          if timeout 320m lake build 2>&1 | tee build.log | grep -E "^(✖|error:)|declaration uses .sorry." ; then :; fi
+          status=${PIPESTATUS[0]}
+          if grep -q "declaration uses \`sorry\`" build.log; then
+            echo "::error::a trusted module uses sorry — refusing"; exit 1
+          fi
+          if [ "$status" = "124" ]; then
+            echo "complete=false" >> "$GITHUB_OUTPUT"; echo "::warning::time cap reached; progress saved, continuing in a follow-up run"
+          elif [ "$status" != "0" ]; then
+            echo "complete=false" >> "$GITHUB_OUTPUT"; echo "::error::build failed"; exit 1
+          else
+            echo "complete=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Save partial/complete build
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .lake/build
+          key: lake-${{ hashFiles('lean-toolchain') }}-${{ github.sha }}-${{ github.run_attempt }}-${{ github.run_id }}
+
+      - name: Publish cache to releases
+        if: steps.build.outputs.complete == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/cache.sh put
+
+      - name: Continue the build in a follow-up run
+        if: steps.build.outputs.complete == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build.yml -R "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" -f resume=true

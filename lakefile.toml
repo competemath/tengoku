@@ -1,0 +1,8 @@
+name = "tengoku"
+defaultTargets = ["Tengoku"]
+
+[leanOptions]
+pp.unicode.fun = true
+
+[[lean_lib]]
+name = "Tengoku"

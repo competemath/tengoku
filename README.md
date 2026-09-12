@@ -27,6 +27,31 @@ Promotion only ever goes one way (tentative → trusted, staging → trusted),
 and only by Leak actually re-verifying the proof — nothing here is trusted,
 even by reasonable assumption.
 
+## The tree
+
+Tengoku is one **self-contained** Lean tree: a single root, `Tengoku/`, and
+no Lake dependencies. The only thing outside it is the Lean toolchain pinned
+in `lean-toolchain`.
+
+It was **seeded** once — the source files of Mathlib and of every package
+Mathlib's build pulled in were folded into the tree under topic paths
+(`Tengoku/Algebra/…`, `Tengoku/Std/…`, `Tengoku/Tactic/Aesop/…`), their
+imports rewritten, declaration names untouched (`Nat.add_comm` is still
+`Nat.add_comm`). `SEED.md` records what was seeded from where; after seeding
+those origins have no relationship to Tengoku. `scripts/seed.py` is the
+re-runnable seed.
+
+**Trusted, precisely:** a theorem is trusted iff it is in the tree and the
+tree builds on the pinned toolchain with no errors and no `sorry`. The seed
+and every later addition are trusted for the same reason — the same kernel
+compiled them, in this tree.
+
+**Cache:** nobody builds the tree from scratch. CI builds every push to
+`main` and publishes the compiled `.lake/build` as a release tagged
+`cache-<sha>`; `scripts/cache.sh get` fetches the newest cache in your
+branch's ancestry and Lake rebuilds only what differs. The Leak services
+update themselves from the same cache.
+
 ## Record shape
 
 Each line in every `data/**/*.jsonl` file is one JSON record:
