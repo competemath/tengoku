@@ -10,11 +10,19 @@ whether [Leak](https://competemath.com/leak) has stamped it:
   carries `source_url` pointing straight at it), which Leak has **not**
   re-verified with its own toolchain yet. Reason to believe it's correct;
   Leak doesn't yet vouch for it.
+- **`data/staging/`** — a *translation* of a real proof, produced by
+  Emissary-Archangel: the original theorem lived under one Lean toolchain,
+  and this is a from-scratch restatement + reproof of the same claim under
+  Tengoku's target toolchain, dual-gated (compiles cleanly, AND its own
+  independent entailment check confirms it proves at least as much as the
+  original). Not yet promoted into `trusted` — that promotion is a separate,
+  deliberate step, same as tentative → trusted.
 - **`data/trusted/`** — a proof Leak's own toolchain has actually compiled
   and certified.
 
-Promotion only ever goes one way, tentative → trusted, and only by Leak
-actually re-verifying the proof — nothing here is trusted, even by reasonable assumption.
+Promotion only ever goes one way (tentative → trusted, staging → trusted),
+and only by Leak actually re-verifying the proof — nothing here is trusted,
+even by reasonable assumption.
 
 ## Record shape
 
@@ -25,7 +33,7 @@ Each line in every `data/**/*.jsonl` file is one JSON record:
   "name": "...",
   "statement": "theorem ... : ...",
   "proof": ":= by ...",
-  "status": "tentative | trusted",
+  "status": "tentative | staging | trusted",
   "library": "...",
   "source_url": "...",
   "toolchain": "..."
