@@ -1,8 +1,16 @@
 # Tengoku (天国)
 
-An expanding knowledge-tree of Lean 4 **theorems and their proofs** — harvested from open formalization libraries
-and from CompeteMath's own research.
+Tengoku is an AI-first, open-source, universally accessible formal mathematics library for Lean 4.
 
+Built initially as an evolution and expansion of Mathlib, Tengoku was created to address the data-sparsity bottlenecks that currently limit the capabilities of Automated Theorem Provers (ATPs). Current formal libraries, while rigorous, are often sparse and fragmented, making it hard for hobbyists and curious individuals to contribute at their full potential. Tengoku seeds and unifies these disparate libraries into a single, rich environment.
+
+Rather than relying on ideological declarations about the future of AI math, Tengoku focuses on practical, transparent infrastructure with three core goals:
+
+Universal Contribution: Make it seamless for anyone to contribute to the formalization of mathematics, with or without AI assistance.
+
+Autonomous Verification: Proofs generated using our harness are autonomously processed and verified by Leak, objectively assessing the mathematical value they bring to the library.
+
+Transparent, Comprehensive Authorship: Authorship shouldn't be a casualty of AI assistance. Tengoku explicitly attributes both the human author and the Leak system. When submitting manually, contributors can link their identity (GitHub, LinkedIn, ORCID, CompeteMath userId, or personal website). This provenance is permanently embedded as a docstring under every theorem and lemma in the tree.
 Every entry already has a real proof from somewhere. The distinction is
 whether [Leak](https://competemath.com/leak) has stamped it:
 
