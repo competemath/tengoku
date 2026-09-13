@@ -40,3 +40,4 @@ import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_wz
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_wz_yx_zy
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_wz_zx
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_wz_zy
+import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_yx
