@@ -1,5 +1,16 @@
 -- Tengoku.EquationalTheories.Generated.MagmaEgg.small._006: verified translations of equational_theories/Generated/MagmaEgg/small/_006.lean (46 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
+import Lean
+import Tengoku.Data.FunLike.Basic
+import Tengoku.Logic.Equiv.Basic
+import Tengoku.Data.List.NodupEquivFin
+import Tengoku.Data.Set.Defs
+import Lean.Elab.Exception
+import Lean.Elab.Declaration
+import Lean.Util.CollectAxioms
+import Lean.Environment
+import Lean.Meta.Basic
+import Lean.Util
 import Tengoku.EquationalTheories.Deps.Equations
 
 set_option linter.all false
@@ -8,10 +19,15 @@ namespace EquationalTheories
 
 private def congr_op {G: Type _} [Magma G] {a b c d: G} (h1: a = b) (h2: c = d): a ◇ c = b ◇ d := by
   rw [h1, h2]
+
 private abbrev T := @Eq.trans
+
 private abbrev S := @Eq.symm
+
 private abbrev R := @Eq.refl
+
 private abbrev M := @Magma.op
+
 private abbrev C := @congr_op
 
 theorem Equation1790_implies_Equation3607 (G: Type _) [Magma G] (h: Equation1790 G) : Equation3607 G

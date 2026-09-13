@@ -1,6 +1,17 @@
 -- Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_vy: verified translations of equational_theories/Generated/SimpleRewrites/theorems/Rewrite_vy.lean (12 theorems)
 import Tengoku.Tactic
 import Tengoku.EquationalTheories.Deps.Magma
+import Lean
+import Tengoku.Data.FunLike.Basic
+import Tengoku.Logic.Equiv.Basic
+import Tengoku.Data.List.NodupEquivFin
+import Tengoku.Data.Set.Defs
+import Lean.Elab.Exception
+import Lean.Elab.Declaration
+import Lean.Util.CollectAxioms
+import Lean.Environment
+import Lean.Meta.Basic
+import Lean.Util
 import Tengoku.EquationalTheories.Deps.Equations
 
 set_option linter.all false

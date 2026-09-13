@@ -9,6 +9,8 @@ import Tengoku.EquationalTheories.Deps.Magma
 set_option linter.all false
 
 -- left unwrapped: this module opens an outside namespace block
+open EquationalTheories
+
 section TermDef
 
 namespace FirstOrder

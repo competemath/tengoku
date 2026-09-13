@@ -1,6 +1,17 @@
 -- Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.Apply2: verified translations of equational_theories/Generated/TrivialBruteforce/theorems/Apply2.lean (99 theorems)
-import Tengoku.EquationalTheories.Deps.Equations
 import Tengoku.EquationalTheories.Deps.Magma
+import Lean
+import Tengoku.Data.FunLike.Basic
+import Tengoku.Logic.Equiv.Basic
+import Tengoku.Data.List.NodupEquivFin
+import Tengoku.Data.Set.Defs
+import Lean.Elab.Exception
+import Lean.Elab.Declaration
+import Lean.Util.CollectAxioms
+import Lean.Environment
+import Lean.Meta.Basic
+import Lean.Util
+import Tengoku.EquationalTheories.Deps.Equations
 
 set_option linter.all false
 

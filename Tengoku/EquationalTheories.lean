@@ -1,5 +1,7 @@
 import Tengoku.EquationalTheories.Deps
+import Tengoku.EquationalTheories.Asterix
 import Tengoku.EquationalTheories.Completeness
+import Tengoku.EquationalTheories.Definability.Basic
 import Tengoku.EquationalTheories.Equations.LawsComplete
 import Tengoku.EquationalTheories.FiniteModel
 import Tengoku.EquationalTheories.ForMathlib.Definability

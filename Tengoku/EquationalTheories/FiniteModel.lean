@@ -26,7 +26,7 @@ namespace EquationalTheories
 
 namespace FiniteModel
 
-lemma _root_.Finite.fn_eventually_periodic {G : Type*} [Finite G] (f : G → G) :
+lemma Finite.fn_eventually_periodic {G : Type*} [Finite G] (f : G → G) :
     ∃ s p : ℕ, p > 0 ∧ f^[s] = f^[s+p]
 := by
   obtain ⟨p₁, p₂, lt, heq⟩ : ∃ p₁ p₂ : ℕ, p₁ < p₂ ∧ f^[p₁] = f^[p₂] := by
@@ -40,7 +40,7 @@ lemma _root_.Finite.fn_eventually_periodic {G : Type*} [Finite G] (f : G → G) 
     rw [← Nat.add_sub_assoc (by linarith), heq, add_tsub_cancel_left]
   exact ⟨p₁, p, by simp only [gt_iff_lt, tsub_pos_iff_lt, lt, p], this⟩
 
-lemma _root_.Finite.fn_eventually_periodic' {G : Type*} [Finite G] (f : G → G) :
+lemma Finite.fn_eventually_periodic' {G : Type*} [Finite G] (f : G → G) :
     ∃ p : ℕ, p > 0 ∧ f^[p] = f^[2*p]
 := by
   obtain ⟨s, p, hpgt, hp⟩ := Finite.fn_eventually_periodic f
@@ -65,7 +65,7 @@ lemma _root_.Finite.fn_eventually_periodic' {G : Type*} [Finite G] (f : G → G)
     have ngt : n > 0 := by apply Nat.mul_pos h hpgt
     exact ⟨n, ngt, this⟩
 
-lemma _root_.Finite.fn_mutually_eventually_periodic {G : Type*} [Finite G] (f g : G → G) :
+lemma Finite.fn_mutually_eventually_periodic {G : Type*} [Finite G] (f g : G → G) :
     ∃ p : ℕ, p > 0 ∧ f^[p] = f^[2*p] ∧ g^[p] = g^[2*p]
 := by
   obtain ⟨p₁, hpgt₁, hp₁⟩ := Finite.fn_eventually_periodic' f
@@ -94,7 +94,7 @@ lemma _root_.Finite.fn_mutually_eventually_periodic {G : Type*} [Finite G] (f g 
     rw [← Nat.mul_assoc, periodic_dvd p₂ _ hp₂ (by linarith)]
   exact ⟨p, hpgt, fperiodic, gperiodic⟩
 
-lemma _root_.Finite.f_ffg_implies_f_fgf {G: Type*} [Finite G] (f g : G -> G) (h : f = f ∘ f ∘ g) :
+lemma Finite.f_ffg_implies_f_fgf {G: Type*} [Finite G] (f g : G -> G) (h : f = f ∘ f ∘ g) :
     f = f ∘ g ∘ f
 := by
   have periodic : ∃ p : ℕ, p > 1 ∧ f^[p] = f := by
@@ -149,7 +149,7 @@ lemma _root_.Finite.f_ffg_implies_f_fgf {G: Type*} [Finite G] (f g : G -> G) (h 
   change ((f^[ppred2] ∘ f) ∘ f) ∘ g ∘ f = f ∘ g ∘ f
   rw [← Function.iterate_succ, ← Function.iterate_succ, ← hppred2, ← hppred, hp]
 
-lemma _root_.Finite.f_gff_implies_f_fgf {G: Type*} [Finite G] (f g : G -> G) (h : f = g ∘ f ∘ f) :
+lemma Finite.f_gff_implies_f_fgf {G: Type*} [Finite G] (f g : G -> G) (h : f = g ∘ f ∘ f) :
     f = f ∘ g ∘ f
 := by
   have periodic : ∃ p : ℕ, p > 1 ∧ f^[p] = f := by
@@ -204,7 +204,7 @@ lemma _root_.Finite.f_gff_implies_f_fgf {G: Type*} [Finite G] (f g : G -> G) (h 
   change f ∘ g ∘ (f ∘ (f ∘ f^[ppred2])) = f ∘ g ∘ f
   rw [← Function.iterate_succ', ← Function.iterate_succ', ← hppred2, ← hppred, hp]
 
-theorem _root_.Finite.Equation3308_implies_Equation3511 (G : Type*) [Magma G] [Finite G]
+theorem Finite.Equation3308_implies_Equation3511 (G : Type*) [Magma G] [Finite G]
     (h : Equation3308 G) : Equation3511 G
 := by
   intro x y
@@ -215,7 +215,7 @@ theorem _root_.Finite.Equation3308_implies_Equation3511 (G : Type*) [Magma G] [F
   funext x
   apply h
 
-theorem _root_.Finite.Equation3549_implies_Equation3955 (G : Type*) [Magma G] [Finite G]
+theorem Finite.Equation3549_implies_Equation3955 (G : Type*) [Magma G] [Finite G]
     (h : Equation3549 G) : Equation3955 G
 := by
   intro x y
