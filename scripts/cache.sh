@@ -33,15 +33,17 @@ list_cache_tags() {
   else
     need curl
     local page=1
+    # The API's order is not newest-first; sort by created_at ourselves.
     while :; do
       local out
       out="$(curl -fsSL -H 'Accept: application/vnd.github+json' ${GH_TOKEN:+-H "Authorization: Bearer $GH_TOKEN"} \
         "https://api.github.com/repos/$REPO/releases?per_page=100&page=$page")"
-      printf '%s' "$out" | grep -o '"tag_name": *"cache-[0-9a-f]*"' | sed -E 's/.*"(cache-[0-9a-f]+)"/\1/'
+      printf '%s' "$out" | tr -d '\n' | grep -oE '"tag_name": *"cache-[0-9a-f]+"[^}]*?"created_at": *"[^"]+"' \
+        | sed -E 's/.*"tag_name": *"(cache-[0-9a-f]+)".*"created_at": *"([^"]+)".*/\2 \1/'
       printf '%s' "$out" | grep -q '"tag_name"' || break
       page=$((page + 1))
       [ "$page" -le 10 ] || break
-    done
+    done | sort -r | awk '{print $2}'
   fi
 }
 
