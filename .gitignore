@@ -3,3 +3,6 @@
 .lake/
 __pycache__/
 virtual_sandbox.lean
+
+# promotion builds a candidate module before trusting a file's records
+Tengoku/**/_candidate_*.lean

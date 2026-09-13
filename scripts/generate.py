@@ -90,6 +90,22 @@ def wrap(body: str, lib_ns: str, external: set[str]) -> str:
     return f"namespace {lib_ns}\n\n{rootify(body, external).strip()}\n\nend {lib_ns}\n"
 
 
+def unclosed_scopes(text: str) -> list[str]:
+    """`end` lines closing every namespace/section `text` opens and never
+    closes, innermost first. A file prefix ends before the file's own
+    `end <ns>`, so the wrapper must close what it left open."""
+    stack: list[str] = []
+    for line in text.splitlines():
+        m = re.match(r"^(?:noncomputable\s+)?(namespace|section)\b[ \t]*([\w.«»]*)", line)
+        if m:
+            stack.append(m.group(2))
+            continue
+        m = re.match(r"^end\b[ \t]*([\w.«»]*)", line)
+        if m and stack:
+            stack.pop()
+    return [f"end {n}".rstrip() for n in reversed(stack)]
+
+
 def pascal(library: str) -> str:
     return "".join(p[:1].upper() + p[1:] for p in re.split(r"[-_ ]+", library) if p)
 
@@ -201,7 +217,10 @@ def main():
     ap.add_argument("--libraries", nargs="*", default=["equational-theories"])
     ap.add_argument("--out", default=".")
     ap.add_argument("--only", default=None, help="regenerate just this source_path's module (Deps and the aggregator are still refreshed)")
+    ap.add_argument("--candidate", default=None, help="generate this source_path's module from its trusted AND staging records into a `_candidate_` sibling file (the real module and aggregator are untouched); promote.py builds it before trusting the records")
     args = ap.parse_args()
+    if args.candidate:
+        args.only = args.candidate
     out = Path(args.out).resolve()
     corpus = Path(args.corpus).expanduser().resolve()
 
@@ -218,6 +237,14 @@ def main():
                     r = json.loads(line)
                     if r.get("source_path") and r.get("context") is not None:
                         records.append(r)
+        if args.candidate:
+            p = out / "data" / "staging" / f"{library}.jsonl"
+            if p.exists():
+                for line in p.read_text(encoding="utf-8").splitlines():
+                    if line.strip():
+                        r = json.loads(line)
+                        if r.get("source_path") == args.candidate and r.get("context") is not None:
+                            records.append(r)
         if not records:
             print(f"{library}: no trusted records with source_path/context — modules on disk are removed, Deps kept")
 
@@ -270,6 +297,10 @@ def main():
                 rel = Path(*rel.parts[1:])
             mod_path = lib_dir / rel
             mod_name = f"Tengoku.{lib_ns}." + ".".join(rel.with_suffix("").parts)
+            if args.candidate:
+                mod_path = mod_path.with_name("_candidate_" + mod_path.name)
+                head, leaf = mod_name.rsplit(".", 1)
+                mod_name = f"{head}._candidate_{leaf}"
 
             def line_of(r):
                 m = re.search(r"#L(\d+)", r.get("source_url") or "")
@@ -307,10 +338,14 @@ def main():
             needed |= {d for d in ("Magma", "Equations") if d in deps_mods}
             dep_imports = [f"import Tengoku.{lib_ns}.Deps.{d}" for d in sorted(needed)]
             imports = "\n".join(dict.fromkeys(orig_imports + dep_imports))
+            body = f"{file_prefix.strip()}\n\n{theorems}"
+            closers = unclosed_scopes(body)
+            if closers:
+                body += "\n\n" + "\n".join(closers)
             mod_path.parent.mkdir(parents=True, exist_ok=True)
             mod_path.write_text(
                 f"-- {mod_name}: verified translations of {source_path} ({len(recs)} theorem{'s' if len(recs) != 1 else ''})\n"
-                f"{imports}\n\nset_option linter.all false\n\n{wrap(f'{file_prefix.strip()}\n\n{theorems}', lib_ns, external)}",
+                f"{imports}\n\nset_option linter.all false\n\n{wrap(body, lib_ns, external)}",
                 encoding="utf-8",
             )
         # A module on disk that no trusted record backs any more is removed —
@@ -321,8 +356,8 @@ def main():
                 rel = Path(*rel.parts[1:])
             return lib_dir / rel
         backed = {mod_path_of(sp) for sp in by_file}
-        stale = [mod_path_of(args.only)] if args.only else [
-            p for p in lib_dir.rglob("*.lean") if "Deps" not in p.relative_to(lib_dir).parts and p.name != "Deps.lean"
+        stale = [] if args.candidate else [mod_path_of(args.only)] if args.only else [
+            p for p in lib_dir.rglob("*.lean") if "Deps" not in p.relative_to(lib_dir).parts and p.name != "Deps.lean" and not p.name.startswith("_candidate_")
         ]
         for p in stale:
             if p not in backed and p.exists():
@@ -333,7 +368,7 @@ def main():
         modules = sorted(
             f"Tengoku.{lib_ns}." + ".".join(p.relative_to(lib_dir).with_suffix("").parts)
             for p in lib_dir.rglob("*.lean")
-            if "Deps" not in p.relative_to(lib_dir).parts and p.name != "Deps.lean"
+            if "Deps" not in p.relative_to(lib_dir).parts and p.name != "Deps.lean" and not p.name.startswith("_candidate_")
         )
         (out / "Tengoku" / f"{lib_ns}.lean").write_text(
             f"import Tengoku.{lib_ns}.Deps\n" + "\n".join(f"import {m}" for m in modules) + "\n", encoding="utf-8"
