@@ -1,0 +1,29 @@
+-- Tengoku.EquationalTheories.Generated.Constant: verified translations of equational_theories/Generated/Constant.lean (1 theorem)
+import Tengoku.EquationalTheories.Deps.Magma
+import Lean
+import Tengoku.Data.FunLike.Basic
+import Tengoku.Logic.Equiv.Basic
+import Tengoku.Data.List.NodupEquivFin
+import Tengoku.Data.Set.Defs
+import Lean.Elab.Exception
+import Lean.Elab.Declaration
+import Lean.Util.CollectAxioms
+import Lean.Environment
+import Lean.Meta.Basic
+import Lean.Util
+import Tengoku.Tactic
+import Tengoku.EquationalTheories.Deps.Equations
+
+set_option linter.all false
+
+namespace EquationalTheories
+
+namespace Constant
+
+theorem Equation4032_implies_Equation46 (G: Type*) [Magma G] (h: Equation4032 G) : Equation46 G
+:=
+  fun a b _ _ => by rw [h a b a, ← h]
+
+end Constant
+
+end EquationalTheories

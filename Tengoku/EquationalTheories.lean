@@ -5,6 +5,8 @@ import Tengoku.EquationalTheories.Definability.Basic
 import Tengoku.EquationalTheories.Equations.LawsComplete
 import Tengoku.EquationalTheories.FiniteModel
 import Tengoku.EquationalTheories.ForMathlib.Definability
+import Tengoku.EquationalTheories.Generated.Constant
+import Tengoku.EquationalTheories.Generated.Equation1
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.InversesManual
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._000
