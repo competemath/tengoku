@@ -77,7 +77,22 @@ NAMESPACE_RE = re.compile(r"^\s*namespace\s+([A-Za-z_][\w']*)", re.M)
 
 
 def rootify(body: str, external: set[str]) -> str:
-    return DECL_HEAD_RE.sub(lambda m: f"{m.group(1)}{'_root_.' if m.group(2) in external else ''}{m.group(2)}.", body)
+    """`def Lean.MVarId.congrWith` at the top level of a file extends an outside
+    namespace and must stay there (`_root_.`) once the file is wrapped. The
+    same spelling INSIDE the file's own `namespace Asterix` block names
+    `Asterix.Denumerable.notMemFinset`, and its callers rely on that — so the
+    rewrite applies only at namespace depth zero."""
+    out, stack = [], []
+    for line in body.splitlines():
+        m = re.match(r"^(?:noncomputable\s+)?(namespace|section)\b", line)
+        if m:
+            stack.append(m.group(1))
+        elif re.match(r"^end\b", line) and stack:
+            stack.pop()
+        if "namespace" not in stack:
+            line = DECL_HEAD_RE.sub(lambda mm: f"{mm.group(1)}{'_root_.' if mm.group(2) in external else ''}{mm.group(2)}.", line)
+        out.append(line)
+    return "\n".join(out)
 
 
 def opens_external_namespace(body: str, external: set[str]) -> bool:
@@ -86,7 +101,9 @@ def opens_external_namespace(body: str, external: set[str]) -> bool:
 
 def wrap(body: str, lib_ns: str, external: set[str]) -> str:
     if opens_external_namespace(body, external):
-        return f"-- left unwrapped: this module opens an outside namespace block\n{body.strip()}\n"
+        # Its declarations extend an outside namespace and must land there; the
+        # library's own names (Magma, EquationN, the Deps) are reached by opening it.
+        return f"-- left unwrapped: this module opens an outside namespace block\nopen {lib_ns}\n\n{body.strip()}\n"
     return f"namespace {lib_ns}\n\n{rootify(body, external).strip()}\n\nend {lib_ns}\n"
 
 
@@ -106,6 +123,16 @@ def unclosed_scopes(text: str) -> list[str]:
     return [f"end {n}".rstrip() for n in reversed(stack)]
 
 
+def strip_trailing_ends(proof: str) -> str:
+    """A record's proof runs from its `:=` to the end of the script, so an
+    agent-written script leaves `end <Namespace>` (closing what the context
+    opened) at its tail. The module shares one prefix, so those must go."""
+    lines = proof.rstrip().splitlines()
+    while lines and (not lines[-1].strip() or re.match(r"^end\b", lines[-1])):
+        lines.pop()
+    return "\n".join(lines)
+
+
 def pascal(library: str) -> str:
     return "".join(p[:1].upper() + p[1:] for p in re.split(r"[-_ ]+", library) if p)
 
@@ -117,9 +144,15 @@ def strip_corpus_attrs(text: str) -> str:
     return re.sub(r"@\[([^\]]*)\]", attrs, text)
 
 
-def map_imports(text: str, corpus_prefix: str, lib_ns: str, deps_available: set[str]) -> str:
-    """Seed imports -> Tengoku.*; corpus imports -> this library's Deps modules (or dropped)."""
+def map_imports(text: str, corpus_prefix: str, lib_ns: str, deps_available: set[str], corpus: Path | None = None, _seen: set[str] | None = None) -> str:
+    """Seed imports -> Tengoku.*; corpus imports -> this library's Deps modules.
+    A corpus module the tree does not reproduce is replaced by what IT imported
+    (recursively), so a module keeps the seed-library surface its file had —
+    the standalone script compiled with the whole tree in scope; the module
+    must not silently lose `Mathlib.ModelTheory` because it arrived through a
+    corpus import."""
     roots = [(v[1], v[2]) for v in PACKAGES.values()]
+    seen = _seen if _seen is not None else set()
 
     def sub(m):
         mod = m.group(2)
@@ -127,7 +160,13 @@ def map_imports(text: str, corpus_prefix: str, lib_ns: str, deps_available: set[
             leaf = mod.split(".")[-1]
             if leaf in deps_available:
                 return f"{m.group(1)}Tengoku.{lib_ns}.Deps.{leaf}{m.group(3)}"
-            return ""  # a corpus module we don't reproduce: nothing to import
+            if corpus is not None and mod not in seen:
+                seen.add(mod)
+                f = corpus / Path(*mod.split(".")).with_suffix(".lean")
+                if f.exists():
+                    inner = map_imports(f.read_text(encoding="utf-8"), corpus_prefix, lib_ns, deps_available, corpus, seen)
+                    return "\n".join(l.strip() for l in inner.splitlines() if re.match(r"\s*(public |private |meta )*import ", l))
+            return ""  # a corpus module we don't reproduce and cannot read: nothing to import
         for root_mod, mapped in roots:
             new = module_map(root_mod, mapped, mod)
             if new:
@@ -140,13 +179,24 @@ DECL_NAME_RE = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|nonco
 IMPORT_LINE_RE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s")
 
 
+NOTATION_RE = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)*(?:scoped\s+|local\s+)?(?:infixl?|infixr|prefix|postfix|notation)\b[^\"]*\"([^\"]+)\"")
+
+
 def deps_declared(deps_dir: Path) -> tuple[set[str], set[str]]:
-    """Names and (whitespace-normalised) lines every Deps module already provides."""
+    """Names and (whitespace-normalised) lines every Deps module already
+    provides. A notation counts by its token: `" ◇ "` declared by Deps/Magma
+    is the same notation however a script spells the declaration, and a
+    second copy makes every `x ◇ y` ambiguous."""
     names, lines = set(), set()
     for f in deps_dir.glob("*.lean"):
         text = f.read_text(encoding="utf-8")
         names.update(n.removeprefix("_root_.") for n in DECL_NAME_RE.findall(text))
-        lines.update(" ".join(l.split()) for l in text.splitlines() if l.strip() and not l.lstrip().startswith("--"))
+        for l in text.splitlines():
+            if l.strip() and not l.lstrip().startswith("--"):
+                lines.add(" ".join(l.split()))
+                m = NOTATION_RE.match(l)
+                if m:
+                    names.add("notation:" + m.group(1).strip())
     return names, lines
 
 
@@ -193,6 +243,9 @@ def dedupe_prefix(prefix: str, deps_names: set[str], deps_lines: set[str]) -> st
         if m and m.group(1).removeprefix("_root_.") in deps_names:
             continue
         if " ".join(chunk[0].split()) in deps_lines:
+            continue
+        n = NOTATION_RE.match(code[0])
+        if n and ("notation:" + n.group(1).strip()) in deps_names:
             continue
         kept.append(body)
     return "\n".join(kept)
@@ -264,7 +317,7 @@ def main():
             if UNSAFE_MODULE_RE.search(text):
                 print(f"  skip {mod}: needs load-time initialisation")
                 continue
-            body = strip_corpus_attrs(map_imports(text, corpus_prefix, lib_ns, deps_available))
+            body = strip_corpus_attrs(map_imports(text, corpus_prefix, lib_ns, deps_available, corpus))
             imports = "\n".join(l for l in body.splitlines() if re.match(r"\s*(public |private |meta )*import ", l))
             rest = "\n".join(l for l in body.splitlines() if not re.match(r"\s*(public |private |meta )*import ", l))
             leaf = mod.split(".")[-1]
@@ -315,20 +368,38 @@ def main():
                 text = r["context"][mm.end():] if mm else r["context"]
                 text = "\n".join(l for l in text.splitlines() if not l.startswith("set_option linter.all false"))
                 return dedupe_prefix(text, deps_names, deps_lines)
-            first_rec = next((r for r in recs if FILE_MARKER_RE.search(r["context"])), recs[0])
-            file_prefix = own_prefix(first_rec)
+            # Walk the records in file order; before each theorem emit whatever
+            # its context declares that the module does not have yet (a
+            # definition sitting between two theorems is in the later one's
+            # context, not the earlier one's), then the theorem itself. A
+            # declaration is identified by its name, a structural line
+            # (namespace/section/end/open/variable/…) by its text.
+            emitted: set[str] = set()
+            parts: list[str] = []
+
+            def emit(text: str) -> None:
+                text = text.strip()
+                if not text:
+                    return
+                m = DECL_NAME_RE.search(text)
+                key = ("name:" + m.group(1).removeprefix("_root_.")) if m else ("text:" + " ".join(text.split()))
+                if key in emitted:
+                    return
+                emitted.add(key)
+                parts.append(text)
+
             for r in recs:
-                if r is not first_rec and own_prefix(r).strip() != file_prefix.strip():
-                    warnings += 1
-                    print(f"  note: {r['name']}: context differs from {first_rec['name']}'s in {source_path} — using {first_rec['name']}'s; the build decides")
-            theorems = "\n\n".join(f"{strip_corpus_attrs(r['statement'])}\n{r['proof']}" for r in recs)
+                for chunk in top_level_chunks(own_prefix(r)):
+                    emit("\n".join(chunk))
+                emit(f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}")
+            body = "\n\n".join(parts)
             # Import what the ORIGINAL file imported, mapped into the tree —
             # not the whole tree: builds stay proportional to the file, and a
             # module is testable against a partial build.
             orig = corpus / source_path
             orig_imports = []
             if orig.exists():
-                mapped = map_imports(orig.read_text(encoding="utf-8"), corpus_prefix, lib_ns, deps_available)
+                mapped = map_imports(orig.read_text(encoding="utf-8"), corpus_prefix, lib_ns, deps_available, corpus)
                 orig_imports = [l.strip() for l in mapped.splitlines() if re.match(r"\s*(public |private |meta )*import ", l)]
                 orig_imports = [re.sub(r"^(public |private |meta )+", "", l) for l in orig_imports]
             # The Deps this file's records pasted (plus Magma/Equations, which
@@ -338,14 +409,13 @@ def main():
             needed |= {d for d in ("Magma", "Equations") if d in deps_mods}
             dep_imports = [f"import Tengoku.{lib_ns}.Deps.{d}" for d in sorted(needed)]
             imports = "\n".join(dict.fromkeys(orig_imports + dep_imports))
-            body = f"{file_prefix.strip()}\n\n{theorems}"
             closers = unclosed_scopes(body)
             if closers:
                 body += "\n\n" + "\n".join(closers)
             mod_path.parent.mkdir(parents=True, exist_ok=True)
             mod_path.write_text(
                 f"-- {mod_name}: verified translations of {source_path} ({len(recs)} theorem{'s' if len(recs) != 1 else ''})\n"
-                f"{imports}\n\nset_option linter.all false\n\n{wrap(body, lib_ns, external)}",
+                f"{imports}\n\nset_option linter.all false\n\n{wrap(body, lib_ns, external - deps_names)}",
                 encoding="utf-8",
             )
         # A module on disk that no trusted record backs any more is removed —
