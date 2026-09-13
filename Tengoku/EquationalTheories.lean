@@ -49,3 +49,4 @@ import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.Apply2
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.NthRewrites
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteCombinations
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteGoal
+import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteHypothesis
