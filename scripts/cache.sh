@@ -3,6 +3,9 @@
 # nobody has to build the tree from scratch.
 #
 #   scripts/cache.sh get [<commit>]   # download + unpack the newest cache that is an ancestor of HEAD (or <commit>)
+#   scripts/cache.sh latest           # print the commit of the newest published cache (pin a checkout to it:
+#                                     #   git checkout $(scripts/cache.sh latest) && scripts/cache.sh get — then
+#                                     #   `lake build` is a pure replay and compiles nothing)
 #   scripts/cache.sh put              # pack .lake/build and publish it for HEAD (needs `gh` logged in)
 #
 # A cache is keyed by the tree's commit: release tag `cache-<sha>`. `get`
@@ -83,6 +86,11 @@ case "$cmd" in
     list_cache_tags | tail -n +"$((KEEP + 1))" \
       | while read -r old; do [ -n "$old" ] && gh release delete "$old" -R "$REPO" --yes --cleanup-tag && echo "pruned $old"; done || true
     ;;
+  latest)
+    tag="$(list_cache_tags | head -n 1)"
+    [ -n "$tag" ] || { echo "no published cache" >&2; exit 1; }
+    echo "${tag#cache-}"
+    ;;
   get)
     want="$(git rev-parse "${2:-HEAD}")"
     tmp="$(mktemp -d)"
@@ -103,5 +111,5 @@ case "$cmd" in
     echo "unpacked $found into .lake/build (Lake rebuilds only what differs from $want)"
     ;;
   *)
-    echo "usage: $0 get [<commit>] | put" >&2; exit 2 ;;
+    echo "usage: $0 get [<commit>] | latest | put" >&2; exit 2 ;;
 esac
