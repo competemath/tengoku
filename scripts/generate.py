@@ -208,7 +208,9 @@ def top_level_chunks(text: str) -> list[list[str]]:
     depth = 0
 
     def lead_in_only(lines: list[str]) -> bool:
-        return all(not l.strip() or l.startswith(("@[", "/--", "/-", "--")) or l.strip().endswith("-/") for l in lines)
+        # attributes, doc comments, and `set_option … in` / `omit … in` /
+        # `open … in` modifiers all belong to the declaration that follows
+        return all(not l.strip() or l.startswith(("@[", "/--", "/-", "--")) or l.strip().endswith("-/") or l.rstrip().endswith(" in") for l in lines)
 
     for line in text.splitlines():
         if line and not line[0].isspace() and depth == 0 and cur and not lead_in_only(cur):
@@ -241,8 +243,6 @@ def dedupe_prefix(prefix: str, deps_names: set[str], deps_lines: set[str]) -> st
             continue
         m = DECL_NAME_RE.search(body)
         if m and m.group(1).removeprefix("_root_.") in deps_names:
-            continue
-        if " ".join(chunk[0].split()) in deps_lines:
             continue
         n = NOTATION_RE.match(code[0])
         if n and ("notation:" + n.group(1).strip()) in deps_names:
@@ -381,6 +381,9 @@ def main():
                 text = text.strip()
                 if not text:
                     return
+                if text.rstrip().endswith(" in"):  # a modifier for the next declaration: never deduplicated
+                    parts.append(text)
+                    return
                 m = DECL_NAME_RE.search(text)
                 key = ("name:" + m.group(1).removeprefix("_root_.")) if m else ("text:" + " ".join(text.split()))
                 if key in emitted:
@@ -408,6 +411,12 @@ def main():
             needed = {m.split(".")[-1] for r in recs for m in PRELUDE_MODULE_RE.findall(r["context"])} & deps_available
             needed |= {d for d in ("Magma", "Equations") if d in deps_mods}
             dep_imports = [f"import Tengoku.{lib_ns}.Deps.{d}" for d in sorted(needed)]
+            # A mechanical record is the original text, which compiled with its
+            # file's own imports. An agent-written one (no prelude marker) was
+            # verified with the whole tree in scope and may lean on any seeded
+            # lemma, so such a file imports the seeded root as well.
+            if any(not FILE_MARKER_RE.search(r["context"]) for r in recs):
+                orig_imports = ["import Tengoku"] + orig_imports
             imports = "\n".join(dict.fromkeys(orig_imports + dep_imports))
             closers = unclosed_scopes(body)
             if closers:
