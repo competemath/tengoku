@@ -10,4 +10,5 @@ import Tengoku.EquationalTheories.Generated.MagmaEgg.small._011
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._016
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._017
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw
+import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_vx
