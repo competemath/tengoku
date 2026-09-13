@@ -1,10 +1,21 @@
 -- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.InversesManual: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/InversesManual.lean (3 theorems)
+import Tengoku.EquationalTheories.Deps.Magma
+import Lean
+import Tengoku.Data.FunLike.Basic
+import Tengoku.Logic.Equiv.Basic
+import Tengoku.Data.List.NodupEquivFin
+import Tengoku.Data.Set.Defs
+import Lean.Elab.Exception
+import Lean.Elab.Declaration
+import Lean.Util.CollectAxioms
+import Lean.Environment
+import Lean.Meta.Basic
+import Lean.Util
 import Tengoku.EquationalTheories.Deps.Superposition
 import Tengoku.Data.Set.Finite.Basic
 import Tengoku.Tactic.TypeStar
 import Tengoku.Tactic.ByContra
 import Tengoku.EquationalTheories.Deps.Equations
-import Tengoku.EquationalTheories.Deps.Magma
 
 set_option linter.all false
 

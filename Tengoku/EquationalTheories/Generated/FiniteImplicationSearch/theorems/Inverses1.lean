@@ -1,10 +1,21 @@
 -- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (76 theorems)
+import Tengoku.EquationalTheories.Deps.Magma
+import Lean
+import Tengoku.Data.FunLike.Basic
+import Tengoku.Logic.Equiv.Basic
+import Tengoku.Data.List.NodupEquivFin
+import Tengoku.Data.Set.Defs
+import Lean.Elab.Exception
+import Lean.Elab.Declaration
+import Lean.Util.CollectAxioms
+import Lean.Environment
+import Lean.Meta.Basic
+import Lean.Util
 import Tengoku.EquationalTheories.Deps.Superposition
 import Tengoku.Data.Set.Finite.Basic
 import Tengoku.Tactic.TypeStar
 import Tengoku.Tactic.ByContra
 import Tengoku.EquationalTheories.Deps.Equations
-import Tengoku.EquationalTheories.Deps.Magma
 
 set_option linter.all false
 
@@ -62,6 +73,8 @@ theorem _root_.Finite.Equation1076_implies_Equation3 (G : Type*) [Magma G] [Fini
   have step103 (X0 : G) : (X0 ◇ X0) = X0 := superpose step91 step102
   have step175 : sK0 ≠ sK0 := superpose step103 step10
   subsumption step175 rfl
+
+universe uEq
 
 theorem _root_.Finite.Equation1086_implies_Equation1832 (G : Type*) [Magma G] [Finite G] (h : Equation1086 G) : Equation1832 G
 := by

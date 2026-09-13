@@ -1,5 +1,6 @@
 import Tengoku.EquationalTheories.Deps
 import Tengoku.EquationalTheories.Completeness
+import Tengoku.EquationalTheories.Equations.LawsComplete
 import Tengoku.EquationalTheories.FiniteModel
 import Tengoku.EquationalTheories.ForMathlib.Definability
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1
