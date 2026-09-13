@@ -13,4 +13,6 @@ import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu_wx
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu_wy
+import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu_wz
+import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu_wz_yx_zy
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_vx
