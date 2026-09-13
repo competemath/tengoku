@@ -29,4 +29,7 @@ import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uy
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uy_vu
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uz
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uz_vu
+import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_vu
+import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_vw
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_vx
+import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_wz_zy
