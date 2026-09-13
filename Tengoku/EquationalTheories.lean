@@ -1,5 +1,7 @@
 import Tengoku.EquationalTheories.Deps
 import Tengoku.EquationalTheories.Completeness
+import Tengoku.EquationalTheories.FiniteModel
+import Tengoku.EquationalTheories.ForMathlib.Definability
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.InversesManual
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._000
