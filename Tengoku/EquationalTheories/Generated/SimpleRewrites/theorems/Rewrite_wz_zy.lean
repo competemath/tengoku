@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_wz_zy: verified translations of equational_theories/Generated/SimpleRewrites/theorems/Rewrite_wz_zy.lean (225 theorems)
+-- Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_wz_zy: verified translations of equational_theories/Generated/SimpleRewrites/theorems/Rewrite_wz_zy.lean (409 theorems)
 import Tengoku.Tactic
 import Tengoku.EquationalTheories.Deps.Magma
 import Tengoku.EquationalTheories.Deps.Equations
@@ -682,6 +682,558 @@ theorem Equation2826_implies_Equation2757 (G : Type*) [Magma G] (h : Equation282
 := λ x y z => h x y y z
 
 theorem Equation2831_implies_Equation2757 (G : Type*) [Magma G] (h : Equation2831 G) : Equation2757 G
+:= λ x y z => h x y y z
+
+theorem Equation3029_implies_Equation2960 (G : Type*) [Magma G] (h : Equation3029 G) : Equation2960 G
+:= λ x y z => h x y y z
+
+theorem Equation3039_implies_Equation2964 (G : Type*) [Magma G] (h : Equation3039 G) : Equation2964 G
+:= λ x y z => h x y y z
+
+theorem Equation3074_implies_Equation3070 (G : Type*) [Magma G] (h : Equation3074 G) : Equation3070 G
+:= λ x y z => h x y y z
+
+theorem Equation3097_implies_Equation3081 (G : Type*) [Magma G] (h : Equation3097 G) : Equation3081 G
+:= λ x y z => h x y y z
+
+theorem Equation3100_implies_Equation3083 (G : Type*) [Magma G] (h : Equation3100 G) : Equation3083 G
+:= λ x y z => h x y y z
+
+theorem Equation3111_implies_Equation3107 (G : Type*) [Magma G] (h : Equation3111 G) : Equation3107 G
+:= λ x y z => h x y y z
+
+theorem Equation3121_implies_Equation3117 (G : Type*) [Magma G] (h : Equation3121 G) : Equation3117 G
+:= λ x y z => h x y y z
+
+theorem Equation3133_implies_Equation3117 (G : Type*) [Magma G] (h : Equation3133 G) : Equation3117 G
+:= λ x y z => h x y y z
+
+theorem Equation3134_implies_Equation3118 (G : Type*) [Magma G] (h : Equation3134 G) : Equation3118 G
+:= λ x y z => h x y y z
+
+theorem Equation3136_implies_Equation3119 (G : Type*) [Magma G] (h : Equation3136 G) : Equation3119 G
+:= λ x y z => h x y y z
+
+theorem Equation3158_implies_Equation3154 (G : Type*) [Magma G] (h : Equation3158 G) : Equation3154 G
+:= λ x y z => h x y y z
+
+theorem Equation3171_implies_Equation3155 (G : Type*) [Magma G] (h : Equation3171 G) : Equation3155 G
+:= λ x y z => h x y y z
+
+theorem Equation3179_implies_Equation3141 (G : Type*) [Magma G] (h : Equation3179 G) : Equation3141 G
+:= λ x y z => h x y y z
+
+theorem Equation3183_implies_Equation3144 (G : Type*) [Magma G] (h : Equation3183 G) : Equation3144 G
+:= λ x y z => h x y y z
+
+theorem Equation3189_implies_Equation3146 (G : Type*) [Magma G] (h : Equation3189 G) : Equation3146 G
+:= λ x y z => h x y y z
+
+theorem Equation3205_implies_Equation3155 (G : Type*) [Magma G] (h : Equation3205 G) : Equation3155 G
+:= λ x y z => h x y y z
+
+theorem Equation3222_implies_Equation3155 (G : Type*) [Magma G] (h : Equation3222 G) : Equation3155 G
+:= λ x y z => h x y y z
+
+theorem Equation3228_implies_Equation3160 (G : Type*) [Magma G] (h : Equation3228 G) : Equation3160 G
+:= λ x y z => h x y y z
+
+theorem Equation3229_implies_Equation3160 (G : Type*) [Magma G] (h : Equation3229 G) : Equation3160 G
+:= λ x y z => h x y y z
+
+theorem Equation3237_implies_Equation3163 (G : Type*) [Magma G] (h : Equation3237 G) : Equation3163 G
+:= λ x y z => h x y y z
+
+theorem Equation3240_implies_Equation3165 (G : Type*) [Magma G] (h : Equation3240 G) : Equation3165 G
+:= λ x y z => h x y y z
+
+theorem Equation3267_implies_Equation3263 (G : Type*) [Magma G] (h : Equation3267 G) : Equation3263 G
+:= λ x y z => h x y y z
+
+theorem Equation3295_implies_Equation3283 (G : Type*) [Magma G] (h : Equation3295 G) : Equation3283 G
+:= λ x y z => h x y y z
+
+theorem Equation3299_implies_Equation3283 (G : Type*) [Magma G] (h : Equation3299 G) : Equation3283 G
+:= λ x y z => h x y y z
+
+theorem Equation3300_implies_Equation3284 (G : Type*) [Magma G] (h : Equation3300 G) : Equation3284 G
+:= λ x y z => h x y y z
+
+theorem Equation3301_implies_Equation3285 (G : Type*) [Magma G] (h : Equation3301 G) : Equation3285 G
+:= λ x y z => h x y y z
+
+theorem Equation3302_implies_Equation3285 (G : Type*) [Magma G] (h : Equation3302 G) : Equation3285 G
+:= λ x y z => h x y y z
+
+theorem Equation3324_implies_Equation3320 (G : Type*) [Magma G] (h : Equation3324 G) : Equation3320 G
+:= λ x y z => h x y y z
+
+theorem Equation3338_implies_Equation3322 (G : Type*) [Magma G] (h : Equation3338 G) : Equation3322 G
+:= λ x y z => h x y y z
+
+theorem Equation3361_implies_Equation3357 (G : Type*) [Magma G] (h : Equation3361 G) : Equation3357 G
+:= λ x y z => h x y y z
+
+theorem Equation3365_implies_Equation3354 (G : Type*) [Magma G] (h : Equation3365 G) : Equation3354 G
+:= λ x y z => h x y y z
+
+theorem Equation3375_implies_Equation3359 (G : Type*) [Magma G] (h : Equation3375 G) : Equation3359 G
+:= λ x y z => h x y y z
+
+theorem Equation3392_implies_Equation3349 (G : Type*) [Magma G] (h : Equation3392 G) : Equation3349 G
+:= λ x y z => h x y y z
+
+theorem Equation3426_implies_Equation3359 (G : Type*) [Magma G] (h : Equation3426 G) : Equation3359 G
+:= λ x y z => h x y y z
+
+theorem Equation3431_implies_Equation3363 (G : Type*) [Magma G] (h : Equation3431 G) : Equation3363 G
+:= λ x y z => h x y y z
+
+theorem Equation3443_implies_Equation3368 (G : Type*) [Magma G] (h : Equation3443 G) : Equation3368 G
+:= λ x y z => h x y y z
+
+theorem Equation3446_implies_Equation3371 (G : Type*) [Magma G] (h : Equation3446 G) : Equation3371 G
+:= λ x y z => h x y y z
+
+theorem Equation3448_implies_Equation3372 (G : Type*) [Magma G] (h : Equation3448 G) : Equation3372 G
+:= λ x y z => h x y y z
+
+theorem Equation3470_implies_Equation3466 (G : Type*) [Magma G] (h : Equation3470 G) : Equation3466 G
+:= λ x y z => h x y y z
+
+theorem Equation3490_implies_Equation3486 (G : Type*) [Magma G] (h : Equation3490 G) : Equation3486 G
+:= λ x y z => h x y y z
+
+theorem Equation3498_implies_Equation3486 (G : Type*) [Magma G] (h : Equation3498 G) : Equation3486 G
+:= λ x y z => h x y y z
+
+theorem Equation3503_implies_Equation3487 (G : Type*) [Magma G] (h : Equation3503 G) : Equation3487 G
+:= λ x y z => h x y y z
+
+theorem Equation3504_implies_Equation3488 (G : Type*) [Magma G] (h : Equation3504 G) : Equation3488 G
+:= λ x y z => h x y y z
+
+theorem Equation3505_implies_Equation3488 (G : Type*) [Magma G] (h : Equation3505 G) : Equation3488 G
+:= λ x y z => h x y y z
+
+theorem Equation3506_implies_Equation3489 (G : Type*) [Magma G] (h : Equation3506 G) : Equation3489 G
+:= λ x y z => h x y y z
+
+theorem Equation3527_implies_Equation3523 (G : Type*) [Magma G] (h : Equation3527 G) : Equation3523 G
+:= λ x y z => h x y y z
+
+theorem Equation3535_implies_Equation3523 (G : Type*) [Magma G] (h : Equation3535 G) : Equation3523 G
+:= λ x y z => h x y y z
+
+theorem Equation3541_implies_Equation3525 (G : Type*) [Magma G] (h : Equation3541 G) : Equation3525 G
+:= λ x y z => h x y y z
+
+theorem Equation3580_implies_Equation3563 (G : Type*) [Magma G] (h : Equation3580 G) : Equation3563 G
+:= λ x y z => h x y y z
+
+theorem Equation3589_implies_Equation3550 (G : Type*) [Magma G] (h : Equation3589 G) : Equation3550 G
+:= λ x y z => h x y y z
+
+theorem Equation3595_implies_Equation3552 (G : Type*) [Magma G] (h : Equation3595 G) : Equation3552 G
+:= λ x y z => h x y y z
+
+theorem Equation3631_implies_Equation3563 (G : Type*) [Magma G] (h : Equation3631 G) : Equation3563 G
+:= λ x y z => h x y y z
+
+theorem Equation3634_implies_Equation3566 (G : Type*) [Magma G] (h : Equation3634 G) : Equation3566 G
+:= λ x y z => h x y y z
+
+theorem Equation3646_implies_Equation3571 (G : Type*) [Magma G] (h : Equation3646 G) : Equation3571 G
+:= λ x y z => h x y y z
+
+theorem Equation3649_implies_Equation3574 (G : Type*) [Magma G] (h : Equation3649 G) : Equation3574 G
+:= λ x y z => h x y y z
+
+theorem Equation3673_implies_Equation3669 (G : Type*) [Magma G] (h : Equation3673 G) : Equation3669 G
+:= λ x y z => h x y y z
+
+theorem Equation3683_implies_Equation3679 (G : Type*) [Magma G] (h : Equation3683 G) : Equation3679 G
+:= λ x y z => h x y y z
+
+theorem Equation3693_implies_Equation3689 (G : Type*) [Magma G] (h : Equation3693 G) : Equation3689 G
+:= λ x y z => h x y y z
+
+theorem Equation3701_implies_Equation3689 (G : Type*) [Magma G] (h : Equation3701 G) : Equation3689 G
+:= λ x y z => h x y y z
+
+theorem Equation3705_implies_Equation3689 (G : Type*) [Magma G] (h : Equation3705 G) : Equation3689 G
+:= λ x y z => h x y y z
+
+theorem Equation3706_implies_Equation3690 (G : Type*) [Magma G] (h : Equation3706 G) : Equation3690 G
+:= λ x y z => h x y y z
+
+theorem Equation3707_implies_Equation3691 (G : Type*) [Magma G] (h : Equation3707 G) : Equation3691 G
+:= λ x y z => h x y y z
+
+theorem Equation3708_implies_Equation3691 (G : Type*) [Magma G] (h : Equation3708 G) : Equation3691 G
+:= λ x y z => h x y y z
+
+theorem Equation3709_implies_Equation3692 (G : Type*) [Magma G] (h : Equation3709 G) : Equation3692 G
+:= λ x y z => h x y y z
+
+theorem Equation3738_implies_Equation3726 (G : Type*) [Magma G] (h : Equation3738 G) : Equation3726 G
+:= λ x y z => h x y y z
+
+theorem Equation3744_implies_Equation3728 (G : Type*) [Magma G] (h : Equation3744 G) : Equation3728 G
+:= λ x y z => h x y y z
+
+theorem Equation3757_implies_Equation3753 (G : Type*) [Magma G] (h : Equation3757 G) : Equation3753 G
+:= λ x y z => h x y y z
+
+theorem Equation3767_implies_Equation3763 (G : Type*) [Magma G] (h : Equation3767 G) : Equation3763 G
+:= λ x y z => h x y y z
+
+theorem Equation3771_implies_Equation3760 (G : Type*) [Magma G] (h : Equation3771 G) : Equation3760 G
+:= λ x y z => h x y y z
+
+theorem Equation3779_implies_Equation3763 (G : Type*) [Magma G] (h : Equation3779 G) : Equation3763 G
+:= λ x y z => h x y y z
+
+theorem Equation3781_implies_Equation3765 (G : Type*) [Magma G] (h : Equation3781 G) : Equation3765 G
+:= λ x y z => h x y y z
+
+theorem Equation3792_implies_Equation3753 (G : Type*) [Magma G] (h : Equation3792 G) : Equation3753 G
+:= λ x y z => h x y y z
+
+theorem Equation3798_implies_Equation3755 (G : Type*) [Magma G] (h : Equation3798 G) : Equation3755 G
+:= λ x y z => h x y y z
+
+theorem Equation3809_implies_Equation3763 (G : Type*) [Magma G] (h : Equation3809 G) : Equation3763 G
+:= λ x y z => h x y y z
+
+theorem Equation3813_implies_Equation3763 (G : Type*) [Magma G] (h : Equation3813 G) : Equation3763 G
+:= λ x y z => h x y y z
+
+theorem Equation3814_implies_Equation3764 (G : Type*) [Magma G] (h : Equation3814 G) : Equation3764 G
+:= λ x y z => h x y y z
+
+theorem Equation3830_implies_Equation3763 (G : Type*) [Magma G] (h : Equation3830 G) : Equation3763 G
+:= λ x y z => h x y y z
+
+theorem Equation3831_implies_Equation3764 (G : Type*) [Magma G] (h : Equation3831 G) : Equation3764 G
+:= λ x y z => h x y y z
+
+theorem Equation3834_implies_Equation3766 (G : Type*) [Magma G] (h : Equation3834 G) : Equation3766 G
+:= λ x y z => h x y y z
+
+theorem Equation3837_implies_Equation3769 (G : Type*) [Magma G] (h : Equation3837 G) : Equation3769 G
+:= λ x y z => h x y y z
+
+theorem Equation3841_implies_Equation3772 (G : Type*) [Magma G] (h : Equation3841 G) : Equation3772 G
+:= λ x y z => h x y y z
+
+theorem Equation3842_implies_Equation3773 (G : Type*) [Magma G] (h : Equation3842 G) : Equation3773 G
+:= λ x y z => h x y y z
+
+theorem Equation3844_implies_Equation3774 (G : Type*) [Magma G] (h : Equation3844 G) : Equation3774 G
+:= λ x y z => h x y y z
+
+theorem Equation3852_implies_Equation3777 (G : Type*) [Magma G] (h : Equation3852 G) : Equation3777 G
+:= λ x y z => h x y y z
+
+theorem Equation3854_implies_Equation3778 (G : Type*) [Magma G] (h : Equation3854 G) : Equation3778 G
+:= λ x y z => h x y y z
+
+theorem Equation3886_implies_Equation3882 (G : Type*) [Magma G] (h : Equation3886 G) : Equation3882 G
+:= λ x y z => h x y y z
+
+theorem Equation3904_implies_Equation3892 (G : Type*) [Magma G] (h : Equation3904 G) : Equation3892 G
+:= λ x y z => h x y y z
+
+theorem Equation3908_implies_Equation3892 (G : Type*) [Magma G] (h : Equation3908 G) : Equation3892 G
+:= λ x y z => h x y y z
+
+theorem Equation3909_implies_Equation3893 (G : Type*) [Magma G] (h : Equation3909 G) : Equation3893 G
+:= λ x y z => h x y y z
+
+theorem Equation3911_implies_Equation3894 (G : Type*) [Magma G] (h : Equation3911 G) : Equation3894 G
+:= λ x y z => h x y y z
+
+theorem Equation3912_implies_Equation3895 (G : Type*) [Magma G] (h : Equation3912 G) : Equation3895 G
+:= λ x y z => h x y y z
+
+theorem Equation3933_implies_Equation3929 (G : Type*) [Magma G] (h : Equation3933 G) : Equation3929 G
+:= λ x y z => h x y y z
+
+theorem Equation3947_implies_Equation3931 (G : Type*) [Magma G] (h : Equation3947 G) : Equation3931 G
+:= λ x y z => h x y y z
+
+theorem Equation3970_implies_Equation3966 (G : Type*) [Magma G] (h : Equation3970 G) : Equation3966 G
+:= λ x y z => h x y y z
+
+theorem Equation3983_implies_Equation3967 (G : Type*) [Magma G] (h : Equation3983 G) : Equation3967 G
+:= λ x y z => h x y y z
+
+theorem Equation4000_implies_Equation3957 (G : Type*) [Magma G] (h : Equation4000 G) : Equation3957 G
+:= λ x y z => h x y y z
+
+theorem Equation4001_implies_Equation3958 (G : Type*) [Magma G] (h : Equation4001 G) : Equation3958 G
+:= λ x y z => h x y y z
+
+theorem Equation4017_implies_Equation3967 (G : Type*) [Magma G] (h : Equation4017 G) : Equation3967 G
+:= λ x y z => h x y y z
+
+theorem Equation4034_implies_Equation3967 (G : Type*) [Magma G] (h : Equation4034 G) : Equation3967 G
+:= λ x y z => h x y y z
+
+theorem Equation4039_implies_Equation3971 (G : Type*) [Magma G] (h : Equation4039 G) : Equation3971 G
+:= λ x y z => h x y y z
+
+theorem Equation4040_implies_Equation3972 (G : Type*) [Magma G] (h : Equation4040 G) : Equation3972 G
+:= λ x y z => h x y y z
+
+theorem Equation4044_implies_Equation3975 (G : Type*) [Magma G] (h : Equation4044 G) : Equation3975 G
+:= λ x y z => h x y y z
+
+theorem Equation4049_implies_Equation3975 (G : Type*) [Magma G] (h : Equation4049 G) : Equation3975 G
+:= λ x y z => h x y y z
+
+theorem Equation4079_implies_Equation4075 (G : Type*) [Magma G] (h : Equation4079 G) : Equation4075 G
+:= λ x y z => h x y y z
+
+theorem Equation4113_implies_Equation4097 (G : Type*) [Magma G] (h : Equation4113 G) : Equation4097 G
+:= λ x y z => h x y y z
+
+theorem Equation4126_implies_Equation4122 (G : Type*) [Magma G] (h : Equation4126 G) : Equation4122 G
+:= λ x y z => h x y y z
+
+theorem Equation4136_implies_Equation4132 (G : Type*) [Magma G] (h : Equation4136 G) : Equation4132 G
+:= λ x y z => h x y y z
+
+theorem Equation4140_implies_Equation4129 (G : Type*) [Magma G] (h : Equation4140 G) : Equation4129 G
+:= λ x y z => h x y y z
+
+theorem Equation4144_implies_Equation4132 (G : Type*) [Magma G] (h : Equation4144 G) : Equation4132 G
+:= λ x y z => h x y y z
+
+theorem Equation4148_implies_Equation4132 (G : Type*) [Magma G] (h : Equation4148 G) : Equation4132 G
+:= λ x y z => h x y y z
+
+theorem Equation4150_implies_Equation4134 (G : Type*) [Magma G] (h : Equation4150 G) : Equation4134 G
+:= λ x y z => h x y y z
+
+theorem Equation4151_implies_Equation4134 (G : Type*) [Magma G] (h : Equation4151 G) : Equation4134 G
+:= λ x y z => h x y y z
+
+theorem Equation4152_implies_Equation4135 (G : Type*) [Magma G] (h : Equation4152 G) : Equation4135 G
+:= λ x y z => h x y y z
+
+theorem Equation4163_implies_Equation4159 (G : Type*) [Magma G] (h : Equation4163 G) : Equation4159 G
+:= λ x y z => h x y y z
+
+theorem Equation4186_implies_Equation4170 (G : Type*) [Magma G] (h : Equation4186 G) : Equation4170 G
+:= λ x y z => h x y y z
+
+theorem Equation4187_implies_Equation4171 (G : Type*) [Magma G] (h : Equation4187 G) : Equation4171 G
+:= λ x y z => h x y y z
+
+theorem Equation4204_implies_Equation4161 (G : Type*) [Magma G] (h : Equation4204 G) : Equation4161 G
+:= λ x y z => h x y y z
+
+theorem Equation4236_implies_Equation4169 (G : Type*) [Magma G] (h : Equation4236 G) : Equation4169 G
+:= λ x y z => h x y y z
+
+theorem Equation4240_implies_Equation4172 (G : Type*) [Magma G] (h : Equation4240 G) : Equation4172 G
+:= λ x y z => h x y y z
+
+theorem Equation4243_implies_Equation4175 (G : Type*) [Magma G] (h : Equation4243 G) : Equation4175 G
+:= λ x y z => h x y y z
+
+theorem Equation4247_implies_Equation4178 (G : Type*) [Magma G] (h : Equation4247 G) : Equation4178 G
+:= λ x y z => h x y y z
+
+theorem Equation4250_implies_Equation4180 (G : Type*) [Magma G] (h : Equation4250 G) : Equation4180 G
+:= λ x y z => h x y y z
+
+theorem Equation4281_implies_Equation4277 (G : Type*) [Magma G] (h : Equation4281 G) : Equation4277 G
+:= λ x y z => h x y y z
+
+theorem Equation4302_implies_Equation4292 (G : Type*) [Magma G] (h : Equation4302 G) : Equation4292 G
+:= λ x y z => h x y y z
+
+theorem Equation4308_implies_Equation4294 (G : Type*) [Magma G] (h : Equation4308 G) : Equation4294 G
+:= λ x y z => h x y y z
+
+theorem Equation4311_implies_Equation4296 (G : Type*) [Magma G] (h : Equation4311 G) : Equation4296 G
+:= λ x y z => h x y y z
+
+theorem Equation4329_implies_Equation4322 (G : Type*) [Magma G] (h : Equation4329 G) : Equation4322 G
+:= λ x y z => h x y y z
+
+theorem Equation4334_implies_Equation4323 (G : Type*) [Magma G] (h : Equation4334 G) : Equation4323 G
+:= λ x y z => h x y y z
+
+theorem Equation4336_implies_Equation4324 (G : Type*) [Magma G] (h : Equation4336 G) : Equation4324 G
+:= λ x y z => h x y y z
+
+theorem Equation4337_implies_Equation4325 (G : Type*) [Magma G] (h : Equation4337 G) : Equation4325 G
+:= λ x y z => h x y y z
+
+theorem Equation4355_implies_Equation4346 (G : Type*) [Magma G] (h : Equation4355 G) : Equation4346 G
+:= λ x y z => h x y y z
+
+theorem Equation4357_implies_Equation4339 (G : Type*) [Magma G] (h : Equation4357 G) : Equation4339 G
+:= λ x y z => h x y y z
+
+theorem Equation4359_implies_Equation4339 (G : Type*) [Magma G] (h : Equation4359 G) : Equation4339 G
+:= λ x y z => h x y y z
+
+theorem Equation4363_implies_Equation4344 (G : Type*) [Magma G] (h : Equation4363 G) : Equation4344 G
+:= λ x y z => h x y y z
+
+theorem Equation4371_implies_Equation4345 (G : Type*) [Magma G] (h : Equation4371 G) : Equation4345 G
+:= λ x y z => h x y y z
+
+theorem Equation4404_implies_Equation4400 (G : Type*) [Magma G] (h : Equation4404 G) : Equation4400 G
+:= λ x y z => h x y y z
+
+theorem Equation4418_implies_Equation4407 (G : Type*) [Magma G] (h : Equation4418 G) : Equation4407 G
+:= λ x y z => h x y y z
+
+theorem Equation4422_implies_Equation4410 (G : Type*) [Magma G] (h : Equation4422 G) : Equation4410 G
+:= λ x y z => h x y y z
+
+theorem Equation4426_implies_Equation4410 (G : Type*) [Magma G] (h : Equation4426 G) : Equation4410 G
+:= λ x y z => h x y y z
+
+theorem Equation4427_implies_Equation4411 (G : Type*) [Magma G] (h : Equation4427 G) : Equation4411 G
+:= λ x y z => h x y y z
+
+theorem Equation4428_implies_Equation4412 (G : Type*) [Magma G] (h : Equation4428 G) : Equation4412 G
+:= λ x y z => h x y y z
+
+theorem Equation4429_implies_Equation4412 (G : Type*) [Magma G] (h : Equation4429 G) : Equation4412 G
+:= λ x y z => h x y y z
+
+theorem Equation4430_implies_Equation4413 (G : Type*) [Magma G] (h : Equation4430 G) : Equation4413 G
+:= λ x y z => h x y y z
+
+theorem Equation4441_implies_Equation4437 (G : Type*) [Magma G] (h : Equation4441 G) : Equation4437 G
+:= λ x y z => h x y y z
+
+theorem Equation4455_implies_Equation4444 (G : Type*) [Magma G] (h : Equation4455 G) : Equation4444 G
+:= λ x y z => h x y y z
+
+theorem Equation4459_implies_Equation4447 (G : Type*) [Magma G] (h : Equation4459 G) : Equation4447 G
+:= λ x y z => h x y y z
+
+theorem Equation4463_implies_Equation4447 (G : Type*) [Magma G] (h : Equation4463 G) : Equation4447 G
+:= λ x y z => h x y y z
+
+theorem Equation4464_implies_Equation4448 (G : Type*) [Magma G] (h : Equation4464 G) : Equation4448 G
+:= λ x y z => h x y y z
+
+theorem Equation4466_implies_Equation4449 (G : Type*) [Magma G] (h : Equation4466 G) : Equation4449 G
+:= λ x y z => h x y y z
+
+theorem Equation4467_implies_Equation4450 (G : Type*) [Magma G] (h : Equation4467 G) : Equation4450 G
+:= λ x y z => h x y y z
+
+theorem Equation4478_implies_Equation4474 (G : Type*) [Magma G] (h : Equation4478 G) : Equation4474 G
+:= λ x y z => h x y y z
+
+theorem Equation4496_implies_Equation4484 (G : Type*) [Magma G] (h : Equation4496 G) : Equation4484 G
+:= λ x y z => h x y y z
+
+theorem Equation4500_implies_Equation4484 (G : Type*) [Magma G] (h : Equation4500 G) : Equation4484 G
+:= λ x y z => h x y y z
+
+theorem Equation4502_implies_Equation4486 (G : Type*) [Magma G] (h : Equation4502 G) : Equation4486 G
+:= λ x y z => h x y y z
+
+theorem Equation4503_implies_Equation4486 (G : Type*) [Magma G] (h : Equation4503 G) : Equation4486 G
+:= λ x y z => h x y y z
+
+theorem Equation4504_implies_Equation4487 (G : Type*) [Magma G] (h : Equation4504 G) : Equation4487 G
+:= λ x y z => h x y y z
+
+theorem Equation4509_implies_Equation4471 (G : Type*) [Magma G] (h : Equation4509 G) : Equation4471 G
+:= λ x y z => h x y y z
+
+theorem Equation4513_implies_Equation4474 (G : Type*) [Magma G] (h : Equation4513 G) : Equation4474 G
+:= λ x y z => h x y y z
+
+theorem Equation4518_implies_Equation4475 (G : Type*) [Magma G] (h : Equation4518 G) : Equation4475 G
+:= λ x y z => h x y y z
+
+theorem Equation4519_implies_Equation4476 (G : Type*) [Magma G] (h : Equation4519 G) : Equation4476 G
+:= λ x y z => h x y y z
+
+theorem Equation4520_implies_Equation4476 (G : Type*) [Magma G] (h : Equation4520 G) : Equation4476 G
+:= λ x y z => h x y y z
+
+theorem Equation4521_implies_Equation4477 (G : Type*) [Magma G] (h : Equation4521 G) : Equation4477 G
+:= λ x y z => h x y y z
+
+theorem Equation4551_implies_Equation4484 (G : Type*) [Magma G] (h : Equation4551 G) : Equation4484 G
+:= λ x y z => h x y y z
+
+theorem Equation4554_implies_Equation4486 (G : Type*) [Magma G] (h : Equation4554 G) : Equation4486 G
+:= λ x y z => h x y y z
+
+theorem Equation4557_implies_Equation4489 (G : Type*) [Magma G] (h : Equation4557 G) : Equation4489 G
+:= λ x y z => h x y y z
+
+theorem Equation4559_implies_Equation4490 (G : Type*) [Magma G] (h : Equation4559 G) : Equation4490 G
+:= λ x y z => h x y y z
+
+theorem Equation4564_implies_Equation4494 (G : Type*) [Magma G] (h : Equation4564 G) : Equation4494 G
+:= λ x y z => h x y y z
+
+theorem Equation4569_implies_Equation4494 (G : Type*) [Magma G] (h : Equation4569 G) : Equation4494 G
+:= λ x y z => h x y y z
+
+theorem Equation4570_implies_Equation4495 (G : Type*) [Magma G] (h : Equation4570 G) : Equation4495 G
+:= λ x y z => h x y y z
+
+theorem Equation4572_implies_Equation4497 (G : Type*) [Magma G] (h : Equation4572 G) : Equation4497 G
+:= λ x y z => h x y y z
+
+theorem Equation4574_implies_Equation4498 (G : Type*) [Magma G] (h : Equation4574 G) : Equation4498 G
+:= λ x y z => h x y y z
+
+theorem Equation4575_implies_Equation4499 (G : Type*) [Magma G] (h : Equation4575 G) : Equation4499 G
+:= λ x y z => h x y y z
+
+theorem Equation4623_implies_Equation4609 (G : Type*) [Magma G] (h : Equation4623 G) : Equation4609 G
+:= λ x y z => h x y y z
+
+theorem Equation4626_implies_Equation4611 (G : Type*) [Magma G] (h : Equation4626 G) : Equation4611 G
+:= λ x y z => h x y y z
+
+theorem Equation4627_implies_Equation4612 (G : Type*) [Magma G] (h : Equation4627 G) : Equation4612 G
+:= λ x y z => h x y y z
+
+theorem Equation4649_implies_Equation4638 (G : Type*) [Magma G] (h : Equation4649 G) : Equation4638 G
+:= λ x y z => h x y y z
+
+theorem Equation4651_implies_Equation4639 (G : Type*) [Magma G] (h : Equation4651 G) : Equation4639 G
+:= λ x y z => h x y y z
+
+theorem Equation4652_implies_Equation4640 (G : Type*) [Magma G] (h : Equation4652 G) : Equation4640 G
+:= λ x y z => h x y y z
+
+theorem Equation4670_implies_Equation4661 (G : Type*) [Magma G] (h : Equation4670 G) : Equation4661 G
+:= λ x y z => h x y y z
+
+theorem Equation4672_implies_Equation4654 (G : Type*) [Magma G] (h : Equation4672 G) : Equation4654 G
+:= λ x y z => h x y y z
+
+theorem Equation4674_implies_Equation4654 (G : Type*) [Magma G] (h : Equation4674 G) : Equation4654 G
+:= λ x y z => h x y y z
+
+theorem Equation4675_implies_Equation4655 (G : Type*) [Magma G] (h : Equation4675 G) : Equation4655 G
+:= λ x y z => h x y y z
+
+theorem Equation4678_implies_Equation4659 (G : Type*) [Magma G] (h : Equation4678 G) : Equation4659 G
+:= λ x y z => h x y y z
+
+theorem Equation4686_implies_Equation4660 (G : Type*) [Magma G] (h : Equation4686 G) : Equation4660 G
 := λ x y z => h x y y z
 
 end SimpleRewrites
