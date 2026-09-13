@@ -1,4 +1,5 @@
 -- Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1: verified translations of equational_theories/Generated/FiniteImplicationSearch/theorems/Inverses1.lean (76 theorems)
+import Tengoku
 import Tengoku.EquationalTheories.Deps.Magma
 import Lean
 import Tengoku.Data.FunLike.Basic

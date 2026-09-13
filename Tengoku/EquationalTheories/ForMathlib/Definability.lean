@@ -1,4 +1,5 @@
--- Tengoku.EquationalTheories.ForMathlib.Definability: verified translations of equational_theories/ForMathlib/Definability.lean (1 theorem)
+-- Tengoku.EquationalTheories.ForMathlib.Definability: verified translations of equational_theories/ForMathlib/Definability.lean (2 theorems)
+import Tengoku
 import Tengoku.ModelTheory.Definability
 import Tengoku.Data.Rel
 import Tengoku.Data.Set.Card
@@ -125,6 +126,58 @@ theorem subst_definitions_eq
     congr 1
     funext sum
     cases sum <;> simp [finSumFinEquiv_apply_left]
+
+variable (Fs) in
+def subst_definitions_extraVals (t : L.Term α) : Fin (t.subst_definitions Fs).1 → M :=
+  match t with
+  | var a => by
+    rw [subst_definitions]
+    exact default
+  | func f args => fun a ↦
+      (finSumFinEquiv.symm a).rec (fun a₁ ↦
+        (finSigmaFinEquiv.symm a₁).rec fun ai aj ↦
+        (args ai).subst_definitions_extraVals aj
+      ) (fun _ ↦ (func f args).realize v)
+
+set_option backward.isDefEq.respectTransparency false in
+
+theorem subst_definitions_extraVals_spec
+    (hFs : ∀ {n} g, ((@Fs n g).Realize : Set (_ → M)) = Function.tupleGraph (g.term.realize ·))
+    (v : α → M) :
+    ∀ s ∈ (t.subst_definitions Fs).2.2, s.Realize (Sum.elim v (t.subst_definitions_extraVals Fs v))
+:= by
+  induction t
+  next =>
+    simp [subst_definitions_extraVals, subst_definitions]
+  next f args ih =>
+    simp only [subst_definitions, Fin.isValue, finSumFinEquiv_apply_right,
+        finSumFinEquiv_apply_left, List.mem_cons, List.mem_flatMap, List.mem_finRange,
+        List.mem_map, true_and, forall_eq_or_imp, forall_exists_index, and_imp]
+    constructor
+    · have hFs' := congrFun (hFs f)
+      simp only [Function.tupleGraph, realize_function_term, Formula.Realize] at hFs'
+      simp only [Formula.Realize, BoundedFormula.realize_subst, hFs']
+      change Structure.funMap f _ = _
+      simp only [Sum.elim_inr, realize_var, Fin.isValue, Option.elim_none]
+      unfold Function.comp
+      simp only [subst_definitions_extraVals,  ← fun x ↦ (args x).subst_definitions_eq v hFs (ih x),
+        realize_func, Fin.isValue, Option.elim_some, realize_relabel, finSumFinEquiv_symm_apply_natAdd]
+      congr! with x
+      funext sum
+      cases sum
+      · rfl
+      · simp only [Function.comp_apply, Sum.map_inr, Sum.elim_inr,
+          finSumFinEquiv_symm_apply_castAdd]
+        rw [Equiv.leftInverse_symm finSigmaFinEquiv]
+    · rintro a i b hb rfl
+      simp only [subst_definitions_extraVals, Formula.realize_relabel]
+      convert ih i b hb
+      funext sum
+      cases sum
+      · rfl
+      · simp only [realize_func, Function.comp_apply, Sum.map_inr, Sum.elim_inr,
+          finSumFinEquiv_symm_apply_castAdd]
+        rw [Equiv.leftInverse_symm finSigmaFinEquiv]
 
 end Term
 end Language

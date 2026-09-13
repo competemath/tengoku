@@ -1,5 +1,6 @@
 import Tengoku.EquationalTheories.Deps
 import Tengoku.EquationalTheories.Asterix
+import Tengoku.EquationalTheories.CentralGroupoids
 import Tengoku.EquationalTheories.Completeness
 import Tengoku.EquationalTheories.Definability.Basic
 import Tengoku.EquationalTheories.Equations.LawsComplete

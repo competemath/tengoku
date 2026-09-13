@@ -1,4 +1,5 @@
 -- Tengoku.EquationalTheories.Equations.LawsComplete: verified translations of equational_theories/Equations/LawsComplete.lean (7 theorems)
+import Tengoku
 import Lean.ToExpr
 import Tengoku.Data.FunLike.Basic
 import Tengoku.Logic.Equiv.Basic

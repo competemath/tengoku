@@ -1,4 +1,5 @@
 -- Tengoku.EquationalTheories.Asterix: verified translations of equational_theories/Asterix.lean (30 theorems)
+import Tengoku
 import Lean
 import Tengoku.EquationalTheories.Deps.Magma
 import Lean.Elab.Exception
@@ -25,7 +26,6 @@ namespace Asterix
 variable {G : Type*} [DecidableEq G]
 
 variable (G) in
-
 @[ext]
 structure PartialSolution where
   E0 : Finset (G × G)
@@ -561,7 +561,6 @@ theorem closure_prop (f : PartialSolution G) : ∀ x y, closure f x (closure f y
 universe uEq
 
 open Lean in
-
 macro "Facts " G:term:max "[" sat:num,* "]" "[" ref:num,* "]" : term => do
   let mkEq (isRef : Bool) (n : Lean.TSyntax `num) : Lean.MacroM (Lean.TSyntax `term) := do
     let nm := Lean.mkIdent (Name.mkSimple s!"Equation{n.getNat}")
