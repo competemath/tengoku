@@ -45,3 +45,4 @@ import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_yx_z
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_zx
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_zy
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.Apply
+import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.Apply2
