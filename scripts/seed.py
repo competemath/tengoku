@@ -24,12 +24,17 @@ from pathlib import Path
 # package name -> (source root dir inside the package, module root, mapped module root)
 # Topic-based placement: Mathlib's own layout becomes the tree's layout directly;
 # its dependency packages go under topics, never under an origin name.
+# Seeded subtrees that are not library content: ProofWidgets' demos embed JS
+# bundles that only its own npm build produces, so they can never build here.
+SKIP_SUBTREES = {"proofwidgets": ("ProofWidgets/Demos",)}
+
 PACKAGES = {
     "mathlib": ("Mathlib", "Mathlib", "Tengoku"),
     "batteries": ("Batteries", "Batteries", "Tengoku.Std"),
     "aesop": ("Aesop", "Aesop", "Tengoku.Tactic.Aesop"),
     "Qq": ("Qq", "Qq", "Tengoku.Meta.Qq"),
     "proofwidgets": ("ProofWidgets", "ProofWidgets", "Tengoku.Widgets"),
+
     # Mathlib's own Testing/Plausible/* extends this engine and shares leaf
     # names (Functions, Sampleable, Testable), so the engine lives one topic
     # over: Testing/Random.
@@ -100,6 +105,8 @@ def main():
         mapped_dir = tree.parent / Path(*mapped.split("."))  # Tengoku/... dir for the mapped root
         for f in base.rglob("*.lean"):
             rel = f.relative_to(base)
+            if any(str(f.relative_to(src / pkg)).startswith(s + "/") for s in SKIP_SUBTREES.get(pkg, ())):
+                continue
             target = mapped_dir / rel
             if target in planned:
                 sys.exit(f"path collision: {target} from {pkg} and {planned[target][0]}")
