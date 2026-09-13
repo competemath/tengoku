@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.ForMathlib.Definability: verified translations of equational_theories/ForMathlib/Definability.lean (2 theorems)
+-- Tengoku.EquationalTheories.ForMathlib.Definability: verified translations of equational_theories/ForMathlib/Definability.lean (3 theorems)
 import Tengoku
 import Tengoku.ModelTheory.Definability
 import Tengoku.Data.Rel
@@ -179,7 +179,23 @@ theorem subst_definitions_extraVals_spec
           finSumFinEquiv_symm_apply_castAdd]
         rw [Equiv.leftInverse_symm finSigmaFinEquiv]
 
+def subst_definitions_extraVals_X
+    (hFs : ∀ {n} g, ((@Fs n g).Realize : Set (_ → M)) = Function.tupleGraph (g.term.realize ·)) :
+    { xs : Fin (t.subst_definitions Fs).1 → M //
+      ∀ s ∈ (t.subst_definitions Fs).2.2, s.Realize (Sum.elim v xs)} :=
+  ⟨t.subst_definitions_extraVals Fs v, t.subst_definitions_extraVals_spec hFs v⟩
+
 end Term
+
+variable {Rs : ∀ {n}, L.Relations n → L'.Formula (Fin n)}
+
+namespace BoundedFormula
+
+end BoundedFormula
+
+namespace Formula
+
+end Formula
 end Language
 end FirstOrder
 end TermDef
