@@ -72,8 +72,9 @@ namespace). Every module under `Tengoku/` is built. The seeded root
 `Tengoku.lean` is a module-system file and cannot import these legacy-style
 modules, so they are imported directly: `import Tengoku.EquationalTheories`.
 
-**Cache:** nobody builds the tree from scratch. CI builds every push to
-`main` and publishes the compiled `.lake/build` as a release tagged
+**Cache:** nobody builds the tree from scratch. A nightly CI build (03:00 UTC;
+never triggered by a push, so a bad commit has a day's grace before it can
+reach a cache) publishes the compiled `.lake/build` as a release tagged
 `cache-<sha>`; `scripts/cache.sh get` fetches the newest cache in your
 branch's ancestry and Lake rebuilds only what differs. The Leak services
 update themselves from the same cache.
