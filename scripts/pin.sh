@@ -39,3 +39,7 @@ scripts/cache.sh get
 # cover the tree exactly, this fails loudly instead of building.
 lake build Tengoku.All --no-build
 echo "pinned to $latest"
+# The pinned commit may predate these helper scripts: keep the newest copies
+# from main so the next run (and the services' /refresh) can find them. Done
+# last, in one compound command, so bash never reads past it.
+{ git checkout -q origin/main -- scripts/cache.sh scripts/pin.sh 2>/dev/null || true; exit 0; }
