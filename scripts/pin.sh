@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Pin this checkout of the tree to the newest PUBLISHED build cache, so that
-# `lake build Tengoku.All` is a pure replay: nothing compiles, ever.
+# Pin this checkout of the tree to the newest PUBLISHED build cache. Nothing
+# is ever compiled here: the replay check runs with `--no-build`, so Lake can
+# only confirm the cache covers the tree, or fail.
 #
 #   scripts/pin.sh            # fetch → newest cache commit → check it out → unpack its cache → replay-build
 #   scripts/pin.sh --check    # change nothing: print "current <sha>" (exit 0) or "newer <sha>" (exit 3)
@@ -34,5 +35,7 @@ fi
 echo "pinning the tree to cache commit $latest (was ${head:0:12})"
 git checkout -q -f "$latest"
 scripts/cache.sh get
-lake build Tengoku.All
+# Verify the replay WITHOUT letting Lake compile anything: if the cache did not
+# cover the tree exactly, this fails loudly instead of building.
+lake build Tengoku.All --no-build
 echo "pinned to $latest"
