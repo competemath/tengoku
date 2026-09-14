@@ -81,3 +81,5 @@ import Tengoku.EquationalTheories.ManuallyProved.Equation677
 import Tengoku.EquationalTheories.Mathlib.Order.Greedy
 import Tengoku.EquationalTheories.PartialMagma
 import Tengoku.EquationalTheories.Sheffer
+import Tengoku.EquationalTheories.StringMagmas
+import Tengoku.EquationalTheories.Subgraph
