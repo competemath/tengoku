@@ -1,0 +1,106 @@
+-- Tengoku.EquationalTheories.ManuallyProved.Equation1729.ExtensionTheorem: verified translations of equational_theories/ManuallyProved/Equation1729/ExtensionTheorem.lean (1 theorem)
+import Tengoku.Order.Preorder.Chain
+import Tengoku.Data.Set.Countable
+import Tengoku.Algebra.Ring.NonZeroDivisors
+import Tengoku.Data.Finset.Union
+import Tengoku.GroupTheory.FreeGroup.CyclicallyReduced
+import Tengoku.EquationalTheories.Deps.Magma
+import Lean
+import Tengoku.Data.FunLike.Basic
+import Tengoku.Logic.Equiv.Basic
+import Tengoku.Data.List.NodupEquivFin
+import Tengoku.Data.Set.Defs
+import Lean.Elab.Exception
+import Lean.Elab.Declaration
+import Lean.Util.CollectAxioms
+import Lean.Environment
+import Lean.Meta.Basic
+import Lean.Util
+import Tengoku.Logic.Equiv.Defs
+import Tengoku.Tactic
+import Tengoku.EquationalTheories.Deps.Equations
+
+set_option linter.all false
+
+namespace EquationalTheories
+
+namespace Eq1729
+
+set_option autoImplicit true
+
+set_option relaxedAutoImplicit true
+
+def extend_sum_inl (f : α → β) (γ : Type) : α → Sum β γ :=
+  fun (x : α) => .inl (f x)
+
+def extend_sum_inr (f : α → γ) (β : Type) : α → Sum β γ :=
+  fun (x : α) => .inr (f x)
+
+def combine (f : α → β) (g : γ → β) : Sum α γ → β :=
+  fun x =>
+    match x with
+    | .inl xl => f xl
+    | .inr xr => g xr
+
+def extend_sum_both (f : α → β) (g : δ → γ) : Sum α δ → Sum β γ :=
+  let f₁ := extend_sum_inl f γ
+  let g₁ := extend_sum_inr g β
+  combine f₁ g₁
+
+def is_left_extension_of (f' : α → γ) (f : α ⊕ β → γ) : Prop :=
+  ∀ x : α, f' x = f (.inl x)
+
+def is_right_extension_of (f' : β → γ) (f : α ⊕ β → γ) : Prop :=
+  ∀ x : β, f' x = f (.inr x)
+
+structure ExtOps (SM N : Type) [Magma SM] where
+  -- The squaring map on `SM`. In the blueprint this is `S`
+  S : SM → SM
+  L : SM → Equiv SM SM
+  R : SM → Equiv SM SM
+  -- A complement squaring map from `N` to `SM`. Since we don't have a
+  -- magma operation for `N` yet, we will wait for the magma operation construction
+  -- to prove a theorem that with the resulting magma operation `sqN` acts
+  -- as a squaring function. In the blueprint this is `S'`
+  S' : N → SM
+  -- `rest_of_the_map` is a function that will serve as part of our binary operation
+  -- which deals with the situation where both operands come from `N`.
+  -- In the blueprint this is `◇'`
+  rest_map : N → N → SM ⊕ N
+  L' : SM → Equiv N N
+  R' : SM → Equiv N N
+
+structure ExtOpsWithProps (SM N : Type) [Magma SM] extends (ExtOps SM N) where
+  -- Properties of functions on the small magma `SM`
+  squaring_prop_SM : ∀ x : SM, S x = x ◇ x
+  left_map_SM : ∀ x y : SM, L x y = x ◇ y
+  right_map_SM : ∀ x y : SM, R x y = y ◇ x
+  -- The small magma `SM` satisfies equation 1729
+  SM_sat_1729 : Equation1729 SM
+  axiom_1 : ∀ a, ∀ x, (L' a) x = ( (R' a).symm ∘ (L' (S a)).symm) x
+  axiom_21 : ∀ a b : SM, ∀ y : N, a ≠ b → R' a y ≠ R' b y
+  axiom_22 : ∀ a : SM, ∀ x, R' a x ≠ x
+  -- Axiom 3
+  -- axiom_3 : ∀ x y, ∀ a, R' a x = y → ((L' (S' y)) (L' ((R a).symm (S' x)) y)) = x
+  axiom_3 : ∀ x y, ∀ a, R' a x = y → ((L' (S' y)) (L' ((L (S' x)).symm a) y)) = x
+  -- Axiom 4
+  axiom_4 : ∀ x : N, L' (S' x) (L' (S' x) x) = x
+  -- Restmap axioms
+  -- Axiom 5 the squaring property of `S'`
+  axiom_5 : ∀ x, rest_map x x = .inl (S' x)
+  -- Axiom 6
+  axiom_6 : ∀ y : N, ∀ a : SM,
+    rest_map (R' a y) y = .inl ((L (S' y)).symm a)
+  axiom_7 : ∀ x y : N, ¬ x = y -- The condition for axiom 5 doesn't hold
+    → ¬(∃ a : SM, x = R' a y)  -- The condition for axiom 6 doesn't hold
+    → (∃ z, rest_map x y = .inr z ∧ rest_map z x =  (Sum.inr <| (L' (S' x)).symm y))
+
+lemma axiom_1_alt [Magma SM] (E : ExtOpsWithProps SM N) :
+  ∀ a, ∀ x, ((E.L' (E.S a)) ∘ (E.R' a) ∘ (E.L' a)) x = x
+:= by
+  intro a x
+  simp [E.axiom_1 a x]
+
+end Eq1729
+
+end EquationalTheories
