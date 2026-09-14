@@ -10,6 +10,7 @@ import Tengoku.EquationalTheories.Generated.Constant
 import Tengoku.EquationalTheories.Generated.Equation1
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.Inverses1
 import Tengoku.EquationalTheories.Generated.FiniteImplicationSearch.theorems.InversesManual
+import Tengoku.EquationalTheories.Generated.Greedy.OrLemmas
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._000
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._001
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._006
