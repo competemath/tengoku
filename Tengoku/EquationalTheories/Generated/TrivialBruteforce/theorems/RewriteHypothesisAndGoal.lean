@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteHypothesisAndGoal: verified translations of equational_theories/Generated/TrivialBruteforce/theorems/RewriteHypothesisAndGoal.lean (346 theorems)
+-- Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteHypothesisAndGoal: verified translations of equational_theories/Generated/TrivialBruteforce/theorems/RewriteHypothesisAndGoal.lean (426 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Lean
 import Tengoku.Data.FunLike.Basic
@@ -2819,6 +2819,683 @@ theorem Equation4235_implies_Equation41 (G: Type _) [Magma G] (h: Equation4235 G
   try { rw [h a, <-h] }
   try { rw [h a a, <-h] }
   try { rw [h a a a, <-h] }
+
+theorem Equation4575_implies_Equation4281 (G: Type _) [Magma G] (h: Equation4575 G) : Equation4281 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation514_implies_Equation37 (G: Type _) [Magma G] (h: Equation514 G) : Equation37 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+
+theorem Equation525_implies_Equation519 (G: Type _) [Magma G] (h: Equation525 G) : Equation519 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation534_implies_Equation533 (G: Type _) [Magma G] (h: Equation534 G) : Equation533 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation535_implies_Equation534 (G: Type _) [Magma G] (h: Equation535 G) : Equation534 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation559_implies_Equation536 (G: Type _) [Magma G] (h: Equation559 G) : Equation536 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation560_implies_Equation559 (G: Type _) [Magma G] (h: Equation560 G) : Equation559 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation563_implies_Equation561 (G: Type _) [Magma G] (h: Equation563 G) : Equation561 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation564_implies_Equation563 (G: Type _) [Magma G] (h: Equation564 G) : Equation563 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation567_implies_Equation565 (G: Type _) [Magma G] (h: Equation567 G) : Equation565 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation568_implies_Equation567 (G: Type _) [Magma G] (h: Equation568 G) : Equation567 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation569_implies_Equation568 (G: Type _) [Magma G] (h: Equation569 G) : Equation568 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation576_implies_Equation570 (G: Type _) [Magma G] (h: Equation576 G) : Equation570 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation577_implies_Equation576 (G: Type _) [Magma G] (h: Equation577 G) : Equation576 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation580_implies_Equation578 (G: Type _) [Magma G] (h: Equation580 G) : Equation578 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation585_implies_Equation584 (G: Type _) [Magma G] (h: Equation585 G) : Equation584 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation591_implies_Equation41 (G: Type _) [Magma G] (h: Equation591 G) : Equation41 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+
+theorem Equation594_implies_Equation587 (G: Type _) [Magma G] (h: Equation594 G) : Equation587 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation595_implies_Equation594 (G: Type _) [Magma G] (h: Equation595 G) : Equation594 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation596_implies_Equation595 (G: Type _) [Magma G] (h: Equation596 G) : Equation595 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation599_implies_Equation597 (G: Type _) [Magma G] (h: Equation599 G) : Equation597 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation6_implies_Equation599 (G: Type _) [Magma G] (h: Equation6 G) : Equation599 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+
+theorem Equation604_implies_Equation602 (G: Type _) [Magma G] (h: Equation604 G) : Equation602 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation609_implies_Equation607 (G: Type _) [Magma G] (h: Equation609 G) : Equation607 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation610_implies_Equation609 (G: Type _) [Magma G] (h: Equation610 G) : Equation609 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation611_implies_Equation610 (G: Type _) [Magma G] (h: Equation611 G) : Equation610 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation612_implies_Equation611 (G: Type _) [Magma G] (h: Equation612 G) : Equation611 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation717_implies_Equation7 (G: Type _) [Magma G] (h: Equation717 G) : Equation7 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+
+theorem Equation721_implies_Equation720 (G: Type _) [Magma G] (h: Equation721 G) : Equation720 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation732_implies_Equation730 (G: Type _) [Magma G] (h: Equation732 G) : Equation730 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation737_implies_Equation736 (G: Type _) [Magma G] (h: Equation737 G) : Equation736 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation742_implies_Equation41 (G: Type _) [Magma G] (h: Equation742 G) : Equation41 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+
+theorem Equation76_implies_Equation739 (G: Type _) [Magma G] (h: Equation76 G) : Equation739 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+
+theorem Equation762_implies_Equation76 (G: Type _) [Magma G] (h: Equation762 G) : Equation76 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation763_implies_Equation762 (G: Type _) [Magma G] (h: Equation763 G) : Equation762 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation766_implies_Equation764 (G: Type _) [Magma G] (h: Equation766 G) : Equation764 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation767_implies_Equation766 (G: Type _) [Magma G] (h: Equation767 G) : Equation766 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation77_implies_Equation768 (G: Type _) [Magma G] (h: Equation77 G) : Equation768 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation770_implies_Equation77 (G: Type _) [Magma G] (h: Equation770 G) : Equation77 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation771_implies_Equation770 (G: Type _) [Magma G] (h: Equation771 G) : Equation770 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation772_implies_Equation771 (G: Type _) [Magma G] (h: Equation772 G) : Equation771 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation779_implies_Equation773 (G: Type _) [Magma G] (h: Equation779 G) : Equation773 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation780_implies_Equation779 (G: Type _) [Magma G] (h: Equation780 G) : Equation779 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation783_implies_Equation781 (G: Type _) [Magma G] (h: Equation783 G) : Equation781 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation784_implies_Equation783 (G: Type _) [Magma G] (h: Equation784 G) : Equation783 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation787_implies_Equation785 (G: Type _) [Magma G] (h: Equation787 G) : Equation785 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation788_implies_Equation787 (G: Type _) [Magma G] (h: Equation788 G) : Equation787 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation789_implies_Equation788 (G: Type _) [Magma G] (h: Equation789 G) : Equation788 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation79_implies_Equation789 (G: Type _) [Magma G] (h: Equation79 G) : Equation789 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation798_implies_Equation797 (G: Type _) [Magma G] (h: Equation798 G) : Equation797 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation799_implies_Equation798 (G: Type _) [Magma G] (h: Equation799 G) : Equation798 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation80_implies_Equation799 (G: Type _) [Magma G] (h: Equation80 G) : Equation799 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation800_implies_Equation80 (G: Type _) [Magma G] (h: Equation800 G) : Equation80 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation802_implies_Equation800 (G: Type _) [Magma G] (h: Equation802 G) : Equation800 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation803_implies_Equation802 (G: Type _) [Magma G] (h: Equation803 G) : Equation802 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation804_implies_Equation803 (G: Type _) [Magma G] (h: Equation804 G) : Equation803 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation807_implies_Equation805 (G: Type _) [Magma G] (h: Equation807 G) : Equation805 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation808_implies_Equation807 (G: Type _) [Magma G] (h: Equation808 G) : Equation807 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation809_implies_Equation808 (G: Type _) [Magma G] (h: Equation809 G) : Equation808 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation810_implies_Equation81 (G: Type _) [Magma G] (h: Equation810 G) : Equation81 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation812_implies_Equation810 (G: Type _) [Magma G] (h: Equation812 G) : Equation810 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation813_implies_Equation812 (G: Type _) [Magma G] (h: Equation813 G) : Equation812 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation814_implies_Equation813 (G: Type _) [Magma G] (h: Equation814 G) : Equation813 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+  try { rw [h a a a a a, <-h] }
+
+theorem Equation87_implies_Equation816 (G: Type _) [Magma G] (h: Equation87 G) : Equation816 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation88_implies_Equation87 (G: Type _) [Magma G] (h: Equation88 G) : Equation87 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation899_implies_Equation41 (G: Type _) [Magma G] (h: Equation899 G) : Equation41 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+
+theorem Equation91_implies_Equation89 (G: Type _) [Magma G] (h: Equation91 G) : Equation89 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation92_implies_Equation91 (G: Type _) [Magma G] (h: Equation92 G) : Equation91 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation920_implies_Equation92 (G: Type _) [Magma G] (h: Equation920 G) : Equation92 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+
+theorem Equation93_implies_Equation925 (G: Type _) [Magma G] (h: Equation93 G) : Equation925 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation931_implies_Equation93 (G: Type _) [Magma G] (h: Equation931 G) : Equation93 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation95_implies_Equation942 (G: Type _) [Magma G] (h: Equation95 G) : Equation942 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation96_implies_Equation95 (G: Type _) [Magma G] (h: Equation96 G) : Equation95 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
+
+theorem Equation965_implies_Equation96 (G: Type _) [Magma G] (h: Equation965 G) : Equation96 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation969_implies_Equation967 (G: Type _) [Magma G] (h: Equation969 G) : Equation967 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation970_implies_Equation97 (G: Type _) [Magma G] (h: Equation970 G) : Equation97 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation979_implies_Equation40 (G: Type _) [Magma G] (h: Equation979 G) : Equation40 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+
+theorem Equation982_implies_Equation98 (G: Type _) [Magma G] (h: Equation982 G) : Equation98 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation986_implies_Equation984 (G: Type _) [Magma G] (h: Equation986 G) : Equation984 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+
+theorem Equation991_implies_Equation990 (G: Type _) [Magma G] (h: Equation991 G) : Equation990 G
+:= by
+  intro a
+  repeat intro
+  try { rw [h a, <-h] }
+  try { rw [h a a, <-h] }
+  try { rw [h a a a, <-h] }
+  try { rw [h a a a a, <-h] }
 
 end RewriteHypothesisAndGoal
 
