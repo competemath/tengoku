@@ -62,6 +62,7 @@ import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_yx
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_yx_zy
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_zx
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_zy
+import Tengoku.EquationalTheories.Generated.Singleton
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.Apply
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.Apply2
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.NthRewrites
