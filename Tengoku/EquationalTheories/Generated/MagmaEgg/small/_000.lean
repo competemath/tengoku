@@ -1,4 +1,4 @@
--- Tengoku.EquationalTheories.Generated.MagmaEgg.small._000: verified translations of equational_theories/Generated/MagmaEgg/small/_000.lean (153 theorems)
+-- Tengoku.EquationalTheories.Generated.MagmaEgg.small._000: verified translations of equational_theories/Generated/MagmaEgg/small/_000.lean (168 theorems)
 import Tengoku.EquationalTheories.Deps.Magma
 import Lean
 import Tengoku.Data.FunLike.Basic
@@ -825,5 +825,75 @@ theorem Equation2331_implies_Equation707 (G: Type _) [Magma G] (h: Equation2331 
   let v0 := M x y
   have h1 := R y
   T (T (h x y) (C (C h1 (C h1 (h v0 y))) h1)) (S (h (M y (M y (M v0 y))) y))
+
+theorem Equation3102_implies_Equation3 (G: Type _) [Magma G] (h: Equation3102 G) : Equation3 G
+:= fun x =>
+  T (h x (M x x)) (C (S (h x x)) (R x))
+
+theorem Equation3184_implies_Equation5 (G: Type _) [Magma G] (h: Equation3184 G) : Equation5 G
+:= fun x y =>
+  T (h x (M y x) y) (C (S (h y y x)) (R x))
+
+theorem Equation3320_implies_Equation326 (G: Type _) [Magma G] (h: Equation3320 G) : Equation326 G
+:= fun x y =>
+  T (h x y (M y x)) (C (R x) (S (h y y x)))
+
+theorem Equation1033_implies_Equation9 (G: Type _) [Magma G] (h: Equation1033 G) : Equation9 G
+:= fun x y =>
+  T (h x (M x (M x y)) y) (C (R x) (C (S (h x x y)) (R y)))
+
+theorem Equation1463_implies_Equation27 (G: Type _) [Magma G] (h: Equation1463 G) : Equation27 G
+:= fun x y z =>
+  T (h x y (M z x)) (C (R (M x y)) (S (h z x x)))
+
+theorem Equation3142_implies_Equation23 (G: Type _) [Magma G] (h: Equation3142 G) : Equation23 G
+:= fun x =>
+  let v0 := M x x
+  T (h x v0) (C (S (h v0 x)) (R x))
+
+theorem Equation3139_implies_Equation3659 (G: Type _) [Magma G] (h: Equation3139 G) : Equation3659 G
+:= fun x =>
+  let v0 := M x x
+  T (h v0 v0) (C (S (h v0 x)) (R v0))
+
+theorem Equation1996_implies_Equation1137 (G: Type _) [Magma G] (h: Equation1996 G) : Equation1137 G
+:= fun x y z =>
+  let v0 := M y (M z z)
+  T (h x v0 y) (C (S (h y y z)) (R (M v0 x)))
+
+theorem Equation850_implies_Equation11 (G: Type _) [Magma G] (h: Equation850 G) : Equation11 G
+:= fun x y =>
+  let v0 := M y y
+  T (h x y v0) (C (R x) (S (h v0 y y)))
+
+theorem Equation1523_implies_Equation3692 (G: Type _) [Magma G] (h: Equation1523 G) : Equation3692 G
+:= fun x y z =>
+  let v0 := M z z
+  T (h (M x x) y v0) (C (R (M y y)) (S (h v0 x z)))
+
+theorem Equation1724_implies_Equation4611 (G: Type _) [Magma G] (h: Equation1724 G) : Equation4611 G
+:= fun x y z =>
+  let v0 := M (M y z) y
+  T (C (R (M x x)) (h y v0 z)) (S (h v0 x v0))
+
+theorem Equation1929_implies_Equation4297 (G: Type _) [Magma G] (h: Equation1929 G) : Equation4297 G
+:= fun x y z =>
+  let v0 := M x (M x y)
+  T (h v0 v0 z) (C (S (h y x v0)) (R (M z z)))
+
+theorem Equation2761_implies_Equation31 (G: Type _) [Magma G] (h: Equation2761 G) : Equation31 G
+:= fun x y =>
+  let v0 := M y y
+  T (h x v0 y) (C (S (h v0 y y)) (R x))
+
+theorem Equation2992_implies_Equation2373 (G: Type _) [Magma G] (h: Equation2992 G) : Equation2373 G
+:= fun x y z =>
+  let v0 := M z (M x z)
+  T (h x v0 y) (C (S (h (M y v0) z x)) (R y))
+
+theorem Equation3159_implies_Equation3 (G: Type _) [Magma G] (h: Equation3159 G) : Equation3 G
+:= fun x =>
+  let v0 := M x x
+  T (h x v0 x) (C (S (h x x v0)) (R x))
 
 end EquationalTheories
