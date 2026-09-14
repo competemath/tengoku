@@ -73,3 +73,4 @@ import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteGo
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteHypothesis
 import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteHypothesisAndGoal
 import Tengoku.EquationalTheories.InfModel
+import Tengoku.EquationalTheories.ManuallyProved.Equation1323
