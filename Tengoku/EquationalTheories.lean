@@ -28,6 +28,7 @@ import Tengoku.EquationalTheories.Generated.MagmaEgg.small._013
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._015
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._016
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._017
+import Tengoku.EquationalTheories.Generated.MagmaEgg.small._018
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu
 import Tengoku.EquationalTheories.Generated.SimpleRewrites.theorems.Rewrite_uw_vu_wx
