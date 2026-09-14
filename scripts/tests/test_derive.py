@@ -10,6 +10,7 @@ class TokensAndGloss(unittest.TestCase):
         self.assertEqual(derive.tokens("Finset.sum_range_succ"), ["finset", "sum", "range", "succ"])
         self.assertEqual(derive.tokens("MeasureTheory.integral_add"), ["measure", "theory", "integral", "add"])
         self.assertEqual(derive.tokens("Real.sqrt_nonneg'"), ["real", "sqrt", "nonneg"])
+        self.assertEqual(derive.tokens("«command#minimize_imports»"), ["command", "minimize", "imports"])
 
     def test_name_gloss_expands_abbreviations(self):
         g = derive.name_gloss("Nat.add_comm")

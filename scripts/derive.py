@@ -56,7 +56,7 @@ IDENT = re.compile(r"[A-Za-z_][A-Za-z0-9_.'!?]*")
 
 def tokens(name: str) -> list[str]:
     out = []
-    for part in name.replace("'", "").split("."):
+    for part in re.sub(r"[«»#'!?]", "", name).split("."):
         for piece in part.split("_"):
             for tok in CAMEL.split(piece):
                 tok = tok.strip().lower()
