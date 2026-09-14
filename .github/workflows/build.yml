@@ -109,3 +109,39 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run build.yml -R "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" -f resume=true
+
+  # A fresh cache is out: move the hosted Leak services onto it. With an
+  # HF_TOKEN secret (a Hugging Face token with write access to the Spaces) each
+  # Space is factory-rebuilt, which bakes the new cache into its image so every
+  # later wake-up is fast. Without the token, each running Space is asked to
+  # refresh itself in place (POST /refresh: it pins to the newest cache and
+  # restarts its resident Lean); a sleeping Space is unreachable and instead
+  # refreshes itself the next time it starts. Nightly only, never on push.
+  notify:
+    needs: build
+    if: needs.build.outputs.complete == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACES: BarkingTree/Leak-I BarkingTree/Leak-II BarkingTree/Leak-IV
+    steps:
+      - name: Move the Leak Spaces onto the new cache
+        run: |
+          for space in $SPACES; do
+            host="$(echo "$space" | tr '/A-Z' '-a-z').hf.space"
+            if [ -n "$HF_TOKEN" ]; then
+              if curl -fsS -o /dev/null -X POST -H "Authorization: Bearer $HF_TOKEN" \
+                   "https://huggingface.co/api/spaces/$space/restart?factory=true"; then
+                echo "$space: factory rebuild requested (bakes the new cache into the image)"
+              else
+                echo "::warning::$space: rebuild request failed; it refreshes itself on its next start"
+              fi
+            else
+              if out="$(curl -fsS -m 30 -X POST "https://$host/refresh" 2>/dev/null)"; then
+                echo "$space: $out"
+              else
+                echo "$space: not reachable (asleep?) — it refreshes itself on its next start"
+              fi
+            fi
+          done

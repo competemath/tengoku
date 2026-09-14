@@ -76,8 +76,13 @@ modules, so they are imported directly: `import Tengoku.EquationalTheories`.
 never triggered by a push, so a bad commit has a day's grace before it can
 reach a cache) publishes the compiled `.lake/build` as a release tagged
 `cache-<sha>`; `scripts/cache.sh get` fetches the newest cache in your
-branch's ancestry and Lake rebuilds only what differs. The Leak services
-update themselves from the same cache.
+branch's ancestry and Lake rebuilds only what differs. `scripts/pin.sh` goes
+one step further and checks the tree out *at* the newest cache's commit, so
+`lake build Tengoku.All` is a pure replay that compiles nothing — this is
+what the Leak services do at image build and at container start. When the
+nightly publish succeeds, the workflow tells the hosted Leak Spaces to move
+onto the new cache (a factory rebuild if an `HF_TOKEN` secret is set,
+otherwise `POST /refresh` on each running Space).
 
 ## Record shape
 
