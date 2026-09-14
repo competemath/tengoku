@@ -18,3 +18,4 @@ globs = ["Tengoku", "Tengoku.+"]
 [[lean_exe]]
 name = "tengoku-extract"
 root = "TengokuExtract"
+supportInterpreter = true
