@@ -79,3 +79,4 @@ import Tengoku.EquationalTheories.ManuallyProved.Equation1729.Edit
 import Tengoku.EquationalTheories.ManuallyProved.Equation1729.ExtensionTheorem
 import Tengoku.EquationalTheories.ManuallyProved.Equation677
 import Tengoku.EquationalTheories.Mathlib.Order.Greedy
+import Tengoku.EquationalTheories.PartialMagma
