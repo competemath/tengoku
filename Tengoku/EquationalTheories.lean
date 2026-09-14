@@ -75,3 +75,4 @@ import Tengoku.EquationalTheories.Generated.TrivialBruteforce.theorems.RewriteHy
 import Tengoku.EquationalTheories.InfModel
 import Tengoku.EquationalTheories.ManuallyProved.Equation1323
 import Tengoku.EquationalTheories.ManuallyProved.Equation1447
+import Tengoku.EquationalTheories.ManuallyProved.Equation1729.Edit
