@@ -11,3 +11,10 @@ name = "Tengoku"
 # The seeded root is a module-system file and cannot import the generated
 # (legacy) translation modules; they are reached as `import Tengoku.<Library>`.
 globs = ["Tengoku", "Tengoku.+"]
+
+# The search-index extractor (docs/tengoku-search-plan.md): walks the compiled
+# environment and writes index/decls.jsonl + deps.jsonl. Imports only Lean, so
+# building it never touches the tree's own modules.
+[[lean_exe]]
+name = "tengoku-extract"
+root = "TengokuExtract"

@@ -13,8 +13,9 @@ while true; do
   echo "[$(date +%T)] rc=$rc $last"
   printf '%s\n' "$out" | grep "^NOT promoted" | cut -c1-300
   if printf '%s\n' "$out" | grep -q "^promoted \|^NOT promoted"; then
+    python3 scripts/stats.py >/dev/null 2>&1 || true   # data/stats.json feeds the site's stat pills
     for _ in 1 2 3 4 5; do
-      git add -A -- data/staging data/trusted "Tengoku/$LIB_NS" "Tengoku/$LIB_NS.lean" Tengoku/All.lean 2>/dev/null \
+      git add -A -- data/staging data/trusted data/stats.json "Tengoku/$LIB_NS" "Tengoku/$LIB_NS.lean" Tengoku/All.lean 2>/dev/null \
         && git commit -q -m "Promote $LIB: $last" 2>/dev/null && break
       sleep 3
     done
