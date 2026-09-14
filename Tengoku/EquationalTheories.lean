@@ -19,6 +19,7 @@ import Tengoku.EquationalTheories.Generated.MagmaEgg.small._004
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._005
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._006
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._007
+import Tengoku.EquationalTheories.Generated.MagmaEgg.small._008
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._010
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._011
 import Tengoku.EquationalTheories.Generated.MagmaEgg.small._016
