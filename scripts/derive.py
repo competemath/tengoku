@@ -137,7 +137,7 @@ def pagerank(nodes: list[str], edges: dict[str, list[str]], damping=0.85, iters=
         return {n: r[idx[n]] for n in nodes}
 
 
-def derive(decls: list[dict], deps: dict[str, list[str]]) -> tuple[list[dict], list[dict]]:
+def derive(decls: list[dict], deps: dict[str, list[str]]) -> tuple[list[dict], list[dict], list[dict]]:
     names = [d["name"] for d in decls]
     present = set(names)
     in_degree = Counter()
@@ -167,7 +167,13 @@ def derive(decls: list[dict], deps: dict[str, list[str]]) -> tuple[list[dict], l
         })
     symbols = [{"name": c, "df": n, "symbol": NOTATION.get(c, ("", ""))[0] or None, "gloss": NOTATION.get(c, ("", name_gloss(c)))[1]}
                for c, n in sorted(df.items(), key=lambda kv: -kv[1])]
-    return derived, symbols
+    # Name-token document frequencies: "comm" is rare and telling, "nat" is not.
+    token_df = Counter()
+    for r in derived:
+        for tok in set(r["name_tokens"]):
+            token_df[tok] += 1
+    tokens_out = [{"token": tok, "df": n} for tok, n in sorted(token_df.items(), key=lambda kv: -kv[1])]
+    return derived, symbols, tokens_out
 
 
 def main() -> int:
@@ -180,14 +186,17 @@ def main() -> int:
         for l in (d / "deps.jsonl").open():
             if l.strip():
                 o = json.loads(l); deps[o["from"]] = o["to"]
-    derived, symbols = derive(decls, deps)
+    derived, symbols, tokens_out = derive(decls, deps)
     with (d / "derived.jsonl").open("w") as f:
         for r in derived:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     with (d / "symbols.jsonl").open("w") as f:
         for r in symbols:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    print(f"derived {len(derived)} declarations, {len(symbols)} symbols -> {d}")
+    with (d / "tokens.jsonl").open("w") as f:
+        for r in tokens_out:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    print(f"derived {len(derived)} declarations, {len(symbols)} symbols, {len(tokens_out)} name tokens -> {d}")
     return 0
 
 

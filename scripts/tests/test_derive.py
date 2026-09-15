@@ -58,13 +58,14 @@ class Graph(unittest.TestCase):
              "binders": [{"name": "n"}], "constants_type": ["Nat", "HAdd.hAdd", "Eq", "OfNat.ofNat"]},
         ]
         deps = {"Nat.add_comm": ["Nat.add_zero", "Nat.succ"], "Nat.add_zero": []}
-        derived, symbols = derive.derive(decls, deps)
+        derived, symbols, tokens = derive.derive(decls, deps)
         by = {d["name"]: d for d in derived}
         self.assertEqual(by["Nat.add_zero"]["in_degree"], 1)
         self.assertEqual(by["Nat.add_comm"]["out_degree"], 1)  # Nat.succ is not in the index
         self.assertIn("+", by["Nat.add_comm"]["notation_used"])
         self.assertEqual(symbols[0]["df"], 2)
         self.assertEqual({s["name"] for s in symbols if s["df"] == 2}, {"Nat", "HAdd.hAdd", "Eq"})
+        self.assertEqual({t["token"]: t["df"] for t in tokens}, {"nat": 2, "add": 2, "comm": 1, "zero": 1})
 
 
 if __name__ == "__main__":
