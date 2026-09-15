@@ -39,7 +39,10 @@ HINTS = [
         r"\(deterministic\) timeout|maximum recursion depth",
         "The proof exceeds the default heartbeat/recursion budget. Simplify it or add an allowed `set_option maxHeartbeats` in `context` (see schemas/allowed-options.json).",
     ),
-    (r"axiom", "A non-standard axiom is not allowed in trusted content. Only propext, Classical.choice and Quot.sound are accepted."),
+    (
+        r"axiom|allowed: propext|_native\.decide|ofReduceBool",
+        "A non-standard axiom is not allowed in trusted content (native_decide / decide +native introduce one). Only propext, Classical.choice and Quot.sound are accepted.",
+    ),
     (
         r"forbidden|content lint",
         "The content lint rejected a construct that runs or links code. See scripts/ci/lint_banked.py for the list.",
@@ -56,7 +59,9 @@ if m:
     # lean continues a message on indented lines ("Tactic `decide` proved that the proposition\n  1 + 1 = 3\nis false")
     tail = []
     for extra in log[m.end() :].splitlines()[1:8]:
-        if extra.startswith((" ", "\t")) or (tail and not re.match(r"^(error|warning|info|✖|✔|\[|trace)", extra)):
+        if re.match(r"^(Some required targets|error|warning|info|✖|✔|\[|trace)", extra):
+            break
+        if extra.startswith((" ", "\t")) or tail:
             tail.append(extra.rstrip())
         else:
             break
