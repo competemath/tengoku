@@ -96,9 +96,11 @@ def run (a : Args) : MetaM Unit := do
     if skipName n || (match ci with | .recInfo _ => true | .quotInfo _ => true | _ => false) then
       skipped := skipped + 1
       continue
-    -- The tree's own modules only: nothing from Init/Lean/Std internals.
-    let fromTree := (env.getModuleIdxFor? n).bind (fun i => env.header.moduleNames[i.toNat]?) |>.map (fun m => (`Tengoku).isPrefixOf m) |>.getD false
-    if !fromTree then
+    -- The tree's own modules plus the core library it imports (Init, Std):
+    -- `Nat.add_comm` lives in Init and is the most searched name there is.
+    -- Lean/Lake compiler internals stay out.
+    let inScope := (env.getModuleIdxFor? n).bind (fun i => env.header.moduleNames[i.toNat]?) |>.map (fun m => (`Tengoku).isPrefixOf m || (`Init).isPrefixOf m || (`Std).isPrefixOf m) |>.getD false
+    if !inScope then
       skipped := skipped + 1
       continue
     try
