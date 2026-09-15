@@ -30,7 +30,7 @@ api() {  # GET a GitHub API path, anonymously or with whatever token exists
   else need curl; curl -fsSL -H 'Accept: application/vnd.github+json' ${GH_TOKEN:+-H "Authorization: Bearer $GH_TOKEN"} "https://api.github.com/$1"; fi
 }
 
-# Every published cache, newest first: "<created_at> <tag> <commit>" per line.
+# Every published cache, newest first: "<published_at> <stamped?> <tag> <commit>" per line.
 list_caches() {
   local page=1 out
   while :; do
@@ -42,7 +42,10 @@ for r in json.load(sys.stdin):
     if not tag.startswith("cache-"): continue
     m = re.search(r"^commit=([0-9a-f]{40})", r.get("body") or "", re.M)
     commit = m.group(1) if m else (tag[6:] if re.fullmatch(r"cache-[0-9a-f]{40}", tag) else "")
-    if commit: print(r["created_at"], tag, commit)'
+    # GitHub sets created_at to the COMMIT date, so two caches of one
+    # commit tie; order by publish time, and a timestamp tag beats a sha tag.
+    when = r.get("published_at") or r.get("created_at")
+    if commit: print(when, "1" if re.fullmatch(r"cache-[0-9]{8}T[0-9]{4}Z", tag) else "0", tag, commit)'
     printf '%s' "$out" | grep -q '"tag_name"' || break
     page=$((page + 1))
     [ "$page" -le 10 ] || break
@@ -91,16 +94,16 @@ case "$cmd" in
     # Keep the newest KEEP caches; each is gigabytes and `get` only ever needs
     # a recent one (Lake rebuilds the difference).
     KEEP="${TENGOKU_CACHE_KEEP:-5}"
-    list_caches | tail -n +"$((KEEP + 1))" | awk '{print $2}' \
+    list_caches | tail -n +"$((KEEP + 1))" | awk '{print $3}' \
       | while read -r old; do [ -n "$old" ] && gh release delete "$old" -R "$REPO" --yes --cleanup-tag && echo "pruned $old"; done || true
     ;;
   latest)
-    commit="$(list_caches | head -n 1 | awk '{print $3}')"
+    commit="$(list_caches | head -n 1 | awk '{print $4}')"
     [ -n "$commit" ] || { echo "no published cache" >&2; exit 1; }
     echo "$commit"
     ;;
   latest-tag)
-    tag="$(list_caches | head -n 1 | awk '{print $2}')"
+    tag="$(list_caches | head -n 1 | awk '{print $3}')"
     [ -n "$tag" ] || { echo "no published cache" >&2; exit 1; }
     echo "$tag"
     ;;
@@ -111,7 +114,7 @@ case "$cmd" in
     # Newest cache first; the first one whose commit is an ancestor of what we
     # want is the best starting point. (A shallow clone cannot answer
     # ancestry — clone with --filter=blob:none or enough depth.)
-    while read -r _ tag commit; do
+    while read -r _ _ tag commit; do
       if git merge-base --is-ancestor "$commit" "$want" 2>/dev/null; then found="$tag"; break; fi
     done < <(list_caches)
     [ -n "$found" ] || { echo "no published cache is an ancestor of $want (are the caches published? is this clone deep enough for ancestry?)" >&2; exit 1; }
