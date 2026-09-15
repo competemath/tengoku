@@ -74,8 +74,9 @@ modules, so they are imported directly: `import Tengoku.EquationalTheories`.
 
 **Cache:** nobody builds the tree from scratch. A nightly CI build (03:00 UTC;
 never triggered by a push, so a bad commit has a day's grace before it can
-reach a cache) publishes the compiled `.lake/build` as a release tagged
-`cache-<sha>`; `scripts/cache.sh get` fetches the newest cache in your
+reach a cache) publishes the compiled `.lake/build` as a release tagged with its UTC time,
+`cache-20260915T0300Z` (the commit it was built from is the first line of the
+release notes); `scripts/cache.sh get` fetches the newest cache in your
 branch's ancestry and Lake rebuilds only what differs. `scripts/pin.sh` goes
 one step further and checks the tree out *at* the newest cache's commit, so
 `lake build Tengoku.All` is a pure replay that compiles nothing — this is

@@ -2,49 +2,51 @@
 # Tengoku build cache — stored on the repository as GitHub Release assets, so
 # nobody has to build the tree from scratch.
 #
-#   scripts/cache.sh get [<commit>]   # download + unpack the newest cache that is an ancestor of HEAD (or <commit>)
-#   scripts/cache.sh latest           # print the commit of the newest published cache (pin a checkout to it:
-#                                     #   git checkout $(scripts/cache.sh latest) && scripts/cache.sh get — then
-#                                     #   `lake build` is a pure replay and compiles nothing)
+#   scripts/cache.sh get [<commit>]   # download + unpack the newest cache whose commit is an ancestor of HEAD (or <commit>)
+#   scripts/cache.sh latest           # print the commit of the newest published cache (what scripts/pin.sh checks out)
+#   scripts/cache.sh latest-tag       # print its tag, e.g. cache-20260915T0300Z
 #   scripts/cache.sh put              # pack .lake/build and publish it for HEAD (needs `gh` logged in)
 #
-# A cache is keyed by the tree's commit: release tag `cache-<sha>`. `get`
-# picks the newest published cache whose commit is an ancestor of the wanted
-# one — an older cache is still a valid starting point, Lake rebuilds only
-# what changed since. Assets are zstd tarballs split into <2GB parts
-# (GitHub's limit). `get` needs no GitHub account: the repository is public,
-# so it reads the release list and the assets anonymously (curl); `gh` is
-# used when it is installed and logged in.
+# A cache is a release tagged `cache-<UTC stamp>` (cache-20260915T0300Z); the
+# commit it was built from is the first line of its notes (`commit=<sha>`).
+# Older releases tagged `cache-<sha>` are still understood. `get` picks the
+# newest cache whose commit is an ancestor of the wanted one — an older cache
+# is a valid starting point, Lake rebuilds only what changed since. Assets are
+# zstd tarballs split into <2GB parts (GitHub's limit). Reading needs no
+# account: the repository is public (anonymous API + asset downloads); `gh`
+# is used when it is installed and logged in.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 REPO="${TENGOKU_REPO:-competemath/tengoku}"
 cmd="${1:-}"
 
 need() { command -v "$1" >/dev/null 2>&1 || { echo "missing: $1" >&2; exit 1; }; }
-need zstd; need tar; need git
+need zstd; need tar; need git; need python3
 
 have_gh() { command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; }
 
-# Every published cache tag, newest first.
-list_cache_tags() {
-  if have_gh; then
-    gh release list -R "$REPO" --limit 200 --json tagName,createdAt \
-      --jq '[.[] | select(.tagName | startswith("cache-"))] | sort_by(.createdAt) | reverse | .[].tagName'
-  else
-    need curl
-    local page=1
-    # The API's order is not newest-first; sort by created_at ourselves.
-    while :; do
-      local out
-      out="$(curl -fsSL -H 'Accept: application/vnd.github+json' ${GH_TOKEN:+-H "Authorization: Bearer $GH_TOKEN"} \
-        "https://api.github.com/repos/$REPO/releases?per_page=100&page=$page")"
-      printf '%s' "$out" | tr -d '\n' | grep -oE '"tag_name": *"cache-[0-9a-f]+"[^}]*?"created_at": *"[^"]+"' \
-        | sed -E 's/.*"tag_name": *"(cache-[0-9a-f]+)".*"created_at": *"([^"]+)".*/\2 \1/'
-      printf '%s' "$out" | grep -q '"tag_name"' || break
-      page=$((page + 1))
-      [ "$page" -le 10 ] || break
-    done | sort -r | awk '{print $2}'
-  fi
+api() {  # GET a GitHub API path, anonymously or with whatever token exists
+  if have_gh; then gh api "$1"
+  else need curl; curl -fsSL -H 'Accept: application/vnd.github+json' ${GH_TOKEN:+-H "Authorization: Bearer $GH_TOKEN"} "https://api.github.com/$1"; fi
+}
+
+# Every published cache, newest first: "<created_at> <tag> <commit>" per line.
+list_caches() {
+  local page=1 out
+  while :; do
+    out="$(api "repos/$REPO/releases?per_page=100&page=$page")"
+    printf '%s' "$out" | python3 -c '
+import json, re, sys
+for r in json.load(sys.stdin):
+    tag = r.get("tag_name", "")
+    if not tag.startswith("cache-"): continue
+    m = re.search(r"^commit=([0-9a-f]{40})", r.get("body") or "", re.M)
+    commit = m.group(1) if m else (tag[6:] if re.fullmatch(r"cache-[0-9a-f]{40}", tag) else "")
+    if commit: print(r["created_at"], tag, commit)'
+    printf '%s' "$out" | grep -q '"tag_name"' || break
+    page=$((page + 1))
+    [ "$page" -le 10 ] || break
+  done | sort -r
 }
 
 # Download every part of one cache release into $2.
@@ -55,9 +57,10 @@ download_cache() {
   else
     need curl
     local urls
-    urls="$(curl -fsSL -H 'Accept: application/vnd.github+json' ${GH_TOKEN:+-H "Authorization: Bearer $GH_TOKEN"} \
-      "https://api.github.com/repos/$REPO/releases/tags/$tag" \
-      | grep -o '"browser_download_url": *"[^"]*tengoku-cache.tar.zst.part-[^"]*"' | sed -E 's/.*"(https[^"]+)"/\1/')"
+    urls="$(api "repos/$REPO/releases/tags/$tag" | python3 -c '
+import json, sys
+for a in json.load(sys.stdin).get("assets", []):
+    if a["name"].startswith("tengoku-cache.tar.zst.part-"): print(a["browser_download_url"])')"
     [ -n "$urls" ] || { echo "no cache parts on $tag" >&2; exit 1; }
     for u in $urls; do
       echo "  $u"
@@ -70,28 +73,36 @@ case "$cmd" in
   put)
     need gh
     sha="$(git rev-parse HEAD)"
-    tag="cache-$sha"
+    stamp="${TENGOKU_CACHE_STAMP:-$(date -u +%Y%m%dT%H%MZ)}"
+    tag="cache-$stamp"
     [ -d .lake/build ] || { echo "nothing to publish: .lake/build missing" >&2; exit 1; }
     tmp="$(mktemp -d)"
-    echo "packing .lake/build for $sha …"
+    echo "packing .lake/build for $sha as $tag …"
     tar -C .lake -cf - build | zstd -T0 -3 -q | split -b 1900m - "$tmp/tengoku-cache.tar.zst.part-"
     ls -la "$tmp"
     if gh release view "$tag" -R "$REPO" >/dev/null 2>&1; then
-      gh release delete "$tag" -R "$REPO" --yes
+      gh release delete "$tag" -R "$REPO" --yes --cleanup-tag
     fi
-    gh release create "$tag" -R "$REPO" --title "build cache $sha" --notes "Compiled .lake/build for $sha ($(cat lean-toolchain)). Fetch with scripts/cache.sh get." "$tmp"/tengoku-cache.tar.zst.part-*
+    gh release create "$tag" -R "$REPO" --target "$sha" --title "build cache $(echo "$stamp" | sed -E 's/([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2})([0-9]{2})Z/\1-\2-\3 \4:\5 UTC/')" \
+      --notes "$(printf 'commit=%s\ntoolchain=%s\n\nCompiled .lake/build for %s. Fetch with scripts/cache.sh get, or pin a checkout to it with scripts/pin.sh.' "$sha" "$(cat lean-toolchain)" "$sha")" \
+      "$tmp"/tengoku-cache.tar.zst.part-*
     rm -rf "$tmp"
-    echo "published $tag"
+    echo "published $tag (commit $sha)"
     # Keep the newest KEEP caches; each is gigabytes and `get` only ever needs
     # a recent one (Lake rebuilds the difference).
     KEEP="${TENGOKU_CACHE_KEEP:-5}"
-    list_cache_tags | tail -n +"$((KEEP + 1))" \
+    list_caches | tail -n +"$((KEEP + 1))" | awk '{print $2}' \
       | while read -r old; do [ -n "$old" ] && gh release delete "$old" -R "$REPO" --yes --cleanup-tag && echo "pruned $old"; done || true
     ;;
   latest)
-    tag="$(list_cache_tags | head -n 1)"
+    commit="$(list_caches | head -n 1 | awk '{print $3}')"
+    [ -n "$commit" ] || { echo "no published cache" >&2; exit 1; }
+    echo "$commit"
+    ;;
+  latest-tag)
+    tag="$(list_caches | head -n 1 | awk '{print $2}')"
     [ -n "$tag" ] || { echo "no published cache" >&2; exit 1; }
-    echo "${tag#cache-}"
+    echo "$tag"
     ;;
   get)
     want="$(git rev-parse "${2:-HEAD}")"
@@ -100,10 +111,9 @@ case "$cmd" in
     # Newest cache first; the first one whose commit is an ancestor of what we
     # want is the best starting point. (A shallow clone cannot answer
     # ancestry — clone with --filter=blob:none or enough depth.)
-    for tag in $(list_cache_tags); do
-      sha="${tag#cache-}"
-      if git merge-base --is-ancestor "$sha" "$want" 2>/dev/null; then found="$tag"; break; fi
-    done
+    while read -r _ tag commit; do
+      if git merge-base --is-ancestor "$commit" "$want" 2>/dev/null; then found="$tag"; break; fi
+    done < <(list_caches)
     [ -n "$found" ] || { echo "no published cache is an ancestor of $want (are the caches published? is this clone deep enough for ancestry?)" >&2; exit 1; }
     echo "fetching $found …"
     download_cache "$found" "$tmp"
@@ -113,5 +123,5 @@ case "$cmd" in
     echo "unpacked $found into .lake/build (Lake rebuilds only what differs from $want)"
     ;;
   *)
-    echo "usage: $0 get [<commit>] | latest | put" >&2; exit 2 ;;
+    echo "usage: $0 get [<commit>] | latest | latest-tag | put" >&2; exit 2 ;;
 esac

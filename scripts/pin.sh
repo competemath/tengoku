@@ -18,6 +18,7 @@ git fetch -q origin main
 # wrong order. (Restored by the checkout below; harmless if we stop early.)
 git checkout -q origin/main -- scripts/cache.sh
 latest="$(scripts/cache.sh latest)"
+tag="$(scripts/cache.sh latest-tag)"
 head="$(git rev-parse HEAD)"
 built=""
 [ -n "$(find .lake/build/lib -name All.olean -path '*Tengoku/All.olean' 2>/dev/null | head -n 1)" ] && built=1
@@ -32,7 +33,7 @@ if [ "$latest" = "$head" ] && [ -n "$built" ] && [ "${TENGOKU_FORCE:-0}" != "1" 
   echo "already pinned to $latest (build present)"; exit 0
 fi
 
-echo "pinning the tree to cache commit $latest (was ${head:0:12})"
+echo "pinning the tree to $tag (commit $latest, was ${head:0:12})"
 git checkout -q -f "$latest"
 scripts/cache.sh get
 # Verify the replay WITHOUT letting Lake compile anything: if the cache did not
