@@ -25,20 +25,31 @@ on:
         description: "internal: continuation of an unfinished build"
         required: false
         default: "false"
+      retried:
+        description: "internal: re-run on the tip after workflow files changed on main during a build"
+        required: false
+        default: "false"
 
 concurrency:
   group: build-${{ github.ref }}
   cancel-in-progress: false
 
-permissions:
-  contents: write # release assets (the cache)
+permissions: {}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 345
+    permissions:
+      contents: write      # release assets (the cache)
+      id-token: write      # Sigstore signing identity for the attestation
+      attestations: write
+    env:
+      TENGOKU_REPO: ${{ github.repository }}     # publish here
+      TENGOKU_CACHE_SOURCE: competemath/tengoku  # seed from the library (a sandbox has no caches of its own)
     outputs:
       complete: ${{ steps.build.outputs.complete }}
+      published: ${{ steps.publish.outputs.tag != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -98,17 +109,47 @@ jobs:
           path: .lake/build
           key: lake-${{ hashFiles('lean-toolchain') }}-${{ github.sha }}-${{ github.run_attempt }}-${{ github.run_id }}
 
-      - name: Publish cache to releases
+      # GITHUB_TOKEN may not create a release (a tag) on a commit whose .github/workflows differ
+      # from main's tip: GitHub treats it as a workflow change and the job token can never hold
+      # `workflows`. A long build during which a workflow PR merged would fail at publish, so
+      # the run re-launches itself on the tip instead (the saved build makes that a short run).
+      - name: Did a workflow file land on main during this build?
         if: steps.build.outputs.complete == 'true'
+        id: guard
+        run: |
+          git fetch -q origin main
+          if git diff --quiet "$GITHUB_SHA" origin/main -- .github/workflows; then echo "stale=false" >> "$GITHUB_OUTPUT"
+          else echo "stale=true" >> "$GITHUB_OUTPUT"; echo "::warning::.github/workflows changed on main since $GITHUB_SHA; publishing from a run on the tip instead"; fi
+
+      - name: Publish cache to releases
+        if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale != 'true'
+        id: publish
         env:
           GH_TOKEN: ${{ github.token }}
-        run: scripts/cache.sh put
+        run: |
+          scripts/cache.sh put | tee put.log
+          tag="$(grep -oE 'published cache-[0-9A-Z]+' put.log | awk '{print $2}')"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          mkdir -p attest && gh release download "$tag" -R "$TENGOKU_REPO" -D attest -p 'tengoku-cache.tar.zst.part-*'
+
+      # Every part gets a build-provenance attestation; scripts/cache.sh get refuses parts without one.
+      - name: Attest the cache parts
+        if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale != 'true'
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: attest/tengoku-cache.tar.zst.part-*
 
       - name: Continue the build in a follow-up run
         if: steps.build.outputs.complete == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run build.yml -R "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" -f resume=true
+
+      - name: Publish from a run on the tip (once)
+        if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale == 'true' && github.event.inputs.retried != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build.yml -R "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" -f retried=true
 
   # A fresh cache is out: move the hosted Leak services onto it. With an
   # HF_TOKEN secret (a Hugging Face token with write access to the Spaces) each
@@ -119,7 +160,7 @@ jobs:
   # refreshes itself the next time it starts. Nightly only, never on push.
   notify:
     needs: build
-    if: needs.build.outputs.complete == 'true'
+    if: needs.build.outputs.published == 'true' && github.repository == 'competemath/tengoku'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
