@@ -75,6 +75,11 @@ for a in json.load(sys.stdin).get("assets", []):
 case "$cmd" in
   put)
     need gh
+    # Caches are packed by CI on Linux only. A macOS pack once broke the replay
+    # for Linux consumers (case-insensitive filesystem, bsdtar); never again.
+    if [ "$(uname -s)" = "Darwin" ] && [ "${TENGOKU_ALLOW_MAC_PUT:-0}" != "1" ]; then
+      echo "refusing to pack a cache on macOS — let the nightly build (or workflow_dispatch) publish it" >&2; exit 1
+    fi
     sha="$(git rev-parse HEAD)"
     stamp="${TENGOKU_CACHE_STAMP:-$(date -u +%Y%m%dT%H%MZ)}"
     tag="cache-$stamp"
