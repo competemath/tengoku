@@ -28,13 +28,14 @@ fresh under the lock.
 Exit 0 when everything promoted (or nothing was due), 2 when some file did
 not build.
 """
+
 import argparse
 import fcntl
 import json
 import subprocess
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -95,12 +96,36 @@ def main() -> int:
     lib_dir = out / "Tengoku" / lib_ns
     staging_p = out / "data" / "staging" / f"{lib}.jsonl"
     trusted_p = out / "data" / "trusted" / f"{lib}.jsonl"
+    staging_dir = out / "data" / "staging" / lib  # one file per contributor PR
+
+    def staging_files():
+        return ([staging_p] if staging_p.exists() else []) + (sorted(staging_dir.glob("*.jsonl")) if staging_dir.is_dir() else [])
+
+    def load_staging():
+        return [r for f in staging_files() for r in load(f)]
+
+    def dump_staging(recs):
+        """Write the remaining records back to the files they came from (names are unique per library);
+        a per-PR file with nothing left is removed, the flat file is kept (possibly empty)."""
+        keep = {r.get("name") for r in recs}
+        for f in staging_files():
+            mine = [r for r in load(f) if r.get("name") in keep]
+            if mine or f == staging_p:
+                dump(f, mine)
+            else:
+                f.unlink()
+
     lock_p = out / "data" / ".promote.lock"
     lock_p.parent.mkdir(parents=True, exist_ok=True)
     gen = [sys.executable, "scripts/generate.py", "--corpus", args.corpus, "--libraries", lib]
 
-    files = sorted({r["source_path"] for r in load(staging_p) if r.get("source_path") and r.get("context") is not None
-                    and (not args.only or r["source_path"] == args.only)})
+    files = sorted(
+        {
+            r["source_path"]
+            for r in load_staging()
+            if r.get("source_path") and r.get("context") is not None and (not args.only or r["source_path"] == args.only)
+        }
+    )
     if not files:
         print(f"{lib}: nothing to promote")
         return 0
@@ -111,7 +136,7 @@ def main() -> int:
     for sp in files:
         with open(lock_p, "w") as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
-            staging = load(staging_p)
+            staging = load_staging()
             recs = [r for r in staging if r.get("source_path") == sp and r.get("context") is not None]
             if not recs:
                 continue
@@ -134,7 +159,7 @@ def main() -> int:
                     for r in staging:
                         if id(r) in ids:
                             r["build_error"] = err[-600:]
-                    dump(staging_p, staging)
+                    dump_staging(staging)
                     failed.append((sp, len(recs), err))
                     print(f"NOT promoted ({len(recs)}) {sp}: {err[-500:]}")
                     continue
@@ -148,7 +173,7 @@ def main() -> int:
                 trusted = load(trusted_p) + moved
                 staging = [r for r in staging if id(r) not in ids]
                 dump(trusted_p, trusted)
-                dump(staging_p, staging)
+                dump_staging(staging)
                 rc, o = run(gen + ["--only", sp], out, 600)
                 if rc != 0:
                     print(f"WARNING: regeneration after promotion failed for {sp}: {' '.join(o.split())[-300:]}")
@@ -159,7 +184,9 @@ def main() -> int:
                     cand_path.unlink()
                 except FileNotFoundError:
                     pass
-    print(f"{lib}: promoted {promoted}; not promoted {sum(n for _, n, _ in failed)} in {len(failed)} file(s); {skipped} file(s) still being banked")
+    print(
+        f"{lib}: promoted {promoted}; not promoted {sum(n for _, n, _ in failed)} in {len(failed)} file(s); {skipped} file(s) still being banked"
+    )
     return 0 if not failed else 2
 
 

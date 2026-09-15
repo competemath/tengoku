@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """Clone a Lean 4 repo, extract every theorem/lemma statement AND its proof,
 write JSONL for Tengoku's `tentative/` folder.
 
@@ -29,6 +30,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from typing import Any
 
 from lean_extract import extract_declarations
 
@@ -155,9 +157,10 @@ def main() -> int:
     parser.add_argument("--toolchain", required=True, help="Lean toolchain string to record")
     parser.add_argument("--out", type=Path, help="single output JSONL path")
     parser.add_argument(
-        "--split-into", type=Path,
+        "--split-into",
+        type=Path,
         help="directory to write <library>-<module>.jsonl files into, for a library too "
-             "big for one git-friendly file (e.g. Mathlib itself). Mutually exclusive with --out.",
+        "big for one git-friendly file (e.g. Mathlib itself). Mutually exclusive with --out.",
     )
     args = parser.parse_args()
 
