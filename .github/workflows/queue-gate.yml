@@ -10,7 +10,8 @@ on:
   merge_group:
 permissions: {}
 env:
-  TENGOKU_REPO: competemath/tengoku   # caches are read from the library, never from a sandbox
+  TENGOKU_REPO: competemath/tengoku
+  TENGOKU_VERIFY: require   # the newest published caches carry build attestations; an unattested or tampered part is refused   # caches are read from the library, never from a sandbox
 defaults:
   run:
     shell: bash   # -e -o pipefail on every run: step (the campaign found silent passes behind pipes)
