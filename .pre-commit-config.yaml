@@ -21,7 +21,7 @@ repos:
     hooks:
       - id: detect-secrets
         args: ["--baseline", ".secrets.baseline", "--exclude-lines", '"commit": "[0-9a-f]{40}"']
-        exclude: ^(data/|Tengoku/|\.lake/)
+        exclude: ^(data/|Tengoku/|\.lake/|scripts/ci/campaign/)
   - repo: local
     hooks:
       - id: lint-banked

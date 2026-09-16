@@ -105,7 +105,7 @@ jobs:
         shell: bash
         run: |  # pragma: allowlist secret
           pip install -q detect-secrets==1.5.0
-          git diff --name-only --diff-filter=AM "$BASE...$HEAD" -- . ':!data/' ':!Tengoku/' ':!.lake/' > changed.txt
+          git diff --name-only --diff-filter=AM "$BASE...$HEAD" -- . ':!data/' ':!Tengoku/' ':!.lake/' ':!scripts/ci/campaign/' > changed.txt   # the campaign's fixtures hold fake credentials
           mapfile -t files < changed.txt
           if [ "${#files[@]}" -gt 0 ]; then detect-secrets-hook --baseline .secrets.baseline --exclude-lines '"commit": "[0-9a-f]{40}"' "${files[@]}"; else echo "no non-data files to scan"; fi
           # records: scan the added lines of data files as text (a content-only PR reaches only this scan — round 2 of the
