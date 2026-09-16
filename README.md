@@ -1,6 +1,30 @@
 <p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
+<h1 align="center">Tengoku (天国)</h1>
+<p align="center"><em>An AI-first, open-source, universally accessible formal mathematics library for Lean 4.</em></p>
 
-# Tengoku (天国)
+**Abstract.** Tengoku is one self-contained Lean 4 tree, seeded from Mathlib and
+every library it pulls in, that grows by verified translations of theorems
+from other formal libraries and by direct contributions. A theorem is trusted
+iff it is in the tree and the tree builds on the pinned toolchain with no
+errors, no `sorry`, and no axiom beyond Lean's three. Every change arrives as
+a pull request; a three-minute gate checks its shape, a merge queue compiles
+exactly the mathematics it adds, and a nightly cache means nobody ever builds
+the tree from scratch. Authorship and provenance travel with every record.
+
+## Contents
+
+1. [About](#about) — goals, and what this project is not
+2. [Tiers](#tiers-tentative-staging-trusted) — tentative, staging, trusted, and what promotion means
+3. [The tree](#the-tree) — layout, what "trusted" means precisely, caches
+4. [Record shape](#record-shape)
+5. [Contributing](CONTRIBUTING.md) — the easiest way to do each thing
+6. [How Tengoku is tested](docs/testing.md) — the gate, the queue, the campaign, reading a failure
+7. [Every source in this seeding round](#every-source-in-this-seeding-round)
+8. [Why `v4.34.0-rc2` is the target toolchain](#why-v4340-rc2-is-the-target-toolchain-initially)
+9. [`tools/`](#tools) — harvesting and extraction
+10. [Search](#search) — competemath.com/tengoku
+
+## About
 
 Tengoku is an AI-first, open-source, universally accessible formal mathematics library for Lean 4.
 
@@ -18,6 +42,8 @@ Rather than relying on ideological declarations about the future of AI math, Ten
 within the Tengoku environment at the time, or there is evidence of plagiarism / foul intent.
 
 3) Transparent, Comprehensive Authorship: Authorship shouldn't be a casualty of AI assistance. Tengoku explicitly attributes both the human author and the Leak system. When submitting manually, contributors can link their identity (GitHub, LinkedIn, ORCID, CompeteMath userId, or personal website). This provenance is permanently embedded as a docstring under every theorem and lemma in the tree.
+
+## Tiers: tentative, staging, trusted
 
 Every entry already has a real proof from somewhere. The distinction is whether [Leak](https://competemath.com/about/leak) has stamped it:
 
