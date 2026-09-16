@@ -103,6 +103,13 @@ cumulatively; a failing group loses its newest PR and the rest are retried.
    goals, `sorry`, heartbeats, axiom, forbidden construct, regeneration), the
    run link, and the same *Report a gate bug* link.
 
+**The cache build has priority over workflow changes.** A group that touches
+`.github/workflows/` waits (up to 35 minutes) for any running cache build to
+finish before its checks run; content and promotion groups never wait, since
+they do not disturb a build. Without this, a busy queue of tooling PRs could
+defeat the nightly's relaunch every night and no cache would ever publish. The
+build itself relaunches on the tip up to twice.
+
 ## 3. What each check does and does not catch
 
 - The gate reasons about **shape**, the queue about **mathematics**. A wrong
