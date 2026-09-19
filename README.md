@@ -19,10 +19,11 @@ the tree from scratch. Authorship and provenance travel with every record.
 4. [Record shape](#record-shape)
 5. [Contributing](CONTRIBUTING.md) — the easiest way to do each thing
 6. [How Tengoku is tested](docs/testing.md) — the gate, the queue, the campaign, reading a failure
-7. [Every source in this seeding round](#every-source-in-this-seeding-round)
-8. [Why `v4.34.0-rc2` is the target toolchain](#why-v4340-rc2-is-the-target-toolchain-initially)
-9. [`tools/`](#tools) — harvesting and extraction
-10. [Search](#search) — competemath.com/tengoku
+7. [Top-ups](docs/topups.md) — how every merge publishes its compiled difference, so the proof services follow main without compiling
+8. [Every source in this seeding round](#every-source-in-this-seeding-round)
+9. [Why `v4.34.0-rc2` is the target toolchain](#why-v4340-rc2-is-the-target-toolchain-initially)
+10. [`tools/`](#tools) — harvesting and extraction
+11. [Search](#search) — competemath.com/tengoku
 
 ## About
 
