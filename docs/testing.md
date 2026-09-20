@@ -45,6 +45,18 @@ The jobs, in the order they matter:
   `context` (without them it would never be compiled); `content-lint` — no
   `import`, `#eval`, `run_cmd`, `initialize`, `unsafe`, `native_decide`,
   `axiom`, `IO.Process`, or `set_option` off the allowlist inside a record.
+- **assess** (content, promotion): the blind re-proof test. A PR that adds
+  original theorems (a record whose `source_url` is not one of the
+  `translations` in `schemas/sources.json`) must carry a claim: up to ten
+  headline theorems, each attacked for 5 minutes (hard stop 7) by an agent that
+  saw only the statement, against the library without the PR. The job takes
+  nothing in the claim on trust — outcome, timing and call counts are
+  recomputed from the raw transcript, the working log is rendered again and
+  compared byte for byte, the agent must have had only the library's services,
+  and a "resisted" must be a full attempt. **Every headline re-proved → the PR
+  is rejected.** It posts the record (table, links to the logs, what to look
+  for) on the PR. Translations and promotions are exempt.
+  [The whole story](assess.md).
 - **credits**: no removed or changed line carrying an authorship or provenance
   marker (`Authors:`, `Copyright`, `source_url`, …). Scripts, workflows and
   schemas are exempt because they name those keys.
@@ -135,6 +147,11 @@ including how the services follow it and what was tested, is in [top-ups](topups
   identified bot cannot hand-edit a generated file.
 - A tombstone retracts a record everywhere the generator looks, including
   candidates; the bot's next promotion regenerates the module.
+- The blind re-proof test shows that one capable agent with the library's own
+  tools did not close a theorem in seven minutes. It does not show the theorem
+  is deep or useful, and someone who controls their own machine can still stage
+  a weak attempt: that is what the verbose logs, the reviewers and the
+  maintainers' own re-runs of sampled claims are for.
 - Nothing here checks that a translation *means* the same as its source;
   that is Emissary-Archangel's job before a record is staged.
 
