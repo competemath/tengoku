@@ -110,6 +110,14 @@ they do not disturb a build. Without this, a busy queue of tooling PRs could
 defeat the nightly's relaunch every night and no cache would ever publish. The
 build itself relaunches on the tip up to twice.
 
+### The top-up
+
+After the checks above, the queue restores the tree to the group's own commit, builds the whole
+library as main will have it (from the nightly cache plus the newest top-up, so only the group's
+own changes compile) and publishes the compiled difference before the merge is allowed. A failed
+publish ejects the PR with a comment that says it was not the author's fault. The full story,
+including how the services follow it and what was tested, is in [top-ups](topups.md).
+
 ## 3. What each check does and does not catch
 
 - The gate reasons about **shape**, the queue about **mathematics**. A wrong
