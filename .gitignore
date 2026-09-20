@@ -9,3 +9,4 @@ Tengoku/**/_candidate_*.lean
 corpora/
 .bank/
 .promote-skip
+assess-comment.md

@@ -23,12 +23,34 @@ the easiest way to do each thing.
      --candidate <source_path> --candidate-names <your record names, comma-separated>
    lake build Tengoku.<Library>.<Path>._candidate_<File>
    ```
-3. `git commit -s` (the sign-off is required), push, open the PR, and turn on
+3. **Original theorems only** (not a translation of an existing library): run the
+   blind re-proof test and commit what it writes — see the next section.
+4. `git commit -s` (the sign-off is required), push, open the PR, and turn on
    *Merge when ready*. The gate comments on the PR with anything it found;
    the queue builds your candidate module and merges.
-4. The promote bot later moves your records to `data/trusted/`, regenerates
+5. The promote bot later moves your records to `data/trusted/`, regenerates
    the module and deletes your per-PR file in its own PR. Your name, and the
    `source_url`, stay on the record forever.
+
+## Original theorems: the blind re-proof test
+
+Translations of existing libraries are exempt. If your records are your own
+mathematics, the PR must show that at least one of its headline theorems (you
+name up to ten) resists a blind 5-minute re-proof attempt (hard stop at 7)
+against the library as it is without your PR:
+
+```
+python3 scripts/assess/run.py data/staging/<library>/<your-file>.jsonl --headlines Name.one,Name.two
+git add claims/ && git commit -s -m "blind re-proof claim"
+```
+
+It runs on your own `claude` CLI subscription with the library's hosted
+services, prints every call as it happens, and tells you the verdict the gate
+will reach: **every headline re-proved → the PR is rejected**, because the
+library already reaches all of it in minutes. Never edit the files it writes;
+the gate recomputes everything from the raw transcript and posts the record on
+your PR. What is recorded, what is checked and what reviewers look for:
+[docs/assess.md](docs/assess.md).
 
 ## Retract a theorem
 
