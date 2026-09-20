@@ -144,6 +144,7 @@ pointed at the sandbox and called every 30 seconds for about four hours
 | second promotion | merge to a verified proof using the new lemma: 2 minutes 20 seconds, nothing compiled |
 | nightly cache rebuilt while a merge landed | that merge's top-up (built over the old cache) stayed in the pointer; all three services re-based onto the new cache and applied it |
 | promoted top-up replaced by random bytes | refused by digest; the services returned to the state they came from (exit 4), restarted nothing, failed no call, and advanced within 8 minutes of the genuine file returning |
+| a merge promoted while the nightly was still building | the nightly published its new cache AFTER that promotion and kept the top-up that was ahead of it (first attempt found `put` reading the wrong repository's pointer; fixed, re-run passed) |
 | main made to look broken | a content merge landed marked incomplete, the pointer did not move, a cache build started by itself and published 6 minutes later; a promotion was ejected with a located error |
 | pointer sampled every 20 s throughout | never named a commit that was not on main |
 
