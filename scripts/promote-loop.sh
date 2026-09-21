@@ -49,7 +49,8 @@ direct_mode() {
   fi
 }
 pr_mode() {
-  git checkout -q main 2>/dev/null; git pull -q --ff-only origin main 2>/dev/null || echo "[$(date +%T)] pull failed; working on what is here"
+  git checkout -q main 2>/dev/null
+  pull_err=$(git pull -q --ff-only origin main 2>&1) || echo "[$(date +%T)] pull failed; working on what is here: $(printf '%s' "$pull_err" | tail -1)"
   local repo; repo=$(git remote get-url origin | sed -E 's#.*github.com[:/]##; s#\.git$##')
   quiet_sources | while read -r sp; do
     skipped "$sp" && continue
