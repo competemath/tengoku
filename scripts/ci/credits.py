@@ -17,10 +17,16 @@ EXEMPT = ["scripts/*", ".github/*", "schemas/*", "*.py", "*.sh", "*.toml", "*.ym
 CREDIT = re.compile(r"(Authors?:|@author|\bCredit|Copyright|\"source_url\"|\"added_by\"|\"author\"|\"authors\")", re.I)
 base, head = sys.argv[1], sys.argv[2]
 promotion = "--promotion" in sys.argv  # the bot moves staging records to trusted: the credit travels with them
+# A record whose credit line still exists anywhere at HEAD is fine, even if the exact bytes
+# changed (the promote bot rewrites a staging file's remaining records when it lifts one out,
+# which can reorder or reformat lines it never touched content-wise — found live: two records
+# untouched by a promotion of a THIRD record in the same per-PR batch file were flagged as
+# "removed" purely because the rewrite re-serialised them with different bytes at a new
+# position). "Moved" (promoted to trusted) and "still staged" both count as present.
 moved: set[tuple[str, str]] = set()
 if promotion:
     for st, p in changed_files(base, head):
-        if match(p, ["data/trusted/*.jsonl"]):
+        if match(p, ["data/trusted/*.jsonl", "data/staging/*.jsonl", "data/staging/*/*.jsonl"]):
             for _, text in added_lines(base, head, p):
                 try:
                     r = json.loads(text)
@@ -40,7 +46,7 @@ for st, p in changed_files(base, head):
             except Exception:
                 r = {}
             if (str(r.get("name")), str(r.get("source_url"))) in moved:
-                continue  # same name and provenance now in trusted
+                continue  # same name and provenance still present (promoted, or just reformatted in place)
             hits.append(f"{p}:{no}: staging record removed without an identical trusted record ({r.get('name')})")
             continue
         hits.append(f"{p}:{no}: {text.strip()[:120]}")
