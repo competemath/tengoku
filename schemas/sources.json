@@ -1,5 +1,5 @@
 {
-  "$comment": "source_url must start with one of these. Add a source with its licence in the same PR as the first record from it (a tooling PR). `corpora` names the source checkout the generator reads for a library (repo + commit); a library without one has data-only records that are never compiled.",
+  "$comment": "source_url must start with one of these. Add a source with its licence in the same PR as the first record from it (a tooling PR). `corpora` names the source checkout the generator reads for a library (repo + commit) and its `roots`, the lean_lib module roots its records come from (`equational_theories`; `Carleson`, `Solution`); a library without one has data-only records that are never compiled.",
   "allowed": [
     "https://github.com/leanprover-community/mathlib4",
     "https://github.com/teorth/equational_theories",
@@ -39,7 +39,106 @@
   "corpora": {
     "equational-theories": {
       "repo": "https://github.com/teorth/equational_theories",
-      "commit": "e218ce18b0c265efbbe65093c1f1d063c54f3639"
+      "commit": "e218ce18b0c265efbbe65093c1f1d063c54f3639",
+      "roots": [
+        "equational_theories"
+      ]
+    },
+    "carleson": {
+      "repo": "https://github.com/fpvandoorn/Carleson",
+      "commit": "6e7b18b655ead52b9a4eb46906f7d99bc6bc241c",
+      "roots": [
+        "Carleson",
+        "Solution"
+      ]
+    },
+    "pfr": {
+      "repo": "https://github.com/teorth/pfr",
+      "commit": "3d7898164ebff70a809dce618f9082a7b39e7850",
+      "roots": [
+        "PFR",
+        "PFRPalomar"
+      ]
+    },
+    "flt": {
+      "repo": "https://github.com/ImperialCollegeLondon/FLT",
+      "commit": "81d8bee0f708ac41cb975da76ed3c43ad99fae72",
+      "roots": [
+        "FLT"
+      ]
+    },
+    "flt-regular": {
+      "repo": "https://github.com/leanprover-community/flt-regular",
+      "commit": "faae830a27a7b39748b61487a9f2aa81a6d14450",
+      "roots": [
+        "FltRegular"
+      ]
+    },
+    "imoshortlist": {
+      "repo": "https://github.com/mortarsanjaya/IMOSLLean4",
+      "commit": "49e7596ffb3e88d357eba3e450c29ad9f85f3cc5",
+      "roots": [
+        "IMOSLLean4"
+      ]
+    },
+    "toric": {
+      "repo": "https://github.com/YaelDillies/toric",
+      "commit": "85451213e92b35500738b91424032e2c63044c90",
+      "roots": [
+        "Toric"
+      ]
+    },
+    "compfiles": {
+      "repo": "https://github.com/dwrensha/compfiles",
+      "commit": "51c8803ed93c0a350d110fffe4c3804b473bba78",
+      "roots": [
+        "Compfiles"
+      ]
+    },
+    "formal-conjectures": {
+      "repo": "https://github.com/google-deepmind/formal-conjectures",
+      "commit": "71a0744be944b9d26864cef6f970c291c8e79a2d",
+      "roots": [
+        "FormalConjectures",
+        "FormalConjecturesForMathlib",
+        "FormalConjecturesTest",
+        "FormalConjecturesUtil"
+      ]
+    },
+    "primenumbertheoremand": {
+      "repo": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+      "commit": "a5154676af9aa3095150ee410cdda80555aa0642",
+      "roots": [
+        "PrimeNumberTheoremAnd"
+      ]
+    },
+    "erdos-unit-distance-1": {
+      "repo": "https://github.com/kim-em/erdos-unit-distance",
+      "commit": "d748fd08b40a72f61e982325f2f0599228ca08b3",
+      "roots": [
+        "ErdosUnitDistance"
+      ]
+    },
+    "sphere-packing-orig": {
+      "repo": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+      "commit": "9b2ddfc66330f9da18cc8feb0dca2dc01bfa0a85",
+      "roots": [
+        "SpherePacking"
+      ]
+    },
+    "con-nf": {
+      "repo": "https://github.com/leanprover-community/con-nf",
+      "commit": "55b939a3acf947793e252ff330800bfe968cc172",
+      "roots": [
+        "ConNF"
+      ]
+    },
+    "seymour": {
+      "repo": "https://github.com/Ivan-Sergeyev/seymour",
+      "commit": "2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+      "roots": [
+        "Seymour"
+      ]
     }
   },
   "$comment_translations": "Sources that are existing formal libraries: a record from one of these is a translation and is exempt from the blind re-proof test (scripts/assess/). Anything else is original work and needs a claim.",
