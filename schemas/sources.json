@@ -3,12 +3,38 @@
   "allowed": [
     "https://github.com/leanprover-community/mathlib4",
     "https://github.com/teorth/equational_theories",
-    "https://competemath.com/practice/problems"
+    "https://competemath.com/practice/problems",
+    "https://github.com/fpvandoorn/Carleson",
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "https://github.com/teorth/pfr",
+    "https://github.com/ImperialCollegeLondon/FLT",
+    "https://github.com/leanprover-community/flt-regular",
+    "https://github.com/leanprover-community/con-nf",
+    "https://github.com/dwrensha/compfiles",
+    "https://github.com/mortarsanjaya/IMOSLLean4",
+    "https://github.com/google-deepmind/formal-conjectures",
+    "https://github.com/YaelDillies/toric",
+    "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+    "https://github.com/Ivan-Sergeyev/seymour",
+    "https://github.com/kim-em/erdos-unit-distance"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
     "https://github.com/teorth/equational_theories": "Apache-2.0",
-    "https://competemath.com/practice/problems": "CompeteMath contributor terms"
+    "https://competemath.com/practice/problems": "CompeteMath contributor terms",
+    "https://github.com/fpvandoorn/Carleson": "Apache-2.0",
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd": "Apache-2.0",
+    "https://github.com/teorth/pfr": "Apache-2.0",
+    "https://github.com/ImperialCollegeLondon/FLT": "Apache-2.0",
+    "https://github.com/leanprover-community/flt-regular": "Apache-2.0",
+    "https://github.com/leanprover-community/con-nf": "Apache-2.0",
+    "https://github.com/dwrensha/compfiles": "Apache-2.0",
+    "https://github.com/mortarsanjaya/IMOSLLean4": "Apache-2.0",
+    "https://github.com/google-deepmind/formal-conjectures": "Apache-2.0",
+    "https://github.com/YaelDillies/toric": "Apache-2.0",
+    "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean": "Apache-2.0",
+    "https://github.com/Ivan-Sergeyev/seymour": "Apache-2.0",
+    "https://github.com/kim-em/erdos-unit-distance": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -19,6 +45,19 @@
   "$comment_translations": "Sources that are existing formal libraries: a record from one of these is a translation and is exempt from the blind re-proof test (scripts/assess/). Anything else is original work and needs a claim.",
   "translations": [
     "https://github.com/leanprover-community/mathlib4",
-    "https://github.com/teorth/equational_theories"
+    "https://github.com/teorth/equational_theories",
+    "https://github.com/fpvandoorn/Carleson",
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "https://github.com/teorth/pfr",
+    "https://github.com/ImperialCollegeLondon/FLT",
+    "https://github.com/leanprover-community/flt-regular",
+    "https://github.com/leanprover-community/con-nf",
+    "https://github.com/dwrensha/compfiles",
+    "https://github.com/mortarsanjaya/IMOSLLean4",
+    "https://github.com/google-deepmind/formal-conjectures",
+    "https://github.com/YaelDillies/toric",
+    "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+    "https://github.com/Ivan-Sergeyev/seymour",
+    "https://github.com/kim-em/erdos-unit-distance"
   ]
 }
