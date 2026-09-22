@@ -157,8 +157,39 @@ def strip_corpus_attrs(text: str) -> str:
     return re.sub(r"@\[([^\]]*)\]", attrs, text)
 
 
+def corpus_roots(out: Path, library: str) -> list[str]:
+    """The corpus's lean_lib module roots (schemas/sources.json corpora[<library>].roots); the
+    library name with `-` -> `_` when it has none, which is how equational-theories is laid out."""
+    try:
+        spec = json.loads((out / "schemas" / "sources.json").read_text(encoding="utf-8")).get("corpora", {}).get(library, {})
+    except (OSError, ValueError):
+        spec = {}
+    return list(spec.get("roots") or [library.replace("-", "_")])
+
+
+def is_corpus_module(mod: str, roots: list[str]) -> bool:
+    return any(mod == r or mod.startswith(r + ".") for r in roots)
+
+
+def deps_key(mod: str) -> str:
+    """A corpus module's name inside Deps: its path below the root (`Classical.Basic`), so two
+    `Basic`s under different directories are two Deps modules. A flat corpus keeps bare leaves."""
+    parts = mod.split(".")
+    return ".".join(parts[1:]) if len(parts) > 1 else parts[0]
+
+
+def deps_file(deps_dir: Path, key: str) -> Path:
+    p = deps_dir / Path(*key.split(".")).with_suffix(".lean")
+    p.parent.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+def deps_modules(deps_dir: Path) -> list[str]:
+    return sorted(".".join(p.relative_to(deps_dir).with_suffix("").parts) for p in deps_dir.rglob("*.lean"))
+
+
 def map_imports(
-    text: str, corpus_prefix: str, lib_ns: str, deps_available: set[str], corpus: Path | None = None, _seen: set[str] | None = None
+    text: str, corpus_roots: list[str], lib_ns: str, deps_available: set[str], corpus: Path | None = None, _seen: set[str] | None = None
 ) -> str:
     """Seed imports -> Tengoku.*; corpus imports -> this library's Deps modules.
     A corpus module the tree does not reproduce is replaced by what IT imported
@@ -171,15 +202,15 @@ def map_imports(
 
     def sub(m):
         mod = m.group(2)
-        if mod == corpus_prefix or mod.startswith(corpus_prefix + "."):
-            leaf = mod.split(".")[-1]
+        if is_corpus_module(mod, corpus_roots):
+            leaf = deps_key(mod)
             if leaf in deps_available:
                 return f"{m.group(1)}Tengoku.{lib_ns}.Deps.{leaf}{m.group(3)}"
             if corpus is not None and mod not in seen:
                 seen.add(mod)
                 f = corpus / Path(*mod.split(".")).with_suffix(".lean")
                 if f.exists():
-                    inner = map_imports(f.read_text(encoding="utf-8"), corpus_prefix, lib_ns, deps_available, corpus, seen)
+                    inner = map_imports(f.read_text(encoding="utf-8"), corpus_roots, lib_ns, deps_available, corpus, seen)
                     return "\n".join(l.strip() for l in inner.splitlines() if re.match(r"\s*(public |private |meta )*import ", l))
             return ""  # a corpus module we don't reproduce and cannot read: nothing to import
         for root_mod, mapped in roots:
@@ -207,7 +238,7 @@ def deps_declared(deps_dir: Path) -> tuple[set[str], set[str]]:
     is the same notation however a script spells the declaration, and a
     second copy makes every `x ◇ y` ambiguous."""
     names, lines = set(), set()
-    for f in deps_dir.glob("*.lean"):
+    for f in deps_dir.rglob("*.lean"):
         text = f.read_text(encoding="utf-8")
         names.update(n.removeprefix("_root_.") for n in DECL_NAME_RE.findall(text))
         for l in text.splitlines():
@@ -273,9 +304,9 @@ def dedupe_prefix(prefix: str, deps_names: set[str], deps_lines: set[str]) -> st
     return "\n".join(kept)
 
 
-def regenerate_equations(corpus: Path, corpus_prefix: str) -> list[str]:
+def regenerate_equations(corpus: Path, corpus_roots: list[str]) -> list[str]:
     out = []
-    for f in sorted((corpus / corpus_prefix / "Equations").glob("*.lean")):
+    for f in sorted(f for root in corpus_roots for f in (corpus / root / "Equations").glob("*.lean")):
         for m in EQUATION_LINE_RE.finditer(f.read_text(encoding="utf-8")):
             law = m.group(2)
             vars_ = []
@@ -329,7 +360,7 @@ def main():
 
     for library in args.libraries:
         lib_ns = pascal(library)
-        corpus_prefix = library.replace("-", "_")  # equational-theories -> equational_theories
+        roots = corpus_roots(out, library)
         records = []
         # A tombstone line {"tombstone": "<name>", ...} in a trusted file retracts every record of that name
         # (history stays in the file). The campaign found the schema accepted tombstones that changed nothing.
@@ -366,23 +397,23 @@ def main():
         pasted = set()
         for r in records:
             pasted.update(PRELUDE_MODULE_RE.findall(r["context"]))
-        deps_available = {m.split(".")[-1] for m in pasted}
+        deps_available = {deps_key(m) for m in pasted}
         for mod in sorted(pasted):
             src = corpus / Path(*mod.split(".")).with_suffix(".lean")
             text = src.read_text(encoding="utf-8")
             if UNSAFE_MODULE_RE.search(text):
                 print(f"  skip {mod}: needs load-time initialisation")
                 continue
-            body = strip_corpus_attrs(map_imports(text, corpus_prefix, lib_ns, deps_available, corpus))
+            body = strip_corpus_attrs(map_imports(text, roots, lib_ns, deps_available, corpus))
             imports = "\n".join(l for l in body.splitlines() if re.match(r"\s*(public |private |meta )*import ", l))
             rest = "\n".join(l for l in body.splitlines() if not re.match(r"\s*(public |private |meta )*import ", l))
-            leaf = mod.split(".")[-1]
-            (deps_dir / f"{leaf}.lean").write_text(
+            leaf = deps_key(mod)
+            deps_file(deps_dir, leaf).write_text(
                 f"-- {lib_ns}/Deps/{leaf}: verbatim from {mod} (imports mapped, corpus bookkeeping attributes stripped)\n"
                 f"{imports}\nimport Tengoku.Init\n\nset_option linter.all false\n\n{wrap(rest, lib_ns, external)}",
                 encoding="utf-8",
             )
-        eqs = regenerate_equations(corpus, corpus_prefix)
+        eqs = regenerate_equations(corpus, roots)
         if eqs and (deps_dir / "Magma.lean").exists():  # the abbrevs need Magma; without it the file would not build
             (deps_dir / "Equations.lean").write_text(
                 f"-- {lib_ns}/Deps/Equations: every `equation N := law` of the corpus, in the exact shape its `equation` command produces\n"
@@ -390,7 +421,7 @@ def main():
                 + wrap("universe uEq\n\n" + "\n".join(eqs), lib_ns, external),
                 encoding="utf-8",
             )
-        deps_mods = sorted(p.stem for p in deps_dir.glob("*.lean"))
+        deps_mods = deps_modules(deps_dir)
         (lib_dir / "Deps.lean").write_text("\n".join(f"import Tengoku.{lib_ns}.Deps.{m}" for m in deps_mods) + "\n", encoding="utf-8")
         deps_names, deps_lines = deps_declared(deps_dir)
 
@@ -403,7 +434,7 @@ def main():
             if args.only and source_path != args.only:
                 continue
             rel = Path(source_path)
-            if rel.parts and rel.parts[0] == corpus_prefix:
+            if rel.parts and rel.parts[0] in roots:
                 rel = Path(*rel.parts[1:])
             mod_path = lib_dir / rel
             mod_name = f"Tengoku.{lib_ns}." + ".".join(rel.with_suffix("").parts)
@@ -462,13 +493,13 @@ def main():
             orig = corpus / source_path
             orig_imports = []
             if orig.exists():
-                mapped = map_imports(orig.read_text(encoding="utf-8"), corpus_prefix, lib_ns, deps_available, corpus)
+                mapped = map_imports(orig.read_text(encoding="utf-8"), roots, lib_ns, deps_available, corpus)
                 orig_imports = [l.strip() for l in mapped.splitlines() if re.match(r"\s*(public |private |meta )*import ", l)]
                 orig_imports = [re.sub(r"^(public |private |meta )+", "", l) for l in orig_imports]
             # The Deps this file's records pasted (plus Magma/Equations, which
             # every equation abbrev needs) — not the Deps aggregator, so a corpus
             # module first pasted by some OTHER file does not rebuild this one.
-            needed = {m.split(".")[-1] for r in recs for m in PRELUDE_MODULE_RE.findall(r["context"])} & deps_available
+            needed = {deps_key(m) for r in recs for m in PRELUDE_MODULE_RE.findall(r["context"])} & deps_available
             needed |= {d for d in ("Magma", "Equations") if d in deps_mods}
             dep_imports = [f"import Tengoku.{lib_ns}.Deps.{d}" for d in sorted(needed)]
             # A mechanical record is the original text, which compiled with its
@@ -492,7 +523,7 @@ def main():
         # a file whose records went back to staging must not stay importable.
         def mod_path_of(source_path: str) -> Path:
             rel = Path(source_path)
-            if rel.parts and rel.parts[0] == corpus_prefix:
+            if rel.parts and rel.parts[0] in roots:
                 rel = Path(*rel.parts[1:])
             return lib_dir / rel
 
