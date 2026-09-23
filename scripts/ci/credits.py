@@ -15,6 +15,9 @@ from _git import added_lines, changed_files, fail, match, removed_lines
 
 EXEMPT = ["scripts/*", ".github/*", "schemas/*", "*.py", "*.sh", "*.toml", "*.yml", "*.yaml", "*.json"]
 CREDIT = re.compile(r"(Authors?:|@author|\bCredit|Copyright|\"source_url\"|\"added_by\"|\"author\"|\"authors\")", re.I)
+# In Markdown only the human attribution markers count: a JSON key inside a code example
+# (the README's record-shape block carried `"source_url": "..."`) is not a provenance line.
+CREDIT_MD = re.compile(r"(Authors?:|@author|Copyright)", re.I)
 base, head = sys.argv[1], sys.argv[2]
 promotion = "--promotion" in sys.argv  # the bot moves staging records to trusted: the credit travels with them
 # A record whose credit line still exists anywhere at HEAD is fine, even if the exact bytes
@@ -37,8 +40,9 @@ hits = []
 for st, p in changed_files(base, head):
     if st == "A" or match(p, EXEMPT):
         continue
+    rx = CREDIT_MD if p.endswith(".md") else CREDIT
     for no, text in removed_lines(base, head, p):
-        if not CREDIT.search(text):
+        if not rx.search(text):
             continue
         if promotion and match(p, ["data/staging/*.jsonl", "data/staging/*/*.jsonl"]):
             try:
