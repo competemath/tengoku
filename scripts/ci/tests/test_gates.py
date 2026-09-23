@@ -88,6 +88,24 @@ class Gates(unittest.TestCase):
             self.assertEqual(rc, 0, f"{s}: {out}")
         self.assertIn("class=content", r.gate("classify.py")[1])
 
+    def test_credit_docstring_in_statement_passes_and_is_protected(self):
+        r = Repo()
+        doc = "/-- One plus one.\n\nAuthor: Ada Lovelace (https://github.com/ada), with Claude. -/\n"
+        rec = {**GOOD, "name": "Lib.credited", "statement": doc + "theorem Lib.credited : 1 + 1 = 2"}
+        r.append("data/staging/lib.jsonl", json.dumps(rec) + "\n")
+        r.commit("add")
+        for s in ["classify.py", "append_only.py", "credits.py", "validate_records.py", "lint_banked.py"]:
+            rc, out = r.gate(s)
+            self.assertEqual(rc, 0, f"{s}: {out}")
+        r.git("checkout", "-q", "-b", "strip")
+        r.write(
+            "data/staging/lib.jsonl", json.dumps(GOOD) + "\n" + json.dumps({**rec, "statement": "theorem Lib.credited : 1 + 1 = 2"}) + "\n"
+        )
+        r.commit("drop the credit")
+        rc, out = r.gate("credits.py", "pr", "strip")
+        self.assertEqual(rc, 1)
+        self.assertIn("Author:", out)
+
     def test_multi_purpose_fails_classify(self):
         r = Repo()
         r.append("data/staging/lib.jsonl", json.dumps({**GOOD, "name": "Lib.new", "statement": "theorem Lib.new : 1 + 1 = 2"}) + "\n")

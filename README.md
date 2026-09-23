@@ -27,8 +27,21 @@ Anyone can contribute, by hand or with AI. Before you submit:
 - **Credit is permanent, and shared.** Put a docstring above your theorem naming
   the human author, any AI used, and a link to you (GitHub, LinkedIn, ORCID, or
   your [CompeteMath ID](https://competemath.com/whoami)). It stays in the tree.
-- **Submitting a whole project?** Point the bulk attribution tool at the
-  directory with your credit string once; it writes the docstrings for you.
+
+  ```lean
+  /-- The sum of the first `n` odd numbers is `n ^ 2`.
+
+  Author: Ada Lovelace (https://github.com/ada), with Claude Fable 5.1. -/
+  theorem sum_range_odd (n : ℕ) : ∑ i ∈ Finset.range n, (2 * i + 1) = n ^ 2 := by
+    ...
+  ```
+
+  One sentence on what it says, then one line starting with `Author:`. That word
+  is what the checks key on: no pull request can remove or edit the line once it
+  is in.
+- **Submitting a whole project?** Point the
+  [bulk attribution tool](tools/attribute/README.md) at the directory with your
+  credit string once; it writes the docstrings for you.
 - **Tiers.** Submissions start in `tentative` or `staging` and are promoted to
   `trusted` only once Leak's own toolchain has compiled them from scratch.
 
