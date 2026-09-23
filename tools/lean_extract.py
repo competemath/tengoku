@@ -44,9 +44,35 @@ _TOP_LEVEL_LINE_RE = re.compile(r"^[^\s].*$", re.MULTILINE)
 # not yet). A proof corpus that can't tell those apart isn't a proof corpus.
 _SORRY_RE = re.compile(r"\bsorry\b")
 
+# A `/-- … -/` directly above a declaration that carries an `Author:` line is the
+# contributor's credit (README, *Contributors*): it travels with the statement
+# into the record, and scripts/ci/credits.py refuses to let it go afterwards. Any
+# other docstring belongs to the source library and stays at `source_url`.
+_CREDIT_RE = re.compile(r"\bAuthors?:", re.I)
+
 
 def _contains_sorry(proof: str) -> bool:
     return bool(_SORRY_RE.search(proof))
+
+
+def _credit_docstring(source_lines: list[str], decl_line: int) -> str | None:
+    """The `/-- … -/` ending directly above line `decl_line` (blank lines allowed),
+    when it carries a credit; None otherwise."""
+    d = decl_line - 1
+    while d >= 0 and not source_lines[d].strip():
+        d -= 1
+    if d < 0 or not source_lines[d].rstrip().endswith("-/"):
+        return None
+    k, depth = d, 0
+    while k >= 0:
+        depth += source_lines[k].count("-/") - source_lines[k].count("/-")
+        if depth <= 0:
+            break
+        k -= 1
+    if k < 0 or not source_lines[k].lstrip().startswith("/--"):
+        return None
+    doc = "\n".join(source_lines[k : d + 1])
+    return doc if _CREDIT_RE.search(doc) else None
 
 
 @dataclass
@@ -103,6 +129,7 @@ def extract_declarations(source: str) -> list[ExtractedDeclaration]:
     """Return every theorem/lemma declaration found in `source`, each split
     into its statement and its full proof."""
     text = _strip_line_comments(source)
+    source_lines = source.split("\n")  # same line numbering as `text`
     results: list[ExtractedDeclaration] = []
 
     for match in _DECL_KEYWORD_RE.finditer(text):
@@ -115,6 +142,9 @@ def extract_declarations(source: str) -> list[ExtractedDeclaration]:
             continue  # unterminated — skip rather than guess
 
         statement = text[start:colon_eq].strip()
+        doc = _credit_docstring(source_lines, line_no - 1)
+        if doc:
+            statement = f"{doc}\n{statement}"
         # Skip declarations that are just `theorem`/`lemma` inside a string
         # literal or doc example rather than real code (heuristic: a real
         # declaration's statement must contain a top-level `:` separating

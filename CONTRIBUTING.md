@@ -13,8 +13,9 @@ the easiest way to do each thing.
    `data/staging/<library>/<anything>.jsonl` (`schemas/record.schema.json`
    is the shape; a record of a library that has a corpus in
    `schemas/sources.json` needs `source_path` and `context`, or it is never
-   compiled). One file per PR: two PRs appending to the same file cannot both
-   sit in the queue.
+   compiled). Your credit docstring (README, *Contributors*) is the first lines
+   of `statement`. One file per PR: two PRs appending to the same file cannot
+   both sit in the queue.
 2. Check it builds before you push (nothing here compiles the tree):
    ```
    scripts/cache.sh get
