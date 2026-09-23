@@ -13,6 +13,8 @@ formal theorems by meaning or by type, here: https://barkingtree-leak-i.hf.space
 
 Search the whole library right now [here](https://competemath.com/tengoku).
 
+Prefer HTTP? Endpoint, input and output shapes: [API](docs/api.md).
+
 Want to host your own infrastructure? The code for those who want to self-serve is
 [here](https://github.com/mikael-bashir/leak-services).
 

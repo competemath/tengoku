@@ -10,6 +10,11 @@ GET https://competemath.com/api/tengoku/search?q=<query>
 one (`sum_sq`), or plain English (`sum of two squares`) — URL-encoded. An empty
 `q` returns no results.
 
+Vercel's standard security measures are enabled on this endpoint: traffic that
+looks like an attack (floods, bursts from many addresses, known bad clients) is
+challenged or blocked by the platform before it reaches the API, with a `403` or
+`429`. Honest use at a few requests a second is not what those measures target.
+
 ## Response
 
 `200 application/json`, up to 30 results, best match first:
