@@ -32,6 +32,63 @@ class CreditDocstring(unittest.TestCase):
         self.assertEqual(foo.statement, "theorem foo : 1 + 1 = 2")
         self.assertEqual(bar.statement, "lemma bar : 2 = 2")
 
+    def test_blank_and_comment_lines_between_docstring_and_declaration(self):
+        src = "/-- Doc.\n\nAuthor: Ada. -/\n\n-- todo\n@[simp]\ntheorem foo : 1 = 1 := rfl\n"
+        (decl,) = lean_extract.extract_declarations(src)
+        self.assertTrue(decl.statement.startswith("/-- Doc.\n\nAuthor: Ada. -/"), decl.statement)
+        self.assertTrue(decl.statement.endswith("theorem foo : 1 = 1"), decl.statement)
+
+    def test_module_doc_with_authors_is_not_a_credit(self):
+        src = "/-! # Section\nAuthors: Someone\n-/\ntheorem foo : 1 = 1 := rfl\n"
+        (decl,) = lean_extract.extract_declarations(src)
+        self.assertEqual(decl.statement, "theorem foo : 1 = 1")
+
+    def test_every_credited_theorem_keeps_its_own_docstring(self):
+        src = "namespace N\n/-- A.\nAuthor: Ada. -/\ntheorem a : 1 = 1 := rfl\n\n/-- B. -/\nlemma b : 2 = 2 := rfl\n\n/-- C.\n\nAuthors: Ada, Bob. -/\nlemma c : 3 = 3 := rfl\nend N\n"
+        a, b, c = lean_extract.extract_declarations(src)
+        self.assertEqual(a.statement, "/-- A.\nAuthor: Ada. -/\ntheorem a : 1 = 1")
+        self.assertEqual(b.statement, "lemma b : 2 = 2")
+        self.assertEqual(c.statement, "/-- C.\n\nAuthors: Ada, Bob. -/\nlemma c : 3 = 3")
+
+
+class HarvestEndToEnd(unittest.TestCase):
+    def test_harvest_keeps_the_credit_in_the_record(self):
+        import json
+        import os
+        import subprocess
+        import tempfile
+
+        repo = Path(tempfile.mkdtemp())
+        (repo / "Lib").mkdir()
+        (repo / "Lib" / "A.lean").write_text(
+            "/-- One plus one.\n\nAuthor: Ada Lovelace (https://github.com/ada), with Claude. -/\ntheorem one_one : 1 + 1 = 2 := rfl\n\n/-- Plain. -/\nlemma two : 2 = 2 := rfl\n"
+        )
+        env = {**os.environ, "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t", "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
+        for cmd in (["git", "init", "-q"], ["git", "add", "-A"], ["git", "commit", "-q", "-m", "x"]):
+            subprocess.run(cmd, cwd=repo, check=True, env=env, capture_output=True)
+        out = Path(tempfile.mkdtemp()) / "lib.jsonl"
+        r = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "tools" / "harvest.py"),
+                "--repo",
+                str(repo),
+                "--library",
+                "lib",
+                "--toolchain",
+                "leanprover/lean4:v4.34.0-rc2",
+                "--out",
+                str(out),
+            ],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        recs = {json.loads(l)["name"]: json.loads(l) for l in out.read_text().splitlines() if l.strip()}
+        self.assertTrue(recs["one_one"]["statement"].startswith("/-- One plus one.\n\nAuthor: Ada Lovelace"), recs["one_one"]["statement"])
+        self.assertTrue(recs["one_one"]["statement"].endswith("theorem one_one : 1 + 1 = 2"))
+        self.assertEqual(recs["two"]["statement"], "lemma two : 2 = 2")
+
 
 if __name__ == "__main__":
     unittest.main()

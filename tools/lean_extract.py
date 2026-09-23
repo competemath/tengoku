@@ -59,7 +59,7 @@ def _credit_docstring(source_lines: list[str], decl_line: int) -> str | None:
     """The `/-- … -/` ending directly above line `decl_line` (blank lines allowed),
     when it carries a credit; None otherwise."""
     d = decl_line - 1
-    while d >= 0 and not source_lines[d].strip():
+    while d >= 0 and (not source_lines[d].strip() or source_lines[d].lstrip().startswith("--")):
         d -= 1
     if d < 0 or not source_lines[d].rstrip().endswith("-/"):
         return None
