@@ -94,7 +94,11 @@ def block(rng: random.Random, n: int, indent: str = "", in_mutual: bool = False,
         doc = "single" if doc == "inline" else "multi_text"
     if doc == "doc_attrs" and not attr_own:
         doc = "none"
-    gap = "" if in_mutual or doc in ("inline", "closing", "closing_text", "doc_attrs") else rng.choice(["", "", "\n", "-- note\n"])
+    gap = (
+        ""
+        if in_mutual or doc in ("inline", "closing", "closing_text", "doc_attrs")
+        else rng.choice(["", "", "\n", "-- note\n", "/- a note -/\n", "/- a note\n   over two lines -/\n"])
+    )
     pre = "" if in_mutual else rng.choice(PRE) + "\n" * rng.randint(0, 2)
     inn = "" if in_mutual else rng.choice(IN)
 

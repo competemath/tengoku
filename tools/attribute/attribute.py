@@ -114,15 +114,26 @@ def opener_of(lines: list[str], d: int) -> int | None:
     return None
 
 
-def close_with_attrs(lines: list[str], d: int, h: int) -> int | None:
-    """Index of a `-/` on line d followed by attributes that run to line h - 1 (`… -/ @[simp]`,
-    `… -/ @[simp,` … `]`), or None."""
-    line = strip_comment(lines[d])
-    tail = [strip_comment(l) for l in lines[d + 1 : h] if l.strip() and not LINE_COMMENT_RE.match(l)]
+def close_with_attrs(line: str, tail: list[str]) -> int | None:
+    """Index of a `-/` on `line` followed by attributes that run on through the code lines in
+    `tail` (`… -/ @[simp]`, `… -/ @[simp,` … `]`), or None."""
+    line = strip_comment(line)
     for m in re.finditer("-/", line):
         if is_attr_block("\n".join([line[m.end() :]] + tail)):
             return m.start()
     return None
+
+
+def above_plain_comment(lines: list[str], d: int) -> int:
+    """When line d closes a plain `/- … -/` comment (not a docstring, not a `/-! … -/` module
+    doc), the line above that comment; else d. Lean reads such a comment as whitespace, so a
+    docstring above it still belongs to the declaration below."""
+    if closing_at(lines[d]) is None:
+        return d
+    k = opener_of(lines, d)
+    if k is None or not lines[k].lstrip().startswith("/-") or lines[k].lstrip().startswith(("/--", "/-!")):
+        return d  # no comment, a docstring, a module doc, or code with a trailing comment (`instance … /- why -/`)
+    return k - 1
 
 
 def lead_in(lines: list[str], i: int) -> tuple[int, tuple[int, int, int] | None]:
@@ -133,18 +144,26 @@ def lead_in(lines: list[str], i: int) -> tuple[int, tuple[int, int, int] | None]
     h = i
     while h > 0:
         found = None
-        for k in range(h - 1, max(-1, h - 24), -1):
+        code: list[str] = []  # the code lines from k up to h, comments left out
+        k = h - 1
+        while k >= 0 and k >= h - 40:
             line = lines[k]
             if not line.strip() or LINE_COMMENT_RE.match(line):
+                k -= 1
+                continue
+            k2 = above_plain_comment(lines, k)
+            if k2 != k:
+                k = k2
                 continue
             if MOD_LINE_RE.match(strip_comment(line)):
                 found = k
                 break
-            block = "\n".join(strip_comment(l) for l in lines[k:h] if l.strip() and not LINE_COMMENT_RE.match(l))
+            code.insert(0, strip_comment(line))
+            block = "\n".join(code)
             if is_attr_block(block):
                 found = k
                 break
-            pos = close_with_attrs(lines, k, h)
+            pos = close_with_attrs(line, code[1:])
             if pos is not None:  # the comment closing on line k opens the attributes: the lead-in starts after it
                 k0 = opener_of(lines, k)
                 if k0 is not None and lines[k0].lstrip().startswith("/--"):
@@ -152,6 +171,7 @@ def lead_in(lines: list[str], i: int) -> tuple[int, tuple[int, int, int] | None]
                 return k + 1, (-1, k, pos)  # a plain `/- … -/`: the line is split so a docstring can go above the attributes
             if block.count("]") <= block.count("["):
                 break  # not the tail of an attribute that opens further up
+            k -= 1
         if found is None:
             break
         h = found
@@ -160,10 +180,18 @@ def lead_in(lines: list[str], i: int) -> tuple[int, tuple[int, int, int] | None]
 
 def docstring_above(lines: list[str], h: int) -> tuple[int, int, int] | None:
     """(opening line, closing line, index of the closing `-/` in it) of the docstring directly
-    above line h — blank and `--` lines may sit between — or None: a `/- … -/` or `/-! … -/` is not one."""
+    above line h — blank lines, `--` lines and plain `/- … -/` comments may sit between — or None:
+    a `/- … -/` or `/-! … -/` is not one."""
     d = h - 1
-    while d >= 0 and (not lines[d].strip() or LINE_COMMENT_RE.match(lines[d])):
-        d -= 1
+    while d >= 0:
+        if not lines[d].strip() or LINE_COMMENT_RE.match(lines[d]):
+            d -= 1
+            continue
+        d2 = above_plain_comment(lines, d)
+        if d2 != d:
+            d = d2
+            continue
+        break
     if d < 0:
         return None
     pos = closing_at(lines[d])
@@ -172,7 +200,7 @@ def docstring_above(lines: list[str], h: int) -> tuple[int, int, int] | None:
         if k is None or not lines[k].lstrip().startswith("/--"):
             return None
         return k, d, pos
-    pos = close_with_attrs(lines, d, h)  # `/-- doc -/ @[simp]`: the docstring's closing line carries the attributes
+    pos = close_with_attrs(lines[d], [])  # `/-- doc -/ @[simp]`: the docstring's closing line carries the attributes
     if pos is not None:
         k = opener_of(lines, d)
         if k is not None and lines[k].lstrip().startswith("/--"):

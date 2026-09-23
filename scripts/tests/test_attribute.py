@@ -105,6 +105,26 @@ class Attribute(unittest.TestCase):
             out, f"mutual\n  /-- A.\n\n  {CREDIT} -/ theorem a : 1 = 1 := rfl\n  /-- {CREDIT} -/\n  theorem b : 2 = 2 := rfl\nend\n"
         )
 
+    def test_plain_comment_between_docstring_and_declaration(self):
+        src = "/-- Doc. -/\n/- Note (for maintainers): the proof reuses\nanother theorem. -/\nlemma foo : 1 = 1 := rfl\n\n@[simp]\n/- why -/\ntheorem bar : 1 = 1 := rfl\n\n/-- Doc. -/\n-- todo\n/- note -/\n@[simp]\ntheorem baz : 1 = 1 := rfl\n"
+        out, r = credited(src)
+        self.assertEqual(
+            out,
+            f"/-- Doc.\n\n{CREDIT} -/\n/- Note (for maintainers): the proof reuses\nanother theorem. -/\nlemma foo : 1 = 1 := rfl\n\n/-- {CREDIT} -/\n@[simp]\n/- why -/\ntheorem bar : 1 = 1 := rfl\n\n"
+            f"/-- Doc.\n\n{CREDIT} -/\n-- todo\n/- note -/\n@[simp]\ntheorem baz : 1 = 1 := rfl\n",
+        )
+        out2, r = credited(out)
+        self.assertEqual(out2, out)
+        self.assertIn("3 already carried this credit", r.stdout)
+
+    def test_code_line_with_a_trailing_comment_is_not_skipped(self):
+        src = "/-- Doc. -/\ninstance : Inhabited Nat := ⟨1⟩ /- why is this not automatic -/\nlemma foo : 1 = 1 := rfl\n"
+        out, _ = credited(src)
+        self.assertEqual(
+            out,
+            f"/-- Doc.\n\n{CREDIT} -/\ninstance : Inhabited Nat := ⟨1⟩ /- why is this not automatic -/\n/-- {CREDIT} -/\nlemma foo : 1 = 1 := rfl\n",
+        )
+
     def test_block_and_module_comments_above_are_not_docstrings(self):
         out, _ = credited(
             "/- notes -/\ntheorem foo : 1 = 1 := rfl\n\n/-! # Section\ntheorem inside : 1 = 1 := rfl\n-/\ntheorem bar : 2 = 2 := rfl\n"
