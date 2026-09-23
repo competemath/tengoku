@@ -38,11 +38,11 @@ one (`sum_sq`), or plain English (`sum of two squares`) — URL-encoded. An empt
 | `statement` | its type, fully elaborated |
 | `status` | `trusted` — compiled by the tree's own toolchain; `staging` — a verified translation not yet built into the tree; `tentative` — a real proof from its source, not yet re-verified here |
 | `library` | the source it came from (`mathlib`, `carleson`, …) |
-| `sourceUrl` | the record's line in this repository; the full record, proof included, is there |
+| `sourceUrl` | where the declaration lives, proof included: for `trusted` entries the line in the tree's Lean source (`Tengoku/…`, `Init/…`), for the rest the line in the library it was harvested from |
 | `id` | stable within one index build only; don't persist it |
 
 `proof`, `toolchain` and `compatibleToolchains` are empty in search results
-today; take the proof from the record at `sourceUrl`.
+today; the proof is at `sourceUrl`.
 
 ## Using it well
 
