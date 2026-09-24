@@ -80,6 +80,9 @@ line in the source at its commit.
   the name, no duplicate name in the PR, no name already trusted.
 - Content: no `sorry`, `axiom`, `native_decide`, `import`, macros, notation,
   or anything that runs code inside a record.
+- A theorem whose hypotheses can never all hold proves nothing; the PR fails
+  until its description acknowledges each one with a reason
+  (`Vacuous-Ack: <theorem name>: <why it is intended>`).
 - Data files are append-only. Retract with a tombstone line, never a deletion.
 - No authorship or provenance line is ever removed or changed.
 - One purpose per PR: content, or tooling, or docs; docs may ride along.
