@@ -30,7 +30,7 @@ def corpus_dir(lib: str) -> Path:
         subprocess.run(["git", "clone", "-q", "--filter=blob:none", spec["repo"], str(d)], check=True)
         subprocess.run(["git", "-C", str(d), "checkout", "-q", spec["commit"]], check=True)
         print(f"corpus {lib}: {spec['repo']} @ {spec['commit'][:12]}", file=sys.stderr)
-    return d
+    return d / spec.get("path", "")  # `path`: the Lake project inside a repository of several (anthropics/formal-math: zeta23/)
 
 
 def generate(lib: str, extra: list[str]) -> None:
