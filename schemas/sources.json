@@ -1,5 +1,5 @@
 {
-  "$comment": "source_url must start with one of these. Add a source with its licence in the same PR as the first record from it (a tooling PR). `corpora` names the source checkout the generator reads for a library (repo + commit) and its `roots`, the lean_lib module roots its records come from (`equational_theories`; `Carleson`, `Solution`); a library without one has data-only records that are never compiled.",
+  "$comment": "source_url must start with one of these. Add a source with its licence in the same PR as the first record from it (a tooling PR). `corpora` names the source checkout the generator reads for a library (repo + commit, `path` when the Lake project is a subdirectory of it) and its `roots`, the lean_lib module roots its records come from (`equational_theories`; `Carleson`, `Solution`); a library without one has data-only records that are never compiled.",
   "allowed": [
     "https://github.com/leanprover-community/mathlib4",
     "https://github.com/teorth/equational_theories",
@@ -44,6 +44,7 @@
     "https://github.com/Verified-zkEVM/evm-asm",
     "https://github.com/teorth/expdb",
     "https://github.com/anthropics/fermats-last-theorem",
+    "https://github.com/anthropics/formal-math",
     "https://github.com/YaelDillies/forbidden-matrix",
     "https://github.com/formal-applied-math/formal-mathfin",
     "https://github.com/mo271/FormalBook",
@@ -149,6 +150,7 @@
     "https://github.com/Verified-zkEVM/evm-asm": "MIT",
     "https://github.com/teorth/expdb": "Apache-2.0",
     "https://github.com/anthropics/fermats-last-theorem": "Apache-2.0",
+    "https://github.com/anthropics/formal-math": "Apache-2.0",
     "https://github.com/YaelDillies/forbidden-matrix": "Apache-2.0",
     "https://github.com/formal-applied-math/formal-mathfin": "Apache-2.0",
     "https://github.com/mo271/FormalBook": "Apache-2.0",
@@ -504,6 +506,17 @@
       "roots": [
         "Theorems",
         "Definitions"
+      ]
+    },
+    "formal-math": {
+      "repo": "https://github.com/anthropics/formal-math",
+      "commit": "fbdc36bbf17d20af3fd0447c6d1a8a02773c9844",
+      "path": "zeta23",
+      "roots": [
+        "Zeta23",
+        "ChallengeDeps",
+        "Challenge",
+        "Solution"
       ]
     },
     "forbidden-matrix": {
@@ -988,6 +1001,7 @@
     "https://github.com/Verified-zkEVM/evm-asm",
     "https://github.com/teorth/expdb",
     "https://github.com/anthropics/fermats-last-theorem",
+    "https://github.com/anthropics/formal-math",
     "https://github.com/YaelDillies/forbidden-matrix",
     "https://github.com/formal-applied-math/formal-mathfin",
     "https://github.com/mo271/FormalBook",
