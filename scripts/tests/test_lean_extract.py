@@ -51,6 +51,21 @@ class CreditDocstring(unittest.TestCase):
         self.assertEqual(c.statement, "/-- C.\n\nAuthors: Ada, Bob. -/\nlemma c : 3 = 3")
 
 
+class Names(unittest.TestCase):
+    def test_unicode_names_namespaces_and_comments(self):
+        src = (
+            "/-! Module doc that says\ntheorem not_a_theorem : True := trivial\n-/\nimport Mathlib\n\n"
+            "namespace Zeta23\n/-- Doc. -/\n@[simp]\ntheorem thmA₃ (n : ℕ) : n = n := rfl\n\n"
+            "namespace Inner\nlemma «weird name» : 1 = 1 := rfl\nend Inner\n\n"
+            "theorem _root_.top : 2 = 2 := rfl\nend Zeta23\n\n"
+            "/- theorem commented : 3 = 3 := rfl -/\ntheorem last? : 4 = 4 := rfl\n"
+        )
+        decls = lean_extract.extract_declarations(src)
+        self.assertEqual([d.name for d in decls], ["Zeta23.thmA₃", "Zeta23.Inner.«weird name»", "top", "last?"])
+        self.assertEqual([d.line for d in decls], [9, 12, 15, 19])
+        self.assertEqual(decls[0].statement, "@[simp]\ntheorem thmA₃ (n : ℕ) : n = n")
+
+
 class HarvestEndToEnd(unittest.TestCase):
     def test_harvest_keeps_the_credit_in_the_record(self):
         import json
