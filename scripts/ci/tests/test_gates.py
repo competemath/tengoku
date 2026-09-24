@@ -135,6 +135,19 @@ class Gates(unittest.TestCase):
         rc, out = r.gate("vacuity.py", "main", "pr", str(r.dir / "body.txt"), env=env)
         self.assertEqual(rc, 0, out)
         self.assertIn("acknowledged", out)
+        # the checker reports the name with the namespaces the module opens around the record (the
+        # sandbox's acked scenario failed here: FirstOrder.Language.Formula.Selftest.vac2); the name as the
+        # record writes it acknowledges it, a different name does not
+        report.write_text(
+            "tactics available: [omega]\nVACUOUS Ctx.Deep.Lib.vac Tengoku.Lib._candidate_A omega\n  its assumptions can never all hold; `omega` derives a contradiction from:\n    h : n < 0\nchecked 1 theorems in 1 modules: 1 vacuous\n"
+        )
+        rc, out = r.gate("vacuity.py", "main", "pr", str(r.dir / "body.txt"), env=env)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("Ctx.Deep.Lib.vac is vacuous and acknowledged", out)
+        (r.dir / "body.txt").write_text("Vacuous-Ack: vac: not the record's name, only its last component.\n")
+        rc, out = r.gate("vacuity.py", "main", "pr", str(r.dir / "body.txt"), env=env)
+        self.assertEqual(rc, 1)
+        self.assertIn("Vacuous-Ack: Ctx.Deep.Lib.vac:", out)
         report.write_text("checked 1 theorems in 1 modules: 0 vacuous\n")
         rc, out = r.gate("vacuity.py", "main", "pr", str(r.dir / "body.txt"), env=env)
         self.assertEqual(rc, 0, out)

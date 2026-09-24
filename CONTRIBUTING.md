@@ -97,6 +97,8 @@ to the PR description and the gate re-runs:
 Vacuous-Ack: <theorem name>: <why it is intended>
 ```
 
+The name as your record writes it is enough; the gate's message shows the full
+name with the namespaces the module opens around it, which works too.
 `tools/vacuity/` runs the same check on any built project.
 
 ## When a check fails
