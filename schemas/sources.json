@@ -46,6 +46,12 @@
     "https://github.com/anthropics/fermats-last-theorem",
     "https://github.com/anthropics/formal-math",
     "https://github.com/openai/NavierStokesAndEuler",
+    "https://github.com/TauCetiProject/TauCeti",
+    "https://github.com/Vilin97/lean-pool",
+    "https://github.com/merely-true/merely-true",
+    "https://github.com/openai/ten-proofs",
+    "https://github.com/openai/PrimeGaps186",
+    "https://github.com/openai/LongGapsBetweenPrimes",
     "https://github.com/YaelDillies/forbidden-matrix",
     "https://github.com/formal-applied-math/formal-mathfin",
     "https://github.com/mo271/FormalBook",
@@ -153,6 +159,12 @@
     "https://github.com/anthropics/fermats-last-theorem": "Apache-2.0",
     "https://github.com/anthropics/formal-math": "Apache-2.0",
     "https://github.com/openai/NavierStokesAndEuler": "Apache-2.0",
+    "https://github.com/TauCetiProject/TauCeti": "Apache-2.0",
+    "https://github.com/Vilin97/lean-pool": "Apache-2.0",
+    "https://github.com/merely-true/merely-true": "Apache-2.0",
+    "https://github.com/openai/ten-proofs": "Apache-2.0",
+    "https://github.com/openai/PrimeGaps186": "Apache-2.0",
+    "https://github.com/openai/LongGapsBetweenPrimes": "Apache-2.0",
     "https://github.com/YaelDillies/forbidden-matrix": "Apache-2.0",
     "https://github.com/formal-applied-math/formal-mathfin": "Apache-2.0",
     "https://github.com/mo271/FormalBook": "Apache-2.0",
@@ -530,6 +542,56 @@
         "ComparatorChallenges"
       ]
     },
+    "lean-pool": {
+      "repo": "https://github.com/Vilin97/lean-pool",
+      "commit": "fdcf13c7cab6cd0eed22dc6b2f83672b6c4deb4d",
+      "roots": [
+        "LeanPool",
+        "Challenge",
+        "Solution"
+      ]
+    },
+    "merely-true": {
+      "repo": "https://github.com/merely-true/merely-true",
+      "commit": "f4ff319d4622f410e001ebab016c4e7d23f9cd97",
+      "roots": [
+        "MerelyTrue"
+      ]
+    },
+    "ten-proofs": {
+      "repo": "https://github.com/openai/ten-proofs",
+      "commit": "94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6",
+      "roots": [
+        "CompactnessAndDegeneracy",
+        "MulticolorTriangleRamsey",
+        "QuantumParallelRepetition",
+        "SpherePacking",
+        "MetricCodes",
+        "ConnesRigidity",
+        "NonSoficGroup",
+        "GapCVP",
+        "EhrhartVolumeInequality",
+        "ComparatorChallenges",
+        "Permanent",
+        "All"
+      ]
+    },
+    "prime-gaps-186": {
+      "repo": "https://github.com/openai/PrimeGaps186",
+      "commit": "61340d0b74163003b32756bb16e91d9209a5e330",
+      "roots": [
+        "PrimeGaps186",
+        "Challenge"
+      ]
+    },
+    "long-gaps-between-primes": {
+      "repo": "https://github.com/openai/LongGapsBetweenPrimes",
+      "commit": "03a1190d0bc5502d9f54eeb60ad3e45e22b0df0b",
+      "roots": [
+        "LongGapsBetweenPrimes",
+        "Challenge"
+      ]
+    },
     "forbidden-matrix": {
       "repo": "https://github.com/YaelDillies/forbidden-matrix",
       "commit": "a938c04974d145131c446e8d488b834797ab6ed0",
@@ -883,8 +945,8 @@
       ]
     },
     "tauceti": {
-      "repo": "https://github.com/CBirkbeck/TauCeti",
-      "commit": "7b42845ff2c77548d51f3789ee9ae5cc9c2795d9",
+      "repo": "https://github.com/TauCetiProject/TauCeti",
+      "commit": "5e78744999f40e73287839f294c246a0c434d18e",
       "roots": [
         "TauCeti"
       ]
@@ -1014,6 +1076,12 @@
     "https://github.com/anthropics/fermats-last-theorem",
     "https://github.com/anthropics/formal-math",
     "https://github.com/openai/NavierStokesAndEuler",
+    "https://github.com/TauCetiProject/TauCeti",
+    "https://github.com/Vilin97/lean-pool",
+    "https://github.com/merely-true/merely-true",
+    "https://github.com/openai/ten-proofs",
+    "https://github.com/openai/PrimeGaps186",
+    "https://github.com/openai/LongGapsBetweenPrimes",
     "https://github.com/YaelDillies/forbidden-matrix",
     "https://github.com/formal-applied-math/formal-mathfin",
     "https://github.com/mo271/FormalBook",
