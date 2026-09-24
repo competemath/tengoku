@@ -1,5 +1,5 @@
 {
-  "$comment": "One JSON object per line in data/<tier>/<library>.jsonl. Enforced by scripts/ci/validate_records.py on added lines only. Staging records of a library with a corpus (schemas/sources.json) must carry source_path and context. Contributors add one file per PR: data/staging/<library>/<anything>.jsonl.",
+  "$comment": "One JSON object per line in data/<tier>/<library>.jsonl. Enforced by scripts/ci/validate_records.py on added lines only. Staging records of a library with a corpus (schemas/sources.json) must carry source_path and context. Contributors add one file per PR: data/staging/<library>/<anything>.jsonl. `upstream` (optional): for a record from an aggregating source (Lean Pool), the repository the project was imported from, at its commit.",
   "record": {
     "required": [
       "name",
@@ -22,7 +22,8 @@
       "staged_at",
       "promoted_at",
       "added_by",
-      "build_error"
+      "build_error",
+      "upstream"
     ],
     "types": {
       "name": "string",
@@ -36,7 +37,8 @@
       "source_path": "string",
       "staged_at": "string",
       "promoted_at": "string",
-      "added_by": "string"
+      "added_by": "string",
+      "upstream": "string"
     }
   },
   "tombstone": {
