@@ -67,13 +67,13 @@ class Repo:
         self.git("add", "-A")
         self.git("commit", "-q", "-m", msg + ("\n\nSigned-off-by: t <t@t>" if signoff else ""))
 
-    def gate(self, script, *args):
+    def gate(self, script, *args, env=None):
         r = subprocess.run(
             [sys.executable, str(CI / script), *(args or ("main", "pr"))],
             cwd=self.dir,
             capture_output=True,
             text=True,
-            env={**os.environ, "TENGOKU_CI_ROOT": str(self.dir)},
+            env={**os.environ, "TENGOKU_CI_ROOT": str(self.dir), **(env or {})},
         )
         return r.returncode, (r.stdout + r.stderr)
 
@@ -105,6 +105,39 @@ class Gates(unittest.TestCase):
         rc, out = r.gate("credits.py", "pr", "strip")
         self.assertEqual(rc, 1)
         self.assertIn("Author:", out)
+
+    def test_vacuous_theorem_needs_an_acknowledgement(self):
+        r = Repo()
+        rec = {
+            **GOOD,
+            "name": "Lib.vac",
+            "statement": "theorem Lib.vac (n : Nat) (h : n < 0) : n = 1",
+            "proof": ":= by omega",
+            "source_path": "lib/A.lean",
+            "context": "",
+        }
+        r.append("data/staging/lib.jsonl", json.dumps(rec) + "\n")
+        r.commit("add")
+        report = r.dir / "report.txt"
+        report.write_text(
+            "tactics available: [omega]\nVACUOUS Lib.vac Tengoku.Lib._candidate_A omega\n  its assumptions can never all hold; `omega` derives a contradiction from:\n    h : n < 0\nchecked 1 theorems in 1 modules: 1 vacuous\n"
+        )
+        env = {"VACUITY_REPORT": str(report), "VACUITY_TARGETS": "0"}
+        (r.dir / "body.txt").write_text("Adds a lemma.\n")
+        rc, out = r.gate("vacuity.py", "main", "pr", str(r.dir / "body.txt"), env=env)
+        self.assertEqual(rc, 1)
+        self.assertIn("Lib.vac", out)
+        self.assertIn("h : n < 0", out)
+        self.assertIn("Vacuous-Ack: Lib.vac:", out)
+        (r.dir / "body.txt").write_text(
+            "Adds a lemma.\n\nVacuous-Ack: Lib.vac: the source states it this way; the theorem documents the impossible case.\n"
+        )
+        rc, out = r.gate("vacuity.py", "main", "pr", str(r.dir / "body.txt"), env=env)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("acknowledged", out)
+        report.write_text("checked 1 theorems in 1 modules: 0 vacuous\n")
+        rc, out = r.gate("vacuity.py", "main", "pr", str(r.dir / "body.txt"), env=env)
+        self.assertEqual(rc, 0, out)
 
     def test_multi_purpose_fails_classify(self):
         r = Repo()

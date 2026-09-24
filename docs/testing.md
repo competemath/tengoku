@@ -60,6 +60,10 @@ The jobs, in the order they matter:
 - **credits**: no removed or changed line carrying an authorship or provenance
   marker (`Authors:`, `Copyright`, `source_url`, …). Scripts, workflows and
   schemas are exempt because they name those keys.
+- **vacuity**: every theorem the queue would compile is checked for hypotheses that
+  can never all hold (`False` derivable from them alone); such a theorem must be
+  acknowledged in the description (`Vacuous-Ack: <theorem>: <why>`). Runs before
+  the queue so that an author sees it.
 - **secrets**: TruffleHog for verified credentials, plus the same
   `detect-secrets` pattern scan as the pre-commit hook over every changed
   file and over the added lines of data files, so a token inside a record is
