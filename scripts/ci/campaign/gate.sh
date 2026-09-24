@@ -31,6 +31,10 @@ sc import-in-context fail data-rules/content-lint yes gate "import inside a reco
 sc initialize-in-context fail data-rules/content-lint yes gate "initialize in context." "mkdir -p $D; rec ini 'context=initialize foo : IO.Ref Nat ← IO.mkRef 0' > $D/ini.jsonl"
 sc axiom-in-context fail data-rules/content-lint yes gate "axiom in context." "mkdir -p $D; rec ax 'context=axiom myAx : False' > $D/ax.jsonl"
 sc io-process fail data-rules/content-lint yes gate "IO.Process in context." "mkdir -p $D; rec iop 'context=def p := IO.Process.run { cmd := \"ls\" }' > $D/iop.jsonl"
+# --- vacuity: hypotheses that can never all hold must be acknowledged in the description
+sc vacuous-unacked fail vacuity/vacuity yes gate "Theorem with n < 0 on a natural number, no acknowledgement." "mkdir -p $D; rec vac1 'statement=theorem Selftest.vac1 (n : Nat) (h : n < 0) : n = 1' 'proof=:= by omega' > $D/vac1.jsonl" 'n < 0'
+sc vacuous-acked pass - yes gate "The same theorem, acknowledged in the description (edited after opening)." "mkdir -p $D; rec vac2 'statement=theorem Selftest.vac2 (n : Nat) (h : n < 0) : n = 1' 'proof=:= by omega' > $D/vac2.jsonl" 'n < 0'
+gh pr edit "$(awk -F'\t' '$1=="vacuous-acked" {print $5; exit}' "$EXPECT")" -R "$REPO" --body "Vacuous-Ack: Selftest.vac2: selftest of the acknowledgement path; the impossible hypothesis is intentional." >/dev/null 2>&1
 # --- record validation coverage
 sc duplicate-in-pr fail data-rules/records yes gate "Two records with the same name." "mkdir -p $D; { rec dup; rec dup; } > $D/dup.jsonl"
 sc duplicate-vs-trusted fail data-rules/records yes gate "Name already trusted ($TRUSTED_NAME)." "mkdir -p $D; rec x name=$TRUSTED_NAME > $D/duptr.jsonl"

@@ -85,6 +85,22 @@ campaign against the sandbox before touching `scripts/ci/` or the workflows
 `README.md`, `CONTRIBUTING.md` and `docs/**` are `docs`; they may ride along
 with any other change.
 
+## A theorem whose assumptions can never all hold
+
+The gate builds the theorems a PR adds and tries to derive `False` from each
+one's hypotheses alone. If it can, the theorem is vacuously true: it proves
+nothing, and the PR fails with the clashing hypotheses named. Fix the statement
+and push, or, if the empty hypothesis set is intended, add one line per theorem
+to the PR description and the gate re-runs:
+
+```
+Vacuous-Ack: <theorem name>: <why it is intended>
+```
+
+The name as your record writes it is enough; the gate's message shows the full
+name with the namespaces the module opens around it, which works too.
+`tools/vacuity/` runs the same check on any built project.
+
 ## When a check fails
 
 Read the gate's comment on your PR: it names the check and the step, quotes
