@@ -634,3 +634,45 @@ class DeregisteredSource(unittest.TestCase):
         rc, out = r.gate("credits.py")
         self.assertEqual(rc, 1)
         self.assertIn("provenance", out)
+
+
+class OneDiffPerRun(unittest.TestCase):
+    """_git.file_diff splits one whole-range diff by file; each section must be exactly what the old
+    one-call-per-file diff printed, for every kind of change and awkward path."""
+
+    def test_sections_equal_per_file_diffs(self):
+        r = Repo()
+        r.git("checkout", "-q", "main")
+        r.write("docs/a b.md", "one\ntwo\n")
+        r.write("Tengoku/«1102.4662»/X.lean", "theorem x : True := trivial\n")
+        r.write('docs/quote"d.md', "q\n")
+        r.write("docs/old.md", "old\n")
+        r.write("docs/moved.md", "moved\ncontent\nhere\n")
+        r.write("scripts/tool.sh", "echo 1\n")
+        (r.dir / "docs/blob.bin").write_bytes(bytes(range(256)))
+        r.commit("base files")
+        r.git("checkout", "-q", "-B", "pr")
+        r.write("docs/a b.md", "one\n2\nthree\n")
+        r.write("Tengoku/«1102.4662»/X.lean", "/-\nChanged for Tengoku.\n-/\ntheorem x : True := trivial\n")
+        r.write('docs/quote"d.md', "q2\n")
+        r.git("rm", "-q", "docs/old.md")
+        r.git("mv", "docs/moved.md", "docs/renamed.md")
+        (r.dir / "scripts/tool.sh").chmod(0o755)
+        (r.dir / "docs/blob.bin").write_bytes(bytes(reversed(range(256))))
+        r.write("docs/new.md", "new\n")
+        r.commit("change everything")
+        code = (
+            "import sys, _git\n"
+            "paths = [p for _, p in _git.changed_files('main', 'pr')]\n"
+            "bad = [p for p in paths if _git.file_diff('main', 'pr', p) != _git.run('diff', '-U0', 'main...pr', '--', p)]\n"
+            "print(len(paths), 'paths;', 'mismatch:', bad)\n"
+            "sys.exit(1 if bad or len(paths) < 9 else 0)\n"
+        )
+        p = subprocess.run(
+            [sys.executable, "-c", code],
+            cwd=CI,
+            capture_output=True,
+            text=True,
+            env={**os.environ, "TENGOKU_CI_ROOT": str(r.dir), "PYTHONPATH": str(CI)},
+        )
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)

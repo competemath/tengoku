@@ -107,9 +107,43 @@ def changed_files(base: str, head: str) -> list[tuple[str, str]]:
     return out
 
 
+_DIFFS: dict[tuple[str, str], dict[str, str]] = {}
+
+
+def _section_path(section: list[str]) -> str | None:
+    """The path a `diff --git` section is about, or None when git quoted it."""
+    for line in section:
+        for prefix in ("+++ b/", "--- a/"):
+            if line.startswith(prefix):
+                p = line[len(prefix) :].rstrip("\n").removesuffix("\t")
+                return None if p.startswith('"') else p
+    head = section[0][len("diff --git ") :].rstrip("\n")  # binary or mode-only: "a/P b/P"
+    n = (len(head) - 5) // 2
+    return head[2 : 2 + n] if head == f"a/{head[2 : 2 + n]} b/{head[2 : 2 + n]}" else None
+
+
+def file_diff(base: str, head: str, path: str) -> str:
+    """What `git diff -U0 <range> -- <path>` prints. The range is diffed once per run and split by file:
+    one git call per file took minutes on a PR touching every seeded module (credits and sorry-advisory
+    ran out of their 5-minute budget). Rename detection is off, as a one-path diff has no partner for it
+    either; a path git had to quote is looked up with its own call."""
+    key = (base, head)
+    if key not in _DIFFS:
+        whole = run("-c", "core.quotePath=false", "diff", "-U0", "--no-renames", *_range(base, head))
+        sections: list[list[str]] = []
+        for line in whole.splitlines(keepends=True):
+            if line.startswith("diff --git "):
+                sections.append([line])
+            elif sections:
+                sections[-1].append(line)
+        _DIFFS[key] = {p: "".join(s) for s in sections if (p := _section_path(s)) is not None}
+    found = _DIFFS[key].get(path)
+    return found if found is not None else run("diff", "-U0", *_range(base, head), "--", path)
+
+
 def added_lines(base: str, head: str, path: str) -> list[tuple[int, str]]:
     """(new line number, text) for lines added in the diff of one file."""
-    diff = run("diff", "-U0", *_range(base, head), "--", path)
+    diff = file_diff(base, head, path)
     out, new_no = [], 0
     for line in diff.splitlines():
         if line.startswith("@@"):
@@ -126,7 +160,7 @@ def added_lines(base: str, head: str, path: str) -> list[tuple[int, str]]:
 
 
 def removed_lines(base: str, head: str, path: str) -> list[tuple[int, str]]:
-    diff = run("diff", "-U0", *_range(base, head), "--", path)
+    diff = file_diff(base, head, path)
     out, old_no = [], 0
     for line in diff.splitlines():
         if line.startswith("@@"):
