@@ -21,6 +21,8 @@ import shutil
 import sys
 from pathlib import Path
 
+from notices import ROOT_CHANGE, describe, notice, stamp
+
 # package name -> (source root dir inside the package, module root, mapped module root)
 # Topic-based placement: Mathlib's own layout becomes the tree's layout directly;
 # its dependency packages go under topics, never under an origin name.
@@ -137,8 +139,15 @@ def main():
     inst_suffix = re.compile(r"\b(inst[A-Za-z0-9_]*?)_mathlib\b")
     for target, (pkg, f) in sorted(planned.items()):
         target.parent.mkdir(parents=True, exist_ok=True)
-        text = f.read_text(encoding="utf-8")
-        text = inst_suffix.sub(r"\1_tengoku", rewrite_imports(text, roots))
+        original = f.read_text(encoding="utf-8")
+        rewritten = rewrite_imports(original, roots)
+        text = inst_suffix.sub(r"\1_tengoku", rewritten)
+        # Apache-2.0 4(b): a changed file says so (scripts/notices.py). The root gets its notice below,
+        # once the other packages' imports are in it.
+        what = describe(rewritten != original, text != rewritten)
+        if what and target != out / "Tengoku.lean":
+            m = manifest.get(pkg, {})
+            text = stamp(text, notice(pkg, m.get("url", "?"), m.get("rev", "?"), what))
         target.write_text(text, encoding="utf-8")
         n += 1
     for pkg, assets in ASSETS.items():
@@ -168,7 +177,10 @@ def main():
     # after that is a parse error, so the extra roots go after the LAST import.
     last_import = max((i for i, l in enumerate(lines) if IMPORT_RE.match(l)), default=len(lines) - 1)
     lines = lines[: last_import + 1] + extra + lines[last_import + 1 :]
-    root.write_text("\n".join(header + lines) + "\n", encoding="utf-8")
+    m = manifest.get("mathlib", {})
+    root.write_text(
+        stamp("\n".join(header + lines) + "\n", notice("mathlib", m.get("url", "?"), m.get("rev", "?"), ROOT_CHANGE)), encoding="utf-8"
+    )
 
     # Lake project: a single root, no dependencies. Options: the toolchain
     # defaults plus the two Mathlib settings that change what ELABORATES
