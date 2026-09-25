@@ -72,7 +72,6 @@
     "https://github.com/emilyriehl/infinity-cosmos",
     "https://github.com/WuProver/lean_characteristic_set",
     "https://github.com/a2435191/lean-logic-formalization",
-    "https://github.com/T-Brick/lean-wasm",
     "https://github.com/vltanh/lean4-analysis-tao",
     "https://github.com/CBirkbeck/LeanBridge",
     "https://github.com/YaelDillies/LeanCamCombi",
@@ -96,7 +95,6 @@
     "https://github.com/urikol/QuantumOptimization",
     "https://github.com/lecopivo/SciLean",
     "https://github.com/teorth/sendov",
-    "https://github.com/PnVDiscord/software-foundations-lean",
     "https://github.com/leanprover-community/sphere-eversion",
     "https://github.com/math-inc/Sphere-Packing-Lean",
     "https://github.com/Lean-MoDS/StatsMLlib",
@@ -116,7 +114,7 @@
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
     "https://github.com/teorth/equational_theories": "Apache-2.0",
-    "https://competemath.com/practice/problems": "CompeteMath contributor terms",
+    "https://competemath.com/practice/problems": "Apache-2.0",
     "https://github.com/fpvandoorn/Carleson": "Apache-2.0",
     "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd": "Apache-2.0",
     "https://github.com/teorth/pfr": "Apache-2.0",
@@ -185,7 +183,6 @@
     "https://github.com/emilyriehl/infinity-cosmos": "Apache-2.0",
     "https://github.com/WuProver/lean_characteristic_set": "Apache-2.0",
     "https://github.com/a2435191/lean-logic-formalization": "MIT",
-    "https://github.com/T-Brick/lean-wasm": "GPL-3.0",
     "https://github.com/vltanh/lean4-analysis-tao": "MIT",
     "https://github.com/CBirkbeck/LeanBridge": "Apache-2.0",
     "https://github.com/YaelDillies/LeanCamCombi": "Apache-2.0",
@@ -209,7 +206,6 @@
     "https://github.com/urikol/QuantumOptimization": "Apache-2.0",
     "https://github.com/lecopivo/SciLean": "Apache-2.0",
     "https://github.com/teorth/sendov": "Apache-2.0",
-    "https://github.com/PnVDiscord/software-foundations-lean": "AGPL-3.0",
     "https://github.com/leanprover-community/sphere-eversion": "Apache-2.0",
     "https://github.com/math-inc/Sphere-Packing-Lean": "Apache-2.0",
     "https://github.com/Lean-MoDS/StatsMLlib": "Apache-2.0",
@@ -733,13 +729,6 @@
         "LogicFormalization"
       ]
     },
-    "lean-wasm": {
-      "repo": "https://github.com/T-Brick/lean-wasm",
-      "commit": "43b051f30b920e4d1253d83ae08b3dc83b4d6d88",
-      "roots": [
-        "Wasm"
-      ]
-    },
     "lean4-analysis-tao": {
       "repo": "https://github.com/vltanh/lean4-analysis-tao",
       "commit": "bac39612b3745469e620212947a573eb91154166",
@@ -907,13 +896,6 @@
       "commit": "1ddea92d89f951a0a7cbbffa6c267cf7e6640b1d",
       "roots": [
         "Sendov"
-      ]
-    },
-    "software-foundations-lean": {
-      "repo": "https://github.com/PnVDiscord/software-foundations-lean",
-      "commit": "bc5e4983350b7d15340f357a92764f00936a7dcf",
-      "roots": [
-        "SoftwareFoundations"
       ]
     },
     "sphere-eversion": {
@@ -1102,7 +1084,6 @@
     "https://github.com/emilyriehl/infinity-cosmos",
     "https://github.com/WuProver/lean_characteristic_set",
     "https://github.com/a2435191/lean-logic-formalization",
-    "https://github.com/T-Brick/lean-wasm",
     "https://github.com/vltanh/lean4-analysis-tao",
     "https://github.com/CBirkbeck/LeanBridge",
     "https://github.com/YaelDillies/LeanCamCombi",
@@ -1126,7 +1107,6 @@
     "https://github.com/urikol/QuantumOptimization",
     "https://github.com/lecopivo/SciLean",
     "https://github.com/teorth/sendov",
-    "https://github.com/PnVDiscord/software-foundations-lean",
     "https://github.com/leanprover-community/sphere-eversion",
     "https://github.com/math-inc/Sphere-Packing-Lean",
     "https://github.com/Lean-MoDS/StatsMLlib",
