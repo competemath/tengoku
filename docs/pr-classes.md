@@ -22,9 +22,10 @@ depth. `dir/**` matches everything under `dir`.
 | 6 | tooling | every other path |
 
 The libraries *L* are the stems of the top-level files `data/trusted/*.jsonl`, `data/staging/*.jsonl` and
-`data/tentative/*.jsonl`, in PascalCase: `equational-theories.jsonl` gives `EquationalTheories`. Rule 1
-is checked against those names only, so every seeded module (`Tengoku/Algebra/...`) falls to rule 4 and is
-tooling.
+`data/tentative/*.jsonl`, in PascalCase: `equational-theories.jsonl` gives `EquationalTheories`. Library
+folders (`data/<tier>/<library>/`) are not counted. Promotion always writes `data/trusted/<library>.jsonl`,
+so every library with generated modules has a top-level file. Rule 1 is checked against those names only, so
+every seeded module (`Tengoku/Algebra/...`) falls to rule 4 and is tooling.
 
 Examples, computed with `tier_of`:
 
@@ -97,6 +98,14 @@ tentative or staging file whose records all come from a source no longer on the 
 - `TENGOKU_BOT` is `mikael-bashir`, the maintainer's own account. Any PR from that account touching only
   derived, content or tombstone paths, with at least one derived or tombstone path, is therefore a
   promotion.
-- `.github/CODEOWNERS` assigns `@mikael-bashir` to the tooling paths of rule 4 and to `data/trusted/`.
+- `.github/CODEOWNERS` assigns `@mikael-bashir` to the tooling paths of rule 4 and to `data/trusted/`, with one
+  exception. CODEOWNERS patterns follow gitignore rules, where `*` does not cross `/`, so `/Tengoku/*.lean`
+  covers only files directly under `Tengoku/`. The seeded modules in its subfolders have no code owner.
 - A library key whose PascalCase form equals a seeded top-level directory would make that directory
   derived; `topology` would claim `Tengoku/Topology/`. Do not register such keys.
+- A library too big for one file is sharded as a folder: `data/<tier>/<library>/<file>.jsonl`. The validator,
+  generator and promoter all read that layout. 58 flat numbered files predate the gates
+  (`flt-anthropic-NNN`, `leanbridge-NNN`, `prove2me-NNN` in `data/tentative/`). Their records name the library
+  without the number, so validation rejects any record appended to them, and they add names such as
+  `FltAnthropic001` to rule 1. The validator's size message suggests `<library>.NN.jsonl`, which its own
+  library check would also reject.
