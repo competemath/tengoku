@@ -31,6 +31,9 @@ library's licence is recorded in `schemas/sources.json` (`licences`). A record, 
 
 The records in `data/trusted/mathlib-*.jsonl` describe the seeded Mathlib and are Apache-2.0 like it.
 
+The records from [competemath.com](https://competemath.com/practice/problems) are Apache-2.0: their author
+released them under it, and the site's terms release problems and proofs under it when posted.
+
 94 registered libraries are Apache-2.0, the same licence as this repository; their copyright
 notices are those of the upstream repositories linked in `schemas/sources.json`.
 
@@ -40,7 +43,6 @@ The libraries under other licences:
 |---|---|---|---|---|
 | BSD-3-Clause | [keilambda/ttfpi](https://github.com/keilambda/ttfpi) | `ttfpi` | Copyright (c) 2024, thelissimus | `data/tentative/ttfpi.jsonl` |
 | BSD-3-Clause | [Verified-zkEVM/zkLean](https://github.com/Verified-zkEVM/zkLean) | `zklean` | Copyright (c) 2026, Galois, Inc. | `data/tentative/zklean.jsonl` |
-| CompeteMath contributor terms | [competemath.com/practice/problems](https://competemath.com/practice/problems) | (not a corpus) | see the source | none yet |
 | MIT | [a2435191/lean-logic-formalization](https://github.com/a2435191/lean-logic-formalization) | `lean-logic-formalization` | Copyright (c) 2025 William Bradley | `data/tentative/lean-logic-formalization.jsonl` |
 | MIT | [loganrjmurphy/LeanEuclid](https://github.com/loganrjmurphy/LeanEuclid) | `leaneuclid` | Copyright (c) 2024 Logan Murphy | `data/tentative/leaneuclid.jsonl` |
 | MIT | [project-numina/LeanGeo](https://github.com/project-numina/LeanGeo) | `leangeo` | Copyright (c) 2024 Logan Murphy | `data/tentative/leangeo.jsonl` |
