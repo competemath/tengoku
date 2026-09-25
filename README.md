@@ -3,9 +3,15 @@
 <p align="center"><em>An AI-first formal mathematics library for Lean 4.</em></p>
 
 ## About
-Significant formal math projects are fragmented across hundreds of different sources. We pull them
-into one unified, verified tree, under the same toolchain. Tengoku aims to provide continuously improving,
+Formal math projects are fragmented across hundreds of different sources. We pull them
+into one unified, verified tree, under up-to-date toolchains tracked by Tengoku. Our aim is to provide continuously improving,
 reliable context for automated theorem provers.
+
+Tengoku is in its early stages. Now, the focus is translating as much current open-source work as possible, to 
+the same toolchain Tengoku tracks. We estimate this will seed the library with ~600,000 theorems.
+
+In the future, Tengoku will focus on growing high-quality theorem content via automated audits, thorough automated testing
+of PRs, and contributions from the community, with and without AI-assistance.
 
 ## Developers
 Tengoku hosts **Leak I**, a free MCP service that lets an LLM or agent query
