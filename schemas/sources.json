@@ -114,7 +114,7 @@
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
     "https://github.com/teorth/equational_theories": "Apache-2.0",
-    "https://competemath.com/practice/problems": "CompeteMath contributor terms",
+    "https://competemath.com/practice/problems": "Apache-2.0",
     "https://github.com/fpvandoorn/Carleson": "Apache-2.0",
     "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd": "Apache-2.0",
     "https://github.com/teorth/pfr": "Apache-2.0",
