@@ -23,8 +23,8 @@ public import Tengoku.Logic.Basic
 LINE = notices.notice(
     "mathlib",
     "https://github.com/leanprover-community/mathlib4.git",
-    "85e3a25e006c35636f0e53b0e9296caca2685bc0",
-    "import paths rewritten",  # pragma: allowlist secret
+    "85e3a25e006c35636f0e53b0e9296caca2685bc0",  # pragma: allowlist secret
+    "import paths rewritten",
 )
 
 
@@ -152,8 +152,8 @@ class SeedStamps(unittest.TestCase):
             )
             write(pkgs / pkg, f"{srcdir}/B.lean", "/-\nCopyright (c) 2024 Someone.\n-/\nmodule\n\nimport Init\n")
             manifest["packages"].append(
-                {"name": pkg, "url": f"https://github.com/example/{pkg}", "rev": "0123456789abcdef0123"}
-            )  # pragma: allowlist secret
+                {"name": pkg, "url": f"https://github.com/example/{pkg}", "rev": "0123456789abcdef0123"}  # pragma: allowlist secret
+            )
         write(tmp / "proj", "lake-manifest.json", json.dumps(manifest))
         write(tmp / "proj", "lean-toolchain", "leanprover/lean4:v4.34.0-rc2\n")
         out = tmp / "tree"
