@@ -67,7 +67,8 @@ As Apache-2.0 section 4(b) asks, the changes this repository makes to what it re
   instance names Lean derives from the module root change their suffix from `_mathlib` to `_tengoku`;
   the root module `Tengoku.lean` gains a header comment and imports of the other seeded roots;
   ProofWidgets' demo modules are left out; `lakefile.toml` sets `maxSynthPendingDepth = 3`, as Mathlib's
-  own lakefile does. Nothing else in a seeded file is edited.
+  own lakefile does. Every seeded file that was changed says so in a line at its top, naming the package
+  and commit it came from (`scripts/notices.py`); nothing else in a seeded file is edited.
 - **Records** (`data/`): a statement and its proof are copied from the source file, with the context
   above it. Translated records are re-elaborated on this tree's toolchain, and an agent may rewrite
   the proof, or restate definitions without the source's notations, so that it compiles there.
