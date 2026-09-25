@@ -38,11 +38,9 @@ The libraries under other licences:
 
 | Licence | Library | Registry keys | Upstream copyright | Files |
 |---|---|---|---|---|
-| AGPL-3.0 | [PnVDiscord/software-foundations-lean](https://github.com/PnVDiscord/software-foundations-lean) | `software-foundations-lean` | see [licence](https://github.com/PnVDiscord/software-foundations-lean/blob/main/LICENSE) | `data/tentative/software-foundations-lean.jsonl` |
 | BSD-3-Clause | [keilambda/ttfpi](https://github.com/keilambda/ttfpi) | `ttfpi` | Copyright (c) 2024, thelissimus | `data/tentative/ttfpi.jsonl` |
 | BSD-3-Clause | [Verified-zkEVM/zkLean](https://github.com/Verified-zkEVM/zkLean) | `zklean` | Copyright (c) 2026, Galois, Inc. | `data/tentative/zklean.jsonl` |
 | CompeteMath contributor terms | [competemath.com/practice/problems](https://competemath.com/practice/problems) | (not a corpus) | see the source | none yet |
-| GPL-3.0 | [T-Brick/lean-wasm](https://github.com/T-Brick/lean-wasm) | `lean-wasm` | see [licence](https://github.com/T-Brick/lean-wasm/blob/main/LICENSE) | `data/tentative/lean-wasm.jsonl` |
 | MIT | [a2435191/lean-logic-formalization](https://github.com/a2435191/lean-logic-formalization) | `lean-logic-formalization` | Copyright (c) 2025 William Bradley | `data/tentative/lean-logic-formalization.jsonl` |
 | MIT | [loganrjmurphy/LeanEuclid](https://github.com/loganrjmurphy/LeanEuclid) | `leaneuclid` | Copyright (c) 2024 Logan Murphy | `data/tentative/leaneuclid.jsonl` |
 | MIT | [project-numina/LeanGeo](https://github.com/project-numina/LeanGeo) | `leangeo` | Copyright (c) 2024 Logan Murphy | `data/tentative/leangeo.jsonl` |
@@ -54,15 +52,38 @@ The libraries under other licences:
 | MIT | [Verified-zkEVM/evm-asm](https://github.com/Verified-zkEVM/evm-asm) | `evm-asm` | Copyright (c) 2026 ZkSecurity | `data/tentative/evm-asm.jsonl` |
 | MIT | [vltanh/lean4-analysis-tao](https://github.com/vltanh/lean4-analysis-tao) | `lean4-analysis-tao` | Copyright (c) 2025 The-Anh Vu-Le | `data/tentative/lean4-analysis-tao.jsonl` |
 
-## 3. Copyleft material
+Only permissively licensed libraries are registered. Copyleft material (GPL, AGPL, LGPL and the like)
+cannot be compiled into one Apache-2.0 tree with everything else, so a source under such a licence is
+not accepted.
 
-Records from these libraries, and anything generated from them, are distributed under their upstream
-copyleft licence, **not** under Apache-2.0:
+## 3. Changes made to upstream material
 
-- `software-foundations-lean`: [PnVDiscord/software-foundations-lean](https://github.com/PnVDiscord/software-foundations-lean), AGPL-3.0
+As Apache-2.0 section 4(b) asks, the changes this repository makes to what it redistributes:
+
+- **Seeded packages** (`scripts/seed.py`): files are moved to topic paths under `Tengoku/`; `import`
+  lines, including module-system forms such as `public import`, are rewritten to the new module names;
+  instance names Lean derives from the module root change their suffix from `_mathlib` to `_tengoku`;
+  the root module `Tengoku.lean` gains a header comment and imports of the other seeded roots;
+  ProofWidgets' demo modules are left out; `lakefile.toml` sets `maxSynthPendingDepth = 3`, as Mathlib's
+  own lakefile does. Nothing else in a seeded file is edited.
+- **Records** (`data/`): a statement and its proof are copied from the source file, with the context
+  above it. Translated records are re-elaborated on this tree's toolchain, and an agent may rewrite
+  the proof, or restate definitions without the source's notations, so that it compiles there.
+- **Generated modules** (`Tengoku/<Library>/`, `scripts/generate.py`): records are wrapped in the
+  library's namespace, their imports mapped onto the tree, corpus-only attributes stripped, and
+  definitions shared by several records emitted once.
+
+## 4. Removed sources
+
+Earlier commits of this repository contained records from two copyleft libraries, removed because
+their licences cannot be combined with the Apache-2.0 tree:
+
 - `lean-wasm`: [T-Brick/lean-wasm](https://github.com/T-Brick/lean-wasm), GPL-3.0
+- `software-foundations-lean`: [PnVDiscord/software-foundations-lean](https://github.com/PnVDiscord/software-foundations-lean), AGPL-3.0
 
-## 4. Notices reproduced as their licences require
+Those copies remain in the git history under their upstream licences and are not covered by Apache-2.0.
+
+## 5. Notices reproduced as their licences require
 
 ### MIT
 
@@ -110,7 +131,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 POSSIBILITY OF SUCH DAMAGE.
 ```
 
-The GPL-3.0 and AGPL-3.0 texts are at <https://www.gnu.org/licenses/gpl-3.0.txt> and
-<https://www.gnu.org/licenses/agpl-3.0.txt>.
+The GPL-3.0 and AGPL-3.0 texts, for the history in section 4, are at <https://www.gnu.org/licenses/gpl-3.0.txt>
+and <https://www.gnu.org/licenses/agpl-3.0.txt>.
 
 When a library is registered under a licence not listed here, add it to this file in the same pull request.
