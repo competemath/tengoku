@@ -21,7 +21,10 @@ public import Tengoku.Logic.Basic
 /-! # Groups -/
 """
 LINE = notices.notice(
-    "mathlib", "https://github.com/leanprover-community/mathlib4.git", "85e3a25e006c35636f0e53b0e9296caca2685bc0", "import paths rewritten"
+    "mathlib",
+    "https://github.com/leanprover-community/mathlib4.git",
+    "85e3a25e006c35636f0e53b0e9296caca2685bc0",
+    "import paths rewritten",  # pragma: allowlist secret
 )
 
 
@@ -90,8 +93,8 @@ class Tree(unittest.TestCase):
             r,
             "SEED.md",
             "| package | origin | rev | mapped to |\n|---|---|---|---|\n"
-            "| mathlib | https://github.com/leanprover-community/mathlib4.git | 85e3a25e006c35636f0e53b0e9296caca2685bc0 | `Tengoku` |\n"
-            "| batteries | https://github.com/leanprover-community/batteries | d54dddc581e08be364c278052863524bff7a99a9 | `Tengoku.Std` |\n",
+            "| mathlib | https://github.com/leanprover-community/mathlib4.git | 85e3a25e006c35636f0e53b0e9296caca2685bc0 | `Tengoku` |\n"  # pragma: allowlist secret
+            "| batteries | https://github.com/leanprover-community/batteries | d54dddc581e08be364c278052863524bff7a99a9 | `Tengoku.Std` |\n",  # pragma: allowlist secret
         )
         write(r, "data/trusted/equational-theories.jsonl", "{}\n")
         self.root_file = write(
@@ -148,7 +151,9 @@ class SeedStamps(unittest.TestCase):
                 f"/-\nCopyright (c) 2024 Someone.\nReleased under Apache 2.0 license.\n-/\nmodule\n\nimport {root_mod}.B\n",
             )
             write(pkgs / pkg, f"{srcdir}/B.lean", "/-\nCopyright (c) 2024 Someone.\n-/\nmodule\n\nimport Init\n")
-            manifest["packages"].append({"name": pkg, "url": f"https://github.com/example/{pkg}", "rev": "0123456789abcdef0123"})
+            manifest["packages"].append(
+                {"name": pkg, "url": f"https://github.com/example/{pkg}", "rev": "0123456789abcdef0123"}
+            )  # pragma: allowlist secret
         write(tmp / "proj", "lake-manifest.json", json.dumps(manifest))
         write(tmp / "proj", "lean-toolchain", "leanprover/lean4:v4.34.0-rc2\n")
         out = tmp / "tree"
