@@ -13,6 +13,7 @@ name: pr-gate
 # Runs on the PR and again on the merge group: a required check must report on both.
 on:
   pull_request_target:
+    branches: [main]   # a PR into any other branch is not judged here and never reaches main
     types: [opened, synchronize, reopened, edited]
   # TRANSITIONAL: the PR that introduces pull_request_target is gated by its own pull_request run (main's
   # copy did not listen to pull_request_target yet). Removed by the next PR, which main's copy then gates.
