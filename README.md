@@ -3,7 +3,7 @@
 <p align="center"><em>An AI-first formal mathematics library for Lean 4.</em></p>
 
 ## About
-Significant formal math projects are fragmented across hundreds of different sources. We pull them
+Formal math projects are fragmented across hundreds of different sources. We pull them
 into one unified, verified tree, under the same toolchain. Tengoku aims to provide continuously improving,
 reliable context for automated theorem provers.
 
