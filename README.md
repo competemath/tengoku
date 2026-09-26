@@ -46,5 +46,8 @@ Anyone can contribute, by hand or with AI. Before you submit:
   `trusted` only once Leak's own toolchain has compiled them from scratch.
 
 ## Full documentation
+
+Security issues: see [SECURITY.md](SECURITY.md) (private reporting, never a public issue).
+
 This is the quick start. The full manual — merge queue, tiers, toolchain, every
 seeded library — is at [competemath.com/about/tengoku](https://competemath.com/about/tengoku).
