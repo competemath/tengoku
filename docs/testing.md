@@ -16,6 +16,7 @@ catches something the others cannot.
 | Pre-commit hooks | `.pre-commit-config.yaml` | your machine, CI (`lint-python`) | lint, formatting, secrets, banked content — the same list in both places | seconds |
 | The PR gate | `.github/workflows/pr-gate.yml` | every pull request | wrong shape of change: two purposes, edits to append-only data, forbidden constructs, missing credits, secrets, missing sign-off, unmet dependencies | 2–3 min |
 | The merge queue | `.github/workflows/queue-gate.yml` | every merge group | wrong mathematics: a proof that does not compile, a `sorry`, a non-standard axiom, a hand-edited generated file | 3–7 min |
+| The independent check | `.github/workflows/independent-check.yml` | nightly, and on demand for any commit of `main` | a bug in Lean's own kernel, or a record that slipped something past both gates: every declaration of the tree type-checked again by nanoda, every constant's axioms recomputed from the export | ~45 min |
 | The scenario campaign | `scripts/ci/campaign/` | a sandbox copy of the repo, on demand | a check that passes when it should fail — the tests of the tests | ~3 h for everything |
 
 The nightly cache build (`.github/workflows/build.yml`) is not a test but the
@@ -133,6 +134,23 @@ library as main will have it (from the nightly cache plus the newest top-up, so 
 own changes compile) and publishes the compiled difference before the merge is allowed. A failed
 publish ejects the PR with a comment that says it was not the author's fault. The full story,
 including how the services follow it and what was tested, is in [top-ups](topups.md).
+
+### The independent check
+
+Nightly, and on demand for any commit of `main` (`gh workflow run independent-check.yml -f commit=<sha>`):
+lean4export writes every declaration of the compiled tree (Lean's core, the seed, every library), about
+110 million lines, and two programs that share no code with Lean read it.
+
+- [nanoda](https://github.com/ammkrn/nanoda_lib), an independent type checker written in Rust, checks every
+  declaration again (745,847 on the tree today, about 9 minutes) in a sandbox without network. It admits the
+  seven axioms Lean's prelude declares in every environment; any other axiom is a hard error.
+- `scripts/ci/axiom_scan.py` computes, from the same export, the axioms every constant rests on. It fails if
+  anything rests on `sorryAx`, if a trusted record rests on anything but `propext`, `Classical.choice` and
+  `Quot.sound`, if a record of a library the tree compiles is missing from the export, or if the export
+  declares an axiom outside the prelude. The queue asks Lean the same question with `collectAxioms`; this
+  answer comes from the exported terms alone.
+
+A kernel bug, or a record that fooled the gate and the queue, would have to fool both.
 
 ## 3. What each check does and does not catch
 

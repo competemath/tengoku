@@ -636,6 +636,161 @@ class DeregisteredSource(unittest.TestCase):
         self.assertIn("provenance", out)
 
 
+class Export:
+    """A tiny lean4export file, written line by line in the exporter's order."""
+
+    def __init__(self) -> None:
+        meta = {
+            "exporter": {"name": "lean4export", "version": "3.1.0"},
+            "format": {"version": "3.1.0"},
+            "lean": {"githash": "x", "version": "4.34.0-rc2"},
+        }
+        self.lines = [json.dumps({"meta": meta})]
+        self.names = {"": 0}
+        self.terms = 0
+
+    def n(self, s: str) -> int:
+        if s not in self.names:
+            pre, _, last = s.rpartition(".")
+            p = self.n(pre) if pre else 0
+            self.names[s] = len(self.names)
+            self.lines.append(json.dumps({"in": self.names[s], "str": {"pre": p, "str": last}}))
+        return self.names[s]
+
+    def e(self, kind: str, v) -> int:
+        self.lines.append(json.dumps({"ie": self.terms, kind: v}))
+        self.terms += 1
+        return self.terms - 1
+
+    def const(self, s: str) -> int:
+        return self.e("const", {"name": self.n(s), "us": []})
+
+    def app(self, f: int, a: int) -> int:
+        return self.e("app", {"fn": f, "arg": a})
+
+    def axiom(self, s: str) -> None:
+        ty = self.e("sort", 0)
+        self.lines.append(json.dumps({"axiom": {"name": self.n(s), "levelParams": [], "type": ty, "isUnsafe": False}}))
+
+    def decl(self, s: str, ty: int, val: int, kind: str = "thm") -> None:
+        self.lines.append(json.dumps({kind: {"name": self.n(s), "levelParams": [], "type": ty, "value": val, "all": [self.n(s)]}}))
+
+    def inductive(self, s: str, ctor: str, ty: int, cty: int) -> None:
+        types = [
+            {"name": self.n(s), "levelParams": [], "type": ty, "numParams": 0, "numIndices": 0, "all": [self.n(s)], "ctors": [self.n(ctor)]}
+        ]
+        ctors = [{"name": self.n(ctor), "levelParams": [], "type": cty, "induct": self.n(s), "cidx": 0, "numParams": 0, "numFields": 0}]
+        self.lines.append(json.dumps({"inductive": {"types": types, "ctors": ctors, "recs": []}}))
+
+
+class AxiomScan(unittest.TestCase):
+    """scripts/ci/axiom_scan.py: every constant's axioms, from the export alone."""
+
+    def scan(self, x: Export, records: list[str] | None = None, tombstones: list[str] = (), index: list[str] = ()):
+        """records: the trusted file of a compiled library (Tengoku/Lib.lean exists); index: a library without modules."""
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "tree.ndjson").write_text("\n".join(x.lines) + "\n")
+            args = [sys.executable, str(CI / "axiom_scan.py"), "tree.ndjson", "--permitted", "permitted.json"]
+            if records is not None:
+                (Path(d) / "data/trusted").mkdir(parents=True)
+                (Path(d) / "Tengoku").mkdir()
+                (Path(d) / "Tengoku/Lib.lean").write_text("")
+                lines = [json.dumps({"name": r}) for r in records] + [json.dumps({"tombstone": r}) for r in tombstones]
+                (Path(d) / "data/trusted/lib.jsonl").write_text("\n".join(lines) + "\n")
+                (Path(d) / "data/trusted/mathlib-index.jsonl").write_text("".join(json.dumps({"name": r}) + "\n" for r in index))
+                args += ["--records", "data/trusted"]
+            r = subprocess.run(args, cwd=d, capture_output=True, text=True)
+            permitted = json.loads((Path(d) / "permitted.json").read_text()) if (Path(d) / "permitted.json").exists() else None
+        return r.returncode, r.stdout + r.stderr, permitted
+
+    def standard(self) -> Export:
+        x = Export()
+        for a in ("propext", "Classical.choice", "Quot.sound"):
+            x.axiom(a)
+        return x
+
+    def test_standard_axioms_pass_and_are_permitted(self):
+        x = self.standard()
+        p = x.const("propext")
+        x.decl("A", p, x.app(p, p))
+        x.decl("NS.B", p, x.const("A"))  # a record named B, declared inside a namespace
+        code, out, permitted = self.scan(x, ["A", "B", "Gone"], tombstones=["Gone"])
+        self.assertEqual(code, 0, out)
+        self.assertEqual(permitted, ["propext", "Classical.choice", "Quot.sound"])
+        self.assertIn("2 trusted records, 2 in the export, 2 of them rest only on the standard axioms", out)
+
+    def test_sorry_anywhere_fails_even_through_other_constants(self):
+        x = self.standard()
+        x.axiom("sorryAx")
+        s = x.const("sorryAx")
+        x.decl("f", s, s, kind="def")
+        x.decl("B", x.const("f"), x.const("f"))
+        code, out, _ = self.scan(x)
+        self.assertEqual(code, 1, out)
+        self.assertIn("2 constants rest on sorryAx", out)
+        self.assertIn("B", out)
+
+    def test_native_axioms_fail_a_record_but_are_only_reported_elsewhere(self):
+        x = self.standard()
+        x.axiom("Lean.ofReduceBool")
+        r = x.const("Lean.ofReduceBool")
+        x.decl("Core.fast", r, r)
+        x.decl("Rec", r, x.const("Core.fast"))
+        code, out, permitted = self.scan(x, [])
+        self.assertEqual(code, 0, out)  # no record rests on it
+        self.assertIn("Lean.ofReduceBool: 2 constants rest on it", out)
+        self.assertIn("Lean.ofReduceBool", permitted)
+        code, out, _ = self.scan(x, ["Rec"])
+        self.assertEqual(code, 1, out)
+        self.assertIn("Rec rests on ['Lean.ofReduceBool']", out)
+
+    def test_an_axiom_outside_the_prelude_fails(self):
+        x = self.standard()
+        x.axiom("Evil.ax")
+        code, out, _ = self.scan(x)
+        self.assertEqual(code, 1, out)
+        self.assertIn("declares the axiom Evil.ax", out)
+
+    def test_an_inductive_mentioning_itself_passes_its_axioms_on(self):
+        # The exporter writes `const T` (inside T's own constructor type) before T's line, and every later
+        # term that mentions T reuses that same term: its axioms must be T's, not nothing.
+        x = self.standard()
+        x.axiom("Lean.trustCompiler")
+        g = x.const("Lean.trustCompiler")
+        x.decl("g", g, g, kind="def")
+        t = x.const("T")
+        x.inductive("T", "T.mk", x.e("sort", 0), x.app(t, x.const("g")))
+        x.decl("UsesT", x.app(t, t), t)
+        code, out, _ = self.scan(x, ["UsesT"])
+        self.assertEqual(code, 1, out)
+        self.assertIn("UsesT rests on ['Lean.trustCompiler']", out)
+
+    def test_a_constant_never_declared_or_a_missing_record_fails(self):
+        x = self.standard()
+        x.decl("A", x.const("Nowhere"), x.const("propext"))
+        code, out, _ = self.scan(x)
+        self.assertEqual(code, 1, out)
+        self.assertIn("mentioned and never declared: ['Nowhere']", out)
+        x = self.standard()
+        x.decl("A", x.const("propext"), x.const("propext"))
+        code, out, _ = self.scan(x, ["A", "NotCompiled"], index=["A", "Archive.thing"])
+        self.assertEqual(code, 1, out)
+        self.assertIn("1 trusted records of compiled libraries are not in the export: ['NotCompiled']", out)
+        code, out, _ = self.scan(x, ["A"], index=["Archive.thing", "Other.thing"])
+        self.assertEqual(code, 0, out)  # a library without modules: counted, not failed
+        self.assertIn("from libraries the tree does not compile: mathlib-index 2", out)
+        code, out, _ = self.scan(x, ["A", "Both"], index=["Both"])  # listed by a compiled library too: it must be there
+        self.assertEqual(code, 1, out)
+        self.assertIn("are not in the export: ['Both']", out)
+
+    def test_terms_out_of_order_stop_the_scan(self):
+        x = self.standard()
+        x.lines.append(json.dumps({"ie": 99, "sort": 0}))
+        code, out, _ = self.scan(x)
+        self.assertNotEqual(code, 0)
+        self.assertIn("out of order", out)
+
+
 class OneDiffPerRun(unittest.TestCase):
     """_git.file_diff splits one whole-range diff by file; each section must be exactly what the old
     one-call-per-file diff printed, for every kind of change and awkward path."""
