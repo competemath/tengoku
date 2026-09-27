@@ -229,8 +229,9 @@ tell you a check has gone silent.
 
 ## 8. Enforcement
 
-The gate and the queue run on every PR today. They become *required* — and
-direct pushes to `main` stop — once the banking pipeline (Emissary-Archangel's
-staging hook and the promote loop) opens pull requests instead of pushing,
-under a bot identity named in the `TENGOKU_BOT` variable. Until then a
-failed check on a PR is advice, not a wall.
+`pr-gate` and `queue-gate` are required on `main`, and nothing is pushed to it directly. The banking pipeline
+opens pull requests like everyone else: Emissary-Archangel's cloud translation opens the content PRs (new staging
+records), and `.github/workflows/promote.yml` opens the promotion PRs, hourly, as the bot named in the `TENGOKU_BOT`
+variable (its token is the `TENGOKU_BOT_TOKEN` secret; only the step that pushes and opens the PR sees it). Each
+promotion run builds up to `max_files` source files' modules on the attested cache, keeps staging changes to pure
+removals, and waits for its PR before the next batch. `scripts/promote-loop.sh` is the same thing for a laptop.
