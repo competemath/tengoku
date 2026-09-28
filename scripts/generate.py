@@ -275,9 +275,14 @@ def deps_declared(deps_dir: Path) -> tuple[set[str], set[str]]:
     return names, lines
 
 
-def top_level_chunks(text: str) -> list[list[str]]:
+CONTINUATION_RE = re.compile(r"^(\||deriving\b|with\b|where\b|termination_by\b|decreasing_by\b|\)|\]|\})")
+
+
+def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
     """Split a file prefix at column-0 lines; attribute/doc-comment lead-ins and
-    the inside of block comments stay with the declaration they belong to."""
+    the inside of block comments stay with the declaration they belong to. With
+    `continuations` (the verified generator), a column-0 `| constructor`,
+    `deriving …`, `termination_by …` (and the like) stays with its declaration too."""
     out: list[list[str]] = []
     cur: list[str] = []
     depth = 0
@@ -291,7 +296,14 @@ def top_level_chunks(text: str) -> list[list[str]]:
         )
 
     for line in text.splitlines():
-        if line and not line[0].isspace() and depth == 0 and cur and not lead_in_only(cur):
+        if (
+            line
+            and not line[0].isspace()
+            and depth == 0
+            and cur
+            and not lead_in_only(cur)
+            and not (continuations and CONTINUATION_RE.match(line))
+        ):
             out.append(cur)
             cur = []
         cur.append(line)
@@ -369,10 +381,47 @@ def topo_order(sequences: list[list[str]]) -> list[str]:
     return done
 
 
-def verified_deps(records: list[dict], deps_dir: Path, lib_ns: str) -> tuple[list[str], dict[str, str]]:
+def corpus_edges(modules: set[str], corpus: Path | None, roots: list[str]) -> dict[str, set[str]]:
+    """For each prelude module, the prelude modules its ORIGINAL file imports — directly, or through corpus modules
+    no context carries (followed transitively). Only import lines are read; the file's text never reaches the tree.
+    A module whose file is not in the corpus checkout is left out (its edges come from the contexts)."""
+    edges: dict[str, set[str]] = {}
+    memo: dict[str, set[str]] = {}
+
+    def imports_of(mod: str) -> set[str] | None:
+        if corpus is None:
+            return None
+        f = corpus / Path(*mod.split(".")).with_suffix(".lean")
+        if not f.exists():
+            return None
+        return {m.group(2) for m in IMPORT_RE.finditer(f.read_text(encoding="utf-8", errors="ignore"))}
+
+    def reach(mod: str, seen: set[str]) -> set[str]:
+        if mod in memo:
+            return memo[mod]
+        out: set[str] = set()
+        for im in imports_of(mod) or ():
+            if im in modules:
+                out.add(im)
+            elif is_corpus_module(im, roots) and im not in seen:
+                seen.add(im)
+                out |= reach(im, seen)
+        memo[mod] = out
+        return out
+
+    for m in modules:
+        if imports_of(m) is not None:
+            edges[m] = reach(m, {m})
+    return edges
+
+
+def verified_deps(
+    records: list[dict], deps_dir: Path, lib_ns: str, corpus: Path | None = None, roots: list[str] | None = None
+) -> tuple[list[str], dict[str, str]]:
     """Deps/<key> for every corpus module a record's context carries as a prelude block: that block's text (the most
-    common version; the build decides if a rarer one was needed), importing Tengoku and every Deps module that came
-    before it in a context. Returns (topological order, module -> key)."""
+    common version; the build decides if a rarer one was needed), importing Tengoku and the Deps modules its original
+    file imports (from the corpus's import lines; without a corpus file, every Deps module that came before it in a
+    context). Returns (topological order, module -> key)."""
     from collections import Counter
 
     versions: dict[str, Counter] = {}
@@ -382,12 +431,19 @@ def verified_deps(records: list[dict], deps_dir: Path, lib_ns: str) -> tuple[lis
         sequences.append([m for m, _ in blocks])
         for m, text in blocks:
             versions.setdefault(m, Counter())[text] += 1
-    order = topo_order(sequences)
+    edges = corpus_edges(set(versions), corpus, roots or [])
+    # the corpus's import graph orders the modules; context order fills in modules the corpus does not have
+    # context order only constrains modules the corpus says nothing about (a context may list independent modules
+    # in any order, and must not override a real import)
+    order = topo_order([[*sorted(deps), m] for m, deps in edges.items()] + [[m for m in seq if m not in edges] for seq in sequences])
     rank = {m: i for i, m in enumerate(order)}
     before: dict[str, set[str]] = {}
+    for m, deps in edges.items():
+        before[m] = {d for d in deps if rank[d] < rank[m]}
     for seq in sequences:
         for i, m in enumerate(seq):
-            before.setdefault(m, set()).update(d for d in seq[:i] if rank[d] < rank[m])
+            if m not in edges:
+                before.setdefault(m, set()).update(d for d in seq[:i] if rank[d] < rank[m])
     keys = {m: deps_key(m) for m in order}
     for m in order:
         text = max(versions[m].items(), key=lambda kv: (kv[1], len(kv[0])))[0]
@@ -399,6 +455,74 @@ def verified_deps(records: list[dict], deps_dir: Path, lib_ns: str) -> tuple[lis
             encoding="utf-8",
         )
     return order, keys
+
+
+def chunk_key(text: str) -> str:
+    """A declaration is identified by its name, anything else (namespace/section/end/open/variable/…) by its text."""
+    m = DECL_NAME_RE.search(text)
+    return ("name:" + m.group(1).removeprefix("_root_.")) if m else ("text:" + " ".join(text.split()))
+
+
+def is_lead_in(text: str) -> bool:
+    """Only doc comments, attributes, comments or `… in` modifiers: it belongs to the declaration after it."""
+    lines = [l for l in text.splitlines() if l.strip()]
+    return (
+        bool(lines)
+        and all(
+            l.startswith(("@[", "/--", "/-", "--")) or l.strip().endswith("-/") or l.rstrip().endswith(" in") or not l[:1].strip()
+            for l in lines
+        )
+        and not DECL_NAME_RE.search(text)
+    )
+
+
+def verified_file_body(recs: list[dict], own_prefix, deps_names: set[str]) -> list[str]:
+    """One file's module body from its records (in file order): each record's own-file block is aligned with what
+    the earlier ones built (a keyed sequence merge, so a second `section`/`end` is not mistaken for the first), and
+    its theorem goes right after its own block. A theorem a Deps module already declares (the file is some other
+    record's prelude) is not declared again; a doc comment or attribute left without its declaration is dropped."""
+    from difflib import SequenceMatcher
+
+    merged: list[tuple[str, str]] = []
+    for r in recs:
+        block = [(chunk_key(c), c) for c in ("\n".join(ch).strip() for ch in top_level_chunks(own_prefix(r), continuations=True)) if c]
+        sm = SequenceMatcher(a=[k for k, _ in merged], b=[k for k, _ in block], autojunk=False)
+        new: list[tuple[str, str]] = []
+        last_of_block = -1
+        for tag, i1, i2, j1, j2 in sm.get_opcodes():
+            if tag == "equal":
+                new += merged[i1:i2]
+                last_of_block = len(new) - 1
+            elif tag == "delete":
+                new += merged[i1:i2]
+            elif tag == "insert":
+                new += block[j1:j2]
+                last_of_block = len(new) - 1
+            else:  # replace: keep what is there, add what is new
+                new += merged[i1:i2]
+                have = {k for k, _ in merged[i1:i2]}
+                new += [b for b in block[j1:j2] if b[0] not in have]
+                last_of_block = len(new) - 1
+        key = "name:" + r["name"]
+        if r["name"] not in deps_names and key not in {k for k, _ in new}:
+            new.insert(last_of_block + 1, (key, f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}"))
+        merged = new
+    parts = [text for k, text in merged if not (k.startswith("name:") and k[5:] in deps_names)]
+    # a lead-in (doc comment, attribute) whose declaration went (deduplicated, or in Deps) would attach to whatever
+    # follows it, or dangle at the end
+    kept: list[str] = []
+    for i, text in enumerate(parts):
+        nxt = parts[i + 1] if i + 1 < len(parts) else ""
+        if is_lead_in(text) and not (
+            DECL_NAME_RE.search(nxt)
+            or re.match(
+                r"^\s*(@\[|/--|(private |protected |noncomputable |nonrec )*(def|theorem|lemma|abbrev|instance|opaque|inductive|structure|class|example)\b)",
+                nxt,
+            )
+        ):
+            continue
+        kept.append(text)
+    return kept
 
 
 def regenerate_equations(corpus: Path, corpus_roots: list[str]) -> list[str]:
@@ -497,7 +621,7 @@ def main():
         if mode == "verified":
             # ---- Deps: every prelude block the records' contexts carry, as verified; the corpus is never read
             written_before = set(deps_dir.rglob("*.lean"))
-            order, keys = verified_deps(records, deps_dir, lib_ns)
+            order, keys = verified_deps(records, deps_dir, lib_ns, corpus if corpus.is_dir() else None, roots)
             for f in written_before - {deps_file(deps_dir, k) for k in keys.values()}:
                 f.unlink()  # a module no record's context carries any more
             deps_available = set(keys.values())
@@ -594,9 +718,8 @@ def main():
                 parts.append(text)
 
             if mode == "verified":
-                # a theorem a Deps module already declares (its file is some other record's prelude) is there, as verified
-                emitted.update("name:" + n for n in deps_names)
-            for r in recs:
+                parts = verified_file_body(recs, own_prefix, deps_names)
+            for r in [] if mode == "verified" else recs:
                 for chunk in top_level_chunks(own_prefix(r)):
                     emit("\n".join(chunk))
                 emit(f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}")

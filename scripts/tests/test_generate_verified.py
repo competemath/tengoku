@@ -121,6 +121,49 @@ class Generate(unittest.TestCase):
         self.assertIn("import Tengoku.LibX.Deps.A", a_mod)  # its own Deps module
         self.assertIn("theorem t_b", self.read("LibX/B.lean"))
 
+    def test_repeated_sections_are_aligned_not_collapsed(self):
+        # two records of one file; the second's block repeats `section`/`end` further down: both pairs must survive
+        pre1 = "section\ndef a := 1\nend"
+        pre2 = pre1 + "\nsection\ndef b := 2\nend"
+        self.generate([rec("t1", "Lx/C.lean", HEAD + own("Lx/C.lean", 4, pre1)), rec("t2", "Lx/C.lean", HEAD + own("Lx/C.lean", 8, pre2))])
+        c = self.read("LibX/C.lean")
+        self.assertEqual(c.count("section\n"), 2, c)
+        self.assertEqual(len([l for l in c.splitlines() if l == "end"]), 2, c)
+        self.assertLess(c.index("theorem t1"), c.index("def b := 2"))  # each theorem right after its own block
+        self.assertLess(c.index("def b := 2"), c.index("theorem t2"))
+
+    def test_constructor_and_deriving_lines_stay_with_their_declaration(self):
+        pre = "inductive Col\n| red\n| blue\nderiving DecidableEq"
+        self.generate([rec("t1", "Lx/C.lean", HEAD + own("Lx/C.lean", 5, pre)), rec("t2", "Lx/C.lean", HEAD + own("Lx/C.lean", 5, pre))])
+        c = self.read("LibX/C.lean")
+        self.assertIn("inductive Col\n| red\n| blue\nderiving DecidableEq", c)
+        self.assertEqual(c.count("deriving DecidableEq"), 1)
+
+    def test_a_doc_comment_left_by_a_theorem_in_deps_is_dropped(self):
+        ctx_b = HEAD + prelude("Lx.A", "def a := 1\ntheorem t_a : True := trivial") + own("Lx/B.lean", 4, "")
+        ctx_a = HEAD + own("Lx/A.lean", 3, "def a := 1\n/-- about t_a -/")  # the harvester's line points below the doc comment
+        self.generate([rec("t_b", "Lx/B.lean", ctx_b), rec("t_a", "Lx/A.lean", ctx_a)])
+        self.assertNotIn("about t_a", self.read("LibX/A.lean"))
+
+    def test_deps_imports_follow_the_corpus_import_graph(self):
+        # contexts list A after B (a harmless reordering); B's file imports A, so Deps/B must import Deps/A
+        corpus = self.out / "corpus"
+        (corpus / "Lx").mkdir(parents=True)
+        (corpus / "Lx" / "A.lean").write_text("import Mathlib\ndef a := 1\n")
+        (corpus / "Lx" / "B.lean").write_text("import Lx.A\nimport Architect\ndef b := a\n")
+        ctx = HEAD + prelude("Lx.B", "def b := a") + prelude("Lx.A", "def a := 1") + own("Lx/C.lean", 2, "")
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text(json.dumps(rec("t1", "Lx/C.lean", ctx)) + "\n")
+        r = subprocess.run(
+            [sys.executable, "scripts/generate.py", "--corpus", str(corpus), "--libraries", "lib-x"],
+            cwd=self.out,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("import Tengoku.LibX.Deps.A", self.read("LibX/Deps/B.lean"))
+        self.assertNotIn("Deps.B", self.read("LibX/Deps/A.lean"))
+        self.assertNotIn("Architect", self.read("LibX/Deps/B.lean"))
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
