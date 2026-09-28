@@ -320,6 +320,21 @@ class Generate(unittest.TestCase):
         self.assertIn("variable (n) in\ntheorem t1", c)
         self.assertEqual(c.count("theorem t1"), 1)
 
+    def test_an_unnamed_instance_another_library_declares_gets_a_name(self):
+        (self.out / "schemas" / "sources.json").write_text(
+            json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"]}, "lib-y": {"repo": "r", "commit": "c", "roots": ["Ly"]}}})
+        )
+        pre = "local instance : Inhabited Nat := ⟨0⟩"
+        x = rec("t", "Lx/C.lean", HEAD + own("Lx/C.lean", 2, pre))
+        y = dict(rec("u", "Ly/C.lean", HEAD + own("Ly/C.lean", 2, pre)), library="lib-y")
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text(json.dumps(x) + "\n")
+        (self.out / "data" / "trusted" / "lib-y.jsonl").write_text(json.dumps(y) + "\n")
+        for lib in ("lib-x", "lib-y"):
+            r = subprocess.run([sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", lib], cwd=self.out, capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("local instance : Inhabited Nat", self.read("LibX/C.lean"))
+        self.assertRegex(self.read("LibY/C.lean"), r"local instance inst_[0-9a-f]{8}__lib_y : Inhabited Nat")
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})

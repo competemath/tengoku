@@ -711,6 +711,50 @@ def library_imports(out: Path, start: Path, lib_dirs: set[str]) -> set[Path]:
     return seen
 
 
+def unnamed_instances(lib_dir: Path, candidates: bool = False) -> dict[tuple[str, str], tuple[Path, str]]:
+    """(namespace, instance text) -> (file, chunk) for every instance declared without a name."""
+    out: dict[tuple[str, str], tuple[Path, str]] = {}
+    for f in sorted(lib_dir.rglob("*.lean")):
+        if f.name.startswith("_candidate_") and not candidates:
+            continue
+        stack: list[tuple[str, str]] = []
+        for k, c in scoped_chunks(f.read_text(encoding="utf-8"))[0]:
+            code = [l for l in c.splitlines() if l.strip() and not l.lstrip().startswith(("--", "/-"))]
+            first = code[0] if code else ""
+            u = unnamed_key(c)
+            if u and u.startswith("#inst:"):
+                out.setdefault((".".join(n for kind, n in stack if kind == "namespace" and n), u), (f, c))
+            s, e = SCOPE_RE.match(first), END_RE.match(first)
+            if k.startswith("text:") and s:
+                stack.append((s.group(1), s.group(2)))
+            elif k.startswith("text:") and e and stack:
+                stack.pop()
+    return out
+
+
+def name_unnamed_clashes(out: Path, lib_dir: Path, library: str, libraries: list[str]) -> int:
+    """An instance declared without a name gets one Lean derives from its type, so the same instance in another
+    library (a vendored copy) would clash once both are imported. Keeping one by import does not work for a
+    `local instance` (it is not active where it is imported): this library's copy is given a name of its own."""
+    import hashlib
+
+    theirs: set[tuple[str, str]] = set()
+    for other in libraries:
+        d = out / "Tengoku" / pascal(other)
+        if other != library and d.is_dir() and d != lib_dir:
+            theirs |= set(unnamed_instances(d))
+    named = 0
+    for key, (f, chunk) in unnamed_instances(lib_dir, candidates=True).items():
+        if key in theirs:
+            name = f"inst_{hashlib.sha1(key[1].encode()).hexdigest()[:8]}{clash_suffix(library)}"
+            text = f.read_text(encoding="utf-8")
+            new_chunk = re.sub(r"\binstance\b", f"instance {name}", chunk, count=1)
+            if chunk in text:
+                f.write_text(text.replace(chunk, new_chunk, 1), encoding="utf-8")
+                named += 1
+    return named
+
+
 def rename_clashes(out: Path, lib_dir: Path, library: str, libraries: list[str]) -> str:
     """A declaration this library makes that another library's modules already make would stop the tree importing
     both; the library already in the tree keeps it. An identical copy (same full name, same text: a fork, a vendored
@@ -1396,6 +1440,9 @@ def main():
             except (OSError, ValueError):
                 all_libraries = []
             clash_note = rename_clashes(out, lib_dir, library, all_libraries)
+            named = name_unnamed_clashes(out, lib_dir, library, all_libraries)
+            if named:
+                clash_note += ("; " if clash_note else "") + f"{named} unnamed instance(s) another library also declares given names of their own"
         print(
             f"{library}: {len(records)} records -> {len(modules)} file modules on disk, {len(deps_mods)} Deps modules ({len(eqs)} equations); {warnings} context notes"
             + (f"; {clash_note}" if clash_note else "")
