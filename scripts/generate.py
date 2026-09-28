@@ -518,6 +518,79 @@ def qualified_names(text: str) -> set[str]:
     return {k[5:] for k, _ in scoped_chunks(text)[0] if k.startswith("name:")}
 
 
+IDENT_RUN_RE = re.compile(r"(?<![\w'!?.])\.?[^\W\d][\w'!?]*(?:\.[^\W\d][\w'!?]*)*")
+
+
+def clash_suffix(library: str) -> str:
+    return "__" + re.sub(r"[^A-Za-z0-9]", "_", library)  # bank-flush renames records the same way
+
+
+def library_declarations(lib_dir: Path) -> dict[str, str]:
+    """Every public declaration a library's modules make: full name -> its text (whitespace-normalised)."""
+    out: dict[str, str] = {}
+    for f in sorted(lib_dir.rglob("*.lean")):
+        if f.name.startswith("_candidate_"):
+            continue
+        for k, chunk in scoped_chunks(f.read_text(encoding="utf-8"))[0]:
+            if k.startswith("name:"):
+                out.setdefault(k[5:], " ".join(chunk.split()))
+    return out
+
+
+def rename_tokens(text: str, targets: dict[str, str]) -> str:
+    """Give each target declaration (full name -> new last component) its new name wherever the text refers to it:
+    written in full, under a suffix of its namespace, bare, or by dot notation (`h.foo`)."""
+    by_short: dict[str, list[tuple[list[str], str]]] = {}
+    for full, new in targets.items():
+        *ns, short = full.split(".")
+        by_short.setdefault(short, []).append((ns, new))
+
+    def fix(m: re.Match) -> str:
+        run = m.group(0)
+        lead = "." if run.startswith(".") else ""
+        comps = run[len(lead) :].split(".")
+        for i, c in enumerate(comps):
+            for ns, new in by_short.get(c, []):
+                prefix = comps[:i]
+                if prefix[:1] == ["_root_"]:
+                    ok = prefix[1:] == ns
+                else:
+                    ok = not prefix or ns[len(ns) - len(prefix) :] == prefix or (len(prefix) == 1 and prefix[0][:1].islower() and i == len(comps) - 1)
+                if ok:
+                    comps[i] = new
+                    break
+        return lead + ".".join(comps)
+
+    return IDENT_RUN_RE.sub(fix, text)
+
+
+def rename_clashes(out: Path, lib_dir: Path, library: str, libraries: list[str]) -> str:
+    """A declaration this library makes that another library's modules already make would stop the tree importing
+    both. The library already in the tree keeps the name; this one's copy is renamed `<name>__<library>` everywhere in
+    its modules (the outermost clashing name only: renaming a structure renames its fields and lemmas with it)."""
+    mine = library_declarations(lib_dir)
+    theirs: dict[str, str] = {}
+    for other in libraries:
+        d = out / "Tengoku" / pascal(other)
+        if other != library and d.is_dir() and d != lib_dir:
+            for name, text in library_declarations(d).items():
+                theirs.setdefault(name, text)
+    clashes = sorted(n for n in mine if n in theirs)
+    if not clashes:
+        return ""
+    identical = sum(1 for n in clashes if mine[n] == theirs[n])
+    clash_set = set(clashes)
+    outer = [n for n in clashes if not any(".".join(n.split(".")[:i]) in clash_set for i in range(1, n.count(".") + 1))]
+    suffix = clash_suffix(library)
+    targets = {n: n.rsplit(".", 1)[-1] + suffix for n in outer if not n.rsplit(".", 1)[-1].startswith("«")}
+    for f in lib_dir.rglob("*.lean"):
+        text = f.read_text(encoding="utf-8")
+        new = rename_tokens(text, targets)
+        if new != text:
+            f.write_text(new, encoding="utf-8")
+    return f"{len(clashes)} clashes with other libraries ({identical} identical, {len(clashes) - identical} differing): {len(targets)} renamed *{suffix}"
+
+
 def is_lead_in(text: str) -> bool:
     """Only doc comments, attributes, comments, modifiers or `… in` lines: it belongs to the declaration after it."""
     return bool(text.strip()) and only_lead_in(text) and not DECL_NAME_RE.search(text)
@@ -535,6 +608,7 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
     agent = [r for r in recs if not FILE_MARKER_RE.search(r["context"])]
     merged: list[tuple[str, str]] = []
     placed: list[tuple[int, str]] = []  # (line of a marked record's theorem, its key)
+    alias: dict[str, str] = {}  # a record the flush renamed (a clash) -> its original name, which a sibling's prefix may carry
     for r in marked:
         block, stack = scoped_chunks(own_text(r))
         block = [(k, c) for k, c in block if not (k.startswith("name:") and k[5:] in deps_names)]
@@ -550,6 +624,7 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
         new: list[tuple[str, str]] = []
         last_of_block = -1
         declared = {k for k, _ in merged if k.startswith("name:")}
+        declared |= {alias[k] for k in declared if k in alias}
 
         def fresh(items: list[tuple[str, str]]) -> list[tuple[str, str]]:
             out = []
@@ -580,7 +655,10 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
         ns = [n for k, n in stack if k == "namespace" and n]
         full = written[len("_root_.") :] if written.startswith("_root_.") else ".".join(ns + [written])
         key = "name:" + full
-        if full not in deps_names and key not in {k for k, _ in new}:
+        if r.get("original_name"):
+            alias[key] = "name:" + r["original_name"]
+        present = {k for k, _ in new}
+        if full not in deps_names and key not in present and alias.get(key) not in present:
             # after its own block, and after the theorems above it in the file (its prefix omits them)
             at = last_of_block + 1
             line = int(mm.group(1)) if mm else 0
@@ -624,7 +702,8 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
         if m and full != r["name"]:  # the namespaces open here are not the original's: name it in full
             statement = statement[: m.start(1)] + "_root_." + r["name"] + statement[m.end(1) :]
             full = r["name"]
-        if full in deps_names or ("name:" + full) in {k for k, _ in merged}:
+        present = {k for k, _ in merged}
+        if full in deps_names or ("name:" + full) in present or (r.get("original_name") and "name:" + r["original_name"] in present):
             continue
         merged.insert(at, ("name:" + full, f"{strip_corpus_attrs(statement)}\n{strip_trailing_ends(r['proof'])}"))
         if line is not None:
@@ -961,8 +1040,16 @@ def main():
         (out / "Tengoku" / f"{lib_ns}.lean").write_text(
             f"import Tengoku.{lib_ns}.Deps\n" + "\n".join(f"import {m}" for m in modules) + "\n", encoding="utf-8"
         )
+        clash_note = ""
+        if mode == "verified":
+            try:
+                all_libraries = list(json.loads((out / "schemas" / "sources.json").read_text(encoding="utf-8")).get("corpora", {}))
+            except (OSError, ValueError):
+                all_libraries = []
+            clash_note = rename_clashes(out, lib_dir, library, all_libraries)
         print(
             f"{library}: {len(records)} records -> {len(modules)} file modules on disk, {len(deps_mods)} Deps modules ({len(eqs)} equations); {warnings} context notes"
+            + (f"; {clash_note}" if clash_note else "")
         )
 
     # Tengoku/All.lean: everything, for tools that index or import "the whole

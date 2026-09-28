@@ -231,6 +231,33 @@ class Generate(unittest.TestCase):
         self.assertIn("@[simp]", c)
         self.assertLess(c.index("@[simp]"), c.index("theorem t_a"))
 
+    def test_a_declaration_another_library_already_makes_is_renamed_in_the_newcomer(self):
+        (self.out / "schemas" / "sources.json").write_text(
+            json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"]}, "lib-y": {"repo": "r", "commit": "c", "roots": ["Ly"]}}})
+        )
+        pre = "namespace S\nstructure Box where\n  v : Nat\ntheorem Box.v_eq (b : Box) : b.v = b.v := rfl\nend S\ntheorem Nat.helper : True := trivial"
+        x = rec("S.t", "Lx/C.lean", HEAD + own("Lx/C.lean", 8, pre), "theorem S.t (b : S.Box) : b.v_eq = b.v_eq")
+        y = dict(rec("S.u", "Ly/C.lean", HEAD + own("Ly/C.lean", 8, pre), "theorem S.u (b : S.Box) : Nat.helper = Nat.helper"), library="lib-y")
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text(json.dumps(x) + "\n")
+        (self.out / "data" / "trusted" / "lib-y.jsonl").write_text(json.dumps(y) + "\n")
+        runs = [
+            subprocess.run([sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", lib], cwd=self.out, capture_output=True, text=True)
+            for lib in ("lib-x", "lib-y")
+        ]
+        for r in runs:
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("3 clashes with other libraries (3 identical, 0 differing): 2 renamed *__lib_y", runs[1].stdout)
+        cx, cy = self.read("LibX/C.lean"), self.read("LibY/C.lean")
+        self.assertIn("structure Box where", cx)  # the library already in the tree keeps its names
+        self.assertIn("structure Box__lib_y where", cy)
+        self.assertIn("theorem Box__lib_y.v_eq (b : Box__lib_y)", cy)  # its lemmas move with it
+        self.assertIn("theorem S.u (b : S.Box__lib_y) : Nat.helper__lib_y = Nat.helper__lib_y", cy)
+        self.assertIn("theorem Nat.helper__lib_y", cy)
+        # regenerating either one again changes nothing: the newcomer keeps its renames, the incumbent its names
+        for lib in ("lib-x", "lib-y"):
+            subprocess.run([sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", lib], cwd=self.out, capture_output=True, text=True)
+        self.assertEqual((cx, cy), (self.read("LibX/C.lean"), self.read("LibY/C.lean")))
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
