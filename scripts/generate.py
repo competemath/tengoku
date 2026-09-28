@@ -275,6 +275,7 @@ def deps_declared(deps_dir: Path) -> tuple[set[str], set[str]]:
     return names, lines
 
 
+MODIFIER_LINE_RE = re.compile(r"^(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s*)+$")
 CONTINUATION_RE = re.compile(r"^(\||deriving\b|with\b|where\b|termination_by\b|decreasing_by\b|\)|\]|\})")
 
 
@@ -290,8 +291,13 @@ def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
     def lead_in_only(lines: list[str]) -> bool:
         # attributes, doc comments, and `set_option … in` / `omit … in` /
         # `open … in` modifiers all belong to the declaration that follows
+        # (and, for the verified generator, a modifier alone on its line: `noncomputable`, `private`, …)
         return all(
-            not l.strip() or l.startswith(("@[", "/--", "/-", "--")) or l.strip().endswith("-/") or l.rstrip().endswith(" in")
+            not l.strip()
+            or l.startswith(("@[", "/--", "/-", "--"))
+            or l.strip().endswith("-/")
+            or l.rstrip().endswith(" in")
+            or (continuations and MODIFIER_LINE_RE.match(l))
             for l in lines
         )
 
@@ -489,6 +495,18 @@ def verified_file_body(recs: list[dict], own_prefix, deps_names: set[str]) -> li
         sm = SequenceMatcher(a=[k for k, _ in merged], b=[k for k, _ in block], autojunk=False)
         new: list[tuple[str, str]] = []
         last_of_block = -1
+        declared = {k for k, _ in merged if k.startswith("name:")}  # a declaration exists once per file, wherever it is
+
+        def fresh(items: list[tuple[str, str]]) -> list[tuple[str, str]]:
+            out = []
+            for k, text in items:
+                if k.startswith("name:"):
+                    if k in declared:
+                        continue
+                    declared.add(k)
+                out.append((k, text))
+            return out
+
         for tag, i1, i2, j1, j2 in sm.get_opcodes():
             if tag == "equal":
                 new += merged[i1:i2]
@@ -496,15 +514,15 @@ def verified_file_body(recs: list[dict], own_prefix, deps_names: set[str]) -> li
             elif tag == "delete":
                 new += merged[i1:i2]
             elif tag == "insert":
-                new += block[j1:j2]
+                new += fresh(block[j1:j2])
                 last_of_block = len(new) - 1
             else:  # replace: keep what is there, add what is new
                 new += merged[i1:i2]
                 have = {k for k, _ in merged[i1:i2]}
-                new += [b for b in block[j1:j2] if b[0] not in have]
+                new += fresh([b for b in block[j1:j2] if b[0] not in have])
                 last_of_block = len(new) - 1
-        key = "name:" + r["name"]
-        if r["name"] not in deps_names and key not in {k for k, _ in new}:
+        key = chunk_key(r["statement"])
+        if not (key.startswith("name:") and key[5:] in deps_names) and key not in {k for k, _ in new}:
             new.insert(last_of_block + 1, (key, f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}"))
         merged = new
     parts = [text for k, text in merged if not (k.startswith("name:") and k[5:] in deps_names)]
