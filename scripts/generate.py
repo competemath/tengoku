@@ -441,7 +441,12 @@ def verified_deps(
     # the corpus's import graph orders the modules; context order fills in modules the corpus does not have
     # context order only constrains modules the corpus says nothing about (a context may list independent modules
     # in any order, and must not override a real import)
-    order = topo_order([[*sorted(deps), m] for m, deps in edges.items()] + [[m for m in seq if m not in edges] for seq in sequences])
+    # one pair per import: a longer sequence would also order the imports among themselves, which nothing says
+    order = topo_order(
+        [[d, m] for m, deps in edges.items() for d in deps]
+        + [[m] for m in edges]
+        + [[m for m in seq if m not in edges] for seq in sequences]
+    )
     rank = {m: i for i, m in enumerate(order)}
     before: dict[str, set[str]] = {}
     for m, deps in edges.items():
@@ -463,39 +468,78 @@ def verified_deps(
     return order, keys
 
 
-def chunk_key(text: str) -> str:
-    """A declaration is identified by its name, anything else (namespace/section/end/open/variable/…) by its text."""
-    m = DECL_NAME_RE.search(text)
-    return ("name:" + m.group(1).removeprefix("_root_.")) if m else ("text:" + " ".join(text.split()))
+SCOPE_RE = re.compile(r"^(?:noncomputable\s+)?(namespace|section)\b[ \t]*([^\s]*)")
+END_RE = re.compile(r"^end\b[ \t]*([^\s]*)")
+
+
+def scoped_chunks(text: str) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
+    """A file text as (key, chunk) pairs in order, and the scope stack at its end. A declaration's key is its FULL
+    name — the enclosing `namespace`s joined to the name as written (`_root_.` escapes them), exactly as Lean names
+    it — so `foo` in two namespaces are two declarations; anything else is keyed by its text. Import lines go."""
+    stack: list[tuple[str, str]] = []  # (kind, name)
+    out: list[tuple[str, str]] = []
+    for ch in top_level_chunks(text, continuations=True):
+        body = "\n".join(ch).strip()
+        if not body:
+            continue
+        code = [l for l in ch if l.strip() and not l.lstrip().startswith(("--", "/-", "@[")) and not l.strip().endswith("-/")]
+        if code and IMPORT_LINE_RE.match(code[0]):
+            continue
+        m = DECL_NAME_RE.search(body)
+        first = code[0] if code else ""
+        s = SCOPE_RE.match(first)
+        e = END_RE.match(first)
+        if m and not s:
+            name = m.group(1)
+            ns = [n for k, n in stack if k == "namespace" and n]
+            full = name[len("_root_.") :] if name.startswith("_root_.") else ".".join(ns + [name])
+            out.append(("name:" + full, body))
+        else:
+            out.append(("text:" + " ".join(body.split()), body))
+        if s:
+            stack.append((s.group(1), s.group(2)))
+        elif e and stack:
+            stack.pop()
+    return out, stack
+
+
+def qualified_names(text: str) -> set[str]:
+    return {k[5:] for k, _ in scoped_chunks(text)[0] if k.startswith("name:")}
 
 
 def is_lead_in(text: str) -> bool:
-    """Only doc comments, attributes, comments or `… in` modifiers: it belongs to the declaration after it."""
+    """Only doc comments, attributes, comments, modifiers or `… in` lines: it belongs to the declaration after it."""
     lines = [l for l in text.splitlines() if l.strip()]
     return (
         bool(lines)
         and all(
-            l.startswith(("@[", "/--", "/-", "--")) or l.strip().endswith("-/") or l.rstrip().endswith(" in") or not l[:1].strip()
+            l.startswith(("@[", "/--", "/-", "--"))
+            or l.strip().endswith("-/")
+            or l.rstrip().endswith(" in")
+            or not l[:1].strip()
+            or MODIFIER_LINE_RE.match(l)
             for l in lines
         )
         and not DECL_NAME_RE.search(text)
     )
 
 
-def verified_file_body(recs: list[dict], own_prefix, deps_names: set[str]) -> list[str]:
+def verified_file_body(recs: list[dict], own_text, deps_names: set[str]) -> list[str]:
     """One file's module body from its records (in file order): each record's own-file block is aligned with what
-    the earlier ones built (a keyed sequence merge, so a second `section`/`end` is not mistaken for the first), and
-    its theorem goes right after its own block. A theorem a Deps module already declares (the file is some other
-    record's prelude) is not declared again; a doc comment or attribute left without its declaration is dropped."""
+    the earlier ones built (a keyed sequence merge, so a second `section`/`end` is not mistaken for the first; a
+    declaration, keyed by its full name, appears once), and its theorem goes right after its own block, under the
+    namespaces open there. A declaration a Deps module already has (by full name) is not declared again; a doc comment,
+    attribute or modifier left without its declaration is dropped."""
     from difflib import SequenceMatcher
 
     merged: list[tuple[str, str]] = []
     for r in recs:
-        block = [(chunk_key(c), c) for c in ("\n".join(ch).strip() for ch in top_level_chunks(own_prefix(r), continuations=True)) if c]
+        block, stack = scoped_chunks(own_text(r))
+        block = [(k, c) for k, c in block if not (k.startswith("name:") and k[5:] in deps_names)]
         sm = SequenceMatcher(a=[k for k, _ in merged], b=[k for k, _ in block], autojunk=False)
         new: list[tuple[str, str]] = []
         last_of_block = -1
-        declared = {k for k, _ in merged if k.startswith("name:")}  # a declaration exists once per file, wherever it is
+        declared = {k for k, _ in merged if k.startswith("name:")}
 
         def fresh(items: list[tuple[str, str]]) -> list[tuple[str, str]]:
             out = []
@@ -521,23 +565,20 @@ def verified_file_body(recs: list[dict], own_prefix, deps_names: set[str]) -> li
                 have = {k for k, _ in merged[i1:i2]}
                 new += fresh([b for b in block[j1:j2] if b[0] not in have])
                 last_of_block = len(new) - 1
-        key = chunk_key(r["statement"])
-        if not (key.startswith("name:") and key[5:] in deps_names) and key not in {k for k, _ in new}:
+        m = DECL_NAME_RE.search(r["statement"])
+        written = m.group(1) if m else r["name"]
+        ns = [n for k, n in stack if k == "namespace" and n]
+        full = written[len("_root_.") :] if written.startswith("_root_.") else ".".join(ns + [written])
+        key = "name:" + full
+        if full not in deps_names and key not in {k for k, _ in new}:
             new.insert(last_of_block + 1, (key, f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}"))
         merged = new
-    parts = [text for k, text in merged if not (k.startswith("name:") and k[5:] in deps_names)]
-    # a lead-in (doc comment, attribute) whose declaration went (deduplicated, or in Deps) would attach to whatever
-    # follows it, or dangle at the end
+    parts = [text for _, text in merged]
+    # a lead-in whose declaration went (deduplicated, or in Deps) would attach to whatever follows it
     kept: list[str] = []
     for i, text in enumerate(parts):
         nxt = parts[i + 1] if i + 1 < len(parts) else ""
-        if is_lead_in(text) and not (
-            DECL_NAME_RE.search(nxt)
-            or re.match(
-                r"^\s*(@\[|/--|(private |protected |noncomputable |nonrec )*(def|theorem|lemma|abbrev|instance|opaque|inductive|structure|class|example)\b)",
-                nxt,
-            )
-        ):
+        if is_lead_in(text) and not (DECL_NAME_RE.search(nxt) and not is_lead_in(nxt)):
             continue
         kept.append(text)
     return kept
@@ -677,6 +718,10 @@ def main():
         deps_mods = deps_modules(deps_dir)
         (lib_dir / "Deps.lean").write_text("\n".join(f"import Tengoku.{lib_ns}.Deps.{m}" for m in deps_mods) + "\n", encoding="utf-8")
         deps_names, deps_lines = deps_declared(deps_dir)
+        deps_full = set()
+        if mode == "verified":
+            for f in deps_dir.rglob("*.lean"):
+                deps_full |= qualified_names(f.read_text(encoding="utf-8"))
 
         # ---- One module per original source file
         by_file: dict[str, list[dict]] = {}
@@ -736,7 +781,13 @@ def main():
                 parts.append(text)
 
             if mode == "verified":
-                parts = verified_file_body(recs, own_prefix, deps_names)
+
+                def own_text(r):
+                    mm = FILE_MARKER_RE.search(r["context"])
+                    text = r["context"][mm.end() :] if mm else r["context"]
+                    return "\n".join(l for l in text.splitlines() if not l.startswith("set_option linter.all false"))
+
+                parts = verified_file_body(recs, own_text, deps_full)
             for r in [] if mode == "verified" else recs:
                 for chunk in top_level_chunks(own_prefix(r)):
                     emit("\n".join(chunk))

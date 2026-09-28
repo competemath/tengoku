@@ -164,6 +164,16 @@ class Generate(unittest.TestCase):
         self.assertNotIn("Deps.B", self.read("LibX/Deps/A.lean"))
         self.assertNotIn("Architect", self.read("LibX/Deps/B.lean"))
 
+    def test_the_same_short_name_in_two_namespaces_is_two_declarations(self):
+        pre = "namespace P\ntheorem lemma1 : True := trivial\nend P\nnamespace Q\ntheorem lemma1 : True := trivial\nend Q"
+        self.generate([rec("t1", "Lx/C.lean", HEAD + own("Lx/C.lean", 7, pre))])
+        self.assertEqual(self.read("LibX/C.lean").count("theorem lemma1"), 2)
+
+    def test_a_deps_name_in_another_namespace_does_not_hide_a_local_one(self):
+        ctx_b = HEAD + prelude("Lx.A", "namespace P\ndef f := 1\nend P") + own("Lx/B.lean", 5, "namespace Q\ndef f := 2\nend Q")
+        self.generate([rec("t_b", "Lx/B.lean", ctx_b)])
+        self.assertIn("def f := 2", self.read("LibX/B.lean"))  # Q.f is not P.f
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
