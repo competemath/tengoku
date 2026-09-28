@@ -934,8 +934,12 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
     raw: list[tuple[int, str]] = []
     alias: dict[str, str] = {}  # a record the flush renamed (a clash) -> its original name, which a sibling's prefix may carry
     chains: list[list[str]] = []  # each record's block, then its theorem: orders the result must keep
+    as_written: dict[str, str] = {}  # a declaration as a block carries it: the file's own text, lead-ins included
     for r in marked:
         block, stack = scoped_chunks(own_text(r))
+        for k, c in block:
+            if k.startswith("name:"):
+                as_written.setdefault(k, c)
         # what a Deps module already has is not declared again: named declarations by full name, an unnamed instance
         # by its text (its generated name would clash); an `example` declares nothing (and, moved below what the
         # file declares after it, can turn ambiguous): left out
@@ -1008,6 +1012,10 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
     # theorems in file order too (a block leaves out the theorems above it that it does not use)
     chains.append([k for _, k in sorted(placed, key=lambda nk: nk[0])])
     merged = constrained_order(merged, chains)
+    # A theorem a later block carries is used as the file wrote it: the rest of the file was written against that
+    # text (a record can start a line late and miss a `variable (S G) in`, verifying with S and G implicit, while the
+    # lemmas after it pass them explicitly). Both texts were verified; the record's data keeps its own.
+    merged = [(k, as_written.get(k, c)) for k, c in merged]
     # An agent's script restates what it needs (the prelude modules and the file's earlier declarations, inlined as
     # plain text), so its context is not merged: the file module already has those declarations. Its theorem goes
     # where the original stood — right after the nearest marked theorem above it in the source file, where the same

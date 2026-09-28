@@ -306,6 +306,20 @@ class Generate(unittest.TestCase):
         self.assertLess(c.index("lemma c_apply"), c.index("lemma i"))
         self.assertLess(c.index("theorem t1"), c.index("theorem t2"))
 
+    def test_a_theorem_a_later_block_carries_is_used_as_the_file_wrote_it(self):
+        # t1's record started a line late (no `variable (n) in`); t2's block carries t1 as the file wrote it
+        pre1 = "variable {n : Nat}"
+        pre2 = "variable {n : Nat}\nvariable (n) in\ntheorem t1 : n = n := rfl"
+        self.generate(
+            [
+                rec("t1", "Lx/C.lean", HEAD + own("Lx/C.lean", 3, pre1), "theorem t1 : n = n"),
+                rec("t2", "Lx/C.lean", HEAD + own("Lx/C.lean", 5, pre2), "theorem t2 : t1 0 = t1 0"),
+            ]
+        )
+        c = self.read("LibX/C.lean")
+        self.assertIn("variable (n) in\ntheorem t1", c)
+        self.assertEqual(c.count("theorem t1"), 1)
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
