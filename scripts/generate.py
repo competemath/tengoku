@@ -1078,7 +1078,12 @@ def main():
 
         mode = generator_of(out, library)
         if mode == "verified":
-            records = [resplit(r) for r in records]
+            # a record whose text holds U+FFFD is not the text that was verified (a character split across two stream
+            # chunks when it was banked): left out, the rest of its file still builds
+            garbled = [r for r in records if any("\ufffd" in str(r.get(f, "")) for f in ("statement", "proof", "context"))]
+            if garbled:
+                print(f"  left out {len(garbled)} record(s) whose text was garbled when banked: {', '.join(r['name'] for r in garbled[:5])}")
+            records = [resplit(r) for r in records if r not in garbled]
         order: list[str] = []
         keys: dict[str, str] = {}
         eqs: list[str] = []
