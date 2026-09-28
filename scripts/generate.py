@@ -317,7 +317,29 @@ DECL_START_RE = re.compile(
     r"^(?:@\[|/--|(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s+)*"
     r"(?:def|theorem|lemma|abbrev|instance|opaque|axiom|inductive|structure|class|example|namespace|section|end|open|variable|universe|attribute|notation|macro|syntax|set_option|#))"
 )
-OPEN_ENDINGS = (":=", " by", "=>", "where", " with", " fun", ",", " =", "↔", "→", "(", "[", "{", "⟨", "<|", " $", " then", " else", " do", " from", "·")
+OPEN_ENDINGS = (
+    ":=",
+    " by",
+    "=>",
+    "where",
+    " with",
+    " fun",
+    ",",
+    " =",
+    "↔",
+    "→",
+    "(",
+    "[",
+    "{",
+    "⟨",
+    "<|",
+    " $",
+    " then",
+    " else",
+    " do",
+    " from",
+    "·",
+)
 
 
 def ends_open(lines: list[str]) -> bool:
@@ -593,7 +615,9 @@ def scoped_chunks(text: str) -> tuple[list[tuple[str, str]], list[tuple[str, str
         body = "\n".join(ch).strip()
         if not body:
             continue
-        code = [l for l in ch if l.strip() and not l.lstrip().startswith(("--", "/-")) and not l.strip().endswith("-/") and not only_lead_in(l)]
+        code = [
+            l for l in ch if l.strip() and not l.lstrip().startswith(("--", "/-")) and not l.strip().endswith("-/") and not only_lead_in(l)
+        ]
         if code and IMPORT_LINE_RE.match(code[0]):
             continue
         m = DECL_NAME_RE.search(body)
@@ -687,7 +711,11 @@ def rename_tokens(text: str, targets: dict[str, str]) -> str:
                 if prefix[:1] == ["_root_"]:
                     ok = prefix[1:] == ns
                 else:
-                    ok = not prefix or ns[len(ns) - len(prefix) :] == prefix or (len(prefix) == 1 and prefix[0][:1].islower() and i == len(comps) - 1)
+                    ok = (
+                        not prefix
+                        or ns[len(ns) - len(prefix) :] == prefix
+                        or (len(prefix) == 1 and prefix[0][:1].islower() and i == len(comps) - 1)
+                    )
                 if ok:
                     comps[i] = new
                     break
@@ -1201,7 +1229,9 @@ def main():
             # chunks when it was banked): left out, the rest of its file still builds
             garbled = [r for r in records if any("\ufffd" in str(r.get(f, "")) for f in ("statement", "proof", "context"))]
             if garbled:
-                print(f"  left out {len(garbled)} record(s) whose text was garbled when banked: {', '.join(r['name'] for r in garbled[:5])}")
+                print(
+                    f"  left out {len(garbled)} record(s) whose text was garbled when banked: {', '.join(r['name'] for r in garbled[:5])}"
+                )
             records = [resplit(r) for r in records if r not in garbled]
         order: list[str] = []
         keys: dict[str, str] = {}
@@ -1442,7 +1472,9 @@ def main():
             clash_note = rename_clashes(out, lib_dir, library, all_libraries)
             named = name_unnamed_clashes(out, lib_dir, library, all_libraries)
             if named:
-                clash_note += ("; " if clash_note else "") + f"{named} unnamed instance(s) another library also declares given names of their own"
+                clash_note += (
+                    "; " if clash_note else ""
+                ) + f"{named} unnamed instance(s) another library also declares given names of their own"
         print(
             f"{library}: {len(records)} records -> {len(modules)} file modules on disk, {len(deps_mods)} Deps modules ({len(eqs)} equations); {warnings} context notes"
             + (f"; {clash_note}" if clash_note else "")
