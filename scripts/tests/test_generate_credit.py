@@ -50,7 +50,7 @@ class GeneratedCredit(unittest.TestCase):
         )
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         mod = (out / "Tengoku" / "Lib" / "A.lean").read_text()
-        self.assertIn(DOC + "\ntheorem Lib.credited : (1 : Nat) + 1 = 2\n:= rfl", mod)
+        self.assertIn(DOC + "\ntheorem Lib.credited : (1 : Nat) + 1 = 2 := rfl", mod)  # the declaration as it stood
         shutil.rmtree(out)
 
 
