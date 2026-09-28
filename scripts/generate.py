@@ -189,7 +189,10 @@ def generator_of(out: Path, library: str) -> str:
         spec = json.loads((out / "schemas" / "sources.json").read_text(encoding="utf-8")).get("corpora", {}).get(library, {})
     except (OSError, ValueError):
         spec = {}
-    return spec.get("generator", "verified")
+    mode = spec.get("generator", "verified")
+    if mode not in ("legacy", "verified"):
+        sys.exit(f'schemas/sources.json corpora.{library}.generator: "{mode}" is neither "legacy" nor "verified"')
+    return mode
 
 
 def is_corpus_module(mod: str, roots: list[str]) -> bool:
@@ -776,7 +779,14 @@ def name_unnamed_clashes(out: Path, lib_dir: Path, library: str, libraries: list
         if key in theirs:
             name = f"inst_{hashlib.sha1(key[1].encode()).hexdigest()[:8]}{clash_suffix(library)}"
             text = f.read_text(encoding="utf-8")
-            new_chunk = re.sub(r"\binstance\b", f"instance {name}", chunk, count=1)
+            um = UNNAMED_RE.match(chunk)
+            if not um:
+                continue
+            pos = um.end(1)  # after the `instance` keyword itself (a doc comment above it may say "instance" too)
+            pm = re.match(r"\s*\(\s*priority\s*:=[^)]*\)", chunk[pos:])  # Lean wants `(priority := …)` before the name
+            if pm:
+                pos += pm.end()
+            new_chunk = f"{chunk[:pos]} {name}{chunk[pos:]}"
             if chunk in text:
                 f.write_text(text.replace(chunk, new_chunk, 1), encoding="utf-8")
                 named += 1
@@ -913,7 +923,7 @@ def resplit(r: dict) -> dict:
 
 
 UNNAMED_RE = re.compile(
-    r"^\s*(?:/--.*?-/\s*)?(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|scoped|local|public|priority)\s+)*(instance|example)\b(?!\s+[^\W\d][\w'.!?]*\s*[:\[({])",
+    r"^\s*(?:/--.*?-/\s*)?(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|scoped|local|public|priority)\s+)*(instance|example)\b(?!(?:\s*\(\s*priority\s*:=[^)]*\))?\s+[^\W\d][\w'.!?]*\s*[:\[({])",
     re.S,
 )
 

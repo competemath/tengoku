@@ -389,6 +389,47 @@ class Generate(unittest.TestCase):
         self.assertIn("local instance : Inhabited Nat", self.read("LibX/C.lean"))
         self.assertRegex(self.read("LibY/C.lean"), r"local instance inst_[0-9a-f]{8}__lib_y : Inhabited Nat")
 
+    def test_an_unknown_generator_mode_is_refused(self):
+        (self.out / "schemas" / "sources.json").write_text(
+            json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "Legacy"}}})
+        )
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text(json.dumps(rec("t", "Lx/C.lean", HEAD + own("Lx/C.lean", 1, ""))) + "\n")
+        r = subprocess.run(
+            [sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", "lib-x"],
+            cwd=self.out,
+            capture_output=True,
+            text=True,
+        )
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("neither", r.stdout + r.stderr)
+
+    def test_a_named_instance_goes_after_its_doc_comment_and_priority(self):
+        (self.out / "schemas" / "sources.json").write_text(
+            json.dumps(
+                {
+                    "corpora": {
+                        "lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"]},
+                        "lib-y": {"repo": "r", "commit": "c", "roots": ["Ly"]},
+                    }
+                }
+            )
+        )
+        pre = "/-- the instance we need -/\ninstance (priority := low) : Inhabited Nat := ⟨0⟩"
+        x = rec("t", "Lx/C.lean", HEAD + own("Lx/C.lean", 3, pre))
+        y = dict(rec("u", "Ly/C.lean", HEAD + own("Ly/C.lean", 3, pre)), library="lib-y")
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text(json.dumps(x) + "\n")
+        (self.out / "data" / "trusted" / "lib-y.jsonl").write_text(json.dumps(y) + "\n")
+        for lib in ("lib-x", "lib-y"):
+            subprocess.run(
+                [sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", lib],
+                cwd=self.out,
+                capture_output=True,
+                text=True,
+            )
+        c = self.read("LibY/C.lean")
+        self.assertIn("/-- the instance we need -/", c)
+        self.assertRegex(c, r"instance \(priority := low\) inst_[0-9a-f]{8}__lib_y : Inhabited Nat")
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
