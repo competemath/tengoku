@@ -494,6 +494,8 @@ def scoped_chunks(text: str) -> tuple[list[tuple[str, str]], list[tuple[str, str
     it — so `foo` in two namespaces are two declarations; anything else is keyed by its text. Import lines go."""
     stack: list[tuple[str, str]] = []  # (kind, name)
     out: list[tuple[str, str]] = []
+    seen: dict[str, int] = {}  # a structural line that recurs (a second `namespace Heap` with its own `variable`) is
+    # keyed by its occurrence, so the n-th copy lines up with the n-th copy of another prefix of the same file
     for ch in top_level_chunks(text, continuations=True):
         body = "\n".join(ch).strip()
         if not body:
@@ -511,7 +513,9 @@ def scoped_chunks(text: str) -> tuple[list[tuple[str, str]], list[tuple[str, str
             full = name[len("_root_.") :] if name.startswith("_root_.") else ".".join(ns + [name])
             out.append(("name:" + full, body))
         else:
-            out.append(("text:" + " ".join(body.split()), body))
+            norm = " ".join(body.split())
+            seen[norm] = seen.get(norm, 0) + 1
+            out.append((f"text:{norm}#{seen[norm]}", body))
         if s:
             stack.append((s.group(1), s.group(2)))
         elif e and stack:
@@ -629,7 +633,11 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
         block, stack = scoped_chunks(own_text(r))
         block = [(k, c) for k, c in block if not (k.startswith("name:") and k[5:] in deps_names)]
         # an attribute or doc comment ending the block is the record's own (a prefix omits a sibling together with its
-        # attributes): it stays right above the theorem
+        # attributes): it goes with the theorem as one piece — left in the block, every record's `@[simp]` would look
+        # alike to the alignment and pull the next record's block in front of the earlier theorems
+        own_lead: list[str] = []
+        while block and block[-1][0].startswith("text:") and is_lead_in(block[-1][1]):
+            own_lead.insert(0, block.pop()[1])
         mm = re.search(r"everything before line (\d+)", r["context"])
         sm = SequenceMatcher(a=[k for k, _ in merged], b=[k for k, _ in block], autojunk=False)
         new: list[tuple[str, str]] = []
@@ -677,11 +685,7 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
             for n, k in placed:
                 if n <= line and k in keys:
                     at = max(at, keys.index(k) + 1)
-            new.insert(at, (key, theorem_text(r["statement"], r["proof"])))
-        else:  # the theorem is already there: an attribute or doc comment written on the lines above it goes too
-            while 0 <= last_of_block < len(new) and new[last_of_block][0].startswith("text:") and is_lead_in(new[last_of_block][1]):
-                del new[last_of_block]
-                last_of_block -= 1
+            new.insert(at, (key, "\n".join(own_lead + [theorem_text(r["statement"], r["proof"])])))
         placed.append((int(mm.group(1)) if mm else 0, key))
         at_line = orig_line(r) if orig_line else None
         if at_line is not None:
