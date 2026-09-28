@@ -291,6 +291,21 @@ class Generate(unittest.TestCase):
         self.assertLess(c.index("theorem t"), len(c))
         self.assertNotIn("  end Aux", c)
 
+    def test_a_declaration_stays_before_what_uses_it_when_blocks_omit_different_parts(self):
+        # the file: def c, lemma c_apply, lemma p, theorem t1, lemma i (uses c_apply), theorem t2
+        # t1's block omits c_apply; t2's block omits p: merged, c_apply must still come before i
+        b1 = "def c := 1\nlemma p : c = c := rfl"
+        b2 = "def c := 1\nlemma c_apply : c = 1 := rfl\nlemma i : c = 1 := c_apply"
+        self.generate(
+            [
+                rec("t1", "Lx/C.lean", HEAD + own("Lx/C.lean", 4, b1)),
+                rec("t2", "Lx/C.lean", HEAD + own("Lx/C.lean", 6, b2)),
+            ]
+        )
+        c = self.read("LibX/C.lean")
+        self.assertLess(c.index("lemma c_apply"), c.index("lemma i"))
+        self.assertLess(c.index("theorem t1"), c.index("theorem t2"))
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})

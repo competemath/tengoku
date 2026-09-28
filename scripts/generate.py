@@ -863,6 +863,44 @@ def record_pieces(key: str, text: str, ns: list[str], present: set[str], deps_na
     return out
 
 
+def constrained_order(merged: list[tuple[str, str]], chains: list[list[str]]) -> list[tuple[str, str]]:
+    """Reorder `merged` so every chain's order holds (each record's block is the source file with parts left out, so
+    each is a subsequence of the file: together they pin down every order that matters, a declaration after what it
+    uses included), keeping the given order wherever the chains leave a choice; a cycle (blocks that disagree) is
+    broken at the earliest remaining item."""
+    import heapq
+
+    pos = {k: i for i, (k, _) in enumerate(merged)}
+    succ: dict[str, set[str]] = {k: set() for k in pos}
+    indeg = {k: 0 for k in pos}
+    for chain in chains:
+        ks = [k for k in chain if k in pos]
+        for a, b in zip(ks, ks[1:]):
+            if a != b and b not in succ[a]:
+                succ[a].add(b)
+                indeg[b] += 1
+    ready = [(pos[k], k) for k, d in indeg.items() if d == 0]
+    heapq.heapify(ready)
+    out: list[str] = []
+    done: set[str] = set()
+    while len(out) < len(pos):
+        if not ready:  # a cycle: take the earliest item not yet placed
+            k = min((k for k in pos if k not in done), key=pos.get)
+            indeg[k] = 0
+            heapq.heappush(ready, (pos[k], k))
+        _, k = heapq.heappop(ready)
+        if k in done:
+            continue
+        done.add(k)
+        out.append(k)
+        for n in succ[k]:
+            indeg[n] -= 1
+            if indeg[n] == 0 and n not in done:
+                heapq.heappush(ready, (pos[n], n))
+    text = dict(merged)
+    return [(k, text[k]) for k in out]
+
+
 def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_line=None) -> list[str]:
     """One file's module body from its records (in file order): each record's own-file block is aligned with what
     the earlier ones built (a keyed sequence merge, so a second `section`/`end` is not mistaken for the first; a
@@ -879,6 +917,7 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
     # line is the self-contained text's, which need not be the corpus file's)
     raw: list[tuple[int, str]] = []
     alias: dict[str, str] = {}  # a record the flush renamed (a clash) -> its original name, which a sibling's prefix may carry
+    chains: list[list[str]] = []  # each record's block, then its theorem: orders the result must keep
     for r in marked:
         block, stack = scoped_chunks(own_text(r))
         block = [(k, c) for k, c in block if not (k.startswith("name:") and k[5:] in deps_names)]
@@ -936,11 +975,15 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
                 if n <= line and k in keys:
                     at = max(at, keys.index(k) + 1)
             new[at:at] = record_pieces(key, "\n".join(own_lead + [theorem_text(r["statement"], r["proof"])]), ns, present, deps_names)
+        chains.append([k for k, _ in block] + [key])
         placed.append((int(mm.group(1)) if mm else 0, key))
         at_line = orig_line(r) if orig_line else None
         if at_line is not None:
             raw.append((at_line, key))
         merged = new
+    # theorems in file order too (a block leaves out the theorems above it that it does not use)
+    chains.append([k for _, k in sorted(placed, key=lambda nk: nk[0])])
+    merged = constrained_order(merged, chains)
     # An agent's script restates what it needs (the prelude modules and the file's earlier declarations, inlined as
     # plain text), so its context is not merged: the file module already has those declarations. Its theorem goes
     # where the original stood — right after the nearest marked theorem above it in the source file, where the same
