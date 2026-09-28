@@ -110,6 +110,17 @@ class Generate(unittest.TestCase):
         self.assertIn("def a := 1", dep)
         self.assertIn("2 versions across records", dep)
 
+    def test_pruned_block_versions_are_merged(self):
+        # each record's block holds only what its theorem reaches: the Deps module must hold every part some record needed
+        v1 = HEAD + prelude("Lx.A", "def a := 1\ndef b := 2") + own("Lx/C.lean", 2, "")
+        v2 = HEAD + prelude("Lx.A", "def a := 1\ndef c := 3") + own("Lx/D.lean", 2, "")
+        self.generate([rec("t1", "Lx/C.lean", v1), rec("t2", "Lx/C.lean", v1), rec("t3", "Lx/D.lean", v2)])
+        dep = self.read("LibX/Deps/A.lean")
+        for d in ("def a := 1", "def b := 2", "def c := 3"):
+            self.assertIn(d, dep)
+        self.assertEqual(dep.count("def a"), 1)
+        self.assertLess(dep.index("def a"), dep.index("def c"))
+
     def test_a_theorem_a_deps_module_already_has_is_not_declared_again(self):
         # Lx/A.lean is another record's prelude; its own record (t_a, the original text) lives in Deps/A already
         ctx_b = HEAD + prelude("Lx.A", "def a := 1\ntheorem t_a : True := trivial") + own("Lx/B.lean", 4, "")

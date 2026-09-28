@@ -453,7 +453,10 @@ def corpus_edges(modules: set[str], corpus: Path | None, roots: list[str]) -> di
     def imports_of(mod: str) -> set[str] | None:
         if corpus is None:
             return None
-        f = corpus / Path(*mod.split(".")).with_suffix(".lean")
+        rel = Path(*mod.split(".")).with_suffix(".lean")
+        f = corpus / rel
+        if not f.exists():  # a package one directory down (formal-math keeps Zeta23/ under zeta23/)
+            f = next((g / rel for g in sorted(corpus.iterdir()) if g.is_dir() and (g / rel).exists()), f) if corpus.is_dir() else f
         if not f.exists():
             return None
         return {m.group(2) for m in IMPORT_RE.finditer(f.read_text(encoding="utf-8", errors="ignore"))}
@@ -477,6 +480,37 @@ def corpus_edges(modules: set[str], corpus: Path | None, roots: list[str]) -> di
     return edges
 
 
+def merge_versions(texts: list[str]) -> str:
+    """One module from the versions of its prelude block that records carry. A block holds only what its theorem
+    reaches, so each version is the module with other parts left out: merged in order (a keyed sequence merge, as
+    for a file's own blocks), every declaration some record needed is there once; on a name two versions both have,
+    the first (the most common) version's text is kept."""
+    from difflib import SequenceMatcher
+
+    if len(texts) == 1:
+        return texts[0]
+    merged: list[tuple[str, str]] = []
+    for text in texts:
+        block, _ = scoped_chunks(text)
+        names = {k for k, _ in merged if k.startswith("name:")}
+        sm = SequenceMatcher(a=[k for k, _ in merged], b=[k for k, _ in block], autojunk=False)
+        new: list[tuple[str, str]] = []
+        for tag, i1, i2, j1, j2 in sm.get_opcodes():
+            if tag in ("equal", "delete", "replace"):
+                new += merged[i1:i2]
+            if tag in ("insert", "replace"):
+                here = {k for k, _ in merged[i1:i2]}
+                for k, c in block[j1:j2]:
+                    if k not in here and not (k.startswith("name:") and k in names):
+                        new.append((k, c))
+                        if k.startswith("name:"):
+                            names.add(k)
+        merged = new
+    parts = [c for _, c in merged]
+    kept = [c for i, c in enumerate(parts) if not (is_lead_in(c) and not (i + 1 < len(parts) and DECL_NAME_RE.search(parts[i + 1])))]
+    return "\n\n".join(kept) + "\n"
+
+
 def verified_deps(
     records: list[dict], deps_dir: Path, lib_ns: str, corpus: Path | None = None, roots: list[str] | None = None
 ) -> tuple[list[str], dict[str, str]]:
@@ -494,28 +528,29 @@ def verified_deps(
         for m, text in blocks:
             versions.setdefault(m, Counter())[text] += 1
     edges = corpus_edges(set(versions), corpus, roots or [])
-    # the corpus's import graph orders the modules; context order fills in modules the corpus does not have
-    # context order only constrains modules the corpus says nothing about (a context may list independent modules
-    # in any order, and must not override a real import)
-    # one pair per import: a longer sequence would also order the imports among themselves, which nothing says
-    order = topo_order(
-        [[d, m] for m, deps in edges.items() for d in deps]
-        + [[m] for m in edges]
-        + [[m for m in seq if m not in edges] for seq in sequences]
-    )
-    rank = {m: i for i, m in enumerate(order)}
-    before: dict[str, set[str]] = {}
-    for m, deps in edges.items():
-        before[m] = {d for d in deps if rank[d] < rank[m]}
+    # A block compiled with only the blocks before it in its context: d can be a dependency of m only if d comes
+    # before m in EVERY context holding both (contexts list independent modules in either order, so a context's whole
+    # order is not a constraint — taken as one, the orders formed cycles and a cycle broke a real dependency).
+    seen_before: set[tuple[str, str]] = set()
+    seen_after: set[tuple[str, str]] = set()
     for seq in sequences:
         for i, m in enumerate(seq):
-            if m not in edges:
-                before.setdefault(m, set()).update(d for d in seq[:i] if rank[d] < rank[m])
+            for d in seq[:i]:
+                seen_before.add((m, d))
+            for d in seq[i + 1 :]:
+                seen_after.add((m, d))
+    deps: dict[str, set[str]] = {m: set(edges.get(m, ())) for m in versions}
+    for m, d in seen_before - seen_after:
+        if m not in edges:  # the corpus file, when found, says exactly what it imports
+            deps[m].add(d)
+    order = topo_order([[d, m] for m in deps for d in sorted(deps[m])] + [[m] for m in sorted(versions)])
+    rank = {m: i for i, m in enumerate(order)}
+    before: dict[str, set[str]] = {m: {d for d in ds if rank[d] < rank[m]} for m, ds in deps.items()}
     keys = {m: deps_key(m) for m in order}
     for m in order:
-        text = max(versions[m].items(), key=lambda kv: (kv[1], len(kv[0])))[0]
+        text = merge_versions([v for v, _ in sorted(versions[m].items(), key=lambda kv: (-kv[1], -len(kv[0])))])
         imports = "\n".join(f"import Tengoku.{lib_ns}.Deps.{keys[d]}" for d in sorted(before.get(m, ()), key=rank.get))
-        variants = f" ({len(versions[m])} versions across records; the most common is used)" if len(versions[m]) > 1 else ""
+        variants = f" ({len(versions[m])} versions across records, merged)" if len(versions[m]) > 1 else ""
         deps_file(deps_dir, keys[m]).write_text(
             f"-- {lib_ns}/Deps/{keys[m]}: {m} as it was verified in the tree (a record's prelude block){variants}\n"
             f"import Tengoku\n{imports}\n\nset_option linter.all false\n\n{text}",
