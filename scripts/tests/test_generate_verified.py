@@ -216,14 +216,9 @@ class Generate(unittest.TestCase):
         )
         self.assertIn("theorem _root_.Lx.t2 : True", self.read("LibX/C.lean"))
 
-    def test_an_attribute_a_prefix_kept_from_an_omitted_sibling_is_dropped(self):
-        # line 2's attribute belongs to t_a (omitted from t_b's prefix); t_b at line 5 has none of its own
-        src = "def a := 1\n@[simp]\ntheorem t_a : a = 1 := rfl\n\ntheorem t_b : True := trivial\n"
-        self.generate_with_corpus([rec("t_b", "Lx/C.lean", HEAD + own("Lx/C.lean", 5, "def a := 1\n@[simp]"))], {"Lx/C.lean": src})
-        self.assertNotIn("@[simp]", self.read("LibX/C.lean"))
-
     def test_an_attribute_on_the_line_above_the_theorem_stays(self):
-        src = "def a := 1\n@[simp]\ntheorem t_a : a = 1 := rfl\n"
+        # the prefix is the self-contained text's, whose lines need not be the corpus file's
+        src = "def a := 1\n\n\n@[fun_prop]\ntheorem t_a : a = 1 := rfl\n"
         self.generate_with_corpus(
             [rec("t_a", "Lx/C.lean", HEAD + own("Lx/C.lean", 3, "def a := 1\n@[simp]"), "theorem t_a : a = 1")], {"Lx/C.lean": src}
         )

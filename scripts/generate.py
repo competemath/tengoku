@@ -141,11 +141,11 @@ def unclosed_scopes(text: str) -> list[str]:
     `end <ns>`, so the wrapper must close what it left open."""
     stack: list[str] = []
     for line in text.splitlines():
-        m = re.match(r"^(?:noncomputable\s+)?(namespace|section)\b[ \t]*([\w.«»]*)", line)
+        m = re.match(r"^(?:noncomputable\s+)?(namespace|section)\b[ \t]*([^\s]*)", line)  # `section run'` too
         if m:
             stack.append(m.group(2))
             continue
-        m = re.match(r"^end\b[ \t]*([\w.«»]*)", line)
+        m = re.match(r"^end\b[ \t]*([^\s]*)", line)
         if m and stack:
             stack.pop()
     return [f"end {n}".rstrip() for n in reversed(stack)]
@@ -302,7 +302,10 @@ def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
     def lead_in_only(lines: list[str]) -> bool:
         # attributes, doc comments, and `set_option … in` / `omit … in` /
         # `open … in` modifiers all belong to the declaration that follows
-        # (and, for the verified generator, a modifier alone on its line: `noncomputable`, `private`, …)
+        # (and, for the verified generator, a modifier alone on its line: `noncomputable`, `private`, …; a line that
+        # only STARTS with an attribute, `@[simp] lemma …` or `@[expose] public section`, is a command of its own)
+        if continuations:
+            return only_lead_in("\n".join(lines))
         return all(
             not l.strip()
             or l.startswith(("@[", "/--", "/-", "--"))
@@ -320,6 +323,8 @@ def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
             and cur
             and not lead_in_only(cur)
             and not (continuations and CONTINUATION_RE.match(line))
+            # a comment written at column 0 inside a proof is not the end of the declaration
+            and not (continuations and (line.startswith("--") or (line.startswith("/-") and not line.startswith(("/--", "/-!")))))
         ):
             out.append(cur)
             cur = []
@@ -479,7 +484,7 @@ def verified_deps(
     return order, keys
 
 
-SCOPE_RE = re.compile(r"^(?:noncomputable\s+)?(namespace|section)\b[ \t]*([^\s]*)")
+SCOPE_RE = re.compile(r"^(?:@\[[^\]]*\]\s*)*(?:(?:noncomputable|public|private)\s+)*(namespace|section)\b[ \t]*([^\s]*)")
 END_RE = re.compile(r"^end\b[ \t]*([^\s]*)")
 
 
@@ -493,7 +498,7 @@ def scoped_chunks(text: str) -> tuple[list[tuple[str, str]], list[tuple[str, str
         body = "\n".join(ch).strip()
         if not body:
             continue
-        code = [l for l in ch if l.strip() and not l.lstrip().startswith(("--", "/-", "@[")) and not l.strip().endswith("-/")]
+        code = [l for l in ch if l.strip() and not l.lstrip().startswith(("--", "/-")) and not l.strip().endswith("-/") and not only_lead_in(l)]
         if code and IMPORT_LINE_RE.match(code[0]):
             continue
         m = DECL_NAME_RE.search(body)
@@ -596,7 +601,15 @@ def is_lead_in(text: str) -> bool:
     return bool(text.strip()) and only_lead_in(text) and not DECL_NAME_RE.search(text)
 
 
-def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_line=None, source_lines=None) -> list[str]:
+def theorem_text(statement: str, proof: str) -> str:
+    """A record's declaration as it stood: the split was at the first `:=` after its keyword, which for a definition
+    by pattern matching is inside a `have` of one arm — `… have h : P` + `:= by omega` must stay on one line."""
+    statement, proof = strip_corpus_attrs(statement), strip_trailing_ends(proof)
+    last = statement.rstrip().splitlines()[-1] if statement.strip() else ""
+    return f"{statement} {proof}" if proof.startswith(":=") and "--" not in last else f"{statement}\n{proof}"
+
+
+def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_line=None) -> list[str]:
     """One file's module body from its records (in file order): each record's own-file block is aligned with what
     the earlier ones built (a keyed sequence merge, so a second `section`/`end` is not mistaken for the first; a
     declaration, keyed by its full name, appears once), and its theorem goes right after its own block, under the
@@ -608,18 +621,16 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
     agent = [r for r in recs if not FILE_MARKER_RE.search(r["context"])]
     merged: list[tuple[str, str]] = []
     placed: list[tuple[int, str]] = []  # (line of a marked record's theorem, its key)
+    # an agent record is placed by its line in the corpus file, so the marked ones are compared by theirs (a marker's
+    # line is the self-contained text's, which need not be the corpus file's)
+    raw: list[tuple[int, str]] = []
     alias: dict[str, str] = {}  # a record the flush renamed (a clash) -> its original name, which a sibling's prefix may carry
     for r in marked:
         block, stack = scoped_chunks(own_text(r))
         block = [(k, c) for k, c in block if not (k.startswith("name:") and k[5:] in deps_names)]
-        # A prefix omits the sibling theorems it does not use but can keep an attribute written on the line above one;
-        # at the end of the block that is only the record's own when the source has it right above the theorem.
+        # an attribute or doc comment ending the block is the record's own (a prefix omits a sibling together with its
+        # attributes): it stays right above the theorem
         mm = re.search(r"everything before line (\d+)", r["context"])
-        if source_lines and mm and 2 <= int(mm.group(1)) <= len(source_lines) + 1:
-            above = source_lines[int(mm.group(1)) - 2]
-            if not (above.strip() and (is_lead_in(above) or above.rstrip().endswith("-/"))):
-                while block and block[-1][0].startswith("text:") and is_lead_in(block[-1][1]):
-                    block.pop()
         sm = SequenceMatcher(a=[k for k, _ in merged], b=[k for k, _ in block], autojunk=False)
         new: list[tuple[str, str]] = []
         last_of_block = -1
@@ -666,12 +677,15 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
             for n, k in placed:
                 if n <= line and k in keys:
                     at = max(at, keys.index(k) + 1)
-            new.insert(at, (key, f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}"))
+            new.insert(at, (key, theorem_text(r["statement"], r["proof"])))
         else:  # the theorem is already there: an attribute or doc comment written on the lines above it goes too
             while 0 <= last_of_block < len(new) and new[last_of_block][0].startswith("text:") and is_lead_in(new[last_of_block][1]):
                 del new[last_of_block]
                 last_of_block -= 1
         placed.append((int(mm.group(1)) if mm else 0, key))
+        at_line = orig_line(r) if orig_line else None
+        if at_line is not None:
+            raw.append((at_line, key))
         merged = new
     # An agent's script restates what it needs (the prelude modules and the file's earlier declarations, inlined as
     # plain text), so its context is not merged: the file module already has those declarations. Its theorem goes
@@ -683,7 +697,7 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
         at = len(merged)
         if line is not None:
             keys = [k for k, _ in merged]
-            before = [k for n, k in placed if n <= line and k in keys]
+            before = [k for n, k in sorted(raw) if n <= line and k in keys]
             if before:
                 at = keys.index(before[-1]) + 1
         stack: list[tuple[str, str]] = []
@@ -705,10 +719,9 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
         present = {k for k, _ in merged}
         if full in deps_names or ("name:" + full) in present or (r.get("original_name") and "name:" + r["original_name"] in present):
             continue
-        merged.insert(at, ("name:" + full, f"{strip_corpus_attrs(statement)}\n{strip_trailing_ends(r['proof'])}"))
+        merged.insert(at, ("name:" + full, theorem_text(statement, r["proof"])))
         if line is not None:
-            placed.append((line, "name:" + full))
-            placed.sort()
+            raw.append((line, "name:" + full))
     parts = [text for _, text in merged]
     # a lead-in whose declaration went (deduplicated, or in Deps) would attach to whatever follows it
     kept: list[str] = []
@@ -951,7 +964,7 @@ def main():
                     )
                     return src_text.count("\n", 0, mm.start()) + 1 if mm else None
 
-                parts = verified_file_body(recs, own_text, deps_full, orig_line, src_text.splitlines())
+                parts = verified_file_body(recs, own_text, deps_full, orig_line)
             for r in [] if mode == "verified" else recs:
                 for chunk in top_level_chunks(own_prefix(r)):
                     emit("\n".join(chunk))
