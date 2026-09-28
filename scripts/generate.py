@@ -523,7 +523,7 @@ def is_lead_in(text: str) -> bool:
     return bool(text.strip()) and only_lead_in(text) and not DECL_NAME_RE.search(text)
 
 
-def verified_file_body(recs: list[dict], own_text, deps_names: set[str]) -> list[str]:
+def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_line=None, source_lines=None) -> list[str]:
     """One file's module body from its records (in file order): each record's own-file block is aligned with what
     the earlier ones built (a keyed sequence merge, so a second `section`/`end` is not mistaken for the first; a
     declaration, keyed by its full name, appears once), and its theorem goes right after its own block, under the
@@ -531,10 +531,21 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str]) -> list
     attribute or modifier left without its declaration is dropped."""
     from difflib import SequenceMatcher
 
+    marked = [r for r in recs if FILE_MARKER_RE.search(r["context"])]
+    agent = [r for r in recs if not FILE_MARKER_RE.search(r["context"])]
     merged: list[tuple[str, str]] = []
-    for r in recs:
+    placed: list[tuple[int, str]] = []  # (line of a marked record's theorem, its key)
+    for r in marked:
         block, stack = scoped_chunks(own_text(r))
         block = [(k, c) for k, c in block if not (k.startswith("name:") and k[5:] in deps_names)]
+        # A prefix omits the sibling theorems it does not use but can keep an attribute written on the line above one;
+        # at the end of the block that is only the record's own when the source has it right above the theorem.
+        mm = re.search(r"everything before line (\d+)", r["context"])
+        if source_lines and mm and 2 <= int(mm.group(1)) <= len(source_lines) + 1:
+            above = source_lines[int(mm.group(1)) - 2]
+            if not (above.strip() and (is_lead_in(above) or above.rstrip().endswith("-/"))):
+                while block and block[-1][0].startswith("text:") and is_lead_in(block[-1][1]):
+                    block.pop()
         sm = SequenceMatcher(a=[k for k, _ in merged], b=[k for k, _ in block], autojunk=False)
         new: list[tuple[str, str]] = []
         last_of_block = -1
@@ -570,8 +581,55 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str]) -> list
         full = written[len("_root_.") :] if written.startswith("_root_.") else ".".join(ns + [written])
         key = "name:" + full
         if full not in deps_names and key not in {k for k, _ in new}:
-            new.insert(last_of_block + 1, (key, f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}"))
+            # after its own block, and after the theorems above it in the file (its prefix omits them)
+            at = last_of_block + 1
+            line = int(mm.group(1)) if mm else 0
+            keys = [k for k, _ in new]
+            for n, k in placed:
+                if n <= line and k in keys:
+                    at = max(at, keys.index(k) + 1)
+            new.insert(at, (key, f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}"))
+        else:  # the theorem is already there: an attribute or doc comment written on the lines above it goes too
+            while 0 <= last_of_block < len(new) and new[last_of_block][0].startswith("text:") and is_lead_in(new[last_of_block][1]):
+                del new[last_of_block]
+                last_of_block -= 1
+        placed.append((int(mm.group(1)) if mm else 0, key))
         merged = new
+    # An agent's script restates what it needs (the prelude modules and the file's earlier declarations, inlined as
+    # plain text), so its context is not merged: the file module already has those declarations. Its theorem goes
+    # where the original stood — right after the nearest marked theorem above it in the source file, where the same
+    # namespaces and variables are open; at the end when that is unknown. A helper the agent changed would fail the
+    # build: such a module is refused, never trusted.
+    for r in agent:
+        line = orig_line(r) if orig_line else None
+        at = len(merged)
+        if line is not None:
+            keys = [k for k, _ in merged]
+            before = [k for n, k in placed if n <= line and k in keys]
+            if before:
+                at = keys.index(before[-1]) + 1
+        stack: list[tuple[str, str]] = []
+        for k, text in merged[:at]:
+            first = text.lstrip().splitlines()[0] if text.strip() else ""
+            s, e = SCOPE_RE.match(first), END_RE.match(first)
+            if k.startswith("text:") and s:
+                stack.append((s.group(1), s.group(2)))
+            elif k.startswith("text:") and e and stack:
+                stack.pop()
+        statement = r["statement"]
+        m = DECL_NAME_RE.search(statement)
+        written = m.group(1) if m else r["name"]
+        ns = [n for kind, n in stack if kind == "namespace" and n]
+        full = written[len("_root_.") :] if written.startswith("_root_.") else ".".join(ns + [written])
+        if m and full != r["name"]:  # the namespaces open here are not the original's: name it in full
+            statement = statement[: m.start(1)] + "_root_." + r["name"] + statement[m.end(1) :]
+            full = r["name"]
+        if full in deps_names or ("name:" + full) in {k for k, _ in merged}:
+            continue
+        merged.insert(at, ("name:" + full, f"{strip_corpus_attrs(statement)}\n{strip_trailing_ends(r['proof'])}"))
+        if line is not None:
+            placed.append((line, "name:" + full))
+            placed.sort()
     parts = [text for _, text in merged]
     # a lead-in whose declaration went (deduplicated, or in Deps) would attach to whatever follows it
     kept: list[str] = []
@@ -801,7 +859,20 @@ def main():
                         text = PRELUDE_ANY_RE.sub("", text)
                     return "\n".join(l for l in text.splitlines() if not l.startswith("set_option linter.all false"))
 
-                parts = verified_file_body(recs, own_text, deps_full)
+                src_text = (corpus / source_path).read_text(encoding="utf-8", errors="ignore") if (corpus / source_path).is_file() else ""
+
+                def orig_line(r):
+                    bare = r["name"].rsplit(".", 1)[-1]
+                    mm = re.search(
+                        r"^[ \t]*(?:@\[[^\]]*\][ \t]*)*(?:(?:private|protected|nonrec)[ \t]+)*(?:theorem|lemma)[ \t]+(?:[\w'.«»]*\.)?"
+                        + re.escape(bare)
+                        + r"(?![\w'])",
+                        src_text,
+                        re.M,
+                    )
+                    return src_text.count("\n", 0, mm.start()) + 1 if mm else None
+
+                parts = verified_file_body(recs, own_text, deps_full, orig_line, src_text.splitlines())
             for r in [] if mode == "verified" else recs:
                 for chunk in top_level_chunks(own_prefix(r)):
                     emit("\n".join(chunk))

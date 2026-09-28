@@ -174,6 +174,63 @@ class Generate(unittest.TestCase):
         self.generate([rec("t_b", "Lx/B.lean", ctx_b)])
         self.assertIn("def f := 2", self.read("LibX/B.lean"))  # Q.f is not P.f
 
+    def generate_with_corpus(self, records: list[dict], files: dict[str, str]) -> None:
+        corpus = self.out / "corpus"
+        for rel, text in files.items():
+            (corpus / rel).parent.mkdir(parents=True, exist_ok=True)
+            (corpus / rel).write_text(text)
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text("".join(json.dumps(r) + "\n" for r in records))
+        r = subprocess.run(
+            [sys.executable, "scripts/generate.py", "--corpus", str(corpus), "--libraries", "lib-x"],
+            cwd=self.out,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+    def test_an_agent_script_is_not_merged_and_its_theorem_stands_where_the_original_did(self):
+        src = "namespace Lx\ntheorem t1 : True := trivial\ntheorem t2 : True := trivial\ntheorem t3 : True := trivial\nend Lx\n"
+        agent_ctx = HEAD + "namespace Lx\ndef helper := 5\nend Lx\n"  # restated, no markers
+        self.generate_with_corpus(
+            [
+                rec("Lx.t1", "Lx/C.lean", HEAD + own("Lx/C.lean", 2, "namespace Lx"), "theorem t1 : True"),
+                rec("Lx.t2", "Lx/C.lean", agent_ctx, "theorem t2 : True"),
+                rec("Lx.t3", "Lx/C.lean", HEAD + own("Lx/C.lean", 4, "namespace Lx"), "theorem t3 : True"),
+            ],
+            {"Lx/C.lean": src},
+        )
+        c = self.read("LibX/C.lean")
+        self.assertNotIn("helper", c)
+        self.assertEqual(c.count("namespace Lx"), 1, c)
+        self.assertLess(c.index("theorem t1"), c.index("theorem t2"))
+        self.assertLess(c.index("theorem t2"), c.index("theorem t3"))
+
+    def test_an_agent_theorem_under_other_namespaces_is_named_in_full(self):
+        src = "namespace Lx\nnamespace Inner\ntheorem t1 : True := trivial\nend Inner\ntheorem t2 : True := trivial\nend Lx\n"
+        self.generate_with_corpus(
+            [
+                rec("Lx.Inner.t1", "Lx/C.lean", HEAD + own("Lx/C.lean", 3, "namespace Lx\nnamespace Inner"), "theorem t1 : True"),
+                rec("Lx.t2", "Lx/C.lean", HEAD + "namespace Lx\nend Lx\n", "theorem t2 : True"),
+            ],
+            {"Lx/C.lean": src},
+        )
+        self.assertIn("theorem _root_.Lx.t2 : True", self.read("LibX/C.lean"))
+
+    def test_an_attribute_a_prefix_kept_from_an_omitted_sibling_is_dropped(self):
+        # line 2's attribute belongs to t_a (omitted from t_b's prefix); t_b at line 5 has none of its own
+        src = "def a := 1\n@[simp]\ntheorem t_a : a = 1 := rfl\n\ntheorem t_b : True := trivial\n"
+        self.generate_with_corpus([rec("t_b", "Lx/C.lean", HEAD + own("Lx/C.lean", 5, "def a := 1\n@[simp]"))], {"Lx/C.lean": src})
+        self.assertNotIn("@[simp]", self.read("LibX/C.lean"))
+
+    def test_an_attribute_on_the_line_above_the_theorem_stays(self):
+        src = "def a := 1\n@[simp]\ntheorem t_a : a = 1 := rfl\n"
+        self.generate_with_corpus(
+            [rec("t_a", "Lx/C.lean", HEAD + own("Lx/C.lean", 3, "def a := 1\n@[simp]"), "theorem t_a : a = 1")], {"Lx/C.lean": src}
+        )
+        c = self.read("LibX/C.lean")
+        self.assertIn("@[simp]", c)
+        self.assertLess(c.index("@[simp]"), c.index("theorem t_a"))
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
