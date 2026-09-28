@@ -534,8 +534,9 @@ def clash_suffix(library: str) -> str:
     return "__" + re.sub(r"[^A-Za-z0-9]", "_", library)  # bank-flush renames records the same way
 
 
-def library_declarations(lib_dir: Path, candidates: bool = False) -> dict[str, str]:
-    """Every public declaration a library's modules make: full name -> its text (whitespace-normalised)."""
+def library_declarations(lib_dir: Path, candidates: bool = False, where: dict[str, set[Path]] | None = None) -> dict[str, str]:
+    """Every public declaration a library's modules make: full name -> its text (whitespace-normalised); `where`, when
+    given, collects the files declaring each."""
     out: dict[str, str] = {}
     for f in sorted(lib_dir.rglob("*.lean")):
         if f.name.startswith("_candidate_") and not candidates:
@@ -543,6 +544,30 @@ def library_declarations(lib_dir: Path, candidates: bool = False) -> dict[str, s
         for k, chunk in scoped_chunks(f.read_text(encoding="utf-8"))[0]:
             if k.startswith("name:"):
                 out.setdefault(k[5:], " ".join(chunk.split()))
+                if where is not None:
+                    where.setdefault(k[5:], set()).add(f)
+    return out
+
+
+def importers(lib_dir: Path) -> dict[Path, set[Path]]:
+    """Each file of a library -> itself and every file of the library importing it, directly or not."""
+    root = lib_dir.parent.parent  # <out>/Tengoku/<Lib> -> <out>
+    files = sorted(lib_dir.rglob("*.lean"))
+    by_mod = {".".join(f.relative_to(root).with_suffix("").parts): f for f in files}
+    direct: dict[Path, set[Path]] = {f: set() for f in files}
+    for f in files:
+        for m in re.findall(r"^import (\S+)", f.read_text(encoding="utf-8"), re.M):
+            if m in by_mod:
+                direct[by_mod[m]].add(f)
+    out: dict[Path, set[Path]] = {}
+    for f in files:
+        seen, todo = {f}, [f]
+        while todo:
+            for g in direct[todo.pop()]:
+                if g not in seen:
+                    seen.add(g)
+                    todo.append(g)
+        out[f] = seen
     return out
 
 
@@ -556,6 +581,9 @@ def rename_tokens(text: str, targets: dict[str, str]) -> str:
 
     def fix(m: re.Match) -> str:
         run = m.group(0)
+        before, after = m.string[: m.start()].rstrip()[-1:], m.string[m.end() :].lstrip()[:2]
+        if after == ":=" and before in ("(", "{", ","):  # a named argument or a structure field: a parameter's name
+            return run
         lead = "." if run.startswith(".") else ""
         comps = run[len(lead) :].split(".")
         for i, c in enumerate(comps):
@@ -573,31 +601,95 @@ def rename_tokens(text: str, targets: dict[str, str]) -> str:
     return IDENT_RUN_RE.sub(fix, text)
 
 
+def library_imports(out: Path, start: Path, lib_dirs: set[str]) -> set[Path]:
+    """The library files `start` imports, directly or not (the seeded tree's own modules are not followed)."""
+    seen: set[Path] = set()
+    todo = [start]
+    while todo:
+        for m in re.findall(r"^import (\S+)", todo.pop().read_text(encoding="utf-8"), re.M):
+            parts = m.split(".")
+            if len(parts) > 2 and parts[0] == "Tengoku" and parts[1] in lib_dirs:
+                f = out.joinpath(*parts).with_suffix(".lean")
+                if f.is_file() and f not in seen:
+                    seen.add(f)
+                    todo.append(f)
+    return seen
+
+
 def rename_clashes(out: Path, lib_dir: Path, library: str, libraries: list[str]) -> str:
     """A declaration this library makes that another library's modules already make would stop the tree importing
-    both. The library already in the tree keeps the name; this one's copy is renamed `<name>__<library>` everywhere in
-    its modules (the outermost clashing name only: renaming a structure renames its fields and lemmas with it)."""
-    mine = library_declarations(lib_dir, candidates=True)  # a candidate module is renamed as its module would be
-    theirs: dict[str, str] = {}
+    both; the library already in the tree keeps it. An identical copy (same full name, same text: a fork, a vendored
+    file) is kept once — this library's module imports the other's and drops its own. A different one is renamed
+    `<name>__<library>` wherever it is in scope here (the outermost clashing name only: renaming a structure renames
+    its fields and lemmas with it)."""
+    where: dict[str, set[Path]] = {}
+    mine = library_declarations(lib_dir, candidates=True, where=where)  # a candidate module is treated as its module
+    theirs: dict[str, tuple[str, Path]] = {}
+    lib_dirs = {pascal(k) for k in libraries} | {lib_dir.name}
     for other in libraries:
         d = out / "Tengoku" / pascal(other)
         if other != library and d.is_dir() and d != lib_dir:
-            for name, text in library_declarations(d).items():
-                theirs.setdefault(name, text)
+            w: dict[str, set[Path]] = {}
+            for name, text in library_declarations(d, where=w).items():
+                theirs.setdefault(name, (text, sorted(w[name])[0]))
     clashes = sorted(n for n in mine if n in theirs)
     if not clashes:
         return ""
-    identical = sum(1 for n in clashes if mine[n] == theirs[n])
-    clash_set = set(clashes)
-    outer = [n for n in clashes if not any(".".join(n.split(".")[:i]) in clash_set for i in range(1, n.count(".") + 1))]
+    identical = {n for n in clashes if mine[n] == theirs[n][0]}
+    differing = set(clashes) - identical
+
+    def prefixes(n: str) -> list[str]:
+        return [".".join(n.split(".")[:i]) for i in range(1, n.count(".") + 1)]
+
+    outer = [n for n in sorted(differing) if not any(p in differing for p in prefixes(n))]
+    covered = {n for n in clashes if any(p in outer for p in prefixes(n))}  # renamed along with a parent
+    # keeping one copy means importing the other library's module: never when that module imports this library
+    back: dict[Path, bool] = {}
+    kept_once: dict[str, Path] = {}
+    for n in sorted(identical - covered):
+        src = theirs[n][1]
+        if src not in back:
+            back[src] = any(lib_dir in f.parents for f in library_imports(out, src, lib_dirs))
+        if back[src]:
+            outer.append(n)
+        else:
+            kept_once[n] = src
     suffix = clash_suffix(library)
     targets = {n: n.rsplit(".", 1)[-1] + suffix for n in outer if not n.rsplit(".", 1)[-1].startswith("«")}
-    for f in lib_dir.rglob("*.lean"):
+    # only where the declaration is in scope: the file making it and the files importing that one (a file module is
+    # imported by none, so a clash there is renamed in that file alone — a binder `f` elsewhere keeps its name)
+    reach = importers(lib_dir)
+    seen_in: dict[Path, dict[str, str]] = {}
+    for n, new_short in targets.items():
+        for decl_file in where.get(n, ()):
+            for f in reach.get(decl_file, {decl_file}):
+                seen_in.setdefault(f, {})[n] = new_short
+    drop_in: dict[Path, dict[str, Path]] = {}
+    for n, src in kept_once.items():
+        for decl_file in where.get(n, ()):
+            drop_in.setdefault(decl_file, {})[n] = src
+    for f in set(seen_in) | set(drop_in):
         text = f.read_text(encoding="utf-8")
-        new = rename_tokens(text, targets)
+        new = text
+        if f in drop_in:
+            chunks = dict(scoped_chunks(new)[0])
+            for n in drop_in[f]:
+                if "name:" + n in chunks:
+                    new = new.replace(chunks["name:" + n], "", 1)
+            imports = sorted({".".join(src.relative_to(out).with_suffix("").parts) for src in drop_in[f].values()})
+            lines = new.split("\n")
+            last_import = max((i for i, l in enumerate(lines) if l.startswith("import ")), default=0)
+            have = set(lines)
+            lines[last_import + 1 : last_import + 1] = [f"import {m}" for m in imports if f"import {m}" not in have]
+            new = "\n".join(lines)
+        if f in seen_in:
+            new = rename_tokens(new, seen_in[f])
         if new != text:
             f.write_text(new, encoding="utf-8")
-    return f"{len(clashes)} clashes with other libraries ({identical} identical, {len(clashes) - identical} differing): {len(targets)} renamed *{suffix}"
+    return (
+        f"{len(clashes)} clashes with other libraries ({len(identical)} identical, {len(differing)} differing): "
+        f"{len(kept_once)} kept once (imported), {len(targets)} renamed *{suffix}"
+    )
 
 
 def is_lead_in(text: str) -> bool:

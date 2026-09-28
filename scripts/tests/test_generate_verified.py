@@ -226,13 +226,14 @@ class Generate(unittest.TestCase):
         self.assertIn("@[simp]", c)
         self.assertLess(c.index("@[simp]"), c.index("theorem t_a"))
 
-    def test_a_declaration_another_library_already_makes_is_renamed_in_the_newcomer(self):
+    def test_an_identical_copy_is_kept_once_and_a_different_one_renamed(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"]}, "lib-y": {"repo": "r", "commit": "c", "roots": ["Ly"]}}})
         )
-        pre = "namespace S\nstructure Box where\n  v : Nat\ntheorem Box.v_eq (b : Box) : b.v = b.v := rfl\nend S\ntheorem Nat.helper : True := trivial"
-        x = rec("S.t", "Lx/C.lean", HEAD + own("Lx/C.lean", 8, pre), "theorem S.t (b : S.Box) : b.v_eq = b.v_eq")
-        y = dict(rec("S.u", "Ly/C.lean", HEAD + own("Ly/C.lean", 8, pre), "theorem S.u (b : S.Box) : Nat.helper = Nat.helper"), library="lib-y")
+        box = "namespace S\nstructure Box where\n  v : {ty}\ntheorem Box.v_eq (b : Box) : b.v = b.v := rfl\nend S\n"
+        helper = "theorem Nat.helper : True := trivial"
+        x = rec("S.t", "Lx/C.lean", HEAD + own("Lx/C.lean", 8, box.format(ty="Nat") + helper), "theorem S.t (b : S.Box) : b.v_eq = b.v_eq")
+        y = dict(rec("S.u", "Ly/C.lean", HEAD + own("Ly/C.lean", 8, box.format(ty="Int") + helper), "theorem S.u (b : S.Box) : Nat.helper = Nat.helper"), library="lib-y")
         (self.out / "data" / "trusted" / "lib-x.jsonl").write_text(json.dumps(x) + "\n")
         (self.out / "data" / "trusted" / "lib-y.jsonl").write_text(json.dumps(y) + "\n")
         runs = [
@@ -241,17 +242,35 @@ class Generate(unittest.TestCase):
         ]
         for r in runs:
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
-        self.assertIn("3 clashes with other libraries (3 identical, 0 differing): 2 renamed *__lib_y", runs[1].stdout)
+        self.assertIn("3 clashes with other libraries (2 identical, 1 differing): 1 kept once (imported), 1 renamed *__lib_y", runs[1].stdout)
         cx, cy = self.read("LibX/C.lean"), self.read("LibY/C.lean")
         self.assertIn("structure Box where", cx)  # the library already in the tree keeps its names
-        self.assertIn("structure Box__lib_y where", cy)
-        self.assertIn("theorem Box__lib_y.v_eq (b : Box__lib_y)", cy)  # its lemmas move with it
-        self.assertIn("theorem S.u (b : S.Box__lib_y) : Nat.helper__lib_y = Nat.helper__lib_y", cy)
-        self.assertIn("theorem Nat.helper__lib_y", cy)
+        self.assertIn("structure Box__lib_y where", cy)  # a different Box: renamed, its lemma with it
+        self.assertIn("theorem Box__lib_y.v_eq (b : Box__lib_y)", cy)
+        self.assertNotIn("theorem Nat.helper", cy)  # the identical helper: lib-x's, imported
+        self.assertIn("import Tengoku.LibX.C", cy)
+        self.assertIn("theorem S.u (b : S.Box__lib_y) : Nat.helper = Nat.helper", cy)
         # regenerating either one again changes nothing: the newcomer keeps its renames, the incumbent its names
         for lib in ("lib-x", "lib-y"):
             subprocess.run([sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", lib], cwd=self.out, capture_output=True, text=True)
         self.assertEqual((cx, cy), (self.read("LibX/C.lean"), self.read("LibY/C.lean")))
+
+    def test_a_rename_stays_where_the_declaration_is_in_scope(self):
+        (self.out / "schemas" / "sources.json").write_text(
+            json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"]}, "lib-y": {"repo": "r", "commit": "c", "roots": ["Ly"]}}})
+        )
+        x = rec("t", "Lx/C.lean", HEAD + own("Lx/C.lean", 3, "def f (n : Nat) : Nat := n"), "theorem t : f 0 = 0")
+        y1 = dict(rec("u", "Ly/C.lean", HEAD + own("Ly/C.lean", 3, "def f (n : Nat) : Nat := n + 0"), "theorem u : f 0 = Nat.add (n := 0) 0"), library="lib-y")
+        y2 = dict(rec("v", "Ly/D.lean", HEAD + own("Ly/D.lean", 1, ""), "theorem v (f : Nat → Nat) : f 0 = f 0"), library="lib-y")
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text(json.dumps(x) + "\n")
+        (self.out / "data" / "trusted" / "lib-y.jsonl").write_text(json.dumps(y1) + "\n" + json.dumps(y2) + "\n")
+        for lib in ("lib-x", "lib-y"):
+            r = subprocess.run([sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", lib], cwd=self.out, capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        c = self.read("LibY/C.lean")
+        self.assertIn("def f__lib_y (n : Nat)", c)
+        self.assertIn("theorem u : f__lib_y 0 = Nat.add (n := 0) 0", c)  # a named argument is a parameter's name
+        self.assertIn("theorem v (f : Nat → Nat) : f 0 = f 0", self.read("LibY/D.lean"))  # f is not in scope there
 
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
