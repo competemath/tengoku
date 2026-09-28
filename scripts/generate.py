@@ -525,11 +525,11 @@ def clash_suffix(library: str) -> str:
     return "__" + re.sub(r"[^A-Za-z0-9]", "_", library)  # bank-flush renames records the same way
 
 
-def library_declarations(lib_dir: Path) -> dict[str, str]:
+def library_declarations(lib_dir: Path, candidates: bool = False) -> dict[str, str]:
     """Every public declaration a library's modules make: full name -> its text (whitespace-normalised)."""
     out: dict[str, str] = {}
     for f in sorted(lib_dir.rglob("*.lean")):
-        if f.name.startswith("_candidate_"):
+        if f.name.startswith("_candidate_") and not candidates:
             continue
         for k, chunk in scoped_chunks(f.read_text(encoding="utf-8"))[0]:
             if k.startswith("name:"):
@@ -568,7 +568,7 @@ def rename_clashes(out: Path, lib_dir: Path, library: str, libraries: list[str])
     """A declaration this library makes that another library's modules already make would stop the tree importing
     both. The library already in the tree keeps the name; this one's copy is renamed `<name>__<library>` everywhere in
     its modules (the outermost clashing name only: renaming a structure renames its fields and lemmas with it)."""
-    mine = library_declarations(lib_dir)
+    mine = library_declarations(lib_dir, candidates=True)  # a candidate module is renamed as its module would be
     theirs: dict[str, str] = {}
     for other in libraries:
         d = out / "Tengoku" / pascal(other)
