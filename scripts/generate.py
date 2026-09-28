@@ -248,7 +248,7 @@ def map_imports(
 
 
 DECL_NAME_RE = re.compile(
-    r"^\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s+)*(?:def|theorem|lemma|abbrev|instance|opaque|axiom|inductive|structure|class)\s+([A-Za-z_][\w'.]*)",
+    r"^\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s+)*(?:def|theorem|lemma|abbrev|instance|opaque|axiom|inductive|structure|class)\s+((?:«[^»]*»|[^\W\d])(?:«[^»]*»|[\w'.!?₀-₉ₐ-ₜᵢ-ᵪ])*)",
     re.M,
 )
 IMPORT_LINE_RE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s")
@@ -275,18 +275,45 @@ def deps_declared(deps_dir: Path) -> tuple[set[str], set[str]]:
     return names, lines
 
 
+IN_MODIFIER_HEAD_RE = re.compile(r"^(?:variable|open|set_option|omit|include)\b")
+
+
+def drop_in_modifiers(s: str) -> str:
+    """Blank out `variable … in` / `open … in` (and the like) written over several lines: a head at column 0, its
+    indented continuation lines, the last one ending in `in`."""
+    lines = s.split("\n")
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        if IN_MODIFIER_HEAD_RE.match(lines[i]):
+            j = i
+            while j + 1 < len(lines) and lines[j + 1][:1] in (" ", "\t") and lines[j + 1].strip():
+                j += 1
+            if re.search(r"\bin[ \t]*$", lines[j]):
+                out.extend([""] * (j - i + 1))
+                i = j + 1
+                continue
+        out.append(lines[i])
+        i += 1
+    return "\n".join(out)
+
+
 def only_lead_in(text: str) -> bool:
     """Nothing but doc/block/line comments, attributes, modifiers or `… in` lines (a multi-line doc comment's middle
     lines included): it belongs to the declaration that follows it."""
     s = re.sub(r"/-.*?-/", " ", text, flags=re.S)
     s = re.sub(r"--[^\n]*", " ", s)
     s = re.sub(r"@\[[^\]]*\]", " ", s)
-    s = re.sub(r"^.*\bin\s*$", " ", s, flags=re.M)
+    # modifiers first: `open scoped Classical in noncomputable` (the `def` on the next line) is a lead-in too
     s = re.sub(r"\b(private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\b", " ", s)
+    s = drop_in_modifiers(s)
+    s = re.sub(r"^.*\bin\s*$", " ", s, flags=re.M)
     return not s.strip()
 
 
 MODIFIER_LINE_RE = re.compile(r"^(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s*)+$")
+NOT_LEAD_TARGET_RE = re.compile(r"^(?:(?:noncomputable|public|private)\s+)*(?:end|section|namespace|variable|universe)\b")
+INDENTED_SCOPE_RE = re.compile(r"^\s+(?:(?:noncomputable|public|private)\s+)*(?:end|section|namespace)\b(?:[ \t]+[^\s]+)?[ \t]*$")
 CONTINUATION_RE = re.compile(r"^(\||deriving\b|with\b|where\b|termination_by\b|decreasing_by\b|\)|\]|\})")
 
 
@@ -298,6 +325,7 @@ def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
     out: list[list[str]] = []
     cur: list[str] = []
     depth = 0
+    brackets = 0  # verified generator: inside an unclosed `@[to_additive` … `]` (or `(`, `{`) nothing splits
 
     def lead_in_only(lines: list[str]) -> bool:
         # attributes, doc comments, and `set_option … in` / `omit … in` /
@@ -316,19 +344,31 @@ def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
         ) or (continuations and only_lead_in("\n".join(lines)))
 
     for line in text.splitlines():
+        if continuations and depth == 0 and INDENTED_SCOPE_RE.match(line):
+            line = line.lstrip()  # `  end Foo`: Lean 4 has `end`/`section`/`namespace` only as commands
         if (
             line
             and not line[0].isspace()
             and depth == 0
             and cur
-            and not lead_in_only(cur)
+            # a lead-in never belongs to a scope or `variable` line: an `open … in` left by an omitted sibling stays
+            # behind (and is dropped as dangling) instead of fusing with the `end` after it
+            and (not lead_in_only(cur) or (continuations and NOT_LEAD_TARGET_RE.match(line)))
             and not (continuations and CONTINUATION_RE.match(line))
             # a comment written at column 0 inside a proof is not the end of the declaration
             and not (continuations and (line.startswith("--") or (line.startswith("/-") and not line.startswith(("/--", "/-!")))))
+            and not (continuations and brackets > 0)
         ):
             out.append(cur)
             cur = []
         cur.append(line)
+        if continuations and depth == 0:
+            code = re.sub(r'"(?:[^"\\]|\\.)*"' + r"|'(?:[^'\\]|\\.)'", " ", re.sub(r"/-.*?-/", " ", line))
+            code = code.split("--", 1)[0]
+            if "/-" not in code:
+                brackets = max(0, brackets + sum(code.count(c) for c in "([{") - sum(code.count(c) for c in ")]}"))
+            if brackets and len(cur) > 400:  # a miscount (an odd string) must not swallow the file
+                brackets = 0
         depth += line.count("/-") - line.count("-/")
     if cur:
         out.append(cur)
@@ -513,7 +553,9 @@ def scoped_chunks(text: str) -> tuple[list[tuple[str, str]], list[tuple[str, str
             full = name[len("_root_.") :] if name.startswith("_root_.") else ".".join(ns + [name])
             out.append(("name:" + full, body))
         else:
-            norm = " ".join(body.split())
+            # keyed by its code: a comment the prefix left attached (the theorem between them omitted) changes nothing
+            code_only = re.sub(r"--[^\n]*", " ", re.sub(r"/-.*?-/", " ", body, flags=re.S))
+            norm = " ".join(code_only.split()) or " ".join(body.split())
             seen[norm] = seen.get(norm, 0) + 1
             out.append((f"text:{norm}#{seen[norm]}", body))
         if s:
@@ -705,6 +747,69 @@ def theorem_text(statement: str, proof: str) -> str:
     return f"{statement} {proof}" if proof.startswith(":=") and "--" not in last else f"{statement}\n{proof}"
 
 
+def header_end(text: str) -> int:
+    """Where a declaration's header ends: its own `:=`, or the first `| pat => …` alternative of a theorem proved by
+    pattern matching — outside brackets and comments (Emissary's lib/stage-record.mjs splits the same way)."""
+    depth, i, n = 0, 0, len(text)
+    while i < n:
+        c = text[i]
+        if text.startswith("--", i):
+            nl = text.find("\n", i)
+            if nl == -1:
+                return -1
+            i = nl
+        elif text.startswith("/-", i):
+            e = text.find("-/", i + 2)
+            if e == -1:
+                return -1
+            i = e + 1
+        elif c in "([{⟨⦃":
+            depth += 1
+        elif c in ")]}⟩⦄":
+            depth = max(0, depth - 1)
+        elif depth == 0 and text.startswith(":=", i):
+            return i
+        elif depth == 0 and c == "|" and text[i + 1 : i + 2] != "|" and not text[text.rfind("\n", 0, i) + 1 : i].strip():
+            line = text[i + 1 : (text.find("\n", i) if "\n" in text[i:] else n)]
+            if "=>" in line and (":=" not in line or line.index("=>") < line.index(":=")):
+                return i
+        i += 1
+    return -1
+
+
+def resplit(r: dict) -> dict:
+    """A record banked before Emissary's split was fixed: cut at the first `:=` after its keyword — inside an
+    `@[to_additive (attr := simp)]`, or in a later theorem's proof for one proved by pattern matching. Re-split."""
+    text = f"{r['statement'].rstrip()} {r['proof'].lstrip()}"
+    i = header_end(text)
+    if i <= 0 or text[:i].rstrip() == r["statement"].rstrip():
+        return r
+    return dict(r, statement=text[:i].rstrip(), proof=text[i:])
+
+
+def record_pieces(key: str, text: str, ns: list[str], present: set[str], deps_names: set[str]) -> list[tuple[str, str]]:
+    """A record's declaration as keyed pieces. A record banked before its split was fixed can run on past its own
+    proof — a theorem proved by pattern matching took the next theorem's `:=` as its own — so its text may carry
+    whole later declarations: those are keyed by name and kept only when the module has them nowhere else; anything
+    structural in that tail goes (the module has it where it belongs)."""
+    out: list[tuple[str, str]] = []
+    for i, ch in enumerate(top_level_chunks(text, continuations=True)):
+        body = "\n".join(ch).strip()
+        if not body:
+            continue
+        if not out:
+            out.append((key, body))
+            continue
+        m = DECL_NAME_RE.search(body)
+        if not m or is_lead_in(body):
+            continue
+        name = m.group(1)
+        full = name[len("_root_.") :] if name.startswith("_root_.") else ".".join(ns + [name])
+        if full not in deps_names and "name:" + full not in present and all(k != "name:" + full for k, _ in out):
+            out.append(("name:" + full, body))
+    return out
+
+
 def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_line=None) -> list[str]:
     """One file's module body from its records (in file order): each record's own-file block is aligned with what
     the earlier ones built (a keyed sequence merge, so a second `section`/`end` is not mistaken for the first; a
@@ -777,7 +882,7 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
             for n, k in placed:
                 if n <= line and k in keys:
                     at = max(at, keys.index(k) + 1)
-            new.insert(at, (key, "\n".join(own_lead + [theorem_text(r["statement"], r["proof"])])))
+            new[at:at] = record_pieces(key, "\n".join(own_lead + [theorem_text(r["statement"], r["proof"])]), ns, present, deps_names)
         placed.append((int(mm.group(1)) if mm else 0, key))
         at_line = orig_line(r) if orig_line else None
         if at_line is not None:
@@ -815,7 +920,7 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
         present = {k for k, _ in merged}
         if full in deps_names or ("name:" + full) in present or (r.get("original_name") and "name:" + r["original_name"] in present):
             continue
-        merged.insert(at, ("name:" + full, theorem_text(statement, r["proof"])))
+        merged[at:at] = record_pieces("name:" + full, theorem_text(statement, r["proof"]), ns, present, deps_names)
         if line is not None:
             raw.append((line, "name:" + full))
     parts = [text for _, text in merged]
@@ -919,6 +1024,8 @@ def main():
         external = seed_heads(out)
 
         mode = generator_of(out, library)
+        if mode == "verified":
+            records = [resplit(r) for r in records]
         order: list[str] = []
         keys: dict[str, str] = {}
         eqs: list[str] = []
@@ -1073,9 +1180,8 @@ def main():
                 own_mod = ".".join(Path(source_path).with_suffix("").parts)
                 mods = {m for r in recs for m, _ in prelude_blocks(r["context"])} | ({own_mod} if own_mod in keys else set())
                 imports = "\n".join(["import Tengoku"] + [f"import Tengoku.{lib_ns}.Deps.{keys[m]}" for m in sorted(mods, key=rank.get)])
-                closers = unclosed_scopes(body)
-                if closers:
-                    body += "\n\n" + "\n".join(closers)
+                # no closing `end`s: Lean closes whatever a file leaves open, and a closer written for the wrong scope
+                # (`@[expose] public section`) does not build
                 mod_path.parent.mkdir(parents=True, exist_ok=True)
                 mod_path.write_text(
                     f"-- {mod_name}: verified translations of {source_path} ({len(recs)} theorem{'s' if len(recs) != 1 else ''})\n"

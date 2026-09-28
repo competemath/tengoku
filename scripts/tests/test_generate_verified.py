@@ -95,7 +95,7 @@ class Generate(unittest.TestCase):
         self.assertIn("import Tengoku\nimport Tengoku.LibX.Deps.A\nimport Tengoku.LibX.Deps.B", c)
         self.assertIn("def c := b", c)
         self.assertIn("theorem Lx.t1 : True", c)
-        self.assertIn("end Lx", c)  # the own-file prefix left the namespace open
+        self.assertTrue(c.rstrip().endswith("theorem Lx.t1 : True := trivial"), c)  # Lean closes the namespace left open
         self.assertNotIn("namespace LibX", c)  # never wrapped: the text is exactly what was verified
         for f in (self.out / "Tengoku").rglob("*.lean"):
             self.assertNotIn("Architect", f.read_text(), f)
@@ -271,6 +271,14 @@ class Generate(unittest.TestCase):
         self.assertIn("def f__lib_y (n : Nat)", c)
         self.assertIn("theorem u : f__lib_y 0 = Nat.add (n := 0) 0", c)  # a named argument is a parameter's name
         self.assertIn("theorem v (f : Nat → Nat) : f 0 = f 0", self.read("LibY/D.lean"))  # f is not in scope there
+
+    def test_an_indented_end_is_a_scope_line(self):
+        pre = "section Aux\ntheorem a : True := trivial\n  end Aux\nsection Aux\n  end Aux"
+        self.generate([rec("t", "Lx/C.lean", HEAD + own("Lx/C.lean", 6, pre))])
+        c = self.read("LibX/C.lean")
+        self.assertEqual(c.count("section Aux"), c.count("end Aux"), c)
+        self.assertLess(c.index("theorem t"), len(c))
+        self.assertNotIn("  end Aux", c)
 
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
