@@ -313,6 +313,22 @@ def only_lead_in(text: str) -> bool:
 
 MODIFIER_LINE_RE = re.compile(r"^(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s*)+$")
 NOT_LEAD_TARGET_RE = re.compile(r"^(?:(?:noncomputable|public|private)\s+)*(?:end|section|namespace|variable|universe)\b")
+DECL_START_RE = re.compile(
+    r"^(?:@\[|/--|(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s+)*"
+    r"(?:def|theorem|lemma|abbrev|instance|opaque|axiom|inductive|structure|class|example|namespace|section|end|open|variable|universe|attribute|notation|macro|syntax|set_option|#))"
+)
+OPEN_ENDINGS = (":=", " by", "=>", "where", " with", " fun", ",", " =", "↔", "→", "(", "[", "{", "⟨", "<|", " $", " then", " else", " do", " from", "·")
+
+
+def ends_open(lines: list[str]) -> bool:
+    """The chunk's last code line leaves the command unfinished (`… :=`, `… by`, `… =>`, an open bracket …)."""
+    for l in reversed(lines):
+        code = l.split("--", 1)[0].rstrip()
+        if code:
+            return code.endswith(OPEN_ENDINGS) and not code.endswith("-/")
+    return False
+
+
 INDENTED_SCOPE_RE = re.compile(r"^\s+(?:(?:noncomputable|public|private)\s+)*(?:end|section|namespace)\b(?:[ \t]+[^\s]+)?[ \t]*$")
 CONTINUATION_RE = re.compile(r"^(\||deriving\b|with\b|where\b|termination_by\b|decreasing_by\b|\)|\]|\})")
 
@@ -358,6 +374,8 @@ def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
             # a comment written at column 0 inside a proof is not the end of the declaration
             and not (continuations and (line.startswith("--") or (line.startswith("/-") and not line.startswith(("/--", "/-!")))))
             and not (continuations and brackets > 0)
+            # `def f … :=` with its body on a column-0 line: a line ending like that cannot end a command
+            and not (continuations and not DECL_START_RE.match(line) and ends_open(cur))
         ):
             out.append(cur)
             cur = []
