@@ -275,6 +275,17 @@ def deps_declared(deps_dir: Path) -> tuple[set[str], set[str]]:
     return names, lines
 
 
+def only_lead_in(text: str) -> bool:
+    """Nothing but doc/block/line comments, attributes, modifiers or `… in` lines (a multi-line doc comment's middle
+    lines included): it belongs to the declaration that follows it."""
+    s = re.sub(r"/-.*?-/", " ", text, flags=re.S)
+    s = re.sub(r"--[^\n]*", " ", s)
+    s = re.sub(r"@\[[^\]]*\]", " ", s)
+    s = re.sub(r"^.*\bin\s*$", " ", s, flags=re.M)
+    s = re.sub(r"\b(private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\b", " ", s)
+    return not s.strip()
+
+
 MODIFIER_LINE_RE = re.compile(r"^(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped|local|public)\s*)+$")
 CONTINUATION_RE = re.compile(r"^(\||deriving\b|with\b|where\b|termination_by\b|decreasing_by\b|\)|\]|\})")
 
@@ -299,7 +310,7 @@ def top_level_chunks(text: str, continuations: bool = False) -> list[list[str]]:
             or l.rstrip().endswith(" in")
             or (continuations and MODIFIER_LINE_RE.match(l))
             for l in lines
-        )
+        ) or (continuations and only_lead_in("\n".join(lines)))
 
     for line in text.splitlines():
         if (
@@ -509,19 +520,7 @@ def qualified_names(text: str) -> set[str]:
 
 def is_lead_in(text: str) -> bool:
     """Only doc comments, attributes, comments, modifiers or `… in` lines: it belongs to the declaration after it."""
-    lines = [l for l in text.splitlines() if l.strip()]
-    return (
-        bool(lines)
-        and all(
-            l.startswith(("@[", "/--", "/-", "--"))
-            or l.strip().endswith("-/")
-            or l.rstrip().endswith(" in")
-            or not l[:1].strip()
-            or MODIFIER_LINE_RE.match(l)
-            for l in lines
-        )
-        and not DECL_NAME_RE.search(text)
-    )
+    return bool(text.strip()) and only_lead_in(text) and not DECL_NAME_RE.search(text)
 
 
 def verified_file_body(recs: list[dict], own_text, deps_names: set[str]) -> list[str]:
@@ -745,7 +744,16 @@ def main():
                 m = re.search(r"#L(\d+)", r.get("source_url") or "")
                 return int(m.group(1)) if m else 0
 
-            recs.sort(key=line_of)
+            if mode == "verified":
+                # the own-file marker says where the theorem is ("everything before line N"); a record without one (an
+                # agent's self-contained script) goes last. source_url carries no #L for these libraries.
+                def marker_line(r):
+                    mm = re.search(r"^-- \[Emissary\] \S+, everything before line (\d+)", r["context"], re.M)
+                    return int(mm.group(1)) if mm else (line_of(r) or 10**9)
+
+                recs.sort(key=marker_line)
+            else:
+                recs.sort(key=line_of)
 
             # The file's own declarations: everything after the prelude marker in
             # a record's context (a marker-bearing record is preferred: its prefix
@@ -784,7 +792,13 @@ def main():
 
                 def own_text(r):
                     mm = FILE_MARKER_RE.search(r["context"])
-                    text = r["context"][mm.end() :] if mm else r["context"]
+                    if mm:
+                        text = r["context"][mm.end() :]
+                    else:  # an agent's script: its prelude blocks are Deps already
+                        text = r["context"]
+                        for _, block in prelude_blocks(text):
+                            text = text.replace(block.rstrip("\n"), "")
+                        text = PRELUDE_ANY_RE.sub("", text)
                     return "\n".join(l for l in text.splitlines() if not l.startswith("set_option linter.all false"))
 
                 parts = verified_file_body(recs, own_text, deps_full)
