@@ -840,6 +840,22 @@ def resplit(r: dict) -> dict:
     return dict(r, statement=text[:i].rstrip(), proof=text[i:])
 
 
+UNNAMED_RE = re.compile(
+    r"^\s*(?:/--.*?-/\s*)?(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|scoped|local|public|priority)\s+)*(instance|example)\b(?!\s+[^\W\d][\w'.!?]*\s*[:\[({])",
+    re.S,
+)
+
+
+def unnamed_key(body: str) -> str | None:
+    """`#example` for an example, `#inst:<code>` for an instance without a name, else None."""
+    m = UNNAMED_RE.match(body)
+    if not m:
+        return None
+    if m.group(1) == "example":
+        return "#example"
+    return "#inst:" + " ".join(re.sub(r"--[^\n]*", " ", re.sub(r"/-.*?-/", " ", body, flags=re.S)).split())
+
+
 def record_pieces(key: str, text: str, ns: list[str], present: set[str], deps_names: set[str]) -> list[tuple[str, str]]:
     """A record's declaration as keyed pieces. A record banked before its split was fixed can run on past its own
     proof — a theorem proved by pattern matching took the next theorem's `:=` as its own — so its text may carry
@@ -920,7 +936,15 @@ def verified_file_body(recs: list[dict], own_text, deps_names: set[str], orig_li
     chains: list[list[str]] = []  # each record's block, then its theorem: orders the result must keep
     for r in marked:
         block, stack = scoped_chunks(own_text(r))
-        block = [(k, c) for k, c in block if not (k.startswith("name:") and k[5:] in deps_names)]
+        # what a Deps module already has is not declared again: named declarations by full name, an unnamed instance
+        # by its text (its generated name would clash); an `example` declares nothing (and, moved below what the
+        # file declares after it, can turn ambiguous): left out
+        block = [
+            (k, c)
+            for k, c in block
+            if not (k.startswith("name:") and k[5:] in deps_names)
+            and not (k.startswith("text:") and unnamed_key(c) in deps_names | {"#example"})
+        ]
         # an attribute or doc comment ending the block is the record's own (a prefix omits a sibling together with its
         # attributes): it goes with the theorem as one piece — left in the block, every record's `@[simp]` would look
         # alike to the alignment and pull the next record's block in front of the earlier theorems
@@ -1175,6 +1199,7 @@ def main():
         if mode == "verified":
             for f in deps_dir.rglob("*.lean"):
                 deps_full |= qualified_names(f.read_text(encoding="utf-8"))
+                deps_full |= {u for _, c in scoped_chunks(f.read_text(encoding="utf-8"))[0] if (u := unnamed_key(c))}
 
         # ---- One module per original source file
         by_file: dict[str, list[dict]] = {}
