@@ -224,6 +224,7 @@
   },
   "corpora": {
     "equational-theories": {
+      "generator": "legacy",
       "repo": "https://github.com/teorth/equational_theories",
       "commit": "e218ce18b0c265efbbe65093c1f1d063c54f3639",
       "roots": [

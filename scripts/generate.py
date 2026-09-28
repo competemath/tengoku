@@ -20,6 +20,21 @@ Everything from a corpus lives under its own namespace (`EquationalTheories.*`),
 so a corpus type that shares a name with a seeded one (`FreeMagma`) can coexist.
 Records are the source of truth for theorems; the corpus checkout is only read
 for definition modules, exactly as the translation harness reads it.
+
+That is the "legacy" generator, kept for equational-theories (schemas/sources.json corpora.<lib>.generator).
+Every other library uses the "verified" generator: the tree is built from exactly the text Emissary-Archangel
+verified, never from the corpus files. A record's context is
+
+    set_option ...
+    -- [Emissary prelude] <Module> — verbatim|expanded (imports stripped)     one block per corpus module it needs,
+    <that module's text as it compiled in the tree>                           in dependency order
+    -- [Emissary] <source file>, everything before line N (...)             the record's own file, up to the theorem
+    <that prefix>
+
+so Deps/<Module> is the prelude block's text (the most common version across the library's records), importing
+Tengoku and the Deps before it; a file module is the own-file prefixes plus the records, importing Tengoku and
+the Deps its records need. Nothing is wrapped or renamed, and no corpus import survives: tooling a corpus used
+(blueprint packages such as Architect) never reaches the tree.
 """
 
 import argparse
@@ -38,6 +53,7 @@ from seed import IMPORT_RE, PACKAGES, module_map  # noqa: E402
 DATA_TIERS = ("trusted",)
 FILE_MARKER_RE = re.compile(r"^-- \[Emissary\] (\S+), everything before line \d+[^\n]*\n", re.M)
 PRELUDE_MODULE_RE = re.compile(r"^-- \[Emissary prelude\] (\S+) — verbatim", re.M)
+PRELUDE_ANY_RE = re.compile(r"^-- \[Emissary prelude\] (\S+) — [^\n]*\n", re.M)
 EQUATION_LINE_RE = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)*equation\s+(\d+)\s*:=\s*(.+?)\s*$", re.M)
 UNSAFE_MODULE_RE = re.compile(
     r"^\s*(?:scoped\s+)?(initialize|builtin_initialize|register_simp_attr|register_option|register_label_attr|register_tag_attr|register_parametric_attr)\b",
@@ -165,6 +181,15 @@ def corpus_roots(out: Path, library: str) -> list[str]:
     except (OSError, ValueError):
         spec = {}
     return list(spec.get("roots") or [library.replace("-", "_")])
+
+
+def generator_of(out: Path, library: str) -> str:
+    """schemas/sources.json corpora.<library>.generator: "legacy" (equational-theories) or "verified" (the default)."""
+    try:
+        spec = json.loads((out / "schemas" / "sources.json").read_text(encoding="utf-8")).get("corpora", {}).get(library, {})
+    except (OSError, ValueError):
+        spec = {}
+    return spec.get("generator", "verified")
 
 
 def is_corpus_module(mod: str, roots: list[str]) -> bool:
@@ -304,6 +329,78 @@ def dedupe_prefix(prefix: str, deps_names: set[str], deps_lines: set[str]) -> st
     return "\n".join(kept)
 
 
+def prelude_blocks(context: str) -> list[tuple[str, str]]:
+    """(module, text) for every `-- [Emissary prelude] <Module> — …` block of a context, in order: the text runs to
+    the next prelude marker or the record's own-file marker."""
+    marks = list(PRELUDE_ANY_RE.finditer(context))
+    own = FILE_MARKER_RE.search(context)
+    out = []
+    for i, m in enumerate(marks):
+        end = marks[i + 1].start() if i + 1 < len(marks) else (own.start() if own and own.start() > m.end() else len(context))
+        out.append((m.group(1), context[m.end() : end].strip("\n") + "\n"))
+    return out
+
+
+def topo_order(sequences: list[list[str]]) -> list[str]:
+    """One order of all modules consistent with the order they appear in each context (a cycle, which the
+    contexts should never form, is broken by first appearance)."""
+    first: dict[str, int] = {}
+    after: dict[str, set[str]] = {}
+    for seq in sequences:
+        for i, m in enumerate(seq):
+            first.setdefault(m, len(first))
+            after.setdefault(m, set()).update(seq[:i])
+    done: list[str] = []
+    placed: set[str] = set()
+    for m in sorted(first, key=first.get):
+        stack = [m]
+        while stack:
+            cur = stack[-1]
+            if cur in placed:
+                stack.pop()
+                continue
+            pending = sorted((d for d in after.get(cur, ()) if d not in placed and d not in stack), key=first.get)
+            if pending:
+                stack.append(pending[0])
+            else:
+                placed.add(cur)
+                done.append(cur)
+                stack.pop()
+    return done
+
+
+def verified_deps(records: list[dict], deps_dir: Path, lib_ns: str) -> tuple[list[str], dict[str, str]]:
+    """Deps/<key> for every corpus module a record's context carries as a prelude block: that block's text (the most
+    common version; the build decides if a rarer one was needed), importing Tengoku and every Deps module that came
+    before it in a context. Returns (topological order, module -> key)."""
+    from collections import Counter
+
+    versions: dict[str, Counter] = {}
+    sequences = []
+    for r in records:
+        blocks = prelude_blocks(r["context"])
+        sequences.append([m for m, _ in blocks])
+        for m, text in blocks:
+            versions.setdefault(m, Counter())[text] += 1
+    order = topo_order(sequences)
+    rank = {m: i for i, m in enumerate(order)}
+    before: dict[str, set[str]] = {}
+    for seq in sequences:
+        for i, m in enumerate(seq):
+            before.setdefault(m, set()).update(d for d in seq[:i] if rank[d] < rank[m])
+    keys = {m: deps_key(m) for m in order}
+    for m in order:
+        text = max(versions[m].items(), key=lambda kv: (kv[1], len(kv[0])))[0]
+        imports = "\n".join(f"import Tengoku.{lib_ns}.Deps.{keys[d]}" for d in sorted(before.get(m, ()), key=rank.get))
+        variants = f" ({len(versions[m])} versions across records; the most common is used)" if len(versions[m]) > 1 else ""
+        deps_file(deps_dir, keys[m]).write_text(
+            f"-- {lib_ns}/Deps/{keys[m]}: {m} as it was verified in the tree (a record's prelude block){variants}\n"
+            f"import Tengoku\n{imports}\n\nset_option linter.all false\n\n{text}",
+            encoding="utf-8",
+        )
+    return order, keys
+
+
 def regenerate_equations(corpus: Path, corpus_roots: list[str]) -> list[str]:
     out = []
     for f in sorted(f for root in corpus_roots for f in (corpus / root / "Equations").glob("*.lean")):
@@ -393,11 +490,24 @@ def main():
         deps_dir.mkdir(parents=True, exist_ok=True)
         external = seed_heads(out)
 
-        # ---- Deps: the corpus modules any context pasted verbatim, plus all equations
-        pasted = set()
-        for r in records:
-            pasted.update(PRELUDE_MODULE_RE.findall(r["context"]))
-        deps_available = {deps_key(m) for m in pasted}
+        mode = generator_of(out, library)
+        order: list[str] = []
+        keys: dict[str, str] = {}
+        eqs: list[str] = []
+        if mode == "verified":
+            # ---- Deps: every prelude block the records' contexts carry, as verified; the corpus is never read
+            written_before = set(deps_dir.rglob("*.lean"))
+            order, keys = verified_deps(records, deps_dir, lib_ns)
+            for f in written_before - {deps_file(deps_dir, k) for k in keys.values()}:
+                f.unlink()  # a module no record's context carries any more
+            deps_available = set(keys.values())
+            pasted = set()
+        else:
+            # ---- Deps: the corpus modules any context pasted verbatim, plus all equations
+            pasted = set()
+            for r in records:
+                pasted.update(PRELUDE_MODULE_RE.findall(r["context"]))
+            deps_available = {deps_key(m) for m in pasted}
         for mod in sorted(pasted):
             src = corpus / Path(*mod.split(".")).with_suffix(".lean")
             text = src.read_text(encoding="utf-8")
@@ -413,7 +523,8 @@ def main():
                 f"{imports}\nimport Tengoku.Init\n\nset_option linter.all false\n\n{wrap(rest, lib_ns, external)}",
                 encoding="utf-8",
             )
-        eqs = regenerate_equations(corpus, roots)
+        if mode != "verified":
+            eqs = regenerate_equations(corpus, roots)
         if eqs and (deps_dir / "Magma.lean").exists():  # the abbrevs need Magma; without it the file would not build
             (deps_dir / "Equations.lean").write_text(
                 f"-- {lib_ns}/Deps/Equations: every `equation N := law` of the corpus, in the exact shape its `equation` command produces\n"
@@ -482,11 +593,31 @@ def main():
                 emitted.add(key)
                 parts.append(text)
 
+            if mode == "verified":
+                # a theorem a Deps module already declares (its file is some other record's prelude) is there, as verified
+                emitted.update("name:" + n for n in deps_names)
             for r in recs:
                 for chunk in top_level_chunks(own_prefix(r)):
                     emit("\n".join(chunk))
                 emit(f"{strip_corpus_attrs(r['statement'])}\n{strip_trailing_ends(r['proof'])}")
             body = "\n\n".join(parts)
+            if mode == "verified":
+                # Tengoku (the whole seed: the records were verified with the tree in scope) and the Deps this file's
+                # records carry, plus its own Deps module when the file is itself another record's prelude
+                rank = {m: i for i, m in enumerate(order)}
+                own_mod = ".".join(Path(source_path).with_suffix("").parts)
+                mods = {m for r in recs for m, _ in prelude_blocks(r["context"])} | ({own_mod} if own_mod in keys else set())
+                imports = "\n".join(["import Tengoku"] + [f"import Tengoku.{lib_ns}.Deps.{keys[m]}" for m in sorted(mods, key=rank.get)])
+                closers = unclosed_scopes(body)
+                if closers:
+                    body += "\n\n" + "\n".join(closers)
+                mod_path.parent.mkdir(parents=True, exist_ok=True)
+                mod_path.write_text(
+                    f"-- {mod_name}: verified translations of {source_path} ({len(recs)} theorem{'s' if len(recs) != 1 else ''})\n"
+                    f"{imports}\n\nset_option linter.all false\n\n{body}\n",
+                    encoding="utf-8",
+                )
+                continue
             # Import what the ORIGINAL file imported, mapped into the tree —
             # not the whole tree: builds stay proportional to the file, and a
             # module is testable against a partial build.
