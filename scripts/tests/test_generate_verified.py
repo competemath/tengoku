@@ -430,6 +430,47 @@ class Generate(unittest.TestCase):
         self.assertIn("/-- the instance we need -/", c)
         self.assertRegex(c, r"instance \(priority := low\) inst_[0-9a-f]{8}__lib_y : Inhabited Nat")
 
+    def candidates(self, staged: list[dict], order: list[tuple[str, str]]) -> None:
+        """The merge queue: each file's candidate generated in turn (only that file's records of the group), built at the end."""
+        (self.out / "data" / "staging").mkdir(parents=True, exist_ok=True)
+        (self.out / "data" / "staging" / "lib-x.jsonl").write_text("".join(json.dumps(dict(r, status="staging")) + "\n" for r in staged))
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text("")
+        for sp, names in order:
+            r = subprocess.run(
+                [
+                    sys.executable,
+                    "scripts/generate.py",
+                    "--corpus",
+                    "/nonexistent",
+                    "--libraries",
+                    "lib-x",
+                    "--candidate",
+                    sp,
+                    "--candidate-names",
+                    names,
+                ],
+                cwd=self.out,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+    def test_an_earlier_candidates_deps_module_survives_a_later_candidate(self):
+        e = rec("e", "Lx/E.lean", HEAD + prelude("Lx.Bit", "def bit := 1") + own("Lx/E.lean", 2, ""), "theorem e : bit = bit")
+        f = rec("f", "Lx/F.lean", HEAD + prelude("Lx.Other", "def other := 2") + own("Lx/F.lean", 2, ""), "theorem f : other = other")
+        self.candidates([e, f], [("Lx/E.lean", "e"), ("Lx/F.lean", "f")])
+        self.assertTrue((self.out / "Tengoku" / "LibX" / "Deps" / "Bit.lean").exists())  # _candidate_E imports it
+        self.assertIn("import Tengoku.LibX.Deps.Bit", self.read("LibX/_candidate_E.lean"))
+
+    def test_a_candidate_keeps_what_only_another_candidates_deps_module_has(self):
+        # B's record carries A's module as a prelude; A's own candidate does not import that Deps module
+        b = rec("b", "Lx/B.lean", HEAD + prelude("Lx.A", "def a := 1") + own("Lx/B.lean", 2, ""), "theorem b : a = a")
+        a = rec("ta", "Lx/A.lean", HEAD + own("Lx/A.lean", 2, "def a := 1"), "theorem ta : a = a")
+        self.candidates([b, a], [("Lx/B.lean", "b"), ("Lx/A.lean", "ta")])
+        c = self.read("LibX/_candidate_A.lean")
+        self.assertIn("def a := 1", c)
+        self.assertNotIn("Deps.A", c)
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
