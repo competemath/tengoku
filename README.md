@@ -1,6 +1,7 @@
 <p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
 <h1 align="center">Tengoku (天国)</h1>
 <p align="center"><em>An AI-first formal mathematics library for Lean 4.</em></p>
+<p align="center"><a href="https://scorecard.dev/viewer/?uri=github.com/competemath/tengoku"><img src="https://api.scorecard.dev/projects/github.com/competemath/tengoku/badge" alt="OpenSSF Scorecard"></a></p>
 
 ## About
 Significant formal math projects are fragmented across hundreds of different sources. We pull them
