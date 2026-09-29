@@ -4,9 +4,12 @@
 
 Tengoku is one Lean 4 library assembled from many formal mathematics projects. It starts from Mathlib and its
 dependencies, and adds registered libraries, translated onto a single pinned toolchain
-(`leanprover/lean4:v4.34.0-rc2` at the time of writing) so that they build together and import together. At the
-time of writing it holds 198,172 trusted theorems from 49 libraries; 106 libraries are registered, and a pipeline
-keeps translating the rest.
+(`leanprover/lean4:v4.34.0-rc2` at the time of writing) so that they build together and import together.
+
+At the time of writing, 198,172 theorems are trusted: 188,989 from Mathlib and its dependencies, 8,921 from
+Equational Theories and 262 of CompeteMath's own. A further 5,404 theorems, translated from 45 research libraries
+(Carleson, PrimeNumberTheoremAnd, Brownian motion, the IMO Shortlist and others), are in staging on their way to
+trusted. 106 libraries are registered, and a pipeline keeps translating them.
 
 ## What it guarantees
 
