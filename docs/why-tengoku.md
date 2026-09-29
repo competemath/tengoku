@@ -56,16 +56,17 @@ independent re-check of every declaration with a second kernel is in progress (c
   (`https://barkingtree-leak-i.hf.space/sse`, no authentication).
 - **Build against it.** `scripts/cache.sh get` downloads the verified compiled tree; `import Tengoku.All` imports
   everything.
-- **Take the dataset.** A monthly snapshot is published as the release `snapshot-YYYY-MM-DD`: every trusted theorem
-  with its statement, proof, source, licence and credit, and a manifest naming the commit, the toolchain, the counts
-  and the dataset's checksum, all with build provenance.
+- **Take the dataset.** Each month with changes, a numbered release `vX.Y.Z` is published, with a DOI from Zenodo:
+  every trusted theorem with its statement, proof, source, licence and credit, and a manifest naming the commit, the
+  toolchain, the counts and the dataset's checksum, all with build provenance. A new toolchain is a new major
+  version, added theorems a minor one, corrections a patch.
 - **Contribute.** [How a theorem gets into Tengoku](how-a-pr-flows.md). Open goals are listed in
   [GOALS.md](../GOALS.md).
 
 ## How to cite
 
-Cite the snapshot you used: its tag and the commit its manifest names. [CITATION.cff](../CITATION.cff) gives the
-reference.
+Cite the version you used (its tag, or its DOI) and the commit its manifest names. [CITATION.cff](../CITATION.cff)
+gives the reference.
 
 ## Limits
 
