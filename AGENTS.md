@@ -43,6 +43,11 @@ what; a PR from an account with no identifiable owner is not merged.
    `Author:` is the word the checks key on; nobody can remove that line later.
    For a whole project, `tools/attribute/attribute.py <dir> --credit "Author: …"`
    writes it into every declaration.
+   A translation of a registered library (a corpus in `schemas/sources.json`,
+   as in the pipeline's `bank/…` staging PRs) has no `Author:` line: its
+   provenance is `source_url` (the original file at the pinned upstream commit)
+   and `library`, whose licence notice travels with the record. It has no
+   single human author to name, and the bot account must never be named as one.
 3. Check it builds before pushing (compiles only your records):
    ```bash
    git clone --filter=blob:none <corpus repo> corpora/<library>   # repo + commit in schemas/sources.json
