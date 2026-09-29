@@ -95,7 +95,9 @@ jobs:
         run: |
           soft=no
           prs="$(git log --format=%s "$BASE..HEAD" | sed -nE 's/.*\(#([0-9]+)\)$/\1/p')"
-          if [ -n "$TENGOKU_BOT" ] && [ -n "$prs" ] && ! git diff --name-only "$BASE" HEAD | grep -qv '^data/staging/'; then
+          # every commit of the group must name its PR: one that does not could be anyone's
+          unnamed="$(git log --format=%s "$BASE..HEAD" | grep -cvE '\(#[0-9]+\)$' || true)"
+          if [ -n "$TENGOKU_BOT" ] && [ -n "$prs" ] && [ "$unnamed" = 0 ] && ! git diff --name-only "$BASE" HEAD | grep -qv '^data/staging/'; then
             soft=yes
             for p in $prs; do
               who="$(gh pr view "$p" -R "$GITHUB_REPOSITORY" --json author,headRefName -q '.author.login + " " + .headRefName' || echo "?")"
@@ -127,7 +129,12 @@ jobs:
           if [ "$rc" != 0 ]; then
             if [ "$SOFT" != yes ]; then exit 1; fi
             built=""; failed=""
-            for t in $targets; do if lake build "$t" >/dev/null 2>&1; then built="$built $t"; else failed="$failed $t"; fi; done
+            for t in $targets; do
+              out="$(lake build "$t" 2>&1)" && ok=1 || ok=0
+              # a target the first build never reached can still report sorry here: as strict as ever
+              if grep -q "declaration uses .sorry." <<< "$out"; then grep -m1 "declaration uses .sorry." <<< "$out" | sed -E 's/^.*warning: /error: /' | tee -a build.log; exit 1; fi
+              if [ "$ok" = 1 ]; then built="$built $t"; else failed="$failed $t"; fi
+            done
             for t in $failed; do echo "::warning::$t does not build yet: its records stay in staging (promotion retries them)"; done
             echo "the pipeline's staging group goes on: $(wc -w <<< "$built") candidate(s) built, $(wc -w <<< "$failed") not yet"
             targets="$built"

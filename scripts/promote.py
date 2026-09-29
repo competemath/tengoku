@@ -74,7 +74,8 @@ def vacuity_check(cand_mod: str, recs: list[dict], out: Path) -> tuple[int, str]
     names = {r["name"].removeprefix("_root_.") for r in recs}  # full names only: `foo` in another namespace is not this record
     hit = [m.group(1) for m in re.finditer(r"^VACUOUS (\S+) (\S+) (\S+)$", o, re.M) if m.group(1).removeprefix("_root_.") in names]
     if hit:
-        return 1, f"vacuous (its hypotheses can never all hold): {', '.join(hit)}; a PR acknowledging it (Vacuous-Ack) is needed\n" + o
+        # the reason last: only the tail of an error is kept
+        return 1, o + f"\nvacuous (its hypotheses can never all hold): {', '.join(hit)}; a PR acknowledging it (Vacuous-Ack) is needed"
     return 0, ""
 
 
