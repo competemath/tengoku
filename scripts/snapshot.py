@@ -32,7 +32,7 @@ def licence_of(source_url: str, licences: dict[str, str]) -> str | None:
 
 
 def credit_of(statement: str) -> str | None:
-    doc = re.match(r"\s*/--(.*?)-/", statement, re.S)
+    doc = re.search(r"/--(.*?)-/", statement, re.S)  # the docstring, even after a leading ordinary comment
     found = CREDIT_RE.findall(doc.group(1)) if doc else []
     return " ".join(c.strip() for c in found) or None
 
@@ -62,8 +62,10 @@ def dataset(root: Path) -> tuple[list[dict], dict[str, dict[str, int]]]:
                 for r in lines(f):
                     if "tombstone" in r:
                         retracted.add(r["tombstone"])
-                    elif "credit_correction" in r:
-                        corrected[r["credit_correction"]] = (r.get("credit"), r.get("evidence"))
+                    elif "credit_correction" in r:  # the newest by date, whatever file it is in
+                        name, at = r["credit_correction"], str(r.get("at", ""))
+                        if name not in corrected or at >= corrected[name][0]:
+                            corrected[name] = (at, r.get("credit"), r.get("evidence"))
                     elif "tombstone_note" not in r and "name" in r:
                         kept.append(r)
             live = [r for r in kept if r["name"] not in retracted]
@@ -71,7 +73,7 @@ def dataset(root: Path) -> tuple[list[dict], dict[str, dict[str, int]]]:
             if tier != "trusted":
                 continue
             for r in live:
-                credit, evidence = corrected.get(r["name"], (credit_of(str(r.get("statement", ""))), None))
+                _, credit, evidence = corrected.get(r["name"], (None, credit_of(str(r.get("statement", ""))), None))
                 row = {
                     "name": r["name"],
                     "library": library,
