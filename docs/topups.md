@@ -32,13 +32,12 @@ without compiling and without re-downloading the cache.
 
 ## Where it happens
 
-`.github/workflows/queue-gate.yml` has three jobs:
+`.github/workflows/queue-gate.yml` has two jobs:
 
 | job | token | what it does |
 | --- | --- | --- |
 | `queue-build` | read-only | everything the queue did before (candidates, axioms, regeneration diff), then restores the tree to the group's commit, runs `lake build Tengoku.All`, and packs the files that differ from the nightly cache |
-| `queue-topup` | `contents`, `attestations`, `id-token`: write | downloads what `queue-build` packed, attests it, uploads it to the `cache-topups` release. It runs no code from the group. |
-| `queue-gate` | `pull-requests`: write | the required check: green only when both jobs above are green |
+| `queue-gate` | `contents`, `attestations`, `id-token`, `pull-requests`: write | the required check: downloads what `queue-build` packed, attests it, uploads it to the `cache-topups` release, and is green only when the build passed and the upload succeeded. It runs no code from the group. |
 
 The job that runs the group's Lean code never holds a write token; the job
 that holds one never runs the group's code.
