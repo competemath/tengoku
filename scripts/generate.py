@@ -555,7 +555,12 @@ def merge_versions(texts: list[str]) -> str:
 
 
 def verified_deps(
-    records: list[dict], deps_dir: Path, lib_ns: str, corpus: Path | None = None, roots: list[str] | None = None
+    records: list[dict],
+    deps_dir: Path,
+    lib_ns: str,
+    corpus: Path | None = None,
+    roots: list[str] | None = None,
+    accumulate: bool = False,
 ) -> tuple[list[str], dict[str, str]]:
     """Deps/<key> for every corpus module a record's context carries as a prelude block: that block's text (the most
     common version; the build decides if a rarer one was needed), importing Tengoku and the Deps modules its original
@@ -592,7 +597,18 @@ def verified_deps(
     keys = {m: deps_key(m) for m in order}
     for m in order:
         text = merge_versions([v for v, _ in sorted(versions[m].items(), key=lambda kv: (-kv[1], -len(kv[0])))])
-        imports = "\n".join(f"import Tengoku.{lib_ns}.Deps.{keys[d]}" for d in sorted(before.get(m, ()), key=rank.get))
+        import_lines = [f"import Tengoku.{lib_ns}.Deps.{keys[d]}" for d in sorted(before.get(m, ()), key=rank.get)]
+        existing = deps_file(deps_dir, keys[m])
+        if accumulate and existing.exists():
+            # candidates generated one file after another in one queue run: what an earlier one wrote stays (merged in),
+            # or the module it imports would lose what it needs
+            old = existing.read_text(encoding="utf-8")
+            old_imports = [l for l in old.splitlines() if l.startswith(f"import Tengoku.{lib_ns}.Deps.")]
+            import_lines = list(dict.fromkeys(old_imports + import_lines))
+            head, sep, body = old.partition("set_option linter.all false\n\n")
+            if sep:
+                text = merge_versions([body, text])
+        imports = "\n".join(import_lines)
         variants = f" ({len(versions[m])} versions across records, merged)" if len(versions[m]) > 1 else ""
         deps_file(deps_dir, keys[m]).write_text(
             f"-- {lib_ns}/Deps/{keys[m]}: {m} as it was verified in the tree (a record's prelude block){variants}\n"
@@ -1249,9 +1265,13 @@ def main():
         if mode == "verified":
             # ---- Deps: every prelude block the records' contexts carry, as verified; the corpus is never read
             written_before = set(deps_dir.rglob("*.lean"))
-            order, keys = verified_deps(records, deps_dir, lib_ns, corpus if corpus.is_dir() else None, roots)
-            for f in written_before - {deps_file(deps_dir, k) for k in keys.values()}:
-                f.unlink()  # a module no record's context carries any more
+            order, keys = verified_deps(
+                records, deps_dir, lib_ns, corpus if corpus.is_dir() else None, roots, accumulate=bool(args.candidate)
+            )
+            # a module no record's context carries any more goes — but not while candidates are generated one file after
+            # another (the queue builds them all at the end: an earlier candidate may import it)
+            for f in [] if args.candidate else written_before - {deps_file(deps_dir, k) for k in keys.values()}:
+                f.unlink()
             deps_available = set(keys.values())
             pasted = set()
         else:
@@ -1289,7 +1309,10 @@ def main():
         deps_names, deps_lines = deps_declared(deps_dir)
         deps_full = set()
         if mode == "verified":
-            for f in deps_dir.rglob("*.lean"):
+            # only the Deps modules this run's records carry: another candidate's module on disk is not imported here
+            for f in {deps_file(deps_dir, k) for k in keys.values()}:
+                if not f.exists():
+                    continue
                 deps_full |= qualified_names(f.read_text(encoding="utf-8"))
                 deps_full |= {u for _, c in scoped_chunks(f.read_text(encoding="utf-8"))[0] if (u := unnamed_key(c))}
 
