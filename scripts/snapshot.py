@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """snapshot.py --out DIR — a citable snapshot of the library: the dataset and its manifest.
 
-Writes DIR/tengoku-dataset.jsonl (one line per trusted record: what it states, its proof, where it came from,
+Writes DIR/tengoku-dataset.jsonl.gz (one line per trusted record: what it states, its proof, where it came from,
 its licence and credit; retracted records left out, corrected credits applied) and DIR/snapshot.json (the commit,
 toolchain, counts per library and the dataset's sha256). The snapshot workflow publishes both as a dated release,
 so a paper can cite exactly the library it used."""
@@ -9,6 +9,7 @@ so a paper can cite exactly the library it used."""
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import re
@@ -103,17 +104,24 @@ def main() -> None:
     root, out = Path(args.root), Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     records, counts = dataset(root)
-    path = out / "tengoku-dataset.jsonl"
-    with path.open("w", encoding="utf-8") as f:
-        for row in sorted(records, key=lambda r: (r["library"], r["name"])):
-            f.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+    text = "".join(
+        json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in sorted(records, key=lambda r: (r["library"], r["name"]))
+    )
+    raw = text.encode("utf-8")
+    path = out / "tengoku-dataset.jsonl.gz"  # the file the release publishes, and the one the manifest hashes
+    path.write_bytes(gzip.compress(raw, compresslevel=9, mtime=0))  # mtime 0: the same records give the same bytes
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True).stdout.strip() or None
     toolchain = (root / "lean-toolchain").read_text().strip() if (root / "lean-toolchain").exists() else None
     manifest = {
         "snapshot": time.strftime("%Y-%m-%d", time.gmtime()),
         "commit": commit,
         "toolchain": toolchain,
-        "dataset": {"file": path.name, "records": len(records), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()},
+        "dataset": {
+            "file": path.name,
+            "records": len(records),
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "uncompressed_sha256": hashlib.sha256(raw).hexdigest(),
+        },
         "libraries": {k: counts[k] for k in sorted(counts)},
         "totals": {t: sum(c.get(t, 0) for c in counts.values()) for t in ("trusted", "staging", "tentative")},
     }

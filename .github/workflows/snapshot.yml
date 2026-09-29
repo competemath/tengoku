@@ -16,17 +16,16 @@ defaults:
     shell: bash
 jobs:
   snapshot:
+    if: github.ref == 'refs/heads/main'   # a snapshot is of main, and of exactly the commit it tags
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions: { contents: write, id-token: write, attestations: write }
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with: { ref: main, persist-credentials: false }
+        with: { ref: "${{ github.sha }}", persist-credentials: false }
       - name: Dataset and manifest
         run: |
-          sudo apt-get install -y -q zstd >/dev/null
           python3 scripts/snapshot.py --out snapshot
-          zstd -q -12 --rm snapshot/tengoku-dataset.jsonl
           cp CITATION.cff snapshot/
           ls -la snapshot
       - name: Attest the files
@@ -35,11 +34,15 @@ jobs:
       - name: Publish the release
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
+          # a published snapshot is never changed: the same commit is not published twice, another one the same day
+          # gets its own tag
           tag="snapshot-$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["snapshot"])')"
           if gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            gh release upload "$tag" snapshot/* -R "$GITHUB_REPOSITORY" --clobber
-          else
-            records="$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["dataset"]["records"])')"
-            gh release create "$tag" snapshot/* -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Tengoku $tag" \
-              --notes "A citable snapshot of Tengoku: ${records} trusted records. \`snapshot.json\` names the commit, toolchain and counts, and the dataset's sha256; every file carries build provenance (\`gh attestation verify <file> -R $GITHUB_REPOSITORY\`). How to cite: CITATION.cff."
+            at="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" --jq .object.sha 2>/dev/null || true)"
+            if [ "$at" = "$GITHUB_SHA" ]; then echo "$tag already snapshots $GITHUB_SHA"; exit 0; fi
+            tag="$tag-${GITHUB_SHA:0:7}"
+            if gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then echo "$tag exists"; exit 0; fi
           fi
+          records="$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["dataset"]["records"])')"
+          gh release create "$tag" snapshot/* -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Tengoku $tag" \
+            --notes "A citable snapshot of Tengoku: ${records} trusted records. \`snapshot.json\` names the commit, toolchain and counts, and the sha256 of the published dataset; every file carries build provenance (\`gh attestation verify <file> -R $GITHUB_REPOSITORY\`). How to cite: CITATION.cff."

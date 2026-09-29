@@ -67,7 +67,10 @@ class Snapshot(unittest.TestCase):
             text=True,
         )
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
-        rows = [json.loads(x) for x in (out / "tengoku-dataset.jsonl").read_text().splitlines()]
+        import gzip
+
+        raw = gzip.decompress((out / "tengoku-dataset.jsonl.gz").read_bytes())
+        rows = [json.loads(x) for x in raw.decode().splitlines()]
         by = {x["name"]: x for x in rows}
         self.assertEqual(sorted(by), ["Lib.a", "Lib.b"])  # the retracted record is left out; staging is not in the dataset
         self.assertEqual(by["Lib.a"]["licence"], "Apache-2.0")
@@ -77,7 +80,9 @@ class Snapshot(unittest.TestCase):
         self.assertEqual(by["Lib.b"]["credit_corrected_evidence"], "https://example.org/e")
         m = json.loads((out / "snapshot.json").read_text())
         self.assertEqual(m["dataset"]["records"], 2)
-        self.assertEqual(m["dataset"]["sha256"], hashlib.sha256((out / "tengoku-dataset.jsonl").read_bytes()).hexdigest())
+        self.assertEqual(m["dataset"]["file"], "tengoku-dataset.jsonl.gz")
+        self.assertEqual(m["dataset"]["sha256"], hashlib.sha256((out / "tengoku-dataset.jsonl.gz").read_bytes()).hexdigest())
+        self.assertEqual(m["dataset"]["uncompressed_sha256"], hashlib.sha256(raw).hexdigest())
         self.assertEqual(m["libraries"]["lib"], {"trusted": 2, "staging": 1})
         self.assertEqual(m["toolchain"], "leanprover/lean4:v4.34.0-rc2")
 
