@@ -32,7 +32,8 @@ what; a PR from an account with no identifiable owner is not merged.
    one JSON object per line: `name`, `statement`, `proof`, `status`
    (`"staging"`), `library`, `source_url`, `toolchain`; for a library with a
    corpus in `schemas/sources.json` also `source_path` and `context`. One file
-   per PR.
+   per PR. Mark the results your PR is about with `"headline": true`: at most
+   ten per PR, each with an `Author:` credit (below). They are shown first.
 2. Put the credit as a docstring at the top of `statement`:
    ```lean
    /-- One sentence on what it says.
