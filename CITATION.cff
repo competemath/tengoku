@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use Tengoku, please cite the snapshot you used (release snapshot-YYYY-MM-DD) and its commit."
+message: "If you use Tengoku, please cite the version you used (release vX.Y.Z) and the commit its snapshot.json names."
 type: dataset
 title: "Tengoku: one verified Lean 4 tree of formal mathematics, with provenance"
 abstract: >-
