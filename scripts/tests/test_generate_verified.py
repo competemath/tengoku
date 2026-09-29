@@ -471,6 +471,31 @@ class Generate(unittest.TestCase):
         self.assertIn("def a := 1", c)
         self.assertNotIn("Deps.A", c)
 
+    def test_a_credit_correction_shows_in_the_module_and_the_record_stays(self):
+        doc = "/-- One plus one.\n\nAuthor: Mallory (https://example.org/m). -/\n"
+        t = rec("t", "Lx/C.lean", HEAD + own("Lx/C.lean", 1, ""), doc + "theorem t : True")
+        corr = {
+            "credit_correction": "t",
+            "credit": "Author: Alice (https://example.org/a)",
+            "evidence": "https://example.org/proof",
+            "by": "x",
+            "at": "2026-09-29",
+        }
+        note = {"tombstone_note": "gone", "note": "see elsewhere", "by": "x", "at": "2026-09-29"}
+        (self.out / "data" / "trusted" / "lib-x.jsonl").write_text("".join(json.dumps(x) + "\n" for x in (t, corr, note)))
+        r = subprocess.run(
+            [sys.executable, "scripts/generate.py", "--corpus", "/nonexistent", "--libraries", "lib-x"],
+            cwd=self.out,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        c = self.read("LibX/C.lean")
+        self.assertIn("Author: Alice (https://example.org/a)", c)
+        self.assertIn("Credit corrected; evidence: https://example.org/proof", c)
+        self.assertNotIn("Mallory", c)
+        self.assertIn("Mallory", (self.out / "data" / "trusted" / "lib-x.jsonl").read_text())  # the record is never edited
+
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
             json.dumps({"corpora": {"lib-x": {"repo": "r", "commit": "c", "roots": ["Lx"], "generator": "legacy"}}})
