@@ -1,0 +1,31 @@
+# When a promotion lands on main, every PR whose records it made trusted gets one comment saying which
+# (scripts/ci/promotion_notify.py): a contributor learns the result without watching the repository. Runs on
+# main's own copy after the merge; it reads git history and posts comments, nothing else.
+name: promotion-notify
+on:
+  push:
+    branches: [main]
+    paths: ["data/trusted/**"]
+permissions: {}
+defaults:
+  run:
+    shell: bash
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: { contents: read, pull-requests: write }
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: { fetch-depth: 0, filter: "blob:none", persist-credentials: false }
+      - name: Tell each contributor PR which of its records are now trusted
+        env:
+          GH_TOKEN: "${{ github.token }}"
+          BEFORE: "${{ github.event.before }}"
+        run: |
+          # one merge can carry several PRs (a queue group): each commit that touches data/trusted is looked at alone
+          git rev-list --reverse "$BEFORE..$GITHUB_SHA" -- data/trusted | while read -r c; do
+            pr="$(git log -1 --format=%s "$c" | sed -nE 's/.*\(#([0-9]+)\)$/\1/p')"
+            echo "== $c (#${pr:-?})"
+            python3 scripts/ci/promotion_notify.py "$c^" "$c" "${pr:-0}"
+          done
