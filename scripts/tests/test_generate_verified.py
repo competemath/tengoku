@@ -517,6 +517,7 @@ class Generate(unittest.TestCase):
         self.assertNotIn("Author: Older", c)
         self.assertNotIn("Mallory", c)
         self.assertEqual(c.count("/--"), 1)
+        self.assertIn("-- a note\n/-- One plus one.", c)  # what came before the docstring is kept
 
     def test_legacy_libraries_are_untouched_by_the_verified_path(self):
         (self.out / "schemas" / "sources.json").write_text(
