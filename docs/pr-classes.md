@@ -15,7 +15,7 @@ depth. `dir/**` matches everything under `dir`.
 | # | Tier | Paths |
 |---|---|---|
 | 1 | derived | `Tengoku/All.lean`, `data/stats.json`, `data/cache-latest.json`; and, for every library *L*, `Tengoku/`*L*`/**` and `Tengoku/`*L*`.lean` |
-| 2 | content | `data/tentative/*.jsonl`, `data/staging/*.jsonl`, `claims/**` |
+| 2 | content | `data/tentative/*.jsonl`, `data/staging/*.jsonl` |
 | 3 | tombstone | `data/trusted/*.jsonl` |
 | 4 | tooling | `Tengoku.lean`, `Tengoku/*.lean`, `lean-toolchain`, `lakefile.toml`, `lake-manifest.json`, `scripts/**`, `TengokuExtract.lean`, `TengokuAxioms.lean`, `.github/**`, `schemas/**`, `.pre-commit-config.yaml`, `pyproject.toml`, `.gitleaks.toml` |
 | 5 | docs | `README.md`, `CONTRIBUTING.md`, `docs/**`, `LICENSE*`, `*.md` |
@@ -60,7 +60,7 @@ then rejected by rule 3, and with only tombstone paths besides it becomes a tomb
 
 | Class | Meaning |
 |---|---|
-| content | New tentative or staging records, or blind re-proof claims |
+| content | New tentative or staging records |
 | tombstone | Appended retraction lines on trusted records, by anyone but the bot |
 | tooling | Code, workflows, schemas and the source registry, the seeded modules, root Lean files |
 | docs | Documentation only |
@@ -74,7 +74,6 @@ on failed or was cancelled (a skipped job is fine), or when classification faile
 | Job | content | tombstone | tooling | docs | promotion |
 |---|---|---|---|---|---|
 | data-rules: append-only, record validation, content lint | ✓ | ✓ | | | ✓ |
-| assess: blind re-proof | ✓ | | | | ✓ |
 | vacuity (PR runs only) | ✓ | | | | |
 | lint-python, tooling-tests | | | ✓ | | |
 | credits, dco, secrets | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -85,7 +84,7 @@ Every class then goes through the merge queue, whose `queue-gate` check is requi
 workflow files waits, up to a time cap, for a running cache build to finish; content and promotion groups
 never wait.
 
-For a promotion, append-only, assess and credits run with `--promotion`. The bot may shrink staging files
+For a promotion, append-only and credits run with `--promotion`. The bot may shrink staging files
 when it moves records to trusted, and a moved record keeps its credit only when its name and `source_url`
 are unchanged.
 
