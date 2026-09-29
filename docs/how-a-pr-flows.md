@@ -44,7 +44,7 @@ A failed check re-runs when you push a fix.
 
 ## 5. Review, then the merge queue
 
-- AI reviewers (CodeRabbit, Greptile) comment on the PR. Every conversation must be resolved before it merges:
+- CodeRabbit, an AI reviewer, comments on the PR. Every conversation must be resolved before it merges:
   fix what applies or reply why not, then press **Resolve conversation**.
 - The merge queue ([queue-gate.yml](../.github/workflows/queue-gate.yml)) builds only your theorems, against the
   whole compiled library, and checks that none uses `sorry` or any axiom beyond Lean's standard three.
