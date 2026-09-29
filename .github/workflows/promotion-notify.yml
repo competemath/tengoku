@@ -22,10 +22,6 @@ jobs:
         env:
           GH_TOKEN: "${{ github.token }}"
           BEFORE: "${{ github.event.before }}"
-        run: |
-          # one merge can carry several PRs (a queue group): each commit that touches data/trusted is looked at alone
-          git rev-list --reverse "$BEFORE..$GITHUB_SHA" -- data/trusted | while read -r c; do
-            pr="$(git log -1 --format=%s "$c" | sed -nE 's/.*\(#([0-9]+)\)$/\1/p')"
-            echo "== $c (#${pr:-?})"
-            python3 scripts/ci/promotion_notify.py "$c^" "$c" "${pr:-0}"
-          done
+        # one push can carry several promotions (a queue group): the script reads each first-parent commit and posts
+        # one comment per contributor PR for the whole push
+        run: python3 scripts/ci/promotion_notify.py "$BEFORE" "$GITHUB_SHA"
