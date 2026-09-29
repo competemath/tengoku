@@ -1,0 +1,45 @@
+# A citable snapshot of the library, monthly and on demand: the dataset (every trusted record with its
+# statement, proof, source, licence and credit; scripts/snapshot.py) and its manifest (commit, toolchain,
+# counts, the dataset's sha256), published as the release `snapshot-YYYY-MM-DD` with build provenance.
+# A paper cites the snapshot; anyone can check the files against the manifest and the attestation.
+name: snapshot
+on:
+  schedule:
+    - cron: "17 3 1 * *"   # the 1st of every month
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions: { contents: write, id-token: write, attestations: write }
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: { ref: main, persist-credentials: false }
+      - name: Dataset and manifest
+        run: |
+          sudo apt-get install -y -q zstd >/dev/null
+          python3 scripts/snapshot.py --out snapshot
+          zstd -q -12 --rm snapshot/tengoku-dataset.jsonl
+          cp CITATION.cff snapshot/
+          ls -la snapshot
+      - name: Attest the files
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with: { subject-path: "snapshot/*" }
+      - name: Publish the release
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          tag="snapshot-$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["snapshot"])')"
+          if gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$tag" snapshot/* -R "$GITHUB_REPOSITORY" --clobber
+          else
+            records="$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["dataset"]["records"])')"
+            gh release create "$tag" snapshot/* -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Tengoku $tag" \
+              --notes "A citable snapshot of Tengoku: ${records} trusted records. \`snapshot.json\` names the commit, toolchain and counts, and the dataset's sha256; every file carries build provenance (\`gh attestation verify <file> -R $GITHUB_REPOSITORY\`). How to cite: CITATION.cff."
+          fi
