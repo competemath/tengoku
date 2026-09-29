@@ -30,7 +30,7 @@ the easiest way to do each thing.
    *Merge when ready*. The gate comments on the PR with anything it found;
    the queue builds your candidate module and merges.
    The merge also waits for every review conversation to be resolved,
-   including the AI reviewers' (CodeRabbit, Greptile): read each comment, fix
+   including the AI reviewer's (CodeRabbit): read each comment, fix
    what applies or reply saying why not, and press **Resolve conversation**.
 5. The promote bot later moves your records to `data/trusted/`, regenerates
    the module and deletes your per-PR file in its own PR. Your name, and the

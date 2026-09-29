@@ -572,7 +572,7 @@ class GateSummary(unittest.TestCase):
         self.assertIn("check failed", failed)
         for out in (passed, failed):  # the whole guidance, in each verdict
             self.assertIn("every review conversation must be resolved", out)
-            self.assertIn("CodeRabbit, Greptile", out)
+            self.assertIn("(CodeRabbit)", out)
             self.assertIn("fix what applies or reply saying why not", out)
             self.assertIn("**Resolve conversation**", out)
             self.assertIn("As the PR's author you can resolve them yourself", out)
