@@ -151,7 +151,19 @@ jobs:
           read -ra mods <<< "$TARGETS"
           # one run for all of them: each run imports the whole tree, so one per module took minutes apiece
           args=(); for m in "${mods[@]}"; do args+=(--module "$m"); done
-          lake env .lake/build/bin/tengoku-axioms "${args[@]}" 2>&1 | tee -a build.log
+          set +e
+          lake env .lake/build/bin/tengoku-axioms "${args[@]}" > axioms.out 2>&1
+          rc=$?
+          set -e
+          if [ "$rc" != 0 ] && grep -q "environment already contains" axioms.out; then
+            # candidates are generated one file at a time, so two can declare the same thing (a file's module and the
+            # Deps module another file's records carry); they cannot be imported together: each is checked alone
+            echo "the candidates overlap when imported together; checking each on its own"
+            for m in "${mods[@]}"; do lake env .lake/build/bin/tengoku-axioms --module "$m" 2>&1 | tee -a build.log; done
+          else
+            tee -a build.log < axioms.out
+            [ "$rc" = 0 ]
+          fi
       - name: Derived files match their generator
         if: github.event_name == 'merge_group'
         run: |
