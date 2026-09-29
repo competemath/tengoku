@@ -17,13 +17,13 @@ in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own
 <tr><td nowrap><img src="https://cdn.simpleicons.org/modelcontextprotocol/000000/ffffff" height="20" alt="">&nbsp;<a href="https://gofastmcp.com">FastMCP</a></td><td>The servers behind Leak I, II and IV and the translation check, on Starlette and uvicorn.</td></tr>
 <tr><td nowrap><img src="https://github.com/nomeata.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/nomeata/loogle">Loogle</a></td><td>Search by name and by type: the base of Leak I.</td></tr>
 <tr><td nowrap><img src="https://github.com/lenianiva.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/lenianiva/Pantograph">Pantograph</a></td><td>A machine interface to Lean's proof states: the base of Leak II.</td></tr>
-<tr><td nowrap><img src="https://github.com/leanprover.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/leanprover/lean4export">lean4export</a>, <a href="https://github.com/leanprover/lean4checker">lean4checker</a>, <a href="https://github.com/ammkrn/nanoda_lib">nanoda</a></td><td>Export every declaration and check it again: the core of the translation check, and a second kernel over the whole tree.</td></tr>
+<tr><td nowrap><img src="https://github.com/leanprover.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/leanprover/lean4export">lean4export</a>, <a href="https://github.com/leanprover/lean4checker">lean4checker</a>, <a href="https://github.com/ammkrn/nanoda_lib">nanoda</a></td><td>Export every declaration and check it again: the core of the translation check, and (being added) a second kernel over the whole tree.</td></tr>
 <tr><td nowrap><img src="https://cdn.simpleicons.org/nextdotjs/000000/ffffff" height="20" alt="">&nbsp;<a href="https://nextjs.org">Next.js</a></td><td>competemath.com/tengoku, its search API, and the Emissary-Archangel console.</td></tr>
 <tr><td nowrap><img src="https://cdn.simpleicons.org/vercel/000000/ffffff" height="20" alt="">&nbsp;<a href="https://vercel.com">Vercel</a></td><td>Hosts competemath.com and its search API.</td></tr>
 <tr><td nowrap><img src="https://cdn.simpleicons.org/neon" height="20" alt="">&nbsp;<a href="https://neon.com">Neon</a></td><td>The Postgres search index, with pgvector for search by meaning.</td></tr>
 <tr><td nowrap><img src="https://github.com/zizmorcore.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/zizmorcore/zizmor">zizmor</a></td><td>Found two gaps in our workflows. Tengoku's own workflow checker grew from reading it.</td></tr>
-<tr><td nowrap><img src="https://github.com/step-security.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/step-security/harden-runner">Harden-Runner</a></td><td>Watches and limits what CI jobs reach over the network.</td></tr>
-<tr><td nowrap><img src="https://github.com/trufflesecurity.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/trufflesecurity/trufflehog">TruffleHog</a> and <a href="https://github.com/Yelp/detect-secrets">detect-secrets</a></td><td>Scan every pull request and every commit for secrets.</td></tr>
+<tr><td nowrap><img src="https://github.com/step-security.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/step-security/harden-runner">Harden-Runner</a></td><td>Watches what the gate's CI jobs reach over the network (audit mode).</td></tr>
+<tr><td nowrap><img src="https://github.com/trufflesecurity.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/trufflesecurity/trufflehog">TruffleHog</a> and <a href="https://github.com/Yelp/detect-secrets">detect-secrets</a></td><td>Scan every pull request for secrets; detect-secrets also runs before each commit once the pre-commit hook is installed.</td></tr>
 </table>
 
 ## Similar libraries, and what we took from them
@@ -82,10 +82,10 @@ in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own
 - [GitHub artifact attestations](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations),
   signed with [Sigstore](https://www.sigstore.dev): every cache and release is signed, and checked before use.
 - [CycloneDX](https://cyclonedx.org): the bill of materials in every release (being added).
-- [StepSecurity Harden-Runner](https://github.com/step-security/harden-runner): watches and limits what CI jobs
-  reach over the network.
+- [StepSecurity Harden-Runner](https://github.com/step-security/harden-runner): watches what the gate's CI jobs
+  reach over the network (audit mode: it records, it does not block).
 - [TruffleHog](https://github.com/trufflesecurity/trufflehog) and [detect-secrets](https://github.com/Yelp/detect-secrets):
-  secret scanning in the gate and before every commit.
+  the gate scans every pull request with both; detect-secrets also runs before each commit in the pre-commit hook.
 - [Developer Certificate of Origin](https://developercertificate.org): the sign-off on every commit.
 - Also studied: [gitleaks](https://github.com/gitleaks/gitleaks), [SonarQube](https://www.sonarsource.com/products/sonarqube/)
   and [Aikido](https://www.aikido.dev).
