@@ -30,7 +30,7 @@ defaults:
 jobs:
   queue-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 90   # a pipeline staging group can carry dozens of candidate modules
     permissions: { contents: read, pull-requests: write, actions: read }   # actions: read — to see a running cache build
     outputs:
       topup: ${{ steps.topup.outputs.state }}
@@ -149,7 +149,9 @@ jobs:
           set -o pipefail
           lake build tengoku-axioms 2>&1 | tail -1
           read -ra mods <<< "$TARGETS"
-          for m in "${mods[@]}"; do lake env .lake/build/bin/tengoku-axioms --module "$m" 2>&1 | tee -a build.log; done
+          # one run for all of them: each run imports the whole tree, so one per module took minutes apiece
+          args=(); for m in "${mods[@]}"; do args+=(--module "$m"); done
+          lake env .lake/build/bin/tengoku-axioms "${args[@]}" 2>&1 | tee -a build.log
       - name: Derived files match their generator
         if: github.event_name == 'merge_group'
         run: |
