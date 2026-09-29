@@ -15,10 +15,11 @@ trusted. 106 libraries are registered, and a pipeline keeps translating them.
 
 Each guarantee is enforced by code in this repository, named below.
 
-**A trusted theorem is machine-checked in the whole library.** A record reaches `data/trusted/` only after
-promotion ([scripts/promote.py](../scripts/promote.py)) has built its module from scratch inside the full tree.
-The merge queue ([queue-gate.yml](../.github/workflows/queue-gate.yml)) had already built it and checked that it
-uses no `sorry` and no axiom beyond `propext`, `Classical.choice` and `Quot.sound`, declaration by declaration.
+**A trusted theorem is machine-checked against the whole library.** A record reaches `data/trusted/` only after
+promotion ([scripts/promote.py](../scripts/promote.py)) has built its module from scratch against the compiled
+tree. The merge queue ([queue-gate.yml](../.github/workflows/queue-gate.yml)) had already built it and checked that
+every named declaration of the new modules uses no `sorry` and no axiom beyond `propext`, `Classical.choice` and
+`Quot.sound`.
 
 **A trusted theorem is not vacuous.** Its assumptions are checked for contradiction
 ([tools/vacuity](../tools/vacuity)), at the pull request and again before promotion. A theorem whose assumptions
@@ -56,17 +57,18 @@ independent re-check of every declaration with a second kernel is in progress (c
   (`https://barkingtree-leak-i.hf.space/sse`, no authentication).
 - **Build against it.** `scripts/cache.sh get` downloads the verified compiled tree; `import Tengoku.All` imports
   everything.
-- **Take the dataset.** Each month with changes, a numbered release `vX.Y.Z` is published, with a DOI from Zenodo:
-  every trusted theorem with its statement, proof, source, licence and credit, and a manifest naming the commit, the
-  toolchain, the counts and the dataset's checksum, all with build provenance. A new toolchain is a new major
-  version, added theorems a minor one, corrections a patch.
+- **Take the dataset** (being added). Numbered releases `vX.Y.Z`, one for each month with changes, each with a DOI
+  from Zenodo: every trusted theorem with its statement, proof, source, licence and credit, and a manifest naming the
+  commit, the toolchain, the counts and the dataset's checksum, all with build provenance. A new toolchain will be a
+  new major version, added theorems a minor one, corrections a patch. Until then, the compiled tree above is the way
+  in.
 - **Contribute.** [How a theorem gets into Tengoku](how-a-pr-flows.md). Open goals are listed in
   [GOALS.md](../GOALS.md).
 
 ## How to cite
 
-Cite the version you used (its tag, or its DOI) and the commit its manifest names. [CITATION.cff](../CITATION.cff)
-gives the reference.
+Cite the commit you used. Once numbered releases start, cite the version (its tag, or its DOI) and the commit its
+manifest names; a `CITATION.cff` file (being added) will give the reference.
 
 ## Limits
 

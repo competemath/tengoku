@@ -62,8 +62,8 @@ regenerates their Lean modules. You get a comment on your PR listing which of yo
 ([promotion-notify.yml](../.github/workflows/promotion-notify.yml)). The search and verify services pick up the
 new library within minutes.
 
-**Trusted means:** the whole library builds with your theorem on the pinned toolchain, it uses no `sorry` and only
-the standard axioms (`propext`, `Classical.choice`, `Quot.sound`), its assumptions are not contradictory, and its
+**Trusted means:** your theorem's module builds from scratch against the compiled library on the pinned toolchain,
+it uses no `sorry` and only the standard axioms (`propext`, `Classical.choice`, `Quot.sound`), its assumptions are not contradictory, and its
 source, licence and credit travel with it. It is never deleted: a mistake is retracted with a tombstone that stays
 in the history, with a note on where to look instead.
 
