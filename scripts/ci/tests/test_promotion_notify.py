@@ -59,6 +59,21 @@ class PromotionNotify(unittest.TestCase):
         self.assertIn("would comment on #13", out)
         self.assertIn("**1 of the records this PR added is now trusted** (promotion #21): `Lib.c`", out)
 
+    def test_a_record_added_to_the_flat_file_during_the_push_is_attributed(self):
+        r = self.r
+        r.append("data/staging/lib.jsonl", rec("Lib.a"))
+        r.commit("Stage lib: 1 record (#13)")
+        self.base = r.git("rev-parse", "HEAD").strip()
+        promote(r, ["Lib.a"], "Promote: 1 record (#20)")  # reads the flat file's history as of here
+        r.append("data/staging/lib.jsonl", rec("Lib.b"))
+        r.commit("Stage lib: 1 record (#14)")  # later in the same push
+        promote(r, ["Lib.b"], "Promote: 1 record (#21)")
+        rc, out = self.notify()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("would comment on #13", out)
+        self.assertIn("would comment on #14", out)
+        self.assertIn("(promotion #21): `Lib.b`", out)
+
     def test_a_record_without_a_pr_is_not_told(self):
         self.r.append("data/trusted/lib.jsonl", rec("Lib.z", "trusted"))
         self.r.commit("direct push")

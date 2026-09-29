@@ -44,13 +44,15 @@ def per_pr_file_pr(path: str, before: str) -> str | None:
     return found[-1] if found else None  # the oldest
 
 
-_FLAT: dict[str, dict[str, str]] = {}
+# keyed by revision too: within one push a later promotion can take a record that an earlier commit of the same push
+# added to the same file, which the history as of the earlier promotion does not show
+_FLAT: dict[tuple[str, str], dict[str, str]] = {}
 
 
 def flat_file_prs(path: str, before: str) -> dict[str, str]:
     """name -> the PR that first added it to a shared flat staging file, read from the file's history as JSON."""
-    if path in _FLAT:
-        return _FLAT[path]
+    if (path, before) in _FLAT:
+        return _FLAT[(path, before)]
     out: dict[str, str] = {}
     log = run("log", "--first-parent", "--reverse", "-p", "-U0", "--format=%x00%s", before, "--", path, check=False)
     pr = None
@@ -61,7 +63,7 @@ def flat_file_prs(path: str, before: str) -> dict[str, str]:
         elif line.startswith("+") and not line.startswith("+++") and pr:
             for n in record_names([line[1:]]):
                 out.setdefault(n, pr)
-    _FLAT[path] = out
+    _FLAT[(path, before)] = out
     return out
 
 
