@@ -36,13 +36,16 @@ jobs:
         run: |
           # a published snapshot is never changed: the same commit is not published twice, another one the same day
           # gets its own tag
+          # the tag decides, not the release: a release can be deleted while its tag stays
           tag="snapshot-$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["snapshot"])')"
-          if gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            at="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" --jq .object.sha 2>/dev/null || true)"
-            if [ "$at" = "$GITHUB_SHA" ]; then echo "$tag already snapshots $GITHUB_SHA"; exit 0; fi
-            tag="$tag-${GITHUB_SHA:0:7}"
-            if gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then echo "$tag exists"; exit 0; fi
+          tag_at() { gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$1" --jq .object.sha 2>/dev/null || true; }
+          at="$(tag_at "$tag")"
+          if [ -n "$at" ] && [ "$at" != "$GITHUB_SHA" ]; then
+            tag="$tag-${GITHUB_SHA:0:7}"   # another commit already holds today's tag
+            at="$(tag_at "$tag")"
           fi
+          if [ -n "$at" ] && [ "$at" != "$GITHUB_SHA" ]; then echo "::error::$tag points at $at, not $GITHUB_SHA"; exit 1; fi
+          if gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then echo "$tag already snapshots $GITHUB_SHA"; exit 0; fi
           records="$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["dataset"]["records"])')"
           gh release create "$tag" snapshot/* -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Tengoku $tag" \
             --notes "A citable snapshot of Tengoku: ${records} trusted records. \`snapshot.json\` names the commit, toolchain and counts, and the sha256 of the published dataset; every file carries build provenance (\`gh attestation verify <file> -R $GITHUB_REPOSITORY\`). How to cite: CITATION.cff."
