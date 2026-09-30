@@ -9,3 +9,12 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+  # the gate's Python packages, pinned by hash in scripts/ci/requirements/*.txt: a weekly pull request updates the
+  # versions and their hashes together
+  - package-ecosystem: pip
+    directory: /scripts/ci/requirements
+    schedule: { interval: weekly }
+    labels: [tooling, dependencies]
+    groups:
+      python:
+        patterns: ["*"]
