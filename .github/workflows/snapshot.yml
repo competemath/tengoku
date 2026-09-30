@@ -81,7 +81,7 @@ jobs:
           CHANGED: "${{ steps.snap.outputs.changed }}"
           VERSION: "${{ steps.snap.outputs.version }}"
           DATE: "${{ steps.snap.outputs.date }}"
-        run: |
+        run: |  # pragma: allowlist secret (the name of the Zenodo token secret, not a secret)
           if [ -z "$ZENODO_TOKEN" ]; then echo "::warning::no ZENODO_TOKEN secret: the release has no DOI yet"; exit 0; fi
           if [ "$CHANGED" = true ]; then
             dir=snapshot
