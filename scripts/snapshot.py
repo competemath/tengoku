@@ -223,8 +223,15 @@ def release_notes(
             why.append(f"record fields were removed ({', '.join(gone)}): code reading the dataset must stop expecting them")
         lines.append("Major version: " + "; ".join(why) + ".")
     elif version.endswith(".0"):
+        what = []
+        if added:
+            what.append(f"{len(added):,} theorems were added")
+        if new:
+            what.append(f"records gained {', '.join(f'`{f}`' for f in new)}")
         lines.append(
-            "Minor version: theorems were added (and some may be corrected); nothing is renamed and no field is removed, so upgrading is safe"
+            "Minor version: "
+            + " and ".join(what)
+            + "; nothing is renamed and no field is removed, so upgrading is safe"
             + (", except that the retracted theorems above are gone." if retracted else ".")
         )
     else:

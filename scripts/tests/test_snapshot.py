@@ -114,7 +114,7 @@ class Snapshot(unittest.TestCase):
         self.assertIn("## What changed since v1.0.0", minor)
         self.assertIn("**Added:** 1 trusted theorems (lib 1).", minor)
         self.assertIn("**Retracted:** 0.", minor)
-        self.assertIn("Minor version:", minor)
+        self.assertIn("Minor version: 1 theorems were added; nothing is renamed", minor)
         self.assertIn("upgrading is safe.", minor)
 
         self.append({"tombstone": "Lib.c", "category": "incorrect", "reason": "r", "by": "x", "at": "2026-09-04"})
@@ -180,6 +180,19 @@ class Snapshot(unittest.TestCase):
         (self.root / "lean-toolchain").write_text("leanprover/lean4:v4.35.0\n")  # a new toolchain: major
         bumped = self.run_snapshot(self.root / "v6", self.root / "v5")
         self.assertEqual(bumped["version"], "2.0.0")
+
+    def test_a_minor_release_that_only_adds_a_field_says_so(self):
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location("snapshot", ROOT / "scripts" / "snapshot.py")
+        snap = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(snap)
+        rows = [{"name": "Lib.a", "library": "lib"}]
+        old = {"version": "1.0.0", "toolchain": "t", "fields": ["library", "name"]}
+        notes = snap.release_notes("1.1.0", (old, {"Lib.a": dict(rows[0])}), rows, "t", ["library", "name", "extra"])
+        self.assertIn("**Added:** 0 trusted theorems.", notes)
+        self.assertIn("Minor version: records gained `extra`; nothing is renamed", notes)
+        self.assertNotIn("theorems were added", notes)
 
     def test_a_removed_field_is_major_and_a_new_field_minor(self):
         first = self.run_snapshot(self.root / "v1")
