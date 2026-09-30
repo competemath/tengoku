@@ -144,9 +144,24 @@ jobs:
       # Every part gets a build-provenance attestation; scripts/cache.sh get refuses parts without one.
       - name: Attest the cache parts
         if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale != 'true'
+        id: attest
         uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
         with:
           subject-path: attest/tengoku-cache.tar.zst.part-*
+
+      # The same attestation as a file of the release: the signed Sigstore bundle of the parts' SLSA build
+      # provenance (one JSON line). It serves whoever downloads the release without GitHub's attestation API:
+      # `gh attestation verify <part> -R competemath/tengoku --bundle tengoku-cache.intoto.jsonl` checks a part
+      # against it. Consumers download only the parts (cache.sh, pin.sh), so the extra file changes nothing for them.
+      - name: The provenance, as a file of the release
+        if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.publish.outputs.tag }}
+          BUNDLE: ${{ steps.attest.outputs.bundle-path }}
+        run: |
+          cp "$BUNDLE" tengoku-cache.intoto.jsonl
+          gh release upload "$TAG" tengoku-cache.intoto.jsonl -R "$TENGOKU_REPO" --clobber
 
       - name: Continue the build in a follow-up run
         if: steps.build.outputs.complete == 'false'
