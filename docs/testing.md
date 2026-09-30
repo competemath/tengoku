@@ -13,7 +13,7 @@ catches something the others cannot.
 | Layer | Where | Runs on | Catches | Typical time |
 |---|---|---|---|---|
 | Unit tests of the gate scripts | `scripts/ci/tests/test_gates.py`, `scripts/tests/` | your machine, CI (`tooling-tests`) | a gate script that does not do what it claims | 5 s |
-| Fuzzing of the gate scripts | `scripts/ci/fuzz/` | a PR or merge group that changes a covered script (`tooling-tests`, `queue-build`); weekly for longer (`fuzz.yml`) | an input from a PR that makes a gate script crash or print a workflow command | nothing for most changes, 1–3 min when it runs |
+| Fuzzing of the gate scripts | `scripts/ci/fuzz/` | a PR or merge group that changes a covered script (`tooling-tests`, `queue-build`); weekly for longer (`fuzz.yml`) | an input from a PR that makes a gate script crash or print a workflow command | nothing for most changes, 1–2 min when it runs |
 | Pre-commit hooks | `.pre-commit-config.yaml` | your machine, CI (`lint-python`) | lint, formatting, secrets, banked content — the same list in both places | seconds |
 | The PR gate | `.github/workflows/pr-gate.yml` | every pull request | wrong shape of change: two purposes, edits to append-only data, forbidden constructs, missing credits, secrets, missing sign-off, unmet dependencies | 2–3 min |
 | The merge queue | `.github/workflows/queue-gate.yml` | every merge group | wrong mathematics: a proof that does not compile, a `sorry`, a non-standard axiom, a hand-edited generated file | 3–7 min |
@@ -161,8 +161,9 @@ A PR that changes a file a target covers runs that target in `pr-tests` (the PR'
 runs it again on the merged result and ejects the group if it fails, so the merge waits for it. A change that
 covers no target runs nothing. Each run is [atheris](https://github.com/google/atheris) (coverage-guided,
 libFuzzer) with a fixed number of inputs from a fixed seed, starting from the target's corpus
-(`scripts/ci/fuzz/corpus/<target>/`; the repository's own workflows seed `workflow_rules`): the same change always
-gives the same result, in a minute or two. [ClusterFuzzLite](https://google.github.io/clusterfuzzlite/) runs every
+(`scripts/ci/fuzz/corpus/<target>/`; the repository's own workflows seed `workflow_rules`): the same change gives
+the same result, in about a minute and a half when every target runs (each is capped at 90 seconds, a guard for a
+slow runner). [ClusterFuzzLite](https://google.github.io/clusterfuzzlite/) runs every
 target for twenty minutes each week (`.github/workflows/fuzz.yml`, built by `.clusterfuzzlite/`).
 
 Written against the gate as it was, the targets found four bugs, fixed with them: `plain` let a run of colons
