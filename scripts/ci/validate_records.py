@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import urllib.parse
 
 from _git import ROOT, added_lines, blob, changed_files, fail, library_of, load_schema, match
 
@@ -31,33 +32,39 @@ def tier(p: str) -> str:
     return p.split("/")[1]
 
 
-def tombstone_categories() -> dict[str, str]:
-    """name -> the category its first tombstone set (a category never changes)."""
-    out: dict[str, str] = {}
-    for f in (ROOT / "data" / "trusted").rglob("*.jsonl"):  # flat and per-library files
-        for line in f.open(encoding="utf-8"):
-            if '"tombstone"' in line:
-                try:
-                    r = json.loads(line)
-                except ValueError:
+_EVENTS: list[dict] | None = None
+
+
+def trusted_tombstones() -> list[dict]:
+    """Every tombstone line in trusted, flat and per-library files. Each line is decoded, never matched as text: a
+    key or a name may be written with \\u escapes. All of trusted parses in under a second."""
+    global _EVENTS
+    if _EVENTS is None:
+        _EVENTS = []
+        for f in (ROOT / "data" / "trusted").rglob("*.jsonl"):
+            for line in f.open(encoding="utf-8"):
+                if not line.strip():
                     continue
-                if isinstance(r, dict) and "tombstone" in r and r.get("category"):
-                    out.setdefault(str(r["tombstone"]), str(r["category"]))
-    return out
-
-
-def tombstoned_names() -> set[str]:
-    out = set()
-    for f in (ROOT / "data" / "trusted").rglob("*.jsonl"):  # flat and per-library files
-        for line in f.open(encoding="utf-8"):
-            if '"tombstone"' in line:  # decoded as JSON: a name may be written with \u escapes
                 try:
                     r = json.loads(line)
                 except ValueError:
                     continue
                 if isinstance(r, dict) and "tombstone" in r:
-                    out.add(str(r["tombstone"]))
+                    _EVENTS.append(r)
+    return _EVENTS
+
+
+def tombstone_categories() -> dict[str, str]:
+    """name -> the category its first tombstone set (a category never changes)."""
+    out: dict[str, str] = {}
+    for r in trusted_tombstones():
+        if r.get("category"):
+            out.setdefault(str(r["tombstone"]), str(r["category"]))
     return out
+
+
+def tombstoned_names() -> set[str]:
+    return {str(r["tombstone"]) for r in trusted_tombstones()}
 
 
 def trusted_names() -> set[str]:
@@ -73,7 +80,17 @@ def trusted_names() -> set[str]:
 known = None
 tombstoned = None
 categories = None
-LINKISH = re.compile(r"https?://\S+")
+AT_RE = re.compile(r"\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}Z)?")  # UTC: the newest correction is the greatest string
+
+
+def good_link(url: str) -> bool:
+    try:
+        u = urllib.parse.urlsplit(url)
+    except ValueError:
+        return False
+    return u.scheme in ("http", "https") and bool(u.hostname) and "." in (u.hostname or "") and not re.search(r"\s", url)
+
+
 for st, p in changed_files(base, head):
     if not match(
         p, ["data/tentative/*.jsonl", "data/staging/*.jsonl", "data/trusted/*.jsonl", "data/tentative/*/*.jsonl", "data/staging/*/*.jsonl"]
@@ -92,6 +109,8 @@ for st, p in changed_files(base, head):
         except Exception as e:
             errors.append(f"{p}:{no}: not JSON ({e})")
             continue
+        if any(k in r for k in ("tombstone", "tombstone_note", "credit_correction")) and "at" in r and not AT_RE.fullmatch(str(r["at"])):
+            errors.append(f"{p}:{no}: at is a UTC date or time: YYYY-MM-DD or YYYY-MM-DDTHH:MM:SSZ (got {r['at']!r})")
         if "tombstone" in r:
             for k in schema["tombstone"]["required"]:
                 if k not in r:
@@ -144,7 +163,7 @@ for st, p in changed_files(base, head):
                     errors.append(f"{p}:{no}: credit is one `Author:` line (a single line with a single `Author:`)")
                 if any(d in str(r.get(k, "")) for k in ("credit", "evidence") for d in ("-/", "/-")):
                     errors.append(f"{p}:{no}: credit and evidence may not contain `-/` or `/-` (they are written into a Lean doc comment)")
-                if not LINKISH.fullmatch(str(r.get("evidence", ""))):
+                if not good_link(str(r.get("evidence", ""))):
                     errors.append(f"{p}:{no}: evidence is an http(s) link to what shows the plagiarism")
             continue
         req = schema["record"]["required"] + schema["record"].get("required_by_tier", {}).get(t, [])
