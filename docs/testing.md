@@ -161,8 +161,8 @@ A PR that changes a file a target covers runs that target in `pr-tests` (the PR'
 runs it again on the merged result and ejects the group if it fails, so the merge waits for it. A change that
 covers no target runs nothing. Each run is [atheris](https://github.com/google/atheris) (coverage-guided,
 libFuzzer) with a fixed number of inputs from a fixed seed, starting from the target's corpus
-(`scripts/ci/fuzz/corpus/<target>/`; the repository's own workflows seed `workflow_rules`): the same change gives
-the same result, in about a minute and a half when every target runs (each is capped at 90 seconds, a guard for a
+(`scripts/ci/fuzz/corpus/<target>/`; the repository's own workflows seed `workflow_rules`): a run is reproducible on
+the same Python (the PR's and the queue's Pythons differ, so their runs explore differently), in about a minute and a half when every target runs (each is capped at 90 seconds, a guard for a
 slow runner). [ClusterFuzzLite](https://google.github.io/clusterfuzzlite/) runs every
 target for twenty minutes each week (`.github/workflows/fuzz.yml`, built by `.clusterfuzzlite/`).
 
