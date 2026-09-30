@@ -81,7 +81,12 @@ reads source files from). Records from it come in a second PR.
 Scripts, workflows, schemas and the Lean tool programs are `tooling`. Install
 the hooks once (`pipx install pre-commit && pre-commit install`); CI runs the
 same `.pre-commit-config.yaml`, the unit tests and `actionlint`, so what
-passes locally passes there. `CODEOWNERS` review applies. Run the scenario
+passes locally passes there. New or changed behaviour comes with a test that
+fails without it, in `scripts/tests/` or `scripts/ci/tests/`; run them with
+`python3 -m unittest discover -s scripts/tests` and
+`python3 -m unittest discover -s scripts/ci/tests -p 'test_*.py'` (after
+`pip install pyyaml`, which the workflow-rules tests need).
+`CODEOWNERS` review applies. Run the scenario
 campaign against the sandbox before touching `scripts/ci/` or the workflows
 (`scripts/ci/campaign/README.md`).
 
