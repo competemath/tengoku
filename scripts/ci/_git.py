@@ -208,12 +208,24 @@ def gh_output(key: str, value: str) -> None:
             f.write(f"{key}={value}\n")
 
 
+def annotation(msg: str) -> str:
+    """A workflow-command message: `%`, CR and LF encoded, so text from a PR (a record name) can never end the line and
+    start another command."""
+    return msg.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+
+
+def plain(text: str) -> str:
+    """Text for the log that can carry no workflow command: a command is `::name::…`, so every `::` is broken up (and
+    CR dropped). The line breaks of a readable message stay."""
+    return text.replace("\r", "").replace("::", ": :")
+
+
 def fail(msg: str) -> None:
     if os.environ.get("GITHUB_ACTIONS"):
         # `::error::` becomes a check-run annotation (what the verdict comment quotes); newlines must be
         # %0A-encoded or GitHub keeps only the first line. The readable form goes to the log too.
-        print("::error::" + msg.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A"))
-    print("FAIL: " + msg)
+        print("::error::" + annotation(msg))
+    print("FAIL: " + plain(msg))  # the workflow prints this line; a record name in msg comes from the PR
     sys.exit(1)
 
 
@@ -269,6 +281,12 @@ def declared_names(text: str) -> set[str]:
             prefix = [p for scope in stack for p in scope]
             names.add(decl[len("_root_.") :] if decl.startswith("_root_.") else ".".join(prefix + [decl]))
     return names
+
+
+def garbled(record: dict) -> bool:
+    """A record whose text holds U+FFFD is not the text that was verified (a character split across two stream
+    chunks when it was banked): the generator leaves it out (scripts/generate.py), so no module declares it."""
+    return any("\ufffd" in str(record.get(f, "")) for f in ("statement", "proof", "context"))
 
 
 def unplaced(names: set[str], texts: list[str]) -> list[str]:

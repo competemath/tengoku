@@ -13,7 +13,21 @@ import subprocess
 import sys
 from pathlib import Path
 
-from _git import ROOT, added_lines, changed_files, fail, library_of, library_of_module, load_schema, match, pascal, unplaced
+from _git import (
+    ROOT,
+    added_lines,
+    annotation,
+    changed_files,
+    fail,
+    garbled,
+    library_of,
+    library_of_module,
+    load_schema,
+    match,
+    pascal,
+    plain,
+    unplaced,
+)
 
 base, head = sys.argv[1], sys.argv[2]
 regenerate = "--regenerate" in sys.argv
@@ -36,12 +50,13 @@ def corpus_dir(lib: str) -> Path:
 def generate(lib: str, extra: list[str]) -> None:
     cmd = [sys.executable, "scripts/generate.py", "--corpus", str(corpus_dir(lib)), "--libraries", lib, *extra]
     r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
-    sys.stderr.write(r.stdout[-2000:] + r.stderr[-2000:])
+    sys.stderr.write(plain(r.stdout[-2000:] + r.stderr[-2000:]))  # the generator prints record names from the PR
     if r.returncode != 0:
         fail(f"generate.py failed for {lib}: {' '.join(extra)}")
 
 
 work: dict[str, dict[str, set[str]]] = {}  # library -> source path -> names this group adds to staging
+left_out: dict[str, set[str]] = {}  # library -> garbled records the generator leaves out (they stay in staging)
 touched: set[str] = set()  # libraries with any data change (staging or trusted)
 for st, p in changed_files(base, head):
     if match(p, ["data/staging/*.jsonl", "data/staging/*/*.jsonl"]):
@@ -53,6 +68,9 @@ for st, p in changed_files(base, head):
             except Exception:
                 continue
             if "tombstone" in r or not r.get("source_path") or not r.get("name"):
+                continue
+            if garbled(r):
+                left_out.setdefault(lib, set()).add(r["name"])
                 continue
             work.setdefault(lib, {}).setdefault(r["source_path"], set()).add(r["name"])
     elif match(p, ["data/trusted/*.jsonl"]):
@@ -70,6 +88,9 @@ if regenerate:
 
 
 targets: list[str] = []
+for lib, names in sorted(left_out.items()):
+    msg = f"{lib}: {len(names)} record(s) garbled when banked (U+FFFD) are not compiled; they stay in staging and are never promoted: "
+    print("::warning::" + annotation(msg + ", ".join(sorted(names)[:5])), file=sys.stderr)  # the names come from the PR
 for lib, paths in sorted(work.items()):
     if lib not in corpora:
         print(f"::warning::{lib}: no corpus, records are data only and not compiled", file=sys.stderr)

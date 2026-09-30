@@ -899,6 +899,27 @@ class QueuePlacement(unittest.TestCase):
         ncs = "namespace A\nnoncomputable section\ntheorem n : True := trivial\nend\ntheorem after2 : True := trivial\nend A\n"
         self.assertEqual(unplaced({"A.n", "A.after2"}, [ncs]), [])
 
+    def test_a_garbled_record_is_left_out_like_the_generator_does(self):
+        from _git import garbled
+
+        self.assertTrue(garbled({"statement": "theorem t : 1 \ufffd 2"}))
+        self.assertTrue(garbled({"statement": "theorem t : True", "context": "a \ufffd b"}))
+        self.assertFalse(garbled({"statement": "theorem t : 1 ≤ 2", "proof": ":= by decide"}))
+
+    def test_an_annotation_cannot_start_another_workflow_command(self):
+        from _git import annotation
+
+        self.assertEqual(annotation("a\n::add-mask::x\r%"), "a%0A::add-mask::x%0D%25")
+        self.assertNotIn("\n", annotation("Lib.x\n::stop-commands::t"))
+
+    def test_the_log_form_of_a_failure_cannot_start_a_workflow_command(self):
+        from _git import plain
+
+        out = plain("in no module: Lib.x\n::add-mask::secret\r\n  ::stop-commands::t")
+        self.assertNotIn("\n::", out)
+        self.assertNotRegex(out, r"(?m)^\s*::")
+        self.assertIn("in no module: Lib.x\n", out)  # still readable, line breaks kept
+
     def test_comments_and_strings_hide_nothing_and_declare_nothing(self):
         from _git import unplaced
 
