@@ -4,3 +4,8 @@ updates:
     directory: /
     schedule: { interval: weekly }
     labels: [tooling, dependencies]
+    # one pull request a week for every action update, tested together in the sandbox before it merges, instead
+    # of one per action
+    groups:
+      actions:
+        patterns: ["*"]
