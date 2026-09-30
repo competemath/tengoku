@@ -53,12 +53,28 @@ Anyone can contribute, by hand or with AI. Before you submit:
   `trusted` only once Leak's own toolchain has compiled them from scratch.
 
 ## Get it, report a problem, contribute
-- **Get it:** clone this repository; `scripts/cache.sh get` downloads the compiled tree, so nothing needs building.
-  Every [release](https://github.com/competemath/tengoku/releases) carries the dataset of all trusted theorems,
-  also on Zenodo ([DOI 10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400)).
+- **Get it:** clone this repository; `scripts/cache.sh get` downloads the newest compiled tree, so only what changed
+  since that cache is built. Each numbered release (`vX.Y.Z`, not the `cache-*` ones) carries the dataset of all
+  trusted theorems, also on Zenodo ([DOI 10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400)).
 - **Report a bug or ask for a feature:** [open an issue](https://github.com/competemath/tengoku/issues/new). Security
   problems go through [SECURITY.md](SECURITY.md) instead, never a public issue.
 - **Contribute:** [CONTRIBUTING.md](CONTRIBUTING.md); every change is a pull request, discussed in the open.
+
+## How to cite
+Cite the version you used. [10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400) stands for every
+version (it resolves to the newest); each release also has its own DOI, on its release page. GitHub's *Cite this
+repository* button gives the same reference, from [CITATION.cff](CITATION.cff).
+
+```bibtex
+@misc{tengoku,
+  author       = {{Tengoku contributors} and Bashir, Mikael},
+  title        = {Tengoku: one verified Lean 4 tree of formal mathematics, with provenance},
+  publisher    = {Zenodo},
+  year         = {2026},
+  doi          = {10.5281/zenodo.23050400},
+  url          = {https://doi.org/10.5281/zenodo.23050400}
+}
+```
 
 ## Full documentation
 - [How a theorem gets into Tengoku](docs/how-a-pr-flows.md): the pull request, step by step.

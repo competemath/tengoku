@@ -57,18 +57,19 @@ independent re-check of every declaration with a second kernel is in progress (c
   (`https://barkingtree-leak-i.hf.space/sse`, no authentication).
 - **Build against it.** `scripts/cache.sh get` downloads the verified compiled tree; `import Tengoku.All` imports
   everything.
-- **Take the dataset** (being added). Numbered releases `vX.Y.Z`, one for each month with changes, each with a DOI
-  from Zenodo: every trusted theorem with its statement, proof, source, licence and credit, and a manifest naming the
-  commit, the toolchain, the counts and the dataset's checksum, all with build provenance. A new toolchain will be a
-  new major version, added theorems a minor one, corrections a patch. Until then, the compiled tree above is the way
-  in.
+- **Take the dataset.** Numbered releases `vX.Y.Z`, one for each month with changes, each with a DOI from Zenodo
+  ([all versions](https://doi.org/10.5281/zenodo.23050400)): every trusted theorem with its statement, proof,
+  source, licence and credit, and a manifest naming the commit, the toolchain, the counts and the dataset's
+  checksum, all with build provenance. A new toolchain is a new major version, added theorems a minor one,
+  corrections a patch.
 - **Contribute.** [How a theorem gets into Tengoku](how-a-pr-flows.md). Open goals are listed in
   [GOALS.md](../GOALS.md).
 
 ## How to cite
 
-Cite the commit you used. Once numbered releases start, cite the version (its tag, or its DOI) and the commit its
-manifest names; a `CITATION.cff` file (being added) will give the reference.
+Cite the version you used (its tag, or its DOI) and the commit its manifest names. The all-versions DOI is
+[10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400); [CITATION.cff](../CITATION.cff) and the
+README's *How to cite* give the reference and a BibTeX entry.
 
 ## Limits
 
