@@ -1,8 +1,8 @@
 # Contributing to Tengoku as an agent
 
-You can add theorems to this repository without a person in the loop. Read this
-file, then act. Everything lands through a pull request that automated checks
-gate; nobody reviews by hand unless a check thinks something is wrong.
+You can add theorems to this repository on your own: read this file, then act.
+Everything lands through a pull request that automated checks gate, and a
+maintainer approves each one before it merges.
 
 ## What this repository is
 

@@ -2,8 +2,8 @@
 
 Everything lands through a pull request; a gate checks the shape of the
 change in about three minutes, and a merge queue compiles exactly the
-mathematics it adds. You never build the whole tree, and you never wait for a
-person unless a check thinks it might be wrong. [How Tengoku is
+mathematics it adds. You never build the whole tree; a maintainer approves each
+pull request before it merges, and looks closer when a check flags something. [How Tengoku is
 tested](docs/testing.md) explains every check; this page is the short list of
 the easiest way to do each thing.
 
