@@ -1,7 +1,13 @@
 <p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
 <h1 align="center">Tengoku (天国)</h1>
 <p align="center"><em>An AI-first formal mathematics library for Lean 4.</em></p>
-<p align="center"><a href="https://scorecard.dev/viewer/?uri=github.com/competemath/tengoku"><img src="https://api.scorecard.dev/projects/github.com/competemath/tengoku/badge" alt="OpenSSF Scorecard"></a></p>
+<p align="center">
+<a href="lean-toolchain"><img src="https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcompetemath%2Ftengoku%2Fmain%2Flean-toolchain&search=v%5B0-9.%5D%2B%28-rc%5B0-9%5D%2B%29%3F&label=Lean%204&color=blue" alt="Lean 4 toolchain"></a>
+<a href="https://competemath.com/tengoku"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcompetemath%2Ftengoku%2Fmain%2Fdata%2Fstats.json&query=%24.totals.trusted&label=trusted%20theorems&color=2e7d32" alt="Trusted theorems"></a>
+<a href="https://doi.org/10.5281/zenodo.23050400"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23050400.svg" alt="DOI"></a>
+<a href="https://scorecard.dev/viewer/?uri=github.com/competemath/tengoku"><img src="https://api.scorecard.dev/projects/github.com/competemath/tengoku/badge" alt="OpenSSF Scorecard"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/licence-Apache--2.0-blue" alt="Licence: Apache-2.0"></a>
+</p>
 
 ## About
 Significant formal math projects are fragmented across hundreds of different sources. We pull them
@@ -45,6 +51,14 @@ Anyone can contribute, by hand or with AI. Before you submit:
   credit string once; it writes the docstrings for you.
 - **Tiers.** Submissions start in `tentative` or `staging` and are promoted to
   `trusted` only once Leak's own toolchain has compiled them from scratch.
+
+## Get it, report a problem, contribute
+- **Get it:** clone this repository; `scripts/cache.sh get` downloads the compiled tree, so nothing needs building.
+  Every [release](https://github.com/competemath/tengoku/releases) carries the dataset of all trusted theorems,
+  also on Zenodo ([DOI 10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400)).
+- **Report a bug or ask for a feature:** [open an issue](https://github.com/competemath/tengoku/issues/new). Security
+  problems go through [SECURITY.md](SECURITY.md) instead, never a public issue.
+- **Contribute:** [CONTRIBUTING.md](CONTRIBUTING.md); every change is a pull request, discussed in the open.
 
 ## Full documentation
 - [How a theorem gets into Tengoku](docs/how-a-pr-flows.md): the pull request, step by step.
