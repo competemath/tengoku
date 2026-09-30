@@ -36,7 +36,7 @@ note on where to look instead, which is updated as the library changes. Credit c
 plagiarism, recorded with that evidence.
 
 **Builds are attested.** The compiled library is published as releases carrying build provenance
-([build.yml](../.github/workflows/build.yml)), and every release has its signed provenance as a file
+([build.yml](../.github/workflows/build.yml)), and each release published since October 2026 also carries it as a file
 (`*.intoto.jsonl`); anyone can verify a download with `gh attestation verify`. An
 independent re-check of every declaration with a second kernel is in progress (competemath/tengoku#64).
 
