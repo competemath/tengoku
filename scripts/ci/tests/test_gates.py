@@ -912,6 +912,14 @@ class QueuePlacement(unittest.TestCase):
         self.assertEqual(annotation("a\n::add-mask::x\r%"), "a%0A::add-mask::x%0D%25")
         self.assertNotIn("\n", annotation("Lib.x\n::stop-commands::t"))
 
+    def test_the_log_form_of_a_failure_cannot_start_a_workflow_command(self):
+        from _git import plain
+
+        out = plain("in no module: Lib.x\n::add-mask::secret\r\n  ::stop-commands::t")
+        self.assertNotIn("\n::", out)
+        self.assertNotRegex(out, r"(?m)^\s*::")
+        self.assertIn("in no module: Lib.x\n", out)  # still readable, line breaks kept
+
     def test_comments_and_strings_hide_nothing_and_declare_nothing(self):
         from _git import unplaced
 

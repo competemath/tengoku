@@ -25,6 +25,7 @@ from _git import (
     load_schema,
     match,
     pascal,
+    plain,
     unplaced,
 )
 
@@ -49,7 +50,7 @@ def corpus_dir(lib: str) -> Path:
 def generate(lib: str, extra: list[str]) -> None:
     cmd = [sys.executable, "scripts/generate.py", "--corpus", str(corpus_dir(lib)), "--libraries", lib, *extra]
     r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
-    sys.stderr.write(r.stdout[-2000:] + r.stderr[-2000:])
+    sys.stderr.write(plain(r.stdout[-2000:] + r.stderr[-2000:]))  # the generator prints record names from the PR
     if r.returncode != 0:
         fail(f"generate.py failed for {lib}: {' '.join(extra)}")
 

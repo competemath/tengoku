@@ -214,12 +214,18 @@ def annotation(msg: str) -> str:
     return msg.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
 
 
+def plain(text: str) -> str:
+    """Text for the log that can carry no workflow command: a command is `::name::…`, so every `::` is broken up (and
+    CR dropped). The line breaks of a readable message stay."""
+    return text.replace("\r", "").replace("::", ": :")
+
+
 def fail(msg: str) -> None:
     if os.environ.get("GITHUB_ACTIONS"):
         # `::error::` becomes a check-run annotation (what the verdict comment quotes); newlines must be
         # %0A-encoded or GitHub keeps only the first line. The readable form goes to the log too.
         print("::error::" + annotation(msg))
-    print("FAIL: " + msg)
+    print("FAIL: " + plain(msg))  # the workflow prints this line; a record name in msg comes from the PR
     sys.exit(1)
 
 
