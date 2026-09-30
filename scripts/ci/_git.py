@@ -215,9 +215,10 @@ def annotation(msg: str) -> str:
 
 
 def plain(text: str) -> str:
-    """Text for the log that can carry no workflow command: a command is `::name::…`, so every `::` is broken up (and
-    CR dropped). The line breaks of a readable message stay."""
-    return text.replace("\r", "").replace("::", ": :")
+    """Text for the log that can carry no workflow command: a command is `::name::…`, so every `::` is broken up, a
+    run of colons too (`:::` → `: : :`; a plain replace left `: ::`, found by scripts/ci/fuzz), and CR dropped. The
+    line breaks of a readable message stay."""
+    return re.sub(r":(?=:)", ": ", text.replace("\r", ""))
 
 
 def fail(msg: str) -> None:

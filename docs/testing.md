@@ -7,12 +7,13 @@ to keep that sentence true for every change from anyone, without a human in
 the loop for the common case, and to say clearly what went wrong when it is
 not true.
 
-There are five layers. Each one is cheap enough to run where it runs, and each
+There are six layers. Each one is cheap enough to run where it runs, and each
 catches something the others cannot.
 
 | Layer | Where | Runs on | Catches | Typical time |
 |---|---|---|---|---|
 | Unit tests of the gate scripts | `scripts/ci/tests/test_gates.py`, `scripts/tests/` | your machine, CI (`tooling-tests`) | a gate script that does not do what it claims | 5 s |
+| Fuzzing of the gate scripts | `scripts/ci/fuzz/` | a PR or merge group that changes a covered script (`tooling-tests`, `queue-build`); weekly for longer (`fuzz.yml`) | an input from a PR that makes a gate script crash or print a workflow command | nothing for most changes, 1–3 min when it runs |
 | Pre-commit hooks | `.pre-commit-config.yaml` | your machine, CI (`lint-python`) | lint, formatting, secrets, banked content — the same list in both places | seconds |
 | The PR gate | `.github/workflows/pr-gate.yml` | every pull request | wrong shape of change: two purposes, edits to append-only data, forbidden constructs, missing credits, secrets, missing sign-off, unmet dependencies | 2–3 min |
 | The merge queue | `.github/workflows/queue-gate.yml` | every merge group | wrong mathematics: a proof that does not compile, a `sorry`, a non-standard axiom, a hand-edited generated file | 3–7 min |
@@ -143,6 +144,33 @@ lean4export writes every declaration of the compiled tree (Lean's core, the seed
 
 A kernel bug, or a record that fooled the gate and the queue, would have to fool both.
 
+### Fuzzing
+
+The gate scripts read what a PR supplies: its records, its Lean, its workflow files, text they print back into
+the log. `scripts/ci/fuzz/` holds a [fuzz target](../scripts/ci/fuzz/_harness.py) for each that states a property
+and feeds the script generated inputs until the property breaks:
+
+| Target | Code under test | Property, for any input |
+|---|---|---|
+| `log_text` | `_git.plain`, `_git.annotation` | no line of the printed text can start a workflow command (`::`), and an annotation decodes back to the text |
+| `lean_lex` | `lean_lex.code_only`, `_git.declared_names`, `_git.unplaced` | nothing raises, and `code_only` keeps every line break |
+| `records` | `validate_records.py`, `lint_banked.py` | each passes or fails with its own message, never with a traceback |
+| `workflow_rules` | `workflow_rules.py` | the checker never raises, and nothing it prints for a finding can start a workflow command |
+
+A PR that changes a file a target covers runs that target in `pr-tests` (the PR's own code), and the merge queue
+runs it again on the merged result and ejects the group if it fails, so the merge waits for it. A change that
+covers no target runs nothing. Each run is [atheris](https://github.com/google/atheris) (coverage-guided,
+libFuzzer) with a fixed number of inputs from a fixed seed, starting from the target's corpus
+(`scripts/ci/fuzz/corpus/<target>/`; the repository's own workflows seed `workflow_rules`): the same change always
+gives the same result, in a minute or two. [ClusterFuzzLite](https://google.github.io/clusterfuzzlite/) runs every
+target for twenty minutes each week (`.github/workflows/fuzz.yml`, built by `.clusterfuzzlite/`).
+
+Written against the gate as it was, the targets found four bugs, fixed with them: `plain` let a run of colons
+through (`:::` became `: ::`); a record that is not a JSON object (`5`, `"x"`, `[1]`) ended `validate_records.py`
+and `lint_banked.py` in a traceback; `workflow_rules.py` printed a YAML error, which quotes the file, into its
+annotation unescaped, so a PR's workflow file could put its own workflow commands in the gate's log; and
+`steps: 5` or YAML nested thousands deep crashed it.
+
 ## 3. What each check does and does not catch
 
 - The gate reasons about **shape**, the queue about **mathematics**. A wrong
@@ -185,6 +213,8 @@ every one; a confirmed false positive becomes a unit test and a fix.
 python3 -m unittest scripts.ci.tests.test_gates -v        # 27 synthetic-repo cases
 python3 -m unittest discover -s scripts/tests -v           # generator, promotion, stats
 pipx install pre-commit && pre-commit run --all-files      # exactly what lint-python runs
+python3 scripts/ci/fuzz/run.py --all --replay              # the fuzz targets, without atheris (seeds + 2,000 mutations)
+python3 scripts/ci/fuzz/run.py --changed origin/main HEAD  # what CI runs (Linux: pip install --require-hashes -r scripts/ci/requirements/fuzz.txt)
 ```
 
 To see what the queue will do with your records before you push:
@@ -227,6 +257,10 @@ tell you a check has gone silent.
   change, commit, run the script, assert the exit code and the message.
 - A rule about generated modules or promotion: `scripts/tests/`, with a
   fake `lake` on `PATH` where a build would be needed.
+- A gate script that reads what a PR supplies: a fuzz target, `scripts/ci/fuzz/fuzz_<name>.py`, with `COVERS`
+  (the files whose change runs it), `RUNS`, a `TestOneInput` that raises when the property breaks, and seeds in
+  `corpus/<name>/`. `scripts/ci/tests/test_fuzz.py` replays every target, and should show yours catching the bug
+  it is written against.
 - A rule about the whole pipeline: one `sc` line in
   `scripts/ci/campaign/gate.sh`, or a `run_one` line in `queue.sh`, and run it
   against the sandbox.
