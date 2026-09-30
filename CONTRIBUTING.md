@@ -58,15 +58,35 @@ your PR. What is recorded, what is checked and what reviewers look for:
 
 ## Retract a theorem
 
-Append a tombstone line to `data/trusted/<library>.jsonl` — never delete the
-record:
+Nothing is ever deleted. Append a tombstone line to
+`data/trusted/<library>.jsonl`:
 
 ```
-{"tombstone": "<name>", "reason": "…", "by": "<you>", "at": "<ISO date>"}
+{"tombstone": "<name>", "category": "duplicate", "reason": "…", "by": "<you>", "at": "<ISO date>"}
 ```
 
-The generator drops the record from its module and from every candidate; the
-bot's next promotion regenerates the module. History stays in the file.
+`category` is one of `duplicate`, `incorrect`, `superseded`, `licence`, `other`,
+and never changes. The generator drops the record from its module and from
+every candidate; the bot's next promotion regenerates the module. History stays
+in the file.
+
+Say where to look instead with a note. Unlike the tombstone it can change as
+the library changes: append a newer note and it replaces the old one (the old
+one stays as history).
+
+```
+{"tombstone_note": "<name>", "note": "follows from …", "see": ["tengoku:Some.Theorem", "https://…"], "by": "<you>", "at": "<ISO date>"}
+```
+
+## Correct a credit (plagiarism only)
+
+Credit changes only when there is evidence of plagiarism. The record is never
+edited; append a correction and the generated module shows the corrected
+credit with a link to the evidence:
+
+```
+{"credit_correction": "<name>", "credit": "Author: …", "evidence": "https://…", "by": "<you>", "at": "<ISO date>"}
+```
 
 ## Add a source library
 

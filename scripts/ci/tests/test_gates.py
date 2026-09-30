@@ -57,10 +57,10 @@ class Repo:
 
     def write(self, p, s):
         (self.dir / p).parent.mkdir(parents=True, exist_ok=True)
-        (self.dir / p).write_text(s)
+        (self.dir / p).write_text(s, encoding="utf-8")
 
     def append(self, p, s):
-        with (self.dir / p).open("a") as f:
+        with (self.dir / p).open("a", encoding="utf-8") as f:
             f.write(s)
 
     def commit(self, msg, signoff=True):
@@ -204,7 +204,10 @@ class Gates(unittest.TestCase):
 
     def test_tombstone_is_an_append(self):
         r = Repo()
-        r.append("data/trusted/lib.jsonl", json.dumps({"tombstone": "Lib.old", "reason": "wrong", "by": "t", "at": "2026-09-15"}) + "\n")
+        r.append(
+            "data/trusted/lib.jsonl",
+            json.dumps({"tombstone": "Lib.old", "category": "incorrect", "reason": "wrong", "by": "t", "at": "2026-09-15"}) + "\n",
+        )
         r.commit("retract")
         self.assertEqual(r.gate("append_only.py")[0], 0)
         self.assertEqual(r.gate("validate_records.py")[0], 0)
