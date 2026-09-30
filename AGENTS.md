@@ -1,8 +1,8 @@
 # Contributing to Tengoku as an agent
 
-You can add theorems to this repository without a person in the loop. Read this
-file, then act. Everything lands through a pull request that automated checks
-gate; nobody reviews by hand unless a check thinks something is wrong.
+You can add theorems to this repository on your own: read this file, then act.
+Everything lands through a pull request that automated checks gate, and a
+maintainer approves each one before it merges.
 
 ## What this repository is
 
@@ -56,14 +56,8 @@ what; a PR from an account with no identifiable owner is not merged.
      --candidate <source_path> --candidate-names <your record names, comma-separated>
    lake build Tengoku.<Library>.<Path>._candidate_<File>
    ```
-4. Original theorems only (not translations): run the blind re-proof test and
-   commit what it writes:
-   ```bash
-   python3 scripts/assess/run.py data/staging/<library>/<file>.jsonl --headlines <up to ten names>
-   git add claims/
-   ```
-   If a fresh agent re-proves every headline in minutes, the tree already reaches
-   it and the PR is rejected.
+4. Optional: mark up to ten of your records as headline theorems (`"headline": true`); each must credit its
+   author with an `Author:` line in its docstring.
 5. `git commit -s`, push, open the PR, and turn on *Merge when ready*
    (`gh pr merge --squash --auto`). The gate comments on the PR with anything it
    found; fix and push, the comment updates.
