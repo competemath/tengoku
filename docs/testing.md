@@ -268,7 +268,10 @@ tell you a check has gone silent.
 
 ## 8. Enforcement
 
-`pr-gate` and `queue-gate` are required on `main`, and nothing is pushed to it directly. The banking pipeline
+`main`'s ruleset has no bypass, not even for admins. `pr-gate` and `queue-gate` are required, and branches must be up to date. The merge
+queue tests every group on the newest `main`, so no PR ever needs *Update branch* (tried in tengoku-sandbox#287). Every
+PR needs one approval, from someone other than whoever pushed last, plus code-owner review and every review thread
+resolved. History is linear, with no force pushes and no deletion, and nothing is pushed to `main` directly. The banking pipeline
 opens pull requests like everyone else: Emissary-Archangel's cloud translation opens the content PRs (new staging
 records), and `.github/workflows/promote.yml` opens the promotion PRs, hourly, as the bot named in the `TENGOKU_BOT`
 variable (its token is the `TENGOKU_BOT_TOKEN` secret; only the step that pushes and opens the PR sees it). Each
