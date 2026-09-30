@@ -47,6 +47,9 @@ Anyone can contribute, by hand or with AI. Before you submit:
   `trusted` only once Leak's own toolchain has compiled them from scratch.
 
 ## Full documentation
+- [How a theorem gets into Tengoku](docs/how-a-pr-flows.md): the pull request, step by step.
+- [What Tengoku guarantees, and how to use and cite it](docs/why-tengoku.md).
+- [Goals](GOALS.md): what people would like the library to have next.
 
 Security issues: see [SECURITY.md](SECURITY.md) (private reporting, never a public issue).
 

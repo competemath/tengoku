@@ -16,7 +16,7 @@ the easiest way to do each thing.
    compiled). Your credit docstring (README, *Contributors*) is the first lines
    of `statement`. One file per PR: two PRs appending to the same file cannot
    both sit in the queue.
-2. Check it builds before you push (nothing here compiles the tree):
+2. Optional: check it builds before you push (the merge queue builds it anyway):
    ```
    scripts/cache.sh get
    git clone --filter=blob:none <corpus repo> corpora/<library>   # repo + commit in schemas/sources.json

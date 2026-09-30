@@ -49,7 +49,7 @@ what; a PR from an account with no identifiable owner is not merged.
    provenance is `source_url` (the original file at the pinned upstream commit)
    and `library`, whose licence notice travels with the record. It has no
    single human author to name, and the bot account must never be named as one.
-3. Check it builds before pushing (compiles only your records):
+3. Optional: check it builds before pushing (the merge queue builds it anyway):
    ```bash
    git clone --filter=blob:none <corpus repo> corpora/<library>   # repo + commit in schemas/sources.json
    python3 scripts/generate.py --corpus corpora/<library> --libraries <library> \
