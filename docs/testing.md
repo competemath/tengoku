@@ -22,7 +22,10 @@ catches something the others cannot.
 The nightly cache build (`.github/workflows/build.yml`) is not a test but the
 queue depends on it: it compiles the tree once a day, publishes the result as
 a release, and signs every part with a build-provenance attestation that the
-queue verifies before unpacking.
+queue verifies before unpacking. The attestation is also a file of the release,
+`tengoku-cache.intoto.jsonl` (`tengoku-snapshot.intoto.jsonl` in a numbered
+release), so a download can be checked offline:
+`gh attestation verify <file> -R competemath/tengoku --bundle <that file>`.
 
 ## 1. The PR gate
 

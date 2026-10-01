@@ -47,11 +47,16 @@ jobs:
           printf 'changed=true\nversion=%s\ndate=%s\n' "$version" "$date" >> "$GITHUB_OUTPUT"
       - name: Attest the files
         if: steps.snap.outputs.changed == 'true'
+        id: attest
         uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
         with: { subject-path: "snapshot/*" }
       - name: Publish the release
         if: steps.snap.outputs.changed == 'true'
-        env: { GH_TOKEN: "${{ github.token }}", VERSION: "${{ steps.snap.outputs.version }}", DATE: "${{ steps.snap.outputs.date }}" }
+        env:
+          GH_TOKEN: "${{ github.token }}"
+          VERSION: "${{ steps.snap.outputs.version }}"
+          DATE: "${{ steps.snap.outputs.date }}"
+          BUNDLE: "${{ steps.attest.outputs.bundle-path }}"
         run: |
           # a published version is never changed; the tag decides, not the release (a release can be deleted while its
           # tag stays)
@@ -71,8 +76,10 @@ jobs:
           # the notes say what changed since the previous release and what upgrading means (scripts/snapshot.py)
           # shellcheck disable=SC2016  # the backticks below are markdown, not command substitution
           { cat release-notes.md
-            printf '\n## The files\n\n`tengoku-dataset.jsonl.gz` is every trusted theorem with its statement, proof, source, licence and credit; `snapshot.json` names the commit, toolchain and counts, and the dataset'"'"'s sha256. Every file carries build provenance: `gh attestation verify <file> -R %s`. Versions: a new toolchain or a removed field is a new major version, added theorems a minor one, corrections a patch. How to cite: CITATION.cff.\n' "$GITHUB_REPOSITORY"
+            printf '\n## The files\n\n`tengoku-dataset.jsonl.gz` is every trusted theorem with its statement, proof, source, licence and credit; `snapshot.json` names the commit, toolchain and counts, and the dataset'"'"'s sha256. The dataset, the manifest and CITATION.cff carry build provenance: `gh attestation verify <file> -R %s`. `tengoku-snapshot.intoto.jsonl` is that attestation as a file (not a subject of it): add `--bundle tengoku-snapshot.intoto.jsonl` to check offline. Versions: a new toolchain or a removed field is a new major version, added theorems a minor one, corrections a patch. How to cite: CITATION.cff.\n' "$GITHUB_REPOSITORY"
           } > notes-full.md
+          # the attestation of the files above, as a file of the release too (not a subject: it was made after them)
+          cp "$BUNDLE" snapshot/tengoku-snapshot.intoto.jsonl
           gh release create "$tag" snapshot/* -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Tengoku $tag ($DATE)" --notes-file notes-full.md
       # The DOI. Zenodo's GitHub integration is off for this repository (it would mint one for every release, the nightly
       # caches included): only a vX.Y.Z release is deposited, through Zenodo's API. Every run makes sure the newest
