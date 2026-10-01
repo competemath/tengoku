@@ -164,7 +164,8 @@ libFuzzer) with a fixed number of inputs from a fixed seed, starting from the ta
 (`scripts/ci/fuzz/corpus/<target>/`; the repository's own workflows seed `workflow_rules`): a run is reproducible on
 the same Python (the PR's and the queue's Pythons differ, so their runs explore differently), in about a minute and a half when every target runs (each is capped at 90 seconds, a guard for a
 slow runner). [ClusterFuzzLite](https://google.github.io/clusterfuzzlite/) runs every
-target for twenty minutes each week (`.github/workflows/fuzz.yml`, built by `.clusterfuzzlite/`).
+target each week, twenty minutes in all, shared by the four (about five minutes each; `.github/workflows/fuzz.yml`, built
+by `.clusterfuzzlite/`).
 
 Written against the gate as it was, the targets found four bugs, fixed with them: `plain` let a run of colons
 through (`:::` became `: ::`); a record that is not a JSON object (`5`, `"x"`, `[1]`) ended `validate_records.py`
