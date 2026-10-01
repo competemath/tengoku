@@ -78,7 +78,8 @@ in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own
   workflow and its shell steps.
 - GitHub Security Lab's [guide to pwn requests](https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/)
   and the [tj-actions compromise](https://github.com/advisories/GHSA-mrrh-fwg8-r2c3): why every check runs main's
-  code and every action is pinned to a commit.
+  code, every action is pinned to a commit, and every Python package CI installs is pinned by hash
+  (`scripts/ci/requirements/`).
 - [GitHub artifact attestations](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations),
   signed with [Sigstore](https://www.sigstore.dev): every cache and release is signed, and checked before use.
 - [CycloneDX](https://cyclonedx.org): the bill of materials in every release (being added).
