@@ -83,6 +83,9 @@ in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own
 - [GitHub artifact attestations](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations),
   signed with [Sigstore](https://www.sigstore.dev): every cache and release is signed, and checked before use.
 - [CycloneDX](https://cyclonedx.org): the bill of materials in every release (being added).
+- [atheris](https://github.com/google/atheris) and [ClusterFuzzLite](https://google.github.io/clusterfuzzlite/):
+  fuzz the gate scripts that read what a PR supplies, on the PRs that change them and weekly for longer; they
+  found four bugs in the gate on their first day ([How Tengoku is tested](testing.md#fuzzing)).
 - [StepSecurity Harden-Runner](https://github.com/step-security/harden-runner): watches what the gate's CI jobs
   reach over the network (audit mode: it records, it does not block).
 - [TruffleHog](https://github.com/trufflesecurity/trufflehog) and [detect-secrets](https://github.com/Yelp/detect-secrets):

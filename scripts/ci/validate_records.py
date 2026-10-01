@@ -109,6 +109,9 @@ for st, p in changed_files(base, head):
         except Exception as e:
             errors.append(f"{p}:{no}: not JSON ({e})")
             continue
+        if not isinstance(r, dict):  # a number, string or list used to end the check in a traceback (scripts/ci/fuzz)
+            errors.append(f"{p}:{no}: a record is a JSON object, not {type(r).__name__}")
+            continue
         if any(k in r for k in ("tombstone", "tombstone_note", "credit_correction")) and "at" in r and not AT_RE.fullmatch(str(r["at"])):
             errors.append(f"{p}:{no}: at is a UTC date or time: YYYY-MM-DD or YYYY-MM-DDTHH:MM:SSZ (got {r['at']!r})")
         if "tombstone" in r:

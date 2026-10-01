@@ -87,7 +87,9 @@ fails without it, in `scripts/tests/` or `scripts/ci/tests/`; run them with
 `python3 -m unittest discover -s scripts/ci/tests -p 'test_*.py'` (after
 `pip install --require-hashes -r scripts/ci/requirements/yaml.txt`, the PyYAML the workflow-rules tests
 need, pinned by hash as CI installs it).
-`CODEOWNERS` review applies. Run the scenario
+A change to a gate script that reads what a PR supplies also runs its fuzz targets, in pr-tests and again in the
+merge queue (`python3 scripts/ci/fuzz/run.py --all --replay` runs them locally; [How Tengoku is
+tested](docs/testing.md#fuzzing)). `CODEOWNERS` review applies. Run the scenario
 campaign against the sandbox before touching `scripts/ci/` or the workflows
 (`scripts/ci/campaign/README.md`).
 
