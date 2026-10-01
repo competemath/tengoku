@@ -59,7 +59,7 @@ jobs:
       # Full history, no file contents: `cache.sh get` picks the newest cache that is an ANCESTOR of this
       # commit and `put` keeps a top-up that is AHEAD of it; a depth-1 clone can answer neither once main
       # has moved since the last cache (the seed step silently fell back to the Actions cache for days).
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 0, filter: "blob:none", persist-credentials: false }
 
       - name: Install elan (toolchain pinned by lean-toolchain)
@@ -76,7 +76,7 @@ jobs:
       # Restore whatever earlier jobs compiled: exact tree first, then any
       # earlier state of this branch (Lake rebuilds only what differs).
       - name: Restore partial build
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .lake/build
           key: lake-${{ hashFiles('lean-toolchain') }}-${{ github.sha }}
@@ -113,7 +113,7 @@ jobs:
 
       - name: Save partial/complete build
         if: always()
-        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .lake/build
           key: lake-${{ hashFiles('lean-toolchain') }}-${{ github.sha }}-${{ github.run_attempt }}-${{ github.run_id }}
@@ -145,7 +145,7 @@ jobs:
       - name: Attest the cache parts
         if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale != 'true'
         id: attest
-        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
           subject-path: attest/tengoku-cache.tar.zst.part-*
 
