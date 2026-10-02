@@ -146,9 +146,10 @@ POSSIBILITY OF SUCH DAMAGE.
 
 Two things to know about what is covered. `lean-pool` is itself an aggregate of other people's projects: most are
 Apache-2.0, some MIT or relicensed by their authors, and its NOTICE (reproduced in [NOTICE](NOTICE)) names the
-upstream repository and licence of every one of them. And the release assets (the monthly dataset snapshots and the
-build caches) do not yet carry copies of `LICENSE`, `LICENSE-THIRD-PARTY.md` and `NOTICE` inside them; each
-release links to the repository at its commit, where they are.
+upstream repository and licence of every one of them. And the release assets carry the same three files, so a copy of
+the data or of the compiled tree arrives with them: every monthly dataset release has `LICENSE`,
+`LICENSE-THIRD-PARTY.md` and `NOTICE` among its files (attested like the dataset), and every nightly cache release
+and the standing top-up release has them next to the compiled parts. Releases published before this change do not.
 
 When a library is registered under a licence not listed here, add it to this file in the same pull request. If its
 repository has a NOTICE file, reproduce that in [NOTICE](NOTICE) in the same pull request.

@@ -163,6 +163,20 @@ jobs:
           cp "$BUNDLE" tengoku-cache.intoto.jsonl
           gh release upload "$TAG" tengoku-cache.intoto.jsonl -R "$TENGOKU_REPO" --clobber
 
+      # The licence texts and notices travel with the compiled code: Apache-2.0, MIT and BSD-3-Clause ask that whoever
+      # receives a copy also receives them. They go on the new cache release and on the standing top-up release (whose
+      # superseded assets `cache.sh topup-gc` retracts; it leaves anything that is not a top-up alone).
+      - name: The licence files, with the release
+        if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.publish.outputs.tag }}
+        run: |
+          gh release upload "$TAG" LICENSE LICENSE-THIRD-PARTY.md NOTICE -R "$TENGOKU_REPO" --clobber
+          if gh release view cache-topups -R "$TENGOKU_REPO" >/dev/null 2>&1; then
+            gh release upload cache-topups LICENSE LICENSE-THIRD-PARTY.md NOTICE -R "$TENGOKU_REPO" --clobber
+          fi
+
       - name: Continue the build in a follow-up run
         if: steps.build.outputs.complete == 'false'
         env:
