@@ -197,6 +197,10 @@ numbers locally: `pip install --require-hashes --only-binary :all: -r scripts/ci
 `coverage run -m unittest discover -s scripts/tests`, the same for `scripts/ci/tests`, `coverage combine`,
 `coverage report`.
 
+The same report goes to [Codecov](https://codecov.io/gh/competemath/tengoku) (the history, the per-file view, the badge)
+when the run has the `CODECOV_TOKEN` secret. It is informational (`codecov.yml`): its comment and statuses never fail
+a check.
+
 Its dependency analysis (SCA) is off. It would run `pip install -r` on every requirements file it finds, inside the
 job that holds the token, and it failed on the first scan because `scripts/ci/requirements/` pins one package at
 different versions for different jobs; FOSSA already scans the dependencies.
