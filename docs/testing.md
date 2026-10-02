@@ -193,7 +193,7 @@ gate scripts the tests run as subprocesses are measured as well (`patch = subpro
 and `tools/` counts, so a script no test imports shows as 0% instead of being left out. The figure is Python only (Sonar
 has no coverage for the shell scripts or the workflows), it counts what the unit tests reach, not the fuzzers or the
 Lean build, and the fuzz targets (they run under atheris in `fuzz.yml`) are the one thing left out. To see the same
-numbers locally: `pip install --require-hashes -r scripts/ci/requirements/coverage.txt`, then
+numbers locally: `pip install --require-hashes --only-binary :all: -r scripts/ci/requirements/yaml.txt -r scripts/ci/requirements/coverage.txt`, then
 `coverage run -m unittest discover -s scripts/tests`, the same for `scripts/ci/tests`, `coverage combine`,
 `coverage report`.
 
