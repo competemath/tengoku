@@ -134,7 +134,22 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 POSSIBILITY OF SUCH DAMAGE.
 ```
 
-The GPL-3.0 and AGPL-3.0 texts, for the history in section 4, are at <https://www.gnu.org/licenses/gpl-3.0.txt>
-and <https://www.gnu.org/licenses/agpl-3.0.txt>.
+## 6. The obligations these licences carry, and where each is met
 
-When a library is registered under a licence not listed here, add it to this file in the same pull request.
+| Obligation | Licence | Where it is met |
+|---|---|---|
+| State significant changes made to the software | Apache-2.0 | Section 3 above; a line at the top of every seeded file that was changed (`scripts/notices.py`) |
+| Include the full text of the licence in modified software and in source or object copies | Apache-2.0, BSD-3-Clause, MIT | [LICENSE](LICENSE) is the full Apache-2.0 text; the full MIT and BSD 3-Clause texts are in section 5 |
+| Retain the original copyright notices | Apache-2.0, BSD-3-Clause, MIT | Seeded files keep their upstream headers; each library's copyright line is in section 2; each record keeps its source's credit and names its source file at a fixed commit |
+| Include the licence notice in all copies or substantial uses | MIT | Section 5, with the copyright line of each MIT library in section 2 |
+| Include the `NOTICE` file's attribution notices when distributing | Apache-2.0 | [NOTICE](NOTICE), which reproduces the NOTICE files of `lean-pool` and `flt-anthropic` unchanged |
+
+Two things to know about what is covered. `lean-pool` is itself an aggregate of other people's projects: most are
+Apache-2.0, some MIT or relicensed by their authors, and its NOTICE (reproduced in [NOTICE](NOTICE)) names the
+upstream repository and licence of every one of them. And the release assets carry the same three files, so a copy of
+the data or of the compiled tree arrives with them: every monthly dataset release has `LICENSE`,
+`LICENSE-THIRD-PARTY.md` and `NOTICE` among its files (attested like the dataset), and every nightly cache release
+and the standing top-up release has them next to the compiled parts. Releases published before this change do not.
+
+When a library is registered under a licence not listed here, add it to this file in the same pull request. If its
+repository has a NOTICE file, reproduce that in [NOTICE](NOTICE) in the same pull request.
