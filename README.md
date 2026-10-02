@@ -96,15 +96,13 @@ libraries listed in [schemas/sources.json](schemas/sources.json) and [LICENSE-TH
 
 ## Dedication
 
-This project is founded for the sake of God (فِي سَبِيلِ ٱللَّٰهِ). The Prophet (peace be upon him) said:
+This project is founded for the sake of God (فِي سَبِيلِ ٱللَّٰهِ) - the prophet PBUH said:
 
-> "And the best of people are those who are most beneficial to others."
+> "Whoever takes a path in which he seeks knowledge, Allah will make easy for him, by it, a path to Paradise."
 >
-> — *Majma‘ al-Zawā’id*, vol. 8, p. 87, hadith 13126 ([source](https://sites.dlib.nyu.edu/viewer/books/columbia_aco003582/display?lang=en))
-
-It is offered as a small contribution to the long tradition of Muslim scholarship in mathematics and science, in the
-hope that it inspires others to pursue advanced knowledge. Tengoku is open to everyone, whatever their faith: the work
-is judged by whether it compiles.
+> «ومن سلك طريقا يلتمس فيه علما سهل الله له به طريقا إلى الجنة»
+>
+> — Ṣaḥīḥ Muslim, no. 2699 (narrated by Abū Hurayrah), Kitāb al-Dhikr wa-l-Duʿāʾ. Manuscript copy of 1164 CE: [Princeton University Library, Garrett MS 104Y, fol. 167a](https://dpul.princeton.edu/islamicmss/catalog/cr56n359w).
 
 ## Badges
 
