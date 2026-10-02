@@ -187,6 +187,10 @@ current. The default gate judges new code only: reliability, security and mainta
 whether new security hotspots are reviewed. Coverage is left out of the calculation, because the gate scripts run as
 subprocesses in their tests, which a coverage tool would not see.
 
+Its dependency analysis (SCA) is off. It would run `pip install -r` on every requirements file it finds, inside the
+job that holds the token, and it failed on the first scan because `scripts/ci/requirements/` pins one package at
+different versions for different jobs; FOSSA already scans the dependencies.
+
 The token is the repository secret `SONAR_TOKEN`, one per repository, given to the scan step alone. A pull request
 from a fork, and one Dependabot opens, gets no secrets, and its run skips the scan instead of failing.
 
