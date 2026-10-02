@@ -65,6 +65,6 @@ Security tab); `SECURITY.md` says what is in scope. The maintainer:
 
 Each release (`vMAJOR.MINOR.PATCH`, cut by `.github/workflows/release.yml`) carries a CycloneDX 1.5 bill of materials
 (`scripts/sbom.py`): the Lean toolchain, every package the tree was seeded from and every library whose records the tree
-holds, each with its exact commit. The release, the bill and the axiom report of the independent check are attested, and
+holds (a package and a compiled library with its exact commit). The release, the bill and the axiom report of the independent check are attested, and
 the bill is bound to the source archive ([docs/releases.md](../releases.md)). This is the archived record of what a
 release used, beside the component table above.
