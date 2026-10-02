@@ -176,7 +176,8 @@ annotation unescaped, so a PR's workflow file could put its own workflow command
 ### SonarQube Cloud (advisory)
 
 [SonarQube Cloud](https://sonarcloud.io/project/overview?id=competemath_tengoku) reads the repository's own code, the
-Python and shell under `scripts/` and `tools/` and the workflow files (`sonar-project.properties` says what is left
+Python and shell under `scripts/` and `tools/` and what is under `.github/` (the workflows and Dependabot's
+configuration; `sonar-project.properties` says what is left
 out: the tests, the campaign's fake-credential fixtures, the fuzz corpus), and reports bugs, security hotspots,
 maintainability and duplication. It has no Lean analyser, so the tree and the records are not scanned.
 
