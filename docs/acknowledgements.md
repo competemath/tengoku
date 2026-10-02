@@ -90,6 +90,9 @@ in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own
   reach over the network (audit mode: it records, it does not block).
 - [TruffleHog](https://github.com/trufflesecurity/trufflehog) and [detect-secrets](https://github.com/Yelp/detect-secrets):
   the gate scans every pull request with both; detect-secrets also runs before each commit in the pre-commit hook.
+- [FOSSA](https://fossa.com): scans the repository for licence obligations and known vulnerabilities; its list of what
+  each licence asks of us is answered in [LICENSE-THIRD-PARTY.md](../LICENSE-THIRD-PARTY.md) section 6 and
+  [NOTICE](../NOTICE).
 - [Developer Certificate of Origin](https://developercertificate.org): the sign-off on every commit.
 - Also studied: [gitleaks](https://github.com/gitleaks/gitleaks), [SonarQube](https://www.sonarsource.com/products/sonarqube/)
   and [Aikido](https://www.aikido.dev).
