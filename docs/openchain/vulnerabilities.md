@@ -48,7 +48,8 @@ also re-checks the newest commit of `main` nightly.
 A vulnerability in Tengoku's own releases is published as a GitHub security advisory on `competemath/tengoku`, naming the
 affected versions and the fix, crediting the reporter unless they ask otherwise. A release fixing it says so in its notes.
 Risk information that travels with a release: the manifest (toolchain, counts, the dataset's sha256) and the
-Sigstore build-provenance files, which anyone can verify.
+Sigstore build-provenance files, which anyone can verify; a release also carries its bill of materials and the independent
+check's axiom report (section 6).
 
 ## 5. Inquiries from third parties
 
@@ -60,7 +61,10 @@ Security tab); `SECURITY.md` says what is in scope. The maintainer:
 3. fixes it through a pull request, and publishes an advisory;
 4. tells the reporter, and records the case in the review log of [program.md](program.md).
 
-## 6. Not yet in place
+## 6. The bill of materials
 
-A software bill of materials per release is built in the sandbox and is not yet merged here; until it is, the
-component table above and the pinned files are the record.
+Each release (`vMAJOR.MINOR.PATCH`, cut by `.github/workflows/release.yml`) carries a CycloneDX 1.5 bill of materials
+(`scripts/sbom.py`): the Lean toolchain, every package the tree was seeded from and every library whose records the tree
+holds, each with its exact commit. The release, the bill and the axiom report of the independent check are attested, and
+the bill is bound to the source archive ([docs/releases.md](../releases.md)). This is the archived record of what a
+release used, beside the component table above.
