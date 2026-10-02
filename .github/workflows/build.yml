@@ -178,8 +178,12 @@ jobs:
           if ! out="$(gh release view cache-topups -R "$TENGOKU_REPO" 2>&1)"; then
             case "$out" in
               *"release not found"*)
-                gh release create cache-topups -R "$TENGOKU_REPO" --title "cache top-ups" --prerelease --target main \
-                  --notes "The small per-merge differences from the nightly cache. cache-latest.json names the one in force; everything else here is provisional or about to be collected." ;;
+                # the queue (or topup-put) may create it at the same moment: that failure is fine if the release
+                # exists now; any other failure of the create is not
+                if ! cout="$(gh release create cache-topups -R "$TENGOKU_REPO" --title "cache top-ups" --prerelease --target main \
+                  --notes "The small per-merge differences from the nightly cache. cache-latest.json names the one in force; everything else here is provisional or about to be collected." 2>&1)"; then
+                  gh release view cache-topups -R "$TENGOKU_REPO" >/dev/null 2>&1 || { echo "$cout" >&2; exit 1; }
+                fi ;;
               *) echo "$out" >&2; exit 1 ;;
             esac
           fi
