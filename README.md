@@ -87,6 +87,8 @@ repository* button gives the same reference, from [CITATION.cff](CITATION.cff).
 
 Security issues: see [SECURITY.md](SECURITY.md) (private reporting, never a public issue).
 
+Security and licence-compliance programme (OpenChain ISO/IEC 18974 and 5230): [docs/openchain](docs/openchain/README.md).
+
 This is the quick start. The full manual — merge queue, tiers, toolchain, every
 seeded library — is at [competemath.com/about/tengoku](https://competemath.com/about/tengoku).
 
