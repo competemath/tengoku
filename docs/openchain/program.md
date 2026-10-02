@@ -15,7 +15,7 @@ accepts, builds or publishes, or a licence it breaks, reaches everyone who build
    library they came from, recorded in `schemas/sources.json`; copyleft libraries are not accepted
    ([LICENSE-THIRD-PARTY.md](../../LICENSE-THIRD-PARTY.md)).
 3. **Known vulnerabilities in what Tengoku uses are found automatically and handled in the open or privately as
-   [vulnerabilities.md](vulnerabilities.md) says**, and a report is answered within seven days (`SECURITY.md`).
+   [vulnerabilities.md](vulnerabilities.md) says**, and a report has a first-reply target of seven days (`SECURITY.md`).
 4. **Releases are attested** (Sigstore build-provenance files, a manifest with the dataset's sha256) and are checked a
    second time, independently, before they are published.
 5. **Changes to the gate itself are proved first** in [tengoku-sandbox](https://github.com/competemath/tengoku-sandbox).
@@ -65,7 +65,7 @@ on every participant.
 There is no funding and no staff beyond the maintainer. The programme is scoped to be run by one person: detection,
 testing and the second review are automated, free to run for a public repository, and written down so they do not
 depend on memory. That is the sense in which it is "adequate", and it is a limit: availability, not tooling, is the
-constraint, which is why a report is answered within seven days and not faster.
+constraint, which is why a report has a first-reply target of seven days, not a faster one.
 
 ### Expertise
 

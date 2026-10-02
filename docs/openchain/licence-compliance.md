@@ -14,16 +14,18 @@ record's `source_url` and credit are required; the gate refuses a record whose s
   in the same tooling pull request as the first record from it. A copyleft licence is not accepted.
 - **Per record:** each record names its origin in `source_url` and its credit; a record and the module generated from it
   stay under that licence (`LICENSE-THIRD-PARTY.md` sections 1-3).
-- **Gate checks:** the allow-list of sources, the credit check, and the secrets and content lints run on every pull
-  request ([How Tengoku is tested](../testing.md)).
-- **Notices:** `LICENSE-THIRD-PARTY.md` and `NOTICE` reproduce what the upstream licences require and travel with every
-  dataset release and cache release.
+- **Gate checks:** the credit check and the secrets scans run on every pull request. The allow-list of sources and the
+  content lint run on `content`, `tombstone` and `promotion` pull requests ([How Tengoku is tested](../testing.md)).
+- **Notices:** `LICENSE-THIRD-PARTY.md` and `NOTICE` reproduce what the upstream licences require. They are attached to every dataset release (the
+  snapshots), to each nightly cache release and to the standing `cache-topups` release, which the nightly build adds
+  them to: a `cache-topups` release created between nightlies can lack them until the next one, and releases published
+  before 2026-10-02 do not carry them.
 
 ## Inquiries
 
 Anyone may ask a licence or attribution question by opening an issue titled "Licence inquiry" on
 `competemath/tengoku`; if the matter should not be public, use the private reporting form on the Security tab and say it is
-a licence matter. The maintainer replies within seven days, and records any change it leads to.
+a licence matter. The maintainer aims to reply within seven days, and records any change it leads to.
 
 ## Reviewing and remediating a non-compliant case
 

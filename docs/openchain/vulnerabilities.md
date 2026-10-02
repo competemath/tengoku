@@ -55,7 +55,7 @@ Sigstore build-provenance files, which anyone can verify.
 Anyone can report a vulnerability or ask about one through GitHub's private vulnerability reporting (the repository's
 Security tab); `SECURITY.md` says what is in scope. The maintainer:
 
-1. acknowledges within seven days;
+1. aims to acknowledge within seven days;
 2. reproduces it, in the sandbox where an attack must not touch the repository itself;
 3. fixes it through a pull request, and publishes an advisory;
 4. tells the reporter, and records the case in the review log of [program.md](program.md).
