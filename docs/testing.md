@@ -185,8 +185,17 @@ It is **advisory**: `.github/workflows/sonar.yml` is not a required check, the m
 failing quality gate blocks nothing. It runs on every pull request (a data-only one has nothing new to analyse and
 passes in seconds) and, for code changes, on `main`, which keeps the baseline that "new code" is measured against
 current. The default gate judges new code only: reliability, security and maintainability ratings, duplication, and
-whether new security hotspots are reviewed. Coverage is left out of the calculation, because the gate scripts run as
-subprocesses in their tests, which a coverage tool would not see.
+whether new security hotspots are reviewed.
+
+**Coverage** is measured, not estimated: `sonar.yml` runs the unit tests (`scripts/tests` and `scripts/ci/tests`, the
+same two commands as `pr-tests.yml`) under coverage.py and uploads the report. `.coveragerc` says how: branches too; the
+gate scripts the tests run as subprocesses are measured as well (`patch = subprocess`); and every file under `scripts/`
+and `tools/` counts, so a script no test imports shows as 0% instead of being left out. The figure is Python only (Sonar
+has no coverage for the shell scripts or the workflows), it counts what the unit tests reach, not the fuzzers or the
+Lean build, and the fuzz targets (they run under atheris in `fuzz.yml`) are the one thing left out. To see the same
+numbers locally: `pip install --require-hashes -r scripts/ci/requirements/coverage.txt`, then
+`coverage run -m unittest discover -s scripts/tests`, the same for `scripts/ci/tests`, `coverage combine`,
+`coverage report`.
 
 Its dependency analysis (SCA) is off. It would run `pip install -r` on every requirements file it finds, inside the
 job that holds the token, and it failed on the first scan because `scripts/ci/requirements/` pins one package at
