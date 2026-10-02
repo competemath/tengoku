@@ -173,6 +173,23 @@ and `lint_banked.py` in a traceback; `workflow_rules.py` printed a YAML error, w
 annotation unescaped, so a PR's workflow file could put its own workflow commands in the gate's log; and
 `steps: 5` or YAML nested thousands deep crashed it.
 
+### SonarQube Cloud (advisory)
+
+[SonarQube Cloud](https://sonarcloud.io/project/overview?id=competemath_tengoku) reads the repository's own code, the
+Python and shell under `scripts/` and `tools/` and the workflow files (`sonar-project.properties` says what is left
+out: the tests, the campaign's fake-credential fixtures, the fuzz corpus), and reports bugs, security hotspots,
+maintainability and duplication. It has no Lean analyser, so the tree and the records are not scanned.
+
+It is **advisory**: `.github/workflows/sonar.yml` is not a required check, the merge queue never waits for it, and a
+failing quality gate blocks nothing. It runs on every pull request (a data-only one has nothing new to analyse and
+passes in seconds) and, for code changes, on `main`, which keeps the baseline that "new code" is measured against
+current. The default gate judges new code only: reliability, security and maintainability ratings, duplication, and
+whether new security hotspots are reviewed. Coverage is left out of the calculation, because the gate scripts run as
+subprocesses in their tests, which a coverage tool would not see.
+
+The token is the repository secret `SONAR_TOKEN`, one per repository, given to the scan step alone. A pull request
+from a fork, and one Dependabot opens, gets no secrets, and its run skips the scan instead of failing.
+
 ## 3. What each check does and does not catch
 
 - The gate reasons about **shape**, the queue about **mathematics**. A wrong

@@ -93,6 +93,8 @@ in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own
 - [FOSSA](https://fossa.com): scans the repository for licence obligations and known vulnerabilities; its list of what
   each licence asks of us is answered in [LICENSE-THIRD-PARTY.md](../LICENSE-THIRD-PARTY.md) section 6 and
   [NOTICE](../NOTICE).
+- [SonarQube Cloud](https://sonarcloud.io): static analysis of the repository's own Python, shell and workflows, advisory
+  on every pull request ([How Tengoku is tested](testing.md#sonarqube-cloud-advisory)).
 - [Developer Certificate of Origin](https://developercertificate.org): the sign-off on every commit.
 - Also studied: [gitleaks](https://github.com/gitleaks/gitleaks), [SonarQube](https://www.sonarsource.com/products/sonarqube/)
   and [Aikido](https://www.aikido.dev).
