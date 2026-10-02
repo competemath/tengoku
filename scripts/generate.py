@@ -173,6 +173,18 @@ def strip_corpus_attrs(text: str) -> str:
     return re.sub(r"@\[([^\]]*)\]", attrs, text)
 
 
+def safe_source_path(source_path: str) -> bool:
+    """A record's source_path stays inside the corpus checkout and the library's own directory (no absolute path, no `..`)."""
+    sp = Path(source_path)
+    return (
+        bool(source_path)
+        and not sp.is_absolute()
+        and ".." not in sp.parts
+        and "\\" not in source_path
+        and not source_path.startswith(("-", "~"))
+    )
+
+
 def corpus_roots(out: Path, library: str) -> list[str]:
     """The corpus's lean_lib module roots (schemas/sources.json corpora[<library>].roots); the
     library name with `-` -> `_` when it has none, which is how equational-theories is laid out."""
@@ -1353,6 +1365,9 @@ def main():
         # ---- One module per original source file
         by_file: dict[str, list[dict]] = {}
         for r in records:
+            if not safe_source_path(r["source_path"]):  # the gate refuses these; a record that got past it is skipped, never written
+                print(f"WARNING: {r.get('name')}: source_path {r['source_path']!r} is not a path inside the corpus; skipped")
+                continue
             by_file.setdefault(r["source_path"], []).append(r)
         warnings = 0
         for source_path, recs in sorted(by_file.items()):
