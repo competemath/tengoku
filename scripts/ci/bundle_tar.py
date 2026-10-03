@@ -16,13 +16,13 @@ from pathlib import Path
 
 
 def write_tar(files: dict[str, bytes], out: str) -> str:
-    with open(out, "wb") as f:  # NOSONAR: `out` is an argument of the gate's own CI step, never a value from the PR
+    with open(out, "wb") as f:
         with tarfile.open(fileobj=f, mode="w", format=tarfile.GNU_FORMAT) as tf:
             for name in sorted(files):
                 ti = tarfile.TarInfo(name)
                 ti.size, ti.mtime, ti.mode, ti.uid, ti.gid, ti.uname, ti.gname = len(files[name]), 0, 0o644, 0, 0, "", ""
                 tf.addfile(ti, io.BytesIO(files[name]))
-    return hashlib.sha256(Path(out).read_bytes()).hexdigest()  # NOSONAR: the file this function just wrote
+    return hashlib.sha256(Path(out).read_bytes()).hexdigest()
 
 
 def read_dir(d: str) -> dict[str, bytes]:
