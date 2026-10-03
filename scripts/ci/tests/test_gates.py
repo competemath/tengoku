@@ -1034,6 +1034,12 @@ class Intake(unittest.TestCase):
         self.assertNotEqual(rc, 0)
         self.assertIn("Tengoku/Lib/Basic.lean", out)
 
+    def test_the_reducibility_attributes_are_inert(self):
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + "\n@[implicit_reducible] def Fx.one : Nat := 1\n")
+        rc, out = r.gate("intake_check.py")
+        self.assertEqual(rc, 0, out)
+
     def test_the_rebuilt_archive_is_the_factorys_archive(self):
         r = self.repo()
         self.bundle(r)
