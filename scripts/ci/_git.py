@@ -61,7 +61,8 @@ def derived_prefixes() -> list[str]:
 
 
 def run(*args: str, check: bool = True) -> str:
-    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, check=check).stdout
+    # errors="replace": a file with bytes that are not UTF-8 (the fuzzer's corpus has some) must not end a gate in a traceback
+    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", check=check).stdout
 
 
 def match(path: str, patterns: list[str]) -> bool:

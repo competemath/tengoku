@@ -13,6 +13,7 @@ import json
 import re
 import sys
 import urllib.parse
+from pathlib import Path
 
 from _git import ROOT, added_lines, blob, changed_files, fail, library_of, load_schema, match
 
@@ -20,7 +21,7 @@ MAX_BYTES = 50 * 1024 * 1024
 MAX_HEADLINES = 10  # the results a PR is about, shown first; more would be clutter
 base, head = sys.argv[1], sys.argv[2]
 schema = load_schema("record.schema.json")
-NAME_RE = re.compile(r"[^\s,\x00-\x1f]+")
+NAME_RE = re.compile(r"[^\s,\x00-\x08\x0e-\x1b]+")  # \s already covers \t \n \v \f \r and \x1c-\x1f
 sources_doc = load_schema("sources.json")
 sources = sources_doc["allowed"]
 corpora = sources_doc.get("corpora", {})
@@ -35,22 +36,24 @@ def tier(p: str) -> str:
 _EVENTS: list[dict] | None = None
 
 
+def _tombstones_in(path: Path):
+    """The tombstone lines of one trusted file. A line is decoded, never matched as text: a key or a name may be written
+    with \\u escapes."""
+    with path.open(encoding="utf-8") as fh:
+        for line in fh:
+            try:
+                r = json.loads(line) if line.strip() else None
+            except ValueError:
+                continue
+            if isinstance(r, dict) and "tombstone" in r:
+                yield r
+
+
 def trusted_tombstones() -> list[dict]:
-    """Every tombstone line in trusted, flat and per-library files. Each line is decoded, never matched as text: a
-    key or a name may be written with \\u escapes. All of trusted parses in under a second."""
+    """Every tombstone line in trusted, flat and per-library files. All of trusted parses in under a second."""
     global _EVENTS
     if _EVENTS is None:
-        _EVENTS = []
-        for f in (ROOT / "data" / "trusted").rglob("*.jsonl"):
-            for line in f.open(encoding="utf-8"):
-                if not line.strip():
-                    continue
-                try:
-                    r = json.loads(line)
-                except ValueError:
-                    continue
-                if isinstance(r, dict) and "tombstone" in r:
-                    _EVENTS.append(r)
+        _EVENTS = [r for f in (ROOT / "data" / "trusted").rglob("*.jsonl") for r in _tombstones_in(f)]
     return _EVENTS
 
 

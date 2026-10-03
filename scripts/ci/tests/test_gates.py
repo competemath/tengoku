@@ -170,6 +170,16 @@ class Gates(unittest.TestCase):
         self.assertEqual(rc, 0)
         self.assertIn("class=tooling", out)
 
+    def test_a_file_that_is_not_utf8_does_not_end_a_gate_in_a_traceback(self):
+        """git's output for such a file used to fail to decode (credits.py, on the fuzzer's own corpus)."""
+        r = Repo()
+        (r.dir / "README.md").write_bytes(b"# t\n\xff\xfe\n")
+        r.commit("a document with bytes that are not UTF-8")
+        for gate in ("credits.py", "classify.py"):
+            with self.subTest(gate=gate):
+                rc, out = r.gate(gate)
+                self.assertNotIn("Traceback", out)
+
     def test_a_retraction_naming_a_list_fails_cleanly(self):
         """The fuzzer found `{"tombstone_note": ["X"]}` ending validate_records.py in a traceback (the name is looked up in a set)."""
         for key in ("tombstone", "tombstone_note", "credit_correction"):
