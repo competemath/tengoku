@@ -13,7 +13,6 @@ import json
 import re
 import sys
 import urllib.parse
-from pathlib import Path
 
 from _git import ROOT, added_lines, blob, changed_files, fail, library_of, load_schema, match
 
@@ -21,7 +20,9 @@ MAX_BYTES = 50 * 1024 * 1024
 MAX_HEADLINES = 10  # the results a PR is about, shown first; more would be clutter
 base, head = sys.argv[1], sys.argv[2]
 schema = load_schema("record.schema.json")
-NAME_RE = re.compile(r"[^\s,\x00-\x08\x0e-\x1b]+")  # \s already covers \t \n \v \f \r and \x1c-\x1f
+NAME_RE = re.compile(
+    r"[^\s,\x00-\x08\x0e-\x1b]+"
+)  # not whitespace, a comma or a control character (\s already covers \t \n \v \f \r and \x1c-\x1f)
 sources_doc = load_schema("sources.json")
 sources = sources_doc["allowed"]
 corpora = sources_doc.get("corpora", {})
@@ -36,17 +37,19 @@ def tier(p: str) -> str:
 _EVENTS: list[dict] | None = None
 
 
-def _tombstones_in(path: Path):
-    """The tombstone lines of one trusted file. A line is decoded, never matched as text: a key or a name may be written
-    with \\u escapes."""
-    with path.open(encoding="utf-8") as fh:
-        for line in fh:
-            try:
-                r = json.loads(line) if line.strip() else None
-            except ValueError:
-                continue
-            if isinstance(r, dict) and "tombstone" in r:
-                yield r
+def _tombstones_in(f) -> list[dict]:
+    """The tombstone records of one trusted file; each line is decoded."""
+    out = []
+    for line in f.open(encoding="utf-8"):
+        if not line.strip():
+            continue
+        try:
+            r = json.loads(line)
+        except ValueError:
+            continue
+        if isinstance(r, dict) and "tombstone" in r:
+            out.append(r)
+    return out
 
 
 def trusted_tombstones() -> list[dict]:
@@ -117,16 +120,15 @@ for st, p in changed_files(base, head):
             continue
         if any(k in r for k in ("tombstone", "tombstone_note", "credit_correction")) and "at" in r and not AT_RE.fullmatch(str(r["at"])):
             errors.append(f"{p}:{no}: at is a UTC date or time: YYYY-MM-DD or YYYY-MM-DDTHH:MM:SSZ (got {r['at']!r})")
-        bad_name = next((k for k in ("tombstone", "tombstone_note", "credit_correction") if k in r and not isinstance(r[k], str)), "")
-        if bad_name:  # a list or object used to end the check in a traceback (found by scripts/ci/fuzz): the name is looked up in sets
-            errors.append(f"{p}:{no}: {bad_name} is a record name (a string), not {type(r[bad_name]).__name__}")
-            continue
         if "tombstone" in r:
             for k in schema["tombstone"]["required"]:
                 if k not in r:
                     errors.append(f"{p}:{no}: tombstone missing {k}")
             if "category" in r and r["category"] not in schema["tombstone_categories"]:
                 errors.append(f"{p}:{no}: tombstone category {r['category']!r} is not one of {', '.join(schema['tombstone_categories'])}")
+            if not isinstance(r["tombstone"], str):
+                errors.append(f"{p}:{no}: tombstone is the name of a record (a string)")
+                continue
             if categories is None:
                 categories = tombstone_categories()
             first = categories.setdefault(str(r["tombstone"]), str(r.get("category", "")))
@@ -142,6 +144,9 @@ for st, p in changed_files(base, head):
             for k in schema[kind]["required"]:
                 if k not in r:
                     errors.append(f"{p}:{no}: {kind} missing {k}")
+            if not isinstance(r[kind], str):
+                errors.append(f"{p}:{no}: {kind} is the name of a record (a string)")
+                continue
             if t != "trusted":
                 errors.append(f"{p}:{no}: a {kind} goes in data/trusted/<library>.jsonl")
             if known is None:
