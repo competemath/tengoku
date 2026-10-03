@@ -121,6 +121,8 @@ def lint_module(base: str, head: str, p: str, allowed: set[str], notation_ok: bo
     refused where they run, not where a docstring mentions them (`#print axioms` in a doc comment is prose). A module the PR changes is read
     by the lines it adds, comments included: a line alone cannot tell code from the middle of a comment."""
     raw = blob(head, p) if added else None
+    if added and raw is None:  # fail closed: the line-by-line path below cannot see a block comment that an `import X -/` line closes
+        return [f"{p}: could not read the module at {head}"]
     if raw is not None:
         # comments and strings first, THEN the import lines: a line `import X -/` inside a block comment closes it, and dropping it first would
         # turn the rest of the file into comment text (a `#eval` after it would go unread)
