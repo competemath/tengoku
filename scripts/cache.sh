@@ -6,6 +6,9 @@
 #   scripts/cache.sh latest           # print the commit of the newest published cache (what scripts/pin.sh checks out)
 #   scripts/cache.sh latest-tag       # print its tag, e.g. cache-20260915T0300Z
 #   scripts/cache.sh put              # pack .lake/build and publish it for HEAD (needs `gh` logged in)
+#   scripts/cache.sh pack <dir>       # only pack .lake/build into <dir> (the parts and a `commit` file): no network,
+#                                     # no token (the build job, which compiles, stops here)
+#   scripts/cache.sh publish <dir>    # publish packed parts for the commit named in <dir>/commit (the publish job)
 #
 # A cache is a release tagged `cache-<UTC stamp>` (cache-20260915T0300Z); the
 # commit it was built from is the first line of its notes (`commit=<sha>`).
@@ -16,22 +19,24 @@
 # account: the repository is public (anonymous API + asset downloads); `gh`
 # is used when it is installed and logged in.
 set -euo pipefail
-cd "$(dirname "$0")/.."
+cd "${TENGOKU_ROOT:-$(dirname "$0")/..}"   # TENGOKU_ROOT: the checkout, when a copy of this script runs (the build job packs with one)
 REPO="${TENGOKU_REPO:-competemath/tengoku}"          # where `put` publishes
 SRC="${TENGOKU_CACHE_SOURCE:-$REPO}"                  # where `get`/`latest` read (a sandbox reads the library's caches)
 TOPUPS="${TENGOKU_TOPUPS:-0}"                         # 1 = follow top-ups (the small per-merge difference from the nightly base); 0 = nightly base only
 TOPUP_RELEASE="cache-topups"                          # one rolling release holding topup-<commit>.tar.zst + .json
+HTTPS_ONLY=(--proto '=https' --tlsv1.2)                 # every download: https only, TLS 1.2 or newer
 cmd="${1:-}"
 
-need() { command -v "$1" >/dev/null 2>&1 || { echo "missing: $1" >&2; exit 1; }; }
+need() { local tool="$1"; command -v "$tool" >/dev/null 2>&1 || { echo "missing: $tool" >&2; exit 1; }; }
 need zstd; need tar; need git; need python3
 
 command -v sha256sum >/dev/null 2>&1 || sha256sum() { shasum -a 256 "$@"; }
 have_gh() { command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; }
 
 api() {  # GET a GitHub API path, anonymously or with whatever token exists
-  if have_gh; then gh api "$1"
-  else need curl; curl -fsSL -H 'Accept: application/vnd.github+json' ${GH_TOKEN:+-H "Authorization: Bearer $GH_TOKEN"} "https://api.github.com/$1"; fi
+  local path="$1"
+  if have_gh; then gh api "$path"
+  else need curl; curl "${HTTPS_ONLY[@]}" -fsSL -H 'Accept: application/vnd.github+json' ${GH_TOKEN:+-H "Authorization: Bearer $GH_TOKEN"} "https://api.github.com/$path"; fi
 }
 
 # The newest cache, from the fixed-tag pointer the nightly updates (a plain
@@ -39,7 +44,7 @@ api() {  # GET a GitHub API path, anonymously or with whatever token exists
 pointer() {
   need curl
   local j  # downloaded as data, then read: nothing downloaded is piped into an interpreter
-  j="$(curl -fsSL "https://github.com/$SRC/releases/download/cache-latest/cache-latest.json" 2>/dev/null || true)"
+  j="$(curl "${HTTPS_ONLY[@]}" -fsSL "https://github.com/$SRC/releases/download/cache-latest/cache-latest.json" 2>/dev/null || true)"
   python3 -c '
 import json, sys
 try: d = json.loads(sys.argv[1]); print(d["published_at"], "1", d["tag"], d["commit"])
@@ -49,7 +54,7 @@ except Exception: pass' "$j" 2>/dev/null || true
 # Every asset of a cache release must carry a build-provenance attestation from
 # this repository's build workflow (docs/tengoku-security-plan.md §6). With gh
 # present the check is enforced; without it a warning is printed for now.
-pointer_json_of() { need curl; curl -fsSL "https://github.com/$1/releases/download/cache-latest/cache-latest.json?t=$(date +%s)" 2>/dev/null || true; }
+pointer_json_of() { local repo="$1"; need curl; curl "${HTTPS_ONLY[@]}" -fsSL "https://github.com/$repo/releases/download/cache-latest/cache-latest.json?t=$(date +%s)" 2>/dev/null || true; }
 pointer_json() { pointer_json_of "$SRC"; }        # what consumers follow
 # Whatever WRITES the pointer (put, topup-promote, topup-gc) must read the pointer of the repository it
 # writes to. They used to read the consumers' source: in a sandbox that seeds from the library that is
@@ -76,7 +81,7 @@ apply_topup() {
   mkdir -p "$store"
   for f in "topup-$commit.tar.zst" "topup-$commit.json"; do
     [ -s "$store/$f" ] && continue
-    curl -fsSL --retry 2 -o "$store/$f.part" "https://github.com/$SRC/releases/download/$TOPUP_RELEASE/$f" && mv "$store/$f.part" "$store/$f" \
+    curl "${HTTPS_ONLY[@]}" -fsSL --retry 2 -o "$store/$f.part" "https://github.com/$SRC/releases/download/$TOPUP_RELEASE/$f" && mv "$store/$f.part" "$store/$f" \
       || { rm -f "$store/$f.part"; echo "warning: could not fetch $f; using the base only" >&2; return 0; }
   done
   if [ -n "$digest" ] && [ "$(sha256sum "$store/topup-$commit.tar.zst" | cut -d' ' -f1)" != "$digest" ]; then
@@ -140,27 +145,40 @@ for a in json.load(sys.stdin).get("assets", []):
     [ -n "$urls" ] || { echo "no cache parts on $tag" >&2; exit 1; }
     for u in $urls; do
       echo "  $u"
-      curl -fL --retry 3 -o "$dir/$(basename "$u")" "$u"
+      curl "${HTTPS_ONLY[@]}" -fL --retry 3 -o "$dir/$(basename "$u")" "$u"
     done
   fi
 }
 
 case "$cmd" in
   put)
-    need gh
+    tmp="$(mktemp -d)"
+    trap 'rm -rf "$tmp"' EXIT   # whichever of pack and publish fails (set -e), the packed parts go
+    "$0" pack "$tmp" && "$0" publish "$tmp"
+    ;;
+  pack)
+    dir="${2:?usage: cache.sh pack <dir>}"
     # Caches are packed by CI on Linux only. A macOS pack once broke the replay
     # for Linux consumers (case-insensitive filesystem, bsdtar); never again.
     if [ "$(uname -s)" = "Darwin" ] && [ "${TENGOKU_ALLOW_MAC_PUT:-0}" != "1" ]; then
       echo "refusing to pack a cache on macOS — let the nightly build (or workflow_dispatch) publish it" >&2; exit 1
     fi
     sha="$(git rev-parse HEAD)"
+    [[ -d .lake/build ]] || { echo "nothing to pack: .lake/build missing" >&2; exit 1; }
+    mkdir -p "$dir"
+    rm -f "$dir"/tengoku-cache.tar.zst.part-* "$dir/commit"   # a larger earlier pack would leave surplus parts behind
+    echo "packing .lake/build for $sha …"
+    tar -C .lake -cf - build | zstd -T0 -3 -q | split -b 1900m - "$dir/tengoku-cache.tar.zst.part-"
+    printf '%s\n' "$sha" > "$dir/commit"
+    ls -la "$dir"
+    ;;
+  publish)
+    need gh
+    dir="${2:?usage: cache.sh publish <dir>}"
+    sha="$(cat "$dir/commit")"
     stamp="${TENGOKU_CACHE_STAMP:-$(date -u +%Y%m%dT%H%MZ)}"
     tag="cache-$stamp"
-    [ -d .lake/build ] || { echo "nothing to publish: .lake/build missing" >&2; exit 1; }
-    tmp="$(mktemp -d)"
-    echo "packing .lake/build for $sha as $tag …"
-    tar -C .lake -cf - build | zstd -T0 -3 -q | split -b 1900m - "$tmp/tengoku-cache.tar.zst.part-"
-    ls -la "$tmp"
+    tmp="$dir"
     if gh release view "$tag" -R "$REPO" >/dev/null 2>&1; then
       gh release delete "$tag" -R "$REPO" --yes --cleanup-tag
     fi
@@ -188,7 +206,6 @@ PY
     fi
     gh release view cache-latest -R "$REPO" >/dev/null 2>&1 || gh release create cache-latest -R "$REPO" --title "newest cache (pointer)" --notes "cache-latest.json names the newest cache release. Updated by every publish." >/dev/null
     gh release upload cache-latest "$tmp/cache-latest.json" -R "$REPO" --clobber >/dev/null && echo "pointer cache-latest.json → $tag"
-    rm -rf "$tmp"
     # Keep the newest KEEP caches; each is gigabytes and `get` only ever needs
     # a recent one (Lake rebuilds the difference).
     KEEP="${TENGOKU_CACHE_KEEP:-5}"

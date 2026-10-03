@@ -61,7 +61,8 @@ def derived_prefixes() -> list[str]:
 
 
 def run(*args: str, check: bool = True) -> str:
-    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, check=check).stdout
+    # errors="replace": a file with bytes that are not UTF-8 (the fuzzer's corpus has some) must not end a gate in a traceback
+    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", check=check).stdout
 
 
 def match(path: str, patterns: list[str]) -> bool:
@@ -90,7 +91,9 @@ def tier_of(path: str) -> str:
 
 
 def _range(base: str, head: str) -> list[str]:
-    return ["--cached"] if head == "--staged" else [f"{base}...{head}" if "..." not in base else base]
+    if head == "--staged":
+        return ["--cached"]
+    return [base if "..." in base else f"{base}...{head}"]
 
 
 def changed_files(base: str, head: str) -> list[tuple[str, str]]:
@@ -153,7 +156,7 @@ def added_lines(base: str, head: str, path: str) -> list[tuple[int, str]]:
             out.append((new_no, line[1:]))
             new_no += 1
         elif line.startswith("-") and not line.startswith("---"):
-            pass
+            continue  # a removed line: the new file's line number does not advance
         elif not line.startswith(("diff", "index", "\\")):
             new_no += 1
     return out
@@ -170,7 +173,7 @@ def removed_lines(base: str, head: str, path: str) -> list[tuple[int, str]]:
             out.append((old_no, line[1:]))
             old_no += 1
         elif line.startswith("+"):
-            pass
+            continue  # an added line: the old file's line number does not advance
         elif not line.startswith(("diff", "index", "\\")):
             old_no += 1
     return out

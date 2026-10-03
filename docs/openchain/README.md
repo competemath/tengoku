@@ -17,7 +17,6 @@ These pages describe what exists today. They do not claim anything the repositor
 
 | Gap | State |
 |---|---|
-| A software bill of materials (SBOM) per release | not yet in this repository; built and proven in [tengoku-sandbox](https://github.com/competemath/tengoku-sandbox) (supply-chain track), not yet merged here |
 | Triage of the SonarQube Cloud findings | the first baseline is in; its vulnerabilities (mostly "CLI argument reaches a path or command" in CI scripts that only workflows call) are not yet individually accepted or fixed |
 | Funding and staffing | none: one volunteer maintainer; see [program.md](program.md#staffing-and-funding) |
 | Independent legal or security adviser | none identified |

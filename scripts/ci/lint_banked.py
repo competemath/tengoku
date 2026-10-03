@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """lint_banked.py <base> <head> | --text FILE — banked Lean must not run code.
 Records paste `context` and `proof` verbatim into modules; modules are compiled
-by CI and imported by every Leak service, where `initialize` runs. Reject any
-construct that executes, links, or trusts native code, and any set_option off
-the allowlist (schemas/allowed-options.json). Existing records are not
-re-judged: only lines a PR adds."""
+by CI and imported by every Leak service, where `initialize` runs. A staging or
+trusted record (the tiers the tree compiles) must pass the allow-list
+(scripts/ci/allowlist.py): only known-inert commands, attributes and options.
+Tentative records (never compiled) and module lines keep the list of known
+dangers below. Existing records are not re-judged: only lines a PR adds."""
 
 from __future__ import annotations
 
@@ -12,8 +13,11 @@ import json
 import os
 import re
 import sys
+import tempfile
+from pathlib import Path
 
 from _git import added_lines, changed_files, fail, load_schema, match, pascal
+from allowlist import violations
 
 NOTATION = "syntax/macro/elab/notation declarations"
 SYNTAX_COMMANDS = [
@@ -91,7 +95,7 @@ RECORD_FILES = [
 
 
 def lint_record_file(base: str, head: str, p: str, allowed: set[str]) -> list[str]:
-    """The lines a PR adds to a records file."""
+    """The lines a PR adds to a records file, judged by the allow-list (compiled tiers) or the list of known dangers."""
     errors = []
     for no, text in added_lines(base, head, p):
         try:
@@ -101,7 +105,11 @@ def lint_record_file(base: str, head: str, p: str, allowed: set[str]) -> list[st
         if not isinstance(r, dict) or "tombstone" in r:  # not an object: validate_records.py refuses it
             continue
         body = "\n".join(str(r.get(k, "")) for k in ("context", "statement", "proof"))
-        errors += check_text(f"{p}:{no} ({r.get('name')})", body, allowed)
+        label = f"{p}:{no} ({r.get('name')})"
+        if p.startswith(("data/staging/", "data/trusted/")):  # compiled: only what is known to be inert
+            errors += [f"{label}: {v}" for v in violations(body, allowed)]
+        else:
+            errors += check_text(label, body, allowed)
     return errors
 
 
@@ -111,11 +119,19 @@ def lint_module(base: str, head: str, p: str, allowed: set[str], notation_ok: bo
     return check_text(p, added, allowed, notation_ok=notation_ok)
 
 
+def checked_path(arg: str) -> Path:
+    """A file given on the command line: it must lie in the working directory or the temporary directory."""
+    p = Path(arg).resolve()
+    if not any(p.is_relative_to(root.resolve()) for root in (Path.cwd(), Path(tempfile.gettempdir()))):
+        fail(f"{arg} is outside the working directory and the temporary directory")
+    return p
+
+
 def main() -> None:
     allowed = set(load_schema("allowed-options.json")["allowed"])
     errors = []
     if sys.argv[1] == "--text":
-        errors = check_text(sys.argv[2], open(sys.argv[2]).read(), allowed)
+        errors = check_text(sys.argv[2], checked_path(sys.argv[2]).read_text(), allowed)
     else:
         base, head = sys.argv[1], sys.argv[2]
         intake = intake_modules(base, head)

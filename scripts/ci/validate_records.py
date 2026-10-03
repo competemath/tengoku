@@ -53,8 +53,7 @@ def _tombstones_in(f) -> list[dict]:
 
 
 def trusted_tombstones() -> list[dict]:
-    """Every tombstone line in trusted, flat and per-library files. Each line is decoded, never matched as text: a
-    key or a name may be written with \\u escapes. All of trusted parses in under a second."""
+    """Every tombstone line in trusted, flat and per-library files. All of trusted parses in under a second."""
     global _EVENTS
     if _EVENTS is None:
         _EVENTS = [r for f in (ROOT / "data" / "trusted").rglob("*.jsonl") for r in _tombstones_in(f)]
