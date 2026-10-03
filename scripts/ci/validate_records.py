@@ -114,6 +114,10 @@ for st, p in changed_files(base, head):
             continue
         if any(k in r for k in ("tombstone", "tombstone_note", "credit_correction")) and "at" in r and not AT_RE.fullmatch(str(r["at"])):
             errors.append(f"{p}:{no}: at is a UTC date or time: YYYY-MM-DD or YYYY-MM-DDTHH:MM:SSZ (got {r['at']!r})")
+        bad_name = next((k for k in ("tombstone", "tombstone_note", "credit_correction") if k in r and not isinstance(r[k], str)), "")
+        if bad_name:  # a list or object used to end the check in a traceback (found by scripts/ci/fuzz): the name is looked up in sets
+            errors.append(f"{p}:{no}: {bad_name} is a record name (a string), not {type(r[bad_name]).__name__}")
+            continue
         if "tombstone" in r:
             for k in schema["tombstone"]["required"]:
                 if k not in r:

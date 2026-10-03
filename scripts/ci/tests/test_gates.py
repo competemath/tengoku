@@ -170,6 +170,18 @@ class Gates(unittest.TestCase):
         self.assertEqual(rc, 0)
         self.assertIn("class=tooling", out)
 
+    def test_a_retraction_naming_a_list_fails_cleanly(self):
+        """The fuzzer found `{"tombstone_note": ["X"]}` ending validate_records.py in a traceback (the name is looked up in a set)."""
+        for key in ("tombstone", "tombstone_note", "credit_correction"):
+            with self.subTest(key=key):
+                r = Repo()
+                r.append("data/trusted/lib.jsonl", json.dumps({key: ["Known.thm"], "by": "b", "at": "2026-09-30T00:00:00Z"}) + "\n")
+                r.commit("a retraction with a list for a name")
+                rc, out = r.gate("validate_records.py")
+                self.assertEqual(rc, 1)
+                self.assertIn(f"{key} is a record name (a string), not list", out)
+                self.assertNotIn("Traceback", out)
+
     def test_derived_edit_fails_classify(self):
         r = Repo()
         r.write("Tengoku/Lib/Basic.lean", "theorem Lib.old : 1 + 1 = 2 := by rfl\n")
