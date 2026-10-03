@@ -1104,7 +1104,31 @@ class Intake(unittest.TestCase):
         self.bundle(r2, name="Fx.good")
         rc, out = r2.gate("intake_check.py")
         self.assertNotEqual(rc, 0)
-        self.assertIn("already a record of the tree", out)
+        self.assertIn("already a trusted record", out)
+
+    def test_staging_records_of_another_library_do_not_block_a_bundle_but_a_merged_bundles_theorem_does(self):
+        r = self.repo()
+        r.write(
+            "data/staging/lib2/20260101T000000Z-000.jsonl",
+            json.dumps({"name": "Fx.good", "statement": "theorem Fx.good : True", "status": "staging", "library": "lib2"}) + "\n",
+        )
+        r.commit("a staged record of another library")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        self.bundle(r, name="Fx.good")
+        rc, out = r.gate("intake_check.py")
+        self.assertEqual(rc, 0, out)
+        r2 = self.repo()
+        r2.write("data/intake/lib2/manifest.jsonl", json.dumps({"name": "Fx.good", "library": "lib2"}) + "\n")
+        r2.commit("a merged bundle")
+        r2.git("checkout", "-q", "main")
+        r2.git("merge", "-q", "--ff-only", "pr")
+        r2.git("checkout", "-q", "pr")
+        self.bundle(r2, name="Fx.good")
+        rc, out = r2.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("already a trusted record or a bundle theorem", out)
 
     def test_the_queues_content_lint_reads_an_added_module_without_its_comments(self):
         r = self.repo()
