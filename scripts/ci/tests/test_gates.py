@@ -1079,6 +1079,20 @@ class Intake(unittest.TestCase):
         bundle_tar.write_tar(bundle_tar.read_dir(str(d)), str(out2))
         self.assertEqual(tar.read_bytes(), out2.read_bytes())
 
+    def test_the_archive_is_only_written_inside_the_working_or_a_temporary_directory(self):
+        sys.path.insert(0, str(CI))
+        import bundle_tar
+
+        tmp = Path(tempfile.mkdtemp())
+        self.assertTrue(bundle_tar.write_tar({"a.txt": b"x"}, str(tmp / "ok.tar")))
+        for bad in (str(tmp / ".." / ".." / ".." / ".." / "etc" / "x.tar"), "/etc/x.tar", str(Path.home() / "x.tar")):
+            with self.assertRaises(ValueError):
+                bundle_tar.write_tar({"a.txt": b"x"}, bad)
+        link = tmp / "link"
+        link.symlink_to("/etc")
+        with self.assertRaises(ValueError):  # a symlink out of the temporary directory
+            bundle_tar.write_tar({"a.txt": b"x"}, str(link / "x.tar"))
+
     def test_the_archive_is_the_same_bytes_on_every_machine(self):
         sys.path.insert(0, str(CI))
         import bundle_tar
