@@ -16,9 +16,11 @@ import sys
 import tempfile
 from pathlib import Path
 
-from _git import added_lines, changed_files, fail, load_schema, match, pascal
+from _git import added_lines, blob, changed_files, fail, load_schema, match, pascal
 from allowlist import violations
+from lean_lex import code_only
 
+IMPORT_START = r"^\s*import\b"
 NOTATION = "syntax/macro/elab/notation declarations"
 SYNTAX_COMMANDS = [
     "macro",
@@ -34,7 +36,7 @@ SYNTAX_COMMANDS = [
     "postfix",
 ]
 FORBIDDEN = [
-    (re.compile(r"^\s*import\b", re.M), "import (the generator supplies imports)"),
+    (re.compile(IMPORT_START, re.M), "import (the generator supplies imports)"),
     (re.compile(r"#eval\b"), "#eval"),
     (re.compile(r"#print\s+axioms"), "#print axioms (CI runs its own)"),
     (re.compile(r"\brun_cmd\b"), "run_cmd"),
@@ -113,10 +115,19 @@ def lint_record_file(base: str, head: str, p: str, allowed: set[str]) -> list[st
     return errors
 
 
-def lint_module(base: str, head: str, p: str, allowed: set[str], notation_ok: bool) -> list[str]:
-    """The lines a PR adds to a module. `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one."""
-    added = "\n".join(t for _, t in added_lines(base, head, p) if not re.match(r"^\s*import\b", t))
-    return check_text(p, added, allowed, notation_ok=notation_ok)
+def lint_module(base: str, head: str, p: str, allowed: set[str], notation_ok: bool, added: bool = False) -> list[str]:
+    """The lines a PR adds to a module. `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one.
+    A module the PR adds is read whole and without its comments and string literals (lean_lex.code_only): the words this list refuses are
+    refused where they run, not where a docstring mentions them (`#print axioms` in a doc comment is prose). A module the PR changes is read
+    by the lines it adds, comments included: a line alone cannot tell code from the middle of a comment."""
+    raw = blob(head, p) if added else None
+    if raw is not None:
+        # comments and strings first, THEN the import lines: a line `import X -/` inside a block comment closes it, and dropping it first would
+        # turn the rest of the file into comment text (a `#eval` after it would go unread)
+        code = code_only(raw.decode("utf-8", "replace"))
+        return check_text(p, "\n".join(ln for ln in code.split("\n") if not re.match(IMPORT_START, ln)), allowed, notation_ok=notation_ok)
+    text = "\n".join(t for _, t in added_lines(base, head, p) if not re.match(IMPORT_START, t))
+    return check_text(p, text, allowed, notation_ok=notation_ok)
 
 
 def checked_path(arg: str) -> Path:
@@ -135,13 +146,13 @@ def main() -> None:
     else:
         base, head = sys.argv[1], sys.argv[2]
         intake = intake_modules(base, head)
-        for _, p in changed_files(base, head):
+        for st, p in changed_files(base, head):
             if match(p, RECORD_FILES):
                 errors += lint_record_file(base, head, p, allowed)
             elif p.endswith(".lean") and p.startswith(
                 "Tengoku/"
             ):  # modules only; root tool programs (TengokuExtract/TengokuAxioms) run in CI, not in the library
-                errors += lint_module(base, head, p, allowed, notation_ok=in_intake(p, intake))
+                errors += lint_module(base, head, p, allowed, notation_ok=in_intake(p, intake), added=st == "A")
     if errors:
         fail("banked content lint:\n  " + "\n  ".join(errors[:20]))
     print("content lint OK")

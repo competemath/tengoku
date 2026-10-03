@@ -97,6 +97,8 @@ for tier in ("trusted", "staging", "tentative"):
             m = re.search(r'"name":\s*"([^"]+)"', ln)
             if m and tier != "tentative":
                 existing.add(m.group(1))
+if not manifest:
+    errors.append("the manifest has no theorem: a bundle that carries none is empty")
 for i, r in enumerate(manifest, 1):
     where = f"manifest line {i}"
     if not isinstance(r, dict):
@@ -116,7 +118,9 @@ for i, r in enumerate(manifest, 1):
     if name in seen:
         errors.append(f"{where}: {name} twice")
     seen.add(name)
-    if name in existing:
+    # a record's name is the declaration as written in its file (inside `namespace X`, `theorem foo` is stored as `foo`; `hφ₀` as `h`): a bare
+    # bundle name equal to one proves nothing about the real names; only a qualified name is compared (the merge queue's build decides the rest)
+    if "." in name and name in existing:
         errors.append(f"{where}: {name} is already a record of the tree (the generator renames clashes; a bundle must not carry one)")
 
 # lint
@@ -131,7 +135,7 @@ for p in sorted(p for _, p in files if p.endswith(".lean") and p != ALL):
     total += len(text)
     body = []
     for ln in text.split("\n"):
-        m = IMPORT_LINE.match(ln)
+        m = IMPORT_LINE.match(ln.split("--", 1)[0])  # a comment after the module name is part of the line
         if m and not TREE_IMPORT.match(m.group(1)):
             errors.append(f"{p}: imports {m.group(1)}, which is not the tree")
         body.append("" if m or MODULE_LINE.match(ln) else ln)
