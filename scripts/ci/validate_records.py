@@ -20,7 +20,9 @@ MAX_BYTES = 50 * 1024 * 1024
 MAX_HEADLINES = 10  # the results a PR is about, shown first; more would be clutter
 base, head = sys.argv[1], sys.argv[2]
 schema = load_schema("record.schema.json")
-NAME_RE = re.compile(r"[^\s,\x00-\x1f]+")
+NAME_RE = re.compile(
+    r"[^\s,\x00-\x08\x0e-\x1b]+"
+)  # not whitespace, a comma or a control character (\s already covers \t \n \v \f \r and \x1c-\x1f)
 sources_doc = load_schema("sources.json")
 sources = sources_doc["allowed"]
 corpora = sources_doc.get("corpora", {})
@@ -35,22 +37,27 @@ def tier(p: str) -> str:
 _EVENTS: list[dict] | None = None
 
 
+def _tombstones_in(f) -> list[dict]:
+    """The tombstone records of one trusted file; each line is decoded."""
+    out = []
+    for line in f.open(encoding="utf-8"):
+        if not line.strip():
+            continue
+        try:
+            r = json.loads(line)
+        except ValueError:
+            continue
+        if isinstance(r, dict) and "tombstone" in r:
+            out.append(r)
+    return out
+
+
 def trusted_tombstones() -> list[dict]:
     """Every tombstone line in trusted, flat and per-library files. Each line is decoded, never matched as text: a
     key or a name may be written with \\u escapes. All of trusted parses in under a second."""
     global _EVENTS
     if _EVENTS is None:
-        _EVENTS = []
-        for f in (ROOT / "data" / "trusted").rglob("*.jsonl"):
-            for line in f.open(encoding="utf-8"):
-                if not line.strip():
-                    continue
-                try:
-                    r = json.loads(line)
-                except ValueError:
-                    continue
-                if isinstance(r, dict) and "tombstone" in r:
-                    _EVENTS.append(r)
+        _EVENTS = [r for f in (ROOT / "data" / "trusted").rglob("*.jsonl") for r in _tombstones_in(f)]
     return _EVENTS
 
 
@@ -120,6 +127,9 @@ for st, p in changed_files(base, head):
                     errors.append(f"{p}:{no}: tombstone missing {k}")
             if "category" in r and r["category"] not in schema["tombstone_categories"]:
                 errors.append(f"{p}:{no}: tombstone category {r['category']!r} is not one of {', '.join(schema['tombstone_categories'])}")
+            if not isinstance(r["tombstone"], str):
+                errors.append(f"{p}:{no}: tombstone is the name of a record (a string)")
+                continue
             if categories is None:
                 categories = tombstone_categories()
             first = categories.setdefault(str(r["tombstone"]), str(r.get("category", "")))
@@ -135,6 +145,9 @@ for st, p in changed_files(base, head):
             for k in schema[kind]["required"]:
                 if k not in r:
                     errors.append(f"{p}:{no}: {kind} missing {k}")
+            if not isinstance(r[kind], str):
+                errors.append(f"{p}:{no}: {kind} is the name of a record (a string)")
+                continue
             if t != "trusted":
                 errors.append(f"{p}:{no}: a {kind} goes in data/trusted/<library>.jsonl")
             if known is None:

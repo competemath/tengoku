@@ -9,11 +9,26 @@ re-judged: only lines a PR adds."""
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 
-from _git import added_lines, changed_files, fail, load_schema, match
+from _git import added_lines, changed_files, fail, load_schema, match, pascal
 
+NOTATION = "syntax/macro/elab/notation declarations"
+SYNTAX_COMMANDS = [
+    "macro",
+    "macro_rules",
+    "syntax",
+    "elab",
+    "elab_rules",
+    "declare_syntax_cat",
+    "notation3?",
+    "infixl?",
+    "infixr",
+    "prefix",
+    "postfix",
+]
 FORBIDDEN = [
     (re.compile(r"^\s*import\b", re.M), "import (the generator supplies imports)"),
     (re.compile(r"#eval\b"), "#eval"),
@@ -28,11 +43,8 @@ FORBIDDEN = [
     ),
     (re.compile(r"^\s*(unsafe|partial)\s+(def|theorem|abbrev|instance|opaque)", re.M), "unsafe/partial definitions"),
     (
-        re.compile(
-            r"^\s*(@\[[^\]]*\]\s*)*(scoped\s+|local\s+)?(macro|macro_rules|syntax|elab|elab_rules|declare_syntax_cat|notation3?|infixl?|infixr|prefix|postfix)\b",
-            re.M,
-        ),
-        "syntax/macro/elab/notation declarations",
+        re.compile(r"^\s*(@\[[^\]]*\]\s*)*(scoped\s+|local\s+)?(" + "|".join(SYNTAX_COMMANDS) + r")\b", re.M),
+        NOTATION,
     ),
     (re.compile(r"\bnative_decide\b"), "native_decide (trusts the compiler)"),
     (re.compile(r"^\s*opaque\b", re.M), "opaque"),
@@ -42,15 +54,61 @@ FORBIDDEN = [
 SET_OPTION = re.compile(r"set_option\s+([A-Za-z_][\w.]*)")
 
 
-def check_text(label: str, text: str, allowed: set[str]) -> list[str]:
+def intake_modules(base: str, head: str) -> tuple[str, ...]:
+    """The module paths of an intake bundle in this diff, when the repository's intake lint is `proposed` (variable TENGOKU_INTAKE_LINT):
+    notation commands are allowed there, as in scripts/ci/intake_check.py (the allow-list lint of the bundle). Nowhere else."""
+    if os.environ.get("TENGOKU_INTAKE_LINT") != "proposed":
+        return ()
+    libs = {m.group(1) for _, p in changed_files(base, head) if (m := re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p))}
+    return tuple(x for lib in libs for x in (f"Tengoku/{pascal(lib)}/", f"Tengoku/{pascal(lib)}.lean"))
+
+
+def in_intake(p: str, intake: tuple[str, ...]) -> bool:
+    """Is `p` one of the bundle's own modules: its root file exactly, or a file under its directory (never a sibling that merely starts the same)."""
+    return p in intake or any(x.endswith("/") and p.startswith(x) for x in intake)
+
+
+def check_text(label: str, text: str, allowed: set[str], notation_ok: bool = False) -> list[str]:
     out = []
     for re_, why in FORBIDDEN:
+        if why == NOTATION and notation_ok:
+            continue
         if re_.search(text):
             out.append(f"{label}: {why}")
     for opt in SET_OPTION.findall(text):
         if opt not in allowed:
             out.append(f"{label}: set_option {opt} is not on the allowlist")
     return out
+
+
+RECORD_FILES = [
+    "data/tentative/*.jsonl",
+    "data/staging/*.jsonl",
+    "data/trusted/*.jsonl",
+    "data/tentative/*/*.jsonl",
+    "data/staging/*/*.jsonl",
+]
+
+
+def lint_record_file(base: str, head: str, p: str, allowed: set[str]) -> list[str]:
+    """The lines a PR adds to a records file."""
+    errors = []
+    for no, text in added_lines(base, head, p):
+        try:
+            r = json.loads(text)
+        except Exception:
+            continue
+        if not isinstance(r, dict) or "tombstone" in r:  # not an object: validate_records.py refuses it
+            continue
+        body = "\n".join(str(r.get(k, "")) for k in ("context", "statement", "proof"))
+        errors += check_text(f"{p}:{no} ({r.get('name')})", body, allowed)
+    return errors
+
+
+def lint_module(base: str, head: str, p: str, allowed: set[str], notation_ok: bool) -> list[str]:
+    """The lines a PR adds to a module. `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one."""
+    added = "\n".join(t for _, t in added_lines(base, head, p) if not re.match(r"^\s*import\b", t))
+    return check_text(p, added, allowed, notation_ok=notation_ok)
 
 
 def main() -> None:
@@ -60,31 +118,14 @@ def main() -> None:
         errors = check_text(sys.argv[2], open(sys.argv[2]).read(), allowed)
     else:
         base, head = sys.argv[1], sys.argv[2]
-        for st, p in changed_files(base, head):
-            if match(
-                p,
-                [
-                    "data/tentative/*.jsonl",
-                    "data/staging/*.jsonl",
-                    "data/trusted/*.jsonl",
-                    "data/tentative/*/*.jsonl",
-                    "data/staging/*/*.jsonl",
-                ],
-            ):
-                for no, text in added_lines(base, head, p):
-                    try:
-                        r = json.loads(text)
-                    except Exception:
-                        continue
-                    if not isinstance(r, dict) or "tombstone" in r:  # not an object: validate_records.py refuses it
-                        continue
-                    body = "\n".join(str(r.get(k, "")) for k in ("context", "statement", "proof"))
-                    errors += check_text(f"{p}:{no} ({r.get('name')})", body, allowed)
+        intake = intake_modules(base, head)
+        for _, p in changed_files(base, head):
+            if match(p, RECORD_FILES):
+                errors += lint_record_file(base, head, p, allowed)
             elif p.endswith(".lean") and p.startswith(
                 "Tengoku/"
             ):  # modules only; root tool programs (TengokuExtract/TengokuAxioms) run in CI, not in the library
-                # `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one.
-                errors += check_text(p, "\n".join(t for _, t in added_lines(base, head, p) if not re.match(r"^\s*import\b", t)), allowed)
+                errors += lint_module(base, head, p, allowed, notation_ok=in_intake(p, intake))
     if errors:
         fail("banked content lint:\n  " + "\n  ".join(errors[:20]))
     print("content lint OK")

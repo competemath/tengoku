@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import unittest
 from pathlib import Path
@@ -870,6 +871,271 @@ class OneDiffPerRun(unittest.TestCase):
             env={**os.environ, "TENGOKU_CI_ROOT": str(r.dir), "PYTHONPATH": str(CI)},
         )
         self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+
+
+class Intake(unittest.TestCase):
+    """An intake PR: one library's verified Lean modules (a factory bundle), judged by shape, manifest, lint and provenance."""
+
+    MOD = "import Tengoku\n\nnamespace Fx\n\ntheorem good : 1 + 1 = 2 := rfl\n\nend Fx\n"
+
+    def repo(self):
+        r = Repo()
+        r.write("lean-toolchain", "leanprover/lean4:v4.34.0-rc2\n")
+        r.write("Tengoku/All.lean", "import Tengoku.Lib\n")
+        r.commit("toolchain and All")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        return r
+
+    def bundle(self, r, mod=None, **over):
+        manifest = {
+            "name": "Fx.good",
+            "statement": "theorem good : 1 + 1 = 2",
+            "module": "Tengoku.FxLib.Fx.Basic",
+            "source_path": "Fx/Basic.lean",
+            "library": "fx-lib",
+            "toolchain": "leanprover/lean4:v4.34.0-rc2",
+            "via": "equal",
+            **over,
+        }
+        r.write("Tengoku/FxLib/Fx/Basic.lean", mod if mod is not None else self.MOD)
+        r.write("Tengoku/FxLib.lean", "import Tengoku.FxLib.Fx.Basic\n")
+        r.write("data/intake/fx-lib/manifest.jsonl", json.dumps(manifest) + "\n")
+        r.write("data/intake/fx-lib/report.json", "{}\n")
+        r.write("Tengoku/All.lean", "import Tengoku.Lib\nimport Tengoku.FxLib\n")
+        r.commit("intake fx-lib")
+
+    BOT = {"PR_ACTOR": "tengoku-bot", "TENGOKU_BOT": "tengoku-bot"}
+
+    def test_a_bundle_from_the_factory_is_class_intake_and_passes(self):
+        r = self.repo()
+        self.bundle(r)
+        rc, out = r.gate("classify.py", env=self.BOT)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("class=intake", out)
+        rc, out = r.gate("intake_check.py")
+        self.assertEqual(rc, 0, out)
+        self.assertIn("intake ok: fx-lib: 1 modules, 1 theorems", out)
+
+    def test_only_the_factory_account_may_send_one(self):
+        r = self.repo()
+        self.bundle(r)
+        rc, out = r.gate("classify.py", env={"PR_ACTOR": "someone", "TENGOKU_BOT": "tengoku-bot"})
+        self.assertNotEqual(rc, 0)
+        self.assertIn("factory's account", out)
+
+    def test_an_intake_pr_is_nothing_but_the_bundle(self):
+        r = self.repo()
+        self.bundle(r)
+        r.write("scripts/x.py", "print(2)\n")
+        r.commit("and a script")
+        rc, out = r.gate("classify.py", env=self.BOT)
+        self.assertNotEqual(rc, 0)
+        self.assertIn("nothing else", out)
+
+    def test_code_that_runs_while_compiling_fails_the_lint(self):
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + '\n#eval IO.println "x"\n')
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("no # commands", out)
+
+    def test_an_import_outside_the_tree_fails(self):
+        r = self.repo()
+        self.bundle(r, mod="import Mathlib.Data.Nat.Basic\n" + self.MOD)
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("not the tree", out)
+
+    def test_notation_needs_the_proposed_lint(self):
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + '\nnotation "ℓ" => 1\n')
+        self.assertNotEqual(r.gate("intake_check.py")[0], 0)
+        rc, out = r.gate("intake_check.py", "main", "pr", "--lint", "proposed")
+        self.assertEqual(rc, 0, out)
+
+    def test_the_manifest_must_name_a_module_of_the_pr_and_the_trees_toolchain(self):
+        r = self.repo()
+        self.bundle(r, module="Tengoku.FxLib.Other")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("not a file of this PR", out)
+        r2 = self.repo()
+        self.bundle(r2, toolchain="leanprover/lean4:v4.29.1")
+        self.assertIn("toolchain", r2.gate("intake_check.py")[1])
+
+    def test_all_lean_may_gain_one_line_only(self):
+        r = self.repo()
+        self.bundle(r)
+        r.write("Tengoku/All.lean", "import Tengoku.FxLib\n")  # drops Lib's line
+        r.commit("tamper")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("All.lean", out)
+
+    def test_existing_files_are_never_rewritten(self):
+        r = self.repo()
+        self.bundle(r)
+        r.write("Tengoku/Lib/Basic.lean", "theorem Lib.old : 1 + 1 = 2 := by decide\n")
+        r.commit("rewrite an old module")
+        rc, out = r.gate("classify.py", env=self.BOT)
+        self.assertNotEqual(rc, 0)  # a record library's module is not part of this bundle: multi-purpose
+
+    def test_a_library_already_in_the_tree_is_not_intaken_again(self):
+        r = self.repo()  # base has Tengoku/Lib/: every new file under it is status A, a duplicate import line is still one added line
+        r.write("Tengoku/Lib/Extra.lean", self.MOD)
+        manifest = {
+            "name": "Fx.good",
+            "statement": "theorem good : 1 + 1 = 2",
+            "module": "Tengoku.Lib.Extra",
+            "library": "lib",
+            "toolchain": "leanprover/lean4:v4.34.0-rc2",
+        }
+        r.write("data/intake/lib/manifest.jsonl", json.dumps(manifest) + "\n")
+        r.write("Tengoku/All.lean", "import Tengoku.Lib\nimport Tengoku.Lib\n")
+        r.commit("add to an existing library")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("already in the tree", out)
+
+    def test_the_archive_member_is_the_blobs_own_bytes(self):
+        r = self.repo()
+        self.bundle(r)
+        (r.dir / "Tengoku/FxLib/Fx/Basic.lean").write_bytes(self.MOD.replace("\n", "\r\n").encode())  # CRLF survives
+        r.commit("crlf")
+        tar = Path(tempfile.mkdtemp()) / "bundle.tar"
+        rc, out = r.gate("intake_check.py", "main", "pr", "--tar", str(tar))
+        self.assertEqual(rc, 0, out)
+        with tarfile.open(tar) as t:
+            self.assertEqual(t.extractfile("Tengoku/FxLib/Fx/Basic.lean").read(), self.MOD.replace("\n", "\r\n").encode())
+
+    def test_a_module_that_is_not_utf8_fails_cleanly(self):
+        r = self.repo()
+        self.bundle(r)
+        (r.dir / "Tengoku/FxLib/Fx/Basic.lean").write_bytes(b"theorem x : True := trivial -- \xff\n")
+        r.commit("not utf-8")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("not valid UTF-8", out)
+
+    def test_the_queues_content_lint_follows_the_intake_lint_policy(self):
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + '\nnotation "ℓ" => 1\n')
+        rc, out = r.gate("lint_banked.py")
+        self.assertNotEqual(rc, 0)  # strict: a notation command is not allowed anywhere
+        self.assertIn("notation", out)
+        rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
+        self.assertEqual(rc, 0, out)
+        # a sibling whose name merely starts like the bundle's root file is not the bundle's
+        r.write("Tengoku/FxLib.leanExtra.lean", 'notation "ℓ" => 1\n')
+        r.commit("a sibling of the root file")
+        rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
+        self.assertNotEqual(rc, 0)
+        self.assertIn("Tengoku/FxLib.leanExtra.lean", out)
+        r.git("reset", "-q", "--hard", "HEAD~1")
+        # and only inside the bundle's own modules: a notation in any other module of the tree is still refused
+        r.write("Tengoku/Lib/Basic.lean", 'theorem Lib.old : 1 + 1 = 2 := rfl\nnotation "ℓ" => 1\n')
+        r.commit("a notation in an older library")
+        rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
+        self.assertNotEqual(rc, 0)
+        self.assertIn("Tengoku/Lib/Basic.lean", out)
+
+    def test_the_reducibility_attributes_are_inert(self):
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + "\n@[implicit_reducible] def Fx.one : Nat := 1\n")
+        rc, out = r.gate("intake_check.py")
+        self.assertEqual(rc, 0, out)
+
+    def test_a_manifest_that_is_not_made_of_objects_fails_with_a_message(self):
+        r = self.repo()
+        self.bundle(r)
+        good = json.loads((r.dir / "data/intake/fx-lib/manifest.jsonl").read_text())
+        rows = [[1, 2], {**good, "module": 5}, {**good, "name": ["x"]}, "text"]
+        (r.dir / "data/intake/fx-lib/manifest.jsonl").write_text("".join(json.dumps(x) + "\n" for x in rows))
+        r.commit("odd manifest")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertNotIn("Traceback", out)
+        self.assertIn("not a JSON object", out)
+
+    def test_a_tree_command_written_indented_is_still_refused(self):
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + "\n  theorem_wanted foo : True\n")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("theorem_wanted", out)
+
+    def test_the_rebuilt_archive_is_the_factorys_archive(self):
+        r = self.repo()
+        self.bundle(r)
+        tar = Path(tempfile.mkdtemp()) / "bundle.tar"
+        rc, out = r.gate("intake_check.py", "main", "pr", "--tar", str(tar))
+        self.assertEqual(rc, 0, out)
+        # what the factory does (scripts/bump/bundle_tar.py in competemath/emissary-archangel): the bundle directory as one canonical archive
+        sys.path.insert(0, str(CI))
+        import bundle_tar
+
+        d = Path(tempfile.mkdtemp())
+        for rel in ("Tengoku/FxLib/Fx/Basic.lean", "Tengoku/FxLib.lean"):
+            (d / rel).parent.mkdir(parents=True, exist_ok=True)
+            (d / rel).write_text((r.dir / rel).read_text())
+        (d / "manifest.jsonl").write_text((r.dir / "data/intake/fx-lib/manifest.jsonl").read_text())
+        (d / "report.json").write_text((r.dir / "data/intake/fx-lib/report.json").read_text())
+        out2 = Path(tempfile.mkdtemp()) / "factory.tar"
+        bundle_tar.write_tar(bundle_tar.read_dir(str(d)), str(out2))
+        self.assertEqual(tar.read_bytes(), out2.read_bytes())
+
+    def test_the_archive_is_only_written_inside_the_working_or_a_temporary_directory(self):
+        sys.path.insert(0, str(CI))
+        import bundle_tar
+
+        tmp = Path(tempfile.mkdtemp())
+        self.assertTrue(bundle_tar.write_tar({"a.txt": b"x"}, str(tmp / "ok.tar")))
+        for bad in (str(tmp / ".." / ".." / ".." / ".." / "etc" / "x.tar"), "/etc/x.tar", str(Path.home() / "x.tar")):
+            with self.assertRaises(ValueError):
+                bundle_tar.write_tar({"a.txt": b"x"}, bad)
+        link = tmp / "link"
+        link.symlink_to("/etc")
+        with self.assertRaises(ValueError):  # a symlink out of the temporary directory
+            bundle_tar.write_tar({"a.txt": b"x"}, str(link / "x.tar"))
+
+    def test_the_archive_is_the_same_bytes_on_every_machine(self):
+        sys.path.insert(0, str(CI))
+        import bundle_tar
+
+        out = Path(tempfile.mkdtemp()) / "g.tar"
+        # the same vector, the same digest, in competemath/emissary-archangel's tests: the two copies of the function must not drift
+        self.assertEqual(
+            bundle_tar.write_tar({"a.txt": b"hello\n", "dir/b.lean": b"theorem x : True := trivial\n"}, str(out)),
+            "69860ced3534fa1c7d35bcaf779a68ea88028baf4f447748b381fab33d64e100",  # pragma: allowlist secret (a digest, not a secret)
+        )
+
+
+class RecordNameTypes(unittest.TestCase):
+    """A tombstone, a tombstone_note or a credit_correction names a record: a list or a number there is an error with a message, never a traceback
+    (found by the records fuzz target: `{"tombstone_note": [...]}` raised TypeError: unhashable type)."""
+
+    def test_a_name_that_is_not_a_string_fails_with_a_message(self):
+        extra = {
+            "category": "duplicate",
+            "reason": "r",
+            "at": "2026-01-01",
+            "note": "n",
+            "see": ["Lib.old"],
+            "by": "b",
+            "credit": "Authors: x",
+            "evidence": "https://example.org",
+        }
+        for key in ("tombstone", "tombstone_note", "credit_correction"):
+            for value in (["Lib.old"], 5, {"a": 1}):
+                r = Repo()
+                r.append("data/trusted/lib.jsonl", json.dumps({key: value, **extra}) + "\n")
+                r.commit("a record name that is not a string")
+                rc, out = r.gate("validate_records.py")
+                self.assertNotEqual(rc, 0, (key, value, out))
+                self.assertNotIn("Traceback", out, (key, value))
+                self.assertIn("is the name of a record", out, (key, value))
 
 
 class QueuePlacement(unittest.TestCase):
