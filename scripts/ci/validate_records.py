@@ -120,6 +120,9 @@ for st, p in changed_files(base, head):
                     errors.append(f"{p}:{no}: tombstone missing {k}")
             if "category" in r and r["category"] not in schema["tombstone_categories"]:
                 errors.append(f"{p}:{no}: tombstone category {r['category']!r} is not one of {', '.join(schema['tombstone_categories'])}")
+            if not isinstance(r["tombstone"], str):
+                errors.append(f"{p}:{no}: tombstone is the name of a record (a string)")
+                continue
             if categories is None:
                 categories = tombstone_categories()
             first = categories.setdefault(str(r["tombstone"]), str(r.get("category", "")))
@@ -135,6 +138,9 @@ for st, p in changed_files(base, head):
             for k in schema[kind]["required"]:
                 if k not in r:
                     errors.append(f"{p}:{no}: {kind} missing {k}")
+            if not isinstance(r[kind], str):
+                errors.append(f"{p}:{no}: {kind} is the name of a record (a string)")
+                continue
             if t != "trusted":
                 errors.append(f"{p}:{no}: a {kind} goes in data/trusted/<library>.jsonl")
             if known is None:

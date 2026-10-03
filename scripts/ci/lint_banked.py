@@ -63,6 +63,11 @@ def intake_modules(base: str, head: str) -> tuple[str, ...]:
     return tuple(x for lib in libs for x in (f"Tengoku/{pascal(lib)}/", f"Tengoku/{pascal(lib)}.lean"))
 
 
+def in_intake(p: str, intake: tuple[str, ...]) -> bool:
+    """Is `p` one of the bundle's own modules: its root file exactly, or a file under its directory (never a sibling that merely starts the same)."""
+    return p in intake or any(x.endswith("/") and p.startswith(x) for x in intake)
+
+
 def check_text(label: str, text: str, allowed: set[str], notation_ok: bool = False) -> list[str]:
     out = []
     for re_, why in FORBIDDEN:
@@ -120,7 +125,7 @@ def main() -> None:
             elif p.endswith(".lean") and p.startswith(
                 "Tengoku/"
             ):  # modules only; root tool programs (TengokuExtract/TengokuAxioms) run in CI, not in the library
-                errors += lint_module(base, head, p, allowed, notation_ok=bool(intake) and p.startswith(intake))
+                errors += lint_module(base, head, p, allowed, notation_ok=in_intake(p, intake))
     if errors:
         fail("banked content lint:\n  " + "\n  ".join(errors[:20]))
     print("content lint OK")

@@ -1027,6 +1027,13 @@ class Intake(unittest.TestCase):
         self.assertIn("notation", out)
         rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
         self.assertEqual(rc, 0, out)
+        # a sibling whose name merely starts like the bundle's root file is not the bundle's
+        r.write("Tengoku/FxLib.leanExtra.lean", 'notation "ℓ" => 1\n')
+        r.commit("a sibling of the root file")
+        rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
+        self.assertNotEqual(rc, 0)
+        self.assertIn("Tengoku/FxLib.leanExtra.lean", out)
+        r.git("reset", "-q", "--hard", "HEAD~1")
         # and only inside the bundle's own modules: a notation in any other module of the tree is still refused
         r.write("Tengoku/Lib/Basic.lean", 'theorem Lib.old : 1 + 1 = 2 := rfl\nnotation "ℓ" => 1\n')
         r.commit("a notation in an older library")
@@ -1103,6 +1110,32 @@ class Intake(unittest.TestCase):
             bundle_tar.write_tar({"a.txt": b"hello\n", "dir/b.lean": b"theorem x : True := trivial\n"}, str(out)),
             "69860ced3534fa1c7d35bcaf779a68ea88028baf4f447748b381fab33d64e100",  # pragma: allowlist secret (a digest, not a secret)
         )
+
+
+class RecordNameTypes(unittest.TestCase):
+    """A tombstone, a tombstone_note or a credit_correction names a record: a list or a number there is an error with a message, never a traceback
+    (found by the records fuzz target: `{"tombstone_note": [...]}` raised TypeError: unhashable type)."""
+
+    def test_a_name_that_is_not_a_string_fails_with_a_message(self):
+        extra = {
+            "category": "duplicate",
+            "reason": "r",
+            "at": "2026-01-01",
+            "note": "n",
+            "see": ["Lib.old"],
+            "by": "b",
+            "credit": "Authors: x",
+            "evidence": "https://example.org",
+        }
+        for key in ("tombstone", "tombstone_note", "credit_correction"):
+            for value in (["Lib.old"], 5, {"a": 1}):
+                r = Repo()
+                r.append("data/trusted/lib.jsonl", json.dumps({key: value, **extra}) + "\n")
+                r.commit("a record name that is not a string")
+                rc, out = r.gate("validate_records.py")
+                self.assertNotEqual(rc, 0, (key, value, out))
+                self.assertNotIn("Traceback", out, (key, value))
+                self.assertIn("is the name of a record", out, (key, value))
 
 
 class QueuePlacement(unittest.TestCase):
