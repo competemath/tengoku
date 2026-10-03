@@ -1,0 +1,13 @@
+{
+ "library": "imoshortlist",
+ "lint_mode": "strict",
+ "modules_in_bundle": 0,
+ "modules_dropped": 0,
+ "dropped": {},
+ "theorems": 0,
+ "passed_total": 0,
+ "left_out": {},
+ "kept_constants": 0,
+ "stripped_attributes": {},
+ "lint_cost": {}
+}
