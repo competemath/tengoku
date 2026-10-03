@@ -58,6 +58,16 @@ jobs:
       complete: ${{ steps.build.outputs.complete }}
       stale: ${{ steps.guard.outputs.stale }}
     steps:
+      # The two counters bound the build's own re-dispatches (the relaunch job compares them numerically), so a
+      # manual dispatch must pass whole numbers inside the limits: -100 would otherwise allow 105 more builds.
+      - name: Reject out-of-range continuation counters
+        env:
+          RESUMED: ${{ github.event.inputs.resumed || '0' }}
+          RETRIED: ${{ github.event.inputs.retried || '0' }}
+        run: |
+          [[ "$RESUMED" =~ ^[0-9]+$ && "$RETRIED" =~ ^[0-9]+$ ]] || { echo "::error::resumed and retried must be whole numbers"; exit 1; }
+          (( 10#$RESUMED <= 5 && 10#$RETRIED <= 2 )) || { echo "::error::resumed is at most 5 and retried at most 2"; exit 1; }
+
       # Full history, no file contents: `cache.sh get` picks the newest cache that is an ANCESTOR of this
       # commit and `put` keeps a top-up that is AHEAD of it; a depth-1 clone can answer neither once main
       # has moved since the last cache (the seed step silently fell back to the Actions cache for days).
