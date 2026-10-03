@@ -1040,6 +1040,25 @@ class Intake(unittest.TestCase):
         rc, out = r.gate("intake_check.py")
         self.assertEqual(rc, 0, out)
 
+    def test_a_manifest_that_is_not_made_of_objects_fails_with_a_message(self):
+        r = self.repo()
+        self.bundle(r)
+        good = json.loads((r.dir / "data/intake/fx-lib/manifest.jsonl").read_text())
+        rows = [[1, 2], {**good, "module": 5}, {**good, "name": ["x"]}, "text"]
+        (r.dir / "data/intake/fx-lib/manifest.jsonl").write_text("".join(json.dumps(x) + "\n" for x in rows))
+        r.commit("odd manifest")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertNotIn("Traceback", out)
+        self.assertIn("not a JSON object", out)
+
+    def test_a_tree_command_written_indented_is_still_refused(self):
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + "\n  theorem_wanted foo : True\n")
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("theorem_wanted", out)
+
     def test_the_rebuilt_archive_is_the_factorys_archive(self):
         r = self.repo()
         self.bundle(r)

@@ -16,6 +16,19 @@ import sys
 from _git import added_lines, changed_files, fail, load_schema, match, pascal
 
 NOTATION = "syntax/macro/elab/notation declarations"
+SYNTAX_COMMANDS = [
+    "macro",
+    "macro_rules",
+    "syntax",
+    "elab",
+    "elab_rules",
+    "declare_syntax_cat",
+    "notation3?",
+    "infixl?",
+    "infixr",
+    "prefix",
+    "postfix",
+]
 FORBIDDEN = [
     (re.compile(r"^\s*import\b", re.M), "import (the generator supplies imports)"),
     (re.compile(r"#eval\b"), "#eval"),
@@ -30,10 +43,7 @@ FORBIDDEN = [
     ),
     (re.compile(r"^\s*(unsafe|partial)\s+(def|theorem|abbrev|instance|opaque)", re.M), "unsafe/partial definitions"),
     (
-        re.compile(
-            r"^\s*(@\[[^\]]*\]\s*)*(scoped\s+|local\s+)?(macro|macro_rules|syntax|elab|elab_rules|declare_syntax_cat|notation3?|infixl?|infixr|prefix|postfix)\b",
-            re.M,
-        ),
+        re.compile(r"^\s*(@\[[^\]]*\]\s*)*(scoped\s+|local\s+)?(" + "|".join(SYNTAX_COMMANDS) + r")\b", re.M),
         NOTATION,
     ),
     (re.compile(r"\bnative_decide\b"), "native_decide (trusts the compiler)"),
@@ -66,6 +76,36 @@ def check_text(label: str, text: str, allowed: set[str], notation_ok: bool = Fal
     return out
 
 
+RECORD_FILES = [
+    "data/tentative/*.jsonl",
+    "data/staging/*.jsonl",
+    "data/trusted/*.jsonl",
+    "data/tentative/*/*.jsonl",
+    "data/staging/*/*.jsonl",
+]
+
+
+def lint_record_file(base: str, head: str, p: str, allowed: set[str]) -> list[str]:
+    """The lines a PR adds to a records file."""
+    errors = []
+    for no, text in added_lines(base, head, p):
+        try:
+            r = json.loads(text)
+        except Exception:
+            continue
+        if not isinstance(r, dict) or "tombstone" in r:  # not an object: validate_records.py refuses it
+            continue
+        body = "\n".join(str(r.get(k, "")) for k in ("context", "statement", "proof"))
+        errors += check_text(f"{p}:{no} ({r.get('name')})", body, allowed)
+    return errors
+
+
+def lint_module(base: str, head: str, p: str, allowed: set[str], notation_ok: bool) -> list[str]:
+    """The lines a PR adds to a module. `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one."""
+    added = "\n".join(t for _, t in added_lines(base, head, p) if not re.match(r"^\s*import\b", t))
+    return check_text(p, added, allowed, notation_ok=notation_ok)
+
+
 def main() -> None:
     allowed = set(load_schema("allowed-options.json")["allowed"])
     errors = []
@@ -74,36 +114,13 @@ def main() -> None:
     else:
         base, head = sys.argv[1], sys.argv[2]
         intake = intake_modules(base, head)
-        for st, p in changed_files(base, head):
-            if match(
-                p,
-                [
-                    "data/tentative/*.jsonl",
-                    "data/staging/*.jsonl",
-                    "data/trusted/*.jsonl",
-                    "data/tentative/*/*.jsonl",
-                    "data/staging/*/*.jsonl",
-                ],
-            ):
-                for no, text in added_lines(base, head, p):
-                    try:
-                        r = json.loads(text)
-                    except Exception:
-                        continue
-                    if not isinstance(r, dict) or "tombstone" in r:  # not an object: validate_records.py refuses it
-                        continue
-                    body = "\n".join(str(r.get(k, "")) for k in ("context", "statement", "proof"))
-                    errors += check_text(f"{p}:{no} ({r.get('name')})", body, allowed)
+        for _, p in changed_files(base, head):
+            if match(p, RECORD_FILES):
+                errors += lint_record_file(base, head, p, allowed)
             elif p.endswith(".lean") and p.startswith(
                 "Tengoku/"
             ):  # modules only; root tool programs (TengokuExtract/TengokuAxioms) run in CI, not in the library
-                # `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one.
-                errors += check_text(
-                    p,
-                    "\n".join(t for _, t in added_lines(base, head, p) if not re.match(r"^\s*import\b", t)),
-                    allowed,
-                    notation_ok=p.startswith(intake) if intake else False,
-                )
+                errors += lint_module(base, head, p, allowed, notation_ok=bool(intake) and p.startswith(intake))
     if errors:
         fail("banked content lint:\n  " + "\n  ".join(errors[:20]))
     print("content lint OK")

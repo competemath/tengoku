@@ -36,7 +36,8 @@ tar_out = args[args.index("--tar") + 1] if "--tar" in args else ""
 MAX_FILES, MAX_BYTES = 20000, 400 * 1024 * 1024
 ALL = "Tengoku/All.lean"
 NOTATION_OK = re.compile(r"`(?:notation3?|infix[lr]?|prefix|postfix|scoped|local)`")
-HEADER = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s+(?:all\s+)?(\S+)\s*$|^\s*(?:module|prelude)\s*$")
+IMPORT_LINE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s+(?:all\s+)?(\S+)\s*$")
+MODULE_LINE = re.compile(r"^\s*(?:module|prelude)\s*$")
 TREE_IMPORT = re.compile(r"(?:Tengoku|Lean|Std|Init)(?:\.|$)")
 
 files = changed_files(base, head)
@@ -98,6 +99,9 @@ for tier in ("trusted", "staging", "tentative"):
                 existing.add(m.group(1))
 for i, r in enumerate(manifest, 1):
     where = f"manifest line {i}"
+    if not isinstance(r, dict):
+        errors.append(f"{where}: not a JSON object")
+        continue
     for k in ("name", "statement", "module", "library", "toolchain"):
         if not isinstance(r.get(k), str) or not r[k].strip():
             errors.append(f"{where}: `{k}` missing")
@@ -105,16 +109,15 @@ for i, r in enumerate(manifest, 1):
         errors.append(f"{where}: library {r.get('library')!r}, expected {lib!r}")
     if r.get("toolchain") != toolchain:
         errors.append(f"{where}: toolchain {r.get('toolchain')!r}, the tree is on {toolchain!r}")
-    mod = r.get("module", "")
-    if f"{mod.replace('.', '/')}.lean" not in modules:
+    mod = r.get("module")
+    if not isinstance(mod, str) or f"{mod.replace('.', '/')}.lean" not in modules:
         errors.append(f"{where}: module {mod} is not a file of this PR")
-    if r.get("name") in seen:
-        errors.append(f"{where}: {r.get('name')} twice")
-    seen.add(r.get("name", ""))
-    if r.get("name") in existing:
-        errors.append(
-            f"{where}: {r.get('name')} is already a record of the tree (the generator renames clashes; a bundle must not carry one)"
-        )
+    name = r.get("name") if isinstance(r.get("name"), str) else ""  # a non-string name was reported above; it is never hashed
+    if name in seen:
+        errors.append(f"{where}: {name} twice")
+    seen.add(name)
+    if name in existing:
+        errors.append(f"{where}: {name} is already a record of the tree (the generator renames clashes; a bundle must not carry one)")
 
 # lint
 allowed_options = set(json.loads((ROOT / "schemas" / "allowed-options.json").read_text())["allowed"])
@@ -128,13 +131,10 @@ for p in sorted(p for _, p in files if p.endswith(".lean") and p != ALL):
     total += len(text)
     body = []
     for ln in text.split("\n"):
-        m = HEADER.match(ln)
-        if m:
-            if m.group(1) and not TREE_IMPORT.match(m.group(1)):
-                errors.append(f"{p}: imports {m.group(1)}, which is not the tree")
-            body.append("")
-        else:
-            body.append(ln)
+        m = IMPORT_LINE.match(ln)
+        if m and not TREE_IMPORT.match(m.group(1)):
+            errors.append(f"{p}: imports {m.group(1)}, which is not the tree")
+        body.append("" if m or MODULE_LINE.match(ln) else ln)
     vs = violations("\n".join(body), allowed_options)
     if lint_mode == "proposed":
         vs = [v for v in vs if not NOTATION_OK.search(v)]

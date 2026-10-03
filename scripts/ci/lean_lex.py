@@ -19,7 +19,9 @@ def _blank(s: str) -> str:
     return "".join("\n" if ch == "\n" else " " for ch in s)
 
 
-def _hole_end(text: str, j: int) -> int:
+def _hole_end(
+    text: str, j: int
+) -> int:  # NOSONAR: a lexer is a state machine; its fuzz target (scripts/ci/fuzz) guards it, a split would not make it easier to check
     """The index just past the `}` that closes the interpolation hole whose `{` is at `j`. Braces count only in code:
     strings (interpolated ones included), character literals and comments inside the hole are stepped over whole."""
     depth, k, n = 1, j + 1, len(text)
@@ -80,7 +82,7 @@ def _interpolated(text: str, i: int) -> tuple[str, int]:
     return "".join(out), j + 1
 
 
-def code_only(text: str) -> str:
+def code_only(text: str) -> str:  # NOSONAR: the same state machine, see _hole_end
     out: list[str] = []
     i, n, depth = 0, len(text), 0
     while i < n:
