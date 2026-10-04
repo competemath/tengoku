@@ -195,9 +195,11 @@ jobs:
           touched="$(git diff --name-only "${{ github.event.merge_group.base_sha }}...HEAD" -- Tengoku/ | grep -v '/_candidate_' || true)"
           if [ -z "$touched" ]; then echo "no derived files in this group"; exit 0; fi
           python3 scripts/ci/queue_targets.py "${{ github.event.merge_group.base_sha }}" HEAD --regenerate 2>>build.log
-          # shellcheck disable=SC2086  # touched is a newline-separated path list
-          if [ -n "$(git status --porcelain -- $touched)" ]; then
-            git --no-pager diff --stat -- $touched | tee -a build.log
+          # xargs splits a long path list over several runs: the move of the seed (docs/pr-classes.md, section 5) touches ~20,000 paths,
+          # more than one command line holds
+          paths() { printf '%s\n' "$touched" | tr '\n' '\0' | xargs -0 git "$@" --; }
+          if [ -n "$(paths status --porcelain)" ]; then
+            paths --no-pager diff --stat | tee -a build.log
             echo "error: regenerated derived files differ from the PR (hand-edited generated file?)" | tee -a build.log; exit 1
           fi
       # Everything above compiled scratch modules. Now the tree goes back to the group's own commit and the
