@@ -256,7 +256,7 @@ def apply(root: Path, libs: set[str]) -> Counter:
     for f in library_files(tree, namespaces):
         done["library modules rewritten"] += rewrite_file(f, lambda t: rewrite_header(t, library_name(roots)))
     if (root / ROOT_FILE).is_file():
-        done["root rewritten"] += rewrite_file(root / "Tengoku.lean", lambda t: rewrite_header(t, seeded_name(roots)))
+        done["root rewritten"] += rewrite_file(root / ROOT_FILE, lambda t: rewrite_header(t, seeded_name(roots)))
     done["documents rewritten"] = rewrite_docs(root, roots)
     return done
 
@@ -264,7 +264,7 @@ def apply(root: Path, libs: set[str]) -> Counter:
 def module_index(root: Path) -> dict[str, Path]:
     mods = {".".join(p.relative_to(root).with_suffix("").parts): p for p in (root / "Tengoku").rglob(LEAN_GLOB)}
     if (root / ROOT_FILE).is_file():
-        mods["Tengoku"] = root / "Tengoku.lean"
+        mods["Tengoku"] = root / ROOT_FILE
     return mods
 
 
