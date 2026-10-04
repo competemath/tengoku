@@ -52,8 +52,13 @@ class ReservedKeys(unittest.TestCase):
         self.assertIn("reserved", self.refused(promote.main, "--library", "seed"))
 
     def test_the_promote_loop_stops_instead_of_adding_every_path_under_tengoku(self):
+        # a copy of the scripts: the loop acts on the checkout it is in
+        shutil.copytree(SCRIPTS, self.out / "scripts", ignore=shutil.ignore_patterns("tests", "ci", "__pycache__"))
         r = subprocess.run(
-            ["bash", str(SCRIPTS / "promote-loop.sh"), str(self.out / "corpus"), "native"], capture_output=True, text=True, timeout=120
+            ["bash", str(self.out / "scripts" / "promote-loop.sh"), str(self.out / "corpus"), "native"],
+            capture_output=True,
+            text=True,
+            timeout=30,
         )
         self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
         self.assertIn("reserved", r.stderr)
