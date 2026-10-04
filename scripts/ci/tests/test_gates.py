@@ -1782,3 +1782,14 @@ class Restructure(unittest.TestCase):
         rc, out = r.gate("credits.py", "main", "pr", "--restructure")
         self.assertEqual(rc, 1)
         self.assertIn("Authors: Mathlib", out)
+
+    def test_the_moved_seed_is_not_linted_but_a_library_still_is(self):
+        odd = "module\n\nset_option tengoku.fake true\n"
+        r = self.moved({"Tengoku/Seed/Std.lean": odd})
+        rc, out = r.gate("lint_banked.py")
+        self.assertEqual(rc, 0, out)  # upstream code: recomputed by restructure_check.py, not banked content
+        r.write("Tengoku/Lib/Basic.lean", "module\n\npublic import Tengoku\n\nset_option tengoku.fake true\n")
+        r.commit("a library module with an option off the allow-list")
+        rc, out = r.gate("lint_banked.py")
+        self.assertEqual(rc, 1)
+        self.assertIn("Tengoku/Lib/Basic.lean", out)
