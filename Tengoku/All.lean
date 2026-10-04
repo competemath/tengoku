@@ -6,4 +6,5 @@ import Tengoku.Compfiles
 import Tengoku.Imoshortlist
 import Tengoku.EquationalTheories
 import Tengoku.Physlib
+import Tengoku.BrownianMotion
 import Tengoku.Tautology
