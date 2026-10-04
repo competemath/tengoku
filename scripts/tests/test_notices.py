@@ -1,4 +1,5 @@
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -134,7 +135,7 @@ class Tree(unittest.TestCase):
 
 
 class SeedStamps(unittest.TestCase):
-    """scripts/seed.py over fake packages writes the notices itself, so a re-seed keeps them."""
+    """scripts/seed.py over fake packages writes the notices itself (and the Seed layout), so a re-seed keeps them."""
 
     def test_reseed(self):
         sys.path.insert(0, str(SCRIPTS))
@@ -162,19 +163,83 @@ class SeedStamps(unittest.TestCase):
             [sys.executable, str(SCRIPTS / "seed.py"), "--from", str(pkgs), "--out", str(out)], capture_output=True, text=True
         )
         self.assertEqual(r.returncode, 0, r.stderr)
-        a = out / "Tengoku" / "A.lean"
+        a = out / "Tengoku" / "Seed" / "A.lean"
         self.assertIn("Changed for Tengoku: copied from Mathlib (example/mathlib at 0123456789ab); import paths rewritten.", a.read_text())
         self.assertTrue(
             a.read_text().startswith("/-\nCopyright (c) 2024 Someone.\nReleased under Apache 2.0 license.\nChanged for Tengoku")
         )
-        self.assertNotIn("Changed for Tengoku", (out / "Tengoku" / "B.lean").read_text())  # unchanged by the seed
+        self.assertNotIn("Changed for Tengoku", (out / "Tengoku" / "Seed" / "B.lean").read_text())  # unchanged by the seed
         root = (out / "Tengoku.lean").read_text()
         self.assertEqual(root.count("Changed for Tengoku"), 1)
         self.assertIn(notices.ROOT_CHANGE, root)
-        self.assertIn("copied from Batteries (example/batteries", (out / "Tengoku" / "Std" / "A.lean").read_text())
+        self.assertIn("copied from Batteries (example/batteries", (out / "Tengoku" / "Seed" / "Std" / "A.lean").read_text())
         # the CLI agrees with what the seed wrote
         c = subprocess.run([sys.executable, str(SCRIPTS / "notices.py"), "--root", str(out), "--check"], capture_output=True, text=True)
         self.assertEqual(c.returncode, 0, c.stdout)
+
+
+class SeedLayoutTree(Tree):
+    """The notices CLI over the tree after the seed moved under Tengoku/Seed/: the same notices, the same scope."""
+
+    def setUp(self):
+        self.root = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.root)
+        r = self.root
+        write(
+            r,
+            "SEED.md",
+            "| package | origin | rev | mapped to |\n|---|---|---|---|\n"
+            "| mathlib | https://github.com/leanprover-community/mathlib4.git | 85e3a25e006c35636f0e53b0e9296caca2685bc0 | `Tengoku.Seed` |\n"  # pragma: allowlist secret
+            "| batteries | https://github.com/leanprover-community/batteries | d54dddc581e08be364c278052863524bff7a99a9 | `Tengoku.Seed.Std` |\n",  # pragma: allowlist secret
+        )
+        write(r, "data/trusted/equational-theories.jsonl", "{}\n")
+        self.root_file = write(
+            r,
+            "Tengoku.lean",
+            "-- Tengoku: one self-contained tree.\nmodule\n\npublic import Tengoku.Seed.Algebra.X\npublic import Tengoku.Seed.Std\n",
+        )
+        self.algebra = write(r, "Tengoku/Seed/Algebra/X.lean", HEADER.replace("Tengoku.Logic", "Tengoku.Seed.Logic"))
+        self.std = write(r, "Tengoku/Seed/Std/Z.lean", "module\n\npublic import Tengoku.Seed.Std.Y\n")
+        self.plain = write(r, "Tengoku/Seed/Data/Plain.lean", "/-\nCopyright (c) 2020 A.\n-/\nmodule\n\nimport Init\n")
+        self.kept = write(r, "Tengoku/EquationalTheories/A.lean", "import Tengoku\n")
+        self.all = write(r, "Tengoku/All.lean", "import Tengoku\n")
+
+    def test_only_the_seed_folder_and_the_root_are_seeded(self):
+        stray = write(self.root, "Tengoku/Stray/B.lean", "import Tengoku.Seed.Algebra.X\n")  # neither seed nor a registered library
+        self.assertEqual(
+            sorted(p.relative_to(self.root).as_posix() for p in notices.seeded_files(self.root)),
+            ["Tengoku.lean", "Tengoku/Seed/Algebra/X.lean", "Tengoku/Seed/Data/Plain.lean", "Tengoku/Seed/Std/Z.lean"],
+        )
+        self.run_cli()
+        self.assertNotIn("Changed for Tengoku", stray.read_text())
+
+    def test_the_notice_names_the_package_of_the_module(self):
+        self.run_cli()
+        self.assertIn("copied from Mathlib", self.algebra.read_text())
+        self.assertIn("copied from Batteries", self.std.read_text())
+
+
+class PackageOf(unittest.TestCase):
+    TABLE = [
+        ("Tengoku", "Tengoku", "mathlib"),
+        ("Tengoku.Algebra.X", "Tengoku.Seed.Algebra.X", "mathlib"),
+        ("Tengoku.Tactic.Simp", "Tengoku.Seed.Tactic.Simp", "mathlib"),
+        ("Tengoku.Meta.Other", "Tengoku.Seed.Meta.Other", "mathlib"),
+        ("Tengoku.Std", "Tengoku.Seed.Std", "batteries"),
+        ("Tengoku.Std.Data.List", "Tengoku.Seed.Std.Data.List", "batteries"),
+        ("Tengoku.Tactic.Aesop.Foo", "Tengoku.Seed.Tactic.Aesop.Foo", "aesop"),
+        ("Tengoku.Meta.Qq.Macro", "Tengoku.Seed.Meta.Qq.Macro", "Qq"),
+        ("Tengoku.Widgets.Component.Basic", "Tengoku.Seed.Widgets.Component.Basic", "proofwidgets"),
+        ("Tengoku.Testing.Random.Gen", "Tengoku.Seed.Testing.Random.Gen", "plausible"),
+        ("Tengoku.Search.LeanSearchClient", "Tengoku.Seed.Search.LeanSearchClient", "LeanSearchClient"),
+        ("Tengoku.Meta.ImportGraph.Main", "Tengoku.Seed.Meta.ImportGraph.Main", "importGraph"),
+        ("Tengoku.Meta.Cli", "Tengoku.Seed.Meta.Cli", "Cli"),
+    ]
+
+    def test_either_layout_finds_the_package(self):
+        for old, new, pkg in self.TABLE:
+            self.assertEqual(notices.package_of(old), pkg, old)
+            self.assertEqual(notices.package_of(new), pkg, new)
 
 
 if __name__ == "__main__":

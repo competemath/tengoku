@@ -4,9 +4,10 @@
 Tengoku is one self-contained tree: a single library root `Tengoku/`, no Lake
 dependencies. Seeding folds the SOURCE files of the packages that make up a
 Lean environment (Mathlib and everything its build pulled in) into that tree
-under topic-based paths, and rewrites every `import` accordingly. Declaration
-names are untouched — `Nat.add_comm` stays `Nat.add_comm`; only module paths
-change. Provenance is recorded in SEED.md.
+under topic-based paths below `Tengoku/Seed/`, and rewrites every `import`
+accordingly. Declaration names are untouched — `Nat.add_comm` stays
+`Nat.add_comm`; only module paths change. The root aggregator stays
+`Tengoku.lean`. Provenance is recorded in SEED.md.
 
     python3 scripts/seed.py --from ~/emissary-gate2/.lake/packages --out .
 
@@ -23,6 +24,10 @@ from pathlib import Path
 
 from notices import ROOT_CHANGE, describe, notice, stamp
 
+# Everything seeded lives under Tengoku/Seed/ (module prefix SEED). Mathlib's root aggregator is the tree's own root, Tengoku.lean:
+# `import Mathlib` becomes `import Tengoku`, while `Mathlib.X` becomes `Tengoku.Seed.X`.
+SEED = "Tengoku.Seed"
+ROOT_MODULE = "Tengoku"
 # Library keys that cannot be generated: Tengoku/Seed/ and Tengoku/Native/ (kept for a later folder) are not a library's.
 # scripts/ci/_git.py keeps the same list for the gates; a test holds the two together.
 RESERVED = ("seed", "native")
@@ -35,26 +40,28 @@ RESERVED = ("seed", "native")
 SKIP_SUBTREES = {"proofwidgets": ("ProofWidgets/Demos",)}
 
 PACKAGES = {
-    "mathlib": ("Mathlib", "Mathlib", "Tengoku"),
-    "batteries": ("Batteries", "Batteries", "Tengoku.Std"),
-    "aesop": ("Aesop", "Aesop", "Tengoku.Tactic.Aesop"),
-    "Qq": ("Qq", "Qq", "Tengoku.Meta.Qq"),
-    "proofwidgets": ("ProofWidgets", "ProofWidgets", "Tengoku.Widgets"),
+    "mathlib": ("Mathlib", "Mathlib", "Tengoku.Seed"),
+    "batteries": ("Batteries", "Batteries", "Tengoku.Seed.Std"),
+    "aesop": ("Aesop", "Aesop", "Tengoku.Seed.Tactic.Aesop"),
+    "Qq": ("Qq", "Qq", "Tengoku.Seed.Meta.Qq"),
+    "proofwidgets": ("ProofWidgets", "ProofWidgets", "Tengoku.Seed.Widgets"),
     # Mathlib's own Testing/Plausible/* extends this engine and shares leaf
     # names (Functions, Sampleable, Testable), so the engine lives one topic
     # over: Testing/Random.
-    "plausible": ("Plausible", "Plausible", "Tengoku.Testing.Random"),
-    "LeanSearchClient": ("LeanSearchClient", "LeanSearchClient", "Tengoku.Search.LeanSearchClient"),
-    "importGraph": ("ImportGraph", "ImportGraph", "Tengoku.Meta.ImportGraph"),
-    "Cli": ("Cli", "Cli", "Tengoku.Meta.Cli"),
+    "plausible": ("Plausible", "Plausible", "Tengoku.Seed.Testing.Random"),
+    "LeanSearchClient": ("LeanSearchClient", "LeanSearchClient", "Tengoku.Seed.Search.LeanSearchClient"),
+    "importGraph": ("ImportGraph", "ImportGraph", "Tengoku.Seed.Meta.ImportGraph"),
+    "Cli": ("Cli", "Cli", "Tengoku.Seed.Meta.Cli"),
 }
 # Non-.lean assets a package's sources read at compile time (include_str).
+# `include_str ".."/…` is relative to the including module's directory, so each asset sits where those `..`s lead from the seed.
 ASSETS = {
-    "proofwidgets": [("widget/js", "Tengoku/widget/js")],
+    # Widgets/Component/*.lean read `../../widget/js/…`: Tengoku/Seed/widget/js
+    "proofwidgets": [("widget/js", "Tengoku/Seed/widget/js")],
     # Mathlib's Tactic/Widget modules `include_str` files from `widget/src/…`
     # three levels above themselves — the PACKAGE root, which in the tree is
-    # the repository root.
-    "mathlib": [("widget", "widget")],
+    # Tengoku/ (they are Tengoku/Seed/Tactic/Widget/*.lean).
+    "mathlib": [("widget", "Tengoku/widget")],
 }
 KEEP = {"EquationalTheories", "CompeteMath"}  # subtrees that are not seed
 
@@ -64,9 +71,27 @@ KEEP = {"EquationalTheories", "CompeteMath"}  # subtrees that are not seed
 IMPORT_RE = re.compile(r"^(\s*(?:(?:public|private|meta)\s+)*import\s+(?:all\s+)?)([A-Za-z_][\w.«»]*)(.*)$", re.M)
 
 
+def seed_layout(root: Path) -> bool:
+    """Does the tree at `root` keep its seed under Tengoku/Seed/ (what this script writes), not as topic folders straight under Tengoku/?"""
+    return (root / "Tengoku" / "Seed").is_dir()
+
+
+def in_layout(module: str, seed: bool) -> str:
+    """A module name as the Seed layout spells it (`Tengoku.Seed.Std`), spelled as a tree in the given layout does (`Tengoku.Std`
+    when that tree keeps its seed straight under Tengoku/)."""
+    if seed or not (module == SEED or module.startswith(SEED + ".")):
+        return module
+    return ROOT_MODULE + module[len(SEED) :]
+
+
+def root_module(mapped_root: str) -> str:
+    """The module that stands for a package's root: Mathlib's is the tree's root, the others sit under their mapped name."""
+    return ROOT_MODULE if mapped_root == SEED else mapped_root
+
+
 def module_map(root_mod: str, mapped_root: str, mod: str) -> str | None:
     if mod == root_mod:
-        return mapped_root
+        return root_module(mapped_root)
     if mod.startswith(root_mod + "."):
         return mapped_root + mod[len(root_mod) :]
     return None
@@ -120,7 +145,7 @@ def main():
         # the package's root aggregator file (Mathlib.lean, Batteries.lean, ...)
         root_file = src / pkg / f"{srcdir}.lean"
         if root_file.exists():
-            target = tree.parent / (Path(*mapped.split(".")).with_suffix(".lean"))
+            target = tree.parent / (Path(*root_module(mapped).split(".")).with_suffix(".lean"))
             if target in planned:
                 sys.exit(f"path collision on root aggregator: {target}")
             planned[target] = (pkg, root_file)
