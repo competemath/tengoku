@@ -5,6 +5,7 @@ import Tengoku.FormalMathfin
 import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Compfiles
+import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
 import Tengoku.EquationalTheories
 import Tengoku.Formalslt
