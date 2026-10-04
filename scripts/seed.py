@@ -23,6 +23,10 @@ from pathlib import Path
 
 from notices import ROOT_CHANGE, describe, notice, stamp
 
+# Library keys that cannot be generated: Tengoku/Seed/ and Tengoku/Native/ (kept for a later folder) are not a library's.
+# scripts/ci/_git.py keeps the same list for the gates; a test holds the two together.
+RESERVED = ("seed", "native")
+
 # package name -> (source root dir inside the package, module root, mapped module root)
 # Topic-based placement: Mathlib's own layout becomes the tree's layout directly;
 # its dependency packages go under topics, never under an origin name.

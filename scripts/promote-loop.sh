@@ -16,7 +16,7 @@
 set -u
 CORPUS=$1; LIB=${2:-equational-theories}; INTERVAL=${3:-300}; QUIET=${4:-300}
 ROOT=$(cd "$(dirname "$0")/.." && pwd); cd "$ROOT" || exit 1
-LIB_NS=$(python3 -c "import sys; sys.path.insert(0,'scripts'); from generate import pascal; print(pascal('$LIB'))")
+LIB_NS=$(python3 -c "import sys; sys.path.insert(0,'scripts'); from generate import pascal; print(pascal('$LIB'))") || exit 1  # a reserved key exits non-zero: an empty LIB_NS would put all of Tengoku/ in PATHS
 PATHS="data/staging data/trusted data/stats.json Tengoku/$LIB_NS Tengoku/$LIB_NS.lean Tengoku/All.lean"
 SKIP=.promote-skip
 skipped() { [ -f "$SKIP" ] && awk -v sp="$1" -v now="$(date +%s)" '$1==sp && now-$2 < 86400 {f=1} END {exit !f}' "$SKIP"; }

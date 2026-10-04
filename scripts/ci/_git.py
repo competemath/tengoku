@@ -46,8 +46,23 @@ APPEND_ONLY = [
 ]
 
 
+# Library keys that cannot exist: Tengoku/Seed/ is the seeded upstream code and Tengoku/Native/ is kept for a later folder. A library
+# there would be generated over that folder, and its prefix would make the folder "derived" here. scripts/seed.py keeps the same list
+# for the generator; a test holds the two together.
+RESERVED_KEYS = ("seed", "native")
+
+
 def _pascal(s: str) -> str:
     return "".join(w[:1].upper() + w[1:] for w in re.split(r"[-_ ]+", s) if w)
+
+
+def check_key(lib: str) -> str:
+    """`lib` as a library key, unless its folder (`Tengoku/<Pascal>/`, compared without case: some file systems have none) is a reserved one."""
+    if _pascal(lib).lower() in RESERVED_KEYS:
+        fail(
+            f"library key {lib!r}: Tengoku/{_pascal(lib)}/ is reserved, not a library's folder ({', '.join(RESERVED_KEYS)} cannot be keys)"
+        )
+    return lib
 
 
 def derived_prefixes() -> list[str]:
@@ -55,7 +70,7 @@ def derived_prefixes() -> list[str]:
     libs = {f.stem for tier in ("trusted", "staging", "tentative") for f in (ROOT / "data" / tier).glob("*.jsonl")}
     out = []
     for lib in libs:
-        ns = _pascal(lib)
+        ns = _pascal(check_key(lib))
         out += [f"Tengoku/{ns}/", f"Tengoku/{ns}.lean"]
     return out
 
@@ -240,11 +255,12 @@ def load_schema(name: str) -> dict:
 def library_of(path: str) -> str:
     """data/<tier>/<library>.jsonl → library; data/<tier>/<library>/<file>.jsonl → library."""
     parts = path.split("/")
-    return parts[2] if len(parts) == 4 else Path(path).stem
+    return check_key(parts[2] if len(parts) == 4 else Path(path).stem)
 
 
 def pascal(s: str) -> str:
     """equational-theories -> EquationalTheories (the generated library directory)."""
+    check_key(s)
     return "".join(w[:1].upper() + w[1:] for w in s.replace("_", "-").split("-") if w)
 
 

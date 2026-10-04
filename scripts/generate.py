@@ -44,7 +44,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from seed import IMPORT_RE, PACKAGES, module_map  # noqa: E402
+from seed import IMPORT_RE, PACKAGES, RESERVED, module_map  # noqa: E402
 
 # Only TRUSTED records become modules of the tree. A staging record (both
 # gates passed, module not yet proven to build) is promoted by
@@ -162,7 +162,10 @@ def strip_trailing_ends(proof: str) -> str:
 
 
 def pascal(library: str) -> str:
-    return "".join(p[:1].upper() + p[1:] for p in re.split(r"[-_ ]+", library) if p)
+    ns = "".join(p[:1].upper() + p[1:] for p in re.split(r"[-_ ]+", library) if p)
+    if ns.lower() in RESERVED:  # its directory would be the seed's: a library there deletes the seed as "no record backs it"
+        sys.exit(f"library {library!r}: Tengoku/{ns}/ is reserved, not a library's ({', '.join(RESERVED)} cannot be library keys)")
+    return ns
 
 
 def strip_corpus_attrs(text: str) -> str:
