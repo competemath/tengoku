@@ -9,7 +9,7 @@ git objects only:
   shape       one library; only its modules, its root file, its manifest and report, and ONE added line in Tengoku/All.lean; every file is
               new (a library already in the tree is not intaken again); size caps
   manifest    one JSON line per theorem: name, statement, module, library, toolchain (= lean-toolchain), module = a file of the PR, names unique
-              and not already a record of the tree
+              and not already a trusted record of the tree or a theorem of an intake bundle in it
   lint        every module passes the content allow-list (scripts/ci/allowlist.py: known-inert commands, attributes, options; no code that
               runs while compiling) after its header; the header may only import the tree (Tengoku.*) and Lean/Std/Init.
               `--lint proposed` additionally allows notation commands (notation, infix, prefix, postfix, notation3, scoped, local)
@@ -87,16 +87,18 @@ try:
 except Exception as e:  # noqa: BLE001
     manifest = []
     errors.append(f"manifest.jsonl is not JSON lines: {e}")
+# what is in the tree: the trusted records and the theorems of the intake bundles already merged. Staging and tentative records are not
+# built into the tree (the generator renames a clash when one is promoted), so a name they share with this bundle proves nothing
 existing: set[str] = set()
-for tier in ("trusted", "staging", "tentative"):
-    d = ROOT / "data" / tier
-    for f in list(d.glob("*.jsonl")) + list(d.glob("*/*.jsonl")) if d.exists() else []:
-        if f.stem == lib or f.parent.name == lib:
-            continue  # the library's own tentative records are what this bundle translates
-        for ln in f.read_text(errors="replace").splitlines():
-            m = re.search(r'"name":\s*"([^"]+)"', ln)
-            if m and tier != "tentative":
-                existing.add(m.group(1))
+tree_files = [
+    f
+    for tier in ("trusted", "intake")
+    for f in (ROOT / "data" / tier).glob("**/*.jsonl")
+    if f.stem != lib and f.parent.name != lib  # the library's own records are what this bundle translates
+]
+for f in tree_files:
+    for m in re.finditer(r'"name":\s*"([^"]+)"', f.read_text(errors="replace")):
+        existing.add(m.group(1))
 if not manifest:
     errors.append("the manifest has no theorem: a bundle that carries none is empty")
 for i, r in enumerate(manifest, 1):
@@ -121,7 +123,7 @@ for i, r in enumerate(manifest, 1):
     # a record's name is the declaration as written in its file (inside `namespace X`, `theorem foo` is stored as `foo`; `hφ₀` as `h`): a bare
     # bundle name equal to one proves nothing about the real names; only a qualified name is compared (the merge queue's build decides the rest)
     if "." in name and name in existing:
-        errors.append(f"{where}: {name} is already a record of the tree (the generator renames clashes; a bundle must not carry one)")
+        errors.append(f"{where}: {name} is already a trusted record or a bundle theorem of the tree (a bundle must not declare it again)")
 
 # lint
 allowed_options = set(json.loads((ROOT / "schemas" / "allowed-options.json").read_text())["allowed"])
