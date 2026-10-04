@@ -1767,3 +1767,18 @@ class Restructure(unittest.TestCase):
         self.assertEqual(rc, 0, out)
         self.assertIn("restructure group", out)
         self.assertNotIn("Tengoku.", out.replace("scripts/restructure.py", ""))
+
+    def test_a_credit_that_moved_with_its_file_is_not_removed(self):
+        r = self.moved()
+        rc, out = r.gate("credits.py")
+        self.assertEqual(rc, 1)  # without the flag a move looks like a removal
+        self.assertIn("Tengoku/Logic/Basic.lean", out)
+        rc, out = r.gate("credits.py", "main", "pr", "--restructure")
+        self.assertEqual(rc, 0, out)
+        self.assertIn("credits OK", out)
+
+    def test_a_credit_that_did_not_move_with_its_file_is_removed(self):
+        r = self.moved({"Tengoku/Seed/Logic/Basic.lean": "/-\n-/\ntheorem seeded : True := trivial\n"})
+        rc, out = r.gate("credits.py", "main", "pr", "--restructure")
+        self.assertEqual(rc, 1)
+        self.assertIn("Authors: Mathlib", out)
