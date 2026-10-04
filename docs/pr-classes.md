@@ -101,7 +101,9 @@ tentative or staging file whose records all come from a source no longer on the 
   exception. CODEOWNERS patterns follow gitignore rules, where `*` does not cross `/`, so `/Tengoku/*.lean`
   covers only files directly under `Tengoku/`. The seeded modules in its subfolders have no code owner.
 - A library key whose PascalCase form equals a seeded top-level directory would make that directory
-  derived; `topology` would claim `Tengoku/Topology/`. Do not register such keys.
+  derived; `topology` would claim `Tengoku/Topology/`. Do not register such keys. Once the seed has moved into `Tengoku/Seed/`
+  (section 5) the topic directories are no longer at the top, and the keys `seed` and `native` are refused by the gates
+  (`check_key` in `scripts/ci/_git.py`): those two folders are not a library's.
 - A library too big for one file is sharded as a folder: `data/<tier>/<library>/<file>.jsonl`. The validator,
   generator and promoter all read that layout. 58 flat numbered files predate the gates
   (`flt-anthropic-NNN`, `leanbridge-NNN`, `prove2me-NNN` in `data/tentative/`). Their records name the library
@@ -130,4 +132,4 @@ python3 scripts/restructure.py verify
 
 The merge queue repeats the check on the entry's base (a library that arrived meanwhile has headers the script must rewrite) and builds
 nothing for it: every module name changes, so the nightly cache build compiles the moved tree, and the services stay on the last
-complete cache until it has. The library keys `seed` and `native` are reserved for the folders `Tengoku/Seed/` and `Tengoku/Native/`.
+complete cache until it has.
