@@ -165,6 +165,20 @@ jobs:
           read -ra mods <<< "$TARGETS"
           # as few runs as possible (each imports the whole tree); candidates that clash are split apart (the script says how)
           python3 scripts/ci/axioms_check.py "${mods[@]}" 2>&1 | tee -a build.log
+      - name: Leak report (what the new libraries change for everybody else)
+        # Report only: a global instance or simp lemma that mentions nothing of its own library changes how every other library's statements
+        # elaborate in the one tree; a declaration in the root namespace is a name nothing ties to its library (a second library declaring it
+        # fails to import). It never fails the group; the numbers go to the log and the summary. (TengokuLeak.lean)
+        if: github.event_name == 'merge_group' && steps.build.outputs.targets != ''
+        shell: bash
+        env: { TARGETS: "${{ steps.build.outputs.targets }}" }
+        run: |
+          if ! lake build tengoku-leakscan 2>&1 | tail -3; then echo "::warning::tengoku-leakscan did not build; no leak report for this group"; exit 0; fi
+          read -ra mods <<< "$TARGETS"
+          args=(); for m in "${mods[@]}"; do args+=(--module "$m"); done
+          lake env .lake/build/bin/tengoku-leakscan "${args[@]}" > leakscan.txt 2>&1 || true
+          cat leakscan.txt >> build.log   # the whole report (every leak, every root-level name); the totals are its first lines
+          { echo '### Leak report'; echo '```'; head -60 leakscan.txt; echo '```'; } | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Derived files match their generator
         if: github.event_name == 'merge_group'
         run: |
