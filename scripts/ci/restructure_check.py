@@ -27,7 +27,8 @@ NEEDED = (*OWNED, "Tengoku", "NOTICE", "widget")  # what the script and its veri
 
 
 def has_seed(rev: str) -> bool:
-    return bool(run("ls-tree", "--name-only", rev, "Tengoku/Seed").strip())
+    """An unreadable revision has none: the probe fails towards "not a restructure", the stricter classes."""
+    return bool(run("ls-tree", "--name-only", rev, "Tengoku/Seed", check=False).strip())
 
 
 def is_restructure(base: str, head: str) -> bool:
