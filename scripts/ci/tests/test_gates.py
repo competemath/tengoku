@@ -453,6 +453,16 @@ class ScopeFixUnits(unittest.TestCase):
         self.assertFalse(ok("instance", "instance"))  # nothing inserted
         self.assertFalse(ok("instance : A", "local instance : B"))  # something else changed too
 
+    def test_only_global_registrations_count(self):
+        text = self.sf.mask(
+            "attribute [local instance] A.a\nattribute [-simp] B.b\nattribute [scoped instance] C.c\n"
+            "attribute [local simp, instance 100] D.d\nattribute [simp] E.e\nlocal instance f : X := x\n"
+            "@[local simp] theorem g : a = b := rfl\n@[simp, to_additive] theorem h : a = b := rfl\ninstance i : Y := y\n"
+        )
+        got = self.sf.registrations(text)
+        self.assertEqual(got["instance"], {"d", "i"})  # `local instance f` and `attribute [local instance] a` are not registrations
+        self.assertEqual(got["simp"], {"e", "h"})  # `-simp`, `local simp` (even beside a global instance) are not
+
     def test_what_a_library_registers_by_kind(self):
         text = self.sf.mask(
             "namespace A\ninstance (priority := low) foo : X := x\n@[simp] theorem s1 : a = b := rfl\n"
