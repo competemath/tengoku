@@ -56,7 +56,7 @@ jobs:
         env: { GH_TOKEN: "${{ github.token }}", CLASS: "${{ steps.c.outputs.class }}", PR: "${{ github.event.pull_request.number }}" }
         run: |
           # one class label at a time: a PR whose class changes (docs, then content) loses the old one
-          old=$(gh pr view "$PR" -R "$GITHUB_REPOSITORY" --json labels --jq '.labels[].name' | grep -xE 'content|tombstone|tooling|docs|promotion|derived|intake|scope-fix' | grep -vxF "$CLASS" | paste -sd, - || true)
+          old=$(gh pr view "$PR" -R "$GITHUB_REPOSITORY" --json labels --jq '.labels[].name' | grep -xE 'content|tombstone|tooling|docs|promotion|derived|intake|scope-fix|restructure' | grep -vxF "$CLASS" | paste -sd, - || true)
           args=(--add-label "$CLASS"); [ -n "$old" ] && args+=(--remove-label "$old")
           gh pr edit "$PR" -R "$GITHUB_REPOSITORY" "${args[@]}" || echo "::warning::could not label the PR '$CLASS' (scripts/ci/labels.sh creates the class labels)"
 
@@ -183,6 +183,28 @@ jobs:
         run: git fetch -q --no-tags --filter=blob:none origin "+$PR_REF:refs/remotes/origin/pr-head" && git cat-file -e "$HEAD^{commit}"
       - name: scope-fix checks
         run: python3 scripts/ci/scope_fix_check.py "$BASE" "$HEAD"
+
+  # A restructure PR (the seed moved into Tengoku/Seed/) is not read, it is recomputed: scripts/restructure.py of the base commit runs on the base
+  # tree and the PR must equal its output byte for byte. Nothing of the PR runs; it is read as git objects only.
+  restructure:
+    needs: classify
+    if: github.event_name == 'pull_request_target' && needs.classify.outputs.class == 'restructure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions: { contents: read }
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2
+        with: { egress-policy: audit }
+      - name: The base commit (the checks are main's)
+        run: |
+          git init -q .
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY"
+          git fetch -q --no-tags --filter=blob:none origin "$BASE"
+          git checkout -q --detach "$BASE"
+      - name: The PR's commits, as data (the checks are main's)
+        run: git fetch -q --no-tags --filter=blob:none origin "+$PR_REF:refs/remotes/origin/pr-head" && git cat-file -e "$HEAD^{commit}"
+      - name: restructure checks
+        run: python3 scripts/ci/restructure_check.py "$BASE" "$HEAD"
 
   secrets:
     needs: classify
@@ -334,7 +356,7 @@ jobs:
         run: printf '%s' "$BODY" > body.txt && python3 scripts/ci/depends.py body.txt
 
   pr-gate:
-    needs: [classify, data-rules, credits, dco, secrets, workflows, depends, vacuity, goals, intake, scope-fix]
+    needs: [classify, data-rules, credits, dco, secrets, workflows, depends, vacuity, goals, intake, scope-fix, restructure]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -380,6 +402,11 @@ jobs:
           python3 scripts/ci/append_only.py "$BASE" "$HEAD" "${promotion[@]}"
           python3 scripts/ci/validate_records.py "$BASE" "$HEAD"
           python3 scripts/ci/lint_banked.py "$BASE" "$HEAD"
+      # The move of the seed depends on everything merged ahead of it (a library that arrived meanwhile has headers the script must rewrite):
+      # the recomputation is repeated on the queue entry's base.
+      - name: The restructure against everything merged ahead of it
+        if: github.event_name == 'merge_group' && steps.c.outputs.class == 'restructure'
+        run: python3 scripts/ci/restructure_check.py "$BASE" "$HEAD"
       # One comment per PR (updated in place): which check failed, what it said, what to do, and a
       # prefilled "Report a gate bug" issue link for the checks complex enough to be wrong themselves.
       - name: Explain the verdict on the PR
