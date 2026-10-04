@@ -3,6 +3,7 @@ import Tengoku.Vcvio
 import Tengoku.FormalMathfin
 import Tengoku
 import Tengoku.Compfiles
+import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
 import Tengoku.EquationalTheories
 import Tengoku.Physlib
