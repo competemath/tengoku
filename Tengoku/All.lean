@@ -4,6 +4,7 @@ import Tengoku.FormalMathfin
 import Tengoku
 import Tengoku.Compfiles
 import Tengoku.Imoshortlist
+import Tengoku.Pfr
 import Tengoku.EquationalTheories
 import Tengoku.Physlib
 import Tengoku.Tautology
