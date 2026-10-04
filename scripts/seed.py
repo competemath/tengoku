@@ -23,6 +23,7 @@ import sys
 from pathlib import Path
 
 from notices import ROOT_CHANGE, describe, notice, stamp
+from restructure import fix_include_str
 
 # Everything seeded lives under Tengoku/Seed/ (module prefix SEED). Mathlib's root aggregator is the tree's own root, Tengoku.lean:
 # `import Mathlib` becomes `import Tengoku`, while `Mathlib.X` becomes `Tengoku.Seed.X`.
@@ -53,15 +54,14 @@ PACKAGES = {
     "importGraph": ("ImportGraph", "ImportGraph", "Tengoku.Seed.Meta.ImportGraph"),
     "Cli": ("Cli", "Cli", "Tengoku.Seed.Meta.Cli"),
 }
-# Non-.lean assets a package's sources read at compile time (include_str).
-# `include_str ".."/…` is relative to the including module's directory, so each asset sits where those `..`s lead from the seed.
+# Non-.lean assets a package's sources read at compile time (include_str, a path relative to the including module's directory).
 ASSETS = {
-    # Widgets/Component/*.lean read `../../widget/js/…`: Tengoku/Seed/widget/js
+    # Widgets/Component/*.lean read `../../widget/js/…`: that stays inside the seed, at Tengoku/Seed/widget/js.
     "proofwidgets": [("widget/js", "Tengoku/Seed/widget/js")],
-    # Mathlib's Tactic/Widget modules `include_str` files from `widget/src/…`
-    # three levels above themselves — the PACKAGE root, which in the tree is
-    # Tengoku/ (they are Tengoku/Seed/Tactic/Widget/*.lean).
-    "mathlib": [("widget", "Tengoku/widget")],
+    # Mathlib's Tactic/Widget modules `include_str` files from `widget/src/…` three levels above themselves — the PACKAGE
+    # root, which in the tree is the repository root. Below Tengoku/Seed/ those paths climb out of the seed, so
+    # fix_include_str (scripts/restructure.py) gives them one more `..` instead of the assets moving.
+    "mathlib": [("widget", "widget")],
 }
 KEEP = {"EquationalTheories", "CompeteMath"}  # subtrees that are not seed
 
@@ -87,6 +87,14 @@ def in_layout(module: str, seed: bool) -> str:
 def root_module(mapped_root: str) -> str:
     """The module that stands for a package's root: Mathlib's is the tree's root, the others sit under their mapped name."""
     return ROOT_MODULE if mapped_root == SEED else mapped_root
+
+
+def in_seed(text: str, target: Path, seed_dir: Path) -> str:
+    """The text of a module written to `target`, as restructure.py leaves a moved one: an `include_str` path that climbs out
+    of Tengoku/Seed/ gains a `..` (depth: the directories between the seed folder and the file). The root aggregator is outside it."""
+    if not target.is_relative_to(seed_dir):
+        return text
+    return fix_include_str(text, len(target.relative_to(seed_dir).parts) - 1)
 
 
 def module_map(root_mod: str, mapped_root: str, mod: str) -> str | None:
@@ -170,10 +178,11 @@ def main():
         target.parent.mkdir(parents=True, exist_ok=True)
         original = f.read_text(encoding="utf-8")
         rewritten = rewrite_imports(original, roots)
-        text = inst_suffix.sub(r"\1_tengoku", rewritten)
+        moved = in_seed(rewritten, target, tree / "Seed")
+        text = inst_suffix.sub(r"\1_tengoku", moved)
         # Apache-2.0 4(b): a changed file says so (scripts/notices.py). The root gets its notice below,
         # once the other packages' imports are in it.
-        what = describe(rewritten != original, text != rewritten)
+        what = describe(rewritten != original, text != moved)
         if what and target != out / "Tengoku.lean":
             m = manifest.get(pkg, {})
             text = stamp(text, notice(pkg, m.get("url", "?"), m.get("rev", "?"), what))
