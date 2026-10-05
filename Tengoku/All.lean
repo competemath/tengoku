@@ -9,6 +9,7 @@ import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Compfiles
 import Tengoku.Pfr
+import Tengoku.Apap
 import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
 import Tengoku.BrownianMotion
