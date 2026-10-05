@@ -633,6 +633,20 @@ class ImportsResolve(unittest.TestCase):
         rc, out = r.gate("imports_resolve.py")
         self.assertEqual(rc, 0, out)
 
+    def test_a_closed_comment_before_an_import_on_the_same_line_does_not_hide_it(self):
+        # regression (CodeRabbit, 2026-10-05): a header line was skipped whole when it began with `/-`; Lean reads a closed comment as whitespace
+        r = self.seeded()
+        r.write(
+            "Tengoku/Lib/Basic.lean",
+            "/- note -/ import Tengoku.Gone\n/-- a\n  multi-line comment -/ import Tengoku.AlsoGone\nimport Tengoku /- trailing -/\n",
+        )
+        r.commit("imports behind closed comments")
+        rc, out = r.gate("imports_resolve.py")
+        self.assertEqual(rc, 1, out)
+        self.assertIn("imports Tengoku.Gone,", out)
+        self.assertIn("imports Tengoku.AlsoGone,", out)
+        self.assertNotIn("imports Tengoku,", out)
+
     def test_lean_and_core_imports_are_not_this_gates_business(self):
         r = self.seeded()
         r.write("Tengoku/Lib/Basic.lean", "import Lean\nimport Std.Data.HashMap\nimport Init.Core\nimport Tengoku -- a trailing comment\n")

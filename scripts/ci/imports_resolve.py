@@ -34,25 +34,45 @@ def module_of(path: str) -> str | None:
     return None
 
 
-def header_imports(text: str) -> list[str]:
-    """The modules a file imports: the `import` lines of its header, after any comments (`/- … -/`, nested, and `--`) and a `module`/`prelude` keyword, up to the first
-    command. A line of a block comment is never an import."""
+def strip_comments(text: str) -> str:
+    """The text with every comment replaced by a space (newlines kept): `-- …` to the end of the line, and `/- … -/` (nested, over any number of lines). Lean
+    reads a closed comment as whitespace, so `/- note -/ import X` is an import."""
     out: list[str] = []
-    depth = 0
-    for raw in text.split("\n"):
-        line = raw.rstrip("\r").strip()
+    i, n, depth = 0, len(text), 0
+    while i < n:
+        two = text[i : i + 2]
         if depth:
-            depth = max(0, depth + line.count("/-") - line.count("-/"))
-            continue
-        if line.startswith("/-"):
-            depth = max(0, line.count("/-") - line.count("-/"))
-            continue
-        if not line or line.startswith("--") or KEYWORD.fullmatch(line.split("--", 1)[0].strip()):
+            if two == "/-":
+                depth, i = depth + 1, i + 2
+            elif two == "-/":
+                depth, i = depth - 1, i + 2
+                if not depth:
+                    out.append(" ")
+            else:
+                out.append("\n" if text[i] == "\n" else "")
+                i += 1
+        elif two == "/-":
+            depth, i = 1, i + 2
+        elif two == "--":
+            while i < n and text[i] != "\n":
+                i += 1
+        else:
+            out.append(text[i])
+            i += 1
+    return "".join(out)
+
+
+def header_imports(text: str) -> list[str]:
+    """The modules a file imports: the `import` lines of its header, after any comments and a `module`/`prelude` keyword, up to the first command."""
+    out: list[str] = []
+    for raw in strip_comments(text).split("\n"):
+        line = raw.strip()
+        if not line or KEYWORD.fullmatch(line):
             continue
         m = IMPORT.match(line)
         if not m:
             break  # the first command ends the header
-        out.append(m.group("mod").split("--", 1)[0])
+        out.append(m.group("mod"))
     return out
 
 
