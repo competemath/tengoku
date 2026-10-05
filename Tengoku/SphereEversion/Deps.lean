@@ -1,0 +1,1 @@
+-- SphereEversion: a factory bundle (data/intake/sphere-eversion). This file only marks the library for Tengoku/All.lean.
