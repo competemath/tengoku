@@ -21,8 +21,7 @@ vocab = sha256(vocabulary)[:8]                        b27e40a1
 | `hyps` / `vars` | binders whose type is a proposition / all other binders; typeclass binders are not counted. A heuristic and part of the recipe: a binder whose type is a propositional *variable* (`hp : p`) counts as a variable |
 | `size` | `floor(log2 n)` of the number of expression nodes `n`: `s4` is 16 to 31 nodes |
 | `sig` | the first 12 hex digits of the **sha256 of the canonical form** (below) |
-| `shape` | the canonical form with every constant replaced by `c<order of first appearance>/<arity>`, numerals and strings masked, instance arguments dropped (the arguments at the instance-implicit parameters of the applied constant, a bound instance
-variable included): the same shape is the same pattern over different objects (`a+b=b+a` over ℕ and over ℝ) |
+| `shape` | the canonical form with every constant replaced by `c<order of first appearance>/<arity>`, numerals and strings masked, instance arguments dropped (the arguments at the instance-implicit parameters of the applied constant, a bound instance variable included): the same shape is the same pattern over different objects (`a+b=b+a` over ℕ and over ℝ) |
 | `vocab` | the sorted, distinct, quoted names of the constants mentioned, without `Eq And Or Not Iff Exists True False OfNat.ofNat Ne` and without instances: the same vocab is the same objects arranged differently |
 
 The tag, the last line of a theorem's docstring (machine-owned, plain ASCII, no `-/`, no `/-`):
