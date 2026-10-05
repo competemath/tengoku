@@ -1,0 +1,1 @@
+-- Leanslt: a factory bundle (data/intake/leanslt). This file only marks the library for Tengoku/All.lean.
