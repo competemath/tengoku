@@ -49,6 +49,7 @@ class Extend(unittest.TestCase):
     def repo(self, with_library=True):
         r = Repo()
         r.write("lean-toolchain", TOOLCHAIN + "\n")
+        r.write("schemas/sources.json", json.dumps({"corpora": {}}))  # the queue reads it; no corpus is needed for an intake library
         r.write("Tengoku/All.lean", "import Tengoku.Lib\n" + ("import Tengoku.FxLib\n" if with_library else ""))
         if with_library:
             r.write("Tengoku/FxLib/Fx/A.lean", module("a"))
@@ -83,6 +84,25 @@ class Extend(unittest.TestCase):
         rc, out = self.check(r)
         self.assertEqual(rc, 0, out)
         self.assertIn("extend ok: fx-lib: part 002, 1 modules, 1 theorems", out)
+
+    def test_the_queue_builds_and_scans_the_new_modules_not_the_whole_library(self):
+        r = self.repo()
+        self.part2(r)
+        rc, out = r.gate("queue_targets.py")
+        self.assertEqual(rc, 0, out)
+        self.assertEqual([ln for ln in out.split() if ln.startswith("Tengoku.")], [self.B])
+
+    def test_the_queue_still_builds_the_root_of_an_intake_library(self):
+        r = self.repo(with_library=False)
+        r.write("Tengoku/FxLib/Fx/A.lean", module("a"))
+        r.write("Tengoku/FxLib.lean", f"import {self.A}\n")
+        r.write("data/intake/fx-lib/manifest.jsonl", record("a", self.A))
+        r.write("data/intake/fx-lib/report.json", json.dumps({"library": "fx-lib", "part": 1}) + "\n")
+        r.write("Tengoku/All.lean", "import Tengoku.Lib\nimport Tengoku.FxLib\n")
+        r.commit("part 1")
+        rc, out = r.gate("queue_targets.py")
+        self.assertEqual(rc, 0, out)
+        self.assertIn("Tengoku.FxLib", out.split())
 
     def test_the_first_part_is_still_an_intake_pr(self):
         r = self.repo(with_library=False)
@@ -191,7 +211,10 @@ class Extend(unittest.TestCase):
             (f"import {self.A}\nimport {self.B}\nimport {self.B}\n", "must import each new module exactly once"),
             (f"import {self.B}\n", "may only gain"),  # drops part 1's import
             (f"import {self.A}\nimport {self.B}\n-- a comment\n", "may only gain"),
-            (f"import {self.A}\nimport {self.B}\nimport Tengoku.FxLib.Fx.Z\n", "may only gain"),  # an import of a module that is not in the PR
+            (
+                f"import {self.A}\nimport {self.B}\nimport Tengoku.FxLib.Fx.Z\n",
+                "may only gain",
+            ),  # an import of a module that is not in the PR
         ):
             with self.subTest(umbrella=umbrella):
                 r = self.repo()

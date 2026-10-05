@@ -50,7 +50,9 @@ IMPORT_LINE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s+(?:all\s+
 MODULE_LINE = re.compile(r"^\s*(?:module|prelude)\s*$")
 TREE_IMPORT = re.compile(r"(?:Tengoku|Lean|Std|Init)(?:\.|$)")
 
-MAX_PART_MODULES = 400  # the queue builds a part inside its 40-minute check: about 3 seconds a module on a 4-core runner, measured on lean-pool
+MAX_PART_MODULES = (
+    400  # the queue builds a part inside its 40-minute check: about 3 seconds a module on a 4-core runner, measured on lean-pool
+)
 files = changed_files(base, head)
 libs = {m.group(1) for _, p in files if (m := re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p))}
 if len(libs) != 1:
@@ -86,7 +88,9 @@ if extending:
     if not in_tree or blob(base, MANIFEST) is None:
         errors.append(f"{lib} is not in the tree (no Tengoku/{ns}.lean and manifest at base): an extend PR continues a library that is")
     done = [
-        int(m.group(1)) for q in run("ls-tree", "-r", "--name-only", base, f"data/intake/{lib}/parts").split("\n") if (m := re.search(r"/(\d{3})\.json$", q))
+        int(m.group(1))
+        for q in run("ls-tree", "-r", "--name-only", base, f"data/intake/{lib}/parts").split("\n")
+        if (m := re.search(r"/(\d{3})\.json$", q))
     ]
     wanted = max(done, default=1) + 1
     got = int(part_files[0][-8:-5])
@@ -120,11 +124,15 @@ if extending:
     # the manifest only gains lines: the tree's is a byte prefix of the PR's, and what follows is the part's
     old_bytes, new_bytes = blob(base, MANIFEST) or b"", blob(head, MANIFEST) or b""
     if not new_bytes.startswith(old_bytes) or (old_bytes and not old_bytes.endswith(b"\n")):
-        errors.append("manifest.jsonl may only gain lines at its end: the tree's lines are changed or reordered, or the last one has no line break")
+        errors.append(
+            "manifest.jsonl may only gain lines at its end: the tree's lines are changed or reordered, or the last one has no line break"
+        )
         manifest_new = b""
     else:
         manifest_new = new_bytes[len(old_bytes) :]
-    seen = {m.group(1) for m in re.finditer(r'"name":\s*"([^"]+)"', old_bytes.decode("utf-8", errors="replace"))}  # the library's own earlier theorems
+    seen = {
+        m.group(1) for m in re.finditer(r'"name":\s*"([^"]+)"', old_bytes.decode("utf-8", errors="replace"))
+    }  # the library's own earlier theorems
 try:
     manifest = [json.loads(ln) for ln in (manifest_new.decode("utf-8") if extending else show(MANIFEST)).splitlines() if ln.strip()]
 except Exception as e:  # noqa: BLE001
@@ -150,7 +158,9 @@ if extending:
             errors.append(f"{part_files[0]} says part {rep.get('part')!r} of {rep.get('library')!r}")
     except Exception as e:  # noqa: BLE001
         errors.append(f"{part_files[0]} is not a JSON report: {e}")
-    new_mods = sorted(p[: -len(".lean")].replace("/", ".") for p in (q for _, q in files) if p.startswith(f"Tengoku/{ns}/") and p.endswith(".lean"))
+    new_mods = sorted(
+        p[: -len(".lean")].replace("/", ".") for p in (q for _, q in files) if p.startswith(f"Tengoku/{ns}/") and p.endswith(".lean")
+    )
     if len(new_mods) > MAX_PART_MODULES:
         errors.append(f"{len(new_mods)} modules in one part (cap {MAX_PART_MODULES}): cut the bundle into smaller parts")
     norm = lambda ln: re.sub(r"^\s*public\s+", "", ln.strip())  # noqa: E731
@@ -161,7 +171,9 @@ if extending:
     if [ln for ln in head_lines if norm(ln) not in wanted_lines] != (blob(base, UMBRELLA) or b"").decode("utf-8").split("\n"):
         errors.append(f"{UMBRELLA} may only gain the imports of the new modules")
 if not manifest:
-    errors.append("the manifest has no theorem: " + ("a part that carries none is empty" if extending else "a bundle that carries none is empty"))
+    errors.append(
+        "the manifest has no theorem: " + ("a part that carries none is empty" if extending else "a bundle that carries none is empty")
+    )
 for i, r in enumerate(manifest, 1):
     where = f"manifest line {i}"
     if not isinstance(r, dict):
@@ -210,7 +222,11 @@ for p in sorted(p for _, p in files if p.endswith(".lean") and p != ALL):
 if total > MAX_BYTES:
     errors.append(f"{total} bytes of Lean (cap {MAX_BYTES})")
 if errors:
-    fail(f"{'extend' if extending else 'intake'} PR for {lib}: " + "; ".join(errors[:12]) + (f"; and {len(errors) - 12} more" if len(errors) > 12 else ""))
+    fail(
+        f"{'extend' if extending else 'intake'} PR for {lib}: "
+        + "; ".join(errors[:12])
+        + (f"; and {len(errors) - 12} more" if len(errors) > 12 else "")
+    )
 
 # the archive the factory attested, rebuilt from this PR's files (scripts/ci/bundle_tar.py: the same function as the factory's)
 if tar_out:
