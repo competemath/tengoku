@@ -1,0 +1,31 @@
+/-
+Copyright (c) 2021 Kim Morrison. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kim Morrison
+Changed for Tengoku: copied from Mathlib (leanprover-community/mathlib4 at 85e3a25e006c); import paths rewritten.
+-/
+module
+
+public import Tengoku.Seed.Algebra.Algebra.Rat
+public import Tengoku.Seed.Topology.Algebra.ConstMulAction
+public import Tengoku.Seed.Topology.Algebra.Monoid.Defs
+
+/-!
+# Topological (sub)algebras over `Rat`
+
+## Results
+
+This is just a minimal stub for now!
+
+-/
+
+public section
+
+section DivisionRing
+
+/-- The action induced by `DivisionRing.toRatAlgebra` is continuous. -/
+instance DivisionRing.continuousConstSMul_rat {A} [DivisionRing A] [TopologicalSpace A]
+    [SeparatelyContinuousMul A] [CharZero A] : ContinuousConstSMul ℚ A :=
+  ⟨fun r => by simpa only [Algebra.smul_def] using! continuous_id.const_mul _⟩
+
+end DivisionRing

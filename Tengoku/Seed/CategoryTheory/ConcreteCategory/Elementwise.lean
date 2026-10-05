@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2022 Andrew Yang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Andrew Yang
+Changed for Tengoku: copied from Mathlib (leanprover-community/mathlib4 at 85e3a25e006c); import paths rewritten.
+-/
+module
+
+public import Tengoku.Seed.Tactic.CategoryTheory.Elementwise
+public import Tengoku.Seed.CategoryTheory.Limits.HasLimits
+public import Tengoku.Seed.CategoryTheory.Limits.Shapes.Kernels
+
+/-!
+# Elementwise lemmas for concrete categories
+
+In this file we provide various simp lemmas in its elementwise form via `Tactic.Elementwise`.
+-/
+
+public section
+
+
+open CategoryTheory CategoryTheory.Limits
+
+attribute [elementwise] limit.lift_π limit.w
+  colimit.ι_desc colimit.w kernel.lift_ι cokernel.π_desc kernel.condition cokernel.condition
+
+attribute [simp] limit.lift_π_apply limit.w_apply colimit.ι_desc_apply colimit.w_apply
+  kernel.lift_ι_apply cokernel.π_desc_apply kernel.condition_apply cokernel.condition_apply
