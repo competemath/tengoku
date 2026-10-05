@@ -12,7 +12,8 @@ when it has none. A file the seed copied byte for byte gets nothing.
     python3 scripts/notices.py            # stamp every changed seeded file (idempotent)
     python3 scripts/notices.py --check    # list changed seeded files without a notice; exit 1 if any
 
-scripts/seed.py stamps as it writes, so a re-seed keeps the notices.
+scripts/seed.py stamps as it writes, so a re-seed keeps the notices. Both layouts of the tree are read: the seed under
+Tengoku/Seed/ (what seed.py writes) and the earlier one, topic folders straight under Tengoku/.
 """
 
 from __future__ import annotations
@@ -90,14 +91,15 @@ def seed_rows(root: Path) -> dict[str, tuple[str, str]]:
 
 
 def seeded_files(root: Path) -> list[Path]:
-    """Tengoku.lean and every module under Tengoku/ that the seed wrote: not a KEEP subtree, not a
-    generated library module, not the generated aggregator."""
+    """Tengoku.lean and every module that the seed wrote (under Tengoku/Seed/, or in the earlier layout under Tengoku/ with
+    no KEEP subtree, no generated library module, not the generated aggregator)."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from seed import KEEP  # noqa: E402  (seed imports this module; import lazily)
+    from seed import KEEP, seed_layout  # noqa: E402  (seed imports this module; import lazily)
 
     libs = {f.stem.split(".")[0] for tier in ("trusted", "staging", "tentative") for f in (root / "data" / tier).glob("*.jsonl")}
     generated = {"".join(w[:1].upper() + w[1:] for w in re.split(r"[-_ ]+", lib) if w) for lib in libs}
-    files = [root / "Tengoku.lean"] + sorted((root / "Tengoku").rglob("*.lean"))
+    tree = root / "Tengoku" / "Seed" if seed_layout(root) else root / "Tengoku"
+    files = [root / "Tengoku.lean"] + sorted(tree.rglob("*.lean"))
     out = []
     for f in files:
         if not f.exists():
@@ -111,11 +113,13 @@ def seeded_files(root: Path) -> list[Path]:
 
 
 def package_of(module: str) -> str:
+    """The package a seeded module came from. The module name tells the layout: only the Seed layout has `Tengoku.Seed` modules."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from seed import PACKAGES  # noqa: E402
+    from seed import PACKAGES, SEED, in_layout  # noqa: E402
 
     best = ("mathlib", "Tengoku")
     for pkg, (_, _, mapped) in PACKAGES.items():
+        mapped = in_layout(mapped, module == SEED or module.startswith(SEED + "."))
         if (module == mapped or module.startswith(mapped + ".")) and len(mapped) > len(best[1]):
             best = (pkg, mapped)
     return best[0]

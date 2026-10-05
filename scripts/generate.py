@@ -44,7 +44,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from seed import IMPORT_RE, PACKAGES, module_map  # noqa: E402
+from seed import IMPORT_RE, PACKAGES, RESERVED, SEED, in_layout, module_map, seed_layout  # noqa: E402
 
 # Only TRUSTED records become modules of the tree. A staging record (both
 # gates passed, module not yet proven to build) is promoted by
@@ -162,7 +162,10 @@ def strip_trailing_ends(proof: str) -> str:
 
 
 def pascal(library: str) -> str:
-    return "".join(p[:1].upper() + p[1:] for p in re.split(r"[-_ ]+", library) if p)
+    ns = "".join(p[:1].upper() + p[1:] for p in re.split(r"[-_ ]+", library) if p)
+    if ns.lower() in RESERVED:  # its directory would be the seed's: a library there deletes the seed as "no record backs it"
+        sys.exit(f"library {library!r}: Tengoku/{ns}/ is reserved, not a library's ({', '.join(RESERVED)} cannot be library keys)")
+    return ns
 
 
 def strip_corpus_attrs(text: str) -> str:
@@ -217,15 +220,22 @@ def deps_modules(deps_dir: Path) -> list[str]:
 
 
 def map_imports(
-    text: str, corpus_roots: list[str], lib_ns: str, deps_available: set[str], corpus: Path | None = None, _seen: set[str] | None = None
+    text: str,
+    corpus_roots: list[str],
+    lib_ns: str,
+    deps_available: set[str],
+    corpus: Path | None = None,
+    _seen: set[str] | None = None,
+    seed: bool = True,
 ) -> str:
-    """Seed imports -> Tengoku.*; corpus imports -> this library's Deps modules.
+    """Seed imports -> Tengoku.Seed.* (Tengoku.* in a tree that has not moved its seed, `seed` False);
+    corpus imports -> this library's Deps modules.
     A corpus module the tree does not reproduce is replaced by what IT imported
     (recursively), so a module keeps the seed-library surface its file had —
     the standalone script compiled with the whole tree in scope; the module
     must not silently lose `Mathlib.ModelTheory` because it arrived through a
     corpus import."""
-    roots = [(v[1], v[2]) for v in PACKAGES.values()]
+    roots = [(v[1], in_layout(v[2], seed)) for v in PACKAGES.values()]
     seen = _seen if _seen is not None else set()
 
     def sub(m):
@@ -238,7 +248,7 @@ def map_imports(
                 seen.add(mod)
                 f = corpus / Path(*mod.split(".")).with_suffix(".lean")
                 if f.exists():
-                    inner = map_imports(f.read_text(encoding="utf-8"), corpus_roots, lib_ns, deps_available, corpus, seen)
+                    inner = map_imports(f.read_text(encoding="utf-8"), corpus_roots, lib_ns, deps_available, corpus, seen, seed)
                     return "\n".join(l.strip() for l in inner.splitlines() if re.match(r"\s*(public |private |meta )*import ", l))
             return ""  # a corpus module we don't reproduce and cannot read: nothing to import
         for root_mod, mapped in roots:
@@ -1244,6 +1254,7 @@ def main():
         args.only = args.candidate
     out = Path(args.out).resolve()
     corpus = Path(args.corpus).expanduser().resolve()
+    seeded = seed_layout(out)  # the seed's module names are spelled for the tree being generated into
 
     for library in args.libraries:
         lib_ns = pascal(library)
@@ -1320,13 +1331,13 @@ def main():
             if UNSAFE_MODULE_RE.search(text):
                 print(f"  skip {mod}: needs load-time initialisation")
                 continue
-            body = strip_corpus_attrs(map_imports(text, roots, lib_ns, deps_available, corpus))
+            body = strip_corpus_attrs(map_imports(text, roots, lib_ns, deps_available, corpus, seed=seeded))
             imports = "\n".join(l for l in body.splitlines() if re.match(r"\s*(public |private |meta )*import ", l))
             rest = "\n".join(l for l in body.splitlines() if not re.match(r"\s*(public |private |meta )*import ", l))
             leaf = deps_key(mod)
             deps_file(deps_dir, leaf).write_text(
                 f"-- {lib_ns}/Deps/{leaf}: verbatim from {mod} (imports mapped, corpus bookkeeping attributes stripped)\n"
-                f"{imports}\nimport Tengoku.Init\n\nset_option linter.all false\n\n{wrap(rest, lib_ns, external)}",
+                f"{imports}\nimport {in_layout(SEED + '.Init', seeded)}\n\nset_option linter.all false\n\n{wrap(rest, lib_ns, external)}",
                 encoding="utf-8",
             )
         if mode != "verified":
@@ -1470,7 +1481,7 @@ def main():
             orig = corpus / source_path
             orig_imports = []
             if orig.exists():
-                mapped = map_imports(orig.read_text(encoding="utf-8"), roots, lib_ns, deps_available, corpus)
+                mapped = map_imports(orig.read_text(encoding="utf-8"), roots, lib_ns, deps_available, corpus, seed=seeded)
                 orig_imports = [l.strip() for l in mapped.splitlines() if re.match(r"\s*(public |private |meta )*import ", l)]
                 orig_imports = [re.sub(r"^(public |private |meta )+", "", l) for l in orig_imports]
             # The Deps this file's records pasted (plus Magma/Equations, which

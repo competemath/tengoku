@@ -101,10 +101,36 @@ tentative or staging file whose records all come from a source no longer on the 
   exception. CODEOWNERS patterns follow gitignore rules, where `*` does not cross `/`, so `/Tengoku/*.lean`
   covers only files directly under `Tengoku/`. The seeded modules in its subfolders have no code owner.
 - A library key whose PascalCase form equals a seeded top-level directory would make that directory
-  derived; `topology` would claim `Tengoku/Topology/`. Do not register such keys.
+  derived; `topology` would claim `Tengoku/Topology/`. Do not register such keys. Once the seed has moved into `Tengoku/Seed/`
+  (section 5) the topic directories are no longer at the top, and the keys `seed` and `native` are refused by the gates
+  (`check_key` in `scripts/ci/_git.py`): those two folders are not a library's.
 - A library too big for one file is sharded as a folder: `data/<tier>/<library>/<file>.jsonl`. The validator,
   generator and promoter all read that layout. 58 flat numbered files predate the gates
   (`flt-anthropic-NNN`, `leanbridge-NNN`, `prove2me-NNN` in `data/tentative/`). Their records name the library
   without the number, so validation rejects any record appended to them, and they add names such as
   `FltAnthropic001` to rule 1. The validator's size message suggests `<library>.NN.jsonl`, which its own
   library check would also reject.
+
+## 5. The restructure class
+
+One change in the life of the tree has a class of its own, `restructure`: the one that moves every seeded file into
+`Tengoku/Seed/`, so that the seed is one folder and the origin of a module is visible from its path. The class is
+structural (the base has no `Tengoku/Seed` and the head has), the PR must come from `TENGOKU_BOT`, and no diff is judged.
+`scripts/ci/restructure_check.py` runs `scripts/restructure.py` of the base commit on the base tree and accepts the PR only
+if it is exactly that output: every file under `Tengoku/` and the root `Tengoku.lean`, `SEED.md` and
+`LICENSE-THIRD-PARTY.md`, byte for byte and executable bit for executable bit, and nothing else. Then `restructure.py verify` checks
+that every `import Tengoku…` and every `include_str` path of the result resolves.
+
+The script changes only imports and `include_str` paths. Seeded files: `import Tengoku.X` becomes `import Tengoku.Seed.X` (in the header
+and in the code examples of doc comments), and an
+`include_str` path that leaves the tree gains one `..`. Library modules: the umbrella imports that the root `Tengoku` re-exports
+(`Tengoku.Std`, `Tengoku.Tactic.Aesop`, `Tengoku.Meta.Qq`, …) are dropped, any other seeded import is renamed. Anyone can repeat it:
+
+```bash
+python3 scripts/restructure.py apply     # in a clean checkout; a tree that has Tengoku/Seed is left alone
+python3 scripts/restructure.py verify
+```
+
+The merge queue repeats the check on the entry's base (a library that arrived meanwhile has headers the script must rewrite) and builds
+nothing for it: every module name changes, so the nightly cache build compiles the moved tree, and the services stay on the last
+complete cache until it has.

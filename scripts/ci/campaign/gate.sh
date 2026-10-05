@@ -7,12 +7,13 @@ TRUSTED_NAME=$(head -1 data/trusted/equational-theories.jsonl | python3 -c "impo
 STAGING_FLAT=data/staging/equational-theories.jsonl
 D=data/staging/equational-theories
 sc() { scenario "$@"; }
+seeded_logic() { if [[ -d Tengoku/Seed/Logic ]]; then echo Tengoku/Seed/Logic; else echo Tengoku/Logic; fi; return 0; }  # a seeded topic folder, in either layout of the tree
 # --- the original eleven, per-PR files where the scenario is content
 sc clean-append pass - yes queue "One good record in a per-PR staging file." "mkdir -p $D; rec good1 > $D/clean.jsonl"
 sc two-purposes fail classify yes gate "Content and tooling in one PR." "mkdir -p $D; rec good2 > $D/two.jsonl; echo '# touched' >> scripts/stats.py"
 sc delete-in-staging fail data-rules/append-only yes gate "Deletes a staging line." "sed -i '' -e '1d' $STAGING_FLAT"
 sc eval-in-record fail data-rules/content-lint yes gate "Record whose context runs code." "mkdir -p $D; rec bad3 'context=#eval IO.println 1' > $D/eval.jsonl" '#eval'
-sc credit-removed fail credits yes gate "Removes an Authors line from a seeded module." 'f=$(grep -rl "^Authors:" Tengoku/Logic | head -1); sed -i "" -e "/^Authors:/d" "$f"' '^-Authors:'
+sc credit-removed fail credits yes gate "Removes an Authors line from a seeded module." 'f=$(grep -rl "^Authors:" "$(seeded_logic)" | head -1); sed -i "" -e "/^Authors:/d" "$f"' '^-Authors:'
 sc fake-secret fail secrets yes gate "AWS example credential pair." 'printf "AWS_KEY=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n" > docs-secret.txt'
 sc unsigned fail dco no gate "Commit without Signed-off-by." "mkdir -p $D; rec good4 > $D/unsigned.jsonl"
 sc derived-edit fail classify yes gate "Hand edit of a generated module (actor is not the bot)." 'f=$(ls Tengoku/EquationalTheories/*.lean | head -1); echo "-- hand edit" >> "$f"'
@@ -63,7 +64,7 @@ sc workflow-in-content fail classify yes gate "A record and a workflow change to
 sc docs-only pass - yes gate "README only." "echo '' >> README.md; echo 'selftest docs line' >> README.md"
 sc docs-plus-content pass - yes gate "README and a record: docs may ride along." "mkdir -p $D; rec dpc > $D/dpc.jsonl; echo 'selftest docs line' >> README.md"
 sc binary-in-docs pass - yes gate "Exploratory: a PNG under docs/." "mkdir -p docs; printf '\x89PNG\r\n\x1a\n' > docs/selftest.png; head -c 200 /dev/urandom >> docs/selftest.png"
-sc seeded-module-unsafe pass - yes queue "unsafe def added to a seeded module: tooling class at the gate (no lint), the queue's lint must catch it." "printf '\nunsafe def selftestUnsafe : Nat := 1\n' >> Tengoku/Logic/Basic.lean"
+sc seeded-module-unsafe pass - yes queue "unsafe def added to a seeded module: tooling class at the gate (no lint), the queue's lint must catch it." "printf '\nunsafe def selftestUnsafe : Nat := 1\n' >> \"\$(seeded_logic)/Basic.lean\""
 sc promotion-not-bot fail classify yes gate "Promotion-shaped PR by a non-bot actor." "mkdir -p $D; python3 - <<'PY'
 import json
 recs=[json.loads(l) for l in open('data/staging/equational-theories.jsonl') if l.strip()][:1]
