@@ -324,7 +324,7 @@ queue tests every group on the newest `main`, so no PR ever needs *Update branch
 PR needs one approval, from someone other than whoever pushed last, plus code-owner review and every review thread
 resolved. History is linear, with no force pushes and no deletion, and nothing is pushed to `main` directly. The banking pipeline
 opens pull requests like everyone else: Emissary-Archangel's cloud translation opens the content PRs (new staging
-records), and `.github/workflows/promote.yml` opens the promotion PRs, hourly, as the bot named in the `TENGOKU_BOT`
+records), and `.github/workflows/promote.yml` opens the promotion PRs, when it is dispatched (it has no schedule since 2026-10-05: libraries arrive as factory bundles), as the bot named in the `TENGOKU_BOT`
 variable (its token is the `TENGOKU_BOT_TOKEN` secret; only the step that pushes and opens the PR sees it). Each
 promotion run builds up to `max_files` source files' modules on the attested cache, keeps staging changes to pure
 removals, and waits for its PR before the next batch. `scripts/promote-loop.sh` is the same thing for a laptop.
