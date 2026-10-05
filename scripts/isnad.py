@@ -28,6 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 VERSION = "1"
 EXE = ".lake/build/bin/tengoku-isnad"
+TAG_PREFIX = "@isnad"  # a tag line starts with it, followed by the format version
 GOLDEN = ROOT / "tools" / "isnad" / "golden.tsv"
 LAWS = ROOT / "tools" / "isnad" / "laws_body.lean"
 LEAN_SOURCE = ROOT / "TengokuIsnad.lean"
@@ -95,9 +96,9 @@ def split_tag(line: str) -> dict[str, str]:
     if not text.isascii() or not text.isprintable():
         raise ValueError(f"not an isnad tag: {text[:80]!r}")
     head, *pairs = text.split(" ")
-    if not (head.startswith("@isnad") and head[len("@isnad") :].isdigit()) or "" in pairs:
+    if not (head.startswith(TAG_PREFIX) and head[len(TAG_PREFIX) :].isdigit()) or "" in pairs:
         raise ValueError(f"not an isnad tag: {text[:80]!r}")
-    version = head[len("@isnad") :]
+    version = head[len(TAG_PREFIX) :]
     if version != VERSION:
         raise ValueError(f"isnad format {version} is not implemented here (this tool is format {VERSION}): its recipe is not known")
     out = {"version": version}
@@ -143,7 +144,7 @@ def format_tag(rec: Record, origin: str, src: str | None = None) -> str:
         raise ValueError(f"from= is one of {', '.join(FROM)}")
     if src is None:
         src = "-" if origin == "translated" else "0"
-    line = f"@isnad{VERSION} id={rec.id} from={origin} src={src} shape={rec.shape} vocab={rec.vocab}"
+    line = f"{TAG_PREFIX}{VERSION} id={rec.id} from={origin} src={src} shape={rec.shape} vocab={rec.vocab}"
     parse_tag(line)  # never write a tag that the reader would refuse
     return line
 
@@ -269,7 +270,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str]) -> int:
     a = build_parser().parse_args(argv)
     if a.cmd == "explain":
-        print(explain_tag(a.what) if a.what.lstrip().startswith("@isnad") else explain_id(a.what))
+        print(explain_tag(a.what) if a.what.lstrip().startswith(TAG_PREFIX) else explain_id(a.what))
         return 0
     if a.cmd == "selftest":
         return selftest(a.exe)
