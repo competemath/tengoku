@@ -1,4 +1,5 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
+import Tengoku.Leanslt
 import Tengoku.Leanmodularforms
 import Tengoku.Vcvio
 import Tengoku.FormalMathfin
