@@ -1,0 +1,1 @@
+-- ForbiddenMatrix: a factory bundle (data/intake/forbidden-matrix). This file only marks the library for Tengoku/All.lean.

@@ -13,6 +13,7 @@ import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
 import Tengoku.BrownianMotion
 import Tengoku.EquationalTheories
+import Tengoku.ForbiddenMatrix
 import Tengoku.Formalslt
 import Tengoku.Physlib
 import Tengoku.Tautology
