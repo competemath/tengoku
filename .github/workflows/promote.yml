@@ -1,7 +1,7 @@
 name: promote
 # Promotion off the laptop. A staging record becomes trusted once its module builds (scripts/promote.py). On demand only
 # (workflow_dispatch), since 2026-10-05: the hourly schedule is off. Libraries now arrive as factory bundles (intake PRs, built whole and
-# checked by the gate), and the schedule kept re-building the old per-theorem staging files, about two runner hours a run, with nothing
+# checked by the gate), and the schedule kept re-building the old per-theorem staging files, about 1.4 runner-hours a run (40.8 over 29 runs), with nothing
 # promoted since 2026-09-21. Run it when new staging records are worth a promotion: it then continues itself after each merged batch,
 # and promotes up to max_files quiet source files (one build each, on the
 # attested cache), reduces the staging files to pure removals (a promotion may only remove staging lines: promote.py
