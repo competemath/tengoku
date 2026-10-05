@@ -7,6 +7,7 @@ import Tengoku
 import Tengoku.Compfiles
 import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
+import Tengoku.BrownianMotion
 import Tengoku.EquationalTheories
 import Tengoku.Formalslt
 import Tengoku.Physlib
