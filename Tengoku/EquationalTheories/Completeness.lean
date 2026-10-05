@@ -1,9 +1,9 @@
 -- Tengoku.EquationalTheories.Completeness: verified translations of equational_theories/Completeness.lean (1 theorem)
-import Tengoku.Data.FunLike.Basic
-import Tengoku.Logic.Equiv.Basic
+import Tengoku.Seed.Data.FunLike.Basic
+import Tengoku.Seed.Logic.Equiv.Basic
 import Tengoku.EquationalTheories.Deps.Magma
-import Tengoku.Data.List.NodupEquivFin
-import Tengoku.Data.Set.Defs
+import Tengoku.Seed.Data.List.NodupEquivFin
+import Tengoku.Seed.Data.Set.Defs
 import Tengoku.EquationalTheories.Deps.Equations
 
 set_option linter.all false
