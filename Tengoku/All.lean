@@ -7,6 +7,7 @@ import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
 import Tengoku.Aperiodicmonotiles
 import Tengoku
+import Tengoku.SpherePackingOrig
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.LerayHopf
