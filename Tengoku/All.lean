@@ -10,6 +10,7 @@ import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
+import Tengoku.BrownianMotion
 import Tengoku.EquationalTheories
 import Tengoku.Formalslt
 import Tengoku.Physlib
