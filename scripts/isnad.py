@@ -93,6 +93,10 @@ def parse_tag(line: str) -> dict[str, str]:
     m = TAG_RE.fullmatch(line.strip())
     if not m:
         raise ValueError(f"not an isnad tag: {line.strip()[:80]!r}")
+    if m.group("version") != VERSION:
+        raise ValueError(
+            f"isnad format {m.group('version')} is not implemented here (this tool is format {VERSION}): its recipe is not known"
+        )
     out = {"version": m.group("version")}
     for pair in m.group("fields").split():
         k, _, v = pair.partition("=")
@@ -113,13 +117,19 @@ def parse_tag(line: str) -> dict[str, str]:
     for f in ("shape", "vocab"):
         if not (len(out[f]) == 8 and HEX.fullmatch(out[f])):
             raise ValueError(f"{f}= is 8 hex digits")
+    # from= and src= are one claim: only a translation has a source side (`-`: not available, or its 12-digit sig); seed and novel content has none
+    if (out["from"] == "translated") == (out["src"] == "0"):
+        raise ValueError("from=translated needs src=- or a 12-digit source id; from=seed and from=novel need src=0")
     return out
 
 
-def format_tag(rec: Record, origin: str, src: str = "0") -> str:
+def format_tag(rec: Record, origin: str, src: str | None = None) -> str:
+    """The tag line of a theorem. `src` defaults by origin: `0` for seed and novel content, `-` (source side not available) for a translation."""
     if origin not in FROM:
         raise ValueError(f"from= is one of {', '.join(FROM)}")
-    return f"@isnad{VERSION} id={rec.id} from={origin} src={src} shape={rec.shape} vocab={rec.vocab}"
+    line = f"@isnad{VERSION} id={rec.id} from={origin} src={src if src is not None else ('-' if origin == 'translated' else '0')} shape={rec.shape} vocab={rec.vocab}"
+    parse_tag(line)  # never write a tag that the reader would refuse
+    return line
 
 
 def explain_id(ident: str) -> str:

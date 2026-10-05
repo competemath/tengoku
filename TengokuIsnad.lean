@@ -29,9 +29,11 @@ structure St where
 
 abbrev M := StateM St
 
+/-- The name a constant is written by: macro scopes removed. A `private` name keeps its whole form (`_private.<Module>.0.<name>`): two
+different private constants called `p` in two modules are different constants, and a private constant cannot be referenced from another module, so a
+statement that mentions one is module-specific by nature. -/
 def cleanName (n : Name) : Name :=
-  let m := n.eraseMacroScopes
-  (privateToUserName? m).getD m
+  n.eraseMacroScopes
 
 def lvl : Level → M String
   | .zero => pure "0"
@@ -53,10 +55,19 @@ def proofHead (env : Environment) (n : Name) : Bool :=
   | some (.thmInfo _) => true
   | _ => n == ``Eq.refl || n == ``rfl || n == ``of_decide_eq_true || n == ``Eq.mpr || n == ``Eq.mp
 
-def isInstArg (env : Environment) (a : Expr) : Bool :=
-  match a.getAppFn with
-  | .const n _ => Lean.Meta.isInstanceCore env n
-  | _ => false
+/-- Which of the first `k` arguments of an applied constant sit at instance-implicit parameters of its type. A bound instance variable is an
+instance argument too: what counts is the parameter, not what the argument looks like. -/
+def instMask (env : Environment) (n : Name) (k : Nat) : Array Bool := Id.run do
+  let some ci := env.find? n | return Array.replicate k false
+  let mut t := ci.type
+  let mut out : Array Bool := #[]
+  for _ in [0:k] do
+    match t with
+    | .forallE _ _ b bi =>
+      out := out.push (bi == .instImplicit)
+      t := b
+    | _ => out := out.push false
+  return out
 
 /-- A constant. `shape = false`: its cleaned name as a quoted string (self-delimiting, so no two statements share a canonical string by the way
 names and separators run together) with its universe levels in braces. `shape = true`: `c<order of first appearance>/<arity>`. -/
@@ -100,7 +111,8 @@ partial def ser (env : Environment) (shape : Bool) (e : Expr) : M String := do
     match f with
     | .const n ls =>
       if proofHead env n then return "⊢"
-      let args := if shape then args0.filter (fun a => !isInstArg env a) else args0
+      let mask := instMask env n args0.size
+      let args := if shape then (args0.zip mask).filterMap (fun (a, inst) => if inst then none else some a) else args0
       let hd ← constStr shape n ls args.size
       let mut out := s!"({hd}"
       for a in args do

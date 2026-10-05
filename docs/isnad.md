@@ -21,20 +21,23 @@ vocab = sha256(vocabulary)[:8]                        b27e40a1
 | `hyps` / `vars` | binders whose type is a proposition / all other binders; typeclass binders are not counted. A heuristic and part of the recipe: a binder whose type is a propositional *variable* (`hp : p`) counts as a variable |
 | `size` | `floor(log2 n)` of the number of expression nodes `n`: `s4` is 16 to 31 nodes |
 | `sig` | the first 12 hex digits of the **sha256 of the canonical form** (below) |
-| `shape` | the canonical form with every constant replaced by `c<order of first appearance>/<arity>`, numerals and strings masked, instance arguments dropped: the same shape is the same pattern over different objects (`a+b=b+a` over ℕ and over ℝ) |
+| `shape` | the canonical form with every constant replaced by `c<order of first appearance>/<arity>`, numerals and strings masked, instance arguments dropped (the arguments at the instance-implicit parameters of the applied constant, a bound instance
+variable included): the same shape is the same pattern over different objects (`a+b=b+a` over ℕ and over ℝ) |
 | `vocab` | the sorted, distinct, quoted names of the constants mentioned, without `Eq And Or Not Iff Exists True False OfNat.ofNat Ne` and without instances: the same vocab is the same objects arranged differently |
 
 The tag, the last line of a theorem's docstring (machine-owned, plain ASCII, no `-/`, no `/-`):
 
 ```
-@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=0 shape=3fa9c1d2 vocab=b27e40a1
+@isnad1 id=eq.1h3v.s4.01215b3d171d from=seed src=0 shape=3fa9c1d2 vocab=b27e40a1
+@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=- shape=3fa9c1d2 vocab=b27e40a1
 ```
 
-`@isnad1` is the version of the **recipe**: if the canonical form ever changes, new lines say `@isnad2` and old lines stay valid for their own version.
+`@isnad1` is the version of the **recipe**: if the canonical form ever changes, new lines say `@isnad2` and old lines stay valid for their own version
+(a reader refuses a version whose recipe it does not implement: it could not say what was verified).
 `from` is `seed` (upstream code under `Tengoku/Seed/`), `translated` (a verified translation of another library) or `novel` (new content written
-for Tengoku, today the `competemath` records; later `Tengoku/Native/`). `src` is `0` for a theorem that is not a translation, `-` for a translation
-whose source side is not available, or the 12-digit `sig` of the source statement (the same canonical form applied to the original; equal to this theorem's
-own `sig` when the statement was kept exactly). Axioms are **not** in the tag: they depend on the proof, an identity is a passport (they go to the index).
+for Tengoku, today the `competemath` records; later `Tengoku/Native/`). `src` is one claim with `from`: `0` for a theorem that is not a translation (`seed`, `novel`), and for a translation (`translated`) `-` when its source side
+is not available, or the 12-digit `sig` of the source statement (the same canonical form applied to the original; equal to this theorem's own `sig` when
+the statement was kept exactly). `from=translated src=0` and `from=seed src=-` are refused. Axioms are **not** in the tag: they depend on the proof, an identity is a passport (they go to the index).
 
 ## 2. The canonical form (version 1)
 
@@ -52,7 +55,8 @@ specification). Every node is an atom or `(head child…)`, children separated b
 | literal | `n<number>`, `s"<escaped string>"` |
 | universe level | `0`, `(S l)`, `(M a b)`, `(I a b)`, `p<order of first appearance>` (universe parameter names do not enter) |
 
-Names are cleaned (macro scopes and `private` prefixes removed) and **quoted**: every atom is self-delimiting, so no two different statements
+Names are cleaned (macro scopes removed; a `private` constant keeps its whole name, `_private.<Module>.0.<name>`: two private constants called `p` in two
+modules are different constants, and a statement that mentions one is module-specific by nature) and **quoted**: every atom is self-delimiting, so no two different statements
 share a canonical string because names and separators run together (the first lab recipe wrote `Π(A.B.C)`, which reads two ways).
 
 What does **not** enter: the theorem's own name, its namespace and module, binder names and binder info (implicit or explicit), universe parameter

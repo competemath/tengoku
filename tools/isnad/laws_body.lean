@@ -1,5 +1,6 @@
 -- The laws of the isnad recipe, checked on real elaborated statements (scripts/isnad.py laws). Core Lean only: no Mathlib, no tree.
 universe u v
+set_option linter.unusedVariables false
 
 theorem l_add (a b : Nat) : a + b = b + a := Nat.add_comm a b
 theorem l_add2 (x y : Nat) : x + y = y + x := by omega
@@ -16,6 +17,10 @@ theorem l_and2 (r s : Prop) (h1 : r) (h2 : s) : r ∧ s := And.intro h1 h2
 theorem l_all (p : Nat → Prop) (h : ∀ n, p n) : p 0 := h 0
 theorem l_all2 (q : Nat → Prop) (k : ∀ m, q m) : q 0 := k 0
 theorem l_swapped (a b : Nat) : b + a = a + b := Nat.add_comm b a
+theorem l_i1 (α : Type) (i j : Add α) (a b : α) : @Add.add α i a b = @Add.add α i a b := rfl
+theorem l_i2 (α : Type) (i j : Add α) (a b : α) : @Add.add α j a b = @Add.add α j a b := rfl
+private def secretProp : Prop := True
+theorem l_priv : secretProp := trivial
 
 open Lean Elab Command in
 elab "#isnad_laws" : command => do
@@ -41,6 +46,11 @@ elab "#isnad_laws" : command => do
   -- shape: the same pattern over different objects; vocabulary: different objects
   checks := checks.push ((← same 7 [`l_add, `l_mul]), "a + b = b + a and a * b = b * a have the same shape")
   checks := checks.push ((!(← same 8 [`l_add, `l_mul])), "…and different vocabularies")
+  -- instance arguments are dropped from the shape by the parameter they sit at, a bound instance variable included; the canonical form keeps them
+  checks := checks.push ((← same 7 [`l_i1, `l_i2]), "a bound instance variable is dropped from the shape like any instance argument")
+  checks := checks.push ((!(← same 6 [`l_i1, `l_i2])), "…but the canonical form tells the two instances apart")
+  -- a private constant keeps its whole name: it cannot be mistaken for another module's private constant of the same short name
+  checks := checks.push ((((← rec' `l_priv)[6]!.splitOn "_private.").length == 2), "a private constant keeps its `_private.<Module>.0.` prefix")
   -- the profile: kind, hypotheses, variables (the heuristic of the recipe: a binder whose type is a propositional variable counts as a variable)
   checks := checks.push (((((← rec' `l_hyp).drop 2).take 3) == ["lt", "1", "2"]), "l_hyp concludes lt with 1 hypothesis and 2 variables")
   checks := checks.push (((((← rec' `l_add).drop 2).take 3) == ["eq", "0", "2"]), "l_add concludes eq with 0 hypotheses and 2 variables")

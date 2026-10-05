@@ -63,7 +63,7 @@ class Record(unittest.TestCase):
 
 
 class Tags(unittest.TestCase):
-    TAG = "@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=0 shape=3fa9c1d2 vocab=b27e40a1"
+    TAG = "@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=- shape=3fa9c1d2 vocab=b27e40a1"
 
     def test_roundtrip(self):
         r = isnad.Record(ADD_COMM_LINE)
@@ -71,16 +71,22 @@ class Tags(unittest.TestCase):
         self.assertEqual(line, f"@isnad1 id={r.id} from=seed src=0 shape={r.shape} vocab={r.vocab}")
         self.assertEqual(isnad.parse_tag(line)["id"], r.id)
         self.assertEqual(isnad.format_tag(r, "translated", "0123456789ab").split()[3], "src=0123456789ab")
+        self.assertEqual(isnad.format_tag(r, "translated").split()[3], "src=-")  # a translation's source side is unknown unless said
+        self.assertEqual(isnad.format_tag(r, "novel").split()[3], "src=0")
 
     def test_parse(self):
         t = isnad.parse_tag(self.TAG)
-        self.assertEqual((t["version"], t["from"], t["src"]), ("1", "translated", "0"))
+        self.assertEqual((t["version"], t["from"], t["src"]), ("1", "translated", "-"))
 
     def test_every_malformation_is_refused(self):
         bad = [
             self.TAG.replace("from=translated", "from=imported"),
-            self.TAG.replace("src=0", "src=xyz"),
-            self.TAG.replace("src=0", "src=0123456789a"),  # 11 digits
+            self.TAG.replace("src=-", "src=xyz"),
+            self.TAG.replace("src=-", "src=0123456789a"),  # 11 digits
+            self.TAG.replace("src=-", "src=0"),  # a translation has a source side
+            self.TAG.replace("from=translated", "from=seed"),  # a seed theorem has none: src must be 0
+            self.TAG.replace("from=translated", "from=novel"),
+            self.TAG.replace("@isnad1", "@isnad2"),  # a recipe this tool does not implement
             self.TAG.replace("shape=3fa9c1d2", "shape=3fa9c1"),  # the 6-digit shape of the first sketch
             self.TAG.replace("id=eq.1h3v.s4.01215b3d171d", "id=eq.1h3v.s4.01215b3d171"),
             self.TAG.replace("id=eq.1h3v.s4.01215b3d171d", "id=Dvd.dvd.4h4v.s6.48e3ca7ba3f0"),  # a dot in the kind: the lab's old form
@@ -98,7 +104,7 @@ class Tags(unittest.TestCase):
     def test_a_tag_cannot_close_the_docstring(self):
         # the tag is one line of [a-z0-9=. -] and hex: no `-/`, no `/-`
         r = isnad.Record(ADD_COMM_LINE)
-        line = isnad.format_tag(r, "novel", "-")
+        line = isnad.format_tag(r, "translated", "-")
         self.assertNotIn("-/", line)
         self.assertNotIn("/-", line)
         self.assertRegex(line, r"^[ -~]+$")
@@ -115,11 +121,12 @@ class Explain(unittest.TestCase):
 
     def test_tag(self):
         text = isnad.explain_tag(Tags.TAG)
-        for part in ("verified translation", "not a translation", "shape=3fa9c1d2", "vocab=b27e40a1"):
+        for part in ("verified translation", "source side is not available", "shape=3fa9c1d2", "vocab=b27e40a1"):
             self.assertIn(part, text)
-        same = isnad.explain_tag(Tags.TAG.replace("src=0", "src=01215b3d171d"))
+        same = isnad.explain_tag(Tags.TAG.replace("src=-", "src=01215b3d171d"))
         self.assertIn("kept exactly", same)
-        self.assertIn("not available", isnad.explain_tag(Tags.TAG.replace("src=0", "src=-")))
+        self.assertIn("not available", isnad.explain_tag(Tags.TAG))
+        self.assertIn("not a translation", isnad.explain_tag(Tags.TAG.replace("from=translated src=-", "from=novel src=0")))
 
     def test_garbage(self):
         with self.assertRaises(ValueError):
