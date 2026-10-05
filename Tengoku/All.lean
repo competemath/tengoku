@@ -10,6 +10,7 @@ import Tengoku.FormalMathfin
 import Tengoku.SphereEversion
 import Tengoku.Aperiodicmonotiles
 import Tengoku
+import Tengoku.SpherePackingOrig
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.LerayHopf
