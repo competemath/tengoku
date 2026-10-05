@@ -19,6 +19,13 @@ theorem l_all2 (q : Nat → Prop) (k : ∀ m, q m) : q 0 := k 0
 theorem l_swapped (a b : Nat) : b + a = a + b := Nat.add_comm b a
 theorem l_i1 (α : Type) (i j : Add α) (a b : α) : @Add.add α i a b = @Add.add α i a b := rfl
 theorem l_i2 (α : Type) (i j : Add α) (a b : α) : @Add.add α j a b = @Add.add α j a b := rfl
+-- the first lab form wrote `Π(<type>.<body>)` with unquoted names: `A → B.C` and `A.B → C` were both `Π(A.B.C)`. Two constants whose dotted names run together
+def IsnadP : Type := Unit
+def IsnadQ.IsnadR : Type := Unit
+def IsnadP.IsnadQ : Type := Unit
+def IsnadR : Type := Unit
+theorem l_amb1 : Nonempty (IsnadP → IsnadQ.IsnadR) := ⟨fun _ => ()⟩
+theorem l_amb2 : Nonempty (IsnadP.IsnadQ → IsnadR) := ⟨fun _ => ()⟩
 private def secretProp : Prop := True
 theorem l_priv : secretProp := trivial
 
@@ -43,6 +50,8 @@ elab "#isnad_laws" : command => do
   checks := checks.push ((!(← same 6 [`l_add, `l_mul])), "a different operation changes the canonical form")
   checks := checks.push ((!(← same 6 [`l_add, `l_swapped])), "the order of the sides is part of the statement")
   checks := checks.push ((!(← same 6 [`l_hyp, `l_and])), "different statements differ")
+  -- the canonical form is injective where names and separators could run together (regression: the first lab form made these two the same string)
+  checks := checks.push ((!(← same 6 [`l_amb1, `l_amb2])), "dotted names that run together do not make two statements equal")
   -- shape: the same pattern over different objects; vocabulary: different objects
   checks := checks.push ((← same 7 [`l_add, `l_mul]), "a + b = b + a and a * b = b * a have the same shape")
   checks := checks.push ((!(← same 8 [`l_add, `l_mul])), "…and different vocabularies")
