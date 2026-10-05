@@ -1,0 +1,1 @@
+-- Primenumbertheoremand: a factory bundle (data/intake/primenumbertheoremand). This file only marks the library for Tengoku/All.lean.
