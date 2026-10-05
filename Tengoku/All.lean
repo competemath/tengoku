@@ -7,6 +7,7 @@ import Tengoku.Vcvio
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
+import Tengoku.SphereEversion
 import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Compfiles
