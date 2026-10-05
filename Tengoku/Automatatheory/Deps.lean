@@ -1,0 +1,1 @@
+-- Automatatheory: a factory bundle (data/intake/automatatheory). This file only marks the library for Tengoku/All.lean.
