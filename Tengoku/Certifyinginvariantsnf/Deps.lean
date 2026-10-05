@@ -1,0 +1,1 @@
+-- Certifyinginvariantsnf: a factory bundle (data/intake/certifyinginvariantsnf). This file only marks the library for Tengoku/All.lean.

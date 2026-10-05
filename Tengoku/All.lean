@@ -3,6 +3,7 @@ import Tengoku.Leanslt
 import Tengoku.Leanmodularforms
 import Tengoku.Flt
 import Tengoku.Vcvio
+import Tengoku.Certifyinginvariantsnf
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
 import Tengoku.Aperiodicmonotiles
