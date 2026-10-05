@@ -324,6 +324,9 @@ class Gates(unittest.TestCase):
         self.assertEqual(rc, 0, out)
         self.assertIn("This is not your change", out)
         self.assertIn("9992 modules behind", out)
+        # the PR is not re-queued by itself after this kind of ejection (only a push re-arms it): the comment must say whose move it is
+        self.assertIn("put it back into the queue yourself", out)
+        self.assertNotIn("goes back into the queue", out)
 
 
 class ScopeFix(unittest.TestCase):
