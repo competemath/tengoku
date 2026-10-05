@@ -5,14 +5,21 @@ import importlib.util
 import json
 import re
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 spec = importlib.util.spec_from_file_location("isnad_tag", ROOT / "scripts" / "isnad_tag.py")
 tag = importlib.util.module_from_spec(spec)
 sys.modules["isnad_tag"] = tag
 spec.loader.exec_module(tag)
+
+spec2 = importlib.util.spec_from_file_location("isnad", ROOT / "scripts" / "isnad.py")
+isnad = importlib.util.module_from_spec(spec2)
+sys.modules["isnad"] = isnad
+spec2.loader.exec_module(isnad)
 
 FIXTURE = (ROOT / "tools" / "isnad" / "tagger" / "Fixture.lean").read_text(encoding="utf-8")
 RANGES = json.loads((ROOT / "tools" / "isnad" / "tagger" / "ranges.json").read_text(encoding="utf-8"))
@@ -320,6 +327,143 @@ class Fuzz(unittest.TestCase):
                 self.assertNotIn("@isnad", gone)
                 self.assertTrue(tag.equivalent(tag.strip_text(text), gone))
                 self.assertEqual(gone.count("theorem"), n)
+
+
+def fake_record(name, module="IsnadFixture"):
+    """A line of `tengoku-isnad` for a made-up theorem (the canonical strings are not used by the tagger, only the id they give)."""
+    return isnad.Record("\t".join(["isnad1", name, module, "eq", "0", "2", "24", f'(canon "{name}")', f"(shape {name})", f'"{name}"']))
+
+
+def range_line(name, v, module="IsnadFixture"):
+    r, s = v["range"], v["sel"]
+    return f"isnad1-range\t{name}\t{module}\t{r[0]}:{r[1]}\t{r[2]}:{r[3]}\t{s[0]}:{s[1]}\t{s[2]}:{s[3]}"
+
+
+def fixture_inputs(module="IsnadFixture"):
+    return [fake_record(n, module) for n in RANGES], [range_line(n, v, module) for n, v in RANGES.items()]
+
+
+class Cli(unittest.TestCase):
+    """`isnad.py tag` and `strip` around the tagger: Lean's two outputs joined, the files read and written byte for byte."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        (self.root / "IsnadFixture.lean").write_bytes(FIXTURE.encode("utf-8"))
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def file(self):
+        return (self.root / "IsnadFixture.lean").read_bytes().decode("utf-8")
+
+    def test_range_lines_parse(self):
+        line = range_line("Fx.one_line", RANGES["Fx.one_line"])
+        self.assertEqual(isnad.parse_range_line(line), ("Fx.one_line", "IsnadFixture", (5, 0, 6, 49), (6, 8, 6, 16)))
+
+    def test_what_is_not_a_range_line_is_refused(self):
+        for bad in ("", "isnad1\tx", "isnad1-range\tx\tm\t1:2\t3:4", "isnad1-range\tx\tm\t1:2\t3:4\t5:6\t7:x"):
+            with self.assertRaises(ValueError, msg=bad):
+                isnad.parse_range_line(bad)
+
+    def test_origin_follows_where_the_module_lives(self):
+        for module, want in (
+            ("Tengoku.Seed", "seed"), ("Tengoku.Seed.Logic.Basic", "seed"), ("Tengoku.Native.X", "novel"), ("Tengoku.Flt.Basic", "translated"),
+            ("Tengoku.SeedLike.X", "translated"), ("Tengoku.NativeThings", "translated"), ("Mathlib.Order.Basic", "translated"),
+        ):
+            self.assertEqual(isnad.origin_of(module), want, module)
+
+    def test_module_names_map_to_files(self):
+        self.assertEqual(isnad.module_file("A.B.C", Path("/r")), Path("/r/A/B/C.lean"))
+
+    def test_the_plan_joins_records_and_ranges_by_module_and_name(self):
+        plan, skipped = isnad.plan_tags(*fixture_inputs("Tengoku.Seed.X"))
+        self.assertEqual((list(plan), skipped), (["Tengoku.Seed.X"], []))
+        items = plan["Tengoku.Seed.X"]
+        self.assertEqual(len(items), 12)
+        self.assertTrue(all(" from=seed src=0 " in i.tag for i in items))
+        self.assertEqual(items[0].rng, tuple(RANGES[items[0].name]["range"]))
+        self.assertEqual(items[0].sel, tuple(RANGES[items[0].name]["sel"]))
+
+    def test_origin_and_source_can_be_given(self):
+        plan, _ = isnad.plan_tags(*fixture_inputs("Tengoku.Flt.X"), origin="translated", src="abcdef012345")
+        self.assertTrue(all(" from=translated src=abcdef012345 " in i.tag for i in plan["Tengoku.Flt.X"]))
+        plan, _ = isnad.plan_tags(*fixture_inputs("Tengoku.Flt.X"))
+        self.assertTrue(all(" from=translated src=- " in i.tag for i in plan["Tengoku.Flt.X"]))
+
+    def test_a_name_two_theorems_share_is_skipped_not_guessed(self):
+        recs, ranges = fixture_inputs()
+        plan, skipped = isnad.plan_tags(recs + [fake_record("Fx.one_line")], ranges)
+        self.assertEqual([n for n, _ in skipped], ["Fx.one_line", "Fx.one_line"])
+        self.assertNotIn("Fx.one_line", [i.name for i in plan["IsnadFixture"]])
+        plan, skipped = isnad.plan_tags(recs, ranges + [ranges[0]])
+        self.assertEqual([n for n, _ in skipped], ["Fx.one_line"])
+
+    def test_a_theorem_without_a_range_is_skipped(self):
+        recs, ranges = fixture_inputs()
+        plan, skipped = isnad.plan_tags(recs, ranges[1:])
+        self.assertEqual(skipped, [("Fx.one_line", "Lean recorded no position for it")])
+        self.assertEqual(len(plan["IsnadFixture"]), 11)
+
+    def test_a_dry_run_writes_nothing(self):
+        plan, _ = isnad.plan_tags(*fixture_inputs())
+        counts, skipped = isnad.tag_files(plan, self.root, write=False)
+        self.assertEqual((skipped, counts["added"] + counts["created"] + counts["replaced"]), ([], 12))
+        self.assertEqual(self.file(), FIXTURE)
+
+    def test_writing_tags_the_file_and_it_is_equivalent(self):
+        plan, _ = isnad.plan_tags(*fixture_inputs())
+        isnad.tag_files(plan, self.root, write=True)
+        written = self.file()
+        self.assertEqual(written.count("@isnad1 id="), 12)
+        self.assertTrue(tag.equivalent(FIXTURE, written))
+        for i in plan["IsnadFixture"]:
+            self.assertIn(i.tag, written)
+
+    def test_a_result_that_would_change_more_than_tags_is_never_written(self):
+        plan, _ = isnad.plan_tags(*fixture_inputs())
+        with mock.patch.object(tag, "equivalent", return_value=False):
+            counts, skipped = isnad.tag_files(plan, self.root, write=True)
+        self.assertEqual(self.file(), FIXTURE)
+        self.assertEqual(sum(counts.values()), 0)
+        self.assertIn("left alone", skipped[-1][1])
+
+    def test_a_missing_file_is_reported_per_theorem(self):
+        plan, _ = isnad.plan_tags(*fixture_inputs("Nope.Missing"))
+        _, skipped = isnad.tag_files(plan, self.root, write=True)
+        self.assertEqual(len(skipped), 12)
+        self.assertIn("does not exist", skipped[0][1])
+
+    def test_a_crlf_file_stays_byte_for_byte_and_is_skipped(self):
+        crlf = FIXTURE.replace("\n", "\r\n").encode("utf-8")
+        (self.root / "IsnadFixture.lean").write_bytes(crlf)
+        plan, _ = isnad.plan_tags(*fixture_inputs())
+        _, skipped = isnad.tag_files(plan, self.root, write=True)
+        self.assertEqual((self.root / "IsnadFixture.lean").read_bytes(), crlf)
+        self.assertEqual(len(skipped), 12)
+
+    def test_strip_takes_the_tags_out_of_a_file_and_a_directory(self):
+        plan, _ = isnad.plan_tags(*fixture_inputs())
+        isnad.tag_files(plan, self.root, write=True)
+        sub = self.root / "sub"
+        sub.mkdir()
+        (sub / "Other.lean").write_text("theorem x : True := trivial\n")
+        (sub / "Tagged.lean").write_bytes(self.file().encode("utf-8"))  # a tagged file one directory down
+        self.assertEqual(isnad.strip_files([self.root], write=False), 2)
+        self.assertIn("@isnad1", self.file())
+        self.assertEqual(isnad.strip_files([self.root], write=True), 2)
+        self.assertNotIn("@isnad", self.file())
+        self.assertNotIn("@isnad", (sub / "Tagged.lean").read_text())
+        self.assertEqual(isnad.strip_files([self.root], write=True), 0)
+        self.assertEqual((sub / "Other.lean").read_text(), "theorem x : True := trivial\n")
+
+    def test_tagging_is_deterministic(self):
+        plan, _ = isnad.plan_tags(*fixture_inputs())
+        isnad.tag_files(plan, self.root, write=True)
+        with tempfile.TemporaryDirectory() as other:
+            (Path(other) / "IsnadFixture.lean").write_bytes(FIXTURE.encode("utf-8"))
+            isnad.tag_files(plan, Path(other), write=True)
+            self.assertEqual((Path(other) / "IsnadFixture.lean").read_bytes().decode("utf-8"), self.file())
 
 
 if __name__ == "__main__":
