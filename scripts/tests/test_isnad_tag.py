@@ -264,6 +264,31 @@ class Scanning(unittest.TestCase):
     def test_a_comment_that_is_never_closed_runs_to_the_end(self):
         self.assertEqual(tag.skip_block_comment("/- a /- b -/ c", 0), len("/- a /- b -/ c"))
 
+    def test_a_quoted_name_is_one_segment_and_hides_comment_marks(self):
+        self.assertEqual(self.kinds("theorem «a--b» : True := trivial\n"), ["code", "string", "code"])
+        self.assertEqual(self.kinds("theorem «a /-- b -/ c» : True := trivial\n"), ["code", "string", "code"])
+        self.assertEqual(self.kinds('theorem «a"b» : True := trivial\n'), ["code", "string", "code"])
+
+    def test_a_quoted_name_that_is_never_closed_runs_to_the_end(self):
+        self.assertEqual(self.kinds("theorem «a\n/-- d -/\n"), ["code", "string"])
+
+    def test_a_character_literal_is_one_segment_and_a_quote_in_it_opens_no_string(self):
+        self.assertEqual(self.kinds("def c := '\"'\n/-- d -/\n"), ["code", "string", "code", "doc", "code"])
+        self.assertEqual(self.kinds("def c := '-'\n"), ["code", "string", "code"])
+        self.assertEqual(self.kinds("def c := '\\''\n"), ["code", "string", "code"])
+        self.assertEqual(self.kinds("def c := '\\x41'\n"), ["code", "string", "code"])
+
+    def test_a_prime_or_the_image_notation_is_not_a_character_literal(self):
+        for code in ["theorem foo' (h' : f '' s = t) : s ⁻¹' t = u := by simp\n", "def c := f '' g '' h\n", "def c := a'b'\n"]:
+            self.assertEqual(self.kinds(code), ["code"], code)
+
+    def test_a_character_literal_in_front_of_a_docstring_does_not_hide_it(self):
+        text = "def c := '\"'\n\n/-- doc -/\ntheorem t0 : True := trivial\n"
+        new, counts, skipped = tag.tag_text(text, ranges_of(text, 1))
+        self.assertEqual((skipped, counts["replaced"] + counts["added"]), ([], 1), new)
+        self.assertEqual(new.count("/--"), 1, new)
+        self.assertIn(f"/-- doc\n{TAG}\n-/\ntheorem t0", new)
+
 
 def position(text, off):
     line_start = text.rfind("\n", 0, off) + 1
