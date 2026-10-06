@@ -167,3 +167,32 @@ module, `queue_targets.py`), not the library's root: the earlier parts are in th
 
 Parts merge in order: a part's PR says `Depends-On:` the one before it (the `depends` job waits for it), and the tree accepts part NNN only when part NNN-1 is in.
 Every part is approved like any other PR; the approvals are the point of the human check, the cutting is not.
+
+## 7. The tag class
+
+A **tag PR** writes isnad tags (`@isnad1 id=… from=… src=… shape=… vocab=…`, the last line of a theorem's docstring; `docs/isnad.md`, "The tagger") into modules that are
+already in the tree, and changes nothing else. It comes from `TENGOKU_BOT`, like every class that is generated, and is recognised by its content, not its paths:
+the diff is a set of modified modules and, **after the tags are taken out of both sides, the code is the same bytes and every docstring the same words**
+(`equivalent` in `scripts/isnad_tag.py`, the law the tagger itself keeps). That is also what tells it apart from a scope-fix PR, which modifies the same kind of file.
+
+| Path | Status | What it may hold |
+|---|---|---|
+| `Tengoku/Seed/**.lean`, `Tengoku/Native/**.lean`, `Tengoku/<Library>/**.lean` of a library that arrived as an intake bundle | modified | tags, and nothing a compiler reads |
+| anything else (a library generated from records, `Tengoku/<Library>.lean`, `Tengoku/All.lean`, data, scripts) | | not in a tag PR |
+
+`scripts/ci/tag_check.py` judges it in the gate, without Lean and without running anything of the PR: the equivalence above, at most 400 modules, and every tag line left
+in a docstring one well-formed tag (exactly the fields, printable ASCII, a known version), at most one per docstring and the last line of it, whose `from=` is where
+the module lives (`seed` under `Tengoku/Seed/`, `novel` under `Tengoku/Native/`, `translated` for a library). The code of a tag PR is exactly the base's, which the
+queue has already built and scanned, so building the PR executes nothing new.
+
+What the gate cannot know is whether an id *is* the id of its theorem. The merge queue builds the PR's own modules (`queue_targets.py`: the changed modules, not a library
+root: a docstring change rebuilds the module and what imports it, and the nightly cache build catches up with the dependents), and `scripts/ci/tag_verify.py` builds
+`tengoku-isnad` and runs `scripts/isnad.py check-tags` over them: tagging the modules again must change nothing, so every taggable theorem carries exactly the tag the build
+computes, none is stale, no docstring is missing, and no tag line belongs to no theorem. Anything else ejects the PR. A theorem the tagger leaves alone by rule (a generated
+twin, a structure's field, several theorems at one command, a file with Windows line endings) is not tagged, and a module that has one is still a valid tag PR.
+
+A library whose modules are generated from records is not tagged by a PR: the promote bot regenerates those files, so a tag would be removed by the next promotion. They
+are tagged when the generator learns to write tags (not built).
+
+A tag PR is meant to be one part of a sweep over the tree (modules in dependency order, at most 400 per PR, the seed first), approved part by part like the parts of an
+intake bundle; the tool that plans and opens the parts is a separate change.
