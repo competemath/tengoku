@@ -25,6 +25,10 @@ read from the PR's commit as data. The rules:
                can write are split over two jobs, and the one that writes takes only validated outputs. Without this, a later step that
                ever ran a file of the PR would hold the token.
 
+  cancelable   in a workflow whose runs a newer run cancels (`concurrency: cancel-in-progress`), no job runs on `always()`: a cancelled run would still run it, and what it
+               reports (a failure, for an aggregating required check) outlives the run and blocks the commit after the newer run has passed. `!cancelled()` runs after
+               failed jobs as `always()` does, and is skipped in a cancelled run.
+
   --online     genuine pins: the tag named in the comment contains the commit. A repository shares commits with
                all its forks, so a pin can name a commit that exists only in an attacker's fork (an impostor commit).
 
@@ -50,7 +54,20 @@ LINE = "__line__"
 SHA = re.compile(r"[0-9a-f]{40}")
 USES_LINE = re.compile(r"""^\s*(?:-\s+)?uses:\s*["']?([^\s"'#]+)["']?\s*(?:#\s*(\S+))?""")
 EXPR = re.compile(r"\$\{\{(.*?)\}\}", re.S)
+ALWAYS_CALL = re.compile(r"\balways\s*\(")
+EXPR_OPERATOR = re.compile(r"&&|\|\||[=!<>]=|[<>!(),\[\].*]")
+EXPR_WORD = re.compile(r"[A-Za-z_][\w-]*|\d+(?:\.\d+)?")
+UNKNOWN = frozenset({True, False})
+# what a call is on a cancelled run: `always()` and `cancelled()` are true, `success()` and `failure()` false, any other call or context is unknown
+STATUS_ON_CANCELLED = {
+    "always": frozenset({True}),
+    "cancelled": frozenset({True}),
+    "success": frozenset({False}),
+    "failure": frozenset({False}),
+}
+LITERALS = {"true": frozenset({True}), "false": frozenset({False}), "null": frozenset({False})}
 STRING = r"'(?:[^']|'')*'"
+EXPR_TOKENS = (EXPR_OPERATOR, re.compile(STRING), EXPR_WORD)
 NAME = r"[A-Za-z_][\w-]*(?:\.[\w*-]+|\[[^\]]*\])*"
 OPERAND = rf"(?:{STRING}|{NAME}|-?\d+(?:\.\d+)?)"
 COMPARISON = re.compile(rf"{OPERAND}\s*(?:==|!=|<=|>=|<|>)\s*{OPERAND}")
@@ -136,6 +153,114 @@ APPLY = re.compile(
     r"|(?<![\w./-])patch\s+(?:-|<)"  # patch with an option or a redirect after it
 )
 DATA_CHECKOUT = re.compile(r"\bgit\s+checkout(?:\s+-q|\s+--quiet)*\s+\S+\s+--\s+(.+)$")
+
+
+class CancelledRun:
+    """Whether a job's `if` can be true on a run that was cancelled: parses the condition (`!`, comparisons, `&&`, `||`, parentheses, calls, contexts) and
+    evaluates it with the status functions as they are on a cancelled run; everything else is unknown. Raises ValueError for text it does not understand."""
+
+    def __init__(self, cond: str):
+        self.tokens: list[str] = []
+        text, pos = cond.strip(), 0
+        while pos < len(text):
+            if text[pos].isspace():
+                pos += 1
+                continue
+            m = next((m for m in (t.match(text, pos) for t in EXPR_TOKENS) if m), None)
+            if m is None:
+                raise ValueError(f"unexpected text at {pos}")
+            self.tokens.append(m.group())
+            pos = m.end()
+        self.at = 0
+
+    def peek(self) -> str | None:
+        return self.tokens[self.at] if self.at < len(self.tokens) else None
+
+    def take(self, want: str | None = None) -> str:
+        tok = self.peek()
+        if tok is None or (want is not None and tok != want):
+            raise ValueError(f"expected {want or 'more'}")
+        self.at += 1
+        return tok
+
+    def can_run(self) -> bool:
+        value = self.either()
+        if self.peek() is not None:
+            raise ValueError("trailing text")
+        return True in value
+
+    def either(self) -> frozenset:
+        value = self.both()
+        while self.peek() == "||":
+            self.take()
+            right = self.both()  # once: parsing it advances the position
+            value = frozenset(a or b for a in value for b in right)
+        return value
+
+    def both(self) -> frozenset:
+        value = self.compared()
+        while self.peek() == "&&":
+            self.take()
+            right = self.compared()
+            value = frozenset(a and b for a in value for b in right)
+        return value
+
+    def compared(self) -> frozenset:
+        value = self.negated()
+        while self.peek() in ("==", "!=", "<", "<=", ">", ">="):
+            self.take()
+            self.negated()
+            value = UNKNOWN
+        return value
+
+    def negated(self) -> frozenset:
+        if self.peek() == "!":
+            self.take()
+            return frozenset(not v for v in self.negated())
+        return self.atom()
+
+    def atom(self) -> frozenset:
+        tok = self.take()
+        if tok == "(":
+            value = self.either()
+            self.take(")")
+            return value
+        if tok[0] == "'" or tok[0].isdigit():
+            return UNKNOWN
+        if not (tok[0].isalpha() or tok[0] == "_"):
+            raise ValueError(f"unexpected {tok}")
+        if self.peek() == "(":
+            self.arguments()
+            return STATUS_ON_CANCELLED.get(tok.lower(), UNKNOWN)
+        if tok.lower() in LITERALS and self.peek() not in (".", "["):
+            return LITERALS[tok.lower()]
+        self.accessors()
+        return UNKNOWN
+
+    def arguments(self) -> None:
+        self.take("(")
+        while self.peek() != ")":
+            self.either()
+            if self.peek() == ",":
+                self.take()
+        self.take(")")
+
+    def accessors(self) -> None:
+        while self.peek() in (".", "["):
+            if self.take() == "[":
+                self.either()
+                self.take("]")
+            else:
+                self.take()  # the name after the dot, or the `*` of `.*`
+
+
+def runs_when_cancelled(cond: str) -> bool:
+    """`cond` (a job's `if`) can be true on a cancelled run; text that cannot be parsed counts as yes."""
+    wrapped = EXPR.fullmatch(cond.strip())
+    try:
+        return CancelledRun(wrapped.group(1) if wrapped else cond).can_run()
+    except ValueError:
+        return True
 
 
 class Loader(yaml.SafeLoader):
@@ -234,7 +359,21 @@ class Checker:
                 self.pinned(job["uses"], line)
             self.steps(job.get("steps") or [], job.get("env") or {}, doc.get("env") or {}, on)
             self.write_and_pr(name, job, on, doc.get("env") or {})
+            self.cancelable(name, job, doc)
         return self
+
+    def cancelable(self, name: str, job: dict, doc: dict) -> None:
+        """A job of a workflow whose runs are cancelled by newer ones does not run on `always()`."""
+        conc = [c for c in (doc.get("concurrency"), job.get("concurrency")) if isinstance(c, dict)]
+        cancels = any(str(c.get("cancel-in-progress", "false")).strip().lower() not in ("false", "") for c in conc)
+        cond = job.get("if")
+        if cancels and isinstance(cond, str) and ALWAYS_CALL.search(cond) and runs_when_cancelled(cond):
+            self.add(
+                job.get(LINE, 1),
+                "cancelable",
+                f"job `{name}` runs on `always()` in a workflow whose runs are cancelled by newer ones: a cancelled run still runs it and its result outlives the run; "
+                "use `!cancelled()`",
+            )
 
     def write_and_pr(self, name: str, job: dict, on: set[str], wf_env: object) -> None:
         """A job that can write never reads the commits of the PR or of the queue entry."""
