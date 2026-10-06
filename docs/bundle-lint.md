@@ -10,6 +10,9 @@ every attribute and `set_option` is on a list, and the words that run code or tr
 | `proposed` | the notation commands (`notation`, `notation3`, `infix`, `infixl`, `infixr`, `prefix`, `postfix`, `scoped`, `local`) | each is a rewrite rule that elaborates a term; none runs the library's code |
 | `wide` | also the macro family (`macro`, `macro_rules`, `syntax`, `declare_syntax_cat`) | a macro runs in Lean's pure macro monad, which cannot reach IO; the words that could (`unsafe`, `IO.`, `run_cmd`, `#eval`, `elab`, `initialize`, `implemented_by`, `extern`, `native_decide`, `axiom`, `opaque`) stay refused wherever they appear, in a quotation too |
 
+The merge queue's own content lint (`scripts/ci/lint_banked.py`) reads the same variable the same way: notation commands in `proposed` and `wide`, the macro family in
+`wide` only, `elab` and `elab_rules` in no mode.
+
 In every mode a word at column 0 starts a command only if it is a command keyword of the tree's Lean (`schemas/command-keywords.json`, the leading tokens of
 Lean's `command` parser category, read from Lean itself). Any other word there continues the command above (`termination_by`, `decreasing_by`, `by`, `fun`, a
 proof term), and Lean refuses it if it does not parse. The old reading took every unknown word for a command and refused 10,937 of lean-pool's 79,378
