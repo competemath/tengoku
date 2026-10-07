@@ -97,6 +97,29 @@ class Independence(unittest.TestCase):
         r = rows([proof("p1", "l1", A), proof("p2", "l2", B)], k=2)
         self.assertTrue(r[0]["tawatur"])
 
+    def test_mathlib_names_that_merely_start_like_a_logical_constant_are_not_forced_away(self):
+        """CodeRabbit: bare prefixes `Eq`, `Or`, `Not`, … would also have removed Equiv.*, Order.*, Nat.*-lookalikes"""
+        for name in ("Equiv.refl", "Order.succ", "Orderiso", "Notation.x", "Existence.y", "Andrew.z", "Truee", "Falsey.w"):
+            self.assertFalse(tw.ignored(name, tw.FORCED_PREFIXES, set()), name)
+        for name in (
+            "Eq",
+            "Eq.mpr",
+            "And.intro",
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Quot.mk",
+            "Lean.Meta.x",
+            "Init.Core.y",
+            "Std.HashMap",
+            "Exists.intro",
+            "Or",
+        ):
+            self.assertTrue(tw.ignored(name, tw.FORCED_PREFIXES, set()), name)
+        shared = ["Equiv.refl", "Order.succ", "Equiv.symm", "Order.pred", "Equiv.trans", "Order.lt"]
+        r = rows([proof("p1", "l1", [*A, *shared]), proof("p2", "l2", [*B, *shared])], k=2)
+        self.assertFalse(r[0]["tawatur"])  # six shared constants are real shared substance
+
     def test_the_statements_own_constants_are_ignored(self):
         stmt = ["Nat.Prime", "Nat.gcd"]
         r = rows(
@@ -107,20 +130,14 @@ class Independence(unittest.TestCase):
             k=2,
         )
         self.assertTrue(r[0]["tawatur"])
-        without = rows(
-            [proof("p1", "l1", [*A, *stmt]), proof("p2", "l2", [*B, *stmt])], k=2
-        )
+        without = rows([proof("p1", "l1", [*A, *stmt]), proof("p2", "l2", [*B, *stmt])], k=2)
         self.assertFalse(without[0]["tawatur"])
 
     def test_what_the_caller_ignores_is_ignored(self):
         shared = ["Mathlib.Foundation.x", "Mathlib.Foundation.y"]
         ps = [proof("p1", "l1", [*A, *shared]), proof("p2", "l2", [*B, *shared])]
         self.assertFalse(rows(ps, k=2)[0]["tawatur"])
-        self.assertTrue(
-            rows(ps, k=2, prefixes=(*tw.FORCED_PREFIXES, "Mathlib.Foundation."))[0][
-                "tawatur"
-            ]
-        )
+        self.assertTrue(rows(ps, k=2, prefixes=(*tw.FORCED_PREFIXES, "Mathlib.Foundation."))[0]["tawatur"])
         self.assertTrue(rows(ps, k=2, exact=set(shared))[0]["tawatur"])
 
     def test_the_largest_independent_set_is_found_not_the_first(self):
@@ -158,9 +175,7 @@ class Cli(unittest.TestCase):
             [json.loads(ln)["id"] for ln in out.splitlines()],
             ["eq.1h0v.s3.aaaaaaaaaaaa"],
         )
-        self.assertIn(
-            "2 statements with two or more proofs; 1 tawatur (k=3, floor=5)", err
-        )
+        self.assertIn("2 statements with two or more proofs; 1 tawatur (k=3, floor=5)", err)
 
     def test_all_shows_every_group_and_the_flags_reach_the_analysis(self):
         ps = [proof("p1", "l1", A), proof("p2", "l2", B)]
@@ -177,15 +192,11 @@ class Cli(unittest.TestCase):
         d = Path(tempfile.mkdtemp())
         (d / "x.txt").write_text("Found.x\nFound.y\n")
         self.assertEqual(
-            run(ps, "--all", "--k", "2", "--ignore", str(d / "x.txt"))[1].count(
-                '"tawatur": true'
-            ),
+            run(ps, "--all", "--k", "2", "--ignore", str(d / "x.txt"))[1].count('"tawatur": true'),
             1,
         )
         self.assertEqual(
-            run(ps, "--all", "--k", "2", "--ignore-prefix", "Found.")[1].count(
-                '"tawatur": true'
-            ),
+            run(ps, "--all", "--k", "2", "--ignore-prefix", "Found.")[1].count('"tawatur": true'),
             1,
         )
 

@@ -20,42 +20,36 @@ from collections import defaultdict
 from itertools import combinations
 from pathlib import Path
 
-# the forced layer: what every proof shares by construction (the kernel's axioms and Lean's own library)
+# the forced layer: what every proof shares by construction (the kernel's axioms and Lean's own library). Namespaces end in a dot, so that `Equiv.foo` or `Orderiso` of Mathlib
+# are not taken for `Eq` and `Or`; the logical constants are exact names (and their namespaces: `Eq.mpr`, `And.intro`)
 FORCED_PREFIXES = (
     "Lean.",
     "Init.",
     "Std.",
-    "propext",
-    "Classical.choice",
-    "Quot.sound",
+    "Classical.",
     "Quot.",
-    "Eq",
-    "HEq",
-    "True",
-    "False",
-    "And",
-    "Or",
-    "Iff",
-    "Not",
-    "Exists",
+    "Eq.",
+    "HEq.",
+    "True.",
+    "False.",
+    "And.",
+    "Or.",
+    "Iff.",
+    "Not.",
+    "Exists.",
 )
+FORCED_EXACT = frozenset({"propext", "Quot", "Eq", "HEq", "True", "False", "And", "Or", "Iff", "Not", "Exists"})
 
 
 def ignored(name: str, prefixes: tuple[str, ...], exact: set[str]) -> bool:
-    return name in exact or name.startswith(prefixes)
+    return name in FORCED_EXACT or name in exact or name.startswith(prefixes)
 
 
 def read_proofs(path: Path) -> list[dict]:
-    return [
-        json.loads(ln)
-        for ln in path.read_text(encoding="utf-8").splitlines()
-        if ln.strip()
-    ]
+    return [json.loads(ln) for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
 
 
-def substance(
-    proof: dict, group_statement: set[str], prefixes: tuple[str, ...], exact: set[str]
-) -> set[str]:
+def substance(proof: dict, group_statement: set[str], prefixes: tuple[str, ...], exact: set[str]) -> set[str]:
     """the constants of the proof outside X (the forced layer, the statement's own constants for the whole group, what the caller ignores)"""
     own = set(proof["closure"]) - group_statement
     return {c for c in own if not ignored(c, prefixes, exact)}
@@ -69,10 +63,7 @@ def independent(a: dict, b: dict) -> bool:
 def largest_independent_set(proofs: list[dict]) -> list[dict]:
     """a largest set of pairwise independent proofs (Bron-Kerbosch on the independence graph; groups are small)"""
     n = len(proofs)
-    adj = {
-        i: {j for j in range(n) if j != i and independent(proofs[i], proofs[j])}
-        for i in range(n)
-    }
+    adj = {i: {j for j in range(n) if j != i and independent(proofs[i], proofs[j])} for i in range(n)}
     best: list[int] = []
 
     def grow(r: list[int], p: set[int], x: set[int]) -> None:
@@ -119,10 +110,7 @@ def analyse(
                 "proofs": [m["name"] for m in members],
                 "libs": sorted({m["lib"] for m in members}),
                 "substantial": [m["name"] for m in solid],
-                "shared": {
-                    f"{a['name']} | {b['name']}": len(a["substance"] & b["substance"])
-                    for a, b in combinations(solid, 2)
-                },
+                "shared": {f"{a['name']} | {b['name']}": len(a["substance"] & b["substance"]) for a, b in combinations(solid, 2)},
                 "independent": [m["name"] for m in best],
                 "tawatur": len(best) >= k,
             }
@@ -131,9 +119,7 @@ def analyse(
 
 
 def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("report")
     r.add_argument("closures")
@@ -150,24 +136,14 @@ def main(argv: list[str]) -> int:
         help="constants outside X a proof needs to count",
     )
     r.add_argument("--ignore", help="a file: one constant name per line to add to X")
-    r.add_argument(
-        "--ignore-prefix", action="append", default=[], help="a name prefix to add to X"
-    )
+    r.add_argument("--ignore-prefix", action="append", default=[], help="a name prefix to add to X")
     r.add_argument(
         "--all",
         action="store_true",
         help="every statement with two or more proofs, not only the tawatur ones",
     )
     a = ap.parse_args(argv)
-    exact = (
-        {
-            ln.strip()
-            for ln in Path(a.ignore).read_text(encoding="utf-8").splitlines()
-            if ln.strip()
-        }
-        if a.ignore
-        else set()
-    )
+    exact = {ln.strip() for ln in Path(a.ignore).read_text(encoding="utf-8").splitlines() if ln.strip()} if a.ignore else set()
     rows = analyse(
         read_proofs(Path(a.closures)),
         a.k,
