@@ -89,14 +89,18 @@ class NewestPerContext(unittest.TestCase):
         self.assertEqual(fc.judge(OK + older)[0], "ok")
         self.assertEqual(fc.judge(older + OK)[0], "wait")  # the pending ones are newest: still waiting
 
-    def test_the_fetch_reads_the_per_status_endpoint_which_carries_the_creator(self):
-        """The combined endpoint leaves `creator` out: every status looked forged and the gate waited for verdicts that were there (2026-10-07)."""
+    def test_the_fetch_reads_every_page_of_the_per_status_endpoint_which_carries_the_creator(self):
+        """The combined endpoint leaves `creator` out: every status looked forged and the gate waited for verdicts that were there (2026-10-07).
+        Every page is read (CodeRabbit, #340): a verdict on the second page of a busy commit is a verdict."""
+        page1 = [{"context": "CodeRabbit", "state": "success"}] * 2
+        page2 = [{"context": "Security Analysis", "state": "success", "creator": BOT, "target_url": FOSSA + "x"}]
         with mock.patch.object(fc.subprocess, "run") as run:
-            run.return_value = mock.Mock(returncode=0, stdout="[]", stderr="")
-            fc.fetch("o/r", "a" * 40)
+            run.return_value = mock.Mock(returncode=0, stdout=json.dumps([page1, page2]), stderr="")
+            got = fc.fetch("o/r", "a" * 40)
             args = run.call_args[0][0]
         self.assertIn("repos/o/r/commits/" + "a" * 40 + "/statuses?per_page=100", args)
-        self.assertNotIn("--jq", args)
+        self.assertIn("--paginate", args)
+        self.assertEqual(got, page1 + page2)  # flattened, in order
 
 
 class Waiting(unittest.TestCase):
