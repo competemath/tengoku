@@ -94,6 +94,8 @@ Tengoku, and the full list of the technology, tools and writing behind it (secur
 review and CI), is in [docs/acknowledgements.md](docs/acknowledgements.md). The mathematics comes from the
 libraries listed in [schemas/sources.json](schemas/sources.json) and [LICENSE-THIRD-PARTY.md](LICENSE-THIRD-PARTY.md).
 
+<a href="https://snyk.io"><img src="https://cdn.simpleicons.org/snyk" height="18" alt="Snyk"></a>&nbsp;**Security, with [Snyk](https://snyk.io).** Tengoku is a proud member of Snyk's [Secure Developer Program](https://snyk.io/open-source/), which equips open-source maintainers with its developer-security platform. Thank you for backing open source.
+
 ## Dedication
 
 This project is founded for the sake of God (فِي سَبِيلِ ٱللَّٰهِ) - the prophet PBUH said:
