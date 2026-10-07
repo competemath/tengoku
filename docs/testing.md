@@ -217,8 +217,9 @@ passes in seconds) and, for code changes, on `main`, which keeps the baseline th
 current. The default gate judges new code only: reliability, security and maintainability ratings, duplication, and
 whether new security hotspots are reviewed.
 
-**Coverage** is measured, not estimated: `sonar.yml` runs the unit tests (`scripts/tests` and `scripts/ci/tests`, the
-same two commands as `pr-tests.yml`) under coverage.py and uploads the report. `.coveragerc` says how: branches too; the
+**Coverage** is measured, not estimated: `pr-tests.yml` runs the unit tests (`scripts/tests` and `scripts/ci/tests`)
+once, under coverage.py, and its `sonar` job analyses the PR on that report in the same run; `sonar.yml` does the same
+for the main branch. `.coveragerc` says how: branches too; the
 gate scripts the tests run as subprocesses are measured as well (`patch = subprocess`); and every file under `scripts/`
 and `tools/` counts, so a script no test imports shows as 0% instead of being left out. The figure is Python only (Sonar
 has no coverage for the shell scripts or the workflows), it counts what the unit tests reach, not the fuzzers or the
