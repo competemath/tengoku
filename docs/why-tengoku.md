@@ -37,8 +37,9 @@ plagiarism, recorded with that evidence.
 
 **Builds are attested.** The compiled library is published as releases carrying build provenance
 ([build.yml](../.github/workflows/build.yml)), and each release published since October 2026 also carries it as a file
-(`*.intoto.jsonl`); anyone can verify a download with `gh attestation verify`. An
-independent re-check of every declaration with a second kernel is in progress (competemath/tengoku#64).
+(`*.intoto.jsonl`); anyone can verify a download with `gh attestation verify`. A second, independent kernel,
+[nanoda](https://github.com/ammkrn/nanoda_lib), re-checks every declaration of the compiled library daily
+([independent-check.yml](../.github/workflows/independent-check.yml)).
 
 ## Where it fits
 
@@ -53,9 +54,10 @@ independent re-check of every declaration with a second kernel is in progress (c
 
 ## How to use it
 
-- **Search.** At [competemath.com/tengoku](https://competemath.com/tengoku); over HTTP
-  ([docs/api.md](api.md)); or from an agent through Leak I, a free MCP service
-  (`https://barkingtree-leak-i.hf.space/sse`, no authentication).
+- **From an agent, through [Leak](https://competemath.com/about/leak), the intended interface.** Leak I is a free MCP
+  service (`https://barkingtree-leak-i.hf.space/sse`, no authentication).
+- **On the web.** [competemath.com/tengoku](https://competemath.com/tengoku).
+- **Over HTTP.** [docs/api.md](api.md).
 - **Build against it.** `scripts/cache.sh get` downloads the verified compiled tree; `import Tengoku.All` imports
   everything.
 - **Take the dataset.** Numbered releases `vX.Y.Z`, one for each month with changes, each with a DOI from Zenodo
@@ -69,12 +71,21 @@ independent re-check of every declaration with a second kernel is in progress (c
 ## How to cite
 
 Cite the version you used (its tag, or its DOI) and the commit its manifest names. The all-versions DOI is
-[10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400); [CITATION.cff](../CITATION.cff) and the
-README's *How to cite* give the reference and a BibTeX entry.
+[10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400) (it resolves to the newest version; each release
+also has its own DOI, on its release page). GitHub's *Cite this repository* button gives the same reference, from
+[CITATION.cff](../CITATION.cff).
+
+```bibtex
+@misc{tengoku,
+  author       = {{Tengoku contributors} and Bashir, Mikael},
+  title        = {Tengoku: one verified Lean 4 tree of formal mathematics, with provenance},
+  publisher    = {Zenodo},
+  year         = {2026},
+  doi          = {10.5281/zenodo.23050400},
+  url          = {https://doi.org/10.5281/zenodo.23050400}
+}
+```
 
 ## Limits
 
-- **Trusted means machine-checked, not reviewed by a mathematician.** A statement means what its definitions say.
-  Definitions come from the source libraries, and a translated statement is the original's.
-- **Coverage is partial.** Most registered libraries are still being translated.
-- **Only the trusted tier is checked.** Records in `data/tentative/` and `data/staging/` are not yet trusted.
+Just because a theorem is trusted by Leak, doesn't mean it is trusted by a mathematician. Please make use of Tengoku responsibly, being vigilant with theorems that don't say what they look like they should.

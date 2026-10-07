@@ -65,13 +65,13 @@ and, for instances, the instance terms as elaborated.
 Which declarations: theorems (`thmInfo`) whose name is not internal, has no macro scopes, and does not start with `eq_`, `proof_`, `match_`,
 `sizeOf_`, `_` or equal `injEq`.
 
-### Known limits (they are part of v1, not bugs)
+### Scope of v1
 
 - **Instance paths.** Two statements that mean the same but elaborated through different instance paths (`mul_inv_cancel_right` in Mathlib and the same
   sentence written in a fresh file) have different `sig` and the same `shape` and `vocab`. That is what `shape` and `vocab` are for.
 - **Universe levels are not normalised**: `max u v` and `max v u` differ.
 - **`hyps`/`vars` is a heuristic** (a hypothesis whose type is a propositional variable counts as a variable).
-- An identity says which statement this is. It says nothing about whether the proof is good, or the statement true.
+- An identity names a statement, independent of its proof and of whether it is true.
 
 ## 3. Repeat it yourself
 

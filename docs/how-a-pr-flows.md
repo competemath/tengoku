@@ -54,7 +54,7 @@ A failed check re-runs when you push a fix.
 
 ## 6. In the library, as staging
 
-Once merged, your records are in `data/staging/`: checked, but not yet trusted.
+Once merged, your records are in `data/staging/`: checked, and queued for promotion to trusted.
 
 ## 7. Trusted
 
