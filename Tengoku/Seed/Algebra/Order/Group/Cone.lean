@@ -59,6 +59,9 @@ instance GroupCone.instSetLike (G : Type*) [CommGroup G] : SetLike (GroupCone G)
 @[to_additive]
 instance (G : Type*) [CommGroup G] : PartialOrder (GroupCone G) := .ofSetLike (GroupCone G) G
 
+/--
+@isnad1 id=groupcon.0h1v.s3.9536b23b611f from=seed src=0 shape=3d1b05f8 vocab=f73a5110
+-/
 @[to_additive]
 instance GroupCone.instGroupConeClass (G : Type*) [CommGroup G] :
     GroupConeClass (GroupCone G) G where
@@ -79,13 +82,25 @@ def oneLE : GroupCone H where
   __ := Submonoid.oneLE H
   eq_one_of_mem_of_inv_mem' {a} := by simpa using ge_antisymm
 
+/--
+@isnad1 id=eq.0h1v.s5.6640dfbb0cde from=seed src=0 shape=fbb2e310 vocab=bb204aa9
+-/
 @[to_additive (attr := simp)]
 lemma oneLE_toSubmonoid : (oneLE H).toSubmonoid = .oneLE H := rfl
+/--
+@isnad1 id=iff.0h2v.s5.c840a24d49b1 from=seed src=0 shape=ea0a7987 vocab=948eb42f
+-/
 @[to_additive (attr := simp)]
 lemma mem_oneLE : a ∈ oneLE H ↔ 1 ≤ a := Iff.rfl
+/--
+@isnad1 id=eq.0h1v.s5.c9586b6e5b0a from=seed src=0 shape=3bd58850 vocab=2b779cfb
+-/
 @[to_additive (attr := simp, norm_cast)]
 lemma coe_oneLE : oneLE H = {x : H | 1 ≤ x} := rfl
 
+/--
+@isnad1 id=hasmemor.0h1v.s5.488f42ec6276 from=seed src=0 shape=7cdc28cf vocab=12201da5
+-/
 @[to_additive]
 instance oneLE.hasMemOrInvMem {H : Type*} [CommGroup H] [LinearOrder H] [IsOrderedMonoid H] :
     HasMemOrInvMem (oneLE H) where
@@ -104,6 +119,9 @@ abbrev PartialOrder.mkOfGroupCone [GroupConeClass S G] : PartialOrder G where
   le_antisymm a b nab nba := by
     simpa [div_eq_one, eq_comm] using eq_one_of_mem_of_inv_mem nab (by simpa using nba)
 
+/--
+@isnad1 id=iff.0h5v.s5.19bab00af172 from=seed src=0 shape=bfe76f79 vocab=0a0e1b31
+-/
 @[to_additive (attr := simp)]
 lemma PartialOrder.mkOfGroupCone_le_iff {S G : Type*} [CommGroup G] [SetLike S G]
     [GroupConeClass S G] {C : S} {a b : G} :
@@ -117,7 +135,9 @@ abbrev LinearOrder.mkOfGroupCone
   le_total a b := by simpa using mem_or_inv_mem C (b / a)
   toDecidableLE _ := _
 
-/-- Construct a partially ordered abelian group by designating a cone in an abelian group. -/
+/-- Construct a partially ordered abelian group by designating a cone in an abelian group.
+@isnad1 id=other.0h3v.s5.c53e4d7d709d from=seed src=0 shape=5d4b776a vocab=3c891eed
+-/
 @[to_additive
   /-- Construct a partially ordered abelian group by designating a cone in an abelian group. -/]
 lemma IsOrderedMonoid.mkOfCone [GroupConeClass S G] :

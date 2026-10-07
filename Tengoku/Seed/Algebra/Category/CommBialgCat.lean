@@ -57,6 +57,9 @@ This is the preferred way to construct a term of `CommBialgCat R`. -/
 abbrev of (X : Type v) [CommRing X] [Bialgebra R X] : CommBialgCat.{v} R := ⟨X⟩
 
 variable (R) in
+/--
+@isnad1 id=eq.0h2v.s5.6a9ec35e2d5f from=seed src=0 shape=1a29407e vocab=f34b0d79
+-/
 lemma coe_of (X : Type v) [CommRing X] [Bialgebra R X] : (of R X : Type v) = X := rfl
 
 /-- The type of morphisms in `CommBialgCat R`. -/
@@ -96,32 +99,74 @@ initialize_simps_projections Hom (hom' → hom)
 The results below duplicate the `ConcreteCategory` simp lemmas, but we can keep them for `dsimp`.
 -/
 
+/--
+@isnad1 id=eq.0h2v.s8.43fe9a8a3d9e from=seed src=0 shape=33f0c149 vocab=d8144d4f
+-/
 @[simp] lemma hom_id : (𝟙 A : A ⟶ A).hom = .id R A := rfl
+/--
+@isnad1 id=eq.0h6v.s9.09335a4e3ca5 from=seed src=0 shape=bee14914 vocab=dd9153b1
+-/
 @[simp] lemma hom_comp (f : A ⟶ B) (g : B ⟶ C) : (f ≫ g).hom = g.hom.comp f.hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.e51bc904d5ac from=seed src=0 shape=973c5d29 vocab=4ae62193
+-/
 lemma id_apply (A : CommBialgCat.{v} R) (a : A) : (𝟙 A : A ⟶ A) a = a := by simp
+/--
+@isnad1 id=eq.0h7v.s12.ff8c83d2f882 from=seed src=0 shape=63d54618 vocab=38f3f5fa
+-/
 lemma comp_apply (f : A ⟶ B) (g : B ⟶ C) (a : A) : (f ≫ g) a = g (f a) := by simp
 
+/--
+@isnad1 id=eq.1h5v.s8.0f67234fc059 from=seed src=0 shape=fc8760c0 vocab=d640373f
+-/
 @[ext] lemma hom_ext {f g : A ⟶ B} (hf : f.hom = g.hom) : f = g := Hom.ext hf
 
+/--
+@isnad1 id=eq.0h4v.s9.984aa28d7f2e from=seed src=0 shape=b57642be vocab=e1954ceb
+-/
 @[simp] lemma hom_ofHom (f : X →ₐc[R] Y) : (ofHom f).hom = f := rfl
+/--
+@isnad1 id=eq.0h4v.s6.960a5d17a4d0 from=seed src=0 shape=c023c5ca vocab=f732fa08
+-/
 @[simp] lemma ofHom_hom (f : A ⟶ B) : ofHom f.hom = f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.37064bd381c4 from=seed src=0 shape=8244a9e1 vocab=e83265f1
+-/
 @[simp] lemma ofHom_id : ofHom (.id R X) = 𝟙 (of R X) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.32711ac65b36 from=seed src=0 shape=8a3aa5f0 vocab=75bb1994
+-/
 @[simp]
 lemma ofHom_comp (f : X →ₐc[R] Y) (g : Y →ₐc[R] Z) : ofHom (g.comp f) = ofHom f ≫ ofHom g := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.3e21907f90ea from=seed src=0 shape=512fa152 vocab=487c7b39
+-/
 lemma ofHom_apply (f : X →ₐc[R] Y) (x : X) : ofHom f x = f x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.3cc5f87d2a97 from=seed src=0 shape=49dee655 vocab=92cd84ea
+-/
 lemma inv_hom_apply (e : A ≅ B) (x : A) : e.inv (e.hom x) = x := by simp
+/--
+@isnad1 id=eq.0h5v.s11.5d59b734c401 from=seed src=0 shape=ff482979 vocab=92cd84ea
+-/
 lemma hom_inv_apply (e : A ≅ B) (x : B) : e.hom (e.inv x) = x := by simp
 
 instance : Inhabited (CommBialgCat R) := ⟨of R R⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.d1d8b33d19b4 from=seed src=0 shape=55f909fa vocab=2e531260
+-/
 lemma forget_obj (A : CommBialgCat.{v} R) : (forget (CommBialgCat.{v} R)).obj A = A :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.0bbe9f965e06 from=seed src=0 shape=35c89bcd vocab=92379343
+-/
 @[deprecated ConcreteCategory.forget_map_eq_ofHom (since := "2026-03-06")]
 lemma forget_map (f : A ⟶ B) : (forget (CommBialgCat.{v} R)).map f = (f : _ → _) := rfl
 
@@ -133,9 +178,15 @@ instance hasForgetToCommAlgCat : HasForget₂ (CommBialgCat.{v} R) (CommAlgCat.{
   forget₂.obj M := .of R M
   forget₂.map f := CommAlgCat.ofHom f.hom.toAlgHom
 
+/--
+@isnad1 id=eq.0h2v.s9.af42fb2a44f7 from=seed src=0 shape=b246d507 vocab=7734ed7e
+-/
 @[simp] lemma forget₂_commAlgCat_obj (A : CommBialgCat.{v} R) :
     (forget₂ (CommBialgCat.{v} R) (CommAlgCat.{v} R)).obj A = .of R A := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.72f7dc663577 from=seed src=0 shape=ad8e53fc vocab=ef1068c0
+-/
 @[simp] lemma forget₂_commAlgCat_map (f : A ⟶ B) :
     (forget₂ (CommBialgCat.{v} R) (CommAlgCat.{v} R)).map f =
       CommAlgCat.ofHom f.hom.toAlgHom := rfl
@@ -174,6 +225,9 @@ def isoEquivBialgEquiv : (of R X ≅ of R Y) ≃ (X ≃ₐc[R] Y) where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=reflects.0h1v.s9.f5876554120b from=seed src=0 shape=2740f13a vocab=e7df3c0f
+-/
 instance reflectsIsomorphisms_forget : (forget (CommBialgCat.{u} R)).ReflectsIsomorphisms where
   reflects {X Y} f _ := by
     let i := asIso ((forget (CommBialgCat.{u} R)).map f)
@@ -192,10 +246,16 @@ instance CommAlgCat.monObjOpOf {A : Type u} [CommRing A] [Bialgebra R A] :
   mul_one := by ext; exact Coalgebra.lTensor_counit_comul _
   mul_assoc := by ext; exact (Coalgebra.coassoc_symm_apply _).symm
 
+/--
+@isnad1 id=eq.0h2v.s9.a12325a71e30 from=seed src=0 shape=f1e65563 vocab=2ad8613c
+-/
 @[simp]
 lemma CommAlgCat.one_op_of_unop_hom {A : Type u} [CommRing A] [Bialgebra R A] :
     η[op <| CommAlgCat.of R A].unop.hom = counitAlgHom R A := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.91fc3219fc4b from=seed src=0 shape=7a27c800 vocab=851292b5
+-/
 @[simp]
 lemma CommAlgCat.mul_op_of_unop_hom {A : Type u} [CommRing A] [Bialgebra R A] :
     μ[op <| CommAlgCat.of R A].unop.hom = comulAlgHom R A := rfl
@@ -230,11 +290,17 @@ def commBialgCatEquivComonCommAlgCat : CommBialgCat R ≌ (Mon (CommAlgCat R)ᵒ
   counitIso.hom := 𝟙 _
   counitIso.inv := 𝟙 _
 
+/--
+@isnad1 id=eq.0h4v.s10.48216fa516fa from=seed src=0 shape=638cd0ce vocab=1ba1c734
+-/
 @[simp]
 lemma commBialgCatEquivComonCommAlgCat_functor_map_unop_hom {A B : CommBialgCat R} (f : A ⟶ B) :
   ((commBialgCatEquivComonCommAlgCat R).functor.map f).unop.hom =
     (CommAlgCat.ofHom f.hom.toAlgHom).op := rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.d1f28e85964a from=seed src=0 shape=7ddd6f3e vocab=fee23fda
+-/
 @[simp]
 lemma commBialgCatEquivComonCommAlgCat_inverse_map_unop_hom
     {A B : (Mon (CommAlgCat R)ᵒᵖ)ᵒᵖ} (f : A ⟶ B) :

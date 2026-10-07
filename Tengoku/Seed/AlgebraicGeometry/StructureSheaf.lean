@@ -192,14 +192,23 @@ instance (U : (Opens (PrimeSpectrum.Top R))ᵒᵖ) :
 local notation "Γ(" M ", " U ")" =>
   (Functor.obj (ObjectProperty.FullSubcategory.obj (structureSheafInType _ M))) (Opposite.op U)
 
+/--
+@isnad1 id=eq.0h6v.s11.13f3c211bcda from=seed src=0 shape=2a62566a vocab=46b1591a
+-/
 @[simp]
 lemma structureSheafInType.add_apply {U : Opens (PrimeSpectrum.Top R)} (s t : Γ(M, U)) (x : U) :
   (s + t).1 x = s.1 x + t.1 x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.fa7fa71dba5a from=seed src=0 shape=5c2054f3 vocab=f499af76
+-/
 @[simp]
 lemma structureSheafInType.mul_apply {U : Opens (PrimeSpectrum.Top R)} (s t : Γ(A, U)) (x : U) :
   (s * t).1 x = s.1 x * t.1 x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.a65af44ec60c from=seed src=0 shape=3308cafa vocab=e399e236
+-/
 @[simp]
 lemma structureSheafInType.smul_apply {U : Opens (PrimeSpectrum.Top R)}
     (r : R) (s : Γ(M, U)) (x : U) :
@@ -264,6 +273,9 @@ open TopCat.Presheaf
 
 namespace StructureSheaf
 
+/--
+@isnad1 id=eq.0h7v.s11.03554f3a2e36 from=seed src=0 shape=e81cab99 vocab=dc788a73
+-/
 @[simp]
 theorem res_apply (U V : Opens (PrimeSpectrum.Top R)) (i : V ⟶ U)
     (s : Γ(M, U)) (x : V) : ((structureSheafInType R M).1.map i.op s).1 x = s.1 (i x) :=
@@ -276,12 +288,18 @@ def const (f : M) (g : R) (U : Opens (PrimeSpectrum.Top R))
     Γ(M, U) :=
   ⟨fun x => .mk f ⟨g, hu x.2⟩, fun x ↦ ⟨U, x.2, 𝟙 _, f, g, fun y ↦ ⟨hu y.2, rfl⟩⟩⟩
 
+/--
+@isnad1 id=eq.1h6v.s9.926d7c504196 from=seed src=0 shape=569dc840 vocab=1318f3b7
+-/
 @[simp]
 theorem const_apply (f : M) (g : R) (U : Opens (PrimeSpectrum.Top R))
     (hu : ∀ x ∈ U, g ∈ (x : PrimeSpectrum.Top R).asIdeal.primeCompl) (x : U) :
     (const f g U hu).1 x = .mk f ⟨g, hu x x.2⟩ :=
   rfl
 
+/--
+@isnad1 id=ex.1h5v.s11.0fdeba8b11b6 from=seed src=0 shape=b39d5f54 vocab=7fb41f59
+-/
 theorem exists_const (U) (s : Γ(M, U)) (x : PrimeSpectrum.Top R)
     (hx : x ∈ U) :
     ∃ (g : R) (_ : x ∈ basicOpen g) (i : basicOpen g ≤ U) (f : M),
@@ -298,63 +316,105 @@ theorem exists_const (U) (s : Γ(M, U)) (x : PrimeSpectrum.Top R)
     refine (LocalizedModule.mk_eq.mpr ⟨1, ?_⟩).trans H.symm
     simp [Submonoid.smul_def, ← smul_assoc]; ring_nf
 
+/--
+@isnad1 id=eq.2h7v.s11.5939878f59d4 from=seed src=0 shape=c9a6d9d7 vocab=b2776014
+-/
 @[simp]
 theorem res_const (f : M) (g : R) (U hu V hv i) :
     (structureSheafInType R M).1.map i (const f g U hu) = const f g V hv :=
   rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h4v.s10.13f14bf2b48c from=seed src=0 shape=14a5f837 vocab=532c463e
+-/
 @[simp]
 theorem const_zero (f : R) (U hu) : const (0 : M) f U hu = 0 :=
   Subtype.ext <| funext fun x ↦ by simp; rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.2393eac45a94 from=seed src=0 shape=778cb982 vocab=0da582cb
+-/
 @[simp]
 theorem const_algebraMap (f : R) (U hu) : const (algebraMap R A f) f U hu = 1 :=
   Subtype.ext <| funext fun _ ↦ (LocalizedModule.mk_eq.mpr
       ⟨1, by simp [Algebra.smul_def, Submonoid.smul_def]⟩).trans
     OreLocalization.one_def.symm
 
+/--
+@isnad1 id=eq.1h3v.s10.997a8209ed4b from=seed src=0 shape=4ea12d5a vocab=983f2a7b
+-/
 @[simp]
 theorem const_self (f : R) (U hu) : const f f U hu = 1 :=
   const_algebraMap ..
 
+/--
+@isnad1 id=eq.0h3v.s10.e11bd9b62f2f from=seed src=0 shape=fd28d5fc vocab=2e6e011e
+-/
 @[simp]
 theorem const_one (U) : const (1 : A) (1 : R) U (by simp) = 1 := by
   simpa using const_algebraMap 1 (A := A) U
 
+/--
+@isnad1 id=eq.2h7v.s11.767dd2747c3f from=seed src=0 shape=e361f639 vocab=93c6a49a
+-/
 theorem const_add (f₁ f₂ : M) (g₁ g₂ : R) (U hu₁ hu₂) :
     const f₁ g₁ U hu₁ + const f₂ g₂ U hu₂ =
       const (g₂ • f₁ + g₁ • f₂) (g₁ * g₂) U (by simp [*, PrimeSpectrum.basicOpen_mul]) :=
   Subtype.ext <| funext fun _ ↦ LocalizedModule.mk_add_mk
 
+/--
+@isnad1 id=eq.1h6v.s12.bae583ea3171 from=seed src=0 shape=599895bf vocab=a4ab3eeb
+-/
 theorem smul_const (f : M) (r g : R) (U hu) :
     r • const f g U hu = const (r • f) g U hu :=
   Subtype.ext <| funext fun _ ↦ LocalizedModule.smul'_mk _ _ _
 
+/--
+@isnad1 id=eq.2h7v.s11.8acfaf4bb32c from=seed src=0 shape=b4a1e020 vocab=5232a16d
+-/
 theorem const_mul (f₁ f₂ : A) (g₁ g₂ : R) (U hu₁ hu₂) :
     const f₁ g₁ U hu₁ * const f₂ g₂ U hu₂ =
       const (f₁ * f₂) (g₁ * g₂) U (by simp [*, PrimeSpectrum.basicOpen_mul]) :=
   Subtype.ext <| funext fun _ ↦ LocalizedModule.mk_mul_mk
 
+/--
+@isnad1 id=eq.3h7v.s9.0a36cc4d60ea from=seed src=0 shape=25f9ed34 vocab=a4ab3eeb
+-/
 theorem const_ext {f₁ f₂ : M} {g₁ g₂ : R} {U hu₁ hu₂} (h : g₂ • f₁ = g₁ • f₂) :
     const f₁ g₁ U hu₁ = const f₂ g₂ U hu₂ :=
   Subtype.ext <| funext fun x ↦ LocalizedModule.mk_eq.mpr (by simp [h, Submonoid.smul_def])
 
+/--
+@isnad1 id=eq.3h7v.s8.907d446e203f from=seed src=0 shape=6e7002fa vocab=c0ee02e2
+-/
 theorem const_congr {f₁ f₂ : M} {g₁ g₂ : R} {U hu} (hf : f₁ = f₂) (hg : g₁ = g₂) :
     const f₁ g₁ U hu = const f₂ g₂ U (hg ▸ hu) := by subst hf hg; rfl
 
+/--
+@isnad1 id=eq.2h4v.s11.4ea750e0b447 from=seed src=0 shape=a771e195 vocab=46713942
+-/
 theorem const_mul_rev (f g : R) (U hu₁ hu₂) : const f g U hu₁ * const g f U hu₂ = 1 := by
   rw [const_mul, const_congr rfl (mul_comm g f), const_self]
 
+/--
+@isnad1 id=eq.2h5v.s11.b50b813b8ffc from=seed src=0 shape=346e3bf7 vocab=46713942
+-/
 theorem const_mul_cancel (f g₁ g₂ : R) (U hu₁ hu₂) :
     const f g₁ U hu₁ * const g₁ g₂ U hu₂ = const f g₂ U hu₂ := by
   rw [const_mul, const_ext]; simp; ring
 
+/--
+@isnad1 id=eq.2h5v.s11.03b0a307b355 from=seed src=0 shape=bfec9702 vocab=46713942
+-/
 theorem const_mul_cancel' (f g₁ g₂ : R) (U hu₁ hu₂) :
     const g₁ g₂ U hu₂ * const f g₁ U hu₁ = const f g₂ U hu₂ := by
   rw [mul_comm, const_mul_cancel]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.3h7v.s9.bafd2135a143 from=seed src=0 shape=1caa74ef vocab=a4ab3eeb
+-/
 theorem const_eq_const_of_smul_eq_smul (f₁ f₂ : M) (g₁ g₂ : R) (U hu₁ hu₂) (H : g₁ • f₂ = g₂ • f₁) :
     const f₁ g₁ U hu₁ = const f₂ g₂ U hu₂ :=
   Subtype.ext (funext fun x ↦ by
@@ -369,6 +429,9 @@ def toOpenₗ (U : Opens (PrimeSpectrum.Top R)) :
   map_add' _ _ := by simp [const_add]
   map_smul' _ _ := by simp [smul_const]
 
+/--
+@isnad1 id=eq.0h4v.s10.01402537f987 from=seed src=0 shape=300d1d95 vocab=2a0435a7
+-/
 theorem toOpenₗ_eq_const (U : Opens (PrimeSpectrum.Top R)) (f : M) :
     toOpenₗ R M U f = const f 1 U (by simp) := rfl
 
@@ -518,6 +581,9 @@ instance isIso_toBasicOpenₗ (f : R) :
     IsIso (ModuleCat.ofHom (toBasicOpenₗ R M f)) :=
   (ConcreteCategory.isIso_iff_bijective _).mpr ⟨toBasicOpenₗ_injective _, toBasicOpenₗ_surjective _⟩
 
+/--
+@isnad1 id=bijectiv.0h2v.s11.392fa2ef8dd2 from=seed src=0 shape=440b1600 vocab=cb77df36
+-/
 public lemma toOpenₗ_top_bijective : Function.Bijective (toOpenₗ R M ⊤) := by
   have : IsLocalizedModule ⊥ (toOpenₗ R M ⊤) := by
     convert! (inferInstance : IsLocalizedModule (.powers 1) (toOpenₗ R M (basicOpen 1)))
@@ -526,6 +592,9 @@ public lemma toOpenₗ_top_bijective : Function.Bijective (toOpenₗ R M ⊤) :=
   obtain ⟨⟨x, _, rfl⟩, rfl⟩ := IsLocalizedModule.mk'_surjective ⊥ (toOpenₗ R M ⊤) x
   exact ⟨x, (IsLocalizedModule.mk'_one ..).symm⟩
 
+/--
+@isnad1 id=bijectiv.0h1v.s12.c43225f67fb3 from=seed src=0 shape=209b3c61 vocab=b3089e7e
+-/
 public lemma algebraMap_obj_top_bijective :
     Function.Bijective (algebraMap R Γ(R, (⊤ : Opens (PrimeSpectrum.Top R)))) :=
   toOpenₗ_top_bijective
@@ -546,6 +615,9 @@ the stalk of `structureSheaf R` at `x`. -/
     CommRingCat.of R ⟶ (structurePresheafInCommRingCat R).stalk x :=
   CommRingCat.ofHom (algebraMap _ _) ≫ (structurePresheafInCommRingCat R).germ ⊤ x trivial
 
+/--
+@isnad1 id=eq.1h3v.s10.0a6514f67efe from=seed src=0 shape=dbf4e078 vocab=5b70ab2f
+-/
 @[elementwise, reassoc]
 public lemma algebraMap_germ
     (U : Opens (PrimeSpectrum.Top R)) (x : PrimeSpectrum.Top R) (hxU : x ∈ U) :
@@ -555,6 +627,9 @@ public lemma algebraMap_germ
   rw [← (structurePresheafInCommRingCat R).germ_res (homOfLE (le_top : U ≤ ⊤)) _ hxU]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s10.0a6514f67efe from=seed src=0 shape=dbf4e078 vocab=5b70ab2f
+-/
 @[deprecated (since := "2026-02-10")] public alias toOpen_germ := algebraMap_germ
 
 public
@@ -897,23 +972,34 @@ a section of the structure sheaf. -/
 def toOpen (U : Opens (PrimeSpectrum.Top R)) :
     CommRingCat.of R ⟶ (structureSheaf R).1.obj (op U) := CommRingCat.ofHom (algebraMap _ _)
 
+/--
+@isnad1 id=eq.0h4v.s11.9d19ce8b92d5 from=seed src=0 shape=000932ba vocab=5733d92f
+-/
 @[simp]
 theorem algebraMap_self_map (U V : (Opens (PrimeSpectrum.Top R))ᵒᵖ) (i : V ⟶ U) :
     CommRingCat.ofHom (algebraMap R _) ≫ (Spec.structureSheaf R).1.map i =
       CommRingCat.ofHom (algebraMap R _) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.9d19ce8b92d5 from=seed src=0 shape=000932ba vocab=5733d92f
+-/
 @[deprecated (since := "2026-02-10")] alias toOpen_res := algebraMap_self_map
 
 instance stalkAlgebra (p : PrimeSpectrum R) : Algebra R ((structureSheaf R).presheaf.stalk p) :=
   (toStalk R p).hom.toAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s9.07426cc6e796 from=seed src=0 shape=79697a47 vocab=d0825f63
+-/
 @[simp]
 theorem stalkAlgebra_map (p : PrimeSpectrum R) (r : R) :
     algebraMap R ((structureSheaf R).presheaf.stalk p) r = toStalk R p r :=
   rfl
 
-/-- Stalk of the structure sheaf at a prime p as localization of R -/
+/-- Stalk of the structure sheaf at a prime p as localization of R
+@isnad1 id=atprime.0h2v.s6.19b21881413f from=seed src=0 shape=a7bdf40f vocab=15157f63
+-/
 instance IsLocalization.to_stalk (p : PrimeSpectrum R) :
     IsLocalization.AtPrime ((structureSheaf R).presheaf.stalk p) p.asIdeal :=
   inferInstanceAs (IsLocalization.AtPrime ((structurePresheafInCommRingCat R).stalk p) p.asIdeal)
@@ -921,11 +1007,16 @@ instance IsLocalization.to_stalk (p : PrimeSpectrum R) :
 instance openAlgebra (U : (Opens (PrimeSpectrum R))ᵒᵖ) : Algebra R ((structureSheaf R).obj.obj U) :=
   inferInstanceAs (Algebra R ((structureSheafInType R R).presheaf.obj _))
 
-/-- Sections of the structure sheaf of Spec R on a basic open as localization of R -/
+/-- Sections of the structure sheaf of Spec R on a basic open as localization of R
+@isnad1 id=away.0h2v.s9.ec6fe3d91805 from=seed src=0 shape=8fa3ac22 vocab=dd7c3cc7
+-/
 instance IsLocalization.to_basicOpen (r : R) :
     IsLocalization.Away r ((structureSheaf R).obj.obj (op <| basicOpen r)) :=
   inferInstanceAs (IsLocalization.Away r Γ(R, basicOpen r))
 
+/--
+@isnad1 id=epi.0h2v.s10.d18be18b31fd from=seed src=0 shape=e96454b3 vocab=44e93935
+-/
 instance to_basicOpen_epi (r : R) :
     Epi (CommRingCat.ofHom <|
       algebraMap R ((structureSheaf R).obj.obj (op <| basicOpen r))) :=
@@ -937,11 +1028,17 @@ instance to_basicOpen_epi (r : R) :
 def globalSectionsIso : CommRingCat.of R ≅ (structureSheaf R).1.obj (op ⊤) :=
   RingEquiv.toCommRingCatIso (.ofBijective _ algebraMap_obj_top_bijective)
 
+/--
+@isnad1 id=eq.0h1v.s12.cd100c20872a from=seed src=0 shape=cf71f0e9 vocab=a848f68f
+-/
 theorem globalSectionsIso_hom (R : CommRingCat) :
     (globalSectionsIso R).hom = CommRingCat.ofHom (algebraMap _ _) :=
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h3v.s6.44f011229aa0 from=seed src=0 shape=4426822b vocab=a4e22998
+-/
 @[simp, reassoc, elementwise nosimp]
 theorem toStalk_stalkSpecializes {R : Type*} [CommRing R] {x y : PrimeSpectrum R} (h : x ⤳ y) :
     toStalk R y ≫ (structureSheaf R).presheaf.stalkSpecializes h = toStalk R x := by
@@ -978,6 +1075,9 @@ def Localizations.comapFun (y : PrimeSpectrum.Top S) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h9v.s10.f05d186dadfe from=seed src=0 shape=eaf0dceb vocab=36c0ddf4
+-/
 @[simp]
 lemma Localizations.comapFun_mk (y : PrimeSpectrum.Top S)
     (a : M) (b : (y.comap σ).asIdeal.primeCompl) :
@@ -1013,6 +1113,9 @@ def comapFun (U : Opens (PrimeSpectrum.Top R)) (V : Opens (PrimeSpectrum.Top S))
   Localizations.comapFun f _ (s ⟨y.1.comap σ, hUV y.2⟩)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=pred.2h9v.s8.9ae60fed9464 from=seed src=0 shape=96d35ff0 vocab=a2150517
+-/
 theorem isLocallyFraction_comapFun (U : Opens (PrimeSpectrum.Top R))
     (V : Opens (PrimeSpectrum.Top S)) (hUV : V.1 ⊆ PrimeSpectrum.comap σ ⁻¹' U.1)
     (s : ∀ x : U, Localizations M x.1) (hs : (isLocallyFraction R M).toPrelocalPredicate.pred s) :
@@ -1049,6 +1152,9 @@ def comapₗ (U : Opens (PrimeSpectrum.Top R)) (V : Opens (PrimeSpectrum.Top S))
     rw [map_smulₛₗ, ← IsScalarTower.algebraMap_smul S]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h10v.s11.5c24f24f83ab from=seed src=0 shape=774be48a vocab=a6a4b4ed
+-/
 theorem comapₗ_const (U : Opens (PrimeSpectrum.Top R)) (V : Opens (PrimeSpectrum.Top S))
     (hUV : V.1 ⊆ PrimeSpectrum.comap σ ⁻¹' U.1) (a : M) (b : R) (hb : U ≤ basicOpen b) :
     comapₗ f U V hUV (const a b U hb) = const (f a) (σ b) V (hUV.trans (Set.preimage_mono hb)) :=
@@ -1061,6 +1167,9 @@ open Spec (structureSheaf)
 variable {S : Type u} [CommRing S] {P : Type u} [CommRing P]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h7v.s12.00dbf6bd4f97 from=seed src=0 shape=3a6e0c32 vocab=a3866e86
+-/
 @[simp]
 theorem comapₗ_eq_localRingHom (f : R →+* S) (U : Opens (PrimeSpectrum.Top R))
     (V : Opens (PrimeSpectrum.Top S)) (hUV : V.1 ⊆ PrimeSpectrum.comap f ⁻¹' U.1)
@@ -1104,6 +1213,9 @@ def comap (f : R →+* S) (U : Opens (PrimeSpectrum.Top R)) (V : Opens (PrimeSpe
     simp only [comapₗ_eq_localRingHom, PrimeSpectrum.comap_asIdeal]
     exact (Localization.localRingHom ..).map_zero
 
+/--
+@isnad1 id=eq.1h7v.s12.c4c0b8d8c5e4 from=seed src=0 shape=0135055c vocab=291e89b1
+-/
 @[simp]
 theorem comap_apply (f : R →+* S) (U : Opens (PrimeSpectrum.Top R))
     (V : Opens (PrimeSpectrum.Top S)) (hUV : V.1 ⊆ PrimeSpectrum.comap f ⁻¹' U.1)
@@ -1114,6 +1226,9 @@ theorem comap_apply (f : R →+* S) (U : Opens (PrimeSpectrum.Top R))
   comapₗ_eq_localRingHom ..
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h7v.s12.f283c34e1b1d from=seed src=0 shape=047ce3ad vocab=9b111d17
+-/
 theorem comap_const (f : R →+* S) (U : Opens (PrimeSpectrum.Top R))
     (V : Opens (PrimeSpectrum.Top S)) (hUV : V.1 ⊆ PrimeSpectrum.comap f ⁻¹' U.1) (a b : R)
     (hb : ∀ x : PrimeSpectrum R, x ∈ U → b ∈ x.asIdeal.primeCompl) :
@@ -1130,6 +1245,7 @@ identity from OO_X(U) to OO_X(V) equals as the restriction map of the structure 
 
 This is a generalization of the fact that, for fixed `U`, the comap of the identity from OO_X(U)
 to OO_X(U) is the identity.
+@isnad1 id=eq.0h4v.s11.09c5c1a577cd from=seed src=0 shape=e3a2eb06 vocab=62f93fbe
 -/
 theorem comap_id_eq_map (U V : Opens (PrimeSpectrum.Top R)) (iVU : V ⟶ U) :
     (comap (RingHom.id R) U V fun _ hpV => leOfHom iVU <| hpV) =
@@ -1142,18 +1258,25 @@ theorem comap_id_eq_map (U V : Opens (PrimeSpectrum.Top R)) (iVU : V ⟶ U) :
 The comap of the identity is the identity. In this variant of the lemma, two open subsets `U` and
 `V` are given as arguments, together with a proof that `U = V`. This is useful when `U` and `V`
 are not definitionally equal.
+@isnad1 id=eq.1h3v.s11.c8c753f8cb4b from=seed src=0 shape=81e67042 vocab=40e819cb
 -/
 theorem comap_id {U V : Opens (PrimeSpectrum.Top R)} (hUV : U = V) :
     (comap (RingHom.id R) U V fun p hpV => by rwa [hUV, PrimeSpectrum.comap_id]) =
       (eqToHom (show (structureSheaf R).1.obj (op U) = _ by rw [hUV])).hom := by
   rw [comap_id_eq_map U V (eqToHom hUV.symm), eqToHom_op, eqToHom_map]
 
+/--
+@isnad1 id=eq.0h2v.s11.8bf697050e81 from=seed src=0 shape=6dcf4a74 vocab=a8f10eaf
+-/
 @[simp]
 theorem comap_id' (U : Opens (PrimeSpectrum.Top R)) :
     (comap (RingHom.id R) U U fun p hpU => by rwa [PrimeSpectrum.comap_id]) = RingHom.id _ := by
   rw [comap_id rfl]; rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h8v.s12.0c7e09591282 from=seed src=0 shape=b529c1cc vocab=b5ac44fa
+-/
 theorem comap_comp (f : R →+* S) (g : S →+* P) (U : Opens (PrimeSpectrum.Top R))
     (V : Opens (PrimeSpectrum.Top S)) (W : Opens (PrimeSpectrum.Top P))
     (hUV : ∀ p ∈ V, PrimeSpectrum.comap f p ∈ U) (hVW : ∀ p ∈ W, PrimeSpectrum.comap g p ∈ V) :
@@ -1166,6 +1289,9 @@ theorem comap_comp (f : R →+* S) (g : S →+* P) (U : Opens (PrimeSpectrum.Top
         simp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s13.fa7d3c4e66e8 from=seed src=0 shape=fad5a029 vocab=7a693d57
+-/
 @[elementwise, reassoc]
 theorem toOpen_comp_comap (f : R →+* S) (U : Opens (PrimeSpectrum.Top R)) :
     CommRingCat.ofHom (algebraMap _ _) ≫
@@ -1177,6 +1303,9 @@ theorem toOpen_comp_comap (f : R →+* S) (U : Opens (PrimeSpectrum.Top R)) :
     rw [comap_apply]
     exact Localization.localRingHom_to_map _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s12.f087a0a1bbf1 from=seed src=0 shape=ab98526b vocab=0f26c290
+-/
 lemma comap_basicOpen (f : R →+* S) (x : R) :
     comap f (PrimeSpectrum.basicOpen x) (PrimeSpectrum.basicOpen (f x))
         (PrimeSpectrum.comap_basicOpen f x).le =

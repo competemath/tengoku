@@ -36,6 +36,9 @@ protected def mul : Mul (AddSubgroup R) where
 
 scoped[Pointwise] attribute [instance] AddSubgroup.mul
 
+/--
+@isnad1 id=eq.0h3v.s7.ba1d8e986893 from=seed src=0 shape=e69ef69b vocab=774c46a6
+-/
 lemma mul_toAddSubmonoid (M N : AddSubgroup R) :
     (M * N).toAddSubmonoid = M.toAddSubmonoid * N.toAddSubmonoid := rfl
 
@@ -44,6 +47,9 @@ end NonUnitalNonAssocRing
 section Semiring
 variable [Semiring R] [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=eq.0h3v.s6.9ab1dcd260fb from=seed src=0 shape=05d7c22b vocab=56527c92
+-/
 @[simp] protected lemma zero_smul (s : AddSubgroup M) : (0 : R) • s = ⊥ := by
   simp [eq_bot_iff_forall, pointwise_smul_def]
 

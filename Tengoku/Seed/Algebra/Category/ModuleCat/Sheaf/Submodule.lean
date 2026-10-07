@@ -48,6 +48,9 @@ namespace Submodule
 
 variable {M : SheafOfModules.{v} R} (N : M.Submodule)
 
+/--
+@isnad1 id=eq.1h6v.s6.13317ec18762 from=seed src=0 shape=8b2ae31b vocab=a34c5649
+-/
 @[ext]
 lemma ext {N₁ N₂ : M.Submodule} (h : N₁.toSubmodule = N₂.toSubmodule) : N₁ = N₂ := by
   cases N₁
@@ -71,6 +74,9 @@ noncomputable def toSheafOfModules : SheafOfModules.{v} R where
 noncomputable def ι : N.toSheafOfModules ⟶ M :=
   ⟨N.toSubmodule.ι⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.90469ee682bf from=seed src=0 shape=fa8fe1f5 vocab=d4985ef8
+-/
 @[simp]
 lemma ι_val : N.ι.val = N.toSubmodule.ι := rfl
 
@@ -80,6 +86,9 @@ instance : Mono N.ι :=
 instance : PartialOrder M.Submodule :=
   PartialOrder.lift toSubmodule fun _ _ ↦ ext
 
+/--
+@isnad1 id=iff.0h6v.s7.e77b13b1a392 from=seed src=0 shape=31c34060 vocab=53bb78a7
+-/
 lemma le_iff {N₁ N₂ : M.Submodule} : N₁ ≤ N₂ ↔ N₁.toSubmodule ≤ N₂.toSubmodule := .rfl
 
 instance : InfSet M.Submodule where
@@ -109,16 +118,25 @@ noncomputable instance : CompleteLattice M.Submodule where
   inf_le_right := fun _ _ ↦ le_iff.mpr inf_le_right
   le_inf := fun _ _ _ h₁ h₂ ↦ le_iff.mpr (le_inf (le_iff.mp h₁) (le_iff.mp h₂))
 
+/--
+@isnad1 id=eq.0h5v.s8.252571223fe6 from=seed src=0 shape=1e2e845c vocab=98aa95f1
+-/
 @[simp]
 lemma toSubmodule_sInf (s : Set M.Submodule) :
     (sInf s).toSubmodule = sInf ((·.toSubmodule) '' s) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.d0b21fc8934a from=seed src=0 shape=42110c4a vocab=1c4ef7f3
+-/
 @[simp]
 lemma toSubmodule_iInf {ι : Sort*} (N : ι → M.Submodule) :
     (⨅ i, N i).toSubmodule = ⨅ i, (N i).toSubmodule := by
   rw [iInf, toSubmodule_sInf, ← Set.range_comp, iInf, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h6v.s8.dead094acf05 from=seed src=0 shape=4d7be6c4 vocab=49a7c23c
+-/
 @[simp]
 lemma toSubmodule_inf (N₁ N₂ : M.Submodule) :
     (N₁ ⊓ N₂).toSubmodule = N₁.toSubmodule ⊓ N₂.toSubmodule :=

@@ -35,6 +35,9 @@ variable {S : Scheme.{u}} {Ω : Type u} [Field Ω] [IsSepClosed Ω]
   (s : Spec (.of Ω) ⟶ S)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=ex.1h6v.s9.c27f648ec097 from=seed src=0 shape=ee2071ca vocab=bc1a799f
+-/
 lemma exists_fac_of_etale_of_isSepClosed {X S : Scheme.{u}} (f : X ⟶ S) [Etale f]
     {Ω : Type u} [Field Ω] [IsSepClosed Ω] (s : Spec (.of Ω) ⟶ S)
     (x : X) (hx : f x = s default) :
@@ -111,6 +114,9 @@ instance {Y X : Scheme.{u}} (f : Y ⟶ X) [Etale f] (x : X) :
   dsimp [Hom.fiberToSpecResidueField]
   infer_instance
 
+/--
+@isnad1 id=surjecti.1h5v.s11.204c4b86bfe9 from=seed src=0 shape=956c210b vocab=aa8788df
+-/
 lemma pointSmallEtaleFiberObjToPreimage_surjective (X : S.Etale) :
     Function.Surjective (pointSmallEtaleFiberObjToPreimage s hs₀ (X := X)) := by
   intro y
@@ -122,6 +128,9 @@ lemma pointSmallEtaleFiberObjToPreimage_surjective (X : S.Etale) :
   refine ⟨Over.homMk (l ≫ X.hom.fiberι t) ?_, rfl⟩
   simp [X.hom.fiber_fac, reassoc_of% hl]
 
+/--
+@isnad1 id=isconser.1h4v.s8.98b59b4d1ff8 from=seed src=0 shape=31b01b2c vocab=98336df5
+-/
 lemma isConservative_pointSmallEtale
     {ι : Type*} {S : Scheme.{u}}
     {Ω : ι → Type u} [∀ i, Field (Ω i)] [∀ i, IsSepClosed (Ω i)]
@@ -146,6 +155,9 @@ lemma isConservative_pointSmallEtale
     obtain ⟨W, g, ⟨Z, p, _, ⟨a⟩, rfl⟩, y, rfl⟩ := hR ⟨_, ⟨i⟩⟩ x'
     exact ⟨a, (pointSmallEtaleFiberObjToPreimage (s i) hi (y ≫ p.hom)).1, rfl⟩)
 
+/--
+@isnad1 id=isconser.0h1v.s10.8d7fb36dbc4b from=seed src=0 shape=2eb93677 vocab=12988614
+-/
 lemma isConservativeFamilyOfPoints_pointSmallEtale' (S : Scheme.{u}) :
     (ObjectProperty.ofObj (fun (s : S) ↦ pointSmallEtale
       ((SpecToEquivOfField (SeparableClosure (S.residueField s)) _).2

@@ -22,6 +22,9 @@ namespace CommRingCat
 
 variable {P Q : ObjectProperty CommRingCat.{u}}
 
+/--
+@isnad1 id=essentia.1h2v.s6.485499a68534 from=seed src=0 shape=1c94469c vocab=07ce36c4
+-/
 lemma essentiallySmall_of_finiteType [ObjectProperty.EssentiallySmall.{u} Q]
     (hPQ : ∀ S, P S → ∃ R, Q R ∧ ∃ (f : R ⟶ S), f.hom.FiniteType) :
     ObjectProperty.EssentiallySmall.{u} P := by
@@ -36,6 +39,9 @@ lemma essentiallySmall_of_finiteType [ObjectProperty.EssentiallySmall.{u} Q]
   obtain ⟨T, e, he⟩ := hφ.exists_smallRepr
   exact ⟨_, ⟨⟨_, hR'⟩, T⟩, ⟨RingEquiv.toCommRingCatIso e.symm⟩⟩
 
+/--
+@isnad1 id=essentia.1h2v.s7.4dfe055ac54e from=seed src=0 shape=10674da5 vocab=2459ca97
+-/
 lemma essentiallySmall_of_localizationAway [ObjectProperty.EssentiallySmall.{u} Q]
     (hPQ : ∀ S, P S → ∃ s : Set S, Ideal.span s = ⊤ ∧ ∀ f ∈ s, Q (.of (Localization.Away f))) :
     ObjectProperty.EssentiallySmall.{u} P := by

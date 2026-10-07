@@ -63,11 +63,17 @@ instance : Preorder X.AffineZariskiSite where
     rintro ⟨U, hU⟩ ⟨V, hV⟩ ⟨W, hW⟩ ⟨f, rfl⟩ ⟨g, rfl⟩
     exact hW.basicOpen_basicOpen_is_basicOpen g f
 
+/--
+@isnad1 id=monotone.0h1v.s4.1d02f823f946 from=seed src=0 shape=ca92e646 vocab=b44eacd8
+-/
 lemma toOpens_mono :
     Monotone (toOpens (X := X)) := by
   rintro ⟨U, hU⟩ ⟨V, hV⟩ ⟨f, rfl⟩
   exact X.basicOpen_le _
 
+/--
+@isnad1 id=injectiv.0h1v.s3.81118fde4375 from=seed src=0 shape=ca92e646 vocab=eb822e6c
+-/
 lemma toOpens_injective : Function.Injective (toOpens (X := X)) := Subtype.val_injective
 
 instance : PartialOrder X.AffineZariskiSite where
@@ -77,6 +83,9 @@ instance : PartialOrder X.AffineZariskiSite where
 @[simps] def basicOpen (U : X.AffineZariskiSite) (f : Γ(X, U.toOpens)) : X.AffineZariskiSite :=
   ⟨X.basicOpen f, U.2.basicOpen f⟩
 
+/--
+@isnad1 id=le.0h3v.s7.37231f1dfd08 from=seed src=0 shape=c502276d vocab=f41b28e0
+-/
 lemma basicOpen_le (U : X.AffineZariskiSite) (f : Γ(X, U.toOpens)) : U.basicOpen f ≤ U :=
   ⟨f, rfl⟩
 
@@ -117,6 +126,9 @@ Also see `mem_grothendieckTopology_iff_sectionsOfPresieve`. -/
 def grothendieckTopology : GrothendieckTopology X.AffineZariskiSite :=
   (toOpensFunctor X).inducedTopology (Opens.grothendieckTopology X)
 
+/--
+@isnad1 id=iff.0h3v.s7.7c4c66880823 from=seed src=0 shape=25fc0da9 vocab=c9a571af
+-/
 lemma mem_grothendieckTopology {U : X.AffineZariskiSite} {S : Sieve U} :
     S ∈ grothendieckTopology X U ↔
       ∀ x ∈ U.toOpens, ∃ (V : _) (f : V ⟶ U), S.arrows f ∧ x ∈ V.toOpens := by
@@ -140,6 +152,9 @@ def presieveOfSections (U : X.AffineZariskiSite) (s : Set Γ(X, U.toOpens)) : Pr
 def sectionsOfPresieve {U : X.AffineZariskiSite} (P : Presieve U) : Set Γ(X, U.toOpens) :=
   { f | P (homOfLE (U.basicOpen_le f)) }
 
+/--
+@isnad1 id=eq.0h3v.s5.fae015807e57 from=seed src=0 shape=433dbc36 vocab=6ddc9037
+-/
 lemma presieveOfSections_sectionsOfPresieve {U : X.AffineZariskiSite} (P : Presieve U) :
     presieveOfSections U (sectionsOfPresieve P) = P := by
   refine funext₂ fun ⟨V, hV⟩ ⟨f, hf⟩ ↦ eq_iff_iff.mpr ⟨?_, ?_⟩
@@ -149,10 +164,16 @@ lemma presieveOfSections_sectionsOfPresieve {U : X.AffineZariskiSite} (P : Presi
     obtain rfl : _ = V := hf
     exact ⟨_, H, rfl⟩
 
+/--
+@isnad1 id=surjecti.0h2v.s7.10fe7bbb047b from=seed src=0 shape=d38562bd vocab=f8f54cd4
+-/
 lemma presieveOfSections_surjective {U : X.AffineZariskiSite} :
     Function.Surjective (presieveOfSections U) :=
   fun _ ↦ ⟨_, presieveOfSections_sectionsOfPresieve _⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.a33f6c1cc820 from=seed src=0 shape=eacb792b vocab=528f142d
+-/
 lemma presieveOfSections_eq_ofArrows (U : X.AffineZariskiSite) (s : Set Γ(X, U.toOpens)) :
     presieveOfSections U s = .ofArrows _ (fun i : s ↦ homOfLE (U.basicOpen_le i.1)) := by
   refine funext₂ fun ⟨V, hV⟩ ⟨f, hf⟩ ↦ eq_iff_iff.mpr ⟨?_, ?_⟩
@@ -161,6 +182,9 @@ lemma presieveOfSections_eq_ofArrows (U : X.AffineZariskiSite) (s : Set Γ(X, U.
   · rintro ⟨⟨f, hfs⟩⟩
     exact ⟨f, hfs, rfl⟩
 
+/--
+@isnad1 id=iff.0h5v.s11.1ce14fd09861 from=seed src=0 shape=c3a40c9d vocab=557763de
+-/
 lemma generate_presieveOfSections
     {U V : X.AffineZariskiSite} {s : Set Γ(X, U.toOpens)} {f : V ⟶ U} :
     Sieve.generate (presieveOfSections U s) f ↔ ∃ f ∈ s, ∃ g, X.basicOpen (f * g) = V.toOpens := by
@@ -176,6 +200,9 @@ lemma generate_presieveOfSections
     refine ⟨U.basicOpen f₁, ⟨f₂ |_ _, ?_⟩, ⟨f₁, rfl⟩, ⟨f₁, hf₁s, rfl⟩, rfl⟩
     exact (X.basicOpen_res _ _).trans (X.basicOpen_mul _ _).symm
 
+/--
+@isnad1 id=iff.0h3v.s11.97a7eed4affb from=seed src=0 shape=c95a3ff9 vocab=9f702aff
+-/
 lemma generate_presieveOfSections_mem_grothendieckTopology
     {U : X.AffineZariskiSite} {s : Set Γ(X, U.toOpens)} :
     Sieve.generate (presieveOfSections U s) ∈ grothendieckTopology X U ↔ Ideal.span s = ⊤ := by
@@ -191,6 +218,9 @@ lemma generate_presieveOfSections_mem_grothendieckTopology
   · rintro ⟨f, hfs, hxf⟩
     refine ⟨U.basicOpen _, ⟨f, hfs, 1, rfl⟩, ⟨_, rfl⟩, by simpa using hxf⟩
 
+/--
+@isnad1 id=iff.0h3v.s11.4e8f46318d01 from=seed src=0 shape=a23072df vocab=faa57e26
+-/
 lemma mem_grothendieckTopology_iff_sectionsOfPresieve
     {U : X.AffineZariskiSite} {S : Sieve U} :
     S ∈ grothendieckTopology X U ↔ Ideal.span (sectionsOfPresieve S.1) = ⊤ := by
@@ -268,6 +298,9 @@ variable (X) in
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h3v.s10.a1a2c154fedf from=seed src=0 shape=58fb97b6 vocab=e1bedf53
+-/
 lemma coequifibered_iff_forall_isLocalizationAway {F : X.AffineZariskiSiteᵒᵖ ⥤ CommRingCat}
     {α : (AffineZariskiSite.toOpensFunctor X).op ⋙ X.presheaf ⟶ F} :
     α.Coequifibered ↔ ∀ (U : X.AffineZariskiSite) (f : Γ(X, U.1)),
@@ -304,6 +337,9 @@ def relativeGluingData {F : X.AffineZariskiSiteᵒᵖ ⥤ CommRingCat}
   natTrans := Functor.whiskerRight α.rightOp Scheme.Spec ≫ (restrictIsoSpec X).inv
   equifibered := (H.rightOp.whiskerRight _).comp (.of_isIso _)
 
+/--
+@isnad1 id=islocall.0h4v.s8.97ec86c81b1b from=seed src=0 shape=39f2f381 vocab=da0d3421
+-/
 @[deprecated "By `inferInstance`." (since := "2026-02-01")]
 lemma PreservesLocalization.isLocallyDirected (F : X.AffineZariskiSiteᵒᵖ ⥤ CommRingCat)
     (α : (AffineZariskiSite.toOpensFunctor X).op ⋙ X.presheaf ⟶ F)
@@ -311,6 +347,9 @@ lemma PreservesLocalization.isLocallyDirected (F : X.AffineZariskiSiteᵒᵖ ⥤
     ((F.rightOp ⋙ Scheme.Spec) ⋙ Scheme.forget).IsLocallyDirected :=
   (relativeGluingData H).instIsLocallyDirectedI₀CompFunctorForgetOfIsThin
 
+/--
+@isnad1 id=isopenim.0h7v.s8.eb6478d66a6e from=seed src=0 shape=d3d7a8d0 vocab=13756c8f
+-/
 @[deprecated "By `inferInstance`." (since := "2026-02-01")]
 lemma PreservesLocalization.isOpenImmersion (F : X.AffineZariskiSiteᵒᵖ ⥤ CommRingCat)
     (α : (AffineZariskiSite.toOpensFunctor X).op ⋙ X.presheaf ⟶ F)
@@ -318,6 +357,9 @@ lemma PreservesLocalization.isOpenImmersion (F : X.AffineZariskiSiteᵒᵖ ⥤ C
     ∀ ⦃U V⦄ (f : U ⟶ V), IsOpenImmersion ((F.rightOp ⋙ Scheme.Spec).map f) := by
   exact fun U V ↦ (relativeGluingData H).instIsOpenImmersionMapI₀Functor
 
+/--
+@isnad1 id=eq.0h6v.s10.a6655e58c4ee from=seed src=0 shape=f150fb0e vocab=749429ba
+-/
 lemma opensRange_relativeGluingData_map (F : X.AffineZariskiSiteᵒᵖ ⥤ CommRingCat)
     (α : (AffineZariskiSite.toOpensFunctor X).op ⋙ X.presheaf ⟶ F)
     (H : α.Coequifibered) {U : X.AffineZariskiSite} (r : Γ(X, U.1)) :
@@ -329,10 +371,16 @@ lemma opensRange_relativeGluingData_map (F : X.AffineZariskiSiteᵒᵖ ⥤ CommR
   refine PrimeSpectrum.localization_away_comap_range (F.obj (.op <| U.basicOpen r))
     (α.app (.op U) r)
 
+/--
+@isnad1 id=eq.0h6v.s10.a6655e58c4ee from=seed src=0 shape=f150fb0e vocab=749429ba
+-/
 @[deprecated (since := "2026-02-01")]
 alias PreservesLocalization.opensRange_map := opensRange_relativeGluingData_map
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h5v.s10.004fc97c6305 from=seed src=0 shape=9220d45f vocab=deac9d9b
+-/
 @[deprecated Cover.RelativeGluingData.toBase_preimage_eq_opensRange_ι (since := "2026-02-01")]
 lemma PreservesLocalization.colimitDesc_preimage (F : X.AffineZariskiSiteᵒᵖ ⥤ CommRingCat)
     (α : (AffineZariskiSite.toOpensFunctor X).op ⋙ X.presheaf ⟶ F)

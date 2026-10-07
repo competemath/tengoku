@@ -67,7 +67,9 @@ include hS hN in
 /-- Let `R` be a ring, and `f i` a finite collection of elements of `R` generating the unit ideal.
 If the localization of `R` at each `f i` is Noetherian, so is `R`.
 
-We follow the proof given in [Har77], Proposition II.3.2 -/
+We follow the proof given in [Har77], Proposition II.3.2
+@isnad1 id=isnoethe.2h2v.s7.49f663601441 from=seed src=0 shape=4f222e95 vocab=1d15953e
+-/
 theorem isNoetherianRing_of_away : IsNoetherianRing R := by
   apply monotone_stabilizes_iff_noetherian.mp
   intro I
@@ -99,7 +101,9 @@ end localizationProps
 variable {X : Scheme}
 
 /-- If a scheme `X` has a cover by affine opens whose sections are Noetherian rings,
-then `X` is locally Noetherian. -/
+then `X` is locally Noetherian.
+@isnad1 id=islocall.2h3v.s9.51aec342614a from=seed src=0 shape=f4af7e83 vocab=ddb471e4
+-/
 theorem isLocallyNoetherian_of_affine_cover {ι} {S : ι → X.affineOpens}
     (hS : (⨆ i, S i : X.Opens) = ⊤)
     (hS' : ∀ i, IsNoetherianRing Γ(X, S i)) : IsLocallyNoetherian X := by
@@ -120,14 +124,18 @@ theorem isLocallyNoetherian_of_affine_cover {ι} {S : ι → X.affineOpens}
 /-- A scheme is locally Noetherian if and only if it is covered by affine opens whose sections
 are Noetherian rings.
 
-See [Har77], Proposition II.3.2. -/
+See [Har77], Proposition II.3.2.
+@isnad1 id=iff.1h3v.s9.7ac02f2dddd9 from=seed src=0 shape=55f3c42e vocab=ddb471e4
+-/
 theorem isLocallyNoetherian_iff_of_iSup_eq_top {ι} {S : ι → X.affineOpens}
     (hS : (⨆ i, S i : X.Opens) = ⊤) :
     IsLocallyNoetherian X ↔ ∀ i, IsNoetherianRing Γ(X, S i) :=
   ⟨fun _ i => IsLocallyNoetherian.component_noetherian (S i),
    isLocallyNoetherian_of_affine_cover hS⟩
 
-/-- A version of `isLocallyNoetherian_iff_of_iSup_eq_top` using `Scheme.OpenCover`. -/
+/-- A version of `isLocallyNoetherian_iff_of_iSup_eq_top` using `Scheme.OpenCover`.
+@isnad1 id=iff.0h2v.s11.eb1ffbdd75c9 from=seed src=0 shape=34eb3d4d vocab=3940b508
+-/
 theorem isLocallyNoetherian_iff_of_affine_openCover (𝒰 : Scheme.OpenCover.{v, u} X)
     [∀ i, IsAffine (𝒰.X i)] :
     IsLocallyNoetherian X ↔ ∀ (i : 𝒰.I₀), IsNoetherianRing Γ(𝒰.X i, ⊤) := by
@@ -148,6 +156,9 @@ theorem isLocallyNoetherian_iff_of_affine_openCover (𝒰 : Scheme.OpenCover.{v,
     exact IsOpenImmersion.ΓIsoTop (𝒰.f i)
 
 -- Also see `LocallyOfFiniteType.isLocallyNoetherian`.
+/--
+@isnad1 id=islocall.0h3v.s4.6d4003f157d9 from=seed src=0 shape=9715b773 vocab=051c659d
+-/
 lemma isLocallyNoetherian_of_isOpenImmersion {Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f]
     [IsLocallyNoetherian Y] : IsLocallyNoetherian X where
   component_noetherian U :=
@@ -163,7 +174,9 @@ instance {U : X.OpenCover} (i) [IsLocallyNoetherian X] : IsLocallyNoetherian (U.
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- If `𝒰` is an open cover of a scheme `X`, then `X` is locally Noetherian if and only if
-`𝒰.X i` are all locally Noetherian. -/
+`𝒰.X i` are all locally Noetherian.
+@isnad1 id=iff.0h2v.s5.8c830c24da79 from=seed src=0 shape=9de9a46e vocab=eb87c863
+-/
 theorem isLocallyNoetherian_iff_openCover (𝒰 : Scheme.OpenCover X) :
     IsLocallyNoetherian X ↔ ∀ (i : 𝒰.I₀), IsLocallyNoetherian (𝒰.X i) := by
   refine ⟨fun _ ↦ inferInstance, ?_⟩
@@ -178,10 +191,16 @@ instance {R : CommRingCat} [IsNoetherianRing R] :
     NoetherianSpace (Spec R) := by
   convert! PrimeSpectrum.instNoetherianSpace (R := R)
 
+/--
+@isnad1 id=noetheri.0h1v.s9.5817e78473d1 from=seed src=0 shape=cb17ba73 vocab=50716183
+-/
 lemma noetherianSpace_of_isAffine [IsAffine X] [IsNoetherianRing Γ(X, ⊤)] :
     NoetherianSpace X :=
   (noetherianSpace_iff_of_homeomorph X.isoSpec.inv.homeomorph).mp inferInstance
 
+/--
+@isnad1 id=noetheri.1h2v.s9.7e9658823c11 from=seed src=0 shape=4b2e7a35 vocab=9a51c7fb
+-/
 lemma noetherianSpace_of_isAffineOpen (U : X.Opens) (hU : IsAffineOpen U)
     [IsNoetherianRing Γ(X, U)] :
     NoetherianSpace U := by
@@ -193,6 +212,9 @@ instance {R : CommRingCat} [IsNoetherianRing R] : IsLocallyNoetherian (Spec R) :
   isLocallyNoetherian_of_affine_cover (S := fun _ : Unit ↦ ⟨⊤, isAffineOpen_top (Spec R)⟩) (by simp)
     fun _ ↦ isNoetherianRing_of_ringEquiv R (Scheme.ΓSpecIso R).symm.commRingCatIsoToRingEquiv
 
+/--
+@isnad1 id=iff.0h1v.s4.b563782178be from=seed src=0 shape=7072e12b vocab=1d50fb4e
+-/
 @[simp]
 theorem isLocallyNoetherian_Spec {R : CommRingCat} :
     IsLocallyNoetherian (Spec R) ↔ IsNoetherianRing R where
@@ -216,7 +238,9 @@ instance (priority := 100) {Z : Scheme} [IsLocallyNoetherian X]
   · exact Set.inter_subset_right
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- A locally Noetherian scheme is quasi-separated. -/
+/-- A locally Noetherian scheme is quasi-separated.
+@isnad1 id=quasisep.0h1v.s4.0b66ee27ecc2 from=seed src=0 shape=7c9df8e0 vocab=b4ff92ba
+-/
 @[stacks 01OY]
 instance (priority := 100) IsLocallyNoetherian.quasiSeparatedSpace [IsLocallyNoetherian X] :
     QuasiSeparatedSpace X := by
@@ -236,6 +260,9 @@ instance (priority := 100) IsLocallyNoetherian.quasiSeparatedSpace [IsLocallyNoe
     exact Set.inter_subset_left
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=islocall.0h3v.s4.b6e9a7af4dda from=seed src=0 shape=9715b773 vocab=8d67ee82
+-/
 theorem LocallyOfFiniteType.isLocallyNoetherian
     {X Y : Scheme} (f : X ⟶ Y) [LocallyOfFiniteType f]
     [IsLocallyNoetherian Y] : IsLocallyNoetherian X := by
@@ -271,6 +298,9 @@ instance (priority := low) {X Y : Scheme} (f : X ⟶ Y)
   have : IsNoetherianRing Γ(Y, U) := IsLocallyNoetherian.component_noetherian ⟨U, hU⟩
   exact Algebra.FinitePresentation.of_finiteType.mp (f.finiteType_appLE hU hV hUV)
 
+/--
+@isnad1 id=iff.0h3v.s4.0f1d2c36369f from=seed src=0 shape=62fb54d2 vocab=80a04aaf
+-/
 lemma LocallyOfFinitePresentation.iff_locallyOfFiniteType {X Y : Scheme} {f : X ⟶ Y}
     [IsLocallyNoetherian Y] : LocallyOfFinitePresentation f ↔ LocallyOfFiniteType f :=
   ⟨fun _ ↦ inferInstance, fun _ ↦ inferInstance⟩
@@ -280,7 +310,9 @@ lemma LocallyOfFinitePresentation.iff_locallyOfFiniteType {X Y : Scheme} {f : X 
 class IsNoetherian (X : Scheme) : Prop extends IsLocallyNoetherian X, CompactSpace X
 
 /-- A scheme is Noetherian if and only if it is covered by finitely many affine opens whose
-sections are Noetherian rings. -/
+sections are Noetherian rings.
+@isnad1 id=iff.1h3v.s9.ad51c5bd6df8 from=seed src=0 shape=2cb58996 vocab=d80982a3
+-/
 theorem isNoetherian_iff_of_finite_iSup_eq_top {ι} [Finite ι] {S : ι → X.affineOpens}
     (hS : (⨆ i, S i : X.Opens) = ⊤) :
     IsNoetherian X ↔ ∀ i, IsNoetherianRing Γ(X, S i) := by
@@ -301,7 +333,9 @@ theorem isNoetherian_iff_of_finite_iSup_eq_top {ι} [Finite ι] {S : ι → X.af
         apply noetherianSpace_of_isAffineOpen (S i).1 (S i).2
       apply NoetherianSpace.compactSpace (S i)
 
-/-- A version of `isNoetherian_iff_of_finite_iSup_eq_top` using `Scheme.OpenCover`. -/
+/-- A version of `isNoetherian_iff_of_finite_iSup_eq_top` using `Scheme.OpenCover`.
+@isnad1 id=iff.0h2v.s11.e20c08f1750f from=seed src=0 shape=606c83da vocab=02a0617b
+-/
 theorem isNoetherian_iff_of_finite_affine_openCover {𝒰 : Scheme.OpenCover.{v, u} X}
     [Finite 𝒰.I₀] [∀ i, IsAffine (𝒰.X i)] :
     IsNoetherian X ↔ ∀ (i : 𝒰.I₀), IsNoetherianRing Γ(𝒰.X i, ⊤) := by
@@ -315,7 +349,9 @@ theorem isNoetherian_iff_of_finite_affine_openCover {𝒰 : Scheme.OpenCover.{v,
     · exact Scheme.OpenCover.compactSpace 𝒰
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- A Noetherian scheme has a Noetherian underlying topological space. -/
+/-- A Noetherian scheme has a Noetherian underlying topological space.
+@isnad1 id=noetheri.0h1v.s4.538b84305fd3 from=seed src=0 shape=7c9df8e0 vocab=57e0dbce
+-/
 @[stacks 01OZ]
 instance (priority := 100) IsNoetherian.noetherianSpace [IsNoetherian X] :
     NoetherianSpace X := by
@@ -332,7 +368,9 @@ instance (priority := 100) IsNoetherian.noetherianSpace [IsNoetherian X] :
   convert! noetherianSpace_of_isAffineOpen U.1 U.2
   apply IsLocallyNoetherian.component_noetherian
 
-/-- Any morphism of schemes `f : X ⟶ Y` with `X` Noetherian is quasi-compact. -/
+/-- Any morphism of schemes `f : X ⟶ Y` with `X` Noetherian is quasi-compact.
+@isnad1 id=quasicom.0h3v.s5.82edde3ed742 from=seed src=0 shape=6cf97932 vocab=ad898979
+-/
 @[stacks 01P0]
 instance (priority := 100) quasiCompact_of_noetherianSpace_source {X Y : Scheme}
     [NoetherianSpace X] (f : X ⟶ Y) : QuasiCompact f :=
@@ -353,13 +391,17 @@ instance [IsLocallyNoetherian X] {x : X} : IsNoetherianRing (X.presheaf.stalk x)
         (X.presheaf.stalk x) _ (X.presheaf.algebra_section_stalk ⟨x, hU2⟩)
         this (IsLocallyNoetherian.component_noetherian ⟨U, hU⟩)
 
-/-- `R` is a Noetherian ring if and only if `Spec R` is a Noetherian scheme. -/
+/-- `R` is a Noetherian ring if and only if `Spec R` is a Noetherian scheme.
+@isnad1 id=iff.0h1v.s4.d1fd058879af from=seed src=0 shape=7072e12b vocab=2a63c9fe
+-/
 @[simp]
 theorem isNoetherian_Spec {R : CommRingCat} :
     IsNoetherian (Spec R) ↔ IsNoetherianRing R := by
   simp [AlgebraicGeometry.isNoetherian_iff, (inferInstance : CompactSpace (Spec R))]
 
-/-- A Noetherian scheme has a finite number of irreducible components. -/
+/-- A Noetherian scheme has a finite number of irreducible components.
+@isnad1 id=finite.0h1v.s5.8d99c22af70c from=seed src=0 shape=d1a39c98 vocab=1cdc3d7d
+-/
 @[stacks 0BA8]
 theorem finite_irreducibleComponents_of_isNoetherian [IsNoetherian X] :
     (irreducibleComponents X).Finite := NoetherianSpace.finite_irreducibleComponents

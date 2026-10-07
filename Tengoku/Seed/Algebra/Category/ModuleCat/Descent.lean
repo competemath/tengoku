@@ -34,19 +34,27 @@ open CategoryTheory Comonad ModuleCat Limits MonoidalCategory
 
 variable {A B : Type u} [CommRing A] [CommRing B] {f : A →+* B}
 
+/--
+@isnad1 id=preserve.1h3v.s6.610c3e7bac07 from=seed src=0 shape=034424c1 vocab=a7e3e159
+-/
 lemma ModuleCat.preservesFiniteLimits_tensorLeft_of_ringHomFlat (hf : f.Flat) :
     PreservesFiniteLimits <| tensorLeft ((restrictScalars f).obj (ModuleCat.of B B)) := by
   algebraize [f]
   change PreservesFiniteLimits <| tensorLeft (ModuleCat.of A B)
   infer_instance
 
+/--
+@isnad1 id=preserve.1h3v.s5.f2cc3ed1baa2 from=seed src=0 shape=42dfa98f vocab=ab6d2604
+-/
 lemma ModuleCat.preservesFiniteLimits_extendScalars_of_flat (hf : f.Flat) :
     PreservesFiniteLimits (extendScalars.{_, _, u} f) := by
   have : PreservesFiniteLimits (extendScalars.{_, _, u} f ⋙ restrictScalars.{_, _, u} f) :=
     ModuleCat.preservesFiniteLimits_tensorLeft_of_ringHomFlat hf
   exact preservesFiniteLimits_of_reflects_of_preserves (extendScalars f) (restrictScalars f)
 
-/-- Extension of scalars along faithfully flat ring maps reflects isomorphisms. -/
+/-- Extension of scalars along faithfully flat ring maps reflects isomorphisms.
+@isnad1 id=reflects.1h3v.s5.2295793e6797 from=seed src=0 shape=42dfa98f vocab=4c8d217b
+-/
 lemma ModuleCat.reflectsIsomorphisms_extendScalars_of_faithfullyFlat
     (hf : f.FaithfullyFlat) : (extendScalars.{_, _, u} f).ReflectsIsomorphisms := by
   refine ⟨fun {M N} g h ↦ ?_⟩

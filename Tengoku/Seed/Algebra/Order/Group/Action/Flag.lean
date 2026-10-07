@@ -27,6 +27,9 @@ variable [Preorder α]
 
 instance : SMul (α ≃o α) (Flag α) where smul e := map e
 
+/--
+@isnad1 id=eq.0h3v.s7.fe3dc68414ef from=seed src=0 shape=1e81feee vocab=b46442c6
+-/
 @[simp, norm_cast]
 lemma coe_smul (e : α ≃o α) (s : Flag α) : (↑(e • s) : Set α) = e • s := rfl
 

@@ -97,20 +97,32 @@ namespace SpectralSequenceDataCore
 
 variable (data : SpectralSequenceDataCore ι c r₀)
 
+/--
+@isnad1 id=le.0h10v.s6.7ed310ceb180 from=seed src=0 shape=bf79527e vocab=7e874a08
+-/
 lemma i₀_le (r r' : ℤ) (pq : κ) (hrr' : r + 1 = r' := by lia) (hr : r₀ ≤ r := by lia) :
     data.i₀ r' pq ≤ data.i₀ r pq :=
   data.antitone_i₀ r r' pq
 
+/--
+@isnad1 id=le.0h10v.s6.b0e24e94ead4 from=seed src=0 shape=e08c150c vocab=80e7d10e
+-/
 lemma i₃_le (r r' : ℤ) (pq : κ) (hrr' : r + 1 = r' := by lia) (hr : r₀ ≤ r := by lia) :
     data.i₃ r pq ≤ data.i₃ r' pq :=
   data.monotone_i₃ r r' pq
 
+/--
+@isnad1 id=le.4h10v.s6.73f90b6d00a9 from=seed src=0 shape=c648d0a2 vocab=c687dccf
+-/
 lemma i₀_le' {r r' : ℤ} (hrr' : r + 1 = r') (hr : r₀ ≤ r) (pq' : κ)
     {i₀' i₀ : ι} (hi₀' : i₀' = data.i₀ r' pq') (hi₀ : i₀ = data.i₀ r pq') :
     i₀' ≤ i₀ := by
   rw [hi₀', hi₀]
   exact data.antitone_i₀ r r' pq'
 
+/--
+@isnad1 id=le.3h9v.s6.964f368171b9 from=seed src=0 shape=eb0f18f5 vocab=55d33284
+-/
 lemma le₀₁' (r : ℤ) (hr : r₀ ≤ r) (pq' : κ) {i₀ i₁ : ι}
     (hi₀ : i₀ = data.i₀ r pq')
     (hi₁ : i₁ = data.i₁ pq') :
@@ -118,10 +130,16 @@ lemma le₀₁' (r : ℤ) (hr : r₀ ≤ r) (pq' : κ) {i₀ i₁ : ι}
   have := data.le₀₁ r pq'
   simpa only [hi₀, hi₁] using data.le₀₁ r pq'
 
+/--
+@isnad1 id=le.2h8v.s5.47c24448e00f from=seed src=0 shape=7a735cc0 vocab=7dda6c2a
+-/
 lemma le₁₂' (pq' : κ) {i₁ i₂ : ι} (hi₁ : i₁ = data.i₁ pq') (hi₂ : i₂ = data.i₂ pq') :
     i₁ ≤ i₂ := by
   simpa only [hi₁, hi₂] using data.le₁₂ pq'
 
+/--
+@isnad1 id=le.3h9v.s6.9ee477bad5fc from=seed src=0 shape=9f450454 vocab=536cca54
+-/
 lemma le₂₃' (r : ℤ) (hr : r₀ ≤ r) (pq' : κ)
     {i₂ i₃ : ι}
     (hi₂ : i₂ = data.i₂ pq')
@@ -129,6 +147,9 @@ lemma le₂₃' (r : ℤ) (hr : r₀ ≤ r) (pq' : κ)
     i₂ ≤ i₃ := by
   simpa only [hi₂, hi₃] using data.le₂₃ r pq'
 
+/--
+@isnad1 id=le.4h10v.s6.e80bd9fbd0ea from=seed src=0 shape=32a20070 vocab=2c3cba2c
+-/
 lemma le₃₃' {r r' : ℤ} (hrr' : r + 1 = r') (hr : r₀ ≤ r) (pq' : κ)
     {i₃ i₃' : ι}
     (hi₃ : i₃ = data.i₃ r pq')
@@ -313,12 +334,18 @@ class HasSpectralSequence : Prop where
 
 variable [X.HasSpectralSequence data]
 
+/--
+@isnad1 id=iszero.4h11v.s8.da91f76c2253 from=seed src=0 shape=d46bec8d vocab=9975b156
+-/
 lemma isZero_H_obj_mk₁_i₀_le (r r' : ℤ) (hrr' : r + 1 = r') (hr : r₀ ≤ r)
     (pq : κ) (hpq : ∀ (pq' : κ), ¬ ((c r).Rel pq pq'))
     (n : ℤ) (hn : n = data.deg pq + 1) :
     IsZero ((X.H n).obj (mk₁ (homOfLE (data.i₀_le r r' pq)))) :=
   HasSpectralSequence.isZero_H_obj_mk₁_i₀_le r r' pq hpq n hn
 
+/--
+@isnad1 id=iszero.6h13v.s8.73f3ff582614 from=seed src=0 shape=55af8422 vocab=2ac1b322
+-/
 lemma isZero_H_obj_mk₁_i₀_le' (r r' : ℤ) (hrr' : r + 1 = r') (hr : r₀ ≤ r)
     (pq : κ) (hpq : ∀ (pq' : κ), ¬ ((c r).Rel pq pq'))
     (n : ℤ) (hn : n = data.deg pq + 1) (i₀' i₀ : ι)
@@ -329,12 +356,18 @@ lemma isZero_H_obj_mk₁_i₀_le' (r r' : ℤ) (hrr' : r + 1 = r') (hr : r₀ �
   subst hi₀' hi₀
   exact HasSpectralSequence.isZero_H_obj_mk₁_i₀_le r r' pq hpq n hn
 
+/--
+@isnad1 id=iszero.4h11v.s8.7042682dd300 from=seed src=0 shape=c370ec8d vocab=ee681a50
+-/
 lemma isZero_H_obj_mk₁_i₃_le (r r' : ℤ) (hrr' : r + 1 = r') (hr : r₀ ≤ r)
     (pq : κ) (hpq : ∀ (pq' : κ), ¬ ((c r).Rel pq' pq))
     (n : ℤ) (hn : n = data.deg pq - 1) :
     IsZero ((X.H n).obj (mk₁ (homOfLE (data.i₃_le r r' pq)))) :=
   HasSpectralSequence.isZero_H_obj_mk₁_i₃_le r r' pq hpq n hn
 
+/--
+@isnad1 id=iszero.6h13v.s8.6d3d9e4b139e from=seed src=0 shape=50fdfa56 vocab=0b859949
+-/
 lemma isZero_H_obj_mk₁_i₃_le' (r r' : ℤ) (hrr' : r + 1 = r') (hr : r₀ ≤ r)
     (pq : κ) (hpq : ∀ (pq' : κ), ¬ ((c r).Rel pq' pq))
     (n : ℤ) (hn : n = data.deg pq - 1) (i₃ i₃' : ι)
@@ -400,10 +433,16 @@ class IsFirstQuadrant : Prop where
 
 variable [Y.IsFirstQuadrant]
 
+/--
+@isnad1 id=iszero.2h5v.s8.e1e381408428 from=seed src=0 shape=8ac434fb vocab=9a4c828e
+-/
 lemma isZero₁_of_isFirstQuadrant (i j : EInt) (hij : i ≤ j) (hj : j ≤ (0 : ℤ)) (n : ℤ) :
     IsZero ((Y.H n).obj (mk₁ (homOfLE hij))) :=
   IsFirstQuadrant.isZero₁ i j hij hj n
 
+/--
+@isnad1 id=iszero.2h5v.s8.c6ab8780ac9f from=seed src=0 shape=b8e94718 vocab=3ba49b6a
+-/
 lemma isZero₂_of_isFirstQuadrant (i j : EInt) (hij : i ≤ j) (n : ℤ) (hi : n < i) :
     IsZero ((Y.H n).obj (mk₁ (homOfLE hij))) :=
   IsFirstQuadrant.isZero₂ i j hij n hi
@@ -443,10 +482,16 @@ class IsThirdQuadrant where
 
 variable [Y.IsThirdQuadrant]
 
+/--
+@isnad1 id=iszero.2h5v.s8.1c3accdb6f18 from=seed src=0 shape=8a09b33f vocab=35c5f8b9
+-/
 lemma isZero₁_of_isThirdQuadrant (i j : EInt) (hij : i ≤ j) (hi : (0 : ℤ) < i) (n : ℤ) :
     IsZero ((Y.H n).obj (mk₁ (homOfLE hij))) :=
   IsThirdQuadrant.isZero₁ i j hij hi n
 
+/--
+@isnad1 id=iszero.2h5v.s7.ab8e34a0f425 from=seed src=0 shape=71a1a267 vocab=8310927e
+-/
 lemma isZero₂_of_isThirdQuadrant (i j : EInt) (hij : i ≤ j) (n : ℤ) (hj : j ≤ n) :
     IsZero ((Y.H n).obj (mk₁ (homOfLE hij))) :=
   IsThirdQuadrant.isZero₂ i j hij n hj

@@ -106,20 +106,35 @@ instance : CentroidHomClass (CentroidHom α) α where
   map_mul_left f := f.map_mul_left'
   map_mul_right f := f.map_mul_right'
 
+/--
+@isnad1 id=eq.0h2v.s6.fe6e6f3dae22 from=seed src=0 shape=5f77607d vocab=e2459510
+-/
 theorem toFun_eq_coe {f : CentroidHom α} : f.toFun = f := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.daa97db1e3fe from=seed src=0 shape=b15bb5b9 vocab=485a14e7
+-/
 @[ext]
 theorem ext {f g : CentroidHom α} (h : ∀ a, f a = g a) : f = g :=
   DFunLike.ext f g h
 
+/--
+@isnad1 id=eq.0h2v.s6.5d5ba7641819 from=seed src=0 shape=d0c4e1d4 vocab=419db6f4
+-/
 @[simp, norm_cast]
 theorem coe_toAddMonoidHom (f : CentroidHom α) : ⇑(f : α →+ α) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.225b9e5b2d62 from=seed src=0 shape=57b8750b vocab=39f4a618
+-/
 @[simp]
 theorem toAddMonoidHom_eq_coe (f : CentroidHom α) : f.toAddMonoidHom = f :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s5.59a715c65052 from=seed src=0 shape=42a75067 vocab=8bcc0eb5
+-/
 theorem coe_toAddMonoidHom_injective : Injective ((↑) : CentroidHom α → α →+ α) :=
   fun _f _g h => ext fun a ↦
     haveI := DFunLike.congr_fun h a
@@ -129,6 +144,9 @@ theorem coe_toAddMonoidHom_injective : Injective ((↑) : CentroidHom α → α 
 def toEnd (f : CentroidHom α) : AddMonoid.End α :=
   (f : α →+ α)
 
+/--
+@isnad1 id=injectiv.0h1v.s4.5d78fea677c4 from=seed src=0 shape=e716c754 vocab=d43d4ff5
+-/
 theorem toEnd_injective : Injective (CentroidHom.toEnd : CentroidHom α → AddMonoid.End α) :=
   coe_toAddMonoidHom_injective
 
@@ -140,10 +158,16 @@ protected def copy (f : CentroidHom α) (f' : α → α) (h : f' = f) : Centroid
     map_mul_left' := fun a b ↦ by simp_rw [h, map_mul_left]
     map_mul_right' := fun a b ↦ by simp_rw [h, map_mul_right] }
 
+/--
+@isnad1 id=eq.1h3v.s5.ba65f4ea282f from=seed src=0 shape=28690eb2 vocab=ce8eb266
+-/
 @[simp]
 theorem coe_copy (f : CentroidHom α) (f' : α → α) (h : f' = f) : ⇑(f.copy f' h) = f' :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.73f0928d03c5 from=seed src=0 shape=ca119242 vocab=ce8eb266
+-/
 theorem copy_eq (f : CentroidHom α) (f' : α → α) (h : f' = f) : f.copy f' h = f :=
   DFunLike.ext' h
 
@@ -158,16 +182,25 @@ protected def id : CentroidHom α :=
 instance : Inhabited (CentroidHom α) :=
   ⟨CentroidHom.id α⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.616934eeb9d5 from=seed src=0 shape=676f2ab7 vocab=46b29241
+-/
 @[simp, norm_cast]
 theorem coe_id : ⇑(CentroidHom.id α) = id :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.aece03db4170 from=seed src=0 shape=8c76b44f vocab=b4451dc2
+-/
 @[simp, norm_cast]
 theorem toAddMonoidHom_id : (CentroidHom.id α : α →+ α) = AddMonoidHom.id α :=
   rfl
 
 variable {α}
 
+/--
+@isnad1 id=eq.0h2v.s4.262e4676e7cd from=seed src=0 shape=674d8978 vocab=0399bf9f
+-/
 @[simp]
 theorem id_apply (a : α) : CentroidHom.id α a = a :=
   rfl
@@ -179,35 +212,59 @@ def comp (g f : CentroidHom α) : CentroidHom α :=
     map_mul_right' := fun _a _b ↦
       (congr_arg g <| f.map_mul_right' _ _).trans <| g.map_mul_right' _ _ }
 
+/--
+@isnad1 id=eq.0h3v.s5.229fa9da8855 from=seed src=0 shape=357637a3 vocab=92cf5f0e
+-/
 @[simp, norm_cast]
 theorem coe_comp (g f : CentroidHom α) : ⇑(g.comp f) = g ∘ f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.213a9ee74100 from=seed src=0 shape=169a8db9 vocab=1aed102b
+-/
 @[simp]
 theorem comp_apply (g f : CentroidHom α) (a : α) : g.comp f a = g (f a) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.53426fd03e96 from=seed src=0 shape=84bb8975 vocab=b27d1c65
+-/
 @[simp, norm_cast]
 theorem coe_comp_addMonoidHom (g f : CentroidHom α) : (g.comp f : α →+ α) = (g : α →+ α).comp f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.1e410a055262 from=seed src=0 shape=ee02721c vocab=6a35c4e9
+-/
 @[simp]
 theorem comp_assoc (h g f : CentroidHom α) : (h.comp g).comp f = h.comp (g.comp f) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.2383c5f7a197 from=seed src=0 shape=807c4d20 vocab=81d5e845
+-/
 @[simp]
 theorem comp_id (f : CentroidHom α) : f.comp (CentroidHom.id α) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.6c127d33d9a8 from=seed src=0 shape=2c343361 vocab=81d5e845
+-/
 @[simp]
 theorem id_comp (f : CentroidHom α) : (CentroidHom.id α).comp f = f :=
   rfl
 
+/--
+@isnad1 id=iff.1h4v.s5.4da0bb4eb64e from=seed src=0 shape=bffe5be7 vocab=dcbd6705
+-/
 @[simp]
 theorem cancel_right {g₁ g₂ f : CentroidHom α} (hf : Surjective f) :
     g₁.comp f = g₂.comp f ↔ g₁ = g₂ :=
   ⟨fun h ↦ ext <| hf.forall.2 <| DFunLike.ext_iff.1 h, fun a ↦ congrFun (congrArg comp a) f⟩
 
+/--
+@isnad1 id=iff.1h4v.s5.9e278b34cc0e from=seed src=0 shape=df66c057 vocab=a506e6f4
+-/
 @[simp]
 theorem cancel_left {g f₁ f₂ : CentroidHom α} (hg : Injective g) :
     g.comp f₁ = g.comp f₂ ↔ f₁ = f₂ :=
@@ -256,6 +313,9 @@ instance [SMulCommClass M N α] : SMulCommClass M N (CentroidHom α) where
 instance [DistribMulAction Mᵐᵒᵖ α] [IsCentralScalar M α] : IsCentralScalar M (CentroidHom α) where
   op_smul_eq_smul _ _ := ext fun _ => op_smul_eq_smul _ _
 
+/--
+@isnad1 id=isscalar.0h2v.s7.1a393c324aca from=seed src=0 shape=c550112f vocab=fc9694d8
+-/
 instance isScalarTowerRight : IsScalarTower M (CentroidHom α) (CentroidHom α) where
   smul_assoc _ _ _ := rfl
 
@@ -275,56 +335,95 @@ instance hasNPowNat : Pow (CentroidHom α) ℕ :=
           rw [pow_succ']
           exact (congr_arg f.toEnd ih).trans (f.map_mul_right' _ _)}⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.bf37a2c08a10 from=seed src=0 shape=c47991b3 vocab=485a14e7
+-/
 @[simp, norm_cast]
 theorem coe_zero : ⇑(0 : CentroidHom α) = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.07928907aa08 from=seed src=0 shape=0fbb7209 vocab=c7c615e2
+-/
 @[simp, norm_cast]
 theorem coe_one : ⇑(1 : CentroidHom α) = id :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.9715be5133a9 from=seed src=0 shape=1138b575 vocab=fb7a8e07
+-/
 @[simp, norm_cast]
 theorem coe_add (f g : CentroidHom α) : ⇑(f + g) = f + g :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.44ae965b96a7 from=seed src=0 shape=80c81f5f vocab=248a8aad
+-/
 @[simp, norm_cast]
 theorem coe_mul (f g : CentroidHom α) : ⇑(f * g) = f ∘ g :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.3a5f58701967 from=seed src=0 shape=c4f7a222 vocab=732dd24f
+-/
 @[simp, norm_cast]
 theorem coe_smul (n : M) (f : CentroidHom α) : ⇑(n • f) = n • ⇑f :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.660b96e544a7 from=seed src=0 shape=39a216a7 vocab=485a14e7
+-/
 @[simp]
 theorem zero_apply (a : α) : (0 : CentroidHom α) a = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a8048b04b2aa from=seed src=0 shape=8da7778c vocab=485a14e7
+-/
 @[simp]
 theorem one_apply (a : α) : (1 : CentroidHom α) a = a :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.91747833f00d from=seed src=0 shape=608433c8 vocab=fb7a8e07
+-/
 @[simp]
 theorem add_apply (f g : CentroidHom α) (a : α) : (f + g) a = f a + g a :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.fef31ce28ee1 from=seed src=0 shape=2f029104 vocab=b4a6623d
+-/
 @[simp]
 theorem mul_apply (f g : CentroidHom α) (a : α) : (f * g) a = f (g a) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.7022aae7627e from=seed src=0 shape=1f6b3fb2 vocab=732dd24f
+-/
 @[simp]
 theorem smul_apply (n : M) (f : CentroidHom α) (a : α) : (n • f) a = n • f a :=
   rfl
 
 example : SMul ℕ (CentroidHom α) := instSMul
 
+/--
+@isnad1 id=eq.0h1v.s6.34026b0c5beb from=seed src=0 shape=7b5bff60 vocab=09088345
+-/
 @[simp]
 theorem toEnd_zero : (0 : CentroidHom α).toEnd = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.bf0610bba2ab from=seed src=0 shape=e69ef69b vocab=6ee142bb
+-/
 @[simp]
 theorem toEnd_add (x y : CentroidHom α) : (x + y).toEnd = x.toEnd + y.toEnd :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.2c10903ffdcb from=seed src=0 shape=b37c3764 vocab=6cff0d41
+-/
 theorem toEnd_smul (m : M) (x : CentroidHom α) : (m • x).toEnd = m • x.toEnd :=
   rfl
 
@@ -333,25 +432,43 @@ instance : AddCommMonoid (CentroidHom α) :=
 
 instance : NatCast (CentroidHom α) where natCast n := n • (1 : CentroidHom α)
 
+/--
+@isnad1 id=eq.0h2v.s6.96691d933296 from=seed src=0 shape=806ceb03 vocab=7742bb1a
+-/
 @[simp, norm_cast]
 theorem coe_natCast (n : ℕ) : ⇑(n : CentroidHom α) = n • (CentroidHom.id α) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.8e0a511885c3 from=seed src=0 shape=e92106e2 vocab=abee1746
+-/
 theorem natCast_apply (n : ℕ) (m : α) : (n : CentroidHom α) m = n • m :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.32cd238d9a97 from=seed src=0 shape=7b5bff60 vocab=09088345
+-/
 @[simp]
 theorem toEnd_one : (1 : CentroidHom α).toEnd = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.d28c81f0561b from=seed src=0 shape=e69ef69b vocab=94c12616
+-/
 @[simp]
 theorem toEnd_mul (x y : CentroidHom α) : (x * y).toEnd = x.toEnd * y.toEnd :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.8a27835c8dd6 from=seed src=0 shape=72e56f97 vocab=3b58789e
+-/
 @[simp]
 theorem toEnd_pow (x : CentroidHom α) (n : ℕ) : (x ^ n).toEnd = x.toEnd ^ n :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.cd056d8da603 from=seed src=0 shape=7fb3ccf0 vocab=27feed63
+-/
 @[simp, norm_cast]
 theorem toEnd_natCast (n : ℕ) : (n : CentroidHom α).toEnd = ↑n :=
   rfl
@@ -371,6 +488,9 @@ def toEndRingHom : CentroidHom α →+* AddMonoid.End α where
   map_add' := toEnd_add
   map_mul' := toEnd_mul
 
+/--
+@isnad1 id=eq.0h5v.s6.8396377cc223 from=seed src=0 shape=3bf86cde vocab=248a8aad
+-/
 theorem comp_mul_comm (T S : CentroidHom α) (a b : α) : (T ∘ S) (a * b) = (S ∘ T) (a * b) := by
   simp only [Function.comp_apply]
   rw [map_mul_right, map_mul_left, ← map_mul_right, ← map_mul_left]
@@ -398,6 +518,9 @@ instance applyModule : Module (CentroidHom α) α where
   smul_zero := map_zero
   smul_add := map_add
 
+/--
+@isnad1 id=eq.0h3v.s6.2e8cf744f7f5 from=seed src=0 shape=f044405b vocab=9591304e
+-/
 @[simp]
 lemma smul_def (T : CentroidHom α) (a : α) : T • a = T a := rfl
 
@@ -432,6 +555,9 @@ example (h : ∀ (r : R) (T : CentroidHom α), toCentroidHom r * T = T * toCentr
 local notation "L" => AddMonoid.End.mulLeft
 local notation "R" => AddMonoid.End.mulRight
 
+/--
+@isnad1 id=eq.0h1v.s8.cb57b7a3c073 from=seed src=0 shape=2bdf744e vocab=a53fb8b4
+-/
 lemma centroid_eq_centralizer_mulLeftRight :
     RingHom.rangeS (toEndRingHom α) = Subsemiring.centralizer (Set.range L ∪ Set.range R) := by
   ext T
@@ -472,6 +598,9 @@ instance : FunLike (Subsemiring.center (CentroidHom α)) α α where
     congr with x
     exact congrFun h x
 
+/--
+@isnad1 id=eq.0h3v.s9.bebb138d1d29 from=seed src=0 shape=34e3226a vocab=b05a3c7c
+-/
 lemma centerToCentroidCenter_apply (z : NonUnitalSubsemiring.center α) (a : α) :
     (centerToCentroidCenter z) a = z * a := rfl
 
@@ -481,6 +610,9 @@ def centerToCentroid : NonUnitalSubsemiring.center α →ₙ+* CentroidHom α :=
     (SubsemiringClass.subtype (Subsemiring.center (CentroidHom α))).toNonUnitalRingHom
     centerToCentroidCenter
 
+/--
+@isnad1 id=eq.0h3v.s8.b0ca2315acc7 from=seed src=0 shape=a18586a7 vocab=15517545
+-/
 lemma centerToCentroid_apply (z : NonUnitalSubsemiring.center α) (a : α) :
     (centerToCentroid z) a = z * a := rfl
 
@@ -556,17 +688,29 @@ instance : Sub (CentroidHom α) :=
 
 instance : IntCast (CentroidHom α) where intCast z := z • (1 : CentroidHom α)
 
+/--
+@isnad1 id=eq.0h2v.s6.18591bcf003d from=seed src=0 shape=806ceb03 vocab=0ccb69f5
+-/
 @[simp, norm_cast]
 theorem coe_intCast (z : ℤ) : ⇑(z : CentroidHom α) = z • (CentroidHom.id α) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9b3400e0acdd from=seed src=0 shape=e92106e2 vocab=41c8a93c
+-/
 theorem intCast_apply (z : ℤ) (m : α) : (z : CentroidHom α) m = z • m :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d68163be6b7c from=seed src=0 shape=5c68212b vocab=d644f07e
+-/
 @[simp]
 theorem toEnd_neg (x : CentroidHom α) : (-x).toEnd = -x.toEnd :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.50d3d40f6dc4 from=seed src=0 shape=e69ef69b vocab=1d1af010
+-/
 @[simp]
 theorem toEnd_sub (x y : CentroidHom α) : (x - y).toEnd = x.toEnd - y.toEnd :=
   rfl
@@ -575,22 +719,37 @@ instance : AddCommGroup (CentroidHom α) :=
   toEnd_injective.addCommGroup _
     toEnd_zero toEnd_add toEnd_neg toEnd_sub (swap toEnd_smul) (swap toEnd_smul)
 
+/--
+@isnad1 id=eq.0h2v.s6.dea1a74e65c5 from=seed src=0 shape=269ae013 vocab=e10c8406
+-/
 @[simp, norm_cast]
 theorem coe_neg (f : CentroidHom α) : ⇑(-f) = -f :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.04c717fe612e from=seed src=0 shape=1138b575 vocab=a4a5ab0b
+-/
 @[simp, norm_cast]
 theorem coe_sub (f g : CentroidHom α) : ⇑(f - g) = f - g :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.3a218235fb33 from=seed src=0 shape=5d62883c vocab=e10c8406
+-/
 @[simp]
 theorem neg_apply (f : CentroidHom α) (a : α) : (-f) a = -f a :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.79797ae7f8d4 from=seed src=0 shape=608433c8 vocab=a4a5ab0b
+-/
 @[simp]
 theorem sub_apply (f g : CentroidHom α) (a : α) : (f - g) a = f a - g a :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.1df5d866bd72 from=seed src=0 shape=7fb3ccf0 vocab=58c4e35d
+-/
 @[simp, norm_cast]
 theorem toEnd_intCast (z : ℤ) : (z : CentroidHom α).toEnd = ↑z :=
   rfl

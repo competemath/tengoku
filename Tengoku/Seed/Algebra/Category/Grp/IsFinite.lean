@@ -34,6 +34,9 @@ in the category of abelian groups. -/
 def isFinite : ObjectProperty AddCommGrpCat.{u} :=
   fun M ↦ Finite M
 
+/--
+@isnad1 id=iff.0h1v.s3.04c7993002ac from=seed src=0 shape=56a69fcb vocab=fcb52b01
+-/
 @[simp]
 lemma prop_isFinite_iff (M : AddCommGrpCat.{u}) : isFinite M ↔ Finite M := Iff.rfl
 

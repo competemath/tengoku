@@ -54,9 +54,15 @@ lacks.
 ```
 -/
 
+/--
+@isnad1 id=le.0h4v.s6.2465f3687a8a from=seed src=0 shape=f35bed62 vocab=2ab61eed
+-/
 lemma mul_add_subset : s * (t + u) ⊆ s * t + s * u :=
   image₂_distrib_subset_left mul_add
 
+/--
+@isnad1 id=le.0h4v.s6.9407d287b989 from=seed src=0 shape=dd8f53a9 vocab=2ab61eed
+-/
 lemma add_mul_subset : (s + t) * u ⊆ s * u + t * u :=
   image₂_distrib_subset_right add_mul
 

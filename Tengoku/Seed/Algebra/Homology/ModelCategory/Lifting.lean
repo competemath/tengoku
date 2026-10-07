@@ -59,6 +59,9 @@ def cocycle₁' : Cocycle B X 1 :=
   Cocycle.mk (δ 0 1 (cochain₀ sq hsq)) 2 (by simp) (by simp [δ_δ])
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h13v.s11.4896443932d1 from=seed src=0 shape=5f1426d5 vocab=418ffa75
+-/
 @[reassoc (attr := simp)]
 lemma coe_cocycle₁'_v_comp_eq_zero (n m : ℤ) (hnm : n + 1 = m := by lia) :
     (cocycle₁' sq hsq).1.v n m hnm ≫ p.f m = 0 := by
@@ -68,6 +71,9 @@ lemma coe_cocycle₁'_v_comp_eq_zero (n m : ℤ) (hnm : n + 1 = m := by lia) :
     ← p.comm, fac_right, reassoc_of% fac_right, b.comm]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h13v.s11.72b5e4940a29 from=seed src=0 shape=095c0743 vocab=e59483a4
+-/
 @[reassoc (attr := simp)]
 lemma comp_coe_cocyle₁'_v_eq_zero (n m : ℤ) (hnm : n + 1 = m := by lia) :
     i.f n ≫ (cocycle₁' sq hsq).1.v n m hnm = 0 := by
@@ -77,6 +83,9 @@ lemma comp_coe_cocyle₁'_v_eq_zero (n m : ℤ) (hnm : n + 1 = m := by lia) :
 
 set_option backward.defeqAttrib.useBackward true in
 include hQ hK in
+/--
+@isnad1 id=ex.3h19v.s12.70452ef6e8a4 from=seed src=0 shape=b95f8733 vocab=f97af639
+-/
 lemma exists_hom (n m : ℤ) (hnm : n + 1 = m := by lia) :
     ∃ (φ : Q.X n ⟶ K.X m), π.f n ≫ φ ≫ ι.f m = (cocycle₁' sq hsq).1.v n m hnm := by
   have : Epi π := Cofork.IsColimit.epi hQ
@@ -94,6 +103,9 @@ lemma exists_hom (n m : ℤ) (hnm : n + 1 = m := by lia) :
 noncomputable def cochain₁ : Cochain Q K 1 :=
   Cochain.mk (fun n m hnm ↦ (exists_hom sq hsq hQ hK n m hnm).choose)
 
+/--
+@isnad1 id=eq.4h18v.s12.836ddfe83572 from=seed src=0 shape=8e572f54 vocab=a27d1952
+-/
 @[reassoc (attr := simp)]
 lemma π_f_cochain₁_v_ι_f (n m : ℤ) (hnm : n + 1 = m) :
     π.f n ≫ (cochain₁ sq hsq hQ hK).v n m hnm ≫ ι.f m = (cocycle₁' sq hsq).1.v n m hnm :=
@@ -116,6 +128,9 @@ noncomputable def cocycle₁ : Cocycle Q K 1 :=
       π_f_cochain₁_v_ι_f, zero_comp, comp_zero, ← ι.comm,
       π_f_cochain₁_v_ι_f_assoc])
 
+/--
+@isnad1 id=eq.3h16v.s12.d235ab4c064f from=seed src=0 shape=26e8fc13 vocab=079cbe52
+-/
 lemma comp_coe_cocycle₁_comp :
     (Cochain.ofHom π).comp ((cocycle₁ sq hsq hQ hK).1.comp (.ofHom ι)
         (add_zero 1)) (zero_add 1) =
@@ -138,7 +153,9 @@ i|   |p
 Assume that there exists a degreewise lifting `B.X n ⟶ X.X n` for any `n : ℤ`,
 that `Q` is a cokernel of `i`, and `K` is a kernel of `p`.
 If the cocycle `cocycle₁ sq hsq hQ hK : Cocycle Q K 1` is a coboundary,
-we show that the square admits a lifting `B ⟶ X`. -/
+we show that the square admits a lifting `B ⟶ X`.
+@isnad1 id=haslift.4h17v.s11.0faf7c0e4f62 from=seed src=0 shape=46dfdc8b vocab=41f52338
+-/
 lemma hasLift (α : Cochain Q K 0) (hα : δ 0 1 α = (cocycle₁ sq hsq hQ hK).1) :
     sq.HasLift where
   exists_lift := by

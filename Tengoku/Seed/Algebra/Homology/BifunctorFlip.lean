@@ -36,6 +36,9 @@ variable {I₁ I₂ J : Type*} {c₁ : ComplexShape I₁} {c₂ : ComplexShape I
   (c : ComplexShape J) [TotalComplexShape c₁ c₂ c] [TotalComplexShape c₂ c₁ c]
   [TotalComplexShapeSymmetry c₁ c₂ c]
 
+/--
+@isnad1 id=iff.0h12v.s7.5ce4c32d2f6d from=seed src=0 shape=00f41cae vocab=4c9b4919
+-/
 lemma hasMapBifunctor_flip_iff :
     HasMapBifunctor K₂ K₁ F.flip c ↔ HasMapBifunctor K₁ K₂ F c :=
   (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂).flip_hasTotal_iff c
@@ -51,6 +54,9 @@ noncomputable def mapBifunctorFlipIso :
     mapBifunctor K₂ K₁ F.flip c ≅ mapBifunctor K₁ K₂ F c :=
   (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂).totalFlipIso c
 
+/--
+@isnad1 id=eq.1h15v.s10.871f8a2cbb9f from=seed src=0 shape=5c348fa8 vocab=bd4d1f59
+-/
 @[reassoc (attr := simp)]
 lemma ι_mapBifunctorFlipIso_hom (i₁ : I₁) (i₂ : I₂) (j : J) (hj : c₂.π c₁ c (i₂, i₁) = j) :
     ιMapBifunctor K₂ K₁ F.flip c i₂ i₁ j hj ≫ (mapBifunctorFlipIso K₁ K₂ F c).hom.f j =
@@ -59,6 +65,9 @@ lemma ι_mapBifunctorFlipIso_hom (i₁ : I₁) (i₂ : I₂) (j : J) (hj : c₂.
   HomologicalComplex₂.ιTotal_totalFlipIso_f_hom
     (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂) c i₁ i₂ j hj
 
+/--
+@isnad1 id=eq.1h15v.s10.f2cc5fbbf00f from=seed src=0 shape=911f89f9 vocab=9bc2340e
+-/
 @[reassoc (attr := simp)]
 lemma ι_mapBifunctorFlipIso_inv (i₁ : I₁) (i₂ : I₂) (j : J) (hj : c₁.π c₂ c (i₁, i₂) = j) :
     ιMapBifunctor K₁ K₂ F c i₁ i₂ j hj ≫ (mapBifunctorFlipIso K₁ K₂ F c).inv.f j =
@@ -67,12 +76,18 @@ lemma ι_mapBifunctorFlipIso_inv (i₁ : I₁) (i₂ : I₂) (j : J) (hj : c₁.
   HomologicalComplex₂.ιTotal_totalFlipIso_f_inv
     (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂) c i₁ i₂ j hj
 
+/--
+@isnad1 id=eq.0h12v.s8.1d75c639d0c4 from=seed src=0 shape=63281ce8 vocab=8b932f63
+-/
 lemma mapBifunctorFlipIso_flip
     [TotalComplexShapeSymmetry c₂ c₁ c] [TotalComplexShapeSymmetrySymmetry c₁ c₂ c] :
     mapBifunctorFlipIso K₂ K₁ F.flip c = (mapBifunctorFlipIso K₁ K₂ F c).symm :=
   (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂).flip_totalFlipIso c
 
 variable {K₁ K₂ L₁ L₂} in
+/--
+@isnad1 id=eq.0h16v.s9.894eee8eaeff from=seed src=0 shape=d36b1193 vocab=43d52627
+-/
 @[reassoc (attr := simp)]
 lemma mapBifunctorFlipIso_hom_naturality :
       mapBifunctorMap φ₂ φ₁ F.flip c ≫ (mapBifunctorFlipIso L₁ L₂ F c).hom =

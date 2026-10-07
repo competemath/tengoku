@@ -55,6 +55,9 @@ variable {K}
 variable {X Y Z : Scheme.{u}} (𝒰 : X.Cover K) (f : X ⟶ Z) (g : Y ⟶ Z)
 variable [∀ x, HasPullback (𝒰.f x ≫ f) g]
 
+/--
+@isnad1 id=ex.0h4v.s8.148495ba61c1 from=seed src=0 shape=fe671601 vocab=a7484d4a
+-/
 lemma Cover.exists_eq [JointlySurjective K] (𝒰 : X.Cover K) (x : X) :
     ∃ i y, 𝒰.f i y = x := by
   obtain ⟨Y, g, ⟨i⟩, y, hy⟩ := JointlySurjective.exists_eq 𝒰.presieve₀ 𝒰.mem₀ x
@@ -64,10 +67,16 @@ lemma Cover.exists_eq [JointlySurjective K] (𝒰 : X.Cover K) (x : X) :
 def Cover.idx [JointlySurjective K] (𝒰 : X.Cover K) (x : X) : 𝒰.I₀ :=
   (𝒰.exists_eq x).choose
 
+/--
+@isnad1 id=mem.0h4v.s8.8d2d8a01f383 from=seed src=0 shape=9db1e5ef vocab=2fc6ecdb
+-/
 lemma Cover.covers [JointlySurjective K] (𝒰 : X.Cover K) (x : X) :
     x ∈ Set.range (𝒰.f (𝒰.idx x)) :=
   (𝒰.exists_eq x).choose_spec
 
+/--
+@isnad1 id=eq.0h3v.s8.dc6802946c3b from=seed src=0 shape=4b9be36a vocab=df1871db
+-/
 theorem Cover.iUnion_range [JointlySurjective K] {X : Scheme.{u}} (𝒰 : X.Cover K) :
     ⋃ i, Set.range (𝒰.f i) = Set.univ := by
   rw [Set.eq_univ_iff_forall]
@@ -75,6 +84,9 @@ theorem Cover.iUnion_range [JointlySurjective K] {X : Scheme.{u}} (𝒰 : X.Cove
   rw [Set.mem_iUnion]
   exact 𝒰.exists_eq x
 
+/--
+@isnad1 id=nonempty.0h3v.s5.4ba22a6135b0 from=seed src=0 shape=06eb7cc1 vocab=6440cfc7
+-/
 instance Cover.nonempty_of_nonempty [JointlySurjective K] [Nonempty X] (𝒰 : X.Cover K) :
     Nonempty 𝒰.I₀ := by
   obtain ⟨i, _⟩ := 𝒰.exists_eq ‹Nonempty X›.some
@@ -84,10 +96,16 @@ section MorphismProperty
 
 variable {P Q : MorphismProperty Scheme.{u}}
 
+/--
+@isnad1 id=iff.0h3v.s8.16a59740d9a4 from=seed src=0 shape=2ab1d801 vocab=f0af6e5e
+-/
 lemma presieve₀_mem_precoverage_iff (E : PreZeroHypercover X) :
     E.presieve₀ ∈ precoverage P X ↔ (∀ x, ∃ i, x ∈ Set.range (E.f i)) ∧ ∀ i, P (E.f i) := by
   simp
 
+/--
+@isnad1 id=var.0h4v.s5.09eadd55b871 from=seed src=0 shape=126c3452 vocab=a2e341f4
+-/
 @[grind ←]
 lemma Cover.map_prop (𝒰 : X.Cover (precoverage P)) (i : 𝒰.I₀) : P (𝒰.f i) :=
   𝒰.mem₀.2 ⟨i⟩
@@ -181,6 +199,9 @@ def Cover.pullbackHom [P.IsStableUnderBaseChange] [IsJointlySurjectivePreserving
     (𝒰.pullback₁ f).X i ⟶ 𝒰.X i :=
   pullback.snd f (𝒰.f i)
 
+/--
+@isnad1 id=eq.0h6v.s7.8acf54e0ca24 from=seed src=0 shape=c76828ac vocab=3e0e4fb5
+-/
 @[reassoc (attr := simp)]
 lemma Cover.pullbackHom_map [P.IsStableUnderBaseChange] [IsJointlySurjectivePreserving P]
     {X W : Scheme.{u}} (𝒰 : X.Cover (precoverage P)) (f : W ⟶ X)

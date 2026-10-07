@@ -73,6 +73,9 @@ def isoN₁ :
     (toKaroubiEquivalence (SimplicialObject C)).functor ⋙
       Preadditive.DoldKan.equivalence.functor ≅ N₁ := toKaroubiCompN₂IsoN₁
 
+/--
+@isnad1 id=eq.0h2v.s11.27763a017d60 from=seed src=0 shape=b11563a0 vocab=082ec8f9
+-/
 @[simp]
 lemma isoN₁_hom_app_f (X : SimplicialObject C) :
     (isoN₁.hom.app X).f = PInfty := rfl
@@ -84,6 +87,9 @@ def isoΓ₀ :
       Γ ⋙ (toKaroubiEquivalence _).functor :=
   (functorExtension₂CompWhiskeringLeftToKaroubiIso _ _).app Γ₀
 
+/--
+@isnad1 id=eq.0h2v.s12.12268e45680c from=seed src=0 shape=942ee0fe vocab=f1ed3227
+-/
 @[simp]
 lemma N₂_map_isoΓ₀_hom_app_f (X : ChainComplex C ℕ) :
     (N₂.map (isoΓ₀.hom.app X)).f = PInfty := by
@@ -96,16 +102,24 @@ by the functors `N` and `Γ`. It is obtained by applying the results in
 def equivalence : SimplicialObject C ≌ ChainComplex C ℕ :=
   Compatibility.equivalence isoN₁ isoΓ₀
 
+/--
+@isnad1 id=eq.0h1v.s7.99648b131aa2 from=seed src=0 shape=d6dc19b3 vocab=06ea42c2
+-/
 theorem equivalence_functor : (equivalence : SimplicialObject C ≌ _).functor = N :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.fea394b562fb from=seed src=0 shape=c714d4ea vocab=c16ec21b
+-/
 theorem equivalence_inverse : (equivalence : SimplicialObject C ≌ _).inverse = Γ :=
   rfl
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- The natural isomorphism `NΓ'` satisfies the compatibility that is needed
-for the construction of our counit isomorphism `η`. -/
+for the construction of our counit isomorphism `η`.
+@isnad1 id=eq.0h1v.s10.1e8c629b5152 from=seed src=0 shape=a5c1c195 vocab=cfce1b83
+-/
 theorem hη :
     Compatibility.τ₀ =
       Compatibility.τ₁ isoN₁ isoΓ₀
@@ -123,12 +137,18 @@ def η : Γ ⋙ N ≅ 𝟭 (ChainComplex C ℕ) :=
   Compatibility.equivalenceCounitIso
     (N₁Γ₀ : (Γ : ChainComplex C ℕ ⥤ _) ⋙ N₁ ≅ (toKaroubiEquivalence _).functor)
 
+/--
+@isnad1 id=eq.0h1v.s8.530b19e40548 from=seed src=0 shape=b8189800 vocab=ed9fd55a
+-/
 theorem equivalence_counitIso :
     DoldKan.equivalence.counitIso = (η : Γ ⋙ N ≅ 𝟭 (ChainComplex C ℕ)) :=
   Compatibility.equivalenceCounitIso_eq hη
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s9.2c1e3a2fe45f from=seed src=0 shape=15fc4bb6 vocab=ef6d6069
+-/
 theorem hε :
     Compatibility.υ (isoN₁) =
       (Γ₂N₁ : (toKaroubiEquivalence _).functor ≅
@@ -149,6 +169,9 @@ theorem hε :
 def ε : 𝟭 (SimplicialObject C) ≅ N ⋙ Γ :=
   Compatibility.equivalenceUnitIso isoΓ₀ Γ₂N₁
 
+/--
+@isnad1 id=eq.0h1v.s8.03623ac0e609 from=seed src=0 shape=e68c8abf vocab=80761fed
+-/
 theorem equivalence_unitIso :
     DoldKan.equivalence.unitIso = (ε : 𝟭 (SimplicialObject C) ≅ N ⋙ Γ) :=
   Compatibility.equivalenceUnitIso_eq hε

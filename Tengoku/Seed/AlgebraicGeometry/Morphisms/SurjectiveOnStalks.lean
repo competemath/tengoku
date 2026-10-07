@@ -38,6 +38,9 @@ variable {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
 class SurjectiveOnStalks (f : X ⟶ Y) : Prop where
   stalkMap_surjective (f) : ∀ x, Function.Surjective (f.stalkMap x)
 
+/--
+@isnad1 id=surjecti.0h4v.s10.a3de5dc634d5 from=seed src=0 shape=f7e85441 vocab=ea6b7faf
+-/
 alias Scheme.Hom.stalkMap_surjective := SurjectiveOnStalks.stalkMap_surjective
 
 namespace SurjectiveOnStalks
@@ -53,6 +56,9 @@ instance : MorphismProperty.IsMultiplicative @SurjectiveOnStalks where
     exact (f.stalkMap_surjective x).comp (g.stalkMap_surjective (f x))
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=surjecti.0h5v.s5.938dff1c0534 from=seed src=0 shape=73d4a103 vocab=25d21ddc
+-/
 instance comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [SurjectiveOnStalks f]
     [SurjectiveOnStalks g] : SurjectiveOnStalks (f ≫ g) :=
   MorphismProperty.IsStableUnderComposition.comp_mem f g inferInstance inferInstance
@@ -67,6 +73,9 @@ instance : IsZariskiLocalAtTarget @SurjectiveOnStalks :=
 instance : IsZariskiLocalAtSource @SurjectiveOnStalks :=
   eq_stalkwise ▸ stalkwise_isZariskiLocalAtSource_of_respectsIso RingHom.surjective_respectsIso
 
+/--
+@isnad1 id=iff.0h3v.s5.c8508e3bfba2 from=seed src=0 shape=110effa8 vocab=53460c87
+-/
 lemma Spec_iff {R S : CommRingCat.{u}} {φ : R ⟶ S} :
     SurjectiveOnStalks (Spec.map φ) ↔ RingHom.SurjectiveOnStalks φ.hom := by
   rw [eq_stalkwise, stalkwise_SpecMap_iff RingHom.surjective_respectsIso,
@@ -77,16 +86,25 @@ instance : HasRingHomProperty @SurjectiveOnStalks RingHom.SurjectiveOnStalks :=
 
 set_option backward.isDefEq.respectTransparency false in
 variable {f} in
+/--
+@isnad1 id=iff.0h3v.s10.92037d572f6e from=seed src=0 shape=735d6916 vocab=6ac68ae8
+-/
 lemma iff_of_isAffine [IsAffine X] [IsAffine Y] :
     SurjectiveOnStalks f ↔ RingHom.SurjectiveOnStalks (f.app ⊤).hom := by
   rw [← Spec_iff, MorphismProperty.arrow_mk_iso_iff @SurjectiveOnStalks (arrowIsoSpecΓOfIsAffine f)]
 
+/--
+@isnad1 id=surjecti.0h5v.s5.6b25d3653ffa from=seed src=0 shape=ed21faf9 vocab=25d21ddc
+-/
 theorem of_comp [SurjectiveOnStalks (f ≫ g)] : SurjectiveOnStalks f := by
   refine ⟨fun x ↦ ?_⟩
   have := (f ≫ g).stalkMap_surjective x
   rw [Scheme.Hom.stalkMap_comp] at this
   exact Function.Surjective.of_comp this
 
+/--
+@isnad1 id=isstable.0h0v.s2.a95f35933764 from=seed src=0 shape=25b03439 vocab=8ee5929f
+-/
 instance stableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange @SurjectiveOnStalks := by
   apply HasRingHomProperty.isStableUnderBaseChange
@@ -96,6 +114,9 @@ instance stableUnderBaseChange :
   exact H.baseChange
 
 variable {f} in
+/--
+@isnad1 id=mono.1h3v.s7.c6a1ba0f60d9 from=seed src=0 shape=c4c755ee vocab=a1f5f74c
+-/
 lemma mono_of_injective [SurjectiveOnStalks f] (hf : Function.Injective f) : Mono f := by
   refine (Scheme.forgetToLocallyRingedSpace ⋙
     LocallyRingedSpace.forgetToSheafedSpace).mono_of_mono_map ?_
@@ -106,7 +127,9 @@ lemma mono_of_injective [SurjectiveOnStalks f] (hf : Function.Injective f) : Mon
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- If `Y ⟶ S` is surjective on stalks, then for every `X ⟶ S`, `X ×ₛ Y` is a subset of
-`X × Y` (Cartesian product as topological spaces) with the induced topology. -/
+`X × Y` (Cartesian product as topological spaces) with the induced topology.
+@isnad1 id=isembedd.0h5v.s9.c550baad5415 from=seed src=0 shape=751e46aa vocab=b90482ba
+-/
 lemma isEmbedding_pullback {X Y S : Scheme.{u}} (f : X ⟶ S) (g : Y ⟶ S) [SurjectiveOnStalks g] :
     IsEmbedding fun x ↦ (pullback.fst f g x, pullback.snd f g x) := by
   let L := (fun x ↦ (pullback.fst f g x, pullback.snd f g x))

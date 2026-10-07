@@ -63,6 +63,9 @@ def finMulAntidiag (d : ℕ) (n : ℕ) : Finset (Fin d → ℕ) :=
     ∅
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h3v.s6.b61f6701b783 from=seed src=0 shape=90d8b0d9 vocab=c12b413b
+-/
 @[simp]
 theorem mem_finMulAntidiag {d n : ℕ} {f : Fin d → ℕ} :
     f ∈ finMulAntidiag d n ↔ ∏ i, f i = n ∧ n ≠ 0 := by
@@ -84,10 +87,16 @@ theorem mem_finMulAntidiag {d n : ℕ} {f : Fin d → ℕ} :
   · simp only [not_lt, nonpos_iff_eq_zero] at h
     simp only [h, notMem_empty, ne_eq, not_true_eq_false, and_false]
 
+/--
+@isnad1 id=eq.0h1v.s4.0a5667f0fa83 from=seed src=0 shape=453356ff vocab=355bdb38
+-/
 @[simp]
 theorem finMulAntidiag_zero_right (d : ℕ) :
     finMulAntidiag d 0 = ∅ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.1a060ee4d54c from=seed src=0 shape=abbe8d11 vocab=8bddd945
+-/
 theorem finMulAntidiag_one {d : ℕ} :
     finMulAntidiag d 1 = {fun _ => 1} := by
   ext
@@ -95,25 +104,40 @@ theorem finMulAntidiag_one {d : ℕ} :
     not_false_eq_true, and_true, mem_singleton]
   grind
 
+/--
+@isnad1 id=eq.1h1v.s5.83c4068dd2c4 from=seed src=0 shape=400441c4 vocab=355bdb38
+-/
 theorem finMulAntidiag_zero_left {n : ℕ} (hn : n ≠ 1) :
     finMulAntidiag 0 n = ∅ := by
   ext
   simp [hn.symm]
 
+/--
+@isnad1 id=dvd.1h4v.s5.52286be5867d from=seed src=0 shape=595ca2c4 vocab=6d5bd02b
+-/
 theorem dvd_of_mem_finMulAntidiag {n d : ℕ} {f : Fin d → ℕ} (hf : f ∈ finMulAntidiag d n)
     (i : Fin d) : f i ∣ n := by
   rw [mem_finMulAntidiag] at hf
   rw [← hf.1]
   exact dvd_prod_of_mem f (mem_univ i)
 
+/--
+@isnad1 id=ne.1h4v.s5.6ad774f8a498 from=seed src=0 shape=56d79359 vocab=d94fcf41
+-/
 theorem ne_zero_of_mem_finMulAntidiag {d n : ℕ} {f : Fin d → ℕ}
     (hf : f ∈ finMulAntidiag d n) (i : Fin d) : f i ≠ 0 :=
   ne_zero_of_dvd_ne_zero (mem_finMulAntidiag.mp hf).2 (dvd_of_mem_finMulAntidiag hf i)
 
+/--
+@isnad1 id=eq.1h3v.s5.ea1c950e4ffe from=seed src=0 shape=88d66e0d vocab=c12b413b
+-/
 theorem prod_eq_of_mem_finMulAntidiag {d n : ℕ} {f : Fin d → ℕ}
     (hf : f ∈ finMulAntidiag d n) : ∏ i, f i = n :=
   (mem_finMulAntidiag.mp hf).1
 
+/--
+@isnad1 id=eq.2h3v.s6.ae5013eaa5d0 from=seed src=0 shape=219c2036 vocab=0dee0a95
+-/
 theorem finMulAntidiag_eq_piFinset_divisors_filter {d m n : ℕ} (hmn : m ∣ n) (hn : n ≠ 0) :
     finMulAntidiag d m =
       {f ∈ Fintype.piFinset fun _ : Fin d => n.divisors | ∏ i, f i = m} := by
@@ -127,6 +151,9 @@ theorem finMulAntidiag_eq_piFinset_divisors_filter {d m n : ℕ} (hmn : m ∣ n)
   · rw [mem_finMulAntidiag]
     exact fun ⟨_, hprod⟩ => ⟨hprod, ne_zero_of_dvd_ne_zero hn hmn⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.f494b6796ec0 from=seed src=0 shape=264e418a vocab=205f6ce4
+-/
 lemma image_apply_finMulAntidiag {d n : ℕ} {i : Fin d} (hd : d ≠ 1) :
     (finMulAntidiag d n).image (fun f => f i) = divisors n := by
   ext k
@@ -149,11 +176,17 @@ lemma image_apply_finMulAntidiag {d n : ℕ} {i : Fin d} (hd : d ≠ 1) :
     · simp_all
     exact mem_erase.mpr ⟨hi_ne, mem_univ _⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.55a15a5915c7 from=seed src=0 shape=217acd8d vocab=7b088dec
+-/
 lemma image_piFinTwoEquiv_finMulAntidiag {n : ℕ} :
     (finMulAntidiag 2 n).image (piFinTwoEquiv <| fun _ => ℕ) = divisorsAntidiagonal n := by
   ext x
   simp [(piFinTwoEquiv <| fun _ => ℕ).symm.surjective.exists]
 
+/--
+@isnad1 id=existsun.3h4v.s6.d7d807b4ad6c from=seed src=0 shape=8f911f59 vocab=22d6335c
+-/
 lemma finMulAntidiag_existsUnique_prime_dvd {d n p : ℕ} (hn : Squarefree n)
     (hp : p ∈ n.primeFactorsList) (f : Fin d → ℕ) (hf : f ∈ finMulAntidiag d n) :
     ∃! i, p ∣ f i := by
@@ -233,12 +266,18 @@ private theorem card_finMulAntidiag_pi (d n : ℕ) (hn : Squarefree n) :
     (primeFactorsPiBij_inj d n) (primeFactorsPiBij_surj d n hn)
 
 open scoped ArithmeticFunction.omega in -- access notation `ω`
+/--
+@isnad1 id=eq.1h2v.s5.4affbb856a04 from=seed src=0 shape=f7d9538f vocab=0cd2a520
+-/
 theorem card_finMulAntidiag_of_squarefree {d n : ℕ} (hn : Squarefree n) :
     #(finMulAntidiag d n) = d ^ ω n := by
   rw [← card_finMulAntidiag_pi d n hn, Finset.card_pi, Finset.prod_const,
     ArithmeticFunction.cardDistinctFactors_apply, ← List.card_toFinset, toFinset_factors,
     Finset.card_fin]
 
+/--
+@isnad1 id=eq.1h2v.s7.0a5de3ba238f from=seed src=0 shape=ad15e8d5 vocab=48975cbd
+-/
 theorem finMulAntidiag_three {n : ℕ} (a) (ha : a ∈ finMulAntidiag 3 n) : a 0 * a 1 * a 2 = n := by
   rw [← (mem_finMulAntidiag.mp ha).1, Fin.prod_univ_three a]
 
@@ -306,6 +345,9 @@ end card_pair_lcm_eq
 
 open card_pair_lcm_eq in
 open scoped ArithmeticFunction.omega in -- access notation `ω`
+/--
+@isnad1 id=eq.1h1v.s6.83e0e4ea58f5 from=seed src=0 shape=f2fdc67f vocab=91bfc981
+-/
 theorem card_pair_lcm_eq {n : ℕ} (hn : Squarefree n) :
     #{p ∈ (n.divisors ×ˢ n.divisors) | p.1.lcm p.2 = n} = 3 ^ ω n := by
   rw [← card_finMulAntidiag_of_squarefree hn, eq_comm]

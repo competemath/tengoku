@@ -41,6 +41,9 @@ namespace IsAzumaya
 
 variable (R A B : Type*) [CommSemiring R] [Ring A] [Ring B] [Algebra R A] [Algebra R B]
 
+/--
+@isnad1 id=bijectiv.0h2v.s9.fb72771032a6 from=seed src=0 shape=9d6abebd vocab=2a78a8a9
+-/
 lemma AlgHom.mulLeftRight_bij [h : IsAzumaya R A] :
     Function.Bijective (AlgHom.mulLeftRight R A) := h.bij
 
@@ -49,9 +52,15 @@ lemma AlgHom.mulLeftRight_bij [h : IsAzumaya R A] :
 abbrev tensorEquivEnd : R ⊗[R] Rᵐᵒᵖ ≃ₐ[R] Module.End R R :=
   Algebra.TensorProduct.lid R Rᵐᵒᵖ |>.trans <| .moduleEndSelf R
 
+/--
+@isnad1 id=eq.0h1v.s8.919186f35a60 from=seed src=0 shape=5c33edd7 vocab=b5855974
+-/
 lemma coe_tensorEquivEnd : tensorEquivEnd R = AlgHom.mulLeftRight R R := by
   ext; simp
 
+/--
+@isnad1 id=isazumay.0h1v.s3.b7a49e86ae8c from=seed src=0 shape=463a39f9 vocab=b75745e3
+-/
 instance id : IsAzumaya R R where
   bij := by rw [← coe_tensorEquivEnd]; exact tensorEquivEnd R |>.bijective
 
@@ -68,12 +77,16 @@ A ⊗ Aᵐᵒᵖ  ------------> B ⊗ Bᵐᵒᵖ
 End R A   ------------> End R B
           e.conj
 ```
+@isnad1 id=eq.0h4v.s10.44197563157b from=seed src=0 shape=32f354bc vocab=1e419b41
 -/
 lemma mulLeftRight_comp_congr (e : A ≃ₐ[R] B) :
     (AlgHom.mulLeftRight R B).comp (Algebra.TensorProduct.congr e e.op).toAlgHom =
     (e.toLinearEquiv.conjAlgEquiv R).toAlgHom.comp (AlgHom.mulLeftRight R A) := by
   ext <;> simp
 
+/--
+@isnad1 id=isazumay.0h4v.s5.3d8e0420487a from=seed src=0 shape=0b9bd7af vocab=f1dc9ba1
+-/
 theorem of_AlgEquiv (e : A ≃ₐ[R] B) [IsAzumaya R A] : IsAzumaya R B :=
   let _ : Module.Projective R B := .of_equiv e.toLinearEquiv
   let _ : FaithfulSMul R B := .of_injective e e.injective
@@ -85,7 +98,9 @@ theorem of_AlgEquiv (e : A ≃ₐ[R] B) [IsAzumaya R A] : IsAzumaya R B :=
 
 end IsAzumaya
 
-/-- An Azumaya algebra is a central algebra. -/
+/-- An Azumaya algebra is a central algebra.
+@isnad1 id=iscentra.0h2v.s5.7afdaa346766 from=seed src=0 shape=66544d7c vocab=27f29c77
+-/
 instance Algebra.IsCentral.instIsAzumaya {R A : Type*} [CommSemiring R] [Semiring A]
     [Algebra R A] [Module.Free R A] [IsAzumaya R A] : IsCentral R A :=
   have := of_algEquiv R _ _ (AlgEquiv.ofBijective (.mulLeftRight R A) IsAzumaya.bij).symm

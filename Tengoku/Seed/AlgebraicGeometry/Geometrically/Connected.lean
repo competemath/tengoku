@@ -70,11 +70,17 @@ instance (s : S) [GeometricallyConnected f] : ConnectedSpace (f.fiber s) :=
 instance (priority := low) [GeometricallyConnected f] : Surjective f :=
   ⟨fun x ↦ ⟨_, (f.range_fiberι x).le ⟨Nonempty.some inferInstance, rfl⟩⟩⟩
 
+/--
+@isnad1 id=isconnec.0h4v.s8.98e80e8186af from=seed src=0 shape=a7bf1a39 vocab=f3800e01
+-/
 lemma Scheme.Hom.isConnected_preimage_singleton [GeometricallyConnected f] (x : S) :
     _root_.IsConnected (f ⁻¹' {x}) := by
   rw [← f.range_fiberι, ← Set.image_univ]
   exact isConnected_univ.image _ (f.fiberι _).continuous.continuousOn
 
+/--
+@isnad1 id=isconnec.3h4v.s8.ea2da4223cc0 from=seed src=0 shape=6d8c4337 vocab=5a820b82
+-/
 lemma Scheme.Hom.isConnected_preimage [GeometricallyConnected f] (hf : IsOpenMap f)
     {s : Set S} (hs : _root_.IsConnected s) (hs' : IsClosed s) : _root_.IsConnected (f ⁻¹' s) := by
   refine Topology.IsCoinducing.isConnected_preimage_of_isClosed f.isConnected_preimage_singleton
@@ -90,12 +96,17 @@ def Scheme.Hom.connectedComponentsHomeomorph [GeometricallyConnected f] (hf : Is
   (hf.isQuotientMap f.continuous f.surjective).isCoinducing.connectedComponentsHomeomorph
     f.isConnected_preimage_singleton
 
+/--
+@isnad1 id=connecte.1h3v.s8.ae59c6a5e84b from=seed src=0 shape=ea50d047 vocab=71d6c11c
+-/
 lemma GeometricallyConnected.connectedSpace [GeometricallyConnected f] [ConnectedSpace S]
     (hf : IsOpenMap f) :
     ConnectedSpace X := by
   simpa [connectedSpace_iff_univ] using f.isConnected_preimage hf isConnected_univ
 
-/-- If `X` is geometrically connected over a point, then it is connected. -/
+/-- If `X` is geometrically connected over a point, then it is connected.
+@isnad1 id=connecte.0h3v.s5.a44562923da7 from=seed src=0 shape=2f547405 vocab=3ac7b77a
+-/
 lemma GeometricallyConnected.connectedSpace_of_subsingleton
     [GeometricallyConnected f] [Subsingleton S] [Nonempty S] : ConnectedSpace X :=
   have : ConnectedSpace S := ⟨‹_›⟩
@@ -109,10 +120,16 @@ instance [GeometricallyConnected g] [UniversallyOpen g] [ConnectedSpace X] :
     ConnectedSpace ↥(pullback f g) :=
   GeometricallyConnected.connectedSpace (pullback.fst _ _) (pullback.fst f g).isOpenMap
 
+/--
+@isnad1 id=iff.0h3v.s5.b868d8c0513d from=seed src=0 shape=329d4fdd vocab=2b30e591
+-/
 lemma GeometricallyConnected.iff_geometricallyConnected_fiber :
     GeometricallyConnected f ↔ ∀ s, GeometricallyConnected (f.fiberToSpecResidueField s) := by
   simp only [eq_geometrically, ← geometrically_iff_forall_fiberToSpecResidueField]
 
+/--
+@isnad1 id=geometri.0h5v.s5.f8fabd104e9e from=seed src=0 shape=5864d65b vocab=c1bbe206
+-/
 lemma GeometricallyConnected.comp
     (f : X ⟶ Y) (g : Y ⟶ Z) [GeometricallyConnected f] [GeometricallyConnected g]
     [UniversallyOpen f] [UniversallyOpen g] :

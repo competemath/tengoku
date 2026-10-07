@@ -41,17 +41,27 @@ section discr
 discriminant `b ^ 2 + 4 * a` of the polynomial `X ^ 2 - b * X - a`. -/
 def discr [CommSemiring R] (a b : R) : R := b ^ 2 + 4 * a
 
+/--
+@isnad1 id=eq.0h3v.s6.a5058654b419 from=seed src=0 shape=0567f538 vocab=0b2a0095
+-/
 theorem discr_def [CommSemiring R] (a b : R) : discr a b = b ^ 2 + 4 * a := rfl
 
 /-- Under the change of generator `ω ↦ u • ω + k` (see `QuadraticAlgebra.changeGenerator`), the
-discriminant is multiplied by `u ^ 2`. -/
+discriminant is multiplied by `u ^ 2`.
+@isnad1 id=eq.0h5v.s8.c4138a904790 from=seed src=0 shape=f835edea vocab=6a217726
+-/
 theorem discr_changeGenerator [CommRing R] (a b u k : R) :
     discr (u ^ 2 * a - u * b * k - k ^ 2) (u * b + 2 * k) = u ^ 2 * discr a b := by
   rw [discr_def, discr_def]; ring
 
+/--
+@isnad1 id=eq.0h5v.s8.c4138a904790 from=seed src=0 shape=f835edea vocab=6a217726
+-/
 @[deprecated (since := "2026-08-14")] alias discr_map := discr_changeGenerator
 
-/-- The discriminant is the square of the different `ω - star ω`. -/
+/-- The discriminant is the square of the different `ω - star ω`.
+@isnad1 id=eq.0h3v.s8.148de460a10a from=seed src=0 shape=9d8cf211 vocab=c90e718f
+-/
 theorem algebraMap_discr [CommRing R] (a b : R) :
     algebraMap R (QuadraticAlgebra R a b) (discr a b) = (ω - star ω) ^ 2 := by
   rw [discr_def]; ext <;> simp [sq] <;> ring
@@ -59,7 +69,9 @@ theorem algebraMap_discr [CommRing R] (a b : R) :
 -- The `a = 1` case of `Mathlib.Algebra.QuadraticDiscriminant`, reproved to avoid its heavy
 -- transitive import of `Mathlib.Order.Filter.AtTopBot.Field`.
 /-- If `2` is invertible, the polynomial `X ^ 2 - b * X - a` has a root if and only if the
-discriminant is a square. -/
+discriminant is a square.
+@isnad1 id=iff.0h3v.s7.622548211dd4 from=seed src=0 shape=76131bcc vocab=392e2206
+-/
 theorem exists_sq_eq_iff_isSquare_discr [CommRing R] [Invertible (2 : R)] {a b : R} :
     (∃ r : R, r ^ 2 = a + b * r) ↔ IsSquare (discr a b) := by
   rw [isSquare_iff_exists_sq]
@@ -82,7 +94,9 @@ instance {K : Type*} [Field K] {a b : K} [NeZero (2 : K)] [Fact (¬ IsSquare (di
 
 variable {K : Type*} [Field K]
 
-/-- If `discr a b` is a square, `QuadraticAlgebra K a b` is not a field. -/
+/-- If `discr a b` is a square, `QuadraticAlgebra K a b` is not a field.
+@isnad1 id=not.1h3v.s6.468af3cab61e from=seed src=0 shape=15aaef8e vocab=fb8c964c
+-/
 theorem not_isField_of_isSquare_discr [NeZero (2 : K)] {a b : K}
     (h : IsSquare (discr a b)) : ¬ IsField (QuadraticAlgebra K a b) := by
   let : Invertible (2 : K) := invertibleOfNonzero two_ne_zero
@@ -95,7 +109,9 @@ theorem not_isField_of_isSquare_discr [NeZero (2 : K)] {a b : K}
   exact zero_notMem_nonZeroDivisors this
 
 /-- If `2 ≠ 0` in the field `K`, `QuadraticAlgebra K a b` is a field iff `discr a b` is
-not a square. -/
+not a square.
+@isnad1 id=iff.0h3v.s6.5a3b6bc5cd6f from=seed src=0 shape=f9c4c2ab vocab=fb8c964c
+-/
 theorem isField_iff_not_isSquare_discr [NeZero (2 : K)] {a b : K} :
     IsField (QuadraticAlgebra K a b) ↔ ¬ IsSquare (discr a b) := by
   let : Invertible (2 : K) := invertibleOfNonzero two_ne_zero

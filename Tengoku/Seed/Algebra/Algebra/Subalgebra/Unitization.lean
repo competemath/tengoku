@@ -55,6 +55,9 @@ namespace Unitization
 variable {R A C : Type*} [CommSemiring R] [NonUnitalSemiring A]
 variable [Module R A] [SMulCommClass R A A] [IsScalarTower R A A] [Semiring C] [Algebra R C]
 
+/--
+@isnad1 id=iff.0h5v.s10.e6b54867b37a from=seed src=0 shape=a6202be7 vocab=1345d843
+-/
 theorem lift_range_le {f : A →ₙₐ[R] C} {S : Subalgebra R C} :
     (lift f).range ≤ S ↔ NonUnitalAlgHom.range f ≤ S.toNonUnitalSubalgebra := by
   refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
@@ -64,6 +67,9 @@ theorem lift_range_le {f : A →ₙₐ[R] C} {S : Subalgebra R C} :
     induction x with
     | _ r a => simpa using! add_mem (algebraMap_mem S r) (h ⟨a, rfl⟩)
 
+/--
+@isnad1 id=eq.0h4v.s10.8ec397795c61 from=seed src=0 shape=a7b17923 vocab=ef97880d
+-/
 theorem lift_range (f : A →ₙₐ[R] C) :
     (lift f).range = Algebra.adjoin R (NonUnitalAlgHom.range f : Set C) :=
   eq_of_forall_ge_iff fun c ↦ by rw [lift_range_le, Algebra.adjoin_le_iff]; rfl
@@ -82,11 +88,17 @@ the algebra containing it. -/
 def unitization : Unitization R s →ₐ[R] A :=
   Unitization.lift (NonUnitalSubalgebraClass.subtype s)
 
+/--
+@isnad1 id=eq.0h5v.s9.05f3b1fe6694 from=seed src=0 shape=7de9ca33 vocab=ae5c64b4
+-/
 @[simp]
 theorem unitization_apply (x : Unitization R s) :
     unitization s x = algebraMap R A x.fst + x.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.b615fad19d98 from=seed src=0 shape=73dacb5b vocab=5322eb1e
+-/
 theorem unitization_range : (unitization s).range = Algebra.adjoin R (s : Set A) := by
   rw [unitization, Unitization.lift_range]
   simp
@@ -127,6 +139,9 @@ section Field
 variable {R S A : Type*} [Field R] [Ring A] [Algebra R A]
   [SetLike S A] [hSA : NonUnitalSubringClass S A] [hSRA : SMulMemClass S R A] (s : S)
 
+/--
+@isnad1 id=injectiv.1h4v.s9.574ed73d952a from=seed src=0 shape=effeff63 vocab=9bed98d9
+-/
 theorem unitization_injective (h1 : (1 : A) ∉ s) : Function.Injective (unitization s) :=
   AlgHomClass.unitization_injective s h1 (unitization s) fun _ ↦ by simp
 
@@ -163,10 +178,16 @@ its `Subsemiring.closure`. -/
 def unitization : Unitization ℕ s →ₐ[ℕ] R :=
   NonUnitalSubalgebra.unitization (hSRA := AddSubmonoidClass.nsmulMemClass) s
 
+/--
+@isnad1 id=eq.0h4v.s9.0b6112acceea from=seed src=0 shape=f48cad85 vocab=2e747443
+-/
 @[simp]
 theorem unitization_apply (x : Unitization ℕ s) : unitization s x = x.fst + x.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.84d5ce9b98e6 from=seed src=0 shape=cdb3eff6 vocab=1d4260e3
+-/
 theorem unitization_range :
     (unitization s).range = subalgebraOfSubsemiring (.closure s) := by
   have := AddSubmonoidClass.nsmulMemClass (S := S)
@@ -185,10 +206,16 @@ its `Subring.closure`. -/
 def unitization : Unitization ℤ s →ₐ[ℤ] R :=
   NonUnitalSubalgebra.unitization (hSRA := AddSubgroupClass.zsmulMemClass) s
 
+/--
+@isnad1 id=eq.0h4v.s9.e0ac749806b1 from=seed src=0 shape=f48cad85 vocab=c0fb670a
+-/
 @[simp]
 theorem unitization_apply (x : Unitization ℤ s) : unitization s x = x.fst + x.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.2053dc62c73d from=seed src=0 shape=cdb3eff6 vocab=7e382933
+-/
 theorem unitization_range :
     (unitization s).range = subalgebraOfSubring (.closure s) := by
   have := AddSubgroupClass.zsmulMemClass (S := S)
@@ -204,6 +231,9 @@ variable {R A C : Type*} [CommSemiring R] [NonUnitalSemiring A] [StarRing R] [St
 variable [Module R A] [SMulCommClass R A A] [IsScalarTower R A A] [StarModule R A]
 variable [Semiring C] [StarRing C] [Algebra R C] [StarModule R C]
 
+/--
+@isnad1 id=iff.0h5v.s10.f437fc6948a6 from=seed src=0 shape=28e2d602 vocab=b9a66cff
+-/
 theorem starLift_range_le
     {f : A →⋆ₙₐ[R] C} {S : StarSubalgebra R C} :
     (starLift f).range ≤ S ↔ NonUnitalStarAlgHom.range f ≤ S.toNonUnitalStarSubalgebra := by
@@ -214,6 +244,9 @@ theorem starLift_range_le
     induction x with
     | _ r a => simpa using! add_mem (algebraMap_mem S r) (h ⟨a, rfl⟩)
 
+/--
+@isnad1 id=eq.0h4v.s10.f607712e8286 from=seed src=0 shape=876f9edc vocab=8d3ac376
+-/
 theorem starLift_range (f : A →⋆ₙₐ[R] C) :
     (starLift f).range = StarAlgebra.adjoin R (NonUnitalStarAlgHom.range f : Set C) :=
   eq_of_forall_ge_iff fun c ↦ by
@@ -234,10 +267,16 @@ to its `StarAlgebra.adjoin`. -/
 def unitization : Unitization R s →⋆ₐ[R] A :=
   Unitization.starLift <| NonUnitalStarSubalgebraClass.subtype s
 
+/--
+@isnad1 id=eq.0h5v.s9.1289e7da4e1d from=seed src=0 shape=63ead637 vocab=667751d0
+-/
 @[simp]
 theorem unitization_apply (x : Unitization R s) : unitization s x = algebraMap R A x.fst + x.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.2bf62c53d4b6 from=seed src=0 shape=ef93f36a vocab=95e651d0
+-/
 theorem unitization_range : (unitization s).range = StarAlgebra.adjoin R s := by
   rw [unitization, Unitization.starLift_range]
   simp only [NonUnitalStarAlgHom.coe_range, NonUnitalStarSubalgebraClass.coe_subtype,
@@ -252,6 +291,9 @@ variable {R S A : Type*} [Field R] [StarRing R] [Ring A] [StarRing A] [Algebra R
   [StarModule R A] [SetLike S A] [hSA : NonUnitalSubringClass S A] [hSRA : SMulMemClass S R A]
   [StarMemClass S A] (s : S)
 
+/--
+@isnad1 id=injectiv.1h4v.s10.1b9fb80170c5 from=seed src=0 shape=44ea6c5a vocab=abd30887
+-/
 theorem unitization_injective (h1 : (1 : A) ∉ s) : Function.Injective (unitization s) :=
   AlgHomClass.unitization_injective s h1 (unitization s) fun _ ↦ by simp
 

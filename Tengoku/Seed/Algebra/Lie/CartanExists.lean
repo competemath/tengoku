@@ -88,17 +88,26 @@ def lieCharpoly : Polynomial R[X] :=
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
+/--
+@isnad1 id=monic.0h5v.s7.96bd7cd40ae1 from=seed src=0 shape=c2093186 vocab=b24938c0
+-/
 lemma lieCharpoly_monic : (lieCharpoly R M x y).Monic :=
   (polyCharpoly_monic _ _).map _
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
+/--
+@isnad1 id=eq.0h5v.s7.27c5fd9dcb74 from=seed src=0 shape=63732091 vocab=9f550d67
+-/
 lemma lieCharpoly_natDegree [Nontrivial R] : (lieCharpoly R M x y).natDegree = finrank R M := by
   rw [lieCharpoly, (polyCharpoly_monic _ _).natDegree_map, polyCharpoly_natDegree]
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
 variable {R} in
+/--
+@isnad1 id=eq.0h6v.s8.0deeb40439cf from=seed src=0 shape=f14b013e vocab=d9190a2b
+-/
 lemma lieCharpoly_map_eval (r : R) :
     (lieCharpoly R M x y).map (evalRingHom r) = (φ (r • y + x)).charpoly := by
   rw [lieCharpoly, map_map]
@@ -111,6 +120,9 @@ lemma lieCharpoly_map_eval (r : R) :
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
+/--
+@isnad1 id=le.1h7v.s7.2f2799e450b7 from=seed src=0 shape=c4d1b918 vocab=a906e10c
+-/
 lemma lieCharpoly_coeff_natDegree [Nontrivial R] (i j : ℕ) (hij : i + j = finrank R M) :
     ((lieCharpoly R M x y).coeff i).natDegree ≤ j := by
   rw [← mul_one j, lieCharpoly, coeff_map]
@@ -134,7 +146,9 @@ Given a Lie subalgebra `U` of `L`, and an element `x ∈ U` such that `U ≤ eng
 Suppose that `engel K x` is minimal amongst the Engel subalgebras `engel K y` for `y ∈ U`.
 Then `engel K x ≤ engel K y` for all `y ∈ U`.
 
-Lemma 2 in [barnes1967]. -/
+Lemma 2 in [barnes1967].
+@isnad1 id=isbot.3h4v.s9.e7b5d5a846c2 from=seed src=0 shape=ea156c02 vocab=0305bee6
+-/
 lemma engel_isBot_of_isMin (hLK : finrank K L ≤ #K) (U : LieSubalgebra K L)
     (E : {engel K x | x ∈ U}) (hUle : U ≤ E) (hmin : IsMin E) :
     IsBot E := by
@@ -354,6 +368,9 @@ lemma engel_isBot_of_isMin (hLK : finrank K L ≤ #K) (U : LieSubalgebra K L)
 
 variable (K L)
 
+/--
+@isnad1 id=ex.1h2v.s6.6dc8a04a4337 from=seed src=0 shape=019db6cf vocab=277e6f32
+-/
 lemma exists_isCartanSubalgebra_engel_of_finrank_le_card (h : finrank K L ≤ #K) :
     ∃ x : L, IsCartanSubalgebra (engel K x) := by
   obtain ⟨x, hx⟩ := exists_isRegular_of_finrank_le_card K L h
@@ -372,6 +389,9 @@ lemma exists_isCartanSubalgebra_engel_of_finrank_le_card (h : finrank K L ≤ #K
   rw [(isRegular_iff_finrank_engel_eq_rank K x).mp hx]
   apply rank_le_finrank_engel
 
+/--
+@isnad1 id=ex.0h2v.s6.19baa09bda2d from=seed src=0 shape=16bcd7c6 vocab=ff06c748
+-/
 lemma exists_isCartanSubalgebra_engel [Infinite K] :
     ∃ x : L, IsCartanSubalgebra (engel K x) := by
   apply exists_isCartanSubalgebra_engel_of_finrank_le_card

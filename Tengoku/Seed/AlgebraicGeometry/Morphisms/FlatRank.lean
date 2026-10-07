@@ -113,6 +113,9 @@ private lemma Scheme.Hom.finrank_eq_of_isAffine [IsAffine S] [Flat f] [IsFinite 
     IsAffine.finrank_snd]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.2h3v.s6.3193e490bb48 from=seed src=0 shape=54cc9a01 vocab=7cf40f18
+-/
 @[simp]
 lemma Scheme.Hom.finrank_SpecMap_eq_finrank {R S : CommRingCat.{u}} {f : R ⟶ S} (hf₁ : f.hom.Finite)
     (hf₂ : f.hom.Flat) :
@@ -132,6 +135,9 @@ lemma Scheme.Hom.finrank_SpecMap_eq_finrank {R S : CommRingCat.{u}} {f : R ⟶ S
   · simp [isoSpec_Spec_hom, SpecMap_ΓSpecIso_hom, ← AlgebraicGeometry.Spec.map_apply,
       ← Scheme.Hom.comp_apply, toSpecΓ_SpecMap_ΓSpecIso_inv]
 
+/--
+@isnad1 id=eq.0h3v.s7.3dc54283a25a from=seed src=0 shape=d82e13ca vocab=062cadba
+-/
 lemma Scheme.Hom.finrank_SpecMap_algebraMap (R S : Type u) [CommRing R] [CommRing S] [Algebra R S]
     [Module.Finite R S] [Module.Flat R S] (x : PrimeSpectrum R) :
     finrank (Spec.map (CommRingCat.ofHom <| algebraMap R S)) x = Module.rankAtStalk S x := by
@@ -142,6 +148,9 @@ lemma Scheme.Hom.finrank_SpecMap_algebraMap (R S : Type u) [CommRing R] [CommRin
 
 variable (f : X ⟶ Y) [Flat f] [IsFinite f]
 
+/--
+@isnad1 id=eq.0h5v.s6.0883f36f2011 from=seed src=0 shape=087ea20f vocab=b5c992b3
+-/
 @[simp]
 lemma Scheme.Hom.finrank_comp_left_of_isIso (f : X ⟶ Y) (g : Y ⟶ S)
     [IsIso f] [Flat g] [IsFinite g] :
@@ -154,6 +163,9 @@ lemma Scheme.Hom.finrank_comp_left_of_isIso (f : X ⟶ Y) (g : Y ⟶ S)
   have : e.hom ≫ pullback.snd _ _ = pullback.snd _ _ := by simp [e]
   rw [finrank, finrank, ← this, IsAffine.finrank_comp_left_of_isIso]
 
+/--
+@isnad1 id=eq.0h6v.s7.ad913b5cd476 from=seed src=0 shape=08ab2fb9 vocab=0b5deea6
+-/
 lemma Scheme.Hom.finrank_pullback_snd {Z : Scheme.{u}} (f : X ⟶ Z) (g : Y ⟶ Z)
     [Flat f] [IsFinite f] (y : Y) :
     finrank (pullback.snd f g) y = finrank f (g y) := by
@@ -162,17 +174,26 @@ lemma Scheme.Hom.finrank_pullback_snd {Z : Scheme.{u}} (f : X ⟶ Z) (g : Y ⟶ 
     finrank_eq_finrank_snd_of_isAffine, ← pullbackLeftPullbackSndIso_hom_snd f g i,
     ← finrank_eq_of_isAffine, ← finrank_eq_of_isAffine, finrank_comp_left_of_isIso]
 
+/--
+@isnad1 id=eq.1h9v.s8.72b0805d72e6 from=seed src=0 shape=d561560c vocab=4d3cbe87
+-/
 lemma Scheme.Hom.finrank_of_isPullback {P X Y Z : Scheme.{u}} (fst : P ⟶ X) (snd : P ⟶ Y)
     (f : X ⟶ Z) (g : Y ⟶ Z) (h : IsPullback fst snd f g) [Flat f] [IsFinite f] (y : Y) :
     finrank snd y = finrank f (g y) := by
   rw [← h.isoPullback_hom_snd, finrank_comp_left_of_isIso, finrank_pullback_snd]
 
+/--
+@isnad1 id=eq.0h6v.s7.4b70b96c7f38 from=seed src=0 shape=0e29a2b0 vocab=63f4fd9b
+-/
 lemma Scheme.Hom.finrank_pullback_fst {Z : Scheme.{u}} (f : X ⟶ Z) (g : Y ⟶ Z)
     [Flat f] [IsFinite f] (y : Y) :
     finrank (pullback.fst g f) y = finrank f (g y) :=
   finrank_of_isPullback (pullback.snd g f) _ _ _ (.flip <| .of_hasPullback _ _) y
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=le.0h4v.s7.411accf9ca70 from=seed src=0 shape=6a91bc7c vocab=b811a7cd
+-/
 nonrec lemma Scheme.Hom.one_le_finrank_map (x : X) : 1 ≤ finrank f (f x) := by
   wlog hY : ∃ R, Y = Spec R
   · obtain ⟨R, g, hg, y, hy⟩ := Y.exists_Spec_apply_eq (f x)
@@ -198,7 +219,9 @@ nonrec lemma Scheme.Hom.one_le_finrank_map (x : X) : 1 ≤ finrank f (f x) := by
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A finite flat locally finitely presented morphism is surjective if and only if its rank
-function is at least `1` everywhere. -/
+function is at least `1` everywhere.
+@isnad1 id=iff.0h3v.s7.13a060e48516 from=seed src=0 shape=bf6050da vocab=08b6c9ce
+-/
 nonrec lemma Scheme.Hom.one_le_finrank_iff_surjective : 1 ≤ finrank f ↔ Surjective f := by
   refine ⟨fun h ↦ ?_, fun _ ↦ ?_⟩
   · wlog hY : ∃ R, Y = Spec R
@@ -228,7 +251,9 @@ nonrec lemma Scheme.Hom.one_le_finrank_iff_surjective : 1 ≤ finrank f ↔ Surj
     obtain ⟨x, rfl⟩ := f.surjective y
     exact one_le_finrank_map f x
 
-/-- The rank of a finite flat locally finitely presented morphism is locally constant. -/
+/-- The rank of a finite flat locally finitely presented morphism is locally constant.
+@isnad1 id=islocall.0h3v.s5.1c4714744f95 from=seed src=0 shape=18a83945 vocab=0c757b4d
+-/
 nonrec lemma Scheme.Hom.isLocallyConstant_finrank [LocallyOfFinitePresentation f] :
     IsLocallyConstant (finrank f) := by
   wlog hY : ∃ R, Y = Spec R
@@ -255,7 +280,9 @@ nonrec lemma Scheme.Hom.isLocallyConstant_finrank [LocallyOfFinitePresentation f
   exact Module.isLocallyConstant_rankAtStalk
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The rank of an isomorphism is `1`. -/
+/-- The rank of an isomorphism is `1`.
+@isnad1 id=eq.0h3v.s6.d508b128bee6 from=seed src=0 shape=57dfbfb4 vocab=51f6bd3c
+-/
 lemma Scheme.Hom.finrank_eq_one_of_isIso (f : X ⟶ Y) [IsIso f] : finrank f = 1 := by
   ext y
   obtain ⟨R, g, _, y, rfl⟩ := Y.exists_Spec_apply_eq y
@@ -269,7 +296,9 @@ lemma Scheme.Hom.finrank_eq_one_of_isIso (f : X ⟶ Y) [IsIso f] : finrank f = 1
 
 set_option backward.defeqAttrib.useBackward true in
 /-- A finite flat locally finitely presented morphism is an isomorphism if and only if
-its rank is constant equal to `1`. -/
+its rank is constant equal to `1`.
+@isnad1 id=iff.0h3v.s6.ae4647e32991 from=seed src=0 shape=21a881be vocab=55c9647a
+-/
 nonrec lemma Scheme.Hom.isIso_iff_finrank_eq : IsIso f ↔ finrank f = 1 := by
   refine ⟨fun h ↦ finrank_eq_one_of_isIso f, fun h ↦ ?_⟩
   wlog hY : ∃ R, Y = Spec R

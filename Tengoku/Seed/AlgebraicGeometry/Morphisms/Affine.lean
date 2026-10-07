@@ -48,6 +48,9 @@ the preimage of any affine open subset of `Y` is affine. -/
 class IsAffineHom {X Y : Scheme} (f : X ⟶ Y) : Prop where
   isAffine_preimage : ∀ U : Y.Opens, IsAffineOpen U → IsAffineOpen (f ⁻¹ᵁ U)
 
+/--
+@isnad1 id=isaffine.1h4v.s6.8b0b9ccbb021 from=seed src=0 shape=3a1199cb vocab=90601df2
+-/
 lemma IsAffineOpen.preimage {X Y : Scheme} {U : Y.Opens} (hU : IsAffineOpen U)
     (f : X ⟶ Y) [IsAffineHom f] :
     IsAffineOpen (f ⁻¹ᵁ U) :=
@@ -82,6 +85,9 @@ instance {X : Scheme} (r : Γ(X, ⊤)) :
   refine Set.image_preimage_eq_inter_range.trans ?_
   simp
 
+/--
+@isnad1 id=isretroc.0h2v.s8.23a171ca7f6e from=seed src=0 shape=f8e2d534 vocab=abb5b273
+-/
 lemma isRetrocompact_basicOpen (s : Γ(X, ⊤)) : IsRetrocompact (X := X) (X.basicOpen s) :=
   IsRetrocompact_iff_isSpectralMap_subtypeVal.mpr (X.basicOpen s).ι.isSpectralMap
 
@@ -105,6 +111,9 @@ private lemma isAffine_of_isAffineOpen_basicOpen_aux (s : Set Γ(X, ⊤))
     exact (V.2.basicOpen _).isCompact
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isaffine.2h2v.s12.6f6d50bb43bb from=seed src=0 shape=3c497e32 vocab=c52ba29b
+-/
 @[stacks 01QF]
 lemma isAffine_of_isAffineOpen_basicOpen (s : Set Γ(X, ⊤))
     (hs : Ideal.span s = ⊤) (hs₂ : ∀ i ∈ s, IsAffineOpen (X.basicOpen i)) :
@@ -134,6 +143,7 @@ set_option backward.isDefEq.respectTransparency false in
 /--
 If `s` is a spanning set of `Γ(X, U)`, such that each `X.basicOpen i` is affine, then `U` is also
 affine.
+@isnad1 id=isaffine.2h3v.s11.e9d4a7a68f3f from=seed src=0 shape=94dd412a vocab=a8c81cd7
 -/
 lemma isAffineOpen_of_isAffineOpen_basicOpen (U) (s : Set Γ(X, U))
     (hs : Ideal.span s = ⊤) (hs₂ : ∀ i ∈ s, IsAffineOpen (X.basicOpen i)) :
@@ -170,6 +180,9 @@ instance : HasAffineProperty @IsAffineHom fun X _ _ _ ↦ IsAffine X where
     rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isstable.0h0v.s2.63fb78aeb704 from=seed src=0 shape=25b03439 vocab=73f0e2ff
+-/
 instance isAffineHom_isStableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange @IsAffineHom := by
   apply HasAffineProperty.isStableUnderBaseChange
@@ -179,14 +192,23 @@ instance isAffineHom_isStableUnderBaseChange :
   infer_instance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isaffine.0h3v.s4.e8c7078c5eda from=seed src=0 shape=56698439 vocab=5f3bf378
+-/
 instance (priority := 100) isAffineHom_of_isAffine [IsAffine X] [IsAffine Y] : IsAffineHom f :=
   (HasAffineProperty.iff_of_isAffine (P := @IsAffineHom)).mpr inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isaffine.0h3v.s4.864c897056ac from=seed src=0 shape=9715b773 vocab=5f3bf378
+-/
 lemma isAffine_of_isAffineHom [IsAffineHom f] [IsAffine Y] : IsAffine X :=
   (HasAffineProperty.iff_of_isAffine (P := @IsAffineHom) (f := f)).mp inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isaffine.1h3v.s7.be85eea7c624 from=seed src=0 shape=0eb59224 vocab=065e5ef6
+-/
 lemma isAffineHom_of_forall_exists_isAffineOpen
     (H : ∀ x : Y, ∃ U : Y.Opens, x ∈ U ∧ IsAffineOpen U ∧ IsAffineOpen (f ⁻¹ᵁ U)) :
     IsAffineHom f := by
@@ -207,11 +229,17 @@ instance {X Y S : Scheme} (f : X ⟶ S) (g : Y ⟶ S) [IsAffineHom g] [IsAffine 
   letI : IsAffineHom (pullback.fst f g) := MorphismProperty.pullback_fst _ _ ‹_›
   isAffine_of_isAffineHom (pullback.fst f g)
 
+/--
+@isnad1 id=isaffine.1h8v.s6.11737ba74352 from=seed src=0 shape=e029e58b vocab=b6550f26
+-/
 lemma IsAffine.of_isPullback {P : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
     [IsAffine X] [IsAffineHom g] (h : IsPullback fst snd f g) :
     IsAffine P :=
   .of_isIso h.isoPullback.hom
 
+/--
+@isnad1 id=ispushou.1h8v.s9.0a3b81a6e675 from=seed src=0 shape=a4b6f19d vocab=9d838ebd
+-/
 lemma isPushout_appTop_of_isPullback {P : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f : X ⟶ Z}
     {g : Y ⟶ Z} [IsAffine X] [IsAffine Y] [IsAffine Z] (h : IsPullback fst snd f g) :
     IsPushout f.appTop g.appTop fst.appTop snd.appTop := by
@@ -241,7 +269,9 @@ instance {U V X : Scheme.{u}} (f : U ⟶ X) (g : V ⟶ X) [IsAffineHom f] [IsAff
     · simpa [← Scheme.Hom.comp_apply, i] using hx
     · simpa [← Scheme.Hom.comp_apply, i] using hx
 
-/-- If the underlying map of a morphism is inducing and has closed range, then it is affine. -/
+/-- If the underlying map of a morphism is inducing and has closed range, then it is affine.
+@isnad1 id=isaffine.2h3v.s8.76980688b3cb from=seed src=0 shape=663bc8cd vocab=c2f1c3ac
+-/
 @[stacks 04DE]
 lemma isAffineHom_of_isInducing
     (hf₁ : Topology.IsInducing f)
@@ -270,6 +300,9 @@ lemma isAffineHom_of_isInducing
     convert isAffineOpen_bot _
     exact Opens.ext hU'
 
+/--
+@isnad1 id=iscompac.5h8v.s10.4ec486a593d9 from=seed src=0 shape=261f731d vocab=69c5ec0e
+-/
 lemma IsAffineOpen.isCompact_pullback_inf {X Y Z : Scheme.{u}} {f : X ⟶ Z} {g : Y ⟶ Z}
     {U : X.Opens} (hU : IsAffineOpen U) {V : Y.Opens} (hV : IsCompact (V : Set Y))
     {W : Z.Opens} (hW : IsAffineOpen W) (hUW : U ≤ f ⁻¹ᵁ W) (hVW : V ≤ g ⁻¹ᵁ W) :
@@ -286,6 +319,9 @@ lemma IsAffineOpen.isCompact_pullback_inf {X Y Z : Scheme.{u}} {f : X ⟶ Z} {g 
   simp [p, Scheme.Pullback.range_map]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.1h4v.s9.db29c4cdadc6 from=seed src=0 shape=0f878f66 vocab=dc1f93a0
+-/
 lemma isIso_morphismRestrict_iff_isIso_app [IsAffineHom f] {U : Y.Opens} (hU : IsAffineOpen U) :
     IsIso (f ∣_ U) ↔ IsIso (f.app U) := by
   have : IsAffine U := hU
@@ -296,6 +332,9 @@ lemma isIso_morphismRestrict_iff_isIso_app [IsAffineHom f] {U : Y.Opens} (hU : I
   congr! <;> simp [Scheme.Opens.toScheme_presheaf_obj]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s6.253bfa7667dd from=seed src=0 shape=a28f6c4c vocab=0ca2bf57
+-/
 theorem diagonal_isAffine_iff_forall_isAffineOpen_inf [IsAffine Y] (f : X ⟶ Y) :
     AffineTargetMorphismProperty.diagonal (fun X _ _ _ ↦ IsAffine X) f ↔
       ∀ (U V : X.Opens), IsAffineOpen U → IsAffineOpen V → IsAffineOpen (U ⊓ V) := by
@@ -317,6 +356,9 @@ theorem diagonal_isAffine_iff_forall_isAffineOpen_inf [IsAffine Y] (f : X ⟶ Y)
     exact .of_isIso (pullback.fst f₁ f₂ ≫ f₁).isoOpensRange.hom
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s8.4e93a1882c57 from=seed src=0 shape=9d4bf97a vocab=e27a6cf3
+-/
 theorem isAffineHom_diagonal_iff {f : X ⟶ Y} :
     IsAffineHom (pullback.diagonal f) ↔
       ∀ (U : Y.Opens), IsAffineOpen U → ∀ V₁ ≤ f ⁻¹ᵁ U, ∀ V₂ ≤ f ⁻¹ᵁ U,
@@ -332,16 +374,24 @@ theorem isAffineHom_diagonal_iff {f : X ⟶ Y} :
   rw [inf_eq_right.mpr hV₁, inf_eq_right.mpr hV₂, inf_eq_right.mpr (inf_le_left.trans hV₁)]
 
 /-- If `X ⟶ Spec ℤ` has affine diagonal (in particular when `X` is separated), then intersections
-of affine opens of `X` are also affine. -/
+of affine opens of `X` are also affine.
+@isnad1 id=isaffine.2h3v.s6.c565399b5b08 from=seed src=0 shape=8e24e8ac vocab=51e17cc1
+-/
 lemma IsAffineOpen.inf [IsAffineHom (pullback.diagonal (terminal.from X))]
     {U V : X.Opens} (hU : IsAffineOpen U) (hV : IsAffineOpen V) : IsAffineOpen (U ⊓ V) :=
   isAffineHom_diagonal_iff.mp ‹_› ⊤ (isAffineOpen_top _) U (by simp) V (by simp) hU hV
 
+/--
+@isnad1 id=isaffine.1h3v.s6.72005869a2b9 from=seed src=0 shape=9627beb0 vocab=8a6e92ab
+-/
 lemma IsAffineOpen.iInf [IsAffineHom (pullback.diagonal (terminal.from X))]
     {ι : Sort*} [Finite ι] [Nonempty ι] {U : ι → X.Opens} (hU : ∀ i, IsAffineOpen (U i)) :
       IsAffineOpen (⨅ i, U i) :=
   InfClosed.iInf_mem_of_nonempty (s := Set.ofPred IsAffineOpen) (fun _ h _ h' ↦ h.inf h') hU
 
+/--
+@isnad1 id=isaffine.3h4v.s7.ccf60c2a922d from=seed src=0 shape=feeb27e7 vocab=0f112c06
+-/
 lemma IsAffineOpen.biInf [IsAffineHom (pullback.diagonal (terminal.from X))]
     {ι : Type*} (s : Set ι) (hs : s.Finite) (hs' : s.Nonempty) {U : ι → X.Opens}
     (hU : ∀ i ∈ s, IsAffineOpen (U i)) : IsAffineOpen (⨅ i ∈ s, U i) :=

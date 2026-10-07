@@ -71,13 +71,22 @@ def d (b : B) : M :=
   letI := Module.compHom M f.hom
   _root_.Derivation.toLinearMap D b
 
+/--
+@isnad1 id=eq.0h7v.s7.00a75729498c from=seed src=0 shape=f5f63733 vocab=6c2d4462
+-/
 @[simp]
 lemma d_add (b b' : B) : D.d (b + b') = D.d b + D.d b' := by simp [d]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s9.0a3ce169d8bd from=seed src=0 shape=2a8c789b vocab=44a57f28
+-/
 @[simp]
 lemma d_mul (b b' : B) : D.d (b * b') = b • D.d b' + b' • D.d b := by simp [d]
 
+/--
+@isnad1 id=eq.0h6v.s8.12b42a13d5be from=seed src=0 shape=11763adb vocab=49d3ce08
+-/
 @[simp]
 lemma d_map (a : A) : D.d (f a) = 0 :=
   letI := f.hom.toAlgebra
@@ -116,6 +125,9 @@ differential map `B → KaehlerDifferential f`. -/
 noncomputable abbrev d (b : B) : KaehlerDifferential f := (D f).d b
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s10.647c8b365ff9 from=seed src=0 shape=043f0d83 vocab=deba27b9
+-/
 @[ext]
 lemma ext {M : ModuleCat B} {α β : KaehlerDifferential f ⟶ M}
     (h : ∀ (b : B), α (d b) = β (d b)) : α = β := by
@@ -150,6 +162,9 @@ noncomputable def map :
     map_add' := by simp
     map_smul' := by simp }
 
+/--
+@isnad1 id=eq.1h9v.s10.d12d04317dbe from=seed src=0 shape=a9537647 vocab=b9ecdb93
+-/
 @[simp]
 lemma map_d (b : B) : map fac (d b) = d (g' b) := by
   algebraize [f.hom, f'.hom, g.hom, g'.hom, f'.hom.comp g.hom]
@@ -175,6 +190,9 @@ noncomputable def desc : CommRingCat.KaehlerDifferential f ⟶ M :=
   ofHom D.liftKaehlerDifferential
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s9.10ec7089ce90 from=seed src=0 shape=7c0d5c5e vocab=efb55c1a
+-/
 @[simp]
 lemma desc_d (b : B) : D.desc (CommRingCat.KaehlerDifferential.d b) = D.d b := by
   let := f.hom.toAlgebra

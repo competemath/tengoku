@@ -34,6 +34,9 @@ section
 
 variable (f : R →+* R')
 
+/--
+@isnad1 id=exact.1h4v.s7.66301a6551c7 from=seed src=0 shape=988e6b04 vocab=331b430a
+-/
 lemma ModuleCat.restrictScalars_map_exact (S : ShortComplex (ModuleCat.{v} R')) (h : S.Exact) :
     (S.map (ModuleCat.restrictScalars.{v} f)).Exact := by
   rw [CategoryTheory.ShortComplex.ShortExact.moduleCat_exact_iff_function_exact] at h ⊢

@@ -71,7 +71,9 @@ noncomputable def regularMonoOfFaithfullyFlat (hf : f.hom.FaithfullyFlat) :
   isLimit := isLimitForkPushoutSelfOfFaithfullyFlat f hf
 
 /-- Any map `f : R ⟶ S` in `CommRingCat` with faithfully flat `f.hom : R ⟶ S` is a regular
-monomorphism. -/
+monomorphism.
+@isnad1 id=isregula.1h3v.s5.6698b8e0219a from=seed src=0 shape=fcd54a7b vocab=dfa06e81
+-/
 lemma isRegularMono_of_faithfullyFlat (hf : f.hom.FaithfullyFlat) :
     IsRegularMono f :=
   isRegularMono_of_regularMono (regularMonoOfFaithfullyFlat f hf)
@@ -83,13 +85,17 @@ namespace Opposite
 variable {R S : CommRingCat.{u}ᵒᵖ} (f : S ⟶ R)
 
 /-- A regular epimorphism structure on a map `f : S ⟶ R` in `CommRingCatᵒᵖ` with
-faithfully flat `f.unop.hom : R.unop ⟶ S.unop`. -/
+faithfully flat `f.unop.hom : R.unop ⟶ S.unop`.
+@isnad1 id=isregula.1h3v.s5.947cfa6be28e from=seed src=0 shape=f01af22e vocab=22d87125
+-/
 lemma regularEpiOfFaithfullyFlat (hf : f.unop.hom.FaithfullyFlat) :
     IsRegularEpi f :=
   (isRegularEpi_op_iff_isRegularMono _).mpr (isRegularMono_of_faithfullyFlat _ hf)
 
 /-- Any map `f : S ⟶ R` in `CommRingCatᵒᵖ` with faithfully flat `f.unop.hom : R.unop ⟶ S.unop` is
-an effective epimorphism. -/
+an effective epimorphism.
+@isnad1 id=effectiv.1h3v.s5.cc971e9c1567 from=seed src=0 shape=dae22642 vocab=cc69ffbe
+-/
 lemma effectiveEpi_of_faithfullyFlat (hf : f.unop.hom.FaithfullyFlat) : EffectiveEpi f :=
   (isRegularEpi_iff_effectiveEpi _).mp (regularEpiOfFaithfullyFlat _ hf)
 

@@ -76,6 +76,9 @@ def normalizationDiagramMap : Y.presheaf ⟶ f.normalizationDiagram where
 variable [QuasiCompact f] [QuasiSeparated f]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=coequifi.0h3v.s8.274b7ed519e1 from=seed src=0 shape=b4aaece2 vocab=f1db3819
+-/
 lemma coequifibered_normalizationDiagramMap :
     ((toOpensFunctor Y).op.whiskerLeft f.normalizationDiagramMap).Coequifibered := by
   refine coequifibered_iff_forall_isLocalizationAway.mpr fun U r ↦ ?_
@@ -113,6 +116,9 @@ lemma coequifibered_normalizationDiagramMap :
     (integralClosure Γ(Y, Y.basicOpen r) Γ(X, f ⁻¹ᵁ Y.basicOpen r)) := .of_algebraMap_eq' rfl
   exact IsLocalization.Away.integralClosure r
 
+/--
+@isnad1 id=coequifi.0h3v.s8.274b7ed519e1 from=seed src=0 shape=b4aaece2 vocab=f1db3819
+-/
 @[deprecated (since := "2026-02-01")]
 alias preservesLocalization_normalizationDiagramMap := coequifibered_normalizationDiagramMap
 
@@ -157,6 +163,9 @@ def toNormalization : X ⟶ f.normalization :=
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s16.22cab7e789b7 from=seed src=0 shape=555183f1 vocab=cb33b475
+-/
 @[reassoc]
 lemma ι_toNormalization (U : Y.affineOpens) :
     letI := (f.app U.1).hom.toAlgebra
@@ -174,6 +183,9 @@ lemma ι_toNormalization (U : Y.affineOpens) :
 def fromNormalization : f.normalization ⟶ Y :=
   f.normalizationGlueData.toBase
 
+/--
+@isnad1 id=eq.0h4v.s9.46c55c6aa5f6 from=seed src=0 shape=ee88e17e vocab=d9322bbf
+-/
 @[reassoc]
 lemma ι_fromNormalization (U : Y.affineOpens) :
     f.normalizationOpenCover.f U ≫ f.fromNormalization =
@@ -181,11 +193,17 @@ lemma ι_fromNormalization (U : Y.affineOpens) :
   colimit.ι_desc _ _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s8.36ae162f6744 from=seed src=0 shape=1b4b7dfb vocab=58278600
+-/
 lemma fromNormalization_preimage (U : Y.affineOpens) :
     f.fromNormalization ⁻¹ᵁ U = (f.normalizationOpenCover.f U).opensRange := by
   simpa using! f.normalizationGlueData.toBase_preimage_eq_opensRange_ι U
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s5.eef6027bfe3e from=seed src=0 shape=e0c34015 vocab=9f59de56
+-/
 @[reassoc (attr := simp)]
 lemma toNormalization_fromNormalization :
     f.toNormalization ≫ f.fromNormalization = f := by
@@ -226,6 +244,9 @@ def normalizationObjIso {U : Y.Opens} (hU : IsAffineOpen U) :
   (f.normalizationOpenCover.f ⟨U, hU⟩).appIso ⊤ ≪≫ Scheme.ΓSpecIso _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=other.0h4v.s16.9ee0224467e3 from=seed src=0 shape=96f00bdd vocab=5e9fbc5f
+-/
 lemma toNormalization_app_preimage (U : Y.affineOpens) :
     let := (f.app U.1).hom.toAlgebra
     dsimp% f.toNormalization.app (f.fromNormalization ⁻¹ᵁ ↑U) =
@@ -255,6 +276,9 @@ lemma toNormalization_app_preimage (U : Y.affineOpens) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s16.dfcdedeaeba1 from=seed src=0 shape=aec38e78 vocab=f4028bc8
+-/
 @[reassoc]
 lemma fromNormalization_app {U : Y.Opens} (hU : IsAffineOpen U) :
     f.fromNormalization.app U = CommRingCat.ofHom (algebraMap _ _) ≫
@@ -273,6 +297,9 @@ lemma fromNormalization_app {U : Y.Opens} (hU : IsAffineOpen U) :
   simp [Scheme.Hom.appLE, ← ΓSpecIso_inv_naturality]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s16.9294eeb4edb3 from=seed src=0 shape=e7a85f47 vocab=d246ee6e
+-/
 lemma normalizationObjIso_hom_val {U : Y.Opens} (hU : IsAffineOpen U) :
     letI := (f.app U).hom.toAlgebra
     (f.normalizationObjIso hU).hom ≫ CommRingCat.ofHom (Subalgebra.val _).toRingHom =
@@ -324,6 +351,9 @@ instance : QuasiSeparated f.toNormalization := by
   rw [Hom.toNormalization_fromNormalization]
   infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s6.52543bef32cb from=seed src=0 shape=56f33b79 vocab=a53ea43b
+-/
 @[simp]
 lemma ker_toNormalization : f.toNormalization.ker = ⊥ := by
   refine Scheme.IdealSheafData.ext_of_iSup_eq_top
@@ -399,6 +429,9 @@ def normalizationDesc (H : f = f₁ ≫ f₂) : f.normalization ⟶ T := by
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s6.0208649b4db2 from=seed src=0 shape=9686f7c6 vocab=9fc846c6
+-/
 @[reassoc (attr := simp)]
 lemma toNormalization_normalizationDesc (H : f = f₁ ≫ f₂) :
     f.toNormalization ≫ f.normalizationDesc f₁ f₂ H = f₁ := by
@@ -414,6 +447,9 @@ lemma toNormalization_normalizationDesc (H : f = f₁ ≫ f₂) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s6.ed9a4af3b99e from=seed src=0 shape=a1d51d7c vocab=4d32a636
+-/
 @[reassoc (attr := simp)]
 lemma normalizationDesc_comp (H : f = f₁ ≫ f₂) :
     f.normalizationDesc f₁ f₂ H ≫ f₂ = f.fromNormalization := by
@@ -437,7 +473,9 @@ instance (H : f = f₁ ≫ f₂) : IsIntegralHom (f.normalizationDesc f₁ f₂ 
 set_option backward.isDefEq.respectTransparency false in
 /-- The uniqueness part of the universal property for relative normalization.
 Suppose `f : X ⟶ Y` is qcqs and factors into `X ⟶ T ⟶ Y` with `T ⟶ Y` affine, then
-there is at most one map `f.normalization ⟶ T` that commutes with them. -/
+there is at most one map `f.normalization ⟶ T` that commutes with them.
+@isnad1 id=eq.3h7v.s7.27d0b36aedd5 from=seed src=0 shape=8ea36f14 vocab=da605a43
+-/
 lemma normalization.hom_ext (f₁ f₂ : f.normalization ⟶ T) (g : T ⟶ Y) [IsAffineHom g]
     (H₁ : f.toNormalization ≫ f₁ = f.toNormalization ≫ f₂)
     (hf₁ : f₁ ≫ g = f.fromNormalization) (hf₂ : f₂ ≫ g = f.fromNormalization) : f₁ = f₂ := by
@@ -530,6 +568,9 @@ noncomputable def normalizationCoprodIso :
     apply coprod.hom_ext <;> simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s8.f93d3deab905 from=seed src=0 shape=d102322d vocab=ce7d355c
+-/
 @[reassoc (attr := simp)]
 lemma toNormalization_inl_normalizationCoprodIso_hom :
     (iU ≫ f).toNormalization ≫ coprod.inl ≫ (f.normalizationCoprodIso e).hom =
@@ -537,18 +578,27 @@ lemma toNormalization_inl_normalizationCoprodIso_hom :
   simp [Scheme.Hom.normalizationCoprodIso]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s8.d6fd7d658011 from=seed src=0 shape=d7a4872a vocab=8778db05
+-/
 @[reassoc (attr := simp)]
 lemma toNormalization_inr_normalizationCoprodIso_hom :
     (iV ≫ f).toNormalization ≫ coprod.inr ≫ (f.normalizationCoprodIso e).hom =
       iV ≫ f.toNormalization := by
   simp [Scheme.Hom.normalizationCoprodIso]
 
+/--
+@isnad1 id=eq.0h8v.s8.86dc50c18342 from=seed src=0 shape=fae24bb0 vocab=f7f8f246
+-/
 @[reassoc (attr := simp)]
 lemma inl_toNormalization_normalizationCoprodIso_inv :
     iU ≫ f.toNormalization ≫ (f.normalizationCoprodIso e).inv =
       (iU ≫ f).toNormalization ≫ coprod.inl := by
   simp [← toNormalization_inl_normalizationCoprodIso_hom_assoc f e]
 
+/--
+@isnad1 id=eq.0h8v.s8.378c845f3ac9 from=seed src=0 shape=55b598e1 vocab=3a1aff3e
+-/
 @[reassoc (attr := simp)]
 lemma inr_toNormalization_normalizationCoprodIso_inv :
     iV ≫ f.toNormalization ≫ (f.normalizationCoprodIso e).inv =
@@ -556,6 +606,9 @@ lemma inr_toNormalization_normalizationCoprodIso_inv :
   simp [← toNormalization_inr_normalizationCoprodIso_hom_assoc f e]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s8.d5ff79dc1249 from=seed src=0 shape=74a2c8d6 vocab=c1e3a872
+-/
 @[reassoc (attr := simp)]
 lemma inl_normalizationCoprodIso_hom_fromNormalization :
     coprod.inl ≫ (f.normalizationCoprodIso e).hom ≫ f.fromNormalization =
@@ -563,12 +616,18 @@ lemma inl_normalizationCoprodIso_hom_fromNormalization :
   simp [Scheme.Hom.normalizationCoprodIso]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s8.21833972008a from=seed src=0 shape=fb76eead vocab=2ab48a9a
+-/
 @[reassoc (attr := simp)]
 lemma inr_normalizationCoprodIso_hom_fromNormalization :
     coprod.inr ≫ (f.normalizationCoprodIso e).hom ≫ f.fromNormalization =
       (iV ≫ f).fromNormalization := by
   simp [Scheme.Hom.normalizationCoprodIso]
 
+/--
+@isnad1 id=eq.0h8v.s8.d17b83ecb6c9 from=seed src=0 shape=de79d614 vocab=2fb87539
+-/
 @[reassoc, simp]
 lemma normalizationCoprodIso_inv_coprodDesc_fromNormalization :
     (f.normalizationCoprodIso e).inv ≫
@@ -591,12 +650,18 @@ noncomputable def normalizationPullback :
     (𝟙 _) (𝟙 _) (by simp) (by simp)) (pullback.snd _ _) (by simp)
   deriving IsIntegralHom
 
+/--
+@isnad1 id=eq.0h5v.s7.bec5841989a5 from=seed src=0 shape=c391763f vocab=70c8e242
+-/
 @[reassoc (attr := simp)]
 lemma normalizationPullback_snd :
     f.normalizationPullback g ≫ pullback.snd _ _ = (pullback.snd f g).fromNormalization :=
   (pullback.snd f g).normalizationDesc_comp ..
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s7.d52f47576263 from=seed src=0 shape=2488d237 vocab=f523448b
+-/
 @[reassoc (attr := simp)]
 lemma toNormalization_normalizationPullback_fst :
     (pullback.snd f g).toNormalization ≫ f.normalizationPullback g ≫ pullback.fst _ _ =

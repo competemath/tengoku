@@ -31,7 +31,9 @@ variable {X Y : Scheme.{u}} (f : X ⟶ Y)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- If `f : X ⟶ Y` is locally of finite presentation, flat and has smooth fibers, then `f` is
-smooth. -/
+smooth.
+@isnad1 id=smooth.1h3v.s5.99b4b7f585c4 from=seed src=0 shape=3a0bc253 vocab=b7ed015d
+-/
 lemma Smooth.of_smooth_fiberToSpecResidueField [LocallyOfFinitePresentation f] [Flat f]
     (h : ∀ y, Smooth (f.fiberToSpecResidueField y)) :
     Smooth f := by

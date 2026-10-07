@@ -79,13 +79,17 @@ variable (A : Type*) [CommRing A] [Algebra R A]
 variable {V : Type*} [AddCommGroup V] [Module R V] [Module A V] [IsScalarTower R A V]
 variable (M : Submodule R V)
 
-/-- Any `R`-lattice is finite. -/
+/-- Any `R`-lattice is finite.
+@isnad1 id=finite.0h4v.s8.6555e44941b2 from=seed src=0 shape=513d4653 vocab=d1d8dd4e
+-/
 instance finite [IsLattice A M] : Module.Finite R M := by
   rw [Module.Finite.iff_fg]
   exact IsLattice.fg
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The action of `Aˣ` on `R`-submodules of `V` preserves `IsLattice`. -/
+/-- The action of `Aˣ` on `R`-submodules of `V` preserves `IsLattice`.
+@isnad1 id=islattic.0h5v.s9.feea486c746e from=seed src=0 shape=c1e92d6f vocab=073840dd
+-/
 instance smul [IsLattice A M] (a : Aˣ) : IsLattice A (a • M : Submodule R V) where
   fg := by
     obtain ⟨s, rfl⟩ := IsLattice.fg (M := M)
@@ -99,12 +103,17 @@ instance smul [IsLattice A M] (a : Aˣ) : IsLattice A (a • M : Submodule R V) 
     rw [show x = a • a⁻¹ • x by simp]
     exact Submodule.smul_mem_pointwise_smul _ _ _ (by trivial)
 
+/--
+@isnad1 id=islattic.2h5v.s8.96f28d9d8ebe from=seed src=0 shape=ffc492e5 vocab=77ff3bc5
+-/
 lemma of_le_of_isLattice_of_fg {M N : Submodule R V} (hle : M ≤ N) [IsLattice A M]
     (hfg : N.FG) : IsLattice A N :=
   ⟨hfg, eq_top_iff.mpr <|
     le_trans (by rw [IsLattice.span_eq_top]) (Submodule.span_mono hle)⟩
 
-/-- The supremum of two lattices is a lattice. -/
+/-- The supremum of two lattices is a lattice.
+@isnad1 id=islattic.0h5v.s8.5f845cf60e0c from=seed src=0 shape=73fecb8b vocab=cfd74582
+-/
 instance sup (M N : Submodule R V) [IsLattice A M] [IsLattice A N] :
     IsLattice A (M ⊔ N) :=
   of_le_of_isLattice_of_fg A le_sup_left (Submodule.FG.sup IsLattice.fg IsLattice.fg)
@@ -159,7 +168,9 @@ lemma _root_.Module.Basis.extendOfIsLattice_apply [IsFractionRing R K] {κ : Typ
 variable [IsDomain R]
 
 /-- A finitely-generated `R`-submodule of `V` of rank at least the `K`-rank of `V`
-is a lattice. -/
+is a lattice.
+@isnad1 id=islattic.2h4v.s8.7e839fc0fefc from=seed src=0 shape=bcd9a7b4 vocab=554f36a5
+-/
 lemma of_rank_le [Module.Finite K V] [IsFractionRing R K] {M : Submodule R V}
     (hfg : M.FG) (hr : Module.rank K V ≤ Module.rank R M) : IsLattice K M where
   fg := hfg
@@ -170,30 +181,40 @@ variable [IsPrincipalIdealRing R]
 
 /-- Any lattice over a PID is a free `R`-module.
 Note that under our conditions, `Module.IsTorsionFree R K` simply says that `algebraMap R K` is
-injective. -/
+injective.
+@isnad1 id=free.0h4v.s8.9fb42d8eeb63 from=seed src=0 shape=7b5bd10f vocab=7a1bdd41
+-/
 instance free [Module.IsTorsionFree R K] (M : Submodule R V) [IsLattice K M] : Module.Free R M := by
   have := Module.IsTorsionFree.trans_faithfulSMul R K V
   -- any torsion free finite module over a PID is free
   infer_instance
 
-/-- Any lattice has `R`-rank equal to the `K`-rank of `V`. -/
+/-- Any lattice has `R`-rank equal to the `K`-rank of `V`.
+@isnad1 id=eq.0h4v.s8.6c55e5790b8c from=seed src=0 shape=5e285e1b vocab=b11b02df
+-/
 lemma rank' [IsFractionRing R K] (M : Submodule R V) [IsLattice K M] :
     Module.rank R M = Module.rank K V := by
   let b := Module.Free.chooseBasis R M
   rw [rank_eq_card_basis b, ← rank_eq_card_basis (b.extendOfIsLattice K)]
 
-/-- Any `R`-lattice in `ι → K` has `#ι` as `R`-rank. -/
+/-- Any `R`-lattice in `ι → K` has `#ι` as `R`-rank.
+@isnad1 id=eq.0h4v.s9.b9499d2b7f7f from=seed src=0 shape=d3d0191a vocab=d5a48a66
+-/
 lemma rank_of_pi {ι : Type*} [Fintype ι] [IsFractionRing R K] (M : Submodule R (ι → K))
     [IsLattice K M] : Module.rank R M = Fintype.card ι := by
   rw [IsLattice.rank' K M]
   simp
 
-/-- `Module.finrank` version of `IsLattice.rank`. -/
+/-- `Module.finrank` version of `IsLattice.rank`.
+@isnad1 id=eq.0h4v.s9.aab03278a7bb from=seed src=0 shape=aadc6c49 vocab=ebf3b581
+-/
 lemma finrank_of_pi {ι : Type*} [Fintype ι] [IsFractionRing R K] (M : Submodule R (ι → K))
     [IsLattice K M] : Module.finrank R M = Fintype.card ι :=
   Module.finrank_eq_of_rank_eq (IsLattice.rank_of_pi K M)
 
-/-- The intersection of two lattices is a lattice. -/
+/-- The intersection of two lattices is a lattice.
+@isnad1 id=islattic.0h5v.s8.e0c82861d001 from=seed src=0 shape=b692d8e3 vocab=281ebfe5
+-/
 instance inf [Module.Finite K V] [IsFractionRing R K] (M N : Submodule R V)
     [IsLattice K M] [IsLattice K N] : IsLattice K (M ⊓ N) where
   fg := by

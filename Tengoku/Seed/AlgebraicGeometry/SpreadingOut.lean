@@ -61,6 +61,9 @@ variable {X Y S : Scheme.{u}} (f : X ⟶ Y) (sX : X ⟶ S) (sY : Y ⟶ S) {R A :
 class Scheme.IsGermInjectiveAt (X : Scheme.{u}) (x : X) : Prop where
   cond : ∃ (U : X.Opens) (hx : x ∈ U), IsAffineOpen U ∧ Function.Injective (X.presheaf.germ U x hx)
 
+/--
+@isnad1 id=injectiv.4h4v.s11.a15645ba1cdc from=seed src=0 shape=5a66536b vocab=37fd7651
+-/
 lemma injective_germ_basicOpen (U : X.Opens) (hU : IsAffineOpen U)
     (x : X) (hx : x ∈ U) (f : Γ(X, U))
     (hf : x ∈ X.basicOpen f)
@@ -75,11 +78,17 @@ lemma injective_germ_basicOpen (U : X.Opens) (hU : IsAffineOpen U)
   swap; · exact @isUnit_of_invertible _ _ _ (@IsLocalization.invertible_mk'_one ..)
   rw [H _ ht, IsLocalization.mk'_zero]
 
+/--
+@isnad1 id=ex.0h2v.s10.f8f8cf81d882 from=seed src=0 shape=05a62697 vocab=71c61fd4
+-/
 lemma Scheme.exists_germ_injective (X : Scheme.{u}) (x : X) [X.IsGermInjectiveAt x] :
     ∃ (U : X.Opens) (hx : x ∈ U),
       IsAffineOpen U ∧ Function.Injective (X.presheaf.germ U x hx) :=
   Scheme.IsGermInjectiveAt.cond
 
+/--
+@isnad1 id=ex.1h3v.s10.456e73404b95 from=seed src=0 shape=9a4b7964 vocab=d9c5acaa
+-/
 lemma Scheme.exists_le_and_germ_injective (X : Scheme.{u}) (x : X) [X.IsGermInjectiveAt x]
     (V : X.Opens) (hxV : x ∈ V) :
     ∃ (U : X.Opens) (hx : x ∈ U),
@@ -101,6 +110,9 @@ instance (x : X) [X.IsGermInjectiveAt x] [IsOpenImmersion f] :
 
 set_option backward.isDefEq.respectTransparency.types false in
 variable {f} in
+/--
+@isnad1 id=iff.0h4v.s7.cbd71dd4419e from=seed src=0 shape=5d68a02d vocab=fc97dcb9
+-/
 lemma isGermInjectiveAt_iff_of_isOpenImmersion {x : X} [IsOpenImmersion f] :
     Y.IsGermInjectiveAt (f x) ↔ X.IsGermInjectiveAt x := by
   refine ⟨fun H ↦ ?_, fun _ ↦ inferInstance⟩
@@ -125,6 +137,9 @@ This is typically satisfied when `X` is integral or locally Noetherian.
 -/
 abbrev Scheme.IsGermInjective (X : Scheme.{u}) := ∀ x : X, X.IsGermInjectiveAt x
 
+/--
+@isnad1 id=isgermin.0h2v.s5.bf75b65cd7bb from=seed src=0 shape=8a1f4c4f vocab=128280c2
+-/
 lemma Scheme.IsGermInjective.of_openCover
     {X : Scheme.{u}} (𝒰 : X.OpenCover) [∀ i, (𝒰.X i).IsGermInjective] : X.IsGermInjective := by
   intro x
@@ -132,6 +147,9 @@ lemma Scheme.IsGermInjective.of_openCover
   infer_instance
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isgermin.1h1v.s8.c9d60255d4e2 from=seed src=0 shape=edf5fb1c vocab=95af24b9
+-/
 protected
 lemma Scheme.IsGermInjective.Spec
     (H : ∀ I : Ideal R, I.IsPrime →
@@ -198,6 +216,7 @@ If `f` and `g` agree on the stalk of `x`, then they agree on an open neighborhoo
 provided `X` is "germ-injective" at `x` (e.g. when it's integral or locally Noetherian).
 
 TODO: The condition on `X` is unnecessary when `Y` is locally of finite type.
+@isnad1 id=ex.2h5v.s10.07b006291432 from=seed src=0 shape=477e9369 vocab=2159601e
 -/
 @[stacks 0BX6]
 lemma spread_out_unique_of_isGermInjective {x : X} [X.IsGermInjectiveAt x]
@@ -232,6 +251,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 /--
 A variant of `spread_out_unique_of_isGermInjective`
 whose condition is an equality of scheme morphisms instead of ring homomorphisms.
+@isnad1 id=ex.1h5v.s7.1db145b55e64 from=seed src=0 shape=e9a4749c vocab=943f70b4
 -/
 lemma spread_out_unique_of_isGermInjective' {x : X} [X.IsGermInjectiveAt x]
     (f g : X ⟶ Y)
@@ -243,6 +263,9 @@ lemma spread_out_unique_of_isGermInjective' {x : X} [X.IsGermInjectiveAt x]
     rw [← cancel_mono (Y.fromSpecStalk _)]
     simpa [Scheme.SpecMap_stalkSpecializes_fromSpecStalk]
 
+/--
+@isnad1 id=ex.3h8v.s11.63aa816ed118 from=seed src=0 shape=b2dba553 vocab=7f98d11e
+-/
 lemma exists_lift_of_germInjective_aux {U : X.Opens} {x : X} (hxU)
     (φ : A ⟶ X.presheaf.stalk x) (φRA : R ⟶ A) (φRX : R ⟶ Γ(X, U))
     (hφRA : RingHom.FiniteType φRA.hom)
@@ -279,6 +302,7 @@ R ⟶ Γ(X, U)
 A ⟶ 𝒪_{X, x}
 ```
 such that `R` is of finite type over `A`, we may lift `A ⟶ 𝒪_{X, x}` to some `A ⟶ Γ(X, V)`.
+@isnad1 id=ex.3h8v.s10.dc64fb42f10b from=seed src=0 shape=5b4ecb0b vocab=620a5c0a
 -/
 lemma exists_lift_of_germInjective {x : X} [X.IsGermInjectiveAt x] {U : X.Opens} (hxU : x ∈ U)
     (φ : A ⟶ X.presheaf.stalk x) (φRA : R ⟶ A) (φRX : R ⟶ Γ(X, U))
@@ -331,6 +355,7 @@ provided that `Y` is locally of finite type over `S` and
 `X` is "germ-injective" at `x` (e.g. when it's integral or locally Noetherian).
 
 TODO: The condition on `X` is unnecessary when `Y` is locally of finite presentation.
+@isnad1 id=ex.2h8v.s11.8a96a0dfd61d from=seed src=0 shape=94006dd1 vocab=b817a5e2
 -/
 @[stacks 0BX6]
 lemma spread_out_of_isGermInjective [LocallyOfFiniteType sY] {x : X} [X.IsGermInjectiveAt x] {y : Y}
@@ -371,6 +396,7 @@ provided that `Y` is locally of finite type over `S` and
 `X` is "germ-injective" at `x` (e.g. when it's integral or locally Noetherian).
 
 TODO: The condition on `X` is unnecessary when `Y` is locally of finite presentation.
+@isnad1 id=ex.1h7v.s8.0f1c67689304 from=seed src=0 shape=149830e8 vocab=5d9769b8
 -/
 lemma spread_out_of_isGermInjective' [LocallyOfFiniteType sY] {x : X} [X.IsGermInjectiveAt x]
     (φ : Spec (X.presheaf.stalk x) ⟶ Y)

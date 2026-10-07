@@ -78,6 +78,9 @@ variable (n p q l : Type*) (R : Type u₂)
 variable [DecidableEq p] [DecidableEq q] [DecidableEq l]
 variable [CommRing R]
 
+/--
+@isnad1 id=eq.0h4v.s6.7d752d5103fa from=seed src=0 shape=e031035a vocab=ae790a30
+-/
 @[simp]
 theorem matrix_trace_commutator_zero [Fintype n] (X Y : Matrix n n R) : Matrix.trace ⁅X, Y⁆ = 0 :=
   calc
@@ -96,6 +99,9 @@ def sl [Fintype n] : LieSubalgebra R (Matrix n n R) :=
   { LinearMap.ker (Matrix.traceLinearMap n R R) with
     lie_mem' := fun _ _ => LinearMap.mem_ker.2 <| matrix_trace_commutator_zero _ _ _ _ }
 
+/--
+@isnad1 id=eq.0h4v.s11.00e452f69bb1 from=seed src=0 shape=811de6f1 vocab=5b834f38
+-/
 theorem sl_bracket [Fintype n] (A B : sl n R) : ⁅A, B⁆.val = A.val * B.val - B.val * A.val :=
   rfl
 
@@ -109,6 +115,9 @@ Along with some elements produced by `singleSubSingle`, these form a natural bas
 def single (h : i ≠ j) : R →ₗ[R] sl n R :=
   Matrix.singleLinearMap R i j |>.codRestrict _ fun r => Matrix.trace_single_eq_of_ne i j r h
 
+/--
+@isnad1 id=eq.1h5v.s10.0b6a2f5795b9 from=seed src=0 shape=6b2c49a2 vocab=3cc9c819
+-/
 @[simp]
 theorem val_single (h : i ≠ j) (r : R) : (single i j h r).val = Matrix.single i j r :=
   rfl
@@ -119,21 +128,33 @@ def singleSubSingle : R →ₗ[R] sl n R :=
   LinearMap.codRestrict _ (Matrix.singleLinearMap R i i - Matrix.singleLinearMap R j j) fun r =>
     LinearMap.sub_mem_ker_iff.mpr <| by simp
 
+/--
+@isnad1 id=eq.0h5v.s10.71d503547af2 from=seed src=0 shape=4e8504c1 vocab=9395b72c
+-/
 @[simp]
 theorem val_singleSubSingle (r : R) :
     (singleSubSingle i j r).val = Matrix.single i i r - Matrix.single j j r :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.c109db173902 from=seed src=0 shape=25d2bb7b vocab=3c7a2b8a
+-/
 @[simp]
 theorem singleSubSingle_add_singleSubSingle (r : R) :
     singleSubSingle i j r + singleSubSingle j k r = singleSubSingle i k r := by
   ext : 1; simp
 
+/--
+@isnad1 id=eq.0h6v.s12.810f459ae6ee from=seed src=0 shape=c4c0ea9d vocab=30b45dd3
+-/
 @[simp]
 theorem singleSubSingle_sub_singleSubSingle (r : R) :
     singleSubSingle i k r - singleSubSingle i j r = singleSubSingle j k r := by
   ext : 1; simp
 
+/--
+@isnad1 id=eq.0h6v.s12.3cfac198dc84 from=seed src=0 shape=5726eed0 vocab=30b45dd3
+-/
 @[simp]
 theorem singleSubSingle_sub_singleSubSingle' (r : R) :
     singleSubSingle i k r - singleSubSingle j k r = singleSubSingle i j r := by
@@ -141,6 +162,9 @@ theorem singleSubSingle_sub_singleSubSingle' (r : R) :
 
 end ElementaryBasis
 
+/--
+@isnad1 id=not.1h2v.s10.0bb5afe6704b from=seed src=0 shape=6b477f37 vocab=235c99ae
+-/
 theorem sl_non_abelian [Fintype n] [Nontrivial R] (h : 1 < Fintype.card n) :
     ¬IsLieAbelian (sl n R) := by
   rcases Fintype.exists_pair_of_one_lt_card h with ⟨i, j, hij⟩
@@ -169,6 +193,9 @@ bilinear form defined by the identity matrix. -/
 def so [Fintype n] : LieSubalgebra R (Matrix n n R) :=
   skewAdjointMatricesLieSubalgebra (1 : Matrix n n R)
 
+/--
+@isnad1 id=iff.0h3v.s7.f0f82a2d63f9 from=seed src=0 shape=b415f0cf vocab=bfadcb10
+-/
 @[simp]
 theorem mem_so [Fintype n] (A : Matrix n n R) : A ∈ so n R ↔ Aᵀ = -A := by
   rw [so, mem_skewAdjointMatricesLieSubalgebra, mem_skewAdjointMatricesSubmodule]
@@ -190,6 +217,9 @@ def Pso (i : R) : Matrix (p ⊕ q) (p ⊕ q) R :=
 
 variable [Fintype p] [Fintype q]
 
+/--
+@isnad1 id=eq.1h4v.s7.108864169adf from=seed src=0 shape=09d1725c vocab=4a03c3f0
+-/
 theorem pso_inv {i : R} (hi : i * i = -1) : Pso p q R i * Pso p q R (-i) = 1 := by
   ext (x y); rcases x with ⟨x⟩ | ⟨x⟩ <;> rcases y with ⟨y⟩ | ⟨y⟩
   · -- x y : p
@@ -208,6 +238,9 @@ theorem pso_inv {i : R} (hi : i * i = -1) : Pso p q R i * Pso p q R (-i) = 1 := 
 def invertiblePso {i : R} (hi : i * i = -1) : Invertible (Pso p q R i) :=
   invertibleOfRightInverse _ _ (pso_inv p q R hi)
 
+/--
+@isnad1 id=eq.1h4v.s8.afd6f92934f7 from=seed src=0 shape=b1340acd vocab=d620b2bf
+-/
 theorem indefiniteDiagonal_transform {i : R} (hi : i * i = -1) :
     (Pso p q R i)ᵀ * indefiniteDiagonal p q R * Pso p q R i = 1 := by
   ext (x y); rcases x with ⟨x⟩ | ⟨x⟩ <;> rcases y with ⟨y⟩ | ⟨y⟩
@@ -232,6 +265,9 @@ noncomputable def soIndefiniteEquiv {i : R} (hi : i * i = -1) : so' p q R ≃ₗ
   ext A; rw [indefiniteDiagonal_transform p q R hi]; rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s12.e271977aff22 from=seed src=0 shape=0f8dcbb9 vocab=40367d63
+-/
 theorem soIndefiniteEquiv_apply {i : R} (hi : i * i = -1) (A : so' p q R) :
     (soIndefiniteEquiv p q R hi A : Matrix (p ⊕ q) (p ⊕ q) R) =
       (Pso p q R i)⁻¹ * (A : Matrix (p ⊕ q) (p ⊕ q) R) * Pso p q R i := by
@@ -271,16 +307,25 @@ def PD : Matrix (l ⊕ l) (l ⊕ l) R :=
 def S :=
   indefiniteDiagonal l l R
 
+/--
+@isnad1 id=eq.0h2v.s7.c7142ea7121a from=seed src=0 shape=980c8a37 vocab=9de86de7
+-/
 theorem s_as_blocks : S l R = Matrix.fromBlocks 1 0 0 (-1) := by
   rw [← Matrix.diagonal_one, Matrix.diagonal_neg, Matrix.fromBlocks_diagonal]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.711c0f974b01 from=seed src=0 shape=8d6a4a55 vocab=bf961a0e
+-/
 theorem jd_transform [Fintype l] : (PD l R)ᵀ * JD l R * PD l R = (2 : R) • S l R := by
   have h : (PD l R)ᵀ * JD l R = Matrix.fromBlocks 1 1 1 (-1) := by
     simp [PD, JD, Matrix.fromBlocks_transpose, Matrix.fromBlocks_multiply]
   rw [h, PD, s_as_blocks, Matrix.fromBlocks_multiply, Matrix.fromBlocks_smul]
   simp [two_smul]
 
+/--
+@isnad1 id=eq.0h2v.s8.ad942562c95f from=seed src=0 shape=b7bfbd8f vocab=427e2369
+-/
 theorem pd_inv [Fintype l] [Invertible (2 : R)] : PD l R * ⅟(2 : R) • (PD l R)ᵀ = 1 := by
   rw [PD, Matrix.fromBlocks_transpose, Matrix.fromBlocks_smul,
     Matrix.fromBlocks_multiply]
@@ -347,6 +392,9 @@ def PB :=
 
 variable [Fintype l]
 
+/--
+@isnad1 id=eq.0h2v.s8.553d049740cf from=seed src=0 shape=6aa24192 vocab=5e29dd42
+-/
 theorem pb_inv [Invertible (2 : R)] : PB l R * Matrix.fromBlocks 1 0 0 (⅟(PD l R)) = 1 := by
   rw [PB, Matrix.fromBlocks_multiply, mul_invOf_self]
   simp only [Matrix.mul_zero, Matrix.mul_one, Matrix.zero_mul, zero_add, add_zero,
@@ -355,10 +403,16 @@ theorem pb_inv [Invertible (2 : R)] : PB l R * Matrix.fromBlocks 1 0 0 (⅟(PD l
 instance invertiblePB [Invertible (2 : R)] : Invertible (PB l R) :=
   invertibleOfRightInverse _ _ (pb_inv l R)
 
+/--
+@isnad1 id=eq.0h2v.s8.83faa50f77ca from=seed src=0 shape=58648537 vocab=5fb246e3
+-/
 theorem jb_transform : (PB l R)ᵀ * JB l R * PB l R = (2 : R) • Matrix.fromBlocks 1 0 0 (S l R) := by
   simp [PB, JB, jd_transform, Matrix.fromBlocks_transpose, Matrix.fromBlocks_multiply,
     Matrix.fromBlocks_smul]
 
+/--
+@isnad1 id=eq.0h2v.s10.74c47bc62d3d from=seed src=0 shape=74faf5f8 vocab=76bfac03
+-/
 theorem indefiniteDiagonal_assoc :
     indefiniteDiagonal (Unit ⊕ l) l R =
       Matrix.reindexLieEquiv (Equiv.sumAssoc Unit l l).symm

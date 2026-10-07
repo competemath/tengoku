@@ -69,7 +69,9 @@ set_option linter.unusedVariables false in
 
 For a nonzero multivariable polynomial `p` over an integral domain, the probability that `p`
 evaluates to zero at points drawn at random from a product of finite subsets `S i` of the integral
-domain is bounded by the supremum of `∑ i, degᵢ s / #(S i)` ranging over monomials `s` of `p`. -/
+domain is bounded by the supremum of `∑ i, degᵢ s / #(S i)` ranging over monomials `s` of `p`.
+@isnad1 id=le.1h4v.s9.3de3206b5398 from=seed src=0 shape=5f84c814 vocab=28e6de10
+-/
 lemma schwartz_zippel_sup_sum :
     ∀ {n} {p : MvPolynomial (Fin n) R} (hp : p ≠ 0) (S : Fin n → Finset R),
       #{x ∈ S ^^ n | eval x p = 0} / ∏ i, (#(S i) : ℚ≥0) ≤
@@ -176,7 +178,9 @@ lemma schwartz_zippel_sup_sum :
 
 For a nonzero multivariable polynomial `p` over an integral domain, the probability that `p`
 evaluates to zero at points drawn at random from a product of finite subsets `S i` of the integral
-domain is bounded by the sum of `degᵢ p / #(S i)`. -/
+domain is bounded by the sum of `degᵢ p / #(S i)`.
+@isnad1 id=le.1h4v.s8.bc3ef815fff0 from=seed src=0 shape=4ba679f8 vocab=d0808336
+-/
 lemma schwartz_zippel_sum_degreeOf {n} {p : MvPolynomial (Fin n) R} (hp : p ≠ 0)
     (S : Fin n → Finset R) :
     #{x ∈ S ^^ n | eval x p = 0} / ∏ i, (#(S i) : ℚ≥0) ≤ ∑ i, (p.degreeOf i / #(S i) : ℚ≥0) := by
@@ -189,7 +193,9 @@ lemma schwartz_zippel_sum_degreeOf {n} {p : MvPolynomial (Fin n) R} (hp : p ≠ 
 
 For a nonzero multivariable polynomial `p` over an integral domain, the probability that `p`
 evaluates to zero at points drawn at random from some finite subset `S` of the integral domain is
-bounded by the degree of `p` over `#S`. This version presents this lemma in terms of `Finset`. -/
+bounded by the degree of `p` over `#S`. This version presents this lemma in terms of `Finset`.
+@isnad1 id=le.1h4v.s8.2ffbc9700306 from=seed src=0 shape=940379ab vocab=392846e2
+-/
 lemma schwartz_zippel_totalDegree {n} {p : MvPolynomial (Fin n) R} (hp : p ≠ 0) (S : Finset R) :
     #{f ∈ piFinset fun _ ↦ S | eval f p = 0} / (#S ^ n : ℚ≥0) ≤ p.totalDegree / #S :=
   calc

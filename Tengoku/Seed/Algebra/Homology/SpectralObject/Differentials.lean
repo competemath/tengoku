@@ -57,6 +57,9 @@ noncomputable def d
         δ_toCycles_assoc .., δToCycles_πE ..]) hn₁
           (by rw [δ_δ_assoc .., zero_comp])
 
+/--
+@isnad1 id=eq.2h23v.s9.52c5e5dd316c from=seed src=0 shape=5d2c85ef vocab=75c6f756
+-/
 @[reassoc]
 lemma toCycles_πE_d
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) (hn₃ : n₂ + 1 = n₃ := by lia) :
@@ -69,6 +72,9 @@ lemma toCycles_πE_d
 
 set_option backward.defeqAttrib.useBackward true in
 include h₃₄ in
+/--
+@isnad1 id=eq.3h24v.s10.74554bb3b364 from=seed src=0 shape=16b5b733 vocab=8ad397ea
+-/
 @[reassoc]
 lemma d_ιE_fromOpcycles
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) (hn₃ : n₂ + 1 = n₃ := by lia) :
@@ -92,6 +98,9 @@ variable {i₀ i₁ i₂ i₃ i₄ i₅ i₆ i₇ : ι} (f₁ : i₀ ⟶ i₁) (
   (f₄ : i₃ ⟶ i₄) (f₅ : i₄ ⟶ i₅) (f₆ : i₅ ⟶ i₆) (f₇ : i₆ ⟶ i₇)
   (n₀ n₁ n₂ n₃ n₄ : ℤ)
 
+/--
+@isnad1 id=eq.0h27v.s8.6897ae93ebbf from=seed src=0 shape=2caf377a vocab=061ccaea
+-/
 @[reassoc (attr := simp)]
 lemma d_d (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia)
     (hn₃ : n₂ + 1 = n₃ := by lia) (hn₄ : n₃ + 1 = n₄ := by lia) :
@@ -124,6 +133,9 @@ noncomputable def Ψ (hn₁ : n₀ + 1 = n₁ := by lia) :
       rw [X.δ_naturality_assoc f₁ f₂ f₁ (f₂ ≫ f₃) (𝟙 _) (twoδ₂Toδ₁ f₂ f₃ _ rfl) _ _ rfl,
         Functor.map_id, id_comp, δ_pOpcycles ..])
 
+/--
+@isnad1 id=eq.1h14v.s9.7fa537b9434d from=seed src=0 shape=6ebea864 vocab=10b8d619
+-/
 @[reassoc (attr := simp)]
 lemma toCycles_Ψ (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.toCycles f₂ f₃ f₂₃ h₂₃ n₀ ≫ X.Ψ f₁ f₂ f₃ n₀ n₁ hn₁ =
@@ -131,6 +143,9 @@ lemma toCycles_Ψ (hn₁ : n₀ + 1 = n₁ := by lia) :
   subst h₂₃
   simp only [Ψ, toCycles_descCycles]
 
+/--
+@isnad1 id=eq.1h14v.s9.96e56750806a from=seed src=0 shape=bd6ef8eb vocab=7b966685
+-/
 @[reassoc (attr := simp)]
 lemma Ψ_fromOpcycles (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.Ψ f₁ f₂ f₃ n₀ n₁ hn₁ ≫ X.fromOpcycles f₁ f₂ f₁₂ h₁₂ n₁ =
@@ -140,6 +155,9 @@ lemma Ψ_fromOpcycles (hn₁ : n₀ + 1 = n₁ := by lia) :
   exact (X.δ_naturality _ _ _ _ _ _ _ _ rfl).symm
 
 include h₂₃ in
+/--
+@isnad1 id=eq.2h15v.s8.4b960404799f from=seed src=0 shape=e982f094 vocab=03940271
+-/
 @[reassoc (attr := simp)]
 lemma cyclesMap_Ψ (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.cyclesMap _ _ _ _ (threeδ₁Toδ₀ f₁ f₂ f₃ f₁₂ h₁₂) n₀ ≫
@@ -152,6 +170,9 @@ lemma cyclesMap_Ψ (hn₁ : n₀ + 1 = n₁ := by lia) :
     toCycles_Ψ .., zero₃_assoc .., zero_comp]
 
 include h₁₂ in
+/--
+@isnad1 id=eq.2h15v.s8.2b741a9d8bcf from=seed src=0 shape=c95a6968 vocab=26eb3ac4
+-/
 lemma Ψ_opcyclesMap (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.Ψ f₁ f₂ f₃ n₀ n₁ hn₁ ≫
       X.opcyclesMap _ _ _ _ (threeδ₃Toδ₂ f₁ f₂ f₃ f₂₃ h₂₃) n₁ = 0 := by
@@ -169,6 +190,9 @@ noncomputable def sequenceΨ (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.Ψ f₁ f₂ f₃ n₀ n₁ hn₁)
     (X.opcyclesMap _ _ _ _ (threeδ₃Toδ₂ f₁ f₂ f₃ f₂₃ h₂₃) n₁)
 
+/--
+@isnad1 id=exact.2h15v.s7.42819db3a169 from=seed src=0 shape=1e4e222a vocab=5f0839bc
+-/
 lemma cyclesMap_Ψ_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
     (ShortComplex.mk _ _ (X.cyclesMap_Ψ f₁ f₂ f₃ f₁₂ h₁₂ f₂₃ h₂₃ n₀ n₁ hn₁)).Exact := by
   rw [ShortComplex.exact_iff_exact_up_to_refinements]
@@ -182,6 +206,9 @@ lemma cyclesMap_Ψ_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=exact.2h15v.s7.0d0942416e0a from=seed src=0 shape=9905f8eb vocab=985aab07
+-/
 lemma Ψ_opcyclesMap_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
     (ShortComplex.mk _ _ (X.Ψ_opcyclesMap f₁ f₂ f₃ f₁₂ h₁₂ f₂₃ h₂₃ n₀ n₁ hn₁)).Exact := by
   rw [ShortComplex.exact_iff_exact_up_to_refinements]
@@ -198,6 +225,9 @@ lemma Ψ_opcyclesMap_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
     assoc, assoc, toCycles_Ψ_assoc .., p_fromOpcycles, ← reassoc_of% dsimp% hz₂,
     reassoc_of% hz₁, p_fromOpcycles]
 
+/--
+@isnad1 id=exact.2h15v.s7.b566ca03d3dc from=seed src=0 shape=f26721d2 vocab=0581ae26
+-/
 lemma sequenceΨ_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.sequenceΨ f₁ f₂ f₃ f₁₂ h₁₂ f₂₃ h₂₃ n₀ n₁ hn₁).Exact :=
   exact_of_δ₀ (X.cyclesMap_Ψ_exact f₁ f₂ f₃ f₁₂ h₁₂ f₂₃ h₂₃ n₀ n₁ hn₁).exact_toComposableArrows
@@ -205,6 +235,9 @@ lemma sequenceΨ_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
 
 end
 
+/--
+@isnad1 id=eq.0h21v.s8.d5bba5d79c8f from=seed src=0 shape=e08a21b3 vocab=10abe71b
+-/
 @[reassoc (attr := simp)]
 lemma πE_d_ιE
     {i₀ i₁ i₂ i₃ i₄ i₅ : ι} (f₁ : i₀ ⟶ i₁) (f₂ : i₁ ⟶ i₂) (f₃ : i₂ ⟶ i₃)
@@ -224,6 +257,9 @@ variable {i₀ i₁ i₂ : ι} (f₁ : i₀ ⟶ i₁) (f₂ : i₁ ⟶ i₂)
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h11v.s9.fed169243dc2 from=seed src=0 shape=8be2d7ee vocab=6eb2d1dc
+-/
 @[reassoc (attr := simp)]
 lemma πE_EIsoH_hom (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     X.πE (𝟙 i₀) f₁ (𝟙 i₁) n₀ n₁ n₂ hn₁ hn₂ ≫ (X.EIsoH f₁ n₀ n₁ n₂ hn₁ hn₂).hom =
@@ -231,6 +267,9 @@ lemma πE_EIsoH_hom (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂
   obtain rfl : n₀ = n₁ - 1 := by lia
   simp [πE, cyclesIsoH, EIsoH]
 
+/--
+@isnad1 id=eq.0h15v.s9.a9597546473a from=seed src=0 shape=72c04c8f vocab=62d69784
+-/
 @[reassoc]
 lemma d_EIsoH_hom (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia)
     (hn₃ : n₂ + 1 = n₃ := by lia) :

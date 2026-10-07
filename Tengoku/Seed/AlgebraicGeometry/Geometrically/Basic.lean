@@ -49,6 +49,9 @@ def geometrically (P : ObjectProperty Scheme.{u}) : MorphismProperty Scheme.{u} 
     ⦃Z : Scheme.{u}⦄ (fst : Z ⟶ X) (snd : Z ⟶ Spec (.of K)),
     IsPullback fst snd f y → P Z
 
+/--
+@isnad1 id=eq.0h1v.s5.fee9fe066106 from=seed src=0 shape=7f3d55c7 vocab=8f7b5044
+-/
 lemma geometrically_eq_universally (P : ObjectProperty Scheme.{u}) :
     geometrically P = .universally fun X Y _ ↦ IsIntegral Y → Subsingleton Y → P X := by
   ext X Y f
@@ -59,6 +62,9 @@ lemma geometrically_eq_universally (P : ObjectProperty Scheme.{u}) :
   · exact hf _ _ _ h.flip inferInstance inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h2v.s6.5138e955241f from=seed src=0 shape=f8108c88 vocab=4449d6ed
+-/
 lemma geometrically_inf (P Q : ObjectProperty Scheme.{u}) :
     geometrically (P ⊓ Q) = geometrically P ⊓ geometrically Q := by
   simp only [geometrically_eq_universally, ← MorphismProperty.universally_inf]
@@ -86,25 +92,39 @@ section geometrically
 
 variable {P : ObjectProperty Scheme.{u}} {X Y : Scheme.{u}} {f : X ⟶ Y}
 
+/--
+@isnad1 id=var.0h7v.s5.f3b185fdacc4 from=seed src=0 shape=178fe550 vocab=8457f0dc
+-/
 lemma pullback_of_geometrically (hf : geometrically P f) (K : Type u) [Field K]
     (y : Spec (.of K) ⟶ Y) : P (Limits.pullback f y) :=
   hf _ _ _ (.of_hasPullback _ _)
 
+/--
+@isnad1 id=var.0h7v.s5.afb69a28099e from=seed src=0 shape=d2a12931 vocab=8457f0dc
+-/
 lemma pullback_of_geometrically' (hf : geometrically P f) (K : Type u) [Field K]
     (y : Spec (.of K) ⟶ Y) : P (Limits.pullback y f) :=
   hf _ _ _ (.flip <| .of_hasPullback _ _)
 
+/--
+@isnad1 id=iff.0h4v.s6.e8ae0198c4f4 from=seed src=0 shape=9349eba0 vocab=0ab469dc
+-/
 lemma geometrically_iff_of_isClosedUnderIsomorphisms [P.IsClosedUnderIsomorphisms] :
     geometrically P f ↔
       ∀ (K : Type u) [Field K] (y : Spec (.of K) ⟶ Y), P (Limits.pullback f y) := by
   refine ⟨fun h K _ _ ↦ pullback_of_geometrically h _ _, fun H K _ _ Y fst snd h ↦ ?_⟩
   exact P.prop_of_iso h.isoPullback.symm (H _ _)
 
+/--
+@isnad1 id=var.0h6v.s5.2d2136c737fd from=seed src=0 shape=c2eddf72 vocab=475ef688
+-/
 lemma fiber_of_geometrically (hf : geometrically P f) (y : Y) : P (f.fiber y) :=
   pullback_of_geometrically hf _ _
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `P` holds geometrically for `f` if and only if all fibers are geometrically `P`. -/
+/-- `P` holds geometrically for `f` if and only if all fibers are geometrically `P`.
+@isnad1 id=iff.0h4v.s5.d6437f6be588 from=seed src=0 shape=57e0a23b vocab=28133200
+-/
 lemma geometrically_iff_forall_fiberToSpecResidueField :
     geometrically P f ↔ ∀ (y : Y), geometrically P (f.fiberToSpecResidueField y) := by
   refine ⟨fun hf y ↦ (geometrically P).pullback_snd _ _ hf, fun H ↦ ?_⟩
@@ -119,7 +139,9 @@ lemma geometrically_iff_forall_fiberToSpecResidueField :
     simp [p]
   · simp [p, Scheme.Hom.fiberToSpecResidueField]
 
-/-- This holds in particular if `Y = Spec K`. -/
+/-- This holds in particular if `Y = Spec K`.
+@isnad1 id=var.0h5v.s5.727f9191e89b from=seed src=0 shape=082c2523 vocab=1d59ea27
+-/
 lemma self_of_isIntegral_of_geometrically [IsIntegral Y] [Subsingleton Y] (hf : geometrically P f) :
     P X := by
   rw [geometrically_eq_universally] at hf
@@ -127,6 +149,9 @@ lemma self_of_isIntegral_of_geometrically [IsIntegral Y] [Subsingleton Y] (hf : 
 
 variable {P : ObjectProperty Scheme.{u}} {R : Type u} [CommRing R] {f : X ⟶ Spec (.of R)}
 
+/--
+@isnad1 id=iff.0h4v.s7.6f3a4209a0c1 from=seed src=0 shape=36cb3592 vocab=cfe263f1
+-/
 lemma geometrically_iff_of_commRing :
     geometrically P f ↔ ∀ ⦃K : Type u⦄ [Field K] [Algebra R K] ⦃Y : Scheme.{u}⦄ (fst : Y ⟶ X)
       (snd : Y ⟶ Spec (.of K)), IsPullback fst snd f (Spec.map <| ofHom (algebraMap R K)) →
@@ -136,6 +161,9 @@ lemma geometrically_iff_of_commRing :
   algebraize [φ.hom]
   exact H fst snd h
 
+/--
+@isnad1 id=iff.0h4v.s6.744c09c72a5e from=seed src=0 shape=c974e18b vocab=d4c3dd58
+-/
 lemma geometrically_iff_of_commRing_of_isClosedUnderIsomorphisms [P.IsClosedUnderIsomorphisms] :
     geometrically P f ↔ ∀ (K : Type u) [Field K] [Algebra R K],
       P (Limits.pullback f (Spec.map <| ofHom <| algebraMap R K)) := by

@@ -40,14 +40,23 @@ noncomputable def cover {f : X ⟶ Y} (hf : sourceLocalClosure W P f) :
     Scheme.Cover.{u} (Scheme.precoverage W) X :=
   hf.choose
 
+/--
+@isnad1 id=var.0h7v.s6.a647de33a793 from=seed src=0 shape=b4da0fa1 vocab=5e4cb449
+-/
 lemma property_coverMap_comp {f : X ⟶ Y} (hf : sourceLocalClosure W P f) (i : hf.cover.I₀) :
     P (hf.cover.f i ≫ f) :=
   hf.choose_spec i
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=le.0h2v.s6.1587f4434bc0 from=seed src=0 shape=1bd94a58 vocab=d2b1cc2c
+-/
 lemma le [W.ContainsIdentities] [W.RespectsIso] : P ≤ sourceLocalClosure W P :=
   fun X Y f hf ↦ ⟨X.coverOfIsIso (𝟙 X), by simpa⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.8fa858d0282d from=seed src=0 shape=a1b8d09d vocab=4453536c
+-/
 lemma iff_forall_exists [P.RespectsIso] {f : X ⟶ Y} :
     sourceLocalClosure IsOpenImmersion P f ↔ ∀ (x : X), ∃ (U : X.Opens), x ∈ U ∧ P (U.ι ≫ f) := by
   refine ⟨fun ⟨𝒰, hf⟩ x ↦ ?_, fun H ↦ ?_⟩

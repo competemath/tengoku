@@ -75,6 +75,9 @@ instance : Category (SpectralSequence C c r₀) where
       comm r r' hrr' pq hr := by
         simp [HomologicalComplex.homologyMap_comp, assoc, g.comm r r', f.comm_assoc r r'] }
 
+/--
+@isnad1 id=eq.1h8v.s7.74c1accafe3c from=seed src=0 shape=ccad5375 vocab=23f662c5
+-/
 @[ext]
 lemma hom_ext {E E' : SpectralSequence C c r₀} {f f' : E ⟶ E'}
     (h : ∀ (r : ℤ) (hr : r₀ ≤ r), f.hom r = f'.hom r) :

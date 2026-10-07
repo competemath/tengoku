@@ -57,6 +57,9 @@ instance : LieRingModule L (⨁ i, M i) where
     ext
     simp only [mapRange_apply, lie_lie, add_apply, sub_add_cancel]
 
+/--
+@isnad1 id=eq.0h6v.s8.ac6a900e4612 from=seed src=0 shape=88ab6e1d vocab=ab85ddaf
+-/
 @[simp]
 theorem lie_module_bracket_apply (x : L) (m : ⨁ i, M i) (i : ι) : ⁅x, m⁆ i = ⁅x, m i⁆ :=
   mapRange_apply _ _ m i
@@ -118,14 +121,23 @@ instance lieRing : LieRing (⨁ i, L i) :=
       simp only [zipWith_apply, add_apply]
       apply leibniz_lie }
 
+/--
+@isnad1 id=eq.0h5v.s9.01d59f0124b3 from=seed src=0 shape=bcca10f5 vocab=d8533a2f
+-/
 @[simp]
 theorem bracket_apply (x y : ⨁ i, L i) (i : ι) : ⁅x, y⁆ i = ⁅x i, y i⁆ :=
   zipWith_apply _ _ x y i
 
+/--
+@isnad1 id=eq.0h5v.s10.d19ba1d950ae from=seed src=0 shape=489300b4 vocab=99ab252b
+-/
 theorem lie_of_same [DecidableEq ι] {i : ι} (x y : L i) :
     ⁅of L i x, of L i y⁆ = of L i ⁅x, y⁆ :=
   DFinsupp.zipWith_single_single _ _ _ _
 
+/--
+@isnad1 id=eq.1h6v.s9.417bd4947e80 from=seed src=0 shape=67cf4f15 vocab=99ab252b
+-/
 theorem lie_of_of_ne [DecidableEq ι] {i j : ι} (hij : i ≠ j) (x : L i) (y : L j) :
     ⁅of L i x, of L j y⁆ = 0 := by
   ext k
@@ -134,6 +146,9 @@ theorem lie_of_of_ne [DecidableEq ι] {i j : ι} (hij : i ≠ j) (x : L i) (y : 
   · rw [of_eq_of_ne _ _ _ hij, lie_zero, zero_apply]
   · rw [of_eq_of_ne _ _ _ hik, zero_lie, zero_apply]
 
+/--
+@isnad1 id=eq.0h6v.s10.d4c805d3f60d from=seed src=0 shape=9aa67192 vocab=722bdf47
+-/
 @[simp]
 theorem lie_of [DecidableEq ι] {i j : ι} (x : L i) (y : L j) :
     ⁅of L i x, of L j y⁆ = if hij : i = j then of L i ⁅x, hij.symm.recOn y⁆ else 0 := by
@@ -164,6 +179,9 @@ def lieAlgebraComponent (j : ι) : (⨁ i, L i) →ₗ⁅R⁆ L j :=
     map_lie' := fun {x y} => by simp [component, lapply] }
 
 -- Note(kmill): `ext` cannot generate an iff theorem here since `x` and `y` do not determine `R`.
+/--
+@isnad1 id=eq.1h5v.s8.993cae4edd0f from=seed src=0 shape=536e4d5e vocab=76b02005
+-/
 @[ext (iff := false)]
 theorem lieAlgebra_ext {x y : ⨁ i, L i}
     (h : ∀ i, lieAlgebraComponent R ι L i x = lieAlgebraComponent R ι L i y) : x = y :=

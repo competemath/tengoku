@@ -31,6 +31,9 @@ variable (C : Type*) [Category* C]
 protected def plus [HasZeroMorphisms C] : ObjectProperty (CochainComplex C ℤ) :=
   fun K ↦ ∃ (n : ℤ), K.IsStrictlyGE n
 
+/--
+@isnad1 id=iff.0h2v.s5.fbeaf0d8cf33 from=seed src=0 shape=cdc65913 vocab=852bba22
+-/
 lemma plus_iff [HasZeroMorphisms C] (K : CochainComplex C ℤ) :
     CochainComplex.plus C K ↔ ∃ (n : ℤ), K.IsStrictlyGE n := Iff.rfl
 
@@ -94,6 +97,9 @@ instance [HasFiniteColimits C] : HasFiniteColimits (Plus C) where
   out J _ _ := by infer_instance
 
 variable {C} in
+/--
+@isnad1 id=iff.0h4v.s8.d7611337b2e3 from=seed src=0 shape=207b5790 vocab=75effa19
+-/
 lemma mono_iff [HasLimitsOfShape WalkingCospan C] {X Y : Plus C} (f : X ⟶ Y) :
     Mono f ↔ Mono f.hom :=
   ⟨fun _ ↦ inferInstanceAs (Mono ((ι C).map f)),

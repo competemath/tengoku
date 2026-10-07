@@ -328,7 +328,9 @@ end CharNeTwoOrThree
 
 /-- If there are two elliptic curves with the same `j`-invariants defined over a
 separably closed field, then there exists a change of variables over that field which change
-one curve into another. -/
+one curve into another.
+@isnad1 id=ex.1h3v.s6.44a3cc317ec5 from=seed src=0 shape=4fcd55c4 vocab=2509203e
+-/
 theorem exists_variableChange_of_j_eq (heq : E.j = E'.j) : ∃ C : VariableChange F, C • E = E' := by
   obtain ⟨p, _⟩ := CharP.exists F
   by_cases hchar2 : p = 2

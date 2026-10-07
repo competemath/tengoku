@@ -61,20 +61,32 @@ variable (s) in
 noncomputable def finsuppAntidiagEquiv (n : ℕ) : s.finsuppAntidiag n ≃ Sym s n :=
   (finsuppAntidiagEquivSubtype s n).trans (Sym.equivNatSum s n).symm
 
+/--
+@isnad1 id=eq.0h5v.s10.2b591e0041c8 from=seed src=0 shape=574f6240 vocab=5232a270
+-/
 @[simp]
 theorem finsuppAntidiagEquiv_symm_apply_apply (n : ℕ) (f : Sym s n) (a : s) :
     ((finsuppAntidiagEquiv s n).symm f).val a.val = f.toMultiset.count a := by
   simp [finsuppAntidiagEquiv]
 
+/--
+@isnad1 id=eq.0h5v.s10.6072f860750e from=seed src=0 shape=5623581e vocab=dda9e483
+-/
 @[simp]
 theorem count_coe_finsuppAntidiagEquiv_apply (n : ℕ) (f : s.finsuppAntidiag n) (a : s) :
     (finsuppAntidiagEquiv s n f).toMultiset.count a = f.val a := by
   simp [finsuppAntidiagEquiv]
 
+/--
+@isnad1 id=eq.0h3v.s5.31530052be0c from=seed src=0 shape=42566a4a vocab=c0520f61
+-/
 theorem card_finsuppAntidiag_nat_eq_choose (n : ℕ) :
     #(s.finsuppAntidiag n) = (#s + n - 1).choose n := by
   simp [card_eq_of_equiv_fintype (finsuppAntidiagEquiv s n), Sym.card_sym_eq_choose]
 
+/--
+@isnad1 id=eq.0h3v.s5.aac87c15c808 from=seed src=0 shape=5eb93181 vocab=fd33befb
+-/
 theorem card_finsuppAntidiag_nat_eq_multichoose (n : ℕ) :
     #(s.finsuppAntidiag n) = (#s).multichoose n := by
   simp [card_eq_of_equiv_fintype (finsuppAntidiagEquiv s n), Sym.card_sym_eq_multichoose]

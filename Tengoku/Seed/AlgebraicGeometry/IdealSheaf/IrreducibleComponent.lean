@@ -55,6 +55,9 @@ def irreducibleComponentIdeal : X.IdealSheafData where
     exact (closure_sUnion_irreducibleComponents_sdiff_singleton
       TopologicalSpace.NoetherianSpace.finite_irreducibleComponents Z hZ).symm
 
+/--
+@isnad1 id=eq.1h2v.s6.9739d7af21cd from=seed src=0 shape=0a33794a vocab=d327e9f5
+-/
 theorem irreducibleComponentIdeal_def :
     irreducibleComponentIdeal X Z hZ = (irreducibleComponentOpen X Z).ι.ker := by
   ext
@@ -68,6 +71,9 @@ noncomputable def irreducibleComponent : Scheme :=
 noncomputable def irreducibleComponentι : X.irreducibleComponent Z hZ ⟶ X :=
   (X.irreducibleComponentIdeal Z hZ).subschemeι
 
+/--
+@isnad1 id=eq.1h3v.s8.4a6a660b6598 from=seed src=0 shape=bd302d00 vocab=81842177
+-/
 lemma irreducibleComponentι_apply (x : X.irreducibleComponent Z hZ) :
     X.irreducibleComponentι Z hZ x = x.1 :=
   rfl
@@ -79,6 +85,9 @@ instance : IrreducibleSpace (X.irreducibleComponent Z hZ) :=
   Subtype.irreducibleSpace hZ.1
 
 include hZ in
+/--
+@isnad1 id=eq.1h2v.s7.89428988c3c5 from=seed src=0 shape=10d6eef1 vocab=843ee457
+-/
 theorem irreducibleComponentOpen_eq_top [IrreducibleSpace X] :
     irreducibleComponentOpen X Z = ⊤ := by
   rw [irreducibleComponents_eq_singleton, Set.mem_singleton_iff] at hZ

@@ -73,6 +73,9 @@ private lemma hasInjectiveDimensionLE_iff_of_linearEquiv_aux [Small.{v} R]
     exact (exactS.hasInjectiveDimensionLT_X₃_iff n inferInstance).symm.trans
       ((ih eCoker).trans (exactS'.hasInjectiveDimensionLT_X₃_iff n inferInstance))
 
+/--
+@isnad1 id=iff.0h5v.s6.f7f1286d12ce from=seed src=0 shape=b7e89560 vocab=076e88be
+-/
 lemma hasInjectiveDimensionLE_iff_of_linearEquiv [Small.{v} R] [Small.{v'} R]
     {M : ModuleCat.{v} R} {N : ModuleCat.{v'} R}
     (e : M ≃ₗ[R] N) (n : ℕ) : HasInjectiveDimensionLE M n ↔ HasInjectiveDimensionLE N n := by
@@ -127,6 +130,9 @@ private lemma hasInjectiveDimensionLE_iff_of_semiLinearEquiv_aux [Small.{v} R']
       ((ih eCoker).trans (exactS'.hasInjectiveDimensionLT_X₃_iff n inferInstance))
 
 attribute [local instance] small_lift in
+/--
+@isnad1 id=iff.0h7v.s8.8d20a6cfc389 from=seed src=0 shape=ebdbccaa vocab=bcdbe8de
+-/
 lemma hasInjectiveDimensionLE_iff_of_semiLinearEquiv [Small.{v'} R']
     {M : ModuleCat.{v} R} {N : ModuleCat.{v'} R'} (e : M ≃ₛₗ[RingHomClass.toRingHom eR] N)
     (n : ℕ) : HasInjectiveDimensionLE M n ↔ HasInjectiveDimensionLE N n := by
@@ -136,6 +142,9 @@ lemma hasInjectiveDimensionLE_iff_of_semiLinearEquiv [Small.{v'} R']
     hasInjectiveDimensionLE_iff_of_linearEquiv_aux eN]
   exact hasInjectiveDimensionLE_iff_of_semiLinearEquiv_aux eR ((eM.symm.trans e).trans eN) n
 
+/--
+@isnad1 id=eq.0h6v.s8.1709a0ffa94d from=seed src=0 shape=991848bf vocab=f704f69a
+-/
 lemma injectiveDimension_eq_of_semiLinearEquiv [Small.{v'} R']
     {M : ModuleCat.{v} R} {N : ModuleCat.{v'} R'} (e : M ≃ₛₗ[RingHomClass.toRingHom eR] N) :
     injectiveDimension M = injectiveDimension N := by
@@ -153,6 +162,9 @@ end SemiLinear
 
 variable [Small.{v} R] [Small.{v'} R] {M : ModuleCat.{v} R} {N : ModuleCat.{v'} R}
 
+/--
+@isnad1 id=eq.0h4v.s6.ad08727bd29b from=seed src=0 shape=66134d88 vocab=9f51fbda
+-/
 lemma injectiveDimension_eq_of_linearEquiv (e : M ≃ₗ[R] N) :
     injectiveDimension M = injectiveDimension N :=
   injectiveDimension_eq_of_semiLinearEquiv.{v, v'} (M := M) (N := N) (RingEquiv.refl R) e

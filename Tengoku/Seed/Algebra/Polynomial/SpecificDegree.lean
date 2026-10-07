@@ -23,7 +23,9 @@ section IsDomain
 
 variable {R : Type*} [CommRing R] [IsDomain R]
 
-/-- A polynomial of degree 2 or 3 is irreducible iff it doesn't have roots. -/
+/-- A polynomial of degree 2 or 3 is irreducible iff it doesn't have roots.
+@isnad1 id=iff.3h2v.s6.59d19c8327e7 from=seed src=0 shape=a2f0e9c2 vocab=b6ecc18b
+-/
 theorem Monic.irreducible_iff_roots_eq_zero_of_degree_le_three {p : R[X]} (hp : p.Monic)
     (hp2 : 2 ≤ p.natDegree) (hp3 : p.natDegree ≤ 3) : Irreducible p ↔ p.roots = 0 := by
   have hp0 : p ≠ 0 := hp.ne_zero
@@ -44,7 +46,9 @@ section Field
 
 variable {K : Type*} [Field K] {p : K[X]}
 
-/-- A polynomial of degree 2 or 3 is irreducible iff it doesn't have roots. -/
+/-- A polynomial of degree 2 or 3 is irreducible iff it doesn't have roots.
+@isnad1 id=iff.2h2v.s6.cfd749101291 from=seed src=0 shape=1151b645 vocab=dd81fbda
+-/
 theorem irreducible_iff_roots_eq_zero_of_degree_le_three
     (hp2 : 2 ≤ p.natDegree) (hp3 : p.natDegree ≤ 3) :
     Irreducible p ↔ p.roots = 0 := by
@@ -56,6 +60,9 @@ theorem irreducible_iff_roots_eq_zero_of_degree_le_three
   · rwa [natDegree_mul_leadingCoeff_inv _ hp0]
   · rwa [natDegree_mul_leadingCoeff_inv _ hp0]
 
+/--
+@isnad1 id=irreduci.2h2v.s6.9844834e8901 from=seed src=0 shape=0c36e7e8 vocab=e60d6ffe
+-/
 lemma irreducible_of_degree_le_three_of_not_isRoot
     (hdeg : p.natDegree ∈ Finset.Icc 1 3) (hnot : ∀ x, ¬ IsRoot p x) :
     Irreducible p := by

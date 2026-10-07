@@ -42,15 +42,24 @@ inductive IsSumNonzeroSq [Mul R] [Add R] [Zero R] : R → Prop
 
 attribute [aesop 90%] IsSumNonzeroSq.sq
 
+/--
+@isnad1 id=issumnon.2h3v.s6.c1c14c500a3b from=seed src=0 shape=110fb96e vocab=c67ca440
+-/
 @[aesop 90%]
 theorem IsSumNonzeroSq.add [AddMonoid R] [Mul R] {s₁ s₂ : R}
     (h₁ : IsSumNonzeroSq s₁) (h₂ : IsSumNonzeroSq s₂) : IsSumNonzeroSq (s₁ + s₂) := by
   induction h₁ <;> simp_all [sq_add, add_assoc]
 
+/--
+@isnad1 id=issumsq.1h2v.s5.ef4fd4e9fcba from=seed src=0 shape=b0c8cbfb vocab=b61ef718
+-/
 theorem IsSumNonzeroSq.isSumSq [AddMonoid R] [Mul R] {s : R}
     (h : IsSumNonzeroSq s) : IsSumSq s := by
   induction h <;> aesop
 
+/--
+@isnad1 id=iff.1h2v.s5.951ecbb72e9c from=seed src=0 shape=e66e10b0 vocab=42e290e1
+-/
 theorem isSumNonzeroSq_iff_isSumSq [NonUnitalNonAssocSemiring R] {s : R} (hs : s ≠ 0) :
     IsSumNonzeroSq s ↔ IsSumSq s where
   mp := IsSumNonzeroSq.isSumSq
@@ -64,6 +73,9 @@ theorem isSumNonzeroSq_iff_isSumSq [NonUnitalNonAssocSemiring R] {s : R} (hs : s
       · simpa using IsSumNonzeroSq.sq ne_a
       · exact IsSumNonzeroSq.sq_add ne_a (ih ne_s)
 
+/--
+@isnad1 id=issumnon.2h2v.s5.e72213220cec from=seed src=0 shape=fb0fdeef vocab=42e290e1
+-/
 alias ⟨_, IsSumSq.isSumNonzeroSq_of_ne_zero⟩ := isSumNonzeroSq_iff_isSumSq
 
 namespace AddSubsemigroup
@@ -79,8 +91,14 @@ def sumNonzeroSq : AddSubsemigroup R where
 
 attribute [norm_cast] coe_sumNonzeroSq
 
+/--
+@isnad1 id=iff.0h2v.s5.94a3cb1aa262 from=seed src=0 shape=1335d7f0 vocab=8949b270
+-/
 @[simp] theorem mem_sumNonzeroSq : s ∈ sumNonzeroSq R ↔ IsSumNonzeroSq s := .rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.80f2565e8f48 from=seed src=0 shape=f8f9700e vocab=c3e1a027
+-/
 @[simp]
 theorem closure_mul_self : closure {x * x | x ≠ (0 : R)} = sumNonzeroSq R := by
   refine closure_eq_of_le (fun x hx ↦ by aesop) (fun x hx ↦ ?_)
@@ -107,6 +125,9 @@ class IsFormallyReal [AddCommMonoid R] [Mul R] : Prop where
 
 namespace IsFormallyReal
 
+/--
+@isnad1 id=isformal.2h1v.s7.d0e0eb9838ab from=seed src=0 shape=b926ab60 vocab=4ce84ea2
+-/
 theorem of_eq_zero_of_mul_self_of_eq_zero_of_add [AddCommMonoid R] [Mul R]
     (hz : ∀ {a : R}, a * a = 0 → a = 0)
     (ha : ∀ {s₁ s₂ : R}, IsSumSq s₁ → IsSumSq s₂ → s₁ + s₂ = 0 → s₁ = 0) : IsFormallyReal R where
@@ -117,6 +138,9 @@ theorem of_eq_zero_of_mul_self_of_eq_zero_of_add [AddCommMonoid R] [Mul R]
     | sq ha => grind
     | @sq_add b s hb hs ih => grind [ha (IsSumSq.mul_self b) hs.isSumSq]
 
+/--
+@isnad1 id=isformal.1h1v.s6.f55070d00c31 from=seed src=0 shape=00079be2 vocab=2f8dbc89
+-/
 theorem of_eq_zero_of_eq_zero_of_mul_self_add [NonUnitalNonAssocSemiring R]
     (h : ∀ {s a : R}, IsSumSq s → a * a + s = 0 → a = 0) : IsFormallyReal R where
   not_isSumNonzeroSq_zero := by

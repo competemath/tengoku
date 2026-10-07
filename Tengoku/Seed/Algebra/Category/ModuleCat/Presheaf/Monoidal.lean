@@ -76,6 +76,9 @@ noncomputable def tensorObj : PresheafOfModules (R ⋙ forget₂ _ _) where
 
 variable {M₁ M₂ M₃ M₄}
 
+/--
+@isnad1 id=eq.0h9v.s16.605931ead8f5 from=seed src=0 shape=96c1cf11 vocab=2de79228
+-/
 @[simp]
 lemma tensorObj_map_tmul {X Y : Cᵒᵖ} (f : X ⟶ Y) (m₁ : M₁.obj X) (m₂ : M₂.obj X) :
     DFunLike.coe (α := (M₁.obj X ⊗ M₂.obj X :))
@@ -166,6 +169,9 @@ section
 
 variable (M₁ M₂ M₃ M₄ : PresheafOfModules.{u} (R ⋙ forget₂ _ _))
 
+/--
+@isnad1 id=eq.0h5v.s10.fc192606484c from=seed src=0 shape=3efcc0a9 vocab=5d1f3e74
+-/
 lemma tensorObj_obj (X : Cᵒᵖ) :
     (M₁ ⊗ M₂).obj X =
       MonoidalCategory.tensorObj (C := ModuleCat (R.obj X)) (M₁.obj X) (M₂.obj X) := rfl
@@ -173,60 +179,93 @@ lemma tensorObj_obj (X : Cᵒᵖ) :
 attribute [local simp] tensorObj_obj
 
 variable {M₂ M₃} in
+/--
+@isnad1 id=eq.0h7v.s12.90c793bddbf6 from=seed src=0 shape=f91bb7f8 vocab=a5489a7f
+-/
 @[simp]
 lemma whiskerLeft_app (f : M₂ ⟶ M₃) (X : Cᵒᵖ) :
     dsimp% (M₁ ◁ f).app X = whiskerLeft (C := ModuleCat (R.obj X)) (M₁.obj X) (f.app X) :=
   rfl
 
 variable {M₁ M₂} in
+/--
+@isnad1 id=eq.0h7v.s12.575219bff0ba from=seed src=0 shape=002249ab vocab=9fa64bf2
+-/
 @[simp]
 lemma whiskerRight_app (f : M₁ ⟶ M₂) (M₃ : PresheafOfModules.{u} (R ⋙ forget₂ _ _)) (X : Cᵒᵖ) :
     dsimp% (f ▷ M₃).app X = whiskerRight (C := ModuleCat (R.obj X)) (f.app X) (M₃.obj X) := rfl
 
 variable {M₁ M₂ M₃ M₄} in
+/--
+@isnad1 id=eq.0h9v.s12.95d9fe6446bf from=seed src=0 shape=0623facb vocab=4cb15e62
+-/
 @[simp]
 lemma tensorHom_app (f : M₁ ⟶ M₂) (g : M₃ ⟶ M₄) (X : Cᵒᵖ) :
     dsimp% (f ⊗ₘ g).app X =
       MonoidalCategory.tensorHom (C := ModuleCat (R.obj X)) (f.app X) (g.app X) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.47e82b292911 from=seed src=0 shape=ad99d156 vocab=cb08a367
+-/
 @[simp]
 lemma leftUnitor_hom_app (X : Cᵒᵖ) :
     dsimp% (λ_ M₁).hom.app X = (leftUnitor (C := ModuleCat (R.obj X)) (M₁.obj X)).hom :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.346af6a0b368 from=seed src=0 shape=4f17a0b8 vocab=1c78d285
+-/
 @[simp]
 lemma leftUnitor_inv_app (X : Cᵒᵖ) :
     dsimp% (λ_ M₁).inv.app X = (leftUnitor (C := ModuleCat (R.obj X)) (M₁.obj X)).inv := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.761cd61ec5df from=seed src=0 shape=57c78c8d vocab=fe67a795
+-/
 @[simp]
 lemma rightUnitor_hom_app (X : Cᵒᵖ) :
     dsimp% (ρ_ M₁).hom.app X = (rightUnitor (C := ModuleCat (R.obj X)) (M₁.obj X)).hom :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.e3f7650c530d from=seed src=0 shape=3966a7bb vocab=49972200
+-/
 @[simp]
 lemma rightUnitor_inv_app (X : Cᵒᵖ) :
     dsimp% (ρ_ M₁).inv.app X = (rightUnitor (C := ModuleCat (R.obj X)) (M₁.obj X)).inv :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.8d1cc5147998 from=seed src=0 shape=1faa93db vocab=488eca9d
+-/
 @[simp]
 lemma associator_hom_app (X : Cᵒᵖ) :
     (α_ M₁ M₂ M₃).hom.app X =
       (associator (C := ModuleCat (R.obj X)) (M₁.obj X) (M₂.obj X) (M₃.obj X)).hom :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.4d8c04c636c0 from=seed src=0 shape=836b7137 vocab=27fa581c
+-/
 @[simp]
 lemma associator_inv_app (X : Cᵒᵖ) :
     (α_ M₁ M₂ M₃).inv.app X =
       (associator (C := ModuleCat (R.obj X)) (M₁.obj X) (M₂.obj X) (M₃.obj X)).inv :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.582877606264 from=seed src=0 shape=1526075d vocab=194c8085
+-/
 @[simp]
 lemma braiding_hom_app (X : Cᵒᵖ) :
     dsimp% (braiding M₁ M₂).hom.app X =
       (braiding (C := ModuleCat (R.obj X)) (M₁.obj X) (M₂.obj X)).hom := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.a5cd5e0ceee8 from=seed src=0 shape=289ed268 vocab=2ad6b064
+-/
 @[simp]
 lemma braiding_inv_app (X : Cᵒᵖ) :
     dsimp% (braiding M₁ M₂).inv.app X =

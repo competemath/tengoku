@@ -87,6 +87,9 @@ def karoubi.π : karoubi.F Λ ⋙ (functorExtension₂ C A).obj ι ⟶ 𝟭 (Kar
   whiskeringLeftObjToKaroubiFullyFaithful.preimage (karoubi.π' Λ)
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h5v.s8.45f34c571881 from=seed src=0 shape=8e24c656 vocab=ba9c488a
+-/
 @[simp]
 lemma karoubi.π_app_toKaroubi_obj (X : A) :
     (karoubi.π Λ).app ((toKaroubi _).obj X) = (karoubi.π' Λ).app X := by

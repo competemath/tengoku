@@ -19,6 +19,9 @@ namespace Subgroup
 
 variable {M : Type*} [CommGroup M] {ι : Type*} (f : ι → M) (x : M)
 
+/--
+@isnad1 id=ex.1h4v.s6.7c86a1c47761 from=seed src=0 shape=928a2fca vocab=219f3f16
+-/
 @[to_additive]
 theorem exists_finsupp_of_mem_closure_range (hx : x ∈ closure (Set.range f)) :
     ∃ a : ι →₀ ℤ, x = a.prod (f · ^ ·) := by
@@ -39,6 +42,9 @@ theorem exists_finsupp_of_mem_closure_range (hx : x ∈ closure (Set.range f)) :
     · simp
     · simp
 
+/--
+@isnad1 id=ex.1h4v.s6.19942115cded from=seed src=0 shape=8a46d72d vocab=363f09b3
+-/
 @[to_additive]
 theorem exists_of_mem_closure_range [Fintype ι] (hx : x ∈ closure (Set.range f)) :
     ∃ a : ι → ℤ, x = ∏ i, f i ^ a i := by
@@ -47,6 +53,9 @@ theorem exists_of_mem_closure_range [Fintype ι] (hx : x ∈ closure (Set.range 
 
 variable {f x}
 
+/--
+@isnad1 id=iff.0h4v.s6.ca44de31bf73 from=seed src=0 shape=81d0bee3 vocab=219f3f16
+-/
 @[to_additive]
 theorem mem_closure_range_iff :
     x ∈ closure (Set.range f) ↔ ∃ a : ι →₀ ℤ, x = a.prod (f · ^ ·) := by
@@ -54,12 +63,18 @@ theorem mem_closure_range_iff :
   rintro ⟨a, rfl⟩
   exact Submonoid.prod_mem _ fun i hi ↦ zpow_mem (subset_closure (Set.mem_range_self i)) _
 
+/--
+@isnad1 id=iff.0h4v.s6.98d310a99fe0 from=seed src=0 shape=3bae932d vocab=363f09b3
+-/
 @[to_additive]
 theorem mem_closure_range_iff_of_fintype [Fintype ι] :
     x ∈ closure (Set.range f) ↔ ∃ a : ι → ℤ, x = ∏ i, f i ^ a i := by
   rw [Finsupp.equivFunOnFinite.symm.exists_congr_left, mem_closure_range_iff]
   simp
 
+/--
+@isnad1 id=iff.0h3v.s6.03c0d3601fda from=seed src=0 shape=02d990d0 vocab=806bdf6c
+-/
 @[to_additive]
 theorem mem_closure_iff_of_fintype {s : Set M} [Fintype s] :
     x ∈ closure s ↔ ∃ a : s → ℤ, x = ∏ i : s, i.1 ^ a i := by

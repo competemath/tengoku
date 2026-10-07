@@ -38,6 +38,9 @@ noncomputable def sigma (𝒰 : Cover.{v} (precoverage P) S) : S.Cover (precover
     obtain ⟨i, y, rfl⟩ := 𝒰.exists_eq s
     refine ⟨default, Sigma.ι 𝒰.X i y, by simp [← Scheme.Hom.comp_apply]⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.e0985cb8862a from=seed src=0 shape=5c5762b3 vocab=067cb344
+-/
 @[simp]
 lemma presieve₀_sigma {S : Scheme.{u}} (𝒰 : Cover.{v} (precoverage P) S) :
     𝒰.sigma.presieve₀ = Presieve.singleton (Sigma.desc 𝒰.f) := by

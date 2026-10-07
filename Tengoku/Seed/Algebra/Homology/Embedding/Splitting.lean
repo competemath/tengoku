@@ -38,6 +38,9 @@ noncomputable def splittingExtend (i₂ : ι₂) :
     refine .ofIsZero _ ?_ ?_ ?_
     all_goals exact isZero_extend_X _ _ _ (by tauto)
 
+/--
+@isnad1 id=eq.1h10v.s9.029d410a6a4b from=seed src=0 shape=f3653d75 vocab=3540ff0d
+-/
 lemma splittingExtend_apply {i₁ : ι₁} {i₂ : ι₂} (h : e.f i₁ = i₂) :
     splittingExtend e σ i₂ =
       .ofIso (σ _) (S.mapNatIso (e.extendFunctorCompEvalIso C h).symm) := by

@@ -24,6 +24,9 @@ open CategoryTheory TensorProduct
 
 universe u
 
+/--
+@isnad1 id=iff.0h2v.s5.ee9d9592b2aa from=seed src=0 shape=7fbc7687 vocab=f8c4bfa7
+-/
 lemma CommRingCat.epi_iff_epi {R S : Type u} [CommRing R] [CommRing S] [Algebra R S] :
     Epi (CommRingCat.ofHom (algebraMap R S)) ↔ Algebra.IsEpi R S := by
   simp_rw [Algebra.isEpi_iff_forall_one_tmul_eq, eq_comm]
@@ -41,12 +44,18 @@ lemma CommRingCat.epi_iff_epi {R S : Type u} [CommRing R] [CommRing S] [Algebra 
     ext s
     simpa using! congr(Algebra.TensorProduct.lift f' g' (fun _ _ ↦ .all _ _) $(H s))
 
+/--
+@isnad1 id=surjecti.1h3v.s7.86cd64d609b3 from=seed src=0 shape=d37db370 vocab=1ef2105f
+-/
 lemma RingHom.surjective_of_epi_of_finite {R S : CommRingCat} (f : R ⟶ S) [Epi f]
     (h₂ : RingHom.Finite f.hom) : Function.Surjective f := by
   algebraize [f.hom]
   have : Algebra.IsEpi R S := CommRingCat.epi_iff_epi.mp <| inferInstanceAs (Epi f)
   rwa [Algebra.isEpi_iff_surjective_algebraMap_of_finite] at this
 
+/--
+@isnad1 id=iff.0h3v.s7.65a3bbe9ff00 from=seed src=0 shape=549995b2 vocab=1ef2105f
+-/
 lemma RingHom.surjective_iff_epi_and_finite {R S : CommRingCat} {f : R ⟶ S} :
     Function.Surjective f ↔ Epi f ∧ RingHom.Finite f.hom where
   mp h := ⟨ConcreteCategory.epi_of_surjective f h, .of_surjective f.hom h⟩

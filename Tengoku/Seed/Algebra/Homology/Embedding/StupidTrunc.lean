@@ -49,6 +49,9 @@ noncomputable def stupidTruncXIso {i : ι} {i' : ι'} (hi' : e.f i = i') :
     (K.stupidTrunc e).X i' ≅ K.X i' :=
   (K.restriction e).extendXIso e hi' ≪≫ eqToIso (by subst hi'; rfl)
 
+/--
+@isnad1 id=iszero.1h8v.s6.5e19440db63a from=seed src=0 shape=fbf092e2 vocab=f5d91632
+-/
 lemma isZero_stupidTrunc_X (i' : ι') (hi' : ∀ i, e.f i ≠ i') :
     IsZero ((K.stupidTrunc e).X i') :=
   isZero_extend_X _ _ _ hi'
@@ -63,6 +66,9 @@ instance {ι'' : Type*} {c'' : ComplexShape ι''} (e' : c''.Embedding c')
     · apply isZero_stupidTrunc_X
       simpa using hi''
 
+/--
+@isnad1 id=iff.0h7v.s6.f7a12bb1b838 from=seed src=0 shape=d5811e0e vocab=e0069a2a
+-/
 lemma isZero_stupidTrunc_iff :
     IsZero (K.stupidTrunc e) ↔ K.IsStrictlySupportedOutside e := by
   constructor
@@ -81,16 +87,25 @@ noncomputable def stupidTruncMap : K.stupidTrunc e ⟶ L.stupidTrunc e :=
   extendMap (restrictionMap φ e) e
 
 variable (K) in
+/--
+@isnad1 id=eq.0h7v.s7.e17458023e44 from=seed src=0 shape=4be5774e vocab=94286828
+-/
 @[simp]
 lemma stupidTruncMap_id : stupidTruncMap (𝟙 K) e = 𝟙 _ := by
   simp [stupidTruncMap, stupidTrunc]
 
+/--
+@isnad1 id=eq.0h11v.s8.2c963951da1d from=seed src=0 shape=ca9d7440 vocab=e643a047
+-/
 @[simp, reassoc]
 lemma stupidTruncMap_comp :
     stupidTruncMap (φ ≫ φ') e = stupidTruncMap φ e ≫ stupidTruncMap φ' e := by
   simp [stupidTruncMap, stupidTrunc]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h11v.s8.acdb284c87ec from=seed src=0 shape=5edf13ac vocab=97154f87
+-/
 @[reassoc (attr := simp)]
 lemma stupidTruncMap_stupidTruncXIso_hom {i : ι} {i' : ι'} (hi : e.f i = i') :
     (stupidTruncMap φ e).f i' ≫ (L.stupidTruncXIso e hi).hom =

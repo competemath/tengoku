@@ -33,6 +33,9 @@ protected abbrev AddEquiv.lieRing (e : M ≃+ L) : LieRing M where
   lie_self _ := by simp
   leibniz_lie _ _ _ := by simp
 
+/--
+@isnad1 id=eq.0h5v.s8.f41ae2784a4d from=seed src=0 shape=d0651abe vocab=ead6f5f2
+-/
 lemma AddEquiv.bracket_def (e : M ≃+ L) (x y : M) :
     letI := e.lieRing
     ⁅x, y⁆ = e.symm ⁅e x, e y⁆ := rfl
@@ -55,10 +58,16 @@ def LinearEquiv.lieEquiv (e : M ≃ₗ[R] L) :
   letI := e.lieAlgebra
   { e with map_lie' := by simp [AddEquiv.bracket_def] }
 
+/--
+@isnad1 id=eq.0h5v.s8.3cbcf500b7ee from=seed src=0 shape=55dc005f vocab=cafb091d
+-/
 @[simp]
 lemma LinearEquiv.lieEquiv_apply (e : M ≃ₗ[R] L) (a : M) :
     e.lieEquiv R a = e a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.996907d33738 from=seed src=0 shape=7484fbb5 vocab=27bb949b
+-/
 @[simp]
 lemma LinearEquiv.lieEquiv_symm_apply (e : M ≃ₗ[R] L) (b : L) :
     letI := e.toAddEquiv.lieRing
@@ -77,6 +86,9 @@ protected abbrev lieRing : LieRing L' :=
   letI := e.addCommGroup
   e.addEquiv.lieRing
 
+/--
+@isnad1 id=eq.0h5v.s6.172570b709eb from=seed src=0 shape=e426b7a6 vocab=505f5a06
+-/
 @[deprecated AddEquiv.bracket_def (since := "2026-07-30")]
 lemma bracket_def (x y : L') :
     letI := e.lieRing
@@ -84,7 +96,13 @@ lemma bracket_def (x y : L') :
 
 @[deprecated (since := "2026-07-30")] alias lieAlgebra := LinearEquiv.lieAlgebra
 @[deprecated (since := "2026-07-30")] alias lieEquiv := LinearEquiv.lieEquiv
+/--
+@isnad1 id=eq.0h5v.s8.3cbcf500b7ee from=seed src=0 shape=55dc005f vocab=cafb091d
+-/
 @[deprecated (since := "2026-07-30")] alias lieEquiv_apply := LinearEquiv.lieEquiv_apply
+/--
+@isnad1 id=eq.0h5v.s9.996907d33738 from=seed src=0 shape=7484fbb5 vocab=27bb949b
+-/
 @[deprecated (since := "2026-07-30")] alias lieEquiv_symm_apply := LinearEquiv.lieEquiv_symm_apply
 
 end Equiv

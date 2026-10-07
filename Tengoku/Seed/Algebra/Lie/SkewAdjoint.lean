@@ -45,6 +45,9 @@ open LinearMap (BilinForm)
 variable {R : Type u} {M : Type v} [CommRing R] [AddCommGroup M] [Module R M]
 variable (B : BilinForm R M)
 
+/--
+@isnad1 id=mem.2h5v.s10.999431dedd51 from=seed src=0 shape=5b3f3d3b vocab=d979b82e
+-/
 theorem LinearMap.BilinForm.isSkewAdjoint_bracket {f g : Module.End R M}
     (hf : f ∈ B.skewAdjointSubmodule) (hg : g ∈ B.skewAdjointSubmodule) :
     ⁅f, g⁆ ∈ B.skewAdjointSubmodule := by
@@ -73,12 +76,18 @@ def skewAdjointLieSubalgebraEquiv :
   simp only [Submodule.mem_map_equiv, LieSubalgebra.mem_map_submodule]
   exact (LinearMap.isPairSelfAdjoint_equiv (B := -B) (F := B) e f).symm
 
+/--
+@isnad1 id=eq.0h6v.s13.d4b04476d9d2 from=seed src=0 shape=0ee2d7ab vocab=06abc063
+-/
 @[simp]
 theorem skewAdjointLieSubalgebraEquiv_apply
     (f : skewAdjointLieSubalgebra (B.compl₁₂ (Qₗ := N) (Qₗ' := N) ↑e ↑e)) :
     ↑(skewAdjointLieSubalgebraEquiv B e f) = e.lieConj f := by
   simp [skewAdjointLieSubalgebraEquiv]
 
+/--
+@isnad1 id=eq.0h6v.s13.b1a92744729a from=seed src=0 shape=9a7ddcda vocab=b08b7854
+-/
 @[simp]
 theorem skewAdjointLieSubalgebraEquiv_symm_apply (f : skewAdjointLieSubalgebra B) :
     ↑((skewAdjointLieSubalgebraEquiv B e).symm f) = e.symm.lieConj f := by
@@ -93,11 +102,17 @@ open scoped Matrix
 variable {R : Type u} {n : Type w} [CommRing R] [Fintype n]
 variable (J : Matrix n n R)
 
+/--
+@isnad1 id=eq.0h4v.s6.d15e8dfb1753 from=seed src=0 shape=77086cd4 vocab=77249d31
+-/
 theorem Matrix.lie_transpose (A B : Matrix n n R) : ⁅A, B⁆ᵀ = ⁅Bᵀ, Aᵀ⁆ :=
   show (A * B - B * A)ᵀ = Bᵀ * Aᵀ - Aᵀ * Bᵀ by simp
 
 variable [DecidableEq n]
 
+/--
+@isnad1 id=mem.2h5v.s9.0e6344b83298 from=seed src=0 shape=545dafc9 vocab=2e612ed6
+-/
 theorem Matrix.isSkewAdjoint_bracket {A B : Matrix n n R} (hA : A ∈ skewAdjointMatricesSubmodule J)
     (hB : B ∈ skewAdjointMatricesSubmodule J) : ⁅A, B⁆ ∈ skewAdjointMatricesSubmodule J := by
   simp only [mem_skewAdjointMatricesSubmodule] at *
@@ -116,6 +131,9 @@ def skewAdjointMatricesLieSubalgebra : LieSubalgebra R (Matrix n n R) :=
   { skewAdjointMatricesSubmodule J with
     lie_mem' := J.isSkewAdjoint_bracket }
 
+/--
+@isnad1 id=iff.0h4v.s8.6532a08bbb64 from=seed src=0 shape=3995a264 vocab=94ab2fba
+-/
 @[simp]
 theorem mem_skewAdjointMatricesLieSubalgebra (A : Matrix n n R) :
     A ∈ skewAdjointMatricesLieSubalgebra J ↔ A ∈ skewAdjointMatricesSubmodule J :=
@@ -133,6 +151,9 @@ def skewAdjointMatricesLieSubalgebraEquiv (P : Matrix n n R) (h : Invertible P) 
       exact this
     simp [Matrix.IsSkewAdjoint, J.isAdjointPair_equiv _ _ P (isUnit_of_invertible P)]
 
+/--
+@isnad1 id=eq.0h6v.s12.1bc619cc180c from=seed src=0 shape=037e4d46 vocab=62b3b469
+-/
 theorem skewAdjointMatricesLieSubalgebraEquiv_apply (P : Matrix n n R) (h : Invertible P)
     (A : skewAdjointMatricesLieSubalgebra J) :
     ↑(skewAdjointMatricesLieSubalgebraEquiv J P h A) = P⁻¹ * A * P := by
@@ -150,6 +171,9 @@ def skewAdjointMatricesLieSubalgebraEquivTranspose {m : Type w} [DecidableEq m] 
     simp only [Matrix.IsSkewAdjoint, Matrix.IsAdjointPair, ← h,
       ← Function.Injective.eq_iff e.injective, map_mul, AlgEquiv.apply_symm_apply, map_neg]
 
+/--
+@isnad1 id=eq.1h6v.s12.367fe28e3abf from=seed src=0 shape=a0bbb96e vocab=d42fa76d
+-/
 @[simp]
 theorem skewAdjointMatricesLieSubalgebraEquivTranspose_apply {m : Type w} [DecidableEq m]
     [Fintype m] (e : Matrix n n R ≃ₐ[R] Matrix m m R) (h : ∀ A, (e A)ᵀ = e Aᵀ)
@@ -157,6 +181,9 @@ theorem skewAdjointMatricesLieSubalgebraEquivTranspose_apply {m : Type w} [Decid
     (skewAdjointMatricesLieSubalgebraEquivTranspose J e h A : Matrix m m R) = e A :=
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s8.44880a34ef1b from=seed src=0 shape=3913e6b6 vocab=05138296
+-/
 theorem mem_skewAdjointMatricesLieSubalgebra_unit_smul (u : Rˣ) (J A : Matrix n n R) :
     A ∈ skewAdjointMatricesLieSubalgebra (u • J) ↔ A ∈ skewAdjointMatricesLieSubalgebra J := by
   change A ∈ skewAdjointMatricesSubmodule (u • J) ↔ A ∈ skewAdjointMatricesSubmodule J

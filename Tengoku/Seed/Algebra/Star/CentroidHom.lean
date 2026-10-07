@@ -42,6 +42,9 @@ instance : Star (CentroidHom α) where
     map_mul_left' := fun a b => by simp only [star_mul, map_mul_right, star_star]
     map_mul_right' := fun a b => by simp only [star_mul, map_mul_left, star_star] }
 
+/--
+@isnad1 id=eq.0h3v.s6.b6076b6bb080 from=seed src=0 shape=c5c6463a vocab=ae27b00c
+-/
 @[simp] lemma star_apply (f : CentroidHom α) (a : α) : (star f) a = star (f (star a)) := rfl
 
 instance instStarAddMonoid : StarAddMonoid (CentroidHom α) where
@@ -78,6 +81,9 @@ def centerStarEmbedding : Subsemiring.center (CentroidHom α) →⋆ₙ+* Centro
     (SubsemiringClass.subtype (Subsemiring.center (CentroidHom α))).toNonUnitalRingHom
   map_star' _ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.c0639ceb991f from=seed src=0 shape=89160714 vocab=9d96eb3e
+-/
 theorem star_centerToCentroidCenter (z : NonUnitalStarSubsemiring.center α) :
     star (centerToCentroidCenter z) =
       (centerToCentroidCenter (star z : NonUnitalStarSubsemiring.center α)) := by
@@ -100,6 +106,9 @@ def starCenterToCentroidCenter :
 def starCenterToCentroid : NonUnitalStarSubsemiring.center α →⋆ₙ+* CentroidHom α :=
   NonUnitalStarRingHom.comp (centerStarEmbedding) (starCenterToCentroidCenter)
 
+/--
+@isnad1 id=eq.0h3v.s9.7905d5c5c395 from=seed src=0 shape=e4d7b326 vocab=8d0c71fd
+-/
 lemma starCenterToCentroid_apply (z : NonUnitalStarSubsemiring.center α) (a : α) :
     (starCenterToCentroid z) a = z * a := rfl
 
@@ -130,10 +139,16 @@ def starCenterIsoCentroid : StarSubsemiring.center α ≃⋆+* CentroidHom α wh
   right_inv T := CentroidHom.ext <| fun _ => by
     simp [starCenterToCentroid_apply, ← map_mul_right]
 
+/--
+@isnad1 id=eq.0h2v.s11.e545f8d2a5e7 from=seed src=0 shape=aba49f54 vocab=e1f09a23
+-/
 @[simp]
 lemma starCenterIsoCentroid_apply (a : ↥(NonUnitalStarSubsemiring.center α)) :
     CentroidHom.starCenterIsoCentroid a = CentroidHom.starCenterToCentroid a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.8ae79ccbf51b from=seed src=0 shape=8767248e vocab=b245f913
+-/
 @[simp]
 lemma starCenterIsoCentroid_symm_apply_coe (T : CentroidHom α) :
     ↑(CentroidHom.starCenterIsoCentroid.symm T) = T 1 := rfl

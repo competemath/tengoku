@@ -64,14 +64,23 @@ def engel (x : L) : LieSubalgebra R L :=
       obtain (h | h) : m ≤ ij.1 ∨ n ≤ ij.2 := by rw [Finset.mem_antidiagonal] at hij; lia
       all_goals simp [Module.End.pow_map_zero_of_le h, hm, hn] }
 
+/--
+@isnad1 id=iff.0h4v.s9.be860ce5326c from=seed src=0 shape=808ff671 vocab=b8e11f68
+-/
 lemma mem_engel_iff (x y : L) :
     y ∈ engel R x ↔ ∃ n : ℕ, ((ad R L x) ^ n) y = 0 :=
   (Module.End.mem_maxGenEigenspace _ _ _).trans <| by simp only [zero_smul, sub_zero]
 
+/--
+@isnad1 id=mem.0h3v.s5.381d32bd99a2 from=seed src=0 shape=5a5304d4 vocab=d2000c3f
+-/
 lemma self_mem_engel (x : L) : x ∈ engel R x := by
   simp only [mem_engel_iff]
   exact ⟨1, by simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.cb0f2931111c from=seed src=0 shape=bb8236dc vocab=e248a602
+-/
 @[simp]
 lemma engel_zero : engel R (0 : L) = ⊤ := by
   rw [eq_top_iff]
@@ -83,7 +92,9 @@ lemma engel_zero : engel R (0 : L) = ⊤ := by
 /-- Engel subalgebras are self-normalizing.
 See `LieSubalgebra.normalizer_eq_self_of_engel_le` for a proof that Lie-subalgebras
 containing an Engel subalgebra are also self-normalizing,
-provided that the ambient Lie algebra is Artinian. -/
+provided that the ambient Lie algebra is Artinian.
+@isnad1 id=eq.0h3v.s5.9510c66311d9 from=seed src=0 shape=31768e19 vocab=cf5b3d35
+-/
 @[simp]
 lemma normalizer_engel (x : L) : normalizer (engel R x) = engel R x := by
   apply le_antisymm _ (le_normalizer _)
@@ -103,7 +114,9 @@ open Filter in
 /-- A Lie-subalgebra of an Artinian Lie algebra is self-normalizing
 if it contains an Engel subalgebra.
 See `LieSubalgebra.normalizer_engel` for a proof that Engel subalgebras are self-normalizing,
-avoiding the Artinian condition. -/
+avoiding the Artinian condition.
+@isnad1 id=eq.1h4v.s6.d65d78cd2afd from=seed src=0 shape=d8aa50b5 vocab=1825b788
+-/
 lemma normalizer_eq_self_of_engel_le [IsArtinian R L]
     (H : LieSubalgebra R L) (x : L) (h : engel R x ≤ H) :
     normalizer H = H := by
@@ -146,7 +159,9 @@ lemma normalizer_eq_self_of_engel_le [IsArtinian R L]
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- A Lie subalgebra of a Noetherian Lie algebra is nilpotent
-if it is contained in the Engel subalgebra of all its elements. -/
+if it is contained in the Engel subalgebra of all its elements.
+@isnad1 id=isnilpot.1h3v.s7.5d3806d84ec9 from=seed src=0 shape=e0d720cd vocab=2ea9ff40
+-/
 lemma isNilpotent_of_forall_le_engel [IsNoetherian R L]
     (H : LieSubalgebra R L) (h : ∀ x ∈ H, H ≤ engel R x) :
     LieRing.IsNilpotent H := by

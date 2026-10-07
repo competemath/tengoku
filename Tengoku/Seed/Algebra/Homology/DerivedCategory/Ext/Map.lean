@@ -56,6 +56,9 @@ open DerivedCategory
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s12.0649f9e4f3c5 from=seed src=0 shape=176478e2 vocab=ed9a3d17
+-/
 lemma DerivedCategory.map_triangleOfSESδ [HasDerivedCategory.{t} C] [HasDerivedCategory.{t'} D]
     {S : ShortComplex (CochainComplex C ℤ)} (hS : S.ShortExact) :
     dsimp% F.mapDerivedCategory.map (triangleOfSESδ hS) =
@@ -77,6 +80,9 @@ lemma DerivedCategory.map_triangleOfSESδ [HasDerivedCategory.{t} C] [HasDerived
     ← Functor.map_comp_assoc]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s10.d59969040c4b from=seed src=0 shape=15cf8c2a vocab=f66decfc
+-/
 @[reassoc]
 lemma ShortComplex.ShortExact.mapShiftedHom_singleδ'
     [HasDerivedCategory.{t} C] [HasDerivedCategory.{t'} D]
@@ -105,6 +111,9 @@ lemma ShortComplex.ShortExact.mapShiftedHom_singleδ'
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h4v.s10.efa11366ea63 from=seed src=0 shape=da34c402 vocab=3cbff22e
+-/
 @[reassoc]
 lemma ShortComplex.ShortExact.mapShiftedHom_singleδ
     [HasDerivedCategory.{t} C] [HasDerivedCategory.{t'} D]
@@ -135,6 +144,9 @@ noncomputable def Abelian.Ext.mapExactFunctor [HasExt.{w} C] [HasExt.{w'} D] {X 
     ((F.mapCochainComplexSingleFunctor 0).app X) ((F.mapCochainComplexSingleFunctor 0).app Y) f
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s10.bcdcd13d89d9 from=seed src=0 shape=f60d2d35 vocab=79c6f327
+-/
 lemma Abelian.Ext.mapExactFunctor_hom
     [HasDerivedCategory.{t} C] [HasDerivedCategory.{t'} D]
     [HasExt.{w} C] [HasExt.{w'} D] {X Y : C} {n : ℕ} (e : Ext X Y n) :
@@ -160,10 +172,16 @@ attribute [local instance] HasDerivedCategory.standard
 
 variable [HasExt.{w} C] [HasExt.{w'} D] (X Y : C) (n : ℕ)
 
+/--
+@isnad1 id=eq.0h6v.s8.c7ac954f8816 from=seed src=0 shape=bdc0f6c8 vocab=05e7190b
+-/
 @[simp]
 lemma Abelian.Ext.mapExactFunctor_zero : (0 : Ext X Y n).mapExactFunctor F = 0 := by
   aesop
 
+/--
+@isnad1 id=eq.0h8v.s8.d6131156dc30 from=seed src=0 shape=2dd11345 vocab=a66b67cc
+-/
 @[simp]
 lemma Abelian.Ext.mapExactFunctor_add (f g : Ext.{w} X Y n) :
     (f + g).mapExactFunctor F = f.mapExactFunctor F + g.mapExactFunctor F := by
@@ -176,14 +194,23 @@ noncomputable def Functor.mapExtAddHom (X Y : C) (n : ℕ) :
   map_zero' := by simp
   map_add' := by simp
 
+/--
+@isnad1 id=eq.0h6v.s9.661f361f6a33 from=seed src=0 shape=0408a11b vocab=39f4a0f8
+-/
 @[simp]
 lemma Functor.mapExtAddHom_coe : ⇑(F.mapExtAddHom X Y n) = Ext.mapExactFunctor F := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.66a3aaf06ca6 from=seed src=0 shape=0adc09cb vocab=39f4a0f8
+-/
 lemma Functor.mapExtAddHom_apply (e : Ext X Y n) : F.mapExtAddHom X Y n e = e.mapExactFunctor F :=
   rfl
 
 variable (R : Type*) [Ring R] [CategoryTheory.Linear R C] [CategoryTheory.Linear R D] [F.Linear R]
 
+/--
+@isnad1 id=eq.0h9v.s9.53c13021b855 from=seed src=0 shape=69dc733e vocab=6d327f90
+-/
 @[simp]
 lemma Functor.mapExactFunctor_smul (r : R) (f : Ext.{w} X Y n) :
     (r • f).mapExactFunctor F = r • (f.mapExactFunctor F) := by
@@ -195,12 +222,21 @@ noncomputable def Functor.mapExtLinearMap (X Y : C) (n : ℕ) :
   __ := F.mapExtAddHom X Y n
   map_smul' := by simp
 
+/--
+@isnad1 id=eq.0h7v.s9.fbc79f7265e6 from=seed src=0 shape=d68b6780 vocab=4f3df925
+-/
 @[simp]
 lemma Functor.mapExtLinearMap_toAddMonoidHom : F.mapExtLinearMap R X Y n = F.mapExtAddHom X Y n :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.bb68b17b3162 from=seed src=0 shape=517fa177 vocab=a5c6eab8
+-/
 lemma Functor.mapExtLinearMap_coe : ⇑(F.mapExtLinearMap R X Y n) = Ext.mapExactFunctor F := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.6aafc335c20b from=seed src=0 shape=b1d3e107 vocab=a5c6eab8
+-/
 lemma Functor.mapExtLinearMap_apply (e : Ext X Y n) :
     F.mapExtLinearMap R X Y n e = e.mapExactFunctor F := rfl
 
@@ -209,6 +245,9 @@ end
 namespace Abelian.Ext
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h6v.s7.a0b1e248969a from=seed src=0 shape=560b45f7 vocab=1a199c13
+-/
 lemma mapExactFunctor_mk₀ [HasExt.{w} C] [HasExt.{w'} D] {X Y : C} (f : X ⟶ Y) :
     (mk₀ f).mapExactFunctor F = mk₀ (F.map f) := by
   dsimp [Ext.mapExactFunctor, mk₀]
@@ -219,12 +258,18 @@ lemma mapExactFunctor_mk₀ [HasExt.{w} C] [HasExt.{w'} D] {X Y : C} (f : X ⟶ 
   simpa only [Functor.mapHomologicalComplexUpToQuasiIsoLocalizerMorphism_functor,
     Functor.mapCochainComplexSingleFunctor, Iso.app_inv, Iso.app_hom] using! NatIso.naturality_1 _ f
 
+/--
+@isnad1 id=eq.0h5v.s9.0fb5f306f73c from=seed src=0 shape=3f642589 vocab=7ac4266d
+-/
 lemma mapExactFunctor₀ [HasExt.{w} C] [HasExt.{w'} D] (X Y : C) :
     Ext.mapExactFunctor F (X := X) (Y := Y) = Ext.homEquiv₀.symm ∘ F.map ∘ Ext.homEquiv₀ := by
   ext x
   rcases (Ext.mk₀_bijective X Y).2 x with ⟨y, hy⟩
   simp [← hy, Ext.mapExactFunctor_mk₀, Ext.homEquiv₀]
 
+/--
+@isnad1 id=eq.1h11v.s7.d313132e2e0d from=seed src=0 shape=b26e053d vocab=0da8912d
+-/
 lemma mapExactFunctor_comp [HasExt.{w} C] [HasExt.{w'} D] {X Y Z : C} {a b : ℕ}
     (α : Ext X Y a) (β : Ext Y Z b) {c : ℕ} (h : a + b = c) :
     (α.comp β h).mapExactFunctor F = (α.mapExactFunctor F).comp (β.mapExactFunctor F) h :=
@@ -232,6 +277,9 @@ lemma mapExactFunctor_comp [HasExt.{w} C] [HasExt.{w'} D] {X Y Z : C} {a b : ℕ
     ((F.mapCochainComplexSingleFunctor 0).app Y) _ α β (show b + a = (c : ℤ) by grind)
 
 attribute [local instance] HasDerivedCategory.standard in
+/--
+@isnad1 id=eq.1h4v.s7.06f1cb7d1f44 from=seed src=0 shape=925de878 vocab=1f1bbec9
+-/
 lemma mapExactFunctor_extClass [HasExt.{w} C] [HasExt.{w'} D] {S : ShortComplex C}
     (hS : S.ShortExact) : hS.extClass.mapExactFunctor F = (hS.map_of_exact F).extClass := by
   ext

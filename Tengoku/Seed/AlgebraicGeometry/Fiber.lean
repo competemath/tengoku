@@ -48,6 +48,9 @@ def Scheme.Hom.fiberToSpecResidueField (f : X ⟶ Y) (y : Y) :
     f.fiber y ⟶ Spec (Y.residueField y) :=
   pullback.snd _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.5e88bbc2b274 from=seed src=0 shape=07176e6d vocab=3b25b53e
+-/
 @[reassoc]
 lemma Scheme.Hom.fiber_fac (f : X ⟶ Y) (y : Y) :
     f.fiberι y ≫ f = f.fiberToSpecResidueField y ≫ Y.fromSpecResidueField y :=
@@ -58,11 +61,17 @@ lemma Scheme.Hom.fiber_fac (f : X ⟶ Y) (y : Y) :
     (f : X ⟶ Y) (y : Y) : (f.fiber y).Over (Spec (Y.residueField y)) where
   hom := f.fiberToSpecResidueField y
 
+/--
+@isnad1 id=eq.0h5v.s8.968f73adfd41 from=seed src=0 shape=c24e6c49 vocab=42d819e4
+-/
 lemma Scheme.Hom.fiberToSpecResidueField_apply (f : X ⟶ Y) (y : Y) (x : f.fiber y) :
     f.fiberToSpecResidueField y x = IsLocalRing.closedPoint (Y.residueField y) :=
   Subsingleton.elim (α := PrimeSpectrum _) _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispullba.1h9v.s10.c72b66c2bf8f from=seed src=0 shape=df695c1d vocab=646b7829
+-/
 lemma isPullback_fiberToSpecResidueField_of_isPullback {P X Y Z : Scheme.{u}} {fst : P ⟶ X}
     {snd : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z} (h : IsPullback fst snd f g) (y : Y) :
     IsPullback (pullback.map _ _ _ _ fst (Spec.map (g.residueFieldMap y)) g h.w.symm (by simp))
@@ -92,6 +101,9 @@ noncomputable def Spec.fiberToSpecResidueFieldIso (R S : Type u) [CommRing R] [C
   · cat_disch
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s8.4f94a58f08a6 from=seed src=0 shape=8c8f2518 vocab=773ed844
+-/
 lemma Scheme.Hom.range_fiberι (f : X ⟶ Y) (y : Y) :
     Set.range (f.fiberι y) = f ⁻¹' {y} := by
   simp [fiber, fiberι, Scheme.Pullback.range_fst, Scheme.range_fromSpecResidueField]
@@ -104,10 +116,16 @@ instance (f : X ⟶ Y) (y : Y) : IsPreimmersion (f.fiberι y) :=
 def Scheme.Hom.fiberHomeo (f : X ⟶ Y) (y : Y) : f.fiber y ≃ₜ f ⁻¹' {y} :=
   .trans (f.fiberι y).isEmbedding.toHomeomorph (.setCongr (f.range_fiberι y))
 
+/--
+@isnad1 id=eq.0h5v.s11.32bf721fb2bb from=seed src=0 shape=282173fd vocab=ac88a71a
+-/
 @[simp]
 lemma Scheme.Hom.fiberHomeo_apply (f : X ⟶ Y) (y : Y) (x : f.fiber y) :
     (f.fiberHomeo y x).1 = f.fiberι y x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.32d769c56f77 from=seed src=0 shape=552c95b7 vocab=f8131c0d
+-/
 @[simp]
 lemma Scheme.Hom.fiberι_fiberHomeo_symm (f : X ⟶ Y) (y : Y) (x : f ⁻¹' {y}) :
     f.fiberι y ((f.fiberHomeo y).symm x) = x :=
@@ -117,6 +135,9 @@ lemma Scheme.Hom.fiberι_fiberHomeo_symm (f : X ⟶ Y) (y : Y) (x : f ⁻¹' {y}
 def Scheme.Hom.asFiber (f : X ⟶ Y) (x : X) : f.fiber (f x) :=
     (f.fiberHomeo (f x)).symm ⟨x, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.5e29ee00e4dc from=seed src=0 shape=c9a61fba vocab=88ada969
+-/
 @[simp]
 lemma Scheme.Hom.fiberι_asFiber (f : X ⟶ Y) (x : X) : f.fiberι _ (f.asFiber x) = x :=
   f.fiberι_fiberHomeo_symm _ _
@@ -128,10 +149,16 @@ instance (f : X ⟶ Y) [QuasiCompact f] (y : Y) : CompactSpace (f.fiber y) :=
   HasAffineProperty.iff_of_isAffine (P := @QuasiCompact)
     (f := f.fiberToSpecResidueField y).mp inferInstance
 
+/--
+@isnad1 id=iscompac.0h4v.s8.0c471a96c181 from=seed src=0 shape=a7bf1a39 vocab=8e97be4d
+-/
 lemma Scheme.Hom.isCompact_preimage_singleton (f : X ⟶ Y) [QuasiCompact f] (y : Y) :
     IsCompact (f ⁻¹' {y}) :=
   f.range_fiberι y ▸ isCompact_range (f.fiberι y).continuous
 
+/--
+@isnad1 id=iscompac.0h4v.s8.0c471a96c181 from=seed src=0 shape=a7bf1a39 vocab=8e97be4d
+-/
 @[deprecated (since := "2026-02-05")]
 alias QuasiCompact.isCompact_preimage_singleton := Scheme.Hom.isCompact_preimage_singleton
 
@@ -151,20 +178,32 @@ instance (f : X ⟶ Y) (y : Y) [LocallyOfFiniteType f] : JacobsonSpace (f.fiber 
 def Scheme.Hom.asFiberHom (f : X ⟶ Y) (x : X) : Spec (X.residueField x) ⟶ f.fiber (f x) :=
   pullback.lift (X.fromSpecResidueField x) (Spec.map (f.residueFieldMap _)) (by simp)
 
+/--
+@isnad1 id=eq.0h4v.s8.2f9d16e0e1c5 from=seed src=0 shape=7d3e1bfb vocab=d10d3ace
+-/
 @[reassoc (attr := simp)]
 lemma Scheme.Hom.asFiberHom_fiberι (f : X ⟶ Y) (x : X) :
     f.asFiberHom x ≫ f.fiberι _ = X.fromSpecResidueField x := pullback.lift_fst ..
 
+/--
+@isnad1 id=eq.0h4v.s9.1029887c8584 from=seed src=0 shape=4b4d25cb vocab=969719b3
+-/
 @[reassoc (attr := simp)]
 lemma Scheme.Hom.asFiberHom_fiberToSpecResidueField (f : X ⟶ Y) (x : X) :
     f.asFiberHom x ≫ f.fiberToSpecResidueField _ = Spec.map (f.residueFieldMap _) :=
   pullback.lift_snd ..
 
+/--
+@isnad1 id=eq.0h5v.s10.114e04bb8044 from=seed src=0 shape=1c378197 vocab=a13fac8e
+-/
 @[simp]
 lemma Scheme.Hom.asFiberHom_apply (f : X ⟶ Y) (x : X) (y) :
     f.asFiberHom x y = f.asFiber x :=
   (f.fiberι _).isEmbedding.injective (by simp [← Scheme.Hom.comp_apply])
 
+/--
+@isnad1 id=eq.0h4v.s11.796bf56e3e0f from=seed src=0 shape=42a23814 vocab=01adc3e7
+-/
 @[simp]
 lemma Scheme.Hom.range_asFiberHom (f : X ⟶ Y) (x : X) :
     Set.range (f.asFiberHom x) = {f.asFiber x} := by aesop

@@ -43,11 +43,17 @@ along any morphism `Y' ⟶ Y` is (topologically) an open map.
 class UniversallyOpen (f : X ⟶ Y) : Prop where
   universally_isOpenMap : universally (topologically @IsOpenMap) f
 
+/--
+@isnad1 id=isopenma.0h3v.s7.20a9d2a6e94f from=seed src=0 shape=82a81c7a vocab=14d3e893
+-/
 lemma Scheme.Hom.isOpenMap {X Y : Scheme} (f : X ⟶ Y) [UniversallyOpen f] :
     IsOpenMap f := UniversallyOpen.universally_isOpenMap _ _ _ IsPullback.of_id_snd
 
 namespace UniversallyOpen
 
+/--
+@isnad1 id=eq.0h0v.s4.3f7e4f340cf8 from=seed src=0 shape=70cd5167 vocab=efc1d8fd
+-/
 theorem eq : @UniversallyOpen = universally (topologically @IsOpenMap) := by
   ext X Y f; rw [universallyOpen_iff]
 
@@ -78,11 +84,17 @@ instance : MorphismProperty.IsMultiplicative @UniversallyOpen where
   id_mem _ := inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=universa.0h5v.s5.414f69fd074a from=seed src=0 shape=549492a1 vocab=397e7bda
+-/
 instance fst {X Y Z : Scheme} (f : X ⟶ Z) (g : Y ⟶ Z) [hg : UniversallyOpen g] :
     UniversallyOpen (pullback.fst f g) :=
   MorphismProperty.pullback_fst f g hg
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=universa.0h5v.s5.bd73fec65b9b from=seed src=0 shape=7386bcd0 vocab=86dabe96
+-/
 instance snd {X Y Z : Scheme} (f : X ⟶ Z) (g : Y ⟶ Z) [hf : UniversallyOpen f] :
     UniversallyOpen (pullback.snd f g) :=
   MorphismProperty.pullback_snd f g hf
@@ -103,7 +115,9 @@ end UniversallyOpen
 variable {X Y : Scheme.{u}} (f : X ⟶ Y)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- A generalizing morphism, locally of finite presentation is open. -/
+/-- A generalizing morphism, locally of finite presentation is open.
+@isnad1 id=isopenma.1h3v.s8.301b4a46d8a9 from=seed src=0 shape=28c916f5 vocab=f44d27f0
+-/
 @[stacks 01U1]
 lemma isOpenMap_of_generalizingMap [LocallyOfFinitePresentation f]
     (hf : GeneralizingMap f) : IsOpenMap f := by
@@ -128,7 +142,9 @@ lemma isOpenMap_of_generalizingMap [LocallyOfFinitePresentation f]
   · rwa [Algebra.HasGoingDown.iff_generalizingMap_primeSpectrumComap]
   · apply (HasRingHomProperty.Spec_iff (P := @LocallyOfFinitePresentation)).mp inferInstance
 
-/-- Any flat morphism is generalizing. -/
+/-- Any flat morphism is generalizing.
+@isnad1 id=generali.0h3v.s7.e21539d8812a from=seed src=0 shape=82a81c7a vocab=008aa5f3
+-/
 lemma Flat.generalizingMap [Flat f] : GeneralizingMap f := by
   have := HasRingHomProperty.of_isZariskiLocalAtSource_of_isZariskiLocalAtTarget.{u}
     (topologically GeneralizingMap)
@@ -140,7 +156,9 @@ lemma Flat.generalizingMap [Flat f] : GeneralizingMap f := by
   convert! Algebra.HasGoingDown.of_flat
   exact HasRingHomProperty.appLE @Flat f ‹_› U V e
 
-/-- A flat morphism, locally of finite presentation is universally open. -/
+/-- A flat morphism, locally of finite presentation is universally open.
+@isnad1 id=universa.0h3v.s4.181d0f917b42 from=seed src=0 shape=d492d1ea vocab=3913ef17
+-/
 @[stacks 01UA]
 instance (priority := low) UniversallyOpen.of_flat [Flat f] [LocallyOfFinitePresentation f] :
     UniversallyOpen f :=

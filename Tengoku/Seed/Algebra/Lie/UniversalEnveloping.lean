@@ -119,29 +119,46 @@ def lift : (L →ₗ⁅R⁆ A) ≃ (UniversalEnvelopingAlgebra R L →ₐ[R] A) 
     -- extra `rfl` after https://github.com/leanprover/lean4/pull/2644
     simp [mkAlgHom]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.724990af4ae0 from=seed src=0 shape=9bbdbe85 vocab=49e9bd0d
+-/
 @[simp]
 theorem lift_symm_apply (F : UniversalEnvelopingAlgebra R L →ₐ[R] A) :
     (lift R).symm F = (F : UniversalEnvelopingAlgebra R L →ₗ⁅R⁆ A).comp (ι R) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.6a1a8412679d from=seed src=0 shape=2f497a09 vocab=ce7b1040
+-/
 @[simp]
 theorem ι_comp_lift : lift R f ∘ ι R = f :=
   funext <| LieHom.ext_iff.mp <| (lift R).symm_apply_apply f
 
 -- `simp`-normal form is `lift_ι_apply'`.
+/--
+@isnad1 id=eq.0h5v.s9.74628ce6de45 from=seed src=0 shape=e2f78604 vocab=fb50a913
+-/
 theorem lift_ι_apply (x : L) : lift R f (ι R x) = f x := by
   rw [← Function.comp_apply (f := lift R f) (g := ι R) (x := x), ι_comp_lift]
 
+/--
+@isnad1 id=eq.0h5v.s10.bb12fd9c45e4 from=seed src=0 shape=6a940273 vocab=59459dbf
+-/
 @[simp]
 theorem lift_ι_apply' (x : L) :
     lift R f ((UniversalEnvelopingAlgebra.mkAlgHom R L) (ιₜ x)) = f x := by
   simpa using lift_ι_apply R f x
 
+/--
+@isnad1 id=iff.0h5v.s9.84b4b5b42b37 from=seed src=0 shape=8b75cb85 vocab=ce7b1040
+-/
 theorem lift_unique (g : UniversalEnvelopingAlgebra R L →ₐ[R] A) : g ∘ ι R = f ↔ g = lift R f := by
   refine Iff.trans ?_ (lift R).symm_apply_eq
   constructor <;> · intro h; ext; simp [← h]
 
-/-- See note [partially-applied ext lemmas]. -/
+/-- See note [partially-applied ext lemmas].
+@isnad1 id=eq.1h5v.s8.c9104051b325 from=seed src=0 shape=84c40580 vocab=688df870
+-/
 @[ext]
 theorem hom_ext {g₁ g₂ : UniversalEnvelopingAlgebra R L →ₐ[R] A}
     (h :

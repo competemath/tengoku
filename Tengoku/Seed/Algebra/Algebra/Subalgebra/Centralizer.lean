@@ -36,14 +36,23 @@ section CommSemiring
 variable {R : Type*} [CommSemiring R]
 variable {A : Type*} [Semiring A] [Algebra R A]
 
+/--
+@isnad1 id=iff.0h4v.s7.14d1dc3a5bb1 from=seed src=0 shape=cdaa1654 vocab=a21fd021
+-/
 lemma le_centralizer_iff (S T : Subalgebra R A) : S ≤ centralizer R T ↔ T ≤ centralizer R S :=
   ⟨fun h t ht _ hs ↦ (h hs t ht).symm, fun h s hs _ ht ↦ (h ht s hs).symm⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.3bf9813706f4 from=seed src=0 shape=f38be554 vocab=a28d891f
+-/
 lemma centralizer_coe_sup (S T : Subalgebra R A) :
     centralizer R ((S ⊔ T : Subalgebra R A) : Set A) = centralizer R S ⊓ centralizer R T :=
   eq_of_forall_le_iff fun K ↦ by
     simp_rw [le_centralizer_iff, sup_le_iff, le_inf_iff, K.le_centralizer_iff]
 
+/--
+@isnad1 id=eq.0h4v.s7.4d612397b3d1 from=seed src=0 shape=aa5da834 vocab=8c202e01
+-/
 lemma centralizer_coe_iSup {ι : Sort*} (S : ι → Subalgebra R A) :
     centralizer R ((⨆ i, S i : Subalgebra R A) : Set A) = ⨅ i, centralizer R (S i) :=
   eq_of_forall_le_iff fun K ↦ by
@@ -63,6 +72,7 @@ open Finsupp TensorProduct
 Let `R` be a commutative ring and `A, B` be `R`-algebras where `B` is free as `R`-module.
 For any subset `S ⊆ A`, the centralizer of `S ⊗ 1 ⊆ A ⊗ B` is `C_A(S) ⊗ B` where `C_A(S)` is the
 centralizer of `S` in `A`.
+@isnad1 id=eq.0h4v.s9.92caf342233d from=seed src=0 shape=cae59525 vocab=c3dfc9e0
 -/
 lemma centralizer_coe_image_includeLeft_eq_center_tensorProduct
     (S : Set A) [Module.Free R B] :
@@ -102,6 +112,7 @@ lemma centralizer_coe_image_includeLeft_eq_center_tensorProduct
 Let `R` be a commutative ring and `A, B` be `R`-algebras where `B` is free as `R`-module.
 For any subset `S ⊆ B`, the centralizer of `1 ⊗ S ⊆ A ⊗ B` is `A ⊗ C_B(S)` where `C_B(S)` is the
 centralizer of `S` in `B`.
+@isnad1 id=eq.0h4v.s9.f4048786b7ae from=seed src=0 shape=e533bf24 vocab=a71a9d3f
 -/
 lemma centralizer_coe_image_includeRight_eq_center_tensorProduct
     (S : Set B) [Module.Free R A] :
@@ -130,6 +141,7 @@ lemma centralizer_coe_image_includeRight_eq_center_tensorProduct
 Let `R` be a commutative ring and `A, B` be `R`-algebras where `B` is free as `R`-module.
 For any subalgebra `S` of `A`, the centralizer of `S ⊗ 1 ⊆ A ⊗ B` is `C_A(S) ⊗ B` where `C_A(S)` is
 the centralizer of `S` in `A`.
+@isnad1 id=eq.0h4v.s10.766ba645a921 from=seed src=0 shape=da053ea7 vocab=d56a3374
 -/
 lemma centralizer_coe_map_includeLeft_eq_center_tensorProduct
     (S : Subalgebra R A) [Module.Free R B] :
@@ -143,6 +155,7 @@ lemma centralizer_coe_map_includeLeft_eq_center_tensorProduct
 Let `R` be a commutative ring and `A, B` be `R`-algebras where `A` is free as `R`-module.
 For any subalgebra `S` of `B`, the centralizer of `1 ⊗ S ⊆ A ⊗ B` is `A ⊗ C_B(S)` where `C_B(S)` is
 the centralizer of `S` in `B`.
+@isnad1 id=eq.0h4v.s9.91e1076bede6 from=seed src=0 shape=1e2bc026 vocab=cd12fccc
 -/
 lemma centralizer_coe_map_includeRight_eq_center_tensorProduct
     (S : Subalgebra R B) [Module.Free R A] :
@@ -155,6 +168,7 @@ lemma centralizer_coe_map_includeRight_eq_center_tensorProduct
 /--
 Let `R` be a commutative ring and `A, B` be `R`-algebras where `B` is free as `R`-module.
 Then the centralizer of `A ⊗ 1 ⊆ A ⊗ B` is `C(A) ⊗ B` where `C(A)` is the center of `A`.
+@isnad1 id=eq.0h3v.s9.fed1fa11bc11 from=seed src=0 shape=36ea8316 vocab=dea10693
 -/
 lemma centralizer_coe_range_includeLeft_eq_center_tensorProduct [Module.Free R B] :
     Subalgebra.centralizer R
@@ -168,6 +182,7 @@ lemma centralizer_coe_range_includeLeft_eq_center_tensorProduct [Module.Free R B
 /--
 Let `R` be a commutative ring and `A, B` be `R`-algebras where `A` is free as `R`-module.
 Then the centralizer of `1 ⊗ B ⊆ A ⊗ B` is `A ⊗ C(B)` where `C(B)` is the center of `B`.
+@isnad1 id=eq.0h3v.s9.b2f3d0994869 from=seed src=0 shape=a4dea8ca vocab=a106267c
 -/
 lemma centralizer_range_includeRight_eq_center_tensorProduct [Module.Free R A] :
     Subalgebra.centralizer R
@@ -178,6 +193,9 @@ lemma centralizer_range_includeRight_eq_center_tensorProduct [Module.Free R A] :
   ext
   simp [includeRight]
 
+/--
+@isnad1 id=eq.0h3v.s9.938227e682b3 from=seed src=0 shape=dd6808b0 vocab=0f7fdd63
+-/
 lemma centralizer_tensorProduct_eq_center_tensorProduct_left [Module.Free R B] :
     Subalgebra.centralizer R
       (Algebra.TensorProduct.map (AlgHom.id R A) (Algebra.ofId R B)).range =
@@ -185,6 +203,9 @@ lemma centralizer_tensorProduct_eq_center_tensorProduct_left [Module.Free R B] :
   rw [← centralizer_coe_range_includeLeft_eq_center_tensorProduct]
   simp [Algebra.TensorProduct.map_range]
 
+/--
+@isnad1 id=eq.0h3v.s9.31d716a214e6 from=seed src=0 shape=fdaaaf8e vocab=5de1f292
+-/
 lemma centralizer_tensorProduct_eq_center_tensorProduct_right [Module.Free R A] :
     Subalgebra.centralizer R
       (Algebra.TensorProduct.map (Algebra.ofId R A) (AlgHom.id R B)).range =

@@ -43,13 +43,22 @@ abbrev LieCharacter :=
 
 variable {R L}
 
+/--
+@isnad1 id=eq.0h5v.s6.14821858df12 from=seed src=0 shape=cb4921d4 vocab=774ebb64
+-/
 theorem lieCharacter_apply_lie (χ : LieCharacter R L) (x y : L) : χ ⁅x, y⁆ = 0 := by
   rw [LieHom.map_lie, LieRing.of_associative_ring_bracket, mul_comm, sub_self]
 
+/--
+@isnad1 id=eq.0h5v.s7.c21799e1f0fa from=seed src=0 shape=aef502aa vocab=774ebb64
+-/
 @[simp]
 theorem lieCharacter_apply_lie' (χ : LieCharacter R L) (x y : L) : ⁅χ x, χ y⁆ = 0 := by
   rw [LieRing.of_associative_ring_bracket, mul_comm, sub_self]
 
+/--
+@isnad1 id=eq.1h4v.s6.37eb0e093a65 from=seed src=0 shape=c5bb1749 vocab=f68a7f9a
+-/
 theorem lieCharacter_apply_of_mem_derived (χ : LieCharacter R L) {x : L}
     (h : x ∈ derivedSeries R L 1) : χ x = 0 := by
   rw [derivedSeries_def, derivedSeriesOfIdeal_succ, derivedSeriesOfIdeal_zero, ←

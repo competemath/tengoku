@@ -50,6 +50,9 @@ variable (M)
 The `I`-primaryComponent component of a module `M` where `I` is an ideal of `A`. -/
 def primaryComponent : Submodule A M := ⨆ i : ℕ, torsionBySet A M ↑(I ^ i)
 
+/--
+@isnad1 id=iff.0h4v.s7.4eb90ae35cee from=seed src=0 shape=94dac089 vocab=2becdc09
+-/
 theorem primaryComponent_mem (x : M) :
     x ∈ primaryComponent M I ↔ ∃ n, x ∈ torsionBySet A M ↑(I ^ n) := by
   simp only [primaryComponent, mem_torsionBySet_iff, SetLike.coe_sort_coe, Subtype.forall]
@@ -62,6 +65,9 @@ theorem primaryComponent_mem (x : M) :
       simp [torsionBySet_le_torsionBySet_pow]
   · aesop (add safe Submodule.mem_iSup_of_mem)
 
+/--
+@isnad1 id=mem.0h6v.s8.17b222742615 from=seed src=0 shape=0774fee4 vocab=6dcb3dce
+-/
 theorem primaryComponent_map_mem (φ : M₁ →ₗ[A] M₂) (c : primaryComponent M₁ I) :
     φ c ∈ primaryComponent M₂ I := by
   obtain ⟨c, hc⟩ := c
@@ -78,17 +84,26 @@ def primaryComponent.map (φ : M₁ →ₗ[A] M₂) : primaryComponent M₁ I �
   (φ.domRestrict (primaryComponent M₁ I)).codRestrict (primaryComponent M₂ I) (fun c ↦
     by simpa only [LinearMap.domRestrict_apply] using primaryComponent_map_mem I φ c)
 
+/--
+@isnad1 id=eq.0h5v.s9.ecdcf47d606b from=seed src=0 shape=eda9eb42 vocab=495fb14c
+-/
 theorem primaryComponent.map_ker_eq (φ : M₁ →ₗ[A] M₂) :
     (primaryComponent.map I φ).ker.map (primaryComponent M₁ I).subtype =
       (primaryComponent φ.ker I).map φ.ker.subtype := by
   aesop (add norm [map, Subtype.ext_iff, primaryComponent_mem])
 
+/--
+@isnad1 id=eq.0h3v.s9.7475c8a043fb from=seed src=0 shape=258d6f89 vocab=91fdd815
+-/
 theorem primaryComponent_torsionBySet_eq_inf (I : Ideal A) :
     (primaryComponent (torsionBySet A M ↑I) I).map (Submodule.subtype _) =
     primaryComponent M I ⊓ torsionBySet A M ↑I := by
   ext x
   simp [primaryComponent_mem]
 
+/--
+@isnad1 id=eq.1h4v.s9.44a243998e79 from=seed src=0 shape=c19fb66a vocab=367abb22
+-/
 theorem primaryComponent_torsionBySet_of_isCoprime (J : Ideal A) (hD : IsCoprime I J) :
     primaryComponent (torsionBySet A M J) I = ⊥ := by
   have (n : ℕ) : Disjoint (torsionBySet A M ↑(I ^ n)) (torsionBySet A M ↑J) :=
@@ -109,6 +124,9 @@ section AddCommGroup
 variable [AddCommGroup M] [Module A M]
 
 open Submodule in
+/--
+@isnad1 id=eq.1h5v.s10.77834ee603cc from=seed src=0 shape=4e538dad vocab=816f2cc4
+-/
 theorem primaryComponent_sup (N₁ N₂ : Submodule A M) (hD : Disjoint N₁ N₂) :
     (primaryComponent ↥(N₁ ⊔ N₂) I).map (N₁ ⊔ N₂).subtype =
     (primaryComponent N₁ I).map N₁.subtype ⊔ (primaryComponent N₂ I).map N₂.subtype := by
@@ -138,6 +156,9 @@ variable [IsDedekindDomain A]
 
 open scoped nonZeroDivisors
 
+/--
+@isnad1 id=eq.1h2v.s7.c7ac36bf59bb from=seed src=0 shape=058bcabd vocab=fd65ff30
+-/
 theorem iSup_primaryComponent_eq_top (h : IsTorsion A M) :
     ⨆ P : HeightOneSpectrum A, primaryComponent M (P : Ideal A) = ⊤ := by
   rw [eq_top_iff']
@@ -173,6 +194,9 @@ theorem iSup_primaryComponent_eq_top (h : IsTorsion A M) :
   · simp_all
 
 variable (A M) in
+/--
+@isnad1 id=isupinde.0h2v.s6.605f22b40cb0 from=seed src=0 shape=52603d52 vocab=c33db8d2
+-/
 theorem iSupIndep_primaryComponent :
     iSupIndep fun P : HeightOneSpectrum A => primaryComponent M (P : Ideal A) := by
   rw [iSupIndep_iff_finsetSum_eq_zero_imp_eq_zero]
@@ -188,6 +212,9 @@ theorem iSupIndep_primaryComponent :
   apply hSupIndep _ _ ?_ hsum
   exact fun P hP ↦ torsionBySet_le_torsionBySet_pow _ _ (Finset.le_sup hP) _ (hmem P hP)
 
+/--
+@isnad1 id=surjecti.2h5v.s9.cbfdea1f7b92 from=seed src=0 shape=8ff4dff3 vocab=52c9f56e
+-/
 theorem primaryComponent.map_surjective {M₁ M₂ : Type*}
     [AddCommGroup M₁] [AddCommGroup M₂] [Module A M₁] [Module A M₂] (hM₁ : IsTorsion A M₁)
     (P : HeightOneSpectrum A) (φ : M₁ →ₗ[A] M₂) (hf : Surjective φ) :

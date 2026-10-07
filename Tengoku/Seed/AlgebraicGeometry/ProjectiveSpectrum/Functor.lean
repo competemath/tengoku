@@ -58,6 +58,9 @@ noncomputable def comapStructureSheafFun
   localRingHom f _ y.1.1.1 rfl <| s ⟨.comap f hf y.1, hUV y.2⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=pred.3h10v.s9.120faabef292 from=seed src=0 shape=50a32b17 vocab=976e9fc7
+-/
 lemma isLocallyFraction_comapStructureSheafFun
     (s : ∀ x : U, AtPrime 𝒜 x.1.1.1) (hs : (isLocallyFraction 𝒜).pred s) :
     (isLocallyFraction ℬ).pred (comapStructureSheafFun f hf U V hUV s) := by
@@ -103,6 +106,9 @@ set_option backward.isDefEq.respectTransparency.types false in
     { base := TopCat.ofHom <| comap f hf
       c := { app U := CommRingCat.ofHom <| comapStructureSheaf f hf _ _ Set.Subset.rfl } }
 
+/--
+@isnad1 id=eq.1h9v.s13.0ef63d62bac0 from=seed src=0 shape=102018fd vocab=c25ce160
+-/
 lemma germ_map_sectionInBasicOpen {p : ProjectiveSpectrum ℬ}
     (c : NumDenSameDeg 𝒜 (p.comap f hf).1.toIdeal.primeCompl) :
     (toSheafedSpace ℬ).presheaf.germ
@@ -114,6 +120,9 @@ lemma germ_map_sectionInBasicOpen {p : ProjectiveSpectrum ℬ}
   rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h6v.s11.d1b081252471 from=seed src=0 shape=5003f27d vocab=4fd52682
+-/
 @[simp] lemma val_sectionInBasicOpen_apply (p : ProjectiveSpectrum.top 𝒜)
     (c : NumDenSameDeg 𝒜 p.1.toIdeal.primeCompl)
     (q : ProjectiveSpectrum.basicOpen 𝒜 c.den) :
@@ -121,6 +130,9 @@ set_option backward.isDefEq.respectTransparency.types false in
   rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h8v.s11.912b0ca99635 from=seed src=0 shape=cb366468 vocab=a34d7509
+-/
 @[elementwise] theorem localRingHom_comp_stalkIso (p : ProjectiveSpectrum ℬ) :
     (stalkIso 𝒜 (ProjectiveSpectrum.comap f hf p)).hom ≫
       CommRingCat.ofHom (localRingHom f _ _ rfl) ≫
@@ -156,13 +168,22 @@ noncomputable def map : Proj ℬ ⟶ Proj 𝒜 where
     have : IsLocalHom (stalkIso 𝒜 (p.comap f hf)).hom.hom := isLocalHom_of_isIso _
     exact (isUnit_map_iff _ _).mp hx
 
+/--
+@isnad1 id=eq.1h8v.s9.61806593cf8c from=seed src=0 shape=2582a913 vocab=66b98760
+-/
 @[simp] theorem map_preimage_basicOpen (s : A) :
     map f hf ⁻¹ᵁ basicOpen 𝒜 s = basicOpen ℬ (f s) := rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h8v.s10.ea7b6c4f9c34 from=seed src=0 shape=4051fe1f vocab=47b58107
+-/
 theorem ι_comp_map (s : A) : (basicOpen ℬ (f s)).ι ≫ map f hf =
     (map f hf).resLE _ _ le_rfl ≫ (basicOpen 𝒜 s).ι := by simp
 
+/--
+@isnad1 id=eq.2h9v.s10.5175ede72736 from=seed src=0 shape=30885141 vocab=e5533ea9
+-/
 @[reassoc] lemma awayToSection_comp_appLE {i : ℕ} {s : A} (hs : s ∈ 𝒜 i) :
     awayToSection 𝒜 s ≫
       Scheme.Hom.appLE (map f hf) (basicOpen 𝒜 s) (basicOpen ℬ (f s)) (by rfl) =
@@ -186,6 +207,7 @@ Proj ℬ         ⟶ Proj 𝒜₁
     |                   |
 Spec A₂[f(s)⁻¹]₀ ⟶ Spec A₁[s⁻¹]₀
 ```
+@isnad1 id=eq.3h9v.s10.aca9f5e43b03 from=seed src=0 shape=73a43bd7 vocab=1425fffa
 -/
 @[reassoc] theorem awayι_comp_map {i : ℕ} (hi : 0 < i) (s : A) (hs : s ∈ 𝒜 i) :
     awayι ℬ (f s) (f.2 hs) hi ≫ map f hf =
@@ -205,6 +227,9 @@ an affine open cover of `Proj ℬ` consisting of `D(f(s))` for `s ∈ A` positiv
     Ideal.subset_span ⟨⟨⟨i, hi⟩, ⟨x, hx⟩⟩, rfl⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h11v.s9.5af7563c84fe from=seed src=0 shape=9b0c7d60 vocab=6a26867e
+-/
 theorem map_comp : map (g.comp f) (irrelevant_le_map_comp hf hg) = map g hg ≫ map f hf := by
   refine (mapAffineOpenCover _ <| irrelevant_le_map_comp hf hg).openCover.hom_ext _ _ fun s ↦ ?_
   simp only [Scheme.AffineOpenCover.openCover_f, mapAffineOpenCover_f,
@@ -212,6 +237,9 @@ theorem map_comp : map (g.comp f) (irrelevant_le_map_comp hf hg) = map g hg ≫ 
   simp [awayι_comp_map_assoc _ _ _ _ (map_mem f s.2.2), awayι_comp_map _ _ _ _ s.2.2]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s6.9b5458f5d612 from=seed src=0 shape=997ad2b1 vocab=ab4c1c91
+-/
 theorem map_id : map (.id 𝒜) (by simp) = 𝟙 (Proj 𝒜) := by
   refine (affineOpenCover _).openCover.hom_ext _ _ fun s ↦ ?_
   convert! awayι_comp_map (.id 𝒜) _ _ _ s.2.2 using 1

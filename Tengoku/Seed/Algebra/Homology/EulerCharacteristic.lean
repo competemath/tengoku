@@ -64,10 +64,14 @@ variable [c.EulerCharSigns]
 /-- The sign at index `i` for Euler characteristic computations. -/
 abbrev χ : ι → ℤˣ := EulerCharSigns.χ c
 
-/-- Signs alternate in the forward direction of the complex shape. -/
+/-- Signs alternate in the forward direction of the complex shape.
+@isnad1 id=eq.1h4v.s5.1b1bcc127d87 from=seed src=0 shape=136ede50 vocab=74fc322e
+-/
 lemma χ_next {i j : ι} (h : c.Rel i j) : c.χ j = - c.χ i := EulerCharSigns.χ_next h
 
-/-- Signs alternate in the backward direction of the complex shape. -/
+/-- Signs alternate in the backward direction of the complex shape.
+@isnad1 id=eq.1h4v.s5.94fb22b76234 from=seed src=0 shape=3bdee08c vocab=74fc322e
+-/
 lemma χ_prev {i j : ι} (h : c.Rel i j) : c.χ i = - c.χ j := by simp [c.χ_next h]
 
 @[simps]
@@ -108,7 +112,9 @@ noncomputable def finrankSupport (X : CategoryTheory.GradedObject ι (ModuleCat 
   Function.support (fun i => Module.finrank R (X i))
 
 /-- The finite rank support is contained in a set if and only if
-the rank vanishes outside that set. -/
+the rank vanishes outside that set.
+@isnad1 id=iff.0h4v.s6.ad8d46838e04 from=seed src=0 shape=b79b41e2 vocab=d2c0d153
+-/
 lemma finrankSupport_subset_iff (X : CategoryTheory.GradedObject ι (ModuleCat R)) (s : Set ι) :
     finrankSupport X ⊆ s ↔ ∀ i ∉ s, Module.finrank R (X i) = 0 :=
   Function.support_subset_iff'
@@ -127,7 +133,9 @@ private lemma support_eulerChar_summand (X : CategoryTheory.GradedObject ι (Mod
   ext i; simp [Function.mem_support]
 
 /-- If a graded object has finite rank support contained in a finite set,
-the `finsum` Euler characteristic equals the finite sum over that set. -/
+the `finsum` Euler characteristic equals the finite sum over that set.
+@isnad1 id=eq.1h5v.s6.c06524076b0d from=seed src=0 shape=627c0e1c vocab=f11b9e15
+-/
 theorem eulerChar_eq_sum_finSet_of_finrankSupport_subset
     (X : CategoryTheory.GradedObject ι (ModuleCat R)) (indices : Finset ι)
     (h_support : finrankSupport X ⊆ indices) :
@@ -156,7 +164,9 @@ noncomputable abbrev homologyEulerChar (C : HomologicalComplex (ModuleCat R) c)
   GradedObject.eulerChar c (fun i => C.homology i)
 
 /-- If a complex has finite rank support contained in a finite set,
-the `finsum` Euler characteristic equals the finite sum over that set. -/
+the `finsum` Euler characteristic equals the finite sum over that set.
+@isnad1 id=eq.1h5v.s7.32b0d9fade32 from=seed src=0 shape=ca726d97 vocab=2801796d
+-/
 theorem eulerChar_eq_sum_finSet_of_finrankSupport_subset (C : HomologicalComplex (ModuleCat R) c)
     (indices : Finset ι)
     (h_support : GradedObject.finrankSupport C.X ⊆ indices) :
@@ -164,7 +174,9 @@ theorem eulerChar_eq_sum_finSet_of_finrankSupport_subset (C : HomologicalComplex
   GradedObject.eulerChar_eq_sum_finSet_of_finrankSupport_subset c C.X indices h_support
 
 /-- If homology has finite rank support contained in a finite set,
-the `finsum` homological Euler characteristic equals the finite sum over that set. -/
+the `finsum` homological Euler characteristic equals the finite sum over that set.
+@isnad1 id=eq.1h5v.s7.8140e2c4f81e from=seed src=0 shape=9f85ba68 vocab=46037514
+-/
 theorem homologyEulerChar_eq_sum_finSet_of_finrankSupport_subset
     (C : HomologicalComplex (ModuleCat R) c) [∀ i : ι, C.HasHomology i] (indices : Finset ι)
     (h_support : GradedObject.finrankSupport (fun i => C.homology i) ⊆ indices) :

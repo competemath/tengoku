@@ -61,6 +61,9 @@ def t (i j : 𝒰.I₀) : v 𝒰 f g i j ⟶ v 𝒰 f g j i := by
   · rw [pullbackSymmetry_hom_comp_snd_assoc, pullback.condition_assoc, Category.comp_id]
   · rw [Category.comp_id, Category.id_comp]
 
+/--
+@isnad1 id=eq.0h8v.s9.f085476bd274 from=seed src=0 shape=5f2e1625 vocab=05c8f472
+-/
 @[simp, reassoc]
 theorem t_fst_fst (i j : 𝒰.I₀) : t 𝒰 f g i j ≫ pullback.fst _ _ ≫ pullback.fst _ _ =
     pullback.snd _ _ := by
@@ -68,12 +71,18 @@ theorem t_fst_fst (i j : 𝒰.I₀) : t 𝒰 f g i j ≫ pullback.fst _ _ ≫ pu
     pullback.lift_fst_assoc, pullbackSymmetry_hom_comp_snd, pullbackAssoc_inv_fst_fst,
     pullbackSymmetry_hom_comp_fst]
 
+/--
+@isnad1 id=eq.0h8v.s10.2bde89a11c32 from=seed src=0 shape=2e50af3b vocab=05c8f472
+-/
 @[simp, reassoc]
 theorem t_fst_snd (i j : 𝒰.I₀) :
     t 𝒰 f g i j ≫ pullback.fst _ _ ≫ pullback.snd _ _ = pullback.fst _ _ ≫ pullback.snd _ _ := by
   simp only [t, Category.assoc, pullbackSymmetry_hom_comp_fst_assoc, pullbackAssoc_hom_snd_snd,
     pullback.lift_snd, Category.comp_id, pullbackAssoc_inv_snd, pullbackSymmetry_hom_comp_snd_assoc]
 
+/--
+@isnad1 id=eq.0h8v.s9.3020f169658d from=seed src=0 shape=0aad03a6 vocab=05c8f472
+-/
 @[simp, reassoc]
 theorem t_snd (i j : 𝒰.I₀) : t 𝒰 f g i j ≫ pullback.snd _ _ =
     pullback.fst _ _ ≫ pullback.fst _ _ := by
@@ -81,6 +90,9 @@ theorem t_snd (i j : 𝒰.I₀) : t 𝒰 f g i j ≫ pullback.snd _ _ =
     pullback.lift_fst_assoc, pullbackSymmetry_hom_comp_fst, pullbackAssoc_inv_fst_snd,
     pullbackSymmetry_hom_comp_snd_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s7.e44cdd618f0c from=seed src=0 shape=1312c151 vocab=91f18478
+-/
 theorem t_id (i : 𝒰.I₀) : t 𝒰 f g i i = 𝟙 _ := by
   apply pullback.hom_ext <;> rw [Category.id_comp]
   · apply pullback.hom_ext
@@ -103,6 +115,9 @@ def t' (i j k : 𝒰.I₀) :
   · simp_rw [Category.comp_id, t_fst_fst_assoc, ← pullback.condition]
   · rw [Category.comp_id, Category.id_comp]
 
+/--
+@isnad1 id=eq.0h9v.s11.2a45880e9589 from=seed src=0 shape=fa184314 vocab=19efb48b
+-/
 @[simp, reassoc]
 theorem t'_fst_fst_fst (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ pullback.fst _ _ ≫ pullback.fst _ _ ≫ pullback.fst _ _ =
@@ -111,6 +126,9 @@ theorem t'_fst_fst_fst (i j k : 𝒰.I₀) :
     pullbackRightPullbackFstIso_inv_snd_fst_assoc, pullback.lift_fst_assoc, t_fst_fst,
     pullbackRightPullbackFstIso_hom_fst_assoc]
 
+/--
+@isnad1 id=eq.0h9v.s11.0244be986e02 from=seed src=0 shape=f340878d vocab=19efb48b
+-/
 @[simp, reassoc]
 theorem t'_fst_fst_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ pullback.fst _ _ ≫ pullback.fst _ _ ≫ pullback.snd _ _ =
@@ -119,6 +137,9 @@ theorem t'_fst_fst_snd (i j k : 𝒰.I₀) :
     pullbackRightPullbackFstIso_inv_snd_fst_assoc, pullback.lift_fst_assoc, t_fst_snd,
     pullbackRightPullbackFstIso_hom_fst_assoc]
 
+/--
+@isnad1 id=eq.0h9v.s10.e0a814cff068 from=seed src=0 shape=d1252654 vocab=19efb48b
+-/
 @[simp, reassoc]
 theorem t'_fst_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ pullback.fst _ _ ≫ pullback.snd _ _ =
@@ -127,6 +148,9 @@ theorem t'_fst_snd (i j k : 𝒰.I₀) :
     pullbackRightPullbackFstIso_inv_snd_snd, pullback.lift_snd, Category.comp_id,
     pullbackRightPullbackFstIso_hom_snd]
 
+/--
+@isnad1 id=eq.0h9v.s11.c8a7454cd34a from=seed src=0 shape=3f833e34 vocab=19efb48b
+-/
 @[simp, reassoc]
 theorem t'_snd_fst_fst (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ pullback.snd _ _ ≫ pullback.fst _ _ ≫ pullback.fst _ _ =
@@ -135,6 +159,9 @@ theorem t'_snd_fst_fst (i j k : 𝒰.I₀) :
     pullbackRightPullbackFstIso_inv_fst_assoc, pullback.lift_fst_assoc, t_fst_fst,
     pullbackRightPullbackFstIso_hom_fst_assoc]
 
+/--
+@isnad1 id=eq.0h9v.s11.3ef96269b10c from=seed src=0 shape=efee6e7b vocab=19efb48b
+-/
 @[simp, reassoc]
 theorem t'_snd_fst_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ pullback.snd _ _ ≫ pullback.fst _ _ ≫ pullback.snd _ _ =
@@ -143,6 +170,9 @@ theorem t'_snd_fst_snd (i j k : 𝒰.I₀) :
     pullbackRightPullbackFstIso_inv_fst_assoc, pullback.lift_fst_assoc, t_fst_snd,
     pullbackRightPullbackFstIso_hom_fst_assoc]
 
+/--
+@isnad1 id=eq.0h9v.s11.e0e38a814e01 from=seed src=0 shape=63244aae vocab=19efb48b
+-/
 @[simp, reassoc]
 theorem t'_snd_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ pullback.snd _ _ ≫ pullback.snd _ _ =
@@ -151,37 +181,58 @@ theorem t'_snd_snd (i j k : 𝒰.I₀) :
     pullbackRightPullbackFstIso_inv_fst_assoc, pullback.lift_fst_assoc, t_snd,
     pullbackRightPullbackFstIso_hom_fst_assoc]
 
+/--
+@isnad1 id=eq.0h9v.s11.968d8efba993 from=seed src=0 shape=078f39f7 vocab=ccd076e5
+-/
 theorem cocycle_fst_fst_fst (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ t' 𝒰 f g j k i ≫ t' 𝒰 f g k i j ≫ pullback.fst _ _ ≫ pullback.fst _ _ ≫
       pullback.fst _ _ = pullback.fst _ _ ≫ pullback.fst _ _ ≫ pullback.fst _ _ := by
   simp only [t'_fst_fst_fst, t'_fst_snd, t'_snd_snd]
 
+/--
+@isnad1 id=eq.0h9v.s11.d45ebc5ae748 from=seed src=0 shape=301ad4b6 vocab=19efb48b
+-/
 theorem cocycle_fst_fst_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ t' 𝒰 f g j k i ≫ t' 𝒰 f g k i j ≫ pullback.fst _ _ ≫ pullback.fst _ _ ≫
       pullback.snd _ _ = pullback.fst _ _ ≫ pullback.fst _ _ ≫ pullback.snd _ _ := by
   simp only [t'_fst_fst_snd]
 
+/--
+@isnad1 id=eq.0h9v.s11.d8b2c93fba39 from=seed src=0 shape=dc919444 vocab=19efb48b
+-/
 theorem cocycle_fst_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ t' 𝒰 f g j k i ≫ t' 𝒰 f g k i j ≫ pullback.fst _ _ ≫ pullback.snd _ _ =
       pullback.fst _ _ ≫ pullback.snd _ _ := by
   simp only [t'_fst_snd, t'_snd_snd, t'_fst_fst_fst]
 
+/--
+@isnad1 id=eq.0h9v.s11.d72f78204415 from=seed src=0 shape=c33a1788 vocab=19efb48b
+-/
 theorem cocycle_snd_fst_fst (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ t' 𝒰 f g j k i ≫ t' 𝒰 f g k i j ≫ pullback.snd _ _ ≫ pullback.fst _ _ ≫
       pullback.fst _ _ = pullback.snd _ _ ≫ pullback.fst _ _ ≫ pullback.fst _ _ := by
   simp only [pullback.condition_assoc, t'_snd_fst_fst, t'_fst_snd, t'_snd_snd]
 
+/--
+@isnad1 id=eq.0h9v.s11.38afc83ec7f3 from=seed src=0 shape=56b14cbe vocab=19efb48b
+-/
 theorem cocycle_snd_fst_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ t' 𝒰 f g j k i ≫ t' 𝒰 f g k i j ≫ pullback.snd _ _ ≫ pullback.fst _ _ ≫
       pullback.snd _ _ = pullback.snd _ _ ≫ pullback.fst _ _ ≫ pullback.snd _ _ := by
   simp only [pullback.condition_assoc, t'_snd_fst_snd]
 
+/--
+@isnad1 id=eq.0h9v.s11.bad24846039e from=seed src=0 shape=2c2500f8 vocab=19efb48b
+-/
 theorem cocycle_snd_snd (i j k : 𝒰.I₀) :
     t' 𝒰 f g i j k ≫ t' 𝒰 f g j k i ≫ t' 𝒰 f g k i j ≫ pullback.snd _ _ ≫ pullback.snd _ _ =
       pullback.snd _ _ ≫ pullback.snd _ _ := by
   simp only [t'_snd_snd, t'_fst_fst_fst, t'_fst_snd]
 
 -- `by tidy` should solve it, but it times out.
+/--
+@isnad1 id=eq.0h9v.s10.ce3f646b5d4c from=seed src=0 shape=9575ef7d vocab=0339d7ea
+-/
 theorem cocycle (i j k : 𝒰.I₀) : t' 𝒰 f g i j k ≫ t' 𝒰 f g j k i ≫ t' 𝒰 f g k i j = 𝟙 _ := by
   apply pullback.hom_ext <;> rw [Category.id_comp]
   · apply pullback.hom_ext
@@ -216,6 +267,9 @@ def gluing : Scheme.GlueData.{u} where
         Category.assoc]
   cocycle i j k := cocycle 𝒰 f g i j k
 
+/--
+@isnad1 id=eq.0h7v.s7.fc1215bc6bd6 from=seed src=0 shape=df095079 vocab=0e1d805c
+-/
 @[simp]
 lemma gluing_ι (j : 𝒰.I₀) :
     (gluing 𝒰 f g).ι j = Multicoequalizer.π (gluing 𝒰 f g).diagram j := rfl
@@ -235,6 +289,9 @@ def p2 : (gluing 𝒰 f g).glued ⟶ Y := by
   simp [t_fst_snd]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s7.68722e87be0b from=seed src=0 shape=a5a5987a vocab=5453f925
+-/
 theorem p_comm : p1 𝒰 f g ≫ f = p2 𝒰 f g ≫ g := by
   apply Multicoequalizer.hom_ext
   simp [p1, p2, pullback.condition]
@@ -258,6 +315,9 @@ def gluedLiftPullbackMap (i j : 𝒰.I₀) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h9v.s11.ae37fa71c5b8 from=seed src=0 shape=2367d2c6 vocab=f4766081
+-/
 @[reassoc]
 theorem gluedLiftPullbackMap_fst (i j : 𝒰.I₀) :
     gluedLiftPullbackMap 𝒰 f g s i j ≫ pullback.fst _ _ =
@@ -268,6 +328,9 @@ theorem gluedLiftPullbackMap_fst (i j : 𝒰.I₀) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h9v.s10.ed96cb546ea2 from=seed src=0 shape=04230337 vocab=768f8078
+-/
 @[reassoc]
 theorem gluedLiftPullbackMap_snd (i j : 𝒰.I₀) :
     gluedLiftPullbackMap 𝒰 f g s i j ≫ pullback.snd _ _ = pullback.snd _ _ ≫ pullback.snd _ _ := by
@@ -303,6 +366,9 @@ def gluedLift : s.pt ⟶ (gluing 𝒰 f g).glued := by
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s7.17a426db259e from=seed src=0 shape=c187ce0b vocab=bcc8b420
+-/
 theorem gluedLift_p1 : gluedLift 𝒰 f g s ≫ p1 𝒰 f g = s.fst := by
   rw [← cancel_epi (Cover.fromGlued <| 𝒰.pullback₁ s.fst)]
   apply Multicoequalizer.hom_ext
@@ -313,6 +379,9 @@ theorem gluedLift_p1 : gluedLift 𝒰 f g s ≫ p1 𝒰 f g = s.fst := by
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s7.a7b08655c30b from=seed src=0 shape=b7449b35 vocab=348d2cc0
+-/
 theorem gluedLift_p2 : gluedLift 𝒰 f g s ≫ p2 𝒰 f g = s.snd := by
   rw [← cancel_epi (Cover.fromGlued <| 𝒰.pullback₁ s.fst)]
   apply Multicoequalizer.hom_ext
@@ -333,12 +402,18 @@ def pullbackFstιToV (i j : 𝒰.I₀) :
     (pullback.congrHom (Multicoequalizer.π_desc ..) rfl).hom
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s9.0fdcd71773a3 from=seed src=0 shape=46684275 vocab=e759a350
+-/
 @[simp, reassoc]
 theorem pullbackFstιToV_fst (i j : 𝒰.I₀) :
     pullbackFstιToV 𝒰 f g i j ≫ pullback.fst _ _ = pullback.snd _ _ := by
   simp [pullbackFstιToV, p1]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s9.55365b2cc24b from=seed src=0 shape=d9100c84 vocab=e759a350
+-/
 @[simp, reassoc]
 theorem pullbackFstιToV_snd (i j : 𝒰.I₀) :
     pullbackFstιToV 𝒰 f g i j ≫ pullback.snd _ _ = pullback.fst _ _ ≫ pullback.snd _ _ := by
@@ -350,7 +425,9 @@ set_option backward.isDefEq.respectTransparency false in
 first map is given by the lift of `W ×[X] Uᵢ ⟶ Uᵢ` and `W ×[X] Uᵢ ⟶ W ⟶ Y`.
 
 It suffices to show that the two map agrees when restricted onto `Uⱼ ×[Z] Y`. In this case,
-both maps factor through `V j i` via `pullback_fst_ι_to_V` -/
+both maps factor through `V j i` via `pullback_fst_ι_to_V`
+@isnad1 id=eq.0h7v.s9.0a82f6ee173e from=seed src=0 shape=d9a01d99 vocab=31a6cc50
+-/
 theorem lift_comp_ι (i : 𝒰.I₀) :
     pullback.lift (pullback.snd _ _) (pullback.fst _ _ ≫ p2 𝒰 f g)
           (by rw [← pullback.condition_assoc, Category.assoc, p_comm]) ≫
@@ -390,29 +467,44 @@ def pullbackP1Iso (i : 𝒰.I₀) : pullback (p1 𝒰 f g) (𝒰.f i) ≅ pullba
     · simp_rw [Category.assoc, pullback.lift_fst, pullback.lift_snd, Category.id_comp]
     · simp [p2]
 
+/--
+@isnad1 id=eq.0h7v.s8.a959cba7a9e0 from=seed src=0 shape=a9d671f3 vocab=23b8c640
+-/
 @[simp, reassoc]
 theorem pullbackP1Iso_hom_fst (i : 𝒰.I₀) :
     (pullbackP1Iso 𝒰 f g i).hom ≫ pullback.fst _ _ = pullback.snd _ _ := by
   simp_rw [pullbackP1Iso, pullback.lift_fst]
 
+/--
+@isnad1 id=eq.0h7v.s9.7549ea005dfe from=seed src=0 shape=798bf324 vocab=458e9525
+-/
 @[simp, reassoc]
 theorem pullbackP1Iso_hom_snd (i : 𝒰.I₀) :
     (pullbackP1Iso 𝒰 f g i).hom ≫ pullback.snd _ _ = pullback.fst _ _ ≫ p2 𝒰 f g := by
   simp_rw [pullbackP1Iso, pullback.lift_snd]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s8.8eddf570beb0 from=seed src=0 shape=966a8416 vocab=26f1facb
+-/
 @[simp, reassoc]
 theorem pullbackP1Iso_inv_fst (i : 𝒰.I₀) :
     (pullbackP1Iso 𝒰 f g i).inv ≫ pullback.fst _ _ = (gluing 𝒰 f g).ι i := by
   simp_rw [pullbackP1Iso, pullback.lift_fst]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s8.18560c6e9f0d from=seed src=0 shape=fe836201 vocab=ff6b60fd
+-/
 @[simp, reassoc]
 theorem pullbackP1Iso_inv_snd (i : 𝒰.I₀) :
     (pullbackP1Iso 𝒰 f g i).inv ≫ pullback.snd _ _ = pullback.fst _ _ := by
   simp_rw [pullbackP1Iso, pullback.lift_snd]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s8.65eee3c90ae5 from=seed src=0 shape=a79c1b5c vocab=61b46427
+-/
 @[simp, reassoc]
 theorem pullbackP1Iso_hom_ι (i : 𝒰.I₀) :
     (pullbackP1Iso 𝒰 f g i).hom ≫ Multicoequalizer.π (gluing 𝒰 f g).diagram i =
@@ -449,9 +541,15 @@ def gluedIsLimit : IsLimit (PullbackCone.mk _ _ (p_comm 𝒰 f g)) := by
       pullbackRightPullbackFstIso_hom_fst_assoc, ← pullback.condition_assoc, h₂]
 
 include 𝒰 in
+/--
+@isnad1 id=haspullb.0h6v.s6.39040f02736b from=seed src=0 shape=f9fd5b37 vocab=d7c7f1f9
+-/
 theorem hasPullback_of_cover : HasPullback f g :=
   ⟨⟨⟨_, gluedIsLimit 𝒰 f g⟩⟩⟩
 
+/--
+@isnad1 id=haspullb.0h5v.s5.1a7c37e8603c from=seed src=0 shape=f7d771d3 vocab=0f69a91f
+-/
 instance affine_hasPullback {A B C : CommRingCat}
     (f : Spec A ⟶ Spec C)
     (g : Spec B ⟶ Spec C) : HasPullback f g := by
@@ -460,11 +558,17 @@ instance affine_hasPullback {A B C : CommRingCat}
     Scheme.Spec (Scheme.Spec.preimage f) (Scheme.Spec.preimage g)⟩⟩⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=haspullb.0h5v.s5.d3a8c3b54cef from=seed src=0 shape=55356cae vocab=0f69a91f
+-/
 theorem affine_affine_hasPullback {B C : CommRingCat} {X : Scheme}
     (f : X ⟶ Spec C) (g : Spec B ⟶ Spec C) :
     HasPullback f g :=
   hasPullback_of_cover X.affineCover f g
 
+/--
+@isnad1 id=haspullb.0h5v.s5.27089a82c23b from=seed src=0 shape=dadf0fa7 vocab=0f69a91f
+-/
 instance base_affine_hasPullback {C : CommRingCat} {X Y : Scheme} (f : X ⟶ Spec C)
     (g : Y ⟶ Spec C) : HasPullback f g :=
   @hasPullback_symmetry _ _ _ _ _ _ _
@@ -473,6 +577,9 @@ instance base_affine_hasPullback {C : CommRingCat} {X Y : Scheme} (f : X ⟶ Spe
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=haspullb.0h6v.s7.d48c84300e37 from=seed src=0 shape=25cb0356 vocab=13ffc1c4
+-/
 instance left_affine_comp_pullback_hasPullback {X Y Z : Scheme} (f : X ⟶ Z) (g : Y ⟶ Z)
     (i : Z.affineCover.I₀) : HasPullback ((Z.affineCover.pullback₁ f).f i ≫ f) g := by
   simpa [pullback.condition] using
@@ -486,6 +593,9 @@ instance : HasPullbacks Scheme :=
   hasPullbacks_of_hasLimit_cospan _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isaffine.0h5v.s5.063a62d9856d from=seed src=0 shape=b41702c1 vocab=e5b9b831
+-/
 instance isAffine_of_isAffine_isAffine_isAffine {X Y Z : Scheme}
     (f : X ⟶ Z) (g : Y ⟶ Z) [IsAffine X] [IsAffine Y] [IsAffine Z] :
     IsAffine (pullback f g) :=
@@ -649,6 +759,9 @@ def diagonalCoverDiagonalRange : (pullback.diagonalObj f).Opens :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s15.c7961f2bc59b from=seed src=0 shape=c7919e63 vocab=a6a7536e
+-/
 lemma diagonalCover_map (I) : (diagonalCover f 𝒰 𝒱).f I =
     pullback.map _ _ _ _
     ((𝒱 I.fst).f _ ≫ pullback.fst _ _) ((𝒱 I.fst).f _ ≫ pullback.fst _ _) (𝒰.f _)
@@ -698,6 +811,9 @@ end AlgebraicGeometry.Scheme
 
 namespace AlgebraicGeometry
 
+/--
+@isnad1 id=isopenim.2h13v.s7.34c3a555fc14 from=seed src=0 shape=0916d9b6 vocab=3c89cb73
+-/
 instance Scheme.pullback_map_isOpenImmersion {X Y S X' Y' S' : Scheme}
     (f : X ⟶ S) (g : Y ⟶ S) (f' : X' ⟶ S') (g' : Y' ⟶ S')
     (i₁ : X ⟶ X') (i₂ : Y ⟶ Y') (i₃ : S ⟶ S') (e₁ : f ≫ i₃ = i₁ ≫ f') (e₂ : g ≫ i₃ = i₂ ≫ g')
@@ -735,12 +851,16 @@ The composition of the inverse of the isomorphism `pullbackSpecIso R S T` (from 
 `Spec S ⟶ Spec R` and `Spec T ⟶ Spec R` to `Spec (S ⊗[R] T)`) with the first projection is
 the morphism `Spec (S ⊗[R] T) ⟶ Spec S` obtained by applying `Spec.map` to the ring morphism
 `s ↦ s ⊗ₜ[R] 1`.
+@isnad1 id=eq.0h3v.s9.a8c7bdf7262a from=seed src=0 shape=4b9e437f vocab=bde37eb6
 -/
 @[reassoc (attr := simp)]
 lemma pullbackSpecIso_inv_fst :
     (pullbackSpecIso R S T).inv ≫ pullback.fst _ _ = Spec.map (ofHom includeLeftRingHom) :=
   limit.isoLimitCone_inv_π _ _
 
+/--
+@isnad1 id=eq.0h3v.s9.ad2db158d4aa from=seed src=0 shape=4e9f39ae vocab=36ac1e56
+-/
 @[reassoc]
 lemma pullbackSpecIso_inv_fst' :
     (pullbackSpecIso R S T).inv ≫ pullback.fst _ _ = Spec.map (ofHom (algebraMap S _)) :=
@@ -751,6 +871,7 @@ The composition of the inverse of the isomorphism `pullbackSpecIso R S T` (from 
 `Spec S ⟶ Spec R` and `Spec T ⟶ Spec R` to `Spec (S ⊗[R] T)`) with the second projection is
 the morphism `Spec (S ⊗[R] T) ⟶ Spec T` obtained by applying `Spec.map` to the ring morphism
 `t ↦ 1 ⊗ₜ[R] t`.
+@isnad1 id=eq.0h3v.s9.9e8665c68f3b from=seed src=0 shape=c86d79cb vocab=d562822c
 -/
 @[reassoc (attr := simp)]
 lemma pullbackSpecIso_inv_snd :
@@ -763,12 +884,16 @@ The composition of the isomorphism `pullbackSpecIso R S T` (from the pullback of
 `Spec S ⟶ Spec R` and `Spec T ⟶ Spec R` to `Spec (S ⊗[R] T)`) with the morphism
 `Spec (S ⊗[R] T) ⟶ Spec S` obtained by applying `Spec.map` to the ring morphism `s ↦ s ⊗ₜ[R] 1`
 is the first projection.
+@isnad1 id=eq.0h3v.s9.25861a7ece46 from=seed src=0 shape=4014ccff vocab=6480dee8
 -/
 @[reassoc (attr := simp)]
 lemma pullbackSpecIso_hom_fst :
     (pullbackSpecIso R S T).hom ≫ Spec.map (ofHom includeLeftRingHom) = pullback.fst _ _ := by
   rw [← pullbackSpecIso_inv_fst, Iso.hom_inv_id_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s9.90f40e654298 from=seed src=0 shape=77218da8 vocab=effac3aa
+-/
 @[reassoc (attr := simp)]
 lemma pullbackSpecIso_hom_fst' :
     (pullbackSpecIso R S T).hom ≫ Spec.map (ofHom (algebraMap S _)) = pullback.fst _ _ :=
@@ -779,29 +904,42 @@ The composition of the isomorphism `pullbackSpecIso R S T` (from the pullback of
 `Spec S ⟶ Spec R` and `Spec T ⟶ Spec R` to `Spec (S ⊗[R] T)`) with the morphism
 `Spec (S ⊗[R] T) ⟶ Spec T` obtained by applying `Spec.map` to the ring morphism `t ↦ 1 ⊗ₜ[R] t`
 is the second projection.
+@isnad1 id=eq.0h3v.s9.2c543a6c3ecc from=seed src=0 shape=25c083fe vocab=377b5eae
 -/
 @[reassoc (attr := simp)]
 lemma pullbackSpecIso_hom_snd :
     (pullbackSpecIso R S T).hom ≫ Spec.map (ofHom (toRingHom includeRight)) = pullback.snd _ _ := by
   rw [← pullbackSpecIso_inv_snd, Iso.hom_inv_id_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s9.4db00f917489 from=seed src=0 shape=f56c98aa vocab=effac3aa
+-/
 @[reassoc (attr := simp)]
 lemma pullbackSpecIso_hom_base :
     (pullbackSpecIso R S T).hom ≫ Spec.map (ofHom (algebraMap R _)) =
       pullback.fst _ _ ≫ Spec.map (ofHom (algebraMap _ _)) := by
   simp [Algebra.TensorProduct.algebraMap_def]
 
+/--
+@isnad1 id=ispullba.1h8v.s6.7b67278ca745 from=seed src=0 shape=a443310f vocab=9f4e67d2
+-/
 lemma isPullback_SpecMap_of_isPushout {A B C P : CommRingCat} (f : A ⟶ B) (g : A ⟶ C)
     (inl : B ⟶ P) (inr : C ⟶ P) (h : IsPushout f g inl inr) :
     IsPullback (Spec.map inl) (Spec.map inr) (Spec.map f) (Spec.map g) :=
   IsPullback.map Scheme.Spec h.op.flip
 
+/--
+@isnad1 id=ispullba.0h5v.s6.7d7a0a00bf18 from=seed src=0 shape=f2fdb4f3 vocab=b5065e26
+-/
 lemma isPullback_SpecMap_pushout {A B C : CommRingCat} (f : A ⟶ B) (g : A ⟶ C) :
     IsPullback (Spec.map (pushout.inl f g))
       (Spec.map (pushout.inr f g)) (Spec.map f) (Spec.map g) := by
   apply isPullback_SpecMap_of_isPushout
   exact IsPushout.of_hasPushout f g
 
+/--
+@isnad1 id=eq.0h2v.s9.edd82083b1a3 from=seed src=0 shape=2df09f48 vocab=54940898
+-/
 lemma diagonal_SpecMap :
     pullback.diagonal (Spec.map (CommRingCat.ofHom (algebraMap R S))) =
       Spec.map (CommRingCat.ofHom (Algebra.TensorProduct.lmul' R : S ⊗[R] S →ₐ[R] S).toRingHom) ≫
@@ -824,6 +962,9 @@ instance canonicallyOverPullback : (pullback (M ↘ S) f).CanonicallyOver T wher
 instance monObjAsOverPullback [MonObj (asOver M S)] : MonObj (asOver (pullback (M ↘ S) f) T) := by
   unfold asOver OverClass.asOver at *; exact Over.monObjMkPullbackSnd
 
+/--
+@isnad1 id=iscommmo.0h4v.s7.1e1162426db8 from=seed src=0 shape=e888a8ff vocab=0939e84e
+-/
 instance isCommMonObj_asOver_pullback [MonObj (asOver M S)] [IsCommMonObj (asOver M S)] :
     IsCommMonObj (asOver (pullback (M ↘ S) f) T) := by
   unfold asOver OverClass.asOver at *; exact Over.isCommMonObj_mk_pullbackSnd
@@ -833,6 +974,9 @@ instance GrpObjAsOverPullback [GrpObj (asOver M S)] : GrpObj (asOver (pullback (
 
 instance : (pullback.fst (M ↘ S) (𝟙 S)).IsOver S := ⟨pullback.condition.trans (by simp)⟩
 
+/--
+@isnad1 id=ismonhom.0h2v.s7.01c2794505c6 from=seed src=0 shape=da056bf4 vocab=b9c0ab65
+-/
 instance isMonHom_fst_id_right [MonObj (asOver M S)] :
     IsMonHom ((pullback.fst (M ↘ S) (𝟙 S)).asOver S) := by
   unfold asOver OverClass.asOver at *; exact Over.isMonHom_pullbackFst_id_right

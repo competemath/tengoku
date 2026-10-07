@@ -59,16 +59,25 @@ abbrev IsBrauerEquivalent (A B : CSA K) : Prop :=
 
 namespace IsBrauerEquivalent
 
+/--
+@isnad1 id=isbrauer.0h2v.s3.500cd71b6cea from=seed src=0 shape=82448d51 vocab=0a24e966
+-/
 @[refl]
 lemma refl (A : CSA K) : IsBrauerEquivalent A A :=
   ⟨1, 1, one_ne_zero, one_ne_zero, ⟨AlgEquiv.refl⟩⟩
 
+/--
+@isnad1 id=isbrauer.1h3v.s4.9f4545b800a1 from=seed src=0 shape=1a0a78f4 vocab=0a24e966
+-/
 @[symm]
 lemma symm {A B : CSA K} (h : IsBrauerEquivalent A B) : IsBrauerEquivalent B A :=
   let ⟨n, m, hn, hm, ⟨iso⟩⟩ := h
   ⟨m, n, hm, hn, ⟨iso.symm⟩⟩
 
 open Matrix in
+/--
+@isnad1 id=isbrauer.2h4v.s5.6abf31c1c07d from=seed src=0 shape=5499c893 vocab=0a24e966
+-/
 @[trans]
 lemma trans {A B C : CSA K} (hAB : IsBrauerEquivalent A B) (hBC : IsBrauerEquivalent B C) :
     IsBrauerEquivalent A C := by
@@ -80,6 +89,9 @@ lemma trans {A B C : CSA K} (hAB : IsBrauerEquivalent A B) (hBC : IsBrauerEquiva
     reindexAlgEquiv K B (.prodComm (Fin p) (Fin m))|>.trans <| compAlgEquiv _ _ _ _|>.symm.trans <|
     iso2.mapMatrix.trans <| compAlgEquiv _ _ _ _|>.trans <| reindexAlgEquiv _ _ finProdFinEquiv⟩⟩
 
+/--
+@isnad1 id=equivale.0h1v.s3.8092ca554a3a from=seed src=0 shape=aa7e0af4 vocab=6ac3cf0d
+-/
 lemma is_eqv : Equivalence (IsBrauerEquivalent (K := K)) where
   refl := refl
   symm := symm

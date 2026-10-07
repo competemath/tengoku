@@ -68,20 +68,32 @@ instance : (cofibrations (Plus C)).IsStableUnderRetracts :=
 instance : (fibrations (Plus C)).IsStableUnderRetracts :=
   inferInstanceAs (degreewiseEpiWithInjectiveKernel.inverseImage (ι C)).IsStableUnderRetracts
 
+/--
+@isnad1 id=iff.0h4v.s8.a4272a797da8 from=seed src=0 shape=ce6a38fb vocab=fd63d047
+-/
 lemma cofibration_iff {X Y : Plus C} (f : X ⟶ Y) :
     Cofibration f ↔ Mono f :=
   HomotopicalAlgebra.cofibration_iff _
 
+/--
+@isnad1 id=iff.0h4v.s9.e768772b078c from=seed src=0 shape=c1db0c52 vocab=aa75c9b7
+-/
 lemma fibration_iff {X Y : Plus C} (f : X ⟶ Y) :
     Fibration f ↔ degreewiseEpiWithInjectiveKernel f.hom :=
   HomotopicalAlgebra.fibration_iff _
 
+/--
+@isnad1 id=iff.0h2v.s7.85aacdc417e3 from=seed src=0 shape=7080c5d4 vocab=5cd2d88a
+-/
 lemma isFibrant_iff (X : Plus C) :
     IsFibrant X ↔ ∀ (n : ℤ), Injective (X.obj.X n) := by
   rw [HomotopicalAlgebra.isFibrant_iff, fibration_iff,
     degreewiseEpiWithInjectiveKernel_iff_of_isZero]
   exact Functor.map_isZero (Plus.ι C) (IsZero.of_mono_zero _ X)
 
+/--
+@isnad1 id=iff.0h4v.s9.1898e794af46 from=seed src=0 shape=8aed2f08 vocab=ea6ef515
+-/
 lemma weakEquivalence_iff {X Y : Plus C} (f : X ⟶ Y) :
     WeakEquivalence f ↔ QuasiIso f.hom :=
   HomotopicalAlgebra.weakEquivalence_iff _

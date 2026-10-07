@@ -38,8 +38,17 @@ instance : SMul R (S₁ ⟶ S₂) where
       τ₂ := a • φ.τ₂
       τ₃ := a • φ.τ₃ }
 
+/--
+@isnad1 id=eq.0h6v.s9.e3fc40d616a0 from=seed src=0 shape=ebd1a715 vocab=cc89a170
+-/
 @[simp] lemma smul_τ₁ (a : R) (φ : S₁ ⟶ S₂) : (a • φ).τ₁ = a • φ.τ₁ := rfl
+/--
+@isnad1 id=eq.0h6v.s9.93fa4121028c from=seed src=0 shape=ebd1a715 vocab=9691c0ee
+-/
 @[simp] lemma smul_τ₂ (a : R) (φ : S₁ ⟶ S₂) : (a • φ).τ₂ = a • φ.τ₂ := rfl
+/--
+@isnad1 id=eq.0h6v.s9.6b1c956d12dd from=seed src=0 shape=ebd1a715 vocab=45f757b6
+-/
 @[simp] lemma smul_τ₃ (a : R) (φ : S₁ ⟶ S₂) : (a • φ).τ₃ = a • φ.τ₃ := rfl
 
 instance : Module R (S₁ ⟶ S₂) where
@@ -72,12 +81,18 @@ end LeftHomologyMapData
 variable (h₁ h₂ φ)
 variable (a : R)
 
+/--
+@isnad1 id=eq.0h8v.s9.6851b5db8729 from=seed src=0 shape=805d610c vocab=2347db39
+-/
 @[simp]
 lemma leftHomologyMap'_smul :
     leftHomologyMap' (a • φ) h₁ h₂ = a • leftHomologyMap' φ h₁ h₂ := by
   have γ : LeftHomologyMapData φ h₁ h₂ := default
   simp only [(γ.smul a).leftHomologyMap'_eq, LeftHomologyMapData.smul_φH, γ.leftHomologyMap'_eq]
 
+/--
+@isnad1 id=eq.0h8v.s9.65d865eaa379 from=seed src=0 shape=805d610c vocab=49668398
+-/
 @[simp]
 lemma cyclesMap'_smul :
     cyclesMap' (a • φ) h₁ h₂ = a • cyclesMap' φ h₁ h₂ := by
@@ -88,19 +103,31 @@ section
 
 variable [S₁.HasLeftHomology] [S₂.HasLeftHomology]
 
+/--
+@isnad1 id=eq.0h6v.s9.5bf19c008973 from=seed src=0 shape=ef5b400b vocab=4bbad84e
+-/
 @[simp]
 lemma leftHomologyMap_smul : leftHomologyMap (a • φ) = a • leftHomologyMap φ :=
   leftHomologyMap'_smul _ _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s9.e44bd7714364 from=seed src=0 shape=ef5b400b vocab=0cd8de72
+-/
 @[simp]
 lemma cyclesMap_smul : cyclesMap (a • φ) = a • cyclesMap φ :=
   cyclesMap'_smul _ _ _ _
 
 end
 
+/--
+@isnad1 id=linear.0h2v.s6.c1ed40156f1d from=seed src=0 shape=b500f39b vocab=1896c48c
+-/
 instance leftHomologyFunctor_linear [HasKernels C] [HasCokernels C] :
     Functor.Linear R (leftHomologyFunctor C) where
 
+/--
+@isnad1 id=linear.0h2v.s6.0e01d05c8a86 from=seed src=0 shape=b500f39b vocab=3ec3e782
+-/
 instance cyclesFunctor_linear [HasKernels C] [HasCokernels C] :
     Functor.Linear R (cyclesFunctor C) where
 
@@ -126,12 +153,18 @@ end RightHomologyMapData
 variable (h₁ h₂ φ)
 variable (a : R)
 
+/--
+@isnad1 id=eq.0h8v.s9.654847fea064 from=seed src=0 shape=805d610c vocab=c7506f13
+-/
 @[simp]
 lemma rightHomologyMap'_smul :
     rightHomologyMap' (a • φ) h₁ h₂ = a • rightHomologyMap' φ h₁ h₂ := by
   have γ : RightHomologyMapData φ h₁ h₂ := default
   simp only [(γ.smul a).rightHomologyMap'_eq, RightHomologyMapData.smul_φH, γ.rightHomologyMap'_eq]
 
+/--
+@isnad1 id=eq.0h8v.s9.15d7f60255ff from=seed src=0 shape=805d610c vocab=b3e93e56
+-/
 @[simp]
 lemma opcyclesMap'_smul :
     opcyclesMap' (a • φ) h₁ h₂ = a • opcyclesMap' φ h₁ h₂ := by
@@ -142,19 +175,31 @@ section
 
 variable [S₁.HasRightHomology] [S₂.HasRightHomology]
 
+/--
+@isnad1 id=eq.0h6v.s9.7303e6cb0191 from=seed src=0 shape=ef5b400b vocab=f4a66205
+-/
 @[simp]
 lemma rightHomologyMap_smul : rightHomologyMap (a • φ) = a • rightHomologyMap φ :=
   rightHomologyMap'_smul _ _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s9.e43edf21fa9c from=seed src=0 shape=ef5b400b vocab=98f47ba4
+-/
 @[simp]
 lemma opcyclesMap_smul : opcyclesMap (a • φ) = a • opcyclesMap φ :=
   opcyclesMap'_smul _ _ _ _
 
 end
 
+/--
+@isnad1 id=linear.0h2v.s6.0dce9033948d from=seed src=0 shape=b500f39b vocab=76e48999
+-/
 instance rightHomologyFunctor_linear [HasKernels C] [HasCokernels C] :
     Functor.Linear R (rightHomologyFunctor C) where
 
+/--
+@isnad1 id=linear.0h2v.s6.e593e54933b8 from=seed src=0 shape=b500f39b vocab=5e76d48a
+-/
 instance opcyclesFunctor_linear [HasKernels C] [HasCokernels C] :
     Functor.Linear R (opcyclesFunctor C) where
 
@@ -180,6 +225,9 @@ end HomologyMapData
 variable (h₁ h₂)
 variable (a : R)
 
+/--
+@isnad1 id=eq.0h8v.s10.10e0143a640b from=seed src=0 shape=6f38412e vocab=20941967
+-/
 @[simp]
 lemma homologyMap'_smul :
     homologyMap' (a • φ) h₁ h₂ = a • homologyMap' φ h₁ h₂ :=
@@ -187,11 +235,17 @@ lemma homologyMap'_smul :
 
 variable (φ φ')
 
+/--
+@isnad1 id=eq.0h6v.s9.d27e5813a581 from=seed src=0 shape=ef5b400b vocab=fc401c1e
+-/
 @[simp]
 lemma homologyMap_smul [S₁.HasHomology] [S₂.HasHomology] :
     homologyMap (a • φ) = a • homologyMap φ :=
   homologyMap'_smul _ _ _
 
+/--
+@isnad1 id=linear.0h2v.s6.6faa43c81e58 from=seed src=0 shape=9b3a6a9f vocab=d497ddc9
+-/
 instance homologyFunctor_linear [CategoryWithHomology C] :
     Functor.Linear R (homologyFunctor C) where
 

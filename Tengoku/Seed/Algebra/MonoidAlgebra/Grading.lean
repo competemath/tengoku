@@ -59,27 +59,48 @@ abbrev gradeBy (f : M → ι) (i : ι) : Submodule R R[M] where
 abbrev grade (m : M) : Submodule R R[M] :=
   gradeBy R id m
 
+/--
+@isnad1 id=eq.0h2v.s5.c87aa7e05b58 from=seed src=0 shape=06d97264 vocab=98f22dad
+-/
 theorem gradeBy_id : gradeBy R (id : M → M) = grade R := rfl
 
+/--
+@isnad1 id=iff.0h6v.s7.9488bd16751b from=seed src=0 shape=ef8f3082 vocab=b6a30fe4
+-/
 theorem mem_gradeBy_iff (f : M → ι) (i : ι) (a : R[M]) :
     a ∈ gradeBy R f i ↔ (a.coeff.support : Set M) ⊆ f ⁻¹' {i} := by rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.b640733656f0 from=seed src=0 shape=fc25c396 vocab=ec388cd9
+-/
 theorem mem_grade_iff (m : M) (a : R[M]) : a ∈ grade R m ↔ a.coeff.support ⊆ {m} := by
   rw [← Finset.coe_subset, Finset.coe_singleton]
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s8.46ca295fad81 from=seed src=0 shape=cf008d39 vocab=bc145465
+-/
 theorem mem_grade_iff' (m : M) (a : R[M]) :
     a ∈ grade R m ↔ a ∈ LinearMap.range (lsingle (R := R) m) := by
   rw [mem_grade_iff, Finsupp.support_subset_singleton']; simp [← coeff_inj, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s6.5fc5ace91e30 from=seed src=0 shape=c3511a57 vocab=764a44a9
+-/
 theorem grade_eq_lsingle_range (m : M) : grade R m = LinearMap.range (lsingle m) :=
   Submodule.ext (mem_grade_iff' R m)
 
+/--
+@isnad1 id=mem.0h6v.s7.798c3d32b753 from=seed src=0 shape=a4d0129e vocab=f8779e2b
+-/
 theorem single_mem_gradeBy {R} [CommSemiring R] (f : M → ι) (m : M) (r : R) :
     single m r ∈ gradeBy R f (f m) := by
   intro x hx
   rw [Finset.mem_singleton.mp (Finsupp.support_single_subset hx)]
 
+/--
+@isnad1 id=mem.0h4v.s7.b8eb10c29b78 from=seed src=0 shape=fdabd11c vocab=85ce342f
+-/
 theorem single_mem_grade {R} [CommSemiring R] (i : M) (r : R) :
     single i r ∈ grade R i :=
   single_mem_gradeBy _ _ _
@@ -88,6 +109,9 @@ end
 
 open DirectSum
 
+/--
+@isnad1 id=gradedmo.0h4v.s7.f5a23ad574ab from=seed src=0 shape=272ced76 vocab=56265560
+-/
 instance gradeBy.gradedMonoid [AddMonoid M] [AddMonoid ι] [CommSemiring R] (f : M →+ ι) :
     SetLike.GradedMonoid (gradeBy R f : ι → Submodule R R[M]) where
   one_mem m h := by
@@ -100,6 +124,9 @@ instance gradeBy.gradedMonoid [AddMonoid M] [AddMonoid ι] [CommSemiring R] (f :
       Finset.mem_add.1 <| support_coeff_mul_subset a b hc
     rw [map_add, ha ma hma, hb mb hmb]
 
+/--
+@isnad1 id=gradedmo.0h2v.s6.a54fc265a8e9 from=seed src=0 shape=27f9d2d0 vocab=4c2add6e
+-/
 instance grade.gradedMonoid [AddMonoid M] [CommSemiring R] :
     SetLike.GradedMonoid (grade R : M → Submodule R R[M]) := by
   apply gradeBy.gradedMonoid (AddMonoidHom.id _)
@@ -118,6 +145,9 @@ def decomposeAux : R[M] →ₐ[R] ⨁ i : ι, gradeBy R f i :=
         DirectSum.of_eq_of_gradedMonoid_eq <| Sigma.subtype_ext (f.map_add _ _) rfl
   }
 
+/--
+@isnad1 id=eq.0h6v.s12.d59e98765f8a from=seed src=0 shape=27182705 vocab=de9ccdb1
+-/
 theorem decomposeAux_single (m : M) (r : R) :
     decomposeAux f (single m r) =
       .of (fun i ↦ gradeBy R f i) (f m) ⟨single m r, single_mem_gradeBy _ _ _⟩ := by
@@ -129,6 +159,9 @@ theorem decomposeAux_single (m : M) (r : R) :
   rw [mul_one]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.1796b09872e2 from=seed src=0 shape=30fd981f vocab=c46790c6
+-/
 theorem decomposeAux_coe {i : ι} (x : gradeBy R f i) :
     decomposeAux f ↑x = DirectSum.of (fun i => gradeBy R f i) i x := by
   classical
@@ -158,12 +191,18 @@ theorem decomposeAux_coe {i : ι} (x : gradeBy R f i) :
 instance gradeBy.gradedAlgebra : GradedAlgebra (gradeBy R f) :=
   .ofAlgHom _ (decomposeAux f) (by ext; simp [decomposeAux_single]) <| by simp [decomposeAux_coe]
 
+/--
+@isnad1 id=eq.0h4v.s12.fd7568115e28 from=seed src=0 shape=29a540bc vocab=b13fdb50
+-/
 @[simp]
 theorem decomposeAux_eq_decompose :
     ⇑(decomposeAux f : R[M] →ₐ[R] ⨁ i : ι, gradeBy R f i) =
       DirectSum.decompose (gradeBy R f) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.ddee9aafb802 from=seed src=0 shape=3822eed0 vocab=c398bc93
+-/
 theorem GradesBy.decompose_single (m : M) (r : R) :
     DirectSum.decompose (gradeBy R f) (single m r : R[M]) =
       .of (fun i ↦ gradeBy R f i) (f m) ⟨single m r, single_mem_gradeBy _ _ _⟩ :=
@@ -172,16 +211,23 @@ theorem GradesBy.decompose_single (m : M) (r : R) :
 instance grade.gradedAlgebra : GradedAlgebra (grade R : ι → Submodule _ _) :=
   inferInstanceAs <| GradedAlgebra (gradeBy R (AddMonoidHom.id ι))
 
+/--
+@isnad1 id=eq.0h4v.s12.bf2bf97da377 from=seed src=0 shape=4764e8e7 vocab=f0370205
+-/
 theorem grade.decompose_single (i : ι) (r : R) :
     DirectSum.decompose (grade R : ι → Submodule _ _) (single i r) =
       .of (fun i ↦ grade R i) i ⟨single i r, single_mem_grade _ _⟩ :=
   decomposeAux_single _ _ _
 
-/-- `AddMonoidAlgebra.gradeBy` describe an internally graded algebra. -/
+/-- `AddMonoidAlgebra.gradeBy` describe an internally graded algebra.
+@isnad1 id=isintern.0h4v.s7.2f3c22dc2680 from=seed src=0 shape=8919f991 vocab=fe0276eb
+-/
 theorem gradeBy.isInternal : DirectSum.IsInternal (gradeBy R f) :=
   DirectSum.Decomposition.isInternal _
 
-/-- `AddMonoidAlgebra.grade` describe an internally graded algebra. -/
+/-- `AddMonoidAlgebra.grade` describe an internally graded algebra.
+@isnad1 id=isintern.0h2v.s6.2b6d40bbbe28 from=seed src=0 shape=736ff39c vocab=b584775a
+-/
 theorem grade.isInternal : DirectSum.IsInternal (grade R : ι → Submodule R _) :=
   DirectSum.Decomposition.isInternal _
 

@@ -637,6 +637,9 @@ end cm5a_cof
 variable [EnoughInjectives C]
 
 open cm5a_cof in
+/--
+@isnad1 id=ex.0h5v.s10.a15744652fe3 from=seed src=0 shape=848957db vocab=5e195be6
+-/
 public lemma cm5a_cof (n : ℤ) [K.IsStrictlyGE n] [L.IsStrictlyGE n] [Mono f] :
     ∃ (K' : CochainComplex C ℤ) (_hK' : K'.IsStrictlyGE n) (ι : K ⟶ K') (π : K' ⟶ L),
       Mono ι ∧ QuasiIso ι ∧ degreewiseEpiWithInjectiveKernel π ∧ ι ≫ π = f := by
@@ -644,6 +647,9 @@ public lemma cm5a_cof (n : ℤ) [K.IsStrictlyGE n] [L.IsStrictlyGE n] [Mono f] :
   exact ⟨mid f n, inferInstance, ι f n, π f n, inferInstance,
     inferInstance, degreewiseEpiWithInjectiveKernel_π f n, ι_π f n⟩
 
+/--
+@isnad1 id=ex.0h5v.s10.0f2fad90cfee from=seed src=0 shape=c7784f86 vocab=f4509caf
+-/
 public lemma cm5a (n : ℤ) [K.IsStrictlyGE (n + 1)] [L.IsStrictlyGE n] :
     ∃ (K' : CochainComplex C ℤ) (_hK' : K'.IsStrictlyGE n) (ι : K ⟶ K') (π : K' ⟶ L),
       Mono ι ∧ QuasiIso ι ∧ degreewiseEpiWithInjectiveKernel π ∧ ι ≫ π = f := by
@@ -657,6 +663,9 @@ open ZeroObject
 
 variable (K)
 
+/--
+@isnad1 id=ex.0h5v.s9.b3e0653567f1 from=seed src=0 shape=9e16a187 vocab=1a531795
+-/
 public lemma exists_mono_quasiIso_injective (n₀ n₁ : ℤ) (h : n₀ + 1 = n₁ := by lia)
     [K.IsStrictlyGE n₁] :
     ∃ (L : CochainComplex C ℤ) (i : K ⟶ L) (_hi : Mono i) (_hi' : QuasiIso i)
@@ -666,6 +675,9 @@ public lemma exists_mono_quasiIso_injective (n₀ n₁ : ℤ) (h : n₀ + 1 = n�
   exact ⟨L, i, hi, hi', (degreewiseEpiWithInjectiveKernel_iff_of_isZero p
     (Limits.isZero_zero _)).1 hp, hL⟩
 
+/--
+@isnad1 id=ex.0h3v.s8.4b96e4f2aff1 from=seed src=0 shape=3695d261 vocab=b3664099
+-/
 public lemma exists_quasiIso_injective (n : ℤ) [K.IsStrictlyGE n] :
     ∃ (L : CochainComplex C ℤ) (i : K ⟶ L) (_hi' : QuasiIso i)
       (_hL : ∀ (n : ℤ), Injective (L.X n)), L.IsStrictlyGE n := by

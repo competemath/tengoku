@@ -30,6 +30,9 @@ variable {C : Type*} [Category* C] [Preadditive C] [HasZeroObject C] [HasBinaryB
   (S : ShortComplex (ChainComplex C ℕ))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h3v.s10.a84a83123a9d from=seed src=0 shape=752cbf72 vocab=56e83d6f
+-/
 lemma homotopyEquivalences_shortComplexF_iff_of_degreewiseSplit
     (σ : ∀ n, (S.map (eval _ _ n)).Splitting) :
     homotopyEquivalences _ _ S.f ↔ Nonempty (Homotopy (𝟙 S.X₃) 0) := by
@@ -44,6 +47,9 @@ lemma homotopyEquivalences_shortComplexF_iff_of_degreewiseSplit
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h3v.s10.aeb32d37080f from=seed src=0 shape=752cbf72 vocab=e9f63521
+-/
 lemma homotopyEquivalences_shortComplexG_iff_of_degreewiseSplit
     (σ : ∀ n, (S.map (eval _ _ n)).Splitting) :
     homotopyEquivalences _ _ S.g ↔ Nonempty (Homotopy (𝟙 S.X₁) 0) := by

@@ -44,6 +44,9 @@ class Etale {X Y : Scheme.{u}} (f : X ⟶ Y) : Prop where
     ∀ {U : Y.Opens} (_ : IsAffineOpen U) {V : X.Opens} (_ : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U),
       (f.appLE U V e).hom.Etale
 
+/--
+@isnad1 id=etale.3h5v.s9.ef4fe6ec6b7f from=seed src=0 shape=3953db45 vocab=b49f2a0c
+-/
 alias Scheme.Hom.etale_appLE := Etale.etale_appLE
 
 @[deprecated (since := "2026-02-09")] alias IsEtale := Etale
@@ -66,12 +69,16 @@ instance : MorphismProperty.IsMultiplicative @Etale :=
     RingHom.Etale.containsIdentities
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- The composition of étale morphisms is étale. -/
+/-- The composition of étale morphisms is étale.
+@isnad1 id=etale.0h5v.s5.bff71b8e3add from=seed src=0 shape=ee2632eb vocab=221ffb9c
+-/
 instance etale_comp {Z : Scheme.{u}} (g : Y ⟶ Z) [Etale f] [Etale g] :
     Etale (f ≫ g) :=
   MorphismProperty.comp_mem _ f g ‹Etale f› ‹Etale g›
 
-/-- Etale is stable under base change. -/
+/-- Etale is stable under base change.
+@isnad1 id=isstable.0h0v.s2.28bf0a52220a from=seed src=0 shape=25b03439 vocab=5e7cac6d
+-/
 instance etale_isStableUnderBaseChange : MorphismProperty.IsStableUnderBaseChange @Etale :=
   HasRingHomProperty.isStableUnderBaseChange RingHom.Etale.isStableUnderBaseChange
 
@@ -106,6 +113,9 @@ lemma eq_smoothOfRelativeDimension_zero : @Etale = @SmoothOfRelativeDimension 0 
   · exact RingHom.Etale.respectsIso
   · exact RingHom.Etale.ofLocalizationSpanTarget
 
+/--
+@isnad1 id=iff.0h3v.s4.de5d4658974d from=seed src=0 shape=0c147928 vocab=84ebabde
+-/
 lemma iff_smoothOfRelativeDimension_zero : Etale f ↔ SmoothOfRelativeDimension 0 f := by
   rw [eq_smoothOfRelativeDimension_zero]
 
@@ -127,7 +137,9 @@ instance : MorphismProperty.HasOfPostcompProperty
   intro X Y f ⟨hft, hfu⟩
   exact inferInstanceAs <| Etale (pullback.diagonal f)
 
-/-- If `f ≫ g` is étale and `g` unramified, then `f` is étale. -/
+/-- If `f ≫ g` is étale and `g` unramified, then `f` is étale.
+@isnad1 id=etale.0h5v.s5.619d177013f2 from=seed src=0 shape=565eb6d2 vocab=0f1ae640
+-/
 lemma of_comp {Z : Scheme.{u}} (g : Y ⟶ Z) [Etale (f ≫ g)] [LocallyOfFiniteType g]
     [FormallyUnramified g] : Etale f :=
   of_postcomp _ (W' := @LocallyOfFiniteType ⊓ @FormallyUnramified) f g ⟨‹_›, ‹_›⟩ ‹_›
@@ -138,11 +150,17 @@ instance : MorphismProperty.HasOfPostcompProperty @Etale @Etale := by
   intro X Y f hf
   constructor <;> infer_instance
 
+/--
+@isnad1 id=iff.0h3v.s5.050f64828d1f from=seed src=0 shape=f62889a7 vocab=4200e73b
+-/
 lemma iff_flat_and_formallyUnramified {f : X ⟶ Y} :
     Etale f ↔ Flat f ∧ FormallyUnramified f ∧ LocallyOfFinitePresentation f := by
   rw [etale_iff, flat_iff, formallyUnramified_iff, locallyOfFinitePresentation_iff]
   grind [RingHom.Etale.iff_flat_and_formallyUnramified]
 
+/--
+@isnad1 id=etale.0h3v.s5.d425a82c10df from=seed src=0 shape=a30d4bb3 vocab=4200e73b
+-/
 lemma of_formallyUnramified_of_flat [Flat f] [FormallyUnramified f]
     [LocallyOfFinitePresentation f] :
     Etale f := by
@@ -191,14 +209,23 @@ abbrev Etale.mk {Y : Scheme.{u}} (f : Y ⟶ X) [Etale f] : X.Etale :=
   MorphismProperty.Over.mk _ f inferInstance
 
 variable {X} in
+/--
+@isnad1 id=eq.0h3v.s5.7ae6fbcacda7 from=seed src=0 shape=1305c631 vocab=23a9d664
+-/
 @[simp]
 lemma Etale.forget_mk {Y : Scheme.{u}} (f : Y ⟶ X) [Etale f] :
     (Etale.forget X).obj (.mk f) = Over.mk f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.d0abad7fd221 from=seed src=0 shape=60ebde57 vocab=cebfb9bc
+-/
 @[simp]
 lemma Etale.forget_obj_left (Y : X.Etale) :
     ((Etale.forget X).obj Y).left = Y.left := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.9f8bc0059f8d from=seed src=0 shape=81c3144f vocab=acdda8f9
+-/
 @[simp]
 lemma Etale.forget_obj_hom (Y : X.Etale) :
     ((Etale.forget X).obj Y).hom = Y.hom := rfl

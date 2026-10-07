@@ -169,6 +169,9 @@ def comparisonN : (N : SimplicialObject A ⥤ _) ≅ Idempotents.DoldKan.N :=
 def equivalence : SimplicialObject A ≌ ChainComplex A ℕ :=
   (Idempotents.DoldKan.equivalence (C := A)).changeFunctor comparisonN.symm
 
+/--
+@isnad1 id=eq.0h1v.s7.f6e625d38d3e from=seed src=0 shape=19d88a0a vocab=af0efa24
+-/
 theorem equivalence_inverse : (equivalence : SimplicialObject A ≌ _).inverse = Γ :=
   rfl
 

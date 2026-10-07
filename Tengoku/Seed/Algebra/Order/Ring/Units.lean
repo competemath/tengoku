@@ -13,6 +13,9 @@ public import Tengoku.Seed.GroupTheory.Index
 
 public section
 
+/--
+@isnad1 id=eq.0h1v.s5.f1b7454e0b10 from=seed src=0 shape=792da867 vocab=8a962971
+-/
 lemma Units.index_posSubgroup (R : Type*) [Ring R] [LinearOrder R] [IsStrictOrderedRing R] :
     (posSubgroup R).index = 2 := by
   rw [Subgroup.index_eq_two_iff]

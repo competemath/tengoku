@@ -54,18 +54,25 @@ def signVariations : ℕ :=
   (nonzero_signs.destutter (· ≠ ·)).length - 1
 
 variable (R) in
+/--
+@isnad1 id=eq.0h1v.s4.92780e8acd49 from=seed src=0 shape=7828fa0d vocab=23af63b5
+-/
 @[simp]
 theorem signVariations_zero : signVariations (0 : R[X]) = 0 := by
   simp [signVariations]
 
-/-- Sign variations of a monomial are always zero. -/
+/-- Sign variations of a monomial are always zero.
+@isnad1 id=eq.0h3v.s6.7ff61938aa9f from=seed src=0 shape=ce65e8a4 vocab=e05da9ea
+-/
 @[simp]
 theorem signVariations_monomial (d : ℕ) (c : R) : signVariations (monomial d c) = 0 := by
   by_cases hcz : c = 0
   · simp [hcz]
   · simp [hcz, signVariations, coeffList_eraseLead (mt (monomial_eq_zero_iff c d).mp hcz)]
 
-/-- If the first two signs are the same, then `signVariations` is unchanged by `eraseLead` -/
+/-- If the first two signs are the same, then `signVariations` is unchanged by `eraseLead`
+@isnad1 id=eq.1h2v.s7.025c6e90ffdc from=seed src=0 shape=4bdafdbd vocab=a7aeb172
+-/
 theorem signVariations_eraseLead (h : SignType.sign P.leadingCoeff = SignType.sign P.nextCoeff) :
     signVariations P.eraseLead = signVariations P := by
   by_cases hpz : P = 0
@@ -76,7 +83,9 @@ theorem signVariations_eraseLead (h : SignType.sign P.leadingCoeff = SignType.si
       coeffList_eraseLead hpz]
 
 /-- If we drop the leading coefficient, the sign changes drop by 0 or 1 depending on whether
-the first two nonzero coefficients match. -/
+the first two nonzero coefficients match.
+@isnad1 id=eq.1h2v.s8.7b9cb7273dbc from=seed src=0 shape=5abebe80 vocab=a6c3c101
+-/
 theorem signVariations_eq_eraseLead_add_ite {P : Polynomial R} (h : P ≠ 0) :
     signVariations P = signVariations P.eraseLead + if SignType.sign P.leadingCoeff
       = -SignType.sign P.eraseLead.leadingCoeff then 1 else 0 := by
@@ -109,13 +118,17 @@ theorem signVariations_eq_eraseLead_add_ite {P : Polynomial R} (h : P ≠ 0) :
   <;> grind [= SignType.neg_eq_neg_one, SignType.zero_eq_zero, SignType.pos_eq_one,
       SignType.neg_eq_neg_one, neg_neg]
 
-/-- We can only lose, not gain, sign changes if we drop the leading coefficient. -/
+/-- We can only lose, not gain, sign changes if we drop the leading coefficient.
+@isnad1 id=le.0h2v.s4.8cedace495f3 from=seed src=0 shape=48bae449 vocab=c9c61219
+-/
 theorem signVariations_eraseLead_le : signVariations P.eraseLead ≤ signVariations P := by
   by_cases hpz : P = 0
   · simp [hpz]
   · grind [signVariations_eq_eraseLead_add_ite]
 
-/-- We can only lose at most one sign changes if we drop the leading coefficient. -/
+/-- We can only lose at most one sign changes if we drop the leading coefficient.
+@isnad1 id=le.0h2v.s5.0c3a3396d017 from=seed src=0 shape=89c4a720 vocab=ac786398
+-/
 theorem signVariations_le_eraseLead_succ : signVariations P ≤ signVariations P.eraseLead + 1 := by
   by_cases hpz : P = 0
   · simp [hpz]
@@ -127,7 +140,9 @@ section OrderedRing
 
 variable {R : Type*} [Ring R] [LinearOrder R] [IsOrderedRing R] (P : Polynomial R) {x : R}
 
-/-- The number of sign changes does not change if we negate. -/
+/-- The number of sign changes does not change if we negate.
+@isnad1 id=eq.0h2v.s5.419786bbdb99 from=seed src=0 shape=109e8c87 vocab=bf92bff1
+-/
 @[simp]
 theorem signVariations_neg : signVariations (-P) = signVariations P := by
   rw [signVariations, signVariations, coeffList_neg]
@@ -148,7 +163,9 @@ section StrictOrderedRing
 
 variable {R : Type*} [Ring R] [LinearOrder R] [IsStrictOrderedRing R] {P : Polynomial R} {η : R}
 
-/-- The number of sign changes does not change if we multiply by any nonzero scalar. -/
+/-- The number of sign changes does not change if we multiply by any nonzero scalar.
+@isnad1 id=eq.1h3v.s7.a12d686b6e64 from=seed src=0 shape=40a69930 vocab=48c3f02e
+-/
 @[simp]
 theorem signVariations_C_mul (P : Polynomial R) (hx : η ≠ 0) :
     signVariations (C η * P) = signVariations P := by
@@ -163,7 +180,9 @@ theorem signVariations_C_mul (P : Polynomial R) (hx : η ≠ 0) :
 /-- If P's coefficients start with signs `[+, -, ...]`, then multiplying by a binomial `X - η`
   commutes with `eraseLead` in the number of sign changes. This is because the product of
   `P` and `X - η` has the pattern `[+, -, ...]` as well, so then `P.eraseLead` starts with
-  `[-,...]`, and multiplying by `X - η` gives `[-, ...]` too. -/
+  `[-,...]`, and multiplying by `X - η` gives `[-, ...]` too.
+@isnad1 id=eq.3h3v.s8.66d507023395 from=seed src=0 shape=d93fcad6 vocab=e42873a8
+-/
 lemma signVariations_eraseLead_mul_X_sub_C (hη : 0 < η) (hP₀ : 0 < leadingCoeff P)
     (hc : P.nextCoeff < 0) :
     ((X - C η) * P).eraseLead.signVariations = ((X - C η) * P.eraseLead).signVariations := by
@@ -206,7 +225,9 @@ lemma signVariations_eraseLead_mul_X_sub_C (hη : 0 < η) (hP₀ : 0 < leadingCo
   rw [leadingCoeff, nextCoeff_of_natDegree_pos (hd ▸ d.succ_pos), hd, Nat.add_sub_cancel]
   abel
 
-/-- This lemma is really a specialization of `succ_signVariations_le_sub_mul` to monomials. -/
+/-- This lemma is really a specialization of `succ_signVariations_le_sub_mul` to monomials.
+@isnad1 id=le.2h4v.s8.8a51cbd242c4 from=seed src=0 shape=9df2086b vocab=a43460be
+-/
 lemma succ_signVariations_X_sub_C_mul_monomial {d c} (hc : c ≠ 0) (hη : 0 < η) :
     (monomial d c).signVariations + 1 ≤ ((X - C η) * monomial d c).signVariations := by
   have h₁ : nextCoeff ((X - C η) * monomial d c) = -(η * c) := by
@@ -274,7 +295,9 @@ private lemma exists_cons_of_leadingCoeff_pos (η) (h₁ : 0 < leadingCoeff P) (
 `(X - η) * P` is the same as `(X - η) * P.eraseLead`. This lemma lets us do induction on the
 degree of P when P starts with matching coefficient signs. Of course this is also true when the
 first two coefficients of P are *negative*, but we just prove the case where they're positive
-since it's cleaner and sufficient for the later use. -/
+since it's cleaner and sufficient for the later use.
+@isnad1 id=le.2h3v.s8.210b4a2d11e3 from=seed src=0 shape=219d998a vocab=9fcac803
+-/
 lemma signVariations_X_sub_C_mul_eraseLead_le (h : 0 < P.leadingCoeff) (h₂ : 0 < P.nextCoeff) :
     signVariations ((X - C η) * P.eraseLead) ≤ signVariations ((X - C η) * P) := by
   obtain ⟨c₀, cs, ⟨hcs, hecs⟩⟩ := exists_cons_of_leadingCoeff_pos η h h₂.ne'
@@ -295,7 +318,9 @@ lemma signVariations_X_sub_C_mul_eraseLead_le (h : 0 < P.leadingCoeff) (h₂ : 0
 -- TODO: fix non-terminal simp below; simp followed by rfl
 set_option linter.flexible false in
 /-- Multiplying a polynomial by a linear term `X - η` adds at least one sign change. This is the
-basis for the induction in `roots_countP_pos_le_signVariations`. -/
+basis for the induction in `roots_countP_pos_le_signVariations`.
+@isnad1 id=le.2h3v.s7.a8d856318f37 from=seed src=0 shape=c0d0b00f vocab=80100cc8
+-/
 theorem succ_signVariations_le_X_sub_C_mul (hη : 0 < η) (hP : P ≠ 0) :
     signVariations P + 1 ≤ signVariations ((X - C η) * P) := by
   -- do induction on the degree
@@ -376,7 +401,9 @@ section CommStrictOrderedRing
 variable {R : Type*} [CommRing R] [LinearOrder R] [IsStrictOrderedRing R] (P : Polynomial R)
 
 /-- **Descartes' Rule of Signs**: the number of positive roots is at most the number of sign
-variations. -/
+variations.
+@isnad1 id=le.0h2v.s6.04db3e41b2ab from=seed src=0 shape=fe520d99 vocab=1fb2acf9
+-/
 theorem roots_countP_pos_le_signVariations : P.roots.countP (0 < ·) ≤ signVariations P := by
   generalize h : P.roots.countP (0 < ·) = num_pos_roots
   induction num_pos_roots generalizing P -- Induct on number of roots.

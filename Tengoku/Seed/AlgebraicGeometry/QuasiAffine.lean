@@ -49,7 +49,9 @@ instance [X.IsQuasiAffine] : IsOpenImmersion X.toSpecΓ := by
   rw [← X.toSpecΓ.toImage_imageι]
   infer_instance
 
-/-- Any quasicompact locally closed subscheme of a quasi-affine scheme is quasi-affine. -/
+/-- Any quasicompact locally closed subscheme of a quasi-affine scheme is quasi-affine.
+@isnad1 id=isquasia.0h3v.s5.b6d8e7eed078 from=seed src=0 shape=b21a3d4b vocab=174fadc8
+-/
 @[stacks 0BCK]
 lemma IsQuasiAffine.of_isImmersion
     [Y.IsQuasiAffine] [IsImmersion f] [CompactSpace X] : X.IsQuasiAffine := by
@@ -58,6 +60,9 @@ lemma IsQuasiAffine.of_isImmersion
   constructor
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isbasis.0h1v.s9.632448b7da1d from=seed src=0 shape=cebfaa8f vocab=3bd16b4c
+-/
 lemma IsQuasiAffine.isBasis_basicOpen (X : Scheme.{u}) [IsQuasiAffine X] :
     Opens.IsBasis { X.basicOpen r | (r : Γ(X, ⊤)) (_ : IsAffineOpen (X.basicOpen r)) } := by
   refine Opens.isBasis_iff_nbhd.mpr fun {U x} hxU ↦ ?_
@@ -72,7 +77,9 @@ lemma IsQuasiAffine.isBasis_basicOpen (X : Scheme.{u}) [IsQuasiAffine X] :
     (hrU.trans (Set.image_subset_range _ _)))
 
 /-- A quasi-compact scheme is quasi-affine if
-it can be covered by affine basic opens of global sections. -/
+it can be covered by affine basic opens of global sections.
+@isnad1 id=isquasia.1h1v.s9.cfa3f2d0671e from=seed src=0 shape=35efbce9 vocab=9de12f40
+-/
 lemma IsQuasiAffine.of_forall_exists_mem_basicOpen (X : Scheme.{u}) [CompactSpace X]
     (H : ∀ x : X, ∃ r : Γ(X, ⊤), IsAffineOpen (X.basicOpen r) ∧ x ∈ X.basicOpen r) :
     IsQuasiAffine X := by
@@ -91,6 +98,9 @@ lemma IsQuasiAffine.of_forall_exists_mem_basicOpen (X : Scheme.{u}) [CompactSpac
   have := isLocalization_basicOpen_of_qcqs isCompact_univ isQuasiSeparated_univ r
   exact MorphismProperty.comp_mem _ hr.isoSpec.hom _ inferInstance (.of_isLocalization r)
 
+/--
+@isnad1 id=isquasia.0h3v.s4.45b6305088e8 from=seed src=0 shape=9715b773 vocab=247677e5
+-/
 lemma IsQuasiAffine.of_isAffineHom [IsAffineHom f] [Y.IsQuasiAffine] : X.IsQuasiAffine := by
   have := QuasiCompact.compactSpace_of_compactSpace f
   refine .of_forall_exists_mem_basicOpen _ fun x ↦ ?_
@@ -112,7 +122,9 @@ lemma IsQuasiAffine.of_isAffineHom [IsAffineHom f] [Y.IsQuasiAffine] : X.IsQuasi
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- If `f : X ⟶ Y` is an affine morphism between quasi-affine schemes, then it is the pullback of
-  `Spec Γ(X, ⊤) ⟶ Spec Γ(Y, ⊤)` along the open immersion `Y ⟶ Spec Γ(Y, ⊤)`. -/
+  `Spec Γ(X, ⊤) ⟶ Spec Γ(Y, ⊤)` along the open immersion `Y ⟶ Spec Γ(Y, ⊤)`.
+@isnad1 id=ispullba.0h3v.s9.cdd0bef6b040 from=seed src=0 shape=ffdd7d12 vocab=2cfc22a6
+-/
 lemma isPullback_toSpecΓ_toSpecΓ (f : X ⟶ Y) [IsAffineHom f] [Y.IsQuasiAffine] :
     IsPullback f X.toSpecΓ Y.toSpecΓ (Spec.map f.appTop) := by
   have := QuasiCompact.compactSpace_of_compactSpace f
@@ -145,6 +157,9 @@ lemma isPullback_toSpecΓ_toSpecΓ (f : X ⟶ Y) [IsAffineHom f] [Y.IsQuasiAffin
   · simp only [Iso.symm_hom, Iso.eq_inv_comp]
     simp [e, IsAffineOpen.isoSpec_hom]
 
+/--
+@isnad1 id=eq.0h3v.s12.3173ee3bb081 from=seed src=0 shape=1903a328 vocab=4a8ffd1b
+-/
 lemma preimage_opensRange_toSpecΓ (f : X ⟶ Y) [IsAffineHom f] [X.IsQuasiAffine] [Y.IsQuasiAffine] :
     Spec.map f.appTop ⁻¹ᵁ Y.toSpecΓ.opensRange = X.toSpecΓ.opensRange := by
   simpa using (IsOpenImmersion.image_preimage_eq_preimage_image_of_isPullback

@@ -43,6 +43,9 @@ noncomputable def embedding : M →+ FreeAbelianGroup (Fin (dim M)) :=
     .comp (Module.finBasis ℤ _).repr.toAddMonoidHom
       (addMonoidOf ⊤).toAddMonoidHom
 
+/--
+@isnad1 id=injectiv.0h1v.s7.960ae4f9f9d1 from=seed src=0 shape=8380a55d vocab=9a86c025
+-/
 lemma embedding_injective : Injective (embedding M) := by
   simpa [embedding] using! mk_left_injective 0
 

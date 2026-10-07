@@ -74,6 +74,9 @@ noncomputable def sheafValGluedMk : F.obj.obj (op D.glued) :=
     { val := s
       property := fun _ ↦ h _ _ }
 
+/--
+@isnad1 id=eq.1h4v.s10.f97bd9a438e1 from=seed src=0 shape=0a324cbb vocab=ffd8e869
+-/
 @[simp]
 lemma sheafValGluedMk_val (j : D.J) : F.obj.map (D.ι j).op (D.sheafValGluedMk s h) = s j :=
   Multifork.IsLimit.sectionsEquiv_apply_val (D.oneHypercover.isLimitMultifork F) _ _

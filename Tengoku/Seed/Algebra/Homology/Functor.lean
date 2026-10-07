@@ -85,6 +85,9 @@ namespace CategoryTheory.ShortComplex
 
 variable [Abelian V] {S₁ S₂ : ShortComplex (T ⥤ V)} (f : S₁ ⟶ S₂)
 
+/--
+@isnad1 id=iff.0h5v.s9.3138e67310d9 from=seed src=0 shape=ea5260dd vocab=872c8d42
+-/
 lemma quasiIso_iff_evaluation :
     QuasiIso f ↔ ∀ (j : T),
       QuasiIso (((evaluation T V).obj j).mapShortComplex.map f) :=
@@ -102,12 +105,18 @@ namespace HomologicalComplex
 variable [Abelian V] {ι : Type*} {c : ComplexShape ι} {K₁ K₂ : HomologicalComplex (T ⥤ V) c}
   (f : K₁ ⟶ K₂)
 
+/--
+@isnad1 id=iff.0h8v.s9.a20eb6c33a8f from=seed src=0 shape=48c0cf7c vocab=3d3765e6
+-/
 lemma quasiIsoAt_iff_evaluation (i : ι) :
     QuasiIsoAt f i ↔ ∀ (t : T),
       QuasiIsoAt ((((evaluation T V).obj t).mapHomologicalComplex c).map f) i := by
   simp only [quasiIsoAt_iff, ShortComplex.quasiIso_iff_evaluation]
   rfl
 
+/--
+@isnad1 id=iff.0h7v.s9.364cf1a5ef32 from=seed src=0 shape=ced6591f vocab=0457ae52
+-/
 lemma quasiIso_iff_evaluation :
     QuasiIso f ↔ ∀ (t : T),
       QuasiIso ((((evaluation T V).obj t).mapHomologicalComplex c).map f) := by

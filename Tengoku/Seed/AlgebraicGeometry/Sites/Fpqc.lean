@@ -42,10 +42,16 @@ def fppfPrecoverage : Precoverage Scheme.{u} :=
   precoverage (@Flat ⊓ @LocallyOfFinitePresentation)
   deriving Precoverage.IsStableUnderBaseChange, Precoverage.IsStableUnderComposition
 
+/--
+@isnad1 id=le.0h0v.s4.d92d0c90360a from=seed src=0 shape=836e6cbb vocab=783ad7ea
+-/
 lemma zariskiPrecoverage_le_fppfPrecoverage :
     zariskiPrecoverage ≤ fppfPrecoverage :=
   precoverage_mono fun _ _ _ _ ↦ ⟨inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.d7f1a257e718 from=seed src=0 shape=6e532543 vocab=15c3f2aa
+-/
 lemma fppfPrecoverage_eq_inf :
     fppfPrecoverage = precoverage @Flat ⊓ precoverage @LocallyOfFinitePresentation := by
   grind [fppfPrecoverage, precoverage, precoverage, MorphismProperty.precoverage_inf]
@@ -64,11 +70,17 @@ def fpqcPrecoverage : Precoverage Scheme.{u} :=
     Precoverage.IsStableUnderComposition
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=le.0h0v.s4.cdd2b211da6f from=seed src=0 shape=836e6cbb vocab=9a37973d
+-/
 lemma fppfPrecoverage_le_fpqcPrecoverage : fppfPrecoverage ≤ fpqcPrecoverage := by
   rw [fpqcPrecoverage, propQCPrecoverage, le_inf_iff]
   refine ⟨?_, precoverage_mono fun X Y f ⟨hf, _⟩ ↦ inferInstance⟩
   exact precoverage_le_qcPrecoverage_of_isOpenMap fun X Y f ⟨_, _⟩ ↦ f.isOpenMap
 
+/--
+@isnad1 id=le.0h0v.s4.085a2f72807e from=seed src=0 shape=836e6cbb vocab=9f36a97d
+-/
 lemma zariskiPrecoverage_le_fpqcPrecoverage : zariskiPrecoverage ≤ fpqcPrecoverage :=
   le_trans zariskiPrecoverage_le_fppfPrecoverage fppfPrecoverage_le_fpqcPrecoverage
 
@@ -76,11 +88,20 @@ lemma zariskiPrecoverage_le_fpqcPrecoverage : zariskiPrecoverage ≤ fpqcPrecove
 abbrev fpqcTopology : GrothendieckTopology Scheme.{u} :=
   fpqcPrecoverage.toGrothendieck
 
+/--
+@isnad1 id=eq.0h0v.s2.bd55936fda63 from=seed src=0 shape=95347b04 vocab=f796c8c3
+-/
 lemma fpqcTopology_eq_propQCTopology : fpqcTopology = Scheme.propQCTopology @Flat := rfl
 
+/--
+@isnad1 id=le.0h0v.s3.5f933acc3dec from=seed src=0 shape=836e6cbb vocab=f8d99dba
+-/
 lemma zariskiTopology_le_fpqcTopology : zariskiTopology ≤ fpqcTopology :=
   Precoverage.toGrothendieck_mono zariskiPrecoverage_le_fpqcPrecoverage
 
+/--
+@isnad1 id=le.0h0v.s3.eab3c26ee37b from=seed src=0 shape=836e6cbb vocab=1407932f
+-/
 lemma fppfTopology_le_fpqcTopology : fppfTopology ≤ fpqcTopology :=
   Precoverage.toGrothendieck_mono fppfPrecoverage_le_fpqcPrecoverage
 
@@ -98,6 +119,9 @@ instance : fpqcTopology.Subcanonical := by
 instance : fppfTopology.Subcanonical :=
   .of_le fppfTopology_le_fpqcTopology
 
+/--
+@isnad1 id=mem.0h3v.s5.5650e2ac01ab from=seed src=0 shape=a29067bd vocab=f9fa4bba
+-/
 @[simp]
 lemma Hom.singleton_mem_fppfPrecoverage {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [Surjective f]
     [LocallyOfFinitePresentation f] :
@@ -105,6 +129,9 @@ lemma Hom.singleton_mem_fppfPrecoverage {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f
   rw [← Presieve.ofArrows_pUnit.{0}]
   exact (f.cover (P := @Flat ⊓ @LocallyOfFinitePresentation) ⟨‹_›, ‹_›⟩).mem₀
 
+/--
+@isnad1 id=mem.0h3v.s5.d8d855db1456 from=seed src=0 shape=a29067bd vocab=61af12ac
+-/
 @[simp]
 lemma Hom.singleton_mem_fpqcPrecoverage {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [Surjective f]
     [QuasiCompact f] :

@@ -55,35 +55,61 @@ variable (f g : A)
 def basicOpen : (Proj 𝒜).Opens :=
   ProjectiveSpectrum.basicOpen 𝒜 f
 
+/--
+@isnad1 id=iff.0h5v.s7.f5c23a03c1d4 from=seed src=0 shape=f1f4ecf7 vocab=de32a7a1
+-/
 @[simp]
 theorem mem_basicOpen (x : Proj 𝒜) :
     x ∈ basicOpen 𝒜 f ↔ f ∉ x.asHomogeneousIdeal :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.2de3edbe6a2b from=seed src=0 shape=1045f774 vocab=ae60f4ff
+-/
 @[simp] theorem basicOpen_one : basicOpen 𝒜 1 = ⊤ := ProjectiveSpectrum.basicOpen_one ..
 
+/--
+@isnad1 id=eq.0h3v.s7.8651fc9edac5 from=seed src=0 shape=1045f774 vocab=c5115ec4
+-/
 @[simp] theorem basicOpen_zero : basicOpen 𝒜 0 = ⊥ := ProjectiveSpectrum.basicOpen_zero ..
 
+/--
+@isnad1 id=eq.1h5v.s6.81112d005f7a from=seed src=0 shape=5ec05e04 vocab=ffe403d4
+-/
 @[simp] theorem basicOpen_pow (n) (hn : 0 < n) : basicOpen 𝒜 (f ^ n) = basicOpen 𝒜 f :=
   ProjectiveSpectrum.basicOpen_pow 𝒜 f n hn
 
+/--
+@isnad1 id=eq.0h5v.s7.d16b4691d05d from=seed src=0 shape=c1f14347 vocab=f4468fb4
+-/
 theorem basicOpen_mul : basicOpen 𝒜 (f * g) = basicOpen 𝒜 f ⊓ basicOpen 𝒜 g :=
   ProjectiveSpectrum.basicOpen_mul ..
 
+/--
+@isnad1 id=le.1h5v.s7.ee3ce6d36776 from=seed src=0 shape=d35bb643 vocab=f855d27d
+-/
 theorem basicOpen_mono (hfg : f ∣ g) : basicOpen 𝒜 g ≤ basicOpen 𝒜 f :=
   (hfg.choose_spec ▸ basicOpen_mul 𝒜 f _).trans_le inf_le_left
 
+/--
+@isnad1 id=eq.0h4v.s7.e5dbdb328f87 from=seed src=0 shape=427e606d vocab=c633ae47
+-/
 theorem basicOpen_eq_iSup_proj (f : A) :
     basicOpen 𝒜 f = ⨆ i : ℕ, basicOpen 𝒜 (GradedRing.proj 𝒜 i f) :=
   ProjectiveSpectrum.basicOpen_eq_union_of_projection ..
 
+/--
+@isnad1 id=isbasis.0h3v.s6.07147bb94bc3 from=seed src=0 shape=72da8201 vocab=b2255842
+-/
 theorem isBasis_basicOpen :
     TopologicalSpace.Opens.IsBasis (Set.range (basicOpen 𝒜)) := by
   delta TopologicalSpace.Opens.IsBasis
   convert! ProjectiveSpectrum.isTopologicalBasis_basic_opens 𝒜
   exact (Set.range_comp _ _).symm
 
-/-- If `{ xᵢ }` spans the irrelevant ideal of `A`, then `D₊(xᵢ)` covers `Proj A`. -/
+/-- If `{ xᵢ }` spans the irrelevant ideal of `A`, then `D₊(xᵢ)` covers `Proj A`.
+@isnad1 id=eq.1h5v.s8.2ebf91d1b456 from=seed src=0 shape=659c67c1 vocab=abe6b205
+-/
 lemma iSup_basicOpen_eq_top {ι : Type*} (f : ι → A)
     (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal ≤ Ideal.span (Set.range f)) :
     ⨆ i, Proj.basicOpen 𝒜 (f i) = ⊤ := by
@@ -94,7 +120,9 @@ lemma iSup_basicOpen_eq_top {ι : Type*} (f : ι → A)
   refine x.not_irrelevant_le (hf.trans ?_)
   rwa [Ideal.span_le, Set.range_subset_iff]
 
-/-- If `{ xᵢ }` are homogeneous and span `A` as an `A₀` algebra, then `D₊(xᵢ)` covers `Proj A`. -/
+/-- If `{ xᵢ }` are homogeneous and span `A` as an `A₀` algebra, then `D₊(xᵢ)` covers `Proj A`.
+@isnad1 id=eq.2h5v.s10.62312b8407fc from=seed src=0 shape=3d147828 vocab=300c9c9a
+-/
 lemma iSup_basicOpen_eq_top' {ι : Type*} (f : ι → A)
     (hfn : ∀ i, ∃ n, f i ∈ 𝒜 n)
     (hf : Algebra.adjoin (𝒜 0) (Set.range f) = ⊤) :
@@ -142,6 +170,9 @@ def basicOpenToSpec : (basicOpen 𝒜 f).toScheme ⟶ Spec (.of <| Away 𝒜 f) 
   (basicOpen 𝒜 f).toSpecΓ ≫ Spec.map (awayToSection 𝒜 f)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s13.12c5e9094965 from=seed src=0 shape=3a0a30f9 vocab=5c9535e0
+-/
 lemma basicOpenToSpec_app_top :
     (basicOpenToSpec 𝒜 f).app ⊤ = (Scheme.ΓSpecIso _).hom ≫ awayToSection 𝒜 f ≫
       (basicOpen 𝒜 f).topIso.inv := by
@@ -187,6 +218,9 @@ noncomputable
 def awayι : Spec (.of <| Away 𝒜 f) ⟶ Proj 𝒜 :=
   (basicOpenIsoSpec 𝒜 f f_deg hm).inv ≫ (Proj.basicOpen 𝒜 f).ι
 
+/--
+@isnad1 id=eq.2h5v.s8.c88e22d71cde from=seed src=0 shape=b5000f7b vocab=803df7c0
+-/
 @[reassoc]
 lemma basicOpenIsoSpec_inv_ι :
     (basicOpenIsoSpec 𝒜 f f_deg hm).inv ≫ (Proj.basicOpen 𝒜 f).ι = awayι 𝒜 f f_deg hm := rfl
@@ -194,15 +228,24 @@ lemma basicOpenIsoSpec_inv_ι :
 instance : IsOpenImmersion (Proj.awayι 𝒜 f f_deg hm) :=
   IsOpenImmersion.comp _ _
 
+/--
+@isnad1 id=eq.2h5v.s7.4c6908c0e5db from=seed src=0 shape=10b7a549 vocab=3f7ac6cf
+-/
 lemma opensRange_awayι :
     (Proj.awayι 𝒜 f f_deg hm).opensRange = Proj.basicOpen 𝒜 f :=
   (Scheme.Hom.opensRange_comp_of_isIso _ _).trans (basicOpen 𝒜 f).opensRange_ι
 
 include f_deg hm in
+/--
+@isnad1 id=isaffine.2h5v.s6.794af737452d from=seed src=0 shape=b6f0c43b vocab=db9273a4
+-/
 lemma isAffineOpen_basicOpen : IsAffineOpen (basicOpen 𝒜 f) := by
   rw [← opensRange_awayι 𝒜 f f_deg hm]
   exact isAffineOpen_opensRange (awayι _ _ _ _)
 
+/--
+@isnad1 id=eq.2h5v.s8.5a4d91054786 from=seed src=0 shape=9ce22335 vocab=a438cda7
+-/
 @[reassoc]
 lemma awayι_toSpecZero : awayι 𝒜 f f_deg hm ≫ toSpecZero 𝒜 =
     Spec.map (CommRingCat.ofHom (fromZeroRingHom 𝒜 _)) := by
@@ -219,6 +262,9 @@ lemma awayι_toSpecZero : awayι 𝒜 f f_deg hm ≫ toSpecZero 𝒜 =
 variable {f}
 variable {m' : ℕ} {g : A} (g_deg : g ∈ 𝒜 m') (hm' : 0 < m') {x : A} (hx : x = f * g)
 
+/--
+@isnad1 id=eq.2h7v.s10.b5b192778da5 from=seed src=0 shape=2fa1fce7 vocab=68a13edc
+-/
 @[reassoc]
 lemma awayMap_awayToSection :
     CommRingCat.ofHom (awayMap 𝒜 g_deg hx) ≫ awayToSection 𝒜 x =
@@ -237,6 +283,9 @@ lemma awayMap_awayToSection :
   simp [hx]
   ring
 
+/--
+@isnad1 id=eq.2h7v.s8.380ee9c357f5 from=seed src=0 shape=2e6cf5a7 vocab=7dc5ca0c
+-/
 @[reassoc]
 lemma basicOpenToSpec_SpecMap_awayMap :
     basicOpenToSpec 𝒜 x ≫ Spec.map (CommRingCat.ofHom (awayMap 𝒜 g_deg hx)) =
@@ -245,6 +294,9 @@ lemma basicOpenToSpec_SpecMap_awayMap :
     Spec.map_comp, Scheme.Opens.toSpecΓ_SpecMap_presheaf_map_assoc]
   rfl
 
+/--
+@isnad1 id=eq.4h8v.s8.7df8ee44a51b from=seed src=0 shape=1ab3a5dd vocab=101748ef
+-/
 @[reassoc]
 lemma SpecMap_awayMap_awayι :
     Spec.map (CommRingCat.ofHom (awayMap 𝒜 g_deg hx)) ≫ awayι 𝒜 f f_deg hm =
@@ -262,6 +314,9 @@ def pullbackAwayιIso :
   change ((awayι 𝒜 f _ _).opensRange ⊓ (awayι 𝒜 g _ _).opensRange).1 = (awayι 𝒜 _ _ _).opensRange.1
   rw [opensRange_awayι, opensRange_awayι, opensRange_awayι, ← basicOpen_mul, hx]
 
+/--
+@isnad1 id=eq.5h8v.s9.a3f21c5f0859 from=seed src=0 shape=636b3a8e vocab=2587b60c
+-/
 @[reassoc (attr := simp)]
 lemma pullbackAwayιIso_hom_awayι :
     (pullbackAwayιIso 𝒜 f_deg hm g_deg hm' hx).hom ≫
@@ -269,6 +324,9 @@ lemma pullbackAwayιIso_hom_awayι :
       Limits.pullback.fst _ _ ≫ awayι 𝒜 f f_deg hm :=
   IsOpenImmersion.isoOfRangeEq_hom_fac ..
 
+/--
+@isnad1 id=eq.5h8v.s9.1cd80bfc99f9 from=seed src=0 shape=ae6bcc81 vocab=5a874052
+-/
 @[reassoc (attr := simp)]
 lemma pullbackAwayιIso_hom_SpecMap_awayMap_left :
     (pullbackAwayιIso 𝒜 f_deg hm g_deg hm' hx).hom ≫
@@ -276,6 +334,9 @@ lemma pullbackAwayιIso_hom_SpecMap_awayMap_left :
   rw [← cancel_mono (awayι 𝒜 f f_deg hm), ← pullbackAwayιIso_hom_awayι,
     Category.assoc, SpecMap_awayMap_awayι]
 
+/--
+@isnad1 id=eq.5h8v.s9.176fe657e77a from=seed src=0 shape=9c971bb8 vocab=6764b5af
+-/
 @[reassoc (attr := simp)]
 lemma pullbackAwayιIso_hom_SpecMap_awayMap_right :
     (pullbackAwayιIso 𝒜 f_deg hm g_deg hm' hx).hom ≫
@@ -286,12 +347,18 @@ lemma pullbackAwayιIso_hom_SpecMap_awayMap_right :
     Category.assoc, SpecMap_awayMap_awayι]
   rfl
 
+/--
+@isnad1 id=eq.5h8v.s9.25a86e052044 from=seed src=0 shape=ad715691 vocab=4f96bdf6
+-/
 @[reassoc (attr := simp)]
 lemma pullbackAwayιIso_inv_fst :
     (pullbackAwayιIso 𝒜 f_deg hm g_deg hm' hx).inv ≫ Limits.pullback.fst _ _ =
       Spec.map (CommRingCat.ofHom (awayMap 𝒜 g_deg hx)) := by
   rw [← pullbackAwayιIso_hom_SpecMap_awayMap_left, Iso.inv_hom_id_assoc]
 
+/--
+@isnad1 id=eq.5h8v.s9.4c8aef118718 from=seed src=0 shape=6f9f8be2 vocab=a3062f81
+-/
 @[reassoc (attr := simp)]
 lemma pullbackAwayιIso_inv_snd :
     (pullbackAwayιIso 𝒜 f_deg hm g_deg hm' hx).inv ≫ Limits.pullback.snd _ _ =
@@ -299,6 +366,9 @@ lemma pullbackAwayιIso_inv_snd :
   rw [← pullbackAwayιIso_hom_SpecMap_awayMap_right (hx := hx) .., Iso.inv_hom_id_assoc]
 
 include hm' in
+/--
+@isnad1 id=eq.4h7v.s9.24c9f85cee6a from=seed src=0 shape=483dd68c vocab=3c434fa7
+-/
 lemma awayι_preimage_basicOpen :
     awayι 𝒜 f f_deg hm ⁻¹ᵁ basicOpen 𝒜 g =
       PrimeSpectrum.basicOpen (Away.isLocalizationElem f_deg g_deg) := by
@@ -378,6 +448,9 @@ def toBasicOpenOfGlobalSections (H : f t = x) (h0d : 0 < d) (hd : t ∈ 𝒜 d) 
     simp [H]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.9h13v.s12.85a3fbed460c from=seed src=0 shape=c94af7df vocab=372cea9d
+-/
 @[reassoc]
 lemma homOfLE_toBasicOpenOfGlobalSections_ι
     {H : f t = x} {h0d : 0 < d} {hd : t ∈ 𝒜 d} {H' : f t' = x'} {h0d' : 0 < d'} {hd' : t' ∈ 𝒜 d'}
@@ -456,6 +529,9 @@ def fromOfGlobalSections : X ⟶ Proj 𝒜 := by
       (homOfLE_toBasicOpenOfGlobalSections_ι _ _ (mul_comm _ _) (add_comm _ _) x.2.2.2).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.3h7v.s13.0d9b0ca3c0bc from=seed src=0 shape=9c3032c7 vocab=fe88ec1b
+-/
 lemma fromOfGlobalSections_preimage_basicOpen {r : A} {n : ℕ} (hn : 0 < n) (hr : r ∈ 𝒜 n) :
     fromOfGlobalSections 𝒜 f hf ⁻¹ᵁ basicOpen 𝒜 r = X.basicOpen (f r) := by
   apply le_antisymm
@@ -493,6 +569,9 @@ lemma fromOfGlobalSections_preimage_basicOpen {r : A} {n : ℕ} (hn : 0 < n) (hr
     simp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.3h7v.s14.213d29f7b652 from=seed src=0 shape=a427577d vocab=d0643d91
+-/
 lemma fromOfGlobalSections_morphismRestrict {r : A} {n : ℕ} (hn : 0 < n) (hr : r ∈ 𝒜 n) :
     (fromOfGlobalSections 𝒜 f hf) ∣_ (basicOpen 𝒜 r) =
       (Scheme.isoOfEq _ (fromOfGlobalSections_preimage_basicOpen _ _ _ hn hr)).hom ≫
@@ -502,6 +581,9 @@ lemma fromOfGlobalSections_morphismRestrict {r : A} {n : ℕ} (hn : 0 < n) (hr :
     fromOfGlobalSections]
   exact (openCoverOfMapIrrelevantEqTop 𝒜 f hf).ι_glueMorphisms _ _ ⟨_, _, hn, hr⟩
 
+/--
+@isnad1 id=eq.3h7v.s14.6d56a98fedf3 from=seed src=0 shape=f60c6cd0 vocab=0ec702f1
+-/
 lemma fromOfGlobalSections_resLE {r : A} {n : ℕ} (hn : 0 < n) (hr : r ∈ 𝒜 n) :
     (fromOfGlobalSections 𝒜 f hf).resLE _ _
       (fromOfGlobalSections_preimage_basicOpen _ _ _ hn hr).ge =
@@ -511,6 +593,9 @@ lemma fromOfGlobalSections_resLE {r : A} {n : ℕ} (hn : 0 < n) (hr : r ∈ 𝒜
   simp [Scheme.isoOfEq_inv]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s13.524803ebadea from=seed src=0 shape=118b940b vocab=913beffd
+-/
 @[reassoc]
 lemma fromOfGlobalSections_toSpecZero
     (f : A →+* Γ(X, ⊤)) (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤) :

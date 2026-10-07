@@ -48,6 +48,9 @@ class LocallyOfFinitePresentation (f : X ⟶ Y) : Prop where
     ∀ {U : Y.Opens} (_ : IsAffineOpen U) {V : X.Opens} (_ : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U),
       (f.appLE U V e).hom.FinitePresentation
 
+/--
+@isnad1 id=finitepr.3h5v.s9.787e0e629e96 from=seed src=0 shape=3953db45 vocab=e4ed21ec
+-/
 alias Scheme.Hom.finitePresentation_appLE := LocallyOfFinitePresentation.finitePresentation_appLE
 
 instance : HasRingHomProperty @LocallyOfFinitePresentation RingHom.FinitePresentation where
@@ -56,6 +59,9 @@ instance : HasRingHomProperty @LocallyOfFinitePresentation RingHom.FinitePresent
     ext X Y f
     rw [locallyOfFinitePresentation_iff, affineLocally_iff_forall_isAffineOpen]
 
+/--
+@isnad1 id=locallyo.0h3v.s4.cdd0a6f41ff9 from=seed src=0 shape=892cb9de vocab=11f55451
+-/
 instance (priority := 900) locallyOfFinitePresentation_of_isOpenImmersion [IsOpenImmersion f] :
     LocallyOfFinitePresentation f :=
   HasRingHomProperty.of_isOpenImmersion
@@ -64,21 +70,33 @@ instance (priority := 900) locallyOfFinitePresentation_of_isOpenImmersion [IsOpe
 instance : MorphismProperty.IsStableUnderComposition @LocallyOfFinitePresentation :=
   HasRingHomProperty.stableUnderComposition RingHom.finitePresentation_stableUnderComposition
 
+/--
+@isnad1 id=iff.0h3v.s5.5568cacf71b4 from=seed src=0 shape=110effa8 vocab=e9e29685
+-/
 @[simp]
 lemma LocallyOfFinitePresentation.SpecMap_iff {R S : CommRingCat.{u}} (f : R ⟶ S) :
     LocallyOfFinitePresentation (Spec.map f) ↔ f.hom.FinitePresentation :=
   HasRingHomProperty.Spec_iff
 
+/--
+@isnad1 id=finitepr.0h3v.s10.08adb2227e3e from=seed src=0 shape=25b3a774 vocab=bf87fb2c
+-/
 lemma Scheme.Hom.finitePresentation_appTop {X Y : Scheme.{u}} (f : X ⟶ Y) [IsAffine X] [IsAffine Y]
     [LocallyOfFinitePresentation f] :
     f.appTop.hom.FinitePresentation :=
   HasRingHomProperty.appTop (P := @LocallyOfFinitePresentation) _ inferInstance
 
+/--
+@isnad1 id=locallyo.0h5v.s5.8b329fbd6bfd from=seed src=0 shape=73d4a103 vocab=2bbd2657
+-/
 instance locallyOfFinitePresentation_comp {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
     [hf : LocallyOfFinitePresentation f] [hg : LocallyOfFinitePresentation g] :
     LocallyOfFinitePresentation (f ≫ g) :=
   MorphismProperty.comp_mem _ f g hf hg
 
+/--
+@isnad1 id=isstable.0h0v.s2.f0c4adbc372d from=seed src=0 shape=25b03439 vocab=04f89151
+-/
 instance locallyOfFinitePresentation_isStableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange @LocallyOfFinitePresentation :=
   HasRingHomProperty.isStableUnderBaseChange RingHom.finitePresentation_isStableUnderBaseChange
@@ -112,7 +130,9 @@ instance {X Y : Scheme.{u}} (f : X ⟶ Y) [hf : LocallyOfFinitePresentation f] :
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- **Chevalley's Theorem**: The image of a locally constructible set under a
-morphism of finite presentation is locally constructible. -/
+morphism of finite presentation is locally constructible.
+@isnad1 id=islocall.1h4v.s8.b364e6ae85d3 from=seed src=0 shape=9b3165f8 vocab=5d40308e
+-/
 @[stacks 054K]
 -- `nonrec` is needed for `wlog`
 nonrec lemma Scheme.Hom.isLocallyConstructible_image (f : X ⟶ Y)
@@ -157,7 +177,9 @@ nonrec lemma Scheme.Hom.isLocallyConstructible_image (f : X ⟶ Y)
   exact (PrimeSpectrum.isConstructible_comap_image hf hs.isConstructible).isLocallyConstructible
 
 /-- **Chevalley's Theorem**: The image of a constructible set under a
-morphism of finite presentation into a qcqs scheme is constructible. -/
+morphism of finite presentation into a qcqs scheme is constructible.
+@isnad1 id=isconstr.1h4v.s8.9f10cddea1b1 from=seed src=0 shape=ae479799 vocab=a9420fb8
+-/
 @[stacks 054J]
 lemma Scheme.Hom.isConstructible_image (f : X ⟶ Y)
     [LocallyOfFinitePresentation f] [QuasiCompact f] [CompactSpace Y] [QuasiSeparatedSpace Y]
@@ -165,6 +187,9 @@ lemma Scheme.Hom.isConstructible_image (f : X ⟶ Y)
     IsConstructible (f '' s) :=
   (f.isLocallyConstructible_image hs.isLocallyConstructible).isConstructible
 
+/--
+@isnad1 id=isconstr.1h4v.s7.eabf988527a5 from=seed src=0 shape=5a043952 vocab=b66f0f23
+-/
 @[stacks 054I]
 lemma Scheme.Hom.isConstructible_preimage (f : X ⟶ Y) {s : Set Y} (hs : IsConstructible s) :
     IsConstructible (f ⁻¹' s) :=

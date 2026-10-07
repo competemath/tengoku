@@ -119,7 +119,9 @@ theorem eq_quo_mul_pow_add_sum_rem_mul_pow [Nontrivial R] (f : R[X]) {g : R[X]} 
 /-- Let `R` be a commutative ring and `f g : R[X]`. Let `n` be a natural number.
 Then `f` can be written in the form `g ^ n * (q + ∑ i : Fin n, r i / g ^ (i + 1))`
 in at most one way, where `degree (r i) < degree g` and the denominator cancels formally.
-See `eq_quo_mul_pow_add_sum_rem_mul_pow` for the existence of such a representation. -/
+See `eq_quo_mul_pow_add_sum_rem_mul_pow` for the existence of such a representation.
+@isnad1 id=and.4h7v.s9.6f2bc7cbd4c5 from=seed src=0 shape=b065590c vocab=d12c31c7
+-/
 theorem quo_mul_pow_add_sum_rem_mul_pow_unique {g : R[X]} (hg : g.Monic) {n : ℕ}
     {q₁ q₂ : R[X]} {r₁ r₂ : Fin n → R[X]}
     (hr₁ : ∀ i, (r₁ i).degree < g.degree) (hr₂ : ∀ i, (r₂ i).degree < g.degree)
@@ -195,7 +197,9 @@ theorem eq_quo_mul_prod_add_sum_rem_mul_prod [Nontrivial R] {ι : Type*} [Decida
 Let `g i` be a collection of monic and pairwise coprime polynomials indexed by `s`.
 Then `f` can be written in the form `(∏ i ∈ s, g i) * (q + ∑ i ∈ s, r i / g i)`
 in at most one way, where `degree (r i) < degree (g i)` and the denominator cancels formally.
-See `eq_quo_mul_prod_add_sum_rem_mul_prod` for the existence of such a representation. -/
+See `eq_quo_mul_prod_add_sum_rem_mul_prod` for the existence of such a representation.
+@isnad1 id=and.5h8v.s9.b87a98912f4f from=seed src=0 shape=16055ebf vocab=23c90738
+-/
 theorem quo_mul_prod_add_sum_rem_mul_prod_unique {ι : Type*} [DecidableEq ι]
     {s : Finset ι} {g : ι → R[X]} (hg : ∀ i ∈ s, (g i).Monic)
     (hgg : Set.Pairwise s fun i j => IsCoprime (g i) (g j))
@@ -292,7 +296,9 @@ Let `g i` be a collection of monic and pairwise coprime polynomials indexed by `
 and for each `g i` let `n i` be a natural number. Then `f` can be written in the form
 `(∏ i ∈ s, g i ^ n i) * (q + ∑ i ∈ s, ∑ j : Fin (n i), r i j / g i ^ (j + 1))`
 in at most one way, where `degree (r i j) < degree (g i)` and the denominator cancels formally.
-See `eq_quo_mul_prod_pow_add_sum_rem_mul_prod_pow` for the existence of such a representation. -/
+See `eq_quo_mul_prod_pow_add_sum_rem_mul_prod_pow` for the existence of such a representation.
+@isnad1 id=and.5h9v.s10.65f49d1c7b11 from=seed src=0 shape=4dc66042 vocab=fbdff625
+-/
 theorem quo_mul_prod_pow_add_sum_rem_mul_prod_pow_unique {ι : Type*} [DecidableEq ι]
     {s : Finset ι} {g : ι → R[X]} (hg : ∀ i ∈ s, (g i).Monic)
     (hgg : Set.Pairwise s fun i j => IsCoprime (g i) (g j)) {n : ι → ℕ}
@@ -338,7 +344,9 @@ Let `K` be an algebra over `R[X]` containing inverses `gi i` for each `g i`.
 Then a fraction of the form `f * ∏ i ∈ s, gi i ^ n i` can be rewritten as
 `q + ∑ i ∈ s, ∑ j : Fin (n i), r i j * gi i ^ (j + 1)`, where `degree (r i j) < degree (g i)`.
 See `mul_prod_pow_inverse_eq_quo_add_sum_rem_mul_pow_inverse` for the
-uniqueness of this representation. -/
+uniqueness of this representation.
+@isnad1 id=ex.3h8v.s9.121eca1aafa2 from=seed src=0 shape=12610b2e vocab=d5e0864b
+-/
 theorem mul_prod_pow_inverse_eq_quo_add_sum_rem_mul_pow_inverse [Nontrivial R] {ι : Type*}
     {s : Finset ι} (f : R[X]) {g : ι → R[X]} (hg : ∀ i ∈ s, (g i).Monic)
     (hgg : Set.Pairwise s fun i j => IsCoprime (g i) (g j))
@@ -375,7 +383,9 @@ Then a fraction of the form `f * ∏ i ∈ s, gi i ^ n i` can be rewritten as
 `q + ∑ i ∈ s, ∑ j : Fin (n i), r i j * gi i ^ (j + 1)`
 in at most one way, where `degree (r i j) < degree (g i)`.
 See `mul_prod_pow_inverse_eq_quo_add_sum_rem_mul_pow_inverse` for the
-existence of such a representation. -/
+existence of such a representation.
+@isnad1 id=and.6h11v.s10.3143197ee232 from=seed src=0 shape=29936c6d vocab=0178cd8a
+-/
 theorem quo_add_sum_rem_mul_pow_inverse_unique [FaithfulSMul R[X] K] {ι : Type*}
     {s : Finset ι} {g : ι → R[X]} (hg : ∀ i ∈ s, (g i).Monic)
     (hgg : Set.Pairwise s fun i j => IsCoprime (g i) (g j))
@@ -422,7 +432,9 @@ open algebraMap
 Then a fraction of the form `f / ∏ i ∈ s, g i` evaluated in a field `K` containing `R[X]`
 can be rewritten as `q + ∑ i ∈ s, r i / g i`, where
 `degree (r i) < degree (g i)`, provided that the `g i` are monic and pairwise coprime.
-See `quo_add_sum_rem_div_unique` for the uniqueness of this representation. -/
+See `quo_add_sum_rem_div_unique` for the uniqueness of this representation.
+@isnad1 id=ex.2h6v.s8.4736e144cbdf from=seed src=0 shape=6538eb29 vocab=caed3ca5
+-/
 theorem div_prod_eq_quo_add_sum_rem_div (f : R[X]) {ι : Type*} {g : ι → R[X]} {s : Finset ι}
     (hg : ∀ i ∈ s, (g i).Monic) (hcop : Set.Pairwise ↑s fun i j => IsCoprime (g i) (g j)) :
     ∃ (q : R[X]) (r : ι → R[X]),
@@ -447,7 +459,9 @@ alias _root_.div_eq_quo_add_sum_rem_div := div_prod_eq_quo_add_sum_rem_div
 Then a fraction of the form `f / ∏ i ∈ s, g i` evaluated in a field `K` containing `R[X]`
 can be rewritten as `q + ∑ i ∈ s, r i / g i` in at most one way, where
 `degree (r i) < degree (g i)`, provided that the `g i` are monic and pairwise coprime.
-See `div_prod_eq_quo_add_sum_rem_div` for the existence of such a representation. -/
+See `div_prod_eq_quo_add_sum_rem_div` for the existence of such a representation.
+@isnad1 id=and.5h9v.s9.f3caa800aa5a from=seed src=0 shape=b1ca0127 vocab=2d62a363
+-/
 theorem quo_add_sum_rem_div_unique {ι : Type*} {g : ι → R[X]} {s : Finset ι}
     (hg : ∀ i ∈ s, (g i).Monic) (hcop : Set.Pairwise ↑s fun i j => IsCoprime (g i) (g j))
     {q₁ q₂ : R[X]} {r₁ r₂ : ι → R[X]}
@@ -475,7 +489,9 @@ open scoped algebraMap
 /-- Let `R` be an integral domain and `f, g₁, g₂ : R[X]`. Let `g₁` and `g₂` be monic and coprime.
 Then `∃ q, r₁, r₂ : R[X]` such that `f / (g₁ * g₂) = q + r₁ / g₁ + r₂ / g₂` and
 `degree rᵢ < degree gᵢ`, where the equality is taken in a field `K` containing `R[X]`.
-See `quo_add_rem_div_add_rem_div_unique` for the uniqueness of this representation. -/
+See `quo_add_rem_div_add_rem_div_unique` for the uniqueness of this representation.
+@isnad1 id=ex.3h5v.s8.a58b3ef28703 from=seed src=0 shape=b534e331 vocab=edfbc924
+-/
 theorem div_eq_quo_add_rem_div_add_rem_div (f : R[X]) {g₁ g₂ : R[X]} (hg₁ : g₁.Monic)
     (hg₂ : g₂.Monic) (hcoprime : IsCoprime g₁ g₂) :
     ∃ q r₁ r₂ : R[X],
@@ -495,7 +511,9 @@ alias _root_.div_eq_quo_add_rem_div_add_rem_div := div_eq_quo_add_rem_div_add_re
 /-- Let `R` be an integral domain and `f, g₁, g₂ : R[X]`. Let `g₁` and `g₂` be monic and coprime.
 Then the representation of `f / (g₁ * g₂)` as `q + r₁ / g₁ + r₂ / g₂` for `q r₁ r₂ : R[X]` and
 `degree rᵢ < degree gᵢ` is unique, where the equality is taken in a field `K` containing `R[X]`.
-See `div_eq_quo_add_rem_div_add_rem_div` for the existence of such a representation. -/
+See `div_eq_quo_add_rem_div_add_rem_div` for the existence of such a representation.
+@isnad1 id=and.8h10v.s9.67f3e60bcbd1 from=seed src=0 shape=26e645f3 vocab=7f168380
+-/
 theorem quo_add_rem_div_add_rem_div_unique {g₁ g₂ : R[X]} (hg₁ : g₁.Monic)
     (hg₂ : g₂.Monic) (hcoprime : IsCoprime g₁ g₂)
     {q₁ q₂ r₁₁ r₁₂ r₂₁ r₂₂ : R[X]}

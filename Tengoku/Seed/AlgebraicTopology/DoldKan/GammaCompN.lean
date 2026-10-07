@@ -82,12 +82,18 @@ def N₁Γ₀ : Γ₀ ⋙ N₁ ≅ toKaroubi (ChainComplex C ℕ) :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s10.5a9fde7a73b4 from=seed src=0 shape=a051cb73 vocab=605a7bf8
+-/
 theorem N₁Γ₀_app (K : ChainComplex C ℕ) :
     N₁Γ₀.app K = (Γ₀.splitting K).toKaroubiNondegComplexIsoN₁.symm ≪≫
       (toKaroubi _).mapIso (Γ₀NondegComplexIso K) := by
   ext
   simp [N₁Γ₀, Γ₀'CompNondegComplexFunctor]
 
+/--
+@isnad1 id=eq.0h2v.s11.18d0b1ef71fc from=seed src=0 shape=76495091 vocab=817cef31
+-/
 theorem N₁Γ₀_hom_app (K : ChainComplex C ℕ) :
     N₁Γ₀.hom.app K = (Γ₀.splitting K).toKaroubiNondegComplexIsoN₁.inv ≫
         (toKaroubi _).map (Γ₀NondegComplexIso K).hom := by
@@ -95,6 +101,9 @@ theorem N₁Γ₀_hom_app (K : ChainComplex C ℕ) :
   simp only [N₁Γ₀_app]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.ee20bdf70d61 from=seed src=0 shape=76abcfc1 vocab=817cef31
+-/
 theorem N₁Γ₀_inv_app (K : ChainComplex C ℕ) :
     N₁Γ₀.inv.app K = (toKaroubi _).map (Γ₀NondegComplexIso K).inv ≫
         (Γ₀.splitting K).toKaroubiNondegComplexIsoN₁.hom := by
@@ -102,12 +111,18 @@ theorem N₁Γ₀_inv_app (K : ChainComplex C ℕ) :
   simp only [N₁Γ₀_app]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.935d2b8de9f0 from=seed src=0 shape=31773676 vocab=8b5a6477
+-/
 @[simp]
 theorem N₁Γ₀_hom_app_f_f (K : ChainComplex C ℕ) (n : ℕ) :
     (N₁Γ₀.hom.app K).f.f n = (Γ₀.splitting K).toKaroubiNondegComplexIsoN₁.inv.f.f n := by
   rw [N₁Γ₀_hom_app]
   apply comp_id
 
+/--
+@isnad1 id=eq.0h3v.s11.ee36c67908fa from=seed src=0 shape=ea9641a4 vocab=8b5a6477
+-/
 @[simp]
 theorem N₁Γ₀_inv_app_f_f (K : ChainComplex C ℕ) (n : ℕ) :
     (N₁Γ₀.inv.app K).f.f n = (Γ₀.splitting K).toKaroubiNondegComplexIsoN₁.hom.f.f n := by
@@ -128,6 +143,9 @@ def N₂Γ₂ToKaroubiIso : toKaroubi (ChainComplex C ℕ) ⋙ Γ₂ ⋙ N₂ �
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s11.4b50ba791c39 from=seed src=0 shape=53487f9e vocab=b5ae4367
+-/
 @[simp]
 lemma N₂Γ₂ToKaroubiIso_hom_app (X : ChainComplex C ℕ) :
     (N₂Γ₂ToKaroubiIso.hom.app X).f = PInfty := by
@@ -144,6 +162,9 @@ lemma N₂Γ₂ToKaroubiIso_hom_app (X : ChainComplex C ℕ) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s11.6a82bb8403d8 from=seed src=0 shape=07cdc049 vocab=b262583f
+-/
 @[simp]
 lemma N₂Γ₂ToKaroubiIso_inv_app (X : ChainComplex C ℕ) :
     (N₂Γ₂ToKaroubiIso.inv.app X).f = PInfty := by
@@ -163,6 +184,9 @@ def N₂Γ₂ : Γ₂ ⋙ N₂ ≅ 𝟭 (Karoubi (ChainComplex C ℕ)) :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s11.8cf1e6354dce from=seed src=0 shape=573768f4 vocab=4a7033fe
+-/
 @[simp]
 theorem N₂Γ₂_inv_app_f_f (X : Karoubi (ChainComplex C ℕ)) (n : ℕ) :
     (N₂Γ₂.inv.app X).f.f n =
@@ -176,6 +200,9 @@ theorem N₂Γ₂_inv_app_f_f (X : Karoubi (ChainComplex C ℕ)) (n : ℕ) :
     Splitting.ι_desc]
   apply Karoubi.HomologicalComplex.p_idem_assoc
 
+/--
+@isnad1 id=eq.0h1v.s12.096a27d3553f from=seed src=0 shape=49400905 vocab=95cf7309
+-/
 lemma whiskerLeft_toKaroubi_N₂Γ₂_hom :
     whiskerLeft (toKaroubi (ChainComplex C ℕ)) N₂Γ₂.hom = N₂Γ₂ToKaroubiIso.hom ≫ N₁Γ₀.hom := by
   let e : _ ≅ toKaroubi (ChainComplex C ℕ) ⋙ 𝟭 _ := N₂Γ₂ToKaroubiIso ≪≫ N₁Γ₀
@@ -184,6 +211,9 @@ lemma whiskerLeft_toKaroubi_N₂Γ₂_hom :
   dsimp only [whiskeringLeft, N₂Γ₂, Functor.preimageIso] at h ⊢
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s12.9fd42648b8ec from=seed src=0 shape=8740af72 vocab=3d8043ad
+-/
 theorem N₂Γ₂_compatible_with_N₁Γ₀ (K : ChainComplex C ℕ) :
     N₂Γ₂.hom.app ((toKaroubi _).obj K) = N₂Γ₂ToKaroubiIso.hom.app K ≫ N₁Γ₀.hom.app K :=
   congr_app whiskerLeft_toKaroubi_N₂Γ₂_hom K

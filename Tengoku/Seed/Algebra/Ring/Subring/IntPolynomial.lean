@@ -38,21 +38,36 @@ namespace Polynomial
 
 variable (P : K[X]) (hP : ∀ n : ℕ, P.coeff n ∈ R)
 
+/--
+@isnad1 id=eq.1h4v.s7.2432d44452ce from=seed src=0 shape=c2ff7e9a vocab=2a79f85d
+-/
 @[simp]
 theorem int_coeff_eq (n : ℕ) : ↑((P.int R hP).coeff n) = P.coeff n := rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.ffb75d7b00ba from=seed src=0 shape=79e52a26 vocab=312832cc
+-/
 @[simp]
 theorem int_leadingCoeff_eq : ↑(P.int R hP).leadingCoeff = P.leadingCoeff := rfl
 
+/--
+@isnad1 id=iff.1h3v.s7.e69d66b9594f from=seed src=0 shape=1fe70db7 vocab=44062c0d
+-/
 @[simp]
 theorem int_monic_iff : (P.int R hP).Monic ↔ P.Monic := by
   rw [Monic, Monic, ← int_leadingCoeff_eq, OneMemClass.coe_eq_one]
 
+/--
+@isnad1 id=eq.1h3v.s7.1cfe5dac9920 from=seed src=0 shape=dc7c1501 vocab=0a9c3ad0
+-/
 @[simp]
 theorem int_natDegree : (P.int R hP).natDegree = P.natDegree := rfl
 
 variable {L : Type*} [Field L] [Algebra K L]
 
+/--
+@isnad1 id=eq.1h5v.s8.c3bf5b5f9738 from=seed src=0 shape=e89fe191 vocab=8e62a6a6
+-/
 @[simp]
 theorem int_eval₂_eq (x : L) :
     eval₂ (algebraMap R L) x (P.int R hP) = aeval x P := by

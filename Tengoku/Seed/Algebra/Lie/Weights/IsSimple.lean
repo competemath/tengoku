@@ -44,6 +44,9 @@ open LieAlgebra LieAlgebra.IsKilling LieModule Module
 variable {K L : Type*} [Field K] [LieRing L] [LieAlgebra K L] [FiniteDimensional K L]
   {H : LieSubalgebra K L} [H.IsCartanSubalgebra]
 
+/--
+@isnad1 id=le.1h5v.s10.a9bccc3ac836 from=seed src=0 shape=ec362ac9 vocab=a20c95e8
+-/
 lemma corootSubmodule_le (I : LieIdeal K L) {α : Weight K H L}
     (hα : rootSpace H α ≤ I.restr H) :
     corootSubmodule α ≤ I.restr H := by
@@ -58,6 +61,9 @@ lemma corootSubmodule_le (I : LieIdeal K L) {α : Weight K H L}
 /-- The set of roots whose root space is contained in a given Lie ideal. -/
 def rootSet (I : LieIdeal K L) : Set H.root := { α | rootSpace H α.1 ≤ I.restr H }
 
+/--
+@isnad1 id=iff.0h5v.s11.ca891876a513 from=seed src=0 shape=2f5ed6cc vocab=aa5896f1
+-/
 lemma mem_rootSet {I : LieIdeal K L} {α : H.root} :
     α ∈ I.rootSet ↔ rootSpace H α.1 ≤ I.restr H := Iff.rfl
 
@@ -67,6 +73,9 @@ variable [CharZero K] [IsKilling K L] [IsTriangularizable K H L]
 noncomputable def rootSpan (I : LieIdeal K L) : Submodule K (Dual K H) :=
   Submodule.span K ((rootSystem H).root '' I.rootSet)
 
+/--
+@isnad1 id=le.2h6v.s10.1c2ea589c30f from=seed src=0 shape=1522a7a4 vocab=6c0ea188
+-/
 lemma rootSpace_le_of_apply_coroot_ne_zero (I : LieIdeal K L)
     {α : Weight K H L} (hα : rootSpace H α ≤ I.restr H)
     {γ : H → K} (hγ_ne : γ (coroot α) ≠ 0) :
@@ -78,6 +87,9 @@ lemma rootSpace_le_of_apply_coroot_ne_zero (I : LieIdeal K L)
       (I.corootSubmodule_le hα (coe_coroot_mem_corootSubmodule α))
   exact I.toSubmodule.smul_mem_iff hγ_ne |>.mp this
 
+/--
+@isnad1 id=iff.0h6v.s13.5df8488b2bb5 from=seed src=0 shape=42a6fa3b vocab=8cfeec89
+-/
 lemma reflectionPerm_mem_rootSet_iff (I : LieIdeal K L) (α β : H.root) :
     (rootSystem H).reflectionPerm β α ∈ I.rootSet ↔ α ∈ I.rootSet := by
   let S := rootSystem H
@@ -93,7 +105,9 @@ lemma reflectionPerm_mem_rootSet_iff (I : LieIdeal K L) (α β : H.root) :
       rwa [← S.pairing_reflectionPerm γ δ γ, S.pairing_reflectionPerm_self_right, neg_ne_zero]
     exact I.rootSpace_le_of_apply_coroot_ne_zero hγ h_neg
 
-/-- The submodule spanned by roots of a Lie ideal is invariant under all root reflections. -/
+/-- The submodule spanned by roots of a Lie ideal is invariant under all root reflections.
+@isnad1 id=mem.0h4v.s13.ccb7fc3ab08d from=seed src=0 shape=028be095 vocab=fedde3fd
+-/
 lemma rootSpan_mem_invtRootSubmodule (I : LieIdeal K L) :
     I.rootSpan ∈ (rootSystem H).invtRootSubmodule := by
   rw [RootPairing.mem_invtRootSubmodule_iff]
@@ -111,12 +125,18 @@ noncomputable def toInvtRootSubmodule (I : LieIdeal K L) :
     (rootSystem H).invtRootSubmodule :=
   ⟨I.rootSpan, I.rootSpan_mem_invtRootSubmodule⟩
 
+/--
+@isnad1 id=le.1h5v.s14.90ecf4bda3c0 from=seed src=0 shape=fdc3784b vocab=0694fcb0
+-/
 @[gcongr]
 lemma toInvtRootSubmodule_mono {I J : LieIdeal K L} (h : I ≤ J) :
     I.toInvtRootSubmodule (H := H) ≤ J.toInvtRootSubmodule :=
   Submodule.span_mono (Set.image_mono
     fun α (hα : rootSpace H α.1 ≤ I.restr H) ↦ hα.trans (show I.restr H ≤ J.restr H from h))
 
+/--
+@isnad1 id=eq.2h6v.s11.44f4fb9efbb7 from=seed src=0 shape=f99a5826 vocab=ba7722bc
+-/
 lemma root_apply_eq_zero_of_notMem_rootSet (I : LieIdeal K L)
     {h : H} (hI : (h : L) ∈ I) {β : H.root} (hβ : β ∉ I.rootSet) :
     (β : Weight K H L) h = 0 := by
@@ -128,6 +148,9 @@ lemma root_apply_eq_zero_of_notMem_rootSet (I : LieIdeal K L)
     exact lie_mem_left K L I h y hI
   rwa [I.toSubmodule.smul_mem_iff hβ] at h_smul
 
+/--
+@isnad1 id=eq.2h6v.s12.1a40892b686b from=seed src=0 shape=2dde1757 vocab=7cb1242b
+-/
 lemma rootSet_apply_coroot_eq_zero_of_notMem_rootSet (I : LieIdeal K L)
     {α : H.root} (hα : α ∈ I.rootSet)
     {β : H.root} (hβ : β ∉ I.rootSet) :
@@ -142,7 +165,9 @@ lemma rootSet_apply_coroot_eq_zero_of_notMem_rootSet (I : LieIdeal K L)
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- The intersection of a Lie ideal and a Cartan subalgebra is the span of the coroots whose roots
-have root spaces in the ideal. -/
+have root spaces in the ideal.
+@isnad1 id=eq.0h4v.s12.eb9a76e4690f from=seed src=0 shape=25de787e vocab=c95351d6
+-/
 lemma restr_inf_cartan_eq_biSup_corootSubmodule (I : LieIdeal K L) :
     I.restr H ⊓ H.toLieSubmodule = ⨆ α ∈ I.rootSet, corootSubmodule α.1 := by
   refine le_antisymm ?_ (iSup₂_le fun _ hα ↦
@@ -191,6 +216,9 @@ lemma restr_inf_cartan_eq_biSup_corootSubmodule (I : LieIdeal K L) :
   · simp only [Weight.IsNonZero, not_not] at hμ
     exact LinearMap.mem_ker.mpr (congr_fun hμ b)
 
+/--
+@isnad1 id=mem.1h5v.s12.85ae00e7d4ea from=seed src=0 shape=4b2e77bf vocab=e481a4e8
+-/
 lemma mem_rootSet_of_mem_rootSpan (I : LieIdeal K L)
     {α : H.root} (hα_span : (α : Dual K H) ∈ I.rootSpan) :
     α ∈ I.rootSet := by
@@ -205,6 +233,9 @@ lemma mem_rootSet_of_mem_rootSpan (I : LieIdeal K L)
   simp only [Dual.eval_apply, Weight.toLinear_apply, root_apply_coroot hα_nz] at this
   exact absurd this two_ne_zero
 
+/--
+@isnad1 id=eq.0h4v.s12.87fd04c8e465 from=seed src=0 shape=11b754e9 vocab=9ce5d3eb
+-/
 lemma restr_eq_iSup_sl2SubmoduleOfRoot (I : LieIdeal K L) :
     I.restr H =
       ⨆ (α : H.root) (_ : α ∈ I.rootSet), sl2SubmoduleOfRoot (H.isNonZero_coe_root α) := by
@@ -462,12 +493,18 @@ noncomputable def invtSubmoduleToLieIdeal (q : Submodule K (Dual K H))
       simp only [add_lie, Submodule.carrier_eq_coe, SetLike.mem_coe] at ih₁ ih₂ ⊢
       exact add_mem ih₁ ih₂
 
+/--
+@isnad1 id=eq.1h4v.s14.2cb6b1c0201f from=seed src=0 shape=2f559fc3 vocab=cff06cde
+-/
 @[simp] lemma coe_invtSubmoduleToLieIdeal_eq_iSup (q : Submodule K (Dual K H))
     (hq : ∀ i, q ∈ End.invtSubmodule ((rootSystem H).reflection i).toLinearMap) :
     (invtSubmoduleToLieIdeal q hq).toSubmodule =
       ⨆ α : {α : Weight K H L // ↑α ∈ q ∧ α.IsNonZero}, sl2SubmoduleOfRoot α.2.2 :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s14.3e8ed728c6c2 from=seed src=0 shape=350a4c54 vocab=9b23d23d
+-/
 @[simp] lemma restr_invtSubmoduleToLieIdeal_eq_iSup (q : Submodule K (Dual K H))
     (hq : ∀ i, q ∈ End.invtSubmodule ((rootSystem H).reflection i).toLinearMap) :
     (invtSubmoduleToLieIdeal q hq).restr H =
@@ -475,6 +512,9 @@ noncomputable def invtSubmoduleToLieIdeal (q : Submodule K (Dual K H))
   rw [← LieSubmodule.toSubmodule_inj, LieSubmodule.restr_toSubmodule,
     coe_invtSubmoduleToLieIdeal_eq_iSup, LieSubmodule.iSup_toSubmodule]
 
+/--
+@isnad1 id=iff.1h5v.s14.8ce24133fa6e from=seed src=0 shape=83eadbb2 vocab=51877680
+-/
 lemma mem_rootSet_invtSubmoduleToLieIdeal (q : Submodule K (Dual K H))
     (hq : ∀ i, q ∈ End.invtSubmodule ((rootSystem H).reflection i).toLinearMap) {α : H.root} :
     α ∈ (invtSubmoduleToLieIdeal q hq).rootSet ↔ (rootSystem H).root α ∈ q := by
@@ -504,6 +544,9 @@ lemma mem_rootSet_invtSubmoduleToLieIdeal (q : Submodule K (Dual K H))
           le_iSup_of_le ⟨↑α, hα, H.isNonZero_coe_root α⟩ le_rfl
       _ = J.restr H := (restr_invtSubmoduleToLieIdeal_eq_iSup q hq).symm
 
+/--
+@isnad1 id=le.3h5v.s15.e9a7d25f7e23 from=seed src=0 shape=f10f41a8 vocab=f5f95ab4
+-/
 @[gcongr]
 lemma invtSubmoduleToLieIdeal_mono {q₁ q₂ : Submodule K (Dual K H)}
     (hq₁ : ∀ i, q₁ ∈ End.invtSubmodule ((rootSystem H).reflection i).toLinearMap)
@@ -513,6 +556,9 @@ lemma invtSubmoduleToLieIdeal_mono {q₁ q₂ : Submodule K (Dual K H)}
   change (invtSubmoduleToLieIdeal q₁ hq₁).restr H ≤ (invtSubmoduleToLieIdeal q₂ hq₂).restr H
   exact iSup_le fun ⟨α, hα_mem, hα_nz⟩ ↦ le_iSup_of_le ⟨α, h hα_mem, hα_nz⟩ le_rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.1ab68b14cee8 from=seed src=0 shape=1430fdd8 vocab=422fb144
+-/
 lemma lieIdealOrderIso_left_inv (I : LieIdeal K L)
     (hI : ∀ α, I.rootSpan ∈ End.invtSubmodule ((rootSystem H).reflection α).toLinearMap :=
       (rootSystem H).mem_invtRootSubmodule_iff.mp I.rootSpan_mem_invtRootSubmodule) :
@@ -530,6 +576,9 @@ lemma lieIdealOrderIso_left_inv (I : LieIdeal K L)
   rw [← LieSubmodule.toSubmodule_inj, ← LieSubmodule.restr_toSubmodule J H,
     ← LieSubmodule.restr_toSubmodule I H, h_restr]
 
+/--
+@isnad1 id=eq.0h5v.s16.ed8375a3980d from=seed src=0 shape=2725fa54 vocab=4cd8001a
+-/
 lemma lieIdealOrderIso_right_inv (q : (rootSystem H).invtRootSubmodule)
     (hq : ∀ α, ↑q ∈ End.invtSubmodule ((rootSystem H).reflection α).toLinearMap :=
       (rootSystem H).mem_invtRootSubmodule_iff.mp q.property) :
@@ -552,7 +601,9 @@ noncomputable def lieIdealOrderIso :
     rw [← lieIdealOrderIso_left_inv (H := H) I, ← lieIdealOrderIso_left_inv (H := H) J]
     exact invtSubmoduleToLieIdeal_mono _ _ h
 
-/-- A Killing Lie algebra is simple if and only if its root system is irreducible. -/
+/-- A Killing Lie algebra is simple if and only if its root system is irreducible.
+@isnad1 id=iff.0h3v.s10.f6910bb66e04 from=seed src=0 shape=5d958749 vocab=0b78de0e
+-/
 theorem isSimple_iff_isIrreducible : (rootSystem H).IsIrreducible ↔ IsSimple K L := by
   nontriviality L
   have hL : ¬ IsLieAbelian L :=
@@ -570,6 +621,9 @@ variable {K L : Type*} [Field K] [CharZero K]
   [LieRing L] [LieAlgebra K L] [FiniteDimensional K L]
   {H : LieSubalgebra K L} [H.IsCartanSubalgebra] [IsTriangularizable K H L]
 
+/--
+@isnad1 id=isirredu.0h3v.s10.c95295d29d89 from=seed src=0 shape=58f1982d vocab=85d5ce1b
+-/
 instance instIsIrreducibleRootSystem_of_isSimple [IsSimple K L] :
     (IsKilling.rootSystem H).IsIrreducible :=
   LieAlgebra.IsKilling.isSimple_iff_isIrreducible.mpr ‹_›

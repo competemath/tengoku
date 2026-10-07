@@ -45,10 +45,16 @@ variable (R : Type*) [CommRing R] (W : WeierstrassCurve R)
 def ofJ0 : WeierstrassCurve R :=
   ⟨0, 0, 1, 0, 0⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.319ea7c4b995 from=seed src=0 shape=5f1ef773 vocab=f693887c
+-/
 lemma ofJ0_c₄ : (ofJ0 R).c₄ = 0 := by
   rw [ofJ0, c₄, b₂, b₄]
   norm_num1
 
+/--
+@isnad1 id=eq.0h1v.s5.308c1b93dcf2 from=seed src=0 shape=736e2810 vocab=b92e4feb
+-/
 lemma ofJ0_Δ : (ofJ0 R).Δ = -27 := by
   rw [ofJ0, Δ, b₂, b₄, b₆, b₈]
   norm_num1
@@ -57,10 +63,16 @@ lemma ofJ0_Δ : (ofJ0 R).Δ = -27 := by
 def ofJ1728 : WeierstrassCurve R :=
   ⟨0, 0, 0, 1, 0⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.63d06c18a3c3 from=seed src=0 shape=736e2810 vocab=623078a8
+-/
 lemma ofJ1728_c₄ : (ofJ1728 R).c₄ = -48 := by
   rw [ofJ1728, c₄, b₂, b₄]
   norm_num1
 
+/--
+@isnad1 id=eq.0h1v.s5.be9131286cf6 from=seed src=0 shape=736e2810 vocab=6a5f6f51
+-/
 lemma ofJ1728_Δ : (ofJ1728 R).Δ = -64 := by
   rw [ofJ1728, Δ, b₂, b₄, b₆, b₈]
   norm_num1
@@ -73,10 +85,16 @@ denominators. It is of j-invariant j if it is an elliptic curve. -/
 def ofJNe0Or1728 : WeierstrassCurve R :=
   ⟨j - 1728, 0, 0, -36 * (j - 1728) ^ 3, -(j - 1728) ^ 5⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.5f4cd82ce8f9 from=seed src=0 shape=d884f7ab vocab=f7796f81
+-/
 lemma ofJNe0Or1728_c₄ : (ofJNe0Or1728 j).c₄ = j * (j - 1728) ^ 3 := by
   simp only [ofJNe0Or1728, c₄, b₂, b₄]
   ring1
 
+/--
+@isnad1 id=eq.0h2v.s6.4168ad62eb04 from=seed src=0 shape=b984eeaf vocab=227a2424
+-/
 lemma ofJNe0Or1728_Δ : (ofJNe0Or1728 j).Δ = j ^ 2 * (j - 1728) ^ 9 := by
   simp only [ofJNe0Or1728, Δ, b₂, b₄, b₆, b₈]
   ring1
@@ -92,6 +110,9 @@ instance [hu : Fact (IsUnit (3 : R))] : (ofJ0 R).IsElliptic := by
   norm_num1
 
 -- TODO: change to `[IsUnit ...]` once https://github.com/leanprover-community/mathlib4/issues/17458 is merged
+/--
+@isnad1 id=eq.0h1v.s5.2f9bee208685 from=seed src=0 shape=8d267e65 vocab=285b2423
+-/
 lemma ofJ0_j [Fact (IsUnit (3 : R))] : (ofJ0 R).j = 0 := by
   rw [j, ofJ0_c₄]
   ring1
@@ -105,6 +126,9 @@ instance [hu : Fact (IsUnit (2 : R))] : (ofJ1728 R).IsElliptic := by
   norm_num1
 
 -- TODO: change to `[IsUnit ...]` once https://github.com/leanprover-community/mathlib4/issues/17458 is merged
+/--
+@isnad1 id=eq.0h1v.s5.7546a1218eda from=seed src=0 shape=8d267e65 vocab=7d831213
+-/
 lemma ofJ1728_j [Fact (IsUnit (2 : R))] : (ofJ1728 R).j = 1728 := by
   rw [j, Units.inv_mul_eq_iff_eq_mul, ofJ1728_c₄, coe_Δ', ofJ1728_Δ]
   norm_num1
@@ -121,6 +145,9 @@ instance (j : R) [h1 : Fact (IsUnit j)] [h2 : Fact (IsUnit (j - 1728))] :
   exact (h1.out.pow 2).mul (h2.out.pow 9)
 
 -- TODO: change to `[IsUnit ...]` once https://github.com/leanprover-community/mathlib4/issues/17458 is merged
+/--
+@isnad1 id=eq.0h2v.s6.780cd486135f from=seed src=0 shape=757efe45 vocab=756e8fb4
+-/
 lemma ofJNe0Or1728_j (j : R) [Fact (IsUnit j)] [Fact (IsUnit (j - 1728))] :
     (ofJNe0Or1728 j).j = j := by
   rw [WeierstrassCurve.j, Units.inv_mul_eq_iff_eq_mul, ofJNe0Or1728_c₄, coe_Δ', ofJNe0Or1728_Δ]
@@ -136,29 +163,50 @@ def ofJ : WeierstrassCurve F :=
   if j = 0 then if (3 : F) = 0 then ofJ1728 F else ofJ0 F
   else if j = 1728 then ofJ1728 F else ofJNe0Or1728 j
 
+/--
+@isnad1 id=eq.1h1v.s6.9abcd3397638 from=seed src=0 shape=a0beddb3 vocab=16bf43ee
+-/
 lemma ofJ_0_of_three_ne_zero (h3 : (3 : F) ≠ 0) : ofJ 0 = ofJ0 F := by
   rw [ofJ, ite_eq_left rfl, ite_eq_right h3]
 
+/--
+@isnad1 id=eq.1h1v.s6.6a33f3d02c56 from=seed src=0 shape=2cc19bfe vocab=8c1832ba
+-/
 lemma ofJ_0_of_three_eq_zero (h3 : (3 : F) = 0) : ofJ 0 = ofJ1728 F := by
   rw [ofJ, ite_eq_left rfl, ite_eq_left h3]
 
+/--
+@isnad1 id=eq.1h1v.s6.98df20aeb1f6 from=seed src=0 shape=2cc19bfe vocab=16bf43ee
+-/
 lemma ofJ_0_of_two_eq_zero (h2 : (2 : F) = 0) : ofJ 0 = ofJ0 F := by
   rw [ofJ, ite_eq_left rfl,
     ite_eq_right ((show (3 : F) = 1 by linear_combination h2) ▸ one_ne_zero)]
 
+/--
+@isnad1 id=eq.1h1v.s6.c4c1d316a482 from=seed src=0 shape=2cc19bfe vocab=8c1832ba
+-/
 lemma ofJ_1728_of_three_eq_zero (h3 : (3 : F) = 0) : ofJ 1728 = ofJ1728 F := by
   rw [ofJ, ite_eq_left (by linear_combination 576 * h3), ite_eq_left h3]
 
+/--
+@isnad1 id=eq.1h1v.s6.65d38661b957 from=seed src=0 shape=a0beddb3 vocab=8c1832ba
+-/
 lemma ofJ_1728_of_two_ne_zero (h2 : (2 : F) ≠ 0) : ofJ 1728 = ofJ1728 F := by
   by_cases h3 : (3 : F) = 0
   · exact ofJ_1728_of_three_eq_zero h3
   · rw [ofJ, show (1728 : F) = 2 ^ 6 * 3 ^ 3 by norm_num1,
       ite_eq_right (mul_ne_zero (pow_ne_zero 6 h2) (pow_ne_zero 3 h3)), ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h1v.s6.7bb110b30e8b from=seed src=0 shape=2cc19bfe vocab=16bf43ee
+-/
 lemma ofJ_1728_of_two_eq_zero (h2 : (2 : F) = 0) : ofJ 1728 = ofJ0 F := by
   rw [ofJ, ite_eq_left (by linear_combination 864 * h2),
     ite_eq_right ((show (3 : F) = 1 by linear_combination h2) ▸ one_ne_zero)]
 
+/--
+@isnad1 id=eq.2h2v.s6.9df868c509f0 from=seed src=0 shape=e8024e9d vocab=e0ae5fcf
+-/
 lemma ofJ_ne_0_ne_1728 (h0 : j ≠ 0) (h1728 : j ≠ 1728) : ofJ j = ofJNe0Or1728 j := by
   rw [ofJ, ite_eq_right h0, ite_eq_right h1728]
 
@@ -181,6 +229,9 @@ instance : (ofJ j).IsElliptic := by
       rw [ofJ_ne_0_ne_1728 j h0 h1728]
       infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s4.3c216e6eea06 from=seed src=0 shape=85486e0a vocab=cd287a49
+-/
 lemma ofJ_j : (ofJ j).j = j := by
   by_cases h0 : j = 0
   · by_cases h3 : (3 : F) = 0

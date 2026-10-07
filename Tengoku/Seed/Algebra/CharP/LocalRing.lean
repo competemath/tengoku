@@ -24,7 +24,9 @@ public import Tengoku.Seed.RingTheory.LocalRing.ResidueField.Defs
 public section
 
 
-/-- In a local ring the characteristic is either zero or a prime power. -/
+/-- In a local ring the characteristic is either zero or a prime power.
+@isnad1 id=or.0h2v.s5.9c87c9b4f706 from=seed src=0 shape=09924faf vocab=927d837c
+-/
 theorem charP_zero_or_prime_power (R : Type*) [CommRing R] [IsLocalRing R] (q : ℕ)
     [char_R_q : CharP R q] : q = 0 ∨ IsPrimePow q := by
   -- Assume `q := char(R)` is not zero.

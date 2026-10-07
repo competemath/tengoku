@@ -36,6 +36,9 @@ variable {Q : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop
 open MorphismProperty
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isclosed.2h2v.s6.2772c317d5e8 from=seed src=0 shape=e53a829a vocab=4c608aab
+-/
 lemma RingHom.HasFiniteProducts.isClosedUnderLimitsOfShape (hQi : RespectsIso Q)
     (hQp : HasFiniteProducts Q) (R : CommRingCat.{u}) :
     (toMorphismProperty Q).underObj (X := R).IsClosedUnderFiniteProducts := by
@@ -50,6 +53,9 @@ lemma RingHom.HasFiniteProducts.isClosedUnderLimitsOfShape (hQi : RespectsIso Q)
   exact hQp _ fun i ↦ hpres _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isclosed.2h2v.s6.deafff3ebe34 from=seed src=0 shape=ff8182c2 vocab=4c38c7e1
+-/
 lemma RingHom.HasEqualizers.isClosedUnderLimitsOfShape (hQi : RespectsIso Q)
     (hQe : HasEqualizers Q) (R : CommRingCat.{u}) :
     (toMorphismProperty Q).underObj (X := R).IsClosedUnderLimitsOfShape WalkingParallelPair := by
@@ -79,6 +85,9 @@ noncomputable def RingHom.HasFiniteProducts.createsFiniteProductsForget
   have := hQp.isClosedUnderLimitsOfShape hQi R
   exact inferInstanceAs <| (toMorphismProperty Q).underObj.IsClosedUnderLimitsOfShape _
 
+/--
+@isnad1 id=hasfinit.2h2v.s7.aae061d3ea52 from=seed src=0 shape=39b73ae1 vocab=b506a9f6
+-/
 lemma RingHom.HasFiniteProducts.hasFiniteProducts (hQi : RespectsIso Q) (hQp : HasFiniteProducts Q)
     (R : CommRingCat.{u}) :
     Limits.HasFiniteProducts ((RingHom.toMorphismProperty Q).Under ⊤ R) := by
@@ -86,6 +95,9 @@ lemma RingHom.HasFiniteProducts.hasFiniteProducts (hQi : RespectsIso Q) (hQp : H
   have := hQp.createsFiniteProductsForget hQi R
   exact CategoryTheory.hasLimit_of_created D (Under.forget _ _ R)
 
+/--
+@isnad1 id=preserve.2h4v.s8.61f3ea13c649 from=seed src=0 shape=dcb6cd62 vocab=4dc66aa3
+-/
 lemma RingHom.HasFiniteProducts.preservesFiniteProducts_pushout (hQi : RingHom.RespectsIso Q)
     (hQp : RingHom.HasFiniteProducts Q) [(toMorphismProperty Q).IsStableUnderCobaseChange]
     {R S : CommRingCat.{u}} (f : R ⟶ S) :
@@ -108,6 +120,9 @@ noncomputable def RingHom.HasEqualizers.createsLimitsWalkingParallelPair (hQi : 
   apply +allowSynthFailures Comma.forgetCreatesLimitsOfShapeOfClosed
   exact hQe.isClosedUnderLimitsOfShape hQi _
 
+/--
+@isnad1 id=hasequal.2h2v.s7.347b31fc5240 from=seed src=0 shape=39b73ae1 vocab=185a594c
+-/
 lemma RingHom.HasEqualizers.hasEqualizers (hQi : RespectsIso Q) (hQe : HasEqualizers Q)
     (R : CommRingCat.{u}) :
     Limits.HasEqualizers ((toMorphismProperty Q).Under ⊤ R) := by
@@ -127,6 +142,9 @@ noncomputable def Under.createsFiniteLimitsForget (hQi : RingHom.RespectsIso Q)
   letI := hQe.createsLimitsWalkingParallelPair hQi
   createsFiniteLimitsOfCreatesEqualizersAndFiniteProducts _
 
+/--
+@isnad1 id=hasfinit.3h2v.s7.7a6235891d8d from=seed src=0 shape=2528e551 vocab=74adf80b
+-/
 lemma Under.hasFiniteLimits (hQi : RingHom.RespectsIso Q)
     (hQp : RingHom.HasFiniteProducts Q) (hQe : RingHom.HasEqualizers Q) (R : CommRingCat.{u}) :
     HasFiniteLimits ((RingHom.toMorphismProperty Q).Under ⊤ R) :=
@@ -144,6 +162,9 @@ variable {P}
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iff.0h6v.s14.d597c18135ec from=seed src=0 shape=ff0b81d0 vocab=0ea7046a
+-/
 lemma CommRingCat.preservesLimit_parallelPair_tensorProd_iff_tensorEqualizer_bijective
     {R S : CommRingCat.{u}} [Algebra R S] {A B : Under R} {f g : A ⟶ B} :
     PreservesLimit (parallelPair f g) (tensorProd R S) ↔
@@ -171,6 +192,9 @@ lemma CommRingCat.preservesLimit_parallelPair_tensorProd_iff_tensorEqualizer_bij
     ConcreteCategory.isIso_iff_bijective]
   rfl
 
+/--
+@isnad1 id=preserve.1h9v.s7.29ffdcd18514 from=seed src=0 shape=54332ee3 vocab=dee39f85
+-/
 lemma RingHom.HasStableEqualizers.preservesLimit_parallelPair_tensorProd
     (hPse : HasStableEqualizers P) {R S : CommRingCat.{u}} [Algebra R S]
     {A B : Under R} (f g : A ⟶ B) (hA : P A.hom.hom) (hB : P B.hom.hom) :
@@ -178,6 +202,9 @@ lemma RingHom.HasStableEqualizers.preservesLimit_parallelPair_tensorProd
   rw [CommRingCat.preservesLimit_parallelPair_tensorProd_iff_tensorEqualizer_bijective]
   exact hPse _ _ hA hB
 
+/--
+@isnad1 id=preserve.3h4v.s8.baf2c9397af2 from=seed src=0 shape=d5d0518c vocab=50eddba9
+-/
 lemma RingHom.HasStableEqualizers.preservesEqualizers_pushout (hPi : RespectsIso P)
     (hPe : HasEqualizers P) (hPse : HasStableEqualizers P)
     [(toMorphismProperty P).IsStableUnderCobaseChange] {R S : CommRingCat.{u}} (f : R ⟶ S) :
@@ -199,7 +226,9 @@ lemma RingHom.HasStableEqualizers.preservesEqualizers_pushout (hPi : RespectsIso
 
 /-- If `P` is a property of ring homs that is stable under finite products and
 equalizers, and the latter are preserved by arbitrary base change,
-pushout along any ring homomorphism preserves finite limits. -/
+pushout along any ring homomorphism preserves finite limits.
+@isnad1 id=preserve.4h4v.s8.f3a1069a8a7d from=seed src=0 shape=c7de7aaa vocab=5804b627
+-/
 lemma RingHom.HasStableEqualizers.preservesFiniteLimits_pushout (hPi : RingHom.RespectsIso P)
     (hPp : HasFiniteProducts P) (hPe : HasEqualizers P) (hPse : HasStableEqualizers P)
     [(toMorphismProperty P).IsStableUnderCobaseChange] {R S : CommRingCat.{u}} (f : R ⟶ S) :

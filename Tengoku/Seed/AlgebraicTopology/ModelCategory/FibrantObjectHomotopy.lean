@@ -41,6 +41,9 @@ variable (C) in
 def homRel : HomRel (FibrantObject C) :=
   fun _ _ f g ↦ LeftHomotopyRel f.hom g.hom
 
+/--
+@isnad1 id=iff.0h5v.s7.c1be8002d844 from=seed src=0 shape=7b1457af vocab=aa673ba0
+-/
 lemma homRel_iff_leftHomotopyRel {X Y : FibrantObject C} {f g : X ⟶ Y} :
     homRel C f g ↔ LeftHomotopyRel f.hom g.hom := Iff.rfl
 
@@ -50,6 +53,9 @@ instance : HomRel.IsStableUnderPostcomp (homRel C) where
 instance : HomRel.IsStableUnderPrecomp (homRel C) where
   comp_left _ _ _ h := h.precomp _
 
+/--
+@isnad1 id=equivale.0h3v.s7.a4e00779c989 from=seed src=0 shape=a1f62407 vocab=174fb603
+-/
 lemma homRel_equivalence_of_isCofibrant_src {X Y : FibrantObject C} [IsCofibrant X.obj] :
     Equivalence (homRel C (X := X) (Y := Y) · ·) :=
   (LeftHomotopyRel.equivalence _ _).comap (fun (f : X ⟶ Y) ↦ f.hom)
@@ -62,16 +68,25 @@ abbrev HoCat := Quotient (FibrantObject.homRel C)
 homotopy category. -/
 def toHoCat : FibrantObject C ⥤ HoCat C := Quotient.functor _
 
+/--
+@isnad1 id=surjecti.0h1v.s6.42242581fa85 from=seed src=0 shape=a4c34b13 vocab=00952fd1
+-/
 lemma toHoCat_obj_surjective : Function.Surjective (toHoCat (C := C)).obj :=
   fun ⟨_⟩ ↦ ⟨_, rfl⟩
 
 instance : Functor.Full (toHoCat (C := C)) := by dsimp [toHoCat]; infer_instance
 
+/--
+@isnad1 id=eq.0h6v.s8.365d1656eacb from=seed src=0 shape=9a62ed5d vocab=6f8643c4
+-/
 lemma toHoCat_map_eq {X Y : FibrantObject C} {f g : X ⟶ Y}
     (h : homRel C f g) :
     toHoCat.map f = toHoCat.map g :=
   CategoryTheory.Quotient.sound _ h
 
+/--
+@isnad1 id=iff.0h5v.s8.5930ad3b0e34 from=seed src=0 shape=1c0d631f vocab=9859bbee
+-/
 lemma toHoCat_map_eq_iff {X Y : FibrantObject C} [IsCofibrant X.obj] (f g : X ⟶ Y) :
     toHoCat.map f = toHoCat.map g ↔ homRel C f g := by
   dsimp [toHoCat]
@@ -87,6 +102,9 @@ instance : (weakEquivalences (FibrantObject C)).HasQuotient (homRel C) where
 instance : CategoryWithWeakEquivalences (FibrantObject.HoCat C) where
   weakEquivalences := (weakEquivalences _).quotient _
 
+/--
+@isnad1 id=iff.0h4v.s8.baa6422f7855 from=seed src=0 shape=2ab2247c vocab=1353e203
+-/
 lemma weakEquivalence_toHoCat_map_iff {X Y : FibrantObject C} (f : X ⟶ Y) :
     WeakEquivalence (toHoCat.map f) ↔ WeakEquivalence f := by
   simp only [weakEquivalence_iff]
@@ -104,6 +122,9 @@ def toHoCatLocalizerMorphism :
       weakEquivalence_toHoCat_map_iff]
 
 variable (C) in
+/--
+@isnad1 id=factorst.0h1v.s6.16b609fcf238 from=seed src=0 shape=481c2a9a vocab=7263f06f
+-/
 lemma factorsThroughLocalization :
     (homRel C).FactorsThroughLocalization (weakEquivalences (FibrantObject C)) := by
   rintro X Y f g h
@@ -127,6 +148,9 @@ instance {D : Type*} [Category* D] (L : FibrantObject.HoCat C ⥤ D)
     (toHoCat ⋙ L).IsLocalization (weakEquivalences _) :=
   inferInstanceAs (((toHoCatLocalizerMorphism C).functor ⋙ L).IsLocalization _)
 
+/--
+@isnad1 id=ex.0h2v.s6.3fb3ecadabb0 from=seed src=0 shape=c9571561 vocab=15efa7e4
+-/
 lemma HoCat.exists_resolution (X : C) :
     ∃ (X' : C) (_ : IsFibrant X') (i : X ⟶ X'), Cofibration i ∧ WeakEquivalence i := by
   have h := MorphismProperty.factorizationData (trivialCofibrations C) (fibrations C)
@@ -157,6 +181,9 @@ instance (X : C) : WeakEquivalence (HoCat.iResolutionObj X) :=
 instance (X : C) [IsCofibrant X] : IsCofibrant (HoCat.resolutionObj X) :=
   isCofibrant_of_cofibration (HoCat.iResolutionObj X)
 
+/--
+@isnad1 id=ex.0h4v.s6.0d1e9147ce4f from=seed src=0 shape=22b9941c vocab=ba82efc3
+-/
 lemma HoCat.exists_resolution_map {X Y : C} (f : X ⟶ Y) :
     ∃ (g : resolutionObj X ⟶ resolutionObj Y),
       iResolutionObj X ≫ g = f ≫ iResolutionObj Y := by
@@ -170,18 +197,27 @@ noncomputable def HoCat.resolutionMap {X Y : C} (f : X ⟶ Y) :
     resolutionObj X ⟶ resolutionObj Y :=
   (exists_resolution_map f).choose
 
+/--
+@isnad1 id=eq.0h4v.s6.058e55f39032 from=seed src=0 shape=33e94102 vocab=f45c0d87
+-/
 @[reassoc (attr := simp)]
 lemma HoCat.resolutionMap_fac {X Y : C} (f : X ⟶ Y) :
     iResolutionObj X ≫ resolutionMap f =
       f ≫ iResolutionObj Y :=
   (exists_resolution_map f).choose_spec
 
+/--
+@isnad1 id=iff.0h4v.s5.92bf860befad from=seed src=0 shape=5462bc3d vocab=1693ee4c
+-/
 @[simp]
 lemma HoCat.weakEquivalence_resolutionMap_iff {X Y : C} (f : X ⟶ Y) :
     WeakEquivalence (resolutionMap f) ↔ WeakEquivalence f := by
   rw [← weakEquivalence_precomp_iff (iResolutionObj X),
     HoCat.resolutionMap_fac, weakEquivalence_postcomp_iff]
 
+/--
+@isnad1 id=eq.0h6v.s8.3867b5c1aef6 from=seed src=0 shape=216f5db4 vocab=ae039a75
+-/
 lemma HoCat.resolutionObj_hom_ext {X Y : C} [IsFibrant Y] {f g : resolutionObj X ⟶ Y}
     (h : RightHomotopyRel (iResolutionObj X ≫ f) (iResolutionObj X ≫ g)) :
     toHoCat.map (homMk f) = toHoCat.map (homMk g) := by

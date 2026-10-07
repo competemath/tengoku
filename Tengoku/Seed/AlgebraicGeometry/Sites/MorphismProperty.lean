@@ -46,6 +46,9 @@ class IsJointlySurjectivePreserving (P : MorphismProperty Scheme.{u}) where
 
 variable {P : MorphismProperty Scheme.{u}}
 
+/--
+@isnad1 id=ex.1h9v.s9.433ffcaf05a2 from=seed src=0 shape=7bbe8ec5 vocab=00af4c48
+-/
 lemma IsJointlySurjectivePreserving.exists_preimage_snd_triplet_of_prop
     [IsJointlySurjectivePreserving P] {X Y S : Scheme.{u}} {f : X ⟶ S} {g : Y ⟶ S} [HasPullback f g]
     (hf : P f) (x : X) (y : Y) (h : f x = g y) :
@@ -79,6 +82,9 @@ variable (P : MorphismProperty Scheme.{u})
 def precoverage : Precoverage Scheme.{u} :=
   jointlySurjectivePrecoverage ⊓ P.precoverage
 
+/--
+@isnad1 id=iff.0h5v.s8.d48a300d6920 from=seed src=0 shape=522398ed vocab=5be61754
+-/
 @[simp]
 lemma ofArrows_mem_precoverage_iff {S : Scheme.{u}} {ι : Type*} {X : ι → Scheme.{u}}
     {f : ∀ i, X i ⟶ S} :
@@ -87,15 +93,24 @@ lemma ofArrows_mem_precoverage_iff {S : Scheme.{u}} {ι : Type*} {X : ι → Sch
     ← Presieve.ofArrows_mem_comap_jointlySurjectivePrecoverage_iff]
   exact ⟨fun hmem ↦ ⟨hmem.1, fun i ↦ hmem.2 ⟨i⟩⟩, fun h ↦ ⟨h.1, fun {Y} g ⟨i⟩ ↦ h.2 i⟩⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.8bf55af14469 from=seed src=0 shape=2b941e0e vocab=ae6ece2f
+-/
 @[simp]
 lemma singleton_mem_precoverage_iff {X S : Scheme.{u}} (f : X ⟶ S) :
     Presieve.singleton f ∈ precoverage P S ↔ Function.Surjective f.base ∧ P f := by
   rw [← Presieve.ofArrows_pUnit.{0}, ofArrows_mem_precoverage_iff]
   aesop
 
+/--
+@isnad1 id=mem.0h2v.s6.31cf0bb32ac9 from=seed src=0 shape=9f899a30 vocab=b103f1a7
+-/
 lemma bot_mem_precoverage (X : Scheme.{u}) [IsEmpty X] : ⊥ ∈ Scheme.precoverage P X :=
   ⟨fun x ↦ ‹IsEmpty X›.elim x, P.bot_mem_precoverage _⟩
 
+/--
+@isnad1 id=le.1h2v.s6.5e54816218c8 from=seed src=0 shape=de01628d vocab=1d939e55
+-/
 lemma precoverage_mono {P Q : MorphismProperty Scheme.{u}} (h : P ≤ Q) :
     precoverage P ≤ precoverage Q := by
   grw [precoverage, precoverage, MorphismProperty.precoverage_monotone h]

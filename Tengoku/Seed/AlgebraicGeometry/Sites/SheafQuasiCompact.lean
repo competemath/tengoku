@@ -32,7 +32,9 @@ set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- A presheaf of types is a sheaf for the `P`-qc topology if and only if it is a sheaf
 for the Zariski topology and satisfies the sheaf property for all single object coverings
-`{ f : Spec S ⟶ Spec R }` where `f` satisfies `P`. -/
+`{ f : Spec S ⟶ Spec R }` where `f` satisfies `P`.
+@isnad1 id=iff.0h2v.s6.178d212df229 from=seed src=0 shape=8eeae46b vocab=b854884c
+-/
 @[stacks 022H]
 nonrec lemma isSheaf_type_propQCTopology_iff [P.IsMultiplicative] (F : Scheme.{u}ᵒᵖ ⥤ Type*)
     [IsZariskiLocalAtSource P] :
@@ -96,7 +98,9 @@ variable {A : Type*} [Category* A]
 
 /-- A presheaf is a sheaf for the `P`-qc topology if and only if it is a sheaf
 for the Zariski topology and satisfies the sheaf property for all single object coverings
-`{ f : Spec S ⟶ Spec R }` where `f` satisfies `P`. -/
+`{ f : Spec S ⟶ Spec R }` where `f` satisfies `P`.
+@isnad1 id=iff.0h3v.s7.3d5b2cfd227f from=seed src=0 shape=781aae09 vocab=d36dda0b
+-/
 @[stacks 022H]
 nonrec lemma isSheaf_propQCTopology_iff [P.IsMultiplicative] (F : Scheme.{u}ᵒᵖ ⥤ A)
     [IsZariskiLocalAtSource P] :

@@ -31,11 +31,16 @@ instance : StarMul (FreeMonoid α) where
   star_involutive := List.reverse_reverse
   star_mul := fun _ _ => List.reverse_append
 
+/--
+@isnad1 id=eq.0h2v.s5.79def7e61abb from=seed src=0 shape=20dd851d vocab=c68d4fb6
+-/
 @[simp]
 theorem star_of (x : α) : star (of x) = of x :=
   rfl
 
-/-- Note that `star_one` is already a global simp lemma, but this one works with dsimp too -/
+/-- Note that `star_one` is already a global simp lemma, but this one works with dsimp too
+@isnad1 id=eq.0h1v.s6.dbc66a6b2e60 from=seed src=0 shape=cb239ae1 vocab=b1477cca
+-/
 @[simp]
 theorem star_one : star (1 : FreeMonoid α) = 1 :=
   rfl
@@ -64,9 +69,15 @@ instance : StarRing (FreeAlgebra R X) where
   star_mul a b := by simp only [Function.comp_apply, map_mul, MulOpposite.unop_mul]
   star_add a b := by simp only [Function.comp_apply, map_add, MulOpposite.unop_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.53c9ab6b17bd from=seed src=0 shape=652b2505 vocab=6fa50b1c
+-/
 @[simp]
 theorem star_ι (x : X) : star (ι R x) = ι R x := by simp [star, Star.star]
 
+/--
+@isnad1 id=eq.0h3v.s7.1f7b25b1ed52 from=seed src=0 shape=d6c6ca06 vocab=36cd7432
+-/
 @[simp]
 theorem star_algebraMap (r : R) : star (algebraMap R (FreeAlgebra R X) r) = algebraMap R _ r := by
   simp [star, Star.star]

@@ -38,6 +38,9 @@ namespace DoldKan
 
 variable {C : Type*} [Category* C] [Preadditive C]
 
+/--
+@isnad1 id=eq.2h5v.s8.4f5bb18cc316 from=seed src=0 shape=f4c335c5 vocab=bff3b252
+-/
 theorem PInfty_comp_map_mono_eq_zero (X : SimplicialObject C) {n : ℕ} {Δ' : SimplexCategory}
     (i : Δ' ⟶ ⦋n⦌) [hi : Mono i] (h₁ : Δ'.len ≠ n) (h₂ : ¬Isδ₀ i) :
     PInfty.f n ≫ X.map i.op = 0 := by
@@ -77,6 +80,9 @@ theorem PInfty_comp_map_mono_eq_zero (X : SimplicialObject C) {n : ℕ} {Δ' : S
       by_contra
       exact hj₁ (by simp only [Fin.ext_iff, Fin.val_zero]; lia)
 
+/--
+@isnad1 id=eq.0h5v.s8.56b45a848cfc from=seed src=0 shape=752db693 vocab=e60b1fb2
+-/
 @[reassoc]
 theorem Γ₀_obj_termwise_mapMono_comp_PInfty (X : SimplicialObject C) {Δ Δ' : SimplexCategory}
     (i : Δ ⟶ Δ') [Mono i] :
@@ -172,6 +178,9 @@ def natTrans : (N₂ : Karoubi (SimplicialObject C) ⥤ _) ⋙ Γ₂ ⟶ 𝟭 _ 
   ((Functor.whiskeringLeft _ _ _).obj (toKaroubi (SimplicialObject C))).preimage
     (Γ₂N₂ToKaroubiIso.hom ≫ Γ₂N₁.natTrans)
 
+/--
+@isnad1 id=eq.0h2v.s11.37a8f680eafe from=seed src=0 shape=b6368e96 vocab=e90c9ef7
+-/
 theorem natTrans_app_f_app (P : Karoubi (SimplicialObject C)) :
     Γ₂N₂.natTrans.app P =
       (N₂ ⋙ Γ₂).map P.decompId_i ≫
@@ -181,6 +190,9 @@ theorem natTrans_app_f_app (P : Karoubi (SimplicialObject C)) :
 
 end Γ₂N₂
 
+/--
+@isnad1 id=eq.0h2v.s11.ee973a8daad4 from=seed src=0 shape=6717568b vocab=b28564ca
+-/
 theorem compatibility_Γ₂N₁_Γ₂N₂_natTrans (X : SimplicialObject C) :
     Γ₂N₁.natTrans.app X =
       (Γ₂N₂ToKaroubiIso.app X).inv ≫
@@ -195,6 +207,9 @@ theorem compatibility_Γ₂N₁_Γ₂N₂_natTrans (X : SimplicialObject C) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s11.b3d92a528d9d from=seed src=0 shape=10a8cede vocab=438bd502
+-/
 theorem identity_N₂_objectwise (P : Karoubi (SimplicialObject C)) :
     (N₂Γ₂.inv.app (N₂.obj P) : N₂.obj P ⟶ N₂.obj (Γ₂.obj (N₂.obj P))) ≫
     N₂.map (Γ₂N₂.natTrans.app P) = 𝟙 (N₂.obj P) := by
@@ -215,6 +230,9 @@ theorem identity_N₂_objectwise (P : Karoubi (SimplicialObject C)) :
     eq₁, eq₂, PInfty_f_naturality_assoc, app_idem, PInfty_f_idem_assoc]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h1v.s12.51b1b7b9b0d6 from=seed src=0 shape=ec390581 vocab=af0bf3d6
+-/
 theorem identity_N₂ :
     (𝟙 (N₂ : Karoubi (SimplicialObject C) ⥤ _) ◫ N₂Γ₂.inv) ≫
     (Functor.associator _ _ _).inv ≫ Γ₂N₂.natTrans ◫ 𝟙 (@N₂ C _ _) = 𝟙 N₂ := by

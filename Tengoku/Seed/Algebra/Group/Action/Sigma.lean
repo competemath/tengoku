@@ -39,14 +39,23 @@ variable [∀ i, SMul M (α i)] [∀ i, SMul N (α i)] (a : M) (i : ι) (b : α 
 instance : SMul M (Σ i, α i) :=
   ⟨fun a => (Sigma.map id) fun _ => (a • ·)⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.b8cd46a066b6 from=seed src=0 shape=f665a9b7 vocab=aaae4184
+-/
 @[to_additive]
 theorem smul_def : a • x = x.map id fun _ => (a • ·) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.24795fe11343 from=seed src=0 shape=d4842fc8 vocab=dc5b5335
+-/
 @[to_additive (attr := simp)]
 theorem smul_mk : a • mk i b = ⟨i, a • b⟩ :=
   rfl
 
+/--
+@isnad1 id=isscalar.0h4v.s6.9b8c6cb896da from=seed src=0 shape=3ab53b3c vocab=a7a2e493
+-/
 @[to_additive]
 instance instIsScalarTowerOfSMul [SMul M N] [∀ i, IsScalarTower M N (α i)] :
     IsScalarTower M N (Σ i, α i) :=
@@ -66,7 +75,9 @@ instance [∀ i, SMul Mᵐᵒᵖ (α i)] [∀ i, IsCentralScalar M (α i)] : IsC
     cases x
     rw [smul_mk, smul_mk, op_smul_eq_smul]⟩
 
-/-- This is not an instance because `i` becomes a metavariable. -/
+/-- This is not an instance because `i` becomes a metavariable.
+@isnad1 id=faithful.0h4v.s5.5683994dd833 from=seed src=0 shape=959fcd29 vocab=e143797c
+-/
 @[to_additive /-- This is not an instance because `i` becomes a metavariable. -/]
 protected theorem FaithfulSMul' [FaithfulSMul M (α i)] : FaithfulSMul M (Σ i, α i) :=
   ⟨fun h => eq_of_smul_eq_smul fun a : α i => heq_iff_eq.1 (Sigma.ext_iff.1 <| h <| mk i a).2⟩

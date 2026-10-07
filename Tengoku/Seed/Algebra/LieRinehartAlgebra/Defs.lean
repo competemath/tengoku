@@ -54,12 +54,21 @@ variable {R A₁ L₁ A₂ L₂ A₃ L₃ : Type*} [CommRing R]
   [Algebra R A₃] [LieAlgebra R L₃]
   {σ₁₂ : A₁ →ₐ[R] A₂} {σ₂₃ : A₂ →ₐ[R] A₃}
 
+/--
+@isnad1 id=eq.0h5v.s7.906dfbea223c from=seed src=0 shape=dacfc48d vocab=b61f93de
+-/
 @[simp] lemma LieRinehartRing.lie_smul_eq_mul [LieRinehartRing A₁ L₁] (a b : A₁) (x : L₁) :
   ⁅a • x, b⁆ = a * ⁅x, b⁆ := LieRinehartRing.lie_smul_eq_mul' a b x
 
+/--
+@isnad1 id=eq.0h5v.s7.f2ec467d9559 from=seed src=0 shape=aec3f014 vocab=060b924f
+-/
 @[simp] lemma LieRinehartRing.leibniz_mul_right [LieRinehartRing A₁ L₁] (x : L₁) (a b : A₁) :
   ⁅x, a * b⁆ = a • ⁅x, b⁆ + ⁅x, a⁆ * b := LieRinehartRing.leibniz_mul_right' x a b
 
+/--
+@isnad1 id=eq.0h5v.s8.d524a26d896b from=seed src=0 shape=6848cfbe vocab=8f153b42
+-/
 @[simp] lemma LieRinehartRing.leibniz_smul_right [LieRinehartRing A₁ L₁] (x y : L₁) (a : A₁) :
   ⁅x, a • y⁆ = a • ⁅x, y⁆ + ⁅x, a⁆ • y := LieRinehartRing.leibniz_smul_right' x y a
 
@@ -96,13 +105,17 @@ namespace Hom
 instance : CoeFun (L₁ →ₗ⁅σ₁₂⁆ L₂) (fun _ => L₁ → L₂) := ⟨fun f => f.toLieHom⟩
 
 /-- This is `LieRinehartAlgebra.Hom.map_smul_apply'` restated using the coercion to function rather
-than `LieRinehartAlgebra.Hom.toLieHom`. -/
+than `LieRinehartAlgebra.Hom.toLieHom`.
+@isnad1 id=eq.0h9v.s8.89ea5c1d75e3 from=seed src=0 shape=40706c31 vocab=7c4b3f44
+-/
 lemma map_smul_apply (f : L₁ →ₗ⁅σ₁₂⁆ L₂) (a : A₁) (x : L₁) :
     f (a • x) = σ₁₂ a • f x :=
   f.map_smul_apply' a x
 
 /-- This is `LieRinehartAlgebra.Hom.apply_lie'` restated using the coercion to function rather
-than `LieRinehartAlgebra.Hom.toLieHom`. -/
+than `LieRinehartAlgebra.Hom.toLieHom`.
+@isnad1 id=eq.0h9v.s8.d5f81f85cec8 from=seed src=0 shape=9eeb83d0 vocab=5f827a8a
+-/
 lemma apply_lie (f : L₁ →ₗ⁅σ₁₂⁆ L₂) (a : A₁) (x : L₁) :
     σ₁₂ ⁅x, a⁆ = ⁅f x, σ₁₂ a⁆ :=
   f.apply_lie' a x
@@ -113,6 +126,9 @@ def toLinearMap' (f : L₁ →ₗ⁅σ₁₂⁆ L₂) : L₁ →ₛₗ[σ₁₂.
   map_add' := f.map_add'
   map_smul' := f.map_smul_apply
 
+/--
+@isnad1 id=eq.0h8v.s8.75858c44f02c from=seed src=0 shape=2e0d96eb vocab=305f74b7
+-/
 @[simp] lemma toLinearMap'_apply (f : L₁ →ₗ⁅σ₁₂⁆ L₂) (x : L₁) : f.toLinearMap' x = f x := rfl
 
 /-- The composition of Lie-Rinehart algebra morphisms is again a morphism. -/
@@ -144,8 +160,14 @@ def anchor : L₁ →ₗ⁅AlgHom.id R A₁⁆ Derivation R A₁ A₁ where
   map_smul_apply' _ _ := by ext; simp
   apply_lie' _ _ := by simp
 
+/--
+@isnad1 id=eq.0h2v.s8.71b263190cc8 from=seed src=0 shape=f31772f0 vocab=42fd963d
+-/
 @[simp] lemma anchor_derivation : anchor R A₁ (Derivation R A₁ A₁) = Hom.id := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.f8e0dd7d3f56 from=seed src=0 shape=6ceb1c68 vocab=8a411624
+-/
 @[simp] lemma anchor_apply (l : L₁) (a : A₁) :
   (LieRinehartAlgebra.anchor R A₁ L₁ l) a = ⁅l, a⁆ := rfl
 

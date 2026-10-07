@@ -61,11 +61,17 @@ instance (U : X.affineOpens) : IsPreimmersion (I.glueDataObjι U) :=
   .comp _ _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s10.d17151400d1b from=seed src=0 shape=7a8b8e57 vocab=e629af4f
+-/
 lemma glueDataObjι_ι (U : X.affineOpens) : I.glueDataObjι U ≫ U.1.ι =
     Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk _)) ≫ U.2.fromSpec := by
   rw [glueDataObjι, Category.assoc]; rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s15.b89c8217558e from=seed src=0 shape=b0104777 vocab=170deab0
+-/
 lemma ker_glueDataObjι_appTop (U : X.affineOpens) :
     RingHom.ker (I.glueDataObjι U).appTop.hom = (I.ideal U).comap U.1.topIso.hom.hom := by
   let φ : Γ(X, U) ⟶ CommRingCat.of (Γ(X, U) ⧸ I.ideal U) :=
@@ -83,6 +89,9 @@ lemma ker_glueDataObjι_appTop (U : X.affineOpens) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 open scoped Set.Notation in
+/--
+@isnad1 id=eq.0h3v.s12.bce114589221 from=seed src=0 shape=3ada0134 vocab=fcf62beb
+-/
 lemma range_glueDataObjι (U : X.affineOpens) :
     Set.range (I.glueDataObjι U) =
       U.2.isoSpec.inv '' PrimeSpectrum.zeroLocus (I.ideal U) := by
@@ -93,6 +102,9 @@ lemma range_glueDataObjι (U : X.affineOpens) :
   rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s11.eaebd09a4325 from=seed src=0 shape=9b31db6f vocab=e67175b5
+-/
 lemma range_glueDataObjι_ι (U : X.affineOpens) :
     Set.range (I.glueDataObjι U ≫ U.1.ι) = X.zeroLocus (U := U) (I.ideal U) ∩ U := by
   simp only [Scheme.Hom.comp_base, TopCat.coe_comp, Set.range_comp, range_glueDataObjι]
@@ -111,6 +123,9 @@ noncomputable
 def glueDataObjMap {U V : X.affineOpens} (h : U ≤ V) : I.glueDataObj U ⟶ I.glueDataObj V :=
   Spec.map (CommRingCat.ofHom (Ideal.quotientMap _ _ (I.ideal_le_comap_ideal h)))
 
+/--
+@isnad1 id=away.2h5v.s14.a8605cf0c75e from=seed src=0 shape=31984264 vocab=c328c208
+-/
 lemma isLocalization_away {U V : X.affineOpens}
     (h : U ≤ V) (f : Γ(X, V.1)) (hU : U = X.affineBasicOpen f) :
       letI := (Ideal.quotientMap _ _ (I.ideal_le_comap_ideal h)).toAlgebra
@@ -125,12 +140,18 @@ lemma isLocalization_away {U V : X.affineOpens}
   · simp [RingHom.algebraMap_toAlgebra, Ideal.quotientMap_comp_mk]; rfl
   · simp only [Ideal.mk_ker, RingHom.algebraMap_toAlgebra, I.map_ideal', le_refl]
 
+/--
+@isnad1 id=isopenim.0h4v.s7.ce5f3a25585f from=seed src=0 shape=c9f06c8f vocab=8923f486
+-/
 instance isOpenImmersion_glueDataObjMap {V : X.affineOpens} (f : Γ(X, V.1)) :
     IsOpenImmersion (I.glueDataObjMap (X.affineBasicOpen_le f)) := by
   let := (Ideal.quotientMap _ _ (I.ideal_le_comap_ideal (X.affineBasicOpen_le f))).toAlgebra
   have := I.isLocalization_away (X.affineBasicOpen_le f) f rfl
   exact IsOpenImmersion.of_isLocalization (Ideal.Quotient.mk _ f)
 
+/--
+@isnad1 id=eq.0h4v.s9.dc1e65101f36 from=seed src=0 shape=8e2aca4f vocab=00f49755
+-/
 lemma opensRange_glueDataObjMap {V : X.affineOpens} (f : Γ(X, V.1)) :
       (I.glueDataObjMap (X.affineBasicOpen_le f)).opensRange =
         (I.glueDataObjι V) ⁻¹ᵁ (V.1.ι ⁻¹ᵁ X.basicOpen f) := by
@@ -144,6 +165,9 @@ lemma opensRange_glueDataObjMap {V : X.affineOpens} (f : Γ(X, V.1)) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s7.8cafa26163f9 from=seed src=0 shape=cfebb4f4 vocab=50bb448c
+-/
 @[reassoc (attr := simp)]
 lemma glueDataObjMap_glueDataObjι {U V : X.affineOpens} (h : U ≤ V) :
     I.glueDataObjMap h ≫ I.glueDataObjι V = I.glueDataObjι U ≫ X.homOfLE h := by
@@ -156,6 +180,9 @@ lemma glueDataObjMap_glueDataObjι {U V : X.affineOpens} (h : U ≤ V) :
   rw [← IsAffineOpen.isoSpec_hom V.2, Iso.hom_inv_id, Category.comp_id]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=le.0h4v.s14.357775995905 from=seed src=0 shape=978bb677 vocab=0c7b2b9c
+-/
 lemma ideal_le_ker_glueDataObjι (U V : X.affineOpens) :
     I.ideal V ≤ RingHom.ker (U.1.ι.app V.1 ≫ (I.glueDataObjι U).app _).hom := by
   intro x hx
@@ -385,11 +412,17 @@ private lemma gluedTo_injective :
   obtain rfl := (I.glueDataObjι (X.affineBasicOpen f)).isEmbedding.injective this
   simp only [glueDataObjMap_ι]
 
+/--
+@isnad1 id=eq.0h3v.s8.43e3b26976a4 from=seed src=0 shape=8287de17 vocab=09f3981a
+-/
 lemma range_glueDataObjι_ι_eq_support_inter (U : X.affineOpens) :
     Set.range (I.glueDataObjι U ≫ U.1.ι) = (I.support : Set X) ∩ U :=
   (I.range_glueDataObjι_ι U).trans (I.coe_support_inter U).symm
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h2v.s8.c5c7724e955a from=seed src=0 shape=4d7eeb2f vocab=1af450a5
+-/
 lemma range_gluedTo : Set.range I.gluedTo = I.support := by
   refine subset_antisymm (Set.range_subset_iff.mpr fun x ↦ ?_) ?_
   · obtain ⟨ix, x : I.glueDataObj ix, rfl⟩ :=
@@ -476,6 +509,9 @@ def subschemeι : I.subscheme ⟶ X :=
     change (I.gluedHomeo (I.gluedHomeo.symm x)).1 = x.1
     rw [I.gluedHomeo.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.57068da7706e from=seed src=0 shape=cee76853 vocab=c9c0832a
+-/
 lemma subschemeι_apply (x : I.subscheme) : I.subschemeι x = x.1 := rfl
 
 private lemma subschemeι_def : I.subschemeι = I.subschemeIso.hom ≫ I.gluedTo :=
@@ -490,6 +526,9 @@ instance : QuasiCompact I.subschemeι := by
   rw [subschemeι_def]
   infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s8.a86ee381e4f1 from=seed src=0 shape=b774b797 vocab=09d2c174
+-/
 @[simp]
 lemma range_subschemeι : Set.range I.subschemeι = I.support := by
   simp [← range_gluedTo, I.subschemeι_def, Set.range_comp]
@@ -517,12 +556,18 @@ def subschemeCover : I.subscheme.AffineOpenCover where
     exact (I.opensRange_glueData_ι_subschemeIso_inv U).ge hy
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s8.6a4ad892f7d2 from=seed src=0 shape=531838dc vocab=238e11c9
+-/
 @[simp]
 lemma opensRange_subschemeCover_map (U : X.affineOpens) :
     (I.subschemeCover.f U).opensRange = I.subschemeι ⁻¹ᵁ U :=
   I.opensRange_glueData_ι_subschemeIso_inv U
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s6.02fe2888ed6b from=seed src=0 shape=c5f82348 vocab=dfb54d5e
+-/
 @[simp]
 lemma subschemeCover_map_subschemeι (U : X.affineOpens) :
     I.subschemeCover.f U ≫ I.subschemeι = I.glueDataObjι U ≫ U.1.ι := by
@@ -537,6 +582,9 @@ def subschemeObjIso (U : X.affineOpens) :
     (I.subschemeCover.f U).appIso _ ≪≫ Scheme.ΓSpecIso (.of (Γ(X, U) ⧸ I.ideal U))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s12.8581c4b502eb from=seed src=0 shape=3d25c206 vocab=34bc84aa
+-/
 lemma subschemeι_app (U : X.affineOpens) : I.subschemeι.app U =
     CommRingCat.ofHom (Ideal.Quotient.mk (I.ideal U)) ≫
     (I.subschemeObjIso U).inv := by
@@ -556,6 +604,9 @@ lemma subschemeι_app (U : X.affineOpens) : I.subschemeι.app U =
   convert! (Category.comp_id _).symm
   exact CategoryTheory.Functor.map_id _ _
 
+/--
+@isnad1 id=surjecti.0h3v.s11.7f2a5119e3cb from=seed src=0 shape=67f8064d vocab=26d5855f
+-/
 lemma subschemeι_app_surjective (U : X.affineOpens) :
     Function.Surjective (I.subschemeι.app U) := by
   rw [I.subschemeι_app U]
@@ -563,6 +614,9 @@ lemma subschemeι_app_surjective (U : X.affineOpens) :
     Ideal.Quotient.mk_surjective
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s12.675a2326306c from=seed src=0 shape=62cbc91d vocab=f4804bfd
+-/
 lemma ker_subschemeι_app (U : X.affineOpens) :
     RingHom.ker (I.subschemeι.app U).hom = I.ideal U := by
   rw [subschemeι_app]
@@ -573,6 +627,9 @@ lemma ker_subschemeι_app (U : X.affineOpens) :
     (Ideal.Quotient.mk (I.ideal U))) = _
   rw [RingHom.ker_equiv_comp, Ideal.mk_ker]
 
+/--
+@isnad1 id=eq.0h2v.s4.299e65a17cb6 from=seed src=0 shape=32e3a566 vocab=829f63ac
+-/
 @[simp]
 lemma ker_subschemeι : I.subschemeι.ker = I := by
   ext; simp [ker_subschemeι_app]
@@ -587,18 +644,27 @@ def glueDataObjHom {I J : IdealSheafData X} (h : I ≤ J) (U) :
   Spec.map (CommRingCat.ofHom (Ideal.Quotient.factor (h U)))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s6.e67a881e3673 from=seed src=0 shape=d7706cc7 vocab=32898239
+-/
 @[reassoc (attr := simp)]
 lemma glueDataObjHom_ι {I J : IdealSheafData X} (h : I ≤ J) (U) :
     glueDataObjHom h U ≫ I.glueDataObjι U = J.glueDataObjι U := by
   rw [glueDataObjHom, glueDataObjι, glueDataObjι, ← Spec.map_comp_assoc, ← CommRingCat.ofHom_comp,
     Ideal.Quotient.factor_comp_mk]
 
+/--
+@isnad1 id=eq.0h3v.s5.b809db916f93 from=seed src=0 shape=eff01a57 vocab=6bfca04a
+-/
 @[simp]
 lemma glueDataObjHom_id {I : IdealSheafData X} (U) :
     glueDataObjHom (le_refl I) U = 𝟙 _ := by
   rw [← cancel_mono (I.glueDataObjι U)]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s6.7dfe963d4f74 from=seed src=0 shape=96bc7098 vocab=e9e170a6
+-/
 @[reassoc (attr := simp)]
 lemma glueDataObjHom_comp {I J K : IdealSheafData X} (hIJ : I ≤ J) (hJK : J ≤ K) (U) :
     glueDataObjHom hJK U ≫ glueDataObjHom hIJ U = glueDataObjHom (hIJ.trans hJK) U := by
@@ -618,12 +684,18 @@ def inclusion {I J : IdealSheafData X} (h : I ≤ J) :
       AffineOpenCover.openCover_f, Category.assoc, subschemeCover_map_subschemeι]
     rw [← subschemeCover_map_subschemeι, pullback.condition_assoc, subschemeCover_map_subschemeι])
 
+/--
+@isnad1 id=eq.1h4v.s6.a4b737f334e1 from=seed src=0 shape=5694dd68 vocab=395d53f4
+-/
 @[reassoc (attr := simp)]
 lemma subSchemeCover_map_inclusion {I J : IdealSheafData X} (h : I ≤ J) (U) :
     J.subschemeCover.f U ≫ inclusion h = glueDataObjHom h U ≫ I.subschemeCover.f U :=
   J.subschemeCover.openCover.ι_glueMorphisms _ _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h3v.s5.33e4fe062c57 from=seed src=0 shape=7b120b31 vocab=8e43e7a0
+-/
 @[reassoc (attr := simp)]
 lemma inclusion_subschemeι {I J : IdealSheafData X} (h : I ≤ J) :
     inclusion h ≫ I.subschemeι = J.subschemeι :=
@@ -631,12 +703,18 @@ lemma inclusion_subschemeι {I J : IdealSheafData X} (h : I ≤ J) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h2v.s5.175f89a4d5ad from=seed src=0 shape=dac8bebf vocab=78299cc4
+-/
 @[simp, reassoc]
 lemma inclusion_id (I : IdealSheafData X) :
     inclusion le_rfl = 𝟙 I.subscheme :=
   I.subschemeCover.openCover.hom_ext _ _ fun _ ↦ by simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h4v.s6.a3e5e12b6d92 from=seed src=0 shape=83338da3 vocab=aa9de29d
+-/
 @[reassoc (attr := simp)]
 lemma inclusion_comp {I J K : IdealSheafData X} (h₁ : I ≤ J) (h₂ : J ≤ K) :
     inclusion h₂ ≫ inclusion h₁ = inclusion (h₁.trans h₂) :=
@@ -665,6 +743,9 @@ abbrev Hom.image : Scheme.{u} := f.ker.subscheme
 abbrev Hom.imageι : f.image ⟶ Y := f.ker.subschemeι
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=le.0h4v.s15.ad65369bf46d from=seed src=0 shape=e232a1b1 vocab=b13d849b
+-/
 lemma ideal_ker_le_ker_ΓSpecIso_inv_comp :
     f.ker.ideal U ≤ RingHom.ker ((ΓSpecIso Γ(Y, ↑U)).inv ≫
       (pullback.snd f U.1.ι ≫ U.1.toSpecΓ).appTop).hom := by
@@ -698,6 +779,9 @@ def Hom.toImageAux : X ⟶ f.image :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s5.a6f76e574e80 from=seed src=0 shape=587e4121 vocab=6b107207
+-/
 lemma Hom.toImageAux_spec :
     f.toImageAux ≫ f.imageι = f := by
   apply Cover.hom_ext ((Y.openCoverOfIsOpenCover _ (iSup_affineOpens_eq_top Y)).pullback₁ f)
@@ -711,6 +795,9 @@ def Hom.toImage : X ⟶ f.image :=
   f.toImageAux.copyBase (fun x ↦ ⟨f x, f.range_subset_ker_support ⟨x, rfl⟩⟩)
     (funext fun x ↦ Subtype.ext congr($f.toImageAux_spec x))
 
+/--
+@isnad1 id=eq.0h3v.s5.0c1f8424d1ed from=seed src=0 shape=587e4121 vocab=e83f3a8f
+-/
 @[reassoc (attr := simp)]
 lemma Hom.toImage_imageι :
     f.toImage ≫ f.imageι = f := by
@@ -732,10 +819,16 @@ instance : IsIso (IdealSheafData.subschemeι ⊥ : _ ⟶ X) :=
   ⟨Scheme.Hom.toImage (𝟙 X) ≫ IdealSheafData.inclusion bot_le,
     by simp [← cancel_mono (IdealSheafData.subschemeι _)], by simp⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.7e8f36fca691 from=seed src=0 shape=61206eed vocab=d79755cb
+-/
 lemma isIso_subschemeι_iff_eq_bot (I : X.IdealSheafData) : IsIso I.subschemeι ↔ I = ⊥ :=
   ⟨fun h ↦ by simp [← I.ker_subschemeι], fun h ↦ h ▸ inferInstance⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s13.c3c3b2e66a6e from=seed src=0 shape=401f12b3 vocab=65218186
+-/
 lemma Hom.toImage_app :
     f.toImage.app (f.imageι ⁻¹ᵁ U) =
       (f.ker.subschemeObjIso U).hom ≫ CommRingCat.ofHom
@@ -751,12 +844,18 @@ lemma Hom.toImage_app :
   exact (Category.comp_id _).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=injectiv.0h4v.s12.4bd54422ee94 from=seed src=0 shape=66cc2194 vocab=daf6065b
+-/
 lemma Hom.toImage_app_injective [QuasiCompact f] :
     Function.Injective (f.toImage.app (f.imageι ⁻¹ᵁ U)) := by
   simp only [f.toImage_app U, CommRingCat.hom_comp, CommRingCat.hom_ofHom, RingHom.coe_comp]
   exact (RingHom.lift_injective_of_ker_le_ideal _ _ (by simp)).comp
     (f.ker.subschemeObjIso U).commRingCatIsoToRingEquiv.injective
 
+/--
+@isnad1 id=injectiv.0h4v.s10.ac2b126129a3 from=seed src=0 shape=78da0ce5 vocab=3bd90632
+-/
 lemma Hom.stalkFunctor_toImage_injective [QuasiCompact f] (x) :
     Function.Injective ((TopCat.Presheaf.stalkFunctor _ x).map f.toImage.c) := by
   apply TopCat.Presheaf.stalkFunctor_map_injective_of_isBasis

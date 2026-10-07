@@ -42,12 +42,18 @@ class QuasiCompactCover (𝒰 : PreZeroHypercover.{v} S) : Prop where
 
 variable (𝒰 : PreZeroHypercover.{v} S)
 
+/--
+@isnad1 id=iscompac.1h3v.s8.57e3f067cd00 from=seed src=0 shape=64fb3c86 vocab=7c435f59
+-/
 lemma IsAffineOpen.isCompactOpenCovered [QuasiCompactCover 𝒰] {U : S.Opens} (hU : IsAffineOpen U) :
     IsCompactOpenCovered (𝒰.f ·) (U : Set S) :=
   QuasiCompactCover.isCompactOpenCovered_of_isAffineOpen hU
 
 namespace QuasiCompactCover
 
+/--
+@isnad1 id=iscompac.1h3v.s8.a0527f9e9ca6 from=seed src=0 shape=5cc2051a vocab=1a016ab1
+-/
 lemma isCompactOpenCovered_of_isCompact [QuasiCompactCover 𝒰]
     {U : S.Opens} (hU : IsCompact (U : Set S)) :
     IsCompactOpenCovered (𝒰.f ·) (U : Set S) := by
@@ -58,6 +64,9 @@ lemma isCompactOpenCovered_of_isCompact [QuasiCompactCover 𝒰]
 variable {𝒰 : PreZeroHypercover.{v} S} {K : Precoverage Scheme.{u}}
 
 variable (𝒰) in
+/--
+@isnad1 id=ex.1h3v.s8.f961c8ec762d from=seed src=0 shape=99eb2514 vocab=78e61636
+-/
 lemma exists_isAffineOpen_of_isCompact [QuasiCompactCover 𝒰] {U : S.Opens}
     (hU : IsCompact (U : Set S)) :
     ∃ (n : ℕ) (f : Fin n → 𝒰.I₀) (V : ∀ i, (𝒰.X (f i)).Opens),
@@ -69,7 +78,9 @@ lemma exists_isAffineOpen_of_isCompact [QuasiCompactCover 𝒰] {U : S.Opens}
 
 /-- If the component maps of `𝒰` are open, `𝒰` is quasi-compact. This in particular
 applies if `K` is the fppf topology (i.e., flat and of finite presentation) and hence in
-particular for étale and Zariski covers. -/
+particular for étale and Zariski covers.
+@isnad1 id=quasicom.1h3v.s8.202cd3be9cf5 from=seed src=0 shape=b5b6e1c0 vocab=0903b6e1
+-/
 @[stacks 022C]
 lemma of_isOpenMap {𝒰 : S.Cover K} [Scheme.JointlySurjective K] (h : ∀ i, IsOpenMap (𝒰.f i)) :
     QuasiCompactCover 𝒰.toPreZeroHypercover where
@@ -80,7 +91,9 @@ lemma of_isOpenMap {𝒰 : S.Cover K} [Scheme.JointlySurjective K] (h : ∀ i, I
 instance (𝒰 : S.OpenCover) : QuasiCompactCover 𝒰.toPreZeroHypercover :=
   of_isOpenMap fun i ↦ (𝒰.f i).isOpenEmbedding.isOpenMap
 
-/-- If `𝒱` is a refinement of `𝒰` such that `𝒱` is quasicompact, also `𝒰` is quasicompact. -/
+/-- If `𝒱` is a refinement of `𝒰` such that `𝒱` is quasicompact, also `𝒰` is quasicompact.
+@isnad1 id=quasicom.0h4v.s4.11a498459ff8 from=seed src=0 shape=7244b903 vocab=53d7de6f
+-/
 @[stacks 03L8]
 lemma of_hom {𝒱 : PreZeroHypercover.{w'} S} (f : 𝒱.Hom 𝒰) [QuasiCompactCover 𝒱] :
     QuasiCompactCover 𝒰 := by
@@ -138,6 +151,9 @@ instance {X : Scheme.{u}} (𝒰 : PreZeroHypercover.{w} X) [QuasiCompactCover �
       (fun p ↦ hcW ..) ?_
     simpa [← hV, Set.iUnion_sigma, Set.iUnion_subtype, Set.image_iUnion, Set.image_image] using! hU
 
+/--
+@isnad1 id=quasicom.0h3v.s6.71d075960df2 from=seed src=0 shape=6bcede7a vocab=40d09f82
+-/
 instance of_finite {𝒰 : S.Cover K} [Scheme.JointlySurjective K]
     [∀ i, AlgebraicGeometry.QuasiCompact (𝒰.f i)] [Finite 𝒰.I₀] :
     QuasiCompactCover 𝒰.toPreZeroHypercover where
@@ -158,11 +174,17 @@ instance [IsEmpty S] : QuasiCompactCover 𝒰 where
 
 variable {P : MorphismProperty Scheme.{u}}
 
+/--
+@isnad1 id=quasicom.0h5v.s5.075916e8b87d from=seed src=0 shape=b10c2c9b vocab=9a893341
+-/
 instance homCover {X S : Scheme.{u}} (f : X ⟶ S) (hf : P f) [Surjective f]
     [AlgebraicGeometry.QuasiCompact f] : QuasiCompactCover (f.cover hf).toPreZeroHypercover :=
   have _ (i) : AlgebraicGeometry.QuasiCompact ((f.cover hf).f i) := ‹_›
   .of_finite
 
+/--
+@isnad1 id=quasicom.0h3v.s5.d8958c84088b from=seed src=0 shape=aba2bfe1 vocab=ee877109
+-/
 instance singleton {X : Scheme.{u}} (f : X ⟶ S) [Surjective f]
     [AlgebraicGeometry.QuasiCompact f] :
     QuasiCompactCover (.singleton f) :=
@@ -181,6 +203,9 @@ instance {𝒱 : PreZeroHypercover S} [QuasiCompactCover 𝒱] : QuasiCompactCov
   .of_hom (PreZeroHypercover.sumInr _ _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.0h3v.s7.ba0901f4b787 from=seed src=0 shape=a427a66f vocab=d0881a93
+-/
 lemma exists_hom {S : Scheme.{u}} (𝒰 : S.Cover (Scheme.precoverage P))
     [P.RespectsLeft @IsOpenImmersion] [CompactSpace S] [QuasiCompactCover 𝒰.toPreZeroHypercover] :
     ∃ (𝒱 : Scheme.AffineCover.{w} P S) (f : 𝒱.cover ⟶ 𝒰),
@@ -243,10 +268,16 @@ by quasi-compact covers. -/
 def quasiCompactCover (S : Scheme.{u}) : ObjectProperty (PreZeroHypercover.{v} S) :=
   QuasiCompactCover
 
+/--
+@isnad1 id=iff.0h2v.s3.b8efd788c48e from=seed src=0 shape=1ca72882 vocab=0700eab3
+-/
 @[simp]
 lemma quasiCompactCover_iff (S : Scheme.{u}) (𝒰 : PreZeroHypercover.{v} S) :
     S.quasiCompactCover 𝒰 ↔ QuasiCompactCover 𝒰 := .rfl
 
+/--
+@isnad1 id=isclosed.0h1v.s3.8ee11f239321 from=seed src=0 shape=50699258 vocab=54c059f5
+-/
 instance isClosedUnderIsomorphisms_quasiCompactCover (S : Scheme.{u}) :
     S.quasiCompactCover.IsClosedUnderIsomorphisms where
   of_iso {𝒰 _} e (_ : QuasiCompactCover 𝒰) := .of_hom e.hom

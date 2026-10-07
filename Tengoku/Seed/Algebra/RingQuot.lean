@@ -45,19 +45,34 @@ inductive Rel (r : R → R → Prop) : R → R → Prop
   | mul_left ⦃a b c⦄ : Rel r a b → Rel r (a * c) (b * c)
   | mul_right ⦃a b c⦄ : Rel r b c → Rel r (a * b) (a * c)
 
+/--
+@isnad1 id=rel.1h5v.s5.0e684df79421 from=seed src=0 shape=34c74787 vocab=55878319
+-/
 theorem Rel.add_right {r : R → R → Prop} ⦃a b c : R⦄ (h : Rel r b c) : Rel r (a + b) (a + c) := by
   rw [add_comm a b, add_comm a c]
   exact Rel.add_left h
 
+/--
+@isnad1 id=rel.1h4v.s5.5e447ec5250a from=seed src=0 shape=9996386a vocab=16c199ea
+-/
 theorem Rel.neg {R : Type uR} [Ring R] {r : R → R → Prop} ⦃a b : R⦄ (h : Rel r a b) :
     Rel r (-a) (-b) := by simp only [neg_eq_neg_one_mul a, neg_eq_neg_one_mul b, Rel.mul_right h]
 
+/--
+@isnad1 id=rel.1h5v.s6.8d4afe0746b5 from=seed src=0 shape=f0252a30 vocab=ad7b0b0f
+-/
 theorem Rel.sub_left {R : Type uR} [Ring R] {r : R → R → Prop} ⦃a b c : R⦄ (h : Rel r a b) :
     Rel r (a - c) (b - c) := by simp only [sub_eq_add_neg, h.add_left]
 
+/--
+@isnad1 id=rel.1h5v.s6.9b69c67156fa from=seed src=0 shape=34c74787 vocab=ad7b0b0f
+-/
 theorem Rel.sub_right {R : Type uR} [Ring R] {r : R → R → Prop} ⦃a b c : R⦄ (h : Rel r b c) :
     Rel r (a - b) (a - c) := by simp only [sub_eq_add_neg, h.neg.add_right]
 
+/--
+@isnad1 id=rel.1h6v.s6.4be5c8038ddd from=seed src=0 shape=3f8dc5c2 vocab=eb3ca34a
+-/
 theorem Rel.smul {r : A → A → Prop} (k : S) ⦃a b : A⦄ (h : Rel r a b) : Rel r (k • a) (k • b) := by
   simp only [Algebra.smul_def, Rel.mul_right h]
 
@@ -98,6 +113,9 @@ def ringCon (r : R → R → Prop) : RingCon R where
     | symm x y _ hxy => exact (hxy hcd.symm).symm
     | trans x y z _ _ h h' => exact (h hcd).trans _ _ _ (h' <| Relation.EqvGen.refl _)
 
+/--
+@isnad1 id=eq.0h2v.s5.4bd1a3359215 from=seed src=0 shape=e958ae76 vocab=83d1eed9
+-/
 theorem eqvGen_rel_eq (r : R → R → Prop) : Relation.EqvGen (Rel r) = RingConGen.Rel r := by
   ext x₁ x₂
   constructor
@@ -175,37 +193,67 @@ def smul [Algebra S R] (n : S) : RingQuot r → RingQuot r
 instance [Algebra S R] : SMul S (RingQuot r) :=
   ⟨smul r⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.7c18ae29de6c from=seed src=0 shape=61f7aef8 vocab=98179427
+-/
 theorem zero_quot : (⟨Quot.mk _ 0⟩ : RingQuot r) = 0 :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h2v.s5.a60674ecf0cb from=seed src=0 shape=61f7aef8 vocab=98179427
+-/
 theorem one_quot : (⟨Quot.mk _ 1⟩ : RingQuot r) = 1 :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h4v.s6.3d63df0591b4 from=seed src=0 shape=31661381 vocab=c240c301
+-/
 theorem add_quot {a b} : (⟨Quot.mk _ a⟩ + ⟨Quot.mk _ b⟩ : RingQuot r) = ⟨Quot.mk _ (a + b)⟩ :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h4v.s6.eb0373afad4d from=seed src=0 shape=31661381 vocab=630dac13
+-/
 theorem mul_quot {a b} : (⟨Quot.mk _ a⟩ * ⟨Quot.mk _ b⟩ : RingQuot r) = ⟨Quot.mk _ (a * b)⟩ :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h4v.s6.13897f5a789e from=seed src=0 shape=c600f1dc vocab=3060664f
+-/
 theorem pow_quot {a} {n : ℕ} : (⟨Quot.mk _ a⟩ ^ n : RingQuot r) = ⟨Quot.mk _ (a ^ n)⟩ :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h3v.s6.09094ddeba55 from=seed src=0 shape=358e5d7c vocab=6b02c31e
+-/
 theorem neg_quot {R : Type uR} [Ring R] (r : R → R → Prop) {a} :
     (-⟨Quot.mk _ a⟩ : RingQuot r) = ⟨Quot.mk _ (-a)⟩ :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h4v.s6.7c52b571adf9 from=seed src=0 shape=31661381 vocab=c381ba5b
+-/
 theorem sub_quot {R : Type uR} [Ring R] (r : R → R → Prop) {a b} :
     (⟨Quot.mk _ a⟩ - ⟨Quot.mk _ b⟩ : RingQuot r) = ⟨Quot.mk _ (a - b)⟩ :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h5v.s6.7af8b21bcb7c from=seed src=0 shape=8dd412fe vocab=91e9ce57
+-/
 theorem smul_quot [Algebra S R] {n : S} {a : R} :
     (n • ⟨Quot.mk _ a⟩ : RingQuot r) = ⟨Quot.mk _ (n • a)⟩ :=
   (rfl)
 
+/--
+@isnad1 id=isscalar.0h4v.s6.2bed61437004 from=seed src=0 shape=f462dadc vocab=367d90ea
+-/
 instance instIsScalarTower [CommSemiring T] [SMul S T] [Algebra S R] [Algebra T R]
     [IsScalarTower S T R] : IsScalarTower S T (RingQuot r) :=
   ⟨fun s t ⟨a⟩ => Quot.inductionOn a fun a' => by simp only [RingQuot.smul_quot, smul_assoc]⟩
 
+/--
+@isnad1 id=smulcomm.0h4v.s6.2b59b7f654ba from=seed src=0 shape=bc1eb970 vocab=81940267
+-/
 instance instSMulCommClass [CommSemiring T] [Algebra S R] [Algebra T R] [SMulCommClass S T R] :
     SMulCommClass S T (RingQuot r) :=
   ⟨fun s t ⟨a⟩ => Quot.inductionOn a fun a' => by simp only [RingQuot.smul_quot, smul_comm s t]⟩
@@ -328,14 +376,23 @@ irreducible_def mkRingHom (r : R → R → Prop) : R →+* RingQuot r :=
     map_zero' := by simp [← zero_quot]
     map_add' := by simp [add_quot] }
 
+/--
+@isnad1 id=eq.0h5v.s6.3fb3aa26824d from=seed src=0 shape=f7b0d0ae vocab=03f2ae05
+-/
 theorem mkRingHom_rel {r : R → R → Prop} {x y : R} (w : r x y) : mkRingHom r x = mkRingHom r y := by
   simp [mkRingHom_def, Quot.sound (Rel.of w)]
 
+/--
+@isnad1 id=surjecti.0h2v.s6.e75f9dad1666 from=seed src=0 shape=6b686088 vocab=f385aa0a
+-/
 theorem mkRingHom_surjective (r : R → R → Prop) : Function.Surjective (mkRingHom r) := by
   simp only [mkRingHom_def, RingHom.coe_mk, MonoidHom.coe_mk, OneHom.coe_mk]
   rintro ⟨⟨⟩⟩
   simp
 
+/--
+@isnad1 id=eq.1h5v.s7.3e6e8f5a6050 from=seed src=0 shape=5b8bf633 vocab=b40aa7fe
+-/
 @[ext 1100]
 theorem ringQuot_ext [NonAssocSemiring T] {r : R → R → Prop} (f g : RingQuot r →+* T)
     (w : f.comp (mkRingHom r) = g.comp (mkRingHom r)) : f = g := by
@@ -382,6 +439,9 @@ irreducible_def lift {r : R → R → Prop} :
       simp only [mkRingHom_def, RingHom.coe_comp, RingHom.coe_mk, MonoidHom.coe_mk, OneHom.coe_mk,
         Function.comp_apply] }
 
+/--
+@isnad1 id=eq.1h5v.s9.8ece5cf2c99a from=seed src=0 shape=38182143 vocab=e740a3c8
+-/
 @[simp]
 theorem lift_mkRingHom_apply (f : R →+* T) {r : R → R → Prop} (w : ∀ ⦃x y⦄, r x y → f x = f y) (x) :
     lift ⟨f, w⟩ (mkRingHom r x) = f x := by
@@ -389,6 +449,9 @@ theorem lift_mkRingHom_apply (f : R →+* T) {r : R → R → Prop} (w : ∀ ⦃
   rfl
 
 -- note this is essentially `lift.symm_apply_eq.mp h`
+/--
+@isnad1 id=eq.2h5v.s9.7c68fae400f3 from=seed src=0 shape=898f7c5f vocab=4976f165
+-/
 theorem lift_unique (f : R →+* T) {r : R → R → Prop} (w : ∀ ⦃x y⦄, r x y → f x = f y)
     (g : RingQuot r →+* T) (h : g.comp (mkRingHom r) = f) : g = lift ⟨f, w⟩ := by
   ext
@@ -414,6 +477,9 @@ def ringQuotToIdealQuotient (r : B → B → Prop) : RingQuot r →+* B ⧸ Idea
         fun x y h ↦ Ideal.Quotient.eq.2 <| Submodule.mem_sInf.mpr
           fun _ w ↦ w ⟨x, y, h, sub_add_cancel x y⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.366abffaa0de from=seed src=0 shape=c41075cf vocab=c11e689a
+-/
 @[simp]
 theorem ringQuotToIdealQuotient_apply (r : B → B → Prop) (x : B) :
     ringQuotToIdealQuotient r (mkRingHom r x) = Ideal.Quotient.mk (Ideal.ofRel r) x := by
@@ -435,6 +501,9 @@ def idealQuotientToRingQuot (r : B → B → Prop) : B ⧸ Ideal.ofRel r →+* R
       · intro a x _ hx
         simp [hx])
 
+/--
+@isnad1 id=eq.0h3v.s9.edc3f8db731d from=seed src=0 shape=e0b92a87 vocab=4f6036ed
+-/
 @[simp]
 theorem idealQuotientToRingQuot_apply (r : B → B → Prop) (x : B) :
     idealQuotientToRingQuot r (Ideal.Quotient.mk _ x) = mkRingHom r x :=
@@ -464,15 +533,24 @@ irreducible_def mkAlgHom (s : A → A → Prop) : A →ₐ[S] RingQuot s :=
   { mkRingHom s with
     commutes' := fun _ ↦ by simp [mkRingHom_def]; rfl }
 
+/--
+@isnad1 id=eq.0h3v.s6.2a639369574e from=seed src=0 shape=f23efadd vocab=c2c8a95c
+-/
 @[simp]
 theorem mkAlgHom_coe (s : A → A → Prop) : (mkAlgHom S s : A →+* RingQuot s) = mkRingHom s := by
   simp_rw [mkAlgHom_def, mkRingHom_def]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.cb257d477507 from=seed src=0 shape=34872a16 vocab=8bc839e6
+-/
 theorem mkAlgHom_rel {s : A → A → Prop} {x y : A} (w : s x y) :
     mkAlgHom S s x = mkAlgHom S s y := by
   simp [mkAlgHom_def, mkRingHom_def, Quot.sound (Rel.of w)]
 
+/--
+@isnad1 id=surjecti.0h3v.s6.489a6fa84d5d from=seed src=0 shape=72bd38c5 vocab=f930e38f
+-/
 theorem mkAlgHom_surjective (s : A → A → Prop) : Function.Surjective (mkAlgHom S s) := by
   suffices Function.Surjective fun x ↦ (⟨.mk (Rel s) x⟩ : RingQuot s) by
     simpa [mkAlgHom_def, mkRingHom_def]
@@ -481,6 +559,9 @@ theorem mkAlgHom_surjective (s : A → A → Prop) : Function.Surjective (mkAlgH
 
 variable {B : Type u₄} [Semiring B] [Algebra S B]
 
+/--
+@isnad1 id=eq.1h6v.s7.702b4669cabe from=seed src=0 shape=e3d53216 vocab=ddc97085
+-/
 @[ext 1100]
 theorem ringQuot_ext' {s : A → A → Prop} (f g : RingQuot s →ₐ[S] B)
     (w : f.comp (mkAlgHom S s) = g.comp (mkAlgHom S s)) : f = g := by
@@ -529,6 +610,9 @@ irreducible_def liftAlgHom {s : A → A → Prop} :
                  AlgHom.coe_comp, AlgHom.coe_mk, RingHom.coe_mk,
                  MonoidHom.coe_mk, OneHom.coe_mk, Function.comp_apply] }
 
+/--
+@isnad1 id=eq.1h6v.s9.b43e5166b5c2 from=seed src=0 shape=ffed5816 vocab=c2539c2d
+-/
 @[simp]
 theorem liftAlgHom_mkAlgHom_apply (f : A →ₐ[S] B) {s : A → A → Prop}
     (w : ∀ ⦃x y⦄, s x y → f x = f y) (x) : (liftAlgHom S ⟨f, w⟩) ((mkAlgHom S s) x) = f x := by
@@ -536,6 +620,9 @@ theorem liftAlgHom_mkAlgHom_apply (f : A →ₐ[S] B) {s : A → A → Prop}
   rfl
 
 -- note this is essentially `(liftAlgHom S).symm_apply_eq.mp h`
+/--
+@isnad1 id=eq.2h6v.s9.7f4acc41676f from=seed src=0 shape=c519e918 vocab=d7e23f22
+-/
 theorem liftAlgHom_unique (f : A →ₐ[S] B) {s : A → A → Prop} (w : ∀ ⦃x y⦄, s x y → f x = f y)
     (g : RingQuot s →ₐ[S] B) (h : g.comp (mkAlgHom S s) = f) : g = liftAlgHom S ⟨f, w⟩ := by
   ext

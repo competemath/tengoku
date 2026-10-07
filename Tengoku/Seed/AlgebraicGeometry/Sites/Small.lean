@@ -54,6 +54,9 @@ def Cover.toPresieveOverProp {X : Q.Over ⊤ S} (𝒰 : Cover.{u} (precoverage P
   Presieve.ofArrows (fun i ↦ (𝒰.X i).asOverProp S (h i)) (fun i ↦ (𝒰.f i).asOverProp S)
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s8.65bcc6448366 from=seed src=0 shape=86ec6042 vocab=da2f323c
+-/
 lemma Cover.overEquiv_generate_toPresieveOver_eq_ofArrows {X : Over S}
     (𝒰 : Cover.{u} (precoverage P) X.left)
     [𝒰.Over S] : Sieve.overEquiv X (Sieve.generate 𝒰.toPresieveOver) =
@@ -69,6 +72,9 @@ lemma Cover.overEquiv_generate_toPresieveOver_eq_ofArrows {X : Over S}
     ext : 1
     simpa
 
+/--
+@isnad1 id=iff.0h5v.s9.6db170bd8a86 from=seed src=0 shape=45e8aeb9 vocab=fc3fb024
+-/
 lemma Cover.toPresieveOver_le_arrows_iff {X : Over S} (R : Sieve X)
     (𝒰 : Cover.{u} (precoverage P) X.left) [𝒰.Over S] :
     𝒰.toPresieveOver ≤ R.arrows ↔
@@ -106,6 +112,9 @@ This agrees with the topology induced by `S.overPretopology P`, see
 abbrev overGrothendieckTopology : GrothendieckTopology (Over S) :=
   (Scheme.grothendieckTopology P).over S
 
+/--
+@isnad1 id=eq.0h2v.s5.3a82b9f2aaaf from=seed src=0 shape=d9243d46 vocab=b7bda7b3
+-/
 lemma overGrothendieckTopology_eq_toGrothendieck_overPretopology :
     S.overGrothendieckTopology P = (S.overPretopology P).toGrothendieck := by
   ext X R
@@ -127,6 +136,9 @@ lemma overGrothendieckTopology_eq_toGrothendieck_overPretopology :
 
 variable {S}
 
+/--
+@isnad1 id=iff.0h4v.s7.1a0f03060157 from=seed src=0 shape=7fd7760a vocab=a3818381
+-/
 lemma mem_overGrothendieckTopology (X : Over S) (R : Sieve X) :
     R ∈ S.overGrothendieckTopology P X ↔
       ∃ (𝒰 : Cover.{u} (precoverage P) X.left) (_ : 𝒰.Over S), 𝒰.toPresieveOver ≤ R.arrows := by
@@ -140,6 +152,9 @@ lemma mem_overGrothendieckTopology (X : Over S) (R : Sieve X) :
 variable [Q.IsStableUnderComposition]
 
 variable (S) {P Q} in
+/--
+@isnad1 id=locallyc.1h3v.s7.2c44209f5045 from=seed src=0 shape=66f5a367 vocab=e9ada6ad
+-/
 lemma locallyCoverDense_of_le (hPQ : P ≤ Q) :
     (MorphismProperty.Over.forget Q ⊤ S).LocallyCoverDense (overGrothendieckTopology P S) where
   functorPushforward_functorPullback_mem X := by
@@ -200,6 +215,9 @@ def smallPretopology : Pretopology (Q.Over ⊤ S) where
 
 set_option backward.isDefEq.respectTransparency false in
 variable (S) {P Q} in
+/--
+@isnad1 id=eq.1h3v.s8.ccc85509e660 from=seed src=0 shape=ef7ebd9a vocab=1e40096f
+-/
 lemma smallGrothendieckTopology_eq_toGrothendieck_smallPretopology (hPQ : P ≤ Q) :
     S.smallGrothendieckTopology P = (S.smallPretopology P Q).toGrothendieck := by
   ext X R
@@ -224,6 +242,9 @@ lemma smallGrothendieckTopology_eq_toGrothendieck_smallPretopology (hPQ : P ≤ 
     rintro - - ⟨i⟩
     exact ⟨(𝒰.X i).asOverProp S (p i), (𝒰.f i).asOverProp S, 𝟙 _, le _ _ ⟨i⟩, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.ccc85509e660 from=seed src=0 shape=ef7ebd9a vocab=1e40096f
+-/
 @[deprecated (since := "2026-05-28")]
 alias smallGrothendieckTopologyOfLE_eq_toGrothendieck_smallPretopology :=
   smallGrothendieckTopology_eq_toGrothendieck_smallPretopology
@@ -231,6 +252,9 @@ alias smallGrothendieckTopologyOfLE_eq_toGrothendieck_smallPretopology :=
 variable {P Q}
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h5v.s12.3fdce91117aa from=seed src=0 shape=0a1d01c6 vocab=b1b488d2
+-/
 lemma mem_toGrothendieck_smallPretopology (X : Q.Over ⊤ S) (R : Sieve X) :
     R ∈ (S.smallPretopology P Q).toGrothendieck X ↔
       ∀ x : X.left, ∃ (Y : Q.Over ⊤ S) (f : Y ⟶ X) (y : Y.left),
@@ -259,6 +283,9 @@ lemma mem_toGrothendieck_smallPretopology (X : Q.Over ⊤ S) (R : Sieve X) :
     · rintro - - ⟨i⟩
       exact hf i
 
+/--
+@isnad1 id=iff.0h4v.s12.99ac3281aad5 from=seed src=0 shape=22602497 vocab=8779b05c
+-/
 lemma mem_smallGrothendieckTopology [P.HasOfPostcompProperty P] (X : P.Over ⊤ S) (R : Sieve X) :
     R ∈ S.smallGrothendieckTopology P X ↔
       ∃ (𝒰 : Cover.{u} (precoverage P) X.left) (_ : 𝒰.Over S) (h : ∀ j, P (𝒰.X j ↘ S)),

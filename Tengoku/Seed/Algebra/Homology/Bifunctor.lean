@@ -94,6 +94,9 @@ def mapBifunctorHomologicalComplex :
 
 variable {c₁ c₂}
 
+/--
+@isnad1 id=eq.0h10v.s8.748c6a338652 from=seed src=0 shape=4c2eec50 vocab=6e894ac6
+-/
 @[simp]
 lemma mapBifunctorHomologicalComplex_obj_obj_toGradedObject
     (K₁ : HomologicalComplex C₁ c₁) (K₂ : HomologicalComplex C₂ c₂) :
@@ -137,10 +140,16 @@ noncomputable abbrev ιMapBifunctorOrZero (i₁ : I₁) (i₂ : I₂) (j : J) :
     (F.obj (K₁.X i₁)).obj (K₂.X i₂) ⟶ (mapBifunctor K₁ K₂ F c).X j :=
   (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂).ιTotalOrZero c i₁ i₂ j
 
+/--
+@isnad1 id=eq.1h15v.s8.4c290d65f434 from=seed src=0 shape=a80f39dc vocab=d2d3ac05
+-/
 lemma ιMapBifunctorOrZero_eq (i₁ : I₁) (i₂ : I₂) (j : J)
     (h : ComplexShape.π c₁ c₂ c (i₁, i₂) = j) :
     ιMapBifunctorOrZero K₁ K₂ F c i₁ i₂ j = ιMapBifunctor K₁ K₂ F c i₁ i₂ j h := dite_eq_left h
 
+/--
+@isnad1 id=eq.1h15v.s9.ab9ca837294b from=seed src=0 shape=ec9b5f3e vocab=8aca4c32
+-/
 lemma ιMapBifunctorOrZero_eq_zero (i₁ : I₁) (i₂ : I₂) (j : J)
     (h : ComplexShape.π c₁ c₂ c (i₁, i₂) ≠ j) :
     ιMapBifunctorOrZero K₁ K₂ F c i₁ i₂ j = 0 := dite_eq_right h
@@ -156,6 +165,9 @@ variable {A : D} {j : J}
 noncomputable def mapBifunctorDesc : (mapBifunctor K₁ K₂ F c).X j ⟶ A :=
   HomologicalComplex₂.totalDesc _ f
 
+/--
+@isnad1 id=eq.1h17v.s8.2900da78785c from=seed src=0 shape=3ea8f71d vocab=11e58bed
+-/
 @[reassoc (attr := simp)]
 lemma ι_mapBifunctorDesc (i₁ : I₁) (i₂ : I₂) (h : ComplexShape.π c₁ c₂ c ⟨i₁, i₂⟩ = j) :
     ιMapBifunctor K₁ K₂ F c i₁ i₂ j h ≫ mapBifunctorDesc f = f i₁ i₂ h := by
@@ -166,6 +178,9 @@ end
 namespace mapBifunctor
 
 variable {K₁ K₂ F c} in
+/--
+@isnad1 id=eq.1h16v.s9.916896ca3959 from=seed src=0 shape=f32bc76f vocab=bf1e735e
+-/
 @[ext]
 lemma hom_ext {Y : D} {j : J} {f g : (mapBifunctor K₁ K₂ F c).X j ⟶ Y}
     (h : ∀ (i₁ : I₁) (i₂ : I₂) (h : ComplexShape.π c₁ c₂ c ⟨i₁, i₂⟩ = j),
@@ -187,6 +202,9 @@ noncomputable def D₂ :
     (mapBifunctor K₁ K₂ F c).X j ⟶ (mapBifunctor K₁ K₂ F c).X j' :=
   (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂).D₂ c j j'
 
+/--
+@isnad1 id=eq.0h14v.s9.14a459d7608a from=seed src=0 shape=07a688ec vocab=72d9c953
+-/
 lemma d_eq :
     (mapBifunctor K₁ K₂ F c).d j j' = D₁ K₁ K₂ F c j j' + D₂ K₁ K₂ F c j j' := rfl
 
@@ -206,40 +224,64 @@ noncomputable def d₂ :
     (F.obj (K₁.X i₁)).obj (K₂.X i₂) ⟶ (mapBifunctor K₁ K₂ F c).X j :=
   (((F.mapBifunctorHomologicalComplex c₁ c₂).obj K₁).obj K₂).d₂ c i₁ i₂ j
 
+/--
+@isnad1 id=eq.1h15v.s8.b9d0db90b878 from=seed src=0 shape=441e21c9 vocab=3be2b401
+-/
 lemma d₁_eq_zero (h : ¬ c₁.Rel i₁ (c₁.next i₁)) :
     d₁ K₁ K₂ F c i₁ i₂ j = 0 :=
   HomologicalComplex₂.d₁_eq_zero _ _ _ _ _ h
 
+/--
+@isnad1 id=eq.1h15v.s8.c25534bfee9c from=seed src=0 shape=54793b9c vocab=8e5d23e3
+-/
 lemma d₂_eq_zero (h : ¬ c₂.Rel i₂ (c₂.next i₂)) :
     d₂ K₁ K₂ F c i₁ i₂ j = 0 :=
   HomologicalComplex₂.d₂_eq_zero _ _ _ _ _ h
 
+/--
+@isnad1 id=eq.2h16v.s9.1c4bf52453cb from=seed src=0 shape=98a84b6c vocab=da218c94
+-/
 lemma d₁_eq_zero' {i₁ i₁' : I₁} (h : c₁.Rel i₁ i₁') (i₂ : I₂) (j : J)
     (h' : ComplexShape.π c₁ c₂ c ⟨i₁', i₂⟩ ≠ j) :
     d₁ K₁ K₂ F c i₁ i₂ j = 0 :=
   HomologicalComplex₂.d₁_eq_zero' _ _ h _ _ h'
 
+/--
+@isnad1 id=eq.2h16v.s9.48a9e30a4c9e from=seed src=0 shape=afbe63cc vocab=0bfccec8
+-/
 lemma d₂_eq_zero' (i₁ : I₁) {i₂ i₂' : I₂} (h : c₂.Rel i₂ i₂') (j : J)
     (h' : ComplexShape.π c₁ c₂ c ⟨i₁, i₂'⟩ ≠ j) :
     d₂ K₁ K₂ F c i₁ i₂ j = 0 :=
   HomologicalComplex₂.d₂_eq_zero' _ _ _ h _ h'
 
+/--
+@isnad1 id=eq.1h16v.s10.91098a533ce7 from=seed src=0 shape=003c7310 vocab=3b39136a
+-/
 lemma d₁_eq' {i₁ i₁' : I₁} (h : c₁.Rel i₁ i₁') (i₂ : I₂) (j : J) :
     d₁ K₁ K₂ F c i₁ i₂ j = ComplexShape.ε₁ c₁ c₂ c ⟨i₁, i₂⟩ •
       ((F.map (K₁.d i₁ i₁')).app (K₂.X i₂) ≫ ιMapBifunctorOrZero K₁ K₂ F c i₁' i₂ j) :=
   HomologicalComplex₂.d₁_eq' _ _ h _ _
 
+/--
+@isnad1 id=eq.1h16v.s10.8d7e35af0b90 from=seed src=0 shape=609321fa vocab=f7f86557
+-/
 lemma d₂_eq' (i₁ : I₁) {i₂ i₂' : I₂} (h : c₂.Rel i₂ i₂') (j : J) :
     d₂ K₁ K₂ F c i₁ i₂ j = ComplexShape.ε₂ c₁ c₂ c ⟨i₁, i₂⟩ •
       ((F.obj (K₁.X i₁)).map (K₂.d i₂ i₂') ≫ ιMapBifunctorOrZero K₁ K₂ F c i₁ i₂' j) :=
   HomologicalComplex₂.d₂_eq' _ _ _ h _
 
+/--
+@isnad1 id=eq.2h16v.s10.204a229ab681 from=seed src=0 shape=270404f9 vocab=f6748f87
+-/
 lemma d₁_eq {i₁ i₁' : I₁} (h : c₁.Rel i₁ i₁') (i₂ : I₂) (j : J)
     (h' : ComplexShape.π c₁ c₂ c ⟨i₁', i₂⟩ = j) :
     d₁ K₁ K₂ F c i₁ i₂ j = ComplexShape.ε₁ c₁ c₂ c ⟨i₁, i₂⟩ •
       ((F.map (K₁.d i₁ i₁')).app (K₂.X i₂) ≫ ιMapBifunctor K₁ K₂ F c i₁' i₂ j h') :=
   HomologicalComplex₂.d₁_eq _ _ h _ _ h'
 
+/--
+@isnad1 id=eq.2h16v.s10.550695d6a0e4 from=seed src=0 shape=4d233f61 vocab=f08c6eef
+-/
 lemma d₂_eq (i₁ : I₁) {i₂ i₂' : I₂} (h : c₂.Rel i₂ i₂') (j : J)
     (h' : ComplexShape.π c₁ c₂ c ⟨i₁, i₂'⟩ = j) :
     d₂ K₁ K₂ F c i₁ i₂ j = ComplexShape.ε₂ c₁ c₂ c ⟨i₁, i₂⟩ •
@@ -252,11 +294,17 @@ section
 
 variable (j j' : J) (i₁ : I₁) (i₂ : I₂) (h : ComplexShape.π c₁ c₂ c (i₁, i₂) = j)
 
+/--
+@isnad1 id=eq.1h16v.s8.b0daae490830 from=seed src=0 shape=8e980a7b vocab=ed902000
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₁ :
     ιMapBifunctor K₁ K₂ F c i₁ i₂ j h ≫ D₁ K₁ K₂ F c j j' = d₁ K₁ K₂ F c i₁ i₂ j' := by
   apply HomologicalComplex₂.ι_D₁
 
+/--
+@isnad1 id=eq.1h16v.s8.912ea849689a from=seed src=0 shape=8e980a7b vocab=6bae0349
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₂ :
     ιMapBifunctor K₁ K₂ F c i₁ i₂ j h ≫ D₂ K₁ K₂ F c j j' = d₂ K₁ K₂ F c i₁ i₂ j' := by
@@ -277,6 +325,9 @@ noncomputable def mapBifunctorMap : mapBifunctor K₁ K₂ F c ⟶ mapBifunctor 
     ((F.mapBifunctorHomologicalComplex c₁ c₂).obj L₁).map f₂) c
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h19v.s9.0a32d8e9bd7e from=seed src=0 shape=a1b442d8 vocab=9886ef6f
+-/
 @[reassoc (attr := simp)]
 lemma ι_mapBifunctorMap (i₁ : I₁) (i₂ : I₂) (j : J)
     (h : ComplexShape.π c₁ c₂ c (i₁, i₂) = j) :

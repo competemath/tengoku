@@ -58,6 +58,9 @@ instance : (degreewiseEpiWithInjectiveKernel (C := C)).IsStableUnderRetracts whe
   of_retract r h i :=
     MorphismProperty.of_retract (r.map (HomologicalComplex.eval _ _ i)) (h i)
 
+/--
+@isnad1 id=iff.1h4v.s8.34d3574707ab from=seed src=0 shape=31c17697 vocab=69dbfb5d
+-/
 lemma degreewiseEpiWithInjectiveKernel_iff_of_isZero {K L : CochainComplex C ℤ}
     (f : K ⟶ L) (hL : IsZero L) :
     degreewiseEpiWithInjectiveKernel f ↔ ∀ (n : ℤ), Injective (K.X n) :=
@@ -65,6 +68,9 @@ lemma degreewiseEpiWithInjectiveKernel_iff_of_isZero {K L : CochainComplex C ℤ
     rw [epiWithInjectiveKernel_iff_of_isZero]
     exact (HomologicalComplex.eval _ _ n).map_isZero hL)
 
+/--
+@isnad1 id=epi.0h5v.s7.ab1246bf06ab from=seed src=0 shape=e559dba5 vocab=0e0173f9
+-/
 lemma degreewiseEpiWithInjectiveKernel.epi {K L : CochainComplex C ℤ} {f : K ⟶ L}
     (h : degreewiseEpiWithInjectiveKernel f) : Epi f :=
   HomologicalComplex.epi_of_epi_f f (fun n ↦ (h n).1)

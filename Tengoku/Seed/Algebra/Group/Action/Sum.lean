@@ -38,18 +38,30 @@ variable [SMul M α] [SMul M β] [SMul N α] [SMul N β] (a : M) (b : α) (c : �
 instance instSMul : SMul M (α ⊕ β) :=
   ⟨fun a => Sum.map (a • ·) (a • ·)⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.1f754f441f52 from=seed src=0 shape=668fcc2d vocab=babb6b46
+-/
 @[to_additive]
 theorem smul_def : a • x = x.map (a • ·) (a • ·) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.34c74945d4cb from=seed src=0 shape=be784f8e vocab=35c64371
+-/
 @[to_additive (attr := simp)]
 theorem smul_inl : a • (inl b : α ⊕ β) = inl (a • b) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.d1074ceaaf06 from=seed src=0 shape=02173dcd vocab=1db8cf56
+-/
 @[to_additive (attr := simp)]
 theorem smul_inr : a • (inr c : α ⊕ β) = inr (a • c) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.77c20adbd37c from=seed src=0 shape=b81f15e0 vocab=8d42488d
+-/
 @[to_additive (attr := simp)]
 theorem smul_swap : (a • x).swap = a • x.swap := by cases x <;> rfl
 
@@ -71,10 +83,16 @@ instance [SMul Mᵐᵒᵖ α] [SMul Mᵐᵒᵖ β] [IsCentralScalar M α] [IsCen
     cases x
     exacts [congr_arg inl (op_smul_eq_smul _ _), congr_arg inr (op_smul_eq_smul _ _)]⟩
 
+/--
+@isnad1 id=faithful.0h3v.s4.608010badb0b from=seed src=0 shape=68b52208 vocab=e2dd1070
+-/
 @[to_additive]
 instance FaithfulSMulLeft [FaithfulSMul M α] : FaithfulSMul M (α ⊕ β) :=
   ⟨fun h => eq_of_smul_eq_smul fun a : α => by injection h (inl a)⟩
 
+/--
+@isnad1 id=faithful.0h3v.s4.81d572fd8c18 from=seed src=0 shape=d84f0f55 vocab=e2dd1070
+-/
 @[to_additive]
 instance FaithfulSMulRight [FaithfulSMul M β] : FaithfulSMul M (α ⊕ β) :=
   ⟨fun h => eq_of_smul_eq_smul fun b : β => by injection h (inr b)⟩

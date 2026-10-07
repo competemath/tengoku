@@ -81,6 +81,9 @@ def Scheme.emptyTo (X : Scheme.{u}) : ∅ ⟶ X :=
   ⟨{  base := TopCat.ofHom ⟨fun x => PEmpty.elim x, by fun_prop⟩
       c := { app := fun _ => CommRingCat.punitIsTerminal.from _ } }, fun x => PEmpty.elim x⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.8158bf29a959 from=seed src=0 shape=5cf78b79 vocab=60d3f847
+-/
 @[ext]
 theorem Scheme.empty_ext {X : Scheme.{u}} (f g : ∅ ⟶ X) : f = g :=
   Scheme.Hom.ext' (Subsingleton.elim (α := ∅ ⟶ _) _ _)
@@ -95,6 +98,9 @@ instance Scheme.hom_unique_of_empty_source (X : Scheme.{u}) : Unique (∅ ⟶ X)
 def emptyIsInitial : IsInitial (∅ : Scheme.{u}) :=
   IsInitial.ofUnique _
 
+/--
+@isnad1 id=eq.0h0v.s4.40393deb83ad from=seed src=0 shape=42bbaa66 vocab=5c9a9833
+-/
 @[simp]
 theorem emptyIsInitial_to : emptyIsInitial.to = Scheme.emptyTo :=
   rfl
@@ -102,15 +108,24 @@ theorem emptyIsInitial_to : emptyIsInitial.to = Scheme.emptyTo :=
 instance : IsEmpty (∅ : Scheme.{u}) :=
   show IsEmpty PEmpty by infer_instance
 
+/--
+@isnad1 id=isempty.0h0v.s3.0d06524176a5 from=seed src=0 shape=fd888cbc vocab=87b18af1
+-/
 instance spec_punit_isEmpty : IsEmpty (Spec <| .of PUnit.{u + 1}) :=
   inferInstanceAs <| IsEmpty (PrimeSpectrum PUnit)
 
+/--
+@isnad1 id=isopenim.0h3v.s4.5c909dd725df from=seed src=0 shape=7308da41 vocab=7ba1207b
+-/
 instance (priority := 100) isOpenImmersion_of_isEmpty {X Y : Scheme} (f : X ⟶ Y)
     [IsEmpty X] : IsOpenImmersion f := by
   apply +allowSynthFailures IsOpenImmersion.of_isIso_stalkMap
   · exact .of_isEmpty (X := X) _
   · intro (i : X); exact isEmptyElim i
 
+/--
+@isnad1 id=isiso.0h3v.s5.675efe4016ee from=seed src=0 shape=3e60e411 vocab=1bc71fb2
+-/
 instance (priority := 100) isIso_of_isEmpty {X Y : Scheme} (f : X ⟶ Y) [IsEmpty Y] :
     IsIso f := by
   have : IsEmpty X := f.base.hom.1.isEmpty
@@ -129,19 +144,31 @@ noncomputable def specPUnitIsInitial : IsInitial (Spec <| .of PUnit.{u + 1}) :=
 
 @[deprecated (since := "2026-02-08")] alias specPunitIsInitial := specPUnitIsInitial
 
+/--
+@isnad1 id=iff.0h1v.s4.0c5ad9760fc5 from=seed src=0 shape=9045e24a vocab=6ea41b00
+-/
 lemma isInitial_iff_isEmpty {X : Scheme.{u}} : Nonempty (IsInitial X) ↔ IsEmpty X :=
   ⟨fun ⟨h⟩ ↦ (h.uniqueUpToIso specPUnitIsInitial).hom.homeomorph.isEmpty,
     fun _ ↦ ⟨isInitialOfIsEmpty⟩⟩
 
+/--
+@isnad1 id=isaffine.0h1v.s4.af547567fcff from=seed src=0 shape=931457e0 vocab=a1a2e0ac
+-/
 instance (priority := 100) isAffine_of_isEmpty {X : Scheme} [IsEmpty X] : IsAffine X :=
   .of_isIso (inv (emptyIsInitial.to X) ≫ emptyIsInitial.to (Spec <| .of PUnit))
 
 instance : HasInitial Scheme.{u} :=
   hasInitial_of_unique ∅
 
+/--
+@isnad1 id=isempty.0h0v.s3.4115e8be863e from=seed src=0 shape=cbb41003 vocab=949e6d82
+-/
 instance initial_isEmpty : IsEmpty (⊥_ Scheme) :=
   ⟨fun x => ((initial.to Scheme.empty :) x).elim⟩
 
+/--
+@isnad1 id=isaffine.0h1v.s6.a245af58fe3f from=seed src=0 shape=6a6a934a vocab=89b04829
+-/
 theorem isAffineOpen_bot (X : Scheme) : IsAffineOpen (⊥ : X.Opens) :=
   @isAffine_of_isEmpty _ (inferInstanceAs (IsEmpty (∅ : Set X)))
 
@@ -164,6 +191,9 @@ instance (priority := low) {X : Scheme.{u}} [Subsingleton X] : IsAffine X := by
   obtain rfl : U = ⊤ := by ext y; simpa [Subsingleton.elim y x]
   exact .of_isIso (Scheme.topIso X).inv
 
+/--
+@isnad1 id=isaffine.1h2v.s5.851c92927863 from=seed src=0 shape=3765a279 vocab=91d0b212
+-/
 theorem IsAffineOpen.of_subsingleton {X : Scheme} {U : X.Opens}
     (hU : Set.Subsingleton (U : Set X)) : IsAffineOpen U :=
   have : Subsingleton U := hU.coe_sort
@@ -188,6 +218,9 @@ instance [Small.{u} σ] : PreservesColimitsOfShape (Discrete σ) Scheme.forgetTo
 instance [Small.{u} σ] : HasColimitsOfShape (Discrete σ) Scheme.{u} :=
   ⟨fun _ ↦ hasColimit_of_created _ Scheme.forgetToLocallyRingedSpace⟩
 
+/--
+@isnad1 id=iff.0h6v.s9.9bd1d787a726 from=seed src=0 shape=2ddf6fd6 vocab=4bffe650
+-/
 lemma sigmaι_eq_iff [Small.{u} σ] (i j : σ) (x y) :
     Sigma.ι g i x = Sigma.ι g j y ↔ (Sigma.mk i x : Σ i, g i) = Sigma.mk j y := by
   refine (Scheme.IsLocallyDirected.ι_eq_ι_iff _).trans ⟨?_, ?_⟩
@@ -197,7 +230,9 @@ lemma sigmaι_eq_iff [Small.{u} σ] (i j : σ) (x y) :
     obtain rfl := (heq_eq_eq x y).mp e
     exact ⟨⟨i⟩, 𝟙 _, 𝟙 _, x, by simp⟩
 
-/-- The images of each component in the coproduct is disjoint. -/
+/-- The images of each component in the coproduct is disjoint.
+@isnad1 id=disjoint.1h4v.s7.a17b68d530cd from=seed src=0 shape=2f186f25 vocab=292abddf
+-/
 lemma disjoint_opensRange_sigmaι [Small.{u} σ] (i j : σ) (h : i ≠ j) :
     Disjoint (Sigma.ι g i).opensRange (Sigma.ι g j).opensRange := by
   intro U hU hU' x hx
@@ -207,6 +242,9 @@ lemma disjoint_opensRange_sigmaι [Small.{u} σ] (i j : σ) (h : i ≠ j) :
   cases h rfl
 
 variable {g} in
+/--
+@isnad1 id=isempty.2h7v.s6.b59a49804ab5 from=seed src=0 shape=3ca0a05d vocab=f25195f5
+-/
 lemma isEmpty_of_commSq_sigmaι_of_ne [Small.{u} σ] {i j : σ} {Z : Scheme.{u}} {a : Z ⟶ g i}
     {b : Z ⟶ g j} (h : CommSq a b (Sigma.ι g i) (Sigma.ι g j)) (hij : i ≠ j) :
     IsEmpty Z := by
@@ -215,6 +253,9 @@ lemma isEmpty_of_commSq_sigmaι_of_ne [Small.{u} σ] {i j : σ} {Z : Scheme.{u}}
   · exact (a ≫ Sigma.ι g i).base z
   · exact ⟨⟨a.base z, rfl⟩, ⟨b.base z, by rw [← Scheme.Hom.comp_apply, h.w]⟩⟩
 
+/--
+@isnad1 id=isempty.1h4v.s5.b5cbec1d1c60 from=seed src=0 shape=c4c6389d vocab=067e8b65
+-/
 lemma isEmpty_pullback_sigmaι_of_ne [Small.{u} σ] {i j : σ} (hij : i ≠ j) :
     IsEmpty ↑(pullback (Sigma.ι g i) (Sigma.ι g j)) :=
   isEmpty_of_commSq_sigmaι_of_ne ⟨pullback.condition⟩ hij
@@ -245,6 +286,9 @@ def sigmaMk : (Σ i, f i) ≃ₜ (∐ f :) :=
   TopCat.homeoOfIso ((colimit.isoColimitCocone ⟨_, TopCat.sigmaCofanIsColimit _⟩).symm ≪≫
     (PreservesCoproduct.iso Scheme.forgetToTop f).symm)
 
+/--
+@isnad1 id=eq.0h4v.s9.f7ff36ed2cb3 from=seed src=0 shape=3ab14408 vocab=8c7766bf
+-/
 @[simp]
 lemma sigmaMk_mk (i) (x : f i) :
     sigmaMk f (.mk i x) = Sigma.ι f i x := by
@@ -288,6 +332,9 @@ private lemma isOpenImmersion_sigmaDesc_aux
     · simp [← Scheme.Hom.stalkMap_comp, Scheme.Hom.stalkMap_congr_hom _ _ (colimit.ι_desc _ _)]
 
 open scoped Function in
+/--
+@isnad1 id=isopenim.1h4v.s8.8b7b1c21f20e from=seed src=0 shape=6e05d84e vocab=e1a63fb8
+-/
 lemma isOpenImmersion_sigmaDesc [Small.{u} σ]
     {X : Scheme.{u}} (α : ∀ i, g i ⟶ X) [∀ i, IsOpenImmersion (α i)]
     (hα : Pairwise (Disjoint on (Set.range <| α ·))) :
@@ -304,7 +351,9 @@ lemma isOpenImmersion_sigmaDesc [Small.{u} σ]
 set_option backward.defeqAttrib.useBackward true in
 open scoped Function in
 /-- `S` is the disjoint union of `Xᵢ` if the `Xᵢ` are covering, pairwise disjoint open subschemes
-of `S`. -/
+of `S`.
+@isnad1 id=nonempty.2h4v.s8.b91b7734b3b5 from=seed src=0 shape=4d7d2fb0 vocab=e033ff73
+-/
 lemma nonempty_isColimit_cofanMk_of [Small.{u} σ]
     {X : σ → Scheme.{u}} {S : Scheme.{u}} (f : ∀ i, X i ⟶ S) [∀ i, IsOpenImmersion (f i)]
     (hcov : ⨆ i, (f i).opensRange = ⊤) (hdisj : Pairwise (Disjoint on (f · |>.opensRange))) :
@@ -329,9 +378,15 @@ noncomputable
 def coprodIsoSigma : X ⨿ Y ≅ ∐ fun i : ULift.{u} WalkingPair ↦ i.1.casesOn X Y :=
   Sigma.whiskerEquiv Equiv.ulift.symm (fun _ ↦ by exact Iso.refl _)
 
+/--
+@isnad1 id=eq.0h2v.s7.ef8fdc6814e5 from=seed src=0 shape=3a53f628 vocab=490a488e
+-/
 lemma ι_left_coprodIsoSigma_inv : Sigma.ι _ ⟨.left⟩ ≫ (coprodIsoSigma X Y).inv = coprod.inl :=
   Sigma.ι_comp_map' _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s7.21a4e1572985 from=seed src=0 shape=bc599936 vocab=91b3d7e2
+-/
 lemma ι_right_coprodIsoSigma_inv : Sigma.ι _ ⟨.right⟩ ≫ (coprodIsoSigma X Y).inv = coprod.inr :=
   Sigma.ι_comp_map' _ _ _
 
@@ -341,21 +396,33 @@ instance : IsOpenImmersion (coprod.inl : X ⟶ X ⨿ Y) := by
 instance : IsOpenImmersion (coprod.inr : Y ⟶ X ⨿ Y) := by
   rw [← ι_right_coprodIsoSigma_inv]; infer_instance
 
+/--
+@isnad1 id=iscompl.0h2v.s9.0fb01182ab8a from=seed src=0 shape=561fbeff vocab=f186f4bc
+-/
 lemma isCompl_range_inl_inr :
     IsCompl (Set.range (coprod.inl : X ⟶ X ⨿ Y)) (Set.range (coprod.inr : Y ⟶ X ⨿ Y)) :=
   ((TopCat.binaryCofan_isColimit_iff _).mp
     ⟨mapIsColimitOfPreservesOfIsColimit Scheme.forgetToTop.{u} _ _ (coprodIsCoprod X Y)⟩).2.2
 
+/--
+@isnad1 id=iscompl.0h2v.s6.3fe16a4bc81e from=seed src=0 shape=7d20eda0 vocab=5c7eec73
+-/
 lemma isCompl_opensRange_inl_inr :
     IsCompl (coprod.inl : X ⟶ X ⨿ Y).opensRange (coprod.inr : Y ⟶ X ⨿ Y).opensRange := by
   convert! isCompl_range_inl_inr X Y
   simp only [isCompl_iff, disjoint_iff, codisjoint_iff, ← TopologicalSpace.Opens.coe_inj]
   rfl
 
+/--
+@isnad1 id=ne.0h4v.s8.92f88971e5d7 from=seed src=0 shape=b9c6dadf vocab=6829ab8f
+-/
 @[simp]
 lemma inl_ne_inr (x : X) (y : Y) : (coprod.inl : X ⟶ X ⨿ Y) x ≠ (coprod.inr : Y ⟶ X ⨿ Y) y :=
   Set.disjoint_iff_forall_ne.mp (isCompl_range_inl_inr X Y).disjoint ⟨x, rfl⟩ ⟨y, rfl⟩
 
+/--
+@isnad1 id=ne.0h4v.s8.7a1530fe25af from=seed src=0 shape=04715a8b vocab=6829ab8f
+-/
 @[simp]
 lemma inr_ne_inl (x : X) (y : Y) : (coprod.inr : Y ⟶ X ⨿ Y) y ≠ (coprod.inl : X ⟶ X ⨿ Y) x :=
   (inl_ne_inr _ _ _ _).symm
@@ -366,6 +433,9 @@ def coprodMk : X ⊕ Y ≃ₜ (X ⨿ Y : Scheme.{u}) :=
   TopCat.homeoOfIso ((colimit.isoColimitCocone ⟨_, TopCat.binaryCofanIsColimit _ _⟩).symm ≪≫
     PreservesColimitPair.iso Scheme.forgetToTop X Y)
 
+/--
+@isnad1 id=eq.0h3v.s9.5e112663cfaa from=seed src=0 shape=972ad129 vocab=2c70f69b
+-/
 @[simp]
 lemma coprodMk_inl (x : X) :
     coprodMk X Y (.inl x) = (coprod.inl : X ⟶ X ⨿ Y) x := by
@@ -376,6 +446,9 @@ lemma coprodMk_inl (x : X) :
   refine (colimit.isoColimitCocone_ι_inv_assoc ⟨_, TopCat.binaryCofanIsColimit _ _⟩ _ _).trans ?_
   exact coprodComparison_inl Scheme.forgetToTop
 
+/--
+@isnad1 id=eq.0h3v.s9.c3e111eead2c from=seed src=0 shape=be5c12ba vocab=6ae9a82c
+-/
 @[simp]
 lemma coprodMk_inr (x : Y) :
     coprodMk X Y (.inr x) = (coprod.inr : Y ⟶ X ⨿ Y) x := by
@@ -405,7 +478,9 @@ def coprodOpenCover.{w} : (X ⨿ Y).OpenCover where
     · simp only [Sum.elim_inr, coprodMk_inr, exists_apply_eq_apply]
 
 /-- If `X` and `Y` are open disjoint and covering open subschemes of `S`,
-`S` is the disjoint union of `X` and `Y`. -/
+`S` is the disjoint union of `X` and `Y`.
+@isnad1 id=nonempty.1h5v.s6.6ba4bc8fa9d7 from=seed src=0 shape=e1131eb3 vocab=88e3b518
+-/
 lemma nonempty_isColimit_binaryCofanMk_of_isCompl {X Y S : Scheme.{u}}
     (f : X ⟶ S) (g : Y ⟶ S) [IsOpenImmersion f] [IsOpenImmersion g]
     (hf : IsCompl f.opensRange g.opensRange) :
@@ -424,6 +499,9 @@ lemma nonempty_isColimit_binaryCofanMk_of_isCompl {X Y S : Scheme.{u}}
     | .left, .right => simpa [fi] using hf.1
     | .right, .left => simpa [fi] using hf.1.symm
 
+/--
+@isnad1 id=ispullba.0h6v.s6.194ccf71b3e8 from=seed src=0 shape=faba6708 vocab=53222d82
+-/
 lemma isPullback_inl_inl_coprodMap {X Y X' Y' : Scheme.{u}}
     (f : X ⟶ X') (g : Y ⟶ Y') : IsPullback f coprod.inl coprod.inl (coprod.map f g) := by
   refine IsOpenImmersion.isPullback _ _ _ _ (by simp) ?_
@@ -437,6 +515,9 @@ lemma isPullback_inl_inl_coprodMap {X Y X' Y' : Scheme.{u}}
     exact ⟨f x, by simp [← Scheme.Hom.comp_apply, -Scheme.Hom.comp_base]⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispullba.0h6v.s6.49499bef4ca2 from=seed src=0 shape=89b930c2 vocab=625e0041
+-/
 lemma isPullback_inr_inr_coprodMap {X Y X' Y' : Scheme.{u}}
     (f : X ⟶ X') (g : Y ⟶ Y') : IsPullback g coprod.inr coprod.inr (coprod.map f g) :=
   (isPullback_inl_inl_coprodMap g f).of_iso (.refl _) (.refl _) (coprod.braiding _ _)
@@ -484,6 +565,9 @@ noncomputable def Scheme.coprodPresheafObjIso (U : (X ⨿ Y).Opens) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s11.96b4adf11a55 from=seed src=0 shape=9ea56e59 vocab=01e07af6
+-/
 @[reassoc (attr := simp)]
 lemma Scheme.coprodPresheafObjIso_hom_fst (U : (X ⨿ Y).Opens) :
     (coprodPresheafObjIso U).hom ≫ prod.fst = (coprod.inl (C := Scheme)).app U := by
@@ -491,6 +575,9 @@ lemma Scheme.coprodPresheafObjIso_hom_fst (U : (X ⨿ Y).Opens) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s11.e13200679b5d from=seed src=0 shape=7b0494af vocab=5e4ac1e3
+-/
 @[reassoc (attr := simp)]
 lemma Scheme.coprodPresheafObjIso_hom_snd (U : (X ⨿ Y).Opens) :
     (coprodPresheafObjIso U).hom ≫ prod.snd = (coprod.inr (C := Scheme)).app U := by
@@ -505,16 +592,25 @@ def coprodSpec : Spec (.of R) ⨿ Spec (.of S) ⟶ Spec (.of <| R × S) :=
   coprod.desc (Spec.map (CommRingCat.ofHom <| RingHom.fst _ _))
     (Spec.map (CommRingCat.ofHom <| RingHom.snd _ _))
 
+/--
+@isnad1 id=eq.0h2v.s6.e82ac1d2a07a from=seed src=0 shape=f11636b0 vocab=4fb2ae1b
+-/
 @[simp, reassoc]
 lemma coprodSpec_inl : coprod.inl ≫ coprodSpec R S =
     Spec.map (CommRingCat.ofHom <| RingHom.fst R S) :=
   coprod.inl_desc _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.be485846ae2e from=seed src=0 shape=1a5d04bd vocab=d59d7f66
+-/
 @[simp, reassoc]
 lemma coprodSpec_inr : coprod.inr ≫ coprodSpec R S =
     Spec.map (CommRingCat.ofHom <| RingHom.snd R S) :=
   coprod.inr_desc _ _
 
+/--
+@isnad1 id=eq.0h3v.s9.d1cfbc6884ca from=seed src=0 shape=5bee7b61 vocab=8d1a05ec
+-/
 lemma coprodSpec_coprodMk (x) :
     coprodSpec R S (coprodMk _ _ x) = (PrimeSpectrum.primeSpectrumProd R S).symm x := by
   apply PrimeSpectrum.ext
@@ -526,11 +622,17 @@ lemma coprodSpec_coprodMk (x) :
   · change Ideal.comap _ _ = Ideal.prod ⊤ x.asIdeal
     ext; simp [Ideal.prod, CommRingCat.ofHom]
 
+/--
+@isnad1 id=eq.0h3v.s10.ea89e01108db from=seed src=0 shape=ce9ba67e vocab=8db92615
+-/
 lemma coprodSpec_apply (x) :
     coprodSpec R S x = (PrimeSpectrum.primeSpectrumProd R S).symm ((coprodMk _ _).symm x) := by
   rw [← coprodSpec_coprodMk, Homeomorph.apply_symm_apply]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.0h3v.s8.2d04c64656de from=seed src=0 shape=585ef6b3 vocab=03e5a6bd
+-/
 lemma isIso_stalkMap_coprodSpec (x) :
     IsIso ((coprodSpec R S).stalkMap x) := by
   obtain ⟨x | x, rfl⟩ := (coprodMk _ _).surjective x
@@ -598,6 +700,9 @@ noncomputable
 def sigmaSpec (R : ι → CommRingCat) : (∐ fun i ↦ Spec (R i)) ⟶ Spec (.of <| Π i, R i) :=
   Sigma.desc (fun i ↦ Spec.map (CommRingCat.ofHom (Pi.evalRingHom _ i)))
 
+/--
+@isnad1 id=eq.0h3v.s7.b3c884c9253d from=seed src=0 shape=b8acc1dc vocab=4910128a
+-/
 @[reassoc (attr := simp)]
 lemma ι_sigmaSpec (R : ι → CommRingCat) (i) :
     Sigma.ι _ i ≫ sigmaSpec R = Spec.map (CommRingCat.ofHom (Pi.evalRingHom _ i)) :=
@@ -663,6 +768,9 @@ private lemma IsAffineOpen.iSup_of_disjoint_aux [Finite ι] {U : ι → X.Opens}
     infer_instance
 
 open scoped Function in
+/--
+@isnad1 id=isaffine.2h3v.s6.338b326a1cf8 from=seed src=0 shape=73461ec4 vocab=6790714e
+-/
 lemma IsAffineOpen.iSup_of_disjoint [Finite σ] {U : σ → X.Opens}
     (hU : ∀ i, IsAffineOpen (U i)) (hU' : Pairwise (Disjoint on U)) :
     IsAffineOpen (iSup U) := by
@@ -672,6 +780,9 @@ lemma IsAffineOpen.iSup_of_disjoint [Finite σ] {U : σ → X.Opens}
   exact .iSup_of_disjoint_aux (by simp [*]) fun i j h ↦ hU' (e.symm.injective.ne h)
 
 open scoped Function in
+/--
+@isnad1 id=isaffine.3h4v.s7.d0b589b4e3a4 from=seed src=0 shape=9d9870b3 vocab=8b3773c2
+-/
 lemma IsAffineOpen.biSup_of_disjoint {s : Set σ} (hs : s.Finite)
     {U : σ → X.Opens} (hU : ∀ i ∈ s, IsAffineOpen (U i)) (hU' : s.Pairwise (Disjoint on U)) :
     IsAffineOpen (⨆ i ∈ s, U i) := by
@@ -679,6 +790,9 @@ lemma IsAffineOpen.biSup_of_disjoint {s : Set σ} (hs : s.Finite)
   have := hs.to_subtype
   exact .iSup_of_disjoint (by simpa) fun i j e ↦ hU' i.2 j.2 (by aesop)
 
+/--
+@isnad1 id=isaffine.3h3v.s6.7cbcbabbc65e from=seed src=0 shape=0f8e3b6c vocab=0b0f7639
+-/
 lemma IsAffineOpen.sup_of_disjoint {U V : X.Opens} (hU : IsAffineOpen U) (hV : IsAffineOpen V)
     (H : Disjoint U V) :
     IsAffineOpen (U ⊔ V) := by
@@ -721,6 +835,9 @@ instance : BraidedCategory Scheme := .ofCartesianMonoidalCategory
 
 section IsAffine
 
+/--
+@isnad1 id=isaffine.0h4v.s5.e3a7f45d3eda from=seed src=0 shape=42ec3316 vocab=39a5a699
+-/
 lemma Scheme.isAffine_of_isLimit {I : Type*} [Category* I] {D : I ⥤ Scheme.{u}}
     (c : Cone D) (hc : IsLimit c) [∀ i, IsAffine (D.obj i)] :
     IsAffine c.pt := by

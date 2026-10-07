@@ -60,6 +60,9 @@ noncomputable def rightHomotopy (h : LeftHomotopyRel f g) (Q : PathObject Y) [Q.
       rw [Category.assoc, Q.p_snd, prod.lift_snd] at this
       simp [this] }
 
+/--
+@isnad1 id=righthom.0h6v.s6.408eceb2a197 from=seed src=0 shape=7c55d8a5 vocab=6969d04a
+-/
 lemma rightHomotopyRel (h : LeftHomotopyRel f g) : RightHomotopyRel f g := by
   obtain ⟨P, _⟩ := PathObject.exists_very_good Y
   exact ⟨_, ⟨h.rightHomotopy P⟩⟩
@@ -89,6 +92,9 @@ noncomputable def leftHomotopy (h : RightHomotopyRel f g) (Q : Cylinder X) [Q.Is
       rw [Q.inr_i_assoc, coprod.inr_desc] at this
       simp [reassoc_of% this, P] }
 
+/--
+@isnad1 id=lefthomo.0h6v.s6.f30a005fa453 from=seed src=0 shape=01db9732 vocab=deeadcb1
+-/
 lemma leftHomotopyRel (h : RightHomotopyRel f g) : LeftHomotopyRel f g := by
   obtain ⟨P, _⟩ := Cylinder.exists_very_good X
   exact ⟨P, ⟨h.leftHomotopy P⟩⟩
@@ -99,6 +105,9 @@ section
 
 variable {f g : X ⟶ Y} [IsCofibrant X] [IsFibrant Y]
 
+/--
+@isnad1 id=iff.0h5v.s6.95d8d79d3409 from=seed src=0 shape=b4c0470f vocab=3da3f6bd
+-/
 lemma leftHomotopyRel_iff_rightHomotopyRel :
     LeftHomotopyRel f g ↔ RightHomotopyRel f g :=
   ⟨fun h ↦ h.rightHomotopyRel, fun h ↦ h.leftHomotopyRel⟩
@@ -126,6 +135,9 @@ namespace LeftHomotopyClass
 variable (X)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=bijectiv.0h5v.s6.7ff420d23c68 from=seed src=0 shape=217343b1 vocab=7a6e6de2
+-/
 lemma postcomp_bijective_of_fibration_of_weakEquivalence
     [IsCofibrant X] (g : Y ⟶ Z) [Fibration g] [WeakEquivalence g] :
     Function.Bijective (fun (f : LeftHomotopyClass X Y) ↦ f.postcomp g) := by
@@ -150,6 +162,9 @@ lemma postcomp_bijective_of_fibration_of_weakEquivalence
     have sq : CommSq (initial.to Y) (initial.to X) g φ := { }
     exact ⟨mk sq.lift, by simp⟩
 
+/--
+@isnad1 id=bijectiv.0h5v.s6.29cb9b26f5ba from=seed src=0 shape=953a4f11 vocab=635157a4
+-/
 lemma postcomp_bijective_of_weakEquivalence
     [IsCofibrant X] (g : Y ⟶ Z) [IsFibrant Y] [IsFibrant Z] [WeakEquivalence g] :
     Function.Bijective (fun (f : LeftHomotopyClass X Y) ↦ f.postcomp g) := by
@@ -172,6 +187,9 @@ namespace RightHomotopyClass
 
 variable (Z)
 
+/--
+@isnad1 id=bijectiv.0h5v.s6.58c9423b1a2d from=seed src=0 shape=f612190d vocab=6da71a6b
+-/
 lemma precomp_bijective_of_cofibration_of_weakEquivalence
     [IsFibrant Z] (f : X ⟶ Y) [Cofibration f] [WeakEquivalence f] :
     Function.Bijective (fun (g : RightHomotopyClass Y Z) ↦ g.precomp f) := by
@@ -196,6 +214,9 @@ lemma precomp_bijective_of_cofibration_of_weakEquivalence
     have sq : CommSq φ f (terminal.from _) (terminal.from _) := { }
     exact ⟨mk sq.lift, by simp⟩
 
+/--
+@isnad1 id=bijectiv.0h5v.s6.08faca5689fc from=seed src=0 shape=85bce004 vocab=70e0addd
+-/
 lemma precomp_bijective_of_weakEquivalence
     [IsFibrant Z] (f : X ⟶ Y) [IsCofibrant X] [IsCofibrant Y] [WeakEquivalence f] :
     Function.Bijective (fun (g : RightHomotopyClass Y Z) ↦ g.precomp f) := by
@@ -212,6 +233,9 @@ lemma precomp_bijective_of_weakEquivalence
   obtain ⟨φ, rfl⟩ := φ.mk_surjective
   simp
 
+/--
+@isnad1 id=ex.0h4v.s7.8227aa95a275 from=seed src=0 shape=dc2864c2 vocab=723e78a8
+-/
 lemma whitehead [IsCofibrant X] [IsCofibrant Y] [IsFibrant X] [IsFibrant Y]
     (f : X ⟶ Y) [WeakEquivalence f] :
     ∃ (g : Y ⟶ X), RightHomotopyRel (f ≫ g) (𝟙 X) ∧ RightHomotopyRel (g ≫ f) (𝟙 Y) := by
@@ -227,6 +251,9 @@ lemma whitehead [IsCofibrant X] [IsCofibrant Y] [IsFibrant X] [IsFibrant Y]
 
 end RightHomotopyClass
 
+/--
+@isnad1 id=ex.0h4v.s7.0772f022ca32 from=seed src=0 shape=dc2864c2 vocab=0261d3c6
+-/
 lemma LeftHomotopyClass.whitehead [IsCofibrant X] [IsCofibrant Y] [IsFibrant X] [IsFibrant Y]
     (f : X ⟶ Y) [WeakEquivalence f] :
     ∃ (g : Y ⟶ X), LeftHomotopyRel (f ≫ g) (𝟙 X) ∧ LeftHomotopyRel (g ≫ f) (𝟙 Y) := by
@@ -250,10 +277,16 @@ def leftHomotopyClassEquivRightHomotopyClass :
   left_inv := by rintro ⟨f⟩; rfl
   right_inv := by rintro ⟨f⟩; rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.3955438f7b3c from=seed src=0 shape=0ecac83d vocab=ffb81172
+-/
 @[simp]
 lemma leftHomotopyClassEquivRightHomotopyClass_mk (f : X ⟶ Y) :
     leftHomotopyClassEquivRightHomotopyClass (.mk f) = .mk f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.f01f8055b9dd from=seed src=0 shape=724d027f vocab=0b61f33e
+-/
 @[simp]
 lemma leftHomotopyClassEquivRightHomotopyClass_symm_mk (f : X ⟶ Y) :
     leftHomotopyClassEquivRightHomotopyClass.symm (.mk f) = .mk f := rfl

@@ -53,6 +53,9 @@ noncomputable instance [IsIntegral X] : Field X.functionField :=
   (isField_stalk_of_closure_mem_irreducibleComponents X _
     (by simp [irreducibleComponents_eq_singleton])).toField
 
+/--
+@isnad1 id=injectiv.1h3v.s10.d11c427f76af from=seed src=0 shape=8ab79041 vocab=d75b3ee6
+-/
 theorem germ_injective_of_isIntegral [IsIntegral X] {U : X.Opens} (x : X) (hx : x ∈ U) :
     Function.Injective (X.presheaf.germ U x hx) := by
   rw [injective_iff_map_eq_zero]
@@ -63,10 +66,16 @@ theorem germ_injective_of_isIntegral [IsIntegral X] {U : X.Opens} (x : X) (hx : 
   have : Nonempty W := ⟨⟨_, hW⟩⟩
   exact map_injective_of_isIntegral X iU e
 
+/--
+@isnad1 id=injectiv.0h2v.s9.fb2a9415f7e2 from=seed src=0 shape=007d6986 vocab=abecc9cd
+-/
 theorem Scheme.germToFunctionField_injective [IsIntegral X] (U : X.Opens) [Nonempty U] :
     Function.Injective (X.germToFunctionField U) :=
   germ_injective_of_isIntegral _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s8.85f7f48a5640 from=seed src=0 shape=dae45732 vocab=f6ceea46
+-/
 theorem genericPoint_eq_of_isOpenImmersion {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f]
     [hX : IrreducibleSpace X] [IrreducibleSpace Y] :
     f (genericPoint X) = genericPoint Y := by
@@ -85,6 +94,9 @@ noncomputable instance stalkFunctionFieldAlgebra [IrreducibleSpace X] (x : X) :
   apply RingHom.toAlgebra
   exact (X.presheaf.stalkSpecializes ((genericPoint_spec X).specializes trivial)).hom
 
+/--
+@isnad1 id=isscalar.0h3v.s10.590b3c4c414a from=seed src=0 shape=3547dd6e vocab=8fcd715c
+-/
 instance functionField_isScalarTower [IrreducibleSpace X] (U : X.Opens) (x : U)
     [Nonempty U] : IsScalarTower Γ(X, U) (X.presheaf.stalk x) X.functionField := by
   apply IsScalarTower.of_algebraMap_eq'
@@ -92,6 +104,9 @@ instance functionField_isScalarTower [IrreducibleSpace X] (U : X.Opens) (x : U)
   change _ = (X.presheaf.germ U x x.2 ≫ _).hom
   rw [X.presheaf.germ_stalkSpecializes]
 
+/--
+@isnad1 id=eq.1h4v.s11.a29c1a419cae from=seed src=0 shape=a21896b6 vocab=83b7321d
+-/
 @[simp]
 lemma Scheme.algebraMap_germ_eq_germToFunctionField [IrreducibleSpace X]
     {U : X.Opens} [Nonempty U] {x : X} (hx : x ∈ U) (f : Γ(X, U)) :
@@ -105,6 +120,9 @@ noncomputable instance (R : CommRingCat.{u}) [IsDomain R] :
   RingHom.toAlgebra <| by apply CommRingCat.Hom.hom; apply StructureSheaf.toStalk
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s6.5fa3922116a4 from=seed src=0 shape=2368cb79 vocab=a1bb7392
+-/
 @[simp]
 theorem genericPoint_eq_bot_of_affine (R : CommRingCat) [IsDomain R] :
     genericPoint (Spec R) = (⊥ : PrimeSpectrum R) := by
@@ -114,6 +132,9 @@ theorem genericPoint_eq_bot_of_affine (R : CommRingCat) [IsDomain R] :
   rw [← PrimeSpectrum.zeroLocus_singleton_zero]
   rfl
 
+/--
+@isnad1 id=isfracti.0h1v.s5.1192e851775f from=seed src=0 shape=4059e3a9 vocab=fb593d22
+-/
 instance functionField_isFractionRing_of_affine (R : CommRingCat.{u}) [IsDomain R] :
     IsFractionRing R (Spec R).functionField := by
   convert! StructureSheaf.IsLocalization.to_stalk R (genericPoint (Spec R))
@@ -130,6 +151,9 @@ instance {X : Scheme} [IsIntegral X] {U : X.Opens} [Nonempty U] :
   isIntegral_of_isOpenImmersion U.ι
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h2v.s9.7a12594fab82 from=seed src=0 shape=5103a460 vocab=d51febd4
+-/
 theorem IsAffineOpen.primeIdealOf_genericPoint {X : Scheme} [IsIntegral X] {U : X.Opens}
     (hU : IsAffineOpen U) [h : Nonempty U] :
     hU.primeIdealOf
@@ -146,6 +170,9 @@ theorem IsAffineOpen.primeIdealOf_genericPoint {X : Scheme} [IsIntegral X] {U : 
   apply Subtype.ext
   exact (genericPoint_eq_of_isOpenImmersion U.ι).symm
 
+/--
+@isnad1 id=isfracti.1h2v.s8.b0ec3bf03731 from=seed src=0 shape=a3533e0b vocab=60d71eef
+-/
 theorem functionField_isFractionRing_of_isAffineOpen [IsIntegral X] (U : X.Opens)
     (hU : IsAffineOpen U) [Nonempty U] :
     IsFractionRing Γ(X, U) X.functionField := by
@@ -182,6 +209,7 @@ instance [IsIntegral X] {x : X} : IsDomain (X.presheaf.stalk x) :=
 /--
 For `f` an element of the function field of `X`, there exists some open set `U ⊆ X` such that
 `f` is a unit in `Γ(X, U)`.
+@isnad1 id=ex.1h2v.s10.07aef8806f7b from=seed src=0 shape=8ca2f655 vocab=19e35c7f
 -/
 lemma exists_isUnit_germ_eq [IsIntegral X] (f : X.functionField) (hf : f ≠ 0) :
     ∃ U ∈ X.affineOpens, ∃ f' : Γ(X, U), ∃ _ : Nonempty U,

@@ -72,6 +72,9 @@ instance : (N₁ : SimplicialObject C ⥤ Karoubi (ChainComplex C ℕ)).Reflects
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s10.357a1ae1d7e3 from=seed src=0 shape=f890090f vocab=4b6aa581
+-/
 theorem compatibility_N₂_N₁_karoubi :
     N₂ ⋙ (karoubiChainComplexEquivalence C ℕ).functor =
       karoubiFunctorCategoryEmbedding SimplexCategoryᵒᵖ C ⋙

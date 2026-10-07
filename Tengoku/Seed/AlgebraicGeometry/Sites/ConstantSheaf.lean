@@ -57,6 +57,9 @@ def continuousMapPresheafIsoUlift :
       (TopCat.uliftFunctor.obj <| Scheme.forgetToTop.obj U.1)
       (TopCat.uliftFunctor.obj (TopCat.of T))).symm
 
+/--
+@isnad1 id=issheaf.0h1v.s3.30b927d7a20a from=seed src=0 shape=a504e262 vocab=bcccbbf6
+-/
 lemma isSheaf_zariskiTopology_continuousMapPresheaf :
     Presheaf.IsSheaf Scheme.zariskiTopology (continuousMapPresheaf T) := by
   rw [Presheaf.isSheaf_of_iso_iff (continuousMapPresheafIsoUlift T)]
@@ -66,6 +69,9 @@ lemma isSheaf_zariskiTopology_continuousMapPresheaf :
   exact GrothendieckTopology.Subcanonical.isSheaf_of_isRepresentable _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=issheaf.0h1v.s3.98be87884b0a from=seed src=0 shape=a504e262 vocab=f62c9654
+-/
 lemma isSheaf_fpqcTopology_continuousMapPresheaf :
     Presheaf.IsSheaf Scheme.fpqcTopology (continuousMapPresheaf T) := by
   rw [isSheaf_iff_isSheaf_of_type, Scheme.fpqcTopology_eq_propQCTopology,
@@ -113,6 +119,9 @@ def continuousMapPresheafAbForgetIso :
     continuousMapPresheafAb A ⋙ CategoryTheory.forget Ab ≅ continuousMapPresheaf A :=
   Iso.refl _
 
+/--
+@isnad1 id=issheaf.0h1v.s4.73f6823386fd from=seed src=0 shape=2639e940 vocab=f277fc01
+-/
 lemma isSheaf_fpqcTopology_continuousMapPresheafAb :
     Presheaf.IsSheaf Scheme.fpqcTopology (continuousMapPresheafAb A) := by
   apply Presheaf.isSheaf_of_isSheaf_comp _ _ (forget Ab)

@@ -132,6 +132,9 @@ noncomputable def pageD (r : ℤ) (pq pq' : κ) (hr : r₀ ≤ r := by lia) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.9h28v.s9.a5e8c9c0aecd from=seed src=0 shape=16e80705 vocab=bf0ab9db
+-/
 lemma pageD_eq (r : ℤ) (hr : r₀ ≤ r) (pq pq' : κ) (hpq : (c r).Rel pq pq')
     {i₀ i₁ i₂ i₃ i₄ i₅ : ι} (f₁ : i₀ ⟶ i₁) (f₂ : i₁ ⟶ i₂) (f₃ : i₂ ⟶ i₃)
     (f₄ : i₃ ⟶ i₄) (f₅ : i₄ ⟶ i₅)
@@ -153,6 +156,9 @@ lemma pageD_eq (r : ℤ) (hr : r₀ ≤ r) (pq pq' : κ) (hpq : (c r).Rel pq pq'
   rw [dite_eq_left hpq, Category.id_comp]
   rfl
 
+/--
+@isnad1 id=eq.1h11v.s8.2fb49d5621ad from=seed src=0 shape=2616bd78 vocab=c6bfa4be
+-/
 @[reassoc (attr := simp)]
 lemma pageD_pageD (r : ℤ) (hr : r₀ ≤ r) (pq pq' pq'' : κ) :
     pageD X data r pq pq' hr ≫ pageD X data r pq' pq'' hr = 0 := by
@@ -235,6 +241,9 @@ namespace HomologyData
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.8h21v.s9.243ea2372f50 from=seed src=0 shape=39bd3d3f vocab=e546319e
+-/
 lemma kf_w (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (X.mapFourδ₁Toδ₀' i₀' i₀ i₁ i₂ i₃ (data.i₀_le' hrr' hr pq' hi₀' hi₀)
       (data.le₀₁' r hr pq' hi₀ hi₁) (data.le₁₂' pq' hi₁ hi₂) (data.le₂₃' r hr pq' hi₂ hi₃)
@@ -274,6 +283,9 @@ instance (hn₁ : n₀ + 1 = n₁) (hn₂ : n₁ + 1 = n₂) :
 
 variable [X.HasSpectralSequence data] in
 include hpq' hn₁' in
+/--
+@isnad1 id=isiso.10h21v.s8.5103b841e474 from=seed src=0 shape=5da5c560 vocab=88100082
+-/
 lemma isIso_mapFourδ₁Toδ₀' (h : ¬ (c r).Rel pq' pq'')
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     IsIso (X.mapFourδ₁Toδ₀'
@@ -288,6 +300,9 @@ lemma isIso_mapFourδ₁Toδ₀' (h : ¬ (c r).Rel pq' pq'')
 set_option backward.defeqAttrib.useBackward true in
 variable [X.HasSpectralSequence data] in
 include hpq' in
+/--
+@isnad1 id=exact.9h21v.s8.938fc4e87308 from=seed src=0 shape=cc6fa344 vocab=4c10150a
+-/
 lemma kfSc_exact (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (kfSc X data r r' hrr' hr pq' pq'' i₀' i₀ i₁ i₂ i₃ hi₀' hi₀ hi₁ hi₂ hi₃
       n₀ n₁ n₂ hn₁' hn₁ hn₂).Exact := by
@@ -327,6 +342,9 @@ noncomputable def isLimitKf (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 
     i₀' i₀ i₁ i₂ i₃ hi₀' hi₀ hi₁ hi₂ hi₃ n₀ n₁ n₂ hn₁' hn₁ hn₂).fIsKernel
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.8h21v.s9.7e505b7ceeab from=seed src=0 shape=a652e485 vocab=e05f7c7c
+-/
 lemma cc_w (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (page X data r hr).d pq pq' ≫
       (pageXIso X data _ hr _ _ _ _ _ hi₀ hi₁ hi₂ hi₃ _ _ _ hn₁').hom ≫
@@ -369,6 +387,9 @@ instance (hn₁ : n₀ + 1 = n₁) (hn₂ : n₁ + 1 = n₂) :
 
 variable [X.HasSpectralSequence data] in
 include hpq hn₁' in
+/--
+@isnad1 id=isiso.10h21v.s8.0f7ca9c525a2 from=seed src=0 shape=d9fa86df vocab=e038abef
+-/
 lemma isIso_mapFourδ₄Toδ₃' (h : ¬ (c r).Rel pq pq')
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     IsIso (X.mapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₃'
@@ -383,6 +404,9 @@ lemma isIso_mapFourδ₄Toδ₃' (h : ¬ (c r).Rel pq pq')
 set_option backward.defeqAttrib.useBackward true in
 variable [X.HasSpectralSequence data] in
 include hpq in
+/--
+@isnad1 id=exact.9h21v.s8.de3a38f4baa1 from=seed src=0 shape=fcda20e4 vocab=cfb25f33
+-/
 lemma ccSc_exact (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (ccSc X data r r' hrr' hr pq pq'
       i₀ i₁ i₂ i₃ i₃' hi₀ hi₁ hi₂ hi₃ hi₃' n₀ n₁ n₂ hn₁').Exact := by
@@ -423,6 +447,9 @@ noncomputable def isColimitCc (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ 
   (ccSc_exact X data r r' hrr' hr pq pq' hpq i₀ i₁ i₂ i₃ i₃' hi₀ hi₁ hi₂ hi₃ hi₃' ..).gIsCokernel
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.9h23v.s11.9fbfa8064a60 from=seed src=0 shape=5a18441e vocab=1bc37724
+-/
 lemma fac (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
   (kf X data r r' hrr' hr pq' pq'' i₀' i₀ i₁ i₂ i₃
       hi₀' hi₀ hi₁ hi₂ hi₃ n₀ n₁ n₂ hn₁').ι ≫
@@ -500,6 +527,9 @@ noncomputable def spectralSequencePageXIso (r : ℤ) (hr : r₀ ≤ r) (pq : κ)
   SpectralSequence.pageXIso X data _ hr _ _ _ _ _ h₀ h₁ h₂ h₃ _ _ _ h
 
 unseal spectralSequence in
+/--
+@isnad1 id=eq.9h28v.s9.edc1ab1f14e1 from=seed src=0 shape=dbee432d vocab=3ac03da2
+-/
 lemma spectralSequence_page_d_eq (r : ℤ) (hr : r₀ ≤ r)
     (pq pq' : κ) (hpq : (c r).Rel pq pq')
     {i₀ i₁ i₂ i₃ i₄ i₅ : ι} (f₁ : i₀ ⟶ i₁) (f₂ : i₁ ⟶ i₂) (f₃ : i₂ ⟶ i₃)
@@ -517,6 +547,9 @@ lemma spectralSequence_page_d_eq (r : ℤ) (hr : r₀ ≤ r)
               (by simpa only [← hn₂, hn₁'] using data.hc r pq pq' hpq)).inv :=
   SpectralSequence.pageD_eq _ _ _ hr _ _ hpq ..
 
+/--
+@isnad1 id=iff.6h18v.s8.c71e33d376c3 from=seed src=0 shape=a7e0591b vocab=58d949af
+-/
 lemma isZero_spectralSequence_page_X_iff (r : ℤ) (hr : r₀ ≤ r) (pq : κ)
     (i₀ i₁ i₂ i₃ : ι) (h₀ : i₀ = data.i₀ r pq) (h₁ : i₁ = data.i₁ pq)
     (h₂ : i₂ = data.i₂ pq) (h₃ : i₃ = data.i₃ r pq)
@@ -529,6 +562,9 @@ lemma isZero_spectralSequence_page_X_iff (r : ℤ) (hr : r₀ ≤ r) (pq : κ)
   Iso.isZero_iff (X.spectralSequencePageXIso data r hr pq i₀ i₁ i₂ i₃
     h₀ h₁ h₂ h₃ n₀ n₁ n₂ h)
 
+/--
+@isnad1 id=iszero.5h12v.s8.0dce4e8ee26b from=seed src=0 shape=cd71a1e6 vocab=a9a2760b
+-/
 lemma isZero_spectralSequence_page_X_of_isZero_H (r : ℤ) (hr : r₀ ≤ r)
     (pq : κ) (n : ℤ) (hn : n = data.deg pq)
     (i₁ i₂ : ι) (h₁ : i₁ = data.i₁ pq) (h₂ : i₂ = data.i₂ pq)
@@ -539,6 +575,9 @@ lemma isZero_spectralSequence_page_X_of_isZero_H (r : ℤ) (hr : r₀ ≤ r)
     _ i₁ i₂ _ rfl h₁ h₂ rfl (n - 1) n (n + 1) hn]
   exact isZero_E_of_isZero_H _ _ _ _ _ _ _ h
 
+/--
+@isnad1 id=iszero.2h9v.s7.3b2b104fcd48 from=seed src=0 shape=cd20593e vocab=43d98260
+-/
 lemma isZero_spectralSequence_page_X_of_isZero_H' (r : ℤ) (hr : r₀ ≤ r) (pq : κ)
     (h : IsZero ((X.H (data.deg pq)).obj (mk₁ (homOfLE (data.le₁₂ pq))))) :
     IsZero (((X.spectralSequence data).page r).X pq) :=
@@ -594,6 +633,9 @@ noncomputable def spectralSequenceHomologyData
     pq pq' pq'' hpq hpq' i₀' i₀ i₁ i₂ i₃ i₃' hi₀' hi₀ hi₁ hi₂ hi₃ hi₃' n₀ n₁ n₂ hn₁'
 
 unseal spectralSequence in
+/--
+@isnad1 id=eq.11h23v.s9.4e148da4d4a7 from=seed src=0 shape=55b58879 vocab=298cf3ac
+-/
 @[simp]
 lemma spectralSequenceHomologyData_left_i
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
@@ -606,6 +648,9 @@ lemma spectralSequenceHomologyData_left_i
   rfl
 
 unseal spectralSequence in
+/--
+@isnad1 id=eq.11h23v.s9.b8ae5b54d1ab from=seed src=0 shape=12b31736 vocab=9917dc90
+-/
 @[simp]
 lemma spectralSequenceHomologyData_right_p
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
@@ -618,6 +663,9 @@ lemma spectralSequenceHomologyData_right_p
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.11h23v.s9.6ba539390321 from=seed src=0 shape=f2e965b7 vocab=68451111
+-/
 lemma spectralSequenceHomologyData_right_homologyIso_eq_left_homologyIso
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (X.spectralSequenceHomologyData data r r' hrr' hr pq pq' pq'' hpq hpq'
@@ -629,6 +677,9 @@ lemma spectralSequenceHomologyData_right_homologyIso_eq_left_homologyIso
 
 set_option backward.isDefEq.respectTransparency.types false in
 unseal spectralSequence in
+/--
+@isnad1 id=eq.11h23v.s9.8dee51c6f733 from=seed src=0 shape=b396d772 vocab=68b09071
+-/
 lemma spectralSequence_iso (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (X.spectralSequence data).iso r r' pq' =
     ((X.spectralSequence data).page r).homologyIsoSc' pq pq' pq'' hpq hpq' ≪≫

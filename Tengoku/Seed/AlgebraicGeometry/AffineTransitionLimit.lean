@@ -43,6 +43,7 @@ include hc in
 /--
 Suppose we have a cofiltered diagram of nonempty quasi-compact schemes,
 whose transition maps are affine. Then the limit is also nonempty.
+@isnad1 id=nonempty.0h4v.s7.0a0d37e829ff from=seed src=0 shape=5d0ce40a vocab=811896bc
 -/
 @[stacks 01Z2]
 lemma Scheme.nonempty_of_isLimit [IsCofilteredOrEmpty I]
@@ -104,6 +105,7 @@ open Scheme.IdealSheafData in
 /--
 Suppose we have a cofiltered diagram of schemes whose transition maps are affine. The limit of
 a family of compatible nonempty quasicompact closed sets in the diagram is also nonempty.
+@isnad1 id=ex.4h5v.s10.b332d08059b0 from=seed src=0 shape=d55bbd3a vocab=b64d034c
 -/
 lemma exists_mem_of_isClosed_of_nonempty
     [IsCofilteredOrEmpty I]
@@ -153,6 +155,7 @@ include hc in
 /--
 A variant of `exists_mem_of_isClosed_of_nonempty` where the closed sets are only defined
 for the objects over a given `j : I`.
+@isnad1 id=ex.4h6v.s10.78654193ae7f from=seed src=0 shape=515721cc vocab=00278bde
 -/
 @[stacks 01Z3]
 lemma exists_mem_of_isClosed_of_nonempty'
@@ -177,7 +180,9 @@ section Opens
 
 include hc in
 /-- Let `{ Dᵢ }` be a cofiltered diagram of compact schemes with affine transition maps.
-If `U ⊆ Dⱼ` contains the image of `limᵢ Dᵢ ⟶ Dⱼ`, then it contains the image of some `Dₖ ⟶ Dⱼ`. -/
+If `U ⊆ Dⱼ` contains the image of `limᵢ Dᵢ ⟶ Dⱼ`, then it contains the image of some `Dₖ ⟶ Dⱼ`.
+@isnad1 id=ex.1h6v.s10.c00973a72bf6 from=seed src=0 shape=d8a0de97 vocab=20d446ba
+-/
 lemma exists_map_eq_top
     [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
@@ -268,6 +273,9 @@ instance [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)] {i : I}
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
+/--
+@isnad1 id=ex.2h7v.s11.cac2df577b33 from=seed src=0 shape=b7d370d0 vocab=92a88a2e
+-/
 lemma exists_map_preimage_le_map_preimage
     [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
@@ -289,6 +297,9 @@ lemma exists_map_preimage_le_map_preimage
   simpa [show fji.left = j.hom by simpa using fji.w] using hj
 
 include hc in
+/--
+@isnad1 id=ex.3h7v.s11.6ef02c2eed40 from=seed src=0 shape=fbaa8441 vocab=2efd5e43
+-/
 @[stacks 01Z4 "(2)"]
 lemma exists_map_preimage_eq_map_preimage
     [IsCofiltered I]
@@ -308,6 +319,9 @@ set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 open Scheme.Opens in
 include hc in
+/--
+@isnad1 id=isbasis.0h4v.s9.d70a2d1555ac from=seed src=0 shape=9cb46e53 vocab=0160a512
+-/
 lemma isBasis_preimage_isAffineOpen [IsCofiltered I] [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)] :
     TopologicalSpace.Opens.IsBasis
       { (c.π.app i ⁻¹ᵁ V : c.pt.Opens) | (i : I) (V : (D.obj i).Opens) (_ : IsAffineOpen V) } := by
@@ -336,6 +350,9 @@ lemma isBasis_preimage_isAffineOpen [IsCofiltered I] [∀ {i j} (f : i ⟶ j), I
 
 set_option backward.defeqAttrib.useBackward true in
 include hc in
+/--
+@isnad1 id=ex.1h5v.s9.2d1983fab228 from=seed src=0 shape=366d1888 vocab=2efd5e43
+-/
 @[stacks 01Z4 "(1)"]
 lemma exists_preimage_eq
     [IsCofiltered I] [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
@@ -358,12 +375,18 @@ lemma exists_preimage_eq
 end Opens
 
 include hc in
+/--
+@isnad1 id=isaffine.0h5v.s7.6d98207ba90e from=seed src=0 shape=84fcb71a vocab=6564eefe
+-/
 lemma isAffineHom_π_app [IsCofiltered I] [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)] (i : I) :
     IsAffineHom (c.π.app i) where
   isAffine_preimage U hU := have (j : _) : IsAffine ((opensDiagram D i U).obj j) := hU.preimage _
     Scheme.isAffine_of_isLimit _ (isLimitOpensCone D c hc i U)
 
 include hc in
+/--
+@isnad1 id=compacts.0h4v.s7.bd2c65804d57 from=seed src=0 shape=3d57df32 vocab=87831122
+-/
 lemma Scheme.compactSpace_of_isLimit [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)] [∀ i, CompactSpace (D.obj i)] :
     CompactSpace c.pt := by
@@ -494,6 +517,9 @@ variable (A : ExistsHomHomCompEqCompAux D t f)
 
 set_option backward.isDefEq.respectTransparency false in
 omit [LocallyOfFiniteType f] in
+/--
+@isnad1 id=ex.0h7v.s9.7e1808d2f3dd from=seed src=0 shape=eb8ef4de vocab=ea1c1677
+-/
 lemma exists_index : ∃ (i' : I) (hii' : i' ⟶ A.i),
     ((D.map hii' ≫ pullback.lift A.a A.b (A.ha.symm.trans A.hb)) ⁻¹'
       ((Scheme.Pullback.diagonalCoverDiagonalRange f A.𝒰S A.𝒰X : Set <|
@@ -528,6 +554,9 @@ def g : D.obj A.i' ⟶ pullback f f :=
 
 set_option backward.isDefEq.respectTransparency false in
 omit [LocallyOfFiniteType f] in
+/--
+@isnad1 id=le.0h7v.s9.225768192dbc from=seed src=0 shape=dc86895e vocab=296a1e65
+-/
 lemma range_g_subset :
     Set.range A.g ⊆ Scheme.Pullback.diagonalCoverDiagonalRange f A.𝒰S A.𝒰X := by
   simpa [ExistsHomHomCompEqCompAux.hii', g] using! A.exists_index.choose_spec.choose_spec
@@ -569,6 +598,9 @@ variable [∀ i, IsAffineHom (A.c.π.app i)]
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.0h8v.s10.a64095fe3f29 from=seed src=0 shape=d7856b8e vocab=601be2dc
+-/
 lemma exists_eq (j : A.𝒰D.I₀) : ∃ (k : I) (hki' : k ⟶ A.i'),
     (A.𝒰D.pullback₁ (D.map hki')).f j ≫ D.map (hki' ≫ A.hii') ≫ A.a =
       (A.𝒰D.pullback₁ (D.map hki')).f j ≫ D.map (hki' ≫ A.hii') ≫ A.b := by
@@ -629,6 +661,9 @@ variable [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
+/--
+@isnad1 id=ex.3h11v.s9.550af78010e8 from=seed src=0 shape=db3f98c9 vocab=e31fea8f
+-/
 lemma Scheme.exists_hom_comp_eq_comp_of_locallyOfFiniteType
     {i : I} (a b : D.obj i ⟶ X) (ha : t.app i = a ≫ f) (hb : t.app i = b ≫ f)
     (hab : c.π.app i ≫ a = c.π.app i ≫ b) :
@@ -681,6 +716,7 @@ Then the canonical map `colim Homₛ(Dᵢ, X) ⟶ Homₛ(lim Dᵢ, X)` is inject
 In other words, for each pair of `a : Homₛ(Dᵢ, X)` and `b : Homₛ(Dⱼ, X)` that give rise to the
 same map `Homₛ(lim Dᵢ, X)`, there exists a `k` with `fᵢ : k ⟶ i` and `fⱼ : k ⟶ j` such that
 `D(fᵢ) ≫ a = D(fⱼ) ≫ b`.
+@isnad1 id=ex.3h12v.s9.a02f715f8c4b from=seed src=0 shape=dac30996 vocab=e31fea8f
 -/
 @[stacks 01ZC "Injective part of (1) => (3)"]
 lemma Scheme.exists_hom_hom_comp_eq_comp_of_locallyOfFiniteType
@@ -723,6 +759,9 @@ variable [IsCofiltered I]
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
+/--
+@isnad1 id=ex.1h6v.s14.e834756b0358 from=seed src=0 shape=67e69325 vocab=100eec6a
+-/
 lemma exists_appTop_map_eq_zero_of_isAffine_of_isLimit
     [∀ i, IsAffine (D.obj i)]
     (i : I) (s : Γ(D.obj i, ⊤)) (hs : (c.π.app i).appTop s = 0) :
@@ -737,6 +776,9 @@ lemma exists_appTop_map_eq_zero_of_isAffine_of_isLimit
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
+/--
+@isnad1 id=ex.1h6v.s14.d2f5e37d98ac from=seed src=0 shape=a3ff326a vocab=10fbb5c8
+-/
 lemma exists_appTop_map_eq_zero_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
     {i : I} [CompactSpace (D.obj i)] (s : Γ(D.obj i, ⊤)) (hs : (c.π.app i).appTop s = 0) :
     ∃ (j : I) (f : j ⟶ i), (D.map f).appTop s = 0 := by
@@ -787,6 +829,9 @@ lemma exists_appTop_map_eq_zero_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
+/--
+@isnad1 id=ex.2h7v.s14.e2452c54775a from=seed src=0 shape=12b266d4 vocab=b587dd95
+-/
 lemma exists_app_map_eq_zero_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
     {i : I} {U : (D.obj i).Opens} (hU : IsCompact (X := D.obj i) U) (s : Γ(D.obj i, U))
     (hs : (c.π.app i).app U s = 0) :
@@ -816,6 +861,9 @@ lemma exists_app_map_eq_zero_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom (D
   · simp
 
 include hc in
+/--
+@isnad1 id=ex.2h8v.s14.69cd5ae04aad from=seed src=0 shape=7d181eb0 vocab=b587dd95
+-/
 lemma exists_app_map_eq_map_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
     {i : I} {U : (D.obj i).Opens} (hU : IsCompact (X := D.obj i) U) (s t : Γ(D.obj i, U))
     (hs : (c.π.app i).app U s = (c.π.app i).app U t) :
@@ -825,6 +873,9 @@ lemma exists_app_map_eq_map_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom (D.
 
 set_option backward.defeqAttrib.useBackward true in
 include hc in
+/--
+@isnad1 id=ex.0h5v.s13.01abfb32fe34 from=seed src=0 shape=ecc974a2 vocab=740a3bf3
+-/
 lemma exists_appTop_π_eq_of_isAffine_of_isLimit
     [∀ i, IsAffine (D.obj i)] (s : Γ(c.pt, ⊤)) :
     ∃ (i : I) (t : Γ(D.obj i, ⊤)), (c.π.app i).appTop t = s := by
@@ -835,6 +886,9 @@ lemma exists_appTop_π_eq_of_isAffine_of_isLimit
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
+/--
+@isnad1 id=ex.0h5v.s13.b110a2b80cb5 from=seed src=0 shape=198f5ab6 vocab=f5552b9b
+-/
 lemma exists_appTop_π_eq_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
     (s : Γ(c.pt, ⊤)) [∀ i, CompactSpace (D.obj i)] [∀ i, QuasiSeparatedSpace (D.obj i)] :
     ∃ (i : I) (t : Γ(D.obj i, ⊤)), s = (c.π.app i).appTop t := by
@@ -954,6 +1008,9 @@ lemma exists_appTop_π_eq_of_isLimit [∀ {i j} (f : i ⟶ j), IsAffineHom (D.ma
     simp [Scheme.Hom.app_eq_appLE]
 
 include hc in
+/--
+@isnad1 id=nonempty.0h4v.s7.5acca62593c2 from=seed src=0 shape=44bf5631 vocab=082a0903
+-/
 lemma nonempty_isColimit_Γ_mapCocone [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
     [∀ i, CompactSpace (D.obj i)] [∀ i, QuasiSeparatedSpace (D.obj i)] :
     Nonempty (IsColimit (Scheme.Γ.mapCocone c.op)) := by
@@ -976,7 +1033,9 @@ section IsAffine
 
 include hc in
 /-- Suppose `{ Xᵢ }` is an inverse system of qcqs schemes with affine transition maps.
-If `lim Xᵢ` is quasi-affine, then some `Xᵢ` is quasi-affine. -/
+If `lim Xᵢ` is quasi-affine, then some `Xᵢ` is quasi-affine.
+@isnad1 id=ex.0h4v.s7.f959b57d2068 from=seed src=0 shape=dcb822ed vocab=e51a67f4
+-/
 @[stacks 01Z5]
 lemma Scheme.exists_isQuasiAffine_of_isLimit [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
@@ -1030,7 +1089,9 @@ set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
 /-- Suppose `{ Xᵢ }` is an inverse system of qcqs schemes with affine transition maps.
-If `lim Xᵢ` is affine, then some `Xᵢ` is affine. -/
+If `lim Xᵢ` is affine, then some `Xᵢ` is affine.
+@isnad1 id=ex.0h4v.s7.da262ff5f5c6 from=seed src=0 shape=dcb822ed vocab=99c50c9d
+-/
 @[stacks 01Z6]
 lemma Scheme.exists_isAffine_of_isLimit [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
@@ -1053,6 +1114,9 @@ lemma Scheme.exists_isAffine_of_isLimit [IsCofiltered I]
 
 set_option backward.defeqAttrib.useBackward true in
 include hc in
+/--
+@isnad1 id=ex.1h5v.s9.d4d9af3de2a5 from=seed src=0 shape=26814d3c vocab=9eb67815
+-/
 @[stacks 01Z4 "(1)"]
 lemma exists_isAffineOpen_preimage_eq
     [IsCofiltered I] [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
@@ -1070,6 +1134,9 @@ lemma exists_isAffineOpen_preimage_eq
 
 open TopologicalSpace in
 include hc in
+/--
+@isnad1 id=ex.2h6v.s9.fc2c0a6233f8 from=seed src=0 shape=9d4d4137 vocab=901b20ea
+-/
 lemma Scheme.exists_isOpenCover_and_isAffine_of_finite [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)] [∀ (i : I), CompactSpace (D.obj i)]
     [∀ (i : I), QuasiSeparatedSpace (D.obj i)]
@@ -1094,7 +1161,9 @@ lemma Scheme.exists_isOpenCover_and_isAffine_of_finite [IsCofiltered I]
 open TopologicalSpace in
 include hc in
 /-- Suppose `{ Xᵢ }` is an inverse system of qcqs schemes with affine transition maps.
-Then any affine open cover of `lim Xᵢ` comes from a finite level. -/
+Then any affine open cover of `lim Xᵢ` comes from a finite level.
+@isnad1 id=ex.2h6v.s9.05fc387e48a7 from=seed src=0 shape=510d2458 vocab=559b8b81
+-/
 lemma Scheme.exists_isOpenCover_and_isAffine [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)]
     [∀ (i : I), CompactSpace (D.obj i)]
@@ -1114,7 +1183,9 @@ lemma Scheme.exists_isOpenCover_and_isAffine [IsCofiltered I]
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
-/-- Variant of `Scheme.exists_isOpenCover_and_isAffine_of_finite` in terms of `Scheme.OpenCover`. -/
+/-- Variant of `Scheme.exists_isOpenCover_and_isAffine_of_finite` in terms of `Scheme.OpenCover`.
+@isnad1 id=ex.0h5v.s9.c589e7e78f25 from=seed src=0 shape=d03da0c6 vocab=2f1ae9e4
+-/
 lemma Scheme.OpenCover.exists_of_isCofiltered_of_finite [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f)] [∀ (i : I), CompactSpace (D.obj i)]
     [∀ (i : I), QuasiSeparatedSpace (D.obj i)]
@@ -1221,6 +1292,7 @@ include hc in
 Given a cofiltered diagram of qcqs schemes `Dᵢ` over `S` with affine transition maps.
 If `X` is locally of finite presentation over `S`, then any `S`-morphism `lim Dᵢ ⟶ X` factors
 through some `lim Dᵢ ⟶ Dⱼ ⟶ X` for some `j`.
+@isnad1 id=ex.1h9v.s9.796df4494829 from=seed src=0 shape=26939fa6 vocab=44b3d030
 -/
 lemma Scheme.exists_π_app_comp_eq_of_locallyOfFinitePresentation
     [IsCofiltered I] [LocallyOfFinitePresentation f]
@@ -1333,7 +1405,9 @@ lemma Scheme.exists_π_app_comp_eq_of_locallyOfFinitePresentation
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- `Hom_S(-, X)` sends a cofiltered limit of qcqs `S`-schemes with affine transition maps
-to a filtered colimit if `X` is locally of finite presentation over `X`. -/
+to a filtered colimit if `X` is locally of finite presentation over `X`.
+@isnad1 id=preserve.0h4v.s8.7ac3a82686f4 from=seed src=0 shape=57381b11 vocab=b49561cd
+-/
 instance Scheme.preservesColimit_yoneda (D : I ⥤ Over S) [IsCofiltered I]
     [∀ {i j} (f : i ⟶ j), IsAffineHom (D.map f).left]
     [∀ (i : I), CompactSpace (D.obj i).left] [∀ (i : I), QuasiSeparatedSpace (D.obj i).left]

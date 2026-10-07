@@ -53,42 +53,68 @@ def coeffList (P : R[X]) : List R :=
 variable {P : R[X]}
 
 variable (R) in
+/--
+@isnad1 id=eq.0h1v.s4.6aaa995973e6 from=seed src=0 shape=a0696bc9 vocab=ddd2cc30
+-/
 @[simp]
 theorem coeffList_zero : (0 : R[X]).coeffList = [] := by
   simp [coeffList]
 
-/-- Only the zero polynomial has no coefficients. -/
+/-- Only the zero polynomial has no coefficients.
+@isnad1 id=iff.0h2v.s5.04afcf133f0e from=seed src=0 shape=b148e36b vocab=ddd2cc30
+-/
 @[simp]
 theorem coeffList_eq_nil {P : R[X]} : P.coeffList = [] ↔ P = 0 := by
   simp [coeffList]
 
+/--
+@isnad1 id=eq.1h2v.s6.b8aed7782889 from=seed src=0 shape=9fc2a327 vocab=9d3c5793
+-/
 @[simp]
 theorem coeffList_C {x : R} (h : x ≠ 0) : (C x).coeffList = [x] := by
   simp [coeffList, List.range_succ, degree_eq_natDegree (C_ne_zero.mpr h)]
 
+/--
+@isnad1 id=ex.1h2v.s5.024f55dc3ce7 from=seed src=0 shape=4012429e vocab=c17fc143
+-/
 theorem coeffList_eq_cons_leadingCoeff (h : P ≠ 0) :
     ∃ ls, P.coeffList = P.leadingCoeff :: ls := by
   simp [coeffList, List.range_succ, withBotSucc_degree_eq_natDegree_add_one h]
 
+/--
+@isnad1 id=eq.1h2v.s5.9c4cbd85e04e from=seed src=0 shape=5cb05c71 vocab=66cdd3d8
+-/
 @[simp]
 theorem head?_coeffList (h : P ≠ 0) :
     P.coeffList.head? = P.leadingCoeff :=
   (coeffList_eq_cons_leadingCoeff h).casesOn fun _ ↦ (Eq.symm · ▸ rfl)
 
+/--
+@isnad1 id=eq.1h2v.s5.c3d3c6e574ca from=seed src=0 shape=401848fd vocab=9d11e286
+-/
 @[simp] theorem head_coeffList (P : R[X]) (hP) :
     P.coeffList.head hP = P.leadingCoeff :=
   let h := coeffList_eq_nil.not.mp hP
   (coeffList_eq_cons_leadingCoeff h).casesOn fun _ _ ↦
     Option.some.injEq _ _ ▸ List.head?_eq_some_head _ ▸ head?_coeffList h
 
+/--
+@isnad1 id=eq.0h2v.s4.719868bad618 from=seed src=0 shape=5ae7a428 vocab=d59020df
+-/
 theorem length_coeffList_eq_withBotSucc_degree (P : R[X]) : P.coeffList.length = P.degree.succ := by
   simp [coeffList]
 
+/--
+@isnad1 id=eq.0h2v.s6.04c4c4a5f166 from=seed src=0 shape=62a67e3f vocab=a31e19ef
+-/
 @[simp]
 theorem length_coeffList_eq_ite [DecidableEq R] (P : R[X]) :
     P.coeffList.length = if P = 0 then 0 else P.natDegree + 1 := by
   by_cases h : P = 0 <;> simp [h, coeffList, withBotSucc_degree_eq_natDegree_add_one]
 
+/--
+@isnad1 id=eq.1h2v.s5.1dfedc8c3740 from=seed src=0 shape=d4b760d6 vocab=e844c84f
+-/
 theorem leadingCoeff_cons_eraseLead (h : P.nextCoeff ≠ 0) :
     P.leadingCoeff :: P.eraseLead.coeffList = P.coeffList := by
   have h₂ := ne_zero_of_natDegree_gt (natDegree_pos_of_nextCoeff_ne_zero h)
@@ -97,6 +123,9 @@ theorem leadingCoeff_cons_eraseLead (h : P.nextCoeff ≠ 0) :
     withBotSucc_degree_eq_natDegree_add_one h₃, List.range_succ] using
     (Polynomial.eraseLead_coeff_of_ne · ·.ne)
 
+/--
+@isnad1 id=eq.1h3v.s6.87cf10310c48 from=seed src=0 shape=8eae19be vocab=342ef77d
+-/
 @[simp]
 theorem coeffList_monomial {x : R} (hx : x ≠ 0) (n : ℕ) :
     (monomial n x).coeffList = x :: List.replicate n 0 := by
@@ -111,7 +140,9 @@ theorem coeffList_monomial {x : R} (hx : x ≠ 0) (n : ℕ) :
       using Polynomial.coeff_monomial_of_ne _ (by lia)
 
 /-- Coefficients of a polynomial `P` are always the leading coefficient, some number of zeros, and
-then `coeffList P.eraseLead`. -/
+then `coeffList P.eraseLead`.
+@isnad1 id=eq.1h2v.s6.ae9097ed01a2 from=seed src=0 shape=41cdada5 vocab=23124a92
+-/
 theorem coeffList_eraseLead (h : P ≠ 0) :
     P.coeffList =
       P.leadingCoeff :: (.replicate (P.natDegree - P.eraseLead.degree.succ) 0
@@ -165,6 +196,9 @@ section Ring
 
 variable [Ring R] (P : R[X])
 
+/--
+@isnad1 id=eq.0h2v.s5.df8769b628b6 from=seed src=0 shape=f890d398 vocab=b10c8a24
+-/
 @[simp]
 theorem coeffList_neg : (-P).coeffList = P.coeffList.map (-·) := by
   by_cases hp : P = 0
@@ -177,6 +211,9 @@ section NoZeroDivisors
 
 variable [Semiring R] [NoZeroDivisors R] (P : R[X])
 
+/--
+@isnad1 id=eq.1h3v.s6.adde19463db2 from=seed src=0 shape=20c78cf7 vocab=9c1b23c7
+-/
 theorem coeffList_C_mul {x : R} (hx : x ≠ 0) : (C x * P).coeffList = P.coeffList.map (x * ·) := by
   by_cases hp : P = 0
   · simp [hp]

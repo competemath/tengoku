@@ -95,6 +95,9 @@ scoped[AlgebraicGeometry] notation3 "Γ(" M ", " U ")" => (Scheme.Modules.preshe
 instance : Module Γ(X, U) Γ(M, U) := (M.val.obj (.op U)).isModule
 
 variable (M) in
+/--
+@isnad1 id=eq.0h7v.s13.d9e1834d324a from=seed src=0 shape=a93de540 vocab=970894fb
+-/
 @[simp] lemma map_smul (i : U ⟶ V) (r : Γ(X, V)) (x : Γ(M, V)) :
     M.presheaf.map i.op (r • x) = X.presheaf.map i.op r • M.presheaf.map i.op x :=
   M.val.map_smul _ _ _
@@ -103,9 +106,15 @@ variable (M) in
 def smul : Γ(X, U) →+* End Γ(M, U) :=
   (M.val.obj (.op U)).smul
 
+/--
+@isnad1 id=eq.0h5v.s13.ddd0f55bbbc3 from=seed src=0 shape=4cee5797 vocab=6f03b5c3
+-/
 @[simp]
 lemma smul_apply (r : Γ(X, U)) (x : Γ(M, U)) : (M.smul r).hom x = r • x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.1f183feeef2b from=seed src=0 shape=99c980ee vocab=b0514995
+-/
 @[reassoc (attr := simp)]
 lemma map_comp_smul (i : U ⟶ V) (r : Γ(X, V)) :
     M.smul r ≫ M.presheaf.map i.op = M.presheaf.map i.op ≫ M.smul (X.presheaf.map i.op r) := by
@@ -120,30 +129,66 @@ noncomputable def Hom.mapPresheaf (φ : M ⟶ N) : M.presheaf ⟶ N.presheaf :=
 def Hom.app (φ : M ⟶ N) (U : X.Opens) : Γ(M, U) ⟶ Γ(N, U) :=
   (forget₂ _ _).map (φ.val.app (.op U))
 
+/--
+@isnad1 id=eq.0h5v.s8.f218da015fc9 from=seed src=0 shape=0c254466 vocab=8c3a81b0
+-/
 @[simp] lemma mapPresheaf_app (φ : M ⟶ N) (U) : φ.mapPresheaf.app U = φ.app U.unop := rfl
 
+/--
+@isnad1 id=eq.0h7v.s13.6de864ef80e4 from=seed src=0 shape=f7947151 vocab=30cf58e6
+-/
 @[simp]
 lemma Hom.app_smul (φ : M ⟶ N) (r : Γ(X, U)) (x : Γ(M, U)) :
     φ.app U (r • x) = r • φ.app U x :=
   (φ.val.app (.op U)).hom.map_smul r x
 
+/--
+@isnad1 id=eq.0h6v.s10.604684eab4c7 from=seed src=0 shape=03b724cc vocab=f1e95194
+-/
 @[simp] lemma Hom.add_app (φ ψ : M ⟶ N) : (φ + ψ).app U = φ.app U + ψ.app U := rfl
+/--
+@isnad1 id=eq.0h6v.s10.d85139d13b92 from=seed src=0 shape=03b724cc vocab=3965b60c
+-/
 @[simp] lemma Hom.sub_app (φ ψ : M ⟶ N) : (φ - ψ).app U = φ.app U - ψ.app U := rfl
+/--
+@isnad1 id=eq.0h4v.s10.9031cf093cc7 from=seed src=0 shape=48f27c59 vocab=1dfd3856
+-/
 @[simp] lemma Hom.zero_app : (0 : M ⟶ N).app U = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s8.cbb6705cb29a from=seed src=0 shape=51eedda7 vocab=6e4a77a0
+-/
 @[simp] lemma Hom.id_app (M : X.Modules) : (𝟙 M :).app U = 𝟙 _ := rfl
+/--
+@isnad1 id=eq.0h7v.s9.bcbaa86fee20 from=seed src=0 shape=a7d26eac vocab=abd61aba
+-/
 @[simp] lemma Hom.comp_app (φ : M ⟶ N) (ψ : N ⟶ K) : (φ ≫ ψ).app U = φ.app U ≫ ψ.app U := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.ad80c6d824e1 from=seed src=0 shape=c6bdbcc6 vocab=1dfd3856
+-/
 @[ext]
 lemma hom_ext (f g : M ⟶ N) (H : ∀ U, f.app U = g.app U) : f = g := by
   apply SheafOfModules.hom_ext
   ext U x
   exact congr($(H U.unop) x)
 
+/--
+@isnad1 id=issheaf.0h2v.s4.98b91e6d490d from=seed src=0 shape=e9290d0c vocab=df6eb003
+-/
 lemma isSheaf (M : X.Modules) : M.presheaf.IsSheaf := SheafOfModules.isSheaf M
 
+/--
+@isnad1 id=eq.0h2v.s5.44b26779d91a from=seed src=0 shape=26dddf9c vocab=e3448888
+-/
 @[simp] lemma toPresheaf_obj : (toPresheaf X).obj M = M.presheaf := rfl
+/--
+@isnad1 id=eq.0h4v.s7.05596a40f53c from=seed src=0 shape=ad7333ee vocab=b807a9e6
+-/
 @[simp] lemma toPresheaf_map : (toPresheaf X).map φ = φ.mapPresheaf := rfl
 
+/--
+@isnad1 id=iff.0h4v.s8.9fac643f4659 from=seed src=0 shape=e128c6ba vocab=505bde38
+-/
 lemma Hom.isIso_iff_isIso_app {M N : X.Modules} {φ : M ⟶ N} :
     IsIso φ ↔ ∀ U, IsIso (φ.app U) := by
   rw [← isIso_iff_of_reflects_iso _ (toPresheaf X), NatTrans.isIso_iff_isIso_app]
@@ -151,6 +196,9 @@ lemma Hom.isIso_iff_isIso_app {M N : X.Modules} {φ : M ⟶ N} :
 
 instance [IsIso φ] : IsIso (φ.app U) := Hom.isIso_iff_isIso_app.mp ‹_› _
 
+/--
+@isnad1 id=eq.0h5v.s9.e20bc83d2e88 from=seed src=0 shape=9def5428 vocab=51ddc8cf
+-/
 @[simp, push ←]
 lemma inv_app [IsIso φ] : (inv φ).app U = inv (φ.app U) := by
   apply IsIso.eq_inv_of_hom_inv_id
@@ -166,14 +214,23 @@ variable (f : X ⟶ Y) (g : Y ⟶ Z) (h : Z ⟶ T)
 def pushforward : X.Modules ⥤ Y.Modules :=
   SheafOfModules.pushforward f.toRingCatSheafHom
 
+/--
+@isnad1 id=eq.0h5v.s8.1fd5de26b8d7 from=seed src=0 shape=9c50be20 vocab=6e3ea70c
+-/
 @[simp]
 lemma pushforward_obj_obj (M : X.Modules) (U : Y.Opens) :
     Γ((pushforward f).obj M, U) = Γ(M, f ⁻¹ᵁ U) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.e6de0b518c8d from=seed src=0 shape=5ae402d8 vocab=99794f8b
+-/
 @[simp]
 lemma pushforward_obj_presheaf_map {U V : Y.Opens} (i : U ⟶ V) :
     ((pushforward f).obj M).presheaf.map i.op = M.presheaf.map ((Opens.map f.base).map i).op := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.aff7456169b6 from=seed src=0 shape=12bf6e5d vocab=86278cd9
+-/
 @[simp]
 lemma pushforward_map_app (φ : M ⟶ N) (U : Y.Opens) :
     ((pushforward f).map φ).app U = φ.app (f ⁻¹ᵁ U) := rfl
@@ -207,7 +264,13 @@ to the identity functor. -/
 def pushforwardId : pushforward (𝟙 X) ≅ 𝟭 _ :=
   SheafOfModules.pushforwardId _
 
+/--
+@isnad1 id=eq.0h3v.s9.a9d7c2bcc94c from=seed src=0 shape=84ed7dca vocab=e8487df2
+-/
 @[simp] lemma pushforwardId_hom_app_app : ((pushforwardId X).hom.app M).app U = 𝟙 _ := rfl
+/--
+@isnad1 id=eq.0h3v.s9.23ae0c1c2a0b from=seed src=0 shape=0b028d49 vocab=feafa910
+-/
 @[simp] lemma pushforwardId_inv_app_app : ((pushforwardId X).inv.app M).app U = 𝟙 _ := rfl
 
 variable (X) in
@@ -217,6 +280,9 @@ def pullbackId : pullback (𝟙 X) ≅ 𝟭 _ :=
   SheafOfModules.pullbackId _
 
 variable (X) in
+/--
+@isnad1 id=eq.0h1v.s9.1b1bd79336ad from=seed src=0 shape=efc1d1c6 vocab=1ea1d50c
+-/
 lemma conjugateEquiv_pullbackId_hom :
     conjugateEquiv .id (pullbackPushforwardAdjunction (𝟙 X)) (pullbackId X).hom =
       (pushforwardId X).inv :=
@@ -228,7 +294,13 @@ def pushforwardComp :
     pushforward f ⋙ pushforward g ≅ pushforward (f ≫ g) :=
   SheafOfModules.pushforwardComp _ _
 
+/--
+@isnad1 id=eq.0h7v.s9.19ef0589926d from=seed src=0 shape=a5fc6be4 vocab=b35b5ed4
+-/
 @[simp] lemma pushforwardComp_hom_app_app (U) : ((pushforwardComp f g).hom.app M).app U = 𝟙 _ := rfl
+/--
+@isnad1 id=eq.0h7v.s9.a7e928a62eb2 from=seed src=0 shape=a441944c vocab=f52dab7d
+-/
 @[simp] lemma pushforwardComp_inv_app_app (U) : ((pushforwardComp f g).inv.app M).app U = 𝟙 _ := rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
@@ -244,9 +316,15 @@ def pushforwardCongr {f g : X ⟶ Y} (hf : f = g) : pushforward f ≅ pushforwar
     pushforwardNatIso _ (Opens.mapIso _ _ (hf ▸ rfl)) ≪≫
       SheafOfModules.pushforwardCongr (by cat_disch)
 
+/--
+@isnad1 id=eq.1h6v.s11.c3ec7b844ec9 from=seed src=0 shape=94696a59 vocab=0375005c
+-/
 @[simp] lemma pushforwardCongr_hom_app_app {f g : X ⟶ Y} (hf : f = g) (U : Y.Opens) :
     ((pushforwardCongr hf).hom.app M).app U = M.presheaf.map (eqToHom (hf ▸ rfl)).op := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.b0b8591e6c82 from=seed src=0 shape=b9c055b7 vocab=ad1b0b6d
+-/
 @[simp] lemma pushforwardCongr_inv_app_app {f g : X ⟶ Y} (hf : f = g) (U : Y.Opens) :
     ((pushforwardCongr hf).inv.app M).app U = M.presheaf.map (eqToHom (hf ▸ rfl)).op := rfl
 
@@ -255,6 +333,9 @@ def pullbackCongr {f g : X ⟶ Y} (hf : f = g) : pullback f ≅ pullback g :=
   eqToIso (hf ▸ rfl)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h5v.s10.97528283d160 from=seed src=0 shape=b766e62d vocab=95d66427
+-/
 lemma conjugateEquiv_pullbackComp_inv :
     conjugateEquiv ((pullbackPushforwardAdjunction g).comp (pullbackPushforwardAdjunction f))
       (pullbackPushforwardAdjunction (f ≫ g)) (pullbackComp f g).inv =
@@ -262,6 +343,9 @@ lemma conjugateEquiv_pullbackComp_inv :
   SheafOfModules.conjugateEquiv_pullbackComp_inv _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s10.c9334ac77e83 from=seed src=0 shape=272b15ba vocab=8e1609e7
+-/
 @[reassoc]
 lemma pseudofunctor_associativity :
     (pullbackComp f (g ≫ h)).inv ≫
@@ -279,6 +363,9 @@ lemma pseudofunctor_associativity :
   simp [this]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s8.4812385c1c6f from=seed src=0 shape=92289ceb vocab=6dd5a1ef
+-/
 @[reassoc]
 lemma pseudofunctor_left_unitality :
     (pullbackComp f (𝟙 Y)).inv ≫
@@ -293,6 +380,9 @@ lemma pseudofunctor_left_unitality :
   simp [← this]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s8.f11cce493b5b from=seed src=0 shape=00e0cb44 vocab=b65a5919
+-/
 @[reassoc]
 lemma pseudofunctor_right_unitality :
     (pullbackComp (𝟙 X) f).inv ≫
@@ -350,18 +440,27 @@ abbrev restrict (M : Y.Modules) (f : X ⟶ Y) [IsOpenImmersion f] : X.Modules :=
 def restrictAppIso (M : Y.Modules) (U : X.Opens) : Γ(M.restrict f, U) ≅ Γ(M, f ''ᵁ U) :=
   Iso.refl _
 
+/--
+@isnad1 id=eq.0h6v.s13.e17c1310ef76 from=seed src=0 shape=595b6e71 vocab=12836f9b
+-/
 @[elementwise (attr := simp), reassoc (attr := simp)]
 lemma smul_restrictAppIso_hom (M : Y.Modules) (U : X.Opens) (r : Γ(X, U)) :
     dsimp% (M.restrict f).smul r ≫ (M.restrictAppIso f U).hom =
       (M.restrictAppIso f U).hom ≫ M.smul ((f.appIso U).inv r) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.c3a09f55a944 from=seed src=0 shape=1e2d1854 vocab=12836f9b
+-/
 @[elementwise (attr := simp), reassoc (attr := simp)]
 lemma smul_restrictAppIso_inv (M : Y.Modules) (U : X.Opens) (r : Γ(Y, f ''ᵁ U)) :
     M.smul r ≫ (M.restrictAppIso f U).inv =
       (M.restrictAppIso f U).inv ≫ (M.restrict f).smul ((f.appIso U).hom r) := by
   simp [← cancel_mono (M.restrictAppIso f U).hom]
 
+/--
+@isnad1 id=eq.0h7v.s11.c458f2d73613 from=seed src=0 shape=f0720b58 vocab=454860c6
+-/
 @[elementwise (attr := simp), reassoc (attr := simp)]
 lemma map_restrictAppIso_hom (M : Y.Modules) {U V : X.Opens}
     (hUV : Opposite.op V ⟶ .op U) :
@@ -370,6 +469,9 @@ lemma map_restrictAppIso_hom (M : Y.Modules) {U V : X.Opens}
       M.presheaf.map (.op <| homOfLE <| Scheme.Hom.image_mono _ (leOfHom hUV.unop)) := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.08b140d42285 from=seed src=0 shape=be02f704 vocab=03ac70d7
+-/
 @[elementwise (attr := simp), reassoc (attr := simp)]
 lemma restrictAppIso_inv_map (M : Y.Modules) {U V : X.Opens} (hUV : .op V ⟶ .op U) :
     (M.restrictAppIso f V).inv ≫ (M.restrict f).presheaf.map hUV =
@@ -378,12 +480,16 @@ lemma restrictAppIso_inv_map (M : Y.Modules) {U V : X.Opens} (hUV : .op V ⟶ .o
   rfl
 
 /-- Avoid using this. Use the isomorphism `AlgebraicGeometry.Scheme.Modules.restrictAppIso`
-instead. -/
+instead.
+@isnad1 id=eq.0h5v.s8.a7fea6030c73 from=seed src=0 shape=8624a0b7 vocab=e60fa348
+-/
 lemma restrict_obj (M : Y.Modules) (f : X ⟶ Y) [IsOpenImmersion f] (U) :
     Γ(M.restrict f, U) = Γ(M, f ''ᵁ U) := rfl
 
 /-- Avoid using this. Use the isomorphism `AlgebraicGeometry.Scheme.Modules.restrictAppIso`
-instead. -/
+instead.
+@isnad1 id=eq.0h7v.s10.a0cab9cc03e1 from=seed src=0 shape=639c3346 vocab=f32d91b1
+-/
 lemma restrict_map (M : Y.Modules) (f : X ⟶ Y) [IsOpenImmersion f] {U V} (i : U ⟶ V) :
     (M.restrict f).presheaf.map i.op = M.presheaf.map (f.opensFunctor.map i).op := rfl
 
@@ -430,11 +536,17 @@ instance : (restrictFunctor f).IsLeftAdjoint := (restrictAdjunction f).isLeftAdj
 instance : (pushforward f).Full := (restrictAdjunction f).fullyFaithfulROfIsIsoCounit.full
 instance : (pushforward f).Faithful := (restrictAdjunction f).fullyFaithfulROfIsIsoCounit.faithful
 
+/--
+@isnad1 id=eq.0h5v.s10.4d8c55ae3985 from=seed src=0 shape=eb5715f6 vocab=bfe35c53
+-/
 @[simp]
 lemma restrictAdjunction_unit_app_app (M : Y.Modules) (U : Y.Opens) :
     ((restrictAdjunction f).unit.app M).app U =
       M.presheaf.map (homOfLE (f.image_preimage_le U)).op := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.02e9012258c4 from=seed src=0 shape=bdfe1461 vocab=86e42be0
+-/
 @[simp]
 lemma restrictAdjunction_counit_app_app (M : X.Modules) (U : X.Opens) :
     ((restrictAdjunction f).counit.app M).app U =
@@ -453,11 +565,17 @@ def restrictFunctorId : restrictFunctor (𝟙 X) ≅ 𝟭 _ :=
       (by ext : 3; simp [← Functor.map_comp, SheafedSpace.sheaf]) ≪≫
     SheafOfModules.pushforwardId _
 
+/--
+@isnad1 id=eq.0h3v.s9.b30f2eb76a7e from=seed src=0 shape=04e06154 vocab=b3656375
+-/
 @[simp]
 lemma restrictFunctorId_hom_app_app :
     (restrictFunctorId.hom.app M).app U =
       M.presheaf.map (eqToHom (show U = 𝟙 X ''ᵁ U by simp)).op := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.4cec75257821 from=seed src=0 shape=42643408 vocab=1ff5ab56
+-/
 @[simp]
 lemma restrictFunctorId_inv_app_app :
     (restrictFunctorId.inv.app M).app U =
@@ -471,10 +589,16 @@ def restrictFunctorComp : restrictFunctor (f ≫ g) ≅ restrictFunctor g ⋙ re
     SheafOfModules.pushforwardCongr (by ext : 3; simp [← Functor.map_comp, SheafedSpace.sheaf]) ≪≫
     (SheafOfModules.pushforwardComp _ _).symm
 
+/--
+@isnad1 id=eq.0h7v.s10.20d59a7f4b6f from=seed src=0 shape=64ee8662 vocab=80a77da2
+-/
 @[simp]
 lemma restrictFunctorComp_hom_app_app (M : Z.Modules) :
     ((restrictFunctorComp f g).hom.app M).app U = M.presheaf.map (eqToHom (by simp)).op := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.b67ed440311f from=seed src=0 shape=836f8d13 vocab=642d1ab0
+-/
 @[simp]
 lemma restrictFunctorComp_inv_app_app (M : Z.Modules) :
     ((restrictFunctorComp f g).inv.app M).app U = M.presheaf.map (eqToHom (by simp)).op := rfl
@@ -487,11 +611,17 @@ def restrictFunctorCongr {f g : X ⟶ Y} (hf : f = g) [IsOpenImmersion f] [IsOpe
   SheafOfModules.pushforwardNatIso _ (NatIso.ofComponents fun _ ↦ eqToIso (by simp [hf])) ≪≫
     SheafOfModules.pushforwardCongr (by ext : 3; subst hf; simp)
 
+/--
+@isnad1 id=eq.1h6v.s10.382b8c9f4e84 from=seed src=0 shape=379065b3 vocab=74a2ee3b
+-/
 @[simp]
 lemma restrictFunctorCongr_hom_app_app {f g : X ⟶ Y} (hf : f = g) [IsOpenImmersion f]
     [IsOpenImmersion g] (M : Y.Modules) :
     ((restrictFunctorCongr hf).hom.app M).app U = M.presheaf.map (eqToHom (by simp [hf])).op := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.1fbebc9e103c from=seed src=0 shape=d9647873 vocab=39cd6b3a
+-/
 @[simp]
 lemma restrictFunctorCongr_inv_app_app {f g : X ⟶ Y} (hf : f = g) [IsOpenImmersion f]
     [IsOpenImmersion g] (M : Y.Modules) :
@@ -506,6 +636,9 @@ def restrictStalkNatIso (x : X) :
       (OpenNhds.inclusion (f x)).op).isoWhiskerLeft
       (Functor.Final.colimIso (f.isOpenEmbedding.functorNhds x).op)
 
+/--
+@isnad1 id=eq.1h6v.s10.5caa3f2a8393 from=seed src=0 shape=ec5c8476 vocab=225053a2
+-/
 @[simp]
 lemma germ_restrictStalkNatIso_hom_app (x : X) (M : Y.Modules) (hxU : x ∈ U) :
     ((restrictFunctor f).obj M).presheaf.germ U _ hxU ≫
@@ -517,6 +650,9 @@ lemma germ_restrictStalkNatIso_hom_app (x : X) (M : Y.Modules) (hxU : x ∈ U) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s10.edfd6117f719 from=seed src=0 shape=92147188 vocab=6ace9d4a
+-/
 @[simp]
 lemma germ_restrictStalkNatIso_inv_app (x : X) (M : Y.Modules) (hxU : x ∈ U) :
     M.presheaf.germ _ _ (by simpa) ≫ (restrictStalkNatIso f x).inv.app M =

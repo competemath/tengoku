@@ -56,17 +56,32 @@ abbrev ofHom {X Y : Type u} [GroupWithZero X] [GroupWithZero Y]
     (f : MonoidWithZeroHom X Y) : of X ⟶ of Y :=
   ConcreteCategory.ofHom f
 
+/--
+@isnad1 id=eq.0h1v.s6.e07be5ff1c38 from=seed src=0 shape=2b62fd68 vocab=c31b032a
+-/
 @[simp]
 lemma hom_id {X : GrpWithZero} : ConcreteCategory.hom (𝟙 X : X ⟶ X) = MonoidWithZeroHom.id X := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.d50a185cf45c from=seed src=0 shape=299e9402 vocab=d1b61754
+-/
 @[simp]
 lemma hom_comp {X Y Z : GrpWithZero} {f : X ⟶ Y} {g : Y ⟶ Z} :
     ConcreteCategory.hom (f ≫ g) = g.comp f := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.0a82a9ba71ec from=seed src=0 shape=bae0b6c4 vocab=cde3a6f7
+-/
 lemma coe_id {X : GrpWithZero} : (𝟙 X : X → X) = id := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.e9b76110de7b from=seed src=0 shape=bfb9d4a0 vocab=e16bd06b
+-/
 lemma coe_comp {X Y Z : GrpWithZero} {f : X ⟶ Y} {g : Y ⟶ Z} : (f ≫ g : X → Z) = g ∘ f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.9b3f4db84e88 from=seed src=0 shape=de3c73d6 vocab=5a06a982
+-/
 @[simp] lemma forget_map {X Y : GrpWithZero} (f : X ⟶ Y) :
     (forget GrpWithZero).map f = (f : _ → _) :=
   rfl

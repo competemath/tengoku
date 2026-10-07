@@ -21,8 +21,14 @@ open Multiplicative
 
 namespace Nat
 
+/--
+@isnad1 id=eq.0h2v.s6.a2db94eeefb9 from=seed src=0 shape=78d38ee2 vocab=3cab16c1
+-/
 lemma toAdd_pow (a : Multiplicative ℕ) (b : ℕ) : (a ^ b).toAdd = a.toAdd * b := mul_comm _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.9528c4d17f70 from=seed src=0 shape=07f8ada2 vocab=ddf2ed7f
+-/
 @[simp] lemma ofAdd_mul (a b : ℕ) : ofAdd (a * b) = ofAdd a ^ b := (toAdd_pow _ _).symm
 
 end Nat

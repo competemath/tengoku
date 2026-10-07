@@ -27,7 +27,9 @@ namespace Int
 
 /-- The discrete (integer) form of Hermite's identity: the sum of `(m + i) / n` over a
 complete block `0 ≤ i < n` of consecutive shifts equals `m`, where `/` is Euclidean
-(`Int.ediv`) division. -/
+(`Int.ediv`) division.
+@isnad1 id=eq.1h2v.s5.fcbde6f80091 from=seed src=0 shape=e054ed09 vocab=6a99b0f1
+-/
 public theorem sum_range_add_ediv (m : ℤ) {n : ℕ} (hn : 0 < n) :
     ∑ i ∈ Finset.range n, (m + i) / n = m := by
   rw [← Int.natCast_pos] at hn
@@ -45,7 +47,9 @@ public theorem sum_range_add_ediv (m : ℤ) {n : ℕ} (hn : 0 < n) :
       grind [Int.mul_ediv_add_emod, Nat.card_Ico]
 
 /-- **Hermite's identity** for the floor function: for every `x` in a linearly ordered
-floor field and every `n : ℕ`, `∑ i ∈ Finset.range n, ⌊x + i / n⌋ = ⌊n * x⌋`. -/
+floor field and every `n : ℕ`, `∑ i ∈ Finset.range n, ⌊x + i / n⌋ = ⌊n * x⌋`.
+@isnad1 id=eq.0h3v.s7.939e5a87d49a from=seed src=0 shape=6367b306 vocab=bed455d4
+-/
 public theorem sum_floor_add_div
     {α : Type*} [Field α] [LinearOrder α] [IsOrderedRing α] [FloorRing α] (x : α) (n : ℕ) :
     ∑ i ∈ Finset.range n, ⌊x + i / n⌋ = ⌊n * x⌋ := by

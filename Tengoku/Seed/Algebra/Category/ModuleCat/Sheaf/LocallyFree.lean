@@ -50,6 +50,9 @@ class IsLocallyFreeData {M : SheafOfModules.{u} R} (q : M.LocalGeneratorsData) :
 
 attribute [instance] IsLocallyFreeData.isIso
 
+/--
+@isnad1 id=islocall.0h5v.s7.106f8fe313a2 from=seed src=0 shape=5a9d5e47 vocab=7dfa8bc4
+-/
 instance IsLocallyFreeData.shrink {M : SheafOfModules.{u} R} (q : M.LocalGeneratorsData)
     [q.IsLocallyFreeData] : q.shrink.IsLocallyFreeData where
   isIso i := inferInstanceAs (IsIso (q.generators i.2.choose).π)
@@ -62,6 +65,9 @@ There exist local generators satisfying `IsLocallyFreeData`. -/
 class IsLocallyFree (M : SheafOfModules.{u} R) : Prop where
   exists_isLocallyFreeData : ∃ q : LocalGeneratorsData.{u₁} M, q.IsLocallyFreeData
 
+/--
+@isnad1 id=islocall.0h5v.s7.449758d21265 from=seed src=0 shape=677a8db6 vocab=5f436d04
+-/
 theorem LocalGeneratorsData.isLocallyFree {M : SheafOfModules.{u} R} (q : M.LocalGeneratorsData)
     [q.IsLocallyFreeData] : M.IsLocallyFree := ⟨q.shrink, inferInstance⟩
 
@@ -80,6 +86,9 @@ def free.generatingSections (I : Type u) : (free (R := R) I).GeneratingSections 
     simp only [Equiv.symm_apply_apply]
     infer_instance
 
+/--
+@isnad1 id=eq.0h4v.s7.a1716346cba9 from=seed src=0 shape=466dacc2 vocab=8fb970cc
+-/
 @[simp]
 lemma free.generatingSections_π (I : Type u) :
     (free.generatingSections (R := R) I).π = 𝟙 (free I) :=
@@ -126,6 +135,9 @@ def quasiCoherentData {M : SheafOfModules.{u} R} (q : M.LocalGeneratorsData) [q.
     relations.s j := Empty.rec _ j.down
     relations.epi := IsZero.epi (IsZero.of_iso (isZero_zero _) (Limits.kernel.ofMono _)) _ }
 
+/--
+@isnad1 id=eq.0h5v.s7.93c0e5cba359 from=seed src=0 shape=fed555cb vocab=dabff672
+-/
 @[simp]
 lemma quasiCoherentData_localGeneratorsData {M : SheafOfModules.{u} R}
     (q : M.LocalGeneratorsData) [q.IsLocallyFreeData] :

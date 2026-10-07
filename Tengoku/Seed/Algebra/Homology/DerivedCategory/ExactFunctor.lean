@@ -44,6 +44,9 @@ noncomputable def mapDerivedCategoryFactors :
       F.mapHomologicalComplex (ComplexShape.up ℤ) ⋙ DerivedCategory.Q :=
   F.mapHomologicalComplexUpToQuasiIsoFactors _
 
+/--
+@isnad1 id=eq.0h6v.s11.b22b2865084c from=seed src=0 shape=ee176b19 vocab=205d35c1
+-/
 @[reassoc]
 lemma mapDerivedCategoryFactors_hom_naturality {X Y : CochainComplex C₁ ℤ} (f : X ⟶ Y) :
     F.mapDerivedCategory.map (DerivedCategory.Q.map f) ≫ F.mapDerivedCategoryFactors.hom.app Y =
@@ -64,6 +67,9 @@ noncomputable def mapDerivedCategoryFactorsh :
       F.mapHomotopyCategory (ComplexShape.up ℤ) ⋙ DerivedCategory.Qh :=
   F.mapHomologicalComplexUpToQuasiIsoFactorsh _
 
+/--
+@isnad1 id=eq.0h4v.s12.0beabc70d261 from=seed src=0 shape=cff39424 vocab=4e67bf64
+-/
 lemma mapDerivedCategoryFactorsh_hom_app (K : CochainComplex C₁ ℤ) :
     F.mapDerivedCategoryFactorsh.hom.app ((HomotopyCategory.quotient _ _).obj K) =
       F.mapDerivedCategory.map ((DerivedCategory.quotientCompQhIso C₁).hom.app K) ≫
@@ -126,6 +132,9 @@ instance [F.Linear R] : F.mapDerivedCategory.Linear R := by
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s11.fe85cc2156dd from=seed src=0 shape=08d85eb4 vocab=321fa95e
+-/
 @[reassoc (attr := simp)]
 lemma mapDerivedCategoryFactors_inv_app_mapDerivedCategorySingleFunctor_hom_app (X : C₁) :
     dsimp% F.mapDerivedCategoryFactors.inv.app ((HomologicalComplex.single C₁ (.up ℤ) 0).obj X) ≫
@@ -137,6 +146,9 @@ lemma mapDerivedCategoryFactors_inv_app_mapDerivedCategorySingleFunctor_hom_app 
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s11.e8196cd0e09d from=seed src=0 shape=10233cf2 vocab=321fa95e
+-/
 @[reassoc (attr := simp)]
 lemma mapDerivedCategorySingleFunctor_inv_app_mapDerivedCategoryFactors_hom_app (X : C₁) :
     dsimp% (F.mapDerivedCategorySingleFunctor 0).inv.app X ≫

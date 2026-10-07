@@ -132,6 +132,9 @@ noncomputable abbrev IsColimit.module {cR : Cocone R} (hcR : IsColimit cR) {cM :
           (RingCat.FilteredColimits.colimitCoconeIsColimit R)).ringCatIsoToRingEquiv.toRingHom
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h10v.s11.7bede40b4e32 from=seed src=0 shape=92f8dbe6 vocab=c144f7ed
+-/
 lemma IsColimit.ι_smul {cR : Cocone R} (hcR : IsColimit cR) {cM : Cocone M}
     (hcM : IsColimit cM) (i : C) (r : R.obj i) (m : M.obj i) :
     letI := IsColimit.module R M H hcR hcM
@@ -172,6 +175,9 @@ instance : Module (R.stalk x) ↑(TopCat.Presheaf.stalk M.presheaf x) :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h7v.s12.6fccc065c589 from=seed src=0 shape=34b7e624 vocab=fd9125da
+-/
 lemma germ_ringCat_smul (U : Opens X) (hx : x ∈ U) (r : R.obj (op U)) (m : M.obj (op U)) :
     TopCat.Presheaf.germ M.presheaf U x hx (r • m) =
       R.germ U x hx r • TopCat.Presheaf.germ M.presheaf U x hx m :=
@@ -201,6 +207,9 @@ instance (x : X) : Module (R.stalk x) ↑(TopCat.Presheaf.stalk M.presheaf x) :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h7v.s14.a2bc2c69d8ed from=seed src=0 shape=e649da6e vocab=2807eb44
+-/
 lemma germ_smul (x : X) (U : Opens X) (hx : x ∈ U) (r : R.obj (op U)) (m : M.obj (op U)) :
     TopCat.Presheaf.germ M.presheaf U x hx (r • m) =
       R.germ U x hx r • TopCat.Presheaf.germ M.presheaf U x hx m :=

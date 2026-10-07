@@ -37,6 +37,9 @@ instance (G : Over (Spec (.of K))) [GrpObj G] : IsClosedImmersion η[G].left :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iscommmo.0h2v.s8.cb1f4bbc3ccb from=seed src=0 shape=458b5a80 vocab=38b7f6e3
+-/
 theorem isCommMonObj_of_isProper_of_isIntegral_tensorObj_of_isAlgClosed [IsAlgClosed K]
     (G : Over (Spec (.of K))) [IsProper G.hom] [IsIntegral (G ⊗ G).left] [GrpObj G] :
     IsCommMonObj G := by
@@ -128,7 +131,9 @@ theorem isCommMonObj_of_isProper_of_isIntegral_tensorObj_of_isAlgClosed [IsAlgCl
   · simp
 
 set_option backward.defeqAttrib.useBackward true in
-/-- A proper geometrically integral group scheme over a field is commutative. -/
+/-- A proper geometrically integral group scheme over a field is commutative.
+@isnad1 id=iscommmo.0h2v.s7.b49a1413fbb0 from=seed src=0 shape=987c9f0c vocab=ac37f22c
+-/
 @[stacks 0BFD]
 theorem isCommMonObj_of_isProper_of_geometricallyIntegral
     (G : Over (Spec (.of K))) [IsProper G.hom] [GeometricallyIntegral G.hom] [GrpObj G] :

@@ -44,6 +44,9 @@ namespace AlternatingMap
 
 variable {M : ModuleCat.{v} R} {N : ModuleCat.{max u v} R} {n : ℕ}
 
+/--
+@isnad1 id=eq.1h6v.s7.9aabe39b49a3 from=seed src=0 shape=f2374774 vocab=feaa896d
+-/
 @[ext]
 lemma ext {φ φ' : M.AlternatingMap N n} (h : ∀ (x : Fin n → M), φ x = φ' x) :
     φ = φ' :=
@@ -55,6 +58,9 @@ variable (φ : M.AlternatingMap N n) {N' : ModuleCat.{max u v} R} (g : N ⟶ N')
 def postcomp : M.AlternatingMap N' n :=
   g.hom.compAlternatingMap φ
 
+/--
+@isnad1 id=eq.0h8v.s9.a110f7bfbb1c from=seed src=0 shape=0e588688 vocab=e5e3df0a
+-/
 @[simp]
 lemma postcomp_apply (x : Fin n → M) :
     φ.postcomp g x = g (φ x) := rfl
@@ -69,6 +75,9 @@ def mk {M : ModuleCat.{v} R} {n : ℕ} :
     M.AlternatingMap (M.exteriorPower n) n :=
   exteriorPower.ιMulti _ _
 
+/--
+@isnad1 id=eq.1h6v.s7.4466b599f694 from=seed src=0 shape=3abb8186 vocab=9bbaae9a
+-/
 @[ext]
 lemma hom_ext {M : ModuleCat.{v} R} {N : ModuleCat.{max u v} R} {n : ℕ}
     {f g : M.exteriorPower n ⟶ N}
@@ -81,6 +90,9 @@ noncomputable def desc {M : ModuleCat.{v} R} {n : ℕ} {N : ModuleCat.{max u v} 
     (φ : M.AlternatingMap N n) : M.exteriorPower n ⟶ N :=
   ofHom (exteriorPower.alternatingMapLinearEquiv φ)
 
+/--
+@isnad1 id=eq.0h6v.s9.fc1fcc6df0d4 from=seed src=0 shape=6f907277 vocab=7b878526
+-/
 @[simp]
 lemma desc_mk {M : ModuleCat.{v} R} {n : ℕ} {N : ModuleCat.{max u v} R}
     (φ : M.AlternatingMap N n) (x : Fin n → M) :
@@ -93,6 +105,9 @@ noncomputable def map {M N : ModuleCat.{v} R} (f : M ⟶ N) (n : ℕ) :
     M.exteriorPower n ⟶ N.exteriorPower n :=
   ofHom (_root_.exteriorPower.map n f.hom)
 
+/--
+@isnad1 id=eq.0h6v.s9.70ede31abb8c from=seed src=0 shape=6921c4c6 vocab=3660515a
+-/
 @[simp]
 lemma map_mk {M N : ModuleCat.{v} R} (f : M ⟶ N) {n : ℕ} (x : Fin n → M) :
     map f n (mk x) = mk (f ∘ x) := by
@@ -110,11 +125,17 @@ noncomputable def functor (n : ℕ) : ModuleCat.{v} R ⥤ ModuleCat.{max u v} R 
 noncomputable def iso₀ (M : ModuleCat.{u} R) : M.exteriorPower 0 ≅ ModuleCat.of R R :=
   (exteriorPower.zeroEquiv R M).toModuleIso
 
+/--
+@isnad1 id=eq.0h3v.s9.3b6a5e550286 from=seed src=0 shape=59ee8040 vocab=1b06de16
+-/
 @[simp]
 lemma iso₀_hom_apply {M : ModuleCat.{u} R} (f : Fin 0 → M) :
     (iso₀ M).hom (mk f) = 1 :=
   exteriorPower.zeroEquiv_ιMulti _
 
+/--
+@isnad1 id=eq.0h4v.s7.395d69a870e8 from=seed src=0 shape=728acaa5 vocab=471b2bf9
+-/
 @[reassoc (attr := simp)]
 lemma iso₀_hom_naturality {M N : ModuleCat.{u} R} (f : M ⟶ N) :
     map f 0 ≫ (iso₀ N).hom = (iso₀ M).hom :=
@@ -124,11 +145,17 @@ lemma iso₀_hom_naturality {M N : ModuleCat.{u} R} (f : M ⟶ N) :
 noncomputable def iso₁ (M : ModuleCat.{u} R) : M.exteriorPower 1 ≅ M :=
   (exteriorPower.oneEquiv R M).toModuleIso
 
+/--
+@isnad1 id=eq.0h3v.s9.a25b79be5940 from=seed src=0 shape=ac46fb3e vocab=cc4473af
+-/
 @[simp]
 lemma iso₁_hom_apply {M : ModuleCat.{u} R} (f : Fin 1 → M) :
     (iso₁ M).hom (mk f) = f 0 :=
   exteriorPower.oneEquiv_ιMulti _
 
+/--
+@isnad1 id=eq.0h4v.s7.c163b5e22882 from=seed src=0 shape=d0432d4c vocab=5d433457
+-/
 @[reassoc (attr := simp)]
 lemma iso₁_hom_naturality {M N : ModuleCat.{u} R} (f : M ⟶ N) :
     map f 1 ≫ (iso₁ N).hom = (iso₁ M).hom ≫ f :=

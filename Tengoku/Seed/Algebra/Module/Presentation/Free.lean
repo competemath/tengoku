@@ -50,12 +50,18 @@ noncomputable def solutionFinsupp.isPresentationCore :
   postcomp_desc := by aesop
   postcomp_injective h := by ext; apply Solution.congr_var h
 
+/--
+@isnad1 id=ispresen.0h2v.s6.bf53c1785d77 from=seed src=0 shape=4103bfb8 vocab=a1a53166
+-/
 lemma solutionFinsupp_isPresentation :
     relations.solutionFinsupp.IsPresentation :=
   (solutionFinsupp.isPresentationCore relations).isPresentation
 
 variable {relations}
 
+/--
+@isnad1 id=free.1h4v.s5.33d1792cf226 from=seed src=0 shape=cd67f436 vocab=9d9b79dc
+-/
 lemma Solution.IsPresentation.free {solution : relations.Solution M}
     (h : solution.IsPresentation) :
     Module.Free A M :=
@@ -78,6 +84,9 @@ noncomputable def presentationFinsupp (G : Type w₀) :
   toIsPresentation := by exact Relations.solutionFinsupp_isPresentation _
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iff.0h2v.s5.e2d0e79d5597 from=seed src=0 shape=f9632846 vocab=e50375c7
+-/
 lemma free_iff_exists_presentation :
     Free A M ↔ ∃ (p : Presentation.{v, w₁} A M), IsEmpty p.R := by
   constructor

@@ -79,6 +79,9 @@ def transitionMap {i j : 𝒰.I₀} (hij : i ⟶ j) :
   (isColimitOfPreserves (Over.map ⊤ (d.prop_trans hij)) (d.isColimit i)).desc
     (d.transitionCocone hij)
 
+/--
+@isnad1 id=eq.0h10v.s13.0dc8b802cec7 from=seed src=0 shape=9cf0425b vocab=a7fdc8a3
+-/
 @[reassoc]
 lemma cocone_ι_transitionMap {i j : 𝒰.I₀} (hij : i ⟶ j) (a : J) :
     (Over.map ⊤ (d.prop_trans hij)).map ((d.cocone i).ι.app a) ≫
@@ -86,6 +89,9 @@ lemma cocone_ι_transitionMap {i j : 𝒰.I₀} (hij : i ⟶ j) (a : J) :
   simp [transitionMap, ← Functor.mapCocone_ι_app, transitionCocone]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s11.0e0c9d2f3fca from=seed src=0 shape=ad1a9555 vocab=bcbfe178
+-/
 @[simp]
 lemma transitionMap_id (i : 𝒰.I₀) :
     d.transitionMap (𝟙 i) = ((Over.mapId _ _ _).hom.app <| (d.cocone i).pt) := by
@@ -96,6 +102,9 @@ lemma transitionMap_id (i : 𝒰.I₀) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h11v.s13.31fa10c8a416 from=seed src=0 shape=a138e980 vocab=a1ac486b
+-/
 @[simp]
 lemma transitionMap_comp {i j k : 𝒰.I₀} (hij : i ⟶ j) (hjk : j ⟶ k) :
     d.transitionMap (hij ≫ hjk) =
@@ -117,6 +126,9 @@ variable [∀ {i j} (hij : i ⟶ j), PreservesColimitsOfShape J (Over.pullback P
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispullba.0h9v.s12.eff0e17c44ae from=seed src=0 shape=43dc7ede vocab=1c5d1a48
+-/
 lemma isPullback {i j : 𝒰.I₀} (hij : i ⟶ j) :
     IsPullback (d.transitionMap hij).left (d.cocone i).pt.hom
       (d.cocone j).pt.hom (𝒰.trans hij) := by
@@ -177,6 +189,9 @@ def pullbackGluedIso (i : 𝒰.I₀) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s12.c2c1a0b770c8 from=seed src=0 shape=614870a1 vocab=ff1c57ce
+-/
 @[reassoc (attr := simp)]
 lemma pullbackGluedIso_inv_fst (i : 𝒰.I₀) : (d.pullbackGluedIso i).inv.left ≫ pullback.fst _ _ =
     colimit.ι d.relativeGluingData.functor i := by
@@ -184,6 +199,9 @@ lemma pullbackGluedIso_inv_fst (i : 𝒰.I₀) : (d.pullbackGluedIso i).inv.left
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s12.ce5ed0371a1e from=seed src=0 shape=94168d4c vocab=61b95dbe
+-/
 @[reassoc (attr := simp)]
 lemma pullbackGluedIso_inv_snd (i : 𝒰.I₀) :
     (d.pullbackGluedIso i).inv.left ≫ pullback.snd _ _ = (d.cocone i).pt.hom := by
@@ -218,6 +236,9 @@ noncomputable def gluedCocone : Cocone D := by
       ← Over.comp_left_assoc, ← Comma.comp_hom, ← Functor.comp_map, Cocone.w]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s13.45eb5341b7dc from=seed src=0 shape=e1f60619 vocab=0d8a2092
+-/
 @[reassoc]
 lemma fst_gluedCocone_ι (a : J) (i : 𝒰.I₀) :
     pullback.fst (D.obj a).hom (𝒰.f i) ≫
@@ -288,6 +309,9 @@ def isColimitGluedCocone : IsColimit d.gluedCocone := by
 
 end ColimitGluingData
 
+/--
+@isnad1 id=hascolim.0h6v.s10.ff989aac9885 from=seed src=0 shape=00fdfa20 vocab=3f275205
+-/
 lemma hasColimit_of_locallyDirected
     (H : ∀ {i j} (hij : i ⟶ j), P (𝒰.trans hij))
     [∀ {i j : 𝒰.I₀} (hij : i ⟶ j), PreservesColimitsOfShape J (Over.pullback P ⊤ (𝒰.trans hij))]

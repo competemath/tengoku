@@ -156,19 +156,27 @@ variable {S : Type*} [UnitalShelf S]
 A monoid is *graphic* if, for all `x` and `y`, the *graphic identity*
 `(x * y) * x = x * y` holds.  For a unital shelf, this graphic
 identity holds.
+@isnad1 id=eq.0h3v.s4.8ef9408eb51c from=seed src=0 shape=11afa885 vocab=3b12aadc
 -/
 lemma act_act_self_eq (x y : S) : (x ◃ y) ◃ x = x ◃ y := by
   have h : (x ◃ y) ◃ x = (x ◃ y) ◃ (x ◃ 1) := by rw [act_one]
   rw [h, ← Shelf.self_distrib, act_one]
 
+/--
+@isnad1 id=eq.0h2v.s4.5c841ef5d2e0 from=seed src=0 shape=972c3494 vocab=3b12aadc
+-/
 lemma act_idem (x : S) : (x ◃ x) = x := by rw [← act_one x, ← Shelf.self_distrib, act_one]
 
+/--
+@isnad1 id=eq.0h3v.s4.cfc3b7d9addc from=seed src=0 shape=a674b40d vocab=3b12aadc
+-/
 lemma act_self_act_eq (x y : S) : x ◃ (x ◃ y) = x ◃ y := by
   have h : x ◃ (x ◃ y) = (x ◃ 1) ◃ (x ◃ y) := by rw [act_one]
   rw [h, ← Shelf.self_distrib, one_act]
 
 /--
 The associativity of a unital shelf comes for free.
+@isnad1 id=eq.0h4v.s5.6eacb9bbfb4b from=seed src=0 shape=ba6d73b5 vocab=3b12aadc
 -/
 lemma assoc (x y z : S) : (x ◃ y) ◃ z = x ◃ y ◃ z := by
   rw [self_distrib, self_distrib, act_act_self_eq, act_self_act_eq]
@@ -188,38 +196,62 @@ def act' (x : R) : R ≃ R where
   left_inv := left_inv x
   right_inv := right_inv x
 
+/--
+@isnad1 id=eq.0h3v.s5.a2aae96a65ab from=seed src=0 shape=c69e0527 vocab=4f68cb4e
+-/
 @[simp]
 theorem act'_apply (x y : R) : act' x y = x ◃ y :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.00beeb70963d from=seed src=0 shape=81347765 vocab=890bf966
+-/
 @[simp]
 theorem act'_symm_apply (x y : R) : (act' x).symm y = x ◃⁻¹ y :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.68b7286a5498 from=seed src=0 shape=37ef3710 vocab=a20e7f6e
+-/
 @[simp]
 theorem invAct_apply (x y : R) : (act' x)⁻¹ y = x ◃⁻¹ y :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.c1fcbefa5d08 from=seed src=0 shape=4d81b941 vocab=8a0b4846
+-/
 @[simp]
 theorem invAct_act_eq (x y : R) : x ◃⁻¹ x ◃ y = y :=
   left_inv x y
 
+/--
+@isnad1 id=eq.0h3v.s4.bdff9b0ff213 from=seed src=0 shape=4d81b941 vocab=8a0b4846
+-/
 @[simp]
 theorem act_invAct_eq (x y : R) : x ◃ x ◃⁻¹ y = y :=
   right_inv x y
 
+/--
+@isnad1 id=iff.0h4v.s5.eafa1b214ee1 from=seed src=0 shape=c6662ea7 vocab=85a9c1ed
+-/
 theorem left_cancel (x : R) {y y' : R} : x ◃ y = x ◃ y' ↔ y = y' := by
   constructor
   · apply (act' x).injective
   rintro rfl
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s4.2028a9ec94cb from=seed src=0 shape=c6662ea7 vocab=cb069e35
+-/
 theorem left_cancel_inv (x : R) {y y' : R} : x ◃⁻¹ y = x ◃⁻¹ y' ↔ y = y' := by
   constructor
   · apply (act' x).symm.injective
   rintro rfl
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4ce3d3a8f972 from=seed src=0 shape=dd9e6db7 vocab=cb069e35
+-/
 theorem self_distrib_inv {x y z : R} : x ◃⁻¹ y ◃⁻¹ z = (x ◃⁻¹ y) ◃⁻¹ x ◃⁻¹ z := by
   rw [← left_cancel (x ◃⁻¹ y), right_inv, ← left_cancel x, right_inv, self_distrib]
   repeat' rw [right_inv]
@@ -230,6 +262,7 @@ of `x`. It is another way to understand the self-distributivity axiom.
 
 This is used in the natural rack homomorphism `toConj` from `R` to
 `Conj (R ≃ R)` defined by `op'`.
+@isnad1 id=eq.0h3v.s6.2146721f4d4f from=seed src=0 shape=ac68925e vocab=2911d27d
 -/
 theorem ad_conj {R : Type*} [Rack R] (x y : R) : act' (x ◃ y) = act' x * act' y * (act' x)⁻¹ := by
   rw [eq_mul_inv_iff_mul_eq]; ext z
@@ -250,22 +283,37 @@ instance oppositeRack : Rack Rᵐᵒᵖ where
   left_inv := MulOpposite.rec' fun x => MulOpposite.rec' fun y => by simp
   right_inv := MulOpposite.rec' fun x => MulOpposite.rec' fun y => by simp
 
+/--
+@isnad1 id=eq.0h3v.s5.c781ff039299 from=seed src=0 shape=d92eb5f5 vocab=21690495
+-/
 @[simp]
 theorem op_act_op_eq {x y : R} : op x ◃ op y = op (x ◃⁻¹ y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.69e469550bd3 from=seed src=0 shape=d92eb5f5 vocab=21690495
+-/
 @[simp]
 theorem op_invAct_op_eq {x y : R} : op x ◃⁻¹ op y = op (x ◃ y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.22ec994338b9 from=seed src=0 shape=448fb9c1 vocab=85a9c1ed
+-/
 @[simp]
 theorem self_act_act_eq {x y : R} : (x ◃ x) ◃ y = x ◃ y := by rw [← right_inv x y, ← self_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s4.5b4ed489ab5e from=seed src=0 shape=448fb9c1 vocab=cb069e35
+-/
 @[simp]
 theorem self_invAct_invAct_eq {x y : R} : (x ◃⁻¹ x) ◃⁻¹ y = x ◃⁻¹ y := by
   have h := @self_act_act_eq _ _ (op x) (op y)
   simpa using h
 
+/--
+@isnad1 id=eq.0h3v.s4.f51d4c052a2a from=seed src=0 shape=448fb9c1 vocab=8a0b4846
+-/
 @[simp]
 theorem self_act_invAct_eq {x y : R} : (x ◃ x) ◃⁻¹ y = x ◃⁻¹ y := by
   rw [← left_cancel (x ◃ x)]
@@ -273,11 +321,17 @@ theorem self_act_invAct_eq {x y : R} : (x ◃ x) ◃⁻¹ y = x ◃⁻¹ y := by
   rw [self_act_act_eq]
   rw [right_inv]
 
+/--
+@isnad1 id=eq.0h3v.s4.d7bf95e31e89 from=seed src=0 shape=448fb9c1 vocab=8a0b4846
+-/
 @[simp]
 theorem self_invAct_act_eq {x y : R} : (x ◃⁻¹ x) ◃ y = x ◃ y := by
   have h := @self_act_invAct_eq _ _ (op x) (op y)
   simpa using h
 
+/--
+@isnad1 id=iff.0h3v.s4.3ab3e3edd558 from=seed src=0 shape=ac8e0f02 vocab=85a9c1ed
+-/
 theorem self_act_eq_iff_eq {x y : R} : x ◃ x = y ◃ y ↔ x = y := by
   constructor; swap
   · rintro rfl; rfl
@@ -286,6 +340,9 @@ theorem self_act_eq_iff_eq {x y : R} : x ◃ x = y ◃ y ↔ x = y := by
   · rw [← left_cancel (x ◃ x), right_inv, self_act_act_eq]
   · rw [h, ← left_cancel (y ◃ y), right_inv, self_act_act_eq]
 
+/--
+@isnad1 id=iff.0h3v.s4.8c61f9ee8b32 from=seed src=0 shape=ac8e0f02 vocab=cb069e35
+-/
 theorem self_invAct_eq_iff_eq {x y : R} : x ◃⁻¹ x = y ◃⁻¹ y ↔ x = y := by
   have h := @self_act_eq_iff_eq _ _ (op x) (op y)
   simpa using h
@@ -304,6 +361,9 @@ def selfApplyEquiv (R : Type*) [Rack R] : R ≃ R where
 def IsInvolutory (R : Type*) [Rack R] : Prop :=
   ∀ x : R, Function.Involutive (Shelf.act x)
 
+/--
+@isnad1 id=eq.1h3v.s4.165c01e8e4fa from=seed src=0 shape=c055f3bf vocab=08daac12
+-/
 theorem involutory_invAct_eq_act {R : Type*} [Rack R] (h : IsInvolutory R) (x y : R) :
     x ◃⁻¹ y = x ◃ y := by
   rw [← left_cancel x, right_inv, h x]
@@ -314,6 +374,7 @@ def IsAbelian (R : Type*) [Rack R] : Prop :=
   ∀ x y z w : R, (x ◃ y) ◃ z ◃ w = (x ◃ z) ◃ y ◃ w
 
 /-- Associative racks are uninteresting.
+@isnad1 id=iff.0h4v.s5.e86bb435d035 from=seed src=0 shape=d211f20a vocab=85a9c1ed
 -/
 theorem assoc_iff_id {R : Type*} [Rack R] {x y z : R} : x ◃ y ◃ z = (x ◃ y) ◃ z ↔ x ◃ z = z := by
   rw [self_distrib]
@@ -329,8 +390,14 @@ instance : FunLike (S₁ →◃ S₂) S₁ S₂ where
   coe := toFun
   coe_injective | ⟨_, _⟩, ⟨_, _⟩, rfl => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.b972ca5d3c5a from=seed src=0 shape=37f6a9c2 vocab=fb97d38a
+-/
 @[simp] theorem toFun_eq_coe (f : S₁ →◃ S₂) : f.toFun = f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.b6f4a41723a8 from=seed src=0 shape=42932c09 vocab=76a6cb8a
+-/
 @[simp]
 theorem map_act (f : S₁ →◃ S₂) {x y : S₁} : f (x ◃ y) = f x ◃ f y :=
   map_act' f
@@ -348,6 +415,9 @@ def comp (g : S₂ →◃ S₃) (f : S₁ →◃ S₂) : S₁ →◃ S₃ where
   toFun := g.toFun ∘ f.toFun
   map_act' := by simp
 
+/--
+@isnad1 id=eq.0h6v.s6.2b02f4281fc8 from=seed src=0 shape=80d14110 vocab=c9c0d82b
+-/
 @[simp]
 theorem comp_apply (g : S₂ →◃ S₃) (f : S₁ →◃ S₂) (x : S₁) : (g.comp f) x = g (f x) :=
   rfl
@@ -368,6 +438,9 @@ variable {Q : Type*} [Quandle Q]
 
 attribute [simp] fix
 
+/--
+@isnad1 id=eq.0h2v.s4.989624296139 from=seed src=0 shape=972c3494 vocab=79a59ff5
+-/
 @[simp]
 theorem fix_inv {x : Q} : x ◃⁻¹ x = x := by
   rw [← left_cancel x]
@@ -396,11 +469,17 @@ instance Conj.quandle (G : Type*) [Group G] : Quandle (Conj G) where
     simp [mul_assoc]
   fix := by simp
 
+/--
+@isnad1 id=eq.0h3v.s6.d6fc87e894e3 from=seed src=0 shape=31ea4d2c vocab=171779a1
+-/
 @[simp, grind =]
 theorem conj_act_eq_conj {G : Type*} [Group G] (x y : Conj G) :
     x ◃ y = ((x : G) * (y : G) * (x : G)⁻¹ : G) :=
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.295c7ac518ea from=seed src=0 shape=4ee4a098 vocab=3adef6c9
+-/
 theorem conj_swap {G : Type*} [Group G] (x y : Conj G) : x ◃ y = y ↔ y ◃ x = x := by
   grind [eq_mul_inv_iff_mul_eq]
 
@@ -420,6 +499,9 @@ def Dihedral (n : ℕ) :=
 because it is an involution (see `dihedralAct.inv`). -/
 def dihedralAct (n : ℕ) (a : ZMod n) : ZMod n → ZMod n := fun b => 2 * a - b
 
+/--
+@isnad1 id=involuti.0h2v.s3.f6c54ab34a66 from=seed src=0 shape=8e4ef8bc vocab=a338711a
+-/
 theorem dihedralAct.inv (n : ℕ) (a : ZMod n) : Function.Involutive (dihedralAct n a) := by
   intro b
   dsimp only [dihedralAct]
@@ -558,20 +640,30 @@ inductive PreEnvelGroupRel (R : Type u) [Rack R] : PreEnvelGroup R → PreEnvelG
   | rel {a b : PreEnvelGroup R} (r : PreEnvelGroupRel' R a b) : PreEnvelGroupRel R a b
 
 /-- A quick way to convert a `PreEnvelGroupRel'` to a `PreEnvelGroupRel`.
+@isnad1 id=preenvel.0h4v.s4.f1b84fcdccad from=seed src=0 shape=c59de103 vocab=43cd9347
 -/
 theorem PreEnvelGroupRel'.rel {R : Type u} [Rack R] {a b : PreEnvelGroup R} :
     PreEnvelGroupRel' R a b → PreEnvelGroupRel R a b := PreEnvelGroupRel.rel
 
+/--
+@isnad1 id=preenvel.0h2v.s3.b10922a2b432 from=seed src=0 shape=82448d51 vocab=1f91e4bf
+-/
 @[refl]
 theorem PreEnvelGroupRel.refl {R : Type u} [Rack R] {a : PreEnvelGroup R} :
     PreEnvelGroupRel R a a :=
   PreEnvelGroupRel.rel PreEnvelGroupRel'.refl
 
+/--
+@isnad1 id=preenvel.1h3v.s4.843a884c6ad0 from=seed src=0 shape=1a0a78f4 vocab=1f91e4bf
+-/
 @[symm]
 theorem PreEnvelGroupRel.symm {R : Type u} [Rack R] {a b : PreEnvelGroup R} :
     PreEnvelGroupRel R a b → PreEnvelGroupRel R b a
   | ⟨r⟩ => r.symm.rel
 
+/--
+@isnad1 id=preenvel.2h4v.s4.9d0c08258993 from=seed src=0 shape=5499c893 vocab=1f91e4bf
+-/
 @[trans]
 theorem PreEnvelGroupRel.trans {R : Type u} [Rack R] {a b c : PreEnvelGroup R} :
     PreEnvelGroupRel R a b → PreEnvelGroupRel R b c → PreEnvelGroupRel R a c
@@ -633,6 +725,7 @@ namespace toEnvelGroup.mapAux
 open PreEnvelGroupRel'
 
 /-- Show that `toEnvelGroup.mapAux` sends equivalent expressions to equal terms.
+@isnad1 id=eq.0h6v.s5.16aec52f0204 from=seed src=0 shape=acde1bb1 vocab=2eb5134f
 -/
 theorem well_def {R : Type*} [Rack R] {G : Type*} [Group G] (f : R →◃ Quandle.Conj G) :
     ∀ {a b : PreEnvelGroup R},
@@ -687,6 +780,7 @@ def toEnvelGroup.map {R : Type*} [Rack R] {G : Type*} [Group G] :
           rw [hm, map_inv, map_inv, ih_x]
 
 /-- Given a homomorphism from a rack to a group, it factors through the enveloping group.
+@isnad1 id=eq.0h3v.s8.7f1f6e14189b from=seed src=0 shape=92c8551b vocab=663916a0
 -/
 theorem toEnvelGroup.univ (R : Type*) [Rack R] (G : Type*) [Group G] (f : R →◃ Quandle.Conj G) :
     (Quandle.Conj.map (toEnvelGroup.map f)).comp (toEnvelGroup R) = f :=
@@ -694,6 +788,7 @@ theorem toEnvelGroup.univ (R : Type*) [Rack R] (G : Type*) [Group G] (f : R →�
 
 /-- The homomorphism `toEnvelGroup.map f` is the unique map that fits into the commutative
 triangle in `toEnvelGroup.univ`.
+@isnad1 id=eq.1h4v.s8.8301f709ba1f from=seed src=0 shape=846ed78a vocab=663916a0
 -/
 theorem toEnvelGroup.univ_uniq (R : Type*) [Rack R] (G : Type*) [Group G]
     (f : R →◃ Quandle.Conj G) (g : EnvelGroup R →* G)
@@ -708,6 +803,9 @@ This gives the rack `R` the structure of an augmented rack over `EnvelGroup R`.
 def envelAction {R : Type*} [Rack R] : EnvelGroup R →* R ≃ R :=
   toEnvelGroup.map (toConj R)
 
+/--
+@isnad1 id=eq.0h3v.s7.8037811dafff from=seed src=0 shape=365c48dd vocab=837569a7
+-/
 @[simp]
 theorem envelAction_prop {R : Type*} [Rack R] (x y : R) :
     envelAction (toEnvelGroup R x) y = x ◃ y :=

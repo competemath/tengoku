@@ -46,6 +46,9 @@ abbrev CanonicallyOver (X S : Scheme.{u}) := CanonicallyOverClass X S
 `f.IsOver S` is the typeclass asserting `f` commutes with the structure morphisms. -/
 abbrev Hom.IsOver (f : X.Hom Y) (S : Scheme.{u}) [X.Over S] [Y.Over S] := HomIsOver f S
 
+/--
+@isnad1 id=iff.0h4v.s6.b902ff20d47c from=seed src=0 shape=555caa2d vocab=2225fa0d
+-/
 @[simp]
 lemma Hom.isOver_iff [X.Over S] [Y.Over S] {f : X ⟶ Y} : f.IsOver S ↔ f ≫ Y ↘ S = X ↘ S :=
   ⟨fun H ↦ H.1, fun h ↦ ⟨h⟩⟩

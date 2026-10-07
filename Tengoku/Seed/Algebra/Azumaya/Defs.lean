@@ -49,6 +49,9 @@ def AlgHom.mulLeftRight : (A ⊗[R] Aᵐᵒᵖ) →ₐ[R] Module.End R A :=
       simp }
   Algebra.lsmul R (A := A ⊗[R] Aᵐᵒᵖ) R A
 
+/--
+@isnad1 id=eq.0h5v.s8.ed808cac3632 from=seed src=0 shape=be634830 vocab=0cce05fe
+-/
 @[simp]
 lemma AlgHom.mulLeftRight_apply (a : A) (b : Aᵐᵒᵖ) (x : A) :
     AlgHom.mulLeftRight R A (a ⊗ₜ b) x = a * x * b.unop := by

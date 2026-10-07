@@ -70,10 +70,16 @@ def shiftFunctor₁XXIso (a x a' : ℤ) (h : a' = a + x) (b : ℤ) :
 def shiftFunctor₂XXIso (a b y b' : ℤ) (h : b' = b + y) :
     (((shiftFunctor₂ C y).obj K).X a).X b ≅ (K.X a).X b' := eqToIso (by subst h; rfl)
 
+/--
+@isnad1 id=eq.0h5v.s9.383bf1c54903 from=seed src=0 shape=f8c741e4 vocab=8b1a7636
+-/
 @[simp]
 lemma shiftFunctor₁XXIso_refl (a b x : ℤ) :
     K.shiftFunctor₁XXIso a x (a + x) rfl b = Iso.refl _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.04255e614b89 from=seed src=0 shape=f64cc124 vocab=fa2ce39e
+-/
 @[simp]
 lemma shiftFunctor₂XXIso_refl (a b y : ℤ) :
     K.shiftFunctor₂XXIso a b y (b + y) rfl = Iso.refl _ := rfl
@@ -145,6 +151,9 @@ noncomputable def totalShift₁XIso (n n' : ℤ) (h : n + x = n') :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h7v.s12.85ba0f0c8137 from=seed src=0 shape=7df4362f vocab=3a528bba
+-/
 @[reassoc]
 lemma D₁_totalShift₁XIso_hom (n₀ n₁ n₀' n₁' : ℤ) (h₀ : n₀ + x = n₀') (h₁ : n₁ + x = n₁') :
     ((shiftFunctor₁ C x).obj K).D₁ (up ℤ) n₀ n₁ ≫ (K.totalShift₁XIso x n₁ n₁' h₁).hom =
@@ -164,6 +173,9 @@ lemma D₁_totalShift₁XIso_hom (n₀ n₁ n₀' n₁' : ℤ) (h₀ : n₀ + x 
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h7v.s12.7e91b2d24619 from=seed src=0 shape=7df4362f vocab=83f12d09
+-/
 @[reassoc]
 lemma D₂_totalShift₁XIso_hom (n₀ n₁ n₀' n₁' : ℤ) (h₀ : n₀ + x = n₀') (h₁ : n₁ + x = n₁') :
     ((shiftFunctor₁ C x).obj K).D₂ (up ℤ) n₀ n₁ ≫ (K.totalShift₁XIso x n₁ n₁' h₁).hom =
@@ -197,6 +209,9 @@ noncomputable def totalShift₁Iso :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.3h8v.s12.44467e48298e from=seed src=0 shape=9244bb0f vocab=9bc12af4
+-/
 @[reassoc]
 lemma ι_totalShift₁Iso_hom_f (a b n : ℤ) (h : a + b = n) (a' : ℤ) (ha' : a' = a + x)
     (n' : ℤ) (hn' : n' = n + x) :
@@ -209,6 +224,9 @@ lemma ι_totalShift₁Iso_hom_f (a b n : ℤ) (h : a + b = n) (a' : ℤ) (ha' : 
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.3h8v.s12.8f2046c62b4b from=seed src=0 shape=b6cb52e7 vocab=59577283
+-/
 @[reassoc]
 lemma ι_totalShift₁Iso_inv_f (a b n : ℤ) (h : a + b = n) (a' n' : ℤ)
     (ha' : a' + b = n') (hn' : n' = n + x) :
@@ -225,6 +243,9 @@ lemma ι_totalShift₁Iso_inv_f (a b n : ℤ) (h : a + b = n) (a' n' : ℤ)
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 variable {K L} in
+/--
+@isnad1 id=eq.0h5v.s12.cb482673fc6d from=seed src=0 shape=88fb2677 vocab=c0ba7277
+-/
 @[reassoc]
 lemma totalShift₁Iso_hom_naturality [L.HasTotal (up ℤ)] :
     total.map ((shiftFunctor₁ C x).map f) (up ℤ) ≫ (L.totalShift₁Iso x).hom =
@@ -260,6 +281,9 @@ noncomputable def totalShift₂XIso (n n' : ℤ) (h : n + y = n') :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h7v.s12.c83f1709d6fa from=seed src=0 shape=7df4362f vocab=47a57aea
+-/
 @[reassoc]
 lemma D₁_totalShift₂XIso_hom (n₀ n₁ n₀' n₁' : ℤ) (h₀ : n₀ + y = n₀') (h₁ : n₁ + y = n₁') :
     ((shiftFunctor₂ C y).obj K).D₁ (up ℤ) n₀ n₁ ≫ (K.totalShift₂XIso y n₁ n₁' h₁).hom =
@@ -282,6 +306,9 @@ lemma D₁_totalShift₂XIso_hom (n₀ n₁ n₀' n₁' : ℤ) (h₀ : n₀ + y 
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h7v.s12.20ab9a2891ea from=seed src=0 shape=7df4362f vocab=381d8be0
+-/
 @[reassoc]
 lemma D₂_totalShift₂XIso_hom (n₀ n₁ n₀' n₁' : ℤ) (h₀ : n₀ + y = n₀') (h₁ : n₁ + y = n₁') :
     ((shiftFunctor₂ C y).obj K).D₂ (up ℤ) n₀ n₁ ≫ (K.totalShift₂XIso y n₁ n₁' h₁).hom =
@@ -320,6 +347,9 @@ noncomputable def totalShift₂Iso :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.3h8v.s13.5b7bcb535fd8 from=seed src=0 shape=161b699b vocab=24c585a2
+-/
 @[reassoc]
 lemma ι_totalShift₂Iso_hom_f (a b n : ℤ) (h : a + b = n) (b' : ℤ) (hb' : b' = b + y)
     (n' : ℤ) (hn' : n' = n + y) :
@@ -333,6 +363,9 @@ lemma ι_totalShift₂Iso_hom_f (a b n : ℤ) (h : a + b = n) (b' : ℤ) (hb' : 
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.3h8v.s12.930ff8af71d6 from=seed src=0 shape=9c1291b1 vocab=4c139b87
+-/
 @[reassoc]
 lemma ι_totalShift₂Iso_inv_f (a b n : ℤ) (h : a + b = n) (b' n' : ℤ)
     (hb' : a + b' = n') (hn' : n' = n + y) :
@@ -349,6 +382,9 @@ lemma ι_totalShift₂Iso_inv_f (a b n : ℤ) (h : a + b = n) (b' n' : ℤ)
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 variable {K L} in
+/--
+@isnad1 id=eq.0h5v.s12.8160a1a9cb7e from=seed src=0 shape=88fb2677 vocab=fd1ec3ba
+-/
 @[reassoc]
 lemma totalShift₂Iso_hom_naturality [L.HasTotal (up ℤ)] :
     total.map ((shiftFunctor₂ C y).map f) (up ℤ) ≫ (L.totalShift₂Iso y).hom =
@@ -371,7 +407,9 @@ def shiftFunctor₁₂CommIso (x y : ℤ) :
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- The compatibility isomorphisms of the total complex with the shifts
-in both variables "commute" only up to a sign `(x * y).negOnePow`. -/
+in both variables "commute" only up to a sign `(x * y).negOnePow`.
+@isnad1 id=eq.0h4v.s13.38c05ee05e97 from=seed src=0 shape=6c45cbb0 vocab=795b6776
+-/
 lemma totalShift₁Iso_trans_totalShift₂Iso :
     ((shiftFunctor₂ C y).obj K).totalShift₁Iso x ≪≫
       (shiftFunctor (CochainComplex C ℤ) x).mapIso (K.totalShift₂Iso y) =
@@ -396,7 +434,9 @@ lemma totalShift₁Iso_trans_totalShift₂Iso :
   rw [Iso.inv_hom_id, comp_id, id_comp]
 
 /-- The compatibility isomorphisms of the total complex with the shifts
-in both variables "commute" only up to a sign `(x * y).negOnePow`. -/
+in both variables "commute" only up to a sign `(x * y).negOnePow`.
+@isnad1 id=eq.0h4v.s14.63625486d5b7 from=seed src=0 shape=f22956c4 vocab=d5be0553
+-/
 @[reassoc]
 lemma totalShift₁Iso_hom_totalShift₂Iso_hom :
     (((shiftFunctor₂ C y).obj K).totalShift₁Iso x).hom ≫ (K.totalShift₂Iso y).hom⟦x⟧' =

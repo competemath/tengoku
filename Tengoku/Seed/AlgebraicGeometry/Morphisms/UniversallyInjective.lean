@@ -48,15 +48,24 @@ along any morphism `Y' ⟶ Y` is injective (on points).
 class UniversallyInjective (f : X ⟶ Y) : Prop where
   universally_injective : universally (topologically (Injective ·)) f
 
+/--
+@isnad1 id=injectiv.0h3v.s7.486ac643f66c from=seed src=0 shape=82a81c7a vocab=02321681
+-/
 theorem Scheme.Hom.injective (f : X ⟶ Y) [UniversallyInjective f] :
     Function.Injective f :=
   UniversallyInjective.universally_injective _ _ _ .of_id_snd
 
+/--
+@isnad1 id=eq.0h0v.s5.16accc923ca8 from=seed src=0 shape=7ba36866 vocab=2fb78cf7
+-/
 theorem universallyInjective_eq :
     @UniversallyInjective = universally (topologically (Injective ·)) := by
   ext X Y f; rw [universallyInjective_iff]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h0v.s4.2fe1aa6d7cbe from=seed src=0 shape=d9c52ade vocab=cf0d3085
+-/
 theorem universallyInjective_eq_diagonal :
     @UniversallyInjective = diagonal @Surjective := by
   apply le_antisymm
@@ -73,6 +82,9 @@ theorem universallyInjective_eq_diagonal :
     rw [← ht₁, ← ht₂, ← Scheme.Hom.comp_apply, ← Scheme.Hom.comp_apply, pullback.diagonal_fst,
       pullback.diagonal_snd]
 
+/--
+@isnad1 id=iff.0h3v.s5.d94e3f9fd585 from=seed src=0 shape=40728932 vocab=0af2b98b
+-/
 theorem UniversallyInjective.iff_diagonal :
     UniversallyInjective f ↔ Surjective (pullback.diagonal f) := by
   rw [universallyInjective_eq_diagonal]; rfl
@@ -82,14 +94,23 @@ instance (priority := 900) [Mono f] : UniversallyInjective f :=
   (UniversallyInjective.iff_diagonal f).mpr inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=respects.0h0v.s2.79ce18f84663 from=seed src=0 shape=25b03439 vocab=501a2de1
+-/
 theorem UniversallyInjective.respectsIso : RespectsIso @UniversallyInjective :=
   universallyInjective_eq_diagonal.symm ▸ inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isstable.0h0v.s2.02eb0a4f6e20 from=seed src=0 shape=25b03439 vocab=4d97fbe4
+-/
 instance UniversallyInjective.isStableUnderBaseChange :
     IsStableUnderBaseChange @UniversallyInjective :=
   universallyInjective_eq_diagonal.symm ▸ inferInstance
 
+/--
+@isnad1 id=isstable.0h0v.s2.41dc350301c8 from=seed src=0 shape=25b03439 vocab=7f466053
+-/
 instance universallyInjective_isStableUnderComposition :
     IsStableUnderComposition @UniversallyInjective :=
   universallyInjective_eq ▸ inferInstance
@@ -98,12 +119,18 @@ instance : MorphismProperty.IsMultiplicative @UniversallyInjective where
   id_mem _ := inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iszarisk.0h0v.s1.b26e3474f795 from=seed src=0 shape=49959d42 vocab=b91bc22a
+-/
 instance universallyInjective_isZariskiLocalAtTarget :
     IsZariskiLocalAtTarget @UniversallyInjective :=
   universallyInjective_eq_diagonal.symm ▸ inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=tfae.0h3v.s9.92cfd41a24fd from=seed src=0 shape=20abfd89 vocab=05cf944e
+-/
 @[stacks 01S4]
 theorem tfae_universallyInjective :
     List.TFAE [

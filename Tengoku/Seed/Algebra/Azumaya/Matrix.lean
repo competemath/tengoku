@@ -40,6 +40,9 @@ abbrev AlgHom.mulLeftRightMatrix_inv :
   map_add' f1 f2 := by simp [add_smul, Finset.sum_add_distrib]
   map_smul' r f := by simp [mul_smul, Finset.smul_sum]
 
+/--
+@isnad1 id=eq.0h2v.s11.0f05347aa2bf from=seed src=0 shape=3d4b7605 vocab=cd9cd78d
+-/
 lemma AlgHom.mulLeftRightMatrix.inv_comp :
     (AlgHom.mulLeftRightMatrix_inv R n).comp
     (AlgHom.mulLeftRight R (Matrix n n R)).toLinearMap = .id :=
@@ -48,6 +51,9 @@ lemma AlgHom.mulLeftRightMatrix.inv_comp :
     simp [stdBasis_eq_single, ite_and, Fintype.sum_prod_type,
       mulLeftRight_apply, single, Matrix.mul_apply]
 
+/--
+@isnad1 id=eq.0h2v.s11.ad1ca35671c3 from=seed src=0 shape=626413ff vocab=cd9cd78d
+-/
 lemma AlgHom.mulLeftRightMatrix.comp_inv :
     (AlgHom.mulLeftRight R (Matrix n n R)).toLinearMap.comp
     (AlgHom.mulLeftRightMatrix_inv R n) = .id := by
@@ -62,7 +68,9 @@ lemma AlgHom.mulLeftRightMatrix.comp_inv :
 
 namespace IsAzumaya
 
-/-- A nontrivial matrix ring over `R` is an Azumaya algebra over `R`. -/
+/-- A nontrivial matrix ring over `R` is an Azumaya algebra over `R`.
+@isnad1 id=isazumay.0h2v.s5.dd65a364e070 from=seed src=0 shape=52e54844 vocab=e2946f6a
+-/
 theorem matrix [Nonempty n] : IsAzumaya R (Matrix n n R) where
   eq_of_smul_eq_smul := by nontriviality R; exact eq_of_smul_eq_smul
   bij := Function.bijective_iff_has_inverse.mpr

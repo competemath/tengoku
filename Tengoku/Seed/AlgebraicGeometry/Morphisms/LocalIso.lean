@@ -51,7 +51,9 @@ instance : IsStableUnderBaseChange @IsLocalIso := by
   rw [eq_sourceLocalClosure_isOpenImmersion]
   infer_instance
 
-/-- `IsLocalIso` is weaker than every source-Zariski-local property containing identities. -/
+/-- `IsLocalIso` is weaker than every source-Zariski-local property containing identities.
+@isnad1 id=le.0h1v.s6.afeab63b3c08 from=seed src=0 shape=ca257dfa vocab=fb0ea679
+-/
 lemma le_of_isZariskiLocalAtSource (P : MorphismProperty Scheme.{u}) [P.ContainsIdentities]
     [IsZariskiLocalAtSource P] : @IsLocalIso ≤ P := by
   intro X Y f hf

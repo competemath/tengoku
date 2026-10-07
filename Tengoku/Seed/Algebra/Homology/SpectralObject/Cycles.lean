@@ -82,11 +82,17 @@ instance : Epi (X.pOpcycles f g n) := by
   dsimp [pOpcycles]
   infer_instance
 
+/--
+@isnad1 id=iszero.1h9v.s7.e6b6e88b0002 from=seed src=0 shape=df9d8a7a vocab=c4dd04ff
+-/
 lemma isZero_opcycles (h : IsZero ((X.H n).obj (mk₁ f))) :
     IsZero (X.opcycles f g n) := by
   rw [IsZero.iff_id_eq_zero, ← cancel_epi (X.pOpcycles ..)]
   apply h.eq_of_src
 
+/--
+@isnad1 id=iszero.1h9v.s7.29237ebc09fb from=seed src=0 shape=f8e5c5b2 vocab=151dddd9
+-/
 lemma isZero_cycles (h : IsZero ((X.H n).obj (mk₁ g))) :
     IsZero (X.cycles f g n) := by
   rw [IsZero.iff_id_eq_zero, ← cancel_mono (X.iCycles ..)]
@@ -99,6 +105,9 @@ section
 variable {i j k : ι} (f : i ⟶ j) (g : j ⟶ k) (n₀ n₁ : ℤ)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h11v.s9.cc8e61926dee from=seed src=0 shape=80f18811 vocab=001d1091
+-/
 @[reassoc (attr := simp)]
 lemma iCycles_δ (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.iCycles f g n₀ ≫ X.δ f g n₀ n₁ hn₁ = 0 := by
@@ -106,6 +115,9 @@ lemma iCycles_δ (hn₁ : n₀ + 1 = n₁ := by lia) :
   simp [iCycles]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h11v.s9.3da0913092e3 from=seed src=0 shape=eeeafd28 vocab=cc28aaa0
+-/
 @[reassoc (attr := simp)]
 lemma δ_pOpcycles (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.δ f g n₀ n₁ hn₁ ≫ X.pOpcycles f g n₁ = 0 := by
@@ -136,11 +148,17 @@ instance (hn₁ : n₀ + 1 = n₁) :
   dsimp
   infer_instance
 
+/--
+@isnad1 id=exact.0h11v.s6.11768a803008 from=seed src=0 shape=8fd011ad vocab=ad92c641
+-/
 lemma kernelSequenceCycles_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.kernelSequenceCycles f g n₀ n₁ hn₁).Exact := by
   subst hn₁
   apply ShortComplex.exact_kernel
 
+/--
+@isnad1 id=exact.0h11v.s6.a5c45bb568da from=seed src=0 shape=8fd011ad vocab=19fdb0cb
+-/
 lemma cokernelSequenceOpcycles_exact (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.cokernelSequenceOpcycles f g n₀ n₁ hn₁).Exact := by
   obtain rfl : n₀ = n₁ - 1 := by lia
@@ -156,6 +174,9 @@ noncomputable def liftCycles :
     A ⟶ X.cycles f g n₀ :=
   kernel.lift _ x (by subst hn₁; exact hx)
 
+/--
+@isnad1 id=eq.2h12v.s10.eab25dfbc1e9 from=seed src=0 shape=2236dc20 vocab=1666d404
+-/
 @[reassoc (attr := simp)]
 lemma liftCycles_i : X.liftCycles f g n₀ n₁ hn₁ x hx ≫ X.iCycles f g n₀ = x := by
   apply kernel.lift_ι
@@ -174,6 +195,9 @@ noncomputable def descOpcycles :
     obtain rfl : n₀ = n₁ -1 := by lia
     exact hx)
 
+/--
+@isnad1 id=eq.2h12v.s10.ef8aee555695 from=seed src=0 shape=4375d640 vocab=0e7ca3d8
+-/
 @[reassoc (attr := simp)]
 lemma p_descOpcycles : X.pOpcycles f g n₁ ≫ X.descOpcycles f g n₀ n₁ hn₁ x hx = x := by
   apply cokernel.π_desc
@@ -200,6 +224,9 @@ noncomputable def cyclesMap (α : mk₂ f g ⟶ mk₂ f' g') (n : ℤ) :
           (homMk₁ (α.app 1) (α.app 2) (naturality' α 1 2)) n (n + 1),
         iCycles_δ_assoc _ _ _ _ _, zero_comp])
 
+/--
+@isnad1 id=eq.0h17v.s10.983f8b12c731 from=seed src=0 shape=88a17934 vocab=e9dd7b1a
+-/
 @[reassoc]
 lemma cyclesMap_i (α : mk₂ f g ⟶ mk₂ f' g') (β : mk₁ g ⟶ mk₁ g') (n : ℤ)
     (hβ : β = homMk₁ (α.app 1) (α.app 2) (naturality' α 1 2) := by cat_disch) :
@@ -208,12 +235,18 @@ lemma cyclesMap_i (α : mk₂ f g ⟶ mk₂ f' g') (β : mk₁ g ⟶ mk₁ g') (
   subst hβ
   simp [cyclesMap]
 
+/--
+@isnad1 id=eq.0h9v.s7.85df4b2117f9 from=seed src=0 shape=9bf0911c vocab=766961ca
+-/
 @[simp]
 lemma cyclesMap_id (n : ℤ) :
     X.cyclesMap f g f g (𝟙 _) n = 𝟙 _ := by
   rw [← cancel_mono (X.iCycles f g n), X.cyclesMap_i f g f g (𝟙 _) (𝟙 _) n,
     Functor.map_id, Category.comp_id, Category.id_comp]
 
+/--
+@isnad1 id=eq.0h23v.s9.b32b4f647512 from=seed src=0 shape=8b819af8 vocab=e8200dc4
+-/
 @[reassoc]
 lemma cyclesMap_comp (α : mk₂ f g ⟶ mk₂ f' g') (α' : mk₂ f' g' ⟶ mk₂ f'' g'')
     (α'' : mk₂ f g ⟶ mk₂ f'' g'') (n : ℤ) (h : α ≫ α' = α'' := by cat_disch) :
@@ -238,6 +271,9 @@ noncomputable def opcyclesMap (α : mk₂ f g ⟶ mk₂ f' g') (n : ℤ) :
         (homMk₁ (α.app 1) (α.app 2) (naturality' α 1 2)) _ _,
         δ_pOpcycles _ _ _ _ _, comp_zero])
 
+/--
+@isnad1 id=eq.0h17v.s10.fad23f08e932 from=seed src=0 shape=f8e54c39 vocab=46aeb749
+-/
 @[reassoc]
 lemma p_opcyclesMap (α : mk₂ f g ⟶ mk₂ f' g') (β : mk₁ f ⟶ mk₁ f') (n : ℤ)
     (hβ : β = homMk₁ (α.app 0) (α.app 1) (naturality' α 0 1) := by cat_disch) :
@@ -246,6 +282,9 @@ lemma p_opcyclesMap (α : mk₂ f g ⟶ mk₂ f' g') (β : mk₁ f ⟶ mk₁ f')
   subst hβ
   simp [opcyclesMap]
 
+/--
+@isnad1 id=eq.0h9v.s7.55d0628611bf from=seed src=0 shape=9bf0911c vocab=3b08e220
+-/
 @[simp]
 lemma opcyclesMap_id (n : ℤ) :
     X.opcyclesMap f g f g (𝟙 _) n = 𝟙 _ := by
@@ -253,6 +292,9 @@ lemma opcyclesMap_id (n : ℤ) :
     X.p_opcyclesMap f g f g (𝟙 _) (𝟙 _),
     Functor.map_id, Category.comp_id, Category.id_comp]
 
+/--
+@isnad1 id=eq.0h23v.s9.e479f1d25ee9 from=seed src=0 shape=8b819af8 vocab=6bb59066
+-/
 lemma opcyclesMap_comp (α : mk₂ f g ⟶ mk₂ f' g') (α' : mk₂ f' g' ⟶ mk₂ f'' g'')
     (α'' : mk₂ f g ⟶ mk₂ f'' g'') (n : ℤ) (h : α ≫ α' = α'' := by cat_disch) :
     X.opcyclesMap f g f' g' α n ≫ X.opcyclesMap f' g' f'' g'' α' n =
@@ -272,6 +314,9 @@ noncomputable def cokernelIsoCycles (n : ℤ) :
     cokernel ((X.H n).map (twoδ₂Toδ₁ f g fg h)) ≅ X.cycles f g n :=
   (X.composableArrows₅_exact f g fg h n (n + 1)).cokerIsoKer 0
 
+/--
+@isnad1 id=eq.1h10v.s11.37faf77c948f from=seed src=0 shape=bebdd092 vocab=eb018998
+-/
 @[reassoc (attr := simp)]
 lemma cokernelIsoCycles_hom_fac (n : ℤ) :
     cokernel.π _ ≫ (X.cokernelIsoCycles f g fg h n).hom ≫
@@ -284,6 +329,9 @@ noncomputable def opcyclesIsoKernel (n : ℤ) :
     X.opcycles f g n ≅ kernel ((X.H n).map (twoδ₁Toδ₀ f g fg h)) :=
   (X.composableArrows₅_exact f g fg h (n - 1) n).cokerIsoKer 2
 
+/--
+@isnad1 id=eq.1h10v.s10.47b4a99c3080 from=seed src=0 shape=f1bf8102 vocab=f8a3bfaa
+-/
 @[reassoc (attr := simp)]
 lemma opcyclesIsoKernel_hom_fac (n : ℤ) :
     X.pOpcycles f g n ≫ (X.opcyclesIsoKernel f g fg h n).hom ≫
@@ -298,6 +346,9 @@ noncomputable def toCycles (n : ℤ) :
 instance (n : ℤ) : Epi (X.toCycles f g fg h n) :=
   (ShortComplex.exact_iff_epi_kernel_lift _).1 (X.exact₃ f g fg h n (n + 1))
 
+/--
+@isnad1 id=eq.1h10v.s9.bf535f0d24e5 from=seed src=0 shape=0cdce371 vocab=007aa643
+-/
 @[reassoc (attr := simp)]
 lemma toCycles_i (n : ℤ) :
     X.toCycles f g fg h n ≫ X.iCycles f g n = (X.H n).map (twoδ₁Toδ₀ f g fg h) :=
@@ -305,6 +356,9 @@ lemma toCycles_i (n : ℤ) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.2h20v.s11.0beeecb50419 from=seed src=0 shape=e1c0eadb vocab=46601406
+-/
 @[reassoc]
 lemma toCycles_cyclesMap (α : mk₂ f g ⟶ mk₂ f' g') (β : mk₁ fg ⟶ mk₁ fg') (n : ℤ)
     (hβ₀ : β.app 0 = α.app 0 := by cat_disch) (hβ₁ : β.app 1 = α.app 2 := by cat_disch) :
@@ -329,6 +383,9 @@ noncomputable def fromOpcycles (n : ℤ) :
 instance (n : ℤ) : Mono (X.fromOpcycles f g fg h n) :=
   (ShortComplex.exact_iff_mono_cokernel_desc _).1 (X.exact₁ f g fg h (n - 1) n)
 
+/--
+@isnad1 id=eq.1h10v.s9.fec2c1d974b4 from=seed src=0 shape=7e7709fe vocab=ffe3b281
+-/
 @[reassoc (attr := simp)]
 lemma p_fromOpcycles (n : ℤ) :
     X.pOpcycles f g n ≫ X.fromOpcycles f g fg h n =
@@ -337,6 +394,9 @@ lemma p_fromOpcycles (n : ℤ) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.2h20v.s11.8d8133a02164 from=seed src=0 shape=d4eae253 vocab=72e26628
+-/
 @[reassoc]
 lemma opcyclesMap_fromOpcycles (α : mk₂ f g ⟶ mk₂ f' g') (β : mk₁ fg ⟶ mk₁ fg') (n : ℤ)
     (hβ₀ : β.app 0 = α.app 0 := by cat_disch) (hβ₁ : β.app 1 = α.app 2 := by cat_disch) :
@@ -353,11 +413,17 @@ lemma opcyclesMap_fromOpcycles (α : mk₂ f g ⟶ mk₂ f' g') (β : mk₁ fg �
     rw [hβ₁]
     exact (naturality' α 1 2).symm
 
+/--
+@isnad1 id=eq.1h10v.s9.915e320fb5be from=seed src=0 shape=21a2d1b4 vocab=8ea38250
+-/
 @[reassoc (attr := simp)]
 lemma H_map_twoδ₂Toδ₁_toCycles (n : ℤ) :
     (X.H n).map (twoδ₂Toδ₁ f g fg h) ≫ X.toCycles f g fg h n = 0 := by
   simp [← cancel_mono (X.iCycles f g n)]
 
+/--
+@isnad1 id=eq.1h10v.s9.bc987d5c606b from=seed src=0 shape=fc830c12 vocab=6eff0ea1
+-/
 @[reassoc (attr := simp)]
 lemma fromOpcycles_H_map_twoδ₁Toδ₀ (n : ℤ) :
     X.fromOpcycles f g fg h n ≫ (X.H n).map (twoδ₁Toδ₀ f g fg h) = 0 := by
@@ -387,7 +453,9 @@ instance (n : ℤ) : Mono (X.kernelSequenceOpcycles f g fg h n).f := by
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
-/-- `Z^n(f, g)` identifies to a cokernel of the `H^n(f) ⟶ H^n(f ≫ g)`. -/
+/-- `Z^n(f, g)` identifies to a cokernel of the `H^n(f) ⟶ H^n(f ≫ g)`.
+@isnad1 id=exact.1h10v.s6.9061916c70bf from=seed src=0 shape=622cd143 vocab=a28ae08e
+-/
 lemma cokernelSequenceCycles_exact (n : ℤ) :
     (X.cokernelSequenceCycles f g fg h n).Exact := by
   apply ShortComplex.exact_of_g_is_cokernel
@@ -397,7 +465,9 @@ lemma cokernelSequenceCycles_exact (n : ℤ) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
-/-- `opZ^n(f, g)` identifies to the kernel of `H^n(f ≫ g) ⟶ H^n(g)`. -/
+/-- `opZ^n(f, g)` identifies to the kernel of `H^n(f ≫ g) ⟶ H^n(g)`.
+@isnad1 id=exact.1h10v.s6.d9b56c7fee50 from=seed src=0 shape=622cd143 vocab=45a0efac
+-/
 lemma kernelSequenceOpcycles_exact (n : ℤ) :
     (X.kernelSequenceOpcycles f g fg h n).Exact := by
   apply ShortComplex.exact_of_f_is_kernel
@@ -405,12 +475,18 @@ lemma kernelSequenceOpcycles_exact (n : ℤ) :
     (Iso.symm (Fork.ext (X.opcyclesIsoKernel f g fg h n) (by
       simp [← cancel_epi (X.pOpcycles f g n)])))
 
+/--
+@isnad1 id=isiso.2h10v.s8.ed1ca5511d14 from=seed src=0 shape=e1c760c8 vocab=348a041d
+-/
 lemma isIso_toCycles (n : ℤ) (hf : IsZero ((X.H n).obj (mk₁ f))) :
     IsIso (X.toCycles f g fg h n) := by
   have : Mono (X.toCycles f g fg h n) :=
     (X.cokernelSequenceCycles_exact f g fg h n).mono_g (hf.eq_of_src _ _)
   exact Balanced.isIso_of_mono_of_epi _
 
+/--
+@isnad1 id=isiso.2h10v.s8.6177ace89c9b from=seed src=0 shape=5f364447 vocab=5a8a5d17
+-/
 lemma isIso_fromOpcycles (n : ℤ) (hg : IsZero ((X.H n).obj (mk₁ g))) :
     IsIso (X.fromOpcycles f g fg h n) := by
   have : Epi (X.fromOpcycles f g fg h n) :=
@@ -427,6 +503,9 @@ noncomputable def descCycles :
     X.cycles f g n ⟶ A :=
   (X.cokernelSequenceCycles_exact f g fg h n).desc x hx
 
+/--
+@isnad1 id=eq.2h12v.s10.4377d691f74e from=seed src=0 shape=daf40b1b vocab=386cf8e4
+-/
 @[reassoc (attr := simp)]
 lemma toCycles_descCycles :
     X.toCycles f g fg h n ≫ X.descCycles f g fg h x hx = x :=
@@ -444,6 +523,9 @@ noncomputable def liftOpcycles :
     A ⟶ X.opcycles f g n :=
   (X.kernelSequenceOpcycles_exact f g fg h n).lift x hx
 
+/--
+@isnad1 id=eq.2h12v.s10.0852e9d6f879 from=seed src=0 shape=6fa34bdc vocab=77355c92
+-/
 @[reassoc (attr := simp)]
 lemma liftOpcycles_fromOpcycles :
     X.liftOpcycles f g fg h x hx ≫ X.fromOpcycles f g fg h n = x :=
@@ -464,12 +546,18 @@ noncomputable def δToCycles (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.H n₀).obj (mk₁ f₃) ⟶ X.cycles f₁ f₂ n₁ :=
   X.liftCycles f₁ f₂ _ _ rfl (X.δ f₂ f₃ n₀ n₁) (by simp)
 
+/--
+@isnad1 id=eq.1h12v.s9.655f2a8f3ea0 from=seed src=0 shape=194915bc vocab=41a08f8a
+-/
 @[reassoc (attr := simp)]
 lemma δToCycles_iCycles (hn₁ : n₀ + 1 = n₁) :
     X.δToCycles f₁ f₂ f₃ n₀ n₁ hn₁ ≫ X.iCycles f₁ f₂ n₁ =
       X.δ f₂ f₃ n₀ n₁ hn₁ := by
   simp only [δToCycles, liftCycles_i]
 
+/--
+@isnad1 id=eq.1h14v.s8.cc77c702d9c9 from=seed src=0 shape=367ec53b vocab=1a3a625b
+-/
 @[reassoc (attr := simp)]
 lemma δ_toCycles (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.δ f₁₂ f₃ n₀ n₁ hn₁ ≫ X.toCycles f₁ f₂ f₁₂ h₁₂ n₁ =
@@ -485,12 +573,18 @@ noncomputable def δFromOpcycles (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.opcycles f₂ f₃ n₀ ⟶ (X.H n₁).obj (mk₁ f₁) :=
   X.descOpcycles f₂ f₃ (n₀ - 1) n₀ (by lia) (X.δ f₁ f₂ n₀ n₁ hn₁) (by simp)
 
+/--
+@isnad1 id=eq.1h12v.s9.1a8c6e41073f from=seed src=0 shape=6106543d vocab=bb630efa
+-/
 @[reassoc (attr := simp)]
 lemma pOpcycles_δFromOpcycles (hn₁ : n₀ + 1 = n₁) :
     X.pOpcycles f₂ f₃ n₀ ≫ X.δFromOpcycles f₁ f₂ f₃ n₀ n₁ hn₁ =
       X.δ f₁ f₂ n₀ n₁ hn₁ := by
   simp only [δFromOpcycles, p_descOpcycles]
 
+/--
+@isnad1 id=eq.1h14v.s8.cd73b83096ad from=seed src=0 shape=71560573 vocab=5d6d8f67
+-/
 @[reassoc (attr := simp)]
 lemma fromOpcyles_δ (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.fromOpcycles f₂ f₃ f₂₃ h₂₃ n₀ ≫ X.δ f₁ f₂₃ n₀ n₁ hn₁ =

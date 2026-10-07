@@ -58,6 +58,9 @@ class Presentation.IsFinite {M : SheafOfModules.{u} R} (p : M.Presentation) : Pr
 attribute [instance] Presentation.IsFinite.isFiniteType_generators
   Presentation.IsFinite.isFiniteType_relations
 
+/--
+@isnad1 id=finite.0h5v.s7.d9075179cb8a from=seed src=0 shape=044328b6 vocab=0335f664
+-/
 @[deprecated Presentation.IsFinite.isFiniteType_relations (since := "2026-04-14")]
 lemma Presentation.IsFinite.finite_relations {M : SheafOfModules.{u} R} (p : M.Presentation)
     [p.IsFinite] : Finite p.relations.I := GeneratingSections.IsFiniteType.finite
@@ -81,6 +84,9 @@ def generatorsOfIsCokernelFree {M : SheafOfModules.{u} R}
   s := M.freeHomEquiv g
   epi := by simpa using! epi_of_isColimit_cofork H'
 
+/--
+@isnad1 id=eq.1h9v.s9.ae8b2e4c57fb from=seed src=0 shape=b59434e8 vocab=6c93377d
+-/
 @[simp]
 theorem generatorsOfIsCokernelFree_π {M : SheafOfModules.{u} R}
     (f : free ι ⟶ free σ) (g : free σ ⟶ M) (H : f ≫ g = 0)
@@ -168,6 +174,9 @@ colimits and `F.obj (unit R) ≅ unit S`, given a `P : Presentation M`, then we 
 generators of `Presentation (F.obj M)`. -/
 abbrev Presentation.mapGenerators : free P.generators.I ⟶ F.obj M := P.generators.mapFreeHom F η
 
+/--
+@isnad1 id=eq.0h10v.s10.a42efbda8d36 from=seed src=0 shape=cf0344ea vocab=0bc98325
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.mapRelations_mapGenerators :
     P.mapRelations F η ≫ P.mapGenerators F η = 0 := by
@@ -189,6 +198,9 @@ def Presentation.map : Presentation (F.obj M) :=
     exact (Cocone.ext (Iso.refl _) <| by rintro (_ | _)
       <;> simp [Presentation.mapRelations, GeneratingSections.mapFreeHom, ← Functor.map_comp])
 
+/--
+@isnad1 id=eq.0h10v.s9.c7b38dae49a0 from=seed src=0 shape=6a1620f7 vocab=78bda9c0
+-/
 theorem Presentation.map_π_eq :
     (P.map F η).generators.π = (mapFreeIso F _ η).hom ≫ F.map (P.generators.π) :=
   (F.obj M).freeHomEquiv.symm_apply_eq.mpr rfl
@@ -254,6 +266,9 @@ morphism between coproducts of copies of the sheaf of rings. -/
 class IsQuasicoherent (M : SheafOfModules.{u} R) : Prop where
   nonempty_quasicoherentData : Nonempty (QuasicoherentData.{u₁} M) := by infer_instance
 
+/--
+@isnad1 id=isquasic.0h5v.s7.820efe9dd1df from=seed src=0 shape=13c1d4a2 vocab=1e9947f0
+-/
 lemma QuasicoherentData.isQuasicoherent {M : SheafOfModules.{u} R} (q : M.QuasicoherentData) :
     M.IsQuasicoherent := ⟨⟨q.shrink⟩⟩
 
@@ -329,6 +344,9 @@ noncomputable def QuasicoherentData.pushforward (η : (pushforward φ).obj (unit
     haveI : PreservesColimitsOfSize.{u, u, _} (SheafOfModules.pushforward ψ) := h _ _ _
     exact (P.presentation i.2.1).map (SheafOfModules.pushforward ψ) e.symm
 
+/--
+@isnad1 id=isquasic.1h10v.s10.48346786c9c8 from=seed src=0 shape=78d3c910 vocab=200b34c0
+-/
 lemma isQuasicoherent_pushforward (η : (pushforward φ).obj (unit R) ≅ unit S)
     [∀ (X : D), (Over.post G).IsContinuous (K.over X) (J.over _)]
     (h : ∀ (X : D) (Y : C) (f : G.obj X ⟶ Y),
@@ -340,6 +358,9 @@ lemma isQuasicoherent_pushforward (η : (pushforward φ).obj (unit R) ≅ unit S
   IsQuasicoherent.nonempty_quasicoherentData.some.pushforward G φ η h |>.isQuasicoherent
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isquasic.0h10v.s9.ea794afad4df from=seed src=0 shape=a88df4d4 vocab=8b6f393d
+-/
 lemma isQuasicoherent_pushforward_of_isLeftAdjoint (η : (pushforward φ).obj (unit R) ≅ unit S)
     [G.IsLeftAdjoint] [IsIso φ]
     [∀ X, Functor.IsContinuous (Over.post (X := X) G) (K.over _) (J.over _)]
@@ -384,7 +405,9 @@ def Presentation.quasicoherentData {M : SheafOfModules.{u} R} (P : Presentation 
     simp [Sieve.top_apply]
   presentation x := P.map (pushforward (𝟙 (R.over x))) (by rfl)
 
-/-- If a sheaf of `R`-modules `M` has a presentation, then `M` is quasi-coherent. -/
+/-- If a sheaf of `R`-modules `M` has a presentation, then `M` is quasi-coherent.
+@isnad1 id=isquasic.0h5v.s8.bcfadd2cb05c from=seed src=0 shape=f1253f10 vocab=2d10d539
+-/
 theorem Presentation.isQuasicoherent {M : SheafOfModules.{u} R} (P : Presentation M) :
     IsQuasicoherent M where
   nonempty_quasicoherentData := Nonempty.intro (Presentation.quasicoherentData P)
@@ -442,6 +465,9 @@ noncomputable def QuasicoherentData.bind {R : Sheaf J RingCat.{u}}
       (e.fullyFaithfulFunctor.preimageIso
       (by exact e.counitIso.app ((M.over (X i.1)).over ((D i.1).X i.2)))).hom
 
+/--
+@isnad1 id=isquasic.1h6v.s8.c1f9015048e4 from=seed src=0 shape=2abf7fa2 vocab=b96d974e
+-/
 lemma IsQuasicoherent.of_coversTop {R : Sheaf J RingCat.{u}}
     (M : SheafOfModules.{u} R) {I : Type u}
     (X : I → C) (hX : J.CoversTop X) [∀ i, IsQuasicoherent (M.over (X i))] :
@@ -449,6 +475,9 @@ lemma IsQuasicoherent.of_coversTop {R : Sheaf J RingCat.{u}}
   (QuasicoherentData.bind M X hX fun _ ↦
     IsQuasicoherent.nonempty_quasicoherentData.some).isQuasicoherent
 
+/--
+@isnad1 id=isquasic.0h5v.s8.876ac9cb2eb4 from=seed src=0 shape=f0cc3c17 vocab=18af6f01
+-/
 lemma isQuasicoherent_over
     [HasPullbacks C] [HasBinaryProducts C] (M : SheafOfModules.{u} R) (X : C) [IsQuasicoherent M] :
     IsQuasicoherent (M.over X) :=

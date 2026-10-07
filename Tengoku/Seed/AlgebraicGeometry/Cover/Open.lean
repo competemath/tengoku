@@ -67,11 +67,16 @@ def affineCover (X : Scheme.{u}) : OpenCover X := by
 instance : Inhabited X.OpenCover :=
   ⟨X.affineCover⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.8c5000ba3980 from=seed src=0 shape=b555258d vocab=8b7cba5b
+-/
 theorem OpenCover.iSup_opensRange {X : Scheme.{u}} (𝒰 : Scheme.OpenCover.{v} X) :
     ⨆ i, (𝒰.f i).opensRange = ⊤ :=
   Opens.ext <| by rw [Opens.coe_iSup]; exact 𝒰.iUnion_range
 
-/-- The ranges of the maps in a scheme-theoretic open cover are a topological open cover. -/
+/-- The ranges of the maps in a scheme-theoretic open cover are a topological open cover.
+@isnad1 id=isopenco.0h2v.s6.d8d6dd0befa4 from=seed src=0 shape=1a291937 vocab=ee6f89b6
+-/
 lemma OpenCover.isOpenCover_opensRange {X : Scheme.{u}} (𝒰 : OpenCover.{v} X) :
     IsOpenCover fun i ↦ (𝒰.f i).opensRange :=
   .mk 𝒰.iSup_opensRange
@@ -102,6 +107,9 @@ def OpenCover.finiteSubcover {X : Scheme.{u}} (𝒰 : OpenCover.{v} X) [H : Comp
 instance [H : CompactSpace X] : Fintype 𝒰.finiteSubcover.I₀ := by
   delta OpenCover.finiteSubcover; infer_instance
 
+/--
+@isnad1 id=compacts.0h2v.s6.3690ccc489f2 from=seed src=0 shape=a4d9288c vocab=7141b0d7
+-/
 theorem OpenCover.compactSpace {X : Scheme.{u}} (𝒰 : X.OpenCover) [Finite 𝒰.I₀]
     [H : ∀ i, CompactSpace (𝒰.X i)] : CompactSpace X := by
   cases nonempty_fintype 𝒰.I₀
@@ -145,6 +153,9 @@ def affineOpenCover (X : Scheme.{u}) : X.AffineOpenCover where
   idx x := (X.affineCover.exists_eq x).choose
   covers x := (X.affineCover.exists_eq x).choose_spec
 
+/--
+@isnad1 id=eq.0h1v.s3.e8a20a409eaf from=seed src=0 shape=1863cfa8 vocab=ed96631f
+-/
 @[simp]
 lemma openCover_affineOpenCover (X : Scheme.{u}) : X.affineOpenCover.openCover = X.affineCover :=
   rfl
@@ -172,6 +183,9 @@ def OpenCover.pullbackCoverAffineRefinementObjIso (f : X ⟶ Y) (𝒰 : Y.OpenCo
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s12.aa3ab278fd1f from=seed src=0 shape=0f603d9b vocab=5827417d
+-/
 @[reassoc]
 lemma OpenCover.pullbackCoverAffineRefinementObjIso_inv_map (f : X ⟶ Y) (𝒰 : Y.OpenCover) (i) :
     (𝒰.pullbackCoverAffineRefinementObjIso f i).inv ≫
@@ -189,6 +203,9 @@ lemma OpenCover.pullbackCoverAffineRefinementObjIso_inv_map (f : X ⟶ Y) (𝒰 
   exact pullbackRightPullbackFstIso_hom_snd _ _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s12.b084f8f598a1 from=seed src=0 shape=d5448e9d vocab=5827417d
+-/
 @[reassoc]
 lemma OpenCover.pullbackCoverAffineRefinementObjIso_inv_pullbackHom
     (f : X ⟶ Y) (𝒰 : Y.OpenCover) (i) :
@@ -226,7 +243,9 @@ def OpenCover.fromAffineRefinement {X : Scheme.{u}} (𝓤 : X.OpenCover) :
   h₀ j := (𝓤.X j.fst).affineCover.f _
 
 /-- If two global sections agree after restriction to each member of an open cover, then
-they agree globally. -/
+they agree globally.
+@isnad1 id=eq.1h5v.s12.d2a66ebc90a5 from=seed src=0 shape=9d8ff087 vocab=2a6174e9
+-/
 lemma OpenCover.ext_elem {X : Scheme.{u}} {U : X.Opens} (f g : Γ(X, U)) (𝒰 : X.OpenCover)
     (h : ∀ i : 𝒰.I₀, (𝒰.f i).app U f = (𝒰.f i).app U g) : f = g := by
   fapply TopCat.Sheaf.eq_of_locally_eq' X.sheaf
@@ -242,13 +261,17 @@ lemma OpenCover.ext_elem {X : Scheme.{u}} {U : X.Opens} (f g : Γ(X, U)) (𝒰 :
     exact (IsOpenImmersion.ΓIso (𝒰.f (𝒰.idx x)) U).commRingCatIsoToRingEquiv.symm.injective h
 
 /-- If the restriction of a global section to each member of an open cover is zero, then it is
-globally zero. -/
+globally zero.
+@isnad1 id=eq.1h4v.s12.8eed6e7e6ae4 from=seed src=0 shape=817d917d vocab=2a6174e9
+-/
 lemma zero_of_zero_cover {X : Scheme.{u}} {U : X.Opens} (s : Γ(X, U)) (𝒰 : X.OpenCover)
     (h : ∀ i : 𝒰.I₀, (𝒰.f i).app U s = 0) : s = 0 :=
   𝒰.ext_elem s 0 (fun i ↦ by rw [map_zero]; exact h i)
 
 /-- If a global section is nilpotent on each member of a finite open cover, then `f` is
-nilpotent. -/
+nilpotent.
+@isnad1 id=isnilpot.1h4v.s13.5e3cb7203187 from=seed src=0 shape=69173c30 vocab=c705237b
+-/
 lemma isNilpotent_of_isNilpotent_cover {X : Scheme.{u}} {U : X.Opens} (s : Γ(X, U))
     (𝒰 : X.OpenCover) [Finite 𝒰.I₀] (h : ∀ i : 𝒰.I₀, IsNilpotent ((𝒰.f i).app U s)) :
     IsNilpotent s := by
@@ -286,12 +309,18 @@ def affineBasisCover (X : Scheme.{u}) : OpenCover X :=
 def affineBasisCoverRing (X : Scheme.{u}) (i : X.affineBasisCover.I₀) : CommRingCat :=
   CommRingCat.of <| @Localization.Away (X.local_affine i.1).choose_spec.choose _ i.2
 
+/--
+@isnad1 id=eq.0h2v.s5.bbc5a9b0005b from=seed src=0 shape=eec237b2 vocab=de8dfba1
+-/
 theorem affineBasisCover_obj (X : Scheme.{u}) (i : X.affineBasisCover.I₀) :
     X.affineBasisCover.X i = Spec (X.affineBasisCoverRing i) :=
   rfl
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s13.cff88ab6fe1d from=seed src=0 shape=9b5ba97a vocab=ddd20088
+-/
 theorem affineBasisCover_map_range (X : Scheme.{u}) (x : X)
     (r : (X.local_affine x).choose_spec.choose) :
     Set.range (X.affineBasisCover.f ⟨x, r⟩) =
@@ -302,6 +331,9 @@ theorem affineBasisCover_map_range (X : Scheme.{u}) (x : X)
   exact (PrimeSpectrum.localization_away_comap_range (Localization.Away r) r :)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=istopolo.0h1v.s8.de27d9da25d8 from=seed src=0 shape=00823cfd vocab=7821e93c
+-/
 theorem affineBasisCover_is_basis (X : Scheme.{u}) :
     TopologicalSpace.IsTopologicalBasis
       {x : Set X |

@@ -80,32 +80,56 @@ variable (R) in
   Over.post Γ.rightOp ⋙ Over.map (ΓSpecIso R).inv.op ⋙
     (Over.opEquivOpUnder R).functor ⋙ (commAlgCatEquivUnder R).inverse.op
 
+/--
+@isnad1 id=preserve.0h1v.s5.fe23367349f8 from=seed src=0 shape=2c044433 vocab=12f0eb04
+-/
 instance preservesLimitsOfSize_algSpec : PreservesLimitsOfSize.{w, v} (algSpec R) :=
   inferInstanceAs <| PreservesLimitsOfSize.{w, v} <|
     (commAlgCatEquivUnder R).op.functor ⋙ (Over.opEquivOpUnder R).inverse ⋙ Over.post Scheme.Spec
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=preserve.0h1v.s5.de25c8d26147 from=seed src=0 shape=602abac2 vocab=a3b8cece
+-/
 instance preservesColimitsOfSize_algΓ : PreservesColimitsOfSize.{w, v} (algΓ R) := by
   unfold algΓ; infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s9.74c5df145c6b from=seed src=0 shape=698883e8 vocab=32141562
+-/
 @[simp] lemma algSpec_obj_hom (X : (CommAlgCat R)ᵒᵖ) :
     ((algSpec R).obj X).hom = Spec.map (CommRingCat.ofHom (algebraMap R X.unop)) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.ee3154a1b61a from=seed src=0 shape=fe9c4660 vocab=087e8856
+-/
 @[simp] lemma algSpec_map_left {X Y : (CommAlgCat R)ᵒᵖ} (f : X ⟶ Y) :
     ((algSpec R).map f).left = Spec.map ((commAlgCatEquivUnder R).functor.map f.unop).right := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.726189c22c5f from=seed src=0 shape=aec5090e vocab=5d24f02d
+-/
 lemma preservesTerminalIso_algSpec :
     preservesTerminalIso (algSpec R) = Over.isoMk (.refl (Spec R)) := by
   ext : 1; exact toUnit_unique ..
 
+/--
+@isnad1 id=eq.0h1v.s9.5dafe26d2540 from=seed src=0 shape=29f813f0 vocab=4053d2b1
+-/
 @[simp] lemma preservesTerminalIso_algSpec_inv_left :
     (preservesTerminalIso (algSpec R)).inv.left = 𝟙 (Spec R) := by
   rw [preservesTerminalIso_algSpec]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.57e2b9a0b2fc from=seed src=0 shape=740bf911 vocab=a2a4fb11
+-/
 @[simp]
 lemma prodComparison_algSpec_left (X Y : (CommAlgCat R)ᵒᵖ) :
     (prodComparison (algSpec R) X Y).left = (pullbackSpecIso R X.unop Y.unop).inv := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.55c60f7abdf5 from=seed src=0 shape=785bbf01 vocab=5ce0d03d
+-/
 @[simp]
 lemma prodComparisonIso_algSpec_inv_left (X Y : (CommAlgCat R)ᵒᵖ) :
     (prodComparisonIso (algSpec R) X Y).inv.left = (pullbackSpecIso R X.unop Y.unop).hom := by
@@ -135,21 +159,37 @@ instance braidedAlgSpec : (algSpec R).Braided :=
     (funext fun X ↦ funext fun Y ↦ Over.OverMorphism.ext (by
       rw [Functor.OplaxMonoidal.δ_of_cartesianMonoidalCategory, prodComparison_algSpec_left]; rfl))
 
+/--
+@isnad1 id=eq.0h1v.s9.e4c5b2db1a70 from=seed src=0 shape=d35137b4 vocab=6aad24c7
+-/
 @[simp] lemma ε_algSpec_left : (LaxMonoidal.ε (algSpec R)).left = 𝟙 (Spec R) := rfl
+/--
+@isnad1 id=eq.0h1v.s9.484f0485ad18 from=seed src=0 shape=001d0e81 vocab=a58b5a54
+-/
 @[simp] lemma η_algSpec_left : (OplaxMonoidal.η (algSpec R)).left = 𝟙 (Spec R) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.9201d014ca2d from=seed src=0 shape=e0f9979b vocab=248efeb4
+-/
 @[simp] lemma δ_algSpec_left (X Y : (CommAlgCat R)ᵒᵖ) :
     (OplaxMonoidal.δ (algSpec R) X Y).left = (pullbackSpecIso R X.unop Y.unop).inv := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.16ff4fc55f2a from=seed src=0 shape=1d6dbd59 vocab=daad0a8c
+-/
 @[simp] lemma μ_algSpec_left (X Y : (CommAlgCat R)ᵒᵖ) :
     (LaxMonoidal.μ (algSpec R) X Y).left = (pullbackSpecIso R X.unop Y.unop).hom := rfl
 
-/-- `Spec` is full on `R`-algebras. -/
+/-- `Spec` is full on `R`-algebras.
+@isnad1 id=full.0h1v.s5.8c2fc81aafa3 from=seed src=0 shape=2c044433 vocab=e6009976
+-/
 instance algSpec.instFull : (algSpec R).Full :=
   inferInstanceAs <| Functor.Full <|
     (commAlgCatEquivUnder R).op.functor ⋙ (Over.opEquivOpUnder R).inverse ⋙ Over.post Scheme.Spec
 
-/-- `Spec` is faithful on `R`-algebras. -/
+/-- `Spec` is faithful on `R`-algebras.
+@isnad1 id=faithful.0h1v.s5.0ec500b35ea3 from=seed src=0 shape=2c044433 vocab=8795f160
+-/
 instance algSpec.instFaithful : (algSpec R).Faithful :=
   inferInstanceAs <| Functor.Faithful <|
     (commAlgCatEquivUnder R).op.functor ⋙ (Over.opEquivOpUnder R).inverse ⋙ Over.post Scheme.Spec
@@ -164,10 +204,14 @@ variable (R) in
 abbrev bialgSpec : (CommBialgCat R)ᵒᵖ ⥤ Mon (Over <| Spec R) :=
   (commBialgCatEquivComonCommAlgCat R).functor.leftOp ⋙ (algSpec R).mapMon
 
-/-- `Spec` is full on `R`-bialgebras. -/
+/-- `Spec` is full on `R`-bialgebras.
+@isnad1 id=full.0h1v.s6.945290f8f0de from=seed src=0 shape=ba796eeb vocab=48f3b7e8
+-/
 instance bialgSpec.instFull : (bialgSpec R).Full := inferInstance
 
-/-- `Spec` is faithful on `R`-bialgebras. -/
+/-- `Spec` is faithful on `R`-bialgebras.
+@isnad1 id=faithful.0h1v.s6.6fe1c3203c41 from=seed src=0 shape=ba796eeb vocab=7698f5eb
+-/
 instance bialgSpec.instFaithful : (bialgSpec R).Faithful := inferInstance
 
 /-- `Spec` is fully faithful on `R`-bialgebras, with inverse `Gamma`. -/
@@ -179,10 +223,14 @@ variable (R) in
 abbrev hopfSpec : (CommHopfAlgCat R)ᵒᵖ ⥤ Grp (Over <| Spec R) :=
   (commHopfAlgCatEquivCogrpCommAlgCat R).functor.leftOp ⋙ (algSpec R).mapGrp
 
-/-- `Spec` is full on `R`-Hopf algebras. -/
+/-- `Spec` is full on `R`-Hopf algebras.
+@isnad1 id=full.0h1v.s5.c88627531891 from=seed src=0 shape=ba796eeb vocab=0257a163
+-/
 instance hopfSpec.instFull : (hopfSpec R).Full := inferInstance
 
-/-- `Spec` is faithful on `R`-Hopf algebras. -/
+/-- `Spec` is faithful on `R`-Hopf algebras.
+@isnad1 id=faithful.0h1v.s5.d148ae7ac104 from=seed src=0 shape=ba796eeb vocab=224e1e1f
+-/
 instance hopfSpec.instFaithful : (hopfSpec R).Faithful := inferInstance
 
 /-- `Spec` is fully faithful on `R`-Hopf algebras, with inverse `Gamma`. -/
@@ -201,6 +249,9 @@ variable {R A : CommRingCat.{u}}
 instance specOverSpec [Algebra R A] : (Spec A).Over (Spec R) where
   hom := Spec.map <| CommRingCat.ofHom <| algebraMap ..
 
+/--
+@isnad1 id=locallyo.0h2v.s6.fc43adbf1caa from=seed src=0 shape=5f1ef391 vocab=340d4b3c
+-/
 instance locallyOfFiniteType_specOverSpec [Algebra R A] [Algebra.FiniteType R A] :
     LocallyOfFiniteType (Spec A ↘ Spec R) := by
   rw [specOverSpec_over, HasRingHomProperty.Spec_iff (P := @LocallyOfFiniteType)]
@@ -213,6 +264,9 @@ instance instMonObjSpecAsOverSpec [Bialgebra R A] : MonObj ((Spec A).asOver (Spe
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s10.a17a26237127 from=seed src=0 shape=c60ec654 vocab=af53faf0
+-/
 lemma one_spec_asOver_spec [Bialgebra R A] :
     η[(Spec A).asOver (Spec R)] = LaxMonoidal.ε (algSpec R) ≫
       Over.homMk (V := (Spec A).asOver (Spec R))
@@ -220,16 +274,25 @@ lemma one_spec_asOver_spec [Bialgebra R A] :
           (by simp [specOverSpec_over, ← Spec.map_comp, ← CommRingCat.ofHom_comp,
             CommRingCat.of_carrier]) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.5c6d5ab5f18c from=seed src=0 shape=2d211630 vocab=590ef79e
+-/
 lemma one_spec_asOver_spec_left [Bialgebra R A] :
     η[(Spec A).asOver (Spec R)].left =
       (Spec.map <| CommRingCat.ofHom <| Bialgebra.counitAlgHom R A) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.730027a99b6b from=seed src=0 shape=30ab83f9 vocab=6cf1b040
+-/
 lemma mul_spec_asOver_spec_left [Bialgebra R A] :
     μ[(Spec A).asOver (Spec R)].left =
       (pullbackSpecIso R A A).hom ≫ Spec.map (CommRingCat.ofHom (Bialgebra.comulAlgHom R A)) := rfl
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iscommmo.0h2v.s7.b34aa662eb07 from=seed src=0 shape=12f7c431 vocab=0c67194b
+-/
 instance isCommMonObj_spec_asOver_spec [Bialgebra R A] [IsCocomm R A] :
     IsCommMonObj ((Spec A).asOver (Spec R)) where
   mul_comm := by
@@ -314,6 +377,9 @@ instance [X.Over (Spec R)] [IsAffine X] : Algebra R Γ(X, ⊤) :=
   ((commAlgCatEquivUnder R).inverse.obj <|
     .mk (Spec.fullyFaithful.preimage <| X.isoSpec.inv ≫ X ↘ Spec R).unop).algebra
 
+/--
+@isnad1 id=eq.0h2v.s11.5fe137240941 from=seed src=0 shape=5da01e74 vocab=c1f87c48
+-/
 lemma algebraMap_presheafObj [X.Over (Spec R)] [IsAffine X] :
     algebraMap R Γ(X, ⊤) = (Spec.fullyFaithful.preimage <| X.isoSpec.inv ≫ X ↘ Spec R).unop.hom :=
   rfl
@@ -358,6 +424,9 @@ def pullbackSpecIso' [Algebra R T] :
       Spec (.of <| S ⊗[R] T) := pullbackSpecIso ..
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s10.605ac6b9a2c5 from=seed src=0 shape=df243f8e vocab=587bda76
+-/
 lemma pullbackSpecIso'_symmetry [Algebra R T] :
     (pullbackSymmetry .. ≪≫ pullbackSpecIso' R S T).hom =
       (pullbackSpecIso' ..).hom ≫
@@ -393,6 +462,9 @@ set_option linter.flexible false in
 -- If this proof breaks because of a non-terminal `simp` in the future, it is likely that one can
 -- simply remove the following `erw`.
 variable (R S T) in
+/--
+@isnad1 id=eq.0h3v.s13.a9d5134aa2a0 from=seed src=0 shape=6e5caca8 vocab=b207ca0c
+-/
 lemma μ_pullback_left_fst [Algebra R T] :
     (LaxMonoidal.μ (Over.pullback (Spec.map (CommRingCat.ofHom (algebraMap R S))))
       (Over.mk (Spec.map (CommRingCat.ofHom (algebraMap R T))))
@@ -468,19 +540,25 @@ affine group schemes over `Spec R`.
 
 section rightEdge
 
-/-- The essential image of `R`-algebras under `Spec` is precisely affine schemes over `Spec R`. -/
+/-- The essential image of `R`-algebras under `Spec` is precisely affine schemes over `Spec R`.
+@isnad1 id=iff.0h2v.s5.1e4b4a7755be from=seed src=0 shape=79a084a0 vocab=cef515ff
+-/
 @[simp]
 lemma essImage_algSpec {G : Over <| Spec R} : (algSpec R).essImage G ↔ IsAffine G.left := by
   simp [algSpec, Functor.essImage_overPost (F := Scheme.Spec)]
 
 /-- The essential image of `R`-bialgebras under `Spec` is precisely affine monoid schemes over
-`Spec R`. -/
+`Spec R`.
+@isnad1 id=iff.0h2v.s7.aa3465b249b9 from=seed src=0 shape=3f56e08b vocab=dedf21e4
+-/
 @[simp]
 lemma essImage_bialgSpec {G : Mon <| Over <| Spec R} :
     (bialgSpec R).essImage G ↔ IsAffine G.X.left := by simp
 
 /-- The essential image of `R`-Hopf algebras under `Spec` is precisely affine group schemes over
-`Spec R`. -/
+`Spec R`.
+@isnad1 id=iff.0h2v.s6.73f75bb0feec from=seed src=0 shape=3f56e08b vocab=0d4f1308
+-/
 @[simp]
 lemma essImage_hopfSpec {G : Grp <| Over <| Spec R} :
     (hopfSpec R).essImage G ↔ IsAffine G.X.left := by simp

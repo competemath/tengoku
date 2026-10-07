@@ -39,6 +39,9 @@ variable {X Y Z S : Scheme} (f : X ⟶ S) (g : Y ⟶ S)
 class IsSchemeTheoreticallyDominant (f : X ⟶ Y) : Prop where
   ker_eq_bot (f) : f.ker = ⊥
 
+/--
+@isnad1 id=eq.0h3v.s5.49ad3398ed87 from=seed src=0 shape=a707f05d vocab=edf4a23b
+-/
 alias Scheme.Hom.ker_eq_bot := IsSchemeTheoreticallyDominant.ker_eq_bot
 
 instance (priority := low) [IsIso f] : IsSchemeTheoreticallyDominant f :=
@@ -59,6 +62,9 @@ instance : IsMultiplicative @IsSchemeTheoreticallyDominant where
   id_mem _ := inferInstance
   comp_mem _ _ _ _ := inferInstance
 
+/--
+@isnad1 id=isscheme.0h3v.s4.2414158a6ead from=seed src=0 shape=264bd127 vocab=d5884ef4
+-/
 lemma IsSchemeTheoreticallyDominant.of_isDominant (f : X ⟶ Y) [IsDominant f] [IsReduced Y] :
     IsSchemeTheoreticallyDominant f := by
   rw [isSchemeTheoreticallyDominant_iff, ← Scheme.IdealSheafData.support_eq_top_iff,
@@ -67,11 +73,16 @@ lemma IsSchemeTheoreticallyDominant.of_isDominant (f : X ⟶ Y) [IsDominant f] [
   exact f.range_subset_ker_support
 
 /-- If the target is reduced and the map is quasi-compact, then scheme-theoretically dominant
-is equivalent to dominant. -/
+is equivalent to dominant.
+@isnad1 id=iff.0h3v.s4.554b05a7a016 from=seed src=0 shape=9a43723f vocab=df975386
+-/
 lemma isSchemeTheoreticallyDominant_iff_isDominant (f : X ⟶ Y) [QuasiCompact f] [IsReduced Y] :
     IsSchemeTheoreticallyDominant f ↔ IsDominant f :=
   ⟨fun _ ↦ inferInstance, fun _ ↦ .of_isDominant _⟩
 
+/--
+@isnad1 id=injectiv.0h4v.s10.5b8f2bf2e00e from=seed src=0 shape=cf1cf774 vocab=65f1f116
+-/
 lemma Scheme.Hom.app_injective (f : X ⟶ Y) [IsSchemeTheoreticallyDominant f] [QuasiCompact f]
     (U : Y.Opens) :
     Function.Injective (f.app U) := by
@@ -87,11 +98,17 @@ lemma Scheme.Hom.app_injective (f : X ⟶ Y) [IsSchemeTheoreticallyDominant f] [
   rw [← ConcreteCategory.comp_apply, f.naturality]
   simp [hs]
 
+/--
+@isnad1 id=isreduce.0h3v.s4.1bac76bf2115 from=seed src=0 shape=e150ce23 vocab=c21fb7aa
+-/
 lemma IsSchemeTheoreticallyDominant.isReduced (f : X ⟶ Y) [IsSchemeTheoreticallyDominant f]
     [QuasiCompact f] [IsReduced X] : IsReduced Y :=
   ⟨fun _ ↦ isReduced_of_injective _ (f.app_injective _)⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isscheme.0h5v.s5.ca3cfefb7777 from=seed src=0 shape=2e3fb0e5 vocab=1163c3a7
+-/
 instance IsSchemeTheoreticallyDominant.pullbackSnd (f : X ⟶ S) (g : Y ⟶ S)
     [IsSchemeTheoreticallyDominant f] [QuasiCompact f] [Flat g] :
     IsSchemeTheoreticallyDominant (pullback.snd f g) := by
@@ -112,6 +129,9 @@ instance IsSchemeTheoreticallyDominant.pullbackSnd (f : X ⟶ S) (g : Y ⟶ S)
   apply this
   simpa [← CommRingCat.comp_apply, ← Scheme.Hom.app_eq_appLE] using hx
 
+/--
+@isnad1 id=isscheme.1h8v.s6.be6455daba58 from=seed src=0 shape=9edb9a12 vocab=8e1694d5
+-/
 lemma IsSchemeTheoreticallyDominant.of_isPullback {f : X ⟶ S} {g : Y ⟶ S}
     {pX : Z ⟶ X} {pY : Z ⟶ Y} (H : IsPullback pX pY f g)
     [IsSchemeTheoreticallyDominant f] [QuasiCompact f] [Flat g] :
@@ -119,6 +139,9 @@ lemma IsSchemeTheoreticallyDominant.of_isPullback {f : X ⟶ S} {g : Y ⟶ S}
   rw [← H.isoPullback_hom_snd]
   infer_instance
 
+/--
+@isnad1 id=isscheme.0h5v.s5.bd65cf9aa528 from=seed src=0 shape=5d7c6467 vocab=dfb836a1
+-/
 instance IsSchemeTheoreticallyDominant.pullbackFst (f : X ⟶ S) (g : Y ⟶ S)
     [IsSchemeTheoreticallyDominant g] [QuasiCompact g] [Flat f] :
     IsSchemeTheoreticallyDominant (pullback.fst f g) :=

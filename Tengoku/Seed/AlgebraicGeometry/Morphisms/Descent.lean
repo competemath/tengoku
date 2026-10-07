@@ -45,6 +45,7 @@ set_option backward.isDefEq.respectTransparency false in
 /--
 If `P` is local at the source, every quasi-compact scheme is dominated by an
 affine scheme via `p : Y ⟶ X` such that `p` satisfies `P`.
+@isnad1 id=ex.0h2v.s6.16af106a63f2 from=seed src=0 shape=91b94a91 vocab=4e39076b
 -/
 lemma Scheme.exists_hom_isAffine_of_isZariskiLocalAtSource (X : Scheme.{u}) [CompactSpace X]
     [IsZariskiLocalAtSource P] [P.ContainsIdentities] :
@@ -60,7 +61,9 @@ lemma Scheme.exists_hom_isAffine_of_isZariskiLocalAtSource (X : Scheme.{u}) [Com
 
 set_option backward.isDefEq.respectTransparency false in
 /-- If `P` is local at the target, to show `P` descends along `P'` we may assume
-the base to be affine. -/
+the base to be affine.
+@isnad1 id=descends.0h3v.s6.d30cbb1bc1d6 from=seed src=0 shape=d964d096 vocab=1535981d
+-/
 lemma IsZariskiLocalAtTarget.descendsAlong [IsZariskiLocalAtTarget P] [P'.IsStableUnderBaseChange]
     (H : ∀ {R : CommRingCat.{u}} {X Y : Scheme.{u}} (f : X ⟶ Spec R) (g : Y ⟶ Spec R),
       P' f → P (pullback.fst f g) → P g) :
@@ -92,6 +95,9 @@ lemma IsZariskiLocalAtTarget.descendsAlong [IsZariskiLocalAtTarget P] [P'.IsStab
 variable (Q Q' : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop)
 
 variable {Q Q'} in
+/--
+@isnad1 id=var.2h12v.s8.d3638270df68 from=seed src=0 shape=304afe56 vocab=9ab45373
+-/
 lemma of_pullback_fst_Spec_of_codescendsAlong [P.RespectsIso]
     (hQQ' : RingHom.CodescendsAlong Q Q')
     (H₁ : ∀ {R S : CommRingCat.{u}} {f : R ⟶ S}, P' (Spec.map f) → Q' f.hom)
@@ -110,7 +116,9 @@ lemma of_pullback_fst_Spec_of_codescendsAlong [P.RespectsIso]
 
 /-- If `X` admits a morphism `p : T ⟶ X` from an affine scheme satisfying `P'`, to
 show a property descends along a morphism `f : X ⟶ Z` satisfying `P'`, `X` may assumed to
-be affine. -/
+be affine.
+@isnad1 id=var.0h13v.s7.01f6b2ebe466 from=seed src=0 shape=5a0189a1 vocab=4add7067
+-/
 lemma IsStableUnderBaseChange.of_pullback_fst_of_isAffine [P'.RespectsIso]
     [P'.IsStableUnderComposition] [P.IsStableUnderBaseChange]
     (H : ∀ {R : CommRingCat.{u}} {S X : Scheme.{u}} (f : Spec R ⟶ S) (g : X ⟶ S),
@@ -132,6 +140,9 @@ variable
 
 set_option backward.isDefEq.respectTransparency.types false in
 include H₁ in
+/--
+@isnad1 id=descends.1h3v.s7.52868100c792 from=seed src=0 shape=b08aa829 vocab=82423267
+-/
 lemma IsZariskiLocalAtTarget.descendsAlong_inf_quasiCompact [IsZariskiLocalAtTarget P]
     (H : ∀ {R S : CommRingCat.{u}} {Y : Scheme.{u}} (φ : R ⟶ S) (g : Y ⟶ Spec R),
       P' (Spec.map φ) → P (pullback.fst (Spec.map φ) g) → P g) :
@@ -161,6 +172,7 @@ Let `P` be the morphism property associated to the ring hom property `Q`. Suppos
 Then `P` descends along quasi-compact morphisms satisfying `P'`.
 
 Note: The second condition is in particular satisfied for faithfully flat morphisms.
+@isnad1 id=descends.2h5v.s8.5f7860b20d89 from=seed src=0 shape=9107efb1 vocab=bb49cf1c
 -/
 nonrec lemma HasRingHomProperty.descendsAlong [HasRingHomProperty P Q]
     (hQQ' : RingHom.CodescendsAlong Q Q') :
@@ -190,6 +202,7 @@ Let `P` be a morphism property associated with `affineAnd Q`. Suppose
 Then `P` descends along quasi-compact morphisms satisfying `P'`.
 
 Note: The second condition is in particular satisfied for faithfully flat morphisms.
+@isnad1 id=descends.4h5v.s8.a43b4e269ce3 from=seed src=0 shape=1203dd16 vocab=fd6b8aaf
 -/
 nonrec lemma HasAffineProperty.descendsAlong_of_affineAnd
     (hP : HasAffineProperty P (affineAnd Q)) [MorphismProperty.DescendsAlong @IsAffineHom P']

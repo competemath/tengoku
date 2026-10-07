@@ -20,11 +20,17 @@ open Module
 variable {R S M : Type*} [Semiring R] [AddCommMonoid M] [Module R M] [Free R M]
   [CommSemiring S] [Module S M] [SMulCommClass R S M] [Algebra S R] [IsScalarTower S R M]
 
+/--
+@isnad1 id=iff.0h3v.s7.0f03587284c5 from=seed src=0 shape=74d3867c vocab=89de8efc
+-/
 public theorem Module.End.mem_subsemiringCenter_iff {f : End R M} :
     f ∈ Subsemiring.center (End R M) ↔
       ∃ (α : R) (hα : α ∈ Subsemiring.center R), f = smulLeft α hα :=
   mem_center_iff
 
+/--
+@isnad1 id=iff.0h4v.s8.677d223a314e from=seed src=0 shape=23d557e7 vocab=32f02ee1
+-/
 public theorem Module.End.mem_subalgebraCenter_iff {f : End R M} :
     f ∈ Subalgebra.center S (End R M) ↔
       ∃ (α : R) (hα : α ∈ Subalgebra.center S R), f = smulLeft α hα :=
@@ -42,6 +48,9 @@ public instance [IsCentral S R] : IsCentral S (End R M) where out T hT :=
 end Algebra.IsCentral
 
 open LinearMap in
+/--
+@isnad1 id=iff.0h6v.s9.adb263e07cbc from=seed src=0 shape=4d675918 vocab=97939a5d
+-/
 public theorem LinearEquiv.conjAlgEquiv_ext_iff {M₂ : Type*} [AddCommMonoid M₂] [Module R M₂]
     [Module S M₂] [SMulCommClass R S M₂] [IsScalarTower S R M₂] [Algebra.IsCentral S R]
     {f g : M ≃ₗ[R] M₂} : f.conjAlgEquiv S = g.conjAlgEquiv S ↔ ∃ α : S, ⇑f = α • g := by
@@ -54,6 +63,9 @@ public theorem LinearEquiv.conjAlgEquiv_ext_iff {M₂ : Type*} [AddCommMonoid M�
     LinearMap.smul_apply, End.one_apply, Pi.smul_apply, LinearMapClass.map_smul_of_tower g]
 
 open LinearMap in
+/--
+@isnad1 id=iff.0h6v.s9.2e0ae056d9eb from=seed src=0 shape=290fa0e6 vocab=2a31eb0c
+-/
 public theorem LinearEquiv.conjAlgEquiv_ext_iff' {S M₂ : Type*} [CommRing S] [IsCancelMulZero S]
     [Module S M] [SMulCommClass R S M] [Algebra S R] [IsScalarTower S R M] [AddCommGroup M₂]
     [Module R M₂] [Module S M₂] [SMulCommClass R S M₂] [IsScalarTower S R M₂]

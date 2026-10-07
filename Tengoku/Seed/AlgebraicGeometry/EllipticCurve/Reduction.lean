@@ -67,10 +67,16 @@ noncomputable def integralModel (W : WeierstrassCurve K) [hW : IsIntegral R W] :
 
 variable (W : WeierstrassCurve K) [hW : IsIntegral R W]
 
+/--
+@isnad1 id=eq.0h3v.s5.9e02b23b7227 from=seed src=0 shape=dabf6e2c vocab=c8f365a2
+-/
 lemma baseChange_integralModel_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     (integralModel R W)⁄K = W :=
   hW.integral.choose_spec.symm
 
+/--
+@isnad1 id=isintegr.5h3v.s8.b49bd5eb689a from=seed src=0 shape=0d916337 vocab=fc8b5491
+-/
 lemma isIntegral_of_exists_lift {W : WeierstrassCurve K}
     (h₁ : ∃ r₁, (algebraMap R K) r₁ = W.a₁)
     (h₂ : ∃ r₂, (algebraMap R K) r₂ = W.a₂)
@@ -87,6 +93,9 @@ lemma isIntegral_of_exists_lift {W : WeierstrassCurve K}
   · apply h₄.choose_spec.symm
   · apply h₆.choose_spec.symm
 
+/--
+@isnad1 id=ex.0h3v.s6.59d9c9f51139 from=seed src=0 shape=de519a0c vocab=80292d87
+-/
 lemma Δ_integral_of_isIntegral (W : WeierstrassCurve K) [IsIntegral R W] :
     ∃ r : R, algebraMap R K r = W.Δ := by
   obtain ⟨W_int, hW_int⟩ : ∃ W_int : WeierstrassCurve R, W = W_int⁄K :=
@@ -94,61 +103,97 @@ lemma Δ_integral_of_isIntegral (W : WeierstrassCurve K) [IsIntegral R W] :
   use W_int.Δ
   rw [hW_int, baseChange, map_Δ]
 
+/--
+@isnad1 id=eq.0h3v.s6.6e3e9cd0b0b9 from=seed src=0 shape=8a8ec63b vocab=826e44a2
+-/
 lemma integralModel_a₁_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).a₁ = W.a₁ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.4791298b5690 from=seed src=0 shape=8a8ec63b vocab=a14867fa
+-/
 lemma integralModel_a₂_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).a₂ = W.a₂ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.b53c5ae43ea3 from=seed src=0 shape=8a8ec63b vocab=1bb70fc9
+-/
 lemma integralModel_a₃_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).a₃ = W.a₃ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.64f8863b1702 from=seed src=0 shape=8a8ec63b vocab=5078ecd0
+-/
 lemma integralModel_a₄_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).a₄ = W.a₄ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.a649608767e9 from=seed src=0 shape=8a8ec63b vocab=7db49ce1
+-/
 lemma integralModel_a₆_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).a₆ = W.a₆ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.bfb84b8b9d18 from=seed src=0 shape=8a8ec63b vocab=fdea424d
+-/
 lemma integralModel_b₂_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).b₂ = W.b₂ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.24cf53a7d9c5 from=seed src=0 shape=8a8ec63b vocab=2956f1b3
+-/
 lemma integralModel_b₄_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).b₄ = W.b₄ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.28dbcb09565a from=seed src=0 shape=8a8ec63b vocab=6a100293
+-/
 lemma integralModel_b₆_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).b₆ = W.b₆ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.2a68cd46f0dc from=seed src=0 shape=8a8ec63b vocab=9188e689
+-/
 lemma integralModel_b₈_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).b₈ = W.b₈ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.7518f3055de8 from=seed src=0 shape=8a8ec63b vocab=5b9b9b21
+-/
 lemma integralModel_c₄_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).c₄ = W.c₄ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.9159b4bd3bcf from=seed src=0 shape=8a8ec63b vocab=4cbc7ada
+-/
 lemma integralModel_c₆_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).c₆ = W.c₆ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
   simp [baseChange]
 
+/--
+@isnad1 id=eq.0h3v.s6.adbc2a5e26f5 from=seed src=0 shape=8a8ec63b vocab=3ee5df0d
+-/
 lemma integralModel_Δ_eq (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     algebraMap R K (integralModel R W).Δ = W.Δ := by
   conv_rhs => rw [← baseChange_integralModel_eq R W]
@@ -158,6 +203,9 @@ variable [IsDomain R] [ValuationRing R] [IsFractionRing R K]
 
 open ValuationRing
 
+/--
+@isnad1 id=ex.0h3v.s6.1e6f134dc617 from=seed src=0 shape=aa1ac8bb vocab=98a1c693
+-/
 theorem exists_isIntegral (W : WeierstrassCurve K) :
     ∃ C : VariableChange K, IsIntegral R (C • W) := by
   let l₀ := [W.a₁, W.a₂, W.a₃, W.a₄, W.a₆]
@@ -221,6 +269,9 @@ noncomputable def valuation_Δ_aux (W : WeierstrassCurve K) :
       exact valuation_le_one (maximalIdeal R) r⟩
   else ⟨⊥, bot_le⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.f01f3e8e330a from=seed src=0 shape=2e94d338 vocab=8ac05756
+-/
 lemma valuation_Δ_aux_eq_of_isIntegral (W : WeierstrassCurve K) [hW : IsIntegral R W] :
     valuation_Δ_aux R W = valuation K (maximalIdeal R) W.Δ := by
   simp [valuation_Δ_aux, hW]
@@ -240,6 +291,9 @@ omit [IsFractionRing R K] in
 instance {W : WeierstrassCurve K} [IsMinimal R W] :
     IsIntegral R W := by simpa using IsMinimal.val_Δ_maximal.1
 
+/--
+@isnad1 id=ex.0h3v.s6.41ae6872f2f7 from=seed src=0 shape=f0a53478 vocab=3c0363cd
+-/
 theorem exists_isMinimal (W : WeierstrassCurve K) :
     ∃ C : VariableChange K, IsMinimal R (C • W) := by
   obtain ⟨C, hC⟩ := exists_maximalFor_of_wellFoundedGT
@@ -283,6 +337,9 @@ class HasGoodReduction (W : WeierstrassCurve K) : Prop extends IsMinimal R W whe
 
 @[deprecated (since := "2026-03-04")] alias IsGoodReduction := HasGoodReduction
 
+/--
+@isnad1 id=iff.0h3v.s6.6f0e369eef5a from=seed src=0 shape=bd8d8a22 vocab=82107e2a
+-/
 lemma hasGoodReduction_iff_isElliptic_reduction {W : WeierstrassCurve K} [hW : IsMinimal R W] :
     HasGoodReduction R W ↔ (W.reduction R).IsElliptic := by
   refine Iff.trans ?_ (W.reduction R).isElliptic_iff.symm
@@ -294,6 +351,9 @@ lemma hasGoodReduction_iff_isElliptic_reduction {W : WeierstrassCurve K} [hW : I
   refine ((integralModel_Δ_eq R W ▸ hasGoodReduction_iff _ _).trans ?_).trans h
   simpa [hW] using (valuation_le_one (R := R) (K := K) _ _).ge_iff_eq.symm
 
+/--
+@isnad1 id=iff.0h3v.s6.6f0e369eef5a from=seed src=0 shape=bd8d8a22 vocab=82107e2a
+-/
 @[deprecated (since := "2026-03-04")] alias isGoodReduction_iff_isElliptic_reduction :=
   hasGoodReduction_iff_isElliptic_reduction
 
@@ -327,32 +387,53 @@ class HasSplitMultiplicativeReduction (W : WeierstrassCurve K) : Prop
 
 variable {W : WeierstrassCurve K}
 
+/--
+@isnad1 id=or.0h3v.s6.828625cccc50 from=seed src=0 shape=2a3373ae vocab=fece6537
+-/
 theorem hasGoodReduction_or_hasMultiplicativeReduction_or_hasAdditiveReduction [IsMinimal R W] :
     W.HasGoodReduction R ∨ W.HasMultiplicativeReduction R ∨ W.HasAdditiveReduction R := by
   rw [hasGoodReduction_iff, hasMultiplicativeReduction_iff, hasAdditiveReduction_iff,
     ← integralModel_Δ_eq R W, ← integralModel_c₄_eq R W]
   grind [valuation_le_one]
 
+/--
+@isnad1 id=not.1h3v.s6.237b1478c12b from=seed src=0 shape=0a691b6e vocab=fd254de5
+-/
 theorem HasGoodReduction.not_hasMultiplicativeReduction (hW : W.HasGoodReduction R) :
     ¬ W.HasMultiplicativeReduction R :=
   fun h ↦ h.badReduction.ne hW.goodReduction
 
+/--
+@isnad1 id=not.1h3v.s6.8e5d8ca902e5 from=seed src=0 shape=0a691b6e vocab=2622ea84
+-/
 theorem HasGoodReduction.not_hasAdditiveReduction (hW : W.HasGoodReduction R) :
     ¬ W.HasAdditiveReduction R :=
   fun h ↦ h.badReduction.ne hW.goodReduction
 
+/--
+@isnad1 id=not.1h3v.s6.44b5f9abfdd4 from=seed src=0 shape=0a691b6e vocab=fd254de5
+-/
 theorem HasMultiplicativeReduction.not_hasGoodReduction (hW : W.HasMultiplicativeReduction R) :
     ¬ W.HasGoodReduction R :=
   fun h ↦ hW.badReduction.ne h.goodReduction
 
+/--
+@isnad1 id=not.1h3v.s6.48d7230f5a56 from=seed src=0 shape=0a691b6e vocab=2622ea84
+-/
 theorem HasAdditiveReduction.not_hasGoodReduction (hW : W.HasAdditiveReduction R) :
     ¬ W.HasGoodReduction R :=
   fun h ↦ hW.badReduction.ne h.goodReduction
 
+/--
+@isnad1 id=not.1h3v.s6.89c5c4a3a46e from=seed src=0 shape=0a691b6e vocab=26741f9b
+-/
 theorem HasMultiplicativeReduction.not_hasAdditiveReduction (hW : W.HasMultiplicativeReduction R) :
     ¬ W.HasAdditiveReduction R :=
   fun h ↦ h.additiveReduction.ne hW.multiplicativeReduction
 
+/--
+@isnad1 id=not.1h3v.s6.2ba99ff85503 from=seed src=0 shape=0a691b6e vocab=26741f9b
+-/
 theorem HasAdditiveReduction.not_hasMultiplicativeReduction (hW : W.HasAdditiveReduction R) :
     ¬ W.HasMultiplicativeReduction R :=
   fun h ↦ hW.additiveReduction.ne h.multiplicativeReduction

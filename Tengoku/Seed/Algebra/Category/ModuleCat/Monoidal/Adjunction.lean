@@ -31,11 +31,17 @@ namespace ModuleCat
 
 variable {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S)
 
+/--
+@isnad1 id=eq.0h5v.s10.90b5db78a2f5 from=seed src=0 shape=05be985b vocab=2452cf37
+-/
 @[simp]
 lemma extendsScalars_map_leftUnitor_inv_one_tmul (M : ModuleCat R) (m : M) :
     letI := f.toAlgebra
     (extendScalars f).map (λ_ M).inv ((1 : S) ⊗ₜ[R] m) = (1 : S) ⊗ₜ[R] (1 ⊗ₜ m) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.c7aa7ad8ae24 from=seed src=0 shape=32a7ef38 vocab=20c2d85b
+-/
 @[simp]
 lemma extendsScalars_map_rightUnitor_inv_one_tmul (M : ModuleCat R) (m : M) :
     letI := f.toAlgebra
@@ -78,16 +84,25 @@ noncomputable instance : (extendScalars f).Monoidal :=
         rfl))
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s9.019638e41ef1 from=seed src=0 shape=ca2cecba vocab=22064a8d
+-/
 lemma extendScalars_ε :
     letI := f.toAlgebra
     dsimp% ε (extendScalars f) = (AlgebraTensorModule.rid R S S).toModuleIso.inv := rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s9.c41c5cc2be69 from=seed src=0 shape=23e0db5d vocab=9a08db2d
+-/
 lemma extendScalars_η :
     letI := f.toAlgebra
     dsimp% η (extendScalars f) = (AlgebraTensorModule.rid R S S).toModuleIso.hom := rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h5v.s12.f5022eb77140 from=seed src=0 shape=cb5f7833 vocab=0f973aac
+-/
 lemma extendScalars_μ (M₁ M₂ : ModuleCat R) :
     letI := f.toAlgebra
     dsimp% μ (extendScalars f) M₁ M₂ =
@@ -95,12 +110,18 @@ lemma extendScalars_μ (M₁ M₂ : ModuleCat R) :
   rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h5v.s12.801fbdc69063 from=seed src=0 shape=5ae03ab7 vocab=ab037b44
+-/
 lemma extendScalars_δ (M₁ M₂ : ModuleCat R) :
     letI := f.toAlgebra
     dsimp% δ (extendScalars f) M₁ M₂ =
       (AlgebraTensorModule.distribBaseChange R S M₁ M₂).toModuleIso.hom :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.63335ad6dfa2 from=seed src=0 shape=890177e6 vocab=77e48e99
+-/
 @[simp]
 lemma extendScalars_δ_tmul (M₁ M₂ : ModuleCat R) (m₁ : M₁) (m₂ : M₂) :
     letI := f.toAlgebra
@@ -110,6 +131,9 @@ lemma extendScalars_δ_tmul (M₁ M₂ : ModuleCat R) (m₁ : M₁) (m₂ : M₂
 noncomputable instance : (restrictScalars f).LaxMonoidal :=
   (extendRestrictScalarsAdj f).rightAdjointLaxMonoidal
 
+/--
+@isnad1 id=eq.0h4v.s9.cb8b69bfe4ec from=seed src=0 shape=cd616ffc vocab=63f2b35f
+-/
 @[simp]
 lemma restrictScalars_η (r : R) :
     ε (restrictScalars f) r = f r := by
@@ -120,6 +144,9 @@ lemma restrictScalars_η (r : R) :
   rw [RingHom.smul_toAlgebra, mul_one]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s10.edb91130440b from=seed src=0 shape=4d03a5b7 vocab=2927eb89
+-/
 @[simp]
 lemma restrictScalars_μ_tmul (M₁ M₂ : ModuleCat S) (m₁ : M₁) (m₂ : M₂) :
     dsimp% μ (restrictScalars f) M₁ M₂ (m₁ ⊗ₜ m₂) = m₁ ⊗ₜ m₂ := by

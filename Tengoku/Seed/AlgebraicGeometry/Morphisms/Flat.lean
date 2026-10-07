@@ -45,6 +45,9 @@ class Flat (f : X ⟶ Y) : Prop where
     ∀ {U : Y.Opens} (_ : IsAffineOpen U) {V : X.Opens} (_ : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U),
       (f.appLE U V e).hom.Flat
 
+/--
+@isnad1 id=flat.3h5v.s9.5bbe27a1cd10 from=seed src=0 shape=3953db45 vocab=19175821
+-/
 alias Scheme.Hom.flat_appLE := Flat.flat_appLE
 
 namespace Flat
@@ -62,10 +65,16 @@ instance (priority := 900) [IsOpenImmersion f] : Flat f :=
 instance : MorphismProperty.IsStableUnderComposition @Flat :=
   HasRingHomProperty.stableUnderComposition RingHom.Flat.stableUnderComposition
 
+/--
+@isnad1 id=iff.0h3v.s5.cb8b4422e035 from=seed src=0 shape=110effa8 vocab=1653700d
+-/
 @[simp]
 lemma SpecMap_iff {R S : CommRingCat.{u}} {f : R ⟶ S} : Flat (Spec.map f) ↔ f.hom.Flat :=
   HasRingHomProperty.Spec_iff
 
+/--
+@isnad1 id=flat.0h5v.s5.7738c6ec4e57 from=seed src=0 shape=73d4a103 vocab=94f65908
+-/
 instance comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [hf : Flat f] [hg : Flat g] : Flat (f ≫ g) :=
   MorphismProperty.comp_mem _ f g hf hg
@@ -77,6 +86,9 @@ instance : MorphismProperty.Respects @Flat @IsOpenImmersion where
 instance : MorphismProperty.IsMultiplicative @Flat where
   id_mem _ := inferInstance
 
+/--
+@isnad1 id=isstable.0h0v.s2.197fbadac46c from=seed src=0 shape=25b03439 vocab=8c7654db
+-/
 instance isStableUnderBaseChange : MorphismProperty.IsStableUnderBaseChange @Flat :=
   HasRingHomProperty.isStableUnderBaseChange RingHom.Flat.isStableUnderBaseChange
 
@@ -95,13 +107,22 @@ instance (f : X ⟶ Y) (V : Y.Opens) [Flat f] : Flat (f ∣_ V) :=
 instance (f : X ⟶ Y) (U : X.Opens) (V : Y.Opens) (e) [Flat f] : Flat (f.resLE V U e) := by
   delta Scheme.Hom.resLE; infer_instance
 
+/--
+@isnad1 id=flat.1h3v.s9.a368c03665d4 from=seed src=0 shape=49937302 vocab=1ad225ce
+-/
 lemma of_stalkMap (H : ∀ x, (f.stalkMap x).hom.Flat) : Flat f :=
   HasRingHomProperty.of_stalkMap RingHom.Flat.ofLocalizationPrime H
 
+/--
+@isnad1 id=flat.0h4v.s9.6145ca2a5be2 from=seed src=0 shape=f861e1e1 vocab=1ad225ce
+-/
 lemma stalkMap [Flat f] (x : X) : (f.stalkMap x).hom.Flat :=
   HasRingHomProperty.stalkMap (P := @Flat)
     (fun f hf J hJ ↦ hf.localRingHom J (J.comap f) rfl) ‹_› x
 
+/--
+@isnad1 id=iff.0h3v.s9.ac40ff917d71 from=seed src=0 shape=cfca0bf7 vocab=1ad225ce
+-/
 lemma iff_flat_stalkMap : Flat f ↔ ∀ x, (f.stalkMap x).hom.Flat :=
   ⟨fun _ ↦ stalkMap f, fun H ↦ of_stalkMap f H⟩
 
@@ -118,7 +139,9 @@ instance (priority := low) [Subsingleton Y] [IsIntegral Y] : Flat f := by
     HasRingHomProperty.Spec_iff (P := @Flat)]
   exact .of_isField (isField_of_isIntegral_of_subsingleton _) _
 
-/-- A surjective, quasi-compact, flat morphism is a quotient map. -/
+/-- A surjective, quasi-compact, flat morphism is a quotient map.
+@isnad1 id=isquotie.0h3v.s7.07d6a8a748de from=seed src=0 shape=c9ce70f1 vocab=f460a177
+-/
 @[stacks 02JY]
 lemma isQuotientMap_of_surjective {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [QuasiCompact f]
     [Surjective f] : Topology.IsQuotientMap f := by
@@ -151,7 +174,9 @@ lemma isQuotientMap_of_surjective {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [Qua
     rwa [← HasRingHomProperty.Spec_iff (P := @Flat)]
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- A flat surjective morphism of schemes is an epimorphism in the category of schemes. -/
+/-- A flat surjective morphism of schemes is an epimorphism in the category of schemes.
+@isnad1 id=epi.0h3v.s4.916140f7787b from=seed src=0 shape=2f814ce5 vocab=a5ffa051
+-/
 @[stacks 02VW]
 lemma epi_of_flat_of_surjective (f : X ⟶ Y) [Flat f] [Surjective f] : Epi f := by
   apply CategoryTheory.Functor.epi_of_epi_map (Scheme.forgetToLocallyRingedSpace)
@@ -166,6 +191,9 @@ lemma epi_of_flat_of_surjective (f : X ⟶ Y) [Flat f] [Surjective f] : Epi f :=
   exact ‹RingHom.FaithfullyFlat _›.injective
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s10.a1fb8fdbfe39 from=seed src=0 shape=38b2f8a2 vocab=7352a98a
+-/
 lemma flat_and_surjective_iff_faithfullyFlat_of_isAffine [IsAffine X] [IsAffine Y] :
     Flat f ∧ Surjective f ↔ f.appTop.hom.FaithfullyFlat := by
   rw [RingHom.FaithfullyFlat.iff_flat_and_comap_surjective,
@@ -176,10 +204,16 @@ lemma flat_and_surjective_iff_faithfullyFlat_of_isAffine [IsAffine X] [IsAffine 
 
 end Flat
 
+/--
+@isnad1 id=flat.0h3v.s10.7759b54b1b0d from=seed src=0 shape=25b3a774 vocab=256d8622
+-/
 lemma Scheme.Hom.flat_appTop [IsAffine X] [IsAffine Y] [Flat f] :
     f.appTop.hom.Flat :=
   HasRingHomProperty.appTop (P := @Flat) _ inferInstance
 
+/--
+@isnad1 id=iff.0h3v.s5.1058f01f2f7f from=seed src=0 shape=243a05c1 vocab=77b1f6fc
+-/
 lemma flat_and_surjective_SpecMap_iff {R S : CommRingCat.{u}} (f : R ⟶ S) :
     Flat (Spec.map f) ∧ Surjective (Spec.map f) ↔ f.hom.FaithfullyFlat := by
   rw [HasRingHomProperty.Spec_iff (P := @Flat),
@@ -231,6 +265,9 @@ abbrev pushoutSection : pushout (iX.appLE US UX hUSX) (f.appLE US UT hUST) ⟶ �
     (by simp only [Scheme.Hom.appLE_comp_appLE, H.w])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.4h12v.s10.3fb4857b3b8b from=seed src=0 shape=c92d5bc2 vocab=ca81cf87
+-/
 lemma isIso_pushoutSection_iff :
     IsIso (pushoutSection H hUST hUSX hUY) ↔ IsPushout (iX.appLE US UX hUSX) (f.appLE US UT hUST)
       (g.appLE UX UY (by simp [*])) (iY.appLE UT UY (by simp [*])) :=
@@ -241,6 +278,9 @@ lemma isIso_pushoutSection_iff :
 set_option backward.defeqAttrib.useBackward true in
 attribute [local simp] IsAffineOpen.isoSpec_hom in
 attribute [local simp ←] Scheme.Hom.resLE_eq_morphismRestrict in
+/--
+@isnad1 id=isiso.7h12v.s10.f5463673ed04 from=seed src=0 shape=ff87e573 vocab=ecea5d43
+-/
 lemma isIso_pushoutSection_of_isAffineOpen (hUS : IsAffineOpen US) (hUT : IsAffineOpen UT)
     (hUX : IsAffineOpen UX) : IsIso (pushoutSection H hUST hUSX hUY) := by
   refine (isIso_pushoutSection_iff ..).mpr (IsPullback.of_map_of_faithful Scheme.Spec ?_).unop
@@ -254,6 +294,9 @@ lemma isIso_pushoutSection_of_isAffineOpen (hUS : IsAffineOpen US) (hUT : IsAffi
 
 set_option backward.isDefEq.respectTransparency false in
 open TensorProduct in
+/--
+@isnad1 id=mono.7h14v.s11.6f4f300d9cc6 from=seed src=0 shape=60c4919d vocab=b956c499
+-/
 lemma mono_pushoutSection_of_iSup_eq {ι : Type*} [Finite ι] (VX : ι → X.Opens) (hVU : iSup VX = UX)
     (hV : ∀ i, Mono (pushoutSection H hUST (show VX i ≤ _ by aesop) rfl))
     (hT : (f.appLE US UT hUST).hom.Flat) :
@@ -337,6 +380,9 @@ lemma mono_pushoutSection_of_iSup_eq {ι : Type*} [Finite ι] (VX : ι → X.Ope
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.8h14v.s12.0cb4837a2933 from=seed src=0 shape=11d69eaf vocab=318df9b3
+-/
 lemma isIso_pushoutSection_of_iSup_eq
     {ι : Type u} [Finite ι] (VX : ι → X.Opens) (hVU : iSup VX = UX)
     (hV : ∀ i, IsIso (pushoutSection H hUST (show VX i ≤ _ by aesop) rfl))
@@ -436,6 +482,9 @@ lemma isIso_pushoutSection_of_iSup_eq
     · simp [αF, c, Under.liftCone, c', c₀]
     · simp [αF, c, c']
 
+/--
+@isnad1 id=mono.7h12v.s10.fab920bf41d1 from=seed src=0 shape=f8d68251 vocab=05c6cdd5
+-/
 lemma mono_pushoutSection_of_isCompact_of_flat_right [Flat f]
     (hUS : IsAffineOpen US) (hUT : IsAffineOpen UT) (hUX : IsCompact (X := X) UX) :
     Mono (pushoutSection H hUST hUSX hUY) := by
@@ -446,6 +495,9 @@ lemma mono_pushoutSection_of_isCompact_of_flat_right [Flat f]
     (f.flat_appLE hUS hUT _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mono.7h12v.s10.0c96d3c8aab2 from=seed src=0 shape=4c374996 vocab=05c6cdd5
+-/
 lemma mono_pushoutSection_of_isCompact_of_flat_left [Flat iX]
     (hUS : IsAffineOpen US) (hUX : IsAffineOpen UX) (hUT : IsCompact (X := T) UT) :
     Mono (pushoutSection H hUST hUSX hUY) := by
@@ -453,6 +505,9 @@ lemma mono_pushoutSection_of_isCompact_of_flat_left [Flat iX]
     rw [← mono_comp_iff_of_isIso (pushoutSymmetry _ _).hom]; convert! this; cat_disch
   exact mono_pushoutSection_of_isCompact_of_flat_right _ _ _ _ hUS hUX hUT
 
+/--
+@isnad1 id=isiso.8h12v.s10.7e874f98f83e from=seed src=0 shape=3c2e581b vocab=bdbd3956
+-/
 lemma isIso_pushoutSection_of_isQuasiSeparated_of_flat_right [Flat f]
     (hUS : IsAffineOpen US) (hUT : IsAffineOpen UT)
     (hUX : IsCompact (X := X) UX) (hUX' : IsQuasiSeparated (α := X) UX) :
@@ -467,6 +522,9 @@ lemma isIso_pushoutSection_of_isQuasiSeparated_of_flat_right [Flat f]
     (f.flat_appLE hUS hUT _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.8h12v.s10.37b65e96e8c3 from=seed src=0 shape=0ad7509e vocab=bdbd3956
+-/
 lemma isIso_pushoutSection_of_isQuasiSeparated_of_flat_left [Flat iX]
     (hUS : IsAffineOpen US) (hUX : IsAffineOpen UX)
     (hUT : IsCompact (X := T) UT) (hUT' : IsQuasiSeparated (α := T) UT) :
@@ -475,6 +533,9 @@ lemma isIso_pushoutSection_of_isQuasiSeparated_of_flat_left [Flat iX]
     rw [← isIso_comp_left_iff (pushoutSymmetry _ _).hom]; convert! this; cat_disch
   exact isIso_pushoutSection_of_isQuasiSeparated_of_flat_right _ _ _ _ hUS hUX hUT hUT'
 
+/--
+@isnad1 id=mono.8h12v.s11.ca2dd17387f1 from=seed src=0 shape=e48b4673 vocab=0f00b4b3
+-/
 lemma mono_pushoutSection_of_isCompact_of_flat_left_of_ringHomFlat [Flat iX]
     (hUS : IsAffineOpen US) (hUT : IsCompact (X := T) UT)
     (hUX : IsCompact (X := X) UX) (hf : (f.appLE US UT hUST).hom.Flat) :
@@ -485,6 +546,9 @@ lemma mono_pushoutSection_of_isCompact_of_flat_left_of_ringHomFlat [Flat iX]
     (fun i ↦ mono_pushoutSection_of_isCompact_of_flat_left _ _ _ _ hUS i.1.2 hUT) hf
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mono.8h12v.s11.3aa219c2aa82 from=seed src=0 shape=d2f3541c vocab=0f00b4b3
+-/
 lemma mono_pushoutSection_of_isCompact_of_flat_right_of_ringHomFlat [Flat f]
     (hUS : IsAffineOpen US) (hUT : IsCompact (X := T) UT)
     (hUX : IsCompact (X := X) UX) (hiX : (iX.appLE US UX hUSX).hom.Flat) :
@@ -495,6 +559,9 @@ lemma mono_pushoutSection_of_isCompact_of_flat_right_of_ringHomFlat [Flat f]
 
 set_option backward.isDefEq.respectTransparency false in
 include H in
+/--
+@isnad1 id=isiso.10h12v.s11.895f8c380f05 from=seed src=0 shape=70751203 vocab=c2e77bde
+-/
 lemma isIso_pushoutSection_of_isCompact_of_flat_right_of_ringHomFlat [Flat f]
     (hUS : IsAffineOpen US) (hUT : IsCompact (X := T) UT) (hUT' : IsQuasiSeparated (α := T) UT)
     (hUX : IsCompact (X := X) UX) (hUX' : IsQuasiSeparated (α := X) UX)

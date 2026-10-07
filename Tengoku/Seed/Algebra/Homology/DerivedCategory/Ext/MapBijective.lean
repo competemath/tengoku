@@ -41,6 +41,9 @@ variable (F : C ⥤ D) [F.Additive] [PreservesFiniteLimits F] [PreservesFiniteCo
 attribute [local simp] Ext.mapExactFunctor_comp Ext.mapExactFunctor_mk₀ Ext.mapExactFunctor_extClass
 
 attribute [local instance] Ext.subsingleton_of_projective in
+/--
+@isnad1 id=bijectiv.0h6v.s9.c3ecd062f48c from=seed src=0 shape=cbe71d73 vocab=9d56b5ba
+-/
 lemma Functor.mapExt_bijective_of_preservesProjectiveObjects [F.Full] [F.Faithful] [HasExt.{w} C]
     [HasExt.{w'} D] [EnoughProjectives C] [F.PreservesProjectiveObjects] (X Y : C) (n : ℕ) :
     Function.Bijective (F.mapExtAddHom X Y n) := by
@@ -63,6 +66,9 @@ lemma Functor.mapExt_bijective_of_preservesProjectiveObjects [F.Full] [F.Faithfu
       (fun y₃ ↦ Ext.contravariant_sequence_exact₃ (hS.map F) _ y₃ (by subsingleton) (add_comm 1 n))
 
 attribute [local instance] Ext.subsingleton_of_injective in
+/--
+@isnad1 id=bijectiv.0h6v.s9.26e800f3d89e from=seed src=0 shape=cbe71d73 vocab=8d1103e9
+-/
 lemma Functor.mapExt_bijective_of_preservesInjectiveObjects [F.Full] [F.Faithful] [HasExt.{w} C]
     [HasExt.{w'} D] [EnoughInjectives C] [F.PreservesInjectiveObjects] (X Y : C) (n : ℕ) :
     Function.Bijective (F.mapExtAddHom X Y n) := by

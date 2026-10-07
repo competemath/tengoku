@@ -23,7 +23,9 @@ namespace QuadraticAlgebra
 variable {R : Type*} [CommRing R] {a b : R}
 
 /-- The norm of an element in a quadratic algebra is the determinant of the endomorphism defined by
-left multiplication by that element. -/
+left multiplication by that element.
+@isnad1 id=eq.0h4v.s10.6174b6f8ab06 from=seed src=0 shape=dfec172a vocab=2d9a43aa
+-/
 @[simp]
 theorem det_toLinearMap_eq_norm (z : QuadraticAlgebra R a b) :
     (DistribSMul.toLinearMap R (QuadraticAlgebra R a b) z).det = z.norm := by

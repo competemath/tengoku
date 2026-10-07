@@ -36,20 +36,26 @@ namespace Scheme
 namespace PartialMap
 
 set_option backward.defeqAttrib.useBackward true in
-/-- Restricting a dominant partial map to a dense open yields a dominant partial map. -/
+/-- Restricting a dominant partial map to a dense open yields a dominant partial map.
+@isnad1 id=isdomina.2h4v.s7.dd50c7b0510b from=seed src=0 shape=f226062b vocab=3a3492ad
+-/
 instance isDominant_restrict_hom (f : X.PartialMap Y) [IsDominant f.hom] (U : X.Opens)
     (hU : Dense (U : Set X)) (hU' : U ≤ f.domain) : IsDominant (f.restrict U hU hU').hom := by
   dsimp only [restrict_domain, restrict_hom]
   have : IsDominant (X.homOfLE hU') := Opens.isDominant_homOfLE hU hU'
   rwa [IsDominant.comp_iff]
 
-/-- If a restriction of `f` is dominant, then `f` is dominant. -/
+/-- If a restriction of `f` is dominant, then `f` is dominant.
+@isnad1 id=isdomina.2h4v.s7.60b655edf251 from=seed src=0 shape=99315399 vocab=3a3492ad
+-/
 lemma isDominant_hom_of_isDominant_restrict_hom (f : X.PartialMap Y) (U : X.Opens)
     (hU : Dense (U : Set X)) (hU' : U ≤ f.domain) [H : IsDominant (f.restrict U hU hU').hom] :
     IsDominant f.hom :=
   IsDominant.of_comp (X.homOfLE hU') f.hom (H := H)
 
-/-- `f.hom` is dominant iff any restriction of `f` is. -/
+/-- `f.hom` is dominant iff any restriction of `f` is.
+@isnad1 id=iff.2h4v.s7.5928ac25c70c from=seed src=0 shape=07083b6c vocab=3a3492ad
+-/
 lemma isDominant_hom_iff_isDominant_restrict_hom (f : X.PartialMap Y) (U : X.Opens)
     (hU : Dense (U : Set X)) (hU' : U ≤ f.domain) :
     IsDominant f.hom ↔ IsDominant (f.restrict U hU hU').hom :=
@@ -57,7 +63,9 @@ lemma isDominant_hom_iff_isDominant_restrict_hom (f : X.PartialMap Y) (U : X.Ope
     fun _ ↦ f.isDominant_hom_of_isDominant_restrict_hom U hU hU'⟩
 
 set_option backward.defeqAttrib.useBackward true in
-/-- Dominance of the underlying morphism is invariant under equivalence of partial maps. -/
+/-- Dominance of the underlying morphism is invariant under equivalence of partial maps.
+@isnad1 id=iff.1h4v.s5.49a2f2691f29 from=seed src=0 shape=ad045ebb vocab=1fa0cc64
+-/
 lemma isDominant_hom_iff_of_equiv (f g : X.PartialMap Y) (h : f.equiv g) :
     IsDominant f.hom ↔ IsDominant g.hom := by
   obtain ⟨W, hW, hWl, hWr, h⟩ := h
@@ -75,6 +83,9 @@ protected class RationalMap.IsDominant (f : X ⤏ Y) : Prop where
   out : Quotient.liftOn f (fun g ↦ IsDominant g.hom) <| fun _ _ h ↦
     propext (PartialMap.isDominant_hom_iff_of_equiv _ _ h)
 
+/--
+@isnad1 id=iff.0h3v.s4.30438bfe20e0 from=seed src=0 shape=7b4d48f2 vocab=e2a9508b
+-/
 @[simp]
 lemma PartialMap.isDominant_toRationalMap_iff (f : X.PartialMap Y) :
     f.toRationalMap.IsDominant ↔ IsDominant f.hom :=
