@@ -1,0 +1,19 @@
+{
+ "library": "leaninfotheory",
+ "lint_mode": "proposed",
+ "modules_in_bundle": 35,
+ "modules_dropped": 0,
+ "dropped": {},
+ "dropped_truncated": false,
+ "theorems": 631,
+ "passed_total": 634,
+ "left_out": {
+  "verification build: module did not build, or imports one": 3
+ },
+ "kept_constants": 1172,
+ "stripped_attributes": {},
+ "lint_cost": {},
+ "verification_dropped": {
+  "LeanInfoTheory.Examples.FiniteFamily": "did not build in the verification build"
+ }
+}

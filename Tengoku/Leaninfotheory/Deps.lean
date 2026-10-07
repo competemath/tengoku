@@ -1,0 +1,1 @@
+-- Leaninfotheory: a factory bundle (data/intake/leaninfotheory). This file only marks the library for Tengoku/All.lean.
