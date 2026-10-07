@@ -51,10 +51,16 @@ def zariskiPretopology : Pretopology Scheme.{u} :=
 abbrev zariskiTopology : GrothendieckTopology Scheme.{u} :=
   grothendieckTopology IsOpenImmersion
 
+/--
+@isnad1 id=eq.0h0v.s3.32124d2c1f86 from=seed src=0 shape=0ab70a54 vocab=6c20e27a
+-/
 lemma zariskiTopology_eq : zariskiTopology.{u} = zariskiPretopology.toGrothendieck :=
   Precoverage.toGrothendieck_toPretopology_eq_toGrothendieck.symm
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=subcanon.0h0v.s2.8c162e8ef31b from=seed src=0 shape=25b03439 vocab=d59af49b
+-/
 instance subcanonical_zariskiTopology : zariskiTopology.Subcanonical := by
   apply GrothendieckTopology.Subcanonical.of_isSheaf_yoneda_obj
   intro X
@@ -101,7 +107,9 @@ def affineOneHypercover (X : Scheme.{u}) : zariskiTopology.OneHypercover X :=
 
 end Scheme
 
-/-- Zariski sheaves preserve products. -/
+/-- Zariski sheaves preserve products.
+@isnad1 id=preserve.1h2v.s5.6052daa2a68a from=seed src=0 shape=8810d836 vocab=55921290
+-/
 lemma preservesLimitsOfShape_discrete_of_isSheaf_zariskiTopology {F : Scheme.{u}ᵒᵖ ⥤ Type v}
     {ι : Type*} [Small.{u} ι] [Small.{v} ι] (hF : Presieve.IsSheaf Scheme.zariskiTopology F) :
     PreservesLimitsOfShape (Discrete ι) F := by
@@ -124,7 +132,9 @@ lemma preservesLimitsOfShape_discrete_of_isSheaf_zariskiTopology {F : Scheme.{u}
 /-- Let `F` be a locally directed diagram of open immersions, i.e., a diagram of schemes
 for which whenever `xᵢ ∈ Fᵢ` and `xⱼ ∈ Fⱼ` map to the same `xₖ ∈ Fₖ`, there exists
 some `xₗ ∈ Fₗ` that maps to `xᵢ` and `xⱼ` (e.g, the diagram indexing a coproduct).
-Then the colimit inclusions are a Zariski covering. -/
+Then the colimit inclusions are a Zariski covering.
+@isnad1 id=mem.0h4v.s7.5ed6cee5c12c from=seed src=0 shape=08706568 vocab=c234dfdd
+-/
 lemma ofArrows_ι_mem_zariskiTopology_of_isColimit {J : Type*} [Category J]
     (F : J ⥤ Scheme.{u}) [∀ {i j : J} (f : i ⟶ j), IsOpenImmersion (F.map f)]
     [(F.comp Scheme.forget).IsLocallyDirected] [Quiver.IsThin J] [Small.{u} J]
@@ -141,6 +151,9 @@ lemma ofArrows_ι_mem_zariskiTopology_of_isColimit {J : Type*} [Category J]
 
 -- TODO: This holds more generally if `𝒰.J` is `u`-small and can be generalized
 -- when we have `PreExtensive` categories
+/--
+@isnad1 id=iff.1h4v.s7.3da5474c2143 from=seed src=0 shape=8be37ebc vocab=9ddc7ff5
+-/
 lemma Scheme.Cover.isSheafFor_sigma_iff {P : MorphismProperty Scheme.{u}}
     {F : Scheme.{u}ᵒᵖ ⥤ Type*} [IsZariskiLocalAtSource P]
     (hF : Presieve.IsSheaf Scheme.zariskiTopology F)

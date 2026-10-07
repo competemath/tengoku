@@ -46,6 +46,7 @@ noncomputable def IsAffineOpen.fromSpecStalk
 /--
 The morphism from `Spec(O_x)` to `X` given by `IsAffineOpen.fromSpec` does not depend on the affine
 open neighborhood of `x` we choose.
+@isnad1 id=eq.4h4v.s7.c8abc9a66907 from=seed src=0 shape=0404f0db vocab=3021d9d7
 -/
 theorem IsAffineOpen.fromSpecStalk_eq (x : X) (hxU : x ∈ U) (hxV : x ∈ V) :
     hU.fromSpecStalk hxU = hV.fromSpecStalk hxV := by
@@ -73,10 +74,16 @@ instance (X : Scheme.{u}) (x : X) : (Spec (X.presheaf.stalk x)).Over X := ⟨X.f
 noncomputable
 instance (X : Scheme.{u}) (x : X) : (Spec (X.presheaf.stalk x)).CanonicallyOver X where
 
+/--
+@isnad1 id=eq.2h3v.s6.f00b6c0f913b from=seed src=0 shape=893a5fb8 vocab=77d4e89b
+-/
 @[simp]
 theorem IsAffineOpen.fromSpecStalk_eq_fromSpecStalk {x : X} (hxU : x ∈ U) :
     hU.fromSpecStalk hxU = X.fromSpecStalk x := fromSpecStalk_eq ..
 
+/--
+@isnad1 id=ispreimm.2h3v.s7.4e953fdc9dfd from=seed src=0 shape=5ffd1422 vocab=3599acf3
+-/
 instance IsAffineOpen.fromSpecStalk_isPreimmersion {X : Scheme.{u}} {U : Opens X}
     (hU : IsAffineOpen U) (x : X) (hx : x ∈ U) : IsPreimmersion (hU.fromSpecStalk hx) := by
   dsimp [IsAffineOpen.fromSpecStalk]
@@ -91,6 +98,9 @@ instance {X : Scheme.{u}} (x : X) : IsPreimmersion (X.fromSpecStalk x) :=
   IsAffineOpen.fromSpecStalk_isPreimmersion _ _ _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.2h3v.s9.00c33d237c6a from=seed src=0 shape=181d4d61 vocab=d028c7ac
+-/
 lemma IsAffineOpen.fromSpecStalk_closedPoint {U : Opens X} (hU : IsAffineOpen U)
     {x : X} (hxU : x ∈ U) :
     hU.fromSpecStalk hxU (closedPoint (X.presheaf.stalk x)) = x := by
@@ -99,12 +109,18 @@ lemma IsAffineOpen.fromSpecStalk_closedPoint {U : Opens X} (hU : IsAffineOpen U)
 
 namespace Scheme
 
+/--
+@isnad1 id=eq.0h2v.s8.c1372bbdbad0 from=seed src=0 shape=7928de7f vocab=aec1a4bf
+-/
 @[simp]
 lemma fromSpecStalk_closedPoint {x : X} :
     X.fromSpecStalk x (closedPoint (X.presheaf.stalk x)) = x :=
   IsAffineOpen.fromSpecStalk_closedPoint _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h3v.s12.37c64fdac57c from=seed src=0 shape=aa73559e vocab=d01d3ee0
+-/
 lemma fromSpecStalk_app {x : X} (hxU : x ∈ U) :
     (X.fromSpecStalk x).app U =
       X.presheaf.germ U x hxU ≫
@@ -116,6 +132,9 @@ lemma fromSpecStalk_app {x : X} (hxU : x ∈ U) :
     hV.fromSpec_app_of_le _ hVU, ← X.presheaf.germ_res (homOfLE hVU) x hxV]
   simp [Category.assoc, ← ΓSpecIso_inv_naturality_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s13.2e03a46d6f46 from=seed src=0 shape=45945dd1 vocab=1f08a926
+-/
 lemma fromSpecStalk_appTop {x : X} :
     (X.fromSpecStalk x).appTop =
       X.presheaf.germ ⊤ x trivial ≫
@@ -124,6 +143,9 @@ lemma fromSpecStalk_appTop {x : X} :
   fromSpecStalk_app ..
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h3v.s7.06b61b524d68 from=seed src=0 shape=6ea3b7a0 vocab=b6f67d77
+-/
 @[reassoc (attr := simp)]
 lemma SpecMap_stalkSpecializes_fromSpecStalk {x y : X} (h : x ⤳ y) :
     Spec.map (X.presheaf.stalkSpecializes h) ≫ X.fromSpecStalk y = X.fromSpecStalk x := by
@@ -137,6 +159,9 @@ lemma SpecMap_stalkSpecializes_fromSpecStalk {x y : X} (h : x ⤳ y) :
 instance {x y : X} (h : x ⤳ y) : (Spec.map (X.presheaf.stalkSpecializes h)).IsOver X where
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s9.8ba152f45fff from=seed src=0 shape=59b95512 vocab=5a20f361
+-/
 @[reassoc (attr := simp)]
 lemma SpecMap_stalkMap_fromSpecStalk {x} :
     Spec.map (f.stalkMap x) ≫ Y.fromSpecStalk _ = X.fromSpecStalk x ≫ f := by
@@ -152,6 +177,9 @@ lemma SpecMap_stalkMap_fromSpecStalk {x} :
 
 instance [X.Over Y] {x} : Spec.map ((X ↘ Y).stalkMap x) |>.IsOver Y where
 
+/--
+@isnad1 id=eq.0h2v.s8.496d2d6415b8 from=seed src=0 shape=31c90cbc vocab=8e8a52fa
+-/
 @[stacks 01J7]
 lemma range_fromSpecStalk {x : X} :
     Set.range (X.fromSpecStalk x) = { y | y ⤳ x } := by
@@ -173,6 +201,9 @@ def Opens.fromSpecStalkOfMem {X : Scheme.{u}} (U : X.Opens) (x : X) (hxU : x ∈
   Spec.map (inv (U.ι.stalkMap ⟨x, hxU⟩)) ≫ U.toScheme.fromSpecStalk ⟨x, hxU⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h3v.s7.1fb331970f87 from=seed src=0 shape=5deb4964 vocab=26dbcb54
+-/
 @[reassoc (attr := simp)]
 lemma Opens.fromSpecStalkOfMem_ι {X : Scheme.{u}} (U : X.Opens) (x : X) (hxU : x ∈ U) :
     U.fromSpecStalkOfMem x hxU ≫ U.ι = X.fromSpecStalk x := by
@@ -182,6 +213,9 @@ lemma Opens.fromSpecStalkOfMem_ι {X : Scheme.{u}} (U : X.Opens) (x : X) (hxU : 
 instance {X : Scheme.{u}} (U : X.Opens) (x : X) (hxU : x ∈ U) :
     (U.fromSpecStalkOfMem x hxU).IsOver X where
 
+/--
+@isnad1 id=eq.0h2v.s10.540c8367c6b8 from=seed src=0 shape=bc168fcf vocab=f699a1d8
+-/
 @[reassoc]
 lemma fromSpecStalk_toSpecΓ (X : Scheme.{u}) (x : X) :
     X.fromSpecStalk x ≫ X.toSpecΓ = Spec.map (X.presheaf.germ ⊤ x trivial) := by
@@ -190,6 +224,9 @@ lemma fromSpecStalk_toSpecΓ (X : Scheme.{u}) (x : X) :
   simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h3v.s9.0e7ef9951660 from=seed src=0 shape=a165c99d vocab=a937d4d8
+-/
 @[reassoc (attr := simp)]
 lemma Opens.fromSpecStalkOfMem_toSpecΓ {X : Scheme.{u}} (U : X.Opens) (x : X) (hxU : x ∈ U) :
     U.fromSpecStalkOfMem x hxU ≫ U.toSpecΓ = Spec.map (X.presheaf.germ U x hxU) := by
@@ -208,6 +245,9 @@ section Spec
 variable (R : CommRingCat) (x)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h2v.s10.558327dbb3a6 from=seed src=0 shape=a3cd9842 vocab=a4f4c997
+-/
 lemma Spec.fromSpecStalk_eq :
     (Spec R).fromSpecStalk x =
       Spec.map ((Scheme.ΓSpecIso R).inv ≫ (Spec R).presheaf.germ ⊤ x trivial) := by
@@ -216,11 +256,19 @@ lemma Spec.fromSpecStalk_eq :
     ← Spec.map_comp]
 
 -- This is not a simp lemma to respect the abstraction boundaries
-/-- A variant of `Spec.fromSpecStalk_eq` that breaks abstraction boundaries. -/
+/-- A variant of `Spec.fromSpecStalk_eq` that breaks abstraction boundaries.
+@isnad1 id=eq.0h2v.s6.1903fdc374fb from=seed src=0 shape=e8c002f7 vocab=d9e21515
+-/
 lemma Spec.fromSpecStalk_eq' : (Spec R).fromSpecStalk x = Spec.map (StructureSheaf.toStalk R _) :=
   Spec.fromSpecStalk_eq _ _
 
+/--
+@isnad1 id=eq.0h2v.s10.558327dbb3a6 from=seed src=0 shape=a3cd9842 vocab=a4f4c997
+-/
 @[deprecated (since := "2026-02-05")] alias Scheme.Spec_fromSpecStalk := Spec.fromSpecStalk_eq
+/--
+@isnad1 id=eq.0h2v.s6.1903fdc374fb from=seed src=0 shape=e8c002f7 vocab=d9e21515
+-/
 @[deprecated (since := "2026-02-05")] alias Scheme.Spec_fromSpecStalk' := Spec.fromSpecStalk_eq'
 
 end Spec
@@ -239,18 +287,27 @@ def stalkClosedPointIso :
   Spec.stalkIso _ _ ≪≫ (IsLocalization.atUnits R
       (closedPoint R).asIdeal.primeCompl fun _ ↦ not_not.mp).toRingEquiv.toCommRingCatIso.symm
 
+/--
+@isnad1 id=eq.0h1v.s6.b016eb539553 from=seed src=0 shape=5de763f2 vocab=5c9b8358
+-/
 lemma stalkClosedPointIso_inv :
     (stalkClosedPointIso R).inv = StructureSheaf.toStalk R _ := by
   ext x
   exact (StructureSheaf.stalkIso _ _).commutes _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h1v.s10.6360070856b1 from=seed src=0 shape=5e7a68f4 vocab=4c2ba195
+-/
 lemma ΓSpecIso_hom_stalkClosedPointIso_inv :
     (Scheme.ΓSpecIso R).hom ≫ (stalkClosedPointIso R).inv =
       (Spec R).presheaf.germ ⊤ (closedPoint _) trivial := by
   rw [stalkClosedPointIso_inv, ← Iso.eq_inv_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.ac90ea525479 from=seed src=0 shape=3cf53d26 vocab=5981558e
+-/
 @[reassoc (attr := simp)]
 lemma germ_stalkClosedPointIso_hom :
     (Spec R).presheaf.germ ⊤ (closedPoint _) trivial ≫ (stalkClosedPointIso R).hom =
@@ -258,6 +315,9 @@ lemma germ_stalkClosedPointIso_hom :
   rw [← ΓSpecIso_hom_stalkClosedPointIso_inv, Category.assoc, Iso.inv_hom_id, Category.comp_id]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s7.7ebfcbbcf7f2 from=seed src=0 shape=c8991691 vocab=bb52e8b1
+-/
 lemma Spec_stalkClosedPointIso :
     Spec.map (stalkClosedPointIso R).inv = (Spec R).fromSpecStalk (closedPoint R) := by
   rw [stalkClosedPointIso_inv, Spec.fromSpecStalk_eq']
@@ -282,6 +342,9 @@ def stalkClosedPointTo :
   f.stalkMap (closedPoint R) ≫ (stalkClosedPointIso R).hom
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=islocalh.0h3v.s11.a54d24819ede from=seed src=0 shape=c9c2349a vocab=a95e6134
+-/
 instance isLocalHom_stalkClosedPointTo :
     IsLocalHom (stalkClosedPointTo f).hom :=
   inferInstanceAs <| IsLocalHom (f.stalkMap (closedPoint R) ≫ (stalkClosedPointIso R).hom).hom
@@ -289,23 +352,33 @@ instance isLocalHom_stalkClosedPointTo :
 /-- Copy of `isLocalHom_stalkClosedPointTo` which unbundles the comm ring.
 
 Useful for use in combination with `CommRingCat.of K` for a field `K`.
+@isnad1 id=islocalh.0h3v.s11.6857ffa2dd5b from=seed src=0 shape=c86b0ff5 vocab=5d639de1
 -/
 instance isLocalHom_stalkClosedPointTo' {R : Type u} [CommRing R] [IsLocalRing R]
     (f : Spec (.of R) ⟶ X) :
     IsLocalHom (stalkClosedPointTo f).hom :=
   isLocalHom_stalkClosedPointTo f
 
+/--
+@isnad1 id=eq.1h4v.s9.af9c2e460fea from=seed src=0 shape=7e20a567 vocab=51d97053
+-/
 lemma preimage_eq_top_of_closedPoint_mem
     {U : Opens X} (hU : f (closedPoint R) ∈ U) : f ⁻¹ᵁ U = ⊤ :=
   IsLocalRing.closed_point_mem_iff.mp hU
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h5v.s10.29ffb1c175fa from=seed src=0 shape=556b3501 vocab=29a5398a
+-/
 lemma stalkClosedPointTo_comp (g : X ⟶ Y) :
     stalkClosedPointTo (f ≫ g) = g.stalkMap _ ≫ stalkClosedPointTo f := by
   rw [stalkClosedPointTo, Scheme.Hom.stalkMap_comp]
   exact Category.assoc _ _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s11.002ff025b7e4 from=seed src=0 shape=15e93e42 vocab=0fdb5f4e
+-/
 lemma germ_stalkClosedPointTo_Spec {R S : CommRingCat} [IsLocalRing S] (φ : R ⟶ S) :
     (Spec R).presheaf.germ ⊤ _ trivial ≫ stalkClosedPointTo (Spec.map φ) =
       (ΓSpecIso R).hom ≫ φ := by
@@ -315,6 +388,9 @@ lemma germ_stalkClosedPointTo_Spec {R S : CommRingCat} [IsLocalRing S] (φ : R �
   rw [germ_stalkClosedPointIso_hom, Iso.inv_hom_id, Category.comp_id]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h4v.s11.1496d9d3e997 from=seed src=0 shape=734ad429 vocab=07a31505
+-/
 @[reassoc]
 lemma germ_stalkClosedPointTo (U : Opens X) (hU : f (closedPoint R) ∈ U) :
     X.presheaf.germ U _ hU ≫ stalkClosedPointTo f = f.app U ≫
@@ -327,6 +403,9 @@ lemma germ_stalkClosedPointTo (U : Opens X) (hU : f (closedPoint R) ∈ U) :
     TopCat.Presheaf.germ_res]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s10.7bda5a90259c from=seed src=0 shape=95d7874a vocab=687eeb3d
+-/
 @[reassoc]
 lemma germ_stalkClosedPointTo_Spec_fromSpecStalk
     {x : X} (f : X.presheaf.stalk x ⟶ R) [IsLocalHom f.hom] (U : Opens X) (hU) :
@@ -342,6 +421,9 @@ lemma germ_stalkClosedPointTo_Spec_fromSpecStalk
   rw [← (Spec.map f).app_eq_appLE, ΓSpecIso_naturality, Iso.inv_hom_id_assoc]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h2v.s10.c65cadc96479 from=seed src=0 shape=2998fc4c vocab=b5353853
+-/
 lemma stalkClosedPointTo_fromSpecStalk (x : X) :
     stalkClosedPointTo (X.fromSpecStalk x) =
       (X.presheaf.stalkCongr (by rw [fromSpecStalk_closedPoint]; rfl)).hom := by
@@ -351,6 +433,9 @@ lemma stalkClosedPointTo_fromSpecStalk (x : X) :
   convert! germ_stalkClosedPointTo_Spec_fromSpecStalk (𝟙 (X.presheaf.stalk x)) U hxU
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s9.480eefcf340d from=seed src=0 shape=16a63040 vocab=f7eeb266
+-/
 @[reassoc]
 lemma Spec_stalkClosedPointTo_fromSpecStalk :
     Spec.map (stalkClosedPointTo f) ≫ X.fromSpecStalk _ = f := by
@@ -371,7 +456,9 @@ end stalkClosedPointTo
 variable {R}
 
 omit [IsLocalRing R] in
-/-- useful lemma for applications of `SpecToEquivOfLocalRing` -/
+/-- useful lemma for applications of `SpecToEquivOfLocalRing`
+@isnad1 id=iff.0h4v.s14.3dcff3e49987 from=seed src=0 shape=2ad33475 vocab=c4a288fb
+-/
 lemma SpecToEquivOfLocalRing_eq_iff
     {f₁ f₂ : Σ x, { f : X.presheaf.stalk x ⟶ R // IsLocalHom f.hom }} :
     f₁ = f₂ ↔ ∃ h₁ : f₁.1 = f₂.1, f₁.2.1 =

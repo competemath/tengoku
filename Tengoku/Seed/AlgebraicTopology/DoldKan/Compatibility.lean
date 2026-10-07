@@ -70,6 +70,9 @@ variable {eA} {e'}
 @[simps! functor]
 def equivalence₁ : A ≌ B' := (equivalence₀ eA e').changeFunctor hF
 
+/--
+@isnad1 id=eq.0h7v.s6.b159d83f93a5 from=seed src=0 shape=6bcda78c vocab=3c0fb927
+-/
 theorem equivalence₁_inverse : (equivalence₁ hF).inverse = e'.inverse ⋙ eA.inverse :=
   rfl
 
@@ -88,6 +91,9 @@ def equivalence₁CounitIso : (e'.inverse ⋙ eA.inverse) ⋙ F ≅ 𝟭 B' :=
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s7.104fda30177c from=seed src=0 shape=00307f28 vocab=1bb19484
+-/
 theorem equivalence₁CounitIso_eq : (equivalence₁ hF).counitIso = equivalence₁CounitIso hF := by
   ext Y
   simp [equivalence₁, equivalence₀]
@@ -107,6 +113,9 @@ def equivalence₁UnitIso : 𝟭 A ≅ F ⋙ e'.inverse ⋙ eA.inverse :=
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s7.0ac777fc7a08 from=seed src=0 shape=325f5c32 vocab=b64e6dba
+-/
 theorem equivalence₁UnitIso_eq : (equivalence₁ hF).unitIso = equivalence₁UnitIso hF := by
   ext X
   simp [equivalence₁]
@@ -117,6 +126,9 @@ the inverse of `eB : B ≌ B'`. -/
 def equivalence₂ : A ≌ B :=
   (equivalence₁ hF).trans eB.symm
 
+/--
+@isnad1 id=eq.0h9v.s7.e427b991e240 from=seed src=0 shape=92085530 vocab=afe97479
+-/
 theorem equivalence₂_inverse :
     (equivalence₂ eB hF).inverse = eB.functor ⋙ e'.inverse ⋙ eA.inverse :=
   rfl
@@ -136,6 +148,9 @@ def equivalence₂CounitIso : (eB.functor ⋙ e'.inverse ⋙ eA.inverse) ⋙ F �
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h9v.s7.c16489a69bac from=seed src=0 shape=38b0a5cb vocab=e1cb5013
+-/
 theorem equivalence₂CounitIso_eq :
     (equivalence₂ eB hF).counitIso = equivalence₂CounitIso eB hF := by
   ext Y'
@@ -159,6 +174,9 @@ def equivalence₂UnitIso : 𝟭 A ≅ (F ⋙ eB.inverse) ⋙ eB.functor ⋙ e'.
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h9v.s7.0adfedfbf67d from=seed src=0 shape=686c527e vocab=1b5b06a7
+-/
 theorem equivalence₂UnitIso_eq : (equivalence₂ eB hF).unitIso = equivalence₂UnitIso eB hF := by
   ext X
   simp [equivalence₂, equivalence₁]
@@ -177,6 +195,9 @@ def equivalence : A ≌ B :=
     _ ≅ G ⋙ 𝟭 A := isoWhiskerLeft _ eA.unitIso.symm
     _ ≅ G := G.rightUnitor))
 
+/--
+@isnad1 id=eq.0h11v.s7.00f2f2dd627b from=seed src=0 shape=d383641c vocab=2c0b3035
+-/
 theorem equivalence_functor : (equivalence hF hG).functor = F ⋙ eB.inverse :=
   rfl
 
@@ -216,6 +237,9 @@ variable {η hF hG}
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h12v.s8.c6dfdedd9deb from=seed src=0 shape=463eb488 vocab=e72ab566
+-/
 theorem equivalenceCounitIso_eq (hη : τ₀ = τ₁ hF hG η) :
     (equivalence hF hG).counitIso = equivalenceCounitIso η := by
   ext1; apply NatTrans.ext; ext Y
@@ -274,6 +298,9 @@ def equivalenceUnitIso : 𝟭 A ≅ (F ⋙ eB.inverse) ⋙ G :=
 variable {ε hF hG}
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h12v.s8.4bca0d783d5d from=seed src=0 shape=7dce3e0c vocab=5f26b3c4
+-/
 theorem equivalenceUnitIso_eq (hε : υ hF = ε) :
     (equivalence hF hG).unitIso = equivalenceUnitIso hG ε := by
   ext1; apply NatTrans.ext; ext X

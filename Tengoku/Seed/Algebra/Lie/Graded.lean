@@ -74,6 +74,9 @@ instance : LieRing (⨁ i, ℒ i) where
   lie_self _ := by simp
   leibniz_lie _ _ _ := by simp
 
+/--
+@isnad1 id=eq.0h6v.s12.fa1a31f3cd8c from=seed src=0 shape=68e591c2 vocab=e091578c
+-/
 lemma bracket_apply_apply_self (x y : ⨁ i, ℒ i) :
     ⁅x, y⁆ =
       decomposeLinearEquiv ℒ ⁅(decomposeLinearEquiv ℒ).symm x, (decomposeLinearEquiv ℒ).symm y⁆ :=
@@ -91,6 +94,9 @@ instance : LieRingModule (⨁ i, ℒ i) (⨁ k, ℳ k) where
   lie_add _ _ _ := by simp
   leibniz_lie _ _ _ := by simp
 
+/--
+@isnad1 id=eq.0h9v.s12.60c4a10ef865 from=seed src=0 shape=ce16e6df vocab=8ec19531
+-/
 lemma bracket_apply_apply (x : ⨁ i, ℒ i) (y : ⨁ k, ℳ k) :
     ⁅x, y⁆ =
       decomposeLinearEquiv ℳ ⁅(decomposeLinearEquiv ℒ).symm x, (decomposeLinearEquiv ℳ).symm y⁆ :=
@@ -98,11 +104,17 @@ lemma bracket_apply_apply (x : ⨁ i, ℒ i) (y : ⨁ k, ℳ k) :
 
 attribute [local simp] bracket_apply_apply
 
+/--
+@isnad1 id=eq.0h9v.s11.391111140b6a from=seed src=0 shape=9b6e7ade vocab=04ec3ed3
+-/
 lemma decompose_bracket (x : L) (y : M) :
     decompose ℳ ⁅x, y⁆ = ⁅decompose ℒ x, decompose ℳ y⁆ := by
   simp only [← decomposeLinearEquiv_apply, bracket_apply_apply]
   simp
 
+/--
+@isnad1 id=eq.0h9v.s11.93022878e1d8 from=seed src=0 shape=13ad33a9 vocab=9eeab270
+-/
 @[simp]
 lemma decompose_symm_bracket (x : ⨁ i, ℒ i) (y : ⨁ k, ℳ k) :
     (decompose ℳ).symm ⁅x, y⁆ = ⁅(decompose ℒ).symm x, (decompose ℳ).symm y⁆ := by
@@ -167,6 +179,9 @@ def ofGradingSum (φ : ι →+ R) : LieDerivation R (⨁ i, ℒ i) (⨁ i, ℒ i
             smul_neg, ← sub_eq_zero, sub_neg_eq_add, ← Submodule.coe_add, Submodule.coe_eq_zero,
             ← DirectSum.add_apply, add_neg_cancel, DirectSum.zero_apply] }
 
+/--
+@isnad1 id=eq.0h7v.s12.6ba1192e178d from=seed src=0 shape=a5f53728 vocab=210d3ddb
+-/
 @[simp]
 lemma ofGradingSum_of (φ : ι →+ R) (i : ι) (a : ℒ i) :
     ofGradingSum ℒ φ (of (ℒ ·) i a) = (φ i) • (of (ℒ ·) i a) := by
@@ -184,6 +199,9 @@ def ofGrading (φ : ι →+ R) :
       Equiv.symm_apply_eq (decompose ℒ)]
     simp [decompose_bracket ℒ]
 
+/--
+@isnad1 id=eq.1h7v.s8.876ff61a90fe from=seed src=0 shape=a762bc60 vocab=8a517ddb
+-/
 lemma ofGrading_apply_apply (φ : ι →+ R) {i : ι} {a : L} (ha : a ∈ ℒ i) :
     ofGrading ℒ φ a = φ i • a := by
   simp [ofGrading, decomposeLinearEquiv_apply, decompose_of_mem ℒ ha]

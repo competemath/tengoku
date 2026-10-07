@@ -46,6 +46,9 @@ variable {X Y Z : Scheme.{u}} (f : X ⟶ Y)
 class IsImmersion (f : X ⟶ Y) : Prop extends IsPreimmersion f where
   isLocallyClosed_range : IsLocallyClosed (Set.range f)
 
+/--
+@isnad1 id=islocall.0h3v.s7.73a1dab7b73b from=seed src=0 shape=858c24d2 vocab=2e5254f3
+-/
 lemma Scheme.Hom.isLocallyClosed_range (f : X ⟶ Y) [IsImmersion f] :
     IsLocallyClosed (Set.range f) :=
   IsImmersion.isLocallyClosed_range
@@ -68,18 +71,25 @@ def Scheme.Hom.liftCoborder (f : X ⟶ Y) [IsImmersion f] : X ⟶ f.coborderRang
 /--
 Any (locally-closed) immersion can be factored into
 a closed immersion followed by a (dominant) open immersion.
+@isnad1 id=eq.0h3v.s5.2da38094d1a2 from=seed src=0 shape=bc16ba8c vocab=114ae039
 -/
 @[reassoc (attr := simp)]
 lemma Scheme.Hom.liftCoborder_ι (f : X ⟶ Y) [IsImmersion f] :
     f.liftCoborder ≫ f.coborderRange.ι = f :=
   IsOpenImmersion.lift_fac _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s9.036e73124699 from=seed src=0 shape=292b3165 vocab=a8048add
+-/
 lemma Scheme.Hom.liftCoborder_preimage [IsImmersion f] (U : f.coborderRange.toScheme.Opens) :
     f.liftCoborder ⁻¹ᵁ U = f ⁻¹ᵁ f.coborderRange.ι ''ᵁ U := by
   conv_rhs => enter [1]; rw [← f.liftCoborder_ι]
   rw [Scheme.Hom.comp_preimage, Scheme.Hom.preimage_image_eq]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s11.060f56b4f5c4 from=seed src=0 shape=9e527d38 vocab=0c79a444
+-/
 lemma liftCoborder_app [IsImmersion f] (U : f.coborderRange.toScheme.Opens) :
     f.liftCoborder.app U = f.app (f.coborderRange.ι ''ᵁ U) ≫
       X.presheaf.map (eqToHom <| f.liftCoborder_preimage U).op := by
@@ -102,6 +112,9 @@ instance [IsImmersion f] : IsDominant f.coborderRange.ι := by
   rw [isDominant_iff, DenseRange, Scheme.Opens.range_ι]
   exact dense_coborder
 
+/--
+@isnad1 id=eq.0h0v.s6.e51167f89f91 from=seed src=0 shape=5ed34056 vocab=04741411
+-/
 lemma isImmersion_eq_inf : @IsImmersion = (@IsPreimmersion ⊓
     topologically fun {_ _} _ _ f ↦ IsLocallyClosed (Set.range f) : MorphismProperty Scheme) := by
   ext; exact isImmersion_iff _
@@ -144,6 +157,9 @@ instance : MorphismProperty.IsMultiplicative @IsImmersion where
     exact f.isLocallyClosed_range.image g.isEmbedding.isInducing g.isLocallyClosed_range
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isimmers.0h5v.s5.8ffdfbe3893e from=seed src=0 shape=73d4a103 vocab=a4cfa8d9
+-/
 instance comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [IsImmersion f]
     [IsImmersion g] : IsImmersion (f ≫ g) :=
   MorphismProperty.IsStableUnderComposition.comp_mem f g inferInstance inferInstance
@@ -152,6 +168,7 @@ variable {f} in
 /--
 A morphism is a (locally-closed) immersion if and only if it can be factored into
 a closed immersion followed by an open immersion.
+@isnad1 id=iff.0h3v.s6.2bfaceff8f2c from=seed src=0 shape=4914fd5f vocab=bd022999
 -/
 lemma isImmersion_iff_exists : IsImmersion f ↔ ∃ (Z : Scheme) (g₁ : X ⟶ Z) (g₂ : Z ⟶ Y),
     IsClosedImmersion g₁ ∧ IsOpenImmersion g₂ ∧ g₁ ≫ g₂ = f :=
@@ -159,6 +176,9 @@ lemma isImmersion_iff_exists : IsImmersion f ↔ ∃ (Z : Scheme) (g₁ : X ⟶ 
     fun ⟨_, _, _, _, _, e⟩ ↦ e ▸ inferInstance⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isstable.0h0v.s2.95a7f34de027 from=seed src=0 shape=25b03439 vocab=c28d3605
+-/
 instance isStableUnderBaseChange : MorphismProperty.IsStableUnderBaseChange @IsImmersion where
   of_isPullback := by
     intro X Y Y' S f g f' g' H hg
@@ -216,10 +236,16 @@ instance : MorphismProperty.HasOfPostcompProperty @IsImmersion ⊤ :=
   MorphismProperty.hasOfPostcompProperty_iff_le_diagonal.mpr
     fun _ _ _ _ ↦ inferInstanceAs (IsImmersion _)
 
+/--
+@isnad1 id=isimmers.0h5v.s5.7a6d5419d3b3 from=seed src=0 shape=ed21faf9 vocab=a4cfa8d9
+-/
 lemma of_comp (f : X ⟶ Y) (g : Y ⟶ Z) [IsImmersion (f ≫ g)] :
     IsImmersion f :=
   MorphismProperty.HasOfPostcompProperty.of_postcomp (W' := ⊤) _ g trivial ‹_›
 
+/--
+@isnad1 id=iff.0h5v.s5.d006b38120e6 from=seed src=0 shape=daa213a1 vocab=a4cfa8d9
+-/
 theorem comp_iff {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [IsImmersion g] :
     IsImmersion (f ≫ g) ↔ IsImmersion f :=
   ⟨fun _ ↦ of_comp f g, fun _ ↦ inferInstance⟩
@@ -243,6 +269,7 @@ open Scheme in
 /--
 If `f : X ⟶ Y` is a quasi-compact immersion, then `X` is the pullback of the
 closed immersion `im f ⟶ Y` and an open immersion `U ⟶ Y`.
+@isnad1 id=ispullba.0h3v.s5.3971de8da99b from=seed src=0 shape=df73cbe0 vocab=0f06b026
 -/
 lemma isPullback_toImage_liftCoborder [IsImmersion f] [QuasiCompact f] :
     IsPullback f.toImage f.liftCoborder f.imageι f.coborderRange.ι := by
@@ -264,6 +291,7 @@ variable {f} in
 /--
 A quasi-compact morphism is a (locally-closed) immersion if and only if it can be factored into
 an open immersion followed by a closed immersion.
+@isnad1 id=iff.0h3v.s6.c6efc72c5e44 from=seed src=0 shape=4513df09 vocab=0e2ec6ef
 -/
 lemma isImmersion_iff_exists_of_quasiCompact [QuasiCompact f] :
     IsImmersion f ↔ ∃ (Z : Scheme) (g₁ : X ⟶ Z) (g₂ : Z ⟶ Y),

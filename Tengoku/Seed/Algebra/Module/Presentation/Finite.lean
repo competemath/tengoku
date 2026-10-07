@@ -29,10 +29,16 @@ namespace Presentation
 
 variable (pres : Presentation A M)
 
+/--
+@isnad1 id=finite.0h3v.s5.6acc2c33445b from=seed src=0 shape=31fe4584 vocab=d88c396c
+-/
 lemma finite [Finite pres.G] :
     Module.Finite A M :=
   Finite.of_surjective _ pres.surjective_π
 
+/--
+@isnad1 id=finitepr.0h3v.s5.0df983d6ac76 from=seed src=0 shape=daad9af1 vocab=64065613
+-/
 lemma finitePresentation [Finite pres.G] [Finite pres.R] :
     Module.FinitePresentation A M :=
   Module.finitePresentation_of_surjective _ pres.surjective_π (by
@@ -41,6 +47,9 @@ lemma finitePresentation [Finite pres.G] [Finite pres.R] :
 
 end Presentation
 
+/--
+@isnad1 id=iff.0h2v.s6.9be7968b7f82 from=seed src=0 shape=78799706 vocab=64065613
+-/
 lemma finitePresentation_iff_exists_presentation :
     Module.FinitePresentation A M ↔
       ∃ (pres : Presentation.{w₀, w₁} A M), Finite pres.G ∧ Finite pres.R := by

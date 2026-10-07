@@ -92,7 +92,9 @@ class IsCommJordan [CommMagma A] : Prop where
   lmul_comm_rmul_rmul : ∀ a b : A, a * b * (a * a) = a * (b * (a * a))
 
 -- see Note [lower instance priority]
-/-- A (commutative) Jordan multiplication is also a Jordan multiplication -/
+/-- A (commutative) Jordan multiplication is also a Jordan multiplication
+@isnad1 id=isjordan.0h1v.s3.89a9f1740be8 from=seed src=0 shape=c612a321 vocab=347b497e
+-/
 instance (priority := 100) IsCommJordan.toIsJordan [CommMagma A] [IsCommJordan A] : IsJordan A where
   lmul_comm_rmul a b := by rw [mul_comm, mul_comm a b]
   lmul_lmul_comm_lmul a b := by
@@ -106,7 +108,9 @@ instance (priority := 100) IsCommJordan.toIsJordan [CommMagma A] [IsCommJordan A
     rw [mul_comm b a, IsCommJordan.lmul_comm_rmul_rmul, mul_comm]
 
 -- see Note [lower instance priority]
-/-- Semigroup multiplication satisfies the (non-commutative) Jordan axioms -/
+/-- Semigroup multiplication satisfies the (non-commutative) Jordan axioms
+@isnad1 id=isjordan.0h1v.s3.44c084417334 from=seed src=0 shape=c6850a32 vocab=1a60eefb
+-/
 instance (priority := 100) Semigroup.isJordan [Semigroup A] : IsJordan A where
   lmul_comm_rmul a b := by rw [mul_assoc]
   lmul_lmul_comm_lmul a b := by rw [mul_assoc, mul_assoc]
@@ -115,6 +119,9 @@ instance (priority := 100) Semigroup.isJordan [Semigroup A] : IsJordan A where
   rmul_comm_rmul_rmul a b := by rw [← mul_assoc, ← mul_assoc]
 
 -- see Note [lower instance priority]
+/--
+@isnad1 id=iscommjo.0h1v.s3.5a31b49728f7 from=seed src=0 shape=c6850a32 vocab=134ca841
+-/
 instance (priority := 100) CommSemigroup.isCommJordan [CommSemigroup A] : IsCommJordan A where
   lmul_comm_rmul_rmul _ _ := mul_assoc _ _ _
 
@@ -131,22 +138,37 @@ section Commute
 
 variable {A} [NonUnitalNonAssocRing A] [IsJordan A]
 
+/--
+@isnad1 id=commute.0h2v.s8.0788370baffa from=seed src=0 shape=6ee63917 vocab=6d22caa9
+-/
 @[simp]
 theorem commute_lmul_rmul (a : A) : Commute (L a) (R a) :=
   AddMonoidHom.ext fun _ => (IsJordan.lmul_comm_rmul _ _).symm
 
+/--
+@isnad1 id=commute.0h2v.s8.4ee01d2b229e from=seed src=0 shape=804ae0c4 vocab=9ed791ef
+-/
 @[simp]
 theorem commute_lmul_lmul_sq (a : A) : Commute (L a) (L (a * a)) :=
   AddMonoidHom.ext fun _ => (IsJordan.lmul_lmul_comm_lmul _ _).symm
 
+/--
+@isnad1 id=commute.0h2v.s8.0c8679fc8ccf from=seed src=0 shape=ae137a3a vocab=0b821cc8
+-/
 @[simp]
 theorem commute_lmul_rmul_sq (a : A) : Commute (L a) (R (a * a)) :=
   AddMonoidHom.ext fun _ => (IsJordan.lmul_comm_rmul_rmul _ _).symm
 
+/--
+@isnad1 id=commute.0h2v.s8.0e322ec6f553 from=seed src=0 shape=a14aa8e4 vocab=0b821cc8
+-/
 @[simp]
 theorem commute_lmul_sq_rmul (a : A) : Commute (L (a * a)) (R a) :=
   AddMonoidHom.ext fun _ => IsJordan.lmul_lmul_comm_rmul _ _
 
+/--
+@isnad1 id=commute.0h2v.s8.63778a9ce3cd from=seed src=0 shape=804ae0c4 vocab=e3cd4f98
+-/
 @[simp]
 theorem commute_rmul_rmul_sq (a : A) : Commute (R a) (R (a * a)) :=
   AddMonoidHom.ext fun _ => (IsJordan.rmul_comm_rmul_rmul _ _).symm
@@ -162,6 +184,9 @@ The endomorphisms on an additive monoid `AddMonoid.End` form a `Ring`, and this 
 with a Lie Bracket via `Ring.bracket`.
 -/
 
+/--
+@isnad1 id=eq.0h3v.s11.87a2a300048b from=seed src=0 shape=02e44066 vocab=dab40ed4
+-/
 theorem two_nsmul_lie_lmul_lmul_add_eq_lie_lmul_lmul_add [IsCommJordan A] (a b : A) :
     2 • (⁅L a, L (a * b)⁆ + ⁅L b, L (b * a)⁆) = ⁅L (a * a), L b⁆ + ⁅L (b * b), L a⁆ := by
   suffices 2 • ⁅L a, L (a * b)⁆ + 2 • ⁅L b, L (b * a)⁆ + ⁅L b, L (a * a)⁆ + ⁅L a, L (b * b)⁆ = 0 by
@@ -231,6 +256,9 @@ private theorem aux3 {a b c : A} :
   iterate 2 rw [← lie_skew (L (a * a)), ← lie_skew (L (b * b)), ← lie_skew (L (c * c))]
   abel
 
+/--
+@isnad1 id=eq.0h4v.s11.03f2dfb0df6e from=seed src=0 shape=a75cf5c2 vocab=dab40ed4
+-/
 theorem two_nsmul_lie_lmul_lmul_add_add_eq_zero (a b c : A) :
     2 • (⁅L a, L (b * c)⁆ + ⁅L b, L (c * a)⁆ + ⁅L c, L (a * b)⁆) = 0 := by
   symm

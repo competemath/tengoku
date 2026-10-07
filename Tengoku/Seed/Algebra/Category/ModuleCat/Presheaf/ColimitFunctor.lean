@@ -101,6 +101,9 @@ variable {hcR hcM} in
 noncomputable abbrev ιM {U : Cᵒᵖ} : M.obj U →+ ModuleColimit hcR hcM :=
   (cM.ι.app U).hom
 
+/--
+@isnad1 id=eq.0h10v.s11.0b63e5cd3cec from=seed src=0 shape=3ba0d6c7 vocab=f62b83e6
+-/
 @[simp]
 lemma smul_eq {U : Cᵒᵖ} (r : R.obj U) (m : M.obj U) :
     ιR cR r • ιM (hcR := hcR) (hcM := hcM) m = ιM (r • m) :=
@@ -108,6 +111,9 @@ lemma smul_eq {U : Cᵒᵖ} (r : R.obj U) (m : M.obj U) :
     (isColimitOfPreserves (forget _) hcM)).fac (coconeSMul hcR hcM) U) ⟨r, m⟩
 
 variable {hcR hcM} in
+/--
+@isnad1 id=ex.0h8v.s9.c0fddea49bea from=seed src=0 shape=87b6171e vocab=ed80d344
+-/
 lemma ιM_jointly_surjective (m : ModuleColimit hcR hcM) :
     ∃ (U : Cᵒᵖ) (x : M.obj U), ιM x = m :=
   Types.jointly_surjective_of_isColimit
@@ -115,6 +121,9 @@ lemma ιM_jointly_surjective (m : ModuleColimit hcR hcM) :
 
 set_option backward.isDefEq.respectTransparency false in
 variable {hcR hcM hcM'} in
+/--
+@isnad1 id=ex.0h12v.s10.bdb568a0612f from=seed src=0 shape=e5c1ba55 vocab=ed80d344
+-/
 lemma ιM_jointly_surjective₂ (m : ModuleColimit hcR hcM) (m' : ModuleColimit hcR hcM') :
     ∃ (U : Cᵒᵖ) (x : M.obj U) (x' : M'.obj U), ιM x = m ∧ ιM x' = m' := by
   obtain ⟨U, ⟨x, x'⟩, h⟩ := Types.jointly_surjective_of_isColimit
@@ -126,6 +135,9 @@ lemma ιM_jointly_surjective₂ (m : ModuleColimit hcR hcM) (m' : ModuleColimit 
 
 set_option backward.isDefEq.respectTransparency false in
 variable {hcR hcM hcM' hcM''} in
+/--
+@isnad1 id=ex.0h16v.s11.9fe6217fc2ee from=seed src=0 shape=91b52d8e vocab=ed80d344
+-/
 lemma ιM_jointly_surjective₃ (m : ModuleColimit hcR hcM) (m' : ModuleColimit hcR hcM')
     (m'' : ModuleColimit hcR hcM'') :
     ∃ (U : Cᵒᵖ) (x : M.obj U) (x' : M'.obj U) (x'' : M''.obj U),
@@ -139,6 +151,9 @@ lemma ιM_jointly_surjective₃ (m : ModuleColimit hcR hcM) (m' : ModuleColimit 
   exact ⟨U, x, x', x'', rfl, rfl, rfl⟩
 
 include hcR in
+/--
+@isnad1 id=ex.0h5v.s8.a958c58ebb4c from=seed src=0 shape=3124c2d1 vocab=6ebb103f
+-/
 lemma ιR_jointly_surjective (r : cR.pt) :
     ∃ (U : Cᵒᵖ) (a : R.obj U), ιR cR a = r :=
   Types.jointly_surjective_of_isColimit
@@ -146,6 +161,9 @@ lemma ιR_jointly_surjective (r : cR.pt) :
 
 set_option backward.isDefEq.respectTransparency false in
 variable {hcR hcM} in
+/--
+@isnad1 id=ex.0h9v.s10.fa7926e7cb91 from=seed src=0 shape=0d3f8bfb vocab=00943a0c
+-/
 lemma jointly_surjective₂ (r : cR.pt) (m : ModuleColimit hcR hcM) :
     ∃ (U : Cᵒᵖ) (a : R.obj U) (x : M.obj U),
       ιR cR a = r ∧ ιM x = m := by
@@ -158,6 +176,9 @@ lemma jointly_surjective₂ (r : cR.pt) (m : ModuleColimit hcR hcM) :
 
 set_option backward.isDefEq.respectTransparency false in
 variable {hcR hcM} in
+/--
+@isnad1 id=ex.0h10v.s10.0999998dbd5e from=seed src=0 shape=c32b580f vocab=00943a0c
+-/
 lemma jointly_surjective₃ (r₁ r₂ : cR.pt) (m : ModuleColimit hcR hcM) :
     ∃ (U : Cᵒᵖ) (a₁ a₂ : R.obj U) (x : M.obj U),
       ιR cR a₁ = r₁ ∧ ιR cR a₂ = r₂ ∧ ιM x = m := by
@@ -171,6 +192,9 @@ lemma jointly_surjective₃ (r₁ r₂ : cR.pt) (m : ModuleColimit hcR hcM) :
 
 set_option backward.isDefEq.respectTransparency false in
 variable {hcR hcM hcM'} in
+/--
+@isnad1 id=ex.0h13v.s10.a4e08bf4026a from=seed src=0 shape=6a8fae94 vocab=00943a0c
+-/
 lemma jointly_surjective₃' (r : cR.pt) (m₁ : ModuleColimit hcR hcM) (m₂ : ModuleColimit hcR hcM') :
     ∃ (U : Cᵒᵖ) (a : R.obj U) (x₁ : M.obj U) (x₂ : M'.obj U),
       ιR cR a = r ∧ ιM x₁ = m₁ ∧ ιM x₂ = m₂ := by
@@ -211,18 +235,27 @@ noncomputable def homEquiv' {N : Type w} [AddCommGroup N] :
   map_add' _ _ := rfl
 
 omit [LocallySmall.{w, v, u} C] [IsCofiltered C] [InitiallySmall C] in
+/--
+@isnad1 id=eq.0h11v.s12.abaa09928ff2 from=seed src=0 shape=84bfa105 vocab=bc07c532
+-/
 lemma homEquiv'_app_apply {N : ModuleCat.{w} cR.pt}
     (α : ModuleColimit hcR hcM →+ N) {X : Cᵒᵖ} (x : M.obj X) :
     dsimp% (homEquiv' hcR hcM α).app X x = α (cM.ι.app X x) :=
   rfl
 
 omit [LocallySmall.{w, v, u} C] [IsCofiltered C] [InitiallySmall C] in
+/--
+@isnad1 id=eq.0h11v.s12.744e42c899a8 from=seed src=0 shape=1f1f6da7 vocab=456ad46f
+-/
 lemma homEquiv'_symm_apply {N : ModuleCat.{w} cR.pt}
     (β : M.presheaf ⟶ (Functor.const _).obj (.of N)) {X : Cᵒᵖ} (x : M.obj X) :
     (homEquiv' hcR hcM).symm β (cM.ι.app X x) = β.app X x :=
   ConcreteCategory.congr_hom (hcM.ι_app_homEquiv_symm β X) x
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h9v.s13.07cd3a870d29 from=seed src=0 shape=a5e5079f vocab=6ac9f87b
+-/
 lemma map_smul_homEquiv'_iff {N : ModuleCat.{w} cR.pt}
     (α : ModuleColimit hcR hcM →+ N) :
     dsimp% (∀ (U : Cᵒᵖ) (r : R.obj U) (m : M.obj U), (homEquiv' hcR hcM α).app U (r • m) =
@@ -264,16 +297,25 @@ noncomputable def homEquiv {N : ModuleCat.{w} cR.pt} :
     ((homEquiv' hcR hcM).map_add ((forget₂ _ AddCommGrpCat).map φ₁).hom
       ((forget₂ _ AddCommGrpCat).map φ₂).hom)
 
+/--
+@isnad1 id=eq.0h11v.s12.1683260916bc from=seed src=0 shape=ef99f9c3 vocab=33204aa7
+-/
 @[simp]
 lemma homEquiv_app_apply {N : ModuleCat.{w} cR.pt}
     (α : ModuleCat.of cR.pt (ModuleColimit hcR hcM) ⟶ N) {X : Cᵒᵖ} (x : M.obj X) :
     dsimp% (homEquiv hcR hcM α).app X x = α (cM.ι.app X x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h11v.s12.ab9f8d707e66 from=seed src=0 shape=1d4284e5 vocab=38daecf0
+-/
 lemma homEquiv_naturality_right {N N' : ModuleCat.{w} cR.pt}
     (φ : ModuleCat.of cR.pt (ModuleColimit hcR hcM) ⟶ N) (g : N ⟶ N') :
     homEquiv hcR hcM (φ ≫ g) = homEquiv hcR hcM φ ≫ (constFunctor cR).map g := rfl
 
+/--
+@isnad1 id=eq.0h11v.s12.4a6852bae816 from=seed src=0 shape=d78ff901 vocab=91f07c71
+-/
 @[simp]
 lemma homEquiv_symm_apply {N : ModuleCat.{w} cR.pt} (β : M ⟶ (constFunctor cR).obj N)
     {X : Cᵒᵖ} (x : M.obj X) :
@@ -302,17 +344,26 @@ noncomputable def map (f : M ⟶ M') :
     erw [h₁, h₂, ModuleColimit.smul_eq, ← (f.app U).hom.map_smul]
     rfl
 
+/--
+@isnad1 id=eq.0h13v.s11.e671ec2d7c92 from=seed src=0 shape=af5be31b vocab=0fd64ec0
+-/
 @[simp]
 lemma map_apply (f : M ⟶ M') {U : Cᵒᵖ} (m : M.obj U) :
     dsimp% map hcR hcM hcM' f (ιM m) = ιM (f.app _ m) :=
   ConcreteCategory.congr_hom (hcM.fac ((Cocone.precompose ((toPresheaf _).map f)).obj cM') U) m
 
+/--
+@isnad1 id=eq.0h7v.s8.4ec4692092ac from=seed src=0 shape=6aa5accb vocab=407b2651
+-/
 @[simp]
 lemma map_id : map hcR hcM hcM (𝟙 M) = .id := by
   ext m
   obtain ⟨U, m, rfl⟩ := ιM_jointly_surjective m
   simp
 
+/--
+@isnad1 id=eq.0h15v.s9.9fb630c24287 from=seed src=0 shape=38e118f2 vocab=7029cfa2
+-/
 lemma comp_map
     (f : M ⟶ M')
     {M'' : PresheafOfModules.{w} R} {cM'' : Cocone M''.presheaf}
@@ -325,6 +376,9 @@ lemma comp_map
 end
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h13v.s12.2f1c6539e5c9 from=seed src=0 shape=4750986d vocab=1b10c059
+-/
 lemma homEquiv_naturality_left {M' : PresheafOfModules.{w} R} {cM' : Cocone M'.presheaf}
     (hcM' : IsColimit cM') {N : ModuleCat.{w} cR.pt}
     (φ' : ModuleCat.of cR.pt (ModuleColimit hcR hcM') ⟶ N)
@@ -337,6 +391,9 @@ lemma homEquiv_naturality_left {M' : PresheafOfModules.{w} R} {cM' : Cocone M'.p
   apply congr_arg
   exact map_apply hcR hcM hcM' f m
 
+/--
+@isnad1 id=eq.0h13v.s12.44ceedd70bfb from=seed src=0 shape=3ebfb97c vocab=a31d947d
+-/
 lemma homEquiv_naturality_left_symm {M' : PresheafOfModules.{w} R} {cM' : Cocone M'.presheaf}
     (hcM' : IsColimit cM') {N : ModuleCat.{w} cR.pt}
     (f : M ⟶ M') (g : M' ⟶ (constFunctor cR).obj N) :
@@ -370,6 +427,9 @@ noncomputable def colimitAdjunction :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s10.2106be69ebc2 from=seed src=0 shape=ab92000c vocab=67973ec4
+-/
 lemma colimitAdjunction_homEquiv
     (F : PresheafOfModules R) (G : ModuleCat cR.pt) :
     dsimp% (colimitAdjunction.{w} hcR).homEquiv F G =
@@ -378,6 +438,9 @@ lemma colimitAdjunction_homEquiv
   simp [colimitAdjunction]
 
 open ModuleColimit in
+/--
+@isnad1 id=eq.0h9v.s12.6822586180b7 from=seed src=0 shape=09b8bb89 vocab=a6eb8233
+-/
 lemma colimitAdjunction_homEquiv_symm_apply
     {F : PresheafOfModules R} {G : ModuleCat cR.pt}
     (β : F ⟶ (constFunctor cR).obj G) {X : Cᵒᵖ} (m : F.obj X) :

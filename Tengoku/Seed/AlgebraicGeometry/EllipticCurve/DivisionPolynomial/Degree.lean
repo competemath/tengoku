@@ -63,29 +63,50 @@ variable {R : Type u} [CommRing R] (W : WeierstrassCurve R)
 
 section Ψ₂Sq
 
+/--
+@isnad1 id=le.0h2v.s4.b9d42abb3ee0 from=seed src=0 shape=5bd2d9aa vocab=7edcbeea
+-/
 lemma natDegree_Ψ₂Sq_le : W.Ψ₂Sq.natDegree ≤ 3 := by
   rw [Ψ₂Sq]
   compute_degree
 
+/--
+@isnad1 id=eq.0h2v.s5.394c21607759 from=seed src=0 shape=f81c630a vocab=81387eb5
+-/
 @[simp]
 lemma coeff_Ψ₂Sq : W.Ψ₂Sq.coeff 3 = 4 := by
   rw [Ψ₂Sq]
   compute_degree!
 
+/--
+@isnad1 id=ne.1h2v.s6.db16a1db7d32 from=seed src=0 shape=85132f2a vocab=81387eb5
+-/
 lemma coeff_Ψ₂Sq_ne_zero (h : (4 : R) ≠ 0) : W.Ψ₂Sq.coeff 3 ≠ 0 := by
   rwa [coeff_Ψ₂Sq]
 
+/--
+@isnad1 id=eq.1h2v.s5.5d2e41c62561 from=seed src=0 shape=8a8fe4b4 vocab=54955572
+-/
 @[simp]
 lemma natDegree_Ψ₂Sq (h : (4 : R) ≠ 0) : W.Ψ₂Sq.natDegree = 3 :=
   natDegree_eq_of_le_of_coeff_ne_zero W.natDegree_Ψ₂Sq_le <| W.coeff_Ψ₂Sq_ne_zero h
 
+/--
+@isnad1 id=lt.1h2v.s5.6551e2bbf694 from=seed src=0 shape=c2d5bc7b vocab=0f0f13b8
+-/
 lemma natDegree_Ψ₂Sq_pos (h : (4 : R) ≠ 0) : 0 < W.Ψ₂Sq.natDegree :=
   W.natDegree_Ψ₂Sq h ▸ three_pos
 
+/--
+@isnad1 id=eq.1h2v.s6.2e3758c7ca48 from=seed src=0 shape=19299e95 vocab=8af12794
+-/
 @[simp]
 lemma leadingCoeff_Ψ₂Sq (h : (4 : R) ≠ 0) : W.Ψ₂Sq.leadingCoeff = 4 := by
   rw [leadingCoeff, W.natDegree_Ψ₂Sq h, coeff_Ψ₂Sq]
 
+/--
+@isnad1 id=ne.1h2v.s6.b4923b0235ed from=seed src=0 shape=5fc99b5e vocab=156ad913
+-/
 lemma Ψ₂Sq_ne_zero (h : (4 : R) ≠ 0) : W.Ψ₂Sq ≠ 0 :=
   ne_zero_of_natDegree_gt <| W.natDegree_Ψ₂Sq_pos h
 
@@ -93,29 +114,50 @@ end Ψ₂Sq
 
 section Ψ₃
 
+/--
+@isnad1 id=le.0h2v.s4.4b6517630fa1 from=seed src=0 shape=5bd2d9aa vocab=8cecff9b
+-/
 lemma natDegree_Ψ₃_le : W.Ψ₃.natDegree ≤ 4 := by
   rw [Ψ₃]
   compute_degree
 
+/--
+@isnad1 id=eq.0h2v.s5.b745a4654677 from=seed src=0 shape=f81c630a vocab=b1db441b
+-/
 @[simp]
 lemma coeff_Ψ₃ : W.Ψ₃.coeff 4 = 3 := by
   rw [Ψ₃]
   compute_degree!
 
+/--
+@isnad1 id=ne.1h2v.s6.2f01e73b135b from=seed src=0 shape=85132f2a vocab=b1db441b
+-/
 lemma coeff_Ψ₃_ne_zero (h : (3 : R) ≠ 0) : W.Ψ₃.coeff 4 ≠ 0 := by
   rwa [coeff_Ψ₃]
 
+/--
+@isnad1 id=eq.1h2v.s5.37e01be375dd from=seed src=0 shape=8a8fe4b4 vocab=377bd950
+-/
 @[simp]
 lemma natDegree_Ψ₃ (h : (3 : R) ≠ 0) : W.Ψ₃.natDegree = 4 :=
   natDegree_eq_of_le_of_coeff_ne_zero W.natDegree_Ψ₃_le <| W.coeff_Ψ₃_ne_zero h
 
+/--
+@isnad1 id=lt.1h2v.s5.3e100941adfb from=seed src=0 shape=c2d5bc7b vocab=b9af3c5b
+-/
 lemma natDegree_Ψ₃_pos (h : (3 : R) ≠ 0) : 0 < W.Ψ₃.natDegree :=
   W.natDegree_Ψ₃ h ▸ four_pos
 
+/--
+@isnad1 id=eq.1h2v.s6.09ba5e8d1080 from=seed src=0 shape=19299e95 vocab=919c13d7
+-/
 @[simp]
 lemma leadingCoeff_Ψ₃ (h : (3 : R) ≠ 0) : W.Ψ₃.leadingCoeff = 3 := by
   rw [leadingCoeff, W.natDegree_Ψ₃ h, coeff_Ψ₃]
 
+/--
+@isnad1 id=ne.1h2v.s6.a5339bf9dd24 from=seed src=0 shape=5fc99b5e vocab=646fd94a
+-/
 lemma Ψ₃_ne_zero (h : (3 : R) ≠ 0) : W.Ψ₃ ≠ 0 :=
   ne_zero_of_natDegree_gt <| W.natDegree_Ψ₃_pos h
 
@@ -123,29 +165,50 @@ end Ψ₃
 
 section preΨ₄
 
+/--
+@isnad1 id=le.0h2v.s4.8136a99888e2 from=seed src=0 shape=5bd2d9aa vocab=f0169f96
+-/
 lemma natDegree_preΨ₄_le : W.preΨ₄.natDegree ≤ 6 := by
   rw [preΨ₄]
   compute_degree
 
+/--
+@isnad1 id=eq.0h2v.s5.eb1cbe665ec1 from=seed src=0 shape=f81c630a vocab=e20e8d63
+-/
 @[simp]
 lemma coeff_preΨ₄ : W.preΨ₄.coeff 6 = 2 := by
   rw [preΨ₄]
   compute_degree!
 
+/--
+@isnad1 id=ne.1h2v.s6.2f881c13a94a from=seed src=0 shape=85132f2a vocab=e20e8d63
+-/
 lemma coeff_preΨ₄_ne_zero (h : (2 : R) ≠ 0) : W.preΨ₄.coeff 6 ≠ 0 := by
   rwa [coeff_preΨ₄]
 
+/--
+@isnad1 id=eq.1h2v.s5.109812de10c4 from=seed src=0 shape=8a8fe4b4 vocab=872f2a01
+-/
 @[simp]
 lemma natDegree_preΨ₄ (h : (2 : R) ≠ 0) : W.preΨ₄.natDegree = 6 :=
   natDegree_eq_of_le_of_coeff_ne_zero W.natDegree_preΨ₄_le <| W.coeff_preΨ₄_ne_zero h
 
+/--
+@isnad1 id=lt.1h2v.s5.bf65e6ac37bb from=seed src=0 shape=c2d5bc7b vocab=566eae3b
+-/
 lemma natDegree_preΨ₄_pos (h : (2 : R) ≠ 0) : 0 < W.preΨ₄.natDegree := by
   linarith only [W.natDegree_preΨ₄ h]
 
+/--
+@isnad1 id=eq.1h2v.s6.6f654db18dc7 from=seed src=0 shape=19299e95 vocab=dce25670
+-/
 @[simp]
 lemma leadingCoeff_preΨ₄ (h : (2 : R) ≠ 0) : W.preΨ₄.leadingCoeff = 2 := by
   rw [leadingCoeff, W.natDegree_preΨ₄ h, coeff_preΨ₄]
 
+/--
+@isnad1 id=ne.1h2v.s6.fc953b537d23 from=seed src=0 shape=5fc99b5e vocab=1a00ec1a
+-/
 lemma preΨ₄_ne_zero (h : (2 : R) ≠ 0) : W.preΨ₄ ≠ 0 :=
   ne_zero_of_natDegree_gt <| W.natDegree_preΨ₄_pos h
 
@@ -231,15 +294,24 @@ private lemma natDegree_coeff_preΨ' (n : ℕ) :
       · norm_cast
       all_goals split_ifs <;> simp only [natDegree_one.le, dp W.natDegree_Ψ₂Sq_le]
 
+/--
+@isnad1 id=le.0h3v.s6.d6c536ba5fc6 from=seed src=0 shape=fc255aed vocab=5492967f
+-/
 lemma natDegree_preΨ'_le (n : ℕ) : (W.preΨ' n).natDegree ≤ (n ^ 2 - if Even n then 4 else 1) / 2 :=
   (W.natDegree_coeff_preΨ' n).left
 
+/--
+@isnad1 id=eq.0h3v.s6.dfa6dfba5d44 from=seed src=0 shape=1e1a6520 vocab=f4701f8c
+-/
 @[simp]
 lemma coeff_preΨ' (n : ℕ) : (W.preΨ' n).coeff ((n ^ 2 - if Even n then 4 else 1) / 2) =
     if Even n then n / 2 else n := by
   convert! (W.natDegree_coeff_preΨ' n).right using 1
   rcases n.even_or_odd' with ⟨n, rfl | rfl⟩ <;> simp [expCoeff, n.not_even_two_mul_add_one]
 
+/--
+@isnad1 id=ne.1h3v.s6.be00290ef740 from=seed src=0 shape=860c155d vocab=f4701f8c
+-/
 lemma coeff_preΨ'_ne_zero {n : ℕ} (h : (n : R) ≠ 0) :
     (W.preΨ' n).coeff ((n ^ 2 - if Even n then 4 else 1) / 2) ≠ 0 := by
   rcases n.even_or_odd' with ⟨n, rfl | rfl⟩
@@ -247,20 +319,32 @@ lemma coeff_preΨ'_ne_zero {n : ℕ} (h : (n : R) ≠ 0) :
     exact right_ne_zero_of_mul <| by rwa [← Nat.cast_mul]
   · rwa [coeff_preΨ', ite_eq_right n.not_even_two_mul_add_one]
 
+/--
+@isnad1 id=eq.1h3v.s6.8559c60a19af from=seed src=0 shape=d3db3b9e vocab=681e1b60
+-/
 @[simp]
 lemma natDegree_preΨ' {n : ℕ} (h : (n : R) ≠ 0) :
     (W.preΨ' n).natDegree = (n ^ 2 - if Even n then 4 else 1) / 2 :=
   natDegree_eq_of_le_of_coeff_ne_zero (W.natDegree_preΨ'_le n) <| W.coeff_preΨ'_ne_zero h
 
+/--
+@isnad1 id=lt.2h3v.s6.aa9f8af3579e from=seed src=0 shape=ddc198ef vocab=d800d6cb
+-/
 lemma natDegree_preΨ'_pos {n : ℕ} (hn : 2 < n) (h : (n : R) ≠ 0) : 0 < (W.preΨ' n).natDegree := by
   simp_rw [W.natDegree_preΨ' h, Nat.div_pos_iff, zero_lt_two, true_and]
   split_ifs <;> exact Nat.AtLeastTwo.prop.trans <| Nat.sub_le_sub_right (Nat.pow_le_pow_left hn 2) _
 
+/--
+@isnad1 id=eq.1h3v.s6.9e6e4c6a9356 from=seed src=0 shape=f71a2665 vocab=26fb8742
+-/
 @[simp]
 lemma leadingCoeff_preΨ' {n : ℕ} (h : (n : R) ≠ 0) :
     (W.preΨ' n).leadingCoeff = if Even n then n / 2 else n := by
   rw [leadingCoeff, W.natDegree_preΨ' h, coeff_preΨ']
 
+/--
+@isnad1 id=ne.1h3v.s6.40a8bca4c9fd from=seed src=0 shape=a466e859 vocab=68c7e73d
+-/
 lemma preΨ'_ne_zero [Nontrivial R] {n : ℕ} (h : (n : R) ≠ 0) : W.preΨ' n ≠ 0 := by
   by_cases hn : 2 < n
   · exact ne_zero_of_natDegree_gt <| W.natDegree_preΨ'_pos hn h
@@ -270,12 +354,18 @@ end preΨ'
 
 section preΨ
 
+/--
+@isnad1 id=le.0h3v.s6.dfb69bbe4fca from=seed src=0 shape=651d285a vocab=45846de3
+-/
 lemma natDegree_preΨ_le (n : ℤ) : (W.preΨ n).natDegree ≤
     (n.natAbs ^ 2 - if Even n then 4 else 1) / 2 := by
   induction n using Int.negInduction with
   | nat n => exact_mod_cast W.preΨ_ofNat n ▸ W.natDegree_preΨ'_le n
   | neg ih => simp_rw [preΨ_neg, natDegree_neg, Int.natAbs_neg, even_neg, ih]
 
+/--
+@isnad1 id=eq.0h3v.s6.1d953807f88a from=seed src=0 shape=57722052 vocab=b35f404a
+-/
 @[simp]
 lemma coeff_preΨ (n : ℤ) : (W.preΨ n).coeff ((n.natAbs ^ 2 - if Even n then 4 else 1) / 2) =
     if Even n then n / 2 else n := by
@@ -287,6 +377,9 @@ lemma coeff_preΨ (n : ℤ) : (W.preΨ n).coeff ((n.natAbs ^ 2 - if Even n then 
       push_cast [even_two_mul, Int.not_even_two_mul_add_one, Int.neg_ediv_of_dvd ⟨n, rfl⟩] at * <;>
       rw [ih]
 
+/--
+@isnad1 id=ne.1h3v.s6.aa9db2567ae1 from=seed src=0 shape=26f2d6ad vocab=b35f404a
+-/
 lemma coeff_preΨ_ne_zero {n : ℤ} (h : (n : R) ≠ 0) :
     (W.preΨ n).coeff ((n.natAbs ^ 2 - if Even n then 4 else 1) / 2) ≠ 0 := by
   induction n using Int.negInduction with
@@ -295,11 +388,17 @@ lemma coeff_preΨ_ne_zero {n : ℤ} (h : (n : R) ≠ 0) :
   | neg ih n => simpa only [preΨ_neg, coeff_neg, neg_ne_zero, Int.natAbs_neg, even_neg]
         using! ih n <| neg_ne_zero.mp <| by exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h3v.s6.b32d8683353e from=seed src=0 shape=68e0e8be vocab=03c8a15f
+-/
 @[simp]
 lemma natDegree_preΨ {n : ℤ} (h : (n : R) ≠ 0) :
     (W.preΨ n).natDegree = (n.natAbs ^ 2 - if Even n then 4 else 1) / 2 :=
   natDegree_eq_of_le_of_coeff_ne_zero (W.natDegree_preΨ_le n) <| W.coeff_preΨ_ne_zero h
 
+/--
+@isnad1 id=lt.2h3v.s6.d10208dc00b7 from=seed src=0 shape=b9d27e59 vocab=a594a28d
+-/
 lemma natDegree_preΨ_pos {n : ℤ} (hn : 2 < n.natAbs) (h : (n : R) ≠ 0) :
     0 < (W.preΨ n).natDegree := by
   induction n using Int.negInduction with
@@ -307,11 +406,17 @@ lemma natDegree_preΨ_pos {n : ℤ} (hn : 2 < n.natAbs) (h : (n : R) ≠ 0) :
   | neg ih n => simpa only [preΨ_neg, natDegree_neg]
         using! ih n (by rwa [← Int.natAbs_neg]) <| neg_ne_zero.mp <| by exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h3v.s6.607eb664faf1 from=seed src=0 shape=f71a2665 vocab=cc4e38b9
+-/
 @[simp]
 lemma leadingCoeff_preΨ {n : ℤ} (h : (n : R) ≠ 0) :
     (W.preΨ n).leadingCoeff = if Even n then n / 2 else n := by
   rw [leadingCoeff, W.natDegree_preΨ h, coeff_preΨ]
 
+/--
+@isnad1 id=ne.1h3v.s6.5de2f45aa46a from=seed src=0 shape=a466e859 vocab=4b7a452c
+-/
 lemma preΨ_ne_zero [Nontrivial R] {n : ℤ} (h : (n : R) ≠ 0) : W.preΨ n ≠ 0 := by
   induction n using Int.negInduction with
   | nat n => simpa only [preΨ_ofNat] using W.preΨ'_ne_zero <| by exact_mod_cast h
@@ -343,35 +448,56 @@ private lemma natDegree_coeff_ΨSq_ofNat (n : ℕ) :
     · norm_cast
     split_ifs <;> simp only [natDegree_one.le, W.natDegree_Ψ₂Sq_le]
 
+/--
+@isnad1 id=le.0h3v.s5.3270a6df4a30 from=seed src=0 shape=58603a7e vocab=37fa4dd8
+-/
 lemma natDegree_ΨSq_le (n : ℤ) : (W.ΨSq n).natDegree ≤ n.natAbs ^ 2 - 1 := by
   induction n using Int.negInduction with
   | nat n => exact (W.natDegree_coeff_ΨSq_ofNat n).left
   | neg ih => simp_rw [ΨSq_neg, Int.natAbs_neg, ih]
 
+/--
+@isnad1 id=eq.0h3v.s6.bfc273a0d5f0 from=seed src=0 shape=65d890a2 vocab=e34415fb
+-/
 @[simp]
 lemma coeff_ΨSq (n : ℤ) : (W.ΨSq n).coeff (n.natAbs ^ 2 - 1) = n ^ 2 := by
   induction n using Int.negInduction with
   | nat n => exact_mod_cast (W.natDegree_coeff_ΨSq_ofNat n).right
   | neg ih => rw [ΨSq_neg, Int.natAbs_neg, ← Int.cast_pow, neg_sq, Int.cast_pow, ih]
 
+/--
+@isnad1 id=ne.1h3v.s6.485784ee08b6 from=seed src=0 shape=9b62d73a vocab=cf102261
+-/
 lemma coeff_ΨSq_ne_zero [NoZeroDivisors R] {n : ℤ} (h : (n : R) ≠ 0) :
     (W.ΨSq n).coeff (n.natAbs ^ 2 - 1) ≠ 0 := by
   simpa
 
+/--
+@isnad1 id=eq.1h3v.s6.abe248f12b2c from=seed src=0 shape=66bdfab4 vocab=b4ef08bd
+-/
 @[simp]
 lemma natDegree_ΨSq [NoZeroDivisors R] {n : ℤ} (h : (n : R) ≠ 0) :
     (W.ΨSq n).natDegree = n.natAbs ^ 2 - 1 :=
   natDegree_eq_of_le_of_coeff_ne_zero (W.natDegree_ΨSq_le n) <| W.coeff_ΨSq_ne_zero h
 
+/--
+@isnad1 id=lt.2h3v.s6.245c82ce4b5f from=seed src=0 shape=4ff47232 vocab=f6c79112
+-/
 lemma natDegree_ΨSq_pos [NoZeroDivisors R] {n : ℤ} (hn : 1 < n.natAbs) (h : (n : R) ≠ 0) :
     0 < (W.ΨSq n).natDegree := by
   simpa [W.natDegree_ΨSq h]
 
+/--
+@isnad1 id=eq.1h3v.s6.398358a806ce from=seed src=0 shape=1d6652fc vocab=90c995e8
+-/
 @[simp]
 lemma leadingCoeff_ΨSq [NoZeroDivisors R] {n : ℤ} (h : (n : R) ≠ 0) :
     (W.ΨSq n).leadingCoeff = n ^ 2 := by
   rw [leadingCoeff, W.natDegree_ΨSq h, coeff_ΨSq]
 
+/--
+@isnad1 id=ne.1h3v.s6.56c0919242b5 from=seed src=0 shape=a466e859 vocab=a928769d
+-/
 lemma ΨSq_ne_zero [NoZeroDivisors R] {n : ℤ} (h : (n : R) ≠ 0) : W.ΨSq n ≠ 0 := by
   by_cases hn : 1 < n.natAbs
   · exact ne_zero_of_natDegree_gt <| W.natDegree_ΨSq_pos hn h
@@ -418,31 +544,52 @@ private lemma natDegree_coeff_Φ_ofNat (n : ℕ) :
     · norm_cast
     all_goals split_ifs <;> simp only [natDegree_one.le, W.natDegree_Ψ₂Sq_le]
 
+/--
+@isnad1 id=le.0h3v.s5.920ad9a9c52d from=seed src=0 shape=9d2f4092 vocab=edb4cf29
+-/
 lemma natDegree_Φ_le (n : ℤ) : (W.Φ n).natDegree ≤ n.natAbs ^ 2 := by
   induction n using Int.negInduction with
   | nat n => exact (W.natDegree_coeff_Φ_ofNat n).left
   | neg ih => simp_rw [Φ_neg, Int.natAbs_neg, ih]
 
+/--
+@isnad1 id=eq.0h3v.s5.639c7fbc81b5 from=seed src=0 shape=b9c88a1f vocab=3d1dc4f8
+-/
 @[simp]
 lemma coeff_Φ (n : ℤ) : (W.Φ n).coeff (n.natAbs ^ 2) = 1 := by
   induction n using Int.negInduction with
   | nat n => exact (W.natDegree_coeff_Φ_ofNat n).right
   | neg ih => rw [Φ_neg, Int.natAbs_neg, ih]
 
+/--
+@isnad1 id=ne.0h3v.s5.30fb48978253 from=seed src=0 shape=c511e886 vocab=722c75e7
+-/
 lemma coeff_Φ_ne_zero [Nontrivial R] (n : ℤ) : (W.Φ n).coeff (n.natAbs ^ 2) ≠ 0 :=
   W.coeff_Φ n ▸ one_ne_zero
 
+/--
+@isnad1 id=eq.0h3v.s5.3129a2c3fde8 from=seed src=0 shape=5722e315 vocab=6ef751db
+-/
 @[simp]
 lemma natDegree_Φ [Nontrivial R] (n : ℤ) : (W.Φ n).natDegree = n.natAbs ^ 2 :=
   natDegree_eq_of_le_of_coeff_ne_zero (W.natDegree_Φ_le n) <| W.coeff_Φ_ne_zero n
 
+/--
+@isnad1 id=lt.1h3v.s5.8a4ffa93b264 from=seed src=0 shape=92eeaf9d vocab=c3f7d832
+-/
 lemma natDegree_Φ_pos [Nontrivial R] {n : ℤ} (hn : n ≠ 0) : 0 < (W.Φ n).natDegree := by
   simpa [sq_pos_iff]
 
+/--
+@isnad1 id=eq.0h3v.s5.4abf7d9c26e4 from=seed src=0 shape=d5f8e475 vocab=d19b950b
+-/
 @[simp]
 lemma leadingCoeff_Φ [Nontrivial R] (n : ℤ) : (W.Φ n).leadingCoeff = 1 := by
   rw [leadingCoeff, natDegree_Φ, coeff_Φ]
 
+/--
+@isnad1 id=ne.0h3v.s5.5f334e60d3f4 from=seed src=0 shape=0bc7c5aa vocab=7f57bd70
+-/
 lemma Φ_ne_zero [Nontrivial R] (n : ℤ) : W.Φ n ≠ 0 := by
   by_cases hn : n = 0
   · simpa only [hn, Φ_zero] using one_ne_zero

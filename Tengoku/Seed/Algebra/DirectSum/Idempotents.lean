@@ -31,16 +31,24 @@ variable {R I : Type*} [Semiring R] [DecidableEq I] (V : I → Ideal R) [Decompo
 def idempotent (i : I) : R :=
   decompose V 1 i
 
+/--
+@isnad1 id=eq.0h5v.s9.afa06ec3812b from=seed src=0 shape=a0ca4d37 vocab=f024084c
+-/
 lemma decompose_eq_mul_idempotent (x : R) (i : I) : decompose V x i = x * idempotent V i := by
   rw [← smul_eq_mul (a := x), idempotent, ← Submodule.coe_smul, ← smul_apply, ← decompose_smul,
     smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=isidempo.0h4v.s5.e8faeccfdb32 from=seed src=0 shape=2dbc909f vocab=33d8429a
+-/
 lemma isIdempotentElem_idempotent (i : I) : IsIdempotentElem (idempotent V i : R) := by
   rw [IsIdempotentElem, ← decompose_eq_mul_idempotent, idempotent, decompose_coe, of_eq_same]
 
 /-- If a semiring can be decomposed into direct sum of finite left ideals `Vᵢ`
   where `1 = e₁ + ... + eₙ` and `eᵢ ∈ Vᵢ`, then `eᵢ` is a family of complete
-  orthogonal idempotents. -/
+  orthogonal idempotents.
+@isnad1 id=complete.0h3v.s5.5021dd569215 from=seed src=0 shape=6f9fd703 vocab=1fd7047f
+-/
 theorem completeOrthogonalIdempotents_idempotent [Fintype I] :
     CompleteOrthogonalIdempotents (idempotent V) where
   idem := isIdempotentElem_idempotent V

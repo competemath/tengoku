@@ -48,6 +48,9 @@ instance : Mono (image.ι f) :=
 def factorThruImage : G ⟶ image f :=
   ofHom f.hom.rangeRestrict
 
+/--
+@isnad1 id=eq.0h3v.s5.1d324e668509 from=seed src=0 shape=587e4121 vocab=7f80cd8e
+-/
 theorem image.fac : factorThruImage f ≫ image.ι f = f := by
   ext
   rfl
@@ -79,6 +82,9 @@ noncomputable def image.lift (F' : MonoFactorisation f) : image f ⟶ F'.I :=
       rw [(Classical.indefiniteDescription (fun z => f z = _) _).2]
       rfl }
 
+/--
+@isnad1 id=eq.0h4v.s6.a701b758aa5d from=seed src=0 shape=4e0bb9b6 vocab=cfa6a4d0
+-/
 theorem image.lift_fac (F' : MonoFactorisation f) : image.lift F' ≫ F'.m = image.ι f := by
   ext x
   change (F'.e ≫ F'.m) _ = _

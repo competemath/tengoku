@@ -69,6 +69,9 @@ noncomputable def ellAdicSheaf (ℓ : ℕ) [Fact ℓ.Prime] :
 
 variable (ℓ : ℕ) [Fact ℓ.Prime]
 
+/--
+@isnad1 id=iszero.0h2v.s6.58497698b657 from=seed src=0 shape=d48accfa vocab=72113d0a
+-/
 lemma isZero_ellAdicSheaf_of_isEmpty [IsEmpty X] : IsZero (X.ellAdicSheaf ℓ) :=
   (Sheaf.isTerminalOfEqTop (ProEt.topology_eq_top_of_isEmpty _) _).isZero
 

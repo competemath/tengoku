@@ -95,7 +95,9 @@ instance (E : Extension R M N) : LieAlgebra R E.L := E.instLieAlgebra
     Extension R N M :=
   ⟨L, _, _, i, p, h⟩
 
-/-- A surjective Lie algebra homomorphism yields an extension. -/
+/-- A surjective Lie algebra homomorphism yields an extension.
+@isnad1 id=isextens.1h4v.s7.285ee004fb45 from=seed src=0 shape=f0fa2f08 vocab=83efc0a3
+-/
 lemma isExtension_of_surjective (f : L →ₗ⁅R⁆ M) (hf : Surjective f) :
     IsExtension f.ker.incl f where
   ker_eq_bot := LieIdeal.ker_incl f.ker
@@ -108,18 +110,30 @@ namespace Extension
 
 variable [CommRing R] [LieRing L] [LieAlgebra R L] [LieRing M] [LieAlgebra R M]
 
+/--
+@isnad1 id=mem.0h5v.s8.9fd17a226fc1 from=seed src=0 shape=3303e515 vocab=cfbf2d4a
+-/
 lemma incl_apply_mem_ker (E : Extension R M L) (x : M) :
     E.incl x ∈ E.proj.ker :=
   Exact.apply_apply_eq_zero ((E.incl.range_eq_ker_iff E.proj).mp E.IsExtension.exact) x
 
+/--
+@isnad1 id=eq.0h5v.s8.497909e60f4a from=seed src=0 shape=f314d6ce vocab=e7c60e0c
+-/
 @[simp] lemma proj_incl (E : Extension R M L) (x : M) :
     E.proj (E.incl x) = 0 :=
   LieHom.mem_ker.mp (incl_apply_mem_ker E x)
 
+/--
+@isnad1 id=injectiv.0h4v.s7.aa2d069477db from=seed src=0 shape=20dd3266 vocab=2e8344ca
+-/
 lemma incl_injective (E : Extension R M L) :
     Injective E.incl :=
   (LieHom.ker_eq_bot E.incl).mp E.IsExtension.ker_eq_bot
 
+/--
+@isnad1 id=surjecti.0h4v.s7.9d189ff99088 from=seed src=0 shape=b3f66c2d vocab=5331ae1e
+-/
 lemma proj_surjective (E : Extension R M L) :
     Surjective E.proj :=
   (LieHom.range_eq_top E.proj).mp E.IsExtension.range_eq_top
@@ -155,17 +169,41 @@ instance : AddCommGroup (ofTwoCocycle c) := (ofProd c).symm.addCommGroup
 instance : Module R (ofTwoCocycle c) :=
   ({ (ofProd c).symm with map_add' _ _ := rfl : ofTwoCocycle c ≃+ L × M}).module R
 
+/--
+@isnad1 id=eq.0h4v.s14.4ff5306f8d53 from=seed src=0 shape=ae931904 vocab=afd0b0d1
+-/
 @[simp] lemma of_zero : ofProd c (0 : L × M) = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s14.1169ec5feeee from=seed src=0 shape=c912867b vocab=3dad9505
+-/
 @[simp] lemma of_add (x y : L × M) : ofProd c (x + y) = ofProd c x + ofProd c y := rfl
+/--
+@isnad1 id=eq.0h6v.s14.580ee5858112 from=seed src=0 shape=e68e0706 vocab=90ce0dd2
+-/
 @[simp] lemma of_smul (r : R) (x : L × M) : (ofProd c) (r • x) = r • ofProd c x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s14.9701fd9c2d1e from=seed src=0 shape=bf306a14 vocab=0fd8ef09
+-/
 @[simp] lemma of_symm_zero : (ofProd c).symm (0 : ofTwoCocycle c) = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s14.665990df8192 from=seed src=0 shape=0f152725 vocab=21747c56
+-/
 @[simp] lemma of_symm_add (x y : ofTwoCocycle c) :
     (ofProd c).symm (x + y) = (ofProd c).symm x + (ofProd c).symm y := rfl
+/--
+@isnad1 id=eq.0h6v.s14.da21f378f1be from=seed src=0 shape=e1b3e707 vocab=43684a7c
+-/
 @[simp] lemma of_symm_smul (r : R) (x : ofTwoCocycle c) :
     (ofProd c).symm (r • x) = r • (ofProd c).symm x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.24c47c460d62 from=seed src=0 shape=ab6577a3 vocab=6bdf6d66
+-/
 @[simp] lemma of_nsmul (n : ℕ) (x : L × M) : (ofProd c) (n • x) = n • (ofProd c) x := rfl
+/--
+@isnad1 id=eq.0h6v.s14.ec912532c42e from=seed src=0 shape=0e8c532e vocab=37ce5b75
+-/
 @[simp] lemma of_symm_nsmul (n : ℕ) (x : ofTwoCocycle c) :
     (ofProd c).symm (n • x) = n • (ofProd c).symm x := rfl
 
@@ -201,6 +239,9 @@ instance : LieRing (ofTwoCocycle c) where
     rw [this]
     abel
 
+/--
+@isnad1 id=eq.0h6v.s15.8c35841b0378 from=seed src=0 shape=c97271fc vocab=708dbbe8
+-/
 lemma bracket_ofTwoCocycle {c : twoCocycle R L M} (x y : ofTwoCocycle c) :
     letI x₁ := ((ofProd c).symm x).1; letI x₂ := ((ofProd c).symm x).2
     letI y₁ := ((ofProd c).symm y).1; letI y₂ := ((ofProd c).symm y).2
@@ -283,20 +324,32 @@ def ofTwoCocycle : Extension R M L where
 /-- The Lie algebra isomorphism given by the type synonym. -/
 def ofAlg : LieAlgebra.ofTwoCocycle c ≃ₗ⁅R⁆ (ofTwoCocycle c).L := LieEquiv.refl
 
+/--
+@isnad1 id=eq.0h6v.s14.3c3edd2369a1 from=seed src=0 shape=f8e8af33 vocab=9ed3a683
+-/
 lemma bracket (x y : (ofTwoCocycle c).L) :
     ⁅x, y⁆ = ofAlg c ⁅(ofAlg c).symm x, (ofAlg c).symm y⁆ :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.5006a1960f03 from=seed src=0 shape=323fe6b4 vocab=c8371e24
+-/
 @[simp]
 lemma ofTwoCocycle_incl_apply (x : M) : (ofTwoCocycle c).incl x = ⟨(0, x)⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.868369fd426b from=seed src=0 shape=f6aa7692 vocab=f6a44beb
+-/
 @[simp]
 lemma ofTwoCocycle_proj_apply (x : (ofTwoCocycle c).L) : (ofTwoCocycle c).proj x = x.carrier.1 :=
   rfl
 
 end TwoCocycle
 
+/--
+@isnad1 id=mem.0h6v.s8.369c6b0b0faf from=seed src=0 shape=f4ad3572 vocab=b6e7a84a
+-/
 lemma lie_incl_mem_ker {E : Extension R M L} (x : E.L) (y : M) :
     ⁅x, E.incl y⁆ ∈ E.proj.ker := by
   rw [LieHom.mem_ker, LieHom.map_lie, proj_incl, lie_zero]
@@ -315,6 +368,9 @@ noncomputable def toKer (E : Extension R M L) :
     rfl
   right_inv x := by simpa [Subtype.ext_iff] using! Equiv.apply_ofInjective_symm E.incl_injective _
 
+/--
+@isnad1 id=eq.0h6v.s11.840c5109b3f2 from=seed src=0 shape=b1d5922b vocab=e68ba78f
+-/
 @[simp] lemma lie_toKer_apply (E : Extension R M L) (x : M) (y : E.L) :
     ⁅y, (E.toKer x : E.L)⁆ = ⁅y, E.incl x⁆ := by
   rfl
@@ -341,6 +397,9 @@ noncomputable def ringModuleOf [IsLieAbelian M] (E : Extension R M L) : LieRingM
     rw [← map_add, EquivLike.apply_eq_iff_eq, LieEquiv.apply_symm_apply, LieEquiv.apply_symm_apply,
       leibniz_lie, aux]
 
+/--
+@isnad1 id=eq.0h6v.s12.1b23af924779 from=seed src=0 shape=3a4ee0fd vocab=85292071
+-/
 lemma ringModuleOf_bracket_proj [IsLieAbelian M] (E : Extension R M L) (y : M) (z : E.L) :
     letI := E.ringModuleOf
     ⁅E.proj z, y⁆ = E.toKer.symm ⁅z, E.toKer y⁆ := by
@@ -354,7 +413,9 @@ lemma ringModuleOf_bracket_proj [IsLieAbelian M] (E : Extension R M L) (y : M) (
 
 /-- Given an extension of `L` by `M` whose kernel `M` is abelian, the kernel `M` gets an `R`-linear
 `L`-module structure. We do not make this an instance, because we may have to work with more than
-one extension. -/
+one extension.
+@isnad1 id=liemodul.0h4v.s6.644303d647ec from=seed src=0 shape=ab4179e3 vocab=89728fce
+-/
 lemma lieModuleOf [IsLieAbelian M] (E : Extension R M L) :
     letI := E.ringModuleOf
     LieModule R L M := by
@@ -367,11 +428,17 @@ lemma lieModuleOf [IsLieAbelian M] (E : Extension R M L) :
         exact trivial_lie_zero E.proj.ker _ ⟨_, by simp [h.choose_spec _]⟩ (E.toKer m)
       lie_smul r x m := by simp }
 
+/--
+@isnad1 id=eq.0h6v.s12.7b197f0de157 from=seed src=0 shape=971f3ab5 vocab=8ad0abb7
+-/
 lemma toKer_bracket [IsLieAbelian M] (E : Extension R M L) (x : E.proj.ker) (y : L) :
     letI := E.ringModuleOf
     E.toKer ⁅y, E.toKer.symm x⁆ = ⁅E.proj_surjective.hasRightInverse.choose y, x⁆ := by
   simp
 
+/--
+@isnad1 id=eq.1h7v.s11.c7ea7640652e from=seed src=0 shape=931198b6 vocab=d8c4a54a
+-/
 lemma lie_apply_proj_of_leftInverse_eq [IsLieAbelian M] (E : Extension R M L) {s : L →ₗ[R] E.L}
     (hs : LeftInverse E.proj s) (x : E.L) (y : E.proj.ker) :
     ⁅s (E.proj x), y⁆ = ⁅x, y⁆ := by
@@ -438,6 +505,9 @@ noncomputable def oneCochainOfTwoSplitting (E : Extension R M L) {s₁ s₂ : L 
     rw [RingHom.id_apply, ← map_smul, EquivLike.apply_eq_iff_eq, SetLike.mk_smul_of_tower_mk,
       Subtype.mk_eq_mk, LinearMap.map_smul_of_tower, smul_sub, LinearMap.map_smul_of_tower]
 
+/--
+@isnad1 id=eq.2h6v.s16.550b9a8d4b44 from=seed src=0 shape=1475ef9e vocab=4dd8bd21
+-/
 lemma d₁₂_oneCochainOfTwoSplitting [IsLieAbelian M] (E : Extension R M L) {s₁ s₂ : L →ₗ[R] E.L}
     (hs₁ : LeftInverse E.proj s₁) (hs₂ : LeftInverse E.proj s₂) :
     letI := E.ringModuleOf

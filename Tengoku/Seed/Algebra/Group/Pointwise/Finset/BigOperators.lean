@@ -41,6 +41,9 @@ variable [CommMonoid α]
 
 variable [DecidableEq α]
 
+/--
+@isnad1 id=eq.0h4v.s5.73a6f2a10f6b from=seed src=0 shape=dc7ac225 vocab=367cf334
+-/
 @[to_additive (attr := simp, norm_cast)]
 theorem coe_prod (s : Finset ι) (f : ι → Finset α) :
     ↑(∏ i ∈ s, f i) = ∏ i ∈ s, (f i : Set α) :=
@@ -49,9 +52,15 @@ theorem coe_prod (s : Finset ι) (f : ι → Finset α) :
 omit [DecidableEq α]
 variable [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h4v.s5.a28bd8690bc8 from=seed src=0 shape=b9f14679 vocab=90beb53b
+-/
 @[to_additive (attr := simp)] lemma prod_inv_index [InvolutiveInv ι] (s : Finset ι) (f : ι → α) :
     ∏ i ∈ s⁻¹, f i = ∏ i ∈ s, f i⁻¹ := prod_image inv_injective.injOn
 
+/--
+@isnad1 id=eq.0h4v.s5.68e4befb6441 from=seed src=0 shape=b9f14679 vocab=2f31bfdf
+-/
 @[to_additive existing, simp] lemma prod_neg_index [InvolutiveNeg ι] (s : Finset ι) (f : ι → α) :
     ∏ i ∈ -s, f i = ∏ i ∈ s, f (-i) := prod_image neg_injective.injOn
 
@@ -61,6 +70,9 @@ section AddCommMonoid
 
 variable [AddCommMonoid α] [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h4v.s5.a3870e55c14b from=seed src=0 shape=b9f14679 vocab=6893c4ce
+-/
 @[to_additive existing, simp] lemma sum_inv_index [InvolutiveInv ι] (s : Finset ι) (f : ι → α) :
     ∑ i ∈ s⁻¹, f i = ∑ i ∈ s, f i⁻¹ := sum_image inv_injective.injOn
 

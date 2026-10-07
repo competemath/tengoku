@@ -54,6 +54,9 @@ def Isδ₀ {Δ Δ' : SimplexCategory} (i : Δ' ⟶ Δ) [Mono i] : Prop :=
 
 namespace Isδ₀
 
+/--
+@isnad1 id=iff.0h2v.s6.ed625629c128 from=seed src=0 shape=0e3d28bc vocab=b7392127
+-/
 theorem iff {j : ℕ} {i : Fin (j + 2)} : Isδ₀ (SimplexCategory.δ i) ↔ i = 0 := by
   constructor
   · rintro ⟨_, h₂⟩
@@ -98,10 +101,16 @@ def mapMono (K : ChainComplex C ℕ) {Δ' Δ : SimplexCategory} (i : Δ' ⟶ Δ)
     · exact 0
 
 variable (Δ) in
+/--
+@isnad1 id=eq.0h3v.s7.709e1f6e672c from=seed src=0 shape=6ad47bca vocab=f845ffc7
+-/
 theorem mapMono_id : mapMono K (𝟙 Δ) = 𝟙 _ := by
   unfold mapMono
   simp only [eqToHom_refl, dite_eq_ite, ite_true]
 
+/--
+@isnad1 id=eq.1h5v.s7.8365f902d50c from=seed src=0 shape=54e196f8 vocab=a78ef64d
+-/
 theorem mapMono_δ₀' (i : Δ' ⟶ Δ) [Mono i] (hi : Isδ₀ i) : mapMono K i = K.d Δ.len Δ'.len := by
   unfold mapMono
   suffices Δ ≠ Δ' by
@@ -109,10 +118,16 @@ theorem mapMono_δ₀' (i : Δ' ⟶ Δ) [Mono i] (hi : Isδ₀ i) : mapMono K i 
   rintro rfl
   simpa only [left_eq_add, Nat.one_ne_zero] using hi.1
 
+/--
+@isnad1 id=eq.0h3v.s7.34efc71f8dbf from=seed src=0 shape=a5c5bc61 vocab=0683cbe3
+-/
 @[simp]
 theorem mapMono_δ₀ {n : ℕ} : mapMono K (δ (0 : Fin (n + 2))) = K.d (n + 1) n :=
   mapMono_δ₀' K _ (by rw [Isδ₀.iff])
 
+/--
+@isnad1 id=eq.2h5v.s8.3a63f7f2d826 from=seed src=0 shape=25ee8272 vocab=b3893187
+-/
 theorem mapMono_eq_zero (i : Δ' ⟶ Δ) [Mono i] (h₁ : Δ ≠ Δ') (h₂ : ¬Isδ₀ i) : mapMono K i = 0 := by
   unfold mapMono
   rw [Ne] at h₁
@@ -121,6 +136,9 @@ theorem mapMono_eq_zero (i : Δ' ⟶ Δ) [Mono i] (h₁ : Δ ≠ Δ') (h₂ : ¬
 
 variable {K K'}
 
+/--
+@isnad1 id=eq.0h7v.s8.3e2ae094b6df from=seed src=0 shape=128fa5ca vocab=16a520f7
+-/
 @[reassoc (attr := simp)]
 theorem mapMono_naturality (i : Δ ⟶ Δ') [Mono i] :
     mapMono K i ≫ f.f Δ.len = f.f Δ'.len ≫ mapMono K' i := by
@@ -133,6 +151,9 @@ theorem mapMono_naturality (i : Δ ⟶ Δ') [Mono i] :
 
 variable (K)
 
+/--
+@isnad1 id=eq.0h7v.s7.4f1d09a99b29 from=seed src=0 shape=5d0a7b18 vocab=aa203623
+-/
 @[reassoc (attr := simp)]
 theorem mapMono_comp (i' : Δ'' ⟶ Δ') (i : Δ' ⟶ Δ) [Mono i'] [Mono i] :
     mapMono K i ≫ mapMono K i' = mapMono K (i' ≫ i) := by
@@ -173,6 +194,9 @@ def map (K : ChainComplex C ℕ) {Δ' Δ : SimplexCategoryᵒᵖ} (θ : Δ ⟶ �
   Sigma.desc fun A =>
     Termwise.mapMono K (image.ι (θ.unop ≫ A.e)) ≫ Sigma.ι (summand K Δ') (A.pull θ)
 
+/--
+@isnad1 id=eq.1h9v.s9.60d18bd321e7 from=seed src=0 shape=17f40990 vocab=6ebf51b0
+-/
 @[reassoc]
 theorem map_on_summand₀ {Δ Δ' : SimplexCategoryᵒᵖ} (A : Splitting.IndexSet Δ) {θ : Δ ⟶ Δ'}
     {Δ'' : SimplexCategory} {e : Δ'.unop ⟶ Δ''} {i : Δ'' ⟶ A.1.unop} [Epi e] [Mono i]
@@ -188,6 +212,9 @@ theorem map_on_summand₀ {Δ Δ' : SimplexCategoryᵒᵖ} (A : Splitting.IndexS
     exact SimplexCategory.factorThruImage_eq fac
 
 set_option backward.isDefEq.respectTransparency false in -- This is needed below
+/--
+@isnad1 id=eq.0h6v.s9.13506fbe4a39 from=seed src=0 shape=653462d9 vocab=52135c75
+-/
 @[reassoc]
 theorem map_on_summand₀' {Δ Δ' : SimplexCategoryᵒᵖ} (A : Splitting.IndexSet Δ) (θ : Δ ⟶ Δ') :
     Sigma.ι (summand K Δ) A ≫ map K θ =
@@ -236,6 +263,9 @@ def splitting (K : ChainComplex C ℕ) : SimplicialObject.Splitting (Γ₀.obj K
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h9v.s9.f402f14608b3 from=seed src=0 shape=a2437db3 vocab=0a1e198d
+-/
 @[reassoc]
 theorem Obj.map_on_summand {Δ Δ' : SimplexCategoryᵒᵖ} (A : Splitting.IndexSet Δ) (θ : Δ ⟶ Δ')
     {Δ'' : SimplexCategory} {e : Δ'.unop ⟶ Δ''} {i : Δ'' ⟶ A.1.unop} [Epi e] [Mono i]
@@ -255,6 +285,9 @@ theorem Obj.map_on_summand {Δ Δ' : SimplexCategoryᵒᵖ} (A : Splitting.Index
   rw [id_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.a8a498e3afc5 from=seed src=0 shape=35341d2a vocab=aa375da6
+-/
 @[reassoc]
 theorem Obj.map_on_summand' {Δ Δ' : SimplexCategoryᵒᵖ} (A : Splitting.IndexSet Δ) (θ : Δ ⟶ Δ') :
     ((splitting K).cofan Δ).inj A ≫ (obj K).map θ =
@@ -264,6 +297,9 @@ theorem Obj.map_on_summand' {Δ Δ' : SimplexCategoryᵒᵖ} (A : Splitting.Inde
   apply image.fac
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.39a5a4faa9b1 from=seed src=0 shape=be251ccb vocab=8e14143c
+-/
 @[reassoc]
 theorem Obj.mapMono_on_summand_id {Δ Δ' : SimplexCategory} (i : Δ' ⟶ Δ) [Mono i] :
     ((splitting K).cofan _).inj (Splitting.IndexSet.id (op Δ)) ≫ (obj K).map i.op =
@@ -271,6 +307,9 @@ theorem Obj.mapMono_on_summand_id {Δ Δ' : SimplexCategory} (i : Δ' ⟶ Δ) [M
   Obj.map_on_summand K (Splitting.IndexSet.id (op Δ)) i.op (rfl : 𝟙 _ ≫ i = i ≫ 𝟙 _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.e51865357102 from=seed src=0 shape=bee0541f vocab=67aac029
+-/
 @[reassoc]
 theorem Obj.map_epi_on_summand_id {Δ Δ' : SimplexCategory} (e : Δ' ⟶ Δ) [Epi e] :
     ((Γ₀.splitting K).cofan _).inj (Splitting.IndexSet.id (op Δ)) ≫ (Γ₀.obj K).map e.op =
@@ -328,6 +367,9 @@ def Γ₂ : Karoubi (ChainComplex C ℕ) ⥤ Karoubi (SimplicialObject C) :=
   (CategoryTheory.Idempotents.functorExtension₂ _ _).obj Γ₀
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=higherfa.0h3v.s7.e61aeb0c6723 from=seed src=0 shape=57456606 vocab=320db496
+-/
 theorem HigherFacesVanish.on_Γ₀_summand_id (K : ChainComplex C ℕ) (n : ℕ) :
     @HigherFacesVanish C _ _ (Γ₀.obj K) _ n (n + 1)
       (((Γ₀.splitting K).cofan _).inj (Splitting.IndexSet.id (op ⦋n + 1⦌))) := by
@@ -339,6 +381,9 @@ theorem HigherFacesVanish.on_Γ₀_summand_id (K : ChainComplex C ℕ) (n : ℕ)
   · exact fun h => Fin.succ_ne_zero j (by simpa only [Isδ₀.iff] using h)
   exact eq
 
+/--
+@isnad1 id=eq.0h3v.s8.8152886d1119 from=seed src=0 shape=e4ceb402 vocab=7477f387
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_on_Γ₀_splitting_summand_eq_self (K : ChainComplex C ℕ) {n : ℕ} :
     ((Γ₀.splitting K).cofan _).inj (Splitting.IndexSet.id (op ⦋n⦌)) ≫

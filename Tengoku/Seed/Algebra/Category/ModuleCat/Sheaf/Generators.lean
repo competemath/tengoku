@@ -69,12 +69,21 @@ def ofEpi (σ : M.GeneratingSections) (p : M ⟶ N) [Epi p] :
     rw [← freeHomEquiv_symm_comp]
     apply epi_comp
 
+/--
+@isnad1 id=eq.0h5v.s7.9e9f49023052 from=seed src=0 shape=53a04483 vocab=171658e1
+-/
 lemma opEpi_id (σ : M.GeneratingSections) :
     σ.ofEpi (𝟙 M) = σ := rfl
 
+/--
+@isnad1 id=eq.0h9v.s8.68836a5f1438 from=seed src=0 shape=4bdbf465 vocab=b9741ebb
+-/
 lemma opEpi_comp (σ : M.GeneratingSections) (p : M ⟶ N) (q : N ⟶ P) [Epi p] [Epi q] :
     σ.ofEpi (p ≫ q) = (σ.ofEpi p).ofEpi q := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.1db41d06cde2 from=seed src=0 shape=07dc01cc vocab=95b15aca
+-/
 @[simp]
 lemma ofEpi_π (σ : M.GeneratingSections) (p : M ⟶ N) [Epi p] :
     (σ.ofEpi p).π = σ.π ≫ p := by
@@ -179,6 +188,9 @@ def GeneratingSections.map : (F.obj M).GeneratingSections where
 instance [G.IsFiniteType] : (G.map F η).IsFiniteType where
   finite := inferInstanceAs (Finite G.I)
 
+/--
+@isnad1 id=eq.0h10v.s9.1ef9dadf2162 from=seed src=0 shape=be5e48df vocab=c208c2fa
+-/
 lemma GeneratingSections.map_π_eq : (G.map F η).π = (mapFreeIso F G.I η).hom ≫ F.map G.π :=
   (F.obj M).freeHomEquiv.symm_apply_eq.mpr rfl
 

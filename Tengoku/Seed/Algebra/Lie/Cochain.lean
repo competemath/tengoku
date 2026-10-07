@@ -64,29 +64,47 @@ instance : LinearMapClass (twoCochain R L M) R L (L →ₗ[R] M) where
   map_add a := a.1.map_add
   map_smulₛₗ a := a.1.map_smul
 
+/--
+@isnad1 id=iff.0h4v.s11.7a94c68d12d2 from=seed src=0 shape=2e204ad2 vocab=3328b353
+-/
 @[simp]
 lemma mem_twoCochain_iff {c : L →ₗ[R] L →ₗ[R] M} : c ∈ twoCochain R L M ↔ ∀ x, c x x = 0 := Iff.rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.db09d311c7f7 from=seed src=0 shape=79e1a059 vocab=7bd09d16
+-/
 @[simp]
 lemma twoCochain_alt (a : twoCochain R L M) (x : L) :
     a x x = 0 :=
   a.2 x
 
+/--
+@isnad1 id=eq.0h6v.s12.63cd6ca634ec from=seed src=0 shape=d3abb5a7 vocab=2e18b7cb
+-/
 lemma twoCochain_skew (a : twoCochain R L M) (x y : L) : - a x y = a y x := by
   rw [neg_eq_iff_add_eq_zero, add_comm]
   simpa [map_add, twoCochain_alt a x, twoCochain_alt a y] using twoCochain_alt a (x + y)
 
+/--
+@isnad1 id=eq.0h5v.s12.0b24b09b07b4 from=seed src=0 shape=59bc30de vocab=2bf6d91c
+-/
 @[simp]
 lemma twoCochain_val_apply (a : twoCochain R L M) (x : L) :
     a.val x = a x :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s14.214cc90a2265 from=seed src=0 shape=15e781f2 vocab=1d748893
+-/
 @[simp]
 lemma add_apply_apply (a b : twoCochain R L M) (x y : L) :
     (a + b) x y = a x y + b x y := by
   rfl
 
 
+/--
+@isnad1 id=eq.0h7v.s13.f4d0e014b244 from=seed src=0 shape=ab32d789 vocab=2534dd75
+-/
 @[simp]
 lemma smul_apply_apply (r : R) (a : twoCochain R L M) (x y : L) :
     (r • a) x y = r • (a x y) := by
@@ -111,10 +129,16 @@ def d₁₂ : oneCochain R L M →ₗ[R] twoCochain R L M where
   map_add' _ _ := by ext; simp; abel
   map_smul' _ _ := by ext; simp [smul_sub]
 
+/--
+@isnad1 id=eq.0h6v.s13.12f524790df3 from=seed src=0 shape=4d9fb65d vocab=d934a31d
+-/
 @[simp]
 lemma d₁₂_apply_apply (f : oneCochain R L M) (x y : L) :
     d₁₂ R L M f x y = ⁅x, f y⁆ - ⁅y, f x⁆ - f ⁅x, y⁆ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.a6114e2bd4cf from=seed src=0 shape=48cfdf36 vocab=9e309ba4
+-/
 lemma d₁₂_apply_apply_ofTrivial [LieModule.IsTrivial L M] (f : oneCochain R L M) (x y : L) :
     d₁₂ R L M f x y = - f ⁅x, y⁆ := by
   simp [trivial_lie_zero]
@@ -134,12 +158,18 @@ def d₂₃ : twoCochain R L M →ₗ[R] L →ₗ[R] L →ₗ[R] L →ₗ[R] M w
   map_add' _ _ := by ext; simp; abel
   map_smul' _ _ := by ext; simp; abel_nf; simp
 
+/--
+@isnad1 id=eq.0h7v.s15.036648731068 from=seed src=0 shape=b0f768e1 vocab=fb8f6f85
+-/
 @[simp]
 lemma d₂₃_apply (a : twoCochain R L M) (x y z : L) :
     d₂₃ R L M a x y z =
       ⁅x, a y z⁆ - ⁅y, a x z⁆ + ⁅z, a x y⁆ - a ⁅x, y⁆ z + a ⁅x, z⁆ y - a ⁅y, z⁆ x :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.df484e6865b4 from=seed src=0 shape=77bb7190 vocab=7146911c
+-/
 lemma d₂₃_comp_d₁₂ : (d₂₃ R L M) ∘ₗ (d₁₂ R L M) = 0 := by
   ext a x y z
   have (a : oneCochain R L M) (x : L) : d₁₂ R L M a x = (d₁₂ R L M a).val x := rfl
@@ -155,9 +185,15 @@ lemma d₂₃_comp_d₁₂ : (d₂₃ R L M) ∘ₗ (d₁₂ R L M) = 0 := by
 /-- A Lie 2-cocycle is a 2-cochain that is annihilated by the coboundary map. -/
 def twoCocycle : Submodule R (twoCochain R L M) := LinearMap.ker (d₂₃ R L M)
 
+/--
+@isnad1 id=iff.0h4v.s15.4dd15f879d78 from=seed src=0 shape=b8d3ead6 vocab=a02a0055
+-/
 lemma mem_twoCocycle_iff (a : twoCochain R L M) : a ∈ twoCocycle R L M ↔ d₂₃ R L M a = 0 := by
   simp [twoCocycle]
 
+/--
+@isnad1 id=iff.0h4v.s14.8f62be753ff7 from=seed src=0 shape=2863bf2b vocab=7d5545ab
+-/
 lemma mem_twoCocycle_iff_of_trivial [LieModule.IsTrivial L M] (a : twoCochain R L M) :
     a ∈ twoCocycle R L M ↔
       ∀ (x y z : L), a x ⁅y, z⁆ = a ⁅x, y⁆ z + a y ⁅x, z⁆ := by

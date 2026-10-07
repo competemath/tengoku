@@ -21,10 +21,16 @@ namespace Sum
 
 variable {α₁ α₂ β : Type*} [LE β] [One β] {v₁ : α₁ → β} {v₂ : α₂ → β}
 
+/--
+@isnad1 id=iff.0h5v.s7.eae35fff3dd8 from=seed src=0 shape=7fe77a99 vocab=28a701a1
+-/
 @[to_additive]
 lemma one_le_elim_iff : 1 ≤ Sum.elim v₁ v₂ ↔ 1 ≤ v₁ ∧ 1 ≤ v₂ :=
   const_le_elim_iff
 
+/--
+@isnad1 id=iff.0h5v.s7.b3bce13cc677 from=seed src=0 shape=f9c85aba vocab=28a701a1
+-/
 @[to_additive]
 lemma elim_le_one_iff : Sum.elim v₁ v₂ ≤ 1 ↔ v₁ ≤ 1 ∧ v₂ ≤ 1 :=
   elim_le_const_iff

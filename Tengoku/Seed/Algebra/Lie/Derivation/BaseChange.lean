@@ -56,6 +56,9 @@ def ofDerivation : Derivation R A A →ₗ⁅R⁆ LieDerivation R (A ⊗[R] L) (
     simp_all
     abel
 
+/--
+@isnad1 id=eq.0h5v.s11.25364a69eeb2 from=seed src=0 shape=5289a657 vocab=1dca16f0
+-/
 @[simp]
 lemma ofDerivation_apply (d : Derivation R A A) (x : A ⊗[R] L) :
     ofDerivation L d x = d.toLinearMap.rTensor L x :=
@@ -90,6 +93,9 @@ def ofLieDerivation : (LieDerivation R L L) →ₗ⁅R⁆ (LieDerivation R (A �
     · simp [tmul_sub]
     · simp_all [sub_add_sub_comm]
 
+/--
+@isnad1 id=eq.0h5v.s11.b1fcda136783 from=seed src=0 shape=fa91f894 vocab=4bb132dd
+-/
 @[simp]
 lemma ofLieDerivation_apply (d : LieDerivation R L L) (x : A ⊗[R] L) :
     ofLieDerivation A d x = d.toLinearMap.lTensor A x :=

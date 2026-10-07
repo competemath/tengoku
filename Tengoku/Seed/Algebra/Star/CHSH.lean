@@ -102,6 +102,9 @@ structure IsCHSHTuple {R} [Monoid R] [StarMul R] (A₀ A₁ B₀ B₁ : R) : Pro
 
 variable {R : Type u}
 
+/--
+@isnad1 id=eq.4h5v.s9.5af40cf7d8f6 from=seed src=0 shape=e812fac9 vocab=9c1cdc1d
+-/
 theorem CHSH_id [CommRing R] {A₀ A₁ B₀ B₁ : R} (A₀_inv : A₀ ^ 2 = 1) (A₁_inv : A₁ ^ 2 = 1)
     (B₀_inv : B₀ ^ 2 = 1) (B₁_inv : B₁ ^ 2 = 1) :
     (2 - A₀ * B₀ - A₀ * B₁ - A₁ * B₀ + A₁ * B₁) * (2 - A₀ * B₀ - A₀ * B₁ - A₁ * B₀ + A₁ * B₁) =
@@ -112,6 +115,7 @@ theorem CHSH_id [CommRing R] {A₀ A₁ B₀ B₁ : R} (A₀_inv : A₀ ^ 2 = 1)
 `A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁ ≤ 2`.
 
 (We could work over ℤ[⅟2] if we wanted to!)
+@isnad1 id=le.1h5v.s7.5b8a39c10bc3 from=seed src=0 shape=6a4c711d vocab=e52d408c
 -/
 theorem CHSH_inequality_of_comm [CommRing R] [PartialOrder R] [StarRing R] [StarOrderedRing R]
     [Algebra ℝ R] [IsOrderedModule ℝ R] (A₀ A₁ B₀ B₁ : R) (T : IsCHSHTuple A₀ A₁ B₀ B₁) :
@@ -145,6 +149,9 @@ Before proving Tsirelson's bound,
 we prepare some easy lemmas about √2.
 -/
 
+/--
+@isnad1 id=eq.0h0v.s5.24dde9ee09fd from=seed src=0 shape=367be239 vocab=0bd974ca
+-/
 theorem sqrt_two_inv_mul_self : (√2)⁻¹ * (√2)⁻¹ = (2⁻¹ : ℝ) := by
   rw [← mul_inv]
   simp
@@ -161,6 +168,7 @@ We prove this by providing an explicit sum-of-squares decomposition
 of the difference.
 
 (We could work over `ℤ[2^(1/2), 2^(-1/2)]` if we really wanted to!)
+@isnad1 id=le.1h5v.s8.abf7f3a6dcb1 from=seed src=0 shape=46b18066 vocab=041d3176
 -/
 theorem tsirelson_inequality [Ring R] [PartialOrder R] [StarRing R] [StarOrderedRing R]
     [Algebra ℝ R] [IsOrderedModule ℝ R] [StarModule ℝ R]

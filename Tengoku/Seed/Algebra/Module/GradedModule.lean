@@ -87,17 +87,26 @@ instance [DecidableEq ιA] [DecidableEq ιB] [GMonoid A] [Gmodule A M] :
     SMul (⨁ i, A i) (⨁ i, M i) where
   smul x y := smulAddMonoidHom A M x y
 
+/--
+@isnad1 id=eq.0h6v.s10.7d8bb48dc472 from=seed src=0 shape=f9d89425 vocab=43b9eafb
+-/
 @[simp]
 theorem smul_def [DecidableEq ιA] [DecidableEq ιB] [GMonoid A] [Gmodule A M]
     (x : ⨁ i, A i) (y : ⨁ i, M i) :
     x • y = smulAddMonoidHom _ _ x y := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.2287694e0c18 from=seed src=0 shape=303f66be vocab=da03b961
+-/
 @[simp]
 theorem smulAddMonoidHom_apply_of_of [DecidableEq ιA] [DecidableEq ιB] [GMonoid A] [Gmodule A M]
     {i j} (x : A i) (y : M j) :
     smulAddMonoidHom A M (DirectSum.of A i x) (of M j y) = of M (i +ᵥ j) (GSMul.smul x y) := by
   simp [smulAddMonoidHom]
 
+/--
+@isnad1 id=eq.0h8v.s9.78d4e5d2b2e9 from=seed src=0 shape=47ed3ea7 vocab=f9d1c0d7
+-/
 theorem of_smul_of [DecidableEq ιA] [DecidableEq ιB] [GMonoid A] [Gmodule A M]
     {i j} (x : A i) (y : M j) :
     DirectSum.of A i x • of M j y = of M (i +ᵥ j) (GSMul.smul x y) := by simp

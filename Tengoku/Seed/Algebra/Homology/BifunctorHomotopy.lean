@@ -49,6 +49,9 @@ noncomputable def hom₁ (j j' : J) :
       (F.obj (L₁.X (c₁.prev i₁))).map (f₂.f i₂) ≫ ιMapBifunctorOrZero L₁ L₂ F c _ _ j')
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h23v.s10.e503b09e8310 from=seed src=0 shape=714eaf84 vocab=fc707f1a
+-/
 @[reassoc]
 lemma ιMapBifunctor_hom₁ (i₁ i₁' : I₁) (i₂ : I₂) (j j' : J)
     (h : ComplexShape.π c₁ c₂ c (i₁', i₂) = j) (h' : c₁.prev i₁' = i₁) :
@@ -70,6 +73,9 @@ noncomputable def hom₂ (j j' : J) :
 
 set_option backward.isDefEq.respectTransparency false in
 variable (f₁) {f₂ f₂'} in
+/--
+@isnad1 id=eq.2h23v.s10.50cf92d11a88 from=seed src=0 shape=4ff9565b vocab=fed9b609
+-/
 @[reassoc]
 lemma ιMapBifunctor_hom₂ (i₁ : I₁) (i₂ i₂' : I₂) (j j' : J)
     (h : ComplexShape.π c₁ c₂ c (i₁, i₂') = j) (h' : c₂.prev i₂' = i₂) :
@@ -81,6 +87,9 @@ lemma ιMapBifunctor_hom₂ (i₁ : I₁) (i₂ i₂' : I₂) (j j' : J)
   simp [hom₂]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h20v.s9.05e97ea640be from=seed src=0 shape=7d2d362a vocab=e7d71d9b
+-/
 lemma zero₁ (j j' : J) (h : ¬ c.Rel j' j) :
     hom₁ h₁ f₂ F c j j' = 0 := by
   ext i₁ i₂ h'
@@ -95,6 +104,9 @@ lemma zero₁ (j j' : J) (h : ¬ c.Rel j' j) :
   · rw [h₁.zero _ _ h₃, Functor.map_zero, zero_app, zero_comp, smul_zero]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.3h23v.s12.3e50e7a2fe00 from=seed src=0 shape=d6212352 vocab=96949617
+-/
 lemma comm₁_aux {i₁ i₁' : I₁} (hi₁ : c₁.Rel i₁ i₁') {i₂ i₂' : I₂} (hi₂ : c₂.Rel i₂ i₂') (j : J)
     (hj : ComplexShape.π c₁ c₂ c (i₁', i₂) = j) :
     ComplexShape.ε₁ c₁ c₂ c (i₁, i₂) • (F.map (h₁.hom i₁' i₁)).app (K₂.X i₂) ≫
@@ -116,6 +128,9 @@ lemma comm₁_aux {i₁ i₁' : I₁} (hi₁ : c₁.Rel i₁ i₁') {i₂ i₂' 
     smul_left_cancel_iff, ← Functor.map_comp_assoc, ← Functor.map_comp_assoc, f₂.comm]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h19v.s11.545e7baf71e0 from=seed src=0 shape=0ec25b3c vocab=dbd13553
+-/
 lemma comm₁ (j : J) :
     (mapBifunctorMap f₁ f₂ F c).f j =
     (mapBifunctor K₁ K₂ F c).d j (c.next j) ≫

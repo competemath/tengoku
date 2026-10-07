@@ -33,7 +33,9 @@ universe v u
 open AlgebraicGeometry
 
 /-- If `S` is a formally unramified `R`-algebra, essentially of finite type, the diagonal is an
-open immersion. -/
+open immersion.
+@isnad1 id=isopenim.0h2v.s8.08e5f0c1a719 from=seed src=0 shape=6e6c886f vocab=6f6ecb5a
+-/
 instance Algebra.FormallyUnramified.isOpenImmersion_SpecMap_lmul {R S : Type u} [CommRing R]
     [CommRing S] [Algebra R S] [Algebra.FormallyUnramified R S] [Algebra.EssFiniteType R S] :
     IsOpenImmersion (Spec.map (CommRingCat.ofHom (TensorProduct.lmul' R (S := S)).toRingHom)) := by
@@ -57,6 +59,9 @@ class FormallyUnramified (f : X ⟶ Y) : Prop where
     ∀ {U : Y.Opens} (_ : IsAffineOpen U) {V : X.Opens} (_ : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U),
       (f.appLE U V e).hom.FormallyUnramified
 
+/--
+@isnad1 id=formally.3h5v.s9.4bfc0f0b1a81 from=seed src=0 shape=3953db45 vocab=d983518d
+-/
 alias Scheme.Hom.formallyUnramified_appLE := FormallyUnramified.formallyUnramified_appLE
 
 namespace FormallyUnramified
@@ -106,6 +111,9 @@ instance (priority := 900) [IsOpenImmersion (pullback.diagonal f)] : FormallyUnr
   rw [pow_two, Subtype.coe_mk, ← he, mul_assoc]
   exact Ideal.mul_mem_mul (he'.ge (Ideal.mem_span_singleton_self e)) hx
 
+/--
+@isnad1 id=formally.0h5v.s5.35b343b3551f from=seed src=0 shape=ed21faf9 vocab=3bb3bcfc
+-/
 theorem of_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [FormallyUnramified (f ≫ g)] : FormallyUnramified f :=
   HasRingHomProperty.of_comp (fun {R S T _ _ _} f g H ↦ by
@@ -120,7 +128,9 @@ instance : MorphismProperty.IsStableUnderBaseChange @FormallyUnramified :=
 
 set_option backward.isDefEq.respectTransparency.types false in
 open MorphismProperty in
-/-- The diagonal of a formally unramified morphism of finite type is an open immersion. -/
+/-- The diagonal of a formally unramified morphism of finite type is an open immersion.
+@isnad1 id=isopenim.0h3v.s5.00c894d2143b from=seed src=0 shape=891075fb vocab=7253cf78
+-/
 instance isOpenImmersion_diagonal [FormallyUnramified f] [LocallyOfFiniteType f] :
     IsOpenImmersion (pullback.diagonal f) := by
   wlog hX : (∃ S, X = Spec S) ∧ ∃ R, Y = Spec R
@@ -146,6 +156,9 @@ instance isOpenImmersion_diagonal [FormallyUnramified f] [LocallyOfFiniteType f]
     cancel_right_of_respectsIso (P := @IsOpenImmersion)]
   infer_instance
 
+/--
+@isnad1 id=formally.0h4v.s9.42d883631344 from=seed src=0 shape=f861e1e1 vocab=b7480cda
+-/
 lemma stalkMap [FormallyUnramified f] (x : X) : (f.stalkMap x).hom.FormallyUnramified :=
   HasRingHomProperty.stalkMap
     (fun f hf p q ↦
@@ -186,6 +199,7 @@ Z  --→ Y
 ```
 With `X ⟶ Y` formally unramified and `Z' ⟶ Z` an infinitesimal thickening, there exists at most
 one arrow `Z ⟶ X` making the diagram commute.
+@isnad1 id=eq.3h8v.s7.c58f667d378b from=seed src=0 shape=b0d38794 vocab=ddb1b450
 -/
 @[stacks 04F1]
 protected lemma hom_ext {Z' Z : Scheme} (i : Z' ⟶ Z) (hi : IsNilpotent i.ker) [IsClosedImmersion i]
@@ -234,6 +248,7 @@ Spec S --→ Y
 ```
 with `S = R/I` for some `I² = 0`, there exists at most one arrow `Spec S ⟶ X` making
 the diagram commute.
+@isnad1 id=formally.1h3v.s9.4cdf8868def3 from=seed src=0 shape=a0bf1254 vocab=922e6a2c
 -/
 protected lemma of_hom_ext (f : X ⟶ Y)
     (H : ∀ (R S : CommRingCat) (φ : R ⟶ S) (_ : Function.Surjective φ)

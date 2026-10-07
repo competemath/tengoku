@@ -85,6 +85,9 @@ noncomputable def spectralSequenceFirstPageXIso (pq : κ)
     (by rw [hi₁, ← data.hi₀₁]) hi₁ hi₂ (by rw [hi₂, data.hi₂₃]) _ _ _ hn ≪≫
       X.EIsoH (homOfLE _) (n - 1) n (n + 1)
 
+/--
+@isnad1 id=eq.3h15v.s9.e065ad6c7926 from=seed src=0 shape=adbb3248 vocab=962696b0
+-/
 @[reassoc]
 lemma spectralSequenceFirstPageXIso_hom (pq : κ)
     (i₁ i₂ : ι) (hi₁ : i₁ = data.i₁ pq) (hi₂ : i₂ = data.i₂ pq)
@@ -98,6 +101,9 @@ lemma spectralSequenceFirstPageXIso_hom (pq : κ)
   obtain rfl := hn₂
   rfl
 
+/--
+@isnad1 id=eq.3h15v.s9.24040dc52f17 from=seed src=0 shape=a46a4812 vocab=894247ea
+-/
 @[reassoc]
 lemma spectralSequenceFirstPageXIso_inv (pq : κ)
     (i₁ i₂ : ι) (hi₁ : i₁ = data.i₁ pq) (hi₂ : i₂ = data.i₂ pq)
@@ -111,6 +117,9 @@ lemma spectralSequenceFirstPageXIso_inv (pq : κ)
   obtain rfl := hn₂
   rfl
 
+/--
+@isnad1 id=eq.5h15v.s10.d4257c828a93 from=seed src=0 shape=b0d2156d vocab=793a2241
+-/
 @[reassoc]
 lemma spectralSequence_first_page_d_eq (pq pq' : κ)
     (hpq : (c r₀).Rel pq pq') (i j k : ι)

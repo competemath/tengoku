@@ -67,39 +67,63 @@ abbrev ε₂ (i : I₁ × I₂) : ℤˣ := TotalComplexShape.ε₂ c₁ c₂ c�
 
 variable {c₁}
 
+/--
+@isnad1 id=rel.1h9v.s6.9c6cac38b145 from=seed src=0 shape=f504fa6a vocab=154bd7bf
+-/
 lemma rel_π₁ {i₁ i₁' : I₁} (h : c₁.Rel i₁ i₁') (i₂ : I₂) :
     c₁₂.Rel (π c₁ c₂ c₁₂ ⟨i₁, i₂⟩) (π c₁ c₂ c₁₂ ⟨i₁', i₂⟩) :=
   TotalComplexShape.rel₁ h i₂
 
+/--
+@isnad1 id=eq.1h9v.s6.766d24a1d8af from=seed src=0 shape=52b4ba33 vocab=4a427afb
+-/
 lemma next_π₁ {i₁ i₁' : I₁} (h : c₁.Rel i₁ i₁') (i₂ : I₂) :
     c₁₂.next (π c₁ c₂ c₁₂ ⟨i₁, i₂⟩) = π c₁ c₂ c₁₂ ⟨i₁', i₂⟩ :=
   c₁₂.next_eq' (rel_π₁ c₂ c₁₂ h i₂)
 
+/--
+@isnad1 id=eq.1h9v.s6.0056cf127e53 from=seed src=0 shape=d8dffc8f vocab=7fea6532
+-/
 lemma prev_π₁ {i₁ i₁' : I₁} (h : c₁.Rel i₁ i₁') (i₂ : I₂) :
     c₁₂.prev (π c₁ c₂ c₁₂ ⟨i₁', i₂⟩) = π c₁ c₂ c₁₂ ⟨i₁, i₂⟩ :=
   c₁₂.prev_eq' (rel_π₁ c₂ c₁₂ h i₂)
 
 variable (c₁) {c₂}
 
+/--
+@isnad1 id=rel.1h9v.s6.3f39386beb4c from=seed src=0 shape=3d1cc52d vocab=154bd7bf
+-/
 lemma rel_π₂ (i₁ : I₁) {i₂ i₂' : I₂} (h : c₂.Rel i₂ i₂') :
     c₁₂.Rel (π c₁ c₂ c₁₂ ⟨i₁, i₂⟩) (π c₁ c₂ c₁₂ ⟨i₁, i₂'⟩) :=
   TotalComplexShape.rel₂ i₁ h
 
+/--
+@isnad1 id=eq.1h9v.s6.dc19a4116a24 from=seed src=0 shape=669c44f4 vocab=4a427afb
+-/
 lemma next_π₂ (i₁ : I₁) {i₂ i₂' : I₂} (h : c₂.Rel i₂ i₂') :
     c₁₂.next (π c₁ c₂ c₁₂ ⟨i₁, i₂⟩) = π c₁ c₂ c₁₂ ⟨i₁, i₂'⟩ :=
   c₁₂.next_eq' (rel_π₂ c₁ c₁₂ i₁ h)
 
+/--
+@isnad1 id=eq.1h9v.s6.b90e8f10c951 from=seed src=0 shape=612f17ae vocab=7fea6532
+-/
 lemma prev_π₂ (i₁ : I₁) {i₂ i₂' : I₂} (h : c₂.Rel i₂ i₂') :
     c₁₂.prev (π c₁ c₂ c₁₂ ⟨i₁, i₂'⟩) = π c₁ c₂ c₁₂ ⟨i₁, i₂⟩ :=
   c₁₂.prev_eq' (rel_π₂ c₁ c₁₂ i₁ h)
 
 variable {c₁}
 
+/--
+@isnad1 id=eq.2h10v.s7.76fe064e3138 from=seed src=0 shape=2bf02e09 vocab=6e484c2b
+-/
 lemma ε₂_ε₁ {i₁ i₁' : I₁} {i₂ i₂' : I₂} (h₁ : c₁.Rel i₁ i₁') (h₂ : c₂.Rel i₂ i₂') :
     ε₂ c₁ c₂ c₁₂ ⟨i₁, i₂⟩ * ε₁ c₁ c₂ c₁₂ ⟨i₁, i₂'⟩ =
       - ε₁ c₁ c₂ c₁₂ ⟨i₁, i₂⟩ * ε₂ c₁ c₂ c₁₂ ⟨i₁', i₂⟩ :=
   TotalComplexShape.ε₂_ε₁ h₁ h₂
 
+/--
+@isnad1 id=eq.2h10v.s7.58dd0e644f7f from=seed src=0 shape=e8c15677 vocab=6e484c2b
+-/
 lemma ε₁_ε₂ {i₁ i₁' : I₁} {i₂ i₂' : I₂} (h₁ : c₁.Rel i₁ i₁') (h₂ : c₂.Rel i₂ i₂') :
     ε₁ c₁ c₂ c₁₂ ⟨i₁, i₂⟩ * ε₂ c₁ c₂ c₁₂ ⟨i₁, i₂⟩ =
       - ε₂ c₁ c₂ c₁₂ ⟨i₁', i₂⟩ * ε₁ c₁ c₂ c₁₂ ⟨i₁, i₂'⟩ :=
@@ -129,26 +153,47 @@ variable [TensorSigns c]
 /-- The signs which appear in the vertical differential of the total complex. -/
 abbrev ε (i : I) : ℤˣ := TensorSigns.ε' c i
 
+/--
+@isnad1 id=rel.1h5v.s5.c18a4a4ff34b from=seed src=0 shape=601a78db vocab=f03dfba3
+-/
 lemma rel_add {p q : I} (hpq : c.Rel p q) (r : I) : c.Rel (p + r) (q + r) :=
   TensorSigns.rel_add _ _ _ hpq
 
+/--
+@isnad1 id=rel.1h5v.s5.b41b52b09b50 from=seed src=0 shape=9e626829 vocab=f03dfba3
+-/
 lemma add_rel (r : I) {p q : I} (hpq : c.Rel p q) : c.Rel (r + p) (r + q) :=
   TensorSigns.add_rel _ _ _ hpq
 
+/--
+@isnad1 id=eq.0h2v.s5.1199106bf8da from=seed src=0 shape=3a5fc5ea vocab=13ebe86c
+-/
 @[simp]
 lemma ε_zero : c.ε 0 = 1 := by
   apply map_one
 
+/--
+@isnad1 id=eq.1h4v.s5.7f1775df3c44 from=seed src=0 shape=9c6e05ff vocab=c62299f3
+-/
 lemma ε_succ {p q : I} (hpq : c.Rel p q) : c.ε q = - c.ε p :=
   TensorSigns.ε'_succ p q hpq
 
+/--
+@isnad1 id=eq.0h4v.s6.deb32866a355 from=seed src=0 shape=a550c618 vocab=9c238ed1
+-/
 lemma ε_add (p q : I) : c.ε (p + q) = c.ε p * c.ε q := by
   apply map_mul
 
+/--
+@isnad1 id=eq.1h4v.s5.b8562211ec43 from=seed src=0 shape=85bc1053 vocab=3374f920
+-/
 lemma next_add (p q : I) (hp : c.Rel p (c.next p)) :
     c.next (p + q) = c.next p + q :=
   c.next_eq' (c.rel_add hp q)
 
+/--
+@isnad1 id=eq.1h4v.s5.5807a35ae145 from=seed src=0 shape=4ef4d170 vocab=3374f920
+-/
 lemma next_add' (p q : I) (hq : c.Rel q (c.next q)) :
     c.next (p + q) = p + c.next q :=
   c.next_eq' (c.add_rel p hq)
@@ -175,6 +220,9 @@ instance : TensorSigns (ComplexShape.down ℕ) where
     dsimp
     rw [pow_add, pow_one, mul_neg, mul_one, neg_neg]
 
+/--
+@isnad1 id=eq.0h1v.s6.6ffdda3be6f2 from=seed src=0 shape=b135d8c5 vocab=49a70c97
+-/
 @[simp]
 lemma ε_down_ℕ (n : ℕ) : (ComplexShape.down ℕ).ε n = (-1 : ℤˣ) ^ n := rfl
 
@@ -189,6 +237,9 @@ instance : TensorSigns (ComplexShape.up ℤ) where
     dsimp
     rw [Int.negOnePow_succ]
 
+/--
+@isnad1 id=eq.0h1v.s4.bfcd3c3bf09c from=seed src=0 shape=0bfdcbab vocab=5857281b
+-/
 @[simp]
 lemma ε_up_ℤ (n : ℤ) : (ComplexShape.up ℤ).ε n = n.negOnePow := rfl
 
@@ -222,20 +273,32 @@ class Associative : Prop where
 
 variable [Associative c₁ c₂ c₃ c₁₂ c₂₃ c]
 
+/--
+@isnad1 id=eq.0h15v.s7.810b80b15585 from=seed src=0 shape=083e5617 vocab=f4c56725
+-/
 lemma assoc (i₁ : I₁) (i₂ : I₂) (i₃ : I₃) :
     π c₁₂ c₃ c ⟨π c₁ c₂ c₁₂ ⟨i₁, i₂⟩, i₃⟩ = π c₁ c₂₃ c ⟨i₁, π c₂ c₃ c₂₃ ⟨i₂, i₃⟩⟩ := by
   apply Associative.assoc
 
+/--
+@isnad1 id=eq.0h15v.s7.ee37d71262c7 from=seed src=0 shape=175e2950 vocab=06652fe9
+-/
 lemma associative_ε₁_eq_mul (i₁ : I₁) (i₂ : I₂) (i₃ : I₃) :
     ε₁ c₁ c₂₃ c (i₁, π c₂ c₃ c₂₃ (i₂, i₃)) =
       ε₁ c₁₂ c₃ c (π c₁ c₂ c₁₂ (i₁, i₂), i₃) * ε₁ c₁ c₂ c₁₂ (i₁, i₂) := by
   apply Associative.ε₁_eq_mul
 
+/--
+@isnad1 id=eq.0h15v.s7.43d34a20f1f3 from=seed src=0 shape=3ec32ad8 vocab=6646226f
+-/
 lemma associative_ε₂_ε₁ (i₁ : I₁) (i₂ : I₂) (i₃ : I₃) :
     ε₂ c₁ c₂₃ c (i₁, π c₂ c₃ c₂₃ (i₂, i₃)) * ε₁ c₂ c₃ c₂₃ (i₂, i₃) =
       ε₁ c₁₂ c₃ c (π c₁ c₂ c₁₂ (i₁, i₂), i₃) * ε₂ c₁ c₂ c₁₂ (i₁, i₂) := by
   apply Associative.ε₂_ε₁
 
+/--
+@isnad1 id=eq.0h15v.s7.b5e654ba9a25 from=seed src=0 shape=53d20b7e vocab=609db665
+-/
 lemma associative_ε₂_eq_mul (i₁ : I₁) (i₂ : I₂) (i₃ : I₃) :
     ε₂ c₁₂ c₃ c (π c₁ c₂ c₁₂ (i₁, i₂), i₃) =
       (ε₂ c₁ c₂₃ c (i₁, π c₂ c₃ c₂₃ (i₂, i₃)) * ε₂ c₂ c₃ c₂₃ (i₂, i₃)) := by
@@ -321,6 +384,9 @@ variable [TotalComplexShape c₁ c₂ c₁₂] [TotalComplexShape c₂ c₁ c₁
 /-- The signs involved in the symmetry isomorphism of the total complex. -/
 abbrev σ (i₁ : I₁) (i₂ : I₂) : ℤˣ := TotalComplexShapeSymmetry.σ c₁ c₂ c₁₂ i₁ i₂
 
+/--
+@isnad1 id=eq.0h8v.s6.5ec103bea168 from=seed src=0 shape=c0a2e527 vocab=8393b8d6
+-/
 lemma π_symm (i₁ : I₁) (i₂ : I₂) :
     π c₂ c₁ c₁₂ ⟨i₂, i₁⟩ = π c₁ c₂ c₁₂ ⟨i₁, i₂⟩ := by
   apply TotalComplexShapeSymmetry.symm
@@ -334,12 +400,18 @@ def symmetryEquiv (j : I₁₂) :
 
 variable {c₁}
 
+/--
+@isnad1 id=eq.1h9v.s7.403aec663e66 from=seed src=0 shape=bc48e9ae vocab=5c3b03af
+-/
 lemma σ_ε₁ {i₁ i₁' : I₁} (h₁ : c₁.Rel i₁ i₁') (i₂ : I₂) :
     σ c₁ c₂ c₁₂ i₁ i₂ * ε₁ c₁ c₂ c₁₂ ⟨i₁, i₂⟩ = ε₂ c₂ c₁ c₁₂ ⟨i₂, i₁⟩ * σ c₁ c₂ c₁₂ i₁' i₂ :=
   TotalComplexShapeSymmetry.σ_ε₁ h₁ i₂
 
 variable (c₁) {c₂}
 
+/--
+@isnad1 id=eq.1h9v.s7.a72e8bb6ea22 from=seed src=0 shape=a3d4b942 vocab=5c3b03af
+-/
 lemma σ_ε₂ (i₁ : I₁) {i₂ i₂' : I₂} (h₂ : c₂.Rel i₂ i₂') :
     σ c₁ c₂ c₁₂ i₁ i₂ * ε₂ c₁ c₂ c₁₂ ⟨i₁, i₂⟩ = ε₁ c₂ c₁ c₁₂ ⟨i₂, i₁⟩ * σ c₁ c₂ c₁₂ i₁ i₂' :=
   TotalComplexShapeSymmetry.σ_ε₂ i₁ h₂
@@ -394,6 +466,9 @@ variable [TotalComplexShape c₁ c₂ c₁₂] [TotalComplexShape c₂ c₁ c₁
   [TotalComplexShapeSymmetry c₁ c₂ c₁₂] [TotalComplexShapeSymmetry c₂ c₁ c₁₂]
   [TotalComplexShapeSymmetrySymmetry c₁ c₂ c₁₂]
 
+/--
+@isnad1 id=eq.0h8v.s6.d6abb31a2c5e from=seed src=0 shape=a3ab6122 vocab=095d0b3f
+-/
 lemma σ_symm (i₁ : I₁) (i₂ : I₂) :
     σ c₂ c₁ c₁₂ i₂ i₁ = σ c₁ c₂ c₁₂ i₁ i₂ := by
   apply TotalComplexShapeSymmetrySymmetry.σ_symm

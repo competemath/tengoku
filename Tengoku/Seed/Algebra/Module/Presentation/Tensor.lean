@@ -96,6 +96,9 @@ noncomputable def isPresentationCoreTensor :
     exact congr_var h ⟨g₁, g₂⟩))
 
 include h₁ h₂ in
+/--
+@isnad1 id=ispresen.2h7v.s7.332a367d76ba from=seed src=0 shape=e1248fe0 vocab=f6ed0b3e
+-/
 lemma IsPresentation.tensor : (solution₁.tensor solution₂).IsPresentation :=
   (isPresentationCoreTensor h₁ h₂).isPresentation
 

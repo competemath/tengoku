@@ -34,6 +34,9 @@ open Scheme CategoryTheory Limits pullback HomogeneousLocalization
 
 section IsSeparated
 
+/--
+@isnad1 id=surjecti.4h8v.s11.ebf481c526a5 from=seed src=0 shape=cb429eb5 vocab=385efdeb
+-/
 lemma lift_awayMapₐ_awayMapₐ_surjective {d e : ℕ} {f : A} (hf : f ∈ 𝒜 d)
     {g : A} (hg : g ∈ 𝒜 e) {x : A} (hx : x = f * g) (hd : 0 < d) :
     Function.Surjective
@@ -80,6 +83,9 @@ lemma lift_awayMapₐ_awayMapₐ_surjective {d e : ℕ} {f : A} (hf : f ∈ 𝒜
 
 set_option backward.isDefEq.respectTransparency false in
 open TensorProduct in
+/--
+@isnad1 id=issepara.0h3v.s6.1485ff104b71 from=seed src=0 shape=e67bd6a2 vocab=002522ba
+-/
 instance isSeparated : IsSeparated (toSpecZero 𝒜) := by
   refine ⟨IsZariskiLocalAtTarget.of_openCover (Pullback.openCoverOfLeftRight
     (affineOpenCover 𝒜).openCover (affineOpenCover 𝒜).openCover _ _) ?_⟩
@@ -196,6 +202,7 @@ O ←---- 𝒜_{(x₀)}                𝒜_{(x)}
     φₗ
 ```
 This is the underlying algebraic statement of the valuative criterion for `Proj 𝒜`.
+@isnad1 id=ex.4h11v.s11.44a8c21052fb from=seed src=0 shape=76e19aab vocab=0e06386e
 -/
 @[stacks 01MF "algebraic part"]
 theorem valuativeCriterion_existence_aux
@@ -314,6 +321,9 @@ theorem valuativeCriterion_existence_aux
               mul_comm _ a, mul_right_comm]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=existenc.0h3v.s7.cd6be6c80048 from=seed src=0 shape=d5cc8533 vocab=2673bb4b
+-/
 @[stacks 01MF]
 lemma valuativeCriterion_existence [Algebra.FiniteType (𝒜 0) A] :
     ValuativeCriterion.Existence (Proj.toSpecZero 𝒜) := by

@@ -51,6 +51,9 @@ namespace WeaklyEtale
 
 attribute [instance] flat flat_diagonal
 
+/--
+@isnad1 id=eq.0h0v.s6.ea7ffdf0ddb2 from=seed src=0 shape=b27ccebf vocab=f823db73
+-/
 theorem weaklyEtale_eq_flat_inf_diagonal_flat :
     @WeaklyEtale = (@Flat ⊓ MorphismProperty.diagonal @Flat : MorphismProperty Scheme.{u}) := by
   ext
@@ -116,11 +119,17 @@ instance : MorphismProperty.HasOfPostcompProperty @WeaklyEtale @WeaklyEtale := b
   intro X Y f hf
   exact inferInstanceAs <| WeaklyEtale (pullback.diagonal f)
 
+/--
+@isnad1 id=weaklyet.0h5v.s5.e940f319a00a from=seed src=0 shape=4e019368 vocab=7f1609c3
+-/
 lemma of_comp (f : X ⟶ Y) (g : Y ⟶ Z) [WeaklyEtale (f ≫ g)] [WeaklyEtale g] : WeaklyEtale f :=
   MorphismProperty.of_postcomp _ _ g ‹_› ‹_›
 
 end WeaklyEtale
 
+/--
+@isnad1 id=le.0h0v.s6.7835da2a39cf from=seed src=0 shape=c86659a9 vocab=82de9f72
+-/
 lemma etale_le_weaklyEtale : @Etale ≤ @WeaklyEtale :=
   fun _ _ _ _ ↦ inferInstance
 

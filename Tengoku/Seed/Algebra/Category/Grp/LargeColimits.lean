@@ -36,6 +36,7 @@ set_option backward.isDefEq.respectTransparency false in
 /--
 If `c` is a cocone of `F` such that `Quot.desc F c` is bijective, then `c` is a colimit
 cocone of `F`.
+@isnad1 id=iff.0h3v.s8.f1f8959df268 from=seed src=0 shape=f9e75d8f vocab=2aa510ca
 -/
 lemma isColimit_iff_bijective_desc [DecidableEq J] :
      Nonempty (IsColimit c) ↔ Function.Bijective (Quot.desc F c) := by
@@ -70,6 +71,7 @@ lemma isColimit_iff_bijective_desc [DecidableEq J] :
 /--
 A functor `F : J ⥤ AddCommGrpCat.{w}` has a colimit if and only if `Colimits.Quot F` is
 `w`-small.
+@isnad1 id=iff.0h2v.s4.7fb088a8aa21 from=seed src=0 shape=a2dfe82d vocab=1bcada0a
 -/
 lemma hasColimit_iff_small_quot [DecidableEq J] : HasColimit F ↔ Small.{w} (Quot F) :=
   ⟨fun _ ↦ Small.mk ⟨_, ⟨(Equiv.ofBijective _ ((isColimit_iff_bijective_desc (colimit.cocone F)).mp

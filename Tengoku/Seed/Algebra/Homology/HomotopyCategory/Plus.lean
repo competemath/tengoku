@@ -34,6 +34,9 @@ open HomologicalComplex
 variable {C} [HasBinaryBiproducts C]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=plus.0h3v.s6.a2004ec00bee from=seed src=0 shape=9014d4a8 vocab=34da8bd3
+-/
 lemma plus_cylinder (K : CochainComplex C ℤ) (hK : CochainComplex.plus C K) :
     CochainComplex.plus C (cylinder K) := by
   obtain ⟨n, hn⟩ := hK
@@ -47,6 +50,9 @@ lemma plus_cylinder (K : CochainComplex C ℤ) (hK : CochainComplex.plus C K) :
   · simp only [ComplexShape.up_Rel] at hj
     exact K.isZero_of_isStrictlyGE n _ (by lia)
 
+/--
+@isnad1 id=plus.0h3v.s6.91f18730b26a from=seed src=0 shape=9014d4a8 vocab=fcd4476b
+-/
 lemma plus_pathObject (K : CochainComplex C ℤ) (hK : CochainComplex.plus C K) :
     CochainComplex.plus C (pathObject K) := by
   obtain ⟨n, hn⟩ := hK
@@ -58,6 +64,9 @@ lemma plus_pathObject (K : CochainComplex C ℤ) (hK : CochainComplex.plus C K) 
   simp only [ComplexShape.up_Rel] at hj
   exact K.isZero_of_isStrictlyGE n j
 
+/--
+@isnad1 id=isstrict.0h9v.s7.7e8084462d70 from=seed src=0 shape=f2e23876 vocab=1d6ac1e5
+-/
 lemma isStrictlyGE_mappingCone {K L : CochainComplex C ℤ} (f : K ⟶ L)
     (n₁ n₂ n : ℤ) [K.IsStrictlyGE n₁] [L.IsStrictlyGE n₂] (hn₁ : n < n₁ := by lia)
     (hn₂ : n ≤ n₂ := by lia) :
@@ -87,6 +96,9 @@ def plus : ObjectProperty (HomotopyCategory C (.up ℤ)) :=
   (CochainComplex.plus C).strictMap (quotient _ _)
 
 variable {C} in
+/--
+@isnad1 id=iff.0h2v.s7.d6473c9a72af from=seed src=0 shape=beebf97b vocab=b469c983
+-/
 @[simp]
 lemma plus_quotient_obj_iff (K : CochainComplex C ℤ) :
     plus C ((quotient _ _).obj K) ↔ CochainComplex.plus C K := by
@@ -153,6 +165,9 @@ def quasiIso : MorphismProperty (Plus A) :=
   (HomotopyCategory.quasiIso A _).inverseImage (ι A)
 deriving MorphismProperty.IsMultiplicative
 
+/--
+@isnad1 id=iff.0h4v.s8.d8367748aa48 from=seed src=0 shape=afbf2e65 vocab=0801c91c
+-/
 lemma quasiIso_iff {K L : Plus A} (f : K ⟶ L) :
     quasiIso A f ↔ (HomotopyCategory.quasiIso A _) f.hom := Iff.rfl
 
@@ -186,6 +201,9 @@ def quotientCompιIso :
   ObjectProperty.liftCompιIso ..
 
 variable {C} in
+/--
+@isnad1 id=surjecti.0h1v.s7.d79f9cf26e65 from=seed src=0 shape=a4c34b13 vocab=57fec45d
+-/
 lemma quotient_obj_surjective : Function.Surjective (quotient C).obj :=
   fun K ↦ by
     obtain ⟨L, hL⟩ := HomotopyCategory.quotient_obj_surjective K.obj

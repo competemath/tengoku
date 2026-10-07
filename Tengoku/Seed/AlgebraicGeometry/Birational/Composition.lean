@@ -57,6 +57,9 @@ noncomputable def comp (f : X.PartialMap Y) [IsDominant f.hom] (g : Y.PartialMap
 
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.2h6v.s8.f75531205413 from=seed src=0 shape=fa18ba99 vocab=40939292
+-/
 lemma comp_restrict_left (f : X.PartialMap Y) [IsDominant f.hom] (U : X.Opens)
     (hU : Dense (U : Set X)) (hU' : U ≤ f.domain) (g : Y.PartialMap Z) :
     (f.restrict U hU hU').comp g = (f.comp g).restrict (f.domain.ι ''ᵁ f.hom ⁻¹ᵁ g.domain ⊓ U)
@@ -67,6 +70,9 @@ lemma comp_restrict_left (f : X.PartialMap Y) [IsDominant f.hom] (U : X.Opens)
 
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.2h6v.s8.ff705ccfc36a from=seed src=0 shape=b1f8c9d3 vocab=67a668c3
+-/
 lemma comp_restrict_right (f : X.PartialMap Y) [IsDominant f.hom] (g : Y.PartialMap Z)
     (V : Y.Opens) (hV : Dense (V : Set Y)) (hV' : V ≤ g.domain) :
     f.comp (g.restrict V hV hV') = (f.comp g).restrict
@@ -80,7 +86,9 @@ lemma comp_restrict_right (f : X.PartialMap Y) [IsDominant f.hom] (g : Y.Partial
       ← morphismRestrict_homOfLE_assoc f.hom _ _ hV']
 
 set_option backward.defeqAttrib.useBackward true in
-/-- Composition respects equivalence of partial maps on the left. -/
+/-- Composition respects equivalence of partial maps on the left.
+@isnad1 id=equiv.1h6v.s6.fea027e2f3fe from=seed src=0 shape=7d2c0131 vocab=165e7dd1
+-/
 lemma comp_equiv_of_equiv_left {f₁ f₂ : X.PartialMap Y} [IsDominant f₁.hom] [IsDominant f₂.hom]
     (h : f₁.equiv f₂) (g : Y.PartialMap Z) :
     (f₁.comp g).equiv (f₂.comp g) := by
@@ -92,7 +100,9 @@ lemma comp_equiv_of_equiv_left {f₁ f₂ : X.PartialMap Y} [IsDominant f₁.hom
   exact equiv_of_restrict_eq _ _ e
 
 set_option backward.defeqAttrib.useBackward true in
-/-- Composition respects equivalence of partial maps on the right. -/
+/-- Composition respects equivalence of partial maps on the right.
+@isnad1 id=equiv.1h6v.s6.7af02d3e84d7 from=seed src=0 shape=20da1819 vocab=165e7dd1
+-/
 lemma comp_equiv_of_equiv_right (f : X.PartialMap Y) [IsDominant f.hom] {g₁ g₂ : Y.PartialMap Z}
     (h : g₁.equiv g₂) : (f.comp g₁).equiv (f.comp g₂) := by
   obtain ⟨W, hW, hW₁, hW₂, e⟩ := h
@@ -102,13 +112,18 @@ lemma comp_equiv_of_equiv_right (f : X.PartialMap Y) [IsDominant f.hom] {g₁ g�
   rw [comp_restrict_right, comp_restrict_right] at e
   exact equiv_of_restrict_eq _ _ e
 
-/-- Composition respects equivalence of partial maps in both arguments. -/
+/-- Composition respects equivalence of partial maps in both arguments.
+@isnad1 id=equiv.2h7v.s6.40745fea9817 from=seed src=0 shape=e6b22df2 vocab=165e7dd1
+-/
 lemma comp_equiv_of_equiv (f₁ f₂ : X.PartialMap Y) [IsDominant f₁.hom] [IsDominant f₂.hom]
     (hf : f₁.equiv f₂) (g₁ g₂ : Y.PartialMap Z) (hg : g₁.equiv g₂) :
     (f₁.comp g₁).equiv (f₂.comp g₂) :=
   equivalence_rel.trans (comp_equiv_of_equiv_left hf _) (comp_equiv_of_equiv_right _ hg)
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=isdomina.0h5v.s6.32651d5f5db0 from=seed src=0 shape=48de7877 vocab=fab34442
+-/
 instance isDominant_comp_hom (f : X.PartialMap Y) [IsDominant f.hom] (g : Y.PartialMap Z)
     [IsDominant g.hom] : IsDominant (f.comp g).hom := by
   dsimp only [comp_domain, comp_hom]
@@ -117,6 +132,9 @@ instance isDominant_comp_hom (f : X.PartialMap Y) [IsDominant f.hom] (g : Y.Part
 
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s7.1ffe29a16cd5 from=seed src=0 shape=cd0ef803 vocab=ff713f03
+-/
 @[simp]
 lemma comp_assoc {X₁ X₂ X₃ Y : Scheme.{u}} [PreirreducibleSpace X₁] [IrreducibleSpace X₂]
     [Nonempty X₃] (f : X₁.PartialMap X₂) [IsDominant f.hom] (g : X₂.PartialMap X₃)
@@ -135,6 +153,9 @@ lemma comp_assoc {X₁ X₂ X₃ Y : Scheme.{u}} [PreirreducibleSpace X₁] [Irr
 
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h5v.s6.a7c592f8c203 from=seed src=0 shape=b227521c vocab=5fd45bdb
+-/
 @[simp]
 lemma comp_toPartialMap (f : X.PartialMap Y) [IsDominant f.hom] (g : Y ⟶ Z) :
     f.comp g.toPartialMap = f.compHom g := by
@@ -144,6 +165,9 @@ lemma comp_toPartialMap (f : X.PartialMap Y) [IsDominant f.hom] (g : Y ⟶ Z) :
       morphismRestrict_ι_assoc, f.domain.isoImage_ι_inv_ι_assoc, isoOfEq_hom]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s6.2751694669b8 from=seed src=0 shape=38ce4939 vocab=d0925c58
+-/
 lemma comp_id (f : X.PartialMap Y) [IsDominant f.hom] : f.comp (PartialMap.id Y) = f := by simp
 
 end PartialMap
@@ -159,15 +183,24 @@ noncomputable def comp (f : X ⤏ Y) [f.IsDominant] (g : Y ⤏ Z) : X ⤏ Z :=
     rw [Function.comp_apply, Function.comp_apply, PartialMap.toRationalMap_eq_iff]
     exact PartialMap.comp_equiv_of_equiv_right _ h
 
+/--
+@isnad1 id=eq.0h5v.s6.9b7ecc3938a4 from=seed src=0 shape=8fd655cf vocab=8fe9ed39
+-/
 lemma comp_def (f : X ⤏ Y) [f.IsDominant] (g : Y.PartialMap Z) :
     f.comp g.toRationalMap = (f.representative.comp g).toRationalMap :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.fdcfb7719c16 from=seed src=0 shape=f8af69e3 vocab=88f99551
+-/
 lemma toRationalMap_comp (f : X.PartialMap Y) [IsDominant f.hom] (g : Y.PartialMap Z) :
     f.toRationalMap.comp g.toRationalMap = (f.comp g).toRationalMap := by
   rw [RationalMap.comp_def, PartialMap.toRationalMap_eq_iff]
   exact PartialMap.comp_equiv_of_equiv_left f.representative_toRationalMap_equiv _
 
+/--
+@isnad1 id=eq.0h3v.s5.c56d6e66ba24 from=seed src=0 shape=9736d32a vocab=ff21ec06
+-/
 @[simp]
 lemma comp_id (f : X ⤏ Y) [f.IsDominant] : f.comp (RationalMap.id Y) = f := by
   simp [RationalMap.comp_def]
@@ -176,10 +209,16 @@ instance (f : X ⤏ Y) [f.IsDominant] (g : Y ⤏ Z) [g.IsDominant] : (f.comp g).
   rw [← g.toRationalMap_representative, RationalMap.comp_def]
   infer_instance
 
+/--
+@isnad1 id=eq.0h5v.s6.ec8bcb06ea70 from=seed src=0 shape=23ca5207 vocab=f0f8d550
+-/
 lemma comp_toRationalMap (f : X ⤏ Y) [f.IsDominant] (h : Y ⟶ Z) :
     f.comp h.toRationalMap = f.compHom h := by
   simp [comp_def, PartialMap.comp_toPartialMap]
 
+/--
+@isnad1 id=eq.0h7v.s6.f9bff8881431 from=seed src=0 shape=19eaa0ed vocab=e8c46e74
+-/
 @[grind _=_]
 lemma comp_assoc {X₁ X₂ X₃ Y : Scheme.{u}} [PreirreducibleSpace X₁] [IrreducibleSpace X₂]
     [Nonempty X₃] (f₁ : X₁ ⤏ X₂) [f₁.IsDominant] (f₂ : X₂ ⤏ X₃) [f₂.IsDominant] (f₃ : X₃ ⤏ Y) :
@@ -192,6 +231,9 @@ lemma comp_assoc {X₁ X₂ X₃ Y : Scheme.{u}} [PreirreducibleSpace X₁] [Irr
   apply PartialMap.comp_equiv_of_equiv_right
   rw [toRationalMap_representative]
 
+/--
+@isnad1 id=isover.0h6v.s7.02531d7663f5 from=seed src=0 shape=2797bab8 vocab=24b2532e
+-/
 instance isOver_comp {S : Scheme.{u}} [IrreducibleSpace Y] [Nonempty Z] [X.Over S] [Y.Over S]
     [Z.Over S] (f : X ⤏ Y) [f.IsDominant] [f.IsOver S] (g : Y ⤏ Z) [g.IsDominant] [g.IsOver S] :
     (f.comp g).IsOver S := by
@@ -203,6 +245,9 @@ end RationalMap
 end PreirreducibleSpace
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s5.1b03a1a14ccc from=seed src=0 shape=5564d3b6 vocab=d706e59f
+-/
 @[simp]
 lemma PartialMap.id_comp {X Y : Scheme.{u}} [IrreducibleSpace X] (f : X.PartialMap Y) :
     (PartialMap.id X).comp f = f := by
@@ -215,6 +260,9 @@ lemma PartialMap.id_comp {X Y : Scheme.{u}} [IrreducibleSpace X] (f : X.PartialM
       Iso.inv_hom_id_assoc]
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.545ec862214e from=seed src=0 shape=5564d3b6 vocab=c6b14af8
+-/
 @[simp, grind =]
 lemma RationalMap.id_comp {X Y : Scheme.{u}} [IrreducibleSpace X] (f : X ⤏ Y) :
     (RationalMap.id X).comp f = f := by

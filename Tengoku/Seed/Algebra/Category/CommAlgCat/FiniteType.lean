@@ -42,12 +42,18 @@ structure FGAlgCatSkeleton : Type u where
 noncomputable def FGAlgCatSkeleton.eval (A : FGAlgCatSkeleton R) : FGAlgCat.{u} R :=
   ⟨CommAlgCat.of R (MvPolynomial (Fin A.n) R ⧸ A.I), inferInstanceAs <| Algebra.FiniteType _ _⟩
 
+/--
+@isnad1 id=ex.0h2v.s8.2b795f0f54d8 from=seed src=0 shape=10c08818 vocab=c9ce18a6
+-/
 lemma Algebra.FiniteType.exists_fgAlgCatSkeleton (A : Type v) [CommRing A] [Algebra R A]
     [h : Algebra.FiniteType R A] :
     ∃ (P : FGAlgCatSkeleton R), Nonempty (A ≃ₐ[R] P.eval.obj) := by
   obtain ⟨n, f, hf⟩ := Algebra.FiniteType.iff_quotient_mvPolynomial''.mp h
   exact ⟨⟨n, RingHom.ker f⟩, ⟨(Ideal.quotientKerAlgEquivOfSurjective hf).symm⟩⟩
 
+/--
+@isnad1 id=ex.1h3v.s10.b475b804ee0c from=seed src=0 shape=59322679 vocab=00a965be
+-/
 lemma RingHom.FiniteType.exists_smallRepr {S : Type v} [CommRing S] {f : R →+* S}
     (hf : f.FiniteType) :
     ∃ (T : FGAlgCatSkeleton R) (e : T.eval.obj ≃+* S), f = e.toRingHom.comp (algebraMap _ _) := by
@@ -113,6 +119,9 @@ def FGAlgCat.equivUnder (R : CommRingCat.{u}) :
 
 variable {Q : MorphismProperty CommRingCat.{u}}
 
+/--
+@isnad1 id=essentia.1h2v.s7.deee5f1326a8 from=seed src=0 shape=24f59b5a vocab=7e5af316
+-/
 lemma essentiallySmall_of_le (hQ : Q ≤ toMorphismProperty FiniteType) (R : CommRingCat.{u}) :
     EssentiallySmall.{u} (MorphismProperty.Under Q ⊤ R) :=
   essentiallySmall_of_fully_faithful

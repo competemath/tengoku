@@ -132,6 +132,9 @@ instance : GradedObject.HasTensor (tensorUnit C c).X K.X :=
 instance : HasTensor (tensorUnit C c) K :=
   inferInstanceAs (GradedObject.HasTensor (tensorUnit C c).X K.X)
 
+/--
+@isnad1 id=eq.0h7v.s9.12849bf16f71 from=seed src=0 shape=4d8d30f3 vocab=47b48a09
+-/
 @[simp]
 lemma unit_tensor_d₁ (i₁ i₂ j : I) :
     mapBifunctor.d₁ (tensorUnit C c) K (curriedTensor C) c i₁ i₂ j = 0 := by
@@ -154,6 +157,9 @@ instance : GradedObject.HasTensor K.X (tensorUnit C c).X :=
 instance : HasTensor K (tensorUnit C c) :=
   inferInstanceAs (GradedObject.HasTensor K.X (tensorUnit C c).X)
 
+/--
+@isnad1 id=eq.0h7v.s9.b2897a5f61b6 from=seed src=0 shape=94c3afd0 vocab=917c0b25
+-/
 @[simp]
 lemma tensor_unit_d₂ (i₁ i₂ j : I) :
     mapBifunctor.d₂ K (tensorUnit C c) (curriedTensor C) c i₁ i₂ j = 0 := by
@@ -184,6 +190,9 @@ noncomputable def leftUnitor' :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.aafb00f50eeb from=seed src=0 shape=2338be0a vocab=335dadc3
+-/
 lemma leftUnitor'_inv (i : I) :
     (leftUnitor' K).inv i = (λ_ (K.X i)).inv ≫ ((singleObjXSelf c 0 (𝟙_ C)).inv ▷ (K.X i)) ≫
       ιTensorObj (tensorUnit C c) K 0 i i (zero_add i) := by
@@ -199,6 +208,9 @@ lemma leftUnitor'_inv (i : I) :
   rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s9.bfbed6b2a82f from=seed src=0 shape=1216c146 vocab=4276fb34
+-/
 @[reassoc]
 lemma leftUnitor'_inv_comm (i j : I) :
     (leftUnitor' K).inv i ≫ (tensorObj (tensorUnit C c) K).d i j =
@@ -233,6 +245,9 @@ noncomputable def rightUnitor' :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.3dff8dac9fb5 from=seed src=0 shape=be09d8a6 vocab=97219520
+-/
 lemma rightUnitor'_inv (i : I) :
     (rightUnitor' K).inv i = (ρ_ (K.X i)).inv ≫ ((K.X i) ◁ (singleObjXSelf c 0 (𝟙_ C)).inv) ≫
       ιTensorObj K (tensorUnit C c) i 0 i (add_zero i) := by
@@ -248,6 +263,9 @@ lemma rightUnitor'_inv (i : I) :
   rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s9.c84209ec0e68 from=seed src=0 shape=91d27429 vocab=906e7f33
+-/
 lemma rightUnitor'_inv_comm (i j : I) :
     (rightUnitor' K).inv i ≫ (tensorObj K (tensorUnit C c)).d i j =
       K.d i j ≫ (rightUnitor' K).inv j := by

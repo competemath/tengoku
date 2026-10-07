@@ -51,6 +51,9 @@ namespace AffineSpace
 scoped[AlgebraicGeometry] notation "𝔸(" n "; " S ")" => AffineSpace n S
 
 variable {n} in
+/--
+@isnad1 id=eq.1h4v.s9.1b71e5e79299 from=seed src=0 shape=fc29327b vocab=fb1b53f7
+-/
 lemma of_mvPolynomial_int_ext {R} {f g : ℤ[n] ⟶ R} (h : ∀ i, f (.X i) = g (.X i)) : f = g := by
   suffices f.hom.comp (MvPolynomial.mapEquiv _ ULift.ringEquiv.symm).toRingHom =
       g.hom.comp (MvPolynomial.mapEquiv _ ULift.ringEquiv.symm).toRingHom by
@@ -92,6 +95,9 @@ def toSpecMvPolyIntEquiv {X : Scheme.{u}} : (X ⟶ Spec ℤ[n]) ≃ (n → Γ(X,
     rfl
   right_inv v := by ext; simp
 
+/--
+@isnad1 id=eq.0h6v.s12.8e4c70c9b60e from=seed src=0 shape=7918e12c vocab=d3bcc865
+-/
 lemma toSpecMvPolyIntEquiv_comp {X Y : Scheme} (f : X ⟶ Y) (g : Y ⟶ Spec ℤ[n]) (i) :
     toSpecMvPolyIntEquiv n (f ≫ g) i = f.appTop (toSpecMvPolyIntEquiv n g i) := rfl
 
@@ -109,21 +115,33 @@ def homOfVector {X : Scheme.{u}} (f : X ⟶ S) (v : n → Γ(X, ⊤)) : X ⟶ �
 
 variable {X : Scheme.{u}} (f : X ⟶ S) (v : n → Γ(X, ⊤))
 
+/--
+@isnad1 id=eq.0h5v.s8.8f4cb8b95db6 from=seed src=0 shape=b7af7ba7 vocab=a129c9e7
+-/
 @[reassoc (attr := simp)]
 lemma homOfVector_over : homOfVector f v ≫ 𝔸(n; S) ↘ S = f :=
   pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s11.7c3a41cb472a from=seed src=0 shape=6af3a316 vocab=f5a1db2f
+-/
 @[reassoc]
 lemma homOfVector_toSpecMvPoly :
     homOfVector f v ≫ toSpecMvPoly n S = (toSpecMvPolyIntEquiv n).symm v :=
   pullback.lift_snd _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s11.dac6bdb7b63a from=seed src=0 shape=b94a174d vocab=3f85b37f
+-/
 @[simp]
 lemma homOfVector_appTop_coord (i) :
     (homOfVector f v).appTop (coord S i) = v i := by
   rw [coord, ← toSpecMvPolyIntEquiv_comp, homOfVector_toSpecMvPoly,
     Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.2h5v.s12.1499fe6eb760 from=seed src=0 shape=93928478 vocab=c3590adf
+-/
 @[ext 1100]
 lemma hom_ext {f g : X ⟶ 𝔸(n; S)}
     (h₁ : f ≫ 𝔸(n; S) ↘ S = g ≫ 𝔸(n; S) ↘ S)
@@ -136,6 +154,9 @@ lemma hom_ext {f g : X ⟶ 𝔸(n; S)}
   exact h₂ i
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s11.b01a2f6b2df0 from=seed src=0 shape=6e23ba33 vocab=279a5c30
+-/
 @[reassoc]
 lemma comp_homOfVector {X Y : Scheme} (v : n → Γ(Y, ⊤)) (f : X ⟶ Y) (g : Y ⟶ S) :
     f ≫ homOfVector g v = homOfVector (f ≫ g) (f.appTop ∘ v) := by
@@ -202,6 +223,9 @@ def isoOfIsAffine [IsAffine S] :
           simp only [eval₂_X]
           exact homOfVector_appTop_coord _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s16.b1dee8557405 from=seed src=0 shape=5872c8ec vocab=9bee3b92
+-/
 @[simp]
 lemma isoOfIsAffine_hom_appTop [IsAffine S] :
     (isoOfIsAffine n S).hom.appTop =
@@ -209,11 +233,17 @@ lemma isoOfIsAffine_hom_appTop [IsAffine S] :
         (eval₂Hom ((𝔸(n; S) ↘ S).appTop).hom (coord S)) := by
   simp [isoOfIsAffine_hom]
 
+/--
+@isnad1 id=eq.0h3v.s18.e0ba1134ac2c from=seed src=0 shape=2c1347ea vocab=9ab7de10
+-/
 @[simp]
 lemma isoOfIsAffine_inv_appTop_coord [IsAffine S] (i) :
     (isoOfIsAffine n S).inv.appTop (coord _ i) = (Scheme.ΓSpecIso (.of _)).inv (.X i) :=
   homOfVector_appTop_coord _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s12.49aacffc05ba from=seed src=0 shape=951bacf7 vocab=50c31d30
+-/
 @[reassoc (attr := simp)]
 lemma isoOfIsAffine_inv_over [IsAffine S] :
     (isoOfIsAffine n S).inv ≫ 𝔸(n; S) ↘ S = Spec.map (CommRingCat.ofHom C) ≫ S.isoSpec.inv :=
@@ -228,6 +258,9 @@ def SpecIso (R : CommRingCat.{u}) :
   isoOfIsAffine _ _ ≪≫ Scheme.Spec.mapIso (MvPolynomial.mapEquiv _
     (Scheme.ΓSpecIso R).symm.commRingCatIsoToRingEquiv).toCommRingCatIso.op
 
+/--
+@isnad1 id=eq.0h2v.s12.6f5f380d95e9 from=seed src=0 shape=1103f009 vocab=2142a66a
+-/
 @[simp]
 lemma SpecIso_hom_appTop (R : CommRingCat.{u}) :
     (SpecIso n R).hom.appTop = (Scheme.ΓSpecIso _).hom ≫
@@ -237,6 +270,9 @@ lemma SpecIso_hom_appTop (R : CommRingCat.{u}) :
   simp [SpecIso]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s13.cd61d17faa1d from=seed src=0 shape=865f0817 vocab=6659a35d
+-/
 @[simp]
 lemma SpecIso_inv_appTop_coord (R : CommRingCat.{u}) (i) :
     (SpecIso n R).inv.appTop (coord _ i) = (Scheme.ΓSpecIso (.of _)).inv (.X i) := by
@@ -247,6 +283,9 @@ lemma SpecIso_inv_appTop_coord (R : CommRingCat.{u}) (i) :
   congr 1
   exact map_X _ _
 
+/--
+@isnad1 id=eq.0h2v.s7.0020134b6876 from=seed src=0 shape=c5ffa805 vocab=3d83d35c
+-/
 @[reassoc (attr := simp)]
 lemma SpecIso_inv_over (R : CommRingCat.{u}) :
     (SpecIso n R).inv ≫ 𝔸(n; Spec R) ↘ Spec R = Spec.map (CommRingCat.ofHom C) := by
@@ -265,15 +304,24 @@ variable (n) in
 def map {S T : Scheme.{u}} (f : S ⟶ T) : 𝔸(n; S) ⟶ 𝔸(n; T) :=
   homOfVector (𝔸(n; S) ↘ S ≫ f) (coord S)
 
+/--
+@isnad1 id=eq.0h4v.s6.010fab662a20 from=seed src=0 shape=b838ea69 vocab=78a63e5b
+-/
 @[reassoc (attr := simp)]
 lemma map_over {S T : Scheme.{u}} (f : S ⟶ T) : map n f ≫ 𝔸(n; T) ↘ T = 𝔸(n; S) ↘ S ≫ f :=
   pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s11.bd236b7ff598 from=seed src=0 shape=d8df7d75 vocab=1ef8e679
+-/
 @[simp]
 lemma map_appTop_coord {S T : Scheme.{u}} (f : S ⟶ T) (i) :
     (map n f).appTop (coord T i) = coord S i :=
   homOfVector_appTop_coord _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.d949883ebc39 from=seed src=0 shape=e638a383 vocab=94a8b8fd
+-/
 @[reassoc (attr := simp)]
 lemma map_toSpecMvPoly {S T : Scheme.{u}} (f : S ⟶ T) :
     map n f ≫ toSpecMvPoly n T = toSpecMvPoly n S := by
@@ -281,11 +329,17 @@ lemma map_toSpecMvPoly {S T : Scheme.{u}} (f : S ⟶ T) :
   ext i
   rw [toSpecMvPolyIntEquiv_comp, ← coord, map_appTop_coord, coord]
 
+/--
+@isnad1 id=eq.0h2v.s5.aadcfa0378ab from=seed src=0 shape=69815d1c vocab=ba05d6b7
+-/
 @[simp]
 lemma map_id : map n (𝟙 S) = 𝟙 𝔸(n; S) := by
   ext1 <;> simp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h6v.s6.d8c19baf81b9 from=seed src=0 shape=2a89886c vocab=54d68ec3
+-/
 @[reassoc, simp]
 lemma map_comp {S S' S'' : Scheme} (f : S ⟶ S') (g : S' ⟶ S'') :
     map n (f ≫ g) = map n f ≫ map n g := by
@@ -294,6 +348,9 @@ lemma map_comp {S S' S'' : Scheme} (f : S ⟶ S') (g : S' ⟶ S'') :
   · simp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s8.cf63a2fff74b from=seed src=0 shape=3f29a715 vocab=bdc1d994
+-/
 lemma map_SpecMap {R S : CommRingCat.{u}} (φ : R ⟶ S) :
     map n (Spec.map φ) =
       (SpecIso n S).hom ≫ Spec.map (CommRingCat.ofHom (MvPolynomial.map φ.hom)) ≫
@@ -318,6 +375,9 @@ def mapSpecMap {R S : CommRingCat.{u}} (φ : R ⟶ S) :
   Arrow.isoMk (SpecIso n S) (SpecIso n R) (by have := (SpecIso n R).inv_hom_id; simp [map_SpecMap])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispullba.0h4v.s6.f60b7d630fca from=seed src=0 shape=abd13719 vocab=a2971964
+-/
 lemma isPullback_map {S T : Scheme.{u}} (f : S ⟶ T) :
     IsPullback (map n f) (𝔸(n; S) ↘ S) (𝔸(n; T) ↘ T) f := by
   refine (IsPullback.paste_horiz_iff (.flip <| .of_hasPullback _ _) (map_over f)).mp ?_
@@ -329,27 +389,42 @@ lemma isPullback_map {S T : Scheme.{u}} (f : S ⟶ T) :
 def reindex {n m : Type u} (i : m → n) (S : Scheme.{u}) : 𝔸(n; S) ⟶ 𝔸(m; S) :=
   homOfVector (𝔸(n; S) ↘ S) (coord S ∘ i)
 
+/--
+@isnad1 id=eq.0h4v.s6.f89bf2e73f5e from=seed src=0 shape=39bc8d8d vocab=4d70f13d
+-/
 @[simp, reassoc]
 lemma reindex_over {n m : Type u} (i : m → n) (S : Scheme.{u}) :
     reindex i S ≫ 𝔸(m; S) ↘ S = 𝔸(n; S) ↘ S :=
   pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s11.c9aa23298adf from=seed src=0 shape=d085bd59 vocab=642c4408
+-/
 @[simp]
 lemma reindex_appTop_coord {n m : Type u} (i : m → n) (S : Scheme.{u}) (j : m) :
     (reindex i S).appTop (coord S j) = coord S (i j) :=
   homOfVector_appTop_coord _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s5.104565f286e9 from=seed src=0 shape=2d5848ed vocab=2749ac13
+-/
 @[simp]
 lemma reindex_id : reindex id S = 𝟙 𝔸(n; S) := by
   ext1 <;> simp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h6v.s7.c769c87d2bca from=seed src=0 shape=7abe2290 vocab=b501e812
+-/
 @[simp, reassoc]
 lemma reindex_comp {n₁ n₂ n₃ : Type u} (i : n₁ ⟶ n₂) (j : n₂ ⟶ n₃) (S : Scheme.{u}) :
     reindex (i ≫ j) S = reindex j S ≫ reindex i S := by
   ext k <;> simp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h6v.s6.c336662444c4 from=seed src=0 shape=47a62c02 vocab=a79dec58
+-/
 @[reassoc (attr := simp)]
 lemma map_reindex {n₁ n₂ : Type u} (i : n₁ → n₂) {S T : Scheme.{u}} (f : S ⟶ T) :
     map n₂ f ≫ reindex i T = reindex i S ≫ map n₁ f := by
@@ -386,6 +461,9 @@ instance [Finite n] : LocallyOfFinitePresentation (𝔸(n; S) ↘ S) :=
   convert! (inferInstance : Algebra.FinitePresentation (ULift ℤ) ℤ[n])
   exact Algebra.algebra_ext _ _ fun _ ↦ rfl
 
+/--
+@isnad1 id=isopenma.0h2v.s7.973c41245cd9 from=seed src=0 shape=fd9dc2f1 vocab=50da4af7
+-/
 lemma isOpenMap_over : IsOpenMap (𝔸(n; S) ↘ S) := by
   change topologically @IsOpenMap _
   wlog hS : ∃ R, S = Spec R
@@ -446,6 +524,9 @@ instance [IsEmpty n] : IsIso (𝔸(n; S) ↘ S) := pullback_fst
   · exact isIso_of_isTerminal specULiftZIsTerminal terminalIsTerminal (terminal.from _)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h2v.s5.04af0b82f335 from=seed src=0 shape=40eebb90 vocab=4ebaee3a
+-/
 lemma isIntegralHom_over_iff_isEmpty : IsIntegralHom (𝔸(n; S) ↘ S) ↔ IsEmpty S ∨ IsEmpty n := by
   constructor
   · intro h
@@ -475,10 +556,16 @@ lemma isIntegralHom_over_iff_isEmpty : IsIntegralHom (𝔸(n; S) ↘ S) ↔ IsEm
     simp [this] at hp
   · rintro (_ | _) <;> infer_instance
 
+/--
+@isnad1 id=not.0h2v.s5.b319f04ae538 from=seed src=0 shape=d36009d0 vocab=2cd0eed3
+-/
 lemma not_isIntegralHom [Nonempty S] [Nonempty n] : ¬ IsIntegralHom (𝔸(n; S) ↘ S) := by
   simp [isIntegralHom_over_iff_isEmpty]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s7.36b2c197b38c from=seed src=0 shape=c5874e99 vocab=1fac6fa0
+-/
 lemma spec_le_iff (R : CommRingCat) (p q : Spec R) : p ≤ q ↔ q.asIdeal ≤ p.asIdeal := by
   aesop (add simp PrimeSpectrum.le_iff_specializes)
 

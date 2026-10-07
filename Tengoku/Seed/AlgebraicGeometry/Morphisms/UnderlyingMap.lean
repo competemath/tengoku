@@ -42,6 +42,9 @@ variable {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
 instance : MorphismProperty.RespectsIso (topologically Function.Injective) :=
   topologically_respectsIso _ (fun e ↦ e.injective) (fun _ _ hf hg ↦ hg.comp hf)
 
+/--
+@isnad1 id=iszarisk.0h0v.s3.35e2e671ba74 from=seed src=0 shape=b8c8af52 vocab=dc2a8449
+-/
 instance injective_isZariskiLocalAtTarget :
     IsZariskiLocalAtTarget (topologically Function.Injective) := by
   refine topologically_isZariskiLocalAtTarget _ (fun _ s _ _ h ↦ h.restrictPreimage s)
@@ -60,9 +63,15 @@ variable {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
 class Surjective : Prop where
   surj : Function.Surjective f
 
+/--
+@isnad1 id=eq.0h0v.s4.d15b5d6e9d85 from=seed src=0 shape=b383088a vocab=e306203c
+-/
 lemma surjective_eq_topologically :
     @Surjective = topologically Function.Surjective := by ext; exact surjective_iff _
 
+/--
+@isnad1 id=surjecti.0h3v.s7.7cc75fe5a20c from=seed src=0 shape=82a81c7a vocab=c770d24d
+-/
 @[grind .]
 lemma Scheme.Hom.surjective (f : X ⟶ Y) [Surjective f] : Function.Surjective f :=
   Surjective.surj
@@ -71,12 +80,18 @@ instance (priority := 100) [IsIso f] : Surjective f := ⟨f.homeomorph.surjectiv
 
 instance [Surjective f] [Surjective g] : Surjective (f ≫ g) := ⟨g.surjective.comp f.surjective⟩
 
+/--
+@isnad1 id=surjecti.0h5v.s5.caace6cf9cfb from=seed src=0 shape=fca88495 vocab=096df828
+-/
 lemma Surjective.of_comp [Surjective (f ≫ g)] : Surjective g where
   surj := Function.Surjective.of_comp (g := f) (f ≫ g).surjective
 
 instance (priority := low) [Nonempty X] [Subsingleton Y] (f : X ⟶ Y) :
     Surjective f := ⟨Function.surjective_to_subsingleton _⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.fd80e63a697d from=seed src=0 shape=b557ed51 vocab=096df828
+-/
 lemma Surjective.comp_iff [Surjective f] : Surjective (f ≫ g) ↔ Surjective g :=
   ⟨fun _ ↦ of_comp f g, fun _ ↦ inferInstance⟩
 
@@ -92,6 +107,9 @@ instance (P : MorphismProperty Scheme.{u}) :
     MorphismProperty.HasOfPrecompProperty @Surjective P where
   of_precomp f g _ _ := .of_comp f g
 
+/--
+@isnad1 id=iszarisk.0h0v.s1.d231e428ceef from=seed src=0 shape=49959d42 vocab=4a224277
+-/
 instance surjective_isZariskiLocalAtTarget : IsZariskiLocalAtTarget @Surjective := by
   have : MorphismProperty.RespectsIso @Surjective := inferInstance
   rw [surjective_eq_topologically] at this ⊢
@@ -101,19 +119,31 @@ instance surjective_isZariskiLocalAtTarget : IsZariskiLocalAtTarget @Surjective 
   obtain ⟨⟨y, _⟩, hy⟩ := hf i ⟨x, hxi⟩
   exact ⟨y, congr(($hy).1)⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.6787628cedf4 from=seed src=0 shape=656cedd1 vocab=e21129e0
+-/
 @[simp]
 lemma range_eq_univ [Surjective f] : Set.range f = Set.univ := by
   simpa [Set.range_eq_univ] using f.surjective
 
+/--
+@isnad1 id=eq.1h6v.s8.e0bf6008b868 from=seed src=0 shape=6b33abeb vocab=1fc9d1d3
+-/
 lemma range_eq_range_of_surjective {S : Scheme.{u}} (f : X ⟶ S) (g : Y ⟶ S) (e : X ⟶ Y)
     [Surjective e] (hge : e ≫ g = f) : Set.range f = Set.range g := by
   rw [← hge]
   simp [Set.range_comp]
 
+/--
+@isnad1 id=iff.1h7v.s9.cc4514fd7307 from=seed src=0 shape=11514b01 vocab=59f0c540
+-/
 lemma mem_range_iff_of_surjective {S : Scheme.{u}} (f : X ⟶ S) (g : Y ⟶ S) (e : X ⟶ Y)
     [Surjective e] (hge : e ≫ g = f) (s : S) : s ∈ Set.range f ↔ s ∈ Set.range g := by
   rw [range_eq_range_of_surjective f g e hge]
 
+/--
+@isnad1 id=surjecti.1h4v.s8.a48b06b041ac from=seed src=0 shape=888d8aae vocab=b438c3b9
+-/
 lemma Surjective.sigmaDesc_of_union_range_eq_univ {X : Scheme.{u}}
     {ι : Type v} [Small.{u} ι] {Y : ι → Scheme.{u}} {f : ∀ i, Y i ⟶ X}
     (H : ⋃ i, Set.range (f i) = Set.univ) : Surjective (Limits.Sigma.desc f) := by
@@ -135,6 +165,9 @@ def Scheme.Hom.cover {P : MorphismProperty Scheme.{u}} {X S : Scheme.{u}} (f : X
     rw [singleton_mem_precoverage_iff]
     exact ⟨f.surjective, hf⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.dae1c9a9df43 from=seed src=0 shape=b67c289c vocab=c8e50861
+-/
 @[simp]
 lemma Scheme.Hom.presieve₀_cover {P : MorphismProperty Scheme.{u}} {X S : Scheme.{u}} (f : X ⟶ S)
     (hf : P f) [Surjective f] : (f.cover hf).presieve₀ = Presieve.singleton f := by
@@ -148,6 +181,9 @@ end Surjective
 
 section Injective
 
+/--
+@isnad1 id=isstable.0h0v.s4.6e7e911700e3 from=seed src=0 shape=44653de4 vocab=e883f2fb
+-/
 instance injective_isStableUnderComposition :
     MorphismProperty.IsStableUnderComposition (topologically (Function.Injective ·)) where
   comp_mem _ _ hf hg := hg.comp hf
@@ -159,6 +195,9 @@ section IsOpenMap
 instance : (topologically IsOpenMap).RespectsIso :=
   topologically_respectsIso _ (fun e ↦ e.isOpenMap) (fun _ _ hf hg ↦ hg.comp hf)
 
+/--
+@isnad1 id=iszarisk.0h0v.s4.42a4a69a0da2 from=seed src=0 shape=b8c8af52 vocab=b47a2108
+-/
 instance isOpenMap_isZariskiLocalAtTarget : IsZariskiLocalAtTarget (topologically IsOpenMap) :=
   topologically_isZariskiLocalAtTarget' _ fun _ _ _ hU _ ↦ hU.isOpenMap_iff_restrictPreimage
 
@@ -172,6 +211,9 @@ section IsClosedMap
 instance : (topologically IsClosedMap).RespectsIso :=
   topologically_respectsIso _ (fun e ↦ e.isClosedMap) (fun _ _ hf hg ↦ hg.comp hf)
 
+/--
+@isnad1 id=iszarisk.0h0v.s4.80403745d0dc from=seed src=0 shape=b8c8af52 vocab=a833a62b
+-/
 instance isClosedMap_isZariskiLocalAtTarget : IsZariskiLocalAtTarget (topologically IsClosedMap) :=
   topologically_isZariskiLocalAtTarget' _ fun _ _ _ hU _ ↦ hU.isClosedMap_iff_restrictPreimage
 
@@ -182,6 +224,9 @@ section IsEmbedding
 instance : (topologically IsEmbedding).RespectsIso :=
   topologically_respectsIso _ (fun e ↦ e.isEmbedding) (fun _ _ hf hg ↦ hg.comp hf)
 
+/--
+@isnad1 id=iszarisk.0h0v.s4.9a440a2ba35a from=seed src=0 shape=b8c8af52 vocab=34a17d90
+-/
 instance isEmbedding_isZariskiLocalAtTarget : IsZariskiLocalAtTarget (topologically IsEmbedding) :=
   topologically_isZariskiLocalAtTarget' _ fun _ _ _ hU ↦ hU.isEmbedding_iff_restrictPreimage
 
@@ -192,6 +237,9 @@ section IsOpenEmbedding
 instance : (topologically IsOpenEmbedding).RespectsIso :=
   topologically_respectsIso _ (fun e ↦ e.isOpenEmbedding) (fun _ _ hf hg ↦ hg.comp hf)
 
+/--
+@isnad1 id=iszarisk.0h0v.s4.74951d3e45d4 from=seed src=0 shape=b8c8af52 vocab=030e179c
+-/
 instance isOpenEmbedding_isZariskiLocalAtTarget :
     IsZariskiLocalAtTarget (topologically IsOpenEmbedding) :=
   topologically_isZariskiLocalAtTarget' _ fun _ _ _ hU ↦ hU.isOpenEmbedding_iff_restrictPreimage
@@ -203,6 +251,9 @@ section IsClosedEmbedding
 instance : (topologically IsClosedEmbedding).RespectsIso :=
   topologically_respectsIso _ (fun e ↦ e.isClosedEmbedding) (fun _ _ hf hg ↦ hg.comp hf)
 
+/--
+@isnad1 id=iszarisk.0h0v.s4.daa50ee2823a from=seed src=0 shape=b8c8af52 vocab=c609eeda
+-/
 instance isClosedEmbedding_isZariskiLocalAtTarget :
     IsZariskiLocalAtTarget (topologically IsClosedEmbedding) :=
   topologically_isZariskiLocalAtTarget' _ fun _ _ _ hU ↦ hU.isClosedEmbedding_iff_restrictPreimage
@@ -218,9 +269,15 @@ variable {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
 class IsDominant : Prop where
   denseRange : DenseRange f
 
+/--
+@isnad1 id=eq.0h0v.s5.b5c11070c235 from=seed src=0 shape=5b4bc6f3 vocab=e30adcfb
+-/
 lemma dominant_eq_topologically :
     @IsDominant = topologically DenseRange := by ext; exact isDominant_iff _
 
+/--
+@isnad1 id=denseran.0h3v.s7.beb9012f89bb from=seed src=0 shape=fcd0f1fe vocab=6be0c954
+-/
 lemma Scheme.Hom.denseRange (f : X ⟶ Y) [IsDominant f] : DenseRange f :=
   IsDominant.denseRange
 
@@ -233,28 +290,46 @@ instance : MorphismProperty.IsMultiplicative @IsDominant where
   id_mem := fun _ ↦ inferInstance
   comp_mem := fun _ _ _ _ ↦ inferInstance
 
+/--
+@isnad1 id=isdomina.0h5v.s5.f19c9daf5a01 from=seed src=0 shape=fca88495 vocab=87314943
+-/
 lemma IsDominant.of_comp [H : IsDominant (f ≫ g)] : IsDominant g := by
   rw [isDominant_iff, denseRange_iff_closure_range, ← Set.univ_subset_iff] at H ⊢
   exact H.trans (closure_mono (Set.range_comp_subset_range f g))
 
+/--
+@isnad1 id=iff.0h5v.s5.1262fef9cc41 from=seed src=0 shape=b557ed51 vocab=87314943
+-/
 lemma IsDominant.comp_iff [IsDominant f] : IsDominant (f ≫ g) ↔ IsDominant g :=
   ⟨fun _ ↦ of_comp f g, fun _ ↦ inferInstance⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=respects.0h0v.s2.e8a998258fda from=seed src=0 shape=25b03439 vocab=7e1dc24b
+-/
 instance IsDominant.respectsIso : MorphismProperty.RespectsIso @IsDominant :=
   MorphismProperty.respectsIso_of_isStableUnderComposition fun _ _ f (_ : IsIso f) ↦ inferInstance
 
+/--
+@isnad1 id=iszarisk.0h0v.s1.be5ef898855f from=seed src=0 shape=49959d42 vocab=892d2250
+-/
 instance IsDominant.isZariskiLocalAtTarget : IsZariskiLocalAtTarget @IsDominant :=
   have : MorphismProperty.RespectsIso (topologically DenseRange) :=
     dominant_eq_topologically ▸ IsDominant.respectsIso
   dominant_eq_topologically ▸ topologically_isZariskiLocalAtTarget' DenseRange
     fun _ _ _ hU _ ↦ hU.denseRange_iff_restrictPreimage
 
+/--
+@isnad1 id=surjecti.1h3v.s7.1cbb03e2d469 from=seed src=0 shape=6aaa75a0 vocab=8730f587
+-/
 lemma surjective_of_isDominant_of_isClosed_range (f : X ⟶ Y) [IsDominant f]
     (hf : IsClosed (Set.range f)) :
     Surjective f :=
   ⟨by rw [← Set.range_eq_univ, ← hf.closure_eq, f.denseRange.closure_range]⟩
 
+/--
+@isnad1 id=isdomina.0h5v.s5.976f0642569f from=seed src=0 shape=77972de3 vocab=5dcc0f8f
+-/
 lemma IsDominant.of_comp_of_isOpenImmersion
     (f : X ⟶ Y) (g : Y ⟶ Z) [H : IsDominant (f ≫ g)] [IsOpenImmersion g] :
     IsDominant f := by
@@ -263,9 +338,15 @@ lemma IsDominant.of_comp_of_isOpenImmersion
   convert H.preimage g.isOpenEmbedding.isOpenMap
   rw [Set.preimage_image_eq _ g.isOpenEmbedding.injective]
 
+/--
+@isnad1 id=isdomina.1h2v.s5.8fd0e33892bd from=seed src=0 shape=7e1d4155 vocab=445bdabe
+-/
 lemma Opens.isDominant_ι {U : X.Opens} (hU : Dense (X := X) U) : IsDominant U.ι :=
   ⟨by simpa [DenseRange] using hU⟩
 
+/--
+@isnad1 id=isdomina.2h3v.s6.0a9a79b792f0 from=seed src=0 shape=232a24c6 vocab=1c156058
+-/
 lemma Opens.isDominant_homOfLE {U V : X.Opens} (hU : Dense (X := X) U) (hU' : U ≤ V) :
     IsDominant (X.homOfLE hU') :=
   have : IsDominant (X.homOfLE hU' ≫ V.ι) := by simpa using Opens.isDominant_ι hU
@@ -277,6 +358,9 @@ section SpecializingMap
 
 open TopologicalSpace
 
+/--
+@isnad1 id=respects.0h0v.s2.3bae364c65ef from=seed src=0 shape=0072ad64 vocab=6512ca45
+-/
 instance specializingMap_respectsIso : (topologically @SpecializingMap).RespectsIso := by
   apply topologically_respectsIso
   · introv
@@ -284,6 +368,9 @@ instance specializingMap_respectsIso : (topologically @SpecializingMap).Respects
   · introv hf hg
     exact hf.comp hg
 
+/--
+@isnad1 id=iszarisk.0h0v.s1.e64d6a99a759 from=seed src=0 shape=87ceb31f vocab=f715f753
+-/
 instance specializingMap_isZariskiLocalAtTarget :
     IsZariskiLocalAtTarget (topologically @SpecializingMap) := by
   apply topologically_isZariskiLocalAtTarget

@@ -108,6 +108,9 @@ end Pi
 
 section Equalizer
 
+/--
+@isnad1 id=eq.0h5v.s11.ed68b456ae9b from=seed src=0 shape=5d42c46d vocab=25300e41
+-/
 lemma equalizer_comp {A B : Under R} (f g : A ⟶ B) :
     (AlgHom.equalizer (toAlgHom f) (toAlgHom g)).val.toUnder ≫ f =
     (AlgHom.equalizer (toAlgHom f) (toAlgHom g)).val.toUnder ≫ g := by
@@ -120,6 +123,9 @@ def equalizerFork {A B : Under R} (f g : A ⟶ B) :
   Fork.ofι ((AlgHom.equalizer (toAlgHom f) (toAlgHom g)).val.toUnder)
     (by rw [equalizer_comp])
 
+/--
+@isnad1 id=eq.0h5v.s9.c0eccbf63161 from=seed src=0 shape=ae9e4d82 vocab=a7257d8c
+-/
 @[simp]
 lemma equalizerFork_ι {A B : Under R} (f g : A ⟶ B) :
     (Under.equalizerFork f g).ι = (AlgHom.equalizer (toAlgHom f) (toAlgHom g)).val.toUnder := rfl
@@ -131,6 +137,9 @@ def equalizerFork' {A B : Type u} [CommRing A] [CommRing B] [Algebra R A] [Algeb
     Fork f.toUnder g.toUnder :=
   Fork.ofι ((AlgHom.equalizer f g).val.toUnder) <| by ext a; exact a.property
 
+/--
+@isnad1 id=eq.0h5v.s8.21b4dc3072c1 from=seed src=0 shape=1521ec80 vocab=453d976f
+-/
 @[simp]
 lemma equalizerFork'_ι {A B : Type u} [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
     (f g : A →ₐ[R] B) :
@@ -157,6 +166,9 @@ def tensorProdEqualizer {A B : Under R} (f g : A ⟶ B) :
     ((tensorProd R S).map ((AlgHom.equalizer (toAlgHom f) (toAlgHom g)).val.toUnder)) <| by
     rw [← Functor.map_comp, equalizer_comp, Functor.map_comp]
 
+/--
+@isnad1 id=eq.0h6v.s10.df4cd13e610f from=seed src=0 shape=951d910e vocab=bcf4ee6d
+-/
 @[simp]
 lemma tensorProdEqualizer_ι {A B : Under R} (f g : A ⟶ B) :
     (tensorProdEqualizer f g).ι = (tensorProd R S).map
@@ -208,7 +220,9 @@ instance : PreservesFiniteProducts (Under.pushout f) where
     letI : Algebra R S := f.hom.toAlgebra
     preservesLimitsOfShape_of_natIso (tensorProdIsoPushout R S)
 
-/-- `Under.pushout f` preserves finite limits if `f` is flat. -/
+/-- `Under.pushout f` preserves finite limits if `f` is flat.
+@isnad1 id=preserve.1h3v.s6.7c15184ec75a from=seed src=0 shape=d5f58177 vocab=1fdea9ae
+-/
 lemma preservesFiniteLimits_of_flat (hf : RingHom.Flat f.hom) :
     PreservesFiniteLimits (Under.pushout f) where
   preservesFiniteLimits _ :=

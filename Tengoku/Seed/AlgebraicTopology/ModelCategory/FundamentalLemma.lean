@@ -38,6 +38,9 @@ a localization functor with respect to `weakEquivalences C`. -/
 def leftHomotopyClassToHom : LeftHomotopyClass X Y → (L.obj X ⟶ L.obj Y) :=
   Quot.lift L.map (fun _ _ h ↦ h.factorsThroughLocalization.map_eq _)
 
+/--
+@isnad1 id=eq.0h6v.s6.032efdfb3733 from=seed src=0 shape=4f5e0979 vocab=a6fa8af6
+-/
 @[simp]
 lemma leftHomotopyClassToHom_mk (f : X ⟶ Y) :
     leftHomotopyClassToHom L (.mk f) = L.map f := rfl
@@ -47,11 +50,17 @@ a localization functor with respect to `weakEquivalences C`. -/
 def rightHomotopyClassToHom : RightHomotopyClass X Y → (L.obj X ⟶ L.obj Y) :=
   Quot.lift L.map (fun _ _ h ↦ h.factorsThroughLocalization.map_eq _)
 
+/--
+@isnad1 id=eq.0h6v.s6.e0531cb99e9c from=seed src=0 shape=4f5e0979 vocab=67d68150
+-/
 @[simp]
 lemma rightHomotopyClassToHom_mk (f : X ⟶ Y) :
     rightHomotopyClassToHom L (.mk f) = L.map f := rfl
 
 variable (X Y)
+/--
+@isnad1 id=iff.0h5v.s7.0fc750fee7f4 from=seed src=0 shape=e1668b9c vocab=b325e468
+-/
 lemma bijective_leftHomotopyClassToHom_iff_bijective_rightHomotopyClassToHom
     [IsCofibrant X] [IsFibrant Y] :
     Function.Bijective (leftHomotopyClassToHom L : LeftHomotopyClass X Y → _) ↔
@@ -67,6 +76,9 @@ section
 
 variable [IsCofibrant X] [IsFibrant Y]
 
+/--
+@isnad1 id=bijectiv.0h5v.s6.589a31b74d28 from=seed src=0 shape=e3f2619e vocab=452bb180
+-/
 lemma bijective_rightHomotopyClassToHom :
     Function.Bijective (rightHomotopyClassToHom L : RightHomotopyClass X Y → _) := by
   wlog _ : IsCofibrant Y generalizing Y
@@ -109,17 +121,26 @@ lemma bijective_rightHomotopyClassToHom :
   rw [this]
   exact Equiv.bijective _
 
+/--
+@isnad1 id=bijectiv.0h5v.s6.2976e00921bf from=seed src=0 shape=e3f2619e vocab=a659599a
+-/
 lemma bijective_leftHomotopyClassToHom :
     Function.Bijective (leftHomotopyClassToHom L : LeftHomotopyClass X Y → _) := by
   rw [bijective_leftHomotopyClassToHom_iff_bijective_rightHomotopyClassToHom]
   exact bijective_rightHomotopyClassToHom L X Y
 
+/--
+@isnad1 id=surjecti.0h5v.s6.3b6a639b6dc5 from=seed src=0 shape=d1d897eb vocab=f5dd7967
+-/
 lemma map_surjective_of_isLocalization :
     Function.Surjective (L.map : (X ⟶ Y) → _) := by
   intro f
   obtain ⟨⟨f⟩, rfl⟩ := (bijective_leftHomotopyClassToHom L X Y).2 f
   exact ⟨f, rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s7.9c2efedc416b from=seed src=0 shape=ce2e5578 vocab=553259ad
+-/
 lemma RightHomotopyRel.iff_map_eq {f g : X ⟶ Y} :
     RightHomotopyRel f g ↔ L.map f = L.map g := by
   refine ⟨fun h ↦ (RightHomotopyRel.factorsThroughLocalization C h).map_eq L,
@@ -127,6 +148,9 @@ lemma RightHomotopyRel.iff_map_eq {f g : X ⟶ Y} :
   rw [← RightHomotopyClass.mk_eq_mk_iff]
   exact (bijective_rightHomotopyClassToHom L X Y).1 (by simpa)
 
+/--
+@isnad1 id=iff.0h7v.s7.88b273d69143 from=seed src=0 shape=ce2e5578 vocab=26b73daf
+-/
 lemma LeftHomotopyRel.iff_map_eq {f g : X ⟶ Y} :
     LeftHomotopyRel f g ↔ L.map f = L.map g := by
   refine ⟨fun h ↦ (LeftHomotopyRel.factorsThroughLocalization C h).map_eq L,

@@ -37,18 +37,30 @@ variable [SMul M α] [SMul N α] (a : M) (b : α) (x : Option α)
 instance : SMul M (Option α) :=
   ⟨fun a => Option.map <| (a • ·)⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.13f7f2dad7b0 from=seed src=0 shape=0f08b70c vocab=2d364ca7
+-/
 @[to_additive]
 theorem smul_def : a • x = x.map (a • ·) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.8390aabeece6 from=seed src=0 shape=dde74333 vocab=f38723c4
+-/
 @[to_additive (attr := simp)]
 theorem smul_none : a • (none : Option α) = none :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.0889d9a69384 from=seed src=0 shape=25a3a013 vocab=57a58b2e
+-/
 @[to_additive (attr := simp)]
 theorem smul_some : a • some b = some (a • b) :=
   rfl
 
+/--
+@isnad1 id=isscalar.0h3v.s5.ae0f309fda5d from=seed src=0 shape=02df27c8 vocab=d4174f70
+-/
 @[to_additive]
 instance instIsScalarTowerOfSMul [SMul M N] [IsScalarTower M N α] : IsScalarTower M N (Option α) :=
   ⟨fun a b x => by

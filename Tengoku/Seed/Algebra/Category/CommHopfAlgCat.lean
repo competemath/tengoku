@@ -47,6 +47,9 @@ instance : CoeSort (CommHopfAlgCat R) (Type v) := ⟨CommHopfAlgCat.X⟩
 attribute [coe] CommHopfAlgCat.X
 
 variable (R) in
+/--
+@isnad1 id=eq.0h2v.s5.0e0504b16f59 from=seed src=0 shape=1a29407e vocab=ef27c672
+-/
 lemma coe_of (X : Type v) [CommRing X] [HopfAlgebra R X] : (of R X : Type v) = X := rfl
 
 /-- The type of morphisms in `CommHopfAlgCat R`. -/
@@ -81,33 +84,72 @@ initialize_simps_projections Hom (hom' → hom)
 The results below duplicate the `ConcreteCategory` simp lemmas, but we can keep them for `dsimp`.
 -/
 
+/--
+@isnad1 id=eq.0h2v.s9.8be26419b124 from=seed src=0 shape=473451c6 vocab=daf84ce6
+-/
 @[simp] lemma hom_id : (𝟙 A : A ⟶ A).hom = AlgHom.id R A := rfl
 
 /- Provided for rewriting. -/
+/--
+@isnad1 id=eq.0h3v.s11.98cc960936cf from=seed src=0 shape=973c5d29 vocab=b6fa91ae
+-/
 lemma id_apply (A : CommHopfAlgCat.{v} R) (a : A) : (𝟙 A : A ⟶ A) a = a := by simp
 
+/--
+@isnad1 id=eq.0h6v.s10.2029e7fbb2eb from=seed src=0 shape=bee14914 vocab=a8bead3d
+-/
 @[simp] lemma hom_comp (f : A ⟶ B) (g : B ⟶ C) : (f ≫ g).hom = g.hom.comp f.hom := rfl
 
 /- Provided for rewriting. -/
+/--
+@isnad1 id=eq.0h7v.s12.ed0d58996b8d from=seed src=0 shape=63d54618 vocab=213490a7
+-/
 lemma comp_apply (f : A ⟶ B) (g : B ⟶ C) (a : A) : (f ≫ g) a = g (f a) := by simp
 
+/--
+@isnad1 id=eq.1h5v.s9.dc37f41321f3 from=seed src=0 shape=fc8760c0 vocab=222b96dc
+-/
 @[ext] lemma hom_ext {f g : A ⟶ B} (hf : f.hom = g.hom) : f = g := Hom.ext hf
 
+/--
+@isnad1 id=eq.0h4v.s10.13033478ecfa from=seed src=0 shape=b57642be vocab=b74cfbb9
+-/
 @[simp] lemma hom_ofHom (f : X →ₐc[R] Y) : (ofHom f).hom = f := rfl
+/--
+@isnad1 id=eq.0h4v.s6.94590ba7be6d from=seed src=0 shape=c023c5ca vocab=8b3effaa
+-/
 @[simp] lemma ofHom_hom (f : A ⟶ B) : ofHom f.hom = f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.3e04b155e69c from=seed src=0 shape=8244a9e1 vocab=8d7c641e
+-/
 @[simp] lemma ofHom_id : ofHom (.id R X) = 𝟙 (of R X) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.30dc4536d974 from=seed src=0 shape=8a3aa5f0 vocab=4b14b388
+-/
 @[simp]
 lemma ofHom_comp (f : X →ₐc[R] Y) (g : Y →ₐc[R] Z) : ofHom (g.comp f) = ofHom f ≫ ofHom g := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.9b86a1e77e56 from=seed src=0 shape=512fa152 vocab=a9f67a34
+-/
 lemma ofHom_apply (f : X →ₐc[R] Y) (x : X) : ofHom f x = f x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.96355930453b from=seed src=0 shape=49dee655 vocab=27bed8e2
+-/
 lemma inv_hom_apply (e : A ≅ B) (x : A) : e.inv (e.hom x) = x := by simp
+/--
+@isnad1 id=eq.0h5v.s12.487eac1560ba from=seed src=0 shape=ff482979 vocab=27bed8e2
+-/
 lemma hom_inv_apply (e : A ≅ B) (x : B) : e.hom (e.inv x) = x := by simp
 
 instance : Inhabited (CommHopfAlgCat R) := ⟨of R R⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.b01fdb3315b2 from=seed src=0 shape=55f909fa vocab=04566efe
+-/
 lemma forget_obj (A : CommHopfAlgCat.{v} R) : (forget (CommHopfAlgCat.{v} R)).obj A = A := rfl
 
 instance : CommRing ((forget (CommHopfAlgCat R)).obj A) := inferInstanceAs <| CommRing A
@@ -118,9 +160,15 @@ instance hasForgetToCommBialgCat : HasForget₂ (CommHopfAlgCat.{v} R) (CommBial
   forget₂.obj A := .of R A
   forget₂.map f := CommBialgCat.ofHom f.hom
 
+/--
+@isnad1 id=eq.0h2v.s10.cdd917acfdb9 from=seed src=0 shape=7e551cc7 vocab=e940f633
+-/
 @[simp] lemma forget₂_commBialgCat_obj (A : CommHopfAlgCat.{v} R) :
     (forget₂ (CommHopfAlgCat.{v} R) (CommBialgCat.{v} R)).obj A = .of R A := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.b86ddb085b64 from=seed src=0 shape=efe16a99 vocab=4b19e4be
+-/
 @[simp] lemma forget₂_commBialgCat_map (f : A ⟶ B) :
     (forget₂ (CommHopfAlgCat.{v} R) (CommBialgCat.{v} R)).map f = CommBialgCat.ofHom f.hom := rfl
 
@@ -158,6 +206,9 @@ def isoEquivBialgEquiv : (of R X ≅ of R Y) ≃ (X ≃ₐc[R] Y) where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=reflects.0h1v.s10.7ea86fce3a6a from=seed src=0 shape=2740f13a vocab=1414c6bb
+-/
 instance reflectsIsomorphisms_forget : (forget (CommHopfAlgCat.{u} R)).ReflectsIsomorphisms where
   reflects {X Y} f _ := by
     let i := asIso ((forget (CommHopfAlgCat.{u} R)).map f)
@@ -192,6 +243,9 @@ instance CommAlgCat.grpObjOpOf {A : Type u} [CommRing A] [HopfAlgebra R A] :
 
 open Opposite MonObj
 
+/--
+@isnad1 id=eq.0h2v.s9.f68ec0025bfb from=seed src=0 shape=c89b9507 vocab=4c042afc
+-/
 @[simp]
 lemma CommAlgCat.inv_op_of_unop_hom {A : Type u} [CommRing A] [HopfAlgebra R A] :
     ι[op <| CommAlgCat.of R A].unop.hom = antipodeAlgHom R A := rfl

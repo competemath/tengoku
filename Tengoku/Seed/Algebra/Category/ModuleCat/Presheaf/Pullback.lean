@@ -80,10 +80,16 @@ noncomputable def pushforwardCompCoyonedaFreeYonedaCorepresentableBy (X : C) :
     erw [Equiv.apply_symm_apply]
     rfl)
 
+/--
+@isnad1 id=pullback.0h7v.s7.86bf9163c8fc from=seed src=0 shape=d2c17bfd vocab=a53295b4
+-/
 lemma pullbackObjIsDefined_free_yoneda (X : C) :
     pullbackObjIsDefined φ ((free S).obj (yoneda.obj X)) :=
   (pushforwardCompCoyonedaFreeYonedaCorepresentableBy φ X).isCorepresentable
 
+/--
+@isnad1 id=eq.0h6v.s7.290abb7fa894 from=seed src=0 shape=7f733455 vocab=8f5fcd73
+-/
 lemma pullbackObjIsDefined_eq_top :
     pullbackObjIsDefined.{u} φ = ⊤ := by
   ext M
@@ -140,6 +146,9 @@ noncomputable def pullbackComp :
 variable {T' : E'ᵒᵖ ⥤ RingCat.{u}} {G' : E ⥤ E'} (ψ' : T ⟶ G'.op ⋙ T')
   [(pushforward.{v} ψ').IsRightAdjoint]
 
+/--
+@isnad1 id=eq.0h14v.s11.4678fba5a439 from=seed src=0 shape=a4245ac9 vocab=7788f307
+-/
 lemma pullback_assoc :
     isoWhiskerLeft _ (pullbackComp.{v} ψ ψ') ≪≫
       pullbackComp.{v} (G := G ⋙ G') φ (ψ ≫ whiskerLeft G.op ψ') =
@@ -149,11 +158,17 @@ lemma pullback_assoc :
 
 end
 
+/--
+@isnad1 id=eq.0h6v.s9.6bf9b3a11cd9 from=seed src=0 shape=5028f45e vocab=8e7bbc54
+-/
 lemma pullback_id_comp :
     pullbackComp.{v} (F := 𝟭 C) (𝟙 S) φ =
       isoWhiskerRight (pullbackId S) (pullback φ) ≪≫ Functor.leftUnitor _ :=
   Adjunction.leftAdjointCompIso_id_comp _ _ _ _ (pushforward_comp_id φ)
 
+/--
+@isnad1 id=eq.0h6v.s9.c4e7b86c8332 from=seed src=0 shape=33dca4e1 vocab=8ad75c81
+-/
 lemma pullback_comp_id :
     pullbackComp.{v} (G := 𝟭 _) φ (𝟙 R) =
       isoWhiskerLeft _ (pullbackId R) ≪≫ Functor.rightUnitor _ :=

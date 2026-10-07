@@ -78,27 +78,45 @@ other direction. -/
 def lift : (X → A) ≃ (FreeNonUnitalNonAssocAlgebra R X →ₙₐ[R] A) :=
   FreeMagma.lift.trans (MonoidAlgebra.liftMagma R)
 
+/--
+@isnad1 id=eq.0h4v.s9.d0d71325f216 from=seed src=0 shape=1364e4cd vocab=4a622410
+-/
 @[simp]
 theorem lift_symm_apply (F : FreeNonUnitalNonAssocAlgebra R X →ₙₐ[R] A) :
     (lift R).symm F = F ∘ of R := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.c451e253349c from=seed src=0 shape=c66ca8c6 vocab=59f6cb24
+-/
 @[simp]
 theorem of_comp_lift (f : X → A) : lift R f ∘ of R = f :=
   (lift R).left_inv f
 
+/--
+@isnad1 id=iff.0h5v.s9.7bc7f4314704 from=seed src=0 shape=d1197ac0 vocab=59f6cb24
+-/
 @[simp]
 theorem lift_unique (f : X → A) (F : FreeNonUnitalNonAssocAlgebra R X →ₙₐ[R] A) :
     F ∘ of R = f ↔ F = lift R f :=
   (lift R).symm_apply_eq
 
+/--
+@isnad1 id=eq.0h5v.s9.45dcb36a0e7e from=seed src=0 shape=baa8c93d vocab=132a5463
+-/
 @[simp]
 theorem lift_of_apply (f : X → A) (x) : lift R f (of R x) = f x :=
   congr_fun (of_comp_lift _ f) x
 
+/--
+@isnad1 id=eq.0h4v.s9.16f5740a25d8 from=seed src=0 shape=f396f4a2 vocab=59f6cb24
+-/
 @[simp]
 theorem lift_comp_of (F : FreeNonUnitalNonAssocAlgebra R X →ₙₐ[R] A) : lift R (F ∘ of R) = F :=
   (lift R).apply_symm_apply F
 
+/--
+@isnad1 id=eq.1h5v.s9.b1d162713f7b from=seed src=0 shape=1d0e0ce2 vocab=653406f3
+-/
 @[ext]
 theorem hom_ext {F₁ F₂ : FreeNonUnitalNonAssocAlgebra R X →ₙₐ[R] A}
     (h : ∀ x, F₁ (of R x) = F₂ (of R x)) : F₁ = F₂ :=

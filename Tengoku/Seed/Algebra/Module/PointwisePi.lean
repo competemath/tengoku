@@ -29,21 +29,33 @@ open Set
 
 variable {K ι : Type*} {R : ι → Type*}
 
+/--
+@isnad1 id=le.0h6v.s7.f29bacb7302d from=seed src=0 shape=36c6a7f3 vocab=96b2bcb5
+-/
 @[to_additive]
 theorem smul_pi_subset [∀ i, SMul K (R i)] (r : K) (s : Set ι) (t : ∀ i, Set (R i)) :
     r • pi s t ⊆ pi s (r • t) :=
   piMap_image_pi_subset _
 
+/--
+@isnad1 id=eq.0h5v.s6.0c3da1bfd458 from=seed src=0 shape=3a107e6c vocab=326beea3
+-/
 @[to_additive]
 theorem smul_univ_pi [∀ i, SMul K (R i)] (r : K) (t : ∀ i, Set (R i)) :
     r • pi (univ : Set ι) t = pi (univ : Set ι) (r • t) :=
   piMap_image_univ_pi _ _
 
+/--
+@isnad1 id=eq.0h6v.s7.be166c06a73b from=seed src=0 shape=3406088e vocab=593844d7
+-/
 @[to_additive]
 theorem smul_pi [Group K] [∀ i, MulAction K (R i)] (r : K) (S : Set ι) (t : ∀ i, Set (R i)) :
     r • S.pi t = S.pi (r • t) :=
   piMap_image_pi (fun _ _ => MulAction.surjective _) _
 
+/--
+@isnad1 id=eq.1h6v.s7.18ccb83f2b4b from=seed src=0 shape=9458b296 vocab=571091bc
+-/
 theorem smul_pi₀ [GroupWithZero K] [∀ i, MulAction K (R i)] {r : K} (S : Set ι) (t : ∀ i, Set (R i))
     (hr : r ≠ 0) : r • S.pi t = S.pi (r • t) :=
   smul_pi (Units.mk0 r hr) S t

@@ -71,11 +71,17 @@ attribute [simp] d_mul d_map
 
 variable {M N φ}
 
+/--
+@isnad1 id=eq.1h11v.s13.0d27dad92179 from=seed src=0 shape=808737d6 vocab=e875638d
+-/
 lemma congr_d {d d' : M.Derivation φ} (h : d = d') {X : Dᵒᵖ} (b : R.obj X) :
     d.d b = d'.d b := by rw [h]
 
 variable (d : M.Derivation φ)
 
+/--
+@isnad1 id=eq.0h9v.s13.5d472b521c39 from=seed src=0 shape=c8b0ef05 vocab=e875638d
+-/
 @[simp] lemma d_one (X : Dᵒᵖ) : d.d (X := X) 1 = 0 := by
   simpa using d.d_mul (X := X) 1 1
 
@@ -133,6 +139,9 @@ namespace Derivation'
 
 variable {M φ'}
 
+/--
+@isnad1 id=eq.0h8v.s13.ce4e3ff1c0a5 from=seed src=0 shape=bbf7913c vocab=b5c8af20
+-/
 @[simp]
 lemma d_app (d : M.Derivation' φ') {X : Dᵒᵖ} (a : S'.obj X) :
     d.d (φ'.app X a) = 0 :=
@@ -143,6 +152,9 @@ a derivation relative to a morphism of presheaves of commutative rings. -/
 noncomputable def app (d : M.Derivation' φ') (X : Dᵒᵖ) : (M.obj X).Derivation (φ'.app X) :=
   ModuleCat.Derivation.mk (fun b ↦ d.d b)
 
+/--
+@isnad1 id=eq.0h8v.s12.6707305f6d0a from=seed src=0 shape=ad425ebb vocab=f86b51b8
+-/
 @[simp]
 lemma app_apply (d : M.Derivation' φ') {X : Dᵒᵖ} (b : R.obj X) :
     (d.app X).d b = d.d b := rfl
@@ -162,6 +174,9 @@ def mk (d_map : ∀ ⦃X Y : Dᵒᵖ⦄ (f : X ⟶ Y) (x : R.obj X),
 variable (d_map : ∀ ⦃X Y : Dᵒᵖ⦄ (f : X ⟶ Y) (x : R.obj X),
       (d Y).d ((R.map f) x) = (M.map f) ((d X).d x))
 
+/--
+@isnad1 id=eq.1h7v.s14.0d00be6e311b from=seed src=0 shape=71398f8e vocab=f6937f13
+-/
 @[simp]
 lemma mk_app (X : Dᵒᵖ) : (mk d d_map).app X = d X := rfl
 
@@ -199,6 +214,9 @@ noncomputable def relativeDifferentials' :
 
 attribute [simp] relativeDifferentials'_obj
 
+/--
+@isnad1 id=eq.0h8v.s14.6b34590eac2d from=seed src=0 shape=66d27719 vocab=4442213c
+-/
 @[simp]
 lemma relativeDifferentials'_map_d {X Y : Dᵒᵖ} (f : X ⟶ Y) (x : R.obj X) :
     DFunLike.coe (α := CommRingCat.KaehlerDifferential (φ'.app X))

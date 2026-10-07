@@ -42,6 +42,7 @@ and two ring homs `a : S ⟶ Fᵢ` and `b : S ⟶ Fⱼ` over `R`.
 If `a` and `b` agree at `S ⟶ colimit F`,
 then there exists `k` such that `a` and `b` are equal at `S ⟶ F_k`.
 In other words, the map `colimᵢ Hom_R(S, Fᵢ) ⟶ Hom_R(S, colim F)` is injective.
+@isnad1 id=ex.4h12v.s9.b0ff15d9b452 from=seed src=0 shape=0e79f0ea vocab=3e166c2e
 -/
 lemma RingHom.EssFiniteType.exists_comp_map_eq_of_isColimit (hf : f.hom.EssFiniteType)
     {i : J} (a : S ⟶ F.obj i) (ha : f ≫ a = α.app i)
@@ -78,6 +79,7 @@ Given a filtered diagram `F` of rings over `R`, `S` a finitely presented `R`-alg
 and a ring hom `g : S ⟶ colimit F` over `R`.
 then there exists `i` such that `g` factors through `Fᵢ`.
 In other words, the map `colimᵢ Hom_R(S, Fᵢ) ⟶ Hom_R(S, colim F)` is surjective.
+@isnad1 id=ex.2h9v.s9.d345531b5ab5 from=seed src=0 shape=cfc7c0b1 vocab=188d3254
 -/
 lemma RingHom.EssFiniteType.exists_eq_comp_ι_app_of_isColimit (hf : f.hom.FinitePresentation)
     (g : S ⟶ c.pt) (hg : ∀ i, f ≫ g = α.app i ≫ c.ι.app i) :
@@ -141,7 +143,9 @@ lemma RingHom.EssFiniteType.exists_eq_comp_ι_app_of_isColimit (hf : f.hom.Finit
     rfl
 
 set_option backward.defeqAttrib.useBackward true in
-/-- If `S` is a finitely presented `R`-algebra, then `Hom_R(S, -)` preserves filtered colimits. -/
+/-- If `S` is a finitely presented `R`-algebra, then `Hom_R(S, -)` preserves filtered colimits.
+@isnad1 id=preserve.1h4v.s7.99082103fd68 from=seed src=0 shape=d5f5c18f vocab=420c08bc
+-/
 lemma CommRingCat.preservesColimit_coyoneda_of_finitePresentation
     (S : Under R) (hS : S.hom.hom.FinitePresentation) (F : J ⥤ Under R)
     [PreservesColimit (F ⋙ Under.forget R) (forget CommRingCat)] :
@@ -162,19 +166,26 @@ lemma CommRingCat.preservesColimit_coyoneda_of_finitePresentation
       f₁.right (Under.w f₁) f₂.right (Under.w f₂) congr($(e).right)
     exact ⟨k, hik, hjk, Under.UnderMorphism.ext e⟩
 
-/-- If `S` is a finitely presented `R`-algebra, then `Hom_R(S, -)` preserves filtered colimits. -/
+/-- If `S` is a finitely presented `R`-algebra, then `Hom_R(S, -)` preserves filtered colimits.
+@isnad1 id=preserve.1h2v.s6.ea0da8cf9d15 from=seed src=0 shape=a62ee2af vocab=23190793
+-/
 lemma CommRingCat.preservesFilteredColimits_coyoneda (S : Under R)
     (hS : S.hom.hom.FinitePresentation) :
     PreservesFilteredColimits (coyoneda.obj (.op S)) :=
   ⟨fun _ _ _ ↦ ⟨preservesColimit_coyoneda_of_finitePresentation R S hS _⟩⟩
 
-/-- If `S` is a finitely presented `R`-algebra, `S : Under R` is finitely presentable. -/
+/-- If `S` is a finitely presented `R`-algebra, `S : Under R` is finitely presentable.
+@isnad1 id=isfinite.1h2v.s5.e266f0e22c20 from=seed src=0 shape=f94e79bc vocab=f6af3978
+-/
 lemma CommRingCat.isFinitelyPresentable_under (S : Under R) (hS : S.hom.hom.FinitePresentation) :
     IsFinitelyPresentable.{u} S := by
   rw [isFinitelyPresentable_iff_preservesFilteredColimits]
   exact preservesFilteredColimits_coyoneda R S hS
 
 variable {R} in
+/--
+@isnad1 id=isfinite.1h3v.s5.ec141525a477 from=seed src=0 shape=fcd54a7b vocab=330f9c77
+-/
 lemma CommRingCat.isFinitelyPresentable_hom {S : CommRingCat.{u}} (f : R ⟶ S)
     (hf : f.hom.FinitePresentation) :
     MorphismProperty.isFinitelyPresentable.{u} _ f :=

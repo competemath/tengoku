@@ -80,6 +80,9 @@ namespace LeftPreLieRing
 
 variable [LeftPreLieRing L]
 
+/--
+@isnad1 id=eq.0h4v.s4.d481d0d4b08d from=seed src=0 shape=0038dec3 vocab=0a874f6f
+-/
 theorem assoc_symm (x y z : L) :
     associator x y z = associator y x z := LeftPreLieRing.assoc_symm' x y z
 
@@ -103,6 +106,9 @@ namespace RightPreLieRing
 
 variable [RightPreLieRing L]
 
+/--
+@isnad1 id=eq.0h4v.s4.b4d7f87c9935 from=seed src=0 shape=aa7b4247 vocab=b7272c3b
+-/
 theorem assoc_symm (x y z : L) :
     associator x y z = associator x z y := RightPreLieRing.assoc_symm' x y z
 

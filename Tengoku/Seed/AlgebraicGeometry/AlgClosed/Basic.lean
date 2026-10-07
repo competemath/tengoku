@@ -43,6 +43,9 @@ def residueFieldIsoBase : X.residueField x ≅ .of K :=
     infer_instance
   (asIso (Spec.preimage (X.fromSpecResidueField x ≫ f))).symm
 
+/--
+@isnad1 id=eq.1h4v.s7.b923eb669094 from=seed src=0 shape=d8c7e391 vocab=66adcc06
+-/
 @[simp, reassoc]
 lemma SpecMap_residueFieldIsoBase_inv :
     Spec.map (residueFieldIsoBase f x hx).inv = X.fromSpecResidueField x ≫ f :=
@@ -53,10 +56,16 @@ noncomputable
 def pointOfClosedPoint : Spec (.of K) ⟶ X :=
   Spec.map (residueFieldIsoBase f x hx).hom ≫ X.fromSpecResidueField x
 
+/--
+@isnad1 id=eq.1h4v.s7.b84f89cdd42c from=seed src=0 shape=54695f8f vocab=2837b3f3
+-/
 @[reassoc (attr := simp)]
 lemma pointOfClosedPoint_comp : pointOfClosedPoint f x hx ≫ f = 𝟙 _ := by
   simp [pointOfClosedPoint, ← SpecMap_residueFieldIsoBase_inv, ← Spec.map_comp]
 
+/--
+@isnad1 id=eq.1h5v.s8.b7c3840037b2 from=seed src=0 shape=de1878c6 vocab=655ff336
+-/
 @[simp]
 lemma pointOfClosedPoint_apply (a : _) : pointOfClosedPoint f x hx a = x := by
   simp [pointOfClosedPoint]
@@ -87,6 +96,9 @@ def pointEquivClosedPoint :
     rw [reassoc_of% Scheme.descResidueField_stalkClosedPointTo_fromSpecResidueField, p.2]
   right_inv x := by simp
 
+/--
+@isnad1 id=eq.3h5v.s9.12111329190c from=seed src=0 shape=ade70908 vocab=6ff4fcea
+-/
 lemma ext_of_apply_closedPoint_eq
     {f g : Spec (.of K) ⟶ X} (h : X ⟶ Spec (.of K))
     [LocallyOfFiniteType h]
@@ -97,7 +109,9 @@ lemma ext_of_apply_closedPoint_eq
 set_option backward.isDefEq.respectTransparency.types false in
 /-- Let `X` and `Y` be locally of finite type `K`-schemes with `K` algebraically closed and `Y`
 separated over `K`. Suppose `X` is reduced, then two `K`-morphisms `f g : X ⟶ Y` are equal if
-they are equal on the closed points of a dense locally closed subset of `X`. -/
+they are equal on the closed points of a dense locally closed subset of `X`.
+@isnad1 id=eq.4h7v.s9.547a193d4db4 from=seed src=0 shape=057186fc vocab=96a7f3ec
+-/
 lemma ext_of_apply_eq {f g : X ⟶ Y} (i : Y ⟶ Spec (.of K)) [IsSeparated i] [LocallyOfFiniteType i]
     [IsReduced X] [LocallyOfFiniteType (f ≫ i)]
     (S : Set X) (hS : IsLocallyClosed S) (hS' : Dense S)

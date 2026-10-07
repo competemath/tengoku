@@ -26,6 +26,9 @@ open CategoryTheory Limits
 namespace AlgebraicGeometry
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=islocall.1h5v.s8.296e01c4ca86 from=seed src=0 shape=fdeebf25 vocab=eae2f330
+-/
 lemma Scheme.isLocallyDirected_of_equifibered_of_injective {J : Type*} [Category J]
     {F G : J ⥤ Scheme.{u}} (s : F ⟶ G) [Quiver.IsThin J] (hs : s.Equifibered)
     (H : ∀ {i j} (hij : i ⟶ j), Function.Injective (F.map hij))
@@ -121,6 +124,9 @@ noncomputable def toBase : d.glued ⟶ S :=
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s8.226212d137c9 from=seed src=0 shape=cd618a99 vocab=632f4e28
+-/
 @[reassoc (attr := simp)]
 lemma ι_toBase (i : 𝒰.I₀) :
     colimit.ι d.functor i ≫ d.toBase = d.natTrans.app i ≫ 𝒰.f i := by
@@ -151,6 +157,9 @@ instance : d.cover.LocallyDirected where
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s10.2d8f96e64394 from=seed src=0 shape=1068b4d5 vocab=36d14449
+-/
 lemma preimage_toBase_eq_range_ι (i : 𝒰.I₀) :
     d.toBase ⁻¹' (Set.range <| 𝒰.f i) = Set.range (colimit.ι d.functor i) := by
   ext x
@@ -170,12 +179,18 @@ lemma preimage_toBase_eq_range_ι (i : 𝒰.I₀) :
     rw [← Scheme.Hom.comp_apply, ι_toBase]
     simp
 
+/--
+@isnad1 id=eq.0h4v.s8.88ae87492a75 from=seed src=0 shape=5ce62b84 vocab=f4ca754b
+-/
 lemma toBase_preimage_eq_opensRange_ι (i : 𝒰.I₀) :
     d.toBase ⁻¹ᵁ (𝒰.f i).opensRange = (colimit.ι d.functor i).opensRange :=
   TopologicalSpace.Opens.coe_inj.mp (preimage_toBase_eq_range_ι d i)
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispullba.0h4v.s7.cfdcfb28e917 from=seed src=0 shape=d72bf7e4 vocab=d74e3f95
+-/
 lemma isPullback_natTrans_ι_toBase (i : 𝒰.I₀) :
     IsPullback (d.natTrans.app i) (colimit.ι d.functor i) (𝒰.f i) d.toBase := by
   refine ⟨by simp, ⟨PullbackCone.IsLimit.mk _ ?_ ?_ ?_ ?_⟩⟩

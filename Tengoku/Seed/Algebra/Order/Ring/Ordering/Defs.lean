@@ -69,37 +69,67 @@ instance : SubsemiringClass (RingPreordering R) R where
 
 variable {R}
 
+/--
+@isnad1 id=mem.1h3v.s5.b85b9a045791 from=seed src=0 shape=19141381 vocab=982f8b63
+-/
 @[aesop unsafe 80% (rule_sets := [SetLike])]
 protected theorem mem_of_isSquare (P : RingPreordering R) {x : R} (hx : IsSquare x) : x ∈ P :=
   RingPreordering.mem_of_isSquare' _ hx
 
+/--
+@isnad1 id=mem.0h3v.s5.45091ee8f9ee from=seed src=0 shape=9b8db8d8 vocab=64e3ecc0
+-/
 @[simp]
 protected theorem mul_self_mem (P : RingPreordering R) (x : R) : x * x ∈ P := by aesop
 
+/--
+@isnad1 id=mem.0h3v.s5.cb4e8e5cba85 from=seed src=0 shape=442959a7 vocab=b608f4ce
+-/
 @[simp]
 protected theorem pow_two_mem (P : RingPreordering R) (x : R) : x ^ 2 ∈ P := by aesop
 
+/--
+@isnad1 id=not.0h2v.s5.47169c6c4bff from=seed src=0 shape=fc0aad28 vocab=97978a8b
+-/
 @[aesop unsafe 20% forward (rule_sets := [SetLike])]
 protected theorem neg_one_notMem (P : RingPreordering R) : -1 ∉ P :=
   RingPreordering.neg_one_notMem' _
 
+/--
+@isnad1 id=injectiv.0h1v.s4.46062f83eacb from=seed src=0 shape=e716c754 vocab=37f527e3
+-/
 theorem toSubsemiring_injective :
     Function.Injective (toSubsemiring : RingPreordering R → _) := fun A B h => by ext; rw [h]
 
+/--
+@isnad1 id=iff.0h3v.s5.d659f6869f8d from=seed src=0 shape=49a1ec5b vocab=b7594d03
+-/
 @[simp]
 theorem toSubsemiring_inj {P₁ P₂ : RingPreordering R} :
     P₁.toSubsemiring = P₂.toSubsemiring ↔ P₁ = P₂ := toSubsemiring_injective.eq_iff
 
+/--
+@isnad1 id=iff.0h3v.s5.5b8c3079d48e from=seed src=0 shape=51b12b4b vocab=fe032df3
+-/
 @[simp]
 theorem mem_toSubsemiring {P : RingPreordering R} {x : R} : x ∈ P.toSubsemiring ↔ x ∈ P := .rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.bac1915247ac from=seed src=0 shape=33410fb1 vocab=6d0eb6dc
+-/
 @[simp, norm_cast]
 theorem coe_toSubsemiring (P : RingPreordering R) : (P.toSubsemiring : Set R) = P := rfl
 
+/--
+@isnad1 id=iff.2h3v.s7.1bce58452f73 from=seed src=0 shape=180376f1 vocab=e5719a57
+-/
 @[simp]
 theorem mem_mk {toSubsemiring : Subsemiring R} (mem_of_isSquare neg_one_notMem) {x : R} :
     x ∈ mk toSubsemiring mem_of_isSquare neg_one_notMem ↔ x ∈ toSubsemiring := .rfl
 
+/--
+@isnad1 id=eq.2h2v.s7.22fd5740de4d from=seed src=0 shape=fcc1710d vocab=a8e20352
+-/
 @[simp]
 theorem coe_set_mk (toSubsemiring : Subsemiring R) (mem_of_isSquare neg_one_notMem) :
     (mk toSubsemiring mem_of_isSquare neg_one_notMem : Set R) = toSubsemiring := rfl
@@ -119,7 +149,13 @@ protected def copy : RingPreordering R where
   mul_mem' ha hb := by aesop
 
 attribute [norm_cast] coe_copy
+/--
+@isnad1 id=iff.1h4v.s5.1477bf2b984a from=seed src=0 shape=c42d3e76 vocab=19d2771c
+-/
 @[simp] theorem mem_copy {x} : x ∈ P.copy S hS ↔ x ∈ S := .rfl
+/--
+@isnad1 id=eq.1h3v.s5.21993b569e9a from=seed src=0 shape=048308b0 vocab=93d4ed86
+-/
 theorem copy_eq : P.copy S hS = S := rfl
 
 end copy
@@ -143,7 +179,13 @@ def supportAddSubgroup : AddSubgroup R where
   add_mem' := by aesop
   neg_mem' := by aesop
 
+/--
+@isnad1 id=iff.0h3v.s6.b477a64fa2c4 from=seed src=0 shape=1cceee47 vocab=6a79a9a1
+-/
 theorem mem_supportAddSubgroup {x} : x ∈ P.supportAddSubgroup ↔ x ∈ P ∧ -x ∈ P := .rfl
+/--
+@isnad1 id=eq.0h2v.s6.676c9a089dce from=seed src=0 shape=d988b5d4 vocab=e4243d2c
+-/
 theorem coe_supportAddSubgroup : P.supportAddSubgroup = (P ∩ -P : Set R) := rfl
 
 end supportAddSubgroup
@@ -155,6 +197,9 @@ class HasIdealSupport (P : RingPreordering R) : Prop where
 
 export HasIdealSupport (smul_mem_support)
 
+/--
+@isnad1 id=iff.0h2v.s7.a4557c4f4a77 from=seed src=0 shape=3d5e388e vocab=a9dbe29f
+-/
 theorem hasIdealSupport_iff :
     P.HasIdealSupport ↔ ∀ x a : R, a ∈ P → -a ∈ P → x * a ∈ P ∧ -(x * a) ∈ P where
   mp _ := by simpa [mem_supportAddSubgroup] using P.smul_mem_support
@@ -179,9 +224,18 @@ def support : Ideal R where
   __ := P.supportAddSubgroup
   smul_mem' := by simpa using smul_mem_support P
 
+/--
+@isnad1 id=iff.0h3v.s6.e46cd0222ee6 from=seed src=0 shape=4277882c vocab=db0e3ef7
+-/
 theorem mem_support {x} : x ∈ P.support ↔ x ∈ P ∧ -x ∈ P := .rfl
+/--
+@isnad1 id=eq.0h2v.s6.b3204293e9d9 from=seed src=0 shape=ff843f5a vocab=fffa3753
+-/
 theorem coe_support : P.support = (P : Set R) ∩ -(P : Set R) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a8178ffdd622 from=seed src=0 shape=ca435909 vocab=a2778b0f
+-/
 @[simp] theorem supportAddSubgroup_eq : P.supportAddSubgroup = P.support.toAddSubgroup := rfl
 
 end support

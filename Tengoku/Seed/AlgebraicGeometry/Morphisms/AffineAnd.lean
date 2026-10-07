@@ -42,6 +42,9 @@ the induced map of rings on global sections satisfies `P`. -/
 def affineAnd : AffineTargetMorphismProperty :=
   fun X _ f ↦ IsAffine X ∧ Q (f.appTop).hom
 
+/--
+@isnad1 id=iff.0h4v.s10.82f03a9d0000 from=seed src=0 shape=92d45b15 vocab=5be6ea2c
+-/
 @[simp]
 lemma affineAnd_apply {X Y : Scheme.{u}} (f : X ⟶ Y) [IsAffine Y] :
     affineAnd Q f ↔ IsAffine X ∧ Q (f.appTop).hom :=
@@ -52,7 +55,9 @@ attribute [local simp] AffineTargetMorphismProperty.toProperty_apply
 variable {Q}
 
 set_option backward.isDefEq.respectTransparency false in
-/-- If `P` respects isos, also `affineAnd P` respects isomorphisms. -/
+/-- If `P` respects isos, also `affineAnd P` respects isomorphisms.
+@isnad1 id=respects.1h1v.s6.3ff55154bdd3 from=seed src=0 shape=80cb0a4d vocab=e8944b56
+-/
 lemma affineAnd_respectsIso (hP : RingHom.RespectsIso Q) :
     (affineAnd Q).toProperty.RespectsIso := by
   refine RespectsIso.mk _ ?_ ?_
@@ -62,7 +67,9 @@ lemma affineAnd_respectsIso (hP : RingHom.RespectsIso Q) :
     simpa [AffineTargetMorphismProperty.toProperty, IsAffine.of_isIso e.inv, hP.cancel_left_isIso]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `affineAnd P` is local if `P` is local on the (algebraic) source. -/
+/-- `affineAnd P` is local if `P` is local on the (algebraic) source.
+@isnad1 id=islocal.3h1v.s6.3e894a759dfa from=seed src=0 shape=bb6590b2 vocab=6ffdcff0
+-/
 lemma affineAnd_isLocal (hPi : RingHom.RespectsIso Q) (hQl : RingHom.LocalizationAwayPreserves Q)
     (hQs : RingHom.OfLocalizationSpan Q) : (affineAnd Q).IsLocal where
   respectsIso := affineAnd_respectsIso hPi
@@ -102,11 +109,16 @@ lemma affineAnd_isLocal (hPi : RingHom.RespectsIso Q) (hQl : RingHom.Localizatio
       rw [(isAffineOpen_top Y).app_basicOpen_eq_away_map _ (isAffineOpen_top X)] at hf
       rwa [CommRingCat.hom_comp, hPi.cancel_right_isIso] at hf
 
+/--
+@isnad1 id=islocal.1h1v.s6.d7956a099418 from=seed src=0 shape=9f4eeb07 vocab=51d61b1d
+-/
 lemma affineAnd_isLocal_of_propertyIsLocal
     (hPi : RingHom.PropertyIsLocal Q) : (affineAnd Q).IsLocal :=
   affineAnd_isLocal hPi.respectsIso hPi.localizationAwayPreserves hPi.ofLocalizationSpan
 
-/-- If `P` is stable under base change, so is `affineAnd P`. -/
+/-- If `P` is stable under base change, so is `affineAnd P`.
+@isnad1 id=isstable.2h1v.s6.ab5e4883631c from=seed src=0 shape=811d5ad7 vocab=0b5e6509
+-/
 lemma affineAnd_isStableUnderBaseChange (hQi : RingHom.RespectsIso Q)
     (hQb : RingHom.IsStableUnderBaseChange Q) :
     (affineAnd Q).IsStableUnderBaseChange := by
@@ -116,6 +128,9 @@ lemma affineAnd_isStableUnderBaseChange (hQi : RingHom.RespectsIso Q)
   exact ⟨inferInstance, hQb.pullback_fst_appTop _ hQi f _ hg⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.1h4v.s10.4f177dbdec61 from=seed src=0 shape=c337730e vocab=3e089937
+-/
 lemma targetAffineLocally_affineAnd_iff (hQi : RingHom.RespectsIso Q)
     {X Y : Scheme.{u}} (f : X ⟶ Y) :
     targetAffineLocally (affineAnd Q) f ↔ ∀ U : Y.Opens, IsAffineOpen U →
@@ -132,7 +147,9 @@ lemma targetAffineLocally_affineAnd_iff (hQi : RingHom.RespectsIso Q)
     rw [Scheme.Opens.ι_image_top]
     exact (h U U.2).2
 
-/-- Variant of `targetAffineLocally_affineAnd_iff` where `IsAffineHom` is bundled. -/
+/-- Variant of `targetAffineLocally_affineAnd_iff` where `IsAffineHom` is bundled.
+@isnad1 id=iff.1h4v.s10.51762f67d8cf from=seed src=0 shape=43707c51 vocab=fbf8fb23
+-/
 lemma targetAffineLocally_affineAnd_iff' (hQi : RingHom.RespectsIso Q)
     {X Y : Scheme.{u}} (f : X ⟶ Y) :
     targetAffineLocally (affineAnd Q) f ↔
@@ -141,6 +158,9 @@ lemma targetAffineLocally_affineAnd_iff' (hQi : RingHom.RespectsIso Q)
   aesop
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.1h4v.s6.9cdbae1b11e9 from=seed src=0 shape=2c3ba5ea vocab=8a81f80f
+-/
 lemma targetAffineLocally_affineAnd_iff_affineLocally (hQ : RingHom.PropertyIsLocal Q)
     {X Y : Scheme.{u}} (f : X ⟶ Y) :
     targetAffineLocally (affineAnd Q) f ↔ IsAffineHom f ∧ affineLocally Q f := by
@@ -169,6 +189,9 @@ lemma targetAffineLocally_affineAnd_iff_affineLocally (hQ : RingHom.PropertyIsLo
     rw [f.app_eq_appLE]
     exact h ⟨U, hU⟩ ⟨f ⁻¹ᵁ U, hf.isAffine_preimage U hU⟩ (by simp)
 
+/--
+@isnad1 id=eq.1h1v.s7.2153b7e4e3d9 from=seed src=0 shape=6968bd08 vocab=aaed1022
+-/
 lemma targetAffineLocally_affineAnd_eq_affineLocally (hQ : RingHom.PropertyIsLocal Q) :
     targetAffineLocally (affineAnd Q) =
       (@IsAffineHom ⊓ @affineLocally Q : MorphismProperty Scheme.{u}) := by
@@ -177,6 +200,9 @@ lemma targetAffineLocally_affineAnd_eq_affineLocally (hQ : RingHom.PropertyIsLoc
 
 variable {W : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
 
+/--
+@isnad1 id=le.0h3v.s7.10fab49a3635 from=seed src=0 shape=91da9518 vocab=f810ca76
+-/
 lemma targetAffineLocally_affineAnd_le
     (hQW : ∀ {R S : Type u} [CommRing R] [CommRing S] {f : R →+* S}, Q f → W f) :
     targetAffineLocally (affineAnd Q) ≤ targetAffineLocally (affineAnd W) := by
@@ -190,7 +216,9 @@ section
 variable {Q : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
 
 /-- If `P` is a morphism property affine locally defined by `affineAnd Q`, `P` is stable under
-composition if `Q` is. -/
+composition if `Q` is.
+@isnad1 id=isstable.2h2v.s6.89cdcd2e8195 from=seed src=0 shape=3d83eac2 vocab=0a82cdb8
+-/
 lemma HasAffineProperty.affineAnd_isStableUnderComposition {P : MorphismProperty Scheme.{u}}
     (hA : HasAffineProperty P (affineAnd Q)) (hQ : RingHom.StableUnderComposition Q) :
     P.IsStableUnderComposition where
@@ -209,7 +237,9 @@ lemma HasAffineProperty.affineAnd_isStableUnderComposition {P : MorphismProperty
     exact ⟨hX, hQ _ _ hg hf⟩
 
 /-- If `P` is a morphism property affine locally defined by `affineAnd Q`, `P` is stable under
-base change if `Q` is. -/
+base change if `Q` is.
+@isnad1 id=isstable.3h2v.s6.a00a57af92d1 from=seed src=0 shape=366ba63a vocab=a2ade55f
+-/
 lemma HasAffineProperty.affineAnd_isStableUnderBaseChange {P : MorphismProperty Scheme.{u}}
     (_ : HasAffineProperty P (affineAnd Q)) (hQi : RingHom.RespectsIso Q)
     (hQb : RingHom.IsStableUnderBaseChange Q) :
@@ -218,7 +248,9 @@ lemma HasAffineProperty.affineAnd_isStableUnderBaseChange {P : MorphismProperty 
     (AlgebraicGeometry.affineAnd_isStableUnderBaseChange hQi hQb)
 
 /-- If `Q` contains identities and respects isomorphisms (i.e. is satisfied by isomorphisms),
-and `P` is affine locally defined by `affineAnd Q`, then `P` contains identities. -/
+and `P` is affine locally defined by `affineAnd Q`, then `P` contains identities.
+@isnad1 id=contains.3h2v.s6.3f109aca1a4d from=seed src=0 shape=366ba63a vocab=2ff12c50
+-/
 lemma HasAffineProperty.affineAnd_containsIdentities {P : MorphismProperty Scheme.{u}}
     (hA : HasAffineProperty P (affineAnd Q)) (hQi : RingHom.RespectsIso Q)
     (hQ : RingHom.ContainsIdentities Q) :
@@ -229,7 +261,9 @@ lemma HasAffineProperty.affineAnd_containsIdentities {P : MorphismProperty Schem
     exact ⟨hU, hQ _⟩
 
 /-- A convenience constructor for `HasAffineProperty P (affineAnd Q)`. The `IsAffineHom` is bundled,
-since this goes well with defining morphism properties via `extends IsAffineHom`. -/
+since this goes well with defining morphism properties via `extends IsAffineHom`.
+@isnad1 id=iff.3h2v.s10.22192223a770 from=seed src=0 shape=02b5431b vocab=a87c6622
+-/
 lemma HasAffineProperty.affineAnd_iff (P : MorphismProperty Scheme.{u})
     (hQi : RingHom.RespectsIso Q) (hQl : RingHom.LocalizationAwayPreserves Q)
     (hQs : RingHom.OfLocalizationSpan Q) :
@@ -245,6 +279,9 @@ lemma HasAffineProperty.affineAnd_iff (P : MorphismProperty Scheme.{u})
     aesop
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=le.1h2v.s6.440cd7bdf95f from=seed src=0 shape=c80949ab vocab=561bfcc1
+-/
 lemma HasAffineProperty.affineAnd_le_isAffineHom (P : MorphismProperty Scheme.{u})
     (hA : HasAffineProperty P (affineAnd Q)) : P ≤ @IsAffineHom := by
   intro X Y f hf
@@ -256,6 +293,9 @@ lemma HasAffineProperty.affineAnd_le_isAffineHom (P : MorphismProperty Scheme.{u
   rw [HasAffineProperty.iff_of_isAffine (P := @IsAffineHom)]
   exact hf.1
 
+/--
+@isnad1 id=eq.1h3v.s7.f44981d39910 from=seed src=0 shape=fffea311 vocab=ba81c23d
+-/
 lemma HasAffineProperty.affineAnd_eq_of_propertyIsLocal {P P' : MorphismProperty Scheme.{u}}
     (hP : HasAffineProperty P (affineAnd Q)) [HasRingHomProperty P' Q] :
     P = (@IsAffineHom ⊓ P' : MorphismProperty Scheme.{u}) := by
@@ -264,6 +304,9 @@ lemma HasAffineProperty.affineAnd_eq_of_propertyIsLocal {P P' : MorphismProperty
     HasRingHomProperty.eq_affineLocally (P := P')]
   exact HasRingHomProperty.isLocal_ringHomProperty P'
 
+/--
+@isnad1 id=iff.2h5v.s6.129382aba17b from=seed src=0 shape=ea11ce69 vocab=6f7db165
+-/
 lemma HasAffineProperty.SpecMap_iff_of_affineAnd {P : MorphismProperty Scheme.{u}}
     (hP : HasAffineProperty P (affineAnd Q)) (hQi : RingHom.RespectsIso Q)
     {R S : CommRingCat.{u}} (f : R ⟶ S) : P (Spec.map f) ↔ Q f.hom := by
@@ -273,6 +316,9 @@ lemma HasAffineProperty.SpecMap_iff_of_affineAnd {P : MorphismProperty Scheme.{u
     (arrowIsoΓSpecOfIsAffine f).symm, inferInstance]
 variable {Q' : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
 
+/--
+@isnad1 id=le.2h5v.s7.15791b5bd107 from=seed src=0 shape=91b185ed vocab=0eb407a0
+-/
 lemma HasAffineProperty.affineAnd_le_affineAnd {P P' : MorphismProperty Scheme.{u}}
     (hP : HasAffineProperty P (affineAnd Q)) (hP' : HasAffineProperty P' (affineAnd Q'))
     (hQQ' : ∀ {R S : Type u} [CommRing R] [CommRing S] {f : R →+* S}, Q f → Q' f) :
@@ -282,6 +328,9 @@ lemma HasAffineProperty.affineAnd_le_affineAnd {P P' : MorphismProperty Scheme.{
   exact targetAffineLocally_affineAnd_le hQQ'
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=var.2h10v.s7.837aede7098c from=seed src=0 shape=5d49f12d vocab=6cc1cd7f
+-/
 lemma HasAffineProperty.coprodDesc_affineAnd {P : MorphismProperty Scheme.{u}}
     (hP : HasAffineProperty P (affineAnd Q)) (hQi : RingHom.RespectsIso Q)
     (hQ : ∀ {R S T : Type u} [CommRing R] [CommRing S] [CommRing T] (f : R →+* S) (g : R →+* T),

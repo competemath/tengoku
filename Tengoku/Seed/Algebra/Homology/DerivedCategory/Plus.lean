@@ -40,6 +40,9 @@ abbrev subcategoryAcyclic :
   (HomotopyCategory.subcategoryAcyclic C).inverseImage (HomotopyCategory.Plus.ι C)
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h1v.s8.c7bdab2a4d01 from=seed src=0 shape=72d40f9f vocab=777c6733
+-/
 lemma quasiIso_eq_subcategoryAcyclic_trW :
     HomotopyCategory.Plus.quasiIso C = (subcategoryAcyclic C).trW := by
   ext K L f
@@ -76,6 +79,9 @@ instance : (Qh : _ ⥤ Plus C).IsTriangulated := by
   infer_instance
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=bijectiv.1h3v.s9.ec191213dbc2 from=seed src=0 shape=7b2b6580 vocab=daa19388
+-/
 lemma Qh_map_bijective_of_isKInjective (K L : HomotopyCategory.Plus C)
     (_ : CochainComplex.IsKInjective L.1.as) : Function.Bijective (Qh.map : (K ⟶ L) → _) := by
   have := CochainComplex.IsKInjective.Qh_map_bijective K.1 L.1.as
@@ -170,11 +176,17 @@ abbrev IsGE (X : Plus C) (n : ℤ) : Prop := Plus.TStructure.t.IsGE X n
 that `X` is `≤ n` for the canonical t-structure. -/
 abbrev IsLE (X : Plus C) (n : ℤ) : Prop := Plus.TStructure.t.IsLE X n
 
+/--
+@isnad1 id=iff.0h3v.s6.710921d265f1 from=seed src=0 shape=907eda5b vocab=927851e6
+-/
 lemma isGE_ι_obj_iff (X : Plus C) (n : ℤ) :
     (ι.obj X).IsGE n ↔ X.IsGE n := by
   constructor
   all_goals exact fun h ↦ ⟨h.1⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.838d8e101c2b from=seed src=0 shape=907eda5b vocab=75bd033e
+-/
 lemma isLE_ι_obj_iff (X : Plus C) (n : ℤ) :
     (ι.obj X).IsLE n ↔ X.IsLE n := by
   constructor
@@ -201,16 +213,25 @@ instance (X : C) (n : ℤ) : ((singleFunctor C n).obj X).IsLE n := by
   change DerivedCategory.TStructure.t.IsLE ((DerivedCategory.singleFunctor C n).obj X) n
   infer_instance
 
+/--
+@isnad1 id=iszero.1h4v.s6.3902b802d30b from=seed src=0 shape=8300137f vocab=120b81cf
+-/
 lemma isZero_homology_of_isGE
     (X : Plus C) (n : ℤ) [X.IsGE n] (i : ℤ) (hi : i < n) :
     IsZero ((homologyFunctor C i).obj X) :=
   (ι.obj X).isZero_of_isGE n i hi
 
+/--
+@isnad1 id=iszero.1h4v.s6.8165de8a525f from=seed src=0 shape=82f66f36 vocab=121f3d4d
+-/
 lemma isZero_homology_of_isLE
     (X : Plus C) (n : ℤ) [X.IsLE n] (i : ℤ) (hi : n < i) :
     IsZero ((homologyFunctor C i).obj X) :=
   (ι.obj X).isZero_of_isLE n i hi
 
+/--
+@isnad1 id=iff.0h4v.s8.911b0884a25a from=seed src=0 shape=cdeecf53 vocab=1cecc376
+-/
 lemma isIso_iff {X Y : Plus C} (f : X ⟶ Y) :
     IsIso f ↔ ∀ (n : ℤ), IsIso ((homologyFunctor C n).map f) := by
   refine ⟨fun _ _ ↦ inferInstance, fun _ ↦ ?_⟩

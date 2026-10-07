@@ -73,6 +73,9 @@ variable (P : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=var.2h7v.s11.56a2d78d3d2d from=seed src=0 shape=296253b7 vocab=9ed7daf1
+-/
 theorem IsStableUnderBaseChange.pullback_fst_appTop
     (hP : IsStableUnderBaseChange P) (hP' : RespectsIso P)
     {X Y S : Scheme} [IsAffine X] [IsAffine Y] [IsAffine S] (f : X ⟶ S) (g : Y ⟶ S)
@@ -112,6 +115,9 @@ abbrev affineLocally : MorphismProperty Scheme.{u} :=
   targetAffineLocally (sourceAffineLocally P)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=respects.1h1v.s6.1ce794222f89 from=seed src=0 shape=80cb0a4d vocab=01e41774
+-/
 theorem sourceAffineLocally_respectsIso (h₁ : RingHom.RespectsIso P) :
     (sourceAffineLocally P).toProperty.RespectsIso := by
   apply AffineTargetMorphismProperty.respectsIso_mk
@@ -126,12 +132,18 @@ theorem sourceAffineLocally_respectsIso (h₁ : RingHom.RespectsIso P) :
     rw [Scheme.Hom.comp_appLE, CommRingCat.hom_comp, h₁.cancel_left_isIso]
     exact H U
 
+/--
+@isnad1 id=respects.1h1v.s6.5fa2c23d7efd from=seed src=0 shape=ab5e03ad vocab=bc2f775f
+-/
 theorem affineLocally_respectsIso (h : RingHom.RespectsIso P) : (affineLocally P).RespectsIso :=
   letI := sourceAffineLocally_respectsIso P h
   inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
 open Scheme in
+/--
+@isnad1 id=iff.1h5v.s10.f1e06d87421e from=seed src=0 shape=6cda610f vocab=e32c7bda
+-/
 theorem sourceAffineLocally_morphismRestrict {X Y : Scheme.{u}} (f : X ⟶ Y)
     (U : Y.Opens) (hU : IsAffineOpen U) :
     @sourceAffineLocally P _ _ (f ∣_ U) hU ↔
@@ -143,11 +155,17 @@ theorem sourceAffineLocally_morphismRestrict {X Y : Scheme.{u}} (f : X ⟶ Y)
   have := (affineOpensRestrict (f ⁻¹ᵁ U)).apply_symm_apply ⟨V, h⟩
   exact f.appLE_congr _ (Opens.ι_image_top _) congr($(this).1.1) (fun f => P f.hom)
 
+/--
+@isnad1 id=iff.0h4v.s10.9de6b222c969 from=seed src=0 shape=aa223ceb vocab=66064fe7
+-/
 theorem affineLocally_iff_affineOpens_le {X Y : Scheme.{u}} (f : X ⟶ Y) :
     affineLocally.{u} P f ↔
       ∀ (U : Y.affineOpens) (V : X.affineOpens) (e : V.1 ≤ f ⁻¹ᵁ U.1), P (f.appLE U V e).hom :=
   forall_congr' fun U ↦ sourceAffineLocally_morphismRestrict P f U U.2
 
+/--
+@isnad1 id=iff.0h4v.s10.0a237b685d33 from=seed src=0 shape=2fc703e6 vocab=5a9d6409
+-/
 theorem affineLocally_iff_forall_isAffineOpen {X Y : Scheme.{u}} (f : X ⟶ Y) :
     affineLocally.{u} P f ↔
       ∀ {U : Y.Opens} (_ : IsAffineOpen U) {V : X.Opens} (_ : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U),
@@ -155,6 +173,9 @@ theorem affineLocally_iff_forall_isAffineOpen {X Y : Scheme.{u}} (f : X ⟶ Y) :
   simp [affineLocally_iff_affineOpens_le, Scheme.affineOpens]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=islocal.3h1v.s6.55c61814a0d1 from=seed src=0 shape=bb6590b2 vocab=a725e95e
+-/
 theorem sourceAffineLocally_isLocal (h₁ : RingHom.RespectsIso P)
     (h₂ : RingHom.LocalizationAwayPreserves P) (h₃ : RingHom.OfLocalizationSpan P) :
     (sourceAffineLocally P).IsLocal := by
@@ -183,6 +204,9 @@ theorem sourceAffineLocally_isLocal (h₁ : RingHom.RespectsIso P)
 
 variable {P}
 
+/--
+@isnad1 id=le.0h3v.s7.1b7e8af9dd97 from=seed src=0 shape=f487de62 vocab=f169b184
+-/
 lemma affineLocally_le {Q : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
     (hPQ : ∀ {R S : Type u} [CommRing R] [CommRing S] {f : R →+* S}, P f → Q f) :
     affineLocally P ≤ affineLocally Q :=
@@ -195,7 +219,9 @@ variable {X Y : Scheme.{u}} {f : X ⟶ Y}
 set_option backward.isDefEq.respectTransparency.types false in
 /-- If `P` holds for `f` over affine opens `U₂` of `Y` and `V₂` of `X` and `U₁` (resp. `V₁`) are
 open affine neighborhoods of `x` (resp. `f.base x`), then `P` also holds for `f`
-over some basic open of `U₁` (resp. `V₁`). -/
+over some basic open of `U₁` (resp. `V₁`).
+@isnad1 id=ex.6h10v.s11.d8818645287b from=seed src=0 shape=11bd0fd4 vocab=7208a120
+-/
 lemma exists_basicOpen_le_appLE_of_appLE_of_isAffine
     (hPa : StableUnderCompositionWithLocalizationAwayTarget P) (hPl : LocalizationAwayPreserves P)
     (x : X) (U₁ : Y.affineOpens) (U₂ : Y.affineOpens) (V₁ : X.affineOpens) (V₂ : X.affineOpens)
@@ -231,7 +257,9 @@ lemma exists_basicOpen_le_appLE_of_appLE_of_isAffine
 
 /-- If `P` holds for `f` over affine opens `U₂` of `Y` and `V₂` of `X` and `U₁` (resp. `V₁`) are
 open neighborhoods of `x` (resp. `f.base x`), then `P` also holds for `f` over some affine open
-`U'` of `Y` (resp. `V'` of `X`) that is contained in `U₁` (resp. `V₁`). -/
+`U'` of `Y` (resp. `V'` of `X`) that is contained in `U₁` (resp. `V₁`).
+@isnad1 id=ex.6h10v.s11.2c9df3e3c85c from=seed src=0 shape=2952cab0 vocab=971916e8
+-/
 lemma exists_affineOpens_le_appLE_of_appLE
     (hPa : StableUnderCompositionWithLocalizationAwayTarget P) (hPl : LocalizationAwayPreserves P)
     (x : X) (U₁ : Y.Opens) (U₂ : Y.affineOpens) (V₁ : X.Opens) (V₂ : X.affineOpens)
@@ -267,6 +295,9 @@ namespace HasRingHomProperty
 variable (P : MorphismProperty Scheme.{u}) {Q} [HasRingHomProperty P Q]
 variable {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
 
+/--
+@isnad1 id=hasringh.2h4v.s7.115fc9dde458 from=seed src=0 shape=b83b9c1e vocab=546be0f7
+-/
 lemma copy {P' : MorphismProperty Scheme.{u}}
     {Q' : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
     (e : P = P') (e' : ∀ {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S), Q f ↔ Q' f) :
@@ -280,6 +311,9 @@ lemma copy {P' : MorphismProperty Scheme.{u}}
 
 lemma eq_affineLocally : P = affineLocally Q := eq_affineLocally'
 
+/--
+@isnad1 id=hasaffin.0h2v.s5.599b4d4d1199 from=seed src=0 shape=727c00d9 vocab=b47db663
+-/
 @[local instance]
 lemma HasAffineProperty : HasAffineProperty P (sourceAffineLocally Q) where
   isLocal_affineProperty := sourceAffineLocally_isLocal _
@@ -291,15 +325,24 @@ lemma HasAffineProperty : HasAffineProperty P (sourceAffineLocally Q) where
 /-- This is only `inferInstance` because of the `@[local instance]` on `HasAffineProperty` above. -/
 instance (priority := 900) : IsZariskiLocalAtTarget P := inferInstance
 
+/--
+@isnad1 id=var.1h8v.s10.7289072b1e73 from=seed src=0 shape=0ffeedea vocab=375d3e78
+-/
 theorem appLE (H : P f) (U : Y.affineOpens) (V : X.affineOpens) (e) : Q (f.appLE U V e).hom := by
   rw [eq_affineLocally P, affineLocally_iff_affineOpens_le] at H
   exact H _ _ _
 
+/--
+@isnad1 id=var.0h6v.s10.852a0dcb8cfd from=seed src=0 shape=8c348678 vocab=8c1999e0
+-/
 theorem appTop (H : P f) [IsAffine X] [IsAffine Y] : Q f.appTop.hom := by
   rw [Scheme.Hom.appTop, Scheme.Hom.app_eq_appLE]
   exact appLE P f H ⟨_, isAffineOpen_top _⟩ ⟨_, isAffineOpen_top _⟩ _
 
 include Q in
+/--
+@isnad1 id=var.0h8v.s6.ea6fce743ac6 from=seed src=0 shape=7644ba15 vocab=8ba79fdd
+-/
 theorem comp_of_isOpenImmersion [IsOpenImmersion f] (H : P g) :
     P (f ≫ g) := by
   rw [eq_affineLocally P, affineLocally_iff_affineOpens_le] at H ⊢
@@ -315,11 +358,17 @@ theorem comp_of_isOpenImmersion [IsOpenImmersion f] (H : P g) :
 
 variable {P f}
 
+/--
+@isnad1 id=iff.0h5v.s10.05086d238626 from=seed src=0 shape=813f48e6 vocab=375d3e78
+-/
 lemma iff_appLE : P f ↔ ∀ (U : Y.affineOpens) (V : X.affineOpens) (e), Q (f.appLE U V e).hom := by
   rw [eq_affineLocally P, affineLocally_iff_affineOpens_le]
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=var.0h7v.s11.25ea381122e6 from=seed src=0 shape=eaa929d5 vocab=abfdee95
+-/
 theorem of_source_openCover [IsAffine Y]
     (𝒰 : X.OpenCover) [∀ i, IsAffine (𝒰.X i)] (H : ∀ i, Q ((𝒰.f i ≫ f).appTop.hom)) :
     P f := by
@@ -348,16 +397,25 @@ theorem of_source_openCover [IsAffine Y]
       Scheme.Opens.ι_appTop, Scheme.Hom.appTop, Scheme.Hom.app_eq_appLE, Scheme.Hom.appLE_map] at H
     exact (f.appLE_congr _ rfl (by simp) (fun f => Q f.hom)).mp H
 
+/--
+@isnad1 id=iff.0h6v.s11.c892d03fc0a8 from=seed src=0 shape=15b13db6 vocab=abfdee95
+-/
 theorem iff_of_source_openCover [IsAffine Y] (𝒰 : X.OpenCover) [∀ i, IsAffine (𝒰.X i)] :
     P f ↔ ∀ i, Q ((𝒰.f i ≫ f).appTop).hom :=
   ⟨fun H i ↦ appTop P _ (comp_of_isOpenImmersion P (𝒰.f i) f H), of_source_openCover 𝒰⟩
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iff.0h5v.s10.0af99fb43383 from=seed src=0 shape=2e05f398 vocab=8c1999e0
+-/
 theorem iff_of_isAffine [IsAffine X] [IsAffine Y] :
     P f ↔ Q (f.appTop).hom := by
   rw [iff_of_source_openCover (P := P) (Scheme.coverOfIsIso.{u} (𝟙 _))]
   simp +instances
 
+/--
+@isnad1 id=iff.0h5v.s6.825157b5eb59 from=seed src=0 shape=11284492 vocab=17a7e7f6
+-/
 theorem Spec_iff {R S : CommRingCat.{u}} {φ : R ⟶ S} :
     P (Spec.map φ) ↔ Q φ.hom := by
   have H := (isLocal_ringHomProperty P).respectsIso
@@ -365,6 +423,9 @@ theorem Spec_iff {R S : CommRingCat.{u}} {φ : R ⟶ S} :
     ← CommRingCat.hom_comp, Scheme.ΓSpecIso_naturality, CommRingCat.hom_comp, H.cancel_left_isIso]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=var.1h8v.s10.931004a68440 from=seed src=0 shape=badc74cc vocab=35a24be8
+-/
 theorem of_iSup_eq_top [IsAffine Y] {ι : Type*}
     (U : ι → X.affineOpens) (hU : ⨆ i, (U i : Opens X) = ⊤)
     (H : ∀ i, Q (f.appLE ⊤ (U i).1 le_top).hom) :
@@ -373,6 +434,9 @@ theorem of_iSup_eq_top [IsAffine Y] {ι : Type*}
   refine of_source_openCover (X.openCoverOfIsOpenCover _ hU) fun i ↦ ?_
   simpa [Scheme.Hom.app_eq_appLE] using (f.appLE_congr _ rfl (by simp) (fun f => Q f.hom)).mp (H i)
 
+/--
+@isnad1 id=iff.1h7v.s10.a487fe842bf5 from=seed src=0 shape=deec2d50 vocab=35a24be8
+-/
 theorem iff_of_iSup_eq_top [IsAffine Y] {ι : Type*}
     (U : ι → X.affineOpens) (hU : ⨆ i, (U i : Opens X) = ⊤) :
     P f ↔ ∀ i, Q (f.appLE ⊤ (U i).1 le_top).hom :=
@@ -389,6 +453,9 @@ instance : IsZariskiLocalAtSource P := by
   simp [Scheme.OpenCover.affineRefinement, Sigma.forall]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=contains.1h2v.s5.dffec8f83a5e from=seed src=0 shape=d5308b80 vocab=6fcd2ea0
+-/
 lemma containsIdentities (hP : RingHom.ContainsIdentities Q) : P.ContainsIdentities where
   id_mem X := by
     rw [IsZariskiLocalAtTarget.iff_of_iSup_eq_top (P := P) _ (iSup_affineOpens_eq_top _)]
@@ -400,6 +467,9 @@ lemma containsIdentities (hP : RingHom.ContainsIdentities Q) : P.ContainsIdentit
 set_option backward.isDefEq.respectTransparency false in
 variable (P) in
 open _root_.PrimeSpectrum in
+/--
+@isnad1 id=property.0h1v.s6.15ad51820a52 from=seed src=0 shape=e28de1db vocab=c6c5b693
+-/
 lemma isLocal_ringHomProperty_of_isZariskiLocalAtSource_of_isZariskiLocalAtTarget
     [IsZariskiLocalAtTarget P] [IsZariskiLocalAtSource P] :
     RingHom.PropertyIsLocal fun f ↦ P (Spec.map (CommRingCat.ofHom f)) := by
@@ -432,6 +502,9 @@ lemma isLocal_ringHomProperty_of_isZariskiLocalAtSource_of_isZariskiLocalAtTarge
 
 open _root_.PrimeSpectrum in
 variable (P) in
+/--
+@isnad1 id=hasringh.0h1v.s6.f12ae9bd6112 from=seed src=0 shape=2b7a3155 vocab=da9fd93f
+-/
 lemma of_isZariskiLocalAtSource_of_isZariskiLocalAtTarget [IsZariskiLocalAtTarget P]
     [IsZariskiLocalAtSource P] :
     HasRingHomProperty P (fun f ↦ P (Spec.map (CommRingCat.ofHom f))) where
@@ -457,6 +530,9 @@ lemma of_isZariskiLocalAtSource_of_isZariskiLocalAtTarget [IsZariskiLocalAtTarge
     rw [HasRingHomProperty.Spec_iff (P := Q)]
     rfl
 
+/--
+@isnad1 id=hasringh.0h4v.s7.4a833a660393 from=seed src=0 shape=294006f8 vocab=f58d306d
+-/
 lemma inf {P P' : MorphismProperty Scheme.{u}}
     {Q Q' : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
     [HasRingHomProperty P Q] [HasRingHomProperty P' Q'] :
@@ -471,6 +547,9 @@ lemma inf {P P' : MorphismProperty Scheme.{u}}
     simp_rw [affineLocally_iff_affineOpens_le]
     grind
 
+/--
+@isnad1 id=hasringh.1h1v.s8.f373cc48d501 from=seed src=0 shape=b6b8d340 vocab=9bec1ea9
+-/
 lemma stalkwise {P} (hP : RingHom.RespectsIso P) :
     HasRingHomProperty (stalkwise P) fun {_ S _ _} φ ↦
       ∀ (p : Ideal S) (_ : p.IsPrime), P (Localization.localRingHom _ p φ rfl) := by
@@ -482,6 +561,9 @@ lemma stalkwise {P} (hP : RingHom.RespectsIso P) :
   exact (stalkwise_SpecMap_iff hP (CommRingCat.ofHom φ)).symm
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isstable.1h2v.s5.2ae525990879 from=seed src=0 shape=d5308b80 vocab=232dd541
+-/
 lemma stableUnderComposition (hP : RingHom.StableUnderComposition Q) :
     P.IsStableUnderComposition where
   comp_mem {X Y Z} f g hf hg := by
@@ -505,6 +587,9 @@ lemma stableUnderComposition (hP : RingHom.StableUnderComposition Q) :
     rw [iff_of_isAffine (P := P)] at hf hg ⊢
     exact hP _ _ hg hf
 
+/--
+@isnad1 id=var.0h9v.s7.5027ec332f61 from=seed src=0 shape=ded8fc67 vocab=49e858d5
+-/
 theorem of_comp
     (H : ∀ {R S T : Type u} [CommRing R] [CommRing S] [CommRing T],
       ∀ (f : R →+* S) (g : S →+* T), Q (g.comp f) → Q g)
@@ -531,6 +616,9 @@ theorem of_comp
   rw [iff_of_isAffine (P := P)] at h ⊢
   exact H _ _ h
 
+/--
+@isnad1 id=ismultip.2h2v.s6.54ec864d0908 from=seed src=0 shape=a75444bd vocab=29b99029
+-/
 lemma isMultiplicative (hPc : RingHom.StableUnderComposition Q)
     (hPi : RingHom.ContainsIdentities Q) :
     P.IsMultiplicative where
@@ -538,11 +626,17 @@ lemma isMultiplicative (hPc : RingHom.StableUnderComposition Q)
   id_mem := (containsIdentities hPi).id_mem
 
 include Q in
+/--
+@isnad1 id=var.1h5v.s6.fa2449b40994 from=seed src=0 shape=af2d45ae vocab=be1bead7
+-/
 lemma of_isOpenImmersion (hP : RingHom.ContainsIdentities Q) [IsOpenImmersion f] : P f :=
   haveI : P.ContainsIdentities := containsIdentities hP
   IsZariskiLocalAtSource.of_isOpenImmersion f
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isstable.1h2v.s5.2aee65960494 from=seed src=0 shape=d5308b80 vocab=3f142bf2
+-/
 lemma isStableUnderBaseChange (hP : RingHom.IsStableUnderBaseChange Q) :
     P.IsStableUnderBaseChange := by
   apply HasAffineProperty.isStableUnderBaseChange
@@ -599,7 +693,9 @@ private lemma respects_isOpenImmersion_aux
   exact hQ _ a _ hf
 
 /-- Any property of scheme morphisms induced by a property of ring homomorphisms is stable
-under composition with open immersions. -/
+under composition with open immersions.
+@isnad1 id=respects.1h2v.s6.ac1e8773d2ed from=seed src=0 shape=4085832d vocab=ab80e1b8
+-/
 lemma respects_isOpenImmersion (hQ : RingHom.StableUnderCompositionWithLocalizationAwaySource Q) :
     P.Respects @IsOpenImmersion where
   postcomp {X Y Z} i hi f hf := by
@@ -616,7 +712,9 @@ open RingHom
 
 omit [HasRingHomProperty P Q] in
 /-- If `P` is induced by `Locally Q`, it suffices to check `Q` on affine open sets locally around
-points of the source. -/
+points of the source.
+@isnad1 id=iff.2h5v.s10.5da1e441146a from=seed src=0 shape=3930fdeb vocab=3a58056a
+-/
 lemma iff_exists_appLE_locally
     (hQ : RingHom.StableUnderCompositionWithLocalizationAwaySource Q)
     (hQi : RespectsIso Q) [HasRingHomProperty P (Locally Q)] :
@@ -648,7 +746,9 @@ lemma iff_exists_appLE_locally
     exact (MorphismProperty.arrow_mk_iso_iff (toMorphismProperty (Locally Q))
       (arrowResLEAppIso f U V e)).mpr (locally_of hQi _ hf)
 
-/-- `P` can be checked locally around points of the source. -/
+/-- `P` can be checked locally around points of the source.
+@isnad1 id=iff.1h5v.s10.e1bfa48591a4 from=seed src=0 shape=604288d5 vocab=fb3c748e
+-/
 lemma iff_exists_appLE
     (hQ : StableUnderCompositionWithLocalizationAwaySource Q) : P f ↔
     ∀ (x : X), ∃ (U : Y.affineOpens) (V : X.affineOpens) (_ : x ∈ V.1) (e : V.1 ≤ f ⁻¹ᵁ U.1),
@@ -666,6 +766,9 @@ lemma iff_exists_appLE
   apply (isLocal_ringHomProperty P (Q := Q)).respectsIso
 
 omit [HasRingHomProperty P Q] in
+/--
+@isnad1 id=hasringh.3h2v.s10.18915f68c4b7 from=seed src=0 shape=799fdb5b vocab=f617ada1
+-/
 lemma locally_of_iff (hQl : LocalizationAwayPreserves Q)
     (hQa : StableUnderCompositionWithLocalizationAway Q)
     (h : ∀ {X Y : Scheme.{u}} (f : X ⟶ Y), P f ↔
@@ -680,7 +783,9 @@ lemma locally_of_iff (hQl : LocalizationAwayPreserves Q)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- If `Q` is a property of ring maps that can be checked on prime ideals, the
-associated property of scheme morphisms can be checked on stalks. -/
+associated property of scheme morphisms can be checked on stalks.
+@isnad1 id=var.1h6v.s9.6f60c0e4ef81 from=seed src=0 shape=ac3c0601 vocab=11d86db5
+-/
 lemma of_stalkMap (hQ : OfLocalizationPrime Q) (H : ∀ x, Q (f.stalkMap x).hom) : P f := by
   have hQi := (HasRingHomProperty.isLocal_ringHomProperty P).respectsIso
   wlog hY : IsAffine Y generalizing X Y f
@@ -713,7 +818,9 @@ lemma of_stalkMap (hQ : OfLocalizationPrime Q) (H : ∀ x, Q (f.stalkMap x).hom)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Let `Q` be a property of ring maps that implies `Q'` on stalks.
-Then if the associated property of scheme morphisms holds for `f`, `Q'` holds on all stalks. -/
+Then if the associated property of scheme morphisms holds for `f`, `Q'` holds on all stalks.
+@isnad1 id=var.1h9v.s10.27bbf5106d66 from=seed src=0 shape=e621768c vocab=5d475de2
+-/
 lemma stalkMap_of_respectsIso
     {Q' : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
     (hQ' : RingHom.RespectsIso Q')
@@ -744,12 +851,17 @@ lemma stalkMap_of_respectsIso
   apply hQ _ hf
 
 /-- Let `Q` be a property of ring maps that is stable under localization.
-Then if the associated property of scheme morphisms holds for `f`, `Q` holds on all stalks. -/
+Then if the associated property of scheme morphisms holds for `f`, `Q` holds on all stalks.
+@isnad1 id=var.0h8v.s10.ec5c05b5ec23 from=seed src=0 shape=cd590a37 vocab=8e9c494d
+-/
 lemma stalkMap (hQ : ∀ {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) (_ : Q f)
       (J : Ideal S) (_ : J.IsPrime), Q (Localization.localRingHom _ J f rfl))
     (hf : P f) (x : X) : Q (f.stalkMap x).hom :=
   stalkMap_of_respectsIso (HasRingHomProperty.isLocal_ringHomProperty P).respectsIso hQ hf x
 
+/--
+@isnad1 id=eq.1h4v.s7.28ea01a49f7a from=seed src=0 shape=35b2f58b vocab=546be0f7
+-/
 lemma ext {P' : MorphismProperty Scheme.{u}}
     {Q' : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
     [HasRingHomProperty P' Q']

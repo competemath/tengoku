@@ -169,20 +169,31 @@ abbrev isoLocallyRingedSpace :
     D.glued.toLocallyRingedSpace ≅ D.toLocallyRingedSpaceGlueData.toGlueData.glued :=
   𝖣.gluedIso forgetToLocallyRingedSpace
 
+/--
+@isnad1 id=eq.0h2v.s6.cae860a73f2f from=seed src=0 shape=d172fa7b vocab=f577ae75
+-/
 theorem ι_isoLocallyRingedSpace_inv (i : D.J) :
     D.toLocallyRingedSpaceGlueData.toGlueData.ι i ≫
       D.isoLocallyRingedSpace.inv = (𝖣.ι i).toLRSHom :=
   𝖣.ι_gluedIso_inv forgetToLocallyRingedSpace i
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isopenim.0h2v.s4.4b77573b79e2 from=seed src=0 shape=b6701f28 vocab=960f7272
+-/
 instance ι_isOpenImmersion (i : D.J) : IsOpenImmersion (𝖣.ι i) := by
   rw [IsOpenImmersion, ← D.ι_isoLocallyRingedSpace_inv]; infer_instance
 
+/--
+@isnad1 id=ex.0h2v.s8.bfc351daae2f from=seed src=0 shape=f34d10d3 vocab=e8f1f56c
+-/
 theorem ι_jointly_surjective (x : 𝖣.glued.carrier) :
     ∃ (i : D.J) (y : (D.U i).carrier), D.ι i y = x :=
   𝖣.ι_jointly_surjective forget x
 
-/-- Promoted to higher priority to short circuit simplifier. -/
+/-- Promoted to higher priority to short circuit simplifier.
+@isnad1 id=eq.0h3v.s7.a4061447d003 from=seed src=0 shape=cbb41500 vocab=a2347848
+-/
 @[simp (high), reassoc]
 theorem glue_condition (i j : D.J) : D.t i j ≫ D.f j i ≫ D.ι j = D.f i j ≫ D.ι i :=
   𝖣.glue_condition i j
@@ -221,6 +232,9 @@ def isoCarrier :
   exact Scheme.GlueData.isoLocallyRingedSpace _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s7.7875c77f571b from=seed src=0 shape=45bbc576 vocab=4b4ae255
+-/
 @[simp]
 theorem ι_isoCarrier_inv (i : D.J) :
     (D_).ι i ≫ D.isoCarrier.inv = (D.ι i).base := by
@@ -243,6 +257,9 @@ def Rel (a b : Σ i, ((D.U i).carrier : Type _)) : Prop :=
   ∃ x : (D.V (a.1, b.1)).carrier, D.f _ _ x = a.2 ∧ (D.t _ _ ≫ D.f _ _) x = b.2
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h5v.s9.09275aa2de72 from=seed src=0 shape=b4203edc vocab=7938449f
+-/
 theorem ι_eq_iff (i j : D.J) (x : (D.U i).carrier) (y : (D.U j).carrier) :
     𝖣.ι i x = 𝖣.ι j y ↔ D.Rel ⟨i, x⟩ ⟨j, y⟩ := by
   refine Iff.trans ?_
@@ -255,6 +272,9 @@ theorem ι_eq_iff (i j : D.J) (x : (D.U i).carrier) (y : (D.U j).carrier) :
   · infer_instance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h2v.s8.56dd3245bd76 from=seed src=0 shape=c4c7e073 vocab=6f367bac
+-/
 theorem isOpen_iff (U : Set D.glued.carrier) : IsOpen U ↔ ∀ i, IsOpen (D.ι i ⁻¹' U) := by
   rw [← (TopCat.homeoOfIso D.isoCarrier.symm).isOpen_preimage, TopCat.GlueData.isOpen_iff]
   apply forall_congr'
@@ -290,6 +310,9 @@ def gluedCoverT' (x y z : 𝒰.I₀) :
   · simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s10.8086a7992d57 from=seed src=0 shape=bd1746f5 vocab=b4dc68ed
+-/
 @[simp, reassoc]
 theorem gluedCoverT'_fst_fst (x y z : 𝒰.I₀) :
     𝒰.gluedCoverT' x y z ≫ pullback.fst _ _ ≫ pullback.fst _ _ =
@@ -297,6 +320,9 @@ theorem gluedCoverT'_fst_fst (x y z : 𝒰.I₀) :
   delta gluedCoverT'; simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s10.a7ac5b1c5a2c from=seed src=0 shape=9c17cd01 vocab=b4dc68ed
+-/
 @[simp, reassoc]
 theorem gluedCoverT'_fst_snd (x y z : 𝒰.I₀) :
     gluedCoverT' 𝒰 x y z ≫ pullback.fst _ _ ≫ pullback.snd _ _ =
@@ -304,6 +330,9 @@ theorem gluedCoverT'_fst_snd (x y z : 𝒰.I₀) :
   delta gluedCoverT'; simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s10.0be1199a4de6 from=seed src=0 shape=e4df0378 vocab=b4dc68ed
+-/
 @[simp, reassoc]
 theorem gluedCoverT'_snd_fst (x y z : 𝒰.I₀) :
     gluedCoverT' 𝒰 x y z ≫ pullback.snd _ _ ≫ pullback.fst _ _ =
@@ -311,22 +340,34 @@ theorem gluedCoverT'_snd_fst (x y z : 𝒰.I₀) :
   delta gluedCoverT'; simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s10.781da26bb58c from=seed src=0 shape=5e1542b8 vocab=b4dc68ed
+-/
 @[simp, reassoc]
 theorem gluedCoverT'_snd_snd (x y z : 𝒰.I₀) :
     gluedCoverT' 𝒰 x y z ≫ pullback.snd _ _ ≫ pullback.snd _ _ =
       pullback.fst _ _ ≫ pullback.fst _ _ := by
   delta gluedCoverT'; simp
 
+/--
+@isnad1 id=eq.0h5v.s11.c457da9b2660 from=seed src=0 shape=066c5e4a vocab=63714142
+-/
 theorem glued_cover_cocycle_fst (x y z : 𝒰.I₀) :
     gluedCoverT' 𝒰 x y z ≫ gluedCoverT' 𝒰 y z x ≫ gluedCoverT' 𝒰 z x y ≫ pullback.fst _ _ =
       pullback.fst _ _ := by
   apply pullback.hom_ext <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s11.6af4b9857c7f from=seed src=0 shape=0dfc2dee vocab=b4dc68ed
+-/
 theorem glued_cover_cocycle_snd (x y z : 𝒰.I₀) :
     gluedCoverT' 𝒰 x y z ≫ gluedCoverT' 𝒰 y z x ≫ gluedCoverT' 𝒰 z x y ≫ pullback.snd _ _ =
       pullback.snd _ _ := by
   apply pullback.hom_ext <;> simp [pullback.condition]
 
+/--
+@isnad1 id=eq.0h5v.s11.5b1970537839 from=seed src=0 shape=04542cf1 vocab=d760a3b0
+-/
 theorem glued_cover_cocycle (x y z : 𝒰.I₀) :
     gluedCoverT' 𝒰 x y z ≫ gluedCoverT' 𝒰 y z x ≫ gluedCoverT' 𝒰 z x y = 𝟙 _ := by
   apply pullback.hom_ext <;> simp_rw [Category.id_comp, Category.assoc]
@@ -360,11 +401,17 @@ def fromGlued : 𝒰.gluedCover.glued ⟶ X := by
   change pullback.fst _ _ ≫ _ = ((pullbackSymmetry _ _).hom ≫ pullback.fst _ _) ≫ _
   simpa using! pullback.condition
 
+/--
+@isnad1 id=eq.0h3v.s6.5232a8b97503 from=seed src=0 shape=0c03df9b vocab=dd89d511
+-/
 @[simp, reassoc]
 theorem ι_fromGlued (x : 𝒰.I₀) : 𝒰.gluedCover.ι x ≫ 𝒰.fromGlued = 𝒰.f x :=
   Multicoequalizer.π_desc _ _ _ _ _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=injectiv.0h2v.s7.f5147d2637bb from=seed src=0 shape=0800cc58 vocab=b5082721
+-/
 theorem fromGlued_injective : Function.Injective 𝒰.fromGlued := by
   intro x y h
   obtain ⟨i, x, rfl⟩ := 𝒰.gluedCover.ι_jointly_surjective x
@@ -396,6 +443,9 @@ instance (x : 𝒰.gluedCover.glued.carrier) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=isopenma.0h2v.s7.cc5fcb03ea9c from=seed src=0 shape=0800cc58 vocab=7920d067
+-/
 theorem isOpenMap_fromGlued : IsOpenMap 𝒰.fromGlued := by
   intro U hU
   rw [isOpen_iff_forall_mem_open]
@@ -413,6 +463,9 @@ theorem isOpenMap_fromGlued : IsOpenMap 𝒰.fromGlued := by
     exact Set.preimage_image_eq _ 𝒰.fromGlued_injective
   · exact ⟨hx, 𝒰.covers x⟩
 
+/--
+@isnad1 id=isopenem.0h2v.s7.42f332e1c371 from=seed src=0 shape=0800cc58 vocab=9bd67acb
+-/
 theorem isOpenEmbedding_fromGlued : IsOpenEmbedding 𝒰.fromGlued :=
   .of_continuous_injective_isOpenMap (by fun_prop) 𝒰.fromGlued_injective 𝒰.isOpenMap_fromGlued
 
@@ -458,6 +511,9 @@ def glueMorphisms (𝒰 : OpenCover.{v} X) {Y : Scheme.{u}} (f : ∀ x, 𝒰.X x
   simpa [pullbackSymmetry_hom_comp_fst] using hf _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s7.3a68b317228b from=seed src=0 shape=06d2e187 vocab=7a90f076
+-/
 theorem hom_ext (𝒰 : OpenCover.{v} X) {Y : Scheme} (f₁ f₂ : X ⟶ Y)
     (h : ∀ x, 𝒰.f x ≫ f₁ = 𝒰.f x ≫ f₂) : f₁ = f₂ := by
   rw [← cancel_epi 𝒰.ulift.fromGlued]
@@ -468,6 +524,9 @@ theorem hom_ext (𝒰 : OpenCover.{v} X) {Y : Scheme} (f₁ f₂ : X ⟶ Y)
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s8.bf9c7b9b301f from=seed src=0 shape=b5acd3c1 vocab=13788dc6
+-/
 @[reassoc (attr := simp)]
 theorem ι_glueMorphisms (𝒰 : OpenCover.{v} X) {Y : Scheme} (f : ∀ x, 𝒰.X x ⟶ Y)
     (hf : ∀ x y, pullback.fst (𝒰.f x) (𝒰.f y) ≫ f x = pullback.snd _ _ ≫ f y)
@@ -481,6 +540,9 @@ theorem ι_glueMorphisms (𝒰 : OpenCover.{v} X) {Y : Scheme} (f : ∀ x, 𝒰.
 
 end Cover
 
+/--
+@isnad1 id=eq.1h4v.s7.ba36c26764b4 from=seed src=0 shape=997c3b58 vocab=b5c2f13f
+-/
 lemma hom_ext_of_forall {X Y : Scheme} (f g : X ⟶ Y)
     (H : ∀ x : X, ∃ U : X.Opens, x ∈ U ∧ U.ι ≫ f = U.ι ≫ g) : f = g := by
   choose U hxU hU using H
@@ -536,12 +598,18 @@ The intersection `V` in the glue data associated to a locally directed diagram. 
 noncomputable
 def V (i j : J) : (F.obj i).Opens := ⨆ (k : Σ k, (k ⟶ i) × (k ⟶ j)), (F.map k.2.1).opensRange
 
+/--
+@isnad1 id=eq.0h3v.s8.38ab62ee0426 from=seed src=0 shape=fd99e12b vocab=99cd84b8
+-/
 lemma V_self (i) : V F i i = ⊤ :=
   top_le_iff.mp (le_iSup_of_le ⟨i, 𝟙 _, 𝟙 _⟩ (by simp [Scheme.Hom.opensRange_of_isIso]))
 
 variable [(F ⋙ forget).IsLocallyDirected]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.0h6v.s11.63d7f5dbcc86 from=seed src=0 shape=423adc14 vocab=d8c43360
+-/
 lemma exists_of_pullback_V_V {i j k : J} (x : pullback (C := Scheme) (V F i j).ι (V F i k).ι) :
     ∃ (l : J) (fi : l ⟶ i) (fj : l ⟶ j) (fk : l ⟶ k)
       (α : F.obj l ⟶ pullback (V F i j).ι (V F i k).ι) (z : F.obj l),
@@ -579,6 +647,9 @@ variable [Quiver.IsThin J]
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h7v.s13.3f11b9073afd from=seed src=0 shape=31a8b227 vocab=c6a34dbf
+-/
 lemma fst_inv_eq_snd_inv
     {i j : J} (k₁ k₂ : (k : J) × (k ⟶ i) × (k ⟶ j)) {U : (F.obj i).Opens}
     (h₁ : (F.map k₁.2.1).opensRange ≤ U) (h₂ : (F.map k₂.2.1).opensRange ≤ U) :
@@ -627,6 +698,9 @@ def tAux (i j : J) : (V F i j).toScheme ⟶ F.obj j :=
       apply fst_inv_eq_snd_inv F
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s10.a66c8d047912 from=seed src=0 shape=09b394ee vocab=3f8cfe35
+-/
 @[reassoc]
 lemma homOfLE_tAux (i j : J) {k : J} (fi : k ⟶ i) (fj : k ⟶ j) :
     (F.obj i).homOfLE (le_iSup_of_le ⟨k, fi, fj⟩ le_rfl) ≫
@@ -645,6 +719,9 @@ def t (i j : J) : (V F i j).toScheme ⟶ (V F j i).toScheme :=
       TopCat.hom_comp, ContinuousMap.comp_apply]
     exact Set.mem_iUnion.mpr ⟨⟨l.1, l.2.2, l.2.1⟩, ⟨_, rfl⟩⟩)
 
+/--
+@isnad1 id=eq.0h3v.s7.db13e2617238 from=seed src=0 shape=f6a22772 vocab=f5d4c79d
+-/
 lemma t_id (i : J) : t F i i = 𝟙 _ := by
   refine (Scheme.Opens.iSupOpenCover _).hom_ext _ _ fun k ↦ ?_
   simp only [Category.comp_id, ← cancel_mono (Scheme.Opens.ι _), Category.assoc,
@@ -711,6 +788,9 @@ def glueData : Scheme.GlueData where
     exact (Scheme.homOfLE_ι _ _).symm
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h5v.s8.9273a551e042 from=seed src=0 shape=e9e03088 vocab=3f92b887
+-/
 lemma glueDataι_naturality {i j : Shrink.{u} J} (f : ↓i ⟶ ↓j) :
     F.map f ≫ (glueData F).ι j = (glueData F).ι i := by
   have : IsIso (V F ↓i ↓j).ι := by
@@ -828,6 +908,9 @@ instance (i) : IsOpenImmersion (colimit.ι F i) :=
   inferInstanceAs (IsOpenImmersion ((openCover F).f i))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h6v.s10.9b0d60e0ffd6 from=seed src=0 shape=3fde2cc0 vocab=88c910fc
+-/
 lemma ι_eq_ι_iff {i j : J} {xi : F.obj i} {xj : F.obj j} :
     colimit.ι F i xi = colimit.ι F j xj ↔
       ∃ k fi fj, ∃ (x : F.obj k), F.map fi x = xi ∧ F.map fj x = xj := by
@@ -852,6 +935,9 @@ lemma ι_eq_ι_iff {i j : J} {xi : F.obj i} {xj : F.obj j} :
   · simp [← glueDataι_naturality F ki, ← hy]; rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.0h3v.s8.a200f3b1b36b from=seed src=0 shape=cc2adfa0 vocab=88c910fc
+-/
 lemma ι_jointly_surjective (x : ↑(colimit F)) :
     ∃ (i : J) (xi : F.obj i), colimit.ι F i xi = x := by
   obtain ⟨i, xi, h⟩ :=

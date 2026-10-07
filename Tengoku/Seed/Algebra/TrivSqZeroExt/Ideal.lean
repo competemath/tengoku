@@ -31,11 +31,17 @@ variable (R M : Type*)
 def kerIdeal : Ideal (TrivSqZeroExt R M) := RingHom.ker (fstHom R R M)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h3v.s7.a23f6b5d985d from=seed src=0 shape=749e7dd0 vocab=f639594b
+-/
 theorem mem_kerIdeal_iff_inr (x : TrivSqZeroExt R M) : x ∈ kerIdeal R M ↔ x = inr x.snd := by
   obtain ⟨r, m⟩ := x
   simp only [kerIdeal, RingHom.mem_ker, fstHom_apply, fst_mk]
   exact ⟨fun hr => by rw [hr]; rfl, fun hrm => by rw [← fst_mk r m, hrm, fst_inr]⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.dfaf15319280 from=seed src=0 shape=43661c49 vocab=e98ffaeb
+-/
 @[simp] theorem kerIdeal_sq : kerIdeal R M ^ 2 = ⊥ := by
   simp only [pow_two, eq_bot_iff, mul_le, mem_kerIdeal_iff_inr]
   rintro x hx y hy

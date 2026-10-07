@@ -72,6 +72,9 @@ class IsReduced : Prop where
 
 attribute [instance] IsReduced.component_reduced
 
+/--
+@isnad1 id=isreduce.0h1v.s8.f8a83937cb18 from=seed src=0 shape=9087d04b vocab=4a5b2305
+-/
 theorem isReduced_of_isReduced_stalk [∀ x : X, _root_.IsReduced (X.presheaf.stalk x)] :
     IsReduced X := by
   refine ⟨fun U => ⟨fun s hs => ?_⟩⟩
@@ -82,6 +85,9 @@ theorem isReduced_of_isReduced_stalk [∀ x : X, _root_.IsReduced (X.presheaf.st
   change X.presheaf.germ U x hx s = 0
   exact (hs.map _).eq_zero
 
+/--
+@isnad1 id=isreduce.0h2v.s8.55ae36d3a967 from=seed src=0 shape=061dc2c2 vocab=4a5b2305
+-/
 instance isReduced_stalk_of_isReduced [IsReduced X] (x : X) :
     _root_.IsReduced (X.presheaf.stalk x) := by
   constructor
@@ -94,6 +100,9 @@ instance isReduced_stalk_of_isReduced [IsReduced X] (x : X) :
   replace e' := (IsNilpotent.mk _ _ e').eq_zero (R := Γ(X, V))
   rw [← X.presheaf.germ_res iU x hxV, CommRingCat.comp_apply, e', map_zero]
 
+/--
+@isnad1 id=isreduce.0h3v.s4.9bd92534b066 from=seed src=0 shape=9715b773 vocab=4bf12edc
+-/
 theorem isReduced_of_isOpenImmersion {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f]
     [IsReduced Y] : IsReduced X := by
   constructor
@@ -120,6 +129,9 @@ instance {R : CommRingCat.{u}} [H : _root_.IsReduced R] : IsReduced (Spec R) := 
   exact isReduced_of_injective (Spec.stalkIso R x).hom.hom
     (Spec.stalkIso R x).commRingCatIsoToRingEquiv.injective
 
+/--
+@isnad1 id=iff.0h1v.s5.7b2e7a260af6 from=seed src=0 shape=7072e12b vocab=65f63a36
+-/
 theorem affine_isReduced_iff (R : CommRingCat) :
     IsReduced (Spec R) ↔ _root_.IsReduced R := by
   refine ⟨?_, fun h => inferInstance⟩
@@ -127,10 +139,16 @@ theorem affine_isReduced_iff (R : CommRingCat) :
   exact isReduced_of_injective (Scheme.ΓSpecIso R).inv.hom
     (Scheme.ΓSpecIso R).symm.commRingCatIsoToRingEquiv.injective
 
+/--
+@isnad1 id=isreduce.0h1v.s11.f9f499aeb9dc from=seed src=0 shape=994cca30 vocab=2521c94a
+-/
 theorem isReduced_of_isAffine_isReduced [IsAffine X] [_root_.IsReduced Γ(X, ⊤)] :
     IsReduced X :=
   isReduced_of_isOpenImmersion X.isoSpec.hom
 
+/--
+@isnad1 id=isreduce.0h2v.s5.1fb667664cc3 from=seed src=0 shape=8a1f4c4f vocab=dc8f15f0
+-/
 theorem IsReduced.of_openCover (𝒰 : X.OpenCover) [∀ i, IsReduced (𝒰.X i)] : IsReduced X := by
   have (x : X) : _root_.IsReduced (X.presheaf.stalk x) := by
     obtain ⟨i, x, rfl⟩ := 𝒰.exists_eq x
@@ -138,6 +156,9 @@ theorem IsReduced.of_openCover (𝒰 : X.OpenCover) [∀ i, IsReduced (𝒰.X i)
       (asIso <| (𝒰.f i).stalkMap x).commRingCatIsoToRingEquiv.injective
   exact isReduced_of_isReduced_stalk _
 
+/--
+@isnad1 id=iff.0h2v.s5.563b2ae56169 from=seed src=0 shape=9de9a46e vocab=dc8f15f0
+-/
 theorem IsReduced.iff_of_openCover (𝒰 : X.OpenCover) : IsReduced X ↔ ∀ i, IsReduced (𝒰.X i) :=
   ⟨fun _ ↦ inferInstance, fun _ ↦ of_openCover X 𝒰⟩
 
@@ -146,6 +167,7 @@ theorem IsReduced.iff_of_openCover (𝒰 : X.OpenCover) : IsReduced X ↔ ∀ i,
 2. For an open immersion `f : X ⟶ Y`, if `P` holds for the entire space of `X`, then `P` holds for
   the image of `f`.
 3. `P` holds for the entire space of an affine scheme.
+@isnad1 id=var.1h5v.s9.9f3c32303087 from=seed src=0 shape=18b6ae81 vocab=3d2127eb
 -/
 @[elab_as_elim]
 theorem reduce_to_affine_global (P : ∀ {X : Scheme} (_ : X.Opens), Prop)
@@ -166,6 +188,9 @@ theorem reduce_to_affine_global (P : ∀ {X : Scheme} (_ : X.Opens), Prop)
   apply h₂'
   apply h₃
 
+/--
+@isnad1 id=var.0h5v.s8.e984b811a3b3 from=seed src=0 shape=4042bf03 vocab=4175013d
+-/
 theorem reduce_to_affine_nbhd (P : ∀ (X : Scheme) (_ : X), Prop)
     (h₁ : ∀ R x, P (Spec R) x)
     (h₂ : ∀ {X Y} (f : X ⟶ Y) [IsOpenImmersion f] (x : X), P X x → P Y (f x)) :
@@ -208,6 +233,9 @@ theorem eq_zero_of_basicOpen_eq_bot {X : Scheme} [hX : IsReduced X] {U : X.Opens
     rw [← CommRingCat.comp_apply, Iso.hom_inv_id, CommRingCat.id_apply] at hs
     rw [hs, map_zero]
 
+/--
+@isnad1 id=iff.0h3v.s10.610031fd13c2 from=seed src=0 shape=26709ea9 vocab=086dfa05
+-/
 @[simp]
 theorem basicOpen_eq_bot_iff {X : Scheme} [IsReduced X] {U : X.Opens}
     (s : Γ(X, U)) : X.basicOpen s = ⊥ ↔ s = 0 := by
@@ -217,7 +245,9 @@ theorem basicOpen_eq_bot_iff {X : Scheme} [IsReduced X] {U : X.Opens}
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- If `X` is reduced and has finitely many irreducible components, then the stalks at the generic
-points of the irreducible components are fields. -/
+points of the irreducible components are fields.
+@isnad1 id=isfield.1h2v.s7.da2eb3b2a242 from=seed src=0 shape=a677071b vocab=c6252fd5
+-/
 lemma isField_stalk_of_closure_mem_irreducibleComponents
     (x : X) (hx : closure {x} ∈ irreducibleComponents X) [IsReduced X] :
     IsField (X.presheaf.stalk x) := by
@@ -247,6 +277,9 @@ attribute [instance] IsIntegral.component_integral IsIntegral.nonempty
 instance [IsIntegral X] : IsDomain Γ(X, ⊤) :=
   @IsIntegral.component_integral _ _ _ ⟨Nonempty.some inferInstance, trivial⟩
 
+/--
+@isnad1 id=isreduce.0h1v.s2.69b77cfc1177 from=seed src=0 shape=6321fd23 vocab=37f19f7c
+-/
 instance (priority := 900) isReduced_of_isIntegral [IsIntegral X] : IsReduced X := by
   constructor
   intro U
@@ -258,10 +291,16 @@ instance (priority := 900) isReduced_of_isIntegral [IsIntegral X] : IsReduced X 
   · have : Nonempty U := by simpa
     infer_instance
 
+/--
+@isnad1 id=nontrivi.0h2v.s7.01ba8c3b5ddc from=seed src=0 shape=e8e312e5 vocab=6b15cd3a
+-/
 instance Scheme.component_nontrivial (X : Scheme.{u}) (U : X.Opens) [Nonempty U] :
     Nontrivial Γ(X, U) :=
   LocallyRingedSpace.component_nontrivial (hU := ‹_›)
 
+/--
+@isnad1 id=irreduci.0h1v.s4.be787274a010 from=seed src=0 shape=7c9df8e0 vocab=2e7753a8
+-/
 instance irreducibleSpace_of_isIntegral [IsIntegral X] : IrreducibleSpace X := by
   by_contra H
   replace H : ¬IsPreirreducible .univ := fun h =>
@@ -286,6 +325,9 @@ instance irreducibleSpace_of_isIntegral [IsIntegral X] : IrreducibleSpace X := b
       exacts [hS h, hT h]
     · simp
 
+/--
+@isnad1 id=isintegr.0h1v.s4.f8bd5dde7501 from=seed src=0 shape=b5bf1bb4 vocab=2bbe07bc
+-/
 theorem isIntegral_of_irreducibleSpace_of_isReduced [IsReduced X] [H : IrreducibleSpace X] :
     IsIntegral X := by
   constructor; · infer_instance
@@ -305,11 +347,17 @@ theorem isIntegral_of_irreducibleSpace_of_isReduced [IsReduced X] [H : Irreducib
     exact e.symm
   exact NoZeroDivisors.to_isDomain _
 
+/--
+@isnad1 id=iff.0h1v.s4.e27694d3b6f4 from=seed src=0 shape=0f097ee1 vocab=2bbe07bc
+-/
 theorem isIntegral_iff_irreducibleSpace_and_isReduced :
     IsIntegral X ↔ IrreducibleSpace X ∧ IsReduced X :=
   ⟨fun _ => ⟨inferInstance, inferInstance⟩, fun ⟨_, _⟩ =>
     isIntegral_of_irreducibleSpace_of_isReduced X⟩
 
+/--
+@isnad1 id=isintegr.0h3v.s5.c9a165620373 from=seed src=0 shape=30c49fe5 vocab=817c3f8b
+-/
 theorem isIntegral_of_isOpenImmersion {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f]
     [IsIntegral Y] [Nonempty X] : IsIntegral X := by
   constructor; · infer_instance
@@ -321,6 +369,9 @@ theorem isIntegral_of_isOpenImmersion {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmers
   exact (asIso <| f.app (f ''ᵁ U) :
     Γ(Y, f ''ᵁ U) ≅ _).symm.commRingCatIsoToRingEquiv.toMulEquiv.isDomain _
 
+/--
+@isnad1 id=isintegr.0h3v.s4.0abaeb6103d6 from=seed src=0 shape=38a605c8 vocab=c3879412
+-/
 lemma IsIntegral.of_isIso {X Y : Scheme.{u}} [h : IsIntegral X] (f : X ⟶ Y) [IsIso f] :
     IsIntegral Y := by
   suffices Nonempty Y from isIntegral_of_isOpenImmersion (inv f)
@@ -332,15 +383,24 @@ instance {R : CommRingCat} [IsDomain R] : IrreducibleSpace (Spec R) := by
 instance {R : CommRingCat} [IsDomain R] : IsIntegral (Spec R) :=
   isIntegral_of_irreducibleSpace_of_isReduced _
 
+/--
+@isnad1 id=iff.0h1v.s4.7680e161f3c3 from=seed src=0 shape=7072e12b vocab=26a7807c
+-/
 theorem affine_isIntegral_iff (R : CommRingCat) :
     IsIntegral (Spec R) ↔ IsDomain R :=
   ⟨fun _ => MulEquiv.isDomain Γ(Spec R, ⊤)
     (Scheme.ΓSpecIso R).symm.commRingCatIsoToRingEquiv.toMulEquiv, fun _ => inferInstance⟩
 
+/--
+@isnad1 id=isintegr.0h1v.s9.e73992e2ace5 from=seed src=0 shape=84c496e2 vocab=02af05e1
+-/
 theorem isIntegral_of_isAffine_of_isDomain [IsAffine X] [Nonempty X] [IsDomain Γ(X, ⊤)] :
     IsIntegral X :=
   isIntegral_of_isOpenImmersion X.isoSpec.hom
 
+/--
+@isnad1 id=injectiv.0h4v.s10.7af6dd8bd0bd from=seed src=0 shape=f686bfab vocab=61a4095f
+-/
 theorem map_injective_of_isIntegral [IsIntegral X] {U V : X.Opens} (i : U ⟶ V)
     [H : Nonempty U] : Function.Injective (X.presheaf.map i.op) := by
   rw [injective_iff_map_eq_zero]
@@ -359,12 +419,18 @@ instance [IsIntegral X] : OrderTop X where
   le_top a := genericPoint_specializes a
 
 open IrreducibleCloseds Set in
+/--
+@isnad1 id=eq.0h4v.s7.fffc0a7e2f91 from=seed src=0 shape=65091fc1 vocab=3d0c0091
+-/
 @[stacks 02I4]
 lemma coheight_eq_of_isOpenImmersion {U X : Scheme} {x : U} (f : U ⟶ X) [IsOpenImmersion f] :
     Order.coheight (f.base x) = Order.coheight x := f.isOpenEmbedding.coheight_eq
 
 set_option backward.isDefEq.respectTransparency.types false in
 open Order in
+/--
+@isnad1 id=eq.0h2v.s5.6127ca0cc189 from=seed src=0 shape=b8d0e18f vocab=92d76239
+-/
 lemma idealHeight_eq_coheight (R : CommRingCat) (x : Spec R) :
     x.asIdeal.height = coheight x := by
   rw [PrimeSpectrum.height_eq_orderHeight,
@@ -373,6 +439,9 @@ lemma idealHeight_eq_coheight (R : CommRingCat) (x : Spec R) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 open Order in
+/--
+@isnad1 id=eq.0h2v.s6.3c16affe501a from=seed src=0 shape=2e03b7be vocab=7737f33b
+-/
 @[stacks 02IZ]
 lemma ringKrullDim_stalk_eq_coheight {X : Scheme} (x : X) :
     ringKrullDim (X.presheaf.stalk x) = coheight x := by
@@ -393,11 +462,17 @@ lemma ringKrullDim_stalk_eq_coheight {X : Scheme} (x : X) :
 
 open Order in
 variable {X} in
+/--
+@isnad1 id=krulldim.1h3v.s6.a486bc6a0cdf from=seed src=0 shape=c59248fb vocab=0abc6d02
+-/
 lemma krullDimLE_of_coheight_le
     {z : X} {n : ℕ} (hz : coheight z ≤ n) : Ring.KrullDimLE n (X.presheaf.stalk z) := by
   rw [Ring.krullDimLE_iff, ringKrullDim_stalk_eq_coheight z]
   exact_mod_cast hz
 
+/--
+@isnad1 id=isfield.0h1v.s9.c183b9b9cbb7 from=seed src=0 shape=2fbc16f3 vocab=6fd51de2
+-/
 lemma isField_of_isIntegral_of_subsingleton (X : Scheme.{u}) [IsIntegral X] [Subsingleton X] :
     IsField Γ(X, ⊤) := by
   rw [← PrimeSpectrum.t1Space_iff_isField]

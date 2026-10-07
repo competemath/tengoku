@@ -57,47 +57,80 @@ def omega : QuadraticAlgebra R a b :=
 /-- the canonical element `⟨0, 1⟩` in a quadratic algebra `QuadraticAlgebra R a b`. -/
 scoped notation "ω" => omega
 
+/--
+@isnad1 id=eq.0h3v.s4.ee9e3bbefb01 from=seed src=0 shape=4cc672b2 vocab=9a744bb5
+-/
 @[simp]
 theorem re_omega : (ω : QuadraticAlgebra R a b).re = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.52be063a5e7f from=seed src=0 shape=4cc672b2 vocab=a1886f6b
+-/
 @[simp]
 theorem im_omega : (ω : QuadraticAlgebra R a b).im = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.ee9e3bbefb01 from=seed src=0 shape=4cc672b2 vocab=9a744bb5
+-/
 @[deprecated (since := "2026-08-13")] alias omega_re := re_omega
+/--
+@isnad1 id=eq.0h3v.s4.52be063a5e7f from=seed src=0 shape=4cc672b2 vocab=a1886f6b
+-/
 @[deprecated (since := "2026-08-13")] alias omega_im := im_omega
 
 end
 
 variable [CommSemiring R]
 
+/--
+@isnad1 id=eq.0h3v.s6.3041d7e55344 from=seed src=0 shape=ba1a6d2c vocab=c47bd2e7
+-/
 theorem omega_mul_omega_eq_mk : (ω : QuadraticAlgebra R a b) * ω = ⟨a, b⟩ := by
   ext <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s7.5fa28b5e6d69 from=seed src=0 shape=381bf57f vocab=5ec895bf
+-/
 theorem omega_mul_omega_eq_add :
     (ω : QuadraticAlgebra R a b) * ω = a • 1 + b • ω := by
   ext <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s8.8f5a301813c1 from=seed src=0 shape=8243434b vocab=ae70f382
+-/
 theorem omega_mul_omega_eq_algebraMap :
     (ω : QuadraticAlgebra R a b) * ω = algebraMap R _ a + algebraMap R _ b * ω := by
   simp [omega_mul_omega_eq_add, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=eq.0h5v.s7.c6fc95958a1f from=seed src=0 shape=0463db05 vocab=2f486221
+-/
 @[simp]
 theorem omega_mul_mk (x y : R) : (ω : QuadraticAlgebra R a b) * ⟨x, y⟩ = ⟨a * y, x + b * y⟩ := by
   ext <;> simp
 
+/--
+@isnad1 id=eq.0h6v.s8.3c5239fc4e0c from=seed src=0 shape=62e39dd2 vocab=38b38ea2
+-/
 @[simp]
 theorem omega_mul_algebraMap_mul_mk (n x y : R) :
     (ω : QuadraticAlgebra R a b) * algebraMap _ _ n * ⟨x, y⟩ = ⟨a * n * y, n * x + n * b * y⟩ := by
   ext <;> simp; ring
 
+/--
+@isnad1 id=eq.0h5v.s7.68aabc241701 from=seed src=0 shape=9a394783 vocab=697b1aa3
+-/
 theorem mk_eq_add_smul_omega (x y : R) :
     (⟨x, y⟩ : QuadraticAlgebra R a b) = algebraMap _ _ x + y • ω := by
   ext <;> simp
 
 variable {A : Type*} [Ring A] [Algebra R A]
 
+/--
+@isnad1 id=eq.1h6v.s8.c3a1bc907b1a from=seed src=0 shape=746d2192 vocab=96089751
+-/
 @[ext]
 theorem algHom_ext {f g : QuadraticAlgebra R a b →ₐ[R] A}
     (h : f ω = g ω) : f = g := by
@@ -164,21 +197,33 @@ The conjugate of `x + y ω` is `x + y ω' = (x + b * y) - y ω`. -/
 instance : Star (QuadraticAlgebra R a b) where
   star z := ⟨z.re + b * z.im, -z.im⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.2fbb0be29fce from=seed src=0 shape=c2a849c7 vocab=539a2b5c
+-/
 @[simp]
 theorem star_mk (x y : R) :
     star (⟨x, y⟩ : QuadraticAlgebra R a b) = ⟨x + b * y, -y⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.6f933b096d5b from=seed src=0 shape=a9be91af vocab=95f649fc
+-/
 @[simp]
 theorem re_star (z : QuadraticAlgebra R a b) :
     (star z).re = z.re + b * z.im :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.390bcacfdfa5 from=seed src=0 shape=345d0dc8 vocab=b0112c6e
+-/
 @[simp]
 theorem im_star (z : QuadraticAlgebra R a b) :
     (star z).im = -z.im :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.e77c202c5550 from=seed src=0 shape=3f9ae90f vocab=ec0b3d90
+-/
 theorem mul_star (x y : R) :
     (⟨x, y⟩ * star ⟨x, y⟩ : QuadraticAlgebra R a b) = (algebraMap _ _ x) * (algebraMap _ _ x) +
       (algebraMap _ _ b) * (algebraMap _ _ x) * (algebraMap _ _ y) - (algebraMap _ _ a) *
@@ -192,7 +237,9 @@ instance : StarRing (QuadraticAlgebra R a b) where
     simp only [re_star, re_mul, im_mul, im_star, mul_neg, neg_mul, neg_neg] <;> ring
   star_add _ _ := QuadraticAlgebra.ext (by simp only [re_star, re_add, im_add]; ring) (neg_add _ _)
 
-/-- `z - star z` is a multiple of the difference `ω - star ω`. -/
+/-- `z - star z` is a multiple of the difference `ω - star ω`.
+@isnad1 id=eq.0h4v.s7.3c8c7e840949 from=seed src=0 shape=1f0138fb vocab=35e959f8
+-/
 theorem sub_star (z : QuadraticAlgebra R a b) :
     z - star z = z.im • (ω - star ω) := by
   ext <;> simp <;> ring
@@ -209,42 +256,72 @@ def norm : QuadraticAlgebra R a b →* R where
   map_mul' z w := by simp only [re_mul, im_mul]; ring
   map_one' := by simp
 
+/--
+@isnad1 id=eq.0h4v.s8.46fb1fe65303 from=seed src=0 shape=7c3e46a8 vocab=8309c74c
+-/
 theorem norm_def (z : QuadraticAlgebra R a b) :
     z.norm = z.re * z.re + b * z.re * z.im - a * z.im * z.im :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.d8fd84582836 from=seed src=0 shape=e6410a7e vocab=503e7893
+-/
 @[simp]
 theorem norm_zero : norm (0 : QuadraticAlgebra R a b) = 0 := by simp [norm]
 
+/--
+@isnad1 id=eq.0h3v.s7.2ee20d633e71 from=seed src=0 shape=e6410a7e vocab=503e7893
+-/
 @[simp]
 theorem norm_one : norm (1 : QuadraticAlgebra R a b) = 1 := by simp [norm]
 
+/--
+@isnad1 id=eq.0h4v.s7.e9baa43ca502 from=seed src=0 shape=2a1e281f vocab=1c96c971
+-/
 @[simp]
 theorem norm_algebraMap (r : R) : norm (algebraMap R (QuadraticAlgebra R a b) r) = r ^ 2 := by
   simp [norm_def, pow_two]
 
+/--
+@isnad1 id=eq.0h4v.s7.995ae4be4a03 from=seed src=0 shape=28829fae vocab=80df2cd8
+-/
 @[simp]
 theorem norm_natCast (n : ℕ) : norm (n : QuadraticAlgebra R a b) = n ^ 2 := by
   simp [norm_def, pow_two]
 
+/--
+@isnad1 id=eq.0h4v.s7.7dbfbe190067 from=seed src=0 shape=d8a3b292 vocab=b55a847c
+-/
 @[simp]
 theorem norm_intCast (n : ℤ) : norm (n : QuadraticAlgebra R a b) = n ^ 2 := by
   simp [norm_def, pow_two]
 
+/--
+@isnad1 id=eq.0h4v.s8.34127cf07884 from=seed src=0 shape=dfbb5c02 vocab=2bc09d48
+-/
 theorem algebraMap_norm_eq_mul_star (z : QuadraticAlgebra R a b) :
     (algebraMap R _ (norm z : R)) = z * star z := by
   ext <;> simp [norm, star, mul_comm] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s7.86621b204588 from=seed src=0 shape=213ef7e6 vocab=280d7f15
+-/
 @[simp]
 theorem norm_neg (x : QuadraticAlgebra R a b) : (-x).norm = x.norm := by
   simp [norm]
 
+/--
+@isnad1 id=eq.0h4v.s7.d3dc2268bbed from=seed src=0 shape=213ef7e6 vocab=4179aa0f
+-/
 @[simp]
 theorem norm_star (x : QuadraticAlgebra R a b) : (star x).norm = x.norm := by
   simp only [norm, MonoidHom.coe_mk, OneHom.coe_mk, re_star, im_star, mul_neg, neg_mul, neg_neg,
     sub_left_inj]
   ring
 
+/--
+@isnad1 id=iff.0h4v.s7.08e369ebc003 from=seed src=0 shape=201c4998 vocab=cf8dd2dd
+-/
 theorem isUnit_iff_norm_isUnit {x : QuadraticAlgebra R a b} :
     IsUnit x ↔ IsUnit (x.norm) := by
   constructor
@@ -257,7 +334,9 @@ theorem isUnit_iff_norm_isUnit {x : QuadraticAlgebra R a b} :
     rw [mul_comm, hr]
 
 /-- An element of `QuadraticAlgebra R a b` has norm equal to `1`
-if and only if it is contained in the submonoid of unitary elements. -/
+if and only if it is contained in the submonoid of unitary elements.
+@isnad1 id=iff.0h4v.s8.98659d618bb2 from=seed src=0 shape=1163cdeb vocab=b6729b6f
+-/
 theorem norm_eq_one_iff_mem_unitary {z : QuadraticAlgebra R a b} :
     z.norm = 1 ↔ z ∈ unitary (QuadraticAlgebra R a b) := by
   rw [Unitary.mem_iff_self_mul_star, ← algebraMap_norm_eq_mul_star]
@@ -266,13 +345,18 @@ theorem norm_eq_one_iff_mem_unitary {z : QuadraticAlgebra R a b} :
 alias ⟨mem_unitary, norm_eq_one⟩ := norm_eq_one_iff_mem_unitary
 
 /-- The kernel of the norm map on `QuadraticAlgebra R a b` equals
-the submonoid of unitary elements. -/
+the submonoid of unitary elements.
+@isnad1 id=eq.0h3v.s7.e0c44a24244d from=seed src=0 shape=ed744175 vocab=ac31d7b9
+-/
 theorem mker_norm_eq_unitary :
     MonoidHom.mker (@norm R a b _) = unitary (QuadraticAlgebra R a b) :=
   Submonoid.ext fun _ => norm_eq_one_iff_mem_unitary
 
 open nonZeroDivisors
 
+/--
+@isnad1 id=iff.0h4v.s8.3cce395d0a61 from=seed src=0 shape=e908f551 vocab=fcfc251e
+-/
 theorem algebraMap_mem_nonZeroDivisors_iff {r : R} :
     algebraMap R (QuadraticAlgebra R a b) r ∈ (QuadraticAlgebra R a b)⁰ ↔ r ∈ R⁰ := by
   simp only [mem_nonZeroDivisors_iff_right]
@@ -286,6 +370,9 @@ theorem algebraMap_mem_nonZeroDivisors_iff {r : R} :
     simp only [re_mul, algebraMap_re, algebraMap_im, mul_zero, add_zero, im_mul, zero_add] at hz
     simp [QuadraticAlgebra.ext_iff, re_zero, im_zero, h _ hz.left, h _ hz.right]
 
+/--
+@isnad1 id=mem.1h4v.s8.ff9a29ce0561 from=seed src=0 shape=44f36322 vocab=82c67b4b
+-/
 theorem star_mem_nonZeroDivisors {z : QuadraticAlgebra R a b}
     (hz : z ∈ (QuadraticAlgebra R a b)⁰) :
     star z ∈ (QuadraticAlgebra R a b)⁰ := by
@@ -296,12 +383,18 @@ theorem star_mem_nonZeroDivisors {z : QuadraticAlgebra R a b}
   apply hz
   rw [← star_involutive z, ← star_mul, mul_comm, hw, star_zero]
 
+/--
+@isnad1 id=iff.0h4v.s8.484e5228598b from=seed src=0 shape=c746ffa9 vocab=82c67b4b
+-/
 theorem star_mem_nonZeroDivisors_iff {z : QuadraticAlgebra R a b} :
     star z ∈ (QuadraticAlgebra R a b)⁰ ↔ z ∈ (QuadraticAlgebra R a b)⁰ := by
   refine ⟨fun h ↦ ?_, star_mem_nonZeroDivisors⟩
   rw [← star_involutive z]
   exact star_mem_nonZeroDivisors h
 
+/--
+@isnad1 id=iff.0h4v.s8.6dddf5643829 from=seed src=0 shape=7f10a8b6 vocab=71b1c2b2
+-/
 theorem norm_mem_nonZeroDivisors_iff {z : QuadraticAlgebra R a b} :
     z.norm ∈ R⁰ ↔ z ∈ (QuadraticAlgebra R a b)⁰ := by
   constructor
@@ -334,48 +427,78 @@ def trace : QuadraticAlgebra R a b →ₗ[R] R where
 
 variable (z : QuadraticAlgebra R a b)
 
+/--
+@isnad1 id=eq.0h4v.s8.4dee524633df from=seed src=0 shape=f71afb2c vocab=15808375
+-/
 theorem trace_def : trace z = 2 * z.re + b * z.im := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.f9208ad72e8d from=seed src=0 shape=73b1e012 vocab=255d1007
+-/
 @[simp]
 theorem trace_algebraMap (r : R) :
     trace (algebraMap R (QuadraticAlgebra R a b) r) = 2 * r := by
   grind [trace_def]
 
+/--
+@isnad1 id=eq.0h4v.s7.9e809181fe8c from=seed src=0 shape=e716194c vocab=66d5fd6b
+-/
 @[simp]
 theorem trace_natCast (n : ℕ) : trace (n : QuadraticAlgebra R a b) = 2 * n := by
   simp [trace_def, re_natCast, im_natCast]
 
+/--
+@isnad1 id=eq.0h4v.s7.71c563018c88 from=seed src=0 shape=e716194c vocab=00323abb
+-/
 @[simp]
 theorem trace_intCast (n : ℤ) : trace (n : QuadraticAlgebra R a b) = 2 * n := by
   simp [trace_def, re_intCast, im_intCast]
 
+/--
+@isnad1 id=eq.0h3v.s7.07f948ff0a1e from=seed src=0 shape=94bc1bce vocab=594ef9fa
+-/
 @[simp]
 theorem trace_omega : trace (ω : QuadraticAlgebra R a b) = b := by
   simp [trace_def]
 
+/--
+@isnad1 id=eq.0h3v.s7.6117f8fa709b from=seed src=0 shape=e69122d9 vocab=243fa1e6
+-/
 @[simp]
 theorem trace_one : trace (1 : QuadraticAlgebra R a b) = 2 := by
   simp [trace_def]
 
+/--
+@isnad1 id=eq.0h4v.s8.bb33442cc040 from=seed src=0 shape=7a31b881 vocab=c0a641f1
+-/
 @[simp]
 theorem trace_star : trace (star z) = trace z := by
   grind [trace_def]
 
-/-- `z + star z` is the trace of `z`. -/
+/-- `z + star z` is the trace of `z`.
+@isnad1 id=eq.0h4v.s8.ede53814d1d1 from=seed src=0 shape=701a1846 vocab=3f0cd7cd
+-/
 theorem algebraMap_trace_eq_add_star :
     algebraMap R (QuadraticAlgebra R a b) (trace z) = z + star z := by
   ext <;> grind [trace_def]
 
-/-- The conjugate of `z` is `trace z - z`. -/
+/-- The conjugate of `z` is `trace z - z`.
+@isnad1 id=eq.0h4v.s8.3cbfc230f570 from=seed src=0 shape=ecbbcccf vocab=b190efdd
+-/
 theorem star_eq :
     star z = algebraMap R (QuadraticAlgebra R a b) (trace z) - z := by
   rw [algebraMap_trace_eq_add_star, add_sub_cancel_left]
 
-/-- Every element of a quadratic algebra satisfies its characteristic equation. -/
+/-- Every element of a quadratic algebra satisfies its characteristic equation.
+@isnad1 id=eq.0h4v.s9.b8cda28ab4a5 from=seed src=0 shape=3aae80f5 vocab=66fe3bca
+-/
 theorem sq_sub_trace_smul_add_norm_eq_zero :
     z ^ 2 - trace z • z + algebraMap R _ (norm z) = 0 := by
   rw [Algebra.smul_def, algebraMap_trace_eq_add_star, algebraMap_norm_eq_mul_star]; ring
 
+/--
+@isnad1 id=eq.0h4v.s9.599e743fb595 from=seed src=0 shape=85f11719 vocab=b4927f09
+-/
 theorem sq_eq_trace_smul_sub_norm :
     z ^ 2 = trace z • z - algebraMap R _ (norm z) := by
   rw [← sub_eq_zero, ← sub_add, sq_sub_trace_smul_add_norm_eq_zero]
@@ -405,12 +528,18 @@ def changeGenerator (a b u k : R) {a' b' : R} (ha : a' = u ^ 2 * a - u * b * k -
     QuadraticAlgebra R a' b' →ₐ[R] QuadraticAlgebra R a b :=
   lift ⟨u • ω + algebraMap R _ k, by rw [ha, hb]; exact changeGenerator_relation a b u k⟩
 
+/--
+@isnad1 id=eq.2h7v.s9.b3f66bf42e6d from=seed src=0 shape=28896652 vocab=47ff4f8b
+-/
 @[simp]
 theorem changeGenerator_omega (a b u k : R) {a' b' : R} (ha : a' = u ^ 2 * a - u * b * k - k ^ 2)
     (hb : b' = u * b + 2 * k) :
     changeGenerator a b u k ha hb ω = u • ω + algebraMap R (QuadraticAlgebra R a b) k := by
   ext <;> simp
 
+/--
+@isnad1 id=injectiv.3h7v.s8.fed4516e174c from=seed src=0 shape=b82fd1b3 vocab=666b1035
+-/
 theorem changeGenerator_injective (a b u k : R) {a' b' : R}
     (ha : a' = u ^ 2 * a - u * b * k - k ^ 2)
     (hb : b' = u * b + 2 * k) (hu : IsRegular u) :
@@ -433,7 +562,13 @@ def changeGeneratorEquiv (a b : R) (u : Rˣ) (k : R) {a' b' : R}
   right_inv _ := by ext <;> simp [mul_assoc]
 
 @[deprecated (since := "2026-08-14")] alias map := changeGenerator
+/--
+@isnad1 id=eq.2h7v.s9.b3f66bf42e6d from=seed src=0 shape=28896652 vocab=47ff4f8b
+-/
 @[deprecated (since := "2026-08-14")] alias map_omega := changeGenerator_omega
+/--
+@isnad1 id=injectiv.3h7v.s8.fed4516e174c from=seed src=0 shape=b82fd1b3 vocab=666b1035
+-/
 @[deprecated (since := "2026-08-14")] alias map_injective := changeGenerator_injective
 @[deprecated (since := "2026-08-14")] alias mapEquiv := changeGeneratorEquiv
 
@@ -443,6 +578,9 @@ section field
 
 variable [Field K] {a b : K} [Hab : Fact (∀ r, r ^ 2 ≠ a + b * r)]
 
+/--
+@isnad1 id=iff.0h4v.s7.2fc296100d50 from=seed src=0 shape=7d5dc589 vocab=04656b63
+-/
 lemma norm_eq_zero_iff_eq_zero {z : QuadraticAlgebra K a b} :
     norm z = 0 ↔ z = 0 := by
   constructor

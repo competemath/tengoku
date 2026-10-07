@@ -91,6 +91,9 @@ instance [Inhabited α] : Inhabited (FreeMagma α) := ⟨of default⟩
 @[to_additive]
 instance : Mul (FreeMagma α) := ⟨FreeMagma.mul⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.a5ee519d3207 from=seed src=0 shape=4a9ab6d2 vocab=7a233210
+-/
 @[to_additive (attr := simp)]
 theorem mul_eq (x y : FreeMagma α) : mul x y = x * y := rfl
 
@@ -101,6 +104,9 @@ def recOnMul {C : FreeMagma α → Sort l} (x) (ih1 : ∀ x, C (of x))
     (ih2 : ∀ x y, C x → C y → C (x * y)) : C x :=
   FreeMagma.recOn x ih1 ih2
 
+/--
+@isnad1 id=eq.1h4v.s6.e76c0c3350e3 from=seed src=0 shape=1a7ff476 vocab=a393313e
+-/
 @[to_additive (attr := ext 1100)]
 theorem hom_ext {β : Type v} [Mul β] {f g : FreeMagma α →ₙ* β} (h : f ∘ of = g ∘ of) : f = g :=
   (DFunLike.ext _ _) fun x ↦ recOnMul x (congr_fun h) <| by intros; simp only [map_mul, *]
@@ -135,12 +141,21 @@ def lift : (α → β) ≃ (FreeMagma α →ₙ* β) where
     map_mul' := fun _ _ ↦ rfl }
   invFun F := F ∘ of
 
+/--
+@isnad1 id=eq.0h4v.s6.9b38e7c5027e from=seed src=0 shape=97148b8a vocab=99d8965f
+-/
 @[to_additive (attr := simp)]
 theorem lift_of (x) : lift f (of x) = f x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.28360e5c8880 from=seed src=0 shape=21cbbf94 vocab=3b8fc8f0
+-/
 @[to_additive (attr := simp)]
 theorem lift_comp_of : lift f ∘ of = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.96de5703c581 from=seed src=0 shape=041eb47e vocab=3b8fc8f0
+-/
 @[to_additive (attr := simp)]
 theorem lift_comp_of' (f : FreeMagma α →ₙ* β) : lift (f ∘ of) = f := lift.apply_symm_apply f
 
@@ -156,6 +171,9 @@ each `of x` to `of (f x)`. -/
 sends each `of x` to `of (f x)`. -/]
 def map (f : α → β) : FreeMagma α →ₙ* FreeMagma β := lift (of ∘ f)
 
+/--
+@isnad1 id=eq.0h4v.s5.c6ad495bdae3 from=seed src=0 shape=1d1d145a vocab=5b9dea06
+-/
 @[to_additive (attr := simp)]
 theorem map_of (x) : map f (of x) = of (f x) := rfl
 
@@ -177,26 +195,47 @@ protected def recOnPure {C : FreeMagma α → Sort l} (x) (ih1 : ∀ x, C (pure 
     (ih2 : ∀ x y, C x → C y → C (x * y)) : C x :=
   FreeMagma.recOnMul x ih1 ih2
 
+/--
+@isnad1 id=eq.0h4v.s5.468cfc330046 from=seed src=0 shape=f63fda10 vocab=b785ecf2
+-/
 @[to_additive (attr := simp)]
 protected theorem map_pure (f : α → β) (x) : (f <$> pure x : FreeMagma β) = pure (f x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.df98ae746a30 from=seed src=0 shape=259f4013 vocab=2e35b2dc
+-/
 @[to_additive (attr := simp)]
 theorem map_mul' (f : α → β) (x y : FreeMagma α) : f <$> (x * y) = f <$> x * f <$> y := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.f76674bda798 from=seed src=0 shape=3107e9b4 vocab=5b836866
+-/
 @[to_additive (attr := simp)]
 theorem pure_bind (f : α → FreeMagma β) (x) : pure x >>= f = f x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.5e62f190b91f from=seed src=0 shape=e4f0fca0 vocab=5c7dd68b
+-/
 @[to_additive (attr := simp)]
 theorem mul_bind (f : α → FreeMagma β) (x y : FreeMagma α) : x * y >>= f = (x >>= f) * (y >>= f) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.83a9acb1fddf from=seed src=0 shape=28627577 vocab=fa3ca22c
+-/
 @[to_additive (attr := simp)]
 theorem pure_seq {α β : Type u} {f : α → β} {x : FreeMagma α} : pure f <*> x = f <$> x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.b1dba83b18fe from=seed src=0 shape=809c0687 vocab=5da76e20
+-/
 @[to_additive (attr := simp)]
 theorem mul_seq {α β : Type u} {f g : FreeMagma (α → β)} {x : FreeMagma α} :
     f * g <*> x = (f <*> x) * (g <*> x) := rfl
 
+/--
+@isnad1 id=lawfulmo.0h0v.s1.36962edc589b from=seed src=0 shape=49959d42 vocab=f6caa725
+-/
 @[to_additive]
 instance instLawfulMonad : LawfulMonad FreeMagma.{u} := LawfulMonad.mk'
   (pure_bind := fun _ _ ↦ rfl)
@@ -236,21 +275,36 @@ instance : Traversable FreeMagma := ⟨@FreeMagma.traverse⟩
 
 variable {m : Type u → Type u} [Applicative m] (F : α → m β)
 
+/--
+@isnad1 id=eq.0h5v.s5.a76629469947 from=seed src=0 shape=45c832d5 vocab=a22c79d1
+-/
 @[to_additive (attr := simp)]
 theorem traverse_pure (x) : traverse F (pure x : FreeMagma α) = pure <$> F x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.7d8fca91c41c from=seed src=0 shape=fde4121f vocab=d0f07041
+-/
 @[to_additive (attr := simp)]
 theorem traverse_pure' : traverse F ∘ pure = fun x ↦ (pure <$> F x : m (FreeMagma β)) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.1eeef1f66ac2 from=seed src=0 shape=8f8046b9 vocab=662e0bf2
+-/
 @[to_additive (attr := simp)]
 theorem traverse_mul (x y : FreeMagma α) :
     traverse F (x * y) = (· * ·) <$> traverse F x <*> traverse F y := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.29597c02aa8c from=seed src=0 shape=345eca61 vocab=f9778442
+-/
 @[to_additive (attr := simp)]
 theorem traverse_mul' :
     Function.comp (traverse F) ∘ (HMul.hMul : FreeMagma α → FreeMagma α → FreeMagma α) = fun x y ↦
       (· * ·) <$> traverse F x <*> traverse F y := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.247bf54035b5 from=seed src=0 shape=16382422 vocab=795945e7
+-/
 @[to_additive (attr := simp)]
 theorem traverse_eq (x) : FreeMagma.traverse F x = traverse F x := rfl
 
@@ -306,7 +360,9 @@ def FreeAddMagma.length {α : Type u} : FreeAddMagma α → ℕ
 
 attribute [to_additive existing (attr := simp)] FreeMagma.length
 
-/-- The length of an element of a free magma is positive. -/
+/-- The length of an element of a free magma is positive.
+@isnad1 id=lt.0h2v.s4.67405a243e07 from=seed src=0 shape=db125da6 vocab=1cf7828c
+-/
 @[to_additive /-- The length of an element of a free additive magma is positive. -/]
 lemma FreeMagma.length_pos {α : Type u} (x : FreeMagma α) : 0 < x.length :=
   match x with
@@ -335,10 +391,16 @@ namespace AssocQuotient
 
 variable {α : Type u} [Mul α]
 
+/--
+@isnad1 id=eq.0h4v.s5.caf9f1448468 from=seed src=0 shape=3566d576 vocab=9473f240
+-/
 @[to_additive]
 theorem quot_mk_assoc (x y z : α) : Quot.mk (AssocRel α) (x * y * z) = Quot.mk _ (x * (y * z)) :=
   Quot.sound (AssocRel.intro _ _ _)
 
+/--
+@isnad1 id=eq.0h5v.s6.1919b3879284 from=seed src=0 shape=1c697c43 vocab=9473f240
+-/
 @[to_additive]
 theorem quot_mk_assoc_left (x y z w : α) :
     Quot.mk (AssocRel α) (x * (y * z * w)) = Quot.mk _ (x * (y * (z * w))) :=
@@ -366,6 +428,9 @@ def of : α →ₙ* AssocQuotient α where toFun := Quot.mk _; map_mul' _x _y :=
 @[to_additive]
 instance [Inhabited α] : Inhabited (AssocQuotient α) := ⟨of default⟩
 
+/--
+@isnad1 id=var.0h4v.s5.af7512c3127e from=seed src=0 shape=d36478f1 vocab=0b704810
+-/
 @[to_additive (attr := elab_as_elim, induction_eliminator)]
 protected theorem induction_on {C : AssocQuotient α → Prop} (x : AssocQuotient α)
     (ih : ∀ x, C (of x)) : C x := Quot.induction_on x ih
@@ -374,6 +439,9 @@ section lift
 
 variable {β : Type v} [Semigroup β] (f : α →ₙ* β)
 
+/--
+@isnad1 id=eq.1h4v.s6.7892f32afb4f from=seed src=0 shape=14fcf208 vocab=0922f49d
+-/
 @[to_additive (attr := ext 1100)]
 theorem hom_ext {f g : AssocQuotient α →ₙ* β} (h : f.comp of = g.comp of) : f = g :=
   (DFunLike.ext _ _) fun x => AssocQuotient.induction_on x <| DFunLike.congr_fun h
@@ -389,12 +457,21 @@ def lift : (α →ₙ* β) ≃ (AssocQuotient α →ₙ* β) where
     map_mul' := fun x y ↦ Quot.induction_on₂ x y (map_mul f) }
   invFun f := f.comp of
 
+/--
+@isnad1 id=eq.0h4v.s7.1381cc984dcf from=seed src=0 shape=59006522 vocab=3089a56d
+-/
 @[to_additive (attr := simp)]
 theorem lift_of (x : α) : lift f (of x) = f x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.f77e2d28d650 from=seed src=0 shape=c87f701e vocab=af86b192
+-/
 @[to_additive (attr := simp)]
 theorem lift_comp_of : (lift f).comp of = f := lift.symm_apply_apply f
 
+/--
+@isnad1 id=eq.0h3v.s7.d75765f7e825 from=seed src=0 shape=3df8ec3c vocab=af86b192
+-/
 @[to_additive (attr := simp)]
 theorem lift_comp_of' (f : AssocQuotient α →ₙ* β) : lift (f.comp of) = f := lift.apply_symm_apply f
 
@@ -408,6 +485,9 @@ variable {β : Type v} [Mul β] (f : α →ₙ* β)
 `AddMagma.AssocQuotient α → AddMagma.AssocQuotient β`. -/]
 def map : AssocQuotient α →ₙ* AssocQuotient β := lift (of.comp f)
 
+/--
+@isnad1 id=eq.0h4v.s7.1e8417fa3958 from=seed src=0 shape=bc902030 vocab=476f6e87
+-/
 @[to_additive (attr := simp)]
 theorem map_of (x) : map f (of x) = of (f x) := rfl
 
@@ -472,12 +552,21 @@ instance : Semigroup (FreeSemigroup α) where
   mul L1 L2 := ⟨L1.1, L1.2 ++ L2.1 :: L2.2⟩
   mul_assoc _L1 _L2 _L3 := FreeSemigroup.ext rfl <| List.append_assoc _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.ef504c58e967 from=seed src=0 shape=c881f0d4 vocab=b3fd7d97
+-/
 @[to_additive (attr := simp)]
 theorem head_mul (x y : FreeSemigroup α) : (x * y).1 = x.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d1c06900fa3a from=seed src=0 shape=e09c3782 vocab=0d71abc0
+-/
 @[to_additive (attr := simp)]
 theorem tail_mul (x y : FreeSemigroup α) : (x * y).2 = x.2 ++ y.1 :: y.2 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.0ff4b5683d29 from=seed src=0 shape=cc46850c vocab=3eb53d12
+-/
 @[to_additive (attr := simp)]
 theorem mk_mul_mk (x y : α) (L1 L2 : List α) : mk x L1 * mk y L2 = mk x (L1 ++ y :: L2) := rfl
 
@@ -489,10 +578,16 @@ def of (x : α) : FreeSemigroup α := ⟨x, []⟩
 @[to_additive /-- Length of an element of free additive semigroup -/]
 def length (x : FreeSemigroup α) : ℕ := x.tail.length + 1
 
+/--
+@isnad1 id=eq.0h3v.s5.e92a03d24067 from=seed src=0 shape=105d0824 vocab=7a49afb7
+-/
 @[to_additive (attr := simp)]
 theorem length_mul (x y : FreeSemigroup α) : (x * y).length = x.length + y.length := by
   simp [length, Nat.add_right_comm]
 
+/--
+@isnad1 id=eq.0h2v.s4.f5ecf1b525ce from=seed src=0 shape=d0dfd432 vocab=be534610
+-/
 @[to_additive (attr := simp)]
 theorem length_of (x : α) : (of x).length = 1 := rfl
 
@@ -507,6 +602,9 @@ protected def recOnMul {C : FreeSemigroup α → Sort l} (x) (ih1 : ∀ x, C (of
       FreeSemigroup.recOn x fun f s ↦
       List.recOn s ih1 (fun hd tl ih f ↦ ih2 f ⟨hd, tl⟩ (ih1 f) (ih hd)) f
 
+/--
+@isnad1 id=eq.1h4v.s6.202ba645fb3c from=seed src=0 shape=1a7ff476 vocab=1f59184d
+-/
 @[to_additive (attr := ext 1100)]
 theorem hom_ext {β : Type v} [Mul β] {f g : FreeSemigroup α →ₙ* β} (h : f ∘ of = g ∘ of) : f = g :=
   (DFunLike.ext _ _) fun x ↦
@@ -526,19 +624,34 @@ def lift : (α → β) ≃ (FreeSemigroup α →ₙ* β) where
       map_mul' := by simp [← List.foldl_map, List.foldl_assoc] }
   invFun f := f ∘ of
 
+/--
+@isnad1 id=eq.0h5v.s7.56fecbb090ae from=seed src=0 shape=690ab18e vocab=f22ebeac
+-/
 @[to_additive]
 lemma lift_mk_eq_foldl {f : α → β} {x : α} {xs : List α} :
     lift f ⟨x, xs⟩ = xs.foldl (· * f ·) (f x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.52450089849a from=seed src=0 shape=97148b8a vocab=c9c7a398
+-/
 @[to_additive (attr := simp)]
 theorem lift_of (x : α) : lift f (of x) = f x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.502d272ec115 from=seed src=0 shape=21cbbf94 vocab=4d75e604
+-/
 @[to_additive (attr := simp)]
 theorem lift_comp_of : lift f ∘ of = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.26227c7ce687 from=seed src=0 shape=041eb47e vocab=4d75e604
+-/
 @[to_additive (attr := simp)]
 theorem lift_comp_of' (f : FreeSemigroup α →ₙ* β) : lift (f ∘ of) = f := hom_ext rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.ad0f1ffdd5bf from=seed src=0 shape=c124bd11 vocab=40d7278a
+-/
 @[to_additive]
 theorem lift_of_mul (x y) : lift f (of x * y) = f x * lift f y := by rw [map_mul, lift_of]
 
@@ -553,9 +666,15 @@ variable {β : Type v} (f : α → β)
 def map : FreeSemigroup α →ₙ* FreeSemigroup β :=
   lift <| of ∘ f
 
+/--
+@isnad1 id=eq.0h4v.s5.1dbba0280e02 from=seed src=0 shape=1d1d145a vocab=543b3582
+-/
 @[to_additive (attr := simp)]
 theorem map_of (x) : map f (of x) = of (f x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.a1b32626a010 from=seed src=0 shape=15b9b57c vocab=68fa5c43
+-/
 @[to_additive (attr := simp)]
 theorem length_map (x) : (map f x).length = x.length :=
   FreeSemigroup.recOnMul x (fun _ ↦ rfl) (fun x y hx hy ↦ by simp only [map_mul, length_mul, *])
@@ -577,27 +696,48 @@ def recOnPure {C : FreeSemigroup α → Sort l} (x) (ih1 : ∀ x, C (pure x))
     (ih2 : ∀ x y, C (pure x) → C y → C (pure x * y)) : C x :=
   FreeSemigroup.recOnMul x ih1 ih2
 
+/--
+@isnad1 id=eq.0h4v.s5.d64c6d3673ed from=seed src=0 shape=f63fda10 vocab=a1b5c353
+-/
 @[to_additive (attr := simp)]
 protected theorem map_pure (f : α → β) (x) : (f <$> pure x : FreeSemigroup β) = pure (f x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.36c29c90051b from=seed src=0 shape=259f4013 vocab=e4e0d583
+-/
 @[to_additive (attr := simp)]
 theorem map_mul' (f : α → β) (x y : FreeSemigroup α) : f <$> (x * y) = f <$> x * f <$> y :=
   map_mul (map f) _ _
 
+/--
+@isnad1 id=eq.0h4v.s5.b2c5e131616d from=seed src=0 shape=3107e9b4 vocab=d53d0a85
+-/
 @[to_additive (attr := simp)]
 theorem pure_bind (f : α → FreeSemigroup β) (x) : pure x >>= f = f x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.56325589a4ac from=seed src=0 shape=e4f0fca0 vocab=0f5269a7
+-/
 @[to_additive (attr := simp)]
 theorem mul_bind (f : α → FreeSemigroup β) (x y : FreeSemigroup α) :
     x * y >>= f = (x >>= f) * (y >>= f) := map_mul (lift f) _ _
 
+/--
+@isnad1 id=eq.0h4v.s5.fea9d0ba2551 from=seed src=0 shape=28627577 vocab=5262a142
+-/
 @[to_additive (attr := simp)]
 theorem pure_seq {f : α → β} {x : FreeSemigroup α} : pure f <*> x = f <$> x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.d33977df7be5 from=seed src=0 shape=809c0687 vocab=9bc0b48f
+-/
 @[to_additive (attr := simp)]
 theorem mul_seq {f g : FreeSemigroup (α → β)} {x : FreeSemigroup α} :
     f * g <*> x = (f <*> x) * (g <*> x) := mul_bind _ _ _
 
+/--
+@isnad1 id=lawfulmo.0h0v.s1.4274f2e18e1d from=seed src=0 shape=49959d42 vocab=1d212f02
+-/
 @[to_additive]
 instance instLawfulMonad : LawfulMonad FreeSemigroup.{u} := LawfulMonad.mk'
   (pure_bind := fun _ _ ↦ rfl)
@@ -616,9 +756,15 @@ instance : Traversable FreeSemigroup := ⟨@FreeSemigroup.traverse⟩
 
 variable {m : Type u → Type u} [Applicative m] (F : α → m β)
 
+/--
+@isnad1 id=eq.0h5v.s5.a3d107ab1229 from=seed src=0 shape=45c832d5 vocab=149fc205
+-/
 @[to_additive (attr := simp)]
 theorem traverse_pure (x) : traverse F (pure x : FreeSemigroup α) = pure <$> F x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.2a7e0aa1f570 from=seed src=0 shape=fde4121f vocab=b87cfb47
+-/
 @[to_additive (attr := simp)]
 theorem traverse_pure' : traverse F ∘ pure = fun x ↦ (pure <$> F x : m (FreeSemigroup β)) := rfl
 
@@ -626,6 +772,9 @@ section
 
 variable [LawfulApplicative m]
 
+/--
+@isnad1 id=eq.0h6v.s6.e73a6fe76740 from=seed src=0 shape=b63cad20 vocab=4d146928
+-/
 @[to_additive (attr := simp)]
 theorem traverse_mul (x y : FreeSemigroup α) :
     traverse F (x * y) = (· * ·) <$> traverse F x <*> traverse F y :=
@@ -638,6 +787,9 @@ theorem traverse_mul (x y : FreeSemigroup α) :
         by rw [ih]; simp only [Function.comp_def, (mul_assoc _ _ _).symm, functor_norm])
     x
 
+/--
+@isnad1 id=eq.0h4v.s7.d7073ab46993 from=seed src=0 shape=c134d067 vocab=92d6a9d5
+-/
 @[to_additive (attr := simp)]
 theorem traverse_mul' :
     Function.comp (traverse F) ∘ (HMul.hMul : FreeSemigroup α → FreeSemigroup α → FreeSemigroup α) =
@@ -646,6 +798,9 @@ theorem traverse_mul' :
 
 end
 
+/--
+@isnad1 id=eq.0h5v.s5.19dac47ff88c from=seed src=0 shape=16382422 vocab=1d230b3e
+-/
 @[to_additive (attr := simp)]
 theorem traverse_eq (x) : FreeSemigroup.traverse F x = traverse F x := rfl
 
@@ -683,21 +838,36 @@ variable {α : Type u} {β : Type v}
 @[to_additive /-- The canonical additive morphism from `FreeAddMagma α` to `FreeAddSemigroup α`. -/]
 def toFreeSemigroup : FreeMagma α →ₙ* FreeSemigroup α := FreeMagma.lift FreeSemigroup.of
 
+/--
+@isnad1 id=eq.0h2v.s5.241172bd667e from=seed src=0 shape=0ddbd884 vocab=10e4845d
+-/
 @[to_additive (attr := simp)]
 theorem toFreeSemigroup_of (x : α) : toFreeSemigroup (of x) = FreeSemigroup.of x := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.8470f95b3f73 from=seed src=0 shape=df9147c7 vocab=c432125f
+-/
 @[to_additive (attr := simp)]
 theorem toFreeSemigroup_comp_of : @toFreeSemigroup α ∘ of = FreeSemigroup.of := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.1767a8ba5b41 from=seed src=0 shape=322b48f8 vocab=ffece571
+-/
 @[to_additive]
 theorem toFreeSemigroup_comp_map (f : α → β) :
     toFreeSemigroup.comp (map f) = (FreeSemigroup.map f).comp toFreeSemigroup := by ext1; rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.b657d90bb71c from=seed src=0 shape=9f8b1d8e vocab=0a2933e4
+-/
 @[to_additive]
 theorem toFreeSemigroup_map (f : α → β) (x : FreeMagma α) :
     toFreeSemigroup (map f x) = FreeSemigroup.map f (toFreeSemigroup x) :=
   DFunLike.congr_fun (toFreeSemigroup_comp_map f) x
 
+/--
+@isnad1 id=eq.0h2v.s5.b829ecde1db2 from=seed src=0 shape=0dbe24b6 vocab=3571c91c
+-/
 @[to_additive (attr := simp)]
 theorem length_toFreeSemigroup (x : FreeMagma α) : (toFreeSemigroup x).length = x.length :=
   FreeMagma.recOnMul x (fun _ ↦ rfl) fun x y hx hy ↦ by

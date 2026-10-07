@@ -47,16 +47,28 @@ class QuasiCompact (f : X ⟶ Y) : Prop where
   isCompact_preimage : ∀ U : Set Y, IsOpen U → IsCompact U → IsCompact (f ⁻¹' U)
 
 variable {f} in
+/--
+@isnad1 id=iff.0h3v.s7.ddba1d5efa45 from=seed src=0 shape=61540f71 vocab=7f7c856d
+-/
 theorem quasiCompact_iff_isSpectralMap : QuasiCompact f ↔ IsSpectralMap f :=
   ⟨fun ⟨h⟩ => ⟨by fun_prop, h⟩, fun h => ⟨h.2⟩⟩
 
+/--
+@isnad1 id=isspectr.0h3v.s7.894a8b8e2af6 from=seed src=0 shape=82a81c7a vocab=7f7c856d
+-/
 theorem Scheme.Hom.isSpectralMap [QuasiCompact f] : IsSpectralMap f := by
   rwa [← quasiCompact_iff_isSpectralMap]
 
+/--
+@isnad1 id=iscompac.1h4v.s7.15d3245cdcaf from=seed src=0 shape=0f432e47 vocab=0c0f9bdb
+-/
 lemma Scheme.Hom.isCompact_preimage [QuasiCompact f] {U : Opens Y}
     (hU : IsCompact (U : Set Y)) : IsCompact (f ⁻¹ᵁ U : Set X) :=
   f.isSpectralMap.2 U.2 hU
 
+/--
+@isnad1 id=quasicom.0h3v.s4.ff940c3d2f20 from=seed src=0 shape=31ca8f87 vocab=248c199d
+-/
 instance (priority := 900) quasiCompact_of_isIso {X Y : Scheme} (f : X ⟶ Y) [IsIso f] :
     QuasiCompact f := by
   constructor
@@ -67,6 +79,9 @@ instance (priority := 900) quasiCompact_of_isIso {X Y : Scheme} (f : X ⟶ Y) [I
     exact IsIso.inv_hom_id_apply f.base
   · exact IsIso.hom_inv_id_apply f.base
 
+/--
+@isnad1 id=quasicom.0h5v.s5.52d3bd4d4f88 from=seed src=0 shape=73d4a103 vocab=e57834e6
+-/
 instance quasiCompact_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [QuasiCompact f]
     [QuasiCompact g] : QuasiCompact (f ≫ g) := by
   constructor
@@ -76,6 +91,9 @@ instance quasiCompact_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [QuasiCo
   · exact Continuous.isOpen_preimage (by fun_prop) _ hU
   apply QuasiCompact.isCompact_preimage <;> assumption
 
+/--
+@isnad1 id=iff.0h2v.s7.c533a8432c4f from=seed src=0 shape=37e28e22 vocab=fb7296ce
+-/
 theorem isCompact_and_isOpen_iff_finite_and_eq_biUnion_affineOpens {U : Set X} :
     IsCompact U ∧ IsOpen U ↔ ∃ s : Set X.affineOpens, s.Finite ∧ U = ⋃ i ∈ s, i := by
   apply Opens.IsBasis.isCompact_open_iff_eq_finite_iUnion
@@ -83,18 +101,27 @@ theorem isCompact_and_isOpen_iff_finite_and_eq_biUnion_affineOpens {U : Set X} :
   · rw [Subtype.range_coe]; exact X.isBasis_affineOpens
   · exact fun i => i.2.isCompact
 
+/--
+@isnad1 id=iff.0h2v.s7.89b2331383e4 from=seed src=0 shape=8e027cc0 vocab=45e92cce
+-/
 theorem isCompact_iff_finite_and_eq_biUnion_affineOpens {U : X.Opens} :
     IsCompact (X := X) U ↔ ∃ s : Set X.affineOpens, s.Finite ∧ U = ⨆ i ∈ s, (i : X.Opens) := by
   convert isCompact_and_isOpen_iff_finite_and_eq_biUnion_affineOpens (U := U.1) with s
   · simp [U.isOpen]
   · convert! SetLike.coe_injective.eq_iff.symm; simp
 
+/--
+@isnad1 id=iff.0h2v.s11.ad8804f665b5 from=seed src=0 shape=214f503d vocab=c6dfcfe3
+-/
 theorem isCompact_and_isOpen_iff_finite_and_eq_biUnion_basicOpen [IsAffine X] {U : Set X} :
     IsCompact U ∧ IsOpen U ↔ ∃ s : Set Γ(X, ⊤), s.Finite ∧ U = ⋃ i ∈ s, X.basicOpen i :=
   (isBasis_basicOpen X).isCompact_open_iff_eq_finite_iUnion _
     (fun _ => ((isAffineOpen_top _).basicOpen _).isCompact) _
 
 variable {f} in
+/--
+@isnad1 id=iff.0h3v.s7.1c26e009f5f9 from=seed src=0 shape=f49ff5d6 vocab=4caf4609
+-/
 theorem quasiCompact_iff_forall_isAffineOpen :
     QuasiCompact f ↔ ∀ U : Y.Opens, IsAffineOpen U → IsCompact (f ⁻¹ᵁ U : Set X) := by
   rw [quasiCompact_iff]
@@ -104,6 +131,9 @@ theorem quasiCompact_iff_forall_isAffineOpen :
   simp only [Set.preimage_iUnion]
   exact Set.Finite.isCompact_biUnion hS (fun i _ => H i i.prop)
 
+/--
+@isnad1 id=iscompac.1h3v.s7.f63d76783c6f from=seed src=0 shape=648aa11a vocab=9cfb601c
+-/
 theorem isCompact_basicOpen (X : Scheme) {U : X.Opens} (hU : IsCompact (U : Set X))
     (f : Γ(X, U)) : IsCompact (X.basicOpen f : Set X) := by
   refine isCompact_iff_finite_and_eq_biUnion_affineOpens.mpr ?_
@@ -135,6 +165,9 @@ instance : HasAffineProperty @QuasiCompact (fun X _ _ _ ↦ CompactSpace X) wher
       exact isCompact_iUnion fun i => isCompact_iff_compactSpace.mpr (hS' i)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h1v.s4.23b54900ae30 from=seed src=0 shape=65aee5dd vocab=62f5c019
+-/
 theorem compactSpace_iff_quasiCompact (X : Scheme) :
     CompactSpace X ↔ QuasiCompact (terminal.from X) := by
   rw [HasAffineProperty.iff_of_isAffine (P := @QuasiCompact)]
@@ -148,12 +181,18 @@ A quasi-compact scheme over a quasi-compact base is also quasi-compact as a topo
 For the converse, see `quasiCompact_of_compactSpace` for the fact that
 a (topologically) quasi-compact scheme is quasi-compact over a base if the base is quasi-separated.
 -/
+/--
+@isnad1 id=compacts.0h3v.s5.9b4c8e0eefbe from=seed src=0 shape=5602b55b vocab=fcf941c5
+-/
 lemma QuasiCompact.compactSpace_of_compactSpace {X Y : Scheme.{u}} (f : X ⟶ Y) [QuasiCompact f]
     [CompactSpace Y] : CompactSpace X := by
   constructor
   rw [← Set.preimage_univ (f := f)]
   exact QuasiCompact.isCompact_preimage _ isOpen_univ CompactSpace.isCompact_univ
 
+/--
+@isnad1 id=isstable.0h0v.s2.88cf21a3ed6e from=seed src=0 shape=25b03439 vocab=96f20da5
+-/
 instance quasiCompact_isStableUnderComposition :
     MorphismProperty.IsStableUnderComposition @QuasiCompact where
   comp_mem _ _ _ _ := inferInstance
@@ -163,6 +202,9 @@ instance : MorphismProperty.IsMultiplicative @QuasiCompact where
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isstable.0h0v.s2.8a7a0779fbfc from=seed src=0 shape=25b03439 vocab=83783b5f
+-/
 instance quasiCompact_isStableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange @QuasiCompact := by
   let := HasAffineProperty.isLocal_affineProperty @QuasiCompact
@@ -194,6 +236,9 @@ instance (f : X ⟶ Z) (g : Y ⟶ Z) [QuasiCompact f] [CompactSpace Y] : Compact
 instance (f : X ⟶ Z) (g : Y ⟶ Z) [QuasiCompact g] [CompactSpace X] : CompactSpace ↑(pullback f g) :=
   QuasiCompact.compactSpace_of_compactSpace (pullback.fst _ _)
 
+/--
+@isnad1 id=iff.0h1v.s7.a14f1495a67a from=seed src=0 shape=dde832c6 vocab=dcdd0dd2
+-/
 lemma compactSpace_iff_exists :
     CompactSpace X ↔ ∃ R, ∃ f : Spec R ⟶ X, Function.Surjective f where
   mp _ := let 𝒰 : X.OpenCover := X.affineCover.finiteSubcover
@@ -201,6 +246,9 @@ lemma compactSpace_iff_exists :
   mpr := fun ⟨_, f, hf⟩ ↦ ⟨hf.range_eq ▸ isCompact_range f.continuous⟩
 
 
+/--
+@isnad1 id=iff.0h2v.s8.a0932215cabf from=seed src=0 shape=87fb14f8 vocab=c5a676da
+-/
 lemma isCompact_iff_exists {U : X.Opens} :
     IsCompact (U : Set X) ↔ ∃ R, ∃ f : Spec R ⟶ X, Set.range f = U := by
   refine isCompact_iff_compactSpace.trans ((compactSpace_iff_exists (X := U)).trans ?_)
@@ -212,6 +260,9 @@ lemma isCompact_iff_exists {U : X.Opens} :
   rwa [← Set.range_comp, ← TopCat.coe_comp, ← Scheme.Hom.comp_base, IsOpenImmersion.lift_fac]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s8.94f3a06bb656 from=seed src=0 shape=0d786af3 vocab=0caead83
+-/
 @[stacks 01K9]
 nonrec lemma isClosedMap_iff_specializingMap (f : X ⟶ Y) [QuasiCompact f] :
     IsClosedMap f ↔ SpecializingMap f := by
@@ -238,6 +289,9 @@ nonrec lemma isClosedMap_iff_specializingMap (f : X ⟶ Y) [QuasiCompact f] :
   obtain ⟨φ, rfl⟩ := Spec.homEquiv.symm.surjective f
   exact PrimeSpectrum.isClosed_image_of_stableUnderSpecialization φ.hom Z hZ H
 
+/--
+@isnad1 id=var.1h5v.s7.08390e08bea0 from=seed src=0 shape=f6e5e846 vocab=a3821867
+-/
 @[elab_as_elim]
 theorem compact_open_induction_on {P : X.Opens → Prop} (S : X.Opens)
     (hS : IsCompact (S : Set X)) (h₁ : P ⊥)
@@ -248,6 +302,9 @@ theorem compact_open_induction_on {P : X.Opens → Prop} (S : X.Opens)
   rw [iSup_insert, sup_comm]
   exact h₂ _ (isCompact_iff_finite_and_eq_biUnion_affineOpens.mpr ⟨s, hs, by simp⟩) x h₄
 
+/--
+@isnad1 id=ex.2h4v.s12.fa8b0107a54a from=seed src=0 shape=a3e91bb6 vocab=83c68d2d
+-/
 theorem exists_pow_mul_eq_zero_of_res_basicOpen_eq_zero_of_isAffineOpen (X : Scheme)
     {U : X.Opens} (hU : IsAffineOpen U) (x f : Γ(X, U))
     (H : x |_ (X.basicOpen f) = 0) :
@@ -257,7 +314,9 @@ theorem exists_pow_mul_eq_zero_of_res_basicOpen_eq_zero_of_isAffineOpen (X : Sch
   exact ⟨n, by simpa [mul_comm x] using e⟩
 
 /-- If `x : Γ(X, U)` is zero on `D(f)` for some `f : Γ(X, U)`, and `U` is quasi-compact, then
-`f ^ n * x = 0` for some `n`. -/
+`f ^ n * x = 0` for some `n`.
+@isnad1 id=ex.2h4v.s12.7f2c6c054bc5 from=seed src=0 shape=4e5a0ea0 vocab=e1a92da6
+-/
 theorem exists_pow_mul_eq_zero_of_res_basicOpen_eq_zero_of_isCompact (X : Scheme.{u})
     {U : X.Opens} (hU : IsCompact U.1) (x f : Γ(X, U))
     (H : x |_ (X.basicOpen f) = 0) :
@@ -300,7 +359,9 @@ theorem exists_pow_mul_eq_zero_of_res_basicOpen_eq_zero_of_isCompact (X : Scheme
   apply Finset.le_sup (Finset.mem_univ i)
 
 /-- A section over a compact open of a scheme is nilpotent if and only if its associated
-basic open is empty. -/
+basic open is empty.
+@isnad1 id=iff.1h3v.s10.6c55b955c278 from=seed src=0 shape=9b09adc9 vocab=953cc6a7
+-/
 lemma Scheme.isNilpotent_iff_basicOpen_eq_bot_of_isCompact {X : Scheme.{u}}
     {U : X.Opens} (hU : IsCompact (U : Set X)) (f : Γ(X, U)) :
     IsNilpotent f ↔ X.basicOpen f = ⊥ := by
@@ -316,14 +377,18 @@ lemma Scheme.isNilpotent_iff_basicOpen_eq_bot_of_isCompact {X : Scheme.{u}}
   use n
 
 /-- A global section of a quasi-compact scheme is nilpotent if and only if its associated
-basic open is empty. -/
+basic open is empty.
+@isnad1 id=iff.0h2v.s11.96c30fe90e5f from=seed src=0 shape=d88d3957 vocab=5a20f276
+-/
 lemma Scheme.isNilpotent_iff_basicOpen_eq_bot {X : Scheme.{u}}
     [CompactSpace X] (f : Γ(X, ⊤)) :
     IsNilpotent f ↔ X.basicOpen f = ⊥ :=
   isNilpotent_iff_basicOpen_eq_bot_of_isCompact (U := ⊤) (CompactSpace.isCompact_univ) f
 
 /-- The zero locus of a set of sections over a compact open of a scheme is `X` if and only if
-`s` is contained in the nilradical of `Γ(X, U)`. -/
+`s` is contained in the nilradical of `Γ(X, U)`.
+@isnad1 id=iff.1h3v.s11.a5bfa816a1df from=seed src=0 shape=6e9d0e47 vocab=86dd384f
+-/
 lemma Scheme.zeroLocus_eq_univ_iff_subset_nilradical_of_isCompact {X : Scheme.{u}} {U : X.Opens}
     (hU : IsCompact (U : Set X)) (s : Set Γ(X, U)) :
     X.zeroLocus s = Set.univ ↔ s ⊆ nilradical Γ(X, U) := by
@@ -331,7 +396,9 @@ lemma Scheme.zeroLocus_eq_univ_iff_subset_nilradical_of_isCompact {X : Scheme.{u
     ← mem_nilradical, Set.subset_def]
 
 /-- The zero locus of a set of sections over a compact open of a scheme is `X` if and only if
-`s` is contained in the nilradical of `Γ(X, U)`. -/
+`s` is contained in the nilradical of `Γ(X, U)`.
+@isnad1 id=iff.0h2v.s12.4a3a22aa156a from=seed src=0 shape=3a9f8b73 vocab=c16971a2
+-/
 lemma Scheme.zeroLocus_eq_univ_iff_subset_nilradical {X : Scheme.{u}}
     [CompactSpace X] (s : Set Γ(X, ⊤)) :
     X.zeroLocus s = Set.univ ↔ s ⊆ nilradical Γ(X, ⊤) :=

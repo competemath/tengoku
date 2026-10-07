@@ -128,6 +128,9 @@ attribute [local instance] instMonoidalCategoryAux
 open MonoidalCategory ModuleCat.MonoidalCategory
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s12.7efcc21d647a from=seed src=0 shape=37fc7cc7 vocab=a28de2c4
+-/
 theorem tensorObj_comul (K L : CoalgCat R) :
     Coalgebra.comul (R := R) (A := (K ⊗ L : CoalgCat R))
       = (TensorProduct.tensorTensorTensorComm R K K L L).toLinearMap
@@ -139,19 +142,31 @@ theorem tensorObj_comul (K L : CoalgCat R) :
     ModuleCat.hom_ofHom]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.ab8c34b1cee4 from=seed src=0 shape=aef24d94 vocab=c9cdd44c
+-/
 theorem tensorHom_toLinearMap (f : M →ₗc[R] N) (g : P →ₗc[R] Q) :
     (CoalgCat.ofHom f ⊗ₘ CoalgCat.ofHom g).1.toLinearMap
       = TensorProduct.map f.toLinearMap g.toLinearMap := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.4ac3259a9a2d from=seed src=0 shape=e01d937d vocab=2d20979d
+-/
 theorem associator_hom_toLinearMap :
     (α_ (CoalgCat.of R M) (CoalgCat.of R N) (CoalgCat.of R P)).hom.1.toLinearMap
       = (TensorProduct.assoc R M N P).toLinearMap :=
   TensorProduct.ext <| TensorProduct.ext <| by ext; rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.b876fbbac165 from=seed src=0 shape=98aa8a47 vocab=0a2a3bb6
+-/
 theorem leftUnitor_hom_toLinearMap :
     (λ_ (CoalgCat.of R M)).hom.1.toLinearMap = (TensorProduct.lid R M).toLinearMap :=
   TensorProduct.ext <| by ext; rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.15db8d12d76a from=seed src=0 shape=7471c053 vocab=cd3b9067
+-/
 theorem rightUnitor_hom_toLinearMap :
     (ρ_ (CoalgCat.of R M)).hom.1.toLinearMap = (TensorProduct.rid R M).toLinearMap :=
   TensorProduct.ext <| by ext; rfl
@@ -160,6 +175,9 @@ open TensorProduct
 
 set_option backward.isDefEq.respectTransparency false in
 attribute [local simp] MonObj.tensorObj.one_def MonObj.tensorObj.mul_def in
+/--
+@isnad1 id=eq.0h3v.s10.03b9eb039bc6 from=seed src=0 shape=2477a58f vocab=1d044f88
+-/
 theorem comul_tensorObj :
     Coalgebra.comul (R := R) (A := (CoalgCat.of R M ⊗ CoalgCat.of R N : CoalgCat R))
       = Coalgebra.comul (A := M ⊗[R] N) := by
@@ -170,6 +188,9 @@ theorem comul_tensorObj :
 
 set_option backward.isDefEq.respectTransparency false in
 attribute [local simp] MonObj.tensorObj.one_def MonObj.tensorObj.mul_def in
+/--
+@isnad1 id=eq.0h4v.s11.d22f8f6970be from=seed src=0 shape=29dff926 vocab=1d044f88
+-/
 theorem comul_tensorObj_tensorObj_right :
     Coalgebra.comul (R := R) (A := (CoalgCat.of R M ⊗
       (CoalgCat.of R N ⊗ CoalgCat.of R P) : CoalgCat R))
@@ -183,6 +204,9 @@ theorem comul_tensorObj_tensorObj_right :
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 attribute [local simp] MonObj.tensorObj.one_def MonObj.tensorObj.mul_def in
+/--
+@isnad1 id=eq.0h4v.s11.ca29eee001a0 from=seed src=0 shape=82b945a8 vocab=8d75e7a2
+-/
 theorem comul_tensorObj_tensorObj_left :
     Coalgebra.comul (R := R)
       (A := ((CoalgCat.of R M ⊗ CoalgCat.of R N) ⊗ CoalgCat.of R P : CoalgCat R))
@@ -193,6 +217,9 @@ theorem comul_tensorObj_tensorObj_left :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s9.d9009106a6c7 from=seed src=0 shape=98805239 vocab=0e99bfdf
+-/
 theorem counit_tensorObj :
     Coalgebra.counit (R := R) (A := (CoalgCat.of R M ⊗ CoalgCat.of R N : CoalgCat R))
       = Coalgebra.counit (A := M ⊗[R] N) := by
@@ -201,6 +228,9 @@ theorem counit_tensorObj :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s10.5ebea40730df from=seed src=0 shape=f661540c vocab=0e99bfdf
+-/
 theorem counit_tensorObj_tensorObj_right :
     Coalgebra.counit (R := R)
       (A := (CoalgCat.of R M ⊗ (CoalgCat.of R N ⊗ CoalgCat.of R P) : CoalgCat R))
@@ -210,6 +240,9 @@ theorem counit_tensorObj_tensorObj_right :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s10.d79ccb2b587d from=seed src=0 shape=f4995fe0 vocab=12ba6f5e
+-/
 theorem counit_tensorObj_tensorObj_left :
     Coalgebra.counit (R := R)
       (A := ((CoalgCat.of R M ⊗ CoalgCat.of R N) ⊗ CoalgCat.of R P : CoalgCat R))

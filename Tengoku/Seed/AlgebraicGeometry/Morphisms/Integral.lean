@@ -36,6 +36,9 @@ affine and the induced ring hom on sections is integral. -/
 class IsIntegralHom {X Y : Scheme} (f : X ⟶ Y) : Prop extends IsAffineHom f where
   isIntegral_app (f) (U : Y.Opens) (hU : IsAffineOpen U) : (f.app U).hom.IsIntegral
 
+/--
+@isnad1 id=isintegr.1h4v.s10.f56d7973c96e from=seed src=0 shape=048d87f5 vocab=f2f05ef6
+-/
 alias Scheme.Hom.isIntegral_app := IsIntegralHom.isIntegral_app
 
 namespace IsIntegralHom
@@ -43,6 +46,9 @@ namespace IsIntegralHom
 variable {X Y Z S : Scheme.{u}}
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=hasaffin.0h0v.s10.c0726565f578 from=seed src=0 shape=7c364880 vocab=d88b0170
+-/
 instance hasAffineProperty : HasAffineProperty @IsIntegralHom
     fun X _ f _ ↦ IsAffine X ∧ RingHom.IsIntegral (f.app ⊤).hom := by
   change HasAffineProperty @IsIntegralHom (affineAnd RingHom.IsIntegral)
@@ -84,14 +90,23 @@ instance : MorphismProperty.HasOfPostcompProperty @IsIntegralHom @IsSeparated :=
   MorphismProperty.hasOfPostcompProperty_iff_le_diagonal.mpr
     fun _ _ _ _ ↦ inferInstanceAs (IsIntegralHom _)
 
+/--
+@isnad1 id=isintegr.0h5v.s5.3eb769ff1c88 from=seed src=0 shape=77972de3 vocab=0f1b1e63
+-/
 lemma of_comp (f : X ⟶ Y) (g : Y ⟶ Z) [IsIntegralHom (f ≫ g)] [IsSeparated g] :
     IsIntegralHom f := MorphismProperty.of_postcomp _ _ g ‹_› ‹_›
 
+/--
+@isnad1 id=iff.0h5v.s5.f1460447a625 from=seed src=0 shape=daa213a1 vocab=86075e6a
+-/
 lemma comp_iff {f : X ⟶ Y} {g : Y ⟶ Z} [IsIntegralHom g] :
     IsIntegralHom (f ≫ g) ↔ IsIntegralHom f :=
   ⟨fun _ ↦ .of_comp f g, fun _ ↦ inferInstance⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s5.55b83b02eb01 from=seed src=0 shape=110effa8 vocab=a8783e58
+-/
 lemma SpecMap_iff {R S : CommRingCat} {φ : R ⟶ S} :
     IsIntegralHom (Spec.map φ) ↔ φ.hom.IsIntegral := by
   have := RingHom.toMorphismProperty_respectsIso_iff.mp RingHom.isIntegral_respectsIso
@@ -133,6 +148,9 @@ instance (priority := 100) (f : X ⟶ Y) [IsIntegralHom f] :
   exact PrimeSpectrum.isClosedMap_comap_of_isIntegral _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s4.f8ae7bb7f0fa from=seed src=0 shape=2caf7a2f vocab=6ff37039
+-/
 lemma iff_universallyClosed_and_isAffineHom {X Y : Scheme.{u}} {f : X ⟶ Y} :
     IsIntegralHom f ↔ UniversallyClosed f ∧ IsAffineHom f := by
   refine ⟨fun _ ↦ ⟨inferInstance, inferInstance⟩, fun ⟨H₁, H₂⟩ ↦ ?_⟩

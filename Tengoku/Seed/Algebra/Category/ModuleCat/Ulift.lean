@@ -76,6 +76,9 @@ instance : Limits.PreservesFiniteLimits (uliftFunctor.{v', v} R) :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=exact.1h2v.s6.29912259618f from=seed src=0 shape=38fcdac6 vocab=bee468c9
+-/
 lemma uliftFunctor_map_exact (S : ShortComplex (ModuleCat.{v} R)) (h : S.Exact) :
     (S.map (uliftFunctor R)).Exact := by
   rw [CategoryTheory.ShortComplex.ShortExact.moduleCat_exact_iff_function_exact]

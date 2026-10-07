@@ -100,6 +100,9 @@ noncomputable def mapBifunctorShift₁Iso :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.3h12v.s11.c9fcb2e79eea from=seed src=0 shape=3843a18b vocab=4acb96ff
+-/
 @[reassoc]
 lemma ι_mapBifunctorShift₁Iso_hom_f (n₁ n₂ n : ℤ) (h : n₁ + n₂ = n)
     (m₁ m : ℤ) (hm₁ : m₁ = n₁ + x) (hm : m = n + x) :
@@ -116,6 +119,9 @@ lemma ι_mapBifunctorShift₁Iso_hom_f (n₁ n₂ n : ℤ) (h : n₁ + n₂ = n)
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 variable {K₁ L₁} in
+/--
+@isnad1 id=eq.0h9v.s12.1ba7de785f26 from=seed src=0 shape=65e73a4d vocab=6568e7fe
+-/
 @[reassoc (attr := simp)]
 lemma mapBifunctorShift₁Iso_hom_naturality₁ [HasMapBifunctor L₁ K₂ F] :
     mapBifunctorMap (f₁⟦x⟧') (𝟙 K₂) F (.up ℤ) ≫ (mapBifunctorShift₁Iso L₁ K₂ F x).hom =
@@ -162,6 +168,9 @@ noncomputable def mapBifunctorShift₂Iso :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.3h12v.s12.259d8d2e85df from=seed src=0 shape=a4390619 vocab=68451339
+-/
 @[reassoc]
 lemma ι_mapBifunctorShift₂Iso_hom_f (n₁ n₂ n : ℤ) (h : n₁ + n₂ = n)
     (m₂ m : ℤ) (hm₂ : m₂ = n₂ + y) (hm : m = n + y) :
@@ -178,6 +187,9 @@ lemma ι_mapBifunctorShift₂Iso_hom_f (n₁ n₂ n : ℤ) (h : n₁ + n₂ = n)
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 variable {K₂ L₂} in
+/--
+@isnad1 id=eq.0h9v.s12.af0ebf9b15c3 from=seed src=0 shape=fb49018d vocab=9079e04a
+-/
 @[reassoc (attr := simp)]
 lemma mapBifunctorShift₂Iso_hom_naturality₂ [HasMapBifunctor K₁ L₂ F] :
     mapBifunctorMap (𝟙 K₁) (f₂⟦y⟧') F (.up ℤ) ≫ (mapBifunctorShift₂Iso K₁ L₂ F y).hom =
@@ -197,6 +209,9 @@ variable [Preadditive C₁] [Preadditive C₂] [Preadditive D]
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s13.4ca6b2149c5e from=seed src=0 shape=897f6eb3 vocab=5a12ecd8
+-/
 lemma mapBifunctorShift₁Iso_trans_mapBifunctorShift₂Iso :
     mapBifunctorShift₁Iso K₁ (K₂⟦y⟧) F x ≪≫
       (CategoryTheory.shiftFunctor _ x).mapIso (mapBifunctorShift₂Iso K₁ K₂ F y) =
@@ -255,11 +270,17 @@ noncomputable instance (K₁ : CochainComplex C₁ ℤ) :
         ← Int.negOnePow_add, CochainComplex.shiftFunctorAdd_eq,
         add_comm (p * b), mul_add, XIsoOfEq]
 
+/--
+@isnad1 id=eq.0h7v.s12.03170fd6b68a from=seed src=0 shape=68782cbb vocab=2984d938
+-/
 lemma commShiftIso_map₂CochainComplex_hom_app (K₁ : CochainComplex C₁ ℤ)
     (K₂ : CochainComplex C₂ ℤ) (n : ℤ) :
     ((F.map₂CochainComplex.obj K₁).commShiftIso n).hom.app K₂ =
       (CochainComplex.mapBifunctorShift₂Iso K₁ K₂ F n).hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.c3c123c731d2 from=seed src=0 shape=bc5d947c vocab=6c33cebf
+-/
 lemma commShiftIso_map₂CochainComplex_inv_app (K₁ : CochainComplex C₁ ℤ)
     (K₂ : CochainComplex C₂ ℤ) (n : ℤ) :
     ((F.map₂CochainComplex.obj K₁).commShiftIso n).inv.app K₂ =
@@ -301,11 +322,17 @@ noncomputable instance (K₂ : CochainComplex C₂ ℤ) :
         (by lia) (p + a + b) (n + a + b) (by lia) (by lia),
       CochainComplex.shiftFunctorAdd_eq, XIsoOfEq, eqToHom_map]
 
+/--
+@isnad1 id=eq.0h7v.s12.2502f0b48ff7 from=seed src=0 shape=765759a1 vocab=4b6ee905
+-/
 lemma commShiftIso_map₂CochainComplex_flip_hom_app (K₁ : CochainComplex C₁ ℤ)
     (K₂ : CochainComplex C₂ ℤ) (n : ℤ) :
     ((F.map₂CochainComplex.flip.obj K₂).commShiftIso n).hom.app K₁ =
       (CochainComplex.mapBifunctorShift₁Iso K₁ K₂ F n).hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.0ca4f13e9515 from=seed src=0 shape=0c5bb4ff vocab=5e0ab98c
+-/
 lemma commShiftIso_map₂CochainComplex_flip_inv_app (K₁ : CochainComplex C₁ ℤ)
     (K₂ : CochainComplex C₂ ℤ) (n : ℤ) :
     ((F.map₂CochainComplex.flip.obj K₂).commShiftIso n).inv.app K₁ =

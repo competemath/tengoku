@@ -61,6 +61,9 @@ def CokernelData.ofSection (s : M₂ → (pres₂.G →₀ A))
   lift i := s (f (g₁ i))
   π_lift i := by simp [hs]
 
+/--
+@isnad1 id=nonempty.0h7v.s6.f3be6ea1f9e7 from=seed src=0 shape=33592796 vocab=f65c69ba
+-/
 instance nonempty_cokernelData :
     Nonempty (pres₂.CokernelData f g₁) := by
   obtain ⟨s, hs⟩ := pres₂.surjective_π.hasRightInverse
@@ -122,6 +125,9 @@ noncomputable def isPresentationCore :
     exact Relations.Solution.congr_var h g
 
 include hg₁ in
+/--
+@isnad1 id=ispresen.1h8v.s8.ba20572afebf from=seed src=0 shape=3d44a846 vocab=094d98cb
+-/
 lemma isPresentation : (pres₂.cokernelSolution data).IsPresentation :=
   (isPresentationCore pres₂ data hg₁).isPresentation
 

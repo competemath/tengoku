@@ -57,7 +57,13 @@ section AddMonoid
 
 variable [AddMonoid k]
 
+/--
+@isnad1 id=eq.0h3v.s5.480928266abf from=seed src=0 shape=8c006f34 vocab=a653dc56
+-/
 @[simp] lemma eta (f : SkewMonoidAlgebra k G) : ofCoeff f.coeff = f := rfl
+/--
+@isnad1 id=eq.0h3v.s5.14d1ce05f1bb from=seed src=0 shape=a33ea8a3 vocab=bde7b088
+-/
 @[simp] lemma coeff_ofCoeff (f : G →₀ k) : coeff (ofCoeff f) = f := rfl
 
 set_option backward.privateInPublic true in
@@ -84,41 +90,77 @@ instance {S : Type*} [SMulZeroClass S k] :
   smul s f := smul s f
   smul_zero a := by exact congr_arg ofCoeff (smul_zero a)
 
+/--
+@isnad1 id=eq.0h2v.s6.df5f03947d85 from=seed src=0 shape=eccb823e vocab=92265c26
+-/
 @[simp]
 theorem ofCoeff_zero : (⟨0⟩ : SkewMonoidAlgebra k G) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.df5f03947d85 from=seed src=0 shape=eccb823e vocab=92265c26
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_zero := ofCoeff_zero
 
+/--
+@isnad1 id=eq.0h4v.s7.55bb28cb3846 from=seed src=0 shape=f4486d9c vocab=680daafd
+-/
 @[simp]
 theorem ofCoeff_add {a b} : (⟨a + b⟩ : SkewMonoidAlgebra k G) = ⟨a⟩ + ⟨b⟩ :=
   show _ = add _ _ by rw [add]
 
+/--
+@isnad1 id=eq.0h4v.s7.55bb28cb3846 from=seed src=0 shape=f4486d9c vocab=680daafd
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_add := ofCoeff_add
 
+/--
+@isnad1 id=eq.0h5v.s7.f744f93e4c52 from=seed src=0 shape=4f96642e vocab=67640e43
+-/
 @[simp]
 theorem ofCoeff_smul {S : Type*} [SMulZeroClass S k] (a : S) (b : G →₀ k) :
     (⟨a • b⟩ : SkewMonoidAlgebra k G) = (a • ⟨b⟩ : SkewMonoidAlgebra k G) :=
   show _ = smul _ _ by rw [smul]
 
+/--
+@isnad1 id=eq.0h5v.s7.f744f93e4c52 from=seed src=0 shape=4f96642e vocab=67640e43
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_smul := ofCoeff_smul
 
+/--
+@isnad1 id=eq.0h2v.s6.c827ef8857f3 from=seed src=0 shape=6f38fff9 vocab=dee66660
+-/
 @[simp]
 theorem coeff_zero : (0 : SkewMonoidAlgebra k G).coeff = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.c827ef8857f3 from=seed src=0 shape=6f38fff9 vocab=dee66660
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_zero := coeff_zero
 
+/--
+@isnad1 id=eq.0h4v.s7.27e454cfd05a from=seed src=0 shape=d914cfa7 vocab=d908cdce
+-/
 @[simp]
 theorem coeff_add (a b : SkewMonoidAlgebra k G) :
     (a + b).coeff = a.coeff + b.coeff := by
   rw [← ofCoeff_add]
 
+/--
+@isnad1 id=eq.0h4v.s7.27e454cfd05a from=seed src=0 shape=d914cfa7 vocab=d908cdce
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_add := coeff_add
 
+/--
+@isnad1 id=eq.0h5v.s7.1e8ffd0cdcaa from=seed src=0 shape=e65188bb vocab=27a2c0a9
+-/
 @[simp]
 theorem coeff_smul {S : Type*} [SMulZeroClass S k] (a : S) (b : SkewMonoidAlgebra k G) :
     (a • b).coeff = a • b.coeff := by
   rw [← ofCoeff_smul]
 
+/--
+@isnad1 id=eq.0h5v.s7.1e8ffd0cdcaa from=seed src=0 shape=e65188bb vocab=27a2c0a9
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_smul := coeff_smul
 
 theorem _root_.IsSMulRegular.skewMonoidAlgebra {S : Type*} [Monoid S] [DistribMulAction S k] {a : S}
@@ -126,40 +168,75 @@ theorem _root_.IsSMulRegular.skewMonoidAlgebra {S : Type*} [Monoid S] [DistribMu
   | ⟨_⟩, ⟨_⟩, h => by
     exact congr_arg _ <| ha.finsupp (ofCoeff.inj h)
 
+/--
+@isnad1 id=injectiv.0h2v.s5.016a48913b58 from=seed src=0 shape=44b4e813 vocab=85f4e91b
+-/
 theorem coeff_injective :
     Function.Injective (coeff : SkewMonoidAlgebra k G → Finsupp _ _) :=
   fun ⟨_⟩ _ ↦ congr_arg _
 
+/--
+@isnad1 id=injectiv.0h2v.s5.016a48913b58 from=seed src=0 shape=44b4e813 vocab=85f4e91b
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_injective := coeff_injective
 
+/--
+@isnad1 id=iff.0h4v.s6.cdfa0d5ecb72 from=seed src=0 shape=c3417ec0 vocab=dee66660
+-/
 @[simp]
 theorem coeff_inj {a b : SkewMonoidAlgebra k G} : a.coeff = b.coeff ↔ a = b :=
   coeff_injective.eq_iff
 
+/--
+@isnad1 id=iff.0h4v.s6.cdfa0d5ecb72 from=seed src=0 shape=c3417ec0 vocab=dee66660
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_inj := coeff_inj
 
+/--
+@isnad1 id=injectiv.0h2v.s5.92c0732b5de9 from=seed src=0 shape=2577b397 vocab=5f4cf8d1
+-/
 theorem ofCoeff_injective :
     Function.Injective (ofCoeff : Finsupp _ _ → SkewMonoidAlgebra k G) :=
   fun _ _ ↦ congr_arg coeff
 
+/--
+@isnad1 id=injectiv.0h2v.s5.92c0732b5de9 from=seed src=0 shape=2577b397 vocab=5f4cf8d1
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_injective := ofCoeff_injective
 
-/-- A variant of `SkewMonoidAlgebra.ofCoeff_injective` in terms of `Iff`. -/
+/-- A variant of `SkewMonoidAlgebra.ofCoeff_injective` in terms of `Iff`.
+@isnad1 id=iff.0h4v.s6.6a8bf3941c52 from=seed src=0 shape=45b0d93b vocab=92265c26
+-/
 theorem ofCoeff_inj {a b} : (⟨a⟩ : SkewMonoidAlgebra k G) = ⟨b⟩ ↔ a = b :=
   ofCoeff_injective.eq_iff
 
+/--
+@isnad1 id=iff.0h4v.s6.6a8bf3941c52 from=seed src=0 shape=45b0d93b vocab=92265c26
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_inj := ofCoeff_inj
 
+/--
+@isnad1 id=iff.0h3v.s6.258f722e2d1a from=seed src=0 shape=8baa33c8 vocab=dee66660
+-/
 @[simp]
 theorem coeff_eq_zero {a : SkewMonoidAlgebra k G} : a.coeff = 0 ↔ a = 0 :=
   coeff_inj
 
+/--
+@isnad1 id=iff.0h3v.s6.258f722e2d1a from=seed src=0 shape=8baa33c8 vocab=dee66660
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_eq_zero := coeff_eq_zero
 
+/--
+@isnad1 id=iff.0h3v.s6.39f35a610f50 from=seed src=0 shape=bed35058 vocab=92265c26
+-/
 @[simp]
 theorem ofCoeff_eq_zero {a} : (⟨a⟩ : SkewMonoidAlgebra k G) = 0 ↔ a = 0 :=
   ofCoeff_inj
 
+/--
+@isnad1 id=iff.0h3v.s6.39f35a610f50 from=seed src=0 shape=bed35058 vocab=92265c26
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_eq_zero := ofCoeff_eq_zero
 
 instance : Inhabited (SkewMonoidAlgebra k G) := ⟨0⟩
@@ -180,25 +257,46 @@ section Support
 `f.coeff a ≠ 0`. -/
 def support (p : SkewMonoidAlgebra k G) : Finset G := p.coeff.support
 
+/--
+@isnad1 id=eq.0h3v.s5.b35792993087 from=seed src=0 shape=a90b0a01 vocab=c75e42a7
+-/
 @[simp]
 theorem support_ofCoeff (p) : support (⟨p⟩ : SkewMonoidAlgebra k G) = p.support := by
   rw [support]
 
+/--
+@isnad1 id=eq.0h3v.s5.b35792993087 from=seed src=0 shape=a90b0a01 vocab=c75e42a7
+-/
 @[deprecated (since := "2026-07-04")] alias support_ofFinsupp := support_ofCoeff
 
+/--
+@isnad1 id=eq.0h3v.s5.e0b3a31de3a5 from=seed src=0 shape=c17c383a vocab=7a97d49c
+-/
 theorem support_coeff (p : SkewMonoidAlgebra k G) : p.coeff.support = p.support := by
   rw [support]
 
+/--
+@isnad1 id=eq.0h3v.s5.e0b3a31de3a5 from=seed src=0 shape=c17c383a vocab=7a97d49c
+-/
 @[deprecated (since := "2026-07-04")] alias support_toFinsupp := support_coeff
 
+/--
+@isnad1 id=eq.0h2v.s5.ad5c64690a95 from=seed src=0 shape=ece5481b vocab=0ad5c010
+-/
 @[simp]
 theorem support_zero : (0 : SkewMonoidAlgebra k G).support = ∅ := rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.0dd1a90a8126 from=seed src=0 shape=85e47b7a vocab=0ad5c010
+-/
 @[simp]
 theorem support_eq_empty {p} : p.support = ∅ ↔ (p : SkewMonoidAlgebra k G) = 0 := by
   rcases p
   simp only [support, Finsupp.support_eq_empty, ofCoeff_eq_zero]
 
+/--
+@isnad1 id=le.0h4v.s6.3589683a0ac5 from=seed src=0 shape=a8c2cf49 vocab=f8fdf2d1
+-/
 lemma support_add [DecidableEq G] {p q : SkewMonoidAlgebra k G} :
     (p + q).support ⊆ p.support ∪ q.support := by
   simpa [support] using Finsupp.support_add
@@ -207,25 +305,43 @@ end Support
 
 section Coeff
 
+/--
+@isnad1 id=eq.0h3v.s5.14d1ce05f1bb from=seed src=0 shape=a33ea8a3 vocab=bde7b088
+-/
 @[deprecated (since := "2026-07-06")] alias coeff_ofFinsupp := coeff_ofCoeff
 
+/--
+@isnad1 id=eq.0h4v.s6.5c3932ff92ac from=seed src=0 shape=c286da09 vocab=dfcca974
+-/
 @[deprecated "Now a syntactic tautology" (since := "2026-07-04"), nolint synTaut]
 theorem toFinsupp_apply (f : SkewMonoidAlgebra k G) (g) : f.coeff g = f.coeff g := rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.c4052168a4d4 from=seed src=0 shape=3f394471 vocab=a3a17e7d
+-/
 @[simp]
 theorem mem_support_iff {f : SkewMonoidAlgebra k G} {a : G} : a ∈ f.support ↔ f.coeff a ≠ 0 := by
   rcases f with ⟨⟩
   simp only [support_ofCoeff, Finsupp.mem_support_iff, ne_eq]
 
+/--
+@isnad1 id=iff.0h4v.s6.1c69c43a4b91 from=seed src=0 shape=781167cf vocab=a3a17e7d
+-/
 theorem notMem_support_iff {f : SkewMonoidAlgebra k G} {a : G} :
     a ∉ f.support ↔ f.coeff a = 0 := by
   simp only [mem_support_iff, ne_eq, not_not]
 
+/--
+@isnad1 id=iff.0h4v.s6.be405a0a344f from=seed src=0 shape=a29c62a0 vocab=dfcca974
+-/
 theorem ext_iff {p q : SkewMonoidAlgebra k G} : p = q ↔ ∀ n, coeff p n = coeff q n := by
   rcases p with ⟨f : G →₀ k⟩
   rcases q with ⟨g : G →₀ k⟩
   simpa [coeff] using DFunLike.ext_iff (f := f) (g := g)
 
+/--
+@isnad1 id=eq.1h4v.s6.c5e2534c15bb from=seed src=0 shape=aa713f97 vocab=dfcca974
+-/
 @[ext]
 theorem ext {p q : SkewMonoidAlgebra k G} : (∀ a, coeff p a = coeff q a) → p = q := ext_iff.2
 
@@ -236,31 +352,58 @@ section Single
 /-- `single a b` is the finitely supported function with value `b` at `a` and zero otherwise. -/
 def single (a : G) (b : k) : SkewMonoidAlgebra k G := ⟨Finsupp.single a b⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.1e8f5e57bc09 from=seed src=0 shape=24a20715 vocab=f4de5a6f
+-/
 @[simp]
 theorem coeff_single (a : G) (b : k) : (single a b).coeff = Finsupp.single a b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.1e8f5e57bc09 from=seed src=0 shape=24a20715 vocab=f4de5a6f
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_single := coeff_single
 
+/--
+@isnad1 id=eq.0h4v.s5.9d93d6ca46ec from=seed src=0 shape=a319bb03 vocab=14877622
+-/
 @[simp]
 theorem ofCoeff_single (a : G) (b : k) : ⟨Finsupp.single a b⟩ = single a b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9d93d6ca46ec from=seed src=0 shape=a319bb03 vocab=14877622
+-/
 @[deprecated (since := "2026-07-06")] alias ofFinsupp_single := ofCoeff_single
 
+/--
+@isnad1 id=eq.0h5v.s6.c9ec35c15f75 from=seed src=0 shape=50bcc447 vocab=3b410c94
+-/
 theorem coeff_single_apply {a a' : G} {b : k} [Decidable (a = a')] :
     coeff (single a b) a' = if a = a' then b else 0 := by
   simp [Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.fdc53035cdb9 from=seed src=0 shape=c9633937 vocab=922ce9a0
+-/
 theorem single_zero_right (a : G) : single a (0 : k) = 0 := by
   simp [← coeff_inj]
 
+/--
+@isnad1 id=eq.0h5v.s6.47c293766d96 from=seed src=0 shape=b3617065 vocab=1747f8e5
+-/
 @[simp]
 theorem single_add (a : G) (b₁ b₂ : k) : single a (b₁ + b₂) = single a b₁ + single a b₂ := by
   simp [← coeff_inj]
 
+/--
+@isnad1 id=eq.0h3v.s6.fdc53035cdb9 from=seed src=0 shape=c9633937 vocab=922ce9a0
+-/
 @[simp]
 theorem single_zero (a : G) : (single a 0 : SkewMonoidAlgebra k G) = 0 := by
   simp [← coeff_inj]
 
+/--
+@isnad1 id=iff.0h4v.s6.edbbe8095222 from=seed src=0 shape=acd69ee5 vocab=922ce9a0
+-/
 theorem single_eq_zero {a : G} {b : k} : single a b = 0 ↔ b = 0 := by
   simp [← coeff_inj]
 
@@ -273,17 +416,32 @@ def coeffAddEquiv : SkewMonoidAlgebra k G ≃+ (G →₀ k) where
   map_add' := coeff_add
 
 @[deprecated (since := "2026-07-04")] alias toFinsuppAddEquiv := coeffAddEquiv
+/--
+@isnad1 id=eq.0h3v.s7.111cd3dbc5a0 from=seed src=0 shape=2b12d148 vocab=e894f081
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsuppAddEquiv_apply := coeffAddEquiv_apply
+/--
+@isnad1 id=eq.0h3v.s7.04d8789d3023 from=seed src=0 shape=825185a7 vocab=00f2eace
+-/
 @[deprecated (since := "2026-07-04")]
 alias toFinsuppAddEquiv_symm_apply := coeffAddEquiv_symm_apply
 
+/--
+@isnad1 id=eq.0h6v.s6.26fa325b6f2b from=seed src=0 shape=3ceeaf44 vocab=7b028949
+-/
 theorem smul_single {S} [SMulZeroClass S k] (s : S) (a : G) (b : k) :
     s • single a b = single a (s • b) :=
   coeff_injective <| by simp;
 
+/--
+@isnad1 id=injectiv.0h3v.s4.3da9ed9cfa29 from=seed src=0 shape=66c2dd07 vocab=22faf449
+-/
 theorem single_injective (a : G) : Function.Injective (single a : k → SkewMonoidAlgebra k G) :=
   coeffAddEquiv.symm.injective.comp (Finsupp.single_injective a)
 
+/--
+@isnad1 id=iff.1h5v.s5.4a6d8e1a1e39 from=seed src=0 shape=7a1d47b2 vocab=922ce9a0
+-/
 theorem single_left_inj {a a' : G} {b : k} (h : b ≠ 0) : single a b = single a' b ↔ a = a' := by
   rw [← coeff_inj]
   exact Finsupp.single_left_inj h
@@ -312,41 +470,80 @@ instance : One (SkewMonoidAlgebra k G) where
 
 instance : AddMonoidWithOne (SkewMonoidAlgebra k G) where
 
+/--
+@isnad1 id=eq.0h2v.s6.71069262ac11 from=seed src=0 shape=80090177 vocab=3030063d
+-/
 theorem ofCoeff_one : (⟨Finsupp.single 1 1⟩ : SkewMonoidAlgebra k G) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.71069262ac11 from=seed src=0 shape=80090177 vocab=3030063d
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_one := ofCoeff_one
 
+/--
+@isnad1 id=eq.0h2v.s6.6541516fa286 from=seed src=0 shape=59caae16 vocab=a8e58f25
+-/
 @[simp]
 theorem coeff_one : (1 : SkewMonoidAlgebra k G).coeff = Finsupp.single 1 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.6541516fa286 from=seed src=0 shape=59caae16 vocab=a8e58f25
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_one := coeff_one
 
+/--
+@isnad1 id=iff.0h3v.s6.7107dabc1a31 from=seed src=0 shape=3d184caf vocab=a8e58f25
+-/
 @[simp]
 theorem coeff_eq_single_one_one_iff {a : SkewMonoidAlgebra k G} :
     a.coeff = Finsupp.single 1 1 ↔ a = 1 := by
   simp [← coeff_inj]
 
+/--
+@isnad1 id=iff.0h3v.s6.7107dabc1a31 from=seed src=0 shape=3d184caf vocab=a8e58f25
+-/
 @[deprecated (since := "2026-07-04")]
 alias toFinsupp_eq_single_one_one_iff := coeff_eq_single_one_one_iff
 
+/--
+@isnad1 id=iff.0h3v.s6.92caa33ea6dd from=seed src=0 shape=bcf12842 vocab=841be6d7
+-/
 @[simp]
 theorem ofCoeff_eq_one {a} :
     (⟨a⟩ : SkewMonoidAlgebra k G) = 1 ↔ a = Finsupp.single 1 1 := by
   simp [← coeff_inj]
 
+/--
+@isnad1 id=iff.0h3v.s6.92caa33ea6dd from=seed src=0 shape=bcf12842 vocab=841be6d7
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_eq_one := ofCoeff_eq_one
 
+/--
+@isnad1 id=eq.0h2v.s6.ebefe39003ff from=seed src=0 shape=15f74321 vocab=6ba1fa3b
+-/
 @[simp]
 theorem single_one_one : single (1 : G) (1 : k) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.cf56a7eed769 from=seed src=0 shape=71db0f8b vocab=6ba1fa3b
+-/
 theorem one_def : (1 : SkewMonoidAlgebra k G) = single 1 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.f9d82f8dfba3 from=seed src=0 shape=e60c949f vocab=edc90935
+-/
 @[deprecated coeff_one (since := "2026-07-04")]
 theorem coeff_one_one : coeff (1 : SkewMonoidAlgebra k G) 1 = 1 := by simp
 
+/--
+@isnad1 id=eq.0h3v.s6.0d8113c24102 from=seed src=0 shape=2ea2f03b vocab=5c40710f
+-/
 theorem natCast_def (n : ℕ) : (n : SkewMonoidAlgebra k G) = single (1 : G) (n : k) := by
   induction n <;> simp_all
 
+/--
+@isnad1 id=eq.0h3v.s6.6e75b55c6a17 from=seed src=0 shape=e523e742 vocab=5c40710f
+-/
 @[simp]
 lemma single_nat (n : ℕ) : (single 1 n : SkewMonoidAlgebra k G) = n := (natCast_def _).symm
 
@@ -371,43 +568,70 @@ instance [DecidableEq G] [DecidableEq k] : DecidableEq (SkewMonoidAlgebra k G) :
 def sum {N : Type*} [AddCommMonoid N] (f : SkewMonoidAlgebra k G) (g : G → k → N) : N :=
   f.coeff.sum g
 
+/--
+@isnad1 id=eq.0h5v.s6.ae617fdf2cff from=seed src=0 shape=e60bb329 vocab=0f3f61b5
+-/
 theorem sum_def {N : Type*} [AddCommMonoid N] (f : SkewMonoidAlgebra k G) (g : G → k → N) :
     sum f g = f.coeff.sum g := rfl
 
-/-- Unfolded version of `sum_def` in terms of `Finset.sum`. -/
+/-- Unfolded version of `sum_def` in terms of `Finset.sum`.
+@isnad1 id=eq.0h5v.s6.361c96aa21ad from=seed src=0 shape=1584316b vocab=ac315d76
+-/
 theorem sum_def' {N : Type*} [AddCommMonoid N] (f : SkewMonoidAlgebra k G) (g : G → k → N) :
     sum f g = ∑ a ∈ f.support, g a (f.coeff a) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.7912c8ddaeb5 from=seed src=0 shape=e0fd4fa0 vocab=c9d161ed
+-/
 @[simp]
 theorem sum_single_index {N} [AddCommMonoid N] {a : G} {b : k} {h : G → k → N}
     (h_zero : h a 0 = 0) : (SkewMonoidAlgebra.single a b).sum h = h a b :=
   Finsupp.sum_single_index h_zero
 
+/--
+@isnad1 id=eq.0h8v.s6.a833a6118eb3 from=seed src=0 shape=08a9dc46 vocab=1103388f
+-/
 theorem map_sum {N P : Type*} [AddCommMonoid N] [AddCommMonoid P] {H : Type*} [FunLike H N P]
     [AddMonoidHomClass H N P] (h : H) (f : SkewMonoidAlgebra k G) (g : G → k → N) :
     h (sum f g) = sum f fun a b ↦ h (g a b) :=
   _root_.map_sum h _ _
 
-/-- Variant where the image of `g` is a `SkewMonoidAlgebra`. -/
+/-- Variant where the image of `g` is a `SkewMonoidAlgebra`.
+@isnad1 id=eq.0h6v.s7.59d8795401bb from=seed src=0 shape=f3480865 vocab=d03037df
+-/
 theorem coeff_sum' {k' G' : Type*} [AddCommMonoid k'] (f : SkewMonoidAlgebra k G)
     (g : G → k → SkewMonoidAlgebra k' G') :
     (sum f g).coeff = Finsupp.sum f.coeff (coeff <| g · ·) :=
   _root_.map_sum coeffAddEquiv (fun a ↦ g a (f.coeff a)) f.coeff.support
 
+/--
+@isnad1 id=eq.0h6v.s7.59d8795401bb from=seed src=0 shape=f3480865 vocab=d03037df
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_sum' := coeff_sum'
 
+/--
+@isnad1 id=eq.0h6v.s7.022260fe2726 from=seed src=0 shape=149f96e1 vocab=622110e3
+-/
 theorem ofCoeff_sum {k' G' : Type*} [AddCommMonoid k'] (f : G →₀ k)
     (g : G → k → G' →₀ k') :
     (⟨Finsupp.sum f g⟩ : SkewMonoidAlgebra k' G') = sum ⟨f⟩ (⟨g · ·⟩) := by
   apply coeff_injective; simp only [coeff_sum']
 
+/--
+@isnad1 id=eq.0h6v.s7.022260fe2726 from=seed src=0 shape=149f96e1 vocab=622110e3
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_sum := ofCoeff_sum
 
+/--
+@isnad1 id=eq.0h3v.s5.2471b2265ec6 from=seed src=0 shape=39cfc933 vocab=6f903bed
+-/
 theorem sum_single (f : SkewMonoidAlgebra k G) : f.sum single = f := by
   apply coeff_injective; simp only [coeff_sum', coeff_single, Finsupp.sum_single]
 
 /-- Taking the `sum` under `h` is an additive homomorphism, if `h` is an additive homomorphism.
-This is a more specific version of `SkewMonoidAlgebra.sum_add_index` with simpler hypotheses. -/
+This is a more specific version of `SkewMonoidAlgebra.sum_add_index` with simpler hypotheses.
+@isnad1 id=eq.2h6v.s7.fd626881b796 from=seed src=0 shape=8f513201 vocab=f924cb00
+-/
 theorem sum_add_index' {S : Type*} [AddCommMonoid S] {f g : SkewMonoidAlgebra k G} {h : G → k → S}
     (hf : ∀ i, h i 0 = 0) (h_add : ∀ a b₁ b₂, h a (b₁ + b₂) = h a b₁ + h a b₂) :
     (f + g).sum h = f.sum h + g.sum h := by
@@ -416,7 +640,9 @@ theorem sum_add_index' {S : Type*} [AddCommMonoid S] {f g : SkewMonoidAlgebra k 
 
 /-- Taking the `sum` under `h` is an additive homomorphism, if `h` is an additive homomorphism.
 This is a more general version of `SkewMonoidAlgebra.sum_add_index'`;
-the latter has simpler hypotheses. -/
+the latter has simpler hypotheses.
+@isnad1 id=eq.2h6v.s8.436d6ddf7858 from=seed src=0 shape=b340149f vocab=10c21ebf
+-/
 theorem sum_add_index {S : Type*} [DecidableEq G] [AddCommMonoid S]
     {f g : SkewMonoidAlgebra k G} {h : G → k → S} (h_zero : ∀ a ∈ f.support ∪ g.support, h a 0 = 0)
     (h_add : ∀ a ∈ f.support ∪ g.support, ∀ b₁ b₂, h a (b₁ + b₂) = h a b₁ + h a b₂) :
@@ -424,18 +650,30 @@ theorem sum_add_index {S : Type*} [DecidableEq G] [AddCommMonoid S]
   rw [show f + g = ⟨f.coeff + g.coeff⟩ by rw [ofCoeff_add, eta]]
   exact Finsupp.sum_add_index h_zero h_add
 
+/--
+@isnad1 id=eq.0h6v.s6.90349415666f from=seed src=0 shape=0896e252 vocab=f924cb00
+-/
 @[simp]
 theorem sum_add {S : Type*} [AddCommMonoid S] (p : SkewMonoidAlgebra k G) (f g : G → k → S) :
     (p.sum fun n x ↦ f n x + g n x) = p.sum f + p.sum g := Finsupp.sum_add
 
+/--
+@isnad1 id=eq.0h4v.s6.7a105a5041fd from=seed src=0 shape=efc8f5f9 vocab=3e2b5733
+-/
 @[simp]
 theorem sum_zero_index {S : Type*} [AddCommMonoid S] {f : G → k → S} :
     (0 : SkewMonoidAlgebra k G).sum f = 0 := by simp [sum]
 
+/--
+@isnad1 id=eq.0h4v.s6.e3f1ce9351e4 from=seed src=0 shape=7478bebc vocab=3e2b5733
+-/
 @[simp]
 theorem sum_zero {N : Type*} [AddCommMonoid N] {f : SkewMonoidAlgebra k G} :
     (f.sum fun _ _ ↦ (0 : N)) = 0 := Finset.sum_const_zero
 
+/--
+@isnad1 id=eq.2h8v.s7.4ddf4c7b1070 from=seed src=0 shape=66ce9d07 vocab=f924cb00
+-/
 theorem sum_sum_index {α β M N P : Type*} [AddCommMonoid M] [AddCommMonoid N] [AddCommMonoid P]
     {f : SkewMonoidAlgebra M α} {g : α → M → SkewMonoidAlgebra N β} {h : β → N → P}
     (h_zero : ∀ (a : β), h a 0 = 0)
@@ -443,36 +681,56 @@ theorem sum_sum_index {α β M N P : Type*} [AddCommMonoid M] [AddCommMonoid N] 
     sum (sum f g) h = sum f fun a b ↦ sum (g a b) h := by
   rw [sum_def, coeff_sum' f g, Finsupp.sum_sum_index h_zero h_add]; simp [sum_def]
 
+/--
+@isnad1 id=eq.0h7v.s7.ab9111acf47a from=seed src=0 shape=cf0f31cc vocab=0686a223
+-/
 @[simp]
 theorem coeff_sum {k' G' : Type*} [AddCommMonoid k'] {f : SkewMonoidAlgebra k G}
     {g : G → k → SkewMonoidAlgebra k' G'} {a₂ : G'} :
     (f.sum g).coeff a₂ = f.sum fun a₁ b ↦ (g a₁ b).coeff a₂ := by
   simp_rw [coeff_sum', sum_def, Finsupp.sum_apply]
 
+/--
+@isnad1 id=eq.0h6v.s6.230b106c5efb from=seed src=0 shape=67ac032a vocab=2296c225
+-/
 theorem sum_mul {S : Type*} [NonUnitalNonAssocSemiring S] (b : S) (s : SkewMonoidAlgebra k G)
     {f : G → k → S} : s.sum f * b = s.sum fun a c ↦ f a c * b := by
   simp only [sum, Finsupp.sum, Finset.sum_mul]
 
+/--
+@isnad1 id=eq.0h6v.s6.fb002925fea5 from=seed src=0 shape=2129b447 vocab=2296c225
+-/
 theorem mul_sum {S : Type*} [NonUnitalNonAssocSemiring S] (b : S) (s : SkewMonoidAlgebra k G)
     {f : G → k → S} : b * s.sum f = s.sum fun a c ↦ b * f a c := by
   simp only [sum, Finsupp.sum, Finset.mul_sum]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Analogue of `Finsupp.sum_ite_eq'` for `SkewMonoidAlgebra`. -/
+/-- Analogue of `Finsupp.sum_ite_eq'` for `SkewMonoidAlgebra`.
+@isnad1 id=eq.0h6v.s7.84f1d27752ee from=seed src=0 shape=9937428e vocab=0ef568f0
+-/
 @[simp]
 theorem sum_ite_eq' {N : Type*} [AddCommMonoid N] [DecidableEq G] (f : SkewMonoidAlgebra k G)
     (a : G) (b : G → k → N) : (f.sum fun (x : G) (v : k) ↦ if x = a then b x v else 0) =
       if a ∈ f.support then b a (f.coeff a) else 0 := by
   simp only [sum_def', f.coeff.support.sum_ite_eq', support]
 
+/--
+@isnad1 id=eq.0h7v.s6.bf3b05cd760d from=seed src=0 shape=0f72b127 vocab=0e99710e
+-/
 theorem smul_sum {M : Type*} {R : Type*} [AddCommMonoid M] [DistribSMul R M]
     {v : SkewMonoidAlgebra k G} {c : R} {h : G → k → M} :
     c • v.sum h = v.sum fun a b ↦ c • h a b := Finsupp.smul_sum
 
+/--
+@isnad1 id=eq.1h6v.s7.110639263876 from=seed src=0 shape=55793c02 vocab=804e54a7
+-/
 theorem sum_congr {f : SkewMonoidAlgebra k G} {M : Type*} [AddCommMonoid M] {g₁ g₂ : G → k → M}
     (h : ∀ x ∈ f.support, g₁ x (f.coeff x) = g₂ x (f.coeff x)) :
     f.sum g₁ = f.sum g₂ := Finset.sum_congr rfl h
 
+/--
+@isnad1 id=var.0h7v.s7.7919a918a2d8 from=seed src=0 shape=610f1923 vocab=1fde9224
+-/
 @[elab_as_elim]
 theorem induction_on {p : SkewMonoidAlgebra k G → Prop} (f : SkewMonoidAlgebra k G)
     (zero : p 0) (single : ∀ g a, p (single g a)) (add : ∀ f g :
@@ -480,7 +738,9 @@ theorem induction_on {p : SkewMonoidAlgebra k G → Prop} (f : SkewMonoidAlgebra
   rw [← sum_single f, sum_def']
   exact Finset.sum_induction _ _ add zero (by simp_all)
 
-/-- Slightly less general but more convenient version of `SkewMonoidAlgebra.induction_on`. -/
+/-- Slightly less general but more convenient version of `SkewMonoidAlgebra.induction_on`.
+@isnad1 id=var.0h6v.s7.34cdf88f20c9 from=seed src=0 shape=d71e8436 vocab=02178d5e
+-/
 @[induction_eliminator]
 theorem induction_on' [instNonempty : Nonempty G] {p : SkewMonoidAlgebra k G → Prop}
     (f : SkewMonoidAlgebra k G) (single : ∀ g a, p (single g a)) (add : ∀ f g :
@@ -488,7 +748,9 @@ theorem induction_on' [instNonempty : Nonempty G] {p : SkewMonoidAlgebra k G →
   induction_on f (by simpa using single (Classical.choice instNonempty) 0) single add
 
 /-- If two additive homomorphisms from `SkewMonoidAlgebra k G ` are equal on each `single a b`,
-then they are equal. -/
+then they are equal.
+@isnad1 id=eq.1h5v.s8.768d34fb0c0d from=seed src=0 shape=7786351e vocab=68d50162
+-/
 @[ext high]
 theorem addHom_ext {M : Type*} [AddZeroClass M] {f g : SkewMonoidAlgebra k G →+ M}
     (h : ∀ a b, f (single a b) = g (single a b)) : f = g := by
@@ -513,29 +775,50 @@ def mapDomain :
   map_zero'    := sum_zero_index
   map_add' _ _ := sum_add_index' (fun _ ↦ single_zero _) fun _ ↦ single_add _
 
+/--
+@isnad1 id=eq.0h5v.s8.6b9e40e6eee4 from=seed src=0 shape=4b150c59 vocab=7c2e2e97
+-/
 lemma coeff_mapDomain :
     (mapDomain f v).coeff = Finsupp.mapDomain f v.coeff := by
   simp_rw [mapDomain_apply, Finsupp.mapDomain, coeff_sum', single]
 
+/--
+@isnad1 id=eq.0h5v.s8.6b9e40e6eee4 from=seed src=0 shape=4b150c59 vocab=7c2e2e97
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_mapDomain := coeff_mapDomain
 
 variable {f v}
 
+/--
+@isnad1 id=eq.0h3v.s8.ebca518368dd from=seed src=0 shape=c44bffbe vocab=d6637105
+-/
 theorem mapDomain_id : mapDomain id v = v := sum_single _
 
+/--
+@isnad1 id=eq.0h7v.s9.58f1e1a82c47 from=seed src=0 shape=cd491d12 vocab=13fdc2e1
+-/
 theorem mapDomain_comp : mapDomain (g ∘ f) v = mapDomain g (mapDomain f v) :=
   ((sum_sum_index (single_zero <| g ·) (single_add <| g ·)).trans
     (sum_congr fun _ _ ↦ sum_single_index (single_zero _))).symm
 
+/--
+@isnad1 id=eq.2h7v.s8.60596bdbfce4 from=seed src=0 shape=5acbe3bc vocab=3764f0ae
+-/
 theorem sum_mapDomain_index {k' : Type*} [AddCommMonoid k'] {h : G' → k → k'}
     (h_zero : ∀ (b : G'), h b 0 = 0)
     (h_add : ∀ (b : G') (m₁ m₂ : k), h b (m₁ + m₂) = h b m₁ + h b m₂) :
     sum (mapDomain f v) h = sum v fun a m ↦ h (f a) m :=
   (sum_sum_index h_zero h_add).trans <| sum_congr fun _ _ ↦ sum_single_index (h_zero _)
 
+/--
+@isnad1 id=eq.0h6v.s8.81f6e7317eed from=seed src=0 shape=49db8b5f vocab=983e096f
+-/
 theorem mapDomain_single {a : G} {b : k} : mapDomain f (single a b) = single (f a) b :=
   sum_single_index <| single_zero _
 
+/--
+@isnad1 id=eq.0h7v.s9.f5126b3a1d96 from=seed src=0 shape=58cd9d47 vocab=e1655afb
+-/
 theorem mapDomain_smul {R : Type*} [Monoid R] [DistribMulAction R k] {b : R} :
     mapDomain f (b • v) = b • mapDomain f v := by
   simp_rw [← coeff_inj, coeff_smul, coeff_mapDomain]
@@ -556,6 +839,9 @@ def liftNC {R : Type*} [NonUnitalNonAssocSemiring R] (f : k →+ R) (g : G → R
   (Finsupp.liftAddHom fun x ↦ (AddMonoidHom.mulRight (g x)).comp f).comp
     (AddEquiv.toAddMonoidHom coeffAddEquiv)
 
+/--
+@isnad1 id=eq.0h7v.s7.912d3a1d783b from=seed src=0 shape=f41ccd9d vocab=094766ed
+-/
 @[simp] theorem liftNC_single {R : Type*} [NonUnitalNonAssocSemiring R] (f : k →+ R)
     (g : G → R) (a : G) (b : k) : liftNC f g (single a b) = f b * g a :=
   Finsupp.liftAddHom_apply_single _ _ _
@@ -575,35 +861,62 @@ variable [AddGroup k]
 @[no_expose] instance : Neg (SkewMonoidAlgebra k G) :=
   ⟨fun ⟨a⟩ ↦ ⟨-a⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.f9d92b9da207 from=seed src=0 shape=4a56990e vocab=cf7a2bb6
+-/
 @[simp]
 theorem ofCoeff_neg {a} : (⟨-a⟩ : SkewMonoidAlgebra k G) = -⟨a⟩ :=
   (rfl)
 
+/--
+@isnad1 id=eq.0h3v.s6.f9d92b9da207 from=seed src=0 shape=4a56990e vocab=cf7a2bb6
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_neg := ofCoeff_neg
 
 instance : AddGroup (SkewMonoidAlgebra k G) where
   zsmul := zsmulRec
   neg_add_cancel a := by cases a; simp [← ofCoeff_neg, ← ofCoeff_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.dd6d2e34a3e2 from=seed src=0 shape=cf085784 vocab=60a81b8f
+-/
 @[simp]
 theorem coeff_neg (a : SkewMonoidAlgebra k G) : (-a).coeff = -a.coeff :=
   coeffAddEquiv.map_neg a
 
+/--
+@isnad1 id=eq.0h3v.s6.dd6d2e34a3e2 from=seed src=0 shape=cf085784 vocab=60a81b8f
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_neg := coeff_neg
 
+/--
+@isnad1 id=eq.0h4v.s7.c8e015afa7bb from=seed src=0 shape=f4486d9c vocab=0531fb18
+-/
 @[simp]
 theorem ofCoeff_sub {a b} : (⟨a - b⟩ : SkewMonoidAlgebra k G) = ⟨a⟩ - ⟨b⟩ :=
   coeffAddEquiv.symm.map_sub a b
 
+/--
+@isnad1 id=eq.0h4v.s7.c8e015afa7bb from=seed src=0 shape=f4486d9c vocab=0531fb18
+-/
 @[deprecated (since := "2026-07-04")] alias ofFinsupp_sub := ofCoeff_sub
 
+/--
+@isnad1 id=eq.0h4v.s7.306549de7d2e from=seed src=0 shape=d914cfa7 vocab=9f6a9ee3
+-/
 @[simp]
 theorem coeff_sub (a b : SkewMonoidAlgebra k G) :
     (a - b).coeff = a.coeff - b.coeff :=
   coeffAddEquiv.map_sub a b
 
+/--
+@isnad1 id=eq.0h4v.s7.306549de7d2e from=seed src=0 shape=d914cfa7 vocab=9f6a9ee3
+-/
 @[deprecated (since := "2026-07-04")] alias toFinsupp_sub := coeff_sub
 
+/--
+@isnad1 id=eq.0h4v.s6.a949464ac729 from=seed src=0 shape=69e0b07f vocab=0ed04c91
+-/
 @[simp]
 theorem single_neg (a : G) (b : k) : single a (-b) = -single a b := by
   simp [← ofCoeff_single]
@@ -626,6 +939,9 @@ variable [AddGroupWithOne k] [One G]
 instance : AddGroupWithOne (SkewMonoidAlgebra k G) where
   __ := instAddGroup
 
+/--
+@isnad1 id=eq.0h3v.s6.47cd119bdccf from=seed src=0 shape=f8b69802 vocab=ef9a1858
+-/
 theorem intCast_def (z : ℤ) : (z : SkewMonoidAlgebra k G) = single (1 : G) (z : k) := by
   cases z <;> simp
 
@@ -633,19 +949,26 @@ end AddGroupWithOne
 
 section Mul
 
-/-- Interaction of `sum` and `•` assuming some multiplication structure. -/
+/-- Interaction of `sum` and `•` assuming some multiplication structure.
+@isnad1 id=eq.1h6v.s7.7fb65b6133d6 from=seed src=0 shape=d16f83d2 vocab=161fe5d6
+-/
 theorem sum_smul_index {N : Type*} [AddCommMonoid N] [NonUnitalNonAssocSemiring k]
     {g : SkewMonoidAlgebra k G} {b : k} {h : G → k → N} (h0 : ∀ i, h i 0 = 0) :
     (b • g).sum h = g.sum (h · <| b * ·) := by
   simp [sum_def, Finsupp.sum_smul_index' h0]
 
-/-- Variant of the interaction of `sum` and `•` assuming some scalar multiplication structure. -/
+/-- Variant of the interaction of `sum` and `•` assuming some scalar multiplication structure.
+@isnad1 id=eq.1h7v.s7.d9f32818e5e4 from=seed src=0 shape=7429a807 vocab=0e99710e
+-/
 theorem sum_smul_index' {N R : Type*} [AddCommMonoid k]
     [DistribSMul R k] [AddCommMonoid N]
     {g : SkewMonoidAlgebra k G} {b : R} {h : G → k → N} (h0 : ∀ i, h i 0 = 0) :
     (b • g).sum h = g.sum (h · <| b • ·) := by
   simp only [sum_def, coeff_smul, Finsupp.sum_smul_index' h0]
 
+/--
+@isnad1 id=eq.0h6v.s8.7f85b1b111bd from=seed src=0 shape=3e00ec46 vocab=b9650167
+-/
 @[simp]
 theorem liftNC_one {g_hom R : Type*} [NonAssocSemiring k] [One G] [Semiring R] [FunLike g_hom G R]
     [OneHomClass g_hom G R] (f : k →+* R) (g : g_hom) : liftNC (f : k →+ R) g 1 = 1 := by
@@ -667,6 +990,9 @@ variable [SMul G k] [NonUnitalNonAssocSemiring k]
 instance : Mul (SkewMonoidAlgebra k G) :=
   ⟨fun f g ↦ f.sum fun a₁ b₁ ↦ g.sum fun a₂ b₂ ↦ single (a₁ * a₂) (b₁ * (a₁ • b₂))⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.8de840bc7a8c from=seed src=0 shape=a9b760e5 vocab=b0f850c9
+-/
 theorem mul_def {f g : SkewMonoidAlgebra k G} :
     f * g = f.sum fun a₁ b₁ ↦ g.sum fun a₂ b₂ ↦ single (a₁ * a₂) (b₁ * (a₁ • b₂)) :=
   rfl
@@ -693,6 +1019,9 @@ instance instNonUnitalNonAssocSemiring [NonUnitalNonAssocSemiring k] [DistribSMu
 
 variable {R : Type*} [Semiring R] [NonAssocSemiring k] [SMul G k]
 
+/--
+@isnad1 id=eq.1h8v.s10.69cf7820836b from=seed src=0 shape=5a274714 vocab=876f14a1
+-/
 theorem liftNC_mul {g_hom : Type*} [FunLike g_hom G R]
     [MulHomClass g_hom G R] (f : k →+* R) (g : g_hom) (a b : SkewMonoidAlgebra k G)
     (h_comm : ∀ {x y}, y ∈ a.support → (f (y • b.coeff x)) * g y = (g y) * (f (b.coeff x))) :
@@ -799,6 +1128,9 @@ instance [Semiring S] [AddCommMonoid k] [Module S k] :
     Module S (SkewMonoidAlgebra k G) where
   __ := coeff_injective.module _ ⟨⟨coeff, coeff_zero⟩, coeff_add⟩ coeff_smul
 
+/--
+@isnad1 id=faithful.0h3v.s6.1ef19efec771 from=seed src=0 shape=fe56ffa0 vocab=5d635b4b
+-/
 instance instFaithfulSMul [AddMonoid k] [SMulZeroClass S k] [FaithfulSMul S k] [Nonempty G] :
     FaithfulSMul S (SkewMonoidAlgebra k G) where
   eq_of_smul_eq_smul {_s₁ _s₂} h := by
@@ -848,8 +1180,14 @@ def comapSMul : SMul G (SkewMonoidAlgebra M α) where smul g := mapDomain (g •
 
 attribute [local instance] comapSMul
 
+/--
+@isnad1 id=eq.0h5v.s8.6b73c0e28010 from=seed src=0 shape=b9acf519 vocab=a0b564f8
+-/
 theorem comapSMul_def (g : G) (f : SkewMonoidAlgebra M α) : g • f = mapDomain (g • ·) f := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.8b4139d8cc46 from=seed src=0 shape=7e2843ea vocab=430dcfff
+-/
 @[simp]
 theorem comapSMul_single (g : G) (a : α) (b : M) : g • single a b = single (g • a) b :=
   mapDomain_single
@@ -884,6 +1222,9 @@ section Mul
 
 variable [Mul G] [SMulZeroClass G k]
 
+/--
+@isnad1 id=eq.0h5v.s7.b6c8bf85f2ab from=seed src=0 shape=f8c31b97 vocab=10792114
+-/
 theorem coeff_mul [DecidableEq G] (f g : SkewMonoidAlgebra k G)
     (x : G) : (f * g).coeff x = f.sum fun a₁ b₁ ↦ g.sum fun a₂ b₂ ↦
       if a₁ * a₂ = x then b₁ * a₁ • b₂ else 0 := by
@@ -891,6 +1232,9 @@ theorem coeff_mul [DecidableEq G] (f g : SkewMonoidAlgebra k G)
   rw [coeff_sum]; congr; ext
   exact coeff_single_apply
 
+/--
+@isnad1 id=eq.1h6v.s8.13c522353204 from=seed src=0 shape=8111cd22 vocab=990d5a21
+-/
 theorem coeff_mul_antidiagonal_of_finset (f g : SkewMonoidAlgebra k G) (x : G)
     (s : Finset (G × G)) (hs : ∀ {p : G × G}, p ∈ s ↔ p.1 * p.2 = x) :
     (f * g).coeff x = ∑ p ∈ s, f.coeff p.1 * p.1 • g.coeff p.2 := by
@@ -910,6 +1254,9 @@ theorem coeff_mul_antidiagonal_of_finset (f g : SkewMonoidAlgebra k G) (x : G)
         simp only [Finset.mem_filter, mem_support_iff, not_and, Classical.not_not] at hp ⊢
         by_cases h1 : f.coeff p.1 = 0 <;> simp_all
 
+/--
+@isnad1 id=eq.0h5v.s8.386847f958bc from=seed src=0 shape=ada73146 vocab=2b40e402
+-/
 theorem coeff_mul_antidiagonal_finsum (f g : SkewMonoidAlgebra k G) (x : G) :
     (f * g).coeff x = ∑ᶠ p ∈ {p : G × G | p.1 * p.2 = x}, f.coeff p.1 * p.1 • g.coeff p.2 := by
   have : ({p : G × G | p.1 * p.2 = x}
@@ -935,6 +1282,9 @@ theorem coeff_mul_antidiagonal_finsum (f g : SkewMonoidAlgebra k G) (x : G) :
         simp only [Finset.mem_filter, mem_support_iff, not_and, Classical.not_not] at hp ⊢
         by_cases h1 : f.coeff p.1 = 0 <;> simp_all
 
+/--
+@isnad1 id=eq.1h7v.s7.292d16e8850c from=seed src=0 shape=8663cc66 vocab=fe10c594
+-/
 theorem coeff_mul_single_aux (f : SkewMonoidAlgebra k G) {r : k} {x y z : G}
     (H : ∀ a, a * x = z ↔ a = y) : (f * single x r).coeff z = f.coeff y * y • r := by
   classical
@@ -948,6 +1298,9 @@ theorem coeff_mul_single_aux (f : SkewMonoidAlgebra k G) {r : k} {x y z : G}
     _ = f.coeff y * y • r := by
       split_ifs with h <;> simp [support] at h <;> simp [h]
 
+/--
+@isnad1 id=eq.1h6v.s7.ae6d07b8cc19 from=seed src=0 shape=623cb8a2 vocab=4e794de4
+-/
 theorem coeff_mul_single_of_not_exists_mul (r : k) {g g' : G} (x : SkewMonoidAlgebra k G)
     (h : ∀ x, ¬g' = x * g) : (x * single g r).coeff g' = 0 := by
   classical
@@ -957,6 +1310,9 @@ theorem coeff_mul_single_of_not_exists_mul (r : k) {g g' : G} (x : SkewMonoidAlg
   rintro _ _ rfl
   exact False.elim (h _ rfl)
 
+/--
+@isnad1 id=eq.1h7v.s8.5be4a682fdeb from=seed src=0 shape=b5757941 vocab=fe10c594
+-/
 theorem coeff_single_mul_aux (f : SkewMonoidAlgebra k G) {r : k} {x y z : G}
     (H : ∀ a, x * a = y ↔ a = z) : (single x r * f).coeff y = r * x • f.coeff z := by
   classical
@@ -969,6 +1325,9 @@ theorem coeff_single_mul_aux (f : SkewMonoidAlgebra k G) {r : k} {x y z : G}
     _ = if z ∈ f.support then r * x • f.coeff z else 0 := (f.support.sum_ite_eq' _ _)
     _ = _ := by split_ifs with h <;> simp [support] at h <;> simp [h]
 
+/--
+@isnad1 id=eq.1h6v.s7.2d77b82748da from=seed src=0 shape=7bf56997 vocab=4e794de4
+-/
 theorem coeff_single_mul_of_not_exists_mul (r : k) {g g' : G} (x : SkewMonoidAlgebra k G)
     (h : ¬∃ d, g' = g * d) : (single g r * x).coeff g' = 0 := by
   classical
@@ -985,10 +1344,16 @@ section Monoid
 
 variable [Monoid G] [MulSemiringAction G k]
 
+/--
+@isnad1 id=eq.0h5v.s8.f93ec9993fd7 from=seed src=0 shape=688f3e01 vocab=afc69578
+-/
 theorem coeff_mul_single_one (f : SkewMonoidAlgebra k G) (r : k) (x : G) :
     (f * single 1 r).coeff x = f.coeff x * x • r :=
   f.coeff_mul_single_aux fun a ↦ by rw [mul_one]
 
+/--
+@isnad1 id=eq.0h5v.s8.58169e91d9e6 from=seed src=0 shape=2d1ebfa4 vocab=bc6ea1c8
+-/
 theorem coeff_single_one_mul (f : SkewMonoidAlgebra k G) (r : k) (x : G) :
     (single (1 : G) r * f).coeff x = r * f.coeff x := by
   simp [coeff_single_mul_aux, one_smul]
@@ -1000,16 +1365,25 @@ section Group
 -- We now prove some additional statements that hold for group algebras.
 variable [Group G] [MulSemiringAction G k]
 
+/--
+@isnad1 id=eq.0h6v.s8.c4a1349e1cbc from=seed src=0 shape=0e878c22 vocab=20836e06
+-/
 @[simp]
 theorem coeff_mul_single (f : SkewMonoidAlgebra k G) (r : k) (x y : G) :
     (f * single x r).coeff y = f.coeff (y * x⁻¹) * (y * x⁻¹) • r :=
   f.coeff_mul_single_aux fun _a ↦ eq_mul_inv_iff_mul_eq.symm
 
+/--
+@isnad1 id=eq.0h6v.s8.9abc041becbd from=seed src=0 shape=a376e253 vocab=20836e06
+-/
 @[simp]
 theorem coeff_single_mul (r : k) (x : G) (f : SkewMonoidAlgebra k G) (y : G) :
     (single x r * f).coeff y = r * x • f.coeff (x⁻¹ * y) :=
   f.coeff_single_mul_aux fun _z ↦ eq_inv_mul_iff_mul_eq.symm
 
+/--
+@isnad1 id=eq.0h5v.s8.36bd4910ce30 from=seed src=0 shape=9f8f4018 vocab=edaccdb2
+-/
 theorem coeff_mul_left (f g : SkewMonoidAlgebra k G) (x : G) :
     (f * g).coeff x = f.sum fun a b ↦ b * a • g.coeff (a⁻¹ * x) :=
   calc
@@ -1017,6 +1391,9 @@ theorem coeff_mul_left (f g : SkewMonoidAlgebra k G) (x : G) :
       rw [← coeff_sum, ← sum_mul g f, f.sum_single]
     _ = _ := by simp
 
+/--
+@isnad1 id=eq.0h5v.s8.1d5fa10303d7 from=seed src=0 shape=3bd27429 vocab=edaccdb2
+-/
 theorem coeff_mul_right (f g : SkewMonoidAlgebra k G) (x : G) :
     (f * g).coeff x = g.sum fun a b ↦ f.coeff (x * a⁻¹) * (x * a⁻¹) • b :=
   calc
@@ -1041,6 +1418,9 @@ def singleAddHom (a : G) : k →+ SkewMonoidAlgebra k G where
   map_zero' := single_zero a
   map_add' _ := single_add a _
 
+/--
+@isnad1 id=eq.1h5v.s8.ad9479846c95 from=seed src=0 shape=18e39783 vocab=6c839577
+-/
 @[ext high]
 theorem addHom_ext' {N : Type*} [AddZeroClass N] ⦃f g : SkewMonoidAlgebra k G →+ N⦄
     (H : ∀ x, f.comp (singleAddHom x) = g.comp (singleAddHom x)) : f = g :=
@@ -1056,6 +1436,9 @@ section singleOneRingHom
 
 variable [Monoid G] [MulSemiringAction G k]
 
+/--
+@isnad1 id=eq.0h6v.s8.f47872333896 from=seed src=0 shape=c8c9967c vocab=30279ea6
+-/
 @[simp]
 theorem single_mul_single {a₁ a₂ : G} {b₁ b₂ : k} :
     (single a₁ b₁) * (single a₂ b₂) = single (a₁ * a₂) (b₁ * a₁ • b₂) :=
@@ -1070,7 +1453,9 @@ def singleOneRingHom : k →+* SkewMonoidAlgebra k G where
     single_mul_single, mul_one, one_smul]
 
 /-- If two ring homomorphisms from `SkewMonoidAlgebra k G` are equal on all `single a 1`
-and `single 1 b`, then they are equal. -/
+and `single 1 b`, then they are equal.
+@isnad1 id=eq.2h4v.s8.ea3d9a8c5c73 from=seed src=0 shape=92645965 vocab=aa957841
+-/
 theorem ringHom_ext {f g : SkewMonoidAlgebra k G →+* k} (h₁ : ∀ b, f (single 1 b) = g (single 1 b))
     (h_of : ∀ a, f (single a 1) = g (single a 1)) : f = g :=
   have {a : G} {b₁ b₂ : k} : (single 1 b₁) * (single a b₂) = single a (b₁ * b₂) := by
@@ -1085,14 +1470,18 @@ section MapDomain
 
 variable {α α₂ β F : Type*} [Semiring β] [Monoid α] [Monoid α₂] [FunLike F α α₂]
 
-/-- Like `mapDomain_zero`, but for the `1` we define in this file -/
+/-- Like `mapDomain_zero`, but for the `1` we define in this file
+@isnad1 id=eq.0h5v.s8.c4a51379564b from=seed src=0 shape=ed89b2d5 vocab=e1016a81
+-/
 theorem mapDomain_one [MonoidHomClass F α α₂] (f : F) :
     (mapDomain f (1 : SkewMonoidAlgebra β α) : SkewMonoidAlgebra β α₂) =
       (1 : SkewMonoidAlgebra β α₂) := by
   simp_rw [one_def, mapDomain_single, map_one]
 
 /-- Like `mapDomain_add`, but for the skewed convolutive multiplication we define in this
-  file. This theorem holds assuming that `(hf : ∀ (a : α) (x : β), a • x = (f a) • x)`. -/
+  file. This theorem holds assuming that `(hf : ∀ (a : α) (x : β), a • x = (f a) • x)`.
+@isnad1 id=eq.1h7v.s10.4112a63dab71 from=seed src=0 shape=9615b22b vocab=7843327a
+-/
 theorem mapDomain_mul [MulSemiringAction α β] [MulSemiringAction α₂ β]
     [MulHomClass F α α₂] {f : F} (x y : SkewMonoidAlgebra β α)
     (hf : ∀ (a : α) (x : β), a • x = (f a) • x) :
@@ -1135,13 +1524,22 @@ def of : G →* SkewMonoidAlgebra k G where
   map_one'     := rfl
   map_mul' a b := by simp
 
+/--
+@isnad1 id=eq.0h3v.s7.8ff0ee8a0f04 from=seed src=0 shape=06a5a26e vocab=a3efa1e7
+-/
 @[simp]
 lemma of_apply (a : G) : (of k G) a = single a 1 := by
   simp [of, MonoidHom.coe_mk, OneHom.coe_mk]
 
+/--
+@isnad1 id=eq.0h4v.s7.f15ec9235e1f from=seed src=0 shape=54ecd44b vocab=cd185af5
+-/
 theorem smul_of (g : G) (r : k) : r • of k G g = single g r := by
   rw [of_apply, smul_single, smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=injectiv.0h2v.s7.e3e9e2d8b2bf from=seed src=0 shape=5ae6427b vocab=7fcbbf3f
+-/
 theorem of_injective [Nontrivial k] :
     Function.Injective (of k G) := fun a b h ↦ by
   simp_rw [of_apply, ← coeff_inj] at h
@@ -1150,7 +1548,9 @@ theorem of_injective [Nontrivial k] :
 /-- If two ring homomorphisms from `SkewMonoidAlgebra k G` are equal on all `single a 1`
 and `single 1 b`, then they are equal.
 
-See note [partially-applied ext lemmas]. -/
+See note [partially-applied ext lemmas].
+@isnad1 id=eq.2h4v.s8.b07b632a3609 from=seed src=0 shape=63ecac20 vocab=106c5f75
+-/
 @[ext high]
 theorem ringHom_ext' {f g : SkewMonoidAlgebra k G →+* k}
     (h₁ : f.comp singleOneRingHom = g.comp singleOneRingHom)
@@ -1164,6 +1564,9 @@ end of
 
 section NonUnitalNonAssocAlgebra
 
+/--
+@isnad1 id=eq.0h7v.s9.710555318206 from=seed src=0 shape=e8a2d9ed vocab=3182cc00
+-/
 theorem liftNC_smul [MulOneClass G] {R : Type*} [Semiring R] (f : k →+* R) (g : G →* R) (c : k)
     (φ : SkewMonoidAlgebra k G) :
     liftNC (f : k →+ R) g (c • φ) = f c * liftNC (f : k →+ R) g φ := by
@@ -1175,6 +1578,9 @@ theorem liftNC_smul [MulOneClass G] {R : Type*} [Semiring R] (f : k →+* R) (g 
 
 variable (k G) [Monoid G] [MulSemiringAction G k]
 
+/--
+@isnad1 id=isscalar.0h2v.s7.540d53394647 from=seed src=0 shape=040ecda9 vocab=dc7ebc58
+-/
 instance isScalarTower_self [IsScalarTower k k k] :
     IsScalarTower k (SkewMonoidAlgebra k G) (SkewMonoidAlgebra k G) :=
   ⟨fun t a b ↦ by
@@ -1200,12 +1606,17 @@ def DistribMulActionHom.single [DistribMulAction R M] {α : Type*} (a : α) :
   __ := singleAddHom a
   map_smul' k m := by simp [singleAddHom, smul_single, MonoidHom.id_apply]
 
+/--
+@isnad1 id=eq.1h6v.s8.90a8cfe12895 from=seed src=0 shape=6686a20f vocab=dfd4b8fa
+-/
 theorem distribMulActionHom_ext [DistribMulAction R M] [DistribMulAction R N] {α : Type*}
     {f g : SkewMonoidAlgebra M α →+[R] N}
     (h : ∀ (a : α) (m : M), f (single a m) = g (single a m)) : f = g :=
   DistribMulActionHom.toAddMonoidHom_injective <| addHom_ext h
 
-/-- See note [partially-applied ext lemmas]. -/
+/-- See note [partially-applied ext lemmas].
+@isnad1 id=eq.1h6v.s8.829999a3a086 from=seed src=0 shape=ff8c5ff2 vocab=785cc610
+-/
 @[ext]
 theorem distribMulActionHom_ext' [DistribMulAction R M] [DistribMulAction R N] {α : Type*}
     {f g : SkewMonoidAlgebra M α →+[R] N}
@@ -1219,15 +1630,23 @@ def lsingle {α : Type*} (a : α) [Module R M] : M →ₗ[R] (SkewMonoidAlgebra 
   __ := singleAddHom a
   map_smul' _ _ := (smul_single _ _ _).symm
 
+/--
+@isnad1 id=eq.0h5v.s7.18bb16603996 from=seed src=0 shape=c05f7be8 vocab=a1ab54f7
+-/
 lemma lsingle_apply {α : Type*} (a : α) [Module R M] (m : M) :
   lsingle R a m = single a m := rfl
 
 /-- Two `R`-linear maps from `SkewMonoidAlgebra M α` which agree on each `single x y`
-  agree everywhere. -/
+  agree everywhere.
+@isnad1 id=eq.1h6v.s8.e81c12731f38 from=seed src=0 shape=72469fa6 vocab=fec5876b
+-/
 theorem lhom_ext {α : Type*} [Module R M] [Module R N] ⦃φ ψ : SkewMonoidAlgebra M α →ₗ[R] N⦄
     (h : ∀ a b, φ (single a b) = ψ (single a b)) : φ = ψ :=
   LinearMap.toAddMonoidHom_injective <| addHom_ext h
 
+/--
+@isnad1 id=eq.1h6v.s8.9d770146e036 from=seed src=0 shape=a2865b34 vocab=94cd0f2e
+-/
 @[ext high]
 theorem lhom_ext' {α : Type*} [Module R M] [Module R N] ⦃φ ψ : SkewMonoidAlgebra M α →ₗ[R] N⦄
     (h : ∀ a, φ.comp (lsingle R a) = ψ.comp (lsingle R a)) : φ = ψ :=
@@ -1237,7 +1656,9 @@ variable {A : Type*} [NonUnitalNonAssocSemiring A] [Monoid G] [Semiring k] [MulS
 open NonUnitalAlgHom
 
 /-- A non-unital `k`-algebra homomorphism from `SkewMonoidAlgebra k G` is uniquely defined by its
-values on the functions `single a 1`. -/
+values on the functions `single a 1`.
+@isnad1 id=eq.1h5v.s9.e9689a8ea369 from=seed src=0 shape=ff631ce8 vocab=a5578c4e
+-/
 theorem nonUnitalAlgHom_ext [DistribMulAction k A] {φ₁ φ₂ : SkewMonoidAlgebra k G →ₙₐ[k] A}
     (h : ∀ x, φ₁ (single x 1) = φ₂ (single x 1)) : φ₁ = φ₂ := by
   apply NonUnitalAlgHom.to_distribMulActionHom_injective
@@ -1246,7 +1667,9 @@ theorem nonUnitalAlgHom_ext [DistribMulAction k A] {φ₁ φ₂ : SkewMonoidAlge
   ext
   simp [singleAddHom_apply, h]
 
-/-- See note [partially-applied ext lemmas]. -/
+/-- See note [partially-applied ext lemmas].
+@isnad1 id=eq.1h5v.s9.74dc4a231e67 from=seed src=0 shape=e26b9162 vocab=c5b76c33
+-/
 @[ext high]
 theorem nonUnitalAlgHom_ext' [DistribMulAction k A] {φ₁ φ₂ : SkewMonoidAlgebra k G →ₙₐ[k] A}
     (h : φ₁.toMulHom.comp (of k G).toMulHom = φ₂.toMulHom.comp (of k G).toMulHom) : φ₁ = φ₂ :=
@@ -1271,15 +1694,24 @@ instance [MulSemiringAction G A]
       MonoidHom.coe_mk, OneHom.coe_mk, coeff_single_one_mul, Algebra.commutes, coeff_mul_single_one,
       smul_algebraMap, RingHom.coe_comp, comp_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.047e55bc3c6c from=seed src=0 shape=ee534f96 vocab=0a02244a
+-/
 @[simp]
 theorem coe_algebraMap [MulSemiringAction G A] [SMulCommClass G k A] :
     ⇑(algebraMap k (SkewMonoidAlgebra A G)) = single 1 ∘ algebraMap k A :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.e9a4f17e888d from=seed src=0 shape=2e2d15eb vocab=44b0a729
+-/
 theorem single_eq_algebraMap_mul_of [MulSemiringAction G k] [SMulCommClass G k k] (a : G) (b : k) :
     single a b = algebraMap k (SkewMonoidAlgebra k G) b * of k G a := by
   simp [coe_algebraMap, comp_apply, of_apply, single_mul_single, one_mul, smul_one, mul_one]
 
+/--
+@isnad1 id=eq.0h5v.s8.345e0c2b7fa1 from=seed src=0 shape=27e0bcf3 vocab=7f92a001
+-/
 theorem single_algebraMap_eq_algebraMap_mul_of (a : G) (b : k) [MulSemiringAction G A]
     [SMulCommClass G k A] :
     single a (algebraMap k A b) = algebraMap k (SkewMonoidAlgebra A G) b * of A G a := by
@@ -1289,11 +1721,16 @@ theorem single_algebraMap_eq_algebraMap_mul_of (a : G) (b : k) [MulSemiringActio
 variable [MulSemiringAction G k] [SMulCommClass G k k]
 
 /-- A `k`-algebra homomorphism from `SkewMonoidAlgebra k G` is uniquely defined by its
-values on the functions `single a 1`. -/
+values on the functions `single a 1`.
+@isnad1 id=eq.1h5v.s8.0cf7c51f85df from=seed src=0 shape=19963a3f vocab=eb931235
+-/
 theorem algHom_ext ⦃φ₁ φ₂ : AlgHom k (SkewMonoidAlgebra k G) A⦄
     (h : ∀ x, φ₁ (single x 1) = φ₂ (single x 1)) : φ₁ = φ₂ :=
     AlgHom.toLinearMap_injective (lhom_ext' fun a ↦ (LinearMap.ext_ring (h a)))
 
+/--
+@isnad1 id=eq.1h5v.s9.d4cb841a3c4a from=seed src=0 shape=48805e68 vocab=91a3dc7e
+-/
 @[ext high]
 theorem algHom_ext' ⦃φ₁ φ₂ : AlgHom k (SkewMonoidAlgebra k G) A⦄
     (h : (φ₁ : SkewMonoidAlgebra k G →* A).comp (of k G) =

@@ -41,6 +41,9 @@ hom is finite. -/
 class IsFinite {X Y : Scheme} (f : X ⟶ Y) : Prop extends IsAffineHom f where
   finite_app (f) (U : Y.Opens) (hU : IsAffineOpen U) : (f.app U).hom.Finite
 
+/--
+@isnad1 id=finite.1h4v.s10.5f9376ea2685 from=seed src=0 shape=048d87f5 vocab=4d634090
+-/
 alias Scheme.Hom.finite_app := IsFinite.finite_app
 
 namespace IsFinite
@@ -71,6 +74,9 @@ instance : ContainsIdentities @IsFinite :=
 instance : IsMultiplicative @IsFinite where
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s5.295bfd8aee7f from=seed src=0 shape=110effa8 vocab=040b3399
+-/
 @[simp]
 lemma SpecMap_iff {R S : CommRingCat.{u}} (f : R ⟶ S) :
     IsFinite (Spec.map f) ↔ f.hom.Finite := by
@@ -98,6 +104,9 @@ instance (f : X ⟶ Y) (V : Y.Opens) [IsFinite f] : IsFinite (f ∣_ V) :=
   IsZariskiLocalAtTarget.restrict ‹_› V
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s4.c6f5d393003c from=seed src=0 shape=2caf7a2f vocab=5e54b830
+-/
 lemma iff_isIntegralHom_and_locallyOfFiniteType :
     IsFinite f ↔ IsIntegralHom f ∧ LocallyOfFiniteType f := by
   wlog hY : IsAffine Y
@@ -149,9 +158,15 @@ instance : MorphismProperty.HasOfPostcompProperty @IsFinite @IsSeparated :=
   MorphismProperty.hasOfPostcompProperty_iff_le_diagonal.mpr
     fun _ _ _ _ ↦ inferInstanceAs (IsFinite _)
 
+/--
+@isnad1 id=isfinite.0h5v.s5.07d7cd0072cc from=seed src=0 shape=77972de3 vocab=089c73d3
+-/
 lemma of_comp (f : X ⟶ Y) (g : Y ⟶ Z) [IsFinite (f ≫ g)] [IsSeparated g] :
     IsFinite f := MorphismProperty.of_postcomp _ _ g ‹_› ‹_›
 
+/--
+@isnad1 id=iff.0h5v.s5.9ce470bb5449 from=seed src=0 shape=daa213a1 vocab=43488255
+-/
 lemma comp_iff {f : X ⟶ Y} {g : Y ⟶ Z} [IsFinite g] :
     IsFinite (f ≫ g) ↔ IsFinite f :=
   ⟨fun _ ↦ .of_comp f g, fun _ ↦ inferInstance⟩
@@ -168,6 +183,9 @@ instance {U V X : Scheme.{u}} (f : U ⟶ X) (g : V ⟶ X) [IsFinite f] [IsFinite
 end IsFinite
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=finite.0h3v.s10.8d09a9391d25 from=seed src=0 shape=57976d81 vocab=63bf2792
+-/
 lemma Scheme.Hom.finite_appTop {X Y : Scheme.{u}} (f : X ⟶ Y) [IsAffine Y] [IsFinite f] :
     f.appTop.hom.Finite :=
   (HasAffineProperty.iff_of_isAffine (P := @IsFinite).mp inferInstance).2
@@ -175,7 +193,9 @@ lemma Scheme.Hom.finite_appTop {X Y : Scheme.{u}} (f : X ⟶ Y) [IsAffine Y] [Is
 set_option backward.isDefEq.respectTransparency.types false in
 /-- If `X` is a Jacobson scheme and `k` is a field,
 `Spec(k) ⟶ X` is finite iff it is (locally) of finite type.
-(The statement is more general to allow the empty scheme as well) -/
+(The statement is more general to allow the empty scheme as well)
+@isnad1 id=iff.0h3v.s5.ce183527e1d7 from=seed src=0 shape=32c223c7 vocab=310bdd4e
+-/
 lemma isFinite_iff_locallyOfFiniteType_of_jacobsonSpace
     {X Y : Scheme.{u}} {f : X ⟶ Y} [Subsingleton X] [IsReduced X] [JacobsonSpace Y] :
     IsFinite f ↔ LocallyOfFiniteType f := by
@@ -206,6 +226,9 @@ lemma isFinite_iff_locallyOfFiniteType_of_jacobsonSpace
   change Module.Finite _ _ ↔ Algebra.FiniteType _ _
   exact ⟨fun _ ↦ inferInstance, fun _ ↦ finite_of_finite_type_of_isJacobsonRing _ _⟩
 
+/--
+@isnad1 id=le.0h3v.s8.56d66e0bee77 from=seed src=0 shape=f4efe938 vocab=65357d7c
+-/
 @[stacks 01TB "(1) => (3)"]
 lemma Scheme.Hom.closePoints_subset_preimage_closedPoints
     {X Y : Scheme.{u}} (f : X ⟶ Y) [JacobsonSpace Y] [LocallyOfFiniteType f] :
@@ -218,6 +241,9 @@ lemma Scheme.Hom.closePoints_subset_preimage_closedPoints
     (X.fromSpecResidueField x ≫ f).isClosedMap.isClosed_range
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h2v.s6.ce6e4006b82f from=seed src=0 shape=a8267977 vocab=768afdf6
+-/
 @[stacks 01TB "(1) => (2)"]
 lemma isClosed_singleton_iff_locallyOfFiniteType {X : Scheme.{u}} [JacobsonSpace X] {x : X} :
     IsClosed {x} ↔ LocallyOfFiniteType (X.fromSpecResidueField x) := by

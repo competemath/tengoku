@@ -40,11 +40,17 @@ and a variable evaluation `v : τ → R`,
 noncomputable def comap (f : MvPolynomial σ R →ₐ[R] MvPolynomial τ R) : (τ → R) → σ → R :=
   fun x i => aeval x (f (X i))
 
+/--
+@isnad1 id=eq.0h6v.s8.c8809c76ba16 from=seed src=0 shape=9602fdd2 vocab=543a2e8b
+-/
 @[simp]
 theorem comap_apply (f : MvPolynomial σ R →ₐ[R] MvPolynomial τ R) (x : τ → R) (i : σ) :
     comap f x i = aeval x (f (X i)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.552513e86223 from=seed src=0 shape=e7b6a356 vocab=25de5247
+-/
 @[simp]
 theorem comap_id_apply (x : σ → R) : comap (AlgHom.id R (MvPolynomial σ R)) x = x := by
   funext i
@@ -52,12 +58,18 @@ theorem comap_id_apply (x : σ → R) : comap (AlgHom.id R (MvPolynomial σ R)) 
 
 variable (σ R)
 
+/--
+@isnad1 id=eq.0h2v.s6.e2ad41f61fc7 from=seed src=0 shape=ee8c8f00 vocab=95952ee1
+-/
 theorem comap_id : comap (AlgHom.id R (MvPolynomial σ R)) = id := by
   funext x
   exact comap_id_apply x
 
 variable {σ R}
 
+/--
+@isnad1 id=eq.0h7v.s8.bf595c747228 from=seed src=0 shape=92681ad7 vocab=6d8920ae
+-/
 theorem comap_comp_apply (f : MvPolynomial σ R →ₐ[R] MvPolynomial τ R)
     (g : MvPolynomial τ R →ₐ[R] MvPolynomial υ R) (x : υ → R) :
     comap (g.comp f) x = comap f (comap g x) := by
@@ -72,17 +84,26 @@ theorem comap_comp_apply (f : MvPolynomial σ R →ₐ[R] MvPolynomial τ R)
     ext r
     apply aeval_C
 
+/--
+@isnad1 id=eq.0h6v.s8.aa0b3d35ef40 from=seed src=0 shape=af50c6d6 vocab=495fb6d9
+-/
 theorem comap_comp (f : MvPolynomial σ R →ₐ[R] MvPolynomial τ R)
     (g : MvPolynomial τ R →ₐ[R] MvPolynomial υ R) : comap (g.comp f) = comap f ∘ comap g := by
   funext x
   exact comap_comp_apply _ _ _
 
+/--
+@isnad1 id=eq.1h4v.s8.9fae93dea169 from=seed src=0 shape=a744301e vocab=7b1ff710
+-/
 theorem comap_eq_id_of_eq_id (f : MvPolynomial σ R →ₐ[R] MvPolynomial σ R) (hf : ∀ φ, f φ = φ)
     (x : σ → R) : comap f x = x := by
   convert! comap_id_apply x
   ext1 φ
   simp [hf, AlgHom.id_apply]
 
+/--
+@isnad1 id=eq.0h5v.s5.03cff1c7d579 from=seed src=0 shape=8a273f05 vocab=057d8e30
+-/
 theorem comap_rename (f : σ → τ) (x : τ → R) : comap (rename f) x = x ∘ f := by
   funext
   simp [rename_X, comap_apply, aeval_X]
@@ -106,11 +127,17 @@ noncomputable def comapEquiv (f : MvPolynomial σ R ≃ₐ[R] MvPolynomial τ R)
     intro
     simp only [AlgHom.id_apply, AlgEquiv.symm_comp]
 
+/--
+@isnad1 id=eq.0h4v.s7.17b944043596 from=seed src=0 shape=4a6da113 vocab=6a90a306
+-/
 @[simp]
 theorem comapEquiv_coe (f : MvPolynomial σ R ≃ₐ[R] MvPolynomial τ R) :
     (comapEquiv f : (τ → R) → σ → R) = comap f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.d149e6f99e5b from=seed src=0 shape=2be805c6 vocab=65447db1
+-/
 @[simp]
 theorem comapEquiv_symm_coe (f : MvPolynomial σ R ≃ₐ[R] MvPolynomial τ R) :
     ((comapEquiv f).symm : (σ → R) → τ → R) = comap f.symm :=

@@ -141,6 +141,9 @@ noncomputable def pullbackId : pullback.{v} (F := 𝟭 C) (𝟙 S) ≅ 𝟭 _ :=
   ((pullbackPushforwardAdjunction.{v} (F := 𝟭 C) (𝟙 S))).leftAdjointIdIso (pushforwardId S)
 
 variable (S) in
+/--
+@isnad1 id=eq.0h3v.s11.5eb111aaa150 from=seed src=0 shape=31809967 vocab=cb551776
+-/
 @[simp]
 lemma conjugateEquiv_pullbackId_hom :
     conjugateEquiv .id (pullbackPushforwardAdjunction.{v} _) (pullbackId S).hom =
@@ -174,6 +177,9 @@ noncomputable def pullbackComp :
       (φ ≫ (F.sheafPushforwardContinuous RingCat.{u} J K).map ψ))
     (pushforwardComp φ ψ)
 
+/--
+@isnad1 id=eq.0h13v.s13.cfdb2b7cfb15 from=seed src=0 shape=0a89525a vocab=4d23cdad
+-/
 @[simp]
 lemma conjugateEquiv_pullbackComp_inv :
     conjugateEquiv ((pullbackPushforwardAdjunction.{v} φ).comp
@@ -191,6 +197,9 @@ variable {G' : D' ⥤ D''} {R'' : Sheaf K'' RingCat.{u}}
 
 variable [(pushforward.{v} ψ').IsRightAdjoint]
 
+/--
+@isnad1 id=eq.0h18v.s12.8cb41e258070 from=seed src=0 shape=347f5d3e vocab=123aaff4
+-/
 lemma pullback_assoc :
     isoWhiskerLeft _ (pullbackComp.{v} ψ ψ') ≪≫
       pullbackComp.{v} (G := G ⋙ G') φ
@@ -202,11 +211,17 @@ lemma pullback_assoc :
 
 end
 
+/--
+@isnad1 id=eq.0h8v.s10.25e5a62b3645 from=seed src=0 shape=6b4b6bfe vocab=aa778157
+-/
 lemma pullback_id_comp :
     pullbackComp.{v} (F := 𝟭 C) (𝟙 S) φ =
       isoWhiskerRight (pullbackId S) (pullback φ) ≪≫ Functor.leftUnitor _ :=
   Adjunction.leftAdjointCompIso_id_comp _ _ _ _ (pushforward_comp_id φ)
 
+/--
+@isnad1 id=eq.0h8v.s10.17baaf47f8c4 from=seed src=0 shape=a463258c vocab=b28dea45
+-/
 lemma pullback_comp_id :
     pullbackComp.{v} (G := 𝟭 _) φ (𝟙 R) =
       isoWhiskerLeft _ (pullbackId R) ≪≫ Functor.rightUnitor _ :=

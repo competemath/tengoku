@@ -27,6 +27,9 @@ universe u v
 
 variable {ι : Type u} (R : ι → CommRingCat.{u})
 
+/--
+@isnad1 id=eq.2h3v.s8.f96890017c22 from=seed src=0 shape=b2aa7a43 vocab=a3324705
+-/
 lemma Ideal.span_eq_top_of_span_image_evalRingHom
     {ι} {R : ι → Type*} [∀ i, CommRing (R i)] (s : Set (Π i, R i))
     (hs : s.Finite) (hs' : ∀ i, Ideal.span (Pi.evalRingHom (R ·) i '' s) = ⊤) :
@@ -74,7 +77,9 @@ lemma eq_bot_of_comp_quotientMk_eq_sigmaSpec (I : Ideal (Π i, R i))
     congr((Spec.preimage (Sigma.ι (Spec <| R ·) i ≫ $hf)).hom x).symm
 
 /-- If `V` is a locally closed subscheme of `Spec (Π Rᵢ)` containing `∐ Spec Rᵢ`, then
-`V = Spec (Π Rᵢ)`. -/
+`V = Spec (Π Rᵢ)`.
+@isnad1 id=isiso.1h5v.s7.7606623cba94 from=seed src=0 shape=4dd435d7 vocab=6cace52f
+-/
 lemma isIso_of_comp_eq_sigmaSpec {V : Scheme}
     (f : (∐ fun i ↦ Spec (R i)) ⟶ V) (g : V ⟶ Spec (.of <| Π i, R i))
     [IsImmersion g] [CompactSpace V]
@@ -101,6 +106,9 @@ noncomputable
 def pointsPi : (Spec (.of <| Π i, R i) ⟶ X) → Π i, Spec (R i) ⟶ X :=
   fun f i ↦ Spec.map (CommRingCat.ofHom (Pi.evalRingHom (R ·) i)) ≫ f
 
+/--
+@isnad1 id=injectiv.0h3v.s6.ca87eb4257b0 from=seed src=0 shape=13ebdca0 vocab=a07dd884
+-/
 lemma pointsPi_injective [QuasiSeparatedSpace X] : Function.Injective (pointsPi R X) := by
   rintro f g e
   have := isIso_of_comp_eq_sigmaSpec R (V := equalizer f g)
@@ -108,6 +116,9 @@ lemma pointsPi_injective [QuasiSeparatedSpace X] : Function.Injective (pointsPi 
     (equalizer.ι f g) (by simp)
   rw [← cancel_epi (equalizer.ι f g), equalizer.condition]
 
+/--
+@isnad1 id=surjecti.0h3v.s5.01182c4a3011 from=seed src=0 shape=938efdd9 vocab=c78ac2e1
+-/
 lemma pointsPi_surjective_of_isAffine [IsAffine X] : Function.Surjective (pointsPi R X) := by
   rintro f
   refine ⟨Spec.map (CommRingCat.ofHom
@@ -116,6 +127,9 @@ lemma pointsPi_surjective_of_isAffine [IsAffine X] : Function.Surjective (points
   simp only [pointsPi, ← Spec.map_comp_assoc, Iso.comp_inv_eq]
   exact Spec.map_preimage _
 
+/--
+@isnad1 id=surjecti.0h3v.s6.7a21a42df1ac from=seed src=0 shape=fd3ae949 vocab=39502e86
+-/
 lemma pointsPi_surjective [CompactSpace X] [∀ i, IsLocalRing (R i)] :
     Function.Surjective (pointsPi R X) := by
   intro f

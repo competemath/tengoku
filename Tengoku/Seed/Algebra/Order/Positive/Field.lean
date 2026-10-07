@@ -25,6 +25,9 @@ namespace Positive
 
 instance Subtype.inv : Inv { x : K // 0 < x } := ⟨fun x => ⟨x⁻¹, inv_pos.2 x.2⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.d3669ee25f89 from=seed src=0 shape=13172c56 vocab=cf39a319
+-/
 @[simp]
 theorem coe_inv (x : { x : K // 0 < x }) : ↑x⁻¹ = (x⁻¹ : K) :=
   rfl
@@ -32,6 +35,9 @@ theorem coe_inv (x : { x : K // 0 < x }) : ↑x⁻¹ = (x⁻¹ : K) :=
 instance : Pow { x : K // 0 < x } ℤ :=
   ⟨fun x n => ⟨(x : K) ^ n, zpow_pos x.2 _⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.9ccc0abde9a5 from=seed src=0 shape=ae50b88d vocab=4a729c25
+-/
 @[simp]
 theorem coe_zpow (x : { x : K // 0 < x }) (n : ℤ) : ↑(x ^ n) = (x : K) ^ n :=
   rfl

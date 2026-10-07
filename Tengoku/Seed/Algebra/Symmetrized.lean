@@ -61,51 +61,93 @@ def sym : α ≃ αˢʸᵐ :=
 def unsym : αˢʸᵐ ≃ α :=
   Equiv.refl _
 
+/--
+@isnad1 id=eq.0h2v.s5.b35920756006 from=seed src=0 shape=fa7330c4 vocab=cd110234
+-/
 @[simp]
 theorem unsym_sym (a : α) : unsym (sym a) = a :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.5035f3302cbe from=seed src=0 shape=a979b882 vocab=cd110234
+-/
 @[simp]
 theorem sym_unsym (a : α) : sym (unsym a) = a :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.e7f724de683f from=seed src=0 shape=ae0f59a5 vocab=2c681d23
+-/
 @[simp]
 theorem sym_comp_unsym : (sym : α → αˢʸᵐ) ∘ unsym = id :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.b49fff24eae2 from=seed src=0 shape=60cb1567 vocab=2c681d23
+-/
 @[simp]
 theorem unsym_comp_sym : (unsym : αˢʸᵐ → α) ∘ sym = id :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.329128fe1875 from=seed src=0 shape=9d746310 vocab=f95c0e2e
+-/
 @[simp]
 theorem sym_symm : (@sym α).symm = unsym :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.74bd4d590396 from=seed src=0 shape=e5cab704 vocab=f95c0e2e
+-/
 @[simp]
 theorem unsym_symm : (@unsym α).symm = sym :=
   rfl
 
+/--
+@isnad1 id=bijectiv.0h1v.s4.46d55350ea00 from=seed src=0 shape=68eb7635 vocab=de3df54d
+-/
 theorem sym_bijective : Bijective (sym : α → αˢʸᵐ) :=
   sym.bijective
 
+/--
+@isnad1 id=bijectiv.0h1v.s4.6e07a1083e2e from=seed src=0 shape=64d0dd7a vocab=8e9ad54e
+-/
 theorem unsym_bijective : Bijective (unsym : αˢʸᵐ → α) :=
   unsym.symm.bijective
 
+/--
+@isnad1 id=injectiv.0h1v.s4.73063dc652f9 from=seed src=0 shape=68eb7635 vocab=5673615f
+-/
 theorem sym_injective : Injective (sym : α → αˢʸᵐ) :=
   sym.injective
 
+/--
+@isnad1 id=surjecti.0h1v.s4.06a23ceb5220 from=seed src=0 shape=68eb7635 vocab=b6e8d316
+-/
 theorem sym_surjective : Surjective (sym : α → αˢʸᵐ) :=
   sym.surjective
 
+/--
+@isnad1 id=injectiv.0h1v.s4.22000736ab63 from=seed src=0 shape=64d0dd7a vocab=2a424a24
+-/
 theorem unsym_injective : Injective (unsym : αˢʸᵐ → α) :=
   unsym.injective
 
+/--
+@isnad1 id=surjecti.0h1v.s4.b394e5706556 from=seed src=0 shape=64d0dd7a vocab=3ee3e1ee
+-/
 theorem unsym_surjective : Surjective (unsym : αˢʸᵐ → α) :=
   unsym.surjective
 
+/--
+@isnad1 id=iff.0h3v.s6.44e221a8e97c from=seed src=0 shape=5e10f266 vocab=de84bd41
+-/
 theorem sym_inj {a b : α} : sym a = sym b ↔ a = b :=
   sym_injective.eq_iff
 
+/--
+@isnad1 id=iff.0h3v.s6.c98d334aad89 from=seed src=0 shape=49fd6368 vocab=3d89e9ab
+-/
 theorem unsym_inj {a b : αˢʸᵐ} : unsym a = unsym b ↔ a = b :=
   unsym_injective.eq_iff
 
@@ -142,76 +184,133 @@ instance [Inv α] : Inv αˢʸᵐ where inv a := sym <| (unsym a)⁻¹
 
 instance (R : Type*) [SMul R α] : SMul R αˢʸᵐ where smul r a := sym (r • unsym a)
 
+/--
+@isnad1 id=eq.0h1v.s5.585ff39b2a82 from=seed src=0 shape=759a5eb9 vocab=a9795dab
+-/
 @[to_additive (attr := simp)]
 theorem sym_one [One α] : sym (1 : α) = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.1f316bd373c0 from=seed src=0 shape=5a2d305d vocab=d0930b96
+-/
 @[to_additive (attr := simp)]
 theorem unsym_one [One α] : unsym (1 : αˢʸᵐ) = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.1cc0cc7823c3 from=seed src=0 shape=048cfcd0 vocab=8fa7b7a0
+-/
 @[simp]
 theorem sym_add [Add α] (a b : α) : sym (a + b) = sym a + sym b :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.70e7d31c706b from=seed src=0 shape=118c49f2 vocab=ec587b15
+-/
 @[simp]
 theorem unsym_add [Add α] (a b : αˢʸᵐ) : unsym (a + b) = unsym a + unsym b :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.fb7b2cbf5db0 from=seed src=0 shape=048cfcd0 vocab=cbb3762d
+-/
 @[simp]
 theorem sym_sub [Sub α] (a b : α) : sym (a - b) = sym a - sym b :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.52bbee2c0dbc from=seed src=0 shape=118c49f2 vocab=ae245573
+-/
 @[simp]
 theorem unsym_sub [Sub α] (a b : αˢʸᵐ) : unsym (a - b) = unsym a - unsym b :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.54ee5d1af0da from=seed src=0 shape=e8511e99 vocab=bcbc4943
+-/
 @[simp]
 theorem sym_neg [Neg α] (a : α) : sym (-a) = -sym a :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.40094c2759e3 from=seed src=0 shape=c86298d1 vocab=9aac0d9b
+-/
 @[simp]
 theorem unsym_neg [Neg α] (a : αˢʸᵐ) : unsym (-a) = -unsym a :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.6f26959fdb63 from=seed src=0 shape=94b4b893 vocab=3abc3ee4
+-/
 theorem mul_def [Add α] [Mul α] [One α] [OfNat α 2] [Invertible (2 : α)] (a b : αˢʸᵐ) :
     a * b = sym (⅟2 * (unsym a * unsym b + unsym b * unsym a)) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.b8651836dcb5 from=seed src=0 shape=a6a6a0fe vocab=11a7a5cf
+-/
 theorem unsym_mul [Mul α] [Add α] [One α] [OfNat α 2] [Invertible (2 : α)] (a b : αˢʸᵐ) :
     unsym (a * b) = ⅟2 * (unsym a * unsym b + unsym b * unsym a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.37e5c1037aa0 from=seed src=0 shape=b5e8fc30 vocab=83d7131e
+-/
 theorem sym_mul_sym [Mul α] [Add α] [One α] [OfNat α 2] [Invertible (2 : α)] (a b : α) :
     sym a * sym b = sym (⅟2 * (a * b + b * a)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.ceb5d2c81e7a from=seed src=0 shape=e8511e99 vocab=8c176b3b
+-/
 @[simp, to_additive existing]
 theorem sym_inv [Inv α] (a : α) : sym a⁻¹ = (sym a)⁻¹ :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.71ea20ee368a from=seed src=0 shape=c86298d1 vocab=672a325b
+-/
 @[simp, to_additive existing]
 theorem unsym_inv [Inv α] (a : αˢʸᵐ) : unsym a⁻¹ = (unsym a)⁻¹ :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.b2698b5e90fc from=seed src=0 shape=9b1277ca vocab=29586b4c
+-/
 @[simp]
 theorem sym_smul {R : Type*} [SMul R α] (c : R) (a : α) : sym (c • a) = c • sym a :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.65264bf687b0 from=seed src=0 shape=311bbda4 vocab=3d20a5fd
+-/
 @[simp]
 theorem unsym_smul {R : Type*} [SMul R α] (c : R) (a : αˢʸᵐ) : unsym (c • a) = c • unsym a :=
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.c34049f7a08b from=seed src=0 shape=9151a5dd vocab=d0930b96
+-/
 @[to_additive (attr := simp)]
 theorem unsym_eq_one_iff [One α] (a : αˢʸᵐ) : unsym a = 1 ↔ a = 1 :=
   unsym_injective.eq_iff' rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.6eff8540e104 from=seed src=0 shape=6a647082 vocab=a9795dab
+-/
 @[to_additive (attr := simp)]
 theorem sym_eq_one_iff [One α] (a : α) : sym a = 1 ↔ a = 1 :=
   sym_injective.eq_iff' rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.bf49647af784 from=seed src=0 shape=9151a5dd vocab=d0930b96
+-/
 @[to_additive]
 theorem unsym_ne_one_iff [One α] (a : αˢʸᵐ) : unsym a ≠ (1 : α) ↔ a ≠ (1 : αˢʸᵐ) :=
   not_congr <| unsym_eq_one_iff a
 
+/--
+@isnad1 id=iff.0h2v.s5.688349fbfa40 from=seed src=0 shape=6a647082 vocab=a9795dab
+-/
 @[to_additive]
 theorem sym_ne_one_iff [One α] (a : α) : sym a ≠ (1 : αˢʸᵐ) ↔ a ≠ (1 : α) :=
   not_congr <| sym_eq_one_iff a
@@ -243,6 +342,9 @@ instance [Mul α] [AddMonoidWithOne α] [Invertible (2 : α)] (a : α) [Invertib
   mul_invOf_self := by
     rw [sym_mul_sym, mul_invOf_self, invOf_mul_self, one_add_one_eq_two, invOf_mul_self, sym_one]
 
+/--
+@isnad1 id=eq.0h2v.s7.8fec5513f787 from=seed src=0 shape=d7635aa9 vocab=69c5e6e4
+-/
 @[simp]
 theorem invOf_sym [Mul α] [AddMonoidWithOne α] [Invertible (2 : α)] (a : α) [Invertible a] :
     ⅟(sym a) = sym (⅟a) :=
@@ -279,13 +381,22 @@ instance [Ring α] [Invertible (2 : α)] : NonAssocRing αˢʸᵐ :=
 /-! The squaring operation coincides for both multiplications -/
 
 
+/--
+@isnad1 id=eq.0h2v.s7.fb13c661718a from=seed src=0 shape=37ca9b61 vocab=f1d48f23
+-/
 theorem unsym_mul_self [Semiring α] [Invertible (2 : α)] (a : αˢʸᵐ) :
     unsym (a * a) = unsym a * unsym a := by
   rw [mul_def, unsym_sym, ← two_mul, invOf_mul_cancel_left]
 
+/--
+@isnad1 id=eq.0h2v.s7.45fae25a9577 from=seed src=0 shape=f7098f2b vocab=0c156b04
+-/
 theorem sym_mul_self [Semiring α] [Invertible (2 : α)] (a : α) : sym (a * a) = sym a * sym a := by
   rw [sym_mul_sym, ← two_mul, invOf_mul_cancel_left]
 
+/--
+@isnad1 id=eq.0h3v.s6.f43a2bcce49d from=seed src=0 shape=926ad0ce vocab=6fd5b900
+-/
 theorem mul_comm [Mul α] [AddCommSemigroup α] [One α] [OfNat α 2] [Invertible (2 : α)]
     (a b : αˢʸᵐ) :
     a * b = b * a := by rw [mul_def, mul_def, add_comm]

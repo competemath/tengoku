@@ -45,6 +45,9 @@ namespace VertexOperator
 
 open HVertexOperator
 
+/--
+@isnad1 id=eq.1h4v.s9.1eb2c688f1b5 from=seed src=0 shape=4d2f2866 vocab=974daac5
+-/
 @[ext]
 theorem ext (A B : VertexOperator R V) (h : ∀ v : V, A v = B v) :
     A = B := LinearMap.ext h
@@ -55,6 +58,9 @@ def ncoeff : VertexOperator R V →ₗ[R] ℤ → Module.End R V where
   map_add' _ _ := by ext; simp
   map_smul' _ _ := by ext; simp
 
+/--
+@isnad1 id=eq.0h4v.s11.0463c51d605d from=seed src=0 shape=2baf9162 vocab=d52bad2f
+-/
 theorem ncoeff_apply (A : VertexOperator R V) (n : ℤ) : ncoeff A n = coeff A (-n - 1) :=
   rfl
 
@@ -62,16 +68,25 @@ theorem ncoeff_apply (A : VertexOperator R V) (n : ℤ) : ncoeff A n = coeff A (
 either `Aₙ` or `A(n)`. -/
 scoped[VertexOperator] notation A "[[" n "]]" => ncoeff A n
 
+/--
+@isnad1 id=eq.0h4v.s11.b091fc15e180 from=seed src=0 shape=5adb1b56 vocab=d52bad2f
+-/
 @[simp]
 theorem coeff_eq_ncoeff (A : VertexOperator R V)
     (n : ℤ) : HVertexOperator.coeff A n = A[[-n - 1]] := by
   rw [ncoeff_apply, neg_sub, Int.sub_neg, add_sub_cancel_left]
 
+/--
+@isnad1 id=eq.1h5v.s11.c360be1d128c from=seed src=0 shape=bfe99713 vocab=af24e263
+-/
 theorem ncoeff_eq_zero_of_lt_order (A : VertexOperator R V) (n : ℤ) (x : V)
     (h : -n - 1 < HahnSeries.order ((HahnModule.of R).symm (A x))) : (A[[n]]) x = 0 := by
   simp only [ncoeff, HVertexOperator.coeff, LinearMap.coe_mk, AddHom.coe_mk]
   exact HahnSeries.coeff_eq_zero_of_lt_order h
 
+/--
+@isnad1 id=eq.1h5v.s11.bc6d29466f4a from=seed src=0 shape=96217ca5 vocab=7805af85
+-/
 theorem coeff_eq_zero_of_lt_order (A : VertexOperator R V) (n : ℤ) (x : V)
     (h : n < HahnSeries.order ((HahnModule.of R).symm (A x))) : coeff A n x = 0 := by
   rw [coeff_eq_ncoeff, ncoeff_eq_zero_of_lt_order A (-n - 1) x]
@@ -83,12 +98,18 @@ noncomputable def of_coeff (f : ℤ → Module.End R V)
     (hf : ∀ x, BddBelow (Function.support fun y ↦ f y x)) : VertexOperator R V :=
   HVertexOperator.of_coeff f fun x ↦ (BddBelow.isWF (hf x)).isPWO
 
+/--
+@isnad1 id=eq.1h5v.s10.389ec8c79ba4 from=seed src=0 shape=93e25796 vocab=edf75750
+-/
 @[simp]
 theorem of_coeff_apply_coeff (f : ℤ → Module.End R V)
     (hf : ∀ x, BddBelow (Function.support fun y ↦ f y x)) (x : V) (n : ℤ) :
     ((HahnModule.of R).symm ((of_coeff f hf) x)).coeff n = (f n) x := by
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.97f92c0d476f from=seed src=0 shape=ab978a4a vocab=7aec941b
+-/
 @[simp]
 theorem ncoeff_of_coeff (f : ℤ → Module.End R V)
     (hf : ∀ x, BddBelow (Function.support fun y ↦ f y x)) (n : ℤ) :

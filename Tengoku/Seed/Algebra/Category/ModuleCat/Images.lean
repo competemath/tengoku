@@ -47,6 +47,9 @@ instance : Mono (image.ι f) :=
 def factorThruImage : G ⟶ image f :=
   ofHom f.hom.rangeRestrict
 
+/--
+@isnad1 id=eq.0h4v.s6.0fd008ef72e7 from=seed src=0 shape=3e6f5928 vocab=4a2c99fa
+-/
 theorem image.fac : factorThruImage f ≫ image.ι f = f :=
   rfl
 
@@ -74,6 +77,9 @@ noncomputable def image.lift (F' : MonoFactorisation f) : image f ⟶ F'.I :=
       simp_rw [F'.fac, (Classical.indefiniteDescription (fun z => f z = _) _).2]
       rfl }
 
+/--
+@isnad1 id=eq.0h5v.s6.ecd5a713f0ec from=seed src=0 shape=f7339aef vocab=84ff54bf
+-/
 theorem image.lift_fac (F' : MonoFactorisation f) : image.lift F' ≫ F'.m = image.ι f := by
   ext x
   change (F'.e ≫ F'.m) _ = _
@@ -99,11 +105,17 @@ noncomputable def imageIsoRange {G H : ModuleCat.{v} R} (f : G ⟶ H) :
     Limits.image f ≅ ModuleCat.of R (LinearMap.range f.hom) :=
   IsImage.isoExt (Image.isImage f) (isImage f)
 
+/--
+@isnad1 id=eq.0h4v.s10.e14f7268fe6e from=seed src=0 shape=d3c4ce13 vocab=12968ce0
+-/
 @[simp, reassoc, elementwise]
 theorem imageIsoRange_inv_image_ι {G H : ModuleCat.{v} R} (f : G ⟶ H) :
     (imageIsoRange f).inv ≫ Limits.image.ι f = ModuleCat.ofHom (LinearMap.range f.hom).subtype :=
   IsImage.isoExt_inv_m _ _
 
+/--
+@isnad1 id=eq.0h4v.s10.8924d88f0532 from=seed src=0 shape=1d0e7f67 vocab=57a3a5d9
+-/
 @[simp, reassoc, elementwise]
 theorem imageIsoRange_hom_subtype {G H : ModuleCat.{v} R} (f : G ⟶ H) :
     (imageIsoRange f).hom ≫ ModuleCat.ofHom (LinearMap.range f.hom).subtype = Limits.image.ι f := by

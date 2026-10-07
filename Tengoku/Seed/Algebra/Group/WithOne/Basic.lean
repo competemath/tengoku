@@ -63,21 +63,36 @@ def lift : (α →ₙ* β) ≃ (WithOne α →* β) where
 
 variable (f : α →ₙ* β)
 
+/--
+@isnad1 id=eq.0h4v.s7.c7069a6f20a7 from=seed src=0 shape=bf55506f vocab=5b5c083d
+-/
 @[to_additive (attr := simp)]
 theorem lift_coe (x : α) : lift f x = f x :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.0dceedc798e8 from=seed src=0 shape=b0d18aef vocab=eb54383a
+-/
 @[to_additive (attr := simp)]
 theorem lift_one : lift f 1 = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.7417fae240d3 from=seed src=0 shape=035526bd vocab=a4654298
+-/
 @[to_additive]
 theorem lift_unique (f : WithOne α →* β) : f = lift (f.toMulHom.comp coeMulHom) :=
   (lift.apply_symm_apply f).symm
 
+/--
+@isnad1 id=eq.0h4v.s7.d998346c431f from=seed src=0 shape=86e75e51 vocab=c57afa79
+-/
 @[to_additive (attr := simp)]
 theorem lift_symm_apply (f : WithOne α →* β) (x : α) : lift.symm f x = f x := rfl
 
+/--
+@isnad1 id=injectiv.1h3v.s7.fbcb64d35a41 from=seed src=0 shape=3d8a104f vocab=6f95cb2b
+-/
 @[to_additive]
 lemma lift_symm_injective_of_injective {f : WithOne α →* β} (hf : Function.Injective f) :
     Function.Injective (lift.symm f) :=
@@ -96,35 +111,56 @@ variable [Mul α] [Mul β] [Mul γ]
 def mapMulHom (f : α →ₙ* β) : WithOne α →* WithOne β :=
   lift (coeMulHom.comp f)
 
+/--
+@isnad1 id=eq.0h4v.s6.91acd0010803 from=seed src=0 shape=a1a14f1e vocab=fe46908c
+-/
 @[to_additive (attr := simp)]
 theorem mapMulHom_coe (f : α →ₙ* β) (a : α) : mapMulHom f (a : WithOne α) = f a :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.46d86bb95273 from=seed src=0 shape=a9843297 vocab=c49a84b8
+-/
 @[to_additive (attr := simp)]
 theorem mapMulHom_id : mapMulHom (MulHom.id α) = MonoidHom.id (WithOne α) := by
   ext x
   induction x <;> rfl
 
+/--
+@isnad1 id=injectiv.1h3v.s6.a7f74ed413f3 from=seed src=0 shape=d596f39f vocab=c4f0c1a9
+-/
 @[to_additive]
 theorem mapMulHom_injective {f : α →ₙ* β} (hf : Function.Injective f) :
     Function.Injective (mapMulHom f)
   | none, none, _ => rfl
   | (a₁ : α), (a₂ : α), H => by simpa [hf.eq_iff] using H
 
+/--
+@isnad1 id=injectiv.0h2v.s5.8b4eabce8efd from=seed src=0 shape=d42a02d1 vocab=7391c30e
+-/
 @[to_additive]
 theorem mapMulHom_injective' :
     Function.Injective (WithOne.mapMulHom (α := α) (β := β)) :=
   fun f g h ↦ MulHom.ext fun x ↦ coe_injective <| by simp only [← mapMulHom_coe, h]
 
+/--
+@isnad1 id=iff.0h4v.s5.ed4b764f2867 from=seed src=0 shape=44278e95 vocab=1228f096
+-/
 @[to_additive (attr := simp)]
 theorem mapMulHom_inj {f g : α →ₙ* β} : mapMulHom f = mapMulHom g ↔ f = g :=
   mapMulHom_injective'.eq_iff
 
+/--
+@isnad1 id=eq.0h6v.s7.db7d2666ca4f from=seed src=0 shape=565f5d88 vocab=4745f6e0
+-/
 @[to_additive]
 theorem mapMulHom_mapMulHom (f : α →ₙ* β) (g : β →ₙ* γ) (x) :
     mapMulHom g (mapMulHom f x) = mapMulHom (g.comp f) x := by
   induction x <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.79c33289d4d4 from=seed src=0 shape=81363051 vocab=9cc2785f
+-/
 @[to_additive (attr := simp)]
 theorem mapMulHom_comp (f : α →ₙ* β) (g : β →ₙ* γ) :
     mapMulHom (g.comp f) = (mapMulHom g).comp (mapMulHom f) :=

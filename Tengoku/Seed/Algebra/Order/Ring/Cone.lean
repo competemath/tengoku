@@ -40,6 +40,9 @@ instance RingCone.instSetLike (R : Type*) [Ring R] : SetLike (RingCone R) R wher
 
 instance (R : Type*) [Ring R] : PartialOrder (RingCone R) := .ofSetLike (RingCone R) R
 
+/--
+@isnad1 id=ringcone.0h1v.s3.bd36801c505b from=seed src=0 shape=3d1b05f8 vocab=78075724
+-/
 instance RingCone.instRingConeClass (R : Type*) [Ring R] :
     RingConeClass (RingCone R) R where
   add_mem {C} := C.add_mem'
@@ -48,11 +51,17 @@ instance RingCone.instRingConeClass (R : Type*) [Ring R] :
   one_mem {C} := C.one_mem'
   eq_zero_of_mem_of_neg_mem {C} := C.eq_zero_of_mem_of_neg_mem'
 
+/--
+@isnad1 id=iff.1h3v.s7.c20146f1e174 from=seed src=0 shape=628a8757 vocab=1ca0d501
+-/
 @[simp]
 theorem RingCone.mem_mk {R : Type*} [Ring R] {toSubsemiring : Subsemiring R}
     (eq_zero_of_mem_of_neg_mem) {x : R} :
     x ∈ mk toSubsemiring eq_zero_of_mem_of_neg_mem ↔ x ∈ toSubsemiring := .rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.2681470914ed from=seed src=0 shape=7214712e vocab=01b9fca9
+-/
 @[simp]
 theorem RingCone.coe_set_mk {R : Type*} [Ring R] {toSubsemiring : Subsemiring R}
     (eq_zero_of_mem_of_neg_mem) :
@@ -68,11 +77,26 @@ def nonneg : RingCone T where
   __ := Subsemiring.nonneg T
   eq_zero_of_mem_of_neg_mem' {a} := by simpa using ge_antisymm
 
+/--
+@isnad1 id=eq.0h1v.s5.0ad01eae93b0 from=seed src=0 shape=fbb2e310 vocab=11d3e336
+-/
 @[simp] lemma nonneg_toSubsemiring : (nonneg T).toSubsemiring = .nonneg T := rfl
+/--
+@isnad1 id=eq.0h1v.s5.71cfcf32f8bd from=seed src=0 shape=fbb2e310 vocab=4e7cf095
+-/
 @[simp] lemma nonneg_toAddGroupCone : (nonneg T).toAddGroupCone = .nonneg T := rfl
+/--
+@isnad1 id=iff.0h2v.s5.44d3f4eb7df3 from=seed src=0 shape=ea0a7987 vocab=2d0b66cf
+-/
 @[simp] lemma mem_nonneg : a ∈ nonneg T ↔ 0 ≤ a := Iff.rfl
+/--
+@isnad1 id=eq.0h1v.s5.f18bed7e62ee from=seed src=0 shape=3bd58850 vocab=aee800d5
+-/
 @[simp, norm_cast] lemma coe_nonneg : nonneg T = {x : T | 0 ≤ x} := rfl
 
+/--
+@isnad1 id=hasmemor.0h1v.s5.8da181ed73ed from=seed src=0 shape=7cdc28cf vocab=d5b90555
+-/
 instance nonneg.hasMemOrNegMem {T : Type*} [Ring T] [LinearOrder T] [IsOrderedRing T] :
     HasMemOrNegMem (nonneg T) where
   mem_or_neg_mem := mem_or_neg_mem (AddGroupCone.nonneg T)
@@ -81,7 +105,9 @@ end RingCone
 
 variable {S R : Type*} [Ring R] [SetLike S R] (C : S)
 
-/-- Construct a partially ordered ring by designating a cone in a ring. -/
+/-- Construct a partially ordered ring by designating a cone in a ring.
+@isnad1 id=isordere.0h3v.s5.e23d3b1ff043 from=seed src=0 shape=a3b4bce2 vocab=f6a366a3
+-/
 lemma IsOrderedRing.mkOfCone [RingConeClass S R] :
     letI _ : PartialOrder R := .mkOfAddGroupCone C
     IsOrderedRing R :=

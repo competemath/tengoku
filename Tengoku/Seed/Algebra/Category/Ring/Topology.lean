@@ -51,16 +51,25 @@ This is a scoped instance in `CommRingCat.HomTopology`.
 scoped instance : TopologicalSpace (A ⟶ R) :=
   .induced (fun f ↦ f.hom : _ → A → R) inferInstance
 
+/--
+@isnad1 id=continuo.0h3v.s6.3331862c8a41 from=seed src=0 shape=ae44d97d vocab=aec8dbf8
+-/
 @[fun_prop]
 nonrec lemma continuous_apply (x : A) :
     Continuous (fun f : A ⟶ R ↦ f.hom x) :=
   (continuous_apply x).comp continuous_induced_dom
 
 variable (R A) in
+/--
+@isnad1 id=isembedd.0h2v.s6.d57e6929d250 from=seed src=0 shape=39e3a4a0 vocab=6ed2a18f
+-/
 lemma isEmbedding_hom :
     IsEmbedding (fun f : A ⟶ R ↦ (f.hom : A → R)) :=
   ⟨.induced _, fun _ _ e ↦ by ext; rw [e]⟩
 
+/--
+@isnad1 id=continuo.0h4v.s6.a42041a734c9 from=seed src=0 shape=434eea1d vocab=0d7576df
+-/
 @[fun_prop]
 lemma continuous_precomp (f : A ⟶ B) :
     Continuous ((f ≫ ·) : (B ⟶ R) → (A ⟶ R)) :=
@@ -77,12 +86,17 @@ def precompHomeomorph (f : A ≅ B) :
   left_inv _ := by simp
   right_inv _ := by simp
 
+/--
+@isnad1 id=ishomeom.0h4v.s6.e89e65f4859f from=seed src=0 shape=6fed45f6 vocab=68615a32
+-/
 lemma isHomeomorph_precomp (f : A ⟶ B) [IsIso f] :
     IsHomeomorph ((f ≫ ·) : (B ⟶ R) → (A ⟶ R)) :=
   (precompHomeomorph (asIso f)).isHomeomorph
 
 /-- `Hom(A/I, R)` has the subspace topology of `Hom(A, R)`.
-More generally, a surjection `A ⟶ B` gives rise to an embedding `Hom(B, R) ⟶ Hom(A, R)` -/
+More generally, a surjection `A ⟶ B` gives rise to an embedding `Hom(B, R) ⟶ Hom(A, R)`
+@isnad1 id=isembedd.1h4v.s7.ce93feb50315 from=seed src=0 shape=6a1c624e vocab=6f34feb9
+-/
 lemma isEmbedding_precomp_of_surjective
     (f : A ⟶ B) (hf : Function.Surjective f) :
     Topology.IsEmbedding ((f ≫ ·) : (B ⟶ R) → (A ⟶ R)) := by
@@ -91,7 +105,9 @@ lemma isEmbedding_precomp_of_surjective
     this.comp (.induced (fun f g e ↦ by ext a; exact congr($e a)))
   exact Function.Surjective.isEmbedding_comp _ hf
 
-/-- `Hom(A/I, R)` is a closed subspace of `Hom(A, R)` if `R` is T1. -/
+/-- `Hom(A/I, R)` is a closed subspace of `Hom(A, R)` if `R` is T1.
+@isnad1 id=isclosed.1h4v.s7.ddf16ee3421d from=seed src=0 shape=59cf707a vocab=78910b07
+-/
 lemma isClosedEmbedding_precomp_of_surjective
     [T1Space R] (f : A ⟶ B) (hf : Function.Surjective f) :
     Topology.IsClosedEmbedding ((f ≫ ·) : (B ⟶ R) → (A ⟶ R)) := by
@@ -126,6 +142,9 @@ def mvPolynomialHomeomorph (σ : Type v) (R A : CommRingCat.{max u v})
 open Limits
 
 variable (R A) in
+/--
+@isnad1 id=isclosed.0h2v.s7.d8e5e0367822 from=seed src=0 shape=093f7fc7 vocab=0f7c70a8
+-/
 lemma isClosedEmbedding_hom [IsTopologicalRing R] [T1Space R] :
     IsClosedEmbedding (fun f : A ⟶ R ↦ (f.hom : A → R)) := by
   let f : CommRingCat.of (MvPolynomial A (⊥_ CommRingCat)) ⟶ A :=
@@ -148,7 +167,9 @@ instance [IsTopologicalRing R] [T1Space R] [CompactSpace R] :
 
 open Limits
 
-/-- `Hom(B ⊗[A] C, R)` has the subspace topology from `Hom(B, R) × Hom(C, R)`. -/
+/-- `Hom(B ⊗[A] C, R)` has the subspace topology from `Hom(B, R) × Hom(C, R)`.
+@isnad1 id=isembedd.0h6v.s7.7d869b56760f from=seed src=0 shape=889b1571 vocab=61689d6f
+-/
 lemma isEmbedding_pushout [IsTopologicalRing R] (φ : A ⟶ B) (ψ : A ⟶ C) :
     IsEmbedding fun f : pushout φ ψ ⟶ R ↦ (pushout.inl φ ψ ≫ f, pushout.inr φ ψ ≫ f) := by
   -- The key idea: Let `X = Spec B` and `Y = Spec C`.

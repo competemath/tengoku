@@ -36,11 +36,17 @@ variable [HasZeroMorphisms C] (F : J ⥤ HomologicalComplex C c)
 
 include hcF
 
+/--
+@isnad1 id=isiso.1h9v.s8.bb1ab815492f from=seed src=0 shape=dd4d8655 vocab=77164ff7
+-/
 lemma isIso_π_f_of_isLimit_of_isEventuallyConstantTo
     (q : ι) (j : J) (hq : (F ⋙ eval C c q).IsEventuallyConstantTo j) :
     IsIso ((cF.π.app j).f q) :=
   hq.isIso_π_of_isLimit (isLimitOfPreserves (eval C c q) hcF)
 
+/--
+@isnad1 id=quasiiso.5h11v.s8.c682306c9276 from=seed src=0 shape=f6d506d3 vocab=23f1669f
+-/
 lemma quasiIsoAt_π_of_isLimit_of_isEventuallyConstantTo
     [CategoryWithHomology C] (q₀ q₁ q₂ : ι)
     (h₀ : c.prev q₁ = q₀) (h₂ : c.next q₁ = q₂) (j : J)

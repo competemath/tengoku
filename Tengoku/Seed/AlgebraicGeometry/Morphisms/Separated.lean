@@ -50,12 +50,17 @@ namespace IsSeparated
 
 attribute [instance] isClosedImmersion_diagonal
 
+/--
+@isnad1 id=eq.0h0v.s4.74ccfe172fd0 from=seed src=0 shape=d9c52ade vocab=e7df127a
+-/
 theorem isSeparated_eq_diagonal_isClosedImmersion :
     @IsSeparated = MorphismProperty.diagonal @IsClosedImmersion := by
   ext
   exact isSeparated_iff _
 
-/-- Monomorphisms are separated. -/
+/-- Monomorphisms are separated.
+@isnad1 id=issepara.0h3v.s4.8c29d6658faa from=seed src=0 shape=31ca8f87 vocab=2c384382
+-/
 instance (priority := 900) isSeparated_of_mono [Mono f] : IsSeparated f where
 
 set_option backward.isDefEq.respectTransparency.types false in
@@ -66,6 +71,9 @@ instance : MorphismProperty.RespectsIso @IsSeparated := by
 instance (priority := 900) [IsSeparated f] : QuasiSeparated f where
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isstable.0h0v.s2.dd7d1e38709d from=seed src=0 shape=25b03439 vocab=21cbdb50
+-/
 instance stableUnderComposition : MorphismProperty.IsStableUnderComposition @IsSeparated := by
   rw [isSeparated_eq_diagonal_isClosedImmersion]
   infer_instance
@@ -77,6 +85,9 @@ instance : MorphismProperty.IsMultiplicative @IsSeparated where
   id_mem _ := inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isstable.0h0v.s2.d175654d1258 from=seed src=0 shape=25b03439 vocab=516e0a65
+-/
 instance isStableUnderBaseChange : MorphismProperty.IsStableUnderBaseChange @IsSeparated := by
   rw [isSeparated_eq_diagonal_isClosedImmersion]
   infer_instance
@@ -113,6 +124,9 @@ instance (R S : CommRingCat.{u}) (f : R ⟶ S) : IsSeparated (Spec.map f) := by
     (Algebra.TensorProduct.lmul'_apply_tmul (R := R) (S := S) 1 x).trans (one_mul x)⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=issepara.0h3v.s4.55dc319c3c42 from=seed src=0 shape=892cb9de vocab=06081645
+-/
 @[instance 100]
 lemma of_isAffineHom [h : IsAffineHom f] : IsSeparated f := by
   wlog hY : IsAffine Y
@@ -151,6 +165,9 @@ variable (𝒰 : Y.OpenCover) (𝒱 : ∀ i, (pullback f (𝒰.f i)).OpenCover)
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s8.aae9eb2797fe from=seed src=0 shape=395bd676 vocab=1ae06540
+-/
 lemma Scheme.Pullback.diagonalCoverDiagonalRange_eq_top_of_injective
     (hf : Function.Injective f) :
     diagonalCoverDiagonalRange f 𝒰 𝒱 = ⊤ := by
@@ -179,6 +196,9 @@ lemma Scheme.Pullback.diagonalCoverDiagonalRange_eq_top_of_injective
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=le.0h5v.s8.42dadfcae068 from=seed src=0 shape=79645093 vocab=8f6806f4
+-/
 lemma Scheme.Pullback.range_diagonal_subset_diagonalCoverDiagonalRange :
     Set.range (pullback.diagonal f) ⊆ diagonalCoverDiagonalRange f 𝒰 𝒱 := by
   rintro _ ⟨x, rfl⟩
@@ -203,6 +223,9 @@ lemma Scheme.Pullback.range_diagonal_subset_diagonalCoverDiagonalRange :
   apply pullback.hom_ext <;> simp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isclosed.0h5v.s9.5ab7f9764246 from=seed src=0 shape=c2b9202e vocab=14fff715
+-/
 lemma isClosedImmersion_diagonal_restrict_diagonalCoverDiagonalRange
     [∀ i, IsAffine (𝒰.X i)] [∀ i j, IsAffine ((𝒱 i).X j)] :
     IsClosedImmersion (pullback.diagonal f ∣_ diagonalCoverDiagonalRange f 𝒰 𝒱) := by
@@ -221,6 +244,9 @@ lemma isClosedImmersion_diagonal_restrict_diagonalCoverDiagonalRange
     MorphismProperty.arrow_mk_iso_iff (P := @IsClosedImmersion) (diagonalRestrictIsoDiagonal ..)]
   infer_instance
 
+/--
+@isnad1 id=issepara.1h3v.s7.ef249dad0d51 from=seed src=0 shape=33fd3be7 vocab=5fae850f
+-/
 @[stacks 0DVA]
 lemma isSeparated_of_injective (hf : Function.Injective f) :
     IsSeparated f := by
@@ -237,10 +263,16 @@ instance : MorphismProperty.HasOfPostcompProperty @IsClosedImmersion @IsSeparate
   MorphismProperty.hasOfPostcompProperty_iff_le_diagonal.mpr
     fun _ _ _ _ ↦ inferInstanceAs (IsClosedImmersion _)
 
+/--
+@isnad1 id=isclosed.0h5v.s5.3b1156508862 from=seed src=0 shape=77972de3 vocab=f06b81db
+-/
 lemma IsClosedImmersion.of_comp [IsClosedImmersion (f ≫ g)] [IsSeparated g] :
     IsClosedImmersion f := MorphismProperty.of_postcomp _ _ g ‹_› ‹_›
 
 variable {f g} in
+/--
+@isnad1 id=iff.0h5v.s5.66b93fb0eb11 from=seed src=0 shape=daa213a1 vocab=244eec3d
+-/
 lemma IsClosedImmersion.comp_iff [IsClosedImmersion g] :
     IsClosedImmersion (f ≫ g) ↔ IsClosedImmersion f :=
   ⟨fun _ ↦ .of_comp f g, fun _ ↦ inferInstance⟩
@@ -251,12 +283,18 @@ instance {I J : X.IdealSheafData} (h : I ≤ J) : IsClosedImmersion (I.inclusion
     infer_instance
   exact .of_comp _ I.subschemeι
 
+/--
+@isnad1 id=issepara.0h5v.s5.40668a780e64 from=seed src=0 shape=ed21faf9 vocab=efcf0eb3
+-/
 lemma IsSeparated.of_comp [IsSeparated (f ≫ g)] : IsSeparated f := by
   have : IsClosedImmersion (pullback.diagonal (f ≫ g)) := inferInstance
   rw [pullback.diagonal_comp] at this
   exact ⟨@IsClosedImmersion.of_comp _ _ _ _ _ this inferInstance⟩
 
 variable {f g} in
+/--
+@isnad1 id=iff.0h5v.s5.641d46f098d0 from=seed src=0 shape=daa213a1 vocab=efcf0eb3
+-/
 lemma IsSeparated.comp_iff [IsSeparated g] : IsSeparated (f ≫ g) ↔ IsSeparated f :=
   ⟨fun _ ↦ .of_comp f g, fun _ ↦ inferInstance⟩
 
@@ -267,14 +305,23 @@ instance : MorphismProperty.HasOfPostcompProperty @IsAffineHom @IsSeparated :=
   MorphismProperty.hasOfPostcompProperty_iff_le_diagonal.mpr
     fun _ _ _ _ ↦ inferInstanceAs (IsAffineHom _)
 
+/--
+@isnad1 id=isaffine.0h5v.s5.960eff5bc491 from=seed src=0 shape=77972de3 vocab=ad69cb3d
+-/
 lemma IsAffineHom.of_comp [IsAffineHom (f ≫ g)] [IsSeparated g] :
     IsAffineHom f := MorphismProperty.of_postcomp _ _ g ‹_› ‹_›
 
 variable {f g} in
+/--
+@isnad1 id=iff.0h5v.s5.071cc70dd4a8 from=seed src=0 shape=daa213a1 vocab=8045a5b6
+-/
 lemma IsAffineHom.comp_iff [IsAffineHom g] : IsAffineHom (f ≫ g) ↔ IsAffineHom f :=
   ⟨fun _ ↦ .of_comp f g, fun _ ↦ inferInstance⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isclosed.0h5v.s6.11d2e72b98ce from=seed src=0 shape=8e353711 vocab=90d346a3
+-/
 @[stacks 01KM]
 instance isClosedImmersion_equalizer_ι_left {S : Scheme} {X Y : Over S} [IsSeparated Y.hom]
     (f g : X ⟶ Y) : IsClosedImmersion (equalizer.ι f g).left := by
@@ -288,6 +335,7 @@ instance isClosedImmersion_equalizer_ι_left {S : Scheme} {X Y : Over S} [IsSepa
 /--
 Suppose `X` is a reduced scheme and that `f g : X ⟶ Y` agree over some separated `Y ⟶ Z`.
 Then `f = g` if `ι ≫ f = ι ≫ g` for some dominant `ι`.
+@isnad1 id=eq.2h8v.s7.a47c06e4c416 from=seed src=0 shape=d0a87cbe vocab=3b15fca4
 -/
 lemma ext_of_isDominant_of_isSeparated [IsReduced X] {f g : X ⟶ Y}
     (s : Y ⟶ Z) [IsSeparated s] (h : f ≫ s = g ≫ s)
@@ -309,6 +357,9 @@ lemma ext_of_isDominant_of_isSeparated [IsReduced X] {f g : X ⟶ Y}
   rw [← cancel_epi (equalizer.ι f' g').left]
   exact congr($(equalizer.condition f' g').left)
 
+/--
+@isnad1 id=eq.3h7v.s7.bb64d7b6566f from=seed src=0 shape=f4399426 vocab=4bc69758
+-/
 lemma ext_of_fromSpecResidueField_eq (f g : X ⟶ Y) (i : Y ⟶ Z) [IsSeparated i] [IsReduced X]
     (S : Set X) (hS' : Dense S)
     (H : ∀ x ∈ S, X.fromSpecResidueField x ≫ f = X.fromSpecResidueField x ≫ g)
@@ -322,6 +373,7 @@ variable (S) in
 /--
 Suppose `X` is a reduced `S`-scheme and `Y` is a separated `S`-scheme.
 For any `S`-morphisms `f g : X ⟶ Y`, `f = g` if `ι ≫ f = ι ≫ g` for some dominant `ι`.
+@isnad1 id=eq.1h7v.s7.f32631941696 from=seed src=0 shape=f718f18d vocab=1f8844c9
 -/
 lemma ext_of_isDominant_of_isSeparated' [X.Over S] [Y.Over S] [IsReduced X] [IsSeparated (Y ↘ S)]
     {f g : X ⟶ Y} [f.IsOver S] [g.IsOver S] {W} (ι : W ⟶ X) [IsDominant ι]
@@ -337,6 +389,9 @@ protected class IsSeparated (X : Scheme.{u}) : Prop where
 
 attribute [instance] IsSeparated.isSeparated_terminal_from
 
+/--
+@isnad1 id=iff.0h1v.s5.6badb981ad40 from=seed src=0 shape=9ba82ea0 vocab=4bfee7bc
+-/
 lemma isSeparated_iff_isClosedImmersion_prod_lift {X : Scheme.{u}} :
     X.IsSeparated ↔ IsClosedImmersion (prod.lift (𝟙 X) (𝟙 X)) := by
   rw [isSeparated_iff, AlgebraicGeometry.isSeparated_iff, iff_iff_eq,
@@ -363,6 +418,9 @@ instance (f g : X ⟶ Y) [Y.IsSeparated] : IsClosedImmersion (Limits.equalizer.�
 end Scheme
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=hasaffin.0h0v.s4.6bb9bbe96ed5 from=seed src=0 shape=bbdc4f68 vocab=0dcba81c
+-/
 instance IsSeparated.hasAffineProperty :
     HasAffineProperty @IsSeparated fun X _ _ _ ↦ X.IsSeparated := by
   convert! HasAffineProperty.of_isZariskiLocalAtTarget @IsSeparated with X Y f hY
@@ -374,6 +432,7 @@ Suppose `f g : X ⟶ Y` where `X` is a reduced scheme and `Y` is a separated sch
 Then `f = g` if `ι ≫ f = ι ≫ g` for some dominant `ι`.
 
 Also see `ext_of_isDominant_of_isSeparated` for the general version over arbitrary bases.
+@isnad1 id=eq.1h6v.s6.4cbaf38c7643 from=seed src=0 shape=c9497608 vocab=aaa8afb2
 -/
 lemma ext_of_isDominant [IsReduced X] {f g : X ⟶ Y} [Y.IsSeparated]
     (ι : W ⟶ X) [IsDominant ι] (hU : ι ≫ f = ι ≫ g) : f = g :=

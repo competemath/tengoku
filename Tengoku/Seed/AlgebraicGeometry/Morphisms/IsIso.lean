@@ -22,16 +22,25 @@ open CategoryTheory MorphismProperty
 
 namespace AlgebraicGeometry
 
+/--
+@isnad1 id=iff.0h3v.s4.74b9c4399bf5 from=seed src=0 shape=e28b86d4 vocab=817c5dab
+-/
 lemma isIso_iff_isOpenImmersion_and_surjective {X Y : Scheme.{u}} (f : X ⟶ Y) :
     IsIso f ↔ IsOpenImmersion f ∧ Surjective f := by
   rw [surjective_iff, ← TopCat.epi_iff_surjective, isIso_iff_isOpenImmersion_and_epi_base]
 
+/--
+@isnad1 id=eq.0h0v.s5.a62bdb3ae25f from=seed src=0 shape=81f0a72d vocab=9b44e71e
+-/
 lemma isomorphisms_eq_isOpenImmersion_inf_surjective :
     isomorphisms Scheme = (@IsOpenImmersion ⊓ @Surjective : MorphismProperty Scheme) := by
   ext
   rw [isomorphisms.iff, isIso_iff_isOpenImmersion_and_surjective]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.fb7f1a939ef4 from=seed src=0 shape=27cfde14 vocab=1492c38a
+-/
 lemma isomorphisms_eq_stalkwise :
     isomorphisms Scheme = (isomorphisms TopCat).inverseImage Scheme.forgetToTop ⊓
       stalkwise (fun f ↦ Function.Bijective f) := by
@@ -56,6 +65,9 @@ instance : IsZariskiLocalAtTarget (monomorphisms Scheme) :=
   diagonal_isomorphisms (C := Scheme).symm ▸ inferInstance
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h3v.s6.6f43f00609d7 from=seed src=0 shape=52bf8580 vocab=610d5694
+-/
 lemma isIso_SpecMap_iff {R S : CommRingCat.{u}} {f : R ⟶ S} :
     IsIso (Spec.map f) ↔ Function.Bijective f.hom := by
   rw [← ConcreteCategory.isIso_iff_bijective]

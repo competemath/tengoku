@@ -59,23 +59,38 @@ variable (𝒰 : X.Cover (precoverage P)) [Category* 𝒰.I₀] [𝒰.LocallyDir
 /-- The transition maps of a directed cover. -/
 def trans {i j : 𝒰.I₀} (hij : i ⟶ j) : 𝒰.X i ⟶ 𝒰.X j := LocallyDirected.trans hij
 
+/--
+@isnad1 id=eq.0h6v.s7.a9a395a782ad from=seed src=0 shape=262dc6b7 vocab=abdc315b
+-/
 @[simp]
 lemma trans_map {i j : 𝒰.I₀} (hij : i ⟶ j) : 𝒰.trans hij ≫ 𝒰.f j = 𝒰.f i :=
   LocallyDirected.w hij
 
+/--
+@isnad1 id=eq.0h4v.s6.05973508c0cb from=seed src=0 shape=50988eec vocab=a53e00b1
+-/
 @[simp]
 lemma trans_id (i : 𝒰.I₀) : 𝒰.trans (𝟙 i) = 𝟙 (𝒰.X i) := LocallyDirected.trans_id i
 
+/--
+@isnad1 id=eq.0h8v.s8.130cb07a1871 from=seed src=0 shape=ed24b90f vocab=3fb6281e
+-/
 @[simp]
 lemma trans_comp {i j k : 𝒰.I₀} (hij : i ⟶ j) (hjk : j ⟶ k) :
     𝒰.trans (hij ≫ hjk) = 𝒰.trans hij ≫ 𝒰.trans hjk := LocallyDirected.trans_comp hij hjk
 
+/--
+@isnad1 id=ex.0h6v.s10.afa4aa684071 from=seed src=0 shape=8e7eab45 vocab=09ae90ad
+-/
 lemma exists_lift_trans_eq {i j : 𝒰.I₀} (x : (pullback (𝒰.f i) (𝒰.f j)).carrier) :
     ∃ (k : 𝒰.I₀) (hki : k ⟶ i) (hkj : k ⟶ j) (y : 𝒰.X k),
       pullback.lift (𝒰.trans hki) (𝒰.trans hkj) (by simp) y = x :=
   LocallyDirected.directed x
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.1h7v.s10.233c72f6544b from=seed src=0 shape=ab0fc2a9 vocab=c43d7f41
+-/
 lemma exists_of_f_eq_f {i j : 𝒰.I₀} (xi : 𝒰.X i) (xj : 𝒰.X j) (h : 𝒰.f i xi = 𝒰.f j xj) :
     ∃ (k : 𝒰.I₀) (fi : k ⟶ i) (fj : k ⟶ j) (xk : 𝒰.X k),
       𝒰.trans fi xk = xi ∧ 𝒰.trans fj xk = xj := by
@@ -84,6 +99,9 @@ lemma exists_of_f_eq_f {i j : 𝒰.I₀} (xi : 𝒰.X i) (xj : 𝒰.X j) (h : �
   use k, fi, fj, xk
   simp [← Scheme.Hom.comp_apply]
 
+/--
+@isnad1 id=ex.1h10v.s10.1591b3ef26b6 from=seed src=0 shape=3148bc71 vocab=661f05b0
+-/
 lemma exists_of_trans_eq_trans {i j k : 𝒰.I₀} (fi : i ⟶ k) (fj : j ⟶ k) (xi : 𝒰.X i)
     (xj : 𝒰.X j) (h : 𝒰.trans fi xi = 𝒰.trans fj xj) :
     ∃ (l : 𝒰.I₀) (fli : l ⟶ i) (flj : l ⟶ j) (x : 𝒰.X l),
@@ -91,6 +109,9 @@ lemma exists_of_trans_eq_trans {i j k : 𝒰.I₀} (fi : i ⟶ k) (fj : j ⟶ k)
   rw [← 𝒰.trans_map fi, ← 𝒰.trans_map fj, Hom.comp_base, Hom.comp_base,
     ConcreteCategory.comp_apply, h, ConcreteCategory.comp_apply]
 
+/--
+@isnad1 id=var.0h6v.s7.8fb255cd0a92 from=seed src=0 shape=5560f1f1 vocab=2e59ba96
+-/
 lemma property_trans {i j : 𝒰.I₀} (hij : i ⟶ j) : P (𝒰.trans hij) :=
   LocallyDirected.property_trans hij
 
@@ -223,6 +244,9 @@ def glueMorphismsOfLocallyDirected (𝒰 : X.OpenCover) [Category* 𝒰.I₀] [�
     intro k
     simp [h]
 
+/--
+@isnad1 id=eq.1h5v.s8.82cecfadc268 from=seed src=0 shape=0f21cc37 vocab=2f8eed2a
+-/
 @[reassoc (attr := simp)]
 lemma map_glueMorphismsOfLocallyDirected {Y : Scheme.{u}} (g : ∀ i, 𝒰.X i ⟶ Y)
     (h : ∀ {i j : 𝒰.I₀} (hij : i ⟶ j), 𝒰.trans hij ≫ g j = g i) (i : 𝒰.I₀) :
@@ -250,6 +274,9 @@ def glueMorphismsOverOfLocallyDirected {S : Scheme.{u}} {X : Over S}
     intro i
     simp [w]
 
+/--
+@isnad1 id=eq.2h6v.s9.3b8fc4550e7b from=seed src=0 shape=d6926010 vocab=1faebd33
+-/
 @[reassoc (attr := simp)]
 lemma map_glueMorphismsOverOfLocallyDirected_left {S : Scheme.{u}} {X : Over S}
     (𝒰 : X.left.OpenCover) [Category* 𝒰.I₀] [𝒰.LocallyDirected] {Y : Over S}
@@ -292,10 +319,16 @@ variable {𝒰 : X.OpenCover} [Preorder 𝒰.I₀]
   (H : TopologicalSpace.Opens.IsBasis (Set.range <| fun i ↦ (𝒰.f i).opensRange))
 
 include hle in
+/--
+@isnad1 id=iff.1h4v.s8.c02fcaf0b56e from=seed src=0 shape=46c82268 vocab=9486f007
+-/
 lemma Cover.LocallyDirected.ofIsBasisOpensRange_le_iff (i j : 𝒰.I₀) :
     letI := Cover.LocallyDirected.ofIsBasisOpensRange hle H
     i ≤ j ↔ (𝒰.f i).opensRange ≤ (𝒰.f j).opensRange := hle
 
+/--
+@isnad1 id=eq.3h4v.s8.60e4d0380c64 from=seed src=0 shape=4126ff6b vocab=c7426107
+-/
 lemma Cover.LocallyDirected.ofIsBasisOpensRange_trans {i j : 𝒰.I₀} :
     letI := Cover.LocallyDirected.ofIsBasisOpensRange hle H
     (hij : i ≤ j) → 𝒰.trans (homOfLE hij) = IsOpenImmersion.lift (𝒰.f j) (𝒰.f i) (hle.mp hij) :=
@@ -327,6 +360,9 @@ instance : Scheme.Cover.LocallyDirected X.directedAffineCover :=
     convert! X.isBasis_affineOpens
     simp
 
+/--
+@isnad1 id=eq.1h3v.s7.0dfdcb186d1e from=seed src=0 shape=242cb574 vocab=59f76c64
+-/
 @[simp]
 lemma directedAffineCover_trans {U V : X.affineOpens} (hUV : U ≤ V) :
     Cover.trans X.directedAffineCover (homOfLE hUV) = X.homOfLE hUV := rfl

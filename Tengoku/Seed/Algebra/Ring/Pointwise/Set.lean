@@ -47,7 +47,13 @@ Note that `Set α` is not a `Distrib` because `s * t + s * u` has cross terms th
 lacks.
 -/
 
+/--
+@isnad1 id=le.0h4v.s6.5941c15baf5a from=seed src=0 shape=bacdd00d vocab=c35271db
+-/
 lemma mul_add_subset : s * (t + u) ⊆ s * t + s * u := image2_distrib_subset_left mul_add
+/--
+@isnad1 id=le.0h4v.s6.074d6f34f3f3 from=seed src=0 shape=e1fbd8d1 vocab=c35271db
+-/
 lemma add_mul_subset : (s + t) * u ⊆ s * u + t * u := image2_distrib_subset_right add_mul
 
 end Distrib

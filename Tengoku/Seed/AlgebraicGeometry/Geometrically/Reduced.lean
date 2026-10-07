@@ -72,6 +72,9 @@ instance (s : S) [GeometricallyReduced f] : IsReduced (f.fiber s) :=
   GeometricallyReduced.geometrically_isReduced _ _ _ (.of_hasPullback _ _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isreduce.0h3v.s5.2052e8c17104 from=seed src=0 shape=09128fc2 vocab=90e7e94a
+-/
 lemma GeometricallyReduced.isReduced_of_flat_of_finite_irreducibleComponents
     (f : X ⟶ Y) [GeometricallyReduced f] [Flat f]
     [IsReduced Y] [Finite (irreducibleComponents Y)] : IsReduced X := by
@@ -107,6 +110,9 @@ lemma GeometricallyReduced.isReduced_of_flat_of_finite_irreducibleComponents
   exact fun i ↦ GeometricallyReduced.geometrically_isReduced _ _ _ (.of_hasPullback _ _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isreduce.0h3v.s5.d71627f96c2b from=seed src=0 shape=9ca563b3 vocab=32453e44
+-/
 lemma GeometricallyReduced.isReduced_of_flat_of_isLocallyNoetherian
     (f : X ⟶ Y) [GeometricallyReduced f] [Flat f]
     [IsReduced Y] [IsLocallyNoetherian Y] : IsReduced X := by

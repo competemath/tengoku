@@ -82,6 +82,9 @@ section
 -- along diagrams either in Type, or in the same universe as the ring, and we need to cover both.
 variable {R : Type max u v} [CommRing R] {D : Type v} [SmallCategory D]
 
+/--
+@isnad1 id=hascolim.0h4v.s6.450e3ebf46cc from=seed src=0 shape=8a0faa82 vocab=ae385869
+-/
 lemma hasColimitDiagram (I : D ⥤ Ideal R) (i : ℕ) :
     HasColimit (diagram I i) := inferInstance
 
@@ -196,7 +199,9 @@ def idealPowersToSelfLERadical (J : Ideal R) : ℕᵒᵖ ⥤ SelfLERadical J :=
 variable {J K : Ideal R}
 
 /-- The diagram of powers of `J` is initial in the diagram of all ideals with
-radical containing `J`. This uses Noetherianness. -/
+radical containing `J`. This uses Noetherianness.
+@isnad1 id=initial.0h2v.s5.5eb33a53f19e from=seed src=0 shape=bd767046 vocab=d14e2e2c
+-/
 instance ideal_powers_initial [hR : IsNoetherian R R] :
     Functor.Initial (idealPowersToSelfLERadical J) where
   out J' := by
@@ -237,6 +242,9 @@ def SelfLERadical.castEquivalence (hJK : J.radical = K.radical) :
   unitIso := Iso.refl _
   counitIso := Iso.refl _
 
+/--
+@isnad1 id=isequiva.1h3v.s6.b7b71d8b84d8 from=seed src=0 shape=489e4886 vocab=9df9746e
+-/
 instance SelfLERadical.cast_isEquivalence (hJK : J.radical = K.radical) :
     (SelfLERadical.cast hJK).IsEquivalence :=
   (castEquivalence hJK).isEquivalence_functor

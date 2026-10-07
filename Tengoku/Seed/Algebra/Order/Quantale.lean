@@ -93,9 +93,15 @@ section
 variable {α : Type*} {x y : α} {s : Set α}
 variable [Semigroup α] [CompleteLattice α] [IsQuantale α]
 
+/--
+@isnad1 id=eq.0h3v.s6.9edd8e75f293 from=seed src=0 shape=b5fdd772 vocab=1e85f490
+-/
 @[to_additive]
 theorem mul_sSup_distrib : x * sSup s = ⨆ y ∈ s, x * y := IsQuantale.mul_sSup_distrib _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.aacd13f66ac9 from=seed src=0 shape=308131d0 vocab=1e85f490
+-/
 @[to_additive]
 theorem sSup_mul_distrib : sSup s * x = ⨆ y ∈ s, y * x := IsQuantale.sSup_mul_distrib _ _
 
@@ -149,18 +155,30 @@ scoped infixr:60 " ⇨ₗ " => leftMulResiduation
 @[inherit_doc, to_additive existing]
 scoped infixr:60 " ⇨ᵣ " => rightMulResiduation
 
+/--
+@isnad1 id=eq.0h4v.s6.9f19769085e9 from=seed src=0 shape=1f1cb783 vocab=9f0ef412
+-/
 @[to_additive]
 theorem mul_iSup_distrib : x * ⨆ i, f i = ⨆ i, x * f i := by
   rw [iSup, mul_sSup_distrib, iSup_range]
 
+/--
+@isnad1 id=eq.0h4v.s6.08d0db2fc509 from=seed src=0 shape=dfb5b9da vocab=9f0ef412
+-/
 @[to_additive]
 theorem iSup_mul_distrib : (⨆ i, f i) * x = ⨆ i, f i * x := by
   rw [iSup, sSup_mul_distrib, iSup_range]
 
+/--
+@isnad1 id=eq.0h4v.s6.4ffbc5776e60 from=seed src=0 shape=46e19695 vocab=c4a112a0
+-/
 @[to_additive]
 theorem mul_sup_distrib : x * (y ⊔ z) = (x * y) ⊔ (x * z) := by
   rw [← iSup_pair, ← sSup_pair, mul_sSup_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s6.a0c58296a3bb from=seed src=0 shape=a6f7df0d vocab=c4a112a0
+-/
 @[to_additive]
 theorem sup_mul_distrib : (x ⊔ y) * z = (x * z) ⊔ (y * z) := by
   rw [← (@iSup_pair _ _ _ (fun _? => _? * z) _ _), ← sSup_pair, sSup_mul_distrib]
@@ -177,6 +195,9 @@ instance : MulRightMono α where
     intro _ _ _; simp only; intro
     rwa [← left_eq_sup, ← sup_mul_distrib, sup_of_le_left]
 
+/--
+@isnad1 id=iff.0h4v.s5.c216fa2e9bd4 from=seed src=0 shape=6464c24c vocab=fe17ff78
+-/
 @[to_additive]
 theorem leftMulResiduation_le_iff_mul_le : x ≤ y ⇨ₗ z ↔ x * y ≤ z where
   mp h1 := by
@@ -185,6 +206,9 @@ theorem leftMulResiduation_le_iff_mul_le : x ≤ y ⇨ₗ z ↔ x * y ≤ z wher
       iSup_le_iff, implies_true]
   mpr h1 := le_sSup h1
 
+/--
+@isnad1 id=iff.0h4v.s5.7c1854c9edc3 from=seed src=0 shape=84350c21 vocab=33cfc7f6
+-/
 @[to_additive]
 theorem rightMulResiduation_le_iff_mul_le : x ≤ y ⇨ᵣ z ↔ y * x ≤ z where
   mp h1 := by
@@ -198,11 +222,17 @@ section Zero
 variable {α : Type*} [Semigroup α] [CompleteLattice α] [IsQuantale α]
 variable {x : α}
 
+/--
+@isnad1 id=eq.0h2v.s6.6502c8197611 from=seed src=0 shape=cbb11aa0 vocab=cea766ef
+-/
 @[to_additive (attr := simp)]
 theorem bot_mul : ⊥ * x = ⊥ := by
   rw [← sSup_empty, sSup_mul_distrib]
   simp only [Set.mem_empty_iff_false, not_false_eq_true, iSup_neg, iSup_bot, sSup_empty]
 
+/--
+@isnad1 id=eq.0h2v.s6.915b27e1960d from=seed src=0 shape=7e40370e vocab=cea766ef
+-/
 @[to_additive (attr := simp)]
 theorem mul_bot : x * ⊥ = ⊥ := by
   rw [← sSup_empty, mul_sSup_distrib]

@@ -41,6 +41,9 @@ variable
   (f₁' : i₀' ⟶ i₁) (f₂ : i₁ ⟶ i₂) (f₃ : i₂ ⟶ i₃) (f₃' : i₂ ⟶ i₃')
   (n₀ n₁ n₂ n₃ : ℤ)
 
+/--
+@isnad1 id=epi.0h23v.s10.8bda3bb9ed94 from=seed src=0 shape=38b12bfd vocab=3256a1c0
+-/
 lemma epi_map (α : mk₃ f₁ f₂ f₃ ⟶ mk₃ f₁ f₂ f₃') (n₀ n₁ n₂ n₃ : ℤ)
     (hα₀ : α.app 0 = 𝟙 _ := by cat_disch) (hα₁ : α.app 1 = 𝟙 _ := by cat_disch)
     (hα₂ : α.app 2 = 𝟙 _ := by cat_disch)
@@ -49,6 +52,9 @@ lemma epi_map (α : mk₃ f₁ f₂ f₃ ⟶ mk₃ f₁ f₂ f₃') (n₀ n₁ n
   have : Epi (X.cyclesMap f₁ f₂ f₁ f₂ (𝟙 (mk₂ f₁ f₂)) n₁) := by rw [X.cyclesMap_id]; infer_instance
   epi_of_epi_fac (X.πE_map _ _ _ _ _ _ α (𝟙 _) n₀ n₁ n₂ (by cat_disch) _ _)
 
+/--
+@isnad1 id=mono.0h23v.s10.f288b6eadc5d from=seed src=0 shape=2b78cc67 vocab=c473ebbc
+-/
 lemma mono_map (α : mk₃ f₁ f₂ f₃ ⟶ mk₃ f₁' f₂ f₃) (n₀ n₁ n₂ n₃ : ℤ)
     (hα₁ : α.app 1 = 𝟙 _ := by cat_disch) (hα₂ : α.app 2 = 𝟙 _ := by cat_disch)
     (hα₃ : α.app 3 = 𝟙 _ := by cat_disch) (hn₁ : n₀ + 1 = n₁ := by lia)
@@ -68,6 +74,9 @@ variable {i₀ i₁ i₂ i₃ i₄ i₅ : ι} (f₁ : i₀ ⟶ i₁) (f₂ : i�
   (f₃₄ : i₂ ⟶ i₄) (h₃₄ : f₃ ≫ f₄ = f₃₄)
   (n₀ n₁ n₂ n₃ : ℤ)
 
+/--
+@isnad1 id=eq.1h22v.s8.a0aef60a3eca from=seed src=0 shape=898a174b vocab=120f6425
+-/
 @[reassoc (attr := simp)]
 lemma d_map_fourδ₄Toδ₃ (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia)
     (hn₃ : n₂ + 1 = n₃ := by lia) :
@@ -82,6 +91,9 @@ instance (hn₂ : n₁ + 1 = n₂) (hn₃ : n₂ + 1 = n₃) :
   X.epi_map _ _ _ _ _ _ _ _ _ rfl rfl rfl hn₂ hn₃ rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=isiso.1h19v.s10.a02a0f652b77 from=seed src=0 shape=128e7b37 vocab=e827a710
+-/
 lemma isIso_map_fourδ₄Toδ₃ (h : (X.H n₁).map (twoδ₁Toδ₀ f₃ f₄ f₃₄ h₃₄) = 0 := by cat_disch)
     (hn₂ : n₁ + 1 = n₂ := by lia) (hn₃ : n₂ + 1 = n₃ := by lia) :
     IsIso (X.map f₁ f₂ f₃ f₁ f₂ f₃₄ (fourδ₄Toδ₃ f₁ f₂ f₃ f₄ f₃₄ h₃₄) n₁ n₂ n₃ hn₂ hn₃) := by
@@ -94,11 +106,17 @@ lemma isIso_map_fourδ₄Toδ₃ (h : (X.H n₁).map (twoδ₁Toδ₀ f₃ f₄ 
     convert! (inferInstance : Mono ((X.H n₃).map (𝟙 (mk₁ f₁))))
     cat_disch
 
+/--
+@isnad1 id=isiso.1h19v.s8.51bf3d44dbe1 from=seed src=0 shape=69cfd547 vocab=2bd44d95
+-/
 lemma isIso_map_fourδ₄Toδ₃_of_isZero (h : IsZero ((X.H n₁).obj (mk₁ f₄)) := by cat_disch)
     (hn₂ : n₁ + 1 = n₂ := by lia) (hn₃ : n₂ + 1 = n₃ := by lia) :
     IsIso (X.map f₁ f₂ f₃ f₁ f₂ f₃₄ (fourδ₄Toδ₃ f₁ f₂ f₃ f₄ f₃₄ h₃₄) n₁ n₂ n₃ hn₂ hn₃) :=
   X.isIso_map_fourδ₄Toδ₃ _ _ _ _ _ _ _ _ _ (h.eq_of_tgt _ _)
 
+/--
+@isnad1 id=eq.1h22v.s8.6e98fe3de8e8 from=seed src=0 shape=9cab54ca vocab=e28bf958
+-/
 @[reassoc (attr := simp)]
 lemma map_fourδ₁Toδ₀_d (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia)
     (hn₃ : n₂ + 1 = n₃ := by lia) :
@@ -114,6 +132,9 @@ instance (hn₁ : n₀ + 1 = n₁) (hn₂ : n₁ + 1 = n₂) :
   X.mono_map _ _ _ _ _ _ _ _ _ rfl rfl rfl _ _ rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=isiso.1h19v.s10.1713388d7ceb from=seed src=0 shape=b19e0bf1 vocab=6bc61d8b
+-/
 lemma isIso_map_fourδ₁Toδ₀ (h : (X.H n₂).map (twoδ₂Toδ₁ f₂ f₃ f₂₃ h₂₃) = 0 := by cat_disch)
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     IsIso (X.map f₂₃ f₄ f₅ f₃ f₄ f₅ (fourδ₁Toδ₀ f₂ f₃ f₄ f₅ f₂₃ h₂₃) n₀ n₁ n₂ hn₁ hn₂) := by
@@ -126,6 +147,9 @@ lemma isIso_map_fourδ₁Toδ₀ (h : (X.H n₂).map (twoδ₂Toδ₁ f₂ f₃ 
     cat_disch
   · exact (X.exact₂ f₂ f₃ f₂₃ h₂₃ n₂).mono_g h
 
+/--
+@isnad1 id=isiso.2h18v.s8.022b8f4dc5fe from=seed src=0 shape=335b948d vocab=bbd3582d
+-/
 lemma isIso_map_fourδ₁Toδ₀_of_isZero (h : IsZero ((X.H n₂).obj (mk₁ f₂)))
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     IsIso (X.map f₂₃ f₄ f₅ f₃ f₄ f₅ (fourδ₁Toδ₀ f₂ f₃ f₄ f₅ f₂₃ h₂₃) n₀ n₁ n₂ hn₁ hn₂) :=
@@ -150,6 +174,9 @@ noncomputable abbrev mapFourδ₄Toδ₃' (n₀ n₁ n₂ : ℤ)
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :=
   X'.map _ _ _ _ _ _ (fourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄) n₀ n₁ n₂ hn₁ hn₂
 
+/--
+@isnad1 id=eq.5h14v.s8.ccb2463cc795 from=seed src=0 shape=e1f3bbf4 vocab=f6ae93b5
+-/
 @[reassoc]
 lemma mapFourδ₁Toδ₀'_comp (n₀ n₁ n₂ : ℤ)
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
@@ -158,6 +185,9 @@ lemma mapFourδ₁Toδ₀'_comp (n₀ n₁ n₂ : ℤ)
     X'.mapFourδ₁Toδ₀' i₀ i₂ i₃ i₄ i₅ (hi₀₁.trans hi₁₂) hi₂₃ hi₃₄ hi₄₅ n₀ n₁ n₂ hn₁ hn₂ :=
   (X'.map_comp (hn₁ := hn₁) (hn₂ := hn₂) ..).symm
 
+/--
+@isnad1 id=eq.5h14v.s8.3fc59ecd3fe1 from=seed src=0 shape=7697cd83 vocab=b2699646
+-/
 @[reassoc]
 lemma mapFourδ₄Toδ₃'_comp (n₀ n₁ n₂ : ℤ)
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
@@ -166,6 +196,9 @@ lemma mapFourδ₄Toδ₃'_comp (n₀ n₁ n₂ : ℤ)
     X'.mapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₅ hi₀₁ hi₁₂ hi₂₃ (hi₃₄.trans hi₄₅) n₀ n₁ n₂ hn₁ hn₂ :=
   (X'.map_comp (hn₁ := hn₁) (hn₂ := hn₂) ..).symm
 
+/--
+@isnad1 id=eq.5h14v.s8.ceb22b753252 from=seed src=0 shape=8eaa99bb vocab=075ab13d
+-/
 @[reassoc]
 lemma mapFourδ₁Toδ₀'_mapFourδ₃Toδ₃' (n₀ n₁ n₂ : ℤ)
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
@@ -181,6 +214,9 @@ section
 variable (n₀ n₁ n₂ : ℤ) (h : IsZero ((X'.H n₂).obj (mk₁ (homOfLE hi₀₁))))
 
 include h in
+/--
+@isnad1 id=isiso.5h13v.s8.21f894fb23b9 from=seed src=0 shape=150cdc5a vocab=84360838
+-/
 lemma isIso_mapFourδ₁Toδ₀' (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     IsIso (X'.mapFourδ₁Toδ₀' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ hn₁ hn₂) :=
   X'.isIso_map_fourδ₁Toδ₀_of_isZero _ _ _ _ _ _ _ _ _ h
@@ -195,12 +231,18 @@ noncomputable def isoMapFourδ₁Toδ₀' (hn₁ : n₀ + 1 = n₁ := by lia) (h
   have := X'.isIso_mapFourδ₁Toδ₀' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂
   asIso (X'.mapFourδ₁Toδ₀' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ hn₁ hn₂)
 
+/--
+@isnad1 id=eq.5h13v.s9.643e8f7336cf from=seed src=0 shape=60c2b476 vocab=fa3b28bc
+-/
 @[reassoc (attr := simp)]
 lemma isoMapFourδ₁Toδ₀'_hom_inv_id (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     X'.mapFourδ₁Toδ₀' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ hn₁ hn₂ ≫
       (X'.isoMapFourδ₁Toδ₀' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂).inv = 𝟙 _ :=
   (X'.isoMapFourδ₁Toδ₀' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂).hom_inv_id
 
+/--
+@isnad1 id=eq.5h13v.s9.26e21e37adfd from=seed src=0 shape=45dcf8d7 vocab=20be3f46
+-/
 @[reassoc (attr := simp)]
 lemma isoMapFourδ₁Toδ₀'_inv_hom_id (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (X'.isoMapFourδ₁Toδ₀' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂).inv ≫
@@ -214,6 +256,9 @@ section
 variable (n₀ n₁ n₂ : ℤ) (h : IsZero ((X'.H n₀).obj (mk₁ (homOfLE hi₃₄))))
 
 include h in
+/--
+@isnad1 id=isiso.5h13v.s8.a3760214a438 from=seed src=0 shape=78cb9dec vocab=744efd59
+-/
 lemma isIso_mapFourδ₄Toδ₃' (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     IsIso (X'.mapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ hn₁ hn₂) :=
   X'.isIso_map_fourδ₄Toδ₃_of_isZero (h := h) ..
@@ -228,12 +273,18 @@ noncomputable def isoMapFourδ₄Toδ₃' (hn₁ : n₀ + 1 = n₁ := by lia) (h
   have := X'.isIso_mapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂
   asIso (X'.mapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ hn₁ hn₂)
 
+/--
+@isnad1 id=eq.5h13v.s9.30151aafd301 from=seed src=0 shape=d181d96a vocab=42cee80a
+-/
 @[reassoc (attr := simp)]
 lemma isoMapFourδ₄Toδ₄'_hom_inv_id (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     X'.mapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ hn₁ hn₂ ≫
       (X'.isoMapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂).inv = 𝟙 _ :=
   (X'.isoMapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂).hom_inv_id
 
+/--
+@isnad1 id=eq.5h13v.s9.67c7712d3291 from=seed src=0 shape=b3fa630f vocab=ea2770f0
+-/
 @[reassoc (attr := simp)]
 lemma isoMapFourδ₄Toδ₄'_inv_hom_id (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
     (X'.isoMapFourδ₄Toδ₃' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄ n₀ n₁ n₂ h hn₁ hn₂).inv ≫
@@ -253,6 +304,9 @@ noncomputable abbrev mapFourδ₂Toδ₁' (n₀ n₁ n₂ : ℤ)
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :=
   X'.map _ _ _ _ _ _ (fourδ₂Toδ₁' i₀ i₁ i₂ i₃ i₄ hi₀₁ hi₁₂ hi₂₃ hi₃₄) n₀ n₁ n₂ hn₁ hn₂
 
+/--
+@isnad1 id=isiso.6h13v.s9.5fbda4be1d4f from=seed src=0 shape=3bea8725 vocab=123cb047
+-/
 lemma isIso_mapFourδ₂Toδ₁' (n₀ n₁ n₂ : ℤ)
     (h₁ : IsIso ((X'.H n₁).map (twoδ₁Toδ₀' i₁ i₂ i₃ hi₁₂ hi₂₃)))
     (h₂ : IsIso ((X'.H n₂).map (twoδ₂Toδ₁' i₀ i₁ i₂ hi₀₁ hi₁₂)))

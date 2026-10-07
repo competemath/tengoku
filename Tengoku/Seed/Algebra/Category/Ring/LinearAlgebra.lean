@@ -28,6 +28,9 @@ open CategoryTheory Limits TensorProduct
 
 namespace CommRingCat
 
+/--
+@isnad1 id=nontrivi.2h8v.s6.a0c09de14507 from=seed src=0 shape=46126e47 vocab=45845fac
+-/
 lemma nontrivial_of_isPushout_of_isField {A B C D : CommRingCat.{u}}
     (hA : IsField A) {f : A ⟶ B} {g : A ⟶ C} {inl : B ⟶ D} {inr : C ⟶ D}
     [Nontrivial B] [Nontrivial C]

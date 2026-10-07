@@ -41,7 +41,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- Joyal's trick: that cofibrations have the left lifting property
 with respect to trivial fibrations follows from the left lifting property
 of trivial cofibrations with respect to fibrations and a few other
-consequences of the model categories axioms. -/
+consequences of the model categories axioms.
+@isnad1 id=haslifti.1h7v.s7.dbd84fdd7f21 from=seed src=0 shape=061dceeb vocab=c082035c
+-/
 lemma hasLiftingProperty_of_joyalTrick
     [HasFactorization (cofibrations C) (trivialFibrations C)] [HasPushouts C]
     [(cofibrations C).IsStableUnderComposition] [(cofibrations C).IsStableUnderCobaseChange]
@@ -70,7 +72,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- Joyal's trick (dual): that trivial cofibrations have the left lifting
 property with respect to fibrations follows from the left lifting property
 of cofibrations with respect to trivial fibrations and a few other
-consequences of the model categories axioms. -/
+consequences of the model categories axioms.
+@isnad1 id=haslifti.1h7v.s7.47f077738c9e from=seed src=0 shape=8826c7a2 vocab=6d3bf0e7
+-/
 lemma hasLiftingProperty_of_joyalTrickDual
     [HasFactorization (trivialCofibrations C) (fibrations C)] [HasPullbacks C]
     [(fibrations C).IsStableUnderComposition] [(fibrations C).IsStableUnderBaseChange]

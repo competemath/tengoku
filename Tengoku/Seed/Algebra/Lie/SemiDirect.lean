@@ -65,6 +65,9 @@ def toProd : K ⋊⁅ψ⁆ L ≃ K × L where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.db2e2b43f70d from=seed src=0 shape=23bfad65 vocab=e28f0b9b
+-/
 @[simp] lemma toProd_apply (x : K ⋊⁅ψ⁆ L) : toProd (x) = ⟨x.left, x.right⟩ := rfl
 
 instance : AddCommGroup (K ⋊⁅ψ⁆ L) := toProd.addCommGroup
@@ -78,16 +81,37 @@ def toProdl : (K ⋊⁅ψ⁆ L) ≃ₗ[R] K × L :=
     map_add' _ _ := rfl
     map_smul' _ _ := rfl }
 
+/--
+@isnad1 id=eq.0h5v.s9.ac1c0e4e1656 from=seed src=0 shape=220c3141 vocab=9f8548bd
+-/
 @[simp] lemma toProdl_coe (x : K ⋊⁅ψ⁆ L) : toProdl ψ x = toProd x := rfl
 
 instance : Bracket (K ⋊⁅ψ⁆ L) (K ⋊⁅ψ⁆ L) where
   bracket x y := ⟨⁅x.left, y.left⁆ + ψ x.right y.left - ψ y.right x.left, ⁅x.right, y.right⁆⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.73e1b50b1249 from=seed src=0 shape=77b44493 vocab=2727dd3d
+-/
 @[simp] lemma zero_eq_mk : (0 : K ⋊⁅ψ⁆ L) = ⟨0, 0⟩ := rfl
+/--
+@isnad1 id=eq.0h6v.s8.6a64f16f1fd9 from=seed src=0 shape=66303907 vocab=c2412ed7
+-/
 @[simp] lemma add_eq_mk (x y : K ⋊⁅ψ⁆ L) : x + y = ⟨x.left + y.left, x.right + y.right⟩ := rfl
+/--
+@isnad1 id=eq.0h6v.s8.d991cc92a21a from=seed src=0 shape=66303907 vocab=67c4a9fe
+-/
 @[simp] lemma sub_eq_mk (x y : K ⋊⁅ψ⁆ L) : x - y = ⟨x.left - y.left, x.right - y.right⟩ := rfl
+/--
+@isnad1 id=eq.0h5v.s7.22c7289aee69 from=seed src=0 shape=1cca19a6 vocab=319ac958
+-/
 @[simp] lemma neg_eq_mk (x : K ⋊⁅ψ⁆ L) : -x = ⟨-x.left, -x.right⟩ := rfl
+/--
+@isnad1 id=eq.0h6v.s9.0a01a1722de7 from=seed src=0 shape=b41b753c vocab=81938d8d
+-/
 @[simp] lemma smul_eq_mk (t : R) (x : K ⋊⁅ψ⁆ L) : t • x = ⟨t • x.left, t • x.right⟩ := rfl
+/--
+@isnad1 id=eq.0h6v.s9.53a38b5b373f from=seed src=0 shape=1f00370f vocab=bd375cca
+-/
 @[simp] lemma lie_eq_mk (x y : K ⋊⁅ψ⁆ L) :
     ⁅x, y⁆ = ⟨⁅x.left, y.left⁆ + ψ x.right y.left - ψ y.right x.left, ⁅x.right, y.right⁆⟩ :=
   rfl
@@ -115,9 +139,18 @@ def inr : L →ₗ⁅R⁆ K ⋊⁅ψ⁆ L where
   map_smul' _ _ := by simp
   map_lie' := by simp
 
+/--
+@isnad1 id=eq.0h5v.s7.7f8285bd29b1 from=seed src=0 shape=5621c6d5 vocab=75204866
+-/
 @[simp] lemma inl_eq_mk (x : K) : inl ψ x = ⟨x, 0⟩ := rfl
+/--
+@isnad1 id=eq.0h5v.s7.48653a73f8d0 from=seed src=0 shape=6d007aeb vocab=8ff5c784
+-/
 @[simp] lemma inr_eq_mk (x : L) : inr ψ x = ⟨0, x⟩ := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s7.53b85fe7ab0b from=seed src=0 shape=922f3095 vocab=3f7536a4
+-/
 @[simp]
 lemma inl_injective : Function.Injective (inl ψ) := by intro; simp [inl]
 
@@ -135,14 +168,35 @@ def projl : K ⋊⁅ψ⁆ L →ₗ[R] K where
   map_add' _ _ := by simp
   map_smul' _ _ := by simp
 
+/--
+@isnad1 id=eq.0h5v.s7.727b3df9a514 from=seed src=0 shape=9f7ba92d vocab=ad56c6af
+-/
 @[simp] lemma projr_mk (x : K ⋊⁅ψ⁆ L) : projr ψ x = x.right := rfl
+/--
+@isnad1 id=eq.0h5v.s8.53a6e929a7a7 from=seed src=0 shape=b33247dc vocab=236abbf7
+-/
 @[simp] lemma projl_mk (x : K ⋊⁅ψ⁆ L) : projl ψ x = x.left := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.8469f6335e45 from=seed src=0 shape=798f5539 vocab=ad45aa65
+-/
 lemma projr_inl_apply {x : K} : projr ψ (inl ψ x) = 0 := by simp
+/--
+@isnad1 id=eq.0h5v.s8.9a3def1e71ce from=seed src=0 shape=5873f8f5 vocab=3ce48c9c
+-/
 lemma projr_inr_apply {x : L} : projr ψ (inr ψ x) = x := by simp
+/--
+@isnad1 id=eq.0h5v.s8.2897d7a94375 from=seed src=0 shape=ea0b65d4 vocab=72a0da37
+-/
 lemma projl_inr_apply {x : L} : projl ψ (inr ψ x) = 0 := by simp
+/--
+@isnad1 id=eq.0h5v.s8.5753a8846793 from=seed src=0 shape=fea160c4 vocab=d7d18dac
+-/
 lemma projl_inl_apply {x : K} : projl ψ (inl ψ x) = x := by simp
 
+/--
+@isnad1 id=surjecti.0h4v.s7.f55384259ac4 from=seed src=0 shape=49dffc8c vocab=7328ae2d
+-/
 @[simp]
 lemma projr_surjective : Function.Surjective (projr ψ) :=
   fun x ↦ ⟨inr ψ x, by simp⟩

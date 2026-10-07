@@ -122,71 +122,125 @@ initialize_simps_projections AddMagmaCat.Hom (hom' → hom)
 The results below duplicate the `ConcreteCategory` simp lemmas, but we can keep them for `dsimp`.
 -/
 
+/--
+@isnad1 id=eq.0h1v.s6.3f25656a7222 from=seed src=0 shape=bae0b6c4 vocab=2066886b
+-/
 @[to_additive (attr := simp)]
 lemma coe_id {X : MagmaCat} : (𝟙 X : X → X) = id := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.269736cb1c06 from=seed src=0 shape=bfb9d4a0 vocab=bccd52ae
+-/
 @[to_additive (attr := simp)]
 lemma coe_comp {X Y Z : MagmaCat} {f : X ⟶ Y} {g : Y ⟶ Z} : (f ≫ g : X → Z) = g ∘ f := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.9a0e06912c37 from=seed src=0 shape=2362f298 vocab=77008646
+-/
 @[deprecated (since := "2026-02-10")] alias forget_map := ConcreteCategory.forget_map_eq_ofHom
 
+/--
+@isnad1 id=eq.1h4v.s7.c061ecb7fc92 from=seed src=0 shape=2fe9d3b5 vocab=035cef16
+-/
 @[to_additive (attr := ext)]
 lemma ext {X Y : MagmaCat} {f g : X ⟶ Y} (w : ∀ x : X, f x = g x) : f = g :=
   ConcreteCategory.hom_ext _ _ w
 
+/--
+@isnad1 id=eq.0h1v.s3.6eb0c0adf466 from=seed src=0 shape=62728698 vocab=c610057e
+-/
 @[to_additive]
 -- This is not `simp` to avoid rewriting in types of terms.
 theorem coe_of (M : Type u) [Mul M] : (MagmaCat.of M : Type u) = M := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.0d359ec84c32 from=seed src=0 shape=98150753 vocab=89f92a18
+-/
 @[to_additive (attr := simp)]
 lemma hom_id {M : MagmaCat} : (𝟙 M : M ⟶ M).hom = MulHom.id M := rfl
 
 /- Provided for rewriting. -/
+/--
+@isnad1 id=eq.0h2v.s6.cc0b493d2b9b from=seed src=0 shape=567e892f vocab=24783fe5
+-/
 @[to_additive]
 lemma id_apply (M : MagmaCat) (x : M) :
     (𝟙 M : M ⟶ M) x = x := by simp
 
+/--
+@isnad1 id=eq.0h5v.s6.c2fb053fac19 from=seed src=0 shape=f9bc9902 vocab=3cbdd879
+-/
 @[to_additive (attr := simp)]
 lemma hom_comp {M N T : MagmaCat} (f : M ⟶ N) (g : N ⟶ T) :
     (f ≫ g).hom = g.hom.comp f.hom := rfl
 
 /- Provided for rewriting. -/
+/--
+@isnad1 id=eq.0h6v.s8.7dcdbcd0eb10 from=seed src=0 shape=f8fbaaa5 vocab=bfa1c7a7
+-/
 @[to_additive]
 lemma comp_apply {M N T : MagmaCat} (f : M ⟶ N) (g : N ⟶ T) (x : M) :
     (f ≫ g) x = g (f x) := by simp
 
+/--
+@isnad1 id=eq.1h4v.s5.e44c60aa00d5 from=seed src=0 shape=bce286ca vocab=a03faa3d
+-/
 @[to_additive (attr := ext)]
 lemma hom_ext {M N : MagmaCat} {f g : M ⟶ N} (hf : f.hom = g.hom) : f = g :=
   Hom.ext hf
 
+/--
+@isnad1 id=eq.0h3v.s5.aa4c7b1781b6 from=seed src=0 shape=ee82f57b vocab=99900333
+-/
 @[to_additive (attr := simp)]
 lemma hom_ofHom {M N : Type u} [Mul M] [Mul N] (f : M →ₙ* N) : (ofHom f).hom = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.c37d61879b9c from=seed src=0 shape=67807d68 vocab=4101e015
+-/
 @[to_additive (attr := simp)]
 lemma ofHom_hom {M N : MagmaCat} (f : M ⟶ N) :
     ofHom (Hom.hom f) = f := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.8d34823ab65e from=seed src=0 shape=fa1b0b56 vocab=ec578003
+-/
 @[to_additive (attr := simp)]
 lemma ofHom_id {M : Type u} [Mul M] : ofHom (MulHom.id M) = 𝟙 (of M) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.3d8606314a80 from=seed src=0 shape=17e991ae vocab=60bcace7
+-/
 @[to_additive (attr := simp)]
 lemma ofHom_comp {M N P : Type u} [Mul M] [Mul N] [Mul P]
     (f : M →ₙ* N) (g : N →ₙ* P) :
     ofHom (g.comp f) = ofHom f ≫ ofHom g :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.1ee4ddbe0906 from=seed src=0 shape=c7895988 vocab=be17e381
+-/
 @[to_additive]
 lemma ofHom_apply {X Y : Type u} [Mul X] [Mul Y] (f : X →ₙ* Y) (x : X) :
     (ofHom f) x = f x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.77fb74e48077 from=seed src=0 shape=a6fcc484 vocab=3cac73cf
+-/
 @[to_additive]
 lemma inv_hom_apply {M N : MagmaCat} (e : M ≅ N) (x : M) : e.inv (e.hom x) = x := by
   simp
 
+/--
+@isnad1 id=eq.0h4v.s7.c1daca04da9e from=seed src=0 shape=f8bdf8bf vocab=3cac73cf
+-/
 @[to_additive]
 lemma hom_inv_apply {M N : MagmaCat} (e : M ≅ N) (s : N) : e.hom (e.inv s) = s := by
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.212bccad80e0 from=seed src=0 shape=b360b6c4 vocab=ec352e4c
+-/
 @[to_additive (attr := simp)]
 lemma mulEquiv_coe_eq {X Y : Type _} [Mul X] [Mul Y] (e : X ≃* Y) :
     (ofHom (e : X →ₙ* Y)).hom = ↑e :=
@@ -283,72 +337,126 @@ initialize_simps_projections AddSemigrp.Hom (hom' → hom)
 The results below duplicate the `ConcreteCategory` simp lemmas, but we can keep them for `dsimp`.
 -/
 
+/--
+@isnad1 id=eq.0h1v.s6.3cdb7051088c from=seed src=0 shape=bae0b6c4 vocab=e9331294
+-/
 @[to_additive (attr := simp)]
 lemma coe_id {X : Semigrp} : (𝟙 X : X → X) = id := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.f39e037134eb from=seed src=0 shape=bfb9d4a0 vocab=0463ab05
+-/
 @[to_additive (attr := simp)]
 lemma coe_comp {X Y Z : Semigrp} {f : X ⟶ Y} {g : Y ⟶ Z} : (f ≫ g : X → Z) = g ∘ f := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.9a0e06912c37 from=seed src=0 shape=2362f298 vocab=77008646
+-/
 @[deprecated (since := "2026-02-10")] alias forget_map := ConcreteCategory.forget_map_eq_ofHom
 
+/--
+@isnad1 id=eq.1h4v.s7.9d3f95fce7ba from=seed src=0 shape=2fe9d3b5 vocab=64e8cc70
+-/
 @[to_additive (attr := ext)]
 lemma ext {X Y : Semigrp} {f g : X ⟶ Y} (w : ∀ x : X, f x = g x) : f = g :=
   ConcreteCategory.hom_ext _ _ w
 
+/--
+@isnad1 id=eq.0h1v.s3.b5388a44faae from=seed src=0 shape=62728698 vocab=0cdbf81e
+-/
 @[to_additive]
 -- This is not `simp` to avoid rewriting in types of terms.
 theorem coe_of (R : Type u) [Semigroup R] : ↑(Semigrp.of R) = R :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.46e47dafcad9 from=seed src=0 shape=98150753 vocab=2812eea8
+-/
 @[to_additive (attr := simp)]
 lemma hom_id {X : Semigrp} : (𝟙 X : X ⟶ X).hom = MulHom.id X := rfl
 
 /- Provided for rewriting. -/
+/--
+@isnad1 id=eq.0h2v.s6.95e4e2c172c5 from=seed src=0 shape=567e892f vocab=53b18cf6
+-/
 @[to_additive]
 lemma id_apply (X : Semigrp) (x : X) :
     (𝟙 X : X ⟶ X) x = x := by simp
 
+/--
+@isnad1 id=eq.0h5v.s6.fe5ea2acefb0 from=seed src=0 shape=f9bc9902 vocab=75d5975e
+-/
 @[to_additive (attr := simp)]
 lemma hom_comp {X Y T : Semigrp} (f : X ⟶ Y) (g : Y ⟶ T) :
     (f ≫ g).hom = g.hom.comp f.hom := rfl
 
 /- Provided for rewriting. -/
+/--
+@isnad1 id=eq.0h6v.s8.058d9bd9a62b from=seed src=0 shape=f8fbaaa5 vocab=1879d0dc
+-/
 @[to_additive]
 lemma comp_apply {X Y T : Semigrp} (f : X ⟶ Y) (g : Y ⟶ T) (x : X) :
     (f ≫ g) x = g (f x) := by simp
 
+/--
+@isnad1 id=eq.1h4v.s5.07b52d169796 from=seed src=0 shape=bce286ca vocab=d449ac09
+-/
 @[to_additive (attr := ext)]
 lemma hom_ext {X Y : Semigrp} {f g : X ⟶ Y} (hf : f.hom = g.hom) : f = g :=
   Hom.ext hf
 
+/--
+@isnad1 id=eq.0h3v.s5.25d5098d7f2d from=seed src=0 shape=ee82f57b vocab=31b53c1d
+-/
 @[to_additive (attr := simp)]
 lemma hom_ofHom {X Y : Type u} [Semigroup X] [Semigroup Y] (f : X →ₙ* Y) : (ofHom f).hom = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9faa3a506908 from=seed src=0 shape=67807d68 vocab=d107d78d
+-/
 @[to_additive (attr := simp)]
 lemma ofHom_hom {X Y : Semigrp} (f : X ⟶ Y) :
     ofHom (Hom.hom f) = f := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.e86e10b31665 from=seed src=0 shape=fa1b0b56 vocab=758f113a
+-/
 @[to_additive (attr := simp)]
 lemma ofHom_id {X : Type u} [Semigroup X] : ofHom (MulHom.id X) = 𝟙 (of X) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.2c9a5df788d3 from=seed src=0 shape=17e991ae vocab=6a80f63a
+-/
 @[to_additive (attr := simp)]
 lemma ofHom_comp {X Y Z : Type u} [Semigroup X] [Semigroup Y] [Semigroup Z]
     (f : X →ₙ* Y) (g : Y →ₙ* Z) :
     ofHom (g.comp f) = ofHom f ≫ ofHom g :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.88bec70327ff from=seed src=0 shape=c7895988 vocab=4f778566
+-/
 @[to_additive]
 lemma ofHom_apply {X Y : Type u} [Semigroup X] [Semigroup Y] (f : X →ₙ* Y) (x : X) :
     (ofHom f) x = f x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.7eb54246469a from=seed src=0 shape=a6fcc484 vocab=c037a367
+-/
 @[to_additive]
 lemma inv_hom_apply {X Y : Semigrp} (e : X ≅ Y) (x : X) : e.inv (e.hom x) = x := by
   simp
 
+/--
+@isnad1 id=eq.0h4v.s7.b37e667c6c92 from=seed src=0 shape=f8bdf8bf vocab=c037a367
+-/
 @[to_additive]
 lemma hom_inv_apply {X Y : Semigrp} (e : X ≅ Y) (s : Y) : e.hom (e.inv s) = s := by
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.2c777bf5dbfd from=seed src=0 shape=b360b6c4 vocab=617f1f18
+-/
 @[to_additive (attr := simp)]
 lemma mulEquiv_coe_eq {X Y : Type _} [Semigroup X] [Semigroup Y] (e : X ≃* Y) :
     (ofHom (e : X →ₙ* Y)).hom = ↑e :=
@@ -431,6 +539,9 @@ def mulEquivIsoSemigrpIso {X Y : Type u} [Semigroup X] [Semigroup Y] :
   hom := ↾fun e ↦ e.toSemigrpIso
   inv := ↾fun i ↦ i.semigrpIsoToMulEquiv
 
+/--
+@isnad1 id=reflects.0h0v.s5.25cc3c5685c7 from=seed src=0 shape=397b964b vocab=61091ef4
+-/
 @[to_additive]
 instance MagmaCat.forgetReflectsIsos : (forget MagmaCat.{u}).ReflectsIsomorphisms where
   reflects {X Y} f _ := by
@@ -438,6 +549,9 @@ instance MagmaCat.forgetReflectsIsos : (forget MagmaCat.{u}).ReflectsIsomorphism
     let e : X ≃* Y := { f.hom, i.toEquiv with }
     exact e.toMagmaCatIso.isIso_hom
 
+/--
+@isnad1 id=reflects.0h0v.s5.77c8a05ce9cb from=seed src=0 shape=397b964b vocab=0094741f
+-/
 @[to_additive]
 instance Semigrp.forgetReflectsIsos : (forget Semigrp.{u}).ReflectsIsomorphisms where
   reflects {X Y} f _ := by
@@ -445,7 +559,9 @@ instance Semigrp.forgetReflectsIsos : (forget Semigrp.{u}).ReflectsIsomorphisms 
     let e : X ≃* Y := { f.hom, i.toEquiv with }
     exact e.toSemigrpIso.isIso_hom
 
-/-- Ensure that `forget₂ CommMonCat MonCat` automatically reflects isomorphisms. -/
+/-- Ensure that `forget₂ CommMonCat MonCat` automatically reflects isomorphisms.
+@isnad1 id=full.0h0v.s6.0a06db5345d8 from=seed src=0 shape=343ac400 vocab=4a3ee2fe
+-/
 @[to_additive /-- Ensure that `forget₂ AddCommMonCat AddMonCat` automatically reflects
 isomorphisms. -/]
 instance Semigrp.forget₂_full : (forget₂ Semigrp MagmaCat).Full where

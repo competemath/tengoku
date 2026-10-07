@@ -46,6 +46,9 @@ attribute [coe] carrier
 
 attribute [instance] booleanRing
 
+/--
+@isnad1 id=eq.0h1v.s3.f983d66e79ad from=seed src=0 shape=62728698 vocab=b46679c4
+-/
 theorem coe_of (α : Type*) [BooleanRing α] : ↥(of α) = α :=
   rfl
 
@@ -81,6 +84,9 @@ abbrev Hom.hom {X Y : BoolRing} (f : Hom X Y) :=
 abbrev ofHom {R S : Type u} [BooleanRing R] [BooleanRing S] (f : R →+* S) : of R ⟶ of S :=
   ConcreteCategory.ofHom f
 
+/--
+@isnad1 id=eq.1h4v.s6.6910f9a2b66e from=seed src=0 shape=bce286ca vocab=391cd789
+-/
 @[ext]
 lemma hom_ext {R S : BoolRing} {f g : R ⟶ S} (hf : f.hom = g.hom) : f = g :=
   Hom.ext hf

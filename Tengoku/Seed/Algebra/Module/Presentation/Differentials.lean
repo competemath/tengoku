@@ -67,7 +67,9 @@ bijections on the middle and on the right. Then, the exactness of the first
 sequence shall follow from the exactness of the second which is
 `Algebra.Extension.exact_cotangentComplex_toKaehler`. -/
 
-/-- Same as `comm₂₃` below, but here we have not yet constructed `differentialsSolution`. -/
+/-- Same as `comm₂₃` below, but here we have not yet constructed `differentialsSolution`.
+@isnad1 id=eq.0h5v.s12.86549f391390 from=seed src=0 shape=a0cad307 vocab=7f05c871
+-/
 lemma comm₂₃' : pres.toExtension.toKaehler.comp pres.cotangentSpaceBasis.repr.symm.toLinearMap =
     Finsupp.linearCombination S (fun g ↦ D _ _ (pres.val g)) := by
   ext
@@ -81,12 +83,18 @@ noncomputable def hom₁ : (σ →₀ S) →ₗ[S] pres.toExtension.Cotangent :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s12.86f08ccc93f7 from=seed src=0 shape=f155b536 vocab=5af61f50
+-/
 lemma hom₁_single (r : σ) :
     hom₁ pres (Finsupp.single r 1) = Extension.Cotangent.mk ⟨pres.relation r, by simp⟩ := by
   simp [hom₁]
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=surjecti.0h5v.s8.f4b1a2a6cf5b from=seed src=0 shape=3df01b1c vocab=adbec3cc
+-/
 lemma surjective_hom₁ : Function.Surjective (hom₁ pres) := by
   let φ : (σ →₀ S) →ₗ[pres.Ring] pres.toExtension.Cotangent :=
     { toFun := hom₁ pres
@@ -115,6 +123,9 @@ lemma surjective_hom₁ : Function.Surjective (hom₁ pres) := by
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s13.22781878e541 from=seed src=0 shape=ea6f30c7 vocab=63d025c5
+-/
 lemma comm₁₂_single (r : σ) :
     pres.toExtension.cotangentComplex (hom₁ pres (Finsupp.single r 1)) =
       pres.cotangentSpaceBasis.repr.symm ((differentialsRelations pres).relation r) := by
@@ -124,6 +135,9 @@ lemma comm₁₂_single (r : σ) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s12.233b19fad510 from=seed src=0 shape=f05d4d1f vocab=a48a91c6
+-/
 lemma comm₁₂ : pres.toExtension.cotangentComplex.comp (hom₁ pres) =
     pres.cotangentSpaceBasis.repr.symm.comp (differentialsRelations pres).map := by
   ext r
@@ -147,6 +161,9 @@ noncomputable def differentialsSolution :
     apply DFunLike.congr_fun (Function.Exact.linearMap_comp_eq_zero
       (pres.toExtension.exact_cotangentComplex_toKaehler))
 
+/--
+@isnad1 id=eq.0h5v.s12.6411e3b6e6af from=seed src=0 shape=eb345ff8 vocab=3927c2ab
+-/
 lemma differentials.comm₂₃ :
     pres.toExtension.toKaehler.comp pres.cotangentSpaceBasis.repr.symm.toLinearMap =
       pres.differentialsSolution.π :=
@@ -154,6 +171,9 @@ lemma differentials.comm₂₃ :
 
 set_option backward.isDefEq.respectTransparency.types false in
 open differentials in
+/--
+@isnad1 id=ispresen.0h5v.s6.395c095c44c2 from=seed src=0 shape=e093a245 vocab=561288a3
+-/
 lemma differentialsSolution_isPresentation :
     pres.differentialsSolution.IsPresentation := by
   rw [Module.Relations.Solution.isPresentation_iff]

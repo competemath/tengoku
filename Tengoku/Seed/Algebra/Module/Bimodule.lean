@@ -89,10 +89,16 @@ def mk (p : AddSubmonoid M) (hA : ∀ (a : A) {m : M}, m ∈ p → a • m ∈ p
         (fun a b hm => by simpa only [TensorProduct.Algebra.smul_def] using! hA a (hB b hm))
         fun z w hz hw hm => by simpa only [add_smul] using! p.add_mem (hz hm) (hw hm) }
 
+/--
+@isnad1 id=mem.1h7v.s9.c47a151957d4 from=seed src=0 shape=10b992d4 vocab=1dfd78fa
+-/
 theorem smul_mem (p : Submodule (A ⊗[R] B) M) (a : A) {m : M} (hm : m ∈ p) : a • m ∈ p := by
   suffices a • m = a ⊗ₜ[R] (1 : B) • m by exact this.symm ▸ p.smul_mem _ hm
   simp [TensorProduct.Algebra.smul_def]
 
+/--
+@isnad1 id=mem.1h7v.s9.45fab9a76122 from=seed src=0 shape=dd3f6a2f vocab=1dfd78fa
+-/
 theorem smul_mem' (p : Submodule (A ⊗[R] B) M) (b : B) {m : M} (hm : m ∈ p) : b • m ∈ p := by
   suffices b • m = (1 : A) ⊗ₜ[R] b • m by exact this.symm ▸ p.smul_mem _ hm
   simp [TensorProduct.Algebra.smul_def]

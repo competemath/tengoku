@@ -42,6 +42,9 @@ abbrev objEqToHom {i j : β} (h : i = j) :
     X.obj i ⟶ X.obj j :=
   eqToHom (congr_arg X.obj h)
 
+/--
+@isnad1 id=eq.0h5v.s7.a13dc8e1b95a from=seed src=0 shape=78dc352f vocab=68fdbd8f
+-/
 @[simp]
 theorem objEqToHom_refl (i : β) : X.objEqToHom (refl i) = 𝟙 _ :=
   rfl
@@ -49,15 +52,24 @@ theorem objEqToHom_refl (i : β) : X.objEqToHom (refl i) = 𝟙 _ :=
 -- Removing `@[simp]`, because it is in the opposite direction of `eqToHom_naturality`.
 -- Having both causes an infinite loop in the simpNF linter.
 set_option backward.isDefEq.respectTransparency false in -- Needed in dgoToHomologicalComplex
+/--
+@isnad1 id=eq.1h6v.s9.767bbad153b1 from=seed src=0 shape=a1c087d1 vocab=ef9c77e2
+-/
 @[reassoc]
 theorem objEqToHom_d {x y : β} (h : x = y) :
     X.objEqToHom h ≫ X.d y = X.d x ≫ X.objEqToHom (by cases h; rfl) := by cases h; simp
 
+/--
+@isnad1 id=eq.0h5v.s10.69038788a426 from=seed src=0 shape=1d125e19 vocab=2a3f6422
+-/
 @[reassoc (attr := simp)]
 theorem d_squared_apply {x : β} : X.d x ≫ X.d _ = 0 := congr_fun X.d_squared _
 
 -- Removing `@[simp]`, because it is in the opposite direction of `eqToHom_naturality`.
 -- Having both causes an infinite loop in the simpNF linter.
+/--
+@isnad1 id=eq.1h8v.s9.72795b794580 from=seed src=0 shape=00f47b56 vocab=59318881
+-/
 @[reassoc]
 theorem eqToHom_f' {X Y : DifferentialObject ℤ (GradedObjectWithShift b V)} (f : X ⟶ Y) {x y : β}
     (h : x = y) : X.objEqToHom h ≫ f.f y = f.f x ≫ Y.objEqToHom h := by cases h; simp
@@ -71,6 +83,9 @@ namespace HomologicalComplex
 variable {β : Type*} [AddCommGroup β] (b : β)
 variable (V : Type*) [Category* V] [HasZeroMorphisms V]
 
+/--
+@isnad1 id=eq.1h7v.s7.952779928167 from=seed src=0 shape=df5865e9 vocab=596162d0
+-/
 @[reassoc]
 theorem d_eqToHom (X : HomologicalComplex V (ComplexShape.up' b)) {x y z : β} (h : y = z) :
     X.d x y ≫ eqToHom (congr_arg X.X h) = X.d x z := by cases h; simp

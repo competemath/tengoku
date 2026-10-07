@@ -42,31 +42,49 @@ public def index : ℤ := finrank R f.ker - finrank R (N ⧸ f.range)
 
 variable {f}
 
+/--
+@isnad1 id=eq.0h4v.s8.f0e5a0c8cf16 from=seed src=0 shape=b279d044 vocab=77c4c16e
+-/
 public lemma index_eq_finrank_sub :
     f.index = finrank R f.ker - finrank R (N ⧸ f.range) := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.fe0b6982fe41 from=seed src=0 shape=752ec122 vocab=a7ec6f52
+-/
 @[nontriviality] public lemma index_of_subsingleton [Subsingleton R] :
     f.index = 0 := by
   simp [index_eq_finrank_sub]
 
+/--
+@isnad1 id=eq.0h3v.s7.1ddf10b03f6f from=seed src=0 shape=3f37d351 vocab=74adc57c
+-/
 @[simp] public lemma index_zero :
     (0 : M →ₗ[R] N).index = finrank R M - finrank R N := by
   rw [index_eq_finrank_sub, ker_zero, range_zero]
   simpa using (Submodule.quotEquivOfEqBot _ rfl).finrank_eq
 
+/--
+@isnad1 id=eq.1h4v.s8.0a7d25919e88 from=seed src=0 shape=4e1472ab vocab=ffb4940e
+-/
 public lemma index_of_injective [Nontrivial R] (hf : Injective f) :
     f.index = - finrank R (N ⧸ f.range) := by
   simpa [index_eq_finrank_sub] using ker_eq_bot.2 hf ▸ finrank_bot _ _
 
 variable [StrongRankCondition R]
 
+/--
+@isnad1 id=eq.1h4v.s8.dcb498e7e2bd from=seed src=0 shape=6943bf1d vocab=585703de
+-/
 public lemma index_of_surjective (hf : Surjective f) :
     f.index = finrank R f.ker := by
   rw [index_eq_finrank_sub, range_eq_top.mpr hf]
   simp [finrank_eq_zero_of_subsingleton]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h2v.s5.47a9aefb474e from=seed src=0 shape=1ea97922 vocab=7ac8d808
+-/
 @[simp] public lemma index_id :
     (id : M →ₗ[R] M).index = 0 := by
   nontriviality R
@@ -86,10 +104,16 @@ section DivisionRing
 
 variable {k : Type*} [DivisionRing k] [Module k M] [Module k N] {f : M →ₗ[k] N}
 
+/--
+@isnad1 id=eq.0h4v.s7.30f593a4eb05 from=seed src=0 shape=3a4f072b vocab=f2897181
+-/
 @[simp] public lemma index_neg :
     (-f).index = f.index := by
   rw [index_eq_finrank_sub, index_eq_finrank_sub, ker_neg, range_neg]
 
+/--
+@isnad1 id=eq.0h4v.s7.33daafa80378 from=seed src=0 shape=e147565b vocab=90a50160
+-/
 public lemma index_eq_of_finiteDimensional [FiniteDimensional k M] [FiniteDimensional k N] :
     f.index = finrank k M - finrank k N := by
   -- `0 → f.ker → M → N → f.coker → 0`
@@ -101,6 +125,9 @@ public lemma index_eq_of_finiteDimensional [FiniteDimensional k M] [FiniteDimens
 
 set_option backward.isDefEq.respectTransparency.types false in
 open Submodule in
+/--
+@isnad1 id=eq.0h6v.s9.42d9cd80da80 from=seed src=0 shape=7e32fa12 vocab=2bfa8967
+-/
 @[simp] public lemma index_comp {P : Type*} [AddCommGroup P] [Module k P] (g : N →ₗ[k] P)
     [FiniteDimensional k f.ker] [FiniteDimensional k g.ker]
     [FiniteDimensional k (N ⧸ f.range)] [FiniteDimensional k (P ⧸ g.range)] :
@@ -128,6 +155,9 @@ section Field
 
 variable {k : Type*} [Field k] [Module k M] [Module k N] {f : M →ₗ[k] N}
 
+/--
+@isnad1 id=eq.1h5v.s8.d33f8b53eb96 from=seed src=0 shape=ba008b64 vocab=544a2817
+-/
 public lemma index_smul (t : k) (ht : t ≠ 0) :
     (t • f).index = f.index := by
   rw [index_eq_finrank_sub, index_eq_finrank_sub, ker_smul _ _ ht, range_smul _ _ ht]

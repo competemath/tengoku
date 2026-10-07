@@ -75,6 +75,9 @@ noncomputable def directSum (solution : ∀ (i : ι), (relations i).Solution (M 
     (Relations.directSum relations).Solution (⨁ i, M i) :=
   directSumEquiv.symm (fun i ↦ (solution i).postcomp (lof A ι M i))
 
+/--
+@isnad1 id=eq.0h7v.s8.faad149a33c9 from=seed src=0 shape=57ea267a vocab=0d3da363
+-/
 @[simp]
 lemma directSum_var (solution : ∀ (i : ι), (relations i).Solution (M i))
     (i : ι) (g : (relations i).G) :
@@ -98,6 +101,9 @@ noncomputable def directSum.isRepresentationCore :
     exact Solution.congr_var h' ⟨i, g⟩
 
 include h in
+/--
+@isnad1 id=ispresen.1h5v.s7.0716593f59e6 from=seed src=0 shape=01009cc1 vocab=b0d889da
+-/
 lemma directSum : (directSum solution).IsPresentation :=
   (directSum.isRepresentationCore h).isPresentation
 
@@ -117,6 +123,9 @@ noncomputable def directSum (pres : ∀ (i : ι), Presentation A (M i)) :
   ofIsPresentation
     (Relations.Solution.IsPresentation.directSum (fun i ↦ (pres i).toIsPresentation))
 
+/--
+@isnad1 id=eq.0h6v.s9.91ca13ee3e3d from=seed src=0 shape=b0144bf3 vocab=3feeb219
+-/
 @[simp]
 lemma directSum_var (pres : ∀ (i : ι), Presentation A (M i)) (i : ι) (g : (pres i).G) :
     (directSum pres).var ⟨i, g⟩ = lof A ι M i ((pres i).var g) := rfl
@@ -132,6 +141,9 @@ of the module `N`. -/
 noncomputable def finsupp : Presentation A (ι →₀ N) :=
   (directSum (fun (_ : ι) ↦ pres)).ofLinearEquiv (finsuppLequivDFinsupp _).symm
 
+/--
+@isnad1 id=eq.0h6v.s7.c97aa4664a61 from=seed src=0 shape=869a19d5 vocab=258dbbb0
+-/
 @[simp]
 lemma finsupp_var (i : ι) (g : pres.G) :
     (finsupp pres ι).var ⟨i, g⟩ = Finsupp.single i (pres.var g) := by

@@ -34,8 +34,14 @@ topological spaces is an embedding and the induced morphisms of stalks are all s
 class IsPreimmersion {X Y : Scheme} (f : X ⟶ Y) : Prop extends SurjectiveOnStalks f where
   isEmbedding (f) : IsEmbedding f
 
+/--
+@isnad1 id=isembedd.0h3v.s7.3beaa674369b from=seed src=0 shape=82a81c7a vocab=76d11fc8
+-/
 alias Scheme.Hom.isEmbedding := IsPreimmersion.isEmbedding
 
+/--
+@isnad1 id=eq.0h0v.s6.ee7b9598521d from=seed src=0 shape=188af002 vocab=d3709874
+-/
 lemma isPreimmersion_eq_inf :
     @IsPreimmersion = (@SurjectiveOnStalks ⊓ topologically IsEmbedding : MorphismProperty _) := by
   ext
@@ -57,6 +63,9 @@ instance : MorphismProperty.IsMultiplicative @IsPreimmersion where
   comp_mem f g _ _ := ⟨g.isEmbedding.comp f.isEmbedding⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=ispreimm.0h5v.s5.691d3a989069 from=seed src=0 shape=73d4a103 vocab=f830e69e
+-/
 instance comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [IsPreimmersion f]
     [IsPreimmersion g] : IsPreimmersion (f ≫ g) :=
   MorphismProperty.IsStableUnderComposition.comp_mem f g inferInstance inferInstance
@@ -64,6 +73,9 @@ instance comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [IsPreimmersion f]
 instance (priority := 900) {X Y} (f : X ⟶ Y) [IsPreimmersion f] : Mono f :=
   SurjectiveOnStalks.mono_of_injective f.isEmbedding.injective
 
+/--
+@isnad1 id=ispreimm.0h5v.s5.530f17951dd2 from=seed src=0 shape=72ea3977 vocab=f830e69e
+-/
 theorem of_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [IsPreimmersion g]
     [IsPreimmersion (f ≫ g)] : IsPreimmersion f where
   isEmbedding := by
@@ -74,21 +86,33 @@ theorem of_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [IsPreimmersion g]
     rw [Scheme.Hom.stalkMap_comp] at h
     exact Function.Surjective.of_comp h
 
+/--
+@isnad1 id=iff.0h5v.s5.8e55cb65b4c6 from=seed src=0 shape=daa213a1 vocab=f830e69e
+-/
 theorem comp_iff {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) [IsPreimmersion g] :
     IsPreimmersion (f ≫ g) ↔ IsPreimmersion f :=
   ⟨fun _ ↦ of_comp f g, fun _ ↦ inferInstance⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.183ae62ae33d from=seed src=0 shape=330f1357 vocab=1309394f
+-/
 lemma SpecMap_iff {R S : CommRingCat.{u}} (f : R ⟶ S) :
     IsPreimmersion (Spec.map f) ↔ IsEmbedding (PrimeSpectrum.comap f.hom) ∧
       f.hom.SurjectiveOnStalks := by
   rw [← HasRingHomProperty.Spec_iff (P := @SurjectiveOnStalks), isPreimmersion_iff, and_comm]
   rfl
 
+/--
+@isnad1 id=ispreimm.2h3v.s6.d1ab94fb30be from=seed src=0 shape=7ed1f775 vocab=1309394f
+-/
 lemma mk_SpecMap {R S : CommRingCat.{u}} {f : R ⟶ S}
     (h₁ : IsEmbedding (PrimeSpectrum.comap f.hom)) (h₂ : f.hom.SurjectiveOnStalks) :
     IsPreimmersion (Spec.map f) :=
   (SpecMap_iff f).mpr ⟨h₁, h₂⟩
 
+/--
+@isnad1 id=ispreimm.0h3v.s6.13d46e89ec85 from=seed src=0 shape=91cd2630 vocab=83308b31
+-/
 lemma of_isLocalization {R S : Type u} [CommRing R] (M : Submonoid R) [CommRing S]
     [Algebra R S] [IsLocalization M S] :
     IsPreimmersion (Spec.map (CommRingCat.ofHom <| algebraMap R S)) :=

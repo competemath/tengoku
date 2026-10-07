@@ -97,16 +97,25 @@ instance : Module R Γ(M, U) :=
 instance : IsScalarTower R Γ(Spec R, U) Γ(M, U) :=
   IsScalarTower.of_compHom R Γ(Spec R, U) Γ(M, U)
 
+/--
+@isnad1 id=eq.0h5v.s13.34af9e506f2a from=seed src=0 shape=5929f395 vocab=89579f92
+-/
 lemma smul_Spec_def (r : R) (x : Γ(M, U)) :
     r • x = ((Spec R).presheaf.map U.leTop.op) ((Scheme.ΓSpecIso R).inv r) • x :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s13.dd295512d626 from=seed src=0 shape=b55f2773 vocab=0081c002
+-/
 @[simp]
 lemma map_smul_Spec (hUV : .op V ⟶ .op U) (f : R) (x : Γ(M, V)) :
     dsimp% M.presheaf.map hUV (f • x) = f • M.presheaf.map hUV x :=
   ((modulesSpecToSheaf.obj M).obj.map hUV).hom.map_smul f x
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isunit.1h4v.s12.210366d192a1 from=seed src=0 shape=6a9e28db vocab=65bd1084
+-/
 lemma isUnit_algebraMap_end_of_le_basicOpen (f : R) (hf : U ≤ PrimeSpectrum.basicOpen f) :
     IsUnit (algebraMap R (Module.End R Γ(M, U)) f) := by
   rw [Module.End.isUnit_iff]
@@ -117,6 +126,9 @@ lemma isUnit_algebraMap_end_of_le_basicOpen (f : R) (hf : U ≤ PrimeSpectrum.ba
   rw [this, ← Module.End.isUnit_iff]
   exact ((IsLocalization.Away.algebraMap_isUnit _).map _).map _
 
+/--
+@isnad1 id=issmulre.1h4v.s11.6f6e49ddd174 from=seed src=0 shape=2bbf862d vocab=7ea37b18
+-/
 lemma isSMulRegular_of_le_basicOpen {f : R} (hle : U ≤ PrimeSpectrum.basicOpen f) :
     IsSMulRegular Γ(M, U) f := by
   intro x y hxy
@@ -125,6 +137,9 @@ lemma isSMulRegular_of_le_basicOpen {f : R} (hle : U ≤ PrimeSpectrum.basicOpen
   exact this.injective hxy
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s14.9e64352a04d5 from=seed src=0 shape=809182fc vocab=9f728a07
+-/
 @[simp]
 lemma restrictAppIso_smul_Spec {S : CommRingCat.{u}} (f : R ⟶ S)
     [IsOpenImmersion (Spec.map f)] {U : (Spec S).Opens} (r : R)
@@ -141,6 +156,9 @@ lemma restrictAppIso_smul_Spec {S : CommRingCat.{u}} (f : R ⟶ S)
   rw [this]
 
 set_option linter.dupNamespace false in
+/--
+@isnad1 id=eq.0h7v.s14.9e64352a04d5 from=seed src=0 shape=809182fc vocab=9f728a07
+-/
 @[deprecated (since := "2026-06-04")]
 alias Scheme.Modules.restrictAppIso_smul_Spec := restrictAppIso_smul_Spec
 
@@ -172,6 +190,9 @@ def modulesSpecToSheafIso :
 def toOpen (U : (Spec R).Opens) : M ⟶ (modulesSpecToSheaf.obj (tilde M)).presheaf.obj (.op U) :=
   ModuleCat.ofHom (StructureSheaf.toOpenₗ R M U) ≫ ((modulesSpecToSheafIso M).app _).inv
 
+/--
+@isnad1 id=eq.0h5v.s10.521d7d779646 from=seed src=0 shape=2a16094b vocab=8ab3429b
+-/
 @[reassoc (attr := simp)]
 theorem toOpen_res (U V : Opens (PrimeSpectrum.Top R)) (i : V ⟶ U) :
     toOpen M U ≫ (modulesSpecToSheaf.obj (tilde M)).presheaf.map i.op = toOpen M V :=
@@ -204,11 +225,17 @@ protected noncomputable def map {M N : ModuleCat R} (f : M ⟶ N) : tilde M ⟶ 
     { app U := ModuleCat.ofHom (StructureSheaf.comapₗ f.hom _ _ .rfl) } ≫
     (modulesSpecToSheafIso N).inv⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.efc290d847c8 from=seed src=0 shape=cbb7b6eb vocab=68bed74c
+-/
 @[simp, reassoc]
 protected lemma map_id {M : ModuleCat R} : tilde.map (𝟙 M) = 𝟙 _ := by
   ext p x
   exact Subtype.ext (funext fun y ↦ DFunLike.congr_fun (LocalizedModule.map_id _) _)
 
+/--
+@isnad1 id=eq.0h6v.s7.ce4a0c8e80e4 from=seed src=0 shape=f6e88d96 vocab=264f6797
+-/
 @[simp, reassoc]
 protected lemma map_comp {M N P : ModuleCat R} (f : M ⟶ N) (g : N ⟶ P) :
     tilde.map (f ≫ g) = tilde.map f ≫ tilde.map g := by
@@ -219,6 +246,9 @@ protected lemma map_comp {M N P : ModuleCat R} (f : M ⟶ N) (g : N ⟶ P) :
       (LocalizedModule.mkLinearMap y.1.asIdeal.primeCompl N)
       (LocalizedModule.mkLinearMap y.1.asIdeal.primeCompl P) _ _) _)
 
+/--
+@isnad1 id=eq.0h5v.s12.4425447ef864 from=seed src=0 shape=d1c80660 vocab=51e05f94
+-/
 @[reassoc (attr := simp)]
 lemma toOpen_map_app {M N : ModuleCat R} (f : M ⟶ N)
     (U : TopologicalSpace.Opens (PrimeSpectrum R)) :
@@ -235,6 +265,9 @@ variable (R) in
   map := tilde.map
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isiso.0h2v.s8.04bc3ed9eabe from=seed src=0 shape=c43633c6 vocab=e3f90d8b
+-/
 instance isIso_toOpen_top {M : ModuleCat R} : IsIso (toOpen M ⊤) := by
   rw [toOpen, isIso_comp_right_iff, ConcreteCategory.isIso_iff_bijective]
   exact StructureSheaf.toOpenₗ_top_bijective
@@ -245,6 +278,9 @@ noncomputable def isoTop (M : ModuleCat R) :
     M ≅ (modulesSpecToSheaf.obj (tilde M)).presheaf.obj (.op ⊤) :=
   asIso (toOpen M ⊤)
 
+/--
+@isnad1 id=isunit.1h4v.s12.210366d192a1 from=seed src=0 shape=6a9e28db vocab=65bd1084
+-/
 @[deprecated (since := "2026-05-30")]
 alias isUnit_algebraMap_end_basicOpen := Scheme.Modules.isUnit_algebraMap_end_of_le_basicOpen
 
@@ -287,6 +323,9 @@ noncomputable def Scheme.Modules.fromTildeΓ (M : (Spec (.of R)).Modules) :
           rfl }⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s13.c6373fd28b6e from=seed src=0 shape=aff889ed vocab=bc583093
+-/
 @[reassoc]
 lemma Scheme.Modules.toOpen_fromTildeΓ_app (M : (Spec (.of R)).Modules) (U) :
     tilde.toOpen ((modulesSpecToSheaf.obj M).presheaf.obj (.op ⊤)) U ≫
@@ -386,20 +425,35 @@ section
 
 variable {M N : ModuleCat R} (f g : M ⟶ N)
 
+/--
+@isnad1 id=eq.0h3v.s7.a4ee1e770398 from=seed src=0 shape=230ac746 vocab=b7a7dbb7
+-/
 @[simp] lemma tilde.map_zero : tilde.map (0 : M ⟶ N) = 0 :=
   (tilde.functor R).map_zero _ _
 
+/--
+@isnad1 id=eq.0h5v.s8.1c719e43e2ec from=seed src=0 shape=31127a36 vocab=60625412
+-/
 @[simp] lemma tilde.map_add : tilde.map (f + g) = tilde.map f + tilde.map g :=
   (tilde.functor R).map_add
 
+/--
+@isnad1 id=eq.0h5v.s8.0c2417770e69 from=seed src=0 shape=31127a36 vocab=c9f23a29
+-/
 @[simp] lemma tilde.map_sub : tilde.map (f - g) = tilde.map f - tilde.map g :=
   (tilde.functor R).map_sub
 
+/--
+@isnad1 id=eq.0h4v.s8.f1fb93598ecb from=seed src=0 shape=40937ed2 vocab=d5413521
+-/
 @[simp] lemma tilde.map_neg : tilde.map (-f) = - tilde.map f :=
   (tilde.functor R).map_neg
 
 end
 
+/--
+@isnad1 id=iff.0h2v.s10.16d7f320da50 from=seed src=0 shape=7ce53de7 vocab=6095ece2
+-/
 lemma isIso_fromTildeΓ_iff {M : (Spec R).Modules} :
     IsIso M.fromTildeΓ ↔ (tilde.functor R).essImage M :=
   tilde.adjunction.isIso_counit_app_iff_mem_essImage
@@ -461,6 +515,9 @@ instance : ((tilde.functor R).obj M).IsQuasicoherent :=
   inferInstanceAs <| (tilde M).IsQuasicoherent
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.0h3v.s10.ddb0c341d66a from=seed src=0 shape=1ab3f61d vocab=63c42de1
+-/
 lemma isIso_fromTildeΓ_of_presentation (M : (Spec R).Modules) (P : M.Presentation) :
     IsIso M.fromTildeΓ := by
   rw [isIso_fromTildeΓ_iff]
@@ -485,6 +542,9 @@ abbrev IsLocalizing (M : TopCat.Sheaf (ModuleCat R) (Spec R)) : Prop :=
   ∀ f : R, IsLocalizedModule (.powers f) (M.obj.map (basicOpen f).leTop.op).hom
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=islocali.1h4v.s6.df3230132f6f from=seed src=0 shape=f09ef7a3 vocab=fee284d7
+-/
 theorem isLocalizing_of_iso {M N : TopCat.Sheaf (ModuleCat R) (Spec R)} (φ : M ≅ N)
     (hM : IsLocalizing M) :
     IsLocalizing N := by
@@ -495,10 +555,16 @@ theorem isLocalizing_of_iso {M N : TopCat.Sheaf (ModuleCat R) (Spec R)} (φ : M 
     IsLocalizedModule.comp_iff_of_bijective_right _ _ <| ConcreteCategory.bijective_of_isIso _]
   exact hM f
 
+/--
+@isnad1 id=iff.0h4v.s6.565aadf5b721 from=seed src=0 shape=7b639cdf vocab=fee284d7
+-/
 theorem isLocalizing_iff_of_iso {M N : TopCat.Sheaf (ModuleCat R) (Spec R)} (φ : M ≅ N) :
     IsLocalizing M ↔ IsLocalizing N :=
   ⟨fun h => isLocalizing_of_iso φ h, fun h => isLocalizing_of_iso φ.symm h⟩
 
+/--
+@isnad1 id=isiso.3h4v.s12.400c2b1ac3f0 from=seed src=0 shape=be59d271 vocab=fde2bdf6
+-/
 theorem isLocalizing_of_isIso_app_top {M N : TopCat.Sheaf (ModuleCat.{u} R) (Spec R)} {φ : M ⟶ N}
     (h : IsIso (φ.hom.app (op ⊤))) (hM : IsLocalizing M) (hN : IsLocalizing N) :
     IsIso φ := by
@@ -507,6 +573,9 @@ theorem isLocalizing_of_isIso_app_top {M N : TopCat.Sheaf (ModuleCat.{u} R) (Spe
   rw [φ.hom.naturality]
   exact IsLocalizedModule.of_linearEquiv_right _ _ (asIso (φ.hom.app (op ⊤))).toLinearEquiv
 
+/--
+@isnad1 id=islocali.0h2v.s6.0f7c03f218b1 from=seed src=0 shape=16e7f71f vocab=2bcc1ad2
+-/
 theorem isLocalizing_tilde (M : ModuleCat R) :
     IsLocalizing (modulesSpecToSheaf.obj (tilde M)) := by
   intro f
@@ -520,7 +589,9 @@ theorem isLocalizing_tilde (M : ModuleCat R) :
   infer_instance
 
 /-- An `𝓞_Spec R` module `M` is isomorphic to `Γ(M)^~` if and only if it is localizing
-as a sheaf of `R` modules -/
+as a sheaf of `R` modules
+@isnad1 id=iff.0h2v.s10.54540d62f935 from=seed src=0 shape=8fdbef89 vocab=85aa8fa6
+-/
 theorem isIso_fromTildeΓ_iff_isLocalizing (M : (Spec R).Modules) :
     IsIso M.fromTildeΓ ↔ IsLocalizing (modulesSpecToSheaf.obj M) := by
   refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
@@ -545,6 +616,9 @@ def pushforwardCompModulesSpecToSheafIso :
     (Functor.associator _ _ _).symm
 
 open scoped ModuleCat.Algebra in
+/--
+@isnad1 id=islocali.1h4v.s7.6f0b3cbcaf6c from=seed src=0 shape=748b7a36 vocab=fa0b5c22
+-/
 theorem isLocalizing_pushforward_of_isLocalizing {M : (Spec S).Modules}
     (h : IsLocalizing (modulesSpecToSheaf.obj M)) :
     IsLocalizing (modulesSpecToSheaf.obj ((Scheme.Modules.pushforward (Spec.map φ)).obj M)) := by
@@ -557,6 +631,9 @@ theorem isLocalizing_pushforward_of_isLocalizing {M : (Spec S).Modules}
 
 /- TODO: Once `IsIso M.fromTildeΓ` is shown to be equivalent to `M` being quasicoherent, use
 this to show that quasicoherent sheaves pushforward to quasicoherent sheaves for affine morphisms -/
+/--
+@isnad1 id=isiso.0h4v.s11.25c2b2ab52e9 from=seed src=0 shape=8f4cd0c1 vocab=13573dca
+-/
 theorem isIso_fromTildeΓ_pushforward (M : (Spec S).Modules) [h : IsIso M.fromTildeΓ] :
     IsIso ((Scheme.Modules.pushforward (Spec.map φ)).obj M).fromTildeΓ := by
   simp_all only [isIso_fromTildeΓ_iff_isLocalizing]
@@ -565,6 +642,9 @@ theorem isIso_fromTildeΓ_pushforward (M : (Spec S).Modules) [h : IsIso M.fromTi
 end IsLocalizing
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isquasic.0h4v.s8.ddcc64364342 from=seed src=0 shape=e9a4176f vocab=d0bbea43
+-/
 instance Scheme.Modules.isQuasicoherent_restrictFunctor {X Y : Scheme.{u}} (f : X ⟶ Y)
     [IsOpenImmersion f] (M : Y.Modules) [M.IsQuasicoherent] :
     ((restrictFunctor f).obj M).IsQuasicoherent := by
@@ -589,6 +669,9 @@ def Scheme.Modules.presentationRestrict {X Y : Scheme.{u}} (f : Y ⟶ X)
   pres.map (Scheme.Modules.restrictFunctor.{u} f) (Scheme.Modules.restrictUnitIso _).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.0h2v.s9.e9d309099880 from=seed src=0 shape=50163686 vocab=e05a6bc4
+-/
 lemma Scheme.Modules.exists_isOpenCover_presentation {X : Scheme.{u}} (M : X.Modules)
     [M.IsQuasicoherent] :
     ∃ (ι : Type u) (U : ι → X.Opens) (_ : ∀ i, (M.restrict (U i).ι).Presentation),
@@ -613,6 +696,9 @@ lemma Scheme.Modules.exists_isOpenCover_presentation {X : Scheme.{u}} (M : X.Mod
     exact hsub _ j.2.2
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=ex.0h2v.s8.c8ff5f8a6cec from=seed src=0 shape=17ceb113 vocab=3e40d890
+-/
 lemma Scheme.Modules.exists_affineOpenCover_presentation {X : Scheme.{u}} (M : X.Modules)
     [M.IsQuasicoherent] :
     ∃ (𝒰 : Scheme.AffineOpenCover.{u} X),
@@ -838,7 +924,9 @@ end QuasicoherentTilde
 open QuasicoherentTilde in
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
-/-- If `M` is a quasi-coherent `𝒪_{Spec R}` module, it is isomorphic to `Γ(M)^~`. -/
+/-- If `M` is a quasi-coherent `𝒪_{Spec R}` module, it is isomorphic to `Γ(M)^~`.
+@isnad1 id=isiso.0h2v.s10.b88cc0851557 from=seed src=0 shape=1ab3f61d vocab=deda6718
+-/
 instance Scheme.Modules.isIso_fromTildeΓ_of_isQuasicoherent (M : (Spec R).Modules)
     [M.IsQuasicoherent] : IsIso M.fromTildeΓ := by
   rw [isIso_fromTildeΓ_iff_isLocalizing, isLocalizing_iff_aux]
@@ -864,7 +952,9 @@ instance Scheme.Modules.isIso_fromTildeΓ_of_isQuasicoherent (M : (Spec R).Modul
     exact aux_basicOpen_of_aux_restrict _ _ this
 
 set_option backward.isDefEq.respectTransparency false in
-/-- An `𝒪_{Spec R}` module `M` is quasicoherent if and only if it is isomorphic to `Γ(M)^~`. -/
+/-- An `𝒪_{Spec R}` module `M` is quasicoherent if and only if it is isomorphic to `Γ(M)^~`.
+@isnad1 id=iff.0h2v.s10.41351e9423f9 from=seed src=0 shape=f96a6656 vocab=deda6718
+-/
 theorem isQuasicoherent_iff_isIso_fromTildeΓ (M : (Spec R).Modules) :
     M.IsQuasicoherent ↔ IsIso M.fromTildeΓ := by
   refine ⟨fun h ↦ inferInstance, fun h ↦ ?_⟩
@@ -873,6 +963,9 @@ theorem isQuasicoherent_iff_isIso_fromTildeΓ (M : (Spec R).Modules) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s7.1c23e52b5ce7 from=seed src=0 shape=f57b2b2b vocab=8d5ef0b6
+-/
 lemma essImage_tilde : (tilde.functor R).essImage =
     SheafOfModules.isQuasicoherent (Spec R).ringCatSheaf := by
   refine le_antisymm ?_ ?_
@@ -911,6 +1004,9 @@ namespace ModuleCat
 
 @[deprecated (since := "2026-02-11")] noncomputable alias tilde := AlgebraicGeometry.tilde
 @[deprecated (since := "2026-02-11")] noncomputable alias Tilde.toOpen := tilde.toOpen
+/--
+@isnad1 id=eq.0h5v.s10.521d7d779646 from=seed src=0 shape=2a16094b vocab=8ab3429b
+-/
 @[deprecated (since := "2026-02-11")] alias Tilde.toOpen_res := tilde.toOpen_res
 @[deprecated (since := "2026-02-11")] noncomputable alias Tilde.toStalk := tilde.toStalk
 

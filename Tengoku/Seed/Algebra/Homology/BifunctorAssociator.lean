@@ -139,6 +139,9 @@ noncomputable def ι (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄)
       (mapBifunctor (mapBifunctor K₁ K₂ F₁₂ c₁₂) K₃ G c₄).X j :=
   GradedObject.ιMapBifunctor₁₂BifunctorMapObj _ _ (ComplexShape.ρ₁₂ c₁ c₂ c₃ c₁₂ c₄) _ _ _ _ _ _ _ h
 
+/--
+@isnad1 id=eq.2h25v.s9.990e2e81049a from=seed src=0 shape=e1f10854 vocab=a147a2a1
+-/
 lemma ι_eq (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (i₁₂ : ι₁₂) (j : ι₄)
     (h₁₂ : ComplexShape.π c₁ c₂ c₁₂ ⟨i₁, i₂⟩ = i₁₂)
     (h : ComplexShape.π c₁₂ c₃ c₄ (i₁₂, i₃) = j) :
@@ -157,16 +160,25 @@ noncomputable def ιOrZero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι�
     ι F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j h
   else 0
 
+/--
+@isnad1 id=eq.1h24v.s9.1fbde8264eb5 from=seed src=0 shape=cf02e197 vocab=085d2b38
+-/
 lemma ιOrZero_eq (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) = j) :
     ιOrZero F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j =
       ι F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j h := dite_eq_left h
 
+/--
+@isnad1 id=eq.1h24v.s9.b9fe0e85d2c8 from=seed src=0 shape=96b182c0 vocab=dadc457a
+-/
 lemma ιOrZero_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) ≠ j) :
     ιOrZero F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j = 0 := dite_eq_right h
 
 variable {F₁₂ G K₁ K₂ K₃ c₁₂ c₄} in
+/--
+@isnad1 id=eq.1h24v.s9.e2172f8a5f45 from=seed src=0 shape=7c00d5ca vocab=e584158b
+-/
 @[ext]
 lemma hom_ext
     [HasGoodTrifunctor₁₂Obj F₁₂ G K₁ K₂ K₃ c₁₂ c₄] {j : ι₄} {A : C₄}
@@ -193,6 +205,9 @@ noncomputable def mapBifunctor₁₂Desc :
     (mapBifunctor (mapBifunctor K₁ K₂ F₁₂ c₁₂) K₃ G c₄).X j ⟶ A :=
   GradedObject.mapBifunctor₁₂BifunctorDesc (ρ₁₂ := ComplexShape.ρ₁₂ c₁ c₂ c₃ c₁₂ c₄) f
 
+/--
+@isnad1 id=eq.1h26v.s9.177276940f84 from=seed src=0 shape=f853fd1c vocab=f98b8b4c
+-/
 @[reassoc (attr := simp)]
 lemma ι_mapBifunctor₁₂Desc (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) = j) :
@@ -214,11 +229,17 @@ noncomputable def d₁ (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) 
   (G.map ((F₁₂.map (K₁.d i₁ (c₁.next i₁))).app (K₂.X i₂))).app (K₃.X i₃) ≫
     ιOrZero F₁₂ G K₁ K₂ K₃ c₁₂ c₄ _ i₂ i₃ j
 
+/--
+@isnad1 id=eq.1h24v.s9.e7c7577a78cf from=seed src=0 shape=87119b7d vocab=d8f62598
+-/
 lemma d₁_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) (h : ¬ c₁.Rel i₁ (c₁.next i₁)) :
     d₁ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j = 0 := by
   dsimp [d₁]
   rw [shape _ _ _ h, Functor.map_zero, zero_app, Functor.map_zero, zero_app, zero_comp, smul_zero]
 
+/--
+@isnad1 id=eq.1h25v.s11.c0654af5b7a3 from=seed src=0 shape=33e18809 vocab=f2b278c4
+-/
 lemma d₁_eq {i₁ i₁' : ι₁} (h₁ : c₁.Rel i₁ i₁') (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) :
     d₁ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j =
     (ComplexShape.ε₁ c₁₂ c₃ c₄ (ComplexShape.π c₁ c₂ c₁₂ ⟨i₁, i₂⟩, i₃) *
@@ -237,11 +258,17 @@ noncomputable def d₂ (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) 
   (G.map ((F₁₂.obj (K₁.X i₁)).map (K₂.d i₂ (c₂.next i₂)))).app (K₃.X i₃) ≫
     ιOrZero F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ _ i₃ j
 
+/--
+@isnad1 id=eq.1h24v.s9.43b36c4394c1 from=seed src=0 shape=2a1d1ed4 vocab=16ccc2c6
+-/
 lemma d₂_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) (h : ¬ c₂.Rel i₂ (c₂.next i₂)) :
     d₂ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j = 0 := by
   dsimp [d₂]
   rw [shape _ _ _ h, Functor.map_zero, Functor.map_zero, zero_app, zero_comp, smul_zero]
 
+/--
+@isnad1 id=eq.1h25v.s11.9b7814151419 from=seed src=0 shape=e5c074a8 vocab=da3e7ee5
+-/
 lemma d₂_eq (i₁ : ι₁) {i₂ i₂' : ι₂} (h₂ : c₂.Rel i₂ i₂') (i₃ : ι₃) (j : ι₄) :
     d₂ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j =
     (c₁₂.ε₁ c₃ c₄ (ComplexShape.π c₁ c₂ c₁₂ ⟨i₁, i₂⟩, i₃) * c₁.ε₂ c₂ c₁₂ (i₁, i₂)) •
@@ -259,11 +286,17 @@ noncomputable def d₃ (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) 
     (G.obj ((F₁₂.obj (K₁.X i₁)).obj (K₂.X i₂))).map (K₃.d i₃ (c₃.next i₃)) ≫
       ιOrZero F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ _ j
 
+/--
+@isnad1 id=eq.1h24v.s9.846934a5395b from=seed src=0 shape=5c07e7db vocab=97a9badc
+-/
 lemma d₃_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) (h : ¬ c₃.Rel i₃ (c₃.next i₃)) :
     d₃ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j = 0 := by
   dsimp [d₃]
   rw [shape _ _ _ h, Functor.map_zero, zero_comp, smul_zero]
 
+/--
+@isnad1 id=eq.1h25v.s10.7c0326f1f64e from=seed src=0 shape=4cb598d7 vocab=bd0763ae
+-/
 lemma d₃_eq (i₁ : ι₁) (i₂ : ι₂) {i₃ i₃' : ι₃} (h₃ : c₃.Rel i₃ i₃') (j : ι₄) :
     d₃ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j =
     (ComplexShape.ε₂ c₁₂ c₃ c₄ (c₁.π c₂ c₁₂ (i₁, i₂), i₃)) •
@@ -303,12 +336,18 @@ section
 variable (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j j' : ι₄)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) = j)
 
+/--
+@isnad1 id=eq.1h25v.s9.7f45ebc7dc2d from=seed src=0 shape=bc0bc3a1 vocab=68dfe4cc
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₁ [HasGoodTrifunctor₁₂Obj F₁₂ G K₁ K₂ K₃ c₁₂ c₄] :
     ι F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j h ≫ D₁ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ j j' =
       d₁ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j' := by
   simp [D₁]
 
+/--
+@isnad1 id=eq.1h25v.s9.855d3a3d5e65 from=seed src=0 shape=bc0bc3a1 vocab=01a90b07
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₂ [HasGoodTrifunctor₁₂Obj F₁₂ G K₁ K₂ K₃ c₁₂ c₄] :
     ι F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j h ≫ D₂ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ j j' =
@@ -316,6 +355,9 @@ lemma ι_D₂ [HasGoodTrifunctor₁₂Obj F₁₂ G K₁ K₂ K₃ c₁₂ c₄]
   simp [D₂]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h25v.s9.ce7ed2e9e497 from=seed src=0 shape=5cd18e68 vocab=0505a26f
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₃ :
     ι F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j h ≫ D₃ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ j j' =
@@ -337,6 +379,9 @@ lemma ι_D₃ :
 end
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h22v.s11.bbf581ad14ff from=seed src=0 shape=026534be vocab=9c979cbb
+-/
 lemma d_eq (j j' : ι₄) [HasGoodTrifunctor₁₂Obj F₁₂ G K₁ K₂ K₃ c₁₂ c₄] :
     (mapBifunctor (mapBifunctor K₁ K₂ F₁₂ c₁₂) K₃ G c₄).d j j' =
       D₁ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ j j' + D₂ F₁₂ G K₁ K₂ K₃ c₁₂ c₄ j j' +
@@ -428,6 +473,9 @@ noncomputable def ι (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄)
   GradedObject.ιMapBifunctorBifunctor₂₃MapObj _ _ (ComplexShape.ρ₂₃ c₁ c₂ c₃ c₁₂ c₂₃ c₄)
     _ _ _ _ _ _ _ h
 
+/--
+@isnad1 id=eq.2h27v.s9.1582328a4a3a from=seed src=0 shape=21b2ccdc vocab=c93d800d
+-/
 lemma ι_eq (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (i₂₃ : ι₂₃) (j : ι₄)
     (h₂₃ : ComplexShape.π c₂ c₃ c₂₃ ⟨i₂, i₃⟩ = i₂₃)
     (h : ComplexShape.π c₁ c₂₃ c₄ (i₁, i₂₃) = j) :
@@ -447,11 +495,17 @@ noncomputable def ιOrZero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι�
     ι F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j h
   else 0
 
+/--
+@isnad1 id=eq.1h26v.s9.569ed7005ed4 from=seed src=0 shape=2e9afb24 vocab=32666f18
+-/
 lemma ιOrZero_eq (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) = j) :
     ιOrZero F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j =
       ι F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j h := dite_eq_left h
 
+/--
+@isnad1 id=eq.1h26v.s9.3be4c47702ed from=seed src=0 shape=9bed917d vocab=f3d84a4f
+-/
 lemma ιOrZero_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) ≠ j) :
     ιOrZero F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j = 0 := dite_eq_right h
@@ -460,6 +514,9 @@ variable [HasGoodTrifunctor₂₃Obj F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c�
 
 -- this is not an ext lemma because Lean cannot guess `c₁₂`
 variable {F G₂₃ K₁ K₂ K₃ c₂₃ c₄} in
+/--
+@isnad1 id=eq.1h26v.s10.dcb23d2046dc from=seed src=0 shape=329fe568 vocab=acfb6e08
+-/
 lemma hom_ext {j : ι₄} {A : C₄}
     {f g : (mapBifunctor K₁ (mapBifunctor K₂ K₃ G₂₃ c₂₃) F c₄).X j ⟶ A}
     (hfg : ∀ (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃)
@@ -481,6 +538,9 @@ noncomputable def mapBifunctor₂₃Desc :
     (mapBifunctor K₁ (mapBifunctor K₂ K₃ G₂₃ c₂₃) F c₄).X j ⟶ A :=
   GradedObject.mapBifunctorBifunctor₂₃Desc (ρ₂₃ := ComplexShape.ρ₂₃ c₁ c₂ c₃ c₁₂ c₂₃ c₄) f
 
+/--
+@isnad1 id=eq.1h28v.s9.e29e75322e7c from=seed src=0 shape=c2fdfb35 vocab=aacf496b
+-/
 @[reassoc (attr := simp)]
 lemma ι_mapBifunctor₂₃Desc (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) = j) :
@@ -501,11 +561,17 @@ noncomputable def d₁ (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) 
       ((F.map (K₁.d i₁ (c₁.next i₁)))).app ((G₂₃.obj (K₂.X i₂)).obj (K₃.X i₃)) ≫
         ιOrZero F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ _ i₂ i₃ j
 
+/--
+@isnad1 id=eq.1h26v.s9.bb73aa058760 from=seed src=0 shape=bc5bd256 vocab=431417ac
+-/
 lemma d₁_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) (h : ¬ c₁.Rel i₁ (c₁.next i₁)) :
     d₁ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j = 0 := by
   dsimp [d₁]
   rw [shape _ _ _ h, Functor.map_zero, zero_app, zero_comp, smul_zero]
 
+/--
+@isnad1 id=eq.1h27v.s11.516f58f6bcbb from=seed src=0 shape=5ff60222 vocab=47f69c00
+-/
 lemma d₁_eq {i₁ i₁' : ι₁} (h₁ : c₁.Rel i₁ i₁') (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) :
     d₁ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j =
     (ComplexShape.ε₁ c₁ c₂₃ c₄ (i₁, ComplexShape.π c₂ c₃ c₂₃ (i₂, i₃))) •
@@ -523,11 +589,17 @@ noncomputable def d₂ (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) 
     (F.obj (K₁.X i₁)).map ((G₂₃.map (K₂.d i₂ (c₂.next i₂))).app (K₃.X i₃)) ≫
       ιOrZero F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ _ i₃ j
 
+/--
+@isnad1 id=eq.1h26v.s9.1c16b1e5f40c from=seed src=0 shape=d1ec25d2 vocab=adae70c2
+-/
 lemma d₂_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) (h : ¬ c₂.Rel i₂ (c₂.next i₂)) :
     d₂ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j = 0 := by
   dsimp [d₂]
   rw [shape _ _ _ h, Functor.map_zero, zero_app, Functor.map_zero, zero_comp, smul_zero]
 
+/--
+@isnad1 id=eq.1h27v.s11.2a75ed843c96 from=seed src=0 shape=872fbf74 vocab=581a3f04
+-/
 lemma d₂_eq (i₁ : ι₁) {i₂ i₂' : ι₂} (h₂ : c₂.Rel i₂ i₂') (i₃ : ι₃) (j : ι₄) :
     d₂ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j =
       (ComplexShape.ε₂ c₁ c₂₃ c₄ (i₁, c₂.π c₃ c₂₃ (i₂, i₃)) * ComplexShape.ε₁ c₂ c₃ c₂₃ (i₂, i₃)) •
@@ -546,11 +618,17 @@ noncomputable def d₃ (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) 
     (F.obj (K₁.X i₁)).map ((G₂₃.obj (K₂.X i₂)).map (K₃.d i₃ (c₃.next i₃))) ≫
       ιOrZero F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ _ j
 
+/--
+@isnad1 id=eq.1h26v.s9.a3172eac9665 from=seed src=0 shape=fccfabfe vocab=b30ea6ac
+-/
 lemma d₃_eq_zero (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) (h : ¬ c₃.Rel i₃ (c₃.next i₃)) :
     d₃ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j = 0 := by
   dsimp [d₃]
   rw [shape _ _ _ h, Functor.map_zero, Functor.map_zero, zero_comp, smul_zero]
 
+/--
+@isnad1 id=eq.1h27v.s11.dd94a13ec28b from=seed src=0 shape=127ce1b5 vocab=5280b86c
+-/
 lemma d₃_eq (i₁ : ι₁) (i₂ : ι₂) {i₃ i₃' : ι₃} (h₃ : c₃.Rel i₃ i₃') (j : ι₄) :
     d₃ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j =
       ((ComplexShape.ε₂ c₁ c₂₃ c₄ (i₁, ComplexShape.π c₂ c₃ c₂₃ (i₂, i₃)) *
@@ -591,6 +669,9 @@ section
 variable (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j j' : ι₄)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) = j)
 
+/--
+@isnad1 id=eq.1h27v.s9.6024000da3ce from=seed src=0 shape=0b5164f2 vocab=ba00d138
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₁ :
     ι F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j h ≫ D₁ F G₂₃ K₁ K₂ K₃ c₂₃ c₄ j j' =
@@ -616,12 +697,18 @@ lemma ι_D₁ :
 
 variable [HasGoodTrifunctor₂₃Obj F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄]
 
+/--
+@isnad1 id=eq.1h27v.s9.4364eafa787d from=seed src=0 shape=3fa95fea vocab=f713f874
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₂ :
     ι F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j h ≫ D₂ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ j j' =
       d₂ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j' := by
   simp [D₂]
 
+/--
+@isnad1 id=eq.1h27v.s9.3c85868a46e2 from=seed src=0 shape=3fa95fea vocab=613f71b1
+-/
 @[reassoc (attr := simp)]
 lemma ι_D₃ :
     ι F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ i₁ i₂ i₃ j h ≫ D₃ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ j j' =
@@ -632,6 +719,9 @@ end
 
 variable [HasGoodTrifunctor₂₃Obj F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄] (j j' : ι₄)
 
+/--
+@isnad1 id=eq.0h24v.s11.676d1c2612fb from=seed src=0 shape=a9d22ace vocab=2b3028ff
+-/
 lemma d_eq :
     (mapBifunctor K₁ (mapBifunctor K₂ K₃ G₂₃ c₂₃) F c₄).d j j' =
       D₁ F G₂₃ K₁ K₂ K₃ c₂₃ c₄ j j' + D₂ F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄ j j' +
@@ -722,6 +812,9 @@ variable [DecidableEq ι₁₂] [DecidableEq ι₂₃]
   [HasGoodTrifunctor₂₃Obj F G₂₃ K₁ K₂ K₃ c₁₂ c₂₃ c₄]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h30v.s10.95496cbd6c63 from=seed src=0 shape=048c547a vocab=da0cd1e4
+-/
 @[reassoc (attr := simp)]
 lemma ι_mapBifunctorAssociatorX_hom (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄)
     (h : ComplexShape.r c₁ c₂ c₃ c₁₂ c₄ (i₁, i₂, i₃) = j) :
@@ -732,6 +825,9 @@ lemma ι_mapBifunctorAssociatorX_hom (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃
   apply GradedObject.ι_mapBifunctorAssociator_hom
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h30v.s10.3a1b0b5c0fff from=seed src=0 shape=785a6522 vocab=5e0d3301
+-/
 @[reassoc (attr := simp)]
 lemma ιOrZero_mapBifunctorAssociatorX_hom (i₁ : ι₁) (i₂ : ι₂) (i₃ : ι₃) (j : ι₄) :
     mapBifunctor₁₂.ιOrZero F₁₂ G K₁ K₂ K₃ c₁₂ c₄ i₁ i₂ i₃ j ≫
@@ -748,6 +844,9 @@ lemma ιOrZero_mapBifunctorAssociatorX_hom (i₁ : ι₁) (i₂ : ι₂) (i₃ :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h28v.s10.bb2a51504a8c from=seed src=0 shape=9b4ca053 vocab=ff12f2a2
+-/
 @[reassoc]
 lemma mapBifunctorAssociatorX_hom_D₁ (j j' : ι₄) :
     (mapBifunctorAssociatorX associator K₁ K₂ K₃ c₁₂ c₂₃ c₄ j).hom ≫
@@ -770,6 +869,9 @@ lemma mapBifunctorAssociatorX_hom_D₁ (j j' : ι₄) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h28v.s10.e25661683438 from=seed src=0 shape=1779e897 vocab=5c8d7097
+-/
 @[reassoc]
 lemma mapBifunctorAssociatorX_hom_D₂ (j j' : ι₄) :
     (mapBifunctorAssociatorX associator K₁ K₂ K₃ c₁₂ c₂₃ c₄ j).hom ≫
@@ -790,6 +892,9 @@ lemma mapBifunctorAssociatorX_hom_D₂ (j j' : ι₄) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h28v.s10.81ca40250aed from=seed src=0 shape=1779e897 vocab=17ad9abd
+-/
 @[reassoc]
 lemma mapBifunctorAssociatorX_hom_D₃ (j j' : ι₄) :
     (mapBifunctorAssociatorX associator K₁ K₂ K₃ c₁₂ c₂₃ c₄ j).hom ≫

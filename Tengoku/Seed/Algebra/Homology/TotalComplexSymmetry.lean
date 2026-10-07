@@ -40,6 +40,9 @@ instance [K.HasTotal c] : K.flip.HasTotal c := fun j =>
   hasCoproduct_of_equiv_of_iso (K.toGradedObject.mapObjFun (ComplexShape.π c₁ c₂ c) j) _
     (ComplexShape.symmetryEquiv c₁ c₂ c j) (fun _ => Iso.refl _)
 
+/--
+@isnad1 id=iff.0h8v.s6.f3184de83c84 from=seed src=0 shape=3ca78b1a vocab=12b6c89e
+-/
 lemma flip_hasTotal_iff : K.flip.HasTotal c ↔ K.HasTotal c := by
   constructor
   · intro
@@ -65,6 +68,9 @@ noncomputable def totalFlipIsoX (j : J) : (K.flip.total c).X j ≅ (K.total c).X
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s9.dbadfb2a86df from=seed src=0 shape=a0d3e31b vocab=bf42e0b0
+-/
 @[reassoc]
 lemma totalFlipIsoX_hom_D₁ (j j' : J) :
     (K.totalFlipIsoX c j).hom ≫ K.D₁ c j j' =
@@ -88,6 +94,9 @@ lemma totalFlipIsoX_hom_D₁ (j j' : J) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s9.8a9831f1ef6b from=seed src=0 shape=a0d3e31b vocab=bf42e0b0
+-/
 @[reassoc]
 lemma totalFlipIsoX_hom_D₂ (j j' : J) :
     (K.totalFlipIsoX c j).hom ≫ K.D₂ c j j' =
@@ -120,6 +129,9 @@ noncomputable def totalFlipIso : K.flip.total c ≅ K.total c :=
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h10v.s9.ac0753963312 from=seed src=0 shape=ae725b2f vocab=6024d2b8
+-/
 @[reassoc]
 lemma totalFlipIso_hom_f_D₁ (j j' : J) :
     (K.totalFlipIso c).hom.f j ≫ K.D₁ c j j' =
@@ -129,6 +141,9 @@ lemma totalFlipIso_hom_f_D₁ (j j' : J) :
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h10v.s9.2b0ef870caa0 from=seed src=0 shape=ae725b2f vocab=6024d2b8
+-/
 @[reassoc]
 lemma totalFlipIso_hom_f_D₂ (j j' : J) :
     (K.totalFlipIso c).hom.f j ≫ K.D₂ c j j' =
@@ -136,6 +151,9 @@ lemma totalFlipIso_hom_f_D₂ (j j' : J) :
   apply totalFlipIsoX_hom_D₂
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h11v.s10.0ee870d31b29 from=seed src=0 shape=4dfed15a vocab=d05ffd31
+-/
 @[reassoc (attr := simp)]
 lemma ιTotal_totalFlipIso_f_hom
     (i₁ : I₁) (i₂ : I₂) (j : J) (h : ComplexShape.π c₂ c₁ c (i₂, i₁) = j) :
@@ -145,6 +163,9 @@ lemma ιTotal_totalFlipIso_f_hom
   simp [totalFlipIso, totalFlipIsoX]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h11v.s10.dc6acd33da07 from=seed src=0 shape=df961640 vocab=6ccd86f1
+-/
 @[reassoc (attr := simp)]
 lemma ιTotal_totalFlipIso_f_inv
     (i₁ : I₁) (i₂ : I₂) (j : J) (h : ComplexShape.π c₁ c₂ c (i₁, i₂) = j) :
@@ -160,6 +181,9 @@ section
 variable [TotalComplexShapeSymmetry c₂ c₁ c] [TotalComplexShapeSymmetrySymmetry c₁ c₂ c]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h8v.s8.ed7f85873f6e from=seed src=0 shape=0c8627e7 vocab=20a14a37
+-/
 lemma flip_totalFlipIso : K.flip.totalFlipIso c = (K.totalFlipIso c).symm := by
   ext j i₁ i₂ h
   rw [Iso.symm_hom, ιTotal_totalFlipIso_f_hom]

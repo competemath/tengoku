@@ -56,6 +56,9 @@ variable (sX sY) in
 abbrev IsOver (f : X.PartialIso Y) : Prop :=
   f.iso.hom ≫ f.target.ι ≫ sY = f.source.ι ≫ sX
 
+/--
+@isnad1 id=iff.0h4v.s7.19e8d053b7ed from=seed src=0 shape=42960df5 vocab=30d6d36d
+-/
 lemma ext_iff (f g : X.PartialIso Y) :
     f = g ↔ ∃ (e : f.source = g.source) (e' : g.target = f.target),
       f.iso = X.isoOfEq e ≪≫ g.iso ≪≫ Y.isoOfEq e' := by
@@ -68,6 +71,9 @@ lemma ext_iff (f g : X.PartialIso Y) :
     rintro rfl rfl e
     simpa using e
 
+/--
+@isnad1 id=eq.3h4v.s7.d5d6105fb093 from=seed src=0 shape=62a9d975 vocab=30d6d36d
+-/
 @[ext]
 lemma ext (f g : X.PartialIso Y) (e : f.source = g.source) (e' : g.target = f.target)
     (H : f.iso = X.isoOfEq e ≪≫ g.iso ≪≫ Y.isoOfEq e') : f = g := by
@@ -94,6 +100,9 @@ def symm (f : X.PartialIso Y) : Y.PartialIso X where
   iso := f.iso.symm
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=isover.1h6v.s5.ae0b6515492e from=seed src=0 shape=07f76957 vocab=fd2f0720
+-/
 lemma IsOver.symm {f : X.PartialIso Y} (hf : f.IsOver sX sY) : f.symm.IsOver sY sX := by
   simpa [IsOver, ← cancel_epi f.iso.hom] using Eq.symm hf
 
@@ -109,6 +118,9 @@ noncomputable def trans' (f : X.PartialIso Y) (g : Y.PartialIso Z) (e : f.target
   iso := f.iso ≪≫ Y.isoOfEq e ≪≫ g.iso
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=isover.3h9v.s6.bc38a1636b63 from=seed src=0 shape=bba8db86 vocab=1bc26eb8
+-/
 lemma IsOver.trans' {f : X.PartialIso Y} {g : Y.PartialIso Z} {e : f.target = g.source}
     (hf : f.IsOver sX sY) (hg : g.IsOver sY sZ) : (trans' f g e).IsOver sX sZ := by
   simp [IsOver, ← hf, hg]
@@ -130,6 +142,9 @@ noncomputable def restrictSource (f : X.PartialIso Y) (U : Opens X) (hU : Dense 
     (f.target.ι.isoImage (f.iso.hom ''ᵁ f.source.ι ⁻¹ᵁ U))
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=isover.3h7v.s7.011457f5e813 from=seed src=0 shape=63ff8379 vocab=f8fe1552
+-/
 lemma IsOver.restrictSource {f : X.PartialIso Y} (hf : f.IsOver sX sY) (U : Opens X)
     (hU : Dense (U : Set X)) (hU' : U ≤ f.source) :
     (f.restrictSource U hU hU').IsOver sX sY := by
@@ -141,6 +156,9 @@ noncomputable def restrictTarget (f : X.PartialIso Y) (U : Opens Y) (hU : Dense 
     (hU' : U ≤ f.target) : X.PartialIso Y :=
   (f.symm.restrictSource U hU hU').symm
 
+/--
+@isnad1 id=isover.3h7v.s7.3e78717f9a02 from=seed src=0 shape=7e3e5b8a vocab=153019af
+-/
 lemma IsOver.restrictTarget {f : X.PartialIso Y} (hf : f.IsOver sX sY) (U : Opens Y)
     (hU : Dense (U : Set Y)) (hU' : U ≤ f.target) :
     (f.restrictTarget U hU hU').IsOver sX sY :=
@@ -152,6 +170,9 @@ noncomputable def trans (f : X.PartialIso Y) (g : Y.PartialIso Z) : X.PartialIso
   have := f.dense_target.inter_of_isOpen_right g.dense_source g.source.2
   (f.restrictTarget _ this inf_le_left).trans' (g.restrictSource _ this inf_le_right) rfl
 
+/--
+@isnad1 id=isover.2h9v.s6.c219b827d49b from=seed src=0 shape=ab3a2455 vocab=72dd6f26
+-/
 lemma IsOver.trans {f : X.PartialIso Y} {g : Y.PartialIso Z} (hf : f.IsOver sX sY)
     (hg : g.IsOver sY sZ) : (f.trans g).IsOver sX sZ :=
   (hf.restrictTarget _ _ _).trans' (hg.restrictSource _ _ _)
@@ -186,14 +207,23 @@ noncomputable def Birational.partialIso {X Y : Scheme.{u}} (h : Birational X Y) 
     PartialIso X Y :=
   Classical.choice h
 
+/--
+@isnad1 id=biration.0h1v.s2.ff676f039896 from=seed src=0 shape=b3bac8d8 vocab=5dcac670
+-/
 @[refl]
 lemma Birational.refl (X : Scheme.{u}) : Birational X X :=
   ⟨.refl X⟩
 
+/--
+@isnad1 id=biration.1h2v.s3.4216d70dbafe from=seed src=0 shape=7e524d71 vocab=5dcac670
+-/
 @[symm]
 lemma Birational.symm {X Y : Scheme.{u}} (h : Birational X Y) : Birational Y X :=
   ⟨h.partialIso.symm⟩
 
+/--
+@isnad1 id=biration.2h3v.s4.27d405f340e8 from=seed src=0 shape=0bc0c4a6 vocab=5dcac670
+-/
 @[trans]
 lemma Birational.trans {X Y Z : Scheme.{u}} (h₁ : Birational X Y) (h₂ : Birational Y Z) :
     Birational X Z :=
@@ -209,18 +239,30 @@ noncomputable def BirationalOver.partialIso {S X Y : Scheme.{u}} (sX : X ⟶ S) 
     (h : BirationalOver sX sY) :=
   h.choose
 
+/--
+@isnad1 id=isover.1h5v.s5.1ff0ddae8fe9 from=seed src=0 shape=1127e983 vocab=c495b9e0
+-/
 lemma BirationalOver.partialIso_isOver {S X Y : Scheme.{u}} (sX : X ⟶ S) (sY : Y ⟶ S)
     (h : BirationalOver sX sY) : h.partialIso.IsOver sX sY :=
   h.choose_spec
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=biration.0h3v.s4.8e7d944ffff8 from=seed src=0 shape=ff1b5904 vocab=3a204ec4
+-/
 lemma BirationalOver.refl {S X : Scheme.{u}} (sX : X ⟶ S) : BirationalOver sX sX :=
   ⟨.refl X, by simp [PartialIso.IsOver]⟩
 
+/--
+@isnad1 id=biration.1h5v.s5.d79146e631ae from=seed src=0 shape=a5a1fdfc vocab=3a204ec4
+-/
 lemma BirationalOver.symm {S X Y : Scheme.{u}} {sX : X ⟶ S} {sY : Y ⟶ S}
     (h : BirationalOver sX sY) : BirationalOver sY sX :=
   ⟨h.partialIso.symm, h.partialIso_isOver.symm⟩
 
+/--
+@isnad1 id=biration.2h7v.s5.d2d60df064d4 from=seed src=0 shape=958f7761 vocab=3a204ec4
+-/
 lemma BirationalOver.trans {S X Y Z : Scheme.{u}} {sX : X ⟶ S} {sY : Y ⟶ S} {sZ : Z ⟶ S}
     (h₁ : BirationalOver sX sY) (h₂ : BirationalOver sY sZ) :
     BirationalOver sX sZ :=
@@ -235,7 +277,9 @@ class IsRationalOver {S X : Scheme.{u}} (sX : X ⟶ S) : Prop where
 instance (S : Scheme.{u}) (n : Type u) : IsRationalOver (𝔸(n; S) ↘ S) where
   exists_birationalOver_affineSpace := ⟨n, .refl _⟩
 
-/-- If a scheme `X` is `S`-birational to an `S`-rational scheme `Y`, then `X` is `S`-rational. -/
+/-- If a scheme `X` is `S`-birational to an `S`-rational scheme `Y`, then `X` is `S`-rational.
+@isnad1 id=isration.1h5v.s5.0edfee02553f from=seed src=0 shape=9738ee9d vocab=8304a525
+-/
 lemma BirationalOver.isRationalOver {S X Y : Scheme.{u}} (sX : X ⟶ S) (sY : Y ⟶ S)
     [IsRationalOver sY] (h : BirationalOver sX sY) : IsRationalOver sX := by
   obtain ⟨n, hn⟩ := IsRationalOver.exists_birationalOver_affineSpace sY
@@ -254,16 +298,22 @@ def Opens.partialIsoOfDense (hU : Dense (U : Set X)) : PartialIso U X where
   dense_target := hU
   iso := U.toScheme.topIso
 
-/-- A dense open set `U : Opens X` is birational to `X`. -/
+/-- A dense open set `U : Opens X` is birational to `X`.
+@isnad1 id=biration.1h2v.s5.f040ee776508 from=seed src=0 shape=abfcd986 vocab=b6f4f6db
+-/
 lemma Opens.birational_of_dense (hU : Dense (U : Set X)) : Birational U X :=
   ⟨U.partialIsoOfDense hU⟩
 
 set_option backward.defeqAttrib.useBackward true in
-/-- A dense open set `U : Opens X` of a scheme `X` over `S` is `S`-birational to `X`. -/
+/-- A dense open set `U : Opens X` of a scheme `X` over `S` is `S`-birational to `X`.
+@isnad1 id=biration.1h4v.s6.95b6dc344ea5 from=seed src=0 shape=82bc5d47 vocab=156c29b5
+-/
 lemma Opens.birationalOver_of_dense (hU : Dense (U : Set X)) : BirationalOver (U.ι ≫ sX) sX :=
   ⟨U.partialIsoOfDense hU, by simp [PartialIso.IsOver]⟩
 
-/-- A dense open set `U : Opens X` of a `S`-rational scheme `X` is `S`-rational. -/
+/-- A dense open set `U : Opens X` of a `S`-rational scheme `X` is `S`-rational.
+@isnad1 id=isration.1h4v.s6.c9877ddbb5c5 from=seed src=0 shape=e784461c vocab=1118a34f
+-/
 lemma Opens.isRationalOver_of_dense (hU : Dense (U : Set X)) [IsRationalOver sX] :
     IsRationalOver (U.ι ≫ sX) := by
   obtain ⟨n, hn⟩ := IsRationalOver.exists_birationalOver_affineSpace sX
@@ -280,11 +330,17 @@ variable {X U S : Scheme.{u}}
 noncomputable def Hom.partialIso (f : U ⟶ X) [IsOpenImmersion f] [IsDominant f] : U.PartialIso X :=
   (PartialIso.ofIso f.isoOpensRange).trans' (f.opensRange.partialIsoOfDense f.denseRange) rfl
 
+/--
+@isnad1 id=biration.0h3v.s4.6b3bf4363716 from=seed src=0 shape=616b0b27 vocab=e7c88fe6
+-/
 lemma Hom.birational (f : U ⟶ X) [IsOpenImmersion f] [IsDominant f] : Birational U X :=
   ⟨f.partialIso⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=biration.1h6v.s6.755c8f7fd958 from=seed src=0 shape=06b2c656 vocab=77624c7b
+-/
 lemma Hom.birationalOver (f : U ⟶ X) [IsOpenImmersion f] [IsDominant f] (sX : X ⟶ S) (sU : U ⟶ S)
     (hf : f ≫ sX = sU) : BirationalOver sU sX :=
   ⟨f.partialIso, by simp [PartialIso.IsOver, hf]⟩

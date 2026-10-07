@@ -42,9 +42,15 @@ variable (C) in
 def homRel : HomRel (BifibrantObject C) :=
   fun _ _ f g ↦ RightHomotopyRel f.hom g.hom
 
+/--
+@isnad1 id=iff.0h5v.s8.6388a55abd6f from=seed src=0 shape=7b1457af vocab=e4dbfb35
+-/
 lemma homRel_iff_rightHomotopyRel {X Y : BifibrantObject C} {f g : X ⟶ Y} :
     homRel C f g ↔ RightHomotopyRel f.hom g.hom := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s8.11997a06decf from=seed src=0 shape=7b1457af vocab=0dac4e3f
+-/
 lemma homRel_iff_leftHomotopyRel {X Y : BifibrantObject C} {f g : X ⟶ Y} :
     homRel C f g ↔ LeftHomotopyRel f.hom g.hom := by
   rw [homRel_iff_rightHomotopyRel, leftHomotopyRel_iff_rightHomotopyRel]
@@ -70,16 +76,25 @@ homotopy category. -/
 @[implicit_reducible]
 def toHoCat : BifibrantObject C ⥤ HoCat C := Quotient.functor _
 
+/--
+@isnad1 id=surjecti.0h1v.s6.d2470054624c from=seed src=0 shape=a4c34b13 vocab=7500aae5
+-/
 lemma toHoCat_obj_surjective : Function.Surjective (toHoCat (C := C)).obj :=
   fun ⟨_⟩ ↦ ⟨_, rfl⟩
 
 instance : Functor.Full (toHoCat (C := C)) := by dsimp [toHoCat]; infer_instance
 
+/--
+@isnad1 id=eq.0h6v.s9.6f1c77527d5f from=seed src=0 shape=9a62ed5d vocab=61396c05
+-/
 lemma toHoCat_map_eq {X Y : BifibrantObject C} {f g : X ⟶ Y}
     (h : homRel C f g) :
     toHoCat.map f = toHoCat.map g :=
   CategoryTheory.Quotient.sound _ h
 
+/--
+@isnad1 id=iff.0h5v.s9.fc52d2929abf from=seed src=0 shape=a9a9a459 vocab=61396c05
+-/
 lemma toHoCat_map_eq_iff {X Y : BifibrantObject C} (f g : X ⟶ Y) :
     toHoCat.map f = toHoCat.map g ↔ homRel C f g :=
   Quotient.functor_map_eq_iff _ _ _
@@ -92,6 +107,9 @@ section
 
 variable {D : Type*} [Category* D]
 
+/--
+@isnad1 id=iff.0h3v.s8.73c46398b4de from=seed src=0 shape=533749a3 vocab=1212829d
+-/
 lemma inverts_iff_factors (F : BifibrantObject C ⥤ D) :
     (weakEquivalences _).IsInvertedBy F ↔
     ∀ ⦃K L : BifibrantObject C⦄ (f g : K ⟶ L),
@@ -153,10 +171,16 @@ def HoCat.homEquivRight :
   left_inv := by rintro ⟨f⟩; rfl
   right_inv := by rintro ⟨f⟩; rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.6ff7e02c5132 from=seed src=0 shape=2751d312 vocab=7d67d70e
+-/
 @[simp]
 lemma HoCat.homEquivRight_apply (f : X ⟶ Y) :
     HoCat.homEquivRight (.mk f) = toHoCat.map (homMk f) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.3b1e10af5bcb from=seed src=0 shape=557eec55 vocab=ff438c5a
+-/
 @[simp]
 lemma HoCat.homEquivRight_symm_apply (f : X ⟶ Y) :
     HoCat.homEquivRight.symm (toHoCat.map (homMk f)) = .mk f := rfl
@@ -167,11 +191,17 @@ def HoCat.homEquivLeft :
     LeftHomotopyClass X Y ≃ (toHoCat.obj (mk X) ⟶ toHoCat.obj (mk Y)) :=
   leftHomotopyClassEquivRightHomotopyClass.trans HoCat.homEquivRight
 
+/--
+@isnad1 id=eq.0h4v.s10.5827502a8c27 from=seed src=0 shape=2751d312 vocab=18bce6d0
+-/
 @[simp]
 lemma HoCat.homEquivLeft_apply (f : X ⟶ Y) :
     HoCat.homEquivLeft (.mk f) = toHoCat.map (homMk f) := by
   simp [homEquivLeft]
 
+/--
+@isnad1 id=eq.0h4v.s10.3b1e10af5bcb from=seed src=0 shape=557eec55 vocab=ff438c5a
+-/
 @[simp]
 lemma HoCat.homEquivLeft_symm_apply (f : X ⟶ Y) :
     HoCat.homEquivRight.symm (toHoCat.map (homMk f)) = .mk f := rfl
@@ -186,12 +216,18 @@ def HoCat.ιFibrantObject : HoCat C ⥤ FibrantObject.HoCat C :=
       simpa [FibrantObject.toHoCat_map_eq_iff, FibrantObject.homRel_iff_leftHomotopyRel,
         homRel_iff_leftHomotopyRel] using h)
 
+/--
+@isnad1 id=eq.0h2v.s8.b54960e3640e from=seed src=0 shape=f3f95b87 vocab=664975b5
+-/
 @[simp]
 lemma HoCat.ιFibrantObject_obj (X : BifibrantObject C) :
     HoCat.ιFibrantObject.obj (toHoCat.obj X) =
       FibrantObject.toHoCat.obj (BifibrantObject.ιFibrantObject.obj X) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.6e5133e8007a from=seed src=0 shape=91b8cd8b vocab=3cc5a7af
+-/
 @[simp]
 lemma HoCat.ιFibrantObject_map_toHoCat_map {X Y : BifibrantObject C} (f : X ⟶ Y) :
     HoCat.ιFibrantObject.map (toHoCat.map f) =
@@ -212,12 +248,18 @@ def HoCat.ιCofibrantObject : HoCat C ⥤ CofibrantObject.HoCat C :=
     (BifibrantObject.ιCofibrantObject ⋙ CofibrantObject.toHoCat) (fun _ _ _ _ h ↦ by
       simpa [CofibrantObject.toHoCat_map_eq_iff])
 
+/--
+@isnad1 id=eq.0h2v.s8.3db3e70c6682 from=seed src=0 shape=f3f95b87 vocab=205f68dc
+-/
 @[simp]
 lemma HoCat.ιCofibrantObject_obj (X : BifibrantObject C) :
     HoCat.ιCofibrantObject.obj (toHoCat.obj X) =
       CofibrantObject.toHoCat.obj (BifibrantObject.ιCofibrantObject.obj X) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.2ba67e92b5f5 from=seed src=0 shape=91b8cd8b vocab=7ee1f65c
+-/
 @[simp]
 lemma HoCat.ιCofibrantObject_map_toHoCat_map {X Y : BifibrantObject C} (f : X ⟶ Y) :
     HoCat.ιCofibrantObject.map (toHoCat.map f) =
@@ -235,6 +277,9 @@ end BifibrantObject
 
 namespace CofibrantObject
 
+/--
+@isnad1 id=ex.0h2v.s9.94d9310c61d6 from=seed src=0 shape=3b3122cf vocab=dfd7824e
+-/
 lemma exists_bifibrant (X : CofibrantObject C) :
     ∃ (Y : BifibrantObject C) (i : X ⟶ BifibrantObject.ιCofibrantObject.obj Y),
       Cofibration (ι.map i) ∧ WeakEquivalence (ι.map i) := by
@@ -275,6 +320,9 @@ instance (X : BifibrantObject C) :
     IsFibrant (ι.obj (BifibrantObject.ιCofibrantObject.obj X)) := X.2.2
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.0h4v.s9.348d95161377 from=seed src=0 shape=774f90f6 vocab=5b05940e
+-/
 lemma exists_bifibrant_map {X₁ X₂ : CofibrantObject C} (f : X₁ ⟶ X₂) :
     ∃ (g : bifibrantResolutionObj X₁ ⟶ bifibrantResolutionObj X₂),
       iBifibrantResolutionObj X₁ ≫ (BifibrantObject.ιCofibrantObject.map g) =
@@ -292,6 +340,9 @@ noncomputable def bifibrantResolutionMap {X₁ X₂ : CofibrantObject C} (f : X�
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s8.8a1fc9c52411 from=seed src=0 shape=48b94fd0 vocab=756648f6
+-/
 @[reassoc (attr := simp)]
 lemma bifibrantResolutionMap_fac {X₁ X₂ : CofibrantObject C} (f : X₁ ⟶ X₂) :
     iBifibrantResolutionObj X₁ ≫ homMk (bifibrantResolutionMap f).hom =
@@ -309,6 +360,9 @@ instance {X₁ X₂ : CofibrantObject C} (f : X₁ ⟶ X₂) [WeakEquivalence f]
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s10.62386fa70a05 from=seed src=0 shape=f5a12767 vocab=233196d6
+-/
 @[reassoc (attr := simp)]
 lemma bifibrantResolutionMap_fac' {X₁ X₂ : CofibrantObject C} (f : X₁ ⟶ X₂) :
     toHoCat.map X₁.iBifibrantResolutionObj ≫
@@ -316,6 +370,9 @@ lemma bifibrantResolutionMap_fac' {X₁ X₂ : CofibrantObject C} (f : X₁ ⟶ 
     toHoCat.map f ≫ toHoCat.map X₂.iBifibrantResolutionObj :=
   toHoCat.congr_map (bifibrantResolutionMap_fac f)
 
+/--
+@isnad1 id=eq.1h5v.s10.d0a176eb995a from=seed src=0 shape=1f9e7991 vocab=0df1e6cd
+-/
 lemma bifibrantResolutionObj_hom_ext
     {X : CofibrantObject C} {Y : BifibrantObject.HoCat C} {f g :
       BifibrantObject.toHoCat.obj (bifibrantResolutionObj X) ⟶ Y}
@@ -359,11 +416,17 @@ noncomputable def HoCat.bifibrantResolution :
     apply bifibrantResolutionObj_hom_ext
     simpa [← Functor.map_comp, toHoCat_map_eq_iff] using! h.postcomp _)
 
+/--
+@isnad1 id=eq.0h2v.s7.5b3aceac0f17 from=seed src=0 shape=1f5ef5a1 vocab=95322d1c
+-/
 @[simp]
 lemma HoCat.bifibrantResolution_obj (X : CofibrantObject C) :
     HoCat.bifibrantResolution.obj (CofibrantObject.toHoCat.obj X) =
       BifibrantObject.toHoCat.obj (bifibrantResolutionObj X) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.c1dfc974244a from=seed src=0 shape=a85d4df6 vocab=9dad0fe7
+-/
 @[simp]
 lemma HoCat.bifibrantResolution_map {X Y : CofibrantObject C} (f : X ⟶ Y) :
     HoCat.bifibrantResolution.map (CofibrantObject.toHoCat.map f) =
@@ -376,6 +439,9 @@ noncomputable def HoCat.adjUnit :
     { app X := toHoCat.map (iBifibrantResolutionObj X)
       naturality _ _ f := (bifibrantResolutionMap_fac' f).symm }
 
+/--
+@isnad1 id=eq.0h2v.s9.d08a67871cd1 from=seed src=0 shape=fcc4c194 vocab=a6afd00a
+-/
 lemma HoCat.adjUnit_app (X : CofibrantObject C) :
     HoCat.adjUnit.app (toHoCat.obj X) =
       toHoCat.map (iBifibrantResolutionObj X) := rfl
@@ -401,6 +467,9 @@ noncomputable def HoCat.adjCounit' :
         dsimp
         exact this) }
 
+/--
+@isnad1 id=eq.0h2v.s10.34787329ae67 from=seed src=0 shape=10cd67a6 vocab=9272dc34
+-/
 lemma HoCat.adjCounit'_app (X : BifibrantObject C) :
     HoCat.adjCounit'.app (BifibrantObject.toHoCat.obj X) =
       BifibrantObject.toHoCat.map (BifibrantObject.homMk
@@ -422,6 +491,9 @@ noncomputable def HoCat.adjCounitIso :
     BifibrantObject.HoCat.ιCofibrantObject ⋙ bifibrantResolution ≅ 𝟭 (BifibrantObject.HoCat C) :=
   (asIso HoCat.adjCounit').symm
 
+/--
+@isnad1 id=eq.0h2v.s10.22185e64f558 from=seed src=0 shape=f0be0582 vocab=fe5bfc18
+-/
 lemma HoCat.adjCounitIso_inv_app (X : BifibrantObject C) :
     HoCat.adjCounitIso.inv.app (BifibrantObject.toHoCat.obj X) =
       BifibrantObject.toHoCat.map (BifibrantObject.homMk
@@ -544,6 +616,9 @@ instance {D : Type*} [Category D] (L : FibrantObject C ⥤ D)
 
 end BifibrantObject
 
+/--
+@isnad1 id=locallys.0h3v.s5.66633703a7b9 from=seed src=0 shape=d74e8120 vocab=5dc7b79d
+-/
 lemma locallySmall_of_isLocalization {D : Type*} [Category* D]
     (L : C ⥤ D) [L.IsLocalization (weakEquivalences C)] [LocallySmall.{w} C] :
     LocallySmall.{w} D :=

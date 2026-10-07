@@ -55,6 +55,9 @@ def toGradedObjectMap {K L : HomologicalComplex₂ C c₁ c₂} (φ : K ⟶ L) :
     K.toGradedObject ⟶ L.toGradedObject :=
   fun ⟨i₁, i₂⟩ => (φ.f i₁).f i₂
 
+/--
+@isnad1 id=eq.0h10v.s8.8edb4942f3e1 from=seed src=0 shape=3f05a370 vocab=5981bf09
+-/
 @[simp]
 lemma toGradedObjectMap_apply {K L : HomologicalComplex₂ C c₁ c₂} (φ : K ⟶ L) (i₁ : I₁) (i₂ : I₂) :
     toGradedObjectMap φ ⟨i₁, i₂⟩ = (φ.f i₁).f i₂ := rfl
@@ -102,6 +105,9 @@ def ofGradedObject :
     exact shape₁ i₁ i₁' h i₂
   d_comp_d' i₁ i₁' i₁'' _ _ := by ext i₂; apply d₁_comp_d₁
 
+/--
+@isnad1 id=eq.5h8v.s9.710156781c80 from=seed src=0 shape=f1f25ded vocab=94033cbf
+-/
 @[simp]
 lemma ofGradedObject_toGradedObject :
     (ofGradedObject c₁ c₂ X d₁ d₂ shape₁ shape₂ d₁_comp_d₁ d₂_comp_d₂ comm).toGradedObject = X :=
@@ -126,21 +132,33 @@ def homMk {K L : HomologicalComplex₂ C c₁ c₂}
     ext i₂
     exact comm₁ i₁ i₁' i₂ h₁
 
+/--
+@isnad1 id=eq.1h9v.s8.94c15d89e719 from=seed src=0 shape=ae0d6504 vocab=3314abce
+-/
 lemma shape_f (K : HomologicalComplex₂ C c₁ c₂) (i₁ i₁' : I₁) (h : ¬ c₁.Rel i₁ i₁') (i₂ : I₂) :
     (K.d i₁ i₁').f i₂ = 0 := by
   rw [K.shape _ _ h, zero_f]
 
+/--
+@isnad1 id=eq.0h10v.s9.09e6d6414bfd from=seed src=0 shape=d48a92ab vocab=b7ab55a0
+-/
 @[reassoc (attr := simp)]
 lemma d_f_comp_d_f (K : HomologicalComplex₂ C c₁ c₂)
     (i₁ i₁' i₁'' : I₁) (i₂ : I₂) :
     (K.d i₁ i₁').f i₂ ≫ (K.d i₁' i₁'').f i₂ = 0 := by
   rw [← comp_f, d_comp_d, zero_f]
 
+/--
+@isnad1 id=eq.0h10v.s8.407c98562c25 from=seed src=0 shape=1b05e73f vocab=b7ab55a0
+-/
 @[reassoc]
 lemma d_comm (K : HomologicalComplex₂ C c₁ c₂) (i₁ i₁' : I₁) (i₂ i₂' : I₂) :
     (K.d i₁ i₁').f i₂ ≫ (K.X i₁').d i₂ i₂' = (K.X i₁).d i₂ i₂' ≫ (K.d i₁ i₁').f i₂' := by
   simp
 
+/--
+@isnad1 id=eq.0h11v.s9.6eb478b199c4 from=seed src=0 shape=e3585d52 vocab=b7ab55a0
+-/
 @[reassoc (attr := simp)]
 lemma comm_f {K L : HomologicalComplex₂ C c₁ c₂} (f : K ⟶ L) (i₁ i₁' : I₁) (i₂ : I₂) :
     (f.f i₁).f i₂ ≫ (L.d i₁ i₁').f i₂ = (K.d i₁ i₁').f i₂ ≫ (f.f i₁').f i₂ :=
@@ -160,6 +178,9 @@ def flip (K : HomologicalComplex₂ C c₁ c₂) : HomologicalComplex₂ C c₂ 
     ext j
     exact (K.X j).shape i i' w
 
+/--
+@isnad1 id=eq.0h6v.s5.b28cbc0ddf48 from=seed src=0 shape=8348eb54 vocab=2d5377ce
+-/
 @[simp]
 lemma flip_flip (K : HomologicalComplex₂ C c₁ c₂) : K.flip.flip = K := rfl
 
@@ -215,6 +236,9 @@ def XXIsoOfEq {x₁ y₁ : I₁} (h₁ : x₁ = y₁) {x₂ y₂ : I₂} (h₂ :
     (K.X x₁).X x₂ ≅ (K.X y₁).X y₂ :=
   eqToIso (by subst h₁ h₂; rfl)
 
+/--
+@isnad1 id=eq.0h8v.s7.419d273a92d4 from=seed src=0 shape=ff8463b3 vocab=25a68d07
+-/
 @[simp]
 lemma XXIsoOfEq_rfl (i₁ : I₁) (i₂ : I₂) :
     K.XXIsoOfEq _ _ _ (rfl : i₁ = i₁) (rfl : i₂ = i₂) = Iso.refl _ := rfl

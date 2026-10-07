@@ -46,6 +46,9 @@ def cokerToKer' (hk : k ≤ n) (cc : CokernelCofork (S.map' k (k + 1)))
     (show S.map' k (k + 1) ≫ IsLimit.lift hkf (KernelFork.ofι _ (hS.zero (k + 1))) = _ from
       Fork.IsLimit.hom_ext hkf (by simpa using hS.zero k)))
 
+/--
+@isnad1 id=eq.2h8v.s13.37ebcd883be8 from=seed src=0 shape=4f7aa9dc vocab=03fb55ef
+-/
 @[reassoc (attr := simp)]
 lemma cokerToKer'_fac (hk : k ≤ n) (cc : CokernelCofork (S.map' k (k + 1)))
     (kf : KernelFork (S.map' (k + 2) (k + 3))) (hcc : IsColimit cc) (hkf : IsLimit kf) :
@@ -65,6 +68,9 @@ noncomputable def cokerToKer (hk : k ≤ n := by lia)
   hS.cokerToKer' k hk (CokernelCofork.ofπ _ (cokernel.condition _))
     (KernelFork.ofι _ (kernel.condition _)) (cokernelIsCokernel _) (kernelIsKernel _)
 
+/--
+@isnad1 id=eq.1h5v.s11.039ef86a4af5 from=seed src=0 shape=0af50c6f vocab=cee54c6a
+-/
 @[reassoc (attr := simp)]
 lemma cokerToKer_fac (hk : k ≤ n := by lia)
     [HasCokernel (S.map' k (k + 1))] [HasKernel (S.map' (k + 2) (k + 3))] :
@@ -83,6 +89,9 @@ noncomputable def opcyclesToCycles (hk : k ≤ n := by lia)
   hS.cokerToKer' k hk _ _ (S.sc hS k _).opcyclesIsCokernel
     (S.sc hS (k + 1) _).cyclesIsKernel
 
+/--
+@isnad1 id=eq.1h5v.s8.cfe80b1182d5 from=seed src=0 shape=d78345c5 vocab=bf45dc22
+-/
 @[reassoc (attr := simp)]
 lemma opcyclesToCycles_fac (hk : k ≤ n := by lia)
     [(S.sc hS k).HasRightHomology] [(S.sc hS (k + 1)).HasLeftHomology] :
@@ -108,6 +117,9 @@ variable (hS : S.IsComplex) (k : ℕ) (hk : k ≤ n)
   (hcc : IsColimit cc) (hkf : IsLimit kf)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=epi.3h8v.s12.2f4924bdca28 from=seed src=0 shape=8fa7439d vocab=5a946c17
+-/
 lemma epi_cokerToKer' (hS' : (S.sc hS (k + 1)).Exact) :
     Epi (hS.cokerToKer' k hk cc kf hcc hkf) := by
   have := hS'.hasZeroObject
@@ -120,6 +132,9 @@ lemma epi_cokerToKer' (hS' : (S.sc hS (k + 1)).Exact) :
   exact epi_of_epi_fac fac
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mono.3h8v.s12.6af7aeb37fd2 from=seed src=0 shape=7166236a vocab=2016f5fe
+-/
 lemma mono_cokerToKer' (hS' : (S.sc hS k).Exact) :
     Mono (hS.cokerToKer' k hk cc kf hcc hkf) := by
   have := hS'.hasZeroObject
@@ -153,6 +168,9 @@ of `S.map' k (k + 1)` to a kernel of `S.map' (k + 2) (k + 3)`. -/
 abbrev cokerToKer' : cc.pt ⟶ kf.pt :=
   hS.toIsComplex.cokerToKer' k hk cc kf hcc hkf
 
+/--
+@isnad1 id=isiso.2h8v.s12.6488c38b6f12 from=seed src=0 shape=0aa452fb vocab=b3faa657
+-/
 instance isIso_cokerToKer' : IsIso (hS.cokerToKer' k hk cc kf hcc hkf) := by
   have : Mono (hS.cokerToKer' k hk cc kf hcc hkf) :=
       hS.toIsComplex.mono_cokerToKer' k hk cc kf hcc hkf
@@ -167,11 +185,17 @@ of `S.map' k (k + 1)` to a kernel of `S.map' (k + 2) (k + 3)`. -/
 noncomputable def cokerIsoKer' : cc.pt ≅ kf.pt :=
   asIso (hS.cokerToKer' k hk cc kf hcc hkf)
 
+/--
+@isnad1 id=eq.2h8v.s13.bd7ea52776b6 from=seed src=0 shape=0356aa81 vocab=42a71875
+-/
 @[reassoc (attr := simp)]
 lemma cokerIsoKer'_hom_inv_id :
     hS.cokerToKer' k hk cc kf hcc hkf ≫ (hS.cokerIsoKer' k hk cc kf hcc hkf).inv = 𝟙 _ :=
   (hS.cokerIsoKer' k hk cc kf hcc hkf).hom_inv_id
 
+/--
+@isnad1 id=eq.2h8v.s13.f9353bfdb729 from=seed src=0 shape=9087dae4 vocab=42a71875
+-/
 @[reassoc (attr := simp)]
 lemma cokerIsoKer'_inv_hom_id :
     (hS.cokerIsoKer' k hk cc kf hcc hkf).inv ≫ hS.cokerToKer' k hk cc kf hcc hkf = 𝟙 _ :=
@@ -189,6 +213,9 @@ noncomputable def cokerIsoKer (k : ℕ) (hk : k ≤ n := by lia)
   hS.cokerIsoKer' k hk (CokernelCofork.ofπ _ (cokernel.condition _))
     (KernelFork.ofι _ (kernel.condition _)) (cokernelIsCokernel _) (kernelIsKernel _)
 
+/--
+@isnad1 id=eq.1h5v.s11.9ed37123f764 from=seed src=0 shape=6c3c510a vocab=e92eaeb4
+-/
 @[reassoc (attr := simp)]
 lemma cokerIsoKer_hom_fac (k : ℕ) (hk : k ≤ n := by lia)
     [HasCokernel (S.map' k (k + 1))] [HasKernel (S.map' (k + 2) (k + 3))] :
@@ -206,6 +233,9 @@ noncomputable def opcyclesIsoCycles (k : ℕ) (hk : k ≤ n := by lia)
     (hS.sc k _).opcycles ≅ (hS.sc (k + 1) _).cycles :=
   hS.cokerIsoKer' k hk _ _ (hS.sc k _).opcyclesIsCokernel (hS.sc (k + 1) _).cyclesIsKernel
 
+/--
+@isnad1 id=eq.1h5v.s9.ca5aa974b28f from=seed src=0 shape=bd55b9fb vocab=6786c937
+-/
 @[reassoc (attr := simp)]
 lemma opcyclesIsoCycles_hom_fac (k : ℕ) (hk : k ≤ n := by lia)
     [h₁ : (hS.sc k).HasRightHomology] [h₂ : (hS.sc (k + 1)).HasLeftHomology] :

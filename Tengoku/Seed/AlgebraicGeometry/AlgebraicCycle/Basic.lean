@@ -71,6 +71,9 @@ def map [QuasiCompact f] {N : Type*} [DecidableEq N] (wx : X → N) (wy : Y → 
     (c : AlgebraicCycle X R) : AlgebraicCycle Y R :=
   Function.locallyFinsupp.map f (Nat.cast (R := R) <| mapCoeff f wx wy ·) f.isSpectralMap c
 
+/--
+@isnad1 id=eq.0h5v.s5.91114fce79eb from=seed src=0 shape=5c56bef2 vocab=c2fea5cc
+-/
 @[simp]
 lemma map_id {N : Type*} [DecidableEq N] (wx : X → N) (c : AlgebraicCycle X R) :
     map (𝟙 _) wx wx c = c := by

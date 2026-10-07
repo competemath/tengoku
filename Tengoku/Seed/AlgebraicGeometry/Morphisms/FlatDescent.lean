@@ -38,13 +38,17 @@ open CategoryTheory Limits MorphismProperty
 namespace AlgebraicGeometry
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Surjective satisfies fpqc descent. -/
+/-- Surjective satisfies fpqc descent.
+@isnad1 id=descends.0h0v.s6.bb4ea7efdb1f from=seed src=0 shape=c7899372 vocab=25ceda23
+-/
 instance Flat.surjective_descendsAlong_surjective_inf_flat_inf_quasicompact :
     DescendsAlong @Surjective (@Surjective ⊓ @Flat ⊓ @QuasiCompact) :=
   .of_le (Q := @Surjective) (le_of_inf_eq' (by grind))
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Universally closed satisfies fpqc descent. -/
+/-- Universally closed satisfies fpqc descent.
+@isnad1 id=descends.0h0v.s6.ea20b62800e4 from=seed src=0 shape=9ad65628 vocab=48e82ae9
+-/
 @[stacks 02KS]
 instance descendsAlong_universallyClosed_surjective_inf_flat_inf_quasicompact :
     DescendsAlong @UniversallyClosed (@Surjective ⊓ @Flat ⊓ @QuasiCompact) := by
@@ -62,7 +66,9 @@ instance descendsAlong_universallyClosed_surjective_inf_flat_inf_quasicompact :
   rwa [(Flat.isQuotientMap_of_surjective _).isClosed_preimage] at this
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Universally open satisfies fpqc descent. -/
+/-- Universally open satisfies fpqc descent.
+@isnad1 id=descends.0h0v.s6.d676467ec451 from=seed src=0 shape=9ad65628 vocab=4233c416
+-/
 @[stacks 02KT]
 instance descendsAlong_universallyOpen_surjective_inf_flat_inf_quasicompact :
     DescendsAlong @UniversallyOpen
@@ -81,7 +87,9 @@ instance descendsAlong_universallyOpen_surjective_inf_flat_inf_quasicompact :
   rwa [(Flat.isQuotientMap_of_surjective _).isOpen_preimage] at this
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Universally injective satisfies fpqc descent. -/
+/-- Universally injective satisfies fpqc descent.
+@isnad1 id=descends.0h0v.s6.b192864b6c3a from=seed src=0 shape=9ad65628 vocab=1c20e58d
+-/
 @[stacks 02KW]
 instance descendsAlong_universallyInjective_surjective_inf_flat_inf_quasicompact :
     DescendsAlong @UniversallyInjective (@Surjective ⊓ @Flat ⊓ @QuasiCompact) := by
@@ -89,7 +97,9 @@ instance descendsAlong_universallyInjective_surjective_inf_flat_inf_quasicompact
   infer_instance
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Being an isomorphism satisfies fpqc descent. -/
+/-- Being an isomorphism satisfies fpqc descent.
+@isnad1 id=descends.0h0v.s6.d2008dfcf2d2 from=seed src=0 shape=63741c65 vocab=cc4955bc
+-/
 @[stacks 02L4]
 instance descendsAlong_isomorphisms_surjective_inf_flat_inf_quasicompact :
     (isomorphisms Scheme.{u}).DescendsAlong (@Surjective ⊓ @Flat ⊓ @QuasiCompact) := by
@@ -129,7 +139,9 @@ instance descendsAlong_isomorphisms_surjective_inf_flat_inf_quasicompact :
   · simp_rw [← isIso_SpecMap_iff, implies_true]
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Being an open immersion satisfies fpqc descent. -/
+/-- Being an open immersion satisfies fpqc descent.
+@isnad1 id=descends.0h0v.s6.205d162cd1ef from=seed src=0 shape=9ad65628 vocab=36f647e4
+-/
 @[stacks 02L3]
 instance descendsAlong_isOpenImmersion_surjective_inf_flat_inf_quasicompact' :
     IsOpenImmersion.DescendsAlong (@Surjective ⊓ @Flat ⊓ @QuasiCompact) := by
@@ -161,6 +173,9 @@ instance descendsAlong_isOpenImmersion_surjective_inf_flat_inf_quasicompact' :
   infer_instance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=descends.1h2v.s7.3309c980f1a0 from=seed src=0 shape=d01df19e vocab=ee65315c
+-/
 lemma HasRingHomProperty.descendsAlong_flat {P : MorphismProperty Scheme.{u}}
     [P.IsStableUnderBaseChange] {Q : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
     [HasRingHomProperty P Q] (h : RingHom.CodescendsAlong Q RingHom.FaithfullyFlat) :

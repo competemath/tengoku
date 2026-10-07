@@ -54,6 +54,9 @@ class QuasiSeparated (f : X ⟶ Y) : Prop where
 
 attribute [instance] QuasiSeparated.quasiCompact_diagonal
 
+/--
+@isnad1 id=iff.0h1v.s7.dfb22ce2d402 from=seed src=0 shape=c2e19dda vocab=aec10910
+-/
 theorem quasiSeparatedSpace_iff_forall_affineOpens {X : Scheme} :
     QuasiSeparatedSpace X ↔ ∀ U V : X.affineOpens, IsCompact (U ∩ V : Set X) := by
   rw [quasiSeparatedSpace_iff]
@@ -80,6 +83,9 @@ theorem quasiSeparatedSpace_iff_forall_affineOpens {X : Scheme} :
         apply hW.union
         apply H
 
+/--
+@isnad1 id=iff.0h3v.s6.931b3cd158ad from=seed src=0 shape=4133fb75 vocab=8f652650
+-/
 theorem quasiCompact_affineProperty_iff_quasiSeparatedSpace [IsAffine Y] (f : X ⟶ Y) :
     AffineTargetMorphismProperty.diagonal (fun X _ _ _ ↦ CompactSpace X) f ↔
       QuasiSeparatedSpace X := by
@@ -101,6 +107,9 @@ theorem quasiCompact_affineProperty_iff_quasiSeparatedSpace [IsAffine Y] (f : X 
     exact @Homeomorph.compactSpace _ _ _ _
         (H ⟨_, isAffineOpen_opensRange f₁⟩ ⟨_, isAffineOpen_opensRange f₂⟩) e.symm
 
+/--
+@isnad1 id=eq.0h0v.s4.e6375abd5d84 from=seed src=0 shape=d9c52ade vocab=b16a44c8
+-/
 theorem quasiSeparated_eq_diagonal_is_quasiCompact :
     @QuasiSeparated = MorphismProperty.diagonal @QuasiCompact := by ext; exact quasiSeparated_iff _
 
@@ -114,6 +123,9 @@ instance (priority := 900) (f : X ⟶ Y) [Mono f] :
     QuasiSeparated f where
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isstable.0h0v.s2.b6fe3dbb66e1 from=seed src=0 shape=25b03439 vocab=d546d77a
+-/
 instance quasiSeparated_isStableUnderComposition :
     MorphismProperty.IsStableUnderComposition @QuasiSeparated :=
   quasiSeparated_eq_diagonal_is_quasiCompact.symm ▸ inferInstance
@@ -122,15 +134,24 @@ instance : MorphismProperty.IsMultiplicative @QuasiSeparated where
   id_mem _ := inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isstable.0h0v.s2.490e25ce58ed from=seed src=0 shape=25b03439 vocab=0a965441
+-/
 instance quasiSeparated_isStableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange @QuasiSeparated :=
   quasiSeparated_eq_diagonal_is_quasiCompact.symm ▸ inferInstance
 
+/--
+@isnad1 id=quasisep.0h5v.s5.a12102985485 from=seed src=0 shape=73d4a103 vocab=dd3c512a
+-/
 instance quasiSeparated_comp (f : X ⟶ Y) (g : Y ⟶ Z) [QuasiSeparated f]
     [QuasiSeparated g] : QuasiSeparated (f ≫ g) :=
   MorphismProperty.comp_mem _ f g inferInstance inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h1v.s4.cd5d56dd5fd4 from=seed src=0 shape=65aee5dd vocab=e515deba
+-/
 theorem quasiSeparatedSpace_iff_quasiSeparated (X : Scheme) :
     QuasiSeparatedSpace X ↔ QuasiSeparated (terminal.from X) :=
   (HasAffineProperty.iff_of_isAffine (P := @QuasiSeparated)).symm
@@ -153,21 +174,33 @@ instance (f : X ⟶ Y) (U : X.Opens) (V : Y.Opens) (e) [QuasiSeparated f] :
     QuasiSeparated (f.resLE V U e) := by
   delta Scheme.Hom.resLE; infer_instance
 
+/--
+@isnad1 id=quasisep.0h3v.s5.a640bb3bfd9e from=seed src=0 shape=ae020dde vocab=eb76aa5a
+-/
 theorem quasiSeparatedSpace_of_quasiSeparated (f : X ⟶ Y)
     [hY : QuasiSeparatedSpace Y] [QuasiSeparated f] : QuasiSeparatedSpace X := by
   rw [quasiSeparatedSpace_iff_quasiSeparated] at hY ⊢
   rw [← terminalIsTerminal.hom_ext (f ≫ terminal.from Y) (terminal.from X)]
   infer_instance
 
+/--
+@isnad1 id=isquasis.1h4v.s7.d64adf48f7f4 from=seed src=0 shape=0f432e47 vocab=620ee974
+-/
 lemma Scheme.Hom.isQuasiSeparated_preimage [QuasiSeparated f] {U : Opens Y}
     (hU : IsQuasiSeparated (U : Set Y)) : IsQuasiSeparated (f ⁻¹ᵁ U : Set X) := by
   have : QuasiSeparatedSpace U := (isQuasiSeparated_iff_quasiSeparatedSpace _ U.2).mp hU
   exact (isQuasiSeparated_iff_quasiSeparatedSpace _ (f ⁻¹ᵁ U).2).mpr
     (quasiSeparatedSpace_of_quasiSeparated (f ∣_ U))
 
+/--
+@isnad1 id=quasisep.0h1v.s4.d4319a966c76 from=seed src=0 shape=7c9df8e0 vocab=d74767e6
+-/
 instance quasiSeparatedSpace_of_isAffine (X : Scheme) [IsAffine X] : QuasiSeparatedSpace X :=
   (quasiSeparatedSpace_congr X.isoSpec.hom.homeomorph).2 PrimeSpectrum.instQuasiSeparatedSpace
 
+/--
+@isnad1 id=isquasis.1h2v.s5.7481621c3d17 from=seed src=0 shape=8d60bb96 vocab=9070bd43
+-/
 theorem IsAffineOpen.isQuasiSeparated {U : X.Opens} (hU : IsAffineOpen U) :
     IsQuasiSeparated (U : Set X) := by
   rw [isQuasiSeparated_iff_quasiSeparatedSpace]
@@ -179,6 +212,9 @@ instance [QuasiSeparatedSpace X] : QuasiSeparated X.toSpecΓ :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=quasisep.3h3v.s7.c26a5eda8c0a from=seed src=0 shape=355933a6 vocab=83143f24
+-/
 theorem Scheme.quasiSeparatedSpace_of_isOpenCover
     {I : Type*} (U : I → X.Opens) (hU : IsOpenCover U)
     (hU₁ : ∀ i, IsAffineOpen (U i)) (hU₂ : ∀ i j, IsCompact (X := X) (U i ∩ U j)) :
@@ -195,6 +231,9 @@ theorem Scheme.quasiSeparatedSpace_of_isOpenCover
   simpa using hU₂ i j
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h1v.s5.913d1ba585d4 from=seed src=0 shape=32b9c5eb vocab=8b764578
+-/
 lemma quasiSeparatedSpace_iff_quasiCompact_prod_lift :
     QuasiSeparatedSpace X ↔ QuasiCompact (prod.lift (𝟙 X) (𝟙 X)) := by
   rw [← MorphismProperty.cancel_right_of_respectsIso @QuasiCompact _ (prodIsoPullback X X).hom,
@@ -217,6 +256,9 @@ instance [CompactSpace X] [QuasiSeparatedSpace Y] (f g : X ⟶ Y) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=quasisep.0h5v.s5.9fcc7034029a from=seed src=0 shape=ed21faf9 vocab=dd3c512a
+-/
 theorem QuasiSeparated.of_comp (f : X ⟶ Y) (g : Y ⟶ Z) [QuasiSeparated (f ≫ g)] :
     QuasiSeparated f := by
   let 𝒰 := (Z.affineCover.pullback₁ g).bind fun x => Scheme.affineCover _
@@ -231,12 +273,18 @@ theorem QuasiSeparated.of_comp (f : X ⟶ Y) (g : Y ⟶ Z) [QuasiSeparated (f �
   · exact inferInstance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=quasisep.0h3v.s5.f934408a1e4f from=seed src=0 shape=7308da41 vocab=eb76aa5a
+-/
 instance (priority := low) QuasiSeparated.of_quasiSeparatedSpace
     (f : X ⟶ Y) [QuasiSeparatedSpace X] : QuasiSeparated f :=
   have : QuasiSeparated (f ≫ Y.toSpecΓ) :=
     (HasAffineProperty.iff_of_isAffine (P := @QuasiSeparated)).mpr ‹_›
   .of_comp f Y.toSpecΓ
 
+/--
+@isnad1 id=iff.0h3v.s5.5dd02d422166 from=seed src=0 shape=8620c99e vocab=eb76aa5a
+-/
 theorem quasiSeparated_iff_quasiSeparatedSpace (f : X ⟶ Y) [QuasiSeparatedSpace Y] :
     QuasiSeparated f ↔ QuasiSeparatedSpace X :=
   ⟨fun _ ↦ quasiSeparatedSpace_of_quasiSeparated f, fun _ ↦ inferInstance⟩
@@ -248,20 +296,32 @@ instance : MorphismProperty.HasOfPostcompProperty @QuasiCompact @QuasiSeparated 
   MorphismProperty.hasOfPostcompProperty_iff_le_diagonal.mpr
     (by rw [quasiSeparated_eq_diagonal_is_quasiCompact])
 
+/--
+@isnad1 id=quasicom.0h5v.s5.435d86cd22cd from=seed src=0 shape=77972de3 vocab=2a8d1b87
+-/
 lemma QuasiCompact.of_comp (f : X ⟶ Y) (g : Y ⟶ Z) [QuasiCompact (f ≫ g)] [QuasiSeparated g] :
     QuasiCompact f :=
   MorphismProperty.of_postcomp _ _ g ‹_› ‹_›
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=quasicom.0h3v.s5.406b8916f1de from=seed src=0 shape=d03f2674 vocab=84c6a1c3
+-/
 instance (priority := low) quasiCompact_of_compactSpace {X Y : Scheme} (f : X ⟶ Y)
     [CompactSpace X] [QuasiSeparatedSpace Y] : QuasiCompact f :=
   have : QuasiCompact (f ≫ Y.toSpecΓ) := HasAffineProperty.iff_of_isAffine.mpr ‹_›
   .of_comp f Y.toSpecΓ
 
+/--
+@isnad1 id=iff.0h3v.s6.b698dad63b92 from=seed src=0 shape=8f1125ce vocab=84c6a1c3
+-/
 theorem quasiCompact_iff_compactSpace (f : X ⟶ Y) [QuasiSeparatedSpace Y] [CompactSpace Y] :
     QuasiCompact f ↔ CompactSpace X :=
   ⟨fun _ ↦ QuasiCompact.compactSpace_of_compactSpace f, fun _ ↦ inferInstance⟩
 
+/--
+@isnad1 id=ex.1h4v.s12.41a88aa32b11 from=seed src=0 shape=8b3f5b3c vocab=bae9b12e
+-/
 theorem exists_eq_pow_mul_of_isAffineOpen (X : Scheme) (U : X.Opens) (hU : IsAffineOpen U)
     (f : Γ(X, U)) (x : Γ(X, X.basicOpen f)) :
     ∃ (n : ℕ) (y : Γ(X, U)), y |_ X.basicOpen f = (f |_ X.basicOpen f) ^ n * x := by
@@ -270,6 +330,9 @@ theorem exists_eq_pow_mul_of_isAffineOpen (X : Scheme) (U : X.Opens) (hU : IsAff
   use n, y
   simpa [mul_comm x] using! d.symm
 
+/--
+@isnad1 id=eq.11h15v.s13.101dc02fb80d from=seed src=0 shape=b295402e vocab=770e4ae3
+-/
 theorem exists_eq_pow_mul_of_is_compact_of_quasi_separated_space_aux_aux {X : TopCat.{u}}
     (F : X.Presheaf CommRingCat) {U₁ U₂ U₃ U₄ U₅ U₆ U₇ : Opens X} {n₁ n₂ : ℕ}
     {y₁ : F.obj (op U₁)} {y₂ : F.obj (op U₂)} {f : F.obj (op <| U₁ ⊔ U₂)}
@@ -285,6 +348,9 @@ theorem exists_eq_pow_mul_of_is_compact_of_quasi_separated_space_aux_aux {X : To
     at e₁ e₂ ⊢
   rw [e₁, e₂, mul_left_comm]
 
+/--
+@isnad1 id=ex.4h10v.s14.fa523db5a2cf from=seed src=0 shape=1c6210d6 vocab=c12b3586
+-/
 theorem exists_eq_pow_mul_of_is_compact_of_quasi_separated_space_aux (X : Scheme)
     (S : X.affineOpens) (U₁ U₂ : X.Opens) {n₁ n₂ : ℕ} {y₁ : Γ(X, U₁)}
     {y₂ : Γ(X, U₂)} {f : Γ(X, U₁ ⊔ U₂)}
@@ -316,6 +382,9 @@ theorem exists_eq_pow_mul_of_is_compact_of_quasi_separated_space_aux (X : Scheme
   rw [e]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.2h4v.s12.5e5603851daf from=seed src=0 shape=aa929fdd vocab=aeaf3b0d
+-/
 theorem exists_eq_pow_mul_of_isCompact_of_isQuasiSeparated (X : Scheme.{u}) (U : X.Opens)
     (hU : IsCompact U.1) (hU' : IsQuasiSeparated U.1) (f : Γ(X, U)) (x : Γ(X, X.basicOpen f)) :
     ∃ (n : ℕ) (y : Γ(X, U)), y |_ X.basicOpen f = (f |_ X.basicOpen f) ^ n * x := by
@@ -398,7 +467,9 @@ theorem exists_eq_pow_mul_of_isCompact_of_isQuasiSeparated (X : Scheme.{u}) (U :
         ← Functor.map_comp, ← op_comp, homOfLE_comp]
 
 /-- If `U` is qcqs, then `Γ(X, D(f)) ≃ Γ(X, U)_f` for every `f : Γ(X, U)`.
-This is known as the **Qcqs lemma** in [R. Vakil, *The rising sea*][RisingSea]. -/
+This is known as the **Qcqs lemma** in [R. Vakil, *The rising sea*][RisingSea].
+@isnad1 id=away.2h3v.s9.b497f915de06 from=seed src=0 shape=e0717db8 vocab=7165dfb3
+-/
 theorem isLocalization_basicOpen_of_qcqs {X : Scheme} {U : X.Opens} (hU : IsCompact U.1)
     (hU' : IsQuasiSeparated U.1) (f : Γ(X, U)) :
     IsLocalization.Away f (Γ(X, X.basicOpen f)) := by
@@ -419,6 +490,9 @@ theorem isLocalization_basicOpen_of_qcqs {X : Scheme} {U : X.Opens} (hU : IsComp
     refine ⟨⟨_, n, rfl⟩, ?_⟩
     simpa [mul_comm z] using! e
 
+/--
+@isnad1 id=ex.3h5v.s12.0f709bbf6998 from=seed src=0 shape=b844ccb0 vocab=e703b23b
+-/
 lemma exists_of_res_eq_of_qcqs {X : Scheme.{u}} {U : TopologicalSpace.Opens X}
     (hU : IsCompact U.carrier) (hU' : IsQuasiSeparated U.carrier)
     {f g s : Γ(X, U)} (hfg : f |_ X.basicOpen s = g |_ X.basicOpen s) :
@@ -426,11 +500,17 @@ lemma exists_of_res_eq_of_qcqs {X : Scheme.{u}} {U : TopologicalSpace.Opens X}
   obtain ⟨n, hc⟩ := (isLocalization_basicOpen_of_qcqs hU hU' s).exists_of_eq s hfg
   use n
 
+/--
+@isnad1 id=ex.1h4v.s13.2c0b626a3e2c from=seed src=0 shape=b8824499 vocab=13c7c3a9
+-/
 lemma exists_of_res_eq_of_qcqs_of_top {X : Scheme.{u}} [CompactSpace X] [QuasiSeparatedSpace X]
     {f g s : Γ(X, ⊤)} (hfg : f |_ X.basicOpen s = g |_ X.basicOpen s) :
     ∃ n, s ^ n * f = s ^ n * g :=
   exists_of_res_eq_of_qcqs (U := ⊤) CompactSpace.isCompact_univ isQuasiSeparated_univ hfg
 
+/--
+@isnad1 id=ex.3h4v.s12.309c0b3c10f7 from=seed src=0 shape=a047060c vocab=e703b23b
+-/
 lemma exists_of_res_zero_of_qcqs {X : Scheme.{u}} {U : TopologicalSpace.Opens X}
     (hU : IsCompact U.carrier) (hU' : IsQuasiSeparated U.carrier)
     {f s : Γ(X, U)} (hf : f |_ X.basicOpen s = 0) :
@@ -440,6 +520,9 @@ lemma exists_of_res_zero_of_qcqs {X : Scheme.{u}} {U : TopologicalSpace.Opens X}
   apply exists_of_res_eq_of_qcqs hU hU'
   simpa
 
+/--
+@isnad1 id=ex.1h3v.s13.c1776ee6228f from=seed src=0 shape=cf4fad4c vocab=13c7c3a9
+-/
 lemma exists_of_res_zero_of_qcqs_of_top {X : Scheme} [CompactSpace X] [QuasiSeparatedSpace X]
     {f s : Γ(X, ⊤)} (hf : f |_ X.basicOpen s = 0) :
     ∃ n, s ^ n * f = 0 :=
@@ -447,7 +530,9 @@ lemma exists_of_res_zero_of_qcqs_of_top {X : Scheme} [CompactSpace X] [QuasiSepa
 
 set_option backward.isDefEq.respectTransparency false in
 /-- If `U` is qcqs, then `Γ(X, D(f)) ≃ Γ(X, U)_f` for every `f : Γ(X, U)`.
-This is known as the **Qcqs lemma** in [R. Vakil, *The rising sea*][RisingSea]. -/
+This is known as the **Qcqs lemma** in [R. Vakil, *The rising sea*][RisingSea].
+@isnad1 id=isiso.0h2v.s12.981c25d9e8b3 from=seed src=0 shape=f1cad3d7 vocab=5e187e79
+-/
 instance isIso_ΓSpec_adjunction_unit_app_basicOpen
     [CompactSpace X] [QuasiSeparatedSpace X] (f : Γ(X, ⊤)) :
     IsIso (X.toSpecΓ.app (PrimeSpectrum.basicOpen f)) := by

@@ -28,9 +28,21 @@ namespace ULift
 instance instNNRatCast [NNRatCast α] : NNRatCast (ULift α) where nnratCast q := up q
 instance instRatCast [RatCast α] : RatCast (ULift α) where ratCast q := up q
 
+/--
+@isnad1 id=eq.0h2v.s4.e3727a6b587b from=seed src=0 shape=65d3f526 vocab=c5c46a76
+-/
 @[simp, norm_cast] lemma up_nnratCast [NNRatCast α] (q : ℚ≥0) : up (q : α) = q := rfl
+/--
+@isnad1 id=eq.0h2v.s4.c4ad41c00dbc from=seed src=0 shape=7db3a00d vocab=3431495b
+-/
 @[simp, norm_cast] lemma down_nnratCast [NNRatCast α] (q : ℚ≥0) : down (q : ULift α) = q := rfl
+/--
+@isnad1 id=eq.0h2v.s4.7e7f6ba6bce5 from=seed src=0 shape=65d3f526 vocab=3dc71727
+-/
 @[simp, norm_cast] lemma up_ratCast [RatCast α] (q : ℚ) : up (q : α) = q := rfl
+/--
+@isnad1 id=eq.0h2v.s4.68aef578d7c4 from=seed src=0 shape=7db3a00d vocab=0368500a
+-/
 @[simp, norm_cast] lemma down_ratCast [RatCast α] (q : ℚ) : down (q : ULift α) = q := rfl
 
 instance divisionSemiring [DivisionSemiring α] : DivisionSemiring (ULift α) where

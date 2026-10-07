@@ -39,6 +39,9 @@ def spectralSequenceNat (u : ℤ × ℤ) : ComplexShape (ℕ × ℕ) where
   next_eq _ _ := by ext <;> lia
   prev_eq _ _ := by ext <;> lia
 
+/--
+@isnad1 id=iff.0h3v.s6.20b69c1e2844 from=seed src=0 shape=3ebb502d vocab=5bbb100e
+-/
 @[simp]
 lemma spectralSequenceNat_rel_iff (u : ℤ × ℤ) (a b : ℕ × ℕ) :
     (spectralSequenceNat u).Rel a b ↔ a.1 + u.1 = b.1 ∧ a.2 + u.2 = b.2 := Iff.rfl
@@ -50,6 +53,9 @@ def spectralSequenceFin (l : ℕ) (u : ℤ × ℤ) : ComplexShape (ℤ × Fin l)
   next_eq _ _ := by ext <;> lia
   prev_eq _ _ := by ext <;> lia
 
+/--
+@isnad1 id=iff.0h4v.s6.0b3ddda55c4b from=seed src=0 shape=528d0b36 vocab=fda8328d
+-/
 @[simp]
 lemma spectralSequenceFin_rel_iff {l : ℕ} (u : ℤ × ℤ) (a b : ℤ × Fin l) :
     (spectralSequenceFin l u).Rel a b ↔ a.1 + u.1 = b.1 ∧ a.2 + u.2 = b.2 := Iff.rfl

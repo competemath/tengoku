@@ -55,6 +55,9 @@ section Coeff
 
 open HahnModule
 
+/--
+@isnad1 id=eq.1h6v.s9.e2d96e5934dd from=seed src=0 shape=2ded834c vocab=a935dd48
+-/
 @[ext]
 theorem ext (A B : HVertexOperator Γ R V W) (h : ∀ v : V, A v = B v) :
     A = B := LinearMap.ext h
@@ -71,10 +74,16 @@ def coeff : HVertexOperator Γ R V W →ₗ[R] Γ → V →ₗ[R] W where
   map_add' _ _ := by ext; simp
   map_smul' _ _ := by ext; simp
 
+/--
+@isnad1 id=ispwo.0h6v.s10.3664050a9174 from=seed src=0 shape=2cfa3b50 vocab=8120f610
+-/
 theorem coeff_isPWOsupport (A : HVertexOperator Γ R V W) (v : V) :
     ((of R).symm (A v)).coeff.support.IsPWO :=
   ((of R).symm (A v)).isPWO_support'
 
+/--
+@isnad1 id=injectiv.0h4v.s10.cc6ccae3e2ae from=seed src=0 shape=ad4b2fb9 vocab=b3184766
+-/
 @[ext]
 theorem coeff_inj : Function.Injective (coeff : HVertexOperator Γ R V W →ₗ[R] Γ → (V →ₗ[R] W)) := by
   intro _ _ h
@@ -91,11 +100,17 @@ def of_coeff (f : Γ → V →ₗ[R] W) (hf : ∀ (x : V), (Function.support (f 
   map_add' _ _ := by ext; simp
   map_smul' _ _ := by ext; simp
 
+/--
+@isnad1 id=eq.1h5v.s10.6e7967fc6756 from=seed src=0 shape=2c9d03e4 vocab=8c751840
+-/
 @[simp]
 theorem coeff_of_coeff (f : Γ → V →ₗ[R] W)
     (hf : ∀ (x : V), (Function.support (fun g => f g x)).IsPWO) : (of_coeff f hf).coeff = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.bc7e1b1776c1 from=seed src=0 shape=41a1d1ec vocab=f009e4ee
+-/
 @[simp]
 theorem of_coeff_coeff (A : HVertexOperator Γ R V W) : of_coeff A.coeff A.coeff_isPWOsupport = A :=
   rfl
@@ -123,6 +138,9 @@ def compHahnSeries (u : U) : HahnSeries Γ' (HahnSeries Γ W) where
     exact hg' (by simp [hAB])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s8.e9e3911dd685 from=seed src=0 shape=2d903cb0 vocab=15898a04
+-/
 @[simp]
 theorem compHahnSeries_add (u v : U) :
     compHahnSeries A B (u + v) = compHahnSeries A B u + compHahnSeries A B v := by
@@ -131,6 +149,9 @@ theorem compHahnSeries_add (u v : U) :
   rw [← HahnSeries.coeff_add]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s8.0a54592ca765 from=seed src=0 shape=21c054c0 vocab=cbc5bec4
+-/
 @[simp]
 theorem compHahnSeries_smul (r : R) (u : U) :
     compHahnSeries A B (r • u) = r • compHahnSeries A B u := by
@@ -152,6 +173,9 @@ def comp : HVertexOperator (Γ' ×ₗ Γ) R U W where
     ext g
     simp [HahnSeries.ofIterate]
 
+/--
+@isnad1 id=eq.0h9v.s12.4cd8c862cdeb from=seed src=0 shape=c880bfa3 vocab=aaedc9bf
+-/
 @[simp]
 theorem coeff_comp (g : Γ' ×ₗ Γ) :
     (comp A B).coeff g = A.coeff (ofLex g).2 ∘ₗ B.coeff (ofLex g).1 := by

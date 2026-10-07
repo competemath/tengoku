@@ -59,6 +59,9 @@ instance (K : CochainComplex.Plus (InjectiveObject C)) :
   have (n : ℤ) : Injective (L.X n) := by dsimp [L]; infer_instance
   exact CochainComplex.isKInjective_of_injective L n
 
+/--
+@isnad1 id=ex.0h3v.s10.9323dfb58f27 from=seed src=0 shape=3b42e15e vocab=d2ec3776
+-/
 lemma exists_quasiIso_injective [EnoughInjectives C]
     (K : CochainComplex.Plus C) (n : ℤ) [K.obj.IsStrictlyGE n] :
     ∃ (L : CochainComplex.Plus (InjectiveObject C)) (_ : L.obj.IsStrictlyGE n)
@@ -81,7 +84,9 @@ variable [HasDerivedCategory C]
 with enough injectives. Assume that `K` is cohomologically `≥ n`. Then, `K`
 admits an "injective resolution", in the sense that there exists a cochain
 complex `L` consisting of injective object and lying in degrees `≥ n`, such that `K`
-is isomorphic to the image of `L`. -/
+is isomorphic to the image of `L`.
+@isnad1 id=ex.0h3v.s9.f6965d40acdb from=seed src=0 shape=ba823b28 vocab=b9c7400c
+-/
 lemma exists_injective_nonempty_iso [EnoughInjectives C] (K : DerivedCategory.Plus C)
     (n : ℤ) [K.IsGE n] :
     ∃ (L : CochainComplex.Plus (InjectiveObject C)) (_ : L.obj.IsStrictlyGE n),
@@ -199,6 +204,9 @@ abbrev localizerMorphism : LocalizerMorphism
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h4v.s10.e61c7a9d27b5 from=seed src=0 shape=cf8571d0 vocab=a8679564
+-/
 lemma isIso_quotient_map_iff
     {K L : CochainComplex.Plus (InjectiveObject C)} (f : K ⟶ L) :
     IsIso ((quotient _).map f) ↔
@@ -213,6 +221,9 @@ lemma isIso_quotient_map_iff
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 open HomologicalComplex in
+/--
+@isnad1 id=eq.0h1v.s9.f4d4881d7f17 from=seed src=0 shape=45353082 vocab=381506b0
+-/
 lemma inverseImage_quasiIso_mapCochainComplexPlus_injectiveObjectι :
     (CochainComplex.Plus.quasiIso C).inverseImage (InjectiveObject.ι C).mapCochainComplexPlus =
     (homotopyEquivalences (InjectiveObject C) (.up ℤ)).inverseImage
@@ -342,6 +353,9 @@ end isRightDerivabilityStructure
 
 variable [EnoughInjectives C]
 
+/--
+@isnad1 id=isrightd.0h1v.s8.8ef1effc6c71 from=seed src=0 shape=497507f0 vocab=072ccea7
+-/
 instance isRightDerivabilityStructure : (localizerMorphism C).IsRightDerivabilityStructure :=
   LocalizerMorphism.isRightDerivabilityStructure_of_isLocalizedEquivalence
     (isRightDerivabilityStructure.iso C)
@@ -364,6 +378,9 @@ section
 variable (F : HomotopyCategory.Plus C ⥤ H)
 
 omit [EnoughInjectives C] in
+/--
+@isnad1 id=derives.0h3v.s8.bfe85ed5ad30 from=seed src=0 shape=8e768b0c vocab=ff827538
+-/
 lemma localizerMorphism_derives : (localizerMorphism C).Derives F :=
   MorphismProperty.isInvertedBy_isomorphisms _
 

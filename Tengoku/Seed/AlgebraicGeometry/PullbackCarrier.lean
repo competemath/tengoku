@@ -53,6 +53,9 @@ variable {X Y S : Scheme.{u}} {f : X ⟶ S} {g : Y ⟶ S}
 
 namespace Triplet
 
+/--
+@isnad1 id=eq.2h7v.s6.e571e33378d0 from=seed src=0 shape=e910e0b9 vocab=4d7a79fd
+-/
 @[ext]
 protected lemma ext {t₁ t₂ : Triplet f g} (ex : t₁.x = t₂.x) (ey : t₁.y = t₂.y) : t₁ = t₂ := by
   cases t₁; cases t₂; simp; aesop
@@ -83,6 +86,9 @@ def tensorInl (T : Triplet f g) : X.residueField T.x ⟶ T.tensor := pushout.inl
 canonical map `κ(y) ⟶ κ(x) ⊗[κ(s)] κ(y)`. -/
 def tensorInr (T : Triplet f g) : Y.residueField T.y ⟶ T.tensor := pushout.inr _ _
 
+/--
+@isnad1 id=ispullba.0h6v.s10.c0228705a333 from=seed src=0 shape=6e0f689f vocab=b3af2981
+-/
 lemma isPullback_SpecMap_tensor (T : Triplet f g) : CategoryTheory.IsPullback
     (Spec.map T.tensorInl) (Spec.map T.tensorInr)
         (Spec.map ((S.residueFieldCongr T.hx).inv ≫ f.residueFieldMap T.x))
@@ -97,18 +103,30 @@ def tensorCongr {T₁ T₂ : Triplet f g} (e : T₁ = T₂) :
     T₁.tensor ≅ T₂.tensor :=
   eqToIso (by subst e; rfl)
 
+/--
+@isnad1 id=eq.0h6v.s6.db31ce1369de from=seed src=0 shape=30f37fd2 vocab=0bf1d5dc
+-/
 @[simp]
 lemma tensorCongr_refl {x : Triplet f g} :
     tensorCongr (refl x) = Iso.refl _ := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.83ae3addba47 from=seed src=0 shape=94e0dbd4 vocab=21fbdb43
+-/
 @[simp]
 lemma tensorCongr_symm {x y : Triplet f g} (e : x = y) :
     (tensorCongr e).symm = tensorCongr e.symm := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.8c0957fa71ad from=seed src=0 shape=e27192bf vocab=eb624789
+-/
 @[simp]
 lemma tensorCongr_inv {x y : Triplet f g} (e : x = y) :
     (tensorCongr e).inv = (tensorCongr e.symm).hom := rfl
 
+/--
+@isnad1 id=eq.2h8v.s7.4058f4b39168 from=seed src=0 shape=244fe620 vocab=0078127f
+-/
 @[simp]
 lemma tensorCongr_trans {x y z : Triplet f g} (e : x = y) (e' : y = z) :
     tensorCongr e ≪≫ tensorCongr e' =
@@ -116,6 +134,9 @@ lemma tensorCongr_trans {x y z : Triplet f g} (e : x = y) (e' : y = z) :
   subst e e'
   rfl
 
+/--
+@isnad1 id=eq.2h8v.s7.890215d1128c from=seed src=0 shape=dede05bb vocab=041f0e19
+-/
 @[reassoc (attr := simp)]
 lemma tensorCongr_trans_hom {x y z : Triplet f g} (e : x = y) (e' : y = z) :
     (tensorCongr e).hom ≫ (tensorCongr e').hom =
@@ -128,6 +149,9 @@ end Congr
 variable (T : Triplet f g)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s7.8eb0bb0acba9 from=seed src=0 shape=40e450fc vocab=cfd67622
+-/
 lemma SpecMap_tensorInl_fromSpecResidueField :
     (Spec.map T.tensorInl ≫ X.fromSpecResidueField T.x) ≫ f =
       (Spec.map T.tensorInr ≫ Y.fromSpecResidueField T.y) ≫ g := by
@@ -145,6 +169,9 @@ def SpecTensorTo : Spec T.tensor ⟶ pullback f g :=
     (SpecMap_tensorInl_fromSpecResidueField _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s9.aa3802292189 from=seed src=0 shape=7136875d vocab=4f1dda62
+-/
 @[simp]
 lemma fst_SpecTensorTo_apply (p : Spec T.tensor) :
     pullback.fst f g (T.SpecTensorTo p) = T.x := by
@@ -153,6 +180,9 @@ lemma fst_SpecTensorTo_apply (p : Spec T.tensor) :
   simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s9.9dbdbb2199aa from=seed src=0 shape=433e27fc vocab=5d36b08b
+-/
 @[simp]
 lemma snd_SpecTensorTo_apply (p : Spec T.tensor) :
     pullback.snd f g (T.SpecTensorTo p) = T.y := by
@@ -160,11 +190,17 @@ lemma snd_SpecTensorTo_apply (p : Spec T.tensor) :
   rw [← Scheme.Hom.comp_apply]
   simp
 
+/--
+@isnad1 id=eq.0h6v.s7.aa3f8b16cb94 from=seed src=0 shape=d38c66ed vocab=ac802a28
+-/
 @[reassoc (attr := simp)]
 lemma specTensorTo_fst :
     T.SpecTensorTo ≫ pullback.fst f g = Spec.map T.tensorInl ≫ X.fromSpecResidueField T.x :=
   pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s7.b53a5b7bbe14 from=seed src=0 shape=db451d48 vocab=7ccbac61
+-/
 @[reassoc (attr := simp)]
 lemma specTensorTo_snd :
     T.SpecTensorTo ≫ pullback.snd f g = Spec.map T.tensorInr ≫ Y.fromSpecResidueField T.y :=
@@ -177,6 +213,9 @@ def ofPoint (t : ↑(pullback f g)) : Triplet f g :=
   ⟨pullback.fst f g t, pullback.snd f g t, _, rfl,
     congr($(pullback.condition (f := f) (g := g)) t).symm⟩
 
+/--
+@isnad1 id=eq.0h7v.s8.82653b2a472d from=seed src=0 shape=abf87bc0 vocab=8b2455f2
+-/
 @[simp]
 lemma ofPoint_SpecTensorTo (T : Triplet f g) (p : Spec T.tensor) :
     ofPoint (T.SpecTensorTo p) = T := by
@@ -186,6 +225,9 @@ end Triplet
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s10.9258276f30bd from=seed src=0 shape=ba599c96 vocab=6ca13d94
+-/
 lemma residueFieldCongr_inv_residueFieldMap_ofPoint (t : ↑(pullback f g)) :
     ((S.residueFieldCongr (Triplet.ofPoint t).hx).inv ≫ f.residueFieldMap (Triplet.ofPoint t).x) ≫
       (pullback.fst f g).residueFieldMap t = ((S.residueFieldCongr (Triplet.ofPoint t).hy).inv ≫
@@ -202,6 +244,9 @@ def ofPointTensor (t : ↑(pullback f g)) :
     (residueFieldCongr_inv_residueFieldMap_ofPoint t)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s7.f13033c0aa79 from=seed src=0 shape=17d582a0 vocab=af944288
+-/
 @[reassoc]
 lemma ofPointTensor_SpecTensorTo (t : ↑(pullback f g)) :
     Spec.map (ofPointTensor t) ≫ (Triplet.ofPoint t).SpecTensorTo =
@@ -222,17 +267,26 @@ def SpecOfPoint (t : ↑(pullback f g)) : Spec (Triplet.ofPoint t).tensor :=
     Spec.map (ofPointTensor t) (⊥ : PrimeSpectrum _)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h6v.s8.f364c97cae94 from=seed src=0 shape=7d8d5abb vocab=087447e4
+-/
 @[simp]
 lemma SpecTensorTo_SpecOfPoint (t : ↑(pullback f g)) :
     (Triplet.ofPoint t).SpecTensorTo (SpecOfPoint t) = t := by
   simp [SpecOfPoint, ← Scheme.Hom.comp_apply, ofPointTensor_SpecTensorTo]
 
+/--
+@isnad1 id=eq.1h7v.s7.4c686af9edb0 from=seed src=0 shape=843a7cf2 vocab=72b4afc4
+-/
 @[reassoc (attr := simp)]
 lemma tensorCongr_SpecTensorTo {T T' : Triplet f g} (h : T = T') :
     Spec.map (Triplet.tensorCongr h).hom ≫ T.SpecTensorTo = T'.SpecTensorTo := by
   subst h
   simp only [Triplet.tensorCongr_refl, Iso.refl_hom, Spec.map_id, Category.id_comp]
 
+/--
+@isnad1 id=eq.0h7v.s11.af5d13b90aba from=seed src=0 shape=ce5efd63 vocab=cee2f0f9
+-/
 lemma Triplet.Spec_ofPointTensor_SpecTensorTo (T : Triplet f g) (p : Spec T.tensor) :
     Spec.map (Hom.residueFieldMap T.SpecTensorTo p) ≫
       Spec.map (ofPointTensor (T.SpecTensorTo p)) ≫
@@ -246,7 +300,9 @@ lemma Triplet.Spec_ofPointTensor_SpecTensorTo (T : Triplet f g) (p : Spec T.tens
     simp_rw [Category.assoc, ← T.specTensorTo_snd, tensorCongr_SpecTensorTo_assoc]
     rw [← Hom.SpecMap_residueFieldMap_fromSpecResidueField_assoc, ofPointTensor_SpecTensorTo_assoc]
 
-/-- A helper lemma to work with `AlgebraicGeometry.Scheme.Pullback.carrierEquiv`. -/
+/-- A helper lemma to work with `AlgebraicGeometry.Scheme.Pullback.carrierEquiv`.
+@isnad1 id=iff.0h7v.s10.337cc905eaa8 from=seed src=0 shape=bc4a4e4f vocab=9b941a49
+-/
 lemma carrierEquiv_eq_iff {T₁ T₂ : Σ T : Triplet f g, Spec T.tensor} :
     T₁ = T₂ ↔ ∃ e : T₁.1 = T₂.1, Spec.map (Triplet.tensorCongr e).inv T₁.2 = T₂.2 := by
   constructor
@@ -278,11 +334,17 @@ def carrierEquiv : ↑(pullback f g) ≃ Σ T : Triplet f g, Spec T.tensor where
       ← Scheme.Hom.comp_apply]
     simp [Triplet.Spec_ofPointTensor_SpecTensorTo]
 
+/--
+@isnad1 id=eq.0h7v.s9.82d3eb1c183f from=seed src=0 shape=6f50f331 vocab=e603435e
+-/
 @[simp]
 lemma carrierEquiv_symm_fst (T : Triplet f g) (p : Spec T.tensor) :
     pullback.fst f g (carrierEquiv.symm ⟨T, p⟩) = T.x := by
   simp [carrierEquiv]
 
+/--
+@isnad1 id=eq.0h7v.s9.e9cc4a28a0c1 from=seed src=0 shape=b164ed55 vocab=04814cdb
+-/
 @[simp]
 lemma carrierEquiv_symm_snd (T : Triplet f g) (p : Spec T.tensor) :
     pullback.snd f g (carrierEquiv.symm ⟨T, p⟩) = T.y := by
@@ -290,7 +352,9 @@ lemma carrierEquiv_symm_snd (T : Triplet f g) (p : Spec T.tensor) :
 
 /-- Given a triple `(x, y, s)` with `f x = s = f y` there exists `t : X ×[S] Y` above
 `x` and `ỳ`. For the unpacked version without `Triplet`, see
-`AlgebraicGeometry.Scheme.Pullback.exists_preimage`. -/
+`AlgebraicGeometry.Scheme.Pullback.exists_preimage`.
+@isnad1 id=ex.0h6v.s9.57b0257dcce8 from=seed src=0 shape=89fac271 vocab=9192fe4d
+-/
 lemma Triplet.exists_preimage (T : Triplet f g) :
     ∃ t : ↑(pullback f g), pullback.fst f g t = T.x ∧ pullback.snd f g t = T.y :=
   ⟨carrierEquiv.symm ⟨T, Nonempty.some inferInstance⟩, by simp⟩
@@ -301,6 +365,7 @@ that `f x = g y`, then there exists `z : X ×[S] Y` lying above `x` and `y`.
 
 In other words, the map from the underlying topological space of `X ×[S] Y` to the fiber product
 of the underlying topological spaces of `X` and `Y` over `S` is surjective.
+@isnad1 id=ex.1h7v.s9.a555a7a7b12b from=seed src=0 shape=d5ab3e75 vocab=3cd9fc6f
 -/
 lemma exists_preimage_pullback (x : X) (y : Y) (h : f x = g y) :
     ∃ z : ↑(pullback f g), pullback.fst f g z = x ∧ pullback.snd f g z = y :=
@@ -324,6 +389,9 @@ instance (priority := low) [Nonempty X] [Nonempty Y] [Subsingleton S] :
 
 variable (f g)
 
+/--
+@isnad1 id=eq.0h5v.s9.0a1c091e56c0 from=seed src=0 shape=4f2537eb vocab=4d10a952
+-/
 lemma range_fst : Set.range (pullback.fst f g) = f ⁻¹' Set.range g := by
   ext x
   refine ⟨?_, fun ⟨y, hy⟩ ↦ ?_⟩
@@ -333,6 +401,9 @@ lemma range_fst : Set.range (pullback.fst f g) = f ⁻¹' Set.range g := by
   · obtain ⟨a, ha⟩ := Triplet.exists_preimage (Triplet.mk' x y hy.symm)
     use a, ha.left
 
+/--
+@isnad1 id=eq.0h5v.s9.8f6c85b22f49 from=seed src=0 shape=aa560fd1 vocab=df9457b7
+-/
 lemma range_snd : Set.range (pullback.snd f g) = g ⁻¹' Set.range f := by
   ext x
   refine ⟨?_, fun ⟨y, hy⟩ ↦ ?_⟩
@@ -342,15 +413,24 @@ lemma range_snd : Set.range (pullback.snd f g) = g ⁻¹' Set.range f := by
   · obtain ⟨a, ha⟩ := Triplet.exists_preimage (Triplet.mk' y x hy)
     use a, ha.right
 
+/--
+@isnad1 id=eq.0h5v.s9.58567dfb6163 from=seed src=0 shape=624a854c vocab=78272653
+-/
 lemma range_fst_comp :
     Set.range (pullback.fst f g ≫ f) = Set.range f ∩ Set.range g := by
   simp [Set.range_comp, range_fst, Set.image_preimage_eq_range_inter]
 
+/--
+@isnad1 id=eq.0h5v.s9.5e137cac3da6 from=seed src=0 shape=f7e01ee3 vocab=87ea3016
+-/
 lemma range_snd_comp :
     Set.range (pullback.snd f g ≫ g) = Set.range f ∩ Set.range g := by
   rw [← pullback.condition, range_fst_comp]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h13v.s10.65704ec1a5c4 from=seed src=0 shape=c1490199 vocab=eda81977
+-/
 lemma range_map {X' Y' S' : Scheme.{u}} (f' : X' ⟶ S') (g' : Y' ⟶ S') (i₁ : X ⟶ X')
     (i₂ : Y ⟶ Y') (i₃ : S ⟶ S') (e₁ : f ≫ i₃ = i₁ ≫ f')
     (e₂ : g ≫ i₃ = i₂ ≫ g') [Mono i₃] :
@@ -380,13 +460,18 @@ lemma range_map {X' Y' S' : Scheme.{u}} (f' : X' ⟶ S') (g' : Y' ⟶ S') (i₁ 
 
 end Pullback
 
+/--
+@isnad1 id=isjointl.0h1v.s3.8e110ee51b44 from=seed src=0 shape=ed8e471b vocab=04ee105c
+-/
 instance isJointlySurjectivePreserving (P : MorphismProperty Scheme.{u}) :
     IsJointlySurjectivePreserving P where
   exists_preimage_fst_triplet_of_prop {X Y S} f g _ hg x y hxy := by
     obtain ⟨a, b, h⟩ := Pullback.exists_preimage_pullback x y hxy
     use a
 
-/-- The comparison map for pullbacks under the forgetful functor `Scheme ⥤ Type u` is surjective. -/
+/-- The comparison map for pullbacks under the forgetful functor `Scheme ⥤ Type u` is surjective.
+@isnad1 id=surjecti.0h5v.s8.eb41235a4bcc from=seed src=0 shape=36fe02d2 vocab=2aea2ec5
+-/
 lemma pullbackComparison_forget_surjective {X Y S : Scheme.{u}} (f : X ⟶ S) (g : Y ⟶ S) :
     Function.Surjective (pullbackComparison forget f g) := by
   refine .of_comp_left (fun x ↦ ?_) <|
@@ -407,6 +492,9 @@ instance {X Y S : Scheme.{u}} (f : X ⟶ S) (g : Y ⟶ S) :
     ← _root_.CategoryTheory.Limits.pullbackComparison_comp, epi_iff_surjective]
   apply Scheme.pullbackComparison_forget_surjective _ _
 
+/--
+@isnad1 id=ex.2h10v.s9.9d27572d81b5 from=seed src=0 shape=34f29512 vocab=449d0def
+-/
 lemma exists_preimage_of_isPullback {P X Y Z : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ Y}
     {f : X ⟶ Z} {g : Y ⟶ Z} (h : IsPullback fst snd f g) (x : X) (y : Y)
     (hxy : f.base x = g.base y) :
@@ -416,6 +504,9 @@ lemma exists_preimage_of_isPullback {P X Y Z : Scheme.{u}} {fst : P ⟶ X} {snd 
   use h.isoPullback.inv.base z
   simp [← Scheme.Hom.comp_apply, hzl, hzr]
 
+/--
+@isnad1 id=eq.1h9v.s9.a665a39021f9 from=seed src=0 shape=cbf051a1 vocab=5de42ec2
+-/
 lemma image_preimage_eq_of_isPullback {P X Y Z : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ Y}
     {f : X ⟶ Z} {g : Y ⟶ Z} (h : IsPullback fst snd f g) (s : Set X) :
     snd.base '' fst.base ⁻¹' s = g.base ⁻¹' f.base '' s := by

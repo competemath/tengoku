@@ -72,6 +72,9 @@ instance (s : S) [GeometricallyIrreducible f] : IrreducibleSpace (f.fiber s) :=
 instance (priority := low) [GeometricallyIrreducible f] : Surjective f :=
   ⟨fun x ↦ ⟨_, (f.range_fiberι x).le ⟨Nonempty.some inferInstance, rfl⟩⟩⟩
 
+/--
+@isnad1 id=isirredu.2h4v.s8.47415319189b from=seed src=0 shape=580cd513 vocab=5a859b79
+-/
 lemma Scheme.Hom.isIrreducible_preimage
     [GeometricallyIrreducible f] (hf : IsOpenMap f)
     {s : Set S} (hs : IsIrreducible s) : IsIrreducible (f ⁻¹' s) := by
@@ -93,12 +96,17 @@ def Scheme.Hom.irreducibleComponentsEquiv [GeometricallyIrreducible f] (hf : IsO
     (fun _ ↦ (f.isIrreducible_preimage hf isIrreducible_singleton).isPreirreducible)
     f.surjective).symm.toEquiv
 
+/--
+@isnad1 id=irreduci.1h3v.s8.7c81dfaedfef from=seed src=0 shape=ea50d047 vocab=62090a14
+-/
 lemma GeometricallyIrreducible.irreducibleSpace
     [GeometricallyIrreducible f] [IrreducibleSpace S] (hf : IsOpenMap f) : IrreducibleSpace X := by
   simpa [irreducibleSpace_def] using
     f.isIrreducible_preimage hf (IrreducibleSpace.isIrreducible_univ _)
 
-/-- If `X` is geometrically irreducible over a point, then it is irreducible. -/
+/-- If `X` is geometrically irreducible over a point, then it is irreducible.
+@isnad1 id=irreduci.0h3v.s5.800d4e38e658 from=seed src=0 shape=2f547405 vocab=8c9be2a1
+-/
 lemma GeometricallyIrreducible.irreducibleSpace_of_subsingleton
     [GeometricallyIrreducible f] [Subsingleton S] [Nonempty S] : IrreducibleSpace X :=
   have : IrreducibleSpace S := ⟨‹_›⟩
@@ -117,11 +125,17 @@ instance [GeometricallyIrreducible g] [UniversallyOpen g] [IrreducibleSpace X] :
     IrreducibleSpace ↥(pullback f g) :=
   GeometricallyIrreducible.irreducibleSpace (pullback.fst _ _) (pullback.fst f g).isOpenMap
 
+/--
+@isnad1 id=iff.0h3v.s5.133c873f208e from=seed src=0 shape=329d4fdd vocab=c787b0c3
+-/
 lemma GeometricallyIrreducible.iff_geometricallyIrreducible_fiber :
     GeometricallyIrreducible f ↔ ∀ s, GeometricallyIrreducible (f.fiberToSpecResidueField s) := by
   simp only [GeometricallyIrreducible.eq_geometrically,
     ← geometrically_iff_forall_fiberToSpecResidueField]
 
+/--
+@isnad1 id=geometri.0h5v.s5.8ff6a3a2f032 from=seed src=0 shape=5864d65b vocab=193a6645
+-/
 lemma GeometricallyIrreducible.comp
     (f : X ⟶ Y) (g : Y ⟶ Z) [GeometricallyIrreducible f] [GeometricallyIrreducible g]
     [UniversallyOpen f] [UniversallyOpen g] :

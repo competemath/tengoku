@@ -59,6 +59,9 @@ instance (priority := low) [GeometricallyIntegral f] : GeometricallyReduced f :=
 instance (priority := low) [GeometricallyIntegral f] : GeometricallyIrreducible f :=
   (GeometricallyIntegral.eq_geometricallyReduced_inf_geometricallyIrreducible.le _ _ _ ‹_›).2
 
+/--
+@isnad1 id=geometri.0h3v.s4.b415f4b99a79 from=seed src=0 shape=d492d1ea vocab=6e432361
+-/
 lemma GeometricallyIntegral.of_geometricallyReduced_of_geometricallyIrreducible
     [GeometricallyReduced f] [GeometricallyIrreducible f] :
     GeometricallyIntegral f :=
@@ -89,6 +92,9 @@ instance (s : S) [GeometricallyIntegral f] : IsIntegral (f.fiber s) :=
 instance (priority := low) [GeometricallyIntegral f] : Surjective f :=
   ⟨fun x ↦ ⟨_, (f.range_fiberι x).le ⟨Nonempty.some inferInstance, rfl⟩⟩⟩
 
+/--
+@isnad1 id=isintegr.0h3v.s5.f5edcf8ae83a from=seed src=0 shape=03b1c225 vocab=ae3a7e1e
+-/
 lemma GeometricallyIntegral.isIntegral_of_isLocallyNoetherian
     [GeometricallyIntegral f] [Flat f] [UniversallyOpen f]
     [IsIntegral S] [IsLocallyNoetherian S] : IsIntegral X := by
@@ -96,7 +102,9 @@ lemma GeometricallyIntegral.isIntegral_of_isLocallyNoetherian
   exact ⟨GeometricallyIrreducible.irreducibleSpace f f.isOpenMap,
     GeometricallyReduced.isReduced_of_flat_of_isLocallyNoetherian f⟩
 
-/-- If `X` is geometrically integral over a field, then it is integral. -/
+/-- If `X` is geometrically integral over a field, then it is integral.
+@isnad1 id=isintegr.0h3v.s5.39823854fdeb from=seed src=0 shape=d6a6e36b vocab=caac9974
+-/
 lemma GeometricallyIntegral.isIntegral_of_subsingleton
     [GeometricallyIntegral f] [Subsingleton S] [IsIntegral S] : IsIntegral X := by
   rw [isIntegral_iff_irreducibleSpace_and_isReduced]
@@ -114,6 +122,9 @@ instance [GeometricallyIntegral g] [Flat g] [UniversallyOpen g]
     IsIntegral (pullback f g) :=
   GeometricallyIntegral.isIntegral_of_isLocallyNoetherian (pullback.fst _ _)
 
+/--
+@isnad1 id=iff.0h3v.s5.17b541f6054c from=seed src=0 shape=329d4fdd vocab=f9226b70
+-/
 lemma GeometricallyIntegral.iff_geometricallyIntegral_fiber :
     GeometricallyIntegral f ↔ ∀ s, GeometricallyIntegral (f.fiberToSpecResidueField s) := by
   simp only [GeometricallyIntegral.eq_geometrically,

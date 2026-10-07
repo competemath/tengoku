@@ -45,9 +45,15 @@ image consists of all non-`0` elements of the free additive monoid
 def toFreeMonoid : FreeSemigroup α →ₙ* FreeMonoid α :=
   lift FreeMonoid.of
 
+/--
+@isnad1 id=eq.0h2v.s6.2dfcf47cfbed from=seed src=0 shape=0ddbd884 vocab=c28bf843
+-/
 @[to_additive (attr := simp, grind =)]
 lemma toFreeMonoid_of (x : α) : toFreeMonoid (.of x) = .of x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.3129c7269ce9 from=seed src=0 shape=6f5e8b9c vocab=84c7c4ee
+-/
 @[to_additive]
 lemma toFreeMonoid_mk_eq_cons (x : α) (xs : List α) :
     toFreeMonoid ⟨x, xs⟩ = FreeMonoid.ofList (x :: xs) := by
@@ -55,12 +61,18 @@ lemma toFreeMonoid_mk_eq_cons (x : α) (xs : List α) :
     simpa [← List.foldl_map, lift_mk_eq_foldl, toFreeMonoid, lift] using this (FreeMonoid.of x)
   induction xs with grind [ofList_nil, ofList_cons]
 
+/--
+@isnad1 id=injectiv.0h1v.s6.621bfe765fb7 from=seed src=0 shape=bfe13a5f vocab=7ee0b631
+-/
 @[to_additive (attr := grind .)]
 lemma toFreeMonoid_injective : Function.Injective (@toFreeMonoid α) := by
   rintro ⟨x, xs⟩ ⟨y, ys⟩ h
   simp only [toFreeMonoid_mk_eq_cons, Equiv.apply_eq_iff_eq] at h
   simpa using h
 
+/--
+@isnad1 id=ne.0h2v.s6.60fb790c4fad from=seed src=0 shape=a74634b0 vocab=a6077981
+-/
 @[to_additive (attr := simp, grind .)]
 lemma toFreeMonoid_ne_one (x : FreeSemigroup α) : toFreeMonoid x ≠ 1 := by
   induction x with simp
@@ -72,6 +84,9 @@ lemma eq_one_or_toFreeMonoid (x : FreeMonoid α) : x = 1 ∨ ∃ y, toFreeMonoid
     · exact Or.inr ⟨of b, by simp⟩
     · exact Or.inr ⟨of b * y, by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.fd210da4a9c0 from=seed src=0 shape=88e2048e vocab=f67cd9bf
+-/
 @[to_additive (attr := simp)]
 lemma range_toFreeMonoid : Set.range (@toFreeMonoid α) = {1}ᶜ := by
   ext x; grind [eq_one_or_toFreeMonoid x]

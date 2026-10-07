@@ -60,6 +60,9 @@ instance (_ : n₀ + 1 = n₁) (_ : n₁ + 1 = n₂) (_ : n₂ + 1 = n₃) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=exact.1h22v.s7.2a85b2c506e3 from=seed src=0 shape=b1e64791 vocab=eadb492b
+-/
 lemma dCokernelSequence_exact
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) (hn₃ : n₂ + 1 = n₃ := by lia) :
     (X.dCokernelSequence f₁ f₂ f₃ f₄ f₅ f₃₄ h₃₄ n₀ n₁ n₂ n₃).Exact := by
@@ -90,6 +93,9 @@ instance (_ : n₀ + 1 = n₁) (_ : n₁ + 1 = n₂) (_ : n₂ + 1 = n₃) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=exact.1h22v.s7.1fb89da4a2f6 from=seed src=0 shape=7ea96f9f vocab=fa4470f3
+-/
 lemma dKernelSequence_exact
     (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) (hn₃ : n₂ + 1 = n₃ := by lia) :
     (X.dKernelSequence f₁ f₂ f₃ f₄ f₅ f₂₃ h₂₃ n₀ n₁ n₂ n₃).Exact := by
@@ -123,6 +129,9 @@ noncomputable def dShortComplex
     ShortComplex C :=
   ShortComplex.mk _ _ (X.d_d f₁ f₂ f₃ f₄ f₅ f₆ f₇ n₀ n₁ n₂ n₃ n₄)
 
+/--
+@isnad1 id=eq.2h21v.s9.1eea32dab1f8 from=seed src=0 shape=6202b0e4 vocab=46dba948
+-/
 @[reassoc]
 lemma map_fourδ₁Toδ₀_EMap_fourδ₄Toδ₃
     (hn₂ : n₁ + 1 = n₂ := by lia) (hn₃ : n₂ + 1 = n₃ := by lia) :

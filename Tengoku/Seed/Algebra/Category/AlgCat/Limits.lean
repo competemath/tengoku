@@ -140,17 +140,23 @@ end HasLimits
 
 open HasLimits
 
-/-- The category of R-algebras has all limits. -/
+/-- The category of R-algebras has all limits.
+@isnad1 id=haslimit.0h1v.s3.fa6e2c9b79cd from=seed src=0 shape=2fe8c59c vocab=65cba84a
+-/
 lemma hasLimitsOfSize [UnivLE.{v, w}] : HasLimitsOfSize.{t, v} (AlgCat.{w} R) :=
   { has_limits_of_shape := fun _ _ =>
     { has_limit := fun F => HasLimit.mk
         { cone := limitCone F
           isLimit := limitConeIsLimit F } } }
 
+/--
+@isnad1 id=haslimit.0h1v.s3.f9a4a6438732 from=seed src=0 shape=1666ae32 vocab=51aabb4e
+-/
 instance hasLimits : HasLimits (AlgCat.{w} R) :=
   AlgCat.hasLimitsOfSize.{w, w, u}
 
 /-- The forgetful functor from R-algebras to rings preserves all limits.
+@isnad1 id=preserve.0h1v.s7.63875fd12587 from=seed src=0 shape=7e8c778d vocab=27be6d6e
 -/
 instance forget₂Ring_preservesLimitsOfSize [UnivLE.{v, w}] :
     PreservesLimitsOfSize.{t, v} (forget₂ (AlgCat.{w} R) RingCat.{w}) where
@@ -160,10 +166,14 @@ instance forget₂Ring_preservesLimitsOfSize [UnivLE.{v, w}] :
           (RingCat.limitConeIsLimit.{v, w}
             (_ ⋙ forget₂ (AlgCat.{w} R) RingCat.{w})) }
 
+/--
+@isnad1 id=preserve.0h1v.s7.377fd4106ca7 from=seed src=0 shape=9beb2f11 vocab=70cdc257
+-/
 instance forget₂Ring_preservesLimits : PreservesLimits (forget₂ (AlgCat R) RingCat.{w}) :=
   AlgCat.forget₂Ring_preservesLimitsOfSize.{w, w}
 
 /-- The forgetful functor from R-algebras to R-modules preserves all limits.
+@isnad1 id=preserve.0h1v.s8.58035ac321ad from=seed src=0 shape=5f42f27c vocab=39c76324
 -/
 instance forget₂Module_preservesLimitsOfSize [UnivLE.{v, w}] : PreservesLimitsOfSize.{t, v}
     (forget₂ (AlgCat.{w} R) (ModuleCat.{w} R)) where
@@ -173,11 +183,15 @@ instance forget₂Module_preservesLimitsOfSize [UnivLE.{v, w}] : PreservesLimits
           (ModuleCat.HasLimits.limitConeIsLimit
             (K ⋙ forget₂ (AlgCat.{w} R) (ModuleCat.{w} R))) }
 
+/--
+@isnad1 id=preserve.0h1v.s8.37f2ef25bd37 from=seed src=0 shape=85022f7f vocab=43ab1ebf
+-/
 instance forget₂Module_preservesLimits :
     PreservesLimits (forget₂ (AlgCat R) (ModuleCat.{w} R)) :=
   AlgCat.forget₂Module_preservesLimitsOfSize.{w, w}
 
 /-- The forgetful functor from R-algebras to types preserves all limits.
+@isnad1 id=preserve.0h1v.s6.7eb82d3b44bd from=seed src=0 shape=9aef521b vocab=51da5823
 -/
 instance forget_preservesLimitsOfSize [UnivLE.{v, w}] :
     PreservesLimitsOfSize.{t, v} (forget (AlgCat.{w} R)) where
@@ -186,6 +200,9 @@ instance forget_preservesLimitsOfSize [UnivLE.{v, w}] :
        preservesLimit_of_preserves_limit_cone (limitConeIsLimit K)
           (Types.Small.limitConeIsLimit.{v} (K ⋙ forget _)) }
 
+/--
+@isnad1 id=preserve.0h1v.s6.9e6fa10e30d3 from=seed src=0 shape=2740f13a vocab=bf9d1590
+-/
 instance forget_preservesLimits : PreservesLimits (forget (AlgCat.{w} R)) :=
   AlgCat.forget_preservesLimitsOfSize.{w, w}
 

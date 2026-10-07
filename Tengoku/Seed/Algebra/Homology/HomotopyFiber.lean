@@ -88,6 +88,9 @@ noncomputable def pathObject := (unopFunctor C c.symm).obj (op K.op.cylinder)
 namespace pathObject
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iszero.2h5v.s7.274889f1541f from=seed src=0 shape=6b858602 vocab=3b0f65fd
+-/
 lemma isZero_X (i : α) (h₁ : IsZero (K.X i)) (h₂ : ∀ (j : α), c.Rel j i → IsZero (K.X j)) :
     IsZero (K.pathObject.X i) := by
   apply IsZero.unop
@@ -111,10 +114,16 @@ noncomputable def π₁ : K.pathObject ⟶ K :=
 noncomputable def ι : K ⟶ K.pathObject :=
   (unopFunctor C c.symm).map (cylinder.π K.op).op
 
+/--
+@isnad1 id=eq.0h4v.s7.aa612e4cc7e2 from=seed src=0 shape=6096a183 vocab=9ef7f7fd
+-/
 @[reassoc (attr := simp)]
 lemma π₀_ι : ι K ≫ π₀ K = 𝟙 K :=
   Quiver.Hom.op_inj ((opFunctor C c).map_injective (cylinder.ι₀_π K.op))
 
+/--
+@isnad1 id=eq.0h4v.s7.ab21c3f558ba from=seed src=0 shape=6096a183 vocab=a1f0337d
+-/
 @[reassoc (attr := simp)]
 lemma π₁_ι : ι K ≫ π₁ K = 𝟙 K :=
   Quiver.Hom.op_inj ((opFunctor C c).map_injective (cylinder.ι₁_π K.op))
@@ -152,10 +161,16 @@ noncomputable def lift : F ⟶ K.pathObject :=
       ((opFunctor C c).map φ₁.op) h.op
   (unopFunctor C c.symm).map φ.op
 
+/--
+@isnad1 id=eq.0h8v.s8.e98351a51c39 from=seed src=0 shape=73ce7e6a vocab=1783bf2b
+-/
 @[reassoc (attr := simp)]
 lemma lift_π₀ : lift φ₀ φ₁ h ≫ π₀ K = φ₀ :=
   Quiver.Hom.op_inj ((opFunctor C c).map_injective (cylinder.ι₀_desc _ _ _))
 
+/--
+@isnad1 id=eq.0h8v.s8.f3f59d72e583 from=seed src=0 shape=bac08eb3 vocab=e6e3f62c
+-/
 @[reassoc (attr := simp)]
 lemma lift_π₁ : lift φ₀ φ₁ h ≫ π₁ K = φ₁ :=
   Quiver.Hom.op_inj ((opFunctor C c).map_injective (cylinder.ι₁_desc _ _ _))
@@ -188,6 +203,9 @@ noncomputable def mapHomologicalComplexObjIso :
       pathObject ((H.mapHomologicalComplex c).obj K) :=
   (unopFunctor _ _).mapIso (cylinder.mapHomologicalComplexObjIso K.op H.op hc).op.symm
 
+/--
+@isnad1 id=eq.1h6v.s11.ccc4e2a707e3 from=seed src=0 shape=b6f7b9a1 vocab=b1cdc07f
+-/
 @[reassoc (attr := simp)]
 lemma mapHomologicalComplexObjIso_inv_map_π₀ :
     (mapHomologicalComplexObjIso K H hc).inv ≫ (H.mapHomologicalComplex c).map (π₀ K) =
@@ -195,6 +213,9 @@ lemma mapHomologicalComplexObjIso_inv_map_π₀ :
   Quiver.Hom.op_inj ((opFunctor _ _).map_injective
     (cylinder.map_ι₀_mapHomologicalComplexObjIso_hom K.op H.op hc))
 
+/--
+@isnad1 id=eq.1h6v.s11.94cee0491680 from=seed src=0 shape=b6f7b9a1 vocab=aaa73e0e
+-/
 @[reassoc (attr := simp)]
 lemma mapHomologicalComplexObjIso_inv_map_π₁ :
     (mapHomologicalComplexObjIso K H hc).inv ≫ (H.mapHomologicalComplex c).map (π₁ K) =

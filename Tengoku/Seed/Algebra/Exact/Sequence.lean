@@ -36,7 +36,9 @@ open Function
 
 variable {k : Type*} [DivisionRing k]
 
-/-- The Euler characteristic of a finite exact sequence is zero. -/
+/-- The Euler characteristic of a finite exact sequence is zero.
+@isnad1 id=eq.3h4v.s11.673303e98118 from=seed src=0 shape=3a3ae859 vocab=6b9efcf6
+-/
 public lemma sum_neg_one_pow_finrank_eq_zero_of_exact {n : ℕ} (V : Fin (n + 2) → Type*)
     [∀ i, AddCommGroup (V i)] [∀ i, Module k (V i)] [∀ i, FiniteDimensional k (V i)]
     (f : (i : Fin (n + 1)) → V i.castSucc →ₗ[k] V i.succ)
@@ -102,7 +104,9 @@ private lemma sum_neg_one_pow_finrank_eq_zero_of_exact_six_aux {V₀ V₁ V₂ V
 this lemma plays in the proof of `LinearMap.index_comp`.
 
 In theory one could write a `simproc` which conjured up this lemma for a sequence of any length and
-then one would not need to have this special-case lemma at all. -/
+then one would not need to have this special-case lemma at all.
+@isnad1 id=eq.6h12v.s10.02d1967a2615 from=seed src=0 shape=9154d50a vocab=4b3dc6ed
+-/
 public lemma sum_neg_one_pow_finrank_eq_zero_of_exact_six
     {V₀ : Type u₀} [AddCommGroup V₀] [Module k V₀] [FiniteDimensional k V₀]
     {V₁ : Type u₁} [AddCommGroup V₁] [Module k V₁] [FiniteDimensional k V₁]

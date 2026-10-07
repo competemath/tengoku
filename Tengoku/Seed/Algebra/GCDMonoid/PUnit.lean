@@ -39,14 +39,23 @@ instance : StrongNormalizedGCDMonoid PUnit where
 
 instance normalizedGCDMonoid : NormalizedGCDMonoid PUnit := inferInstance
 
+/--
+@isnad1 id=eq.0h2v.s4.719078e86ddd from=seed src=0 shape=40766c62 vocab=1681e888
+-/
 @[simp]
 theorem gcd_eq {x y : PUnit} : gcd x y = unit :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.bd4e074c6516 from=seed src=0 shape=40766c62 vocab=c5cce030
+-/
 @[simp]
 theorem lcm_eq {x y : PUnit} : lcm x y = unit :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.78f1d5c587c4 from=seed src=0 shape=47e22901 vocab=d91a35d2
+-/
 @[simp]
 theorem norm_unit_eq {x : PUnit} : normUnit x = 1 :=
   rfl

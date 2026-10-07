@@ -54,6 +54,9 @@ def AffineTargetMorphismProperty.diagonal (P : AffineTargetMorphismProperty) :
     ∀ ⦃U₁ U₂ : Scheme⦄ (f₁ : U₁ ⟶ X) (f₂ : U₂ ⟶ X) [IsAffine U₁] [IsAffine U₂] [IsOpenImmersion f₁]
       [IsOpenImmersion f₂], P (pullback.mapDesc f₁ f₂ f)
 
+/--
+@isnad1 id=respects.0h1v.s3.dab4565e06ef from=seed src=0 shape=b37cee96 vocab=616d46e5
+-/
 instance AffineTargetMorphismProperty.diagonal_respectsIso (P : AffineTargetMorphismProperty)
     [P.toProperty.RespectsIso] : P.diagonal.toProperty.RespectsIso := by
   delta AffineTargetMorphismProperty.diagonal
@@ -67,6 +70,9 @@ instance AffineTargetMorphismProperty.diagonal_respectsIso (P : AffineTargetMorp
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=diagonal.0h8v.s10.f7b9ee425068 from=seed src=0 shape=69c859f0 vocab=d4a0290e
+-/
 theorem HasAffineProperty.diagonal_of_openCover (P) {Q} [HasAffineProperty P Q]
     {X Y : Scheme.{u}} (f : X ⟶ Y) (𝒰 : Scheme.OpenCover.{v} Y) [∀ i, IsAffine (𝒰.X i)]
     (𝒰' : ∀ i, Scheme.OpenCover.{w} (pullback f (𝒰.f i))) [∀ i j, IsAffine ((𝒰' i).X j)]
@@ -95,6 +101,9 @@ theorem HasAffineProperty.diagonal_of_openCover (P) {Q} [HasAffineProperty P Q]
     ext1 <;> simp [Scheme.Cover.pullbackHom]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=diagonal.0h7v.s7.fa4cd0c2389b from=seed src=0 shape=8c5e901e vocab=d54ec5ea
+-/
 theorem HasAffineProperty.diagonal_of_openCover_diagonal
     (P) {Q} [HasAffineProperty P Q]
     {X Y : Scheme.{u}} (f : X ⟶ Y) (𝒰 : Scheme.OpenCover Y) [∀ i, IsAffine (𝒰.X i)]
@@ -104,6 +113,9 @@ theorem HasAffineProperty.diagonal_of_openCover_diagonal
     (fun _ _ _ ↦ h𝒰 _ _ _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=diagonal.1h11v.s6.412667b9880f from=seed src=0 shape=31899b65 vocab=e09299da
+-/
 theorem HasAffineProperty.diagonal_of_diagonal_of_isPullback
     (P) {Q} [HasAffineProperty P Q]
     {X Y U V : Scheme.{u}} {f : X ⟶ Y} {g : U ⟶ Y}
@@ -122,6 +134,9 @@ theorem HasAffineProperty.diagonal_of_diagonal_of_isPullback
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iff.0h5v.s5.b72ba2f5cffb from=seed src=0 shape=2fd5c175 vocab=8d8e606d
+-/
 theorem HasAffineProperty.diagonal_iff
     (P) {Q} [HasAffineProperty P Q] {X Y : Scheme.{u}} {f : X ⟶ Y} [IsAffine Y] :
     Q.diagonal f ↔ P.diagonal f := by
@@ -136,6 +151,9 @@ theorem HasAffineProperty.diagonal_iff
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=diagonal.0h6v.s8.75a396bbded6 from=seed src=0 shape=e12d43e5 vocab=e6f7439d
+-/
 theorem AffineTargetMorphismProperty.diagonal_of_openCover_source
     {Q : AffineTargetMorphismProperty} [Q.IsLocal]
     {X Y : Scheme.{u}} (f : X ⟶ Y) (𝒰 : Scheme.OpenCover.{v} X) [∀ i, IsAffine (𝒰.X i)]
@@ -157,6 +175,9 @@ theorem AffineTargetMorphismProperty.diagonal_of_openCover_source
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=islocal.0h1v.s3.9fb09fb7530e from=seed src=0 shape=2c86d966 vocab=3f01972b
+-/
 instance HasAffineProperty.diagonal_affineProperty_isLocal
     {Q : AffineTargetMorphismProperty} [Q.IsLocal] :
     Q.diagonal.IsLocal where
@@ -211,6 +232,9 @@ end Diagonal
 
 section Universally
 
+/--
+@isnad1 id=iszarisk.0h2v.s8.ef5cf1c0982e from=seed src=0 shape=c1ff551e vocab=6bfcfbe1
+-/
 theorem universally_isZariskiLocalAtTarget (P : MorphismProperty Scheme)
     (hP₂ : ∀ {X Y : Scheme.{u}} (f : X ⟶ Y) {ι : Type u} (U : ι → Y.Opens)
       (_ : IsOpenCover U), (∀ i, P (f ∣_ U i)) → P f) : IsZariskiLocalAtTarget P.universally := by
@@ -233,6 +257,9 @@ theorem universally_isZariskiLocalAtTarget (P : MorphismProperty Scheme)
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iszarisk.0h1v.s3.07d647853aa0 from=seed src=0 shape=dfe6fd44 vocab=213d8ba3
+-/
 lemma universally_isZariskiLocalAtSource (P : MorphismProperty Scheme)
     [IsZariskiLocalAtSource P] : IsZariskiLocalAtSource P.universally := by
   refine .mk_of_iff_of_zeroHypercover ?_
@@ -264,7 +291,9 @@ def topologically
 variable (P : ∀ {α β : Type u} [TopologicalSpace α] [TopologicalSpace β] (_ : α → β), Prop)
 
 /-- If a property of maps of topological spaces is stable under composition, the induced
-morphism property of schemes is stable under composition. -/
+morphism property of schemes is stable under composition.
+@isnad1 id=isstable.0h2v.s6.4b2b47f46b71 from=seed src=0 shape=7dbb8f61 vocab=dd6e0cbb
+-/
 lemma topologically_isStableUnderComposition
     (hP : ∀ {α β γ : Type u} [TopologicalSpace α] [TopologicalSpace β] [TopologicalSpace γ]
       (f : α → β) (g : β → γ) (_ : P f) (_ : P g), P (g ∘ f)) :
@@ -274,7 +303,9 @@ lemma topologically_isStableUnderComposition
     exact hP _ _ hf hg
 
 /-- If a property of maps of topological spaces is satisfied by all homeomorphisms,
-every isomorphism of schemes satisfies the induced property. -/
+every isomorphism of schemes satisfies the induced property.
+@isnad1 id=le.0h2v.s6.73947fca2d5d from=seed src=0 shape=4dc75b8e vocab=dd0c30f3
+-/
 lemma topologically_iso_le
     (hP : ∀ {α β : Type u} [TopologicalSpace α] [TopologicalSpace β] (f : α ≃ₜ β), P f) :
     MorphismProperty.isomorphisms Scheme ≤ (topologically P) := by
@@ -282,7 +313,9 @@ lemma topologically_iso_le
   exact hP (TopCat.homeoOfIso (asIso e.base))
 
 /-- If a property of maps of topological spaces is satisfied by homeomorphisms and is stable
-under composition, the induced property on schemes respects isomorphisms. -/
+under composition, the induced property on schemes respects isomorphisms.
+@isnad1 id=respects.0h3v.s7.cb9fb33392e6 from=seed src=0 shape=6350a7d5 vocab=5027d11c
+-/
 lemma topologically_respectsIso
     (hP₁ : ∀ {α β : Type u} [TopologicalSpace α] [TopologicalSpace β] (f : α ≃ₜ β), P f)
     (hP₂ : ∀ {α β γ : Type u} [TopologicalSpace α] [TopologicalSpace β] [TopologicalSpace γ]
@@ -293,7 +326,9 @@ lemma topologically_respectsIso
   MorphismProperty.respectsIso_of_isStableUnderComposition (topologically_iso_le P hP₁)
 
 /-- To check that a topologically defined morphism property is local at the target,
-we may check the corresponding properties on topological spaces. -/
+we may check the corresponding properties on topological spaces.
+@isnad1 id=iszarisk.0h3v.s8.f2879c0d0da7 from=seed src=0 shape=7a1d3833 vocab=8b116b19
+-/
 lemma topologically_isZariskiLocalAtTarget [(topologically P).RespectsIso]
     (hP₂ : ∀ {α β : Type u} [TopologicalSpace α] [TopologicalSpace β] (f : α → β) (s : Set β)
       (_ : Continuous f) (_ : IsOpen s), P f → P (s.restrictPreimage f))
@@ -311,7 +346,9 @@ lemma topologically_isZariskiLocalAtTarget [(topologically P).RespectsIso]
     exact hf i
 
 /-- A variant of `topologically_isZariskiLocalAtTarget`
-that takes one iff statement instead of two implications. -/
+that takes one iff statement instead of two implications.
+@isnad1 id=iszarisk.1h1v.s7.8b50fdd1ec7b from=seed src=0 shape=bdead38f vocab=5234bc96
+-/
 lemma topologically_isZariskiLocalAtTarget' [(topologically P).RespectsIso]
     (hP : ∀ {α β : Type u} [TopologicalSpace α] [TopologicalSpace β] (f : α → β) {ι : Type u}
       (U : ι → Opens β) (_ : IsOpenCover U) (_ : Continuous f),
@@ -323,6 +360,9 @@ lemma topologically_isZariskiLocalAtTarget' [(topologically P).RespectsIso]
   rw [IsOpenCover, ← top_le_iff]
   exact le_iSup (![⊤, Opens.mk s hs] ∘ Equiv.ulift) ⟨0⟩
 
+/--
+@isnad1 id=iszarisk.0h3v.s8.0de045d4f83b from=seed src=0 shape=931a5d52 vocab=2bc7c853
+-/
 lemma topologically_isZariskiLocalAtSource [(topologically P).RespectsIso]
     (hP₁ : ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Y)
       (_ : Continuous f) (U : Opens X), P f → P (f ∘ ((↑) : U → X)))
@@ -337,7 +377,9 @@ lemma topologically_isZariskiLocalAtSource [(topologically P).RespectsIso]
     exact hP₂ f f.continuous _ hU hf
 
 /-- A variant of `topologically_isZariskiLocalAtSource`
-that takes one iff statement instead of two implications. -/
+that takes one iff statement instead of two implications.
+@isnad1 id=iszarisk.1h1v.s7.e80f523d8b39 from=seed src=0 shape=27b1dd1e vocab=2bc7c853
+-/
 lemma topologically_isZariskiLocalAtSource' [(topologically P).RespectsIso]
     (hP : ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Y) {ι : Type u}
       (U : ι → Opens X) (_ : IsOpenCover U) (_ : Continuous f),
@@ -360,7 +402,9 @@ section Stalkwise
 
 variable {P : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
 
-/-- If `P` respects isos, then `stalkwise P` respects isos. -/
+/-- If `P` respects isos, then `stalkwise P` respects isos.
+@isnad1 id=respects.1h1v.s6.1c8cda77d08e from=seed src=0 shape=ab5e03ad vocab=91a78ac1
+-/
 lemma stalkwise_respectsIso (hP : RingHom.RespectsIso P) :
     (stalkwise P).RespectsIso where
   precomp {X Y Z} e (he : IsIso e) f hf := by
@@ -374,7 +418,9 @@ lemma stalkwise_respectsIso (hP : RingHom.RespectsIso P) :
     rw [Scheme.Hom.stalkMap_comp]
     exact (RingHom.RespectsIso.cancel_left_isIso hP _ _).mpr <| hf x
 
-/-- If `P` respects isos, then `stalkwise P` is local at the target. -/
+/-- If `P` respects isos, then `stalkwise P` is local at the target.
+@isnad1 id=iszarisk.1h1v.s6.dca2bb9817ca from=seed src=0 shape=9f4eeb07 vocab=e28d67c2
+-/
 lemma stalkwiseIsZariskiLocalAtTarget_of_respectsIso (hP : RingHom.RespectsIso P) :
     IsZariskiLocalAtTarget (stalkwise P) := by
   have hP' : (RingHom.toMorphismProperty P).RespectsIso :=
@@ -391,7 +437,9 @@ lemma stalkwiseIsZariskiLocalAtTarget_of_respectsIso (hP : RingHom.RespectsIso P
       morphismRestrictStalkMap f (U i) ⟨x, hi⟩).mp <| hf i ⟨x, hi⟩
 
 set_option backward.isDefEq.respectTransparency false in
-/-- If `P` respects isos, then `stalkwise P` is local at the source. -/
+/-- If `P` respects isos, then `stalkwise P` is local at the source.
+@isnad1 id=iszarisk.1h1v.s6.ec832b39a0da from=seed src=0 shape=9f4eeb07 vocab=307cace2
+-/
 lemma stalkwise_isZariskiLocalAtSource_of_respectsIso (hP : RingHom.RespectsIso P) :
     IsZariskiLocalAtSource (stalkwise P) := by
   let := stalkwise_respectsIso hP
@@ -405,6 +453,9 @@ lemma stalkwise_isZariskiLocalAtSource_of_respectsIso (hP : RingHom.RespectsIso 
     rw [← hP.cancel_right_isIso _ ((U i).ι.stalkMap ⟨x, hi⟩)]
     simpa [Scheme.Hom.stalkMap_comp] using hf i ⟨x, hi⟩
 
+/--
+@isnad1 id=iff.1h4v.s9.520e1dffe334 from=seed src=0 shape=35326c3e vocab=7c89a85f
+-/
 lemma stalkwise_SpecMap_iff (hP : RingHom.RespectsIso P) {R S : CommRingCat} (φ : R ⟶ S) :
     stalkwise P (Spec.map φ) ↔ ∀ (p : Ideal S) (_ : p.IsPrime),
       P (Localization.localRingHom _ p φ.hom rfl) := by
@@ -420,7 +471,9 @@ end Stalkwise
 namespace AffineTargetMorphismProperty
 
 /-- If `P` is local at the target, to show that `P` is stable under base change, it suffices to
-check this for base change along a morphism of affine schemes. -/
+check this for base change along a morphism of affine schemes.
+@isnad1 id=isstable.1h1v.s4.1e55c7041342 from=seed src=0 shape=021e4b75 vocab=b4c187fc
+-/
 lemma isStableUnderBaseChange_of_isStableUnderBaseChangeOnAffine_of_isZariskiLocalAtTarget
     (P : MorphismProperty Scheme) [IsZariskiLocalAtTarget P]
     (hP₂ : (of P).IsStableUnderBaseChange) :

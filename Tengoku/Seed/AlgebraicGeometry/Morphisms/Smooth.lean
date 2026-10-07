@@ -65,6 +65,9 @@ class Smooth (f : X ⟶ Y) : Prop where
     ∀ {U : Y.Opens} (_ : IsAffineOpen U) {V : X.Opens} (_ : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U),
       (f.appLE U V e).hom.Smooth
 
+/--
+@isnad1 id=smooth.3h5v.s9.7c1ddebc4a68 from=seed src=0 shape=3953db45 vocab=f877ba3a
+-/
 alias Scheme.Hom.smooth_appLE := Smooth.smooth_appLE
 
 @[deprecated (since := "2026-02-09")] alias IsSmooth := Smooth
@@ -81,6 +84,7 @@ instance : HasRingHomProperty @Smooth RingHom.Smooth where
 A morphism of schemes is smooth if and only if for each `x : X` there exists an affine open
 neighborhood `V` of `x` and an affine open neighborhood `U` of `f.base x` with `V ≤ f ⁻¹ᵁ U`
 such that the induced map `Γ(Y, U) ⟶ Γ(X, V)` is standard smooth.
+@isnad1 id=iff.0h3v.s10.fdfcfa5d0914 from=seed src=0 shape=13877a1b vocab=cd927983
 -/
 lemma Smooth.iff_forall_exists_isStandardSmooth (f : X ⟶ Y) :
     Smooth f ↔
@@ -97,6 +101,9 @@ lemma Smooth.iff_forall_exists_isStandardSmooth (f : X ⟶ Y) :
   · exact isStandardSmooth_stableUnderCompositionWithLocalizationAway.left
   · exact isStandardSmooth_respectsIso
 
+/--
+@isnad1 id=ex.0h4v.s10.580c58781500 from=seed src=0 shape=31e53f42 vocab=cd927983
+-/
 lemma Smooth.exists_isStandardSmooth (f : X ⟶ Y) [Smooth f] (x : X) :
     ∃ (U : Y.Opens) (_ : IsAffineOpen U) (V : X.Opens) (_ : IsAffineOpen V) (_ : x ∈ V)
         (e : V ≤ f ⁻¹ᵁ U), (f.appLE U V e).hom.IsStandardSmooth :=
@@ -106,7 +113,9 @@ lemma Smooth.exists_isStandardSmooth (f : X ⟶ Y) [Smooth f] (x : X) :
 instance : MorphismProperty.IsStableUnderComposition @Smooth :=
   HasRingHomProperty.stableUnderComposition Smooth.stableUnderComposition
 
-/-- The composition of smooth morphisms is smooth. -/
+/-- The composition of smooth morphisms is smooth.
+@isnad1 id=smooth.0h5v.s5.328b7923ccfd from=seed src=0 shape=ee2632eb vocab=ca965540
+-/
 instance smooth_comp {Z : Scheme.{u}} (g : Y ⟶ Z) [Smooth f] [Smooth g] :
     Smooth (f ≫ g) :=
   MorphismProperty.comp_mem _ f g ‹Smooth f› ‹Smooth g›
@@ -114,7 +123,9 @@ instance smooth_comp {Z : Scheme.{u}} (g : Y ⟶ Z) [Smooth f] [Smooth g] :
 instance (priority := low) [Smooth f] : Flat f where
   flat_appLE {_} hU {_} hV e := (f.smooth_appLE hU hV e).flat
 
-/-- Smooth is stable under base change. -/
+/-- Smooth is stable under base change.
+@isnad1 id=isstable.0h0v.s2.6cb9e4bcef07 from=seed src=0 shape=25b03439 vocab=6c080638
+-/
 instance smooth_isStableUnderBaseChange : MorphismProperty.IsStableUnderBaseChange @Smooth :=
   HasRingHomProperty.isStableUnderBaseChange Smooth.isStableUnderBaseChange
 
@@ -123,6 +134,9 @@ instance : MorphismProperty.Respects @Smooth @IsOpenImmersion :=
     (RingHom.Smooth.stableUnderComposition.stableUnderCompositionWithLocalizationAway
       RingHom.Smooth.holdsForLocalizationAway).1
 
+/--
+@isnad1 id=isstable.0h0v.s2.6cb9e4bcef07 from=seed src=0 shape=25b03439 vocab=6c080638
+-/
 @[deprecated (since := "2026-02-09")]
 alias isSmooth_isStableUnderBaseChange := smooth_isStableUnderBaseChange
 
@@ -140,13 +154,18 @@ class SmoothOfRelativeDimension : Prop where
 
 @[deprecated (since := "2026-02-09")] alias IsSmoothOfRelativeDimension := SmoothOfRelativeDimension
 
-/-- If `f` is smooth of any relative dimension, it is smooth. -/
+/-- If `f` is smooth of any relative dimension, it is smooth.
+@isnad1 id=smooth.0h4v.s4.0ae81cbf3680 from=seed src=0 shape=1c163f00 vocab=15f30c70
+-/
 lemma SmoothOfRelativeDimension.smooth [SmoothOfRelativeDimension n f] : Smooth f := by
   rw [Smooth.iff_forall_exists_isStandardSmooth]
   intro x
   obtain ⟨U, hU, V, hV, hx, e, hf⟩ := exists_isStandardSmoothOfRelativeDimension (n := n) (f := f) x
   exact ⟨U, hU, V, hV, hx, e, hf.isStandardSmooth⟩
 
+/--
+@isnad1 id=smooth.0h4v.s4.0ae81cbf3680 from=seed src=0 shape=1c163f00 vocab=15f30c70
+-/
 @[deprecated (since := "2026-02-09")]
 alias IsSmoothOfRelativeDimension.isSmooth := SmoothOfRelativeDimension.smooth
 
@@ -163,13 +182,18 @@ instance : HasRingHomProperty (@SmoothOfRelativeDimension n)
     simp [Subtype.exists]
     grind [Scheme.affineOpens]
 
-/-- Smooth of relative dimension `n` is stable under base change. -/
+/-- Smooth of relative dimension `n` is stable under base change.
+@isnad1 id=isstable.0h1v.s2.56490d685be1 from=seed src=0 shape=1a6c1393 vocab=8a1f2766
+-/
 lemma smoothOfRelativeDimension_isStableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange (@SmoothOfRelativeDimension n) :=
   HasRingHomProperty.isStableUnderBaseChange <| locally_isStableUnderBaseChange
     isStandardSmoothOfRelativeDimension_respectsIso
     (isStandardSmoothOfRelativeDimension_isStableUnderBaseChange n)
 
+/--
+@isnad1 id=isstable.0h1v.s2.56490d685be1 from=seed src=0 shape=1a6c1393 vocab=8a1f2766
+-/
 @[deprecated (since := "2026-02-09")]
 alias isSmoothOfRelativeDimension_isStableUnderBaseChange :=
   smoothOfRelativeDimension_isStableUnderBaseChange
@@ -203,7 +227,9 @@ instance (f : X ⟶ Y) (U : X.Opens) (V : Y.Opens) (e) [Smooth f] :
   delta Scheme.Hom.resLE; infer_instance
 
 /-- If `f` is smooth of relative dimension `n` and `g` is smooth of relative dimension
-`m`, then `f ≫ g` is smooth of relative dimension `n + m`. -/
+`m`, then `f ≫ g` is smooth of relative dimension `n + m`.
+@isnad1 id=smoothof.0h7v.s6.287290314d83 from=seed src=0 shape=5b401976 vocab=6ca45037
+-/
 instance smoothOfRelativeDimension_comp {Z : Scheme.{u}} (g : Y ⟶ Z)
     [hf : SmoothOfRelativeDimension n f] [hg : SmoothOfRelativeDimension m g] :
     SmoothOfRelativeDimension (n + m) (f ≫ g) where
@@ -244,6 +270,9 @@ instance (priority := 100) [hf : Smooth f] : LocallyOfFinitePresentation f := by
   rw [HasRingHomProperty.eq_affineLocally @Smooth] at hf
   exact affineLocally_le (fun hf ↦ hf.finitePresentation) f hf
 
+/--
+@isnad1 id=iff.4h6v.s11.c5cc6b88e520 from=seed src=0 shape=3befdc97 vocab=437ab21e
+-/
 lemma formallySmooth_stalkMap_iff {f : X ⟶ Y} {x : X} (U : Y.Opens)
       (hU : IsAffineOpen U) (V : X.Opens) (hV : IsAffineOpen V) (hVU : V ≤ f ⁻¹ᵁ U)
       (hx : x ∈ V) :
@@ -264,6 +293,9 @@ lemma formallySmooth_stalkMap_iff {f : X ⟶ Y} {x : X} (U : Y.Opens)
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.1h4v.s10.dfe7b0d00dbe from=seed src=0 shape=4742d665 vocab=cad08501
+-/
 lemma exists_smooth_of_formallySmooth_stalk
     (f : X ⟶ Y) [LocallyOfFinitePresentation f]
     (x : X) (H : (f.stalkMap x).hom.FormallySmooth) :
@@ -294,6 +326,9 @@ lemma exists_smooth_of_formallySmooth_stalk
     simp only [algebraMap_toAlgebra, RingHomCompTriple.comp_apply, ← ConcreteCategory.comp_apply,
       Scheme.Hom.appLE_map]
 
+/--
+@isnad1 id=isopen.0h3v.s9.a96913a53bb7 from=seed src=0 shape=c2e3fc93 vocab=2795fb62
+-/
 lemma Scheme.Hom.isOpen_smoothLocus [LocallyOfFinitePresentation f] :
     IsOpen { x | (f.stalkMap x).hom.FormallySmooth } := by
   refine isOpen_iff_forall_mem_open.mpr fun x hx ↦ ?_
@@ -306,9 +341,15 @@ lemma Scheme.Hom.isOpen_smoothLocus [LocallyOfFinitePresentation f] :
 def Scheme.Hom.smoothLocus (f : X ⟶ Y) [LocallyOfFinitePresentation f] : X.Opens :=
   ⟨{ x | (f.stalkMap x).hom.FormallySmooth }, f.isOpen_smoothLocus⟩
 
+/--
+@isnad1 id=iff.0h4v.s9.7521592da6aa from=seed src=0 shape=4f608f61 vocab=c94f6d2c
+-/
 lemma Scheme.Hom.mem_smoothLocus {f : X ⟶ Y} [LocallyOfFinitePresentation f] {x : X} :
     x ∈ f.smoothLocus ↔ (f.stalkMap x).hom.FormallySmooth := .rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.1c454f4c81fe from=seed src=0 shape=d39b4bcf vocab=e321b461
+-/
 lemma Scheme.Hom.smoothLocus_eq_top (f : X ⟶ Y) [Smooth f] :
     f.smoothLocus = ⊤ := by
   rw [← top_le_iff]
@@ -323,6 +364,9 @@ lemma Scheme.Hom.smoothLocus_eq_top (f : X ⟶ Y) [Smooth f] :
   exact inferInstanceAs (Algebra.IsSmoothAt _ _)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s6.dc9cda8fc6ae from=seed src=0 shape=ec557cbf vocab=7b3e011d
+-/
 lemma Scheme.Hom.smoothLocus_eq_top_iff {f : X ⟶ Y} [LocallyOfFinitePresentation f] :
     f.smoothLocus = ⊤ ↔ Smooth f := by
   refine ⟨fun H ↦ ?_, fun _ ↦ f.smoothLocus_eq_top⟩
@@ -336,6 +380,9 @@ lemma Scheme.Hom.smoothLocus_eq_top_iff {f : X ⟶ Y} [LocallyOfFinitePresentati
   exact (RingHom.Smooth.propertyIsLocal.respectsIso.arrow_mk_iso_iff
     (arrowResLEAppIso f U V hVU)).mpr H
 
+/--
+@isnad1 id=eq.0h5v.s7.415cedbe24f6 from=seed src=0 shape=5351e5c5 vocab=ca408760
+-/
 lemma Scheme.Hom.preimage_smoothLocus_eq {U : Scheme.{u}}
     (f : U ⟶ X) (g : X ⟶ Y) [IsOpenImmersion f] [LocallyOfFinitePresentation g] :
     f ⁻¹ᵁ g.smoothLocus = (f ≫ g).smoothLocus := by
@@ -345,6 +392,9 @@ lemma Scheme.Hom.preimage_smoothLocus_eq {U : Scheme.{u}}
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.0h3v.s6.be6fda0fe5ef from=seed src=0 shape=76af2ddc vocab=4c64a995
+-/
 lemma Scheme.Hom.genericPoint_mem_smoothLocus_of_perfectField
     {K : Type u} [Field K] [PerfectField K] [IsIntegral X]
     (f : X ⟶ Spec (.of K)) [LocallyOfFinitePresentation f] : genericPoint X ∈ f.smoothLocus := by
@@ -364,6 +414,9 @@ lemma Scheme.Hom.genericPoint_mem_smoothLocus_of_perfectField
   exact Algebra.FormallySmooth.of_perfectField
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=dense.0h3v.s6.e808057bf15c from=seed src=0 shape=ddf46215 vocab=d47f9d0b
+-/
 lemma Scheme.Hom.dense_smoothLocus_of_perfectField
     {K : Type u} [Field K] [PerfectField K] [IsReduced X]
     (f : X ⟶ Spec (.of K)) [LocallyOfFinitePresentation f] : Dense (f.smoothLocus : Set X) := by

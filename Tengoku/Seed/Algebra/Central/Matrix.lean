@@ -18,6 +18,9 @@ public section
 namespace Matrix
 variable {n R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A] [Fintype n] [DecidableEq n]
 
+/--
+@isnad1 id=eq.0h3v.s6.b71ec2c270e0 from=seed src=0 shape=92c9e67d vocab=e68c64ec
+-/
 theorem subalgebraCenter_eq_scalarAlgHom_map :
     Subalgebra.center R (Matrix n n A) = (Subalgebra.center R A).map (scalarAlgHom n R) :=
   SetLike.coe_injective center_eq_scalar_image
@@ -28,6 +31,9 @@ namespace Algebra.IsCentral
 variable (K D : Type*) [CommSemiring K] [Semiring D] [Algebra K D] [IsCentral K D]
 
 open Matrix in
+/--
+@isnad1 id=iscentra.0h3v.s5.723521b8d6db from=seed src=0 shape=a4297630 vocab=efef45f6
+-/
 instance matrix (ι : Type*) [Fintype ι] [DecidableEq ι] :
     Algebra.IsCentral K (Matrix ι ι D) where
   out := subalgebraCenter_eq_scalarAlgHom_map.trans_le <|

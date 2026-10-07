@@ -52,6 +52,9 @@ def pushforwardSections {M : SheafOfModules.{v} R} (s : M.sections) :
   property _ := s.property _
 
 variable (M) in
+/--
+@isnad1 id=bijectiv.0h9v.s7.1a5aa0e11c86 from=seed src=0 shape=2ad43e5c vocab=412bdbd6
+-/
 lemma bijective_pushforwardSections [F.Final] :
     Function.Bijective (pushforwardSections φ (M := M)) :=
   Functor.bijective_sectionsPrecomp _ _
@@ -66,10 +69,16 @@ noncomputable def unitToPushforwardObjUnit : unit S ⟶ (pushforward.{u} φ).obj
     ext
     exact ConcreteCategory.congr_hom (φ.hom.naturality f) _
 
+/--
+@isnad1 id=eq.0h10v.s12.d2dc20e606a5 from=seed src=0 shape=df0f9026 vocab=47d16420
+-/
 lemma unitToPushforwardObjUnit_val_app_apply {X : Cᵒᵖ} (a : S.obj.obj X) :
     (unitToPushforwardObjUnit φ).val.app X a = φ.hom.app X a := rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h10v.s10.bbdf9d2ab208 from=seed src=0 shape=34f0058d vocab=ce64e23f
+-/
 lemma pushforwardSections_unitHomEquiv
     {M : SheafOfModules.{u} R} (f : unit R ⟶ M) :
     pushforwardSections φ (M.unitHomEquiv f) =
@@ -88,11 +97,17 @@ noncomputable def pullbackObjUnitToUnit :
     (pullback.{u} φ).obj (unit S) ⟶ unit R :=
   ((pullbackPushforwardAdjunction.{u} φ).homEquiv _ _).symm (unitToPushforwardObjUnit φ)
 
+/--
+@isnad1 id=eq.0h8v.s10.a7d3af67894f from=seed src=0 shape=bd11ff34 vocab=f1d4a62d
+-/
 @[simp]
 lemma pullbackPushforwardAdjunction_homEquiv_symm_unitToPushforwardObjUnit :
     ((pullbackPushforwardAdjunction.{u} φ).homEquiv _ _).symm (unitToPushforwardObjUnit φ) =
       pullbackObjUnitToUnit φ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.65df075c564c from=seed src=0 shape=26470a1c vocab=f8d33627
+-/
 @[simp]
 lemma pullbackPushforwardAdjunction_homEquiv_pullbackObjUnitToUnit :
     (pullbackPushforwardAdjunction.{u} φ).homEquiv _ _ (pullbackObjUnitToUnit φ) =
@@ -122,6 +137,9 @@ noncomputable def pullbackObjFreeIso (I : Type u) :
     Sigma.mapIso (fun _ ↦ asIso (pullbackObjUnitToUnit φ))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s9.363b54f5aa64 from=seed src=0 shape=aefd06aa vocab=e00aa3f2
+-/
 @[reassoc (attr := simp)]
 lemma pullback_map_ιFree_comp_pullbackObjFreeIso_hom {I : Type u} (i : I) :
     (pullback φ).map (ιFree i) ≫ (pullbackObjFreeIso φ I).hom =
@@ -129,6 +147,9 @@ lemma pullback_map_ιFree_comp_pullbackObjFreeIso_hom {I : Type u} (i : I) :
   simp [pullbackObjFreeIso, ιFree]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h11v.s9.3caa3a3c3cd7 from=seed src=0 shape=a8bf837a vocab=4cff07f4
+-/
 @[reassoc (attr := simp)]
 lemma pullbackObjFreeIso_hom_naturality {I J : Type u} (f : I → J) :
     (pullback φ).map (freeMap f) ≫ (pullbackObjFreeIso φ J).hom =

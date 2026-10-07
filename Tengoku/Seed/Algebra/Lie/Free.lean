@@ -86,18 +86,33 @@ inductive Rel : lib R X → lib R X → Prop
 
 variable {R X}
 
+/--
+@isnad1 id=rel.1h5v.s7.19cdec5eb943 from=seed src=0 shape=1f4237c4 vocab=e1a25e65
+-/
 theorem Rel.addLeft (a : lib R X) {b c : lib R X} (h : Rel R X b c) : Rel R X (a + b) (a + c) := by
   rw [add_comm _ b, add_comm _ c]; exact h.add_right _
 
+/--
+@isnad1 id=rel.1h4v.s7.84dc13253ed6 from=seed src=0 shape=8c26a7f0 vocab=9b722764
+-/
 theorem Rel.neg {a b : lib R X} (h : Rel R X a b) : Rel R X (-a) (-b) := by
   simpa only [neg_one_smul] using h.smul (-1)
 
+/--
+@isnad1 id=rel.1h5v.s7.ba72ee56edf2 from=seed src=0 shape=1f4237c4 vocab=f7ab5040
+-/
 theorem Rel.subLeft (a : lib R X) {b c : lib R X} (h : Rel R X b c) : Rel R X (a - b) (a - c) := by
   simpa only [sub_eq_add_neg] using h.neg.addLeft a
 
+/--
+@isnad1 id=rel.1h5v.s7.79044925db48 from=seed src=0 shape=160ef4ea vocab=f7ab5040
+-/
 theorem Rel.subRight {a b : lib R X} (c : lib R X) (h : Rel R X a b) : Rel R X (a - c) (b - c) := by
   simpa only [sub_eq_add_neg] using h.add_right (-c)
 
+/--
+@isnad1 id=rel.1h6v.s8.66ac250de319 from=seed src=0 shape=86622813 vocab=cd1cf304
+-/
 theorem Rel.smulOfTower {S : Type*} [Monoid S] [DistribMulAction S R] [IsScalarTower S R R] (t : S)
     (a b : lib R X) (h : Rel R X a b) : Rel R X (t • a) (t • b) := by
   rw [← smul_one_smul R t a, ← smul_one_smul R t b]
@@ -186,18 +201,30 @@ variable {L : Type w} [LieRing L] [LieAlgebra R L]
 def liftAux (f : X → CommutatorRing L) :=
   lib.lift R f
 
+/--
+@isnad1 id=eq.0h6v.s9.3196b7ddebd3 from=seed src=0 shape=3dbc4c5b vocab=0c81d988
+-/
 theorem liftAux_map_smul (f : X → L) (t : R) (a : lib R X) :
     liftAux R f (t • a) = t • liftAux R f a :=
   map_smul _ t a
 
+/--
+@isnad1 id=eq.0h6v.s9.1f78ae11683e from=seed src=0 shape=e4860d01 vocab=1ba676db
+-/
 theorem liftAux_map_add (f : X → L) (a b : lib R X) :
     liftAux R f (a + b) = liftAux R f a + liftAux R f b :=
   map_add _ a b
 
+/--
+@isnad1 id=eq.0h6v.s9.8036497fffb1 from=seed src=0 shape=6b1bcf13 vocab=46c65bb4
+-/
 theorem liftAux_map_mul (f : X → L) (a b : lib R X) :
     liftAux R f (a * b) = ⁅liftAux R f a, liftAux R f b⁆ :=
   map_mul _ a b
 
+/--
+@isnad1 id=eq.1h6v.s9.86d8fcf1c9dd from=seed src=0 shape=da7227ac vocab=cbbe795f
+-/
 theorem liftAux_spec (f : X → L) (a b : lib R X) (h : FreeLieAlgebra.Rel R X a b) :
     liftAux R f a = liftAux R f b := by
   induction h with
@@ -235,26 +262,44 @@ def lift : (X → L) ≃ (FreeLieAlgebra R X →ₗ⁅R⁆ L) where
     let F' := F.toNonUnitalAlgHom.comp (mk R)
     exact NonUnitalAlgHom.congr_fun (lib.lift_comp_of R F') a
 
+/--
+@isnad1 id=eq.0h4v.s8.37c81f33a2aa from=seed src=0 shape=78be4fbf vocab=a9dde6c0
+-/
 @[simp]
 theorem lift_symm_apply (F : FreeLieAlgebra R X →ₗ⁅R⁆ L) : (lift R).symm F = F ∘ of R := rfl
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h4v.s7.1ff3e3632240 from=seed src=0 shape=46f1fb25 vocab=07a1abb9
+-/
 @[simp]
 theorem of_comp_lift (f : X → L) : lift R f ∘ of R = f := (lift R).left_inv f
 
+/--
+@isnad1 id=iff.0h5v.s7.c2ace8515755 from=seed src=0 shape=87bf02b2 vocab=07a1abb9
+-/
 @[simp]
 theorem lift_unique (f : X → L) (g : FreeLieAlgebra R X →ₗ⁅R⁆ L) : g ∘ of R = f ↔ g = lift R f :=
   (lift R).symm_apply_eq
 
+/--
+@isnad1 id=eq.0h5v.s7.89cd2b1481e2 from=seed src=0 shape=66ce244e vocab=805bd1d0
+-/
 @[simp]
 theorem lift_of_apply (f : X → L) (x) : lift R f (of R x) = f x := by
   rw [← @Function.comp_apply _ _ _ (lift R f) (of R) x, of_comp_lift]
 
+/--
+@isnad1 id=eq.0h4v.s7.78ea739bb955 from=seed src=0 shape=b294cd77 vocab=07a1abb9
+-/
 @[simp]
 theorem lift_comp_of (F : FreeLieAlgebra R X →ₗ⁅R⁆ L) : lift R (F ∘ of R) = F := by
   rw [← lift_symm_apply]; exact (lift R).apply_symm_apply F
 
+/--
+@isnad1 id=eq.1h5v.s7.9cadda5e1b13 from=seed src=0 shape=57bc8602 vocab=29c2682a
+-/
 @[ext]
 theorem hom_ext {F₁ F₂ : FreeLieAlgebra R X →ₗ⁅R⁆ L} (h : ∀ x, F₁ (of R x) = F₂ (of R x)) :
     F₁ = F₂ :=

@@ -77,6 +77,9 @@ noncomputable def i : K ⟶ mappingCone (𝟙 (I K)) ⊞ L :=
     (HomComplex.Cochain.ofHoms (fun n => Injective.ι _)) (by cat_disch)) f
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s11.8931e36e3b05 from=seed src=0 shape=a91d9c41 vocab=eb2e8bb2
+-/
 @[reassoc]
 lemma i_f_comp (n : ℤ) : (i f).f n ≫
     (biprod.fst : mappingCone (𝟙 (I K)) ⊞ L ⟶ _).f n ≫
@@ -88,6 +91,9 @@ instance (n : ℤ) : Mono ((i f).f n) := mono_of_mono_fac (i_f_comp f n)
 
 instance : Mono (i f) := HomologicalComplex.mono_of_mono_f (i f) inferInstance
 
+/--
+@isnad1 id=eq.0h4v.s9.8a747603798b from=seed src=0 shape=0eda8407 vocab=50b22250
+-/
 @[reassoc (attr := simp)]
 lemma fac : i f ≫ p K L = f := by simp [i]
 
@@ -96,6 +102,9 @@ instance (n : ℤ) : Injective ((mappingCone (𝟙 (I K))).X n) :=
     inferInstance
 
 variable (K L) in
+/--
+@isnad1 id=degreewi.0h3v.s8.f5648ed42c8b from=seed src=0 shape=3b6825e3 vocab=02e3afa5
+-/
 lemma degreewiseEpiWithInjectiveKernel_p :
     degreewiseEpiWithInjectiveKernel (p K L) := by
   intro n
@@ -125,6 +134,9 @@ instance : QuasiIso (p K L) := (homotopyEquiv K L).quasiIso_hom
 
 end cm5b
 
+/--
+@isnad1 id=ex.0h5v.s10.78b3984e463a from=seed src=0 shape=a3e77440 vocab=f4509caf
+-/
 lemma cm5b (n : ℤ) [K.IsStrictlyGE (n + 1)] [L.IsStrictlyGE n] :
     ∃ (L' : CochainComplex C ℤ) (_hL' : L'.IsStrictlyGE n)
       (i : K ⟶ L') (p : L' ⟶ L) (_hi : Mono i)

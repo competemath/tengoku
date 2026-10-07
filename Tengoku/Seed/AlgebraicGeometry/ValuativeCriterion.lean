@@ -91,19 +91,31 @@ def ValuativeCriterion : MorphismProperty Scheme :=
 
 variable {X Y : Scheme.{u}} (f : X ⟶ Y)
 
+/--
+@isnad1 id=iff.0h3v.s4.a5f9e581c32f from=seed src=0 shape=2caf7a2f vocab=b8ea64b0
+-/
 lemma ValuativeCriterion.iff {f : X ⟶ Y} :
     ValuativeCriterion f ↔ Existence f ∧ Uniqueness f := by
   change (∀ _, _) ↔ (∀ _, _) ∧ (∀ _, _)
   simp_rw [← forall_and, unique_iff_subsingleton_and_nonempty, and_comm, CommSq.HasLift.iff]
 
+/--
+@isnad1 id=eq.0h0v.s5.fae96d143a01 from=seed src=0 shape=c783555f vocab=ef5bd672
+-/
 lemma ValuativeCriterion.eq :
     ValuativeCriterion = Existence ⊓ Uniqueness := by
   ext X Y f
   exact iff
 
+/--
+@isnad1 id=existenc.0h4v.s4.a4ddd1752347 from=seed src=0 shape=892cb9de vocab=b820589f
+-/
 lemma ValuativeCriterion.existence {f : X ⟶ Y} (h : ValuativeCriterion f) :
     ValuativeCriterion.Existence f := (iff.mp h).1
 
+/--
+@isnad1 id=uniquene.0h4v.s4.5423d6f9aaf4 from=seed src=0 shape=892cb9de vocab=7af5377b
+-/
 lemma ValuativeCriterion.uniqueness {f : X ⟶ Y} (h : ValuativeCriterion f) :
     ValuativeCriterion.Uniqueness f := (iff.mp h).2
 
@@ -112,6 +124,9 @@ namespace ValuativeCriterion.Existence
 open IsLocalRing
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=speciali.0h4v.s7.d9277b266164 from=seed src=0 shape=82a81c7a vocab=34615581
+-/
 @[stacks 01KE]
 lemma specializingMap (H : ValuativeCriterion.Existence f) :
     SpecializingMap f := by
@@ -143,6 +158,9 @@ instance {R S : CommRingCat} (e : R ≅ S) : IsLocalHom e.hom.hom :=
   isLocalHom_of_isIso _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=existenc.0h4v.s4.082759ddb104 from=seed src=0 shape=a8ea7bb7 vocab=0aa66af6
+-/
 lemma of_specializingMap (H : (topologically @SpecializingMap).universally f) :
     ValuativeCriterion.Existence f := by
   rintro ⟨R, K, i₁, i₂, ⟨w⟩⟩
@@ -197,6 +215,9 @@ lemma of_specializingMap (H : (topologically @SpecializingMap).universally f) :
     rw [← Spec_stalkClosedPointIso, ← Spec.map_comp_assoc,
       Iso.inv_hom_id, Spec.map_id, Category.id_comp]
 
+/--
+@isnad1 id=isstable.0h0v.s2.ed2d2afdbb36 from=seed src=0 shape=25b03439 vocab=b5f658d7
+-/
 instance stableUnderBaseChange : ValuativeCriterion.Existence.IsStableUnderBaseChange := by
   constructor
   intro Y' X X' Y Y'_to_Y f X'_to_X f' hP hf commSq
@@ -214,6 +235,9 @@ instance stableUnderBaseChange : ValuativeCriterion.Existence.IsStableUnderBaseC
     rw [hP.lift_snd]
     rw [commSq.commSq.w]
 
+/--
+@isnad1 id=eq.0h0v.s3.48162219ed94 from=seed src=0 shape=a9d0558b vocab=536d48aa
+-/
 @[stacks 01KE]
 protected lemma eq :
     ValuativeCriterion.Existence = (topologically @SpecializingMap).universally := by
@@ -233,7 +257,9 @@ lemma UniversallyClosed.eq_valuativeCriterion :
     @UniversallyClosed = ValuativeCriterion.Existence ⊓ @QuasiCompact := by
   rw [universallyClosed_eq_universallySpecializing, ValuativeCriterion.Existence.eq]
 
-/-- The **valuative criterion** for universally closed morphisms. -/
+/-- The **valuative criterion** for universally closed morphisms.
+@isnad1 id=universa.0h4v.s4.f4624cffc963 from=seed src=0 shape=d492d1ea vocab=056e0a6c
+-/
 @[stacks 01KF]
 lemma UniversallyClosed.of_valuativeCriterion [QuasiCompact f]
     (hf : ValuativeCriterion.Existence f) : UniversallyClosed f := by
@@ -242,7 +268,9 @@ lemma UniversallyClosed.of_valuativeCriterion [QuasiCompact f]
 
 section Uniqueness
 
-/-- The **valuative criterion** for separated morphisms. -/
+/-- The **valuative criterion** for separated morphisms.
+@isnad1 id=issepara.0h4v.s4.f61a51e5c5d1 from=seed src=0 shape=d492d1ea vocab=e9f75ba7
+-/
 @[stacks 01L0]
 lemma IsSeparated.of_valuativeCriterion [QuasiSeparated f]
     (hf : ValuativeCriterion.Uniqueness f) : IsSeparated f where
@@ -271,6 +299,9 @@ lemma IsSeparated.of_valuativeCriterion [QuasiSeparated f]
         exact congrArg CommSq.LiftStruct.l h₁₂
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=uniquene.0h3v.s4.e61fb25b60f5 from=seed src=0 shape=892cb9de vocab=b91dd603
+-/
 @[stacks 01KZ]
 lemma IsSeparated.valuativeCriterion [IsSeparated f] : ValuativeCriterion.Uniqueness f := by
   intro S
@@ -337,7 +368,9 @@ lemma IsProper.eq_valuativeCriterion :
   change _ ∧ _ ∧ _ ∧ _ ∧ _ ↔ _ ∧ _ ∧ _ ∧ _ ∧ _
   tauto
 
-/-- The **valuative criterion** for proper morphisms. -/
+/-- The **valuative criterion** for proper morphisms.
+@isnad1 id=isproper.0h4v.s5.c6e746420e45 from=seed src=0 shape=11fa3805 vocab=3c56557b
+-/
 @[stacks 0BX5]
 lemma IsProper.of_valuativeCriterion [QuasiCompact f] [QuasiSeparated f] [LocallyOfFiniteType f]
     (H : ValuativeCriterion f) : IsProper f := by

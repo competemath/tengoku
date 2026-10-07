@@ -44,6 +44,9 @@ variable {R : Type u}
 /-! ### Distrib -/
 namespace Distrib
 
+/--
+@isnad1 id=eq.2h3v.s5.8a52baeea2e9 from=seed src=0 shape=af00b9c8 vocab=f4c62258
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : Distrib R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -59,6 +62,9 @@ end Distrib
 /-! ### NonUnitalNonAssocSemiring -/
 namespace NonUnitalNonAssocSemiring
 
+/--
+@isnad1 id=eq.2h3v.s6.8c8dfd94d799 from=seed src=0 shape=af00b9c8 vocab=af7bc523
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalNonAssocSemiring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -69,6 +75,9 @@ namespace NonUnitalNonAssocSemiring
   -- Prove equality of parts using already-proved extensionality lemmas.
   congr; ext : 1; assumption
 
+/--
+@isnad1 id=injectiv.0h1v.s3.c8c4bbbd42af from=seed src=0 shape=fc766b23 vocab=c6471d71
+-/
 theorem toDistrib_injective : Function.Injective (@toDistrib R) := by
   intro _ _ h
   ext x y
@@ -80,10 +89,16 @@ end NonUnitalNonAssocSemiring
 /-! ### NonUnitalSemiring -/
 namespace NonUnitalSemiring
 
+/--
+@isnad1 id=injectiv.0h1v.s3.5b190858dcfe from=seed src=0 shape=fc766b23 vocab=42534130
+-/
 theorem toNonUnitalNonAssocSemiring_injective :
     Function.Injective (@toNonUnitalNonAssocSemiring R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.25901d5d5511 from=seed src=0 shape=af00b9c8 vocab=4ee88921
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalSemiring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -98,6 +113,9 @@ end NonUnitalSemiring
 This section also includes results for `AddMonoidWithOne`, `AddCommMonoidWithOne`, etc.
 as these are considered implementation detail of the ring classes.
 TODO consider relocating these lemmas.
+-/
+/--
+@isnad1 id=eq.2h3v.s5.bfc16ce358b5 from=seed src=0 shape=cef77652 vocab=bab69a46
 -/
 @[ext] theorem AddMonoidWithOne.ext ⦃inst₁ inst₂ : AddMonoidWithOne R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
@@ -116,10 +134,16 @@ TODO consider relocating these lemmas.
   rcases inst₁ with @⟨⟨⟩⟩; rcases inst₂ with @⟨⟨⟩⟩
   congr
 
+/--
+@isnad1 id=injectiv.0h1v.s3.28feedc5adbd from=seed src=0 shape=fc766b23 vocab=b331f9fd
+-/
 theorem AddCommMonoidWithOne.toAddMonoidWithOne_injective :
     Function.Injective (@AddCommMonoidWithOne.toAddMonoidWithOne R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.773488e3dcb2 from=seed src=0 shape=cef77652 vocab=912b99c9
+-/
 @[ext] theorem AddCommMonoidWithOne.ext ⦃inst₁ inst₂ : AddCommMonoidWithOne R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_one : (letI := inst₁; One.one : R) = (letI := inst₂; One.one : R)) :
@@ -132,6 +156,9 @@ namespace NonAssocSemiring
 /-! The best place to prove that the `NatCast` is determined by the other operations is probably in
 an extensionality lemma for `AddMonoidWithOne`, in which case we may as well do the typeclasses
 defined in `Mathlib/Algebra/GroupWithZero/Defs.lean` as well. -/
+/--
+@isnad1 id=eq.2h3v.s6.c217265cf037 from=seed src=0 shape=af00b9c8 vocab=4330860e
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonAssocSemiring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -154,6 +181,9 @@ defined in `Mathlib/Algebra/GroupWithZero/Defs.lean` as well. -/
   cases inst₁; cases inst₂
   congr
 
+/--
+@isnad1 id=injectiv.0h1v.s3.b42c23c36f92 from=seed src=0 shape=fc766b23 vocab=cafa68f7
+-/
 theorem toNonUnitalNonAssocSemiring_injective :
     Function.Injective (@toNonUnitalNonAssocSemiring R) := by
   intro _ _ _
@@ -164,6 +194,9 @@ end NonAssocSemiring
 /-! ### NonUnitalNonAssocRing -/
 namespace NonUnitalNonAssocRing
 
+/--
+@isnad1 id=eq.2h3v.s6.8fc9a1b59905 from=seed src=0 shape=af00b9c8 vocab=10af9691
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalNonAssocRing R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -172,6 +205,9 @@ namespace NonUnitalNonAssocRing
   rcases inst₁ with @⟨_, ⟨⟩⟩; rcases inst₂ with @⟨_, ⟨⟩⟩
   congr; (ext : 1; assumption)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.27b5e8cec130 from=seed src=0 shape=fc766b23 vocab=71795f0e
+-/
 theorem toNonUnitalNonAssocSemiring_injective :
     Function.Injective (@toNonUnitalNonAssocSemiring R) := by
   intro _ _ h
@@ -185,6 +221,9 @@ end NonUnitalNonAssocRing
 /-! ### NonUnitalRing -/
 namespace NonUnitalRing
 
+/--
+@isnad1 id=eq.2h3v.s6.ee3db0d820ab from=seed src=0 shape=af00b9c8 vocab=c0d5a2dc
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalRing R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -195,6 +234,9 @@ namespace NonUnitalRing
   cases inst₁; cases inst₂
   congr
 
+/--
+@isnad1 id=injectiv.0h1v.s3.29bbf0400022 from=seed src=0 shape=fc766b23 vocab=80961092
+-/
 theorem toNonUnitalSemiring_injective :
     Function.Injective (@toNonUnitalSemiring R) := by
   intro _ _ h
@@ -202,6 +244,9 @@ theorem toNonUnitalSemiring_injective :
   · exact congrArg (·.toAdd.add x y) h
   · exact congrArg (·.toMul.mul x y) h
 
+/--
+@isnad1 id=injectiv.0h1v.s3.5190332958b7 from=seed src=0 shape=fc766b23 vocab=3f4abb72
+-/
 theorem toNonUnitalNonAssocring_injective :
     Function.Injective (@toNonUnitalNonAssocRing R) := by
   intro _ _ _
@@ -214,6 +259,9 @@ end NonUnitalRing
 This section also includes results for `AddGroupWithOne`, `AddCommGroupWithOne`, etc.
 as these are considered implementation detail of the ring classes.
 TODO consider relocating these lemmas. -/
+/--
+@isnad1 id=eq.2h3v.s6.a12f75025620 from=seed src=0 shape=cef77652 vocab=b0ce8b46
+-/
 @[ext] theorem AddGroupWithOne.ext ⦃inst₁ inst₂ : AddGroupWithOne R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_one : (letI := inst₁; One.one : R) = (letI := inst₂; One.one)) :
@@ -231,6 +279,9 @@ TODO consider relocating these lemmas. -/
   rcases inst₁ with @⟨⟨⟩⟩; rcases inst₂ with @⟨⟨⟩⟩
   congr
 
+/--
+@isnad1 id=eq.2h3v.s6.ccc2d1bba9b7 from=seed src=0 shape=cef77652 vocab=1e2029e4
+-/
 @[ext] theorem AddCommGroupWithOne.ext ⦃inst₁ inst₂ : AddCommGroupWithOne R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_one : (letI := inst₁; One.one : R) = (letI := inst₂; One.one)) :
@@ -245,6 +296,9 @@ TODO consider relocating these lemmas. -/
 
 namespace NonAssocRing
 
+/--
+@isnad1 id=eq.2h3v.s6.bbc852090a39 from=seed src=0 shape=af00b9c8 vocab=e64b1f37
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonAssocRing R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -259,6 +313,9 @@ namespace NonAssocRing
   cases inst₁; cases inst₂
   congr <;> solve | injection h₁ | injection h₂ | injection h₃
 
+/--
+@isnad1 id=injectiv.0h1v.s3.0065fa2eed79 from=seed src=0 shape=fc766b23 vocab=43d6ed91
+-/
 theorem toNonAssocSemiring_injective :
     Function.Injective (@toNonAssocSemiring R) := by
   intro _ _ h
@@ -266,6 +323,9 @@ theorem toNonAssocSemiring_injective :
   · exact congrArg (·.toAdd.add x y) h
   · exact congrArg (·.toMul.mul x y) h
 
+/--
+@isnad1 id=injectiv.0h1v.s3.89aa226c3d48 from=seed src=0 shape=fc766b23 vocab=f70228d8
+-/
 theorem toNonUnitalNonAssocring_injective :
     Function.Injective (@toNonUnitalNonAssocRing R) := by
   intro _ _ _
@@ -276,6 +336,9 @@ end NonAssocRing
 /-! ### Semiring -/
 namespace Semiring
 
+/--
+@isnad1 id=eq.2h3v.s6.db71662735c4 from=seed src=0 shape=af00b9c8 vocab=f5fe30e7
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : Semiring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -293,6 +356,9 @@ namespace Semiring
   cases inst₁; cases inst₂
   congr <;> solve | injection h₁ | injection h₂
 
+/--
+@isnad1 id=injectiv.0h1v.s3.f0ac5aa1b77a from=seed src=0 shape=fc766b23 vocab=383e15cb
+-/
 theorem toNonUnitalSemiring_injective :
     Function.Injective (@toNonUnitalSemiring R) := by
   intro _ _ h
@@ -300,6 +366,9 @@ theorem toNonUnitalSemiring_injective :
   · exact congrArg (·.toAdd.add x y) h
   · exact congrArg (·.toMul.mul x y) h
 
+/--
+@isnad1 id=injectiv.0h1v.s3.36d0b43f7327 from=seed src=0 shape=fc766b23 vocab=0aa1441d
+-/
 theorem toNonAssocSemiring_injective :
     Function.Injective (@toNonAssocSemiring R) := by
   intro _ _ h
@@ -312,6 +381,9 @@ end Semiring
 /-! ### Ring -/
 namespace Ring
 
+/--
+@isnad1 id=eq.2h3v.s6.98ab08dcac5b from=seed src=0 shape=af00b9c8 vocab=309b5614
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : Ring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -330,6 +402,9 @@ namespace Ring
   cases inst₁; cases inst₂
   congr <;> solve | injection h₂ | injection h₃
 
+/--
+@isnad1 id=injectiv.0h1v.s3.2c3962db5dcd from=seed src=0 shape=fc766b23 vocab=ef1ae346
+-/
 theorem toNonUnitalRing_injective :
     Function.Injective (@toNonUnitalRing R) := by
   intro _ _ h
@@ -337,6 +412,9 @@ theorem toNonUnitalRing_injective :
   · exact congrArg (·.toAdd.add x y) h
   · exact congrArg (·.toMul.mul x y) h
 
+/--
+@isnad1 id=injectiv.0h1v.s3.a6f2d6781153 from=seed src=0 shape=fc766b23 vocab=1b4652c4
+-/
 theorem toNonAssocRing_injective :
     Function.Injective (@toNonAssocRing R) := by
   intro _ _ h
@@ -344,6 +422,9 @@ theorem toNonAssocRing_injective :
   · exact congrArg (·.toAdd.add x y) h
   · exact congrArg (·.toMul.mul x y) h
 
+/--
+@isnad1 id=injectiv.0h1v.s3.f2af88cd2183 from=seed src=0 shape=fc766b23 vocab=b08350ae
+-/
 theorem toSemiring_injective :
     Function.Injective (@toSemiring R) := by
   intro _ _ h
@@ -356,10 +437,16 @@ end Ring
 /-! ### NonUnitalNonAssocCommSemiring -/
 namespace NonUnitalNonAssocCommSemiring
 
+/--
+@isnad1 id=injectiv.0h1v.s3.b00f29d10392 from=seed src=0 shape=fc766b23 vocab=85754437
+-/
 theorem toNonUnitalNonAssocSemiring_injective :
     Function.Injective (@toNonUnitalNonAssocSemiring R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.9a7026a4179c from=seed src=0 shape=af00b9c8 vocab=760cd164
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalNonAssocCommSemiring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -372,10 +459,16 @@ end NonUnitalNonAssocCommSemiring
 /-! ### NonUnitalCommSemiring -/
 namespace NonUnitalCommSemiring
 
+/--
+@isnad1 id=injectiv.0h1v.s3.0e7c4efa44fa from=seed src=0 shape=fc766b23 vocab=ecbc614a
+-/
 theorem toNonUnitalSemiring_injective :
     Function.Injective (@toNonUnitalSemiring R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.1fa6babbe727 from=seed src=0 shape=af00b9c8 vocab=d4878312
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalCommSemiring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -390,10 +483,16 @@ end NonUnitalCommSemiring
 /-! ### NonUnitalNonAssocCommRing -/
 namespace NonUnitalNonAssocCommRing
 
+/--
+@isnad1 id=injectiv.0h1v.s3.5ee2782d722d from=seed src=0 shape=fc766b23 vocab=f21f5b2e
+-/
 theorem toNonUnitalNonAssocRing_injective :
     Function.Injective (@toNonUnitalNonAssocRing R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.fa2145af07d6 from=seed src=0 shape=af00b9c8 vocab=21f983a5
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalNonAssocCommRing R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -406,10 +505,16 @@ end NonUnitalNonAssocCommRing
 /-! ### NonUnitalCommRing -/
 namespace NonUnitalCommRing
 
+/--
+@isnad1 id=injectiv.0h1v.s3.a54f6f40531d from=seed src=0 shape=fc766b23 vocab=c7326d62
+-/
 theorem toNonUnitalRing_injective :
     Function.Injective (@toNonUnitalRing R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.54bb93bfccb8 from=seed src=0 shape=af00b9c8 vocab=a1cb5d64
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : NonUnitalCommRing R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -424,10 +529,16 @@ end NonUnitalCommRing
 /-! ### CommSemiring -/
 namespace CommSemiring
 
+/--
+@isnad1 id=injectiv.0h1v.s3.0eaab67f6d5b from=seed src=0 shape=fc766b23 vocab=15b8f210
+-/
 theorem toSemiring_injective :
     Function.Injective (@toSemiring R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.2c3f1244dd7d from=seed src=0 shape=af00b9c8 vocab=0047e306
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : CommSemiring R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :
@@ -440,9 +551,15 @@ end CommSemiring
 /-! ### CommRing -/
 namespace CommRing
 
+/--
+@isnad1 id=injectiv.0h1v.s3.c5082808de35 from=seed src=0 shape=fc766b23 vocab=7fd42721
+-/
 theorem toRing_injective : Function.Injective (@toRing R) := by
   rintro ⟨⟩ ⟨⟩ _; congr
 
+/--
+@isnad1 id=eq.2h3v.s6.efe44f656c7e from=seed src=0 shape=af00b9c8 vocab=7bb0ab33
+-/
 @[ext] theorem ext ⦃inst₁ inst₂ : CommRing R⦄
     (h_add : local_hAdd[R, inst₁] = local_hAdd[R, inst₂])
     (h_mul : local_hMul[R, inst₁] = local_hMul[R, inst₂]) :

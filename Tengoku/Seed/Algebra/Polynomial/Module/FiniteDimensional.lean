@@ -31,6 +31,9 @@ variable {R K M A : Type*} {a : A}
 
 namespace Module.AEval
 
+/--
+@isnad1 id=istorsio.2h5v.s8.f4a34c3f2867 from=seed src=0 shape=f3103f3a vocab=502ff8c9
+-/
 theorem isTorsion_of_aeval_eq_zero [CommSemiring R] [NoZeroDivisors R] [Semiring A] [Algebra R A]
     [AddCommMonoid M] [Module A M] [Module R M] [IsScalarTower R A M]
     {p : R[X]} (h : aeval a p = 0) (h' : p ≠ 0) :
@@ -41,6 +44,9 @@ theorem isTorsion_of_aeval_eq_zero [CommSemiring R] [NoZeroDivisors R] [Semiring
 
 variable (K M a)
 
+/--
+@isnad1 id=istorsio.0h4v.s8.f2ad7287ba9c from=seed src=0 shape=3fece239 vocab=b9213baa
+-/
 theorem isTorsion_of_finiteDimensional [Field K] [Ring A] [Algebra K A]
     [AddCommGroup M] [Module A M] [Module K M] [IsScalarTower K A M] [FiniteDimensional K A] :
     IsTorsion K[X] (AEval K M a) :=

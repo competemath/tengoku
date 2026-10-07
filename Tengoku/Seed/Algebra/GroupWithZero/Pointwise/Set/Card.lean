@@ -28,6 +28,9 @@ variable [GroupWithZero G₀] [Zero M₀] [MulActionWithZero G₀ M₀] {a : G�
 lemma _root_.Cardinal.mk_smul_set₀ (ha : a ≠ 0) (s : Set M₀) : #↥(a • s) = #s :=
   Cardinal.mk_image_eq_of_injOn _ _ (MulAction.injective₀ ha).injOn
 
+/--
+@isnad1 id=eq.1h4v.s6.8ea057fbfadd from=seed src=0 shape=8c15eefc vocab=e623ef65
+-/
 lemma natCard_smul_set₀ (ha : a ≠ 0) (s : Set M₀) : Nat.card ↥(a • s) = Nat.card s :=
   Nat.card_image_of_injective (MulAction.injective₀ ha) _
 

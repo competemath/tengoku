@@ -88,6 +88,7 @@ namespace MixedCharZero
 /--
 Reduction to `p` prime: When proving any statement `P` about mixed characteristic rings we
 can always assume that `p` is prime.
+@isnad1 id=iff.0h2v.s5.8395dd3008cb from=seed src=0 shape=18ddab8f vocab=787dcb91
 -/
 lemma reduce_to_p_prime {P : Prop} :
     (∀ p > 0, MixedCharZero R p → P) ↔ ∀ p : ℕ, p.Prime → MixedCharZero R p → P := by
@@ -114,6 +115,7 @@ lemma reduce_to_p_prime {P : Prop} :
 /--
 Reduction to `I` prime ideal: When proving statements about mixed characteristic rings,
 after we reduced to `p` prime, we can assume that the ideal `I` in the definition is maximal.
+@isnad1 id=iff.1h2v.s7.e4515aaafddc from=seed src=0 shape=7a5fc6c9 vocab=6fdfedcf
 -/
 lemma reduce_to_maximal_ideal {p : ℕ} (hp : Nat.Prime p) :
     (∃ I : Ideal R, I ≠ ⊤ ∧ CharP (R ⧸ I) p) ↔ ∃ I : Ideal R, I.IsMaximal ∧ CharP (R ⧸ I) p := by
@@ -269,12 +271,15 @@ private lemma to_not_mixedCharZero (h : ∀ I : Ideal R, I ≠ ⊤ → CharZero 
 /--
 A ring of characteristic zero has equal characteristic iff it does not
 have mixed characteristic for any `p`.
+@isnad1 id=iff.0h1v.s6.701a304ab092 from=seed src=0 shape=fad9e5dd vocab=286ceca4
 -/
 theorem iff_not_mixedCharZero [CharZero R] :
     (∀ I : Ideal R, I ≠ ⊤ → CharZero (R ⧸ I)) ↔ ∀ p > 0, ¬MixedCharZero R p :=
   ⟨to_not_mixedCharZero R, of_not_mixedCharZero R⟩
 
-/-- A ring is a `ℚ`-algebra iff it has equal characteristic zero. -/
+/-- A ring is a `ℚ`-algebra iff it has equal characteristic zero.
+@isnad1 id=iff.0h1v.s6.c35656ebdb7e from=seed src=0 shape=b6a66767 vocab=903f0b90
+-/
 theorem nonempty_algebraRat_iff :
     Nonempty (Algebra ℚ R) ↔ ∀ I : Ideal R, I ≠ ⊤ → CharZero (R ⧸ I) := by
   constructor
@@ -289,6 +294,7 @@ end EqualCharZero
 
 /--
 A ring of characteristic zero is not a `ℚ`-algebra iff it has mixed characteristic for some `p`.
+@isnad1 id=iff.0h1v.s5.b3eb41734aec from=seed src=0 shape=d81de043 vocab=17c914b6
 -/
 lemma isEmpty_algebraRat_iff_mixedCharZero [CharZero R] :
     IsEmpty (Algebra ℚ R) ↔ ∃ p > 0, MixedCharZero R p := by
@@ -310,7 +316,9 @@ section MainStatements
 
 variable {P : Prop}
 
-/-- Split a `Prop` in characteristic zero into equal and mixed characteristic. -/
+/-- Split a `Prop` in characteristic zero into equal and mixed characteristic.
+@isnad1 id=var.0h4v.s5.b59ac22e2508 from=seed src=0 shape=2dfb2e6c vocab=05187ea9
+-/
 theorem split_equalCharZero_mixedCharZero [CharZero R] (h_equal : Algebra ℚ R → P)
     (h_mixed : ∀ p : ℕ, Nat.Prime p → MixedCharZero R p → P) : P := by
   by_cases h : ∃ p > 0, MixedCharZero R p
@@ -326,6 +334,7 @@ Split any `Prop` over `R` into the three cases:
 - positive characteristic.
 - equal characteristic zero.
 - mixed characteristic `(0, p)`.
+@isnad1 id=var.0h5v.s5.80b29fe9756b from=seed src=0 shape=472c9e10 vocab=5e077833
 -/
 theorem split_by_characteristic (h_pos : ∀ p : ℕ, p ≠ 0 → CharP R p → P)
     (h_equal : Algebra ℚ R → P)
@@ -343,6 +352,7 @@ In an `IsDomain R`, split any `Prop` over `R` into the three cases:
 - *prime* characteristic.
 - equal characteristic zero.
 - mixed characteristic `(0, p)`.
+@isnad1 id=var.0h5v.s5.c5ef98a3139d from=seed src=0 shape=3254bcc6 vocab=12cf238b
 -/
 theorem split_by_characteristic_domain [IsDomain R]
     (h_pos : ∀ p : ℕ, Nat.Prime p → CharP R p → P)
@@ -357,6 +367,7 @@ In a local ring `R`, split any predicate over `R` into the three cases:
 - *prime power* characteristic.
 - equal characteristic zero.
 - mixed characteristic `(0, p)`.
+@isnad1 id=var.0h5v.s5.303155755282 from=seed src=0 shape=24584b6f vocab=a461ec33
 -/
 theorem split_by_characteristic_localRing [IsLocalRing R]
     (h_pos : ∀ p : ℕ, IsPrimePow p → CharP R p → P) (h_equal : Algebra ℚ R → P)

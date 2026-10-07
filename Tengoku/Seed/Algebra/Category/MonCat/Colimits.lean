@@ -127,10 +127,16 @@ instance monoidColimitType : Monoid (ColimitType F) where
   mul_assoc := Quotient.ind fun _ => Quotient.ind₂ fun _ _ =>
     Quotient.sound <| Relation.mul_assoc _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.8cdb5629a3ed from=seed src=0 shape=93e6c3fd vocab=5cd1bffb
+-/
 @[simp]
 theorem quot_one : Quot.mk Setoid.r one = (1 : ColimitType F) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.3eec697d06a1 from=seed src=0 shape=ef78691e vocab=6ce63d14
+-/
 @[simp]
 theorem quot_mul (x y : Prequotient F) : Quot.mk Setoid.r (mul x y) =
     @HMul.hMul (ColimitType F) (ColimitType F) (ColimitType F) _
@@ -152,6 +158,9 @@ def coconeMorphism (j : J) : F.obj j ⟶ colimit F :=
     map_one' := Quot.sound (Relation.one _)
     map_mul' _ _ := Quot.sound (Relation.mul _ _ _) }
 
+/--
+@isnad1 id=eq.0h5v.s6.fde75378c20d from=seed src=0 shape=73e7b3e5 vocab=8c8f4bb4
+-/
 @[simp]
 theorem cocone_naturality {j j' : J} (f : j ⟶ j') :
     F.map f ≫ coconeMorphism F j' = coconeMorphism F j := by
@@ -159,6 +168,9 @@ theorem cocone_naturality {j j' : J} (f : j ⟶ j') :
   apply Quot.sound
   apply Relation.map
 
+/--
+@isnad1 id=eq.0h6v.s9.1638c6ee0e55 from=seed src=0 shape=8636ce4d vocab=e7b02a8e
+-/
 @[simp]
 theorem cocone_naturality_components (j j' : J) (f : j ⟶ j') (x : F.obj j) :
     (coconeMorphism F j') (F.map f x) = (coconeMorphism F j) x := by
@@ -225,6 +237,9 @@ def colimitIsColimit : IsColimit (colimitCocone F) where
       rw [quot_mul, map_mul, hx, hy]
       solve_by_elim
 
+/--
+@isnad1 id=hascolim.0h0v.s1.291f49b37f12 from=seed src=0 shape=49959d42 vocab=7189fd8e
+-/
 instance hasColimits_monCat : HasColimits MonCat where
   has_colimits_of_shape _ _ :=
     { has_colimit := fun F =>

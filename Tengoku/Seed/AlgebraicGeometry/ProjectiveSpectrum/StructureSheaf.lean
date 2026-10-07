@@ -100,16 +100,25 @@ variable {𝒜}
 open Submodule SetLike.GradedMonoid HomogeneousLocalization
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=pred.0h4v.s10.0cfd1bafbd67 from=seed src=0 shape=25518140 vocab=81ca1497
+-/
 theorem zero_mem' (U : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ) :
     (isLocallyFraction 𝒜).pred (0 : ∀ x : U.unop, at x.1) := fun x =>
   ⟨unop U, x.2, 𝟙 (unop U), ⟨0, ⟨0, zero_mem _⟩, ⟨1, one_mem_graded _⟩, _, fun _ => rfl⟩⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=pred.0h4v.s10.6398d2d23afd from=seed src=0 shape=25518140 vocab=81ca1497
+-/
 theorem one_mem' (U : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ) :
     (isLocallyFraction 𝒜).pred (1 : ∀ x : U.unop, at x.1) := fun x =>
   ⟨unop U, x.2, 𝟙 (unop U), ⟨0, ⟨1, one_mem_graded _⟩, ⟨1, one_mem_graded _⟩, _, fun _ => rfl⟩⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=pred.2h6v.s11.20ba4ee72fd8 from=seed src=0 shape=26296803 vocab=5dca48f2
+-/
 theorem add_mem' (U : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ) (a b : ∀ x : U.unop, at x.1)
     (ha : (isLocallyFraction 𝒜).pred a) (hb : (isLocallyFraction 𝒜).pred b) :
     (isLocallyFraction 𝒜).pred (a + b) := fun x => by
@@ -127,6 +136,9 @@ theorem add_mem' (U : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ) (a b : ∀ x 
   simp [wa y hy.1, wb y hy.2, ext_iff_val, add_mk, add_comm (sa * rb)]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=pred.1h5v.s10.ef7fa70f6ee9 from=seed src=0 shape=3a6c92c4 vocab=c7bea3ff
+-/
 theorem neg_mem' (U : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ) (a : ∀ x : U.unop, at x.1)
     (ha : (isLocallyFraction 𝒜).pred a) : (isLocallyFraction 𝒜).pred (-a) := fun x => by
   rcases ha x with ⟨V, m, i, j, ⟨r, r_mem⟩, ⟨s, s_mem⟩, nin, hy⟩
@@ -135,6 +147,9 @@ theorem neg_mem' (U : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ) (a : ∀ x : 
   simp only [Pi.neg_apply, ext_iff_val, val_neg, hy, val_mk, neg_mk]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=pred.2h6v.s11.66d8046689a1 from=seed src=0 shape=26296803 vocab=3b47b8e2
+-/
 theorem mul_mem' (U : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ) (a b : ∀ x : U.unop, at x.1)
     (ha : (isLocallyFraction 𝒜).pred a) (hb : (isLocallyFraction 𝒜).pred b) :
     (isLocallyFraction 𝒜).pred (a * b) := fun x => by
@@ -222,15 +237,39 @@ section
 variable {U V : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ} (i : V ⟶ U)
     (s t : (Proj.structureSheaf 𝒜).1.obj V) (x : V.unop)
 
+/--
+@isnad1 id=eq.0h8v.s12.6664b9fa5534 from=seed src=0 shape=bf495a43 vocab=f11c3bfd
+-/
 @[simp]
 theorem Proj.res_apply (x) : ((Proj.structureSheaf 𝒜).1.map i s).1 x = s.1 (i.unop x) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.60ff147209c4 from=seed src=0 shape=d05a260b vocab=559b1cce
+-/
 @[ext] theorem Proj.ext (h : s.1 = t.1) : s = t := Subtype.ext h
+/--
+@isnad1 id=eq.0h7v.s12.1de701bffe2b from=seed src=0 shape=9eba854c vocab=afa6f92c
+-/
 @[simp] theorem Proj.add_apply : (s + t).1 x = s.1 x + t.1 x := rfl
+/--
+@isnad1 id=eq.0h7v.s12.fe42f7a633f2 from=seed src=0 shape=9eba854c vocab=c1581a57
+-/
 @[simp] theorem Proj.mul_apply : (s * t).1 x = s.1 x * t.1 x := rfl
+/--
+@isnad1 id=eq.0h7v.s13.868af2492906 from=seed src=0 shape=9eba854c vocab=772793df
+-/
 @[simp] theorem Proj.sub_apply : (s - t).1 x = s.1 x - t.1 x := rfl
+/--
+@isnad1 id=eq.0h7v.s12.d5bc083c3cae from=seed src=0 shape=079819fb vocab=9ebe8422
+-/
 @[simp] theorem Proj.pow_apply (n : ℕ) : (s ^ n).1 x = s.1 x ^ n := rfl
+/--
+@isnad1 id=eq.0h5v.s12.659b3b6e931b from=seed src=0 shape=1216f317 vocab=6a8590f9
+-/
 @[simp] theorem Proj.zero_apply : (0 : (Proj.structureSheaf 𝒜).1.obj V).1 x = 0 := rfl
+/--
+@isnad1 id=eq.0h5v.s12.e295c5ccb74f from=seed src=0 shape=1216f317 vocab=6a8590f9
+-/
 @[simp] theorem Proj.one_apply : (1 : (Proj.structureSheaf 𝒜).1.obj V).1 x = 1 := rfl
 
 end
@@ -266,6 +305,9 @@ def stalkToFiberRingHom (x : ProjectiveSpectrum.top 𝒜) :
         { app := fun U =>
             openToLocalization 𝒜 ((OpenNhds.inclusion _).obj U.unop) x U.unop.2 } }
 
+/--
+@isnad1 id=eq.1h5v.s9.bbbcc1d16841 from=seed src=0 shape=77af771c vocab=e4c5083a
+-/
 @[simp]
 theorem germ_comp_stalkToFiberRingHom
     (U : Opens (ProjectiveSpectrum.top 𝒜)) (x : ProjectiveSpectrum.top 𝒜) (hx : x ∈ U) :
@@ -273,6 +315,9 @@ theorem germ_comp_stalkToFiberRingHom
       openToLocalization 𝒜 U x hx :=
   Limits.colimit.ι_desc _ _
 
+/--
+@isnad1 id=eq.1h6v.s11.94788e6dcfbc from=seed src=0 shape=226ae9d1 vocab=84b648e9
+-/
 @[simp]
 theorem stalkToFiberRingHom_germ (U : Opens (ProjectiveSpectrum.top 𝒜))
     (x : ProjectiveSpectrum.top 𝒜) (hx : x ∈ U) (s : (Proj.structureSheaf 𝒜).1.obj (op U)) :
@@ -280,6 +325,9 @@ theorem stalkToFiberRingHom_germ (U : Opens (ProjectiveSpectrum.top 𝒜))
   RingHom.ext_iff.1 (CommRingCat.hom_ext_iff.mp (germ_comp_stalkToFiberRingHom 𝒜 U x hx)) s
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.0h5v.s8.01727178183d from=seed src=0 shape=6b3ffc70 vocab=482dc79f
+-/
 theorem mem_basicOpen_den (x : ProjectiveSpectrum.top 𝒜)
     (f : HomogeneousLocalization.NumDenSameDeg 𝒜 x.asHomogeneousIdeal.toIdeal.primeCompl) :
     x ∈ ProjectiveSpectrum.basicOpen 𝒜 f.den := by
@@ -325,6 +373,9 @@ def homogeneousLocalizationToStalk (x : ProjectiveSpectrum.top 𝒜) (y : at x) 
       (Localization t.asHomogeneousIdeal.toIdeal.primeCompl) ⟨c, ht'⟩).mul_left_cancel
     rw [← map_mul, ← map_mul, hc']
 
+/--
+@isnad1 id=eq.0h5v.s9.cb9606c8ebff from=seed src=0 shape=bc7d7f52 vocab=a12b223a
+-/
 lemma homogeneousLocalizationToStalk_stalkToFiberRingHom (x z) :
     homogeneousLocalizationToStalk 𝒜 x (stalkToFiberRingHom 𝒜 x z) = z := by
   obtain ⟨U, hxU, s, rfl⟩ := (Proj.structureSheaf 𝒜).presheaf.exists_germ_eq z
@@ -343,6 +394,9 @@ lemma homogeneousLocalizationToStalk_stalkToFiberRingHom (x z) :
   simp [sectionInBasicOpen, HomogeneousLocalization.val_mk, Localization.mk_eq_mk', e t ht]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h5v.s9.a8e76b679799 from=seed src=0 shape=6452e24f vocab=a12b223a
+-/
 lemma stalkToFiberRingHom_homogeneousLocalizationToStalk (x z) :
     stalkToFiberRingHom 𝒜 x (homogeneousLocalizationToStalk 𝒜 x z) = z := by
   obtain ⟨z, rfl⟩ := Quotient.mk''_surjective z
@@ -359,12 +413,18 @@ def Proj.stalkIso' (x : ProjectiveSpectrum.top 𝒜) :
   left_inv := homogeneousLocalizationToStalk_stalkToFiberRingHom 𝒜 x
   right_inv := stalkToFiberRingHom_homogeneousLocalizationToStalk 𝒜 x
 
+/--
+@isnad1 id=eq.1h6v.s12.be3e590fd9fe from=seed src=0 shape=ef2ce61a vocab=92bdd578
+-/
 @[simp]
 theorem Proj.stalkIso'_germ (U : Opens (ProjectiveSpectrum.top 𝒜))
     (x : ProjectiveSpectrum.top 𝒜) (hx : x ∈ U) (s : (Proj.structureSheaf 𝒜).1.obj (op U)) :
     Proj.stalkIso' 𝒜 x ((Proj.structureSheaf 𝒜).presheaf.germ _ x hx s) = s.1 ⟨x, hx⟩ :=
   stalkToFiberRingHom_germ 𝒜 U x hx s
 
+/--
+@isnad1 id=eq.0h5v.s11.a323aab59ad6 from=seed src=0 shape=06b87ba4 vocab=b62933f7
+-/
 @[simp]
 theorem Proj.stalkIso'_symm_mk (x) (f) :
     (Proj.stalkIso' 𝒜 x).symm (.mk f) = (Proj.structureSheaf 𝒜).presheaf.germ _

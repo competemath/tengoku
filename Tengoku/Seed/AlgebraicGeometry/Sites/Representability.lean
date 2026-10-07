@@ -109,6 +109,9 @@ noncomputable def yonedaGluedToSheaf :
         Equiv.symm_apply_apply, ← Functor.map_comp_assoc,
         Functor.relativelyRepresentable.symmetry_fst, ((hf i).rep.isPullback' (f j)).w]))
 
+/--
+@isnad1 id=eq.0h6v.s8.15fddc0250ff from=seed src=0 shape=5ee45d00 vocab=503731a7
+-/
 @[reassoc (attr := simp)]
 lemma yoneda_toGlued_yonedaGluedToSheaf (i : ι) :
     yoneda.map (toGlued hf i) ≫ (yonedaGluedToSheaf hf).hom = f i := by
@@ -118,6 +121,9 @@ lemma yoneda_toGlued_yonedaGluedToSheaf (i : ι) :
   simpa using! GlueData.sheafValGluedMk_val _ _ _ _
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s10.c8cfb4e21f4b from=seed src=0 shape=7dcc46ef vocab=0fbd197c
+-/
 @[simp]
 lemma yonedaGluedToSheaf_app_toGlued {i : ι} :
     dsimp% (yonedaGluedToSheaf hf).hom.app _ (toGlued hf i) = yonedaEquiv (f i) := by
@@ -125,6 +131,9 @@ lemma yonedaGluedToSheaf_app_toGlued {i : ι} :
     yonedaEquiv_yoneda_map]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h9v.s10.40e60a54015f from=seed src=0 shape=bf77ae3b vocab=768a9b4b
+-/
 @[simp]
 lemma yonedaGluedToSheaf_app_comp {V U : Scheme.{u}} (γ : V ⟶ U) (α : U ⟶ (glueData hf).glued) :
     dsimp% (yonedaGluedToSheaf hf).hom.app (op V) (γ ≫ α) =
@@ -139,6 +148,9 @@ instance [Presheaf.IsLocallySurjective Scheme.zariskiTopology (Sigma.desc f)] :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h10v.s9.ff6286a50108 from=seed src=0 shape=cbc05121 vocab=447bcaba
+-/
 lemma comp_toGlued_eq {U : Scheme} {i j : ι} (a : U ⟶ X i) (b : U ⟶ X j)
     (h : yoneda.map a ≫ f i = yoneda.map b ≫ f j) :
     a ≫ toGlued hf i = b ≫ toGlued hf j := by
@@ -147,6 +159,9 @@ lemma comp_toGlued_eq {U : Scheme} {i j : ι} (a : U ⟶ X i) (b : U ⟶ X j)
   congr 1
   exact ((glueData hf).glue_condition i j).symm.trans (by simp [toGlued])
 
+/--
+@isnad1 id=eq.0h6v.s7.3923b7c06cd5 from=seed src=0 shape=56a07395 vocab=4220cad9
+-/
 @[simp]
 lemma glueData_openCover_map : (glueData hf).openCover.f j = toGlued hf j := rfl
 
@@ -204,6 +219,7 @@ Suppose
 * f is jointly surjective
 
 Then `F` is representable.
+@isnad1 id=isrepres.0h5v.s8.397a85e38fb1 from=seed src=0 shape=b8afb309 vocab=33a319df
 -/
 @[stacks 01JJ]
 theorem isRepresentable : F.1.IsRepresentable :=

@@ -113,11 +113,17 @@ open scoped Classical in
 def toFinsupp : loopAlgebra R A L ≃ₗ[R] A →₀ L :=
   TensorProduct.equivFinsuppOfBasisLeft (AddMonoidAlgebra.basis A R)
 
+/--
+@isnad1 id=eq.0h5v.s9.10ae503ceca0 from=seed src=0 shape=99a65dba vocab=2317864d
+-/
 @[simp]
 lemma toFinsupp_symm_single (c : A) (z : L) :
     (toFinsupp R A L).symm (Finsupp.single c z) = AddMonoidAlgebra.single c 1 ⊗ₜ[R] z := by
   simp [toFinsupp]
 
+/--
+@isnad1 id=eq.0h5v.s9.1e17ace267d7 from=seed src=0 shape=8d040d7b vocab=217039e3
+-/
 @[simp]
 lemma toFinsupp_single_tmul (c : A) (z : L) :
     (toFinsupp R A L (AddMonoidAlgebra.single c 1 ⊗ₜ[R] z)) = Finsupp.single c z := by
@@ -173,6 +179,9 @@ def twoCochainOfBilinear [CommRing A] [IsAddTorsionFree R] [Algebra A R]
     · exact Or.inr <| Finset.mem_image.mpr ⟨-x, by simp [h]⟩
     · exact Or.inl <| by simpa using h
 
+/--
+@isnad1 id=eq.1h6v.s14.4462049541a0 from=seed src=0 shape=54458baa vocab=af4655fa
+-/
 @[simp]
 lemma twoCochainOfBilinear_apply_apply [CommRing A] [IsAddTorsionFree R] [Algebra A R]
     (Φ : LinearMap.BilinForm R L) (hΦ : Φ.IsSymm) (x y : loopAlgebra R A L) :

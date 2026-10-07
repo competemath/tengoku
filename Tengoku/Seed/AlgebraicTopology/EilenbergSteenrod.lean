@@ -81,6 +81,9 @@ variable {HP HP' : HomologyPretheory.{u} C c}
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h8v.s9.a9d08038fd35 from=seed src=0 shape=ba6c916c vocab=e04440f7
+-/
 @[reassoc]
 lemma Hom.iso_comm_app (f : HP ⟶ HP') (i : ι) (X : TopCat.{u}) :
     (HP.iso i).hom.app X ≫ (f.homₚ i).app (ofTopCat X) = (f.hom i).app X ≫ (HP'.iso i).hom.app X :=
@@ -90,11 +93,17 @@ lemma Hom.iso_comm_app (f : HP ⟶ HP') (i : ι) (X : TopCat.{u}) :
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h9v.s10.0c408694f0c6 from=seed src=0 shape=77c0f5fb vocab=0dc5bda8
+-/
 @[reassoc]
 lemma Hom.w_app (f : HP ⟶ HP') (i j : ι) (X : TopPair.{u}) :
     (HP.δ i j).app X ≫ (f.hom j).app X.left = (f.homₚ i).app X ≫ (HP'.δ i j).app X :=
   congr($(f.w _ _).app _)
 
+/--
+@isnad1 id=eq.0h7v.s9.19807a60d4f5 from=seed src=0 shape=4ab91277 vocab=cd38db95
+-/
 @[reassoc]
 lemma iso_homₚ_inv_hom (f : HP ⟶ HP') (i : ι) :
     (HP.iso i).hom ≫ incl.whiskerLeft (f.homₚ i) ≫ (HP'.iso i).inv = f.hom i := by simp
@@ -103,17 +112,26 @@ lemma iso_homₚ_inv_hom (f : HP ⟶ HP') (i : ι) :
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h8v.s9.6b9b2c051d49 from=seed src=0 shape=4385520b vocab=a1e46606
+-/
 @[reassoc (attr := simp)]
 lemma iso_homₚ_inv_hom_app (f : HP ⟶ HP') (i : ι) (X : TopCat.{u}) :
     (HP.iso i).hom.app X ≫ (f.homₚ i).app (ofTopCat X) ≫ (HP'.iso i).inv.app X = (f.hom i).app X :=
   congr($(iso_homₚ_inv_hom _ _).app _)
 
+/--
+@isnad1 id=eq.0h7v.s9.74d91b654dae from=seed src=0 shape=5f0964f1 vocab=cd38db95
+-/
 @[reassoc (attr := simp)]
 lemma inv_hom_iso_homₚ (f : HP ⟶ HP') (i : ι) :
     (HP.iso i).inv ≫ f.hom i ≫ (HP'.iso i).hom = incl.whiskerLeft (f.homₚ i) :=
   ((Iso.inv_comp_eq (HP.iso i)).mpr (f.iso_comm i).symm)
 
 -- TODO: generate this with `@[to_app]`
+/--
+@isnad1 id=eq.0h8v.s10.1a0630bc025a from=seed src=0 shape=ba9a9af2 vocab=a1e46606
+-/
 @[reassoc (attr := simp)]
 lemma inv_hom_iso_homₚ_app (f : HP ⟶ HP') (i : ι) (X : TopCat.{u}) :
     (HP.iso i).inv.app X ≫ (f.hom i).app X ≫ (HP'.iso i).hom.app X = (f.homₚ i).app (ofTopCat X) :=
@@ -153,6 +171,9 @@ variable (C c) in
 abbrev isHomotopyInvariant : ObjectProperty (HomologyPretheory.{u} C c) :=
   IsHomotopyInvariant
 
+/--
+@isnad1 id=iff.0h4v.s5.c6f42f2f1cba from=seed src=0 shape=9994c8ee vocab=3239700c
+-/
 @[simp]
 lemma isHomotopyInvariant_iff : isHomotopyInvariant C c HP ↔ IsHomotopyInvariant HP := .rfl
 

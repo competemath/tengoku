@@ -69,21 +69,33 @@ def augment (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 1 0 ≫ 
     | _, _, 0, rfl, rfl => w
     | _, _, k + 1, rfl, rfl => C.d_comp_d _ _ _
 
+/--
+@isnad1 id=eq.1h4v.s8.0c8588cf9367 from=seed src=0 shape=b8cea46c vocab=5e778df1
+-/
 @[simp]
 theorem augment_X_zero (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 1 0 ≫ f = 0) :
     (augment C f w).X 0 = X :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.70419a531715 from=seed src=0 shape=7529c84c vocab=50f5c10f
+-/
 @[simp]
 theorem augment_X_succ (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 1 0 ≫ f = 0)
     (i : ℕ) : (augment C f w).X (i + 1) = C.X i :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.6ccca69b86a5 from=seed src=0 shape=90b6fcd3 vocab=5e778df1
+-/
 @[simp]
 theorem augment_d_one_zero (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 1 0 ≫ f = 0) :
     (augment C f w).d 1 0 = f :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.bbc82ec6fb6e from=seed src=0 shape=1d58923b vocab=50f5c10f
+-/
 @[simp]
 theorem augment_d_succ_succ (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 1 0 ≫ f = 0)
     (i j : ℕ) : (augment C f w).d (i + 1) (j + 1) = C.d i j := by
@@ -105,16 +117,25 @@ def truncateAugment (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 
   inv_hom_id := by
     ext (_ | i) <;> simp
 
+/--
+@isnad1 id=eq.1h5v.s9.70a76f22301f from=seed src=0 shape=84a512d4 vocab=c8620888
+-/
 @[simp]
 theorem truncateAugment_hom_f (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 1 0 ≫ f = 0)
     (i : ℕ) : (truncateAugment C f w).hom.f i = 𝟙 (C.X i) :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.15bf9c330d20 from=seed src=0 shape=9d32992e vocab=83b48d7f
+-/
 @[simp]
 theorem truncateAugment_inv_f (C : ChainComplex V ℕ) {X : V} (f : C.X 0 ⟶ X) (w : C.d 1 0 ≫ f = 0)
     (i : ℕ) : (truncateAugment C f w).inv.f i = 𝟙 ((truncate.obj (augment C f w)).X i) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.bca53d1203e0 from=seed src=0 shape=d09c922a vocab=45b9577b
+-/
 @[simp]
 theorem chainComplex_d_succ_succ_zero (C : ChainComplex V ℕ) (i : ℕ) : C.d (i + 2) 0 = 0 := by
   rw [C.shape]
@@ -148,21 +169,33 @@ def augmentTruncate (C : ChainComplex V ℕ) :
     ext i
     cases i <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s9.36cdc985f0d7 from=seed src=0 shape=02778cf6 vocab=00812ae6
+-/
 @[simp]
 theorem augmentTruncate_hom_f_zero (C : ChainComplex V ℕ) :
     (augmentTruncate C).hom.f 0 = 𝟙 (C.X 0) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.9dc21acc5d3b from=seed src=0 shape=bd7978a3 vocab=00812ae6
+-/
 @[simp]
 theorem augmentTruncate_hom_f_succ (C : ChainComplex V ℕ) (i : ℕ) :
     (augmentTruncate C).hom.f (i + 1) = 𝟙 (C.X (i + 1)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.7a431c3a9796 from=seed src=0 shape=f82cfabf vocab=bdaa99d1
+-/
 @[simp]
 theorem augmentTruncate_inv_f_zero (C : ChainComplex V ℕ) :
     (augmentTruncate C).inv.f 0 = 𝟙 (C.X 0) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.0908ff508db0 from=seed src=0 shape=a024c5d5 vocab=bdaa99d1
+-/
 @[simp]
 theorem augmentTruncate_inv_f_succ (C : ChainComplex V ℕ) (i : ℕ) :
     (augmentTruncate C).inv.f (i + 1) = 𝟙 (C.X (i + 1)) :=
@@ -227,21 +260,33 @@ def augment (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0) (w : f ≫ C.d 
         exact (Nat.one_lt_succ_succ _).ne
     rcases k with (_ | _ | k) <;> rcases j with (_ | _ | j) <;> cases i <;> simp [this]
 
+/--
+@isnad1 id=eq.1h4v.s8.6fab86203934 from=seed src=0 shape=b53ced26 vocab=abe99a27
+-/
 @[simp]
 theorem augment_X_zero (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0) (w : f ≫ C.d 0 1 = 0) :
     (augment C f w).X 0 = X :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.b7dcfe62ae0e from=seed src=0 shape=ae0c9756 vocab=738e0846
+-/
 @[simp]
 theorem augment_X_succ (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0) (w : f ≫ C.d 0 1 = 0)
     (i : ℕ) : (augment C f w).X (i + 1) = C.X i :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.4463b0f791da from=seed src=0 shape=c369c633 vocab=abe99a27
+-/
 @[simp]
 theorem augment_d_zero_one (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0) (w : f ≫ C.d 0 1 = 0) :
     (augment C f w).d 0 1 = f :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.580dee91b27f from=seed src=0 shape=d7714dca vocab=738e0846
+-/
 @[simp]
 theorem augment_d_succ_succ (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0) (w : f ≫ C.d 0 1 = 0)
     (i j : ℕ) : (augment C f w).d (i + 1) (j + 1) = C.d i j :=
@@ -265,17 +310,26 @@ def truncateAugment (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0) (w : f 
     ext i
     cases i <;> simp
 
+/--
+@isnad1 id=eq.1h5v.s9.b6b66536b2a9 from=seed src=0 shape=cb7f4064 vocab=ffb3fdae
+-/
 @[simp]
 theorem truncateAugment_hom_f (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0)
     (w : f ≫ C.d 0 1 = 0) (i : ℕ) : (truncateAugment C f w).hom.f i = 𝟙 (C.X i) :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.c66b30c9d22c from=seed src=0 shape=181bfacf vocab=0abff47d
+-/
 @[simp]
 theorem truncateAugment_inv_f (C : CochainComplex V ℕ) {X : V} (f : X ⟶ C.X 0)
     (w : f ≫ C.d 0 1 = 0) (i : ℕ) :
     (truncateAugment C f w).inv.f i = 𝟙 ((truncate.obj (augment C f w)).X i) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.bdf63781d75f from=seed src=0 shape=afa2f36a vocab=9a52b2df
+-/
 @[simp]
 theorem cochainComplex_d_succ_succ_zero (C : CochainComplex V ℕ) (i : ℕ) : C.d 0 (i + 2) = 0 := by
   rw [C.shape]
@@ -298,21 +352,33 @@ def augmentTruncate (C : CochainComplex V ℕ) :
       comm' := fun i j => by
         rcases j with (_ | _ | j) <;> rcases i with - | i <;> aesop }
 
+/--
+@isnad1 id=eq.0h2v.s9.b3a7a9867bee from=seed src=0 shape=02778cf6 vocab=dbd14faa
+-/
 @[simp]
 theorem augmentTruncate_hom_f_zero (C : CochainComplex V ℕ) :
     (augmentTruncate C).hom.f 0 = 𝟙 (C.X 0) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.dacfc4c158d9 from=seed src=0 shape=bd7978a3 vocab=dbd14faa
+-/
 @[simp]
 theorem augmentTruncate_hom_f_succ (C : CochainComplex V ℕ) (i : ℕ) :
     (augmentTruncate C).hom.f (i + 1) = 𝟙 (C.X (i + 1)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.cfdae11ba967 from=seed src=0 shape=f82cfabf vocab=6f08bd1c
+-/
 @[simp]
 theorem augmentTruncate_inv_f_zero (C : CochainComplex V ℕ) :
     (augmentTruncate C).inv.f 0 = 𝟙 (C.X 0) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.ec7e3aeb153a from=seed src=0 shape=a024c5d5 vocab=6f08bd1c
+-/
 @[simp]
 theorem augmentTruncate_inv_f_succ (C : CochainComplex V ℕ) (i : ℕ) :
     (augmentTruncate C).inv.f (i + 1) = 𝟙 (C.X (i + 1)) :=

@@ -74,6 +74,9 @@ noncomputable def tautologicalSolutionIsPresentationCore :
     ext m
     exact Relations.Solution.congr_var h m
 
+/--
+@isnad1 id=ispresen.0h2v.s5.040b0a494739 from=seed src=0 shape=f1771e2b vocab=67ea8485
+-/
 lemma tautologicalSolution_isPresentation :
     (tautologicalSolution A M).IsPresentation :=
   (tautologicalSolutionIsPresentationCore A M).isPresentation

@@ -62,6 +62,9 @@ private lemma smooth_of_grpObj_of_isAlgClosed [IsReduced G] [IsAlgClosed K] : Sm
     show α.hom.left ≫ f = f from α.hom.w] at hy
   exact hx hy
 
+/--
+@isnad1 id=smooth.0h3v.s6.f1d8124d1625 from=seed src=0 shape=5a87286b vocab=75932cd2
+-/
 lemma smooth_of_grpObj [GeometricallyReduced f] : Smooth f := by
   let Ω : Type u := AlgebraicClosure K
   let g : Spec (.of Ω) ⟶ Spec (.of K) := Spec.map (CommRingCat.ofHom <| algebraMap K Ω)

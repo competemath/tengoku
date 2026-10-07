@@ -37,6 +37,9 @@ of LocallyRingedSpaces
 abbrev IsOpenImmersion : MorphismProperty (Scheme.{u}) :=
   fun _ _ f ↦ LocallyRingedSpace.IsOpenImmersion f.toLRSHom
 
+/--
+@isnad1 id=isopenim.0h5v.s5.9ee336d726b6 from=seed src=0 shape=73d4a103 vocab=28abbdf0
+-/
 instance IsOpenImmersion.comp {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
     [IsOpenImmersion f] [IsOpenImmersion g] : IsOpenImmersion (f ≫ g) :=
   LocallyRingedSpace.IsOpenImmersion.comp f.toLRSHom g.toLRSHom
@@ -63,6 +66,9 @@ protected def scheme (X : LocallyRingedSpace.{u})
 
 end LocallyRingedSpace.IsOpenImmersion
 
+/--
+@isnad1 id=isopen.0h3v.s7.5ab783f82b16 from=seed src=0 shape=858c24d2 vocab=bed885f1
+-/
 theorem IsOpenImmersion.isOpen_range {X Y : Scheme.{u}} (f : X ⟶ Y) [H : IsOpenImmersion f] :
     IsOpen (Set.range f) :=
   H.base_open.isOpen_range
@@ -71,6 +77,9 @@ namespace Scheme.Hom
 
 variable {X Y : Scheme.{u}} (f : X ⟶ Y) [H : IsOpenImmersion f]
 
+/--
+@isnad1 id=isopenem.0h3v.s7.de8df9d00889 from=seed src=0 shape=82a81c7a vocab=9ee64410
+-/
 theorem isOpenEmbedding : IsOpenEmbedding f :=
   H.base_open
 
@@ -79,6 +88,9 @@ theorem isOpenEmbedding : IsOpenEmbedding f :=
 def opensRange : Y.Opens :=
   ⟨_, f.isOpenEmbedding.isOpen_range⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.e33c3f6a4a57 from=seed src=0 shape=bb3b6850 vocab=d54cf77a
+-/
 @[simp]
 theorem mem_opensRange {f : X ⟶ Y} [IsOpenImmersion f] {y : Y} :
     y ∈ opensRange f ↔ ∃ x, f x = y := .rfl
@@ -103,6 +115,9 @@ instance : f.opensFunctor.Full :=
   have : Mono f.base := (TopCat.mono_iff_injective f.base).mpr f.isOpenEmbedding.injective
   inferInstanceAs f.isOpenEmbedding.functor.Full
 
+/--
+@isnad1 id=coverpre.0h3v.s7.e0c64d457fb4 from=seed src=0 shape=6be5c0fc vocab=4aef62e3
+-/
 lemma coverPreserving_opensFunctor :
     CoverPreserving (Opens.grothendieckTopology _) (Opens.grothendieckTopology _) f.opensFunctor :=
   f.isOpenEmbedding.isOpenMap.coverPreserving
@@ -122,10 +137,19 @@ instance {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] :
 The preferred name in lemmas is `image` and it should be treated as an infix. -/
 scoped[AlgebraicGeometry] notation3:90 f:91 " ''ᵁ " U:90 => (Scheme.Hom.opensFunctor f).obj U
 
+/--
+@isnad1 id=eq.0h4v.s8.85a34b0e8f9c from=seed src=0 shape=bcc6921f vocab=a9374791
+-/
 @[simp] lemma coe_image {U : X.Opens} : f ''ᵁ U = f '' U := rfl
 
+/--
+@isnad1 id=le.1h5v.s7.90a7e7577fa9 from=seed src=0 shape=c8902bf5 vocab=a9287a9f
+-/
 lemma image_mono {U V : X.Opens} (e : U ≤ V) : f ''ᵁ U ≤ f ''ᵁ V := Set.image_mono e
 
+/--
+@isnad1 id=eq.1h5v.s8.a2ee3ce824a3 from=seed src=0 shape=a31e747a vocab=1dc9ebf5
+-/
 @[simp]
 lemma opensFunctor_map_homOfLE {U V : X.Opens} (e : U ≤ V) :
     (Scheme.Hom.opensFunctor f).map (homOfLE e) = homOfLE (f.image_mono e) :=
@@ -135,79 +159,133 @@ instance : f.opensFunctor.IsContinuous
     (Opens.grothendieckTopology X) (Opens.grothendieckTopology Y) :=
   f.isOpenEmbedding.functor_isContinuous
 
+/--
+@isnad1 id=eq.0h3v.s7.3f59e7daeebd from=seed src=0 shape=89be9117 vocab=72e97ffe
+-/
 @[simp]
 lemma image_top_eq_opensRange : f ''ᵁ ⊤ = f.opensRange := by
   apply Opens.ext
   simp
 
+/--
+@isnad1 id=eq.0h5v.s6.cc30c2fab15e from=seed src=0 shape=f0c82b44 vocab=643835d2
+-/
 lemma opensRange_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [IsOpenImmersion f] [IsOpenImmersion g] : (f ≫ g).opensRange = g ''ᵁ f.opensRange :=
   TopologicalSpace.Opens.ext (Set.range_comp g f)
 
+/--
+@isnad1 id=eq.0h3v.s6.41958ce674f5 from=seed src=0 shape=03c6b4dd vocab=6493a42f
+-/
 lemma opensRange_of_isIso {X Y : Scheme} (f : X ⟶ Y) [IsIso f] :
     f.opensRange = ⊤ :=
   TopologicalSpace.Opens.ext (Set.range_eq_univ.mpr f.homeomorph.surjective)
 
+/--
+@isnad1 id=eq.0h5v.s5.3fc319301e06 from=seed src=0 shape=1d6d69c6 vocab=b0ba8bc2
+-/
 lemma opensRange_comp_of_isIso {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [IsIso f] [IsOpenImmersion g] : (f ≫ g).opensRange = g.opensRange := by
   rw [opensRange_comp, opensRange_of_isIso, image_top_eq_opensRange]
 
+/--
+@isnad1 id=le.0h4v.s6.65da224fdaa3 from=seed src=0 shape=bd8c6e0d vocab=b3792bd1
+-/
 lemma image_le_opensRange (U : X.Opens) : f ''ᵁ U ≤ f.opensRange := by
   simpa using f.image_mono le_top
 
+/--
+@isnad1 id=eq.0h4v.s8.a4fbb97343d2 from=seed src=0 shape=27ac47e6 vocab=bce07cee
+-/
 @[simp]
 lemma preimage_image_eq (U : X.Opens) : f ⁻¹ᵁ f ''ᵁ U = U := by
   apply Opens.ext
   simp [Set.preimage_image_eq _ f.isOpenEmbedding.injective]
 
+/--
+@isnad1 id=iff.0h5v.s7.06b06dbf08a1 from=seed src=0 shape=d49ef27e vocab=a9287a9f
+-/
 lemma image_le_image_iff (f : X ⟶ Y) [IsOpenImmersion f] (U U' : X.Opens) :
     f ''ᵁ U ≤ f ''ᵁ U' ↔ U ≤ U' := by
   refine ⟨fun h ↦ ?_, f.image_mono⟩
   rw [← preimage_image_eq f U, ← preimage_image_eq f U']
   apply f.preimage_mono h
 
+/--
+@isnad1 id=eq.0h4v.s7.3531ab3188df from=seed src=0 shape=01001fc3 vocab=863e327a
+-/
 lemma image_preimage_eq_opensRange_inf (U : Y.Opens) : f ''ᵁ f ⁻¹ᵁ U = f.opensRange ⊓ U := by
   apply Opens.ext
   simp [Set.image_preimage_eq_range_inter]
 
+/--
+@isnad1 id=le.0h4v.s7.f045b22e2951 from=seed src=0 shape=dd7d13fa vocab=97e0ff8a
+-/
 lemma image_preimage_le (U : Y.Opens) : f ''ᵁ f ⁻¹ᵁ U ≤ U :=
   (f.image_preimage_eq_opensRange_inf U).trans_le inf_le_right
 
+/--
+@isnad1 id=injectiv.0h3v.s6.7daaa05f290d from=seed src=0 shape=2516a242 vocab=315d538e
+-/
 lemma image_injective : Function.Injective (f ''ᵁ ·) := by
   intro U V hUV
   simpa using congrArg (f ⁻¹ᵁ ·) hUV
 
+/--
+@isnad1 id=eq.0h5v.s7.23b2ebaf4f62 from=seed src=0 shape=e58ba813 vocab=debf4cfb
+-/
 lemma image_iSup {ι : Sort*} (s : ι → X.Opens) :
     (f ''ᵁ ⨆ (i : ι), s i) = ⨆ (i : ι), f ''ᵁ s i := by
   ext : 1
   simp [Set.image_iUnion]
 
+/--
+@isnad1 id=eq.0h6v.s8.80badae2c920 from=seed src=0 shape=5408d31f vocab=debf4cfb
+-/
 lemma image_iSup₂ {ι : Sort*} {κ : ι → Sort*} (s : (i : ι) → κ i → X.Opens) :
     (f ''ᵁ ⨆ (i : ι), ⨆ (j : κ i), s i j) = ⨆ (i : ι), ⨆ (j : κ i), f ''ᵁ s i j := by
   ext : 1
   simp [Set.image_iUnion₂]
 
+/--
+@isnad1 id=eq.0h6v.s7.bb184e6777dc from=seed src=0 shape=bab538b0 vocab=dee3cfac
+-/
 @[simp]
 lemma comp_image {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z) (U : X.Opens)
     [IsOpenImmersion f] [IsOpenImmersion g] : (f ≫ g) ''ᵁ U = g ''ᵁ f ''ᵁ U :=
   TopologicalSpace.Opens.ext (Set.image_comp g f U)
 
+/--
+@isnad1 id=eq.0h2v.s6.0ac4ed27509e from=seed src=0 shape=1005fd7d vocab=57b0e9f9
+-/
 @[simp]
 lemma id_image {X : Scheme} (U : X.Opens) : 𝟙 X ''ᵁ U = U :=
   TopologicalSpace.Opens.ext (Set.image_id _)
 
+/--
+@isnad1 id=eq.0h4v.s8.cc5a546f0016 from=seed src=0 shape=0e8d01ef vocab=e39251e3
+-/
 @[simp]
 lemma inv_image {X Y : Scheme} (e : X ≅ Y) (U : Y.Opens) : e.inv ''ᵁ U = e.hom ⁻¹ᵁ U :=
   TopologicalSpace.Opens.ext <| (Scheme.homeoOfIso e.symm).toEquiv.image_eq_preimage_symm _
 
+/--
+@isnad1 id=eq.0h4v.s8.ee992e44661c from=seed src=0 shape=ad92c6ef vocab=e39251e3
+-/
 lemma inv_preimage {X Y : Scheme} (e : X ≅ Y) (U : X.Opens) : e.inv ⁻¹ᵁ U = e.hom ''ᵁ U :=
   (inv_image e.symm U).symm
 
+/--
+@isnad1 id=iff.0h5v.s8.5cb70e4eb8b9 from=seed src=0 shape=6511ff54 vocab=9ee3ae0b
+-/
 @[simp]
 lemma apply_mem_image_iff {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f]
     {U : X.Opens} {x : X} : f x ∈ f ''ᵁ U ↔ x ∈ U :=
   f.isOpenEmbedding.injective.mem_set_image
 
+/--
+@isnad1 id=eq.0h3v.s8.a7a511d954ce from=seed src=0 shape=4a336f40 vocab=1750519a
+-/
 @[simp]
 lemma preimage_opensRange {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] :
     f ⁻¹ᵁ f.opensRange = ⊤ := by
@@ -216,6 +294,9 @@ lemma preimage_opensRange {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] :
 set_option backward.isDefEq.respectTransparency false in
 instance (U : X.Opens) : IsIso (f.app (f ''ᵁ U)) := by delta opensFunctor; infer_instance
 
+/--
+@isnad1 id=isiso.1h4v.s8.c10991150f00 from=seed src=0 shape=052acb08 vocab=f716fc14
+-/
 lemma isIso_app (V : Y.Opens) (hV : V ≤ f.opensRange) : IsIso (f.app V) := by
   rw [show V = f ''ᵁ f ⁻¹ᵁ V from Opens.ext (Set.image_preimage_eq_of_subset hV).symm]
   infer_instance
@@ -224,36 +305,52 @@ lemma isIso_app (V : Y.Opens) (hV : V ≤ f.opensRange) : IsIso (f.app V) := by
 def appIso (U) : Γ(Y, f ''ᵁ U) ≅ Γ(X, U) :=
   (asIso <| LocallyRingedSpace.IsOpenImmersion.invApp f.toLRSHom U).symm
 
+/--
+@isnad1 id=eq.0h6v.s11.2dcf7caef173 from=seed src=0 shape=7f98bdae vocab=1e3d1684
+-/
 @[reassoc (attr := simp)]
 theorem appIso_inv_naturality {U V : X.Opens} (i : op U ⟶ op V) :
     X.presheaf.map i ≫ (f.appIso V).inv =
       (f.appIso U).inv ≫ Y.presheaf.map (f.opensFunctor.op.map i) :=
   PresheafedSpace.IsOpenImmersion.inv_naturality _ _
 
+/--
+@isnad1 id=eq.0h4v.s11.501f71b5d2f6 from=seed src=0 shape=2474597c vocab=c6995f95
+-/
 theorem appIso_hom (U) :
     (f.appIso U).hom = f.app (f ''ᵁ U) ≫ X.presheaf.map
       (eqToHom (preimage_image_eq f U).symm).op :=
   (PresheafedSpace.IsOpenImmersion.inv_invApp f.toPshHom U).trans (by rw [eqToHom_op]; rfl)
 
-/-- A variant of `appIso_hom` that uses `Hom.appLE`. -/
+/-- A variant of `appIso_hom` that uses `Hom.appLE`.
+@isnad1 id=eq.0h4v.s9.1784612503c4 from=seed src=0 shape=dbb6f90f vocab=ebc4b44b
+-/
 theorem appIso_hom' (U) :
     (f.appIso U).hom = f.appLE (f ''ᵁ U) U (preimage_image_eq f U).ge :=
   f.appIso_hom U
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s11.f7a06ee0dd6d from=seed src=0 shape=10e4d6ba vocab=049686e0
+-/
 @[reassoc (attr := simp)]
 lemma appIso_hom_naturality {U V : X.Opens} (i : op U ⟶ op V) :
     dsimp% Y.presheaf.map (f.opensFunctor.op.map i) ≫ (f.appIso V).hom =
       (f.appIso U).hom ≫ X.presheaf.map i := by
   simp [← cancel_mono (f.appIso V).inv]
 
+/--
+@isnad1 id=eq.0h4v.s11.1447044eac48 from=seed src=0 shape=28625204 vocab=e213e11f
+-/
 @[reassoc (attr := simp)]
 theorem app_appIso_inv (U) :
     f.app U ≫ (f.appIso (f ⁻¹ᵁ U)).inv =
       Y.presheaf.map (homOfLE (Set.image_preimage_subset f U.1)).op :=
   PresheafedSpace.IsOpenImmersion.app_invApp _ _
 
-/-- A variant of `app_invApp` that gives an `eqToHom` instead of `homOfLE`. -/
+/-- A variant of `app_invApp` that gives an `eqToHom` instead of `homOfLE`.
+@isnad1 id=eq.1h4v.s11.a758a15bc537 from=seed src=0 shape=3e2b7a76 vocab=7bb6b89d
+-/
 @[reassoc]
 theorem app_invApp' (U) (hU : U ≤ f.opensRange) :
     f.app U ≫ (f.appIso (f ⁻¹ᵁ U)).inv =
@@ -261,6 +358,9 @@ theorem app_invApp' (U) (hU : U ≤ f.opensRange) :
   PresheafedSpace.IsOpenImmersion.app_invApp _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s11.ea3ecb521f18 from=seed src=0 shape=3dd01781 vocab=b8ed9bd8
+-/
 @[reassoc (attr := simp), elementwise nosimp]
 theorem appIso_inv_app (U) :
     (f.appIso U).inv ≫ f.app (f ''ᵁ U) = X.presheaf.map (eqToHom (preimage_image_eq f U)).op :=
@@ -268,6 +368,9 @@ theorem appIso_inv_app (U) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h5v.s10.74ef5b89e26b from=seed src=0 shape=78d6be5c vocab=a1ef84e4
+-/
 @[reassoc (attr := simp), elementwise nosimp]
 lemma appLE_appIso_inv {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] {U : Y.Opens}
     {V : X.Opens} (e : V ≤ f ⁻¹ᵁ U) :
@@ -279,6 +382,9 @@ lemma appLE_appIso_inv {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] {U :
   rw [← Functor.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s10.25268942a0f9 from=seed src=0 shape=b4adfad1 vocab=51a152a0
+-/
 @[reassoc (attr := simp)]
 lemma appIso_inv_appLE {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] {U V : X.Opens}
     (e : V ≤ f ⁻¹ᵁ f ''ᵁ U) :
@@ -288,18 +394,27 @@ lemma appIso_inv_appLE {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] {U V
   rw [← Functor.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.68d4d9426af3 from=seed src=0 shape=c974596b vocab=a825420f
+-/
 lemma appIso_inv_app_presheafMap (U : X.Opens) :
     (f.appIso U).inv ≫ f.app _ ≫
       X.presheaf.map (eqToHom (f.preimage_image_eq U).symm).op = 𝟙 _ := by
   rw [Scheme.Hom.appIso_inv_app_assoc, ← Functor.map_comp, ← X.presheaf.map_id]; rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s9.cbb18e54a06f from=seed src=0 shape=431a52e3 vocab=d8c992a0
+-/
 @[simp]
 lemma id_appIso (U : X.Opens) :
     (𝟙 X :).appIso U = X.presheaf.mapIso (eqToIso (by simp)).op := by
   ext; simp [appIso_hom]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h6v.s11.2347936dfb9f from=seed src=0 shape=84ce9205 vocab=a45fa514
+-/
 @[simp]
 lemma comp_appIso {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) [IsOpenImmersion f]
     [IsOpenImmersion g] (U : X.Opens) :
@@ -320,6 +435,9 @@ def IsOpenImmersion.opensEquiv {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion
 
 namespace Scheme
 
+/--
+@isnad1 id=isopenim.0h2v.s8.bdc36ab157ed from=seed src=0 shape=4ba86296 vocab=808248be
+-/
 instance isOpenImmersion_SpecMap_localizationAway {R : CommRingCat.{u}} (f : R) :
     IsOpenImmersion (Spec.map (CommRingCat.ofHom (algebraMap R (Localization.Away f)))) := by
   apply SheafedSpace.IsOpenImmersion.of_stalk_iso (H := ?_)
@@ -332,6 +450,9 @@ instance {R} [CommRing R] (f : R) :
   isOpenImmersion_SpecMap_localizationAway (R := .of R) f
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h2v.s8.7ffb7346d248 from=seed src=0 shape=4dcbe00e vocab=1d6535fb
+-/
 @[simp]
 lemma Hom.opensRange_localizationAway {R : CommRingCat.{u}} (g : R) :
     (Spec.map <| CommRingCat.ofHom <| algebraMap R (Localization.Away g)).opensRange =
@@ -353,6 +474,9 @@ lemma _root_.AlgebraicGeometry.IsOpenImmersion.of_isLocalization {R S} [CommRing
   infer_instance
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.1h3v.s9.98b690300354 from=seed src=0 shape=c3fc0a07 vocab=631a299c
+-/
 theorem exists_affine_mem_range_and_range_subset
     {X : Scheme.{u}} {x : X} {U : X.Opens} (hxU : x ∈ U) :
     ∃ R, ∃ (f : Spec R ⟶ X), IsOpenImmersion f ∧ x ∈ Set.range f ∧ Set.range f ⊆ U := by
@@ -388,6 +512,9 @@ def toScheme : Scheme := by
   · rw [LocallyRingedSpace.IsOpenImmersion.lift_range]; exact h₁
   · delta LocallyRingedSpace.IsOpenImmersion.lift; infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s5.6e0a2b462a52 from=seed src=0 shape=093c534d vocab=dc118c81
+-/
 @[simp]
 theorem toScheme_toLocallyRingedSpace :
     (toScheme Y f).toLocallyRingedSpace = toLocallyRingedSpace Y.1 f :=
@@ -399,17 +526,29 @@ upgrade it into a morphism of Schemes.
 def toSchemeHom : toScheme Y f ⟶ Y :=
   ⟨toLocallyRingedSpaceHom _ f⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.468ef6fbe9f4 from=seed src=0 shape=33e18cab vocab=b29b2f2a
+-/
 @[simp]
 theorem toSchemeHom_toPshHom : (toSchemeHom Y f).toPshHom = f :=
   rfl
 
+/--
+@isnad1 id=isopenim.0h3v.s5.2c7a00e4a8fc from=seed src=0 shape=54328d10 vocab=f7b075db
+-/
 instance toSchemeHom_isOpenImmersion : AlgebraicGeometry.IsOpenImmersion (toSchemeHom Y f) :=
   H
 
+/--
+@isnad1 id=eq.1h2v.s3.bf766cd7a1e7 from=seed src=0 shape=296f4854 vocab=f202954f
+-/
 theorem scheme_eq_of_locallyRingedSpace_eq {X Y : Scheme.{u}}
     (H : X.toLocallyRingedSpace = Y.toLocallyRingedSpace) : X = Y := by
   cases X; cases Y; congr
 
+/--
+@isnad1 id=eq.0h3v.s5.982cb50998e7 from=seed src=0 shape=c55d936c vocab=da169012
+-/
 theorem scheme_toScheme {X Y : Scheme.{u}} (f : X ⟶ Y) [AlgebraicGeometry.IsOpenImmersion f] :
     toScheme Y f.toPshHom = X := by
   apply scheme_eq_of_locallyRingedSpace_eq
@@ -429,6 +568,9 @@ def Scheme.restrict : Scheme :=
   { PresheafedSpace.IsOpenImmersion.toScheme X (X.toPresheafedSpace.ofRestrict h) with
     toPresheafedSpace := X.toPresheafedSpace.restrict h }
 
+/--
+@isnad1 id=eq.1h3v.s7.6c73281bca3c from=seed src=0 shape=1667d3d0 vocab=56491c8c
+-/
 lemma Scheme.restrict_toPresheafedSpace :
     (X.restrict h).toPresheafedSpace = X.toPresheafedSpace.restrict h := rfl
 
@@ -437,14 +579,23 @@ lemma Scheme.restrict_toPresheafedSpace :
 def Scheme.ofRestrict : X.restrict h ⟶ X :=
   ⟨X.toLocallyRingedSpace.ofRestrict h⟩
 
+/--
+@isnad1 id=eq.1h4v.s12.8f596c021c95 from=seed src=0 shape=56687687 vocab=7f9505ec
+-/
 @[simp]
 lemma Scheme.ofRestrict_app (V) :
     (X.ofRestrict h).app V = X.presheaf.map (h.isOpenMap.adjunction.counit.app V).op :=
   rfl
 
+/--
+@isnad1 id=isopenim.1h3v.s7.a1bf514299bd from=seed src=0 shape=925b53dc vocab=ea32c2fd
+-/
 instance IsOpenImmersion.ofRestrict : IsOpenImmersion (X.ofRestrict h) :=
   show PresheafedSpace.IsOpenImmersion (X.toPresheafedSpace.ofRestrict h) by infer_instance
 
+/--
+@isnad1 id=eq.2h5v.s10.d2f75b2a4c31 from=seed src=0 shape=84d53bcf vocab=7a01a5e6
+-/
 @[simp]
 lemma Scheme.ofRestrict_appLE (V W e) :
     (X.ofRestrict h).appLE V W e = X.presheaf.map
@@ -453,6 +604,9 @@ lemma Scheme.ofRestrict_appLE (V W e) :
   exact (X.presheaf.map_comp _ _).symm
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h4v.s9.6b029e147405 from=seed src=0 shape=bba144b8 vocab=c3d434dc
+-/
 @[simp]
 lemma Scheme.ofRestrict_appIso (U) :
     (X.ofRestrict h).appIso U = Iso.refl _ := by
@@ -460,6 +614,9 @@ lemma Scheme.ofRestrict_appIso (U) :
   simp only [Hom.appIso_hom', ofRestrict_appLE, homOfLE_refl, op_id,
     CategoryTheory.Functor.map_id, Iso.refl_hom]
 
+/--
+@isnad1 id=eq.1h6v.s11.96b4080f5a6b from=seed src=0 shape=4c1b8000 vocab=d2a1ca73
+-/
 @[simp]
 lemma Scheme.restrict_presheaf_map (V W) (i : V ⟶ W) :
     (X.restrict h).presheaf.map i = X.presheaf.map (homOfLE (show X.ofRestrict h ''ᵁ W.unop ≤
@@ -472,15 +629,24 @@ namespace IsOpenImmersion
 variable {X Y Z : Scheme.{u}} (f : X ⟶ Z) (g : Y ⟶ Z)
 variable [H : IsOpenImmersion f]
 
+/--
+@isnad1 id=isopenim.0h3v.s4.6c34a495a417 from=seed src=0 shape=31ca8f87 vocab=6f7a09bb
+-/
 instance (priority := 100) of_isIso [IsIso g] : IsOpenImmersion g :=
   LocallyRingedSpace.IsOpenImmersion.of_isIso _
 
+/--
+@isnad1 id=isiso.0h3v.s6.1f891191031c from=seed src=0 shape=6be13d6a vocab=5df142e7
+-/
 theorem isIso {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] [Epi f.base] : IsIso f :=
   @isIso_of_reflects_iso _ _ _ _ _ _ f
     (Scheme.forgetToLocallyRingedSpace ⋙
       LocallyRingedSpace.forgetToSheafedSpace ⋙ SheafedSpace.forgetToPresheafedSpace)
     (@PresheafedSpace.IsOpenImmersion.to_iso _ _ _ _ f.toPshHom ‹_› _) _
 
+/--
+@isnad1 id=isopenim.1h3v.s8.a1d05cbaf92f from=seed src=0 shape=f7949165 vocab=88e01ad9
+-/
 theorem of_isIso_stalkMap {X Y : Scheme.{u}} (f : X ⟶ Y) (hf : IsOpenEmbedding f)
     [∀ x, IsIso (f.stalkMap x)] : IsOpenImmersion f :=
   have (x : X) : IsIso (f.toShHom.hom.stalkMap x) := inferInstanceAs (IsIso (f.stalkMap x))
@@ -491,6 +657,9 @@ instance {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (x : X) :
   inferInstanceAs <| IsIso (f.toLRSHom.stalkMap x)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isopenim.0h5v.s5.ca1ccfe27c0f from=seed src=0 shape=72ea3977 vocab=28abbdf0
+-/
 lemma of_comp {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) [IsOpenImmersion g]
     [IsOpenImmersion (f ≫ g)] : IsOpenImmersion f :=
   haveI (x : X) : IsIso (f.stalkMap x) :=
@@ -504,6 +673,9 @@ lemma of_comp {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) [IsOpenImmersion 
 instance : MorphismProperty.HasOfPostcompProperty @IsOpenImmersion @IsOpenImmersion where
   of_postcomp f g _ _ := .of_comp f g
 
+/--
+@isnad1 id=iff.0h3v.s8.567245d34c5d from=seed src=0 shape=fbc075d4 vocab=88e01ad9
+-/
 theorem iff_isIso_stalkMap {X Y : Scheme.{u}} {f : X ⟶ Y} :
     IsOpenImmersion f ↔ IsOpenEmbedding f ∧ ∀ x, IsIso (f.stalkMap x) :=
   ⟨fun H ↦ ⟨H.1, fun x ↦ inferInstanceAs <| IsIso (f.toPshHom.stalkMap x)⟩,
@@ -536,9 +708,15 @@ def isoRestrict : X ≅ Z.restrict f.isOpenEmbedding :=
 
 local notation "forget" => Scheme.forgetToLocallyRingedSpace
 
+/--
+@isnad1 id=mono.0h3v.s4.63db02d432d4 from=seed src=0 shape=d03ea59f vocab=807605a5
+-/
 instance mono : Mono f :=
   (forget).mono_of_mono_map (inferInstanceAs (Mono f.toLRSHom))
 
+/--
+@isnad1 id=le.0h0v.s5.0ae31858ccb3 from=seed src=0 shape=228d301a vocab=54c8b279
+-/
 lemma le_monomorphisms :
     IsOpenImmersion ≤ MorphismProperty.monomorphisms Scheme.{u} := fun _ _ _ _ ↦
   MorphismProperty.monomorphisms.infer_property _
@@ -546,6 +724,9 @@ lemma le_monomorphisms :
 instance : LocallyRingedSpace.IsOpenImmersion ((forget).map f) :=
   ⟨H.base_open, H.c_iso⟩
 
+/--
+@isnad1 id=haslimit.0h5v.s5.a4ecb45baee0 from=seed src=0 shape=2767149c vocab=2a58c5cc
+-/
 instance hasLimit_cospan_forget_of_left :
     HasLimit (cospan f g ⋙ forget) := by
   rw [hasLimit_iff_of_iso (diagramIsoCospan _)]
@@ -553,14 +734,23 @@ instance hasLimit_cospan_forget_of_left :
 
 open CategoryTheory.Limits.WalkingCospan
 
+/--
+@isnad1 id=haslimit.0h5v.s7.31df11a9f1ee from=seed src=0 shape=2b17644f vocab=1a246ce7
+-/
 instance hasLimit_cospan_forget_of_left' :
     HasLimit (cospan ((cospan f g ⋙ forget).map Hom.inl) ((cospan f g ⋙ forget).map Hom.inr)) :=
   show HasLimit (cospan ((forget).map f) ((forget).map g)) from inferInstance
 
+/--
+@isnad1 id=haslimit.0h5v.s5.0e2cf7443125 from=seed src=0 shape=e32fbaa4 vocab=2a58c5cc
+-/
 instance hasLimit_cospan_forget_of_right : HasLimit (cospan g f ⋙ forget) := by
   rw [hasLimit_iff_of_iso (diagramIsoCospan _)]
   exact inferInstanceAs (HasLimit (cospan ((forget).map g) ((forget).map f)))
 
+/--
+@isnad1 id=haslimit.0h5v.s7.898efb31d79b from=seed src=0 shape=654c591b vocab=1a246ce7
+-/
 instance hasLimit_cospan_forget_of_right' :
     HasLimit (cospan ((cospan g f ⋙ forget).map Hom.inl) ((cospan g f ⋙ forget).map Hom.inr)) :=
   show HasLimit (cospan ((forget).map g) ((forget).map f)) from inferInstance
@@ -583,9 +773,15 @@ instance : PreservesLimit (cospan f g) forget :=
 instance : PreservesLimit (cospan g f) forget :=
   preservesPullback_symmetry _ _ _
 
+/--
+@isnad1 id=haspullb.0h5v.s5.6ddd9d4447c9 from=seed src=0 shape=e05edf85 vocab=008f24da
+-/
 instance hasPullback_of_left : HasPullback f g :=
   hasLimit_of_created (cospan f g) forget
 
+/--
+@isnad1 id=haspullb.0h5v.s5.087497cc3037 from=seed src=0 shape=618307b1 vocab=008f24da
+-/
 instance hasPullback_of_right : HasPullback g f :=
   hasLimit_of_created (cospan g f) forget
 
@@ -624,6 +820,9 @@ instance : PreservesLimit (cospan f g) Scheme.forget := by delta Scheme.forget; 
 instance : PreservesLimit (cospan g f) Scheme.forget := by delta Scheme.forget; infer_instance
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.e1661b558838 from=seed src=0 shape=b5e09bdf vocab=07b44e72
+-/
 theorem range_pullbackSnd :
     Set.range (pullback.snd f g) = g ⁻¹ᵁ f.opensRange := by
   rw [← show _ = (pullback.snd f g).base from
@@ -641,6 +840,9 @@ theorem _root_.AlgebraicGeometry.Scheme.Hom.opensRange_pullbackSnd :
   Opens.ext (range_pullbackSnd f g)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.33a339c47c5f from=seed src=0 shape=9d9ab7bf vocab=da66e8d7
+-/
 theorem range_pullbackFst :
     Set.range (pullback.fst g f) = g ⁻¹ᵁ f.opensRange := by
   rw [← show _ = (pullback.fst g f).base from
@@ -657,18 +859,27 @@ theorem _root_.AlgebraicGeometry.Scheme.Hom.opensRange_pullbackFst :
     (pullback.fst g f).opensRange = g ⁻¹ᵁ f.opensRange :=
   Opens.ext (range_pullbackFst f g)
 
+/--
+@isnad1 id=eq.0h5v.s9.2e3f605021bf from=seed src=0 shape=ea854d60 vocab=364f529e
+-/
 theorem range_pullback_to_base_of_left :
     Set.range (pullback.fst f g ≫ f) = Set.range f ∩ Set.range g := by
   rw [pullback.condition, Scheme.Hom.comp_base, TopCat.coe_comp, Set.range_comp,
     range_pullbackSnd, Opens.map_obj, Opens.coe_mk,
     Set.image_preimage_eq_inter_range, Opens.carrier_eq_coe, Scheme.Hom.coe_opensRange]
 
+/--
+@isnad1 id=eq.0h5v.s9.18f6a34752f4 from=seed src=0 shape=e5eea3c8 vocab=364f529e
+-/
 theorem range_pullback_to_base_of_right :
     Set.range (pullback.fst g f ≫ g) = Set.range g ∩ Set.range f := by
   rw [Scheme.Hom.comp_base, TopCat.coe_comp, Set.range_comp, range_pullbackFst,
     Opens.map_obj, Opens.coe_mk, Set.image_preimage_eq_inter_range,
     Set.inter_comm, Opens.carrier_eq_coe, Scheme.Hom.coe_opensRange]
 
+/--
+@isnad1 id=eq.1h9v.s8.02593e4bf4fd from=seed src=0 shape=1d9ed83b vocab=0b442338
+-/
 lemma image_preimage_eq_preimage_image_of_isPullback {X Y U V : Scheme.{u}}
     {f : X ⟶ Y} {f' : U ⟶ V} {iU : U ⟶ X} {iV : V ⟶ Y} [IsOpenImmersion iV] [IsOpenImmersion iU]
     (H : IsPullback f' iU iV f) (W : V.Opens) : iU ''ᵁ f' ⁻¹ᵁ W = f ⁻¹ᵁ iV ''ᵁ W := by
@@ -692,20 +903,32 @@ commutes with these maps.
 def lift (H' : Set.range g ⊆ Set.range f) : Y ⟶ X :=
   ⟨LocallyRingedSpace.IsOpenImmersion.lift f.toLRSHom g.toLRSHom H'⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.689789099dd9 from=seed src=0 shape=9693ab58 vocab=811daf18
+-/
 @[reassoc (attr := simp)]
 theorem lift_fac (H' : Set.range g ⊆ Set.range f) : lift f g H' ≫ f = g :=
   Scheme.Hom.ext' <| LocallyRingedSpace.IsOpenImmersion.lift_fac f.toLRSHom g.toLRSHom H'
 
+/--
+@isnad1 id=eq.2h6v.s8.bdb3ef0cfc1e from=seed src=0 shape=d656b969 vocab=811daf18
+-/
 theorem lift_uniq (H' : Set.range g ⊆ Set.range f) (l : Y ⟶ X) (hl : l ≫ f = g) :
     l = lift f g H' :=
   Scheme.Hom.ext' <| LocallyRingedSpace.IsOpenImmersion.lift_uniq
     f.toLRSHom g.toLRSHom H' l.toLRSHom congr(($hl).toLRSHom)
 
+/--
+@isnad1 id=eq.1h7v.s8.f2e2f00cdf5f from=seed src=0 shape=fd730d1e vocab=9a6cc0c3
+-/
 @[reassoc]
 lemma comp_lift {Y' : Scheme} (g' : Y' ⟶ Y) (H : Set.range g ⊆ Set.range f) :
     g' ≫ lift f g H = lift f (g' ≫ g) (.trans (by simp [Set.range_comp_subset_range]) H) := by
   simp [← cancel_mono f]
 
+/--
+@isnad1 id=ispullba.1h5v.s8.4aeaaa7056e1 from=seed src=0 shape=c95a4aa9 vocab=6ad11326
+-/
 theorem isPullback_lift_id
     {X U Y : Scheme.{u}} (f : X ⟶ Y) (g : U ⟶ Y) [IsOpenImmersion g]
     (H : Set.range f ⊆ Set.range g) :
@@ -721,25 +944,36 @@ def isoOfRangeEq [IsOpenImmersion g] (e : Set.range f = Set.range g) : X ≅ Y w
   hom_inv_id := by rw [← cancel_mono f]; simp
   inv_hom_id := by rw [← cancel_mono g]; simp
 
+/--
+@isnad1 id=eq.1h5v.s8.219cf8ff2172 from=seed src=0 shape=f479ecc3 vocab=0e170eda
+-/
 @[reassoc (attr := simp)]
 lemma isoOfRangeEq_hom_fac {X Y Z : Scheme.{u}} (f : X ⟶ Z) (g : Y ⟶ Z)
     [IsOpenImmersion f] [IsOpenImmersion g] (e : Set.range f = Set.range g) :
     (isoOfRangeEq f g e).hom ≫ g = f :=
   lift_fac _ _ (le_of_eq e)
 
+/--
+@isnad1 id=eq.1h5v.s8.8daa269be413 from=seed src=0 shape=1fb73141 vocab=0caa05bb
+-/
 @[reassoc (attr := simp)]
 lemma isoOfRangeEq_inv_fac {X Y Z : Scheme.{u}} (f : X ⟶ Z) (g : Y ⟶ Z)
     [IsOpenImmersion f] [IsOpenImmersion g] (e : Set.range f = Set.range g) :
     (isoOfRangeEq f g e).inv ≫ f = g :=
   lift_fac _ _ (le_of_eq e.symm)
 
+/--
+@isnad1 id=eq.1h7v.s8.fbe7d774d26a from=seed src=0 shape=43237490 vocab=14e00c58
+-/
 theorem app_eq_invApp_app_of_comp_eq_aux {X Y U : Scheme.{u}} (f : Y ⟶ U) (g : U ⟶ X) (fg : Y ⟶ X)
     (H : fg = f ≫ g) [h : IsOpenImmersion g] (V : U.Opens) :
     f ⁻¹ᵁ V = fg ⁻¹ᵁ (g ''ᵁ V) := by
   simp_all
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The `fg` argument is to avoid nasty stuff about dependent types. -/
+/-- The `fg` argument is to avoid nasty stuff about dependent types.
+@isnad1 id=eq.1h7v.s11.f775b1136192 from=seed src=0 shape=07ca10fe vocab=fd9938ba
+-/
 theorem app_eq_appIso_inv_app_of_comp_eq {X Y U : Scheme.{u}} (f : Y ⟶ U) (g : U ⟶ X) (fg : Y ⟶ X)
     (H : fg = f ≫ g) [h : IsOpenImmersion g] (V : U.Opens) :
     f.app V = (g.appIso V).inv ≫ fg.app (g ''ᵁ V) ≫ Y.presheaf.map
@@ -749,12 +983,18 @@ theorem app_eq_appIso_inv_app_of_comp_eq {X Y U : Scheme.{u}} (f : Y ⟶ U) (g :
     ← Functor.map_comp, ← op_comp, Quiver.Hom.unop_op, eqToHom_map, eqToHom_trans,
     eqToHom_op, eqToHom_refl, CategoryTheory.Functor.map_id, Category.comp_id]
 
+/--
+@isnad1 id=eq.1h6v.s11.6aa663a7b0cc from=seed src=0 shape=37f0eb17 vocab=aed9f1f9
+-/
 theorem lift_app {X Y U : Scheme.{u}} (f : U ⟶ Y) (g : X ⟶ Y) [IsOpenImmersion f] (H)
     (V : U.Opens) :
     (lift f g H).app V = (f.appIso V).inv ≫ g.app (f ''ᵁ V) ≫
       X.presheaf.map (eqToHom <| app_eq_invApp_app_of_comp_eq_aux _ _ _ (lift_fac ..).symm V).op :=
   IsOpenImmersion.app_eq_appIso_inv_app_of_comp_eq _ _ _ (lift_fac _ _ _).symm _
 
+/--
+@isnad1 id=ispullba.2h8v.s8.b1f6c3001a01 from=seed src=0 shape=9c74e505 vocab=ede3f5a7
+-/
 lemma isPullback {U V X Y : Scheme.{u}} (g : U ⟶ V) (iU : U ⟶ X) (iV : V ⟶ Y) (f : X ⟶ Y)
     [IsOpenImmersion iU] [IsOpenImmersion iV] (H : iU ≫ f = g ≫ iV)
     (H' : f ⁻¹ᵁ iV.opensRange = iU.opensRange) : IsPullback g iU iV f := by
@@ -774,6 +1014,9 @@ def ΓIso {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (U : Y.Opens) :
   (f.appIso (f ⁻¹ᵁ U)).symm ≪≫
     Y.presheaf.mapIso (eqToIso <| (f.image_preimage_eq_opensRange_inf U).symm).op
 
+/--
+@isnad1 id=eq.0h4v.s9.2919abb8cf3a from=seed src=0 shape=06fd5f04 vocab=0a10116f
+-/
 @[simp]
 lemma ΓIso_inv {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (U : Y.Opens) :
     (ΓIso f U).inv = f.appLE (f.opensRange ⊓ U) (f ⁻¹ᵁ U)
@@ -781,11 +1024,17 @@ lemma ΓIso_inv {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (U : Y.Open
   simp only [ΓIso, Iso.trans_inv, Functor.mapIso_inv, Iso.op_inv, eqToIso.inv, eqToHom_op,
     Iso.symm_inv, Scheme.Hom.appIso_hom', Scheme.Hom.map_appLE]
 
+/--
+@isnad1 id=eq.0h4v.s11.5727279ee159 from=seed src=0 shape=e8f8d870 vocab=28afa0b2
+-/
 @[reassoc, elementwise]
 lemma map_ΓIso_inv {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (U : Y.Opens) :
     Y.presheaf.map (homOfLE inf_le_right).op ≫ (ΓIso f U).inv = f.app U := by
   simp [Scheme.Hom.appLE_eq_app]
 
+/--
+@isnad1 id=eq.0h4v.s11.f4bbaab4549b from=seed src=0 shape=1a68d771 vocab=a71ab007
+-/
 @[reassoc, elementwise]
 lemma app_ΓIso_hom {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (U : Y.Opens) :
     f.app U ≫ (ΓIso f U).hom = Y.presheaf.map (homOfLE inf_le_right).op := by
@@ -807,6 +1056,9 @@ instance {Z : Scheme.{u}} (f : X ⟶ Z) (g : Y ⟶ Z) [IsOpenImmersion f]
 
 end IsOpenImmersion
 
+/--
+@isnad1 id=isiso.1h3v.s6.b94b148580fb from=seed src=0 shape=1ae1071f vocab=24f71caf
+-/
 lemma isIso_of_isOpenImmersion_of_opensRange_eq_top {X Y : Scheme.{u}} (f : X ⟶ Y)
     [IsOpenImmersion f] (hf : f.opensRange = ⊤) : IsIso f := by
   rw [isIso_iff_isOpenImmersion_and_epi_base]
@@ -816,20 +1068,32 @@ lemma isIso_of_isOpenImmersion_of_opensRange_eq_top {X Y : Scheme.{u}} (f : X �
 
 section MorphismProperty
 
+/--
+@isnad1 id=isstable.0h0v.s2.c3a7ddc9f0db from=seed src=0 shape=25b03439 vocab=f663591c
+-/
 instance isOpenImmersion_isStableUnderComposition :
     MorphismProperty.IsStableUnderComposition @IsOpenImmersion where
   comp_mem f g _ _ := LocallyRingedSpace.IsOpenImmersion.comp f.toLRSHom g.toLRSHom
 
+/--
+@isnad1 id=respects.0h0v.s2.32426d6f05d1 from=seed src=0 shape=25b03439 vocab=b761581b
+-/
 instance isOpenImmersion_respectsIso : MorphismProperty.RespectsIso @IsOpenImmersion := by
   apply MorphismProperty.respectsIso_of_isStableUnderComposition
   intro _ _ f (hf : IsIso f)
   have : IsIso f := hf
   infer_instance
 
+/--
+@isnad1 id=ismultip.0h0v.s2.74c7e82a96ec from=seed src=0 shape=25b03439 vocab=e8fd6647
+-/
 instance isOpenImmersion_isMultiplicative :
     MorphismProperty.IsMultiplicative @IsOpenImmersion where
   id_mem _ := inferInstance
 
+/--
+@isnad1 id=isstable.0h0v.s2.8cb6264ab8ec from=seed src=0 shape=25b03439 vocab=8c0166d2
+-/
 instance isOpenImmersion_stableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange @IsOpenImmersion :=
   MorphismProperty.IsStableUnderBaseChange.mk' <| by
@@ -841,6 +1105,9 @@ namespace Scheme
 
 variable {X Y : Scheme.{u}} (f : X ⟶ Y) [H : IsOpenImmersion f]
 
+/--
+@isnad1 id=eq.0h5v.s11.09fd4cf3d1d1 from=seed src=0 shape=89888fb8 vocab=1cac32e9
+-/
 theorem image_basicOpen {U : X.Opens} (r : Γ(X, U)) :
     f ''ᵁ X.basicOpen r = Y.basicOpen ((f.appIso U).inv r) := by
   have e := Scheme.preimage_basicOpen f ((f.appIso U).inv r)
@@ -849,6 +1116,9 @@ theorem image_basicOpen {U : X.Opens} (r : Γ(X, U)) :
     refine Set.Subset.trans (Scheme.basicOpen_le _ _) (Set.image_subset_range _ _)
   · exact (X.basicOpen_le r).trans (f.preimage_image_eq _).ge
 
+/--
+@isnad1 id=eq.0h5v.s12.8a4014e99c53 from=seed src=0 shape=d5ca6695 vocab=9fdae615
+-/
 lemma image_zeroLocus {U : X.Opens} (s : Set Γ(X, U)) :
     f '' X.zeroLocus s = Y.zeroLocus ((f.appIso U).inv.hom '' s) ∩ Set.range f := by
   ext x

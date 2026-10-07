@@ -28,9 +28,15 @@ namespace FreeMonoid
 @[to_additive /-- `List.countP` lifted to free additive monoids -/]
 def countP' (l : FreeMonoid α) : ℕ := l.toList.countP p
 
+/--
+@isnad1 id=eq.0h2v.s5.6047066f818c from=seed src=0 shape=42d19a8a vocab=978db06d
+-/
 @[to_additive]
 lemma countP'_one : (1 : FreeMonoid α).countP' p = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.aa4c32d5635a from=seed src=0 shape=7070ced8 vocab=ff0aeee4
+-/
 @[to_additive]
 lemma countP'_mul (l₁ l₂ : FreeMonoid α) : (l₁ * l₂).countP' p = l₁.countP' p + l₂.countP' p := by
   dsimp [countP']
@@ -44,8 +50,14 @@ def countP : FreeMonoid α →* Multiplicative ℕ where
   map_mul' x y := by
     simp [countP'_mul p]
 
+/--
+@isnad1 id=eq.0h3v.s7.4fdc42a1ac80 from=seed src=0 shape=7b814587 vocab=260590ce
+-/
 theorem countP_apply (l : FreeMonoid α) : l.countP p = .ofAdd (l.toList.countP p) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.d3c5a74700d9 from=seed src=0 shape=0d96e766 vocab=f1426f82
+-/
 lemma countP_of (x : α) : (of x).countP p =
     if p x then Multiplicative.ofAdd 1 else Multiplicative.ofAdd 0 := by
   rw [countP_apply, toList_of, List.countP_singleton, apply_ite (Multiplicative.ofAdd)]
@@ -55,9 +67,15 @@ lemma countP_of (x : α) : (of x).countP p =
 /-- `List.count` as a bundled additive monoid homomorphism. -/
 def count [DecidableEq α] (x : α) : FreeMonoid α →* Multiplicative ℕ := countP (· = x)
 
+/--
+@isnad1 id=eq.0h3v.s7.7da202b4baf7 from=seed src=0 shape=d5009abb vocab=af9eda42
+-/
 theorem count_apply [DecidableEq α] (x : α) (l : FreeAddMonoid α) :
     count x l = Multiplicative.ofAdd (l.toList.count x) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.65bf3b8cf02d from=seed src=0 shape=b4cdbbb1 vocab=9c6b7bb7
+-/
 theorem count_of [DecidableEq α] (x y : α) :
     count x (of y) = Pi.mulSingle (M := fun _ ↦ Multiplicative ℕ) x (Multiplicative.ofAdd 1) y := by
   simp [count, countP_of, Pi.mulSingle_apply]
@@ -72,8 +90,14 @@ def countP : FreeAddMonoid α →+ ℕ where
   map_zero' := countP'_zero p
   map_add' := countP'_add p
 
+/--
+@isnad1 id=eq.0h3v.s6.c8ae0e5ff7bb from=seed src=0 shape=0bb5275d vocab=59490163
+-/
 theorem countP_apply (l : FreeAddMonoid α) : l.countP p = l.toList.countP p := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.6bc986d384b8 from=seed src=0 shape=e04f193d vocab=89131f74
+-/
 theorem countP_of (x : α) : countP p (of x) = if p x then 1 else 0 := by
   rw [countP_apply, toList_of, List.countP_singleton]
   simp only [decide_eq_true_eq]
@@ -82,11 +106,17 @@ theorem countP_of (x : α) : countP p (of x) = if p x then 1 else 0 := by
 -- Porting note: was (x = ·)
 def count [DecidableEq α] (x : α) : FreeAddMonoid α →+ ℕ := countP (· = x)
 
+/--
+@isnad1 id=eq.0h3v.s6.cc0c5ce22763 from=seed src=0 shape=05b8b05d vocab=67eca597
+-/
 lemma count_of [DecidableEq α] (x y : α) : count x (of y) = (Pi.single x 1 : α → ℕ) y := by
   dsimp [count]
   rw [countP_of]
   simp [Pi.single, Function.update]
 
+/--
+@isnad1 id=eq.0h3v.s6.c380241fa076 from=seed src=0 shape=aafeeb22 vocab=c850aecc
+-/
 theorem count_apply [DecidableEq α] (x : α) (l : FreeAddMonoid α) : l.count x = l.toList.count x :=
   rfl
 

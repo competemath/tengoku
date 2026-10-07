@@ -41,6 +41,9 @@ def etalePretopology : Pretopology Scheme.{u} :=
 abbrev etaleTopology : GrothendieckTopology Scheme.{u} :=
   grothendieckTopology @Etale
 
+/--
+@isnad1 id=le.0h0v.s3.e6cd47c75325 from=seed src=0 shape=836e6cbb vocab=bd32a6a6
+-/
 lemma zariskiTopology_le_etaleTopology : zariskiTopology ≤ etaleTopology := by
   apply grothendieckTopology_monotone
   intro X Y f hf
@@ -58,6 +61,9 @@ def smallEtalePretopology (X : Scheme.{u}) : Pretopology X.Etale :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h5v.s11.b33f18ac6009 from=seed src=0 shape=742dd1fe vocab=3a55f0db
+-/
 lemma ofArrows_mem_smallEtaleTopology_iff
     {X : Scheme.{u}} {W : X.Etale} {ι : Type*}
     {Z : ι → X.Etale} (f : ∀ i, Z i ⟶ W) :

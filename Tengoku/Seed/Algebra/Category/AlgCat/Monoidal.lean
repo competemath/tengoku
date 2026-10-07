@@ -58,38 +58,65 @@ instance : MonoidalCategoryStruct (AlgCat.{u} R) where
   leftUnitor X := (Algebra.TensorProduct.lid R X).toAlgebraIso
   rightUnitor X := (Algebra.TensorProduct.rid R R X).toAlgebraIso
 
+/--
+@isnad1 id=eq.0h7v.s8.3829efaee9c9 from=seed src=0 shape=026c0b2d vocab=a0265466
+-/
 theorem hom_tensorHom {K L M N : AlgCat.{u} R} (f : K ⟶ L) (g : M ⟶ N) :
     (f ⊗ₘ g).hom = Algebra.TensorProduct.map f.hom g.hom :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.e62e70758a7b from=seed src=0 shape=626c1e40 vocab=c4d657ec
+-/
 theorem hom_whiskerLeft (L : AlgCat.{u} R) {M N : AlgCat.{u} R} (f : M ⟶ N) :
     (L ◁ f).hom = Algebra.TensorProduct.map (.id _ _) f.hom :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.3eb088c9b3ec from=seed src=0 shape=70f656fc vocab=a9859715
+-/
 theorem hom_whiskerRight {L M : AlgCat.{u} R} (f : L ⟶ M) (N : AlgCat.{u} R) :
     (f ▷ N).hom = Algebra.TensorProduct.map f.hom (.id _ _) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.fc05310d117a from=seed src=0 shape=1132733a vocab=4069c67e
+-/
 theorem hom_hom_leftUnitor {M : AlgCat.{u} R} :
     (λ_ M).hom.hom = (Algebra.TensorProduct.lid _ _).toAlgHom :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.051c2bd0f36a from=seed src=0 shape=c3eabe4f vocab=6821f4e7
+-/
 theorem hom_inv_leftUnitor {M : AlgCat.{u} R} :
     (λ_ M).inv.hom = (Algebra.TensorProduct.lid _ _).symm.toAlgHom :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.afcdc4bf6d34 from=seed src=0 shape=dee0f35e vocab=9f5d6b97
+-/
 theorem hom_hom_rightUnitor {M : AlgCat.{u} R} :
     (ρ_ M).hom.hom = (Algebra.TensorProduct.rid _ _ _).toAlgHom :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.4c119331ae1b from=seed src=0 shape=cc417739 vocab=0cb8b4b3
+-/
 theorem hom_inv_rightUnitor {M : AlgCat.{u} R} :
     (ρ_ M).inv.hom = (Algebra.TensorProduct.rid _ _ _).symm.toAlgHom :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.7ae16fb0407d from=seed src=0 shape=6d0d849d vocab=99d4955d
+-/
 theorem hom_hom_associator {M N K : AlgCat.{u} R} :
     (α_ M N K).hom.hom = (Algebra.TensorProduct.assoc R R R M N K).toAlgHom :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.e2f2b56174ca from=seed src=0 shape=c45f2ed4 vocab=82aaed9f
+-/
 theorem hom_inv_associator {M N K : AlgCat.{u} R} :
     (α_ M N K).inv.hom = (Algebra.TensorProduct.assoc R R R M N K).symm.toAlgHom :=
   rfl

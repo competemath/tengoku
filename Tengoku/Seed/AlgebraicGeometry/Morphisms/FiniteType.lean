@@ -46,6 +46,9 @@ class LocallyOfFiniteType (f : X ⟶ Y) : Prop where
     ∀ {U : Y.Opens} (_ : IsAffineOpen U) {V : X.Opens} (_ : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U),
       (f.appLE U V e).hom.FiniteType
 
+/--
+@isnad1 id=finitety.3h5v.s9.0825e2cade21 from=seed src=0 shape=3953db45 vocab=8c931efd
+-/
 alias Scheme.Hom.finiteType_appLE := LocallyOfFiniteType.finiteType_appLE
 
 instance : HasRingHomProperty @LocallyOfFiniteType RingHom.FiniteType where
@@ -54,6 +57,9 @@ instance : HasRingHomProperty @LocallyOfFiniteType RingHom.FiniteType where
     ext X Y f
     rw [locallyOfFiniteType_iff, affineLocally_iff_forall_isAffineOpen]
 
+/--
+@isnad1 id=locallyo.0h3v.s4.9982235e1e75 from=seed src=0 shape=892cb9de vocab=d69576df
+-/
 instance (priority := 900) locallyOfFiniteType_of_isOpenImmersion [IsOpenImmersion f] :
     LocallyOfFiniteType f :=
   HasRingHomProperty.of_isOpenImmersion
@@ -62,10 +68,16 @@ instance (priority := 900) locallyOfFiniteType_of_isOpenImmersion [IsOpenImmersi
 instance : MorphismProperty.IsStableUnderComposition @LocallyOfFiniteType :=
   HasRingHomProperty.stableUnderComposition RingHom.finiteType_stableUnderComposition
 
+/--
+@isnad1 id=locallyo.0h5v.s5.d9621bd40eaa from=seed src=0 shape=73d4a103 vocab=9d649f3b
+-/
 instance locallyOfFiniteType_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [hf : LocallyOfFiniteType f] [hg : LocallyOfFiniteType g] : LocallyOfFiniteType (f ≫ g) :=
   MorphismProperty.comp_mem _ f g hf hg
 
+/--
+@isnad1 id=locallyo.0h5v.s5.bc6ba22e62d6 from=seed src=0 shape=ed21faf9 vocab=9d649f3b
+-/
 theorem locallyOfFiniteType_of_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [LocallyOfFiniteType (f ≫ g)] : LocallyOfFiniteType f :=
   HasRingHomProperty.of_comp (fun _ _ ↦ RingHom.FiniteType.of_comp_finiteType) ‹_›
@@ -74,6 +86,9 @@ instance : MorphismProperty.IsMultiplicative @LocallyOfFiniteType where
   id_mem _ := inferInstance
 
 open scoped TensorProduct in
+/--
+@isnad1 id=isstable.0h0v.s2.a5a001fccd81 from=seed src=0 shape=25b03439 vocab=fb8a2dec
+-/
 instance locallyOfFiniteType_isStableUnderBaseChange :
     MorphismProperty.IsStableUnderBaseChange @LocallyOfFiniteType :=
   HasRingHomProperty.isStableUnderBaseChange RingHom.finiteType_isStableUnderBaseChange
@@ -96,6 +111,9 @@ instance (f : X ⟶ Y) (U : X.Opens) (V : Y.Opens) (e) [LocallyOfFiniteType f] :
     LocallyOfFiniteType (f.resLE V U e) := by
   delta Scheme.Hom.resLE; infer_instance
 
+/--
+@isnad1 id=essfinit.0h4v.s9.18316042350b from=seed src=0 shape=f861e1e1 vocab=f6b0f5f1
+-/
 lemma LocallyOfFiniteType.stalkMap [LocallyOfFiniteType f] (x : X) :
     (f.stalkMap x).hom.EssFiniteType :=
   HasRingHomProperty.stalkMap_of_respectsIso RingHom.EssFiniteType.respectsIso
@@ -111,6 +129,9 @@ instance {R : CommRingCat} [IsJacobsonRing R] : JacobsonSpace (Spec R) :=
   inferInstanceAs (JacobsonSpace (PrimeSpectrum R))
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=jacobson.0h3v.s5.77af1423fbc7 from=seed src=0 shape=5602b55b vocab=eac26f4f
+-/
 nonrec lemma LocallyOfFiniteType.jacobsonSpace
     (f : X ⟶ Y) [LocallyOfFiniteType f] [JacobsonSpace Y] : JacobsonSpace X := by
   wlog hY : ∃ S, Y = Spec S
@@ -144,6 +165,7 @@ set_option backward.isDefEq.respectTransparency false in
 /--
 The category of affine schemes locally of finite type over a fixed base scheme is essentially small.
 TODO: extend this to (relatively) quasi-compact schemes.
+@isnad1 id=essentia.1h2v.s7.48da169245ab from=seed src=0 shape=ae513393 vocab=2f45a226
 -/
 lemma essentiallySmall_costructuredArrow_Spec
     (P : MorphismProperty Scheme.{u}) (hP : P ≤ @LocallyOfFiniteType) [P.RespectsIso] :

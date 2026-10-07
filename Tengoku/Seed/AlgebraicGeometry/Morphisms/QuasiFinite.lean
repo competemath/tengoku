@@ -101,10 +101,16 @@ instance (priority := low) [IsImmersion f] : LocallyQuasiFinite f := by
     RingHom.QuasiFinite.holdsForLocalizationAway.containsIdentities (f := f.coborderRange.ι)
   infer_instance
 
+/--
+@isnad1 id=locallyq.0h5v.s5.47a35b8c309e from=seed src=0 shape=ed21faf9 vocab=e878565e
+-/
 theorem LocallyQuasiFinite.of_comp {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [LocallyQuasiFinite (f ≫ g)] : LocallyQuasiFinite f :=
   HasRingHomProperty.of_comp (fun _ _ ↦ RingHom.QuasiFinite.of_comp) ‹_›
 
+/--
+@isnad1 id=iff.0h5v.s5.e7ef1a3412ee from=seed src=0 shape=daa213a1 vocab=e878565e
+-/
 theorem LocallyQuasiFinite.comp_iff {X Y Z : Scheme} (f : X ⟶ Y) (g : Y ⟶ Z)
     [LocallyQuasiFinite g] :
     LocallyQuasiFinite (f ≫ g) ↔ LocallyQuasiFinite f :=
@@ -140,6 +146,9 @@ instance : MorphismProperty.Respects @LocallyQuasiFinite @IsOpenImmersion :=
     RingHom.QuasiFinite.holdsForLocalizationAway).1
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=islocall.0h3v.s4.68d20b590a5a from=seed src=0 shape=9715b773 vocab=12a31cb9
+-/
 nonrec lemma IsLocallyArtinian.of_locallyQuasiFinite [LocallyQuasiFinite f]
     [IsLocallyArtinian Y] : IsLocallyArtinian X := by
   change id _ -- avoid typeclass synthesis from getting stuck on the wlog hypothesis.
@@ -161,33 +170,54 @@ set_option backward.isDefEq.respectTransparency false in
 instance [LocallyQuasiFinite f] (y : Y) : IsLocallyArtinian (f.fiber y) :=
   .of_locallyQuasiFinite (pullback.snd _ _)
 
+/--
+@isnad1 id=isdiscre.0h4v.s8.f04f51741bb6 from=seed src=0 shape=a7bf1a39 vocab=d16f696f
+-/
 lemma Scheme.Hom.isDiscrete_preimage_singleton [LocallyQuasiFinite f] (y : Y) :
     IsDiscrete (f ⁻¹' {y}) := by
   simpa [Scheme.Hom.range_fiberι] using
     (isDiscrete_univ_iff.mpr inferInstance).image (f.fiberι y).isEmbedding.toIsInducing
 
+/--
+@isnad1 id=isdiscre.1h4v.s8.f9295e058855 from=seed src=0 shape=27902d03 vocab=24445b21
+-/
 lemma Scheme.Hom.isDiscrete_preimage [LocallyQuasiFinite f] {s : Set Y} (hs : IsDiscrete s) :
     IsDiscrete (f ⁻¹' s) :=
   hs.preimage' f.continuous.continuousOn f.isDiscrete_preimage_singleton
 
 instance [LocallyQuasiFinite f] [QuasiCompact f] (y : Y) : IsArtinianScheme (f.fiber y) where
 
+/--
+@isnad1 id=finite.0h4v.s8.249c38eddcb9 from=seed src=0 shape=85b3311e vocab=9199fd60
+-/
 lemma Scheme.Hom.finite_preimage_singleton [LocallyQuasiFinite f] [QuasiCompact f] (y : Y) :
     (f ⁻¹' {y}).Finite := by
   simpa [Scheme.Hom.range_fiberι] using Set.finite_univ.image (f.fiberι y)
 
+/--
+@isnad1 id=finite.0h4v.s8.249c38eddcb9 from=seed src=0 shape=85b3311e vocab=9199fd60
+-/
 @[deprecated (since := "2026-02-05")]
 alias IsFinite.finite_preimage_singleton := Scheme.Hom.finite_preimage_singleton
 
+/--
+@isnad1 id=finite.1h4v.s7.7691ad9d0973 from=seed src=0 shape=ffa7f05a vocab=2f720b50
+-/
 lemma Scheme.Hom.finite_preimage [LocallyQuasiFinite f] [QuasiCompact f]
     {s : Set Y} (hs : s.Finite) : (f ⁻¹' s).Finite :=
   hs.preimage' fun _ _ ↦ f.finite_preimage_singleton _
 
+/--
+@isnad1 id=tendsto.0h3v.s7.3aa6481d8f4a from=seed src=0 shape=c137ec30 vocab=aa52006a
+-/
 lemma Scheme.Hom.tendsto_cofinite_cofinite [LocallyQuasiFinite f] [QuasiCompact f] :
     Filter.Tendsto f .cofinite .cofinite :=
   .cofinite_of_finite_preimage_singleton f.finite_preimage_singleton
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isfinite.0h3v.s4.b6cd36dffa71 from=seed src=0 shape=277c8a98 vocab=5e6ca4ae
+-/
 nonrec lemma IsFinite.of_locallyQuasiFinite (f : X ⟶ Y) [LocallyQuasiFinite f]
     [QuasiCompact f] [IsLocallyArtinian Y] : IsFinite f := by
   change id _ -- avoid typeclass synthesis from getting stuck on the wlog hypothesis.
@@ -213,6 +243,9 @@ instance (f : X ⟶ Y) [LocallyQuasiFinite f] [QuasiCompact f] (x : Y) :
   .of_locallyQuasiFinite (pullback.snd _ _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=locallyq.1h3v.s5.273eae88fb48 from=seed src=0 shape=6f061bcc vocab=982b10e0
+-/
 nonrec lemma LocallyQuasiFinite.of_fiberToSpecResidueField
     (hf : ∀ x, LocallyQuasiFinite (f.fiberToSpecResidueField x)) : LocallyQuasiFinite f := by
   change id _ -- avoid typeclass synthesis from getting stuck on the wlog hypothesis.
@@ -259,10 +292,16 @@ nonrec lemma LocallyQuasiFinite.of_fiberToSpecResidueField
   · exact asIso (Spec.map (Spec.residueFieldIso _ x).inv)
   · simp [Hom.fiberToSpecResidueField]
 
+/--
+@isnad1 id=locallyq.1h3v.s5.273eae88fb48 from=seed src=0 shape=6f061bcc vocab=982b10e0
+-/
 @[deprecated (since := "2026-02-15")]
 alias LocallyQuasiFinite.of_isFinite_fiberToSpecResidueField :=
   LocallyQuasiFinite.of_fiberToSpecResidueField
 
+/--
+@isnad1 id=iff.0h3v.s5.0a9902c82893 from=seed src=0 shape=cac17567 vocab=51251edb
+-/
 lemma locallyQuasiFinite_iff_isFinite_fiber {f : X ⟶ Y} [QuasiCompact f] :
     LocallyQuasiFinite f ↔ ∀ x, IsFinite (f.fiberToSpecResidueField x) :=
   ⟨fun _ ↦ inferInstance, fun _ ↦ .of_fiberToSpecResidueField f fun _ ↦ inferInstance⟩
@@ -274,6 +313,9 @@ instance (priority := low) [IsPreimmersion f] : LocallyQuasiFinite f := by
   infer_instance
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h3v.s8.40c235f9ea97 from=seed src=0 shape=b3dd3642 vocab=7fa8edcc
+-/
 nonrec lemma locallyQuasiFinite_iff_isDiscrete_preimage_singleton
     {f : X ⟶ Y} [LocallyOfFiniteType f] :
     LocallyQuasiFinite f ↔ ∀ x, IsDiscrete (f ⁻¹' {x}) := by
@@ -301,6 +343,9 @@ nonrec lemma locallyQuasiFinite_iff_isDiscrete_preimage_singleton
     ((Spec.map φ).isCompact_preimage_singleton _).finite (H _)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=locallyq.1h3v.s8.33bf83b2b201 from=seed src=0 shape=b9284ae6 vocab=ea8888f7
+-/
 nonrec lemma LocallyQuasiFinite.of_finite_preimage_singleton
     [LocallyOfFiniteType f] (hf : ∀ x, (f ⁻¹' {x}).Finite) : LocallyQuasiFinite f := by
   change id _ -- avoid typeclass synthesis from getting stuck on the wlog hypothesis.
@@ -323,11 +368,17 @@ nonrec lemma LocallyQuasiFinite.of_finite_preimage_singleton
   algebraize [φ.hom]
   exact (Algebra.QuasiFinite.iff_finite_comap_preimage_singleton).mpr hf
 
+/--
+@isnad1 id=iff.0h3v.s8.af9c8fc17b68 from=seed src=0 shape=de33c3a1 vocab=9e4e59b0
+-/
 lemma locallyQuasiFinite_iff_finite_preimage_singleton
     {f : X ⟶ Y} [LocallyOfFiniteType f] [QuasiCompact f] :
     LocallyQuasiFinite f ↔ ∀ x, (f ⁻¹' {x}).Finite :=
   ⟨fun _ ↦ f.finite_preimage_singleton, .of_finite_preimage_singleton f⟩
 
+/--
+@isnad1 id=locallyq.1h3v.s7.1325a5cd56cb from=seed src=0 shape=678d5693 vocab=a084e688
+-/
 lemma LocallyQuasiFinite.of_injective {f : X ⟶ Y} [LocallyOfFiniteType f]
     (hf : Function.Injective f) : LocallyQuasiFinite f :=
   .of_finite_preimage_singleton _ fun _ ↦ (Set.subsingleton_singleton.preimage hf).finite
@@ -341,6 +392,9 @@ def Scheme.Hom.QuasiFiniteAt (x : X) : Prop := (f.stalkMap x).hom.QuasiFinite
 
 variable {f} in
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=quasifin.5h6v.s10.548332c3d30d from=seed src=0 shape=858b71fb vocab=9b7170c0
+-/
 lemma Scheme.Hom.QuasiFiniteAt.quasiFiniteAt
     {x : X} (hx : f.QuasiFiniteAt x) {V : X.Opens} (hV : IsAffineOpen V) {U : Y.Opens}
     (hU : IsAffineOpen U) (hVU : V ≤ f ⁻¹ᵁ U) (hxV : x ∈ V.1) :
@@ -363,6 +417,9 @@ lemma Scheme.Hom.QuasiFiniteAt.quasiFiniteAt
     IsScalarTower.algebraMap_eq Γ(Y, U) Γ(X, V), e.toAlgHom.comp_algebraMap.symm]
   rfl
 
+/--
+@isnad1 id=quasifin.0h4v.s5.b5421c69f403 from=seed src=0 shape=d463bd97 vocab=ba3a1552
+-/
 lemma Scheme.Hom.quasiFiniteAt [LocallyQuasiFinite f] (x : X) :
     f.QuasiFiniteAt x := by
   refine HasRingHomProperty.stalkMap ?_ ‹_› x
@@ -375,24 +432,36 @@ lemma Scheme.Hom.quasiFiniteAt [LocallyQuasiFinite f] (x : X) :
   ext; simp; rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h6v.s7.06763b6f61b1 from=seed src=0 shape=de2f4386 vocab=edcdfa21
+-/
 lemma Scheme.Hom.quasiFiniteAt_comp_iff_of_isOpenImmersion
     {Z : Scheme} {f : X ⟶ Y} {g : Y ⟶ Z} {x : X} [IsOpenImmersion f] :
     (f ≫ g).QuasiFiniteAt x ↔ g.QuasiFiniteAt (f x) := by
   simp only [QuasiFiniteAt, stalkMap_comp, CommRingCat.hom_comp,
     RingHom.QuasiFinite.respectsIso.cancel_right_isIso]
 
+/--
+@isnad1 id=iff.0h6v.s5.1eef9166ba5e from=seed src=0 shape=0ba14677 vocab=dbbb4f13
+-/
 lemma Scheme.Hom.quasiFiniteAt_comp_iff {Z : Scheme} {f : X ⟶ Y} {g : Y ⟶ Z} {x : X}
     [LocallyQuasiFinite g] :
     (f ≫ g).QuasiFiniteAt x ↔ f.QuasiFiniteAt x := by
   simp only [QuasiFiniteAt, stalkMap_comp]
   exact RingHom.QuasiFinite.comp_iff (g.quasiFiniteAt _)
 
+/--
+@isnad1 id=iff.0h4v.s6.9c5f4ca367a2 from=seed src=0 shape=031464a5 vocab=098465bf
+-/
 lemma Scheme.Hom.quasiFiniteAt_iff {f : X ⟶ Y} {x : X} :
     f.QuasiFiniteAt x ↔ LocallyQuasiFinite (X.fromSpecStalk x ≫ f) := by
   rw [← SpecMap_stalkMap_fromSpecStalk, LocallyQuasiFinite.comp_iff,
     HasRingHomProperty.Spec_iff (P := @LocallyQuasiFinite), QuasiFiniteAt]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h4v.s9.9422019a598d from=seed src=0 shape=9de33d08 vocab=9470a22d
+-/
 nonrec lemma Scheme.Hom.quasiFiniteAt_iff_isOpen_singleton_asFiber
     {f : X ⟶ Y} [LocallyOfFiniteType f] {x : X} :
     f.QuasiFiniteAt x ↔ IsOpen {f.asFiber x} := by
@@ -440,6 +509,9 @@ nonrec lemma Scheme.Hom.quasiFiniteAt_iff_isOpen_singleton_asFiber
   exact ⟨fun _ ↦ .trans _ (Localization.AtPrime (x.asIdeal.under R)) _,
     fun _ ↦ .of_restrictScalars R _ _⟩
 
+/--
+@isnad1 id=isclopen.1h4v.s9.b760cce7ca74 from=seed src=0 shape=dfec039b vocab=ad6521bb
+-/
 nonrec lemma Scheme.Hom.QuasiFiniteAt.isClopen_singleton_asFiber
     [LocallyOfFiniteType f] {x : X} (hx : f.QuasiFiniteAt x) : IsClopen {f.asFiber x} := by
   have := Scheme.Hom.quasiFiniteAt_iff_isOpen_singleton_asFiber.mp ‹_›

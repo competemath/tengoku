@@ -46,7 +46,9 @@ open Scheme
 section Scheme
 
 /-- The underlying continuous map of a flat, surjective and quasi-compact morphism of schemes is an
-effective epimorphism in the category of topological spaces. -/
+effective epimorphism in the category of topological spaces.
+@isnad1 id=effectiv.0h3v.s6.c9067df14edc from=seed src=0 shape=9db04700 vocab=a19c35ee
+-/
 instance effectiveEpi_base_of_flat {X Y : Scheme.{u}} {f : X ⟶ Y} [Flat f] [Surjective f]
     [QuasiCompact f] : EffectiveEpi f.base := by
   rw [TopCat.effectiveEpi_iff_isQuotientMap]
@@ -116,7 +118,9 @@ end EffectiveEpiConstruction
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- If `π : X ⟶ Y` is a flat and surjective morphism between affine schemes, then `π` is a
-regular epimorphism in the category of schemes. -/
+regular epimorphism in the category of schemes.
+@isnad1 id=isregula.0h3v.s5.4443754bcc42 from=seed src=0 shape=99a55f60 vocab=0f618af8
+-/
 @[stacks 023Q]
 lemma isRegularEpi_of_flat_of_surjective_of_isAffine
     {X Y : Scheme.{u}} [IsAffine X] [IsAffine Y] (π : X ⟶ Y) [Surjective π] [Flat π] :

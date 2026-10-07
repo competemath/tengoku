@@ -37,6 +37,9 @@ variable {R₀ : Cᵒᵖ ⥤ RingCat.{u}} {R : Sheaf J RingCat.{u}} (α : R₀ �
   [HasWeakSheafify J AddCommGrpCat.{v}]
 
 open MorphismProperty in
+/--
+@isnad1 id=eq.0h5v.s8.04b84b21489c from=seed src=0 shape=a699163c vocab=889dcec3
+-/
 lemma inverseImage_W_toPresheaf_eq_inverseImage_isomorphisms :
     J.W.inverseImage (toPresheaf R₀) = (isomorphisms _).inverseImage (sheafification α) := by
   rw [J.W_eq_inverseImage_isomorphisms]

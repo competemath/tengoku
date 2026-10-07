@@ -24,7 +24,9 @@ public section
 
 namespace Finset
 
-/-- Sharp upper bound for the sum of a finset of integers that is bounded above, `Ioc` version. -/
+/-- Sharp upper bound for the sum of a finset of integers that is bounded above, `Ioc` version.
+@isnad1 id=le.1h2v.s6.8bf414e45258 from=seed src=0 shape=6e12507f vocab=cf60fc14
+-/
 lemma sum_le_sum_Ioc {s : Finset ℤ} {c : ℤ} (hs : ∀ x ∈ s, x ≤ c) :
     ∑ x ∈ s, x ≤ ∑ x ∈ Ioc (c - #s) c, x := by
   set r := Ioc (c - #s) c
@@ -43,7 +45,9 @@ lemma sum_le_sum_Ioc {s : Finset ℤ} {c : ℤ} (hs : ∀ x ∈ s, x ≤ c) :
       refine card_nsmul_le_sum _ _ _ fun x mx ↦ ?_
       rw [mem_sdiff, mem_Ioc] at mx; exact mx.1.1.le
 
-/-- Sharp upper bound for the sum of a finset of integers that is bounded above, `range` version. -/
+/-- Sharp upper bound for the sum of a finset of integers that is bounded above, `range` version.
+@isnad1 id=le.1h2v.s5.d94c916d614c from=seed src=0 shape=745b9749 vocab=b1cfebf7
+-/
 lemma sum_le_sum_range {s : Finset ℤ} {c : ℤ} (hs : ∀ x ∈ s, x ≤ c) :
     ∑ x ∈ s, x ≤ ∑ n ∈ range #s, (c - n) := by
   convert! sum_le_sum_Ioc hs
@@ -54,7 +58,9 @@ lemma sum_le_sum_range {s : Finset ℤ} {c : ℤ} (hs : ∀ x ∈ s, x ≤ c) :
     rw [mem_coe, mem_Ioc] at mx
     use (c - x).toNat; grind
 
-/-- Sharp lower bound for the sum of a finset of integers that is bounded below, `Ico` version. -/
+/-- Sharp lower bound for the sum of a finset of integers that is bounded below, `Ico` version.
+@isnad1 id=le.1h2v.s6.3b7e42992c0c from=seed src=0 shape=f4de0c49 vocab=08657cd3
+-/
 lemma sum_Ico_le_sum {s : Finset ℤ} {c : ℤ} (hs : ∀ x ∈ s, c ≤ x) :
     ∑ x ∈ Ico c (c + #s), x ≤ ∑ x ∈ s, x := by
   set r := Ico c (c + #s)
@@ -69,7 +75,9 @@ lemma sum_Ico_le_sum {s : Finset ℤ} {c : ℤ} (hs : ∀ x ∈ s, c ≤ x) :
       grw [← sum_inter_add_sum_sdiff s r, card_nsmul_le_sum _ _ _ fun x mx ↦ ?_]
       grind
 
-/-- Sharp lower bound for the sum of a finset of integers that is bounded below, `range` version. -/
+/-- Sharp lower bound for the sum of a finset of integers that is bounded below, `range` version.
+@isnad1 id=le.1h2v.s5.532f50342247 from=seed src=0 shape=98921390 vocab=97897002
+-/
 lemma sum_range_le_sum {s : Finset ℤ} {c : ℤ} (hs : ∀ x ∈ s, c ≤ x) :
     ∑ n ∈ range #s, (c + n) ≤ ∑ x ∈ s, x := by
   convert! sum_Ico_le_sum hs

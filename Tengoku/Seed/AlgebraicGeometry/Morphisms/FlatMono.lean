@@ -22,6 +22,9 @@ open CategoryTheory Limits MorphismProperty
 
 namespace AlgebraicGeometry
 
+/--
+@isnad1 id=isiso.0h3v.s5.0e72bdf85000 from=seed src=0 shape=476c6113 vocab=20a58b70
+-/
 @[stacks 06NC]
 lemma Flat.isIso_of_surjective_of_mono {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f]
     [QuasiCompact f] [Surjective f] [Mono f] : IsIso f := by
@@ -35,6 +38,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 Flat monomorphisms that are locally of finite presentation are open immersions. In particular,
 every smooth monomorphism is an open immersion.
 The converse holds by `inferInstance`.
+@isnad1 id=isopenim.0h3v.s5.e9b379037858 from=seed src=0 shape=0db353a6 vocab=3d08553e
 -/
 theorem IsOpenImmersion.of_flat_of_mono {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f]
     [LocallyOfFinitePresentation f] [Mono f] : IsOpenImmersion f := by

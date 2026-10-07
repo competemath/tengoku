@@ -61,6 +61,9 @@ finite correctness proof (`of_correctness_of_terminates`) of `GenContFract.of` t
 
 variable (v : K) (n : ℕ)
 
+/--
+@isnad1 id=ex.0h3v.s5.f921dfc75914 from=seed src=0 shape=5a68badd vocab=7294dfc7
+-/
 nonrec theorem exists_gcf_pair_rat_eq_of_nth_contsAux :
     ∃ conts : Pair ℚ, (of v).contsAux n = (conts.map (↑) : Pair K) :=
   Nat.strong_induction_on n
@@ -99,21 +102,32 @@ nonrec theorem exists_gcf_pair_rat_eq_of_nth_contsAux :
           cases ppred_conts; cases pred_conts
           simp [nextConts, nextNum, nextDen])
 
+/--
+@isnad1 id=ex.0h3v.s5.384d6724c1b7 from=seed src=0 shape=5a68badd vocab=00117d5e
+-/
 theorem exists_gcf_pair_rat_eq_nth_conts :
     ∃ conts : Pair ℚ, (of v).conts n = (conts.map (↑) : Pair K) := by
   rw [nth_cont_eq_succ_nth_contAux]; exact exists_gcf_pair_rat_eq_of_nth_contsAux v <| n + 1
 
+/--
+@isnad1 id=ex.0h3v.s5.ebc699e8609b from=seed src=0 shape=0f72c063 vocab=f2a72135
+-/
 theorem exists_rat_eq_nth_num : ∃ q : ℚ, (of v).nums n = (q : K) := by
   rcases exists_gcf_pair_rat_eq_nth_conts v n with ⟨⟨a, _⟩, nth_cont_eq⟩
   use a
   simp [num_eq_conts_a, nth_cont_eq]
 
+/--
+@isnad1 id=ex.0h3v.s5.a6b0cdcd31a4 from=seed src=0 shape=0f72c063 vocab=455dd537
+-/
 theorem exists_rat_eq_nth_den : ∃ q : ℚ, (of v).dens n = (q : K) := by
   rcases exists_gcf_pair_rat_eq_nth_conts v n with ⟨⟨_, b⟩, nth_cont_eq⟩
   use b
   simp [den_eq_conts_b, nth_cont_eq]
 
-/-- Every finite convergent corresponds to a rational number. -/
+/-- Every finite convergent corresponds to a rational number.
+@isnad1 id=ex.0h3v.s5.499b888649a8 from=seed src=0 shape=0f72c063 vocab=926bb392
+-/
 theorem exists_rat_eq_nth_conv : ∃ q : ℚ, (of v).convs n = (q : K) := by
   rcases exists_rat_eq_nth_num v n with ⟨Aₙ, nth_num_eq⟩
   rcases exists_rat_eq_nth_den v n with ⟨Bₙ, nth_den_eq⟩
@@ -122,7 +136,9 @@ theorem exists_rat_eq_nth_conv : ∃ q : ℚ, (of v).convs n = (q : K) := by
 
 variable {v}
 
-/-- Every terminating continued fraction corresponds to a rational number. -/
+/-- Every terminating continued fraction corresponds to a rational number.
+@isnad1 id=ex.1h2v.s5.84fa62ed3fde from=seed src=0 shape=b648991c vocab=db52e391
+-/
 theorem exists_rat_eq_of_terminates (terminates : (of v).Terminates) : ∃ q : ℚ, v = ↑q := by
   obtain ⟨n, v_eq_conv⟩ : ∃ n, v = (of v).convs n := of_correctness_of_terminates terminates
   obtain ⟨q, conv_eq_q⟩ : ∃ q : ℚ, (of v).convs n = (↑q : K) := exists_rat_eq_nth_conv v n
@@ -159,10 +175,16 @@ variable [IsStrictOrderedRing K] {v : K} {q : ℚ}
 
 namespace IntFractPair
 
+/--
+@isnad1 id=eq.1h3v.s6.2f968361660c from=seed src=0 shape=fe007f62 vocab=397d50e7
+-/
 theorem coe_of_rat_eq (v_eq_q : v = (↑q : K)) :
     ((IntFractPair.of q).mapFr (↑) : IntFractPair K) = IntFractPair.of v := by
   simp [IntFractPair.of, v_eq_q]
 
+/--
+@isnad1 id=eq.1h4v.s6.7cb24deb9c61 from=seed src=0 shape=6a135ea0 vocab=18c7e881
+-/
 theorem coe_stream_nth_rat_eq (v_eq_q : v = (↑q : K)) (n : ℕ) :
     ((IntFractPair.stream q n).map (mapFr (↑)) : Option <| IntFractPair K) =
       IntFractPair.stream v n := by
@@ -181,6 +203,9 @@ theorem coe_stream_nth_rat_eq (v_eq_q : v = (↑q : K)) (n : ℕ) :
         have coe_of_fr := coe_of_rat_eq this
         simpa [IntFractPair.stream, IH.symm, v_eq_q, stream_q_nth_eq, fr_ne_zero]
 
+/--
+@isnad1 id=eq.1h3v.s6.b4d395531987 from=seed src=0 shape=67c53525 vocab=24dab3ae
+-/
 theorem coe_stream'_rat_eq (v_eq_q : v = (↑q : K)) :
     ((IntFractPair.stream q).map (Option.map (mapFr (↑))) : Stream' <| Option <| IntFractPair K) =
       IntFractPair.stream v := by
@@ -191,10 +216,16 @@ end IntFractPair
 /-! Now we lift the coercion results to the continued fraction computation. -/
 
 
+/--
+@isnad1 id=eq.1h3v.s6.d5de0ceba211 from=seed src=0 shape=7b30fdb6 vocab=5e376e4f
+-/
 theorem coe_of_h_rat_eq (v_eq_q : v = (↑q : K)) : (↑((of q).h : ℚ) : K) = (of v).h := by
   simp_all
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s6.630599195003 from=seed src=0 shape=55b70765 vocab=85c5d36c
+-/
 theorem coe_of_s_get?_rat_eq (v_eq_q : v = (↑q : K)) (n : ℕ) :
     (((of q).s.get? n).map (Pair.map (↑)) : Option <| Pair K) = (of v).s.get? n := by
   simp only [of, IntFractPair.seq1, Stream'.Seq.map_get?, Stream'.Seq.get?_tail]
@@ -203,17 +234,25 @@ theorem coe_of_s_get?_rat_eq (v_eq_q : v = (↑q : K)) (n : ℕ) :
   rcases succ_nth_stream_eq : IntFractPair.stream q (n + 1) with (_ | ⟨_, _⟩) <;>
     simp [Stream'.map, Stream'.get, succ_nth_stream_eq]
 
+/--
+@isnad1 id=eq.1h3v.s6.cd6ce1ed242c from=seed src=0 shape=6042c906 vocab=59ead161
+-/
 theorem coe_of_s_rat_eq (v_eq_q : v = (↑q : K)) :
     ((of q).s.map (Pair.map ((↑))) : Stream'.Seq <| Pair K) = (of v).s := by
   ext n; rw [← coe_of_s_get?_rat_eq v_eq_q]; rfl
 
-/-- Given `(v : K), (q : ℚ), and v = q`, we have that `of q = of v` -/
+/-- Given `(v : K), (q : ℚ), and v = q`, we have that `of q = of v`
+@isnad1 id=eq.1h3v.s6.67c72ffbf541 from=seed src=0 shape=583e0f32 vocab=b629e016
+-/
 theorem coe_of_rat_eq (v_eq_q : v = (↑q : K)) :
     (⟨(of q).h, (of q).s.map (Pair.map (↑))⟩ : GenContFract K) = of v := by
   rcases gcf_v_eq : of v with ⟨h, s⟩; subst v
   obtain rfl : ↑⌊(q : K)⌋ = h := by injection gcf_v_eq
   simp [coe_of_s_rat_eq rfl, gcf_v_eq]
 
+/--
+@isnad1 id=iff.1h3v.s6.c5c1ab90f21a from=seed src=0 shape=814aba83 vocab=87a37468
+-/
 theorem of_terminates_iff_of_rat_terminates {v : K} {q : ℚ} (v_eq_q : v = (q : K)) :
     (of v).Terminates ↔ (of q).Terminates := by
   refine exists_congr fun n => ?_
@@ -242,12 +281,15 @@ variable {q : ℚ} {n : ℕ}
 
 /-- Shows that for any `q : ℚ` with `0 < q < 1`, the numerator of the fractional part of
 `IntFractPair.of q⁻¹` is smaller than the numerator of `q`.
+@isnad1 id=lt.1h1v.s4.d212d8d8fde1 from=seed src=0 shape=d097ab4c vocab=c17022d5
 -/
 theorem of_inv_fr_num_lt_num_of_pos (q_pos : 0 < q) : (IntFractPair.of q⁻¹).fr.num < q.num :=
   Rat.fract_inv_num_lt_num_of_pos q_pos
 
 /-- Shows that the sequence of numerators of the fractional parts of the stream is strictly
-antitone. -/
+antitone.
+@isnad1 id=lt.2h4v.s6.87ee491c2ee4 from=seed src=0 shape=0236bf4a vocab=ef0fcf6e
+-/
 theorem stream_succ_nth_fr_num_lt_nth_fr_num_rat {ifp_n ifp_succ_n : IntFractPair ℚ}
     (stream_nth_eq : IntFractPair.stream q n = some ifp_n)
     (stream_succ_nth_eq : IntFractPair.stream q (n + 1) = some ifp_succ_n) :
@@ -264,6 +306,9 @@ theorem stream_succ_nth_fr_num_lt_nth_fr_num_rat {ifp_n ifp_succ_n : IntFractPai
   have : 0 < ifp_n.fr := lt_of_le_of_ne zero_le_ifp_n_fract <| ifp_n_fract_ne_zero.symm
   exact of_inv_fr_num_lt_num_of_pos this
 
+/--
+@isnad1 id=le.1h3v.s5.e71f07c13c12 from=seed src=0 shape=351d2499 vocab=7eedc8ef
+-/
 theorem stream_nth_fr_num_le_fr_num_sub_n_rat :
     ∀ {ifp_n : IntFractPair ℚ},
       IntFractPair.stream q n = some ifp_n → ifp_n.fr.num ≤ (IntFractPair.of q).fr.num - n := by
@@ -282,6 +327,9 @@ theorem stream_nth_fr_num_le_fr_num_sub_n_rat :
       stream_succ_nth_fr_num_lt_nth_fr_num_rat stream_nth_eq stream_succ_nth_eq
     exact le_trans this (IH stream_nth_eq)
 
+/--
+@isnad1 id=ex.0h1v.s4.c51bbe4c4a5a from=seed src=0 shape=454c7dae vocab=a97ad91b
+-/
 theorem exists_nth_stream_eq_none_of_rat (q : ℚ) : ∃ n : ℕ, IntFractPair.stream q n = none := by
   let fract_q_num := (Int.fract q).num; let n := fract_q_num.natAbs + 1
   rcases stream_nth_eq : IntFractPair.stream q n with ifp | ifp
@@ -300,7 +348,9 @@ theorem exists_nth_stream_eq_none_of_rat (q : ℚ) : ∃ n : ℕ, IntFractPair.s
 
 end IntFractPair
 
-/-- The continued fraction of a rational number terminates. -/
+/-- The continued fraction of a rational number terminates.
+@isnad1 id=terminat.0h1v.s3.c0f4c07158e8 from=seed src=0 shape=f05b3d2e vocab=c61e1269
+-/
 theorem terminates_of_rat (q : ℚ) : (of q).Terminates :=
   Exists.elim (IntFractPair.exists_nth_stream_eq_none_of_rat q) fun n stream_nth_eq_none =>
     Exists.intro n
@@ -309,7 +359,9 @@ theorem terminates_of_rat (q : ℚ) : (of q).Terminates :=
 
 end TerminatesOfRat
 
-/-- The continued fraction `GenContFract.of v` terminates if and only if `v ∈ ℚ`. -/
+/-- The continued fraction `GenContFract.of v` terminates if and only if `v ∈ ℚ`.
+@isnad1 id=iff.0h2v.s6.333cb0cd5dec from=seed src=0 shape=2dd44b57 vocab=87a37468
+-/
 theorem terminates_iff_rat [IsStrictOrderedRing K] (v : K) :
     (of v).Terminates ↔ ∃ q : ℚ, v = (q : K) :=
   Iff.intro exists_rat_eq_of_terminates

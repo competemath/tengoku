@@ -74,15 +74,24 @@ local notation "P₁" => PresentedMonoid rels₁
 local notation "P₂" => PresentedMonoid rels₂
 local notation "P₃" => PresentedMonoid rels₃
 
+/--
+@isnad1 id=var.0h5v.s6.69d9f6d9b66f from=seed src=0 shape=a909cf65 vocab=414e5d53
+-/
 @[to_additive (attr := elab_as_elim), induction_eliminator]
 protected theorem inductionOn {δ : P₁ → Prop} (q : P₁) (h : ∀ a, δ (mk rels₁ a)) : δ q :=
   Quotient.ind h q
 
+/--
+@isnad1 id=var.0h8v.s7.a6c8af3844f6 from=seed src=0 shape=83796cd3 vocab=414e5d53
+-/
 @[to_additive (attr := elab_as_elim)]
 protected theorem inductionOn₂ {δ : P₁ → P₂ → Prop} (q₁ : P₁) (q₂ : P₂)
     (h : ∀ a b, δ (mk rels₁ a) (mk rels₂ b)) : δ q₁ q₂ :=
   Quotient.inductionOn₂ q₁ q₂ h
 
+/--
+@isnad1 id=var.0h11v.s8.e227cfa9a968 from=seed src=0 shape=3e4f3a40 vocab=414e5d53
+-/
 @[to_additive (attr := elab_as_elim)]
 protected theorem inductionOn₃ {δ : P₁ → P₂ → P₃ → Prop} (q₁ : P₁)
     (q₂ : P₂) (q₃ : P₃) (h : ∀ a b c, δ (mk rels₁ a) (mk rels₂ b) (mk rels₃ c)) :
@@ -93,12 +102,20 @@ end inductionOn
 
 variable {α : Type*} {rels : FreeMonoid α → FreeMonoid α → Prop} {x y : FreeMonoid α}
 
+/--
+@isnad1 id=iff.0h4v.s7.b194dd6a3774 from=seed src=0 shape=dfc9dcd7 vocab=85de8c90
+-/
 lemma mk_eq_mk_iff : mk rels x = mk rels y ↔ conGen rels x y := Quotient.eq
 
+/--
+@isnad1 id=eq.0h5v.s7.cde34f377677 from=seed src=0 shape=c6887396 vocab=414e5d53
+-/
 lemma mk_eq_mk_of_rel (h : rels x y) : mk rels x = mk rels y := mk_eq_mk_iff.2 (.of _ _ h)
 
 /-- The generators of a presented monoid generate the presented monoid. That is, the submonoid
-closure of the set of generators equals `⊤`. -/
+closure of the set of generators equals `⊤`.
+@isnad1 id=eq.0h2v.s6.3f1ce5e7a6d3 from=seed src=0 shape=e8792b16 vocab=3daa7057
+-/
 @[to_additive (attr := simp) /-- The generators of a presented additive monoid generate the
 presented additive monoid. That is, the additive submonoid closure of the set of generators equals
 `⊤`. -/]
@@ -112,6 +129,9 @@ theorem closure_range_of (rels : FreeMonoid α → FreeMonoid α → Prop) :
   | of x => exact subset_closure <| by simp [range, of]
   | mul x y hx hy => exact Submonoid.mul_mem _ hx hy
 
+/--
+@isnad1 id=surjecti.0h2v.s6.128790cd522d from=seed src=0 shape=6f40a3be vocab=ced808a6
+-/
 @[to_additive]
 theorem surjective_mk {rels : FreeMonoid α → FreeMonoid α → Prop} :
     Function.Surjective (mk rels) := fun x ↦ PresentedMonoid.inductionOn x fun a ↦ .intro a rfl
@@ -128,16 +148,25 @@ additive-monoid homomorphism from `PresentedAddMonoid rels → M` -/]
 def lift : PresentedMonoid rels →* M :=
   Con.lift _ (FreeMonoid.lift f) (Con.conGen_le.2 h)
 
+/--
+@isnad1 id=eq.2h5v.s10.e1c4f7597ff9 from=seed src=0 shape=dcf04174 vocab=0d9bcab1
+-/
 @[to_additive]
 theorem toMonoid.unique (g : MonoidHom (conGen rels).Quotient M)
     (hg : ∀ a : α, g (of rels a) = f a) : g = lift f h :=
   Con.lift_unique (Con.conGen_le.2 h) g (FreeMonoid.hom_eq hg)
 
+/--
+@isnad1 id=eq.1h5v.s8.14a10f5ac6b5 from=seed src=0 shape=9f7094e3 vocab=f8225761
+-/
 @[to_additive (attr := simp)]
 theorem lift_of {x : α} : lift f h (of rels x) = f x := rfl
 
 end ToMonoid
 
+/--
+@isnad1 id=eq.1h5v.s7.34c8b8491568 from=seed src=0 shape=5fe06336 vocab=64b04012
+-/
 @[to_additive (attr := ext)]
 theorem ext {M : Type*} [Monoid M] (rels : FreeMonoid α → FreeMonoid α → Prop)
     {φ ψ : PresentedMonoid rels →* M} (hx : ∀ (x : α), φ (.of rels x) = ψ (.of rels x)) :

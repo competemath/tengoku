@@ -42,7 +42,9 @@ lemma exteriorPower.cofactorToLeft_ιMulti_cons (bN : Module.Basis (Fin n) R N) 
 
 variable (R M) in
 /-- Let `R` be a commutative ring, `M` be a finite stably free `R`-module.
-  Then `M` is free if it is invertible. -/
+  Then `M` is free if it is invertible.
+@isnad1 id=free.0h2v.s5.53dababc801f from=seed src=0 shape=2b40bcef vocab=7d25e524
+-/
 public theorem Module.free_of_isStablyFree_of_invertible
     [IsStablyFree R M] [Module.Invertible R M] : Module.Free R M := by
   rcases subsingleton_or_nontrivial R with _ | _

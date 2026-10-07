@@ -83,15 +83,24 @@ instance (priority := 100) : CanLift (Set R) (NonUnitalStarSubsemiring R) (↑)
         star_mem' := h.2.2.2 },
       rfl ⟩
 
+/--
+@isnad1 id=nonunita.0h1v.s5.df4d44564ca2 from=seed src=0 shape=338784ee vocab=810c9dd7
+-/
 instance instNonUnitalSubsemiringClass :
     NonUnitalSubsemiringClass (NonUnitalStarSubsemiring R) R where
   add_mem {s} := s.add_mem'
   mul_mem {s} := s.mul_mem'
   zero_mem {s} := s.zero_mem'
 
+/--
+@isnad1 id=starmemc.0h1v.s5.31e6745722f8 from=seed src=0 shape=338784ee vocab=5b1f0dfc
+-/
 instance instStarMemClass : StarMemClass (NonUnitalStarSubsemiring R) R where
   star_mem {s} := s.star_mem'
 
+/--
+@isnad1 id=iff.0h3v.s7.bfc8784c041d from=seed src=0 shape=c23fe308 vocab=9ba23cb8
+-/
 theorem mem_carrier {s : NonUnitalStarSubsemiring R} {x : R} : x ∈ s.carrier ↔ x ∈ s :=
   Iff.rfl
 
@@ -105,11 +114,17 @@ protected def copy (S : NonUnitalStarSubsemiring R) (s : Set R) (hs : s = ↑S) 
       rw [hs] at hx ⊢
       exact S.star_mem' hx }
 
+/--
+@isnad1 id=eq.1h3v.s6.226e0d27ee10 from=seed src=0 shape=b67da15d vocab=f6ea47b7
+-/
 @[simp, norm_cast]
 theorem coe_copy (S : NonUnitalStarSubsemiring R) (s : Set R) (hs : s = ↑S) :
     (S.copy s hs : Set R) = s :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.33bfe6a63056 from=seed src=0 shape=ccbd82c9 vocab=f6ea47b7
+-/
 theorem copy_eq (S : NonUnitalStarSubsemiring R) (s : Set R) (hs : s = ↑S) : S.copy s hs = S :=
   SetLike.coe_injective hs
 

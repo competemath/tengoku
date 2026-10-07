@@ -67,6 +67,9 @@ def δ {i j k : ι} (f : i ⟶ j) (g : j ⟶ k) (n₀ n₁ : ℤ) (hn₁ : n₀ 
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h19v.s10.bd5d0d5d3285 from=seed src=0 shape=992a3985 vocab=fb9afe8f
+-/
 @[reassoc]
 lemma δ_naturality {i j k : ι} (f : i ⟶ j) (g : j ⟶ k)
     {i' j' k' : ι} (f' : i' ⟶ j') (g' : j' ⟶ k')
@@ -86,18 +89,27 @@ section
 variable {i j k : ι} (f : i ⟶ j) (g : j ⟶ k)
   (fg : i ⟶ k) (h : f ≫ g = fg)
 
+/--
+@isnad1 id=eq.1h12v.s10.88061919f141 from=seed src=0 shape=7640be62 vocab=56db7d84
+-/
 @[reassoc (attr := simp)]
 lemma zero₁ (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia) :
     X.δ f g n₀ n₁ hn₁ ≫ (X.H n₁).map (twoδ₂Toδ₁ f g fg h) = 0 := by
   subst h
   exact (X.exact₁' n₀ n₁ hn₁ (mk₂ f g)).zero 0
 
+/--
+@isnad1 id=eq.1h10v.s10.7af687da9081 from=seed src=0 shape=da33d439 vocab=d45cc394
+-/
 @[reassoc (attr := simp)]
 lemma zero₂ (fg : i ⟶ k) (h : f ≫ g = fg) (n₀ : ℤ) :
     (X.H n₀).map (twoδ₂Toδ₁ f g fg h) ≫ (X.H n₀).map (twoδ₁Toδ₀ f g fg h) = 0 := by
   subst h
   exact (X.exact₂' n₀ (mk₂ f g)).zero 0
 
+/--
+@isnad1 id=eq.1h12v.s10.4a780c315ff2 from=seed src=0 shape=62c6a83e vocab=c957247e
+-/
 @[reassoc (attr := simp)]
 lemma zero₃ (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.H n₀).map (twoδ₁Toδ₀ f g fg h) ≫ X.δ f g n₀ n₁ hn₁ = 0 := by
@@ -122,16 +134,25 @@ of a spectral object, when `f ≫ g = fg` and `n₀ + 1 = n₁`. -/
 def sc₃ (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia) : ShortComplex C :=
   ShortComplex.mk _ _ (X.zero₃ f g fg h n₀ n₁ hn₁)
 
+/--
+@isnad1 id=exact.1h12v.s7.9b5476474ae0 from=seed src=0 shape=2f5962a7 vocab=fc156a6b
+-/
 lemma exact₁ (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.sc₁ f g fg h n₀ n₁ hn₁).Exact := by
   subst h
   exact (X.exact₁' n₀ n₁ hn₁ (mk₂ f g)).exact 0
 
+/--
+@isnad1 id=exact.1h10v.s6.f997a46b56ed from=seed src=0 shape=622cd143 vocab=7aef15d7
+-/
 lemma exact₂ (n₀ : ℤ) :
     (X.sc₂ f g fg h n₀).Exact := by
   subst h
   exact (X.exact₂' n₀ (mk₂ f g)).exact 0
 
+/--
+@isnad1 id=exact.1h12v.s7.907266a08fb7 from=seed src=0 shape=2f5962a7 vocab=0c3ccc33
+-/
 lemma exact₃ (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.sc₃ f g fg h n₀ n₁ hn₁).Exact := by
   subst h
@@ -146,6 +167,9 @@ abbrev composableArrows₅ (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia)
     (X.δ f g n₀ n₁ hn₁) ((X.H n₁).map (twoδ₂Toδ₁ f g fg h))
     ((X.H n₁).map (twoδ₁Toδ₀ f g fg h))
 
+/--
+@isnad1 id=exact.1h12v.s7.3d3c14a253cf from=seed src=0 shape=6533f273 vocab=f101bdde
+-/
 lemma composableArrows₅_exact (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia) :
     (X.composableArrows₅ f g fg h n₀ n₁ hn₁).Exact :=
   exact_of_δ₀ (X.exact₂ _ _ _ h n₀).exact_toComposableArrows
@@ -155,6 +179,9 @@ lemma composableArrows₅_exact (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁ := by
 
 end
 
+/--
+@isnad1 id=eq.0h15v.s10.5bec7d9f4c4c from=seed src=0 shape=3da6c6b3 vocab=c57d7381
+-/
 @[reassoc (attr := simp)]
 lemma δ_δ {i j k l : ι} (f : i ⟶ j) (g : j ⟶ k) (h : k ⟶ l)
     (n₀ n₁ n₂ : ℤ) (hn₁ : n₀ + 1 = n₁ := by lia) (hn₂ : n₁ + 1 = n₂ := by lia) :
@@ -184,6 +211,9 @@ attribute [simp] id_hom
 attribute [reassoc, simp] comp_hom
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iszero.0h7v.s7.96c98d91c267 from=seed src=0 shape=5020b11a vocab=97a381b4
+-/
 lemma isZero_H_map_mk₁_of_isIso (n : ℤ) {i₀ i₁ : ι} (f : i₀ ⟶ i₁) [IsIso f] :
     IsZero ((X.H n).obj (mk₁ f)) := by
   let φ := twoδ₂Toδ₁ f (inv f) (𝟙 i₀) (by simp) ≫ twoδ₁Toδ₀ f (inv f) (𝟙 i₀)
@@ -201,14 +231,23 @@ variable (n₀ n₁ : ℤ) (hn₁ : n₀ + 1 = n₁) {i₀ i₁ i₂ : ι}
   (h₁ : IsZero ((X.H n₀).obj (mk₁ f))) (h₂ : IsZero ((X.H n₁).obj (mk₁ f)))
 
 include h₁ in
+/--
+@isnad1 id=mono.2h10v.s9.5e2360eff126 from=seed src=0 shape=5794bb40 vocab=832fd3d0
+-/
 lemma mono_H_map_twoδ₁Toδ₀ : Mono ((X.H n₀).map (twoδ₁Toδ₀ f g fg hfg)) :=
   (X.exact₂ f g fg hfg n₀).mono_g (h₁.eq_of_src _ _)
 
 include h₂ hn₁ in
+/--
+@isnad1 id=epi.3h11v.s9.9e7f225709c6 from=seed src=0 shape=298915ff vocab=5794640e
+-/
 lemma epi_H_map_twoδ₁Toδ₀ : Epi ((X.H n₀).map (twoδ₁Toδ₀ f g fg hfg)) :=
   (X.exact₃ f g fg hfg n₀ n₁ hn₁).epi_f (h₂.eq_of_tgt _ _)
 
 include h₁ h₂ hn₁ in
+/--
+@isnad1 id=isiso.4h11v.s9.3a242e7b59b9 from=seed src=0 shape=1ee012a2 vocab=ada2e274
+-/
 lemma isIso_H_map_twoδ₁Toδ₀ : IsIso ((X.H n₀).map (twoδ₁Toδ₀ f g fg hfg)) := by
   have := X.mono_H_map_twoδ₁Toδ₀ n₀ f g fg hfg h₁
   have := X.epi_H_map_twoδ₁Toδ₀ n₀ n₁ hn₁ f g fg hfg h₂
@@ -224,14 +263,23 @@ variable {ι' : Type*} [Preorder ι'] (X' : SpectralObject C ι')
   (h₂ : IsZero ((X'.H n₁).obj (mk₁ (homOfLE h₀₁))))
 
 include h₁ in
+/--
+@isnad1 id=mono.3h7v.s9.a2a4e7fb0e53 from=seed src=0 shape=bb835207 vocab=b4cc5d3b
+-/
 lemma mono_H_map_twoδ₁Toδ₀' : Mono ((X'.H n₀).map (twoδ₁Toδ₀' i₀ i₁ i₂ h₀₁ h₁₂)) :=
   X'.mono_H_map_twoδ₁Toδ₀ _ _ _ _ _ h₁
 
 include h₂ hn₁ in
+/--
+@isnad1 id=epi.4h8v.s9.b8206f42e233 from=seed src=0 shape=df1fadc6 vocab=fa101dc2
+-/
 lemma epi_H_map_twoδ₁Toδ₀' : Epi ((X'.H n₀).map (twoδ₁Toδ₀' i₀ i₁ i₂ h₀₁ h₁₂)) :=
   X'.epi_H_map_twoδ₁Toδ₀ _ _ hn₁ _ _ _ _ h₂
 
 include h₁ h₂ hn₁ in
+/--
+@isnad1 id=isiso.5h8v.s9.154e2d9987f1 from=seed src=0 shape=aff020f4 vocab=381175aa
+-/
 lemma isIso_H_map_twoδ₁Toδ₀' : IsIso ((X'.H n₀).map (twoδ₁Toδ₀' i₀ i₁ i₂ h₀₁ h₁₂)) :=
   X'.isIso_H_map_twoδ₁Toδ₀ _ _ hn₁ _ _ _ _ h₁ h₂
 

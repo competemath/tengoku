@@ -50,11 +50,17 @@ namespace Submodule
 
 variable {M : PresheafOfModules.{v} R} (N : M.Submodule)
 
+/--
+@isnad1 id=eq.1h5v.s7.eb8accd22fc1 from=seed src=0 shape=87b7f54a vocab=6b994f8b
+-/
 @[ext]
 lemma ext {N₁ N₂ : M.Submodule} (h : ∀ X, N₁.obj X = N₂.obj X) :
     N₁ = N₂ := by
   cases N₁; cases N₂; congr 1; ext X : 1; exact h X
 
+/--
+@isnad1 id=mem.1h8v.s11.af6971975569 from=seed src=0 shape=f7ca3b43 vocab=acf53700
+-/
 @[grind .]
 lemma map_mem {X Y : Cᵒᵖ} (f : X ⟶ Y) {x : M.obj X} (hx : x ∈ N.obj X) :
     M.map f x ∈ N.obj Y :=
@@ -70,6 +76,9 @@ noncomputable def toPresheafOfModules : PresheafOfModules.{v} R where
     ModuleCat.semilinearMapAddEquiv _ _ _ <|
       (M.restrictₛₗ f).restrict (p := N.obj X) (q := N.obj Y) (fun _ hc ↦ N.map_mem _ hc)
 
+/--
+@isnad1 id=eq.0h8v.s12.75b92635f9a4 from=seed src=0 shape=4f858bfe vocab=0ef8fdc6
+-/
 @[simp]
 lemma toPresheafOfModules_map_apply {X Y : Cᵒᵖ} (f : X ⟶ Y) (m : N.obj X) :
     dsimp% ((N.toPresheafOfModules).map f m).val = M.map f m.val := by
@@ -85,6 +94,9 @@ instance : Mono N.ι := mono_of_injective fun _ ↦ Subtype.val_injective
 instance : PartialOrder M.Submodule :=
   PartialOrder.lift _ fun _ _ h ↦ ext (congrFun h)
 
+/--
+@isnad1 id=iff.0h5v.s9.1d4beebfc855 from=seed src=0 shape=8747e532 vocab=f54f3f95
+-/
 lemma le_iff {N₁ N₂ : M.Submodule} : N₁ ≤ N₂ ↔ ∀ X, N₁.obj X ≤ N₂.obj X :=
   .rfl
 
@@ -98,6 +110,9 @@ noncomputable def homOfLE {N₁ N₂ : M.Submodule} (hle : N₁ ≤ N₂) :
 instance (N₁ N₂ : M.Submodule) (hle : N₁ ≤ N₂) : Mono (homOfLE hle) :=
   mono_of_injective fun _ ↦ Submodule.inclusion_injective (hle _)
 
+/--
+@isnad1 id=eq.1h5v.s7.329888476b5d from=seed src=0 shape=38787000 vocab=5082cf71
+-/
 @[reassoc (attr := simp)]
 lemma homOfLE_ι {N₁ N₂ : M.Submodule} (hle : N₁ ≤ N₂) : homOfLE hle ≫ N₂.ι = N₁.ι := rfl
 
@@ -106,6 +121,9 @@ def toSubfunctor : Subfunctor (M.presheaf ⋙ CategoryTheory.forget AddCommGrpCa
   obj X := {r : M.obj X | r ∈ N.obj X}
   map := fun {_ _} f _ hr ↦ N.map_mem f hr
 
+/--
+@isnad1 id=iff.0h6v.s9.590dc1d51877 from=seed src=0 shape=b228559e vocab=86f067b6
+-/
 @[simp]
 lemma mem_toSubfunctor_obj {X : Cᵒᵖ} (r : M.obj X) :
     r ∈ N.toSubfunctor.obj X ↔ r ∈ N.obj X := Iff.rfl

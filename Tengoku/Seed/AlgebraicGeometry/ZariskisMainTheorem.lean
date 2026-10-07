@@ -47,6 +47,9 @@ set_option backward.isDefEq.respectTransparency false in
 open TensorProduct in
 -- Note: This is weaker than stacks#02LN but is enough to proof Zariski's main.
 -- TODO: generalize this.
+/--
+@isnad1 id=ex.2h5v.s10.caabd3b9a408 from=seed src=0 shape=7865cac7 vocab=3e13b32d
+-/
 theorem exists_etale_isCompl_of_quasiFiniteAt [IsSeparated f]
     {x : X} {s : S} (h : f x = s) (hx : f.QuasiFiniteAt x) :
     ∃ (U : Scheme) (g : U ⟶ S), Etale g ∧ s ∈ Set.range g ∧
@@ -117,6 +120,9 @@ theorem exists_etale_isCompl_of_quasiFiniteAt [IsSeparated f]
 variable {X Y S : Scheme.{u}} (f : X ⟶ Y)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.1h4v.s9.3e587219e87b from=seed src=0 shape=15329637 vocab=14dbaa85
+-/
 lemma Scheme.Hom.exists_mem_and_isIso_morphismRestrict_toNormalization
     [LocallyOfFiniteType f] [IsSeparated f] [QuasiCompact f]
     (x : X) (hx : f.QuasiFiniteAt x) :
@@ -202,6 +208,7 @@ Let `f : X ⟶ Y` be separated and of finite type.
 then there exists `U : f.normalization.Opens`, such that
 1. `f.toNormalization ∣_ U` is an isomorphism
 2. `f.toNormalization ⁻¹ᵁ U` is the quasi-finite locus of `f`
+@isnad1 id=ex.0h3v.s9.181cc5db2c1a from=seed src=0 shape=fa62ea48 vocab=5ffd7399
 -/
 @[stacks 03GW]
 lemma Scheme.Hom.exists_isIso_morphismRestrict_toNormalization
@@ -290,6 +297,9 @@ lemma Scheme.Hom.exists_isIso_morphismRestrict_toNormalization
   exact .of_isLocalization (hr.primeIdealOf ⟨x, hxV⟩).asIdeal.primeCompl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isopen.0h3v.s5.fed763b69532 from=seed src=0 shape=f262cdc3 vocab=91a04f5e
+-/
 lemma Scheme.Hom.isOpen_quasiFiniteAt [LocallyOfFiniteType f] :
     IsOpen { x | f.QuasiFiniteAt x } := by
   wlog H : IsAffineHom f
@@ -318,6 +328,9 @@ def Scheme.Hom.quasiFiniteLocus [LocallyOfFiniteType f] : X.Opens :=
   ⟨{ x | f.QuasiFiniteAt x }, f.isOpen_quasiFiniteAt⟩
 
 variable {f} in
+/--
+@isnad1 id=iff.0h4v.s6.569218fb2708 from=seed src=0 shape=074c5ef7 vocab=3b3eea6a
+-/
 @[simp]
 lemma Scheme.Hom.mem_quasiFiniteLocus [LocallyOfFiniteType f]
     {x : X} : x ∈ f.quasiFiniteLocus ↔ f.QuasiFiniteAt x := .rfl
@@ -332,16 +345,25 @@ instance [LocallyOfFiniteType f] [IsSeparated f] [QuasiCompact f] :
           f.toNormalization ∣_ U ≫ U.ι)) using 1
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.6dbcae0cf1fc from=seed src=0 shape=d08b6784 vocab=b9fff04b
+-/
 lemma Scheme.Hom.quasiFiniteLocus_eq_top [LocallyQuasiFinite f] [LocallyOfFiniteType f] :
     f.quasiFiniteLocus = ⊤ :=
   top_le_iff.mp fun x _ ↦ f.quasiFiniteAt x
 
+/--
+@isnad1 id=eq.0h5v.s7.673a9c544b78 from=seed src=0 shape=8a57d0de vocab=f80cd465
+-/
 lemma Scheme.Hom.quasiFiniteLocus_comp {Z : Scheme} [IsOpenImmersion f]
     (g : Y ⟶ Z) [LocallyOfFiniteType g] :
     (f ≫ g).quasiFiniteLocus = f ⁻¹ᵁ g.quasiFiniteLocus := by
   ext
   simp [quasiFiniteAt_comp_iff_of_isOpenImmersion]
 
+/--
+@isnad1 id=iff.0h3v.s6.8b0163551194 from=seed src=0 shape=ec557cbf vocab=b9fff04b
+-/
 lemma Scheme.Hom.quasiFiniteLocus_eq_top_iff [LocallyOfFiniteType f] :
     f.quasiFiniteLocus = ⊤ ↔ LocallyQuasiFinite f := by
   refine ⟨fun H ↦ locallyQuasiFinite_iff_isDiscrete_preimage_singleton.mpr fun x ↦ ?_,
@@ -371,6 +393,9 @@ instance [QuasiSeparated f] [UniversallyClosed f] : UniversallyClosed f.toNormal
   have : UniversallyClosed (f.toNormalization ≫ f.fromNormalization) := by simpa
   .of_comp_of_isSeparated _ f.fromNormalization
 
+/--
+@isnad1 id=isfinite.0h3v.s4.3c0bb946c7a3 from=seed src=0 shape=d492d1ea vocab=430aa4cc
+-/
 lemma IsFinite.of_isProper_of_locallyQuasiFinite
     [IsProper f] [LocallyQuasiFinite f] : IsFinite f := by
   have : IsIso f.toNormalization :=
@@ -379,6 +404,9 @@ lemma IsFinite.of_isProper_of_locallyQuasiFinite
   rw [← f.toNormalization_fromNormalization]
   infer_instance
 
+/--
+@isnad1 id=iff.0h3v.s4.09e737f82e67 from=seed src=0 shape=2caf7a2f vocab=430aa4cc
+-/
 @[stacks 02LS "(1) <=> (3)"]
 lemma IsFinite.iff_isProper_and_locallyQuasiFinite :
     IsFinite f ↔ IsProper f ∧ LocallyQuasiFinite f := by
@@ -390,6 +418,9 @@ lemma IsFinite.eq_proper_inf_locallyQuasiFinite :
   ext
   exact IsFinite.iff_isProper_and_locallyQuasiFinite ..
 
+/--
+@isnad1 id=iff.0h3v.s4.933132a5dbec from=seed src=0 shape=2ecb613c vocab=4154265a
+-/
 @[stacks 04XV "(1) <=> (2)"]
 lemma IsClosedImmersion.iff_isProper_and_mono :
     IsClosedImmersion f ↔ IsProper f ∧ Mono f := by
@@ -403,6 +434,9 @@ lemma IsClosedImmersion.eq_proper_inf_monomorphisms :
   exact IsClosedImmersion.iff_isProper_and_mono ..
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=ex.1h4v.s8.e9a2f41ba4e6 from=seed src=0 shape=ebe1fab2 vocab=33cbcc5a
+-/
 @[stacks 02UP]
 lemma exists_isFinite_morphismRestrict_of_finite_preimage_singleton
     [IsProper f] (y : Y) (hx : (f ⁻¹' {y}).Finite) :
@@ -421,6 +455,9 @@ lemma exists_isFinite_morphismRestrict_of_finite_preimage_singleton
       Scheme.Hom.quasiFiniteAt_comp_iff] at this
     simpa
 
+/--
+@isnad1 id=ex.1h6v.s9.4e43adc94cd9 from=seed src=0 shape=0b6a7681 vocab=4f14a6b0
+-/
 @[stacks 0AH8]
 lemma exists_finite_imageι_comp_morphismRestrict_of_finite_image_preimage
     {X Y S : Scheme} (f : X ⟶ Y) (g : Y ⟶ S) (s : S)
