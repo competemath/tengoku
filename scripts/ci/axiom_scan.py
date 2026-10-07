@@ -278,6 +278,34 @@ def constant_of(record: str, by_name: dict[str, int], by_last: dict[str, list[st
     return by_name[hits[0]] if len(hits) == 1 else None
 
 
+def place_unheld(
+    r: str, libs: set[str], intake: dict[str, set[str]], record_names: set[str], tree: Path, unnamed: list[str], missing: list[str], absent: dict[str, int]
+) -> None:
+    """A record the export does not hold: a bundle theorem not under its manifest name, a compiled library's record (a failure), or a record of a
+    library the tree does not compile."""
+    if r in intake and r not in record_names:
+        # a bundle's theorem the export does not hold under its manifest name (an instance Lean named for the library's own root, renamed
+        # when the module moved into the tree): every declaration of the tree is still scanned for sorryAx above
+        unnamed.append(r)
+    elif any((tree / f"{pascal(lib)}.lean").exists() for lib in libs):  # a compiled library claims it
+        missing.append(r)
+    else:
+        lib = min(libs)
+        absent[lib] = absent.get(lib, 0) + 1
+
+
+def print_audit(total: int, n_intake: int, held: int, n_extra: int, unnamed: list[str], absent: dict[str, int]) -> None:
+    of_bundles = f" ({n_intake} of them theorems of intake bundles)" if n_intake else ""
+    print(f"axiom-scan: {total} trusted records{of_bundles}, {held} in the export, {held - n_extra} of them rest only on the standard axioms")
+    if unnamed:
+        print(f"  {len(unnamed)} bundle theorems are not in the export under their manifest names (renamed instances): {unnamed[:5]}")
+    if absent:
+        print(
+            "  not in the export, from libraries the tree does not compile: "
+            + ", ".join(f"{k} {v}" for k, v in sorted(absent.items(), key=lambda x: -x[1]))
+        )
+
+
 def audit_records(s: Scan, records_dir: Path, by_name: dict[str, int]) -> tuple[dict, list[str]]:
     """Every trusted record must be in the export and rest only on the standard axioms. Returns the report and the failures."""
     records = live_records(records_dir)
@@ -293,42 +321,18 @@ def audit_records(s: Scan, records_dir: Path, by_name: dict[str, int]) -> tuple[
     extra: list[str] = []
     absent: dict[str, int] = {}
     unnamed: list[str] = []
-
-    def place(r: str, libs: set[str]) -> None:
-        """A record the export does not hold: a bundle theorem not under its manifest name, a compiled library's record (a failure), or a record of a
-        library the tree does not compile."""
-        if r in intake and r not in record_names:
-            # a bundle's theorem the export does not hold under its manifest name (an instance Lean named for the library's own root, renamed
-            # when the module moved into the tree): every declaration of the tree is still scanned for sorryAx above
-            unnamed.append(r)
-        elif any((tree / f"{pascal(lib)}.lean").exists() for lib in libs):  # a compiled library claims it
-            missing.append(r)
-        else:
-            lib = min(libs)
-            absent[lib] = absent.get(lib, 0) + 1
-
     for r, libs in records.items():
         # A manifest name is the declaration's full name in the tree (the factory writes it from Lean's own names): an exact match only. The
         # suffix match is for records declared inside a namespace, and would let `Other.Bundle.good` stand in for a bundle's `Bundle.good` (CodeRabbit).
         n = by_name.get(r) if r in intake and r not in record_names else constant_of(r, by_name, by_last)
         if n is None:
-            place(r, libs)
+            place_unheld(r, libs, intake, record_names, tree, unnamed, missing, absent)
             continue
         beyond = [x for x in s.rests_on(n) if x not in STANDARD]
         if beyond:
             extra.append(f"{r} rests on {beyond}")
     held = len(records) - len(missing) - len(unnamed) - sum(absent.values())
-    of_bundles = f" ({len(intake)} of them theorems of intake bundles)" if intake else ""
-    print(
-        f"axiom-scan: {len(records)} trusted records{of_bundles}, {held} in the export, {held - len(extra)} of them rest only on the standard axioms"
-    )
-    if unnamed:
-        print(f"  {len(unnamed)} bundle theorems are not in the export under their manifest names (renamed instances): {unnamed[:5]}")
-    if absent:
-        print(
-            "  not in the export, from libraries the tree does not compile: "
-            + ", ".join(f"{k} {v}" for k, v in sorted(absent.items(), key=lambda x: -x[1]))
-        )
+    print_audit(len(records), len(intake), held, len(extra), unnamed, absent)
     bad = [f"{len(missing)} trusted records of compiled libraries are not in the export: {missing[:10]}"] if missing else []
     bad += extra[:50]
     report = {
