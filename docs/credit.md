@@ -1,8 +1,9 @@
 # How credit and verification work
 
-- **Verification is automatic.** Leak checks every submission: if it compiles
-  cleanly and isn't just a longer route to something the tree already reaches,
-  it's in.
+- **Verification is automatic.** Leak checks every submission: it must compile
+  cleanly and not be a longer route to something the tree already reaches. A
+  maintainer then approves the merge, and promotion to `trusted` builds the
+  record again from scratch.
 - **Credit is permanent, and shared.** Put a docstring above your theorem naming
   the human author, any AI used, and a link to you (GitHub, LinkedIn, ORCID, or
   your [CompeteMath ID](https://competemath.com/whoami)). It stays in the tree.

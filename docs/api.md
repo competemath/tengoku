@@ -41,7 +41,7 @@ challenged or blocked by the platform before it reaches the API, with a `403` or
 |---|---|
 | `name` | the declaration's full name, as in Lean |
 | `statement` | its type, fully elaborated |
-| `status` | `trusted` — compiled by the tree's own toolchain; `staging` — a verified translation, queued to be built into the tree; `tentative` — a real proof from its source, awaiting re-verification here |
+| `status` | `trusted` — compiled by the tree's own toolchain; `staging` — merged and checked by the merge queue, awaiting promotion (which builds it again); `tentative` — a real proof from its source, awaiting re-verification here |
 | `library` | the source it came from (`mathlib`, `carleson`, …) |
 | `sourceUrl` | where the declaration lives, proof included: for `trusted` entries the line in the tree's Lean source (`Tengoku/…`, `Init/…`), for the rest the line in the library it was harvested from |
 | `id` | stable within one index build only; don't persist it |
