@@ -116,7 +116,8 @@
     "https://github.com/SamuelSchlesinger/complexitylib",
     "https://github.com/leanprover/cslib",
     "https://github.com/Jiyuan-Tan/CausalSmith",
-    "https://github.com/serhatemrecoban/LeanInfoTheory"
+    "https://github.com/serhatemrecoban/LeanInfoTheory",
+    "https://github.com/openai/math"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -234,7 +235,8 @@
     "https://github.com/SamuelSchlesinger/complexitylib": "Apache-2.0",
     "https://github.com/leanprover/cslib": "Apache-2.0",
     "https://github.com/Jiyuan-Tan/CausalSmith": "Apache-2.0",
-    "https://github.com/serhatemrecoban/LeanInfoTheory": "Apache-2.0"
+    "https://github.com/serhatemrecoban/LeanInfoTheory": "Apache-2.0",
+    "https://github.com/openai/math": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -1076,6 +1078,15 @@
       "roots": [
         "LeanInfoTheory"
       ]
+    },
+    "openai-math": {
+      "repo": "https://github.com/openai/math",
+      "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "path": "lean",
+      "roots": [
+        "OAI",
+        "ComparatorChallenges"
+      ]
     }
   },
   "$comment_translations": "Sources that are existing formal libraries: a record from one of these is a translation. Anything else is original work.",
@@ -1194,6 +1205,7 @@
     "https://github.com/SamuelSchlesinger/complexitylib",
     "https://github.com/leanprover/cslib",
     "https://github.com/Jiyuan-Tan/CausalSmith",
-    "https://github.com/serhatemrecoban/LeanInfoTheory"
+    "https://github.com/serhatemrecoban/LeanInfoTheory",
+    "https://github.com/openai/math"
   ]
 }
