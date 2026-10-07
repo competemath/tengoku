@@ -69,8 +69,20 @@ independent re-check of every declaration with a second kernel is in progress (c
 ## How to cite
 
 Cite the version you used (its tag, or its DOI) and the commit its manifest names. The all-versions DOI is
-[10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400); [CITATION.cff](../CITATION.cff) and the
-README's *How to cite* give the reference and a BibTeX entry.
+[10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400) (it resolves to the newest version; each release
+also has its own DOI, on its release page). GitHub's *Cite this repository* button gives the same reference, from
+[CITATION.cff](../CITATION.cff).
+
+```bibtex
+@misc{tengoku,
+  author       = {{Tengoku contributors} and Bashir, Mikael},
+  title        = {Tengoku: one verified Lean 4 tree of formal mathematics, with provenance},
+  publisher    = {Zenodo},
+  year         = {2026},
+  doi          = {10.5281/zenodo.23050400},
+  url          = {https://doi.org/10.5281/zenodo.23050400}
+}
+```
 
 ## Limits
 

@@ -24,6 +24,7 @@ in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own
 <tr><td nowrap><img src="https://github.com/zizmorcore.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/zizmorcore/zizmor">zizmor</a></td><td>Found two gaps in our workflows. Tengoku's own workflow checker grew from reading it.</td></tr>
 <tr><td nowrap><img src="https://github.com/step-security.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/step-security/harden-runner">Harden-Runner</a></td><td>Watches what the gate's CI jobs reach over the network (audit mode).</td></tr>
 <tr><td nowrap><img src="https://github.com/trufflesecurity.png?size=40" height="20" alt="">&nbsp;<a href="https://github.com/trufflesecurity/trufflehog">TruffleHog</a> and <a href="https://github.com/Yelp/detect-secrets">detect-secrets</a></td><td>Scan every pull request for secrets; detect-secrets also runs before each commit once the pre-commit hook is installed.</td></tr>
+<tr><td nowrap><img src="https://cdn.simpleicons.org/snyk" height="20" alt="">&nbsp;<a href="https://snyk.io">Snyk</a></td><td>Tengoku is a member of its <a href="https://snyk.io/open-source/">Secure Developer Program</a>, which gives open-source maintainers its developer-security platform and advice at no cost.</td></tr>
 </table>
 
 ## Similar libraries, and what we took from them
