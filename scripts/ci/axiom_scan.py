@@ -279,7 +279,14 @@ def constant_of(record: str, by_name: dict[str, int], by_last: dict[str, list[st
 
 
 def place_unheld(
-    r: str, libs: set[str], intake: dict[str, set[str]], record_names: set[str], tree: Path, unnamed: list[str], missing: list[str], absent: dict[str, int]
+    r: str,
+    libs: set[str],
+    intake: dict[str, set[str]],
+    record_names: set[str],
+    tree: Path,
+    unnamed: list[str],
+    missing: list[str],
+    absent: dict[str, int],
 ) -> None:
     """A record the export does not hold: a bundle theorem not under its manifest name, a compiled library's record (a failure), or a record of a
     library the tree does not compile."""
@@ -296,7 +303,9 @@ def place_unheld(
 
 def print_audit(total: int, n_intake: int, held: int, n_extra: int, unnamed: list[str], absent: dict[str, int]) -> None:
     of_bundles = f" ({n_intake} of them theorems of intake bundles)" if n_intake else ""
-    print(f"axiom-scan: {total} trusted records{of_bundles}, {held} in the export, {held - n_extra} of them rest only on the standard axioms")
+    print(
+        f"axiom-scan: {total} trusted records{of_bundles}, {held} in the export, {held - n_extra} of them rest only on the standard axioms"
+    )
     if unnamed:
         print(f"  {len(unnamed)} bundle theorems are not in the export under their manifest names (renamed instances): {unnamed[:5]}")
     if absent:
