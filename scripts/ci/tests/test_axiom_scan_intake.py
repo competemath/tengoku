@@ -76,6 +76,16 @@ class IntakeAudit(unittest.TestCase):
         self.assertIn("1 bundle theorems are not in the export under their manifest names", out)
         self.assertEqual(report["trusted_records"]["intake_not_under_manifest_name"], ["Bundle.instRenamed"])
 
+    def test_a_manifest_name_matches_the_export_exactly_never_by_suffix(self):
+        """`Other.Bundle.good` must not stand in for the bundle's `Bundle.good` (CodeRabbit, #339): the name is reported as not held, not audited."""
+        x = standard()
+        n = x.axiom("Lean.ofReduceBool") or x.const("Lean.ofReduceBool")
+        x.decl("Other.Bundle.good", n, n)  # the only suffix match, and it rests on a native axiom
+        code, out, report = scan(x, [], ["Bundle.good"])
+        self.assertEqual(code, 0, out)
+        self.assertEqual(report["trusted_records"]["intake_not_under_manifest_name"], ["Bundle.good"])
+        self.assertNotIn("rests on", out)
+
     def test_a_trusted_record_the_export_lacks_still_fails_even_when_a_manifest_names_it_too(self):
         x = standard()
         p = x.const("propext")

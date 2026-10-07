@@ -293,18 +293,26 @@ def audit_records(s: Scan, records_dir: Path, by_name: dict[str, int]) -> tuple[
     extra: list[str] = []
     absent: dict[str, int] = {}
     unnamed: list[str] = []
+
+    def place(r: str, libs: set[str]) -> None:
+        """A record the export does not hold: a bundle theorem not under its manifest name, a compiled library's record (a failure), or a record of a
+        library the tree does not compile."""
+        if r in intake and r not in record_names:
+            # a bundle's theorem the export does not hold under its manifest name (an instance Lean named for the library's own root, renamed
+            # when the module moved into the tree): every declaration of the tree is still scanned for sorryAx above
+            unnamed.append(r)
+        elif any((tree / f"{pascal(lib)}.lean").exists() for lib in libs):  # a compiled library claims it
+            missing.append(r)
+        else:
+            lib = min(libs)
+            absent[lib] = absent.get(lib, 0) + 1
+
     for r, libs in records.items():
-        n = constant_of(r, by_name, by_last)
+        # A manifest name is the declaration's full name in the tree (the factory writes it from Lean's own names): an exact match only. The
+        # suffix match is for records declared inside a namespace, and would let `Other.Bundle.good` stand in for a bundle's `Bundle.good` (CodeRabbit).
+        n = by_name.get(r) if r in intake and r not in record_names else constant_of(r, by_name, by_last)
         if n is None:
-            if r in intake and r not in record_names:
-                # a bundle's theorem the export does not hold under its manifest name (an instance Lean named for the library's own root,
-                # renamed when the module moved into the tree): every declaration of the tree is still scanned for sorryAx above
-                unnamed.append(r)
-            elif any((tree / f"{pascal(lib)}.lean").exists() for lib in libs):  # a compiled library claims it
-                missing.append(r)
-            else:
-                lib = min(libs)
-                absent[lib] = absent.get(lib, 0) + 1
+            place(r, libs)
             continue
         beyond = [x for x in s.rests_on(n) if x not in STANDARD]
         if beyond:
