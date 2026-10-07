@@ -144,6 +144,12 @@ shape: the check from the base commit's script, byte for byte and executable bit
 to that class; the queue's recomputation on the entry's base; and the rule that the change is rehearsed in `tengoku-sandbox` (a full build of the moved tree) before
 it reaches production.
 
+A bundle's theorems are trusted by the tree's rule (it builds with them) and have no records: `data/stats.json` counts a library's
+manifest lines as trusted (`scripts/stats.py`, with `intake` saying how many), and the nightly independent check audits every
+manifest name like a trusted record (`scripts/ci/axiom_scan.py`: only the three standard axioms; a name the export does not hold,
+an instance Lean renamed when the module moved into the tree, is reported, not failed, since every declaration of the tree is
+scanned for `sorryAx` regardless).
+
 ## 6. The extend class
 
 A library of thousands of modules cannot arrive in one intake PR: the merge queue builds what a PR adds inside a 40-minute check, and a module takes about
