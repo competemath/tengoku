@@ -2,7 +2,7 @@
 
 Tengoku aims to provide continuously improving, reliable context for automated theorem provers. By reliable, we mean
 that our systems are designed to be exceptionally cynical of all dependencies, even the Lean 4 kernel and elaboration
-ecosystem. These are the methods, and what they do not promise.
+ecosystem. These are the methods.
 
 ## The methods
 
@@ -20,14 +20,7 @@ ecosystem. These are the methods, and what they do not promise.
   these ([vacuity.py](../scripts/ci/vacuity.py)), and a theorem it flags needs an explicit acknowledgement.
 - **No code that runs.** A record cannot carry `#eval`, `unsafe`, `initialize` or a new `axiom`
   ([the lint](bundle-lint.md)).
-- **Nothing is trusted for where it came from.** Every theorem records its source, licence and credit, and its tier:
-  `tentative` and `staging` are not trusted; `trusted` means the tree builds with it and it passes the checks above.
+- **Nothing is trusted for where it came from.** Every theorem records its source, licence, credit and tier, and
+  `trusted` means the tree builds with it and it passes the checks above.
 - **Every change is gated.** A change is a pull request, checked, then built by a merge queue against the whole
   compiled library ([how a theorem gets in](how-a-pr-flows.md)). The checks are public and anyone can re-run them.
-
-## What this does not promise
-
-- A trusted theorem is proved, but the machine does not check that its statement says what its source meant: a
-  statement means what its definitions say.
-- The search for vacuous theorems is best effort and can miss some.
-- Coverage is partial: most registered libraries are still being translated.

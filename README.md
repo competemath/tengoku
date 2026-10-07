@@ -1,6 +1,6 @@
 <p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
 <h1 align="center">Tengoku (天国)</h1>
-<p align="center"><em>An AI-first formal mathematics library for Lean 4.</em></p>
+<p align="center"><em>An AI-first formal mathematics library for Lean 4 agentic theorem provers.</em></p>
 <p align="center">
 <a href="lean-toolchain"><img src="https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcompetemath%2Ftengoku%2Fmain%2Flean-toolchain&search=v%5B0-9.%5D%2B%28-rc%5B0-9%5D%2B%29%3F&label=Lean%204&color=blue" alt="Lean 4 toolchain"></a>
 <a href="https://competemath.com/tengoku"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcompetemath%2Ftengoku%2Fmain%2Fdata%2Fstats.json&query=%24.totals.trusted&label=trusted%20theorems&color=2e7d32" alt="Trusted theorems"></a>
@@ -9,19 +9,21 @@
 ## About
 Formal mathematics is mathematics a computer can check, step by step. It is scattered across hundreds of separate
 projects, written for different versions of the language, Lean. Tengoku brings them together in one verified library
-on one version, so that people and AI provers can use all of it at once.
+on one version, so that agentic theorem provers can use all of it at once.
 
 Tengoku aims to provide continuously improving, reliable context for automated theorem provers. By reliable, we mean
 that our systems are designed to be exceptionally cynical of all dependencies, even the Lean 4 kernel and elaboration
 ecosystem. [How we do that](docs/reliability.md).
 
 ## Try it
-- **Search it:** [competemath.com/tengoku](https://competemath.com/tengoku), in plain English or by name.
-- **Give an AI agent the search tool** (free, no sign-up):
+[Leak](https://competemath.com/about/leak) is the intended interface to Tengoku.
+
+- **Add the MCP tool to your agent** (free, no sign-up):
   `claude mcp add --transport sse tengoku-search https://barkingtree-leak-i.hf.space/sse`
-- **Use it from code:** the [HTTP API](docs/api.md), or clone this repository and run `scripts/cache.sh get` to
-  download the compiled library.
+- **Search it on the web:** [competemath.com/tengoku](https://competemath.com/tengoku), in plain English or by name.
 - **Run your own:** the [service code](https://github.com/mikael-bashir/leak-services).
+- **HTTP API:** [docs/api.md](docs/api.md).
+- **Download it:** clone this repository and run `scripts/cache.sh get` to download the compiled library.
 
 ## Contributors
 Anyone can contribute, by hand or with AI. Every theorem keeps its author's credit: put a docstring above it with one
@@ -33,7 +35,7 @@ through [SECURITY.md](SECURITY.md), never a public issue.
 
 ## Learn more
 - [How Tengoku stays reliable](docs/reliability.md)
-- [What Tengoku guarantees, and its limits](docs/why-tengoku.md)
+- [What Tengoku guarantees](docs/why-tengoku.md)
 - [The full manual](https://competemath.com/about/tengoku)
 - [Security and licence compliance](docs/openchain/README.md) (OpenChain ISO/IEC 18974 and 5230)
 - [Acknowledgements](docs/acknowledgements.md): the projects and people Tengoku stands on
