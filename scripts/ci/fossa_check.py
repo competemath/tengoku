@@ -35,7 +35,7 @@ FOSSA_URL = "https://app.fossa.com/"
 def from_fossa(s: dict) -> bool:
     """A status FOSSA's GitHub App posted: its login, and a link into FOSSA (a pending status may carry none yet)."""
     url = str(s.get("target_url") or "")
-    return (s.get("creator") or {}).get("login") == FOSSA_LOGIN
+    return (s.get("creator") or {}).get("login") == FOSSA_LOGIN and (not url or url.startswith(FOSSA_URL))
 
 
 def judge(statuses: list[dict]) -> tuple[str, list[str]]:
