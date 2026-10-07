@@ -16,7 +16,17 @@ WORKFLOW = CI.parents[1] / ".github" / "workflows" / "pr-gate.yml"
 sys.path.insert(0, str(CI))
 import fossa_check as fc  # noqa: E402
 
-OK = [{"context": c, "state": "success", "description": "All checks passed."} for c in fc.CONTEXTS]
+BOT = {"login": "fossa-integration[bot]"}
+OK = [
+    {
+        "context": c,
+        "state": "success",
+        "description": "All checks passed.",
+        "creator": BOT,
+        "target_url": "https://app.fossa.com/projects/x",
+    }
+    for c in fc.CONTEXTS
+]
 
 
 def with_state(context: str, state: str, **extra) -> list[dict]:
@@ -40,7 +50,19 @@ class Judge(unittest.TestCase):
         self.assertEqual(fc.judge([])[0], "wait")
 
     def test_a_failure_wins_over_a_missing_context(self):
-        self.assertEqual(fc.judge([{"context": "Security Analysis", "state": "error"}])[0], "bad")
+        self.assertEqual(fc.judge([{"context": "Security Analysis", "state": "error", "creator": BOT}])[0], "bad")
+
+    def test_a_status_not_posted_by_fossa_is_ignored_whatever_it_says(self):
+        """A collaborator with commit-status write access could post `success` under FOSSA's context names (CodeRabbit, #328)."""
+        forged = [{**s, "creator": {"login": "someone"}} for s in OK]
+        self.assertEqual(fc.judge(forged)[0], "wait")
+        self.assertEqual(fc.judge([{**s, "creator": None} for s in OK])[0], "wait")
+        self.assertEqual(fc.judge([{**s, "target_url": "https://evil.example/"} for s in OK])[0], "wait")
+        # FOSSA's own pending status carries no link yet; its final one does
+        self.assertEqual(fc.judge([{**s, "target_url": None, "state": "pending"} for s in OK])[0], "wait")
+        self.assertEqual(fc.judge([{**s, "target_url": None} for s in OK])[0], "ok")
+        # a forged failure is not a verdict either
+        self.assertEqual(fc.judge(OK + [{"context": "Security Analysis", "state": "error", "creator": {"login": "someone"}}])[0], "ok")
 
     def test_other_statuses_do_not_count(self):
         other = [{"context": "codecov/patch", "state": "success"}, {"context": "CodeRabbit", "state": "success"}]

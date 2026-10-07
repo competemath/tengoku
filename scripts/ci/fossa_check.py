@@ -24,15 +24,26 @@ from _git import fail
 
 CONTEXTS = ("License Compliance", "Dependency Quality", "Security Analysis")
 BAD = ("error", "failure")
+# Only FOSSA's own statuses count: the GitHub App posts as this login (FOSSA_LOGIN overrides it), with a link into app.fossa.com. Anyone with
+# commit-status write access could post `success` under the same context names; such a status is ignored, never a verdict.
+FOSSA_LOGIN = os.environ.get("FOSSA_LOGIN", "fossa-integration[bot]")
 REPO = re.compile(r"[A-Za-z0-9-]+/(?!\.{1,2}$)[\w.-]+")  # owner/name; a name of only dots would climb out of repos/<owner>/ in the API path
 SHA = re.compile(r"[0-9a-f]{40}")
 FOSSA_URL = "https://app.fossa.com/"
 
 
+def from_fossa(s: dict) -> bool:
+    """A status FOSSA's GitHub App posted: its login, and a link into FOSSA (a pending status may carry none yet)."""
+    url = str(s.get("target_url") or "")
+    return (s.get("creator") or {}).get("login") == FOSSA_LOGIN
+
+
 def judge(statuses: list[dict]) -> tuple[str, list[str]]:
     """The verdict on a list of commit statuses (the latest per context): "bad" when a context failed, "ok" when all three
-    succeeded, "wait" otherwise; and one bounded line per context."""
-    seen = {s.get("context"): s for s in statuses}  # only the three contexts below are looked up: other apps' statuses never count
+    succeeded, "wait" otherwise; and one bounded line per context. A status not posted by FOSSA is ignored."""
+    seen = {
+        s.get("context"): s for s in statuses if from_fossa(s)
+    }  # only the three contexts below are looked up: other apps' statuses never count
     lines, states = [], []
     for ctx in CONTEXTS:
         s = seen.get(ctx)
