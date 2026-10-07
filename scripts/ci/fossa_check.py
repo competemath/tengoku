@@ -41,9 +41,10 @@ def from_fossa(s: dict) -> bool:
 def judge(statuses: list[dict]) -> tuple[str, list[str]]:
     """The verdict on a list of commit statuses (the latest per context): "bad" when a context failed, "ok" when all three
     succeeded, "wait" otherwise; and one bounded line per context. A status not posted by FOSSA is ignored."""
-    seen = {
-        s.get("context"): s for s in statuses if from_fossa(s)
-    }  # only the three contexts below are looked up: other apps' statuses never count
+    seen: dict = {}
+    for s in statuses:  # newest first: a context's first status is its current one; other apps' contexts are never looked up
+        if from_fossa(s) and s.get("context") not in seen:
+            seen[s.get("context")] = s
     lines, states = [], []
     for ctx in CONTEXTS:
         s = seen.get(ctx)
@@ -62,9 +63,9 @@ def judge(statuses: list[dict]) -> tuple[str, list[str]]:
 
 
 def fetch(repo: str, sha: str) -> list[dict]:
-    r = subprocess.run(
-        ["gh", "api", f"repos/{repo}/commits/{sha}/status?per_page=100", "--jq", ".statuses"], capture_output=True, text=True
-    )
+    """The commit's statuses, newest first, each with its creator. The combined endpoint (`…/commits/{sha}/status`) leaves `creator` out,
+    which made every status look forged and the gate wait for verdicts that were there (2026-10-07)."""
+    r = subprocess.run(["gh", "api", f"repos/{repo}/commits/{sha}/statuses?per_page=100"], capture_output=True, text=True)
     if r.returncode != 0:
         raise RuntimeError(r.stderr.strip()[:200] or "gh api failed")
     return json.loads(r.stdout or "[]")
