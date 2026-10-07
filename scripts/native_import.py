@@ -6,6 +6,7 @@
 Native is hand-written or Leak-proved novel content, as Lean modules. CompeteMath's own certified theorems are records (data/trusted/competemath.jsonl, written for
 `import Mathlib`); this makes them modules of the tree: `Tengoku/Native/<Source>/<Area>.lean`. A record is LEFT OUT, never rewritten to fit, when it
   - trusts the compiler or is unfinished (`native_decide`, `ofReduceBool`, `sorry`: the words the allow-list lint refuses, see scripts/ci/allowlist.py),
+  - has anything else the content allow-list refuses (a `set_option` outside the list, such as a linter switched off; notation; a macro),
   - has no `theorem`/`lemma` of its own, or names something this module already has;
 and the modules are checked afterwards by compiling them (the merge queue does it for the PR; Leak IV for a draft). Every record sits in a namespace of its own,
 `Native.<Source>.P<N>` for `https://competemath.com/practice/problems/N` (`P<N>_2` for a second record of the problem), so a helper definition or an `open`/`set_option` in front of the theorem cannot touch
@@ -20,6 +21,13 @@ import json
 import re
 import sys
 from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE / "ci"))
+import allowlist  # noqa: E402  (the content lint of the intake class, which a native PR passes too)
+
+ALLOWED_OPTIONS = set(json.loads((HERE.parent / "schemas" / "allowed-options.json").read_text(encoding="utf-8"))["allowed"])
+COMMAND_KEYWORDS = set(json.loads((HERE.parent / "schemas" / "command-keywords.json").read_text(encoding="utf-8"))["commands"])
 
 HEADER = "/-\nAuthors: {authors}\n-/\nimport Tengoku\n\n"
 UNSAFE = re.compile(r"(?<![\w'!?])(native_decide|ofReduceBool|reduceBool|trustCompiler|sorry|sorryAx)(?![\w'!?])")
@@ -112,6 +120,9 @@ def left_out(rec: dict, taken: set[str], exclude: set[str]) -> str | None:
         return "trusts the compiler or is unfinished"
     if theorem_offset(rec["statement"]) is None:
         return "no theorem or lemma of its own"
+    refused = allowlist.violations(body_of(rec), ALLOWED_OPTIONS, COMMAND_KEYWORDS)
+    if refused:
+        return "the content allow-list refuses it"  # a `set_option` outside the list (silencing a linter is one), notation, a macro, code that runs while compiling
     if rec["name"] in taken:
         return "a name this source already has"
     return None

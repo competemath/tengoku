@@ -55,6 +55,20 @@ class Selection(unittest.TestCase):
         self.assertIsNone(ni.left_out(rec("a", "theorem a : 1 = 1", ":= foo_sorry"), set(), set()))  # a name that ends in the word
         self.assertIsNotNone(ni.left_out(rec("a", "theorem a : 1 = 1", ":= Foo._native.native_decide.ax_1"), set(), set()))
 
+    def test_what_the_content_allow_list_refuses_is_left_out_and_what_it_allows_is_kept(self):
+        refused = [
+            "import Mathlib\n\nset_option linter.unnecessarySeqFocus false in\ntheorem a : 1 = 1",
+            "import Mathlib\n\nset_option linter.constructorNameAsVariable false in\ntheorem a : 1 = 1",
+            'import Mathlib\n\nnotation "foo" => 1\ntheorem a : 1 = 1',
+            "import Mathlib\n\n#eval 1\ntheorem a : 1 = 1",
+        ]
+        for st in refused:
+            files, out, where = build([rec("a", st, n=21)])
+            self.assertEqual([w for _, w in out], ["the content allow-list refuses it"], st)
+            self.assertEqual(where, {})
+        allowed = "import Mathlib\n\nset_option maxRecDepth 8000\nset_option maxHeartbeats 1000000\ntheorem a : 1 = 1"
+        self.assertEqual(list(build([rec("a", allowed, n=22)])[2]), ["a"])
+
     def test_no_theorem_a_repeated_name_and_an_excluded_one(self):
         files, out, where = build(
             [ONE, ONE, rec("d", "import Mathlib\n\ndef d : ℕ := 1", ":= rfl", n=4), rec("ex", "theorem ex : 1 = 1", n=5)], exclude=["ex"]
