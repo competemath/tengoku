@@ -275,6 +275,23 @@ class Gate(Setup):
         self.assertNotIn("TENGOKU_CI_ROOT", text)
 
 
+class Labels(unittest.TestCase):
+    def test_every_label_description_fits_githubs_limit_of_100_characters(self):
+        """labels.sh stopped at the `tag` label in the sandbox (HTTP 422: description is too long) and would have in production"""
+        lines = [ln for ln in (TREE / "scripts" / "ci" / "labels.sh").read_text().splitlines() if ln.startswith("label ")]
+        self.assertGreater(len(lines), 8)
+        for ln in lines:
+            description = ln.split('"')[1]
+            self.assertLessEqual(len(description), 100, description)
+
+    def test_the_class_labels_the_gate_can_set_exist(self):
+        labels = {ln.split()[1] for ln in (TREE / "scripts" / "ci" / "labels.sh").read_text().splitlines() if ln.startswith("label ")}
+        gate = (TREE / ".github" / "workflows" / "pr-gate.yml").read_text()
+        classes = gate.split('case "$CLASS" in ')[1].split(")")[0].split("|")
+        self.assertIn("tag", classes)
+        self.assertEqual(sorted(set(classes) - labels), [])
+
+
 class Verify(Setup):
     """tag_verify.py: a group that is not a tag group passes at once (it needs no Lean)."""
 
