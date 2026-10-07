@@ -85,8 +85,9 @@ in that comment.
 
 ## Don't
 
-- Don't edit `Tengoku/**` (generated from records by the promote bot) or
-  `data/trusted/**` (promotion moves records there; only tombstones are added by
+- Don't edit `Tengoku/**` by hand (the promote bot generates it from records, and
+  intake PRs add a library's verified bundle from the factory — docs/pr-classes.md)
+  or `data/trusted/**` (promotion moves records there; only tombstones are added by
   hand).
 - Don't touch `scripts/ci/` or workflows unless the change was proven in the
   sandbox (`scripts/ci/campaign/README.md`).
