@@ -81,6 +81,24 @@ class Judge(unittest.TestCase):
 FOSSA = fc.FOSSA_URL
 
 
+class NewestPerContext(unittest.TestCase):
+    """The statuses come newest first; a context's first entry is its current state, an older `pending` behind a `success` does not count."""
+
+    def test_an_older_pending_behind_a_success_does_not_hide_it(self):
+        older = [{**s, "state": "pending", "target_url": None} for s in OK]
+        self.assertEqual(fc.judge(OK + older)[0], "ok")
+        self.assertEqual(fc.judge(older + OK)[0], "wait")  # the pending ones are newest: still waiting
+
+    def test_the_fetch_reads_the_per_status_endpoint_which_carries_the_creator(self):
+        """The combined endpoint leaves `creator` out: every status looked forged and the gate waited for verdicts that were there (2026-10-07)."""
+        with mock.patch.object(fc.subprocess, "run") as run:
+            run.return_value = mock.Mock(returncode=0, stdout="[]", stderr="")
+            fc.fetch("o/r", "a" * 40)
+            args = run.call_args[0][0]
+        self.assertIn("repos/o/r/commits/" + "a" * 40 + "/statuses?per_page=100", args)
+        self.assertNotIn("--jq", args)
+
+
 class Waiting(unittest.TestCase):
     def run_wait(self, answers, minutes=1):
         """answers: what each successive lookup returns (a list of statuses, or an Exception to raise)."""
