@@ -23,7 +23,7 @@ from pathlib import Path
 
 HEADER = "/-\nAuthors: {authors}\n-/\nimport Tengoku\n\n"
 UNSAFE = re.compile(r"(?<![\w'!?])(native_decide|ofReduceBool|reduceBool|trustCompiler|sorry|sorryAx)(?![\w'!?])")
-KEYWORD = re.compile(r"^[ \t]*(?:@\[[^\]]*\][ \t]*\n?[ \t]*)*(?:(?:private|protected|noncomputable)[ \t]+)*(?:theorem|lemma)[ \t]", re.M)
+DECL_MODIFIERS = {"private", "protected", "noncomputable", "nonrec", "public", "meta", "unsafe", "partial"}
 # the first rule that matches decides the area
 AREAS = [
     (
@@ -61,13 +61,56 @@ def body_of(rec: dict) -> str:
     return st.rstrip() + ("\n" if proof.startswith("--") else " ") + proof
 
 
+def starts_theorem(line: str) -> bool:
+    """the line is a `theorem` or `lemma` command: attributes (`@[…]`) and modifiers first, then the keyword and a name (no regular expression: a nested repeat of
+    attributes backtracks exponentially on a crafted line)"""
+    rest = line.lstrip()
+    while rest.startswith("@["):
+        end = rest.find("]")
+        if end < 0:
+            return False
+        rest = rest[end + 1 :].lstrip()
+    words = rest.split()
+    while words and words[0] in DECL_MODIFIERS:
+        words = words[1:]
+    return len(words) >= 2 and words[0] in ("theorem", "lemma")
+
+
+def attributes_only(line: str) -> bool:
+    """the line holds attributes and nothing else"""
+    rest = line.strip()
+    if not rest.startswith("@["):
+        return False
+    while rest.startswith("@["):
+        end = rest.find("]")
+        if end < 0:
+            return False
+        rest = rest[end + 1 :].lstrip()
+    return rest == ""
+
+
+def theorem_offset(body: str) -> int | None:
+    """where the first theorem/lemma command starts, from the attribute lines above it (a docstring goes in front of those)"""
+    lines = body.split("\n")
+    starts, off = [], 0
+    for ln in lines:
+        starts.append(off)
+        off += len(ln) + 1
+    for k, ln in enumerate(lines):
+        if starts_theorem(ln):
+            while k > 0 and attributes_only(lines[k - 1]):
+                k -= 1
+            return starts[k]
+    return None
+
+
 def left_out(rec: dict, taken: set[str], exclude: set[str]) -> str | None:
     text = rec["statement"] + "\n" + rec["proof"]
     if rec["name"] in exclude:
         return "excluded"
     if UNSAFE.search(text):
         return "trusts the compiler or is unfinished"
-    if not KEYWORD.search(rec["statement"]):
+    if theorem_offset(rec["statement"]) is None:
         return "no theorem or lemma of its own"
     if rec["name"] in taken:
         return "a name this source already has"
@@ -76,12 +119,12 @@ def left_out(rec: dict, taken: set[str], exclude: set[str]) -> str | None:
 
 def place_docstring(body: str, doc: str) -> str:
     """the docstring in front of the first theorem/lemma (and its attributes); a body that has one already keeps it"""
-    m = KEYWORD.search(body)
-    assert m
-    before = body[: m.start()]
+    start = theorem_offset(body)
+    assert start is not None
+    before = body[:start]
     if re.search(r"/--[^/]*-/\s*\Z", before):
         return body
-    return before + doc + "\n" + body[m.start() :]
+    return before + doc + "\n" + body[start:]
 
 
 def render(rec: dict, source: str, label: str, used: dict[str, int]) -> str:

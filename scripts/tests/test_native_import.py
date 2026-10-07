@@ -122,6 +122,33 @@ class Rendering(unittest.TestCase):
             self.assertEqual(allowlist.violations(body, OPTIONS, KEYWORDS), [], path)
 
 
+class Commands(unittest.TestCase):
+    def test_the_docstring_goes_in_front_of_attributes_on_their_own_line(self):
+        files, _, _ = build([rec("a", "import Mathlib\n\n@[simp]\n@[norm_cast]\ntheorem a : 1 = 1", n=11)])
+        text = "".join(files.values())
+        self.assertIn("/-- competemath.com problem 11. -/\n@[simp]\n@[norm_cast]\ntheorem a", text)
+
+    def test_what_is_a_theorem_command(self):
+        for line in (
+            "theorem a : True",
+            "  lemma a : True",
+            "@[simp] private lemma a : True",
+            "noncomputable protected theorem Nat.a : True",
+        ):
+            self.assertTrue(ni.starts_theorem(line), line)
+        for line in ("theorem", "def theorem_a := 1", "@[simp def x := 1", "@[simp] def a := 1", "mytheorem a : True"):
+            self.assertFalse(ni.starts_theorem(line), line)
+
+    def test_a_crafted_line_does_not_make_it_slow(self):
+        """CodeQL found the old attribute pattern exponential on '@[]' followed by many '\\t@[]'"""
+        import time
+
+        t0 = time.time()
+        self.assertIsNone(ni.theorem_offset("@[]" + "\t@[]" * 5000 + "\n"))
+        self.assertIsNotNone(ni.theorem_offset("@[]" + "\t@[]" * 5000 + " theorem t : True := trivial\n"))
+        self.assertLess(time.time() - t0, 2.0)
+
+
 class Areas(unittest.TestCase):
     def test_the_words_of_a_statement_decide(self):
         self.assertEqual(ni.area_of("theorem a (p : ℕ) (hp : Nat.Prime p) : p ∣ 6"), "NumberTheory")
