@@ -40,6 +40,19 @@ class StatsTest(unittest.TestCase):
         self.assertEqual(s["toolchain"], "leanprover/lean4:v4.34.0-rc2")
         self.assertRegex(s["generated_at"], r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 
+    def test_a_factory_bundles_theorems_count_as_trusted(self):
+        """An intake library has no records: its manifest's lines are its trusted theorems (16,699 in 23 libraries were invisible, 2026-10-07)."""
+        write(self.root / "data/intake/gamma/manifest.jsonl", [{"name": "g1"}, {"name": "g2"}, {"name": "g3"}])
+        write(self.root / "data/intake/alpha/manifest.jsonl", [{"name": "a-in-a-bundle"}])  # records and a bundle: both count
+        s = stats.collect(self.root)
+        self.assertEqual(
+            (s["libraries"]["gamma"]["trusted"], s["libraries"]["gamma"]["intake"], s["libraries"]["gamma"]["staging"]), (3, 3, 0)
+        )
+        self.assertEqual((s["libraries"]["alpha"]["trusted"], s["libraries"]["alpha"]["intake"]), (3, 1))
+        self.assertEqual(s["totals"], {"trusted": 6, "staging": 1, "tentative": 3, "all": 10})
+        self.assertEqual(s["library_count"], 3)
+        self.assertNotIn("intake", s["libraries"]["beta"])
+
     def test_empty_tree(self):
         empty = Path(tempfile.mkdtemp())
         s = stats.collect(empty)

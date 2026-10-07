@@ -52,6 +52,14 @@ def collect(root: Path) -> dict:
                 lp = last_promoted(p)
                 if lp:
                     lib["last_promoted_at"] = lp
+    # A library that arrived as a factory bundle (docs/pr-classes.md, intake) has no records: its modules are the content and its manifest
+    # lists the theorems the merge queue built. They are trusted by the tree's rule (it builds with them), so they count as trusted here,
+    # with `intake` saying how many of a library's trusted theorems are in modules rather than records.
+    for m in sorted((root / "data" / "intake").glob("*/manifest.jsonl")):
+        lib = libraries.setdefault(m.parent.name, {t: 0 for t in TIERS})
+        n = count_lines(m)
+        lib["trusted"] += n
+        lib["intake"] = n
     totals = {t: sum(l[t] for l in libraries.values()) for t in TIERS}
     totals["all"] = sum(totals.values())
     return {"totals": totals, "libraries": libraries, "library_count": len(libraries)}
