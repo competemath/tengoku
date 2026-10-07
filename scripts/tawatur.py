@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """tawatur.py — the independence test of the tawatur PROPOSAL (docs/tawatur.md). Nothing in the tree or the gates uses it; tawatur is not a status the tree has.
 
-  tawatur.py report CLOSURES.jsonl [--k 3] [--floor 5] [--ignore FILE] [--ignore-prefix P ...] [--all]
+  tawatur.py report [--k 3] [--floor 5] [--ignore NAME ...] [--ignore-prefix P ...] [--all] < CLOSURES.jsonl
 
-CLOSURES.jsonl has one proof per line: {"id": isnad id of the statement, "name": the theorem, "lib": where it comes from, "closure": [every constant the proof term
+The closures come on standard input (no file name is taken from the command line), one proof per line: {"id": isnad id of the statement, "name": the theorem, "lib": where it comes from, "closure": [every constant the proof term
 reaches, transitively], "statement_closure": [the constants of the statement, optional], "modules": {constant: the module that defines it, optional}}. The statements with at least two proofs are grouped by id; in each group a proof
 counts only if it has a SUBSTANCE of at least `floor` constants outside the ignored set X, two proofs are INDEPENDENT when they come from different libraries and their
 constants outside X are disjoint, and a statement is TAWATUR when at least `k` of its proofs are pairwise independent (the largest such set: Bron-Kerbosch on the
@@ -18,7 +18,6 @@ import json
 import sys
 from collections import defaultdict
 from itertools import combinations
-from pathlib import Path
 
 # the forced layer: what every proof shares by construction (the kernel's axioms and Lean's own library). Namespaces end in a dot, so that `Equiv.foo` or `Orderiso` of Mathlib
 # are not taken for `Eq` and `Or`; the logical constants are exact names (and their namespaces: `Eq.mpr`, `And.intro`)
@@ -57,16 +56,8 @@ def ignored(name: str, prefixes: tuple[str, ...], exact: set[str], module: str |
     return name in FORCED_EXACT or name in exact or name.startswith(prefixes) or forced_module(module)
 
 
-def safe_input(arg: str) -> Path:
-    """an input file the command line names: an existing file below the current directory, not a path that leaves it"""
-    path = Path(arg).resolve()
-    if not path.is_file() or not path.is_relative_to(Path.cwd().resolve()):
-        raise SystemExit(f"tawatur: {arg!r} is not a file below the current directory")
-    return path
-
-
-def read_proofs(path: Path) -> list[dict]:
-    return [json.loads(ln) for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
+def read_proofs(stream) -> list[dict]:
+    return [json.loads(ln) for ln in stream.read().splitlines() if ln.strip()]
 
 
 def substance(proof: dict, group_statement: set[str], prefixes: tuple[str, ...], exact: set[str]) -> set[str]:
@@ -143,35 +134,13 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("report")
-    r.add_argument("closures")
-    r.add_argument(
-        "--k",
-        type=int,
-        default=3,
-        help="independent proofs a statement needs (the proposal says 3 or 4)",
-    )
-    r.add_argument(
-        "--floor",
-        type=int,
-        default=5,
-        help="constants outside X a proof needs to count",
-    )
-    r.add_argument("--ignore", help="a file: one constant name per line to add to X")
+    r.add_argument("--k", type=int, default=3, help="independent proofs a statement needs (the proposal says 3 or 4)")
+    r.add_argument("--floor", type=int, default=5, help="constants outside X a proof needs to count")
+    r.add_argument("--ignore", action="append", default=[], help="a constant name to add to X")
     r.add_argument("--ignore-prefix", action="append", default=[], help="a name prefix to add to X")
-    r.add_argument(
-        "--all",
-        action="store_true",
-        help="every statement with two or more proofs, not only the tawatur ones",
-    )
+    r.add_argument("--all", action="store_true", help="every statement with two or more proofs, not only the tawatur ones")
     a = ap.parse_args(argv)
-    exact = {ln.strip() for ln in Path(a.ignore).read_text(encoding="utf-8").splitlines() if ln.strip()} if a.ignore else set()
-    rows = analyse(
-        read_proofs(Path(a.closures)),
-        a.k,
-        a.floor,
-        (*FORCED_PREFIXES, *a.ignore_prefix),
-        exact,
-    )
+    rows = analyse(read_proofs(sys.stdin), a.k, a.floor, (*FORCED_PREFIXES, *a.ignore_prefix), set(a.ignore))
     shown = rows if a.all else [row for row in rows if row["tawatur"]]
     for row in shown:
         print(json.dumps(row, ensure_ascii=False))

@@ -5,10 +5,10 @@ from __future__ import annotations
 import io
 import json
 import sys
-import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import tawatur as tw
@@ -29,11 +29,9 @@ def rows(proofs, **kw):
 
 
 def run(proofs, *argv):
-    d = Path(tempfile.mkdtemp())
-    (d / "c.jsonl").write_text("".join(json.dumps(p) + "\n" for p in proofs))
     out, err = io.StringIO(), io.StringIO()
-    with redirect_stdout(out), redirect_stderr(err):
-        rc = tw.main(["report", str(d / "c.jsonl"), *argv])
+    with mock.patch("sys.stdin", io.StringIO("".join(json.dumps(p) + "\n" for p in proofs))), redirect_stdout(out), redirect_stderr(err):
+        rc = tw.main(["report", *argv])
     return rc, out.getvalue(), err.getvalue()
 
 
@@ -139,24 +137,6 @@ class Independence(unittest.TestCase):
         ):
             self.assertEqual(tw.forced_module(module), forced, module)
 
-    def test_an_input_file_must_be_below_the_current_directory(self):
-        import os
-
-        d = Path(tempfile.mkdtemp())
-        (d / "ok.jsonl").write_text("")
-        old = os.getcwd()
-        os.chdir(d)
-        try:
-            self.assertEqual(tw.safe_input("ok.jsonl"), (d / "ok.jsonl").resolve())
-            outside = d.parent / (d.name + "-outside.jsonl")
-            outside.write_text("")
-            self.addCleanup(outside.unlink)
-            for bad in ("../" + outside.name, str(outside), "/etc/hosts", "missing.jsonl", "."):
-                with self.assertRaises(SystemExit):
-                    tw.safe_input(bad)
-        finally:
-            os.chdir(old)
-
     def test_the_statements_own_constants_are_ignored(self):
         stmt = ["Nat.Prime", "Nat.gcd"]
         r = rows(
@@ -222,20 +202,22 @@ class Cli(unittest.TestCase):
             False,
         )
 
-    def test_an_ignore_file_and_prefix_are_read(self):
+    def test_ignored_names_and_prefixes_reach_the_analysis(self):
         shared = ["Found.x", "Found.y"]
         ps = [proof("p1", "l1", [*A, *shared]), proof("p2", "l2", [*B, *shared])]
         self.assertEqual(run(ps, "--all", "--k", "2")[1].count('"tawatur": true'), 0)
-        d = Path(tempfile.mkdtemp())
-        (d / "x.txt").write_text("Found.x\nFound.y\n")
-        self.assertEqual(
-            run(ps, "--all", "--k", "2", "--ignore", str(d / "x.txt"))[1].count('"tawatur": true'),
-            1,
-        )
-        self.assertEqual(
-            run(ps, "--all", "--k", "2", "--ignore-prefix", "Found.")[1].count('"tawatur": true'),
-            1,
-        )
+        self.assertEqual(run(ps, "--all", "--k", "2", "--ignore", "Found.x", "--ignore", "Found.y")[1].count('"tawatur": true'), 1)
+        self.assertEqual(run(ps, "--all", "--k", "2", "--ignore-prefix", "Found.")[1].count('"tawatur": true'), 1)
+        self.assertEqual(run(ps, "--all", "--k", "2", "--ignore", "Found.x")[1].count('"tawatur": true'), 0)  # one of two is not enough
+
+    def test_no_file_name_is_taken_from_the_command_line(self):
+        """SonarCloud S8707 (path traversal through command-line arguments): the closures come on standard input"""
+        with (
+            mock.patch("sys.stdin", io.StringIO("")),
+            self.assertRaises(SystemExit),
+            redirect_stderr(io.StringIO()),
+        ):  # no stdin to wait on, whatever the parser did
+            tw.main(["report", "closures.jsonl"])
 
 
 if __name__ == "__main__":

@@ -60,10 +60,10 @@ proposal: a status nothing can attain yet is not worth building into the gates. 
 ## The reference implementation
 
 ```bash
-python3 scripts/tawatur.py report closures.jsonl --k 3 --floor 5 [--ignore foundation.txt] [--ignore-prefix Mathlib.Order.] [--all]
+python3 scripts/tawatur.py report --k 3 --floor 5 [--ignore NAME]... [--ignore-prefix Mathlib.Order.]... [--all] < closures.jsonl
 ```
 
-One line of the input per proof: `{"id", "name", "lib", "closure": [...], "statement_closure": [...], "modules": {constant: defining module}}` (the last two optional). The output has one JSON line per statement that has two or more
+The closures come on standard input, one line per proof (no file name is read from the command line; a foundation list kept in a file is passed as `$(sed 's/^/--ignore /' foundation.txt)`): `{"id", "name", "lib", "closure": [...], "statement_closure": [...], "modules": {constant: defining module}}` (the last two optional). The output has one JSON line per statement that has two or more
 proofs: its proofs, the ones with substance, the number of constants every pair shares, the largest independent set (Bron-Kerbosch on the independence graph) and whether it
 reaches *k*. `scripts/tests/test_tawatur.py` fixes the behaviour: shared constants, same library, the substance floor, the forced layer, the statement's own constants, a
 caller's X, and that the *largest* independent set is found, not the first.
