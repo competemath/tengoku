@@ -4,7 +4,7 @@
   tawatur.py report CLOSURES.jsonl [--k 3] [--floor 5] [--ignore FILE] [--ignore-prefix P ...] [--all]
 
 CLOSURES.jsonl has one proof per line: {"id": isnad id of the statement, "name": the theorem, "lib": where it comes from, "closure": [every constant the proof term
-reaches, transitively], "statement_closure": [the constants of the statement, optional]}. The statements with at least two proofs are grouped by id; in each group a proof
+reaches, transitively], "statement_closure": [the constants of the statement, optional], "modules": {constant: the module that defines it, optional}}. The statements with at least two proofs are grouped by id; in each group a proof
 counts only if it has a SUBSTANCE of at least `floor` constants outside the ignored set X, two proofs are INDEPENDENT when they come from different libraries and their
 constants outside X are disjoint, and a statement is TAWATUR when at least `k` of its proofs are pairwise independent (the largest such set: Bron-Kerbosch on the
 independence graph; a group is small). X is the forced layer (Lean's core, the three axioms, the statement's own constants) plus what `--ignore`/`--ignore-prefix` add: the
@@ -41,8 +41,28 @@ FORCED_PREFIXES = (
 FORCED_EXACT = frozenset({"propext", "Quot", "Eq", "HEq", "True", "False", "And", "Or", "Iff", "Not", "Exists"})
 
 
-def ignored(name: str, prefixes: tuple[str, ...], exact: set[str]) -> bool:
-    return name in FORCED_EXACT or name in exact or name.startswith(prefixes)
+FORCED_MODULES = (
+    "Init",
+    "Std",
+    "Lean",
+)  # a constant DEFINED in one of these modules (or below) is Lean's core, whatever its name: `Nat.succ` is in Init.Prelude
+
+
+def forced_module(module: str | None) -> bool:
+    return bool(module) and any(module == root or module.startswith(root + ".") for root in FORCED_MODULES)
+
+
+def ignored(name: str, prefixes: tuple[str, ...], exact: set[str], module: str | None = None) -> bool:
+    """the constant is in X: a logical constant, Lean's core by where it is defined (`module`, when the input says) or by its name's namespace, or in what the caller ignores"""
+    return name in FORCED_EXACT or name in exact or name.startswith(prefixes) or forced_module(module)
+
+
+def safe_input(arg: str) -> Path:
+    """an input file the command line names: an existing file below the current directory, not a path that leaves it"""
+    path = Path(arg).resolve()
+    if not path.is_file() or not path.is_relative_to(Path.cwd().resolve()):
+        raise SystemExit(f"tawatur: {arg!r} is not a file below the current directory")
+    return path
 
 
 def read_proofs(path: Path) -> list[dict]:
@@ -52,7 +72,8 @@ def read_proofs(path: Path) -> list[dict]:
 def substance(proof: dict, group_statement: set[str], prefixes: tuple[str, ...], exact: set[str]) -> set[str]:
     """the constants of the proof outside X (the forced layer, the statement's own constants for the whole group, what the caller ignores)"""
     own = set(proof["closure"]) - group_statement
-    return {c for c in own if not ignored(c, prefixes, exact)}
+    modules = proof.get("modules", {})
+    return {c for c in own if not ignored(c, prefixes, exact, modules.get(c))}
 
 
 def independent(a: dict, b: dict) -> bool:

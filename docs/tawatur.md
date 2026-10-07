@@ -21,7 +21,7 @@ Every proof reaches the kernel's axioms, Lean's core and, in practice, Mathlib's
 
 | Layer of X | Content | State |
 |---|---|---|
-| forced | the three axioms, Lean's core (`Lean.*`, `Init.*`, `Std.*`, the logical constants), the constants of the statement itself | in `scripts/tawatur.py` |
+| forced | the three axioms and the logical constants; Lean's core, **by the module that defines a constant** (`Init`, `Std`, `Lean`: `Nat.succ` is in `Init.Prelude`, its name says nothing), falling back to the namespace of the name when the input has no module; the constants of the statement itself | in `scripts/tawatur.py` |
 | pinned foundation list | the part of Mathlib every proof of everything stands on (order, algebraic hierarchy, `Finset`, `Set`, …) | **open**: to be calibrated, not guessed |
 | substance floor | a proof with fewer than *F* constants outside X (a one-liner `simp`) does not count | parameter, default 5 |
 | distinct provenance | proofs from one library are one chain, whatever their closures | in the tool |
@@ -63,7 +63,7 @@ proposal: a status nothing can attain yet is not worth building into the gates. 
 python3 scripts/tawatur.py report closures.jsonl --k 3 --floor 5 [--ignore foundation.txt] [--ignore-prefix Mathlib.Order.] [--all]
 ```
 
-One line of the input per proof: `{"id", "name", "lib", "closure": [...], "statement_closure": [...]}`. The output has one JSON line per statement that has two or more
+One line of the input per proof: `{"id", "name", "lib", "closure": [...], "statement_closure": [...], "modules": {constant: defining module}}` (the last two optional). The output has one JSON line per statement that has two or more
 proofs: its proofs, the ones with substance, the number of constants every pair shares, the largest independent set (Bron-Kerbosch on the independence graph) and whether it
 reaches *k*. `scripts/tests/test_tawatur.py` fixes the behaviour: shared constants, same library, the substance floor, the forced layer, the statement's own constants, a
 caller's X, and that the *largest* independent set is found, not the first.

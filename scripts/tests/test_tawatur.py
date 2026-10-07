@@ -120,6 +120,43 @@ class Independence(unittest.TestCase):
         r = rows([proof("p1", "l1", [*A, *shared]), proof("p2", "l2", [*B, *shared])], k=2)
         self.assertFalse(r[0]["tawatur"])  # six shared constants are real shared substance
 
+    def test_lean_core_is_forced_by_the_module_that_defines_it_not_by_the_name(self):
+        """CodeRabbit: `Nat.succ` is defined in Init.Prelude and does not start with `Init.`"""
+        core = [f"Nat.core{i}" for i in range(6)]
+        mods = {c: "Init.Prelude" for c in core}
+        ps = [{**proof("p1", "l1", [*A, *core]), "modules": mods}, {**proof("p2", "l2", [*B, *core]), "modules": mods}]
+        self.assertTrue(rows(ps, k=2)[0]["tawatur"])
+        without = [proof("p1", "l1", [*A, *core]), proof("p2", "l2", [*B, *core])]  # no module known: the names are real shared substance
+        self.assertFalse(rows(without, k=2)[0]["tawatur"])
+        for module, forced in (
+            ("Init", True),
+            ("Init.Core", True),
+            ("Std.Data.HashMap", True),
+            ("Lean.Meta.Basic", True),
+            ("Initial.Thing", False),
+            ("Mathlib.Order.Basic", False),
+            (None, False),
+        ):
+            self.assertEqual(tw.forced_module(module), forced, module)
+
+    def test_an_input_file_must_be_below_the_current_directory(self):
+        import os
+
+        d = Path(tempfile.mkdtemp())
+        (d / "ok.jsonl").write_text("")
+        old = os.getcwd()
+        os.chdir(d)
+        try:
+            self.assertEqual(tw.safe_input("ok.jsonl"), (d / "ok.jsonl").resolve())
+            outside = d.parent / (d.name + "-outside.jsonl")
+            outside.write_text("")
+            self.addCleanup(outside.unlink)
+            for bad in ("../" + outside.name, str(outside), "/etc/hosts", "missing.jsonl", "."):
+                with self.assertRaises(SystemExit):
+                    tw.safe_input(bad)
+        finally:
+            os.chdir(old)
+
     def test_the_statements_own_constants_are_ignored(self):
         stmt = ["Nat.Prime", "Nat.gcd"]
         r = rows(
