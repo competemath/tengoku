@@ -21,7 +21,7 @@ Every proof reaches the kernel's axioms, Lean's core and, in practice, Mathlib's
 
 | Layer of X | Content | State |
 |---|---|---|
-| forced | the three axioms, Lean's core (`Lean.*`, `Init.*`, `Std.*`, the logical constants), the constants of the statement itself, the proof's own name | in `scripts/tawatur.py` |
+| forced | the three axioms, Lean's core (`Lean.*`, `Init.*`, `Std.*`, the logical constants), the constants of the statement itself | in `scripts/tawatur.py` |
 | pinned foundation list | the part of Mathlib every proof of everything stands on (order, algebraic hierarchy, `Finset`, `Set`, …) | **open**: to be calibrated, not guessed |
 | substance floor | a proof with fewer than *F* constants outside X (a one-liner `simp`) does not count | parameter, default 5 |
 | distinct provenance | proofs from one library are one chain, whatever their closures | in the tool |

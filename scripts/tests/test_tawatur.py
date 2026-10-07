@@ -142,10 +142,6 @@ class Independence(unittest.TestCase):
     def test_a_statement_with_one_proof_is_not_a_group(self):
         self.assertEqual(rows([proof("p1", "l1", A)]), [])
 
-    def test_a_proof_does_not_share_its_own_name_with_anyone(self):
-        r = rows([proof("p1", "l1", [*A, "p1"]), proof("p2", "l2", [*B, "p2"])], k=2)
-        self.assertTrue(r[0]["tawatur"])
-
 
 class Cli(unittest.TestCase):
     def test_the_report_lists_tawatur_statements_and_counts(self):

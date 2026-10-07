@@ -56,8 +56,8 @@ def read_proofs(path: Path) -> list[dict]:
 def substance(
     proof: dict, group_statement: set[str], prefixes: tuple[str, ...], exact: set[str]
 ) -> set[str]:
-    """the constants of the proof outside X (the forced layer, the statement's own constants of the whole group, what the caller ignores)"""
-    own = set(proof["closure"]) - group_statement - {proof["name"]}
+    """the constants of the proof outside X (the forced layer, the statement's own constants for the whole group, what the caller ignores)"""
+    own = set(proof["closure"]) - group_statement
     return {c for c in own if not ignored(c, prefixes, exact)}
 
 
