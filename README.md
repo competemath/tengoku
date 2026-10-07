@@ -11,6 +11,16 @@ Significant formal math projects are fragmented across hundreds of different sou
 into one unified, verified tree, under the same toolchain. Tengoku aims to provide continuously improving,
 reliable context for automated theorem provers.
 
+By reliable, we mean that our systems are designed to be exceptionally cynical of all dependencies, even the
+Lean 4 kernel and elaboration ecosystem, via numerous methods:
+
+- **A second kernel.** [nanoda](https://github.com/ammkrn/nanoda_lib), an independent Lean kernel, re-checks the compiled library every night.
+- **Translations are proved, not trusted.** A translated statement is accepted only once it is shown to imply the original.
+- **Almost no axioms.** Lean's three standard axioms and nothing else: no `sorry`, and no `native_decide`, which trusts the compiler.
+- **No vacuous theorems.** Hypotheses that contradict each other are searched for before a theorem is trusted.
+- **No code that runs.** A record cannot carry `#eval`, `unsafe` or a new `axiom`; the lint refuses them.
+- **Nothing is trusted for where it came from.** Every theorem records its source, its licence and how far it has been checked.
+
 ## Developers
 Tengoku hosts **Leak I**, a free MCP service that lets an LLM or agent query
 formal theorems by meaning or by type, here: https://barkingtree-leak-i.hf.space/sse (no auth configurations required).
