@@ -76,6 +76,10 @@ The jobs, in the order they matter:
   --all-files`, the unit tests, `actionlint` on the workflows.
 - **sorry-advisory**: lists `sorry`/`admit` in the change, in the gate comment
   below; never blocks, because the queue is the authority on proofs.
+- Every job above checks out the base branch's **tip** for its scripts (the
+  workflow's `SCRIPTS`), and measures the diff against the base commit the
+  event recorded (`BASE`). A gate script merged after a PR was pushed is
+  therefore in force for that PR too, with no push needed.
 - **pr-gate**: the required check. Passes only when every job of the PR's
   class passed. It also posts **one comment per PR**, updated in place: each
   failed check with its step, the first lines of its error, what the check
