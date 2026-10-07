@@ -42,7 +42,7 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     timeout-minutes: 300
-    permissions: { contents: read }
+    permissions: { contents: read, pull-requests: read }
     outputs:
       branch: ${{ steps.tag.outputs.branch }}
       first: ${{ steps.tag.outputs.first }}
@@ -55,6 +55,14 @@ jobs:
           df -h / | tail -1
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { ref: main, fetch-depth: 0, filter: "blob:none", persist-credentials: false }
+      # One part at a time: the plan is made from main, so a tag PR that has not merged yet would be planned again (the same modules,
+      # the same branch name, a rejected push after hours of tagging). A run while one is open stops here.
+      - name: No tag PR is open
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          open="$(gh pr list -R "$TENGOKU_REPO" --state open --limit 100 --json headRefName,url --jq '.[] | select(.headRefName | startswith("isnad/tags-")) | .url')"
+          if [ -n "$open" ]; then echo "::error::a tag PR is open; the sweep runs one part at a time, so wait for it to merge (or close it): $open"; exit 1; fi
+          echo "no tag PR is open"
       - name: The next part of the plan
         id: plan
         env: { SCOPE: "${{ inputs.scope }}", PREFIX: "${{ inputs.prefix }}", MAX: "${{ inputs.max_modules }}" }
