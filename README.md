@@ -41,16 +41,6 @@ through [SECURITY.md](SECURITY.md), never a public issue.
 - [Acknowledgements](docs/acknowledgements.md): the projects and people Tengoku stands on
 - Cite it: [10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400), or the *Cite this repository* button
 
-## Dedication
-
-This project is founded for the sake of God (فِي سَبِيلِ ٱللَّٰهِ) - the prophet PBUH said:
-
-> "Whoever takes a path in which he seeks knowledge, Allah will make easy for him, by it, a path to Paradise."
->
-> «ومن سلك طريقا يلتمس فيه علما سهل الله له به طريقا إلى الجنة»
->
-> — Ṣaḥīḥ Muslim, no. 2699 (narrated by Abū Hurayrah), Kitāb al-Dhikr wa-l-Duʿāʾ. Manuscript copy of 1164 CE: [Princeton University Library, Garrett MS 104Y, fol. 167a](https://dpul.princeton.edu/islamicmss/catalog/cr56n359w), [exact page](https://iiif-cloud.princeton.edu/iiif/2/4b%2F29%2F26%2F4b2926c452bf475ba690d038a6577e8b%2Fintermediate_file/full/full/0/default.jpg).
-
 ## Thanks
 Tengoku stands on Lean, Mathlib and the authors of every library in it. Thank you.
 
