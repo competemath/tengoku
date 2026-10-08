@@ -58,7 +58,7 @@ Tengoku stands on Lean, Mathlib and the authors of every library in it. Thank yo
 
 ## Funding and affiliation
 
-Tengoku is one of the services of [CompeteMath](https://competemath.com/about), developed by a single individual, passionate about positive, meaningful impact and problem-solving. CompeteMath has no intention of generating income with any of its projects. CompeteMath is not affiliated with, nor does it support, any particular organization, corporate entity, or political group. Anyone considering donating or partnering with us should know that Tengoku will not allow any influence over the governance of this repository, nor its accessibility, the integrity of its contents, or [Tengoku's goals](GOALS.md).
+Tengoku is one of the services of [CompeteMath](https://competemath.com/about), founded by a single individual. CompeteMath has no intention of generating income with any of its projects. CompeteMath is not affiliated with, nor does it support, any particular organization, corporate entity, or political group. Anyone considering donating or partnering with us should know that Tengoku will not allow any influence over the governance of this repository, nor its accessibility, the integrity of its contents, or [Tengoku's goals](GOALS.md).
 
 ## Badges
 
