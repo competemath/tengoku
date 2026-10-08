@@ -56,14 +56,23 @@ Stirling's formula states that this sequence has limit $\sqrt(π)$.
 noncomputable def stirlingSeq (n : ℕ) : ℝ :=
   n ! / (√(2 * n : ℝ) * (n / exp 1) ^ n)
 
+/--
+@isnad1 id=eq.0h0v.s3.781b8cde16bc from=seed src=0 shape=1ac31801 vocab=c64a7c72
+-/
 @[simp]
 theorem stirlingSeq_zero : stirlingSeq 0 = 0 := by
   rw [stirlingSeq, cast_zero, mul_zero, Real.sqrt_zero, zero_mul, div_zero]
 
+/--
+@isnad1 id=eq.0h0v.s5.a0d20641dd40 from=seed src=0 shape=69414147 vocab=846a0811
+-/
 @[simp]
 theorem stirlingSeq_one : stirlingSeq 1 = exp 1 / √2 := by
   rw [stirlingSeq, pow_one, factorial_one, cast_one, mul_one, mul_one_div, one_div_div]
 
+/--
+@isnad1 id=eq.0h1v.s6.d48d5bf4ed16 from=seed src=0 shape=4ea6bd22 vocab=24a02737
+-/
 theorem log_stirlingSeq_formula (n : ℕ) :
     log (stirlingSeq n) = Real.log n ! - 1 / 2 * Real.log (2 * n) - n * log (n / exp 1) := by
   cases n
@@ -72,7 +81,9 @@ theorem log_stirlingSeq_formula (n : ℕ) :
       <;> positivity
 
 /-- The sequence `log (stirlingSeq (m + 1)) - log (stirlingSeq (m + 2))` has the series expansion
-`∑ 1 / (2 * (k + 1) + 1) * (1 / 2 * (m + 1) + 1)^(2 * (k + 1))`. -/
+`∑ 1 / (2 * (k + 1) + 1) * (1 / 2 * (m + 1) + 1)^(2 * (k + 1))`.
+@isnad1 id=hassum.0h1v.s7.abba646f9c74 from=seed src=0 shape=ed57ac73 vocab=7b303ee2
+-/
 theorem log_stirlingSeq_sdiff_hasSum (m : ℕ) :
     HasSum (fun k : ℕ => (1 : ℝ) / (2 * ↑(k + 1) + 1) * ((1 / (2 * ↑(m + 1) + 1)) ^ 2) ^ ↑(k + 1))
       (log (stirlingSeq (m + 1)) - log (stirlingSeq (m + 2))) := by
@@ -90,15 +101,22 @@ theorem log_stirlingSeq_sdiff_hasSum (m : ℕ) :
       factorial_succ, cast_mul, cast_succ, range_one, sum_singleton, h]
     ring
 
+/--
+@isnad1 id=hassum.0h1v.s7.abba646f9c74 from=seed src=0 shape=ed57ac73 vocab=7b303ee2
+-/
 @[deprecated (since := "2026-06-03")]
 alias log_stirlingSeq_diff_hasSum := log_stirlingSeq_sdiff_hasSum
 
-/-- The sequence `log ∘ stirlingSeq ∘ succ` is monotone decreasing -/
+/-- The sequence `log ∘ stirlingSeq ∘ succ` is monotone decreasing
+@isnad1 id=antitone.0h0v.s4.3bdecabcc6ba from=seed src=0 shape=aa6c3391 vocab=364b2fb4
+-/
 theorem log_stirlingSeq'_antitone : Antitone (Real.log ∘ stirlingSeq ∘ succ) :=
   antitone_nat_of_succ_le fun n =>
     sub_nonneg.mp <| (log_stirlingSeq_sdiff_hasSum n).nonneg fun m => by positivity
 
-/-- We have a bound for successive elements in the sequence `log (stirlingSeq k)`. -/
+/-- We have a bound for successive elements in the sequence `log (stirlingSeq k)`.
+@isnad1 id=le.0h1v.s7.82c3895fb4dd from=seed src=0 shape=d5e4f887 vocab=f2da6131
+-/
 @[deprecated "Use `log_stirlingSeq_sdiff_le` instead." (since := "2026-03-16")]
 theorem log_stirlingSeq_sdiff_le_geo_sum (n : ℕ) :
     log (stirlingSeq (n + 1)) - log (stirlingSeq (n + 2)) ≤
@@ -118,11 +136,16 @@ theorem log_stirlingSeq_sdiff_le_geo_sum (n : ℕ) :
     exact inv_le_one_of_one_le₀ (le_add_of_nonneg_left <| by positivity)
   exact hasSum_le hab (log_stirlingSeq_sdiff_hasSum n) g
 
+/--
+@isnad1 id=le.0h1v.s7.82c3895fb4dd from=seed src=0 shape=d5e4f887 vocab=f2da6131
+-/
 @[deprecated (since := "2026-06-03")]
 alias log_stirlingSeq_diff_le_geo_sum := log_stirlingSeq_sdiff_le_geo_sum
 
 /-- **Robbins' sharp stepwise bound** for the Stirling sequence:
-`log (stirlingSeq n) - log (stirlingSeq (n+1)) ≤ 1 / (12 n (n + 1))`. -/
+`log (stirlingSeq n) - log (stirlingSeq (n+1)) ≤ 1 / (12 n (n + 1))`.
+@isnad1 id=le.0h1v.s6.60013048231f from=seed src=0 shape=f4027b3c vocab=bb48763b
+-/
 theorem log_stirlingSeq_sdiff_le (n : ℕ) :
     log (stirlingSeq n) - log (stirlingSeq (n + 1)) ≤ 1 / (12 * n * (n + 1)) := by
   rcases n with (_ | n)
@@ -137,16 +160,23 @@ theorem log_stirlingSeq_sdiff_le (n : ℕ) :
     simpa [hr, field] using show (3 : ℝ) ≤ 2 * (j + 1) + 1 by norm_cast; grind
   grind [((hasSum_geometric_of_lt_one (by positivity) hr1).mul_right r).div_const 3]
 
+/--
+@isnad1 id=le.0h1v.s6.60013048231f from=seed src=0 shape=f4027b3c vocab=bb48763b
+-/
 @[deprecated (since := "2026-06-03")] alias log_stirlingSeq_diff_le := log_stirlingSeq_sdiff_le
 
-/-- We have the bound `log (stirlingSeq n) - log (stirlingSeq (n+1)) ≤ 1 / (4 n ^ 2)`. -/
+/-- We have the bound `log (stirlingSeq n) - log (stirlingSeq (n+1)) ≤ 1 / (4 n ^ 2)`.
+@isnad1 id=le.0h1v.s6.4e75b95b4e90 from=seed src=0 shape=e524cedd vocab=f2da6131
+-/
 @[deprecated "Use `log_stirlingSeq_sdiff_le` instead." (since := "2026-03-16")]
 theorem log_stirlingSeq_sub_log_stirlingSeq_succ (n : ℕ) :
     log (stirlingSeq n) - log (stirlingSeq (n + 1)) ≤ 1 / (4 * n ^ 2) := by
   grw [log_stirlingSeq_sdiff_le]
   cases n <;> simp [field]; grind
 
-/-- For any `n`, we have `log_stirlingSeq 1 - log_stirlingSeq n ≤ 12⁻¹`. -/
+/-- For any `n`, we have `log_stirlingSeq 1 - log_stirlingSeq n ≤ 12⁻¹`.
+@isnad1 id=le.0h1v.s5.fdfcf9d956a4 from=seed src=0 shape=96537c67 vocab=2164183c
+-/
 theorem log_stirlingSeq_bounded_aux (n : ℕ) :
     log (stirlingSeq 1) - log (stirlingSeq (n + 1)) ≤ 12⁻¹ := by
   let f (k : ℕ) : ℝ := log (stirlingSeq (k + 1))
@@ -161,16 +191,22 @@ theorem log_stirlingSeq_bounded_aux (n : ℕ) :
   simp
   grind
 
-/-- The sequence `log_stirlingSeq` is bounded below for `n ≥ 1`. -/
+/-- The sequence `log_stirlingSeq` is bounded below for `n ≥ 1`.
+@isnad1 id=le.0h1v.s6.1f8e91bdc9db from=seed src=0 shape=01d2d12e vocab=8dcf784d
+-/
 theorem log_stirlingSeq_bounded_by_constant (n : ℕ) :
     1 - 12⁻¹ - log 2 / 2 ≤ log (stirlingSeq (n + 1)) := by
   have := log_stirlingSeq_bounded_aux n
   rw [stirlingSeq_one, log_div (by positivity), log_exp, log_sqrt] at this <;> grind
 
-/-- The sequence `stirlingSeq` is positive for `n > 0`. -/
+/-- The sequence `stirlingSeq` is positive for `n > 0`.
+@isnad1 id=lt.0h1v.s4.cae21c38a609 from=seed src=0 shape=12aa7ebd vocab=943283f9
+-/
 theorem stirlingSeq'_pos (n : ℕ) : 0 < stirlingSeq (n + 1) := by unfold stirlingSeq; positivity
 
-/-- The sequence `stirlingSeq` has a positive lower bound. -/
+/-- The sequence `stirlingSeq` has a positive lower bound.
+@isnad1 id=ex.0h0v.s5.a8d7124082fb from=seed src=0 shape=41711ceb vocab=6dd3c1a2
+-/
 theorem stirlingSeq'_bounded_by_pos_constant : ∃ a, 0 < a ∧ ∀ n : ℕ, a ≤ stirlingSeq (n + 1) := by
   let c := 1 - 12⁻¹ - log 2 / 2
   have h := log_stirlingSeq_bounded_by_constant
@@ -178,11 +214,15 @@ theorem stirlingSeq'_bounded_by_pos_constant : ∃ a, 0 < a ∧ ∀ n : ℕ, a �
   rw [← le_log_iff_exp_le (stirlingSeq'_pos n)]
   exact h n
 
-/-- The sequence `stirlingSeq ∘ succ` is monotone decreasing -/
+/-- The sequence `stirlingSeq ∘ succ` is monotone decreasing
+@isnad1 id=antitone.0h0v.s3.722b1202f9df from=seed src=0 shape=277d4023 vocab=54c80017
+-/
 theorem stirlingSeq'_antitone : Antitone (stirlingSeq ∘ succ) := fun n m h =>
   (log_le_log_iff (stirlingSeq'_pos m) (stirlingSeq'_pos n)).mp (log_stirlingSeq'_antitone h)
 
-/-- The limit `a` of the sequence `stirlingSeq` satisfies `0 < a` -/
+/-- The limit `a` of the sequence `stirlingSeq` satisfies `0 < a`
+@isnad1 id=ex.0h0v.s4.0b017e398c34 from=seed src=0 shape=a9813a9f vocab=b3db2add
+-/
 theorem stirlingSeq_has_pos_limit_a : ∃ a : ℝ, 0 < a ∧ Tendsto stirlingSeq atTop (𝓝 a) := by
   obtain ⟨x, x_pos, hx⟩ := stirlingSeq'_bounded_by_pos_constant
   have hx' : x ∈ lowerBounds (Set.range (stirlingSeq ∘ succ)) := by simpa [lowerBounds] using hx
@@ -196,7 +236,9 @@ https://proofwiki.org/wiki/Stirling%27s_Formula#Part_2
 -/
 
 
-/-- The sequence `n / (2 * n + 1)` tends to `1/2` -/
+/-- The sequence `n / (2 * n + 1)` tends to `1/2`
+@isnad1 id=tendsto.0h0v.s6.5b59c31e15ac from=seed src=0 shape=2db84354 vocab=60a78211
+-/
 theorem tendsto_self_div_two_mul_self_add_one :
     Tendsto (fun n : ℕ => (n : ℝ) / (2 * n + 1)) atTop (𝓝 (1 / 2)) := by
   conv =>
@@ -210,7 +252,9 @@ theorem tendsto_self_div_two_mul_self_add_one :
 
 /-- For any `n ≠ 0`, we have the identity
 `(stirlingSeq n)^4 / (stirlingSeq (2*n))^2 * (n / (2 * n + 1)) = W n`, where `W n` is the
-`n`-th partial product of Wallis' formula for `π / 2`. -/
+`n`-th partial product of Wallis' formula for `π / 2`.
+@isnad1 id=eq.1h1v.s6.26b7f694477b from=seed src=0 shape=14028d1e vocab=08e519f9
+-/
 theorem stirlingSeq_pow_four_div_stirlingSeq_pow_two_eq (n : ℕ) (hn : n ≠ 0) :
     stirlingSeq n ^ 4 / stirlingSeq (2 * n) ^ 2 * (n / (2 * n + 1)) = Wallis.W n := by
   have : 4 = 2 * 2 := by rfl
@@ -223,6 +267,7 @@ theorem stirlingSeq_pow_four_div_stirlingSeq_pow_two_eq (n : ℕ) (hn : n ≠ 0)
 
 /-- Suppose the sequence `stirlingSeq` (defined above) has the limit `a ≠ 0`.
 Then the Wallis sequence `W n` has limit `a^2 / 2`.
+@isnad1 id=tendsto.2h1v.s6.0d8d6acf6482 from=seed src=0 shape=8e20db85 vocab=eb354624
 -/
 theorem second_wallis_limit (a : ℝ) (hane : a ≠ 0) (ha : Tendsto stirlingSeq atTop (𝓝 a)) :
     Tendsto Wallis.W atTop (𝓝 (a ^ 2 / 2)) := by
@@ -235,14 +280,18 @@ theorem second_wallis_limit (a : ℝ) (hane : a ≠ 0) (ha : Tendsto stirlingSeq
   exact ((ha.pow 4).div ((ha.comp (tendsto_id.const_mul_atTop' two_pos)).pow 2)
     (pow_ne_zero 2 hane)).mul tendsto_self_div_two_mul_self_add_one
 
-/-- **Stirling's Formula** -/
+/-- **Stirling's Formula**
+@isnad1 id=tendsto.0h0v.s4.f01be40f9569 from=seed src=0 shape=af21ba06 vocab=82571942
+-/
 theorem tendsto_stirlingSeq_sqrt_pi : Tendsto stirlingSeq atTop (𝓝 (√π)) := by
   obtain ⟨a, hapos, halimit⟩ := stirlingSeq_has_pos_limit_a
   have hπ : π / 2 = a ^ 2 / 2 :=
     tendsto_nhds_unique Wallis.tendsto_W_nhds_pi_div_two (second_wallis_limit a hapos.ne' halimit)
   rwa [(div_left_inj' (two_ne_zero' ℝ)).mp hπ, sqrt_sq hapos.le]
 
-/-- **Stirling's Formula**, formulated in terms of `Asymptotics.IsEquivalent`. -/
+/-- **Stirling's Formula**, formulated in terms of `Asymptotics.IsEquivalent`.
+@isnad1 id=isequiva.0h0v.s6.5cddaa7a2e48 from=seed src=0 shape=8ecded95 vocab=8a6cd680
+-/
 lemma factorial_isEquivalent_stirling :
     (fun n ↦ n ! : ℕ → ℝ) ~[atTop] fun n ↦ Real.sqrt (2 * n * π) * (n / exp 1) ^ n := by
   apply Asymptotics.isEquivalent_of_tendsto_one
@@ -257,6 +306,7 @@ lemma factorial_isEquivalent_stirling :
 /--
 The Stirling sequence is bounded below by `√π`, for all positive naturals. Note that this bound
 holds for all `n > 0`, rather than for sufficiently large `n`: it is effective.
+@isnad1 id=le.1h1v.s4.fdebae999961 from=seed src=0 shape=b3007766 vocab=0d076adc
 -/
 theorem sqrt_pi_le_stirlingSeq {n : ℕ} (hn : n ≠ 0) : √π ≤ stirlingSeq n :=
   match n, hn with
@@ -272,6 +322,7 @@ statement gives an upper bound also, but requires sufficiently large `n`. In con
 only a lower bound, but holds for all `n`.
 See also `log_stirlingSeq_sdiff_le` for Robbins' sharp bound on successive differences in the
 Stirling sequence.
+@isnad1 id=le.0h1v.s6.ca390e583934 from=seed src=0 shape=8a52aff0 vocab=6e9004b1
 -/
 theorem le_factorial_stirling (n : ℕ) : √(2 * π * n) * (n / exp 1) ^ n ≤ n ! := by
   obtain rfl | hn := eq_or_ne n 0
@@ -289,6 +340,7 @@ version is sometimes more practical, and having this version eases algebraic cal
 applications.
 See also `log_stirlingSeq_sdiff_le` for Robbins' sharp bound of `1/(12k(k+1))` on successive
 differences in the Stirling sequence, which provides finer control over the convergence rate.
+@isnad1 id=le.1h1v.s6.44955c90745d from=seed src=0 shape=37832ea4 vocab=cabbd073
 -/
 theorem le_log_factorial_stirling {n : ℕ} (hn : n ≠ 0) :
     n * log n - n + log n / 2 + log (2 * π) / 2 ≤ log n ! := by

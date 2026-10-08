@@ -19,5 +19,8 @@ variable {ι 𝕜 E : Type*} [NontriviallyNormedField 𝕜] [CompleteSpace 𝕜]
 variable [NormedAddCommGroup E] [NormedSpace 𝕜 E]
 variable [FiniteDimensional 𝕜 E]
 
+/--
+@isnad1 id=contdiff.0h5v.s8.c119a75af420 from=seed src=0 shape=6746158e vocab=5210717e
+-/
 theorem smooth_barycentric_coord (b : AffineBasis ι 𝕜 E) (i : ι) : ContDiff 𝕜 ⊤ (b.coord i) :=
   (⟨b.coord i, continuous_barycentric_coord b i⟩ : E →ᴬ[𝕜] 𝕜).contDiff

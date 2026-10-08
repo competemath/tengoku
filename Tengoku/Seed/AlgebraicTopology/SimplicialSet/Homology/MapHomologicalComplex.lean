@@ -59,6 +59,9 @@ noncomputable def chainComplexFunctorObjCompMapIso :
       isoWhiskerRight ((whiskering ..).mapIso (sigmaConstObjCompIso F R)) _
 
 variable {R} in
+/--
+@isnad1 id=eq.0h7v.s10.6790a919edd3 from=seed src=0 shape=fac9b255 vocab=1a38e164
+-/
 @[reassoc (attr := simp)]
 lemma map_ιChainComplex_chainComplexFunctorObjCompMapIso_hom_app_f
     {n : ℕ} (x : X _⦋n⦌) :

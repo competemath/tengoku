@@ -68,23 +68,38 @@ inequality with a functional). -/
 def ContinuousLinearMap.toExposed (l : StrongDual 𝕜 E) (A : Set E) : Set E :=
   { x ∈ A | ∀ y ∈ A, l y ≤ l x }
 
+/--
+@isnad1 id=isexpose.0h4v.s6.dbbbb8c07f36 from=seed src=0 shape=578e5b7b vocab=c98bfcdb
+-/
 theorem ContinuousLinearMap.toExposed.isExposed : IsExposed 𝕜 A (l.toExposed A) := fun _ => ⟨l, rfl⟩
 
+/--
+@isnad1 id=isexpose.0h3v.s5.91c85e0f2da1 from=seed src=0 shape=21b9b7ed vocab=ff227cba
+-/
 theorem isExposed_empty : IsExposed 𝕜 A ∅ := fun ⟨_, hx⟩ => by
   exfalso
   exact hx
 
 namespace IsExposed
 
+/--
+@isnad1 id=le.1h4v.s5.55a20e3cb694 from=seed src=0 shape=6d877a73 vocab=f62beecf
+-/
 protected theorem subset (hAB : IsExposed 𝕜 A B) : B ⊆ A := by
   rintro x hx
   obtain ⟨_, rfl⟩ := hAB ⟨x, hx⟩
   exact hx.1
 
+/--
+@isnad1 id=isexpose.0h3v.s5.75b6d22acbe1 from=seed src=0 shape=658ca35e vocab=ddc6de5f
+-/
 @[refl]
 protected theorem refl (A : Set E) : IsExposed 𝕜 A A := fun ⟨_, _⟩ =>
   ⟨0, Subset.antisymm (fun _ hx => ⟨hx, fun _ _ => le_refl 0⟩) fun _ hx => hx.1⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.53f6daad66c1 from=seed src=0 shape=740cc861 vocab=ddc6de5f
+-/
 protected theorem antisymm (hB : IsExposed 𝕜 A B) (hA : IsExposed 𝕜 B A) : A = B :=
   hA.subset.antisymm hB.subset
 
@@ -93,6 +108,9 @@ protected theorem antisymm (hB : IsExposed 𝕜 A B) (hA : IsExposed 𝕜 B A) :
 of `A₀₀₀A₀₀₁A₀₁₀` which is an exposed subset of the cube, but `A₀₀₁A₀₁₀` is not itself an exposed
 subset of the cube. -/
 
+/--
+@isnad1 id=isexpose.3h5v.s6.04e4cb5bef18 from=seed src=0 shape=5965b2d5 vocab=f62beecf
+-/
 protected theorem mono (hC : IsExposed 𝕜 A C) (hBA : B ⊆ A) (hCB : C ⊆ B) : IsExposed 𝕜 B C := by
   rintro ⟨w, hw⟩
   obtain ⟨l, rfl⟩ := hC ⟨w, hw⟩
@@ -123,6 +141,9 @@ theorem eq_inter_halfSpace [IsOrderedRing 𝕜] [Nontrivial 𝕜] {A B : Set E} 
     contradiction
   exact hAB.eq_inter_halfSpace' hB
 
+/--
+@isnad1 id=isexpose.2h5v.s6.6f4de8058af5 from=seed src=0 shape=112d8d68 vocab=cc9cb014
+-/
 protected theorem inter [IsOrderedRing 𝕜] [ContinuousAdd 𝕜] {A B C : Set E} (hB : IsExposed 𝕜 A B)
     (hC : IsExposed 𝕜 A C) : IsExposed 𝕜 A (B ∩ C) := by
   rintro ⟨w, hwB, hwC⟩
@@ -138,6 +159,9 @@ protected theorem inter [IsOrderedRing 𝕜] [ContinuousAdd 𝕜] {A B C : Set E
   · exact
       (add_le_add_iff_left (l₁ x)).1 (le_trans (add_le_add (hwB.2 x hxA) (hwC.2 y hy)) (hx w hwB.1))
 
+/--
+@isnad1 id=isexpose.2h4v.s6.8165dd2a5cbf from=seed src=0 shape=487fb362 vocab=ad9bc95d
+-/
 theorem sInter [IsOrderedRing 𝕜] [ContinuousAdd 𝕜] {F : Finset (Set E)} (hF : F.Nonempty)
     (hAF : ∀ B ∈ F, IsExposed 𝕜 A B) : IsExposed 𝕜 A (⋂₀ F) := by
   induction F using Finset.induction with
@@ -150,16 +174,25 @@ theorem sInter [IsOrderedRing 𝕜] [ContinuousAdd 𝕜] {F : Finset (Set E)} (h
     · exact (hAF C (Finset.mem_insert_self C F)).inter
         (hF' hFnemp fun B hB => hAF B (Finset.mem_insert_of_mem hB))
 
+/--
+@isnad1 id=isexpose.2h5v.s6.4aa72c895d65 from=seed src=0 shape=eca54285 vocab=058fe3a5
+-/
 theorem inter_left (hC : IsExposed 𝕜 A C) (hCB : C ⊆ B) : IsExposed 𝕜 (A ∩ B) C := by
   rintro ⟨w, hw⟩
   obtain ⟨l, rfl⟩ := hC ⟨w, hw⟩
   exact ⟨l, Subset.antisymm (fun x hx => ⟨⟨hx.1, hCB hx⟩, fun y hy => hx.2 y hy.1⟩)
     fun x ⟨⟨hxC, _⟩, hx⟩ => ⟨hxC, fun y hy => (hw.2 y hy).trans (hx w ⟨hC.subset hw, hCB hw⟩)⟩⟩
 
+/--
+@isnad1 id=isexpose.2h5v.s6.3dbc01df660e from=seed src=0 shape=3d8d24ec vocab=058fe3a5
+-/
 theorem inter_right (hC : IsExposed 𝕜 B C) (hCA : C ⊆ A) : IsExposed 𝕜 (A ∩ B) C := by
   rw [inter_comm]
   exact hC.inter_left hCA
 
+/--
+@isnad1 id=isclosed.2h4v.s6.0010af6db501 from=seed src=0 shape=1a6bdc1b vocab=1faea9ee
+-/
 protected theorem isClosed [OrderClosedTopology 𝕜] {A B : Set E} (hAB : IsExposed 𝕜 A B)
     (hA : IsClosed A) : IsClosed B := by
   obtain rfl | hB := B.eq_empty_or_nonempty
@@ -167,6 +200,9 @@ protected theorem isClosed [OrderClosedTopology 𝕜] {A B : Set E} (hAB : IsExp
   obtain ⟨l, a, rfl⟩ := hAB.eq_inter_halfSpace' hB
   exact hA.isClosed_le continuousOn_const l.continuous.continuousOn
 
+/--
+@isnad1 id=iscompac.2h4v.s6.0521a5ccf542 from=seed src=0 shape=3ec1ad6b vocab=d8fb8832
+-/
 protected theorem isCompact [OrderClosedTopology 𝕜] [T2Space E] {A B : Set E}
     (hAB : IsExposed 𝕜 A B) (hA : IsCompact A) : IsCompact B :=
   hA.of_isClosed_subset (hAB.isClosed hA.isClosed) hAB.subset
@@ -179,17 +215,28 @@ variable (𝕜) in
 def Set.exposedPoints (A : Set E) : Set E :=
   { x ∈ A | ∃ l : StrongDual 𝕜 E, ∀ y ∈ A, l y ≤ l x ∧ (l x ≤ l y → y = x) }
 
+/--
+@isnad1 id=iff.0h4v.s8.7f89a8430747 from=seed src=0 shape=2f887a4b vocab=362a21d8
+-/
 theorem exposed_point_def :
     x ∈ A.exposedPoints 𝕜 ↔ x ∈ A ∧ ∃ l :
     StrongDual 𝕜 E, ∀ y ∈ A, l y ≤ l x ∧ (l x ≤ l y → y = x) := Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s5.5f17cc31f610 from=seed src=0 shape=c88a824b vocab=2cb3bb97
+-/
 theorem exposedPoints_subset : A.exposedPoints 𝕜 ⊆ A := fun _ hx => hx.1
 
+/--
+@isnad1 id=eq.0h2v.s5.302a9b563cff from=seed src=0 shape=df8b9a2a vocab=769bb0a4
+-/
 @[simp]
 theorem exposedPoints_empty : (∅ : Set E).exposedPoints 𝕜 = ∅ :=
   subset_empty_iff.1 exposedPoints_subset
 
-/-- Exposed points exactly correspond to exposed singletons. -/
+/-- Exposed points exactly correspond to exposed singletons.
+@isnad1 id=iff.0h4v.s6.75ad89795072 from=seed src=0 shape=3a8b118d vocab=0b2ecf12
+-/
 theorem mem_exposedPoints_iff_exposed_singleton : x ∈ A.exposedPoints 𝕜 ↔ IsExposed 𝕜 A {x} := by
   use fun ⟨hxA, l, hl⟩ _ =>
     ⟨l,
@@ -213,6 +260,9 @@ variable {𝕜 : Type*} {E : Type*} [TopologicalSpace 𝕜]
 
 namespace IsExposed
 
+/--
+@isnad1 id=convex.2h4v.s7.51cf0dbb9e14 from=seed src=0 shape=e5923314 vocab=dd589519
+-/
 protected theorem convex (hAB : IsExposed 𝕜 A B) (hA : Convex 𝕜 A) : Convex 𝕜 B := by
   obtain rfl | hB := B.eq_empty_or_nonempty
   · exact convex_empty
@@ -222,6 +272,9 @@ protected theorem convex (hAB : IsExposed 𝕜 A B) (hA : Convex 𝕜 A) : Conve
       ((l.toLinearMap.concaveOn convex_univ).convex_ge _ ⟨mem_univ _, hx₁.2 y hy⟩
           ⟨mem_univ _, hx₂.2 y hy⟩ ha hb hab).2⟩
 
+/--
+@isnad1 id=isextrem.1h4v.s7.8db9ac4c4d49 from=seed src=0 shape=33e71d04 vocab=d2dde40d
+-/
 protected theorem isExtreme (hAB : IsExposed 𝕜 A B) : IsExtreme 𝕜 A B := by
   refine ⟨hAB.subset, fun x₁ hx₁A x₂ hx₂A x hxB hx => ?_⟩
   obtain ⟨l, rfl⟩ := hAB ⟨x, hxB⟩
@@ -234,6 +287,9 @@ protected theorem isExtreme (hAB : IsExposed 𝕜 A B) : IsExtreme 𝕜 A B := b
 
 end IsExposed
 
+/--
+@isnad1 id=le.0h3v.s6.8c12ac54de26 from=seed src=0 shape=cb178e5b vocab=d980fd16
+-/
 theorem exposedPoints_subset_extremePoints : A.exposedPoints 𝕜 ⊆ A.extremePoints 𝕜 := fun _ hx =>
   (mem_exposedPoints_iff_exposed_singleton.1 hx).isExtreme.mem_extremePoints
 

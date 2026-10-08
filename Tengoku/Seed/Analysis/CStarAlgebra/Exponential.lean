@@ -42,23 +42,35 @@ noncomputable def selfAdjoint.expUnitary (a : selfAdjoint A) : unitary A :=
 
 open selfAdjoint
 
+/--
+@isnad1 id=eq.0h1v.s9.75ff4d923607 from=seed src=0 shape=f0147523 vocab=2a0a8424
+-/
 @[simp]
 lemma selfAdjoint.expUnitary_zero : expUnitary (0 : selfAdjoint A) = 1 := by
   ext
   simp
 
+/--
+@isnad1 id=continuo.0h1v.s8.3130637af589 from=seed src=0 shape=0ec3d04d vocab=353ab296
+-/
 @[fun_prop]
 lemma selfAdjoint.continuous_expUnitary : Continuous (expUnitary : selfAdjoint A → unitary A) := by
   simp only [continuous_induced_rng, Function.comp_def, selfAdjoint.expUnitary_coe]
   let +nondep : NormedAlgebra ℚ A := NormedAlgebra.restrictScalars ℚ ℂ A
   fun_prop
 
+/--
+@isnad1 id=eq.1h3v.s10.e45caef50548 from=seed src=0 shape=25524675 vocab=97678f73
+-/
 theorem Commute.expUnitary_add {a b : selfAdjoint A} (h : Commute (a : A) (b : A)) :
     expUnitary (a + b) = expUnitary a * expUnitary b := by
   let +nondep : NormedAlgebra ℚ A := .restrictScalars ℚ ℂ A
   simpa only [Subtype.ext_iff, expUnitary_coe, AddSubgroup.coe_add, smul_add] using!
     exp_add_of_commute ((h.smul_left I).smul_right I)
 
+/--
+@isnad1 id=commute.1h3v.s9.a5fb38f694a5 from=seed src=0 shape=0eb439e5 vocab=bb4b15df
+-/
 theorem Commute.expUnitary {a b : selfAdjoint A} (h : Commute (a : A) (b : A)) :
     Commute (expUnitary a) (expUnitary b) := by
   rw [Commute, SemiconjBy, ← h.expUnitary_add, ← h.symm.expUnitary_add, add_comm]

@@ -39,6 +39,9 @@ namespace CochainComplex
 
 namespace IsKInjective
 
+/--
+@isnad1 id=bijectiv.0h3v.s9.a38a028f15d4 from=seed src=0 shape=9d8e2ea6 vocab=a41998b3
+-/
 lemma Qh_map_bijective [HasDerivedCategory C]
     (K : HomotopyCategory C (ComplexShape.up ℤ))
     (L : CochainComplex C ℤ) [L.IsKInjective] :
@@ -48,6 +51,9 @@ lemma Qh_map_bijective [HasDerivedCategory C]
 
 open HomologicalComplex in
 attribute [local instance] HasDerivedCategory.standard in
+/--
+@isnad1 id=iff.0h4v.s7.a9cbeb59879a from=seed src=0 shape=c1ad23b4 vocab=02b89831
+-/
 lemma quasiIso_iff {K L : CochainComplex C ℤ} [K.IsKInjective] [L.IsKInjective] (f : K ⟶ L) :
     QuasiIso f ↔ homotopyEquivalences C (.up ℤ) f := by
   refine ⟨fun _ ↦ ?_, fun hf ↦ homotopyEquivalences_le_quasiIso _ _ _ hf⟩
@@ -66,6 +72,9 @@ namespace HomComplex.CohomologyClass
 variable (K L : CochainComplex C ℤ) (n : ℤ)
   [HasSmallLocalizedShiftedHom.{w} (HomologicalComplex.quasiIso C (.up ℤ)) ℤ K L]
 
+/--
+@isnad1 id=bijectiv.0h4v.s7.0db47098c169 from=seed src=0 shape=5ca26811 vocab=2ca87f4b
+-/
 lemma bijective_toSmallShiftedHom_of_isKInjective [L.IsKInjective] :
     Function.Bijective (toSmallShiftedHom.{w} (K := K) (L := L) (n := n)) := by
   let := HasDerivedCategory.standard C
@@ -92,6 +101,9 @@ end HomComplex.CohomologyClass
 
 open HomologicalComplex
 
+/--
+@isnad1 id=iff.0h4v.s8.55d3f88915cc from=seed src=0 shape=04294bf2 vocab=93cf4062
+-/
 lemma quasiIso_iff_of_injective {K L : CochainComplex C ℕ}
     [∀ n, Injective (K.X n)] [∀ n, Injective (L.X n)]
     (f : K ⟶ L) :

@@ -54,7 +54,9 @@ For a nonnegative function `f` on a measure space, the Lebesgue integral of `f` 
 be written (roughly speaking) as: `∫⁻ f^p ∂μ = p * ∫⁻ t in 0..∞, t^(p-1) * μ {ω | f(ω) ≥ t}`.
 
 See `MeasureTheory.lintegral_rpow_eq_lintegral_meas_lt_mul` for a version with sets of the form
-`{ω | f(ω) > t}` instead. -/
+`{ω | f(ω) > t}` instead.
+@isnad1 id=eq.3h4v.s7.f7600d672d32 from=seed src=0 shape=a9657d05 vocab=30ce5918
+-/
 theorem lintegral_rpow_eq_lintegral_meas_le_mul
     {f : α → ℝ} (f_nn : 0 ≤ᵐ[μ] f) (f_mble : AEMeasurable f μ) {p : ℝ} (p_pos : 0 < p) :
     ∫⁻ ω, ENNReal.ofReal (f ω ^ p) ∂μ =
@@ -88,7 +90,9 @@ For a nonnegative function `f` on a measure space, the Lebesgue integral of `f` 
 be written (roughly speaking) as: `∫⁻ f^p ∂μ = p * ∫⁻ t in 0..∞, t^(p-1) * μ {ω | f(ω) > t}`.
 
 See `MeasureTheory.lintegral_rpow_eq_lintegral_meas_le_mul` for a version with sets of the form
-`{ω | f(ω) ≥ t}` instead. -/
+`{ω | f(ω) ≥ t}` instead.
+@isnad1 id=eq.3h4v.s7.44f824537662 from=seed src=0 shape=823e830f vocab=9789b4c1
+-/
 theorem lintegral_rpow_eq_lintegral_meas_lt_mul
     {f : α → ℝ} (f_nn : 0 ≤ᵐ[μ] f) (f_mble : AEMeasurable f μ) {p : ℝ} (p_pos : 0 < p) :
     ∫⁻ ω, ENNReal.ofReal (f ω ^ p) ∂μ =
@@ -107,6 +111,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensi
   {μ : Measure E} [μ.IsAddHaarMeasure]
 
 open Set Metric in
+/--
+@isnad1 id=integrab.4h7v.s8.542b1c150b64 from=seed src=0 shape=e3843f9f vocab=c856a97e
+-/
 lemma integrableOn_ball_of_norm_le_rpow (hd : 1 ≤ Module.finrank ℝ E) {f : E → F} {C α r : ℝ}
     (hα : α < Module.finrank ℝ E) (h_decay : ∀ᵐ x ∂μ.restrict (ball 0 r), ‖f x‖ ≤ C * ‖x‖ ^ (-α))
     (h_meas : AEStronglyMeasurable f μ) :
@@ -131,7 +138,9 @@ lemma integrableOn_ball_of_norm_le_rpow (hd : 1 ≤ Module.finrank ℝ E) {f : E
   rw [← integrableOn_fun_norm_addHaar μ] at hint
   exact Integrable.mono' hint h_meas.restrict h_decay
 
-/-- A function that is dominated by `‖x‖ ^ (-d + ε)` is locally integrable -/
+/-- A function that is dominated by `‖x‖ ^ (-d + ε)` is locally integrable
+@isnad1 id=locallyi.4h6v.s7.97ccf7943975 from=seed src=0 shape=633694be vocab=9b5eed5e
+-/
 theorem locallyIntegrable_of_norm_le_rpow (hdim : 1 ≤ Module.finrank ℝ E) {f : E → F} {C α : ℝ}
     (hα : α < Module.finrank ℝ E)
     (h_decay : ∀ᵐ x ∂μ, ‖f x‖ ≤ C * ‖x‖ ^ (-α)) (h_meas : AEStronglyMeasurable f μ) :

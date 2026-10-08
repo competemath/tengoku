@@ -61,6 +61,9 @@ noncomputable def toClosedBall (r : ℝ) :
   tauto
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h4v.s9.e1134464a3f6 from=seed src=0 shape=9e669268 vocab=160c293f
+-/
 @[simp]
 lemma toClosedBall_eval_within {r : ℝ} {z : E} (f : locallyFinsupp E ℤ)
     (ha : z ∈ closedBall 0 |r|) :
@@ -69,12 +72,18 @@ lemma toClosedBall_eval_within {r : ℝ} {z : E} (f : locallyFinsupp E ℤ)
   simp_all [restrict_apply]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h2v.s9.50f87542bb68 from=seed src=0 shape=39d268cb vocab=d237ddbc
+-/
 @[simp]
 lemma toClosedBall_divisor {r : ℝ} {f : ℂ → ℂ} (h : Meromorphic f) :
     (divisor f (closedBall 0 |r|)) = (locallyFinsuppWithin.toClosedBall r) (divisor f univ) := by
   simp_all [locallyFinsuppWithin.toClosedBall]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=le.0h3v.s9.c0985c8e663b from=seed src=0 shape=cc2f9080 vocab=17b651c5
+-/
 lemma toClosedBall_support_subset_closedBall {E : Type*} [NormedAddCommGroup E] {r : ℝ}
     (f : locallyFinsupp E ℤ) :
     (toClosedBall r f).support ⊆ closedBall 0 |r| := by
@@ -122,6 +131,7 @@ noncomputable def logCounting {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 
 /--
 Evaluation of the logarithmic counting function at zero yields zero.
+@isnad1 id=eq.0h2v.s8.f2ffc7e53c88 from=seed src=0 shape=0ddf3104 vocab=f55442eb
 -/
 @[simp] lemma logCounting_eval_zero {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     (D : locallyFinsupp E ℤ) :
@@ -132,6 +142,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 /--
 The logarithmic counting function of a singleton indicator is asymptotically equal to
 `log · - log ‖e‖`.
+@isnad1 id=eq.1h4v.s8.f0c501a54793 from=seed src=0 shape=6f8168c3 vocab=d972de1c
 -/
 @[simp] lemma logCounting_single_eq_log_sub_const [DecidableEq E] [ProperSpace E] {e : E} {r : ℝ}
     {n : ℤ} (hr : ‖e‖ ≤ r) :
@@ -155,12 +166,14 @@ The logarithmic counting function of a singleton indicator is asymptotically equ
 set_option backward.isDefEq.respectTransparency.types false in
 /--
 The logarithmic counting function is even.
+@isnad1 id=even.0h2v.s8.59c1a4377634 from=seed src=0 shape=8ecb7192 vocab=b8f78daf
 -/
 lemma logCounting_even [ProperSpace E] (D : locallyFinsupp E ℤ) :
     (logCounting D).Even := fun r ↦ by simp [logCounting, toClosedBall, restrict_apply]
 
 /--
 The logarithmic counting function is monotonous.
+@isnad1 id=monotone.1h2v.s8.67ae1985f7cc from=seed src=0 shape=b3aa8bb8 vocab=d36e5fff
 -/
 lemma logCounting_mono [ProperSpace E] {D : locallyFinsupp E ℤ} (hD : 0 ≤ D) :
     MonotoneOn (logCounting D) (Ioi 0) := by
@@ -200,6 +213,7 @@ lemma logCounting_mono [ProperSpace E] {D : locallyFinsupp E ℤ} (hD : 0 ≤ D)
 /--
 The logarithmic counting function of a positive function with locally finite support is
 asymptotically strictly monotone.
+@isnad1 id=strictmo.1h3v.s8.2b31084c9f94 from=seed src=0 shape=5bf279f6 vocab=c034f24b
 -/
 lemma logCounting_strictMono [DecidableEq E] [ProperSpace E] {D : locallyFinsupp E ℤ} {e : E}
     (hD : single e 1 ≤ D) :
@@ -218,6 +232,7 @@ lemma logCounting_strictMono [DecidableEq E] [ProperSpace E] {D : locallyFinsupp
 
 /--
 For `1 ≤ r`, the logarithmic counting function is non-negative.
+@isnad1 id=le.2h3v.s8.1861405829cb from=seed src=0 shape=a21df7bd vocab=825ac07a
 -/
 theorem logCounting_nonneg {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     {f : locallyFinsupp E ℤ} {r : ℝ} (h : 0 ≤ f) (hr : 1 ≤ r) :
@@ -236,6 +251,7 @@ theorem logCounting_nonneg {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 
 /--
 For `1 ≤ r`, the logarithmic counting function respects the `≤` relation.
+@isnad1 id=le.2h4v.s9.4f0f6adc3e14 from=seed src=0 shape=05b5668d vocab=825ac07a
 -/
 theorem logCounting_le {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     {f₁ f₂ : locallyFinsupp E ℤ} {r : ℝ} (h : f₁ ≤ f₂) (hr : 1 ≤ r) :
@@ -245,6 +261,7 @@ theorem logCounting_le {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 
 /--
 The logarithmic counting function respects the `≤` relation asymptotically.
+@isnad1 id=eventual.1h3v.s9.ce592ec1ff58 from=seed src=0 shape=52118bf9 vocab=47b50ff5
 -/
 theorem logCounting_eventuallyLE {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     {f₁ f₂ : locallyFinsupp E ℤ} (h : f₁ ≤ f₂) :
@@ -287,6 +304,7 @@ lemma _root_.locallyFinsuppWithin.logCounting_divisor {f : ℂ → ℂ} :
 /--
 For finite values `a₀`, the logarithmic counting function `logCounting f a₀` is the logarithmic
 counting function for the zeros of `f - a₀`.
+@isnad1 id=eq.0h4v.s9.ec7504e2866f from=seed src=0 shape=b7700f73 vocab=978d3826
 -/
 lemma logCounting_coe :
     logCounting f a₀ = (divisor (f · - a₀) univ)⁺.logCounting := by
@@ -295,6 +313,7 @@ lemma logCounting_coe :
 /--
 For finite values `a₀`, the logarithmic counting function `logCounting f a₀` equals the logarithmic
 counting function for the zeros of `f - a₀`.
+@isnad1 id=eq.0h4v.s6.80146892b445 from=seed src=0 shape=f1b7f52e vocab=edd6471b
 -/
 lemma logCounting_coe_eq_logCounting_sub_const_zero :
     logCounting f a₀ = logCounting (f - fun _ ↦ a₀) 0 := by
@@ -303,6 +322,7 @@ lemma logCounting_coe_eq_logCounting_sub_const_zero :
 /--
 The logarithmic counting function `logCounting f 0` is the logarithmic counting function associated
 with the zero-divisor of `f`.
+@isnad1 id=eq.0h3v.s9.b894cff88440 from=seed src=0 shape=9ddf2b91 vocab=20a4519b
 -/
 lemma logCounting_zero :
     logCounting f 0 = (divisor f univ)⁺.logCounting := by
@@ -311,6 +331,7 @@ lemma logCounting_zero :
 /--
 The logarithmic counting function `logCounting f ⊤` is the logarithmic counting function associated
 with the pole-divisor of `f`.
+@isnad1 id=eq.0h3v.s9.5651f3b8f375 from=seed src=0 shape=1e166683 vocab=2187b350
 -/
 lemma logCounting_top :
     logCounting f ⊤ = (divisor f univ)⁻.logCounting := by
@@ -318,6 +339,7 @@ lemma logCounting_top :
 
 /--
 Evaluation of the logarithmic counting function at zero yields zero.
+@isnad1 id=eq.0h4v.s6.97e33afafde3 from=seed src=0 shape=eedcc274 vocab=e464ad66
 -/
 @[simp] lemma logCounting_eval_zero :
     logCounting f a 0 = 0 := by
@@ -326,6 +348,7 @@ Evaluation of the logarithmic counting function at zero yields zero.
 /--
 The logarithmic counting function associated with the divisor of `f` is the difference between
 `logCounting f 0` and `logCounting f ⊤`.
+@isnad1 id=eq.0h3v.s8.259aad2a87d4 from=seed src=0 shape=7fd17455 vocab=e01ec88e
 -/
 theorem log_counting_zero_sub_logCounting_top {f : 𝕜 → E} :
     (divisor f univ).logCounting = logCounting f 0 - logCounting f ⊤ := by
@@ -333,6 +356,7 @@ theorem log_counting_zero_sub_logCounting_top {f : 𝕜 → E} :
 
 /--
 The logarithmic counting function of a constant function is zero.
+@isnad1 id=eq.0h4v.s6.1b1e87becfb4 from=seed src=0 shape=004653c2 vocab=e464ad66
 -/
 @[simp] theorem logCounting_const {c : E} {e : WithTop E} :
     logCounting (fun _ ↦ c : 𝕜 → E) e = 0 := by
@@ -340,12 +364,14 @@ The logarithmic counting function of a constant function is zero.
 
 /--
 The logarithmic counting function of the constant function zero is zero.
+@isnad1 id=eq.0h3v.s6.5bb0cb110b11 from=seed src=0 shape=736fe81d vocab=e464ad66
 -/
 @[simp] theorem logCounting_const_zero {e : WithTop E} :
     logCounting (0 : 𝕜 → E) e = 0 := logCounting_const
 
 /--
 The logarithmic counting function is even.
+@isnad1 id=even.0h4v.s5.1af50bfc16ec from=seed src=0 shape=843a3247 vocab=c8e092e6
 -/
 theorem logCounting_even {f : 𝕜 → E} {e : WithTop E} :
     (logCounting f e).Even := by
@@ -354,6 +380,7 @@ theorem logCounting_even {f : 𝕜 → E} {e : WithTop E} :
 
 /--
 The logarithmic counting function is monotonous.
+@isnad1 id=monotone.0h4v.s6.68d7aed5b9db from=seed src=0 shape=bc8dcf05 vocab=391ba6d7
 -/
 theorem logCounting_monotoneOn {f : 𝕜 → E} {e : WithTop E} :
     MonotoneOn (logCounting f e) (Ioi 0) := by
@@ -362,6 +389,7 @@ theorem logCounting_monotoneOn {f : 𝕜 → E} {e : WithTop E} :
 
 /--
 For `1 ≤ r`, the logarithmic counting function is non-negative.
+@isnad1 id=le.1h5v.s6.476cca6b5b90 from=seed src=0 shape=ec32f23d vocab=cb2df533
 -/
 theorem logCounting_nonneg {r : ℝ} {f : 𝕜 → E} {e : WithTop E} (hr : 1 ≤ r) :
     0 ≤ logCounting f e r := by
@@ -373,6 +401,7 @@ theorem logCounting_nonneg {r : ℝ} {f : 𝕜 → E} {e : WithTop E} (hr : 1 �
 
 /--
 The logarithmic counting function is asymptotically non-negative.
+@isnad1 id=eventual.0h4v.s6.5c0ed345609a from=seed src=0 shape=1b478e7d vocab=5b59779b
 -/
 theorem logCounting_eventually_nonneg {f : 𝕜 → E} {e : WithTop E} :
     0 ≤ᶠ[atTop] logCounting f e := by
@@ -385,6 +414,7 @@ theorem logCounting_eventually_nonneg {f : 𝕜 → E} {e : WithTop E} :
 /--
 If two functions differ only on a discrete set, then their logarithmic counting
 functions agree.
+@isnad1 id=eq.1h3v.s6.834cc45ef712 from=seed src=0 shape=30f2e51a vocab=54a82894
 -/
 theorem logCounting_congr_codiscrete [NormedSpace ℂ E] {f g : ℂ → E} (hfg : f =ᶠ[codiscrete ℂ] g) :
     logCounting f = logCounting g := by
@@ -400,6 +430,7 @@ theorem logCounting_congr_codiscrete [NormedSpace ℂ E] {f g : ℂ → E} (hfg 
 
 /--
 Relation between the logarithmic counting functions of `f` and of `f⁻¹`.
+@isnad1 id=eq.0h2v.s7.7c114e38eb1b from=seed src=0 shape=baf22de1 vocab=6e160e7a
 -/
 @[simp] theorem logCounting_inv {f : 𝕜 → 𝕜} :
      logCounting f⁻¹ ⊤ = logCounting f 0 := by
@@ -407,6 +438,7 @@ Relation between the logarithmic counting functions of `f` and of `f⁻¹`.
 
 /--
 Adding an analytic function does not change the logarithmic counting function for the poles.
+@isnad1 id=eq.2h4v.s7.453a77a99bf1 from=seed src=0 shape=33e2417c vocab=4b91b870
 -/
 theorem logCounting_add_analyticOn (hf : Meromorphic f) (hg : AnalyticOn 𝕜 g univ) :
     logCounting (f + g) ⊤ = logCounting f ⊤ := by
@@ -417,6 +449,7 @@ theorem logCounting_add_analyticOn (hf : Meromorphic f) (hg : AnalyticOn 𝕜 g 
 /--
 Special case of `logCounting_add_analyticOn`: Adding a constant does not change the logarithmic
 counting function for the poles.
+@isnad1 id=eq.1h4v.s6.c685494f38f4 from=seed src=0 shape=476e56e5 vocab=494cf406
 -/
 @[simp] theorem logCounting_add_const (hf : Meromorphic f) :
     logCounting (f + fun _ ↦ a₀) ⊤ = logCounting f ⊤ := by
@@ -425,6 +458,7 @@ counting function for the poles.
 /--
 Special case of `logCounting_add_analyticOn`: Subtracting a constant does not change the logarithmic
 counting function for the poles.
+@isnad1 id=eq.1h4v.s6.e9ec75dd8e32 from=seed src=0 shape=476e56e5 vocab=e342a98f
 -/
 @[simp] theorem logCounting_sub_const (hf : Meromorphic f) :
     logCounting (f - fun _ ↦ a₀) ⊤ = logCounting f ⊤ := by
@@ -437,6 +471,7 @@ counting function for the poles.
 /--
 For `1 ≤ r`, the logarithmic counting function for the poles of `f + g` is less than or equal to the
 sum of the logarithmic counting functions for the poles of `f` and `g`, respectively.
+@isnad1 id=le.3h5v.s7.20b57004c2ae from=seed src=0 shape=2017363b vocab=27723b92
 -/
 theorem logCounting_add_top_le {f₁ f₂ : 𝕜 → E} {r : ℝ} (h₁f₁ : Meromorphic f₁)
     (h₁f₂ : Meromorphic f₂) (hr : 1 ≤ r) :
@@ -449,6 +484,7 @@ theorem logCounting_add_top_le {f₁ f₂ : 𝕜 → E} {r : ℝ} (h₁f₁ : Me
 /--
 Asymptotically, the logarithmic counting function for the poles of `f + g` is less than or equal to
 the sum of the logarithmic counting functions for the poles of `f` and `g`, respectively.
+@isnad1 id=eventual.2h4v.s7.2181818eb502 from=seed src=0 shape=5a2b9ea3 vocab=a3baa6c0
 -/
 theorem logCounting_add_top_eventuallyLE {f₁ f₂ : 𝕜 → E} (h₁f₁ : Meromorphic f₁)
     (h₁f₂ : Meromorphic f₂) :
@@ -458,6 +494,7 @@ theorem logCounting_add_top_eventuallyLE {f₁ f₂ : 𝕜 → E} (h₁f₁ : Me
 /--
 For `1 ≤ r`, the logarithmic counting function for the poles of a sum `∑ a ∈ s, f a` is less than or
 equal to the sum of the logarithmic counting functions for the poles of the `f ·`.
+@isnad1 id=le.2h6v.s7.d8da5826e160 from=seed src=0 shape=d7b7e4ae vocab=13b5b53b
 -/
 theorem logCounting_sum_top_le {α : Type*} (s : Finset α) (f : α → 𝕜 → E) {r : ℝ}
     (h₁f : ∀ a ∈ s, Meromorphic (f a)) (hr : 1 ≤ r) :
@@ -478,6 +515,7 @@ theorem logCounting_sum_top_le {α : Type*} (s : Finset α) (f : α → 𝕜 →
 /--
 Asymptotically, the logarithmic counting function for the poles of a sum `∑ a ∈ s, f a` is less than
 or equal to the sum of the logarithmic counting functions for the poles of the `f ·`.
+@isnad1 id=eventual.1h5v.s7.5cad6e8a682d from=seed src=0 shape=c21c1a2e vocab=b7a9c153
 -/
 theorem logCounting_sum_top_eventuallyLE {α : Type*} (s : Finset α) (f : α → 𝕜 → E)
     (h₁f : ∀ a ∈ s, Meromorphic (f a)) :
@@ -499,6 +537,7 @@ Then,
 - `logCounting (f₁ * f₂) 0 = 0`
 
 But `log r` is negative for small `r`.
+@isnad1 id=le.5h4v.s8.0e2bc6725d97 from=seed src=0 shape=e04b0afc vocab=4586c167
 -/
 theorem logCounting_mul_zero_le {f₁ f₂ : 𝕜 → 𝕜} {r : ℝ} (hr : 1 ≤ r)
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -513,6 +552,7 @@ theorem logCounting_mul_zero_le {f₁ f₂ : 𝕜 → 𝕜} {r : ℝ} (hr : 1 �
 /--
 Asymptotically, the logarithmic counting function for the zeros of `f * g` is less than or equal to
 the sum of the logarithmic counting functions for the zeros of `f` and `g`, respectively.
+@isnad1 id=eventual.4h3v.s8.265255cef37a from=seed src=0 shape=0caee45a vocab=ca37940c
 -/
 theorem logCounting_mul_zero_eventuallyLE {f₁ f₂ : 𝕜 → 𝕜}
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -524,6 +564,7 @@ theorem logCounting_mul_zero_eventuallyLE {f₁ f₂ : 𝕜 → 𝕜}
 /--
 For `1 ≤ r`, the logarithmic counting function for the poles of `f * g` is less than or equal to the
 sum of the logarithmic counting functions for the poles of `f` and `g`, respectively.
+@isnad1 id=le.5h4v.s8.1237eba72bc9 from=seed src=0 shape=7a5b4d93 vocab=4586c167
 -/
 theorem logCounting_mul_top_le {f₁ f₂ : 𝕜 → 𝕜} {r : ℝ} (hr : 1 ≤ r)
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -538,6 +579,7 @@ theorem logCounting_mul_top_le {f₁ f₂ : 𝕜 → 𝕜} {r : ℝ} (hr : 1 ≤
 /--
 Asymptotically, the logarithmic counting function for the zeros of `f * g` is less than or equal to
 the sum of the logarithmic counting functions for the zeros of `f` and `g`, respectively.
+@isnad1 id=eventual.4h3v.s8.33cf360e0053 from=seed src=0 shape=7dd8b43a vocab=ca37940c
 -/
 theorem logCounting_mul_top_eventuallyLE {f₁ f₂ : 𝕜 → 𝕜}
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -549,6 +591,7 @@ theorem logCounting_mul_top_eventuallyLE {f₁ f₂ : 𝕜 → 𝕜}
 /--
 For natural numbers `n`, the logarithmic counting function for the zeros of `f ^ n` equals `n`
 times the logarithmic counting function for the zeros of `f`.
+@isnad1 id=eq.1h3v.s7.930f5cfde34f from=seed src=0 shape=6b39b447 vocab=b05bf2f0
 -/
 @[simp] theorem logCounting_pow_zero {f : 𝕜 → 𝕜} {n : ℕ} (hf : Meromorphic f) :
     logCounting (f ^ n) 0 = n • logCounting f 0 := by
@@ -557,6 +600,7 @@ times the logarithmic counting function for the zeros of `f`.
 /--
 For natural numbers `n`, the logarithmic counting function for the poles of `f ^ n` equals `n` times
 the logarithmic counting function for the poles of `f`.
+@isnad1 id=eq.1h3v.s7.930faac368d1 from=seed src=0 shape=49245c7c vocab=2769ba0e
 -/
 @[simp] theorem logCounting_pow_top {f : 𝕜 → 𝕜} {n : ℕ} (hf : Meromorphic f) :
     logCounting (f ^ n) ⊤ = n • logCounting f ⊤ := by
@@ -577,6 +621,7 @@ meromorphic function `f` as a circle average over `log ‖f ·‖`.
 
 This is a reformulation of Jensen's formula of complex analysis. See
 `MeromorphicOn.circleAverage_log_norm` for Jensen's formula in the original context.
+@isnad1 id=eq.2h2v.s8.364d906523e7 from=seed src=0 shape=43dd6b14 vocab=b37faee3
 -/
 theorem Function.locallyFinsuppWithin.logCounting_divisor_eq_circleAverage_sub_const {R : ℝ}
     {f : ℂ → ℂ} (h : Meromorphic f) (hR : R ≠ 0) :
@@ -593,6 +638,7 @@ theorem Function.locallyFinsuppWithin.logCounting_divisor_eq_circleAverage_sub_c
 /--
 Variant of `locallyFinsuppWithin.logCounting_divisor_eq_circleAverage_sub_const`, using
 `ValueDistribution.logCounting` instead of `locallyFinsuppWithin.logCounting`.
+@isnad1 id=eq.2h2v.s7.c5ec612ef698 from=seed src=0 shape=e64dd9d0 vocab=219ff817
 -/
 theorem ValueDistribution.logCounting_zero_sub_logCounting_top_eq_circleAverage_sub_const {R : ℝ}
     {f : ℂ → ℂ} (h : Meromorphic f) (hR : R ≠ 0) :

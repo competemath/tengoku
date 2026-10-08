@@ -56,7 +56,9 @@ variable {𝕜 E₁ E₂ F : Type*} [NontriviallyNormedField 𝕜] [NormedAddCom
 set_option backward.defeqAttrib.useBackward true in
 /-- If bivariate `f : E₁ → E₂ → F` has partial derivatives `f₁` and `f₂` in a neighbourhood of
 `u : E₁ × E₂` and if they are continuous there then the uncurried function `↿f` is strictly
-differentiable at `u` with its derivative mapping `z` to `f₁ u.1 u.2 z.1 + f₂ u.1 u.2 z.2`. -/
+differentiable at `u` with its derivative mapping `z` to `f₁ u.1 u.2 z.1 + f₂ u.1 u.2 z.2`.
+@isnad1 id=hasstric.4h8v.s11.505e2aba5ce0 from=seed src=0 shape=73982bb7 vocab=0d1d8521
+-/
 public theorem hasStrictFDerivAt_uncurry_coprod
     [IsRCLikeNormedField 𝕜] {u : E₁ × E₂} {f : E₁ → E₂ → F} {f₁ : E₁ → E₂ → E₁ →L[𝕜] F}
     {f₂ : E₁ → E₂ → E₂ →L[𝕜] F} (df₁ : ∀ᶠ v in 𝓝 u, HasFDerivAt (f · v.2) (↿f₁ v) v.1)

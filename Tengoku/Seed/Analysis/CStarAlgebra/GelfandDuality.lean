@@ -89,6 +89,9 @@ noncomputable def Ideal.toCharacterSpace : characterSpace ℂ A :=
       (letI := Quotient.field I; isUnit_iff_ne_zero (G₀ := A ⧸ I))).symm : A ⧸ I →ₐ[ℂ] ℂ).comp <|
     Quotient.mkₐ ℂ I
 
+/--
+@isnad1 id=eq.1h3v.s8.cac18d0a3540 from=seed src=0 shape=cb8468b2 vocab=bed46819
+-/
 theorem Ideal.toCharacterSpace_apply_eq_zero_of_mem {a : A} (ha : a ∈ I) :
     I.toCharacterSpace a = 0 := by
   unfold Ideal.toCharacterSpace
@@ -98,7 +101,9 @@ theorem Ideal.toCharacterSpace_apply_eq_zero_of_mem {a : A} (ha : a ∈ I) :
   exact Set.eq_of_mem_singleton (Set.singleton_nonempty (0 : ℂ)).some_mem
 
 /-- If `a : A` is not a unit, then some character takes the value zero at `a`. This is equivalent
-to `gelfandTransform ℂ A a` takes the value zero at some character. -/
+to `gelfandTransform ℂ A a` takes the value zero at some character.
+@isnad1 id=ex.1h2v.s9.8a3301457d4b from=seed src=0 shape=9d309624 vocab=0718b191
+-/
 theorem WeakDual.CharacterSpace.exists_apply_eq_zero {a : A} (ha : ¬IsUnit a) :
     ∃ f : characterSpace ℂ A, f a = 0 := by
   obtain ⟨M, hM, haM⟩ := (span {a}).exists_le_maximal (span_singleton_ne_top ha)
@@ -107,6 +112,9 @@ theorem WeakDual.CharacterSpace.exists_apply_eq_zero {a : A} (ha : ¬IsUnit a) :
       M.toCharacterSpace_apply_eq_zero_of_mem
         (haM (mem_span_singleton.mpr ⟨1, (mul_one a).symm⟩))⟩
 
+/--
+@isnad1 id=iff.0h3v.s9.7a82105e7e74 from=seed src=0 shape=943a2410 vocab=0b7e67ca
+-/
 theorem WeakDual.CharacterSpace.mem_spectrum_iff_exists {a : A} {z : ℂ} :
     z ∈ spectrum ℂ a ↔ ∃ f : characterSpace ℂ A, f a = z := by
   refine ⟨fun hz => ?_, ?_⟩
@@ -116,7 +124,9 @@ theorem WeakDual.CharacterSpace.mem_spectrum_iff_exists {a : A} {z : ℂ} :
   · rintro ⟨f, rfl⟩
     exact AlgHom.apply_mem_spectrum f a
 
-/-- The Gelfand transform is spectrum-preserving. -/
+/-- The Gelfand transform is spectrum-preserving.
+@isnad1 id=eq.0h2v.s12.7f06dfa7865a from=seed src=0 shape=b6284016 vocab=05d1a43e
+-/
 theorem spectrum.gelfandTransform_eq (a : A) :
     spectrum ℂ (gelfandTransform ℂ A a) = spectrum ℂ a := by
   ext z
@@ -135,13 +145,18 @@ section Commutative
 
 variable {A : Type*} [CommCStarAlgebra A]
 
+/--
+@isnad1 id=eq.0h2v.s13.06b23a4b4e01 from=seed src=0 shape=232e4767 vocab=fadb4f8d
+-/
 theorem gelfandTransform_map_star (a : A) :
     gelfandTransform ℂ A (star a) = star (gelfandTransform ℂ A a) :=
   ContinuousMap.ext fun φ => map_star φ a
 
 variable (A)
 
-/-- The Gelfand transform is an isometry when the algebra is a C⋆-algebra over `ℂ`. -/
+/-- The Gelfand transform is an isometry when the algebra is a C⋆-algebra over `ℂ`.
+@isnad1 id=isometry.0h1v.s13.1ee151528ab5 from=seed src=0 shape=c4d807bb vocab=3930b56a
+-/
 theorem gelfandTransform_isometry : Isometry (gelfandTransform ℂ A) := by
   refine AddMonoidHomClass.isometry_of_norm (gelfandTransform ℂ A) fun a => ?_
   /- By `spectrum.gelfandTransform_eq`, the spectra of `star a * a` and its
@@ -157,7 +172,9 @@ theorem gelfandTransform_isometry : Isometry (gelfandTransform ℂ A) := by
     congr_arg (((↑) : ℝ≥0 → ℝ) ∘ ⇑NNReal.sqrt) this
 
 set_option backward.defeqAttrib.useBackward true in
-/-- The Gelfand transform is bijective when the algebra is a C⋆-algebra over `ℂ`. -/
+/-- The Gelfand transform is bijective when the algebra is a C⋆-algebra over `ℂ`.
+@isnad1 id=bijectiv.0h1v.s12.21ecffc9e74d from=seed src=0 shape=c4d807bb vocab=0d395362
+-/
 theorem gelfandTransform_bijective : Function.Bijective (gelfandTransform ℂ A) := by
   refine ⟨(gelfandTransform_isometry A).injective, ?_⟩
   /- The range of `gelfandTransform ℂ A` is actually a `StarSubalgebra`. The key lemma below may be
@@ -205,22 +222,37 @@ variable {A : Type*} [NonUnitalCommCStarAlgebra A] {a b : A}
 
 open scoped CStarAlgebra in
 open Unitization in
+/--
+@isnad1 id=eq.1h3v.s6.610dd566d130 from=seed src=0 shape=29afedfb vocab=0ca93b06
+-/
 lemma norm_add_eq_max (h : a * b = 0) : ‖a + b‖ = max ‖a‖ ‖b‖ := by
   let f := gelfandStarTransform A⁺¹ ∘ inrNonUnitalAlgHom ℂ A
   have hf : Isometry f := gelfandTransform_isometry _ |>.comp isometry_inr
   simp_rw [← hf.norm_map_of_map_zero (by simp [f]), show f (a + b) = f a + f b by simp [f]]
   exact ContinuousMap.norm_add_eq_max <| by simpa [f] using congr(f $h)
 
+/--
+@isnad1 id=eq.1h3v.s7.7ccde5af0bcb from=seed src=0 shape=29afedfb vocab=f7bba628
+-/
 lemma nnnorm_add_eq_max (h : a * b = 0) : ‖a + b‖₊ = max ‖a‖₊ ‖b‖₊ :=
   NNReal.eq <| norm_add_eq_max h
 
+/--
+@isnad1 id=eq.1h3v.s6.eda23071abc0 from=seed src=0 shape=29afedfb vocab=2421c4c8
+-/
 lemma norm_sub_eq_max (h : a * b = 0) : ‖a - b‖ = max ‖a‖ ‖b‖ := by
   simpa [sub_eq_add_neg] using norm_add_eq_max (a := a) (b := -b) (by simpa)
 
+/--
+@isnad1 id=eq.1h3v.s7.f3c6d54695a5 from=seed src=0 shape=29afedfb vocab=4c318e5a
+-/
 lemma nnnorm_sub_eq_max (h : a * b = 0) : ‖a - b‖₊ = max ‖a‖₊ ‖b‖₊ :=
   NNReal.eq <| norm_sub_eq_max h
 
 open scoped Function in
+/--
+@isnad1 id=eq.1h4v.s7.592716fcb50c from=seed src=0 shape=a82d7a95 vocab=1f3187b4
+-/
 lemma nnnorm_sum_eq_sup {ι : Type*} {f : ι → A} (s : Finset ι) (h0 : Pairwise ((· * · = 0) on f)) :
     ‖∑ i ∈ s, f i‖₊ = s.sup (‖f ·‖₊) := by
   classical
@@ -240,6 +272,9 @@ namespace IsStarNormal
 
 open scoped IsMulCommutative in
 open NonUnitalStarAlgebra NonUnitalStarSubalgebra in
+/--
+@isnad1 id=eq.4h3v.s7.9d7f5a044a36 from=seed src=0 shape=30161f09 vocab=3ff600b0
+-/
 lemma norm_add_eq_max (ha : IsStarNormal a) (hb : IsStarNormal b)
     (hcomm : Commute a b) (hab : a * b = 0) :
     ‖a + b‖ = max ‖a‖ ‖b‖ := by
@@ -255,17 +290,26 @@ lemma norm_add_eq_max (ha : IsStarNormal a) (hb : IsStarNormal b)
   refine CommCStarAlgebra.norm_add_eq_max (A := S) (a := ⟨a, ?_⟩) (b := ⟨b, ?_⟩) (by ext; simpa)
   all_goals apply le_topologicalClosure; aesop
 
+/--
+@isnad1 id=eq.4h3v.s7.dc4a34d3e05d from=seed src=0 shape=30161f09 vocab=bed2494f
+-/
 lemma nnnorm_add_eq_max (ha : IsStarNormal a) (hb : IsStarNormal b)
     (hcomm : Commute a b) (hab : a * b = 0) :
     ‖a + b‖₊ = max ‖a‖₊ ‖b‖₊ :=
   NNReal.eq <| ha.norm_add_eq_max hb hcomm hab
 
+/--
+@isnad1 id=eq.4h3v.s7.9ef75f9d682d from=seed src=0 shape=30161f09 vocab=fb549e93
+-/
 lemma norm_sub_eq_max (ha : IsStarNormal a) (hb : IsStarNormal b)
     (hcomm : Commute a b) (hab : a * b = 0) :
     ‖a - b‖ = max ‖a‖ ‖b‖ := by
   simpa [sub_eq_add_neg] using
     ha.norm_add_eq_max hb.neg hcomm.neg_right (by simpa)
 
+/--
+@isnad1 id=eq.4h3v.s7.393aa01e3542 from=seed src=0 shape=30161f09 vocab=2de85a16
+-/
 lemma nnnorm_sub_eq_max (ha : IsStarNormal a) (hb : IsStarNormal b)
     (hcomm : Commute a b) (hab : a * b = 0) :
     ‖a - b‖₊ = max ‖a‖₊ ‖b‖₊ :=
@@ -276,23 +320,38 @@ end IsStarNormal
 namespace IsSelfAdjoint
 
 open NonUnitalStarAlgebra in
+/--
+@isnad1 id=eq.3h3v.s7.4b30e8a8d664 from=seed src=0 shape=d435b4bd vocab=00e1291a
+-/
 lemma norm_add_eq_max (ha : IsSelfAdjoint a) (hb : IsSelfAdjoint b) (hab : a * b = 0) :
     ‖a + b‖ = max ‖a‖ ‖b‖ :=
   ha.isStarNormal.norm_add_eq_max hb.isStarNormal (by grind [commute_of_mul_eq_zero]) hab
 
+/--
+@isnad1 id=eq.3h3v.s7.c7df7ab2d314 from=seed src=0 shape=d435b4bd vocab=c5f6fbf2
+-/
 lemma nnnorm_add_eq_max (ha : IsSelfAdjoint a) (hb : IsSelfAdjoint b) (hab : a * b = 0) :
     ‖a + b‖₊ = max ‖a‖₊ ‖b‖₊ :=
   NNReal.eq <| ha.norm_add_eq_max hb hab
 
+/--
+@isnad1 id=eq.3h3v.s7.fee9b2a07311 from=seed src=0 shape=d435b4bd vocab=bf02468c
+-/
 lemma norm_sub_eq_max (ha : IsSelfAdjoint a) (hb : IsSelfAdjoint b) (hab : a * b = 0) :
     ‖a - b‖ = max ‖a‖ ‖b‖ := by
   simpa [sub_eq_add_neg] using ha.norm_add_eq_max hb.neg (by simpa)
 
+/--
+@isnad1 id=eq.3h3v.s7.73a5869a4262 from=seed src=0 shape=d435b4bd vocab=03faf028
+-/
 lemma nnnorm_sub_eq_max (ha : IsSelfAdjoint a) (hb : IsSelfAdjoint b) (hab : a * b = 0) :
     ‖a - b‖₊ = max ‖a‖₊ ‖b‖₊ :=
   NNReal.eq <| ha.norm_sub_eq_max hb hab
 
 open scoped Function in
+/--
+@isnad1 id=eq.2h4v.s7.0ab0bffce197 from=seed src=0 shape=41f285fd vocab=82946802
+-/
 lemma nnnorm_sum_eq_sup {ι : Type*} {f : ι → A} (s : Finset ι)
     (h : ∀ i ∈ s, IsSelfAdjoint (f i)) (h0 : Pairwise ((· * · = 0) on f)) :
     ‖∑ i ∈ s, f i‖₊ = s.sup (‖f ·‖₊) := by
@@ -332,13 +391,17 @@ noncomputable def compContinuousMap (ψ : A →⋆ₐ[𝕜] B) :
       (continuous_of_continuous_eval fun a => map_continuous <| gelfandTransform 𝕜 B (ψ a)) _
 
 variable (A) in
-/-- `WeakDual.CharacterSpace.compContinuousMap` sends the identity to the identity. -/
+/-- `WeakDual.CharacterSpace.compContinuousMap` sends the identity to the identity.
+@isnad1 id=eq.0h2v.s11.03a4946db38c from=seed src=0 shape=50140122 vocab=e3425d20
+-/
 @[simp]
 theorem compContinuousMap_id :
     compContinuousMap (StarAlgHom.id 𝕜 A) = ContinuousMap.id (characterSpace 𝕜 A) :=
   ContinuousMap.ext fun _a => ext fun _x => rfl
 
-/-- `WeakDual.CharacterSpace.compContinuousMap` is functorial. -/
+/-- `WeakDual.CharacterSpace.compContinuousMap` is functorial.
+@isnad1 id=eq.0h6v.s11.c2326e4438f5 from=seed src=0 shape=6bfcc478 vocab=ac679520
+-/
 @[simp]
 theorem compContinuousMap_comp (ψ₂ : B →⋆ₐ[𝕜] C) (ψ₁ : A →⋆ₐ[𝕜] B) :
     compContinuousMap (ψ₂.comp ψ₁) = (compContinuousMap ψ₁).comp (compContinuousMap ψ₂) :=
@@ -373,6 +436,7 @@ V                     V
 
 B  --- η B ---> C(characterSpace ℂ B, ℂ)
 ```
+@isnad1 id=eq.0h3v.s15.e562665d0ef3 from=seed src=0 shape=53a07b7a vocab=8fc65256
 -/
 theorem gelfandStarTransform_naturality {A B : Type*} [CommCStarAlgebra A] [CommCStarAlgebra B]
     (φ : A →⋆ₐ[ℂ] B) :
@@ -402,6 +466,7 @@ V                     V
 
 Y  --- η Y ---> characterSpace ℂ C(Y, ℂ)
 ```
+@isnad1 id=eq.0h4v.s15.3adf6bd89751 from=seed src=0 shape=d636c231 vocab=9bc3ec8d
 -/
 lemma WeakDual.CharacterSpace.homeoEval_naturality {X Y 𝕜 : Type*} [RCLike 𝕜] [TopologicalSpace X]
     [CompactSpace X] [T2Space X] [TopologicalSpace Y] [CompactSpace Y] [T2Space Y] (f : C(X, Y)) :

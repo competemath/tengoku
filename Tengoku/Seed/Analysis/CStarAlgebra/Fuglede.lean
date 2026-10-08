@@ -103,7 +103,9 @@ lemma SemiconjBy.star_right_of_unital (h : SemiconjBy x a b) :
   simpa [← mul_assoc, ← invOf_exp, expMulMulExp] using
     congr($(expMulMulExp_const h z) * exp (z • star a)).symm
 
-/-- A characterization of normal elements in a C⋆-algebra in terms of exponentials. -/
+/-- A characterization of normal elements in a C⋆-algebra in terms of exponentials.
+@isnad1 id=iff.0h2v.s8.4ddb72dde55b from=seed src=0 shape=ca01b518 vocab=0d8f9434
+-/
 public lemma isStarNormal_iff_forall_exp_mul_exp_mem_unitary {a : A} :
     IsStarNormal a ↔ ∀ x : ℝ, exp (x • a) * exp (-x • star a) ∈ unitary A := by
   let _ : NormedAlgebra ℚ A := .restrictScalars ℚ ℂ A
@@ -163,7 +165,9 @@ section NonUnital
 variable [NonUnitalCStarAlgebra A] {a b x : A}
 
 /-- **Fuglede–Putnam–Rosenblum**: If `a` and `b` are normal elements in a C⋆-algebra `A` which
-are interwined by `x`, then `star a` and `star b` are also intertwined by `x`. -/
+are interwined by `x`, then `star a` and `star b` are also intertwined by `x`.
+@isnad1 id=semiconj.3h4v.s7.5518ca4230e5 from=seed src=0 shape=f7206657 vocab=32153637
+-/
 public lemma SemiconjBy.star_right (ha : IsStarNormal a) (hb : IsStarNormal b)
     (h : SemiconjBy x a b) : SemiconjBy x (star a) (star b) := by
   apply Unitization.inr_injective (R := ℂ)
@@ -171,22 +175,32 @@ public lemma SemiconjBy.star_right (ha : IsStarNormal a) (hb : IsStarNormal b)
   apply SemiconjBy.star_right_of_unital
   simpa [SemiconjBy] using mod_cast h.eq
 
+/--
+@isnad1 id=semiconj.3h4v.s7.5518ca4230e5 from=seed src=0 shape=f7206657 vocab=32153637
+-/
 public alias fuglede_putnam_rosenblum := SemiconjBy.star_right
 
 /-- **Fuglede–Putnam–Rosenblum**: If `a` is a normal element in a C⋆-algebra `A` which
-commutes with `x`, then `star a` commutes with `x`. -/
+commutes with `x`, then `star a` commutes with `x`.
+@isnad1 id=commute.2h3v.s6.1c02befcf745 from=seed src=0 shape=11cedfe2 vocab=6e12e2fb
+-/
 public lemma IsStarNormal.commute_star_right (ha : IsStarNormal a) (h : Commute x a) :
     Commute x (star a) :=
   h.semiconjBy.star_right ha ha
 
 /-- **Fuglede–Putnam–Rosenblum**: If `a` is a normal element in a C⋆-algebra `A` which
-commutes with `x`, then `star a` commutes with `x`. -/
+commutes with `x`, then `star a` commutes with `x`.
+@isnad1 id=commute.2h3v.s6.5061478d36ae from=seed src=0 shape=99d5ea9a vocab=6e12e2fb
+-/
 public lemma IsStarNormal.commute_star_left (ha : IsStarNormal a) (h : Commute a x) :
     Commute (star a) x :=
   ha.commute_star_right h.symm |>.symm
 
 open NonUnitalStarAlgebra
 
+/--
+@isnad1 id=ismulcom.2h2v.s10.a868462873b7 from=seed src=0 shape=9145130e vocab=885bec5f
+-/
 public lemma CStarAlgebra.isMulCommutative_nonUnital_adjoin {s : Set A}
     (hs : ∀ x ∈ s, IsStarNormal x) (hs' : s.Pairwise Commute) :
     IsMulCommutative (adjoin ℂ s) := by
@@ -200,6 +214,9 @@ public lemma CStarAlgebra.isMulCommutative_nonUnital_adjoin {s : Set A}
     · exact (hs x hx).star_comm_self.symm.eq
     · exact (hs y hy).commute_star_right (hs' hx hy hxy) |>.eq
 
+/--
+@isnad1 id=ismulcom.1h5v.s10.57af4890e178 from=seed src=0 shape=bcde7489 vocab=bab85768
+-/
 public lemma CStarAlgebra.isMulCommutative_nonUnital_adjoin_pair {x y : A} (h : Commute x y)
     (hx : IsStarNormal x := by cfc_tac) (hy : IsStarNormal y := by cfc_tac) :
     IsMulCommutative (adjoin ℂ {x, y}) :=
@@ -213,6 +230,9 @@ variable [CStarAlgebra A]
 
 open StarAlgebra
 
+/--
+@isnad1 id=ismulcom.2h2v.s9.a27393ea4ae8 from=seed src=0 shape=9145130e vocab=d9b88ea1
+-/
 public lemma CStarAlgebra.isMulCommutative_adjoin {s : Set A} (hs : ∀ x ∈ s, IsStarNormal x)
     (hs' : s.Pairwise Commute) :
     IsMulCommutative (adjoin ℂ s) := by
@@ -226,6 +246,9 @@ public lemma CStarAlgebra.isMulCommutative_adjoin {s : Set A} (hs : ∀ x ∈ s,
     · exact (hs x hx).star_comm_self.symm.eq
     · exact (hs y hy).commute_star_right (hs' hx hy hxy) |>.eq
 
+/--
+@isnad1 id=ismulcom.1h5v.s9.77ac9e5ffaac from=seed src=0 shape=bcde7489 vocab=b3c13225
+-/
 public lemma CStarAlgebra.isMulCommutative_adjoin_pair {x y : A} (h : Commute x y)
     (hx : IsStarNormal x := by cfc_tac) (hy : IsStarNormal y := by cfc_tac) :
     IsMulCommutative (adjoin ℂ {x, y}) :=

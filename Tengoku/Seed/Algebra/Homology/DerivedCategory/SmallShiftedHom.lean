@@ -50,10 +50,16 @@ noncomputable def toSmallShiftedHom (x : CohomologyClass K L n) :
     congr 1
     exact Quotient.sound h) x
 
+/--
+@isnad1 id=eq.0h5v.s11.38506b2b689a from=seed src=0 shape=4ac60074 vocab=07133776
+-/
 lemma toSmallShiftedHom_mk (x : Cocycle K L n) :
     (mk x).toSmallShiftedHom =
       SmallShiftedHom.mk _ (Cocycle.equivHomShift.symm x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.a2d308da242d from=seed src=0 shape=ec0efe03 vocab=a2e5ff6d
+-/
 @[simp]
 lemma equiv_toSmallShiftedHom_mk [HasDerivedCategory C] (x : Cocycle K L n) :
     SmallShiftedHom.equiv _ DerivedCategory.Q (mk x).toSmallShiftedHom =

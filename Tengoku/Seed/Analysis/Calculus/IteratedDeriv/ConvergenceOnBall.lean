@@ -23,7 +23,9 @@ public section
 variable {𝕜 : Type*} [RCLike 𝕜] {f : 𝕜 → 𝕜} {x : 𝕜}
 
 /-- If `f` is analytic on `Bᵣ(x₀)` and its Taylor series converges on this ball, then it converges
-to `f`. -/
+to `f`.
+@isnad1 id=hasfpowe.3h4v.s8.fb24bf9fc6b0 from=seed src=0 shape=3340565f vocab=50e55b90
+-/
 theorem AnalyticOn.hasFPowerSeriesOnSubball
     {r : ENNReal} (hr_pos : 0 < r) (h : AnalyticOn 𝕜 f (Metric.eball x r)) :
     letI p := FormalMultilinearSeries.ofScalars 𝕜 (fun n ↦ iteratedDeriv n f x / n.factorial);
@@ -53,7 +55,9 @@ to `f` on this ball. This is a stronger version of `AnalyticAt.hasFPowerSeriesAt
 the assumption `RCLike 𝕜`.
 
 For example, over the `p`-adic numbers, the indicator function of the unit ball is
-analytic everywhere, but it agrees with the sum of its Taylor series only on this unit ball. -/
+analytic everywhere, but it agrees with the sum of its Taylor series only on this unit ball.
+@isnad1 id=hasfpowe.2h3v.s9.d2c947e933e8 from=seed src=0 shape=2a274954 vocab=96f16db1
+-/
 theorem AnalyticOn.hasFPowerSeriesOnBall :
     letI p := FormalMultilinearSeries.ofScalars 𝕜 (fun n ↦ iteratedDeriv n f x / n.factorial);
     0 < p.radius → AnalyticOn 𝕜 f (Metric.eball x p.radius) →

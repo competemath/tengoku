@@ -58,7 +58,9 @@ variable [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 variable {α : 𝕜} {A B : E →ₗ[𝕜] E} {T : n → Module.End 𝕜 E}
 
 /-- The joint eigenspaces of a pair of symmetric operators form an
-`OrthogonalFamily`. -/
+`OrthogonalFamily`.
+@isnad1 id=orthogon.2h4v.s10.fdad2a99f045 from=seed src=0 shape=7a27d474 vocab=968954cb
+-/
 theorem orthogonalFamily_eigenspace_inf_eigenspace (hA : A.IsSymmetric) (hB : B.IsSymmetric) :
     OrthogonalFamily 𝕜 (fun (i : 𝕜 × 𝕜) => (eigenspace A i.2 ⊓ eigenspace B i.1 : Submodule 𝕜 E))
       fun i => (eigenspace A i.2 ⊓ eigenspace B i.1).subtypeₗᵢ :=
@@ -69,7 +71,9 @@ theorem orthogonalFamily_eigenspace_inf_eigenspace (hA : A.IsSymmetric) (hB : B.
     · exact hA.orthogonalFamily_eigenspaces.pairwise h₂ hv1 w hw1
 
 /-- The joint eigenspaces of a family of symmetric operators form an
-`OrthogonalFamily`. -/
+`OrthogonalFamily`.
+@isnad1 id=orthogon.1h4v.s9.d1142858a694 from=seed src=0 shape=7b05cd91 vocab=09a587cb
+-/
 theorem orthogonalFamily_iInf_eigenspaces (hT : ∀ i, (T i).IsSymmetric) :
     OrthogonalFamily 𝕜 (fun γ : n → 𝕜 ↦ (⨅ j, eigenspace (T j) (γ j) : Submodule 𝕜 E))
       fun γ : n → 𝕜 ↦ (⨅ j, eigenspace (T j) (γ j)).subtypeₗᵢ := by
@@ -86,7 +90,9 @@ variable [FiniteDimensional 𝕜 E]
 open IsFinitelySemisimple
 
 /-- If A and B are commuting symmetric operators on a finite-dimensional inner product space
-then the eigenspaces of the restriction of B to any eigenspace of A exhaust that eigenspace. -/
+then the eigenspaces of the restriction of B to any eigenspace of A exhaust that eigenspace.
+@isnad1 id=eq.2h5v.s9.1e916059bfa1 from=seed src=0 shape=ca34ef50 vocab=04a3796b
+-/
 theorem iSup_eigenspace_inf_eigenspace_of_commute (hB : B.IsSymmetric) (hAB : Commute A B) :
     (⨆ γ, eigenspace A α ⊓ eigenspace B γ) = eigenspace A α := by
   conv_rhs => rw [← (eigenspace A α).map_subtype_top]
@@ -98,7 +104,9 @@ theorem iSup_eigenspace_inf_eigenspace_of_commute (hB : B.IsSymmetric) (hAB : Co
       hB.restrict_invariant <| mapsTo_genEigenspace_of_comm hAB α 1
 
 /-- If A and B are commuting symmetric operators acting on a finite-dimensional inner product space,
-then the simultaneous eigenspaces of A and B exhaust the space. -/
+then the simultaneous eigenspaces of A and B exhaust the space.
+@isnad1 id=eq.3h4v.s10.f4b3e1bacdb3 from=seed src=0 shape=73613f04 vocab=7f23da72
+-/
 theorem iSup_iSup_eigenspace_inf_eigenspace_eq_top_of_commute (hA : A.IsSymmetric)
     (hB : B.IsSymmetric) (hAB : Commute A B) :
     (⨆ α, ⨆ γ, eigenspace A α ⊓ eigenspace B γ) = ⊤ := by
@@ -107,7 +115,9 @@ theorem iSup_iSup_eigenspace_inf_eigenspace_eq_top_of_commute (hA : A.IsSymmetri
 
 /-- Given a commuting pair of symmetric linear operators on a finite-dimensional inner product
 space, the space decomposes as an internal direct sum of simultaneous eigenspaces of these
-operators. -/
+operators.
+@isnad1 id=isintern.3h4v.s9.a0d3c8fccac1 from=seed src=0 shape=689c134d vocab=d9b7e1ef
+-/
 theorem directSum_isInternal_of_commute (hA : A.IsSymmetric) (hB : B.IsSymmetric)
     (hAB : Commute A B) :
     DirectSum.IsInternal (fun (i : 𝕜 × 𝕜) ↦ (eigenspace A i.2 ⊓ eigenspace B i.1)) := by
@@ -118,7 +128,9 @@ theorem directSum_isInternal_of_commute (hA : A.IsSymmetric) (hB : B.IsSymmetric
 open scoped Function -- required for scoped `on` notation
 
 /-- A commuting family of symmetric linear maps on a finite-dimensional inner
-product space is simultaneously diagonalizable. -/
+product space is simultaneously diagonalizable.
+@isnad1 id=eq.2h4v.s9.003f785b295d from=seed src=0 shape=aff30d09 vocab=a44803ec
+-/
 theorem iSup_iInf_eq_top_of_commute {ι : Type*} {T : ι → E →ₗ[𝕜] E}
     (hT : ∀ i, (T i).IsSymmetric) (h : Pairwise (Commute on T)) :
     ⨆ χ : ι → 𝕜, ⨅ i, eigenspace (T i) (χ i) = ⊤ :=
@@ -133,7 +145,9 @@ theorem iSup_iInf_eq_top_of_commute {ι : Type*} {T : ι → E →ₗ[𝕜] E}
       (hT _).orthogonalComplement_iSup_eigenspaces_eq_bot]
 
 /-- In finite dimensions, given a commuting family of symmetric linear operators, the inner
-product space on which they act decomposes as an internal direct sum of joint eigenspaces. -/
+product space on which they act decomposes as an internal direct sum of joint eigenspaces.
+@isnad1 id=isintern.2h4v.s8.2c85a3d21e7e from=seed src=0 shape=69e0d744 vocab=1dbb6158
+-/
 theorem directSum_isInternal_of_pairwise_commute [DecidableEq (n → 𝕜)]
     (hT : ∀ i, (T i).IsSymmetric) (hC : Pairwise (Commute on T)) :
     DirectSum.IsInternal (fun α : n → 𝕜 ↦ ⨅ j, eigenspace (T j) (α j)) := by
@@ -142,6 +156,9 @@ theorem directSum_isInternal_of_pairwise_commute [DecidableEq (n → 𝕜)]
   · exact orthogonalFamily_iInf_eigenspaces hT
 
 set_option linter.dupNamespace false in
+/--
+@isnad1 id=isintern.2h4v.s8.2c85a3d21e7e from=seed src=0 shape=69e0d744 vocab=1dbb6158
+-/
 @[deprecated (since := "2026-05-24")]
 alias LinearMap.IsSymmetric.directSum_isInternal_of_pairwise_commute :=
   directSum_isInternal_of_pairwise_commute

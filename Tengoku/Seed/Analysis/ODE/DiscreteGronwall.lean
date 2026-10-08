@@ -47,7 +47,9 @@ section General
 variable {R : Type*} [CommSemiring R] [PartialOrder R] [IsOrderedRing R] {u b c : ℕ → R}
 
 /-- Discrete Grönwall inequality, product form: if `u (n+1) ≤ c n * u n + b n` and `0 ≤ c n`
-then `u n ≤ u n₀ * ∏ c i + ∑ b k * ∏ c i` over the appropriate ranges. -/
+then `u n ≤ u n₀ * ∏ c i + ∑ b k * ∏ c i` over the appropriate ranges.
+@isnad1 id=le.3h6v.s7.4016b5b5b3d9 from=seed src=0 shape=ac92e0db vocab=6dce6acb
+-/
 theorem discrete_gronwall_prod_general {n₀ : ℕ} (hu : ∀ n ≥ n₀, u (n + 1) ≤ c n * u n + b n)
     (hc : ∀ n ≥ n₀, 0 ≤ c n) ⦃n : ℕ⦄ (hn : n₀ ≤ n) :
     u n ≤ u n₀ * ∏ i ∈ Ico n₀ n, c i +
@@ -76,7 +78,9 @@ end General
 variable {u b c : ℕ → ℝ}
 
 /-- Discrete Grönwall inequality, exponential form: if `u (n+1) ≤ (1 + c n) * u n + b n` with
-`b`, `c`, and `u n₀` non-negative, then `u n ≤ (u n₀ + ∑ b k) * exp (∑ c i)`. -/
+`b`, `c`, and `u n₀` non-negative, then `u n ≤ (u n₀ + ∑ b k) * exp (∑ c i)`.
+@isnad1 id=le.5h5v.s7.161908f5b5eb from=seed src=0 shape=2ae58205 vocab=2d5c7f4e
+-/
 theorem discrete_gronwall {n₀ : ℕ} (hun₀ : 0 ≤ u n₀)
     (hu : ∀ n ≥ n₀, u (n + 1) ≤ (1 + c n) * u n + b n) (hc : ∀ n ≥ n₀, 0 ≤ c n)
     (hb : ∀ n ≥ n₀, 0 ≤ b n) ⦃n : ℕ⦄ (hn : n₀ ≤ n) :
@@ -93,7 +97,9 @@ theorem discrete_gronwall {n₀ : ℕ} (hun₀ : 0 ≤ u n₀)
         gcongr <;> try exact add_nonneg hun₀ <| sum_nonneg <| by grind
         simpa [exp_sum] using prod_le_prod (by grind) (by grind [add_one_le_exp])
 
-/-- Discrete Grönwall inequality, uniform bound: a single bound holding for all `n ∈ [n₀, n₁)`. -/
+/-- Discrete Grönwall inequality, uniform bound: a single bound holding for all `n ∈ [n₀, n₁)`.
+@isnad1 id=le.5h6v.s7.3c1bdc8dc7c0 from=seed src=0 shape=6eae4513 vocab=40d2b585
+-/
 theorem discrete_gronwall_Ico {n₀ n₁ : ℕ} (hun₀ : 0 ≤ u n₀)
     (hu : ∀ n ≥ n₀, u (n + 1) ≤ (1 + c n) * u n + b n)
     (hc : ∀ n ≥ n₀, 0 ≤ c n) (hb : ∀ n ≥ n₀, 0 ≤ b n) ⦃n : ℕ⦄ (hn : n ∈ Ico n₀ n₁) :

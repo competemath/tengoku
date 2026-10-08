@@ -37,6 +37,9 @@ namespace N
 
 variable {A}
 
+/--
+@isnad1 id=ex.0h3v.s7.3f8d4bb674d6 from=seed src=0 shape=7210bbb3 vocab=7006a0f1
+-/
 lemma mk'_surjective (s : A.N) :
     ∃ (t : X.N) (ht : t.simplex ∉ A.obj _), s = mk' t ht :=
   ⟨s.toN, s.notMem, rfl⟩
@@ -55,16 +58,25 @@ unif_hint {X : SSet.{u}} {A : X.Subcomplex} (n : ℕ) (x : X _⦋n⦌)
     (hx : x ∈ X.nonDegenerate n) (hx' : x ∉ A.obj _) where
   ⊢ (mk x hx hx').dim ≟ n
 
+/--
+@isnad1 id=ex.0h3v.s8.83decd6d4c45 from=seed src=0 shape=ac220cf7 vocab=99c4bcba
+-/
 lemma mk_surjective (s : A.N) :
     ∃ (n : ℕ) (x : X _⦋n⦌) (hx : x ∈ X.nonDegenerate n)
       (hx' : x ∉ A.obj _), s = mk x hx hx' :=
   ⟨s.dim, s.simplex, s.nonDegenerate, s.notMem, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.e0baf1023faf from=seed src=0 shape=a88e8f85 vocab=d8c7ac1b
+-/
 lemma ext_iff (x y : A.N) :
     x = y ↔ x.toN = y.toN := by
   grind [cases SSet.Subcomplex.N]
 
 variable (A) in
+/--
+@isnad1 id=var.0h6v.s5.d192f009777f from=seed src=0 shape=91b24ac0 vocab=5bfb6a64
+-/
 @[elab_as_elim]
 lemma cases {motive : X.N → Prop}
     (mem : ∀ (s : X.N), s.subcomplex ≤ A → motive s)
@@ -82,9 +94,15 @@ lemma eq_iff_sMk_eq {X : SSet.{u}} {A : X.Subcomplex} (x y : A.N) :
 instance : PartialOrder A.N :=
   PartialOrder.lift toN (fun _ _ ↦ by simp [ext_iff])
 
+/--
+@isnad1 id=iff.0h4v.s5.9243f8b82911 from=seed src=0 shape=a88e8f85 vocab=480d2a75
+-/
 lemma le_iff {x y : A.N} : x ≤ y ↔ x.toN ≤ y.toN :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.aeae52e512c4 from=seed src=0 shape=a88e8f85 vocab=b6a49770
+-/
 lemma lt_iff {x y : A.N} : x < y ↔ x.toN < y.toN :=
   Iff.rfl
 
@@ -99,6 +117,9 @@ abbrev cast : A.N where
   toN := s.toN.cast hd
   notMem := hd ▸ s.notMem
 
+/--
+@isnad1 id=eq.1h4v.s5.c9204f892aef from=seed src=0 shape=6c46f8d1 vocab=1302b3d2
+-/
 lemma cast_eq_self : s.cast hd = s := by
   subst hd
   rfl
@@ -135,6 +156,9 @@ def orderIsoOfIso {Y : SSet.{u}} {B : Y.Subcomplex} (e : X ≅ Y)
 
 end N
 
+/--
+@isnad1 id=ex.1h4v.s8.9d7c7d0bfe12 from=seed src=0 shape=7c26c3f3 vocab=5839a8d4
+-/
 lemma existsN {X : SSet.{u}} {n : ℕ} (s : X _⦋n⦌) {A : X.Subcomplex}
     (hs : s ∉ A.obj _) :
     ∃ (x : A.N) (f : ⦋n⦌ ⟶ ⦋x.dim⦌), Epi f ∧ X.map f.op x.simplex = s := by

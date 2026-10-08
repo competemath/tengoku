@@ -30,6 +30,9 @@ namespace Frullani
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {f : ℝ → E}
          {a b c : ℝ} {L R : E}
 
+/--
+@isnad1 id=interval.3h4v.s7.5707589bcb8f from=seed src=0 shape=f5ae8e2c vocab=d764314d
+-/
 lemma intervalIntegrable_inv_smul (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a)
     (hb : 0 < b) : IntervalIntegrable (fun x ↦ x⁻¹ • f x) volume a b := by
   have hsub : uIcc a b ⊆ Ioi 0 := by simp [uIcc, Icc_subset_Ioi_iff, ha, hb]
@@ -38,6 +41,9 @@ lemma intervalIntegrable_inv_smul (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 <
       ((hf.integrableOn_compact_subset hsub isCompact_uIcc).mono_set uIoc_subset_uIcc)
   exact hf_int.continuousOn_smul (continuousOn_inv₀.mono fun x hx ↦ ne_of_gt (hsub hx))
 
+/--
+@isnad1 id=interval.4h5v.s7.d0be0b5a2e6d from=seed src=0 shape=2ebb60d7 vocab=3a7b4367
+-/
 lemma intervalIntegrable_inv_smul_comp_mul (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a)
     (hb : 0 < b) (hc : 0 < c) :
     IntervalIntegrable (fun x ↦ x⁻¹ • f (c * x)) volume a b := by
@@ -51,6 +57,9 @@ lemma intervalIntegrable_inv_smul_comp_mul (hf : LocallyIntegrableOn f (Ioi 0)) 
     rwa [mul_div_cancel_left₀ a hc.ne', mul_div_cancel_left₀ b hc.ne'] at h
   exact hf_comp.continuousOn_smul (continuousOn_inv₀.mono fun x hx ↦ ne_of_gt (hsub hx))
 
+/--
+@isnad1 id=eq.1h5v.s7.c115d7fdafcf from=seed src=0 shape=01539304 vocab=e9cc1073
+-/
 lemma integral_comp_mul_inv_smul {ε r : ℝ} (hc : c ≠ 0) :
     ∫ x in ε..r, x⁻¹ • f (c * x) = ∫ x in c * ε..c * r, x⁻¹ • f x := by
   let u : ℝ → E := fun x ↦ x⁻¹ • f x
@@ -63,6 +72,9 @@ lemma integral_comp_mul_inv_smul {ε r : ℝ} (hc : c ≠ 0) :
 
 variable [CompleteSpace E]
 
+/--
+@isnad1 id=le.5h6v.s8.d258756a88e1 from=seed src=0 shape=240fa667 vocab=9d34fb4e
+-/
 lemma norm_integral_inv_smul_sub_le (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a)
     (hb : 0 < b) {V : E} {δ : ℝ} (hδ : 0 ≤ δ) (h : ∀ x ∈ uIoc a b, ‖f x - V‖ ≤ δ) :
     ‖(∫ x in a..b, x⁻¹ • f x) - log (b / a) • V‖ ≤ δ * |log (b / a)| := by
@@ -97,6 +109,9 @@ lemma norm_integral_inv_smul_sub_le (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0
         simp_rw [mul_comm, intervalIntegral.integral_const_mul, integral_inv_of_pos ha hb]
         exact (abs_mul δ (log (b / a))).trans (by rw [abs_of_nonneg hδ])
 
+/--
+@isnad1 id=tendsto.5h6v.s8.769041c664bd from=seed src=0 shape=907fd89a vocab=fa2ca0ec
+-/
 lemma tendsto_integral_inv_smul_of_tendsto_uniform (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a)
     (hb : 0 < b) {F : Filter ℝ} (hpos : ∀ᶠ t in F, 0 < t) {V : E}
     (huni : ∀ δ > 0, ∀ᶠ t in F, ∀ x ∈ uIoc (a * t) (b * t), ‖f x - V‖ ≤ δ) :
@@ -118,6 +133,9 @@ lemma tendsto_integral_inv_smul_of_tendsto_uniform (hf : LocallyIntegrableOn f (
     _ < δ * 1 := mul_lt_mul_of_pos_left ((div_lt_one (by positivity)).2 (lt_add_one C)) hδ
     _ = δ := mul_one δ
 
+/--
+@isnad1 id=tendsto.4h5v.s8.bb9445b82c0d from=seed src=0 shape=f0b8887b vocab=7b263424
+-/
 lemma tendsto_integral_inv_smul_nhdsWithin (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a)
     (hb : 0 < b) (hL : Tendsto f (𝓝[>] 0) (𝓝 L)) :
     Tendsto (fun ε ↦ ∫ x in (a * ε)..(b * ε), x⁻¹ • f x) (𝓝[>] 0) (𝓝 (log (b / a) • L)) := by
@@ -145,7 +163,9 @@ lemma tendsto_integral_inv_smul_nhdsWithin (hf : LocallyIntegrableOn f (Ioi 0)) 
   exact le_of_lt this
 
 /-- If `f → R` as `x → +∞` and `f` is locally integrable on `(0, ∞)`, then the weighted integral
-`∫ x in a*r..b*r, x⁻¹ • f x` converges to `log(b/a) • R` as `r → +∞`. -/
+`∫ x in a*r..b*r, x⁻¹ • f x` converges to `log(b/a) • R` as `r → +∞`.
+@isnad1 id=tendsto.4h5v.s8.5633c9ebaf6f from=seed src=0 shape=5902383b vocab=b897e42a
+-/
 lemma tendsto_integral_inv_smul_atTop (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a) (hb : 0 < b)
     (hR : Tendsto f atTop (𝓝 R)) :
     Tendsto (fun r ↦ ∫ x in (a * r)..(b * r), x⁻¹ • f x) atTop (𝓝 (log (b / a) • R)) := by
@@ -174,7 +194,9 @@ lemma tendsto_integral_inv_smul_atTop (hf : LocallyIntegrableOn f (Ioi 0)) (ha :
 /-- **Frullani's integral**, limit form, for functions valued in a complete normed space.
 If `f` is locally integrable on `(0, ∞)` with `f x → L` as `x → 0⁺` and `f x → R` as `x → +∞`,
 and `0 < a` and `0 < b`, then `∫ x in ε..r, x⁻¹ • (f (a * x) - f (b * x)) → log (b / a) • (L - R)`
-as `ε → 0⁺` and `r → +∞`. -/
+as `ε → 0⁺` and `r → +∞`.
+@isnad1 id=tendsto.5h6v.s8.f9c84b7b5c15 from=seed src=0 shape=10ba35f3 vocab=a9e1e063
+-/
 theorem tendsto_intervalIntegral (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a) (hb : 0 < b)
     (hL : Tendsto f (𝓝[>] 0) (𝓝 L)) (hR : Tendsto f atTop (𝓝 R)) :
     Tendsto (fun p : ℝ × ℝ ↦ ∫ x in p.1..p.2, x⁻¹ • (f (a * x) - f (b * x)))
@@ -209,7 +231,9 @@ theorem tendsto_intervalIntegral (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < 
 /-- **Frullani's integral** for functions valued in a complete normed space.
 If `f` is locally integrable on `(0, ∞)` with `f x → L` as `x → 0⁺` and `f x → R` as `x → +∞`,
 `0 < a` and `0 < b`, and `x ↦ x⁻¹ • (f (a * x) - f (b * x))` is integrable on `(0, ∞)`, then
-`∫ x in Ioi 0, x⁻¹ • (f (a * x) - f (b * x)) = log (b / a) • (L - R)`. -/
+`∫ x in Ioi 0, x⁻¹ • (f (a * x) - f (b * x)) = log (b / a) • (L - R)`.
+@isnad1 id=eq.6h6v.s9.3d4004d0800f from=seed src=0 shape=7cae89f1 vocab=8e2b4a5f
+-/
 theorem integral_Ioi_eq (hf : LocallyIntegrableOn f (Ioi 0)) (ha : 0 < a) (hb : 0 < b)
     (hL : Tendsto f (𝓝[>] 0) (𝓝 L)) (hR : Tendsto f atTop (𝓝 R))
     (hint : IntegrableOn (fun x ↦ x⁻¹ • (f (a * x) - f (b * x))) (Ioi 0)) :

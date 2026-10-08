@@ -79,12 +79,16 @@ abbrev c :=
   ComplexShape.down ℕ
 
 /-- Helper when we need some `c.rel i j` (i.e. `ComplexShape.down ℕ`),
-e.g. `c_mk n (n+1) rfl` -/
+e.g. `c_mk n (n+1) rfl`
+@isnad1 id=rel.1h2v.s4.98792ebc0623 from=seed src=0 shape=205f248a vocab=20da7249
+-/
 theorem c_mk (i j : ℕ) (h : j + 1 = i) : c.Rel i j :=
   ComplexShape.down_mk i j h
 
 set_option backward.defeqAttrib.useBackward true in
-/-- This lemma is meant to be used with `nullHomotopicMap'_f_of_not_rel_left` -/
+/-- This lemma is meant to be used with `nullHomotopicMap'_f_of_not_rel_left`
+@isnad1 id=not.0h1v.s3.d83c96ffec7b from=seed src=0 shape=6ec15f51 vocab=f92c6495
+-/
 theorem cs_down_0_not_rel_left (j : ℕ) : ¬c.Rel 0 j := by
   intro hj
   dsimp at hj
@@ -100,12 +104,18 @@ def hσ (q : ℕ) (n : ℕ) : X _⦋n⦌ ⟶ X _⦋n + 1⦌ :=
 def hσ' (q : ℕ) : ∀ n m, c.Rel m n → (K[X].X n ⟶ K[X].X m) := fun n m hnm =>
   hσ q n ≫ eqToHom (by congr)
 
+/--
+@isnad1 id=eq.2h5v.s8.4f7d0755d5f6 from=seed src=0 shape=73fd2733 vocab=d560cdbb
+-/
 theorem hσ'_eq_zero {q n m : ℕ} (hnq : n < q) (hnm : c.Rel m n) :
     (hσ' q n m hnm : X _⦋n⦌ ⟶ X _⦋m⦌) = 0 := by
   simp only [hσ', hσ]
   split_ifs
   exact zero_comp
 
+/--
+@isnad1 id=eq.2h6v.s9.fb6a328189fb from=seed src=0 shape=c0e92482 vocab=1ab21040
+-/
 theorem hσ'_eq {q n a m : ℕ} (ha : n = a + q) (hnm : c.Rel m n) :
     (hσ' q n m hnm : X _⦋n⦌ ⟶ X _⦋m⦌) =
       ((-1 : ℤ) ^ a • X.σ ⟨a, Nat.lt_succ_iff.mpr (Nat.le.intro (Eq.symm ha))⟩) ≫
@@ -116,6 +126,9 @@ theorem hσ'_eq {q n a m : ℕ} (ha : n = a + q) (hnm : c.Rel m n) :
   canonicalizer; a minimization would help. The original proof was: `grind [hσ', hσ]` -/
   simp [hσ', hσ, ha]
 
+/--
+@isnad1 id=eq.1h5v.s9.f250e8f90742 from=seed src=0 shape=77b1208e vocab=778e13d6
+-/
 theorem hσ'_eq' {q n a : ℕ} (ha : n = a + q) :
     (hσ' q n (n + 1) rfl : X _⦋n⦌ ⟶ X _⦋n + 1⦌) =
       (-1 : ℤ) ^ a • X.σ ⟨a, Nat.lt_succ_iff.mpr (Nat.le.intro (Eq.symm ha))⟩ := by
@@ -129,7 +142,9 @@ def Hσ (q : ℕ) : K[X] ⟶ K[X] :=
 def homotopyHσToZero (q : ℕ) : Homotopy (Hσ q : K[X] ⟶ K[X]) 0 :=
   nullHomotopy' (hσ' q)
 
-/-- In degree `0`, the null homotopic map `Hσ` is zero. -/
+/-- In degree `0`, the null homotopic map `Hσ` is zero.
+@isnad1 id=eq.0h3v.s8.85ea9c66fa49 from=seed src=0 shape=697524d0 vocab=871fb84b
+-/
 theorem Hσ_eq_zero (q : ℕ) : (Hσ q : K[X] ⟶ K[X]).f 0 = 0 := by
   unfold Hσ
   rw [nullHomotopicMap'_f_of_not_rel_left (c_mk 1 0 rfl) cs_down_0_not_rel_left]
@@ -140,7 +155,9 @@ theorem Hσ_eq_zero (q : ℕ) : (Hσ q : K[X] ⟶ K[X]).f 0 = 0 := by
     simp
   · rw [hσ'_eq_zero (Nat.succ_pos q) (c_mk 1 0 rfl), zero_comp]
 
-/-- The maps `hσ' q n m hnm` are natural on the simplicial object -/
+/-- The maps `hσ' q n m hnm` are natural on the simplicial object
+@isnad1 id=eq.1h7v.s8.c05055f10e41 from=seed src=0 shape=24ca276e vocab=30e74309
+-/
 theorem hσ'_naturality (q : ℕ) (n m : ℕ) (hnm : c.Rel m n) {X Y : SimplicialObject C} (f : X ⟶ Y) :
     f.app (op ⦋n⦌) ≫ hσ' q n m hnm = hσ' q n m hnm ≫ f.app (op ⦋m⦌) := by
   obtain rfl : n + 1 = m := hnm
@@ -160,7 +177,9 @@ def natTransHσ (q : ℕ) : alternatingFaceMapComplex C ⟶ alternatingFaceMapCo
     ext n m hnm
     simp only [alternatingFaceMapComplex_map_f, hσ'_naturality]
 
-/-- The maps `hσ' q n m hnm` are compatible with the application of additive functors. -/
+/-- The maps `hσ' q n m hnm` are compatible with the application of additive functors.
+@isnad1 id=eq.1h7v.s8.26f2ccd93564 from=seed src=0 shape=7d41ba04 vocab=7389afa6
+-/
 theorem map_hσ' {D : Type*} [Category* D] [Preadditive D] (G : C ⥤ D) [G.Additive]
     (X : SimplicialObject C) (q n m : ℕ) (hnm : c.Rel m n) :
     (hσ' q n m hnm : K[((whiskering _ _).obj G).obj X].X n ⟶ _) =
@@ -171,7 +190,9 @@ theorem map_hσ' {D : Type*} [Category* D] [Preadditive D] (G : C ⥤ D) [G.Addi
   · simp only [eqToHom_map, Functor.map_comp, Functor.map_zsmul]
     rfl
 
-/-- The null homotopic maps `Hσ` are compatible with the application of additive functors. -/
+/-- The null homotopic maps `Hσ` are compatible with the application of additive functors.
+@isnad1 id=eq.0h6v.s9.e3e548177ec2 from=seed src=0 shape=8bee3b32 vocab=c0c7ce1a
+-/
 theorem map_Hσ {D : Type*} [Category* D] [Preadditive D] (G : C ⥤ D) [G.Additive]
     (X : SimplicialObject C) (q n : ℕ) :
     (Hσ q : K[((whiskering C D).obj G).obj X] ⟶ _).f n = G.map ((Hσ q : K[X] ⟶ _).f n) := by

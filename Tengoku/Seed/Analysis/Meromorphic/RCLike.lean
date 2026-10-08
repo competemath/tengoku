@@ -26,6 +26,7 @@ variable
 /--
 If `f` is meromorphic function on `ℝ` or `ℂ`, then there exists a point where a meromorphic function
 `f` has finite order iff `f` has finite order at every point.
+@isnad1 id=iff.1h3v.s6.1992b8c1872e from=seed src=0 shape=cbc186b1 vocab=69ca7c70
 -/
 theorem Meromorphic.exists_meromorphicOrderAt_ne_top_iff_forall {f : 𝕜 → E} (hf : Meromorphic f) :
     (∃ u, meromorphicOrderAt f u ≠ ⊤) ↔ (∀ u, meromorphicOrderAt f u ≠ ⊤) := by

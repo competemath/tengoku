@@ -54,7 +54,9 @@ variable {G : Type uG} {E' : Type uE'} [NormedAddCommGroup E'] {g : G → E'} [M
   [CompleteSpace E'] {φ : ContDiffBump (0 : G)} {x₀ : G}
 
 /-- If `φ` is a bump function, compute `(φ ⋆ g) x₀`
-if `g` is constant on `Metric.ball x₀ φ.rOut`. -/
+if `g` is constant on `Metric.ball x₀ φ.rOut`.
+@isnad1 id=eq.1h6v.s8.b2f98fe46a6a from=seed src=0 shape=bfa474e7 vocab=222da5eb
+-/
 theorem convolution_eq_right [HasContDiffBump G] {x₀ : G} (hg : ∀ x ∈ ball x₀ φ.rOut, g x = g x₀) :
     (φ ⋆[lsmul ℝ ℝ, μ] g : G → E') x₀ = integral μ φ • g x₀ := by
   simp_rw [convolution_eq_right' _ φ.support_eq.subset hg, lsmul_apply, integral_smul_const]
@@ -62,7 +64,9 @@ theorem convolution_eq_right [HasContDiffBump G] {x₀ : G} (hg : ∀ x ∈ ball
 variable [BorelSpace G] [FiniteDimensional ℝ G]
 
 /-- If `φ` is a normed bump function, compute `φ ⋆ g`
-if `g` is constant on `Metric.ball x₀ φ.rOut`. -/
+if `g` is constant on `Metric.ball x₀ φ.rOut`.
+@isnad1 id=eq.1h6v.s8.0f9ed8608dc0 from=seed src=0 shape=6ae5fc2f vocab=bfb723b0
+-/
 theorem normed_convolution_eq_right [IsLocallyFiniteMeasure μ] [μ.IsOpenPosMeasure] {x₀ : G}
     (hg : ∀ x ∈ ball x₀ φ.rOut, g x = g x₀) :
     (φ.normed μ ⋆[lsmul ℝ ℝ, μ] g : G → E') x₀ = g x₀ := by
@@ -72,7 +76,9 @@ theorem normed_convolution_eq_right [IsLocallyFiniteMeasure μ] [μ.IsOpenPosMea
 variable [μ.IsAddHaarMeasure]
 
 /-- If `φ` is a normed bump function, approximate `(φ ⋆ g) x₀`
-if `g` is near `g x₀` on a ball with radius `φ.rOut` around `x₀`. -/
+if `g` is near `g x₀` on a ball with radius `φ.rOut` around `x₀`.
+@isnad1 id=le.2h7v.s8.5ada9e334437 from=seed src=0 shape=3da239e7 vocab=fd0ebc1a
+-/
 theorem dist_normed_convolution_le {x₀ : G} {ε : ℝ} (hmg : AEStronglyMeasurable g μ)
     (hg : ∀ x ∈ ball x₀ φ.rOut, dist (g x) (g x₀) ≤ ε) :
     dist ((φ.normed μ ⋆[lsmul ℝ ℝ, μ] g : G → E') x₀) (g x₀) ≤ ε :=
@@ -84,7 +90,9 @@ theorem dist_normed_convolution_le {x₀ : G} {ε : ℝ} (hmg : AEStronglyMeasur
   such that `(φ i).rOut` tends to `0` as `i` tends to `l`;
 * `g i` is `μ`-a.e. strongly measurable as `i` tends to `l`;
 * `g i x` tends to `z₀` as `(i, x)` tends to `l ×ˢ 𝓝 x₀`;
-* `k i` tends to `x₀`. -/
+* `k i` tends to `x₀`.
+@isnad1 id=tendsto.4h10v.s8.0fa2d543cece from=seed src=0 shape=47e05b96 vocab=cbececa2
+-/
 nonrec theorem convolution_tendsto_right {ι} {φ : ι → ContDiffBump (0 : G)} {g : ι → G → E'}
     {k : ι → G} {x₀ : G} {z₀ : E'} {l : Filter ι} (hφ : Tendsto (fun i => (φ i).rOut) l (𝓝 0))
     (hig : ∀ᶠ i in l, AEStronglyMeasurable (g i) μ) (hcg : Tendsto (uncurry g) (l ×ˢ 𝓝 x₀) (𝓝 z₀))
@@ -95,7 +103,9 @@ nonrec theorem convolution_tendsto_right {ι} {φ : ι → ContDiffBump (0 : G)}
     hcg hk
 
 /-- Special case of `ContDiffBump.convolution_tendsto_right` where `g` is continuous,
-  and the limit is taken only in the first function. -/
+  and the limit is taken only in the first function.
+@isnad1 id=tendsto.2h8v.s8.f0e77f4378b4 from=seed src=0 shape=66a4083a vocab=3286e136
+-/
 theorem convolution_tendsto_right_of_continuous {ι} {φ : ι → ContDiffBump (0 : G)} {l : Filter ι}
     (hφ : Tendsto (fun i => (φ i).rOut) l (𝓝 0)) (hg : Continuous g) (x₀ : G) :
     Tendsto (fun i => ((φ i).normed μ ⋆[lsmul ℝ ℝ, μ] g) x₀) l (𝓝 (g x₀)) :=
@@ -104,7 +114,9 @@ theorem convolution_tendsto_right_of_continuous {ι} {φ : ι → ContDiffBump (
 
 /-- If a function `g` is locally integrable, then the convolution `φ i * g` converges almost
 everywhere to `g` if `φ i` is a sequence of bump functions with support tending to `0`, provided
-that the ratio between the inner and outer radii of `φ i` remains bounded. -/
+that the ratio between the inner and outer radii of `φ i` remains bounded.
+@isnad1 id=eventual.3h8v.s8.cdd525d07029 from=seed src=0 shape=0463cf48 vocab=6977577f
+-/
 theorem ae_convolution_tendsto_right_of_locallyIntegrable
     {ι} {φ : ι → ContDiffBump (0 : G)} {l : Filter ι} {K : ℝ}
     (hφ : Tendsto (fun i ↦ (φ i).rOut) l (𝓝 0))

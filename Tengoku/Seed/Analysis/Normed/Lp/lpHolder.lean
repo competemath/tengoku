@@ -59,6 +59,9 @@ noncomputable def mapCLM (p : ℝ≥0∞) [Fact (1 ≤ p)]
       apply norm_mono (zero_lt_one.trans_le Fact.out).ne' fun i ↦ ?_
       simpa [abs_of_nonneg hK] using key ..
 
+/--
+@isnad1 id=le.2h7v.s10.54ea15f4e409 from=seed src=0 shape=98933b29 vocab=e18476ae
+-/
 lemma norm_mapCLM_le (p : ℝ≥0∞) [Fact (1 ≤ p)]
     (T : ∀ i, E i →L[𝕜] F i) {K : ℝ} (hK : 0 ≤ K) (hTK : ∀ i, ‖T i‖ ≤ K) :
     ‖mapCLM p T hK hTK‖ ≤ K :=
@@ -66,6 +69,9 @@ lemma norm_mapCLM_le (p : ℝ≥0∞) [Fact (1 ≤ p)]
 
 end NontriviallyNormedField
 
+/--
+@isnad1 id=le.0h3v.s10.4d9b6a45828f from=seed src=0 shape=61c57576 vocab=7bee4942
+-/
 lemma norm_tsumCLM_le {α 𝕜 E : Type*} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E] :
     ‖tsumCLM 𝕜 α E‖ ≤ 1 :=
@@ -84,6 +90,9 @@ variable {p q : ℝ≥0∞} (r : ℝ≥0∞) [hpqr : p.HolderTriple q r]
 
 namespace Memℓp
 
+/--
+@isnad1 id=memp.3h10v.s11.f4ccaaf26bda from=seed src=0 shape=d7a78fe4 vocab=02cadad7
+-/
 theorem bilin_of_top_left (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i)
     {K : ℝ} (hBK : ∀ i, ‖B i‖ ≤ K) {e : Π i, E i} {f : Π i, F i}
     (he : Memℓp e ∞) (hf : Memℓp f q) :
@@ -98,23 +107,35 @@ theorem bilin_of_top_left (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i)
     ‖B i (e i) (f i)‖ ≤ ‖B i‖ * ‖e i‖ * ‖f i‖ := (B i (e i)).le_of_opNorm_le ((B i).le_opNorm _) _
     _ ≤ K * C * ‖f i‖ := by gcongr; exacts [hBK i, hC i]
 
+/--
+@isnad1 id=memp.3h10v.s11.416eff1d141e from=seed src=0 shape=ba79de33 vocab=02cadad7
+-/
 theorem bilin_of_top_right (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i)
     {K : ℝ} (hBK : ∀ i, ‖B i‖ ≤ K) {e : Π i, E i} {f : Π i, F i}
     (he : Memℓp e p) (hf : Memℓp f ∞) :
     Memℓp (fun i ↦ B i (e i) (f i)) p :=
   hf.bilin_of_top_left (fun i ↦ (B i).flip) (by simpa using hBK) he
 
+/--
+@isnad1 id=memp.1h8v.s11.72a3d00d436c from=seed src=0 shape=5db979f6 vocab=267b52b4
+-/
 theorem bilin_of_zero_left (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i)
     {e : Π i, E i} {f : Π i, F i} (he : Memℓp e 0) :
     Memℓp (fun i ↦ B i (e i) (f i)) 0 := by
   rw [memℓp_zero_iff] at he ⊢
   exact he.subset fun i hi h ↦ hi <| by simp [h]
 
+/--
+@isnad1 id=memp.1h8v.s11.78b9e6d12536 from=seed src=0 shape=9ee2cffd vocab=267b52b4
+-/
 theorem bilin_of_zero_right (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i)
     {e : Π i, E i} {f : Π i, F i} (hf : Memℓp f 0) :
     Memℓp (fun i ↦ B i (e i) (f i)) 0 :=
   hf.bilin_of_zero_left (fun i ↦ (B i).flip)
 
+/--
+@isnad1 id=le.5h13v.s11.9d9dc54e6160 from=seed src=0 shape=ee866ae7 vocab=ef48024b
+-/
 lemma holder_top_left_bound
     {e : (i : ι) → E i} {f : (i : ι) → F i} (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i)
     {K C D : ℝ} (hBK : ∀ i, ‖B i‖ ≤ K) (hK : 0 ≤ K) (hC : 0 ≤ C)
@@ -126,6 +147,9 @@ lemma holder_top_left_bound
   gcongr
   exact (B i (e i)).le_of_opNorm_le ((B i).le_of_opNorm_le_of_le (hBK i) (hCe i)) _
 
+/--
+@isnad1 id=le.5h13v.s11.dc19a4888f6f from=seed src=0 shape=38e0266b vocab=ef48024b
+-/
 lemma holder_top_right_bound
     {e : (i : ι) → E i} {f : (i : ι) → F i} (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i)
     {K C D : ℝ} (hBK : ∀ i, ‖B i‖ ≤ K) (hK : 0 ≤ K) (hD : 0 ≤ D)
@@ -133,6 +157,9 @@ lemma holder_top_right_bound
     ∑ i ∈ s, ‖B i (e i) (f i)‖ ^ p.toReal ≤ (K * D) ^ p.toReal * C :=
   holder_top_left_bound (B · |>.flip) (by simpa) hK hD hDf hCe s
 
+/--
+@isnad1 id=le.7h15v.s11.fdc606ca5169 from=seed src=0 shape=f6b75e17 vocab=bcf32ccc
+-/
 lemma holder_gen_bound {e : (i : ι) → E i} {f : (i : ι) → F i}
     (hp : 0 < p.toReal) (hq : 0 < q.toReal)
     (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i) {K C D : ℝ} (hBK : ∀ i, ‖B i‖ ≤ K)
@@ -163,6 +190,9 @@ lemma holder_gen_bound {e : (i : ι) → E i} {f : (i : ι) → F i}
       · exact hCe s
       · exact hDf s
 
+/--
+@isnad1 id=memp.3h12v.s11.653ac55981b0 from=seed src=0 shape=0b734a5e vocab=6faf7b10
+-/
 lemma holder {e : (i : ι) → E i} {f : (i : ι) → F i} (he : Memℓp e p) (hf : Memℓp f q)
     (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i) {K : ℝ} (hBK : ∀ i, ‖B i‖ ≤ K) :
     Memℓp (fun i ↦ B i (e i) (f i)) r := by
@@ -244,6 +274,9 @@ noncomputable def holderL [Fact (1 ≤ p)] [Fact (1 ≤ q)] [Fact (1 ≤ r)]
             all_goals positivity
           all_goals positivity
 
+/--
+@isnad1 id=le.1h10v.s13.31c79204e44d from=seed src=0 shape=dbb5de5b vocab=98fdf6ca
+-/
 lemma norm_holderL_le [Fact (1 ≤ p)] [Fact (1 ≤ q)] [Fact (1 ≤ r)]
     (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] G i) {K : ℝ≥0} (hBK : ∀ i, ‖B i‖ ≤ K) :
     ‖holderL (p := p) (q := q) r B hBK‖ ≤ K :=
@@ -266,12 +299,18 @@ noncomputable def dualPairing [Fact (1 ≤ p)] [Fact (1 ≤ q)] [p.HolderConjuga
     lp E p →L[𝕜] lp F q →L[𝕜] H :=
   (tsumCLM 𝕜 ι H |>.postcomp <| lp F q) ∘L (holderL 1 B hBK)
 
+/--
+@isnad1 id=eq.1h11v.s13.8bd5552f3acc from=seed src=0 shape=87364f57 vocab=144542ed
+-/
 lemma dualPairing_apply [Fact (1 ≤ p)] [Fact (1 ≤ q)] [p.HolderConjugate q]
     (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] H) {K : ℝ≥0} (hBK : ∀ i, ‖B i‖ ≤ K)
     (e : lp E p) (f : lp F q) :
     dualPairing p q B hBK e f = ∑' i, B i (e i) (f i) :=
   rfl
 
+/--
+@isnad1 id=le.1h9v.s12.112feebae025 from=seed src=0 shape=8e933c9f vocab=17617f12
+-/
 lemma norm_dualPairing [Fact (1 ≤ p)] [Fact (1 ≤ q)] [p.HolderConjugate q]
     (B : (i : ι) → E i →L[𝕜] F i →L[𝕜] H) {K : ℝ≥0} (hBK : ∀ i, ‖B i‖ ≤ K) :
     ‖dualPairing p q B hBK‖ ≤ K := calc

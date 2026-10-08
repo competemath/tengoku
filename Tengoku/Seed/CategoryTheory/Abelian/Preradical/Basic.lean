@@ -54,6 +54,9 @@ abbrev r : C ⥤ C := Φ.obj.left
 /-- The structure morphism `Φ.r ⟶ 𝟭 C` of a preradical `Φ`. -/
 abbrev ι : Φ.r ⟶ 𝟭 C := Φ.obj.hom
 
+/--
+@isnad1 id=eq.0h3v.s7.bf2d8be7f173 from=seed src=0 shape=e0279f84 vocab=91acefab
+-/
 @[simp]
 lemma r_map_ι_app (X : C) : Φ.r.map (Φ.ι.app X) = Φ.ι.app (Φ.r.obj X) := by
   rw [← cancel_mono (Φ.ι.app X)]

@@ -58,44 +58,76 @@ def fourierTransformₗᵢ : (Lp (α := E) F 2) ≃ₗᵢ[ℂ] (Lp (α := E) F 2
 instance instFourierTransform : FourierTransform (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourier := fourierTransformₗᵢ E F
 
+/--
+@isnad1 id=fouriera.0h2v.s9.9a570bf7e458 from=seed src=0 shape=4970b910 vocab=bb2f0d0e
+-/
 instance instFourierAdd : FourierAdd (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourier_add := (fourierTransformₗᵢ E F).map_add
 
+/--
+@isnad1 id=fouriers.0h2v.s13.7ef28878a9f7 from=seed src=0 shape=f57d6932 vocab=0d8371f3
+-/
 instance instFourierSMul : FourierSMul ℂ (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourier_smul := (fourierTransformₗᵢ E F).map_smul
 
+/--
+@isnad1 id=continuo.0h2v.s11.a147ee16d745 from=seed src=0 shape=6924b1ed vocab=3742942f
+-/
 instance instContinuousFourier : ContinuousFourier (Lp (α := E) F 2) (Lp (α := E) F 2) where
   continuous_fourier := (fourierTransformₗᵢ E F).continuous
 
 instance instFourierTransformInv : FourierTransformInv (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourierInv := (fourierTransformₗᵢ E F).symm
 
+/--
+@isnad1 id=fourieri.0h2v.s9.2a620b5d5274 from=seed src=0 shape=4970b910 vocab=9b174081
+-/
 instance instFourierInvAdd : FourierInvAdd (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourierInv_add := (fourierTransformₗᵢ E F).symm.map_add
 
+/--
+@isnad1 id=fourieri.0h2v.s13.d5225ba525f4 from=seed src=0 shape=f57d6932 vocab=dbfe3ce2
+-/
 instance instFourierInvSMul : FourierInvSMul ℂ (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourierInv_smul := (fourierTransformₗᵢ E F).symm.map_smul
 
+/--
+@isnad1 id=continuo.0h2v.s11.103b47146e51 from=seed src=0 shape=6924b1ed vocab=299b81a4
+-/
 instance instContinuousFourierInv : ContinuousFourierInv (Lp (α := E) F 2) (Lp (α := E) F 2) where
   continuous_fourierInv := (fourierTransformₗᵢ E F).symm.continuous
 
+/--
+@isnad1 id=fourierp.0h2v.s9.9f6d10805d79 from=seed src=0 shape=4970b910 vocab=29d29982
+-/
 instance instFourierPair : FourierPair (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourierInv_fourier_eq := (Lp.fourierTransformₗᵢ E F).symm_apply_apply
 
+/--
+@isnad1 id=fourieri.0h2v.s9.ffd2a3a73d1e from=seed src=0 shape=4970b910 vocab=fd144775
+-/
 instance instFourierPairInv : FourierInvPair (Lp (α := E) F 2) (Lp (α := E) F 2) where
   fourier_fourierInv_eq := (Lp.fourierTransformₗᵢ E F).apply_symm_apply
 
-/-- Plancherel's theorem for `L2` functions. -/
+/-- Plancherel's theorem for `L2` functions.
+@isnad1 id=eq.0h3v.s10.66d74f0d417b from=seed src=0 shape=89bd005b vocab=afeb4a66
+-/
 @[simp]
 theorem norm_fourier_eq (f : Lp (α := E) F 2) : ‖𝓕 f‖ = ‖f‖ :=
   (Lp.fourierTransformₗᵢ E F).norm_map f
 
+/--
+@isnad1 id=eq.0h4v.s11.5d18a9f130dd from=seed src=0 shape=ead40e70 vocab=7e467547
+-/
 @[simp]
 theorem inner_fourier_eq (f g : Lp (α := E) F 2) : ⟪𝓕 f, 𝓕 g⟫ = ⟪f, g⟫ :=
   (Lp.fourierTransformₗᵢ E F).inner_map_map f g
 
 end MeasureTheory.Lp
 
+/--
+@isnad1 id=eq.0h3v.s10.c0771f1c0199 from=seed src=0 shape=875fa6ae vocab=7a6c1bff
+-/
 @[simp]
 theorem SchwartzMap.toLp_fourier_eq (f : 𝓢(E, F)) : 𝓕 (f.toLp 2) = (𝓕 f).toLp 2 := by
   apply LinearMap.extendOfNorm_eq
@@ -105,6 +137,9 @@ theorem SchwartzMap.toLp_fourier_eq (f : 𝓢(E, F)) : 𝓕 (f.toLp 2) = (𝓕 f
   rw [one_mul]
   exact (norm_fourier_toL2_eq f).le
 
+/--
+@isnad1 id=eq.0h3v.s10.68800225964a from=seed src=0 shape=875fa6ae vocab=5a7656d5
+-/
 @[simp]
 theorem SchwartzMap.toLp_fourierInv_eq (f : 𝓢(E, F)) : 𝓕⁻ (f.toLp 2) = (𝓕⁻ f).toLp 2 := by
   apply LinearMap.extendOfNorm_eq
@@ -117,7 +152,9 @@ theorem SchwartzMap.toLp_fourierInv_eq (f : 𝓢(E, F)) : 𝓕⁻ (f.toLp 2) = (
 
 namespace MeasureTheory.Lp
 
-/-- The `𝓢'`-Fourier transform and the `L2`-Fourier transform coincide on `L2`. -/
+/-- The `𝓢'`-Fourier transform and the `L2`-Fourier transform coincide on `L2`.
+@isnad1 id=eq.0h3v.s10.e88d3cea534e from=seed src=0 shape=0dca2b32 vocab=4d65ea10
+-/
 theorem fourier_toTemperedDistribution_eq (f : Lp (α := E) F 2) :
     𝓕 (f : 𝓢'(E, F)) = (𝓕 f : Lp (α := E) F 2) := by
   set p := fun f : Lp (α := E) F 2 ↦ 𝓕 (f : 𝓢'(E, F)) = (𝓕 f : Lp (α := E) F 2)
@@ -129,7 +166,9 @@ theorem fourier_toTemperedDistribution_eq (f : Lp (α := E) F 2) :
   intro f
   simp [p, TemperedDistribution.fourier_toTemperedDistributionCLM_eq]
 
-/-- The `𝓢'`-inverse Fourier transform and the `L2`-inverse Fourier transform coincide on `L2`. -/
+/-- The `𝓢'`-inverse Fourier transform and the `L2`-inverse Fourier transform coincide on `L2`.
+@isnad1 id=eq.0h3v.s10.1ad50f046264 from=seed src=0 shape=0dca2b32 vocab=f39f86b0
+-/
 theorem fourierInv_toTemperedDistribution_eq (f : Lp (α := E) F 2) :
     𝓕⁻ (f : 𝓢'(E, F)) = (𝓕⁻ f : Lp (α := E) F 2) := calc
   _ = 𝓕⁻ (Lp.toTemperedDistribution (𝓕 (𝓕⁻ f))) := by

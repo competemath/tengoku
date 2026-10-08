@@ -38,6 +38,9 @@ open scoped Nat
 
 universe u v
 
+/--
+@isnad1 id=eq.0h2v.s6.b6f2d0d07cb6 from=seed src=0 shape=3efe4852 vocab=081d366b
+-/
 @[norm_cast]
 lemma Complex.ofReal_choose (a : ℝ) (n : ℕ) :
     ↑(Ring.choose a n) = Ring.choose (a : ℂ) n :=
@@ -51,12 +54,18 @@ noncomputable def binomialSeries {𝕂 : Type u} [Field 𝕂] [CharZero 𝕂] (�
     FormalMultilinearSeries 𝕂 𝔸 𝔸 :=
   .ofScalars 𝔸 (Ring.choose a ·)
 
+/--
+@isnad1 id=eq.0h5v.s8.02b233a2cd1b from=seed src=0 shape=52bb27f8 vocab=a9972994
+-/
 @[simp]
 theorem binomialSeries_apply {𝕂 : Type u} [Field 𝕂] [CharZero 𝕂] (𝔸 : Type v)
     [Ring 𝔸] [Algebra 𝕂 𝔸] [TopologicalSpace 𝔸] [IsTopologicalRing 𝔸] (a : 𝕂) {n} (v : Fin n → 𝔸) :
     binomialSeries 𝔸 a n v = Ring.choose a n • (List.ofFn v).prod := by
   simp [binomialSeries, FormalMultilinearSeries.ofScalars]
 
+/--
+@isnad1 id=eq.1h4v.s8.13effc80ef89 from=seed src=0 shape=fcbd7a5b vocab=5d78557e
+-/
 theorem binomialSeries_eq_ordinaryHypergeometricSeries {𝕂 : Type u} [Field 𝕂] [CharZero 𝕂]
     {𝔸 : Type v} [Ring 𝔸] [Algebra 𝕂 𝔸] [TopologicalSpace 𝔸] [IsTopologicalRing 𝔸] {a b : 𝕂}
     (h : ∀ (k : ℕ), (k : 𝕂) ≠ -b) :
@@ -73,14 +82,18 @@ theorem binomialSeries_eq_ordinaryHypergeometricSeries {𝕂 : Type u} [Field �
   ring_nf
   simp
 
-/-- The radius of convergence of `binomialSeries 𝔸 a` is `⊤` for natural `a`. -/
+/-- The radius of convergence of `binomialSeries 𝔸 a` is `⊤` for natural `a`.
+@isnad1 id=eq.0h3v.s7.5b387442240c from=seed src=0 shape=925f2d84 vocab=2db2e09d
+-/
 theorem binomialSeries_radius_eq_top_of_nat {𝕂 : Type v} [RCLike 𝕂] {𝔸 : Type u}
     [NormedDivisionRing 𝔸] [NormedAlgebra 𝕂 𝔸] {a : ℕ} :
     (binomialSeries 𝔸 (a : 𝕂)).radius = ⊤ := by
   simp [binomialSeries_eq_ordinaryHypergeometricSeries (b := (1 : 𝕂)) (by norm_cast; simp),
     ordinaryHypergeometric_radius_top_of_neg_nat₁]
 
-/-- The radius of convergence of `binomialSeries 𝔸 a` is `1`, when `a` is not natural. -/
+/-- The radius of convergence of `binomialSeries 𝔸 a` is `1`, when `a` is not natural.
+@isnad1 id=eq.1h3v.s7.d7744d2f29fe from=seed src=0 shape=ea589155 vocab=9fc13394
+-/
 theorem binomialSeries_radius_eq_one {𝕂 : Type v} [RCLike 𝕂] {𝔸 : Type u} [NormedDivisionRing 𝔸]
     [NormedAlgebra 𝕂 𝔸] {a : 𝕂} (ha : ∀ (k : ℕ), a ≠ k) : (binomialSeries 𝔸 a).radius = 1 := by
   simp only [binomialSeries_eq_ordinaryHypergeometricSeries (b := (1 : 𝕂)) (by norm_cast; simp),
@@ -88,6 +101,9 @@ theorem binomialSeries_radius_eq_one {𝕂 : Type v} [RCLike 𝕂] {𝔸 : Type 
   conv at ha => ext; rw [ne_comm]
   exact ordinaryHypergeometricSeries_radius_eq_one _ _ _ _ (by norm_cast; grind)
 
+/--
+@isnad1 id=le.0h3v.s7.46589057849b from=seed src=0 shape=99591d84 vocab=9959e262
+-/
 theorem binomialSeries_radius_ge_one {𝕂 : Type*} [RCLike 𝕂] {𝔸 : Type*} [NormedDivisionRing 𝔸]
     [NormedAlgebra 𝕂 𝔸] {a : 𝕂} :
     1 ≤ (binomialSeries 𝔸 a).radius := by
@@ -99,6 +115,9 @@ theorem binomialSeries_radius_ge_one {𝕂 : Type*} [RCLike 𝕂] {𝔸 : Type*}
 
 namespace Complex
 
+/--
+@isnad1 id=hasfpowe.0h1v.s6.929b573171fd from=seed src=0 shape=3ee93258 vocab=e0adb8f1
+-/
 theorem one_add_cpow_hasFPowerSeriesOnBall_zero {a : ℂ} :
     HasFPowerSeriesOnBall (fun x ↦ (1 + x) ^ a) (binomialSeries ℂ a) 0 1 := by
   suffices (binomialSeries ℂ a = FormalMultilinearSeries.ofScalars ℂ
@@ -147,10 +166,16 @@ theorem one_add_cpow_hasFPowerSeriesOnBall_zero {a : ℂ} :
     · apply Complex.mem_slitPlane_of_norm_lt_one
       simpa [B] using hz
 
+/--
+@isnad1 id=hasfpowe.0h1v.s6.d58a901e3be8 from=seed src=0 shape=1bbddb01 vocab=8448ee38
+-/
 theorem one_add_cpow_hasFPowerSeriesAt_zero {a : ℂ} :
     HasFPowerSeriesAt (fun x ↦ (1 + x) ^ a) (binomialSeries ℂ a) 0 :=
   one_add_cpow_hasFPowerSeriesOnBall_zero.hasFPowerSeriesAt
 
+/--
+@isnad1 id=hasfpowe.0h1v.s7.271ba1a78bd5 from=seed src=0 shape=034f6f03 vocab=65d89d72
+-/
 theorem one_div_one_sub_cpow_hasFPowerSeriesOnBall_zero (a : ℂ) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (1 - x) ^ a)
       (.ofScalars ℂ fun n ↦ Ring.choose (a + n - 1) n) 0 1 := by
@@ -163,6 +188,9 @@ theorem one_div_one_sub_cpow_hasFPowerSeriesOnBall_zero (a : ℂ) :
   simpa [cpow_neg, Function.comp_def, ← sub_eq_add_neg, H] using
     this.compContinuousLinearMap (u := -1) (x := (0 : ℂ))
 
+/--
+@isnad1 id=hasfpowe.0h1v.s7.e5ae995bc2aa from=seed src=0 shape=dea13cd5 vocab=73324c6b
+-/
 theorem one_div_one_sub_pow_hasFPowerSeriesOnBall_zero (a : ℕ) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (1 - x) ^ (a + 1))
       (.ofScalars ℂ (𝕜 := ℂ) fun n ↦ ↑(Nat.choose (a + n) a)) 0 1 := by
@@ -171,6 +199,9 @@ theorem one_div_one_sub_pow_hasFPowerSeriesOnBall_zero (a : ℕ) :
   · rw [eq_comm, add_right_comm, add_sub_cancel_right, ← Nat.cast_add,
       Ring.choose_natCast, Nat.choose_symm_add]
 
+/--
+@isnad1 id=hasfpowe.1h2v.s7.255a8e6cdab5 from=seed src=0 shape=758864aa vocab=b3ff6614
+-/
 theorem one_div_sub_pow_hasFPowerSeriesOnBall_zero (a : ℕ) {z : ℂ} (hz : z ≠ 0) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (z - x) ^ (a + 1))
       (.ofScalars ℂ (𝕜 := ℂ) fun n ↦ (z ^ (n + a + 1))⁻¹ * ↑(Nat.choose (a + n) a)) 0 ‖z‖ₑ := by
@@ -187,24 +218,38 @@ theorem one_div_sub_pow_hasFPowerSeriesOnBall_zero (a : ℕ) {z : ℂ} (hz : z �
   · intro w hw
     simp [← mul_inv_rev, ← mul_pow, sub_mul, mul_right_comm _ w, hz]
 
+/--
+@isnad1 id=hasfpowe.1h1v.s7.0ca04d709a72 from=seed src=0 shape=fdbc10ee vocab=05da371b
+-/
 theorem one_div_sub_hasFPowerSeriesOnBall_zero {z : ℂ} (hz : z ≠ 0) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (z - x)) (.ofScalars ℂ fun n ↦ (z ^ (n + 1))⁻¹) 0 ‖z‖ₑ := by
   simpa using one_div_sub_pow_hasFPowerSeriesOnBall_zero (a := 0) hz
 
+/--
+@isnad1 id=hasfpowe.1h1v.s7.1b53ee4c3215 from=seed src=0 shape=56e20de8 vocab=92f8413b
+-/
 theorem one_div_sub_sq_hasFPowerSeriesOnBall_zero {z : ℂ} (hz : z ≠ 0) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (z - x) ^ 2)
       (.ofScalars ℂ fun n ↦ (z ^ (n + 2))⁻¹ * (n + 1)) 0 ‖z‖ₑ := by
   simpa [add_comm 1] using one_div_sub_pow_hasFPowerSeriesOnBall_zero 1 hz
 
+/--
+@isnad1 id=hasfpowe.0h0v.s6.f516488cdd16 from=seed src=0 shape=9aa6a95a vocab=50f2e922
+-/
 theorem one_div_one_sub_hasFPowerSeriesOnBall_zero :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (1 - x : ℂ)) (.ofScalars (𝕜 := ℂ) ℂ 1) 0 1 := by
   simpa using! one_div_sub_hasFPowerSeriesOnBall_zero (z := 1)
 
+/--
+@isnad1 id=hasfpowe.0h0v.s7.cfe8d50bf614 from=seed src=0 shape=a77b76d0 vocab=26f9562d
+-/
 theorem one_div_one_sub_sq_hasFPowerSeriesOnBall_zero :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (1 - x : ℂ) ^ 2) (.ofScalars ℂ fun n ↦ (n + 1 : ℂ)) 0 1 := by
   simpa using one_div_sub_sq_hasFPowerSeriesOnBall_zero (z := 1)
 
-/-- `∑ (ai + b) zⁱ = (b - a) / (1 - z) + a / (1 - z)²` -/
+/-- `∑ (ai + b) zⁱ = (b - a) / (1 - z) + a / (1 - z)²`
+@isnad1 id=hasfpowe.0h2v.s7.13f5730d2e01 from=seed src=0 shape=c79aa0d6 vocab=c1a1b57e
+-/
 theorem hasFPowerSeriesOnBall_ofScalars_mul_add_zero (a b : ℂ) :
     HasFPowerSeriesOnBall (fun x ↦ (b - a) / (1 - x) + a / (1 - x) ^ 2)
       (.ofScalars ℂ fun n ↦ a * n + b) 0 1 := by
@@ -214,6 +259,9 @@ theorem hasFPowerSeriesOnBall_ofScalars_mul_add_zero (a b : ℂ) :
   · simp [div_eq_mul_inv]
   · ext; simp; ring
 
+/--
+@isnad1 id=hasfpowe.1h2v.s8.bc1bfa9b5478 from=seed src=0 shape=5ab16a39 vocab=b274089c
+-/
 lemma one_div_sub_sq_sub_one_div_sq_hasFPowerSeriesOnBall_zero (w x : ℂ) (hw : w ≠ x) :
     HasFPowerSeriesOnBall (fun z ↦ 1 / (z - w) ^ 2 - 1 / w ^ 2) (.ofScalars ℂ
       fun i ↦ (i + 1) * (w - x) ^ (-↑(i + 2) : ℤ) - i.casesOn (w ^ (-2 : ℤ)) 0) x ‖w - x‖ₑ := by
@@ -232,6 +280,9 @@ namespace Real
 
 attribute [local simp ←] Complex.ofReal_choose in
 attribute [-simp] FormalMultilinearSeries.apply_eq_prod_smul_coeff in
+/--
+@isnad1 id=hasfpowe.0h1v.s6.0b02de429bcd from=seed src=0 shape=3ee93258 vocab=1f23bdec
+-/
 theorem one_add_rpow_hasFPowerSeriesOnBall_zero {a : ℝ} :
     HasFPowerSeriesOnBall (fun x ↦ (1 + x) ^ a) (binomialSeries ℝ a) 0 1 := by
   have H : binomialSeries ℂ a = (binomialSeries ℂ (a : ℂ)).restrictScalars (𝕜 := ℝ) := by aesop
@@ -242,10 +293,16 @@ theorem one_add_rpow_hasFPowerSeriesOnBall_zero {a : ℝ} :
   · simp
   · intro x hx; simp_all; norm_cast
 
+/--
+@isnad1 id=hasfpowe.0h1v.s6.5c88ad1a4937 from=seed src=0 shape=1bbddb01 vocab=2c47395c
+-/
 theorem one_add_rpow_hasFPowerSeriesAt_zero {a : ℝ} :
     HasFPowerSeriesAt (fun x ↦ (1 + x) ^ a) (binomialSeries ℝ a) 0 :=
   one_add_rpow_hasFPowerSeriesOnBall_zero.hasFPowerSeriesAt
 
+/--
+@isnad1 id=hasfpowe.0h1v.s7.763ada6447e7 from=seed src=0 shape=034f6f03 vocab=e550bee3
+-/
 theorem one_div_one_sub_rpow_hasFPowerSeriesOnBall_zero (a : ℝ) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (1 - x) ^ a)
       (.ofScalars ℝ fun n ↦ Ring.choose (a + n - 1) n) 0 1 := by
@@ -264,6 +321,9 @@ theorem one_div_one_sub_rpow_hasFPowerSeriesOnBall_zero (a : ℝ) :
     have : 0 ≤ 1 - x := by grind
     simp [-Complex.inv_re, ← Complex.ofReal_one, ← Complex.ofReal_sub, ← Complex.ofReal_cpow this]
 
+/--
+@isnad1 id=hasfpowe.1h2v.s7.735ae0bcc862 from=seed src=0 shape=758864aa vocab=1142c58e
+-/
 theorem one_div_sub_pow_hasFPowerSeriesOnBall_zero (a : ℕ) {r : ℝ} (hr : r ≠ 0) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (r - x) ^ (a + 1))
       (.ofScalars ℝ (𝕜 := ℝ) fun n ↦ (r ^ (n + a + 1))⁻¹ * ↑(Nat.choose (a + n) a)) 0 ‖r‖ₑ := by
@@ -279,24 +339,38 @@ theorem one_div_sub_pow_hasFPowerSeriesOnBall_zero (a : ℕ) {r : ℝ} (hr : r �
     simp [-Complex.inv_re, ← Complex.ofReal_pow, ← Complex.ofReal_inv]
   · simp [enorm_eq_nnnorm]
 
+/--
+@isnad1 id=hasfpowe.1h1v.s7.c7902241b5e3 from=seed src=0 shape=fdbc10ee vocab=c112a878
+-/
 theorem one_div_sub_hasFPowerSeriesOnBall_zero {r : ℝ} (hr : r ≠ 0) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (r - x)) (.ofScalars ℝ fun n ↦ (r ^ (n + 1))⁻¹) 0 ‖r‖ₑ := by
   simpa using one_div_sub_pow_hasFPowerSeriesOnBall_zero (a := 0) hr
 
+/--
+@isnad1 id=hasfpowe.1h1v.s7.47b87fd26d60 from=seed src=0 shape=56e20de8 vocab=2fad62f4
+-/
 theorem one_div_sub_sq_hasFPowerSeriesOnBall_zero {r : ℝ} (hr : r ≠ 0) :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (r - x) ^ 2)
       (.ofScalars ℝ fun n ↦ (r ^ (n + 2))⁻¹ * (n + 1)) 0 ‖r‖ₑ := by
   simpa [add_comm 1] using one_div_sub_pow_hasFPowerSeriesOnBall_zero 1 hr
 
+/--
+@isnad1 id=hasfpowe.0h0v.s6.3b40aa1b25a3 from=seed src=0 shape=9aa6a95a vocab=20b80540
+-/
 theorem one_div_one_sub_hasFPowerSeriesOnBall_zero :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (1 - x)) (.ofScalars (𝕜 := ℝ) ℝ 1) 0 1 := by
   simpa using! one_div_sub_hasFPowerSeriesOnBall_zero (r := 1)
 
+/--
+@isnad1 id=hasfpowe.0h0v.s6.c57bd7b96dc4 from=seed src=0 shape=a77b76d0 vocab=49bf22f9
+-/
 theorem one_div_one_sub_sq_hasFPowerSeriesOnBall_zero :
     HasFPowerSeriesOnBall (fun x ↦ 1 / (1 - x) ^ 2) (.ofScalars ℝ fun n ↦ (n + 1 : ℝ)) 0 1 := by
   simpa using one_div_sub_sq_hasFPowerSeriesOnBall_zero (r := 1)
 
-/-- `∑ (ai + b) zⁱ = (b - a) / (1 - z) + a / (1 - z)²` -/
+/-- `∑ (ai + b) zⁱ = (b - a) / (1 - z) + a / (1 - z)²`
+@isnad1 id=hasfpowe.0h2v.s7.7525d9e0e5d6 from=seed src=0 shape=c79aa0d6 vocab=3a969e96
+-/
 theorem hasFPowerSeriesOnBall_ofScalars_mul_add_zero (a b : ℝ) :
     HasFPowerSeriesOnBall (fun x ↦ (b - a) / (1 - x) + a / (1 - x) ^ 2)
       (.ofScalars ℝ (a * · + b)) 0 1 := by

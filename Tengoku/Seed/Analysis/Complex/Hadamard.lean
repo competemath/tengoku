@@ -96,18 +96,24 @@ noncomputable def invInterpStrip (ε : ℝ) : ℂ :=
 /-- A function useful for the proofs steps. We will aim to show that it is bounded by 1. -/
 noncomputable def F [NormedSpace ℂ E] (ε : ℝ) := fun z ↦ invInterpStrip f z ε • f z
 
-/-- `sSup` of `norm` is nonneg applied to the image of `f` on the vertical line `re z = x` -/
+/-- `sSup` of `norm` is nonneg applied to the image of `f` on the vertical line `re z = x`
+@isnad1 id=le.0h3v.s4.5a74249ae24f from=seed src=0 shape=08e87887 vocab=28740b6d
+-/
 lemma sSupNormIm_nonneg (x : ℝ) : 0 ≤ sSupNormIm f x := by
   apply Real.sSup_nonneg
   rintro y ⟨z1, _, hz2⟩
   simp only [← hz2, comp, norm_nonneg]
 
 /-- `sSup` of `norm` translated by `ε > 0` is positive applied to the image of `f` on the
-vertical line `re z = x` -/
+vertical line `re z = x`
+@isnad1 id=lt.1h4v.s5.b7b038c56872 from=seed src=0 shape=8bfb42c8 vocab=9200ceff
+-/
 lemma sSupNormIm_eps_pos {ε : ℝ} (hε : ε > 0) (x : ℝ) : 0 < ε + sSupNormIm f x := by
   linarith [sSupNormIm_nonneg f x]
 
-/-- Useful rewrite for the absolute value of `invInterpStrip` -/
+/-- Useful rewrite for the absolute value of `invInterpStrip`
+@isnad1 id=eq.1h4v.s6.70a372eada28 from=seed src=0 shape=ad9f7060 vocab=ad47d23d
+-/
 lemma norm_invInterpStrip {ε : ℝ} (hε : ε > 0) :
     ‖invInterpStrip f z ε‖ =
     (ε + sSupNormIm f 0) ^ (z.re - 1) * (ε + sSupNormIm f 1) ^ (-z.re) := by
@@ -116,7 +122,9 @@ lemma norm_invInterpStrip {ε : ℝ} (hε : ε > 0) :
   repeat rw [norm_cpow_eq_rpow_re_of_pos (sSupNormIm_eps_pos f hε _) _]
   simp
 
-/-- The function `invInterpStrip` is `diffContOnCl`. -/
+/-- The function `invInterpStrip` is `diffContOnCl`.
+@isnad1 id=diffcont.1h3v.s6.307f9dfca586 from=seed src=0 shape=74839bcb vocab=99f4000d
+-/
 lemma diffContOnCl_invInterpStrip {ε : ℝ} (hε : ε > 0) :
     DiffContOnCl ℂ (fun z ↦ invInterpStrip f z ε) (verticalStrip 0 1) := by
   apply Differentiable.diffContOnCl
@@ -130,7 +138,9 @@ lemma diffContOnCl_invInterpStrip {ε : ℝ} (hε : ε > 0) :
     rw [← ofReal_add, ofReal_ne_zero]
     exact (ne_of_gt (sSupNormIm_eps_pos f hε 1))
 
-/-- If `f` is bounded on the unit vertical strip, then `f` is bounded by `sSupNormIm` there. -/
+/-- If `f` is bounded on the unit vertical strip, then `f` is bounded by `sSupNormIm` there.
+@isnad1 id=le.2h3v.s6.e90e0af7725f from=seed src=0 shape=f54a8f8d vocab=222a489b
+-/
 lemma norm_le_sSupNormIm (f : ℂ → E) (z : ℂ) (hD : z ∈ verticalClosedStrip 0 1)
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1)) :
     ‖f z‖ ≤ sSupNormIm f (z.re) := by
@@ -140,7 +150,9 @@ lemma norm_le_sSupNormIm (f : ℂ → E) (z : ℂ) (hD : z ∈ verticalClosedStr
   · apply mem_image_of_mem (norm ∘ f)
     simp only [mem_preimage, mem_singleton]
 
-/-- Alternative version of `norm_le_sSupNormIm` with a strict inequality and a positive `ε`. -/
+/-- Alternative version of `norm_le_sSupNormIm` with a strict inequality and a positive `ε`.
+@isnad1 id=lt.3h4v.s6.ecee0dba7811 from=seed src=0 shape=32ab69ac vocab=8d90b368
+-/
 lemma norm_lt_sSupNormIm_eps (f : ℂ → E) (ε : ℝ) (hε : ε > 0) (z : ℂ)
     (hD : z ∈ verticalClosedStrip 0 1) (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1)) :
     ‖f z‖ < ε + sSupNormIm f (z.re) :=
@@ -149,7 +161,9 @@ lemma norm_lt_sSupNormIm_eps (f : ℂ → E) (ε : ℝ) (hε : ε > 0) (z : ℂ)
 variable [NormedSpace ℂ E]
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- When the function `f` is bounded above on a vertical strip, then so is `F`. -/
+/-- When the function `f` is bounded above on a vertical strip, then so is `F`.
+@isnad1 id=bddabove.2h3v.s6.361f85e4221e from=seed src=0 shape=1fa1dd97 vocab=ce99a7a6
+-/
 lemma F_BddAbove (f : ℂ → E) (ε : ℝ) (hε : ε > 0)
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1)) :
     BddAbove ((norm ∘ (F f ε)) '' verticalClosedStrip 0 1) := by
@@ -189,7 +203,9 @@ lemma F_BddAbove (f : ℂ → E) (ε : ℝ) (hε : ε > 0)
         neg_re, Real.rpow_le_rpow_of_exponent_ge (sSupNormIm_eps_pos f hε 1)
         (le_of_lt hM1_one) (neg_le_neg_iff.mpr hset.2)]
 
-/-- Proof that `F` is bounded by one on the edges. -/
+/-- Proof that `F` is bounded by one on the edges.
+@isnad1 id=le.3h4v.s6.6fc47701ee6d from=seed src=0 shape=cb1b0a3c vocab=2c3a18bc
+-/
 lemma F_edge_le_one (f : ℂ → E) (ε : ℝ) (hε : ε > 0) (z : ℂ)
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1)) (hz : z ∈ re ⁻¹' {0, 1}) :
     ‖F f ε z‖ ≤ 1 := by
@@ -209,6 +225,9 @@ lemma F_edge_le_one (f : ℂ → E) (ε : ℝ) (hε : ε > 0) (z : ℂ)
     apply le_of_lt (norm_lt_sSupNormIm_eps f ε hε _ _ hB)
     simp only [verticalClosedStrip, mem_preimage, zero_le_one, hz1, right_mem_Icc]
 
+/--
+@isnad1 id=le.4h4v.s7.71f8984b7d8a from=seed src=0 shape=9ec135c2 vocab=04575dd5
+-/
 theorem norm_mul_invInterpStrip_le_one_of_mem_verticalClosedStrip (f : ℂ → E) (ε : ℝ) (hε : 0 < ε)
     (z : ℂ) (hd : DiffContOnCl ℂ f (verticalStrip 0 1))
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1)) (hz : z ∈ verticalClosedStrip 0 1) :
@@ -250,17 +269,23 @@ noncomputable def interpStrip (z : ℂ) : ℂ :=
     then 0
     else sSupNormIm f 0 ^ (1 - z) * sSupNormIm f 1 ^ z
 
-/-- Rewrite for `InterpStrip` when `0 < sSupNormIm f 0` and `0 < sSupNormIm f 1`. -/
+/-- Rewrite for `InterpStrip` when `0 < sSupNormIm f 0` and `0 < sSupNormIm f 1`.
+@isnad1 id=eq.2h3v.s6.2dcee0917bb7 from=seed src=0 shape=8b773637 vocab=aca369ab
+-/
 lemma interpStrip_eq_of_pos (z : ℂ) (h0 : 0 < sSupNormIm f 0) (h1 : 0 < sSupNormIm f 1) :
     interpStrip f z = sSupNormIm f 0 ^ (1 - z) * sSupNormIm f 1 ^ z := by
   simp only [ne_of_gt h0, ne_of_gt h1, interpStrip, ite_false, or_false]
 
-/-- Rewrite for `InterpStrip` when `0 = sSupNormIm f 0` or `0 = sSupNormIm f 1`. -/
+/-- Rewrite for `InterpStrip` when `0 = sSupNormIm f 0` or `0 = sSupNormIm f 1`.
+@isnad1 id=eq.1h3v.s5.f4cff6ab0a83 from=seed src=0 shape=06200d98 vocab=90ea726c
+-/
 lemma interpStrip_eq_of_zero (z : ℂ) (h : sSupNormIm f 0 = 0 ∨ sSupNormIm f 1 = 0) :
     interpStrip f z = 0 :=
   ite_eq_left h
 
-/-- Rewrite for `InterpStrip` on the open vertical strip. -/
+/-- Rewrite for `InterpStrip` on the open vertical strip.
+@isnad1 id=eq.1h3v.s6.54f1e24980cf from=seed src=0 shape=1dc861f3 vocab=20ac2bb3
+-/
 lemma interpStrip_eq_of_mem_verticalStrip (z : ℂ) (hz : z ∈ verticalStrip 0 1) :
     interpStrip f z = sSupNormIm f 0 ^ (1 - z) * sSupNormIm f 1 ^ z := by
   by_cases! h : sSupNormIm f 0 = 0 ∨ sSupNormIm f 1 = 0
@@ -279,6 +304,9 @@ lemma interpStrip_eq_of_mem_verticalStrip (z : ℂ) (hz : z ∈ verticalStrip 0 
         (lt_of_le_of_ne (sSupNormIm_nonneg f 1) (ne_comm.mp h.2))⟩
     exact interpStrip_eq_of_pos f z h.1 h.2
 
+/--
+@isnad1 id=diffcont.0h2v.s5.e02b4a9b37a5 from=seed src=0 shape=2ac89a4c vocab=249a50a7
+-/
 lemma diffContOnCl_interpStrip :
     DiffContOnCl ℂ (interpStrip f) (verticalStrip 0 1) := by
   by_cases! h : sSupNormIm f 0 = 0 ∨ sSupNormIm f 1 = 0
@@ -309,14 +337,18 @@ noncomputable def interpStrip' (f : ℂ → E) (l u : ℝ) (z : ℂ) : ℂ :=
 def scale (f : ℂ → E) (l u : ℝ) : ℂ → E := fun z ↦ f (l + z • (u - l))
 
 /-- The transformation on ℂ that is used for `scale` maps the closed strip ``re ⁻¹' [l, u]``
-  to the closed strip ``re ⁻¹' [0, 1]``. -/
+  to the closed strip ``re ⁻¹' [0, 1]``.
+@isnad1 id=mem.2h3v.s6.4836d198a4f6 from=seed src=0 shape=7fc76015 vocab=2102b4ce
+-/
 lemma scale_id_mem_verticalClosedStrip_of_mem_verticalClosedStrip {l u : ℝ} (hul : l < u) {z : ℂ}
     (hz : z ∈ verticalClosedStrip 0 1) : l + z * (u - l) ∈ verticalClosedStrip l u := by
   simp only [verticalClosedStrip, mem_preimage, add_re, ofReal_re, mul_re, sub_re, sub_im,
     ofReal_im, sub_self, mul_zero, sub_zero, mem_Icc] at hz ⊢
   constructor <;> nlinarith [hz.1, hz.2, hul]
 
-/-- The norm of the function `scale f l u` is bounded above on the closed strip `re⁻¹' [0, 1]`. -/
+/-- The norm of the function `scale f l u` is bounded above on the closed strip `re⁻¹' [0, 1]`.
+@isnad1 id=bddabove.2h4v.s6.b629517370eb from=seed src=0 shape=b85fd7d1 vocab=177d2b9a
+-/
 lemma scale_bddAbove {f : ℂ → E} {l u : ℝ} (hul : l < u)
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip l u)) :
     BddAbove ((norm ∘ scale f l u) '' verticalClosedStrip 0 1) := by
@@ -325,7 +357,9 @@ lemma scale_bddAbove {f : ℂ → E} {l u : ℝ} (hul : l < u)
   exact ⟨l + z * (u - l), scale_id_mem_verticalClosedStrip_of_mem_verticalClosedStrip hul hz, rfl⟩
 
 /-- A bound to the norm of `f` on the line `z.re = l` induces a bound to the norm of
-  `scale f l u z` on the line `z.re = 0`. -/
+  `scale f l u z` on the line `z.re = 0`.
+@isnad1 id=le.2h6v.s6.b41ed6d9c052 from=seed src=0 shape=c2256684 vocab=ee1d4d23
+-/
 lemma scale_bound_left {f : ℂ → E} {l u a : ℝ} (ha : ∀ z ∈ re ⁻¹' {l}, ‖f z‖ ≤ a) :
     ∀ z ∈ re ⁻¹' {0}, ‖scale f l u z‖ ≤ a := by
   simp only [mem_preimage, mem_singleton_iff, scale, smul_eq_mul]
@@ -333,7 +367,9 @@ lemma scale_bound_left {f : ℂ → E} {l u a : ℝ} (ha : ∀ z ∈ re ⁻¹' {
   exact ha (↑l + z * (↑u - ↑l)) (by simp [hz])
 
 /-- A bound to the norm of `f` on the line `z.re = u` induces a bound to the norm of `scale f l u z`
-  on the line `z.re = 1`. -/
+  on the line `z.re = 1`.
+@isnad1 id=le.2h6v.s6.a53ded846b92 from=seed src=0 shape=b23693aa vocab=ee1d4d23
+-/
 lemma scale_bound_right {f : ℂ → E} {l u b : ℝ} (hb : ∀ z ∈ re ⁻¹' {u}, ‖f z‖ ≤ b) :
     ∀ z ∈ re ⁻¹' {1}, ‖scale f l u z‖ ≤ b := by
   simp only [scale, mem_preimage, mem_singleton_iff, smul_eq_mul]
@@ -341,7 +377,9 @@ lemma scale_bound_right {f : ℂ → E} {l u b : ℝ} (hb : ∀ z ∈ re ⁻¹' 
   exact hb (↑l + z * (↑u - ↑l)) (by simp [hz])
 
 /-- The supremum of the norm of `scale f l u` on the line `z.re = 0` is the same as the supremum
-  of `f` on the line `z.re = l`. -/
+  of `f` on the line `z.re = l`.
+@isnad1 id=eq.1h4v.s5.87b745053c07 from=seed src=0 shape=91d6bbd1 vocab=317c7dbb
+-/
 lemma sSupNormIm_scale_left (f : ℂ → E) {l u : ℝ} (hul : l < u) :
     sSupNormIm (scale f l u) 0 = sSupNormIm f l := by
   simp_rw [sSupNormIm, image_comp]
@@ -365,7 +403,9 @@ lemma sSupNormIm_scale_left (f : ℂ → E) {l u : ℝ} (hul : l < u) :
   rw [this]
 
 /-- The supremum of the norm of `scale f l u` on the line `z.re = 1` is the same as
-  the supremum of `f` on the line `z.re = u`. -/
+  the supremum of `f` on the line `z.re = u`.
+@isnad1 id=eq.1h4v.s5.e5fc735d57f6 from=seed src=0 shape=fe7a7459 vocab=317c7dbb
+-/
 lemma sSupNormIm_scale_right (f : ℂ → E) {l u : ℝ} (hul : l < u) :
     sSupNormIm (scale f l u) 1 = sSupNormIm f u := by
   simp_rw [sSupNormIm, image_comp]
@@ -389,7 +429,9 @@ lemma sSupNormIm_scale_right (f : ℂ → E) {l u : ℝ} (hul : l < u) :
   rw [this]
 
 /-- A technical lemma relating the bounds given by the three lines lemma on a general strip
-to the bounds for its scaled version on the strip `re ⁻¹' [0, 1]`. -/
+to the bounds for its scaled version on the strip `re ⁻¹' [0, 1]`.
+@isnad1 id=eq.1h5v.s6.981eca2666a8 from=seed src=0 shape=c0fcb4a4 vocab=045dc0f3
+-/
 lemma interpStrip_scale (f : ℂ → E) {l u : ℝ} (hul : l < u) (z : ℂ) : interpStrip (scale f l u)
     ((z - ↑l) / (↑u - ↑l)) = interpStrip' f l u z := by
   simp only [interpStrip, interpStrip']
@@ -397,6 +439,9 @@ lemma interpStrip_scale (f : ℂ → E) {l u : ℝ} (hul : l < u) (z : ℂ) : in
 
 variable [NormedSpace ℂ E]
 
+/--
+@isnad1 id=le.4h4v.s7.b248dbc293a5 from=seed src=0 shape=01f985b2 vocab=74d44eb8
+-/
 lemma norm_le_interpStrip_of_mem_verticalClosedStrip_eps (ε : ℝ) (hε : ε > 0) (z : ℂ)
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1))
     (hd : DiffContOnCl ℂ f (verticalStrip 0 1)) (hz : z ∈ verticalClosedStrip 0 1) :
@@ -412,6 +457,9 @@ lemma norm_le_interpStrip_of_mem_verticalClosedStrip_eps (ε : ℝ) (hε : ε > 
   · simp only [Real.rpow_pos_of_pos (sSupNormIm_eps_pos f hε _) z.re]
   · simp only [Real.rpow_pos_of_pos (sSupNormIm_eps_pos f hε _) (1 - z.re)]
 
+/--
+@isnad1 id=eventual.3h3v.s7.25db7b1798dd from=seed src=0 shape=a9a235c1 vocab=090c978d
+-/
 lemma eventuallyle (z : ℂ) (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1))
     (hd : DiffContOnCl ℂ f (verticalStrip 0 1)) (hz : z ∈ verticalStrip 0 1) :
     (fun _ : ℝ ↦ ‖f z‖) ≤ᶠ[𝓝[>] 0]
@@ -420,6 +468,9 @@ lemma eventuallyle (z : ℂ) (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip
     norm_le_interpStrip_of_mem_verticalClosedStrip_eps f ε hε z hB hd
       (mem_of_mem_of_subset hz (preimage_mono Ioo_subset_Icc_self))
 
+/--
+@isnad1 id=le.3h3v.s6.8b36edd793c8 from=seed src=0 shape=cb751ae3 vocab=87207127
+-/
 lemma norm_le_interpStrip_of_mem_verticalStrip_zero (z : ℂ)
     (hd : DiffContOnCl ℂ f (verticalStrip 0 1))
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1)) (hz : z ∈ verticalStrip 0 1) :
@@ -461,7 +512,9 @@ lemma norm_le_interpStrip_of_mem_verticalStrip_zero (z : ℂ)
 **Hadamard three-line theorem** on `re ⁻¹' [0, 1]`: If `f` is a bounded function, continuous on the
 closed strip `re ⁻¹' [0, 1]` and differentiable on open strip `re ⁻¹' (0, 1)`, then for
 `M(x) := sup ((norm ∘ f) '' re ⁻¹' {x})` we have that for all `z` in the closed strip
-`re ⁻¹' [0, 1]` the inequality `‖f(z)‖ ≤ M(0) ^ (1 - z.re) * M(1) ^ z.re` holds. -/
+`re ⁻¹' [0, 1]` the inequality `‖f(z)‖ ≤ M(0) ^ (1 - z.re) * M(1) ^ z.re` holds.
+@isnad1 id=le.3h3v.s6.b7128e1c359a from=seed src=0 shape=e35a75cf vocab=87207127
+-/
 lemma norm_le_interpStrip_of_mem_verticalClosedStrip₀₁ (f : ℂ → E) {z : ℂ}
     (hz : z ∈ verticalClosedStrip 0 1) (hd : DiffContOnCl ℂ f (verticalStrip 0 1))
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1)) :
@@ -475,7 +528,9 @@ lemma norm_le_interpStrip_of_mem_verticalClosedStrip₀₁ (f : ℂ → E) {z : 
 bounded function, continuous on the closed strip `re ⁻¹' [0, 1]` and differentiable on open strip
 `re ⁻¹' (0, 1)`. If, for all `z.re = 0`, `‖f z‖ ≤ a` for some `a ∈ ℝ` and, similarly, for all
 `z.re = 1`, `‖f z‖ ≤ b` for some `b ∈ ℝ` then for all `z` in the closed strip
-`re ⁻¹' [0, 1]` the inequality `‖f(z)‖ ≤ a ^ (1 - z.re) * b ^ z.re` holds. -/
+`re ⁻¹' [0, 1]` the inequality `‖f(z)‖ ≤ a ^ (1 - z.re) * b ^ z.re` holds.
+@isnad1 id=le.5h5v.s7.4701567fbee4 from=seed src=0 shape=078b2b23 vocab=9b93563f
+-/
 lemma norm_le_interp_of_mem_verticalClosedStrip₀₁' (f : ℂ → E) {z : ℂ} {a b : ℝ}
     (hz : z ∈ verticalClosedStrip 0 1) (hd : DiffContOnCl ℂ f (verticalStrip 0 1))
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip 0 1))
@@ -520,7 +575,9 @@ lemma norm_le_interp_of_mem_verticalClosedStrip₀₁' (f : ℂ → E) {z : ℂ}
           and_self]
 
 /-- The transformation on ℂ that is used for `scale` maps the strip ``re ⁻¹' (l, u)``
-  to the strip ``re ⁻¹' (0, 1)``. -/
+  to the strip ``re ⁻¹' (0, 1)``.
+@isnad1 id=mem.2h3v.s6.90976f2943c1 from=seed src=0 shape=7fc76015 vocab=242f4a40
+-/
 lemma scale_id_mem_verticalStrip_of_mem_verticalStrip {l u : ℝ} (hul : l < u) {z : ℂ}
     (hz : z ∈ verticalStrip 0 1) : l + z * (u - l) ∈ verticalStrip l u := by
   simp only [verticalStrip, mem_preimage, mem_Ioo] at hz
@@ -533,7 +590,9 @@ lemma scale_id_mem_verticalStrip_of_mem_verticalStrip {l u : ℝ} (hul : l < u) 
   gcongr
 
 /-- If z is on the closed strip `re ⁻¹' [l, u]`, then `(z - l) / (u - l)` is on the closed strip
-  `re ⁻¹' [0, 1]`. -/
+  `re ⁻¹' [0, 1]`.
+@isnad1 id=mem.2h3v.s6.840a5830b520 from=seed src=0 shape=92cdcfbb vocab=d3230052
+-/
 lemma mem_verticalClosedStrip_of_scale_id_mem_verticalClosedStrip {z : ℂ} {l u : ℝ} (hul : l < u)
     (hz : z ∈ verticalClosedStrip l u) : z / (u - l) - l / (u - l) ∈ verticalClosedStrip 0 1 := by
   simp only [verticalClosedStrip, Complex.div_re, mem_preimage, sub_re, mem_Icc,
@@ -550,7 +609,9 @@ lemma mem_verticalClosedStrip_of_scale_id_mem_verticalClosedStrip {z : ℂ} {l u
       div_le_one (by simp [hul]), sub_le_sub_iff_right l]
     exact hz.2
 
-/-- The function `scale f l u` is `diffContOnCl`. -/
+/-- The function `scale f l u` is `diffContOnCl`.
+@isnad1 id=diffcont.2h4v.s6.b01f56636f20 from=seed src=0 shape=4817cb1c vocab=799e7848
+-/
 lemma scale_diffContOnCl {f : ℂ → E} {l u : ℝ} (hul : l < u)
     (hd : DiffContOnCl ℂ f (verticalStrip l u)) :
     DiffContOnCl ℂ (scale f l u) (verticalStrip 0 1) := by
@@ -586,7 +647,9 @@ closed strip `re ⁻¹' [l, u]` and differentiable on open strip `re ⁻¹' (l, 
 `M(x) := sup ((norm ∘ f) '' re ⁻¹' {x})` we have that for all `z` in the closed strip
 `re ⁻¹' [a,b]` the inequality
 `‖f(z)‖ ≤ M(0) ^ (1 - ((z.re - l) / (u - l))) * M(1) ^ ((z.re - l) / (u - l))`
-holds. -/
+holds.
+@isnad1 id=le.4h5v.s6.cef48315867a from=seed src=0 shape=da2ff44a vocab=4166120b
+-/
 lemma norm_le_interpStrip_of_mem_verticalClosedStrip {l u : ℝ} (hul : l < u)
     {f : ℂ → E} {z : ℂ}
     (hz : z ∈ verticalClosedStrip l u) (hd : DiffContOnCl ℂ f (verticalStrip l u))
@@ -605,7 +668,9 @@ bounded function, continuous on the closed strip `re ⁻¹' [l, u]` and differen
 `z.re = u`, `‖f z‖ ≤ b` for some `b ∈ ℝ` then for all `z` in the closed strip
 `re ⁻¹' [l, u]` the inequality
 `‖f(z)‖ ≤ a ^ (1 - (z.re - l) / (u - l)) * b ^ ((z.re - l) / (u - l))`
-holds. -/
+holds.
+@isnad1 id=le.6h7v.s8.ca55100d9c0a from=seed src=0 shape=a1fb3fa4 vocab=edad394e
+-/
 lemma norm_le_interp_of_mem_verticalClosedStrip' {f : ℂ → E} {z : ℂ} {a b l u : ℝ}
     (hul : l < u) (hz : z ∈ verticalClosedStrip l u) (hd : DiffContOnCl ℂ f (verticalStrip l u))
     (hB : BddAbove ((norm ∘ f) '' verticalClosedStrip l u))

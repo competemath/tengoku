@@ -227,7 +227,9 @@ We now deduce from the previous steps the full strength of the theorem.
 codimension. Then `u` is strict with closed range if and only if its restriction
 `u.domRestrict A : A → F` is strict with closed range.
 
-This is [N. Bourbaki, *Théories Spectrales*, Chapitre III, § 3, n° 1, Prop. 1][bourbaki2023]. -/
+This is [N. Bourbaki, *Théories Spectrales*, Chapitre III, § 3, n° 1, Prop. 1][bourbaki2023].
+@isnad1 id=iff.1h5v.s10.e9903177854f from=seed src=0 shape=d04cde7e vocab=3d9aec20
+-/
 public theorem ContinuousLinearMap.isStrictMap_isClosed_range_iff_restrict
     (u : E →L[𝕜] F) (A : Submodule 𝕜 E) (A_closed : IsClosed (A : Set E)) [A.CoFG] :
     (IsStrictMap u ∧ IsClosed (u.range : Set F)) ↔
@@ -291,7 +293,9 @@ end FiniteCodimSubspace
 section FiniteRank
 
 /-- If two continuous linear maps `u, v : E → F` agree on a subspace `A` of `E` with finite
-codimension, then `u` is strict with closed range if and only if `v` is strict with closed range. -/
+codimension, then `u` is strict with closed range if and only if `v` is strict with closed range.
+@isnad1 id=iff.1h6v.s10.1acd7c29356c from=seed src=0 shape=17ef2d57 vocab=37dcc5d0
+-/
 public theorem ContinuousLinearMap.isStrictMap_isClosed_range_iff_of_eqOn [T2Space F]
     (u v : E →L[𝕜] F) (A : Submodule 𝕜 E) [A.CoFG] (h_eqOn : EqOn u v A) :
     (IsStrictMap u ∧ IsClosed (u.range : Set F)) ↔
@@ -308,7 +312,9 @@ open LinearMap.FiniteRangeSetoid
 denoted `u.toLinearMap ≈ v.toLinearMap` in scope `LinearMap.FiniteRangeSetoid`), then `u` is
 strict with closed range if and only if `v` is strict with closed range.
 
-This is [N. Bourbaki, *Théories Spectrales*, Chapitre III, § 3, n° 1, Cor. 1][bourbaki2023]. -/
+This is [N. Bourbaki, *Théories Spectrales*, Chapitre III, § 3, n° 1, Cor. 1][bourbaki2023].
+@isnad1 id=iff.0h6v.s10.d34e30c578c9 from=seed src=0 shape=c81e5e5a vocab=b9b92dcc
+-/
 public theorem ContinuousLinearMap.isStrictMap_isClosed_range_iff_of_finiteRangeSetoid [T2Space F]
     (u v : E →L[𝕜] F) (h_equiv : u.toLinearMap ≈ v.toLinearMap) :
     (IsStrictMap u ∧ IsClosed (u.range : Set F)) ↔
@@ -328,7 +334,9 @@ open LinearMap.FiniteRangeSetoid
 subspace of `F`. Then `u` is strict with closed range if and only if the induced map `E → F ⧸ A`
 is strict with closed range.
 
-This is [N. Bourbaki, *Théories Spectrales*, Chapitre III, § 3, n° 1, Cor. 2][bourbaki2023]. -/
+This is [N. Bourbaki, *Théories Spectrales*, Chapitre III, § 3, n° 1, Cor. 2][bourbaki2023].
+@isnad1 id=iff.1h5v.s10.bd09127bbb3d from=seed src=0 shape=8d94782a vocab=e48f6ec4
+-/
 public theorem ContinuousLinearMap.isStrictMap_isClosed_range_iff_quotient [T2Space F]
     (u : E →L[𝕜] F) (A : Submodule 𝕜 F) [FiniteDimensional 𝕜 A]
     (A_compl : ClosedComplemented A) :

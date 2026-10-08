@@ -49,6 +49,9 @@ def homotopyQToZero (q : ℕ) : Homotopy (Q q : K[X] ⟶ _) 0 :=
   Homotopy.equivSubZero.toFun (homotopyPToId X q).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s8.2e0f70c90c2b from=seed src=0 shape=b2d88ab6 vocab=2f63303f
+-/
 theorem homotopyPToId_eventually_constant {q n : ℕ} (hqn : n < q) :
     ((homotopyPToId X (q + 1)).hom n (n + 1) : X _⦋n⦌ ⟶ X _⦋n + 1⦌) =
       (homotopyPToId X q).hom n (n + 1) := by

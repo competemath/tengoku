@@ -24,7 +24,9 @@ open scoped Topology
 variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
   {E : Type*} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
 
-/-- In a proper space, the tangent cone at a non-isolated point is nontrivial. -/
+/-- In a proper space, the tangent cone at a non-isolated point is nontrivial.
+@isnad1 id=nonempty.1h4v.s7.cf1040ffb275 from=seed src=0 shape=282a3d5a vocab=308bcac0
+-/
 theorem tangentConeAt_nonempty_of_properSpace [ProperSpace E]
     {s : Set E} {x : E} (hx : AccPt x (𝓟 s)) :
     (tangentConeAt 𝕜 s x ∩ {0}ᶜ).Nonempty := by

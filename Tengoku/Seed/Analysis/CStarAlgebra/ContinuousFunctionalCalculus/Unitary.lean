@@ -27,6 +27,9 @@ variable {R A : Type*} {p : A → Prop} [CommRing R] [StarRing R] [MetricSpace R
 variable [IsTopologicalRing R] [ContinuousStar R] [TopologicalSpace A] [Ring A] [StarRing A]
 variable [Algebra R A] [ContinuousFunctionalCalculus R A p]
 
+/--
+@isnad1 id=iff.0h7v.s8.129f87643330 from=seed src=0 shape=4169b7c1 vocab=990e3177
+-/
 lemma cfc_unitary_iff (f : R → R) (a : A) (ha : p a := by cfc_tac)
     (hf : ContinuousOn f (spectrum R a) := by cfc_cont_tac) :
     cfc f a ∈ unitary A ↔ ∀ x ∈ spectrum R a, star (f x) * f x = 1 := by
@@ -42,6 +45,9 @@ section Complex
 variable {A : Type*} [TopologicalSpace A] [Ring A] [StarRing A] [Algebra ℂ A]
   [ContinuousFunctionalCalculus ℂ A IsStarNormal]
 
+/--
+@isnad1 id=iff.0h2v.s7.09e566138fda from=seed src=0 shape=12cda5eb vocab=8a2513ff
+-/
 lemma unitary_iff_isStarNormal_and_spectrum_subset_unitary {u : A} :
     u ∈ unitary A ↔ IsStarNormal u ∧ spectrum ℂ u ⊆ unitary ℂ := by
   rw [← and_iff_right_of_imp isStarNormal_of_mem_unitary]
@@ -50,10 +56,16 @@ lemma unitary_iff_isStarNormal_and_spectrum_subset_unitary {u : A} :
   rw [cfc_unitary_iff id u, Set.subset_def]
   simp only [id_eq, RCLike.star_def, SetLike.mem_coe, Unitary.mem_iff_star_mul_self]
 
+/--
+@isnad1 id=mem.1h2v.s7.91e3f5f57561 from=seed src=0 shape=39f76a26 vocab=8a2513ff
+-/
 lemma mem_unitary_of_spectrum_subset_unitary {u : A}
     [IsStarNormal u] (hu : spectrum ℂ u ⊆ unitary ℂ) : u ∈ unitary A :=
   unitary_iff_isStarNormal_and_spectrum_subset_unitary.mpr ⟨‹_›, hu⟩
 
+/--
+@isnad1 id=le.1h2v.s7.7f2079426149 from=seed src=0 shape=beac3efa vocab=8a2513ff
+-/
 lemma spectrum_subset_unitary_of_mem_unitary {u : A} (hu : u ∈ unitary A) :
     spectrum ℂ u ⊆ unitary ℂ :=
   unitary_iff_isStarNormal_and_spectrum_subset_unitary.mp hu |>.right

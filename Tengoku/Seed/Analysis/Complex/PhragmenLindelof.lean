@@ -62,7 +62,9 @@ namespace PhragmenLindelof
 variable {E : Type*} [NormedAddCommGroup E]
 
 /-- An auxiliary lemma that combines two double exponential estimates into a similar estimate
-on the difference of the functions. -/
+on the difference of the functions.
+@isnad1 id=ex.2h6v.s7.bbda57f5c02c from=seed src=0 shape=04aea17a vocab=a00b673f
+-/
 theorem isBigO_sub_exp_exp {a : ℝ} {f g : ℂ → E} {l : Filter ℂ} {u : ℂ → ℝ}
     (hBf : ∃ c < a, ∃ B, f =O[l] fun z => expR (B * expR (c * |u z|)))
     (hBg : ∃ c < a, ∃ B, g =O[l] fun z => expR (B * expR (c * |u z|))) :
@@ -77,7 +79,9 @@ theorem isBigO_sub_exp_exp {a : ℝ} {f g : ℂ → E} {l : Filter ℂ} {u : ℂ
     le_max_right _ _, le_max_left _ _, (le_max_right _ _).trans (le_max_right _ _)]
 
 /-- An auxiliary lemma that combines two “exponential of a power” estimates into a similar estimate
-on the difference of the functions. -/
+on the difference of the functions.
+@isnad1 id=ex.2h5v.s7.7ea2ba03d811 from=seed src=0 shape=afd93151 vocab=5ee75b5c
+-/
 theorem isBigO_sub_exp_rpow {a : ℝ} {f g : ℂ → E} {l : Filter ℂ}
     (hBf : ∃ c < a, ∃ B, f =O[cobounded ℂ ⊓ l] fun z => expR (B * ‖z‖ ^ c))
     (hBg : ∃ c < a, ∃ B, g =O[cobounded ℂ ⊓ l] fun z => expR (B * ‖z‖ ^ c)) :
@@ -110,6 +114,7 @@ Let `f : ℂ → E` be a function such that
 Then `‖f z‖` is bounded by the same constant on the closed strip
 `{z : ℂ | a ≤ im z ≤ b}`. Moreover, it suffices to verify the second assumption
 only for sufficiently large values of `|re z|`.
+@isnad1 id=le.6h6v.s7.bcd469b39412 from=seed src=0 shape=99155af0 vocab=6fd212a2
 -/
 theorem horizontal_strip (hfd : DiffContOnCl ℂ f (im ⁻¹' Ioo a b))
     (hB : ∃ c < π / (b - a), ∃ B, f =O[comap (_root_.abs ∘ re) atTop ⊓ 𝓟 (im ⁻¹' Ioo a b)]
@@ -246,6 +251,7 @@ Let `f g : ℂ → E` be functions such that
 * `f z = g z` on the boundary of `U`.
 
 Then `f` is equal to `g` on the closed strip `{z : ℂ | a ≤ im z ≤ b}`.
+@isnad1 id=eqon.6h5v.s8.5a795d5ffdf1 from=seed src=0 shape=838c3891 vocab=d6ffa5a0
 -/
 theorem eqOn_horizontal_strip {g : ℂ → E} (hdf : DiffContOnCl ℂ f (im ⁻¹' Ioo a b))
     (hBf : ∃ c < π / (b - a), ∃ B, f =O[comap (_root_.abs ∘ re) atTop ⊓ 𝓟 (im ⁻¹' Ioo a b)]
@@ -272,6 +278,7 @@ Let `f : ℂ → E` be a function such that
 Then `‖f z‖` is bounded by the same constant on the closed strip
 `{z : ℂ | a ≤ re z ≤ b}`. Moreover, it suffices to verify the second assumption
 only for sufficiently large values of `|im z|`.
+@isnad1 id=le.6h6v.s7.73dd9ad31eb8 from=seed src=0 shape=99155af0 vocab=6fd212a2
 -/
 theorem vertical_strip (hfd : DiffContOnCl ℂ f (re ⁻¹' Ioo a b))
     (hB : ∃ c < π / (b - a), ∃ B, f =O[comap (_root_.abs ∘ im) atTop ⊓ 𝓟 (re ⁻¹' Ioo a b)]
@@ -318,6 +325,7 @@ Let `f g : ℂ → E` be functions such that
 * `f z = g z` on the boundary of `U`.
 
 Then `f` is equal to `g` on the closed strip `{z : ℂ | a ≤ re z ≤ b}`.
+@isnad1 id=eqon.6h5v.s8.dd2074756e2e from=seed src=0 shape=838c3891 vocab=d6ffa5a0
 -/
 theorem eqOn_vertical_strip {g : ℂ → E} (hdf : DiffContOnCl ℂ f (re ⁻¹' Ioo a b))
     (hBf : ∃ c < π / (b - a), ∃ B, f =O[comap (_root_.abs ∘ im) atTop ⊓ 𝓟 (re ⁻¹' Ioo a b)]
@@ -341,7 +349,9 @@ theorem eqOn_vertical_strip {g : ℂ → E} (hdf : DiffContOnCl ℂ f (re ⁻¹'
   for some `c < 2`;
 * `‖f z‖` is bounded from above by a constant `C` on the boundary of the first quadrant.
 
-Then `‖f z‖` is bounded from above by the same constant on the closed first quadrant. -/
+Then `‖f z‖` is bounded from above by the same constant on the closed first quadrant.
+@isnad1 id=le.6h4v.s7.cd81ced200fa from=seed src=0 shape=751831de vocab=4e7f0ed5
+-/
 nonrec theorem quadrant_I (hd : DiffContOnCl ℂ f (Ioi 0 ×ℂ Ioi 0))
     (hB : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Ioi 0 ×ℂ Ioi 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -423,7 +433,9 @@ theorem eq_zero_on_quadrant_I (hd : DiffContOnCl ℂ f (Ioi 0 ×ℂ Ioi 0))
   quadrant for some `A`, `B`, and `c < 2`;
 * `f` is equal to `g` on the boundary of the first quadrant.
 
-Then `f` is equal to `g` on the closed first quadrant. -/
+Then `f` is equal to `g` on the closed first quadrant.
+@isnad1 id=eqon.6h3v.s8.e3e8e546e916 from=seed src=0 shape=53f4c675 vocab=7e6ca8d6
+-/
 theorem eqOn_quadrant_I (hdf : DiffContOnCl ℂ f (Ioi 0 ×ℂ Ioi 0))
     (hBf : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Ioi 0 ×ℂ Ioi 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -443,7 +455,9 @@ theorem eqOn_quadrant_I (hdf : DiffContOnCl ℂ f (Ioi 0 ×ℂ Ioi 0))
   for some `c < 2`;
 * `‖f z‖` is bounded from above by a constant `C` on the boundary of the second quadrant.
 
-Then `‖f z‖` is bounded from above by the same constant on the closed second quadrant. -/
+Then `‖f z‖` is bounded from above by the same constant on the closed second quadrant.
+@isnad1 id=le.6h4v.s7.da314677d10c from=seed src=0 shape=05f5be19 vocab=2b498a74
+-/
 theorem quadrant_II (hd : DiffContOnCl ℂ f (Iio 0 ×ℂ Ioi 0))
     (hB : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Iio 0 ×ℂ Ioi 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -486,7 +500,9 @@ theorem eq_zero_on_quadrant_II (hd : DiffContOnCl ℂ f (Iio 0 ×ℂ Ioi 0))
   quadrant for some `A`, `B`, and `c < 2`;
 * `f` is equal to `g` on the boundary of the second quadrant.
 
-Then `f` is equal to `g` on the closed second quadrant. -/
+Then `f` is equal to `g` on the closed second quadrant.
+@isnad1 id=eqon.6h3v.s8.5837712fb1c5 from=seed src=0 shape=58182ddd vocab=32541554
+-/
 theorem eqOn_quadrant_II (hdf : DiffContOnCl ℂ f (Iio 0 ×ℂ Ioi 0))
     (hBf : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Iio 0 ×ℂ Ioi 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -505,7 +521,9 @@ theorem eqOn_quadrant_II (hdf : DiffContOnCl ℂ f (Iio 0 ×ℂ Ioi 0))
   for some `c < 2`;
 * `‖f z‖` is bounded from above by a constant `C` on the boundary of the third quadrant.
 
-Then `‖f z‖` is bounded from above by the same constant on the closed third quadrant. -/
+Then `‖f z‖` is bounded from above by the same constant on the closed third quadrant.
+@isnad1 id=le.6h4v.s7.7242056a6ef0 from=seed src=0 shape=7ac3b437 vocab=4fc764f7
+-/
 theorem quadrant_III (hd : DiffContOnCl ℂ f (Iio 0 ×ℂ Iio 0))
     (hB : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Iio 0 ×ℂ Iio 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -552,7 +570,9 @@ theorem eq_zero_on_quadrant_III (hd : DiffContOnCl ℂ f (Iio 0 ×ℂ Iio 0))
   quadrant for some `A`, `B`, and `c < 2`;
 * `f` is equal to `g` on the boundary of the third quadrant.
 
-Then `f` is equal to `g` on the closed third quadrant. -/
+Then `f` is equal to `g` on the closed third quadrant.
+@isnad1 id=eqon.6h3v.s8.4e26d6bcbc8d from=seed src=0 shape=4f0fd15c vocab=c1693c00
+-/
 theorem eqOn_quadrant_III (hdf : DiffContOnCl ℂ f (Iio 0 ×ℂ Iio 0))
     (hBf : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Iio 0 ×ℂ Iio 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -571,7 +591,9 @@ theorem eqOn_quadrant_III (hdf : DiffContOnCl ℂ f (Iio 0 ×ℂ Iio 0))
   for some `c < 2`;
 * `‖f z‖` is bounded from above by a constant `C` on the boundary of the fourth quadrant.
 
-Then `‖f z‖` is bounded from above by the same constant on the closed fourth quadrant. -/
+Then `‖f z‖` is bounded from above by the same constant on the closed fourth quadrant.
+@isnad1 id=le.6h4v.s7.81d8834c747f from=seed src=0 shape=d6400024 vocab=2b498a74
+-/
 theorem quadrant_IV (hd : DiffContOnCl ℂ f (Ioi 0 ×ℂ Iio 0))
     (hB : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Ioi 0 ×ℂ Iio 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -617,7 +639,9 @@ theorem eq_zero_on_quadrant_IV (hd : DiffContOnCl ℂ f (Ioi 0 ×ℂ Iio 0))
   quadrant for some `A`, `B`, and `c < 2`;
 * `f` is equal to `g` on the boundary of the fourth quadrant.
 
-Then `f` is equal to `g` on the closed fourth quadrant. -/
+Then `f` is equal to `g` on the closed fourth quadrant.
+@isnad1 id=eqon.6h3v.s8.46ed207b27a0 from=seed src=0 shape=27b1b619 vocab=32541554
+-/
 theorem eqOn_quadrant_IV (hdf : DiffContOnCl ℂ f (Ioi 0 ×ℂ Iio 0))
     (hBf : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 (Ioi 0 ×ℂ Iio 0)] fun z => expR (B * ‖z‖ ^ c))
@@ -643,7 +667,9 @@ theorem eqOn_quadrant_IV (hdf : DiffContOnCl ℂ f (Ioi 0 ×ℂ Iio 0))
 * `f x → 0` as `x : ℝ` tends to infinity.
 
 Then `‖f z‖` is bounded from above by the same constant on the closed right half-plane.
-See also `PhragmenLindelof.right_half_plane_of_bounded_on_real` for a stronger version. -/
+See also `PhragmenLindelof.right_half_plane_of_bounded_on_real` for a stronger version.
+@isnad1 id=le.5h4v.s7.70a68fb60f23 from=seed src=0 shape=9833797f vocab=54a0fb30
+-/
 theorem right_half_plane_of_tendsto_zero_on_real (hd : DiffContOnCl ℂ f {z | 0 < z.re})
     (hexp : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 {z | 0 < z.re}] fun z => expR (B * ‖z‖ ^ c))
@@ -714,7 +740,9 @@ theorem right_half_plane_of_tendsto_zero_on_real (hd : DiffContOnCl ℂ f {z | 0
 * `‖f x‖` is bounded from above by a constant for large real values of `x`.
 
 Then `‖f z‖` is bounded from above by `C` on the closed right half-plane.
-See also `PhragmenLindelof.right_half_plane_of_tendsto_zero_on_real` for a weaker version. -/
+See also `PhragmenLindelof.right_half_plane_of_tendsto_zero_on_real` for a weaker version.
+@isnad1 id=le.5h4v.s7.df3d99c5df89 from=seed src=0 shape=08ba50c5 vocab=d115734c
+-/
 theorem right_half_plane_of_bounded_on_real (hd : DiffContOnCl ℂ f {z | 0 < z.re})
     (hexp : ∃ c < (2 : ℝ), ∃ B,
       f =O[cobounded ℂ ⊓ 𝓟 {z | 0 < z.re}] fun z => expR (B * ‖z‖ ^ c))
@@ -809,7 +837,9 @@ that
 * `f x - g x`, `x : ℝ`, tends to zero superexponentially fast as `x → ∞`:
   for any natural `n`, `exp (n * x) * ‖f x - g x‖` tends to zero as `x → ∞`.
 
-Then `f` is equal to `g` on the closed right half-plane. -/
+Then `f` is equal to `g` on the closed right half-plane.
+@isnad1 id=eqon.7h3v.s8.cbbd50c256ad from=seed src=0 shape=57e1696f vocab=21093d9f
+-/
 theorem eqOn_right_half_plane_of_superexponential_decay {g : ℂ → E}
     (hfd : DiffContOnCl ℂ f {z | 0 < z.re}) (hgd : DiffContOnCl ℂ g {z | 0 < z.re})
     (hfexp : ∃ c < (2 : ℝ), ∃ B,

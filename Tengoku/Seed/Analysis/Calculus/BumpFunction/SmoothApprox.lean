@@ -30,6 +30,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensi
 open scoped ContDiff unitInterval Topology
 open Set Metric MeasureTheory
 
+/--
+@isnad1 id=ex.2h5v.s7.728927e153d7 from=seed src=0 shape=048ad9ce vocab=c7c64d3a
+-/
 theorem MeasureTheory.LocallyIntegrable.exists_contDiff_dist_le_of_forall_mem_ball_dist_le
     [MeasurableSpace E] [BorelSpace E] {μ : Measure E} [μ.IsAddHaarMeasure]
     (hf : LocallyIntegrable f μ) (hε : 0 < ε) :
@@ -39,6 +42,9 @@ theorem MeasureTheory.LocallyIntegrable.exists_contDiff_dist_le_of_forall_mem_ba
   refine ⟨_, ?_, fun a δ ↦ φ.dist_normed_convolution_le hf.aestronglyMeasurable⟩
   exact φ.hasCompactSupport_normed.contDiff_convolution_left _ φ.contDiff_normed hf
 
+/--
+@isnad1 id=ex.2h4v.s7.5e9b3137a805 from=seed src=0 shape=1f0da5c1 vocab=d0fcd267
+-/
 theorem Continuous.exists_contDiff_dist_le_of_forall_mem_ball_dist_le (hf : Continuous f)
     (hε : 0 < ε) :
     ∃ g : E → F, ContDiff ℝ ∞ g ∧ ∀ a, ∀ δ, (∀ x ∈ ball a ε, dist (f x) (f a) ≤ δ) →
@@ -46,13 +52,18 @@ theorem Continuous.exists_contDiff_dist_le_of_forall_mem_ball_dist_le (hf : Cont
   borelize E
   exact (hf.locallyIntegrable (μ := .addHaar)).exists_contDiff_dist_le_of_forall_mem_ball_dist_le hε
 
+/--
+@isnad1 id=ex.2h4v.s7.d2f7c5705431 from=seed src=0 shape=493da76b vocab=e00e809c
+-/
 theorem UniformContinuous.exists_contDiff_dist_le (hf : UniformContinuous f) (hε : 0 < ε) :
     ∃ g : E → F, ContDiff ℝ ∞ g ∧ ∀ a, dist (g a) (f a) < ε := by
   rcases Metric.uniformContinuous_iff.mp hf (ε / 2) (half_pos hε) with ⟨δ, hδ, hfδ⟩
   rcases hf.continuous.exists_contDiff_dist_le_of_forall_mem_ball_dist_le hδ with ⟨g, hgc, hg⟩
   exact ⟨g, hgc, fun a ↦ (hg a _ fun _ h ↦ (hfδ h).le).trans_lt (half_lt_self hε)⟩
 
-/-- Infinitely smooth functions are dense in the space of continuous functions. -/
+/-- Infinitely smooth functions are dense in the space of continuous functions.
+@isnad1 id=dense.0h2v.s7.4b5c45576ecd from=seed src=0 shape=90407d90 vocab=e219b928
+-/
 theorem ContinuousMap.dense_setOfPred_contDiff : Dense {f : C(E, F) | ContDiff ℝ ∞ f} := by
   intro f
   rw [mem_closure_iff_nhds_basis
@@ -69,5 +80,8 @@ theorem ContinuousMap.dense_setOfPred_contDiff : Dense {f : C(E, F) | ContDiff �
   exact hfδ _ (mem_cthickening_of_dist_le _ x _ _ hx hy.1.le) _
     (self_subset_cthickening _ hx) hy.2 |>.le
 
+/--
+@isnad1 id=dense.0h2v.s7.4b5c45576ecd from=seed src=0 shape=90407d90 vocab=e219b928
+-/
 @[deprecated (since := "2026-07-09")]
 alias ContinuousMap.dense_setOf_contDiff := ContinuousMap.dense_setOfPred_contDiff

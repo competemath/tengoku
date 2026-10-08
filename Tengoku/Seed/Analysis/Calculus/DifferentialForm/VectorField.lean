@@ -79,6 +79,7 @@ in the sum used in informal texts.
 
 For this reason, `i + j` in our sum has the opposite parity compared to informal texts,
 which changes the sign before the sum from `+` to `-`.
+@isnad1 id=eq.3h8v.s11.fd61576b108c from=seed src=0 shape=242d6ab2 vocab=451d2676
 -/
 theorem extDerivWithin_apply_vectorField
     {ω : E → E [⋀^Fin (n + 1)]→L[𝕜] F} {V : Fin (n + 2) → E → E}
@@ -140,6 +141,7 @@ in the sum used in informal texts.
 
 For this reason, `i + j` in our sum has the opposite parity compared to informal texts,
 which changes the sign before the sum from `+` to `-`.
+@isnad1 id=eq.2h7v.s11.413805d44d55 from=seed src=0 shape=04cd0e7a vocab=e5aff54d
 -/
 theorem extDeriv_apply_vectorField {ω : E → E [⋀^Fin (n + 1)]→L[𝕜] F} {V : Fin (n + 2) → E → E}
     (hω : DifferentiableAt 𝕜 ω x) (hV : ∀ i, DifferentiableAt 𝕜 (V i) x) :
@@ -160,6 +162,7 @@ $$
   dω(V_0(x), \dots, V_{n + 1}(x)) = \sum_{i=0}^{n + 1} (-1)^i •
     D_x\left(ω\big(x; V_0(x), \dots, \widehat{V_i(x)}, \dots, V_{n + 1}(x)\big)\right)(V_i(x)).
 $$
+@isnad1 id=eq.4h8v.s10.ca9fd914cf17 from=seed src=0 shape=0695bdd4 vocab=17b5809e
 -/
 theorem extDerivWithin_apply_vectorField_of_pairwise_commute
     {ω : E → E [⋀^Fin n]→L[𝕜] F} {V : Fin (n + 1) → E → E}
@@ -185,6 +188,7 @@ $$
   dω(V_0(x), \dots, V_{n + 1}(x)) = \sum_{i=0}^{n + 1} (-1)^i •
     D_x\left(ω\big(x; V_0(x), \dots, \widehat{V_i(x)}, \dots, V_{n + 1}(x)\big)\right)(V_i(x)).
 $$
+@isnad1 id=eq.3h7v.s10.47b3c537de74 from=seed src=0 shape=91baade2 vocab=8f6be063
 -/
 theorem extDeriv_apply_vectorField_of_pairwise_commute
     {ω : E → E [⋀^Fin n]→L[𝕜] F} {V : Fin (n + 1) → E → E}

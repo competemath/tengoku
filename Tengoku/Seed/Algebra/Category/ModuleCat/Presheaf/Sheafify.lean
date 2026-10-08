@@ -76,6 +76,9 @@ lemma _root_.PresheafOfModules.Sheafify.app_eq_of_isLocallyInjective
     rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.5h19v.s13.6f29433c7d22 from=seed src=0 shape=6340d593 vocab=273075bb
+-/
 lemma isCompatible_map_smul_aux {Y Z : C} (f : Y ⟶ X) (g : Z ⟶ Y)
     (r₀ : R₀.obj (Opposite.op Y)) (r₀' : R₀.obj (Opposite.op Z))
     (m₀ : M₀.obj (Opposite.op Y)) (m₀' : M₀.obj (Opposite.op Z))
@@ -93,6 +96,9 @@ variable (hr₀ : (r₀.map (whiskerRight α (forget _))).IsAmalgamation r)
   (hm₀ : (m₀.map (whiskerRight φ (forget _))).IsAmalgamation m)
 
 include hr₀ hm₀ in
+/--
+@isnad1 id=compatib.3h14v.s10.abf229be0bea from=seed src=0 shape=5901e584 vocab=189c961a
+-/
 lemma isCompatible_map_smul : ((r₀.smul m₀).map (whiskerRight φ (forget _))).Compatible := by
   intro Y₁ Y₂ Z g₁ g₂ f₁ f₂ h₁ h₂ fac
   let a₁ := r₀ f₁ h₁
@@ -222,18 +228,27 @@ noncomputable def smulCandidate : SMulCandidate α φ r m := default
 /-- The scalar multiplication on the sheafification of a presheaf of modules. -/
 noncomputable def smul : A.obj.obj X := (smulCandidate α φ r m).x
 
+/--
+@isnad1 id=eq.2h15v.s12.795462ce4759 from=seed src=0 shape=b26fb3a5 vocab=ee6c5612
+-/
 lemma map_smul_eq {Y : Cᵒᵖ} (f : X ⟶ Y) (r₀ : R₀.obj Y) (hr₀ : α.app Y r₀ = R.obj.map f r)
     (m₀ : M₀.obj Y) (hm₀ : φ.app Y m₀ = A.obj.map f m) :
     A.obj.map f (smul α φ r m) = φ.app Y (r₀ • m₀) :=
   (smulCandidate α φ r m).h f r₀ hr₀ m₀ hm₀
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h10v.s9.647e858646b6 from=seed src=0 shape=8214c960 vocab=d6e685da
+-/
 protected lemma one_smul : smul α φ 1 m = m := by
   apply A.isSeparated _ _ (Presheaf.imageSieve_mem J φ m)
   rintro Y f ⟨m₀, hm₀⟩
   rw [← hm₀, map_smul_eq α φ 1 m f.op 1 (by simp) m₀ hm₀, one_smul]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s10.3cf1db9e3a4a from=seed src=0 shape=3c15ed8a vocab=d6e685da
+-/
 protected lemma zero_smul : smul α φ 0 m = 0 := by
   apply A.isSeparated _ _ (Presheaf.imageSieve_mem J φ m)
   rintro Y f ⟨m₀, hm₀⟩
@@ -241,6 +256,9 @@ protected lemma zero_smul : smul α φ 0 m = 0 := by
     (A.obj.map f.op).hom.map_zero]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s10.842e956dbc1c from=seed src=0 shape=8fcc1a44 vocab=d6e685da
+-/
 protected lemma smul_zero : smul α φ r 0 = 0 := by
   apply A.isSeparated _ _ (Presheaf.imageSieve_mem J α r)
   rintro Y f ⟨r₀, hr₀⟩
@@ -248,6 +266,9 @@ protected lemma smul_zero : smul α φ r 0 = 0 := by
     smul_zero, map_zero]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h12v.s10.9fc845e5314a from=seed src=0 shape=7a37abe6 vocab=7669e8ae
+-/
 protected lemma smul_add : smul α φ r (m + m') = smul α φ r m + smul α φ r m' := by
   let S := Presheaf.imageSieve α r ⊓ Presheaf.imageSieve φ m ⊓ Presheaf.imageSieve φ m'
   have hS : S ∈ J X.unop := by
@@ -263,6 +284,9 @@ protected lemma smul_add : smul α φ r (m + m') = smul α φ r m + smul α φ r
     smul_add, _root_.map_add]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h12v.s10.6a92e5c3dd80 from=seed src=0 shape=d5607348 vocab=7669e8ae
+-/
 protected lemma add_smul : smul α φ (r + r') m = smul α φ r m + smul α φ r' m := by
   let S := Presheaf.imageSieve α r ⊓ Presheaf.imageSieve α r' ⊓ Presheaf.imageSieve φ m
   have hS : S ∈ J X.unop := by
@@ -276,6 +300,9 @@ protected lemma add_smul : smul α φ (r + r') m = smul α φ r m + smul α φ r
     map_smul_eq α φ (r + r') m f.op (r₀ + r₀') (by rw [_root_.map_add, _root_.map_add, hr₀, hr₀'])
       m₀ hm₀, add_smul, _root_.map_add]
 
+/--
+@isnad1 id=eq.0h12v.s10.22ab73a731dc from=seed src=0 shape=5fa8bb43 vocab=3f423f5a
+-/
 protected lemma mul_smul : smul α φ (r * r') m = smul α φ r (smul α φ r' m) := by
   let S := Presheaf.imageSieve α r ⊓ Presheaf.imageSieve α r' ⊓ Presheaf.imageSieve φ m
   have hS : S ∈ J X.unop := by
@@ -304,6 +331,9 @@ noncomputable def module : Module (R.obj.obj X) (A.obj.obj X) where
   add_smul := Sheafify.add_smul α φ
   mul_smul := Sheafify.mul_smul α φ
 
+/--
+@isnad1 id=eq.0h13v.s11.c341f36db7be from=seed src=0 shape=8045bb57 vocab=6f4d09e0
+-/
 protected lemma map_smul :
     A.obj.map π (smul α φ r m) = smul α φ (R.obj.map π r) (A.obj.map π m) := by
   let S := Presheaf.imageSieve α (R.obj.map π r) ⊓ Presheaf.imageSieve φ (A.obj.map π m)
@@ -336,16 +366,24 @@ noncomputable def toSheafify : M₀ ⟶ (restrictScalars α).obj (sheafify α φ
     simpa using! (Sheafify.map_smul_eq α φ (α.app _ r₀) (φ.app _ m₀) (𝟙 _)
       r₀ (by simp) m₀ (by simp)).symm)
 
+/--
+@isnad1 id=eq.0h10v.s11.4d0e34642754 from=seed src=0 shape=2f470510 vocab=3d012972
+-/
 lemma toSheafify_app_apply (X : Cᵒᵖ) (x : M₀.obj X) :
     ((toSheafify α φ).app X).hom x = φ.app X x := rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- `@[simp]`-normal form of `toSheafify_app_apply`. -/
+/-- `@[simp]`-normal form of `toSheafify_app_apply`.
+@isnad1 id=eq.0h10v.s12.a980a2708da2 from=seed src=0 shape=a8ebb944 vocab=29400cb9
+-/
 @[simp]
 lemma toSheafify_app_apply' (X : Cᵒᵖ) (x : M₀.obj X) :
     DFunLike.coe (F := (_ →ₗ[_] ↑((ModuleCat.restrictScalars (α.app X).hom).obj _)))
     ((toSheafify α φ).app X).hom x = φ.app X x := rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.90dbbe9c286a from=seed src=0 shape=c4829908 vocab=a7e026a5
+-/
 @[simp]
 lemma toPresheaf_map_toSheafify : (toPresheaf R₀).map (toSheafify α φ) = φ := rfl
 
@@ -369,6 +407,9 @@ noncomputable def sheafifyHomEquiv' {F : PresheafOfModules.{v} R.obj}
     (homEquivOfIsLocallyBijective (f := toSheafify α φ)
       (N := (restrictScalars α).obj F) hF)
 
+/--
+@isnad1 id=eq.1h10v.s11.9cbf0bf93315 from=seed src=0 shape=e6bcbbbd vocab=bed27855
+-/
 lemma comp_toPresheaf_map_sheafifyHomEquiv'_symm_hom {F : PresheafOfModules.{v} R.obj}
     (hF : Presheaf.IsSheaf J F.presheaf) (f : M₀ ⟶ (restrictScalars α).obj F) :
     φ ≫ (toPresheaf R.obj).map ((sheafifyHomEquiv' α φ hF).symm f) = (toPresheaf R₀).map f :=

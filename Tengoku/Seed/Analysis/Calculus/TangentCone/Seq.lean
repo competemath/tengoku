@@ -35,7 +35,9 @@ if and only if there exist sequences `c n` and `d n` such that
 - `c n • d n` tends to `y` as `n → ∞`.
 
 See `mem_tangentConeAt_of_seq` and `exists_fun_of_mem_tangentConeAt`
-for versions of two implications of this theorem that don't assume first countable topology. -/
+for versions of two implications of this theorem that don't assume first countable topology.
+@isnad1 id=iff.0h5v.s7.dc35b16f5559 from=seed src=0 shape=fa2c01c3 vocab=1283d62c
+-/
 theorem mem_tangentConeAt_iff_exists_seq {R E : Type*} [AddCommGroup E] [SMul R E]
     [TopologicalSpace E] [FirstCountableTopology E] {s : Set E} {x y : E} :
     y ∈ tangentConeAt R s x ↔ ∃ (c : ℕ → R) (d : ℕ → E), Tendsto d atTop (𝓝 0) ∧
@@ -55,7 +57,9 @@ variable {𝕜 E : Type*} [NormedDivisionRing 𝕜] [AddCommGroup E] [Module �
   [TopologicalSpace E] [ContinuousSMul 𝕜 E] {s : Set E} {x y : E} {r : 𝕜}
 
 /-- Auxiliary lemma ensuring that, under the assumptions from an old definition of the tangent cone,
-the sequence `d` tends to 0 at infinity. -/
+the sequence `d` tends to 0 at infinity.
+@isnad1 id=tendsto.2h7v.s7.a3fabe179d52 from=seed src=0 shape=4cc4512f vocab=f61284ad
+-/
 theorem tangentConeAt.lim_zero {α : Type*} (l : Filter α) {c : α → 𝕜} {d : α → E} {y : E}
     (hc : Tendsto (fun n => ‖c n‖) l atTop) (hd : Tendsto (fun n => c n • d n) l (𝓝 y)) :
     Tendsto d l (𝓝 0) := by
@@ -64,6 +68,9 @@ theorem tangentConeAt.lim_zero {α : Type*} (l : Filter α) {c : α → 𝕜} {d
   rw [tendsto_norm_atTop_iff_cobounded] at hc
   simpa using Tendsto.congr' this <| (tendsto_inv₀_cobounded.comp hc).smul hd
 
+/--
+@isnad1 id=mem.3h6v.s8.2f527bec085f from=seed src=0 shape=6690e36f vocab=236172bc
+-/
 theorem mem_tangentConeAt_of_pow_smul (hr₀ : r ≠ 0) (hr : ‖r‖ < 1)
     (hs : ∀ᶠ n : ℕ in atTop, x + r ^ n • y ∈ s) :
     y ∈ tangentConeAt 𝕜 s x := by
@@ -86,6 +93,7 @@ the right-hand side of this equivalence was the definition of the tangent cone.
 
 In most cases, `exists_fun_of_mem_tangentConeAt` and/or `mem_tangentConeAt_of_seq`
 can be used to generalize a proof using this lemma to topological vector spaces.
+@isnad1 id=iff.0h5v.s8.6e2649171ca4 from=seed src=0 shape=f6681a12 vocab=656b142b
 -/
 theorem mem_tangentConeAt_iff_exists_seq_norm_tendsto_atTop {𝕜 E : Type*}
     [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedSpace 𝕜 E]

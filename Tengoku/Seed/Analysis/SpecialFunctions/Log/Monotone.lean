@@ -31,16 +31,25 @@ noncomputable section
 
 namespace Real
 
+/--
+@isnad1 id=strictmo.0h0v.s4.992a7e78e36c from=seed src=0 shape=d6cc803e vocab=cb2581a4
+-/
 theorem mul_log_strictMonoOn : StrictMonoOn (fun x ↦ x * log x) <| .Ici <| exp (-1) := by
   refine strictMonoOn_of_deriv_pos (convex_Ici _) continuous_mul_log.continuousOn fun x hx ↦ ?_
   have hlt : rexp (-1) < x := by simpa using hx
   have hpos : 0 < x := by grind [Real.exp_pos]
   grind [deriv_mul_log, Real.lt_log_iff_exp_lt hpos |>.mpr hlt]
 
+/--
+@isnad1 id=monotone.0h0v.s4.f1e3ddad8a74 from=seed src=0 shape=bbe91b17 vocab=3b0ddaf0
+-/
 @[deprecated Real.mul_log_strictMonoOn (since := "2026-04-07")]
 theorem log_mul_self_monotoneOn : MonotoneOn (fun x : ℝ => log x * x) { x | 1 ≤ x } := by
   grind [mul_log_strictMonoOn.monotoneOn, MonotoneOn.mono, show exp (-1) < 1 by norm_num]
 
+/--
+@isnad1 id=strictan.0h0v.s5.18413494ff2e from=seed src=0 shape=2ce3c558 vocab=527b5c95
+-/
 theorem mul_log_strictAntiOn :
     StrictAntiOn (fun x : ℝ ↦ x * log x) <| .Icc 0 (exp (-1)) := by
   refine strictAntiOn_of_deriv_neg (convex_Icc ..) continuous_mul_log.continuousOn fun x hx ↦ ?_
@@ -48,6 +57,9 @@ theorem mul_log_strictAntiOn :
   have hpos : 0 < x := by simp_all [interior_Icc, mem_Ioo]
   grind [deriv_mul_log, Real.log_lt_iff_lt_exp hpos |>.mpr hgt]
 
+/--
+@isnad1 id=antitone.0h0v.s4.344fcae53f84 from=seed src=0 shape=35be8e3d vocab=f671537c
+-/
 theorem log_div_self_antitoneOn : AntitoneOn (fun x : ℝ ↦ log x / x) <| .Ici (exp 1) := by
   intro x hex y hey hxy
   have x_pos : 0 < x := (exp_pos 1).trans_le hex
@@ -61,6 +73,9 @@ theorem log_div_self_antitoneOn : AntitoneOn (fun x : ℝ ↦ log x / x) <| .Ici
     _ ≤ log x * (y / x - 1) := le_mul_of_one_le_left hyx hlogx
     _ = log x / x * y - log x := by ring
 
+/--
+@isnad1 id=antitone.1h1v.s5.2129e444b217 from=seed src=0 shape=79356849 vocab=992e6eb2
+-/
 theorem log_div_self_rpow_antitoneOn {a : ℝ} (ha : 0 < a) :
     AntitoneOn (fun x : ℝ ↦ log x / x ^ a) <| .Ici (exp a⁻¹) := by
   intro x hex y _ hxy
@@ -79,6 +94,9 @@ theorem log_div_self_rpow_antitoneOn {a : ℝ} (ha : 0 < a) :
   refine log_div_self_antitoneOn (hbound hex) (hbound (hex.trans hxy)) ?_
   gcongr
 
+/--
+@isnad1 id=antitone.0h0v.s5.e45b249bf419 from=seed src=0 shape=63be62f6 vocab=f7b45f55
+-/
 theorem log_div_sqrt_antitoneOn : AntitoneOn (fun x : ℝ ↦ log x / √x) <| .Ici (exp 2) := by
   simp_rw [sqrt_eq_rpow]
   convert! log_div_self_rpow_antitoneOn one_half_pos

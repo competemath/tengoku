@@ -49,23 +49,35 @@ def eqToHomTransIso {x y z : B} (e₁ : x = y) (e₂ : y = z) :
     eqToHom (e₁.trans e₂) ≅ eqToHom e₁ ≫ eqToHom e₂ :=
   e₂ ▸ e₁ ▸ (λ_ (𝟙 x)).symm
 
+/--
+@isnad1 id=eq.0h2v.s6.f64e30c61978 from=seed src=0 shape=5116e0f9 vocab=e6cef68d
+-/
 @[simp]
 lemma eqToHomTransIso_refl_refl (x : B) :
     eqToHomTransIso (rfl : x = x) rfl = (λ_ (𝟙 x)).symm :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.085bb9dd34aa from=seed src=0 shape=263d8dfb vocab=8602bad6
+-/
 lemma eqToHomTransIso_refl_right {x y : B} (e₁ : x = y) :
     eqToHomTransIso e₁ rfl = (ρ_ (eqToHom e₁)).symm := by
   ext
   subst e₁
   simp
 
+/--
+@isnad1 id=eq.1h3v.s7.3d3049f0b985 from=seed src=0 shape=cffd836f vocab=e6cef68d
+-/
 lemma eqToHomTransIso_refl_left {x y : B} (e₁ : x = y) :
     eqToHomTransIso rfl e₁ = (λ_ (eqToHom e₁)).symm := by
   ext
   subst e₁
   simp
 
+/--
+@isnad1 id=eq.3h5v.s9.9289ca9ddee5 from=seed src=0 shape=3c43107b vocab=c112b429
+-/
 @[reassoc]
 lemma associator_eqToHom_hom {x y z t : B}
     (e₁ : x = y) (e₂ : y = z) (e₃ : z = t) :
@@ -77,6 +89,9 @@ lemma associator_eqToHom_hom {x y z t : B}
   subst_vars
   simp
 
+/--
+@isnad1 id=eq.3h5v.s9.1dad72eb864b from=seed src=0 shape=e151c583 vocab=c112b429
+-/
 @[reassoc]
 lemma associator_eqToHom_inv {x y z t : B}
     (e₁ : x = y) (e₂ : y = z) (e₃ : z = t) :
@@ -88,6 +103,9 @@ lemma associator_eqToHom_inv {x y z t : B}
   subst_vars
   simp
 
+/--
+@isnad1 id=eq.3h11v.s9.96eea71cb0a9 from=seed src=0 shape=00402a79 vocab=6175a9ea
+-/
 lemma associator_hom_congr {x y z t : B} {f f' : x ⟶ y} {g g' : y ⟶ z}
     {h h' : z ⟶ t} (ef : f = f') (eg : g = g') (eh : h = h') :
     (α_ f g h).hom =
@@ -95,6 +113,9 @@ lemma associator_hom_congr {x y z t : B} {f f' : x ⟶ y} {g g' : y ⟶ z}
   subst_vars
   simp
 
+/--
+@isnad1 id=eq.3h11v.s9.9c80b53005bb from=seed src=0 shape=ae168b63 vocab=d83ead84
+-/
 lemma associator_inv_congr {x y z t : B} {f f' : x ⟶ y} {g g' : y ⟶ z}
     {h h' : z ⟶ t} (ef : f = f') (eg : g = g') (eh : h = h') :
     (α_ f g h).inv =
@@ -102,33 +123,51 @@ lemma associator_inv_congr {x y z t : B} {f f' : x ⟶ y} {g g' : y ⟶ z}
   subst_vars
   simp
 
+/--
+@isnad1 id=eq.1h9v.s8.654701c8a886 from=seed src=0 shape=1d669198 vocab=106a70bb
+-/
 lemma congr_whiskerLeft {x y : B} {f f' : x ⟶ y} (h : f = f') {z : B}
     {g g' : y ⟶ z} (η : g ⟶ g') :
       f ◁ η = eqToHom (by rw [h]) ≫ f' ◁ η ≫ eqToHom (by rw [h]) := by
   subst h
   simp
 
+/--
+@isnad1 id=eq.1h9v.s8.27a3d5d382ae from=seed src=0 shape=b99502e2 vocab=32237e56
+-/
 lemma whiskerRight_congr {y z : B} {g g' : y ⟶ z} (h : g = g') {x : B}
     {f f' : x ⟶ y} (η : f ⟶ f') :
       η ▷ g = eqToHom (by rw [h]) ≫ η ▷ g' ≫ eqToHom (by rw [h]) := by
   subst h
   simp
 
+/--
+@isnad1 id=eq.1h5v.s8.03bd3c14ba4b from=seed src=0 shape=1a117b73 vocab=fc2d2b4b
+-/
 lemma leftUnitor_hom_congr {x y : B} {f f' : x ⟶ y} (h : f = f') :
     (λ_ f).hom = 𝟙 _ ◁ (eqToHom h) ≫ (λ_ f').hom ≫ eqToHom h.symm := by
   subst h
   simp
 
+/--
+@isnad1 id=eq.1h5v.s8.58f968162538 from=seed src=0 shape=3f37e8e3 vocab=932c43fb
+-/
 lemma leftUnitor_inv_congr {x y : B} {f f' : x ⟶ y} (h : f = f') :
     (λ_ f).inv = (eqToHom h) ≫ (λ_ f').inv ≫ 𝟙 _ ◁ eqToHom h.symm := by
   subst h
   simp
 
+/--
+@isnad1 id=eq.1h5v.s8.e32bc883df62 from=seed src=0 shape=f42f8c75 vocab=2c9fef50
+-/
 lemma rightUnitor_hom_congr {x y : B} {f f' : x ⟶ y} (h : f = f') :
     (ρ_ f).hom = (eqToHom h) ▷ 𝟙 _ ≫ (ρ_ f').hom ≫ eqToHom h.symm := by
   subst h
   simp
 
+/--
+@isnad1 id=eq.1h5v.s8.09e4086d4b74 from=seed src=0 shape=f0eeaa65 vocab=d4e26297
+-/
 lemma rightUnitor_inv_congr {x y : B} {f f' : x ⟶ y} (h : f = f') :
     (ρ_ f).inv = (eqToHom h) ≫ (ρ_ f').inv ≫ eqToHom h.symm ▷ 𝟙 _ := by
   subst h

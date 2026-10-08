@@ -73,9 +73,15 @@ def e :=
 instance : Epi A.e :=
   A.2.2
 
+/--
+@isnad1 id=eq.0h2v.s8.8e3b93215b4e from=seed src=0 shape=8f443c47 vocab=dccfa207
+-/
 theorem ext' : A = ⟨A.1, ⟨A.e, A.2.2⟩⟩ := rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.2h3v.s8.2d719f872b86 from=seed src=0 shape=ced14e4d vocab=3eedb251
+-/
 theorem ext (A₁ A₂ : IndexSet Δ) (h₁ : A₁.1 = A₂.1) (h₂ : A₁.e ≫ eqToHom (by rw [h₁]) = A₂.e) :
     A₁ = A₂ := by
   rcases A₁ with ⟨Δ₁, ⟨α₁, hα₁⟩⟩
@@ -122,6 +128,9 @@ def EqId : Prop :=
   A = id _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h2v.s5.253f6dc3b975 from=seed src=0 shape=04cbe4ce vocab=ccaaee64
+-/
 theorem eqId_iff_eq : A.EqId ↔ A.1 = Δ := by
   constructor
   · intro h
@@ -136,6 +145,9 @@ theorem eqId_iff_eq : A.EqId ↔ A.1 = Δ := by
     simp only [eqToHom_refl, comp_id]
     exact eq_id_of_epi f
 
+/--
+@isnad1 id=iff.0h2v.s6.66b6a20b57f4 from=seed src=0 shape=738dbdd0 vocab=cbe32e23
+-/
 theorem eqId_iff_len_eq : A.EqId ↔ A.1.unop.len = Δ.unop.len := by
   rw [eqId_iff_eq]
   constructor
@@ -146,6 +158,9 @@ theorem eqId_iff_len_eq : A.EqId ↔ A.1.unop.len = Δ.unop.len := by
     ext
     exact h
 
+/--
+@isnad1 id=iff.0h2v.s6.d5a353adb5b0 from=seed src=0 shape=cd0ee716 vocab=830da922
+-/
 theorem eqId_iff_len_le : A.EqId ↔ Δ.unop.len ≤ A.1.unop.len := by
   rw [eqId_iff_len_eq]
   constructor
@@ -153,6 +168,9 @@ theorem eqId_iff_len_le : A.EqId ↔ Δ.unop.len ≤ A.1.unop.len := by
     rw [h]
   · exact le_antisymm (len_le_of_epi A.e)
 
+/--
+@isnad1 id=iff.0h2v.s6.4c6beed66d7b from=seed src=0 shape=a03d24f6 vocab=40c543c5
+-/
 theorem eqId_iff_mono : A.EqId ↔ Mono A.e := by
   constructor
   · intro h
@@ -184,6 +202,9 @@ def pull : IndexSet Δ' :=
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s8.91759f2cdfa0 from=seed src=0 shape=36ee65af vocab=df9c6d2c
+-/
 @[reassoc]
 theorem fac_pull : (A.pull θ).e ≫ image.ι (θ.unop ≫ A.e) = θ.unop ≫ A.e :=
   image.fac _
@@ -233,11 +254,17 @@ def cofan (Δ : SimplexCategoryᵒᵖ) : Cofan (summand s.N Δ) :=
 /-- The cofan `s.cofan Δ` is colimit. -/
 def isColimit (Δ : SimplexCategoryᵒᵖ) : IsColimit (s.cofan Δ) := s.isColimit' Δ
 
+/--
+@isnad1 id=eq.0h5v.s8.57ccecc3d962 from=seed src=0 shape=1d1aa809 vocab=93df4e93
+-/
 @[reassoc]
 theorem cofan_inj_eq {Δ : SimplexCategoryᵒᵖ} (A : IndexSet Δ) :
     (s.cofan Δ).inj A = s.ι A.1.unop.len ≫ X.map A.e.op := rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s6.a8a20b03d9e1 from=seed src=0 shape=deb5f868 vocab=bef088cf
+-/
 theorem cofan_inj_id (n : ℕ) : (s.cofan _).inj (IndexSet.id (op ⦋n⦌)) = s.ι n := by
   simp [IndexSet.id, IndexSet.e, cofan_inj_eq]
 
@@ -249,17 +276,26 @@ def φ (f : X ⟶ Y) (n : ℕ) : s.N n ⟶ Y _⦋n⦌ :=
   s.ι n ≫ f.app (op ⦋n⦌)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s8.b188e4336f7b from=seed src=0 shape=dadf5eed vocab=d2f037e0
+-/
 @[reassoc (attr := simp)]
 theorem cofan_inj_comp_app (f : X ⟶ Y) {Δ : SimplexCategoryᵒᵖ} (A : IndexSet Δ) :
     (s.cofan Δ).inj A ≫ f.app Δ = s.φ f A.1.unop.len ≫ Y.map A.e.op := by
   simp only [cofan_inj_eq_assoc, φ, assoc]
   rw [NatTrans.naturality]
 
+/--
+@isnad1 id=eq.1h7v.s7.7656a140f879 from=seed src=0 shape=5f93bcb9 vocab=8ea94536
+-/
 theorem hom_ext' {Z : C} {Δ : SimplexCategoryᵒᵖ} (f g : X.obj Δ ⟶ Z)
     (h : ∀ A : IndexSet Δ, (s.cofan Δ).inj A ≫ f = (s.cofan Δ).inj A ≫ g) : f = g :=
   Cofan.IsColimit.hom_ext (s.isColimit Δ) _ _ h
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s7.2f1b21c65daa from=seed src=0 shape=59d1421b vocab=e180cbfc
+-/
 theorem hom_ext (f g : X ⟶ Y) (h : ∀ n : ℕ, s.φ f n = s.φ g n) : f = g := by
   ext ⟨Δ⟩
   apply s.hom_ext'
@@ -274,6 +310,9 @@ def desc {Z : C} (Δ : SimplexCategoryᵒᵖ) (F : ∀ A : IndexSet Δ, s.N A.1.
     X.obj Δ ⟶ Z :=
   Cofan.IsColimit.desc (s.isColimit Δ) F
 
+/--
+@isnad1 id=eq.0h7v.s7.8224ca5e2e40 from=seed src=0 shape=b094a0c8 vocab=82a1b856
+-/
 @[reassoc (attr := simp)]
 theorem ι_desc {Z : C} (Δ : SimplexCategoryᵒᵖ) (F : ∀ A : IndexSet Δ, s.N A.1.unop.len ⟶ Z)
     (A : IndexSet Δ) : (s.cofan Δ).inj A ≫ s.desc Δ F = F A := by
@@ -291,6 +330,9 @@ def ofIso (e : X ≅ Y) : Splitting Y where
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s7.78a19ff37c1e from=seed src=0 shape=f3367c83 vocab=0dfb47ad
+-/
 @[reassoc]
 theorem cofan_inj_epi_naturality {Δ₁ Δ₂ : SimplexCategoryᵒᵖ} (A : IndexSet Δ₁) (p : Δ₁ ⟶ Δ₂)
     [Epi p.unop] : (s.cofan Δ₁).inj A ≫ X.map p = (s.cofan Δ₂).inj (A.epiComp p) := by
@@ -343,6 +385,9 @@ structure Hom (S₁ S₂ : Split C) where
   f : ∀ n : ℕ, S₁.s.N n ⟶ S₂.s.N n
   comm : ∀ n : ℕ, S₁.s.ι n ≫ F.app (op ⦋n⦌) = f n ≫ S₂.s.ι n := by cat_disch
 
+/--
+@isnad1 id=eq.1h5v.s6.1c37c6db013c from=seed src=0 shape=0286b6bd vocab=c12cfed9
+-/
 @[ext]
 theorem Hom.ext {S₁ S₂ : Split C} (Φ₁ Φ₂ : Hom S₁ S₂) (h : ∀ n : ℕ, Φ₁.f n = Φ₂.f n) : Φ₁ = Φ₂ := by
   rcases Φ₁ with ⟨F₁, f₁, c₁⟩
@@ -377,28 +422,49 @@ variable {C}
 
 namespace Split
 
+/--
+@isnad1 id=eq.1h5v.s6.3f4343af7103 from=seed src=0 shape=aa34938d vocab=86e8f343
+-/
 @[ext]
 theorem hom_ext {S₁ S₂ : Split C} (Φ₁ Φ₂ : S₁ ⟶ S₂) (h : ∀ n : ℕ, Φ₁.f n = Φ₂.f n) : Φ₁ = Φ₂ :=
   Hom.ext _ _ h
 
+/--
+@isnad1 id=eq.1h5v.s6.d1515e8b4c76 from=seed src=0 shape=355098d8 vocab=86e8f343
+-/
 theorem congr_F {S₁ S₂ : Split C} {Φ₁ Φ₂ : S₁ ⟶ S₂} (h : Φ₁ = Φ₂) : Φ₁.f = Φ₂.f := by rw [h]
 
+/--
+@isnad1 id=eq.1h6v.s6.cd0f8a42c8da from=seed src=0 shape=f5254261 vocab=86e8f343
+-/
 theorem congr_f {S₁ S₂ : Split C} {Φ₁ Φ₂ : S₁ ⟶ S₂} (h : Φ₁ = Φ₂) (n : ℕ) : Φ₁.f n = Φ₂.f n := by
   rw [h]
 
+/--
+@isnad1 id=eq.0h2v.s6.e86b160fb8c8 from=seed src=0 shape=c66ef0af vocab=de50a5bd
+-/
 @[simp]
 theorem id_F (S : Split C) : (𝟙 S : S ⟶ S).F = 𝟙 S.X :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.719d88495668 from=seed src=0 shape=0221f191 vocab=1351b262
+-/
 @[simp]
 theorem id_f (S : Split C) (n : ℕ) : (𝟙 S : S ⟶ S).f n = 𝟙 (S.s.N n) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.57ba6607f522 from=seed src=0 shape=077e35d6 vocab=b75df907
+-/
 @[simp]
 theorem comp_F {S₁ S₂ S₃ : Split C} (Φ₁₂ : S₁ ⟶ S₂) (Φ₂₃ : S₂ ⟶ S₃) :
     (Φ₁₂ ≫ Φ₂₃).F = Φ₁₂.F ≫ Φ₂₃.F :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.74b964bed459 from=seed src=0 shape=7ddb46a8 vocab=ef4c114d
+-/
 @[simp]
 theorem comp_f {S₁ S₂ S₃ : Split C} (Φ₁₂ : S₁ ⟶ S₂) (Φ₂₃ : S₂ ⟶ S₃) (n : ℕ) :
     (Φ₁₂ ≫ Φ₂₃).f n = Φ₁₂.f n ≫ Φ₂₃.f n :=
@@ -406,6 +472,9 @@ theorem comp_f {S₁ S₂ S₃ : Split C} (Φ₁₂ : S₁ ⟶ S₂) (Φ₂₃ :
 
 set_option backward.isDefEq.respectTransparency false in
 -- This is not a `@[simp]` lemma as it can later be proved by `simp`.
+/--
+@isnad1 id=eq.0h6v.s8.4ddedd617f1a from=seed src=0 shape=3d3eeb8d vocab=852621a3
+-/
 @[reassoc]
 theorem cofan_inj_naturality_symm {S₁ S₂ : Split C} (Φ : S₁ ⟶ S₂) {Δ : SimplexCategoryᵒᵖ}
     (A : Splitting.IndexSet Δ) :

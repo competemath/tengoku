@@ -24,7 +24,9 @@ open Set Metric CStarAlgebra Unitization
 variable {A : Type*} [NonUnitalCStarAlgebra A]
 
 /-- The star projections in a non-unital C⋆-algebra are exactly the extreme points of
-the nonnegative closed unit ball. -/
+the nonnegative closed unit ball.
+@isnad1 id=iff.0h2v.s8.cf34cc928e1a from=seed src=0 shape=c003f224 vocab=ac1a2e22
+-/
 theorem isStarProjection_iff_mem_extremePoints_setOfPred_nonneg_inter_unitClosedBall
     [PartialOrder A] [StarOrderedRing A] {e : A} :
     IsStarProjection e ↔ e ∈ extremePoints ℝ ({x : A | 0 ≤ x} ∩ closedBall 0 1) := by
@@ -85,6 +87,9 @@ theorem isStarProjection_iff_mem_extremePoints_setOfPred_nonneg_inter_unitClosed
       calc 0 ≤ star (1 - e : A⁺¹) * (1 - e) := star_mul_self_nonneg _
         _ = _ := by simp [LE.le.star_eq, h1, mul_sub, sub_mul, two_smul, sub_sub, add_sub]
 
+/--
+@isnad1 id=iff.0h2v.s8.cf34cc928e1a from=seed src=0 shape=c003f224 vocab=ac1a2e22
+-/
 @[deprecated (since := "2026-07-09")]
 alias isStarProjection_iff_mem_extremePoints_setOf_nonneg_inter_unitClosedBall :=
   isStarProjection_iff_mem_extremePoints_setOfPred_nonneg_inter_unitClosedBall

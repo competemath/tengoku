@@ -63,6 +63,9 @@ noncomputable abbrev quotient : C ⥤ C := cokernel Φ.ι
 noncomputable def π : 𝟭 C ⟶ Φ.quotient := cokernel.π Φ.ι
   deriving Epi
 
+/--
+@isnad1 id=eq.0h2v.s7.8a05e6efa68c from=seed src=0 shape=602883de vocab=3e8b78d8
+-/
 @[reassoc (attr := simp)]
 lemma ι_π : Φ.ι ≫ Φ.π = 0 := cokernel.condition _
 
@@ -82,6 +85,9 @@ set_option backward.defeqAttrib.useBackward true in
 instance : Mono Φ.shortComplex.f := by dsimp; infer_instance
 instance : Epi Φ.shortComplex.g := by dsimp; infer_instance
 
+/--
+@isnad1 id=shortexa.0h2v.s5.9f4a7d298b97 from=seed src=0 shape=69c9f6cc vocab=9c6a6cf3
+-/
 lemma shortExact_shortComplex : Φ.shortComplex.ShortExact where
   exact := ShortComplex.exact_of_g_is_cokernel _ (cokernelIsCokernel _)
 
@@ -90,6 +96,9 @@ of the canonical projection `Φ.π : 𝟭 C ⟶ Φ.quotient`. -/
 noncomputable def isLimitKernelFork : IsLimit (KernelFork.ofι _ Φ.ι_π) :=
   Φ.shortExact_shortComplex.fIsKernel
 
+/--
+@isnad1 id=eq.0h3v.s7.7b4bdb467edf from=seed src=0 shape=34a67298 vocab=48526c1a
+-/
 @[reassoc (attr := simp)]
 lemma ι_π_app (X : C) : Φ.ι.app X ≫ Φ.π.app X = 0 := by
   simp [← NatTrans.comp_app]
@@ -105,6 +114,9 @@ instance (X : C) : Mono (Φ.shortComplexObj X).f := by dsimp; infer_instance
 
 instance (X : C) : Epi (Φ.shortComplexObj X).g := by dsimp; infer_instance
 
+/--
+@isnad1 id=shortexa.0h3v.s4.5f9651409e1d from=seed src=0 shape=11552525 vocab=d9d3128f
+-/
 lemma shortExact_shortComplexObj (X : C) : (Φ.shortComplexObj X).ShortExact where
   exact :=
     (ShortComplex.ShortExact.map_of_exact Φ.shortExact_shortComplex ((evaluation C C).obj X)).exact
@@ -136,16 +148,25 @@ instance : Epi (colonπ Φ Ψ) := by dsimp [colonπ]; infer_instance
 
 instance (X : C) : Epi ((colonπ Φ Ψ).app X) := instEpiAppOfFunctor (Φ.colonπ Ψ) X
 
+/--
+@isnad1 id=ispullba.0h3v.s7.66b71891725b from=seed src=0 shape=6c4baf0a vocab=dbbe131c
+-/
 lemma isPullback_colon :
     IsPullback (colon Φ Ψ).ι (colonπ Φ Ψ) Φ.π
       (whiskerLeft Φ.quotient Ψ.ι ≫ (rightUnitor _).hom) :=
   .of_hasPullback _ _
 
+/--
+@isnad1 id=ispullba.0h4v.s7.708a227ca81d from=seed src=0 shape=32d2cb55 vocab=c50997c3
+-/
 lemma isPullback_colon_obj (Φ Ψ : Preradical C) (X : C) :
     IsPullback ((Φ.colon Ψ).ι.app X) ((Φ.colonπ Ψ).app X)
       (Φ.π.app X) (Ψ.ι.app (Φ.quotient.obj X)) := by
   simpa using (isPullback_colon Φ Ψ).map ((evaluation _ _).obj X)
 
+/--
+@isnad1 id=eq.0h4v.s8.e6366de8932e from=seed src=0 shape=eb50f92e vocab=a8acf3dd
+-/
 @[reassoc]
 lemma colon_ι_app_π_app (Φ Ψ : Preradical C) (X : C) :
     (Φ.colon Ψ).ι.app X ≫ Φ.π.app X = (Φ.colonπ Ψ).app X ≫ Ψ.ι.app (Φ.quotient.obj X) :=
@@ -156,23 +177,34 @@ via `Φ.ι : Φ.r X ⟶ 𝟭 C` and the zero morphism `Φ.r ⟶  Φ.quotient ⋙
 noncomputable def toColon : Φ ⟶ Φ.colon Ψ :=
   MonoOver.homMk ((isPullback_colon Φ Ψ).lift Φ.ι 0 (by simp))
 
+/--
+@isnad1 id=eq.0h3v.s9.13748f7a305a from=seed src=0 shape=534140f3 vocab=3745fa59
+-/
 @[reassoc (attr := simp)]
 lemma toColon_hom_left_colonπ :
     (toColon Φ Ψ).hom.left ≫ colonπ Φ Ψ = 0 := by
   simp [toColon]
 
+/--
+@isnad1 id=eq.0h4v.s9.17df2183a770 from=seed src=0 shape=f306d69e vocab=a1cf3de1
+-/
 @[reassoc (attr := simp)]
 lemma toColon_hom_left_app_colonπ_app (X : C) :
     (toColon Φ Ψ).hom.left.app X ≫ (colonπ Φ Ψ).app X = 0 :=
   NatTrans.congr_app (toColon_hom_left_colonπ Φ Ψ) X
 
+/--
+@isnad1 id=eq.0h4v.s9.bd23d1db34f4 from=seed src=0 shape=c46201bd vocab=85642285
+-/
 @[reassoc (attr := simp)]
 lemma toColon_hom_left_app_colon_ι_app (X : C) :
     (Φ.toColon Ψ).hom.left.app X ≫ (Φ.colon Ψ).ι.app X = Φ.ι.app X := by
   rw [← NatTrans.comp_app, Over.w]
 
 /-- For `X : C`, the morphism `(toColon Φ Ψ)` is an isomorphism if and only if
-`(Ψ.r.obj (Φ.quotient.obj X))` is the zero object. -/
+`(Ψ.r.obj (Φ.quotient.obj X))` is the zero object.
+@isnad1 id=iff.0h4v.s9.4acbee960b98 from=seed src=0 shape=dce4fcbf vocab=f048a60c
+-/
 theorem isIso_toColon_hom_left_app_iff {Φ Ψ : Preradical C} {X : C} :
     IsIso ((toColon Φ Ψ).hom.left.app X) ↔ IsZero (Ψ.r.obj (Φ.quotient.obj X)) := by
   constructor <;> intro h
@@ -187,7 +219,9 @@ theorem isIso_toColon_hom_left_app_iff {Φ Ψ : Preradical C} {X : C} :
     · simp [← cancel_mono ((Φ.colon Ψ).ι.app X), hinv]
 
 /-- The morphism `(toColon Φ Ψ)` is an isomorphism if and only if `Φ.quotient ⋙ Ψ.r` is the zero
-object. -/
+object.
+@isnad1 id=iff.0h3v.s6.d5ca7310c2ec from=seed src=0 shape=3b1e18e9 vocab=7aff0dc4
+-/
 theorem isIso_toColon_iff {Φ Ψ : Preradical C} :
     IsIso (toColon Φ Ψ) ↔ IsZero (Φ.quotient ⋙ Ψ.r) := by
   simpa [MonoOver.isIso_iff_isIso_hom_left, isZero_iff (Φ.quotient ⋙ Ψ.r),

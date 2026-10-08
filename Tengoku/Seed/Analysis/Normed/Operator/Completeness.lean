@@ -68,7 +68,9 @@ def ofTendstoOfBoundedRange {α : Type*} {l : Filter α} [l.NeBot] (f : E' → F
 
 /-- If a Cauchy sequence of continuous linear map converges to a continuous linear map pointwise,
 then it converges to the same map in norm. This lemma is used to prove that the space of continuous
-linear maps is complete provided that the codomain is a complete space. -/
+linear maps is complete provided that the codomain is a complete space.
+@isnad1 id=tendsto.2h7v.s9.9e3f46dad217 from=seed src=0 shape=ba435509 vocab=e5d51cab
+-/
 theorem tendsto_of_tendsto_pointwise_of_cauchySeq {f : ℕ → E' →SL[σ₁₂] F} {g : E' →SL[σ₁₂] F}
     (hg : Tendsto (fun n x => f n x) atTop (𝓝 g)) (hf : CauchySeq f) : Tendsto f atTop (𝓝 g) := by
   /- Since `f` is a Cauchy sequence, there exists `b → 0` such that `‖f n - f m‖ ≤ b N` for any
@@ -90,7 +92,9 @@ theorem tendsto_of_tendsto_pointwise_of_cauchySeq {f : ℕ → E' →SL[σ₁₂
 
 /-- Let `s` be a bounded set in the space of continuous (semi)linear maps `E →SL[σ] F` taking values
 in a proper space. Then `s` interpreted as a set in the space of maps `E → F` with topology of
-pointwise convergence is precompact: its closure is a compact set. -/
+pointwise convergence is precompact: its closure is a compact set.
+@isnad1 id=iscompac.1h6v.s9.b03832fd478b from=seed src=0 shape=b9a36cba vocab=14a4ba9d
+-/
 theorem isCompact_closure_image_coe_of_bounded [ProperSpace F] {s : Set (E' →SL[σ₁₂] F)}
     (hb : IsBounded s) : IsCompact (closure (((↑) : (E' →SL[σ₁₂] F) → E' → F) '' s)) :=
   have : ∀ x, IsCompact (closure (apply' F σ₁₂ x '' s)) := fun x =>
@@ -102,7 +106,9 @@ theorem isCompact_closure_image_coe_of_bounded [ProperSpace F] {s : Set (E' →S
 in a proper space. If `s` interpreted as a set in the space of maps `E → F` with topology of
 pointwise convergence is closed, then it is compact.
 
-TODO: reformulate this in terms of a type synonym with the right topology. -/
+TODO: reformulate this in terms of a type synonym with the right topology.
+@isnad1 id=iscompac.2h6v.s9.64f9d68928f2 from=seed src=0 shape=f40b8735 vocab=02dd4ec2
+-/
 theorem isCompact_image_coe_of_bounded_of_closed_image [ProperSpace F] {s : Set (E' →SL[σ₁₂] F)}
     (hb : IsBounded s) (hc : IsClosed (((↑) : (E' →SL[σ₁₂] F) → E' → F) '' s)) :
     IsCompact (((↑) : (E' →SL[σ₁₂] F) → E' → F) '' s) :=
@@ -112,7 +118,9 @@ theorem isCompact_image_coe_of_bounded_of_closed_image [ProperSpace F] {s : Set 
 image under coercion to functions `E → F` is a closed set. We don't have a name for `E →SL[σ] F`
 with weak-\* topology in `mathlib`, so we use an equivalent condition (see `isClosed_induced_iff'`).
 
-TODO: reformulate this in terms of a type synonym with the right topology. -/
+TODO: reformulate this in terms of a type synonym with the right topology.
+@isnad1 id=isclosed.2h6v.s10.7820749690c2 from=seed src=0 shape=c01042b6 vocab=ba0a24b9
+-/
 theorem isClosed_image_coe_of_bounded_of_weak_closed {s : Set (E' →SL[σ₁₂] F)} (hb : IsBounded s)
     (hc : ∀ f : E' →SL[σ₁₂] F,
       (⇑f : E' → F) ∈ closure (((↑) : (E' →SL[σ₁₂] F) → E' → F) '' s) → f ∈ s) :
@@ -123,6 +131,7 @@ theorem isClosed_image_coe_of_bounded_of_weak_closed {s : Set (E' →SL[σ₁₂
 /-- If a set `s` of semilinear functions is bounded and is closed in the weak-\* topology, then its
 image under coercion to functions `E → F` is a compact set. We don't have a name for `E →SL[σ] F`
 with weak-\* topology in `mathlib`, so we use an equivalent condition (see `isClosed_induced_iff'`).
+@isnad1 id=iscompac.2h6v.s10.530218eb322f from=seed src=0 shape=3a8db992 vocab=6a5f1228
 -/
 theorem isCompact_image_coe_of_bounded_of_weak_closed [ProperSpace F] {s : Set (E' →SL[σ₁₂] F)}
     (hb : IsBounded s) (hc : ∀ f : E' →SL[σ₁₂] F,
@@ -132,7 +141,9 @@ theorem isCompact_image_coe_of_bounded_of_weak_closed [ProperSpace F] {s : Set (
     isClosed_image_coe_of_bounded_of_weak_closed hb hc
 
 /-- A closed ball is closed in the weak-\* topology. We don't have a name for `E →SL[σ] F` with
-weak-\* topology in `mathlib`, so we use an equivalent condition (see `isClosed_induced_iff'`). -/
+weak-\* topology in `mathlib`, so we use an equivalent condition (see `isClosed_induced_iff'`).
+@isnad1 id=mem.1h8v.s10.d32312bc6c47 from=seed src=0 shape=dce8afd5 vocab=d028af70
+-/
 theorem is_weak_closed_closedBall (f₀ : E' →SL[σ₁₂] F) (r : ℝ) ⦃f : E' →SL[σ₁₂] F⦄
     (hf : ⇑f ∈ closure (((↑) : (E' →SL[σ₁₂] F) → E' → F) '' closedBall f₀ r)) :
     f ∈ closedBall f₀ r := by
@@ -145,7 +156,9 @@ theorem is_weak_closed_closedBall (f₀ : E' →SL[σ₁₂] F) (r : ℝ) ⦃f :
 
 /-- The set of functions `f : E → F` that represent continuous linear maps `f : E →SL[σ₁₂] F`
 at distance `≤ r` from `f₀ : E →SL[σ₁₂] F` is closed in the topology of pointwise convergence.
-This is one of the key steps in the proof of the **Banach-Alaoglu** theorem. -/
+This is one of the key steps in the proof of the **Banach-Alaoglu** theorem.
+@isnad1 id=isclosed.0h7v.s9.6e0b33acb6ca from=seed src=0 shape=c08ce7b3 vocab=81e3e835
+-/
 theorem isClosed_image_coe_closedBall (f₀ : E →SL[σ₁₂] F) (r : ℝ) :
     IsClosed (((↑) : (E →SL[σ₁₂] F) → E → F) '' closedBall f₀ r) :=
   isClosed_image_coe_of_bounded_of_weak_closed isBounded_closedBall (is_weak_closed_closedBall f₀ r)
@@ -153,7 +166,9 @@ theorem isClosed_image_coe_closedBall (f₀ : E →SL[σ₁₂] F) (r : ℝ) :
 /-- **Banach-Alaoglu** theorem. The set of functions `f : E → F` that represent continuous linear
 maps `f : E →SL[σ₁₂] F` at distance `≤ r` from `f₀ : E →SL[σ₁₂] F` is compact in the topology of
 pointwise convergence. Other versions of this theorem can be found in
-`Analysis.Normed.Module.WeakDual`. -/
+`Analysis.Normed.Module.WeakDual`.
+@isnad1 id=iscompac.0h7v.s9.babfeb98594b from=seed src=0 shape=76655eff vocab=c06af9e5
+-/
 theorem isCompact_image_coe_closedBall [ProperSpace F] (f₀ : E →SL[σ₁₂] F) (r : ℝ) :
     IsCompact (((↑) : (E →SL[σ₁₂] F) → E → F) '' closedBall f₀ r) :=
   isCompact_image_coe_of_bounded_of_weak_closed isBounded_closedBall <|

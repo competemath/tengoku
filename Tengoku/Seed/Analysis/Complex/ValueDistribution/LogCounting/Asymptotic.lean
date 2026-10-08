@@ -42,6 +42,7 @@ variable
 /--
 Qualitative consequence of `logCounting_single_eq_log_sub_const`. The constant function `1 : ℝ → ℝ`
 is little o of the logarithmic counting function attached to `single e`.
+@isnad1 id=islittle.0h2v.s8.9fd40e1c20fe from=seed src=0 shape=e50279bb vocab=66ccb40a
 -/
 lemma one_isLittleO_logCounting_single [DecidableEq E] [ProperSpace E] {e : E} :
     (1 : ℝ → ℝ) =o[atTop] logCounting (single e 1) := by
@@ -56,6 +57,7 @@ lemma one_isLittleO_logCounting_single [DecidableEq E] [ProperSpace E] {e : E} :
 /--
 A non-negative function with locally finite support is zero if and only if its logarithmic counting
 functions is asymptotically bounded.
+@isnad1 id=iff.1h2v.s8.1be9c700abce from=seed src=0 shape=05aebfa3 vocab=70faa1cc
 -/
 lemma zero_iff_logCounting_bounded [ProperSpace E]
     {D : locallyFinsuppWithin (univ : Set E) ℤ} (h : 0 ≤ D) :
@@ -91,6 +93,7 @@ lemma zero_iff_logCounting_bounded [ProperSpace E]
 /--
 The logarithmic counting function of a singleton is big-O of `log`. This is the qualitative
 consequence of `logCounting_single_eq_log_sub_const`.
+@isnad1 id=isbigo.0h3v.s8.87807a618024 from=seed src=0 shape=f29c6dd3 vocab=7b67076a
 -/
 lemma logCounting_single_isBigO_log [DecidableEq E] [ProperSpace E] {e : E} {n : ℤ} :
     logCounting (single e n) =O[atTop] Real.log := by
@@ -103,6 +106,7 @@ lemma logCounting_single_isBigO_log [DecidableEq E] [ProperSpace E] {e : E} {n :
 
 /--
 A function with finite support has a logarithmic counting function that is big-O of `log`.
+@isnad1 id=isbigo.1h2v.s8.b60ce3e99000 from=seed src=0 shape=e9142315 vocab=9ddaf0ed
 -/
 lemma logCounting_isBigO_log_of_finite_support [ProperSpace E] {D : locallyFinsupp E ℤ}
     (h : D.support.Finite) :
@@ -113,6 +117,7 @@ lemma logCounting_isBigO_log_of_finite_support [ProperSpace E] {D : locallyFinsu
 
 /--
 A non-negative function whose logarithmic counting function is big-O of `log` has finite support.
+@isnad1 id=finite.2h2v.s8.4445e603d880 from=seed src=0 shape=fc4a272c vocab=2b5dcbfb
 -/
 lemma finite_support_of_logCounting_isBigO_log [ProperSpace E]
     {D : locallyFinsupp E ℤ} (h : 0 ≤ D) (hO : logCounting D =O[atTop] Real.log) :
@@ -161,6 +166,7 @@ lemma finite_support_of_logCounting_isBigO_log [ProperSpace E]
 /--
 A non-negative function with locally finite support has finite support if and only if its
 logarithmic counting function is big-O of `log`.
+@isnad1 id=iff.1h2v.s8.209cc424df37 from=seed src=0 shape=a1c21590 vocab=2b5dcbfb
 -/
 theorem finite_support_iff_logCounting_isBigO_log [ProperSpace E]
     {D : locallyFinsupp E ℤ} (h : 0 ≤ D) :
@@ -182,6 +188,7 @@ variable
 /--
 A meromorphic function has only removable singularities if and only if the logarithmic counting
 function for its pole divisor is asymptotically bounded.
+@isnad1 id=iff.1h3v.s6.324133c5e7d8 from=seed src=0 shape=bb051268 vocab=3d31f909
 -/
 theorem logCounting_isBigO_one_iff_analyticOnNhd {f : 𝕜 → E} (h : Meromorphic f) :
     logCounting f ⊤ =O[atTop] (1 : ℝ → ℝ) ↔ AnalyticOnNhd 𝕜 (toMeromorphicNFOn f univ) univ := by
@@ -193,6 +200,7 @@ theorem logCounting_isBigO_one_iff_analyticOnNhd {f : 𝕜 → E} (h : Meromorph
 /--
 A meromorphic function has a finite set of poles if and only if the logarithmic counting function
 for its pole-divisor is big-O of `log`.
+@isnad1 id=iff.0h3v.s7.b7a48eb690d0 from=seed src=0 shape=22f1f293 vocab=467798b3
 -/
 theorem logCounting_isBigO_log_iff_finite_support {f : 𝕜 → E} :
     logCounting f ⊤ =O[atTop] Real.log ↔ (MeromorphicOn.divisor f univ)⁻.support.Finite := by

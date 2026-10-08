@@ -88,6 +88,9 @@ abbrev IsLE (X : DerivedCategory C) (n : ℤ) : Prop := TStructure.t.IsLE X n
 that `X` is `≥ n` for the canonical t-structure. -/
 abbrev IsGE (X : DerivedCategory C) (n : ℤ) : Prop := TStructure.t.IsGE X n
 
+/--
+@isnad1 id=iff.0h3v.s5.ba43c93965e8 from=seed src=0 shape=48cfdc1f vocab=d566aa56
+-/
 lemma isGE_iff (X : DerivedCategory C) (n : ℤ) :
     X.IsGE n ↔ ∀ (i : ℤ) (_ : i < n), IsZero ((homologyFunctor C i).obj X) := by
   constructor
@@ -105,6 +108,9 @@ lemma isGE_iff (X : DerivedCategory C) (n : ℤ) :
     exact ⟨(Q.objPreimage X).truncGE n, (Q.objObjPreimageIso X).symm ≪≫
       asIso (Q.map ((Q.objPreimage X).πTruncGE n)), inferInstance⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.b4db49ebc3b2 from=seed src=0 shape=d3690367 vocab=b8cf1a11
+-/
 lemma isLE_iff (X : DerivedCategory C) (n : ℤ) :
     X.IsLE n ↔ ∀ (i : ℤ) (_ : n < i), IsZero ((homologyFunctor C i).obj X) := by
   constructor
@@ -122,16 +128,25 @@ lemma isLE_iff (X : DerivedCategory C) (n : ℤ) :
     exact ⟨(Q.objPreimage X).truncLE n, (Q.objObjPreimageIso X).symm ≪≫
       (asIso (Q.map ((Q.objPreimage X).ιTruncLE n))).symm, inferInstance⟩
 
+/--
+@isnad1 id=iszero.1h4v.s5.dd721a04146c from=seed src=0 shape=e70f36d8 vocab=d566aa56
+-/
 lemma isZero_of_isGE (X : DerivedCategory C) (n i : ℤ) (hi : i < n) [hX : X.IsGE n] :
     IsZero ((homologyFunctor _ i).obj X) := by
   rw [isGE_iff] at hX
   exact hX i hi
 
+/--
+@isnad1 id=iszero.1h4v.s5.1b85ce693bc4 from=seed src=0 shape=00d3f2fd vocab=b8cf1a11
+-/
 lemma isZero_of_isLE (X : DerivedCategory C) (n i : ℤ) (hi : n < i) [hX : X.IsLE n] :
     IsZero ((homologyFunctor _ i).obj X) := by
   rw [isLE_iff] at hX
   exact hX i hi
 
+/--
+@isnad1 id=iff.0h3v.s7.c0c61972adfe from=seed src=0 shape=a54c6e72 vocab=9d88fe2b
+-/
 lemma isGE_Q_obj_iff (K : CochainComplex C ℤ) (n : ℤ) :
     (Q.obj K).IsGE n ↔ K.IsGE n := by
   have eq := fun i ↦ ((homologyFunctorFactors C i).app K).isZero_iff
@@ -139,6 +154,9 @@ lemma isGE_Q_obj_iff (K : CochainComplex C ℤ) (n : ℤ) :
   simp only [isGE_iff, CochainComplex.isGE_iff,
     HomologicalComplex.exactAt_iff_isZero_homology, eq]
 
+/--
+@isnad1 id=iff.0h3v.s7.eb74fb9d0ea6 from=seed src=0 shape=a54c6e72 vocab=0f6fff83
+-/
 lemma isLE_Q_obj_iff (K : CochainComplex C ℤ) (n : ℤ) :
     (Q.obj K).IsLE n ↔ K.IsLE n := by
   have eq := fun i ↦ ((homologyFunctorFactors C i).app K).isZero_iff
@@ -168,16 +186,25 @@ instance (X : C) (n : ℤ) : ((singleFunctor C n).obj X).IsLE n := by
   dsimp only [Functor.comp_obj] at e
   exact TStructure.t.isLE_of_iso e.symm n
 
+/--
+@isnad1 id=ex.0h3v.s7.88c565b4a794 from=seed src=0 shape=b4b16123 vocab=736633d0
+-/
 lemma exists_iso_Q_obj_of_isLE (X : DerivedCategory C) (n : ℤ) [hX : X.IsLE n] :
     ∃ (K : CochainComplex C ℤ) (_ : K.IsStrictlyLE n), Nonempty (X ≅ Q.obj K) := by
   obtain ⟨K, e, _⟩ := hX
   exact ⟨K, inferInstance, ⟨e⟩⟩
 
+/--
+@isnad1 id=ex.0h3v.s7.0b20fd0829e4 from=seed src=0 shape=b4b16123 vocab=011aed56
+-/
 lemma exists_iso_Q_obj_of_isGE (X : DerivedCategory C) (n : ℤ) [hX : X.IsGE n] :
     ∃ (K : CochainComplex C ℤ) (_ : K.IsStrictlyGE n), Nonempty (X ≅ Q.obj K) := by
   obtain ⟨K, e, _⟩ := hX
   exact ⟨K, inferInstance, ⟨e⟩⟩
 
+/--
+@isnad1 id=ex.0h4v.s7.469110c5c07d from=seed src=0 shape=a9ad3f3e vocab=19705bd2
+-/
 lemma exists_iso_Q_obj_of_isGE_of_isLE (X : DerivedCategory C) (a b : ℤ) [X.IsGE a] [X.IsLE b] :
     ∃ (K : CochainComplex C ℤ) (_ : K.IsStrictlyGE a) (_ : K.IsStrictlyLE b),
       Nonempty (X ≅ Q.obj K) := by
@@ -187,6 +214,9 @@ lemma exists_iso_Q_obj_of_isGE_of_isLE (X : DerivedCategory C) (a b : ℤ) [X.Is
     exact TStructure.t.isGE_of_iso e a
   exact ⟨K.truncGE a, inferInstance, inferInstance, ⟨e ≪≫ asIso (Q.map (K.πTruncGE a))⟩⟩
 
+/--
+@isnad1 id=ex.0h3v.s6.783ff98b7ef3 from=seed src=0 shape=5cb6d0b1 vocab=d274e30e
+-/
 lemma exists_iso_singleFunctor_obj_of_isGE_of_isLE
     (X : DerivedCategory C) (n : ℤ) [X.IsGE n] [X.IsLE n] :
     ∃ (Y : C), Nonempty (X ≅ (singleFunctor C n).obj Y) := by

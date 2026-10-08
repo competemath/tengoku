@@ -28,7 +28,9 @@ open scoped NNReal
 namespace ApproximatesLinearOn
 
 /-- In a real vector space, a function `f` that approximates a linear equivalence on a subset `s`
-can be extended to a homeomorphism of the whole space. -/
+can be extended to a homeomorphism of the whole space.
+@isnad1 id=ex.2h6v.s9.855381bfa525 from=seed src=0 shape=d78b63cc vocab=14755fb5
+-/
 theorem exists_homeomorph_extension {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] [FiniteDimensional ℝ F] {s : Set E}
     {f : E → F} {f' : E ≃L[ℝ] F} {c : ℝ≥0} (hf : ApproximatesLinearOn f (f' : E →L[ℝ] F) s c)

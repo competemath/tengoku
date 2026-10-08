@@ -84,10 +84,16 @@ def preinclusion (B : Type u) [Quiver.{v} B] :
   map {a b} f := (@inclusionPath B _ a.as b.as).obj f
   map₂ η := (inclusionPath _ _).map η
 
+/--
+@isnad1 id=eq.0h2v.s7.b4b579d6c907 from=seed src=0 shape=ebc2f39a vocab=e607ee01
+-/
 @[simp]
 theorem preinclusion_obj (a : B) : (preinclusion B).obj ⟨a⟩ = a :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.47a91cc2da07 from=seed src=0 shape=48c15666 vocab=f7957360
+-/
 @[simp]
 theorem preinclusion_map₂ {a b : B} (f g : Discrete (Path.{v} a b)) (η : f ⟶ g) :
     (preinclusion B).map₂ η = eqToHom (congr_arg _ (Discrete.ext (Discrete.eq_of_hom η))) :=
@@ -140,27 +146,43 @@ def normalizeIso {a : B} :
 -- (i.e., `CategoryStruct.comp`/`CategoryStruct.id` for `FreeBicategory`) instead of
 -- `Hom.comp`/`Hom.id`. Needed because after leanprover/lean4#13363, `canUnfoldAtMatcher`
 -- no longer unfolds class projections in match discriminants.
+/--
+@isnad1 id=eq.0h8v.s6.4f5cae5f5ddb from=seed src=0 shape=67e2c329 vocab=98e870d4
+-/
 @[simp] theorem normalizeAux_comp {a : B} {b c d : FreeBicategory B}
     (p : Path a b) (f : b ⟶ c) (g : c ⟶ d) :
     normalizeAux p (f ≫ g) = normalizeAux (normalizeAux p f) g := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4f7a6804f758 from=seed src=0 shape=689e4888 vocab=c1f95fdf
+-/
 @[simp] theorem normalizeAux_id {a : B} {b : FreeBicategory B} (p : Path a b) :
     normalizeAux p (𝟙 b) = p := rfl
 
+/--
+@isnad1 id=eq.0h8v.s13.dcc996ae5643 from=seed src=0 shape=cd6bd5e3 vocab=e120303a
+-/
 @[simp] theorem normalizeIso_comp {a : B} {b c d : FreeBicategory B}
     (p : Path a b) (f : b ⟶ c) (g : c ⟶ d) :
     normalizeIso p (f ≫ g) =
       (α_ _ _ _).symm ≪≫ whiskerRightIso (normalizeIso p f) g ≪≫
         normalizeIso (normalizeAux p f) g := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.20aab505521b from=seed src=0 shape=dc787ce8 vocab=51b4931e
+-/
 @[simp] theorem normalizeIso_id {a : B} {b : FreeBicategory B} (p : Path a b) :
     normalizeIso p (𝟙 b) = ρ_ _ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.88053c7fe25f from=seed src=0 shape=f22529b1 vocab=75025a07
+-/
 @[simp] theorem quot_whisker_left {a b c : FreeBicategory B} (f : a ⟶ b) {g h : b ⟶ c}
     (η : Hom₂ g h) : Quot.mk Rel (Hom₂.whisker_left f η) = f ◁ (Quot.mk Rel η) := rfl
 
 /-- Given a 2-morphism between `f` and `g` in the free bicategory, we have the equality
 `normalizeAux p f = normalizeAux p g`.
+@isnad1 id=eq.0h8v.s6.44db0b634973 from=seed src=0 shape=6df01477 vocab=fdbbe9c4
 -/
 theorem normalizeAux_congr {a b c : B} (p : Path a b) {f g : Hom b c} (η : f ⟶ g) :
     normalizeAux p f = normalizeAux p g := by
@@ -175,7 +197,9 @@ theorem normalizeAux_congr {a b c : B} (p : Path a b) {f g : Hom b c} (η : f �
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
-/-- The 2-isomorphism `normalizeIso p f` is natural in `f`. -/
+/-- The 2-isomorphism `normalizeIso p f` is natural in `f`.
+@isnad1 id=eq.0h8v.s13.172805e03196 from=seed src=0 shape=c6bde7bd vocab=e1e88764
+-/
 theorem normalize_naturality {a b c : B} (p : Path a b) {f g : Hom b c} (η : f ⟶ g) :
     (preinclusion B).map ⟨p⟩ ◁ η ≫ (normalizeIso p g).hom =
       (normalizeIso p f).hom ≫
@@ -201,6 +225,9 @@ theorem normalize_naturality {a b c : B} (p : Path a b) {f g : Hom b c} (η : f 
   | _ => simp
 
 -- Not `@[simp]` because it is not in `simp`-normal form.
+/--
+@isnad1 id=eq.0h6v.s6.d3981ff5ea15 from=seed src=0 shape=bca20f45 vocab=746ba1f5
+-/
 theorem normalizeAux_nil_comp {a b c : B} (f : Hom a b) (g : Hom b c) :
     normalizeAux nil (f.comp g) = (normalizeAux nil f).comp (normalizeAux nil g) := by
   induction g generalizing a with
@@ -241,7 +268,9 @@ def normalizeEquiv (a b : B) : Hom a b ≌ Discrete (Path.{v} a b) :=
         rfl))
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- The coherence theorem for bicategories. -/
+/-- The coherence theorem for bicategories.
+@isnad1 id=isthin.0h3v.s5.645015f07893 from=seed src=0 shape=1506a5da vocab=13695d95
+-/
 instance locally_thin {a b : FreeBicategory B} : Quiver.IsThin (a ⟶ b) := fun _ _ =>
   ⟨fun _ _ =>
     (@normalizeEquiv B _ a b).functor.map_injective (Subsingleton.elim _ _)⟩

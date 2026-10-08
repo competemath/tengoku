@@ -63,6 +63,9 @@ noncomputable def toDualContinuousMultilinearMap :
   map_smul' a x := by
     ext; simp
 
+/--
+@isnad1 id=le.0h5v.s11.8d6410d97838 from=seed src=0 shape=dccbbf57 vocab=6de88dc7
+-/
 theorem toDualContinuousMultilinearMap_le_projectiveSeminorm (x : ⨂[𝕜] i, E i) :
     ‖toDualContinuousMultilinearMap F x‖ ≤ ‖x‖ := by
   simp only [toDualContinuousMultilinearMap, LinearMap.coe_mk, AddHom.coe_mk]
@@ -81,6 +84,9 @@ noncomputable irreducible_def injectiveSeminorm : Seminorm 𝕜 (⨂[𝕜] i, E 
   (_ : NormedSpace 𝕜 G), p = Seminorm.comp (normSeminorm 𝕜 (ContinuousMultilinearMap 𝕜 E G →L[𝕜] G))
   (toDualContinuousMultilinearMap G (𝕜 := 𝕜) (E := E))}
 
+/--
+@isnad1 id=bddabove.0h3v.s13.48b9aa2741d8 from=seed src=0 shape=56e814a5 vocab=4c6234a5
+-/
 @[deprecated "no replacement" (since := "2026-06-10")]
 lemma dualSeminorms_bounded : BddAbove {p | ∃ (G : Type (max uι u𝕜 uE))
     (_ : SeminormedAddCommGroup G) (_ : NormedSpace 𝕜 G),
@@ -91,6 +97,9 @@ lemma dualSeminorms_bounded : BddAbove {p | ∃ (G : Type (max uι u𝕜 uE))
   intro p G _ _ hp x
   simpa [hp] using! toDualContinuousMultilinearMap_le_projectiveSeminorm _
 
+/--
+@isnad1 id=eq.0h4v.s14.4d4131284d30 from=seed src=0 shape=0056320b vocab=8df82cc6
+-/
 @[deprecated
   "`injectiveSeminorm` is deprecated in favor of the extensionally equal `projectiveSeminorm`"
   (since := "2026-06-10")]
@@ -103,6 +112,9 @@ theorem injectiveSeminorm_apply (x : ⨂[𝕜] i, E i) :
     using Seminorm.sSup_apply dualSeminorms_bounded
 
 attribute [-instance] instSeminormedAddCommGroup in
+/--
+@isnad1 id=le.0h6v.s12.7c02bd0dd3cf from=seed src=0 shape=81464bc7 vocab=2c631f32
+-/
 @[deprecated
   "`injectiveSeminorm` is deprecated in favor of the extensionally equal `projectiveSeminorm`"
   (since := "2026-06-10")]
@@ -159,6 +171,9 @@ theorem norm_eval_le_injectiveSeminorm (f : ContinuousMultilinearMap 𝕜 E F) (
   rw [mul_comm]
   exact ContinuousLinearMap.le_opNorm _ _
 
+/--
+@isnad1 id=le.0h3v.s9.eb5a42eb3bcf from=seed src=0 shape=662ee106 vocab=f7519df0
+-/
 @[deprecated
   "`injectiveSeminorm` is deprecated in favor of the extensionally equal `projectiveSeminorm`"
   (since := "2026-06-10")]
@@ -179,6 +194,9 @@ theorem injectiveSeminorm_le_projectiveSeminorm :
     rw [h]; intro x; simp only [Seminorm.comp_apply, coe_normSeminorm]
     exact toDualContinuousMultilinearMap_le_projectiveSeminorm _
 
+/--
+@isnad1 id=le.0h4v.s9.d6f86292349f from=seed src=0 shape=e2748725 vocab=fbf4fee5
+-/
 @[deprecated
   "`injectiveSeminorm` is deprecated in favor of the extensionally equal `projectiveSeminorm`"
   (since := "2026-06-10")]

@@ -21,6 +21,9 @@ open Real MeasureTheory Set Filter
 
 public section
 
+/--
+@isnad1 id=le.2h3v.s7.66745ef6e6ff from=seed src=0 shape=fb4c1b1e vocab=e9fe7012
+-/
 lemma intervalIntegral_pow_mul_exp_neg_le {k : ℕ} {M c : ℝ} (hM : 0 ≤ M) (hc : 0 < c) :
     ∫ x in (0 : ℝ)..M, x ^ k * rexp (- (c * x)) ≤ k ! / c ^ (k + 1) := by
   have hk : (0 : ℝ) < ↑k + 1 := by positivity
@@ -40,6 +43,9 @@ lemma intervalIntegral_pow_mul_exp_neg_le {k : ℕ} {M c : ℝ} (hM : 0 ≤ M) (
           one_mul, mul_comm, inv_rpow hc.le, ← rpow_natCast]
         norm_cast
 
+/--
+@isnad1 id=le.1h3v.s6.c5ac1d4b60be from=seed src=0 shape=2c74729c vocab=f262a801
+-/
 lemma sum_Ico_pow_mul_exp_neg_le {k : ℕ} {M : ℕ} {c : ℝ} (hc : 0 < c) :
     ∑ i ∈ Finset.Ico 0 M, i ^ k * rexp (- (c * i)) ≤ rexp c * k ! / c ^ (k + 1) := calc
   ∑ i ∈ Finset.Ico 0 M, i ^ k * rexp (- (c * i))
@@ -63,10 +69,16 @@ lemma sum_Ico_pow_mul_exp_neg_le {k : ℕ} {M : ℕ} {c : ℝ} (hc : 0 < c) :
     exact intervalIntegral_pow_mul_exp_neg_le (by simp) hc
   _ = _ := by ring
 
+/--
+@isnad1 id=le.1h3v.s6.8d821193171c from=seed src=0 shape=d913c249 vocab=f8686c88
+-/
 lemma sum_Iic_pow_mul_exp_neg_le {k : ℕ} {M : ℕ} {c : ℝ} (hc : 0 < c) :
     ∑ i ∈ Finset.Iic M, i ^ k * rexp (- (c * i)) ≤ rexp c * k ! / c ^ (k + 1) :=
   sum_Ico_pow_mul_exp_neg_le (M := M + 1) hc
 
+/--
+@isnad1 id=le.1h3v.s7.94b092a8ec69 from=seed src=0 shape=cc26f700 vocab=e9f94e4b
+-/
 lemma sum_Iic_pow_mul_two_pow_neg_le {k : ℕ} {M : ℕ} {c : ℝ} (hc : 0 < c) :
     ∑ i ∈ Finset.Iic M, i ^ k * (2 : ℝ) ^ (- (c * i)) ≤
       2 ^ c * k ! / (Real.log 2 * c) ^ (k + 1) := by

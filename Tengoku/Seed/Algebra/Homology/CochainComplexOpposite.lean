@@ -118,6 +118,9 @@ def homotopyOp (h : Homotopy f g) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h12v.s11.235bdc0c45ec from=seed src=0 shape=8d8a759d vocab=e588b7cf
+-/
 lemma homotopyOp_hom_eq (h : Homotopy f g)
     (p q p' q' : ℤ) (hp : p + p' = 0 := by lia) (hq : q + q' = 0 := by lia) :
     (homotopyOp h).hom p q =
@@ -161,6 +164,9 @@ def homotopyUnop (h : Homotopy ((opEquivalence C).functor.map f.op)
       simp [H (- -(n + 1)) (- -n) (n + 1) n (by simp) (by simp), ← op_comp_assoc, ← op_comp])
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h12v.s12.ffd278a43cbf from=seed src=0 shape=26f35793 vocab=f3d39b46
+-/
 lemma homotopyUnop_hom_eq
     (h : Homotopy ((opEquivalence C).functor.map f.op)
       ((opEquivalence C).functor.map g.op))
@@ -193,6 +199,9 @@ def homotopyOpEquiv {K L : CochainComplex C ℤ} {f g : K ⟶ L} :
     simp [homotopyOp_hom_eq _ p q (-p) (-q),
       homotopyUnop_hom_eq _ (-q) (-p) q p]
 
+/--
+@isnad1 id=exactat.1h5v.s8.6fa7a1458046 from=seed src=0 shape=2fbff99e vocab=f176d134
+-/
 lemma exactAt_op {K : CochainComplex C ℤ} {n : ℤ} (hK : K.ExactAt n)
     (m : ℤ) (hm : n + m = 0 := by lia) :
     ((opEquivalence C).functor.obj (op K)).ExactAt m := by
@@ -202,6 +211,9 @@ lemma exactAt_op {K : CochainComplex C ℤ} {n : ℤ} (hK : K.ExactAt n)
   rwa [HomologicalComplex.exactAt_iff' _ (-(m + 1)) (-m) (-(m - 1)) (by grind [prev])
     (by grind [next])] at hK
 
+/--
+@isnad1 id=acyclic.1h2v.s8.758cfa48ba86 from=seed src=0 shape=184d1646 vocab=7efb6b6c
+-/
 lemma acyclic_op {K : CochainComplex C ℤ} (hK : K.Acyclic) :
     ((opEquivalence C).functor.obj (op K)).Acyclic :=
   fun n ↦ exactAt_op (hK (-n)) n

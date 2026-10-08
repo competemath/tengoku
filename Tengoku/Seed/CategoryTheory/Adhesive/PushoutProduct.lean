@@ -32,7 +32,9 @@ variable {C₁ : Type u₁} {C₂ : Type u₂} {C₃ : Type u₃}
   {f₁ : X₁ ⟶ Y₁} {f₂ : X₂ ⟶ Y₂}
 
 /-- The induced pushout map (Leibniz pushout) of an `F.PushoutObjObj` is a monomorphism if its
-naturality square is a pullback and the morphisms being pulled back are monomorphisms. -/
+naturality square is a pullback and the morphisms being pulled back are monomorphisms.
+@isnad1 id=mono.1h11v.s9.08673c34c8aa from=seed src=0 shape=bc03704e vocab=d76f49f9
+-/
 theorem mono_ι_of_isPullback [Adhesive C₃] (sq : F.PushoutObjObj f₁ f₂)
     (h : IsPullback ((F.map f₁).app X₂) ((F.obj X₁).map f₂) ((F.obj Y₁).map f₂) ((F.map f₁).app Y₂))
     [Mono ((F.obj Y₁).map f₂)] [Mono ((F.map f₁).app Y₂)] : Mono sq.ι := by

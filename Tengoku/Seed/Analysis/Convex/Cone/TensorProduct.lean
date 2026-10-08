@@ -63,7 +63,9 @@ variable [AddCommGroup M] [Module R M]
 open Module
 
 /-- If a pointed cone `C` is contained in the conic hull of a basis `b`, then the coordinate
-functionals of `b` lie in the dual cone of `C`. -/
+functionals of `b` lie in the dual cone of `C`.
+@isnad1 id=mem.1h6v.s9.772c0a470826 from=seed src=0 shape=4de01142 vocab=fa2ce6e8
+-/
 lemma basis_coord_mem_dual {ι : Type*} (b : Basis ι R M) (C : PointedCone R M)
     (hC : (C : Set M) ⊆ (hull R (Set.range b) : Set M)) (i : ι) :
     b.coord i ∈ dual (Dual.eval R M) (C : Set M) := by
@@ -84,7 +86,9 @@ open TensorProduct Module
 
 set_option backward.isDefEq.respectTransparency false in
 /-- If `C₁` is a simplicial and generating cone and `C₂` is a proper cone, then their minimal
-and maximal tensor products are equal. -/
+and maximal tensor products are equal.
+@isnad1 id=eq.2h4v.s8.4645c5ac13ff from=seed src=0 shape=89ea1f47 vocab=e89bde76
+-/
 theorem minTensorProduct_eq_max_of_simplicial_generating_left (C₁ : PointedCone ℝ E)
     (C₂ : ProperCone ℝ F) (h₁_simp : C₁.IsSimplicial) (h₁_gen : Submodule.span ℝ (C₁ : Set E) = ⊤) :
     minTensorProduct C₁ C₂.toPointedCone = maxTensorProduct C₁ C₂.toPointedCone := by
@@ -125,7 +129,9 @@ theorem minTensorProduct_eq_max_of_simplicial_generating_left (C₁ : PointedCon
     simpa only [h_eq, LinearMap.comp_apply, LinearEquiv.coe_coe] using! h_nonneg
 
 /-- If `C₁` is a proper cone and `C₂` is a simplicial and generating cone, then their minimal
-and maximal tensor products are equal. -/
+and maximal tensor products are equal.
+@isnad1 id=eq.2h4v.s8.ce81293b7282 from=seed src=0 shape=fd391bec vocab=e89bde76
+-/
 theorem minTensorProduct_eq_max_of_simplicial_generating_right (C₁ : ProperCone ℝ F)
     (C₂ : PointedCone ℝ E) (h₂_simp : C₂.IsSimplicial)
     (h₂_gen : Submodule.span ℝ (C₂ : Set E) = ⊤) :

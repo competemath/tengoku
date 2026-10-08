@@ -55,6 +55,9 @@ noncomputable def LDL.lowerInv : Matrix n n 𝕜 :=
   @gramSchmidt 𝕜 (n → 𝕜) _ (Sᵀ.toNormedAddCommGroup hS.transpose)
     (Sᵀ.toInnerProductSpace hS.transpose.posSemidef) n _ _ _ (Pi.basisFun 𝕜 n)
 
+/--
+@isnad1 id=eq.1h3v.s8.060fb2512133 from=seed src=0 shape=f8f26ed6 vocab=7b72959c
+-/
 theorem LDL.lowerInv_eq_gramSchmidtBasis :
     LDL.lowerInv hS =
       ((Pi.basisFun 𝕜 n).toMatrix
@@ -74,6 +77,9 @@ noncomputable instance LDL.invertibleLowerInv : Invertible (LDL.lowerInv hS) := 
         (Sᵀ.toInnerProductSpace hS.transpose.posSemidef) n _ _ _ (Pi.basisFun 𝕜 n))
   infer_instance
 
+/--
+@isnad1 id=eq.2h5v.s8.e63217bc3605 from=seed src=0 shape=c0b03f83 vocab=e16460e3
+-/
 theorem LDL.lowerInv_orthogonal {i j : n} (h₀ : i ≠ j) :
     ⟪LDL.lowerInv hS i, Sᵀ *ᵥ LDL.lowerInv hS j⟫ₑ = 0 :=
   @gramSchmidt_orthogonal 𝕜 _ _ (Sᵀ.toNormedAddCommGroup hS.transpose)
@@ -87,13 +93,18 @@ noncomputable def LDL.diagEntries : n → 𝕜 := fun i =>
 noncomputable def LDL.diag : Matrix n n 𝕜 :=
   Matrix.diagonal (LDL.diagEntries hS)
 
+/--
+@isnad1 id=eq.2h5v.s7.481fb8ae491d from=seed src=0 shape=69fc5d92 vocab=0e65983f
+-/
 theorem LDL.lowerInv_triangular {i j : n} (hij : i < j) : LDL.lowerInv hS i j = 0 := by
   rw [← @gramSchmidt_triangular 𝕜 (n → 𝕜) _ (Sᵀ.toNormedAddCommGroup hS.transpose)
       (Sᵀ.toInnerProductSpace hS.transpose.posSemidef) n _ _ _ i j hij (Pi.basisFun 𝕜 n),
     Pi.basisFun_repr, LDL.lowerInv]
 
 /-- Inverse statement of **LDL decomposition**: we can conjugate a positive definite matrix
-by some lower triangular matrix and get a diagonal matrix. -/
+by some lower triangular matrix and get a diagonal matrix.
+@isnad1 id=eq.1h3v.s8.c70516e2b7c8 from=seed src=0 shape=28ef7b22 vocab=9d2b3755
+-/
 theorem LDL.diag_eq_lowerInv_conj : LDL.diag hS = LDL.lowerInv hS * S * (LDL.lowerInv hS)ᴴ := by
   ext i j
   by_cases hij : i = j
@@ -112,7 +123,9 @@ noncomputable def LDL.lower :=
   (LDL.lowerInv hS)⁻¹
 
 /-- **LDL decomposition**: any positive definite matrix `S` can be
-decomposed as `S = LDLᴴ` where `L` is a lower-triangular matrix and `D` is a diagonal matrix. -/
+decomposed as `S = LDLᴴ` where `L` is a lower-triangular matrix and `D` is a diagonal matrix.
+@isnad1 id=eq.1h3v.s8.d787c0eddf6d from=seed src=0 shape=881b3f5e vocab=e5d714b3
+-/
 theorem LDL.lower_conj_diag : LDL.lower hS * LDL.diag hS * (LDL.lower hS)ᴴ = S := by
   rw [LDL.lower, conjTranspose_nonsing_inv, Matrix.mul_assoc,
     Matrix.inv_mul_eq_iff_eq_mul_of_invertible (LDL.lowerInv hS),

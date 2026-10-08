@@ -38,7 +38,9 @@ open TensorProduct LinearMap LinearIsometryEquiv Coalgebra
 
 open EuclideanSpace in
 /-- The comultiplication on `n → 𝕜` corresponds to the Euclidean space adjoint of the
-multiplication map. -/
+multiplication map.
+@isnad1 id=eq.0h2v.s16.2f0c54a3ff44 from=seed src=0 shape=78756914 vocab=765ae105
+-/
 theorem Pi.comul_eq_adjoint {n : Type*} [Fintype n] [DecidableEq n] :
     comul = map (equiv n 𝕜).toLinearMap (equiv n 𝕜).toLinearMap ∘ₗ
       ((equiv n 𝕜).symm.toLinearMap ∘ₗ mul' 𝕜 (n → 𝕜) ∘ₗ
@@ -49,7 +51,9 @@ theorem Pi.comul_eq_adjoint {n : Type*} [Fintype n] [DecidableEq n] :
   simp [TensorProduct.ext_iff_inner_left, adjoint_inner_right, inner_eq_star_dotProduct]
 
 open EuclideanSpace in
-/-- The counit on `n → 𝕜` corresponds to the Euclidean space adjoint of the algebra linear map. -/
+/-- The counit on `n → 𝕜` corresponds to the Euclidean space adjoint of the algebra linear map.
+@isnad1 id=eq.0h2v.s13.1e5206cda465 from=seed src=0 shape=2bbc8af7 vocab=1e0da8cf
+-/
 theorem Pi.counit_eq_adjoint {n : Type*} [Fintype n] [DecidableEq n] :
     counit = ((equiv n 𝕜).symm.toLinearMap ∘ₗ Algebra.linearMap 𝕜 (n → 𝕜)).adjoint ∘ₗ
       (equiv n 𝕜).symm.toLinearMap := by
@@ -101,6 +105,9 @@ noncomputable abbrev mulOfCoalgebra :
     Mul E where mul x y := adjoint (comul (R := 𝕜) (A := E)) (x ⊗ₜ y)
 
 attribute [local instance] InnerProductSpace.mulOfCoalgebra in
+/--
+@isnad1 id=eq.0h4v.s13.246eaaf5d506 from=seed src=0 shape=c86a7923 vocab=ec2e9747
+-/
 lemma AlgebraOfCoalgebra.mul_def (x y : E) :
     x * y = adjoint (comul (R := 𝕜) (A := E)) (x ⊗ₜ y) := rfl
 

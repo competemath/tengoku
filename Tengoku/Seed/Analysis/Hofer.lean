@@ -27,6 +27,9 @@ open Topology Filter Finset
 
 local notation "d" => dist
 
+/--
+@isnad1 id=ex.3h4v.s7.9455a603b66a from=seed src=0 shape=4f2e5ab0 vocab=bc4bfc84
+-/
 theorem hofer {X : Type*} [MetricSpace X] [CompleteSpace X] (x : X) (ε : ℝ) (ε_pos : 0 < ε)
     {ϕ : X → ℝ} (cont : Continuous ϕ) (nonneg : ∀ y, 0 ≤ ϕ y) : ∃ ε' > 0, ∃ x' : X,
     ε' ≤ ε ∧ d x' x ≤ 2 * ε ∧ ε * ϕ x ≤ ε' * ϕ x' ∧ ∀ y, d x' y ≤ ε' → ϕ y ≤ 2 * ϕ x' := by

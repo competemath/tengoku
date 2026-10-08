@@ -34,6 +34,9 @@ open Set Metric
 
 open Filter in
 open scoped Topology in
+/--
+@isnad1 id=disjoint.0h2v.s7.2cf4e0b09905 from=seed src=0 shape=1e089b31 vocab=0169dce5
+-/
 theorem disjoint_interior_extremePoints {E : Type*} [AddCommGroup E] [Module ℝ E]
     [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] [Nontrivial E]
     (S : Set E) : Disjoint (interior S) (extremePoints ℝ S) := by
@@ -47,6 +50,9 @@ theorem disjoint_interior_extremePoints {E : Type*} [AddCommGroup E] [Module ℝ
   have key : x ∈ openSegment ℝ (x - v) (x + v) := mem_openSegment_sub_add _ _
   grind only [x_ext.2 hv₁ hv₂ key]
 
+/--
+@isnad1 id=le.1h3v.s6.2c5a22ed229c from=seed src=0 shape=db761bc3 vocab=439476a2
+-/
 lemma StrictConvex.sdiff_interior_subset_extremePoints {𝕜 A : Type*} [Semiring 𝕜]
     [PartialOrder 𝕜] [AddCommMonoid A] [Module 𝕜 A] [TopologicalSpace A] {C : Set A}
     (hc : StrictConvex 𝕜 C) : C \ interior C ⊆ extremePoints 𝕜 C := by
@@ -56,6 +62,9 @@ lemma StrictConvex.sdiff_interior_subset_extremePoints {𝕜 A : Type*} [Semirin
     exact hx.2 <| hxab ▸ hc hy hz this ha hb hab
   rwa [← hyz, ← add_smul, hab, one_smul] at hxab
 
+/--
+@isnad1 id=le.1h3v.s6.2c5a22ed229c from=seed src=0 shape=db761bc3 vocab=439476a2
+-/
 @[deprecated (since := "2026-06-03")]
 alias StrictConvex.diff_interior_subset_extremePoints :=
   StrictConvex.sdiff_interior_subset_extremePoints
@@ -64,28 +73,41 @@ section Normed
 variable {A : Type*} [NormedAddCommGroup A] [NormedSpace ℝ A]
 
 /-- In a nontrivial normed space, the extreme points of the closed ball is contained in
-the sphere. -/
+the sphere.
+@isnad1 id=le.0h3v.s6.507f94a230dc from=seed src=0 shape=cc99709c vocab=220d6aa4
+-/
 theorem extremePoints_closedBall_subset_sphere [Nontrivial A] {x : A} {r : ℝ} :
     extremePoints ℝ (closedBall x r) ⊆ sphere x r := by
   rw [← closedBall_sdiff_ball, subset_sdiff, ← interior_closedBall' _]
   exact ⟨extremePoints_subset, disjoint_interior_extremePoints _ |>.symm⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.3028c98159bc from=seed src=0 shape=fb3c0b90 vocab=8e4c0f5f
+-/
 theorem StrictConvex.extremePoints_eq_sdiff_interior [Nontrivial A] {S : Set A}
     (hS : StrictConvex ℝ S) : extremePoints ℝ S = S \ interior S :=
   antisymm (subset_sdiff.mpr ⟨extremePoints_subset, disjoint_interior_extremePoints _ |>.symm⟩)
     hS.sdiff_interior_subset_extremePoints
 
+/--
+@isnad1 id=eq.1h2v.s7.3028c98159bc from=seed src=0 shape=fb3c0b90 vocab=8e4c0f5f
+-/
 @[deprecated (since := "2026-06-03")]
 alias StrictConvex.extremePoints_eq_diff_interior := StrictConvex.extremePoints_eq_sdiff_interior
 
 /-- In a strictly convex space, the sphere is contained in the extreme points of the closed ball
 when the radius is nonzero.
-In a nontrivial space, they are equal, see `extremePoints_closedBall_eq_sphere`. -/
+In a nontrivial space, they are equal, see `extremePoints_closedBall_eq_sphere`.
+@isnad1 id=le.1h3v.s7.5ac03a1100db from=seed src=0 shape=b9c434c7 vocab=3459dcb9
+-/
 lemma StrictConvexSpace.sphere_subset_extremePoints_closedBall [StrictConvexSpace ℝ A]
     (a : A) {r : ℝ} (hr : r ≠ 0) : sphere a r ⊆ extremePoints ℝ (closedBall a r) := fun _ hx ↦ by
   rw [← frontier_closedBall _ hr, frontier, closure_closedBall] at hx
   exact (_root_.strictConvex_closedBall ℝ _ _).sdiff_interior_subset_extremePoints hx
 
+/--
+@isnad1 id=eq.0h3v.s6.d2555f44ddcd from=seed src=0 shape=a2201a3c vocab=ae9aa273
+-/
 theorem StrictConvexSpace.extremePoints_closedBall_eq_sphere [Nontrivial A] {x : A} {r : ℝ}
     [StrictConvexSpace ℝ A] : extremePoints ℝ (closedBall x r) = sphere x r := by
   rw [(_root_.strictConvex_closedBall ℝ x r).extremePoints_eq_sdiff_interior, interior_closedBall',
@@ -93,6 +115,9 @@ theorem StrictConvexSpace.extremePoints_closedBall_eq_sphere [Nontrivial A] {x :
 
 end Normed
 
+/--
+@isnad1 id=eq.1h2v.s5.3b7039f3c379 from=seed src=0 shape=8d96a396 vocab=703456de
+-/
 @[simp] lemma Set.extremePoints_Icc {a b : ℝ} (hab : a ≤ b) :
     extremePoints ℝ (Icc a b) = {a, b} := by
   rw [Real.Icc_eq_closedBall, StrictConvexSpace.extremePoints_closedBall_eq_sphere]

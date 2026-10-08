@@ -70,16 +70,25 @@ def implicitFunctionDataOfProdDomain
       use v - (0, y), (0, y)
       aesop
 
+/--
+@isnad1 id=eq.2h7v.s9.3d4cf3d647e3 from=seed src=0 shape=6b276105 vocab=8e89f711
+-/
 @[simp] theorem pt_implicitFunctionDataOfProdDomain
     (dfu : HasStrictFDerivAt f f'u u) (if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     (dfu.implicitFunctionDataOfProdDomain if₂u).pt = u := by
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s9.fb9039ff4aee from=seed src=0 shape=08cc7391 vocab=4579edd7
+-/
 @[simp] theorem leftFun_implicitFunctionDataOfProdDomain
     (dfu : HasStrictFDerivAt f f'u u) (if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     (dfu.implicitFunctionDataOfProdDomain if₂u).leftFun = f := by
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s9.7eca0004d66e from=seed src=0 shape=80ed36b8 vocab=b24a98ab
+-/
 @[simp] theorem rightFun_implicitFunctionDataOfProdDomain
     (dfu : HasStrictFDerivAt f f'u u) (if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     (dfu.implicitFunctionDataOfProdDomain if₂u).rightFun = Prod.fst := by
@@ -92,12 +101,18 @@ noncomputable def implicitFunctionOfProdDomain
     E₁ → E₂ :=
   fun x => ((dfu.implicitFunctionDataOfProdDomain if₂u).implicitFunction (f u) x).2
 
+/--
+@isnad1 id=eq.2h7v.s9.9760943d2fe2 from=seed src=0 shape=43585147 vocab=bc74134f
+-/
 theorem implicitFunctionOfProdDomain_def
     {dfu : HasStrictFDerivAt f f'u u} {if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible} :
     dfu.implicitFunctionOfProdDomain if₂u =
       fun x => ((dfu.implicitFunctionDataOfProdDomain if₂u).implicitFunction (f u) x).2 := by
   rfl
 
+/--
+@isnad1 id=eventual.2h7v.s9.ce6be4b2d1d5 from=seed src=0 shape=9528fc6a vocab=e01294c3
+-/
 theorem eventually_apply_eq_iff_implicitFunctionOfProdDomain
     (dfu : HasStrictFDerivAt f f'u u) (if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     ∀ᶠ v in 𝓝 u, f v = f u ↔ dfu.implicitFunctionOfProdDomain if₂u v.1 = v.2 := by
@@ -105,6 +120,9 @@ theorem eventually_apply_eq_iff_implicitFunctionOfProdDomain
   filter_upwards [φ.leftFun_eq_iff_implicitFunction, φ.rightFun_implicitFunction_eq_rightFun]
   exact fun v h _ => Iff.trans h ⟨congrArg _, by aesop⟩
 
+/--
+@isnad1 id=hasstric.2h7v.s10.bca36ee8fd03 from=seed src=0 shape=d655b952 vocab=c9913ebd
+-/
 theorem hasStrictFDerivAt_implicitFunctionOfProdDomain
     (dfu : HasStrictFDerivAt f f'u u) (if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     HasStrictFDerivAt (dfu.implicitFunctionOfProdDomain if₂u)
@@ -116,12 +134,18 @@ theorem hasStrictFDerivAt_implicitFunctionOfProdDomain
   rw [f'u.comp_apply, ← f'u.comp_inl_add_comp_inr]
   simp [-ContinuousLinearMap.comp_apply, ContinuousLinearMap.coe_comp, map_neg, if₂u]
 
+/--
+@isnad1 id=tendsto.2h7v.s9.d6bf1d1b491f from=seed src=0 shape=51dd71ea vocab=0b6c7e60
+-/
 theorem tendsto_implicitFunctionOfProdDomain
     (dfu : HasStrictFDerivAt f f'u u) (if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     Tendsto (dfu.implicitFunctionOfProdDomain if₂u) (𝓝 u.1) (𝓝 u.2) := by
   have := (dfu.hasStrictFDerivAt_implicitFunctionOfProdDomain if₂u).continuousAt.tendsto
   rwa [(dfu.eventually_apply_eq_iff_implicitFunctionOfProdDomain if₂u).self_of_nhds.mp rfl] at this
 
+/--
+@isnad1 id=eventual.2h7v.s9.bea7cf19ddd3 from=seed src=0 shape=fccd61d8 vocab=3a023187
+-/
 theorem eventually_apply_implicitFunctionOfProdDomain
     (dfu : HasStrictFDerivAt f f'u u) (if₂u : (f'u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     ∀ᶠ x in 𝓝 u.1, f (x, dfu.implicitFunctionOfProdDomain if₂u x) = f u := by

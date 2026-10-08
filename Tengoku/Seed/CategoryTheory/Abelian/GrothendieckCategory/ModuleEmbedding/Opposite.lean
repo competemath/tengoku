@@ -82,18 +82,30 @@ is faithful and preserves finite limits and colimits. Furthermore, `F ⋙ embedd
 noncomputable def embedding : Cᵒᵖ ⥤ ModuleCat.{v} (EmbeddingRing F) :=
   preadditiveCoyonedaObj (generator F)
 
+/--
+@isnad1 id=faithful.0h3v.s6.4efbd5cc6d29 from=seed src=0 shape=778251eb vocab=06164e83
+-/
 instance faithful_embedding [Nonempty D] : (embedding F).Faithful :=
   (isSeparator_iff_faithful_preadditiveCoyonedaObj _).1 (isSeparator F)
 
+/--
+@isnad1 id=full.0h3v.s7.8d4274968d49 from=seed src=0 shape=4e64d5a4 vocab=05502705
+-/
 instance full_embedding [Nonempty D] [F.Full] : (F ⋙ embedding F).Full :=
   full_comp_preadditiveCoyonedaObj _ (isSeparator F) (exists_epi F)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=preserve.0h3v.s6.828b8a065309 from=seed src=0 shape=4e00d4e6 vocab=19120a55
+-/
 instance preservesFiniteLimits_embedding : PreservesFiniteLimits (embedding F) := by
   rw [embedding]
   apply preservesFiniteLimits_of_preservesFiniteLimitsOfSize
   infer_instance
 
+/--
+@isnad1 id=preserve.0h3v.s6.2ec0ea45d2ba from=seed src=0 shape=4e00d4e6 vocab=46c49543
+-/
 instance preservesFiniteColimits_embedding : PreservesFiniteColimits (embedding F) := by
   apply preservesFiniteColimits_preadditiveCoyonedaObj_of_projective
 

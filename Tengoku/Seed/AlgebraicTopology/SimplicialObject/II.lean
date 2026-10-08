@@ -47,22 +47,34 @@ def finset (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) : Finset (Fin (n
   Finset.univ.filter (fun i ↦ i = Fin.last _ ∨
     ∃ (h : i ≠ Fin.last _), x ≤ (f (i.castPred h)).castSucc)
 
+/--
+@isnad1 id=iff.0h5v.s9.5758ab849c2b from=seed src=0 shape=8e5889e9 vocab=c221bc09
+-/
 lemma mem_finset_iff (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) (i : Fin (n + 2)) :
     i ∈ finset f x ↔ i = Fin.last _ ∨
       ∃ (h : i ≠ Fin.last _), x ≤ (f (i.castPred h)).castSucc := by
   simp [finset]
 
+/--
+@isnad1 id=mem.0h4v.s7.853b27ef7c22 from=seed src=0 shape=170423b2 vocab=4f34606a
+-/
 @[simp]
 lemma last_mem_finset (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) :
     Fin.last _ ∈ finset f x := by
   simp [mem_finset_iff]
 
+/--
+@isnad1 id=iff.0h5v.s8.68b82e93b947 from=seed src=0 shape=ffef8d8e vocab=eb8c1f4a
+-/
 @[simp]
 lemma castSucc_mem_finset_iff
     (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) (i : Fin (n + 1)) :
     i.castSucc ∈ finset f x ↔ x ≤ (f i).castSucc := by
   simp [mem_finset_iff, Fin.castPred_castSucc]
 
+/--
+@isnad1 id=nonempty.0h4v.s6.e94075d4a1ff from=seed src=0 shape=4ba20330 vocab=3458f46b
+-/
 lemma nonempty_finset (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) :
     (finset f x).Nonempty :=
   ⟨Fin.last _, by simp [mem_finset_iff]⟩
@@ -72,6 +84,9 @@ functor `SimplexCategory.II` on morphisms. -/
 def map' (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) : Fin (n + 2) :=
   (finset f x).min' (nonempty_finset f x)
 
+/--
+@isnad1 id=iff.0h4v.s8.d3c4cb46ffa5 from=seed src=0 shape=e833abe8 vocab=9ddf0dbc
+-/
 lemma map'_eq_last_iff (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) :
     map' f x = Fin.last _ ↔ ∀ (i : Fin (n + 1)), (f i).castSucc < x := by
   simp only [map', Finset.min'_eq_iff, last_mem_finset, Fin.last_le_iff, true_and]
@@ -85,6 +100,9 @@ lemma map'_eq_last_iff (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) :
     simp only [castSucc_mem_finset_iff] at hi
     exact hi.not_gt (h i)
 
+/--
+@isnad1 id=iff.0h5v.s9.41bc98578f0a from=seed src=0 shape=bc79aa4c vocab=d33bd210
+-/
 lemma map'_eq_castSucc_iff (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) (y : Fin (n + 1)) :
     map' f x = y.castSucc ↔ x ≤ (f y).castSucc ∧
       ∀ (i : Fin (n + 1)) (_ : i < y), (f i).castSucc < x := by
@@ -101,16 +119,25 @@ lemma map'_eq_castSucc_iff (f : Fin (n + 1) →o Fin (m + 1)) (x : Fin (m + 2)) 
       exact (h' i this).not_ge (by simpa using hi)
     · apply Fin.le_last
 
+/--
+@isnad1 id=eq.0h3v.s7.4cc701e2fcd8 from=seed src=0 shape=df63dbe8 vocab=7e40c16b
+-/
 @[simp]
 lemma map'_last (f : Fin (n + 1) →o Fin (m + 1)) :
     map' f (Fin.last _) = Fin.last _ := by
   simp [map'_eq_last_iff]
 
+/--
+@isnad1 id=eq.0h3v.s7.322f2af419c9 from=seed src=0 shape=f01f62d9 vocab=79a912d7
+-/
 @[simp]
 lemma map'_zero (f : Fin (n + 1) →o Fin (m + 1)) :
     map' f 0 = 0 := by
   simp [← Fin.castSucc_zero, -Fin.castSucc_zero', map'_eq_castSucc_iff]
 
+/--
+@isnad1 id=eq.0h2v.s6.4d4d80b83dba from=seed src=0 shape=8304e71c vocab=69f64fc9
+-/
 @[simp]
 lemma map'_id (x : Fin (n + 2)) : map' OrderHom.id x = x := by
   obtain ⟨x, rfl⟩ | rfl := Fin.eq_castSucc_or_eq_last x
@@ -118,6 +145,9 @@ lemma map'_id (x : Fin (n + 2)) : map' OrderHom.id x = x := by
     simp
   · simp
 
+/--
+@isnad1 id=eq.0h6v.s8.76b71141665b from=seed src=0 shape=81ccb88a vocab=38b32bee
+-/
 lemma map'_map' {p : ℕ} (f : Fin (n + 1) →o Fin (m + 1))
     (g : Fin (m + 1) →o Fin (p + 1)) (x : Fin (p + 2)) :
     map' f (map' g x) = map' (g.comp f) x := by
@@ -144,6 +174,9 @@ lemma map'_map' {p : ℕ} (f : Fin (n + 1) →o Fin (m + 1))
       apply hx
   · simp
 
+/--
+@isnad1 id=eq.0h3v.s7.6223cbe20043 from=seed src=0 shape=187eab5e vocab=8ca2a9f2
+-/
 @[simp]
 lemma map'_succAboveOrderEmb {n : ℕ} (i : Fin (n + 2)) (x : Fin (n + 3)) :
     map' i.succAboveOrderEmb.toOrderHom x = i.predAbove x := by
@@ -175,6 +208,9 @@ lemma map'_succAboveOrderEmb {n : ℕ} (i : Fin (n + 2)) (x : Fin (n + 3)) :
       · rwa [Fin.succAbove_of_le_castSucc _ _ h, Fin.succ_lt_succ_iff]
   · simp
 
+/--
+@isnad1 id=eq.0h3v.s8.019e16d85b65 from=seed src=0 shape=c09fe754 vocab=2e9592f4
+-/
 @[simp]
 lemma map'_predAbove {n : ℕ} (i : Fin (n + 1)) (x : Fin (n + 2)) :
     map' { toFun := i.predAbove, monotone' := Fin.predAbove_right_monotone i } x =
@@ -206,6 +242,9 @@ lemma map'_predAbove {n : ℕ} (i : Fin (n + 1)) (x : Fin (n + 2)) :
             Fin.castSucc_castPred]
   · simp [map'_last]
 
+/--
+@isnad1 id=monotone.0h3v.s7.ab338b2ece71 from=seed src=0 shape=2e385d82 vocab=d084730e
+-/
 lemma monotone_map' (f : Fin (n + 1) →o Fin (m + 1)) :
     Monotone (map' f) := by
   intro x y hxy
@@ -234,11 +273,17 @@ def II : CosimplicialObject SimplexCategoryᵒᵖ where
     ext x : 3
     exact (II.map'_map' _ _ _).symm)
 
+/--
+@isnad1 id=eq.0h2v.s7.01fdb9f21d2b from=seed src=0 shape=7c20fe90 vocab=5da641c9
+-/
 @[simp]
 lemma II_δ {n : ℕ} (i : Fin (n + 2)) :
     II.δ i = (σ i).op :=
   Quiver.Hom.unop_inj (by ext : 3; apply II.map'_succAboveOrderEmb)
 
+/--
+@isnad1 id=eq.0h2v.s7.93eecdd0cf5a from=seed src=0 shape=fd21c6eb vocab=76e447f0
+-/
 @[simp]
 lemma II_σ {n : ℕ} (i : Fin (n + 1)) :
     II.σ i = (δ i.succ.castSucc).op :=

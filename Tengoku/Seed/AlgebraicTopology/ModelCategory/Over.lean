@@ -45,9 +45,15 @@ variable [CategoryWithCofibrations C]
 instance : CategoryWithCofibrations (Over S) where
   cofibrations := (cofibrations C).over
 
+/--
+@isnad1 id=eq.0h2v.s5.c5c6a8020f26 from=seed src=0 shape=a7df7ae3 vocab=bb105107
+-/
 lemma cofibrations_over_def :
     cofibrations (Over S) = (cofibrations C).over := rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.98ada8d51386 from=seed src=0 shape=dac6e0be vocab=7dd2e9de
+-/
 lemma cofibrations_over_iff {X Y : Over S} (f : X ⟶ Y) :
     Cofibration f ↔ Cofibration f.left := by
   simp only [cofibration_iff, cofibrations_over_def, MorphismProperty.over_iff]
@@ -69,9 +75,15 @@ variable [CategoryWithFibrations C]
 instance : CategoryWithFibrations (Over S) where
   fibrations := (fibrations C).over
 
+/--
+@isnad1 id=eq.0h2v.s5.c9b50b77d081 from=seed src=0 shape=a7df7ae3 vocab=56b7a351
+-/
 lemma fibrations_over_def :
     fibrations (Over S) = (fibrations C).over := rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.cdf05f4f8f2b from=seed src=0 shape=dac6e0be vocab=fb4a2402
+-/
 lemma fibrations_over_iff {X Y : Over S} (f : X ⟶ Y) :
     Fibration f ↔ Fibration f.left := by
   simp only [fibration_iff, fibrations_over_def, MorphismProperty.over_iff]
@@ -93,9 +105,15 @@ variable [CategoryWithWeakEquivalences C]
 instance : CategoryWithWeakEquivalences (Over S) where
   weakEquivalences := (weakEquivalences C).over
 
+/--
+@isnad1 id=eq.0h2v.s5.d2d34cd937e1 from=seed src=0 shape=a7df7ae3 vocab=6ef5548e
+-/
 lemma weakEquivalences_over_def :
     weakEquivalences (Over S) = (weakEquivalences C).over := rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.a1a35c0a2e3f from=seed src=0 shape=dac6e0be vocab=1a710bab
+-/
 lemma weakEquivalences_over_iff {X Y : Over S} (f : X ⟶ Y) :
     WeakEquivalence f ↔ WeakEquivalence f.left := by
   simp only [weakEquivalence_iff, weakEquivalences_over_def, MorphismProperty.over_iff]
@@ -110,10 +128,16 @@ instance [(weakEquivalences C).IsStableUnderRetracts] :
 
 end
 
+/--
+@isnad1 id=eq.0h2v.s5.1faad63bee72 from=seed src=0 shape=1a4d22dd vocab=30b1cd2f
+-/
 lemma trivialCofibrations_over_eq
     [CategoryWithWeakEquivalences C] [CategoryWithCofibrations C] :
     trivialCofibrations (Over S) = (trivialCofibrations C).over := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.4118ede4c823 from=seed src=0 shape=1a4d22dd vocab=5a91538b
+-/
 lemma trivialFibrations_over_eq
     [CategoryWithWeakEquivalences C] [CategoryWithFibrations C] :
     trivialFibrations (Over S) = (trivialFibrations C).over := rfl

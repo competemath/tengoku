@@ -36,6 +36,9 @@ namespace DoldKan
 
 variable {C : Type*} [Category* C] [Preadditive C] {X : SimplicialObject C}
 
+/--
+@isnad1 id=eq.1h4v.s7.230836a43e7f from=seed src=0 shape=bc75c80c vocab=c566b3cf
+-/
 theorem P_is_eventually_constant {q n : ℕ} (hqn : n ≤ q) :
     ((P (q + 1)).f n : X _⦋n⦌ ⟶ _) = (P q).f n := by
   cases n with
@@ -45,6 +48,9 @@ theorem P_is_eventually_constant {q n : ℕ} (hqn : n ≤ q) :
       add_eq_left]
     exact (HigherFacesVanish.of_P q n).comp_Hσ_eq_zero (Nat.succ_le_iff.mp hqn)
 
+/--
+@isnad1 id=eq.1h4v.s7.35f761eb6f84 from=seed src=0 shape=bc75c80c vocab=23000f5c
+-/
 theorem Q_is_eventually_constant {q n : ℕ} (hqn : n ≤ q) :
     ((Q (q + 1)).f n : X _⦋n⦌ ⟶ _) = (Q q).f n := by
   simp only [Q, HomologicalComplex.sub_f_apply, P_is_eventually_constant hqn]
@@ -59,23 +65,38 @@ noncomputable def PInfty : K[X] ⟶ K[X] :=
 noncomputable def QInfty : K[X] ⟶ K[X] :=
   𝟙 _ - PInfty
 
+/--
+@isnad1 id=eq.0h2v.s7.c485cbe184aa from=seed src=0 shape=ad72ab02 vocab=0b984ec2
+-/
 @[simp]
 theorem PInfty_f_0 : (PInfty.f 0 : X _⦋0⦌ ⟶ X _⦋0⦌) = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.29ec68cc27f6 from=seed src=0 shape=249a17f8 vocab=6a6ac8b9
+-/
 theorem PInfty_f (n : ℕ) : (PInfty.f n : X _⦋n⦌ ⟶ X _⦋n⦌) = (P n).f n :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.a848e5c53123 from=seed src=0 shape=2fa5e240 vocab=6aea29fe
+-/
 @[simp]
 theorem QInfty_f_0 : (QInfty.f 0 : X _⦋0⦌ ⟶ X _⦋0⦌) = 0 := by
   dsimp [QInfty]
   simp only [sub_self]
 
+/--
+@isnad1 id=eq.0h3v.s7.17099c8e3819 from=seed src=0 shape=249a17f8 vocab=dc514501
+-/
 theorem QInfty_f (n : ℕ) : (QInfty.f n : X _⦋n⦌ ⟶ X _⦋n⦌) = (Q n).f n :=
   rfl
 
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h5v.s8.de3f2106c0e7 from=seed src=0 shape=0d7a068b vocab=7bf745f5
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_f_naturality (n : ℕ) {X Y : SimplicialObject C} (f : X ⟶ Y) :
     f.app (op ⦋n⦌) ≫ PInfty.f n = PInfty.f n ≫ f.app (op ⦋n⦌) :=
@@ -84,56 +105,89 @@ theorem PInfty_f_naturality (n : ℕ) {X Y : SimplicialObject C} (f : X ⟶ Y) :
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h5v.s8.7d7299637d1e from=seed src=0 shape=0d7a068b vocab=7a55a6cc
+-/
 @[reassoc (attr := simp)]
 theorem QInfty_f_naturality (n : ℕ) {X Y : SimplicialObject C} (f : X ⟶ Y) :
     f.app (op ⦋n⦌) ≫ QInfty.f n = QInfty.f n ≫ f.app (op ⦋n⦌) :=
   Q_f_naturality n n f
 
+/--
+@isnad1 id=eq.0h3v.s8.2de23ff0b664 from=seed src=0 shape=7870afaf vocab=5e4fdac2
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_f_idem (n : ℕ) : (PInfty.f n : X _⦋n⦌ ⟶ _) ≫ PInfty.f n = PInfty.f n := by
   simp only [PInfty_f, P_f_idem]
 
+/--
+@isnad1 id=eq.0h2v.s7.813587c7734a from=seed src=0 shape=4783607e vocab=5ae6148b
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_idem : (PInfty : K[X] ⟶ _) ≫ PInfty = PInfty := by
   ext n
   exact PInfty_f_idem n
 
+/--
+@isnad1 id=eq.0h3v.s8.d288935293cd from=seed src=0 shape=7870afaf vocab=7144ed75
+-/
 @[reassoc (attr := simp)]
 theorem QInfty_f_idem (n : ℕ) : (QInfty.f n : X _⦋n⦌ ⟶ _) ≫ QInfty.f n = QInfty.f n :=
   Q_f_idem _ _
 
+/--
+@isnad1 id=eq.0h2v.s7.fe4912466a2e from=seed src=0 shape=4783607e vocab=6d9168e7
+-/
 @[reassoc (attr := simp)]
 theorem QInfty_idem : (QInfty : K[X] ⟶ _) ≫ QInfty = QInfty := by
   ext n
   exact QInfty_f_idem n
 
+/--
+@isnad1 id=eq.0h3v.s8.81cecaa2d18c from=seed src=0 shape=1721b7b0 vocab=994a1994
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_f_comp_QInfty_f (n : ℕ) : (PInfty.f n : X _⦋n⦌ ⟶ _) ≫ QInfty.f n = 0 := by
   dsimp only [QInfty]
   simp only [HomologicalComplex.sub_f_apply, HomologicalComplex.id_f, comp_sub, comp_id,
     PInfty_f_idem, sub_self]
 
+/--
+@isnad1 id=eq.0h2v.s8.95612047fe68 from=seed src=0 shape=747570db vocab=507ace57
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_comp_QInfty : (PInfty : K[X] ⟶ _) ≫ QInfty = 0 := by
   ext n
   apply PInfty_f_comp_QInfty_f
 
+/--
+@isnad1 id=eq.0h3v.s8.b1c6a36ceb65 from=seed src=0 shape=1721b7b0 vocab=994a1994
+-/
 @[reassoc (attr := simp)]
 theorem QInfty_f_comp_PInfty_f (n : ℕ) : (QInfty.f n : X _⦋n⦌ ⟶ _) ≫ PInfty.f n = 0 := by
   dsimp only [QInfty]
   simp only [HomologicalComplex.sub_f_apply, HomologicalComplex.id_f, sub_comp, id_comp,
     PInfty_f_idem, sub_self]
 
+/--
+@isnad1 id=eq.0h2v.s8.98091a973c81 from=seed src=0 shape=747570db vocab=507ace57
+-/
 @[reassoc (attr := simp)]
 theorem QInfty_comp_PInfty : (QInfty : K[X] ⟶ _) ≫ PInfty = 0 := by
   ext n
   apply QInfty_f_comp_PInfty_f
 
+/--
+@isnad1 id=eq.0h2v.s9.461916eb6471 from=seed src=0 shape=3de9b720 vocab=cacb4a41
+-/
 @[simp]
 theorem PInfty_add_QInfty : (PInfty : K[X] ⟶ _) + QInfty = 𝟙 _ := by
   dsimp only [QInfty]
   simp only [add_sub_cancel]
 
+/--
+@isnad1 id=eq.0h3v.s9.e5cf610ee48b from=seed src=0 shape=31141a10 vocab=17389427
+-/
 theorem PInfty_f_add_QInfty_f (n : ℕ) : (PInfty.f n : X _⦋n⦌ ⟶ _) + QInfty.f n = 𝟙 _ :=
   HomologicalComplex.congr_hom PInfty_add_QInfty n
 
@@ -152,12 +206,18 @@ noncomputable def natTransPInfty : alternatingFaceMapComplex C ⟶ alternatingFa
 noncomputable def natTransPInfty_f (n : ℕ) :=
   natTransPInfty C ◫ 𝟙 (HomologicalComplex.eval _ _ n)
 
+/--
+@isnad1 id=eq.0h3v.s8.a6854145fc78 from=seed src=0 shape=3b715d8c vocab=f99673e5
+-/
 @[simp]
 lemma natTransPInfty_f_app (n : ℕ) : (natTransPInfty_f C n).app X = PInfty.f n := by
   simp [natTransPInfty_f]
 
 variable {C}
 
+/--
+@isnad1 id=eq.0h5v.s9.3a73c3093b46 from=seed src=0 shape=141de622 vocab=5a4c7743
+-/
 @[simp]
 theorem map_PInfty_f {D : Type*} [Category* D] [Preadditive D] (G : C ⥤ D) [G.Additive]
     (X : SimplicialObject C) (n : ℕ) :
@@ -169,7 +229,9 @@ set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- Given an object `Y : Karoubi (SimplicialObject C)`, this lemma
 computes `PInfty` for the associated object in `SimplicialObject (Karoubi C)`
-in terms of `PInfty` for `Y.X : SimplicialObject C` and `Y.p`. -/
+in terms of `PInfty` for `Y.X : SimplicialObject C` and `Y.p`.
+@isnad1 id=eq.0h3v.s9.92ec7e5197f6 from=seed src=0 shape=f8787f1e vocab=cef2bdf2
+-/
 theorem karoubi_PInfty_f {Y : Karoubi (SimplicialObject C)} (n : ℕ) :
     ((PInfty : K[(karoubiFunctorCategoryEmbedding _ _).obj Y] ⟶ _).f n).f =
       Y.p.app (op ⦋n⦌) ≫ (PInfty : K[Y.X] ⟶ _).f n := by

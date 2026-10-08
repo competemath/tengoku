@@ -73,6 +73,9 @@ properties of `projectiveSeminorm`. -/
 def projectiveSeminormAux : FreeAddMonoid (𝕜 × Π i, E i) → ℝ :=
   fun p ↦ (p.toList.map (fun p ↦ ‖p.1‖ * ∏ i, ‖p.2 i‖)).sum
 
+/--
+@isnad1 id=le.0h4v.s5.0a6faf7c5ac2 from=seed src=0 shape=33dfb94d vocab=88640bce
+-/
 theorem projectiveSeminormAux_nonneg (p : FreeAddMonoid (𝕜 × Π i, E i)) :
     0 ≤ projectiveSeminormAux p := by
   refine List.sum_nonneg fun a ↦ ?_
@@ -80,10 +83,16 @@ theorem projectiveSeminormAux_nonneg (p : FreeAddMonoid (𝕜 × Π i, E i)) :
   intro x m _ h
   simpa [← h] using by positivity
 
+/--
+@isnad1 id=le.0h5v.s7.b531b2af0904 from=seed src=0 shape=c7b9c020 vocab=f2516159
+-/
 theorem projectiveSeminormAux_add_le (p q : FreeAddMonoid (𝕜 × Π i, E i)) :
     projectiveSeminormAux (p + q) ≤ projectiveSeminormAux p + projectiveSeminormAux q := by
   simp [projectiveSeminormAux]
 
+/--
+@isnad1 id=eq.0h5v.s8.6d7834dd6163 from=seed src=0 shape=6293166b vocab=1b75e7c3
+-/
 theorem projectiveSeminormAux_smul (p : FreeAddMonoid (𝕜 × Π i, E i)) (a : 𝕜) :
     projectiveSeminormAux (p.map (fun (y : 𝕜 × Π i, E i) ↦ (a * y.1, y.2))) =
     ‖a‖ * projectiveSeminormAux p := by
@@ -91,6 +100,9 @@ theorem projectiveSeminormAux_smul (p : FreeAddMonoid (𝕜 × Π i, E i)) (a : 
 
 variable [∀ i, NormedSpace 𝕜 (E i)]
 
+/--
+@isnad1 id=bddbelow.0h4v.s8.73225d8ad420 from=seed src=0 shape=3761ac3b vocab=5305a148
+-/
 theorem bddBelow_projectiveSemiNormAux (x : ⨂[𝕜] i, E i) :
     BddBelow (Set.range (fun (p : lifts x) ↦ projectiveSeminormAux p.1)) :=
   ⟨0, by simp [mem_lowerBounds, projectiveSeminormAux_nonneg]⟩
@@ -98,19 +110,31 @@ theorem bddBelow_projectiveSemiNormAux (x : ⨂[𝕜] i, E i) :
 noncomputable instance : Norm (⨂[𝕜] i, E i) :=
   ⟨fun x ↦ iInf (fun (p : lifts x) ↦ projectiveSeminormAux p.val)⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.a8c1ad027d86 from=seed src=0 shape=015d1946 vocab=211de5cd
+-/
 theorem norm_def (x : ⨂[𝕜] i, E i) :
     ‖x‖ = iInf (fun (p : lifts x) ↦ projectiveSeminormAux p.val) := rfl
 
 @[deprecated (since := "2026-06-10")] alias projectiveSeminormFun := norm
 
+/--
+@isnad1 id=eq.0h3v.s8.c5d3e5721e85 from=seed src=0 shape=ba0b3d3b vocab=f6b61485
+-/
 theorem projectiveSeminorm_zero : ‖(0 : ⨂[𝕜] i, E i)‖ = 0 :=
   le_antisymm (ciInf_le (bddBelow_projectiveSemiNormAux _) ⟨0, lifts_zero⟩)
     (le_ciInf (fun p ↦ projectiveSeminormAux_nonneg p.val))
 
+/--
+@isnad1 id=le.0h5v.s9.06d472e6fd8c from=seed src=0 shape=d86f32ab vocab=c1cc6cf6
+-/
 theorem projectiveSeminorm_add_le (x y : ⨂[𝕜] i, E i) : ‖x + y‖ ≤ ‖x‖ + ‖y‖ :=
   le_ciInf_add_ciInf (fun p q ↦ ciInf_le_of_le (bddBelow_projectiveSemiNormAux _)
     ⟨p.1 + q.1, lifts_add p.2 q.2⟩ (projectiveSeminormAux_add_le p.1 q.1))
 
+/--
+@isnad1 id=le.0h5v.s8.95bb8ec480df from=seed src=0 shape=d6325b4b vocab=37bb4663
+-/
 theorem projectiveSeminorm_smul_le (a : 𝕜) (x : ⨂[𝕜] i, E i) : ‖a • x‖ ≤ ‖a‖ * ‖x‖ := by
   simp only [norm_def, Real.mul_iInf_of_nonneg (norm_nonneg _)]
   refine le_ciInf fun p ↦ ?_
@@ -128,10 +152,16 @@ noncomputable instance : SeminormedAddCommGroup (⨂[𝕜] i, E i) :=
 
 noncomputable instance : NormedSpace 𝕜 (⨂[𝕜] i, E i) := ⟨projectiveSeminorm_smul_le⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.a62b4e778fe2 from=seed src=0 shape=a40b4da2 vocab=8f6920f7
+-/
 @[deprecated norm_def (since := "2026-06-10")]
 theorem projectiveSeminorm_apply (x : ⨂[𝕜] i, E i) :
     projectiveSeminorm x = iInf (fun (p : lifts x) ↦ projectiveSeminormAux p.1) := rfl
 
+/--
+@isnad1 id=le.0h4v.s9.f01030af1917 from=seed src=0 shape=c64d8bef vocab=db550971
+-/
 theorem projectiveSeminorm_tprod_le (m : Π i, E i) :
     ‖(⨂ₜ[𝕜] i, m i)‖ ≤ ∏ i, ‖m i‖ := by
    have hle := ciInf_le (bddBelow_projectiveSemiNormAux (⨂ₜ[𝕜] i, m i))
@@ -145,6 +175,9 @@ section NontriviallyNormedField
 
 variable [NontriviallyNormedField 𝕜] [∀ i, NormedSpace 𝕜 (E i)]
 
+/--
+@isnad1 id=le.0h6v.s11.020daa5129e8 from=seed src=0 shape=b9f0646c vocab=1f115cc9
+-/
 theorem norm_eval_le_projectiveSeminorm {G : Type*} [SeminormedAddCommGroup G]
     [NormedSpace 𝕜 G] (f : ContinuousMultilinearMap 𝕜 E G) (x : ⨂[𝕜] i, E i) :
     ‖lift f.toMultilinearMap x‖ ≤ ‖f‖ * ‖x‖ := by
@@ -190,6 +223,9 @@ noncomputable def liftIsometry : ContinuousMultilinearMap 𝕜 E F ≃ₗᵢ[�
 
 variable {𝕜 E F}
 
+/--
+@isnad1 id=eq.0h6v.s13.9ff71426d40e from=seed src=0 shape=d3e7f9c5 vocab=6fbd0e06
+-/
 @[simp]
 theorem liftIsometry_apply_apply (f : ContinuousMultilinearMap 𝕜 E F) (x : ⨂[𝕜] i, E i) :
     liftIsometry 𝕜 E F f x = lift f.toMultilinearMap x := by
@@ -201,15 +237,24 @@ variable (𝕜) in
 noncomputable def tprodL : ContinuousMultilinearMap 𝕜 E (⨂[𝕜] i, E i) :=
   (liftIsometry 𝕜 E _).symm (ContinuousLinearMap.id 𝕜 _)
 
+/--
+@isnad1 id=eq.0h3v.s9.7d127d5682c0 from=seed src=0 shape=aa8c3e97 vocab=e6d200d3
+-/
 @[simp]
 theorem tprodL_coe : (tprodL 𝕜).toMultilinearMap = tprod 𝕜 (s := E) := by
   ext; simp
 
+/--
+@isnad1 id=eq.0h5v.s12.1e1f5d277138 from=seed src=0 shape=c081e722 vocab=6790002c
+-/
 @[simp]
 theorem liftIsometry_symm_apply (l : (⨂[𝕜] i, E i) →L[𝕜] F) :
     (liftIsometry 𝕜 E F).symm l = l.compContinuousMultilinearMap (tprodL 𝕜) := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.5710255f7c7a from=seed src=0 shape=629edf0e vocab=a0ea403b
+-/
 @[simp]
 theorem liftIsometry_tprodL :
     liftIsometry 𝕜 E _ (tprodL 𝕜) = ContinuousLinearMap.id 𝕜 (⨂[𝕜] i, E i) := by
@@ -229,10 +274,16 @@ Let `f` be a family of continuous `𝕜`-linear maps between `Eᵢ` and `E'ᵢ`,
 noncomputable def mapL : (⨂[𝕜] i, E i) →L[𝕜] ⨂[𝕜] i, E' i :=
   liftIsometry 𝕜 E _ <| (tprodL 𝕜).compContinuousLinearMap f
 
+/--
+@isnad1 id=eq.0h5v.s10.aa6942ed9dc6 from=seed src=0 shape=859409c1 vocab=b9078eca
+-/
 @[simp]
 theorem mapL_coe : (mapL f).toLinearMap = map (fun i ↦ (f i).toLinearMap) := by
   ext; simp [mapL]
 
+/--
+@isnad1 id=eq.0h6v.s11.abb9e57641c9 from=seed src=0 shape=3093c795 vocab=f3359aaa
+-/
 @[simp]
 theorem mapL_apply (x : ⨂[𝕜] i, E i) : mapL f x = map (fun i ↦ (f i).toLinearMap) x := by
   rfl
@@ -243,24 +294,39 @@ This is the continuous version of `PiTensorProduct.mapIncl`. -/
 noncomputable def mapLIncl (p : Π i, Submodule 𝕜 (E i)) : (⨂[𝕜] i, p i) →L[𝕜] ⨂[𝕜] i, E i :=
   mapL fun (i : ι) ↦ (p i).subtypeL
 
+/--
+@isnad1 id=eq.0h7v.s11.7b91e6459cde from=seed src=0 shape=7c7f51f9 vocab=e9408ddb
+-/
 theorem mapL_comp : mapL (fun (i : ι) ↦ g i ∘L f i) = mapL g ∘L mapL f := by
   apply ContinuousLinearMap.coe_injective
   ext; simp
 
+/--
+@isnad1 id=eq.0h7v.s13.491e1ca38c72 from=seed src=0 shape=c833e226 vocab=b0a8238d
+-/
 theorem liftIsometry_comp_mapL (h : ContinuousMultilinearMap 𝕜 E' F) :
     liftIsometry 𝕜 E' F h ∘L mapL f = liftIsometry 𝕜 E F (h.compContinuousLinearMap f) := by
   apply ContinuousLinearMap.coe_injective
   ext; simp
 
+/--
+@isnad1 id=eq.0h3v.s9.758fc89d0603 from=seed src=0 shape=ba23fa60 vocab=7c2823f7
+-/
 @[simp]
 theorem mapL_id : mapL (fun i ↦ ContinuousLinearMap.id 𝕜 (E i)) = ContinuousLinearMap.id _ _ := by
   apply ContinuousLinearMap.coe_injective
   ext; simp
 
+/--
+@isnad1 id=eq.0h3v.s11.73566572e77e from=seed src=0 shape=d53351e2 vocab=eb6849b4
+-/
 @[simp]
 theorem mapL_one : mapL (fun (i : ι) ↦ (1 : E i →L[𝕜] E i)) = 1 :=
   mapL_id
 
+/--
+@isnad1 id=eq.0h5v.s12.868b805f6101 from=seed src=0 shape=d1c2d34f vocab=1d73c67b
+-/
 theorem mapL_mul (f₁ f₂ : Π i, E i →L[𝕜] E i) :
     mapL (fun i ↦ f₁ i * f₂ i) = mapL f₁ * mapL f₂ :=
   mapL_comp f₁ f₂
@@ -272,6 +338,9 @@ noncomputable def mapLMonoidHom : (Π i, E i →L[𝕜] E i) →* ((⨂[𝕜] i,
   map_one' := mapL_one
   map_mul' := mapL_mul
 
+/--
+@isnad1 id=eq.0h5v.s12.0b7f8c425ceb from=seed src=0 shape=46fc58f9 vocab=168046bf
+-/
 @[simp]
 protected theorem mapL_pow (f : Π i, E i →L[𝕜] E i) (n : ℕ) :
     mapL (f ^ n) = mapL f ^ n := MonoidHom.map_pow mapLMonoidHom f n
@@ -288,17 +357,26 @@ private theorem mapL_add_smul_aux {ι : Type*}
   grind
 
 open Function in
+/--
+@isnad1 id=eq.0h8v.s12.958a1a5d32fb from=seed src=0 shape=1d896f40 vocab=ca5f0bbe
+-/
 protected theorem mapL_add [DecidableEq ι] (i : ι) (u v : E i →L[𝕜] E' i) :
     mapL (update f i (u + v)) = mapL (update f i u) + mapL (update f i v) := by
   ext
   simp [mapL_add_smul_aux, PiTensorProduct.map_update_add]
 
 open Function in
+/--
+@isnad1 id=eq.0h8v.s12.8ec7f52b015c from=seed src=0 shape=9f529a2f vocab=3ca24c0b
+-/
 protected theorem mapL_smul [DecidableEq ι] (i : ι) (c : 𝕜) (u : E i →L[𝕜] E' i) :
     mapL (update f i (c • u)) = c • mapL (update f i u) := by
   ext
   simp [mapL_add_smul_aux, PiTensorProduct.map_update_smul]
 
+/--
+@isnad1 id=le.0h5v.s10.7d0b7de50399 from=seed src=0 shape=0f6651e8 vocab=49e82eee
+-/
 theorem opNorm_mapL : ‖mapL f‖ ≤ ∏ i, ‖f i‖ := by
   refine (ContinuousLinearMap.opNorm_le_iff (by positivity)).mpr fun x ↦ ?_
   apply le_trans (norm_eval_le_projectiveSeminorm ..) (mul_le_mul_of_nonneg_right _ (norm_nonneg x))
@@ -323,6 +401,9 @@ noncomputable def mapLMultilinear : ContinuousMultilinearMap 𝕜 (fun (i : ι) 
 
 variable {𝕜 E E'}
 
+/--
+@isnad1 id=le.0h4v.s12.9e0e348e8a4f from=seed src=0 shape=f6a7cebd vocab=3d2381ad
+-/
 theorem opNorm_mapLMultilinear_le : ‖mapLMultilinear 𝕜 E E'‖ ≤ 1 :=
   MultilinearMap.mkContinuous_norm_le _ zero_le_one _
 

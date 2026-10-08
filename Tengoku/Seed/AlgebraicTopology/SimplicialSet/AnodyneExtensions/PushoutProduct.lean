@@ -54,10 +54,16 @@ open modelCategoryQuillen
 
 namespace prodStdSimplex
 
+/--
+@isnad1 id=strongan.0h3v.s8.d026c2ba920f from=seed src=0 shape=d7f4e3fd vocab=9dbd663c
+-/
 lemma strongAnodyneExtensions_unionProd_ι {m : ℕ} (k : Fin (m + 2)) (n : ℕ) :
     strongAnodyneExtensions (Subcomplex.unionProd.{u} Λ[m + 1, k] ∂Δ[n]).ι :=
   (pairing k n).strongAnodyneExtensions
 
+/--
+@isnad1 id=anodynee.0h3v.s8.67784fb555e5 from=seed src=0 shape=d7f4e3fd vocab=dae64096
+-/
 lemma anodyneExtensions_unionProd_ι {m : ℕ} (k : Fin (m + 2)) (n : ℕ) :
     anodyneExtensions (Subcomplex.unionProd.{u} Λ[m + 1, k] ∂Δ[n]).ι :=
   (pairing k n).anodyneExtensions
@@ -69,6 +75,9 @@ section
 variable {X₁ X₂ Y₁ Y₂ E B : SSet.{u}}
   {i : X₁ ⟶ Y₁} {j : X₂ ⟶ Y₂} {p : E ⟶ B}
 
+/--
+@isnad1 id=fibratio.0h7v.s8.10faa32fa078 from=seed src=0 shape=83e0bdbe vocab=4bc21ee3
+-/
 lemma fibration_pullbackObjObjπ [Mono i] [Fibration p]
     (sq₁₃ : MonoidalClosed.internalHom.PullbackObjObj i p) :
     Fibration sq₁₃.π := by
@@ -94,6 +103,9 @@ lemma fibration_pullbackObjObjπ [Mono i] [Fibration p]
     Subcomplex.unionProd.pushoutObjObj_ι]
   exact prodStdSimplex.anodyneExtensions_unionProd_ι _ _ _ hp
 
+/--
+@isnad1 id=anodynee.0h8v.s8.e6888e07e463 from=seed src=0 shape=0d90a848 vocab=520e3588
+-/
 lemma anodyneExtensions_pushoutObjObjι
     (sq₁₂ : (curriedTensor _).PushoutObjObj i j) [Mono i] (hj : anodyneExtensions j) :
     anodyneExtensions sq₁₂.ι := by
@@ -104,6 +116,9 @@ lemma anodyneExtensions_pushoutObjObjι
   rw [← HomotopicalAlgebra.fibration_iff] at hp ⊢
   exact fibration_pullbackObjObjπ sq₁₃
 
+/--
+@isnad1 id=anodynee.0h8v.s8.c95027ad5f93 from=seed src=0 shape=07473c19 vocab=520e3588
+-/
 lemma anodyneExtensions_pushoutObjObjι'
     (sq₁₂ : (curriedTensor _).PushoutObjObj i j)
     [Mono j] (hi : anodyneExtensions i) :
@@ -114,24 +129,36 @@ lemma anodyneExtensions_pushoutObjObjι'
 
 end
 
+/--
+@isnad1 id=anodynee.0h5v.s6.ceb744aa9b37 from=seed src=0 shape=87c1ec2b vocab=e2a67357
+-/
 lemma anodyneExtensions_unionProd_ι
     {X Y : SSet.{u}} (A : X.Subcomplex) (B : Y.Subcomplex)
     (hB : anodyneExtensions B.ι) :
     anodyneExtensions (A.unionProd B).ι :=
   anodyneExtensions_pushoutObjObjι (Subcomplex.unionProd.pushoutObjObj A B) hB
 
+/--
+@isnad1 id=anodynee.0h5v.s6.fbe6f7fbade8 from=seed src=0 shape=d199ade1 vocab=e2a67357
+-/
 lemma anodyneExtensions_unionProd_ι'
     {X Y : SSet.{u}} (A : X.Subcomplex) (B : Y.Subcomplex)
     (hA : anodyneExtensions A.ι) :
     anodyneExtensions (A.unionProd B).ι :=
   anodyneExtensions_pushoutObjObjι' (Subcomplex.unionProd.pushoutObjObj A B) hA
 
+/--
+@isnad1 id=anodynee.0h5v.s6.0f2e93b05132 from=seed src=0 shape=69d1a85a vocab=d216d504
+-/
 lemma anodyneExtensions.whiskerRight
     {X Y : SSet.{u}} {f : X ⟶ Y} (hf : anodyneExtensions f) (Z : SSet.{u}) :
     anodyneExtensions (f ▷ Z) :=
   anodyneExtensions_pushoutObjObjι'
     (.ofIsInitialRight (curriedTensor _) f (initial.to Z) initialIsInitial) hf
 
+/--
+@isnad1 id=anodynee.0h5v.s6.ecf598459a58 from=seed src=0 shape=74dc22d5 vocab=b79c5d6a
+-/
 lemma anodyneExtensions.whiskerLeft
     {X Y : SSet.{u}} {f : X ⟶ Y} (hf : anodyneExtensions f) (Z : SSet.{u}) :
     anodyneExtensions (Z ◁ f) :=

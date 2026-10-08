@@ -35,6 +35,9 @@ variable
 
 section Translation
 
+/--
+@isnad1 id=isintegr.1h5v.s6.42bfadf3a21c from=seed src=0 shape=8580ae68 vocab=a1bdda45
+-/
 lemma IsIntegralCurveOn.comp_add (hγ : IsIntegralCurveOn γ v s) (dt : ℝ) :
     IsIntegralCurveOn (γ ∘ (· + dt)) (v ∘ (· + dt)) (-dt +ᵥ s) := by
   intros t ht
@@ -43,6 +46,9 @@ lemma IsIntegralCurveOn.comp_add (hγ : IsIntegralCurveOn γ v s) (dt : ℝ) :
   apply hγ (t + dt)
   rwa [mem_vadd_set_iff_neg_vadd_mem, neg_neg, vadd_eq_add, add_comm] at ht
 
+/--
+@isnad1 id=iff.0h5v.s6.2cbde909ad16 from=seed src=0 shape=2be96274 vocab=a1bdda45
+-/
 lemma isIntegralCurveOn_comp_add {dt : ℝ} :
     IsIntegralCurveOn (γ ∘ (· + dt)) (v ∘ (· + dt)) (-dt +ᵥ s) ↔ IsIntegralCurveOn γ v s := by
   refine ⟨fun hγ ↦ ?_, fun hγ ↦ hγ.comp_add _⟩
@@ -53,14 +59,23 @@ lemma isIntegralCurveOn_comp_add {dt : ℝ} :
     simp only [comp_apply, neg_add_cancel_right]
   · simp only [neg_neg, vadd_neg_vadd]
 
+/--
+@isnad1 id=iff.0h5v.s6.9615c356e06b from=seed src=0 shape=4a6b40e7 vocab=98d05ac8
+-/
 lemma isIntegralCurveOn_comp_sub {dt : ℝ} :
     IsIntegralCurveOn (γ ∘ (· - dt)) (v ∘ (· - dt)) (dt +ᵥ s) ↔ IsIntegralCurveOn γ v s := by
   simpa using! isIntegralCurveOn_comp_add (dt := -dt)
 
+/--
+@isnad1 id=isintegr.1h5v.s6.8f095ac2e2aa from=seed src=0 shape=03e424ed vocab=98d05ac8
+-/
 lemma IsIntegralCurveOn.comp_sub (hγ : IsIntegralCurveOn γ v s) (dt : ℝ) :
     IsIntegralCurveOn (γ ∘ (· - dt)) (v ∘ (· - dt)) (dt +ᵥ s) :=
   isIntegralCurveOn_comp_sub.mpr hγ
 
+/--
+@isnad1 id=iff.0h5v.s6.ba94778bfef3 from=seed src=0 shape=57d5f33a vocab=16db2bfa
+-/
 lemma isIntegralCurveAt_comp_add {dt : ℝ} :
     IsIntegralCurveAt (γ ∘ (· + dt)) (v ∘ (· + dt)) (t₀ - dt) ↔ IsIntegralCurveAt γ v t₀ := by
   simp_rw [isIntegralCurveAt_iff_exists_pos]
@@ -68,33 +83,54 @@ lemma isIntegralCurveAt_comp_add {dt : ℝ} :
   convert! isIntegralCurveOn_comp_add
   simp [neg_add_eq_sub]
 
+/--
+@isnad1 id=isintegr.1h5v.s6.80910b288ecb from=seed src=0 shape=145dbd2e vocab=16db2bfa
+-/
 lemma IsIntegralCurveAt.comp_add (hγ : IsIntegralCurveAt γ v t₀) (dt : ℝ) :
     IsIntegralCurveAt (γ ∘ (· + dt)) (v ∘ (· + dt)) (t₀ - dt) :=
   isIntegralCurveAt_comp_add.mpr hγ
 
+/--
+@isnad1 id=iff.0h5v.s6.6caca8864495 from=seed src=0 shape=57d5f33a vocab=16db2bfa
+-/
 lemma isIntegralCurveAt_comp_sub {dt : ℝ} :
     IsIntegralCurveAt (γ ∘ (· - dt)) (v ∘ (· - dt)) (t₀ + dt) ↔ IsIntegralCurveAt γ v t₀ := by
   simpa using! isIntegralCurveAt_comp_add (dt := -dt)
 
+/--
+@isnad1 id=isintegr.1h5v.s6.5eb2f2a268ee from=seed src=0 shape=145dbd2e vocab=16db2bfa
+-/
 lemma IsIntegralCurveAt.comp_sub (hγ : IsIntegralCurveAt γ v t₀) (dt : ℝ) :
     IsIntegralCurveAt (γ ∘ (· - dt)) (v ∘ (· - dt)) (t₀ + dt) :=
   isIntegralCurveAt_comp_sub.mpr hγ
 
+/--
+@isnad1 id=isintegr.1h4v.s6.cbf94a8d668b from=seed src=0 shape=8296dd0e vocab=ee060b34
+-/
 lemma IsIntegralCurve.comp_add (hγ : IsIntegralCurve γ v) (dt : ℝ) :
     IsIntegralCurve (γ ∘ (· + dt)) (v ∘ (· + dt)) := by
   rw [← isIntegralCurveOn_univ] at *
   simpa using hγ.comp_add dt
 
+/--
+@isnad1 id=iff.0h4v.s6.d3745ba0b4a1 from=seed src=0 shape=557a8e46 vocab=ee060b34
+-/
 lemma isIntegralCurve_comp_add {dt : ℝ} :
     IsIntegralCurve (γ ∘ (· + dt)) (v ∘ (· + dt)) ↔ IsIntegralCurve γ v := by
   simp_rw [← isIntegralCurveOn_univ]
   convert! isIntegralCurveOn_comp_add
   simp
 
+/--
+@isnad1 id=iff.0h4v.s6.2f0ef1dd3bdd from=seed src=0 shape=557a8e46 vocab=9c44a7a5
+-/
 lemma isIntegralCurve_comp_sub {dt : ℝ} :
     IsIntegralCurve (γ ∘ (· - dt)) (v ∘ (· - dt)) ↔ IsIntegralCurve γ v := by
   simpa using! isIntegralCurve_comp_add (dt := -dt)
 
+/--
+@isnad1 id=isintegr.1h4v.s6.fb563f344bd2 from=seed src=0 shape=8296dd0e vocab=9c44a7a5
+-/
 lemma IsIntegralCurve.comp_sub (hγ : IsIntegralCurve γ v) (dt : ℝ) :
     IsIntegralCurve (γ ∘ (· - dt)) (v ∘ (· - dt)) :=
   isIntegralCurve_comp_sub.mpr hγ
@@ -105,12 +141,18 @@ end Translation
 
 section Scaling
 
+/--
+@isnad1 id=isintegr.1h5v.s7.58641df21ab9 from=seed src=0 shape=1b329e2e vocab=9c4f39d0
+-/
 lemma IsIntegralCurveOn.comp_mul (hγ : IsIntegralCurveOn γ v s) (a : ℝ) :
     IsIntegralCurveOn (γ ∘ (· * a)) (a • v ∘ (· * a)) { t | t * a ∈ s } := fun t ht ↦ by
   simp only [comp_apply, Pi.smul_apply]
   exact HasDerivWithinAt.scomp t (hγ (t * a) ht) (hasDerivAt_mul_const a).hasDerivWithinAt
     fun _ ht' ↦ ht'
 
+/--
+@isnad1 id=iff.1h5v.s7.55437ffdd633 from=seed src=0 shape=dbbf9084 vocab=f0cd1b3e
+-/
 lemma isIntegralCurveOn_comp_mul_ne_zero {a : ℝ} (ha : a ≠ 0) :
     IsIntegralCurveOn (γ ∘ (· * a)) (a • v ∘ (· * a)) (a⁻¹ • s) ↔ IsIntegralCurveOn γ v s := by
   have heq : a⁻¹ • s = { t | t * a ∈ s } := by
@@ -127,6 +169,9 @@ lemma isIntegralCurveOn_comp_mul_ne_zero {a : ℝ} (ha : a ≠ 0) :
   · simp only [mul_comm _ a⁻¹, ← smul_eq_mul, mem_inv_smul_set_iff₀ ha, smul_inv_smul₀ ha,
       ofPred_mem_eq]
 
+/--
+@isnad1 id=isintegr.2h5v.s7.bc405c2d164c from=seed src=0 shape=28fb4585 vocab=aeeb8f7d
+-/
 lemma IsIntegralCurveAt.comp_mul_ne_zero (hγ : IsIntegralCurveAt γ v t₀) {a : ℝ} (ha : a ≠ 0) :
     IsIntegralCurveAt (γ ∘ (· * a)) (a • v ∘ (· * a)) (t₀ / a) := by
   rw [isIntegralCurveAt_iff_exists_pos] at *
@@ -137,6 +182,9 @@ lemma IsIntegralCurveAt.comp_mul_ne_zero (hγ : IsIntegralCurveAt γ v t₀) {a 
   rw [mem_ofPred_eq, Metric.mem_ball, Metric.mem_ball, Real.dist_eq, Real.dist_eq,
     lt_div_iff₀ (abs_pos.mpr ha), ← abs_mul, sub_mul, div_mul_cancel₀ _ ha]
 
+/--
+@isnad1 id=iff.1h5v.s7.0d2ef3837d95 from=seed src=0 shape=21ef2f0a vocab=aeeb8f7d
+-/
 lemma isIntegralCurveAt_comp_mul_ne_zero {a : ℝ} (ha : a ≠ 0) :
     IsIntegralCurveAt (γ ∘ (· * a)) (a • v ∘ (· * a)) (t₀ / a) ↔ IsIntegralCurveAt γ v t₀ := by
   refine ⟨fun hγ ↦ ?_, fun hγ ↦ hγ.comp_mul_ne_zero ha⟩
@@ -148,11 +196,17 @@ lemma isIntegralCurveAt_comp_mul_ne_zero {a : ℝ} (ha : a ≠ 0) :
       smul_smul, one_smul]
   · simp only [div_inv_eq_mul, div_mul_cancel₀ _ ha]
 
+/--
+@isnad1 id=isintegr.1h4v.s7.a0f08d6f5f52 from=seed src=0 shape=4814e7a8 vocab=f45af649
+-/
 lemma IsIntegralCurve.comp_mul (hγ : IsIntegralCurve γ v) (a : ℝ) :
     IsIntegralCurve (γ ∘ (· * a)) (a • v ∘ (· * a)) := by
   rw [← isIntegralCurveOn_univ] at *
   exact hγ.comp_mul _
 
+/--
+@isnad1 id=iff.1h4v.s7.3c046f61e69e from=seed src=0 shape=7f0fa8f3 vocab=f45af649
+-/
 lemma isIntegralCurve_comp_mul_ne_zero {a : ℝ} (ha : a ≠ 0) :
     IsIntegralCurve (γ ∘ (· * a)) (a • v ∘ (· * a)) ↔ IsIntegralCurve γ v := by
   refine ⟨fun hγ ↦ ?_, fun hγ ↦ hγ.comp_mul _⟩
@@ -164,7 +218,9 @@ lemma isIntegralCurve_comp_mul_ne_zero {a : ℝ} (ha : a ≠ 0) :
       smul_smul, one_smul]
 
 /-- If the vector field `v` vanishes at `x₀` for all times, then the constant curve at `x₀`
-is a global integral curve of `v`. -/
+is a global integral curve of `v`.
+@isnad1 id=isintegr.1h3v.s5.23629ee71c8e from=seed src=0 shape=100ddee2 vocab=7ec95bbe
+-/
 lemma isIntegralCurve_const {x : E} (h : ∀ t, v t x = 0) : IsIntegralCurve (fun _ ↦ x) v :=
   fun t ↦ (h t) ▸ hasDerivAt_const _ _
 

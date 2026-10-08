@@ -24,7 +24,9 @@ assert_not_exists Finset
 variable {α β : Type*} [Field α] [LinearOrder α] [Field β] [LinearOrder β]
 
 /-- There is at most one ordered ring homomorphism from a linear ordered field to an archimedean
-linear ordered field. -/
+linear ordered field.
+@isnad1 id=subsingl.0h2v.s6.53cf7744537a from=seed src=0 shape=382865d3 vocab=ae18b497
+-/
 instance OrderRingHom.subsingleton [IsStrictOrderedRing β] [Archimedean β] :
     Subsingleton (α →+*o β) :=
   ⟨fun f g => by
@@ -40,13 +42,17 @@ instance OrderRingHom.subsingleton [IsStrictOrderedRing β] [Archimedean β] :
           (OrderHomClass.mono f).reflect_lt hf).elim⟩
 
 /-- There is at most one ordered ring isomorphism between a linear ordered field and an archimedean
-linear ordered field. -/
+linear ordered field.
+@isnad1 id=subsingl.0h2v.s7.bc2026b49767 from=seed src=0 shape=382865d3 vocab=2f67fa56
+-/
 instance OrderRingIso.subsingleton_right [IsStrictOrderedRing β] [Archimedean β] :
     Subsingleton (α ≃+*o β) :=
   OrderRingIso.toOrderRingHom_injective.subsingleton
 
 /-- There is at most one ordered ring isomorphism between an archimedean linear ordered field and a
-linear ordered field. -/
+linear ordered field.
+@isnad1 id=subsingl.0h2v.s7.e530ea16f6b1 from=seed src=0 shape=845d5bec vocab=2f67fa56
+-/
 instance OrderRingIso.subsingleton_left [IsStrictOrderedRing α] [Archimedean α] :
     Subsingleton (α ≃+*o β) :=
   OrderRingIso.symm_bijective.injective.subsingleton
@@ -57,10 +63,16 @@ theorem OrderRingHom.eq_id [IsStrictOrderedRing α] [Archimedean α] (f : α →
 theorem OrderRingIso.eq_refl [IsStrictOrderedRing α] [Archimedean α] (f : α ≃+*o α) : f = .refl _ :=
   Subsingleton.elim ..
 
+/--
+@isnad1 id=eq.0h3v.s7.3ff4e7ee606b from=seed src=0 shape=a2f590ac vocab=8002682c
+-/
 theorem OrderRingHom.apply_eq_self [IsStrictOrderedRing α] [Archimedean α] (f : α →+*o α) (x : α) :
     f x = x := by
   rw [f.eq_id]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.431e5857d023 from=seed src=0 shape=a2f590ac vocab=fd535b87
+-/
 theorem OrderRingIso.apply_eq_self [IsStrictOrderedRing α] [Archimedean α] (f : α ≃+*o α) (x : α) :
     f x = x :=
   f.toOrderRingHom.apply_eq_self x

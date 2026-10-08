@@ -30,6 +30,9 @@ open scoped NNReal
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=hasfderi.1h3v.s11.a67eab9f2f8d from=seed src=0 shape=4239d9a5 vocab=25d05c82
+-/
 theorem hasFDerivAt_norm_rpow (x : E) {p : ℝ} (hp : 1 < p) :
     HasFDerivAt (fun x : E ↦ ‖x‖ ^ p) ((p * ‖x‖ ^ (p - 2)) • innerSL ℝ x) x := by
   by_cases hx : x = 0
@@ -53,28 +56,46 @@ theorem hasFDerivAt_norm_rpow (x : E) {p : ℝ} (hp : 1 < p) :
     simp_rw [← Real.rpow_natCast_mul (norm_nonneg _), ← Nat.cast_smul_eq_nsmul ℝ, smul_smul]
     ring_nf
 
+/--
+@isnad1 id=differen.1h2v.s6.1e3421aea9a9 from=seed src=0 shape=ae5fb2ef vocab=21276dcb
+-/
 theorem differentiable_norm_rpow {p : ℝ} (hp : 1 < p) :
     Differentiable ℝ (fun x : E ↦ ‖x‖ ^ p) :=
   fun x ↦ hasFDerivAt_norm_rpow x hp |>.differentiableAt
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.6c48acff5463 from=seed src=0 shape=4796329a vocab=40a437a3
+-/
 theorem hasDerivAt_norm_rpow (x : ℝ) {p : ℝ} (hp : 1 < p) :
     HasDerivAt (fun x : ℝ ↦ ‖x‖ ^ p) (p * ‖x‖ ^ (p - 2) * x) x := by
   convert hasFDerivAt_norm_rpow x hp |>.hasDerivAt; simp
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.4977bbfa2565 from=seed src=0 shape=4796329a vocab=d5b655a3
+-/
 theorem hasDerivAt_abs_rpow (x : ℝ) {p : ℝ} (hp : 1 < p) :
     HasDerivAt (fun x : ℝ ↦ |x| ^ p) (p * |x| ^ (p - 2) * x) x := by
   simpa using hasDerivAt_norm_rpow x hp
 
+/--
+@isnad1 id=eq.1h3v.s11.8078c3675210 from=seed src=0 shape=fa3cc558 vocab=485ec5a3
+-/
 theorem fderiv_norm_rpow (x : E) {p : ℝ} (hp : 1 < p) :
     fderiv ℝ (fun x ↦ ‖x‖ ^ p) x = (p * ‖x‖ ^ (p - 2)) • innerSL ℝ x :=
   hasFDerivAt_norm_rpow x hp |>.fderiv
 
+/--
+@isnad1 id=eq.2h5v.s11.88aa8fc4274e from=seed src=0 shape=af11eddf vocab=6fd6f81f
+-/
 theorem Differentiable.fderiv_norm_rpow {f : F → E} (hf : Differentiable ℝ f)
     {x : F} {p : ℝ} (hp : 1 < p) :
     fderiv ℝ (fun x ↦ ‖f x‖ ^ p) x =
     (p * ‖f x‖ ^ (p - 2)) • (innerSL ℝ (f x)).comp (fderiv ℝ f x) :=
   hasFDerivAt_norm_rpow (f x) hp |>.comp x (hf x).hasFDerivAt |>.fderiv
 
+/--
+@isnad1 id=le.2h5v.s9.8cc4ce2ed508 from=seed src=0 shape=f37369f8 vocab=7ad7fcc5
+-/
 theorem norm_fderiv_norm_rpow_le {f : F → E} (hf : Differentiable ℝ f) {x : F}
     {p : ℝ} (hp : 1 < p) :
     ‖fderiv ℝ (fun x ↦ ‖f x‖ ^ p) x‖ ≤ p * ‖f x‖ ^ (p - 1) * ‖fderiv ℝ f x‖ := by
@@ -87,6 +108,9 @@ theorem norm_fderiv_norm_rpow_le {f : F → E} (hf : Differentiable ℝ f) {x : 
   rw [innerSL_apply_norm, ← mul_assoc, ← Real.rpow_add_one' (by positivity) (by linarith)]
   ring_nf
 
+/--
+@isnad1 id=eq.1h3v.s8.07c107b9a895 from=seed src=0 shape=028fb8c9 vocab=8940e9ef
+-/
 theorem norm_fderiv_norm_id_rpow (x : E) {p : ℝ} (hp : 1 < p) :
     ‖fderiv ℝ (fun x ↦ ‖x‖ ^ p) x‖ = p * ‖x‖ ^ (p - 1) := by
   rw [fderiv_norm_rpow x hp, norm_smul, norm_mul]
@@ -95,17 +119,26 @@ theorem norm_fderiv_norm_id_rpow (x : E) {p : ℝ} (hp : 1 < p) :
   rw [← Real.rpow_add_one' (by positivity) (by linarith)]
   ring_nf
 
+/--
+@isnad1 id=le.2h5v.s9.54ecf9186162 from=seed src=0 shape=2a304bf0 vocab=3cb4692d
+-/
 theorem nnnorm_fderiv_norm_rpow_le {f : F → E} (hf : Differentiable ℝ f)
     {x : F} {p : ℝ≥0} (hp : 1 < p) :
     ‖fderiv ℝ (fun x ↦ ‖f x‖ ^ (p : ℝ)) x‖₊ ≤ p * ‖f x‖₊ ^ ((p : ℝ) - 1) * ‖fderiv ℝ f x‖₊ :=
   norm_fderiv_norm_rpow_le hf hp
 
+/--
+@isnad1 id=le.2h5v.s11.c409de53d45a from=seed src=0 shape=7694a27e vocab=c09d7cea
+-/
 lemma enorm_fderiv_norm_rpow_le {f : F → E} (hf : Differentiable ℝ f)
     {x : F} {p : ℝ≥0} (hp : 1 < p) :
     ‖fderiv ℝ (fun x ↦ ‖f x‖ ^ (p : ℝ)) x‖ₑ ≤ p * ‖f x‖ₑ ^ ((p : ℝ) - 1) * ‖fderiv ℝ f x‖ₑ := by
   simpa [enorm, ← ENNReal.coe_rpow_of_nonneg _ (sub_nonneg.2 <| NNReal.one_le_coe.2 hp.le),
     ← ENNReal.coe_mul] using nnnorm_fderiv_norm_rpow_le hf hp
 
+/--
+@isnad1 id=contdiff.1h2v.s6.ff0ec1f95890 from=seed src=0 shape=045a3946 vocab=1285bebe
+-/
 theorem contDiff_norm_rpow {p : ℝ} (hp : 1 < p) : ContDiff ℝ 1 (fun x : E ↦ ‖x‖ ^ p) := by
   rw [contDiff_one_iff_fderiv]
   refine ⟨fun x ↦ hasFDerivAt_norm_rpow x hp |>.differentiableAt, ?_⟩
@@ -122,10 +155,16 @@ theorem contDiff_norm_rpow {p : ℝ} (hp : 1 < p) : ContDiff ℝ 1 (fun x : E �
   · simp_rw [funext fun x ↦ fderiv_norm_rpow (E := E) (x := x) hp]
     fun_prop (discharger := simp [hx])
 
+/--
+@isnad1 id=contdiff.2h4v.s6.759426921133 from=seed src=0 shape=9548e7cb vocab=62a5d482
+-/
 theorem ContDiff.norm_rpow {f : F → E} (hf : ContDiff ℝ 1 f) {p : ℝ} (hp : 1 < p) :
     ContDiff ℝ 1 (fun x ↦ ‖f x‖ ^ p) :=
   contDiff_norm_rpow hp |>.comp hf
 
+/--
+@isnad1 id=differen.2h4v.s7.588a41413195 from=seed src=0 shape=fa5b5acc vocab=70b65be7
+-/
 theorem Differentiable.norm_rpow {f : F → E} (hf : Differentiable ℝ f) {p : ℝ} (hp : 1 < p) :
     Differentiable ℝ (fun x ↦ ‖f x‖ ^ p) :=
   contDiff_norm_rpow hp |>.differentiable one_ne_zero |>.comp hf

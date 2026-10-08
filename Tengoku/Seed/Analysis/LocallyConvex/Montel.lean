@@ -51,6 +51,9 @@ class MontelSpace (𝕜 E : Type*) [SeminormedRing 𝕜] [Zero E] [SMul 𝕜 E]
 namespace MontelSpace
 
 variable (𝕜) in
+/--
+@isnad1 id=iscompac.2h3v.s5.170f175115d6 from=seed src=0 shape=888751f3 vocab=d54a137d
+-/
 theorem isCompact_of_isClosed_of_isVonNBounded [hm : MontelSpace 𝕜 E] {s : Set E}
     (h_closed : IsClosed s) (h_bounded : IsVonNBounded 𝕜 s) : IsCompact s :=
   hm.heine_borel s h_closed h_bounded
@@ -67,6 +70,9 @@ variable {𝕜 E : Type*}
 variable [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace 𝕜]
   [hM : MontelSpace 𝕜 E]
 
+/--
+@isnad1 id=finitedi.0h2v.s7.5aa5234b18df from=seed src=0 shape=97ed17ac vocab=2d8e38a8
+-/
 theorem finiteDimensional_of_normedSpace : FiniteDimensional 𝕜 E :=
   FiniteDimensional.of_isCompact_closedBall₀ 𝕜 zero_lt_one
     (isCompact_of_isClosed_of_isVonNBounded 𝕜 Metric.isClosed_closedBall

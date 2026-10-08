@@ -40,7 +40,9 @@ def epiWithInjectiveKernel : MorphismProperty C :=
 
 /-- A morphism `g : X ⟶ Y` is epi with an injective kernel iff there exists a morphism
 `f : I ⟶ X` with `I` injective such that `f ≫ g = 0` and
-the short complex `I ⟶ X ⟶ Y` has a splitting. -/
+the short complex `I ⟶ X ⟶ Y` has a splitting.
+@isnad1 id=iff.0h4v.s7.9a36f0321703 from=seed src=0 shape=534096dc vocab=836a2a30
+-/
 lemma epiWithInjectiveKernel_iff {X Y : C} (g : X ⟶ Y) :
     epiWithInjectiveKernel g ↔ ∃ (I : C) (_ : Injective I) (f : I ⟶ X) (w : f ≫ g = 0),
       Nonempty (ShortComplex.mk f g w).Splitting := by
@@ -57,12 +59,18 @@ lemma epiWithInjectiveKernel_iff {X Y : C} (g : X ⟶ Y) :
       IsLimit.conePointUniqueUpToIso σ.shortExact.fIsKernel (limit.isLimit _)
     exact ⟨inferInstance, Injective.of_iso e inferInstance⟩
 
+/--
+@isnad1 id=epiwithi.0h4v.s5.3175b987a53a from=seed src=0 shape=869b36ab vocab=072df656
+-/
 lemma epiWithInjectiveKernel_of_iso {X Y : C} (f : X ⟶ Y) [IsIso f] :
     epiWithInjectiveKernel f := by
   rw [epiWithInjectiveKernel_iff]
   exact ⟨0, inferInstance, 0, by simp,
     ⟨ShortComplex.Splitting.ofIsZeroOfIsIso _ (isZero_zero C) (by assumption)⟩⟩
 
+/--
+@isnad1 id=iff.1h4v.s5.a284578a29ef from=seed src=0 shape=3fba1d99 vocab=ea790621
+-/
 lemma epiWithInjectiveKernel_iff_of_isZero {X Y : C} (f : X ⟶ Y) (hY : IsZero Y) :
     epiWithInjectiveKernel f ↔ Injective X := by
   simp only [epiWithInjectiveKernel, hY.epi f, true_and]
@@ -112,6 +120,9 @@ instance : (epiWithInjectiveKernel (C := C)).IsStableUnderRetracts where
         retract := by ext; simp }
     exact ⟨inferInstance, r'.injective⟩
 
+/--
+@isnad1 id=haslifti.0h8v.s5.371ef0b8c4ff from=seed src=0 shape=c6152922 vocab=192b41f2
+-/
 lemma epiWithInjectiveKernel.hasLiftingProperty
     {X Y : C} {p : X ⟶ Y} (hp : epiWithInjectiveKernel p)
     {A B : C} (i : A ⟶ B) [Mono i] :

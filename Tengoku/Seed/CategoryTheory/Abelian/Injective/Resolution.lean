@@ -64,6 +64,9 @@ section Abelian
 
 variable [Abelian C]
 
+/--
+@isnad1 id=exact.0h3v.s8.572bf173bf3e from=seed src=0 shape=383e9275 vocab=c9b3f7dc
+-/
 lemma exact₀ {Z : C} (I : InjectiveResolution Z) :
     (ShortComplex.mk _ _ I.ι_f_zero_comp_complex_d).Exact :=
   ShortComplex.exact_of_f_is_kernel _ I.isLimitKernelFork
@@ -75,6 +78,9 @@ def descFOne {Y Z : C} (f : Z ⟶ Y) (I : InjectiveResolution Y) (J : InjectiveR
   J.exact₀.descToInjective (descFZero f I J ≫ I.cocomplex.d 0 1)
     (by dsimp; simp only [← assoc, descFZero]; simp [assoc])
 
+/--
+@isnad1 id=eq.0h6v.s9.c97ab6d249bb from=seed src=0 shape=07cace59 vocab=950f16b9
+-/
 @[simp]
 theorem descFOne_zero_comm {Y Z : C} (f : Z ⟶ Y) (I : InjectiveResolution Y)
     (J : InjectiveResolution Z) :
@@ -98,13 +104,18 @@ def desc {Y Z : C} (f : Z ⟶ Y) (I : InjectiveResolution Y) (J : InjectiveResol
     fun n ⟨g, g', w⟩ => ⟨(descFSucc I J n g g' w.symm).1, (descFSucc I J n g g' w.symm).2.symm⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- The resolution maps intertwine the descent of a morphism and that morphism. -/
+/-- The resolution maps intertwine the descent of a morphism and that morphism.
+@isnad1 id=eq.0h6v.s9.30972ab052fa from=seed src=0 shape=2822f442 vocab=069cf4c4
+-/
 @[reassoc (attr := simp)]
 theorem desc_commutes {Y Z : C} (f : Z ⟶ Y) (I : InjectiveResolution Y)
     (J : InjectiveResolution Z) : J.ι ≫ desc f I J = (CochainComplex.single₀ C).map f ≫ I.ι := by
   ext
   simp [desc, descFOne, descFZero]
 
+/--
+@isnad1 id=eq.0h6v.s9.214ddf2f4aa3 from=seed src=0 shape=71a75327 vocab=5c09275a
+-/
 @[reassoc (attr := simp)]
 lemma desc_commutes_zero {Y Z : C} (f : Z ⟶ Y)
     (I : InjectiveResolution Y) (J : InjectiveResolution Z) :
@@ -117,6 +128,9 @@ def descHomotopyZeroZero {Y Z : C} {I : InjectiveResolution Y} {J : InjectiveRes
     (f : I.cocomplex ⟶ J.cocomplex) (comm : I.ι ≫ f = 0) : I.cocomplex.X 1 ⟶ J.cocomplex.X 0 :=
   I.exact₀.descToInjective (f.f 0) (congr_fun (congr_arg HomologicalComplex.Hom.f comm) 0)
 
+/--
+@isnad1 id=eq.1h6v.s10.5d15d10aa05c from=seed src=0 shape=2d3289fc vocab=6f1e0231
+-/
 @[reassoc (attr := simp)]
 lemma comp_descHomotopyZeroZero {Y Z : C} {I : InjectiveResolution Y} {J : InjectiveResolution Z}
     (f : I.cocomplex ⟶ J.cocomplex) (comm : I.ι ≫ f = 0) :
@@ -131,6 +145,9 @@ def descHomotopyZeroOne {Y Z : C} {I : InjectiveResolution Y} {J : InjectiveReso
     (by rw [Preadditive.comp_sub, comp_descHomotopyZeroZero_assoc f comm,
           HomologicalComplex.Hom.comm, sub_self])
 
+/--
+@isnad1 id=eq.1h6v.s11.192a6d4d4052 from=seed src=0 shape=d7f37d2d vocab=f3cde5e8
+-/
 @[reassoc (attr := simp)]
 lemma comp_descHomotopyZeroOne {Y Z : C} {I : InjectiveResolution Y} {J : InjectiveResolution Z}
     (f : I.cocomplex ⟶ J.cocomplex) (comm : I.ι ≫ f = (0 : _ ⟶ J.cocomplex)) :
@@ -150,6 +167,9 @@ def descHomotopyZeroSucc {Y Z : C} {I : InjectiveResolution Y} {J : InjectiveRes
         Category.assoc, Category.assoc, HomologicalComplex.d_comp_d, comp_zero,
         add_zero, sub_self])
 
+/--
+@isnad1 id=eq.1h9v.s11.6e4a34f1b709 from=seed src=0 shape=5fa71e07 vocab=10ebd051
+-/
 @[reassoc (attr := simp)]
 lemma comp_descHomotopyZeroSucc {Y Z : C} {I : InjectiveResolution Y} {J : InjectiveResolution Z}
     (f : I.cocomplex ⟶ J.cocomplex) (n : ℕ) (g : I.cocomplex.X (n + 1) ⟶ J.cocomplex.X n)
@@ -194,10 +214,16 @@ def homotopyEquiv {X : C} (I J : InjectiveResolution X) :
   homotopyInvHomId := (descCompHomotopy (𝟙 X) (𝟙 X) J I J).symm.trans <| by
     simpa [id_comp] using descIdHomotopy _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.280169941713 from=seed src=0 shape=c224a2eb vocab=aee1e425
+-/
 @[reassoc (attr := simp)]
 theorem homotopyEquiv_hom_ι {X : C} (I J : InjectiveResolution X) :
     I.ι ≫ (homotopyEquiv I J).hom = J.ι := by simp [homotopyEquiv]
 
+/--
+@isnad1 id=eq.0h4v.s8.007fcab1e8a0 from=seed src=0 shape=901028e6 vocab=3e6906f2
+-/
 @[reassoc (attr := simp)]
 theorem homotopyEquiv_inv_ι {X : C} (I J : InjectiveResolution X) :
     J.ι ≫ (homotopyEquiv I J).inv = I.ι := by simp [homotopyEquiv]
@@ -242,6 +268,9 @@ def InjectiveResolution.iso {X : C} (I : InjectiveResolution X) :
   HomotopyCategory.isoOfHomotopyEquiv (homotopyEquiv _ _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h7v.s10.845250a3738c from=seed src=0 shape=2aaa07bc vocab=047a6313
+-/
 @[reassoc]
 lemma InjectiveResolution.iso_hom_naturality {X Y : C} (f : X ⟶ Y)
     (I : InjectiveResolution X) (J : InjectiveResolution Y)
@@ -252,6 +281,9 @@ lemma InjectiveResolution.iso_hom_naturality {X Y : C} (f : X ⟶ Y)
   apply descHomotopy f
   all_goals aesop
 
+/--
+@isnad1 id=eq.1h7v.s11.0f878d436e06 from=seed src=0 shape=6d4c08ee vocab=ed2263e9
+-/
 @[reassoc]
 lemma InjectiveResolution.iso_inv_naturality {X Y : C} (f : X ⟶ Y)
     (I : InjectiveResolution X) (J : InjectiveResolution Y)
@@ -268,6 +300,9 @@ section
 variable [Abelian C] [EnoughInjectives C]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=exact.0h4v.s6.770c22bccd16 from=seed src=0 shape=ba18f304 vocab=7f6e6a83
+-/
 theorem exact_f_d {X Y : C} (f : X ⟶ Y) :
     (ShortComplex.mk f (d f) (by simp)).Exact := by
   let α : ShortComplex.mk f (cokernel.π f) (by simp) ⟶ ShortComplex.mk f (d f) (by simp) :=
@@ -303,11 +338,17 @@ def ofCocomplex : CochainComplex C ℕ :=
   CochainComplex.mk' (Injective.under Z) (Injective.syzygies (Injective.ι Z))
     (Injective.d (Injective.ι Z)) fun f => ⟨_, Injective.d f, by simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.fd85725e5b58 from=seed src=0 shape=a8412e36 vocab=147361b8
+-/
 lemma ofCocomplex_d_0_1 :
     (ofCocomplex Z).d 0 1 = d (Injective.ι Z) := by
   simp [ofCocomplex]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=exactat.0h3v.s5.3a64e30b9faa from=seed src=0 shape=bf1034e5 vocab=6ee07f28
+-/
 lemma ofCocomplex_exactAt_succ (n : ℕ) :
     (ofCocomplex Z).ExactAt (n + 1) := by
   rw [HomologicalComplex.exactAt_iff' _ n (n + 1) (n + 1 + 1) (by simp) (by simp)]
@@ -355,6 +396,9 @@ noncomputable abbrev InjectivePresentation.shortComplex
     {X : C} (ip : InjectivePresentation X) : ShortComplex C :=
   ShortComplex.mk ip.f (Limits.cokernel.π ip.f) (Limits.cokernel.condition ip.f)
 
+/--
+@isnad1 id=shortexa.0h3v.s5.e1feb5ba340a from=seed src=0 shape=b7420b70 vocab=e38d0678
+-/
 theorem InjectivePresentation.shortExact_shortComplex {X : C}
     (ip : InjectivePresentation X) : ip.shortComplex.ShortExact :=
   { exact := ShortComplex.exact_cokernel ip.f }

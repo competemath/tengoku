@@ -27,6 +27,9 @@ local notation "⟪" x ", " y "⟫" => inner 𝕜 x y
 section SeparationQuotient
 variable [SeminormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 
+/--
+@isnad1 id=eq.2h6v.s6.1ec6c1162b0b from=seed src=0 shape=b1e4ff54 vocab=ae63c30f
+-/
 theorem Inseparable.inner_eq_inner {x₁ x₂ y₁ y₂ : E}
     (hx : Inseparable x₁ x₂) (hy : Inseparable y₁ y₂) :
     ⟪x₁, y₁⟫ = ⟪x₂, y₂⟫ :=
@@ -37,6 +40,9 @@ namespace SeparationQuotient
 instance : Inner 𝕜 (SeparationQuotient E) where
   inner := SeparationQuotient.lift₂ (inner 𝕜) fun _ _ _ _ => Inseparable.inner_eq_inner
 
+/--
+@isnad1 id=eq.0h4v.s6.361e712c2d64 from=seed src=0 shape=3a41cbf0 vocab=4cbdec01
+-/
 @[simp]
 theorem inner_mk_mk (x y : E) :
     ⟪mk x, mk y⟫ = ⟪x, y⟫ := rfl
@@ -63,11 +69,17 @@ instance toInner {𝕜' E' : Type*} [TopologicalSpace 𝕜'] [UniformSpace E'] [
     Inner 𝕜' (Completion E') where
   inner := curry <| (isDenseInducing_coe.prodMap isDenseInducing_coe).extend (uncurry (inner 𝕜'))
 
+/--
+@isnad1 id=eq.0h4v.s6.2af0738efa77 from=seed src=0 shape=3a41cbf0 vocab=31501b7b
+-/
 @[simp]
 theorem inner_coe (a b : E) : ⟪(a : Completion E), (b : Completion E)⟫ = ⟪a, b⟫ :=
   (isDenseInducing_coe.prodMap isDenseInducing_coe).extend_eq
     (continuous_inner : Continuous (uncurry (inner 𝕜))) (a, b)
 
+/--
+@isnad1 id=continuo.0h2v.s7.ac8506024cac from=seed src=0 shape=c7fbcd81 vocab=2d4bbaa5
+-/
 protected theorem continuous_inner :
     Continuous (uncurry (inner 𝕜 (E := Completion E))) := by
   let inner' : E →+ E →+ 𝕜 :=
@@ -82,6 +94,9 @@ protected theorem continuous_inner :
         inner' p.1 p.2)
   exact (isDenseInducing_toCompl E).extend_Z_bilin (isDenseInducing_toCompl E) this
 
+/--
+@isnad1 id=continuo.2h5v.s7.c95f6cdb571e from=seed src=0 shape=54b2130d vocab=a8c7c988
+-/
 @[fun_prop]
 protected theorem Continuous.inner {α : Type*} [TopologicalSpace α] {f g : α → Completion E}
     (hf : Continuous f) (hg : Continuous g) : Continuous (fun x : α => ⟪f x, g x⟫) :=

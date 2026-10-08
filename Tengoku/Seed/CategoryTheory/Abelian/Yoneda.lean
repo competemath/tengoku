@@ -36,6 +36,9 @@ attribute [local instance] preservesFiniteLimits_op
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=surjecti.1h5v.s8.654df9b7d0d3 from=seed src=0 shape=7de3da16 vocab=e8f44a8b
+-/
 theorem preadditiveCoyonedaObj_map_surjective {G : C} [Projective G] (hG : IsSeparator G) {X : C}
     (p : G ⟶ X) [Epi p] {Y : C} :
     Function.Surjective ((preadditiveCoyonedaObj G).map : (X ⟶ Y) → _) := by
@@ -58,6 +61,9 @@ end
 
 variable {D : Type u'} [Category.{v'} D] (F : D ⥤ C)
 
+/--
+@isnad1 id=full.2h4v.s7.725e18ca0f9d from=seed src=0 shape=32aea3ae vocab=2809c162
+-/
 theorem full_comp_preadditiveCoyonedaObj [F.Full] {G : C} [Projective G] (hG : IsSeparator G)
     (hG₂ : ∀ X, ∃ (p : G ⟶ F.obj X), Epi p) : (F ⋙ preadditiveCoyonedaObj G).Full where
   map_surjective {X Y} f := by

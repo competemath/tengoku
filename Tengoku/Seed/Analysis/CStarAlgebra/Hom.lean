@@ -23,6 +23,9 @@ public section
 open CStarAlgebra
 
 open ContinuousFunctionalCalculus in
+/--
+@isnad1 id=eq.2h7v.s8.a14b4682131f from=seed src=0 shape=a3bf29e8 vocab=4502c6d9
+-/
 lemma IsSelfAdjoint.map_spectrum_real {F 𝕜 A B : Type*} [RCLike 𝕜]
     [Ring A] [StarRing A] [TopologicalSpace A] [Algebra ℝ A] [Algebra 𝕜 A]
     [Ring B] [StarRing B] [TopologicalSpace B] [Algebra ℝ B] [Algebra 𝕜 B]
@@ -55,6 +58,9 @@ lemma IsSelfAdjoint.map_spectrum_real {F 𝕜 A B : Type*} [RCLike 𝕜]
     _ = 0 := by simp
 
 open CStarAlgebra in
+/--
+@isnad1 id=eq.2h5v.s8.5782bfc867f2 from=seed src=0 shape=bffcce67 vocab=fb982a8f
+-/
 lemma IsSelfAdjoint.map_quasispectrum_real {F A B : Type*}
     [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B]
     [FunLike F A B] [NonUnitalAlgHomClass F ℂ A B] [StarHomClass F A B]
@@ -85,11 +91,16 @@ def NonUnitalStarAlgHom.toOrderEmbedding (φ : A →⋆ₙₐ[ℂ] B) (hφ : Fun
     have h_sa := h₁.of_map φ hφ
     exact ⟨h_sa, by rwa [← h_sa.map_quasispectrum_real φ hφ]⟩
 
-/-- A non-unital star monomorphism between C⋆-algebras is an order embedding. -/
+/-- A non-unital star monomorphism between C⋆-algebras is an order embedding.
+@isnad1 id=iff.1h6v.s8.600154f6a670 from=seed src=0 shape=52d9d107 vocab=361a4dc0
+-/
 protected lemma NonUnitalStarAlgHom.map_le_map_iff (f : F) (hf : Function.Injective f) {x y : A} :
     f x ≤ f y ↔ x ≤ y :=
   (toOrderEmbedding (f : A →⋆ₙₐ[ℂ] B) hf).le_iff_le
 
+/--
+@isnad1 id=iff.1h6v.s8.385447f9987c from=seed src=0 shape=52d9d107 vocab=44a04bc9
+-/
 protected lemma NonUnitalStarAlgHom.map_lt_map_iff (f : F) (hf : Function.Injective f) {x y : A} :
     f x < f y ↔ x < y :=
   (toOrderEmbedding (f : A →⋆ₙₐ[ℂ] B) hf).lt_iff_lt
@@ -101,7 +112,9 @@ variable {F A B : Type*} [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B]
 variable [FunLike F A B] [NonUnitalAlgHomClass F ℂ A B] [StarHomClass F A B]
 
 open CStarAlgebra Unitization in
-/-- A non-unital star algebra monomorphism of complex C⋆-algebras is isometric. -/
+/-- A non-unital star algebra monomorphism of complex C⋆-algebras is isometric.
+@isnad1 id=eq.1h5v.s7.cf80aa9721a9 from=seed src=0 shape=689c6513 vocab=bf85b728
+-/
 lemma norm_map (φ : F) (hφ : Function.Injective φ) (a : A) : ‖φ a‖ = ‖a‖ := by
   /- Since passing to the unitization is functorial, and it is an isometric embedding, we may assume
   that `φ` is a unital star algebra monomorphism and that `A` and `B` are unital C⋆-algebras. -/
@@ -121,10 +134,15 @@ lemma norm_map (φ : F) (hφ : Function.Injective φ) (a : A) : ‖φ a‖ = ‖
       simp only [spectralRadius, ha.map_spectrum_real ψ hψ]
     _ = ‖star a * a‖ := ha.toReal_spectralRadius_eq_norm
 
-/-- A non-unital star algebra monomorphism of complex C⋆-algebras is isometric. -/
+/-- A non-unital star algebra monomorphism of complex C⋆-algebras is isometric.
+@isnad1 id=eq.1h5v.s7.a53b83d90c3a from=seed src=0 shape=689c6513 vocab=e496e0a6
+-/
 lemma nnnorm_map (φ : F) (hφ : Function.Injective φ) (a : A) : ‖φ a‖₊ = ‖a‖₊ :=
   Subtype.ext <| norm_map φ hφ a
 
+/--
+@isnad1 id=isometry.1h4v.s7.779808a66707 from=seed src=0 shape=bcf2ce3b vocab=65359fc5
+-/
 lemma isometry (φ : F) (hφ : Function.Injective φ) : Isometry φ :=
   AddMonoidHomClass.isometry_of_norm φ (norm_map φ hφ)
 

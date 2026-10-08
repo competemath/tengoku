@@ -49,10 +49,16 @@ class Nonsingular where
 
 attribute [instance] Nonsingular.mono
 
+/--
+@isnad1 id=mono.1h3v.s8.3a0c9e996ecd from=seed src=0 shape=b2d1b460 vocab=515aad6d
+-/
 lemma Nonsingular.mono' [X.Nonsingular]
     {n : ℕ} (x : X _⦋n⦌) (hx : x ∈ X.nonDegenerate n) :
     Mono (yonedaEquiv.symm x) := mono ⟨x, hx⟩
 
+/--
+@isnad1 id=nonsingu.0h3v.s5.a48cee09e928 from=seed src=0 shape=f6911e5d vocab=2121ca80
+-/
 @[kerodon 02MK]
 lemma Nonsingular.of_mono (f : X ⟶ Y) [Mono f] [Y.Nonsingular] :
     X.Nonsingular where
@@ -63,6 +69,9 @@ lemma Nonsingular.of_mono (f : X ⟶ Y) [Mono f] [Y.Nonsingular] :
     rw [← SSet.yonedaEquiv_symm_comp] at this
     exact mono_of_mono _ f
 
+/--
+@isnad1 id=nonsingu.0h3v.s4.ab0c7c88d395 from=seed src=0 shape=8567d0ba vocab=63dba3b8
+-/
 lemma Nonsingular.of_iso (e : X ≅ Y) [X.Nonsingular] : Y.Nonsingular :=
   .of_mono e.inv
 
@@ -86,6 +95,9 @@ instance (n m : SimplexCategory) :
     (stdSimplex.{u}.obj n ⊗ stdSimplex.obj m).Nonsingular :=
   Nonsingular.of_iso (prodStdSimplex.isoNerve _ _).symm
 
+/--
+@isnad1 id=mem.1h4v.s8.4957ab8d5781 from=seed src=0 shape=a1b0bf55 vocab=82b1fd89
+-/
 @[kerodon 02MH]
 lemma nonDegenerate_δ [X.Nonsingular]
     {n : ℕ} {x : X _⦋n + 1⦌} (hx : x ∈ X.nonDegenerate _) (i : Fin (n + 2)) :
@@ -97,6 +109,9 @@ lemma nonDegenerate_δ [X.Nonsingular]
     Equiv.apply_symm_apply]
   infer_instance
 
+/--
+@isnad1 id=eq.2h5v.s9.26fa4570b9eb from=seed src=0 shape=7f4fb113 vocab=82b1fd89
+-/
 lemma Nonsingular.δ_injective [X.Nonsingular]
     {n : ℕ} (x : X _⦋n + 1⦌) (hx : x ∈ X.nonDegenerate _)
     (i j : Fin (n + 2)) (hij : X.δ i x = X.δ j x) : i = j := by
@@ -105,6 +120,9 @@ lemma Nonsingular.δ_injective [X.Nonsingular]
   have := mono' x hx
   exact injective_of_mono ((yonedaEquiv.symm x).app _) hij
 
+/--
+@isnad1 id=eq.2h6v.s8.b1ae02b2d272 from=seed src=0 shape=65bcea05 vocab=86b716eb
+-/
 lemma Nonsingular.injective_map
     [X.Nonsingular] {n : ℕ} (x : X _⦋n⦌) (hx : x ∈ X.nonDegenerate n)
     {m : SimplexCategory} {f g : m ⟶ ⦋n⦌}
@@ -116,6 +134,9 @@ lemma Nonsingular.injective_map
   apply yonedaEquiv.injective
   simpa [yonedaEquiv_comp, yonedaEquiv_map]
 
+/--
+@isnad1 id=isiso.1h3v.s6.52e63aa5d661 from=seed src=0 shape=1b788ea7 vocab=ada48c49
+-/
 lemma Nonsingular.isIso_toOfSimplex [X.Nonsingular]
     {n : ℕ} (x : X _⦋n⦌) (hx : x ∈ X.nonDegenerate n) :
     IsIso (Subcomplex.toOfSimplex x) := by
@@ -136,6 +157,9 @@ namespace N
 variable [X.Nonsingular] {x y z : X.N} (h : x ≤ y)
 
 include h in
+/--
+@isnad1 id=existsun.1h3v.s8.5810f08b6a91 from=seed src=0 shape=0b2f2619 vocab=4b8c3fdf
+-/
 lemma existsUnique_of_le :
     ∃! (f : ⦋x.dim⦌ ⟶ ⦋y.dim⦌), Mono f ∧ X.map f.op y.1.2 = x.1.2 :=
   existsUnique_of_exists_of_unique (by
@@ -152,26 +176,41 @@ noncomputable def monoOfLE : ⦋x.dim⦌ ⟶ ⦋y.dim⦌ :=
 instance : Mono (monoOfLE h) :=
   (existsUnique_of_le h).exists.choose_spec.1
 
+/--
+@isnad1 id=eq.1h3v.s8.a2cba4a4540e from=seed src=0 shape=da45360f vocab=952d5329
+-/
 @[simp]
 lemma map_monoOfLE : X.map (monoOfLE h).op y.simplex = x.simplex :=
   (existsUnique_of_le h).exists.choose_spec.2
 
+/--
+@isnad1 id=eq.1h3v.s9.eaf5be6bcacb from=seed src=0 shape=5412a62c vocab=a69d10f1
+-/
 @[reassoc, simp]
 lemma stdSimplex_map_monoOfLE_yonedaEquiv_symm_simplex :
     stdSimplex.map (monoOfLE h) ≫ yonedaEquiv.symm y.simplex =
       yonedaEquiv.symm x.simplex := by
   rw [yonedaEquiv_symm_naturality_left, map_monoOfLE]
 
+/--
+@isnad1 id=iff.1h4v.s8.60f5ee59f753 from=seed src=0 shape=54a7dab0 vocab=f2d4eab3
+-/
 lemma monoOfLE_eq_iff (h : x ≤ y) (g : ⦋x.dim⦌ ⟶ ⦋y.dim⦌) [Mono g] :
     monoOfLE h = g ↔ X.map g.op y.simplex = x.simplex :=
   ⟨by rintro rfl; simp,
     fun h' ↦ (existsUnique_of_le h).unique ⟨inferInstance, by simp⟩ ⟨inferInstance, h'⟩⟩
 
 variable (x) in
+/--
+@isnad1 id=eq.0h2v.s5.32f72dc9ff3d from=seed src=0 shape=b732feaf vocab=2297acea
+-/
 @[simp]
 lemma monoOfLE_refl : monoOfLE (le_refl x) = 𝟙 _ := by
   simp [monoOfLE_eq_iff]
 
+/--
+@isnad1 id=eq.2h4v.s6.3c2d099f062f from=seed src=0 shape=94562e52 vocab=49fd9e21
+-/
 @[reassoc (attr := simp)]
 lemma monoOfLE_comp (h' : y ≤ z) :
     monoOfLE h ≫ monoOfLE h' = monoOfLE (h.trans h') := by

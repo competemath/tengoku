@@ -61,16 +61,25 @@ def HasConstantSpeedOnWith :=
 
 variable {f s l}
 
+/--
+@isnad1 id=locallyb.1h4v.s5.4b54719e97a7 from=seed src=0 shape=269f6e96 vocab=8e261ca8
+-/
 theorem HasConstantSpeedOnWith.hasLocallyBoundedVariationOn (h : HasConstantSpeedOnWith f s l) :
     LocallyBoundedVariationOn f s := fun x y hx hy => by
   simp only [BoundedVariationOn, h hx hy, Ne, ENNReal.ofReal_ne_top, not_false_iff]
 
+/--
+@isnad1 id=hasconst.1h4v.s4.572410c4a347 from=seed src=0 shape=3c2327c1 vocab=0b80aee9
+-/
 theorem hasConstantSpeedOnWith_of_subsingleton (f : ℝ → E) {s : Set ℝ} (hs : s.Subsingleton)
     (l : ℝ≥0) : HasConstantSpeedOnWith f s l := by
   rintro x hx y hy; cases hs hx hy
   rw [eVariationOn.subsingleton f (fun y hy z hz => hs hy.1 hz.1 : (s ∩ Icc x x).Subsingleton)]
   simp only [sub_self, mul_zero, ENNReal.ofReal_zero]
 
+/--
+@isnad1 id=iff.0h4v.s6.95564df87334 from=seed src=0 shape=c633d1a6 vocab=ca5881a2
+-/
 theorem hasConstantSpeedOnWith_iff_ordered :
     HasConstantSpeedOnWith f s l ↔ ∀ ⦃x⦄ (_ : x ∈ s) ⦃y⦄ (_ : y ∈ s),
       x ≤ y → eVariationOn f (s ∩ Icc x y) = ENNReal.ofReal (l * (y - x)) := by
@@ -84,6 +93,9 @@ theorem hasConstantSpeedOnWith_iff_ordered :
       cases le_antisymm (wy.trans yx) xw
       rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.bc786ff0faba from=seed src=0 shape=a16c0318 vocab=01da5e6c
+-/
 theorem hasConstantSpeedOnWith_iff_variationOnFromTo_eq :
     HasConstantSpeedOnWith f s l ↔ LocallyBoundedVariationOn f s ∧
       ∀ ⦃x⦄ (_ : x ∈ s) ⦃y⦄ (_ : y ∈ s), variationOnFromTo f s x y = l * (y - x) := by
@@ -100,6 +112,9 @@ theorem hasConstantSpeedOnWith_iff_variationOnFromTo_eq :
     rintro h x xs y ys xy
     rw [← h.2 xs ys, variationOnFromTo.eq_of_le f s xy, ENNReal.ofReal_toReal (h.1 x y xs ys)]
 
+/--
+@isnad1 id=hasconst.4h6v.s6.55883dde9363 from=seed src=0 shape=7bf68fcc vocab=e9a132dd
+-/
 theorem HasConstantSpeedOnWith.union {t : Set ℝ} (hfs : HasConstantSpeedOnWith f s l)
     (hft : HasConstantSpeedOnWith f t l) {x : ℝ} (hs : IsGreatest s x) (ht : IsLeast t x) :
     HasConstantSpeedOnWith f (s ∪ t) l := by
@@ -137,6 +152,9 @@ theorem HasConstantSpeedOnWith.union {t : Set ℝ} (hfs : HasConstantSpeedOnWith
       · rintro ⟨wt, zwy⟩; exact ⟨Or.inr wt, zwy⟩
     rw [this, hft zt yt zy]
 
+/--
+@isnad1 id=hasconst.2h6v.s5.e8d206fea7dd from=seed src=0 shape=2aed4c2b vocab=88a00235
+-/
 theorem HasConstantSpeedOnWith.Icc_Icc {x y z : ℝ} (hfs : HasConstantSpeedOnWith f (Icc x y) l)
     (hft : HasConstantSpeedOnWith f (Icc y z) l) : HasConstantSpeedOnWith f (Icc x z) l := by
   rcases le_total x y with (xy | yx)
@@ -152,6 +170,9 @@ theorem HasConstantSpeedOnWith.Icc_Icc {x y z : ℝ} (hfs : HasConstantSpeedOnWi
       hft ⟨yx.trans xu, uz⟩ ⟨yx.trans xv, vz⟩, Icc_inter_Icc, sup_of_le_right (yx.trans xu),
       inf_of_le_right vz]
 
+/--
+@isnad1 id=iff.0h3v.s6.e18804a209c4 from=seed src=0 shape=666e6e7c vocab=26f0b6a2
+-/
 theorem hasConstantSpeedOnWith_zero_iff :
     HasConstantSpeedOnWith f s 0 ↔ ∀ᵉ (x ∈ s) (y ∈ s), edist (f x) (f y) = 0 := by
   dsimp [HasConstantSpeedOnWith]
@@ -168,6 +189,9 @@ theorem hasConstantSpeedOnWith_zero_iff :
   · rintro h x _ y _
     simpa [h] using eVariationOn.mono (s := s) f inter_subset_left
 
+/--
+@isnad1 id=eqon.5h7v.s6.7a2ce5613a3f from=seed src=0 shape=c8e6f75d vocab=652a911a
+-/
 theorem HasConstantSpeedOnWith.ratio {l' : ℝ≥0} (hl' : l' ≠ 0) {φ : ℝ → ℝ} (φm : MonotoneOn φ s)
     (hfφ : HasConstantSpeedOnWith (f ∘ φ) s l) (hf : HasConstantSpeedOnWith f (φ '' s) l') ⦃x : ℝ⦄
     (xs : x ∈ s) : EqOn φ (fun y => l / l' * (y - x) + φ x) s := by
@@ -188,17 +212,24 @@ theorem HasConstantSpeedOnWith.ratio {l' : ℝ≥0} (hl' : l' ≠ 0) {φ : ℝ �
 def HasUnitSpeedOn (f : ℝ → E) (s : Set ℝ) :=
   HasConstantSpeedOnWith f s 1
 
+/--
+@isnad1 id=hasunits.4h5v.s5.e03d0cb78362 from=seed src=0 shape=9ed944c0 vocab=d437d13a
+-/
 theorem HasUnitSpeedOn.union {t : Set ℝ} {x : ℝ} (hfs : HasUnitSpeedOn f s)
     (hft : HasUnitSpeedOn f t) (hs : IsGreatest s x) (ht : IsLeast t x) :
     HasUnitSpeedOn f (s ∪ t) :=
   HasConstantSpeedOnWith.union hfs hft hs ht
 
+/--
+@isnad1 id=hasunits.2h5v.s5.4dfb394b4fde from=seed src=0 shape=fb7ca14b vocab=0c384fb0
+-/
 theorem HasUnitSpeedOn.Icc_Icc {x y z : ℝ} (hfs : HasUnitSpeedOn f (Icc x y))
     (hft : HasUnitSpeedOn f (Icc y z)) : HasUnitSpeedOn f (Icc x z) :=
   HasConstantSpeedOnWith.Icc_Icc hfs hft
 
 /-- If both `f` and `f ∘ φ` have unit speed (on `t` and `s` respectively) and `φ`
 monotonically maps `s` onto `t`, then `φ` is just a translation (on `s`).
+@isnad1 id=eqon.4h5v.s6.bae6c467b989 from=seed src=0 shape=bf1177bd vocab=3fccc80b
 -/
 theorem unique_unit_speed {φ : ℝ → ℝ} (φm : MonotoneOn φ s) (hfφ : HasUnitSpeedOn (f ∘ φ) s)
     (hf : HasUnitSpeedOn f (φ '' s)) ⦃x : ℝ⦄ (xs : x ∈ s) : EqOn φ (fun y => y - x + φ x) s := by
@@ -208,6 +239,7 @@ theorem unique_unit_speed {φ : ℝ → ℝ} (φm : MonotoneOn φ s) (hfφ : Has
 
 /-- If both `f` and `f ∘ φ` have unit speed (on `Icc 0 t` and `Icc 0 s` respectively)
 and `φ` monotonically maps `Icc 0 s` onto `Icc 0 t`, then `φ` is the identity on `Icc 0 s`
+@isnad1 id=eqon.6h5v.s7.3f3129c62a30 from=seed src=0 shape=08779d25 vocab=80c141f0
 -/
 theorem unique_unit_speed_on_Icc_zero {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) {φ : ℝ → ℝ}
     (φm : MonotoneOn φ <| Icc 0 s) (φst : φ '' Icc 0 s = Icc 0 t)
@@ -232,6 +264,9 @@ theorem unique_unit_speed_on_Icc_zero {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) 
 noncomputable def naturalParameterization (f : α → E) (s : Set α) (a : α) : ℝ → E :=
   f ∘ @Function.invFunOn _ _ ⟨a⟩ (variationOnFromTo f s a) s
 
+/--
+@isnad1 id=eq.3h6v.s6.99a65b90cf29 from=seed src=0 shape=b8119122 vocab=a97d788f
+-/
 theorem edist_naturalParameterization_eq_zero {f : α → E} {s : Set α}
     (hf : LocallyBoundedVariationOn f s) {a : α} (as : a ∈ s) {b : α} (bs : b ∈ s) :
     edist (naturalParameterization f s a (variationOnFromTo f s a b)) (f b) = 0 := by
@@ -241,6 +276,9 @@ theorem edist_naturalParameterization_eq_zero {f : α → E} {s : Set α}
   rw [variationOnFromTo.eq_left_iff hf as cs bs] at hc
   apply variationOnFromTo.edist_zero_of_eq_zero hf cs bs hc
 
+/--
+@isnad1 id=hasunits.2h5v.s6.28b77eb71396 from=seed src=0 shape=3f038b4b vocab=d5fa6469
+-/
 theorem has_unit_speed_naturalParameterization (f : α → E) {s : Set α}
     (hf : LocallyBoundedVariationOn f s) {a : α} (as : a ∈ s) :
     HasUnitSpeedOn (naturalParameterization f s a) (variationOnFromTo f s a '' s) := by

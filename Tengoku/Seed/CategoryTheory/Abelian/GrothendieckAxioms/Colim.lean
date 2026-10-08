@@ -39,7 +39,9 @@ set_option backward.defeqAttrib.useBackward true in
 /-- Assume that `colim : (J ⥤ C) ⥤ C` preserves monomorphisms, and
 `φ : X₁ ⟶ X₂` is a monomorphism in `J ⥤ C`, then if `f : c₁.pt ⟶ c₂.pt` is a morphism
 between the points of colimit cocones for `X₁` and `X₂` in such a way that `f`
-identifies to `colim.map φ`, then `f` is a monomorphism. -/
+identifies to `colim.map φ`, then `f` is a monomorphism.
+@isnad1 id=mono.1h10v.s8.d9e5ba550eb1 from=seed src=0 shape=93b4386a vocab=2c133757
+-/
 lemma colim.map_mono' [HasColimitsOfShape J C]
     [(colim : (J ⥤ C) ⥤ C).PreservesMonomorphisms]
     {X₁ X₂ : J ⥤ C} (φ : X₁ ⟶ X₂) [Mono φ]
@@ -59,7 +61,9 @@ lemma colim.map_mono' [HasColimitsOfShape J C]
 /-- Assume that `φ : X₁ ⟶ X₂` is a natural transformation in `J ⥤ C` which
 consists of epimorphisms, then if `f : c₁.pt ⟶ c₂.pt` is a morphism
 between the points of cocones `c₁` and `c₂` for `X₁` and `X₂`, in such
-a way that `c₂` is colimit and `f` is compatible with `φ`, then `f` is an epimorphism. -/
+a way that `c₂` is colimit and `f` is compatible with `φ`, then `f` is an epimorphism.
+@isnad1 id=epi.1h9v.s8.a103200df213 from=seed src=0 shape=8414fafc vocab=5ff2e713
+-/
 lemma colim.map_epi'
     {X₁ X₂ : J ⥤ C} (φ : X₁ ⟶ X₂) [∀ j, Epi (φ.app j)]
     (c₁ : Cocone X₁) {c₂ : Cocone X₂} (hc₂ : IsColimit c₂)
@@ -74,7 +78,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- Assume that a functor `X : J ⥤ C` maps any morphism to a monomorphism,
 that `J` is filtered. Then the "inclusion" map `c.ι.app j₀` of a colimit cocone for `X`
 is a monomorphism if `colim : (Under j₀ ⥤ C) ⥤ C` preserves monomorphisms
-(e.g. when `C` satisfies AB5). -/
+(e.g. when `C` satisfies AB5).
+@isnad1 id=mono.0h6v.s7.abf47637aa22 from=seed src=0 shape=6cb8dd10 vocab=14d2fe8f
+-/
 lemma IsColimit.mono_ι_app_of_isFiltered
     {X : J ⥤ C} [∀ (j j' : J) (φ : j ⟶ j'), Mono (X.map φ)]
     {c : Cocone X} (hc : IsColimit c) [IsFiltered J] (j₀ : J)
@@ -118,7 +124,9 @@ include hc₂ hc₃ hS in
 of the functor `colim : (J ⥤ C) ⥤ C` by saying that if `S : ShortComplex (J ⥤ C)`
 is exact, then the short complex obtained by taking the colimits is exact,
 where we allow the replacement of the chosen colimit cocones of the
-colimit API by arbitrary colimit cocones. -/
+colimit API by arbitrary colimit cocones.
+@isnad1 id=exact.3h11v.s10.cd2b17795edd from=seed src=0 shape=f8873e2b vocab=08292af6
+-/
 lemma colim.exact_mapShortComplex :
     (mapShortComplex S hc₁ c₂ c₃ f g hf hg).Exact := by
   refine (ShortComplex.exact_iff_of_iso ?_).2 (hS.map colim)
@@ -147,6 +155,9 @@ open Limits
 open MorphismProperty
 
 variable (J C) in
+/--
+@isnad1 id=isstable.0h2v.s5.495d6b12f3ce from=seed src=0 shape=c5c273e9 vocab=21b2c71f
+-/
 instance isStableUnderColimitsOfShape_monomorphisms
     [HasColimitsOfShape J C] [(colim : (J ⥤ C) ⥤ C).PreservesMonomorphisms] :
     (monomorphisms C).IsStableUnderColimitsOfShape J where

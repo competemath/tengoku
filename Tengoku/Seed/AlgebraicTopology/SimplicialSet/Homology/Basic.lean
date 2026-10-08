@@ -87,6 +87,9 @@ noncomputable def ιChainComplex {n : ℕ} (x : X _⦋n⦌) : R ⟶ (X.chainComp
   Sigma.ι (fun (_ : X _⦋n⦌) ↦ R) x
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h5v.s9.34123110e0de from=seed src=0 shape=cdf0f647 vocab=985103f0
+-/
 @[reassoc (attr := simp)]
 lemma ιChainComplex_d {n : ℕ} (x : X _⦋n + 1⦌) :
     X.ιChainComplex x ≫ (X.chainComplex R).d (n + 1) n =
@@ -94,6 +97,9 @@ lemma ιChainComplex_d {n : ℕ} (x : X _⦋n + 1⦌) :
   simp [ιChainComplex, chainComplex, chainComplexFunctor, Preadditive.comp_sum]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s8.9f0ac2a614eb from=seed src=0 shape=84ce3dc4 vocab=94c0c0ff
+-/
 @[reassoc (attr := simp)]
 lemma ι_chainComplexMap_f {n : ℕ} (x : X _⦋n⦌) :
     X.ιChainComplex x ≫ (chainComplexMap f R).f n =
@@ -114,6 +120,9 @@ noncomputable def isColimitChainComplexXCofan (n : ℕ) : IsColimit (X.chainComp
   coproductIsCoproduct _
 
 variable {X R} in
+/--
+@isnad1 id=eq.1h7v.s8.cacb9f62c652 from=seed src=0 shape=da8cd76b vocab=9ca97bd9
+-/
 @[ext]
 lemma chainComplex_hom_ext {n : ℕ} {T : C} {f g : (X.chainComplex R).X n ⟶ T}
     (h : ∀ (x : X _⦋n⦌), X.ιChainComplex x ≫ f = X.ιChainComplex x ≫ g) :
@@ -132,10 +141,16 @@ of simplicial sets. -/
 protected noncomputable abbrev homologyMap (n : ℕ) : X.homology R n ⟶ Y.homology R n :=
   HomologicalComplex.homologyMap (chainComplexMap f R) n
 
+/--
+@isnad1 id=eq.0h4v.s6.5036dbac1a47 from=seed src=0 shape=38e22dbf vocab=5453767a
+-/
 @[simp]
 lemma homologyMap_id (n : ℕ) : SSet.homologyMap (𝟙 X) R n = 𝟙 _ := by
   simp [SSet.homologyMap]
 
+/--
+@isnad1 id=eq.0h8v.s7.2bdd6228c787 from=seed src=0 shape=86ffe41c vocab=ad9cfea9
+-/
 @[reassoc]
 lemma homologyMap_comp (n : ℕ) :
     SSet.homologyMap (f ≫ g) R n = SSet.homologyMap f R n ≫ SSet.homologyMap g R n := by

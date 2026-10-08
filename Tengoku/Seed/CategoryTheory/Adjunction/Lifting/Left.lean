@@ -186,6 +186,7 @@ pairs, then a functor `R : A ⥤ B` has a left adjoint if the composite `R ⋙ U
 
 Note the converse is true (with weaker assumptions), by `Adjunction.comp`.
 See https://ncatlab.org/nlab/show/adjoint+triangle+theorem
+@isnad1 id=isrighta.0h8v.s6.79899a5af13c from=seed src=0 shape=f8757dca vocab=833a13bf
 -/
 lemma isRightAdjoint_triangle_lift {U : B ⥤ C} {F : C ⥤ B} (R : A ⥤ B) (adj₁ : F ⊣ U)
     (h : ∀ X : B, RegularEpi (adj₁.counit.app X)) [HasReflexiveCoequalizers A]
@@ -197,6 +198,7 @@ lemma isRightAdjoint_triangle_lift {U : B ⥤ C} {F : C ⥤ B} (R : A ⥤ B) (ad
 /-- If `R ⋙ U` has a left adjoint, the domain of `R` has reflexive coequalizers and `U` is a monadic
 functor, then `R` has a left adjoint.
 This is a special case of `isRightAdjoint_triangle_lift` which is often more useful in practice.
+@isnad1 id=isrighta.0h5v.s5.90404eba4c41 from=seed src=0 shape=93a9d0f2 vocab=1b0a087c
 -/
 lemma isRightAdjoint_triangle_lift_monadic (U : B ⥤ C) [MonadicRightAdjoint U] {R : A ⥤ B}
     [HasReflexiveCoequalizers A] [(R ⋙ U).IsRightAdjoint] : R.IsRightAdjoint := by
@@ -234,6 +236,7 @@ each component of the counit is a regular epi.
 Then `Q` has a left adjoint if `R` has a left adjoint.
 
 See https://ncatlab.org/nlab/show/adjoint+lifting+theorem
+@isnad1 id=isrighta.0h10v.s7.a91d72d1f7cf from=seed src=0 shape=8df574df vocab=2f09288d
 -/
 lemma isRightAdjoint_square_lift (Q : A ⥤ B) (V : B ⥤ D) (U : A ⥤ C) (R : C ⥤ D)
     (comm : U ⋙ R ≅ Q ⋙ V) [U.IsRightAdjoint] [V.IsRightAdjoint] [R.IsRightAdjoint]
@@ -257,6 +260,7 @@ where `U` has a left adjoint, `A` has reflexive coequalizers and `V` is monadic.
 Then `Q` has a left adjoint if `R` has a left adjoint.
 
 See https://ncatlab.org/nlab/show/adjoint+lifting+theorem
+@isnad1 id=isrighta.0h9v.s6.c95a0bb52689 from=seed src=0 shape=efeb9d30 vocab=144328b8
 -/
 lemma isRightAdjoint_square_lift_monadic (Q : A ⥤ B) (V : B ⥤ D) (U : A ⥤ C) (R : C ⥤ D)
     (comm : U ⋙ R ≅ Q ⋙ V) [U.IsRightAdjoint] [MonadicRightAdjoint V] [R.IsRightAdjoint]

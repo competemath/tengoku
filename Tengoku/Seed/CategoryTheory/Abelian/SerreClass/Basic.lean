@@ -57,11 +57,17 @@ instance : (⊤ : ObjectProperty C).IsSerreClass where
 
 instance : IsSerreClass (IsZero (C := C)) where
 
+/--
+@isnad1 id=iff.1h3v.s6.fb9ad3d94683 from=seed src=0 shape=f62092c7 vocab=e47b07db
+-/
 lemma prop_iff_of_shortExact {S : ShortComplex C} (hS : S.ShortExact) :
     P S.X₂ ↔ P S.X₁ ∧ P S.X₃ :=
   ⟨fun h ↦ ⟨P.prop_X₁_of_shortExact hS h, P.prop_X₃_of_shortExact hS h⟩,
     fun h ↦ P.prop_X₂_of_shortExact hS h.1 h.2⟩
 
+/--
+@isnad1 id=var.1h5v.s6.21bd9dd10d70 from=seed src=0 shape=57854982 vocab=b518b549
+-/
 lemma prop_X₂_of_exact {S : ShortComplex C} (hS : S.Exact)
     (h₁ : P S.X₁) (h₃ : P S.X₃) : P S.X₂ := by
   let d := S.homologyData

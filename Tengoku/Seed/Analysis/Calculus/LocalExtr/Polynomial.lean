@@ -35,7 +35,9 @@ public section
 namespace Polynomial
 
 /-- The number of roots of a real polynomial `p` is at most the number of roots of its derivative
-that are not roots of `p` plus one. -/
+that are not roots of `p` plus one.
+@isnad1 id=le.0h1v.s7.6872739a891f from=seed src=0 shape=a6480489 vocab=78e75ad1
+-/
 theorem card_roots_toFinset_le_card_roots_derivative_sdiff_roots_succ (p : ℝ[X]) :
     p.roots.toFinset.card ≤ (p.derivative.roots.toFinset \ p.roots.toFinset).card + 1 := by
   rcases eq_or_ne (derivative p) 0 with hp' | hp'
@@ -48,19 +50,26 @@ theorem card_roots_toFinset_le_card_roots_derivative_sdiff_roots_succ (p : ℝ[X
   refine ⟨z, ?_, hz1⟩
   rwa [Multiset.mem_toFinset, mem_roots hp', IsRoot, ← p.deriv]
 
+/--
+@isnad1 id=le.0h1v.s7.6872739a891f from=seed src=0 shape=a6480489 vocab=78e75ad1
+-/
 @[deprecated (since := "2026-06-03")]
 alias card_roots_toFinset_le_card_roots_derivative_diff_roots_succ :=
   card_roots_toFinset_le_card_roots_derivative_sdiff_roots_succ
 
 /-- The number of roots of a real polynomial is at most the number of roots of its derivative plus
-one. -/
+one.
+@isnad1 id=le.0h1v.s7.d907457f04f7 from=seed src=0 shape=d8a78433 vocab=fb2f6483
+-/
 theorem card_roots_toFinset_le_derivative (p : ℝ[X]) :
     p.roots.toFinset.card ≤ p.derivative.roots.toFinset.card + 1 :=
   p.card_roots_toFinset_le_card_roots_derivative_sdiff_roots_succ.trans <| by
     grw [Finset.sdiff_subset]
 
 /-- The number of roots of a real polynomial (counted with multiplicities) is at most the number of
-roots of its derivative (counted with multiplicities) plus one. -/
+roots of its derivative (counted with multiplicities) plus one.
+@isnad1 id=le.0h1v.s7.4f88ac789bd5 from=seed src=0 shape=46efdab7 vocab=8d41090d
+-/
 theorem card_roots_le_derivative (p : ℝ[X]) :
     Multiset.card p.roots ≤ Multiset.card (derivative p).roots + 1 :=
   calc
@@ -90,7 +99,9 @@ theorem card_roots_le_derivative (p : ℝ[X]) :
       simpa only [Multiset.mem_toFinset, Multiset.count_eq_zero] using hx₂
 
 /-- The number of real roots of a polynomial is at most the number of roots of its derivative plus
-one. -/
+one.
+@isnad1 id=le.0h2v.s9.008f6de4fa07 from=seed src=0 shape=c144d4aa vocab=7a4a208a
+-/
 theorem card_rootSet_le_derivative {F : Type*} [CommRing F] [Algebra F ℝ] (p : F[X]) :
     Fintype.card (p.rootSet ℝ) ≤ Fintype.card (p.derivative.rootSet ℝ) + 1 := by
   simpa only [rootSet_def, Finset.coe_sort_coe, Fintype.card_coe, derivative_map] using

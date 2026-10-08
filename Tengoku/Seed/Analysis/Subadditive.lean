@@ -45,12 +45,18 @@ this limit is given in `Subadditive.tendsto_lim` -/
 protected def lim (_h : Subadditive u) :=
   sInf ((fun n : ℕ => u n / n) '' Ici 1)
 
+/--
+@isnad1 id=le.3h2v.s6.06dbd01be323 from=seed src=0 shape=a8f31db1 vocab=61bd01fc
+-/
 theorem lim_le_div (hbdd : BddBelow (range fun n => u n / n)) {n : ℕ} (hn : n ≠ 0) :
     h.lim ≤ u n / n := by
   rw [Subadditive.lim]
   exact csInf_le (hbdd.mono <| image_subset_range _ _) ⟨n, hn.bot_lt, rfl⟩
 
 include h in
+/--
+@isnad1 id=le.1h4v.s5.7e1eaf57ad46 from=seed src=0 shape=e607afc4 vocab=12a84b38
+-/
 theorem apply_mul_add_le (k n r) : u (k * n + r) ≤ k * u n + u r := by
   induction k with
   | zero => simp only [Nat.cast_zero, zero_mul, zero_add]; rfl
@@ -62,6 +68,9 @@ theorem apply_mul_add_le (k n r) : u (k * n + r) ≤ k * u n + u r := by
       _ = (k + 1 : ℕ) * u n + u r := by simp; ring
 
 include h in
+/--
+@isnad1 id=eventual.3h3v.s6.6fb1a7ab9e99 from=seed src=0 shape=dbfdea25 vocab=4cad6c61
+-/
 theorem eventually_div_lt_of_div_lt {L : ℝ} {n : ℕ} (hn : n ≠ 0) (hL : u n / n < L) :
     ∀ᶠ p in atTop, u p / p < L := by
   /- It suffices to prove the statement for each arithmetic progression `(n * · + r)`. -/
@@ -84,7 +93,9 @@ theorem eventually_div_lt_of_div_lt {L : ℝ} {n : ℕ} (hn : n ≠ 0) (hL : u n
   gcongr
   apply h.apply_mul_add_le
 
-/-- Fekete's lemma: a subadditive sequence which is bounded below converges. -/
+/-- Fekete's lemma: a subadditive sequence which is bounded below converges.
+@isnad1 id=tendsto.2h1v.s6.5171c02d9e7d from=seed src=0 shape=145d9251 vocab=58229878
+-/
 theorem tendsto_lim (hbdd : BddBelow (range fun n => u n / n)) :
     Tendsto (fun n => u n / n) atTop (𝓝 h.lim) := by
   refine tendsto_order.2 ⟨fun l hl => ?_, fun L hL => ?_⟩

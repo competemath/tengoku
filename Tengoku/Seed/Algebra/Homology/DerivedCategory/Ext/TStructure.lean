@@ -39,6 +39,9 @@ open Localization Limits ZeroObject DerivedCategory Pretriangulated
 namespace HasExt
 
 variable {C} in
+/--
+@isnad1 id=hassmall.0h5v.s7.4bb0c7c1cf00 from=seed src=0 shape=df4a932e vocab=fa601e0e
+-/
 lemma hasSmallLocalizedShiftedHom_of_isLE_of_isGE
     [HasExt.{w} C] (K L : CochainComplex C ℤ)
     (a b : ℤ) [K.IsGE a] [K.IsLE a] [L.IsGE b] [L.IsLE b] :

@@ -35,9 +35,15 @@ instance : MeasurableSpace ℍ := .comap UpperHalfPlane.coe inferInstance
 
 instance : BorelSpace ℍ := ⟨borel_comap.symm⟩
 
+/--
+@isnad1 id=measurab.0h0v.s2.d60d01d29ee0 from=seed src=0 shape=54c8eceb vocab=4f688f4e
+-/
 lemma measurableEmbedding_coe : MeasurableEmbedding UpperHalfPlane.coe :=
   isOpenEmbedding_coe.measurableEmbedding
 
+/--
+@isnad1 id=measurab.0h0v.s2.ef34478a5491 from=seed src=0 shape=54c8eceb vocab=499490d8
+-/
 @[fun_prop]
 lemma measurable_coe : Measurable UpperHalfPlane.coe :=
   measurableEmbedding_coe.measurable
@@ -47,6 +53,9 @@ instance : MeasureSpace ℍ :=
   ⟨(volume.comap UpperHalfPlane.coe).withDensity
     fun z ↦ ↑((1 / NNReal.mk z.im z.im_pos.le : ℝ≥0) ^ 2)⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.d9688627b770 from=seed src=0 shape=692bb904 vocab=c437d053
+-/
 theorem volume_def :
     (volume : Measure ℍ) = (volume.comap UpperHalfPlane.coe).withDensity fun z ↦
       ↑((1 / NNReal.mk z.im z.im_pos.le : ℝ≥0) ^ 2) :=
@@ -74,7 +83,9 @@ instance : SigmaFinite (volume : Measure ℍ) := inferInstance
 instance : SFinite (volume : Measure ℍ) := inferInstance
 
 /-- Express the volume of a measurable set as a Lebesgue integral
-over the corresponding subset of `ℂ`. -/
+over the corresponding subset of `ℂ`.
+@isnad1 id=eq.0h1v.s6.5084c7b6994c from=seed src=0 shape=6de5cc69 vocab=c3e4daac
+-/
 lemma volume_eq_lintegral (s : Set ℍ) :
     volume s = ∫⁻ z : ℂ in (↑) '' s, ↑((1 / ‖z.im‖₊) ^ 2 : NNReal) := by
   have : MeasurePreserving UpperHalfPlane.coe (volume.comap UpperHalfPlane.coe)

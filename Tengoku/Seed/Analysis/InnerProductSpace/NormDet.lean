@@ -74,12 +74,16 @@ noncomputable def normDet (f : U →ₗ[𝕜] V) : ℝ :=
   else
     0
 
+/--
+@isnad1 id=le.0h4v.s7.9584a94b598c from=seed src=0 shape=3341d024 vocab=8145fdb4
+-/
 theorem normDet_nonneg (f : U →ₗ[𝕜] V) : 0 ≤ f.normDet := by
   unfold normDet
   split <;> simp
 
 /--
 `LinearMap.normDet` is well-defined under any pair of orthonormal basis.
+@isnad1 id=eq.0h7v.s15.2c6692f51c31 from=seed src=0 shape=c3cf4675 vocab=44746c73
 -/
 theorem normDet_eq_norm_det_toMatrix_rangeRestrict {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : U →ₗ[𝕜] V) (bu : OrthonormalBasis ι 𝕜 U) (bv : OrthonormalBasis ι 𝕜 f.range) :
@@ -109,6 +113,7 @@ theorem normDet_eq_norm_det_toMatrix_rangeRestrict {ι : Type*} [Fintype ι] [De
 
 /--
 `LinearMap.normDet` vanishes iff the map is not injective.
+@isnad1 id=iff.0h4v.s8.bc2abce43370 from=seed src=0 shape=0c7c97e7 vocab=7a26e051
 -/
 theorem normDet_eq_zero_iff_ker_ne_bot {f : U →ₗ[𝕜] V} :
     f.normDet = 0 ↔ f.ker ≠ ⊥ where
@@ -133,10 +138,16 @@ theorem normDet_eq_zero_iff_ker_ne_bot {f : U →ₗ[𝕜] V} :
       simpa using finrank_eq_card_basis b.toBasis
     simpa [hrank] using f.finrank_range_add_finrank_ker
 
+/--
+@isnad1 id=iff.0h4v.s9.fdcca62c573b from=seed src=0 shape=9bce15cc vocab=35717a8f
+-/
 theorem normDet_eq_zero_iff_rank_range_ne {f : U →ₗ[𝕜] V} :
     f.normDet = 0 ↔ finrank 𝕜 f.range ≠ finrank 𝕜 U := by
   simp [normDet_eq_zero_iff_ker_ne_bot, ← f.finrank_range_add_finrank_ker]
 
+/--
+@isnad1 id=tfae.0h4v.s10.8deafd4464ff from=seed src=0 shape=7f21f41e vocab=acbe8b71
+-/
 theorem normDet_ne_zero_tfae (f : U →ₗ[𝕜] V) :
     List.TFAE [f.normDet ≠ 0,
       f.ker = ⊥,
@@ -161,6 +172,9 @@ private noncomputable def orthonormalBasis_range {ι : Type*} [Fintype ι] {f : 
     (f.normDet_ne_zero_tfae.out 2 4).mp hf
   h.some.reindex (Fintype.equivFinOfCardEq <| (Module.finrank_eq_card_basis b.toBasis).symm).symm
 
+/--
+@isnad1 id=tfae.0h4v.s11.750d48210d4a from=seed src=0 shape=9bc368ba vocab=e92ffcf1
+-/
 theorem normDet_eq_zero_tfae (f : U →ₗ[𝕜] V) :
     List.TFAE [f.normDet = 0,
       f.ker ≠ ⊥,
@@ -180,6 +194,7 @@ theorem normDet_eq_zero_tfae (f : U →ₗ[𝕜] V) :
 /--
 `LinearMap.normDet` can be calculated with any pair of orthonormal basis if the domain and the
 codomain have equal dimension.
+@isnad1 id=eq.0h7v.s10.f1a46a886e8c from=seed src=0 shape=0fde289d vocab=db2d0ac8
 -/
 theorem normDet_eq_norm_det_toMatrix {ι : Type*} [Fintype ι] [DecidableEq ι] (f : U →ₗ[𝕜] V)
     (bu : OrthonormalBasis ι 𝕜 U) (bv : OrthonormalBasis ι 𝕜 V) :
@@ -204,6 +219,7 @@ theorem normDet_eq_norm_det_toMatrix {ι : Type*} [Fintype ι] [DecidableEq ι] 
 
 /--
 `LinearMap.normDet` equals the norm of `LinearMap.det` for an endomorphism.
+@isnad1 id=eq.0h3v.s10.a5ec7abc2494 from=seed src=0 shape=b5fc6216 vocab=5a4de740
 -/
 theorem normDet_eq_norm_det (f : U →ₗ[𝕜] U) : f.normDet = ‖f.det‖ := by
   simp [f.normDet_eq_norm_det_toMatrix (stdOrthonormalBasis 𝕜 U) (stdOrthonormalBasis 𝕜 U)]
@@ -218,14 +234,23 @@ theorem _root_.LinearIsometry.normDet_eq_one (f : U →ₗᵢ[𝕜] V) : f.toLin
   apply CStarRing.norm_of_mem_unitary
   exact Matrix.det_of_mem_unitary <| (f.equivRange).toMatrix_mem_unitaryGroup _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.2bfbbb8f2a92 from=seed src=0 shape=4b96b19f vocab=a3fdcd90
+-/
 @[simp]
 theorem normDet_id : (id : U →ₗ[𝕜] U).normDet = 1 :=
   LinearIsometry.id.normDet_eq_one
 
+/--
+@isnad1 id=eq.0h3v.s8.ca6e054379d6 from=seed src=0 shape=ad6723c5 vocab=00f6f350
+-/
 @[simp]
 theorem normDet_subtype (p : Submodule 𝕜 U) : p.subtype.normDet = 1 :=
   p.subtypeₗᵢ.normDet_eq_one
 
+/--
+@isnad1 id=eq.0h4v.s7.7049e72c8b92 from=seed src=0 shape=24cc56ab vocab=b5f4c7d1
+-/
 @[simp]
 theorem normDet_of_subsingleton [Subsingleton U] (f : U →ₗ[𝕜] V) : f.normDet = 1 := by
   have h : f.ker = ⊥ := Submodule.eq_bot_of_subsingleton
@@ -234,11 +259,17 @@ theorem normDet_of_subsingleton [Subsingleton U] (f : U →ₗ[𝕜] V) : f.norm
   let bv := orthonormalBasis_range h bu
   simp [normDet_eq_norm_det_toMatrix_rangeRestrict f bu bv]
 
+/--
+@isnad1 id=eq.0h3v.s8.da2ebc6621e4 from=seed src=0 shape=a282acc0 vocab=41f29c54
+-/
 @[simp]
 theorem normDet_zero : (0 : U →ₗ[𝕜] V).normDet = 0 ^ finrank 𝕜 U := by
   nontriviality U
   simp [zero_pow finrank_pos.ne.symm, normDet_eq_zero_iff_ker_ne_bot]
 
+/--
+@isnad1 id=eq.0h5v.s9.5ba177e20a5e from=seed src=0 shape=ff6b0817 vocab=34a8e2d5
+-/
 @[simp]
 theorem normDet_smul (f : U →ₗ[𝕜] V) (c : 𝕜) :
     (c • f).normDet = ‖c‖ ^ finrank 𝕜 U * f.normDet := by
@@ -259,6 +290,9 @@ theorem normDet_smul (f : U →ₗ[𝕜] V) (c : 𝕜) :
   · have h' : (c • f).ker ≠ ⊥ := by simpa [f.ker_smul _ hc] using h
     simp [normDet_eq_zero_iff_ker_ne_bot.mpr h, normDet_eq_zero_iff_ker_ne_bot.mpr h']
 
+/--
+@isnad1 id=eq.0h4v.s8.cbc37855ca71 from=seed src=0 shape=35043f96 vocab=8f11e3b6
+-/
 @[simp]
 theorem normDet_neg (f : U →ₗ[𝕜] V) : (-f).normDet = f.normDet := by
   simpa using f.normDet_smul (-1)
@@ -292,6 +326,7 @@ theorem _root_.ContinuousLinearMap.normDet_sq [CompleteSpace V] (f : U →L[𝕜
 /--
 The square of `f.normDet` equals the determinant of `f.adjoint ∘ₗ f` when the codomain is finite
 dimensional.
+@isnad1 id=eq.0h4v.s12.f6b8c35b955f from=seed src=0 shape=0a99bfe9 vocab=aa9bd478
 -/
 theorem normDet_sq [FiniteDimensional 𝕜 V] (f : U →ₗ[𝕜] V) :
     ↑(f.normDet ^ 2) = (f.adjoint ∘ₗ f).det := by
@@ -301,6 +336,7 @@ theorem normDet_sq [FiniteDimensional 𝕜 V] (f : U →ₗ[𝕜] V) :
 /--
 The square of `f.normDet` equals the determinant of the Gram matrix formed by vectors mapped from
 an orthonormal basis.
+@isnad1 id=eq.0h6v.s8.b9a7dc87640d from=seed src=0 shape=6fc4b7cc vocab=11a84454
 -/
 theorem normDet_sq_eq_det_gram {ι : Type*} [Fintype ι] [DecidableEq ι] (f : U →ₗ[𝕜] V)
     (b : OrthonormalBasis ι 𝕜 U) :
@@ -323,6 +359,9 @@ theorem normDet_sq_eq_det_gram {ι : Type*} [Fintype ι] [DecidableEq ι] (f : U
     rw [finrank_eq_card_basis b.toBasis]
     exact (Matrix.linearIndependent_of_det_gram_ne_zero h0).fintype_card_le_finrank
 
+/--
+@isnad1 id=eq.0h6v.s10.629b64a0116d from=seed src=0 shape=6e25472d vocab=a71f3807
+-/
 theorem normDet_comp (f : U →ₗ[𝕜] V) (g : V →ₗ[𝕜] W) :
     (g ∘ₗ f).normDet = (g.domRestrict f.range).normDet * f.normDet := by
   by_cases hf : f.ker = ⊥
@@ -347,6 +386,9 @@ theorem normDet_comp (f : U →ₗ[𝕜] V) (g : V →ₗ[𝕜] W) :
       simpa [hbot] using ker_le_ker_comp f g
     simp [normDet_eq_zero_iff_ker_ne_bot.mpr hf, normDet_eq_zero_iff_ker_ne_bot.mpr hgf]
 
+/--
+@isnad1 id=eq.1h6v.s9.455a092e192d from=seed src=0 shape=a0c00ac3 vocab=35518da9
+-/
 theorem normDet_comp_of_finrank_eq [FiniteDimensional 𝕜 V] (f : U →ₗ[𝕜] V) (g : V →ₗ[𝕜] W)
     (h : finrank 𝕜 U = finrank 𝕜 V) :
     (g ∘ₗ f).normDet = g.normDet * f.normDet := by
@@ -363,6 +405,9 @@ theorem normDet_comp_of_finrank_eq [FiniteDimensional 𝕜 V] (f : U →ₗ[𝕜
       simpa [hbot] using ker_le_ker_comp f g
     simp [normDet_eq_zero_iff_ker_ne_bot.mpr hker, normDet_eq_zero_iff_ker_ne_bot.mpr hker']
 
+/--
+@isnad1 id=eq.1h5v.s9.3857c2ca08ee from=seed src=0 shape=f9076a1c vocab=a9f99cd4
+-/
 @[simp]
 theorem normDet_codRestrict {p : Submodule 𝕜 V} {f : U →ₗ[𝕜] V} (h : ∀ c, f c ∈ p) :
     (f.codRestrict p h).normDet = f.normDet := by
@@ -373,6 +418,9 @@ theorem normDet_codRestrict {p : Submodule 𝕜 V} {f : U →ₗ[𝕜] V} (h : �
     (p.subtypeₗᵢ.comp (codRestrict p f h).range.subtypeₗᵢ).normDet_eq_one
   simp [this]
 
+/--
+@isnad1 id=eq.0h4v.s8.e9ef219c3058 from=seed src=0 shape=64f8840f vocab=4505e4f8
+-/
 theorem normDet_eq_prod_singularValues [FiniteDimensional 𝕜 V] (f : U →ₗ[𝕜] V) :
     f.normDet = ∏ i ∈ Finset.range (finrank 𝕜 U), f.singularValues i := by
   rw [← sq_eq_sq₀ f.normDet_nonneg (Finset.prod_nonneg fun i _ ↦ f.singularValues_nonneg i),
@@ -388,12 +436,16 @@ open MeasureTheory Measure
 variable {U V : Type*} [NormedAddCommGroup U] [InnerProductSpace ℝ U] [FiniteDimensional ℝ U]
   [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 
+/--
+@isnad1 id=eq.0h2v.s9.716540ba3052 from=seed src=0 shape=aa4e1bc0 vocab=5d9ba78e
+-/
 theorem normDet_eq_abs_det (f : U →ₗ[ℝ] U) : f.normDet = |f.det| := by
   simpa using f.normDet_eq_norm_det
 
 /--
 Using Hausdorff measure with the domain dimension, the volume of the image is scaled by
 `LinearMap.normDet`.
+@isnad1 id=eq.0h4v.s8.c9b7f379bff4 from=seed src=0 shape=2a0d3f0a vocab=f46f4723
 -/
 theorem hausdorffMeasure_image [MeasurableSpace U] [BorelSpace U] [MeasurableSpace V] [BorelSpace V]
     (f : U →ₗ[ℝ] V) (s : Set U) :
@@ -420,6 +472,7 @@ theorem hausdorffMeasure_image [MeasurableSpace U] [BorelSpace U] [MeasurableSpa
 /--
 Using Euclidean Hausdorff measure with the domain dimension, the volume of the image is scaled by
 `LinearMap.normDet`.
+@isnad1 id=eq.0h4v.s8.b64296116c33 from=seed src=0 shape=f2919f88 vocab=da957700
 -/
 theorem euclideanHausdorffMeasure_image [MeasurableSpace U] [BorelSpace U] [MeasurableSpace V]
     [BorelSpace V] (f : U →ₗ[ℝ] V) (s : Set U) :
@@ -431,6 +484,7 @@ theorem euclideanHausdorffMeasure_image [MeasurableSpace U] [BorelSpace U] [Meas
 /--
 The volume of the image measured by Euclidean Hausdorff measure is equal to the Lebesgue measure
 scaled by `LinearMap.normDet`.
+@isnad1 id=eq.0h4v.s8.e2bef217d176 from=seed src=0 shape=3a574a9e vocab=2a3fae8b
 -/
 theorem euclideanHausdorffMeasure_image_eq_normDet_mul_volume [MeasurableSpace U] [BorelSpace U]
     [MeasurableSpace V] [BorelSpace V] (f : U →ₗ[ℝ] V) (s : Set U) :

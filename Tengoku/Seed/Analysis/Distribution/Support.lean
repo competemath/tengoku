@@ -60,15 +60,24 @@ a `FunLike` type to a type with zero. -/
 def IsVanishingOn (f : F → V) (s : Set α) : Prop :=
     ∀ (u : F), tsupport u ⊆ s → f u = 0
 
+/--
+@isnad1 id=isvanish.2h7v.s5.4e9cdbf85997 from=seed src=0 shape=d7c22b3e vocab=e3b15bfd
+-/
 @[gcongr]
 theorem IsVanishingOn.mono ⦃s₁ s₂ : Set α⦄ (hs : s₂ ⊆ s₁) (hf : IsVanishingOn f s₁) :
     IsVanishingOn f s₂ :=
   (hf · <| ·.trans hs)
 
+/--
+@isnad1 id=not.2h7v.s6.d6862163bcfe from=seed src=0 shape=8504906c vocab=e3b15bfd
+-/
 theorem not_isVanishingOn_mono ⦃s₁ s₂ : Set α⦄ (hs : s₁ ⊆ s₂) (hf : ¬ IsVanishingOn f s₁) :
     ¬ IsVanishingOn f s₂ :=
   (hf <| ·.mono hs)
 
+/--
+@isnad1 id=iff.0h6v.s6.951c61c98d50 from=seed src=0 shape=bba22625 vocab=39875216
+-/
 theorem not_isVanishingOn_iff :
     ¬ IsVanishingOn f s ↔ ∃ u : F, tsupport u ⊆ s ∧ f u ≠ 0 := by
   simp [IsVanishingOn]
@@ -94,27 +103,44 @@ To make this definition work for all types of distributions, we define it for an
 a `FunLike` type to a type with zero. -/
 def dsupport (f : F → V) : Set α := ⋂₀ { s | IsVanishingOn f sᶜ ∧ IsClosed s}
 
+/--
+@isnad1 id=iff.0h6v.s6.fd8d43889a35 from=seed src=0 shape=51fd6410 vocab=a433caef
+-/
 theorem mem_dsupport_iff (x : α) :
     x ∈ dsupport f ↔ ∀ (s : Set α), IsVanishingOn f sᶜ → IsClosed s → x ∈ s := by
   simp [dsupport]
 
-/-- The complement of the support is the largest open set on which `f` vanishes. -/
+/-- The complement of the support is the largest open set on which `f` vanishes.
+@isnad1 id=eq.0h5v.s6.bc5d2efa49be from=seed src=0 shape=d254291d vocab=cf284387
+-/
 theorem dsupport_compl_eq : (dsupport f)ᶜ = ⋃₀ { a | IsVanishingOn f a ∧ IsOpen a } := by
   simp [dsupport, Set.compl_sInter, Set.compl_image_ofPred]
 
+/--
+@isnad1 id=iff.0h6v.s6.8126be4e75e2 from=seed src=0 shape=f649c601 vocab=51d536ec
+-/
 @[simp high]
 theorem notMem_dsupport_iff (x : α) :
     x ∉ (dsupport f) ↔ ∃ (s : Set α), IsVanishingOn f s ∧ IsOpen s ∧ x ∈ s := by
   simp [← Set.mem_compl_iff, dsupport_compl_eq, Set.mem_sUnion, and_assoc]
 
+/--
+@isnad1 id=iff.0h6v.s6.2aa8fc442a1b from=seed src=0 shape=9ea64aac vocab=51d536ec
+-/
 theorem mem_dsupport_iff_not_isVanishingOn (x : α) :
     x ∈ dsupport f ↔ ∀ s, x ∈ s → IsOpen s → ¬ IsVanishingOn f s := by
   grind only [notMem_dsupport_iff]
 
+/--
+@isnad1 id=iff.0h6v.s6.b1fbd1bb1491 from=seed src=0 shape=9fd74cc9 vocab=d2d8c40a
+-/
 theorem mem_dsupport_iff_forall_exists_ne (x : α) :
     x ∈ dsupport f ↔ ∀ s, x ∈ s → IsOpen s → ∃ u : F, tsupport u ⊆ s ∧ f u ≠ 0 := by
   simp_rw [mem_dsupport_iff_not_isVanishingOn, not_isVanishingOn_iff]
 
+/--
+@isnad1 id=iff.0h6v.s6.7be0d96dda2b from=seed src=0 shape=1e44896b vocab=90f5dc8e
+-/
 theorem mem_dsupport_iff_frequently {x : α} :
     x ∈ dsupport f ↔ ∃ᶠ u in (𝓝 x).smallSets, ¬ IsVanishingOn f u := by
   rw [nhds_basis_opens x |>.frequently_smallSets not_isVanishingOn_mono]
@@ -126,6 +152,9 @@ theorem _root_.Filter.HasBasis.mem_dsupport {ι : Sort*} {p : ι → Prop}
   rw [mem_dsupport_iff_frequently]
   exact hl.frequently_smallSets not_isVanishingOn_mono
 
+/--
+@isnad1 id=iff.0h6v.s6.3b0d5ade2a2b from=seed src=0 shape=1ef3b917 vocab=a099c9e9
+-/
 theorem notMem_dsupport_iff_eventually {x : α} :
     x ∉ dsupport f ↔ ∀ᶠ u in (𝓝 x).smallSets, IsVanishingOn f u := by
   simp [mem_dsupport_iff_frequently]
@@ -135,16 +164,25 @@ theorem _root_.Filter.HasBasis.notMem_dsupport {ι : Sort*} {p : ι → Prop}
     x ∉ dsupport f ↔ ∃ i, p i ∧ IsVanishingOn f (s i) := by
   simp [hl.mem_dsupport]
 
+/--
+@isnad1 id=le.1h6v.s6.13b86f8cd047 from=seed src=0 shape=5dae03f7 vocab=80ac368e
+-/
 @[gcongr only]
 theorem dsupport_subset_dsupport
     (h : ∀ (s : Set α) (_ : IsOpen s), IsVanishingOn g s → IsVanishingOn f s) :
     dsupport f ⊆ dsupport g :=
   Set.sInter_mono fun s ⟨g_van, s_cl⟩ ↦ ⟨h sᶜ s_cl.isOpen_compl g_van, s_cl⟩
 
+/--
+@isnad1 id=isclosed.0h5v.s5.76a92f80a23d from=seed src=0 shape=a4fe2ebf vocab=209b3b6b
+-/
 @[grind .]
 theorem isClosed_dsupport : IsClosed (dsupport f) := by
   grind [dsupport, isClosed_sInter]
 
+/--
+@isnad1 id=disjoint.2h6v.s6.97d1e4bacde9 from=seed src=0 shape=7627845f vocab=434a8732
+-/
 theorem IsVanishingOn.disjoint_dsupport (h : IsVanishingOn f s) (s_open : IsOpen s) :
     Disjoint s (dsupport f) := by
   rw [← Set.subset_compl_iff_disjoint_right, dsupport_compl_eq]
@@ -160,7 +198,9 @@ variable [FunLike F α β] [PseudoMetricSpace α] [Zero β] [Zero V]
 
 variable {f : F → V}
 
-/-- The complement of the support is given by all *bounded* open sets on which `f` vanishes. -/
+/-- The complement of the support is given by all *bounded* open sets on which `f` vanishes.
+@isnad1 id=eq.0h5v.s6.eec19dbb2f16 from=seed src=0 shape=f00b9d18 vocab=c21fd25c
+-/
 theorem compl_dsupport_eq_sUnion_isBounded :
     (dsupport f)ᶜ = ⋃₀ { a | IsVanishingOn f a ∧ IsOpen a ∧ Bornology.IsBounded a } := by
   ext x
@@ -182,6 +222,9 @@ namespace IsVanishingOn
 
 open scoped Topology
 
+/--
+@isnad1 id=isvanish.2h5v.s11.cd7841c49c0f from=seed src=0 shape=f51d3499 vocab=7980009a
+-/
 @[fun_prop]
 theorem smulLeftCLM (hf : IsVanishingOn f s) {g : E → ℂ} (hg : g.HasTemperateGrowth) :
     IsVanishingOn (smulLeftCLM F g f) s := by
@@ -195,6 +238,9 @@ theorem smulLeftCLM (hf : IsVanishingOn f s) {g : E → ℂ} (hg : g.HasTemperat
 
 open LineDeriv
 
+/--
+@isnad1 id=isvanish.1h5v.s9.fcec35f62771 from=seed src=0 shape=02b57677 vocab=400e8508
+-/
 @[fun_prop]
 theorem lineDerivOp (hf : IsVanishingOn f s) (m : E) :
     IsVanishingOn (∂_{m} f : 𝓢'(E, F)) s := by
@@ -202,6 +248,9 @@ theorem lineDerivOp (hf : IsVanishingOn f s) (m : E) :
   simp only [TemperedDistribution.lineDerivOp_apply_apply, map_neg, neg_eq_zero]
   exact hf (∂_{m} u) <| (tsupport_fderiv_apply_subset ℝ m).trans hu
 
+/--
+@isnad1 id=isvanish.1h6v.s9.4011e7a37032 from=seed src=0 shape=0de7efe7 vocab=b94dc528
+-/
 @[fun_prop]
 theorem iteratedLineDerivOp {n : ℕ} (hf : IsVanishingOn f s) (m : Fin n → E) :
     IsVanishingOn (∂^{m} f : 𝓢'(E, F)) s := by
@@ -222,6 +271,9 @@ end IsVanishingOn
 
 section Support
 
+/--
+@isnad1 id=le.1h4v.s11.e42bf80c025c from=seed src=0 shape=14fbb683 vocab=51856bd1
+-/
 theorem dsupport_smulLeftCLM_subset {g : E → ℂ} (hg : g.HasTemperateGrowth) :
     dsupport (smulLeftCLM F g f) ⊆ dsupport f := by
   gcongr; fun_prop
@@ -231,13 +283,22 @@ theorem dsupport_smulLeftCLM_subset {g : E → ℂ} (hg : g.HasTemperateGrowth) 
 
 open LineDeriv
 
+/--
+@isnad1 id=le.0h4v.s9.64bd0463bda4 from=seed src=0 shape=2db1bb48 vocab=80fda49b
+-/
 theorem dsupport_lineDerivOp_subset (m : E) : dsupport (∂_{m} f : 𝓢'(E, F)) ⊆ dsupport f := by
   gcongr; fun_prop
 
+/--
+@isnad1 id=le.0h5v.s9.ec71fb11c904 from=seed src=0 shape=1e6e2a90 vocab=fabc83aa
+-/
 theorem dsupport_iteratedLineDerivOp_subset {n : ℕ} (m : Fin n → E) :
     dsupport (∂^{m} f : 𝓢'(E, F)) ⊆ dsupport f := by
   gcongr; fun_prop
 
+/--
+@isnad1 id=eq.0h2v.s8.bf7a953d2fa9 from=seed src=0 shape=62b907d5 vocab=e644f126
+-/
 theorem dsupport_delta [FiniteDimensional ℝ E] (x : E) :
     dsupport (TemperedDistribution.delta x) = {x} := by
   apply subset_antisymm
@@ -276,6 +337,9 @@ open scoped Topology
 
 open LineDeriv
 
+/--
+@isnad1 id=isvanish.1h6v.s9.9f318ed61ab6 from=seed src=0 shape=6e527914 vocab=0d56bc13
+-/
 @[fun_prop]
 theorem lineDerivOp (hf : IsVanishingOn f s) (m : E) :
     IsVanishingOn (∂_{m} f : 𝓓'(Ω, F)) s := by
@@ -283,6 +347,9 @@ theorem lineDerivOp (hf : IsVanishingOn f s) (m : E) :
   simp only [Distribution.lineDerivOp_apply_apply, map_neg, neg_eq_zero]
   exact hf (∂_{m} u) <| (tsupport_fderiv_apply_subset ℝ m).trans hu
 
+/--
+@isnad1 id=isvanish.1h7v.s9.851088ff02f8 from=seed src=0 shape=9bfafe66 vocab=1054eef7
+-/
 @[fun_prop]
 theorem iteratedLineDerivOp {n : ℕ} (hf : IsVanishingOn f s) (m : Fin n → E) :
     IsVanishingOn (∂^{m} f : 𝓓'(Ω, F)) s := by
@@ -305,13 +372,22 @@ section Support
 
 open LineDeriv
 
+/--
+@isnad1 id=le.0h5v.s9.761fb46d145c from=seed src=0 shape=0851b558 vocab=56551f78
+-/
 theorem dsupport_lineDerivOp_subset (m : E) : dsupport (∂_{m} f : 𝓓'(Ω, F)) ⊆ dsupport f := by
   gcongr; fun_prop
 
+/--
+@isnad1 id=le.0h6v.s9.5ab72b04c3dc from=seed src=0 shape=d71a7d9a vocab=08b0ac1d
+-/
 theorem dsupport_iteratedLineDerivOp_subset {n : ℕ} (m : Fin n → E) :
     dsupport (∂^{m} f : 𝓓'(Ω, F)) ⊆ dsupport f := by
   gcongr; fun_prop
 
+/--
+@isnad1 id=eq.1h4v.s8.fe84415287a4 from=seed src=0 shape=647edbc7 vocab=bede9e34
+-/
 theorem dsupport_delta [FiniteDimensional ℝ E] (x : E) (hx : x ∈ Ω) :
     dsupport (Distribution.delta x : 𝓓'^{n}(Ω, ℝ)) = {x} := by
   apply subset_antisymm

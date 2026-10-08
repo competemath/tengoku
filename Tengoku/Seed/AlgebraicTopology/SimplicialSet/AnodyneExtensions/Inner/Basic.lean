@@ -46,20 +46,32 @@ deriving IsMultiplicative, RespectsIso, IsStableUnderCobaseChange,
   IsStableUnderRetracts, IsStableUnderTransfiniteComposition,
   IsStableUnderCoproducts
 
+/--
+@isnad1 id=innerano.0h3v.s5.b3f9d17312f4 from=seed src=0 shape=31ca8f87 vocab=86e1740c
+-/
 lemma innerAnodyneExtensions.of_isIso {X Y : SSet.{u}} (f : X ⟶ Y) [IsIso f] :
     innerAnodyneExtensions f :=
   MorphismProperty.of_isIso innerAnodyneExtensions f
 
+/--
+@isnad1 id=eq.0h0v.s5.2477fc4ccf48 from=seed src=0 shape=e82b111c vocab=a36e4dfe
+-/
 lemma innerAnodyneExtensions_eq_llp_rlp :
     innerAnodyneExtensions.{u} = innerHornInclusions.rlp.llp :=
   rfl
 
+/--
+@isnad1 id=innerano.2h2v.s7.56ee40b6ae77 from=seed src=0 shape=d444b14a vocab=77dcc688
+-/
 lemma innerAnodyneExtensions.horn_ι {n : ℕ} {i : Fin (n + 1)}
     (h0 : 0 < i) (hn : i < Fin.last n) :
     innerAnodyneExtensions.{u} Λ[n, i].ι := by
   rw [innerAnodyneExtensions_eq_llp_rlp]
   exact le_llp_rlp _ _ (horn_ι_mem_innerHornInclusions h0 hn)
 
+/--
+@isnad1 id=le.0h0v.s6.9a5e4735102c from=seed src=0 shape=836e6cbb vocab=97879f9b
+-/
 lemma innerAnodyneExtensions_le : innerAnodyneExtensions ≤ anodyneExtensions.{u} := by
   rw [anodyneExtensions_eq_llp_rlp, innerAnodyneExtensions_eq_llp_rlp, le_llp_iff_le_rlp,
     rlp_llp_rlp]
@@ -87,11 +99,17 @@ instance : IsCardinalForSmallObjectArgument innerHornInclusions.{u} Cardinal.ale
 instance : HasSmallObjectArgument.{u} innerHornInclusions.{u} where
   exists_cardinal := ⟨.aleph0, inferInstance, inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.431eed84d951 from=seed src=0 shape=a3ba6194 vocab=571baf6e
+-/
 lemma innerAnodyneExtensions_eq_retracts_transfiniteCompositions :
     innerAnodyneExtensions = (transfiniteCompositions.{u}
       (coproducts.{u} innerHornInclusions.{u}).pushouts).retracts := by
   rw [innerAnodyneExtensions_eq_llp_rlp, llp_rlp_of_hasSmallObjectArgument]
 
+/--
+@isnad1 id=eq.0h0v.s5.221184e35357 from=seed src=0 shape=46760855 vocab=fb7a3f5d
+-/
 lemma innerAnodyneExtensions_eq_retracts_transfiniteCompositionsOfShape :
     innerAnodyneExtensions = (transfiniteCompositionsOfShape
       (coproducts.{u} innerHornInclusions.{u}).pushouts ℕ).retracts := by
@@ -107,19 +125,31 @@ and there exists a regular, *inner* pairing (in the sense of Moss) for the subco
 def strongInnerAnodyneExtensions : MorphismProperty SSet.{u} :=
   fun _ _ f ↦ Mono f ∧ ∃ (P : (Subcomplex.range f).Pairing) (_ : P.IsRegular), P.IsInner
 
+/--
+@isnad1 id=mono.0h4v.s5.ed39b9f5e896 from=seed src=0 shape=d03ea59f vocab=3f51247b
+-/
 lemma strongInnerAnodyneExtensions.mono {X Y : SSet.{u}} {f : X ⟶ Y}
     (hf : strongInnerAnodyneExtensions f) : Mono f := hf.1
 
+/--
+@isnad1 id=le.0h0v.s6.50c7ebf5b482 from=seed src=0 shape=836e6cbb vocab=cb0fe880
+-/
 lemma strongInnerAnodyneExtensions_le_strongAnodyneExtensions :
     strongInnerAnodyneExtensions.{u} ≤ strongAnodyneExtensions :=
   fun _ _ _ ⟨_, P, _, _⟩ ↦ ⟨inferInstance, P, inferInstance⟩
 
+/--
+@isnad1 id=strongin.0h3v.s4.4a12345254f1 from=seed src=0 shape=b84e066c vocab=1e418a4f
+-/
 lemma Subcomplex.Pairing.strongInnerAnodyneExtensions {X : SSet.{u}} {A : X.Subcomplex}
     (P : A.Pairing) [h₁ : P.IsRegular] [h₂ : P.IsInner] :
     strongInnerAnodyneExtensions A.ι :=
   ⟨inferInstance, Pairing.ofIso P (Iso.refl _)
     (by simp only [Iso.refl_hom, preimage_id, Subfunctor.range_ι]), inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.fe2a0041f761 from=seed src=0 shape=8ffee485 vocab=1e418a4f
+-/
 lemma strongInnerAnodyneExtensions_ι_iff {X : SSet.{u}} (A : X.Subcomplex) :
     strongInnerAnodyneExtensions A.ι ↔ ∃ (P : A.Pairing) (_ : P.IsRegular), P.IsInner :=
   ⟨fun hA ↦ by
@@ -130,6 +160,9 @@ lemma strongInnerAnodyneExtensions_ι_iff {X : SSet.{u}} (A : X.Subcomplex) :
     exact ⟨P, ⟨inferInstance, inferInstance⟩⟩,
   fun ⟨P, ⟨_, _⟩⟩ ↦ P.strongInnerAnodyneExtensions⟩
 
+/--
+@isnad1 id=innerano.0h3v.s4.3dca0b0cc055 from=seed src=0 shape=b84e066c vocab=8098581f
+-/
 lemma Subcomplex.Pairing.innerAnodyneExtensions {X : SSet.{u}} {A : X.Subcomplex}
     (P : A.Pairing) [P.IsRegular] [P.IsInner] :
     innerAnodyneExtensions A.ι :=
@@ -154,6 +187,9 @@ instance : strongInnerAnodyneExtensions.{u}.RespectsIso where
     refine ⟨inferInstance, P.ofIso (asIso e).symm ?_, inferInstance, inferInstance⟩
     simp [Subcomplex.preimage_inv, Subcomplex.range_comp]
 
+/--
+@isnad1 id=le.0h0v.s6.303bbad29e8b from=seed src=0 shape=836e6cbb vocab=a95f8e19
+-/
 lemma strongInnerAnodyneExtensions_le_innerAnodyneExtensions :
     strongInnerAnodyneExtensions.{u} ≤ innerAnodyneExtensions := by
   rintro X Y f ⟨_, P, _, _⟩

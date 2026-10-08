@@ -145,7 +145,9 @@ private lemma norm_eq_of_isMinOn_of_forall_le {X E : Type*} [TopologicalSpace X]
 
 open Filter Bornology Set in
 /-- In a normed algebra `F` over a normed field `𝕜` that is a proper space, the function
-`z : 𝕜 ↦ ‖x - algebraMap 𝕜 F z‖` achieves a global minimum for every `x : F`. -/
+`z : 𝕜 ↦ ‖x - algebraMap 𝕜 F z‖` achieves a global minimum for every `x : F`.
+@isnad1 id=ex.0h3v.s7.e5ef7048517f from=seed src=0 shape=0818a914 vocab=14dfd6f5
+-/
 lemma exists_isMinOn_norm_sub_smul (𝕜 : Type*) {F : Type*} [NormedField 𝕜] [ProperSpace 𝕜]
     [SeminormedRing F] [NormedAlgebra 𝕜 F] [NormOneClass F] (x : F) :
     ∃ z : 𝕜, IsMinOn (‖x - algebraMap 𝕜 F ·‖) univ z := by
@@ -210,7 +212,9 @@ private lemma norm_sub_eq_norm_sub_of_isMinOn {x : F} {z : ℂ}
   exact (norm_sub_le ..).trans <| by simp [hy, ← map_sub]
 
 /-- If `F` is a normed `ℂ`-algebra and `x : F`, then there is a complex number `z` such that
-`‖x - algebraMap ℂ F z‖ = 0` (whence `x = algebraMap ℂ F z`). -/
+`‖x - algebraMap ℂ F z‖ = 0` (whence `x = algebraMap ℂ F z`).
+@isnad1 id=ex.0h2v.s7.5ab0c31aebc9 from=seed src=0 shape=4a94fead vocab=6a447834
+-/
 lemma exists_norm_sub_smul_one_eq_zero (x : F) :
     ∃ z : ℂ, ‖x - algebraMap ℂ F z‖ = 0 := by
   -- there is a minimizing `z : ℂ`; get it.
@@ -246,7 +250,9 @@ def algEquivOfNormMul : ℂ ≃ₐ[ℂ] F :=
     rwa [norm_eq_zero, sub_eq_zero, eq_comm, ← ofId_apply] at hz
 
 /-- A version of the **Gelfand-Mazur Theorem** for nontrivial normed `ℂ`-algebras `F`
-with multiplicative norm: any such `F` is isomorphic to `ℂ` as a `ℂ`-algebra. -/
+with multiplicative norm: any such `F` is isomorphic to `ℂ` as a `ℂ`-algebra.
+@isnad1 id=nonempty.0h1v.s6.d2bd507866e5 from=seed src=0 shape=741490fa vocab=7ac6ffd7
+-/
 theorem nonempty_algEquiv : Nonempty (ℂ ≃ₐ[ℂ] F) := ⟨algEquivOfNormMul F⟩
 
 end Complex
@@ -381,7 +387,9 @@ private lemma exists_isMinOn_norm_φ (x : F) : ∃ z : ℝ × ℝ, IsMinOn (‖�
 open Algebra in
 /-- If `F` is a normed `ℝ`-algebra with a multiplicative norm (and such that `‖1‖ = 1`),
 e.g., a normed division ring, then every `x : F` is the root of a monic quadratic polynomial
-with real coefficients. -/
+with real coefficients.
+@isnad1 id=ex.0h2v.s7.5e38d868c5ed from=seed src=0 shape=20487285 vocab=7a3c69b1
+-/
 lemma exists_isMonicOfDegree_two_and_aeval_eq_zero (x : F) :
     ∃ p : ℝ[X], IsMonicOfDegree p 2 ∧ aeval x p = 0 := by
   -- take the minimizer of `‖φ x ·‖` ...
@@ -403,7 +411,9 @@ lemma exists_isMonicOfDegree_two_and_aeval_eq_zero (x : F) :
 /-- A version of the **Gelfand-Mazur Theorem** over `ℝ`.
 
 If a field `F` is a normed `ℝ`-algebra, then `F` is isomorphic as an `ℝ`-algebra
-either to `ℝ` or to `ℂ`. -/
+either to `ℝ` or to `ℂ`.
+@isnad1 id=or.0h1v.s6.e512ebcce4ed from=seed src=0 shape=d1eed754 vocab=07648890
+-/
 theorem nonempty_algEquiv_or (F : Type*) [NormedField F] [NormedAlgebra ℝ F] :
     Nonempty (F ≃ₐ[ℝ] ℝ) ∨ Nonempty (F ≃ₐ[ℝ] ℂ) := by
   have : Algebra.IsAlgebraic ℝ F := by

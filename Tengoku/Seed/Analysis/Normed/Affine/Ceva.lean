@@ -30,7 +30,9 @@ variable {𝕜 V P : Type*} [SeminormedAddCommGroup V] [NormedField 𝕜] [Norme
 namespace Affine.Triangle
 
 variable [PseudoMetricSpace P] [NormedAddTorsor V P] in
-/-- **Ceva's theorem** for a triangle, expressed in terms of multiplying distances. -/
+/-- **Ceva's theorem** for a triangle, expressed in terms of multiplying distances.
+@isnad1 id=eq.2h6v.s9.8731f2ff747f from=seed src=0 shape=f8c6c578 vocab=53a7a516
+-/
 lemma prod_dist_eq_prod_dist_of_mem_line_of_mem_line {t : Triangle 𝕜 P} {p : Fin 3 → P} {p' : P}
     (hp : ∀ i : Fin 3, p i ∈ line[𝕜, t.points (i + 1), t.points (i + 2)])
     (hp' : ∀ i : Fin 3, p' ∈ line[𝕜, t.points i, p i]) :
@@ -42,7 +44,9 @@ lemma prod_dist_eq_prod_dist_of_mem_line_of_mem_line {t : Triangle 𝕜 P} {p : 
     prod_eq_prod_one_sub_of_mem_line_point_lineMap hp']
 
 variable [MetricSpace P] [NormedAddTorsor V P] in
-/-- **Ceva's theorem** for a triangle, expressed using division of distances. -/
+/-- **Ceva's theorem** for a triangle, expressed using division of distances.
+@isnad1 id=eq.3h6v.s10.4903348516ad from=seed src=0 shape=3ba667ed vocab=1833ab02
+-/
 lemma prod_dist_div_dist_eq_one_of_mem_line_of_mem_line {t : Triangle 𝕜 P} {p : Fin 3 → P} {p' : P}
     (hp0 : ∀ i, p i ≠ t.points (i + 2))
     (hp : ∀ i : Fin 3, p i ∈ line[𝕜, t.points (i + 1), t.points (i + 2)])

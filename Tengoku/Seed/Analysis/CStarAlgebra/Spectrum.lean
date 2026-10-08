@@ -75,6 +75,9 @@ section UnitarySpectrum
 variable {𝕜 : Type*} [NormedField 𝕜] {E : Type*} [NormedRing E] [StarRing E] [CStarRing E]
   [NormedAlgebra 𝕜 E] [CompleteSpace E]
 
+/--
+@isnad1 id=le.0h3v.s7.187578679ddc from=seed src=0 shape=5619758b vocab=fb334058
+-/
 theorem Unitary.spectrum_subset_circle (u : unitary E) :
     spectrum 𝕜 (u : E) ⊆ Metric.sphere 0 1 := by
   nontriviality E
@@ -87,10 +90,16 @@ theorem Unitary.spectrum_subset_circle (u : unitary E) :
       simpa only [norm_inv] using norm_le_norm_of_mem hk
     simpa using inv_le_of_inv_le₀ (norm_pos_iff.mpr hnk) this
 
+/--
+@isnad1 id=le.1h3v.s7.68eb09932424 from=seed src=0 shape=71bef26d vocab=bc9df66e
+-/
 theorem spectrum.subset_circle_of_unitary {u : E} (h : u ∈ unitary E) :
     spectrum 𝕜 u ⊆ Metric.sphere 0 1 :=
   Unitary.spectrum_subset_circle ⟨u, h⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.722c790047c8 from=seed src=0 shape=b1d73ec9 vocab=a25b83fb
+-/
 theorem spectrum.norm_eq_one_of_unitary {u : E} (hu : u ∈ unitary E)
     ⦃z : 𝕜⦄ (hz : z ∈ spectrum 𝕜 u) : ‖z‖ = 1 := by
   simpa using spectrum.subset_circle_of_unitary hu hz
@@ -100,6 +109,9 @@ end UnitarySpectrum
 section Quasispectrum
 
 open scoped NNReal in
+/--
+@isnad1 id=le.1h3v.s6.226f2e8ca350 from=seed src=0 shape=898c5bea vocab=a0146ec6
+-/
 lemma CStarAlgebra.le_nnnorm_of_mem_quasispectrum {A : Type*} [NonUnitalCStarAlgebra A]
     {a : A} {x : ℝ≥0} (hx : x ∈ quasispectrum ℝ≥0 a) : x ≤ ‖a‖₊ := by
   rw [Unitization.quasispectrum_eq_spectrum_inr' ℝ≥0 ℂ] at hx
@@ -115,6 +127,9 @@ variable {A : Type*} [CStarAlgebra A]
 
 local notation "↑ₐ" => algebraMap ℂ A
 
+/--
+@isnad1 id=eq.1h2v.s6.717b06241870 from=seed src=0 shape=129edf04 vocab=36868588
+-/
 theorem IsSelfAdjoint.spectralRadius_eq_nnnorm {a : A} (ha : IsSelfAdjoint a) :
     spectralRadius ℂ a = ‖a‖₊ := by
   have hconst : Tendsto (fun _n : ℕ => (‖a‖₊ : ℝ≥0∞)) atTop _ := tendsto_const_nhds
@@ -128,11 +143,16 @@ theorem IsSelfAdjoint.spectralRadius_eq_nnnorm {a : A} (ha : IsSelfAdjoint a) :
 
 /-- In a C⋆-algebra, the spectral radius of a self-adjoint element is equal to its norm.
 See `IsSelfAdjoint.toReal_spectralRadius_eq_norm` for a version involving
-`spectralRadius ℝ a`. -/
+`spectralRadius ℝ a`.
+@isnad1 id=eq.1h2v.s6.76edf0f311f0 from=seed src=0 shape=a62e4f2f vocab=174182a5
+-/
 lemma IsSelfAdjoint.toReal_spectralRadius_complex_eq_norm {a : A} (ha : IsSelfAdjoint a) :
     (spectralRadius ℂ a).toReal = ‖a‖ := by
   simp [ha.spectralRadius_eq_nnnorm]
 
+/--
+@isnad1 id=eq.0h2v.s6.0a49d78f26db from=seed src=0 shape=129edf04 vocab=273b2290
+-/
 theorem IsStarNormal.spectralRadius_eq_nnnorm (a : A) [IsStarNormal a] :
     spectralRadius ℂ a = ‖a‖₊ := by
   refine (ENNReal.pow_right_strictMono two_ne_zero).injective ?_
@@ -151,26 +171,40 @@ theorem IsStarNormal.spectralRadius_eq_nnnorm (a : A) [IsStarNormal a] :
 
 namespace CStarAlgebra
 
+/--
+@isnad1 id=eq.0h2v.s6.7537af7c9a84 from=seed src=0 shape=e352694c vocab=573f7630
+-/
 theorem toReal_spectralRadius_star_mul_self_eq_norm_sq (a : A) :
     (spectralRadius ℂ (a⋆ * a)).toReal = ‖a‖ ^ 2 := by
   rw [(IsSelfAdjoint.star_mul_self a).toReal_spectralRadius_complex_eq_norm,
     CStarRing.norm_star_mul_self, ← pow_two]
 
+/--
+@isnad1 id=eq.0h2v.s6.11528273a3ce from=seed src=0 shape=0148f329 vocab=573f7630
+-/
 theorem toReal_spectralRadius_self_mul_star_eq_norm_sq (a : A) :
     (spectralRadius ℂ (a * a⋆)).toReal = ‖a‖ ^ 2 := by
   rw [← norm_star a, ← toReal_spectralRadius_star_mul_self_eq_norm_sq, star_star]
 
+/--
+@isnad1 id=eq.0h2v.s6.717cca5f6942 from=seed src=0 shape=d659eccb vocab=261f6628
+-/
 theorem sqrt_toReal_spectralRadius_star_mul_self_eq_norm (a : A) :
     (spectralRadius ℂ (a⋆ * a)).toReal.sqrt = ‖a‖ := by
   simp [toReal_spectralRadius_star_mul_self_eq_norm_sq]
 
+/--
+@isnad1 id=eq.0h2v.s6.3b4ae594cc48 from=seed src=0 shape=17b9b71d vocab=261f6628
+-/
 theorem sqrt_toReal_spectralRadius_self_mul_star_eq_norm (a : A) :
     (spectralRadius ℂ (a * a⋆)).toReal.sqrt = ‖a‖ := by
   simp [toReal_spectralRadius_self_mul_star_eq_norm_sq]
 
 end CStarAlgebra
 
-/-- Any element of the spectrum of a selfadjoint is real. -/
+/-- Any element of the spectrum of a selfadjoint is real.
+@isnad1 id=eq.2h3v.s6.4e5e408c1a05 from=seed src=0 shape=f1c9f1e2 vocab=cd96e72b
+-/
 theorem IsSelfAdjoint.mem_spectrum_eq_re {a : A} (ha : IsSelfAdjoint a) {z : ℂ}
     (hz : z ∈ spectrum ℂ a) : z = z.re := by
   let +nondep : NormedAlgebra ℚ A := .restrictScalars ℚ ℂ A
@@ -184,29 +218,39 @@ theorem IsSelfAdjoint.mem_spectrum_eq_re {a : A} (ha : IsSelfAdjoint a) {z : ℂ
       smul_eq_mul, I_mul, neg_eq_zero] using!
       spectrum.subset_circle_of_unitary hu this
 
-/-- Any element of the spectrum of a selfadjoint is real. -/
+/-- Any element of the spectrum of a selfadjoint is real.
+@isnad1 id=eq.1h3v.s7.01787e6b371e from=seed src=0 shape=239d6f02 vocab=ea2f1f9a
+-/
 theorem selfAdjoint.mem_spectrum_eq_re (a : selfAdjoint A) {z : ℂ}
     (hz : z ∈ spectrum ℂ (a : A)) : z = z.re :=
   a.prop.mem_spectrum_eq_re hz
 
-/-- Any element of the spectrum of a selfadjoint is real. -/
+/-- Any element of the spectrum of a selfadjoint is real.
+@isnad1 id=eq.2h3v.s6.05ecad31c736 from=seed src=0 shape=8bfa01d6 vocab=5c4bec52
+-/
 theorem IsSelfAdjoint.im_eq_zero_of_mem_spectrum {a : A} (ha : IsSelfAdjoint a)
     {z : ℂ} (hz : z ∈ spectrum ℂ a) : z.im = 0 := by
   rw [ha.mem_spectrum_eq_re hz, ofReal_im]
 
-/-- The spectrum of a selfadjoint is real -/
+/-- The spectrum of a selfadjoint is real
+@isnad1 id=eq.1h2v.s6.4b5645893081 from=seed src=0 shape=1c866b4f vocab=fc60f70f
+-/
 theorem IsSelfAdjoint.val_re_map_spectrum {a : A} (ha : IsSelfAdjoint a) :
     spectrum ℂ a = ((↑) ∘ re '' spectrum ℂ a : Set ℂ) :=
   le_antisymm (fun z hz => ⟨z, hz, (ha.mem_spectrum_eq_re hz).symm⟩) fun z => by
     rintro ⟨z, hz, rfl⟩
     simpa only [(ha.mem_spectrum_eq_re hz).symm, Function.comp_apply] using hz
 
-/-- The spectrum of a selfadjoint is real -/
+/-- The spectrum of a selfadjoint is real
+@isnad1 id=eq.0h2v.s8.8e56ee4d97bc from=seed src=0 shape=00de17f8 vocab=b05ba3f3
+-/
 theorem selfAdjoint.val_re_map_spectrum (a : selfAdjoint A) :
     spectrum ℂ (a : A) = ((↑) ∘ re '' spectrum ℂ (a : A) : Set ℂ) :=
   a.property.val_re_map_spectrum
 
-/-- The complement of the spectrum of a selfadjoint element in a C⋆-algebra is connected. -/
+/-- The complement of the spectrum of a selfadjoint element in a C⋆-algebra is connected.
+@isnad1 id=isconnec.1h2v.s6.40c80ca4dea8 from=seed src=0 shape=ae444690 vocab=fb171825
+-/
 lemma IsSelfAdjoint.isConnected_spectrum_compl {a : A} (ha : IsSelfAdjoint a) :
     IsConnected (σ ℂ a)ᶜ := by
   suffices IsConnected (((σ ℂ a)ᶜ ∩ {z | 0 ≤ z.im}) ∪ (σ ℂ a)ᶜ ∩ {z | z.im ≤ 0}) by
@@ -231,7 +275,9 @@ namespace StarSubalgebra
 variable (S : StarSubalgebra ℂ A) [hS : IsClosed (S : Set A)]
 
 /-- For a unital C⋆-subalgebra `S` of `A` and `x : S`, if `↑x : A` is invertible in `A`, then
-`x` is invertible in `S`. -/
+`x` is invertible in `S`.
+@isnad1 id=iff.0h3v.s9.4d89509f7cac from=seed src=0 shape=95317eb4 vocab=fed055dd
+-/
 lemma coe_isUnit {a : S} : IsUnit (a : A) ↔ IsUnit a := by
   refine ⟨fun ha ↦ ?_, IsUnit.map S.subtype⟩
   have ha₁ := ha.star.mul ha
@@ -247,11 +293,16 @@ lemma coe_isUnit {a : S} : IsUnit (a : A) ↔ IsUnit a := by
   · exact IsSelfAdjoint.mul_star_self a
   · exact IsSelfAdjoint.star_mul_self a
 
+/--
+@isnad1 id=iff.0h4v.s9.50812bd05fd6 from=seed src=0 shape=90c16ec6 vocab=9913edee
+-/
 lemma mem_spectrum_iff {a : S} {z : ℂ} : z ∈ spectrum ℂ a ↔ z ∈ spectrum ℂ (a : A) :=
   not_iff_not.mpr S.coe_isUnit.symm
 
 /-- **Spectral permanence.** The spectrum of an element is invariant of the (closed)
-`StarSubalgebra` in which it is contained. -/
+`StarSubalgebra` in which it is contained.
+@isnad1 id=eq.0h3v.s9.a68f58c8df85 from=seed src=0 shape=568b28d7 vocab=9913edee
+-/
 lemma spectrum_eq {a : S} : spectrum ℂ a = spectrum ℂ (a : A) :=
   Set.ext fun _ ↦ S.mem_spectrum_iff
 
@@ -267,7 +318,9 @@ variable [FunLike F A B] [NonUnitalAlgHomClass F ℂ A B] [StarHomClass F A B]
 open Unitization
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- A non-unital star algebra homomorphism of complex C⋆-algebras is norm contractive. -/
+/-- A non-unital star algebra homomorphism of complex C⋆-algebras is norm contractive.
+@isnad1 id=le.0h5v.s7.302df7c04d92 from=seed src=0 shape=713f585c vocab=8623349e
+-/
 lemma nnnorm_apply_le (φ : F) (a : A) : ‖φ a‖₊ ≤ ‖a‖₊ := by
   have h (ψ : Unitization ℂ A →⋆ₐ[ℂ] Unitization ℂ B) (x : Unitization ℂ A) :
       ‖ψ x‖₊ ≤ ‖x‖₊ := by
@@ -282,12 +335,16 @@ lemma nnnorm_apply_le (φ : F) (a : A) : ‖φ a‖₊ ≤ ‖a‖₊ := by
     exact iSup_le_iSup_of_subset (AlgHom.spectrum_apply_subset ψ s)
   simpa [nnnorm_inr] using h (starLift (inrNonUnitalStarAlgHom ℂ B |>.comp (φ : A →⋆ₙₐ[ℂ] B))) a
 
-/-- A non-unital star algebra homomorphism of complex C⋆-algebras is norm contractive. -/
+/-- A non-unital star algebra homomorphism of complex C⋆-algebras is norm contractive.
+@isnad1 id=le.0h5v.s7.2bc9919a9044 from=seed src=0 shape=713f585c vocab=7338fda2
+-/
 lemma norm_apply_le (φ : F) (a : A) : ‖φ a‖ ≤ ‖a‖ := by
   exact_mod_cast nnnorm_apply_le φ a
 
 /-- Non-unital star algebra homomorphisms between C⋆-algebras are continuous linear maps.
-See note [lower instance priority] -/
+See note [lower instance priority]
+@isnad1 id=continuo.0h3v.s7.8f219d602402 from=seed src=0 shape=93c4ba4d vocab=118622ea
+-/
 lemma instContinuousLinearMapClassComplex : ContinuousLinearMapClass F ℂ A B :=
   { NonUnitalAlgHomClass.instLinearMapClass with
     map_continuous := fun φ =>
@@ -302,13 +359,22 @@ namespace StarAlgEquiv
 variable {F A B : Type*} [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B] [EquivLike F A B]
 variable [NonUnitalAlgEquivClass F ℂ A B] [StarHomClass F A B]
 
+/--
+@isnad1 id=eq.0h5v.s8.25e6027e6edf from=seed src=0 shape=713f585c vocab=081a431e
+-/
 lemma nnnorm_map (φ : F) (a : A) : ‖φ a‖₊ = ‖a‖₊ :=
   le_antisymm (NonUnitalStarAlgHom.nnnorm_apply_le φ a) <| by
     simpa using! NonUnitalStarAlgHom.nnnorm_apply_le (symm (φ : A ≃⋆ₐ[ℂ] B)) ((φ : A ≃⋆ₐ[ℂ] B) a)
 
+/--
+@isnad1 id=eq.0h5v.s8.5893709a0dc3 from=seed src=0 shape=713f585c vocab=67ae675e
+-/
 lemma norm_map (φ : F) (a : A) : ‖φ a‖ = ‖a‖ :=
   congr_arg NNReal.toReal (nnnorm_map φ a)
 
+/--
+@isnad1 id=isometry.0h4v.s8.f51d5b5f158e from=seed src=0 shape=b004fab8 vocab=c32ce49e
+-/
 lemma isometry (φ : F) : Isometry φ :=
   AddMonoidHomClass.isometry_of_norm φ (norm_map φ)
 
@@ -325,7 +391,9 @@ open scoped ComplexStarModule
 variable {F A : Type*} [CStarAlgebra A] [FunLike F A ℂ] [hF : AlgHomClass F ℂ A ℂ]
 
 /-- This instance is provided instead of `StarHomClass` to avoid type class inference loops.
-See note [lower instance priority] -/
+See note [lower instance priority]
+@isnad1 id=starhomc.0h2v.s6.f0d3df6b11e1 from=seed src=0 shape=3dfdf2dd vocab=2cf773cb
+-/
 noncomputable instance (priority := 100) Complex.instStarHomClass : StarHomClass F A ℂ where
   map_star φ a := by
     suffices hsa : ∀ s : selfAdjoint A, (φ s)⋆ = φ s by
@@ -342,6 +410,9 @@ lemma _root_.AlgHomClass.instStarHomClass : StarHomClass F A ℂ :=
 
 namespace CharacterSpace
 
+/--
+@isnad1 id=starhomc.0h1v.s7.fa3ac54ba837 from=seed src=0 shape=67c7e323 vocab=9fdc1bfa
+-/
 noncomputable instance instStarHomClass : StarHomClass (characterSpace ℂ A) A ℂ :=
   { AlgHomClass.instStarHomClass with }
 

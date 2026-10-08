@@ -35,6 +35,9 @@ variable [NontriviallyNormedField 𝕜] [NormedSpace 𝕜 E] [NormedSpace 𝕜 F
 
 variable {f : E → F} {x y : E} {t : 𝕜} {n : ℕ}
 
+/--
+@isnad1 id=eq.1h7v.s9.d3c52fc7fbd9 from=seed src=0 shape=12210d27 vocab=a205d688
+-/
 theorem DifferentiableAt.deriv_comp_add_smul (hf : DifferentiableAt 𝕜 f (x + t • y)) :
     deriv (fun (s : 𝕜) ↦ f (x + s • y)) t = fderiv 𝕜 f (x + t • y) y := by
   have hg : Differentiable 𝕜 (fun (s : 𝕜) ↦ (x + s • y)) := by fun_prop
@@ -42,6 +45,9 @@ theorem DifferentiableAt.deriv_comp_add_smul (hf : DifferentiableAt 𝕜 f (x + 
   · simp
   · simpa using (deriv_smul_const (x := t) differentiableAt_id y).symm
 
+/--
+@isnad1 id=eq.1h8v.s9.550e7acdfab5 from=seed src=0 shape=63acc38d vocab=6a307584
+-/
 theorem ContDiffAt.deriv_fderiv_add_smul (hf : ContDiffAt 𝕜 (n + 1) f (x + t • y)) :
     deriv (fun (s : 𝕜) ↦ iteratedFDeriv 𝕜 n f (x + s • y) (fun _ ↦ y)) t =
     iteratedFDeriv 𝕜 (n + 1) f (x + t • y) (fun _ ↦ y) := by
@@ -66,7 +72,9 @@ differentiable, then `f (x + y)` is given by
 where `D^k f` denotes the iterated derivative of `f`.
 
 In the case that `n = 1`, this is a reformulation of the fundamental theorem of calculus, namely
-`f (x + y) = f x + ∫ t in 0..1, D f(x + t • y; y)`. -/
+`f (x + y) = f x + ∫ t in 0..1, D f(x + t • y; y)`.
+@isnad1 id=eq.1h6v.s10.0e4323bd558d from=seed src=0 shape=014497f3 vocab=3a0c079d
+-/
 theorem map_add_eq_sum_add_integral_iteratedFDeriv (hf : ∀ (t : ℝ) (_ht : t ∈ Set.Icc 0 1),
     ContDiffAt ℝ (n + 1) f (x + t • y)) :
     f (x + y) = ∑ k ∈ Finset.range (n + 1), (k ! : ℝ)⁻¹ • (iteratedFDeriv ℝ k f x (fun _ ↦ y)) +

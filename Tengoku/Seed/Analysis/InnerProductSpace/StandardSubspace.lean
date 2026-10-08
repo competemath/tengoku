@@ -55,9 +55,15 @@ variable (H : Type*) [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 /-- the scalar product by a non-zero complex number as a continuous real-linear equivalence. -/
 noncomputable def scalarSMulCLE (c : ℂˣ) : H ≃L[ℝ] H := ContinuousLinearEquiv.smulLeft c
 
+/--
+@isnad1 id=eq.0h3v.s8.7090c9acf9a3 from=seed src=0 shape=8a2e9129 vocab=9aff5515
+-/
 @[simp]
 lemma scalarSMulCLE_apply (c : ℂˣ) (x : H) : scalarSMulCLE H c x = c • x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.631930da0242 from=seed src=0 shape=2fa18a7e vocab=efb3df48
+-/
 @[simp]
 lemma scalarSMulCLE_symm_apply (c : ℂˣ) (x : H) : (scalarSMulCLE H c).symm x = c⁻¹ • x := rfl
 
@@ -79,6 +85,9 @@ noncomputable scoped instance : InnerProductSpace ℝ H where
   add_left := by simp
   smul_left := by simp
 
+/--
+@isnad1 id=eq.0h3v.s7.e53db6c776ca from=seed src=0 shape=55c49ad5 vocab=29283410
+-/
 lemma inner_real_eq_re_inner (x y : H) : inner ℝ x y = ⟪x, y⟫.re := rfl
 
 /-- The imaginary unit as an invertible element. -/
@@ -97,9 +106,15 @@ image of `mulI` and `orthogonal`. The proof that this is the symplectic compleme
 `mem_symplComp_iff`. -/
 noncomputable abbrev symplComp (S : ClosedSubmodule ℝ H) := (S.mulI)ᗮ
 
+/--
+@isnad1 id=iff.0h3v.s8.358f3d84dc0b from=seed src=0 shape=24f91b4e vocab=2b4e816a
+-/
 lemma mem_iff (S : ClosedSubmodule ℝ H) {x : H} : x ∈ S ↔ x ∈ S.toSubmodule.carrier := by
   exact Eq.to_iff rfl
 
+/--
+@isnad1 id=iff.0h3v.s8.271a66b80998 from=seed src=0 shape=02f03484 vocab=991224aa
+-/
 lemma mem_symplComp_iff {x : H} {S : ClosedSubmodule ℝ H} :
     x ∈ S.symplComp ↔ ∀ y ∈ S, ⟪y, x⟫.im = 0 := by
   simp only [mem_orthogonal, mem_mapEquiv_iff, scalarSMulCLE_symm_apply, Units.smul_def,
@@ -113,6 +128,9 @@ lemma mem_symplComp_iff {x : H} {S : ClosedSubmodule ℝ H} :
     have hiy := h _ hy
     simpa [inner_smul_left] using! hiy
 
+/--
+@isnad1 id=eq.0h2v.s6.ca8138c60297 from=seed src=0 shape=406f1a79 vocab=55a3b90b
+-/
 lemma mulI_orthogonal_eq_symplComp (S : ClosedSubmodule ℝ H) : Sᗮ.mulI = S.symplComp := by
   ext x
   rw [← mem_iff, ← mem_iff, mem_symplComp_iff, mem_mapEquiv_iff, scalarSMulCLE_symm_apply,
@@ -120,14 +138,23 @@ lemma mulI_orthogonal_eq_symplComp (S : ClosedSubmodule ℝ H) : Sᗮ.mulI = S.s
   simp [inner_real_eq_re_inner]
 
 
+/--
+@isnad1 id=eq.0h2v.s6.f001ac5892f9 from=seed src=0 shape=93155117 vocab=f8430dc4
+-/
 lemma mulI_orthogonal (S : ClosedSubmodule ℝ H) : Sᗮ.mulI = S.mulIᗮ := by
   rw [mulI_orthogonal_eq_symplComp]
 
+/--
+@isnad1 id=eq.0h2v.s6.14fe53401914 from=seed src=0 shape=0717ac19 vocab=3f0257e9
+-/
 @[simp]
 lemma mulI_symplComp {S : ClosedSubmodule ℝ H} :
     S.symplComp.mulI = S.mulI.symplComp := by
   rw [symplComp, symplComp, mulI_orthogonal_eq_symplComp]
 
+/--
+@isnad1 id=eq.0h2v.s6.23cb10f99676 from=seed src=0 shape=3eb51f95 vocab=4a9fc7c2
+-/
 @[simp]
 lemma mulI_mulI_eq (S : ClosedSubmodule ℝ H) : S.mulI.mulI = S := by
   ext x
@@ -140,27 +167,45 @@ lemma mulI_mulI_eq (S : ClosedSubmodule ℝ H) : S.mulI.mulI = S := by
     rw [← SetLike.forall_smul_mem_iff] at h
     simpa [← smul_assoc, Units.smul_def] using (h (-1 : ℝ))
 
+/--
+@isnad1 id=involuti.0h1v.s5.94c6144c0f28 from=seed src=0 shape=cdcf6a75 vocab=d170de97
+-/
 lemma involutive_mulI :
     Function.Involutive (mulI : ClosedSubmodule ℝ H → ClosedSubmodule ℝ H) := mulI_mulI_eq
 
+/--
+@isnad1 id=eq.0h2v.s6.849198f21f72 from=seed src=0 shape=9f6bdde1 vocab=23e3a398
+-/
 @[simp]
 lemma symplComp_symplComp_eq [CompleteSpace H] {S : ClosedSubmodule ℝ H} :
     S.symplComp.symplComp = S := by simp [symplComp]
 
+/--
+@isnad1 id=eq.0h3v.s8.1842ad18413f from=seed src=0 shape=794fbdf1 vocab=4867e240
+-/
 lemma mulI_sup (S T : ClosedSubmodule ℝ H) :
     (S ⊔ T).mulI = S.mulI ⊔ T.mulI := by
   rw [mulI, ← mapEquiv_sup_eq]
 
+/--
+@isnad1 id=eq.0h3v.s8.f96b3eaf0b05 from=seed src=0 shape=794fbdf1 vocab=8df259a3
+-/
 lemma mulI_inf (S T : ClosedSubmodule ℝ H) :
     (S ⊓ T).mulI = S.mulI ⊓ T.mulI := by
   rw [mulI, ← mapEquiv_inf_eq]
 
+/--
+@isnad1 id=eq.0h3v.s8.87bf02da89a7 from=seed src=0 shape=794fbdf1 vocab=aca71c85
+-/
 @[simp]
 lemma symplComp_sup (S T : ClosedSubmodule ℝ H) :
     (S ⊔ T).symplComp = S.symplComp ⊓ T.symplComp := by
   rw [symplComp, symplComp, symplComp, mulI_sup]
   exact Eq.symm (inf_orthogonal S.mulI T.mulI)
 
+/--
+@isnad1 id=eq.0h3v.s8.f3e8bb3b34c1 from=seed src=0 shape=aff562ee vocab=32185d2d
+-/
 @[simp]
 lemma symplComp_inf [CompleteSpace H] (S T : ClosedSubmodule ℝ H) :
     (S ⊓ T).symplComp = S.symplComp ⊔ T.symplComp := by
@@ -192,11 +237,17 @@ open ClosedSubmodule
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
+/--
+@isnad1 id=iff.0h3v.s6.d5d13d50e9cb from=seed src=0 shape=830f3588 vocab=4abdba8b
+-/
 @[simp]
 lemma toClosedSubmodule_inj {S T : StandardSubspace H} :
     S.toClosedSubmodule = T.toClosedSubmodule ↔ S = T :=
   StandardSubspace.ext_iff.symm
 
+/--
+@isnad1 id=injectiv.0h1v.s5.288acbc157d0 from=seed src=0 shape=9877a7fa vocab=a3902e4f
+-/
 lemma toClosedSubmodule_injective : Function.Injective (toClosedSubmodule (H := H)) :=
   fun _ _ ↦ toClosedSubmodule_inj.mp
 
@@ -215,10 +266,16 @@ noncomputable def symplComp [CompleteSpace H] (S : StandardSubspace H) : Standar
   IsCyclic := by
     simp [mulI_symplComp, ClosedSubmodule.sup_orthogonal, inf_comm, S.IsSeparating]
 
+/--
+@isnad1 id=eq.0h2v.s5.82fb4c687eb0 from=seed src=0 shape=74762cea vocab=34924732
+-/
 @[simp]
 theorem symplComp_symplComp_eq [CompleteSpace H] (S : StandardSubspace H) :
     S.symplComp.symplComp = S := toClosedSubmodule_inj.mp ClosedSubmodule.symplComp_symplComp_eq
 
+/--
+@isnad1 id=involuti.0h1v.s5.3e099f8797b7 from=seed src=0 shape=8840d49e vocab=63a17448
+-/
 lemma involutive_symplComp [CompleteSpace H] :
     Function.Involutive (symplComp : StandardSubspace H → StandardSubspace H)
   := symplComp_symplComp_eq

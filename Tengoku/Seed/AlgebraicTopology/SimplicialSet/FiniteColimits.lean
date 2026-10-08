@@ -29,6 +29,9 @@ section
 
 include hc
 
+/--
+@isnad1 id=eq.0h4v.s8.625f1250e229 from=seed src=0 shape=9c583b9c vocab=a7b77f5d
+-/
 lemma iSup_range_eq_top_of_isColimit :
     ⨆ (j : J), Subcomplex.range (c.ι.app j) = ⊤ := by
   ext n x
@@ -37,18 +40,27 @@ lemma iSup_range_eq_top_of_isColimit :
   exact Types.jointly_surjective_of_isColimit
     (isColimitOfPreserves ((evaluation _ _).obj n) hc) x
 
+/--
+@isnad1 id=eq.0h6v.s8.c6861614862e from=seed src=0 shape=2cdc16e6 vocab=0d7b6386
+-/
 lemma range_eq_iSup_of_isColimit {X : SSet.{u}} (φ : c.pt ⟶ X) :
     Subcomplex.range φ = ⨆ (j : J), Subcomplex.range (c.ι.app j ≫ φ) := by
   conv_lhs => rw [← Category.id_comp φ]
   simp_rw [Subcomplex.range_comp, Subcomplex.range_eq_top, ← iSup_range_eq_top_of_isColimit hc,
     Subcomplex.image_iSup]
 
+/--
+@isnad1 id=hasdimen.1h5v.s6.dd602b75ba25 from=seed src=0 shape=a4d39aaf vocab=a6161c7a
+-/
 lemma hasDimensionLT_of_isColimit {n : ℕ}
     (h : ∀ (j : J), HasDimensionLT (F.obj j) n) : HasDimensionLT c.pt n := by
   rw [← hasDimensionLT_subcomplex_top_iff, ← iSup_range_eq_top_of_isColimit hc,
     hasDimensionLT_iSup_iff]
   infer_instance
 
+/--
+@isnad1 id=finite.1h4v.s6.978c6bb97b85 from=seed src=0 shape=c9d1707a vocab=658844f9
+-/
 lemma finite_of_isColimit [Finite J] (h : ∀ (j : J), (F.obj j).Finite) :
     c.pt.Finite := by
   rw [← finite_subcomplex_top_iff, ← iSup_range_eq_top_of_isColimit hc, finite_iSup_iff]
@@ -73,6 +85,9 @@ instance {ι : Type v} [Finite ι] (X : ι → SSet.{u}) [HasCoproduct X]
     exact hasColimitsOfShape_of_equivalence (Discrete.equivalence e.symm)
   exact finite_of_isColimit (coproductIsCoproduct X) (fun ⟨j⟩ ↦ by dsimp; infer_instance)
 
+/--
+@isnad1 id=eq.0h4v.s7.9de6381033a9 from=seed src=0 shape=acabbd7d vocab=7d1dbaf4
+-/
 lemma range_eq_iSup_sigma_ι
     {ι : Type v} [HasColimitsOfShape (Discrete ι) (Type u)]
     {X : ι → SSet.{u}} {Y : SSet.{u}} [HasCoproduct X]

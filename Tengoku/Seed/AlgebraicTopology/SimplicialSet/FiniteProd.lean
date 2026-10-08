@@ -30,6 +30,9 @@ variable {X₁ X₂ X₃ X₄ : SSet.{u}}
 
 set_option backward.isDefEq.respectTransparency.types false in
 variable (X₁ X₂) in
+/--
+@isnad1 id=eq.0h2v.s9.8ef7fe86b2a2 from=seed src=0 shape=6ee28010 vocab=aa19ed29
+-/
 lemma iSup_subcomplexOfSimplex_prod_eq_top :
     ⨆ (x₁ : X₁.N) (x₂ : X₂.N),
       (Subcomplex.ofSimplex x₁.simplex).prod (Subcomplex.ofSimplex x₂.simplex) = ⊤ := by
@@ -43,12 +46,18 @@ lemma iSup_subcomplexOfSimplex_prod_eq_top :
   obtain ⟨s₂, hs₂⟩ := hx₂
   exact ⟨s₁, s₂, hs₁, hs₂⟩
 
+/--
+@isnad1 id=eq.0h6v.s9.31ac7db08520 from=seed src=0 shape=c60813cf vocab=92167626
+-/
 lemma Subcomplex.ofSimplexProd_eq_range {p q : ℕ} (x₁ : X₁ _⦋p⦌) (x₂ : X₂ _⦋q⦌) :
     (Subcomplex.ofSimplex x₁).prod (Subcomplex.ofSimplex x₂) =
       Subcomplex.range (yonedaEquiv.symm x₁ ⊗ₘ yonedaEquiv.symm x₂) := by
   simp [Subcomplex.range_tensorHom, Subcomplex.range_eq_ofSimplex]
 
 variable (X₁ X₂) in
+/--
+@isnad1 id=hasdimen.0h6v.s6.881c1699d978 from=seed src=0 shape=b56b86b5 vocab=47e54391
+-/
 lemma hasDimensionLT_prod
     (d₁ d₂ : ℕ) [X₁.HasDimensionLT d₁] [X₂.HasDimensionLT d₂]
     (n : ℕ) (hn : d₁ + d₂ ≤ n + 1 := by lia) :
@@ -62,6 +71,9 @@ lemma hasDimensionLT_prod
   infer_instance
 
 variable (X₁ X₂) in
+/--
+@isnad1 id=hasdimen.0h6v.s5.b894d1c754a3 from=seed src=0 shape=a2f74f9a vocab=117d9df3
+-/
 lemma hasDimensionLE_prod
     (d₁ d₂ : ℕ) [X₁.HasDimensionLE d₁] [X₂.HasDimensionLE d₂]
     (n : ℕ) (hn : d₁ + d₂ ≤ n := by lia) :
@@ -82,6 +94,9 @@ instance [X₁.Finite] [X₂.Finite] : (X₁ ⊗ X₂).Finite := by
   exact finite_of_hasDimensionLT _ (d₁ + d₂) (fun _ _ ↦ inferInstance)
 
 open CartesianMonoidalCategory in
+/--
+@isnad1 id=finite.1h8v.s6.9e259ed38033 from=seed src=0 shape=b3c4d6d2 vocab=62463d9f
+-/
 lemma finite_of_isPullback {t : X₁ ⟶ X₂} {l : X₁ ⟶ X₃} {r : X₂ ⟶ X₄} {b : X₃ ⟶ X₄}
     (sq : IsPullback t l r b) [X₂.Finite] [X₃.Finite] : X₁.Finite :=
   have : Mono (lift t l) :=

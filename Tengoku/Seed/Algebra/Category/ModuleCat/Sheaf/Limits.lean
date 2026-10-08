@@ -37,6 +37,9 @@ variable {R : Cᵒᵖ ⥤ RingCat.{u}}
   {c : Cone F}
   [HasLimitsOfShape D AddCommGrpCat.{v}]
 
+/--
+@isnad1 id=issheaf.1h7v.s10.f46c74a21486 from=seed src=0 shape=8e86203d vocab=d6aedb5b
+-/
 lemma isSheaf_of_isLimit (hc : IsLimit c) (hF : ∀ j, Presheaf.IsSheaf J (F.obj j).presheaf) :
     Presheaf.IsSheaf J (c.pt.presheaf) := by
   let G : D ⥤ Sheaf J AddCommGrpCat.{v} :=
@@ -66,8 +69,14 @@ noncomputable instance createsLimit : CreatesLimit F (forget _) :=
       (PresheafOfModules.isSheaf_of_isLimit (limit.isLimit (F ⋙ forget _))
         (fun j => (F.obj j).isSheaf))) (Iso.refl _)
 
+/--
+@isnad1 id=haslimit.0h5v.s12.3ed2cf7de131 from=seed src=0 shape=50cf6f17 vocab=e2dcddb6
+-/
 instance hasLimit : HasLimit F := hasLimit_of_created F (forget _)
 
+/--
+@isnad1 id=preserve.0h6v.s12.f9c2fd887d57 from=seed src=0 shape=c866801b vocab=7544010e
+-/
 noncomputable instance evaluationPreservesLimit (X : Cᵒᵖ) :
     PreservesLimit F (evaluation R X) := by
   dsimp [evaluation]
@@ -81,11 +90,20 @@ section Small
 
 variable [Small.{v} D]
 
+/--
+@isnad1 id=haslimit.0h4v.s5.185ac0a2abef from=seed src=0 shape=b66fe5cf vocab=a0c79c1d
+-/
 instance hasLimitsOfShape : HasLimitsOfShape D (SheafOfModules.{v} R) where
 
+/--
+@isnad1 id=preserve.0h5v.s7.e24da9b22ee3 from=seed src=0 shape=b694c2ba vocab=00cfeac3
+-/
 noncomputable instance evaluationPreservesLimitsOfShape (X : Cᵒᵖ) :
     PreservesLimitsOfShape D (evaluation R X : SheafOfModules.{v} R ⥤ _) where
 
+/--
+@isnad1 id=preserve.0h4v.s6.01e93870751a from=seed src=0 shape=417f1904 vocab=0dc2bb9f
+-/
 noncomputable instance forgetPreservesLimitsOfShape :
     PreservesLimitsOfShape D (forget.{v} R) where
 
@@ -93,22 +111,40 @@ end Small
 
 namespace Finite
 
+/--
+@isnad1 id=hasfinit.0h3v.s4.40c6d5421611 from=seed src=0 shape=d63f8e7c vocab=21fe1fc5
+-/
 instance hasFiniteLimits : HasFiniteLimits (SheafOfModules.{v} R) :=
   ⟨fun _ => inferInstance⟩
 
+/--
+@isnad1 id=preserve.0h4v.s7.6ca9c874349b from=seed src=0 shape=98d7b4f0 vocab=95f6670e
+-/
 noncomputable instance evaluationPreservesFiniteLimits (X : Cᵒᵖ) :
     PreservesFiniteLimits (evaluation.{v} R X) where
 
+/--
+@isnad1 id=preserve.0h3v.s6.ae27a2a58aed from=seed src=0 shape=84db617a vocab=e5062331
+-/
 noncomputable instance forgetPreservesFiniteLimits :
     PreservesFiniteLimits (forget.{v} R) where
 
 end Finite
 
+/--
+@isnad1 id=haslimit.0h3v.s4.d7f41013c915 from=seed src=0 shape=d63f8e7c vocab=ec0b2c54
+-/
 instance hasLimitsOfSize : HasLimitsOfSize.{v₂, v} (SheafOfModules.{v} R) where
 
+/--
+@isnad1 id=preserve.0h4v.s7.e38d31a9a191 from=seed src=0 shape=98d7b4f0 vocab=d6ad5860
+-/
 noncomputable instance evaluationPreservesLimitsOfSize (X : Cᵒᵖ) :
     PreservesLimitsOfSize.{v₂, v} (evaluation R X : SheafOfModules.{v} R ⥤ _) where
 
+/--
+@isnad1 id=preserve.0h3v.s6.7c4820cf4113 from=seed src=0 shape=84db617a vocab=408e5098
+-/
 noncomputable instance forgetPreservesLimitsOfSize :
     PreservesLimitsOfSize.{v₂, v} (forget.{v} R) where
 

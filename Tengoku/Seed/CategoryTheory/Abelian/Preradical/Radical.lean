@@ -60,11 +60,16 @@ variable (C)
 def isRadical : ObjectProperty (Preradical C) :=
   fun Φ ↦ IsIso (toColon Φ Φ)
 
+/--
+@isnad1 id=iff.0h2v.s6.cc1c502feb7c from=seed src=0 shape=842a4c84 vocab=3ce9e5bd
+-/
 lemma isRadical_iff_isIso (Φ : Preradical C) :
     isRadical C Φ ↔ IsIso (toColon Φ Φ) :=
   Iff.rfl
 
-/-- A preradical `Φ` is radical if and only if it `Φ` vanishes on the quotient `Φ.quotient`. -/
+/-- A preradical `Φ` is radical if and only if it `Φ` vanishes on the quotient `Φ.quotient`.
+@isnad1 id=iff.0h2v.s5.ad075428bb4c from=seed src=0 shape=a0977c9e vocab=8e823368
+-/
 lemma isRadical_iff_isZero (Φ : Preradical C) :
     isRadical C Φ ↔ IsZero (Φ.quotient ⋙ Φ.r) := by
   rw [isRadical_iff_isIso, isIso_toColon_iff]
@@ -80,6 +85,9 @@ namespace Radical
 
 instance (Φ : Radical C) : IsIso (Preradical.toColon Φ.obj Φ.obj) := Φ.property
 
+/--
+@isnad1 id=iszero.0h2v.s7.ece2eb7b0807 from=seed src=0 shape=50af2464 vocab=031d7319
+-/
 lemma isZero (Φ : Radical C) : IsZero (Φ.obj.quotient ⋙ Φ.obj.r) := by
   rw [← Preradical.isRadical_iff_isZero, Preradical.isRadical_iff_isIso]
   infer_instance

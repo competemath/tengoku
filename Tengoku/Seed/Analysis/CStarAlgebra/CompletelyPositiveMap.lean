@@ -129,6 +129,9 @@ instance : CompletelyPositiveMapClass (A₁ →CP A₂) A₁ A₂ where
   map_cstarMatrix_nonneg' f := f.map_cstarMatrix_nonneg'
 
 open CStarMatrix in
+/--
+@isnad1 id=le.1h5v.s7.d9b3d8c8c9e0 from=seed src=0 shape=34d49913 vocab=114e6ca3
+-/
 lemma map_cstarMatrix_nonneg {n : Type*} [Fintype n] (φ : A₁ →CP A₂) (M : CStarMatrix n n A₁)
     (hM : 0 ≤ M) : 0 ≤ M.map φ := by
   let k := Fintype.card n
@@ -148,7 +151,9 @@ variable {F A₁ A₂ : Type*} [NonUnitalCStarAlgebra A₁] [NonUnitalCStarAlgeb
   [NonUnitalAlgHomClass F ℂ A₁ A₂] [StarHomClass F A₁ A₂]
 
 open CStarMatrix CFC in
-/-- Non-unital star algebra homomorphisms are completely positive. -/
+/-- Non-unital star algebra homomorphisms are completely positive.
+@isnad1 id=complete.0h3v.s7.9b4fd22eee13 from=seed src=0 shape=85c6c074 vocab=0929f9f5
+-/
 instance instCompletelyPositiveMapClass : CompletelyPositiveMapClass F A₁ A₂ where
   map_cstarMatrix_nonneg' φ k M hM := by
     change 0 ≤ (mapₙₐ (φ : A₁ →⋆ₙₐ[ℂ] A₂)) M

@@ -39,6 +39,7 @@ private lemma continuousOn_herglotz_riesz (_ : w ∈ ball c R) :
 /--
 **Poisson integral formula** for harmonic functions on arbitrary disks in the complex plane,
 formulated with the real part of the Herglotz–Riesz kernel of integration.
+@isnad1 id=eq.2h4v.s6.fbb3f3c1822a from=seed src=0 shape=2f3aef08 vocab=8c44e2cd
 -/
 theorem HarmonicOnNhd.circleAverage_re_herglotzRieszKernel_smul
     (hf : HarmonicOnNhd f (closedBall c R)) (hw : w ∈ ball c R) :
@@ -71,6 +72,7 @@ theorem HarmonicOnNhd.circleAverage_re_herglotzRieszKernel_smul
 /--
 **Poisson integral formula** for harmonic functions on arbitrary disks in the complex plane,
 formulated with the real part of the Herglotz–Riesz kernel of integration.
+@isnad1 id=eq.2h4v.s6.100099c2dd85 from=seed src=0 shape=4e2ca1cb vocab=32af95cf
 -/
 theorem HarmonicContOnCl.circleAverage_re_herglotzRieszKernel_smul
     (hf : HarmonicContOnCl f (ball c R)) (hw : w ∈ ball c R) :
@@ -89,6 +91,7 @@ theorem HarmonicContOnCl.circleAverage_re_herglotzRieszKernel_smul
 /--
 **Poisson integral formula** for harmonic functions on arbitrary disks in the complex plane,
 formulated with the Poisson kernel of integration.
+@isnad1 id=eq.2h4v.s6.88f843d7e8b2 from=seed src=0 shape=a7f4bf63 vocab=f35744c8
 -/
 theorem HarmonicOnNhd.circleAverage_poissonKernel_smul
     (hf : HarmonicOnNhd f (closedBall c R)) (hw : w ∈ ball c R) :
@@ -100,6 +103,7 @@ theorem HarmonicOnNhd.circleAverage_poissonKernel_smul
 /--
 **Poisson integral formula** for harmonic functions on arbitrary disks in the complex plane,
 formulated with the Poisson kernel of integration.
+@isnad1 id=eq.2h4v.s6.7451615b947c from=seed src=0 shape=a3c9a299 vocab=7d74acc1
 -/
 theorem HarmonicContOnCl.circleAverage_poissonKernel_smul
     (hf : HarmonicContOnCl f (ball c R)) (hw : w ∈ ball c R) :

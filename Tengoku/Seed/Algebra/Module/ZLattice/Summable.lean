@@ -37,6 +37,9 @@ variable {ι : Type*} (b : Basis ι ℤ L)
 
 namespace ZLattice
 
+/--
+@isnad1 id=ex.0h4v.s10.a5a73b5dcc5f from=seed src=0 shape=7c0fe8d6 vocab=1d35b3d4
+-/
 lemma exists_forall_abs_repr_le_norm :
     ∃ (ε : ℝ), 0 < ε ∧ ∀ (x : L), ∀ i, ε * |b.repr x i| ≤ ‖x‖ := by
   wlog H : IsZLattice ℝ L
@@ -75,29 +78,47 @@ This is an arbitrary choice of such an `ε`.
 def normBound {ι : Type*} (b : Basis ι ℤ L) : ℝ :=
   (exists_forall_abs_repr_le_norm b).choose
 
+/--
+@isnad1 id=lt.0h4v.s8.9e14edf847bd from=seed src=0 shape=5be8bef9 vocab=bf332700
+-/
 lemma normBound_pos {ι : Type*} (b : Basis ι ℤ L) : 0 < normBound b :=
   (exists_forall_abs_repr_le_norm b).choose_spec.1
 
+/--
+@isnad1 id=le.0h6v.s10.8674250d6153 from=seed src=0 shape=74c505a6 vocab=13f7b5b6
+-/
 lemma normBound_spec {ι : Type*} (b : Basis ι ℤ L) (x : L) (i : ι) :
     normBound b * |b.repr x i| ≤ ‖x‖ :=
   (exists_forall_abs_repr_le_norm b).choose_spec.2 x i
 
+/--
+@isnad1 id=le.0h6v.s10.72caedce6e6d from=seed src=0 shape=cc9030b6 vocab=d6cff8a1
+-/
 lemma abs_repr_le {ι : Type*} (b : Basis ι ℤ L) (x : L) (i : ι) :
     |b.repr x i| ≤ (normBound b)⁻¹ * ‖x‖ := by
   rw [le_inv_mul_iff₀ (normBound_pos b)]
   exact normBound_spec b x i
 
+/--
+@isnad1 id=lt.1h7v.s10.d7c8418dcf6f from=seed src=0 shape=db64305d vocab=3402f4a2
+-/
 lemma abs_repr_lt_of_norm_lt {ι : Type*} (b : Basis ι ℤ L) (x : L) (n : ℕ)
     (hxn : ‖x‖ < normBound b * n) (i : ι) : |b.repr x i| < n := by
   refine Int.cast_lt.mp ((abs_repr_le b x i).trans_lt ?_)
   rwa [inv_mul_lt_iff₀ (normBound_pos b)]
 
+/--
+@isnad1 id=le.1h7v.s10.e6848a75abcd from=seed src=0 shape=93b4d751 vocab=acb34157
+-/
 lemma le_norm_of_le_abs_repr {ι : Type*} (b : Basis ι ℤ L) (x : L) (n : ℕ) (i : ι)
     (hi : n ≤ |b.repr x i|) : normBound b * n ≤ ‖x‖ := by
   contrapose! hi
   exact abs_repr_lt_of_norm_lt b x n hi i
 
 open Finset in
+/--
+@isnad1 id=le.2h7v.s10.f83dade32454 from=seed src=0 shape=3a5b01fd vocab=0ad1dedc
+-/
 lemma sum_piFinset_Icc_rpow_le {ι : Type*} [Fintype ι] [DecidableEq ι]
     (b : Basis ι ℤ L) {d : ℕ} (hd : d = Fintype.card ι)
     (n : ℕ) (r : ℝ) (hr : r < -d) :
@@ -157,6 +178,9 @@ lemma sum_piFinset_Icc_rpow_le {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 variable (L)
 
+/--
+@isnad1 id=ex.0h2v.s9.6e69b8911c93 from=seed src=0 shape=8f6c628a vocab=28a6d6c9
+-/
 lemma exists_finsetSum_norm_rpow_le_tsum :
     ∃ A > (0 : ℝ), ∀ r < (-Module.finrank ℤ L : ℝ), ∀ s : Finset L,
       ∑ z ∈ s, ‖z‖ ^ r ≤ A ^ r * ∑' k : ℕ, (k : ℝ) ^ (Module.finrank ℤ L - 1 + r) := by
@@ -215,26 +239,39 @@ This is an arbitrary choice of `A`. See `ZLattice.tsum_norm_rpow_le`.
 def tsumNormRPowBound : ℝ :=
   (exists_finsetSum_norm_rpow_le_tsum L).choose
 
+/--
+@isnad1 id=lt.0h2v.s7.dedebbf7e699 from=seed src=0 shape=5c7be127 vocab=65260d27
+-/
 lemma tsumNormRPowBound_pos : 0 < tsumNormRPowBound L :=
   (exists_finsetSum_norm_rpow_le_tsum L).choose_spec.1
 
+/--
+@isnad1 id=le.1h4v.s9.8e9e42f1ca46 from=seed src=0 shape=8a0a8ec7 vocab=1ead5efe
+-/
 lemma tsumNormRPowBound_spec (r : ℝ) (h : r < -Module.finrank ℤ L) (s : Finset L) :
     ∑ z ∈ s, ‖z‖ ^ r ≤
       tsumNormRPowBound L ^ r * ∑' k : ℕ, (k : ℝ) ^ (Module.finrank ℤ L - 1 + r) :=
   (exists_finsetSum_norm_rpow_le_tsum L).choose_spec.2 r h s
 
-/-- If `L` is a `ℤ`-lattice with rank `d` in `E`, then `∑ z ∈ L, ‖z‖ʳ` converges when `r < -d`. -/
+/-- If `L` is a `ℤ`-lattice with rank `d` in `E`, then `∑ z ∈ L, ‖z‖ʳ` converges when `r < -d`.
+@isnad1 id=summable.1h3v.s9.04bd80f0298a from=seed src=0 shape=c54a6156 vocab=b7186086
+-/
 lemma summable_norm_rpow (r : ℝ) (hr : r < -Module.finrank ℤ L) :
     Summable fun z : L ↦ ‖z‖ ^ r :=
   summable_of_sum_le (fun _ ↦ by positivity) (tsumNormRPowBound_spec L r hr)
 
-/-- `∑ z ∈ L, ‖z‖⁻ʳ ≤ A⁻ʳ * ∑ k : ℕ, kᵈ⁻ʳ⁻¹` for some `A > 0` depending only on `L`. -/
+/-- `∑ z ∈ L, ‖z‖⁻ʳ ≤ A⁻ʳ * ∑ k : ℕ, kᵈ⁻ʳ⁻¹` for some `A > 0` depending only on `L`.
+@isnad1 id=le.1h3v.s9.d35b19abc62e from=seed src=0 shape=58665c0c vocab=f3d1c3ba
+-/
 lemma tsum_norm_rpow_le (r : ℝ) (hr : r < -Module.finrank ℤ L) :
     ∑' z : L, ‖z‖ ^ r ≤
       tsumNormRPowBound L ^ r * ∑' k : ℕ, (k : ℝ) ^ (Module.finrank ℤ L - 1 + r) :=
   Summable.tsum_le_of_sum_le (summable_norm_rpow L r hr) (tsumNormRPowBound_spec L r hr)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=summable.1h4v.s9.0c8560e4b946 from=seed src=0 shape=21c111ac vocab=262b8610
+-/
 lemma summable_norm_sub_rpow (r : ℝ) (hr : r < -Module.finrank ℤ L) (x : E) :
     Summable fun z : L ↦ ‖z - x‖ ^ r := by
   cases subsingleton_or_nontrivial L
@@ -259,18 +296,30 @@ lemma summable_norm_sub_rpow (r : ℝ) (hr : r < -Module.finrank ℤ L) (x : E) 
   rw [sub_lt_iff_lt_add, ← sub_lt_iff_lt_add', AddSubgroupClass.coe_norm] at this
   simpa using show ‖t.1‖ ≤ 2 * ‖x‖ by linarith
 
+/--
+@isnad1 id=summable.1h4v.s9.42b241585841 from=seed src=0 shape=22b73f0a vocab=262b8610
+-/
 lemma summable_norm_sub_zpow (n : ℤ) (hn : n < -Module.finrank ℤ L) (x : E) :
     Summable fun z : L ↦ ‖z - x‖ ^ n :=
   mod_cast summable_norm_sub_rpow L n (mod_cast hn) x
 
+/--
+@isnad1 id=summable.1h3v.s9.d8507e3c5ec8 from=seed src=0 shape=7dce5da2 vocab=b7186086
+-/
 lemma summable_norm_zpow (n : ℤ) (hn : n < -Module.finrank ℤ L) :
     Summable fun z : L ↦ ‖z‖ ^ n := by
   simpa using summable_norm_sub_zpow L n hn 0
 
+/--
+@isnad1 id=summable.1h4v.s9.7e72d72f731a from=seed src=0 shape=a780ab2a vocab=4ecc589c
+-/
 lemma summable_norm_sub_inv_pow (n : ℕ) (hn : Module.finrank ℤ L < n) (x : E) :
     Summable fun z : L ↦ ‖z - x‖⁻¹ ^ n := by
   simpa using summable_norm_sub_zpow L (-n) (by gcongr) x
 
+/--
+@isnad1 id=summable.1h3v.s9.4fef8355072b from=seed src=0 shape=c9eeb091 vocab=b6752b5a
+-/
 lemma summable_norm_pow_inv (n : ℕ) (hn : Module.finrank ℤ L < n) :
     Summable fun z : L ↦ ‖z‖⁻¹ ^ n := by
   simpa using summable_norm_sub_inv_pow L n hn 0

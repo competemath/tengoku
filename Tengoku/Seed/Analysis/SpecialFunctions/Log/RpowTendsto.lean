@@ -27,6 +27,9 @@ public section
 open scoped Topology
 open Real Filter
 
+/--
+@isnad1 id=le.3h2v.s7.10496148bd5f from=seed src=0 shape=32e17f82 vocab=cee24f48
+-/
 lemma Real.norm_inv_mul_rpow_sub_one_sub_log_le {p x : ℝ} (p_pos : 0 < p) (x_pos : 0 < x)
     (hx : ‖p * log x‖ ≤ 1) : ‖p⁻¹ * (x ^ p - 1) - log x‖ ≤ p * ‖log x‖ ^ 2 := by
   have pinv_nonneg : 0 ≤ p⁻¹ := by grind [_root_.inv_nonneg]
@@ -45,6 +48,9 @@ lemma Real.norm_inv_mul_rpow_sub_one_sub_log_le {p x : ℝ} (p_pos : 0 < p) (x_p
           grind [Real.norm_of_nonneg]
 
 open Set in
+/--
+@isnad1 id=tendstol.0h0v.s6.b306f9095674 from=seed src=0 shape=6ae6aaea vocab=1f6de0e2
+-/
 lemma Real.tendstoLocallyUniformlyOn_rpow_sub_one_log :
     TendstoLocallyUniformlyOn (fun (p : ℝ) (x : ℝ) => p⁻¹ * (x ^ p - 1)) log (𝓝[>] 0) (Ioi 0) := by
   refine (tendstoLocallyUniformlyOn_iff_forall_isCompact isOpen_Ioi).mpr ?_
@@ -87,6 +93,9 @@ lemma Real.tendstoLocallyUniformlyOn_rpow_sub_one_log :
     _ ≤ pbound * (sSup ((fun x => ‖log x‖ ^ 2) '' s) + 1) := by gcongr; grind
     _ = ε := by grind
 
+/--
+@isnad1 id=tendsto.1h1v.s6.a9518d9bd399 from=seed src=0 shape=f0dd901b vocab=0a3ee42a
+-/
 lemma tendsto_rpow_sub_one_log {x : ℝ} (hx : 0 < x) :
     Tendsto (fun p => p⁻¹ * (x ^ p - 1)) (𝓝[>] 0) (𝓝 (log x)) :=
   TendstoLocallyUniformlyOn.tendsto_at

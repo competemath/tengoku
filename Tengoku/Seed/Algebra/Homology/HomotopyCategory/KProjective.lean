@@ -60,15 +60,24 @@ lemma _root_.HomotopyEquiv.isKProjective {K₁ K₂ : CochainComplex C ℤ}
       ((e.homotopyInvHomId.symm.compRight f).trans (.ofEq (by simp))))
         (((IsKProjective.homotopyZero (e.hom ≫ f) hL).compLeft e.inv).trans (.ofEq (by simp)))⟩
 
+/--
+@isnad1 id=iskproje.0h4v.s7.b616d0c8ea61 from=seed src=0 shape=e030ae96 vocab=13e664fd
+-/
 lemma isKProjective_of_iso {K₁ K₂ : CochainComplex C ℤ} (e : K₁ ≅ K₂)
     [K₁.IsKProjective] :
     K₂.IsKProjective :=
   (HomotopyEquiv.ofIso e).isKProjective
 
+/--
+@isnad1 id=iff.0h4v.s7.9e0fdb6f6fea from=seed src=0 shape=c4e3914e vocab=13e664fd
+-/
 lemma isKProjective_iff_of_iso {K₁ K₂ : CochainComplex C ℤ} (e : K₁ ≅ K₂) :
     K₁.IsKProjective ↔ K₂.IsKProjective :=
   ⟨fun _ ↦ isKProjective_of_iso e, fun _ ↦ isKProjective_of_iso e.symm⟩
 
+/--
+@isnad1 id=iff.0h2v.s7.ac94de926788 from=seed src=0 shape=fc552400 vocab=efdf3912
+-/
 lemma isKProjective_iff_leftOrthogonal (K : CochainComplex C ℤ) :
     K.IsKProjective ↔
       (HomotopyCategory.subcategoryAcyclic C).leftOrthogonal
@@ -82,6 +91,9 @@ lemma isKProjective_iff_leftOrthogonal (K : CochainComplex C ℤ) :
   · rw [← HomotopyCategory.quotient_obj_mem_subcategoryAcyclic_iff_acyclic] at hL
     rw [hK ((HomotopyCategory.quotient _ _).map f) hL, Functor.map_zero]
 
+/--
+@isnad1 id=leftorth.0h2v.s7.3aacffce2a12 from=seed src=0 shape=e3cffc10 vocab=efdf3912
+-/
 lemma IsKProjective.leftOrthogonal (K : CochainComplex C ℤ) [K.IsKProjective] :
     (HomotopyCategory.subcategoryAcyclic C).leftOrthogonal
         ((HomotopyCategory.quotient _ _).obj K) := by
@@ -94,11 +106,17 @@ instance (K : CochainComplex C ℤ) [hK : K.IsKProjective] (n : ℤ) :
     (((HomotopyCategory.quotient C (.up ℤ)).commShiftIso n).symm.app K)
     ((HomotopyCategory.subcategoryAcyclic C).leftOrthogonal.le_shift n _ hK)
 
+/--
+@isnad1 id=iff.0h3v.s7.0725b10512dd from=seed src=0 shape=42586b63 vocab=9347c108
+-/
 lemma isKProjective_shift_iff (K : CochainComplex C ℤ) (n : ℤ) :
     (K⟦n⟧).IsKProjective ↔ K.IsKProjective :=
   ⟨fun _ ↦ isKProjective_of_iso (show K⟦n⟧⟦-n⟧ ≅ K from (shiftEquiv _ n).unitIso.symm.app K),
     fun _ ↦ inferInstance⟩
 
+/--
+@isnad1 id=iskproje.1h2v.s8.9098e5b46e6a from=seed src=0 shape=3b39e62d vocab=39a032ad
+-/
 lemma isKProjective_of_op {K : CochainComplex C ℤ}
     (hK : IsKInjective ((opEquivalence C).functor.obj (op K))) :
     K.IsKProjective where
@@ -111,6 +129,9 @@ set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
 attribute [local simp] opEquivalence ChainComplex.cochainComplexEquivalence in
 open Cochain.InductionUp in
+/--
+@isnad1 id=iskproje.0h3v.s6.b6a22f4c7594 from=seed src=0 shape=9785c443 vocab=0b8ac723
+-/
 lemma isKProjective_of_projective (K : CochainComplex C ℤ) (d : ℤ)
     [K.IsStrictlyLE d] [∀ (n : ℤ), Projective (K.X n)] :
     K.IsKProjective := by

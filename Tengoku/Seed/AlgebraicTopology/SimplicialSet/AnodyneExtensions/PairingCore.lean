@@ -111,15 +111,27 @@ def type₂ (s : h.ι) : A.N :=
   Subcomplex.N.mk (X.δ (h.index s) (h.simplex s)) (h.nonDegenerate₂ s)
     (h.notMem₂ s)
 
+/--
+@isnad1 id=injectiv.0h3v.s4.5f6ec6d65229 from=seed src=0 shape=3f64ab82 vocab=a8737267
+-/
 lemma injective_type₁ : Function.Injective h.type₁ :=
   fun _ _ hst ↦ h.injective_type₁' (by rwa [Subcomplex.N.ext_iff, SSet.N.ext_iff] at hst)
 
+/--
+@isnad1 id=injectiv.0h3v.s4.d4326b740d9b from=seed src=0 shape=3f64ab82 vocab=3f27522e
+-/
 lemma injective_type₂ : Function.Injective h.type₂ :=
   fun s t hst ↦ h.injective_type₂' (by rwa [Subcomplex.N.ext_iff, SSet.N.ext_iff] at hst)
 
+/--
+@isnad1 id=ne.0h5v.s5.380d9365a576 from=seed src=0 shape=8e2aed95 vocab=d52dfa38
+-/
 lemma type₁_ne_type₂ (s t : h.ι) : h.type₁ s ≠ h.type₂ t := by
   simpa only [ne_eq, N.ext_iff, SSet.N.ext_iff] using! h.type₁_ne_type₂' s t
 
+/--
+@isnad1 id=ex.0h4v.s5.0804e514f8ae from=seed src=0 shape=8bbe8248 vocab=d52dfa38
+-/
 lemma surjective (x : A.N) :
     ∃ (s : h.ι), x = h.type₁ s ∨ x = h.type₂ s := by
   obtain ⟨s, _ | _⟩ := h.surjective' x
@@ -158,17 +170,26 @@ noncomputable def pairing : A.Pairing where
     aesop
   p := h.equivII.symm.trans h.equivI
 
+/--
+@isnad1 id=eq.0h4v.s8.c377514cab93 from=seed src=0 shape=776861b9 vocab=722b2550
+-/
 @[simp]
 lemma pairing_p_equivII (x : h.ι) :
     DFunLike.coe (F := h.II ≃ h.I) h.pairing.p (h.equivII x) = h.equivI x := by
   simp [pairing]
 
+/--
+@isnad1 id=eq.0h4v.s8.53bcfad51fa2 from=seed src=0 shape=8dc16eb0 vocab=639b23fd
+-/
 @[simp]
 lemma pairing_p_symm_equivI (x : h.ι) :
     DFunLike.coe (F := h.I ≃ h.II) h.pairing.p.symm (h.equivI x) = h.equivII x := by
   simp [pairing]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s8.d6053659e7ad from=seed src=0 shape=d2a0dd9b vocab=d10030a8
+-/
 lemma type₁_pairing (x : h.ι) :
     h.type₁ x = h.pairing.p (h.equivII x) := by
   simp +instances
@@ -180,6 +201,9 @@ class IsProper : Prop where
   isUniquelyCodimOneFace (s : h.ι) :
     S.IsUniquelyCodimOneFace (h.type₂ s).toS (h.type₁ s).toS
 
+/--
+@isnad1 id=isunique.0h4v.s5.04d9b7ff14fa from=seed src=0 shape=72797658 vocab=4d35e0de
+-/
 lemma isUniquelyCodimOneFace [h.IsProper] (s : h.ι) :
     S.IsUniquelyCodimOneFace (h.type₂ s).toS (h.type₁ s).toS :=
   IsProper.isUniquelyCodimOneFace _
@@ -198,12 +222,18 @@ instance [h.IsProper] : h.pairing.IsProper where
     obtain ⟨s, rfl⟩ := h.equivII.surjective x
     simpa using h.isUniquelyCodimOneFace s
 
+/--
+@isnad1 id=iff.0h3v.s4.10335b748dae from=seed src=0 shape=d2d08a36 vocab=01e148fe
+-/
 lemma isProper_pairing_iff :
     h.pairing.IsProper ↔ h.IsProper := by
   refine ⟨fun _ ↦ ⟨fun s ↦ ?_⟩, fun _ ↦ inferInstance⟩
   simpa [type₁_pairing] using h.pairing.isUniquelyCodimOneFace (h.equivII s)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s6.88c10c7fc14b from=seed src=0 shape=0b23a438 vocab=3024aa93
+-/
 @[simp]
 lemma isUniquelyCodimOneFace_index [h.IsProper] (s : h.ι) :
     (h.isUniquelyCodimOneFace s).index rfl = h.index s := by
@@ -211,6 +241,9 @@ lemma isUniquelyCodimOneFace_index [h.IsProper] (s : h.ι) :
   simp [← (h.isUniquelyCodimOneFace s).δ_eq_iff]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s6.e3fe336a849d from=seed src=0 shape=71e6613a vocab=917f45bf
+-/
 lemma isUniquelyCodimOneFace_index_coe
     [h.IsProper] (s : h.ι) {d : ℕ} (hd : h.dim s = d) :
     ((h.isUniquelyCodimOneFace s).index hd).val = (h.index s).val := by
@@ -240,6 +273,9 @@ def AncestralRel (s t : h.ι) : Prop :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h5v.s7.b14e54561689 from=seed src=0 shape=ddfe1f27 vocab=cbfbabaa
+-/
 lemma ancestralRel_iff (s t : h.ι) :
     h.AncestralRel s t ↔ h.pairing.AncestralRel (h.equivII s) (h.equivII t) := by
   simp [AncestralRel, Pairing.AncestralRel]
@@ -257,6 +293,9 @@ instance [h.IsRegular] : h.pairing.IsRegular where
     exact ⟨fun ⟨f, hf⟩ ↦ this.false
       ⟨fun n ↦ h.equivII.symm (f n), fun n ↦ by simpa [ancestralRel_iff] using hf n⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.2dba3dabe43b from=seed src=0 shape=d2d08a36 vocab=bb9c778c
+-/
 lemma isRegular_pairing_iff (h : A.PairingCore) :
     h.pairing.IsRegular ↔ h.IsRegular := by
   refine ⟨fun _ ↦ ?_, fun _ ↦ inferInstance⟩

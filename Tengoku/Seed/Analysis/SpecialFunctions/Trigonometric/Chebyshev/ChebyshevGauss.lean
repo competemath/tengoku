@@ -69,20 +69,32 @@ private theorem sum_exp {n : ℕ} {k : ℤ} (hn : n ≠ 0) (hk : ¬ (2 * n : ℤ
 noncomputable def sumZeroes (n : ℕ) (P : ℝ[X]) : ℝ :=
     (π / n) * ∑ i ∈ range n, P.eval (cos ((2 * i + 1) / (2 * n) * π))
 
+/--
+@isnad1 id=eq.0h4v.s5.08aaa5977238 from=seed src=0 shape=7d39438a vocab=4c370b78
+-/
 @[simp]
 theorem sumZeroes_sum (n : ℕ) {ι : Type*} (s : Finset ι) (P : ι → ℝ[X]) :
     sumZeroes n (∑ i ∈ s, P i) = ∑ i ∈ s, sumZeroes n (P i) := by
   simp_rw [sumZeroes, eval_finsetSum]
   rw [sum_comm, mul_sum]
 
+/--
+@isnad1 id=eq.0h3v.s5.270393ea9494 from=seed src=0 shape=98979493 vocab=dddcafd2
+-/
 @[simp]
 theorem sumZeroes_smul (n : ℕ) (c : ℝ) (P : ℝ[X]) :
     sumZeroes n (c • P) = c * sumZeroes n P := by
   simp_rw [sumZeroes, eval_smul, ← smul_sum, smul_eq_mul]; ring
 
+/--
+@isnad1 id=eq.1h1v.s4.86493e7b78ce from=seed src=0 shape=0344cd68 vocab=7ceb7d23
+-/
 theorem sumZeroes_T_zero {n : ℕ} (hn : n ≠ 0) : sumZeroes n (T ℝ 0) = π := by
   simp [sumZeroes, show π / n * n = π by field]
 
+/--
+@isnad1 id=eq.1h2v.s5.f17f6c84a4d7 from=seed src=0 shape=e6fed357 vocab=707a72be
+-/
 theorem sumZeroes_T_of_not_dvd {n : ℕ} {k : ℤ} (hk : ¬ (2 * n : ℤ) ∣ k) :
     sumZeroes n (T ℝ k) = 0 := by
   rcases eq_or_ne n 0 with rfl | hn
@@ -106,7 +118,9 @@ theorem sumZeroes_T_of_not_dvd {n : ℕ} {k : ℤ} (hk : ¬ (2 * n : ℤ) ∣ k)
 
 /-- The integral of a polynomial of degree `< 2 * n` with respect to the weight function
   `√(1 - x ^ 2)⁻¹` supported on `[-1, 1]` is equal to `π` times the average of its values
-  on the points `cos ((2 * i + 1) / (2 * n) * π)` for `0 ≤ i < n`. -/
+  on the points `cos ((2 * i + 1) / (2 * n) * π)` for `0 ≤ i < n`.
+@isnad1 id=eq.2h2v.s6.3d432d05c5b2 from=seed src=0 shape=9fb9a7dc vocab=8eb82d05
+-/
 theorem integral_eq_sumZeroes {n : ℕ} {P : ℝ[X]} (hn : n ≠ 0) (hP : P.degree < 2 * n) :
     ∫ x, P.eval x ∂measureT = sumZeroes n P := by
   have hmem : P ∈ degreeLT ℝ (2 * n) := by rwa [mem_degreeLT]

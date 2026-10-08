@@ -44,7 +44,9 @@ namespace IsometryEquiv
 
 /-- If an isometric self-homeomorphism of a normed vector space over `ℝ` fixes `x` and `y`,
 then it fixes the midpoint of `[x, y]`. This is a lemma for a more general Mazur-Ulam theorem,
-see below. -/
+see below.
+@isnad1 id=eq.2h5v.s8.8b9bd403d32e from=seed src=0 shape=aaa8f452 vocab=5923d1ca
+-/
 theorem midpoint_fixed {x y : PE} :
     ∀ e : PE ≃ᵢ PE, e x = x → e y = y → e (midpoint ℝ x y) = midpoint ℝ x y := by
   set z := midpoint ℝ x y
@@ -85,7 +87,9 @@ theorem midpoint_fixed {x y : PE} :
   refine fun e hx hy => dist_le_zero.1 (le_trans ?_ this)
   exact le_ciSup h_bdd ⟨e, hx, hy⟩
 
-/-- A bijective isometry sends midpoints to midpoints. -/
+/-- A bijective isometry sends midpoints to midpoints.
+@isnad1 id=eq.0h7v.s8.186a0535e5d9 from=seed src=0 shape=4e52c4f7 vocab=5923d1ca
+-/
 theorem map_midpoint (f : PE ≃ᵢ PF) (x y : PE) : f (midpoint ℝ x y) = midpoint ℝ (f x) (f y) := by
   set e : PE ≃ᵢ PE :=
     ((f.trans <| (pointReflection ℝ <| midpoint ℝ (f x) (f y)).toIsometryEquiv).trans f.symm).trans
@@ -109,11 +113,17 @@ def toRealLinearIsometryEquivOfMapZero (f : E ≃ᵢ F) (h0 : f 0 = 0) : E ≃�
   { (AddMonoidHom.ofMapMidpoint ℝ ℝ f h0 f.map_midpoint).toRealLinearMap f.continuous, f with
     norm_map' := fun x => show ‖f x‖ = ‖x‖ by simp only [← dist_zero_right, ← h0, f.dist_eq] }
 
+/--
+@isnad1 id=eq.1h3v.s8.4fb5214c4ac5 from=seed src=0 shape=752c4ad8 vocab=e40e5370
+-/
 @[simp]
 theorem coe_toRealLinearIsometryEquivOfMapZero (f : E ≃ᵢ F) (h0 : f 0 = 0) :
     ⇑(f.toRealLinearIsometryEquivOfMapZero h0) = f :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.cee60ebe4e84 from=seed src=0 shape=3329e92f vocab=76390550
+-/
 @[simp]
 theorem coe_toRealLinearIsometryEquivOfMapZero_symm (f : E ≃ᵢ F) (h0 : f 0 = 0) :
     ⇑(f.toRealLinearIsometryEquivOfMapZero h0).symm = f.symm :=
@@ -125,11 +135,17 @@ def toRealLinearIsometryEquiv (f : E ≃ᵢ F) : E ≃ₗᵢ[ℝ] F :=
   (f.trans (IsometryEquiv.addRight (f 0)).symm).toRealLinearIsometryEquivOfMapZero
     (by simpa only [sub_eq_add_neg] using! sub_self (f 0))
 
+/--
+@isnad1 id=eq.0h4v.s8.6deee6569963 from=seed src=0 shape=83029a36 vocab=8bc55434
+-/
 @[simp]
 theorem toRealLinearIsometryEquiv_apply (f : E ≃ᵢ F) (x : E) :
     (f.toRealLinearIsometryEquiv : E → F) x = f x - f 0 :=
   (sub_eq_add_neg (f x) (f 0)).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.4228f0926c57 from=seed src=0 shape=7722ded1 vocab=85420f1b
+-/
 @[simp]
 theorem toRealLinearIsometryEquiv_symm_apply (f : E ≃ᵢ F) (y : F) :
     (f.toRealLinearIsometryEquiv.symm : F → E) y = f.symm (y + f 0) :=
@@ -143,10 +159,16 @@ def toRealAffineIsometryEquiv (f : PE ≃ᵢ PF) : PE ≃ᵃⁱ[ℝ] PF :=
         f.trans (vaddConst (f <| Classical.arbitrary PE)).symm).toRealLinearIsometryEquiv
     (Classical.arbitrary PE) fun p => by simp
 
+/--
+@isnad1 id=eq.0h5v.s7.69a2c3394108 from=seed src=0 shape=54d4d365 vocab=e013fbfc
+-/
 @[simp]
 theorem coeFn_toRealAffineIsometryEquiv (f : PE ≃ᵢ PF) : ⇑f.toRealAffineIsometryEquiv = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.a7371828894a from=seed src=0 shape=c126c8ac vocab=ba3e9d14
+-/
 @[simp]
 theorem coe_toRealAffineIsometryEquiv (f : PE ≃ᵢ PF) :
     f.toRealAffineIsometryEquiv.toIsometryEquiv = f := by

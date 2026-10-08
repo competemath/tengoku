@@ -26,6 +26,9 @@ open Limits
 
 variable {C : Type*} [Category* C] (P : ObjectProperty C)
 
+/--
+@isnad1 id=preserve.0h2v.s6.80e6498f07ed from=seed src=0 shape=cd346315 vocab=2bf31cf4
+-/
 lemma preservesMonomorphisms_ι_of_isNormalEpiCategory [HasZeroMorphisms C] [HasFiniteCoproducts C]
     [HasKernels C] [HasCokernels C] [IsNormalEpiCategory C] [HasZeroObject C] [P.ContainsZero]
     [P.IsClosedUnderKernels] : P.ι.PreservesMonomorphisms :=
@@ -42,6 +45,9 @@ instance [Abelian C] [P.ContainsZero] [P.IsClosedUnderKernels] [P.IsClosedUnderC
       isLimit := isLimitOfReflects P.ι ((KernelFork.isLimitMapConeEquiv _ _).symm
         (Abelian.monoIsKernelOfCokernel _ (cokernelIsCokernel (P.ι.map f)) :))}⟩
 
+/--
+@isnad1 id=preserve.0h2v.s6.0bd5d77df49f from=seed src=0 shape=cd346315 vocab=3f2221fd
+-/
 lemma preservesEpimorphisms_ι_of_isNormalMonoCategory [HasZeroMorphisms C] [HasFiniteProducts C]
     [HasKernels C] [HasCokernels C] [IsNormalMonoCategory C] [HasZeroObject C] [P.ContainsZero]
     [P.IsClosedUnderCokernels] : P.ι.PreservesEpimorphisms :=

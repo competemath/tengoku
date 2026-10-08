@@ -157,6 +157,9 @@ private theorem herglotzLogIntegrand_circleAverage_tendsto {ρ w : ℂ} {R : ℝ
 
 -- Auxiliary lemma for `circleAverage_re_herglotzRieszKernel_mul_log`. Statement in case where the
 -- center equals zero.
+/--
+@isnad1 id=eq.2h3v.s7.d6957e83f1b0 from=seed src=0 shape=c48483d2 vocab=94b29c5e
+-/
 theorem circleAverage_re_herglotzRieszKernel_mul_log₀ {w ρ : ℂ} {R : ℝ} (hρ : ρ ∈ sphere 0 R)
     (hw : w ∈ ball 0 R) :
     circleAverage ((Complex.re ∘ herglotzRieszKernel 0 w) • (log ‖· - ρ‖)) (0 : ℂ) R
@@ -205,6 +208,7 @@ circle with radius `‖ρ‖`.
 - See `MeromorphicOn.extract_zeros_poles` in the file
   `Mathlib/Analysis/Meromorphic/FactorizedRational` for a construction that splits factors of the
   form `· - ρ` off arbitrary meromorphic functions.
+@isnad1 id=eq.2h4v.s6.ccbe2f94cc72 from=seed src=0 shape=7d0bd23d vocab=628460b9
 -/
 theorem circleAverage_re_herglotzRieszKernel_mul_log {w ρ c : ℂ} {R : ℝ} (hρ : ρ ∈ sphere c R)
     (hw : w ∈ ball c R) :
@@ -227,6 +231,7 @@ Let `D : ℂ → ℤ` be a function with locally finite support within the close
 radius `R`, such as the zero- and pole divisor of a meromorphic function.  Then, the circle average
 of the function `∑ᶠ u, (D u * log ‖· - u‖)` over the boundary of the ball equals
 `∑ᶠ u, D u * log R`.
+@isnad1 id=eq.0h3v.s8.42c8fc9aa23e from=seed src=0 shape=f59866a8 vocab=a84176a3
 -/
 @[simp]
 lemma circleAverage_log_norm_factorizedRational {R : ℝ} {c : ℂ}
@@ -260,6 +265,7 @@ lemma circleAverage_log_norm_factorizedRational {R : ℝ} {c : ℂ}
 /--
 If  `g : ℂ → ℂ` is analytic without zero on the closed ball with center `c` and radius `R`, then the
 circle average `circleAverage (log ‖g ·‖) c R` equals `log ‖g c‖`.
+@isnad1 id=eq.2h3v.s7.fac78c3c0c76 from=seed src=0 shape=4137dfcf vocab=a0574d90
 -/
 @[simp]
 lemma AnalyticOnNhd.circleAverage_log_norm_of_ne_zero {R : ℝ} {c : ℂ} {g : ℂ → ℂ}
@@ -273,6 +279,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 Reformulation of a finsum that appears in Jensen's formula and in the definition of the counting
 function of Value Distribution Theory, as discussed in
 `Mathlib/Analysis/Complex/ValueDistribution/CountingFunction.lean`.
+@isnad1 id=eq.2h3v.s7.33cca46e3ab6 from=seed src=0 shape=a641bf9a vocab=b8bc20a9
 -/
 lemma countingFunction_finsum_eq_finsum_add {c : ℂ} {R : ℝ} {D : ℂ → ℤ} (hR : R ≠ 0)
     (hD : D.HasFiniteSupport) :
@@ -305,6 +312,7 @@ correction term that accounts for the zeros and poles of `f` within the ball.
 
 See `Function.locallyFinsuppWithin.logCounting_divisor_eq_circleAverage_sub_const` for a
 reformulation in terms of the logarithmic counting function of Value Distribution Theory.
+@isnad1 id=eq.2h3v.s8.cc0084256181 from=seed src=0 shape=aa8bda96 vocab=2f115783
 -/
 theorem MeromorphicOn.circleAverage_log_norm {c : ℂ} {R : ℝ} {f : ℂ → ℂ} (hR : R ≠ 0)
     (h₁f : MeromorphicOn f (closedBall c |R|)) :
@@ -373,7 +381,9 @@ theorem MeromorphicOn.circleAverage_log_norm {c : ℂ} {R : ℝ} {f : ℂ → �
     filter_upwards [this] with z hz
     simp_all
 
-/-- **Jensen's Formula** specialized to the case that `f` is analytic and `f c ≠ 0`. -/
+/-- **Jensen's Formula** specialized to the case that `f` is analytic and `f c ≠ 0`.
+@isnad1 id=eq.3h3v.s8.ee85be0002e7 from=seed src=0 shape=8f861c61 vocab=37d79ceb
+-/
 theorem AnalyticOnNhd.circleAverage_log_norm {c : ℂ} {R : ℝ} {f : ℂ → ℂ} (hR : R ≠ 0)
     (h₁f : AnalyticOnNhd ℂ f (closedBall c |R|))
     (h₂f : f c ≠ 0) :
@@ -387,6 +397,7 @@ theorem AnalyticOnNhd.circleAverage_log_norm {c : ℂ} {R : ℝ} {f : ℂ → �
 /--
 **Jensen's Inequality**: Estimates the number of zeros of `f` in a ball of radius `r`
 given that `f` is analytic and bounded by `M` on a larger ball of radius `R`.
+@isnad1 id=le.6h5v.s8.354b5dd19457 from=seed src=0 shape=f152778e vocab=114083ad
 -/
 theorem AnalyticOnNhd.sum_divisor_le {c : ℂ} {r R M : ℝ} {f : ℂ → ℂ} (r_pos : 0 < |r|)
     (r_lt_R : |r| < |R|) (hM : 1 ≤ M) (h₁f : AnalyticOnNhd ℂ f (closedBall c |R|))

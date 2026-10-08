@@ -66,6 +66,9 @@ variation, and is therefore ae differentiable, together with a Fubini argument.
 -/
 
 
+/--
+@isnad1 id=memlp.1h5v.s7.4ab2c11e41e0 from=seed src=0 shape=b7c2c993 vocab=15928734
+-/
 theorem memLp_lineDeriv (hf : LipschitzWith C f) (v : E) :
     MemLp (fun x ↦ lineDeriv ℝ f x v) ∞ μ :=
   memLp_top_of_bound (aestronglyMeasurable_lineDeriv hf.continuous μ)
@@ -73,6 +76,9 @@ theorem memLp_lineDeriv (hf : LipschitzWith C f) (v : E) :
 
 variable [FiniteDimensional ℝ E] [IsAddHaarMeasure μ]
 
+/--
+@isnad1 id=eventual.1h5v.s7.f44ce42a4453 from=seed src=0 shape=a62d2f72 vocab=2099f5a8
+-/
 theorem ae_lineDifferentiableAt
     (hf : LipschitzWith C f) (v : E) :
     ∀ᵐ p ∂μ, LineDifferentiableAt ℝ f p v := by
@@ -90,6 +96,9 @@ theorem ae_lineDifferentiableAt
   convert! h's.comp 0 this with _ t
   simp only [add_assoc, Function.comp_apply, add_smul]
 
+/--
+@isnad1 id=locallyi.1h5v.s7.0b9ddf374f2d from=seed src=0 shape=bc1369fa vocab=f6a5c848
+-/
 theorem locallyIntegrable_lineDeriv (hf : LipschitzWith C f) (v : E) :
     LocallyIntegrable (fun x ↦ lineDeriv ℝ f x v) μ :=
   (hf.memLp_lineDeriv v).locallyIntegrable le_top
@@ -103,6 +112,9 @@ the derivative to the smooth function by integration by parts. As the derivative
 function is linear, this gives the result.
 -/
 
+/--
+@isnad1 id=tendsto.2h6v.s8.a079238b1310 from=seed src=0 shape=ea54e9f8 vocab=f70021d0
+-/
 theorem integral_inv_smul_sub_mul_tendsto_integral_lineDeriv_mul
     (hf : LipschitzWith C f) (hg : Integrable g μ) (v : E) :
     Tendsto (fun (t : ℝ) ↦ ∫ x, (t⁻¹ • (f (x + t • v) - f x)) * g x ∂μ) (𝓝[>] 0)
@@ -125,6 +137,9 @@ theorem integral_inv_smul_sub_mul_tendsto_integral_lineDeriv_mul
   · filter_upwards [hf.ae_lineDifferentiableAt v] with x hx
     exact hx.hasLineDerivAt.tendsto_slope_zero_right.mul tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.3h6v.s8.2ccd69348a2f from=seed src=0 shape=464115ac vocab=946bcb69
+-/
 theorem integral_inv_smul_sub_mul_tendsto_integral_lineDeriv_mul'
     (hf : LipschitzWith C f) (h'f : HasCompactSupport f) (hg : Continuous g) (v : E) :
     Tendsto (fun (t : ℝ) ↦ ∫ x, (t⁻¹ • (f (x + t • v) - f x)) * g x ∂μ) (𝓝[>] 0)
@@ -168,7 +183,9 @@ theorem integral_inv_smul_sub_mul_tendsto_integral_lineDeriv_mul'
     exact hx.hasLineDerivAt.tendsto_slope_zero_right.mul tendsto_const_nhds
 
 /-- Integration by parts formula for the line derivative of Lipschitz functions, assuming one of
-them is compactly supported. -/
+them is compactly supported.
+@isnad1 id=eq.3h7v.s8.e263af819824 from=seed src=0 shape=4ebdc38c vocab=63d964c5
+-/
 theorem integral_lineDeriv_mul_eq
     (hf : LipschitzWith C f) (hg : LipschitzWith D g) (h'g : HasCompactSupport g) (v : E) :
     ∫ x, lineDeriv ℝ f x v * g x ∂μ = ∫ x, lineDeriv ℝ g x (-v) * f x ∂μ := by
@@ -203,7 +220,9 @@ theorem integral_lineDeriv_mul_eq
   · exact (hf.continuous.mul hg.continuous).integrable_of_hasCompactSupport h'g.mul_left
 
 /-- The line derivative of a Lipschitz function is almost everywhere linear with respect to fixed
-coefficients. -/
+coefficients.
+@isnad1 id=eventual.1h8v.s8.84d633961cbc from=seed src=0 shape=0d6e4a28 vocab=f800e0d8
+-/
 theorem ae_lineDeriv_sum_eq
     (hf : LipschitzWith C f) {ι : Type*} (s : Finset ι) (a : ι → ℝ) (v : ι → E) :
     ∀ᵐ x ∂μ, lineDeriv ℝ f x (∑ i ∈ s, a i • v i) = ∑ i ∈ s, a i • lineDeriv ℝ f x (v i) := by
@@ -245,6 +264,9 @@ theorem ae_lineDeriv_sum_eq
 ### Step 3: construct the derivative using the line derivatives along a basis
 -/
 
+/--
+@isnad1 id=eventual.2h5v.s8.4fa8bd354552 from=seed src=0 shape=5349b45f vocab=79f52e62
+-/
 theorem ae_exists_fderiv_of_countable
     (hf : LipschitzWith C f) {s : Set E} (hs : s.Countable) :
     ∀ᵐ x ∂μ, ∃ (L : StrongDual ℝ E), ∀ v ∈ s, HasLineDerivAt ℝ f (L v) x v := by
@@ -263,7 +285,9 @@ theorem ae_exists_fderiv_of_countable
 
 omit [MeasurableSpace E] in
 /-- If a Lipschitz functions has line derivatives in a dense set of directions, all of them given by
-a single continuous linear map `L`, then it admits `L` as Fréchet derivative. -/
+a single continuous linear map `L`, then it admits `L` as Fréchet derivative.
+@isnad1 id=hasfderi.3h7v.s8.e0db22e986a2 from=seed src=0 shape=320e41aa vocab=28887eff
+-/
 theorem hasFDerivAt_of_hasLineDerivAt_of_closure
     {f : E → F} (hf : LipschitzWith C f) {s : Set E} (hs : sphere 0 1 ⊆ closure s)
     {L : E →L[ℝ] F} {x : E} (hL : ∀ v ∈ s, HasLineDerivAt ℝ f (L v) x v) :
@@ -319,7 +343,9 @@ theorem hasFDerivAt_of_hasLineDerivAt_of_closure
 /-- A real-valued function on a finite-dimensional space which is Lipschitz is
 differentiable almost everywhere. Superseded by
 `LipschitzWith.ae_differentiableAt` which works for functions taking value in any
-finite-dimensional space. -/
+finite-dimensional space.
+@isnad1 id=eventual.1h4v.s7.92c5823c98a7 from=seed src=0 shape=2a736a8e vocab=48954624
+-/
 theorem ae_differentiableAt_of_real (hf : LipschitzWith C f) :
     ∀ᵐ x ∂μ, DifferentiableAt ℝ f x := by
   obtain ⟨s, s_count, s_dense⟩ : ∃ (s : Set E), s.Countable ∧ Dense s :=
@@ -338,7 +364,9 @@ namespace LipschitzOnWith
 /-- A real-valued function on a finite-dimensional space which is Lipschitz on a set is
 differentiable almost everywhere in this set. Superseded by
 `LipschitzOnWith.ae_differentiableWithinAt_of_mem` which works for functions taking value in any
-finite-dimensional space. -/
+finite-dimensional space.
+@isnad1 id=eventual.1h5v.s7.3318cf4de03a from=seed src=0 shape=d8408aca vocab=c50161db
+-/
 theorem ae_differentiableWithinAt_of_mem_of_real (hf : LipschitzOnWith C f s) :
     ∀ᵐ x ∂μ, x ∈ s → DifferentiableWithinAt ℝ f s x := by
   obtain ⟨g, g_lip, hg⟩ : ∃ (g : E → ℝ), LipschitzWith C g ∧ EqOn f g s := hf.extend_real
@@ -348,7 +376,9 @@ theorem ae_differentiableWithinAt_of_mem_of_real (hf : LipschitzOnWith C f s) :
 /-- A function on a finite-dimensional space which is Lipschitz on a set and taking values in a
 product space is differentiable almost everywhere in this set. Superseded by
 `LipschitzOnWith.ae_differentiableWithinAt_of_mem` which works for functions taking value in any
-finite-dimensional space. -/
+finite-dimensional space.
+@isnad1 id=eventual.1h6v.s7.77fcc9204fff from=seed src=0 shape=fc90e035 vocab=b3a8f6d8
+-/
 theorem ae_differentiableWithinAt_of_mem_pi
     {ι : Type*} [Fintype ι] {f : E → ι → ℝ} {s : Set E}
     (hf : LipschitzOnWith C f s) : ∀ᵐ x ∂μ, x ∈ s → DifferentiableWithinAt ℝ f s x := by
@@ -360,7 +390,9 @@ theorem ae_differentiableWithinAt_of_mem_pi
   exact differentiableWithinAt_pi.2 (fun i ↦ hx i xs)
 
 /-- *Rademacher's theorem*: a function between finite-dimensional real vector spaces which is
-Lipschitz on a set is differentiable almost everywhere in this set. -/
+Lipschitz on a set is differentiable almost everywhere in this set.
+@isnad1 id=eventual.1h6v.s7.9a14095a4060 from=seed src=0 shape=6aae1861 vocab=c50161db
+-/
 theorem ae_differentiableWithinAt_of_mem {f : E → F} (hf : LipschitzOnWith C f s) :
     ∀ᵐ x ∂μ, x ∈ s → DifferentiableWithinAt ℝ f s x := by
   have A := (Basis.ofVectorSpace ℝ F).equivFun.toContinuousLinearEquiv
@@ -374,7 +406,9 @@ theorem ae_differentiableWithinAt_of_mem {f : E → F} (hf : LipschitzOnWith C f
   exact A.lipschitzWith.comp_lipschitzOnWith hf
 
 /-- *Rademacher's theorem*: a function between finite-dimensional real vector spaces which is
-Lipschitz on a set is differentiable almost everywhere in this set. -/
+Lipschitz on a set is differentiable almost everywhere in this set.
+@isnad1 id=eventual.2h6v.s7.9e236270d1e9 from=seed src=0 shape=913b031a vocab=bb74b5a3
+-/
 theorem ae_differentiableWithinAt {f : E → F} (hf : LipschitzOnWith C f s)
     (hs : MeasurableSet s) :
     ∀ᵐ x ∂(μ.restrict s), DifferentiableWithinAt ℝ f s x := by
@@ -384,20 +418,26 @@ theorem ae_differentiableWithinAt {f : E → F} (hf : LipschitzOnWith C f s)
 end LipschitzOnWith
 
 /-- *Rademacher's theorem*: a Lipschitz function between finite-dimensional real vector spaces is
-differentiable almost everywhere. -/
+differentiable almost everywhere.
+@isnad1 id=eventual.1h5v.s7.bb2faa244516 from=seed src=0 shape=fd2f1028 vocab=48954624
+-/
 theorem LipschitzWith.ae_differentiableAt {f : E → F} (h : LipschitzWith C f) :
     ∀ᵐ x ∂μ, DifferentiableAt ℝ f x := by
   rw [← lipschitzOnWith_univ] at h
   simpa [differentiableWithinAt_univ] using h.ae_differentiableWithinAt_of_mem
 
 /-- In a real finite-dimensional normed vector space,
-  the norm is almost everywhere differentiable. -/
+  the norm is almost everywhere differentiable.
+@isnad1 id=eventual.0h2v.s7.64e6471db2c1 from=seed src=0 shape=e3504fda vocab=77cbaa23
+-/
 theorem ae_differentiableAt_norm :
     ∀ᵐ x ∂μ, DifferentiableAt ℝ (‖·‖) x := lipschitzWith_one_norm.ae_differentiableAt
 
 omit [MeasurableSpace E] in
 /-- In a real finite-dimensional normed vector space,
-  the set of points where the norm is differentiable at is dense. -/
+  the set of points where the norm is differentiable at is dense.
+@isnad1 id=dense.0h1v.s6.b12297cbcb48 from=seed src=0 shape=e7fd7d14 vocab=5ffb439f
+-/
 theorem dense_differentiableAt_norm :
     Dense {x : E | DifferentiableAt ℝ (‖·‖) x} :=
   let _ : MeasurableSpace E := borel E

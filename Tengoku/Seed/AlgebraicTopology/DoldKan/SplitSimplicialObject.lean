@@ -44,12 +44,18 @@ noncomputable def πSummand [HasZeroMorphisms C] {Δ : SimplexCategoryᵒᵖ} (A
     · exact 0)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s7.7cca29072012 from=seed src=0 shape=81bff1b1 vocab=62948ca3
+-/
 @[reassoc (attr := simp)]
 theorem cofan_inj_πSummand_eq_id [HasZeroMorphisms C] {Δ : SimplexCategoryᵒᵖ} (A : IndexSet Δ) :
     (s.cofan Δ).inj A ≫ s.πSummand A = 𝟙 _ := by
   simp [πSummand]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s8.aedc65356d27 from=seed src=0 shape=e3a3e1c1 vocab=9f0b89af
+-/
 @[reassoc (attr := simp)]
 theorem cofan_inj_πSummand_eq_zero [HasZeroMorphisms C] {Δ : SimplexCategoryᵒᵖ} (A B : IndexSet Δ)
     (h : B ≠ A) : (s.cofan Δ).inj A ≫ s.πSummand B = 0 := by
@@ -59,6 +65,9 @@ theorem cofan_inj_πSummand_eq_zero [HasZeroMorphisms C] {Δ : SimplexCategory�
 variable [Preadditive C]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s8.61acda017920 from=seed src=0 shape=3981955b vocab=7966b0b2
+-/
 theorem decomposition_id (Δ : SimplexCategoryᵒᵖ) :
     𝟙 (X.obj Δ) = ∑ A : IndexSet Δ, s.πSummand A ≫ (s.cofan Δ).inj A := by
   apply s.hom_ext'
@@ -71,6 +80,9 @@ theorem decomposition_id (Δ : SimplexCategoryᵒᵖ) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.00af9d47f4d2 from=seed src=0 shape=f77ad288 vocab=2f948bb0
+-/
 @[reassoc (attr := simp)]
 theorem σ_comp_πSummand_id_eq_zero {n : ℕ} (i : Fin (n + 1)) :
     X.σ i ≫ s.πSummand (IndexSet.id (op ⦋n + 1⦌)) = 0 := by
@@ -89,7 +101,9 @@ theorem σ_comp_πSummand_id_eq_zero {n : ℕ} (i : Fin (n + 1)) :
 set_option backward.isDefEq.respectTransparency false in
 /-- If a simplicial object `X` in an additive category is split,
 then `PInfty` vanishes on all the summands of `X _⦋n⦌` which do
-not correspond to the identity of `⦋n⦌`. -/
+not correspond to the identity of `⦋n⦌`.
+@isnad1 id=eq.1h5v.s8.94cc18483992 from=seed src=0 shape=1695075a vocab=e0286f4a
+-/
 theorem cofan_inj_comp_PInfty_eq_zero {X : SimplicialObject C} (s : SimplicialObject.Splitting X)
     {n : ℕ} (A : SimplicialObject.Splitting.IndexSet (op ⦋n⦌)) (hA : ¬A.EqId) :
     (s.cofan _).inj A ≫ PInfty.f n = 0 := by
@@ -97,6 +111,9 @@ theorem cofan_inj_comp_PInfty_eq_zero {X : SimplicialObject C} (s : SimplicialOb
   rw [SimplicialObject.Splitting.cofan_inj_eq, assoc, degeneracy_comp_PInfty X n A.e hA, comp_zero]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h6v.s9.d835634c9144 from=seed src=0 shape=a9e95271 vocab=3eb8693d
+-/
 theorem comp_PInfty_eq_zero_iff {Z : C} {n : ℕ} (f : Z ⟶ X _⦋n⦌) :
     f ≫ PInfty.f n = 0 ↔ f ≫ s.πSummand (IndexSet.id (op ⦋n⦌)) = 0 := by
   constructor
@@ -122,6 +139,9 @@ theorem comp_PInfty_eq_zero_iff {Z : C} {n : ℕ} (f : Z ⟶ X _⦋n⦌) :
       rw [assoc, reassoc_of% h, zero_comp]
     · simp only [assoc, s.cofan_inj_comp_PInfty_eq_zero A hA, comp_zero]
 
+/--
+@isnad1 id=eq.0h4v.s8.cb991aa86b8a from=seed src=0 shape=963f8bfa vocab=adf5d959
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_comp_πSummand_id (n : ℕ) :
     PInfty.f n ≫ s.πSummand (IndexSet.id (op ⦋n⦌)) = s.πSummand (IndexSet.id (op ⦋n⦌)) := by
@@ -131,6 +151,9 @@ theorem PInfty_comp_πSummand_id (n : ℕ) :
     sub_self]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s8.2f486be308b0 from=seed src=0 shape=57a4013d vocab=373adb60
+-/
 @[reassoc (attr := simp)]
 theorem πSummand_comp_cofan_inj_id_comp_PInfty_eq_PInfty (n : ℕ) :
     s.πSummand (IndexSet.id (op ⦋n⦌)) ≫ (s.cofan _).inj (IndexSet.id (op ⦋n⦌)) ≫ PInfty.f n =
@@ -149,6 +172,9 @@ noncomputable def d (i j : ℕ) : s.N i ⟶ s.N j :=
   (s.cofan _).inj (IndexSet.id (op ⦋i⦌)) ≫ K[X].d i j ≫ s.πSummand (IndexSet.id (op ⦋j⦌))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s9.2df01e638370 from=seed src=0 shape=3a4fdb3e vocab=02763c4f
+-/
 theorem ιSummand_comp_d_comp_πSummand_eq_zero (j k : ℕ) (A : IndexSet (op ⦋j⦌)) (hA : ¬A.EqId) :
     (s.cofan _).inj A ≫ K[X].d j k ≫ s.πSummand (IndexSet.id (op ⦋k⦌)) = 0 := by
   rw [A.eqId_iff_mono] at hA
@@ -227,6 +253,9 @@ noncomputable def toKaroubiNondegComplexIsoN₁ :
       HomologicalComplex.comp_f, N₁_obj_p, Karoubi.id_f]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s10.aa37437f1873 from=seed src=0 shape=539218f9 vocab=ee9546d4
+-/
 @[reassoc (attr := simp)]
 lemma toKaroubiNondegComplexIsoN₁_hom_f_PInfty :
     dsimp% s.toKaroubiNondegComplexIsoN₁.hom.f ≫ PInfty =
@@ -234,6 +263,9 @@ lemma toKaroubiNondegComplexIsoN₁_hom_f_PInfty :
   simpa using s.toKaroubiNondegComplexIsoN₁.hom.comm
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s10.847c22596ef2 from=seed src=0 shape=ec4a466e vocab=934b69c3
+-/
 @[reassoc (attr := simp)]
 lemma toKaroubiNondegComplexIsoN₁_hom_inv_id_f :
     dsimp% s.toKaroubiNondegComplexIsoN₁.hom.f ≫ s.toKaroubiNondegComplexIsoN₁.inv.f = 𝟙 _ := by
@@ -260,17 +292,26 @@ noncomputable def fromNondegComplex : s.nondegComplex ⟶ K[X] :=
     (s.toKaroubiNondegComplexIsoN₁.hom ≫ { f := PInfty })
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s7.daf5efe8ad78 from=seed src=0 shape=87ad5569 vocab=b1d60e4b
+-/
 @[reassoc (attr := simp)]
 lemma PInfty_toNondegComplex : PInfty ≫ s.toNondegComplex = s.toNondegComplex :=
   (toKaroubi _).map_injective (by simp [toNondegComplex])
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s7.64332539524f from=seed src=0 shape=f996e84e vocab=546c6b9d
+-/
 @[reassoc (attr := simp)]
 lemma fromNondegComplex_toNondegComplex :
     s.fromNondegComplex ≫ s.toNondegComplex = 𝟙 _ :=
   (toKaroubi _).map_injective (by simp [toNondegComplex, fromNondegComplex])
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s10.369b784f6a87 from=seed src=0 shape=cfac3a47 vocab=c0e3d092
+-/
 @[reassoc]
 lemma toNondegComplex_f (n : ℕ) :
     s.toNondegComplex.f n = PInfty.f n ≫ s.toKaroubiNondegComplexIsoN₁.inv.f.f n := by
@@ -278,19 +319,31 @@ lemma toNondegComplex_f (n : ℕ) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s7.4d1c265d5f07 from=seed src=0 shape=a38cd413 vocab=2fcfdffa
+-/
 @[reassoc]
 lemma fromNondegComplex_f (n : ℕ) :
     s.fromNondegComplex.f n = s.ι n ≫ PInfty.f n := by
   simp [fromNondegComplex, fullyFaithfulToKaroubi,
     cofan, IndexSet.id, IndexSet.e]
 
+/--
+@isnad1 id=issplite.0h3v.s6.84ec1723cf63 from=seed src=0 shape=8ea133c5 vocab=131a5970
+-/
 instance isSplitEpi_toNondegComplex : IsSplitEpi s.toNondegComplex where
   exists_splitEpi := ⟨⟨s.fromNondegComplex, by simp⟩⟩
 
+/--
+@isnad1 id=issplitm.0h3v.s6.7c3a7e5f3e8c from=seed src=0 shape=07acc17d vocab=9eb0a931
+-/
 instance isSplitMono_fromNondegComplex : IsSplitMono s.fromNondegComplex where
   exists_splitMono := ⟨⟨s.toNondegComplex, by simp⟩⟩
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s7.52357f0ccc05 from=seed src=0 shape=74a00351 vocab=bd0fbfb3
+-/
 @[reassoc (attr := simp)]
 lemma toNondegComplex_fromNondegComplex :
     s.toNondegComplex ≫ s.fromNondegComplex = PInfty :=

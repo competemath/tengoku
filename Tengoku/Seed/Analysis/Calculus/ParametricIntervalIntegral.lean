@@ -31,7 +31,9 @@ namespace intervalIntegral
 /-- Differentiation under integral of `x ↦ ∫ t in a..b, F x t` at a given point `x₀`, assuming
 `F x₀` is integrable, `x ↦ F x a` is locally Lipschitz on a neighborhood of `x₀` for ae `a`
 (with a neighborhood independent of `a`) with integrable Lipschitz bound, and `F x` is ae-measurable
-for `x` in a possibly smaller neighborhood of `x₀`. -/
+for `x` in a possibly smaller neighborhood of `x₀`.
+@isnad1 id=and.7h11v.s10.a8d5947256af from=seed src=0 shape=db765898 vocab=3fe62a59
+-/
 nonrec theorem hasFDerivAt_integral_of_dominated_loc_of_lip
     {F : H → ℝ → E} {F' : ℝ → H →L[𝕜] E} {x₀ : H}
     (hs : s ∈ 𝓝 x₀) (hF_meas : ∀ᶠ x in 𝓝 x₀, AEStronglyMeasurable (F x) (μ.restrict (Ι a b)))
@@ -53,7 +55,9 @@ nonrec theorem hasFDerivAt_integral_of_dominated_loc_of_lip
 /-- Differentiation under integral of `x ↦ ∫ F x a` at a given point `x₀`, assuming
 `F x₀` is integrable, `x ↦ F x a` is differentiable on a neighborhood of `x₀` for ae `a` with
 derivative norm uniformly bounded by an integrable function (the neighborhood independent of `a`),
-and `F x` is ae-measurable for `x` in a possibly smaller neighborhood of `x₀`. -/
+and `F x` is ae-measurable for `x` in a possibly smaller neighborhood of `x₀`.
+@isnad1 id=hasfderi.7h11v.s10.62e81117b2b5 from=seed src=0 shape=20526861 vocab=6804a8f1
+-/
 nonrec theorem hasFDerivAt_integral_of_dominated_of_fderiv_le
     {F : H → ℝ → E} {F' : H → ℝ → H →L[𝕜] E} {x₀ : H} (hs : s ∈ 𝓝 x₀)
     (hF_meas : ∀ᶠ x in 𝓝 x₀, AEStronglyMeasurable (F x) (μ.restrict (Ι a b)))
@@ -72,7 +76,9 @@ nonrec theorem hasFDerivAt_integral_of_dominated_of_fderiv_le
 /-- Derivative under integral of `x ↦ ∫ F x a` at a given point `x₀ : 𝕜`, `𝕜 = ℝ` or `𝕜 = ℂ`,
 assuming `F x₀` is integrable, `x ↦ F x a` is locally Lipschitz on a neighborhood of `x₀` for ae `a`
 (with a neighborhood independent of `a`) with integrable Lipschitz bound, and `F x` is
-ae-measurable for `x` in a possibly smaller neighborhood of `x₀`. -/
+ae-measurable for `x` in a possibly smaller neighborhood of `x₀`.
+@isnad1 id=and.7h10v.s8.ff6f6a79ec2d from=seed src=0 shape=d08cb381 vocab=dce53665
+-/
 nonrec theorem hasDerivAt_integral_of_dominated_loc_of_lip {F : 𝕜 → ℝ → E} {F' : ℝ → E} {x₀ : 𝕜}
     {s : Set 𝕜} (hs : s ∈ 𝓝 x₀)
     (hF_meas : ∀ᶠ x in 𝓝 x₀, AEStronglyMeasurable (F x) (μ.restrict (Ι a b)))
@@ -94,7 +100,9 @@ nonrec theorem hasDerivAt_integral_of_dominated_loc_of_lip {F : 𝕜 → ℝ →
 /-- Derivative under integral of `x ↦ ∫ F x a` at a given point `x₀ : 𝕜`, `𝕜 = ℝ` or `𝕜 = ℂ`,
 assuming `F x₀` is integrable, `x ↦ F x a` is differentiable on a neighborhood of `x₀` for ae `a`
 (with a neighborhood independent of `a`) with derivative uniformly bounded by an integrable
-function, and `F x` is ae-measurable for `x` in a possibly smaller neighborhood of `x₀`. -/
+function, and `F x` is ae-measurable for `x` in a possibly smaller neighborhood of `x₀`.
+@isnad1 id=and.7h10v.s8.e5c228d6d757 from=seed src=0 shape=e78eb56a vocab=e111f5f1
+-/
 nonrec theorem hasDerivAt_integral_of_dominated_loc_of_deriv_le
     {F : 𝕜 → ℝ → E} {F' : 𝕜 → ℝ → E} {x₀ : 𝕜} {s : Set 𝕜}
     (hs : s ∈ 𝓝 x₀) (hF_meas : ∀ᶠ x in 𝓝 x₀, AEStronglyMeasurable (F x) (μ.restrict (Ι a b)))

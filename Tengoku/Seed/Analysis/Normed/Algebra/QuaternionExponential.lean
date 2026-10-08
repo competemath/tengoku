@@ -33,11 +33,16 @@ open NormedSpace
 
 namespace Quaternion
 
+/--
+@isnad1 id=eq.0h1v.s8.7af2cf928295 from=seed src=0 shape=a8e5eaaa vocab=0cba2601
+-/
 @[simp, norm_cast]
 theorem exp_coe (r : ℝ) : exp (r : ℍ[ℝ]) = ↑(exp r) :=
   (map_exp (algebraMap ℝ ℍ[ℝ]) (continuous_algebraMap _ _) _).symm
 
-/-- The even terms of `expSeries` are real, and correspond to the series for $\cos ‖q‖$. -/
+/-- The even terms of `expSeries` are real, and correspond to the series for $\cos ‖q‖$.
+@isnad1 id=eq.1h2v.s9.fd7bf15cc840 from=seed src=0 shape=0f2b5dcc vocab=04683a56
+-/
 theorem expSeries_even_of_imaginary {q : Quaternion ℝ} (hq : q.re = 0) (n : ℕ) :
     expSeries ℝ (Quaternion ℝ) (2 * n) (fun _ => q) =
       ↑((-1 : ℝ) ^ n * ‖q‖ ^ (2 * n) / (2 * n)!) := by
@@ -57,7 +62,9 @@ theorem expSeries_even_of_imaginary {q : Quaternion ℝ} (hq : q.re = 0) (n : �
     ring_nf
 
 /-- The odd terms of `expSeries` are real, and correspond to the series for
-$\frac{q}{‖q‖} \sin ‖q‖$. -/
+$\frac{q}{‖q‖} \sin ‖q‖$.
+@isnad1 id=eq.1h2v.s10.823c1ed46ac3 from=seed src=0 shape=5e0715e8 vocab=afac3636
+-/
 theorem expSeries_odd_of_imaginary {q : Quaternion ℝ} (hq : q.re = 0) (n : ℕ) :
     expSeries ℝ (Quaternion ℝ) (2 * n + 1) (fun _ => q) =
       (((-1 : ℝ) ^ n * ‖q‖ ^ (2 * n + 1) / (2 * n + 1)!) / ‖q‖) • q := by
@@ -80,7 +87,9 @@ theorem expSeries_odd_of_imaginary {q : Quaternion ℝ} (hq : q.re = 0) (n : ℕ
     ring
 
 /-- Auxiliary result; if the power series corresponding to `Real.cos` and `Real.sin` evaluated
-at `‖q‖` tend to `c` and `s`, then the exponential series tends to `c + (s / ‖q‖)`. -/
+at `‖q‖` tend to `c` and `s`, then the exponential series tends to `c + (s / ‖q‖)`.
+@isnad1 id=hassum.3h3v.s9.a27a9604ed0f from=seed src=0 shape=67854048 vocab=ec3c6150
+-/
 theorem hasSum_expSeries_of_imaginary {q : Quaternion ℝ} (hq : q.re = 0) {c s : ℝ}
     (hc : HasSum (fun n => (-1 : ℝ) ^ n * ‖q‖ ^ (2 * n) / (2 * n)!) c)
     (hs : HasSum (fun n => (-1 : ℝ) ^ n * ‖q‖ ^ (2 * n + 1) / (2 * n + 1)!) s) :
@@ -96,7 +105,9 @@ theorem hasSum_expSeries_of_imaginary {q : Quaternion ℝ} (hq : q.re = 0) {c s 
     rw [expSeries_odd_of_imaginary hq]
 
 set_option backward.isDefEq.respectTransparency false in -- This is needed or we get errors in later declarations.
-/-- The closed form for the quaternion exponential on imaginary quaternions. -/
+/-- The closed form for the quaternion exponential on imaginary quaternions.
+@isnad1 id=eq.1h1v.s7.4ac66cbc7026 from=seed src=0 shape=99551500 vocab=180e0fc1
+-/
 theorem exp_of_re_eq_zero (q : Quaternion ℝ) (hq : q.re = 0) :
     exp q = ↑(Real.cos ‖q‖) + (Real.sin ‖q‖ / ‖q‖) • q := by
   rw [exp_eq_tsum ℝ]
@@ -105,7 +116,9 @@ theorem exp_of_re_eq_zero (q : Quaternion ℝ) (hq : q.re = 0) :
   exact hasSum_expSeries_of_imaginary hq (Real.hasSum_cos _) (Real.hasSum_sin _)
 
 set_option backward.isDefEq.respectTransparency false in -- This is needed or we get errors in later declarations.
-/-- The closed form for the quaternion exponential on arbitrary quaternions. -/
+/-- The closed form for the quaternion exponential on arbitrary quaternions.
+@isnad1 id=eq.0h1v.s9.b2387dc4bdbd from=seed src=0 shape=391fe9cc vocab=f42e1524
+-/
 theorem exp_eq (q : Quaternion ℝ) :
     exp q = exp q.re • (↑(Real.cos ‖q.im‖) + (Real.sin ‖q.im‖ / ‖q.im‖) • q.im) := by
   let +nondep : NormedAlgebra ℚ ℍ := .restrictScalars ℚ ℝ ℍ
@@ -113,11 +126,20 @@ theorem exp_eq (q : Quaternion ℝ) :
     re_add_im]
   exact Algebra.commutes q.re (_ : ℍ[ℝ])
 
+/--
+@isnad1 id=eq.0h1v.s7.fc41aa61f2df from=seed src=0 shape=baf1d5b2 vocab=4bcb1d70
+-/
 theorem re_exp (q : ℍ[ℝ]) : (exp q).re = exp q.re * Real.cos ‖q - q.re‖ := by simp [exp_eq]
 
+/--
+@isnad1 id=eq.0h1v.s8.d63d2e00812b from=seed src=0 shape=7b47dc5d vocab=8eecbd66
+-/
 theorem im_exp (q : ℍ[ℝ]) : (exp q).im = (exp q.re * (Real.sin ‖q.im‖ / ‖q.im‖)) • q.im := by
   simp [exp_eq, smul_smul]
 
+/--
+@isnad1 id=eq.0h1v.s9.6e05e974e7c5 from=seed src=0 shape=3e786c16 vocab=5cacbff6
+-/
 theorem normSq_exp (q : ℍ[ℝ]) : normSq (exp q) = exp q.re ^ 2 :=
   calc
     normSq (exp q) =
@@ -135,7 +157,9 @@ theorem normSq_exp (q : ℍ[ℝ]) : normSq (exp q) = exp q.re ^ 2 :=
     _ = exp q.re ^ 2 := by rw [Real.cos_sq_add_sin_sq, mul_one]
 
 /-- Note that this implies that exponentials of pure imaginary quaternions are unit quaternions
-since in that case the RHS is `1` via `NormedSpace.exp_zero` and `norm_one`. -/
+since in that case the RHS is `1` via `NormedSpace.exp_zero` and `norm_one`.
+@isnad1 id=eq.0h1v.s6.bfe103cfff1c from=seed src=0 shape=3a8f291b vocab=1c89568a
+-/
 @[simp]
 theorem norm_exp (q : ℍ[ℝ]) : ‖exp q‖ = ‖exp q.re‖ := by
   rw [norm_eq_sqrt_real_inner (exp q), inner_self, normSq_exp, Real.sqrt_sq_eq_abs,

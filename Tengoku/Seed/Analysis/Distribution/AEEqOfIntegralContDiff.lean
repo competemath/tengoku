@@ -41,7 +41,9 @@ variable {H : Type*} [TopologicalSpace H] (I : ModelWithCorners ℝ E H)
   {f f' : M → F} {μ : Measure M}
 
 /-- If a locally integrable function `f` on a finite-dimensional real manifold has zero integral
-when multiplied by any smooth compactly supported function, then `f` vanishes almost everywhere. -/
+when multiplied by any smooth compactly supported function, then `f` vanishes almost everywhere.
+@isnad1 id=eventual.2h7v.s8.4428b2caffe9 from=seed src=0 shape=280ecfd4 vocab=791a4b42
+-/
 theorem ae_eq_zero_of_integral_contMDiff_smul_eq_zero [SigmaCompactSpace M]
     (hf : LocallyIntegrable f μ)
     (h : ∀ g : M → ℝ, CMDiff ∞ g → HasCompactSupport g → ∫ x, g x • f x ∂μ = 0) :
@@ -120,7 +122,9 @@ instance (U : Opens M) : BorelSpace U := inferInstanceAs (BorelSpace (U : Set M)
 
 /-- If a function `f` locally integrable on an open subset `U` of a finite-dimensional real
   manifold has zero integral when multiplied by any smooth function compactly supported
-  in `U`, then `f` vanishes almost everywhere in `U`. -/
+  in `U`, then `f` vanishes almost everywhere in `U`.
+@isnad1 id=eventual.4h8v.s8.fe6abd3dafa7 from=seed src=0 shape=165f38ab vocab=523ceaee
+-/
 theorem IsOpen.ae_eq_zero_of_integral_contMDiff_smul_eq_zero' {U : Set M} (hU : IsOpen U)
     (hSig : IsSigmaCompact U) (hf : LocallyIntegrableOn f U μ)
     (h : ∀ g : M → ℝ,
@@ -146,6 +150,9 @@ theorem IsOpen.ae_eq_zero_of_integral_contMDiff_smul_eq_zero' {U : Set M} (hU : 
 
 variable [SigmaCompactSpace M]
 
+/--
+@isnad1 id=eventual.3h8v.s8.54e7e98b5cb9 from=seed src=0 shape=7bd4f20e vocab=4ce1ce1a
+-/
 theorem IsOpen.ae_eq_zero_of_integral_contMDiff_smul_eq_zero {U : Set M} (hU : IsOpen U)
     (hf : LocallyIntegrableOn f U μ)
     (h : ∀ g : M → ℝ,
@@ -160,7 +167,9 @@ theorem IsOpen.ae_eq_zero_of_integral_contMDiff_smul_eq_zero {U : Set M} (hU : I
     (isSigmaCompact_iff_sigmaCompactSpace.mpr inferInstance) hf h
 
 /-- If two locally integrable functions on a finite-dimensional real manifold have the same integral
-when multiplied by any smooth compactly supported function, then they coincide almost everywhere. -/
+when multiplied by any smooth compactly supported function, then they coincide almost everywhere.
+@isnad1 id=eventual.3h8v.s8.a1071e05ef09 from=seed src=0 shape=77f57d47 vocab=791a4b42
+-/
 theorem ae_eq_of_integral_contMDiff_smul_eq
     (hf : LocallyIntegrable f μ) (hf' : LocallyIntegrable f' μ) (h : ∀ (g : M → ℝ),
       CMDiff ∞ g → HasCompactSupport g → ∫ x, g x • f x ∂μ = ∫ x, g x • f' x ∂μ) :
@@ -183,7 +192,9 @@ section VectorSpace
 variable [MeasurableSpace E] [BorelSpace E] {f f' : E → F} {μ : Measure E}
 
 /-- If a locally integrable function `f` on a finite-dimensional real vector space has zero integral
-when multiplied by any smooth compactly supported function, then `f` vanishes almost everywhere. -/
+when multiplied by any smooth compactly supported function, then `f` vanishes almost everywhere.
+@isnad1 id=eventual.2h4v.s8.8279ec6d286c from=seed src=0 shape=ac41ee84 vocab=e5876d9c
+-/
 theorem ae_eq_zero_of_integral_contDiff_smul_eq_zero (hf : LocallyIntegrable f μ)
     (h : ∀ (g : E → ℝ), ContDiff ℝ ∞ g → HasCompactSupport g → ∫ x, g x • f x ∂μ = 0) :
     ∀ᵐ x ∂μ, f x = 0 :=
@@ -192,7 +203,9 @@ theorem ae_eq_zero_of_integral_contDiff_smul_eq_zero (hf : LocallyIntegrable f �
 
 /-- If two locally integrable functions on a finite-dimensional real vector space have the same
 integral when multiplied by any smooth compactly supported function, then they coincide almost
-everywhere. -/
+everywhere.
+@isnad1 id=eventual.3h5v.s8.733d616d3d38 from=seed src=0 shape=26cf00c5 vocab=e5876d9c
+-/
 theorem ae_eq_of_integral_contDiff_smul_eq
     (hf : LocallyIntegrable f μ) (hf' : LocallyIntegrable f' μ) (h : ∀ (g : E → ℝ),
       ContDiff ℝ ∞ g → HasCompactSupport g → ∫ x, g x • f x ∂μ = ∫ x, g x • f' x ∂μ) :
@@ -202,7 +215,9 @@ theorem ae_eq_of_integral_contDiff_smul_eq
 
 /-- If a function `f` locally integrable on an open subset `U` of a finite-dimensional real
   vector space has zero integral when multiplied by any smooth function compactly supported
-  in `U`, then `f` vanishes almost everywhere in `U`. -/
+  in `U`, then `f` vanishes almost everywhere in `U`.
+@isnad1 id=eventual.3h5v.s8.42ac66883982 from=seed src=0 shape=4c522498 vocab=9b71df32
+-/
 theorem IsOpen.ae_eq_zero_of_integral_contDiff_smul_eq_zero {U : Set E} (hU : IsOpen U)
     (hf : LocallyIntegrableOn f U μ)
     (h : ∀ (g : E → ℝ), ContDiff ℝ ∞ g → HasCompactSupport g → tsupport g ⊆ U →

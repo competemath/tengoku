@@ -59,8 +59,14 @@ instance : CategoryStruct (CatEnriched C) where
   id X := (eId Cat X).toFunctor.obj ⟨⟨()⟩⟩
   comp {X Y Z} f g := (eComp Cat X Y Z).toFunctor.obj (f, g)
 
+/--
+@isnad1 id=eq.0h2v.s7.7af8672ae183 from=seed src=0 shape=697f322b vocab=c449ab38
+-/
 theorem id_eq (X : CatEnriched C) : 𝟙 X = (eId Cat X).toFunctor.obj ⟨⟨()⟩⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.5b356b6d6616 from=seed src=0 shape=52ebc948 vocab=0d0cbb6e
+-/
 theorem comp_eq {X Y Z : CatEnriched C} (f : X ⟶ Y) (g : Y ⟶ Z) :
     f ≫ g = (eComp Cat X Y Z).toFunctor.obj (f, g) := rfl
 
@@ -71,16 +77,24 @@ composition bifunctor from the enriched category structure. -/
 def hComp {a b c : CatEnriched C} {f f' : a ⟶ b} {g g' : b ⟶ c}
     (η : f ⟶ f') (θ : g ⟶ g') : f ≫ g ⟶ f' ≫ g' := (eComp Cat a b c).toFunctor.map (η, θ)
 
+/--
+@isnad1 id=eq.0h6v.s7.be9076018d04 from=seed src=0 shape=805b01a6 vocab=a5a8b75a
+-/
 @[simp]
 theorem id_hComp_id {a b c : CatEnriched C} (f : a ⟶ b) (g : b ⟶ c) :
     hComp (𝟙 f) (𝟙 g) = 𝟙 (f ≫ g) := Functor.map_id ..
 
+/--
+@isnad1 id=eq.2h8v.s8.64981c161910 from=seed src=0 shape=4a891ff0 vocab=c5babf29
+-/
 @[simp]
 theorem eqToHom_hComp_eqToHom {a b c : CatEnriched C}
     {f f' : a ⟶ b} (α : f = f') {g g' : b ⟶ c} (β : g = g') :
     hComp (eqToHom α) (eqToHom β) = eqToHom (α ▸ β ▸ rfl) := by cases α; cases β; simp
 
-/-- The interchange law for horizontal and vertical composition of 2-cells in a bicategory. -/
+/-- The interchange law for horizontal and vertical composition of 2-cells in a bicategory.
+@isnad1 id=eq.0h14v.s8.c10addcb8bb4 from=seed src=0 shape=ab91b666 vocab=3cefdbd4
+-/
 @[simp]
 theorem hComp_comp {a b c : CatEnriched C} {f₁ f₂ f₃ : a ⟶ b} {g₁ g₂ g₃ : b ⟶ c}
     (η : f₁ ⟶ f₂) (η' : f₂ ⟶ f₃) (θ : g₁ ⟶ g₂) (θ' : g₂ ⟶ g₃) :
@@ -102,30 +116,48 @@ instance : EnrichedOrdinaryCategory Cat (CatEnriched C) where
   homEquiv_id _ :=
     ((Cat.Hom.equivFunctor _ _).trans Cat.fromChosenTerminalEquiv).symm_apply_eq.mpr rfl
 
+/--
+@isnad1 id=heq.0h6v.s8.c04620b2c9c5 from=seed src=0 shape=a454b90a vocab=2abc0de2
+-/
 theorem id_hComp_heq {a b : CatEnriched C} {f f' : a ⟶ b} (η : f ⟶ f') :
     HEq (hComp (𝟙 (𝟙 a)) η) η := by
   rw [id_eq, ← Functor.map_id]
   exact congr_arg_heq (·.toFunctor.map η) (e_id_comp (V := Cat) a b)
 
+/--
+@isnad1 id=eq.0h6v.s8.03ba0c9946a6 from=seed src=0 shape=f59978f8 vocab=454529d7
+-/
 theorem id_hComp {a b : CatEnriched C} {f f' : a ⟶ b} (η : f ⟶ f') :
     hComp (𝟙 (𝟙 a)) η = eqToHom (id_comp f) ≫ η ≫ eqToHom (id_comp f').symm := by
   simp [← heq_eq_eq, id_hComp_heq]
 
+/--
+@isnad1 id=heq.0h6v.s8.a6a438721641 from=seed src=0 shape=a8c680f4 vocab=2abc0de2
+-/
 theorem hComp_id_heq {a b : CatEnriched C} {f f' : a ⟶ b} (η : f ⟶ f') :
     HEq (hComp η (𝟙 (𝟙 b))) η := by
   rw [id_eq, ← Functor.map_id]
   exact congr_arg_heq (·.toFunctor.map η) (e_comp_id (V := Cat) a b)
 
+/--
+@isnad1 id=eq.0h6v.s8.19ac7a7dd29c from=seed src=0 shape=c0414bce vocab=88476ae8
+-/
 theorem hComp_id {a b : CatEnriched C} {f f' : a ⟶ b} (η : f ⟶ f') :
     hComp η (𝟙 (𝟙 b)) = eqToHom (comp_id f) ≫ η ≫ eqToHom (comp_id f').symm := by
   simp [← heq_eq_eq, hComp_id_heq]
 
+/--
+@isnad1 id=heq.0h14v.s8.c5c319bbbe40 from=seed src=0 shape=5cb61988 vocab=91600711
+-/
 theorem hComp_assoc_heq {a b c d : CatEnriched C} {f f' : a ⟶ b} {g g' : b ⟶ c} {h h' : c ⟶ d}
     (η : f ⟶ f') (θ : g ⟶ g') (κ : h ⟶ h') :
     HEq (hComp (hComp η θ) κ) (hComp η (hComp θ κ)) :=
   congr_arg_heq (·.toFunctor.map (X := (_, _, _)) (Y := (_, _, _)) (η, θ, κ))
     (e_assoc (V := Cat) a b c d)
 
+/--
+@isnad1 id=eq.0h14v.s9.e9f776ada3e4 from=seed src=0 shape=fb2b1f7a vocab=3d361c12
+-/
 theorem hComp_assoc {a b c d : CatEnriched C} {f f' : a ⟶ b} {g g' : b ⟶ c} {h h' : c ⟶ d}
     (η : f ⟶ f') (θ : g ⟶ g') (κ : h ⟶ h') :
     hComp (hComp η θ) κ =
@@ -186,12 +218,18 @@ hom-categories. -/
 def homEquiv {a b : CatEnrichedOrdinary C} : (a ⟶ b) ≃ (a.toBase ⟶ b.toBase) :=
   (eHomEquiv (V := Cat)).trans (Equiv.trans (Cat.Hom.equivFunctor _ _) Cat.fromChosenTerminalEquiv)
 
+/--
+@isnad1 id=eq.0h2v.s8.ea6ab89bb859 from=seed src=0 shape=56758f11 vocab=c9e7b8fe
+-/
 theorem homEquiv_id {a : CatEnrichedOrdinary C} : homEquiv (𝟙 a) = 𝟙 a.toBase := by
   unfold homEquiv
   simp only [Equiv.trans_apply]
   rw [eHomEquiv_id]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.f0875ff0716d from=seed src=0 shape=2e40309b vocab=4ec5a2bc
+-/
 theorem homEquiv_comp {a b c : CatEnrichedOrdinary C} (f : a ⟶ b) (g : b ⟶ c) :
     homEquiv (f ≫ g) = homEquiv f ≫ homEquiv g := by
   unfold homEquiv
@@ -217,9 +255,15 @@ def Hom.base {X Y : CatEnrichedOrdinary C} {f g : X ⟶ Y} (α : f ⟶ g) :
 def Hom.mk {X Y : CatEnrichedOrdinary C} {f g : X ⟶ Y} (α : homEquiv f ⟶ homEquiv g) :
     f ⟶ g := .mk' α
 
+/--
+@isnad1 id=eq.0h6v.s6.130c095b7992 from=seed src=0 shape=526afe00 vocab=56f9fb0e
+-/
 @[simp] theorem mk_base {X Y : CatEnrichedOrdinary C} {f g : X ⟶ Y} (α : f ⟶ g) :
     Hom.mk (Hom.base α) = α := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.940fd0c85d05 from=seed src=0 shape=1f6bb297 vocab=d0029c2f
+-/
 @[simp] theorem base_mk {X Y : CatEnrichedOrdinary C} {f g : X ⟶ Y} (α : homEquiv f ⟶ homEquiv g) :
     Hom.base (Hom.mk α) = α := rfl
 
@@ -227,22 +271,40 @@ instance {X Y : CatEnrichedOrdinary C} : CategoryStruct (X ⟶ Y) where
   id f := Hom.mk (𝟙 (homEquiv f))
   comp α β := Hom.mk (Hom.base α ≫ Hom.base β)
 
+/--
+@isnad1 id=eq.0h4v.s8.0591e0c1b479 from=seed src=0 shape=cc31b81d vocab=9a59608d
+-/
 theorem Hom.id_eq {X Y : CatEnrichedOrdinary C} (f : X ⟶ Y) :
     𝟙 f = Hom.mk (𝟙 (homEquiv f)) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.4c68a6e21a26 from=seed src=0 shape=5558fcfa vocab=101a7d06
+-/
 @[simp] theorem Hom.base_id {X Y : CatEnrichedOrdinary C} (f : X ⟶ Y) :
     Hom.base (𝟙 f) = 𝟙 (homEquiv f) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.e87790903756 from=seed src=0 shape=81ad33d6 vocab=bb56af88
+-/
 theorem Hom.comp_eq {X Y : CatEnrichedOrdinary C} {f g h : X ⟶ Y}
     (α : f ⟶ g) (β : g ⟶ h) : (α ≫ β) = Hom.mk (Hom.base α ≫ Hom.base β) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.b6dbd14027a9 from=seed src=0 shape=2b68a83b vocab=77e42995
+-/
 @[simp] theorem Hom.base_comp {X Y : CatEnrichedOrdinary C} {f g h : X ⟶ Y}
     (α : f ⟶ g) (β : g ⟶ h) : Hom.base (α ≫ β) = Hom.base α ≫ Hom.base β := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.d1d9d29f29f1 from=seed src=0 shape=6f060094 vocab=6ed845df
+-/
 theorem Hom.mk_comp {X Y : CatEnrichedOrdinary C} {f g h : X ⟶ Y}
     (α : homEquiv f ⟶ homEquiv g) (β : homEquiv g ⟶ homEquiv h) :
     Hom.mk (α ≫ β) = Hom.mk α ≫ Hom.mk β := rfl
 
+/--
+@isnad1 id=eq.1h7v.s9.15ce0b82b31d from=seed src=0 shape=d1311238 vocab=480de5fa
+-/
 @[ext] theorem Hom.ext {X Y : CatEnrichedOrdinary C} {f g : X ⟶ Y} (α β : f ⟶ g)
     (H : Hom.base α = Hom.base β) : α = β := by cases α; cases β; cases H; rfl
 
@@ -251,6 +313,9 @@ of objects is equivalent to the type `X ⟶ Y` defined by the category structure
 definition transfers the category structure to the latter type of objects. -/
 instance {X Y : CatEnrichedOrdinary C} : Category (X ⟶ Y) where
 
+/--
+@isnad1 id=eq.1h5v.s10.9ab750682bb0 from=seed src=0 shape=8c6de5ec vocab=4826ab2f
+-/
 @[simp] theorem Hom.base_eqToHom {X Y : CatEnrichedOrdinary C} {f g : X ⟶ Y} (α : f = g) :
     Hom.base (eqToHom α) = eqToHom (congrArg _ α) := by cases α; rfl
 
@@ -262,31 +327,48 @@ def hComp {a b c : CatEnrichedOrdinary C} {f f' : a ⟶ b} {g g' : b ⟶ c}
     eqToHom (homEquiv_comp f g) ≫ CatEnriched.hComp (Hom.base η) (Hom.base θ) ≫
     eqToHom (homEquiv_comp f' g').symm
 
+/--
+@isnad1 id=eq.0h6v.s7.6b5741728915 from=seed src=0 shape=764f5e03 vocab=84de36ea
+-/
 @[simp]
 theorem id_hComp_id {a b c : CatEnrichedOrdinary C} (f : a ⟶ b) (g : b ⟶ c) :
     hComp (𝟙 f) (𝟙 g) = 𝟙 (f ≫ g) := by simp [hComp, Hom.id_eq]
 
+/--
+@isnad1 id=eq.2h8v.s8.69403584fd04 from=seed src=0 shape=08f93584 vocab=c8fd3f08
+-/
 @[simp]
 theorem eqToHom_hComp_eqToHom {a b c : CatEnrichedOrdinary C}
     {f f' : a ⟶ b} (α : f = f') {g g' : b ⟶ c} (β : g = g') :
     hComp (eqToHom α) (eqToHom β) = eqToHom (α ▸ β ▸ rfl) := by cases α; cases β; simp
 
-/-- The interchange law for horizontal and vertical composition of 2-cells in a bicategory. -/
+/-- The interchange law for horizontal and vertical composition of 2-cells in a bicategory.
+@isnad1 id=eq.0h14v.s8.97535df59500 from=seed src=0 shape=688042d2 vocab=0a28dc9d
+-/
 @[simp]
 theorem hComp_comp {a b c : CatEnrichedOrdinary C} {f₁ f₂ f₃ : a ⟶ b} {g₁ g₂ g₃ : b ⟶ c}
     (η : f₁ ⟶ f₂) (η' : f₂ ⟶ f₃) (θ : g₁ ⟶ g₂) (θ' : g₂ ⟶ g₃) :
     hComp η θ ≫ hComp η' θ' = hComp (η ≫ η') (θ ≫ θ') := by
   simp [hComp, ← CatEnriched.hComp_comp, Hom.comp_eq]
 
+/--
+@isnad1 id=eq.0h6v.s8.c9282725b455 from=seed src=0 shape=b723a0ae vocab=a0694cc9
+-/
 theorem id_hComp {a b : CatEnrichedOrdinary C} {f f' : a ⟶ b} (η : f ⟶ f') :
     hComp (𝟙 (𝟙 a)) η = eqToHom (id_comp f) ≫ η ≫ eqToHom (id_comp f').symm := by
   ext
   simp only [hComp, Hom.base_id, base_mk, ← heq_eq_eq, eqToHom_comp_heq_iff, comp_eqToHom_heq_iff]
   rw [homEquiv_id]; simp [CatEnriched.id_hComp_heq]
 
+/--
+@isnad1 id=heq.0h6v.s7.35fd3e0e9332 from=seed src=0 shape=b7e24ffd vocab=5c5617af
+-/
 theorem id_hComp_heq {a b : CatEnrichedOrdinary C} {f f' : a ⟶ b} (η : f ⟶ f') :
     HEq (hComp (𝟙 (𝟙 a)) η) η := by simp [id_hComp]
 
+/--
+@isnad1 id=eq.0h6v.s8.011fb06e4520 from=seed src=0 shape=e4a2a308 vocab=264f4542
+-/
 theorem hComp_id {a b : CatEnrichedOrdinary C} {f f' : a ⟶ b} (η : f ⟶ f') :
     hComp η (𝟙 (𝟙 b)) = eqToHom (comp_id f) ≫ η ≫ eqToHom (comp_id f').symm := by
   ext
@@ -294,11 +376,20 @@ theorem hComp_id {a b : CatEnrichedOrdinary C} {f f' : a ⟶ b} (η : f ⟶ f') 
   rw [homEquiv_id]
   simp [CatEnriched.hComp_id_heq]
 
+/--
+@isnad1 id=heq.0h6v.s7.13a2d760a8c3 from=seed src=0 shape=da825b43 vocab=5c5617af
+-/
 theorem hComp_id_heq {a b : CatEnrichedOrdinary C} {f f' : a ⟶ b} (η : f ⟶ f') :
     HEq (hComp η (𝟙 (𝟙 b))) η := by simp [hComp_id]
 
+/--
+@isnad1 id=eq.0h2v.s4.46b74a1897d8 from=seed src=0 shape=99144a30 vocab=4309f20a
+-/
 theorem id_eq_eqToHom {C} [Category* C] (X : C) : 𝟙 X = eqToHom rfl := rfl
 
+/--
+@isnad1 id=eq.0h14v.s9.49398b288ef6 from=seed src=0 shape=1e1b234b vocab=8fd7645b
+-/
 theorem hComp_assoc {a b c d : CatEnrichedOrdinary C} {f f' : a ⟶ b} {g g' : b ⟶ c} {h h' : c ⟶ d}
     (η : f ⟶ f') (θ : g ⟶ g') (κ : h ⟶ h') :
     hComp (hComp η θ) κ =
@@ -312,6 +403,9 @@ theorem hComp_assoc {a b c d : CatEnrichedOrdinary C} {f f' : a ⟶ b} {g g' : b
   iterate 4 rw [← CatEnriched.hComp_comp, id_eq_eqToHom, CatEnriched.eqToHom_hComp_eqToHom]
   simp [CatEnriched.hComp_assoc_heq]
 
+/--
+@isnad1 id=heq.0h14v.s8.d9f144114c18 from=seed src=0 shape=83d87a4f vocab=4a4a7879
+-/
 theorem hComp_assoc_heq {a b c d : CatEnrichedOrdinary C}
     {f f' : a ⟶ b} {g g' : b ⟶ c} {h h' : c ⟶ d} (η : f ⟶ f') (θ : g ⟶ g') (κ : h ⟶ h') :
     HEq (hComp (hComp η θ) κ) (hComp η (hComp θ κ)) := by simp [hComp_assoc]

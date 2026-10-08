@@ -52,15 +52,27 @@ open Polynomial Real
 polynomial over the interval `[-1, 1]`. -/
 noncomputable def node (n i : ℕ) : ℝ := cos (i * π / n)
 
+/--
+@isnad1 id=eq.0h1v.s4.b8b05e0673ad from=seed src=0 shape=8fc7241c vocab=2dffdb5b
+-/
 lemma node_eq_one {n : ℕ} : node n 0 = 1 := by simp [node]
 
+/--
+@isnad1 id=eq.1h1v.s4.1b29f3247dfb from=seed src=0 shape=be99b4f2 vocab=361163d8
+-/
 lemma node_eq_neg_one {n : ℕ} (hn : n ≠ 0) : node n n = -1 := by
   have : n * π / n = π := by aesop
   simp [node, this]
 
+/--
+@isnad1 id=mem.0h2v.s4.4e5d1de25c2d from=seed src=0 shape=f18e1c28 vocab=a3f634d4
+-/
 lemma node_mem_Icc {n i : ℕ} : node n i ∈ Set.Icc (-1) 1 :=
   Set.mem_Icc.mpr ⟨neg_one_le_cos _, cos_le_one _⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.9b8138eef993 from=seed src=0 shape=7adfa748 vocab=1123aefb
+-/
 lemma eval_T_real_node {n i : ℕ} (hi : i ∈ Finset.Iic n) :
     (T ℝ n).eval (node n i) = (-1) ^ i := by
   rcases eq_or_ne n 0 with rfl | hn
@@ -68,6 +80,9 @@ lemma eval_T_real_node {n i : ℕ} (hi : i ∈ Finset.Iic n) :
   have : (n : ℤ) * (i * π / n) = i * π := by norm_cast; field
   rw [node, T_real_cos, this, cos_nat_mul_pi]
 
+/--
+@isnad1 id=strictan.0h1v.s5.9213522ab952 from=seed src=0 shape=da404565 vocab=72514960
+-/
 lemma strictAntiOn_node (n : ℕ) :
     StrictAntiOn (node n ·) (Finset.range (n + 1)) := by
   rcases eq_or_ne n 0 with rfl | hn
@@ -81,11 +96,17 @@ lemma strictAntiOn_node (n : ℕ) :
   nth_rewrite 2 [← mul_div_cancel₀ π (Nat.cast_ne_zero.mpr hn)]
   gcongr
 
+/--
+@isnad1 id=lt.2h3v.s4.24cbce1d5a83 from=seed src=0 shape=bde43925 vocab=fbcc6901
+-/
 lemma node_lt {n i j : ℕ} (hj : j ≤ n) (hij : i < j) :
     node n j < node n i :=
   strictAntiOn_node n (Finset.mem_coe.mpr (Finset.mem_range_succ_iff.mpr (by grind)))
     (Finset.mem_coe.mpr (Finset.mem_range_succ_iff.mpr hj)) hij
 
+/--
+@isnad1 id=lt.1h2v.s6.363775820051 from=seed src=0 shape=60add996 vocab=77042744
+-/
 lemma zero_lt_prod_node_sub_node {n i : ℕ} (hi : i ≤ n) :
     0 < (-1) ^ i * ∏ j ∈ (Finset.range (n + 1)).erase i, (node n i - node n j) := by
   rcases eq_or_ne n 0 with rfl | hn
@@ -115,6 +136,9 @@ private lemma negOnePow_mul_negOnePow_mul_cancel {α β : ℝ} {i : ℕ} :
 of `P` evaluated at the `n`'th order Chebyshev nodes, with coefficients taken from `c`. -/
 noncomputable def sumNodes (n : ℕ) (c : ℕ → ℝ) (P : ℝ[X]) := ∑ i ≤ n, P.eval (node n i) * (c i)
 
+/--
+@isnad1 id=le.2h3v.s6.e238787fe175 from=seed src=0 shape=056ae451 vocab=0f20dd4f
+-/
 theorem sumNodes_le_sumNodes_T {n : ℕ} {c : ℕ → ℝ}
     (hcnonneg : ∀ i ≤ n, 0 ≤ (-1) ^ i * (c i))
     {P : ℝ[X]} (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :
@@ -132,6 +156,9 @@ theorem sumNodes_le_sumNodes_T {n : ℕ} {c : ℕ → ℝ}
     _ = (T ℝ n).eval (node n i) * (c i) := by
       rw [eval_T_real_node hi, one_mul]
 
+/--
+@isnad1 id=iff.3h3v.s7.fe00df603865 from=seed src=0 shape=c4451ed1 vocab=bd9763d2
+-/
 theorem sumNodes_eq_sumNodes_T_iff {n : ℕ} {c : ℕ → ℝ}
     (hcpos : ∀ i ≤ n, 0 < (-1) ^ i * (c i))
     {P : ℝ[X]} (hPdeg : P.degree ≤ n) (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :
@@ -192,6 +219,9 @@ private theorem negOnePow_mul_leadingCoeffC_pos {n i : ℕ} (hi : i ≤ n) :
   have := inv_pos_of_pos <| zero_lt_prod_node_sub_node hi
   rwa [mul_inv, ← inv_pow, inv_neg_one] at this
 
+/--
+@isnad1 id=le.2h2v.s6.3e20f36c199e from=seed src=0 shape=c575c710 vocab=ed5fd7ff
+-/
 theorem coeff_le_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
     (hPdeg : P.degree ≤ n) (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :
     P.coeff n ≤ 2 ^ (n - 1) := by
@@ -199,6 +229,9 @@ theorem coeff_le_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
   · rw [sumNodes_eq_coeff hPdeg]
   · rw [sumNodes_T_eq]
 
+/--
+@isnad1 id=le.2h2v.s6.1d4228b2a3a0 from=seed src=0 shape=3a8b537d vocab=e849ba78
+-/
 theorem leadingCoeff_le_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
     (hPdeg : P.degree ≤ n) (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :
     P.leadingCoeff ≤ 2 ^ (n - 1) := by
@@ -211,6 +244,9 @@ theorem leadingCoeff_le_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
     grw [coeff_le_of_forall_abs_le_one (le_of_eq hd.symm) hPbnd, hPdeg]
     norm_num
 
+/--
+@isnad1 id=iff.2h2v.s6.9d0e97936b57 from=seed src=0 shape=6c474565 vocab=77bf11ad
+-/
 theorem coeff_eq_iff_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
     (hPdeg : P.degree ≤ n) (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :
     P.coeff n = 2 ^ (n - 1) ↔ P = T ℝ n := by
@@ -218,6 +254,9 @@ theorem coeff_eq_iff_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
   · rw [sumNodes_eq_coeff hPdeg]
   · rw [sumNodes_T_eq]
 
+/--
+@isnad1 id=iff.3h2v.s7.0b7bd6119274 from=seed src=0 shape=e1e3cb91 vocab=1aaf89dd
+-/
 theorem leadingCoeff_eq_iff_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]} (hn : 2 ≤ n)
     (hPdeg : P.degree ≤ n) (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :
     P.leadingCoeff = 2 ^ (n - 1) ↔ P = T ℝ n := by
@@ -281,6 +320,9 @@ private theorem negOnePow_mul_iterateDerivativeC_pos
     refine ⟨s, by simp [hs, hscard], Finset.prod_pos (fun a ha => ?_)⟩
     grind [show node n a < 1 by rw [← node_eq_one (n := n)]; exact node_lt (by grind) (by grind)]
 
+/--
+@isnad1 id=le.3h4v.s8.87b98852d576 from=seed src=0 shape=1b8d748c vocab=8d8d7473
+-/
 theorem eval_iterate_derivative_le_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
     {k : ℕ} {x : ℝ} (hx : 1 ≤ x)
     (hPdeg : P.degree ≤ n) (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :
@@ -293,6 +335,9 @@ theorem eval_iterate_derivative_le_of_forall_abs_le_one {n : ℕ} {P : ℝ[X]}
   · rw [sumNodes_eq_eval_iterate_derivative hk x hPdeg]
   · rw [sumNodes_eq_eval_iterate_derivative hk x (le_of_eq (degree_T ℝ n))]
 
+/--
+@isnad1 id=iff.5h4v.s8.0348d343fb40 from=seed src=0 shape=d881f8ae vocab=1880f1ce
+-/
 theorem eval_iterate_derivative_eq_iff_of_bounded {n : ℕ} {P : ℝ[X]}
     {k : ℕ} (hk₁ : 0 < k) (hk₂ : k ≤ n) {x : ℝ} (hx : 1 ≤ x)
     (hPdeg : P.degree ≤ n) (hPbnd : ∀ x ∈ Set.Icc (-1) 1, |P.eval x| ≤ 1) :

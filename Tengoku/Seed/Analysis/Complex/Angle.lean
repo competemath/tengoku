@@ -38,36 +38,62 @@ variable {a x y : ℂ}
 /-- The angle between two non-zero complex numbers is the absolute value of the argument of their
 quotient.
 
-Note that this does not hold when `x` or `y` is `0` as the LHS is `π / 2` while the RHS is `0`. -/
+Note that this does not hold when `x` or `y` is `0` as the LHS is `π / 2` while the RHS is `0`.
+@isnad1 id=eq.2h2v.s5.bac832858f0f from=seed src=0 shape=20d873e4 vocab=3ffef60c
+-/
 lemma angle_eq_abs_arg (hx : x ≠ 0) (hy : y ≠ 0) : angle x y = |(x / y).arg| := by
   refine Real.arccos_eq_of_eq_cos (abs_nonneg _) (abs_arg_le_pi _) ?_
   rw [Real.cos_abs, Complex.cos_arg (div_ne_zero hx hy)]
   simp [div_eq_mul_inv, Complex.normSq_eq_norm_sq]
   field
 
+/--
+@isnad1 id=eq.1h1v.s4.1534494b7a0b from=seed src=0 shape=426c4af2 vocab=a1cb8179
+-/
 lemma angle_one_left (hy : y ≠ 0) : angle 1 y = |y.arg| := by simp [angle_eq_abs_arg, hy]
+/--
+@isnad1 id=eq.1h1v.s4.7fcedee645c3 from=seed src=0 shape=e5c96e37 vocab=a1cb8179
+-/
 lemma angle_one_right (hx : x ≠ 0) : angle x 1 = |x.arg| := by simp [angle_eq_abs_arg, hx]
 
+/--
+@isnad1 id=eq.1h3v.s5.80e73c937f63 from=seed src=0 shape=8bd0ee5a vocab=b2940907
+-/
 @[simp] lemma angle_mul_left (ha : a ≠ 0) (x y : ℂ) : angle (a * x) (a * y) = angle x y := by
   obtain rfl | hx := eq_or_ne x 0 <;> obtain rfl | hy := eq_or_ne y 0 <;>
     simp [angle_eq_abs_arg, mul_div_mul_left, *]
 
+/--
+@isnad1 id=eq.1h3v.s5.0090cff26788 from=seed src=0 shape=8eac09d4 vocab=b2940907
+-/
 @[simp] lemma angle_mul_right (ha : a ≠ 0) (x y : ℂ) : angle (x * a) (y * a) = angle x y := by
   simp [mul_comm, angle_mul_left ha]
 
+/--
+@isnad1 id=eq.0h3v.s5.214a6ac9796b from=seed src=0 shape=85e1a2d8 vocab=75b49a3d
+-/
 lemma angle_div_left_eq_angle_mul_right (a x y : ℂ) : angle (x / a) y = angle x (y * a) := by
   obtain rfl | ha := eq_or_ne a 0
   · simp
   · rw [← angle_mul_right ha, div_mul_cancel₀ _ ha]
 
+/--
+@isnad1 id=eq.0h3v.s5.b2bd146e0e33 from=seed src=0 shape=f17b078e vocab=75b49a3d
+-/
 lemma angle_div_right_eq_angle_mul_left (a x y : ℂ) : angle x (y / a) = angle (x * a) y := by
   rw [angle_comm, angle_div_left_eq_angle_mul_right, angle_comm]
 
+/--
+@isnad1 id=eq.0h2v.s6.831863846930 from=seed src=0 shape=f2eb2e47 vocab=2eb06153
+-/
 lemma angle_exp_exp (x y : ℝ) :
     angle (exp (x * I)) (exp (y * I)) = |toIocMod Real.two_pi_pos (-π) (x - y)| := by
   simp_rw [angle_eq_abs_arg (exp_ne_zero _) (exp_ne_zero _), ← exp_sub, ← sub_mul, ← ofReal_sub,
     arg_exp_mul_I]
 
+/--
+@isnad1 id=eq.0h1v.s5.b82078ce058b from=seed src=0 shape=4cab5dbd vocab=8e60f709
+-/
 lemma angle_exp_one (x : ℝ) : angle (exp (x * I)) 1 = |toIocMod Real.two_pi_pos (-π) x| := by
   simpa using angle_exp_exp x 0
 
@@ -78,7 +104,9 @@ This section shows that the arc and chord distances between two unit complex num
 up to a factor of `π / 2`.
 -/
 
-/-- Chord-length is a multiple of arc-length up to constants. -/
+/-- Chord-length is a multiple of arc-length up to constants.
+@isnad1 id=mem.2h2v.s6.be8b3a4adb03 from=seed src=0 shape=1a3a698a vocab=2518acc8
+-/
 lemma norm_sub_mem_Icc_angle (hx : ‖x‖ = 1) (hy : ‖y‖ = 1) :
     ‖x - y‖ ∈ Icc (2 / π * angle x y) (angle x y) := by
   wlog h : y = 1
@@ -108,15 +136,21 @@ lemma norm_sub_mem_Icc_angle (hx : ‖x‖ = 1) (hy : ‖y‖ = 1) :
   · convert! hθ
     ring
 
-/-- Chord-length is always less than arc-length. -/
+/-- Chord-length is always less than arc-length.
+@isnad1 id=le.2h2v.s5.d4dd48c0a4ab from=seed src=0 shape=c7da9ef1 vocab=4ed43968
+-/
 lemma norm_sub_le_angle (hx : ‖x‖ = 1) (hy : ‖y‖ = 1) : ‖x - y‖ ≤ angle x y :=
   (norm_sub_mem_Icc_angle hx hy).2
 
-/-- Chord-length is always greater than a multiple of arc-length. -/
+/-- Chord-length is always greater than a multiple of arc-length.
+@isnad1 id=le.2h2v.s6.67d58a32a912 from=seed src=0 shape=11b8e60e vocab=f8f781e3
+-/
 lemma mul_angle_le_norm_sub (hx : ‖x‖ = 1) (hy : ‖y‖ = 1) : 2 / π * angle x y ≤ ‖x - y‖ :=
   (norm_sub_mem_Icc_angle hx hy).1
 
-/-- Arc-length is always less than a multiple of chord-length. -/
+/-- Arc-length is always less than a multiple of chord-length.
+@isnad1 id=le.2h2v.s6.44e4dd70fee6 from=seed src=0 shape=cad05a5f vocab=f8f781e3
+-/
 lemma angle_le_mul_norm_sub (hx : ‖x‖ = 1) (hy : ‖y‖ = 1) : angle x y ≤ π / 2 * ‖x - y‖ := by
   rw [← div_le_iff₀' <| by positivity, div_eq_inv_mul, inv_div]; exact mul_angle_le_norm_sub hx hy
 

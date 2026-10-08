@@ -44,6 +44,9 @@ noncomputable def homAux (i' j' : Option ι) : extend.X K i' ⟶ extend.X L j' :
   | some i, some j => φ i j
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.2h10v.s8.07cc9a3c6de6 from=seed src=0 shape=ac5d5009 vocab=fbdb2deb
+-/
 lemma homAux_eq (i' j' : Option ι) (i j : ι) (hi : i' = some i) (hj : j' = some j) :
     homAux φ i' j' = (extend.XIso K hi).hom ≫ φ i j ≫ (extend.XIso L hj).inv := by
   subst hi hj
@@ -53,14 +56,23 @@ lemma homAux_eq (i' j' : Option ι) (i j : ι) (hi : i' = some i) (hj : j' = som
 noncomputable def hom (i' j' : ι') : (K.extend e).X i' ⟶ (L.extend e).X j' :=
   extend.homAux φ (e.r i') (e.r j')
 
+/--
+@isnad1 id=eq.1h11v.s8.d95b8e3a244d from=seed src=0 shape=75cb7ac3 vocab=10a4d9f4
+-/
 lemma hom_eq_zero₁ (i' j' : ι') (hi' : ∀ i, e.f i ≠ i') :
     hom e φ i' j' = 0 :=
   (isZero_extend_X _ _ _ hi').eq_of_src _ _
 
+/--
+@isnad1 id=eq.1h11v.s8.bd81ddb13f9b from=seed src=0 shape=16d54162 vocab=10a4d9f4
+-/
 lemma hom_eq_zero₂ (i' j' : ι') (hj' : ∀ j, e.f j ≠ j') :
     hom e φ i' j' = 0 :=
   (isZero_extend_X _ _ _ hj').eq_of_tgt _ _
 
+/--
+@isnad1 id=eq.2h13v.s8.e36f6a16dd85 from=seed src=0 shape=ceca3193 vocab=4aaa6bc4
+-/
 lemma hom_eq {i' j' : ι'} {i j : ι} (hi : e.f i = i') (hj : e.f j = j') :
     hom e φ i' j' = (K.extendXIso e hi).hom ≫ φ i j ≫ (L.extendXIso e hj).inv :=
   homAux_eq φ (e.r i') (e.r j') i j (e.r_eq_some hi) (e.r_eq_some hj)
@@ -106,6 +118,9 @@ noncomputable def extend (h : Homotopy f g) (e : c.Embedding c') [e.IsRelIff] :
       · exact extend.hom_eq_zero₂ _ _ _ _ (by tauto)
     · exact extend.hom_eq_zero₁ _ _ _ _ (by tauto)
 
+/--
+@isnad1 id=eq.2h15v.s9.467490b169c4 from=seed src=0 shape=d6205e22 vocab=f031fd68
+-/
 lemma extend_hom_eq (h : Homotopy f g) (e : c.Embedding c') [e.IsRelIff]
     {i' j' : ι'} {i j : ι} (hi : e.f i = i') (hj : e.f j = j') :
     (h.extend e).hom i' j' = (K.extendXIso e hi).hom ≫ h.hom i j ≫ (L.extendXIso e hj).inv :=
@@ -143,6 +158,9 @@ noncomputable def ofExtend {e : c.Embedding c'} [e.IsRelIff]
         · simp [prevD_eq_zero _ _ hi']
   zero i j hij := by rw [h.zero _ _ (by rwa [e.rel_iff]), zero_comp, comp_zero]
 
+/--
+@isnad1 id=eq.0h11v.s8.a223c5945ce8 from=seed src=0 shape=df9f7c46 vocab=f73d176f
+-/
 @[simp]
 lemma extend_ofExtend {e : c.Embedding c'} [e.IsRelIff]
     (h : Homotopy (extendMap f e) (extendMap g e)) :
@@ -156,6 +174,9 @@ lemma extend_ofExtend {e : c.Embedding c'} [e.IsRelIff]
     · exact (isZero_extend_X _ _ _ (by tauto)).eq_of_tgt _ _
   · exact (isZero_extend_X _ _ _ (by tauto)).eq_of_src _ _
 
+/--
+@isnad1 id=eq.0h11v.s7.65e906ae563c from=seed src=0 shape=37875a6f vocab=137ebdeb
+-/
 @[simp]
 lemma ofExtend_extend (h : Homotopy f g) (e : c.Embedding c') [e.IsRelIff] :
     (h.extend e).ofExtend = h := by
@@ -218,6 +239,9 @@ instance : (e.extendHomotopyFunctor C).Faithful where
 
 end ComplexShape.Embedding
 
+/--
+@isnad1 id=iff.0h9v.s7.ac1a05e8bcd3 from=seed src=0 shape=77ba15e9 vocab=55670005
+-/
 @[simp]
 lemma HomologicalComplex.homotopyEquivalences_extendMap_iff
     {C : Type*} [Category* C] [HasZeroObject C] [Preadditive C]

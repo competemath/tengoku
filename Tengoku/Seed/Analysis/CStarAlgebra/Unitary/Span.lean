@@ -33,7 +33,9 @@ variable [PartialOrder A] [StarOrderedRing A]
 /-- If `a : A` is a selfadjoint element in a C⋆-algebra with `‖a‖ ≤ 1`,
 then `a + I • CFC.sqrt (1 - a ^ 2)` is unitary.
 
-This is the key tool to show that a C⋆-algebra is spanned by its unitary elements. -/
+This is the key tool to show that a C⋆-algebra is spanned by its unitary elements.
+@isnad1 id=mem.2h2v.s8.921f5924a499 from=seed src=0 shape=3a3b5dea vocab=e9178496
+-/
 lemma IsSelfAdjoint.self_add_I_smul_cfcSqrt_sub_sq_mem_unitary (a : A) (ha : IsSelfAdjoint a)
     (ha_norm : ‖a‖ ≤ 1) : a + I • CFC.sqrt (1 - a ^ 2) ∈ unitary A := by
   obtain (_ | _) := subsingleton_or_nontrivial A
@@ -58,16 +60,24 @@ noncomputable def selfAdjoint.unitarySelfAddISMul (a : selfAdjoint A) (ha_norm :
     unitary A :=
   ⟨(a : A) + I • CFC.sqrt (1 - a ^ 2 : A), a.2.self_add_I_smul_cfcSqrt_sub_sq_mem_unitary _ ha_norm⟩
 
+/--
+@isnad1 id=eq.1h2v.s9.12b19e1954a1 from=seed src=0 shape=63bc3aa6 vocab=fcc9358f
+-/
 lemma selfAdjoint.star_coe_unitarySelfAddISMul (a : selfAdjoint A) (ha_norm : ‖a‖ ≤ 1) :
     (star (unitarySelfAddISMul a ha_norm) : A) = a - I • CFC.sqrt (1 - a ^ 2 : A) := by
   simp [IsSelfAdjoint.star_eq, ← sub_eq_add_neg, (CFC.sqrt_nonneg (1 - a ^ 2 : A)).isSelfAdjoint]
 
+/--
+@isnad1 id=eq.1h2v.s10.59f3822c533c from=seed src=0 shape=bb8e22a2 vocab=1a49e86a
+-/
 lemma selfAdjoint.realPart_unitarySelfAddISMul (a : selfAdjoint A) (ha_norm : ‖a‖ ≤ 1) :
     ℜ (unitarySelfAddISMul a ha_norm : A) = a := by
   simp [IsSelfAdjoint.imaginaryPart (x := CFC.sqrt (1 - a ^ 2 : A)) (by cfc_tac)]
 
 /-- A stepping stone to `CStarAlgebra.exists_sum_four_unitary` that specifies the unitary
-elements precisely. The `let`s in the statement are intentional. -/
+elements precisely. The `let`s in the statement are intentional.
+@isnad1 id=other.1h2v.s11.5919134eee6f from=seed src=0 shape=b6c93c05 vocab=8735d92b
+-/
 lemma CStarAlgebra.norm_smul_two_inv_smul_add_four_unitary (x : A) (hx : x ≠ 0) :
     let u₁ : unitary A := selfAdjoint.unitarySelfAddISMul (ℜ (‖x‖⁻¹ • x))
       (by simpa [norm_smul, inv_mul_le_one₀ (norm_pos_iff.2 hx)] using! realPart.norm_le x)
@@ -83,7 +93,9 @@ lemma CStarAlgebra.norm_smul_two_inv_smul_add_four_unitary (x : A) (hx : x ≠ 0
 end Ordered
 
 /-- Every element `x` in a unital C⋆-algebra is a linear combination of four unitary elements,
-and the norm of each coefficient does not exceed `‖x‖ / 2`. -/
+and the norm of each coefficient does not exceed `‖x‖ / 2`.
+@isnad1 id=ex.0h2v.s8.71802535d788 from=seed src=0 shape=fe7030ec vocab=f26823d0
+-/
 lemma CStarAlgebra.exists_sum_four_unitary (x : A) :
     ∃ u : Fin 4 → unitary A, ∃ c : Fin 4 → ℂ, x = ∑ i, c i • (u i : A) ∧ ∀ i, ‖c i‖ ≤ ‖x‖ / 2 := by
   let _ := CStarAlgebra.spectralOrder
@@ -103,7 +115,9 @@ lemma CStarAlgebra.exists_sum_four_unitary (x : A) :
 
 variable (A) in
 open Submodule in
-/-- A unital C⋆-algebra is spanned by its unitary elements. -/
+/-- A unital C⋆-algebra is spanned by its unitary elements.
+@isnad1 id=eq.0h1v.s7.8e9f2223e64f from=seed src=0 shape=ef0b20f9 vocab=4237953e
+-/
 lemma CStarAlgebra.span_unitary : span ℂ (unitary A : Set A) = ⊤ := by
   rw [eq_top_iff]
   rintro x -

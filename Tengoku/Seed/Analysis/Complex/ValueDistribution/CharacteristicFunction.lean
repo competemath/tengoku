@@ -60,6 +60,7 @@ noncomputable def characteristic : ℝ → ℝ := proximity f a + logCounting f 
 /--
 If two functions differ only on a discrete set, then their characteristic functions agree, except
 perhaps at radius 0.
+@isnad1 id=eq.2h5v.s6.59fc5e1b1b9f from=seed src=0 shape=7ecaa385 vocab=e9402c9f
 -/
 theorem characteristic_congr_codiscrete {r : ℝ} (hfg : f =ᶠ[codiscrete ℂ] g) (hr : r ≠ 0) :
     characteristic f a r = characteristic g a r := by
@@ -68,6 +69,7 @@ theorem characteristic_congr_codiscrete {r : ℝ} (hfg : f =ᶠ[codiscrete ℂ] 
 /--
 The difference between the characteristic functions for the poles of `f` and `f - const` simplifies
 to the difference between the proximity functions.
+@isnad1 id=eq.1h3v.s7.818008c2d882 from=seed src=0 shape=fa33422e vocab=faa40dc8
 -/
 @[simp]
 lemma characteristic_sub_characteristic_eq_proximity_sub_proximity (h : Meromorphic f) (a₀ : E) :
@@ -76,12 +78,14 @@ lemma characteristic_sub_characteristic_eq_proximity_sub_proximity (h : Meromorp
 
 /--
 The characteristic function is even.
+@isnad1 id=even.0h3v.s4.f9f85c8c2ebd from=seed src=0 shape=43ec87ef vocab=d8dc8894
 -/
 theorem characteristic_even :
     (characteristic f a).Even := proximity_even.add logCounting_even
 
 /--
 For `1 ≤ r`, the characteristic function is non-negative.
+@isnad1 id=le.1h4v.s5.9f082b7ca887 from=seed src=0 shape=e672994f vocab=2d4b4d2f
 -/
 theorem characteristic_nonneg {r : ℝ} (hr : 1 ≤ r) :
     0 ≤ characteristic f a r :=
@@ -89,6 +93,7 @@ theorem characteristic_nonneg {r : ℝ} (hr : 1 ≤ r) :
 
 /--
 The characteristic function is asymptotically non-negative.
+@isnad1 id=eventual.0h3v.s5.fd279a176c1e from=seed src=0 shape=ea1a33c2 vocab=92a91a8c
 -/
 theorem characteristic_eventually_nonneg :
     0 ≤ᶠ[Filter.atTop] characteristic f a := by
@@ -101,6 +106,7 @@ theorem characteristic_eventually_nonneg :
 /--
 For `1 ≤ r`, the characteristic function of a sum `∑ a, f a` at `⊤` is less than or equal to the sum
 of the characteristic functions of `f ·`, plus `log s.card`.
+@isnad1 id=le.2h5v.s7.19c8ad994ec1 from=seed src=0 shape=121380fb vocab=43e30a04
 -/
 theorem characteristic_sum_top_le {α : Type*} (s : Finset α) (f : α → ℂ → E) {r : ℝ}
     (hf : ∀ a ∈ s, Meromorphic (f a)) (hr : 1 ≤ r) :
@@ -119,6 +125,7 @@ theorem characteristic_sum_top_le {α : Type*} (s : Finset α) (f : α → ℂ �
 /--
 Asymptotically, the characteristic function of a sum `∑ a, f a` at `⊤` is less than or equal to the
 sum of the characteristic functions of `f ·`.
+@isnad1 id=eventual.1h4v.s7.e73f9304fe82 from=seed src=0 shape=982a1bf1 vocab=fc6c6ee0
 -/
 theorem characteristic_sum_top_eventuallyLE {α : Type*} (s : Finset α) (f : α → ℂ → E)
     (hf : ∀ a ∈ s, Meromorphic (f a)) :
@@ -131,6 +138,7 @@ theorem characteristic_sum_top_eventuallyLE {α : Type*} (s : Finset α) (f : α
 For `1 ≤ r`, the characteristic function of `f + g` at `⊤` is less than or equal to the sum of the
 characteristic functions of `f` and `g`, respectively, plus `log 2` (where `2` is the number of
 summands).
+@isnad1 id=le.3h4v.s7.48f77564761d from=seed src=0 shape=bd94913d vocab=039c01ec
 -/
 theorem characteristic_add_top_le {f₁ f₂ : ℂ → E} {r : ℝ} (h₁f₁ : Meromorphic f₁)
     (h₁f₂ : Meromorphic f₂) (hr : 1 ≤ r) :
@@ -142,6 +150,7 @@ theorem characteristic_add_top_le {f₁ f₂ : ℂ → E} {r : ℝ} (h₁f₁ : 
 /--
 Asymptotically, the characteristic function of `f + g` at `⊤` is less than or equal to the sum of
 the characteristic functions of `f` and `g`, respectively.
+@isnad1 id=eventual.2h3v.s7.c0a09c6bb86f from=seed src=0 shape=90ba0d00 vocab=3ebaa410
 -/
 theorem characteristic_add_top_eventuallyLE {f₁ f₂ : ℂ → E} (h₁f₁ : Meromorphic f₁)
     (h₁f₂ : Meromorphic f₂) :
@@ -153,6 +162,7 @@ theorem characteristic_add_top_eventuallyLE {f₁ f₂ : ℂ → E} (h₁f₁ : 
 /--
 For `1 ≤ r`, the characteristic function for the zeros of `f * g` is less than or equal to the sum
 of the characteristic functions for the zeros of `f` and `g`, respectively.
+@isnad1 id=le.5h3v.s7.126a765e18bb from=seed src=0 shape=ad3967db vocab=e3ea905c
 -/
 theorem characteristic_mul_zero_le {f₁ f₂ : ℂ → ℂ} {r : ℝ} (hr : 1 ≤ r)
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -166,6 +176,7 @@ theorem characteristic_mul_zero_le {f₁ f₂ : ℂ → ℂ} {r : ℝ} (hr : 1 �
 /--
 Asymptotically, the characteristic function for the zeros of `f * g` is less than or equal to the
 sum of the characteristic functions for the zeros of `f` and `g`, respectively.
+@isnad1 id=eventual.4h2v.s7.dc9619337442 from=seed src=0 shape=9d1147bc vocab=7a932e10
 -/
 theorem characteristic_mul_zero_eventuallyLE {f₁ f₂ : ℂ → ℂ}
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -177,6 +188,7 @@ theorem characteristic_mul_zero_eventuallyLE {f₁ f₂ : ℂ → ℂ}
 /--
 For `1 ≤ r`, the characteristic function for the poles of `f * g` is less than or equal to the sum
 of the characteristic functions for the poles of `f` and `g`, respectively.
+@isnad1 id=le.5h3v.s7.f1890ac6877c from=seed src=0 shape=f53b2a40 vocab=e3ea905c
 -/
 theorem characteristic_mul_top_le {f₁ f₂ : ℂ → ℂ} {r : ℝ} (hr : 1 ≤ r)
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -190,6 +202,7 @@ theorem characteristic_mul_top_le {f₁ f₂ : ℂ → ℂ} {r : ℝ} (hr : 1 �
 /--
 Asymptotically, the characteristic function for the poles of `f * g` is less than or equal to the
 sum of the characteristic functions for the poles of `f` and `g`, respectively.
+@isnad1 id=eventual.4h2v.s7.34a4b05dd6fd from=seed src=0 shape=ca092fb2 vocab=7a932e10
 -/
 theorem characteristic_mul_top_eventuallyLE {f₁ f₂ : ℂ → ℂ}
     (h₁f₁ : Meromorphic f₁) (h₂f₁ : ∀ z, meromorphicOrderAt f₁ z ≠ ⊤)
@@ -201,6 +214,7 @@ theorem characteristic_mul_top_eventuallyLE {f₁ f₂ : ℂ → ℂ}
 /--
 For natural numbers `n`, the characteristic function for the zeros of `f ^ n` equals `n` times the
 characteristic counting function for the zeros of `f`.
+@isnad1 id=eq.1h2v.s7.ac18494def03 from=seed src=0 shape=f700cb98 vocab=e8ce16dd
 -/
 @[simp]
 theorem characteristic_pow_zero {f : ℂ → ℂ} {n : ℕ} (hf : Meromorphic f) :
@@ -210,6 +224,7 @@ theorem characteristic_pow_zero {f : ℂ → ℂ} {n : ℕ} (hf : Meromorphic f)
 /--
 For natural numbers `n`, the characteristic function for the poles of `f ^ n` equals `n` times the
 characteristic function for the poles of `f`.
+@isnad1 id=eq.1h2v.s6.4af78fa34a51 from=seed src=0 shape=c7c27893 vocab=7c3e7f0f
 -/
 @[simp]
 theorem characteristic_pow_top {f : ℂ → ℂ} {n : ℕ} (hf : Meromorphic f) :

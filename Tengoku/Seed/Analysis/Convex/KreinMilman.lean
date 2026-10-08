@@ -61,7 +61,9 @@ variable {E F : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] [T2S
   [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] [LocallyConvexSpace ℝ E] {s : Set E}
   [AddCommGroup F] [Module ℝ F] [TopologicalSpace F] [T1Space F]
 
-/-- **Krein-Milman lemma**: In an LCTVS, any nonempty compact set has an extreme point. -/
+/-- **Krein-Milman lemma**: In an LCTVS, any nonempty compact set has an extreme point.
+@isnad1 id=nonempty.2h2v.s7.13a1da313d91 from=seed src=0 shape=dcba57ea vocab=f32186f7
+-/
 theorem IsCompact.extremePoints_nonempty (hscomp : IsCompact s) (hsnemp : s.Nonempty) :
     (s.extremePoints ℝ).Nonempty := by
   let S : Set (Set E) := { t | t.Nonempty ∧ IsClosed t ∧ IsExtreme ℝ s t }
@@ -93,7 +95,9 @@ theorem IsCompact.extremePoints_nonempty (hscomp : IsCompact s) (hsnemp : s.None
   exacts [⟨t, Subset.rfl, htu⟩, ⟨u, hut, Subset.rfl⟩]
 
 /-- **Krein-Milman theorem**: In an LCTVS, any compact convex set is the closure of the convex hull
-of its extreme points. -/
+of its extreme points.
+@isnad1 id=eq.2h2v.s8.13df5fe8db09 from=seed src=0 shape=1949e3b7 vocab=91576a3e
+-/
 theorem closure_convexHull_extremePoints (hscomp : IsCompact s) (hAconv : Convex ℝ s) :
     closure (convexHull ℝ <| s.extremePoints ℝ) = s := by
   apply (closure_minimal (convexHull_min extremePoints_subset hAconv) hscomp.isClosed).antisymm
@@ -108,7 +112,9 @@ theorem closure_convexHull_extremePoints (hscomp : IsCompact s) (hAconv : Convex
     h.isExtreme.extremePoints_subset_extremePoints hy), hy.1.2 x hxA]
 
 /-- A continuous affine map is surjective from the extreme points of a compact set to the extreme
-points of the image of that set. This inclusion is in general strict. -/
+points of the image of that set. This inclusion is in general strict.
+@isnad1 id=surjon.1h4v.s8.9ec1692e5307 from=seed src=0 shape=dc52f24e vocab=6b5b7bf3
+-/
 lemma surjOn_extremePoints_image (f : E →ᴬ[ℝ] F) (hs : IsCompact s) :
     SurjOn f (extremePoints ℝ s) (extremePoints ℝ (f '' s)) := by
   rintro w hw

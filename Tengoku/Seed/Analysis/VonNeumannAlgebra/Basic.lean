@@ -86,9 +86,15 @@ instance instSetLike : SetLike (VonNeumannAlgebra H) (H →L[ℂ] H) where
 
 instance : PartialOrder (VonNeumannAlgebra H) := .ofSetLike (VonNeumannAlgebra H) (H →L[ℂ] H)
 
+/--
+@isnad1 id=starmemc.0h1v.s6.664254d77e6a from=seed src=0 shape=1753fb93 vocab=fc1f877b
+-/
 noncomputable instance instStarMemClass : StarMemClass (VonNeumannAlgebra H) (H →L[ℂ] H) where
   star_mem {s} := s.star_mem'
 
+/--
+@isnad1 id=subringc.0h1v.s7.82d8799b169a from=seed src=0 shape=1753fb93 vocab=27eb544f
+-/
 instance instSubringClass : SubringClass (VonNeumannAlgebra H) (H →L[ℂ] H) where
   add_mem {s} := s.add_mem'
   mul_mem {s} := s.mul_mem'
@@ -96,25 +102,40 @@ instance instSubringClass : SubringClass (VonNeumannAlgebra H) (H →L[ℂ] H) w
   zero_mem {s} := s.zero_mem'
   neg_mem {s} a ha := show -a ∈ s.toStarSubalgebra from neg_mem ha
 
+/--
+@isnad1 id=iff.0h3v.s10.b434603fafbb from=seed src=0 shape=da4a56cd vocab=f4cbbf97
+-/
 @[simp]
 theorem mem_carrier {S : VonNeumannAlgebra H} {x : H →L[ℂ] H} :
     x ∈ S.toStarSubalgebra ↔ x ∈ (S : Set (H →L[ℂ] H)) :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.0c77b20c564c from=seed src=0 shape=db8cd80b vocab=5f79dd94
+-/
 @[simp]
 theorem coe_toStarSubalgebra (S : VonNeumannAlgebra H) :
     (S.toStarSubalgebra : Set (H →L[ℂ] H)) = S :=
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s11.e29087268464 from=seed src=0 shape=89a77d57 vocab=2c43d0a2
+-/
 @[simp]
 theorem coe_mk (S : StarSubalgebra ℂ (H →L[ℂ] H)) (h) :
     ((⟨S, h⟩ : VonNeumannAlgebra H) : Set (H →L[ℂ] H)) = S :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.0874e7e90bcc from=seed src=0 shape=7bbb476e vocab=a1896aa3
+-/
 @[ext]
 theorem ext {S T : VonNeumannAlgebra H} (h : ∀ x, x ∈ S ↔ x ∈ T) : S = T :=
   SetLike.ext h
 
+/--
+@isnad1 id=eq.0h2v.s8.53095453b035 from=seed src=0 shape=1d02b789 vocab=be4abded
+-/
 @[simp]
 theorem centralizer_centralizer (S : VonNeumannAlgebra H) :
     Set.centralizer (Set.centralizer (S : Set (H →L[ℂ] H))) = S :=
@@ -125,24 +146,35 @@ noncomputable def commutant (S : VonNeumannAlgebra H) : VonNeumannAlgebra H wher
   toStarSubalgebra := StarSubalgebra.centralizer ℂ (S : Set (H →L[ℂ] H))
   centralizer_centralizer' := by simp
 
+/--
+@isnad1 id=eq.0h2v.s8.b297ff2c739f from=seed src=0 shape=43d37824 vocab=7c49e1ce
+-/
 @[simp]
 theorem coe_commutant (S : VonNeumannAlgebra H) :
     ↑S.commutant = Set.centralizer (S : Set (H →L[ℂ] H)) := by
   simp [commutant]
 
+/--
+@isnad1 id=iff.0h3v.s10.be9a53dca358 from=seed src=0 shape=ab35f89f vocab=08509d93
+-/
 @[simp]
 theorem mem_commutant_iff {S : VonNeumannAlgebra H} {z : H →L[ℂ] H} :
     z ∈ S.commutant ↔ ∀ g ∈ S, g * z = z * g := by
   rw [← SetLike.mem_coe, coe_commutant]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.949814a72274 from=seed src=0 shape=74762cea vocab=1a71a480
+-/
 @[simp]
 theorem commutant_commutant (S : VonNeumannAlgebra H) : S.commutant.commutant = S :=
   SetLike.coe_injective <| by simp
 
 open ContinuousLinearMap in
 /-- An idempotent is an element in a von Neumann algebra if and only if
-its range and kernel are invariant under the commutant. -/
+its range and kernel are invariant under the commutant.
+@isnad1 id=iff.1h3v.s10.ff379e3bd91a from=seed src=0 shape=1c511c4c vocab=0a30253d
+-/
 theorem IsIdempotentElem.mem_iff {e : H →L[ℂ] H} (h : IsIdempotentElem e)
     (S : VonNeumannAlgebra H) :
     e ∈ S ↔ ∀ y ∈ S.commutant,
@@ -151,7 +183,9 @@ theorem IsIdempotentElem.mem_iff {e : H →L[ℂ] H} (h : IsIdempotentElem e)
 
 open VonNeumannAlgebra ContinuousLinearMap in
 /-- A star projection is an element in a von Neumann algebra if and only if
-its range is invariant under the commutant. -/
+its range is invariant under the commutant.
+@isnad1 id=iff.1h3v.s10.7d5edd882b2f from=seed src=0 shape=6bfd297f vocab=2e4dfe2f
+-/
 theorem IsStarProjection.mem_iff {e : H →L[ℂ] H} (he : IsStarProjection e)
     (S : VonNeumannAlgebra H) :
     e ∈ S ↔ ∀ y ∈ S.commutant, e.range ∈ Module.End.invtSubmodule y := by

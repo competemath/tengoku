@@ -34,6 +34,7 @@ classes.
 The logarithmic derivative converts products into sums: away from a codiscrete subset of `U`, the
 logarithmic derivative of a product of two meromorphic functions is the sum of the logarithmic
 derivatives.
+@isnad1 id=eventual.4h5v.s8.3394aaf33ece from=seed src=0 shape=c7982b62 vocab=43a4139c
 -/
 @[to_fun MeromorphicOn.logDeriv_fun_mul_eventuallyEq]
 theorem MeromorphicOn.logDeriv_mul_eventuallyEq (hf : MeromorphicOn f U) (hg : MeromorphicOn g U)
@@ -50,6 +51,7 @@ theorem MeromorphicOn.logDeriv_mul_eventuallyEq (hf : MeromorphicOn f U) (hg : M
 The logarithmic derivative converts products into sums: away from a codiscrete subset of `𝕜`, the
 logarithmic derivative of a product of two meromorphic functions is the sum of the logarithmic
 derivatives.
+@isnad1 id=eventual.4h4v.s8.d165555786d4 from=seed src=0 shape=ebdde995 vocab=00133301
 -/
 @[to_fun Meromorphic.logDeriv_fun_mul_eventuallyEq]
 theorem Meromorphic.logDeriv_mul_eventuallyEq (hf : Meromorphic f) (hg : Meromorphic g)
@@ -62,6 +64,7 @@ theorem Meromorphic.logDeriv_mul_eventuallyEq (hf : Meromorphic f) (hg : Meromor
 The logarithmic derivative converts products into sums: away from a codiscrete subset of `U`, the
 logarithmic derivative of a finite product of meromorphic functions is the sum of the logarithmic
 derivatives.
+@isnad1 id=eventual.2h6v.s7.d918b67144f4 from=seed src=0 shape=520a65bb vocab=319c4c3b
 -/
 @[to_fun MeromorphicOn.logDeriv_fun_prod_eventuallyEq]
 theorem MeromorphicOn.logDeriv_prod_eventuallyEq {ι : Type*} {s : Finset ι} {F : ι → 𝕜 → 𝕜'}
@@ -81,6 +84,7 @@ theorem MeromorphicOn.logDeriv_prod_eventuallyEq {ι : Type*} {s : Finset ι} {F
 The logarithmic derivative converts products into sums: away from a codiscrete subset of `𝕜`, the
 logarithmic derivative of a finite product of meromorphic functions is the sum of the logarithmic
 derivatives.
+@isnad1 id=eventual.2h5v.s7.fa38cfac0406 from=seed src=0 shape=9af35405 vocab=39d61f7b
 -/
 @[to_fun Meromorphic.logDeriv_fun_prod_eventuallyEq]
 theorem Meromorphic.logDeriv_prod_eventuallyEq {ι : Type*} {s : Finset ι} {F : ι → 𝕜 → 𝕜'}
@@ -93,6 +97,7 @@ theorem Meromorphic.logDeriv_prod_eventuallyEq {ι : Type*} {s : Finset ι} {F :
 The logarithmic derivative converts products into sums: away from a codiscrete subset of `U`, the
 logarithmic derivative of a finite product of meromorphic functions is the sum of the logarithmic
 derivatives.
+@isnad1 id=eventual.3h5v.s7.349c9ec05613 from=seed src=0 shape=0a59164b vocab=c3219a51
 -/
 theorem MeromorphicOn.logDeriv_finprod_eventuallyEq {ι : Type*} {F : ι → 𝕜 → 𝕜'}
     (hF : (mulSupport F).Finite) (h : ∀ i, MeromorphicOn (F i) U)
@@ -108,6 +113,7 @@ theorem MeromorphicOn.logDeriv_finprod_eventuallyEq {ι : Type*} {F : ι → �
 The logarithmic derivative converts products into sums: away from a codiscrete subset of `𝕜`, the
 logarithmic derivative of a finite product of meromorphic functions is the sum of the logarithmic
 derivatives.
+@isnad1 id=eventual.3h4v.s7.75df5775f22c from=seed src=0 shape=9e650bca vocab=fcbd6044
 -/
 theorem Meromorphic.logDeriv_finprod_eventuallyEq {ι : Type*} {F : ι → 𝕜 → 𝕜'}
     (hF : (mulSupport F).Finite) (h : ∀ i, Meromorphic (F i))
@@ -119,6 +125,7 @@ theorem Meromorphic.logDeriv_finprod_eventuallyEq {ι : Type*} {F : ι → 𝕜 
 /--
 Away from a codiscrete subset of `U`, the logarithmic derivative of the `n`-th power of a
 meromorphic function is `n` times the logarithmic derivative.
+@isnad1 id=eventual.1h5v.s7.eff9a12caca8 from=seed src=0 shape=27234549 vocab=3296ab4d
 -/
 @[to_fun MeromorphicOn.logDeriv_fun_zpow_eventuallyEq]
 theorem MeromorphicOn.logDeriv_zpow_eventuallyEq (hf : MeromorphicOn f U) (n : ℤ) :
@@ -130,6 +137,7 @@ theorem MeromorphicOn.logDeriv_zpow_eventuallyEq (hf : MeromorphicOn f U) (n : �
 /--
 Away from a codiscrete subset of `𝕜`, the logarithmic derivative of the `n`-th power of a
 meromorphic function is `n` times the logarithmic derivative.
+@isnad1 id=eventual.1h4v.s7.c658611bdd3a from=seed src=0 shape=ac73c8a2 vocab=2f968c0a
 -/
 @[to_fun Meromorphic.logDeriv_fun_zpow_eventuallyEq]
 theorem Meromorphic.logDeriv_zpow_eventuallyEq (hf : Meromorphic f) (n : ℤ) :
@@ -142,6 +150,7 @@ The logarithmic derivative converts products into sums: away from a codiscrete s
 logarithmic derivative of a finite product of integer powers of meromorphic functions is the
 corresponding weighted sum of logarithmic derivatives. This is the shape of statement used in the
 differentiated Poisson–Jensen formula, where the exponents are given by a divisor.
+@isnad1 id=eventual.3h6v.s8.274dbbac5115 from=seed src=0 shape=1b6633ae vocab=df620d5d
 -/
 theorem MeromorphicOn.logDeriv_finprod_zpow_eventuallyEq {ι : Type*} {F : ι → 𝕜 → 𝕜'} {d : ι → ℤ}
     (hd : (support d).Finite) (h : ∀ i, MeromorphicOn (F i) U)
@@ -174,6 +183,7 @@ The logarithmic derivative converts products into sums: away from a codiscrete s
 logarithmic derivative of a finite product of integer powers of meromorphic functions is the
 corresponding weighted sum of logarithmic derivatives. This is the shape of statement used in the
 differentiated Poisson–Jensen formula, where the exponents are given by a divisor.
+@isnad1 id=eventual.3h5v.s8.16a17f700399 from=seed src=0 shape=d3503df4 vocab=70efdb82
 -/
 theorem Meromorphic.logDeriv_finprod_zpow_eventuallyEq {ι : Type*} {F : ι → 𝕜 → 𝕜'} {d : ι → ℤ}
     (hd : (support d).Finite) (h : ∀ i, Meromorphic (F i))

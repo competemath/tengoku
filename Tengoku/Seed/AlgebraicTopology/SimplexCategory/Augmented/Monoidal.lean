@@ -37,6 +37,9 @@ attribute [local aesop safe cases (rule_sets := [CategoryTheory])] CategoryTheor
 open CategoryTheory MonoidalCategory
 open scoped Simplicial
 
+/--
+@isnad1 id=eq.1h2v.s8.0d16679b3cd9 from=seed src=0 shape=cf6156d0 vocab=a67692a2
+-/
 @[simp]
 lemma eqToHom_toOrderHom {x y : SimplexCategory} (h : WithInitial.of x = WithInitial.of y) :
     SimplexCategory.Hom.toOrderHom (WithInitial.down <| eqToHom h) =
@@ -133,21 +136,33 @@ instance : MonoidalCategoryStruct AugmentedSimplexCategory where
   whiskerLeft x _ _ f := tensorHom (𝟙 x) f
   whiskerRight f x := tensorHom f (𝟙 x)
 
+/--
+@isnad1 id=eq.0h4v.s6.cf52c04a6d73 from=seed src=0 shape=492bebd4 vocab=e944a5e4
+-/
 @[local simp]
 lemma id_tensorHom (x : AugmentedSimplexCategory) {y₁ y₂ : AugmentedSimplexCategory}
     (f : y₁ ⟶ y₂) : 𝟙 x ⊗ₘ f = x ◁ f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.925e2d357e63 from=seed src=0 shape=d657ade0 vocab=f7236307
+-/
 @[local simp]
 lemma tensorHom_id {x₁ x₂ : AugmentedSimplexCategory} (y : AugmentedSimplexCategory)
     (f : x₁ ⟶ x₂) : f ⊗ₘ 𝟙 y = f ▷ y :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.efc4365884a8 from=seed src=0 shape=87eb99ee vocab=b1ab228c
+-/
 @[local simp]
 lemma whiskerLeft_id_star {x : AugmentedSimplexCategory} : x ◁ 𝟙 .star = 𝟙 _ := by
   cases x <;>
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.b7e45fbb8867 from=seed src=0 shape=a42c4c7c vocab=f49b6ba3
+-/
 @[local simp]
 lemma id_star_whiskerRight {x : AugmentedSimplexCategory} : 𝟙 WithInitial.star ▷ x = 𝟙 _ := by
   cases x <;>
@@ -171,6 +186,9 @@ abbrev inl' (x y : SimplexCategory) : x ⟶ tensorObjOf x y := WithInitial.down 
 `SimplexCategory`. -/
 abbrev inr' (x y : SimplexCategory) : y ⟶ tensorObjOf x y := WithInitial.down <| inr (.of x) (.of y)
 
+/--
+@isnad1 id=eq.0h3v.s8.98b595cadb75 from=seed src=0 shape=a22b4e21 vocab=3d1259b4
+-/
 lemma inl'_eval (x y : SimplexCategory) (i : Fin (x.len + 1)) :
     (inl' x y).toOrderHom i = (i.castAdd _).cast (Nat.succ_add x.len (y.len + 1)) := by
   ext
@@ -181,6 +199,9 @@ lemma inl'_eval (x y : SimplexCategory) (i : Fin (x.len + 1)) :
     OrderEmbedding.toOrderHom]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s8.77a48b870f60 from=seed src=0 shape=7e0b8eda vocab=aa3a9161
+-/
 lemma inr'_eval (x y : SimplexCategory) (i : Fin (y.len + 1)) :
     (inr' x y).toOrderHom i = (i.natAdd _).cast (Nat.succ_add x.len (y.len + 1)) := by
   dsimp [inr', inr, MonoidalCategoryStruct.leftUnitor, MonoidalCategoryStruct.whiskerRight,
@@ -189,7 +210,9 @@ lemma inr'_eval (x y : SimplexCategory) (i : Fin (y.len + 1)) :
   simp [OrderEmbedding.toOrderHom]
 
 /-- We can characterize morphisms out of a tensor product via their precomposition with `inl` and
-`inr`. -/
+`inr`.
+@isnad1 id=eq.2h5v.s7.842abd6f2a3f from=seed src=0 shape=7fd39624 vocab=3c87d63e
+-/
 @[ext]
 theorem tensorObj_hom_ext {x y z : AugmentedSimplexCategory} (f g : x ⊗ y ⟶ z)
     (h₁ : inl _ _ ≫ f = inl _ _ ≫ g)
@@ -222,6 +245,9 @@ theorem tensorObj_hom_ext {x y z : AugmentedSimplexCategory} (f g : x ⊗ y ⟶ 
   | .star, .star, .star, f, g => rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s6.22b02c040af3 from=seed src=0 shape=ded19982 vocab=4533e48a
+-/
 @[reassoc (attr := simp)]
 lemma inl_comp_tensorHom {x₁ y₁ x₂ y₂ : AugmentedSimplexCategory}
     (f₁ : x₁ ⟶ y₁) (f₂ : x₂ ⟶ y₂) : inl x₁ x₂ ≫ (f₁ ⊗ₘ f₂) = f₁ ≫ inl y₁ y₂ :=
@@ -248,6 +274,9 @@ lemma inl_comp_tensorHom {x₁ y₁ x₂ y₂ : AugmentedSimplexCategory}
   | .star, _, _, _, _, _ => rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s6.6f30530a7d5c from=seed src=0 shape=c0d5e90d vocab=56386cbb
+-/
 @[reassoc (attr := simp)]
 lemma inr_comp_tensorHom {x₁ y₁ x₂ y₂ : AugmentedSimplexCategory}
     (f₁ : x₁ ⟶ y₁) (f₂ : x₂ ⟶ y₂) : inr x₁ x₂ ≫ (f₁ ⊗ₘ f₂) = f₂ ≫ inr y₁ y₂ :=
@@ -276,6 +305,9 @@ lemma inr_comp_tensorHom {x₁ y₁ x₂ y₂ : AugmentedSimplexCategory}
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s7.21ed638270ea from=seed src=0 shape=5ef98257 vocab=e515fe19
+-/
 @[reassoc (attr := simp)]
 lemma inr_comp_associator (x y z : AugmentedSimplexCategory) :
     inr _ _ ≫ (α_ x y z).hom = inr _ _ ≫ inr _ _ :=
@@ -299,6 +331,9 @@ lemma inr_comp_associator (x y z : AugmentedSimplexCategory) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s7.4d68a671f954 from=seed src=0 shape=f3b23a2c vocab=031df89e
+-/
 @[reassoc (attr := simp)]
 lemma inl_comp_inl_comp_associator (x y z : AugmentedSimplexCategory) :
     inl _ _ ≫ inl _ _ ≫ (α_ x y z).hom = inl _ _ :=
@@ -319,6 +354,9 @@ lemma inl_comp_inl_comp_associator (x y z : AugmentedSimplexCategory) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s7.44435b4a7fbb from=seed src=0 shape=787589d7 vocab=946d4cab
+-/
 @[reassoc (attr := simp)]
 lemma inr_comp_inl_comp_associator (x y z : AugmentedSimplexCategory) :
     inr _ _ ≫ inl _ _ ≫ (α_ x y z).hom = inl _ _ ≫ inr _ _ :=
@@ -338,11 +376,17 @@ lemma inr_comp_inl_comp_associator (x y z : AugmentedSimplexCategory) :
   | _, .star, _ => by cat_disch
   | _, _, .star => by cat_disch
 
+/--
+@isnad1 id=eq.0h10v.s7.e958ac734d0e from=seed src=0 shape=b315997b vocab=53943ad2
+-/
 theorem tensorHom_comp_tensorHom {x₁ y₁ z₁ x₂ y₂ z₂ : AugmentedSimplexCategory}
     (f₁ : x₁ ⟶ y₁) (f₂ : x₂ ⟶ y₂) (g₁ : y₁ ⟶ z₁) (g₂ : y₂ ⟶ z₂) :
     (f₁ ⊗ₘ f₂) ≫ (g₁ ⊗ₘ g₂) = (f₁ ≫ g₁) ⊗ₘ (f₂ ≫ g₂) := by
   cat_disch
 
+/--
+@isnad1 id=eq.0h2v.s6.05bd8627557b from=seed src=0 shape=32a784c9 vocab=82d034a4
+-/
 theorem tensor_id (x y : AugmentedSimplexCategory) : (𝟙 x) ⊗ₘ (𝟙 y) = 𝟙 (x ⊗ y) := by
   ext
   · simpa [inl, MonoidalCategoryStruct.whiskerLeft, MonoidalCategoryStruct.whiskerRight] using

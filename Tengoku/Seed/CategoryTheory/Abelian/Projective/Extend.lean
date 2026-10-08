@@ -47,6 +47,9 @@ noncomputable def cochainComplexXIso (n : ℤ) (k : ℕ) (h : -k = n := by lia) 
     R.cochainComplex.X n ≅ R.complex.X k :=
   HomologicalComplex.extendXIso _ _ h
 
+/--
+@isnad1 id=eq.0h9v.s9.b8fa8809dc65 from=seed src=0 shape=cc3fca12 vocab=089f4a5e
+-/
 @[reassoc]
 lemma cochainComplex_d (n₁ n₂ : ℤ) (k₁ k₂ : ℕ) (h₁ : -k₁ = n₁ := by lia) (h₂ : -k₂ = n₂ := by lia) :
     R.cochainComplex.d n₁ n₂ = (cochainComplexXIso _ _ _).hom ≫
@@ -71,6 +74,9 @@ noncomputable def π' : R.cochainComplex ⟶ (CochainComplex.singleFunctor C 0).
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s9.b4fc3471e3e7 from=seed src=0 shape=054d935c vocab=80586324
+-/
 @[reassoc]
 lemma π'_f_zero :
     R.π'.f 0 = (R.cochainComplexXIso _ _).hom ≫ R.π.f 0 ≫
@@ -104,6 +110,9 @@ noncomputable def hom' : R.cochainComplex ⟶ R'.cochainComplex :=
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h9v.s9.4443d86ab635 from=seed src=0 shape=cfcf1ed6 vocab=cc5f714f
+-/
 @[reassoc]
 lemma hom'_f (n : ℤ) (m : ℕ) (h : -m = n) :
     φ.hom'.f n =
@@ -113,6 +122,9 @@ lemma hom'_f (n : ℤ) (m : ℕ) (h : -m = n) :
     cochainComplexXIso]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s9.e6b09f2ff63f from=seed src=0 shape=554c99d1 vocab=67600aed
+-/
 @[reassoc (attr := simp)]
 lemma hom'_comp_π' :
     φ.hom' ≫ R'.π' = R.π' ≫ (CochainComplex.singleFunctor C 0).map f :=

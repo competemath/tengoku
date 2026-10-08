@@ -64,20 +64,26 @@ namespace AbsolutelyMonotoneOn
 
 variable {f g : ℝ → ℝ} {s : Set ℝ}
 
-/-- An absolutely monotone function on `s` is `C^∞` on `s`. -/
+/-- An absolutely monotone function on `s` is `C^∞` on `s`.
+@isnad1 id=contdiff.1h2v.s5.fe7b13cff7f2 from=seed src=0 shape=0094b83e vocab=1bdb22d8
+-/
 theorem contDiffOn (hf : AbsolutelyMonotoneOn f s) : ContDiffOn ℝ ∞ f s := by
   obtain ⟨_, hp, _⟩ := hf
   exact hp.contDiffOn
 
 /-- A globally `C^∞` function whose iterated derivatives are nonnegative on `s` is absolutely
-monotone on `s`. The set `s` need *not* satisfy `UniqueDiffOn`. -/
+monotone on `s`. The set `s` need *not* satisfy `UniqueDiffOn`.
+@isnad1 id=absolute.2h2v.s6.bd27b24b051a from=seed src=0 shape=261e7ab1 vocab=80f598f5
+-/
 theorem of_contDiff (hf : ContDiff ℝ ∞ f) (h : ∀ n : ℕ, ∀ x ∈ s, 0 ≤ iteratedDeriv n f x) :
     AbsolutelyMonotoneOn f s := by
   refine ⟨ftaylorSeries ℝ f, (hf.ftaylorSeries).hasFTaylorSeriesUpToOn s, fun n x hx => ?_⟩
   exact iteratedDeriv_eq_iteratedFDeriv (𝕜 := ℝ) (f := f) ▸ h n x hx
 
 /-- Under `UniqueDiffOn`, a Taylor witness for an absolutely monotone function agrees with
-`iteratedDerivWithin`, so the latter is nonnegative on `s`. -/
+`iteratedDerivWithin`, so the latter is nonnegative on `s`.
+@isnad1 id=le.3h4v.s6.48bba6fc144f from=seed src=0 shape=ec9fef28 vocab=31776688
+-/
 theorem iteratedDerivWithin_nonneg (hf : AbsolutelyMonotoneOn f s) (hs : UniqueDiffOn ℝ s)
     (n : ℕ) {x : ℝ} (hx : x ∈ s) : 0 ≤ iteratedDerivWithin n f s x := by
   obtain ⟨p, hp, hp_nn⟩ := hf
@@ -87,7 +93,9 @@ theorem iteratedDerivWithin_nonneg (hf : AbsolutelyMonotoneOn f s) (hs : UniqueD
   exact hp_nn n hx
 
 /-- Under `UniqueDiffOn`, a function is absolutely monotone on `s` iff it is `C^∞` on `s` with
-every iterated derivative within `s` nonnegative. -/
+every iterated derivative within `s` nonnegative.
+@isnad1 id=iff.1h2v.s6.d7184b802307 from=seed src=0 shape=a6ba3369 vocab=8ef2c05c
+-/
 theorem iff_iteratedDerivWithin_nonneg (hs : UniqueDiffOn ℝ s) :
     AbsolutelyMonotoneOn f s ↔
       ContDiffOn ℝ ∞ f s ∧ ∀ n : ℕ, ∀ x ∈ s, 0 ≤ iteratedDerivWithin n f s x := by
@@ -98,7 +106,9 @@ theorem iff_iteratedDerivWithin_nonneg (hs : UniqueDiffOn ℝ s) :
 
 /-! ### Closure properties -/
 
-/-- The sum of two absolutely monotone functions is absolutely monotone. -/
+/-- The sum of two absolutely monotone functions is absolutely monotone.
+@isnad1 id=absolute.2h3v.s5.0b24f20190d4 from=seed src=0 shape=60050d39 vocab=3ff67d0d
+-/
 theorem add (hf : AbsolutelyMonotoneOn f s) (hg : AbsolutelyMonotoneOn g s) :
     AbsolutelyMonotoneOn (f + g) s := by
   obtain ⟨p, hp, hp_nn⟩ := hf
@@ -107,7 +117,9 @@ theorem add (hf : AbsolutelyMonotoneOn f s) (hg : AbsolutelyMonotoneOn g s) :
   simp only [Pi.add_apply, FormalMultilinearSeries.add_apply, add_apply]
   exact add_nonneg (hp_nn n hx) (hq_nn n hx)
 
-/-- A nonnegative scalar multiple of an absolutely monotone function is absolutely monotone. -/
+/-- A nonnegative scalar multiple of an absolutely monotone function is absolutely monotone.
+@isnad1 id=absolute.2h3v.s5.11c2773eea94 from=seed src=0 shape=1f67d4cb vocab=8078cdca
+-/
 theorem smul {c : ℝ} (hf : AbsolutelyMonotoneOn f s) (hc : 0 ≤ c) :
     AbsolutelyMonotoneOn (c • f) s := by
   obtain ⟨p, hp, hp_nn⟩ := hf

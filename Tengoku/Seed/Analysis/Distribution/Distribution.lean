@@ -184,6 +184,9 @@ pointwise. -/
 noncomputable def mapCLM (A : F →L[ℝ] F') : 𝓓'^{n}(Ω, F) →L[ℝ] 𝓓'^{n}(Ω, F') :=
   A.postcompCompactConvergenceCLM _
 
+/--
+@isnad1 id=eq.0h8v.s11.dcacfb280f62 from=seed src=0 shape=62c66f90 vocab=52f1249c
+-/
 @[simp]
 lemma mapCLM_apply {A : F →L[ℝ] F'} {T : 𝓓'^{n}(Ω, F)} {f : 𝓓^{n}(Ω, ℝ)} :
     mapCLM A T f = A (T f) := rfl
@@ -200,10 +203,16 @@ noncomputable def delta (x : E) : 𝓓'^{n}(Ω, ℝ) where
   map_smul' _ _ := rfl
   cont := continuous_eval_const _
 
+/--
+@isnad1 id=eq.0h5v.s8.148e91ac0d69 from=seed src=0 shape=d1aa2005 vocab=84493125
+-/
 @[simp]
 theorem delta_apply (x : E) (f : 𝓓^{n}(Ω, ℝ)) : delta x f = f x := by
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.dcd4ee331d69 from=seed src=0 shape=3ae221d5 vocab=98679d0f
+-/
 @[simp]
 theorem delta_eq_zero_of_notMem (x : E) (hx : x ∉ Ω) : (delta x : 𝓓'^{n}(Ω, ℝ)) = 0 := by
   ext f
@@ -231,16 +240,25 @@ noncomputable def lineDerivCLM (v : E) :
     𝓓'^{k}(Ω, F) →L[ℝ] 𝓓'^{n}(Ω, F) :=
   - (TestFunction.lineDerivCLM ℝ v).precompCompactConvergenceCLM _
 
+/--
+@isnad1 id=eq.0h8v.s11.5518781a6416 from=seed src=0 shape=5e2502fd vocab=00ca6ba5
+-/
 lemma lineDerivCLM_apply {v : E} {T : 𝓓'^{k}(Ω, F)} {f : 𝓓^{n}(Ω, ℝ)} :
     lineDerivCLM v T f = - T (TestFunction.lineDerivCLM ℝ v f) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.61cb1c0e7527 from=seed src=0 shape=6bf2ed01 vocab=6eac157f
+-/
 lemma lineDerivCLM_add {v₁ v₂ : E} :
     (lineDerivCLM (v₁ + v₂) : 𝓓'^{k}(Ω, F) →L[ℝ] 𝓓'^{n}(Ω, F)) =
       lineDerivCLM v₁ + lineDerivCLM v₂ := by
   ext T f
   simp [lineDerivCLM_apply, TestFunction.lineDerivCLM_add, neg_add, -neg_add_rev]
 
+/--
+@isnad1 id=eq.0h7v.s12.5b0c793d63d6 from=seed src=0 shape=235acbe3 vocab=3c1fa4f8
+-/
 lemma lineDerivCLM_smul {c : ℝ} {v : E} :
     (lineDerivCLM (c • v) : 𝓓'^{k}(Ω, F) →L[ℝ] 𝓓'^{n}(Ω, F)) =
       c • lineDerivCLM v := by
@@ -256,10 +274,16 @@ noncomputable instance : LineDeriv E 𝓓'(Ω, F) 𝓓'(Ω, F) where
   lineDerivOp v := lineDerivCLM v
 
 variable (𝕜) in
+/--
+@isnad1 id=eq.0h5v.s11.d179d49e7e1d from=seed src=0 shape=63520ae7 vocab=73718406
+-/
 lemma lineDerivOp_eq_lineDerivCLM {v : E} {T : 𝓓'(Ω, F)} :
     ∂_{v} T = lineDerivCLM v T :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.5d40b3f99a2e from=seed src=0 shape=acea08d3 vocab=6b8e23f4
+-/
 @[simp]
 theorem lineDerivOp_apply_apply (f : 𝓓'(Ω, F)) (g : 𝓓(Ω, ℝ)) (m : E) :
     ∂_{m} f g = f (- ∂_{m} g) := by
@@ -278,6 +302,9 @@ noncomputable instance : LineDerivLeftSMul ℝ E 𝓓'(Ω, F) 𝓓'(Ω, F) where
 noncomputable instance : ContinuousLineDeriv E 𝓓'(Ω, F) 𝓓'(Ω, F) where
   continuous_lineDerivOp v := (lineDerivCLM v).continuous
 
+/--
+@isnad1 id=eq.0h4v.s11.d9ba83eb676d from=seed src=0 shape=68139418 vocab=5df1cbda
+-/
 lemma lineDerivOpCLM_eq_lineDerivCLM {v : E} :
     lineDerivOpCLM ℝ 𝓓'(Ω, F) v = lineDerivCLM v :=
   rfl

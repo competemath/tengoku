@@ -27,12 +27,16 @@ variable {T : Module.End 𝕜 E} {p : Submodule 𝕜 E} (hT : T.IsSymmetric)
 
 include hT
 
-/-- The orthogonal complement of an invariant submodule is invariant. -/
+/-- The orthogonal complement of an invariant submodule is invariant.
+@isnad1 id=mem.2h4v.s10.6162a040d46d from=seed src=0 shape=678f269f vocab=c43f78bb
+-/
 lemma orthogonalComplement_mem_invtSubmodule (hp : p ∈ T.invtSubmodule) :
     pᗮ ∈ T.invtSubmodule :=
   fun x hx y hy ↦ hT y x ▸ hx (T y) (hp hy)
 
-/-- Symmetric operators are semisimple on finite-dimensional subspaces. -/
+/-- Symmetric operators are semisimple on finite-dimensional subspaces.
+@isnad1 id=isfinite.1h3v.s6.8fd46b6d6926 from=seed src=0 shape=a5e4e727 vocab=55f3f0db
+-/
 theorem isFinitelySemisimple :
     T.IsFinitelySemisimple := by
   refine Module.End.isFinitelySemisimple_iff.mpr fun p hp₁ hp₂ q hq₁ hq₂ ↦

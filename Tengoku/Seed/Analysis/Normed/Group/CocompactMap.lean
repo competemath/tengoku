@@ -31,6 +31,9 @@ variable {E F 𝓕 : Type*}
 variable [NormedAddCommGroup E] [NormedAddCommGroup F]
 variable {f : 𝓕}
 
+/--
+@isnad1 id=ex.0h5v.s6.4b00c2435066 from=seed src=0 shape=1622c55c vocab=49a6fee8
+-/
 theorem CocompactMapClass.norm_le [ProperSpace F] [FunLike 𝓕 E F] [CocompactMapClass 𝓕 E F]
     (ε : ℝ) : ∃ r : ℝ, ∀ x : E, r < ‖x‖ → ε < ‖f x‖ := by
   have h := cocompact_tendsto f
@@ -43,6 +46,9 @@ theorem CocompactMapClass.norm_le [ProperSpace F] [FunLike 𝓕 E F] [CocompactM
   apply hr
   simp [hx]
 
+/--
+@isnad1 id=tendsto.1h3v.s6.0a57c1995f9c from=seed src=0 shape=9e5523e8 vocab=d17053b1
+-/
 theorem Filter.tendsto_cocompact_cocompact_of_norm [ProperSpace E] {f : E → F}
     (h : ∀ ε : ℝ, ∃ r : ℝ, ∀ x : E, r < ‖x‖ → ε < ‖f x‖) :
     Tendsto f (cocompact E) (cocompact F) := by
@@ -57,6 +63,9 @@ theorem Filter.tendsto_cocompact_cocompact_of_norm [ProperSpace E] {f : E → F}
   apply hε
   simp [hr x hx]
 
+/--
+@isnad1 id=cocompac.1h3v.s6.8ef86ef31829 from=seed src=0 shape=04b1adb3 vocab=54c1931b
+-/
 theorem ContinuousMapClass.toCocompactMapClass_of_norm [ProperSpace E] [FunLike 𝓕 E F]
     [ContinuousMapClass 𝓕 E F] (h : ∀ (f : 𝓕) (ε : ℝ), ∃ r : ℝ, ∀ x : E, r < ‖x‖ → ε < ‖f x‖) :
     CocompactMapClass 𝓕 E F where

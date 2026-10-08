@@ -31,7 +31,9 @@ namespace SSet.StrictSegal
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
-/-- Any `StrictSegal` simplicial set is a `Quasicategory`. -/
+/-- Any `StrictSegal` simplicial set is a `Quasicategory`.
+@isnad1 id=quasicat.0h2v.s2.0ea3d0012f6e from=seed src=0 shape=6321fd23 vocab=b797ef11
+-/
 theorem quasicategory {X : SSet.{u}} (sx : StrictSegal X) : Quasicategory X := by
   apply quasicategory_of_filler X
   intro n i σ₀ h₀ hₙ
@@ -98,7 +100,9 @@ theorem quasicategory {X : SSet.{u}} (sx : StrictSegal X) : Quasicategory X := b
       rw [mkOfSucc_δ_eq heq]
       fin_cases z <;> rfl
 
-/-- Any simplicial set satisfying `IsStrictSegal` is a `Quasicategory`. -/
+/-- Any simplicial set satisfying `IsStrictSegal` is a `Quasicategory`.
+@isnad1 id=quasicat.0h1v.s2.b6635284aacb from=seed src=0 shape=6321fd23 vocab=766cc7b2
+-/
 instance quasicategory' (X : SSet.{u}) [IsStrictSegal X] : Quasicategory X :=
   quasicategory <| ofIsStrictSegal X
 

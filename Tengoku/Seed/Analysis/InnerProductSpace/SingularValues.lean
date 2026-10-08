@@ -98,10 +98,16 @@ noncomputable def singularValues : ℕ →₀ ℝ :=
       (fun i ↦ √(T.isSymmetric_adjoint_comp_self.eigenvalues rfl i))
       (Set.toFinite _)
 
+/--
+@isnad1 id=le.0h5v.s7.c533da1b91df from=seed src=0 shape=bda41b59 vocab=66bcee08
+-/
 theorem singularValues_nonneg (i : ℕ) : 0 ≤ T.singularValues i := by
   rw [singularValues, Finsupp.embDomain_apply, Finsupp.ofSupportFinite_coe]
   split_ifs <;> positivity
 
+/--
+@isnad1 id=iff.0h5v.s8.0c33defdc465 from=seed src=0 shape=dc369aee vocab=7816cb4f
+-/
 theorem singularValues_pos_iff_ne_zero (i : ℕ) :
     0 < T.singularValues i ↔ T.singularValues i ≠ 0 := by
   grind [T.singularValues_nonneg i]
@@ -112,33 +118,52 @@ Together with `LinearMap.singularValues_of_finrank_le`, this characterizes the s
 
 Because of the square root, you probably need to use
 `T.isPositive_adjoint_comp_self.nonneg_eigenvalues` to make effective use of this theorem.
+@isnad1 id=eq.1h6v.s11.d2c93e719e13 from=seed src=0 shape=eee2fc91 vocab=0a6b181a
 -/
 theorem singularValues_fin {n : ℕ} (hn : finrank 𝕜 E = n) (i : Fin n) :
     T.singularValues i = √(T.isSymmetric_adjoint_comp_self.eigenvalues hn i) := by
   subst hn
   exact Finsupp.embDomain_apply_self _ _ i
 
+/--
+@isnad1 id=eq.2h6v.s11.179de7917338 from=seed src=0 shape=fddef3a0 vocab=2213ba76
+-/
 theorem singularValues_of_lt {n : ℕ} (hn : finrank 𝕜 E = n) {i : ℕ} (hi : i < n) :
     T.singularValues i = √(T.isSymmetric_adjoint_comp_self.eigenvalues hn ⟨i, hi⟩) :=
   T.singularValues_fin hn ⟨i, hi⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.a59cf94fa40b from=seed src=0 shape=69b67bd8 vocab=a4cfc326
+-/
 theorem singularValues_of_finrank_le {i : ℕ} (hi : finrank 𝕜 E ≤ i) : T.singularValues i = 0 := by
   apply Finsupp.embDomain_of_notMem_range
   simp [hi]
 
+/--
+@isnad1 id=eq.1h6v.s11.b33d9ae19012 from=seed src=0 shape=3b3ba221 vocab=c9ba430d
+-/
 theorem sq_singularValues_fin {n : ℕ} (hn : finrank 𝕜 E = n) (i : Fin n) :
     T.singularValues i ^ 2 = T.isSymmetric_adjoint_comp_self.eigenvalues hn i := by
   simp [T.singularValues_fin hn, T.isPositive_adjoint_comp_self.nonneg_eigenvalues hn i]
 
+/--
+@isnad1 id=eq.2h6v.s11.190314db8982 from=seed src=0 shape=89bc697c vocab=4f8e7342
+-/
 theorem sq_singularValues_of_lt {n : ℕ} (hn : finrank 𝕜 E = n) {i : ℕ} (hi : i < n) :
     T.singularValues i ^ 2 = T.isSymmetric_adjoint_comp_self.eigenvalues hn ⟨i, hi⟩ :=
   T.sq_singularValues_fin hn ⟨i, hi⟩
 
+/--
+@isnad1 id=haseigen.1h5v.s11.06207ce974d6 from=seed src=0 shape=f6454ce8 vocab=f267ff96
+-/
 theorem hasEigenvalue_adjoint_comp_self_sq_singularValues {n : ℕ} (hn : n < finrank 𝕜 E) :
     End.HasEigenvalue (adjoint T ∘ₗ T) (T.singularValues n ^ 2) := by
   convert! T.isSymmetric_adjoint_comp_self.hasEigenvalue_eigenvalues rfl ⟨n, hn⟩ using 1
   simp [← T.sq_singularValues_fin]
 
+/--
+@isnad1 id=antitone.0h4v.s7.cb142c40ee17 from=seed src=0 shape=86ffa8a4 vocab=c0b1a38f
+-/
 theorem singularValues_antitone : Antitone T.singularValues := by
   intro i j hij
   by_cases! hj : finrank 𝕜 E ≤ j
@@ -152,6 +177,7 @@ theorem singularValues_antitone : Antitone T.singularValues := by
 7.68(a) from [axler2024]. Note that we have countably infinitely many singular values whereas there
 are only dim(domain(T)) singular values in [axler2024], so we modify the statement to account for
 this.
+@isnad1 id=iff.0h4v.s8.b6789779bb3c from=seed src=0 shape=8f3967c5 vocab=e9e204c2
 -/
 theorem injective_iff_forall_lt_finrank_singularValues_pos :
     Function.Injective T ↔ ∀ i < finrank 𝕜 E, 0 < T.singularValues i := by
@@ -170,6 +196,7 @@ theorem injective_iff_forall_lt_finrank_singularValues_pos :
 
 /--
 7.68(b) from [axler2024]. See also `LinearMap.support_singularValues` for a stronger statement.
+@isnad1 id=eq.0h4v.s9.54722a84b02d from=seed src=0 shape=f01a0f8c vocab=12ba4890
 -/
 theorem card_support_singularValues : T.singularValues.support.card = finrank 𝕜 T.range := by
   have hS : ∀ m ∈ T.singularValues.support, m < finrank 𝕜 E := by
@@ -182,11 +209,17 @@ theorem card_support_singularValues : T.singularValues.support.card = finrank �
     ← (T.adjoint ∘ₗ T).finrank_range_add_finrank_ker, add_tsub_cancel_right,
     T.range_adjoint_comp_self, finrank_range_adjoint]
 
+/--
+@isnad1 id=islowers.0h4v.s7.3d74d731dce6 from=seed src=0 shape=ce9f55f6 vocab=f0c20edb
+-/
 theorem isLowerSet_support_singularValues : IsLowerSet (T.singularValues.support : Set ℕ) := by
   intro a b hl ha
   rw [Finset.mem_coe, Finsupp.mem_support_iff, ← singularValues_pos_iff_ne_zero] at ⊢ ha
   order [T.singularValues_antitone hl]
 
+/--
+@isnad1 id=eq.0h4v.s9.781d72055ff7 from=seed src=0 shape=b3fed8cc vocab=b0df0ad8
+-/
 @[simp]
 theorem support_singularValues : T.singularValues.support = Finset.range (finrank 𝕜 T.range) := by
   obtain ⟨n, hn⟩ := T.isLowerSet_support_singularValues.eq_univ_or_Iio.resolve_left
@@ -194,25 +227,40 @@ theorem support_singularValues : T.singularValues.support = Finset.range (finran
   rw [← Finset.coe_Iio, Finset.coe_inj, Nat.Iio_eq_range] at hn
   simp [← card_support_singularValues, hn]
 
+/--
+@isnad1 id=iff.0h5v.s9.d6e5e968e5c3 from=seed src=0 shape=51824123 vocab=cbedc602
+-/
 theorem singularValues_pos_iff_lt_finrank_range {n : ℕ} :
     0 < T.singularValues n ↔ n < finrank 𝕜 T.range := by
   rw [singularValues_pos_iff_ne_zero, ← Finsupp.mem_support_iff, support_singularValues,
     Finset.mem_range]
 
+/--
+@isnad1 id=eq.0h4v.s9.ef5345a15b5b from=seed src=0 shape=91207877 vocab=690b1a45
+-/
 theorem singularValues_finrank_range_self : T.singularValues (finrank 𝕜 T.range) = 0 := by
   rw [← Finsupp.notMem_support_iff, support_singularValues]
   exact Finset.notMem_range_self
 
+/--
+@isnad1 id=iff.0h5v.s9.079059c90589 from=seed src=0 shape=49b0fff0 vocab=779b3eff
+-/
 theorem singularValues_eq_zero_iff_le_finrank_range {n : ℕ} :
     T.singularValues n = 0 ↔ finrank 𝕜 T.range ≤ n := by
   rw [← Finsupp.notMem_support_iff, support_singularValues, Finset.mem_range, not_lt]
 
+/--
+@isnad1 id=eq.0h3v.s8.8bcc53b65377 from=seed src=0 shape=f22d795f vocab=cff313a5
+-/
 @[simp]
 theorem singularValues_zero : (0 : E →ₗ[𝕜] F).singularValues = 0 := by
   ext1 i
   rw [Finsupp.zero_apply, singularValues_eq_zero_iff_le_finrank_range, range_zero]
   simp
 
+/--
+@isnad1 id=iff.0h4v.s9.d36b030dcae3 from=seed src=0 shape=d29e708d vocab=cff313a5
+-/
 @[simp]
 theorem singularValues_eq_zero_iff : T.singularValues = 0 ↔ T = 0 := by
   constructor <;> intro h

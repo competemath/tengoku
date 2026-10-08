@@ -71,6 +71,9 @@ structure Path {J : Type*} [LinearOrder J] (i j : J) where
   left_le (k : J) (_ : k ∈ I) : i ≤ k := by simp
   le_right (k : J) (_ : k ∈ I) : k ≤ j := by simp
 
+/--
+@isnad1 id=le.0h4v.s5.9e884f497954 from=seed src=0 shape=4ab508a5 vocab=940b597f
+-/
 lemma Path.le {J : Type*} [LinearOrder J] {i j : J} (f : Path i j) : i ≤ j :=
   f.left_le _ f.right
 
@@ -97,6 +100,9 @@ attribute [local simp] SimplicialThickening.comp_I SimplicialThickening.id_I
 instance {J : Type*} [LinearOrder J] (i j : SimplicialThickening J) : Category (i ⟶ j) :=
   inferInstanceAs (Category (Path i.as j.as))
 
+/--
+@isnad1 id=eq.1h5v.s6.4c39e862453d from=seed src=0 shape=9f12a8bc vocab=9ec85688
+-/
 @[ext]
 lemma hom_ext {J : Type*} [LinearOrder J]
     (i j : SimplicialThickening J) (x y : i ⟶ j) (h : ∀ t, t ∈ x.I ↔ t ∈ y.I) : x = y := by
@@ -167,6 +173,9 @@ def functor {J K : Type u} [LinearOrder J] [LinearOrder K]
     exact Functor.ext (by cat_disch)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s7.9cf358f2319f from=seed src=0 shape=fa1b0b56 vocab=5466372e
+-/
 lemma functor_id (J : Type u) [LinearOrder J] :
     (functor (OrderHom.id (α := J))) = EnrichedFunctor.id _ _ := by
   refine EnrichedFunctor.ext _ (fun _ ↦ rfl) fun i j ↦ ?_
@@ -174,6 +183,9 @@ lemma functor_id (J : Type u) [LinearOrder J] :
   exact Functor.ext (by cat_disch)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.2fd336aa5ec3 from=seed src=0 shape=17e991ae vocab=a2c95431
+-/
 lemma functor_comp {J K L : Type u} [LinearOrder J] [LinearOrder K]
     [LinearOrder L] (f : J →o K) (g : K →o L) :
     functor (g.comp f) =

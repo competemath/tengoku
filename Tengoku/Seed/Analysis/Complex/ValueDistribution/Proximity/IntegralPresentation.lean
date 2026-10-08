@@ -50,6 +50,7 @@ noncomputable def cartanKernel (f : ℂ → ℂ) (R : ℝ) (α β : ℝ) : ℝ :
 /--
 For every function `f : ℂ → ℂ`, the Cartan kernel of integration `cartanKernel f R α β` is
 integrable as a function in `α`.
+@isnad1 id=integrab.0h3v.s6.4fe9522293a2 from=seed src=0 shape=c3421516 vocab=23a9afa4
 -/
 lemma integrableOn_cartanKernel_left (f : ℂ → ℂ) (R : ℝ) (β : ℝ) :
     IntegrableOn (cartanKernel f R · β) (Ioc 0 (2 * π)) := by
@@ -59,6 +60,7 @@ lemma integrableOn_cartanKernel_left (f : ℂ → ℂ) (R : ℝ) (β : ℝ) :
 /--
 If `f : ℂ → ℂ` is measurable, then the Cartan kernel of integration is measurable as a function in
 the two variables `α` and `β`.
+@isnad1 id=measurab.1h2v.s5.f048c56262a5 from=seed src=0 shape=e8683677 vocab=6378ec6f
 -/
 @[fun_prop]
 theorem measurable_cartanKernel (hf : Measurable f) :
@@ -85,6 +87,9 @@ private lemma integral_norm_cartanKernel_eq (f : ℂ → ℂ) (R β : ℝ) :
 /-
 If `f : ℂ → ℂ` is meromorphic,, then the `L¹` norms of the angular slices of the Cartan kernel form
 an integrable family.
+-/
+/--
+@isnad1 id=integrab.1h2v.s7.281a07a8fcfd from=seed src=0 shape=6c7e8aa2 vocab=24455b65
 -/
 lemma integrable_integral_norm_cartanKernel (h : Meromorphic f) :
     Integrable (∫ α, ‖cartanKernel f R α ·‖ ∂(volume.restrict (Ioc 0 (2 * π))))
@@ -124,6 +129,7 @@ lemma integrable_integral_norm_cartanKernel (h : Meromorphic f) :
 /--
 If `f : ℂ → ℂ` is meromorphic, then the Cartan kernel of integration is integrable as a function in
 the two variables `α` and `β`.
+@isnad1 id=integrab.1h2v.s7.3e66aa118bde from=seed src=0 shape=8f252452 vocab=8bb7c0a6
 -/
 theorem integrableOn_cartanKernel (h : Meromorphic f) :
     IntegrableOn (fun p ↦ cartanKernel f R p.1 p.2) (uIoc 0 (2 * π) ×ˢ uIoc 0 (2 * π)) := by
@@ -136,6 +142,7 @@ theorem integrableOn_cartanKernel (h : Meromorphic f) :
 /--
 Corollary of `integrableOn_cartanKernel`: If `f : ℂ → ℂ` is meromorphic, then the function
 `β ↦ ∫ α in 0..2 * π, Cartan.cartanKernel f R α β` is integrable.
+@isnad1 id=integrab.1h2v.s6.e8bd2cda8256 from=seed src=0 shape=63cd5b45 vocab=24af1294
 -/
 lemma integrableOn_intervalIntegral_cartanKernel_left (h : Meromorphic f) :
     IntegrableOn (∫ α in 0..2 * π, Cartan.cartanKernel f R α ·) (Ioc 0 (2 * π)) := by
@@ -148,6 +155,7 @@ lemma integrableOn_intervalIntegral_cartanKernel_left (h : Meromorphic f) :
 /--
 Corollary of `integrableOn_cartanKernel`: If `f : ℂ → ℂ` is meromorphic, then the function
 `α ↦ ∫ β in 0..2 * π, Cartan.cartanKernel f R α β` is integrable.
+@isnad1 id=integrab.1h2v.s6.2034fad8ba49 from=seed src=0 shape=863dec45 vocab=24af1294
 -/
 lemma integrableOn_intervalIntegral_cartanKernel_right (h : Meromorphic f) :
     IntegrableOn (∫ β in 0..2 * π, Cartan.cartanKernel f R · β) (Ioc 0 (2 * π)) := by
@@ -161,6 +169,7 @@ end Cartan
 
 /--
 Presentation of the proximity function as iterated circle averages.
+@isnad1 id=eq.1h1v.s6.ea2003b29d49 from=seed src=0 shape=d6d301fd vocab=6ab40956
 -/
 theorem circleAverage_circleAverage_eq_proximity_top (h : Meromorphic f) :
     (fun R ↦ circleAverage (fun a ↦ circleAverage (log ‖f · - a‖) 0 R) 0 1) = proximity f ⊤ := by
@@ -189,6 +198,7 @@ theorem circleAverage_circleAverage_eq_proximity_top (h : Meromorphic f) :
 /--
 Complementary statement to `proximity_top_eq_circleAverage_circleAverage`, providing circle
 integrability of the integrand.
+@isnad1 id=circlein.1h2v.s6.0da165efe807 from=seed src=0 shape=08de9969 vocab=5bd076e4
 -/
 theorem circleIntegrable_circleAverage_log_norm_sub (h : Meromorphic f) :
     CircleIntegrable (fun a ↦ circleAverage (log ‖f · - a‖) 0 R) 0 1 := by

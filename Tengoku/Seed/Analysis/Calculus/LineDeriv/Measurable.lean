@@ -35,6 +35,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] [LocallyCompactSpace 𝕜
 Measurability of the line derivative `lineDeriv 𝕜 f x v` with respect to a fixed direction `v`.
 -/
 
+/--
+@isnad1 id=measurab.1h5v.s7.f23aff174e51 from=seed src=0 shape=f82dc637 vocab=53492d49
+-/
 theorem measurableSet_lineDifferentiableAt (hf : Continuous f) :
     MeasurableSet {x : E | LineDifferentiableAt 𝕜 f x v} := by
   borelize 𝕜
@@ -42,6 +45,9 @@ theorem measurableSet_lineDifferentiableAt (hf : Continuous f) :
   have hg : Continuous g.uncurry := by fun_prop
   exact measurable_prodMk_right (measurableSet_of_differentiableAt_with_param 𝕜 hg)
 
+/--
+@isnad1 id=measurab.1h5v.s7.db1eec049c02 from=seed src=0 shape=2198950a vocab=cae9dc20
+-/
 theorem measurable_lineDeriv [MeasurableSpace F] [BorelSpace F]
     (hf : Continuous f) : Measurable (fun x ↦ lineDeriv 𝕜 f x v) := by
   borelize 𝕜
@@ -49,6 +55,9 @@ theorem measurable_lineDeriv [MeasurableSpace F] [BorelSpace F]
   have hg : Continuous g.uncurry := by fun_prop
   exact (measurable_deriv_with_param hg).comp measurable_prodMk_right
 
+/--
+@isnad1 id=strongly.1h5v.s7.8958af73843e from=seed src=0 shape=a4a754df vocab=89182799
+-/
 theorem stronglyMeasurable_lineDeriv [SecondCountableTopologyEither E F] (hf : Continuous f) :
     StronglyMeasurable (fun x ↦ lineDeriv 𝕜 f x v) := by
   borelize 𝕜
@@ -56,11 +65,17 @@ theorem stronglyMeasurable_lineDeriv [SecondCountableTopologyEither E F] (hf : C
   have hg : Continuous g.uncurry := by fun_prop
   exact (stronglyMeasurable_deriv_with_param hg).comp_measurable measurable_prodMk_right
 
+/--
+@isnad1 id=aemeasur.1h6v.s7.b144a06f1197 from=seed src=0 shape=e2ef91dd vocab=31452d9d
+-/
 theorem aemeasurable_lineDeriv [MeasurableSpace F] [BorelSpace F]
     (hf : Continuous f) (μ : Measure E) :
     AEMeasurable (fun x ↦ lineDeriv 𝕜 f x v) μ :=
   (measurable_lineDeriv hf).aemeasurable
 
+/--
+@isnad1 id=aestrong.1h6v.s7.adab625ae9f8 from=seed src=0 shape=321bb733 vocab=bc8db244
+-/
 theorem aestronglyMeasurable_lineDeriv [SecondCountableTopologyEither E F]
     (hf : Continuous f) (μ : Measure E) :
     AEStronglyMeasurable (fun x ↦ lineDeriv 𝕜 f x v) μ :=
@@ -74,6 +89,9 @@ measurable in `E × E`.
 
 variable [SecondCountableTopology E]
 
+/--
+@isnad1 id=measurab.1h4v.s7.78eb78d0c881 from=seed src=0 shape=fdaf6c9d vocab=eec325c4
+-/
 theorem measurableSet_lineDifferentiableAt_uncurry (hf : Continuous f) :
     MeasurableSet {p : E × E | LineDifferentiableAt 𝕜 f p.1 p.2} := by
   borelize 𝕜
@@ -85,6 +103,9 @@ theorem measurableSet_lineDifferentiableAt_uncurry (hf : Continuous f) :
     measurableSet_of_differentiableAt_with_param 𝕜 this
   exact measurable_prodMk_right M_meas
 
+/--
+@isnad1 id=measurab.1h4v.s7.ea940fafdb32 from=seed src=0 shape=295700a9 vocab=42d30e9d
+-/
 theorem measurable_lineDeriv_uncurry [MeasurableSpace F] [BorelSpace F]
     (hf : Continuous f) : Measurable (fun (p : E × E) ↦ lineDeriv 𝕜 f p.1 p.2) := by
   borelize 𝕜
@@ -94,6 +115,9 @@ theorem measurable_lineDeriv_uncurry [MeasurableSpace F] [BorelSpace F]
     <| continuous_snd.smul (continuous_snd.comp continuous_fst)
   exact (measurable_deriv_with_param this).comp measurable_prodMk_right
 
+/--
+@isnad1 id=strongly.1h4v.s7.4e1da99ae4f3 from=seed src=0 shape=d2377ba1 vocab=5f8a5c60
+-/
 theorem stronglyMeasurable_lineDeriv_uncurry (hf : Continuous f) :
     StronglyMeasurable (fun (p : E × E) ↦ lineDeriv 𝕜 f p.1 p.2) := by
   borelize 𝕜
@@ -103,11 +127,17 @@ theorem stronglyMeasurable_lineDeriv_uncurry (hf : Continuous f) :
     <| continuous_snd.smul (continuous_snd.comp continuous_fst)
   exact (stronglyMeasurable_deriv_with_param this).comp_measurable measurable_prodMk_right
 
+/--
+@isnad1 id=aemeasur.1h5v.s7.777b309c6c09 from=seed src=0 shape=78eff10e vocab=c76f9887
+-/
 theorem aemeasurable_lineDeriv_uncurry [MeasurableSpace F] [BorelSpace F]
     (hf : Continuous f) (μ : Measure (E × E)) :
     AEMeasurable (fun (p : E × E) ↦ lineDeriv 𝕜 f p.1 p.2) μ :=
   (measurable_lineDeriv_uncurry hf).aemeasurable
 
+/--
+@isnad1 id=aestrong.1h5v.s7.8c0c71a89efd from=seed src=0 shape=2d14d94e vocab=85ab6e5a
+-/
 theorem aestronglyMeasurable_lineDeriv_uncurry (hf : Continuous f) (μ : Measure (E × E)) :
     AEStronglyMeasurable (fun (p : E × E) ↦ lineDeriv 𝕜 f p.1 p.2) μ :=
   (stronglyMeasurable_lineDeriv_uncurry hf).aestronglyMeasurable

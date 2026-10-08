@@ -37,6 +37,9 @@ def op : A.op.Pairing where
     (P.p.trans (N.opEquiv.symm.subtypeEquiv (by simp)))
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s10.027a7f9f0af7 from=seed src=0 shape=9efbde66 vocab=5e07d334
+-/
 @[simp]
 lemma op_p (x : P.II) :
     dsimp% P.op.p ⟨Subcomplex.N.opEquiv.symm x.1, x.2⟩ =
@@ -44,6 +47,9 @@ lemma op_p (x : P.II) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iff.0h5v.s8.1695157291cf from=seed src=0 shape=dc12879c vocab=4eecfa55
+-/
 lemma op_ancestralRel_iff (x y : P.II) :
     P.op.AncestralRel ⟨Subcomplex.N.opEquiv.symm x.1, x.2⟩
       ⟨Subcomplex.N.opEquiv.symm y.1, y.2⟩ ↔ P.AncestralRel x y :=

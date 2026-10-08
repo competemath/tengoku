@@ -41,7 +41,9 @@ abbrev KanComplex (S : SSet.{u}) : Prop := HomotopicalAlgebra.IsFibrant S
 
 /-- A Kan complex `S` satisfies the following horn-filling condition:
 for every nonzero `n : ℕ` and `0 ≤ i ≤ n`,
-every map of simplicial sets `σ₀ : Λ[n, i] → S` can be extended to a map `σ : Δ[n] → S`. -/
+every map of simplicial sets `σ₀ : Λ[n, i] → S` can be extended to a map `σ : Δ[n] → S`.
+@isnad1 id=ex.0h4v.s8.785068e4c5fe from=seed src=0 shape=add502ab vocab=fd7dba6f
+-/
 lemma KanComplex.hornFilling {S : SSet.{u}} [KanComplex S]
     {n : ℕ} {i : Fin (n + 2)} (σ₀ : (Λ[n + 1, i] : SSet) ⟶ S) :
     ∃ σ : Δ[n + 1] ⟶ S, σ₀ = Λ[n + 1, i].ι ≫ σ := by
@@ -53,6 +55,9 @@ namespace horn.IsCompatible
 variable {X : SSet.{u}} {n : ℕ}
   {i : Fin (n + 2)} {f : ∀ (j : Fin (n + 2)) (_ : j ≠ i), Δ[n] ⟶ X}
 
+/--
+@isnad1 id=ex.1h4v.s8.5182aa177d10 from=seed src=0 shape=bba7a0a3 vocab=2f26c703
+-/
 lemma exists_lift_of_kanComplex [KanComplex X]
     (hf : horn.IsCompatible f) :
     ∃ (φ : Δ[n + 1] ⟶ X),
@@ -67,6 +72,9 @@ noncomputable def liftOfKanComplex [KanComplex X] (hf : horn.IsCompatible f) :
     Δ[n + 1] ⟶ X :=
   hf.exists_lift_of_kanComplex.choose
 
+/--
+@isnad1 id=eq.1h6v.s7.ef6d4cddaa5c from=seed src=0 shape=99a95184 vocab=aadd89ad
+-/
 @[reassoc]
 lemma δ_liftOfKanComplex [KanComplex X] (hf : horn.IsCompatible f)
     (j : Fin (n + 2)) (hj : j ≠ i := by grind) :
@@ -80,7 +88,9 @@ open modelCategoryQuillen in
 and any family of morphisms `Δ[n] ⟶ Z` for all `j ≠ i` that is compatible
 (in the sense that it extends to a morphism `Λ[n + 1, i] ⟶ X`), there
 exists a morphism `Δ[n + 1] ⟶ Z` which induces the given family of morphisms
-on the faces `j ≠ i`. -/
+on the faces `j ≠ i`.
+@isnad1 id=iff.0h1v.s8.d03b3a583b37 from=seed src=0 shape=1fa42615 vocab=2f26c703
+-/
 lemma KanComplex.iff {Z : SSet.{u}} :
     KanComplex Z ↔
       ∀ ⦃n : ℕ⦄ ⦃i : Fin (n + 2)⦄ (f : ∀ (j : Fin (n + 2)) (_ : j ≠ i), Δ[n] ⟶ Z)

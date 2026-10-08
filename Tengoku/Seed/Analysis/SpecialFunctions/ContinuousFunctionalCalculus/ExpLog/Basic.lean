@@ -50,6 +50,9 @@ open NormedSpace
 section general_exponential
 variable {𝕜 : Type*} {α : Type*} [RCLike 𝕜] [TopologicalSpace α] [CompactSpace α]
 
+/--
+@isnad1 id=eq.0h3v.s7.7b66cc95f0f6 from=seed src=0 shape=7ef409f2 vocab=c5b1726c
+-/
 lemma NormedSpace.exp_continuousMap_eq (f : C(α, 𝕜)) :
     exp f = (⟨exp ∘ f, exp_continuous.comp f.continuous⟩ : C(α, 𝕜)) := by
   ext a
@@ -67,6 +70,9 @@ variable {𝕜 : Type*} {A : Type*} [RCLike 𝕜] {p : A → Prop} [NormedRing A
   [StarRing A] [NormedAlgebra 𝕜 A] [ContinuousFunctionalCalculus 𝕜 A p]
 
 open scoped ContinuousFunctionalCalculus in
+/--
+@isnad1 id=eq.0h5v.s7.b1aa684060d0 from=seed src=0 shape=7ad28429 vocab=f4d7de9a
+-/
 lemma exp_eq_normedSpace_exp {a : A} (ha : p a := by cfc_tac) :
     cfc (exp : 𝕜 → 𝕜) a = exp a := by
   conv_rhs => rw [← cfc_id 𝕜 a ha, cfc_apply id a ha]
@@ -85,6 +91,9 @@ section RealNormed
 variable {A : Type*} [NormedRing A] [StarRing A] [NormedAlgebra ℝ A]
   [ContinuousFunctionalCalculus ℝ A IsSelfAdjoint]
 
+/--
+@isnad1 id=eq.0h3v.s7.382a712a42c1 from=seed src=0 shape=7979998b vocab=883ae1ba
+-/
 lemma real_exp_eq_normedSpace_exp {a : A} (ha : IsSelfAdjoint a := by cfc_tac) :
     cfc Real.exp a = exp a :=
   Real.exp_eq_exp_ℝ ▸ exp_eq_normedSpace_exp ha
@@ -103,6 +112,9 @@ section ComplexNormed
 variable {A : Type*} {p : A → Prop} [NormedRing A] [StarRing A]
   [NormedAlgebra ℂ A] [ContinuousFunctionalCalculus ℂ A p]
 
+/--
+@isnad1 id=eq.0h4v.s6.5be38e7a5d40 from=seed src=0 shape=6af857b3 vocab=744a22f5
+-/
 lemma complex_exp_eq_normedSpace_exp {a : A} (ha : p a := by cfc_tac) :
     cfc Complex.exp a = exp a :=
   Complex.exp_eq_exp_ℂ ▸ exp_eq_normedSpace_exp ha
@@ -124,14 +136,26 @@ noncomputable def log (a : A) : A := cfc Real.log a
 @[simp, grind =>]
 protected lemma _root_.IsSelfAdjoint.log {a : A} : IsSelfAdjoint (log a) := cfc_predicate _ a
 
+/--
+@isnad1 id=eq.0h1v.s6.0b5914132f1c from=seed src=0 shape=9dc98a4d vocab=bcce7f24
+-/
 @[simp, grind =] lemma log_zero : log (0 : A) = 0 := by simp [log]
 
+/--
+@isnad1 id=eq.0h1v.s6.0204d9df6255 from=seed src=0 shape=9dc98a4d vocab=bcce7f24
+-/
 @[simp, grind =] lemma log_one : log (1 : A) = 0 := by simp [log]
 
+/--
+@isnad1 id=eq.0h2v.s7.7ecc4da66b10 from=seed src=0 shape=8bf53351 vocab=cd53ae4e
+-/
 @[simp, grind =]
 lemma log_algebraMap {r : ℝ} : log (algebraMap ℝ A r) = algebraMap ℝ A (Real.log r) := by
   simp [log]
 
+/--
+@isnad1 id=eq.2h4v.s8.55bf39802148 from=seed src=0 shape=1355ca9c vocab=fcfbf961
+-/
 lemma log_smul {r : ℝ} (a : A) (ha₂ : ∀ x ∈ spectrum ℝ a, x ≠ 0) (hr : r ≠ 0)
     (ha₁ : IsSelfAdjoint a := by cfc_tac) :
     log (r • a) = algebraMap ℝ A (Real.log r) + log a := by
@@ -141,12 +165,18 @@ lemma log_smul {r : ℝ} (a : A) (ha₂ : ∀ x ∈ spectrum ℝ a, x ≠ 0) (hr
       cfc_congr (Real.log_mul hr <| ha₂ · ·)
     _ = _ := by rw [cfc_const_add _ _ _]
 
+/--
+@isnad1 id=eq.1h4v.s8.6eae2a6a539a from=seed src=0 shape=31990fcc vocab=466872e7
+-/
 @[grind =]
 lemma log_smul' [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A] {r : ℝ} (a : A)
     (hr : 0 < r) (ha : IsStrictlyPositive a := by cfc_tac) :
     log (r • a) = algebraMap ℝ A (Real.log r) + log a := by
   grind [log_smul]
 
+/--
+@isnad1 id=eq.1h4v.s7.0713c88e95aa from=seed src=0 shape=888c6e83 vocab=b227b37f
+-/
 lemma log_pow (n : ℕ) (a : A) (ha₂ : ∀ x ∈ spectrum ℝ a, x ≠ 0)
     (ha₁ : IsSelfAdjoint a := by cfc_tac) : log (a ^ n) = n • log a := by
   have ha₂' : ContinuousOn Real.log (spectrum ℝ a) := by fun_prop
@@ -154,6 +184,9 @@ lemma log_pow (n : ℕ) (a : A) (ha₂ : ∀ x ∈ spectrum ℝ a, x ≠ 0)
   rw [log, ← cfc_pow_id (R := ℝ) a n ha₁, ← cfc_comp' Real.log (· ^ n) a ha₂'', log]
   simp_rw [Real.log_pow, ← Nat.cast_smul_eq_nsmul ℝ n, cfc_const_mul (n : ℝ) Real.log a ha₂']
 
+/--
+@isnad1 id=eq.0h4v.s7.1ffa3788c0cb from=seed src=0 shape=0e28c0ec vocab=e33e1493
+-/
 @[grind =]
 lemma log_pow' [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A] (n : ℕ) (a : A)
     (ha : IsStrictlyPositive a := by cfc_tac) :
@@ -161,6 +194,9 @@ lemma log_pow' [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A] 
   grind [log_pow]
 
 open NormedSpace in
+/--
+@isnad1 id=eq.0h3v.s7.749a5f3d1df1 from=seed src=0 shape=e9788e6c vocab=2a965233
+-/
 @[grind =]
 lemma log_exp (a : A) (ha : IsSelfAdjoint a := by cfc_tac) : log (exp a) = a := by
   have hcont : ContinuousOn Real.log (Real.exp '' spectrum ℝ a) := by fun_prop (disch := simp)
@@ -168,6 +204,9 @@ lemma log_exp (a : A) (ha : IsSelfAdjoint a := by cfc_tac) : log (exp a) = a := 
   simp [cfc_id' (R := ℝ) a]
 
 open NormedSpace in
+/--
+@isnad1 id=eq.0h3v.s7.e0bc63dae0cb from=seed src=0 shape=689dd5be vocab=658a27a0
+-/
 @[grind =]
 lemma exp_log [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A] (a : A)
     (ha : IsStrictlyPositive a := by cfc_tac) : exp (log a) = a := by
@@ -177,6 +216,9 @@ lemma exp_log [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A] (
   refine cfc_congr fun x hx => ?_
   grind [Real.exp_log]
 
+/--
+@isnad1 id=continuo.0h1v.s7.2c729032512f from=seed src=0 shape=934e12aa vocab=a69e7a25
+-/
 lemma continuousOn_log {A : Type*} [NormedRing A] [StarRing A] [NormedAlgebra ℝ A]
     [IsometricContinuousFunctionalCalculus ℝ A IsSelfAdjoint] [ContinuousStar A] [CompleteSpace A] :
     ContinuousOn log {a : A | IsSelfAdjoint a ∧ IsUnit a} :=

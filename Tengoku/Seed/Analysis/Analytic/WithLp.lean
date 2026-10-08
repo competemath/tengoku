@@ -24,9 +24,15 @@ namespace WithLp
 variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedAddCommGroup F]
   [NormedSpace 𝕜 E] [NormedSpace 𝕜 F] (p : ℝ≥0∞) [Fact (1 ≤ p)]
 
+/--
+@isnad1 id=analytic.0h5v.s6.11ee60bf164b from=seed src=0 shape=bfeb01c5 vocab=1eea75ca
+-/
 lemma analyticOn_ofLp (s : Set (WithLp p (E × F))) : AnalyticOn 𝕜 ofLp s :=
   (prodContinuousLinearEquiv p 𝕜 E F).analyticOn s
 
+/--
+@isnad1 id=analytic.0h5v.s6.d412fd82189c from=seed src=0 shape=c3deed0e vocab=a08f95ce
+-/
 lemma analyticOn_toLp (s : Set (E × F)) : AnalyticOn 𝕜 (toLp p) s :=
   (prodContinuousLinearEquiv p 𝕜 E F).symm.analyticOn s
 
@@ -37,9 +43,15 @@ namespace PiLp
 variable {𝕜 ι : Type*} [Fintype ι] {E : ι → Type*} [NontriviallyNormedField 𝕜]
   [∀ i, NormedAddCommGroup (E i)] [∀ i, NormedSpace 𝕜 (E i)] (p : ℝ≥0∞) [Fact (1 ≤ p)]
 
+/--
+@isnad1 id=analytic.0h5v.s7.0138a290a71a from=seed src=0 shape=1fed0d7f vocab=2ba422da
+-/
 lemma analyticOn_ofLp (s : Set (PiLp p E)) : AnalyticOn 𝕜 ofLp s :=
   (continuousLinearEquiv p 𝕜 E).analyticOn s
 
+/--
+@isnad1 id=analytic.0h5v.s7.bbdeb2abc9a7 from=seed src=0 shape=786ef862 vocab=ede83888
+-/
 lemma analyticOn_toLp (s : Set (Π i, E i)) : AnalyticOn 𝕜 (toLp p) s :=
   (continuousLinearEquiv p 𝕜 E).symm.analyticOn s
 

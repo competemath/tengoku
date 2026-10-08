@@ -75,9 +75,15 @@ protected def op : Quadruple R.op G.op F.op L.op where
   adj₂ := q.adj₂.op
   adj₃ := q.adj₁.op
 
+/--
+@isnad1 id=eq.0h7v.s7.cfff2e19f60a from=seed src=0 shape=3f356243 vocab=8c26efc0
+-/
 @[simp]
 lemma op_leftTriple : q.op.leftTriple = q.rightTriple.op := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.d9d65d3fff6e from=seed src=0 shape=7dc33401 vocab=8c26efc0
+-/
 @[simp]
 lemma op_rightTriple : q.op.rightTriple = q.leftTriple.op := rfl
 
@@ -89,7 +95,9 @@ set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
 /-- For an adjoint quadruple `L ⊣ F ⊣ G ⊣ R` where `F` (and hence also `R`) is fully faithful, all
 components of the natural transformation `G ⟶ L` are epimorphisms iff all components of the natural
-transformation `F ⟶ R` are monomorphisms. -/
+transformation `F ⟶ R` are monomorphisms.
+@isnad1 id=iff.0h7v.s7.e0a332af922b from=seed src=0 shape=69210099 vocab=4cf019a9
+-/
 lemma epi_leftTriple_rightToLeft_app_iff_mono_rightTriple_leftToRight_app :
     (∀ X, Epi (q.leftTriple.rightToLeft.app X)) ↔ ∀ X, Mono (q.rightTriple.leftToRight.app X) := by
   simp_rw [mono_leftToRight_app_iff_mono_adj₂_unit_app, rightToLeft_eq_counits]
@@ -108,7 +116,9 @@ lemma epi_leftTriple_rightToLeft_app_iff_mono_rightTriple_leftToRight_app :
 
 /-- For an adjoint quadruple `L ⊣ F ⊣ G ⊣ R` where `F` (and hence also `R`) is fully faithful and
 its domain / codomain has all pushouts resp. pullbacks, the natural transformation `G ⟶ L` is an
-epimorphism iff the natural transformation `F ⟶ R` is a monomorphism. -/
+epimorphism iff the natural transformation `F ⟶ R` is a monomorphism.
+@isnad1 id=iff.0h7v.s7.e159b1f6035b from=seed src=0 shape=f641864d vocab=4d375f3f
+-/
 lemma epi_leftTriple_rightToLeft_iff_mono_rightTriple_leftToRight [HasPullbacks C] [HasPushouts D] :
     Epi q.leftTriple.rightToLeft ↔ Mono q.rightTriple.leftToRight := by
   rw [NatTrans.epi_iff_epi_app, NatTrans.mono_iff_mono_app]
@@ -123,7 +133,9 @@ variable [L.Full] [L.Faithful] [G.Full] [G.Faithful]
 set_option backward.defeqAttrib.useBackward true in
 /-- For an adjoint quadruple `L ⊣ F ⊣ G ⊣ R` where `L` and `G` are fully faithful, all components
 of the natural transformation `L ⟶ G` are epimorphisms iff all components of the natural
-transformation `R ⟶ F` are monomorphisms. -/
+transformation `R ⟶ F` are monomorphisms.
+@isnad1 id=iff.0h7v.s7.ea2d605fae90 from=seed src=0 shape=2d782d19 vocab=4cf019a9
+-/
 lemma epi_leftTriple_leftToRight_app_iff_mono_rightTriple_rightToLeft_app :
     (∀ X, Epi (q.leftTriple.leftToRight.app X)) ↔ ∀ X, Mono (q.rightTriple.rightToLeft.app X) := by
   have h := q.op.epi_leftTriple_rightToLeft_app_iff_mono_rightTriple_leftToRight_app
@@ -133,7 +145,9 @@ lemma epi_leftTriple_leftToRight_app_iff_mono_rightTriple_rightToLeft_app :
 
 /-- For an adjoint quadruple `L ⊣ F ⊣ G ⊣ R` where `L` and `G` are fully faithful and their domain
 and codomain have all pullbacks resp. pushouts, the natural transformation `L ⟶ G` is an
-epimorphism iff the natural transformation `R ⟶ F` is a monomorphism. -/
+epimorphism iff the natural transformation `R ⟶ F` is a monomorphism.
+@isnad1 id=iff.0h7v.s7.4cff6db452fc from=seed src=0 shape=16e46607 vocab=4d375f3f
+-/
 lemma epi_leftTriple_leftToRight_iff_mono_rightTriple_rightToLeft [HasPullbacks C] [HasPushouts D] :
     Epi q.leftTriple.leftToRight ↔ Mono q.rightTriple.rightToLeft := by
   rw [NatTrans.epi_iff_epi_app, NatTrans.mono_iff_mono_app]

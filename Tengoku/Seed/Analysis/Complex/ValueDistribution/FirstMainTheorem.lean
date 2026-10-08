@@ -44,6 +44,7 @@ variable {f : ℂ → ℂ} {R : ℝ}
 /--
 Helper lemma for the first part of the First Main Theorem: Given a meromorphic function `f`, compute
 difference between the characteristic functions of `f` and of its inverse.
+@isnad1 id=eq.1h1v.s8.3287763ea063 from=seed src=0 shape=da4cfe8b vocab=a45dfeef
 -/
 lemma characteristic_sub_characteristic_inv (h : Meromorphic f) :
     characteristic f ⊤ - characteristic f⁻¹ ⊤ =
@@ -63,6 +64,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 /--
 Helper lemma for the first part of the First Main Theorem: Away from zero, the difference between
 the characteristic functions of `f` and `f⁻¹` equals `log ‖meromorphicTrailingCoeffAt f 0‖`.
+@isnad1 id=eq.2h2v.s6.3708698dc365 from=seed src=0 shape=df8255a8 vocab=3daea9a0
 -/
 lemma characteristic_sub_characteristic_inv_of_ne_zero
     (hf : Meromorphic f) (hR : R ≠ 0) :
@@ -81,6 +83,7 @@ lemma characteristic_sub_characteristic_inv_of_ne_zero
 /--
 Helper lemma for the first part of the First Main Theorem: At 0, the difference between the
 characteristic functions of `f` and `f⁻¹` equals `log ‖f 0‖`.
+@isnad1 id=eq.1h1v.s6.8acd084b6b38 from=seed src=0 shape=aabcb694 vocab=7b0f3538
 -/
 lemma characteristic_sub_characteristic_inv_at_zero (h : Meromorphic f) :
     characteristic f ⊤ 0 - characteristic f⁻¹ ⊤ 0 = log ‖f 0‖ := by
@@ -95,6 +98,7 @@ lemma characteristic_sub_characteristic_inv_at_zero (h : Meromorphic f) :
 First part of the First Main Theorem, quantitative version: If `f` is meromorphic on the complex
 plane, then the difference between the characteristic functions of `f` and `f⁻¹` is bounded by an
 explicit constant.
+@isnad1 id=le.1h2v.s7.00cab103dff4 from=seed src=0 shape=2a840832 vocab=b7fbca9f
 -/
 theorem characteristic_sub_characteristic_inv_le (hf : Meromorphic f) :
     |characteristic f ⊤ R - characteristic f⁻¹ ⊤ R|
@@ -107,6 +111,7 @@ theorem characteristic_sub_characteristic_inv_le (hf : Meromorphic f) :
 First part of the First Main Theorem, qualitative version: If `f` is meromorphic on the complex
 plane, then the characteristic functions of `f` and `f⁻¹` agree asymptotically up to a bounded
 function.
+@isnad1 id=isbigo.1h1v.s6.7da3a6e8ead4 from=seed src=0 shape=7e4f17b7 vocab=6c43a0c8
 -/
 theorem isBigO_characteristic_sub_characteristic_inv (h : Meromorphic f) :
     (characteristic f ⊤ - characteristic f⁻¹ ⊤) =O[atTop] (1 : ℝ → ℝ) :=
@@ -129,6 +134,7 @@ variable
 Second part of the First Main Theorem of Value Distribution Theory, quantitative version: If `f` is
 meromorphic on the complex plane, then the characteristic functions (for value `⊤`) of `f` and
 `f - a₀` differ at most by `log⁺ ‖a₀‖ + log 2`.
+@isnad1 id=le.1h4v.s6.abb457ef94b1 from=seed src=0 shape=7a498c8b vocab=04c78a7b
 -/
 theorem abs_characteristic_sub_characteristic_shift_le {r : ℝ} (h : Meromorphic f) :
     |characteristic f ⊤ r - characteristic (f · - a₀) ⊤ r| ≤ log⁺ ‖a₀‖ + log 2 := by
@@ -158,6 +164,7 @@ theorem abs_characteristic_sub_characteristic_shift_le {r : ℝ} (h : Meromorphi
 Second part of the First Main Theorem of Value Distribution Theory, qualitative version: If `f` is
 meromorphic on the complex plane, then the characteristic functions for the value `⊤` of the
 function `f` and `f - a₀` agree asymptotically up to a bounded function.
+@isnad1 id=isbigo.1h3v.s6.ab6775d94b65 from=seed src=0 shape=00f8b456 vocab=e891b6a0
 -/
 theorem isBigO_characteristic_sub_characteristic_shift (h : Meromorphic f) :
     (characteristic f ⊤ - characteristic (f · - a₀) ⊤) =O[atTop] (1 : ℝ → ℝ) :=

@@ -52,14 +52,23 @@ setting where `w ∈ ball 0 R`.
 noncomputable def canonicalFactor (R : ℝ) (w : ℂ) : ℂ → ℂ :=
   fun z ↦ (R ^ 2 - (conj w) * z) / (R * (z - w))
 
+/--
+@isnad1 id=eq.0h2v.s6.ea51a1fd6fc1 from=seed src=0 shape=c152f40f vocab=0d91d7cc
+-/
 lemma canonicalFactor_def (R : ℝ) (w : ℂ) :
     canonicalFactor R w = fun z ↦ (R ^ 2 - (conj w) * z) / (R * (z - w)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.e6d69bc39ad8 from=seed src=0 shape=d0be0cf1 vocab=0d91d7cc
+-/
 lemma canonicalFactor_apply (R : ℝ) (w z : ℂ) :
     canonicalFactor R w z = (R ^ 2 - (conj w) * z) / (R * (z - w)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.0876350d11f9 from=seed src=0 shape=468bf0c7 vocab=47a73bad
+-/
 @[simp]
 lemma canonicalFactor_apply_self (R : ℝ) (w : ℂ) :
     canonicalFactor R w w = 0 := by
@@ -72,6 +81,7 @@ lemma canonicalFactor_apply_self (R : ℝ) (w : ℂ) :
 variable (R w) in
 /--
 Canonical factors are meromorphic.
+@isnad1 id=meromorp.0h2v.s4.f0502ddc5027 from=seed src=0 shape=03beec24 vocab=db55d23b
 -/
 @[fun_prop] theorem meromorphic_canonicalFactor : Meromorphic (canonicalFactor R w) := by
   intro x
@@ -82,6 +92,7 @@ open scoped ComplexOrder in
 variable (R w) in
 /--
 The canonical factor `CanonicalFactor R w` is analytic on the complement of `w`.
+@isnad1 id=analytic.0h2v.s5.1bc50a157a75 from=seed src=0 shape=18d52c5b vocab=353331ba
 -/
 theorem analyticOnNhd_canonicalFactor : AnalyticOnNhd ℂ (canonicalFactor R w) {w}ᶜ := by
   intro x hx
@@ -93,6 +104,7 @@ theorem analyticOnNhd_canonicalFactor : AnalyticOnNhd ℂ (canonicalFactor R w) 
 
 /--
 The canonical factor `CanonicalFactor R w` has a simple pole at `z = w`.
+@isnad1 id=eq.1h2v.s6.62f19fd8e09b from=seed src=0 shape=8f3802ba vocab=de5a2417
 -/
 theorem meromorphicOrderAt_canonicalFactor (h : w ∈ ball 0 R) :
     meromorphicOrderAt (canonicalFactor R w) w = -1 := by
@@ -112,6 +124,7 @@ theorem meromorphicOrderAt_canonicalFactor (h : w ∈ ball 0 R) :
 
 /--
 Canonical factors are meromorphic in normal form.
+@isnad1 id=meromorp.1h2v.s5.0eeb72290483 from=seed src=0 shape=af990a76 vocab=50ca128d
 -/
 theorem meromorphicNFOn_canonicalFactor (h : w ∈ ball 0 R) :
     MeromorphicNFOn (canonicalFactor R w) Set.univ := by
@@ -130,6 +143,7 @@ theorem meromorphicNFOn_canonicalFactor (h : w ∈ ball 0 R) :
 open scoped ComplexOrder in
 /--
 The canonical factor `CanonicalFactor R w` has no zeros inside the ball of radius `R`.
+@isnad1 id=ne.3h3v.s6.d7b0302a9aa2 from=seed src=0 shape=861c9ac9 vocab=076485b8
 -/
 theorem canonicalFactor_ne_zero {z : ℂ} (hw : w ∈ ball 0 R) (h₁z : z ∈ closedBall 0 R)
     (h₂z : z ≠ w) :
@@ -146,6 +160,7 @@ theorem canonicalFactor_ne_zero {z : ℂ} (hw : w ∈ ball 0 R) (h₁z : z ∈ c
 
 /--
 The function `CanonicalFactor R w` vanishes only at `w`.
+@isnad1 id=iff.2h3v.s6.874ba19b5c18 from=seed src=0 shape=689d5c1f vocab=e46e6866
 -/
 theorem canonicalFactor_eq_zero_iff {z : ℂ} (hw : w ∈ ball 0 R) (hz : z ∈ ball 0 R) :
     canonicalFactor R w z = 0 ↔ z = w := by
@@ -157,6 +172,7 @@ theorem canonicalFactor_eq_zero_iff {z : ℂ} (hw : w ∈ ball 0 R) (hz : z ∈ 
 open scoped ComplexOrder in
 /--
 The canonical factor `CanonicalFactor R w` takes values of norm one on `sphere 0 R`.
+@isnad1 id=eq.2h3v.s6.cdaa8800b9e8 from=seed src=0 shape=1327bf94 vocab=794a53d2
 -/
 theorem norm_canonicalFactor_eval_circle_eq_one {z : ℂ} (hw : w ∈ ball 0 R) (hz : z ∈ sphere 0 R) :
     ‖canonicalFactor R w z‖ = 1 := by
@@ -173,6 +189,7 @@ theorem norm_canonicalFactor_eval_circle_eq_one {z : ℂ} (hw : w ∈ ball 0 R) 
 
 /--
 Canonical factors are nowhere locally constant zero.
+@isnad1 id=ne.1h3v.s5.0c6e088bf40c from=seed src=0 shape=564c90e9 vocab=81bfd8ce
 -/
 theorem meromorphicOrderAt_canonicalFactor_ne_top {z : ℂ} {R : ℝ} (w : ℂ) (hR : 0 < R) :
     meromorphicOrderAt (canonicalFactor R w) z ≠ ⊤ := by
@@ -190,6 +207,7 @@ theorem meromorphicOrderAt_canonicalFactor_ne_top {z : ℂ} {R : ℝ} (w : ℂ) 
 /--
 The divisor of `CanonicalFactor R w` is `-w`.  In other words, the divisor function takes the value
 -1 at `w` and is zero elsewhere.
+@isnad1 id=eq.1h2v.s7.55cb29f30d74 from=seed src=0 shape=4efd1dfb vocab=92e7eee3
 -/
 theorem divisor_canonicalFactor (hw : w ∈ ball 0 R) :
     MeromorphicOn.divisor (canonicalFactor R w) (ball 0 R)
@@ -385,6 +403,7 @@ theorem _root_.MeromorphicOn.exists_canonicalDecomp
 Given a canonical decomposition `CanonicalDecomp f g R`, the function associated with the divisor of
 `g` equals the function associated with the divisor of `f`, seen as a meromorphic function on the
 sphere.
+@isnad1 id=eq.2h5v.s8.f00606df656e from=seed src=0 shape=3f07c29f vocab=f7212dd7
 -/
 theorem CanonicalDecomp.divisor_eq_divisor {x : ℂ} (D : CanonicalDecomp f g R) (hR : 0 < R) :
     divisor g (closedBall (0 : ℂ) R) x = divisor f (sphere 0 R) x := by
@@ -616,6 +635,7 @@ lemma ECanonicalDecomp.eq_smul_meromorphicTrailingCoeffAt_of_meromorphicOrderAt
 Companion lemma to `MeromorphicOn.exists_ecanonicalDecomp`: In the setting of the extended canonical
 decomposition, write the function `log ‖h‖` entirely in terms of `f`, under the assumption that `f`
 has order zero.
+@isnad1 id=eq.4h5v.s8.146cb9602255 from=seed src=0 shape=d3c14d73 vocab=3d5a9ec7
 -/
 lemma ECanonicalDecomp.log_norm_eq
     {f h : ℂ → E} (D : ECanonicalDecomp f h R) (h₁w : w ∈ closedBall 0 R)

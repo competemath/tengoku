@@ -38,6 +38,9 @@ open scoped Topology
 variable {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
 open Filter in
+/--
+@isnad1 id=tendsto.0h3v.s7.4dcaa0a73db9 from=seed src=0 shape=1b2f456a vocab=d88c27a8
+-/
 lemma CFC.tendsto_cfc_rpow_sub_one_log {a : A} (ha : IsStrictlyPositive a := by cfc_tac) :
     Tendsto (fun p : ℝ => cfc (fun x => p⁻¹ * (x ^ p - 1)) a) (𝓝[>] 0) (𝓝 (CFC.log a)) := by
   refine tendsto_cfc_fun ?tendsto ?cont
@@ -51,6 +54,9 @@ lemma CFC.tendsto_cfc_rpow_sub_one_log {a : A} (ha : IsStrictlyPositive a := by 
     exact hmain (spectrum ℝ a) (by grind) (by grind)
 
 open Filter Classical Real in
+/--
+@isnad1 id=tendsto.0h1v.s8.e17fb38a46d0 from=seed src=0 shape=85a18917 vocab=26312eb7
+-/
 lemma CFC.tendsto_ite_cfc_rpow_sub_one_ite_log :
     Tendsto (fun (p : ℝ) (a : A) =>
       if a ∈ {b : A | IsStrictlyPositive b} then cfc (fun x => p⁻¹ * (x ^ p - 1)) a else 0) (𝓝[>] 0)
@@ -73,7 +79,9 @@ private lemma CFC.cfc_rpow_sub_one_eqOn {p : ℝ} :
     cfc_const_one .., rpow_eq_cfc_real ..]
 
 open Classical Real in
-/-- `log` is operator monotone. -/
+/-- `log` is operator monotone.
+@isnad1 id=monotone.0h1v.s6.11a1410d7df7 from=seed src=0 shape=450be569 vocab=08638926
+-/
 lemma CFC.log_monotoneOn : MonotoneOn log {a : A | IsStrictlyPositive a} := by
   /- We have that `log x = lim_{p → 0} p⁻¹ * (x ^ p - 1)` with uniform convergence on the spectrum
   of any positive definite operator, which means that `CFC.log a = lim_{p → 0} p⁻¹ * (a ^ p - 1)`
@@ -93,13 +101,18 @@ lemma CFC.log_monotoneOn : MonotoneOn log {a : A | IsStrictlyPositive a} := by
   gcongr
   grind
 
+/--
+@isnad1 id=le.1h4v.s6.a43fb3a67ba3 from=seed src=0 shape=fcde53e4 vocab=983df096
+-/
 @[gcongr]
 lemma CFC.log_le_log {a b : A} (hab : a ≤ b) (ha : IsStrictlyPositive a := by cfc_tac) :
     log a ≤ log b :=
   log_monotoneOn ha (ha.of_le hab) hab
 
 open Classical Real Set in
-/-- `log` is operator concave. -/
+/-- `log` is operator concave.
+@isnad1 id=concaveo.0h1v.s7.1a594df7d0bf from=seed src=0 shape=244b645f vocab=f894dfb0
+-/
 lemma CFC.concaveOn_log : ConcaveOn ℝ {a : A | IsStrictlyPositive a} log := by
   /- We have that `log x = lim_{p → 0} p⁻¹ * (x ^ p - 1)` with uniform convergence on the spectrum
   of any positive definite operator, which means that `CFC.log a = lim_{p → 0} p⁻¹ * (a ^ p - 1)`

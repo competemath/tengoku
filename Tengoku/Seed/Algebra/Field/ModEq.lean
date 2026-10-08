@@ -24,9 +24,15 @@ namespace AddCommGroup
 section DivisionSemiring
 variable {K : Type*} [DivisionSemiring K] {a b c p : K}
 
+/--
+@isnad1 id=iff.1h5v.s6.2a9712ffdb74 from=seed src=0 shape=f28fc8ca vocab=1d5654c1
+-/
 @[simp] lemma div_modEq_div (hc : c ≠ 0) : a / c ≡ b / c [PMOD p] ↔ a ≡ b [PMOD (p * c)] := by
   simp [modEq_iff_nsmul, add_div' _ _ _ hc, div_left_inj' hc, mul_assoc]
 
+/--
+@isnad1 id=iff.1h5v.s6.eacfdf7af2e0 from=seed src=0 shape=f28fc8ca vocab=1d5654c1
+-/
 @[simp] lemma mul_modEq_mul_right (hc : c ≠ 0) : a * c ≡ b * c [PMOD p] ↔ a ≡ b [PMOD (p / c)] := by
   rw [div_eq_mul_inv, ← div_modEq_div (inv_ne_zero hc), div_inv_eq_mul, div_inv_eq_mul]
 
@@ -35,6 +41,9 @@ end DivisionSemiring
 section Semifield
 variable {K : Type*} [Semifield K] {a b c p : K}
 
+/--
+@isnad1 id=iff.1h5v.s6.ffd93d932bca from=seed src=0 shape=c517d5ff vocab=77bdefd3
+-/
 @[simp] lemma mul_modEq_mul_left (hc : c ≠ 0) : c * a ≡ c * b [PMOD p] ↔ a ≡ b [PMOD (p / c)] := by
   simp [mul_comm c, hc]
 

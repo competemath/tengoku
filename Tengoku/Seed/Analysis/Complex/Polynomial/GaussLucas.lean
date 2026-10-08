@@ -28,6 +28,9 @@ noncomputable def derivRootWeight (P : ℂ[X]) (z w : ℂ) : ℝ :=
   if P.eval z = 0 then (Pi.single z 1 : ℂ → ℝ) w
   else P.rootMultiplicity w / ‖z - w‖ ^ 2
 
+/--
+@isnad1 id=le.0h3v.s4.beaa772bbcc3 from=seed src=0 shape=88a0fd28 vocab=4bf8273d
+-/
 theorem derivRootWeight_nonneg (P : ℂ[X]) (z w : ℂ) : 0 ≤ derivRootWeight P z w := by
   simp only [derivRootWeight, Pi.single, Function.update_apply]
   split_ifs <;> first | positivity | simp
@@ -35,7 +38,9 @@ theorem derivRootWeight_nonneg (P : ℂ[X]) (z w : ℂ) : 0 ≤ derivRootWeight 
 variable {P : ℂ[X]} {z : ℂ}
 
 /-- The sum of the weights `derivRootWeight P z w` of all the roots `w` of `P` is positive,
-provided that `P` is not a constant polynomial. -/
+provided that `P` is not a constant polynomial.
+@isnad1 id=lt.1h2v.s5.3db61d4401ee from=seed src=0 shape=e4232524 vocab=bf96a8ce
+-/
 theorem sum_derivRootWeight_pos (hP : 0 < degree P) (z : ℂ) :
     0 < ∑ w ∈ P.roots.toFinset, derivRootWeight P z w := by
   have hP₀ : P ≠ 0 := by rintro rfl; simp at hP
@@ -94,6 +99,7 @@ then all zeros of $P'$ belong to the convex hull of the set of zeros of $P$.
 
 See also `eq_centerMass_of_eval_derivative_eq_zero`
 for a version that provides explicit coefficients of the convex combination.
+@isnad1 id=le.1h1v.s7.e2486aa1eb0c from=seed src=0 shape=fb58424a vocab=e3f3f6d0
 -/
 theorem rootSet_derivative_subset_convexHull_rootSet (h₀ : 0 < P.degree) :
     P.derivative.rootSet ℂ ⊆ convexHull ℝ (P.rootSet ℂ) := by

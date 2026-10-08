@@ -54,11 +54,17 @@ variable {y : P.II} (hy : Acc P.AncestralRel y)
 noncomputable def rank' : ℕ :=
   Acc.recOn hy (fun y _ r ↦ ⨆ (x : { x // P.AncestralRel x y }), r x x.2 + 1)
 
+/--
+@isnad1 id=eq.1h4v.s7.20ce8ab9683a from=seed src=0 shape=cbf3a30b vocab=6c717c33
+-/
 lemma rank'_eq :
     P.rank' hy = ⨆ (x : { x // P.AncestralRel x y }), P.rank' (hy.inv x.2) + 1 := by
   change P.rank' (Acc.intro y fun _ => hy.inv) = _
   rfl
 
+/--
+@isnad1 id=lt.2h5v.s6.377d31f312f4 from=seed src=0 shape=39ebd64c vocab=948c9bc1
+-/
 lemma rank'_lt {x : P.II} (r : P.AncestralRel x y) :
     P.rank' (hy.inv r) < P.rank' hy := by
   rw [P.rank'_eq hy, ← Nat.add_one_le_iff]
@@ -76,6 +82,9 @@ noncomputable def rank (x : P.II) : ℕ :=
   P.rank' (P.wf.apply x)
 
 variable {P} in
+/--
+@isnad1 id=lt.1h5v.s5.408c4eb8431c from=seed src=0 shape=6e06511b vocab=9b43bc85
+-/
 lemma rank_lt {x y : P.II} (h : P.AncestralRel x y) :
     P.rank x < P.rank y :=
   P.rank'_lt _ h
@@ -91,10 +100,16 @@ instance : Nonempty (P.WeakRankFunction ℕ) := ⟨P.rankFunction.toWeakRankFunc
 
 end IsRegular
 
+/--
+@isnad1 id=iff.0h3v.s4.0e05b9e32ed4 from=seed src=0 shape=8b6ce974 vocab=c176b72e
+-/
 lemma isRegular_iff_nonempty_rankFunction [P.IsProper] :
     P.IsRegular ↔ Nonempty (P.RankFunction ℕ) :=
   ⟨fun _ ↦ inferInstance, fun ⟨h⟩ ↦ h.isRegular⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.8eb6f1041684 from=seed src=0 shape=8b6ce974 vocab=bea813fe
+-/
 lemma isRegular_iff_nonempty_weakRankFunction [P.IsProper] :
     P.IsRegular ↔ Nonempty (P.WeakRankFunction ℕ) :=
   ⟨fun _ ↦ inferInstance, fun ⟨h⟩ ↦ h.isRegular⟩
@@ -105,11 +120,17 @@ namespace PairingCore
 
 variable (P : A.PairingCore)
 
+/--
+@isnad1 id=iff.0h3v.s4.2f99b9fea623 from=seed src=0 shape=8b6ce974 vocab=f740cb80
+-/
 lemma isRegular_iff_nonempty_rankFunction [P.IsProper] :
     P.IsRegular ↔ Nonempty (P.RankFunction ℕ) := by
   rw [← isRegular_pairing_iff, Pairing.isRegular_iff_nonempty_rankFunction]
   exact (P.rankFunctionEquiv ℕ).symm.nonempty_congr
 
+/--
+@isnad1 id=iff.0h3v.s4.8a7e96385f0a from=seed src=0 shape=8b6ce974 vocab=4d17237e
+-/
 lemma isRegular_iff_nonempty_weakRankFunction [P.IsProper] :
     P.IsRegular ↔ Nonempty (P.WeakRankFunction ℕ) := by
   rw [← isRegular_pairing_iff, Pairing.isRegular_iff_nonempty_weakRankFunction]

@@ -59,7 +59,9 @@ structure ContDiffPointwiseHolderAt (k : ℕ) (α : I) (f : E → F) (a : E) : P
   /-- A $C^{k+(α)}$ map satisfies $D^kf(x)-D^kf(a) = O(‖x - a‖ ^ α)$ as `x → a`. -/
   isBigO : (iteratedFDeriv ℝ k f · - iteratedFDeriv ℝ k f a) =O[𝓝 a] (‖· - a‖ ^ (α : ℝ))
 
-/-- A $C^n$ map is a $C^{k+(α)}$ map for any `k < n`. -/
+/-- A $C^n$ map is a $C^{k+(α)}$ map for any `k < n`.
+@isnad1 id=contdiff.2h7v.s6.a526d9d04eae from=seed src=0 shape=3aa924be vocab=34a74719
+-/
 theorem ContDiffAt.contDiffPointwiseHolderAt {n : WithTop ℕ∞} (h : ContDiffAt ℝ n f a) (hk : k < n)
     (α : I) : ContDiffPointwiseHolderAt k α f a where
   contDiffAt := h.of_le hk.le
@@ -71,14 +73,22 @@ theorem ContDiffAt.contDiffPointwiseHolderAt {n : WithTop ℕ∞} (h : ContDiffA
 
 namespace ContDiffPointwiseHolderAt
 
+/--
+@isnad1 id=continuo.1h6v.s6.335d60b8040e from=seed src=0 shape=2232b642 vocab=14560636
+-/
 theorem continuousAt (h : ContDiffPointwiseHolderAt k α f a) : ContinuousAt f a :=
   h.contDiffAt.continuousAt
 
+/--
+@isnad1 id=differen.2h6v.s6.78f5f3083bf3 from=seed src=0 shape=83a4355c vocab=7d5393f2
+-/
 theorem differentiableAt (h : ContDiffPointwiseHolderAt k α f a) (hk : k ≠ 0) :
     DifferentiableAt ℝ f a :=
   h.contDiffAt.differentiableAt <| mod_cast hk
 
-/-- A function is $C^{k+(0)}$ at a point if and only if it is $C^k$ at the point. -/
+/-- A function is $C^{k+(0)}$ at a point if and only if it is $C^k$ at the point.
+@isnad1 id=iff.0h5v.s6.3aeaaf04cf41 from=seed src=0 shape=3b306d69 vocab=4449ee37
+-/
 @[simp]
 theorem zero_exponent_iff : ContDiffPointwiseHolderAt k 0 f a ↔ ContDiffAt ℝ k f a := by
   refine ⟨contDiffAt, fun h ↦ ⟨h, ?_⟩⟩
@@ -86,7 +96,9 @@ theorem zero_exponent_iff : ContDiffPointwiseHolderAt k 0 f a ↔ ContDiffAt ℝ
 
 /-- A function is $C^{0+(α)}$ at a point if and only if
 it is $C^0$ at the point (i.e., it is continuous on a neighborhood of the point)
-and $f(x) - f(a) = O(‖x - a‖ ^ α)$. -/
+and $f(x) - f(a) = O(‖x - a‖ ^ α)$.
+@isnad1 id=iff.0h5v.s7.62d193534dee from=seed src=0 shape=9aaa5952 vocab=9c33de92
+-/
 theorem zero_order_iff :
     ContDiffPointwiseHolderAt 0 α f a ↔
       ContDiffAt ℝ 0 f a ∧ (f · - f a) =O[𝓝 a] (‖· - a‖ ^ (α : ℝ)) := by
@@ -96,6 +108,9 @@ theorem zero_order_iff :
   rw [← isBigO_norm_left]
   simp_rw [LinearIsometryEquiv.norm_map, isBigO_norm_left]
 
+/--
+@isnad1 id=contdiff.2h7v.s6.37ffedbcb8ff from=seed src=0 shape=a35daea0 vocab=bffd2cd8
+-/
 theorem of_exponent_le (hf : ContDiffPointwiseHolderAt k α f a) (hle : β ≤ α) :
     ContDiffPointwiseHolderAt k β f a where
   contDiffAt := hf.contDiffAt
@@ -104,21 +119,32 @@ theorem of_exponent_le (hf : ContDiffPointwiseHolderAt k α f a) (hle : β ≤ �
     · exact le_antisymm (le_trans (mod_cast hle) hα.le) β.2.1
     · exact tendsto_norm_sub_self_nhdsGE a
 
+/--
+@isnad1 id=contdiff.2h8v.s6.fc655712dd74 from=seed src=0 shape=14e8df7d vocab=89f69dfb
+-/
 theorem of_order_lt (hf : ContDiffPointwiseHolderAt k α f a) (hlt : l < k) :
     ContDiffPointwiseHolderAt l β f a :=
   hf.contDiffAt.contDiffPointwiseHolderAt (mod_cast hlt) _
 
+/--
+@isnad1 id=contdiff.2h8v.s7.fd55d77ad5eb from=seed src=0 shape=b58471ba vocab=72d9cf6d
+-/
 theorem of_toLex_le (hf : ContDiffPointwiseHolderAt k α f a) (hle : toLex (l, β) ≤ toLex (k, α)) :
     ContDiffPointwiseHolderAt l β f a :=
   (Prod.Lex.le_iff.mp hle).elim hf.of_order_lt <| by rintro ⟨rfl, hle⟩; exact hf.of_exponent_le hle
 
+/--
+@isnad1 id=contdiff.2h7v.s6.d893a3e49df4 from=seed src=0 shape=bc2f2385 vocab=b3480491
+-/
 theorem of_order_le (hf : ContDiffPointwiseHolderAt k α f a) (hl : l ≤ k) :
     ContDiffPointwiseHolderAt l α f a :=
   hf.of_toLex_le <| Prod.Lex.toLex_mono ⟨hl, le_rfl⟩
 
 /-- If a function is $C^{k+α}$ on a neighborhood of a point `a`,
 i.e., it is $C^k$ on this neighborhood and $D^k f$ is Hölder continuous on it,
-then the function is $C^{k+(α)}$ at `a`. -/
+then the function is $C^{k+(α)}$ at `a`.
+@isnad1 id=contdiff.3h8v.s8.31a9db7789bd from=seed src=0 shape=0d04b0dd vocab=f79e1435
+-/
 theorem of_contDiffOn_holderOnWith {s : Set E} {C : ℝ≥0} (hf : ContDiffOn ℝ k f s) (hs : s ∈ 𝓝 a)
     (hd : HolderOnWith C ⟨α, α.2.1⟩ (iteratedFDeriv ℝ k f) s) :
     ContDiffPointwiseHolderAt k α f a where
@@ -127,12 +153,21 @@ theorem of_contDiffOn_holderOnWith {s : Set E} {C : ℝ≥0} (hf : ContDiffOn �
     simpa [Real.abs_rpow_of_nonneg, ← dist_eq_norm, dist_nonneg]
       using! hd.dist_le hx (mem_of_mem_nhds hs)
 
+/--
+@isnad1 id=contdiff.0h5v.s6.0ea1c19a7d8d from=seed src=0 shape=47e0ad4f vocab=88d77008
+-/
 theorem fst {a : E × F} : ContDiffPointwiseHolderAt k α Prod.fst a :=
   contDiffAt_fst.contDiffPointwiseHolderAt (WithTop.coe_lt_top _) α
 
+/--
+@isnad1 id=contdiff.0h5v.s6.4b7d290d890c from=seed src=0 shape=ec666c05 vocab=146fbbda
+-/
 theorem snd {a : E × F} : ContDiffPointwiseHolderAt k α Prod.snd a :=
   contDiffAt_snd.contDiffPointwiseHolderAt (WithTop.coe_lt_top _) α
 
+/--
+@isnad1 id=contdiff.2h8v.s6.108128c19d95 from=seed src=0 shape=d4d990c1 vocab=2912e5f8
+-/
 theorem prodMk {g : E → G} (hf : ContDiffPointwiseHolderAt k α f a)
     (hg : ContDiffPointwiseHolderAt k α g a) :
     ContDiffPointwiseHolderAt k α (fun x ↦ (f x, g x)) a where
@@ -155,7 +190,9 @@ variable (a) in
 provided that one of them is differentiable.
 
 The latter condition follows automatically from the functions being $C^{k+(α)}$,
-if `k ≠ 0`, see `comp` below. -/
+if `k ≠ 0`, see `comp` below.
+@isnad1 id=contdiff.3h8v.s7.6b88d421908d from=seed src=0 shape=1fc95a92 vocab=4c2e2ac3
+-/
 theorem comp_of_differentiableAt {g : F → G} (hg : ContDiffPointwiseHolderAt k α g (f a))
     (hf : ContDiffPointwiseHolderAt k α f a)
     (hd : DifferentiableAt ℝ g (f a) ∨ DifferentiableAt ℝ f a) :
@@ -191,13 +228,18 @@ theorem comp_of_differentiableAt {g : F → G} (hg : ContDiffPointwiseHolderAt k
       · exact (hf.of_order_le hi).isBigO
 
 variable (a) in
-/-- Composition of two $C^{k+(α)}$ functions, `k ≠ 0`, is a $C^{k+(α)}$ function. -/
+/-- Composition of two $C^{k+(α)}$ functions, `k ≠ 0`, is a $C^{k+(α)}$ function.
+@isnad1 id=contdiff.3h8v.s6.e2d5eaf621dc from=seed src=0 shape=c68de075 vocab=37d3abf0
+-/
 theorem comp {g : F → G} (hg : ContDiffPointwiseHolderAt k α g (f a))
     (hf : ContDiffPointwiseHolderAt k α f a) (hk : k ≠ 0) :
     ContDiffPointwiseHolderAt k α (g ∘ f) a :=
   hg.comp_of_differentiableAt a hf (.inl <| hg.differentiableAt hk)
 
 variable (a) in
+/--
+@isnad1 id=contdiff.4h10v.s8.772ed81f3d15 from=seed src=0 shape=d559f78b vocab=1508eda3
+-/
 theorem comp₂_of_differentiableAt {H : Type*} [NormedAddCommGroup H] [NormedSpace ℝ H]
     {g : F × G → H} {f₁ : E → F} {f₂ : E → G} (hg : ContDiffPointwiseHolderAt k α g (f₁ a, f₂ a))
     (hf₁ : ContDiffPointwiseHolderAt k α f₁ a) (hf₂ : ContDiffPointwiseHolderAt k α f₂ a)
@@ -215,6 +257,9 @@ theorem _root_.ContinuousLinearEquiv.contDiffPointwiseHolderAt (f : E ≃L[ℝ] 
     ContDiffPointwiseHolderAt k α f a :=
   f.toContinuousLinearMap.contDiffPointwiseHolderAt
 
+/--
+@isnad1 id=contdiff.1h8v.s7.325f2ae89d81 from=seed src=0 shape=409832d0 vocab=16fa30af
+-/
 theorem continuousLinearMap_comp (hf : ContDiffPointwiseHolderAt k α f a) (g : F →L[ℝ] G) :
     ContDiffPointwiseHolderAt k α (g ∘ f) a :=
   g.contDiffPointwiseHolderAt.comp_of_differentiableAt a hf <| .inl g.differentiableAt
@@ -230,13 +275,21 @@ theorem _root_.LinearIsometryEquiv.contDiffPointwiseHolderAt_left_comp (g : F �
     ContDiffPointwiseHolderAt k α (g ∘ f) a ↔ ContDiffPointwiseHolderAt k α f a :=
   g.toContinuousLinearEquiv.contDiffPointwiseHolderAt_left_comp
 
+/--
+@isnad1 id=contdiff.0h4v.s5.9814410f2752 from=seed src=0 shape=35240470 vocab=a80b2268
+-/
 protected theorem id : ContDiffPointwiseHolderAt k α id a :=
   ContinuousLinearMap.id ℝ E |>.contDiffPointwiseHolderAt
 
+/--
+@isnad1 id=contdiff.0h6v.s5.10cd62be2830 from=seed src=0 shape=44826440 vocab=44f3507e
+-/
 protected theorem const {b : F} : ContDiffPointwiseHolderAt k α (Function.const E b) a :=
   contDiffAt_const.contDiffPointwiseHolderAt (WithTop.coe_lt_top _) α
 
-/-- The derivative of a $C^{k + (α)}$ function is a $C^{l + (α)}$ function, if `l < k`. -/
+/-- The derivative of a $C^{k + (α)}$ function is a $C^{l + (α)}$ function, if `l < k`.
+@isnad1 id=contdiff.2h7v.s8.26abead405a0 from=seed src=0 shape=7427ddca vocab=0075d73c
+-/
 protected theorem fderiv (hf : ContDiffPointwiseHolderAt k α f a) (hl : l < k) :
     ContDiffPointwiseHolderAt l α (fderiv ℝ f) a where
   contDiffAt := hf.contDiffAt.fderiv_right (mod_cast hl)
@@ -244,7 +297,9 @@ protected theorem fderiv (hf : ContDiffPointwiseHolderAt k α f a) (hl : l < k) 
     simpa [iteratedFDeriv_succ_eq_comp_right, Function.comp_def, ← dist_eq_norm_sub]
       using hf.of_order_le (Nat.add_one_le_iff.mpr hl) |>.isBigO |>.norm_left
 
-/-- If `f` is a $C^{k+(α)}$ function and `l + m ≤ k`, then $D^mf$ is a $C^{l + (α)}$ function. -/
+/-- If `f` is a $C^{k+(α)}$ function and `l + m ≤ k`, then $D^mf$ is a $C^{l + (α)}$ function.
+@isnad1 id=contdiff.2h8v.s7.9b74e9a70b5a from=seed src=0 shape=67d3215d vocab=78625217
+-/
 protected theorem iteratedFDeriv (hf : ContDiffPointwiseHolderAt k α f a) (hl : l + m ≤ k) :
     ContDiffPointwiseHolderAt l α (iteratedFDeriv ℝ m f) a := by
   induction m generalizing l with
@@ -254,6 +309,9 @@ protected theorem iteratedFDeriv (hf : ContDiffPointwiseHolderAt k α f a) (hl :
     rw [← add_assoc, add_right_comm] at hl
     simpa +unfoldPartialApp [iteratedFDeriv_succ_eq_comp_left] using (ihm hl).fderiv l.lt_add_one
 
+/--
+@isnad1 id=contdiff.2h7v.s6.ee3641be2f64 from=seed src=0 shape=ab82bcea vocab=eac327e6
+-/
 theorem congr_of_eventuallyEq {g : E → F} (hf : ContDiffPointwiseHolderAt k α f a)
     (hfg : f =ᶠ[𝓝 a] g) :
     ContDiffPointwiseHolderAt k α g a where
@@ -263,6 +321,9 @@ theorem congr_of_eventuallyEq {g : E → F} (hf : ContDiffPointwiseHolderAt k α
     · exact hfg.symm.iteratedFDeriv ℝ _
     · rw [hfg.symm.iteratedFDeriv ℝ _ |>.self_of_nhds]
 
+/--
+@isnad1 id=contdiff.2h8v.s8.e33452f1293e from=seed src=0 shape=7da74c0d vocab=9e9c9e5d
+-/
 theorem clm_apply {f : E → F →L[ℝ] G} {g : E → F} (hf : ContDiffPointwiseHolderAt k α f a)
     (hg : ContDiffPointwiseHolderAt k α g a) :
     ContDiffPointwiseHolderAt k α (fun x ↦ f x (g x)) a :=

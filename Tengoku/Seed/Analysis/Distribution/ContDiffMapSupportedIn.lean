@@ -156,11 +156,23 @@ instance toContDiffMapSupportedInClass :
 
 variable {E F F'}
 
+/--
+@isnad1 id=contdiff.0h5v.s6.91cf23bba183 from=seed src=0 shape=bfd210fe vocab=152975b6
+-/
 protected theorem contDiff (f : 𝓓^{n}_{K}(E, F)) : ContDiff ℝ n f := map_contDiff f
+/--
+@isnad1 id=eqon.0h5v.s7.cb8c9bb8dae8 from=seed src=0 shape=a1052930 vocab=5b59c1d6
+-/
 protected theorem zero_on_compl (f : 𝓓^{n}_{K}(E, F)) : EqOn f 0 Kᶜ := map_zero_on_compl f
+/--
+@isnad1 id=hascompa.0h5v.s6.bbd8e44a5704 from=seed src=0 shape=835ffb46 vocab=35be8949
+-/
 protected theorem compact_supp (f : 𝓓^{n}_{K}(E, F)) : HasCompactSupport f :=
   .intro K.isCompact (map_zero_on_compl f)
 
+/--
+@isnad1 id=eq.0h5v.s6.0938adfec3cb from=seed src=0 shape=cace8084 vocab=ae2ec164
+-/
 @[simp]
 theorem toFun_eq_coe {f : 𝓓^{n}_{K}(E, F)} : f.toFun = (f : E → F) :=
   rfl
@@ -170,6 +182,9 @@ def Simps.coe (f : 𝓓^{n}_{K}(E, F)) : E → F := f
 
 initialize_simps_projections ContDiffMapSupportedIn (toFun → coe, as_prefix coe)
 
+/--
+@isnad1 id=eq.1h6v.s7.76b49771edbd from=seed src=0 shape=6f598665 vocab=65f784e3
+-/
 @[ext]
 theorem ext {f g : 𝓓^{n}_{K}(E, F)} (h : ∀ a, f a = g a) : f = g :=
   DFunLike.ext _ _ h
@@ -181,13 +196,22 @@ protected def copy (f : 𝓓^{n}_{K}(E, F)) (f' : E → F) (h : f' = f) : 𝓓^{
   contDiff' := h.symm ▸ f.contDiff
   zero_on_compl' := h.symm ▸ f.zero_on_compl
 
+/--
+@isnad1 id=eq.1h6v.s7.5f7b34b41a2e from=seed src=0 shape=2eb89fb4 vocab=9b0039b7
+-/
 @[simp]
 theorem coe_copy (f : 𝓓^{n}_{K}(E, F)) (f' : E → F) (h : f' = f) : ⇑(f.copy f' h) = f' :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.cfab09d21be3 from=seed src=0 shape=78ced784 vocab=9b0039b7
+-/
 theorem copy_eq (f : 𝓓^{n}_{K}(E, F)) (f' : E → F) (h : f' = f) : f.copy f' h = f :=
   DFunLike.ext' h
 
+/--
+@isnad1 id=eq.0h5v.s7.f115e9d94980 from=seed src=0 shape=2c60ffd5 vocab=af6cfa85
+-/
 @[simp]
 theorem coe_toBoundedContinuousFunction (f : 𝓓^{n}_{K}(E, F)) :
     (f : BoundedContinuousFunction E F) = (f : E → F) := rfl
@@ -200,6 +224,9 @@ instance : Zero 𝓓^{n}_{K}(E, F) where
 instance : IsZeroApply 𝓓^{n}_{K}(E, F) E F where
   zero_apply _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d2ed06a77171 from=seed src=0 shape=13fde918 vocab=33813134
+-/
 @[deprecated (since := "2026-06-15")] alias coe_zero := FunLike.coe_zero
 
 instance : Add 𝓓^{n}_{K}(E, F) where
@@ -210,6 +237,9 @@ instance : Add 𝓓^{n}_{K}(E, F) where
 instance : IsAddApply 𝓓^{n}_{K}(E, F) E F where
   add_apply _ _ _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.114c37d6b720 from=seed src=0 shape=c9e289f5 vocab=89451303
+-/
 @[deprecated (since := "2026-06-15")] alias coe_add := FunLike.coe_add
 
 instance : Neg 𝓓^{n}_{K}(E, F) where
@@ -220,6 +250,9 @@ instance : Neg 𝓓^{n}_{K}(E, F) where
 instance : IsNegApply 𝓓^{n}_{K}(E, F) E F where
   neg_apply _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.db434efe1670 from=seed src=0 shape=e67598e7 vocab=89c0eda7
+-/
 @[deprecated (since := "2026-06-15")] alias coe_neg := FunLike.coe_neg
 
 instance instSub : Sub 𝓓^{n}_{K}(E, F) where
@@ -230,6 +263,9 @@ instance instSub : Sub 𝓓^{n}_{K}(E, F) where
 instance : IsSubApply 𝓓^{n}_{K}(E, F) E F where
   sub_apply _ _ _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.be10d3760e5d from=seed src=0 shape=c9e289f5 vocab=489f9e5e
+-/
 @[deprecated (since := "2026-06-15")] alias coe_sub := FunLike.coe_sub
 
 instance instSMul {R} [Semiring R] [Module R F] [SMulCommClass ℝ R F] [ContinuousConstSMul R F] :
@@ -242,14 +278,23 @@ instance {R} [Semiring R] [Module R F] [SMulCommClass ℝ R F] [ContinuousConstS
     IsSMulApply R 𝓓^{n}_{K}(E, F) E F where
   smul_apply _ _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.e66176e0fe71 from=seed src=0 shape=2bea5ae3 vocab=b337f37c
+-/
 @[deprecated (since := "2026-06-15")] alias coe_smul := FunLike.coe_smul
 
 instance : AddCommGroup 𝓓^{n}_{K}(E, F) := fast_instance% FunLike.addCommGroup
 
 @[deprecated (since := "2026-06-15")] alias coeHom := FunLike.coeAddMonoidHom
 
+/--
+@isnad1 id=eq.0h3v.s6.c4d9c2dff3b3 from=seed src=0 shape=dcc4bf91 vocab=35052c24
+-/
 @[deprecated (since := "2026-06-15")] alias coe_coeHom := FunLike.coe_coeAddMonoidHom
 
+/--
+@isnad1 id=injectiv.0h3v.s6.50a8b635b4ae from=seed src=0 shape=cc1c20d6 vocab=7ce216bd
+-/
 @[deprecated (since := "2026-06-15")] alias coeHom_injective := FunLike.coeAddMonoidHom_injective
 
 end AddCommGroup
@@ -261,15 +306,27 @@ instance {R} [Semiring R] [Module R F] [SMulCommClass ℝ R F] [ContinuousConstS
 
 end Module
 
+/--
+@isnad1 id=le.0h5v.s7.cf6823b46774 from=seed src=0 shape=e24f74e2 vocab=3ddeba1f
+-/
 protected theorem support_subset (f : 𝓓^{n}_{K}(E, F)) : support f ⊆ K :=
   support_subset_iff'.mpr f.zero_on_compl
 
+/--
+@isnad1 id=le.0h5v.s7.5e3f1bdc4b6b from=seed src=0 shape=e24f74e2 vocab=131f7361
+-/
 protected theorem tsupport_subset (f : 𝓓^{n}_{K}(E, F)) : tsupport f ⊆ K :=
   closure_minimal f.support_subset K.isCompact.isClosed
 
+/--
+@isnad1 id=hascompa.0h5v.s6.bbd8e44a5704 from=seed src=0 shape=835ffb46 vocab=35be8949
+-/
 protected theorem hasCompactSupport (f : 𝓓^{n}_{K}(E, F)) : HasCompactSupport f :=
   HasCompactSupport.intro K.isCompact f.zero_on_compl
 
+/--
+@isnad1 id=continuo.0h5v.s6.7338c7d04c3a from=seed src=0 shape=835ffb46 vocab=69c99d2c
+-/
 @[fun_prop]
 protected theorem continuous (f : 𝓓^{n}_{K}(E, F)) : Continuous f :=
   f.contDiff.continuous
@@ -283,12 +340,18 @@ protected def of_support_subset {f : E → F} (hf : ContDiff ℝ n f) (hsupp : s
   contDiff' := hf
   zero_on_compl' := support_subset_iff'.mp hsupp
 
+/--
+@isnad1 id=ex.1h6v.s7.9d7719c5aaed from=seed src=0 shape=9eae629e vocab=eb5fe406
+-/
 protected theorem bounded_iteratedFDeriv (f : 𝓓^{n}_{K}(E, F)) {i : ℕ} (hi : i ≤ n) :
     ∃ C, ∀ x, ‖iteratedFDeriv ℝ i f x‖ ≤ C :=
   Continuous.bounded_above_of_compact_support
     (f.contDiff.continuous_iteratedFDeriv <| (WithTop.le_coe rfl).mpr hi)
     (f.hasCompactSupport.iteratedFDeriv i)
 
+/--
+@isnad1 id=eqon.0h6v.s9.c5ab98791edf from=seed src=0 shape=78b250a0 vocab=79013ee2
+-/
 protected theorem iteratedFDeriv_zero_on_compl (f : 𝓓^{n}_{K}(E, F)) {i : ℕ} :
     EqOn (iteratedFDeriv ℝ i f) 0 Kᶜ := by
   intro x (hx : x ∉ K)
@@ -304,11 +367,17 @@ noncomputable def toBoundedContinuousFunctionLM : 𝓓^{n}_{K}(E, F) →ₗ[𝕜
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.d3d0cfa3549b from=seed src=0 shape=85e4a0cc vocab=69733005
+-/
 @[simp]
 lemma toBoundedContinuousFunctionLM_apply (f : 𝓓^{n}_{K}(E, F)) :
     toBoundedContinuousFunctionLM 𝕜 f = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.8ac9aa68fd1d from=seed src=0 shape=b922948c vocab=fc27a03d
+-/
 lemma toBoundedContinuousFunctionLM_eq_of_scalars (𝕜' : Type*) [NontriviallyNormedField 𝕜']
     [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (toBoundedContinuousFunctionLM 𝕜 : 𝓓^{n}_{K}(E, F) → _) = toBoundedContinuousFunctionLM 𝕜' :=
@@ -328,6 +397,9 @@ noncomputable def postcompLM [LinearMap.CompatibleSMul F F' ℝ 𝕜] (T : F →
   map_add' f g := by ext x; exact map_add T (f x) (g x)
   map_smul' c f := by ext x; exact map_smul T c (f x)
 
+/--
+@isnad1 id=eq.0h8v.s10.d561423f3b00 from=seed src=0 shape=7a6bdf2d vocab=9f73f80f
+-/
 @[simp]
 lemma postcompLM_apply [LinearMap.CompatibleSMul F F' ℝ 𝕜] (T : F →L[𝕜] F')
     (f : 𝓓^{n}_{K}(E, F)) :
@@ -356,16 +428,25 @@ noncomputable def monoLM :
   map_smul' c f := by split_ifs <;> ext <;> simp
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h8v.s9.7f090fd3d695 from=seed src=0 shape=fdca7e79 vocab=58c5664a
+-/
 @[simp]
 lemma monoLM_apply (f : 𝓓^{n₁}_{K₁}(E, F)) :
     ((monoLM 𝕜 f : 𝓓^{n₂}_{K₂}(E, F)) : E → F) = if n₂ ≤ n₁ ∧ K₁ ≤ K₂ then f else 0 := by
   rw [monoLM]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.1h7v.s9.5a4362a2c5bf from=seed src=0 shape=de0e735c vocab=e10a66ea
+-/
 lemma monoLM_eq_zero (H : ¬ (n₂ ≤ n₁ ∧ K₁ ≤ K₂)) :
     (monoLM 𝕜 : 𝓓^{n₁}_{K₁}(E, F) →ₗ[𝕜] 𝓓^{n₂}_{K₂}(E, F)) = 0 := by
   ext; simp [H]
 
+/--
+@isnad1 id=eq.0h8v.s10.c051ca7f6f1f from=seed src=0 shape=7540e454 vocab=866f91c4
+-/
 lemma monoLM_eq_of_scalars (𝕜' : Type*)
     [NontriviallyNormedField 𝕜'] [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (monoLM 𝕜 : 𝓓^{n₁}_{K₁}(E, F) → 𝓓^{n₂}_{K₂}(E, F)) = monoLM 𝕜' :=
@@ -400,21 +481,33 @@ noncomputable def fderivLM :
         FunLike.coe_smul]
     · simp
 
+/--
+@isnad1 id=eq.0h7v.s11.a2153a568b53 from=seed src=0 shape=c79ea36c vocab=c5f5071f
+-/
 @[simp]
 lemma fderivLM_apply (f : 𝓓^{n}_{K}(E, F)) :
     fderivLM 𝕜 n k f = if k + 1 ≤ n then fderiv ℝ f else 0 := by
   rw [fderivLM]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.8e3b84995e4d from=seed src=0 shape=4cae4e10 vocab=52e79a87
+-/
 lemma fderivLM_apply_of_le (f : 𝓓^{n}_{K}(E, F)) (hk : k + 1 ≤ n) :
     fderivLM 𝕜 n k f = fderiv ℝ f := by
   simp [hk]
 
+/--
+@isnad1 id=eq.1h7v.s11.0036b9a0982d from=seed src=0 shape=b1926647 vocab=fb6a93d9
+-/
 lemma fderivLM_apply_of_gt (f : 𝓓^{n}_{K}(E, F)) (hk : n < k + 1) :
     fderivLM 𝕜 n k f = 0 := by
   ext : 1
   simp [not_le_of_gt hk]
 
+/--
+@isnad1 id=eq.0h7v.s11.2ea7afe0870a from=seed src=0 shape=ae31d5fb vocab=3a81f707
+-/
 lemma fderivLM_eq_of_scalars (𝕜' : Type*) [NontriviallyNormedField 𝕜']
     [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (fderivLM 𝕜 n k : 𝓓^{n}_{K}(E, F) → _) = fderivLM 𝕜' n k :=
@@ -456,21 +549,33 @@ noncomputable def iteratedFDerivLM (i : ℕ) :
       simp [iteratedFDeriv_const_smul_apply (f.contDiff.of_le hi').contDiffAt, FunLike.coe_smul]
     · simp
 
+/--
+@isnad1 id=eq.0h8v.s11.9f28735e79d6 from=seed src=0 shape=2aa2bfb0 vocab=3a01a5f4
+-/
 @[simp]
 lemma iteratedFDerivLM_apply {i : ℕ} (f : 𝓓^{n}_{K}(E, F)) :
     iteratedFDerivLM 𝕜 n k i f = if k + i ≤ n then iteratedFDeriv ℝ i f else 0 := by
   rw [ContDiffMapSupportedIn.iteratedFDerivLM]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.1h8v.s11.03ae2d060aa5 from=seed src=0 shape=342ee80e vocab=c2340ec0
+-/
 lemma iteratedFDerivLM_apply_of_le {i : ℕ} (f : 𝓓^{n}_{K}(E, F)) (hin : k + i ≤ n) :
     iteratedFDerivLM 𝕜 n k i f = iteratedFDeriv ℝ i f := by
   simp [hin]
 
+/--
+@isnad1 id=eq.1h8v.s11.18e44171b159 from=seed src=0 shape=00b19f5c vocab=57f9cae5
+-/
 lemma iteratedFDerivLM_apply_of_gt {i : ℕ} (f : 𝓓^{n}_{K}(E, F)) (hin : n < k + i) :
     iteratedFDerivLM 𝕜 n k i f = 0 := by
   ext : 1
   simp [not_le_of_gt hin]
 
+/--
+@isnad1 id=eq.0h8v.s11.0ab76e051e3c from=seed src=0 shape=23ba2c81 vocab=a8af4b5f
+-/
 lemma iteratedFDerivLM_eq_of_scalars {i : ℕ} (𝕜' : Type*) [NontriviallyNormedField 𝕜']
     [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (iteratedFDerivLM 𝕜 n k i : 𝓓^{n}_{K}(E, F) → _)
@@ -491,30 +596,48 @@ noncomputable def structureMapLM (i : ℕ) :
     𝓓^{n}_{K}(E, F) →ₗ[𝕜] E →ᵇ (E [×i]→L[ℝ] F) :=
   toBoundedContinuousFunctionLM 𝕜 ∘ₗ iteratedFDerivLM 𝕜 n 0 i
 
+/--
+@isnad1 id=eq.0h6v.s11.964e186f874f from=seed src=0 shape=8728046e vocab=8972aca5
+-/
 lemma structureMapLM_eq {i : ℕ} :
     (structureMapLM 𝕜 n i : 𝓓^{n}_{K}(E, F) →ₗ[𝕜] E →ᵇ (E [×i]→L[ℝ] F)) =
       (toBoundedContinuousFunctionLM 𝕜 : 𝓓^{0}_{K}(E, E [×i]→L[ℝ] F) →ₗ[𝕜] E →ᵇ (E [×i]→L[ℝ] F)) ∘ₗ
       (iteratedFDerivLM 𝕜 n 0 i : 𝓓^{n}_{K}(E, F) →ₗ[𝕜] 𝓓^{0}_{K}(E, E [×i]→L[ℝ] F)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.83b946d88c8a from=seed src=0 shape=b203430b vocab=a3b05bed
+-/
 lemma structureMapLM_apply {i : ℕ} (f : 𝓓^{n}_{K}(E, F)) :
     structureMapLM 𝕜 n i f = if i ≤ n then iteratedFDeriv ℝ i f else 0 := by
   simp [structureMapLM]
 
+/--
+@isnad1 id=eq.0h6v.s11.12a4ce2762be from=seed src=0 shape=054dfa00 vocab=3cf2a416
+-/
 lemma structureMapLM_top_apply {i : ℕ} (f : 𝓓_{K}(E, F)) :
     structureMapLM 𝕜 ⊤ i f = iteratedFDeriv ℝ i f := by
   simp [structureMapLM_eq]
 
+/--
+@isnad1 id=eq.0h7v.s11.93481784336d from=seed src=0 shape=763f5290 vocab=39964efa
+-/
 lemma structureMapLM_eq_of_scalars {i : ℕ} (𝕜' : Type*) [NontriviallyNormedField 𝕜']
     [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (structureMapLM 𝕜 n i : 𝓓^{n}_{K}(E, F) → _) = structureMapLM 𝕜' n i :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.ecbcac9054d3 from=seed src=0 shape=b31077f5 vocab=1c8e950d
+-/
 lemma structureMapLM_zero_apply {f : 𝓓^{n}_{K}(E, F)} {x : E} :
     structureMapLM 𝕜 n 0 f x = ContinuousMultilinearMap.uncurry0 ℝ E (f x) := by
   ext
   simp [structureMapLM_apply, iteratedFDeriv_zero_eq_comp]
 
+/--
+@isnad1 id=injectiv.0h5v.s11.81722c6abd17 from=seed src=0 shape=27663cd1 vocab=718b842c
+-/
 lemma structureMapLM_zero_injective :
     Injective (structureMapLM 𝕜 n 0 : 𝓓^{n}_{K}(E, F) → E →ᵇ E [×0]→L[ℝ] F) := by
   intro f g hfg
@@ -530,20 +653,35 @@ noncomputable instance uniformSpace : UniformSpace 𝓓^{n}_{K}(E, F) := .replac
   (⨅ (i : ℕ), UniformSpace.comap (structureMapLM ℝ n i) inferInstance)
   toTopologicalSpace_iInf.symm
 
+/--
+@isnad1 id=eq.0h4v.s10.d18cd6c7e23d from=seed src=0 shape=8be3f993 vocab=bbf4f885
+-/
 protected theorem uniformSpace_eq_iInf : (uniformSpace : UniformSpace 𝓓^{n}_{K}(E, F)) =
     ⨅ (i : ℕ), UniformSpace.comap (structureMapLM ℝ n i) inferInstance :=
   UniformSpace.replaceTopology_eq _ toTopologicalSpace_iInf.symm
 
+/--
+@isnad1 id=istopolo.0h4v.s6.80e8529940f4 from=seed src=0 shape=2e8ca017 vocab=79334d6b
+-/
 instance isTopologicalAddGroup : IsTopologicalAddGroup 𝓓^{n}_{K}(E, F) :=
   topologicalAddGroup_iInf fun _ ↦ topologicalAddGroup_induced _
 
+/--
+@isnad1 id=isunifor.0h4v.s6.642deeb25790 from=seed src=0 shape=2e8ca017 vocab=dad6692a
+-/
 instance isUniformAddGroup : IsUniformAddGroup 𝓓^{n}_{K}(E, F) := by
   rw [ContDiffMapSupportedIn.uniformSpace_eq_iInf]
   exact isUniformAddGroup_iInf fun _ ↦ IsUniformAddGroup.comap _
 
+/--
+@isnad1 id=continuo.0h5v.s8.4d2810983e89 from=seed src=0 shape=2d3d6739 vocab=e510eab9
+-/
 instance continuousSMul : ContinuousSMul 𝕜 𝓓^{n}_{K}(E, F) :=
   continuousSMul_iInf fun i ↦ continuousSMul_induced (structureMapLM 𝕜 n i)
 
+/--
+@isnad1 id=locallyc.0h4v.s6.4721149a6b43 from=seed src=0 shape=9d63b525 vocab=6afc1521
+-/
 instance locallyConvexSpace : LocallyConvexSpace ℝ 𝓓^{n}_{K}(E, F) :=
   LocallyConvexSpace.iInf fun _ ↦ LocallyConvexSpace.induced _
 
@@ -558,28 +696,46 @@ noncomputable def structureMapCLM (i : ℕ) :
   toLinearMap := structureMapLM 𝕜 n i
   cont := continuous_iInf_dom continuous_induced_dom
 
+/--
+@isnad1 id=eq.0h7v.s11.35e138f0e590 from=seed src=0 shape=b203430b vocab=21540b99
+-/
 @[simp]
 lemma structureMapCLM_apply {i : ℕ} (f : 𝓓^{n}_{K}(E, F)) :
     structureMapCLM 𝕜 n i f = if i ≤ n then iteratedFDeriv ℝ i f else 0 := by
   simp [structureMapCLM, structureMapLM_apply]
 
+/--
+@isnad1 id=eq.0h6v.s11.4409787f9480 from=seed src=0 shape=054dfa00 vocab=bf70470f
+-/
 lemma structureMapCLM_top_apply {i : ℕ} (f : 𝓓_{K}(E, F)) :
     structureMapCLM 𝕜 ⊤ i f = iteratedFDeriv ℝ i f := by
   simp [structureMapCLM, structureMapLM_top_apply]
 
+/--
+@isnad1 id=eq.0h7v.s12.af9a641c4690 from=seed src=0 shape=763f5290 vocab=4cb62674
+-/
 lemma structureMapCLM_eq_of_scalars {i : ℕ} (𝕜' : Type*) [NontriviallyNormedField 𝕜']
     [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (structureMapCLM 𝕜 n i : 𝓓^{n}_{K}(E, F) → _) = structureMapCLM 𝕜' n i :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.96913967d1f8 from=seed src=0 shape=b31077f5 vocab=c45f00f4
+-/
 lemma structureMapCLM_zero_apply {f : 𝓓^{n}_{K}(E, F)} {x : E} :
     structureMapCLM 𝕜 n 0 f x = ContinuousMultilinearMap.uncurry0 ℝ E (f x) :=
   structureMapLM_zero_apply 𝕜
 
+/--
+@isnad1 id=injectiv.0h5v.s11.af598ff93d7c from=seed src=0 shape=27663cd1 vocab=8c21d7af
+-/
 lemma structureMapCLM_zero_injective :
     Injective (structureMapCLM 𝕜 n 0 : 𝓓^{n}_{K}(E, F) → E →ᵇ E [×0]→L[ℝ] F) :=
   structureMapLM_zero_injective 𝕜
 
+/--
+@isnad1 id=isunifor.0h5v.s12.5be1c470cf1c from=seed src=0 shape=3b2af617 vocab=f6a9ddc2
+-/
 lemma isUniformEmbedding_pi_structureMapCLM :
     IsUniformEmbedding (ContinuousLinearMap.pi (structureMapCLM 𝕜 n) :
       𝓓^{n}_{K}(E, F) →L[𝕜] Π i, E →ᵇ (E [×i]→L[ℝ] F)) where
@@ -594,7 +750,9 @@ is continuous if and only if its composition with each structure map
 `structureMapCLM ℝ n i : 𝓓^{n}_{K}(E, F) → (E →ᵇ (E [×i]→L[ℝ] F))` is continuous.
 
 Since `structureMapCLM ℝ n i` is zero whenever `i > n`, it suffices to check it for `i ≤ n`,
-as proven by `continuous_iff_comp_order_le`. -/
+as proven by `continuous_iff_comp_order_le`.
+@isnad1 id=iff.0h6v.s11.9dd836a7f054 from=seed src=0 shape=844fc68e vocab=a9ad03e4
+-/
 -- Note: if needed, we could allow an extra parameter `𝕜` in case the user wants to use
 -- `structureMapCLM 𝕜 n i`.
 theorem continuous_iff_comp {X} [TopologicalSpace X] (φ : X → 𝓓^{n}_{K}(E, F)) :
@@ -604,7 +762,9 @@ theorem continuous_iff_comp {X} [TopologicalSpace X] (φ : X → 𝓓^{n}_{K}(E,
 /-- The **universal property** of the topology on `𝓓^{n}_{K}(E, F)`: a map to `𝓓^{n}_{K}(E, F)`
 is continuous if and only if its composition with the structure map
 `structureMapCLM ℝ n i : 𝓓^{n}_{K}(E, F) → (E →ᵇ (E [×i]→L[ℝ] F))` is continuous for each
-`i ≤ n`. -/
+`i ≤ n`.
+@isnad1 id=iff.0h6v.s11.7354abb09c2a from=seed src=0 shape=6e507147 vocab=95fe38f0
+-/
 -- Note: if needed, we could allow an extra parameter `𝕜` in case the user wants to use
 -- `structureMapCLM 𝕜 n i`.
 theorem continuous_iff_comp_order_le {X : Type*} [TopologicalSpace X] (φ : X → 𝓓^{n}_{K}(E, F)) :
@@ -647,6 +807,9 @@ scoped[Distributions] notation "N[" 𝕜 "; " F "]_{" K ", " i "}" =>
 protected noncomputable def supSeminorm (i : ℕ) : Seminorm 𝕜 𝓓^{n}_{K}(E, F) :=
   (Finset.Iic i).sup (ContDiffMapSupportedIn.seminorm 𝕜 E F n K)
 
+/--
+@isnad1 id=withsemi.0h5v.s8.a66394c676a7 from=seed src=0 shape=43711bbe vocab=60f11ad5
+-/
 protected theorem withSeminorms :
     WithSeminorms (ContDiffMapSupportedIn.seminorm 𝕜 E F n K) := by
   let p : SeminormFamily 𝕜 𝓓^{n}_{K}(E, F) ((_ : ℕ) × Fin 1) :=
@@ -656,16 +819,25 @@ protected theorem withSeminorms :
     withSeminorms_iInf fun i ↦ LinearMap.withSeminorms_induced (norm_withSeminorms _ _) _
   exact this.congr_equiv (Equiv.sigmaUnique _ _).symm
 
+/--
+@isnad1 id=withsemi.0h5v.s8.f09078303a01 from=seed src=0 shape=43711bbe vocab=4bdf2141
+-/
 protected theorem withSeminorms' :
     WithSeminorms (ContDiffMapSupportedIn.supSeminorm 𝕜 E F n K) :=
   (ContDiffMapSupportedIn.withSeminorms 𝕜 E F n K).partial_sups
 
 variable {E F n K}
 
+/--
+@isnad1 id=eq.0h7v.s11.3aae0bd52202 from=seed src=0 shape=892779a7 vocab=3964c60a
+-/
 protected theorem seminorm_apply (i : ℕ) (f : 𝓓^{n}_{K}(E, F)) :
     N[𝕜]_{K, n, i} f = ‖structureMapCLM 𝕜 n i f‖ :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.04682fac3844 from=seed src=0 shape=eb01c56d vocab=5fab97e7
+-/
 protected theorem seminorm_eq_bot_of_gt {i : ℕ} (hin : n < i) :
     N[𝕜; F]_{K, n, i} = ⊥ := by
   have : ¬(i ≤ n) := by simpa using hin
@@ -673,6 +845,9 @@ protected theorem seminorm_eq_bot_of_gt {i : ℕ} (hin : n < i) :
   simp [ContDiffMapSupportedIn.seminorm_apply, BoundedContinuousFunction.ext_iff,
     structureMapCLM_apply, this]
 
+/--
+@isnad1 id=iff.1h8v.s9.0ac42eafe45a from=seed src=0 shape=d0a55568 vocab=906b9225
+-/
 protected theorem seminorm_le_iff {C : ℝ} (hC : 0 ≤ C) (i : ℕ) (f : 𝓓^{n}_{K}(E, F)) :
     N[𝕜]_{K, n, i} f ≤ C ↔ (i ≤ n → ∀ x ∈ K, ‖iteratedFDeriv ℝ i f x‖ ≤ C) := by
   have : (∀ x, ‖iteratedFDeriv ℝ i f x‖ ≤ C) ↔ (∀ x ∈ K, ‖iteratedFDeriv ℝ i f x‖ ≤ C) := by
@@ -686,10 +861,16 @@ protected theorem seminorm_le_iff {C : ℝ} (hC : 0 ≤ C) (i : ℕ) (f : 𝓓^{
   · push Not at hi
     simp [hi, ContDiffMapSupportedIn.seminorm_eq_bot_of_gt _ hi, hC]
 
+/--
+@isnad1 id=iff.1h7v.s9.6223a276d075 from=seed src=0 shape=8631294b vocab=f772403d
+-/
 protected theorem seminorm_top_le_iff {C : ℝ} (hC : 0 ≤ C) (i : ℕ) (f : 𝓓_{K}(E, F)) :
     N[𝕜]_{K, i} f ≤ C ↔ ∀ x ∈ K, ‖iteratedFDeriv ℝ i f x‖ ≤ C := by
   simp_rw [ContDiffMapSupportedIn.seminorm_le_iff 𝕜 hC, le_top, forall_const]
 
+/--
+@isnad1 id=le.1h8v.s9.b08a1f32bd9b from=seed src=0 shape=8f604071 vocab=92201e3e
+-/
 theorem norm_iteratedFDeriv_apply_le_seminorm {i : ℕ} (hin : i ≤ n)
     {f : 𝓓^{n}_{K}(E, F)} {x : E} :
     ‖iteratedFDeriv ℝ i f x‖ ≤ N[𝕜]_{K, n, i} f :=
@@ -699,16 +880,25 @@ theorem norm_iteratedFDeriv_apply_le_seminorm {i : ℕ} (hin : i ≤ n)
   _ ≤ ‖structureMapLM ℝ n i f‖ := BoundedContinuousFunction.norm_coe_le_norm _ _
   _ = N[𝕜]_{K, n, i} f := rfl
 
+/--
+@isnad1 id=le.0h7v.s9.5f891ce6a969 from=seed src=0 shape=fc4e1bff vocab=6b6d67db
+-/
 theorem norm_iteratedFDeriv_apply_le_seminorm_top {i : ℕ}
     {f : 𝓓_{K}(E, F)} {x : E} :
     ‖iteratedFDeriv ℝ i f x‖ ≤ N[𝕜]_{K, i} f :=
   norm_iteratedFDeriv_apply_le_seminorm 𝕜 (mod_cast le_top)
 
+/--
+@isnad1 id=le.0h7v.s8.6824d21befe3 from=seed src=0 shape=9b6624c9 vocab=504b39f5
+-/
 theorem norm_apply_le_seminorm {f : 𝓓^{n}_{K}(E, F)} {x : E} :
     ‖f x‖ ≤ N[𝕜]_{K, n, 0} f := by
   rw [← norm_iteratedFDeriv_zero (𝕜 := ℝ) (f := f) (x := x)]
   exact norm_iteratedFDeriv_apply_le_seminorm 𝕜 zero_le
 
+/--
+@isnad1 id=eq.0h6v.s9.f98c90efb369 from=seed src=0 shape=f4bd9ef8 vocab=66649610
+-/
 theorem norm_toBoundedContinuousFunction (f : 𝓓^{n}_{K}(E, F)) :
     ‖(f : E →ᵇ F)‖ = N[𝕜]_{K, n, 0} f := by
   simp [BoundedContinuousFunction.norm_eq_iSup_norm,
@@ -762,11 +952,17 @@ noncomputable def toBoundedContinuousFunctionCLM : 𝓓^{n}_{K}(E, F) →L[𝕜]
       (norm_withSeminorms 𝕜 _) _ (fun _ ↦ ⟨{0}, 1, fun f ↦ ?_⟩)
     simp [norm_toBoundedContinuousFunction 𝕜 f]
 
+/--
+@isnad1 id=eq.0h6v.s9.f1bbbd8535bc from=seed src=0 shape=85e4a0cc vocab=87ff8787
+-/
 @[simp]
 lemma toBoundedContinuousFunctionCLM_apply (f : 𝓓^{n}_{K}(E, F)) :
     toBoundedContinuousFunctionCLM 𝕜 f = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.a9b403081f0e from=seed src=0 shape=b922948c vocab=e3066988
+-/
 lemma toBoundedContinuousFunctionCLM_eq_of_scalars (𝕜' : Type*) [NontriviallyNormedField 𝕜']
     [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (toBoundedContinuousFunctionCLM 𝕜 : 𝓓^{n}_{K}(E, F) → _) = toBoundedContinuousFunctionCLM 𝕜' :=
@@ -783,6 +979,9 @@ instance : T3Space 𝓓^{n}_{K}(E, F) :=
     (toBoundedContinuousFunctionCLM ℝ).continuous
   inferInstance
 
+/--
+@isnad1 id=le.0h9v.s10.fde2a19c493a from=seed src=0 shape=83163911 vocab=15c14cf2
+-/
 theorem seminorm_postcompLM_le [LinearMap.CompatibleSMul F F' ℝ 𝕜] {i : ℕ} (T : F →L[𝕜] F')
     (f : 𝓓^{n}_{K}(E, F)) :
     N[𝕜]_{K, n, i} (postcompLM T f) ≤ ‖T‖ * N[𝕜]_{K, n, i} f := by
@@ -811,12 +1010,18 @@ noncomputable def postcompCLM [LinearMap.CompatibleSMul F F' ℝ 𝕜] (T : F �
       (ContDiffMapSupportedIn.withSeminorms ..) _ (.of_real fun i ↦ ⟨{i}, ‖T‖, fun f ↦ ?_⟩)
     simpa using seminorm_postcompLM_le 𝕜 T f
 
+/--
+@isnad1 id=eq.0h8v.s10.e557bd911853 from=seed src=0 shape=dd4eed22 vocab=fab683a8
+-/
 @[simp]
 lemma postcompCLM_apply [LinearMap.CompatibleSMul F F' ℝ 𝕜] (T : F →L[𝕜] F')
     (f : 𝓓^{n}_{K}(E, F)) :
     postcompCLM T f = T ∘ f :=
   rfl
 
+/--
+@isnad1 id=le.0h9v.s9.4f17e55dd5bf from=seed src=0 shape=f06c4caa vocab=d5b715c1
+-/
 theorem seminorm_monoLM_le {i : ℕ} (f : 𝓓^{n₁}_{K₁}(E, F)) :
     N[𝕜]_{K₂, n₂, i} (monoLM 𝕜 f) ≤ N[𝕜]_{K₁, n₁, i} f := by
   by_cases H : n₂ ≤ n₁ ∧ K₁ ≤ K₂
@@ -826,6 +1031,9 @@ theorem seminorm_monoLM_le {i : ℕ} (f : 𝓓^{n₁}_{K₁}(E, F)) :
     exact norm_iteratedFDeriv_apply_le_seminorm _ (hik.trans (mod_cast H.1))
   · simp [monoLM_eq_zero, H]
 
+/--
+@isnad1 id=eq.2h9v.s9.ef42d5b42dfc from=seed src=0 shape=f903f7a1 vocab=d5b715c1
+-/
 theorem seminorm_monoLM_eq {i : ℕ} (h₁ : n₁ = n₂) (h₂ : K₁ ≤ K₂) (f : 𝓓^{n₁}_{K₁}(E, F)) :
     N[𝕜]_{K₂, n₂, i} (monoLM 𝕜 f) = N[𝕜]_{K₁, n₁, i} f := by
   simp [BoundedContinuousFunction.norm_eq_iSup_norm, ContDiffMapSupportedIn.seminorm_apply,
@@ -851,20 +1059,32 @@ noncomputable def monoCLM :
     simpa using seminorm_monoLM_le 𝕜 f
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h8v.s9.2dc736ecccaa from=seed src=0 shape=fdca7e79 vocab=de98209e
+-/
 @[simp]
 lemma monoCLM_apply (f : 𝓓^{n₁}_{K₁}(E, F)) :
     ((monoCLM 𝕜 f : 𝓓^{n₂}_{K₂}(E, F)) : E → F) = if n₂ ≤ n₁ ∧ K₁ ≤ K₂ then f else 0 :=
   monoLM_apply 𝕜 f
 
+/--
+@isnad1 id=eq.1h7v.s9.47eb28390c6e from=seed src=0 shape=de0e735c vocab=ab601c35
+-/
 lemma monoCLM_eq_zero (H : ¬ (n₂ ≤ n₁ ∧ K₁ ≤ K₂)) :
     (monoCLM 𝕜 : 𝓓^{n₁}_{K₁}(E, F) →L[𝕜] 𝓓^{n₂}_{K₂}(E, F)) = 0 := by
   ext; simp [H]
 
+/--
+@isnad1 id=eq.0h8v.s10.24a64383e594 from=seed src=0 shape=7540e454 vocab=c5c3cee2
+-/
 lemma monoCLM_eq_of_scalars (𝕜' : Type*)
     [NontriviallyNormedField 𝕜'] [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (monoCLM 𝕜 : 𝓓^{n₁}_{K₁}(E, F) → 𝓓^{n₂}_{K₂}(E, F)) = monoCLM 𝕜' :=
   rfl
 
+/--
+@isnad1 id=le.0h8v.s11.70dbbd9dd0df from=seed src=0 shape=b5eff9af vocab=f6ac2d42
+-/
 theorem seminorm_fderivLM_le {i : ℕ} (f : 𝓓^{n}_{K}(E, F)) :
     N[𝕜]_{K, k, i} (fderivLM 𝕜 n k f) ≤ N[𝕜]_{K, n, i + 1} f := by
   by_cases! hk : k + 1 ≤ n
@@ -875,6 +1095,9 @@ theorem seminorm_fderivLM_le {i : ℕ} (f : 𝓓^{n}_{K}(E, F)) :
       norm_iteratedFDeriv_apply_le_seminorm 𝕜 hi'
   · simp [fderivLM_apply_of_gt 𝕜 f hk]
 
+/--
+@isnad1 id=eq.0h6v.s11.9ac014fcc14c from=seed src=0 shape=42f22121 vocab=6e6550f6
+-/
 theorem seminorm_fderivLM_top {i : ℕ} (f : 𝓓_{K}(E, F)) :
     N[𝕜]_{K, i} (fderivLM 𝕜 ⊤ ⊤ f) = N[𝕜]_{K, i + 1} f := by
   simp [ContDiffMapSupportedIn.seminorm_apply, BoundedContinuousFunction.norm_eq_iSup_norm,
@@ -892,19 +1115,31 @@ noncomputable def fderivCLM :
       (ContDiffMapSupportedIn.withSeminorms ..) _ (fun i ↦ ⟨{i+1}, 1, fun f ↦ ?_⟩)
     simpa using seminorm_fderivLM_le 𝕜 f
 
+/--
+@isnad1 id=eq.0h7v.s11.1254aee30d35 from=seed src=0 shape=c21afc45 vocab=e8bf5eb8
+-/
 @[simp]
 lemma fderivCLM_apply (f : 𝓓^{n}_{K}(E, F)) :
     fderivCLM 𝕜 n k f = if k + 1 ≤ n then fderiv ℝ f else 0 :=
   fderivLM_apply 𝕜 f
 
+/--
+@isnad1 id=eq.1h7v.s11.6cdcd488e3ab from=seed src=0 shape=e458639a vocab=a6cc23ac
+-/
 lemma fderivCLM_apply_of_le (f : 𝓓^{n}_{K}(E, F)) (hk : k + 1 ≤ n) :
     fderivCLM 𝕜 n k f = fderiv ℝ f :=
   fderivLM_apply_of_le 𝕜 f hk
 
+/--
+@isnad1 id=eq.1h7v.s11.ffd2d03b6a58 from=seed src=0 shape=0a062af5 vocab=d55dfa3c
+-/
 lemma fderivCLM_apply_of_gt (f : 𝓓^{n}_{K}(E, F)) (hk : n < k + 1) :
     fderivCLM 𝕜 n k f = 0 :=
   fderivLM_apply_of_gt 𝕜 f hk
 
+/--
+@isnad1 id=eq.0h7v.s11.d7806bf5200b from=seed src=0 shape=656ea510 vocab=3c1080dc
+-/
 lemma fderivCLM_eq_of_scalars (𝕜' : Type*) [NontriviallyNormedField 𝕜']
     [NormedSpace 𝕜' F] [SMulCommClass ℝ 𝕜' F] :
     (fderivCLM 𝕜 n k : 𝓓^{n}_{K}(E, F) → _) = fderivCLM 𝕜' n k :=
@@ -921,26 +1156,41 @@ variable {𝕜} {m : MeasurableSpace E} [OpensMeasurableSpace E] {F₁ F₂ F₃
   [NormedAddCommGroup F₂] [NormedSpace 𝕜 F₂]
   [NormedAddCommGroup F₃] [NormedSpace 𝕜 F₃]
 
+/--
+@isnad1 id=strongly.0h6v.s6.941c6d19ab76 from=seed src=0 shape=75306f4d vocab=4b080fb9
+-/
 @[fun_prop]
 protected theorem stronglyMeasurable (f : 𝓓^{n}_{K}(E, F)) :
     StronglyMeasurable f := by
   exact f.continuous.stronglyMeasurable_of_hasCompactSupport f.hasCompactSupport
 
+/--
+@isnad1 id=aestrong.0h7v.s6.bb7dd896755d from=seed src=0 shape=18f215a6 vocab=3eaa361b
+-/
 @[fun_prop]
 protected theorem aestronglyMeasurable {μ : Measure E} (f : 𝓓^{n}_{K}(E, F)) :
     AEStronglyMeasurable f μ :=
   f.stronglyMeasurable.aestronglyMeasurable
 
+/--
+@isnad1 id=memlp.0h7v.s7.8db241b6a8cf from=seed src=0 shape=c332e2ca vocab=4039b0a0
+-/
 protected theorem memLp_top {μ : Measure E} (f : 𝓓^{n}_{K}(E, F)) :
     MemLp f ⊤ μ :=
   f.continuous.memLp_top_of_hasCompactSupport f.hasCompactSupport μ
 
+/--
+@isnad1 id=integrab.0h7v.s7.d8e5460450d6 from=seed src=0 shape=3c881e24 vocab=29088c59
+-/
 protected theorem integrable {μ : Measure E} [μ_finite : IsFiniteMeasure (μ.restrict K)]
     (f : 𝓓^{n}_{K}(E, F)) :
     Integrable f μ := by
   rw [← integrableOn_iff_integrable_of_support_subset f.support_subset]
   exact f.continuous.integrable_of_hasCompactSupport f.hasCompactSupport
 
+/--
+@isnad1 id=integrab.1h12v.s10.9d7602f01a4c from=seed src=0 shape=b5a606d5 vocab=8f08679e
+-/
 protected theorem integrable_bilin (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) {μ : Measure E} {φ : E → F₂}
     (hφ : IntegrableOn φ K μ) (f : 𝓓^{n}_{K}(E, F₁)) :
     Integrable (fun x ↦ B (f x) (φ x)) μ := by
@@ -973,6 +1223,9 @@ noncomputable def integralAgainstBilinLM (B : F₁ →L[𝕜] F₂ →L[𝕜] F�
     · simp_rw [smul_apply, map_smul, smul_apply, integral_smul c, RingHom.id_apply]
     · simp
 
+/--
+@isnad1 id=eq.0h12v.s11.b6df84af8357 from=seed src=0 shape=48653680 vocab=dc3b105e
+-/
 @[simp]
 lemma integralAgainstBilinLM_apply {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {μ : Measure E} {φ : E → F₂}
     {f : 𝓓^{n}_{K}(E, F₁)} :
@@ -980,11 +1233,17 @@ lemma integralAgainstBilinLM_apply {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {�
       if IntegrableOn φ K μ then ∫ x, B (f x) (φ x) ∂μ else 0 := by
   rfl
 
+/--
+@isnad1 id=eq.1h12v.s11.80442be13799 from=seed src=0 shape=a0795292 vocab=bf7e4347
+-/
 lemma integralAgainstBilinLM_eq_integral {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {μ : Measure E} {φ : E → F₂}
     (hφ : IntegrableOn φ K μ) {f : 𝓓^{n}_{K}(E, F₁)} :
     integralAgainstBilinLM B μ φ f = ∫ x, B (f x) (φ x) ∂μ := by
   simp [hφ]
 
+/--
+@isnad1 id=eq.1h12v.s11.5793d5a2a572 from=seed src=0 shape=56b19fa1 vocab=9be7298f
+-/
 lemma integralAgainstBilinLM_eq_setIntegral {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {μ : Measure E} {φ : E → F₂}
     (hφ : IntegrableOn φ K μ) {f : 𝓓^{n}_{K}(E, F₁)} :
     integralAgainstBilinLM B μ φ f = ∫ x in K, B (f x) (φ x) ∂μ := by
@@ -992,6 +1251,9 @@ lemma integralAgainstBilinLM_eq_setIntegral {B : F₁ →L[𝕜] F₂ →L[𝕜]
   intro x hx
   rw [f.zero_on_compl hx, Pi.zero_apply, map_zero, zero_apply]
 
+/--
+@isnad1 id=le.0h12v.s10.b70d86cb4956 from=seed src=0 shape=6247ea19 vocab=38eb2486
+-/
 lemma norm_integralAgainstBilinLM_le {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {μ : Measure E} {φ : E → F₂}
     {f : 𝓓^{n}_{K}(E, F₁)} :
     ‖integralAgainstBilinLM B μ φ f‖ ≤
@@ -1018,6 +1280,9 @@ noncomputable def integralAgainstBilinCLM (B : F₁ →L[𝕜] F₂ →L[𝕜] F
     ⟨{0}, (∫ x in K, ‖φ x‖ ∂μ) * ‖B‖, by positivity,
       fun f ↦ by simpa using! norm_integralAgainstBilinLM_le⟩
 
+/--
+@isnad1 id=eq.0h12v.s11.765b6a204164 from=seed src=0 shape=662b1c53 vocab=b4c763b8
+-/
 @[simp]
 lemma integralAgainstBilinCLM_apply {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {μ : Measure E} {φ : E → F₂}
     {f : 𝓓^{n}_{K}(E, F₁)} :
@@ -1025,11 +1290,17 @@ lemma integralAgainstBilinCLM_apply {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {
       if IntegrableOn φ K μ then ∫ x, B (f x) (φ x) ∂μ else 0 :=
   integralAgainstBilinLM_apply
 
+/--
+@isnad1 id=eq.1h12v.s11.df77629ab451 from=seed src=0 shape=5ff95097 vocab=64543e2d
+-/
 lemma integralAgainstBilinCLM_eq_integral {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {μ : Measure E} {φ : E → F₂}
     (hφ : IntegrableOn φ K μ) {f : 𝓓^{n}_{K}(E, F₁)} :
     integralAgainstBilinCLM B μ φ f = ∫ x, B (f x) (φ x) ∂μ :=
   integralAgainstBilinLM_eq_integral hφ
 
+/--
+@isnad1 id=eq.1h12v.s11.4b2dbfe20426 from=seed src=0 shape=c771ce66 vocab=13eccea1
+-/
 lemma integralAgainstBilinCLM_eq_setIntegral {B : F₁ →L[𝕜] F₂ →L[𝕜] F₃} {μ : Measure E} {φ : E → F₂}
     (hφ : IntegrableOn φ K μ) {f : 𝓓^{n}_{K}(E, F₁)} :
     integralAgainstBilinCLM B μ φ f = ∫ x in K, B (f x) (φ x) ∂μ :=
@@ -1093,6 +1364,9 @@ where finally
           push_cast
           ring
 
+/--
+@isnad1 id=eq.1h10v.s11.d06c51f8a2bc from=seed src=0 shape=55c007eb vocab=55098c81
+-/
 @[simp]
 theorem bilinLeftCLM_apply (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) {g : E → F₂} (hg : ContDiff ℝ n g)
     (φ : 𝓓^{n}_{K}(E, F₁)) : bilinLeftCLM B hg φ = fun x => B (φ x) (g x) := rfl

@@ -87,12 +87,21 @@ instance : Coe (DeloneSet X) (Set X) where
 instance : Membership X (DeloneSet X) where
   mem D x := x ∈ (D : Set X)
 
+/--
+@isnad1 id=iff.0h3v.s5.431e43489066 from=seed src=0 shape=51b12b4b vocab=b33123ec
+-/
 @[simp, norm_cast]
 lemma mem_coe {D : DeloneSet X} {x : X} : x ∈ (D : Set X) ↔ x ∈ D := .rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.59a63a599d20 from=seed src=0 shape=51b12b4b vocab=1c491671
+-/
 @[simp] lemma mem_carrier {D : DeloneSet X} {x : X} :
     x ∈ D.carrier ↔ x ∈ D := .rfl
 
+/--
+@isnad1 id=nonempty.0h2v.s4.bc957a4ea192 from=seed src=0 shape=10965991 vocab=53bd4948
+-/
 lemma nonempty [Nonempty X] (D : DeloneSet X) : (D : Set X).Nonempty :=
   D.isCover_coveringRadius.nonempty Set.univ_nonempty
 
@@ -112,11 +121,17 @@ protected def copy (D : DeloneSet X) (carrier : Set X) (packingRadius coveringRa
   isCover_coveringRadius := by
     simpa [h_carrier, h_covering] using D.isCover_coveringRadius
 
+/--
+@isnad1 id=eq.3h5v.s5.90d704470a7a from=seed src=0 shape=107b4216 vocab=cc63c990
+-/
 theorem copy_eq (D : DeloneSet X)
     (carrier packingRadius coveringRadius h_carrier h_packing h_covering) :
     D.copy carrier packingRadius coveringRadius h_carrier h_packing h_covering = D :=
   DeloneSet.ext h_carrier h_packing h_covering
 
+/--
+@isnad1 id=lt.3h4v.s5.58137416f37e from=seed src=0 shape=3d529f84 vocab=c145377c
+-/
 lemma packingRadius_lt_dist_of_mem_ne (D : DeloneSet X) {x y : X}
     (hx : x ∈ D) (hy : y ∈ D) (hne : x ≠ y) :
     D.packingRadius < dist x y := by
@@ -124,6 +139,9 @@ lemma packingRadius_lt_dist_of_mem_ne (D : DeloneSet X) {x y : X}
     simpa [edist_dist] using D.isSeparated_packingRadius hx hy hne
   exact (ENNReal.ofReal_lt_ofReal_iff (h := dist_pos.mpr hne)).1 hsep
 
+/--
+@isnad1 id=ex.0h3v.s5.ce52e94f5e89 from=seed src=0 shape=40e4b9e8 vocab=ca170a50
+-/
 lemma exists_dist_le_coveringRadius (D : DeloneSet X) (x : X) :
     ∃ y ∈ D, dist x y ≤ D.coveringRadius := by
   obtain ⟨y, hy, hdist⟩ := D.isCover_coveringRadius (x := x) (by trivial)
@@ -139,7 +157,9 @@ lemma eq_of_mem_ball (D : DeloneSet X) {r : ℝ≥0} (hr : r ≤ D.packingRadius
     _ ≤ D.packingRadius := by rw [← add_halves D.packingRadius, NNReal.coe_add]; gcongr
 
 /-- There exists a radius `r > 0` such that any ball of radius `r`
-centered at a point of `D` contains at most one point of `D`. -/
+centered at a point of `D` contains at most one point of `D`.
+@isnad1 id=ex.0h2v.s6.5cce38375c45 from=seed src=0 shape=8d7cf2eb vocab=82b13a70
+-/
 lemma subset_ball_singleton (D : DeloneSet X) :
     ∃ r > 0, ∀ {x y z}, x ∈ D → y ∈ D → x ∈ ball z r → y ∈ ball z r → x = y :=
   ⟨D.packingRadius / 2, half_pos D.packingRadius_pos, fun hx hy => D.eq_of_mem_ball le_rfl hx hy⟩
@@ -157,11 +177,17 @@ noncomputable def mapBilipschitz (f : X ≃ Y) (K₁ K₂ : ℝ≥0) (hK₁ : 0 
   isCover_coveringRadius := D.isCover_coveringRadius.image_lipschitz_of_surjective hf₂ f.surjective
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.4h2v.s7.86b29b482ce3 from=seed src=0 shape=437218c9 vocab=591445f0
+-/
 @[simp] lemma mapBilipschitz_refl (D : DeloneSet X) (hK1 hK2 hA hL) :
     D.mapBilipschitz (.refl X) 1 1 hK1 hK2 hA hL = D := by
   ext <;> simp only [mapBilipschitz, Equiv.refl_apply, Set.image_id', div_one, one_mul]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.8h10v.s8.f34a2815d516 from=seed src=0 shape=b7edcc35 vocab=9411e2b2
+-/
 lemma mapBilipschitz_trans {Z : Type*} [MetricSpace Z] (D : DeloneSet X)
     (f : X ≃ Y) (g : Y ≃ Z) (K₁f K₂f K₁g K₂g : ℝ≥0)
     (hf₁_pos : 0 < K₁f) (hf₂_pos : 0 < K₂f)
@@ -195,11 +221,20 @@ noncomputable def mapIsometry (f : X ≃ᵢ Y) : DeloneSet X ≃ DeloneSet Y whe
   right_inv D := by ext <;> simp [copy_eq]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s6.c1a846edd68e from=seed src=0 shape=2bcc4d08 vocab=68f77e8f
+-/
 @[simp] lemma mapIsometry_refl (D : DeloneSet X) : D.mapIsometry (.refl X) = D := by
   ext <;> simp [mapIsometry, IsometryEquiv.refl, DeloneSet.copy]
 
+/--
+@isnad1 id=eq.0h3v.s6.3288875d6b52 from=seed src=0 shape=cc46f98d vocab=16a7bbfd
+-/
 lemma mapIsometry_symm (f : X ≃ᵢ Y) : (mapIsometry f).symm = mapIsometry f.symm := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.cc81aee76e5b from=seed src=0 shape=383e3342 vocab=46c21543
+-/
 lemma mapIsometry_trans {Z : Type*} [MetricSpace Z] (D : DeloneSet X) (f : X ≃ᵢ Y) (g : Y ≃ᵢ Z) :
     D.mapIsometry (f.trans g) = (D.mapIsometry f).mapIsometry g := by
   ext <;> simp [mapIsometry, DeloneSet.copy]

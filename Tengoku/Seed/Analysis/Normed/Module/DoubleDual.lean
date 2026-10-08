@@ -59,18 +59,30 @@ as a bounded linear map. -/
 def inclusionInDoubleDual : E →L[𝕜] StrongDual 𝕜 (StrongDual 𝕜 E) :=
   ContinuousLinearMap.apply 𝕜 𝕜
 
+/--
+@isnad1 id=eq.0h4v.s12.16b2f6eb8b0b from=seed src=0 shape=77f6b1c1 vocab=e8641c35
+-/
 @[simp]
 theorem dual_def (x : E) (f : StrongDual 𝕜 E) : inclusionInDoubleDual 𝕜 E x f = f x :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.4c758298d260 from=seed src=0 shape=4c10d300 vocab=0f21e220
+-/
 theorem inclusionInDoubleDual_norm_eq :
     ‖inclusionInDoubleDual 𝕜 E‖ = ‖ContinuousLinearMap.id 𝕜 (StrongDual 𝕜 E)‖ :=
   ContinuousLinearMap.opNorm_flip _
 
+/--
+@isnad1 id=le.0h2v.s11.21083ce5790f from=seed src=0 shape=a2b32b56 vocab=591c9cfe
+-/
 theorem inclusionInDoubleDual_norm_le : ‖inclusionInDoubleDual 𝕜 E‖ ≤ 1 := by
   rw [inclusionInDoubleDual_norm_eq]
   exact ContinuousLinearMap.norm_id_le
 
+/--
+@isnad1 id=le.0h3v.s12.f3852cbddabb from=seed src=0 shape=6bc2d28a vocab=0e8923b5
+-/
 theorem double_dual_bound (x : E) : ‖(inclusionInDoubleDual 𝕜 E) x‖ ≤ ‖x‖ := by
   simpa using ContinuousLinearMap.le_of_opNorm_le _ (inclusionInDoubleDual_norm_le 𝕜 E) x
 
@@ -94,7 +106,9 @@ def inclusionInDoubleDualLi : E →ₗᵢ[𝕜] StrongDual 𝕜 (StrongDual 𝕜
       simp [hg.right] }
 
 /-- If one controls the norm of every `f x`, then one controls the norm of `x`.
-Compare `ContinuousLinearMap.opNorm_le_bound`. -/
+Compare `ContinuousLinearMap.opNorm_le_bound`.
+@isnad1 id=le.2h4v.s8.0ddf40a80cd4 from=seed src=0 shape=6f380774 vocab=bb83e406
+-/
 theorem norm_le_dual_bound (x : E) {M : ℝ} (hMp : 0 ≤ M)
     (hM : ∀ f : StrongDual 𝕜 E, ‖f x‖ ≤ M * ‖f‖) : ‖x‖ ≤ M := by
   rw [← (inclusionInDoubleDualLi (E := E) 𝕜).norm_map x]
@@ -120,6 +134,9 @@ def inclusionInDoubleDualWeak : WeakSpace 𝕜 X →L[𝕜] WeakDual 𝕜 (Stron
 
 attribute [simp] inclusionInDoubleDualWeak_apply_apply
 
+/--
+@isnad1 id=eq.0h2v.s15.0a6fe5526617 from=seed src=0 shape=ca4d5d72 vocab=2b6da051
+-/
 @[simp]
 lemma toLinearMap_inclusionInDoubleDualWeak :
     (inclusionInDoubleDualWeak 𝕜 X).toLinearMap =
@@ -129,7 +146,9 @@ lemma toLinearMap_inclusionInDoubleDualWeak :
 variable (𝕜 : Type*) [RCLike 𝕜] (X : Type*) [NormedAddCommGroup X] [NormedSpace 𝕜 X]
 
 /-- `inclusionInDoubleDualWeak` is a topological embedding from the weak topology to the weak-star
-topology. -/
+topology.
+@isnad1 id=isembedd.0h2v.s12.a1577e23a992 from=seed src=0 shape=36a72e8a vocab=5f9bd1ed
+-/
 theorem isEmbedding_inclusionInDoubleDualWeak :
     IsEmbedding (inclusionInDoubleDualWeak 𝕜 X) where
   eq_induced := Eq.symm induced_compose
@@ -142,7 +161,9 @@ then `closure S` is compact in the weak topology.
 
 This combines Banach–Alaoglu (compactness of bounded weak-star–closed sets) with the topological
 embedding `inclusionInDoubleDualWeak_isEmbedding` to transfer compactness back to the weak
-topology on `X`. -/
+topology on `X`.
+@isnad1 id=iscompac.2h3v.s13.96886d58df7c from=seed src=0 shape=f07a0f68 vocab=ddf9bd3a
+-/
 theorem isCompact_closure_of_isBounded (S : Set (WeakSpace 𝕜 X))
     (hb : IsBounded ((toWeakSpace 𝕜 X) ⁻¹' S))
     (hrange : closure (inclusionInDoubleDualWeak 𝕜 X '' S) ⊆

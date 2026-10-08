@@ -51,6 +51,9 @@ open Unitization NNReal CStarAlgebra
 
 variable [PartialOrder A] [StarOrderedRing A]
 
+/--
+@isnad1 id=monotone.0h1v.s7.24f301536f64 from=seed src=0 shape=0eaa895d vocab=90942780
+-/
 lemma CFC.monotoneOn_one_sub_one_add_inv :
     MonotoneOn (cfcₙ (fun x : ℝ≥0 ↦ 1 - (1 + x)⁻¹)) (Set.Ici (0 : A)) := by
   intro a ha b hb hab
@@ -69,6 +72,9 @@ lemma CFC.monotoneOn_one_sub_one_add_inv :
   rw [← CFC.rpow_neg_one_eq_cfc_inv, ← CFC.rpow_neg_one_eq_cfc_inv]
   exact rpow_neg_one_le_rpow_neg_one (by gcongr)
 
+/--
+@isnad1 id=monotone.0h1v.s7.7edb04bbe45c from=seed src=0 shape=1c88b1cc vocab=876f6d38
+-/
 lemma CFC.monotoneOn_one_sub_one_add_inv_real :
     MonotoneOn (cfcₙ (fun x : ℝ => 1 - (1 + x)⁻¹)) (Set.Ici (0 : A)) := by
   intro a (ha : 0 ≤ a) b (hb : 0 ≤ b) hab
@@ -87,6 +93,9 @@ lemma CFC.monotoneOn_one_sub_one_add_inv_real :
           have hx' : 0 ≤ x := by grind
           simp [hx']
 
+/--
+@isnad1 id=invon.0h0v.s6.1b2c909fcdd2 from=seed src=0 shape=94ae680a vocab=159ecc86
+-/
 lemma Set.InvOn.one_sub_one_add_inv : Set.InvOn (fun x ↦ 1 - (1 + x)⁻¹) (fun x ↦ x * (1 - x)⁻¹)
     {x : ℝ≥0 | x < 1} {x : ℝ≥0 | x < 1} := by
   have : (fun x : ℝ≥0 ↦ x * (1 + x)⁻¹) = fun x ↦ 1 - (1 + x)⁻¹ := by
@@ -100,10 +109,16 @@ lemma Set.InvOn.one_sub_one_add_inv : Set.InvOn (fun x ↦ 1 - (1 + x)⁻¹) (fu
     field_simp
     simp
 
+/--
+@isnad1 id=lt.0h2v.s7.1df473548a92 from=seed src=0 shape=89120503 vocab=8d2e19a6
+-/
 lemma norm_cfcₙ_one_sub_one_add_inv_lt_one (a : A) :
     ‖cfcₙ (fun x : ℝ≥0 ↦ 1 - (1 + x)⁻¹) a‖ < 1 :=
   nnnorm_cfcₙ_nnreal_lt fun x _ ↦ tsub_lt_self zero_lt_one (by positivity)
 
+/--
+@isnad1 id=directed.0h1v.s6.0893af80b513 from=seed src=0 shape=ac47ca95 vocab=c7d0d3a5
+-/
 lemma CStarAlgebra.directedOn_nonneg_ball :
     DirectedOn (· ≤ ·) ({x : A | 0 ≤ x} ∩ Metric.ball 0 1) := by
   let f : ℝ≥0 → ℝ≥0 := fun x => 1 - (1 + x)⁻¹
@@ -147,23 +162,38 @@ structure Filter.IsIncreasingApproximateUnit (l : Filter A) : Prop extends l.IsA
 namespace Filter.IsIncreasingApproximateUnit
 
 omit [StarOrderedRing A] in
+/--
+@isnad1 id=eventual.1h2v.s5.d938e17fff9e from=seed src=0 shape=63a37621 vocab=733246df
+-/
 lemma eventually_nnnorm {l : Filter A} (hl : l.IsIncreasingApproximateUnit) :
     ∀ᶠ x in l, ‖x‖₊ ≤ 1 :=
   hl.eventually_norm
 
+/--
+@isnad1 id=eventual.1h2v.s6.4c2ec73b9c86 from=seed src=0 shape=eb9b8d83 vocab=b3a05a49
+-/
 lemma eventually_isSelfAdjoint {l : Filter A} (hl : l.IsIncreasingApproximateUnit) :
     ∀ᶠ x in l, IsSelfAdjoint x :=
   hl.eventually_nonneg.mp <| .of_forall fun _ ↦ IsSelfAdjoint.of_nonneg
 
+/--
+@isnad1 id=eventual.1h2v.s6.1b00368996ba from=seed src=0 shape=922adfb2 vocab=9b2e6be2
+-/
 lemma eventually_star_eq {l : Filter A} (hl : l.IsIncreasingApproximateUnit) :
     ∀ᶠ x in l, star x = x :=
   hl.eventually_isSelfAdjoint.mp <| .of_forall fun _ ↦ IsSelfAdjoint.star_eq
 
 omit [StarOrderedRing A] in
+/--
+@isnad1 id=mem.1h2v.s5.9ad551606ead from=seed src=0 shape=28b2c77d vocab=ef62c434
+-/
 lemma closedBall_mem {l : Filter A} (hl : l.IsIncreasingApproximateUnit) :
     Metric.closedBall 0 1 ∈ l := by
   simpa [Metric.closedBall] using! hl.eventually_norm
 
+/--
+@isnad1 id=isincrea.0h1v.s5.f3e696980218 from=seed src=0 shape=032d8661 vocab=55b13744
+-/
 lemma pure_one (A : Type*) [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A] :
     (pure 1 : Filter A).IsIncreasingApproximateUnit where
   toIsApproximateUnit := .pure_one A
@@ -176,7 +206,9 @@ namespace CStarAlgebra
 
 open Submodule in
 /-- To show that `l` is a one-sided approximate unit for `A`, it suffices to verify it only for
-`m : A` with `0 ≤ m` and `‖m‖ < 1`. -/
+`m : A` with `0 ≤ m` and `‖m‖ < 1`.
+@isnad1 id=tendsto.1h3v.s7.932138063d68 from=seed src=0 shape=5a57d411 vocab=217aa635
+-/
 lemma tendsto_mul_right_of_forall_nonneg_tendsto {l : Filter A}
     (h : ∀ m, 0 ≤ m → ‖m‖ < 1 → Tendsto (· * m) l (𝓝 m)) (m : A) :
     Tendsto (· * m) l (𝓝 m) := by
@@ -189,7 +221,9 @@ lemma tendsto_mul_right_of_forall_nonneg_tendsto {l : Filter A}
 
 omit [PartialOrder A] in
 /-- Multiplication on the left by `m` tends to `𝓝 m` if and only if multiplication on the right
-does, provided the elements are eventually selfadjoint along the filter `l`. -/
+does, provided the elements are eventually selfadjoint along the filter `l`.
+@isnad1 id=iff.1h2v.s7.9c766e93bba3 from=seed src=0 shape=13c5b994 vocab=abec064b
+-/
 lemma tendsto_mul_left_iff_tendsto_mul_right {l : Filter A} (hl : ∀ᶠ x in l, IsSelfAdjoint x) :
     (∀ m, Tendsto (m * ·) l (𝓝 m)) ↔ (∀ m, Tendsto (· * m) l (𝓝 m)) := by
   refine ⟨fun h m ↦ ?_, fun h m ↦ ?_⟩
@@ -200,7 +234,9 @@ lemma tendsto_mul_left_iff_tendsto_mul_right {l : Filter A} (hl : ∀ᶠ x in l,
 
 variable (A)
 
-/-- The sections of positive strict contractions form a filter basis. -/
+/-- The sections of positive strict contractions form a filter basis.
+@isnad1 id=isbasis.0h1v.s6.cf809a17349e from=seed src=0 shape=6e6f14a9 vocab=60d4c0d9
+-/
 lemma isBasis_nonneg_sections :
     IsBasis (fun x : A ↦ 0 ≤ x ∧ ‖x‖ < 1) ({x | · ≤ x}) where
   nonempty := ⟨0, by simp⟩
@@ -214,7 +250,9 @@ def approximateUnit : Filter A :=
   (isBasis_nonneg_sections A).filter ⊓ 𝓟 (closedBall 0 1)
 
 /-- The canonical approximate unit in a C⋆-algebra has a basis of sets
-`{x | a ≤ x} ∩ closedBall 0 1` for `0 ≤ a`. -/
+`{x | a ≤ x} ∩ closedBall 0 1` for `0 ≤ a`.
+@isnad1 id=hasbasis.0h1v.s7.cefbc0c3767b from=seed src=0 shape=62c7b2dc vocab=f10a0cf3
+-/
 lemma hasBasis_approximateUnit :
     (approximateUnit A).HasBasis (fun x : A ↦ 0 ≤ x ∧ ‖x‖ < 1) ({x | · ≤ x} ∩ closedBall 0 1) :=
   isBasis_nonneg_sections A |>.hasBasis.inf_principal (closedBall 0 1)
@@ -222,7 +260,9 @@ lemma hasBasis_approximateUnit :
 /-- This is a common reasoning sequence in C⋆-algebra theory. If `0 ≤ x ≤ y ≤ 1`, then the norm of
 `z - y * z` is controlled by the norm of `star z * (1 - x) * z`, which is advantageous because the
 latter is nonnegative. This is a key step in establishing the existence of an increasing approximate
-unit in general C⋆-algebras. -/
+unit in general C⋆-algebras.
+@isnad1 id=le.3h5v.s8.cb9b1e13d2e8 from=seed src=0 shape=e9e7d43f vocab=94c8aa77
+-/
 lemma nnnorm_sub_mul_self_le {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
     {x y : A} (z : A) (hx₀ : 0 ≤ x) (hy : y ∈ Set.Icc x 1) {c : ℝ≥0}
     (h : ‖star z * (1 - x) * z‖₊ ≤ c ^ 2) :
@@ -241,7 +281,9 @@ lemma nnnorm_sub_mul_self_le {A : Type*} [CStarAlgebra A] [PartialOrder A] [Star
   · gcongr
     exact hy.1
 
-/-- A variant of `nnnorm_sub_mul_self_le` which uses `‖·‖` instead of `‖·‖₊`. -/
+/-- A variant of `nnnorm_sub_mul_self_le` which uses `‖·‖` instead of `‖·‖₊`.
+@isnad1 id=le.4h5v.s8.3499df3729bb from=seed src=0 shape=817d21e7 vocab=4a2ed44c
+-/
 lemma norm_sub_mul_self_le {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
     {x y : A} (z : A) (hx₀ : 0 ≤ x) (hy : y ∈ Set.Icc x 1)
     {c : ℝ} (hc : 0 ≤ c) (h : ‖star z * (1 - x) * z‖ ≤ c ^ 2) :
@@ -249,7 +291,9 @@ lemma norm_sub_mul_self_le {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOr
   nnnorm_sub_mul_self_le z hx₀ hy h (c := ⟨c, hc⟩)
 
 variable {A} in
-/-- A variant of `norm_sub_mul_self_le` for non-unital algebras that passes to the unitization. -/
+/-- A variant of `norm_sub_mul_self_le` for non-unital algebras that passes to the unitization.
+@isnad1 id=le.5h5v.s9.48b06975159f from=seed src=0 shape=a5807e37 vocab=23e711cb
+-/
 lemma norm_sub_mul_self_le_of_inr {x y : A} (z : A) (hx₀ : 0 ≤ x) (hxy : x ≤ y) (hy₁ : ‖y‖ ≤ 1)
     {c : ℝ} (hc : 0 ≤ c) (h : ‖star (z : A⁺¹) * (1 - x) * z‖ ≤ c ^ 2) :
     ‖z - y * z‖ ≤ c := by
@@ -314,7 +358,9 @@ private lemma tendsto_mul_right_approximateUnit (m : A) :
   simp [g, tsub_tsub_cancel_of_le]
 
 /-- The filter `CStarAlgebra.approximateUnit` generated by the sections
-`{x | a ≤ x} ∩ closedBall 0 1` for `0 ≤ a` forms an increasing approximate unit. -/
+`{x | a ≤ x} ∩ closedBall 0 1` for `0 ≤ a` forms an increasing approximate unit.
+@isnad1 id=isincrea.0h1v.s4.0dd67f9123a2 from=seed src=0 shape=456cb356 vocab=0601f199
+-/
 lemma increasingApproximateUnit :
     IsIncreasingApproximateUnit (approximateUnit A) where
   tendsto_mul_left := by
