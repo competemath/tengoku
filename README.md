@@ -35,6 +35,7 @@ through [SECURITY.md](SECURITY.md), never a public issue.
 
 ## Learn more
 - [How Tengoku stays reliable](docs/reliability.md)
+- [Training on Tengoku](docs/for-labs.md): what labs must do, and what we ask
 - [What Tengoku guarantees](docs/why-tengoku.md)
 - [The full manual](https://competemath.com/about/tengoku)
 - [Security and licence compliance](docs/openchain/README.md) (OpenChain ISO/IEC 18974 and 5230)
