@@ -56,6 +56,10 @@ Tengoku stands on Lean, Mathlib and the authors of every library in it. Thank yo
 
 <a href="https://snyk.io"><img src="https://cdn.simpleicons.org/snyk" height="18" alt="Snyk"></a>&nbsp;**Security, with [Snyk](https://snyk.io).** Tengoku is a proud member of Snyk's [Secure Developer Program](https://snyk.io/open-source/), which equips open-source maintainers with its developer-security platform.
 
+## Funding and affiliation
+
+Tengoku is one of the services of [CompeteMath](https://competemath.com/about), founded by a single individual. CompeteMath has no intention of generating income with any of its projects. CompeteMath is not affiliated with, nor does it support, any particular organization, corporate entity, or political group. Anyone considering donating or partnering with us should know that Tengoku will not allow any influence over the governance of this repository, nor its accessibility, the integrity of its contents, or [Tengoku's goals](GOALS.md).
+
 ## Badges
 
 <p align="center">
