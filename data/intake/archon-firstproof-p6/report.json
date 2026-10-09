@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "ed5c377b4089e5263fa3143c8b69af135dc21cd4da72f7ab4d56f2db77b7fdd1",
+ "library": "archon-firstproof-p6",
+ "lint_mode": "proposed",
+ "modules": 8,
+ "part": 1,
+ "theorems": 22
+}

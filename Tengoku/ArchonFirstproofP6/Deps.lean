@@ -1,0 +1,1 @@
+-- ArchonFirstproofP6: a factory bundle (data/intake/archon-firstproof-p6). This file only marks the library for Tengoku/All.lean.
