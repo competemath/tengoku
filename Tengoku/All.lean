@@ -5,6 +5,7 @@ import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.Statsmllib
 import Tengoku.Flt
+import Tengoku.TaoAnalysis
 import Tengoku.Vcvio
 import Tengoku.Causalean
 import Tengoku.Certifyinginvariantsnf
