@@ -15,7 +15,7 @@ import sys
 from _git import ROOT
 
 LIST = ROOT / "schemas" / "command-keywords.json"  # the repository's own list: never a path from the command line
-REGENERATE = "lake env lean --run tools/CommandKeywords.lean | python3 scripts/ci/cmdkw_check.py --emit > /tmp/kw.json && mv /tmp/kw.json schemas/command-keywords.json"
+REGENERATE = 'kw=$(mktemp schemas/.kw.XXXXXX) && lake env lean --run tools/CommandKeywords.lean | python3 scripts/ci/cmdkw_check.py --emit > "$kw" && mv "$kw" schemas/command-keywords.json'
 
 
 def compare(reported: set[str], listed: set[str]) -> tuple[list[str], list[str]]:

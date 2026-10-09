@@ -25,4 +25,4 @@ commands (diagnostics are cut from a bundle, never kept), `unsafe`/`partial` dec
 
 The tests are `scripts/ci/tests/test_lint_modes.py` (each mode on each family; what runs code is refused in all three, a macro cannot smuggle a forbidden word
 in a quotation). The list of command keywords is the tree's: `tools/CommandKeywords.lean` prints it from Lean, the nightly build compares it with the file and annotates a difference
-(it never blocks the cache), and `lake env lean --run tools/CommandKeywords.lean | python3 scripts/ci/cmdkw_check.py --emit > /tmp/kw.json && mv /tmp/kw.json schemas/command-keywords.json` regenerates it when the seed changes.
+(it never blocks the cache), and `kw=$(mktemp schemas/.kw.XXXXXX) && lake env lean --run tools/CommandKeywords.lean | python3 scripts/ci/cmdkw_check.py --emit > "$kw" && mv "$kw" schemas/command-keywords.json` regenerates it when the seed changes.
