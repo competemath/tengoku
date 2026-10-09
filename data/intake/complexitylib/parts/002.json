@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "b9bfd28007dfe112f32a2bb02ba94ee6126eac2eedfc920e40e73b8e86cc6aa4",
+ "library": "complexitylib",
+ "lint_mode": "proposed",
+ "modules": 300,
+ "part": 2,
+ "theorems": 2155
+}
