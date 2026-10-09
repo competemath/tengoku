@@ -1,0 +1,1 @@
+-- SpherePackingExt: a factory bundle (data/intake/sphere-packing-ext). This file only marks the library for Tengoku/All.lean.

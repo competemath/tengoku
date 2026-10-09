@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "aec6641d26364d20ba4fb16dc314239ee5ad010e6db7bb0bedda50dfb3c08f26",
+ "library": "sphere-packing-ext",
+ "lint_mode": "proposed",
+ "modules": 1,
+ "part": 1,
+ "theorems": 0
+}
