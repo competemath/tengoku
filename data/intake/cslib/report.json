@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "2691b5de1d9a8291d11afd8d75020940b6aea20650488256c0f81723635b8602",
+ "library": "cslib",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 0
+}
