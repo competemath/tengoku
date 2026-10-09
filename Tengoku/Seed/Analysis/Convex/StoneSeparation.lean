@@ -30,7 +30,9 @@ variable {𝕜 E : Type*} [Field 𝕜] [LinearOrder 𝕜] [IsStrictOrderedRing �
 
 /-- In a tetrahedron with vertices `x`, `y`, `p`, `q`, any segment `[u, v]` joining the opposite
 edges `[x, p]` and `[y, q]` passes through any triangle of vertices `p`, `q`, `z` where
-`z ∈ [x, y]`. -/
+`z ∈ [x, y]`.
+@isnad1 id=not.3h9v.s9.383d851d07d8 from=seed src=0 shape=ff5abb8f vocab=6ab4a5ce
+-/
 theorem not_disjoint_segment_convexHull_triple {p q u v x y z : E} (hz : z ∈ segment 𝕜 x y)
     (hu : u ∈ segment 𝕜 x p) (hv : v ∈ segment 𝕜 y q) :
     ¬Disjoint (segment 𝕜 u v) (convexHull 𝕜 {p, q, z}) := by
@@ -77,7 +79,9 @@ theorem not_disjoint_segment_convexHull_triple {p q u v x y z : E} (hz : z ∈ s
     congr 3
     simp [w, z]
 
-/-- **Stone's Separation Theorem** -/
+/-- **Stone's Separation Theorem**
+@isnad1 id=ex.3h4v.s8.9949357b6f89 from=seed src=0 shape=7953cf3e vocab=9e09e1f9
+-/
 theorem exists_convex_convex_compl_subset (hs : Convex 𝕜 s) (ht : Convex 𝕜 t) (hst : Disjoint s t) :
     ∃ C : Set E, Convex 𝕜 C ∧ Convex 𝕜 Cᶜ ∧ s ⊆ C ∧ t ⊆ Cᶜ := by
   let S : Set (Set E) := { C | Convex 𝕜 C ∧ Disjoint C t }

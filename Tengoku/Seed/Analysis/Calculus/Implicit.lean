@@ -129,10 +129,16 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {E : Type*} [NormedAddCom
 def prodFun (x : E) : F × G :=
   (φ.leftFun x, φ.rightFun x)
 
+/--
+@isnad1 id=eq.0h6v.s7.af651663db6a from=seed src=0 shape=c2d8cec9 vocab=6dd932be
+-/
 @[simp]
 theorem prodFun_apply (x : E) : φ.prodFun x = (φ.leftFun x, φ.rightFun x) := by
   rfl
 
+/--
+@isnad1 id=hasstric.0h5v.s8.7604d369c347 from=seed src=0 shape=5827aac2 vocab=2e7e90ba
+-/
 protected theorem hasStrictFDerivAt :
     HasStrictFDerivAt φ.prodFun
       (φ.leftDeriv.equivProdOfSurjectiveOfIsCompl φ.rightDeriv φ.range_leftDeriv φ.range_rightDeriv
@@ -141,6 +147,9 @@ protected theorem hasStrictFDerivAt :
       φ.pt :=
   φ.hasStrictFDerivAt_leftFun.prodMk φ.hasStrictFDerivAt_rightFun
 
+/--
+@isnad1 id=isinvert.0h5v.s8.77843f18a587 from=seed src=0 shape=e3c93ac7 vocab=4e61e64c
+-/
 theorem isInvertible_fderiv_prodFun : (fderiv 𝕜 φ.prodFun φ.pt).IsInvertible := by
   rw [φ.hasStrictFDerivAt.hasFDerivAt.fderiv]
   exact ContinuousLinearMap.isInvertible_equiv
@@ -159,65 +168,109 @@ complementary subspaces of `E`, then `implicitFunction` is the unique (germ of a
 def implicitFunction : F → G → E :=
   Function.curry <| φ.toOpenPartialHomeomorph.symm
 
+/--
+@isnad1 id=eq.0h5v.s8.ae4f2ddda6d8 from=seed src=0 shape=fb2559fb vocab=1d7d1d26
+-/
 theorem implicitFunction_def :
     implicitFunction φ = Function.curry (φ.hasStrictFDerivAt.toOpenPartialHomeomorph _).symm := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.e778114b093b from=seed src=0 shape=43bf11be vocab=6843d4cb
+-/
 lemma implicitFunction_apply {x : F} {y : G} :
     φ.implicitFunction x y = φ.toOpenPartialHomeomorph.symm (x, y) := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.36c0b20cb4a9 from=seed src=0 shape=b861accd vocab=d62843f0
+-/
 @[simp]
 theorem toOpenPartialHomeomorph_coe : ⇑φ.toOpenPartialHomeomorph = φ.prodFun := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.7bb94b301178 from=seed src=0 shape=6d2acfa6 vocab=3ce6d43b
+-/
 theorem toOpenPartialHomeomorph_apply (x : E) :
     φ.toOpenPartialHomeomorph x = (φ.leftFun x, φ.rightFun x) := by
   rfl
 
+/--
+@isnad1 id=mem.0h5v.s7.5ba55752b1b8 from=seed src=0 shape=d8eea875 vocab=f7d4a16f
+-/
 theorem pt_mem_toOpenPartialHomeomorph_source : φ.pt ∈ φ.toOpenPartialHomeomorph.source :=
   φ.hasStrictFDerivAt.mem_toOpenPartialHomeomorph_source
 
+/--
+@isnad1 id=mem.0h5v.s8.06612b251fcc from=seed src=0 shape=57970694 vocab=3d39d187
+-/
 theorem map_pt_mem_toOpenPartialHomeomorph_target :
     (φ.leftFun φ.pt, φ.rightFun φ.pt) ∈ φ.toOpenPartialHomeomorph.target :=
   φ.toOpenPartialHomeomorph.map_source <| φ.pt_mem_toOpenPartialHomeomorph_source
 
+/--
+@isnad1 id=eventual.0h5v.s7.7bcf1360b872 from=seed src=0 shape=98a06386 vocab=13471595
+-/
 theorem prodFun_implicitFunction :
     ∀ᶠ p : F × G in 𝓝 (φ.prodFun φ.pt), φ.prodFun (φ.implicitFunction p.1 p.2) = p :=
   φ.hasStrictFDerivAt.eventually_right_inverse.mono fun ⟨_, _⟩ h => h
 
+/--
+@isnad1 id=eventual.0h5v.s7.c4d0d514c980 from=seed src=0 shape=52a22d90 vocab=9662c615
+-/
 theorem leftFun_implicitFunction :
     ∀ᶠ p : F × G in 𝓝 (φ.prodFun φ.pt), φ.leftFun (φ.implicitFunction p.1 p.2) = p.1 :=
   φ.prodFun_implicitFunction.mono fun _ => congr_arg Prod.fst
 
+/--
+@isnad1 id=eventual.0h5v.s7.45d7dbb129fb from=seed src=0 shape=cb68ed4d vocab=52491275
+-/
 theorem rightFun_implicitFunction :
     ∀ᶠ p : F × G in 𝓝 (φ.prodFun φ.pt), φ.rightFun (φ.implicitFunction p.1 p.2) = p.2 :=
   φ.prodFun_implicitFunction.mono fun _ => congr_arg Prod.snd
 
+/--
+@isnad1 id=eventual.0h5v.s7.f4e7750ae70f from=seed src=0 shape=0afc4797 vocab=43720fca
+-/
 theorem implicitFunction_apply_image :
     ∀ᶠ x in 𝓝 φ.pt, φ.implicitFunction (φ.leftFun x) (φ.rightFun x) = x :=
   φ.hasStrictFDerivAt.eventually_left_inverse
 
+/--
+@isnad1 id=eventual.0h5v.s7.19fdb2e5c012 from=seed src=0 shape=c4a5c068 vocab=43720fca
+-/
 theorem leftFun_implicitFunction_eq_leftFun : ∀ᶠ x in 𝓝 φ.pt,
     φ.leftFun (φ.implicitFunction (φ.leftFun φ.pt) (φ.rightFun x)) = φ.leftFun φ.pt := by
   have := φ.leftFun_implicitFunction.curry_nhds.self_of_nhds.prod_inr_nhds (φ.leftFun φ.pt)
   rwa [← prodFun_apply, ← φ.hasStrictFDerivAt.map_nhds_eq_of_equiv, eventually_map] at this
 
+/--
+@isnad1 id=eventual.0h5v.s7.ddae1e30a491 from=seed src=0 shape=1d7f32de vocab=43720fca
+-/
 theorem rightFun_implicitFunction_eq_rightFun : ∀ᶠ x in 𝓝 φ.pt,
     φ.rightFun (φ.implicitFunction (φ.leftFun φ.pt) (φ.rightFun x)) = φ.rightFun x := by
   have := φ.rightFun_implicitFunction.curry_nhds.self_of_nhds.prod_inr_nhds (φ.leftFun φ.pt)
   rwa [← prodFun_apply, ← φ.hasStrictFDerivAt.map_nhds_eq_of_equiv, eventually_map] at this
 
+/--
+@isnad1 id=eventual.0h5v.s7.f2f897489312 from=seed src=0 shape=82b6c02a vocab=43720fca
+-/
 theorem leftFun_eq_iff_implicitFunction : ∀ᶠ x in 𝓝 φ.pt,
     φ.leftFun x = φ.leftFun φ.pt ↔ φ.implicitFunction (φ.leftFun φ.pt) (φ.rightFun x) = x := by
   filter_upwards [φ.implicitFunction_apply_image, φ.leftFun_implicitFunction_eq_leftFun] with x _ _
   constructor <;> exact fun h => by rwa [← h]
 
+/--
+@isnad1 id=eq.0h5v.s7.0014e980078c from=seed src=0 shape=ff9a723b vocab=f1d8564f
+-/
 theorem map_nhds_eq : map φ.leftFun (𝓝 φ.pt) = 𝓝 (φ.leftFun φ.pt) :=
   show map (Prod.fst ∘ φ.prodFun) (𝓝 φ.pt) = 𝓝 (φ.prodFun φ.pt).1 by
     rw [← map_map, φ.hasStrictFDerivAt.map_nhds_eq_of_equiv, map_fst_nhds]
 
-/-- The implicit function is strictly differentiable. -/
+/-- The implicit function is strictly differentiable.
+@isnad1 id=hasstric.0h5v.s8.ee6130c774bf from=seed src=0 shape=efbaed3d vocab=15a68abe
+-/
 theorem hasStrictFDerivAt_implicitFunction_fderiv :
     HasStrictFDerivAt (φ.implicitFunction (φ.leftFun φ.pt))
       (fderiv 𝕜 (φ.implicitFunction (φ.leftFun φ.pt)) (φ.rightFun φ.pt)) (φ.rightFun φ.pt) := by
@@ -226,10 +279,16 @@ theorem hasStrictFDerivAt_implicitFunction_fderiv :
   convert! this
   exact this.hasFDerivAt.fderiv
 
+/--
+@isnad1 id=differen.0h5v.s7.5adfda77c2e6 from=seed src=0 shape=068957b1 vocab=1f4d56f4
+-/
 theorem differentiableAt_implicitFunction (φ : ImplicitFunctionData 𝕜 E F G) :
     DifferentiableAt 𝕜 (φ.implicitFunction (φ.leftFun φ.pt)) (φ.rightFun φ.pt) :=
   φ.hasStrictFDerivAt_implicitFunction_fderiv.hasFDerivAt.differentiableAt
 
+/--
+@isnad1 id=iff.0h7v.s9.7f3619c08266 from=seed src=0 shape=ecd58192 vocab=6ce3e7d3
+-/
 theorem fderiv_implicitFunction_apply_eq_iff (φ : ImplicitFunctionData 𝕜 E F G) {x : G} {y : E} :
     fderiv 𝕜 (φ.implicitFunction (φ.leftFun φ.pt)) (φ.rightFun φ.pt) x = y ↔
       φ.leftDeriv y = 0 ∧ φ.rightDeriv y = x := by
@@ -240,16 +299,25 @@ theorem fderiv_implicitFunction_apply_eq_iff (φ : ImplicitFunctionData 𝕜 E F
   simp [ContinuousLinearEquiv.symm_apply_eq, @eq_comm _ (φ.leftDeriv _),
     @eq_comm _ (φ.rightDeriv _)]
 
+/--
+@isnad1 id=eq.0h6v.s9.b35ea3097c07 from=seed src=0 shape=6b54cfd4 vocab=bb81d834
+-/
 @[simp]
 theorem leftDeriv_fderiv_implicitFunction (φ : ImplicitFunctionData 𝕜 E F G) (x : G) :
     φ.leftDeriv (fderiv 𝕜 (φ.implicitFunction (φ.leftFun φ.pt)) (φ.rightFun φ.pt) x) = 0 := by
   exact φ.fderiv_implicitFunction_apply_eq_iff.mp rfl |>.left
 
+/--
+@isnad1 id=eq.0h6v.s9.9d09d0f4a7e2 from=seed src=0 shape=223f5c2d vocab=496e7fa6
+-/
 @[simp]
 theorem rightDeriv_fderiv_implicitFunction (φ : ImplicitFunctionData 𝕜 E F G) (x : G) :
     φ.rightDeriv (fderiv 𝕜 (φ.implicitFunction (φ.leftFun φ.pt)) (φ.rightFun φ.pt) x) = x := by
   exact φ.fderiv_implicitFunction_apply_eq_iff.mp rfl |>.right
 
+/--
+@isnad1 id=hasstric.2h6v.s10.8618b9769d40 from=seed src=0 shape=f856ba85 vocab=6a47ac32
+-/
 theorem hasStrictFDerivAt_implicitFunction (g'inv : G →L[𝕜] E)
     (hg'inv : φ.rightDeriv.comp g'inv = ContinuousLinearMap.id 𝕜 G)
     (hg'invf : φ.leftDeriv.comp g'inv = 0) :
@@ -259,6 +327,9 @@ theorem hasStrictFDerivAt_implicitFunction (g'inv : G →L[𝕜] E)
   rw [eq_comm, fderiv_implicitFunction_apply_eq_iff]
   simp_all [DFunLike.ext_iff]
 
+/--
+@isnad1 id=eq.0h6v.s8.cd62fd2d56a2 from=seed src=0 shape=640c829c vocab=da062468
+-/
 theorem map_implicitFunction_nhdsWithin_preimage (φ : ImplicitFunctionData 𝕜 E F G)
     (s : Set E) :
     (𝓝[φ.implicitFunction (φ.leftFun φ.pt) ⁻¹' s] (φ.rightFun φ.pt)).map
@@ -282,6 +353,9 @@ theorem map_implicitFunction_nhdsWithin_preimage (φ : ImplicitFunctionData 𝕜
       φ.toOpenPartialHomeomorph.leftInvOn hxs]
   · exact φ.toOpenPartialHomeomorph.mapsTo φ.pt_mem_toOpenPartialHomeomorph_source
 
+/--
+@isnad1 id=eventual.1h6v.s8.e5699253bc28 from=seed src=0 shape=eada294e vocab=07f2524d
+-/
 theorem eventuallyEq_implicitFunction {ψ : F → G → E}
     (h : ∀ᶠ x in 𝓝 φ.pt, ψ (φ.leftFun x) (φ.rightFun x) = x) :
     Function.uncurry ψ =ᶠ[𝓝 (φ.prodFun φ.pt)] Function.uncurry φ.implicitFunction :=
@@ -346,18 +420,27 @@ def implicitFunctionOfComplemented (hf : HasStrictFDerivAt f f' a) (hf' : f'.ran
 
 end Defs
 
+/--
+@isnad1 id=eq.3h7v.s10.231f3ef96fb5 from=seed src=0 shape=c2ab67d4 vocab=583be92d
+-/
 @[simp]
 theorem implicitToOpenPartialHomeomorphOfComplemented_fst (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (hker : f'.ker.ClosedComplemented) (x : E) :
     (hf.implicitToOpenPartialHomeomorphOfComplemented f f' hf' hker x).fst = f x := by
   rfl
 
+/--
+@isnad1 id=eq.3h7v.s13.c2a1e5713ef1 from=seed src=0 shape=d24bfb31 vocab=e3945546
+-/
 theorem implicitToOpenPartialHomeomorphOfComplemented_apply (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (hker : f'.ker.ClosedComplemented) (y : E) :
     hf.implicitToOpenPartialHomeomorphOfComplemented f f' hf' hker y =
       (f y, Classical.choose hker (y - a)) := by
   rfl
 
+/--
+@isnad1 id=eq.3h7v.s11.07f7d005cf92 from=seed src=0 shape=ea0d0793 vocab=02a115d7
+-/
 @[simp]
 theorem implicitToOpenPartialHomeomorphOfComplemented_apply_ker (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (hker : f'.ker.ClosedComplemented) (y : f'.ker) :
@@ -365,17 +448,26 @@ theorem implicitToOpenPartialHomeomorphOfComplemented_apply_ker (hf : HasStrictF
   simp only [implicitToOpenPartialHomeomorphOfComplemented_apply, add_sub_cancel_right,
     Classical.choose_spec hker]
 
+/--
+@isnad1 id=eq.3h6v.s11.79e755d1bc9f from=seed src=0 shape=21c8ccec vocab=8c002f0c
+-/
 @[simp]
 theorem implicitToOpenPartialHomeomorphOfComplemented_self (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (hker : f'.ker.ClosedComplemented) :
     hf.implicitToOpenPartialHomeomorphOfComplemented f f' hf' hker a = (f a, 0) := by
   simp [hf.implicitToOpenPartialHomeomorphOfComplemented_apply]
 
+/--
+@isnad1 id=mem.3h6v.s11.3020151bf222 from=seed src=0 shape=9f8a3554 vocab=c47aa5b5
+-/
 theorem mem_implicitToOpenPartialHomeomorphOfComplemented_source (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (hker : f'.ker.ClosedComplemented) :
     a ∈ (hf.implicitToOpenPartialHomeomorphOfComplemented f f' hf' hker).source :=
   ImplicitFunctionData.pt_mem_toOpenPartialHomeomorph_source _
 
+/--
+@isnad1 id=mem.3h6v.s12.8d104cd88a29 from=seed src=0 shape=b44b9273 vocab=ebe9fcb8
+-/
 theorem mem_implicitToOpenPartialHomeomorphOfComplemented_target (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (hker : f'.ker.ClosedComplemented) :
     (f a, (0 : f'.ker)) ∈
@@ -384,7 +476,9 @@ theorem mem_implicitToOpenPartialHomeomorphOfComplemented_target (hf : HasStrict
     (hf.implicitToOpenPartialHomeomorphOfComplemented f f' hf' hker).map_source <|
       hf.mem_implicitToOpenPartialHomeomorphOfComplemented_source hf' hker
 
-/-- `HasStrictFDerivAt.implicitFunctionOfComplemented` sends `(z, y)` to a point in `f ⁻¹' z`. -/
+/-- `HasStrictFDerivAt.implicitFunctionOfComplemented` sends `(z, y)` to a point in `f ⁻¹' z`.
+@isnad1 id=eventual.3h6v.s11.048402fe7da3 from=seed src=0 shape=b7bd4ca6 vocab=5ac5a991
+-/
 theorem map_implicitFunctionOfComplemented_eq (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤)
     (hker : f'.ker.ClosedComplemented) :
     ∀ᶠ p : F × f'.ker in 𝓝 (f a, 0),
@@ -401,6 +495,9 @@ theorem eq_implicitFunctionOfComplemented (hf : HasStrictFDerivAt f f' a) (hf' :
       (hf.implicitToOpenPartialHomeomorphOfComplemented f f' hf' hker x).snd = x :=
   (implicitFunctionDataOfComplemented f f' hf hf' hker).implicitFunction_apply_image
 
+/--
+@isnad1 id=eq.3h6v.s10.07b94d03f67a from=seed src=0 shape=c274564a vocab=9c1abba8
+-/
 @[simp]
 theorem implicitFunctionOfComplemented_apply_image (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (hker : f'.ker.ClosedComplemented) :
@@ -410,6 +507,9 @@ theorem implicitFunctionOfComplemented_apply_image (hf : HasStrictFDerivAt f f' 
       (hf.mem_implicitToOpenPartialHomeomorphOfComplemented_source hf' hker)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=hasstric.3h6v.s11.888f622e8a00 from=seed src=0 shape=4485ed24 vocab=a756d172
+-/
 theorem to_implicitFunctionOfComplemented (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤)
     (hker : f'.ker.ClosedComplemented) :
     HasStrictFDerivAt (hf.implicitFunctionOfComplemented f f' hf' hker (f a))
@@ -467,11 +567,17 @@ def implicitFunction (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤) : F 
 
 variable {f f'}
 
+/--
+@isnad1 id=eq.2h7v.s10.4632e341076e from=seed src=0 shape=6e16fb60 vocab=a3d14e1f
+-/
 @[simp]
 theorem implicitToOpenPartialHomeomorph_fst (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤)
     (x : E) : (hf.implicitToOpenPartialHomeomorph f f' hf' x).fst = f x := by
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s11.e4817c2be667 from=seed src=0 shape=2edd8d81 vocab=112068e0
+-/
 @[simp]
 theorem implicitToOpenPartialHomeomorph_apply_ker (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) (y : f'.ker) :
@@ -479,23 +585,35 @@ theorem implicitToOpenPartialHomeomorph_apply_ker (hf : HasStrictFDerivAt f f' a
   have := FiniteDimensional.complete 𝕜 F
   implicitToOpenPartialHomeomorphOfComplemented_apply_ker ..
 
+/--
+@isnad1 id=eq.2h6v.s11.97fa5f9fc8a9 from=seed src=0 shape=5d4eba78 vocab=5a29d64f
+-/
 @[simp]
 theorem implicitToOpenPartialHomeomorph_self (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤) :
     hf.implicitToOpenPartialHomeomorph f f' hf' a = (f a, 0) :=
   have := FiniteDimensional.complete 𝕜 F
   implicitToOpenPartialHomeomorphOfComplemented_self ..
 
+/--
+@isnad1 id=mem.2h6v.s11.987573cac9d9 from=seed src=0 shape=56996222 vocab=706b5bd2
+-/
 theorem mem_implicitToOpenPartialHomeomorph_source (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) : a ∈ (hf.implicitToOpenPartialHomeomorph f f' hf').source :=
   have := FiniteDimensional.complete 𝕜 F
   ImplicitFunctionData.pt_mem_toOpenPartialHomeomorph_source _
 
+/--
+@isnad1 id=mem.2h6v.s12.d9c4c9d40493 from=seed src=0 shape=ee699a66 vocab=0a24cfa2
+-/
 theorem mem_implicitToOpenPartialHomeomorph_target (hf : HasStrictFDerivAt f f' a)
     (hf' : f'.range = ⊤) :
     (f a, (0 : f'.ker)) ∈ (hf.implicitToOpenPartialHomeomorph f f' hf').target :=
   have := FiniteDimensional.complete 𝕜 F
   mem_implicitToOpenPartialHomeomorphOfComplemented_target ..
 
+/--
+@isnad1 id=tendsto.4h10v.s11.cab2c0e60e83 from=seed src=0 shape=b1c19ab8 vocab=b6a11f27
+-/
 theorem tendsto_implicitFunction (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤) {α : Type*}
     {l : Filter α} {g₁ : α → F} {g₂ : α → f'.ker} (h₁ : Tendsto g₁ l (𝓝 <| f a))
     (h₂ : Tendsto g₂ l (𝓝 0)) :
@@ -507,12 +625,17 @@ theorem tendsto_implicitFunction (hf : HasStrictFDerivAt f f' a) (hf' : f'.range
 
 alias _root_.Filter.Tendsto.implicitFunction := tendsto_implicitFunction
 
-/-- `HasStrictFDerivAt.implicitFunction` sends `(z, y)` to a point in `f ⁻¹' z`. -/
+/-- `HasStrictFDerivAt.implicitFunction` sends `(z, y)` to a point in `f ⁻¹' z`.
+@isnad1 id=eventual.2h6v.s11.7e20e400df15 from=seed src=0 shape=6026d24f vocab=02aa989b
+-/
 theorem map_implicitFunction_eq (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤) :
     ∀ᶠ p : F × f'.ker in 𝓝 (f a, 0), f (hf.implicitFunction f f' hf' p.1 p.2) = p.1 :=
   have := FiniteDimensional.complete 𝕜 F
   map_implicitFunctionOfComplemented_eq ..
 
+/--
+@isnad1 id=eq.2h6v.s10.0cdf74e1971c from=seed src=0 shape=348ad633 vocab=5b36c292
+-/
 @[simp]
 theorem implicitFunction_apply_image (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤) :
     hf.implicitFunction f f' hf' (f a) 0 = a := by
@@ -527,6 +650,9 @@ theorem eq_implicitFunction (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = �
   have := FiniteDimensional.complete 𝕜 F
   eq_implicitFunctionOfComplemented ..
 
+/--
+@isnad1 id=hasstric.2h6v.s11.6c4e6437a4fc from=seed src=0 shape=130dbd4d vocab=10e5c464
+-/
 theorem to_implicitFunction (hf : HasStrictFDerivAt f f' a) (hf' : f'.range = ⊤) :
     HasStrictFDerivAt (hf.implicitFunction f f' hf' (f a)) f'.ker.subtypeL 0 :=
   have := FiniteDimensional.complete 𝕜 F

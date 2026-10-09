@@ -51,6 +51,9 @@ def HigherFacesVanish {Y : C} {n : ℕ} (q : ℕ) (φ : Y ⟶ X _⦋n + 1⦌) : 
 
 namespace HigherFacesVanish
 
+/--
+@isnad1 id=eq.3h7v.s8.a5661c7da4ef from=seed src=0 shape=df3709a8 vocab=96c1dc8d
+-/
 @[reassoc]
 theorem comp_δ_eq_zero {Y : C} {n : ℕ} {q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : HigherFacesVanish q φ)
     (j : Fin (n + 2)) (hj₁ : j ≠ 0) (hj₂ : n + 2 ≤ (j : ℕ) + q) : φ ≫ X.δ j = 0 := by
@@ -59,12 +62,21 @@ theorem comp_δ_eq_zero {Y : C} {n : ℕ} {q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} 
   simp only [Fin.val_succ] at hj₂
   lia
 
+/--
+@isnad1 id=higherfa.1h6v.s6.d0c6ed351a71 from=seed src=0 shape=9d0d6dee vocab=fe1a28ef
+-/
 theorem of_succ {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : HigherFacesVanish (q + 1) φ) :
     HigherFacesVanish q φ := fun j hj => v j (by simpa only [← add_assoc] using le_add_right hj)
 
+/--
+@isnad1 id=higherfa.1h8v.s6.7b0a7303c1a4 from=seed src=0 shape=d690514a vocab=b789c6e7
+-/
 theorem of_comp {Y Z : C} {q n : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : HigherFacesVanish q φ) (f : Z ⟶ Y) :
     HigherFacesVanish q (f ≫ φ) := fun j hj => by rw [assoc, v j hj, comp_zero]
 
+/--
+@isnad1 id=eq.2h7v.s9.8f4f0a2433a8 from=seed src=0 shape=99649171 vocab=34339179
+-/
 theorem comp_Hσ_eq {Y : C} {n a q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : HigherFacesVanish q φ)
     (hnaq : n = a + q) :
     φ ≫ (Hσ q).f (n + 1) = -φ ≫ X.δ ⟨a + 1, by lia⟩ ≫ X.σ ⟨a, by lia⟩ := by
@@ -134,6 +146,9 @@ theorem comp_Hσ_eq {Y : C} {n a q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : Highe
     congr 2
     ring
 
+/--
+@isnad1 id=eq.2h6v.s8.29a145ffc109 from=seed src=0 shape=616d3c48 vocab=bbb3bb96
+-/
 theorem comp_Hσ_eq_zero {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : HigherFacesVanish q φ)
     (hqn : n < q) : φ ≫ (Hσ q).f (n + 1) = 0 := by
   simp only [Hσ, Homotopy.nullHomotopicMap'_f (c_mk (n + 2) (n + 1) rfl) (c_mk (n + 1) n rfl)]
@@ -155,6 +170,9 @@ theorem comp_Hσ_eq_zero {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : Hi
         lia
       · simp only [Fin.succ_lt_succ_iff, j.succ_pos]
 
+/--
+@isnad1 id=higherfa.1h6v.s9.be790415f362 from=seed src=0 shape=cdbda61a vocab=a52cde62
+-/
 theorem induction {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : HigherFacesVanish q φ) :
     HigherFacesVanish (q + 1) (φ ≫ (𝟙 _ + Hσ q).f (n + 1)) := by
   intro j hj₁

@@ -51,28 +51,43 @@ noncomputable def implicitFunctionOfBivariate : E₁ → E₂ :=
   HasStrictFDerivAt.implicitFunctionOfProdDomain
     (hasStrictFDerivAt_uncurry_coprod df₁ df₂ cf₁ cf₂) (by simpa using! if₂u)
 
+/--
+@isnad1 id=eq.5h8v.s11.3b414e9d9cae from=seed src=0 shape=ea86dceb vocab=e62c4783
+-/
 theorem implicitFunctionOfBivariate_def :
     implicitFunctionOfBivariate df₁ df₂ cf₁ cf₂ if₂u =
       HasStrictFDerivAt.implicitFunctionOfProdDomain
         (hasStrictFDerivAt_uncurry_coprod df₁ df₂ cf₁ cf₂) (by simpa using! if₂u) := by
   rfl
 
+/--
+@isnad1 id=tendsto.5h8v.s10.53284bffd703 from=seed src=0 shape=73963c93 vocab=8d3ea9f6
+-/
 theorem tendsto_implicitFunctionOfBivariate :
     Tendsto (implicitFunctionOfBivariate df₁ df₂ cf₁ cf₂ if₂u) (𝓝 u.1) (𝓝 u.2) := by
   simpa using! HasStrictFDerivAt.tendsto_implicitFunctionOfProdDomain
     (hasStrictFDerivAt_uncurry_coprod df₁ df₂ cf₁ cf₂) (by simpa using! if₂u)
 
+/--
+@isnad1 id=eventual.5h8v.s10.4453741e3faf from=seed src=0 shape=cbb69501 vocab=fa559d8d
+-/
 theorem eventually_apply_implicitFunctionOfBivariate :
     ∀ᶠ x in 𝓝 u.1, f x (implicitFunctionOfBivariate df₁ df₂ cf₁ cf₂ if₂u x) = f u.1 u.2 := by
   simpa using! HasStrictFDerivAt.eventually_apply_implicitFunctionOfProdDomain
     (hasStrictFDerivAt_uncurry_coprod df₁ df₂ cf₁ cf₂) (by simpa using! if₂u)
 
+/--
+@isnad1 id=eventual.5h8v.s10.9fb404b23782 from=seed src=0 shape=59e99c8a vocab=fa559d8d
+-/
 theorem eventually_apply_eq_iff_implicitFunctionOfBivariate :
     ∀ᶠ v in 𝓝 u,
       f v.1 v.2 = f u.1 u.2 ↔ implicitFunctionOfBivariate df₁ df₂ cf₁ cf₂ if₂u v.1 = v.2 := by
   simpa using! HasStrictFDerivAt.eventually_apply_eq_iff_implicitFunctionOfProdDomain
     (hasStrictFDerivAt_uncurry_coprod df₁ df₂ cf₁ cf₂) (by simpa using! if₂u)
 
+/--
+@isnad1 id=hasstric.5h8v.s11.ebd07da89e8b from=seed src=0 shape=2caf0b58 vocab=b533de38
+-/
 theorem hasStrictFDerivAt_implicitFunctionOfBivariate :
     HasStrictFDerivAt (implicitFunctionOfBivariate df₁ df₂ cf₁ cf₂ if₂u)
       (-(f₂ u.1 u.2).inverse ∘L f₁ u.1 u.2) u.1 := by

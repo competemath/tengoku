@@ -45,6 +45,9 @@ section PolynomialSign
 
 variable {P : ℝ[X]} {x : ℝ}
 
+/--
+@isnad1 id=lt.2h2v.s5.14161a6eadbb from=seed src=0 shape=ad58c10b vocab=9b904d54
+-/
 theorem zero_lt_eval_of_roots_lt_of_leadingCoeff_nonneg
     (hroots : ∀ y, P.IsRoot y → y < x) (hlc : 0 ≤ P.leadingCoeff) : 0 < P.eval x := by
   replace hlc : 0 < P.leadingCoeff := by
@@ -61,6 +64,9 @@ theorem zero_lt_eval_of_roots_lt_of_leadingCoeff_nonneg
     (intermediate_value_Icc hw.1 P.continuous.continuousOn (show 0 ∈ _ by grind))
   exact ⟨y, ⟨hy.2, by grind⟩⟩
 
+/--
+@isnad1 id=le.2h2v.s5.83971a28a389 from=seed src=0 shape=2014c238 vocab=676f98eb
+-/
 theorem zero_le_eval_of_roots_le_of_leadingCoeff_nonneg
     (hroots : ∀ y, P.IsRoot y → y ≤ x) (hlc : 0 ≤ P.leadingCoeff) : 0 ≤ P.eval x := by
   by_cases! hroots' : ∃ y, P.IsRoot y ∧ x ≤ y
@@ -68,6 +74,9 @@ theorem zero_le_eval_of_roots_le_of_leadingCoeff_nonneg
     rw [eq_of_le_of_ge hle (hroots y hroot), hroot]
   · exact (zero_lt_eval_of_roots_lt_of_leadingCoeff_nonneg hroots' hlc).le
 
+/--
+@isnad1 id=lt.2h2v.s5.23b5164bb189 from=seed src=0 shape=323c908e vocab=9b904d54
+-/
 theorem eval_lt_zero_of_roots_lt_of_leadingCoeff_nonpos
     (hroots : ∀ y, P.IsRoot y → y < x) (hlc : P.leadingCoeff ≤ 0) : P.eval x < 0 := by
   suffices 0 < (-P).eval x by apply neg_pos.mp; rwa [← eval_neg]
@@ -75,6 +84,9 @@ theorem eval_lt_zero_of_roots_lt_of_leadingCoeff_nonpos
   · rwa [IsRoot, ← neg_zero, ← neg_eq_iff_eq_neg, ← eval_neg]
   · rwa [leadingCoeff_neg, le_neg, neg_zero]
 
+/--
+@isnad1 id=le.2h2v.s5.7363fd1a53d7 from=seed src=0 shape=721922dd vocab=676f98eb
+-/
 theorem eval_le_zero_of_roots_le_of_leadingCoeff_nonpos
     (hroots : ∀ y, P.IsRoot y → y ≤ x) (hlc : P.leadingCoeff ≤ 0) : P.eval x ≤ 0 := by
   suffices 0 ≤ (-P).eval x by apply neg_nonneg.mp; rwa [← eval_neg]
@@ -82,6 +94,9 @@ theorem eval_le_zero_of_roots_le_of_leadingCoeff_nonpos
   · rwa [IsRoot, ← neg_zero, ← neg_eq_iff_eq_neg, ← eval_neg]
   · rwa [leadingCoeff_neg, neg_nonneg]
 
+/--
+@isnad1 id=lt.2h2v.s6.cd87c10e8d75 from=seed src=0 shape=f73af798 vocab=3268a5f7
+-/
 theorem zero_lt_negOnePow_mul_eval_of_lt_roots_of_leadingCoeff_nonneg
     (hroots : ∀ y, P.IsRoot y → x < y) (hlc : 0 ≤ P.leadingCoeff) :
       0 < Int.negOnePow P.natDegree * P.eval x := by
@@ -107,6 +122,9 @@ theorem zero_lt_negOnePow_mul_eval_of_lt_roots_of_leadingCoeff_nonneg
     · simpa
     · simpa [natDegree_comp]
 
+/--
+@isnad1 id=le.2h2v.s6.686baa807677 from=seed src=0 shape=2d554ff8 vocab=0a79e9ce
+-/
 theorem zero_le_negOnePow_mul_eval_of_le_roots_of_leadingCoeff_nonneg
     (hroots : ∀ y, P.IsRoot y → x ≤ y) (hlc : 0 ≤ P.leadingCoeff) :
       0 ≤ Int.negOnePow P.natDegree * P.eval x := by
@@ -115,6 +133,9 @@ theorem zero_le_negOnePow_mul_eval_of_le_roots_of_leadingCoeff_nonneg
     rw [eq_of_ge_of_le hle (hroots y hroot), hroot, mul_zero]
   · exact (zero_lt_negOnePow_mul_eval_of_lt_roots_of_leadingCoeff_nonneg hroots' hlc).le
 
+/--
+@isnad1 id=lt.2h2v.s6.efc753eaeb4a from=seed src=0 shape=8943cab1 vocab=3268a5f7
+-/
 theorem negOnePow_mul_eval_lt_zero_of_lt_roots_of_leadingCoeff_nonpos
     (hroots : ∀ y, P.IsRoot y → x < y) (hlc : P.leadingCoeff ≤ 0) :
       Int.negOnePow P.natDegree * P.eval x < 0 := by
@@ -123,6 +144,9 @@ theorem negOnePow_mul_eval_lt_zero_of_lt_roots_of_leadingCoeff_nonpos
   · rwa [IsRoot, ← neg_zero, ← neg_eq_iff_eq_neg, ← eval_neg]
   · rwa [leadingCoeff_neg, le_neg, neg_zero]
 
+/--
+@isnad1 id=le.2h2v.s6.36f54bb3dfaf from=seed src=0 shape=be4ac47f vocab=0a79e9ce
+-/
 theorem negOnePow_mul_eval_le_zero_of_le_roots_of_leadingCoeff_nonpos
     (hroots : ∀ y, P.IsRoot y → x ≤ y) (hlc : P.leadingCoeff ≤ 0) :
       Int.negOnePow P.natDegree * P.eval x ≤ 0 := by

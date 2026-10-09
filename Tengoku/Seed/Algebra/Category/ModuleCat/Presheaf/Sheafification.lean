@@ -90,6 +90,9 @@ noncomputable def sheafificationHomEquiv
       (P ⟶ (restrictScalars α).obj ((SheafOfModules.forget _).obj F)) := by
   apply sheafifyHomEquiv
 
+/--
+@isnad1 id=eq.0h8v.s11.fa206fc1764b from=seed src=0 shape=64105bf6 vocab=dd74c554
+-/
 lemma toPresheaf_map_sheafificationHomEquiv_def
     {P : PresheafOfModules.{v} R₀} {F : SheafOfModules.{v} R}
     (f : (sheafification α).obj P ⟶ F) :
@@ -98,6 +101,9 @@ lemma toPresheaf_map_sheafificationHomEquiv_def
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s11.982de6cb1b11 from=seed src=0 shape=1b79e374 vocab=743490ca
+-/
 lemma toPresheaf_map_sheafificationHomEquiv
     {P : PresheafOfModules.{v} R₀} {F : SheafOfModules.{v} R}
     (f : (sheafification α).obj P ⟶ F) :
@@ -108,6 +114,9 @@ lemma toPresheaf_map_sheafificationHomEquiv
   dsimp
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h8v.s12.9e28e52bf9a0 from=seed src=0 shape=eca93bdb vocab=c2eab624
+-/
 lemma toSheaf_map_sheafificationHomEquiv_symm
     {P : PresheafOfModules.{v} R₀} {F : SheafOfModules.{v} R}
     (g : P ⟶ (restrictScalars α).obj ((SheafOfModules.forget _).obj F)) :
@@ -138,15 +147,24 @@ noncomputable def sheafificationAdjunction :
         apply (toPresheaf _).map_injective
         erw [toPresheaf_map_sheafificationHomEquiv] }
 
+/--
+@isnad1 id=eq.0h8v.s11.a1de5eaada5d from=seed src=0 shape=44fcf19f vocab=5c40b2e0
+-/
 lemma sheafificationAdjunction_homEquiv_apply {P : PresheafOfModules.{v} R₀}
     {F : SheafOfModules.{v} R} (f : (sheafification α).obj P ⟶ F) :
     (sheafificationAdjunction α).homEquiv P F f = sheafificationHomEquiv α f := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.e9d8b71c3e32 from=seed src=0 shape=2d50d710 vocab=2b6b7074
+-/
 @[simp]
 lemma toPresheaf_map_sheafificationAdjunction_unit_app (M₀ : PresheafOfModules.{v} R₀) :
     (toPresheaf _).map ((sheafificationAdjunction α).unit.app M₀) =
       CategoryTheory.toSheafify J M₀.presheaf := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.0258ed1a12d4 from=seed src=0 shape=76b5ef3a vocab=21d5c366
+-/
 @[simp]
 lemma toSheaf_map_sheafificationAdjunction_counit_app (M : SheafOfModules.{v} R) :
     (SheafOfModules.toSheaf R).map ((sheafificationAdjunction α).counit.app M) =

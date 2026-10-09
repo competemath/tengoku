@@ -26,10 +26,16 @@ public section
 
 -- Note that we already know `Subsingleton (α →+*o ℝ)` here.
 -- We intentionally do not define instance `Unique (α →+*o ℝ)` to avoid instance diamonds.
+/--
+@isnad1 id=nonempty.0h1v.s6.7d176117a81a from=seed src=0 shape=445132f8 vocab=b98c102d
+-/
 instance Real.nonemptyOrderRingHom (α : Type*)
     [Field α] [LinearOrder α] [IsStrictOrderedRing α] [Archimedean α] : Nonempty (α →+*o ℝ) :=
   ⟨ConditionallyCompleteLinearOrderedField.inducedOrderRingHom α ℝ⟩
 
+/--
+@isnad1 id=monotone.1h3v.s7.1c9434e69691 from=seed src=0 shape=1e329e29 vocab=a2ac630f
+-/
 theorem ringHom_monotone {R S : Type*} [Ring R] [PartialOrder R] [IsOrderedAddMonoid R]
     [Ring S] [LinearOrder S] [IsOrderedAddMonoid S] [PosMulMono S]
     (hR : ∀ r : R, 0 ≤ r → IsSquare r) (f : R →+* S) : Monotone f :=
@@ -42,6 +48,9 @@ instance Real.RingHom.unique : Unique (ℝ →+* ℝ) where
   uniq f := congr_arg OrderRingHom.toRingHom (@Subsingleton.elim (ℝ →+*o ℝ) _
       ⟨f, ringHom_monotone (fun _ ↦ Real.isSquare_iff.mpr) f⟩ default)
 
+/--
+@isnad1 id=eq.0h3v.s5.0463f6d9cff4 from=seed src=0 shape=13a72bfa vocab=a87faf02
+-/
 @[simp]
 theorem Real.ringHom_apply {F : Type*} [FunLike F ℝ ℝ] [RingHomClass F ℝ ℝ] (f : F) (r : ℝ) :
     f r = r :=

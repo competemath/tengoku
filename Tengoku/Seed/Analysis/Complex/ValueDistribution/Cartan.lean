@@ -72,6 +72,7 @@ private lemma eventuallyEq_log_trailingCoeff_of_meromorphicOrderAt_eq_zero (h₁
 /--
 Circle integrability of the term `fun a ↦ log ‖meromorphicTrailingCoeffAt (f · - a) 0‖` that
 appears in Cartan's formula.
+@isnad1 id=circlein.0h1v.s5.f54b4e68fc84 from=seed src=0 shape=0ba05a64 vocab=921c5b6f
 -/
 theorem circleIntegrable_log_meromorphicTrailingCoeffAt :
     CircleIntegrable (fun a ↦ log ‖meromorphicTrailingCoeffAt (f · - a) 0‖) 0 1 := by
@@ -94,6 +95,7 @@ theorem circleIntegrable_log_meromorphicTrailingCoeffAt :
 /--
 Circle average of the function `fun a ↦ log ‖meromorphicTrailingCoeffAt (f · - a) 0‖` that appears
 in Cartan's formula, in the case where `f` has a zero at the origin.
+@isnad1 id=eq.1h1v.s7.5936492acd72 from=seed src=0 shape=2193c696 vocab=2b7a5b68
 -/
 theorem circleAverage_log_norm_meromorphicTrailingCoeffAt_of_meromorphicOrderAt_pos
     (h : 0 < meromorphicOrderAt f 0) :
@@ -103,6 +105,7 @@ theorem circleAverage_log_norm_meromorphicTrailingCoeffAt_of_meromorphicOrderAt_
 /--
 Circle average of the function `fun a ↦ log ‖meromorphicTrailingCoeffAt (f · - a) 0‖` that appears
 in Cartan's formula, in the case where `f` has order zero at the origin.
+@isnad1 id=eq.1h1v.s7.4257eb465c92 from=seed src=0 shape=767c44c9 vocab=3de7e1f0
 -/
 theorem circleAverage_log_norm_meromorphicTrailingCoeffAt_of_meromorphicOrderAt_eq_zero
     (h : meromorphicOrderAt f 0 = 0) :
@@ -120,6 +123,7 @@ theorem circleAverage_log_norm_meromorphicTrailingCoeffAt_of_meromorphicOrderAt_
 /--
 Circle average of the function `fun a ↦ log ‖meromorphicTrailingCoeffAt (f · - a) 0‖` that appears
 in Cartan's formula, in the case where `f` has a pole at the origin.
+@isnad1 id=eq.1h1v.s7.4c3acc333e2e from=seed src=0 shape=67c3b05f vocab=2b7a5b68
 -/
 theorem circleAverage_log_norm_meromorphicTrailingCoeffAt_of_meromorphicOrderAt_lt_zero
     (h : meromorphicOrderAt f 0 < 0) :
@@ -147,6 +151,7 @@ private lemma logCounting_add_log_trailingCoeff_eq_circleAverage_add_logCounting
 
 /--
 Circle integrability of the term `logCounting f · R` that appears in Cartan's formula.
+@isnad1 id=circlein.1h2v.s6.922e6d4d0389 from=seed src=0 shape=dfa3ebb2 vocab=f211f55b
 -/
 theorem circleIntegrable_logCounting (h : Meromorphic f) :
     CircleIntegrable (logCounting f · R) 0 1 := by
@@ -168,6 +173,7 @@ logarithm of the first nonzero Laurent coefficient of `f - a` at the origin.
 
 See `circleIntegrable_logCounting` and `circleIntegrable_log_meromorphicTrailingCoeffAt` for the
 facts that the summands are actually circle integrable.
+@isnad1 id=eq.2h2v.s7.9455ce4c8864 from=seed src=0 shape=b34fe137 vocab=4418e202
 -/
 theorem characteristic_top_eq_circleAverage_add_circleAverage (h : Meromorphic f) (hR : R ≠ 0) :
     characteristic f ⊤ R = circleAverage (logCounting f · R) 0 1
@@ -187,6 +193,7 @@ theorem characteristic_top_eq_circleAverage_add_circleAverage (h : Meromorphic f
 
 /--
 **Cartan's formula** in the case where `0 < meromorphicOrderAt f 0`.
+@isnad1 id=eq.3h2v.s7.33e9d094e7bd from=seed src=0 shape=8a5396aa vocab=f2e83a6c
 -/
 theorem characteristic_top_eq_circleAverage_of_meromorphicOrderAt_pos
     (h₁f : Meromorphic f) (h₂f : 0 < meromorphicOrderAt f 0) (hR : R ≠ 0) :
@@ -199,6 +206,7 @@ Qualitative version of **Cartan's formula**: Away from the point `0`, the differ
 `characteristic f ⊤` and `fun R ↦ circleAverage (logCounting f · R) 0 1` is constant. This
 qualitative version of Cartan's formula exists because the specific value of the constant does not
 matter in practice.
+@isnad1 id=ex.1h1v.s6.0dfbcdecfda8 from=seed src=0 shape=0159d2ba vocab=f78cc56b
 -/
 theorem characteristic_top_eq_circleAverage_add_const (h : Meromorphic f) :
     ∃ const, ∀ R ≠ 0, characteristic f ⊤ R = circleAverage (logCounting f · R) 0 1 + const :=
@@ -212,6 +220,7 @@ theorem characteristic_top_eq_circleAverage_add_const (h : Meromorphic f) :
 /--
 The characteristic function is monotone on `(0, ∞)`. This result is surprisingly non-trivial, given
 that the proximity function is not monotone in general.
+@isnad1 id=monotone.1h1v.s5.a679da0bbf64 from=seed src=0 shape=031a78bb vocab=bc258d3f
 -/
 theorem characteristic_monotoneOn (h : Meromorphic f) :
     MonotoneOn (characteristic f ⊤) (Set.Ioi 0) := by

@@ -38,6 +38,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C]
   (L : C ⥤ D) (P : ObjectProperty C) [P.IsSerreClass]
   {E : Type u''} [Category.{v''} E] [Abelian E]
 
+/--
+@isnad1 id=iff.0h5v.s7.2821d1466fa1 from=seed src=0 shape=1324647b vocab=5dca7bed
+-/
 lemma exists_epiModSerre_comp_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
     (∃ (X' : C) (s : X' ⟶ X) (_ : P.epiModSerre s), s ≫ f = 0) ↔
       P (Abelian.image f) := by
@@ -49,6 +52,9 @@ lemma exists_epiModSerre_comp_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
       epiModSerre_zero_iff] at this
   · exact ⟨_, kernel.ι f, P.prop_of_iso (Abelian.coimageIsoImage f).symm hf, by simp⟩
 
+/--
+@isnad1 id=iff.0h5v.s7.8e7e811b489a from=seed src=0 shape=1324647b vocab=64b66b54
+-/
 lemma exists_isoModSerre_comp_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
     (∃ (X' : C) (s : X' ⟶ X) (_ : P.isoModSerre s), s ≫ f = 0) ↔
       P (Abelian.image f) := by
@@ -60,6 +66,9 @@ lemma exists_isoModSerre_comp_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
     simpa only [isoModSerre_iff_of_mono] using!
       P.prop_of_iso (Abelian.coimageIsoImage f).symm hf
 
+/--
+@isnad1 id=iff.0h5v.s7.c35dcbf31ccb from=seed src=0 shape=01f95056 vocab=64d58574
+-/
 lemma exists_comp_monoModSerre_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
     (∃ (Y' : C) (s : Y ⟶ Y') (_ : P.monoModSerre s), f ≫ s = 0) ↔
       P (Abelian.image f) := by
@@ -72,6 +81,9 @@ lemma exists_comp_monoModSerre_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
       monoModSerre_zero_iff] at this
   · exact ⟨_, cokernel.π f, hf, by simp⟩
 
+/--
+@isnad1 id=iff.0h5v.s7.48dfc3adac9e from=seed src=0 shape=01f95056 vocab=64b66b54
+-/
 lemma exists_comp_isoModSerre_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
     (∃ (Y' : C) (s : Y ⟶ Y') (_ : P.isoModSerre s), f ≫ s = 0) ↔
       P (Abelian.image f) := by
@@ -82,6 +94,9 @@ lemma exists_comp_isoModSerre_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
   · refine ⟨_, cokernel.π f, by rwa [isoModSerre_iff_of_epi], by simp⟩
 
 variable {P} in
+/--
+@isnad1 id=isomodse.0h6v.s6.98cbb3ab3fc9 from=seed src=0 shape=ac00081d vocab=faafe103
+-/
 lemma monoModSerre.isoModSerre_factorThruImage
     {X Y : C} {f : X ⟶ Y} (hf : P.monoModSerre f) :
     P.isoModSerre (Abelian.factorThruImage f) := by
@@ -90,6 +105,9 @@ lemma monoModSerre.isoModSerre_factorThruImage
     (asIso (kernel.map _ f (𝟙 _) (Abelian.image.ι f) (by simp))).symm hf
 
 variable {P} in
+/--
+@isnad1 id=isomodse.0h6v.s6.6f00af7a1730 from=seed src=0 shape=4b564998 vocab=c18a7ef5
+-/
 lemma epiModSerre.isoModSerre_image_ι
     {X Y : C} {f : X ⟶ Y} (hf : P.epiModSerre f) :
     P.isoModSerre (Abelian.image.ι f) := by
@@ -130,6 +148,9 @@ variable [L.IsLocalization P.isoModSerre] [Preadditive D] [L.Additive]
 
 include L P
 
+/--
+@isnad1 id=iff.0h5v.s6.f2fa2cb09d3f from=seed src=0 shape=1582823e vocab=2e75cd52
+-/
 lemma isZero_obj_iff (X : C) :
     IsZero (L.obj X) ↔ P X := by
   simp only [IsZero.iff_id_eq_zero, ← L.map_id, ← L.map_zero,
@@ -139,11 +160,17 @@ lemma isZero_obj_iff (X : C) :
   rintro ⟨Y, h⟩
   simpa using h.2
 
+/--
+@isnad1 id=iff.0h7v.s7.06dcc00b3611 from=seed src=0 shape=456af097 vocab=172b7ece
+-/
 lemma map_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
     L.map f = 0 ↔ P (Abelian.image f) := by
   rw [← L.map_zero, MorphismProperty.map_eq_iff_precomp L P.isoModSerre]
   simp [← exists_isoModSerre_comp_eq_zero_iff P]
 
+/--
+@isnad1 id=iff.0h9v.s7.6724aeb53d4b from=seed src=0 shape=78946dd4 vocab=c07d0976
+-/
 lemma map_comp_eq_zero_iff_of_epi_mono {X Z Y : C} (f : X ⟶ Z) (g : Z ⟶ Y)
     [Epi f] [Mono g] :
     L.map f ≫ L.map g = 0 ↔ P Z := by
@@ -151,6 +178,9 @@ lemma map_comp_eq_zero_iff_of_epi_mono {X Z Y : C} (f : X ⟶ Z) (g : Z ⟶ Y)
   have := strongEpi_of_epi f
   exact P.prop_iff_of_iso (Abelian.imageIsoImage _ ≪≫ (image.isoStrongEpiMono f g rfl).symm)
 
+/--
+@isnad1 id=tfae.0h7v.s8.3b8b42f6d50a from=seed src=0 shape=cc20bba6 vocab=f3edd9f5
+-/
 lemma mono_map_tfae {X Y : C} (f : X ⟶ Y) :
     List.TFAE [Mono (L.map f),
       P.monoModSerre f,
@@ -180,10 +210,16 @@ lemma mono_map_tfae {X Y : C} (f : X ⟶ Y) :
     rw [← this, Category.assoc, Category.assoc, hz, comp_zero, comp_zero]
   tfae_finish
 
+/--
+@isnad1 id=iff.0h7v.s6.737b8b35c8a8 from=seed src=0 shape=c8a99ce0 vocab=d61f0c3b
+-/
 lemma mono_map_iff {X Y : C} (f : X ⟶ Y) :
     Mono (L.map f) ↔ P.monoModSerre f :=
   (mono_map_tfae L P f).out 1 2
 
+/--
+@isnad1 id=tfae.0h7v.s8.58d986089244 from=seed src=0 shape=5418a6ff vocab=5a0a335f
+-/
 lemma epi_map_tfae {X Y : C} (f : X ⟶ Y) :
     List.TFAE [Epi (L.map f),
       P.epiModSerre f,
@@ -214,26 +250,44 @@ lemma epi_map_tfae {X Y : C} (f : X ⟶ Y) :
     rw [this, reassoc_of% hz, zero_comp]
   tfae_finish
 
+/--
+@isnad1 id=iff.0h7v.s6.f96dcd9efe81 from=seed src=0 shape=c8a99ce0 vocab=60511ae7
+-/
 lemma epi_map_iff {X Y : C} (f : X ⟶ Y) :
     Epi (L.map f) ↔ P.epiModSerre f :=
   (epi_map_tfae L P f).out 1 2
 
+/--
+@isnad1 id=eq.0h4v.s6.4802b2dbbdff from=seed src=0 shape=d3a22700 vocab=2ad6566f
+-/
 lemma inverseImage_monomorphisms :
     (MorphismProperty.monomorphisms _).inverseImage L = P.monoModSerre := by
   ext
   simp [mono_map_iff L P]
 
+/--
+@isnad1 id=eq.0h4v.s6.32c27cdf893e from=seed src=0 shape=d3a22700 vocab=1dbb50f2
+-/
 lemma inverseImage_epimorphisms :
     (MorphismProperty.epimorphisms _).inverseImage L = P.epiModSerre := by
   ext
   simp [epi_map_iff L P]
 
+/--
+@isnad1 id=preserve.0h4v.s6.52db04f31e10 from=seed src=0 shape=5e520e00 vocab=9951a008
+-/
 lemma preservesMonomorphisms : L.PreservesMonomorphisms where
   preserves f _ := by simpa only [mono_map_iff _ P] using P.monoModSerre_of_mono f
 
+/--
+@isnad1 id=preserve.0h4v.s6.87e1e2a1020a from=seed src=0 shape=5e520e00 vocab=caf02e44
+-/
 lemma preservesEpimorphisms : L.PreservesEpimorphisms where
   preserves f _ := by simpa only [epi_map_iff _ P] using P.epiModSerre_of_epi f
 
+/--
+@isnad1 id=iff.0h7v.s7.7ea298e3fe2b from=seed src=0 shape=ed9daf5d vocab=a8ab60c5
+-/
 lemma mono_iff {X Y : D} (f : X ⟶ Y) :
     Mono f ↔ ∃ (X' Y' : C) (f' : X' ⟶ Y') (_ : Mono f'),
       Nonempty (Arrow.mk (L.map f') ≅ Arrow.mk f) := by
@@ -257,6 +311,9 @@ lemma mono_iff {X Y : D} (f : X ⟶ Y) :
     exact ((MorphismProperty.monomorphisms D).arrow_mk_iso_iff e).1
       (by simpa using inferInstanceAs (Mono (L.map f')))
 
+/--
+@isnad1 id=iff.0h7v.s7.495333a8ea46 from=seed src=0 shape=ed9daf5d vocab=8cb2131b
+-/
 lemma epi_iff {X Y : D} (f : X ⟶ Y) :
     Epi f ↔ ∃ (X' Y' : C) (f' : X' ⟶ Y') (_ : Epi f'),
       Nonempty (Arrow.mk (L.map f') ≅ Arrow.mk f) := by
@@ -279,6 +336,9 @@ lemma epi_iff {X Y : D} (f : X ⟶ Y) :
     exact ((MorphismProperty.epimorphisms D).arrow_mk_iso_iff e).1
       (by simpa using inferInstanceAs (Epi (L.map f')))
 
+/--
+@isnad1 id=preserve.0h7v.s6.eb1430cc0f71 from=seed src=0 shape=470694e1 vocab=01ba1cee
+-/
 lemma preservesKernel {X Y : C} (f : X ⟶ Y) :
     PreservesLimit (parallelPair f 0) L := by
   have := preservesMonomorphisms L P
@@ -309,6 +369,9 @@ lemma preservesKernel {X Y : C} (f : X ⟶ Y) :
   rw [← Category.assoc] at fac
   exact ⟨inv (L.map t) ≫ L.map (kernel.lift _ _ fac), by simp [← Functor.map_comp]⟩
 
+/--
+@isnad1 id=preserve.0h7v.s6.01ec266d7a32 from=seed src=0 shape=470694e1 vocab=a60d95a3
+-/
 lemma preservesCokernel {X Y : C} (f : X ⟶ Y) :
     PreservesColimit (parallelPair f 0) L := by
   have := preservesEpimorphisms L P
@@ -339,6 +402,9 @@ lemma preservesCokernel {X Y : C} (f : X ⟶ Y) :
   exact ⟨L.map (cokernel.desc _ _ fac) ≫ inv (L.map t), by simp [← L.map_comp_assoc]⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=haskerne.0h4v.s6.3004dad45618 from=seed src=0 shape=6df2d2e6 vocab=03f5339d
+-/
 lemma hasKernels : HasKernels D where
   has_limit f := by
     obtain ⟨g, ⟨e⟩⟩ :=
@@ -351,6 +417,9 @@ lemma hasKernels : HasKernels D where
       parallelPair.ext (Arrow.leftFunc.mapIso e) (Arrow.rightFunc.mapIso e))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=hascoker.0h4v.s6.49228b648bf5 from=seed src=0 shape=6df2d2e6 vocab=bfcca015
+-/
 lemma hasCokernels : HasCokernels D where
   has_colimit f := by
     obtain ⟨g, ⟨e⟩⟩ :=
@@ -362,22 +431,34 @@ lemma hasCokernels : HasCokernels D where
     exact hasColimit_of_iso (show _ ≅ parallelPair (L.map g.hom) 0 from
       parallelPair.ext (Arrow.leftFunc.mapIso e.symm) (Arrow.rightFunc.mapIso e.symm))
 
+/--
+@isnad1 id=hasequal.0h4v.s6.3482e57eee45 from=seed src=0 shape=6df2d2e6 vocab=04318263
+-/
 lemma hasEqualizers : HasEqualizers D :=
   have := hasKernels L P
   have {X Y : D} (f g : X ⟶ Y) : HasEqualizer f g :=
     Preadditive.hasEqualizer_of_hasKernel _ _
   hasEqualizers_of_hasLimit_parallelPair _
 
+/--
+@isnad1 id=hascoequ.0h4v.s6.cf2bec11a67f from=seed src=0 shape=6df2d2e6 vocab=0fa6d113
+-/
 lemma hasCoequalizers : HasCoequalizers D :=
   have := hasCokernels L P
   have {X Y : D} (f g : X ⟶ Y) : HasCoequalizer f g :=
     Preadditive.hasCoequalizer_of_hasCokernel _ _
   hasCoequalizers_of_hasColimit_parallelPair _
 
+/--
+@isnad1 id=hasfinit.0h4v.s6.4804ce665a46 from=seed src=0 shape=6df2d2e6 vocab=43af17cb
+-/
 lemma hasFiniteProducts : HasFiniteProducts D :=
   have := Localization.essSurj L P.isoModSerre
   L.hasFiniteProducts_of_additive_of_essSurj
 
+/--
+@isnad1 id=isnormal.0h4v.s6.2436bf8997d6 from=seed src=0 shape=6df2d2e6 vocab=15194cd2
+-/
 lemma isNormalMonoCategory : IsNormalMonoCategory D where
   normalMonoOfMono f hf := by
     rw [mono_iff L P] at hf
@@ -393,6 +474,9 @@ lemma isNormalMonoCategory : IsNormalMonoCategory D where
         (KernelFork.isLimitMapConeEquiv _ L).1
           (isLimitOfPreserves L hf'.isLimit) }
 
+/--
+@isnad1 id=isnormal.0h4v.s6.96f91ed3e953 from=seed src=0 shape=6df2d2e6 vocab=6cdb354d
+-/
 lemma isNormalEpiCategory : IsNormalEpiCategory D where
   normalEpiOfEpi f hf := by
     rw [epi_iff L P] at hf
@@ -423,27 +507,42 @@ def abelian : Abelian D := by
   have := isNormalEpiCategory L P
   constructor
 
+/--
+@isnad1 id=haszeroo.0h4v.s6.c9bc2f3a7106 from=seed src=0 shape=6df2d2e6 vocab=8a06a832
+-/
 lemma hasZeroObject : HasZeroObject D :=
   have := abelian L P
   Abelian.hasZeroObject
 
+/--
+@isnad1 id=preserve.0h4v.s6.f49d8d092cf0 from=seed src=0 shape=5e520e00 vocab=05e2e5fa
+-/
 lemma preservesFiniteLimits : PreservesFiniteLimits L := by
   let := abelian L P
   rw [((Functor.preservesFiniteLimits_tfae L).out 4 3 :)]
   intro _ _ f
   exact preservesKernel L P f
 
+/--
+@isnad1 id=preserve.0h4v.s6.878bdbff85e6 from=seed src=0 shape=5e520e00 vocab=8c42eb8a
+-/
 lemma preservesFiniteColimits : PreservesFiniteColimits L := by
   let := abelian L P
   rw [((Functor.preservesFiniteColimits_tfae L).out 4 3 :)]
   intro _ _ f
   exact preservesCokernel L P f
 
+/--
+@isnad1 id=iff.0h7v.s6.5fe4848d7808 from=seed src=0 shape=794fcf0c vocab=5d70a81d
+-/
 lemma isIso_map_iff {X Y : C} (f : X ⟶ Y) :
     IsIso (L.map f) ↔ P.isoModSerre f := by
   let := abelian L P
   rw [isIso_iff_mono_and_epi, mono_map_iff L P, epi_map_iff L P, isoModSerre_iff]
 
+/--
+@isnad1 id=eq.0h4v.s6.91188fa48a41 from=seed src=0 shape=065e25ee vocab=39bd4795
+-/
 lemma inverseImage_isomorphisms :
     (MorphismProperty.isomorphisms _).inverseImage L = P.isoModSerre := by
   ext
@@ -452,6 +551,9 @@ lemma inverseImage_isomorphisms :
 variable (G : D ⥤ E)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h6v.s6.bdb875095317 from=seed src=0 shape=037e137d vocab=0aee17ac
+-/
 lemma preservesFiniteLimits_comp_iff :
     PreservesFiniteLimits (L ⋙ G) ↔ PreservesFiniteLimits G := by
   let := abelian L P
@@ -474,6 +576,9 @@ lemma preservesFiniteLimits_comp_iff :
       parallelPair.ext (Arrow.leftFunc.mapIso iso) (Arrow.rightFunc.mapIso iso))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h6v.s6.10986f6bdfb2 from=seed src=0 shape=037e137d vocab=bb908c66
+-/
 lemma preservesFiniteColimits_comp_iff :
     PreservesFiniteColimits (L ⋙ G) ↔ PreservesFiniteColimits G := by
   let := abelian L P
@@ -496,6 +601,9 @@ lemma preservesFiniteColimits_comp_iff :
     (show parallelPair (L.map f'.hom) 0 ≅ parallelPair f 0 from
       parallelPair.ext (Arrow.leftFunc.mapIso iso) (Arrow.rightFunc.mapIso iso))
 
+/--
+@isnad1 id=iff.0h6v.s6.1cbf856b438d from=seed src=0 shape=037e137d vocab=e54484e2
+-/
 lemma exactFunctor_comp_iff :
     exactFunctor _ _ (L ⋙ G) ↔ exactFunctor _ _ G := by
   simp [preservesFiniteLimits_comp_iff L P, preservesFiniteColimits_comp_iff L P]
@@ -512,6 +620,9 @@ def whiskeringLeft : (D ⥤ₑ E) ⥤ C ⥤ₑ E :=
       dsimp
       simpa only [exactFunctor_comp_iff L P] using G.property)
 
+/--
+@isnad1 id=eq.0h6v.s7.af220b3f203a from=seed src=0 shape=025aef0a vocab=ef931502
+-/
 @[simp]
 lemma whiskeringLeft_obj_obj (G : D ⥤ₑ E) :
     ((whiskeringLeft L P E).obj G).obj = L ⋙ G.obj := rfl
@@ -535,7 +646,9 @@ instance : (whiskeringLeft L P E).Full :=
 in the abelian category `C`. If `G : C ⥤ₑ E` is an exact functor to an abelian
 category, it "factors" through `D` (i.e. it is in the essential image of
 `whiskeringLeft L P E : (D ⥤ₑ E) ⥤ C ⥤ₑ E`) iff `G` inverts the class
-of morphisms `P.isoModSerre`. -/
+of morphisms `P.isoModSerre`.
+@isnad1 id=eq.0h5v.s7.f13b590e3241 from=seed src=0 shape=9e29dd11 vocab=476572fc
+-/
 lemma essImage_whiskeringLeft :
     (whiskeringLeft L P E).essImage =
       fun G ↦ P.isoModSerre.IsInvertedBy G.obj := by

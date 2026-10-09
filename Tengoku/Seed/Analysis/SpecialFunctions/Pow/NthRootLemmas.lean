@@ -24,14 +24,26 @@ namespace Nat
 
 variable {n a b guess fuel : ℕ}
 
+/--
+@isnad1 id=eq.0h1v.s4.4996915d8d83 from=seed src=0 shape=fe2c2146 vocab=134604dd
+-/
 @[simp] theorem nthRoot_zero_left (a : ℕ) : nthRoot 0 a = 1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.ac13e70ec3b2 from=seed src=0 shape=e041090b vocab=8730e4c6
+-/
 @[simp] theorem nthRoot_one_left : nthRoot 1 = id := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.d3d50442c2b1 from=seed src=0 shape=1a2c69ac vocab=134604dd
+-/
 @[simp]
 theorem nthRoot_zero_right (h : n ≠ 0) : nthRoot n 0 = 0 := by
   rcases n with _ | _ | _ <;> grind [nthRoot, nthRoot.go]
 
+/--
+@isnad1 id=eq.0h1v.s4.5e299c9a5ef5 from=seed src=0 shape=1d838610 vocab=134604dd
+-/
 @[simp]
 theorem nthRoot_one_right : nthRoot n 1 = 1 := by
   rcases n with _ | _ | _ <;> simp [nthRoot, nthRoot.go, Nat.add_comm 1]
@@ -53,11 +65,16 @@ private theorem nthRoot.pow_go_le (hle : guess ≤ fuel) (n a : ℕ) :
       replace := Nat.mul_le_of_le_div _ _ _ this
       grind
 
-/-- `nthRoot n a ^ n ≤ a` unless both `n` and `a` are zeros. -/
+/-- `nthRoot n a ^ n ≤ a` unless both `n` and `a` are zeros.
+@isnad1 id=iff.0h2v.s5.79b54f9b3639 from=seed src=0 shape=57fbfd16 vocab=12c0f51e
+-/
 @[simp]
 theorem pow_nthRoot_le_iff : nthRoot n a ^ n ≤ a ↔ n ≠ 0 ∨ a ≠ 0 := by
   rcases n with _ | _ | _ <;> first | grind | simp [nthRoot, nthRoot.pow_go_le]
 
+/--
+@isnad1 id=le.1h2v.s5.f1b75f7e512d from=seed src=0 shape=fc477ecd vocab=12c0f51e
+-/
 alias ⟨_, pow_nthRoot_le⟩ := pow_nthRoot_le_iff
 
 private theorem nthRoot.lt_pow_go_succ_aux0 (hb : b ≠ 0) :
@@ -92,6 +109,7 @@ private theorem nthRoot.always_exists (n a : ℕ) :
 /--
 An auxiliary lemma saying that if `b ≠ 0`,
 then `(a / b ^ n + n * b) / (n + 1) + 1` is a strict upper estimate on `√[n + 1] a`.
+@isnad1 id=lt.1h3v.s6.5c04a42cb7e7 from=seed src=0 shape=6d2ba227 vocab=0647c2a4
 -/
 theorem nthRoot.lt_pow_go_succ_aux (hb : b ≠ 0) :
      a < ((a / b ^ n + n * b) / (n + 1) + 1) ^ (n + 1) := by
@@ -117,6 +135,9 @@ private theorem nthRoot.lt_pow_go_succ (hlt : a < (guess + 1) ^ (n + 2)) :
     case neg =>
       assumption
 
+/--
+@isnad1 id=lt.1h2v.s5.3ce767c794b2 from=seed src=0 shape=8237712b vocab=418b494a
+-/
 theorem lt_pow_nthRoot_add_one (hn : n ≠ 0) (a : ℕ) : a < (nthRoot n a + 1) ^ n := by
   match n, hn with
   | 1, _ => simp
@@ -125,6 +146,9 @@ theorem lt_pow_nthRoot_add_one (hn : n ≠ 0) (a : ℕ) : a < (nthRoot n a + 1) 
     apply nthRoot.lt_pow_go_succ
     exact a.lt_succ_self.trans_le (Nat.le_self_pow hn _)
 
+/--
+@isnad1 id=iff.1h3v.s5.f9d6ee98d0d8 from=seed src=0 shape=5cc649ec vocab=12c0f51e
+-/
 @[simp]
 theorem le_nthRoot_iff (hn : n ≠ 0) : a ≤ nthRoot n b ↔ a ^ n ≤ b := by
   cases le_or_gt a (nthRoot n b) with
@@ -138,17 +162,25 @@ theorem le_nthRoot_iff (hn : n ≠ 0) : a ≤ nthRoot n b ↔ a ^ n ≤ b := by
     gcongr
     assumption
 
+/--
+@isnad1 id=iff.1h3v.s5.192999b6e619 from=seed src=0 shape=1eb6c82c vocab=e0a7a80b
+-/
 @[simp]
 theorem nthRoot_lt_iff (hn : n ≠ 0) : nthRoot n a < b ↔ a < b ^ n := by
   simp only [← not_le, le_nthRoot_iff hn]
 
+/--
+@isnad1 id=eq.1h2v.s5.509e5cfb6a3d from=seed src=0 shape=a37fd51b vocab=ad8a9bc5
+-/
 @[simp]
 theorem nthRoot_pow (hn : n ≠ 0) (a : ℕ) : nthRoot n (a ^ n) = a := by
   refine eq_of_forall_le_iff fun b ↦ ?_
   rw [le_nthRoot_iff hn]
   exact (Nat.pow_left_strictMono hn).le_iff_le
 
-/-- If `a ^ n ≤ b < (a + 1) ^ n`, then `n` root of `b` equals `a`. -/
+/-- If `a ^ n ≤ b < (a + 1) ^ n`, then `n` root of `b` equals `a`.
+@isnad1 id=eq.2h3v.s5.a6154bcddce9 from=seed src=0 shape=1f3eba8d vocab=2de06325
+-/
 theorem nthRoot_eq_of_le_of_lt (h₁ : a ^ n ≤ b) (h₂ : b < (a + 1) ^ n) :
     nthRoot n b = a := by
   rcases eq_or_ne n 0 with rfl | hn
@@ -156,12 +188,18 @@ theorem nthRoot_eq_of_le_of_lt (h₁ : a ^ n ≤ b) (h₂ : b < (a + 1) ^ n) :
   simp only [← le_nthRoot_iff hn, ← nthRoot_lt_iff hn] at h₁ h₂
   grind
 
+/--
+@isnad1 id=iff.1h2v.s5.4a8d549c9905 from=seed src=0 shape=f18fc638 vocab=ad8a9bc5
+-/
 theorem exists_pow_eq_iff' (hn : n ≠ 0) : (∃ x, x ^ n = a) ↔ (nthRoot n a) ^ n = a := by
   constructor
   · rintro ⟨x, rfl⟩
     rw [nthRoot_pow hn]
   · grind
 
+/--
+@isnad1 id=iff.0h2v.s6.fdddf9561bd3 from=seed src=0 shape=97ea8fda vocab=ad8a9bc5
+-/
 theorem exists_pow_eq_iff :
     (∃ x, x ^ n = a) ↔ ((n = 0 ∧ a = 1) ∨ (n ≠ 0 ∧ (nthRoot n a) ^ n = a)) := by
   rcases eq_or_ne n 0 with rfl | _ <;> grind [exists_pow_eq_iff']

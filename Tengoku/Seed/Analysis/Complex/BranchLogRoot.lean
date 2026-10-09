@@ -34,7 +34,9 @@ variable {X : Type*} [TopologicalSpace X] [LocallyPathConnectedSpace X] {U : Set
 is continuous on an open simply connected set `U` and `0 ∉ g '' U`,
 then there exists a continuous branch of `log ∘ g` on `U`.
 More precisely, there exists a function `f : X → ℂ` continuous on `U`
-such that `exp (f x) = g x` for all `x ∈ U`. -/
+such that `exp (f x) = g x` for all `x ∈ U`.
+@isnad1 id=ex.4h3v.s6.864246ec5c0d from=seed src=0 shape=d7999d53 vocab=cd1d14fc
+-/
 theorem exists_continuousOn_eqOn_exp_comp (hUc : IsSimplyConnected U) (hUo : IsOpen U)
     {g : X → ℂ} (hgc : ContinuousOn g U) (hU₀ : 0 ∉ g '' U) :
     ∃ f : X → ℂ, ContinuousOn f U ∧ EqOn (exp ∘ f) g U := by
@@ -64,7 +66,9 @@ theorem exists_continuousOn_eqOn_exp_comp (hUc : IsSimplyConnected U) (hUo : IsO
 is continuous on an open simply connected set `U` and `0 ∉ g '' U`,
 then for any `n ≠ 0`, there exists a continuous branch of `ⁿ√g` on `U`.
 More precisely, there exists a function `f : X → ℂ` continuous on `U`
-such that `(f x) ^ n = g x` for all `x`. -/
+such that `(f x) ^ n = g x` for all `x`.
+@isnad1 id=ex.5h4v.s7.57d4f0213d5e from=seed src=0 shape=d6a4a6fb vocab=761b941f
+-/
 theorem exists_continuousOn_pow_eq (hUc : IsSimplyConnected U) (hUo : IsOpen U)
     {g : X → ℂ} (hgc : ContinuousOn g U) (hU₀ : 0 ∉ g '' U) {n : ℕ} (hn : n ≠ 0) :
     ∃ f : X → ℂ, ContinuousOn f U ∧ ∀ x, f x ^ n = g x := by
@@ -85,7 +89,9 @@ namespace UnitDisc
 is continuous on an open simply connected set `U` and `0 ∉ g '' U`,
 then for any `n ≠ 0`, there exists a continuous branch of `ⁿ√g` on `U`.
 More precisely, there exists a function `f : X → 𝔻` continuous on `U`
-such that `(f x) ^ n = g x` for all `x`. -/
+such that `(f x) ^ n = g x` for all `x`.
+@isnad1 id=ex.4h4v.s6.bbf767929d9e from=seed src=0 shape=cab1d76b vocab=dbe44041
+-/
 protected theorem exists_continuousOn_pow_eq
     (hUc : IsSimplyConnected U) (hUo : IsOpen U) {g : X → 𝔻}
     (hgc : ContinuousOn g U) (hU₀ : 0 ∉ g '' U) (n : ℕ+) :

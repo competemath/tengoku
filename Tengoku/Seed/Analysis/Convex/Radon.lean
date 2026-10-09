@@ -43,7 +43,9 @@ variable {ι 𝕜 E : Type*} [Field 𝕜] [LinearOrder 𝕜] [IsStrictOrderedRin
 Any family `f` of affine dependent vectors contains a set `I` with the property that convex hulls of
 `I` and `Iᶜ` intersect nontrivially.
 In particular, any `d + 2` points in a `d`-dimensional space can be partitioned this way, since they
-are affinely dependent (see `finrank_vectorSpan_le_iff_not_affineIndependent`). -/
+are affinely dependent (see `finrank_vectorSpan_le_iff_not_affineIndependent`).
+@isnad1 id=ex.1h4v.s7.26105cb10adb from=seed src=0 shape=f51eb05c vocab=965205ca
+-/
 theorem radon_partition {f : ι → E} (h : ¬ AffineIndependent 𝕜 f) :
     ∃ I, (convexHull 𝕜 (f '' I) ∩ convexHull 𝕜 (f '' Iᶜ)).Nonempty := by
   rw [affineIndependent_iff] at h
@@ -84,7 +86,9 @@ variable [FiniteDimensional 𝕜 E]
 /-- **Helly's theorem** for finite families of convex sets.
 
 If `F` is a finite family of convex sets in a vector space of finite dimension `d`, and any
-`k ≤ d + 1` sets of `F` intersect nontrivially, then all sets of `F` intersect nontrivially. -/
+`k ≤ d + 1` sets of `F` intersect nontrivially, then all sets of `F` intersect nontrivially.
+@isnad1 id=nonempty.2h5v.s8.20ee625dee71 from=seed src=0 shape=b02f51ce vocab=35df7543
+-/
 theorem helly_theorem' {F : ι → Set E} {s : Finset ι}
     (h_convex : ∀ i ∈ s, Convex 𝕜 (F i))
     (h_inter : ∀ I ⊆ s, #I ≤ finrank 𝕜 E + 1 → (⋂ i ∈ I, F i).Nonempty) :
@@ -140,7 +144,9 @@ theorem helly_theorem' {F : ι → Set E} {s : Finset ι}
 /-- **Helly's theorem** for finite families of convex sets in its classical form.
 
 If `F` is a family of `n` convex sets in a vector space of finite dimension `d`, with `n ≥ d + 1`,
-and any `d + 1` sets of `F` intersect nontrivially, then all sets of `F` intersect nontrivially. -/
+and any `d + 1` sets of `F` intersect nontrivially, then all sets of `F` intersect nontrivially.
+@isnad1 id=nonempty.3h5v.s8.605af48fbbe7 from=seed src=0 shape=9a1ec185 vocab=35df7543
+-/
 theorem helly_theorem {F : ι → Set E} {s : Finset ι}
     (h_card : finrank 𝕜 E + 1 ≤ #s)
     (h_convex : ∀ i ∈ s, Convex 𝕜 (F i))
@@ -155,7 +161,9 @@ theorem helly_theorem {F : ι → Set E} {s : Finset ι}
 /-- **Helly's theorem** for finite sets of convex sets.
 
 If `F` is a finite set of convex sets in a vector space of finite dimension `d`, and any `k ≤ d + 1`
-sets from `F` intersect nontrivially, then all sets from `F` intersect nontrivially. -/
+sets from `F` intersect nontrivially, then all sets from `F` intersect nontrivially.
+@isnad1 id=nonempty.2h3v.s7.b8c3de67344a from=seed src=0 shape=388be500 vocab=dc7d1d5d
+-/
 theorem helly_theorem_set' {F : Finset (Set E)}
     (h_convex : ∀ X ∈ F, Convex 𝕜 X)
     (h_inter : ∀ G : Finset (Set E), G ⊆ F → #G ≤ finrank 𝕜 E + 1 → (⋂₀ G : Set E).Nonempty) :
@@ -171,7 +179,9 @@ theorem helly_theorem_set' {F : Finset (Set E)}
 
 If `F` is a finite set of convex sets in a vector space of finite dimension `d`, with `n ≥ d + 1`,
 and any `d + 1` sets from `F` intersect nontrivially,
-then all sets from `F` intersect nontrivially. -/
+then all sets from `F` intersect nontrivially.
+@isnad1 id=nonempty.3h3v.s8.a5f6c162a378 from=seed src=0 shape=a5efb3f5 vocab=dc7d1d5d
+-/
 theorem helly_theorem_set {F : Finset (Set E)}
     (h_card : finrank 𝕜 E + 1 ≤ #F)
     (h_convex : ∀ X ∈ F, Convex 𝕜 X)
@@ -187,7 +197,9 @@ theorem helly_theorem_set {F : Finset (Set E)}
 /-- **Helly's theorem** for families of compact convex sets.
 
 If `F` is a family of compact convex sets in a vector space of finite dimension `d`, and any
-`k ≤ d + 1` sets of `F` intersect nontrivially, then all sets of `F` intersect nontrivially. -/
+`k ≤ d + 1` sets of `F` intersect nontrivially, then all sets of `F` intersect nontrivially.
+@isnad1 id=nonempty.3h4v.s7.af232b7151b2 from=seed src=0 shape=29ad40fd vocab=1eee0f9b
+-/
 theorem helly_theorem_compact' [TopologicalSpace E] [T2Space E] {F : ι → Set E}
     (h_convex : ∀ i, Convex 𝕜 (F i)) (h_compact : ∀ i, IsCompact (F i))
     (h_inter : ∀ I : Finset ι, #I ≤ finrank 𝕜 E + 1 → (⋂ i ∈ I, F i).Nonempty) :
@@ -215,7 +227,9 @@ theorem helly_theorem_compact' [TopologicalSpace E] [T2Space E] {F : ι → Set 
 
 If `F` is a (possibly infinite) family of more than `d + 1` compact convex sets in a vector space of
 finite dimension `d`, and any `d + 1` sets of `F` intersect nontrivially,
-then all sets of `F` intersect nontrivially. -/
+then all sets of `F` intersect nontrivially.
+@isnad1 id=nonempty.4h4v.s8.e600cec58ce2 from=seed src=0 shape=b92557c6 vocab=f83273b7
+-/
 theorem helly_theorem_compact [TopologicalSpace E] [T2Space E] {F : ι → Set E}
     (h_card : finrank 𝕜 E + 1 ≤ ENat.card ι)
     (h_convex : ∀ i, Convex 𝕜 (F i)) (h_compact : ∀ i, IsCompact (F i))
@@ -238,7 +252,9 @@ theorem helly_theorem_compact [TopologicalSpace E] [T2Space E] {F : ι → Set E
 /-- **Helly's theorem** for sets of compact convex sets.
 
 If `F` is a set of compact convex sets in a vector space of finite dimension `d`, and any
-`k ≤ d + 1` sets from `F` intersect nontrivially, then all sets from `F` intersect nontrivially. -/
+`k ≤ d + 1` sets from `F` intersect nontrivially, then all sets from `F` intersect nontrivially.
+@isnad1 id=nonempty.3h3v.s8.675b4dcdf3b1 from=seed src=0 shape=0624abd5 vocab=11081e54
+-/
 theorem helly_theorem_set_compact' [TopologicalSpace E] [T2Space E] {F : Set (Set E)}
     (h_convex : ∀ X ∈ F, Convex 𝕜 X) (h_compact : ∀ X ∈ F, IsCompact X)
     (h_inter : ∀ G : Finset (Set E), (G : Set (Set E)) ⊆ F → #G ≤ finrank 𝕜 E + 1 →
@@ -260,7 +276,9 @@ theorem helly_theorem_set_compact' [TopologicalSpace E] [T2Space E] {F : Set (Se
 
 If `F` is a (possibly infinite) set of more than `d + 1` compact convex sets in a vector space of
 finite dimension `d`, and any `d + 1` sets from `F` intersect nontrivially,
-then all sets from `F` intersect nontrivially. -/
+then all sets from `F` intersect nontrivially.
+@isnad1 id=nonempty.4h3v.s8.3789ee3840e9 from=seed src=0 shape=e3cf938b vocab=eef2d905
+-/
 theorem helly_theorem_set_compact [TopologicalSpace E] [T2Space E] {F : Set (Set E)}
     (h_card : finrank 𝕜 E + 1 ≤ F.encard)
     (h_convex : ∀ X ∈ F, Convex 𝕜 X) (h_compact : ∀ X ∈ F, IsCompact X)

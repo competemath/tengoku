@@ -91,6 +91,9 @@ noncomputable def freeHomEquiv : (freeObj F ⟶ G) ≃ (F ⟶ G.presheaf ⋙ for
   left_inv ψ := by ext1 X; dsimp; ext x; simp [toPresheaf]
   right_inv φ := by ext; simp [toPresheaf]
 
+/--
+@isnad1 id=eq.1h6v.s10.986208936d32 from=seed src=0 shape=76aac325 vocab=c81ea1b8
+-/
 lemma free_hom_ext {ψ ψ' : freeObj F ⟶ G}
     (h : freeAdjunctionUnit R F ≫ Functor.whiskerRight ((toPresheaf _).map ψ) _ =
       freeAdjunctionUnit R F ≫ Functor.whiskerRight ((toPresheaf _).map ψ') _) : ψ = ψ' :=
@@ -111,11 +114,17 @@ noncomputable def freeAdjunction :
 
 set_option backward.isDefEq.respectTransparency.types false in
 variable (F G) in
+/--
+@isnad1 id=eq.0h4v.s9.c34a4523a103 from=seed src=0 shape=6fae73a2 vocab=6f4a33a2
+-/
 @[simp]
 lemma freeAdjunction_homEquiv : (freeAdjunction R).homEquiv F G = freeHomEquiv := by
   simp [freeAdjunction, Adjunction.mkOfHomEquiv_homEquiv]
 
 variable (R F) in
+/--
+@isnad1 id=eq.0h3v.s9.4d63b1cfe038 from=seed src=0 shape=ffc56e2d vocab=66a2c276
+-/
 @[simp]
 lemma freeAdjunction_unit_app :
     (freeAdjunction R).unit.app F = freeAdjunctionUnit R F := rfl

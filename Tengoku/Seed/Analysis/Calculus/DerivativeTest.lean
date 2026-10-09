@@ -91,7 +91,9 @@ private lemma continuousOn_Ici {f : ℝ → ℝ} {a : ℝ} (h : ContinuousAt f a
   exact hd₀.continuousOn.union_continuousAt isOpen_Ioi (by simp [h])
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonnegative on `Ioo a b` and
-nonpositive on `Ioo b c`. Then `f` attains its maximum on `Ioo a c` at `b`. -/
+nonpositive on `Ioo b c`. Then `f` attains its maximum on `Ioo a c` at `b`.
+@isnad1 id=ismaxon.5h4v.s8.b89cb7c1db58 from=seed src=0 shape=15f4343c vocab=40b14184
+-/
 lemma isMaxOn_Ioo_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (h : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Ioo a b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioo b c, deriv f x ≤ 0) :
@@ -101,7 +103,9 @@ lemma isMaxOn_Ioo_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (h : ContinuousAt f b
   · apply antitoneOn_of_deriv_nonpos (convex_Ico b c) (continuousOn_Ico h hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b` and `c`, the derivative `f'` is nonnegative on
-`Ioo a b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Ioc a c` at `b`. -/
+`Ioo a b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Ioc a c` at `b`.
+@isnad1 id=ismaxon.6h4v.s8.91efa17789d6 from=seed src=0 shape=91c14912 vocab=94933928
+-/
 lemma isMaxOn_Ioc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (hb : ContinuousAt f b) (hc : ContinuousAt f c)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Ioo a b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioo b c, deriv f x ≤ 0) :
@@ -111,7 +115,9 @@ lemma isMaxOn_Ioc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (hb : ContinuousAt f 
   · apply antitoneOn_of_deriv_nonpos (convex_Icc b c) (continuousOn_Icc hb hc hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `a` and `b`, the derivative `f'` is nonnegative on
-`Ioo a b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Ico a c` at `b`. -/
+`Ioo a b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Ico a c` at `b`.
+@isnad1 id=ismaxon.6h4v.s8.6448981ab86f from=seed src=0 shape=fa23a245 vocab=37a64353
+-/
 lemma isMaxOn_Ico_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f a) (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Ioo a b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioo b c, deriv f x ≤ 0) :
@@ -121,7 +127,9 @@ lemma isMaxOn_Ico_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f 
   · apply antitoneOn_of_deriv_nonpos (convex_Ico b c) (continuousOn_Ico hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `a`, `b`, and `c`, the derivative `f'` is nonnegative on
-`Ioo a b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Icc a c` at `b`. -/
+`Ioo a b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Icc a c` at `b`.
+@isnad1 id=ismaxon.7h4v.s8.f2938af93235 from=seed src=0 shape=929123b6 vocab=7abeae50
+-/
 lemma isMaxOn_Icc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f a) (hb : ContinuousAt f b)
     (hc : ContinuousAt f c) (hd₀ : DifferentiableOn ℝ f (Ioo a b))
     (hd₁ : DifferentiableOn ℝ f (Ioo b c)) (h₀ : ∀ x ∈ Ioo a b, 0 ≤ deriv f x)
@@ -131,7 +139,9 @@ lemma isMaxOn_Icc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f 
   · apply antitoneOn_of_deriv_nonpos (convex_Icc b c) (continuousOn_Icc hb hc hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonnegative on `Ioo a b` and
-nonpositive on `Ioi b`. Then `f` attains its maximum on `Ioi a` at `b`. -/
+nonpositive on `Ioi b`. Then `f` attains its maximum on `Ioi a` at `b`.
+@isnad1 id=ismaxon.5h3v.s7.d614b9e6226e from=seed src=0 shape=b258bebc vocab=4c7d7a37
+-/
 lemma isMaxOn_Ioi_of_deriv {f : ℝ → ℝ} {a b : ℝ} (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioi b))
     (h₀ : ∀ x ∈ Ioo a b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioi b, deriv f x ≤ 0) :
@@ -141,7 +151,9 @@ lemma isMaxOn_Ioi_of_deriv {f : ℝ → ℝ} {a b : ℝ} (hb : ContinuousAt f b)
   · apply antitoneOn_of_deriv_nonpos (convex_Ici b) (continuousOn_Ici hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `a` and `b`, the derivative `f'` is nonnegative on
-`Ioo a b` and nonpositive on `Ioi b`. Then `f` attains its maximum on `Ici a` at `b`. -/
+`Ioo a b` and nonpositive on `Ioi b`. Then `f` attains its maximum on `Ici a` at `b`.
+@isnad1 id=ismaxon.6h3v.s8.a62261a71ecb from=seed src=0 shape=6f170532 vocab=fe84f0a3
+-/
 lemma isMaxOn_Ici_of_deriv {f : ℝ → ℝ} {a b : ℝ} (ha : ContinuousAt f a) (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioi b))
     (h₀ : ∀ x ∈ Ioo a b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioi b, deriv f x ≤ 0) :
@@ -151,7 +163,9 @@ lemma isMaxOn_Ici_of_deriv {f : ℝ → ℝ} {a b : ℝ} (ha : ContinuousAt f a)
   · apply antitoneOn_of_deriv_nonpos (convex_Ici b) (continuousOn_Ici hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonnegative on `Iio b` and
-nonpositive on `Ioo b c`. Then `f` attains its maximum on `Iio c` at `b`. -/
+nonpositive on `Ioo b c`. Then `f` attains its maximum on `Iio c` at `b`.
+@isnad1 id=ismaxon.5h3v.s7.d73dd9700f61 from=seed src=0 shape=f599fef5 vocab=3c2dda4b
+-/
 lemma isMaxOn_Iio_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Iio b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Iio b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioo b c, deriv f x ≤ 0) :
@@ -161,7 +175,9 @@ lemma isMaxOn_Iio_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b)
   · apply antitoneOn_of_deriv_nonpos (convex_Ico b c) (continuousOn_Ico hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b` and `c`, the derivative `f'` is nonnegative on
-`Iio b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Iic c` at `b`. -/
+`Iio b` and nonpositive on `Ioo b c`. Then `f` attains its maximum on `Iic c` at `b`.
+@isnad1 id=ismaxon.6h3v.s8.4ea2ccb05331 from=seed src=0 shape=4b12c2c6 vocab=56144afa
+-/
 lemma isMaxOn_Iic_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b) (hc : ContinuousAt f c)
     (hd₀ : DifferentiableOn ℝ f (Iio b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Iio b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioo b c, deriv f x ≤ 0) :
@@ -171,7 +187,9 @@ lemma isMaxOn_Iic_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b)
   · apply antitoneOn_of_deriv_nonpos (convex_Icc b c) (continuousOn_Icc hb hc hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonnegative on `Iio b` and
-nonpositive on `Ioi b`. Then `f` attains its maximum on `ℝ` at `b`. -/
+nonpositive on `Ioi b`. Then `f` attains its maximum on `ℝ` at `b`.
+@isnad1 id=ismaxon.5h2v.s7.f6d7e3d087db from=seed src=0 shape=a7faefa0 vocab=98a54a9e
+-/
 lemma isMaxOn_univ_of_deriv {f : ℝ → ℝ} {b : ℝ} (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Iio b)) (hd₁ : DifferentiableOn ℝ f (Ioi b))
     (h₀ : ∀ x ∈ Iio b, 0 ≤ deriv f x) (h₁ : ∀ x ∈ Ioi b, deriv f x ≤ 0) :
@@ -182,7 +200,9 @@ lemma isMaxOn_univ_of_deriv {f : ℝ → ℝ} {b : ℝ} (hb : ContinuousAt f b)
 
 /-- The First-Derivative Test from calculus, maxima version.
 Suppose `a < b < c`, `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonnegative on
-`Ioo a b` and nonpositive on `Ioo b c`. Then `f` has a local maximum at `b`. -/
+`Ioo a b` and nonpositive on `Ioo b c`. Then `f` has a local maximum at `b`.
+@isnad1 id=islocalm.7h4v.s8.8ce87c259c82 from=seed src=0 shape=4d40c8f5 vocab=f29f86df
+-/
 lemma isLocalMax_of_deriv_Ioo {f : ℝ → ℝ} {a b c : ℝ} (g₀ : a < b) (g₁ : b < c)
     (h : ContinuousAt f b) (hd₀ : DifferentiableOn ℝ f (Ioo a b))
     (hd₁ : DifferentiableOn ℝ f (Ioo b c)) (h₀ : ∀ x ∈ Ioo a b, 0 ≤ deriv f x)
@@ -190,7 +210,9 @@ lemma isLocalMax_of_deriv_Ioo {f : ℝ → ℝ} {a b c : ℝ} (g₀ : a < b) (g�
   (isMaxOn_Ioo_of_deriv h hd₀ hd₁ h₀ h₁).isLocalMax (Ioo_mem_nhds g₀ g₁)
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonpositive on `Ioo a b` and
-nonnegative on `Ioo b c`. Then `f` attains its minimum on `Ioo a c` at `b`. -/
+nonnegative on `Ioo b c`. Then `f` attains its minimum on `Ioo a c` at `b`.
+@isnad1 id=isminon.5h4v.s8.5866f0e1a206 from=seed src=0 shape=ed7f053a vocab=a84e61d2
+-/
 lemma isMinOn_Ioo_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (h : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Ioo a b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioo b c, 0 ≤ deriv f x) :
@@ -200,7 +222,9 @@ lemma isMinOn_Ioo_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (h : ContinuousAt f b
   · apply monotoneOn_of_deriv_nonneg (convex_Ico b c) (continuousOn_Ico h hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b` and `c`, the derivative `f'` is nonpositive on
-`Ioo a b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Ioc a c` at `b`. -/
+`Ioo a b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Ioc a c` at `b`.
+@isnad1 id=isminon.6h4v.s8.12a49fe55fbd from=seed src=0 shape=2c5b4cbb vocab=e8e235d6
+-/
 lemma isMinOn_Ioc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (hb : ContinuousAt f b) (hc : ContinuousAt f c)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Ioo a b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioo b c, 0 ≤ deriv f x) :
@@ -210,7 +234,9 @@ lemma isMinOn_Ioc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (hb : ContinuousAt f 
   · apply monotoneOn_of_deriv_nonneg (convex_Icc b c) (continuousOn_Icc hb hc hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `a` and `b`, the derivative `f'` is nonpositive on
-`Ioo a b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Ico a c` at `b`. -/
+`Ioo a b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Ico a c` at `b`.
+@isnad1 id=isminon.6h4v.s8.85e9696165da from=seed src=0 shape=84da51d0 vocab=2d2ae54a
+-/
 lemma isMinOn_Ico_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f a) (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Ioo a b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioo b c, 0 ≤ deriv f x) :
@@ -220,7 +246,9 @@ lemma isMinOn_Ico_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f 
   · apply monotoneOn_of_deriv_nonneg (convex_Ico b c) (continuousOn_Ico hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `a`, `b`, and `c`, the derivative `f'` is nonpositive on
-`Ioo a b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Icc a c` at `b`. -/
+`Ioo a b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Icc a c` at `b`.
+@isnad1 id=isminon.7h4v.s8.1f75e46c8f92 from=seed src=0 shape=e14180d8 vocab=23d8de7e
+-/
 lemma isMinOn_Icc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f a) (hb : ContinuousAt f b)
     (hc : ContinuousAt f c) (hd₀ : DifferentiableOn ℝ f (Ioo a b))
     (hd₁ : DifferentiableOn ℝ f (Ioo b c)) (h₀ : ∀ x ∈ Ioo a b, deriv f x ≤ 0)
@@ -230,7 +258,9 @@ lemma isMinOn_Icc_of_deriv {f : ℝ → ℝ} {a b c : ℝ} (ha : ContinuousAt f 
   · apply monotoneOn_of_deriv_nonneg (convex_Icc b c) (continuousOn_Icc hb hc hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonpositive on `Ioo a b` and
-nonnegative on `Ioi b`. Then `f` attains its minimum on `Ioi a` at `b`. -/
+nonnegative on `Ioi b`. Then `f` attains its minimum on `Ioi a` at `b`.
+@isnad1 id=isminon.5h3v.s7.546716281a65 from=seed src=0 shape=80e5c4e5 vocab=e46478c9
+-/
 lemma isMinOn_Ioi_of_deriv {f : ℝ → ℝ} {a b : ℝ} (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioi b))
     (h₀ : ∀ x ∈ Ioo a b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioi b, 0 ≤ deriv f x) :
@@ -240,7 +270,9 @@ lemma isMinOn_Ioi_of_deriv {f : ℝ → ℝ} {a b : ℝ} (hb : ContinuousAt f b)
   · apply monotoneOn_of_deriv_nonneg (convex_Ici b) (continuousOn_Ici hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `a` and `b`, the derivative `f'` is nonpositive on
-`Ioo a b` and nonnegative on `Ioi b`. Then `f` attains its minimum on `Ici a` at `b`. -/
+`Ioo a b` and nonnegative on `Ioi b`. Then `f` attains its minimum on `Ici a` at `b`.
+@isnad1 id=isminon.6h3v.s8.ab1ae8a7e1af from=seed src=0 shape=c199b047 vocab=29e19ca8
+-/
 lemma isMinOn_Ici_of_deriv {f : ℝ → ℝ} {a b : ℝ} (ha : ContinuousAt f a) (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Ioo a b)) (hd₁ : DifferentiableOn ℝ f (Ioi b))
     (h₀ : ∀ x ∈ Ioo a b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioi b, 0 ≤ deriv f x) :
@@ -250,7 +282,9 @@ lemma isMinOn_Ici_of_deriv {f : ℝ → ℝ} {a b : ℝ} (ha : ContinuousAt f a)
   · apply monotoneOn_of_deriv_nonneg (convex_Ici b) (continuousOn_Ici hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonpositive on `Iio b` and
-nonnegative on `Ioo b c`. Then `f` attains its minimum on `Iio c` at `b`. -/
+nonnegative on `Ioo b c`. Then `f` attains its minimum on `Iio c` at `b`.
+@isnad1 id=isminon.5h3v.s7.baab9263f597 from=seed src=0 shape=99ce0d67 vocab=6bdd172a
+-/
 lemma isMinOn_Iio_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Iio b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Iio b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioo b c, 0 ≤ deriv f x) :
@@ -260,7 +294,9 @@ lemma isMinOn_Iio_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b)
   · apply monotoneOn_of_deriv_nonneg (convex_Ico b c) (continuousOn_Ico hb hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b` and `c`, the derivative `f'` is nonpositive on
-`Iio b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Iic c` at `b`. -/
+`Iio b` and nonnegative on `Ioo b c`. Then `f` attains its minimum on `Iic c` at `b`.
+@isnad1 id=isminon.6h3v.s8.851a6193c2b2 from=seed src=0 shape=86a7a5a7 vocab=281a6a3b
+-/
 lemma isMinOn_Iic_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b) (hc : ContinuousAt f c)
     (hd₀ : DifferentiableOn ℝ f (Iio b)) (hd₁ : DifferentiableOn ℝ f (Ioo b c))
     (h₀ : ∀ x ∈ Iio b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioo b c, 0 ≤ deriv f x) :
@@ -270,7 +306,9 @@ lemma isMinOn_Iic_of_deriv {f : ℝ → ℝ} {b c : ℝ} (hb : ContinuousAt f b)
   · apply monotoneOn_of_deriv_nonneg (convex_Icc b c) (continuousOn_Icc hb hc hd₁) <;> simp_all
 
 /-- Suppose `f : ℝ → ℝ` is continuous at `b`, the derivative `f'` is nonpositive on `Iio b` and
-nonnegative on `Ioi b`. Then `f` attains its minimum on `ℝ` at `b`. -/
+nonnegative on `Ioi b`. Then `f` attains its minimum on `ℝ` at `b`.
+@isnad1 id=isminon.5h2v.s7.5afd09c704f8 from=seed src=0 shape=aa9cdc6c vocab=7762e864
+-/
 lemma isMinOn_univ_of_deriv {f : ℝ → ℝ} {b : ℝ} (hb : ContinuousAt f b)
     (hd₀ : DifferentiableOn ℝ f (Iio b)) (hd₁ : DifferentiableOn ℝ f (Ioi b))
     (h₀ : ∀ x ∈ Iio b, deriv f x ≤ 0) (h₁ : ∀ x ∈ Ioi b, 0 ≤ deriv f x) :
@@ -279,7 +317,9 @@ lemma isMinOn_univ_of_deriv {f : ℝ → ℝ} {b : ℝ} (hb : ContinuousAt f b)
   · apply antitoneOn_of_deriv_nonpos (convex_Iic b) (continuousOn_Iic hb hd₀) <;> simp_all
   · apply monotoneOn_of_deriv_nonneg (convex_Ici b) (continuousOn_Ici hb hd₁) <;> simp_all
 
-/-- The First-Derivative Test from calculus, minima version. -/
+/-- The First-Derivative Test from calculus, minima version.
+@isnad1 id=islocalm.7h4v.s8.ea0b0ce7a0b2 from=seed src=0 shape=804eca90 vocab=1c1aa969
+-/
 lemma isLocalMin_of_deriv_Ioo {f : ℝ → ℝ} {a b c : ℝ} (g₀ : a < b) (g₁ : b < c)
     (h : ContinuousAt f b) (hd₀ : DifferentiableOn ℝ f (Ioo a b))
     (hd₁ : DifferentiableOn ℝ f (Ioo b c)) (h₀ : ∀ x ∈ Ioo a b, deriv f x ≤ 0)
@@ -287,7 +327,9 @@ lemma isLocalMin_of_deriv_Ioo {f : ℝ → ℝ} {a b c : ℝ} (g₀ : a < b) (g�
   (isMinOn_Ioo_of_deriv h hd₀ hd₁ h₀ h₁).isLocalMin (Ioo_mem_nhds g₀ g₁)
 
 /-- The First-Derivative Test from calculus, maxima version,
-expressed in terms of left and right filters. -/
+expressed in terms of left and right filters.
+@isnad1 id=islocalm.5h2v.s8.13a29092bee2 from=seed src=0 shape=5ce81e67 vocab=389a0191
+-/
 lemma isLocalMax_of_deriv' {f : ℝ → ℝ} {b : ℝ} (h : ContinuousAt f b)
     (hd₀ : ∀ᶠ x in 𝓝[<] b, DifferentiableAt ℝ f x) (hd₁ : ∀ᶠ x in 𝓝[>] b, DifferentiableAt ℝ f x)
     (h₀ : ∀ᶠ x in 𝓝[<] b, 0 ≤ deriv f x) (h₁ : ∀ᶠ x in 𝓝[>] b, deriv f x ≤ 0) :
@@ -300,7 +342,9 @@ lemma isLocalMax_of_deriv' {f : ℝ → ℝ} {b : ℝ} (h : ContinuousAt f b)
     (fun _ hx => (ha.2 hx).2) (fun x hx => (hc.2 hx).2)
 
 /-- The First-Derivative Test from calculus, minima version,
-expressed in terms of left and right filters. -/
+expressed in terms of left and right filters.
+@isnad1 id=islocalm.5h2v.s8.1f006a000571 from=seed src=0 shape=8cac8b38 vocab=74188e16
+-/
 lemma isLocalMin_of_deriv' {f : ℝ → ℝ} {b : ℝ} (h : ContinuousAt f b)
     (hd₀ : ∀ᶠ x in 𝓝[<] b, DifferentiableAt ℝ f x) (hd₁ : ∀ᶠ x in 𝓝[>] b, DifferentiableAt ℝ f x)
     (h₀ : ∀ᶠ x in 𝓝[<] b, deriv f x ≤ 0) (h₁ : ∀ᶠ x in 𝓝[>] b, deriv f x ≥ 0) :
@@ -312,14 +356,18 @@ lemma isLocalMin_of_deriv' {f : ℝ → ℝ} {b : ℝ} (h : ContinuousAt f b)
     (fun _ hx => (hc.2 hx).1.differentiableWithinAt)
     (fun _ hx => (ha.2 hx).2) (fun x hx => (hc.2 hx).2)
 
-/-- The First Derivative test, maximum version. -/
+/-- The First Derivative test, maximum version.
+@isnad1 id=islocalm.4h2v.s7.dd0b875581d8 from=seed src=0 shape=5f9e0852 vocab=220009cc
+-/
 theorem isLocalMax_of_deriv {f : ℝ → ℝ} {b : ℝ} (h : ContinuousAt f b)
     (hd : ∀ᶠ x in 𝓝[≠] b, DifferentiableAt ℝ f x)
     (h₀ : ∀ᶠ x in 𝓝[<] b, 0 ≤ deriv f x) (h₁ : ∀ᶠ x in 𝓝[>] b, deriv f x ≤ 0) :
     IsLocalMax f b :=
   isLocalMax_of_deriv' h (nhdsLT_le_nhdsNE _ (by tauto)) (nhdsGT_le_nhdsNE _ (by tauto)) h₀ h₁
 
-/-- The First Derivative test, minimum version. -/
+/-- The First Derivative test, minimum version.
+@isnad1 id=islocalm.4h2v.s7.dc27c8b2173c from=seed src=0 shape=7daec9e6 vocab=2d873231
+-/
 theorem isLocalMin_of_deriv {f : ℝ → ℝ} {b : ℝ} (h : ContinuousAt f b)
     (hd : ∀ᶠ x in 𝓝[≠] b, DifferentiableAt ℝ f x)
     (h₀ : ∀ᶠ x in 𝓝[<] b, deriv f x ≤ 0) (h₁ : ∀ᶠ x in 𝓝[>] b, 0 ≤ deriv f x) :
@@ -333,7 +381,9 @@ section SecondDeriv
 variable {f : ℝ → ℝ} {x₀ : ℝ}
 
 /-- If the derivative of `f` is positive at a root `x₀` of `f`, then locally the sign of `f x`
-matches `x - x₀`. -/
+matches `x - x₀`.
+@isnad1 id=eventual.2h2v.s7.47b49a0e4688 from=seed src=0 shape=10cbfc8b vocab=eed85e4b
+-/
 lemma eventually_nhdsWithin_sign_eq_of_deriv_pos (hf : deriv f x₀ > 0) (hx : f x₀ = 0) :
     ∀ᶠ x in 𝓝 x₀, sign (f x) = sign (x - x₀) := by
   rw [← nhdsNE_sup_pure x₀, eventually_sup]
@@ -348,38 +398,54 @@ lemma eventually_nhdsWithin_sign_eq_of_deriv_pos (hf : deriv f x₀ > 0) (hx : f
   · rw [sign_pos (pos_of_slope_pos hx' hx₀ hx), sign_pos (sub_pos.mpr hx')]
 
 /-- If the derivative of `f` is negative at a root `x₀` of `f`, then locally the sign of `f x`
-matches `x₀ - x`. -/
+matches `x₀ - x`.
+@isnad1 id=eventual.2h2v.s7.a31cf47c26d3 from=seed src=0 shape=622ee8f0 vocab=c4e7e9f1
+-/
 lemma eventually_nhdsWithin_sign_eq_of_deriv_neg (hf : deriv f x₀ < 0) (hx : f x₀ = 0) :
     ∀ᶠ x in 𝓝 x₀, sign (f x) = sign (x₀ - x) := by
   simpa [Left.sign_neg, -neg_sub, ← neg_sub x₀] using
     eventually_nhdsWithin_sign_eq_of_deriv_pos
       (f := (-f ·)) (x₀ := x₀) (by simpa [deriv.neg]) (by simpa)
 
+/--
+@isnad1 id=eventual.1h2v.s7.7c385cf6f66a from=seed src=0 shape=e69a4e3b vocab=57852596
+-/
 lemma deriv_neg_left_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ}
     (h₀ : ∀ᶠ (x : ℝ) in 𝓝[≠] x₀, sign (deriv f x) = sign (x - x₀)) :
     ∀ᶠ (b : ℝ) in 𝓝[<] x₀, deriv f b < 0 := by
   filter_upwards [nhdsLT_le_nhdsNE _ h₀, self_mem_nhdsWithin] with x hx' (hx : x < x₀)
   rwa [← sub_neg, ← sign_eq_neg_one_iff, ← hx', sign_eq_neg_one_iff] at hx
 
+/--
+@isnad1 id=eventual.1h2v.s7.ec2fb15f14c4 from=seed src=0 shape=dad03a56 vocab=47e0bb99
+-/
 lemma deriv_neg_right_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ}
     (h₀ : ∀ᶠ (x : ℝ) in 𝓝[≠] x₀, sign (deriv f x) = sign (x₀ - x)) :
      ∀ᶠ (b : ℝ) in 𝓝[>] x₀, deriv f b < 0 := by
   filter_upwards [nhdsGT_le_nhdsNE _ h₀, self_mem_nhdsWithin] with x hx' (hx : x₀ < x)
   rwa [← sub_neg, ← sign_eq_neg_one_iff, ← hx', sign_eq_neg_one_iff] at hx
 
+/--
+@isnad1 id=eventual.1h2v.s7.46907195fa5f from=seed src=0 shape=e69a4e3b vocab=fbbccde3
+-/
 lemma deriv_pos_right_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ}
     (h₀ : ∀ᶠ (x : ℝ) in 𝓝[≠] x₀, sign (deriv f x) = sign (x - x₀)) :
      ∀ᶠ (b : ℝ) in 𝓝[>] x₀, deriv f b > 0 := by
   filter_upwards [nhdsGT_le_nhdsNE _ h₀, self_mem_nhdsWithin] with x hx' (hx : x₀ < x)
   rwa [← sub_pos, ← sign_eq_one_iff, ← hx', sign_eq_one_iff] at hx
 
+/--
+@isnad1 id=eventual.1h2v.s7.8a58afda02db from=seed src=0 shape=dad03a56 vocab=1edc15c6
+-/
 lemma deriv_pos_left_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ}
     (h₀ : ∀ᶠ (x : ℝ) in 𝓝[≠] x₀, sign (deriv f x) = sign (x₀ - x)) :
     ∀ᶠ (b : ℝ) in 𝓝[<] x₀, deriv f b > 0 := by
   filter_upwards [nhdsLT_le_nhdsNE _ h₀, self_mem_nhdsWithin] with x hx' (hx : x < x₀)
   rwa [← sub_pos, ← sign_eq_one_iff, ← hx', sign_eq_one_iff] at hx
 
-/-- The First Derivative test with a hypothesis on the sign of the derivative, maximum version. -/
+/-- The First Derivative test with a hypothesis on the sign of the derivative, maximum version.
+@isnad1 id=islocalm.2h2v.s7.b86e445144d1 from=seed src=0 shape=b0636026 vocab=19238c84
+-/
 theorem isLocalMax_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ} (h : ContinuousAt f x₀)
     (hf : ∀ᶠ x in 𝓝[≠] x₀, sign (deriv f x) = sign (x₀ - x)) :
     IsLocalMax f x₀ := by
@@ -390,7 +456,9 @@ theorem isLocalMax_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ} (h : ContinuousA
   exact isLocalMax_of_deriv h (hf.mono fun x hx ↦ differentiableAt_of_deriv_ne_zero hx)
     (hl.mono fun _ => le_of_lt) (hg.mono fun _ => le_of_lt)
 
-/-- The First Derivative test with a hypothesis on the sign of the derivative, minimum version. -/
+/-- The First Derivative test with a hypothesis on the sign of the derivative, minimum version.
+@isnad1 id=islocalm.2h2v.s7.c0c10b4bd80e from=seed src=0 shape=7babbedc vocab=5eb969fa
+-/
 theorem isLocalMin_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ} (h : ContinuousAt f x₀)
     (hf : ∀ᶠ x in 𝓝[≠] x₀, sign (deriv f x) = sign (x - x₀)) :
     IsLocalMin f x₀ := by
@@ -399,13 +467,17 @@ theorem isLocalMin_of_sign_deriv {f : ℝ → ℝ} {x₀ : ℝ} (h : ContinuousA
 
 /-- The Second-Derivative Test from calculus, minimum version.
 Applies to functions like `x^2 + 1[x ≥ 0]` as well as twice differentiable
-functions. -/
+functions.
+@isnad1 id=islocalm.3h2v.s7.6b2189a70973 from=seed src=0 shape=5cd808d8 vocab=e0019fb5
+-/
 theorem isLocalMin_of_deriv_deriv_pos (hf : deriv (deriv f) x₀ > 0) (hd : deriv f x₀ = 0)
     (hc : ContinuousAt f x₀) : IsLocalMin f x₀ :=
   isLocalMin_of_sign_deriv hc <| nhdsWithin_le_nhds <|
     eventually_nhdsWithin_sign_eq_of_deriv_pos hf hd
 
-/-- The Second-Derivative Test from calculus, maximum version. -/
+/-- The Second-Derivative Test from calculus, maximum version.
+@isnad1 id=islocalm.3h2v.s7.f9397b0452f0 from=seed src=0 shape=5cd808d8 vocab=38da5446
+-/
 theorem isLocalMax_of_deriv_deriv_neg (hf : deriv (deriv f) x₀ < 0) (hd : deriv f x₀ = 0)
     (hc : ContinuousAt f x₀) : IsLocalMax f x₀ := by
   simpa using isLocalMin_of_deriv_deriv_pos (by simpa) (by simpa) hc.neg |>.neg

@@ -145,6 +145,7 @@ If M is a doubly stochastic matrix, then it is a convex combination of permutati
 `doublyStochastic_eq_convexHull_permMatrix` shows `doublyStochastic n` is exactly the convex hull of
 the permutation matrices, and this lemma is instead most useful for accessing the coefficients of
 each permutation matrices directly.
+@isnad1 id=ex.1h3v.s8.c580e85b1b34 from=seed src=0 shape=6c339d89 vocab=4126f99d
 -/
 lemma exists_eq_sum_perm_of_mem_doublyStochastic (hM : M ∈ doublyStochastic R n) :
     ∃ w : Equiv.Perm n → R, (∀ σ, 0 ≤ w σ) ∧ ∑ σ, w σ = 1 ∧ ∑ σ, w σ • σ.permMatrix R = M := by
@@ -163,6 +164,7 @@ lemma exists_eq_sum_perm_of_mem_doublyStochastic (hM : M ∈ doublyStochastic R 
 The set of doubly stochastic matrices is the convex hull of the permutation matrices.  Note
 `exists_eq_sum_perm_of_mem_doublyStochastic` gives a convex weighting of each permutation matrix
 directly.  To show `doublyStochastic n` is convex, use `convex_doublyStochastic`.
+@isnad1 id=eq.0h2v.s8.cac0da85ee3a from=seed src=0 shape=c3ddc60a vocab=d751fa39
 -/
 theorem doublyStochastic_eq_convexHull_permMatrix :
     doublyStochastic R n = convexHull R {σ.permMatrix R | σ : Equiv.Perm n} := by
@@ -176,6 +178,7 @@ theorem doublyStochastic_eq_convexHull_permMatrix :
 
 /--
 The set of extreme points of the doubly stochastic matrices is the set of permutation matrices.
+@isnad1 id=eq.0h2v.s7.109fe3ec1136 from=seed src=0 shape=3dece6e3 vocab=3b7aad50
 -/
 theorem extremePoints_doublyStochastic :
     Set.extremePoints R (doublyStochastic R n) = {σ.permMatrix R | σ : Equiv.Perm n} := by
@@ -202,6 +205,9 @@ end LinearOrderedField
 
 open scoped Matrix.Norms.L2Operator
 
+/--
+@isnad1 id=le.1h2v.s6.c6ecc0e37d58 from=seed src=0 shape=4ce2ecde vocab=cd42e668
+-/
 theorem Matrix.l2_opNorm_le_one_of_mem_doublyStochastic {M : Matrix n n ℝ}
     (hM : M ∈ doublyStochastic ℝ n) :
     ‖M‖ ≤ 1 := by

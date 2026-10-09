@@ -27,7 +27,9 @@ open scoped Topology
 variable {a b : ℝ} {f f' : ℝ → ℝ}
 
 /-- **Darboux's theorem**: if `a ≤ b` and `f' a < m < f' b`, then `f' c = m` for some
-`c ∈ (a, b)`. -/
+`c ∈ (a, b)`.
+@isnad1 id=mem.4h5v.s6.4806b3e10511 from=seed src=0 shape=0c30d22e vocab=068dffda
+-/
 theorem exists_hasDerivWithinAt_eq_of_gt_of_lt (hab : a ≤ b)
     (hf : ∀ x ∈ Icc a b, HasDerivWithinAt f (f' x) (Icc a b) x) {m : ℝ} (hma : f' a < m)
     (hmb : m < f' b) : m ∈ f' '' Ioo a b := by
@@ -63,6 +65,7 @@ theorem exists_hasDerivWithinAt_eq_of_gt_of_lt (hab : a ≤ b)
   exact (hc.isLocalMin this).hasDerivAt_eq_zero ((hg c cmem).hasDerivAt this)
 
 /-- **Darboux's theorem**: if `a ≤ b` and `f' b < m < f' a`, then `f' c = m` for some `c ∈ (a, b)`.
+@isnad1 id=mem.4h5v.s6.4b3f0dada05b from=seed src=0 shape=50fcfecd vocab=068dffda
 -/
 theorem exists_hasDerivWithinAt_eq_of_lt_of_gt (hab : a ≤ b)
     (hf : ∀ x ∈ Icc a b, HasDerivWithinAt f (f' x) (Icc a b) x) {m : ℝ} (hma : m < f' a)
@@ -73,7 +76,9 @@ theorem exists_hasDerivWithinAt_eq_of_lt_of_gt (hab : a ≤ b)
   ⟨c, cmem, neg_injective hc⟩
 
 /-- **Darboux's theorem**: the image of a `Set.OrdConnected` set under `f'` is a `Set.OrdConnected`
-set, `HasDerivWithinAt` version. -/
+set, `HasDerivWithinAt` version.
+@isnad1 id=ordconne.2h3v.s6.bafc57f24a0f from=seed src=0 shape=b083832c vocab=a2837438
+-/
 theorem Set.OrdConnected.image_hasDerivWithinAt {s : Set ℝ} (hs : OrdConnected s)
     (hf : ∀ x ∈ s, HasDerivWithinAt f (f' x) s x) : OrdConnected (f' '' s) := by
   apply ordConnected_of_Ioo
@@ -91,37 +96,49 @@ theorem Set.OrdConnected.image_hasDerivWithinAt {s : Set ℝ} (hs : OrdConnected
     exact ⟨c, this <| Ioo_subset_Icc_self cmem, hc⟩
 
 /-- **Darboux's theorem**: the image of a `Set.OrdConnected` set under `f'` is a `Set.OrdConnected`
-set, `derivWithin` version. -/
+set, `derivWithin` version.
+@isnad1 id=ordconne.2h2v.s6.823b6073877a from=seed src=0 shape=38fd7972 vocab=a07e94f8
+-/
 theorem Set.OrdConnected.image_derivWithin {s : Set ℝ} (hs : OrdConnected s)
     (hf : DifferentiableOn ℝ f s) : OrdConnected (derivWithin f s '' s) :=
   hs.image_hasDerivWithinAt fun x hx => (hf x hx).hasDerivWithinAt
 
 /-- **Darboux's theorem**: the image of a `Set.OrdConnected` set under `f'` is a `Set.OrdConnected`
-set, `deriv` version. -/
+set, `deriv` version.
+@isnad1 id=ordconne.2h2v.s6.5ce8b2f0fc10 from=seed src=0 shape=c96124a6 vocab=e287f1fe
+-/
 theorem Set.OrdConnected.image_deriv {s : Set ℝ} (hs : OrdConnected s)
     (hf : ∀ x ∈ s, DifferentiableAt ℝ f x) : OrdConnected (deriv f '' s) :=
   hs.image_hasDerivWithinAt fun x hx => (hf x hx).hasDerivAt.hasDerivWithinAt
 
 /-- **Darboux's theorem**: the image of a convex set under `f'` is a convex set,
-`HasDerivWithinAt` version. -/
+`HasDerivWithinAt` version.
+@isnad1 id=convex.2h3v.s6.8320fed823d3 from=seed src=0 shape=b0e8c3bc vocab=cf1ba812
+-/
 theorem Convex.image_hasDerivWithinAt {s : Set ℝ} (hs : Convex ℝ s)
     (hf : ∀ x ∈ s, HasDerivWithinAt f (f' x) s x) : Convex ℝ (f' '' s) :=
   (hs.ordConnected.image_hasDerivWithinAt hf).convex
 
 /-- **Darboux's theorem**: the image of a convex set under `f'` is a convex set,
-`derivWithin` version. -/
+`derivWithin` version.
+@isnad1 id=convex.2h2v.s6.7528bf02cde7 from=seed src=0 shape=32eeefb4 vocab=1e6f8c8d
+-/
 theorem Convex.image_derivWithin {s : Set ℝ} (hs : Convex ℝ s) (hf : DifferentiableOn ℝ f s) :
     Convex ℝ (derivWithin f s '' s) :=
   (hs.ordConnected.image_derivWithin hf).convex
 
 /-- **Darboux's theorem**: the image of a convex set under `f'` is a convex set,
-`deriv` version. -/
+`deriv` version.
+@isnad1 id=convex.2h2v.s6.4ebf880aec14 from=seed src=0 shape=c83b6429 vocab=58257e41
+-/
 theorem Convex.image_deriv {s : Set ℝ} (hs : Convex ℝ s) (hf : ∀ x ∈ s, DifferentiableAt ℝ f x) :
     Convex ℝ (deriv f '' s) :=
   (hs.ordConnected.image_deriv hf).convex
 
 /-- **Darboux's theorem**: if `a ≤ b` and `f' a ≤ m ≤ f' b`, then `f' c = m` for some
-`c ∈ [a, b]`. -/
+`c ∈ [a, b]`.
+@isnad1 id=mem.4h5v.s6.ed2fb8844440 from=seed src=0 shape=cc70f861 vocab=0e291774
+-/
 theorem exists_hasDerivWithinAt_eq_of_ge_of_le (hab : a ≤ b)
     (hf : ∀ x ∈ Icc a b, HasDerivWithinAt f (f' x) (Icc a b) x) {m : ℝ} (hma : f' a ≤ m)
     (hmb : m ≤ f' b) : m ∈ f' '' Icc a b :=
@@ -129,7 +146,9 @@ theorem exists_hasDerivWithinAt_eq_of_ge_of_le (hab : a ≤ b)
     (mem_image_of_mem _ (right_mem_Icc.2 hab)) ⟨hma, hmb⟩
 
 /-- **Darboux's theorem**: if `a ≤ b` and `f' b ≤ m ≤ f' a`, then `f' c = m` for some
-`c ∈ [a, b]`. -/
+`c ∈ [a, b]`.
+@isnad1 id=mem.4h5v.s6.c89ebd1d9389 from=seed src=0 shape=f7022510 vocab=0e291774
+-/
 theorem exists_hasDerivWithinAt_eq_of_le_of_ge (hab : a ≤ b)
     (hf : ∀ x ∈ Icc a b, HasDerivWithinAt f (f' x) (Icc a b) x) {m : ℝ} (hma : m ≤ f' a)
     (hmb : f' b ≤ m) : m ∈ f' '' Icc a b :=
@@ -137,7 +156,9 @@ theorem exists_hasDerivWithinAt_eq_of_le_of_ge (hab : a ≤ b)
     (mem_image_of_mem _ (left_mem_Icc.2 hab)) ⟨hmb, hma⟩
 
 /-- If the derivative of a function is never equal to `m`, then either
-it is always greater than `m`, or it is always less than `m`. -/
+it is always greater than `m`, or it is always less than `m`.
+@isnad1 id=or.3h4v.s6.b0a26eed4e19 from=seed src=0 shape=cf8651b9 vocab=2023eb2e
+-/
 theorem hasDerivWithinAt_forall_lt_or_forall_gt_of_forall_ne {s : Set ℝ} (hs : Convex ℝ s)
     (hf : ∀ x ∈ s, HasDerivWithinAt f (f' x) s x) {m : ℝ} (hf' : ∀ x ∈ s, f' x ≠ m) :
     (∀ x ∈ s, f' x < m) ∨ ∀ x ∈ s, m < f' x := by

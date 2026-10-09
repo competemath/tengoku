@@ -81,17 +81,26 @@ abbrev map : Δ[c.dim + 1] ⟶ X :=
     ((P.p c.s).val.cast (P.isUniquelyCodimOneFace c.s).dim_eq).simplex
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s7.af1b48d99c90 from=seed src=0 shape=fb18ffa5 vocab=979ce3b0
+-/
 @[simp]
 lemma range_map : Subcomplex.range c.map = (P.p c.s).val.subcomplex := by
   rw [range_eq_ofSimplex, Equiv.apply_symm_apply, S.ofSimplex_eq_subcomplex_mk,
     ← S.cast_eq_self _ (P.dim_p c.s)]
   dsimp [S.subcomplex]
 
+/--
+@isnad1 id=eq.0h7v.s10.d763e99e5ef8 from=seed src=0 shape=34a62777 vocab=a1a2f42c
+-/
 lemma map_app_objEquiv_symm_δ_index :
     c.map.app (op ⦋c.dim⦌) (stdSimplex.objEquiv.symm (SimplexCategory.δ c.index)) =
       c.s.val.simplex :=
   (P.isUniquelyCodimOneFace c.s).δ_index rfl
 
+/--
+@isnad1 id=not.0h7v.s7.5939d3a079a9 from=seed src=0 shape=b5cd471f vocab=ad54707e
+-/
 lemma subcomplex_not_le_image_horn : ¬ c.s.val.subcomplex ≤ c.horn.image c.map := by
   intro h
   simp only [Subfunctor.ofSection_le_iff, image_obj, Set.mem_image] at h
@@ -103,11 +112,17 @@ lemma subcomplex_not_le_image_horn : ¬ c.s.val.subcomplex ≤ c.horn.image c.ma
   rw [← ofSimplex_le_iff, subcomplex_le_horn_iff, ← stdSimplex.face_singleton_compl] at h₁
   tauto
 
+/--
+@isnad1 id=lt.0h7v.s8.5d5f66e89454 from=seed src=0 shape=f61dec4c vocab=4c3a083e
+-/
 lemma image_horn_lt_subcomplex : c.horn.image c.map < (P.p c.s).val.subcomplex := by
   rw [lt_iff_le_and_ne]
   exact ⟨by simpa using! image_le_range c.horn c.map,
     fun h ↦ c.subcomplex_not_le_image_horn (by simpa only [h] using! P.le c.s)⟩
 
+/--
+@isnad1 id=eq.0h7v.s8.49410994605d from=seed src=0 shape=f2416cb4 vocab=31241e17
+-/
 @[simp]
 lemma image_face_index_compl :
     (stdSimplex.face {c.index}ᶜ).image c.map = c.s.val.subcomplex := by
@@ -128,10 +143,16 @@ for a proper pairing of a subcomplex. -/
 def filtration (i : ι) : X.Subcomplex :=
   A ⊔ ⨆ (j : ι) (_ : j < i) (c : f.Cell j), (P.p c.s).val.subcomplex
 
+/--
+@isnad1 id=eq.0h6v.s8.b724a4ffeb08 from=seed src=0 shape=ab61ae93 vocab=3724964b
+-/
 lemma filtration_def (i : ι) :
     f.filtration i = A ⊔ ⨆ (j : ι) (_ : j < i) (c : f.Cell j), (P.p c.s).val.subcomplex :=
   rfl
 
+/--
+@isnad1 id=le.1h8v.s7.7b43a859a99d from=seed src=0 shape=b056f38a vocab=b1c66856
+-/
 lemma subcomplex_le_filtration {j : ι} (c : f.Cell j) {i : ι} (h : j < i) :
     (P.p c.s).val.subcomplex ≤ f.filtration i := by
   refine le_trans ?_ le_sup_right
@@ -139,13 +160,22 @@ lemma subcomplex_le_filtration {j : ι} (c : f.Cell j) {i : ι} (h : j < i) :
   refine le_trans ?_ (le_iSup _ h)
   exact le_trans (by rfl) (le_iSup _ c)
 
+/--
+@isnad1 id=le.0h6v.s5.820b1d7c5ad5 from=seed src=0 shape=cd78a8ff vocab=f3ca75e9
+-/
 @[simp]
 lemma le_filtration (i : ι) : A ≤ f.filtration i := le_sup_left
 
+/--
+@isnad1 id=eq.0h5v.s6.67c99ef056cf from=seed src=0 shape=ac90ef63 vocab=d583846a
+-/
 @[simp]
 lemma filtration_bot [OrderBot ι] : f.filtration ⊥ = A := by
   simp [filtration_def]
 
+/--
+@isnad1 id=monotone.0h5v.s5.dcbfafa00dba from=seed src=0 shape=3e8b0c4c vocab=2cbb58c8
+-/
 lemma filtration_monotone : Monotone f.filtration := by
   intro i₁ i₂ h
   conv_lhs => rw [filtration_def]
@@ -153,6 +183,9 @@ lemma filtration_monotone : Monotone f.filtration := by
   intro j hj c
   exact f.subcomplex_le_filtration c (lt_of_lt_of_le hj h)
 
+/--
+@isnad1 id=eq.1h6v.s8.7b3c9dc53bbc from=seed src=0 shape=328ca5d4 vocab=8322177b
+-/
 lemma filtration_succ [SuccOrder ι] (i : ι) (hi : ¬ IsMax i) :
     f.filtration (Order.succ i) =
       f.filtration i ⊔ ⨆ (c : f.Cell i), (P.p c.s).val.subcomplex := by
@@ -168,6 +201,9 @@ lemma filtration_succ [SuccOrder ι] (i : ι) (hi : ¬ IsMax i) :
     exact ⟨f.filtration_monotone (Order.le_succ i),
       fun c ↦ f.subcomplex_le_filtration _ (Order.lt_succ_of_not_isMax hi)⟩
 
+/--
+@isnad1 id=eq.1h6v.s7.3dd3106f9374 from=seed src=0 shape=e940b603 vocab=7e665efa
+-/
 lemma filtration_of_isSuccLimit [OrderBot ι] [SuccOrder ι] (i : ι) (hi : Order.IsSuccLimit i) :
     f.filtration i = ⨆ (j : ι) (_ : j < i), f.filtration j := by
   apply le_antisymm
@@ -184,6 +220,9 @@ lemma filtration_of_isSuccLimit [OrderBot ι] [SuccOrder ι] (i : ι) (hi : Orde
     intro j hj
     exact f.filtration_monotone hj.le
 
+/--
+@isnad1 id=eq.1h6v.s7.6ee1fbdfe29c from=seed src=0 shape=0d31f483 vocab=1036b7b7
+-/
 lemma iSup_filtration_iio [OrderBot ι] [SuccOrder ι] (m : ι) (hm : Order.IsSuccLimit m) :
     ⨆ (i : Set.Iio m), f.filtration i = f.filtration m := by
   apply le_antisymm
@@ -197,6 +236,9 @@ lemma iSup_filtration_iio [OrderBot ι] [SuccOrder ι] (m : ι) (hm : Order.IsSu
         (le_trans (by rfl) (le_iSup _ ⟨Order.succ j, hm.succ_lt_iff.mpr hj⟩))⟩
 
 variable {f} in
+/--
+@isnad1 id=not.0h7v.s6.8de7ddb462ef from=seed src=0 shape=d8cfecd8 vocab=d1364136
+-/
 lemma Cell.subcomplex_not_le_filtration {j : ι} (c : f.Cell j) :
     ¬ c.s.val.subcomplex ≤ f.filtration j := by
   simp only [ofSimplex_le_iff, filtration_def, Subfunctor.max_obj, Subfunctor.iSup_obj,
@@ -212,6 +254,9 @@ lemma Cell.subcomplex_not_le_filtration {j : ι} (c : f.Cell j) :
 
 variable [P.IsProper]
 
+/--
+@isnad1 id=eq.0h5v.s7.0288fb50f977 from=seed src=0 shape=730ac6f9 vocab=496b561f
+-/
 lemma iSup_filtration [OrderBot ι] [SuccOrder ι] [NoMaxOrder ι] :
     ⨆ (i : ι), f.filtration i = ⊤ := by
   refine le_antisymm (by simp) ?_
@@ -236,6 +281,9 @@ def Cell.mapToSucc {j : ι} [SuccOrder ι] [NoMaxOrder ι] (c : f.Cell j) :
   Subcomplex.lift c.map (by simpa using f.subcomplex_le_filtration c (Order.lt_succ _))
 
 variable {f} in
+/--
+@isnad1 id=eq.0h7v.s7.ea33e1fa518c from=seed src=0 shape=69561184 vocab=3002abb8
+-/
 @[reassoc (attr := simp)]
 lemma Cell.mapToSucc_ι {j : ι} [SuccOrder ι] [NoMaxOrder ι] (c : f.Cell j) :
     c.mapToSucc ≫ (f.filtration (Order.succ j)).ι = c.map := rfl
@@ -286,6 +334,9 @@ noncomputable abbrev Cell.ιSigmaStdSimplex {j : ι} (c : f.Cell j) :
     Δ[c.dim + 1] ⟶ f.sigmaStdSimplex j :=
   Sigma.ι (fun (c : f.Cell j) ↦ Δ[c.dim + 1]) c
 
+/--
+@isnad1 id=ex.0h8v.s9.bbff1c2f82dc from=seed src=0 shape=66596e86 vocab=5f627b39
+-/
 lemma ιSigmaHorn_jointly_surjective
     {d : ℕ} {j : ι} (a : (f.sigmaHorn j) _⦋d⦌) :
     ∃ (c : f.Cell j) (x : (c.horn : SSet) _⦋d⦌), c.ιSigmaHorn.app _ x = a :=
@@ -294,6 +345,9 @@ lemma ιSigmaHorn_jointly_surjective
       (coproductIsCoproduct _))) a
 
 omit [P.IsProper] in
+/--
+@isnad1 id=ex.0h8v.s9.0a4e2b03bf89 from=seed src=0 shape=2517eba1 vocab=94c2b200
+-/
 lemma ιSigmaStdSimplex_jointly_surjective
     {d : ℕ} {j : ι} (a : (f.sigmaStdSimplex j) _⦋d⦌) :
     ∃ (c : f.Cell j) (x :  Δ[c.dim + 1] _⦋d⦌), c.ιSigmaStdSimplex.app _ x = a :=
@@ -302,6 +356,9 @@ lemma ιSigmaStdSimplex_jointly_surjective
       (coproductIsCoproduct _))) a
 
 omit [P.IsProper] in
+/--
+@isnad1 id=iff.0h11v.s10.10a7be7671b0 from=seed src=0 shape=4a29a211 vocab=98b3dd95
+-/
 lemma ιSigmaStdSimplex_eq_iff {j : ι} {d : ℕ}
     (x : f.Cell j) (s : (Δ[x.dim + 1] : SSet.{u}) _⦋d⦌)
     (y : f.Cell j) (t : (Δ[y.dim + 1] : SSet.{u}) _⦋d⦌) :
@@ -326,11 +383,17 @@ noncomputable def m (j : ι) : f.sigmaHorn j ⟶ f.sigmaStdSimplex j :=
 
 instance (j : ι) : Mono (f.m j) := inferInstanceAs <| Mono (Limits.Sigma.map _)
 
+/--
+@isnad1 id=eq.0h7v.s8.d4816c0a9c14 from=seed src=0 shape=25dc61cf vocab=ffe91367
+-/
 @[reassoc (attr := simp)]
 lemma Cell.ι_m {j : ι} (c : f.Cell j) :
     c.ιSigmaHorn ≫ f.m j = c.horn.ι ≫ c.ιSigmaStdSimplex := by
   simp [m]
 
+/--
+@isnad1 id=eq.0h7v.s7.e818cba2f7e7 from=seed src=0 shape=4d9aaf41 vocab=29250c27
+-/
 @[simp]
 lemma Cell.preimage_filtration_map {j : ι} (c : f.Cell j) :
     (f.filtration j).preimage c.map = c.horn := by
@@ -367,6 +430,9 @@ noncomputable def Cell.mapHorn {j : ι} (c : f.Cell j) : (c.horn : SSet) ⟶ f.f
   Subcomplex.lift (c.horn.ι ≫ c.map) (by
     simp [← image_top, image_le_iff, preimage_comp, c.preimage_filtration_map])
 
+/--
+@isnad1 id=eq.0h7v.s8.5db1b311677d from=seed src=0 shape=31d09d47 vocab=4ade70f5
+-/
 @[reassoc (attr := simp)]
 lemma Cell.mapHorn_ι {j : ι} (c : f.Cell j) :
     c.mapHorn ≫ (f.filtration j).ι = c.horn.ι ≫ c.map := rfl
@@ -378,11 +444,17 @@ noncomputable def t (j : ι) : f.sigmaHorn j ⟶ f.filtration j :=
   Sigma.desc (fun c ↦ c.mapHorn)
 
 variable {f} in
+/--
+@isnad1 id=eq.0h7v.s7.5bc57fdbc5e3 from=seed src=0 shape=3393421b vocab=81793861
+-/
 @[reassoc (attr := simp)]
 lemma Cell.ι_t {j : ι} (c : f.Cell j) : c.ιSigmaHorn ≫ f.t j = c.mapHorn := by
   simp [t]
 
 variable {f} in
+/--
+@isnad1 id=eq.0h8v.s8.068d2a3563da from=seed src=0 shape=b78742ff vocab=4fd322f5
+-/
 @[reassoc (attr := simp), elementwise (attr := simp)]
 lemma Cell.ι_t_app {j : ι} (c : f.Cell j) (x : SimplexCategoryᵒᵖ) :
     c.ιSigmaHorn.app x ≫ (f.t j).app x = c.mapHorn.app x :=
@@ -430,6 +502,9 @@ noncomputable def Cell.type₂ {j : ι} (c : f.Cell j) : (Subcomplex.range (f.m 
     simpa using (objEquiv_symm_δ_mem_horn_iff _ _).mp hy'
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.0h7v.s7.541905a4fdcb from=seed src=0 shape=319ad731 vocab=a0ff547e
+-/
 lemma exists_or_of_range_m_N {j : ι} (s : (Subcomplex.range (f.m j)).N) :
     ∃ (c : f.Cell j), s = c.type₁ ∨ s = c.type₂ := by
   obtain ⟨d, s, hs, hs', rfl⟩ := s.mk_surjective
@@ -458,16 +533,25 @@ noncomputable def b (j : ι) : f.sigmaStdSimplex j ⟶ f.filtration (Order.succ 
   Sigma.desc (fun c ↦ c.mapToSucc)
 
 variable {f} in
+/--
+@isnad1 id=eq.0h7v.s8.f5fb308d93ed from=seed src=0 shape=14895833 vocab=96497a69
+-/
 @[reassoc (attr := simp)]
 lemma Cell.ι_b {j : ι} (c : f.Cell j) : c.ιSigmaStdSimplex ≫ f.b j = c.mapToSucc := by
   simp [b]
 
 variable {f} in
+/--
+@isnad1 id=eq.0h8v.s8.a290a4c1104a from=seed src=0 shape=103b73a3 vocab=5300023e
+-/
 @[reassoc (attr := simp), elementwise (attr := simp)]
 lemma Cell.ι_b_app {j : ι} (c : f.Cell j) (x : SimplexCategoryᵒᵖ) :
     c.ιSigmaStdSimplex.app x ≫ (f.b j).app x = c.mapToSucc.app x :=
   NatTrans.congr_app c.ι_b x
 
+/--
+@isnad1 id=eq.0h6v.s8.7d918eb9635c from=seed src=0 shape=9cd594c1 vocab=d59d4bc2
+-/
 @[reassoc]
 lemma w (j : ι) :
     f.t j ≫ homOfLE (f.filtration_monotone (Order.le_succ j)) = f.m j ≫ f.b j := by
@@ -475,6 +559,9 @@ lemma w (j : ι) :
   simp [← cancel_mono (Subcomplex.ι _)]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispullba.0h6v.s7.54a13f2a0177 from=seed src=0 shape=a593bbdc vocab=66c4a3bd
+-/
 lemma isPullback (j : ι) :
     IsPullback (f.t j) (f.m j) (homOfLE (f.filtration_monotone (Order.le_succ j))) (f.b j) where
   w := f.w j
@@ -501,6 +588,9 @@ lemma isPullback (j : ι) :
       simp)⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s10.16a92025870e from=seed src=0 shape=13fcae9e vocab=1d55f206
+-/
 lemma range_homOfLE_app_union_range_b_app (j : ι) (d : SimplexCategoryᵒᵖ) :
     Set.range ((homOfLE (f.filtration_monotone (Order.le_succ j))).app d) ⊔
       Set.range ((f.b j).app d) = Set.univ := by
@@ -525,6 +615,9 @@ noncomputable def mapN {j : ι} (x : (Subcomplex.range (f.m j)).N) : X.S :=
   S.mk ((f.b j).app _ x.simplex).val
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s8.1470d9b9a088 from=seed src=0 shape=40458e77 vocab=90f7db06
+-/
 @[simp]
 lemma mapN_type₁ {j : ι} (c : f.Cell j) : f.mapN c.type₁ = S.mk (P.p c.s).val.simplex := by
   dsimp only [Cell.type₁, mapN]
@@ -534,6 +627,9 @@ lemma mapN_type₁ {j : ι} (c : f.Cell j) : f.mapN c.type₁ = S.mk (P.p c.s).v
   apply yonedaEquiv_symm_app_id
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s7.a25548ab2a76 from=seed src=0 shape=06766103 vocab=e9eded71
+-/
 @[simp]
 lemma mapN_type₂ {j : ι} (c : f.Cell j) : f.mapN c.type₂ = S.mk c.s.val.simplex := by
   dsimp [mapN]
@@ -565,6 +661,9 @@ private lemma isPushout_aux₃ {j : ι} :
   fun _ _ h ↦ f.isPushout_aux₂ (congr_arg (S.map (Subcomplex.ι _)) h)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispushou.0h6v.s7.45cad24a261d from=seed src=0 shape=a593bbdc vocab=2023eecf
+-/
 lemma isPushout (j : ι) :
     IsPushout (f.t j) (f.m j) (homOfLE (f.filtration_monotone (Order.le_succ j))) (f.b j) where
   w := f.w j

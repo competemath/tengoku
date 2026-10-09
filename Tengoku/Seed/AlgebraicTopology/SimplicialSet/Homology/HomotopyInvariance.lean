@@ -80,16 +80,23 @@ homology of the singular chain complex (with coefficients in `R`).
 The assumption is in `SimplicialObject.Homotopy`,
 see also `SSet.Homotopy.congr_homologyMap` for the
 variant using `SSet.Homotopy` as an assumption.
+@isnad1 id=eq.0h8v.s6.fdec78963ac7 from=seed src=0 shape=ac88b768 vocab=ac6303db
 -/
 theorem congr_sSetHomologyMap [CategoryWithHomology C]
     (H : SimplicialObject.Homotopy f g) (R : C) (n : ℕ) :
     SSet.homologyMap f R n = SSet.homologyMap g R n :=
   (H.sSetChainComplexMap R).homologyMap_eq n
 
+/--
+@isnad1 id=eq.0h8v.s6.fdec78963ac7 from=seed src=0 shape=ac88b768 vocab=ac6303db
+-/
 @[deprecated (since := "2026-03-24")]
 alias singularChainComplexFunctor_map_homology_eq_of_simplicialHomotopy :=
   congr_sSetHomologyMap
 
+/--
+@isnad1 id=eq.0h8v.s6.fdec78963ac7 from=seed src=0 shape=ac88b768 vocab=ac6303db
+-/
 @[deprecated (since := "2026-04-05")] alias congr_homologyMap_singularChainComplexFunctor :=
   congr_sSetHomologyMap
 
@@ -113,12 +120,16 @@ open HomologicalComplex in
 /--
 Homotopic maps of simplicial sets induce the same map on homology of the singular
 chain complex (with coefficients in `R`).
+@isnad1 id=eq.0h8v.s6.416746c0cea5 from=seed src=0 shape=b6f554c9 vocab=df38a9c8
 -/
 theorem congr_homologyMap [CategoryWithHomology C]
     (H : SSet.Homotopy f g) (R : C) (n : ℕ) :
     SSet.homologyMap f R n = SSet.homologyMap g R n :=
   (H.chainComplexMap R).homologyMap_eq n
 
+/--
+@isnad1 id=eq.0h8v.s6.416746c0cea5 from=seed src=0 shape=b6f554c9 vocab=df38a9c8
+-/
 @[deprecated (since := "2026-04-05")]
 alias congr_homologyMap_singularChainComplexFunctor := congr_homologyMap
 

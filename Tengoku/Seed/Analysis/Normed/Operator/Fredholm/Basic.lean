@@ -128,7 +128,9 @@ structure IsFredholm (u : E →L[𝕜] F) : Prop where
   closedComplemented_ker : u.ker.ClosedComplemented
 
 variable [CompleteSpace 𝕜] [IsTopologicalAddGroup F] [ContinuousSMul 𝕜 F] in
-/-- A Fredholm operator has (topologically) complemented range. -/
+/-- A Fredholm operator has (topologically) complemented range.
+@isnad1 id=closedco.1h4v.s8.911e79135767 from=seed src=0 shape=2e4f7f97 vocab=ebb669ca
+-/
 lemma IsFredholm.closedComplemented_range {u : E →L[𝕜] F} (u_fred : IsFredholm u) :
     u.range.ClosedComplemented :=
   have := u_fred.finite_coker
@@ -179,22 +181,37 @@ structure FredholmPackage (u : E →L[𝕜] F) where
   equiv : decDom.X₁ ≃L[𝕜] decCodom.X₁
   eq_equiv : u = decCodom.X₁.subtypeL ∘L equiv ∘L decDom.proj
 
+/--
+@isnad1 id=eq.0h5v.s8.baa7fb570944 from=seed src=0 shape=0fb8e5d0 vocab=550b4bd1
+-/
 lemma FredholmPackage.ker_eq {u : E →L[𝕜] F} (pkg : FredholmPackage u) :
     u.ker = pkg.decDom.X₀ := by simp [pkg.eq_equiv, ker_comp]
 
+/--
+@isnad1 id=eq.0h5v.s8.a71215a32613 from=seed src=0 shape=148fb9a2 vocab=2e7e8be3
+-/
 lemma FredholmPackage.range_eq {u : E →L[𝕜] F} (pkg : FredholmPackage u) :
     u.range = pkg.decCodom.X₁ := by
   simp [pkg.eq_equiv, range_comp]
 
+/--
+@isnad1 id=mapsto.0h5v.s8.87c748dc2532 from=seed src=0 shape=b3247ab8 vocab=7d3f2a33
+-/
 lemma FredholmPackage.mapsTo {u : E →L[𝕜] F} (pkg : FredholmPackage u) :
     MapsTo u pkg.decDom.X₁ pkg.decCodom.X₁ := by
   simpa [← FredholmPackage.range_eq, LinearMap.coe_range] using Set.mapsTo_range _ _
 
+/--
+@isnad1 id=eq.0h5v.s10.012e3f6823dd from=seed src=0 shape=66e42958 vocab=035bd5ba
+-/
 lemma FredholmPackage.equiv_eq_restrict {u : E →L[𝕜] F} (pkg : FredholmPackage u) :
     pkg.equiv = u.restrict pkg.mapsTo := by
   ext x
   simp [pkg.eq_equiv]
 
+/--
+@isnad1 id=isinvert.0h5v.s9.02aa1c01f4df from=seed src=0 shape=d79e78df vocab=336832db
+-/
 lemma FredholmPackage.isInvertible_restrict {u : E →L[𝕜] F} (pkg : FredholmPackage u) :
     u.restrict pkg.mapsTo |>.IsInvertible :=
   ⟨pkg.equiv, pkg.equiv_eq_restrict⟩
@@ -204,7 +221,9 @@ def FredholmPackage.quasiInverse {u : E →L[𝕜] F} (pkg : FredholmPackage u) 
     F →L[𝕜] E :=
   pkg.decDom.X₁.subtypeL ∘L pkg.equiv.symm ∘L pkg.decCodom.proj
 
-/-- The data of a Fredholm package for `u` determines a canonical quasi-inverse of `u`. -/
+/-- The data of a Fredholm package for `u` determines a canonical quasi-inverse of `u`.
+@isnad1 id=isquasii.0h5v.s8.e9d725d027d8 from=seed src=0 shape=cda00ae6 vocab=5027ad4c
+-/
 lemma FredholmPackage.isQuasiInverse {u : E →L[𝕜] F} (pkg : FredholmPackage u) :
     pkg.quasiInverse.IsQuasiInverse u := by
   nth_rw 2 [pkg.eq_equiv]
@@ -254,7 +273,9 @@ variable [CompleteSpace 𝕜]
 subspaces `E₁` and `F₁`. Then `u` is Fredholm.
 
 In fact it is enough to assume that the restriction `E₁ →L[𝕜] F₁` is Fredholm, see
-`IsFredholm.of_restrict` (not in Mathlib yet). -/
+`IsFredholm.of_restrict` (not in Mathlib yet).
+@isnad1 id=isfredho.4h6v.s10.d3ba777ec0f3 from=seed src=0 shape=072a8d96 vocab=d9192632
+-/
 theorem IsFredholm.of_isInvertible_restrict {u : E →L[𝕜] F}
     {E₁ : Submodule 𝕜 E} (E₁_closed : IsClosed (E₁ : Set E)) [E₁_coFG : E₁.CoFG]
     {F₁ : Submodule 𝕜 F} (F₁_closed : IsClosed (F₁ : Set F)) [F₁_coFG : F₁.CoFG]
@@ -313,7 +334,9 @@ omit [ContinuousSMul 𝕜 E] in
 /-- Every Fredholm operator admits a `FredholmPackage`.
 
 This is the primary way to get a `FredholmPackage` if you don't need control of the decompositions.
-If you do, see `IsFredholm.fredholmPackage`. -/
+If you do, see `IsFredholm.fredholmPackage`.
+@isnad1 id=nonempty.1h4v.s7.76141914341b from=seed src=0 shape=459cf178 vocab=210028c7
+-/
 theorem IsFredholm.nonempty_fredholmPackage {u : E →L[𝕜] F}
     (u_fred : IsFredholm u) : Nonempty (FredholmPackage u) := by
   obtain ⟨codom₀, h_codom⟩ := u_fred.closedComplemented_range.exists_isTopCompl
@@ -334,6 +357,7 @@ denoted `𝕜`, and `u : E →L[𝕜] F` a continuous linear map. The following 
 
 In practice, condition `4` is the "strongest", so you should probably not use it to *prove* that an
 operator is Fredholm.
+@isnad1 id=tfae.0h4v.s10.a358e2c2e053 from=seed src=0 shape=79a10347 vocab=fa9609ec
 -/
 theorem isFredholm_tfae (u : E →L[𝕜] F) :
     [ IsFredholm u,
@@ -355,17 +379,28 @@ theorem isFredholm_tfae (u : E →L[𝕜] F) :
     exact .of_isInvertible_restrict E₁_closed F₁_closed u_mapsto u_invertible
   tfae_finish
 
-/-- If `u` has a Fredholm package, it is Fredholm. -/
+/-- If `u` has a Fredholm package, it is Fredholm.
+@isnad1 id=isfredho.0h5v.s8.e84a5d0e7506 from=seed src=0 shape=85b692b6 vocab=c56933c6
+-/
 theorem FredholmPackage.isFredholm {u : E →L[𝕜] F} (pkg : FredholmPackage u) :
     IsFredholm u :=
   isFredholm_tfae u |>.out 4 1 |>.mp (Nonempty.intro pkg)
 
+/--
+@isnad1 id=iff.0h4v.s9.087e4dee8e1a from=seed src=0 shape=8e7e5381 vocab=3c5efd04
+-/
 theorem isFredholm_iff_exists_isQuasiInverse {u : E →L[𝕜] F} :
     IsFredholm u ↔ ∃ v : F →L[𝕜] E, v.IsQuasiInverse u :=
   isFredholm_tfae u |>.out 1 2
 
+/--
+@isnad1 id=ex.1h4v.s9.46f8d4c05adb from=seed src=0 shape=eb8306e2 vocab=3c5efd04
+-/
 alias ⟨IsFredholm.exists_isQuasiInverse, _⟩ := isFredholm_iff_exists_isQuasiInverse
 
+/--
+@isnad1 id=isfredho.1h5v.s9.a03380018667 from=seed src=0 shape=3dd666a0 vocab=3c5efd04
+-/
 theorem IsFredholm.of_isQuasiInverse {u : E →L[𝕜] F} {v : F →L[𝕜] E} (h : v.IsQuasiInverse u) :
     IsFredholm u :=
   isFredholm_iff_exists_isQuasiInverse.mpr ⟨v, h⟩
@@ -388,9 +423,15 @@ theorem _root_.ContinuousLinearEquiv.isFredholm (e : E ≃L[𝕜] F) :
   finite_coker := by simp
   closedComplemented_ker := by simp
 
+/--
+@isnad1 id=isfredho.0h2v.s5.ff0b0ad7c7c6 from=seed src=0 shape=0f2c941b vocab=5bf50d21
+-/
 protected theorem IsFredholm.id : IsFredholm (.id 𝕜 E) :=
   ContinuousLinearEquiv.refl 𝕜 E |>.isFredholm
 
+/--
+@isnad1 id=isfredho.1h4v.s7.57c5f40ba4cb from=seed src=0 shape=014869e5 vocab=3eb6b514
+-/
 theorem IsInvertible.isFredholm {f : E →L[𝕜] F} (hf : f.IsInvertible) :
     IsFredholm f := by
   rcases hf with ⟨e, rfl⟩
@@ -400,31 +441,49 @@ variable [CompleteSpace 𝕜] [IsTopologicalAddGroup E] [IsTopologicalAddGroup F
   [IsTopologicalAddGroup G] [ContinuousSMul 𝕜 E] [ContinuousSMul 𝕜 F] [ContinuousSMul 𝕜 G]
   [T2Space E] [T2Space F] [T2Space G]
 
+/--
+@isnad1 id=iff.0h6v.s9.b89608284bc6 from=seed src=0 shape=cf65fe05 vocab=d54fb73a
+-/
 theorem isFredholm_congr {u u' : E →L[𝕜] F} (h : u.toLinearMap ≈ u'.toLinearMap) :
     IsFredholm u ↔ IsFredholm u' := by
   simp_rw [isFredholm_iff_exists_isQuasiInverse]
   exact exists_congr fun _ ↦ isQuasiInverse_congr (Setoid.refl _) (Setoid.symm h)
 
+/--
+@isnad1 id=isfredho.1h6v.s9.22ce6e969619 from=seed src=0 shape=15b6b69e vocab=d54fb73a
+-/
 theorem IsFredholm.congr {u u' : E →L[𝕜] F} (hu : IsFredholm u)
     (h : u.toLinearMap ≈ u'.toLinearMap) :
     IsFredholm u' := (isFredholm_congr h).mp hu
 
+/--
+@isnad1 id=isfredho.2h5v.s9.a89b995f1aab from=seed src=0 shape=f8b4508f vocab=f545ad5e
+-/
 theorem IsFredholm.add_hasFiniteRange {u v : E →L[𝕜] F} (hu : IsFredholm u)
     (hv : HasFiniteRange v.toLinearMap) :
     IsFredholm (u + v) :=
   hu.congr (by simpa [equiv_iff_hasFiniteRange] using hv.neg)
 
+/--
+@isnad1 id=isfredho.2h5v.s9.96cb963be014 from=seed src=0 shape=aa31b484 vocab=f545ad5e
+-/
 theorem IsFredholm.hasFiniteRange_add {u v : E →L[𝕜] F} (hu : IsFredholm u)
     (hv : HasFiniteRange v.toLinearMap) :
     IsFredholm (v + u) :=
   add_comm u v ▸ hu.add_hasFiniteRange hv
 
+/--
+@isnad1 id=isfredho.2h6v.s9.fdb9a24f9bc7 from=seed src=0 shape=0b521b23 vocab=d571e6a6
+-/
 theorem IsFredholm.comp {f' : F →L[𝕜] G} {f : E →L[𝕜] F} (hf' : IsFredholm f')
     (hf : IsFredholm f) : IsFredholm (f' ∘L f) := by
   obtain ⟨g, hg⟩ := hf.exists_isQuasiInverse
   obtain ⟨g', hg'⟩ := hf'.exists_isQuasiInverse
   exact .of_isQuasiInverse (mod_cast hg.comp hg')
 
+/--
+@isnad1 id=iff.1h6v.s9.f79929fcc842 from=seed src=0 shape=5e2a0fad vocab=d571e6a6
+-/
 theorem IsFredholm.comp_iff_left {f : E →L[𝕜] F} {f' : F →L[𝕜] G} (hf : IsFredholm f) :
     IsFredholm (f' ∘L f) ↔ IsFredholm f' := by
   refine ⟨fun hcomp ↦ ?_, fun hf' ↦ hf'.comp hf⟩
@@ -432,6 +491,9 @@ theorem IsFredholm.comp_iff_left {f : E →L[𝕜] F} {f' : F →L[𝕜] G} (hf 
   obtain ⟨w, hw⟩ := hcomp.exists_isQuasiInverse
   exact .of_isQuasiInverse (mod_cast hg.of_comp_left hw)
 
+/--
+@isnad1 id=iff.1h6v.s9.69e7e9d0aa96 from=seed src=0 shape=a4871da2 vocab=d571e6a6
+-/
 theorem IsFredholm.comp_iff_right {f : E →L[𝕜] F} {f' : F →L[𝕜] G} (hf' : IsFredholm f') :
     IsFredholm (f' ∘L f) ↔ IsFredholm f := by
   refine ⟨fun hcomp ↦ ?_, fun hf ↦ hf'.comp hf⟩
@@ -439,11 +501,17 @@ theorem IsFredholm.comp_iff_right {f : E →L[𝕜] F} {f' : F →L[𝕜] G} (hf
   obtain ⟨w, hw⟩ := hcomp.exists_isQuasiInverse
   exact .of_isQuasiInverse (mod_cast hg'.of_comp_right hw)
 
+/--
+@isnad1 id=iff.0h6v.s9.d86c7546f304 from=seed src=0 shape=5280b239 vocab=d7f930c7
+-/
 @[simp]
 theorem isFredholm_comp_equiv {f : E ≃L[𝕜] F} {f' : F →L[𝕜] G} :
     IsFredholm (f' ∘L (f : E →L[𝕜] F)) ↔ IsFredholm f' :=
   f.isFredholm.comp_iff_left
 
+/--
+@isnad1 id=iff.0h6v.s9.8d45ef606812 from=seed src=0 shape=3a743f6f vocab=d7f930c7
+-/
 @[simp]
 theorem isFredholm_equiv_comp {f : E →L[𝕜] F} {f' : F ≃L[𝕜] G} :
     IsFredholm ((f' : F →L[𝕜] G) ∘L f) ↔ IsFredholm f :=

@@ -80,11 +80,17 @@ noncomputable def characterSpaceToSpectrum (x : A)
     simpa only [StarSubalgebra.spectrum_eq (hS := isClosed ℂ x)
       (a := ⟨x, self_mem ℂ x⟩)] using AlgHom.apply_mem_spectrum φ ⟨x, self_mem ℂ x⟩
 
+/--
+@isnad1 id=continuo.0h2v.s14.6fbaf84c6f40 from=seed src=0 shape=8da091a2 vocab=8cd86181
+-/
 theorem continuous_characterSpaceToSpectrum (x : A) :
     Continuous (characterSpaceToSpectrum x) :=
   continuous_induced_rng.2
     (map_continuous <| gelfandTransform ℂ (elemental ℂ x) ⟨x, self_mem ℂ x⟩)
 
+/--
+@isnad1 id=bijectiv.0h2v.s11.37e5a8c3c95c from=seed src=0 shape=b9017412 vocab=5f43806a
+-/
 theorem bijective_characterSpaceToSpectrum :
     Function.Bijective (characterSpaceToSpectrum a) := by
   refine ⟨fun φ ψ h => starAlgHomClass_ext ℂ ?_ ?_ ?_, ?_⟩
@@ -123,6 +129,9 @@ noncomputable def continuousFunctionalCalculus [CStarAlgebra A] (a : A) [IsStarN
   ((characterSpaceHomeo a).compStarAlgEquiv' ℂ ℂ).trans
     (gelfandStarTransform (elemental ℂ a)).symm
 
+/--
+@isnad1 id=eq.0h2v.s12.d11a68f726c3 from=seed src=0 shape=8d4dc1f3 vocab=3cc7c7a2
+-/
 theorem continuousFunctionalCalculus_map_id [CStarAlgebra A] (a : A) [IsStarNormal a] :
     continuousFunctionalCalculus a ((ContinuousMap.id ℂ).restrict (spectrum ℂ a)) =
       ⟨a, self_mem ℂ a⟩ :=
@@ -140,6 +149,9 @@ section Unital
 
 variable [CStarAlgebra A]
 
+/--
+@isnad1 id=continuo.0h1v.s6.98bbb0699dfc from=seed src=0 shape=06892e53 vocab=8aa151da
+-/
 theorem IsStarNormal.instContinuousFunctionalCalculus :
     ContinuousFunctionalCalculus ℂ A IsStarNormal where
   predicate_zero := .zero
@@ -159,6 +171,9 @@ theorem IsStarNormal.instContinuousFunctionalCalculus :
 
 attribute [local instance] IsStarNormal.instContinuousFunctionalCalculus
 
+/--
+@isnad1 id=eq.0h2v.s12.31a0e681d9da from=seed src=0 shape=dc8bc705 vocab=59085164
+-/
 lemma cfcHom_eq_of_isStarNormal (a : A) [ha : IsStarNormal a] :
     cfcHom ha = (StarAlgebra.elemental ℂ a).subtype.comp (continuousFunctionalCalculus a) := by
   refine cfcHom_eq_of_continuous_of_map_id ha _ ?_ ?_
@@ -166,12 +181,18 @@ lemma cfcHom_eq_of_isStarNormal (a : A) [ha : IsStarNormal a] :
       (StarAlgEquiv.isometry (continuousFunctionalCalculus a)).continuous
   · simp [continuousFunctionalCalculus_map_id a]
 
+/--
+@isnad1 id=isometri.0h1v.s6.72d58b464a3e from=seed src=0 shape=06892e53 vocab=f7b14a52
+-/
 instance IsStarNormal.instIsometricContinuousFunctionalCalculus :
     IsometricContinuousFunctionalCalculus ℂ A IsStarNormal where
   isometric a ha := by
     rw [cfcHom_eq_of_isStarNormal]
     exact isometry_subtype_coe.comp <| StarAlgEquiv.isometry (continuousFunctionalCalculus a)
 
+/--
+@isnad1 id=isometri.0h1v.s6.5642f2615c9b from=seed src=0 shape=06892e53 vocab=3527ee7e
+-/
 instance IsSelfAdjoint.instIsometricContinuousFunctionalCalculus :
     IsometricContinuousFunctionalCalculus ℝ A IsSelfAdjoint :=
   SpectrumRestricts.isometric_cfc Complex.reCLM Complex.isometry_ofReal (.zero _)
@@ -185,6 +206,9 @@ variable [NonUnitalCStarAlgebra A]
 
 open Unitization
 
+/--
+@isnad1 id=nonunita.0h1v.s6.361c229d6333 from=seed src=0 shape=06892e53 vocab=be87f8bb
+-/
 theorem IsStarNormal.instNonUnitalContinuousFunctionalCalculus :
     NonUnitalClosedEmbeddingContinuousFunctionalCalculus ℂ A IsStarNormal :=
   RCLike.nonUnitalContinuousFunctionalCalculusIsClosedEmbedding Unitization.isStarNormal_inr
@@ -192,11 +216,17 @@ theorem IsStarNormal.instNonUnitalContinuousFunctionalCalculus :
 attribute [local instance] IsStarNormal.instNonUnitalContinuousFunctionalCalculus
 
 open scoped CStarAlgebra in
+/--
+@isnad1 id=eq.0h2v.s12.0c9a939b87ad from=seed src=0 shape=c63195ed vocab=ddb11e38
+-/
 lemma inr_comp_cfcₙHom_eq_cfcₙAux (a : A) [ha : IsStarNormal a] :
     (inrNonUnitalStarAlgHom ℂ A).comp (cfcₙHom ha) = cfcₙAux (isStarNormal_inr (R := ℂ)) a ha :=
   inrNonUnitalStarAlgHom_comp_cfcₙHom_eq_cfcₙAux isStarNormal_inr a ha
 
 open ContinuousMapZero in
+/--
+@isnad1 id=nonunita.0h1v.s6.7afb59844f95 from=seed src=0 shape=06892e53 vocab=b1c96b53
+-/
 instance IsStarNormal.instNonUnitalIsometricContinuousFunctionalCalculus :
     NonUnitalIsometricContinuousFunctionalCalculus ℂ A IsStarNormal where
   isometric a ha := by
@@ -208,6 +238,9 @@ instance IsStarNormal.instNonUnitalIsometricContinuousFunctionalCalculus :
     rw [norm_cfcHom (a : Unitization ℂ A), StarAlgEquiv.norm_map]
     rfl
 
+/--
+@isnad1 id=nonunita.0h1v.s6.b990205262ef from=seed src=0 shape=06892e53 vocab=16f3130d
+-/
 instance IsSelfAdjoint.instNonUnitalIsometricContinuousFunctionalCalculus :
     NonUnitalIsometricContinuousFunctionalCalculus ℝ A IsSelfAdjoint :=
   QuasispectrumRestricts.isometric_cfc Complex.reCLM Complex.isometry_ofReal (.zero _)
@@ -227,6 +260,9 @@ open NNReal ENNReal
 
 variable [CStarAlgebra A]
 
+/--
+@isnad1 id=iff.2h3v.s8.1996fc4b4697 from=seed src=0 shape=28eb735b vocab=2011d027
+-/
 lemma SpectrumRestricts.nnreal_iff_nnnorm {a : A} {t : ℝ≥0} (ha : IsSelfAdjoint a) (ht : ‖a‖₊ ≤ t) :
     SpectrumRestricts a ContinuousMap.realToNNReal ↔ ‖algebraMap ℝ A t - a‖₊ ≤ t := by
   have : IsSelfAdjoint (algebraMap ℝ A t - a) := IsSelfAdjoint.algebraMap A (.all (t : ℝ)) |>.sub ha
@@ -237,6 +273,9 @@ lemma SpectrumRestricts.nnreal_iff_nnnorm {a : A} {t : ℝ≥0} (ha : IsSelfAdjo
     try apply IsSelfAdjoint.spectrumRestricts
     assumption
 
+/--
+@isnad1 id=spectrum.4h3v.s8.7c49df7db7b7 from=seed src=0 shape=2f131d22 vocab=589cd6ab
+-/
 lemma SpectrumRestricts.nnreal_add {a b : A} (ha₁ : IsSelfAdjoint a)
     (hb₁ : IsSelfAdjoint b) (ha₂ : SpectrumRestricts a ContinuousMap.realToNNReal)
     (hb₂ : SpectrumRestricts b ContinuousMap.realToNNReal) :
@@ -247,6 +286,9 @@ lemma SpectrumRestricts.nnreal_add {a b : A} (ha₁ : IsSelfAdjoint a)
   gcongr
   all_goals rw [← SpectrumRestricts.nnreal_iff_nnnorm] <;> first | rfl | assumption
 
+/--
+@isnad1 id=spectrum.1h2v.s7.c739859c6b52 from=seed src=0 shape=eedd46b1 vocab=b22633f8
+-/
 lemma IsSelfAdjoint.sq_spectrumRestricts {a : A} (ha : IsSelfAdjoint a) :
     SpectrumRestricts (a ^ 2) ContinuousMap.realToNNReal := by
   rw [SpectrumRestricts.nnreal_iff, ← cfc_id (R := ℝ) a, ← cfc_pow .., cfc_map_spectrum ..]
@@ -266,6 +308,9 @@ lemma SpectrumRestricts.eq_zero_of_neg {a : A} (ha : IsSelfAdjoint a)
   peel ha₁ with x hx _
   linarith [ha₂ (-x) ((neg_neg x).symm ▸ hx)]
 
+/--
+@isnad1 id=spectrum.2h3v.s7.fdded1d31152 from=seed src=0 shape=70d4f903 vocab=f34cc44b
+-/
 lemma SpectrumRestricts.smul_of_nonneg {A : Type*} [Ring A] [Algebra ℝ A] {a : A}
     (ha : SpectrumRestricts a ContinuousMap.realToNNReal) {r : ℝ} (hr : 0 ≤ r) :
     SpectrumRestricts (r • a) ContinuousMap.realToNNReal := by
@@ -282,7 +327,9 @@ lemma SpectrumRestricts.smul_of_nonneg {A : Type*} [Ring A] [Algebra ℝ A] {a :
 
 /-- The `ℝ`-spectrum of an element of the form `star b * b` in a C⋆-algebra is nonnegative.
 
-This is the key result used to establish `CStarAlgebra.instNonnegSpectrumClass`. -/
+This is the key result used to establish `CStarAlgebra.instNonnegSpectrumClass`.
+@isnad1 id=le.1h3v.s6.d8f3d7e65808 from=seed src=0 shape=9227a689 vocab=1f29f03c
+-/
 lemma spectrum_star_mul_self_nonneg {b : A} : ∀ x ∈ spectrum ℝ (star b * b), 0 ≤ x := by
   -- for convenience we'll work with `a := star b * b`, which is selfadjoint.
   set a := star b * b with a_def
@@ -321,6 +368,9 @@ lemma spectrum_star_mul_self_nonneg {b : A} : ∀ x ∈ spectrum ℝ (star b * b
   have h_eqOn := eqOn_of_cfc_eq_cfc (ha := ha) h_eq_negPart_a
   exact fun x hx ↦ negPart_eq_zero.mp <| eq_zero_of_pow_eq_zero (h_eqOn hx).symm
 
+/--
+@isnad1 id=iff.0h4v.s7.f0fba3e42824 from=seed src=0 shape=11f8484a vocab=0a4a1970
+-/
 lemma IsSelfAdjoint.coe_mem_spectrum_complex {A : Type*} [TopologicalSpace A] [Ring A]
     [StarRing A] [Algebra ℂ A] [ContinuousFunctionalCalculus ℂ A IsStarNormal]
     {a : A} {x : ℝ} (ha : IsSelfAdjoint a := by cfc_tac) :
@@ -333,6 +383,9 @@ section NonnegSpectrumClass
 
 variable [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
+/--
+@isnad1 id=nonnegsp.0h1v.s6.48fe234bd0b9 from=seed src=0 shape=a97491eb vocab=76dddf53
+-/
 instance CStarAlgebra.instNonnegSpectrumClass : NonnegSpectrumClass ℝ A :=
   .of_spectrum_nonneg fun a ha ↦ by
     rw [StarOrderedRing.nonneg_iff] at ha
@@ -349,6 +402,9 @@ instance CStarAlgebra.instNonnegSpectrumClass : NonnegSpectrumClass ℝ A :=
       exact hx.nnreal_add (.of_nonneg x_mem) (.of_nonneg y_mem) hy
 
 open ComplexOrder in
+/--
+@isnad1 id=nonnegsp.0h1v.s5.2c0c373b64e5 from=seed src=0 shape=a97491eb vocab=7d3a9a55
+-/
 instance CStarAlgebra.instNonnegSpectrumClassComplexUnital : NonnegSpectrumClass ℂ A where
   quasispectrum_nonneg_of_nonneg a ha x := by
     rw [mem_quasispectrum_iff]
@@ -391,7 +447,9 @@ def CStarAlgebra.spectralOrder : PartialOrder A where
     exact ⟨by simpa using hyz.1.add hxy.1, by simpa using hyz.2.nnreal_add hyz.1 hxy.1 hxy.2⟩
 
 variable (A) in
-/-- The `CStarAlgebra.spectralOrder` on a C⋆-algebra is a `StarOrderedRing`. -/
+/-- The `CStarAlgebra.spectralOrder` on a C⋆-algebra is a `StarOrderedRing`.
+@isnad1 id=starorde.0h1v.s4.aa725afb503c from=seed src=0 shape=c6850a32 vocab=b1704b88
+-/
 lemma CStarAlgebra.spectralOrderedRing : @StarOrderedRing A _ (CStarAlgebra.spectralOrder A) _ :=
   let _ := CStarAlgebra.spectralOrder A
   { le_iff := by
@@ -427,6 +485,9 @@ section NonnegSpectrumClass
 variable [NonUnitalCStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
 open scoped CStarAlgebra in
+/--
+@isnad1 id=nonnegsp.0h1v.s5.bbf46d4f351d from=seed src=0 shape=a97491eb vocab=bc16079f
+-/
 instance CStarAlgebra.instNonnegSpectrumClass' : NonnegSpectrumClass ℝ A where
   quasispectrum_nonneg_of_nonneg a ha := by
     rw [Unitization.quasispectrum_eq_spectrum_inr' _ ℂ]
@@ -451,7 +512,9 @@ variable [NonUnitalCStarAlgebra A]
 
 open scoped NonUnitalContinuousFunctionalCalculus in
 /-- This lemma requires a lot from type class synthesis, and so one should instead favor the bespoke
-versions for `ℝ≥0`, `ℝ`, and `ℂ`. -/
+versions for `ℝ≥0`, `ℝ`, and `ℂ`.
+@isnad1 id=eq.1h7v.s10.95f3ede0f100 from=seed src=0 shape=bf5cbce4 vocab=c4b22bf4
+-/
 lemma Unitization.cfcₙ_eq_cfc_inr {R : Type*} [Semifield R] [StarRing R] [MetricSpace R]
     [IsTopologicalSemiring R] [ContinuousStar R] [Module R A] [IsScalarTower R A A]
     [SMulCommClass R A A] [Algebra R ℂ] [IsScalarTower R ℂ A]
@@ -470,12 +533,17 @@ lemma Unitization.cfcₙ_eq_cfc_inr {R : Type*} [Semifield R] [StarRing R] [Metr
     · rw [cfcₙ_apply_of_not_predicate a ha, inr_zero,
         cfc_apply_of_not_predicate _ (not_iff_not.mpr hp |>.mpr ha)]
 
+/--
+@isnad1 id=eq.0h4v.s8.56e4aca71681 from=seed src=0 shape=ecb5b367 vocab=11338498
+-/
 lemma Unitization.complex_cfcₙ_eq_cfc_inr (a : A) (f : ℂ → ℂ) (hf₀ : f 0 = 0 := by cfc_zero_tac) :
     cfcₙ f a = cfc f (a : A⁺¹) :=
   Unitization.cfcₙ_eq_cfc_inr isStarNormal_inr ..
 
 /-- note: the version for `ℝ≥0`, `Unitization.nnreal_cfcₙ_eq_cfc_inr`, can be found in
-`Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Order.lean` -/
+`Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Order.lean`
+@isnad1 id=eq.0h4v.s8.bdbc3649d089 from=seed src=0 shape=dc6df20b vocab=e9e45bfc
+-/
 lemma Unitization.real_cfcₙ_eq_cfc_inr (a : A) (f : ℝ → ℝ) (hf₀ : f 0 = 0 := by cfc_zero_tac) :
     cfcₙ f a = cfc f (a : A⁺¹) :=
   Unitization.cfcₙ_eq_cfc_inr isSelfAdjoint_inr ..

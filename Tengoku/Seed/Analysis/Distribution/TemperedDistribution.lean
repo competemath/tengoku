@@ -81,6 +81,9 @@ def toTemperedDistribution : 𝓢'(E, ℂ) :=
   toPointwiseConvergenceCLM _ _ _ _ (integralCLM ℂ μ)
 
 set_option backward.privateInPublic true in
+/--
+@isnad1 id=eq.0h3v.s8.ef9f807732e7 from=seed src=0 shape=8c5a6886 vocab=db3f0c25
+-/
 @[simp]
 theorem toTemperedDistribution_apply (g : 𝓢(E, ℂ)) :
     μ.toTemperedDistribution g = ∫ (x : E), g x ∂μ := by
@@ -100,6 +103,9 @@ def toTemperedDistribution {f : E → F} (hf : f.HasTemperateGrowth) : 𝓢'(E, 
   toPointwiseConvergenceCLM _ _ _ _ ((integralCLM ℂ μ) ∘L (bilinLeftCLM (lsmul ℂ ℂ) hf))
 
 set_option backward.privateInPublic true in
+/--
+@isnad1 id=eq.1h5v.s8.ecad5eb545ad from=seed src=0 shape=c7984f60 vocab=09557dc3
+-/
 @[simp]
 theorem toTemperedDistribution_apply {f : E → F} (hf : f.HasTemperateGrowth) (g : 𝓢(E, ℂ)) :
     toTemperedDistribution μ hf g = ∫ (x : E), g x • f x ∂μ := rfl
@@ -124,6 +130,9 @@ def toTemperedDistributionCLM (μ : Measure E := by volume_tac) [hμ : μ.HasTem
     fun g ↦ (integralCLM ℂ μ).cont.comp <| pairing_continuous_left (lsmul ℂ ℂ).flip g
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s10.93557c4458b7 from=seed src=0 shape=e6809850 vocab=49c115c6
+-/
 @[simp]
 theorem toTemperedDistributionCLM_apply_apply (μ : Measure E := by volume_tac)
     [hμ : μ.HasTemperateGrowth] (f : 𝓢(E, F)) (g : 𝓢(E, ℂ)) :
@@ -141,6 +150,9 @@ instance instCoeToTemperedDistribution :
     Coe 𝓢(E, F) 𝓢'(E, F) where
   coe := toTemperedDistributionCLM E F volume
 
+/--
+@isnad1 id=eq.0h4v.s10.7dc08e253abf from=seed src=0 shape=5ab2a242 vocab=61eb89c1
+-/
 theorem coe_apply (f : 𝓢(E, F)) (g : 𝓢(E, ℂ)) :
     (f : 𝓢'(E, F)) g = ∫ (x : E), g x • f x :=
   toTemperedDistributionCLM_apply_apply volume f g
@@ -166,6 +178,9 @@ def toTemperedDistribution {p : ℝ≥0∞}
     (lsmul ℂ ℂ).flip.lpPairing μ p (1 - p⁻¹)⁻¹ f ∘L toLpCLM ℂ ℂ (1 - p⁻¹)⁻¹ μ
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s9.9a7c5031ddd2 from=seed src=0 shape=9382f10e vocab=a2da6db5
+-/
 @[simp]
 theorem toTemperedDistribution_apply {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] (f : Lp F p μ)
     (g : 𝓢(E, ℂ)) :
@@ -181,6 +196,9 @@ instance instCoeToTemperedDistribution {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] :
     CoeHead (Lp F p μ) 𝓢'(E, F) where
   coe := toTemperedDistribution
 
+/--
+@isnad1 id=eq.0h5v.s10.5afcf9d53d7a from=seed src=0 shape=8c2cdafa vocab=24c867fe
+-/
 @[simp]
 theorem toTemperedDistribution_toLp_eq [SecondCountableTopology E] {p : ℝ≥0∞} [hp : Fact (1 ≤ p)]
     (f : 𝓢(E, F)) : ((f : Lp F p μ) : 𝓢'(E, F)) = f.toTemperedDistributionCLM E F μ := by
@@ -207,12 +225,18 @@ def toTemperedDistributionCLM (μ : Measure E := by volume_tac) [μ.HasTemperate
       ENNReal.HolderConjugate.inv_one_sub_inv' hp.out
     exact (((lsmul ℂ ℂ (E := F)).flip.lpPairing μ p (1 - p⁻¹)⁻¹).flip (g.toLp (1 - p⁻¹)⁻¹ μ)).cont
 
+/--
+@isnad1 id=eq.0h5v.s11.99592c625e81 from=seed src=0 shape=8e112c0f vocab=5414ea33
+-/
 @[simp]
 theorem toTemperedDistributionCLM_apply {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] (f : Lp F p μ) :
     toTemperedDistributionCLM F μ p f = f := rfl
 
 variable [FiniteDimensional ℝ E] [IsLocallyFiniteMeasure μ]
 
+/--
+@isnad1 id=eq.0h4v.s11.8e99a0c00646 from=seed src=0 shape=1880ebec vocab=caece033
+-/
 theorem ker_toTemperedDistributionCLM_eq_bot {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] :
     (MeasureTheory.Lp.toTemperedDistributionCLM F μ p).ker = ⊥ := by
   rw [LinearMap.ker_eq_bot', ContinuousLinearMap.coe_coe]
@@ -249,49 +273,76 @@ variable (F) in
 def smulLeftCLM (g : E → ℂ) : 𝓢'(E, F) →L[ℂ] 𝓢'(E, F) :=
   PointwiseConvergenceCLM.precomp _ (SchwartzMap.smulLeftCLM ℂ g)
 
+/--
+@isnad1 id=eq.0h5v.s11.da82e4cc727b from=seed src=0 shape=046e9838 vocab=5e697a8f
+-/
 @[simp]
 theorem smulLeftCLM_apply_apply (g : E → ℂ) (f : 𝓢'(E, F)) (f' : 𝓢(E, ℂ)) :
     smulLeftCLM F g f f' = f (SchwartzMap.smulLeftCLM ℂ g f') := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.4aef51805286 from=seed src=0 shape=7676f69f vocab=32c72ad4
+-/
 @[simp]
 theorem smulLeftCLM_const (c : ℂ) (f : 𝓢'(E, F)) : smulLeftCLM F (fun _ : E ↦ c) f = c • f := by
   ext1; simp
 
+/--
+@isnad1 id=eq.2h5v.s12.3d94d8b9317b from=seed src=0 shape=5869b564 vocab=5c772b33
+-/
 @[simp]
 theorem smulLeftCLM_smulLeftCLM_apply {g₁ g₂ : E → ℂ} (hg₁ : g₁.HasTemperateGrowth)
     (hg₂ : g₂.HasTemperateGrowth) (f : 𝓢'(E, F)) :
     smulLeftCLM F g₂ (smulLeftCLM F g₁ f) = smulLeftCLM F (g₁ * g₂) f := by
   ext; simp [hg₁, hg₂]
 
+/--
+@isnad1 id=eq.2h4v.s11.d9ce1e63adfa from=seed src=0 shape=f8cb1552 vocab=352a0e63
+-/
 theorem smulLeftCLM_compL_smulLeftCLM {g₁ g₂ : E → ℂ} (hg₁ : g₁.HasTemperateGrowth)
     (hg₂ : g₂.HasTemperateGrowth) :
     smulLeftCLM F g₂ ∘L smulLeftCLM F g₁ = smulLeftCLM F (g₁ * g₂) := by
   ext1 f
   simp [hg₁, hg₂]
 
+/--
+@isnad1 id=eq.1h4v.s12.9568ffab3f49 from=seed src=0 shape=83d83814 vocab=5776082d
+-/
 theorem smulLeftCLM_smul {g : E → ℂ} (hg : g.HasTemperateGrowth) (c : ℂ) :
     smulLeftCLM F (c • g) = c • smulLeftCLM F g := by
   ext f u
   simp [SchwartzMap.smulLeftCLM_smul hg]
 
+/--
+@isnad1 id=eq.2h4v.s12.6b83444f79fb from=seed src=0 shape=f373ed80 vocab=030da105
+-/
 theorem smulLeftCLM_add {g₁ g₂ : E → ℂ} (hg₁ : g₁.HasTemperateGrowth)
     (hg₂ : g₂.HasTemperateGrowth) :
     smulLeftCLM F (g₁ + g₂) = smulLeftCLM F g₁ + smulLeftCLM F g₂ := by
   ext f u
   simp [SchwartzMap.smulLeftCLM_add hg₁ hg₂]
 
+/--
+@isnad1 id=eq.2h4v.s12.8db39308af8f from=seed src=0 shape=f373ed80 vocab=e5c71f18
+-/
 theorem smulLeftCLM_sub {g₁ g₂ : E → ℂ} (hg₁ : g₁.HasTemperateGrowth)
     (hg₂ : g₂.HasTemperateGrowth) :
     smulLeftCLM F (g₁ - g₂) = smulLeftCLM F g₁ - smulLeftCLM F g₂ := by
   ext f u
   simp [SchwartzMap.smulLeftCLM_sub hg₁ hg₂]
 
+/--
+@isnad1 id=eq.1h3v.s11.d3486b89ccfe from=seed src=0 shape=145906c5 vocab=a23e2bc9
+-/
 theorem smulLeftCLM_neg {g : E → ℂ} (hg : g.HasTemperateGrowth) :
     smulLeftCLM F (-g) = -smulLeftCLM F g := by
   ext f u
   simp [SchwartzMap.smulLeftCLM_neg hg]
 
+/--
+@isnad1 id=eq.1h5v.s11.49aa194b9856 from=seed src=0 shape=97176b7e vocab=5c5bb817
+-/
 theorem smulLeftCLM_sum {g : ι → E → ℂ} {s : Finset ι} (hg : ∀ i ∈ s, (g i).HasTemperateGrowth) :
     smulLeftCLM F (fun x ↦ ∑ i ∈ s, g i x) = ∑ i ∈ s, smulLeftCLM F (g i) := by
   ext f u
@@ -332,6 +383,9 @@ variable (F) in
 def derivCLM : 𝓢'(ℝ, F) →L[ℂ] 𝓢'(ℝ, F) :=
   PointwiseConvergenceCLM.precomp F (-SchwartzMap.derivCLM ℂ ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s11.5f1ce64129d3 from=seed src=0 shape=e191867a vocab=362d0c8d
+-/
 @[simp]
 theorem derivCLM_apply_apply (f : 𝓢'(ℝ, F)) (g : 𝓢(ℝ, ℂ)) :
     derivCLM F f g = f (-SchwartzMap.derivCLM ℂ ℂ g) := rfl
@@ -341,6 +395,9 @@ end TVS
 variable [RCLike 𝕜] [NormedAddCommGroup F] [NormedSpace ℂ F] [NormedSpace 𝕜 F]
 
 variable (𝕜) in
+/--
+@isnad1 id=eq.0h3v.s12.64bec4239d83 from=seed src=0 shape=96c6a2ab vocab=c79798be
+-/
 theorem derivCLM_toTemperedDistributionCLM_eq (f : 𝓢(ℝ, F)) :
     derivCLM F (f : 𝓢'(ℝ, F)) = SchwartzMap.derivCLM 𝕜 F f := by
   ext1 g
@@ -364,6 +421,9 @@ continuous linear map on tempered distributions. -/
 instance instLineDeriv : LineDeriv E 𝓢'(E, F) 𝓢'(E, F) where
   lineDerivOp m := PointwiseConvergenceCLM.precomp F (-lineDerivOpCLM ℂ 𝓢(E, ℂ) m)
 
+/--
+@isnad1 id=eq.0h5v.s9.dc4c48f07802 from=seed src=0 shape=009e3a90 vocab=6fd0442f
+-/
 @[simp]
 theorem lineDerivOp_apply_apply (f : 𝓢'(E, F)) (g : 𝓢(E, ℂ)) (m : E) :
     ∂_{m} f g = f (- ∂_{m} g) := rfl
@@ -385,6 +445,9 @@ instance : ContinuousLineDeriv E 𝓢'(E, F) 𝓢'(E, F) where
   continuous_lineDerivOp m :=
     (PointwiseConvergenceCLM.precomp F (-lineDerivOpCLM ℂ 𝓢(E, ℂ) m)).continuous
 
+/--
+@isnad1 id=eq.0h3v.s11.f30029afc312 from=seed src=0 shape=5bd3df6f vocab=62fd7b92
+-/
 theorem lineDerivOpCLM_eq (m : E) : lineDerivOpCLM ℂ 𝓢'(E, F) m =
   PointwiseConvergenceCLM.precomp F (-lineDerivOpCLM ℂ 𝓢(E, ℂ) m) := rfl
 
@@ -402,6 +465,9 @@ variable
   [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] [FiniteDimensional ℝ E]
   {μ : Measure E} [μ.IsAddHaarMeasure]
 
+/--
+@isnad1 id=eq.0h5v.s11.d0a7d63e6aa4 from=seed src=0 shape=37d3b25a vocab=93e8825e
+-/
 theorem lineDerivOp_toTemperedDistributionCLM_eq (f : 𝓢(E, F)) (m : E) :
     ∂_{m} (toTemperedDistributionCLM E F μ f) = toTemperedDistributionCLM E F μ (∂_{m} f) := by
   ext1 g
@@ -426,6 +492,9 @@ variable [AddCommGroup F] [Module ℂ F] [TopologicalSpace F] [IsTopologicalAddG
 instance : Laplacian 𝓢'(E, F) 𝓢'(E, F) where
   laplacian := LineDeriv.laplacianCLM ℝ E 𝓢'(E, F)
 
+/--
+@isnad1 id=eq.0h3v.s12.68a8b1e348cc from=seed src=0 shape=a1a9be2f vocab=f6a6c55a
+-/
 @[simp]
 theorem laplacianCLM_apply (f : 𝓢'(E, F)) : laplacianCLM ℂ E 𝓢'(E, F) f = Δ f := by
   simp [laplacianCLM, laplacian]
@@ -434,9 +503,15 @@ end TVS
 
 variable [NormedAddCommGroup F] [NormedSpace ℂ F]
 
+/--
+@isnad1 id=eq.0h5v.s9.bd3f7a3b83d1 from=seed src=0 shape=55f14876 vocab=e1486cd2
+-/
 theorem laplacian_eq_sum [Fintype ι] (b : OrthonormalBasis ι ℝ E) (f : 𝓢'(E, F)) :
     Δ f = ∑ i, ∂_{b i} (∂_{b i} f) := LineDeriv.laplacianCLM_eq_sum b f
 
+/--
+@isnad1 id=eq.0h4v.s9.6a4086e51059 from=seed src=0 shape=b2cece61 vocab=71de3c16
+-/
 @[simp]
 theorem laplacian_apply_apply (f : 𝓢'(E, F)) (u : 𝓢(E, ℂ)) : (Δ f) u = f (Δ u) := by
   simp [laplacian_eq_sum (stdOrthonormalBasis ℝ E),
@@ -444,7 +519,9 @@ theorem laplacian_apply_apply (f : 𝓢'(E, F)) (u : 𝓢(E, ℂ)) : (Δ f) u = 
 
 variable [MeasurableSpace E] [BorelSpace E]
 
-/-- The distributional Laplacian and the classical Laplacian coincide on `𝓢(E, F)`. -/
+/-- The distributional Laplacian and the classical Laplacian coincide on `𝓢(E, F)`.
+@isnad1 id=eq.0h3v.s11.bb3029618689 from=seed src=0 shape=e3c07c2f vocab=ad8e6f5e
+-/
 @[simp]
 theorem laplacian_toTemperedDistributionCLM_eq (f : 𝓢(E, F)) :
     Δ (f : 𝓢'(E, F)) = Δ f := by
@@ -470,36 +547,66 @@ variable [AddCommGroup F] [Module ℂ F] [TopologicalSpace F] [IsTopologicalAddG
 instance instFourierTransform : FourierTransform 𝓢'(E, F) 𝓢'(E, F) where
   fourier := PointwiseConvergenceCLM.precomp F (fourierCLM ℂ 𝓢(E, ℂ))
 
+/--
+@isnad1 id=fouriera.0h2v.s9.b014fce32fa1 from=seed src=0 shape=104c9e3b vocab=27394934
+-/
 instance instFourierAdd : FourierAdd 𝓢'(E, F) 𝓢'(E, F) where
   fourier_add := (PointwiseConvergenceCLM.precomp F (fourierCLM ℂ 𝓢(E, ℂ))).map_add
 
+/--
+@isnad1 id=fouriers.0h2v.s9.a8d32eb491aa from=seed src=0 shape=e95816f3 vocab=fa57f128
+-/
 instance instFourierSMul : FourierSMul ℂ 𝓢'(E, F) 𝓢'(E, F) where
   fourier_smul := (PointwiseConvergenceCLM.precomp F (fourierCLM ℂ 𝓢(E, ℂ))).map_smul
 
+/--
+@isnad1 id=continuo.0h2v.s9.105b329ce7c1 from=seed src=0 shape=104c9e3b vocab=f42d1c6e
+-/
 instance instContinuousFourier : ContinuousFourier 𝓢'(E, F) 𝓢'(E, F) where
   continuous_fourier := (PointwiseConvergenceCLM.precomp F (fourierCLM ℂ 𝓢(E, ℂ))).cont
 
+/--
+@isnad1 id=eq.0h4v.s9.dfa2ab73f9fe from=seed src=0 shape=bc3582df vocab=63674374
+-/
 @[simp]
 theorem fourier_apply (f : 𝓢'(E, F)) (g : 𝓢(E, ℂ)) : 𝓕 f g = f (𝓕 g) := rfl
 
 instance instFourierTransformInv : FourierTransformInv 𝓢'(E, F) 𝓢'(E, F) where
   fourierInv := PointwiseConvergenceCLM.precomp F (fourierInvCLM ℂ 𝓢(E, ℂ))
 
+/--
+@isnad1 id=fourieri.0h2v.s9.a4adf5cca683 from=seed src=0 shape=104c9e3b vocab=6fea2558
+-/
 instance instFourierInvAdd : FourierInvAdd 𝓢'(E, F) 𝓢'(E, F) where
   fourierInv_add := (PointwiseConvergenceCLM.precomp F (fourierInvCLM ℂ 𝓢(E, ℂ))).map_add
 
+/--
+@isnad1 id=fourieri.0h2v.s9.96c89c61732f from=seed src=0 shape=e95816f3 vocab=498ad161
+-/
 instance instFourierInvSMul : FourierInvSMul ℂ 𝓢'(E, F) 𝓢'(E, F) where
   fourierInv_smul := (PointwiseConvergenceCLM.precomp F (fourierInvCLM ℂ 𝓢(E, ℂ))).map_smul
 
+/--
+@isnad1 id=continuo.0h2v.s9.5fdb14dc3408 from=seed src=0 shape=104c9e3b vocab=5bc83712
+-/
 instance instContinuousFourierInv : ContinuousFourierInv 𝓢'(E, F) 𝓢'(E, F) where
   continuous_fourierInv := (PointwiseConvergenceCLM.precomp F (fourierInvCLM ℂ 𝓢(E, ℂ))).cont
 
+/--
+@isnad1 id=eq.0h4v.s9.a07ddb8773b6 from=seed src=0 shape=bc3582df vocab=a96ff008
+-/
 @[simp]
 theorem fourierInv_apply (f : 𝓢'(E, F)) (g : 𝓢(E, ℂ)) : 𝓕⁻ f g = f (𝓕⁻ g) := rfl
 
+/--
+@isnad1 id=fourierp.0h2v.s7.3e6d10fbb397 from=seed src=0 shape=104c9e3b vocab=2ed2ac6c
+-/
 instance instFourierPair : FourierPair 𝓢'(E, F) 𝓢'(E, F) where
   fourierInv_fourier_eq f := by ext; simp
 
+/--
+@isnad1 id=fourieri.0h2v.s7.5dbb841aea20 from=seed src=0 shape=104c9e3b vocab=418e92cf
+-/
 instance instFourierPairInv : FourierInvPair 𝓢'(E, F) 𝓢'(E, F) where
   fourier_fourierInv_eq f := by ext; simp
 
@@ -510,14 +617,18 @@ section embedding
 variable [NormedAddCommGroup F] [NormedSpace ℂ F] [CompleteSpace F]
 
 /-- The distributional Fourier transform and the classical Fourier transform coincide on
-`𝓢(E, F)`. -/
+`𝓢(E, F)`.
+@isnad1 id=eq.0h3v.s11.0abd8e57e5a1 from=seed src=0 shape=22955b79 vocab=3666b01c
+-/
 theorem fourier_toTemperedDistributionCLM_eq (f : 𝓢(E, F)) :
     𝓕 (f : 𝓢'(E, F)) = 𝓕 f := by
   ext g
   simpa using integral_fourier_smul_eq g f
 
 /-- The distributional inverse Fourier transform and the classical inverse Fourier transform
-coincide on `𝓢(E, F)`. -/
+coincide on `𝓢(E, F)`.
+@isnad1 id=eq.0h3v.s11.c488b4a6517e from=seed src=0 shape=22955b79 vocab=0712e8da
+-/
 theorem fourierInv_toTemperedDistributionCLM_eq (f : 𝓢(E, F)) :
     𝓕⁻ (f : 𝓢'(E, F)) = 𝓕⁻ f := calc
   _ = 𝓕⁻ (toTemperedDistributionCLM E F volume (𝓕 (𝓕⁻ f))) := by
@@ -533,7 +644,9 @@ open LineDeriv Real
 variable [NormedAddCommGroup F] [NormedSpace ℂ F]
 
 /-- The line derivative in direction `m` of the Fourier transform is given by the Fourier transform
-of the multiplication with `-(2 * π * Complex.I) • (inner ℝ · m)`. -/
+of the multiplication with `-(2 * π * Complex.I) • (inner ℝ · m)`.
+@isnad1 id=eq.0h4v.s11.f5097589be9b from=seed src=0 shape=4f49cb39 vocab=5dc56602
+-/
 theorem lineDerivOp_fourier_eq (f : 𝓢'(E, F)) (m : E) :
     ∂_{m} (𝓕 f) = 𝓕 (- (2 * π * Complex.I) • smulLeftCLM F (inner ℝ · m) f) := by
   ext u
@@ -541,7 +654,9 @@ theorem lineDerivOp_fourier_eq (f : 𝓢'(E, F)) (m : E) :
   simp [SchwartzMap.fourier_lineDerivOp_eq, ← smulLeftCLM_ofReal ℂ this]
 
 /-- The Fourier transform of line derivative in direction `m` is given by multiplication of
-`(2 * π * Complex.I) • (inner ℝ · m)` with the Fourier transform. -/
+`(2 * π * Complex.I) • (inner ℝ · m)` with the Fourier transform.
+@isnad1 id=eq.0h4v.s11.da494b1e7e7c from=seed src=0 shape=edf63b21 vocab=5fd2f052
+-/
 theorem fourier_lineDerivOp_eq (f : 𝓢'(E, F)) (m : E) :
     𝓕 (∂_{m} f) = (2 * π * Complex.I) • smulLeftCLM F (inner ℝ · m) (𝓕 f) := by
   ext u
@@ -549,7 +664,9 @@ theorem fourier_lineDerivOp_eq (f : 𝓢'(E, F)) (m : E) :
   simp [SchwartzMap.lineDerivOp_fourier_eq, ← smulLeftCLM_ofReal ℂ this]
 
 /-- The line derivative in direction `m` of the inverse Fourier transform is given by the inverse
-Fourier transform of the multiplication with `(2 * π * Complex.I) • (inner ℝ · m)`. -/
+Fourier transform of the multiplication with `(2 * π * Complex.I) • (inner ℝ · m)`.
+@isnad1 id=eq.0h4v.s11.86ee77440e6c from=seed src=0 shape=74809421 vocab=296fa949
+-/
 theorem lineDerivOp_fourierInv_eq (f : 𝓢'(E, F)) (m : E) :
     ∂_{m} (𝓕⁻ f) = 𝓕⁻ ((2 * π * Complex.I) • smulLeftCLM F (inner ℝ · m) f) := by
   ext u
@@ -557,7 +674,9 @@ theorem lineDerivOp_fourierInv_eq (f : 𝓢'(E, F)) (m : E) :
   simp [SchwartzMap.fourierInv_lineDerivOp_eq, ← smulLeftCLM_ofReal ℂ this]
 
 /-- The inverse Fourier transform of line derivative in direction `m` is given by multiplication of
-`-(2 * π * Complex.I) • (inner ℝ · m)` with the inverse Fourier transform. -/
+`-(2 * π * Complex.I) • (inner ℝ · m)` with the inverse Fourier transform.
+@isnad1 id=eq.0h4v.s11.afe00fd7c0ba from=seed src=0 shape=3a77d6a3 vocab=7f36fc66
+-/
 theorem fourierInv_lineDerivOp_eq (f : 𝓢'(E, F)) (m : E) :
     𝓕⁻ (∂_{m} f) = -(2 * π * Complex.I) • smulLeftCLM F (inner ℝ · m) (𝓕⁻ f) := by
   ext u
@@ -579,6 +698,9 @@ def delta (x : E) : 𝓢'(E, ℂ) :=
   toPointwiseConvergenceCLM _ _ _ _ <|
     (BoundedContinuousFunction.evalCLM ℂ x).comp (toBoundedContinuousFunctionCLM ℂ E ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s8.919334995618 from=seed src=0 shape=7fd9f4cd vocab=a2c179df
+-/
 @[simp]
 theorem delta_apply (x : E) (f : 𝓢(E, ℂ)) : delta x f = f x :=
   rfl
@@ -587,7 +709,9 @@ open MeasureTheory MeasureTheory.Measure
 
 variable [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
 
-/-- Dirac measure considered as a tempered distribution is the delta distribution. -/
+/-- Dirac measure considered as a tempered distribution is the delta distribution.
+@isnad1 id=eq.0h2v.s6.871cdb5b2bfa from=seed src=0 shape=a8aad46c vocab=bb4e89c8
+-/
 @[simp]
 theorem toTemperedDistribution_dirac_eq_delta (x : E) :
   (dirac x).toTemperedDistribution = delta x := by aesop
@@ -600,7 +724,9 @@ open FourierTransform
 
 /-- The Fourier transform of the delta distribution is equal to the volume.
 
-Informally, this is usually represented as `𝓕 δ = 1`. -/
+Informally, this is usually represented as `𝓕 δ = 1`.
+@isnad1 id=eq.0h1v.s7.73a803969218 from=seed src=0 shape=12ccf4bb vocab=a8cee154
+-/
 theorem fourier_delta_zero : 𝓕 (delta (0 : E)) = volume.toTemperedDistribution := by
   ext f
   simp [SchwartzMap.fourier_coe, Real.fourier_eq]

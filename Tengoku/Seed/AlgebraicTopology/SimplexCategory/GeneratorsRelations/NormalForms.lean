@@ -67,19 +67,31 @@ section IsAdmissible
 
 variable {m a b : ℕ} {L : List ℕ}
 
+/--
+@isnad1 id=iff.0h2v.s4.56010f3fd3ac from=seed src=0 shape=67b89760 vocab=f98f47d1
+-/
 @[simp, grind =]
 theorem isAdmissible_singleton_iff : IsAdmissible m [a] ↔ a ≤ m :=
   ⟨fun | .singleton h => h, .singleton⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.cbbc17555d66 from=seed src=0 shape=c4d98c53 vocab=603c407e
+-/
 @[simp, grind =]
 theorem isAdmissible_cons_cons_iff : IsAdmissible m (a :: b :: L) ↔
     a < b ∧ IsAdmissible (m + 1) (b :: L) ∧ a ≤ m :=
   ⟨fun | .cons_cons hab hbL ha => ⟨hab, hbL, ha⟩, by grind⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.e0b2e56d415f from=seed src=0 shape=e3118038 vocab=dceb38ef
+-/
 theorem isAdmissible_cons_iff : IsAdmissible m (a :: L) ↔
     a ≤ m ∧ ((_ : 0 < L.length) → a < L[0]) ∧ IsAdmissible (m + 1) L := by
   cases L <;> grind
 
+/--
+@isnad1 id=iff.0h2v.s6.3df78cfe44fb from=seed src=0 shape=a9c77ead vocab=df5c4b81
+-/
 theorem isAdmissible_iff_isChain_and_le : IsAdmissible m L ↔
     L.IsChain (· < ·) ∧ ∀ k, (h : k < L.length) → L[k] ≤ m + k := by
   induction L using List.twoStepInduction generalizing m with
@@ -91,37 +103,62 @@ theorem isAdmissible_iff_isChain_and_le : IsAdmissible m L ↔
     exact fun _ _ => ⟨fun h => by grind,
       fun h => ⟨h 0 (by grind), fun k _ => (h (k + 1) (by grind)).trans (by grind)⟩⟩
 
+/--
+@isnad1 id=iff.0h2v.s6.2acfa8368f1d from=seed src=0 shape=a9c77ead vocab=5b9efd4b
+-/
 theorem isAdmissible_iff_pairwise_and_le : IsAdmissible m L ↔
     L.Pairwise (· < ·) ∧ ∀ k, (h : k < L.length) → L[k] ≤ m + k := by
   rw [isAdmissible_iff_isChain_and_le, List.isChain_iff_pairwise]
 
+/--
+@isnad1 id=isadmiss.2h2v.s6.46241bc097fb from=seed src=0 shape=68a4d3eb vocab=df5c4b81
+-/
 theorem isAdmissible_of_isChain_of_forall_getElem_le {m L} (hL : L.IsChain (· < ·))
     (hL₂ : ∀ k, (h : k < L.length) → L[k] ≤ m + k) : IsAdmissible m L :=
   isAdmissible_iff_isChain_and_le.mpr ⟨hL, hL₂⟩
 
 namespace IsAdmissible
 
+/--
+@isnad1 id=ischain.1h2v.s4.1206cbac8a1e from=seed src=0 shape=92301fea vocab=c6e77e3e
+-/
 @[grind →] theorem isChain {m L} (hL : IsAdmissible m L) :
     L.IsChain (· < ·) := (isAdmissible_iff_isChain_and_le.mp hL).1
 
+/--
+@isnad1 id=le.2h3v.s5.afbcbd9cea9a from=seed src=0 shape=bdbd10e1 vocab=042314f4
+-/
 @[grind →] theorem le {m} {L : List ℕ} (hL : IsAdmissible m L) : ∀ k (h : k < L.length),
     L[k] ≤ m + k := (isAdmissible_iff_isChain_and_le.mp hL).2
 
-/-- The tail of an `m`-admissible list is (m+1)-admissible. -/
+/-- The tail of an `m`-admissible list is (m+1)-admissible.
+@isnad1 id=isadmiss.1h3v.s4.add055143c49 from=seed src=0 shape=1148e200 vocab=8a66d32e
+-/
 @[grind →] lemma of_cons {m a L} (h : IsAdmissible m (a :: L)) :
     IsAdmissible (m + 1) L := by cases L <;> grind
 
+/--
+@isnad1 id=isadmiss.3h3v.s6.26b3ab7cc5ce from=seed src=0 shape=77000127 vocab=dceb38ef
+-/
 lemma cons {m a L} (hL : IsAdmissible (m + 1) L) (ha : a ≤ m)
     (ha' : (_ : 0 < L.length) → a < L[0]) : IsAdmissible m (a :: L) := by cases L <;> grind
 
+/--
+@isnad1 id=sortedlt.1h2v.s3.3feff730f0cb from=seed src=0 shape=1fb49929 vocab=0ea64528
+-/
 theorem sortedLT {m L} (hL : IsAdmissible m L) : L.SortedLT :=
   hL.isChain.sortedLT
 
-/-- If `(a :: l)` is `m`-admissible then a is less than all elements of `l` -/
+/-- If `(a :: l)` is `m`-admissible then a is less than all elements of `l`
+@isnad1 id=lt.2h4v.s4.54e60996387a from=seed src=0 shape=221ab068 vocab=a0a9788b
+-/
 @[grind →]
 lemma head_lt {m a L} (hL : IsAdmissible m (a :: L)) :
     ∀ a' ∈ L, a < a' := fun _ => L.rel_of_pairwise_cons hL.sortedLT.pairwise
 
+/--
+@isnad1 id=lt.2h3v.s5.4ff8563034fe from=seed src=0 shape=29a39991 vocab=71b184fe
+-/
 @[grind →] lemma getElem_lt {m L} (hL : IsAdmissible m L)
     {k : ℕ} {hk : k < L.length} : L[k] < m + L.length := by
   grw [hL.le, hk]
@@ -137,6 +174,9 @@ def getElemAsFin {m L} (hl : IsAdmissible m L) (k : ℕ)
 def head {m a L} (hl : IsAdmissible m (a :: L)) : Fin (m + 1) :=
   hl.getElemAsFin 0 (by grind)
 
+/--
+@isnad1 id=isadmiss.2h3v.s4.3c8e31fb4061 from=seed src=0 shape=65b1761f vocab=e41b3da0
+-/
 theorem mono {n} (hmn : m ≤ n) (hL : IsAdmissible m L) : IsAdmissible n L :=
   isAdmissible_of_isChain_of_forall_getElem_le (by grind) (by grind)
 
@@ -157,12 +197,16 @@ def simplicialInsert (a : ℕ) : List ℕ → List ℕ
   | [] => [a]
   | b :: l => if a < b then a :: b :: l else b :: simplicialInsert (a + 1) l
 
-/-- `simplicialInsert` just adds one to the length. -/
+/-- `simplicialInsert` just adds one to the length.
+@isnad1 id=eq.0h2v.s4.9d38912f4fd2 from=seed src=0 shape=8534eba5 vocab=0580645d
+-/
 lemma simplicialInsert_length (a : ℕ) (L : List ℕ) :
     (simplicialInsert a L).length = L.length + 1 := by
   induction L generalizing a <;> grind
 
-/-- `simplicialInsert` preserves admissibility -/
+/-- `simplicialInsert` preserves admissibility
+@isnad1 id=isadmiss.2h3v.s5.92d941b626fe from=seed src=0 shape=eec12b3b vocab=834d8b7c
+-/
 theorem simplicialInsert_isAdmissible (L : List ℕ) (hL : IsAdmissible (m + 1) L) (j : ℕ)
     (hj : j ≤ m) :
     IsAdmissible m <| simplicialInsert j L := by
@@ -186,13 +230,22 @@ def standardσ (L : List ℕ) {m₁ m₂ : ℕ} (h : m₂ + L.length = m₁) : m
   | .nil => eqToHom (by grind)
   | .cons a t => standardσ t (by grind) ≫ σ (Fin.ofNat _ a)
 
+/--
+@isnad1 id=eq.0h1v.s4.fb9efe902a9f from=seed src=0 shape=6409b6ef vocab=3372b876
+-/
 @[simp]
 lemma standardσ_nil (m : ℕ) : standardσ .nil (by grind) = 𝟙 (mk m) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.2a078a1afc6e from=seed src=0 shape=42bce99b vocab=7cf87665
+-/
 @[simp, reassoc]
 lemma standardσ_cons (L : List ℕ) (a : ℕ) {m₁ m₂ : ℕ} (h : m₂ + (a :: L).length = m₁) :
     standardσ (L.cons a) h = standardσ L (by grind) ≫ σ (Fin.ofNat _ a) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.2dadb2043109 from=seed src=0 shape=29d86636 vocab=e2b19900
+-/
 @[reassoc]
 lemma standardσ_comp_standardσ (L₁ L₂ : List ℕ) {m₁ m₂ m₃ : ℕ}
     (h : m₂ + L₁.length = m₁) (h' : m₃ + L₂.length = m₂) :
@@ -221,10 +274,16 @@ def simplicialEvalσ (L : List ℕ) : ℕ → ℕ :=
   | [] => j
   | a :: L => if a < simplicialEvalσ L j then simplicialEvalσ L j - 1 else simplicialEvalσ L j
 
+/--
+@isnad1 id=eq.1h2v.s4.0b8aedca8e57 from=seed src=0 shape=72e34cfb vocab=b5a4fdfa
+-/
 @[grind ←]
 lemma simplicialEvalσ_of_le_mem (j : ℕ) (hj : ∀ k ∈ L, j ≤ k) : simplicialEvalσ L j = j := by
   induction L with | nil => grind | cons _ _ _ => simp only [List.forall_mem_cons] at hj; grind
 
+/--
+@isnad1 id=monotone.0h1v.s3.0d7cb3cb0a04 from=seed src=0 shape=0d7ff717 vocab=943359ed
+-/
 lemma simplicialEvalσ_monotone (L : List ℕ) : Monotone (simplicialEvalσ L) := by
   induction L <;> grind [Monotone]
 
@@ -233,6 +292,9 @@ variable {m}
 set_option backward.isDefEq.respectTransparency false in
 /- We prove that `simplicialEvalσ` is indeed a lift of
 `(toSimplexCategory.map (standardσ m L _ _)).toOrderHom` when the list is admissible. -/
+/--
+@isnad1 id=eq.3h4v.s8.e190f532421c from=seed src=0 shape=63a23c60 vocab=3fd21630
+-/
 lemma simplicialEvalσ_of_isAdmissible
     (m₁ m₂ : ℕ) (hL : IsAdmissible m₂ L) (hk : m₂ + L.length = m₁)
     (j : ℕ) (hj : j < m₁ + 1) :
@@ -262,7 +324,9 @@ lemma simplicialEvalσ_of_isAdmissible
       Function.comp_apply, Fin.predAboveOrderHom_coe, simplicialEvalσ, ha₀, ← this] using aux _
 
 /-- Performing a simplicial insertion in a list is the same as composition on the right by the
-corresponding degeneracy operator. -/
+corresponding degeneracy operator.
+@isnad1 id=eq.3h4v.s7.b9613fd0ec49 from=seed src=0 shape=459c8ad8 vocab=24b09a33
+-/
 lemma standardσ_simplicialInsert (hL : IsAdmissible (m + 1) L) (j : ℕ) (hj : j < m + 1)
     (m₁ : ℕ) (hm₁ : m + L.length + 1 = m₁) :
     standardσ (m₂ := m) (simplicialInsert j L) (m₁ := m₁)
@@ -283,7 +347,9 @@ lemma standardσ_simplicialInsert (hL : IsAdmissible (m + 1) L) (j : ℕ) (hj : 
 set_option backward.isDefEq.respectTransparency false in
 attribute [local grind! .] simplicialInsert_length simplicialInsert_isAdmissible in
 /-- Using `standardσ_simplicialInsert`, we can prove that every morphism satisfying `P_σ` is equal
-to some `standardσ` for some admissible list of indices. -/
+to some `standardσ` for some admissible list of indices.
+@isnad1 id=ex.0h4v.s6.76bbf049c8df from=seed src=0 shape=0642ab36 vocab=bdf14901
+-/
 theorem exists_normal_form_P_σ {x y : SimplexCategoryGenRel} (f : x ⟶ y) (hf : P_σ f) :
     ∃ L : List ℕ,
     ∃ m : ℕ, ∃ b : ℕ,
@@ -310,6 +376,9 @@ theorem exists_normal_form_P_σ {x y : SimplexCategoryGenRel} (f : x ⟶ y) (hf 
 
 section MemIsAdmissible
 
+/--
+@isnad1 id=eq.2h3v.s6.42f34f8daec3 from=seed src=0 shape=ec65ba35 vocab=275e378f
+-/
 lemma IsAdmissible.simplicialEvalσ_succ_getElem (hL : IsAdmissible m L)
     {k : ℕ} {hk : k < L.length} : simplicialEvalσ L L[k] = simplicialEvalσ L (L[k] + 1) := by
   induction L generalizing m k <;> grind [→ IsAdmissible.singleton]
@@ -317,6 +386,9 @@ lemma IsAdmissible.simplicialEvalσ_succ_getElem (hL : IsAdmissible m L)
 local grind_pattern IsAdmissible.simplicialEvalσ_succ_getElem =>
   IsAdmissible m L, simplicialEvalσ L L[k]
 
+/--
+@isnad1 id=mem.3h3v.s5.c0f33b5049d3 from=seed src=0 shape=adfe1e88 vocab=38002f08
+-/
 lemma mem_isAdmissible_of_lt_and_eval_eq_eval_add_one (hL : IsAdmissible m L)
     (j : ℕ) (hj₁ : j < m + L.length) (hj₂ : simplicialEvalσ L j = simplicialEvalσ L (j + 1)) :
     j ∈ L := by
@@ -326,12 +398,17 @@ lemma mem_isAdmissible_of_lt_and_eval_eq_eval_add_one (hL : IsAdmissible m L)
     have := simplicialEvalσ_monotone L (a := a + 1)
     rcases lt_trichotomy j a with h | h | h <;> grind
 
+/--
+@isnad1 id=and.2h3v.s5.89d73a34346d from=seed src=0 shape=ba6122f8 vocab=38002f08
+-/
 lemma lt_and_eval_eq_eval_add_one_of_mem_isAdmissible (hL : IsAdmissible m L) (j : ℕ) (hj : j ∈ L) :
     j < m + L.length ∧ simplicialEvalσ L j = simplicialEvalσ L (j + 1) := by
   grind [List.mem_iff_getElem]
 
 /-- We can characterize elements in an admissible list as exactly those for which
-`simplicialEvalσ` takes the same value twice in a row. -/
+`simplicialEvalσ` takes the same value twice in a row.
+@isnad1 id=iff.1h3v.s5.1193c5fc0260 from=seed src=0 shape=2d2f196d vocab=38002f08
+-/
 lemma mem_isAdmissible_iff (hL : IsAdmissible m L) (j : ℕ) :
     j ∈ L ↔ j < m + L.length ∧ simplicialEvalσ L j = simplicialEvalσ L (j + 1) := by
   grind [lt_and_eval_eq_eval_add_one_of_mem_isAdmissible,

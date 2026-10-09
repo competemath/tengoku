@@ -49,7 +49,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {U : Set E} {f :
   {z₀ : ℂ} {ε r : ℝ}
 
 /-- If the modulus of a holomorphic function `f` is bounded below by `ε` on a circle, then its range
-contains a disk of radius `ε / 2`. -/
+contains a disk of radius `ε / 2`.
+@isnad1 id=le.4h4v.s7.df9496941f1b from=seed src=0 shape=2edce9fe vocab=b954d8a6
+-/
 theorem DiffContOnCl.ball_subset_image_closedBall (h : DiffContOnCl ℂ f (ball z₀ r)) (hr : 0 < r)
     (hf : ∀ z ∈ sphere z₀ r, ε ≤ ‖f z - f z₀‖) (hz₀ : ∃ᶠ z in 𝓝 z₀, f z ≠ f z₀) :
     ball (f z₀) (ε / 2) ⊆ f '' closedBall z₀ r := by
@@ -81,7 +83,9 @@ theorem DiffContOnCl.ball_subset_image_closedBall (h : DiffContOnCl ℂ f (ball 
 /-- A function `f : ℂ → ℂ` which is analytic at a point `z₀` is either constant in a neighborhood
 of `z₀`, or behaves locally like an open function (in the sense that the image of every neighborhood
 of `z₀` is a neighborhood of `f z₀`, as in `isOpenMap_iff_nhds_le`). For a function `f : E → ℂ`
-the same result holds, see `AnalyticAt.eventually_constant_or_nhds_le_map_nhds`. -/
+the same result holds, see `AnalyticAt.eventually_constant_or_nhds_le_map_nhds`.
+@isnad1 id=or.1h2v.s6.6b0ff9986fa9 from=seed src=0 shape=024b2741 vocab=06ab6052
+-/
 theorem AnalyticAt.eventually_constant_or_nhds_le_map_nhds_aux (hf : AnalyticAt ℂ f z₀) :
     (∀ᶠ z in 𝓝 z₀, f z = f z₀) ∨ 𝓝 (f z₀) ≤ map f (𝓝 z₀) := by
   /- The function `f` is analytic in a neighborhood of `z₀`; by the isolated zeros principle, if `f`
@@ -116,7 +120,9 @@ theorem AnalyticAt.eventually_constant_or_nhds_le_map_nhds_aux (hf : AnalyticAt 
 /-- The *open mapping theorem* for holomorphic functions, local version: is a function `g : E → ℂ`
 is analytic at a point `z₀`, then either it is constant in a neighborhood of `z₀`, or it maps every
 neighborhood of `z₀` to a neighborhood of `z₀`. For the particular case of a holomorphic function on
-`ℂ`, see `AnalyticAt.eventually_constant_or_nhds_le_map_nhds_aux`. -/
+`ℂ`, see `AnalyticAt.eventually_constant_or_nhds_le_map_nhds_aux`.
+@isnad1 id=or.1h3v.s6.a5cb19e053ce from=seed src=0 shape=25838162 vocab=f2ae3b4f
+-/
 theorem AnalyticAt.eventually_constant_or_nhds_le_map_nhds {z₀ : E} (hg : AnalyticAt ℂ g z₀) :
     (∀ᶠ z in 𝓝 z₀, g z = g z₀) ∨ 𝓝 (g z₀) ≤ map g (𝓝 z₀) := by
   /- The idea of the proof is to use the one-dimensional version applied to the restriction of `g`
@@ -163,7 +169,9 @@ theorem AnalyticAt.eventually_constant_or_nhds_le_map_nhds {z₀ : E} (hg : Anal
 
 /-- The *open mapping theorem* for holomorphic functions, global version: if a function `g : E → ℂ`
 is analytic on a connected set `U`, then either it is constant on `U`, or it is open on `U` (in the
-sense that it maps any open set contained in `U` to an open set in `ℂ`). -/
+sense that it maps any open set contained in `U` to an open set in `ℂ`).
+@isnad1 id=or.2h3v.s6.2eebb808c6a3 from=seed src=0 shape=e32d574f vocab=ef416c00
+-/
 theorem AnalyticOnNhd.is_constant_or_isOpen (hg : AnalyticOnNhd ℂ g U) (hU : IsPreconnected U) :
     (∃ w, ∀ z ∈ U, g z = w) ∨ ∀ s ⊆ U, IsOpen s → IsOpen (g '' s) := by
   by_cases h : ∃ z₀ ∈ U, ∀ᶠ z in 𝓝 z₀, g z = g z₀
@@ -175,6 +183,9 @@ theorem AnalyticOnNhd.is_constant_or_isOpen (hg : AnalyticOnNhd ℂ g U) (hU : I
     exact (hg w (hs1 hw1)).eventually_constant_or_nhds_le_map_nhds.resolve_left (h w (hs1 hw1))
         (image_mem_map (hs2.mem_nhds hw1))
 
+/--
+@isnad1 id=or.1h2v.s6.de2a1704ce50 from=seed src=0 shape=9ef940e4 vocab=4871b9fb
+-/
 theorem AnalyticOnNhd.is_constant_or_isOpenMap (hg : AnalyticOnNhd ℂ g .univ) :
     (∃ w, ∀ z, g z = w) ∨ IsOpenMap g :=
   (hg.is_constant_or_isOpen PreconnectedSpace.isPreconnected_univ).imp
@@ -238,6 +249,9 @@ theorem AnalyticOnNhd.eq_const_add_im_mul_I_of_re_eq_const {U : Set ℂ} {c₀ :
 ## Holomorphic Functions as Open Quotient Maps
 -/
 
+/--
+@isnad1 id=or.0h1v.s6.cae0c6abe130 from=seed src=0 shape=9a1a9803 vocab=ac9547c6
+-/
 theorem Polynomial.C_eq_or_isOpenQuotientMap_eval (p : Polynomial ℂ) :
     (∃ x, C x = p) ∨ IsOpenQuotientMap p.eval := by
   refine or_iff_not_imp_left.mpr fun h ↦ ?_
@@ -245,17 +259,26 @@ theorem Polynomial.C_eq_or_isOpenQuotientMap_eval (p : Polynomial ℂ) :
   · exact (h ⟨x, funext <| by simpa [eq_comm (a := x)]⟩).elim
   · exact ⟨IsAlgClosed.eval_surjective <| natDegree_eq_zero.not.mpr h, p.continuous_aeval, hp⟩
 
+/--
+@isnad1 id=isopenqu.1h1v.s5.2ce9e7e0fd51 from=seed src=0 shape=62949f80 vocab=8252a784
+-/
 theorem Polynomial.isOpenQuotientMap_eval (p : Polynomial ℂ) (hp : p.natDegree ≠ 0) :
     IsOpenQuotientMap p.eval :=
   p.C_eq_or_isOpenQuotientMap_eval.resolve_left <| natDegree_eq_zero.not.mp hp
 
 namespace Complex
 
+/--
+@isnad1 id=isopenqu.0h1v.s5.d31087bd5dde from=seed src=0 shape=f97e8750 vocab=ccfaea4b
+-/
 theorem isOpenQuotientMap_pow (n : ℕ) [NeZero n] : IsOpenQuotientMap (· ^ n : ℂ → ℂ) := by
   convert! Polynomial.isOpenQuotientMap_eval (.X ^ n) _
   · simp
   · simpa using NeZero.ne n
 
+/--
+@isnad1 id=isopenqu.0h1v.s7.42a14eb98624 from=seed src=0 shape=380fae5b vocab=ccff911a
+-/
 theorem isOpenQuotientMap_pow_compl_zero (n : ℕ) [NeZero n] :
     IsOpenQuotientMap
       fun z : {z : ℂ // z ≠ 0} ↦ (⟨z ^ n, pow_ne_zero n z.2⟩ : {z : ℂ // z ≠ 0}) where
@@ -265,6 +288,9 @@ theorem isOpenQuotientMap_pow_compl_zero (n : ℕ) [NeZero n] :
   isOpenMap := (IsOpen.isOpenEmbedding_subtypeVal isClosed_singleton.1).isOpenMap_iff.mpr <|
     (isOpenQuotientMap_pow n).isOpenMap.comp isClosed_singleton.1.isOpenMap_subtype_val
 
+/--
+@isnad1 id=isopenqu.0h1v.s7.0ef98958fef7 from=seed src=0 shape=380fae5b vocab=a6debdd5
+-/
 theorem isOpenQuotientMap_zpow_compl_zero (n : ℤ) [NeZero n] :
     IsOpenQuotientMap
       fun z : {z : ℂ // z ≠ 0} ↦ (⟨z ^ n, zpow_ne_zero n z.2⟩ : {z : ℂ // z ≠ 0}) := by

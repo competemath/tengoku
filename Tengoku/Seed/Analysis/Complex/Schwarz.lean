@@ -142,6 +142,7 @@ we have `dist (f z) (f c) ≤ R₂ * (dist z c / R₁) ^ (n + 1)`.
 
 For `n = 0`, this theorem gives a usual Schwarz lemma,
 see `dist_le_div_mul_dist_of_mapsTo_ball` below.
+@isnad1 id=le.4h8v.s8.e1ebf6ffdb49 from=seed src=0 shape=2656c3f8 vocab=f55b3b30
 -/
 theorem dist_le_mul_div_pow_of_mapsTo_ball_of_isLittleO {f : E → F} {c z : E} {R₁ R₂ : ℝ} {n : ℕ}
     (hd : DifferentiableOn ℂ f (ball c R₁)) (h_maps : MapsTo f (ball c R₁) (closedBall (f c) R₂))
@@ -186,6 +187,7 @@ theorem dist_le_mul_div_pow_of_mapsTo_ball_of_isLittleO {f : E → F} {c z : E} 
 on an open ball with center `c` and radius `R₁`.
 If `f` sends this ball to a closed ball with center `f c` and radius `R₂`,
 then for any `z` in the former ball we have `dist (f z) (f c) ≤ (R₂ / R₁) * dist z c`.
+@isnad1 id=le.3h7v.s7.3e32fea11eb8 from=seed src=0 shape=55022701 vocab=c8e86840
 -/
 theorem dist_le_div_mul_dist_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R₁))
     (h_maps : MapsTo f (ball c R₁) (closedBall (f c) R₂)) (hz : z ∈ ball c R₁) :
@@ -199,6 +201,7 @@ theorem dist_le_div_mul_dist_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c
 on an open ball with center `c` and positive radius `R₁`.
 If `f` sends this ball to a closed ball with center `f c` and radius `R₂`,
 then the norm of the Fréchet derivative of `f` at `c` is at most `R₂ / R₁`.
+@isnad1 id=le.3h6v.s8.c0255418cbd2 from=seed src=0 shape=4abeef8e vocab=c984c38e
 -/
 theorem norm_fderiv_le_div_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R₁))
     (h_maps : MapsTo f (ball c R₁) (closedBall (f c) R₂)) (h₀ : 0 < R₁) :
@@ -212,6 +215,7 @@ theorem norm_fderiv_le_div_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R
 on an open ball with center `c`.
 If `f` sends this ball to a closed ball with center `f c` and the same radius,
 then for any `z` in the former ball we have `dist (f z) (f c) ≤ dist z c`.
+@isnad1 id=le.3h6v.s7.3aea989d3299 from=seed src=0 shape=b9a5a74d vocab=b0e33bad
 -/
 theorem dist_le_dist_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R))
     (h_maps : MapsTo f (ball c R) (closedBall (f c) R)) (hz : z ∈ ball c R) :
@@ -222,6 +226,7 @@ theorem dist_le_dist_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R))
 on an open ball with center `c` and a positive radius.
 If `f` sends this ball to a closed ball with center `f c` and the same radius,
 then the norm of the Fréchet derivative of `f` at `c` is at most one.
+@isnad1 id=le.3h5v.s8.a7c897d1bdf2 from=seed src=0 shape=b50f39d4 vocab=28f0628c
 -/
 theorem norm_fderiv_le_one_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R))
     (h_maps : MapsTo f (ball c R) (closedBall (f c) R)) (hR : 0 < R) :
@@ -231,7 +236,9 @@ theorem norm_fderiv_le_one_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R
 /-- The **Schwarz Lemma**.
 Let `f : E → F` be a complex analytic on an open ball with center at the origin.
 If `f` sends this ball to the closed ball with center `0` of the same radius and `f 0 = 0`,
-then for any point `z` of this disk we have `‖f z‖ ≤ ‖z‖`. -/
+then for any point `z` of this disk we have `‖f z‖ ≤ ‖z‖`.
+@isnad1 id=le.4h5v.s7.7f159d8671f1 from=seed src=0 shape=cf425c4a vocab=7436d792
+-/
 theorem norm_le_norm_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball 0 R))
     (h_maps : MapsTo f (ball 0 R) (closedBall 0 R)) (h₀ : f 0 = 0) (hz : ‖z‖ < R) :
     ‖f z‖ ≤ ‖z‖ := by
@@ -247,7 +254,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {R R₁ R₂ : �
 /-- The **Schwarz Lemma**: if `f : ℂ → E` is complex analytic
 on an open disk with center `c` and a positive radius `R₁`,
 and it sends this disk to a closed ball with center `f c` and radius `R₂`,
-then the norm of the derivative of `f` at `c` is at most the ratio `R₂ / R₁`. -/
+then the norm of the derivative of `f` at `c` is at most the ratio `R₂ / R₁`.
+@isnad1 id=le.3h5v.s7.e404d85f6cf2 from=seed src=0 shape=cf9076fc vocab=872ce270
+-/
 theorem norm_deriv_le_div_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R₁))
     (h_maps : MapsTo f (ball c R₁) (closedBall (f c) R₂)) (h₀ : 0 < R₁) :
     ‖deriv f c‖ ≤ R₂ / R₁ := by
@@ -258,6 +267,7 @@ theorem norm_deriv_le_div_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R�
 on an open disk with center `c` and a positive radius `R₁`,
 and it sends this disk to a closed ball with center `f c` and radius the same radius,
 then the norm of the derivative of `f` at the center of this disk is at most `1`.
+@isnad1 id=le.3h4v.s7.e9ab35bbff26 from=seed src=0 shape=da85748b vocab=bec3be04
 -/
 theorem norm_deriv_le_one_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R))
     (h_maps : MapsTo f (ball c R) (closedBall (f c) R)) (h₀ : 0 < R) : ‖deriv f c‖ ≤ 1 :=
@@ -269,6 +279,7 @@ If `f : ℂ → E` is a complex analytic function on an open ball `ball c R₁`
 hat sends it to a closed ball `closedBall (f c) R₂`, then the norm of `dslope f c z`,
 which is defined as `(z - c)⁻¹ • (f z - f c)` for `z ≠ c` and as `deriv f c` for `z = c`,
 is not greater than the ratio `R₂ / R₁`.
+@isnad1 id=le.3h6v.s7.da96b720a1d4 from=seed src=0 shape=e69e4776 vocab=797599b3
 -/
 theorem norm_dslope_le_div_of_mapsTo_ball (hd : DifferentiableOn ℂ f (ball c R₁))
     (h_maps : MapsTo f (ball c R₁) (closedBall (f c) R₂)) (hz : z ∈ ball c R₁) :
@@ -288,6 +299,7 @@ Note that this lemma requires the codomain to be a strictly convex space.
 Indeed, for `E = ℂ × ℂ` there is a counterexample:
 the map `f := fun z ↦ (z, z ^ 2)` sends `ball 0 1` to `closedBall 0 1`,
 `‖dslope f 0 0‖ = ‖deriv f 0‖ = ‖(1, 0)‖ = 1`, but the map is not an affine map.
+@isnad1 id=eqon.4h6v.s8.fd17dbe65209 from=seed src=0 shape=e2a3854d vocab=38d26c7b
 -/
 theorem affine_of_mapsTo_ball_of_norm_dslope_eq_div [StrictConvexSpace ℝ E]
     (hd : DifferentiableOn ℂ f (ball c R₁))
@@ -331,6 +343,7 @@ This is an existence version of `affine_of_mapsTo_ball_of_norm_dslope_eq_div` ab
 
 TODO: once the deprecated alias `affine_of_mapsTo_ball_of_exists_norm_dslope_eq_div` is gone,
 rename this theorem to `affine_of_mapsTo_ball_of_exists_norm_dslope_eq_div`.
+@isnad1 id=ex.3h5v.s8.d0b41eae4b96 from=seed src=0 shape=0bf8db77 vocab=38d26c7b
 -/
 theorem affine_of_mapsTo_ball_of_exists_norm_dslope_eq_div'
     [StrictConvexSpace ℝ E] (hd : DifferentiableOn ℂ f (ball c R₁))

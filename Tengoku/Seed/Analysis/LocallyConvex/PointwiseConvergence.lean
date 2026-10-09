@@ -60,9 +60,15 @@ def inducingFn : (E →SLₚₜ[σ] F) →ₗ[𝕜₂] (E → F) where
   map_smul' _ _ := rfl
 
 variable (σ E F) in
+/--
+@isnad1 id=isinduci.0h5v.s9.97506821a46d from=seed src=0 shape=079fc0b9 vocab=eb988406
+-/
 theorem isInducing_inducingFn : Topology.IsInducing (inducingFn σ E F) :=
   (PointwiseConvergenceCLM.isEmbedding_coeFn σ E F).isInducing
 
+/--
+@isnad1 id=withsemi.0h5v.s8.ab38896a6ad5 from=seed src=0 shape=793d2676 vocab=dec202f8
+-/
 lemma withSeminorms : WithSeminorms (PointwiseConvergenceCLM.seminormFamily σ E F) :=
   let e : E ≃ (Σ _ : E, Fin 1) := .symm <| .sigmaUnique _ _
   (isInducing_inducingFn σ E F).withSeminorms <| withSeminorms_pi (fun _ ↦ norm_withSeminorms 𝕜₂ F)
@@ -73,10 +79,16 @@ section Tendsto
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=iff.0h9v.s8.f978de01d343 from=seed src=0 shape=21ca6776 vocab=f6f879d7
+-/
 theorem tendsto_nhds {f : Filter α} (u : α → E →SLₚₜ[σ] F) (y₀ : E →SLₚₜ[σ] F) :
     Tendsto u f (𝓝 y₀) ↔ ∀ (x : E) (ε : ℝ), 0 < ε → ∀ᶠ (k : α) in f, ‖u k x - y₀ x‖ < ε :=
   PointwiseConvergenceCLM.withSeminorms.tendsto_nhds _ _
 
+/--
+@isnad1 id=iff.0h8v.s8.72c39c1f5f41 from=seed src=0 shape=6bd09aaa vocab=257b1ed5
+-/
 theorem tendsto_nhds_atTop [SemilatticeSup α] [Nonempty α] (u : α → E →SLₚₜ[σ] F)
     (y₀ : E →SLₚₜ[σ] F) :
     Tendsto u atTop (𝓝 y₀) ↔

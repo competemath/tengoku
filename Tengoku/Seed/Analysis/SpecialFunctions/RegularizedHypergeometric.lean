@@ -69,6 +69,9 @@ def regularizedHGFunCoeff (a : Multiset ℂ) (b : Multiset ℂ) (n : ℕ) : ℂ 
 
 attribute [grind .] Nat.factorial_ne_zero
 
+/--
+@isnad1 id=iff.0h3v.s6.1b1ef3ac44c1 from=seed src=0 shape=1d9ab80c vocab=ebefdbf6
+-/
 @[grind =]
 theorem regularizedHGFunCoeff_eq_zero_iff :
     regularizedHGFunCoeff a b n = 0 ↔
@@ -78,17 +81,25 @@ theorem regularizedHGFunCoeff_eq_zero_iff :
   grind
 
 variable (a b n m) in
+/--
+@isnad1 id=eq.0h5v.s5.ff8d20bfb0c7 from=seed src=0 shape=b57bd745 vocab=4cd753cd
+-/
 theorem regularizedHGFunCoeff_eq_zero_right (hb : -(n : ℂ) - m ∈ b := by grind) :
     regularizedHGFunCoeff a b n = 0 := by grind
 
 variable (a b n m) in
+/--
+@isnad1 id=eq.0h6v.s5.1705de4e0013 from=seed src=0 shape=4a0e8001 vocab=097c2eb5
+-/
 theorem regularizedHGFunCoeff_eq_zero_left (ha : -(m : ℂ) ∈ a := by grind)
     (hm : m < n := by grind) :
   regularizedHGFunCoeff a b n = 0 := by grind
 
 /-- Recursion formula for the coefficients of the hypergeometric series.
 
-This is mainly used to calculate the convergence radius. -/
+This is mainly used to calculate the convergence radius.
+@isnad1 id=eq.1h3v.s7.d8538c51fcdb from=seed src=0 shape=4e88bdac vocab=d6f81200
+-/
 theorem regularizedHGFunCoeff_add_one (hb : ∀ k ∈ b, k ≠ -n) :
     regularizedHGFunCoeff a b (n + 1) = regularizedHGFunCoeff a b n *
       ((a.map (· + (n : ℂ))).prod / ((b.map (· + (n : ℂ))).prod  * (n + 1))) := calc
@@ -110,7 +121,9 @@ theorem regularizedHGFunCoeff_add_one (hb : ∀ k ∈ b, k ≠ -n) :
 
 /-- Recursion formula for the coefficients of the hypergeometric series.
 
-This is mainly used to calculate the convergence radius. -/
+This is mainly used to calculate the convergence radius.
+@isnad1 id=eq.1h3v.s7.7911aa70bd6c from=seed src=0 shape=c9914b58 vocab=b86336c6
+-/
 theorem regularizedHGFunCoeff_add_one_div_self (h : regularizedHGFunCoeff a b n ≠ 0) :
     regularizedHGFunCoeff a b (n + 1) / regularizedHGFunCoeff a b n =
       (a.map (· + (n : ℂ))).prod / ((b.map (· + (n : ℂ))).prod * (n + 1)) := by
@@ -150,12 +163,18 @@ variable (a b) in
 def regularizedHGFunSeries : FormalMultilinearSeries ℂ ℂ ℂ :=
   .ofScalars ℂ (regularizedHGFunCoeff a b)
 
+/--
+@isnad1 id=eq.0h2v.s5.c7878a39fa35 from=seed src=0 shape=a5bd1d50 vocab=8c2a54b8
+-/
 @[simp]
 theorem regularizedHGFunSeries_coeff :
     (regularizedHGFunSeries a b).coeff = regularizedHGFunCoeff a b := by
   unfold regularizedHGFunSeries
   ext; simp
 
+/--
+@isnad1 id=iff.0h3v.s7.19eb6a80993c from=seed src=0 shape=228bb60e vocab=6977f744
+-/
 @[simp, grind =]
 theorem regularizedHGFunSeries_eq_zero :
     regularizedHGFunSeries a b n = 0 ↔ regularizedHGFunCoeff a b n = 0 := by
@@ -166,7 +185,9 @@ variable (a b) in
 def regularizedHGFun (z : ℂ) : ℂ := (regularizedHGFunSeries a b).sum z
 
 /-- If there exists `j` and `k : ℕ`, such that `a j = -k`, then the hypergeometric series is finite
-and has convergence radius `∞`. -/
+and has convergence radius `∞`.
+@isnad1 id=eq.2h4v.s6.0a97d074023b from=seed src=0 shape=f1ea64e4 vocab=9e89d3bc
+-/
 theorem radius_regularizedHGFunSeries_eq_top_of_finite (ha : j ∈ a) (hj : j = -n) :
     (regularizedHGFunSeries a b).radius = ⊤ := by
   apply FormalMultilinearSeries.radius_eq_top_of_eventually_eq_zero
@@ -176,7 +197,9 @@ theorem radius_regularizedHGFunSeries_eq_top_of_finite (ha : j ∈ a) (hj : j = 
 
 variable (b) in
 /-- If for all `j` and `k : ℕ`, `a j ≠ -k`, then the coefficients of the hypergeometric series
-are eventually non-vanishing. -/
+are eventually non-vanishing.
+@isnad1 id=eventual.1h2v.s5.56c55d93d40d from=seed src=0 shape=91961ac8 vocab=efbaf3b7
+-/
 theorem eventually_atTop_regularizedHGFunCoeff_ne_zero (h : ∀ j ∈ a, ∀ (k : ℕ), j ≠ -↑k) :
     ∀ᶠ (n : ℕ) in atTop, regularizedHGFunCoeff a b n ≠ 0 := by
   rw [Filter.eventually_atTop]
@@ -213,7 +236,9 @@ private theorem tendsto_multiset_prod_div_multiset_prod_mul :
   apply this.congr
   simp
 
-/-- If `a.card ≤ b.card`, then the hypergeometric series has infinite convergence radius. -/
+/-- If `a.card ≤ b.card`, then the hypergeometric series has infinite convergence radius.
+@isnad1 id=eq.1h2v.s5.d4dd287a35b1 from=seed src=0 shape=af22f3f1 vocab=9c099913
+-/
 @[grind =]
 theorem radius_regularizedHGFunSeries_eq_top (h : a.card ≤ b.card) :
     (regularizedHGFunSeries a b).radius = ⊤ := by
@@ -240,7 +265,9 @@ theorem radius_regularizedHGFunSeries_eq_top (h : a.card ≤ b.card) :
       multiset_prod_div_multiset_prod_mul a b hn₂, mul_div]
 
 /-- If `a.card = b.card + 1`, then the hypergeometric series has convergence radius `1`, unless it
-is a polynomial. -/
+is a polynomial.
+@isnad1 id=eq.2h2v.s6.3fe165ebadc4 from=seed src=0 shape=ef81a064 vocab=cb3af5e5
+-/
 @[grind =]
 theorem radius_regularizedHGFunSeries_eq_one (h : a.card = b.card + 1)
     (h' : ∀ j ∈ a, ∀ k : ℕ, j ≠ -k) :
@@ -258,7 +285,9 @@ theorem radius_regularizedHGFunSeries_eq_one (h : a.card = b.card + 1)
   simpa
 
 /-- If `a.card = b.card + 1`, then the hypergeometric series has convergence radius greater or equal
-to `1`. -/
+to `1`.
+@isnad1 id=le.1h2v.s6.c45058991cfa from=seed src=0 shape=7110550d vocab=2fa9b0a7
+-/
 theorem radius_regularizedHGFunSeries_ge_one (h : a.card = b.card + 1) :
     1 ≤ (regularizedHGFunSeries a b).radius := by
   by_cases! h' : ∀ j ∈ a, ∀ k : ℕ, j ≠ -k
@@ -269,14 +298,18 @@ theorem radius_regularizedHGFunSeries_ge_one (h : a.card = b.card + 1) :
 
 section ZeroZero
 
-/-- The regularized hypergeometric series with `a = b = 0` is exponential series. -/
+/-- The regularized hypergeometric series with `a = b = 0` is exponential series.
+@isnad1 id=eq.0h0v.s6.241a9008bd86 from=seed src=0 shape=aef21b83 vocab=4434f295
+-/
 @[simp, grind =]
 theorem regularizedHGFunSeries_zero_zero :
     regularizedHGFunSeries 0 0 = NormedSpace.expSeries ℂ ℂ := by
   ext n
   simp [regularizedHGFunCoeff, NormedSpace.expSeries]
 
-/-- The regularized hypergeometric function `₀F₀` is the complex exponential. -/
+/-- The regularized hypergeometric function `₀F₀` is the complex exponential.
+@isnad1 id=eq.0h0v.s4.079f9cceb937 from=seed src=0 shape=dcf4fcb8 vocab=533999dd
+-/
 @[simp, grind =]
 theorem regularizedHGFun_zero_zero : regularizedHGFun 0 0 = exp := by
   rw [exp_eq_exp_ℂ, NormedSpace.exp_eq_expSeries_sum (𝕂 := ℂ)]
@@ -298,22 +331,34 @@ def regularizedGaussHGFun (a b c z : ℂ) : ℂ :=
 variable {a b c z : ℂ}
 
 variable (a b c) in
+/--
+@isnad1 id=eq.0h3v.s5.5aa18c9a3823 from=seed src=0 shape=7dd6aa5b vocab=7dc3ad2e
+-/
 theorem regularizedGaussHGFunSeries_symm :
     regularizedGaussHGFunSeries a b c = regularizedGaussHGFunSeries b a c := by
   unfold regularizedGaussHGFunSeries
   rw [Multiset.pair_comm]
 
 variable (a b c) in
+/--
+@isnad1 id=eq.0h3v.s4.91249fc3db7b from=seed src=0 shape=122dd2f7 vocab=b302504f
+-/
 theorem regularizedGaussHGFun_symm :
     regularizedGaussHGFun a b c = regularizedGaussHGFun b a c := by
   unfold regularizedGaussHGFun
   rw [regularizedGaussHGFunSeries_symm]
 
+/--
+@isnad1 id=eq.0h4v.s6.f7f6609ef7e2 from=seed src=0 shape=3dffcd2a vocab=01ac88c7
+-/
 theorem coeff_regularizedGaussHGFunSeries :
     (a.regularizedGaussHGFunSeries b c).coeff n =
     ((ascPochhammer ℂ n).eval a * (ascPochhammer ℂ n).eval b) / (n ! * Gamma (c + n)) := by
   simp [regularizedGaussHGFunSeries, regularizedHGFunCoeff]
 
+/--
+@isnad1 id=eq.1h4v.s6.4d39b3c8feaa from=seed src=0 shape=a2104ad2 vocab=81279c1d
+-/
 theorem Gamma_inv_mul_ordinaryHypergeometricSeries_eq (hc : ∀ k : ℕ, c ≠ -k) {n : ℕ} :
     (Gamma c)⁻¹ * (ordinaryHypergeometricSeries ℂ a b c).coeff n =
       (a.regularizedGaussHGFunSeries b c).coeff n := by
@@ -322,6 +367,9 @@ theorem Gamma_inv_mul_ordinaryHypergeometricSeries_eq (hc : ∀ k : ℕ, c ≠ -
     ← Gamma_add_nat_div_Gamma_eq c hc]
   grind
 
+/--
+@isnad1 id=eq.1h4v.s6.712a822cdfbd from=seed src=0 shape=aeaacb8b vocab=f12abeac
+-/
 theorem ordinaryHypergeometric_div_Gamma_eq (hc : ∀ k : ℕ, c ≠ -k) :
     ordinaryHypergeometric a b c z / Gamma c = regularizedGaussHGFun a b c z := by
   rw [regularizedGaussHGFun, ordinaryHypergeometric, div_eq_inv_mul, ← smul_eq_mul,
@@ -331,24 +379,36 @@ theorem ordinaryHypergeometric_div_Gamma_eq (hc : ∀ k : ℕ, c ≠ -k) :
   simp [Gamma_inv_mul_ordinaryHypergeometricSeries_eq hc]
 
 variable (b c) in
+/--
+@isnad1 id=eq.0h3v.s5.26cdf200e641 from=seed src=0 shape=fe5930b8 vocab=e1280438
+-/
 @[simp]
 theorem radius_regularizedGaussHGFunSeries_eq_top_of_left (k : ℕ) :
     (regularizedGaussHGFunSeries (-k) b c).radius = ⊤ :=
   radius_regularizedHGFunSeries_eq_top_of_finite (j := -(k : ℂ)) (by simp) rfl
 
 variable (a c) in
+/--
+@isnad1 id=eq.0h3v.s5.3068d7fb36dc from=seed src=0 shape=5fbee90c vocab=e1280438
+-/
 @[simp]
 theorem radius_regularizedGaussHGFunSeries_eq_top_of_right (k : ℕ) :
     (regularizedGaussHGFunSeries a (-k) c).radius = ⊤ :=
   radius_regularizedHGFunSeries_eq_top_of_finite (j := -(k : ℂ)) (by simp) rfl
 
 variable (c) in
+/--
+@isnad1 id=eq.1h3v.s6.7d7ea62b3b2e from=seed src=0 shape=7d935be7 vocab=8fc11e10
+-/
 @[grind =]
 theorem radius_regularizedGaussHGFunSeries_eq_one (h : ∀ k : ℕ, a ≠ -k ∧ b ≠ -k) :
     (regularizedGaussHGFunSeries a b c).radius = 1 :=
   radius_regularizedHGFunSeries_eq_one rfl (by simp; grind)
 
 variable (a b c) in
+/--
+@isnad1 id=le.0h3v.s5.afec4690022d from=seed src=0 shape=63030f24 vocab=5b6863ff
+-/
 theorem radius_regularizedGaussHGFunSeries_ge_one :
     1 ≤ (regularizedGaussHGFunSeries a b c).radius :=
   radius_regularizedHGFunSeries_ge_one rfl

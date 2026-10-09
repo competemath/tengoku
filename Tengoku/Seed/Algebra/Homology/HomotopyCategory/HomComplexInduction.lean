@@ -52,6 +52,9 @@ def sequence : ∀ n, X n
   | n + 1 => φ n (sequence n)
 
 include hφ in
+/--
+@isnad1 id=equpto.2h10v.s8.de693bbc605f from=seed src=0 shape=efa5ac1f vocab=e0e34b2e
+-/
 lemma sequence_eqUpTo (n₁ n₂ : ℕ) (h : n₁ ≤ n₂) :
     (sequence φ x₀ n₁).val.EqUpTo (sequence φ x₀ n₂).val (p₀ + n₁) := by
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le h
@@ -74,6 +77,9 @@ def limitSequence (_ : ∀ (n : ℕ) (x : X n), (φ n x).val.EqUpTo x.val (p₀ 
     Cochain K L d :=
   Cochain.mk (fun p q hpq => (sequence φ x₀ (p - p₀).toNat).1.v p q hpq)
 
+/--
+@isnad1 id=equpto.1h9v.s8.0140608474f4 from=seed src=0 shape=5bcc8e01 vocab=f23a0f09
+-/
 lemma limitSequence_eqUpTo (n : ℕ) :
     (limitSequence φ hφ x₀).EqUpTo (sequence φ x₀ n).1 (p₀ + n) := by
   intro p q hpq hp

@@ -28,7 +28,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] [CharZero 𝕜] [Complete
 /-- If a function `R : 𝕜 → 𝕜` factors as `R z = (z - z₀) ^ (k + t) * R₁ z`, where `R₁` is
 analytic everywhere, then there exists an everywhere analytic function `R₂ : 𝕜 → 𝕜` such that
 the `k`-th iterated derivative of `R` is given by
-`iteratedDeriv k R z = (z - z₀) ^ t * ((k + t)! / t ! * R₁ z + (z - z₀) * R₂ z)`. -/
+`iteratedDeriv k R z = (z - z₀) ^ t * ((k + t)! / t ! * R₁ z + (z - z₀) * R₂ z)`.
+@isnad1 id=ex.2h6v.s8.64339e6d7bb4 from=seed src=0 shape=ad733320 vocab=62a7f871
+-/
 lemma iteratedDeriv_mul_pow_sub_of_analytic {k t : ℕ} {z₀ : 𝕜} {R R₁ : 𝕜 → 𝕜}
     (hf1 : ∀ z, AnalyticAt 𝕜 R₁ z) (hR₁ : ∀ z, R z = (z - z₀) ^ (k + t) * R₁ z) :
     ∃ R₂, (∀ z, AnalyticAt 𝕜 R₂ z) ∧ ∀ z, iteratedDeriv k R z =

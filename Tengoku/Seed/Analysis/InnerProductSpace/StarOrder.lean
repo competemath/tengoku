@@ -32,6 +32,9 @@ variable {𝕜 H : Type*} [RCLike 𝕜] [NormedAddCommGroup H] [InnerProductSpac
 variable [Algebra ℝ (H →L[𝕜] H)] [IsScalarTower ℝ 𝕜 (H →L[𝕜] H)]
 
 open scoped InnerProductSpace in
+/--
+@isnad1 id=spectrum.1h3v.s10.397d5715e96c from=seed src=0 shape=d64abc06 vocab=94d62f2a
+-/
 lemma IsPositive.spectrumRestricts {f : H →L[𝕜] H} (hf : f.IsPositive) :
     SpectrumRestricts f ContinuousMap.realToNNReal := by
   rw [SpectrumRestricts.nnreal_iff]
@@ -55,7 +58,9 @@ instance : NonnegSpectrumClass ℝ (H →L[𝕜] H) where
     QuasispectrumRestricts.nnreal_iff.mp <| sub_zero f ▸ hf.spectrumRestricts
 
 /-- Because this takes `ContinuousFunctionalCalculus ℝ (H →L[𝕜] H) IsSelfAdjoint` as an argument,
-and for the moment we only have this for `𝕜 := ℂ`, this is not registered as an instance. -/
+and for the moment we only have this for `𝕜 := ℂ`, this is not registered as an instance.
+@isnad1 id=starorde.0h2v.s10.38ea33bcda22 from=seed src=0 shape=1d1c9d7e vocab=beebfb1e
+-/
 lemma instStarOrderedRingRCLike
     [ContinuousFunctionalCalculus ℝ (H →L[𝕜] H) IsSelfAdjoint] :
     StarOrderedRing (H →L[𝕜] H) where
@@ -76,6 +81,9 @@ lemma instStarOrderedRingRCLike
       | zero => exact isPositive_zero
       | add f g _ _ hf hg => exact hf.add hg
 
+/--
+@isnad1 id=starorde.0h1v.s7.aaf811c57214 from=seed src=0 shape=42be25bf vocab=affe6415
+-/
 instance instStarOrderedRing {H : Type*} [NormedAddCommGroup H]
     [InnerProductSpace ℂ H] [CompleteSpace H] : StarOrderedRing (H →L[ℂ] H) :=
   instStarOrderedRingRCLike

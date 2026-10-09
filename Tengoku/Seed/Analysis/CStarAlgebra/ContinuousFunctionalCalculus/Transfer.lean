@@ -43,10 +43,16 @@ noncomputable def cfcHomTransfer (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q 
   (Homeomorph.setCongr (by simp)).compStarAlgEquiv' R R |>.arrowCongr
     e (cfcHom (hpq (e.symm b) |>.mpr <| by simpa))
 
+/--
+@isnad1 id=injectiv.1h8v.s10.91a909e335a6 from=seed src=0 shape=58317ce5 vocab=77860083
+-/
 lemma cfcHomTransfer_injective (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x))
     (b : B) (hb : q b) : Function.Injective (cfcHomTransfer e hpq b hb) :=
   e.injective.comp (cfcHom_injective _) |>.comp <| Equiv.injective _
 
+/--
+@isnad1 id=eq.1h8v.s10.e18bf6e8ce89 from=seed src=0 shape=247c0f0d vocab=b240c423
+-/
 lemma cfcHomTransfer_id (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x)) (b : B) (hb : q b) :
     cfcHomTransfer e hpq b hb (.restrict (spectrum R b) (.id R)) = b := by
   convert e.apply_symm_apply b
@@ -54,13 +60,18 @@ lemma cfcHomTransfer_id (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x)) (b
 
 variable [TopologicalSpace B]
 
+/--
+@isnad1 id=continuo.2h8v.s10.23a3ad002705 from=seed src=0 shape=ffa1e37d vocab=4f582951
+-/
 lemma continuous_cfcHomTransfer (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x))
     (b : B) (hb : q b) (he : Continuous e) : Continuous (cfcHomTransfer e hpq b hb) := by
   simpa [cfcHomTransfer, Function.comp_def] using by fun_prop
 
 open ContinuousFunctionalCalculus in
 /-- Transfer a continuous functional calculus instance to a type synonym with
-a weaker topology. -/
+a weaker topology.
+@isnad1 id=continuo.2h6v.s9.ea9702d3c76a from=seed src=0 shape=be1f62e3 vocab=e0ea9e37
+-/
 theorem ContinuousFunctionalCalculus.transfer (e : A ≃⋆ₐ[R] B)
     (he : Continuous e) (hpq : ∀ x, p x ↔ q (e x)) :
     ContinuousFunctionalCalculus R B q where
@@ -81,12 +92,18 @@ theorem ContinuousFunctionalCalculus.transfer (e : A ≃⋆ₐ[R] B)
       fun f ↦ by simp [cfcHom_map_spectrum ha],
       fun f ↦ by simp [← hpq, cfcHom_predicate ha]⟩
 
+/--
+@isnad1 id=eq.2h8v.s9.21321ca03323 from=seed src=0 shape=9667d952 vocab=11fc7511
+-/
 lemma cfcHom_eq_cfcHomTransfer [ContinuousFunctionalCalculus R B q] [ContinuousMap.UniqueHom R B]
     (e : A ≃⋆ₐ[R] B) (he : Continuous e) (hpq : ∀ x, p x ↔ q (e x)) (b : B) (hb : q b) :
     cfcHom hb = cfcHomTransfer e hpq b hb :=
   cfcHom_eq_of_continuous_of_map_id _ _ (continuous_cfcHomTransfer e hpq b hb he) <|
     cfcHomTransfer_id e hpq b hb
 
+/--
+@isnad1 id=eq.2h8v.s10.a295a6c61776 from=seed src=0 shape=eb3e4524 vocab=f1d69477
+-/
 lemma cfc_eq_cfc_transfer [ContinuousFunctionalCalculus R B q] [ContinuousMap.UniqueHom R B]
     (e : A ≃⋆ₐ[R] B) (he : Continuous e) (hpq : ∀ x, p x ↔ q (e x)) (f : R → R) (b : B) :
     cfc f b = e (cfc f (e.symm b)) := by
@@ -125,10 +142,16 @@ noncomputable def cfcₙHomTransfer (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔
     (Homeomorph.setCongr (by simp)) (by ext; simp [Homeomorph.setCongr]) |>.arrowCongr'
     e (cfcₙHom (hpq (e.symm b) |>.mpr <| by simpa))
 
+/--
+@isnad1 id=injectiv.1h8v.s11.4744e90036ec from=seed src=0 shape=df02e181 vocab=09a0c42f
+-/
 lemma cfcₙHomTransfer_injective (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x))
     (b : B) (hb : q b) : Function.Injective (cfcₙHomTransfer e hpq b hb) :=
   e.injective.comp (cfcₙHom_injective _) |>.comp <| Equiv.injective _
 
+/--
+@isnad1 id=eq.1h8v.s11.5c05ea7324b4 from=seed src=0 shape=837fb2dd vocab=31aec468
+-/
 lemma cfcₙHomTransfer_id (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x)) (b : B) (hb : q b) :
     cfcₙHomTransfer e hpq b hb (.id (quasispectrum R b)) = b := by
   convert e.apply_symm_apply b
@@ -136,6 +159,9 @@ lemma cfcₙHomTransfer_id (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x))
 
 variable [TopologicalSpace B]
 
+/--
+@isnad1 id=continuo.2h8v.s12.5183c62cd358 from=seed src=0 shape=2d48f006 vocab=96d0cbeb
+-/
 lemma continuous_cfcₙHomTransfer (e : A ≃⋆ₐ[R] B) (hpq : ∀ x, p x ↔ q (e x))
     (b : B) (hb : q b) (he : Continuous e) : Continuous (cfcₙHomTransfer e hpq b hb) :=
   (he.comp <| cfcₙHom_continuous _).comp <| ContinuousMapZero.continuous_precomp _
@@ -144,7 +170,9 @@ variable [IsScalarTower R B B] [SMulCommClass R B B]
 
 open NonUnitalContinuousFunctionalCalculus in
 /-- Transfer a continuous functional calculus instance to a type synonym with
-a weaker topology. -/
+a weaker topology.
+@isnad1 id=nonunita.2h6v.s10.5d6edb8889e8 from=seed src=0 shape=b8ed1e07 vocab=489b127a
+-/
 theorem NonUnitalContinuousFunctionCalculus.transfer (e : A ≃⋆ₐ[R] B)
     (he : Continuous e) (hpq : ∀ x, p x ↔ q (e x)) :
     NonUnitalContinuousFunctionalCalculus R B q where
@@ -161,6 +189,9 @@ theorem NonUnitalContinuousFunctionCalculus.transfer (e : A ≃⋆ₐ[R] B)
       fun f ↦ by simp [cfcₙHom_map_quasispectrum ha, ContinuousMapZero.starAlgEquivPrecomp],
       fun f ↦ by simp [← hpq, cfcₙHom_predicate ha]⟩
 
+/--
+@isnad1 id=eq.2h8v.s11.57d8dc1b379e from=seed src=0 shape=51d840b8 vocab=129deff0
+-/
 lemma cfcₙHom_eq_cfcₙHomTransfer [NonUnitalContinuousFunctionalCalculus R B q]
     [ContinuousMapZero.UniqueHom R B] (e : A ≃⋆ₐ[R] B) (he : Continuous e)
     (hpq : ∀ x, p x ↔ q (e x)) (b : B) (hb : q b) :
@@ -168,6 +199,9 @@ lemma cfcₙHom_eq_cfcₙHomTransfer [NonUnitalContinuousFunctionalCalculus R B 
   cfcₙHom_eq_of_continuous_of_map_id _ _ (continuous_cfcₙHomTransfer e hpq b hb he) <|
     cfcₙHomTransfer_id e hpq b hb
 
+/--
+@isnad1 id=eq.2h8v.s11.3af2e6e89247 from=seed src=0 shape=4123d7b5 vocab=86c09e2b
+-/
 lemma cfcₙ_eq_cfcₙ_transfer [NonUnitalContinuousFunctionalCalculus R B q]
     [ContinuousMapZero.UniqueHom R B] (e : A ≃⋆ₐ[R] B) (he : Continuous e)
     (hpq : ∀ x, p x ↔ q (e x)) (f : R → R) (b : B) :

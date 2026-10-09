@@ -28,7 +28,9 @@ open RealInnerProductSpace
 
 /-- A map between two inner product spaces is a conformal map if and only if it preserves inner
 products up to a scalar factor, i.e., there exists a positive `c : ℝ` such that
-`⟪f u, f v⟫ = c * ⟪u, v⟫` for all `u`, `v`. -/
+`⟪f u, f v⟫ = c * ⟪u, v⟫` for all `u`, `v`.
+@isnad1 id=iff.0h3v.s8.2fa0ebb3790b from=seed src=0 shape=7e23d8df vocab=0e883e8e
+-/
 theorem isConformalMap_iff (f : E →L[ℝ] F) :
     IsConformalMap f ↔ ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪f u, f v⟫ = c * ⟪u, v⟫ := by
   constructor

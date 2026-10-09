@@ -70,6 +70,9 @@ variable [Field 𝕜] [Ring R] [AddCommGroup M]
   [TopologicalSpace R] [TopologicalSpace M]
   [IsTopologicalRing R] [IsTopologicalAddGroup M] [ContinuousSMul R M] [ContinuousSMul Rᵐᵒᵖ M]
 
+/--
+@isnad1 id=eq.0h5v.s10.ed33e548d0d2 from=seed src=0 shape=8f9eb0e1 vocab=0c704bb5
+-/
 @[simp] theorem fst_expSeries (x : tsze R M) (n : ℕ) :
     fst (expSeries 𝕜 (tsze R M) n fun _ => x) = expSeries 𝕜 R n fun _ => x.fst := by
   simp [expSeries_apply_eq]
@@ -83,6 +86,9 @@ variable [Field 𝕜] [CharZero 𝕜] [Ring R] [AddCommGroup M]
   [TopologicalSpace R] [TopologicalSpace M]
   [IsTopologicalRing R] [IsTopologicalAddGroup M] [ContinuousSMul R M] [ContinuousSMul Rᵐᵒᵖ M]
 
+/--
+@isnad1 id=eq.1h5v.s10.1a4caafdd6fb from=seed src=0 shape=8bae1c29 vocab=94726b37
+-/
 theorem snd_expSeries_of_smul_comm
     (x : tsze R M) (hx : MulOpposite.op x.fst • x.snd = x.fst • x.snd) (n : ℕ) :
     snd (expSeries 𝕜 (tsze R M) (n + 1) fun _ => x) = (expSeries 𝕜 R n fun _ => x.fst) • x.snd := by
@@ -92,7 +98,9 @@ theorem snd_expSeries_of_smul_comm
     inv_mul_cancel_right₀ ((Nat.cast_ne_zero (R := 𝕜)).mpr <| Nat.succ_ne_zero n)]
 
 /-- If `NormedSpace.exp R x.fst` converges to `e`
-then `(NormedSpace.exp R x).snd` converges to `e • x.snd`. -/
+then `(NormedSpace.exp R x).snd` converges to `e • x.snd`.
+@isnad1 id=hassum.2h5v.s10.c746fd23d97b from=seed src=0 shape=b49dcf44 vocab=d7e935ba
+-/
 theorem hasSum_snd_expSeries_of_smul_comm (x : tsze R M)
     (hx : MulOpposite.op x.fst • x.snd = x.fst • x.snd) {e : R}
     (h : HasSum (fun n => expSeries 𝕜 R n fun _ => x.fst) e) :
@@ -105,7 +113,9 @@ theorem hasSum_snd_expSeries_of_smul_comm (x : tsze R M)
   exact h.smul_const _
 
 /-- If `NormedSpace.exp R x.fst` converges to `e`
-then `NormedSpace.exp R x` converges to `inl e + inr (e • x.snd)`. -/
+then `NormedSpace.exp R x` converges to `inl e + inr (e • x.snd)`.
+@isnad1 id=hassum.2h5v.s10.16d1ba1ff82c from=seed src=0 shape=44356819 vocab=61452f85
+-/
 theorem hasSum_expSeries_of_smul_comm
     (x : tsze R M) (hx : MulOpposite.op x.fst • x.snd = x.fst • x.snd)
     {e : R} (h : HasSum (fun n => expSeries 𝕜 R n fun _ => x.fst) e) :
@@ -118,6 +128,9 @@ theorem hasSum_expSeries_of_smul_comm
 variable [Algebra ℚ R] [Module ℚ M]
 variable [T2Space R] [T2Space M]
 
+/--
+@isnad1 id=eq.1h3v.s9.33aa1ee3b147 from=seed src=0 shape=417a8190 vocab=10533538
+-/
 theorem exp_def_of_smul_comm (x : tsze R M) (hx : MulOpposite.op x.fst • x.snd = x.fst • x.snd) :
     exp x = inl (exp x.fst) + inr (exp x.fst • x.snd) := by
   simp_rw [exp_eq_expSeries_sum ℚ, FormalMultilinearSeries.sum]
@@ -130,11 +143,17 @@ theorem exp_def_of_smul_comm (x : tsze R M) (hx : MulOpposite.op x.fst • x.snd
     refine mt ?_ h
     exact (Summable.map · (TrivSqZeroExt.fstHom ℚ R M).toLinearMap continuous_fst)
 
+/--
+@isnad1 id=eq.0h3v.s8.b67f6f889c7b from=seed src=0 shape=6aa49181 vocab=a99b3636
+-/
 @[simp]
 theorem exp_inl (x : R) : exp (inl x : tsze R M) = inl (exp x) := by
   rw [exp_def_of_smul_comm, snd_inl, fst_inl, smul_zero, inr_zero, add_zero]
   rw [snd_inl, fst_inl, smul_zero, smul_zero]
 
+/--
+@isnad1 id=eq.0h3v.s8.aa3067a9ddd4 from=seed src=0 shape=51e02e5e vocab=fbef4203
+-/
 @[simp]
 theorem exp_inr (m : M) : exp (inr m : tsze R M) = 1 + inr m := by
   rw [exp_def_of_smul_comm, snd_inr, fst_inr, exp_zero, one_smul, inl_one]
@@ -150,13 +169,22 @@ variable [CommRing R] [AddCommGroup M] [Algebra ℚ R] [Module ℚ M] [Module R 
 
 variable [T2Space R] [T2Space M]
 
+/--
+@isnad1 id=eq.0h3v.s9.802b423c0cdc from=seed src=0 shape=f8640c32 vocab=1d24cbb1
+-/
 theorem exp_def (x : tsze R M) : exp x = inl (exp x.fst) + inr (exp x.fst • x.snd) :=
   exp_def_of_smul_comm x (op_smul_eq_smul _ _)
 
+/--
+@isnad1 id=eq.0h3v.s8.a1f9e2f27c2e from=seed src=0 shape=d3d49af8 vocab=9fc6568f
+-/
 @[simp]
 theorem fst_exp (x : tsze R M) : fst (exp x) = exp x.fst := by
   rw [exp_def, fst_add, fst_inl, fst_inr, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s8.51f425b7fae0 from=seed src=0 shape=db0fe394 vocab=23142d3b
+-/
 @[simp]
 theorem snd_exp (x : tsze R M) : snd (exp x) = exp x.fst • x.snd := by
   rw [exp_def, snd_add, snd_inl, snd_inr, zero_add]
@@ -210,20 +238,38 @@ example :
     PseudoMetricSpace.toUniformSpace := rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s5.73d6d7a284f6 from=seed src=0 shape=8d734ae9 vocab=8dfc44d4
+-/
 theorem norm_def (x : tsze R M) : ‖x‖ = ‖fst x‖ + ‖snd x‖ := by
   erw [WithLp.norm_seminormedAddCommGroupToProd]
   rw [WithLp.prod_norm_eq_add (by norm_num)]
   simp only [WithLp.toLp_fst, ENNReal.toReal_one, Real.rpow_one, WithLp.toLp_snd, ne_eq,
     one_ne_zero, not_false_eq_true, div_self, fst, snd]
 
+/--
+@isnad1 id=eq.0h3v.s6.4c5870bf59d8 from=seed src=0 shape=8d734ae9 vocab=03490ed1
+-/
 theorem nnnorm_def (x : tsze R M) : ‖x‖₊ = ‖fst x‖₊ + ‖snd x‖₊ := by
   ext; simp [norm_def]
 
+/--
+@isnad1 id=eq.0h3v.s5.827bc311fd82 from=seed src=0 shape=e0005479 vocab=78aa60ce
+-/
 @[simp] theorem norm_inl (r : R) : ‖(inl r : tsze R M)‖ = ‖r‖ := by simp [norm_def]
+/--
+@isnad1 id=eq.0h3v.s5.f8e4e350293b from=seed src=0 shape=cc49f365 vocab=5d2cf32d
+-/
 @[simp] theorem norm_inr (m : M) : ‖(inr m : tsze R M)‖ = ‖m‖ := by simp [norm_def]
 
+/--
+@isnad1 id=eq.0h3v.s5.0fdb430683ca from=seed src=0 shape=e0005479 vocab=43b8c93b
+-/
 @[simp] theorem nnnorm_inl (r : R) : ‖(inl r : tsze R M)‖₊ = ‖r‖₊ := by simp [nnnorm_def]
 
+/--
+@isnad1 id=eq.0h3v.s5.71a7013920fe from=seed src=0 shape=cc49f365 vocab=bf5e003d
+-/
 @[simp] theorem nnnorm_inr (m : M) : ‖(inr m : tsze R M)‖₊ = ‖m‖₊ := by simp [nnnorm_def]
 
 variable [Module R M] [IsBoundedSMul R M] [Module Rᵐᵒᵖ M] [IsBoundedSMul Rᵐᵒᵖ M]
@@ -247,6 +293,9 @@ instance instL1SeminormedRing : SeminormedRing (tsze R M) where
   __ : Ring (tsze R M) := inferInstance
   __ : SeminormedAddCommGroup (tsze R M) := inferInstance
 
+/--
+@isnad1 id=isbounde.0h3v.s9.ff262cc475f4 from=seed src=0 shape=7109d714 vocab=33226322
+-/
 instance instL1IsBoundedSMul : IsBoundedSMul S (tsze R M) :=
   WithLp.isBoundedSMulSeminormedAddCommGroupToProd 1 R M
 

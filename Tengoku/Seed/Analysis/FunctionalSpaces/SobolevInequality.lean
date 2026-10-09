@@ -96,12 +96,18 @@ def T (p : ℝ) (f : (∀ i, A i) → ℝ≥0∞) (s : Finset ι) : (∀ i, A i)
 
 variable {p : ℝ}
 
+/--
+@isnad1 id=eq.0h6v.s7.66db810de962 from=seed src=0 shape=1cf21c0c vocab=62db6967
+-/
 @[simp] lemma T_univ [Fintype ι] [∀ i, SigmaFinite (μ i)] (f : (∀ i, A i) → ℝ≥0∞) (x : ∀ i, A i) :
     T μ p f univ x =
     ∫⁻ (x : ∀ i, A i), (f x ^ (1 - (#ι - 1 : ℝ) * p)
     * ∏ i : ι, (∫⁻ t : A i, f (update x i t) ∂(μ i)) ^ p) ∂(.pi μ) := by
   simp [T, lmarginal_singleton]
 
+/--
+@isnad1 id=eq.0h6v.s6.1311f310e85f from=seed src=0 shape=618e7243 vocab=404bd58b
+-/
 @[simp] lemma T_empty (f : (∀ i, A i) → ℝ≥0∞) (x : ∀ i, A i) :
     T μ p f ∅ x = f x ^ (1 + p) := by
   simp [T]
@@ -110,7 +116,9 @@ variable {p : ℝ}
 
 The grid-lines operation `GridLines.T` on a nonnegative function on a finitary product type is
 less than or equal to the grid-lines operation of its partial integral in one co-ordinate
-(the latter intuitively considered as a function on a space "one dimension down"). -/
+(the latter intuitively considered as a function on a space "one dimension down").
+@isnad1 id=le.4h7v.s7.be879f781566 from=seed src=0 shape=53ecaa01 vocab=c5eb3008
+-/
 theorem T_insert_le_T_lmarginal_singleton [∀ i, SigmaFinite (μ i)] (hp₀ : 0 ≤ p) (s : Finset ι)
     (hp : (s.card : ℝ) * p ≤ 1)
     (i : ι) (hi : i ∉ s) {f : (∀ i, A i) → ℝ≥0∞} (hf : Measurable f) :
@@ -216,7 +224,9 @@ theorem T_insert_le_T_lmarginal_singleton [∀ i, SigmaFinite (μ i)] (hp₀ : 0
 type indexed by `ι`, and a set `s` in `ι`, consider partially integrating over the variables in
 `sᶜ` and performing the "grid-lines operation" (see `GridLines.T`) to the resulting function in the
 variables `s`.  This theorem states that this operation decreases as the number of grid-lines taken
-increases. -/
+increases.
+@isnad1 id=antitone.3h5v.s7.53f13494972b from=seed src=0 shape=ca7f48a9 vocab=65375cb0
+-/
 theorem T_lmarginal_antitone [Fintype ι] [∀ i, SigmaFinite (μ i)]
     (hp₀ : 0 ≤ p) (hp : (#ι - 1 : ℝ) * p ≤ 1) {f : (∀ i, A i) → ℝ≥0∞} (hf : Measurable f) :
     Antitone (fun s ↦ T μ p (∫⋯∫⁻_sᶜ, f ∂μ) s) := by
@@ -256,7 +266,9 @@ co-ordinate `i`, of a certain power of the integral of `f` along the "grid line"
 direction through `x`.
 
 This lemma bounds the Lebesgue integral of the grid-lines quantity by a power of the Lebesgue
-integral of `f`. -/
+integral of `f`.
+@isnad1 id=le.3h5v.s8.ef4323b9437b from=seed src=0 shape=3e1e6d05 vocab=90d2d5ea
+-/
 theorem lintegral_mul_prod_lintegral_pow_le
     [Fintype ι] [∀ i, SigmaFinite (μ i)] {p : ℝ} (hp₀ : 0 ≤ p)
     (hp : (#ι - 1 : ℝ) * p ≤ 1) {f : (∀ i : ι, A i) → ℝ≥0∞} (hf : Measurable f) :
@@ -269,7 +281,9 @@ theorem lintegral_mul_prod_lintegral_pow_le
   simpa [lmarginal_univ] using GridLines.T_lmarginal_antitone μ hp₀ hp hf H default
 
 /-- Special case of the grid-lines lemma `lintegral_mul_prod_lintegral_pow_le`, taking the extremal
-exponent `p = (#ι - 1)⁻¹`. -/
+exponent `p = (#ι - 1)⁻¹`.
+@isnad1 id=le.2h5v.s7.1d59c0134cbf from=seed src=0 shape=56830e2f vocab=4b1dc5cd
+-/
 theorem lintegral_prod_lintegral_pow_le [Fintype ι] [∀ i, SigmaFinite (μ i)]
     {p : ℝ} (hp : Real.HolderConjugate #ι p)
     {f} (hf : Measurable f) :
@@ -299,7 +313,9 @@ compactly-supported function `u` on `ℝⁿ`, for `n ≥ 2`.  (More literally we
 expression `|u x| ^ (n / (n - 1))` is bounded above by the `n / (n - 1)`-th power of the Lebesgue
 integral of the Fréchet derivative of `u`.
 
-For a basis-free version, see `lintegral_pow_le_pow_lintegral_fderiv`. -/
+For a basis-free version, see `lintegral_pow_le_pow_lintegral_fderiv`.
+@isnad1 id=le.3h4v.s10.2c1d92e827ad from=seed src=0 shape=a9162540 vocab=721a536d
+-/
 theorem lintegral_pow_le_pow_lintegral_fderiv_aux [Fintype ι]
     {p : ℝ} (hp : Real.HolderConjugate #ι p)
     {u : (ι → ℝ) → F} (hu : ContDiff ℝ 1 u)
@@ -369,7 +385,9 @@ irreducible_def lintegralPowLePowLIntegralFDerivConst (p : ℝ) : ℝ≥0 := by
 compactly-supported function `u` on a normed space `E` of finite dimension `n ≥ 2`, equipped
 with Haar measure. Then the Lebesgue integral of the pointwise expression
 `|u x| ^ (n / (n - 1))` is bounded above by a constant times the `n / (n - 1)`-th power of the
-Lebesgue integral of the Fréchet derivative of `u`. -/
+Lebesgue integral of the Fréchet derivative of `u`.
+@isnad1 id=le.3h5v.s10.2b1ef875ebbb from=seed src=0 shape=3eed1bc3 vocab=e6cdad6f
+-/
 theorem lintegral_pow_le_pow_lintegral_fderiv {u : E → F}
     (hu : ContDiff ℝ 1 u) (h2u : HasCompactSupport u)
     {p : ℝ} (hp : Real.HolderConjugate (finrank ℝ E) p) :
@@ -437,7 +455,9 @@ irreducible_def eLpNormLESNormFDerivOneConst (p : ℝ) : ℝ≥0 :=
 /-- The **Gagliardo-Nirenberg-Sobolev inequality**.  Let `u` be a continuously differentiable
 compactly-supported function `u` on a normed space `E` of finite dimension `n ≥ 2`, equipped
 with Haar measure. Then the `Lᵖ` norm of `u`, where `p := n / (n - 1)`, is bounded above by
-a constant times the `L¹` norm of the Fréchet derivative of `u`. -/
+a constant times the `L¹` norm of the Fréchet derivative of `u`.
+@isnad1 id=le.3h5v.s10.c246ba05ddf2 from=seed src=0 shape=0d9b468b vocab=07dc6d24
+-/
 theorem eLpNorm_le_eLpNorm_fderiv_one {u : E → F} (hu : ContDiff ℝ 1 u) (h2u : HasCompactSupport u)
     {p : ℝ≥0} (hp : NNReal.HolderConjugate (finrank ℝ E) p) :
     eLpNorm u p μ ≤ eLpNormLESNormFDerivOneConst μ p * eLpNorm (fderiv ℝ u) 1 μ := by
@@ -464,6 +484,7 @@ Then the `Lᵖ'` norm of `u` is bounded above by a constant times the `Lᵖ` nor
 the Fréchet derivative of `u`.
 
 Note: The codomain of `u` needs to be a Hilbert space.
+@isnad1 id=le.5h6v.s10.d5b329d79242 from=seed src=0 shape=ec0e3cd7 vocab=dcd26203
 -/
 theorem eLpNorm_le_eLpNorm_fderiv_of_eq_inner {u : E → F'}
     (hu : ContDiff ℝ 1 u) (h2u : HasCompactSupport u)
@@ -595,6 +616,7 @@ Then the `Lᵖ'` norm of `u` is bounded above by a constant times the `Lᵖ` nor
 the Fréchet derivative of `u`.
 
 This is the version where the codomain of `u` is a finite-dimensional normed space.
+@isnad1 id=le.5h6v.s10.7576eb6be33c from=seed src=0 shape=f1fe2392 vocab=7886d38b
 -/
 theorem eLpNorm_le_eLpNorm_fderiv_of_eq [FiniteDimensional ℝ F]
     {u : E → F} (hu : ContDiff ℝ 1 u) (h2u : HasCompactSupport u)
@@ -651,6 +673,7 @@ Then the `L^q` norm of `u` is bounded above by a constant times the `Lᵖ` norm 
 the Fréchet derivative of `u`.
 
 Note: The codomain of `u` needs to be a finite-dimensional normed space.
+@isnad1 id=le.6h7v.s10.3f9b1a1a1389 from=seed src=0 shape=8a1dc052 vocab=60774320
 -/
 theorem eLpNorm_le_eLpNorm_fderiv_of_le [FiniteDimensional ℝ F]
     {u : E → F} {s : Set E} (hu : ContDiff ℝ 1 u) (h2u : u.support ⊆ s)
@@ -702,6 +725,7 @@ Then the `Lᵖ` norm of `u` is bounded above by a constant times the `Lᵖ` norm
 the Fréchet derivative of `u`.
 
 Note: The codomain of `u` needs to be a finite-dimensional normed space.
+@isnad1 id=le.5h6v.s10.a5987b01caa4 from=seed src=0 shape=1e95ae61 vocab=6ca99198
 -/
 theorem eLpNorm_le_eLpNorm_fderiv [FiniteDimensional ℝ F]
     {u : E → F} {s : Set E} (hu : ContDiff ℝ 1 u) (h2u : u.support ⊆ s)

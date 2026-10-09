@@ -52,6 +52,9 @@ def skeleton : ℕ →o X.Subcomplex where
     exact le_trans (by exact le_trans (by rfl) (le_iSup _ x))
       (le_iSup _ ⟨k, by lia⟩)
 
+/--
+@isnad1 id=mem.0h5v.s6.5e8929c3bd74 from=seed src=0 shape=03364cf5 vocab=189a0ad9
+-/
 lemma mem_skeleton {i : ℕ} (x : X _⦋i⦌) {n : ℕ} (hi : i < n := by lia) :
     x ∈ (X.skeleton n).obj _ := by
   obtain ⟨j, f, _, y, rfl⟩ := X.exists_nonDegenerate x
@@ -61,17 +64,26 @@ lemma mem_skeleton {i : ℕ} (x : X _⦋i⦌) {n : ℕ} (hi : i < n := by lia) :
     (le_iSup _ ⟨j, lt_of_le_of_lt
       (SimplexCategory.len_le_of_epi f) hi⟩)
 
+/--
+@isnad1 id=eq.1h3v.s6.6671e5b84589 from=seed src=0 shape=cf87b865 vocab=2fe935cb
+-/
 lemma skeleton_obj_eq_top {d n : ℕ} (h : d < n) :
     (X.skeleton n).obj (op ⦋d⦌) = ⊤ := by
   rw [← top_le_iff]
   intro x _
   exact mem_skeleton _ _ h
 
+/--
+@isnad1 id=le.1h4v.s6.b6a7572f6468 from=seed src=0 shape=90564e89 vocab=8c830d9f
+-/
 lemma ofSimplex_le_skeleton {i : ℕ} (x : X _⦋i⦌) {n : ℕ} (hi : i < n) :
     Subcomplex.ofSimplex x ≤ X.skeleton n := by
   simpa using X.mem_skeleton x hi
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h4v.s7.6b018904947e from=seed src=0 shape=a41d4c26 vocab=6c2b8654
+-/
 lemma mem_skeleton_obj_iff_of_nonDegenerate
     {d : ℕ} (x : X.nonDegenerate d) (n : ℕ) :
     x.1 ∈ (X.skeleton n).obj _ ↔ d < n := by
@@ -85,10 +97,16 @@ lemma mem_skeleton_obj_iff_of_nonDegenerate
   lia
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h1v.s6.44cd0b95fc18 from=seed src=0 shape=b084b620 vocab=279bfc57
+-/
 @[simp]
 lemma skeleton_zero : X.skeleton 0 = ⊥ := by
   simp [skeleton]
 
+/--
+@isnad1 id=eq.0h1v.s7.c19db2a10f94 from=seed src=0 shape=4cf44307 vocab=0a58c266
+-/
 lemma iSup_skeleton :
     ⨆ (n : ℕ), X.skeleton n = ⊤ :=
   le_antisymm (by simp) (by
@@ -98,6 +116,9 @@ lemma iSup_skeleton :
     exact ⟨n + 1, mem_skeleton _ _ (by lia)⟩)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h2v.s7.cdfdfbfa97be from=seed src=0 shape=d5e463c9 vocab=65d37c64
+-/
 lemma skeleton_succ (n : ℕ) :
     X.skeleton (n + 1) =
       X.skeleton n ⊔ ⨆ (x : X.nonDegenerate n), Subcomplex.ofSimplex x.1 := by
@@ -133,15 +154,24 @@ def skeletonOfMono : ℕ →o Y.Subcomplex where
 
 section
 
+/--
+@isnad1 id=le.0h4v.s6.5fdee324bcf6 from=seed src=0 shape=6c2485ea vocab=abfc6cae
+-/
 lemma skeleton_le_skeletonOfMono (n : ℕ) :
     Y.skeleton n ≤ skeletonOfMono i n := le_sup_right
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s6.a2bf98e72c6a from=seed src=0 shape=a9a91bb8 vocab=f379271b
+-/
 @[simp]
 lemma skeletonOfMono_zero :
     skeletonOfMono i 0 = Subcomplex.range i := by
   simp [skeletonOfMono]
 
+/--
+@isnad1 id=eq.0h3v.s7.b207fd28de2b from=seed src=0 shape=013891e2 vocab=5a3b752f
+-/
 lemma iSup_skeletonOfMono :
     ⨆ (n : ℕ), skeletonOfMono i n = ⊤ := by
   apply le_antisymm (by simp)
@@ -150,18 +180,27 @@ lemma iSup_skeletonOfMono :
   exact le_trans (skeleton_le_skeletonOfMono i n) (le_iSup _ n)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h6v.s9.5fda740c428d from=seed src=0 shape=bc71593c vocab=92361b2f
+-/
 lemma mem_skeletonOfMono_obj_iff_of_nonDegenerate
     {d : ℕ} (x : Y.nonDegenerate d) (n : ℕ) :
     x.1 ∈ (skeletonOfMono i n).obj _ ↔
       x.1 ∈ Set.range (i.app _) ∨ d < n := by
   simp [skeletonOfMono, mem_skeleton_obj_iff_of_nonDegenerate]
 
+/--
+@isnad1 id=eq.1h5v.s7.d26a3e622fce from=seed src=0 shape=05e4f8a3 vocab=22f10dbd
+-/
 lemma skeletonOfMono_obj_eq_top {d n : ℕ} (h : d < n) :
     (skeletonOfMono i n).obj (op ⦋d⦌) = ⊤ := by
   rw [← top_le_iff, ← Y.skeleton_obj_eq_top h]
   exact le_sup_right
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s9.5b94f810a60e from=seed src=0 shape=f2241943 vocab=ca676a39
+-/
 lemma skeletonOfMono_succ (n : ℕ) :
     skeletonOfMono i (n + 1) =
       skeletonOfMono i n ⊔ ⨆ (x : Y.nonDegenerate n)
@@ -245,15 +284,24 @@ of `Y` not in the range of `i`, this is the corresponding morphism `Δ[d] ⟶ Y`
 abbrev map : Δ[d] ⟶ Y := yonedaEquiv.symm c.simplex
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=iff.0h6v.s8.20f3fc546e03 from=seed src=0 shape=5f29feba vocab=dc22d754
+-/
 lemma mem_skeletonOfMono_obj_iff {d' : ℕ} :
     c.simplex ∈ (skeletonOfMono i d').obj _ ↔
     c.simplex ∈ Set.range (i.app _) ∨ d < d' := by
   simp [skeletonOfMono, Y.mem_skeleton_obj_iff_of_nonDegenerate ⟨_, c.nonDegenerate⟩ d']
 
+/--
+@isnad1 id=le.0h5v.s6.531f6d78464f from=seed src=0 shape=90114d49 vocab=27ce9968
+-/
 lemma range_map_le : Subcomplex.range c.map ≤ skeletonOfMono i (d + 1) := by
   simp [map, Subcomplex.range_eq_ofSimplex, mem_skeletonOfMono_obj_iff]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h5v.s6.cbfda8880cca from=seed src=0 shape=48bc9e22 vocab=da5368ee
+-/
 @[simp]
 lemma preimage_map : (skeletonOfMono i d).preimage c.map = ∂Δ[d] := by
   rw [stdSimplex.eq_boundary_iff]
@@ -269,6 +317,9 @@ lemma preimage_map : (skeletonOfMono i d).preimage c.map = ∂Δ[d] := by
 end Cell
 
 variable {i d} in
+/--
+@isnad1 id=ex.0h6v.s8.312803198315 from=seed src=0 shape=f98495a7 vocab=79524058
+-/
 lemma ιSigmaStdSimplex_jointly_surjective
     {n : ℕ} (a : (sigmaStdSimplex i d) _⦋n⦌) :
     ∃ (c : Cell i d) (x : Δ[d] _⦋n⦌), c.ιSigmaStdSimplex.app _ x = a :=
@@ -295,6 +346,9 @@ noncomputable abbrev b : sigmaStdSimplex i d ⟶ skeletonOfMono i (d + 1) :=
 abbrev r : (skeletonOfMono i d : SSet) ⟶ skeletonOfMono i (d + 1) :=
   Subcomplex.homOfLE ((skeletonOfMono i).monotone (by simp))
 
+/--
+@isnad1 id=eq.0h4v.s8.bdc10d07a5c4 from=seed src=0 shape=6522821a vocab=1688e481
+-/
 @[reassoc]
 lemma w : t i d ≫ r i d = l i d ≫ b i d := by
   ext c : 1
@@ -304,12 +358,18 @@ namespace Cell
 
 variable {i d}
 
+/--
+@isnad1 id=eq.0h5v.s8.a80c25742d04 from=seed src=0 shape=f19bfa34 vocab=806dd464
+-/
 @[reassoc]
 lemma ι_t_ι_eq_ι_l_b_ι (c : Cell i d) :
     c.ιSigmaBoundary ≫ t i d ≫ Subcomplex.ι _ = ∂Δ[d].ι ≫
       c.ιSigmaStdSimplex ≫ b i d ≫ Subcomplex.ι _ := by
   simp
 
+/--
+@isnad1 id=eq.0h5v.s7.eba3ebce16e0 from=seed src=0 shape=8aa915d3 vocab=155b45b1
+-/
 @[reassoc]
 lemma ι_l (c : Cell i d) : c.ιSigmaBoundary ≫ l i d = ∂Δ[d].ι ≫ c.ιSigmaStdSimplex := by
   simp
@@ -322,12 +382,18 @@ Previously, we had to use `by simp [Sigma.ι_desc_assoc]`, now `by simp` suffice
 The `simp` annotation on this lemma was removed because it would be redundant now, triggering the
 `simpNF` linter.
 -/
+/--
+@isnad1 id=eq.0h5v.s7.c1265a07f344 from=seed src=0 shape=56eaea19 vocab=23ff7bf7
+-/
 @[reassoc]
 lemma ι_b_ι (c : Cell i d) : c.ιSigmaStdSimplex ≫ b i d ≫ Subcomplex.ι _ = c.map := by
   simp
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s10.645595f23047 from=seed src=0 shape=e48c20fc vocab=d2c5889b
+-/
 lemma b_app_ι_app_objEquiv_symm_val (c : Cell i d) {n : SimplexCategory} (f : n ⟶ ⦋d⦌) :
     dsimp% ((b i d).app _ (c.ιSigmaStdSimplex.app _ (stdSimplex.objEquiv.symm f))).val =
       Y.map f.op c.simplex := by
@@ -338,6 +404,9 @@ end Cell
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=ispullba.0h4v.s7.f283bc471995 from=seed src=0 shape=cb765397 vocab=1e722151
+-/
 lemma isPullback : IsPullback (t i d) (l i d) (r i d) (b i d) where
   w := w i d
   isLimit' := ⟨evaluationJointlyReflectsLimits _ (fun ⟨⟨n⟩⟩ ↦ by
@@ -360,6 +429,9 @@ lemma isPullback : IsPullback (t i d) (l i d) (r i d) (b i d) where
     · exact congr($(c.ι_l).app _ ⟨y, _⟩))⟩
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h4v.s10.7aac521138d5 from=seed src=0 shape=b19114b6 vocab=ce54c072
+-/
 lemma sup_range_r_range_b :
     Subcomplex.range (r i d) ⊔ Subcomplex.range (b i d) = ⊤ := by
   rw [← top_le_iff]
@@ -376,12 +448,18 @@ lemma sup_range_r_range_b :
     rw [Subtype.ext_iff]
     exact c.b_app_ι_app_objEquiv_symm_val _
 
+/--
+@isnad1 id=eq.0h5v.s10.e22c3eea2af3 from=seed src=0 shape=2971f969 vocab=88b23fcc
+-/
 lemma range_r_app_union_range_b_app (n : SimplexCategoryᵒᵖ) :
     Set.range ((r i d).app n) ∪
       Set.range ((b i d).app n) = Set.univ :=
   congr($(sup_range_r_range_b i d).obj n)
 
 variable {i d} in
+/--
+@isnad1 id=ex.1h6v.s9.d706f1fdcdb1 from=seed src=0 shape=6d4eefdb vocab=ed0498fe
+-/
 lemma isPushout_aux {n : ℕ} (y : (sigmaStdSimplex i d) _⦋n⦌)
     (hy : y ∉ Set.range ((l i d).app (op ⦋n⦌))) :
     ∃ (c : Cell i d) (f : ⦋n⦌ ⟶ ⦋d⦌) (_ : Epi f),
@@ -393,6 +471,9 @@ lemma isPushout_aux {n : ℕ} (y : (sigmaStdSimplex i d) _⦋n⦌)
   simpa [SimplexCategory.epi_iff_surjective, boundary] using! hs
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=ispushou.0h4v.s7.b2ebe93ac49e from=seed src=0 shape=cb765397 vocab=350d591c
+-/
 lemma isPushout : IsPushout (t i d) (l i d) (r i d) (b i d) where
   w := w i d
   isColimit' := ⟨evaluationJointlyReflectsColimits _ (fun ⟨⟨n⟩⟩ ↦ by

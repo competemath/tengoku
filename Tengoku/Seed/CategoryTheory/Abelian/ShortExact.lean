@@ -28,11 +28,17 @@ variable {D : Type u₂} [Category.{v₂} D] [Abelian D]
 variable (F : C ⥤ D) [PreservesZeroMorphisms F] [F.Faithful]
 variable {S : ShortComplex C}
 
+/--
+@isnad1 id=shortexa.1h4v.s6.18d1e447385f from=seed src=0 shape=b191527e vocab=c080273e
+-/
 lemma reflects_shortExact_of_faithful (hS : (S.map F).ShortExact) : S.ShortExact where
   exact := F.reflects_exact_of_faithful _ hS.1
   mono_f := ReflectsMonomorphisms.reflects _ hS.mono_f
   epi_g := ReflectsEpimorphisms.reflects _ hS.epi_g
 
+/--
+@isnad1 id=iff.0h4v.s6.d5d3508e2bfc from=seed src=0 shape=9031bf27 vocab=99655d2f
+-/
 lemma shortExact_map_iff [PreservesFiniteColimits F] [PreservesFiniteLimits F] :
     (S.map F).ShortExact ↔ S.ShortExact :=
   ⟨reflects_shortExact_of_faithful F, fun h ↦ ShortComplex.ShortExact.map_of_exact h F⟩

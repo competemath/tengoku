@@ -27,6 +27,9 @@ variable {A : Type*} [NonUnitalNormedRing A] [NormedSpace ℝ A] [SMulCommClass 
   [IsScalarTower ℝ A A] [StarRing A]
   [NonUnitalIsometricContinuousFunctionalCalculus ℝ A IsSelfAdjoint]
 
+/--
+@isnad1 id=le.0h2v.s8.5a2c8e33d063 from=seed src=0 shape=da004c69 vocab=83fe0722
+-/
 @[simp]
 lemma CStarAlgebra.norm_posPart_le (a : A) : ‖a⁺‖ ≤ ‖a‖ := by
   by_cases ha : IsSelfAdjoint a
@@ -37,11 +40,17 @@ lemma CStarAlgebra.norm_posPart_le (a : A) : ‖a⁺‖ ≤ ‖a‖ := by
   · simp only [posPart_def, max_eq_left h.le]
     exact NonUnitalIsometricContinuousFunctionalCalculus.norm_quasispectrum_le a hx ha
 
+/--
+@isnad1 id=le.0h2v.s8.d6e99a83439a from=seed src=0 shape=da004c69 vocab=173cf380
+-/
 @[simp]
 lemma CStarAlgebra.norm_negPart_le (a : A) : ‖a⁻‖ ≤ ‖a‖ := by
   simpa [CFC.negPart_neg] using norm_posPart_le (-a)
 
 open CStarAlgebra in
+/--
+@isnad1 id=eq.0h3v.s8.fc79d9f7370d from=seed src=0 shape=058e8dbd vocab=304c10a3
+-/
 lemma IsSelfAdjoint.norm_eq_max_norm_posPart_negPart (a : A) (ha : IsSelfAdjoint a := by cfc_tac) :
     ‖a‖ = max ‖a⁺‖ ‖a⁻‖ := by
   refine le_antisymm ?_ <| max_le (norm_posPart_le a) (norm_negPart_le a)

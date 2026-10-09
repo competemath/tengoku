@@ -123,10 +123,16 @@ instance [FiniteDimensional ℝ E] : NormedAddCommGroup (⋀[ℝ]^n E) :=
 instance [FiniteDimensional ℝ E] : InnerProductSpace ℝ (⋀[ℝ]^n E) :=
   InnerProductSpace.ofCore _
 
+/--
+@isnad1 id=eq.0h4v.s14.77ea4d71b11b from=seed src=0 shape=5d999a39 vocab=5c09e9d7
+-/
 lemma inner_ιMulti_ιMulti [FiniteDimensional ℝ E] (x y : Fin n → E) :
     ⟪ιMulti ℝ n x, ιMulti ℝ n y⟫ = det (of fun i j ↦ ⟪x j, y i⟫) :=
   innerProductForm_ιMulti_ιMulti x y
 
+/--
+@isnad1 id=eq.0h3v.s14.26a8887f7dc5 from=seed src=0 shape=1e8dd025 vocab=ccabc036
+-/
 lemma inner_ιMulti_self [FiniteDimensional ℝ E] (x : Fin n → E) :
     ⟪ιMulti ℝ n x, ιMulti ℝ n x⟫ = det (gram ℝ x) :=
   innerProductForm_ιMulti_self x
@@ -148,6 +154,9 @@ def OrthonormalBasis.exteriorPower (b : OrthonormalBasis I ℝ E) (n : ℕ) :
     rw [exteriorPower.coe_basis, OrthonormalBasis.coe_toBasis]
     exact exteriorPower.innerProductForm_ιMulti_family_of_orthonormal b.orthonormal i j
 
+/--
+@isnad1 id=eq.0h4v.s13.b02d7a95d5ef from=seed src=0 shape=c2103b18 vocab=8eebde87
+-/
 @[simp]
 lemma OrthonormalBasis.toBasis_exteriorPower (b : OrthonormalBasis I ℝ E) (n : ℕ) :
     (b.exteriorPower n).toBasis = b.toBasis.exteriorPower n :=

@@ -66,30 +66,50 @@ class IsConvexDist [inst₁ : ConvexSpace ℝ X] [inst₂ : MetricSpace X] : Pro
 
 variable [ConvexSpace ℝ X] [MetricSpace X] [IsConvexDist X]
 
-/-- `dist(∑ tᵢ xᵢ, ∑ tᵢ yᵢ) ≤ ∑ tᵢ dist(xᵢ, yᵢ)` -/
+/-- `dist(∑ tᵢ xᵢ, ∑ tᵢ yᵢ) ≤ ∑ tᵢ dist(xᵢ, yᵢ)`
+@isnad1 id=le.0h5v.s6.f93cb5cf860e from=seed src=0 shape=1345a6b4 vocab=f1f9b77d
+-/
 lemma dist_iConvexComb_le {ι : Type*} (f : StdSimplex ℝ ι) (x y : ι → X) :
     dist (f.iConvexComb x) (f.iConvexComb y) ≤ f.iConvexComb fun i ↦ dist (x i) (y i) := by
   simpa [iConvexComb_map, Finsupp.sum_mapDomain_index, add_mul]
     using IsConvexDist.dist_iConvexComb_fst_snd_le (f.map fun i ↦ (x i, y i))
 
+/--
+@isnad1 id=le.0h5v.s6.f93cb5cf860e from=seed src=0 shape=1345a6b4 vocab=f1f9b77d
+-/
 @[deprecated (since := "2026-05-15")] alias dist_convexCombination_right_le := dist_iConvexComb_le
 
+/--
+@isnad1 id=le.0h5v.s6.dbde473776b9 from=seed src=0 shape=f51268ba vocab=f1f9b77d
+-/
 lemma dist_iConvexComb_left_le (f : StdSimplex ℝ I) (g : I → X) (x : X) :
     dist (f.iConvexComb g) x ≤ f.iConvexComb fun i ↦ dist (g i) x := by
   simpa using dist_iConvexComb_le f g (fun _ ↦ x)
 
+/--
+@isnad1 id=le.0h5v.s6.27d8b0e7f77c from=seed src=0 shape=010e5a35 vocab=f1f9b77d
+-/
 lemma dist_iConvexComb_right_le (x : X) (f : StdSimplex ℝ I) (g : I → X) :
     dist x (f.iConvexComb g) ≤ f.iConvexComb fun i ↦ dist x (g i) := by
   simpa using dist_iConvexComb_le f (fun _ ↦ x) g
 
+/--
+@isnad1 id=le.0h3v.s6.e8bc3f796f65 from=seed src=0 shape=82165c76 vocab=7d2bc3cf
+-/
 lemma dist_sConvexComb_left_le (f : StdSimplex ℝ X) (x : X) :
     dist f.sConvexComb x ≤ f.iConvexComb (dist · x) := by
   simpa using dist_iConvexComb_left_le f id x
 
+/--
+@isnad1 id=le.0h3v.s6.609f819feb29 from=seed src=0 shape=43e6810a vocab=7d2bc3cf
+-/
 lemma dist_sConvexComb_right_le (x : X) (f : StdSimplex ℝ X) :
     dist x f.sConvexComb ≤ f.iConvexComb (dist x) := by
   simpa using dist_iConvexComb_right_le x f id
 
+/--
+@isnad1 id=eq.3h5v.s6.fbf11e8f366d from=seed src=0 shape=20cb5492 vocab=b5b29bd6
+-/
 @[simp]
 lemma dist_convexCombPair_left
     {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (h : s + t = 1) (x y : X) :
@@ -105,18 +125,27 @@ lemma dist_convexCombPair_left
   grw [convexCombPair, dist_sConvexComb_left_le]
   simp [iConvexComb_eq_sum, Finsupp.sum_add_index, add_mul, dist_comm y x]
 
+/--
+@isnad1 id=eq.3h5v.s6.776e4e232bd4 from=seed src=0 shape=a44de848 vocab=b5b29bd6
+-/
 @[simp]
 lemma dist_convexCombPair_right
     {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (h : s + t = 1) (x y : X) :
     dist (convexCombPair s t hs ht h x y) y = s * dist x y := by
   rw [convexCombPair_symm, dist_convexCombPair_left, dist_comm]
 
+/--
+@isnad1 id=eq.3h5v.s6.887e7a6ea302 from=seed src=0 shape=2fcbe08f vocab=b5b29bd6
+-/
 @[simp]
 lemma dist_left_convexCombPair
     {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (h : s + t = 1) (x y : X) :
     dist x (convexCombPair s t hs ht h x y) = t * dist x y := by
   rw [dist_comm, dist_convexCombPair_left]
 
+/--
+@isnad1 id=eq.3h5v.s6.e3f249f28ee5 from=seed src=0 shape=e513bf7c vocab=b5b29bd6
+-/
 @[simp]
 lemma dist_right_convexCombPair
     {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (h : s + t = 1) (x y : X) :
@@ -126,7 +155,9 @@ lemma dist_right_convexCombPair
 /-- `dist(sx + (1-s)y, s'x + (1-s')y) = |s - s'| dist(x, y)`.
 
 See `dist_convexCombPair_convexCombPair_le`
-for the version where the weights are fixed and the points change. -/
+for the version where the weights are fixed and the points change.
+@isnad1 id=eq.6h7v.s7.42e5e3c7b1de from=seed src=0 shape=a75150fe vocab=647316da
+-/
 lemma dist_convexCombPair_convexCombPair
     {s t s' t' : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (h : s + t = 1)
     (hs' : 0 ≤ s') (ht' : 0 ≤ t') (h' : s' + t' = 1) (x y : X) :
@@ -162,7 +193,9 @@ lemma dist_convexCombPair_convexCombPair
 /-- `dist(sx + (1-s)y, sx' + (1-s)y') ≤ s dist(x, x') + (1-s) dist(y, y')`.
 
 See `dist_convexCombPair_convexCombPair`
-for the version where the points are fixed and the weights change. -/
+for the version where the points are fixed and the weights change.
+@isnad1 id=le.3h7v.s7.28eb7257dcc8 from=seed src=0 shape=e2b29f89 vocab=b5b29bd6
+-/
 lemma dist_convexCombPair_convexCombPair_le
     {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (h : s + t = 1) (x y x' y' : X) :
     dist (convexCombPair s t hs ht h x y) (convexCombPair s t hs ht h x' y') ≤
@@ -173,7 +206,9 @@ lemma dist_convexCombPair_convexCombPair_le
   · simp [Finsupp.sum_fintype, Fin.sum_univ_succ, StdSimplex.duple, iConvexComb_eq_sum]
 
 /-- The convex combination `(t, p, q) ↦ t • p + (1 - t) • q` is continuous on `[0, 1] × X × X`
-for a convex metric space `X`. -/
+for a convex metric space `X`.
+@isnad1 id=continuo.0h1v.s8.4964a7f2bfb9 from=seed src=0 shape=b0fb9e9f vocab=fa568d80
+-/
 lemma continuous_convexCombPair :
     Continuous fun x : Set.Icc (0 : ℝ) 1 × (X × X) ↦ convexCombPair (R := ℝ)
       ↑x.1 (1 - ↑x.1) x.1.prop.left (by simpa using x.1.prop.right) (add_sub_cancel ..)
@@ -194,8 +229,14 @@ lemma continuous_convexCombPair :
     simp [← coe_nnreal_ennreal_nndist, ← ENNReal.coe_mul, NNReal.toReal_le,
       dist_convexCombPair_convexCombPair, Subtype.dist_eq, dist_eq_norm]
 
+/--
+@isnad1 id=continuo.0h1v.s8.4964a7f2bfb9 from=seed src=0 shape=b0fb9e9f vocab=fa568d80
+-/
 @[deprecated (since := "2026-05-15")] alias continuous_convexComboPair := continuous_convexCombPair
 
+/--
+@isnad1 id=continuo.7h5v.s7.bd4b35302dff from=seed src=0 shape=b10a04fd vocab=3146810c
+-/
 lemma continuous_convexCombPair_of_isBounded
     {T : Type*} [TopologicalSpace T] (f : T → ℝ) (hf : Continuous f)
     (hf0 : ∀ t, 0 ≤ f t) (hf1 : ∀ t, f t ≤ 1) (x y : T → X)
@@ -246,7 +287,9 @@ lemma continuous_convexCombPair_of_isBounded
 
 /-- When `X` is a bounded convex metric space, to check continuity of
 `t ↦ f(t) • x(t) + (1 - f(t)) • y(t)` it suffices to show that `f` is continuous,
-`x` is continuous away from `f(t) = 0`, and `y` is continuous away from `f(t) = 1`. -/
+`x` is continuous away from `f(t) = 0`, and `y` is continuous away from `f(t) = 1`.
+@isnad1 id=continuo.5h5v.s7.702b66103e04 from=seed src=0 shape=768333e1 vocab=c356eef9
+-/
 lemma continuous_convexCombPair' [BoundedSpace X]
     {T : Type*} [TopologicalSpace T] (f : T → ℝ) (hf : Continuous f)
     (hf0 : ∀ t, 0 ≤ f t) (hf1 : ∀ t, f t ≤ 1) (x y : T → X)
@@ -255,6 +298,9 @@ lemma continuous_convexCombPair' [BoundedSpace X]
       (add_sub_cancel ..) (x i) (y i) :=
   continuous_convexCombPair_of_isBounded f hf hf0 hf1 x y hx hy (.all _) (.all _)
 
+/--
+@isnad1 id=continuo.5h5v.s7.702b66103e04 from=seed src=0 shape=768333e1 vocab=c356eef9
+-/
 @[deprecated (since := "2026-05-15")]
 alias continuous_convexComboPair' := continuous_convexCombPair'
 
@@ -273,6 +319,9 @@ instance (priority := low) {V P : Type*}
     grw [Finsupp.sum, Finsupp.sum, norm_sum_le]
     simp [norm_smul, abs_eq_self.mpr (f.nonneg _)]
 
+/--
+@isnad1 id=isconvex.1h2v.s5.094e15083de7 from=seed src=0 shape=61255736 vocab=2cac2dcb
+-/
 instance IsConvexDist.subtype (s : Set X) (hs : IsConvexSet ℝ s) :
     letI : ConvexSpace ℝ s := .subtype s hs
     IsConvexDist s := by
@@ -281,6 +330,9 @@ instance IsConvexDist.subtype (s : Set X) (hs : IsConvexSet ℝ s) :
   convert dist_iConvexComb_fst_snd_le (X := X) (f.map fun x ↦ (x.1, x.2)) <;>
     simp [Subtype.dist_eq, Finsupp.sum_mapDomain_index, add_mul]
 
+/--
+@isnad1 id=isconvex.0h3v.s7.54b62dbb4ea6 from=seed src=0 shape=b22f6e82 vocab=8ea291ca
+-/
 instance IsConvexDist.submodule {F M : Type*} [AddCommGroup M] [MetricSpace M]
     [Module ℝ M] [ConvexSpace ℝ M] [IsModuleConvexSpace ℝ M] [IsConvexDist M]
     [SetLike F M] [AddSubmonoidClass F M] [SMulMemClass F ℝ M] {S : F} :

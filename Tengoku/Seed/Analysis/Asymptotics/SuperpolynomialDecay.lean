@@ -66,60 +66,99 @@ section CommSemiring
 
 variable [TopologicalSpace β] [CommSemiring β]
 
+/--
+@isnad1 id=superpol.2h6v.s5.b1f1e1f2e274 from=seed src=0 shape=9e3a52fb vocab=bbac9bad
+-/
 theorem SuperpolynomialDecay.congr' (hf : SuperpolynomialDecay l k f) (hfg : f =ᶠ[l] g) :
     SuperpolynomialDecay l k g := fun z =>
   (hf z).congr' (EventuallyEq.mul (EventuallyEq.refl l _) hfg)
 
+/--
+@isnad1 id=superpol.2h6v.s5.75fe3ff9205c from=seed src=0 shape=f01f71ec vocab=06b2ae49
+-/
 theorem SuperpolynomialDecay.congr (hf : SuperpolynomialDecay l k f) (hfg : ∀ x, f x = g x) :
     SuperpolynomialDecay l k g := fun z =>
   (hf z).congr fun x => (congr_arg fun a => k x ^ z * a) <| hfg x
 
+/--
+@isnad1 id=superpol.0h4v.s5.bf546cdd8185 from=seed src=0 shape=5afa8f67 vocab=06b2ae49
+-/
 @[simp]
 theorem superpolynomialDecay_zero (l : Filter α) (k : α → β) : SuperpolynomialDecay l k 0 :=
   fun z => by simpa only [Pi.zero_apply, mul_zero] using tendsto_const_nhds
 
+/--
+@isnad1 id=superpol.2h6v.s6.4f8260985288 from=seed src=0 shape=c8355476 vocab=ccdbdca3
+-/
 theorem SuperpolynomialDecay.add [ContinuousAdd β] (hf : SuperpolynomialDecay l k f)
     (hg : SuperpolynomialDecay l k g) : SuperpolynomialDecay l k (f + g) := fun z => by
   simpa only [mul_add, add_zero, Pi.add_apply] using (hf z).add (hg z)
 
+/--
+@isnad1 id=superpol.2h6v.s6.c9547152bb38 from=seed src=0 shape=c8355476 vocab=1f7af481
+-/
 theorem SuperpolynomialDecay.mul [ContinuousMul β] (hf : SuperpolynomialDecay l k f)
     (hg : SuperpolynomialDecay l k g) : SuperpolynomialDecay l k (f * g) := fun z => by
   simpa only [mul_assoc, one_mul, mul_zero, pow_zero] using! (hf z).mul (hg 0)
 
+/--
+@isnad1 id=superpol.1h6v.s6.293288255740 from=seed src=0 shape=1efc2554 vocab=1f7af481
+-/
 theorem SuperpolynomialDecay.mul_const [ContinuousMul β] (hf : SuperpolynomialDecay l k f) (c : β) :
     SuperpolynomialDecay l k fun n => f n * c := fun z => by
   simpa only [← mul_assoc, zero_mul] using Tendsto.mul_const c (hf z)
 
+/--
+@isnad1 id=superpol.1h6v.s6.d3f89293dca2 from=seed src=0 shape=71e1ed24 vocab=1f7af481
+-/
 theorem SuperpolynomialDecay.const_mul [ContinuousMul β] (hf : SuperpolynomialDecay l k f) (c : β) :
     SuperpolynomialDecay l k fun n => c * f n :=
   (hf.mul_const c).congr fun _ => mul_comm _ _
 
+/--
+@isnad1 id=superpol.1h5v.s6.7ada49ac3a37 from=seed src=0 shape=81cec351 vocab=40fe12bd
+-/
 theorem SuperpolynomialDecay.param_mul (hf : SuperpolynomialDecay l k f) :
     SuperpolynomialDecay l k (k * f) := fun z =>
   tendsto_nhds.2 fun s hs hs0 =>
     l.sets_of_superset ((tendsto_nhds.1 (hf <| z + 1)) s hs hs0) fun x hx => by
       simpa only [Set.mem_preimage, Pi.mul_apply, ← mul_assoc, ← pow_succ] using hx
 
+/--
+@isnad1 id=superpol.1h5v.s6.d40fd05e0260 from=seed src=0 shape=13a9d0f1 vocab=40fe12bd
+-/
 theorem SuperpolynomialDecay.mul_param (hf : SuperpolynomialDecay l k f) :
     SuperpolynomialDecay l k (f * k) :=
   hf.param_mul.congr fun _ => mul_comm _ _
 
+/--
+@isnad1 id=superpol.1h6v.s6.0563ad4060e1 from=seed src=0 shape=6a523d67 vocab=e61e9e33
+-/
 theorem SuperpolynomialDecay.param_pow_mul (hf : SuperpolynomialDecay l k f) (n : ℕ) :
     SuperpolynomialDecay l k (k ^ n * f) := by
   induction n with
   | zero => simpa only [one_mul, pow_zero] using hf
   | succ n hn => simpa only [pow_succ', mul_assoc] using hn.param_mul
 
+/--
+@isnad1 id=superpol.1h6v.s6.4f840fbf5854 from=seed src=0 shape=0da00c13 vocab=e61e9e33
+-/
 theorem SuperpolynomialDecay.mul_param_pow (hf : SuperpolynomialDecay l k f) (n : ℕ) :
     SuperpolynomialDecay l k (f * k ^ n) :=
   (hf.param_pow_mul n).congr fun _ => mul_comm _ _
 
+/--
+@isnad1 id=superpol.1h6v.s6.ba8a2b7a2da5 from=seed src=0 shape=8c855a5c vocab=675fe833
+-/
 theorem SuperpolynomialDecay.polynomial_mul [ContinuousAdd β] [ContinuousMul β]
     (hf : SuperpolynomialDecay l k f) (p : β[X]) :
     SuperpolynomialDecay l k fun x => (p.eval <| k x) * f x :=
   Polynomial.induction_on' p (fun p q hp hq => by simpa [add_mul] using! hp.add hq) fun n c => by
     simpa [mul_assoc] using! (hf.param_pow_mul n).const_mul c
 
+/--
+@isnad1 id=superpol.1h6v.s6.0c8c555cc85c from=seed src=0 shape=d4b74b98 vocab=675fe833
+-/
 theorem SuperpolynomialDecay.mul_polynomial [ContinuousAdd β] [ContinuousMul β]
     (hf : SuperpolynomialDecay l k f) (p : β[X]) :
     SuperpolynomialDecay l k fun x => f x * (p.eval <| k x) :=
@@ -131,6 +170,9 @@ section OrderedCommSemiring
 
 variable [TopologicalSpace β] [CommSemiring β] [PartialOrder β] [IsOrderedRing β] [OrderTopology β]
 
+/--
+@isnad1 id=superpol.5h7v.s7.94879a1ff899 from=seed src=0 shape=0a60e808 vocab=3b5ecdd1
+-/
 theorem SuperpolynomialDecay.trans_eventuallyLE (hk : 0 ≤ᶠ[l] k) (hg : SuperpolynomialDecay l k g)
     (hg' : SuperpolynomialDecay l k g') (hfg : g ≤ᶠ[l] f) (hfg' : f ≤ᶠ[l] g') :
     SuperpolynomialDecay l k f := fun z =>
@@ -145,11 +187,17 @@ section LinearOrderedCommRing
 variable [TopologicalSpace β] [CommRing β] [LinearOrder β] [IsStrictOrderedRing β] [OrderTopology β]
 variable (l k f)
 
+/--
+@isnad1 id=iff.0h5v.s7.facb63f64a49 from=seed src=0 shape=32add328 vocab=41f343a4
+-/
 theorem superpolynomialDecay_iff_abs_tendsto_zero :
     SuperpolynomialDecay l k f ↔ ∀ n : ℕ, Tendsto (fun a : α => |k a ^ n * f a|) l (𝓝 0) :=
   ⟨fun h z => (tendsto_zero_iff_abs_tendsto_zero _).1 (h z), fun h z =>
     (tendsto_zero_iff_abs_tendsto_zero _).2 (h z)⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.95c89fd3e853 from=seed src=0 shape=1f7e1109 vocab=ad8516a2
+-/
 theorem superpolynomialDecay_iff_superpolynomialDecay_abs :
     SuperpolynomialDecay l k f ↔ SuperpolynomialDecay l (fun a => |k a|) fun a => |f a| :=
   (superpolynomialDecay_iff_abs_tendsto_zero l k f).trans
@@ -157,6 +205,9 @@ theorem superpolynomialDecay_iff_superpolynomialDecay_abs :
 
 variable {l k f}
 
+/--
+@isnad1 id=superpol.2h6v.s7.635b18141c3d from=seed src=0 shape=de76c58f vocab=eca41bda
+-/
 theorem SuperpolynomialDecay.trans_eventually_abs_le (hf : SuperpolynomialDecay l k f)
     (hfg : abs ∘ g ≤ᶠ[l] abs ∘ f) : SuperpolynomialDecay l k g := by
   rw [superpolynomialDecay_iff_abs_tendsto_zero] at hf ⊢
@@ -168,6 +219,9 @@ theorem SuperpolynomialDecay.trans_eventually_abs_le (hf : SuperpolynomialDecay 
     _ ≤ |k x ^ z| * |f x| := by gcongr _ * ?_; exact hx
     _ = |k x ^ z * f x| := (abs_mul (k x ^ z) (f x)).symm
 
+/--
+@isnad1 id=superpol.2h6v.s7.9752614f7d25 from=seed src=0 shape=9d0cef23 vocab=5c5698f4
+-/
 theorem SuperpolynomialDecay.trans_abs_le (hf : SuperpolynomialDecay l k f)
     (hfg : ∀ x, |g x| ≤ |f x|) : SuperpolynomialDecay l k g :=
   hf.trans_eventually_abs_le (Eventually.of_forall hfg)
@@ -178,11 +232,17 @@ section Field
 
 variable [TopologicalSpace β] [Field β] (l k f)
 
+/--
+@isnad1 id=iff.1h6v.s6.fa4a133dc1da from=seed src=0 shape=9560de54 vocab=de56c72f
+-/
 theorem superpolynomialDecay_mul_const_iff [ContinuousMul β] {c : β} (hc0 : c ≠ 0) :
     (SuperpolynomialDecay l k fun n => f n * c) ↔ SuperpolynomialDecay l k f :=
   ⟨fun h => (h.mul_const c⁻¹).congr fun x => by simp [mul_assoc, mul_inv_cancel₀ hc0], fun h =>
     h.mul_const c⟩
 
+/--
+@isnad1 id=iff.1h6v.s6.32d785e75510 from=seed src=0 shape=592c6dfa vocab=de56c72f
+-/
 theorem superpolynomialDecay_const_mul_iff [ContinuousMul β] {c : β} (hc0 : c ≠ 0) :
     (SuperpolynomialDecay l k fun n => c * f n) ↔ SuperpolynomialDecay l k f :=
   ⟨fun h => (h.const_mul c⁻¹).congr fun x => by simp [← mul_assoc, inv_mul_cancel₀ hc0], fun h =>
@@ -195,6 +255,9 @@ section LinearOrderedField
 variable [TopologicalSpace β] [Field β] [LinearOrder β] [IsStrictOrderedRing β] [OrderTopology β]
 variable (f)
 
+/--
+@isnad1 id=iff.1h5v.s7.735016d7d8b9 from=seed src=0 shape=3e168753 vocab=a391a729
+-/
 theorem superpolynomialDecay_iff_abs_isBoundedUnder (hk : Tendsto k l atTop) :
     SuperpolynomialDecay l k f ↔
     ∀ z : ℕ, IsBoundedUnder (· ≤ ·) l fun a : α => |k a ^ z * f a| := by
@@ -213,6 +276,9 @@ theorem superpolynomialDecay_iff_abs_isBoundedUnder (hk : Tendsto k l atTop) :
   refine Eq.trans_le ?_ (mul_le_mul_of_nonneg_left hx <| abs_nonneg (k x)⁻¹)
   rw [← abs_mul, ← mul_assoc, pow_succ', ← mul_assoc, inv_mul_cancel₀ hk0, one_mul]
 
+/--
+@isnad1 id=iff.1h5v.s7.7d865514ab01 from=seed src=0 shape=2de06419 vocab=ef447168
+-/
 theorem superpolynomialDecay_iff_zpow_tendsto_zero (hk : Tendsto k l atTop) :
     SuperpolynomialDecay l k f ↔ ∀ z : ℤ, Tendsto (fun a : α => k a ^ z * f a) l (𝓝 0) := by
   refine ⟨fun h z => ?_, fun h n => by simpa only [zpow_natCast] using! h (n : ℤ)⟩
@@ -227,6 +293,9 @@ theorem superpolynomialDecay_iff_zpow_tendsto_zero (hk : Tendsto k l atTop) :
 
 variable {f}
 
+/--
+@isnad1 id=superpol.2h6v.s7.89e21db6db40 from=seed src=0 shape=4a259ce8 vocab=a85439ef
+-/
 theorem SuperpolynomialDecay.param_zpow_mul (hk : Tendsto k l atTop)
     (hf : SuperpolynomialDecay l k f) (z : ℤ) :
     SuperpolynomialDecay l k fun a => k a ^ z * f a := by
@@ -234,20 +303,32 @@ theorem SuperpolynomialDecay.param_zpow_mul (hk : Tendsto k l atTop)
   refine fun z' => (hf <| z' + z).congr' ((hk.eventually_ne_atTop 0).mono fun x hx => ?_)
   simp [zpow_add₀ hx, mul_assoc]
 
+/--
+@isnad1 id=superpol.2h6v.s7.dac16a45698f from=seed src=0 shape=05504c5f vocab=a85439ef
+-/
 theorem SuperpolynomialDecay.mul_param_zpow (hk : Tendsto k l atTop)
     (hf : SuperpolynomialDecay l k f) (z : ℤ) : SuperpolynomialDecay l k fun a => f a * k a ^ z :=
   (hf.param_zpow_mul hk z).congr fun _ => mul_comm _ _
 
+/--
+@isnad1 id=superpol.2h5v.s7.8618c39d0b41 from=seed src=0 shape=e1c0e48d vocab=cd67a594
+-/
 theorem SuperpolynomialDecay.inv_param_mul (hk : Tendsto k l atTop)
     (hf : SuperpolynomialDecay l k f) : SuperpolynomialDecay l k (k⁻¹ * f) := by
   simpa using! hf.param_zpow_mul hk (-1)
 
+/--
+@isnad1 id=superpol.2h5v.s7.4c2f5ef0f6f0 from=seed src=0 shape=b5e7a3e4 vocab=cd67a594
+-/
 theorem SuperpolynomialDecay.param_inv_mul (hk : Tendsto k l atTop)
     (hf : SuperpolynomialDecay l k f) : SuperpolynomialDecay l k (f * k⁻¹) :=
   (hf.inv_param_mul hk).congr fun _ => mul_comm _ _
 
 variable (f)
 
+/--
+@isnad1 id=iff.1h5v.s7.6d3cdf73e279 from=seed src=0 shape=d57f41b7 vocab=930afede
+-/
 theorem superpolynomialDecay_param_mul_iff (hk : Tendsto k l atTop) :
     SuperpolynomialDecay l k (k * f) ↔ SuperpolynomialDecay l k f :=
   ⟨fun h =>
@@ -255,10 +336,16 @@ theorem superpolynomialDecay_param_mul_iff (hk : Tendsto k l atTop) :
       ((hk.eventually_ne_atTop 0).mono fun x hx => by simp [← mul_assoc, inv_mul_cancel₀ hx]),
     fun h => h.param_mul⟩
 
+/--
+@isnad1 id=iff.1h5v.s7.617412b956be from=seed src=0 shape=a4a53b1a vocab=930afede
+-/
 theorem superpolynomialDecay_mul_param_iff (hk : Tendsto k l atTop) :
     SuperpolynomialDecay l k (f * k) ↔ SuperpolynomialDecay l k f := by
   simpa [mul_comm k] using superpolynomialDecay_param_mul_iff f hk
 
+/--
+@isnad1 id=iff.1h6v.s7.a28352906601 from=seed src=0 shape=29681156 vocab=1c76fb9f
+-/
 theorem superpolynomialDecay_param_pow_mul_iff (hk : Tendsto k l atTop) (n : ℕ) :
     SuperpolynomialDecay l k (k ^ n * f) ↔ SuperpolynomialDecay l k f := by
   induction n with
@@ -267,6 +354,9 @@ theorem superpolynomialDecay_param_pow_mul_iff (hk : Tendsto k l atTop) (n : ℕ
     simpa [pow_succ, ← mul_comm k, mul_assoc,
       superpolynomialDecay_param_mul_iff (k ^ n * f) hk] using hn
 
+/--
+@isnad1 id=iff.1h6v.s7.37e4c209350f from=seed src=0 shape=2c20cc3b vocab=1c76fb9f
+-/
 theorem superpolynomialDecay_mul_param_pow_iff (hk : Tendsto k l atTop) (n : ℕ) :
     SuperpolynomialDecay l k (f * k ^ n) ↔ SuperpolynomialDecay l k f := by
   simpa [mul_comm f] using superpolynomialDecay_param_pow_mul_iff f hk n
@@ -278,11 +368,17 @@ section NormedLinearOrderedField
 variable [NormedField β]
 variable (l k f)
 
+/--
+@isnad1 id=iff.0h5v.s6.061a1332364b from=seed src=0 shape=b79fb800 vocab=f0abca2c
+-/
 theorem superpolynomialDecay_iff_norm_tendsto_zero :
     SuperpolynomialDecay l k f ↔ ∀ n : ℕ, Tendsto (fun a : α => ‖k a ^ n * f a‖) l (𝓝 0) :=
   ⟨fun h z => tendsto_zero_iff_norm_tendsto_zero.1 (h z), fun h z =>
     tendsto_zero_iff_norm_tendsto_zero.2 (h z)⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.03790a379a65 from=seed src=0 shape=a34acbe5 vocab=ba886ff6
+-/
 theorem superpolynomialDecay_iff_superpolynomialDecay_norm :
     SuperpolynomialDecay l k f ↔ SuperpolynomialDecay l (fun a => ‖k a‖) fun a => ‖f a‖ :=
   (superpolynomialDecay_iff_norm_tendsto_zero l k f).trans (by simp [SuperpolynomialDecay])
@@ -290,6 +386,9 @@ theorem superpolynomialDecay_iff_superpolynomialDecay_norm :
 variable {l k}
 variable [LinearOrder β] [IsStrictOrderedRing β] [OrderTopology β]
 
+/--
+@isnad1 id=iff.1h5v.s7.13d6dedc3506 from=seed src=0 shape=5bcd6ab1 vocab=8ddc00b4
+-/
 theorem superpolynomialDecay_iff_isBigO (hk : Tendsto k l atTop) :
     SuperpolynomialDecay l k f ↔ ∀ z : ℤ, f =O[l] fun a : α => k a ^ z := by
   refine (superpolynomialDecay_iff_zpow_tendsto_zero f hk).trans ?_
@@ -305,6 +404,9 @@ theorem superpolynomialDecay_iff_isBigO (hk : Tendsto k l atTop) :
     refine .of_bound' <| hk0.mono fun a ha0 => ?_
     simp [← zpow_add₀ ha0]
 
+/--
+@isnad1 id=iff.1h5v.s7.b5eb887a4b8b from=seed src=0 shape=5bcd6ab1 vocab=e0bd824e
+-/
 theorem superpolynomialDecay_iff_isLittleO (hk : Tendsto k l atTop) :
     SuperpolynomialDecay l k f ↔ ∀ z : ℤ, f =o[l] fun a : α => k a ^ z := by
   refine ⟨fun h z => ?_, fun h => (superpolynomialDecay_iff_isBigO f hk).2 fun z => (h z).isBigO⟩

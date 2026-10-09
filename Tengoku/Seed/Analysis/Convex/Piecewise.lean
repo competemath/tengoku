@@ -39,7 +39,9 @@ variable {𝕜 E β : Type*} [Semiring 𝕜] [PartialOrder 𝕜]
 
 /-- The piecewise function `(Set.Iic e).piecewise f g` of a function `f` decreasing and convex on
 `Set.Iic e` and a function `g` increasing and convex on `Set.Ici e`, such that `f e = g e`, is
-convex on the universal set. -/
+convex on the universal set.
+@isnad1 id=convexon.5h6v.s9.4c2c127c97b7 from=seed src=0 shape=749f4365 vocab=422cbb74
+-/
 theorem convexOn_univ_piecewise_Iic_of_antitoneOn_Iic_monotoneOn_Ici
     (hf : ConvexOn 𝕜 (Set.Iic e) f) (hg : ConvexOn 𝕜 (Set.Ici e) g)
     (h_anti : AntitoneOn f (Set.Iic e)) (h_mono : MonotoneOn g (Set.Ici e)) (h_eq : f e = g e) :
@@ -93,7 +95,9 @@ theorem convexOn_univ_piecewise_Iic_of_antitoneOn_Iic_monotoneOn_Ici
 
 /-- The piecewise function `(Set.Ici e).piecewise f g` of a function `f` increasing and convex on
 `Set.Ici e` and a function `g` decreasing and convex on `Set.Iic e`, such that `f e = g e`, is
-convex on the universal set. -/
+convex on the universal set.
+@isnad1 id=convexon.5h6v.s9.645aa169db53 from=seed src=0 shape=749f4365 vocab=422cbb74
+-/
 theorem convexOn_univ_piecewise_Ici_of_monotoneOn_Ici_antitoneOn_Iic
     (hf : ConvexOn 𝕜 (Set.Ici e) f) (hg : ConvexOn 𝕜 (Set.Iic e) g)
     (h_mono : MonotoneOn f (Set.Ici e)) (h_anti : AntitoneOn g (Set.Iic e)) (h_eq : f e = g e) :
@@ -107,7 +111,9 @@ theorem convexOn_univ_piecewise_Ici_of_monotoneOn_Ici_antitoneOn_Iic
 
 /-- The piecewise function `(Set.Iic e).piecewise f g` of a function `f` increasing and concave on
 `Set.Iic e` and a function `g` decreasing and concave on `Set.Ici e`, such that `f e = g e`, is
-concave on the universal set. -/
+concave on the universal set.
+@isnad1 id=concaveo.5h6v.s9.5c4a668459ee from=seed src=0 shape=749f4365 vocab=ada5ab49
+-/
 theorem concaveOn_univ_piecewise_Iic_of_monotoneOn_Iic_antitoneOn_Ici
     (hf : ConcaveOn 𝕜 (Set.Iic e) f) (hg : ConcaveOn 𝕜 (Set.Ici e) g)
     (h_mono : MonotoneOn f (Set.Iic e)) (h_anti : AntitoneOn g (Set.Ici e)) (h_eq : f e = g e) :
@@ -118,7 +124,9 @@ theorem concaveOn_univ_piecewise_Iic_of_monotoneOn_Iic_antitoneOn_Ici
 
 /-- The piecewise function `(Set.Ici e).piecewise f g` of a function `f` decreasing and concave on
 `Set.Ici e` and a function `g` increasing and concave on `Set.Iic e`, such that `f e = g e`, is
-concave on the universal set. -/
+concave on the universal set.
+@isnad1 id=concaveo.5h6v.s9.8290f287e6d0 from=seed src=0 shape=749f4365 vocab=ada5ab49
+-/
 theorem concaveOn_univ_piecewise_Ici_of_antitoneOn_Ici_monotoneOn_Iic
     (hf : ConcaveOn 𝕜 (Set.Ici e) f) (hg : ConcaveOn 𝕜 (Set.Iic e) g)
     (h_anti : AntitoneOn f (Set.Ici e)) (h_mono : MonotoneOn g (Set.Iic e)) (h_eq : f e = g e) :

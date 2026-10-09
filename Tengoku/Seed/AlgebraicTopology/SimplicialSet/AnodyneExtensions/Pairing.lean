@@ -76,10 +76,16 @@ class IsProper where
   isUniquelyCodimOneFace (x : P.II) :
     S.IsUniquelyCodimOneFace x.1.toS (P.p x).1.toS
 
+/--
+@isnad1 id=isunique.0h4v.s7.9e9bf2e73484 from=seed src=0 shape=51b0b1f7 vocab=ece91c7a
+-/
 lemma isUniquelyCodimOneFace [P.IsProper] (x : P.II) :
     S.IsUniquelyCodimOneFace x.1.toS (P.p x).1.toS :=
   IsProper.isUniquelyCodimOneFace x
 
+/--
+@isnad1 id=eq.0h4v.s7.768d682aa717 from=seed src=0 shape=051d5b54 vocab=91011f58
+-/
 @[simp]
 lemma dim_p [P.IsProper] (x : P.II) :
     (P.p x).1.dim = x.1.dim + 1 :=
@@ -97,6 +103,9 @@ def AncestralRel (x y : P.II) : Prop :=
   x ≠ y ∧ x.1 < (P.p y).1
 
 variable {P} in
+/--
+@isnad1 id=le.1h5v.s6.6ac13c56cb49 from=seed src=0 shape=3fb23f41 vocab=1f4ff224
+-/
 lemma AncestralRel.dim_le [P.IsProper] {x y : P.II} (hxy : P.AncestralRel x y) :
     x.1.dim ≤ y.1.dim := by
   simpa only [(P.isUniquelyCodimOneFace y).dim_eq, Nat.lt_succ_iff] using
@@ -111,6 +120,9 @@ section
 
 variable [P.IsRegular]
 
+/--
+@isnad1 id=wellfoun.0h3v.s4.88bf15f83b6b from=seed src=0 shape=53825f73 vocab=7028254c
+-/
 lemma wf : WellFounded P.AncestralRel := IsRegular.wf
 
 instance : IsWellFounded _ P.AncestralRel where
@@ -118,6 +130,9 @@ instance : IsWellFounded _ P.AncestralRel where
 
 end
 
+/--
+@isnad1 id=ex.0h4v.s7.79fbaa520f38 from=seed src=0 shape=93ca0520 vocab=9b31497b
+-/
 lemma exists_or (x : A.N) :
     ∃ (y : P.II), x = y ∨ x = P.p y := by
   have := Set.mem_univ x
@@ -127,6 +142,9 @@ lemma exists_or (x : A.N) :
     exact ⟨y, Or.inr (by rw [hy])⟩
   · exact ⟨⟨_, h⟩, Or.inl rfl⟩
 
+/--
+@isnad1 id=ne.0h5v.s6.f51145e7d9eb from=seed src=0 shape=165c5779 vocab=a66a3e2e
+-/
 lemma ne (x : P.I) (y : P.II) :
     x.1 ≠ y.1 := by
   obtain ⟨x, hx⟩ := x
@@ -135,10 +153,16 @@ lemma ne (x : P.I) (y : P.II) :
   have : x ∈ P.I ∩ P.II := ⟨hx, hy⟩
   simp [P.inter] at this
 
+/--
+@isnad1 id=le.0h4v.s7.86e801d63a07 from=seed src=0 shape=2a6369ed vocab=ce35cef8
+-/
 lemma le [P.IsProper] (x : P.II) :
     x.1 ≤ (P.p x).1 :=
   (P.isUniquelyCodimOneFace x).le
 
+/--
+@isnad1 id=lt.0h4v.s7.ec63b33fb2ab from=seed src=0 shape=2a6369ed vocab=66386f07
+-/
 lemma lt [P.IsProper] (x : P.II) :
     x.1 < (P.p x).1 :=
   lt_of_le_of_ne' (P.le x) (P.ne _ _)
@@ -167,6 +191,9 @@ unif_hint {X : SSet.{u}} {A : X.Subcomplex} (P : A.Pairing)
   ⊢ (P.ofIso e hA).II ≟ (N.orderIsoOfIso e hA) ⁻¹' P.II
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h7v.s10.7966a5a8e872 from=seed src=0 shape=72389c3f vocab=11630652
+-/
 @[simp]
 lemma ofIso_p (x : P.II) :
     dsimp% (P.ofIso e hA).p ⟨(Subcomplex.N.orderIsoOfIso e hA).symm x, by simp⟩ =
@@ -178,6 +205,9 @@ lemma ofIso_p (x : P.II) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iff.1h8v.s8.b7230801103f from=seed src=0 shape=9e4387aa vocab=1e9057d9
+-/
 lemma ofIso_ancestralRel_iff (x y : P.II) :
     (P.ofIso e hA).AncestralRel
       ⟨(Subcomplex.N.orderIsoOfIso e hA).symm x, by simp⟩
@@ -204,6 +234,9 @@ instance [P.IsRegular] : (P.ofIso e hA).IsRegular where
     simpa [← P.ofIso_ancestralRel_iff e hA] using hf n
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h8v.s9.ae4aa0f75e7e from=seed src=0 shape=8e187e9d vocab=6eb126f6
+-/
 @[simp]
 lemma ofIso_index (x : P.II) {d : ℕ} (hd : x.1.dim = d) [P.IsProper] :
     ((P.ofIso e hA).isUniquelyCodimOneFace ⟨(N.orderIsoOfIso e hA).symm x, by simp⟩).index hd =

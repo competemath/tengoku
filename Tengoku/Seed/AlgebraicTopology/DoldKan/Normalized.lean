@@ -46,12 +46,18 @@ variable {A : Type*} [Category* A] [Abelian A] {X : SimplicialObject A}
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=higherfa.0h3v.s8.ff9ad501e5ed from=seed src=0 shape=3d359e2d vocab=cc0f5fe5
+-/
 theorem HigherFacesVanish.inclusionOfMooreComplexMap (n : ℕ) :
     HigherFacesVanish (n + 1) ((inclusionOfMooreComplexMap X).f (n + 1)) := fun j _ => by
   dsimp [AlgebraicTopology.inclusionOfMooreComplexMap, NormalizedMooreComplex.objX]
   rw [← factorThru_arrow _ _ (finset_inf_arrow_factors Finset.univ _ j
     (by simp)), assoc, kernelSubobject_arrow_comp, comp_zero]
 
+/--
+@isnad1 id=factors.0h3v.s6.52a67b7038f3 from=seed src=0 shape=b0db7355 vocab=bcb9b4d4
+-/
 theorem factors_normalizedMooreComplex_PInfty (n : ℕ) :
     Subobject.Factors (NormalizedMooreComplex.objX X n) (PInfty.f n) := by
   rcases n with _ | n
@@ -76,12 +82,18 @@ def PInftyToNormalizedMooreComplex (X : SimplicialObject A) : K[X] ⟶ N[X] :=
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h2v.s8.69ebfffcad0e from=seed src=0 shape=ca7130f0 vocab=0abb4147
+-/
 @[reassoc (attr := simp)]
 theorem PInftyToNormalizedMooreComplex_comp_inclusionOfMooreComplexMap (X : SimplicialObject A) :
     PInftyToNormalizedMooreComplex X ≫ inclusionOfMooreComplexMap X = PInfty := by cat_disch
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s8.5a357e5724df from=seed src=0 shape=dca1482f vocab=1c52e66f
+-/
 @[reassoc (attr := simp)]
 theorem PInftyToNormalizedMooreComplex_naturality {X Y : SimplicialObject A} (f : X ⟶ Y) :
     AlternatingFaceMapComplex.map f ≫ PInftyToNormalizedMooreComplex Y =
@@ -89,10 +101,16 @@ theorem PInftyToNormalizedMooreComplex_naturality {X Y : SimplicialObject A} (f 
   cat_disch
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h2v.s7.62b076e8bb59 from=seed src=0 shape=fa6d3e9b vocab=6925f772
+-/
 @[reassoc (attr := simp)]
 theorem PInfty_comp_PInftyToNormalizedMooreComplex (X : SimplicialObject A) :
     PInfty ≫ PInftyToNormalizedMooreComplex X = PInftyToNormalizedMooreComplex X := by cat_disch
 
+/--
+@isnad1 id=eq.0h2v.s8.09ffe805e12f from=seed src=0 shape=9fb54e5d vocab=05d82082
+-/
 @[reassoc (attr := simp)]
 theorem inclusionOfMooreComplexMap_comp_PInfty (X : SimplicialObject A) :
     inclusionOfMooreComplexMap X ≫ PInfty = inclusionOfMooreComplexMap X := by

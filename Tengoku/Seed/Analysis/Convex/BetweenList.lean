@@ -41,6 +41,9 @@ protected def Wbtw (l : List P) : Prop :=
 
 variable {R}
 
+/--
+@isnad1 id=iff.0h5v.s6.ed11ceb4104f from=seed src=0 shape=cfa12ee0 vocab=024898c4
+-/
 lemma wbtw_cons {p : P} {l : List P} : (p :: l).Wbtw R ↔ l.Pairwise (Wbtw R p) ∧ l.Wbtw R :=
   triplewise_cons
 
@@ -52,31 +55,55 @@ protected def Sbtw (l : List P) : Prop :=
 
 variable (P)
 
+/--
+@isnad1 id=wbtw.0h3v.s5.f8d25e6844ba from=seed src=0 shape=febd75e0 vocab=81098489
+-/
 @[simp] lemma wbtw_nil : ([] : List P).Wbtw R := by
   simp [List.Wbtw]
 
+/--
+@isnad1 id=sbtw.0h3v.s5.c5c5a0e787f0 from=seed src=0 shape=febd75e0 vocab=93d33ec1
+-/
 @[simp] lemma sbtw_nil : ([] : List P).Sbtw R := by
   simp [List.Sbtw]
 
 variable {P}
 
+/--
+@isnad1 id=wbtw.0h4v.s5.d1900cd71648 from=seed src=0 shape=0b644ebb vocab=51dc8b0f
+-/
 @[simp] lemma wbtw_singleton (p₁ : P) : [p₁].Wbtw R := by
   simp [List.Wbtw]
 
+/--
+@isnad1 id=sbtw.0h4v.s5.35d965982199 from=seed src=0 shape=0b644ebb vocab=5df0604c
+-/
 @[simp] lemma sbtw_singleton (p₁ : P) : [p₁].Sbtw R := by
   simp [List.Sbtw]
 
+/--
+@isnad1 id=wbtw.0h5v.s5.ca7d1f676974 from=seed src=0 shape=73032908 vocab=51dc8b0f
+-/
 @[simp] lemma wbtw_pair (p₁ p₂ : P) : [p₁, p₂].Wbtw R := by
   simp [List.Wbtw]
 
+/--
+@isnad1 id=iff.0h5v.s5.e75d48ebd2f0 from=seed src=0 shape=394b299e vocab=5df0604c
+-/
 @[simp] lemma sbtw_pair {p₁ p₂ : P} : [p₁, p₂].Sbtw R ↔ p₁ ≠ p₂ := by
   simp [List.Sbtw]
 
 variable {R}
 
+/--
+@isnad1 id=iff.0h6v.s6.fbf373181edd from=seed src=0 shape=848c6540 vocab=e2268639
+-/
 @[simp] lemma wbtw_triple {p₁ p₂ p₃ : P} : [p₁, p₂, p₃].Wbtw R ↔ Wbtw R p₁ p₂ p₃ := by
   simp [List.Wbtw]
 
+/--
+@isnad1 id=iff.0h6v.s6.fb661afad000 from=seed src=0 shape=e1dd6b95 vocab=e95ad87e
+-/
 @[simp]
 lemma sbtw_triple [IsOrderedRing R] {p₁ p₂ p₃ : P} : [p₁, p₂, p₃].Sbtw R ↔ Sbtw R p₁ p₂ p₃ := by
   simp only [List.Sbtw, wbtw_triple, ne_eq, pairwise_cons, mem_cons, not_mem_nil, or_false,
@@ -84,21 +111,36 @@ lemma sbtw_triple [IsOrderedRing R] {p₁ p₂ p₃ : P} : [p₁, p₂, p₃].Sb
   exact ⟨fun ⟨hw, ⟨h₁₂, h₁₃⟩, h₂₃⟩ ↦ ⟨hw, Ne.symm h₁₂, h₂₃⟩,
          fun h ↦ ⟨h.1, ⟨h.2.1.symm, h.left_ne_right⟩, h.2.2⟩⟩
 
+/--
+@isnad1 id=iff.0h7v.s6.25e013a5c9e5 from=seed src=0 shape=9512123a vocab=e2268639
+-/
 lemma wbtw_four {p₁ p₂ p₃ p₄ : P} : [p₁, p₂, p₃, p₄].Wbtw R ↔
     Wbtw R p₁ p₂ p₃ ∧ Wbtw R p₁ p₂ p₄ ∧ Wbtw R p₁ p₃ p₄ ∧ Wbtw R p₂ p₃ p₄ := by
   simp [List.Wbtw, triplewise_cons, and_assoc]
 
+/--
+@isnad1 id=iff.0h7v.s6.238a87a4fc6e from=seed src=0 shape=0c671d47 vocab=e95ad87e
+-/
 lemma sbtw_four [IsOrderedRing R] {p₁ p₂ p₃ p₄ : P} : [p₁, p₂, p₃, p₄].Sbtw R ↔
     Sbtw R p₁ p₂ p₃ ∧ Sbtw R p₁ p₂ p₄ ∧ Sbtw R p₁ p₃ p₄ ∧ Sbtw R p₂ p₃ p₄ := by
   simp [List.Sbtw, List.Wbtw, triplewise_cons, Sbtw]
   aesop
 
+/--
+@isnad1 id=wbtw.1h4v.s5.6d79055a81ff from=seed src=0 shape=744f7a1d vocab=ff729395
+-/
 protected lemma Sbtw.wbtw {l : List P} (h : l.Sbtw R) : l.Wbtw R :=
   h.1
 
+/--
+@isnad1 id=pairwise.1h4v.s5.acb9dadd4cc3 from=seed src=0 shape=e6db4a0f vocab=521953f8
+-/
 lemma Sbtw.pairwise_ne {l : List P} (h : l.Sbtw R) : l.Pairwise (· ≠ ·) :=
   h.2
 
+/--
+@isnad1 id=iff.0h4v.s6.a3f927262362 from=seed src=0 shape=e433fc1d vocab=f0df1c20
+-/
 lemma sbtw_iff_triplewise_and_ne_pair [IsOrderedRing R] {l : List P} :
     l.Sbtw R ↔ l.Triplewise (Sbtw R) ∧ ∀ a, l ≠ [a, a] := by
   rw [List.Sbtw]
@@ -140,6 +182,9 @@ lemma sbtw_iff_triplewise_and_ne_pair [IsOrderedRing R] {l : List P} :
       · rintro rfl
         simp at hp
 
+/--
+@isnad1 id=iff.0h5v.s6.a17a75e705ef from=seed src=0 shape=6f92a4e4 vocab=66b394cb
+-/
 lemma sbtw_cons [IsOrderedRing R] {p : P} {l : List P} :
     (p :: l).Sbtw R ↔ l.Pairwise (Sbtw R p) ∧ l.Sbtw R ∧ l ≠ [p] := by
   rw [sbtw_iff_triplewise_and_ne_pair, ← not_exists, triplewise_cons]
@@ -149,6 +194,9 @@ lemma sbtw_cons [IsOrderedRing R] {p : P} {l : List P} :
   rintro hl ⟨a, rfl⟩
   simp at hp
 
+/--
+@isnad1 id=wbtw.1h7v.s7.4e17fc7288fe from=seed src=0 shape=b2db50fe vocab=b51cea16
+-/
 protected nonrec lemma Wbtw.map {l : List P} (h : l.Wbtw R) (f : P →ᵃ[R] P') : (l.map f).Wbtw R :=
   Triplewise.map (fun h ↦ Wbtw.map h f) h
 
@@ -180,14 +228,23 @@ variable [Field R] [LinearOrder R] [IsStrictOrderedRing R]
   [AddCommGroup V] [Module R V] [AddTorsor V P] {x : P}
 variable {R}
 
+/--
+@isnad1 id=wbtw.1h2v.s6.83c0610f1d3a from=seed src=0 shape=d5d17e5e vocab=80285649
+-/
 lemma SortedLE.wbtw {l : List R} (h : l.SortedLE) : l.Wbtw R := by
   rw [List.Wbtw, List.triplewise_iff_getElem]
   intro i j k hij hjk hk
   exact Wbtw.of_le_of_le (h.getElem_le_getElem_of_le hij.le) (h.getElem_le_getElem_of_le hjk.le)
 
+/--
+@isnad1 id=sbtw.1h2v.s6.292ac30a8314 from=seed src=0 shape=d5d17e5e vocab=edc22c07
+-/
 lemma SortedLT.sbtw {l : List R} (h : l.SortedLT) : l.Sbtw R :=
   ⟨h.sortedLE.wbtw, h.nodup⟩
 
+/--
+@isnad1 id=iff.1h4v.s7.947442edd8e0 from=seed src=0 shape=8ecaff81 vocab=a7cf5db1
+-/
 lemma exists_map_eq_of_sorted_nonempty_iff_wbtw {l : List P} (hl : l ≠ []) :
     (∃ l' : List R, l'.SortedLE ∧ l'.map (lineMap (l.head hl) (l.getLast hl)) = l) ↔
       l.Wbtw R := by
@@ -237,6 +294,9 @@ lemma exists_map_eq_of_sorted_nonempty_iff_wbtw {l : List P} (hl : l ≠ []) :
               ring_nf
               simp
 
+/--
+@isnad1 id=iff.0h4v.s7.374cb60ee6c4 from=seed src=0 shape=56502ce3 vocab=b3762ff4
+-/
 lemma exists_map_eq_of_sorted_iff_wbtw {l : List P} :
     (∃ p₁ p₂ : P, ∃ l' : List R, l'.SortedLE ∧ l'.map (lineMap p₁ p₂) = l) ↔ l.Wbtw R := by
   refine ⟨fun ⟨p₁, p₂, l', hl's, hl'l⟩ ↦ ?_, fun h ↦ ?_⟩
@@ -247,6 +307,9 @@ lemma exists_map_eq_of_sorted_iff_wbtw {l : List P} :
         simp [hl, sortedLE_iff_pairwise]⟩
     · exact ⟨l.head hl, l.getLast hl, (exists_map_eq_of_sorted_nonempty_iff_wbtw hl).2 h⟩
 
+/--
+@isnad1 id=iff.1h4v.s7.759314c36345 from=seed src=0 shape=2d7ae7b0 vocab=d7746383
+-/
 lemma exists_map_eq_of_sorted_nonempty_iff_sbtw {l : List P} (hl : l ≠ []) :
     (∃ l' : List R, l'.SortedLT ∧ l'.map (lineMap (l.head hl) (l.getLast hl)) = l ∧
       (l.length = 1 ∨ l.head hl ≠ l.getLast hl)) ↔ l.Sbtw R := by
@@ -276,6 +339,9 @@ lemma exists_map_eq_of_sorted_nonempty_iff_sbtw {l : List P} (hl : l ≠ []) :
           refine hp.1 ((head :: head2 :: tail).getLast hl) ?_
           simp
 
+/--
+@isnad1 id=iff.0h4v.s7.0e4f2a006e0f from=seed src=0 shape=b105810b vocab=76f4cef5
+-/
 lemma exists_map_eq_of_sorted_iff_sbtw [Nontrivial P] {l : List P} :
     (∃ p₁ p₂ : P, p₁ ≠ p₂ ∧ ∃ l' : List R, l'.SortedLT ∧ l'.map (lineMap p₁ p₂) = l) ↔
       l.Sbtw R := by

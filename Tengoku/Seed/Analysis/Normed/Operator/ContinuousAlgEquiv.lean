@@ -92,6 +92,9 @@ public theorem ContinuousAlgEquiv.eq_continuousLinearEquivConjContinuousAlgEquiv
   exact ⟨TL, fun A ↦ (ContinuousLinearMap.ext <| this A).symm⟩
 
 variable (𝕜 V W) in
+/--
+@isnad1 id=surjecti.0h3v.s9.f881e62bd97e from=seed src=0 shape=77efd8e6 vocab=712766d4
+-/
 public theorem ContinuousLinearEquiv.conjContinuousAlgEquiv_surjective :
     Function.Surjective (conjContinuousAlgEquiv (𝕜 := 𝕜) (G := V) (H := W)) :=
   fun f ↦ f.eq_continuousLinearEquivConjContinuousAlgEquiv.imp fun _ h ↦ h.symm

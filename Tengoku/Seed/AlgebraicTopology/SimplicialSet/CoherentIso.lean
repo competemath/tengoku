@@ -76,7 +76,13 @@ protected def rec : ∀ a, motive a
   | .mk (.up false) => zero
   | .mk (.up true) => one
 
+/--
+@isnad1 id=eq.0h3v.s4.d17653e5ec31 from=seed src=0 shape=323556e3 vocab=b141e76d
+-/
 @[simp] lemma rec_zero : WalkingIso.rec zero one .zero = zero := rfl
+/--
+@isnad1 id=eq.0h3v.s4.11b97d7688e2 from=seed src=0 shape=41d4aa76 vocab=b141e76d
+-/
 @[simp] lemma rec_one : WalkingIso.rec zero one .one = one := rfl
 
 end induction
@@ -94,21 +100,39 @@ section
 
 variable {X Y : C} (e : X ≅ Y)
 
+/--
+@isnad1 id=eq.0h4v.s5.944d4724d4c8 from=seed src=0 shape=0fd2f492 vocab=efd211fe
+-/
 @[simp]
 lemma fromIso_zero : (fromIso.{w} e).obj .zero = X := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.7ab03845155b from=seed src=0 shape=ed6449e8 vocab=1b249836
+-/
 @[simp]
 lemma fromIso_one : (fromIso.{w} e).obj .one = Y := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.4c1e17c3e289 from=seed src=0 shape=cbb5939f vocab=db4c0148
+-/
 @[simp]
 lemma fromIso_map_zero_zero (f : zero ⟶ zero) : (fromIso.{w} e).map f = 𝟙 X := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.9e1fdb869753 from=seed src=0 shape=b6de3793 vocab=0cba6c1e
+-/
 @[simp]
 lemma fromIso_hom (f : zero ⟶ one) : (fromIso.{w} e).map f = e.hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.565bfd42aff4 from=seed src=0 shape=b6de3793 vocab=ba6ff00a
+-/
 @[simp]
 lemma fromIso_inv (f : one ⟶ zero) : (fromIso.{w} e).map f = e.inv := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.3878828b0aad from=seed src=0 shape=6f5567c7 vocab=375ac559
+-/
 @[simp]
 lemma fromIso_map_one_one (f : one ⟶ one) : (fromIso.{w} e).map f = 𝟙 Y := rfl
 

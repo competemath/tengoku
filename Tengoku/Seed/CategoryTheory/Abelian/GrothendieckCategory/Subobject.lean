@@ -50,7 +50,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- If `C` is a Grothendieck abelian category, `X : C`, if `F : J ⥤ MonoOver X` is a
 functor from a filtered category `J`, `c` is a colimit cocone for the corresponding
 functor `J ⥤ C`, and `f : c.pt ⟶ X` is induced by the inclusions,
-then `f` is a monomorphism. -/
+then `f` is a monomorphism.
+@isnad1 id=mono.1h7v.s9.a1520476f016 from=seed src=0 shape=b718458f vocab=e3018335
+-/
 lemma mono_of_isColimit_monoOver : Mono f := by
   let α : F ⋙ MonoOver.forget _ ⋙ Over.forget _ ⟶ (Functor.const _).obj X :=
     { app j := (F.obj j).obj.hom }
@@ -62,7 +64,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- If `C` is a Grothendieck abelian category, `X : C`, if `F : J ⥤ MonoOver X` is a
 functor from a filtered category `J`, the colimit of `F` (computed in `C`) gives
 a subobject of `F` which is a supremum of the subobjects corresponding to
-the objects in the image of the functor `F`. -/
+the objects in the image of the functor `F`.
+@isnad1 id=eq.1h7v.s9.044598c32443 from=seed src=0 shape=7b19132f vocab=42e24ffe
+-/
 lemma subobjectMk_of_isColimit_eq_iSup :
     haveI := mono_of_isColimit_monoOver F hc f hf
     Subobject.mk f = ⨆ j, Subobject.mk (F.obj j).obj.hom := by
@@ -116,7 +120,9 @@ noncomputable def isColimitMapCoconeOfSubobjectMkEqISup
 functor from a `κ`-filtered category `J` with `κ` a regular cardinal such
 that `HasCardinalLT (Subobject X) κ`, and if the colimit of `F` (computed in `C`)
 maps epimorphically onto `X`, then there exists `j : J` such that `(F.obj j).obj.hom`
-is an isomorphism. -/
+is an isomorphism.
+@isnad1 id=ex.3h8v.s9.81532e0ac019 from=seed src=0 shape=a9032e38 vocab=54d4a67e
+-/
 lemma exists_isIso_of_functor_from_monoOver
     {κ : Cardinal.{w}} [hκ : Fact κ.IsRegular] [IsCardinalFiltered J κ]
     (hXκ : HasCardinalLT (Subobject X) κ)

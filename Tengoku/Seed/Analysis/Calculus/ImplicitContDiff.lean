@@ -38,7 +38,9 @@ open scoped Topology ContDiff
 namespace ImplicitFunctionData
 
 /-- The implicit function defined by a $C^n$ implicit equation is $C^n$. This applies to the general
-form of the implicit function theorem. -/
+form of the implicit function theorem.
+@isnad1 id=contdiff.3h6v.s8.4346d02ca3fd from=seed src=0 shape=ccfc9fe2 vocab=b538677f
+-/
 theorem contDiffAt_implicitFunction {φ : ImplicitFunctionData 𝕜 E₁ E₂ F} {n : ℕ∞ω}
     (hl : ContDiffAt 𝕜 n φ.leftFun φ.pt) (hr : ContDiffAt 𝕜 n φ.rightFun φ.pt) (pn : n ≠ 0) :
     ContDiffAt 𝕜 n φ.implicitFunction.uncurry (φ.prodFun φ.pt) := by
@@ -58,28 +60,41 @@ noncomputable def implicitFunction
     E₁ → E₂ :=
   (cdf.hasStrictFDerivAt pn).implicitFunctionOfProdDomain if₂
 
+/--
+@isnad1 id=eq.3h7v.s9.e431628ba727 from=seed src=0 shape=cdeeb064 vocab=c5ec629f
+-/
 theorem implicitFunction_def
     (cdf : ContDiffAt 𝕜 n f u) (pn : n ≠ 0) (if₂ : (fderiv 𝕜 f u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     cdf.implicitFunction pn if₂ = (cdf.hasStrictFDerivAt pn).implicitFunctionOfProdDomain if₂ := by
   rfl
 
-/-- At the base point `u.1`, the implicit function evaluates to `u.2`. -/
+/-- At the base point `u.1`, the implicit function evaluates to `u.2`.
+@isnad1 id=eq.3h7v.s9.fd983c255b14 from=seed src=0 shape=e469be63 vocab=17028af9
+-/
 theorem implicitFunction_apply_self
     (cdf : ContDiffAt 𝕜 n f u) (pn : n ≠ 0) (if₂ : (fderiv 𝕜 f u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     cdf.implicitFunction pn if₂ u.1 = u.2 :=
   eq_of_tendsto_nhds ((cdf.hasStrictFDerivAt pn).tendsto_implicitFunctionOfProdDomain if₂)
 
-/-- `implicitFunction` is indeed the (local) implicit function defined by `f`. -/
+/-- `implicitFunction` is indeed the (local) implicit function defined by `f`.
+@isnad1 id=eventual.3h7v.s9.9bfaff12c232 from=seed src=0 shape=038359e1 vocab=1b59595d
+-/
 theorem eventually_apply_implicitFunction
     (cdf : ContDiffAt 𝕜 n f u) (pn : n ≠ 0) (if₂ : (fderiv 𝕜 f u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     ∀ᶠ x in 𝓝 u.1, f (x, cdf.implicitFunction pn if₂ x) = f u :=
   (cdf.hasStrictFDerivAt pn).eventually_apply_implicitFunctionOfProdDomain if₂
 
+/--
+@isnad1 id=eventual.3h7v.s9.959157860986 from=seed src=0 shape=e6b29e2a vocab=6a3330d4
+-/
 theorem eventually_apply_eq_iff_implicitFunction
     (cdf : ContDiffAt 𝕜 n f u) (pn : n ≠ 0) (if₂ : (fderiv 𝕜 f u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     ∀ᶠ v in 𝓝 u, f v = f u ↔ cdf.implicitFunction pn if₂ v.1 = v.2 :=
   (cdf.hasStrictFDerivAt pn).eventually_apply_eq_iff_implicitFunctionOfProdDomain if₂
 
+/--
+@isnad1 id=hasstric.3h7v.s11.620995a03a27 from=seed src=0 shape=5e6e4af3 vocab=55e5a252
+-/
 theorem hasStrictFDerivAt_implicitFunction
     (cdf : ContDiffAt 𝕜 n f u) (pn : n ≠ 0) (if₂ : (fderiv 𝕜 f u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     HasStrictFDerivAt (cdf.implicitFunction pn if₂)
@@ -87,7 +102,9 @@ theorem hasStrictFDerivAt_implicitFunction
   (cdf.hasStrictFDerivAt pn).hasStrictFDerivAt_implicitFunctionOfProdDomain if₂
 
 /-- If the implicit equation `f` is $C^n$ at `(u₁, u₂)`, then its implicit function `ψ` around `u₁`
-is also $C^n$ at `u₁`. -/
+is also $C^n$ at `u₁`.
+@isnad1 id=contdiff.3h7v.s9.6ed60f28a8b6 from=seed src=0 shape=884e8b5b vocab=e33a8d5c
+-/
 theorem contDiffAt_implicitFunction
     (cdf : ContDiffAt 𝕜 n f u) (pn : n ≠ 0) (if₂ : (fderiv 𝕜 f u ∘L .inr 𝕜 E₁ E₂).IsInvertible) :
     ContDiffAt 𝕜 n (cdf.implicitFunction pn if₂) u.1 := by

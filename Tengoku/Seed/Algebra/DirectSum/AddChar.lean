@@ -30,6 +30,9 @@ section DirectSum
 def directSum (ψ : ∀ i, AddChar (G i) R) : AddChar (⨁ i, G i) R :=
   toAddMonoidHomEquiv.symm <| DirectSum.toAddMonoid fun i ↦ toAddMonoidHomEquiv (ψ i)
 
+/--
+@isnad1 id=injectiv.0h3v.s7.d46ca9fc55d8 from=seed src=0 shape=3239451c vocab=eace3967
+-/
 lemma directSum_injective :
     Injective (directSum : (∀ i, AddChar (G i) R) → AddChar (⨁ i, G i) R) := by
   refine toAddMonoidHomEquiv.symm.injective.comp <| DirectSum.toAddMonoid_injective.comp ?_

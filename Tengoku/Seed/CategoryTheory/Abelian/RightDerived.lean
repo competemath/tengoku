@@ -78,6 +78,9 @@ noncomputable def InjectiveResolution.isoRightDerivedToHomotopyCategoryObj {X : 
     (F.mapHomotopyCategoryFactors _).app I.cocomplex
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h9v.s11.a364311dd622 from=seed src=0 shape=e81eda74 vocab=cb58fddb
+-/
 @[reassoc]
 lemma InjectiveResolution.isoRightDerivedToHomotopyCategoryObj_hom_naturality
     {X Y : C} (f : X ⟶ Y) (I : InjectiveResolution X) (J : InjectiveResolution Y)
@@ -93,6 +96,9 @@ lemma InjectiveResolution.isoRightDerivedToHomotopyCategoryObj_hom_naturality
   rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h9v.s11.9e8b89186036 from=seed src=0 shape=2fb93c34 vocab=cc2d2863
+-/
 @[reassoc]
 lemma InjectiveResolution.isoRightDerivedToHomotopyCategoryObj_inv_naturality
     {X Y : C} (f : X ⟶ Y) (I : InjectiveResolution X) (J : InjectiveResolution Y)
@@ -122,6 +128,9 @@ noncomputable def InjectiveResolution.isoRightDerivedObj {X : C} (I : InjectiveR
 
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h10v.s11.fed195caa82a from=seed src=0 shape=118439da vocab=5f113fb5
+-/
 @[reassoc]
 lemma InjectiveResolution.isoRightDerivedObj_hom_naturality
     {X Y : C} (f : X ⟶ Y) (I : InjectiveResolution X) (J : InjectiveResolution Y)
@@ -137,6 +146,9 @@ lemma InjectiveResolution.isoRightDerivedObj_hom_naturality
   erw [(HomotopyCategory.homologyFunctorFactors D (ComplexShape.up ℕ) n).hom.naturality]
   rfl
 
+/--
+@isnad1 id=eq.1h10v.s11.113aa54032b3 from=seed src=0 shape=b0a89f49 vocab=ce660709
+-/
 @[reassoc]
 lemma InjectiveResolution.isoRightDerivedObj_inv_naturality
     {X Y : C} (f : X ⟶ Y) (I : InjectiveResolution X) (J : InjectiveResolution Y)
@@ -149,7 +161,9 @@ lemma InjectiveResolution.isoRightDerivedObj_inv_naturality
     InjectiveResolution.isoRightDerivedObj_hom_naturality f I J φ comm F n,
     Iso.inv_hom_id_assoc, Iso.inv_hom_id, comp_id]
 
-/-- The higher derived functors vanish on injective objects. -/
+/-- The higher derived functors vanish on injective objects.
+@isnad1 id=iszero.0h5v.s6.534dcfb8fe4e from=seed src=0 shape=781748d7 vocab=fb181c04
+-/
 lemma Functor.isZero_rightDerived_obj_injective_succ
     (F : C ⥤ D) [F.Additive] (n : ℕ) (X : C) [Injective X] :
     IsZero ((F.rightDerived (n + 1)).obj X) := by
@@ -160,6 +174,7 @@ lemma Functor.isZero_rightDerived_obj_injective_succ
 set_option backward.isDefEq.respectTransparency false in
 /-- We can compute a right derived functor on a morphism using a descent of that morphism
 to a cochain map between chosen injective resolutions.
+@isnad1 id=eq.1h10v.s11.da37ca248990 from=seed src=0 shape=ab52bd31 vocab=6c129970
 -/
 theorem Functor.rightDerived_map_eq (F : C ⥤ D) [F.Additive] (n : ℕ) {X Y : C} (f : X ⟶ Y)
     {P : InjectiveResolution X} {Q : InjectiveResolution Y} (g : P.cocomplex ⟶ Q.cocomplex)
@@ -184,6 +199,9 @@ noncomputable def NatTrans.rightDerivedToHomotopyCategory
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s11.3c132c5c2131 from=seed src=0 shape=3442f8f3 vocab=2183941f
+-/
 lemma InjectiveResolution.rightDerivedToHomotopyCategory_app_eq
     {F G : C ⥤ D} [F.Additive] [G.Additive] (α : F ⟶ G) {X : C} (P : InjectiveResolution X) :
     (NatTrans.rightDerivedToHomotopyCategory α).app X =
@@ -203,10 +221,16 @@ lemma InjectiveResolution.rightDerivedToHomotopyCategory_app_eq
   simp only [← Functor.map_comp, NatTrans.mapHomologicalComplex_naturality]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.f12349f758c9 from=seed src=0 shape=92a18c8d vocab=7e670158
+-/
 @[simp]
 lemma NatTrans.rightDerivedToHomotopyCategory_id (F : C ⥤ D) [F.Additive] :
     NatTrans.rightDerivedToHomotopyCategory (𝟙 F) = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.0452e004eb67 from=seed src=0 shape=6e3c0c57 vocab=0a51f536
+-/
 @[simp, reassoc]
 lemma NatTrans.rightDerivedToHomotopyCategory_comp {F G H : C ⥤ D} (α : F ⟶ G) (β : G ⟶ H)
     [F.Additive] [G.Additive] [H.Additive] :
@@ -221,6 +245,9 @@ noncomputable def NatTrans.rightDerived
     F.rightDerived n ⟶ G.rightDerived n :=
   Functor.whiskerRight (NatTrans.rightDerivedToHomotopyCategory α) _
 
+/--
+@isnad1 id=eq.0h4v.s7.f5e2081e5f81 from=seed src=0 shape=30350aa6 vocab=27c6ed84
+-/
 @[simp]
 theorem NatTrans.rightDerived_id (F : C ⥤ D) [F.Additive] (n : ℕ) :
     NatTrans.rightDerived (𝟙 F) n = 𝟙 (F.rightDerived n) := by
@@ -229,6 +256,9 @@ theorem NatTrans.rightDerived_id (F : C ⥤ D) [F.Additive] (n : ℕ) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s8.59ccc3794feb from=seed src=0 shape=9b08268e vocab=6b1fbe7d
+-/
 @[simp, reassoc]
 theorem NatTrans.rightDerived_comp {F G H : C ⥤ D} [F.Additive] [G.Additive] [H.Additive]
     (α : F ⟶ G) (β : G ⟶ H) (n : ℕ) :
@@ -240,7 +270,9 @@ namespace InjectiveResolution
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- A component of the natural transformation between right-derived functors can be computed
-using a chosen injective resolution. -/
+using a chosen injective resolution.
+@isnad1 id=eq.0h8v.s11.2c7dcf3c695e from=seed src=0 shape=2c65815a vocab=5556c8d9
+-/
 lemma rightDerived_app_eq
     {F G : C ⥤ D} [F.Additive] [G.Additive] (α : F ⟶ G) {X : C} (P : InjectiveResolution X)
     (n : ℕ) : (NatTrans.rightDerived α n).app X =
@@ -268,6 +300,9 @@ noncomputable def toRightDerivedZero' {X : C}
     rw [← F.map_comp, HomologicalComplex.Hom.comm, HomologicalComplex.single_obj_d,
       zero_comp, F.map_zero])
 
+/--
+@isnad1 id=eq.0h5v.s10.783156e3df24 from=seed src=0 shape=6f213578 vocab=b7654d2a
+-/
 @[reassoc (attr := simp)]
 lemma toRightDerivedZero'_comp_iCycles {C} [Category* C] [Abelian C] {X : C}
     (P : InjectiveResolution X) (F : C ⥤ D) [F.Additive] :
@@ -276,6 +311,9 @@ lemma toRightDerivedZero'_comp_iCycles {C} [Category* C] [Abelian C] {X : C}
   simp [toRightDerivedZero']
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h9v.s11.5eb79caf06da from=seed src=0 shape=165acee1 vocab=90d1ac83
+-/
 @[reassoc]
 lemma toRightDerivedZero'_naturality {C} [Category* C] [Abelian C] {X Y : C} (f : X ⟶ Y)
     (P : InjectiveResolution X) (Q : InjectiveResolution Y)
@@ -323,6 +361,9 @@ noncomputable def Functor.toRightDerivedZero (F : C ⥤ D) [F.Additive] :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s10.b89cfa1bc915 from=seed src=0 shape=cac78ece vocab=243da3b0
+-/
 lemma InjectiveResolution.toRightDerivedZero_eq
     {X : C} (I : InjectiveResolution X) (F : C ⥤ D) [F.Additive] :
     F.toRightDerivedZero.app X = I.toRightDerivedZero' F ≫
@@ -374,21 +415,33 @@ namespace Functor
 noncomputable def rightDerivedZeroIsoSelf : F.rightDerived 0 ≅ F :=
   (asIso F.toRightDerivedZero).symm
 
+/--
+@isnad1 id=eq.0h3v.s7.0c3d41da7847 from=seed src=0 shape=5dc08efe vocab=77a4798d
+-/
 @[reassoc (attr := simp)]
 lemma rightDerivedZeroIsoSelf_hom_inv_id :
     F.rightDerivedZeroIsoSelf.hom ≫ F.toRightDerivedZero = 𝟙 _ :=
   F.rightDerivedZeroIsoSelf.hom_inv_id
 
+/--
+@isnad1 id=eq.0h3v.s7.eea8f649e17c from=seed src=0 shape=1f606a3c vocab=77a4798d
+-/
 @[reassoc (attr := simp)]
 lemma rightDerivedZeroIsoSelf_inv_hom_id :
     F.toRightDerivedZero ≫ F.rightDerivedZeroIsoSelf.hom = 𝟙 _ :=
   F.rightDerivedZeroIsoSelf.inv_hom_id
 
+/--
+@isnad1 id=eq.0h4v.s8.5705816d1be2 from=seed src=0 shape=5d84cd9c vocab=71143f80
+-/
 @[reassoc (attr := simp)]
 lemma rightDerivedZeroIsoSelf_hom_inv_id_app (X : C) :
     F.rightDerivedZeroIsoSelf.hom.app X ≫ F.toRightDerivedZero.app X = 𝟙 _ :=
   F.rightDerivedZeroIsoSelf.hom_inv_id_app X
 
+/--
+@isnad1 id=eq.0h4v.s7.ae9a1ae0e59c from=seed src=0 shape=0afb84c9 vocab=71143f80
+-/
 @[reassoc (attr := simp)]
 lemma rightDerivedZeroIsoSelf_inv_hom_id_app (X : C) :
     F.toRightDerivedZero.app X ≫ F.rightDerivedZeroIsoSelf.hom.app X = 𝟙 _ :=

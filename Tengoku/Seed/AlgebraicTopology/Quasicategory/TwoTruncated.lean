@@ -92,11 +92,13 @@ variable {X : Truncated 2}
 
 /--
 The left homotopy relation is reflexive.
+@isnad1 id=homotopi.0h4v.s7.9804df344084 from=seed src=0 shape=aab4cb90 vocab=be0c58dd
 -/
 lemma HomotopicL.refl {x y : X _⦋0⦌₂} {f : Edge x y} : HomotopicL f f := ⟨compId f⟩
 
 /--
 The left homotopy relation is symmetric.
+@isnad1 id=homotopi.1h5v.s7.48d8284b4e18 from=seed src=0 shape=454e2c76 vocab=a96b2e55
 -/
 lemma HomotopicL.symm [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Edge x y} (hfg : HomotopicL f g) :
     HomotopicL g f := by
@@ -105,6 +107,7 @@ lemma HomotopicL.symm [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Edge x y
 
 /--
 The left homotopy relation is transitive.
+@isnad1 id=homotopi.2h6v.s7.bb2ea2ca53a2 from=seed src=0 shape=de74e6d9 vocab=a96b2e55
 -/
 lemma HomotopicL.trans [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g h : Edge x y} (hfg : HomotopicL f g)
     (hgh : HomotopicL g h) : HomotopicL f h := by
@@ -114,11 +117,13 @@ lemma HomotopicL.trans [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g h : Edge 
 
 /--
 The right homotopy relation is reflexive.
+@isnad1 id=homotopi.0h4v.s7.e31b33149291 from=seed src=0 shape=aab4cb90 vocab=b2a9bbb5
 -/
 lemma HomotopicR.refl {x y : X _⦋0⦌₂} {f : Edge x y} : HomotopicR f f := ⟨idComp f⟩
 
 /--
 The right homotopy relation is symmetric.
+@isnad1 id=homotopi.1h5v.s7.9bcdecd40651 from=seed src=0 shape=454e2c76 vocab=0c0211ad
 -/
 lemma HomotopicR.symm [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Edge x y} (hfg : HomotopicR f g) :
     HomotopicR g f := by
@@ -127,6 +132,7 @@ lemma HomotopicR.symm [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Edge x y
 
 /--
 The right homotopy relation is transitive.
+@isnad1 id=homotopi.2h6v.s7.300ca68c89a0 from=seed src=0 shape=de74e6d9 vocab=0c0211ad
 -/
 lemma HomotopicR.trans [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g h : Edge x y} (hfg : HomotopicR f g)
     (hgh : HomotopicR g h) : HomotopicR f h := by
@@ -136,6 +142,7 @@ lemma HomotopicR.trans [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g h : Edge 
 
 /--
 In a 2-truncated quasicategory, left homotopy implies right homotopy.
+@isnad1 id=homotopi.1h5v.s7.1588574ca521 from=seed src=0 shape=8835baa2 vocab=775fce55
 -/
 lemma HomotopicL.homotopicR [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Edge x y}
     (h : HomotopicL f g) : HomotopicR f g := by
@@ -144,6 +151,7 @@ lemma HomotopicL.homotopicR [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Ed
 
 /--
 In a 2-truncated quasicategory, right homotopy implies left homotopy.
+@isnad1 id=homotopi.1h5v.s7.957a30cf7474 from=seed src=0 shape=8835baa2 vocab=775fce55
 -/
 lemma HomotopicR.homotopicL [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Edge x y}
     (h : HomotopicR f g) : HomotopicL f g := by
@@ -152,6 +160,7 @@ lemma HomotopicR.homotopicL [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Ed
 
 /--
 In a 2-truncated quasicategory, the right and left homotopy relations coincide.
+@isnad1 id=iff.0h5v.s7.0124fdf1f569 from=seed src=0 shape=80594626 vocab=775fce55
 -/
 theorem homotopicL_iff_homotopicR [Quasicategory₂ X] {x y : X _⦋0⦌₂} {f g : Edge x y} :
     HomotopicL f g ↔ HomotopicR f g :=
@@ -166,6 +175,7 @@ variable {A : Truncated 2} [Quasicategory₂ A] {x y z : A _⦋0⦌₂}
 /--
 Given `CompStruct f g h` and `CompStruct f' g' h'` with the same vertices and edges such
 that `f` ≃ `f'` and `g` ≃ `g'`, then the long diagonal edges `h` and `h'` are also homotopic.
+@isnad1 id=homotopi.2h12v.s8.98f995e9d9a0 from=seed src=0 shape=12568a0a vocab=e285cce5
 -/
 lemma Edge.CompStruct.comp_unique {f f' : Edge x y} {g g' : Edge y z} {h h' : Edge x z}
     (s : CompStruct f g h) (s' : CompStruct f' g' h')
@@ -229,6 +239,7 @@ omit [A.Quasicategory₂] in
 /--
 The function `HomotopyCategory₂.mk` taking a vertex of `A` and sending it to the corresponding
 object of `HomotopyCategory₂ A` is surjective.
+@isnad1 id=surjecti.0h1v.s6.8bf5a86ba1ce from=seed src=0 shape=8a58fff1 vocab=ceea92b5
 -/
 lemma mk_surjective : Function.Surjective (mk : A _⦋0⦌₂ → _) :=
   fun ⟨x⟩ ↦ ⟨x, rfl⟩
@@ -242,12 +253,14 @@ def homMk (f : Edge x y) : mk x ⟶ mk y := ⟦f⟧
 /--
 Every morphism in the homotopy category `HomotopyCategory₂ A` is the equivalence class of
 an edge of `A`.
+@isnad1 id=surjecti.0h3v.s7.6f8ed03cb063 from=seed src=0 shape=a4c63d91 vocab=093a92f8
 -/
 lemma homMk_surjective : Function.Surjective (homMk : Edge x y → _) := Quotient.mk_surjective
 
 /--
 The trivial (degenerate) edge at a vertex `x` is a representative for the
 identity morphism `x ⟶ x`.
+@isnad1 id=eq.0h2v.s5.9a48ceb336aa from=seed src=0 shape=af234ae3 vocab=66958714
 -/
 @[simp]
 lemma homMk_id (x : HomotopyCategory₂ A) : homMk (Edge.id x.pt) = 𝟙 x := rfl
@@ -258,12 +271,14 @@ open HomotopyCategory₂
 
 /--
 Left homotopic edges represent the same morphism in the homotopy category.
+@isnad1 id=eq.1h5v.s7.f02aed3b5c83 from=seed src=0 shape=c49f38cc vocab=aec8a1dc
 -/
 lemma HomotopicL.congr_homotopyCategory₂HomMk {f g : Edge x y} (h : HomotopicL f g) :
     homMk f = homMk g := Quotient.sound h
 
 /--
 Right homotopic edges represent the same morphism in the homotopy category.
+@isnad1 id=eq.1h5v.s7.ecc644db79eb from=seed src=0 shape=c49f38cc vocab=0e365589
 -/
 lemma HomotopicR.congr_homotopyCategory₂HomMk {f g : Edge x y} (h : HomotopicR f g) :
     homMk f = homMk g := Quotient.sound h.homotopicL
@@ -271,6 +286,7 @@ lemma HomotopicR.congr_homotopyCategory₂HomMk {f g : Edge x y} (h : HomotopicR
 /--
 A `CompStruct f g h` is a witness for the fact that the morphisms represented by
 `f` and `g` compose to the morphism represented by `h`.
+@isnad1 id=eq.0h8v.s8.0418dbb3e96e from=seed src=0 shape=096da9b8 vocab=bc77a0c7
 -/
 lemma Edge.CompStruct.homotopyCategory₂_fac {f : Edge x y} {g : Edge y z} {h : Edge x z}
     (s : CompStruct f g h) : homMk f ≫ homMk g = homMk h :=
@@ -292,6 +308,7 @@ noncomputable def Edge.CompStruct.ofHomotopyCategory₂Fac
 Given edges `f`, `g` and `h` of a `2`-truncated quasicategory,
 there exists a structure `CompStruct f g h` iff
 `homMk f ≫ homMk g = homMk h` holds in the homotopy category.
+@isnad1 id=iff.0h7v.s8.0fe875f5f6d0 from=seed src=0 shape=8c37e9dc vocab=1b6e7946
 -/
 lemma Edge.CompStruct.nonempty_iff {f : Edge x y} {g : Edge y z} {h : Edge x z} :
     Nonempty (CompStruct f g h) ↔ homMk f ≫ homMk g = homMk h :=

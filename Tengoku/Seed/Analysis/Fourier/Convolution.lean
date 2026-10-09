@@ -42,7 +42,9 @@ variable [NontriviallyNormedField 𝕜] [NormedAddCommGroup E]
   [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
   [NormedSpace 𝕜 F₁] [NormedSpace 𝕜 F₂] [NormedSpace 𝕜 F₃]
 
-/-- The norm of the integrand of the convolution is integrable if the functions are integrable. -/
+/-- The norm of the integrand of the convolution is integrable if the functions are integrable.
+@isnad1 id=integrab.2h8v.s10.bc267128dff1 from=seed src=0 shape=32fd3885 vocab=8d30edb4
+-/
 theorem integrable_prod_sub (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) {f₁ : E → F₁} {f₂ : E → F₂}
     (hf₁ : Integrable f₁) (hf₂ : Integrable f₂) :
     Integrable (fun (p : E × E) ↦ ‖B‖ * (‖f₁ (p.1 - p.2)‖ * ‖f₂ p.2‖)) (volume.prod volume) := by
@@ -52,7 +54,9 @@ open FourierTransform
 
 variable [NormedSpace ℂ F₃]
 
-/-- Calculate the Fourier transform of the convolution as a symmetric integral. -/
+/-- Calculate the Fourier transform of the convolution as a symmetric integral.
+@isnad1 id=eq.2h9v.s10.440b23851c6c from=seed src=0 shape=eff87c18 vocab=da6b46c7
+-/
 theorem fourier_bilin_convolution_eq_integral (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) {f₁ : E → F₁} {f₂ : E → F₂}
     (hf₁ : Integrable f₁) (hf₂ : Integrable f₂) (ξ : E) :
     𝓕 (f₁ ⋆[B] f₂) ξ = ∫ y, ∫ x, 𝐞 (-inner ℝ (y + x) ξ) • B (f₁ x) (f₂ y) := calc
@@ -84,7 +88,9 @@ variable [CompleteSpace F₁] [CompleteSpace F₂] [CompleteSpace F₃]
 open ContinuousLinearMap
 
 /-- The Fourier transform of the convolution is given by the bilinear map applied to the Fourier
-transform of the individual functions. -/
+transform of the individual functions.
+@isnad1 id=eq.2h8v.s10.57902d10fd67 from=seed src=0 shape=e1aecb8e vocab=752fe7e7
+-/
 theorem fourier_bilin_convolution_eq (B : F₁ →L[ℂ] F₂ →L[ℂ] F₃) {f₁ : E → F₁} {f₂ : E → F₂}
     (hf₁ : Integrable f₁) (hf₂ : Integrable f₂) (ξ : E) :
     𝓕 (f₁ ⋆[B] f₂) ξ = B (𝓕 f₁ ξ) (𝓕 f₂ ξ) := calc
@@ -104,7 +110,9 @@ theorem fourier_bilin_convolution_eq (B : F₁ →L[ℂ] F₂ →L[ℂ] F₃) {f
 /-- The Fourier transform of the convolution is given by the multiplication of the Fourier transform
 of the individual functions.
 
-Version for scalar multiplication. -/
+Version for scalar multiplication.
+@isnad1 id=eq.2h5v.s8.5daf100d3618 from=seed src=0 shape=7e80f123 vocab=035e3d84
+-/
 theorem fourier_smul_convolution_eq {f₁ : E → ℂ} {f₂ : E → F₁}
     (hf₁ : Integrable f₁) (hf₂ : Integrable f₂) (ξ : E) :
     𝓕 (f₁ ⋆[lsmul ℂ ℂ] f₂) ξ = (𝓕 f₁ ξ) • (𝓕 f₂ ξ) :=
@@ -116,7 +124,9 @@ variable [NormedRing R] [NormedSpace ℂ R] [IsScalarTower ℂ R R] [SMulCommCla
 /-- The Fourier transform of the convolution is given by the multiplication of the Fourier transform
 of the individual functions.
 
-Version for multiplication. -/
+Version for multiplication.
+@isnad1 id=eq.2h5v.s9.1a583dd9c203 from=seed src=0 shape=99a0fa3a vocab=2d26f4b6
+-/
 theorem fourier_mul_convolution_eq {f₁ : E → R} {f₂ : E → R}
     (hf₁ : Integrable f₁) (hf₂ : Integrable f₂) (ξ : E) :
     𝓕 (f₁ ⋆[mul ℂ R] f₂) ξ = (𝓕 f₁ ξ) * (𝓕 f₂ ξ) :=
@@ -144,6 +154,9 @@ def convolution (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) : 𝓢(E, F₁) →�
   map_add' := by simp [FourierTransform.fourier_add]
   map_smul' := by simp [FourierTransform.fourier_smul]
 
+/--
+@isnad1 id=eq.0h8v.s12.9c372b3ee53c from=seed src=0 shape=747ae059 vocab=b9029102
+-/
 @[simp]
 theorem convolution_flip (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) (f : 𝓢(E, F₁)) (g : 𝓢(E, F₂)) :
     convolution B.flip g f = convolution B f g := rfl
@@ -151,13 +164,18 @@ theorem convolution_flip (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) (f : 𝓢(E,
 /-- The convolution is continuous in the left argument.
 
 Note that since `𝓢(E, F)` is not a normed space, uncurried and curried continuity do not
-coincide. -/
+coincide.
+@isnad1 id=continuo.0h7v.s11.a9c842320167 from=seed src=0 shape=cacce5a7 vocab=121b8bc2
+-/
 @[fun_prop]
 theorem convolution_continuous_left (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) (g : 𝓢(E, F₂)) :
     Continuous (convolution B · g) := (convolution B.flip g).continuous
 
 variable [CompleteSpace F₃]
 
+/--
+@isnad1 id=eq.0h8v.s12.aa0067188825 from=seed src=0 shape=267abe95 vocab=339e8a00
+-/
 theorem fourier_convolution (B : F₁ →L[𝕜] F₂ →L[𝕜] F₃) (f : 𝓢(E, F₁)) (g : 𝓢(E, F₂)) :
     𝓕 (convolution B f g) = pairing B (𝓕 f) (𝓕 g) := by simp [convolution]
 
@@ -165,12 +183,17 @@ variable [CompleteSpace F₁] [CompleteSpace F₂]
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.0h8v.s11.603c90825b79 from=seed src=0 shape=1d4b9f6a vocab=b9f9ab10
+-/
 theorem fourier_convolution_apply (B : F₁ →L[ℂ] F₂ →L[ℂ] F₃) (f : 𝓢(E, F₁)) (g : 𝓢(E, F₂)) (x : E) :
     𝓕 (convolution B f g) x = 𝓕 (f ⋆[B] g) x := by
   simp [fourier_convolution, fourier_coe,
     Real.fourier_bilin_convolution_eq B f.integrable g.integrable]
 
-/-- The convolution on Schwartz functions is equal to the convolution on functions. -/
+/-- The convolution on Schwartz functions is equal to the convolution on functions.
+@isnad1 id=eq.0h8v.s11.c4deb097a16b from=seed src=0 shape=9124f2ce vocab=9fc401ba
+-/
 theorem convolution_apply (B : F₁ →L[ℂ] F₂ →L[ℂ] F₃) (f : 𝓢(E, F₁)) (g : 𝓢(E, F₂)) (x : E) :
     convolution B f g x = (f ⋆[B] g) x := calc
   _ = 𝓕⁻ (𝓕 (convolution B f g)) x := by simp

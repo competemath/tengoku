@@ -25,6 +25,9 @@ variable {𝕜 E F : Type*}
 
 namespace ContinuousLinearEquiv
 
+/--
+@isnad1 id=iff.0h5v.s8.27851f82df46 from=seed src=0 shape=290186b3 vocab=26ca401c
+-/
 @[simp]
 lemma strictConvex_preimage {s : Set F} (e : E ≃L[𝕜] F) :
     StrictConvex 𝕜 (e ⁻¹' s) ↔ StrictConvex 𝕜 s :=
@@ -32,6 +35,9 @@ lemma strictConvex_preimage {s : Set F} (e : E ≃L[𝕜] F) :
     h.linear_preimage e.symm.toLinearMap e.symm.continuous e.symm.injective,
     fun h ↦ h.linear_preimage e.toLinearMap e.continuous e.injective⟩
 
+/--
+@isnad1 id=iff.0h5v.s8.836b9b448a2c from=seed src=0 shape=de46e785 vocab=7ef0aa7c
+-/
 @[simp]
 lemma strictConvex_image {s : Set E} (e : E ≃L[𝕜] F) :
     StrictConvex 𝕜 (e '' s) ↔ StrictConvex 𝕜 s := by

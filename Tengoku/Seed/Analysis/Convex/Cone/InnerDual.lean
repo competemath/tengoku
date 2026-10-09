@@ -55,45 +55,74 @@ namespace ProperCone
 @[simps! toSubmodule]
 noncomputable def innerDual (s : Set E) : ProperCone ℝ E := .dual (innerₗ E) s
 
+/--
+@isnad1 id=iff.0h3v.s7.c62e664758cb from=seed src=0 shape=ec11dc6d vocab=28b61f39
+-/
 @[simp] lemma mem_innerDual : y ∈ innerDual s ↔ ∀ ⦃x⦄, x ∈ s → 0 ≤ ⟪x, y⟫ := .rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.0c771be853f9 from=seed src=0 shape=f123ddce vocab=56c65bed
+-/
 @[simp] lemma innerDual_empty : innerDual (∅ : Set E) = ⊤ := by ext; simp
 
-/-- Dual cone of the convex cone `{0}` is the total space. -/
+/-- Dual cone of the convex cone `{0}` is the total space.
+@isnad1 id=eq.0h1v.s8.b33023ceae7f from=seed src=0 shape=b31f0985 vocab=589eeb8e
+-/
 @[simp] lemma innerDual_zero : innerDual (0 : Set E) = ⊤ := by ext; simp
 
-/-- Dual cone of the total space is the convex cone `{0}`. -/
+/-- Dual cone of the total space is the convex cone `{0}`.
+@isnad1 id=eq.0h1v.s8.e5d6c60eb789 from=seed src=0 shape=dd0394d2 vocab=2602bb04
+-/
 @[simp]
 lemma innerDual_univ : innerDual (univ : Set E) = ⊥ :=
   le_antisymm (fun x hx ↦ by simpa using hx (mem_univ (-x))) (by simp)
 
+/--
+@isnad1 id=le.1h3v.s7.1415ba91f730 from=seed src=0 shape=8e6e98ec vocab=2001060d
+-/
 @[gcongr] lemma innerDual_le_innerDual (h : t ⊆ s) : innerDual s ≤ innerDual t :=
   fun _y hy _x hx ↦ hy (h hx)
 
 /-- The inner dual cone of a singleton is given by the preimage of the positive cone under the
-linear map `fun y ↦ ⟪x, y⟫`. -/
+linear map `fun y ↦ ⟪x, y⟫`.
+@isnad1 id=eq.0h2v.s10.6deb8e433dee from=seed src=0 shape=235c5299 vocab=c3e890e9
+-/
 lemma innerDual_singleton (x : E) :
     innerDual ({x} : Set E) = (positive ℝ ℝ).comap (innerSL ℝ x) := by ext; simp
 
+/--
+@isnad1 id=eq.0h3v.s7.83a325b63b1b from=seed src=0 shape=1cc5e207 vocab=45b3674d
+-/
 lemma innerDual_union (s t : Set E) : innerDual (s ∪ t) = innerDual s ⊓ innerDual t :=
   le_antisymm (le_inf (fun _ hx _ hy ↦ hx <| .inl hy) fun _ hx _ hy ↦ hx <| .inr hy)
     fun _ hx _ => Or.rec (fun h ↦ hx.1 h) (fun h ↦ hx.2 h)
 
+/--
+@isnad1 id=eq.0h3v.s7.5697c7830cba from=seed src=0 shape=9b32ab7f vocab=6b8e838f
+-/
 lemma innerDual_insert (x : E) (s : Set E) :
     innerDual (insert x s) = innerDual {x} ⊓ innerDual s := by
   rw [insert_eq, innerDual_union]
 
+/--
+@isnad1 id=eq.0h3v.s7.83868f841f93 from=seed src=0 shape=2c060645 vocab=a4b81a4c
+-/
 lemma innerDual_iUnion {ι : Sort*} (f : ι → Set E) :
     innerDual (⋃ i, f i) = ⨅ i, innerDual (f i) := by
   ext; simp [forall_comm (α := E)]
 
+/--
+@isnad1 id=eq.0h2v.s7.12d5346fceeb from=seed src=0 shape=c5612ccd vocab=40df8667
+-/
 lemma innerDual_sUnion (S : Set (Set E)) : innerDual (⋃₀ S) = sInf (innerDual '' S) := by
   ext; simp [forall_comm (α := E)]
 
 /-! ### Farkas' lemma and double dual of a cone in a Hilbert space -/
 
 /-- Geometric interpretation of **Farkas' lemma**. Also stronger version of the
-**Hahn-Banach separation theorem** for proper cones. -/
+**Hahn-Banach separation theorem** for proper cones.
+@isnad1 id=ex.1h3v.s8.48acc2612c76 from=seed src=0 shape=bb179980 vocab=11b857de
+-/
 theorem hyperplane_separation' (C : ProperCone ℝ E) (hx₀ : x₀ ∉ C) :
     ∃ y, (∀ x ∈ C, 0 ≤ ⟪x, y⟫) ∧ ⟪x₀, y⟫ < 0 := by
   obtain ⟨f, hf, hf₀⟩ := C.hyperplane_separation_point hx₀
@@ -104,7 +133,9 @@ theorem hyperplane_separation' (C : ProperCone ℝ E) (hx₀ : x₀ ∉ C) :
   _root_.ConvexCone.hyperplane_separation_of_nonempty_of_isClosed_of_notMem :=
   hyperplane_separation'
 
-/-- The inner dual of inner dual of a proper cone is itself. -/
+/-- The inner dual of inner dual of a proper cone is itself.
+@isnad1 id=eq.0h2v.s7.d9b19093835b from=seed src=0 shape=138b22a6 vocab=057a964b
+-/
 @[simp] theorem innerDual_innerDual (C : ProperCone ℝ E) :
     innerDual (innerDual (C : Set E)) = C := by
   simpa using! C.dual_flip_dual (innerₗ E)
@@ -112,7 +143,9 @@ theorem hyperplane_separation' (C : ProperCone ℝ E) (hx₀ : x₀ ∉ C) :
 open scoped InnerProductSpace
 
 /-- Relative geometric interpretation of **Farkas' lemma**. Also stronger version of the
-**Hahn-Banach separation theorem** for proper cones. -/
+**Hahn-Banach separation theorem** for proper cones.
+@isnad1 id=iff.0h5v.s11.05d02c07cfb2 from=seed src=0 shape=53dac516 vocab=aaaeae20
+-/
 theorem relative_hyperplane_separation {C : ProperCone ℝ E} {f : E →L[ℝ] F} {b : F} :
     b ∈ C.map f ↔ ∀ y : F, f.adjoint y ∈ innerDual C → 0 ≤ ⟪b, y⟫_ℝ where
   mp := by
@@ -139,6 +172,9 @@ theorem relative_hyperplane_separation {C : ProperCone ℝ E} {f : E →L[ℝ] F
     simpa [ContinuousLinearMap.adjoint_inner_right]
       using hxy (f x) (subset_closure <| mem_image_of_mem _ hx)
 
+/--
+@isnad1 id=ex.1h5v.s11.7d7c6a2f3ba0 from=seed src=0 shape=5809631e vocab=a0dcad62
+-/
 theorem hyperplane_separation_of_notMem (K : ProperCone ℝ E) {f : E →L[ℝ] F} {b : F}
     (disj : b ∉ K.map f) :
     ∃ y : F, ContinuousLinearMap.adjoint f y ∈ innerDual K ∧ ⟪b, y⟫_ℝ < 0 := by

@@ -33,6 +33,9 @@ open CFC Set
 variable {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
 open Ring in
+/--
+@isnad1 id=convexon.0h1v.s7.00e9dd6420c1 from=seed src=0 shape=244b645f vocab=78a5a109
+-/
 public lemma convexOn_ringInverse :
     ConvexOn ℝ {a : A | IsStrictlyPositive a} Ring.inverse := by
   /- We need to prove that `(a • x + b • y)⁻¹ ≤ a • x⁻¹ + b • y⁻¹`. To do this, we define
@@ -105,6 +108,9 @@ public lemma convexOn_ringInverse :
         rw [← ringInverse_conjSqrt _ _ xpos, conjSqrt_conjSqrt_ringInverse _ _ xpos]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=convexon.1h2v.s8.30272a4ebb05 from=seed src=0 shape=5a22ff7a vocab=6fd61f78
+-/
 public lemma convexOn_ringInverse_algebraMap_add {t : ℝ} (ht : 0 < t) :
     ConvexOn ℝ (Ici (0 : A)) (fun x : A => Ring.inverse (algebraMap ℝ A t + x)) := by
   have : ∀ x ∈ Ici (0 : A), IsStrictlyPositive (algebraMap ℝ A t + x) := by grind

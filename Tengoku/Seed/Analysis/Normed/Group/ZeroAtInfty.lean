@@ -25,6 +25,9 @@ variable {E F 𝓕 : Type*}
 variable [SeminormedAddGroup E] [SeminormedAddCommGroup F]
 variable [FunLike 𝓕 E F] [ZeroAtInftyContinuousMapClass 𝓕 E F]
 
+/--
+@isnad1 id=ex.1h5v.s6.7ca36e0111f1 from=seed src=0 shape=53969a8f vocab=62407793
+-/
 theorem ZeroAtInftyContinuousMapClass.norm_le (f : 𝓕) (ε : ℝ) (hε : 0 < ε) :
     ∃ (r : ℝ), ∀ (x : E) (_hx : r < ‖x‖), ‖f x‖ < ε := by
   have h := zero_at_infty f
@@ -39,6 +42,9 @@ theorem ZeroAtInftyContinuousMapClass.norm_le (f : 𝓕) (ε : ℝ) (hε : 0 < �
 
 variable [ProperSpace E]
 
+/--
+@isnad1 id=tendsto.1h3v.s6.cc585f5df520 from=seed src=0 shape=16a76ab3 vocab=3217eff8
+-/
 theorem zero_at_infty_of_norm_le (f : E → F)
     (h : ∀ (ε : ℝ) (_hε : 0 < ε), ∃ (r : ℝ), ∀ (x : E) (_hx : r < ‖x‖), ‖f x‖ < ε) :
     Tendsto f (cocompact E) (𝓝 0) := by

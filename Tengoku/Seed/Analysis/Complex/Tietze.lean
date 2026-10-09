@@ -29,30 +29,48 @@ public section
 universe u u₁ v w
 
 -- this is not an instance because Lean cannot determine `𝕜`.
+/--
+@isnad1 id=tietzeex.0h2v.s7.8566c06c6675 from=seed src=0 shape=32590a64 vocab=6a4e06b7
+-/
 theorem TietzeExtension.of_tvs (𝕜 : Type v) [NontriviallyNormedField 𝕜] {E : Type w}
     [AddCommGroup E] [Module 𝕜 E] [TopologicalSpace E] [IsTopologicalAddGroup E]
     [ContinuousSMul 𝕜 E] [T2Space E] [FiniteDimensional 𝕜 E] [CompleteSpace 𝕜]
     [TietzeExtension.{u, v} 𝕜] : TietzeExtension.{u, w} E :=
   Module.Basis.ofVectorSpace 𝕜 E |>.equivFun.toContinuousLinearEquiv.toHomeomorph |> .of_homeo
 
+/--
+@isnad1 id=tietzeex.0h0v.s3.580f8a76cc5e from=seed src=0 shape=49959d42 vocab=3504909b
+-/
 instance Complex.instTietzeExtension : TietzeExtension ℂ :=
   TietzeExtension.of_tvs ℝ
 
+/--
+@isnad1 id=tietzeex.0h1v.s4.6b60ec7fb510 from=seed src=0 shape=c6850a32 vocab=898f327f
+-/
 instance (priority := 900) RCLike.instTietzeExtension {𝕜 : Type*} [RCLike 𝕜] :
     TietzeExtension 𝕜 := TietzeExtension.of_tvs ℝ
 
+/--
+@isnad1 id=tietzeex.0h2v.s7.d42b0af84dfa from=seed src=0 shape=ca0eb7ac vocab=b8b947d9
+-/
 instance RCLike.instTietzeExtensionTVS {𝕜 : Type v} [RCLike 𝕜] {E : Type w}
     [AddCommGroup E] [Module 𝕜 E] [TopologicalSpace E] [IsTopologicalAddGroup E]
     [ContinuousSMul 𝕜 E] [T2Space E] [FiniteDimensional 𝕜 E] :
     TietzeExtension.{u, w} E :=
   TietzeExtension.of_tvs 𝕜
 
+/--
+@isnad1 id=tietzeex.0h2v.s7.305024ab5514 from=seed src=0 shape=6a39c687 vocab=a4dfc7af
+-/
 instance Set.instTietzeExtensionUnitBall {𝕜 : Type v} [RCLike 𝕜] {E : Type w}
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [FiniteDimensional 𝕜 E] :
     TietzeExtension.{u, w} (Metric.ball (0 : E) 1) :=
   have : NormedSpace ℝ E := NormedSpace.restrictScalars ℝ 𝕜 E
   .of_homeo Homeomorph.unitBall.symm
 
+/--
+@isnad1 id=tietzeex.0h2v.s7.0a8f02345708 from=seed src=0 shape=6a39c687 vocab=87c98689
+-/
 instance Set.instTietzeExtensionUnitClosedBall {𝕜 : Type v} [RCLike 𝕜] {E : Type w}
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [FiniteDimensional 𝕜 E] :
     TietzeExtension.{u, w} (Metric.closedBall (0 : E) 1) := by
@@ -77,6 +95,9 @@ instance Set.instTietzeExtensionUnitClosedBall {𝕜 : Type v} [RCLike 𝕜] {E 
       Metric.mem_ball, dist_zero_right, not_lt, id_eq, ne_eq, norm_eq_zero]
     exact fun x hx ↦ norm_pos_iff.mp <| one_pos.trans_le hx
 
+/--
+@isnad1 id=tietzeex.1h3v.s7.1b7f89b28fa4 from=seed src=0 shape=4f6d396b vocab=9d2bda40
+-/
 theorem Metric.instTietzeExtensionBall {𝕜 : Type v} [RCLike 𝕜] {E : Type w}
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [FiniteDimensional 𝕜 E] {r : ℝ} (hr : 0 < r) :
     TietzeExtension.{u, w} (Metric.ball (0 : E) r) :=
@@ -84,6 +105,9 @@ theorem Metric.instTietzeExtensionBall {𝕜 : Type v} [RCLike 𝕜] {E : Type w
   .of_homeo <| show (Metric.ball (0 : E) r) ≃ₜ (Metric.ball (0 : E) 1) from
     OpenPartialHomeomorph.unitBallBall (0 : E) r hr |>.toHomeomorphSourceTarget.symm
 
+/--
+@isnad1 id=tietzeex.1h4v.s6.e5e4123ef82c from=seed src=0 shape=0469d9ed vocab=8a93ecf4
+-/
 theorem Metric.instTietzeExtensionClosedBall (𝕜 : Type v) [RCLike 𝕜] {E : Type w}
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [FiniteDimensional 𝕜 E] (y : E) {r : ℝ} (hr : 0 < r) :
     TietzeExtension.{u, w} (Metric.closedBall y r) :=
@@ -96,6 +120,9 @@ theorem Metric.instTietzeExtensionClosedBall (𝕜 : Type v) [RCLike 𝕜] {E : 
       RCLike.norm_ofReal, abs_of_nonneg hr.le]
     exact (mul_le_iff_le_one_right hr).symm
 
+/--
+@isnad1 id=tietzeex.0h0v.s4.52cd7f157c15 from=seed src=0 shape=049cd614 vocab=e719c9f9
+-/
 instance unitInterval.instTietzeExtension : TietzeExtension unitInterval := by
   rw [unitInterval.eq_closedBall]
   exact Metric.instTietzeExtensionClosedBall ℝ _ (by norm_num)
@@ -110,7 +137,9 @@ include 𝕜 hs in
 /-- **Tietze extension theorem** for real-valued bounded continuous maps, a version with a closed
 embedding and bundled composition. If `e : C(X, Y)` is a closed embedding of a topological space
 into a normal topological space and `f : X →ᵇ ℝ` is a bounded continuous function, then there exists
-a bounded continuous function `g : Y →ᵇ ℝ` of the same norm such that `g ∘ e = f`. -/
+a bounded continuous function `g : Y →ᵇ ℝ` of the same norm such that `g ∘ e = f`.
+@isnad1 id=ex.1h5v.s7.530389714243 from=seed src=0 shape=ac8fe99b vocab=cde67b5c
+-/
 theorem exists_norm_eq_domRestrict_eq (f : s →ᵇ E) :
     ∃ g : X →ᵇ E, ‖g‖ = ‖f‖ ∧ g.domRestrict s = f := by
   by_cases hf : ‖f‖ = 0; · exact ⟨0, by aesop⟩
@@ -126,6 +155,9 @@ theorem exists_norm_eq_domRestrict_eq (f : s →ᵇ E) :
   rw [hx]
   exact g'.norm_le (norm_nonneg g') |>.mp le_rfl x
 
+/--
+@isnad1 id=ex.1h5v.s7.530389714243 from=seed src=0 shape=ac8fe99b vocab=cde67b5c
+-/
 @[deprecated (since := "2026-07-19")]
 alias exists_norm_eq_restrict_eq := exists_norm_eq_domRestrict_eq
 

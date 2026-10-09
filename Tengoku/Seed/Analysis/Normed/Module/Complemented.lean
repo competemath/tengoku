@@ -62,17 +62,26 @@ nonrec def equivProdOfSurjectiveOfIsCompl (f : E →L[𝕜] F) (g : E →L[𝕜]
   (f.equivProdOfSurjectiveOfIsCompl (g : E →ₗ[𝕜] G) hf hg hfg).toContinuousLinearEquivOfContinuous
     (f.continuous.prodMk g.continuous)
 
+/--
+@isnad1 id=eq.3h6v.s10.a90c41027008 from=seed src=0 shape=8133ea67 vocab=ceaaf66b
+-/
 @[simp]
 theorem coe_equivProdOfSurjectiveOfIsCompl {f : E →L[𝕜] F} {g : E →L[𝕜] G} (hf : f.range = ⊤)
     (hg : g.range = ⊤) (hfg : IsCompl f.ker g.ker) :
     (equivProdOfSurjectiveOfIsCompl f g hf hg hfg : E →ₗ[𝕜] F × G) = f.prod g := rfl
 
+/--
+@isnad1 id=eq.3h6v.s10.b36e895db42f from=seed src=0 shape=7f09f0fa vocab=df3ecfc0
+-/
 @[simp]
 theorem equivProdOfSurjectiveOfIsCompl_toLinearEquiv {f : E →L[𝕜] F} {g : E →L[𝕜] G}
     (hf : f.range = ⊤) (hg : g.range = ⊤) (hfg : IsCompl f.ker g.ker) :
     (equivProdOfSurjectiveOfIsCompl f g hf hg hfg).toLinearEquiv =
       LinearMap.equivProdOfSurjectiveOfIsCompl f g hf hg hfg := rfl
 
+/--
+@isnad1 id=eq.3h7v.s11.7eb51b244d34 from=seed src=0 shape=adeaeb74 vocab=a8e5cae8
+-/
 @[simp]
 theorem equivProdOfSurjectiveOfIsCompl_apply {f : E →L[𝕜] F} {g : E →L[𝕜] G} (hf : f.range = ⊤)
     (hg : g.range = ⊤) (hfg : IsCompl f.ker g.ker) (x : E) :
@@ -84,6 +93,9 @@ namespace Submodule
 
 variable [CompleteSpace E] {p q : Subspace 𝕜 E}
 
+/--
+@isnad1 id=istopcom.3h4v.s8.1b9e27cb0521 from=seed src=0 shape=c8fee185 vocab=e2aff291
+-/
 theorem IsCompl.isTopCompl_of_isClosed (h : IsCompl p q) (hp : IsClosed (p : Set E))
     (hq : IsClosed (q : Set E)) : IsTopCompl p q := by
   have := hp.completeSpace_coe; have := hq.completeSpace_coe
@@ -91,6 +103,9 @@ theorem IsCompl.isTopCompl_of_isClosed (h : IsCompl p q) (hp : IsClosed (p : Set
   exact (p.prodEquivOfIsCompl q h).continuous_symm (continuous_prodEquivOfIsCompl h)
 
 open Submodule in
+/--
+@isnad1 id=iff.0h4v.s8.fc8d6ecd2f4e from=seed src=0 shape=8a957d84 vocab=e2aff291
+-/
 theorem isTopCompl_iff_isCompl_isClosed :
     IsTopCompl p q ↔ IsCompl p q ∧ IsClosed (p : Set E) ∧ IsClosed (q : Set E) :=
   ⟨fun h ↦ ⟨h.isCompl, h.isClosed, h.isClosed'⟩, fun h ↦ h.1.isTopCompl_of_isClosed h.2.1 h.2.2⟩
@@ -114,32 +129,53 @@ def linearProjOfClosedCompl (h : IsCompl p q) (hp : IsClosed (p : Set E))
 
 variable {p q}
 
+/--
+@isnad1 id=eq.3h4v.s12.c42677b5052c from=seed src=0 shape=20480f27 vocab=a2c500dc
+-/
 @[deprecated "Use `coe_prodEquivOfIsTopCompl` instead" (since := "2026-06-07")]
 theorem coe_prodEquivOfClosedCompl (h : IsCompl p q) (hp : IsClosed (p : Set E))
     (hq : IsClosed (q : Set E)) :
     ⇑(p.prodEquivOfClosedCompl q h hp hq) = p.prodEquivOfIsCompl q h := rfl
 
+/--
+@isnad1 id=eq.3h4v.s13.cc0e5f44bfd2 from=seed src=0 shape=aa405c6d vocab=247fc5b7
+-/
 @[deprecated "Use `coe_symm_prodEquivOfIsTopCompl` instead" (since := "2026-06-07")]
 theorem coe_prodEquivOfClosedCompl_symm (h : IsCompl p q) (hp : IsClosed (p : Set E))
     (hq : IsClosed (q : Set E)) :
     ⇑(p.prodEquivOfClosedCompl q h hp hq).symm = (p.prodEquivOfIsCompl q h).symm := rfl
 
+/--
+@isnad1 id=eq.3h4v.s9.61916966acb4 from=seed src=0 shape=6498635d vocab=b1d6d49a
+-/
 @[deprecated "Use `toLinearMap_projectionOntoL` instead" (since := "2026-06-07")]
 theorem coe_continuous_linearProjOfClosedCompl (h : IsCompl p q) (hp : IsClosed (p : Set E))
     (hq : IsClosed (q : Set E)) :
     (p.linearProjOfClosedCompl q h hp hq : E →ₗ[𝕜] p) = p.projectionOnto q h := rfl
 
+/--
+@isnad1 id=eq.3h4v.s10.7157303baef9 from=seed src=0 shape=cbc52e85 vocab=04df3b57
+-/
 @[deprecated "Use `coe_projectionOntoL` instead" (since := "2026-06-07")]
 theorem coe_continuous_linearProjOfClosedCompl' (h : IsCompl p q) (hp : IsClosed (p : Set E))
     (hq : IsClosed (q : Set E)) : ⇑(p.linearProjOfClosedCompl q h hp hq) = p.projectionOnto q h :=
   rfl
 
+/--
+@isnad1 id=closedco.3h4v.s8.e5324406a2de from=seed src=0 shape=7e72b19b vocab=9f2e8565
+-/
 theorem ClosedComplemented.of_isCompl_isClosed (h : IsCompl p q) (hp : IsClosed (p : Set E))
     (hq : IsClosed (q : Set E)) : p.ClosedComplemented :=
   (IsCompl.isTopCompl_of_isClosed h hp hq).closedComplemented
 
+/--
+@isnad1 id=closedco.3h4v.s8.e5324406a2de from=seed src=0 shape=7e72b19b vocab=9f2e8565
+-/
 alias IsCompl.closedComplemented_of_isClosed := ClosedComplemented.of_isCompl_isClosed
 
+/--
+@isnad1 id=iff.0h3v.s8.aa18f2398153 from=seed src=0 shape=f4b94a7f vocab=57d8908e
+-/
 theorem closedComplemented_iff_isClosed_exists_isClosed_isCompl :
     p.ClosedComplemented ↔
       IsClosed (p : Set E) ∧ ∃ q : Submodule 𝕜 E, IsClosed (q : Set E) ∧ IsCompl p q :=

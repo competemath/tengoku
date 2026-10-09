@@ -37,6 +37,9 @@ variable {C : Type u₁} [Category.{v₁} C] {D : Type u₂} [Category.{v₂} D]
 include adj
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=iff.0h8v.s6.d611085cb09e from=seed src=0 shape=be588965 vocab=837d2198
+-/
 lemma preservesColimitsOfShape_iff (J : Type u) [Category.{v} J]
     [HasColimitsOfShape J C] [G.Full] [G.Faithful] :
     PreservesColimitsOfShape J H ↔ PreservesColimitsOfShape J (F ⋙ H) := by
@@ -53,6 +56,9 @@ lemma preservesColimitsOfShape_iff (J : Type u) [Category.{v} J]
         (isColimitOfPreserves (F ⋙ H) (colimit.isColimit (K ⋙ G))))
           (Cocone.ext (Iso.refl _))
 
+/--
+@isnad1 id=iff.0h7v.s6.658695f62f61 from=seed src=0 shape=5c461570 vocab=a67159fb
+-/
 lemma preservesColimitsOfSize_iff
     [HasColimitsOfSize.{v, u} C] [G.Full] [G.Faithful] :
     PreservesColimitsOfSize.{v, u} H ↔ PreservesColimitsOfSize.{v, u} (F ⋙ H) := by

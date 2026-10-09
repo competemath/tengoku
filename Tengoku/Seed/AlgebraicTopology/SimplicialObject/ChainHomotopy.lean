@@ -42,11 +42,17 @@ noncomputable def hom (p q : ℕ) : X _⦋p⦌ ⟶ Y _⦋q⦌ :=
     -∑ k : Fin (p + 1), ((-1 : ℤ) ^ (k : ℕ)) • H.h k ≫ eqToHom (by simp [h])
   else 0
 
+/--
+@isnad1 id=eq.0h7v.s10.14eab9afefcb from=seed src=0 shape=f31982bd vocab=29f6a73a
+-/
 @[simp]
 lemma hom_eq (p : ℕ) :
     hom H p (p + 1) = -∑ k : Fin (p + 1), ((-1 : ℤ) ^ (k : ℕ)) • H.h k := by
   simp [hom]
 
+/--
+@isnad1 id=eq.1h8v.s7.912660d60988 from=seed src=0 shape=e968daaf vocab=f441e9a6
+-/
 @[simp]
 lemma hom_eq_zero (p q : ℕ) (hpq : p + 1 ≠ q) :
     hom H p q = 0 :=
@@ -168,6 +174,9 @@ noncomputable def toChainHomotopy (H : Homotopy f g) :
       rw [dNext_eq (i' := n) (w := by simp), prevD_eq (j' := n + 2) (w := by simp)]
       simp [ToChainHomotopy.comm_succ H]
 
+/--
+@isnad1 id=eq.0h7v.s9.c0c0f73fbaee from=seed src=0 shape=7bcb6215 vocab=d2ec1285
+-/
 theorem map_homology_eq [CategoryWithHomology C] (H : Homotopy f g) (n : ℕ) :
     (HomologicalComplex.homologyFunctor C _ n).map ((alternatingFaceMapComplex C).map f) =
     (HomologicalComplex.homologyFunctor C _ n).map ((alternatingFaceMapComplex C).map g) := by

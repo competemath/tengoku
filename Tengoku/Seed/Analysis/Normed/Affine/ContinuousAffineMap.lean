@@ -56,15 +56,27 @@ we do _not_ necessarily have `‖f.comp g‖ ≤ ‖f‖ * ‖g‖`. See `norm_c
 noncomputable instance hasNorm : Norm (V →ᴬ[𝕜] W) :=
   ⟨fun f => max ‖f 0‖ ‖f.contLinear‖⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.11a13336d4f7 from=seed src=0 shape=45150cfe vocab=8e027206
+-/
 theorem norm_def : ‖f‖ = max ‖f 0‖ ‖f.contLinear‖ :=
   rfl
 
+/--
+@isnad1 id=le.0h4v.s8.6ca40a1c9b2c from=seed src=0 shape=0cad7782 vocab=e1ea1c8f
+-/
 theorem norm_contLinear_le : ‖f.contLinear‖ ≤ ‖f‖ :=
   le_max_right _ _
 
+/--
+@isnad1 id=le.0h4v.s8.2b180c6c0f45 from=seed src=0 shape=e4053469 vocab=beedbefe
+-/
 theorem norm_image_zero_le : ‖f 0‖ ≤ ‖f‖ :=
   le_max_left _ _
 
+/--
+@isnad1 id=eq.1h4v.s9.65dd95b97ba9 from=seed src=0 shape=60a06a13 vocab=b09f2c80
+-/
 @[simp]
 theorem norm_eq (h : f 0 = 0) : ‖f‖ = ‖f.contLinear‖ :=
   calc
@@ -84,6 +96,9 @@ noncomputable instance : NormedAddTorsor (V →ᴬ[𝕜] W) (V →ᴬ[𝕜] Q) w
 noncomputable instance : NormedSpace 𝕜 (V →ᴬ[𝕜] W) where
   norm_smul_le t f := norm_smul_le t (f 0, f.contLinear)
 
+/--
+@isnad1 id=le.0h6v.s9.a47ecfcc392c from=seed src=0 shape=861df86c vocab=4ba3354f
+-/
 theorem norm_comp_le (g : W₂ →ᴬ[𝕜] V) : ‖f.comp g‖ ≤ ‖f‖ * ‖g‖ + ‖f 0‖ := by
   rw [norm_def, max_le_iff]
   constructor
@@ -107,21 +122,33 @@ def decompLinearIsometryEquiv : (V →ᴬ[𝕜] W) ≃ₗᵢ[R] W × (V →L[�
   __ := decompLinearEquiv 𝕜 R V W
   norm_map' _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.e9ed2ad07872 from=seed src=0 shape=fb9228a7 vocab=404f9c77
+-/
 @[simp]
 theorem fst_decompLinearIsometryEquiv (f : V →ᴬ[𝕜] W) :
     (decompLinearIsometryEquiv 𝕜 R V W f).1 = f 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.527ce655a91b from=seed src=0 shape=d42b7dd1 vocab=49e58ddb
+-/
 @[simp]
 theorem snd_decompLinearIsometryEquiv (f : V →ᴬ[𝕜] W) :
     (decompLinearIsometryEquiv 𝕜 R V W f).2 = f.contLinear :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.c3fa181fb333 from=seed src=0 shape=1f83a392 vocab=58301c9f
+-/
 @[simp]
 theorem decompLinearIsometryEquiv_symm_apply (p : W × (V →L[𝕜] W)) (x : V) :
     (decompLinearIsometryEquiv 𝕜 R V W).symm p x = p.2 x + p.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.842ebbab0168 from=seed src=0 shape=8301c809 vocab=683c4519
+-/
 @[simp]
 theorem decompLinearIsometryEquiv_symm_contLinear (p : W × (V →L[𝕜] W)) :
     ((decompLinearIsometryEquiv 𝕜 R V W).symm p).contLinear = p.2 := by
@@ -132,11 +159,17 @@ theorem decompLinearIsometryEquiv_symm_contLinear (p : W × (V →L[𝕜] W)) :
   inherit_doc decompLinearIsometryEquiv]
 abbrev toConstProdContinuousLinearMap := decompLinearIsometryEquiv 𝕜 𝕜 V W
 
+/--
+@isnad1 id=eq.0h4v.s11.5115687495d2 from=seed src=0 shape=1d86b7f1 vocab=6504d993
+-/
 @[deprecated fst_decompLinearIsometryEquiv (since := "2026-03-03")]
 theorem toConstProdContinuousLinearMap_fst (f : V →ᴬ[𝕜] W) :
     (toConstProdContinuousLinearMap 𝕜 V W f).fst = f 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.e27f8af8ef7a from=seed src=0 shape=5e93b36d vocab=825b0e29
+-/
 @[deprecated snd_decompLinearIsometryEquiv (since := "2026-03-03")]
 theorem toConstProdContinuousLinearMap_snd (f : V →ᴬ[𝕜] W) :
     (toConstProdContinuousLinearMap 𝕜 V W f).snd = f.contLinear :=

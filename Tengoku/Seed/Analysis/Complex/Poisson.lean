@@ -38,14 +38,23 @@ The Herglotz-Riesz kernel of integration.
 noncomputable def herglotzRieszKernel (c w z : ℂ) : ℂ :=
   ((z - c) + (w - c)) / ((z - c) - (w - c))
 
+/--
+@isnad1 id=eq.0h3v.s6.6cb48b6fb50f from=seed src=0 shape=a42378ed vocab=bd8e4c4b
+-/
 lemma herglotzRieszKernel_def (c w z : ℂ) :
     herglotzRieszKernel c w z = ((z - c) + (w - c)) / ((z - c) - (w - c)) := by rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.ad6c515e7343 from=seed src=0 shape=91046b12 vocab=bd8e4c4b
+-/
 lemma herglotzRieszKernel_fun_def (c w : ℂ) :
     herglotzRieszKernel c w = fun z ↦ ((z - c) + (w - c)) / ((z - c) - (w - c)) := by
   ext z
   exact herglotzRieszKernel_def c w z
 
+/--
+@isnad1 id=eq.0h3v.s5.da0b7384b3ff from=seed src=0 shape=845b228b vocab=835c57f1
+-/
 lemma herglotzRieszKernel_add_const (c w z : ℂ) :
     herglotzRieszKernel c w (z + c) = herglotzRieszKernel 0 (w - c) z := by
   simp [herglotzRieszKernel_fun_def]
@@ -56,6 +65,9 @@ The Poisson kernel of integration.
 noncomputable def poissonKernel (c w z : ℂ) : ℝ :=
   (‖z - c‖ ^ 2 - ‖w - c‖ ^ 2) / ‖(z - c) - (w - c)‖ ^ 2
 
+/--
+@isnad1 id=eq.0h3v.s7.aef6a0c7f0ca from=seed src=0 shape=bd766ca6 vocab=96b2b7d5
+-/
 lemma poissonKernel_def (c w z : ℂ) :
     poissonKernel c w z = (‖z - c‖ ^ 2 - ‖w - c‖ ^ 2) / ‖(z - c) - (w - c)‖ ^ 2 := by rfl
 
@@ -71,6 +83,7 @@ private lemma poissonKernel_eq_re_herglotzRieszKernel_aux {a b : ℂ} :
 /--
 Companion theorem to the Poisson Integral Formula: The real part of the Herglotz–Riesz kernel and
 the Poisson kernel agree on the path of integration.
+@isnad1 id=eq.0h2v.s4.ed92958e0e55 from=seed src=0 shape=754b8b54 vocab=e8c2fc30
 -/
 lemma poissonKernel_eq_re_herglotzRieszKernel {c w : ℂ} :
     poissonKernel c w = Complex.re ∘ herglotzRieszKernel c w := by
@@ -99,6 +112,7 @@ private lemma re_herglotzRieszKernel_le_aux (φ θ r R : ℝ) (h₁ : 0 < r) (h�
 /--
 Companion theorem to the Poisson Integral Formula: Upper estimate for the real part of the
 Herglotz-Riesz kernel.
+@isnad1 id=le.2h4v.s7.3b7c58620f7e from=seed src=0 shape=1d8f64a3 vocab=7e2257a8
 -/
 theorem re_herglotzRieszKernel_le {c z : ℂ} (hz : z ∈ sphere c R) (hw : w ∈ ball c R) :
     ((z - c + (w - c)) / ((z - c) - (w - c))).re ≤ (R + ‖w - c‖) / (R - ‖w - c‖) := by
@@ -132,6 +146,7 @@ private lemma le_re_herglotzRieszKernel_aux (θ φ r R : ℝ) (h₁ : 0 < r) (h�
 /--
 Companion theorem to the Poisson Integral Formula: Lower estimate for the real part of the
 Herglotz-Riesz kernel.
+@isnad1 id=le.2h4v.s7.5e39505829c2 from=seed src=0 shape=0d418919 vocab=7e2257a8
 -/
 theorem le_re_herglotzRieszKernel {c z : ℂ} (hz : z ∈ sphere c R) (hw : w ∈ ball c R) :
     (R - ‖w - c‖) / (R + ‖w - c‖) ≤ ((z - c + (w - c)) / ((z - c) - (w - c))).re := by
@@ -145,6 +160,7 @@ theorem le_re_herglotzRieszKernel {c z : ℂ} (hz : z ∈ sphere c R) (hw : w �
 /--
 The Herglotz–Riesz kernel `herglotzRieszKernel c w` is continuous on the circle `sphere c |R|`
 whenever `w ∈ ball c R`.
+@isnad1 id=continuo.1h3v.s6.ffab184eb8a2 from=seed src=0 shape=6258423e vocab=696c46f1
 -/
 @[fun_prop] lemma continuousOn_herglotzRieszKernel_sphere (hw : w ∈ ball c R) :
     ContinuousOn (herglotzRieszKernel c w) (sphere c |R|) := by
@@ -154,6 +170,7 @@ whenever `w ∈ ball c R`.
 /--
 Taking real parts commutes with the Herglotz–Riesz kernel integral of a real-valued
 circle-integrable function.
+@isnad1 id=eq.2h3v.s7.8458d3438485 from=seed src=0 shape=b20311c6 vocab=aa05722e
 -/
 theorem re_circleAverage_herglotzRieszKernel_smul {g : ℂ → ℝ}
     (hg : CircleIntegrable g 0 R) (hw : w ∈ ball 0 R) :
@@ -247,6 +264,7 @@ private lemma DiffContOnCl.circleAverage_re_smul_on_ball_zero [CompleteSpace E]
 /--
 **Poisson integral formula** for ℂ-differentiable functions on arbitrary disks in the complex plane,
 formulated with the real part of the Herglotz–Riesz kernel of integration.
+@isnad1 id=eq.2h5v.s7.000e36e6395a from=seed src=0 shape=93eaa197 vocab=3d5f62a7
 -/
 theorem DiffContOnCl.circleAverage_re_herglotzRieszKernel_smul [CompleteSpace E] {c : ℂ}
     (hf : DiffContOnCl ℂ f (ball c R)) (hw : w ∈ ball c R) :
@@ -262,6 +280,7 @@ theorem DiffContOnCl.circleAverage_re_herglotzRieszKernel_smul [CompleteSpace E]
 /--
 **Poisson integral formula** for ℂ-differentiable functions on arbitrary disks in the complex plane,
 formulated with the real part of the Herglotz–Riesz kernel of integration expanded.
+@isnad1 id=eq.2h5v.s7.a84dd540f6d4 from=seed src=0 shape=3fca22d0 vocab=ccd3094a
 -/
 theorem DiffContOnCl.circleAverage_re_herglotzRieszKernel_smul' [CompleteSpace E] {c : ℂ}
     (hf : DiffContOnCl ℂ f (ball c R)) (hw : w ∈ ball c R) :
@@ -271,6 +290,7 @@ theorem DiffContOnCl.circleAverage_re_herglotzRieszKernel_smul' [CompleteSpace E
 /--
 **Poisson integral formula** for ℂ-differentiable functions on arbitrary disks in the complex plane,
 formulated with the Poisson kernel of integration.
+@isnad1 id=eq.2h5v.s7.68ffba5b031f from=seed src=0 shape=709aca91 vocab=d47beb4d
 -/
 theorem DiffContOnCl.circleAverage_poissonKernel_smul [CompleteSpace E] {c : ℂ}
     (hf : DiffContOnCl ℂ f (ball c R)) (hw : w ∈ ball c R) :
@@ -281,6 +301,7 @@ theorem DiffContOnCl.circleAverage_poissonKernel_smul [CompleteSpace E] {c : ℂ
 /--
 **Poisson integral formula** for ℂ-differentiable functions on arbitrary disks in the complex plane,
 formulated with the Poisson kernel of integration expanded.
+@isnad1 id=eq.2h5v.s8.87184d5dc814 from=seed src=0 shape=fa606c25 vocab=12f23e48
 -/
 theorem DiffContOnCl.circleAverage_poissonKernel_smul' [CompleteSpace E] {c : ℂ}
     (hf : DiffContOnCl ℂ f (ball c R)) (hw : w ∈ ball c R) :
@@ -311,6 +332,7 @@ private lemma exists_ball_subset_forall_le_norm_circleMap_sub (hw : w ∈ ball c
 **Derivative of the Herglotz–Riesz kernel integral**: if `f` is circle integrable and `w` lies
 inside the circle, then `w ↦ circleAverage (fun ζ ↦ herglotzRieszKernel 0 w ζ • f ζ) 0 R` has
 derivative `circleAverage (fun ζ ↦ (2 * ζ / (ζ - w) ^ 2) • f ζ) 0 R` at `w`.
+@isnad1 id=hasderiv.2h4v.s8.bd1ff76dbeab from=seed src=0 shape=ee8ded36 vocab=a00fd61c
 -/
 theorem hasDerivAt_circleAverage_herglotzRieszKernel_smul (hg : CircleIntegrable f 0 R)
     (hw : w ∈ ball 0 R) :
@@ -365,6 +387,7 @@ theorem hasDerivAt_circleAverage_herglotzRieszKernel_smul (hg : CircleIntegrable
 /--
 The Herglotz–Riesz kernel integral of a circle-integrable function is differentiable in the pole
 parameter, throughout the open ball.
+@isnad1 id=differen.1h3v.s7.8dc8a6d19234 from=seed src=0 shape=9ed13ee7 vocab=b7953d68
 -/
 theorem differentiableOn_circleAverage_herglotzRieszKernel_smul (hg : CircleIntegrable f 0 R) :
     DifferentiableOn ℂ
@@ -375,6 +398,7 @@ theorem differentiableOn_circleAverage_herglotzRieszKernel_smul (hg : CircleInte
 /--
 The Herglotz–Riesz kernel integral of a circle-integrable function is analytic in the pole
 parameter, throughout the open ball.
+@isnad1 id=analytic.1h3v.s7.e6dfeecd322b from=seed src=0 shape=1c75d72d vocab=1d52896d
 -/
 theorem analyticOnNhd_circleAverage_herglotzRieszKernel_smul [CompleteSpace E]
     (hg : CircleIntegrable f 0 R) :

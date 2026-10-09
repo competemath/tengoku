@@ -52,6 +52,9 @@ def completion : SemiNormedGrp.{u} ⥤ SemiNormedGrp.{u} where
   map_id _ := SemiNormedGrp.hom_ext completion_id
   map_comp f g := SemiNormedGrp.hom_ext (completion_comp f.hom g.hom).symm
 
+/--
+@isnad1 id=complete.0h1v.s5.123a9ed3028c from=seed src=0 shape=668c2861 vocab=2bd47330
+-/
 instance completion_completeSpace {V : SemiNormedGrp} : CompleteSpace (completion.obj V) :=
   Completion.completeSpace _
 
@@ -62,9 +65,15 @@ def completion.incl {V : SemiNormedGrp} : V ⟶ completion.obj V :=
     map_add' := Completion.coe_add
     bound' := ⟨1, fun v => by simp⟩ }
 
+/--
+@isnad1 id=eq.0h2v.s7.3e9bab79cfe2 from=seed src=0 shape=42296626 vocab=7a78fc70
+-/
 theorem completion.norm_incl_eq {V : SemiNormedGrp} {v : V} : ‖completion.incl v‖ = ‖v‖ :=
   UniformSpace.Completion.norm_coe _
 
+/--
+@isnad1 id=normnoni.1h3v.s6.f6cc45b44fd8 from=seed src=0 shape=4499613c vocab=1e028602
+-/
 theorem completion.map_normNoninc {V W : SemiNormedGrp} {f : V ⟶ W} (hf : f.hom.NormNoninc) :
     (completion.map f).hom.NormNoninc :=
   NormedAddGroupHom.NormNoninc.normNoninc_iff_norm_le_one.2 <|
@@ -82,6 +91,9 @@ def completion.mapHom (V W : SemiNormedGrp.{u}) :
   @AddMonoidHom.mk' _ _ (_) (_) completion.map fun f g =>
     SemiNormedGrp.hom_ext (f.hom.completion_add g.hom)
 
+/--
+@isnad1 id=eq.0h2v.s6.b0bb5d62634c from=seed src=0 shape=8b059a69 vocab=30abd6a2
+-/
 theorem completion.map_zero (V W : SemiNormedGrp) : completion.map (0 : V ⟶ W) = 0 :=
   (completion.mapHom V W).map_zero
 
@@ -100,10 +112,16 @@ def completion.lift {V W : SemiNormedGrp} [CompleteSpace W] [T0Space W] (f : V �
     map_add' := f.hom.extension.toAddMonoidHom.map_add'
     bound' := f.hom.extension.bound' }
 
+/--
+@isnad1 id=eq.0h3v.s6.ca92022216ff from=seed src=0 shape=3dfc9473 vocab=f797b17b
+-/
 theorem completion.lift_comp_incl {V W : SemiNormedGrp} [CompleteSpace W] [T0Space W]
     (f : V ⟶ W) : completion.incl ≫ completion.lift f = f :=
   ext <| NormedAddGroupHom.extension_coe _
 
+/--
+@isnad1 id=eq.1h4v.s6.126887037a4f from=seed src=0 shape=10b41f58 vocab=f797b17b
+-/
 theorem completion.lift_unique {V W : SemiNormedGrp} [CompleteSpace W] [T0Space W]
     (f : V ⟶ W) (g : completion.obj V ⟶ W) : completion.incl ≫ g = f → g = completion.lift f :=
   fun h => SemiNormedGrp.hom_ext (NormedAddGroupHom.extension_unique _ fun v =>

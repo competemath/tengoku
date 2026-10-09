@@ -38,12 +38,18 @@ noncomputable def π₀.fromChainComplexXZero :
     (X.chainComplex R).X 0 ⟶ ∐ (fun (_ : π₀ X) ↦ R) :=
   (sigmaConst.obj _).map (↾π₀.mk)
 
+/--
+@isnad1 id=eq.0h4v.s7.63294a6f385a from=seed src=0 shape=fa8dd439 vocab=20c3a907
+-/
 @[reassoc (attr := simp)]
 lemma π₀.comp_fromChainComplexXZero (x : X _⦋0⦌) :
     X.ιChainComplex x ≫ π₀.fromChainComplexXZero X R =
     Sigma.ι (fun (_ : π₀ X) ↦ R) (π₀.mk x) := by
   simp [π₀.fromChainComplexXZero, ιChainComplex]
 
+/--
+@isnad1 id=eq.0h4v.s8.f47634db6b68 from=seed src=0 shape=20f656de vocab=0959cd1e
+-/
 @[reassoc (attr := simp)]
 lemma π₀.d_fromChainComplexXZero (n : ℕ) :
     (X.chainComplex R).d n 0 ≫ π₀.fromChainComplexXZero X R = 0 := by
@@ -79,16 +85,25 @@ noncomputable def homologyData₀ :
     (isColimitCokernelCoforkChainComplexDOneZero X R)
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s7.0bacf79e34cb from=seed src=0 shape=df375714 vocab=d8dac748
+-/
 @[simp]
 lemma homologyData₀_left_π :
     dsimp% (X.homologyData₀ R).left.π = π₀.fromChainComplexXZero X R := rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s7.eda313e2ea50 from=seed src=0 shape=cfed3c0c vocab=5c85d2f5
+-/
 @[simp]
 lemma homologyData₀_left_i :
     dsimp% (X.homologyData₀ R).left.i = 𝟙 _ := rfl
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h5v.s7.ae2a80872ef7 from=seed src=0 shape=746de0a3 vocab=7dacb83e
+-/
 @[simp]
 lemma homologyData₀_left_liftK {T : C} (f : T ⟶ (X.chainComplex R).X 0) :
     dsimp% (X.homologyData₀ R).left.liftK f (by cat_disch) = f :=
@@ -105,6 +120,9 @@ noncomputable def homology₀Iso :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s8.6ea5e95216a5 from=seed src=0 shape=0ecae5d6 vocab=5eb6bd4e
+-/
 @[reassoc (attr := simp)]
 lemma liftCycles_ιChainComplex_homologyπ_homology₀Iso_hom (x : X _⦋0⦌) :
     (X.chainComplex R).liftCycles (k := X.ιChainComplex x) 0 (by simp) (by simp) ≫
@@ -117,6 +135,9 @@ lemma liftCycles_ιChainComplex_homologyπ_homology₀Iso_hom (x : X _⦋0⦌) :
 noncomputable def homology₀ε : X.homology R 0 ⟶ R :=
   (X.homology₀Iso R).hom ≫ Sigma.desc (fun _ ↦ 𝟙 R)
 
+/--
+@isnad1 id=eq.0h4v.s8.dcceab78ab6e from=seed src=0 shape=4ed259ad vocab=edbf6415
+-/
 @[reassoc (attr := simp)]
 lemma liftCycles_ιChainComplex_homologyπ_homology₀ε (x : X _⦋0⦌) :
     (X.chainComplex R).liftCycles (X.ιChainComplex x) 0 (by simp) (by simp) ≫

@@ -53,13 +53,16 @@ noncomputable def proximity : ℝ → ℝ := by
   · exact circleAverage (log⁺ ‖f ·‖) 0
   · exact circleAverage (log⁺ ‖f · - a.untop₀‖⁻¹) 0
 
-/-- Expand the definition of `proximity f a₀` in case where `a₀` is finite. -/
+/-- Expand the definition of `proximity f a₀` in case where `a₀` is finite.
+@isnad1 id=eq.0h3v.s6.f4963bc01f97 from=seed src=0 shape=5efc0855 vocab=09143b6b
+-/
 lemma proximity_coe :
     proximity f a₀ = circleAverage (log⁺ ‖f · - a₀‖⁻¹) 0 := by
   simp [proximity]
 
 /--
 Expand the definition of `proximity f a₀` in case where `a₀` is zero.
+@isnad1 id=eq.0h2v.s6.1d70d4bc221b from=seed src=0 shape=1df266b5 vocab=4003c7d0
 -/
 lemma proximity_zero : proximity f 0 = circleAverage (log⁺ ‖f ·‖⁻¹) 0 := by
   simp [proximity]
@@ -67,6 +70,7 @@ lemma proximity_zero : proximity f 0 = circleAverage (log⁺ ‖f ·‖⁻¹) 0 
 /--
 For complex-valued functions, expand the definition of `proximity f a₀` in case where `a₀` is zero.
 This is a simple variant of `proximity_zero` defined above.
+@isnad1 id=eq.0h1v.s5.1273a11c0782 from=seed src=0 shape=8bf258bc vocab=10515daa
 -/
 lemma proximity_zero_of_complexValued {f : ℂ → ℂ} :
     proximity f 0 = circleAverage (log⁺ ‖f⁻¹ ·‖) 0 := by
@@ -74,6 +78,7 @@ lemma proximity_zero_of_complexValued {f : ℂ → ℂ} :
 
 /--
 Expand the definition of `proximity f a` in case where `a₀ = ⊤`.
+@isnad1 id=eq.0h2v.s5.095f14ab6e2e from=seed src=0 shape=b8d465cb vocab=75b687d4
 -/
 lemma proximity_top : proximity f ⊤ = circleAverage (log⁺ ‖f ·‖) 0 := by
   simp [proximity]
@@ -85,6 +90,7 @@ lemma proximity_top : proximity f ⊤ = circleAverage (log⁺ ‖f ·‖) 0 := b
 /--
 If two functions differ only on a discrete set, then their proximity functions
 agree, except perhaps at radius 0.
+@isnad1 id=eq.2h5v.s6.d0da50bba8b7 from=seed src=0 shape=2426f7fe vocab=c2fc4344
 -/
 lemma proximity_congr_codiscreteWithin {f g : ℂ → E} {a : WithTop E} {r : ℝ}
     (hfg : f =ᶠ[codiscreteWithin (sphere 0 |r|)] g) (hr : r ≠ 0) :
@@ -98,6 +104,7 @@ lemma proximity_congr_codiscreteWithin {f g : ℂ → E} {a : WithTop E} {r : �
 /--
 If two functions differ only on a discrete set, then their proximity functions
 agree, except perhaps at radius 0.
+@isnad1 id=eq.2h5v.s5.b4e729f36cec from=seed src=0 shape=a57f09a0 vocab=4bd94d01
 -/
 lemma proximity_congr_codiscrete {f g : ℂ → E} {a : WithTop E} {r : ℝ}
     (hfg : f =ᶠ[codiscrete ℂ] g) (hr : r ≠ 0) :
@@ -107,6 +114,7 @@ lemma proximity_congr_codiscrete {f g : ℂ → E} {a : WithTop E} {r : ℝ}
 /--
 For finite values `a₀`, the proximity function `proximity f a₀` equals the proximity function for
 the value zero of the shifted function `f - a₀`.
+@isnad1 id=eq.0h3v.s6.c233087a4c21 from=seed src=0 shape=0709bad5 vocab=10ef8eb7
 -/
 lemma proximity_coe_eq_proximity_sub_const_zero :
     proximity f a₀ = proximity (f - fun _ ↦ a₀) 0 := by
@@ -115,6 +123,7 @@ lemma proximity_coe_eq_proximity_sub_const_zero :
 /--
 For complex-valued `f`, establish a simple relation between the proximity functions of `f` and of
 `f⁻¹`.
+@isnad1 id=eq.0h1v.s5.abfca0971ba0 from=seed src=0 shape=5e4aab70 vocab=b7a33f78
 -/
 theorem proximity_inv {f : ℂ → ℂ} : proximity f⁻¹ ⊤ = proximity f 0 := by
   simp [proximity_zero, proximity_top]
@@ -122,6 +131,7 @@ theorem proximity_inv {f : ℂ → ℂ} : proximity f⁻¹ ⊤ = proximity f 0 :
 /--
 For complex-valued `f`, the difference between `proximity f ⊤` and `proximity f⁻¹ ⊤` is the circle
 average of `log ‖f ·‖`.
+@isnad1 id=eq.1h1v.s6.9e4578e3301c from=seed src=0 shape=f8fcc1bb vocab=bfc492c2
 -/
 theorem proximity_sub_proximity_inv_eq_circleAverage {f : ℂ → ℂ} (h₁f : Meromorphic f) :
     proximity f ⊤ - proximity f⁻¹ ⊤ = circleAverage (log ‖f ·‖) 0 := by
@@ -135,6 +145,7 @@ theorem proximity_sub_proximity_inv_eq_circleAverage {f : ℂ → ℂ} (h₁f : 
 
 /--
 The proximity function is even.
+@isnad1 id=even.0h3v.s4.879f87ef46f4 from=seed src=0 shape=f9ff9fea vocab=b0398fa8
 -/
 theorem proximity_even : (proximity f a).Even := by
   intro r
@@ -142,6 +153,7 @@ theorem proximity_even : (proximity f a).Even := by
 
 /--
 The proximity function is non-negative.
+@isnad1 id=le.0h3v.s5.38f30a277581 from=seed src=0 shape=34b3a60f vocab=d79f6d4b
 -/
 theorem proximity_nonneg {a : WithTop E} :
     0 ≤ proximity f a := by
@@ -149,12 +161,16 @@ theorem proximity_nonneg {a : WithTop E} :
   · intro r
     simpa [proximity, h] using circleAverage_nonneg_of_nonneg (fun x _ ↦ posLog_nonneg)
 
+/--
+@isnad1 id=eq.0h3v.s4.c17491d427ca from=seed src=0 shape=580c5800 vocab=81f0381d
+-/
 @[simp] lemma proximity_const {c : E} {r : ℝ} :
     proximity (fun _ ↦ c) ⊤ r = log⁺ ‖c‖ := by
   simp [proximity, circleAverage_const]
 
 /--
 If `f` is continuous, then so is its proximitiy function at `⊤`.
+@isnad1 id=continuo.1h2v.s5.ce533828c36d from=seed src=0 shape=5d44aa02 vocab=309e742f
 -/
 @[fun_prop] theorem continuous_proximity_top (hf : Continuous f) :
     Continuous (proximity f ⊤) := by
@@ -168,6 +184,7 @@ If `f` is continuous, then so is its proximitiy function at `⊤`.
 /--
 The proximity function of a sum of functions at `⊤` is less than or equal to the sum of the
 proximity functions of the summand, plus `log` of the number of summands.
+@isnad1 id=le.1h4v.s7.b361575757ff from=seed src=0 shape=d2df0ddd vocab=99ffebc4
 -/
 theorem proximity_sum_top_le [NormedSpace ℂ E] {α : Type*} (s : Finset α) (f : α → ℂ → E)
     (hf : ∀ a ∈ s, Meromorphic (f a)) :
@@ -196,6 +213,7 @@ theorem proximity_sum_top_le [NormedSpace ℂ E] {α : Type*} (s : Finset α) (f
 /--
 The proximity function of `f + g` at `⊤` is less than or equal to the sum of the proximity functions
 of `f` and `g`, plus `log 2` (where `2` is the number of summands).
+@isnad1 id=le.2h3v.s7.a637ee7f40f8 from=seed src=0 shape=87d680a4 vocab=dff9266c
 -/
 theorem proximity_add_top_le [NormedSpace ℂ E] {f₁ f₂ : ℂ → E} (h₁f₁ : Meromorphic f₁)
     (h₁f₂ : Meromorphic f₂) :
@@ -206,6 +224,7 @@ theorem proximity_add_top_le [NormedSpace ℂ E] {f₁ f₂ : ℂ → E} (h₁f�
 /--
 The proximity function `f * g` at `⊤` is less than or equal to the sum of the proximity functions of
 `f` and `g`, respectively.
+@isnad1 id=le.2h2v.s7.4a287ddf01dd from=seed src=0 shape=26762e2f vocab=d1ae5116
 -/
 theorem proximity_mul_top_le {f₁ f₂ : ℂ → ℂ} (h₁f₁ : Meromorphic f₁) (h₁f₂ : Meromorphic f₂) :
     proximity (f₁ * f₂) ⊤ ≤ proximity f₁ ⊤ + proximity f₂ ⊤ := by
@@ -231,6 +250,7 @@ theorem proximity_mul_top_le {f₁ f₂ : ℂ → ℂ} (h₁f₁ : Meromorphic f
 /--
 The proximity function `f * g` at `0` is less than or equal to the sum of the proximity functions of
 `f` and `g`, respectively.
+@isnad1 id=le.2h2v.s7.4884c36a8061 from=seed src=0 shape=a30c5ad9 vocab=65b11392
 -/
 theorem proximity_mul_zero_le {f₁ f₂ : ℂ → ℂ} (h₁f₁ : Meromorphic f₁) (h₁f₂ : Meromorphic f₂) :
     proximity (f₁ * f₂) 0 ≤ (proximity f₁ 0) + (proximity f₂ 0) := by
@@ -244,6 +264,7 @@ theorem proximity_mul_zero_le {f₁ f₂ : ℂ → ℂ} (h₁f₁ : Meromorphic 
 /--
 For natural numbers `n`, the proximity function of `f ^ n` at `⊤` equals `n` times the proximity
 function of `f` at `⊤`.
+@isnad1 id=eq.0h2v.s6.558626bfc6f6 from=seed src=0 shape=bf47f93d vocab=b6e89fc5
 -/
 @[simp] theorem proximity_pow_top {f : ℂ → ℂ} {n : ℕ} :
     proximity (f ^ n) ⊤ = n • (proximity f ⊤) := by
@@ -253,6 +274,7 @@ function of `f` at `⊤`.
 /--
 For natural numbers `n`, the proximity function of `f ^ n` at `0` equals `n` times the proximity
 function of `f` at `0`.
+@isnad1 id=eq.0h2v.s6.aa49093ebe4b from=seed src=0 shape=f5af5cb0 vocab=1bead712
 -/
 @[simp] theorem proximity_pow_zero {f : ℂ → ℂ} {n : ℕ} :
     proximity (f ^ n) 0 = n • (proximity f 0) := by

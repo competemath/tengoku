@@ -60,6 +60,9 @@ noncomputable instance [PseudoEMetricSpace X] : PseudoEMetricSpace (WithLp p <| 
     gcongr
     exact edist_triangle ..
 
+/--
+@isnad1 id=eq.0h5v.s7.81e8088b0c10 from=seed src=0 shape=b7747429 vocab=a80eac0e
+-/
 lemma edist_def [PseudoEMetricSpace X] {p : ℝ≥0} [Fact (1 ≤ p)]
     (f g : WithLp p <| ι →₀ X) :
     edist f g =
@@ -81,10 +84,16 @@ noncomputable instance [PseudoMetricSpace X] : PseudoMetricSpace (WithLp p <| ι
       ext i
       simp [← coe_nndist, ← coe_nnreal_ennreal_nndist]
 
+/--
+@isnad1 id=eq.0h5v.s7.ca567953238a from=seed src=0 shape=7c804cf2 vocab=e283e208
+-/
 lemma dist_def [PseudoMetricSpace X] (f g : WithLp p <| ι →₀ X) :
     dist f g =
       ((f.ofLp.zipWith dist (dist_self _) g.ofLp).sum fun _i r ↦ r ^ (p : ℝ)) ^ (p⁻¹ : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.dc8b29f72a45 from=seed src=0 shape=e07d8d16 vocab=a9762678
+-/
 lemma nndist_def [PseudoMetricSpace X] (f g : WithLp p <| ι →₀ X) :
     nndist f g =
       ((f.ofLp.zipWith nndist (nndist_self _) g.ofLp).sum fun _i r ↦ r ^ (p : ℝ)) ^ (p⁻¹ : ℝ) := by

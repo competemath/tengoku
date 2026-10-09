@@ -56,11 +56,17 @@ variable {P α} [WellFoundedLT α] (f : P.RankFunction α)
 
 include f
 
+/--
+@isnad1 id=wellfoun.0h5v.s5.3ee30ab1fb3b from=seed src=0 shape=9a643140 vocab=051764be
+-/
 lemma wf_ancestralRel : WellFounded P.AncestralRel := by
   rw [wellFounded_iff_isEmpty_descending_chain]
   exact ⟨fun ⟨g, hg⟩ ↦ not_strictAnti_of_wellFoundedLT (f.rank ∘ g)
     (strictAnti_nat_of_succ_lt (fun n ↦ f.lt (hg n)))⟩
 
+/--
+@isnad1 id=isregula.0h5v.s5.ddbd17068828 from=seed src=0 shape=d2503544 vocab=42ebba9e
+-/
 lemma isRegular [P.IsProper] : P.IsRegular where
   wf := f.wf_ancestralRel
 
@@ -81,6 +87,9 @@ variable {P α} [WellFoundedLT α] [P.IsProper] (f : P.WeakRankFunction α)
 include f
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=wellfoun.0h5v.s5.b7529e954367 from=seed src=0 shape=8df530da vocab=921c92d6
+-/
 lemma wf_ancestralRel : WellFounded P.AncestralRel := by
   rw [wellFounded_iff_isEmpty_descending_chain]
   refine ⟨fun ⟨g, hg⟩ ↦ ?_⟩
@@ -94,6 +103,9 @@ lemma wf_ancestralRel : WellFounded P.AncestralRel := by
   rw [← add_assoc]
   exact f.lt (hg _) (by rw [← hn₀ (n₀ + n + 1) (by lia), ← hn₀ (n₀ + n) (by lia)])
 
+/--
+@isnad1 id=isregula.0h5v.s5.575d50cca760 from=seed src=0 shape=52c620d5 vocab=aec624dd
+-/
 lemma isRegular : P.IsRegular where
   wf := f.wf_ancestralRel
 
@@ -170,10 +182,16 @@ noncomputable def weakRankFunctionEquiv :
 
 variable {h α} [WellFoundedLT α]
 
+/--
+@isnad1 id=isregula.0h5v.s5.de9d779a8209 from=seed src=0 shape=52c620d5 vocab=26e36a49
+-/
 lemma RankFunction.isRegular [h.IsProper] (f : h.RankFunction α) : h.IsRegular := by
   rw [← isRegular_pairing_iff]
   exact (h.rankFunctionEquiv α f).isRegular
 
+/--
+@isnad1 id=isregula.0h5v.s5.2c7f92aca904 from=seed src=0 shape=52c620d5 vocab=02202c61
+-/
 lemma WeakRankFunction.isRegular [h.IsProper] (f : h.WeakRankFunction α) : h.IsRegular := by
   rw [← isRegular_pairing_iff]
   exact (h.weakRankFunctionEquiv α f).isRegular

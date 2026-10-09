@@ -20,7 +20,9 @@ public section
 open Nat Real Filter Tendsto
 open scoped Topology goldenRatio
 
-/-- The limit of `fib (n + 1) / fib n` as `n → ∞` is the golden ratio. -/
+/-- The limit of `fib (n + 1) / fib n` as `n → ∞` is the golden ratio.
+@isnad1 id=tendsto.0h0v.s5.fe48c1b4492f from=seed src=0 shape=5df4bb19 vocab=dff778ad
+-/
 theorem tendsto_fib_succ_div_fib_atTop :
     Tendsto (fun n ↦ (fib (n + 1) / fib n : ℝ)) atTop (𝓝 φ) := by
   have h₁ n : (fib (n + 1) / fib n : ℝ) = (φ - ψ * (ψ / φ) ^ n) / (1 - (ψ / φ) ^ n) := by
@@ -33,7 +35,9 @@ theorem tendsto_fib_succ_div_fib_atTop :
   rw [show φ = (φ - ψ * 0) / (1 - 0) by ring, funext h₁]
   exact const_sub _ (const_mul _ h₂) |>.div (const_sub _ h₂) <| by simp
 
-/-- The limit of `fib n / fib (n + 1)` as `n → ∞` is the negative conjugate of the golden ratio. -/
+/-- The limit of `fib n / fib (n + 1)` as `n → ∞` is the negative conjugate of the golden ratio.
+@isnad1 id=tendsto.0h0v.s5.eda8066a74fb from=seed src=0 shape=b8a05790 vocab=8406d657
+-/
 theorem tendsto_fib_div_fib_succ_atTop :
     Tendsto (fun n ↦ (fib n / fib (n + 1) : ℝ)) atTop (𝓝 (-ψ)) := by
   convert! tendsto_fib_succ_div_fib_atTop.inv₀ (by positivity) using 2

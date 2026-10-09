@@ -41,6 +41,9 @@ namespace DoldKan
 
 variable {C : Type*} [Category* C] [Preadditive C]
 
+/--
+@isnad1 id=higherfa.2h7v.s7.4c1ea1ed7687 from=seed src=0 shape=7f9eb7cf vocab=815b2538
+-/
 theorem HigherFacesVanish.comp_σ {Y : C} {X : SimplicialObject C} {n b q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌}
     (v : HigherFacesVanish q φ) (hnbq : n + 1 = b + q) :
     HigherFacesVanish q
@@ -57,6 +60,9 @@ theorem HigherFacesVanish.comp_σ {Y : C} {X : SimplicialObject C} {n b q : ℕ}
     rw [Fin.lt_def, Fin.val_succ]
     linarith
 
+/--
+@isnad1 id=eq.1h5v.s8.222f3169f601 from=seed src=0 shape=4226b9a3 vocab=fe47a3e5
+-/
 theorem σ_comp_P_eq_zero (X : SimplicialObject C) {n q : ℕ} (i : Fin (n + 1)) (hi : n + 1 ≤ i + q) :
     dsimp% X.σ i ≫ (P q).f (n + 1) = 0 := by
   induction q generalizing i with
@@ -117,12 +123,18 @@ theorem σ_comp_P_eq_zero (X : SimplicialObject C) {n q : ℕ} (i : Fin (n + 1))
         simp only [Fin.rev_eq j hk.symm, Fin.le_iff_val_le_val]
         lia
 
+/--
+@isnad1 id=eq.0h4v.s8.a3342526aa74 from=seed src=0 shape=9ca844a6 vocab=0f879424
+-/
 @[reassoc (attr := simp)]
 theorem σ_comp_PInfty (X : SimplicialObject C) {n : ℕ} (i : Fin (n + 1)) :
     dsimp% X.σ i ≫ PInfty.f (n + 1) = 0 := by
   rw [PInfty_f, σ_comp_P_eq_zero X i]
   simp only [le_add_iff_nonneg_left, zero_le]
 
+/--
+@isnad1 id=eq.1h5v.s8.ea8840e7c185 from=seed src=0 shape=1f235534 vocab=3d86129d
+-/
 @[reassoc]
 theorem degeneracy_comp_PInfty (X : SimplicialObject C) (n : ℕ) {Δ' : SimplexCategory}
     (θ : ⦋n⦌ ⟶ Δ') (hθ : ¬Mono θ) : dsimp% X.map θ.op ≫ PInfty.f n = 0 := by
@@ -150,19 +162,31 @@ def DegeneraciesVanish (f : X _⦋n⦌ ⟶ T) : Prop :=
   | 0 => True
   | n + 1 => ∀ (i : Fin (n + 1)), X.σ i ≫ f = 0
 
+/--
+@isnad1 id=iff.0h4v.s5.94829a5234ea from=seed src=0 shape=97239055 vocab=13619dda
+-/
 @[simp]
 lemma degeneraciesVanish_zero_iff_true (f : X _⦋0⦌ ⟶ T) :
     DegeneraciesVanish f ↔ True := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s7.26df749a2fec from=seed src=0 shape=800aa718 vocab=7bc70002
+-/
 lemma degeneraciesVanish_succ_iff (f : X _⦋n + 1⦌ ⟶ T) :
     DegeneraciesVanish f ↔ ∀ (i : Fin (n + 1)), X.σ i ≫ f = 0 := Iff.rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.746bebdbca2d from=seed src=0 shape=c469cdd0 vocab=7bc70002
+-/
 @[reassoc]
 lemma DegeneraciesVanish.σ_comp {f : X _⦋n + 1⦌ ⟶ T} (hf : DegeneraciesVanish f)
     (i : Fin (n + 1)) :
     X.σ i ≫ f = 0 := hf i
 
 variable {f} in
+/--
+@isnad1 id=degenera.1h7v.s6.8bf1537f06fa from=seed src=0 shape=4760ead4 vocab=455743ee
+-/
 lemma DegeneraciesVanish.comp
     {f : X _⦋n⦌ ⟶ T} (hf : DegeneraciesVanish f) {U : C} (g : T ⟶ U) :
     DegeneraciesVanish (f ≫ g) := by
@@ -171,12 +195,18 @@ lemma DegeneraciesVanish.comp
   · simp [degeneraciesVanish_succ_iff, hf.σ_comp_assoc]
 
 variable (X) in
+/--
+@isnad1 id=degenera.0h3v.s6.ddcd6a93860d from=seed src=0 shape=f271cd44 vocab=5cdfa12b
+-/
 lemma degeneraciesVanishPInfty_f (n : ℕ) :
     DegeneraciesVanish ((PInfty (X := X)).f n) := by
   obtain _ | n := n
   · simp
   · simp [degeneraciesVanish_succ_iff]
 
+/--
+@isnad1 id=iff.0h5v.s8.38d95e2b0c0d from=seed src=0 shape=16114908 vocab=2f6b19b5
+-/
 lemma degeneraciesVanish_iff_QInfty_f_comp (f : X _⦋n⦌ ⟶ T) :
     DegeneraciesVanish f ↔ QInfty.f n ≫ f = 0 := by
   obtain _ | n := n

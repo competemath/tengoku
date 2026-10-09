@@ -59,9 +59,15 @@ def Equiv.lpPiLp : lp E p ≃ PiLp p E where
   toFun f := toLp p ⇑f
   invFun f := ⟨ofLp f, Memℓp.all f⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.c97854044426 from=seed src=0 shape=7c0701a6 vocab=d25f558a
+-/
 theorem coe_equiv_lpPiLp (f : lp E p) : Equiv.lpPiLp f = ⇑f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.b0881271b7ef from=seed src=0 shape=a30ba5b6 vocab=2a138ce5
+-/
 theorem coe_equiv_lpPiLp_symm (f : PiLp p E) : (Equiv.lpPiLp.symm f : ∀ i, E i) = f :=
   rfl
 
@@ -70,15 +76,24 @@ theorem coe_equiv_lpPiLp_symm (f : PiLp p E) : (Equiv.lpPiLp.symm f : ∀ i, E i
 def AddEquiv.lpPiLp : lp E p ≃+ PiLp p E :=
   { Equiv.lpPiLp with map_add' := fun _f _g ↦ rfl }
 
+/--
+@isnad1 id=eq.0h4v.s9.02fef0b33cc1 from=seed src=0 shape=7c0701a6 vocab=c6362940
+-/
 theorem coe_addEquiv_lpPiLp (f : lp E p) : AddEquiv.lpPiLp f = ⇑f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.bd19be1114b7 from=seed src=0 shape=a30ba5b6 vocab=bd107a51
+-/
 theorem coe_addEquiv_lpPiLp_symm (f : PiLp p E) :
     (AddEquiv.lpPiLp.symm f : ∀ i, E i) = f :=
   rfl
 
 end Finite
 
+/--
+@isnad1 id=eq.0h4v.s9.1189a039f663 from=seed src=0 shape=6b0ebc29 vocab=003593b3
+-/
 theorem equiv_lpPiLp_norm [Fintype α] (f : lp E p) : ‖Equiv.lpPiLp f‖ = ‖f‖ := by
   rcases p.trichotomy with (rfl | rfl | h)
   · simp [Equiv.lpPiLp, PiLp.norm_eq_card, lp.norm_eq_card_dsupport]
@@ -99,9 +114,15 @@ noncomputable def lpPiLpₗᵢ [Fact (1 ≤ p)] : lp E p ≃ₗᵢ[𝕜] PiLp p 
 
 variable {𝕜 E}
 
+/--
+@isnad1 id=eq.0h5v.s10.8d3fa49f54c2 from=seed src=0 shape=ef70744f vocab=83017f2c
+-/
 theorem coe_lpPiLpₗᵢ [Fact (1 ≤ p)] (f : lp E p) : (lpPiLpₗᵢ E 𝕜 f : ∀ i, E i) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.32b92236c3a1 from=seed src=0 shape=9af1b2e7 vocab=c6d6c6a1
+-/
 theorem coe_lpPiLpₗᵢ_symm [Fact (1 ≤ p)] (f : PiLp p E) :
     ((lpPiLpₗᵢ E 𝕜).symm f : ∀ i, E i) = f :=
   rfl
@@ -129,9 +150,15 @@ noncomputable def AddEquiv.lpBCF : lp (fun _ : α ↦ E) ∞ ≃+ (α →ᵇ E) 
   map_add' _f _g := rfl
 
 
+/--
+@isnad1 id=eq.0h3v.s10.6c1f13f5b4cc from=seed src=0 shape=112fbc37 vocab=a3bf5edc
+-/
 theorem coe_addEquiv_lpBCF (f : lp (fun _ : α ↦ E) ∞) : (AddEquiv.lpBCF f : α → E) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.fe1cea50682f from=seed src=0 shape=0ff39e13 vocab=c36d2042
+-/
 theorem coe_addEquiv_lpBCF_symm (f : α →ᵇ E) : (AddEquiv.lpBCF.symm f : α → E) = f :=
   rfl
 
@@ -146,9 +173,15 @@ noncomputable def lpBCFₗᵢ : lp (fun _ : α ↦ E) ∞ ≃ₗᵢ[𝕜] α →
 
 variable {𝕜 E}
 
+/--
+@isnad1 id=eq.0h4v.s10.62d63e6167f4 from=seed src=0 shape=8a0a0271 vocab=176a310a
+-/
 theorem coe_lpBCFₗᵢ (f : lp (fun _ : α ↦ E) ∞) : (lpBCFₗᵢ E 𝕜 f : α → E) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.c750e2da25cd from=seed src=0 shape=f5d0cabb vocab=ec01f21a
+-/
 theorem coe_lpBCFₗᵢ_symm (f : α →ᵇ E) : ((lpBCFₗᵢ E 𝕜).symm f : α → E) = f :=
   rfl
 
@@ -161,9 +194,15 @@ noncomputable def RingEquiv.lpBCF : lp (fun _ : α ↦ R) ∞ ≃+* (α →ᵇ R
   { @AddEquiv.lpBCF _ R _ _ _ with
     map_mul' := fun _f _g => rfl }
 
+/--
+@isnad1 id=eq.0h3v.s10.df4b9b5f5674 from=seed src=0 shape=112fbc37 vocab=5c217fc3
+-/
 theorem coe_ringEquiv_lpBCF (f : lp (fun _ : α ↦ R) ∞) : (RingEquiv.lpBCF f : α → R) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.43f0f604b64d from=seed src=0 shape=0ff39e13 vocab=ddb3d1ea
+-/
 theorem coe_ringEquiv_lpBCF_symm (f : α →ᵇ R) : (RingEquiv.lpBCF.symm f : α → R) = f :=
   rfl
 
@@ -179,9 +218,15 @@ noncomputable def AlgEquiv.lpBCF : lp (fun _ : α ↦ A) ∞ ≃ₐ[𝕜] α →
 
 variable {α 𝕜}
 
+/--
+@isnad1 id=eq.0h4v.s10.b36fd2eba636 from=seed src=0 shape=c947c38c vocab=ad70ae2e
+-/
 theorem coe_algEquiv_lpBCF (f : lp (fun _ : α ↦ A) ∞) : (AlgEquiv.lpBCF α 𝕜 f : α → A) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.96679f84e9b3 from=seed src=0 shape=f759dd69 vocab=bb777fd3
+-/
 theorem coe_algEquiv_lpBCF_symm (f : α →ᵇ A) : ((AlgEquiv.lpBCF α 𝕜).symm f : α → A) = f :=
   rfl
 

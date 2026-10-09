@@ -53,18 +53,28 @@ abbrev P_σ := degeneracies.multiplicativeClosure
 /-- Auxiliary predicate to express that a morphism is purely a composition of `δ i`s. -/
 abbrev P_δ := faces.multiplicativeClosure
 
+/--
+@isnad1 id=p.0h2v.s5.5615848d2ec4 from=seed src=0 shape=d4252d60 vocab=68a462b5
+-/
 lemma P_σ.σ {n : ℕ} (i : Fin (n + 1)) : P_σ (σ i) := .of _ (.σ i)
 
+/--
+@isnad1 id=p.0h2v.s5.c28f9296322a from=seed src=0 shape=5a06a673 vocab=bca471eb
+-/
 lemma P_δ.δ {n : ℕ} (i : Fin (n + 2)) : P_δ (δ i) := .of _ (.δ i)
 
-/-- All `P_σ` are split epis as composition of such. -/
+/-- All `P_σ` are split epis as composition of such.
+@isnad1 id=issplite.0h4v.s4.3f582171b532 from=seed src=0 shape=d03ea59f vocab=46fc1658
+-/
 lemma isSplitEpi_P_σ {x y : SimplexCategoryGenRel} {e : x ⟶ y} (he : P_σ e) : IsSplitEpi e := by
   induction he with
   | of x hx => cases hx; infer_instance
   | id => infer_instance
   | comp_of _ _ _ h => cases h; infer_instance
 
-/-- All `P_δ` are split monos as composition of such. -/
+/-- All `P_δ` are split monos as composition of such.
+@isnad1 id=issplitm.0h4v.s4.fdb264f2878f from=seed src=0 shape=d03ea59f vocab=fbb475fd
+-/
 lemma isSplitMono_P_δ {x y : SimplexCategoryGenRel} {m : x ⟶ y} (hm : P_δ m) :
     IsSplitMono m := by
   induction hm with
@@ -72,6 +82,9 @@ lemma isSplitMono_P_δ {x y : SimplexCategoryGenRel} {m : x ⟶ y} (hm : P_δ m)
   | id => infer_instance
   | comp_of _ _ _ h => cases h; infer_instance
 
+/--
+@isnad1 id=issplite.0h4v.s5.584ca35efba2 from=seed src=0 shape=10a7ac1e vocab=f1333625
+-/
 lemma isSplitEpi_toSimplexCategory_map_of_P_σ {x y : SimplexCategoryGenRel} {e : x ⟶ y}
     (he : P_σ e) : IsSplitEpi <| toSimplexCategory.map e := by
   constructor
@@ -79,6 +92,9 @@ lemma isSplitEpi_toSimplexCategory_map_of_P_σ {x y : SimplexCategoryGenRel} {e 
   apply SplitEpi.map
   exact isSplitEpi_P_σ he |>.exists_splitEpi.some
 
+/--
+@isnad1 id=issplitm.0h4v.s5.cf86f18af801 from=seed src=0 shape=10a7ac1e vocab=fb7456ab
+-/
 lemma isSplitMono_toSimplexCategory_map_of_P_δ {x y : SimplexCategoryGenRel} {m : x ⟶ y}
     (hm : P_δ m) : IsSplitMono <| toSimplexCategory.map m := by
   constructor
@@ -168,7 +184,9 @@ private lemma factor_P_δ_σ {n : ℕ} (i : Fin (n + 1)) {x : SimplexCategoryGen
           exact ⟨z, e, m ≫ δ j', he, P_δ.comp_mem _ _ hm (P_δ.δ j'),
             by simp [h'', reassoc_of% fac]⟩
 
-/-- Any morphism in `SimplexCategoryGenRel` can be decomposed as a `P_σ` followed by a `P_δ`. -/
+/-- Any morphism in `SimplexCategoryGenRel` can be decomposed as a `P_σ` followed by a `P_δ`.
+@isnad1 id=ex.0h3v.s6.1cef4a8cb5f2 from=seed src=0 shape=9a02dfa8 vocab=dbe4db71
+-/
 theorem exists_P_σ_P_δ_factorization {x y : SimplexCategoryGenRel} (f : x ⟶ y) :
     ∃ (z : SimplexCategoryGenRel) (e : x ⟶ z) (m : z ⟶ y)
         (_ : P_σ e) (_ : P_δ m), f = e ≫ m := by

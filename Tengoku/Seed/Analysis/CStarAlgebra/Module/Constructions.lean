@@ -89,6 +89,9 @@ instance : CStarModule A A where
     simpa [sq] using Eq.symm <| CStarRing.norm_self_mul_star
 
 open scoped InnerProductSpace in
+/--
+@isnad1 id=eq.0h3v.s7.0ece74fe44bd from=seed src=0 shape=6df926ff vocab=86c6cca0
+-/
 lemma inner_def (x y : A) : ⟪x, y⟫_A = y * star x := rfl
 
 end Self
@@ -107,11 +110,20 @@ variable [CStarModule A E] [CStarModule A F]
 noncomputable instance : Norm C⋆ᵐᵒᵈ(A, E × F) where
   norm x := √‖⟪x.1, x.1⟫_A + ⟪x.2, x.2⟫_A‖
 
+/--
+@isnad1 id=eq.0h4v.s8.90759b606d50 from=seed src=0 shape=7aaa3ec7 vocab=dc42b83a
+-/
 lemma prod_norm (x : C⋆ᵐᵒᵈ(A, E × F)) : ‖x‖ = √‖⟪x.1, x.1⟫_A + ⟪x.2, x.2⟫_A‖ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.1caf886c74d8 from=seed src=0 shape=91b60779 vocab=24253b76
+-/
 lemma prod_norm_sq (x : C⋆ᵐᵒᵈ(A, E × F)) : ‖x‖ ^ 2 = ‖⟪x.1, x.1⟫_A + ⟪x.2, x.2⟫_A‖ := by
   simp [prod_norm]
 
+/--
+@isnad1 id=le.0h4v.s7.638cb93335d1 from=seed src=0 shape=038093bc vocab=dd3c2fa6
+-/
 lemma prod_norm_le_norm_add (x : C⋆ᵐᵒᵈ(A, E × F)) : ‖x‖ ≤ ‖x.1‖ + ‖x.2‖ := by
   refine abs_le_of_sq_le_sq' ?_ (by positivity) |>.2
   calc ‖x‖ ^ 2 ≤ ‖⟪x.1, x.1⟫_A‖ + ‖⟪x.2, x.2⟫_A‖ := prod_norm_sq x ▸ norm_add_le _ _
@@ -138,8 +150,14 @@ noncomputable instance : CStarModule A C⋆ᵐᵒᵈ(A, E × F) where
   star_inner x y := by simp
   norm_eq_sqrt_norm_inner_self {x} := by with_reducible_and_instances rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.832a84e3e51d from=seed src=0 shape=e9c6e8c6 vocab=d9d54eff
+-/
 lemma prod_inner (x y : C⋆ᵐᵒᵈ(A, E × F)) : ⟪x, y⟫_A = ⟪x.1, y.1⟫_A + ⟪x.2, y.2⟫_A := rfl
 
+/--
+@isnad1 id=le.0h4v.s7.a5d6ed8d5b54 from=seed src=0 shape=7633ba1d vocab=cde2f67a
+-/
 lemma max_le_prod_norm (x : C⋆ᵐᵒᵈ(A, E × F)) : max ‖x.1‖ ‖x.2‖ ≤ ‖x‖ := by
   rw [prod_norm]
   simp only [norm_eq_sqrt_norm_inner_self (A := A) (E := E),
@@ -151,6 +169,9 @@ lemma max_le_prod_norm (x : C⋆ᵐᵒᵈ(A, E × F)) : max ‖x.1‖ ‖x.2‖ 
     all_goals
       aesop (add safe apply CStarModule.inner_self_nonneg)
 
+/--
+@isnad1 id=le.0h4v.s7.8bd247e46ea3 from=seed src=0 shape=cf211533 vocab=d45ab8bb
+-/
 lemma norm_equiv_le_norm_prod (x : C⋆ᵐᵒᵈ(A, E × F)) : ‖equiv A (E × F) x‖ ≤ ‖x‖ :=
   max_le_prod_norm x
 
@@ -216,13 +237,22 @@ variable [∀ i, CStarModule A (E i)]
 noncomputable instance : Norm C⋆ᵐᵒᵈ(A, Π i, E i) where
   norm x := √‖∑ i, ⟪x i, x i⟫_A‖
 
+/--
+@isnad1 id=eq.0h4v.s7.a8aa42cff1bf from=seed src=0 shape=a8eeecb4 vocab=e3a56ce9
+-/
 lemma pi_norm (x : C⋆ᵐᵒᵈ(A, Π i, E i)) : ‖x‖ = √‖∑ i, ⟪x i, x i⟫_A‖ := by
   with_reducible_and_instances rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.6cbdbfee9295 from=seed src=0 shape=20e2c254 vocab=7bf8938c
+-/
 lemma pi_norm_sq (x : C⋆ᵐᵒᵈ(A, Π i, E i)) : ‖x‖ ^ 2 = ‖∑ i, ⟪x i, x i⟫_A‖ := by
   simp [pi_norm]
 
 open Finset in
+/--
+@isnad1 id=le.0h4v.s7.36efc6b852ab from=seed src=0 shape=fa934016 vocab=3c34ebd2
+-/
 lemma pi_norm_le_sum_norm (x : C⋆ᵐᵒᵈ(A, Π i, E i)) : ‖x‖ ≤ ∑ i, ‖x i‖ := by
   refine abs_le_of_sq_le_sq' ?_ (by positivity) |>.2
   calc ‖x‖ ^ 2 ≤ ∑ i, ‖⟪x i, x i⟫_A‖ := pi_norm_sq x ▸ norm_sum_le _ _
@@ -246,8 +276,14 @@ noncomputable instance : CStarModule A C⋆ᵐᵒᵈ(A, Π i, E i) where
   star_inner x y := by simp
   norm_eq_sqrt_norm_inner_self {x} := by with_reducible_and_instances rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.1190ffb33bfa from=seed src=0 shape=7087dbf3 vocab=f32bc3fd
+-/
 lemma pi_inner (x y : C⋆ᵐᵒᵈ(A, Π i, E i)) : ⟪x, y⟫_A = ∑ i, ⟪x i, y i⟫_A := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.949177a1c222 from=seed src=0 shape=2baf40af vocab=a19365ac
+-/
 @[simp]
 lemma inner_single_left [DecidableEq ι] (x : C⋆ᵐᵒᵈ(A, Π i, E i)) {i : ι} (y : E i) :
     ⟪equiv _ _ |>.symm <| Pi.single i y, x⟫_A = ⟪y, x i⟫_A := by
@@ -255,6 +291,9 @@ lemma inner_single_left [DecidableEq ι] (x : C⋆ᵐᵒᵈ(A, Π i, E i)) {i : 
   rw [Finset.sum_eq_single i]
   all_goals simp_all
 
+/--
+@isnad1 id=eq.0h6v.s8.4e143d80e75e from=seed src=0 shape=7995f25e vocab=a19365ac
+-/
 @[simp]
 lemma inner_single_right [DecidableEq ι] (x : C⋆ᵐᵒᵈ(A, Π i, E i)) {i : ι} (y : E i) :
     ⟪x, equiv _ _ |>.symm <| Pi.single i y⟫_A = ⟪x i, y⟫_A := by
@@ -262,6 +301,9 @@ lemma inner_single_right [DecidableEq ι] (x : C⋆ᵐᵒᵈ(A, Π i, E i)) {i :
   rw [Finset.sum_eq_single i]
   all_goals simp_all
 
+/--
+@isnad1 id=eq.0h5v.s8.19bb7c42d9d8 from=seed src=0 shape=31b02ae9 vocab=938a8ee7
+-/
 @[simp]
 lemma norm_single [DecidableEq ι] (i : ι) (y : E i) :
     ‖equiv A _ |>.symm <| Pi.single i y‖ = ‖y‖ := by
@@ -269,6 +311,9 @@ lemma norm_single [DecidableEq ι] (i : ι) (y : E i) :
   rw [← sq_eq_sq₀ (by positivity) (by positivity)]
   simp [norm_sq_eq A]
 
+/--
+@isnad1 id=le.0h5v.s7.54234024690d from=seed src=0 shape=5a2a9240 vocab=9ec1f03b
+-/
 lemma norm_apply_le_norm (x : C⋆ᵐᵒᵈ(A, Π i, E i)) (i : ι) : ‖x i‖ ≤ ‖x‖ := by
   let _ : NormedAddCommGroup C⋆ᵐᵒᵈ(A, Π i, E i) := normedAddCommGroup A
   refine abs_le_of_sq_le_sq' ?_ (by positivity) |>.2
@@ -277,6 +322,9 @@ lemma norm_apply_le_norm (x : C⋆ᵐᵒᵈ(A, Π i, E i)) (i : ι) : ‖x i‖ 
   exact Finset.single_le_sum (fun j _ ↦ inner_self_nonneg (A := A) (x := x j)) (Finset.mem_univ i)
 
 open Finset in
+/--
+@isnad1 id=le.0h4v.s7.17a827789242 from=seed src=0 shape=e3cc5ef1 vocab=373b3d00
+-/
 lemma norm_equiv_le_norm_pi (x : C⋆ᵐᵒᵈ(A, Π i, E i)) : ‖equiv _ _ x‖ ≤ ‖x‖ := by
   let _ : NormedAddCommGroup C⋆ᵐᵒᵈ(A, Π i, E i) := normedAddCommGroup A
   rw [pi_norm_le_iff_of_nonneg (by positivity)]

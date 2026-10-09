@@ -63,27 +63,49 @@ variable {q : ℕ} {p : ℝ}
 is the Shannon entropy of a Bernoulli random variable with success probability `p`. -/
 @[pp_nodot] noncomputable def binEntropy (p : ℝ) : ℝ := p * log p⁻¹ + (1 - p) * log (1 - p)⁻¹
 
+/--
+@isnad1 id=eq.0h0v.s3.7646c513ca5c from=seed src=0 shape=3c26ae4f vocab=96cca6b8
+-/
 @[simp] lemma binEntropy_zero : binEntropy 0 = 0 := by simp [binEntropy]
 
+/--
+@isnad1 id=eq.0h0v.s3.5709956b94db from=seed src=0 shape=3c26ae4f vocab=96cca6b8
+-/
 @[simp] lemma binEntropy_one : binEntropy 1 = 0 := by simp [binEntropy]
 
+/--
+@isnad1 id=eq.0h0v.s4.9fbd318c30d1 from=seed src=0 shape=74ffadcc vocab=11982a43
+-/
 @[simp] lemma binEntropy_two_inv : binEntropy 2⁻¹ = log 2 := by norm_num [binEntropy]; simp; ring
 
+/--
+@isnad1 id=eq.0h1v.s4.8fb49c214fc1 from=seed src=0 shape=cf8a0677 vocab=e287ef8d
+-/
 lemma binEntropy_eq_negMulLog_add_negMulLog_one_sub (p : ℝ) :
     binEntropy p = negMulLog p + negMulLog (1 - p) := by simp [binEntropy, negMulLog, ← neg_mul]
 
+/--
+@isnad1 id=eq.0h0v.s4.a6acf0bf664d from=seed src=0 shape=acc941d3 vocab=e287ef8d
+-/
 lemma binEntropy_eq_negMulLog_add_negMulLog_one_sub' :
     binEntropy = fun p ↦ negMulLog p + negMulLog (1 - p) :=
   funext binEntropy_eq_negMulLog_add_negMulLog_one_sub
 
-/-- `binEntropy` is symmetric about 1/2. -/
+/-- `binEntropy` is symmetric about 1/2.
+@isnad1 id=eq.0h1v.s4.4f79ee3db893 from=seed src=0 shape=0d0922af vocab=2c90d007
+-/
 @[simp] lemma binEntropy_one_sub (p : ℝ) : binEntropy (1 - p) = binEntropy p := by
   simp [binEntropy, add_comm]
 
-/-- `binEntropy` is symmetric about 1/2. -/
+/-- `binEntropy` is symmetric about 1/2.
+@isnad1 id=eq.0h1v.s5.4e35c310688a from=seed src=0 shape=594dcbca vocab=2567ca7c
+-/
 lemma binEntropy_two_inv_add (p : ℝ) : binEntropy (2⁻¹ + p) = binEntropy (2⁻¹ - p) := by
   rw [← binEntropy_one_sub]; ring_nf
 
+/--
+@isnad1 id=lt.2h1v.s5.2ba0212e9e93 from=seed src=0 shape=05b24c01 vocab=6682b895
+-/
 lemma binEntropy_pos (hp₀ : 0 < p) (hp₁ : p < 1) : 0 < binEntropy p := by
   unfold binEntropy
   have : 0 < 1 - p := sub_pos.2 hp₁
@@ -91,6 +113,9 @@ lemma binEntropy_pos (hp₀ : 0 < p) (hp₁ : p < 1) : 0 < binEntropy p := by
   have : 0 < log (1 - p)⁻¹ := log_pos <| (one_lt_inv₀ ‹_›).2 (sub_lt_self _ hp₀)
   positivity
 
+/--
+@isnad1 id=le.2h1v.s5.d2aa91ffd699 from=seed src=0 shape=05b24c01 vocab=2ebdb9b1
+-/
 lemma binEntropy_nonneg (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) : 0 ≤ binEntropy p := by
   obtain rfl | hp₀ := hp₀.eq_or_lt
   · simp
@@ -98,7 +123,9 @@ lemma binEntropy_nonneg (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) : 0 ≤ binEntropy p
   · simp
   exact (binEntropy_pos hp₀ hp₁).le
 
-/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|`. -/
+/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|`.
+@isnad1 id=lt.1h1v.s4.6f8580e640e4 from=seed src=0 shape=5aedd577 vocab=6682b895
+-/
 lemma binEntropy_neg_of_neg (hp : p < 0) : binEntropy p < 0 := by
   rw [binEntropy, log_inv, log_inv]
   suffices -p * log p < (1 - p) * log (1 - p) by linarith
@@ -113,20 +140,29 @@ lemma binEntropy_neg_of_neg (hp : p < 0) : binEntropy p < 0 := by
       · nlinarith [log_neg_of_lt_zero hp h]
     nlinarith [(log_pos (by linarith) : 0 < log (1 - p))]
 
-/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|`. -/
+/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|`.
+@isnad1 id=le.1h1v.s4.8fbcaf074f27 from=seed src=0 shape=5aedd577 vocab=2ebdb9b1
+-/
 lemma binEntropy_nonpos_of_nonpos (hp : p ≤ 0) : binEntropy p ≤ 0 := by
   obtain rfl | hp := hp.eq_or_lt
   · simp
   · exact (binEntropy_neg_of_neg hp).le
 
-/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|` -/
+/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|`
+@isnad1 id=lt.1h1v.s4.eedab9f4c130 from=seed src=0 shape=3965f485 vocab=6682b895
+-/
 lemma binEntropy_neg_of_one_lt (hp : 1 < p) : binEntropy p < 0 := by
   rw [← binEntropy_one_sub]; exact binEntropy_neg_of_neg (sub_neg.2 hp)
 
-/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|` -/
+/-- Outside the usual range of `binEntropy`, it is negative. This is due to `log p = log |p|`
+@isnad1 id=le.1h1v.s4.6bad36a8407c from=seed src=0 shape=3965f485 vocab=2ebdb9b1
+-/
 lemma binEntropy_nonpos_of_one_le (hp : 1 ≤ p) : binEntropy p ≤ 0 := by
   rw [← binEntropy_one_sub]; exact binEntropy_nonpos_of_nonpos (sub_nonpos.2 hp)
 
+/--
+@isnad1 id=iff.0h1v.s5.e1d579cca0cb from=seed src=0 shape=49a5cb31 vocab=96cca6b8
+-/
 lemma binEntropy_eq_zero : binEntropy p = 0 ↔ p = 0 ∨ p = 1 := by
   refine ⟨fun h ↦ ?_, by rintro (rfl | rfl) <;> simp⟩
   contrapose! h
@@ -136,7 +172,9 @@ lemma binEntropy_eq_zero : binEntropy p = 0 ↔ p = 0 ∨ p = 1 := by
   · exact (binEntropy_neg_of_one_lt hp₁).ne
   · exact (binEntropy_pos hp₀ hp₁).ne'
 
-/-- For probability `p ≠ 0.5`, `binEntropy p < log 2`. -/
+/-- For probability `p ≠ 0.5`, `binEntropy p < log 2`.
+@isnad1 id=iff.0h1v.s4.a3a36a6365d5 from=seed src=0 shape=b875b800 vocab=cf61fc3a
+-/
 lemma binEntropy_lt_log_two : binEntropy p < log 2 ↔ p ≠ 2⁻¹ := by
   refine ⟨?_, fun h ↦ ?_⟩
   · rintro h rfl
@@ -155,19 +193,30 @@ lemma binEntropy_lt_log_two : binEntropy p < log 2 ↔ p ≠ 2⁻¹ := by
       (by simpa [eq_sub_iff_add_eq, ← two_mul, mul_comm, mul_eq_one_iff_eq_inv₀]) hp₀ hp₁ (by simp)
   _ = log 2 := by rw [mul_inv_cancel₀, mul_inv_cancel₀, one_add_one_eq_two] <;> positivity
 
+/--
+@isnad1 id=le.0h1v.s4.6a3fc99197f3 from=seed src=0 shape=63971c16 vocab=8e2554bb
+-/
 lemma binEntropy_le_log_two : binEntropy p ≤ log 2 := by
   obtain rfl | hp := eq_or_ne p 2⁻¹
   · simp
   · exact (binEntropy_lt_log_two.2 hp).le
 
+/--
+@isnad1 id=iff.0h1v.s4.1e1da63a2228 from=seed src=0 shape=0ae16285 vocab=11982a43
+-/
 lemma binEntropy_eq_log_two : binEntropy p = log 2 ↔ p = 2⁻¹ := by
   rw [← binEntropy_le_log_two.not_lt_iff_eq, binEntropy_lt_log_two, not_ne_iff]
 
 /-- Binary entropy is continuous everywhere.
-This is due to definition of `Real.log` for negative numbers. -/
+This is due to definition of `Real.log` for negative numbers.
+@isnad1 id=continuo.0h0v.s3.9cb485a14516 from=seed src=0 shape=e3d48bcb vocab=2b35d668
+-/
 @[fun_prop] lemma binEntropy_continuous : Continuous binEntropy := by
   rw [binEntropy_eq_negMulLog_add_negMulLog_one_sub']; fun_prop
 
+/--
+@isnad1 id=differen.2h1v.s6.55f8011880a2 from=seed src=0 shape=61a3256c vocab=43dc69e8
+-/
 @[fun_prop] lemma differentiableAt_binEntropy (hp₀ : p ≠ 0) (hp₁ : p ≠ 1) :
     DifferentiableAt ℝ binEntropy p := by
   rw [ne_comm, ← sub_ne_zero] at hp₁
@@ -175,6 +224,9 @@ This is due to definition of `Real.log` for negative numbers. -/
   simp only [log_inv, mul_neg]
   fun_prop
 
+/--
+@isnad1 id=iff.0h1v.s6.7498010af51d from=seed src=0 shape=39063338 vocab=43dc69e8
+-/
 lemma differentiableAt_binEntropy_iff_ne_zero_one :
     DifferentiableAt ℝ binEntropy p ↔ p ≠ 0 ∧ p ≠ 1 := by
   refine ⟨fun h ↦ ⟨?_, ?_⟩, fun h ↦ differentiableAt_binEntropy h.1 h.2⟩
@@ -187,7 +239,9 @@ lemma differentiableAt_binEntropy_iff_ne_zero_one :
     · fun_prop (disch := simp)
 
 /-- Binary entropy has derivative `log (1 - p) - log p`.
-It's not differentiable at `0` or `1` but the junk values of `deriv` and `log` coincide there. -/
+It's not differentiable at `0` or `1` but the junk values of `deriv` and `log` coincide there.
+@isnad1 id=eq.0h1v.s5.536e099040f2 from=seed src=0 shape=b37b18fe vocab=b038a28f
+-/
 lemma deriv_binEntropy (p : ℝ) : deriv binEntropy p = log (1 - p) - log p := by
   by_cases hp : p ≠ 0 ∧ p ≠ 1
   · obtain ⟨hp₀, hp₁⟩ := hp
@@ -213,14 +267,29 @@ The usual domain of definition is `p ∈ [0,1]`, i.e., input is a probability.
 This is a generalization of the binary entropy function `binEntropy`. -/
 @[pp_nodot] noncomputable def qaryEntropy (q : ℕ) (p : ℝ) : ℝ := p * log (q - 1 : ℤ) + binEntropy p
 
+/--
+@isnad1 id=eq.0h1v.s4.07384eb45a07 from=seed src=0 shape=9b4d794a vocab=163c1b21
+-/
 @[simp] lemma qaryEntropy_zero (q : ℕ) : qaryEntropy q 0 = 0 := by simp [qaryEntropy]
+/--
+@isnad1 id=eq.0h1v.s5.ffb8a648e2ab from=seed src=0 shape=c942d6e3 vocab=5e8d56a8
+-/
 @[simp] lemma qaryEntropy_one (q : ℕ) : qaryEntropy q 1 = log (q - 1 : ℤ) := by simp [qaryEntropy]
+/--
+@isnad1 id=eq.0h0v.s3.297c8418588d from=seed src=0 shape=69c5ee7d vocab=59787c42
+-/
 @[simp] lemma qaryEntropy_two : qaryEntropy 2 = binEntropy := by ext; simp [qaryEntropy]
 
+/--
+@isnad1 id=lt.2h2v.s5.567ad8e91d1c from=seed src=0 shape=a13d5172 vocab=7b1c2812
+-/
 lemma qaryEntropy_pos (hp₀ : 0 < p) (hp₁ : p < 1) : 0 < qaryEntropy q p := by
   unfold qaryEntropy
   positivity [binEntropy_pos hp₀ hp₁]
 
+/--
+@isnad1 id=le.2h2v.s5.4c68a0779cb6 from=seed src=0 shape=a13d5172 vocab=173f18a4
+-/
 lemma qaryEntropy_nonneg (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) : 0 ≤ qaryEntropy q p := by
   obtain rfl | hp₀ := hp₀.eq_or_lt
   · simp
@@ -228,24 +297,36 @@ lemma qaryEntropy_nonneg (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) : 0 ≤ qaryEntropy
   · simpa [qaryEntropy, -Int.cast_sub] using log_intCast_nonneg _
   exact (qaryEntropy_pos hp₀ hp₁).le
 
-/-- Outside the usual range of `qaryEntropy`, it is negative. This is due to `log p = log |p|`. -/
+/-- Outside the usual range of `qaryEntropy`, it is negative. This is due to `log p = log |p|`.
+@isnad1 id=lt.1h2v.s4.124a6d53e234 from=seed src=0 shape=82fa56c8 vocab=7b1c2812
+-/
 lemma qaryEntropy_neg_of_neg (hp : p < 0) : qaryEntropy q p < 0 :=
   add_neg_of_nonpos_of_neg (mul_nonpos_of_nonpos_of_nonneg hp.le (log_intCast_nonneg _))
     (binEntropy_neg_of_neg hp)
 
-/-- Outside the usual range of `qaryEntropy`, it is negative. This is due to `log p = log |p|`. -/
+/-- Outside the usual range of `qaryEntropy`, it is negative. This is due to `log p = log |p|`.
+@isnad1 id=le.1h2v.s4.b46630355e32 from=seed src=0 shape=82fa56c8 vocab=173f18a4
+-/
 lemma qaryEntropy_nonpos_of_nonpos (hp : p ≤ 0) : qaryEntropy q p ≤ 0 :=
   add_nonpos (mul_nonpos_of_nonpos_of_nonneg hp (log_intCast_nonneg _))
     (binEntropy_nonpos_of_nonpos hp)
 
 /-- The q-ary entropy function is continuous everywhere.
-This is due to definition of `Real.log` for negative numbers. -/
+This is due to definition of `Real.log` for negative numbers.
+@isnad1 id=continuo.0h1v.s4.83a19b8efddb from=seed src=0 shape=8735051e vocab=a9dea4a3
+-/
 @[fun_prop] lemma qaryEntropy_continuous : Continuous (qaryEntropy q) := by
   unfold qaryEntropy; fun_prop
 
+/--
+@isnad1 id=differen.2h2v.s6.e7a3f34d7cb7 from=seed src=0 shape=e17e45af vocab=919648ac
+-/
 @[fun_prop] lemma differentiableAt_qaryEntropy (hp₀ : p ≠ 0) (hp₁ : p ≠ 1) :
     DifferentiableAt ℝ (qaryEntropy q) p := by unfold qaryEntropy; fun_prop
 
+/--
+@isnad1 id=eq.2h2v.s6.07e8fff5e9fe from=seed src=0 shape=8cd0f052 vocab=40c51a78
+-/
 lemma deriv_qaryEntropy (hp₀ : p ≠ 0) (hp₁ : p ≠ 1) :
     deriv (qaryEntropy q) p = log (q - 1) + log (1 - p) - log p := by
   unfold qaryEntropy
@@ -254,11 +335,16 @@ lemma deriv_qaryEntropy (hp₀ : p ≠ 0) (hp₁ : p ≠ 1) :
       deriv_mul_const, deriv_id'', one_mul, deriv_binEntropy, add_sub_assoc]
   all_goals fun_prop
 
-/-- Binary entropy has derivative `log (1 - p) - log p`. -/
+/-- Binary entropy has derivative `log (1 - p) - log p`.
+@isnad1 id=hasderiv.2h1v.s6.f7a64f53a523 from=seed src=0 shape=d58602e9 vocab=547e32d5
+-/
 lemma hasDerivAt_binEntropy (hp₀ : p ≠ 0) (hp₁ : p ≠ 1) :
     HasDerivAt binEntropy (log (1 - p) - log p) p :=
   deriv_binEntropy _ ▸ (differentiableAt_binEntropy hp₀ hp₁).hasDerivAt
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.af801a112021 from=seed src=0 shape=cd6ffe93 vocab=067c902e
+-/
 lemma hasDerivAt_qaryEntropy (hp₀ : p ≠ 0) (hp₁ : p ≠ 1) :
     HasDerivAt (qaryEntropy q) (log (q - 1) + log (1 - p) - log p) p :=
   deriv_qaryEntropy hp₀ hp₁ ▸ (differentiableAt_qaryEntropy hp₀ hp₁).hasDerivAt
@@ -290,6 +376,9 @@ private lemma tendsto_log_one_sub_sub_log_nhdsLT_one_atBot :
     gcongr
     exact hx.1
 
+/--
+@isnad1 id=not.0h1v.s5.1298ad29033f from=seed src=0 shape=01e5a0f9 vocab=b14e35c9
+-/
 lemma not_continuousAt_deriv_qaryEntropy_one :
     ¬ContinuousAt (deriv (qaryEntropy q)) 1 := by
   have tendstoBot : Tendsto (fun p ↦ log (q - 1) + log (1 - p) - log p) (𝓝[<] 1) atBot := by
@@ -310,6 +399,9 @@ lemma not_continuousAt_deriv_qaryEntropy_one :
   · simp_all only [mem_Ioo, ne_eq]
     linarith [two_inv_lt_one (α := ℝ)]
 
+/--
+@isnad1 id=not.0h1v.s5.f1f7be1ddbc4 from=seed src=0 shape=01e5a0f9 vocab=b14e35c9
+-/
 lemma not_continuousAt_deriv_qaryEntropy_zero :
     ¬ContinuousAt (deriv (qaryEntropy q)) 0 := by
   have tendstoTop : Tendsto (fun p ↦ log (q - 1) + log (1 - p) - log p) (𝓝[>] 0) atTop := by
@@ -327,7 +419,9 @@ lemma not_continuousAt_deriv_qaryEntropy_zero :
   · simp_all only [mem_Ioo, ne_eq]
     linarith [two_inv_lt_one (α := ℝ)]
 
-/-- Second derivative of q-ary entropy. -/
+/-- Second derivative of q-ary entropy.
+@isnad1 id=eq.0h2v.s6.23a730ab03c7 from=seed src=0 shape=8e9bdd63 vocab=ac259a8a
+-/
 lemma deriv2_qaryEntropy :
     deriv^[2] (qaryEntropy q) p = -1 / (p * (1 - p)) := by
   simp only [Function.iterate_succ, Function.iterate_zero, Function.id_comp, Function.comp_apply]
@@ -358,12 +452,17 @@ lemma deriv2_qaryEntropy :
       cases this <;>
         simp_all [not_continuousAt_deriv_qaryEntropy_zero, not_continuousAt_deriv_qaryEntropy_one]
 
+/--
+@isnad1 id=eq.0h1v.s6.4290811d36fc from=seed src=0 shape=74df759c vocab=0d2022b8
+-/
 lemma deriv2_binEntropy : deriv^[2] binEntropy p = -1 / (p * (1 - p)) :=
   qaryEntropy_two ▸ deriv2_qaryEntropy
 
 /-! ### Strict monotonicity of entropy -/
 
-/-- Qary entropy is strictly increasing in the interval [0, 1 - q⁻¹]. -/
+/-- Qary entropy is strictly increasing in the interval [0, 1 - q⁻¹].
+@isnad1 id=strictmo.1h1v.s5.4d045129a5bf from=seed src=0 shape=255e20b1 vocab=51b8ca2e
+-/
 lemma qaryEntropy_strictMonoOn (qLe2 : 2 ≤ q) :
     StrictMonoOn (qaryEntropy q) (Icc 0 (1 - 1 / q)) := by
   intro p1 hp1 p2 hp2 p1le2
@@ -391,7 +490,9 @@ lemma qaryEntropy_strictMonoOn (qLe2 : 2 ≤ q) :
         linarith
     exact (ne_of_gt (lt_add_neg_iff_lt.mp this : p < 1)).symm
 
-/-- Qary entropy is strictly decreasing in the interval [1 - q⁻¹, 1]. -/
+/-- Qary entropy is strictly decreasing in the interval [1 - q⁻¹, 1].
+@isnad1 id=strictan.1h1v.s5.667e61c18524 from=seed src=0 shape=67d10548 vocab=93bb02c4
+-/
 lemma qaryEntropy_strictAntiOn (qLe2 : 2 ≤ q) :
     StrictAntiOn (qaryEntropy q) (Icc (1 - 1 / q) 1) := by
   intro p1 hp1 p2 hp2 p1le2
@@ -419,12 +520,16 @@ lemma qaryEntropy_strictAntiOn (qLe2 : 2 ≤ q) :
         nlinarith
     exact (ne_of_gt (lt_add_neg_iff_lt.mp zero_lt_1_sub_p : p < 1)).symm
 
-/-- Binary entropy is strictly increasing in interval [0, 1/2]. -/
+/-- Binary entropy is strictly increasing in interval [0, 1/2].
+@isnad1 id=strictmo.0h0v.s4.d25b697f8284 from=seed src=0 shape=a0c74c14 vocab=b839948e
+-/
 lemma binEntropy_strictMonoOn : StrictMonoOn binEntropy (Icc 0 2⁻¹) := by
   rw [show Icc (0 : ℝ) 2⁻¹ = Icc 0 (1 - 1 / 2) by norm_num, ← qaryEntropy_two]
   exact qaryEntropy_strictMonoOn (by rfl)
 
-/-- Binary entropy is strictly decreasing in interval [1/2, 1]. -/
+/-- Binary entropy is strictly decreasing in interval [1/2, 1].
+@isnad1 id=strictan.0h0v.s4.82cb56803e30 from=seed src=0 shape=c86032c6 vocab=293054ca
+-/
 lemma binEntropy_strictAntiOn : StrictAntiOn binEntropy (Icc 2⁻¹ 1) := by
   rw [show (Icc (2⁻¹ : ℝ) 1) = Icc (1 / 2) 1 by norm_num, ← qaryEntropy_two]
   convert! qaryEntropy_strictAntiOn (by rfl) using 1
@@ -432,6 +537,9 @@ lemma binEntropy_strictAntiOn : StrictAntiOn binEntropy (Icc 2⁻¹ 1) := by
 
 /-! ### Strict concavity of entropy -/
 
+/--
+@isnad1 id=strictco.0h1v.s5.723873020968 from=seed src=0 shape=16e19fb7 vocab=eb0c5da1
+-/
 lemma strictConcaveOn_qaryEntropy : StrictConcaveOn ℝ (Icc 0 1) (qaryEntropy q) := by
   apply strictConcaveOn_of_deriv2_neg (convex_Icc 0 1) qaryEntropy_continuous.continuousOn
   intro p hp
@@ -441,6 +549,9 @@ lemma strictConcaveOn_qaryEntropy : StrictConcaveOn ℝ (Icc 0 1) (qaryEntropy q
     · norm_num [show 0 < log 2 by positivity]
     · simp_all only [mul_pos_iff_of_pos_left, sub_pos]
 
+/--
+@isnad1 id=strictco.0h0v.s4.be05dfb9e54f from=seed src=0 shape=2b2e5daa vocab=4a669a2b
+-/
 lemma strictConcave_binEntropy : StrictConcaveOn ℝ (Icc 0 1) binEntropy :=
   qaryEntropy_two ▸ strictConcaveOn_qaryEntropy
 

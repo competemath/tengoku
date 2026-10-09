@@ -23,6 +23,9 @@ open AffineSpace Bornology Filter Topology
 variable
   {V P : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [MetricSpace P] [NormedAddTorsor V P]
 
+/--
+@isnad1 id=le.1h3v.s6.d99a728a6fb9 from=seed src=0 shape=c17b4a6b vocab=2ba83b1f
+-/
 theorem AffineSpace.asymptoticNhds_le_cobounded {v : V} (hv : v ≠ 0) :
     asymptoticNhds ℝ P v ≤ cobounded P := by
   have ⟨p⟩ : Nonempty P := inferInstance
@@ -35,6 +38,9 @@ theorem AffineSpace.asymptoticNhds_le_cobounded {v : V} (hv : v ≠ 0) :
     (tendsto_norm_atTop_atTop.comp tendsto_id.fst)
     tendsto_snd.norm
 
+/--
+@isnad1 id=le.1h3v.s6.500d871ccf3b from=seed src=0 shape=785bb9e6 vocab=b36e6676
+-/
 theorem asymptoticCone_subset_singleton_of_bounded {s : Set P} (hs : IsBounded s) :
     asymptoticCone ℝ s ⊆ {0} := by
   intro v h
@@ -43,6 +49,9 @@ theorem asymptoticCone_subset_singleton_of_bounded {s : Set P} (hs : IsBounded s
 
 variable [FiniteDimensional ℝ V]
 
+/--
+@isnad1 id=eq.0h2v.s7.476e1a0f12d7 from=seed src=0 shape=141ffe67 vocab=3666d05b
+-/
 theorem AffineSpace.cobounded_eq_iSup_sphere_asymptoticNhds :
     cobounded P = ⨆ v ∈ Metric.sphere 0 1, asymptoticNhds ℝ P v := by
   refine le_antisymm ?_ <| iSup₂_le fun _ h => asymptoticNhds_le_cobounded <|
@@ -64,7 +73,9 @@ theorem AffineSpace.cobounded_eq_iSup_sphere_asymptoticNhds :
   exact smul_subset_s y (h₁ y y_mem) <| Set.smul_mem_smul (Set.biInter_subset_of_mem y_mem hx.2) hy
 
 /-- In a finite dimensional normed affine space over `ℝ`, a set is bounded if and only if its
-asymptotic cone is trivial. -/
+asymptotic cone is trivial.
+@isnad1 id=iff.0h3v.s6.2fc8c28a8e07 from=seed src=0 shape=b8e16bbc vocab=268366d0
+-/
 theorem isBounded_iff_asymptoticCone_subset_singleton {s : Set P} :
     IsBounded s ↔ asymptoticCone ℝ s ⊆ {0} := by
   refine ⟨asymptoticCone_subset_singleton_of_bounded, fun h => ?_⟩
@@ -74,7 +85,9 @@ theorem isBounded_iff_asymptoticCone_subset_singleton {s : Set P} :
   exact Metric.ne_of_mem_sphere hv one_ne_zero (h h')
 
 /-- In a finite dimensional normed affine space over `ℝ`, a set is unbounded if and only if its
-asymptotic cone contains a nonzero vector. -/
+asymptotic cone contains a nonzero vector.
+@isnad1 id=iff.0h3v.s6.2fb95b3b8429 from=seed src=0 shape=dbc12503 vocab=b4fdccc2
+-/
 theorem not_bounded_iff_exists_ne_zero_mem_asymptoticCone {s : Set P} :
     ¬ IsBounded s ↔ ∃ v ≠ 0, v ∈ asymptoticCone ℝ s := by
   rw [isBounded_iff_asymptoticCone_subset_singleton, Set.subset_singleton_iff, not_forall]

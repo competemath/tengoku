@@ -58,7 +58,9 @@ protected abbrev starRing [NonUnitalNonAssocSemiring S] [StarRing S] :
   let := e.nonUnitalNonAssocSemiring
   apply e.injective.starRing <;> (intros; exact e.apply_symm_apply _)
 
-/-- Transfer `StarModule` across an `Equiv` -/
+/-- Transfer `StarModule` across an `Equiv`
+@isnad1 id=starmodu.0h4v.s5.26cd88d5b7a6 from=seed src=0 shape=c6e64b42 vocab=66beb508
+-/
 protected lemma starModule (𝕜 : Type*)
     [Star 𝕜] [Star S] [SMul 𝕜 S] [StarModule 𝕜 S] :
     letI := e.star

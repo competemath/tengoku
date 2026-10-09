@@ -55,6 +55,9 @@ def coboundaries : AddSubgroup (Cocycle K L n) where
     exact ⟨m, hm, -β, by aesop⟩
 
 variable {K L n} in
+/--
+@isnad1 id=iff.1h6v.s8.1e9aa2686ca1 from=seed src=0 shape=2452a959 vocab=9d59703c
+-/
 lemma mem_coboundaries_iff (α : Cocycle K L n) (m : ℤ) (hm : m + 1 = n) :
     α ∈ coboundaries K L n ↔ ∃ (β : Cochain K L m), δ m n β = α := by
   simp only [coboundaries, AddSubgroup.mem_mk, AddSubmonoid.mem_mk, AddSubsemigroup.mem_mk]
@@ -75,26 +78,44 @@ variable {K L n}
 def mk (x : Cocycle K L n) : CohomologyClass K L n :=
   Quotient.mk _ x
 
+/--
+@isnad1 id=surjecti.0h4v.s6.10b5fe8d298d from=seed src=0 shape=d37998a4 vocab=6bf97a07
+-/
 lemma mk_surjective : Function.Surjective (mk : Cocycle K L n → _) :=
   Quotient.mk_surjective
 
 variable (K L n) in
+/--
+@isnad1 id=eq.0h4v.s7.ecaa69f26d04 from=seed src=0 shape=0bff3c1f vocab=25e9edef
+-/
 @[simp]
 lemma mk_zero :
     mk (0 : Cocycle K L n) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.7d18dad7417e from=seed src=0 shape=b290fa5d vocab=decdef00
+-/
 @[simp]
 lemma mk_add (x y : Cocycle K L n) :
     mk (x + y) = mk x + mk y := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.b6a857d515fd from=seed src=0 shape=b290fa5d vocab=aed106ce
+-/
 @[simp]
 lemma mk_sub (x y : Cocycle K L n) :
     mk (x - y) = mk x - mk y := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.d71ad572d50b from=seed src=0 shape=568d845e vocab=2b2fda0e
+-/
 @[simp]
 lemma mk_neg (x : Cocycle K L n) :
     mk (-x) = -mk x := rfl
 
+/--
+@isnad1 id=iff.0h5v.s7.781232084b3f from=seed src=0 shape=e7945032 vocab=1e64cf1b
+-/
 lemma mk_eq_zero_iff (x : Cocycle K L n) :
     mk x = 0 ↔ x ∈ coboundaries K L n :=
   QuotientAddGroup.eq_zero_iff x
@@ -117,6 +138,9 @@ def descAddMonoidHom :
     CohomologyClass K L n →+ G :=
   QuotientAddGroup.lift _ f hf
 
+/--
+@isnad1 id=eq.1h7v.s9.825ae96215c1 from=seed src=0 shape=7d4eddc3 vocab=c4a32ca3
+-/
 @[simp]
 lemma descAddMonoidHom_cohomologyClass (x : Cocycle K L n) :
     descAddMonoidHom f hf (mk x) = f x := rfl
@@ -137,9 +161,15 @@ def toHom :
     exact ⟨(Cochain.equivHomotopy _ _).symm ⟨n.negOnePow • β.rightShift _ _ (by lia),
       by simp [Cochain.δ_rightShift _ _ _ _ _ _ (zero_add n), smul_smul]⟩⟩)
 
+/--
+@isnad1 id=eq.0h5v.s13.5fc252c0c2d3 from=seed src=0 shape=8954f63b vocab=37982387
+-/
 lemma toHom_mk (x : Cocycle K L n) :
     toHom (mk x) = (HomotopyCategory.quotient C _).map (Cocycle.equivHomShift.symm x) := rfl
 
+/--
+@isnad1 id=iff.0h5v.s13.cead22e6b229 from=seed src=0 shape=fd73d366 vocab=48f88772
+-/
 lemma toHom_mk_eq_zero_iff (x : Cocycle K L n) :
     toHom (mk x) = 0 ↔ x ∈ coboundaries K L n := by
   refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
@@ -155,6 +185,9 @@ lemma toHom_mk_eq_zero_iff (x : Cocycle K L n) :
     rw [h, map_zero]
 
 variable (K L n) in
+/--
+@isnad1 id=bijectiv.0h4v.s13.12ecfd2d3225 from=seed src=0 shape=6d2aa381 vocab=b1706108
+-/
 lemma toHom_bijective : Function.Bijective (toHom : CohomologyClass K L n → _) := by
   refine ⟨fun x y h ↦ ?_, fun f ↦ ?_⟩
   · obtain ⟨x, rfl⟩ := x.mk_surjective

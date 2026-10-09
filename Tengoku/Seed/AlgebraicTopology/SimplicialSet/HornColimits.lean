@@ -31,6 +31,9 @@ open CategoryTheory Simplicial Opposite Limits
 
 namespace horn₂₀
 
+/--
+@isnad1 id=bicartsq.0h0v.s9.7462a5bdb5f6 from=seed src=0 shape=5e0dcbc7 vocab=554f41c7
+-/
 lemma sq : Subcomplex.BicartSq.{u} (stdSimplex.face {0}) (stdSimplex.face {0, 1})
     (stdSimplex.face {0, 2}) Λ[2, 0] where
   sup_eq := by
@@ -52,6 +55,9 @@ abbrev ι₀₁ : Δ[1] ⟶ Λ[2, 0] := horn.ι.{u} 0 2 (by simp)
 /-- The inclusion `Δ[1] ⟶ Λ[2, 0]` which avoids `1`. -/
 abbrev ι₀₂ : Δ[1] ⟶ Λ[2, 0] := horn.ι.{u} 0 1 (by simp)
 
+/--
+@isnad1 id=ispushou.0h0v.s7.23cfeab87072 from=seed src=0 shape=6a76d092 vocab=e070a042
+-/
 lemma isPushout :
     IsPushout (stdSimplex.{u}.δ (1 : Fin 2))
       (stdSimplex.{u}.δ (1 : Fin 2)) ι₀₁ ι₀₂ := by
@@ -64,6 +70,9 @@ end horn₂₀
 
 namespace horn₂₁
 
+/--
+@isnad1 id=bicartsq.0h0v.s9.54a4071e2287 from=seed src=0 shape=5e0dcbc7 vocab=554f41c7
+-/
 lemma sq : Subcomplex.BicartSq.{u} (stdSimplex.face {1}) (stdSimplex.face {0, 1})
     (stdSimplex.face {1, 2}) Λ[2, 1] where
   sup_eq := by
@@ -85,6 +94,9 @@ abbrev ι₀₁ : Δ[1] ⟶ Λ[2, 1] := horn.ι.{u} 1 2 (by simp)
 /-- The inclusion `Δ[1] ⟶ Λ[2, 1]` which avoids `0`. -/
 abbrev ι₁₂ : Δ[1] ⟶ Λ[2, 1] := horn.ι.{u} 1 0 (by simp)
 
+/--
+@isnad1 id=ispushou.0h0v.s7.55a215fb7e83 from=seed src=0 shape=6a76d092 vocab=e861ddf4
+-/
 lemma isPushout :
     IsPushout (stdSimplex.{u}.δ (0 : Fin 2))
       (stdSimplex.{u}.δ (1 : Fin 2)) ι₀₁ ι₁₂ := by
@@ -97,6 +109,9 @@ end horn₂₁
 
 namespace horn₂₂
 
+/--
+@isnad1 id=bicartsq.0h0v.s9.b8ee1d644238 from=seed src=0 shape=5e0dcbc7 vocab=554f41c7
+-/
 lemma sq : Subcomplex.BicartSq.{u} (stdSimplex.face {2}) (stdSimplex.face {0, 2})
     (stdSimplex.face {1, 2}) Λ[2, 2] where
   sup_eq := by
@@ -118,6 +133,9 @@ abbrev ι₀₂ : Δ[1] ⟶ Λ[2, 2] := horn.ι.{u} 2 1 (by simp)
 /-- The inclusion `Δ[1] ⟶ Λ[2, 2]` which avoids `0`. -/
 abbrev ι₁₂ : Δ[1] ⟶ Λ[2, 2] := horn.ι.{u} 2 0 (by simp)
 
+/--
+@isnad1 id=ispushou.0h0v.s7.9ef8390415c6 from=seed src=0 shape=6a76d092 vocab=1231d8d8
+-/
 lemma isPushout :
     IsPushout (stdSimplex.{u}.δ (0 : Fin 2))
       (stdSimplex.{u}.δ (0 : Fin 2)) ι₀₂ ι₁₂ := by
@@ -134,7 +152,9 @@ variable {n : ℕ}
 
 /-- The multicoequalizer diagram which expresses `Λ[n, i]` as a gluing
 of all `1`-codimensional faces of the standard simplex but one
-along suitable `2`-codimensional faces. -/
+along suitable `2`-codimensional faces.
+@isnad1 id=multicoe.0h2v.s10.437fbc921e4f from=seed src=0 shape=7856d932 vocab=42ea72cf
+-/
 lemma multicoequalizerDiagram (i : Fin (n + 1)) :
     Subcomplex.MulticoequalizerDiagram Λ[n, i]
       (ι := ({i}ᶜ : Set (Fin (n + 1)))) (fun j ↦ stdSimplex.face {j.1}ᶜ)
@@ -155,6 +175,9 @@ noncomputable def isColimit (i : Fin (n + 1)) :
 variable {X : SSet.{u}}
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h5v.s8.d86016cef70e from=seed src=0 shape=a9cb3dae vocab=008dc90a
+-/
 lemma hom_ext' {i : Fin (n + 2)} {f g : (Λ[n + 1, i] : SSet) ⟶ X}
     (h : ∀ (j : Fin (n + 2)) (hj : j ≠ i), horn.ι i j hj ≫ f = horn.ι i j hj ≫ g) :
     f = g := by
@@ -172,10 +195,16 @@ protected def IsCompatible
       stdSimplex.δ (k.pred (Fin.ne_zero_of_lt hjk)) ≫ f j hj =
       stdSimplex.δ (j.castPred (Fin.ne_last_of_lt hjk)) ≫ f k hk
 
+/--
+@isnad1 id=iff.0h3v.s6.e5596c4be22c from=seed src=0 shape=b5a24384 vocab=5c410cce
+-/
 @[simp]
 lemma isCompatible_zero_iff_true {i : Fin 2} (f : ∀ (j : Fin 2) (_ : j ≠ i), Δ[0] ⟶ X) :
     horn.IsCompatible f ↔ True := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s8.0df9ea4c7dcd from=seed src=0 shape=80a981d1 vocab=1ebf83f8
+-/
 @[simp]
 lemma isCompatible_iff
     {i : Fin (n + 3)} (f : ∀ (j : Fin (n + 3)) (_ : j ≠ i), Δ[n + 1] ⟶ X) :
@@ -186,6 +215,9 @@ lemma isCompatible_iff
 
 namespace IsCompatible
 
+/--
+@isnad1 id=iscompat.0h4v.s7.8344ce0cf7e4 from=seed src=0 shape=78a94bff vocab=6bd76b61
+-/
 lemma of_hom {i : Fin (n + 2)} (g : (Λ[n + 1, i] : SSet) ⟶ X) :
     horn.IsCompatible (fun j hj ↦ horn.ι i j hj ≫ g) := by
   obtain _ | n := n
@@ -198,6 +230,9 @@ lemma of_hom {i : Fin (n + 2)} (g : (Λ[n + 1, i] : SSet) ⟶ X) :
     rw [← cancel_mono (Subcomplex.ι _), Category.assoc, Category.assoc, ι_ι, ι_ι,
       Fin.pred_succ, Fin.castPred_castSucc, stdSimplex.δ_comp_δ (by grind)]
 
+/--
+@isnad1 id=eq.1h9v.s8.47b79b917371 from=seed src=0 shape=7d843981 vocab=920c2e90
+-/
 @[reassoc]
 lemma δ_pred_comp {i : Fin (n + 3)} {f : ∀ (j : Fin (n + 3)) (_ : j ≠ i), (Δ[n + 1] : SSet) ⟶ X}
     (hf : horn.IsCompatible f) (j k : Fin (n + 3))
@@ -227,6 +262,9 @@ private def multicofork (hf : horn.IsCompatible f) :
         hf.δ_pred_comp ..])
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=ex.1h4v.s8.c339bf643e03 from=seed src=0 shape=e5363bf4 vocab=6bd76b61
+-/
 lemma exists_desc (hf : horn.IsCompatible f) :
     ∃ (φ : (Λ[n + 1, i] : SSet) ⟶ X),
       ∀ (j : Fin (n + 2)) (hj : j ≠ i), horn.ι i j hj ≫ φ = f j hj :=
@@ -240,6 +278,9 @@ this is the glued morphism `Λ[n + 1, i] ⟶ X`. -/
 noncomputable def desc (hf : horn.IsCompatible f) : (Λ[n + 1, i] : SSet) ⟶ X :=
   hf.exists_desc.choose
 
+/--
+@isnad1 id=eq.2h5v.s7.b3248e23863c from=seed src=0 shape=f61851a3 vocab=0ab8c396
+-/
 @[reassoc (attr := simp)]
 lemma ι_desc (hf : horn.IsCompatible f) (j : Fin (n + 2)) (hj : j ≠ i) :
     horn.ι i j hj ≫ hf.desc = f j hj :=
@@ -291,16 +332,25 @@ def desc.multicofork :
           ← Category.assoc]
         convert! h₂₃ <;> decide)
 
+/--
+@isnad1 id=eq.3h4v.s13.92c043de416b from=seed src=0 shape=4262ba17 vocab=4b0e35f4
+-/
 @[simp, reassoc]
 lemma desc.multicofork_π_zero :
   (desc.multicofork f₀ f₂ f₃ h₁₂ h₁₃ h₂₃).π ⟨0, by simp⟩ =
     (stdSimplex.faceSingletonComplIso 0).inv ≫ f₀ := rfl
 
+/--
+@isnad1 id=eq.3h4v.s13.85e15ac1a361 from=seed src=0 shape=e799d618 vocab=f7f4e0dc
+-/
 @[simp, reassoc]
 lemma desc.multicofork_π_two :
   (desc.multicofork f₀ f₂ f₃ h₁₂ h₁₃ h₂₃).π ⟨2, by simp⟩ =
     (stdSimplex.faceSingletonComplIso 2).inv ≫ f₂ := rfl
 
+/--
+@isnad1 id=eq.3h4v.s13.fb24c8a6eb14 from=seed src=0 shape=9deed038 vocab=2e474d36
+-/
 @[simp, reassoc]
 lemma desc.multicofork_π_three :
   (desc.multicofork f₀ f₂ f₃ h₁₂ h₁₃ h₂₃).π ⟨3, by simp⟩ =
@@ -311,18 +361,27 @@ morphisms `Δ[2] ⟶ X`. -/
 noncomputable def desc : (Λ[3, 1] : SSet) ⟶ X :=
   (horn.isColimit (n := 3) 1).desc (desc.multicofork f₀ f₂ f₃ h₁₂ h₁₃ h₂₃)
 
+/--
+@isnad1 id=eq.3h4v.s10.f520b347ab0f from=seed src=0 shape=d21fea58 vocab=e53149b5
+-/
 @[reassoc (attr := simp)]
 lemma ι₀_desc : ι₀ ≫ desc f₀ f₂ f₃ h₁₂ h₁₃ h₂₃ = f₀ := by
   rw [← cancel_epi (stdSimplex.faceSingletonComplIso.{u} 0).inv, ← Category.assoc,
     horn.faceSingletonComplIso_inv_ι]
   exact (horn.isColimit 1).fac _ (.right ⟨0, by simp⟩)
 
+/--
+@isnad1 id=eq.3h4v.s10.d6d11db1e9f6 from=seed src=0 shape=9918685a vocab=b56f72e3
+-/
 @[reassoc (attr := simp)]
 lemma ι₂_desc : ι₂ ≫ desc f₀ f₂ f₃ h₁₂ h₁₃ h₂₃ = f₂ := by
   rw [← cancel_epi (stdSimplex.faceSingletonComplIso.{u} 2).inv, ← Category.assoc,
     horn.faceSingletonComplIso_inv_ι]
   exact (horn.isColimit 1).fac _ (.right ⟨2, by simp⟩)
 
+/--
+@isnad1 id=eq.3h4v.s10.98982ee46273 from=seed src=0 shape=64175b54 vocab=fa4e4ed1
+-/
 @[reassoc (attr := simp)]
 lemma ι₃_desc : ι₃ ≫ desc f₀ f₂ f₃ h₁₂ h₁₃ h₂₃ = f₃ := by
   rw [← cancel_epi (stdSimplex.faceSingletonComplIso.{u} 3).inv, ← Category.assoc,
@@ -330,6 +389,9 @@ lemma ι₃_desc : ι₃ ≫ desc f₀ f₂ f₃ h₁₂ h₁₃ h₂₃ = f₃ 
   exact (horn.isColimit 1).fac _ (.right ⟨3, by simp⟩)
 
 include h₁₂ h₁₃ h₂₃ in
+/--
+@isnad1 id=ex.3h4v.s10.a3bf9f8413af from=seed src=0 shape=da369b3b vocab=c2cbd898
+-/
 lemma exists_desc : ∃ (φ : (Λ[3, 1] : SSet) ⟶ X),
     ι₀ ≫ φ = f₀ ∧ ι₂ ≫ φ = f₂ ∧ ι₃ ≫ φ = f₃ :=
   ⟨desc f₀ f₂ f₃ h₁₂ h₁₃ h₂₃, by simp⟩
@@ -379,16 +441,25 @@ def desc.multicofork :
           ← Category.assoc]
         convert! h₀₂ <;> decide)
 
+/--
+@isnad1 id=eq.3h4v.s13.ff6f441c2036 from=seed src=0 shape=de46ac3a vocab=0bb3a341
+-/
 @[simp, reassoc]
 lemma desc.multicofork_π_zero :
   (desc.multicofork f₀ f₁ f₃ h₀₂ h₁₂ h₂₃).π ⟨0, by simp⟩ =
     (stdSimplex.faceSingletonComplIso 0).inv ≫ f₀ := rfl
 
+/--
+@isnad1 id=eq.3h4v.s13.be2494e3bdb7 from=seed src=0 shape=d6aefea3 vocab=f40dd7dd
+-/
 @[simp, reassoc]
 lemma desc.multicofork_π_one :
   (desc.multicofork f₀ f₁ f₃ h₀₂ h₁₂ h₂₃).π ⟨1, by simp⟩ =
     (stdSimplex.faceSingletonComplIso 1).inv ≫ f₁ := rfl
 
+/--
+@isnad1 id=eq.3h4v.s13.2a9bc9802cfc from=seed src=0 shape=824aa331 vocab=15ea2529
+-/
 @[simp, reassoc]
 lemma desc.multicofork_π_three :
   (desc.multicofork f₀ f₁ f₃ h₀₂ h₁₂ h₂₃).π ⟨3, by simp⟩ =
@@ -399,18 +470,27 @@ morphisms `Δ[2] ⟶ X`. -/
 noncomputable def desc : (Λ[3, 2] : SSet) ⟶ X :=
   (horn.isColimit (n := 3) 2).desc (desc.multicofork f₀ f₁ f₃ h₀₂ h₁₂ h₂₃)
 
+/--
+@isnad1 id=eq.3h4v.s10.db3700862e8b from=seed src=0 shape=b56bf2ab vocab=872fec14
+-/
 @[reassoc (attr := simp)]
 lemma ι₀_desc : ι₀ ≫ desc f₀ f₁ f₃ h₀₂ h₁₂ h₂₃ = f₀ := by
   rw [← cancel_epi (stdSimplex.faceSingletonComplIso.{u} 0).inv, ← Category.assoc,
     horn.faceSingletonComplIso_inv_ι]
   exact (horn.isColimit 2).fac _ (.right ⟨0, by simp⟩)
 
+/--
+@isnad1 id=eq.3h4v.s10.1a9cdd44c690 from=seed src=0 shape=f487619a vocab=fc0b9233
+-/
 @[reassoc (attr := simp)]
 lemma ι₁_desc : ι₁ ≫ desc f₀ f₁ f₃ h₀₂ h₁₂ h₂₃ = f₁ := by
   rw [← cancel_epi (stdSimplex.faceSingletonComplIso.{u} 1).inv, ← Category.assoc,
     horn.faceSingletonComplIso_inv_ι]
   exact (horn.isColimit 2).fac _ (.right ⟨1, by simp⟩)
 
+/--
+@isnad1 id=eq.3h4v.s10.7715d05415aa from=seed src=0 shape=5ec940f8 vocab=bed54fb2
+-/
 @[reassoc (attr := simp)]
 lemma ι₃_desc : ι₃ ≫ desc f₀ f₁ f₃ h₀₂ h₁₂ h₂₃ = f₃ := by
   rw [← cancel_epi (stdSimplex.faceSingletonComplIso.{u} 3).inv, ← Category.assoc,
@@ -418,6 +498,9 @@ lemma ι₃_desc : ι₃ ≫ desc f₀ f₁ f₃ h₀₂ h₁₂ h₂₃ = f₃ 
   exact (horn.isColimit 2).fac _ (.right ⟨3, by simp⟩)
 
 include h₀₂ h₁₂ h₂₃ in
+/--
+@isnad1 id=ex.3h4v.s10.43e666d2a27d from=seed src=0 shape=40392c3b vocab=901238ec
+-/
 lemma exists_desc : ∃ (φ : (Λ[3, 2] : SSet) ⟶ X),
     ι₀ ≫ φ = f₀ ∧ ι₁ ≫ φ = f₁ ∧ ι₃ ≫ φ = f₃ :=
   ⟨desc f₀ f₁ f₃ h₀₂ h₁₂ h₂₃, by simp⟩

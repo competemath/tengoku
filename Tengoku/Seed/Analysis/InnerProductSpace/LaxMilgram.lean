@@ -51,6 +51,9 @@ variable {B : V →L[ℝ] V →L[ℝ] ℝ}
 
 local postfix:1024 "♯" => continuousLinearMapOfBilin (𝕜 := ℝ)
 
+/--
+@isnad1 id=ex.1h2v.s9.88cd3b51e318 from=seed src=0 shape=ffca4760 vocab=679f1a36
+-/
 theorem bounded_below (coercive : IsCoercive B) : ∃ C, 0 < C ∧ ∀ v, C * ‖v‖ ≤ ‖B♯ v‖ := by
   rcases coercive with ⟨C, C_ge_0, coercivity⟩
   refine ⟨C, C_ge_0, ?_⟩
@@ -64,6 +67,9 @@ theorem bounded_below (coercive : IsCoercive B) : ∃ C, 0 < C ∧ ∀ v, C * �
   · have : v = 0 := by simpa using h
     simp [this]
 
+/--
+@isnad1 id=ex.1h2v.s9.f2a4f3015613 from=seed src=0 shape=a068c01f vocab=f3a716e8
+-/
 theorem antilipschitz (coercive : IsCoercive B) : ∃ C : ℝ≥0, 0 < C ∧ AntilipschitzWith C B♯ := by
   rcases coercive.bounded_below with ⟨C, C_pos, below_bound⟩
   refine ⟨C⁻¹.toNNReal, Real.toNNReal_pos.mpr (inv_pos.mpr C_pos), ?_⟩
@@ -72,15 +78,24 @@ theorem antilipschitz (coercive : IsCoercive B) : ∃ C : ℝ≥0, 0 < C ∧ Ant
     inv_mul_le_iff₀ (inv_pos.mpr C_pos)]
   simpa using below_bound
 
+/--
+@isnad1 id=eq.1h2v.s9.1d2039a184a8 from=seed src=0 shape=bb930099 vocab=443c4567
+-/
 theorem ker_eq_bot (coercive : IsCoercive B) : B♯.ker = ⊥ := by
   rw [LinearMap.ker_eq_bot]
   rcases coercive.antilipschitz with ⟨_, _, antilipschitz⟩
   exact antilipschitz.injective
 
+/--
+@isnad1 id=isclosed.1h2v.s9.9a29db72f172 from=seed src=0 shape=d3b07ebe vocab=f65b3e66
+-/
 theorem isClosed_range (coercive : IsCoercive B) : IsClosed (B♯.range : Set V) := by
   rcases coercive.antilipschitz with ⟨_, _, antilipschitz⟩
   exact antilipschitz.isClosed_range B♯.uniformContinuous
 
+/--
+@isnad1 id=eq.1h2v.s9.519034e38cd1 from=seed src=0 shape=bb930099 vocab=bb321b60
+-/
 theorem range_eq_top (coercive : IsCoercive B) : B♯.range = ⊤ := by
   have := coercive.isClosed_range.completeSpace_coe
   rw [← B♯.range.orthogonal_orthogonal]
@@ -106,11 +121,17 @@ The Lax-Milgram theorem states that this is a continuous equivalence.
 def continuousLinearEquivOfBilin (coercive : IsCoercive B) : V ≃L[ℝ] V :=
   ContinuousLinearEquiv.ofBijective B♯ coercive.ker_eq_bot coercive.range_eq_top
 
+/--
+@isnad1 id=eq.1h4v.s10.69806c62f7a1 from=seed src=0 shape=cd03f0b0 vocab=d115eeaf
+-/
 @[simp]
 theorem continuousLinearEquivOfBilin_apply (coercive : IsCoercive B) (v w : V) :
     ⟪coercive.continuousLinearEquivOfBilin v, w⟫_ℝ = B v w :=
   continuousLinearMapOfBilin_apply B v w
 
+/--
+@isnad1 id=eq.2h4v.s10.a85d17d5e716 from=seed src=0 shape=fdc930e5 vocab=d115eeaf
+-/
 theorem unique_continuousLinearEquivOfBilin (coercive : IsCoercive B) {v f : V}
     (is_lax_milgram : ∀ w, ⟪f, w⟫_ℝ = B v w) : f = coercive.continuousLinearEquivOfBilin v :=
   unique_continuousLinearMapOfBilin B is_lax_milgram

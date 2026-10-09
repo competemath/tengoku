@@ -32,10 +32,16 @@ variable {R : Type*}
 variable [CommRing R] [Algebra ℚ R]
 variable [UniformSpace R] [IsTopologicalRing R] [T2Space R]
 
+/--
+@isnad1 id=eq.0h1v.s7.e736435ce42d from=seed src=0 shape=e47ffad3 vocab=4648ed50
+-/
 @[simp]
 theorem exp_eps : exp (eps : DualNumber R) = 1 + eps :=
   exp_inr _
 
+/--
+@isnad1 id=eq.0h2v.s7.11278a158972 from=seed src=0 shape=36efa9bb vocab=96612b42
+-/
 @[simp]
 theorem exp_smul_eps (r : R) : exp (r • eps : DualNumber R) = 1 + r • eps := by
   rw [eps, ← inr_smul, exp_inr]

@@ -39,6 +39,9 @@ which consists of boundary inclusions `∂Δ[n].ι : ∂Δ[n] ⟶ Δ[n]`. -/
 def I : MorphismProperty SSet.{u} :=
   .ofHoms (fun n ↦ ∂Δ[n].ι)
 
+/--
+@isnad1 id=i.0h1v.s5.49787260fd22 from=seed src=0 shape=ae7b9e34 vocab=09859223
+-/
 lemma boundary_ι_mem_I (n : ℕ) :
     I (boundary.{u} n).ι := by constructor
 
@@ -47,6 +50,9 @@ which consists of horn inclusions `Λ[n, i].ι : Λ[n, i] ⟶ Δ[n]` (for positi
 def J : MorphismProperty SSet.{u} :=
   ⨆ n, .ofHoms (fun (i : Fin (n + 2)) ↦ Λ[n + 1, i].ι)
 
+/--
+@isnad1 id=j.0h2v.s6.d56d55cf3133 from=seed src=0 shape=0647724a vocab=6c648538
+-/
 lemma horn_ι_mem_J (n : ℕ) [NeZero n] (i : Fin (n + 1)) :
     J (horn.{u} n i).ι := by
   obtain _ | n := n
@@ -54,10 +60,16 @@ lemma horn_ι_mem_J (n : ℕ) [NeZero n] (i : Fin (n + 1)) :
   · simp only [J, iSup_iff]
     exact ⟨n, ⟨i⟩⟩
 
+/--
+@isnad1 id=le.0h0v.s6.4330a8f783b5 from=seed src=0 shape=228d301a vocab=55553191
+-/
 lemma I_le_monomorphisms : I.{u} ≤ monomorphisms _ := by
   rintro _ _ _ ⟨n⟩
   exact monomorphisms.infer_property _
 
+/--
+@isnad1 id=le.0h0v.s6.5256374a8915 from=seed src=0 shape=228d301a vocab=f5c40c62
+-/
 lemma J_le_monomorphisms : J.{u} ≤ monomorphisms _ := by
   rintro _ _ _ h
   simp only [J, iSup_iff] at h
@@ -75,24 +87,42 @@ with respect to horn inclusions. -/
 scoped instance : CategoryWithFibrations SSet.{u} where
   fibrations := J.rlp
 
+/--
+@isnad1 id=eq.0h0v.s5.09cfd0beb95a from=seed src=0 shape=7ca40ed2 vocab=8e3980fd
+-/
 lemma cofibrations_eq : cofibrations SSet.{u} = monomorphisms _ := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.dbcdc61cc9eb from=seed src=0 shape=b3361a86 vocab=f8a7a56f
+-/
 lemma fibrations_eq : fibrations SSet.{u} = J.rlp := rfl
 
 section
 
 variable {X Y : SSet.{u}} (f : X ⟶ Y)
 
+/--
+@isnad1 id=iff.0h3v.s5.8a929e227f4c from=seed src=0 shape=dc73cac9 vocab=d1d218f9
+-/
 lemma cofibration_iff : Cofibration f ↔ Mono f := by
   rw [HomotopicalAlgebra.cofibration_iff]
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.86ca3f8775af from=seed src=0 shape=3092cd13 vocab=951d8cb7
+-/
 lemma fibration_iff : Fibration f ↔ J.rlp f := by
   rw [HomotopicalAlgebra.fibration_iff]
   rfl
 
+/--
+@isnad1 id=mono.0h3v.s5.3f0f6d4194b7 from=seed src=0 shape=418ef610 vocab=d1d218f9
+-/
 instance mono_of_cofibration [Cofibration f] : Mono f := by rwa [← cofibration_iff]
 
+/--
+@isnad1 id=cofibrat.0h3v.s5.ea058acb8ebb from=seed src=0 shape=418ef610 vocab=d1d218f9
+-/
 lemma cofibration_of_mono [Mono f] : Cofibration f := by rwa [cofibration_iff]
 
 instance [hf : Fibration f] {n : ℕ} (i : Fin (n + 2)) :
@@ -125,6 +155,9 @@ end
 end modelCategoryQuillen
 
 open modelCategoryQuillen in
+/--
+@isnad1 id=eq.0h0v.s5.55ea1f2ddc6a from=seed src=0 shape=9af81447 vocab=99d726b6
+-/
 lemma rlp_monomorphisms :
     (MorphismProperty.monomorphisms SSet.{u}).rlp = I.rlp :=
   le_antisymm (antitone_rlp I_le_monomorphisms)
@@ -143,6 +176,9 @@ variable {X : SSet.{u}} {n : ℕ}
   (comm : ∀ (j : Fin (n + 2)) (hj : j ≠ i), f j hj ≫ p = stdSimplex.δ j ≫ b)
 
 include hf comm in
+/--
+@isnad1 id=ex.2h7v.s9.90fa1e4f51e9 from=seed src=0 shape=1610f5af vocab=ccaae808
+-/
 lemma exists_lift :
     ∃ (φ : Δ[n + 1] ⟶ X),
       (∀ (j : Fin (n + 2)) (hj : j ≠ i), stdSimplex.δ j ≫ φ = f j hj) ∧
@@ -158,11 +194,17 @@ then this is a lifting `Δ[n + 1] ⟶ X`. -/
 @[no_expose]
 noncomputable def lift : Δ[n + 1] ⟶ X := (hf.exists_lift p b comm).choose
 
+/--
+@isnad1 id=eq.2h9v.s8.87ba14bbc23e from=seed src=0 shape=da1fd4b5 vocab=35e602cc
+-/
 @[reassoc]
 lemma δ_lift (j : Fin (n + 2)) (hj : j ≠ i := by grind) :
     stdSimplex.δ j ≫ hf.lift p b comm = f j hj :=
   ((hf.exists_lift p b comm).choose_spec).1 j hj
 
+/--
+@isnad1 id=eq.2h7v.s8.3b27224769ec from=seed src=0 shape=c69a718a vocab=e147f127
+-/
 @[reassoc (attr := simp)]
 lemma lift_comp : hf.lift p b comm ≫ p = b :=
   ((hf.exists_lift p b comm).choose_spec).2

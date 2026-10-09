@@ -44,6 +44,7 @@ converge to `g x` as `N → ∞`.
 Usually, this fact is not formulated as a separate lemma.
 I chose to do it in order to isolate parts of the proof that do not rely
 on the inner product space structure.
+@isnad1 id=tendsto.3h5v.s13.22ec64f30ed7 from=seed src=0 shape=e04ae887 vocab=7ae45f4d
 -/
 theorem LinearMap.tendsto_birkhoffAverage_of_ker_subset_closure [NormedSpace 𝕜 E]
     (f : E →ₗ[𝕜] E) (hf : LipschitzWith 1 f) (g : E →L[𝕜] LinearMap.eqLocus f 1)
@@ -86,7 +87,9 @@ the Birkhoff averages
 ```
 birkhoffAverage 𝕜 f id N x = (N : 𝕜)⁻¹ • ∑ n ∈ Finset.range N, f^[n] x
 ```
-converge to the orthogonal projection of `x` to the subspace of fixed points of `f`. -/
+converge to the orthogonal projection of `x` to the subspace of fixed points of `f`.
+@isnad1 id=tendsto.1h4v.s13.72ef2cdb5078 from=seed src=0 shape=b9820c78 vocab=15949144
+-/
 theorem ContinuousLinearMap.tendsto_birkhoffAverage_orthogonalProjection (f : E →L[𝕜] E)
     (hf : ‖f‖ ≤ 1) (x : E) :
     Tendsto (birkhoffAverage 𝕜 f _root_.id · x) atTop

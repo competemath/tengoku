@@ -33,6 +33,9 @@ inductive innerHornInclusions : MorphismProperty SSet.{u} where
   | intro {n : ℕ} (i : Fin (n + 3)) (h0 : 0 < i) (hn : i < Fin.last (n + 2)) :
     innerHornInclusions Λ[n + 2, i].ι
 
+/--
+@isnad1 id=innerhor.2h2v.s7.fbc9e8ece36e from=seed src=0 shape=d444b14a vocab=c6db7ed1
+-/
 lemma horn_ι_mem_innerHornInclusions {n : ℕ} {i : Fin (n + 1)}
     (h0 : 0 < i) (hn : i < Fin.last n) : innerHornInclusions (horn.{u} n i).ι := by
   obtain _ | _ | k := n
@@ -40,6 +43,9 @@ lemma horn_ι_mem_innerHornInclusions {n : ℕ} {i : Fin (n + 1)}
   · grind
   · exact ⟨i, h0, hn⟩
 
+/--
+@isnad1 id=eq.0h0v.s10.78b68bf0fc30 from=seed src=0 shape=66477af9 vocab=f1fbb22a
+-/
 lemma innerHornInclusions_eq_iSup :
     innerHornInclusions.{u} =
     ⨆ n, .ofHoms (fun p : {p : Fin (n + 3) // 0 < p ∧ p < Fin.last (n + 2)} ↦ Λ[n + 2, p].ι) := by
@@ -52,9 +58,15 @@ lemma innerHornInclusions_eq_iSup :
     obtain ⟨n, ⟨i, h0, hn⟩, _, _⟩ := h
     exact horn_ι_mem_innerHornInclusions h0 hn
 
+/--
+@isnad1 id=le.0h0v.s6.d7870d574d6b from=seed src=0 shape=836e6cbb vocab=6e8af66b
+-/
 lemma innerHornInclusions_le_J : innerHornInclusions.{u} ≤ modelCategoryQuillen.J :=
   fun _ _ _ ⟨_, _, _⟩ ↦ modelCategoryQuillen.horn_ι_mem_J ..
 
+/--
+@isnad1 id=le.0h0v.s6.483e1998ad50 from=seed src=0 shape=228d301a vocab=46841fb3
+-/
 lemma innerHornInclusions_le_monomorphisms :
     innerHornInclusions.{u} ≤ monomorphisms SSet :=
   innerHornInclusions_le_J.trans modelCategoryQuillen.J_le_monomorphisms
@@ -71,15 +83,24 @@ deriving IsMultiplicative, RespectsIso, IsStableUnderBaseChange,
 class InnerFibration {X Y : SSet} (q : X ⟶ Y) : Prop where
   mem : innerFibrations q
 
+/--
+@isnad1 id=innerfib.0h3v.s4.26a148141ae3 from=seed src=0 shape=892cb9de vocab=1caeaad1
+-/
 lemma mem_innerFibrations {X Y : SSet} (q : X ⟶ Y) [InnerFibration q] : innerFibrations q :=
   InnerFibration.mem
 
+/--
+@isnad1 id=iff.0h1v.s4.a24a3fb50121 from=seed src=0 shape=b8de229a vocab=12bfb459
+-/
 lemma quasicategory_iff_innerFibration (X : SSet.{u}) :
     Quasicategory X ↔ InnerFibration (terminal.from X) := by
   rw [quasicategory_iff_hasLiftingProperty.{u} _ terminalIsTerminal, innerFibration_iff]
   exact ⟨fun h _ _ _ ⟨i, h0, hn⟩ ↦ h h0 hn,
     fun h _ _ h0 hn ↦ h _ (horn_ι_mem_innerHornInclusions h0 hn)⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.614b9d9db441 from=seed src=0 shape=0b4940b4 vocab=42f9362a
+-/
 @[kerodon 01BB]
 lemma quasicategory_iff_of_isTerminal
     {X Y : SSet} (p : X ⟶ Y) (hY : IsTerminal Y) :
@@ -89,6 +110,9 @@ lemma quasicategory_iff_of_isTerminal
   apply innerFibrations.arrow_mk_iso_iff
   exact Arrow.isoMk (Iso.refl _) (Limits.IsTerminal.uniqueUpToIso hY Limits.terminalIsTerminal)
 
+/--
+@isnad1 id=quasicat.0h3v.s4.335eb46e4d6a from=seed src=0 shape=9715b773 vocab=372fab6e
+-/
 @[kerodon 01BJ]
 lemma quasicategory_of_innerFibration
     {X Y : SSet} (p : X ⟶ Y) [InnerFibration p] [hY : Quasicategory Y] :
@@ -100,19 +124,31 @@ lemma quasicategory_of_innerFibration
 instance {X : SSet} [Quasicategory X] : InnerFibration (terminal.from X) := by
   rwa [← quasicategory_iff_innerFibration]
 
+/--
+@isnad1 id=quasicat.0h4v.s5.400bbc0f2c94 from=seed src=0 shape=7a1a4f99 vocab=734a2435
+-/
 @[deprecated quasicategory_iff_of_isTerminal (since := "2026-06-08")]
 lemma quasicategory_of_from_innerFibrations (S : SSet) {X : SSet} (t : Limits.IsTerminal X)
     (h : innerFibrations (t.from S)) : Quasicategory S :=
   quasicategory_of_hasLiftingProperty S t (fun h0 hn ↦ h _ (horn_ι_mem_innerHornInclusions h0 hn))
 
+/--
+@isnad1 id=innerfib.0h3v.s5.9592c3fbc672 from=seed src=0 shape=e276cc10 vocab=734a2435
+-/
 @[deprecated quasicategory_iff_of_isTerminal (since := "2026-06-08")]
 lemma Quasicategory.from_innerFibrations (S : SSet) [Quasicategory S]
     {X : SSet} (t : Limits.IsTerminal X) : innerFibrations (t.from S) :=
   fun _ _ _ ⟨_, h0, hn⟩ ↦ hasLiftingProperty S t h0 hn
 
+/--
+@isnad1 id=iff.0h1v.s4.a24a3fb50121 from=seed src=0 shape=b8de229a vocab=12bfb459
+-/
 @[deprecated (since := "2026-06-08")]
 alias quasicategory_iff_from_innerFibration := quasicategory_iff_innerFibration
 
+/--
+@isnad1 id=quasicat.0h3v.s4.335eb46e4d6a from=seed src=0 shape=9715b773 vocab=372fab6e
+-/
 @[deprecated (since := "2026-06-08")]
 alias quasicategory_of_innerFibration_quasicategory := quasicategory_of_innerFibration
 

@@ -25,6 +25,9 @@ variable [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 
 open scoped InnerProductSpace
 
+/--
+@isnad1 id=eq.0h5v.s10.5e3cb83475f5 from=seed src=0 shape=afd8b9f2 vocab=5dac04ba
+-/
 lemma trace_eq_sum_inner (T : E →ₗ[𝕜] E) (b : OrthonormalBasis ι 𝕜 E) :
     T.trace 𝕜 E = ∑ i, ⟪b i, T (b i)⟫_𝕜 := by
   classical
@@ -37,11 +40,17 @@ lemma trace_eq_sum_inner (T : E →ₗ[𝕜] E) (b : OrthonormalBasis ι 𝕜 E)
 variable [FiniteDimensional 𝕜 E]
 variable {n : ℕ} (hn : Module.finrank 𝕜 E = n)
 
+/--
+@isnad1 id=eq.2h4v.s10.ffb46238d811 from=seed src=0 shape=8f3d49a3 vocab=7fe4677a
+-/
 lemma IsSymmetric.trace_eq_sum_eigenvalues {T : E →ₗ[𝕜] E} (hT : T.IsSymmetric) :
     T.trace 𝕜 E = ∑ i, hT.eigenvalues hn i := by
   simp [Module.End.trace_eq_sum_roots_charpoly_of_splits hT.splits_charpoly,
     hT.roots_charpoly_eq_eigenvalues hn, List.sum_ofFn]
 
+/--
+@isnad1 id=eq.2h4v.s10.68050e9a75a8 from=seed src=0 shape=ed8c1af8 vocab=1755f5bd
+-/
 lemma IsSymmetric.re_trace_eq_sum_eigenvalues {T : E →ₗ[𝕜] E} (hT : T.IsSymmetric) :
     RCLike.re (T.trace 𝕜 E) = ∑ i, hT.eigenvalues hn i := by
   rw [hT.trace_eq_sum_eigenvalues]

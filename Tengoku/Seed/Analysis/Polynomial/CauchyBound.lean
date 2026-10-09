@@ -34,33 +34,57 @@ See `IsRoot.norm_lt_cauchyBound` for the proof that the roots satisfy this bound
 noncomputable def cauchyBound (p : K[X]) : ℝ≥0 :=
   sup (range p.natDegree) (‖p.coeff ·‖₊) / ‖p.leadingCoeff‖₊ + 1
 
+/--
+@isnad1 id=le.0h2v.s5.88a621ef02f9 from=seed src=0 shape=38fc717e vocab=ab3544b1
+-/
 @[simp]
 lemma one_le_cauchyBound (p : K[X]) : 1 ≤ cauchyBound p := by
   simp [cauchyBound]
 
+/--
+@isnad1 id=eq.0h1v.s5.e0b4e1063b14 from=seed src=0 shape=57a357cd vocab=7a2765a4
+-/
 @[simp]
 lemma cauchyBound_zero : cauchyBound (0 : K[X]) = 1 := by
   simp [cauchyBound]
 
+/--
+@isnad1 id=eq.0h2v.s6.053dc3e1c0fd from=seed src=0 shape=09d1ceca vocab=d60b9a6b
+-/
 @[simp]
 lemma cauchyBound_C (x : K) : cauchyBound (C x) = 1 := by
   simp [cauchyBound]
 
+/--
+@isnad1 id=eq.0h1v.s5.e1bd4f7e1f47 from=seed src=0 shape=57a357cd vocab=7a2765a4
+-/
 @[simp]
 lemma cauchyBound_one : cauchyBound (1 : K[X]) = 1 := cauchyBound_C 1
 
+/--
+@isnad1 id=eq.0h1v.s4.511da2a4c1e9 from=seed src=0 shape=a4033e76 vocab=a9137722
+-/
 @[simp]
 lemma cauchyBound_X : cauchyBound (X : K[X]) = 1 := by
   simp [cauchyBound]
 
+/--
+@isnad1 id=eq.0h2v.s7.582fad1075d7 from=seed src=0 shape=840a3393 vocab=c7e9ecc1
+-/
 @[simp]
 lemma cauchyBound_X_add_C (x : K) : cauchyBound (X + C x) = ‖x‖₊ + 1 := by
   simp [cauchyBound]
 
+/--
+@isnad1 id=eq.0h2v.s7.5967529388b0 from=seed src=0 shape=906da091 vocab=387b95cf
+-/
 @[simp]
 lemma cauchyBound_X_sub_C (x : K) : cauchyBound (X - C x) = ‖x‖₊ + 1 := by
   simp [cauchyBound]
 
+/--
+@isnad1 id=eq.1h3v.s7.03b3fe0a3fa9 from=seed src=0 shape=a9e1b9cd vocab=fffc6a6e
+-/
 @[simp]
 lemma cauchyBound_smul {x : K} (hx : x ≠ 0) (p : K[X]) : cauchyBound (x • p) = cauchyBound p := by
   simp only [cauchyBound, (IsRegular.of_ne_zero hx).left.isSMulRegular,
@@ -71,6 +95,7 @@ lemma cauchyBound_smul {x : K} (hx : x ≠ 0) (p : K[X]) : cauchyBound (x • p)
 
 /--
 `cauchyBound` is a bound on the norm of polynomial roots.
+@isnad1 id=lt.2h3v.s6.7d4daef8c2a4 from=seed src=0 shape=8046a7f3 vocab=79039333
 -/
 theorem IsRoot.norm_lt_cauchyBound {p : K[X]} (hp : p ≠ 0) {a : K} (h : p.IsRoot a) :
     ‖a‖₊ < cauchyBound p := by

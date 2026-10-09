@@ -99,6 +99,9 @@ attribute [local instance] Over.coeFromHom
 def app {P Q : C} (f : P ⟶ Q) (a : Over P) : Over Q :=
   a.hom ≫ f
 
+/--
+@isnad1 id=eq.0h5v.s6.6d7d8e83beec from=seed src=0 shape=963ccfa0 vocab=f8569da4
+-/
 @[simp]
 theorem app_hom {P Q : C} (f : P ⟶ Q) (a : Over P) : (app f a).hom = a.hom ≫ f := rfl
 
@@ -107,9 +110,15 @@ theorem app_hom {P Q : C} (f : P ⟶ Q) (a : Over P) : (app f a).hom = a.hom ≫
 def PseudoEqual (P : C) (f g : Over P) : Prop :=
   ∃ (R : C) (p : R ⟶ f.1) (q : R ⟶ g.1) (_ : Epi p) (_ : Epi q), p ≫ f.hom = q ≫ g.hom
 
+/--
+@isnad1 id=refl.0h2v.s4.4ec0981d7a16 from=seed src=0 shape=bc057928 vocab=678d3c2a
+-/
 instance pseudoEqual_refl {P : C} : Std.Refl (PseudoEqual P) where
   refl f := ⟨f.1, 𝟙 f.1, 𝟙 f.1, inferInstance, inferInstance, by simp⟩
 
+/--
+@isnad1 id=symm.0h2v.s4.1fd19ae2efa6 from=seed src=0 shape=bc057928 vocab=cbb4a2eb
+-/
 instance pseudoEqual_symm {P : C} : Std.Symm (PseudoEqual P) where
   symm _ _ := fun ⟨R, p, q, ep, Eq, comm⟩ ↦ ⟨R, q, p, Eq, ep, comm.symm⟩
 
@@ -118,7 +127,9 @@ variable [Abelian.{v} C]
 section
 
 /-- Pseudoequality is transitive: Just take the pullback. The pullback morphisms will
-be epimorphisms since in an abelian category, pullbacks of epimorphisms are epimorphisms. -/
+be epimorphisms since in an abelian category, pullbacks of epimorphisms are epimorphisms.
+@isnad1 id=istrans.0h2v.s4.ee880069d288 from=seed src=0 shape=c7f12f28 vocab=a1fca1c2
+-/
 instance pseudoEqual_trans {P : C} : IsTrans (Over P) (PseudoEqual P) := by
   refine ⟨fun f g h ⟨R, p, q, ep, Eq, comm⟩ ⟨R', p', q', ep', eq', comm'⟩ ↦ ?_⟩
   refine ⟨pullback q p', pullback.fst _ _ ≫ p, pullback.snd _ _ ≫ q',
@@ -158,9 +169,14 @@ def overToSort {P : C} : Coe (Over P) (Pseudoelement P) :=
 
 attribute [local instance] overToSort
 
+/--
+@isnad1 id=eq.0h4v.s6.c6896f32a9dc from=seed src=0 shape=1b8123a5 vocab=86b5b27d
+-/
 theorem over_coe_def {P Q : C} (a : Q ⟶ P) : (a : Pseudoelement P) = ⟦↑a⟧ := rfl
 
-/-- If two elements are pseudo-equal, then their composition with a morphism is, too. -/
+/-- If two elements are pseudo-equal, then their composition with a morphism is, too.
+@isnad1 id=equiv.0h7v.s6.0968bf6fa696 from=seed src=0 shape=759f0105 vocab=53a237f6
+-/
 theorem pseudoApply_aux {P Q : C} (f : P ⟶ Q) (a b : Over P) : a ≈ b → app f a ≈ app f b :=
   fun ⟨R, p, q, ep, Eq, comm⟩ =>
   ⟨R, p, q, ep, Eq, show p ≫ a.hom ≫ f = q ≫ b.hom ≫ f by rw [reassoc_of% comm]⟩
@@ -178,17 +194,24 @@ attribute [local instance] homToFun
 
 scoped[Pseudoelement] attribute [instance] CategoryTheory.Abelian.Pseudoelement.homToFun
 
+/--
+@isnad1 id=eq.0h5v.s6.1bb3dbe54196 from=seed src=0 shape=e4c1d0d2 vocab=7e326785
+-/
 theorem pseudoApply_mk' {P Q : C} (f : P ⟶ Q) (a : Over P) : f ⟦a⟧ = ⟦↑(a.hom ≫ f)⟧ := rfl
 
 /-- Applying a pseudoelement to a composition of morphisms is the same as composing
-with each morphism. Sadly, this is not a definitional equality, but at least it is true. -/
+with each morphism. Sadly, this is not a definitional equality, but at least it is true.
+@isnad1 id=eq.0h7v.s6.a11247f34701 from=seed src=0 shape=b4ed9b71 vocab=e4a74bfc
+-/
 theorem comp_apply {P Q R : C} (f : P ⟶ Q) (g : Q ⟶ R) (a : P) : (f ≫ g) a = g (f a) :=
   Quotient.inductionOn a fun x =>
     Quotient.sound <| by
       simp only [app]
       rw [← Category.assoc, Over.coe_hom]
 
-/-- Composition of functions on pseudoelements is composition of morphisms. -/
+/-- Composition of functions on pseudoelements is composition of morphisms.
+@isnad1 id=eq.0h6v.s6.1c52b33f3557 from=seed src=0 shape=b00fbb3e vocab=ac33e7d2
+-/
 theorem comp_comp {P Q R : C} (f : P ⟶ Q) (g : Q ⟶ R) : g ∘ f = f ≫ g :=
   funext fun _ => (comp_apply _ _ _).symm
 
@@ -205,7 +228,9 @@ section
 
 attribute [local instance] HasBinaryBiproducts.of_hasBinaryProducts
 
-/-- The arrows pseudo-equal to a zero morphism are precisely the zero morphisms. -/
+/-- The arrows pseudo-equal to a zero morphism are precisely the zero morphisms.
+@isnad1 id=iff.0h4v.s7.26c36e976797 from=seed src=0 shape=dbc3d9f2 vocab=06de70bd
+-/
 theorem pseudoZero_aux {P : C} (Q : C) (f : Over P) : f ≈ (0 : Q ⟶ P) ↔ f.hom = 0 :=
   ⟨fun ⟨R, p, q, _, _, comm⟩ => zero_of_epi_comp p (by simp [comm]), fun hf =>
     ⟨biprod f.1 Q, biprod.fst, biprod.snd, inferInstance, inferInstance, by
@@ -213,6 +238,9 @@ theorem pseudoZero_aux {P : C} (Q : C) (f : Over P) : f ≈ (0 : Q ⟶ P) ↔ f.
 
 end
 
+/--
+@isnad1 id=eq.0h4v.s6.2e79c1cfa5db from=seed src=0 shape=6278b713 vocab=c4baffbc
+-/
 theorem zero_eq_zero' {P Q R : C} :
     (⟦((0 : Q ⟶ P) : Over P)⟧ : Pseudoelement P) = ⟦((0 : R ⟶ P) : Over P)⟧ :=
   Quotient.sound <| (pseudoZero_aux R _).2 rfl
@@ -227,13 +255,21 @@ instance hasZero {P : C} : Zero P :=
 instance {P : C} : Inhabited P :=
   ⟨0⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.d46a087d0f33 from=seed src=0 shape=c564436f vocab=f481a4be
+-/
 theorem pseudoZero_def {P : C} : (0 : Pseudoelement P) = ⟦↑(0 : P ⟶ P)⟧ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.37d494694909 from=seed src=0 shape=f2778cf4 vocab=9ffe7191
+-/
 @[simp]
 theorem zero_eq_zero {P Q : C} : ⟦((0 : Q ⟶ P) : Over P)⟧ = (0 : Pseudoelement P) :=
   zero_eq_zero'
 
-/-- The pseudoelement induced by an arrow is zero precisely when that arrow is zero. -/
+/-- The pseudoelement induced by an arrow is zero precisely when that arrow is zero.
+@isnad1 id=iff.0h3v.s6.5783b30f3de7 from=seed src=0 shape=5051f16c vocab=1f8ed6f9
+-/
 theorem pseudoZero_iff {P : C} (a : Over P) : a = (0 : P) ↔ a.hom = 0 := by
   rw [← pseudoZero_aux P a]
   exact Quotient.eq'
@@ -242,31 +278,42 @@ end Zero
 
 
 set_option backward.defeqAttrib.useBackward true in
-/-- Morphisms map the zero pseudoelement to the zero pseudoelement. -/
+/-- Morphisms map the zero pseudoelement to the zero pseudoelement.
+@isnad1 id=eq.0h4v.s6.dd1d66298c13 from=seed src=0 shape=dc33444a vocab=4ffc4281
+-/
 @[simp]
 theorem apply_zero {P Q : C} (f : P ⟶ Q) : f 0 = 0 := by
   rw [pseudoZero_def, pseudoApply_mk']
   simp
 
-/-- The zero morphism maps every pseudoelement to 0. -/
+/-- The zero morphism maps every pseudoelement to 0.
+@isnad1 id=eq.0h4v.s6.96349cf10b6a from=seed src=0 shape=4e687159 vocab=4ffc4281
+-/
 @[simp]
 theorem zero_apply {P : C} (Q : C) (a : P) : (0 : P ⟶ Q) a = 0 :=
   Quotient.inductionOn a fun a' => by
     rw [pseudoZero_def, pseudoApply_mk']
     simp
 
-/-- An extensionality lemma for being the zero arrow. -/
+/-- An extensionality lemma for being the zero arrow.
+@isnad1 id=eq.1h4v.s6.0e2de3a1c55e from=seed src=0 shape=5979b41f vocab=4ffc4281
+-/
 theorem zero_morphism_ext {P Q : C} (f : P ⟶ Q) : (∀ a, f a = 0) → f = 0 := fun h => by
   rw [← Category.id_comp f]
   exact (pseudoZero_iff (𝟙 P ≫ f : Over Q)).1 (h (𝟙 P))
 
+/--
+@isnad1 id=eq.1h4v.s6.bc25069c9325 from=seed src=0 shape=ce1b68c2 vocab=4ffc4281
+-/
 theorem zero_morphism_ext' {P Q : C} (f : P ⟶ Q) : (∀ a, f a = 0) → 0 = f :=
   Eq.symm ∘ zero_morphism_ext f
 
 theorem eq_zero_iff {P Q : C} (f : P ⟶ Q) : f = 0 ↔ ∀ a, f a = 0 :=
   ⟨fun h a => by simp [h], zero_morphism_ext _⟩
 
-/-- A monomorphism is injective on pseudoelements. -/
+/-- A monomorphism is injective on pseudoelements.
+@isnad1 id=injectiv.0h4v.s5.2707d83937bc from=seed src=0 shape=a0503b0c vocab=69357b5a
+-/
 theorem pseudo_injective_of_mono {P Q : C} (f : P ⟶ Q) [Mono f] : Function.Injective f := by
   intro abar abar'
   induction abar, abar' using Quotient.inductionOn₂ with | _ a a'
@@ -278,13 +325,17 @@ theorem pseudo_injective_of_mono {P Q : C} (f : P ⟶ Q) [Mono f] : Function.Inj
     simp only [Category.assoc]
     exact comm⟩
 
-/-- A morphism that is injective on pseudoelements only maps the zero element to zero. -/
+/-- A morphism that is injective on pseudoelements only maps the zero element to zero.
+@isnad1 id=eq.2h5v.s6.284390fe86fb from=seed src=0 shape=06366e85 vocab=5a874803
+-/
 theorem zero_of_map_zero {P Q : C} (f : P ⟶ Q) : Function.Injective f → ∀ a, f a = 0 → a = 0 :=
   fun h a ha => by
   rw [← apply_zero f] at ha
   exact h ha
 
-/-- A morphism that only maps the zero pseudoelement to zero is a monomorphism. -/
+/-- A morphism that only maps the zero pseudoelement to zero is a monomorphism.
+@isnad1 id=mono.1h4v.s6.d6e2c434a9b0 from=seed src=0 shape=d379e2da vocab=3c77f61e
+-/
 theorem mono_of_zero_of_map_zero {P Q : C} (f : P ⟶ Q) : (∀ a, f a = 0 → a = 0) → Mono f :=
   fun h => (mono_iff_cancel_zero _).2 fun _ g hg =>
     (pseudoZero_iff (g : Over P)).1 <|
@@ -293,7 +344,9 @@ theorem mono_of_zero_of_map_zero {P Q : C} (f : P ⟶ Q) : (∀ a, f a = 0 → a
 section
 
 set_option backward.isDefEq.respectTransparency false in
-/-- An epimorphism is surjective on pseudoelements. -/
+/-- An epimorphism is surjective on pseudoelements.
+@isnad1 id=surjecti.0h4v.s5.6116318039a8 from=seed src=0 shape=a0503b0c vocab=1e60cc74
+-/
 theorem pseudo_surjective_of_epi {P Q : C} (f : P ⟶ Q) [Epi f] : Function.Surjective f :=
   fun qbar =>
   Quotient.inductionOn qbar fun q =>
@@ -304,7 +357,9 @@ theorem pseudo_surjective_of_epi {P Q : C} (f : P ⟶ Q) [Epi f] : Function.Surj
 
 end
 
-/-- A morphism that is surjective on pseudoelements is an epimorphism. -/
+/-- A morphism that is surjective on pseudoelements is an epimorphism.
+@isnad1 id=epi.1h4v.s5.2f071171966d from=seed src=0 shape=5834a3ac vocab=1e60cc74
+-/
 theorem epi_of_pseudo_surjective {P Q : C} (f : P ⟶ Q) : Function.Surjective f → Epi f := by
   intro h
   have ⟨pbar, hpbar⟩ := h (𝟙 Q)
@@ -321,7 +376,9 @@ theorem epi_of_pseudo_surjective {P Q : C} (f : P ⟶ Q) : Function.Surjective f
 section
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two morphisms in an exact sequence are exact on pseudoelements. -/
+/-- Two morphisms in an exact sequence are exact on pseudoelements.
+@isnad1 id=ex.2h3v.s7.593da9a18461 from=seed src=0 shape=b91ec06b vocab=ef738635
+-/
 theorem pseudo_exact_of_exact {S : ShortComplex C} (hS : S.Exact) :
     ∀ b, S.g b = 0 → ∃ a, S.f a = b :=
   fun b' =>
@@ -352,13 +409,18 @@ theorem pseudo_exact_of_exact {S : ShortComplex C} (hS : S.Exact) :
 end
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h6v.s7.2d88128e0aca from=seed src=0 shape=5a2d8c4e vocab=ee3b67fe
+-/
 theorem apply_eq_zero_of_comp_eq_zero {P Q R : C} (f : Q ⟶ R) (a : P ⟶ Q) : a ≫ f = 0 → f a = 0 :=
   fun h => by simp [over_coe_def, pseudoApply_mk', h]
 
 section
 
 set_option backward.isDefEq.respectTransparency false in
-/-- If two morphisms are exact on pseudoelements, they are exact. -/
+/-- If two morphisms are exact on pseudoelements, they are exact.
+@isnad1 id=exact.1h2v.s7.aaf2b2980dc6 from=seed src=0 shape=00ff4704 vocab=ef738635
+-/
 theorem exact_of_pseudo_exact (S : ShortComplex C)
     (hS : ∀ b, S.g b = 0 → ∃ a, S.f a = b) : S.Exact :=
   (S.exact_iff_kernel_ι_comp_cokernel_π_zero).2 (by
@@ -394,7 +456,9 @@ end
 set_option backward.isDefEq.respectTransparency false in
 /-- If two pseudoelements `x` and `y` have the same image under some morphism `f`, then we can form
 their "difference" `z`. This pseudoelement has the properties that `f z = 0` and for all
-morphisms `g`, if `g y = 0` then `g z = g x`. -/
+morphisms `g`, if `g y = 0` then `g z = g x`.
+@isnad1 id=ex.1h6v.s7.0d11e0441da0 from=seed src=0 shape=78b157b0 vocab=4ffc4281
+-/
 theorem sub_of_eq_image {P Q : C} (f : P ⟶ Q) (x y : P) :
     f x = f y → ∃ z, f z = 0 ∧ ∀ (R : C) (g : P ⟶ R), (g : P ⟶ R) y = 0 → g z = g x :=
   Quotient.inductionOn₂ x y fun a a' h =>
@@ -422,7 +486,9 @@ set_option backward.isDefEq.respectTransparency false in
 that `f p = g q`, then there is some `s : pullback f g` such that `fst s = p` and `snd s = q`.
 
 Remark: Borceux claims that `s` is unique, but this is false. See
-`Counterexamples/Pseudoelement.lean` for details. -/
+`Counterexamples/Pseudoelement.lean` for details.
+@isnad1 id=ex.1h8v.s7.12a30a5a4e56 from=seed src=0 shape=9ff23834 vocab=5e2a3bdb
+-/
 theorem pseudo_pullback {P Q R : C} {f : P ⟶ R} {g : Q ⟶ R} {p : P} {q : Q} :
     f p = g q →
       ∃ s, pullback.fst f g s = p ∧ pullback.snd f g s = q :=

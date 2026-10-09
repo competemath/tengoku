@@ -45,6 +45,9 @@ noncomputable def singularHomology₀ε :
   SSet.homology₀ε _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s7.98b0cf04104b from=seed src=0 shape=b709790f vocab=a8ae0234
+-/
 @[reassoc (attr := simp)]
 lemma singularHomology₀Iso_sigma_desc_id :
     (singularHomology₀Iso X R).hom ≫ Sigma.desc (fun _ ↦ 𝟙 R) = singularHomology₀ε X R := by

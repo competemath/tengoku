@@ -68,6 +68,9 @@ def singularChainComplexFunctorAdjunction : (Functor.postcompose₂.obj (eval _ 
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h3v.s11.50444d09f020 from=seed src=0 shape=49886bec vocab=123fda03
+-/
 lemma singularChainComplexFunctorAdjunction_unit_app (R : C) :
     (singularChainComplexFunctorAdjunction C n).unit.app R =
       Sigma.ι (fun _ ↦ R) ((stdSimplexToTop.app ⦋n⦌).app (.op ⦋n⦌)
@@ -81,6 +84,9 @@ lemma singularChainComplexFunctorAdjunction_unit_app (R : C) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s11.89c13e37feb5 from=seed src=0 shape=ff8f453d vocab=e83f19bc
+-/
 lemma ι_singularChainComplexFunctorAdjunction_counit_app_app (F : TopCat ⥤ C) (X : TopCat) (i) :
     Sigma.ι _ i ≫ ((singularChainComplexFunctorAdjunction C n).counit.app F).app X =
       F.map i.down := by
@@ -113,6 +119,9 @@ def singularChainComplexFunctorIsoOfTotallyDisconnectedSpace :
     (TopCat.toSSetIsoConst X) ≪≫ Functor.constComp _ _ _) ≪≫
     AlgebraicTopology.alternatingFaceMapComplexConst.app _
 
+/--
+@isnad1 id=exactat.1h4v.s7.c2939046d6fe from=seed src=0 shape=74a051a5 vocab=10ce6344
+-/
 lemma singularChainComplexFunctor_exactAt_of_totallyDisconnectedSpace
     (hn : n ≠ 0) :
     (((singularChainComplexFunctor C).obj R).obj X).ExactAt n :=
@@ -121,6 +130,9 @@ lemma singularChainComplexFunctor_exactAt_of_totallyDisconnectedSpace
   .of_iso (ChainComplex.alternatingConst_exactAt _ _ hn)
     (singularChainComplexFunctorIsoOfTotallyDisconnectedSpace C R X).symm
 
+/--
+@isnad1 id=iszero.1h4v.s6.daf1d900b0b8 from=seed src=0 shape=b313da25 vocab=f2ba2614
+-/
 lemma isZero_singularHomologyFunctor_of_totallyDisconnectedSpace
     [CategoryWithHomology C] (hn : n ≠ 0) :
     IsZero (((singularHomologyFunctor C n).obj R).obj X) :=

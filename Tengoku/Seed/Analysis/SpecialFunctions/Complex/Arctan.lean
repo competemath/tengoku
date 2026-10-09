@@ -29,6 +29,9 @@ open scoped Real
 /-- The complex arctangent, defined via the complex logarithm. -/
 noncomputable def arctan (z : ℂ) : ℂ := -I / 2 * log ((1 + z * I) / (1 - z * I))
 
+/--
+@isnad1 id=eq.2h1v.s4.581f8f9dbd09 from=seed src=0 shape=1cbd7445 vocab=89d724f4
+-/
 theorem tan_arctan {z : ℂ} (h₁ : z ≠ I) (h₂ : z ≠ -I) : tan (arctan z) = z := by
   unfold tan sin cos
   rw [div_div_eq_mul_div, div_mul_cancel₀ _ two_ne_zero, ← div_mul_eq_mul_div,
@@ -52,7 +55,9 @@ theorem tan_arctan {z : ℂ} (h₁ : z ≠ I) (h₂ : z ≠ -I) : tan (arctan z)
     show _ / _ * I = -(I * I) * z by ring, I_mul_I, neg_neg, one_mul]
 
 /-- `cos z` is nonzero when the bounds in `arctan_tan` are met (`z` lies in the vertical strip
-`-π / 2 < z.re < π / 2` and `z ≠ π / 2`). -/
+`-π / 2 < z.re < π / 2` and `z ≠ π / 2`).
+@isnad1 id=ne.3h1v.s6.7b16a0098941 from=seed src=0 shape=8e251da9 vocab=1b56ce76
+-/
 lemma cos_ne_zero_of_arctan_bounds {z : ℂ} (h₀ : z ≠ π / 2) (h₁ : -(π / 2) < z.re)
     (h₂ : z.re ≤ π / 2) : cos z ≠ 0 := by
   refine cos_ne_zero_iff.mpr (fun k ↦ ?_)
@@ -67,6 +72,9 @@ lemma cos_ne_zero_of_arctan_bounds {z : ℂ} (h₀ : z ≠ π / 2) (h₁ : -(π 
     rwa [show 2 * k + 1 = 1 by lia, Int.cast_one, one_mul] at nr
   · exact Or.inr ni
 
+/--
+@isnad1 id=eq.3h1v.s6.cabe6c1d56c0 from=seed src=0 shape=4b53f58a vocab=e7d8c8b5
+-/
 theorem arctan_tan {z : ℂ} (h₀ : z ≠ π / 2) (h₁ : -(π / 2) < z.re) (h₂ : z.re ≤ π / 2) :
     arctan (tan z) = z := by
   have h := cos_ne_zero_of_arctan_bounds h₀ h₁ h₂
@@ -82,6 +90,9 @@ theorem arctan_tan {z : ℂ} (h₀ : z ≠ π / 2) (h₁ : -(π / 2) < z.re) (h�
   · rwa [← div_lt_iff₀' two_pos, neg_div]
   · rwa [← le_div_iff₀' two_pos]
 
+/--
+@isnad1 id=eq.0h1v.s3.f238017f03bd from=seed src=0 shape=0ebce511 vocab=22a7b06a
+-/
 @[simp, norm_cast]
 theorem ofReal_arctan (x : ℝ) : (Real.arctan x : ℂ) = arctan x := by
   conv_rhs => rw [← Real.tan_arctan x]
@@ -91,13 +102,17 @@ theorem ofReal_arctan (x : ℝ) : (Real.arctan x : ℂ) = arctan x := by
   · exact Real.neg_pi_div_two_lt_arctan _
   · exact (Real.arctan_lt_pi_div_two _).le
 
-/-- The argument of `1 + z` for `z` in the open unit disc is always in `(-π / 2, π / 2)`. -/
+/-- The argument of `1 + z` for `z` in the open unit disc is always in `(-π / 2, π / 2)`.
+@isnad1 id=mem.1h1v.s6.6143c3565496 from=seed src=0 shape=f238fc74 vocab=e20eb911
+-/
 lemma arg_one_add_mem_Ioo {z : ℂ} (hz : ‖z‖ < 1) : (1 + z).arg ∈ Set.Ioo (-(π / 2)) (π / 2) := by
   rw [Set.mem_Ioo, ← abs_lt, abs_arg_lt_pi_div_two_iff, add_re, one_re, ← neg_lt_iff_pos_add']
   exact Or.inl (abs_lt.mp ((abs_re_le_norm z).trans_lt hz)).1
 
 /-- We can combine the logs in `log (1 + z * I) + -log (1 - z * I)` into one.
-This is only used in `hasSum_arctan`. -/
+This is only used in `hasSum_arctan`.
+@isnad1 id=eq.1h1v.s7.6eeeedf25111 from=seed src=0 shape=0005195c vocab=c76ca996
+-/
 lemma hasSum_arctan_aux {z : ℂ} (hz : ‖z‖ < 1) :
     log (1 + z * I) + -log (1 - z * I) = log ((1 + z * I) / (1 - z * I)) := by
   have z₁ := mem_slitPlane_iff_arg.mp (mem_slitPlane_of_norm_lt_one (z := z * I) (by simpa))
@@ -118,7 +133,9 @@ lemma hasSum_arctan_aux {z : ℂ} (hz : ‖z‖ < 1) :
   exact ⟨c₁, c₂.le⟩
 
 set_option backward.defeqAttrib.useBackward true in
-/-- The power series expansion of `Complex.arctan`, valid on the open unit disc. -/
+/-- The power series expansion of `Complex.arctan`, valid on the open unit disc.
+@isnad1 id=hassum.1h1v.s7.d0fb6dcd907a from=seed src=0 shape=02e8584c vocab=6560d00e
+-/
 theorem hasSum_arctan {z : ℂ} (hz : ‖z‖ < 1) :
     HasSum (fun n : ℕ ↦ (-1) ^ n * z ^ (2 * n + 1) / ↑(2 * n + 1)) (arctan z) := by
   have := ((hasSum_taylorSeries_log (z := z * I) (by simpa)).add
@@ -140,7 +157,9 @@ theorem hasSum_arctan {z : ℂ} (hz : ‖z‖ < 1) :
 
 end Complex
 
-/-- The power series expansion of `Real.arctan`, valid on `-1 < x < 1`. -/
+/-- The power series expansion of `Real.arctan`, valid on `-1 < x < 1`.
+@isnad1 id=hassum.1h1v.s7.c863a2552af5 from=seed src=0 shape=930ef10c vocab=2489c6fe
+-/
 theorem Real.hasSum_arctan {x : ℝ} (hx : ‖x‖ < 1) :
     HasSum (fun n : ℕ => (-1) ^ n * x ^ (2 * n + 1) / ↑(2 * n + 1)) (arctan x) :=
   mod_cast Complex.hasSum_arctan (z := x) (by simpa)

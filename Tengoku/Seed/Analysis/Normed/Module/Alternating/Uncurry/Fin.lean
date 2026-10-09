@@ -58,11 +58,16 @@ variable {𝕜 E F G : Type*} [NontriviallyNormedField 𝕜]
 
 /-- If `f` is a continuous `(n + 1)`-multilinear alternating map, `x` is an element of the domain,
 and `v` is an `n`-vector, then the value of `f` at `v` with `x` inserted at the `p`th place
-equals `(-1) ^ p` times the value of `f` at `v` with `x` prepended. -/
+equals `(-1) ^ p` times the value of `f` at `v` with `x` prepended.
+@isnad1 id=eq.0h8v.s9.70926246ec0a from=seed src=0 shape=117402c9 vocab=dcca9e65
+-/
 theorem map_insertNth (f : E [⋀^Fin (n + 1)]→L[𝕜] F) (p : Fin (n + 1)) (x : E) (v : Fin n → E) :
     f (p.insertNth x v) = (-1) ^ (p : ℕ) • f (Matrix.vecCons x v) :=
   f.toAlternatingMap.map_insertNth p x v
 
+/--
+@isnad1 id=eq.0h8v.s9.e643d7e55be2 from=seed src=0 shape=2a18a360 vocab=dcca9e65
+-/
 theorem neg_one_pow_smul_map_insertNth (f : E [⋀^Fin (n + 1)]→L[𝕜] F) (p : Fin (n + 1)) (x : E)
     (v : Fin n → E) : (-1) ^ (p : ℕ) • f (p.insertNth x v) = f (Matrix.vecCons x v) :=
   f.toAlternatingMap.neg_one_pow_smul_map_insertNth p x v
@@ -73,7 +78,9 @@ Then `(-1) ^ i • f (w i) + (-1) ^ j • f (w j) = 0`.
 This follows from the fact that these two vectors differ by a permutation of sign `(-1) ^ (i + j)`.
 
 These are the only two nonzero terms in the proof of `map_eq_zero_of_eq`
-in the definition of `AlternatingMap.alternatizeUncurryFin`. -/
+in the definition of `AlternatingMap.alternatizeUncurryFin`.
+@isnad1 id=eq.2h8v.s9.8fed11ee5485 from=seed src=0 shape=69f68bd0 vocab=d0338dc0
+-/
 theorem neg_one_pow_smul_map_removeNth_add_eq_zero_of_eq (f : E [⋀^Fin n]→L[𝕜] F)
     {v : Fin (n + 1) → E} {i j : Fin (n + 1)} (hvij : v i = v j) (hij : i ≠ j) :
     (-1) ^ (i : ℕ) • f (i.removeNth v) + (-1) ^ (j : ℕ) • f (j.removeNth v) = 0 :=
@@ -106,6 +113,9 @@ noncomputable def alternatizeUncurryFinCLM :
       apply f.le_opNorm
     _ = (n + 1) * ‖f‖ * ∏ i, ‖v i‖ := by simp [mul_assoc]
 
+/--
+@isnad1 id=le.0h4v.s11.8c5dd2527d89 from=seed src=0 shape=65e1115e vocab=b67dd57f
+-/
 lemma norm_alternatizeUncurryFinCLM_le : ‖alternatizeUncurryFinCLM (n := n) 𝕜 E F‖ ≤ n + 1 := by
   rw [alternatizeUncurryFinCLM]
   apply AlternatingMap.mkContinuousLinear_norm_le
@@ -126,37 +136,58 @@ noncomputable def alternatizeUncurryFin (f : E →L[𝕜] E [⋀^Fin n]→L[𝕜
     E [⋀^Fin (n + 1)]→L[𝕜] F :=
   alternatizeUncurryFinCLM 𝕜 E F f
 
+/--
+@isnad1 id=eq.0h5v.s12.374d20de2bb7 from=seed src=0 shape=5275d3d8 vocab=2894e4f1
+-/
 @[simp]
 lemma alternatizeUncurryFinCLM_apply (f : E →L[𝕜] E [⋀^Fin n]→L[𝕜] F) :
     alternatizeUncurryFinCLM 𝕜 E F f = alternatizeUncurryFin f :=
   rfl
 
+/--
+@isnad1 id=le.0h5v.s10.02eef159bcb3 from=seed src=0 shape=89b397c0 vocab=683e31fc
+-/
 lemma norm_alternatizeUncurryFin_le (f : E →L[𝕜] E [⋀^Fin n]→L[𝕜] F) :
     ‖alternatizeUncurryFin f‖ ≤ (n + 1) * ‖f‖ :=
   (alternatizeUncurryFinCLM 𝕜 E F).le_of_opNorm_le norm_alternatizeUncurryFinCLM_le f
 
+/--
+@isnad1 id=eq.0h6v.s10.bc727ee211ef from=seed src=0 shape=7ecac172 vocab=0f5f1ee0
+-/
 theorem alternatizeUncurryFin_apply (f : E →L[𝕜] E [⋀^Fin n]→L[𝕜] F) (v : Fin (n + 1) → E) :
     alternatizeUncurryFin f v = ∑ i : Fin (n + 1), (-1) ^ (i : ℕ) • f (v i) (removeNth i v) := by
   rw [alternatizeUncurryFin, alternatizeUncurryFinCLM]
   apply alternatizeUncurryFinCLM.aux_apply
 
+/--
+@isnad1 id=eq.0h5v.s10.01d713250cf0 from=seed src=0 shape=fca248a1 vocab=2fde077e
+-/
 lemma toAlternatingMap_alternatizeUncurryFin (f : E →L[𝕜] E [⋀^Fin n]→L[𝕜] F) :
     (alternatizeUncurryFin f).toAlternatingMap =
       .alternatizeUncurryFin (toAlternatingMapLinear ∘ₗ (f : E →ₗ[𝕜] E [⋀^Fin n]→L[𝕜] F)) := by
   ext
   simp [alternatizeUncurryFin_apply, AlternatingMap.alternatizeUncurryFin_apply]
 
+/--
+@isnad1 id=eq.0h6v.s11.d8b17d09751a from=seed src=0 shape=b58101ed vocab=e24b119f
+-/
 @[simp]
 theorem alternatizeUncurryFin_add (f g : E →L[𝕜] E [⋀^Fin n]→L[𝕜] F) :
     alternatizeUncurryFin (f + g) = alternatizeUncurryFin f + alternatizeUncurryFin g :=
   map_add (alternatizeUncurryFinCLM 𝕜 E F) f g
 
+/--
+@isnad1 id=eq.0h5v.s9.b56d31c549e2 from=seed src=0 shape=ba4d7bf8 vocab=c2e19475
+-/
 @[simp]
 lemma alternatizeUncurryFin_curryLeft (f : E [⋀^Fin (n + 1)]→L[𝕜] F) :
     alternatizeUncurryFin (curryLeft f) = (n + 1) • f := by
   ext v
   simp [alternatizeUncurryFin_apply, ← map_insertNth]
 
+/--
+@isnad1 id=eq.0h7v.s11.8b07bf0da84f from=seed src=0 shape=a31dd2d1 vocab=c71da5ac
+-/
 @[simp]
 theorem alternatizeUncurryFin_smul {S : Type*} [Monoid S] [DistribMulAction S F]
     [ContinuousConstSMul S F] [SMulCommClass 𝕜 S F] (c : S) (f : E →L[𝕜] E [⋀^Fin n]→L[𝕜] F) :
@@ -164,6 +195,9 @@ theorem alternatizeUncurryFin_smul {S : Type*} [Monoid S] [DistribMulAction S F]
   ext v
   simp [alternatizeUncurryFin_apply, smul_comm _ c, Finset.smul_sum]
 
+/--
+@isnad1 id=eq.0h4v.s11.b4b32cdf4079 from=seed src=0 shape=7b9bf4ec vocab=8a9b7c27
+-/
 theorem alternatizeUncurryFin_constOfIsEmptyLIE_comp (f : E →L[𝕜] F) :
     alternatizeUncurryFin (constOfIsEmptyLIE 𝕜 E F (Fin 0) ∘L f) =
       ofSubsingleton _ _ _ (0 : Fin 1) f := by
@@ -189,6 +223,7 @@ so the power of `-1` is off by one compared to the informal texts.
 In particular, if `f` is symmetric in the first two arguments,
 then the resulting alternating map is zero,
 see `alternatizeUncurryFin_alternatizeUncurryFinCLM_comp_of_symmetric` below.
+@isnad1 id=eq.0h6v.s13.903721ce0a62 from=seed src=0 shape=a1ec4199 vocab=88d5329f
 -/
 theorem alternatizeUncurryFin_alternatizeUncurryFinCLM_comp_apply
     (f : E →L[𝕜] E →L[𝕜] E [⋀^Fin n]→L[𝕜] F) (v : Fin (n + 2) → E) :
@@ -204,7 +239,9 @@ theorem alternatizeUncurryFin_alternatizeUncurryFinCLM_comp_apply
 
 /-- If `f` is a symmetric continuous bilinear map
 taking values in the space of continuous alternating maps,
-then the twice uncurried `f` is zero. -/
+then the twice uncurried `f` is zero.
+@isnad1 id=eq.1h5v.s13.ab12d0cb2758 from=seed src=0 shape=f522116d vocab=bdad3a9c
+-/
 theorem alternatizeUncurryFin_alternatizeUncurryFinCLM_comp_of_symmetric
     {f : E →L[𝕜] E →L[𝕜] E [⋀^Fin n]→L[𝕜] F}
     (hf : ∀ x y, f x y = f y x) :
@@ -213,7 +250,9 @@ theorem alternatizeUncurryFin_alternatizeUncurryFinCLM_comp_of_symmetric
   simp [alternatizeUncurryFin_alternatizeUncurryFinCLM_comp_apply, hf]
 
 /-- The derivative of `compContinuousLinearMap` can be represented
-in terms of `alternatizeUncurryFinCLM`. -/
+in terms of `alternatizeUncurryFinCLM`.
+@isnad1 id=eq.0h7v.s12.6e8663610f9a from=seed src=0 shape=36f17b31 vocab=2ce86ec9
+-/
 theorem fderivCompContinuousLinearMap_eq_alternatizeUncurryFin (f : F [⋀^Fin (n + 1)]→L[𝕜] G)
     (g : E →L[𝕜] F) :
     f.fderivCompContinuousLinearMap g = alternatizeUncurryFinCLM 𝕜 E G ∘L
@@ -227,7 +266,9 @@ theorem fderivCompContinuousLinearMap_eq_alternatizeUncurryFin (f : F [⋀^Fin (
     ← map_insertNth, this]
 
 /-- `alternatizeUncurryFin` of `fderivCompContinuousLinearMap f g`
-composed with a symmetric bilinear map is zero. -/
+composed with a symmetric bilinear map is zero.
+@isnad1 id=eq.1h8v.s11.a558b51be4ea from=seed src=0 shape=f7ec5935 vocab=b6a9dc5d
+-/
 theorem alternatizeUncurryFin_fderivCompContinuousLinearMap_eq_zero (f : F [⋀^Fin n]→L[𝕜] G)
     (g : E →L[𝕜] F) {h : E →L[𝕜] E →L[𝕜] F} (hsymm : ∀ x y, h x y = h y x) :
     alternatizeUncurryFin (f.fderivCompContinuousLinearMap g ∘L h) = 0 := by

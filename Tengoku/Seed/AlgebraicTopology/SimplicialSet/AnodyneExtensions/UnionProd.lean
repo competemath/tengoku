@@ -69,6 +69,9 @@ variable {m : ℕ} {k : Fin (m + 1)} {n : ℕ}
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h6v.s12.134b784f0510 from=seed src=0 shape=aa507345 vocab=bbe07fe9
+-/
 @[simp]
 lemma objEquiv_apply_fst' (hd : x.dim = d) (i : Fin (d + 1)) :
     dsimp% ((objEquiv (x.cast hd).simplex) i).1 = (x.cast hd).simplex.1 i := rfl
@@ -76,6 +79,9 @@ lemma objEquiv_apply_fst' (hd : x.dim = d) (i : Fin (d + 1)) :
 #adaptation_note
 /-- `respectTransparency.types true` changes the auto-generated lemmas' signature -/
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h6v.s12.09860066878f from=seed src=0 shape=5f4f5e28 vocab=dbc403aa
+-/
 @[simp]
 lemma objEquiv_apply_snd' (hd : x.dim = d) (i : Fin (d + 1)) :
     dsimp% ((objEquiv (x.cast hd).simplex) i).2 = (x.cast hd).simplex.2 i := rfl
@@ -101,15 +107,24 @@ def IsIndex : Fin (d + 1) → Prop :=
     (x.cast hd).simplex.1 l.succ = k.succ ∧
     (x.cast hd).simplex.2 l.succ = (x.cast hd).simplex.2 l.castSucc)
 
+/--
+@isnad1 id=iff.1h5v.s8.887fab4a9b52 from=seed src=0 shape=e9cffa35 vocab=d381fcc3
+-/
 @[simp]
 lemma isIndex_zero : IsIndex x hd 0 ↔ False := Iff.rfl
 
+/--
+@isnad1 id=iff.1h6v.s13.106629ae965e from=seed src=0 shape=9215675a vocab=e7c260ce
+-/
 lemma isIndex_succ (l : Fin d) :
     IsIndex x hd l.succ ↔
       (x.cast hd).simplex.1 l.castSucc = k.castSucc ∧
       (x.cast hd).simplex.1 l.succ = k.succ ∧
       (x.cast hd).simplex.2 l.succ = (x.cast hd).simplex.2 l.castSucc := Iff.rfl
 
+/--
+@isnad1 id=mem.2h6v.s12.374eea87b550 from=seed src=0 shape=75c8717c vocab=ebef98f3
+-/
 lemma mem_range_left (i : Fin (m + 2)) (hi : i ≠ k.castSucc) :
     i ∈ Set.range (x.cast hd).simplex.1 := by
   subst hd
@@ -117,6 +132,9 @@ lemma mem_range_left (i : Fin (m + 2)) (hi : i ≠ k.castSucc) :
   simp [Subcomplex.mem_unionProd_iff, mem_horn_iff_notMem_range] at this
   tauto
 
+/--
+@isnad1 id=mem.1h6v.s11.b1b88654dc05 from=seed src=0 shape=903f6b21 vocab=f1056f18
+-/
 lemma mem_range_right (i : Fin (n + 1)) :
     i ∈ Set.range (x.cast hd).simplex.2 := by
   subst hd
@@ -131,11 +149,17 @@ that `x l` is of the form `(k.succ, _)`. -/
 noncomputable def finset : Finset (Fin (d + 1)) :=
   { l : Fin (d + 1) | (x.cast hd).simplex.1 l = k.succ }
 
+/--
+@isnad1 id=iff.1h6v.s11.38ddd2f81442 from=seed src=0 shape=feb95f6b vocab=1dc25872
+-/
 @[simp]
 lemma mem_finset_iff (l : Fin (d + 1)) :
     dsimp% l ∈ finset x hd ↔ (x.cast hd).simplex.1 l = k.succ := by
   simp [finset]
 
+/--
+@isnad1 id=nonempty.1h5v.s8.6276112e0553 from=seed src=0 shape=3a5897d3 vocab=e51e938d
+-/
 lemma nonempty_finset : (finset x hd).Nonempty := by
   obtain ⟨i, hi⟩ := mem_range_left x hd k.succ (by grind)
   exact ⟨i, by simpa using hi⟩
@@ -146,11 +170,17 @@ the smallest `l : Fin (d + 1)` such that `x l` is of the form `(k.succ, _)`. -/
 noncomputable def min : Fin (d + 1) := (finset x hd).min' (nonempty_finset x hd)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h5v.s11.4001ed4bf721 from=seed src=0 shape=4ce40fc6 vocab=40e9a0a7
+-/
 lemma simplex_fst_min : dsimp% (x.cast hd).simplex.1 (min x hd) = k.succ := by
   rw [← mem_finset_iff]
   apply Finset.min'_mem
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.1h6v.s11.10330b8eb48d from=seed src=0 shape=0df1e520 vocab=839265b0
+-/
 lemma simplex_fst_le_castSucc_iff (i : Fin (d + 1)) :
     dsimp% (x.cast hd).simplex.1 i ≤ k.castSucc ↔ i < min x hd := by
   contrapose!
@@ -176,15 +206,27 @@ variable {x} {hd : x.dim = d} {l : Fin d} (hl : IsIndex x hd l.succ)
 
 include hl
 
+/--
+@isnad1 id=eq.2h6v.s11.a894ff3c30dc from=seed src=0 shape=dc85ccf9 vocab=e3942310
+-/
 lemma simplex_fst_castSucc :
     dsimp% (x.cast hd).simplex.1 l.castSucc = k.castSucc := hl.1
 
+/--
+@isnad1 id=eq.2h6v.s11.8247b5ae46a3 from=seed src=0 shape=d85feb5d vocab=e3942310
+-/
 lemma simplex_fst_succ :
     dsimp% (x.cast hd).simplex.1 l.succ = k.succ := hl.2.1
 
+/--
+@isnad1 id=eq.2h6v.s12.284bddd3267d from=seed src=0 shape=92506f4c vocab=dd368aed
+-/
 lemma simplex_snd_succ :
     dsimp% (x.cast hd).simplex.2 l.succ = (x.cast hd).simplex.2 l.castSucc := hl.2.2
 
+/--
+@isnad1 id=iff.2h7v.s11.44f952a75db1 from=seed src=0 shape=76148194 vocab=da4f4a58
+-/
 lemma succ_le_simplex_fst_iff (i : Fin (d + 1)) :
     dsimp% k.succ ≤ (x.cast hd).simplex.1 i ↔ l.succ ≤ i := by
   refine ⟨fun hi ↦ ?_, fun hi ↦ ?_⟩
@@ -197,16 +239,25 @@ lemma succ_le_simplex_fst_iff (i : Fin (d + 1)) :
   · rw [← hl.simplex_fst_succ]
     exact stdSimplex.monotone_apply _ hi
 
+/--
+@isnad1 id=iff.2h7v.s11.bbafea38f71a from=seed src=0 shape=754dd6a4 vocab=5bf98554
+-/
 lemma simplex_fst_le_castSucc_iff (i : Fin (d + 1)) :
     dsimp% (x.cast hd).simplex.1 i ≤ k.castSucc ↔ i < l.succ := by
   rw [Fin.le_castSucc_iff, ← not_le, hl.succ_le_simplex_fst_iff, not_le]
 
+/--
+@isnad1 id=eq.2h6v.s8.b5f417f008fa from=seed src=0 shape=6aafd713 vocab=40992c54
+-/
 lemma min_eq : min x hd = l.succ :=
   le_antisymm (Finset.min'_le _ _ (by simpa using hl.simplex_fst_succ))
     ((Finset.le_min'_iff _ _ ).2 (fun i hi ↦ by
       rw [mem_finset_iff] at hi
       simp [← hl.succ_le_simplex_fst_iff, ← hi]))
 
+/--
+@isnad1 id=eq.3h7v.s8.2d7ac48c7e4d from=seed src=0 shape=1097f6ce vocab=62b51ab1
+-/
 lemma unique {l' : Fin d} (hl' : IsIndex x hd l'.succ) : l = l' := by
   rw [← Fin.succ_inj, ← hl.min_eq, hl'.min_eq]
 
@@ -276,6 +327,9 @@ def IsIndex.type₁ {hd : x.dim = d + 1} {i : Fin (d + 1)}
 
 namespace Type₁
 
+/--
+@isnad1 id=iff.0h5v.s7.5e740b8fcca6 from=seed src=0 shape=37371f9e vocab=22c8b3ed
+-/
 lemma ext_iff {s t : Type₁.{u} k n} :
     s = t ↔ s.x = t.x := by
   refine ⟨fun h ↦ by rw [h], fun h ↦ ?_⟩
@@ -313,37 +367,58 @@ noncomputable def φ (i : Fin (d + 2)) : Fin (m + 2) × Fin (n + 1) :=
   then ⟨k.castSucc, (x.cast hd).simplex.2 (min x hd)⟩
   else objEquiv (x.cast hd).simplex ((min x hd).predAbove i)
 
+/--
+@isnad1 id=eq.1h5v.s11.663fe0a6e848 from=seed src=0 shape=7a2bce2b vocab=3b0f3e19
+-/
 @[simp]
 lemma φ_castSucc :
     φ x hd (min x hd).castSucc = ⟨k.castSucc, (x.cast hd).simplex.2 (min x hd)⟩ := by
   simp [φ]
 
+/--
+@isnad1 id=eq.1h6v.s14.7bcd9e842b4f from=seed src=0 shape=db7a74d2 vocab=178231f5
+-/
 @[simp]
 lemma φ_succAbove (i : Fin (d + 1)) :
     φ x hd ((min x hd).castSucc.succAbove i) =
       objEquiv (x.cast hd).simplex i := by
   simp [φ]
 
+/--
+@isnad1 id=eq.2h6v.s14.86739c962cec from=seed src=0 shape=14a3ae77 vocab=187e0ed0
+-/
 lemma φ_of_ne (i : Fin (d + 2)) (hi : i ≠ (min x hd).castSucc) :
     φ x hd i = objEquiv (x.cast hd).simplex ((min x hd).predAbove i) :=
   ite_eq_right hi
 
+/--
+@isnad1 id=eq.2h6v.s14.e3d8a3c5e78b from=seed src=0 shape=695de9fc vocab=1164f3fa
+-/
 lemma φ_of_lt (i : Fin (d + 2)) (hi : i < (min x hd).castSucc) :
     φ x hd i = objEquiv (x.cast hd).simplex (i.castPred (by grind)) := by
   rw [φ_of_ne _ _ _ hi.ne, Fin.predAbove_of_le_castSucc _ _ hi.le]
 
+/--
+@isnad1 id=eq.2h6v.s14.bdc2b0f5e92f from=seed src=0 shape=6bb985f9 vocab=6dc1a277
+-/
 lemma φ_of_gt (i : Fin (d + 2)) (hi : (min x hd).castSucc < i) :
     φ x hd i = objEquiv (x.cast hd).simplex (i.pred (by aesop)) := by
   rw [φ_of_ne _ _ _ hi.ne', Fin.predAbove_of_castSucc_lt _ _ hi]
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h5v.s9.d5735d1b6472 from=seed src=0 shape=07977c04 vocab=ce066d0f
+-/
 @[simp]
 lemma φ_succ_snd : (φ x hd (min x hd).succ).2 = (φ x hd (min x hd).castSucc).2 := by
   have := φ_succAbove x hd (min x hd)
   simp_all [φ_castSucc]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s9.02c4d8b388db from=seed src=0 shape=fd3fd61a vocab=8d1682c4
+-/
 @[simp]
 lemma φ_succ_fst : (φ x hd (min x hd).succ).1 = k.succ := by
   have := φ_succAbove x hd (min x hd)
@@ -353,6 +428,9 @@ variable {x}
 
 include hx in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=strictmo.2h5v.s9.a93fd87e852b from=seed src=0 shape=0a9f77f2 vocab=c654fdd9
+-/
 lemma strictMono_φ : StrictMono (φ x hd) := by
   have hx' := (prodStdSimplex.nonDegenerate_iff_strictMono_objEquiv _).1
     (x.cast hd).nonDegenerate
@@ -391,25 +469,40 @@ lemma strictMono_φ : StrictMono (φ x hd) := by
 noncomputable abbrev simplex : (Δ[m + 1] ⊗ Δ[n]) _⦋d + 1⦌ :=
   (objEquiv.{u}.symm ⟨φ x hd, (hx.strictMono_φ hd).monotone⟩)
 
+/--
+@isnad1 id=eq.2h6v.s9.456ebb90bf15 from=seed src=0 shape=dbd25203 vocab=a23aa31c
+-/
 @[simp]
 lemma simplex_fst_apply (i : Fin (d + 2)) :
     (hx.simplex hd).1 i = (φ x hd i).1 := rfl
 
+/--
+@isnad1 id=eq.2h6v.s9.3ae2857b8b1f from=seed src=0 shape=fc34b199 vocab=7f5000b8
+-/
 @[simp]
 lemma simplex_snd_apply (i : Fin (d + 2)) :
     (hx.simplex hd).2 i = (φ x hd i).2 := rfl
 
+/--
+@isnad1 id=mem.2h5v.s9.85064283d6f0 from=seed src=0 shape=79ed3159 vocab=8f63f598
+-/
 lemma simplex_mem_nonDegenerate :
     hx.simplex hd ∈ (Δ[m + 1] ⊗ Δ[n]).nonDegenerate (d + 1) := by
   rw [nonDegenerate_iff_strictMono_objEquiv, Equiv.apply_symm_apply]
   exact hx.strictMono_φ hd
 
+/--
+@isnad1 id=eq.2h5v.s10.d05c7f46a9b6 from=seed src=0 shape=72037917 vocab=147054e6
+-/
 lemma δ_simplex :
     dsimp% (Δ[m + 1] ⊗ Δ[n]).δ (min x hd).castSucc (hx.simplex hd) = (x.cast hd).simplex := by
   apply objEquiv.injective
   ext i : 2
   rw [objEquiv_δ_apply, Equiv.apply_symm_apply, OrderHom.coe_mk, φ_succAbove]
 
+/--
+@isnad1 id=not.2h5v.s9.5e703e60ef84 from=seed src=0 shape=06bc1ec1 vocab=db6a0869
+-/
 lemma notMem_simplex :
     hx.simplex hd ∉ (Subcomplex.unionProd.{u} Λ[m + 1, k.castSucc] ∂Δ[n]).obj _ := by
   refine fun h ↦ (x.cast hd).notMem ?_
@@ -440,6 +533,9 @@ include hl
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.2h6v.s9.d3fedc7dae57 from=seed src=0 shape=dc13b41c vocab=d418c7fc
+-/
 lemma min_δ : min (d := d) hl.δ rfl = l := by
   refine le_antisymm (Finset.min'_le _ _ ?_)
     (Finset.le_min' _ _ _ (fun y hy ↦ ?_))
@@ -455,6 +551,9 @@ lemma min_δ : min (d := d) hl.δ rfl = l := by
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=istype.2h6v.s9.cc9ee0de1a65 from=seed src=0 shape=581db280 vocab=c2624d5e
+-/
 lemma isType₂_δ : IsType₂ hl.δ := by
   intro _ rfl t ht
   dsimp at t ht
@@ -496,6 +595,9 @@ lemma eq_of_isType₂_δ {u : (Subcomplex.unionProd.{u} Λ[m + 1, k.castSucc] �
 end IsIndex
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.3h6v.s9.71f33d48d934 from=seed src=0 shape=18390be1 vocab=4bb7eace
+-/
 lemma IsType₂.type₁_eq_of_δ_eq
     {t : (Subcomplex.unionProd.{u} Λ[m + 1, k.castSucc] ∂Δ[n]).N}
     (ht : IsType₂ t) (s : Type₁.{u} k n) (hst : s.δ = t) {d : ℕ} (hd : t.dim = d) :
@@ -526,10 +628,16 @@ lemma IsType₂.type₁_eq_of_δ_eq
     rw [← s.isIndex.min_δ]
     exact Fin.succAbove_predAbove hi -- `simp [hi]` should work but doesn't
 
+/--
+@isnad1 id=istype.0h4v.s5.4c3bcc515f16 from=seed src=0 shape=dd5b1c8f vocab=ca3bca18
+-/
 lemma Type₁.isType₂_δ (s : Type₁.{u} k n) : IsType₂ s.δ :=
   s.isIndex.isType₂_δ
 
 variable {x} in
+/--
+@isnad1 id=eq.5h9v.s10.122d3c87b7c8 from=seed src=0 shape=22ba0b88 vocab=0dd41bb4
+-/
 lemma IsIndex.δ_injective
     {d : ℕ} {hd : x.dim = d + 1} {l : Fin (d + 1)} (hl : IsIndex x hd l.succ)
     {y : (Subcomplex.unionProd.{u} Λ[m + 1, k.castSucc] ∂Δ[n]).N}
@@ -589,6 +697,9 @@ noncomputable def pairingCore {m : ℕ} (k : Fin (m + 1)) (n : ℕ) :
         rw [S.ext_iff']
         exact ⟨hd, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.773afa6ee1dc from=seed src=0 shape=8d842a19 vocab=d35ffb21
+-/
 @[simp]
 lemma type₁_pairingCore {m : ℕ} (k : Fin (m + 1)) {n : ℕ}
     (s : Type₁.{u} k n) :
@@ -687,6 +798,9 @@ noncomputable def pairing {m : ℕ} (k : Fin (m + 2)) (n : ℕ) :
   else
     (pairingCore.{u} (k.castPred hk) n).pairing
 
+/--
+@isnad1 id=eq.0h3v.s8.878d89277194 from=seed src=0 shape=a7f5987a vocab=c09cb06c
+-/
 lemma pairing_castSucc {m : ℕ} (k : Fin (m + 1)) (n : ℕ) :
     pairing.{u} k.castSucc n = (pairingCore.{u} k n).pairing :=
   dite_eq_right (by grind)

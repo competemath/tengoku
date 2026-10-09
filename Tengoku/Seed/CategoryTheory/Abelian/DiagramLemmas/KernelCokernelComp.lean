@@ -54,9 +54,15 @@ this is the morphism `kernel (f ≫ g) ⟶ X ⊞ Y` which
 noncomputable def ι : kernel (f ≫ g) ⟶ X ⊞ Y :=
   biprod.lift (kernel.ι (f ≫ g)) (kernel.ι (f ≫ g) ≫ f)
 
+/--
+@isnad1 id=eq.0h6v.s7.ecd41ef9dab1 from=seed src=0 shape=701aa8fa vocab=213a521c
+-/
 @[reassoc (attr := simp)]
 lemma ι_fst : ι f g ≫ biprod.fst = kernel.ι (f ≫ g) := by simp [ι]
 
+/--
+@isnad1 id=eq.0h6v.s7.b2802904909d from=seed src=0 shape=27705de6 vocab=8c5e5761
+-/
 @[reassoc (attr := simp)]
 lemma ι_snd : ι f g ≫ biprod.snd = kernel.ι (f ≫ g) ≫ f := by simp [ι]
 
@@ -70,12 +76,21 @@ this is the morphism `X ⊞ Y ⟶ Y ⊞ Z` given by the matrix
 noncomputable def φ : X ⊞ Y ⟶ Y ⊞ Z :=
   biprod.desc (f ≫ biprod.inl) (biprod.lift (-𝟙 Y) g)
 
+/--
+@isnad1 id=eq.0h6v.s7.226ddedc9093 from=seed src=0 shape=f4866a9c vocab=b0818e0f
+-/
 @[reassoc (attr := simp)]
 lemma inl_φ : biprod.inl ≫ φ f g = f ≫ biprod.inl := by simp [φ]
 
+/--
+@isnad1 id=eq.0h6v.s7.da3fe11a61e7 from=seed src=0 shape=ae66db17 vocab=ed40f1d3
+-/
 @[reassoc (attr := simp)]
 lemma inr_φ_fst : biprod.inr ≫ φ f g ≫ biprod.fst = - 𝟙 Y := by simp [φ]
 
+/--
+@isnad1 id=eq.0h6v.s7.65014d68676e from=seed src=0 shape=8985f88d vocab=4f8b8f2b
+-/
 @[reassoc (attr := simp)]
 lemma φ_snd : φ f g ≫ biprod.snd = biprod.snd ≫ g := by
   dsimp [φ]
@@ -87,17 +102,29 @@ this is the morphism `Y ⊞ Z ⟶ cokernel (f ≫ g)` which
 noncomputable def π : Y ⊞ Z ⟶ cokernel (f ≫ g) :=
   biprod.desc (g ≫ cokernel.π (f ≫ g)) (cokernel.π (f ≫ g))
 
+/--
+@isnad1 id=eq.0h6v.s7.3cdb8128ff52 from=seed src=0 shape=5818b685 vocab=11ebb806
+-/
 @[reassoc (attr := simp)]
 lemma inl_π : biprod.inl ≫ π f g = g ≫ cokernel.π (f ≫ g) := by simp [π]
 
+/--
+@isnad1 id=eq.0h6v.s7.4f68646ee665 from=seed src=0 shape=40443420 vocab=757a8bd8
+-/
 @[reassoc (attr := simp)]
 lemma inr_π : biprod.inr ≫ π f g = cokernel.π (f ≫ g) := by simp [π]
 
+/--
+@isnad1 id=eq.0h6v.s8.c17e576b28d1 from=seed src=0 shape=e3416346 vocab=199ecf36
+-/
 @[reassoc (attr := simp)]
 lemma ι_φ : ι f g ≫ φ f g = 0 := by
   dsimp [ι, φ]
   aesop
 
+/--
+@isnad1 id=eq.0h6v.s8.ae435db56293 from=seed src=0 shape=53d38abe vocab=53df01b5
+-/
 @[reassoc (attr := simp)]
 lemma φ_π : φ f g ≫ π f g = 0 := by
   dsimp [φ, π]
@@ -188,6 +215,9 @@ noncomputable def δ : kernel g ⟶ cokernel f := (snakeInput f g).δ
 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h6v.s8.2ca3b68d411e from=seed src=0 shape=0c129895 vocab=d56ff12d
+-/
 lemma δ_fac : δ f g = - kernel.ι g ≫ cokernel.π f := by
   simpa using! (snakeInput f g).δ_eq (𝟙 _) (kernel.ι g ≫ biprod.inr) (-kernel.ι g)
     (by simp) (by aesop)
@@ -217,6 +247,9 @@ instance : Epi ((kernelCokernelCompSequence f g).map' 4 5) := by
   dsimp [ComposableArrows.Precomp.map]
   infer_instance
 
+/--
+@isnad1 id=exact.0h6v.s5.58f4f54b5301 from=seed src=0 shape=132f6127 vocab=7ee22448
+-/
 lemma kernelCokernelCompSequence_exact :
     (kernelCokernelCompSequence f g).Exact :=
   (snakeInput f g).snake_lemma

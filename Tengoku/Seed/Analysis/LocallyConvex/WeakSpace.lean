@@ -39,7 +39,9 @@ commutes with `toWeakSpace 𝕜 E`.
 
 This holds more generally for any linear equivalence `e : E ≃ₗ[𝕜] F` between locally convex spaces
 such that precomposition with `e` and `e.symm` preserves continuity of linear functionals. See
-`LinearEquiv.image_closure_of_convex`. -/
+`LinearEquiv.image_closure_of_convex`.
+@isnad1 id=eq.1h3v.s10.de8102304cc4 from=seed src=0 shape=dfe3d296 vocab=95ca8bec
+-/
 theorem Convex.toWeakSpace_closure {s : Set E} (hs : Convex ℝ s) :
     (toWeakSpace 𝕜 E) '' (closure s) = closure (toWeakSpace 𝕜 E '' s) := by
   refine le_antisymm (map_continuous <| toWeakSpaceCLM 𝕜 E).continuousOn.image_closure
@@ -60,6 +62,9 @@ theorem Convex.toWeakSpace_closure {s : Set E} (hs : Convex ℝ s) :
   exact (hux'.not_ge <| hus' ·)
 
 open ComplexOrder in
+/--
+@isnad1 id=eq.0h3v.s11.f2354d142d7f from=seed src=0 shape=62a2e846 vocab=fc69b5ce
+-/
 theorem toWeakSpace_closedConvexHull_eq {s : Set E} :
     (toWeakSpace 𝕜 E) '' (closedConvexHull 𝕜 s) = closedConvexHull 𝕜 (toWeakSpace 𝕜 E '' s) := by
   rw [closedConvexHull_eq_closure_convexHull (𝕜 := 𝕜),
@@ -69,7 +74,9 @@ theorem toWeakSpace_closedConvexHull_eq {s : Set E} :
 
 /-- If `e : E →ₗ[𝕜] F` is a linear map between locally convex spaces, and `f ∘ e` is continuous
 for every continuous linear functional `f : StrongDual 𝕜 F`, then `e` commutes with the closure on
-convex sets. -/
+convex sets.
+@isnad1 id=le.2h5v.s11.f162cee4ca19 from=seed src=0 shape=051f32e2 vocab=af01058a
+-/
 theorem LinearMap.image_closure_of_convex {s : Set E} (hs : Convex ℝ s) (e : E →ₗ[𝕜] F)
     (he : ∀ f : StrongDual 𝕜 F, Continuous (e.dualMap f)) :
     e '' (closure s) ⊆ closure (e '' s) := by
@@ -86,7 +93,9 @@ theorem LinearMap.image_closure_of_convex {s : Set E} (hs : Convex ℝ s) (e : E
 precomposition) an isomorphism between their continuous duals, then `e` commutes with the closure
 on convex sets.
 
-The hypotheses hold automatically for `e := toWeakSpace 𝕜 E`, see `Convex.toWeakSpace_closure`. -/
+The hypotheses hold automatically for `e := toWeakSpace 𝕜 E`, see `Convex.toWeakSpace_closure`.
+@isnad1 id=eq.3h5v.s12.b2557b5bf5d4 from=seed src=0 shape=1c9484b2 vocab=48362c85
+-/
 theorem LinearEquiv.image_closure_of_convex {s : Set E} (hs : Convex ℝ s) (e : E ≃ₗ[𝕜] F)
     (he₁ : ∀ f : StrongDual 𝕜 F, Continuous (e.dualMap f))
     (he₂ : ∀ f : StrongDual 𝕜 E, Continuous (e.symm.dualMap f)) :
@@ -100,7 +109,9 @@ theorem LinearEquiv.image_closure_of_convex {s : Set E} (hs : Convex ℝ s) (e :
 precomposition) an isomorphism between their continuous duals, then `e` commutes with the closure
 on convex sets.
 
-The hypotheses hold automatically for `e := toWeakSpace 𝕜 E`, see `Convex.toWeakSpace_closure`. -/
+The hypotheses hold automatically for `e := toWeakSpace 𝕜 E`, see `Convex.toWeakSpace_closure`.
+@isnad1 id=eq.2h6v.s11.fbc4113455a5 from=seed src=0 shape=1f8788bd vocab=9bae2813
+-/
 theorem LinearEquiv.image_closure_of_convex' {s : Set E} (hs : Convex ℝ s) (e : E ≃ₗ[𝕜] F)
     (e_dual : StrongDual 𝕜 F ≃ StrongDual 𝕜 E)
     (he : ∀ f : StrongDual 𝕜 F, (e_dual f : E →ₗ[𝕜] 𝕜) = e.dualMap f) :

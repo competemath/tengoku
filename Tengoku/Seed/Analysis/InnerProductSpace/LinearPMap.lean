@@ -77,6 +77,9 @@ def IsFormalAdjoint (T : E →ₗ.[𝕜] F) (S : F →ₗ.[𝕜] E) : Prop :=
 
 variable {T : E →ₗ.[𝕜] F} {S : F →ₗ.[𝕜] E}
 
+/--
+@isnad1 id=isformal.1h5v.s7.639fa5bf22d0 from=seed src=0 shape=f66f1da2 vocab=4293aca1
+-/
 @[symm]
 protected theorem IsFormalAdjoint.symm (h : T.IsFormalAdjoint S) :
     S.IsFormalAdjoint T := fun y _ => by
@@ -103,6 +106,9 @@ from `T.adjointDomain` to `𝕜`. -/
 def adjointDomainMkCLM (y : T.adjointDomain) : StrongDual 𝕜 T.domain :=
   ⟨(innerₛₗ 𝕜 (y : F)).comp T.toFun, y.prop⟩
 
+/--
+@isnad1 id=eq.0h6v.s11.7bfbb5e7e07c from=seed src=0 shape=6f04d39d vocab=d8515b4c
+-/
 theorem adjointDomainMkCLM_apply (y : T.adjointDomain) (x : T.domain) :
     adjointDomainMkCLM T y x = ⟪(y : F), T x⟫ :=
   rfl
@@ -113,6 +119,9 @@ def adjointDomainMkCLMExtend (y : T.adjointDomain) : StrongDual 𝕜 E :=
 
 variable {T}
 
+/--
+@isnad1 id=eq.1h6v.s10.3cb7d873bc6e from=seed src=0 shape=a5e03623 vocab=62bee292
+-/
 @[simp]
 theorem adjointDomainMkCLMExtend_apply (hT : Dense (T.domain : Set E)) (y : T.adjointDomain)
     (x : T.domain) : adjointDomainMkCLMExtend T y (x : E) = ⟪(y : F), T x⟫ :=
@@ -138,10 +147,16 @@ def adjointAux : T.adjointDomain →ₗ[𝕜] E where
       simp [inner_smul_left, RingHom.id_apply,
         InnerProductSpace.toDual_symm_apply, adjointDomainMkCLMExtend_apply hT _ ⟨z, zin⟩]
 
+/--
+@isnad1 id=eq.1h6v.s11.682dd69dfa7b from=seed src=0 shape=02e1350e vocab=7067a1c5
+-/
 theorem adjointAux_inner (y : T.adjointDomain) (x : T.domain) :
     ⟪adjointAux hT y, x⟫ = ⟪(y : F), T x⟫ := by
   simp [adjointAux, hT]
 
+/--
+@isnad1 id=eq.2h6v.s11.abe2e5bb216e from=seed src=0 shape=a1aab0d5 vocab=7067a1c5
+-/
 theorem adjointAux_unique (y : T.adjointDomain) {x₀ : E}
     (hx₀ : ∀ x : T.domain, ⟪x₀, x⟫ = ⟪(y : F), T x⟫) : adjointAux hT y = x₀ :=
   hT.eq_of_inner_left 𝕜 fun v vin => (adjointAux_inner hT _ _).trans (hx₀ ⟨v, vin⟩).symm
@@ -157,11 +172,17 @@ def adjoint : F →ₗ.[𝕜] E where
 @[inherit_doc]
 scoped postfix:1024 "†" => LinearPMap.adjoint
 
+/--
+@isnad1 id=iff.0h5v.s11.07b140d9472f from=seed src=0 shape=3d31af7e vocab=b9cae90e
+-/
 theorem mem_adjoint_domain_iff (y : F) : y ∈ T†.domain ↔ Continuous ((innerₛₗ 𝕜 y).comp T.toFun) :=
   Iff.rfl
 
 variable {T}
 
+/--
+@isnad1 id=mem.1h5v.s9.27f5800e6ddc from=seed src=0 shape=e70effba vocab=e01d42d8
+-/
 theorem mem_adjoint_domain_of_exists (y : F) (h : ∃ w : E, ∀ x : T.domain, ⟪w, x⟫ = ⟪y, T x⟫) :
     y ∈ T†.domain := by
   obtain ⟨w, hw⟩ := h
@@ -171,28 +192,41 @@ theorem mem_adjoint_domain_of_exists (y : F) (h : ∃ w : E, ∀ x : T.domain, �
   exact funext fun x => (hw x).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h5v.s9.d125cf8a875f from=seed src=0 shape=33e75df5 vocab=5c1c2a5f
+-/
 theorem adjoint_apply_of_not_dense (hT : ¬Dense (T.domain : Set E)) (y : T†.domain) : T† y = 0 := by
   classical
   change (if hT : Dense (T.domain : Set E) then adjointAux hT else 0) y = _
   simp only [hT, not_false_iff, dite_eq_right, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.1h5v.s10.4604f8f04c7d from=seed src=0 shape=0fda5f8d vocab=fa165067
+-/
 theorem adjoint_apply_of_dense (y : T†.domain) : T† y = adjointAux hT y := by
   classical
   change (if hT : Dense (T.domain : Set E) then adjointAux hT else 0) y = _
   simp only [hT, dite_eq_left]
 
 include hT in
+/--
+@isnad1 id=eq.2h6v.s10.2184fa4b4cd7 from=seed src=0 shape=11a42b1e vocab=88b41f78
+-/
 theorem adjoint_apply_eq (y : T†.domain) {x₀ : E} (hx₀ : ∀ x : T.domain, ⟪x₀, x⟫ = ⟪(y : F), T x⟫) :
     T† y = x₀ :=
   (adjoint_apply_of_dense hT y).symm ▸ adjointAux_unique hT _ hx₀
 
 include hT in
-/-- The fundamental property of the adjoint. -/
+/-- The fundamental property of the adjoint.
+@isnad1 id=isformal.1h4v.s8.7c11a2a31aea from=seed src=0 shape=844320bd vocab=19e9d147
+-/
 theorem adjoint_isFormalAdjoint : T†.IsFormalAdjoint T := fun x =>
   (adjoint_apply_of_dense hT x).symm ▸ adjointAux_inner hT x
 
 include hT in
-/-- The adjoint is maximal in the sense that it contains every formal adjoint. -/
+/-- The adjoint is maximal in the sense that it contains every formal adjoint.
+@isnad1 id=le.2h5v.s9.de862cb4f771 from=seed src=0 shape=57f6c0c6 vocab=10900300
+-/
 theorem IsFormalAdjoint.le_adjoint (h : T.IsFormalAdjoint S) : S ≤ T† :=
   ⟨-- Trivially, every `x : S.domain` is in `T.adjoint.domain`
   fun x hx =>
@@ -210,7 +244,9 @@ variable (A : E →L[𝕜] F) {p : Submodule 𝕜 E}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Restricting `A` to a dense submodule and taking the `LinearPMap.adjoint` is the same
-as taking the `ContinuousLinearMap.adjoint` interpreted as a `LinearPMap`. -/
+as taking the `ContinuousLinearMap.adjoint` interpreted as a `LinearPMap`.
+@isnad1 id=eq.1h5v.s11.b3d99de56d44 from=seed src=0 shape=a151480c vocab=07599a86
+-/
 theorem toPMap_adjoint_eq_adjoint_toPMap_of_dense (hp : Dense (p : Set E)) :
     (A.toPMap p).adjoint = A.adjoint.toPMap ⊤ := by
   ext x y hxy
@@ -233,6 +269,9 @@ instance instStar : Star (E →ₗ.[𝕜] E) where
 
 variable {A : E →ₗ.[𝕜] E}
 
+/--
+@isnad1 id=iff.0h3v.s8.2544c908baa0 from=seed src=0 shape=b1926fa8 vocab=97fa5084
+-/
 theorem isSelfAdjoint_def : IsSelfAdjoint A ↔ A† = A := Iff.rfl
 
 /-- Every self-adjoint `LinearPMap` has dense domain.
@@ -270,6 +309,9 @@ def adjoint (g : Submodule 𝕜 (E × F)) : Submodule 𝕜 (F × E) :=
     (WithLp.linearEquiv 2 𝕜 (F × E)).symm).toLinearMap).orthogonal.map
       (WithLp.linearEquiv 2 𝕜 (F × E) : WithLp 2 (F × E) →ₗ[𝕜] F × E)
 
+/--
+@isnad1 id=iff.0h5v.s9.463845551f92 from=seed src=0 shape=2bbb0459 vocab=f16eb968
+-/
 @[simp]
 theorem mem_adjoint_iff (g : Submodule 𝕜 (E × F)) (x : F × E) :
     x ∈ g.adjoint ↔
@@ -331,6 +373,9 @@ namespace LinearPMap
 
 variable {T : E →ₗ.[𝕜] F} [CompleteSpace E]
 
+/--
+@isnad1 id=isclosed.1h4v.s8.f2b3bc24bc0c from=seed src=0 shape=ad24f1f7 vocab=68e7a3d3
+-/
 theorem adjoint_isClosed (hT : Dense (T.domain : Set E)) :
     T†.IsClosed := by
   rw [IsClosed, adjoint_graph_eq_graph_adjoint hT, Submodule.adjoint]

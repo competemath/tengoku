@@ -52,10 +52,18 @@ noncomputable def P : ℕ → (K[X] ⟶ K[X])
   | 0 => 𝟙 _
   | q + 1 => P q ≫ (𝟙 _ + Hσ q)
 
+/--
+@isnad1 id=eq.0h2v.s7.a0490d2cdb93 from=seed src=0 shape=05580afe vocab=a3ba7cb5
+-/
 lemma P_zero : (P 0 : K[X] ⟶ K[X]) = 𝟙 _ := rfl
+/--
+@isnad1 id=eq.0h3v.s9.44d88f1a3d11 from=seed src=0 shape=e0568e9c vocab=1a51c7ac
+-/
 lemma P_succ (q : ℕ) : (P (q + 1) : K[X] ⟶ K[X]) = P q ≫ (𝟙 _ + Hσ q) := rfl
 
-/-- All the `P q` coincide with `𝟙 _` in degree 0. -/
+/-- All the `P q` coincide with `𝟙 _` in degree 0.
+@isnad1 id=eq.0h3v.s7.e1dee0dd75c3 from=seed src=0 shape=471253ad vocab=53e49eb2
+-/
 @[simp]
 theorem P_f_0_eq (q : ℕ) : ((P q).f 0 : X _⦋0⦌ ⟶ X _⦋0⦌) = 𝟙 _ := by
   induction q with
@@ -68,22 +76,36 @@ theorem P_f_0_eq (q : ℕ) : ((P q).f 0 : X _⦋0⦌ ⟶ X _⦋0⦌) = 𝟙 _ :=
 def Q (q : ℕ) : K[X] ⟶ K[X] :=
   𝟙 _ - P q
 
+/--
+@isnad1 id=eq.0h3v.s9.222ede0eae79 from=seed src=0 shape=34e3cdc8 vocab=9691ddef
+-/
 theorem P_add_Q (q : ℕ) : P q + Q q = 𝟙 K[X] := by
   rw [Q]
   abel
 
+/--
+@isnad1 id=eq.0h4v.s9.d96ad8299c3f from=seed src=0 shape=334bc5cf vocab=c2ae1a2b
+-/
 theorem P_add_Q_f (q n : ℕ) : (P q).f n + (Q q).f n = 𝟙 (X _⦋n⦌) :=
   HomologicalComplex.congr_hom (P_add_Q q) n
 
+/--
+@isnad1 id=eq.0h2v.s8.72c40cddb23c from=seed src=0 shape=55ab3ce3 vocab=8a14608d
+-/
 @[simp]
 theorem Q_zero : (Q 0 : K[X] ⟶ _) = 0 :=
   sub_self _
 
+/--
+@isnad1 id=eq.0h3v.s9.c6bcdb96835c from=seed src=0 shape=a2b91268 vocab=6d4f9e8c
+-/
 theorem Q_succ (q : ℕ) : (Q (q + 1) : K[X] ⟶ _) = Q q - P q ≫ Hσ q := by
   simp only [Q, P_succ, comp_add, comp_id]
   abel
 
-/-- All the `Q q` coincide with `0` in degree 0. -/
+/-- All the `Q q` coincide with `0` in degree 0.
+@isnad1 id=eq.0h3v.s8.330853a4a38f from=seed src=0 shape=697524d0 vocab=ce9f7c14
+-/
 @[simp]
 theorem Q_f_0_eq (q : ℕ) : ((Q q).f 0 : X _⦋0⦌ ⟶ X _⦋0⦌) = 0 := by
   simp only [HomologicalComplex.sub_f_apply, HomologicalComplex.id_f, Q, P_f_0_eq, sub_self]
@@ -91,13 +113,18 @@ theorem Q_f_0_eq (q : ℕ) : ((Q q).f 0 : X _⦋0⦌ ⟶ X _⦋0⦌) = 0 := by
 namespace HigherFacesVanish
 
 /-- This lemma expresses the vanishing of
-`(P q).f (n+1) ≫ X.δ k : X _⦋n+1⦌ ⟶ X _⦋n⦌` when `k≠0` and `k≥n-q+2` -/
+`(P q).f (n+1) ≫ X.δ k : X _⦋n+1⦌ ⟶ X _⦋n⦌` when `k≠0` and `k≥n-q+2`
+@isnad1 id=higherfa.0h4v.s6.24d6528fc33b from=seed src=0 shape=f4f39123 vocab=17b7b75a
+-/
 theorem of_P : ∀ q n : ℕ, HigherFacesVanish q ((P q).f (n + 1) : X _⦋n + 1⦌ ⟶ X _⦋n + 1⦌)
   | 0 => fun n j hj₁ => by lia
   | q + 1 => fun n => by
     simp only [P_succ]
     exact (of_P q n).induction
 
+/--
+@isnad1 id=eq.1h6v.s7.1b6b09420c85 from=seed src=0 shape=d1c48842 vocab=2110e2e7
+-/
 @[reassoc]
 theorem comp_P_eq_self {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : HigherFacesVanish q φ) :
     φ ≫ (P q).f (n + 1) = φ := by
@@ -121,6 +148,9 @@ theorem comp_P_eq_self {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} (v : High
 
 end HigherFacesVanish
 
+/--
+@isnad1 id=iff.0h6v.s7.331a3afc41be from=seed src=0 shape=50d8250d vocab=2110e2e7
+-/
 theorem comp_P_eq_self_iff {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} :
     φ ≫ (P q).f (n + 1) = φ ↔ HigherFacesVanish q φ := by
   constructor
@@ -130,21 +160,33 @@ theorem comp_P_eq_self_iff {Y : C} {n q : ℕ} {φ : Y ⟶ X _⦋n + 1⦌} :
     apply HigherFacesVanish.of_P
   · exact HigherFacesVanish.comp_P_eq_self
 
+/--
+@isnad1 id=eq.0h4v.s8.dad5136c3c66 from=seed src=0 shape=3e859d38 vocab=8c284466
+-/
 @[reassoc (attr := simp)]
 theorem P_f_idem (q n : ℕ) : ((P q).f n : X _⦋n⦌ ⟶ _) ≫ (P q).f n = (P q).f n := by
   rcases n with (_ | n)
   · rw [P_f_0_eq q, comp_id]
   · exact (HigherFacesVanish.of_P q n).comp_P_eq_self
 
+/--
+@isnad1 id=eq.0h4v.s8.96db11d5dccf from=seed src=0 shape=3e859d38 vocab=37757b07
+-/
 @[reassoc (attr := simp)]
 theorem Q_f_idem (q n : ℕ) : ((Q q).f n : X _⦋n⦌ ⟶ _) ≫ (Q q).f n = (Q q).f n :=
   idem_of_id_sub_idem _ (P_f_idem q n)
 
+/--
+@isnad1 id=eq.0h3v.s7.5678bc5d6210 from=seed src=0 shape=9ee7b3d1 vocab=ee23f4b7
+-/
 @[reassoc (attr := simp)]
 theorem P_idem (q : ℕ) : (P q : K[X] ⟶ K[X]) ≫ P q = P q := by
   ext n
   exact P_f_idem q n
 
+/--
+@isnad1 id=eq.0h3v.s7.5167970574c1 from=seed src=0 shape=9ee7b3d1 vocab=8e87b849
+-/
 @[reassoc (attr := simp)]
 theorem Q_idem (q : ℕ) : (Q q : K[X] ⟶ K[X]) ≫ Q q = Q q := by
   ext n
@@ -166,11 +208,17 @@ def natTransP (q : ℕ) : alternatingFaceMapComplex C ⟶ alternatingFaceMapComp
       rfl
 
 set_option backward.isDefEq.respectTransparency false in -- This is needed in AlgebraicTopology/DoldKan/Decomposition.lean
+/--
+@isnad1 id=eq.0h6v.s8.a5a380ccf6eb from=seed src=0 shape=26c9303a vocab=d0b60d8a
+-/
 @[reassoc (attr := simp)]
 theorem P_f_naturality (q n : ℕ) {X Y : SimplicialObject C} (f : X ⟶ Y) :
     f.app (op ⦋n⦌) ≫ (P q).f n = (P q).f n ≫ f.app (op ⦋n⦌) :=
   HomologicalComplex.congr_hom ((natTransP q).naturality f) n
 
+/--
+@isnad1 id=eq.0h6v.s8.2052fc8e4d3a from=seed src=0 shape=26c9303a vocab=be6a3013
+-/
 @[reassoc (attr := simp)]
 theorem Q_f_naturality (q n : ℕ) {X Y : SimplicialObject C} (f : X ⟶ Y) :
     f.app (op ⦋n⦌) ≫ (Q q).f n = (Q q).f n ≫ f.app (op ⦋n⦌) := by
@@ -184,6 +232,9 @@ theorem Q_f_naturality (q n : ℕ) {X Y : SimplicialObject C} (f : X ⟶ Y) :
 def natTransQ (q : ℕ) : alternatingFaceMapComplex C ⟶ alternatingFaceMapComplex C where
   app _ := Q q
 
+/--
+@isnad1 id=eq.0h6v.s9.9da298e6cfb6 from=seed src=0 shape=fff608b9 vocab=613666f6
+-/
 theorem map_P {D : Type*} [Category* D] [Preadditive D] (G : C ⥤ D) [G.Additive]
     (X : SimplicialObject C) (q n : ℕ) :
     G.map ((P q : K[X] ⟶ _).f n) = (P q : K[((whiskering C D).obj G).obj X] ⟶ _).f n := by
@@ -195,6 +246,9 @@ theorem map_P {D : Type*} [Category* D] [Preadditive D] (G : C ⥤ D) [G.Additiv
     simp only [P_succ, comp_add, HomologicalComplex.comp_f, HomologicalComplex.add_f_apply,
       comp_id, Functor.map_add, Functor.map_comp, hq, map_Hσ]
 
+/--
+@isnad1 id=eq.0h6v.s9.ae6a5786dc50 from=seed src=0 shape=fff608b9 vocab=b356df89
+-/
 theorem map_Q {D : Type*} [Category* D] [Preadditive D] (G : C ⥤ D) [G.Additive]
     (X : SimplicialObject C) (q n : ℕ) :
     G.map ((Q q : K[X] ⟶ _).f n) = (Q q : K[((whiskering C D).obj G).obj X] ⟶ _).f n := by

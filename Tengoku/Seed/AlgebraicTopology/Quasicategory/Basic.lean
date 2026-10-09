@@ -42,6 +42,9 @@ class Quasicategory (S : SSet) : Prop where
     (_h0 : 0 < i) (_hn : i < Fin.last (n + 2)),
       ∃ σ : Δ[n + 2] ⟶ S, σ₀ = Λ[n + 2, i].ι ≫ σ
 
+/--
+@isnad1 id=ex.2h4v.s8.cdf1cb05c99b from=seed src=0 shape=69f24228 vocab=41560610
+-/
 lemma Quasicategory.hornFilling {S : SSet} [Quasicategory S] ⦃n : ℕ⦄ ⦃i : Fin (n + 1)⦄
     (h0 : 0 < i) (hn : i < Fin.last n)
     (σ₀ : (Λ[n, i] : SSet) ⟶ S) : ∃ σ : Δ[n] ⟶ S, σ₀ = Λ[n, i].ι ≫ σ := by
@@ -55,6 +58,9 @@ lemma Quasicategory.hornFilling {S : SSet} [Quasicategory S] ⦃n : ℕ⦄ ⦃i 
 instance (S : SSet) [KanComplex S] : Quasicategory S where
   hornFilling' _ _ σ₀ _ _ := KanComplex.hornFilling σ₀
 
+/--
+@isnad1 id=quasicat.1h1v.s10.728f6e3961c0 from=seed src=0 shape=9173c678 vocab=b4755b34
+-/
 lemma quasicategory_of_filler (S : SSet)
     (filler : ∀ ⦃n : ℕ⦄ ⦃i : Fin (n + 3)⦄ (σ₀ : (Λ[n + 2, i] : SSet) ⟶ S)
       (_h0 : 0 < i) (_hn : i < Fin.last (n + 2)),
@@ -68,6 +74,9 @@ lemma quasicategory_of_filler (S : SSet)
     rw [← h j hj, NatTrans.comp_app]
     rfl
 
+/--
+@isnad1 id=quasicat.1h3v.s7.6783a92389eb from=seed src=0 shape=7b796778 vocab=ba4ed07e
+-/
 lemma quasicategory_of_hasLiftingProperty (S : SSet) {X : SSet} (t : Limits.IsTerminal X)
     (h : ∀ {n : ℕ} {i : Fin (n + 1)} (_ : 0 < i) (_ : i < Fin.last n),
       HasLiftingProperty Λ[n, i].ι (t.from S)) :
@@ -76,12 +85,18 @@ lemma quasicategory_of_hasLiftingProperty (S : SSet) {X : SSet} (t : Limits.IsTe
     let := h h0 hn
     ⟨(CommSq.mk (t.hom_ext (σ₀ ≫ t.from S) (Λ[n + 2, i].ι ≫ t.from Δ[n + 2]))).lift, by simp⟩
 
+/--
+@isnad1 id=haslifti.2h5v.s7.830e526dcfe4 from=seed src=0 shape=b494b0d8 vocab=ba4ed07e
+-/
 lemma Quasicategory.hasLiftingProperty (S : SSet) [Quasicategory S] {X : SSet}
     (t : Limits.IsTerminal X) {n : ℕ} {i : Fin (n + 1)} (h0 : 0 < i) (hn : i < Fin.last n) :
     HasLiftingProperty Λ[n, i].ι (t.from S) where
   sq_hasLift _ :=
     ⟨(hornFilling h0 hn _).choose, (hornFilling h0 hn _).choose_spec.symm, t.hom_ext _ _⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.f7c08bb4b6db from=seed src=0 shape=970b43e0 vocab=ba4ed07e
+-/
 lemma quasicategory_iff_hasLiftingProperty (S : SSet) {X : SSet} (t : Limits.IsTerminal X) :
     Quasicategory S ↔ ∀ {n : ℕ} {i : Fin (n + 1)} (_ : 0 < i) (_ : i < Fin.last n),
       HasLiftingProperty Λ[n, i].ι (t.from S) :=

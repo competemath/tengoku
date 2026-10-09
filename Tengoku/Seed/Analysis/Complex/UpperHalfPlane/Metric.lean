@@ -40,13 +40,22 @@ namespace UpperHalfPlane
 instance : Dist ℍ :=
   ⟨fun z w => 2 * arsinh (dist (z : ℂ) w / (2 * √(z.im * w.im)))⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.dd0bf05ccc99 from=seed src=0 shape=54b6670b vocab=8aef2188
+-/
 theorem dist_eq (z w : ℍ) : dist z w = 2 * arsinh (dist (z : ℂ) w / (2 * √(z.im * w.im))) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.578f12f8466c from=seed src=0 shape=c0ac8f59 vocab=fad03285
+-/
 theorem sinh_half_dist (z w : ℍ) :
     sinh (dist z w / 2) = dist (z : ℂ) w / (2 * √(z.im * w.im)) := by
   rw [dist_eq, mul_div_cancel_left₀ (arsinh _) two_ne_zero, sinh_arsinh]
 
+/--
+@isnad1 id=eq.0h2v.s6.b1042ab6d4bd from=seed src=0 shape=a704f5c0 vocab=0bf1daa4
+-/
 theorem cosh_half_dist (z w : ℍ) :
     cosh (dist z w / 2) = dist (z : ℂ) (conj (w : ℂ)) / (2 * √(z.im * w.im)) := by
   rw [← sq_eq_sq₀, cosh_sq', sinh_half_dist, div_pow, div_pow, one_add_div, mul_pow, sq_sqrt]
@@ -56,19 +65,31 @@ theorem cosh_half_dist (z w : ℍ) :
     ring
   all_goals positivity
 
+/--
+@isnad1 id=eq.0h2v.s6.d05e6cdffb90 from=seed src=0 shape=43ae5020 vocab=d6ed85af
+-/
 theorem tanh_half_dist (z w : ℍ) :
     tanh (dist z w / 2) = dist (z : ℂ) w / dist (z : ℂ) (conj ↑w) := by
   rw [tanh_eq_sinh_div_cosh, sinh_half_dist, cosh_half_dist, div_div_div_comm, div_self, div_one]
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s7.d16118eb3b33 from=seed src=0 shape=81e554b8 vocab=6c296a45
+-/
 theorem exp_half_dist (z w : ℍ) :
     exp (dist z w / 2) = (dist (z : ℂ) w + dist (z : ℂ) (conj ↑w)) / (2 * √(z.im * w.im)) := by
   rw [← sinh_add_cosh, sinh_half_dist, cosh_half_dist, add_div]
 
+/--
+@isnad1 id=eq.0h2v.s6.67439c38544e from=seed src=0 shape=4ab8690c vocab=af87151f
+-/
 theorem cosh_dist (z w : ℍ) : cosh (dist z w) = 1 + dist (z : ℂ) w ^ 2 / (2 * z.im * w.im) := by
   rw [dist_eq, cosh_two_mul, cosh_sq', add_assoc, ← two_mul, sinh_arsinh, div_pow, mul_pow,
     sq_sqrt, sq (2 : ℝ), mul_assoc, ← mul_div_assoc, mul_assoc, mul_div_mul_left] <;> positivity
 
+/--
+@isnad1 id=eq.0h3v.s8.67bad61b169b from=seed src=0 shape=f79e524f vocab=36ede926
+-/
 theorem sinh_half_dist_add_dist (a b c : ℍ) : sinh ((dist a b + dist b c) / 2) =
     (dist (a : ℂ) b * dist (c : ℂ) (conj ↑b) + dist (b : ℂ) c * dist (a : ℂ) (conj ↑b)) /
       (2 * √(a.im * c.im) * dist (b : ℂ) (conj ↑b)) := by
@@ -79,23 +100,38 @@ theorem sinh_half_dist_add_dist (a b c : ℍ) : sinh ((dist a b + dist b c) / 2)
   rw [sqrt_mul, sqrt_mul, sqrt_mul, mul_comm (√a.im), mul_mul_mul_comm, mul_self_sqrt,
       mul_comm] <;> exact (im_pos _).le
 
+/--
+@isnad1 id=eq.0h2v.s4.b585daa55217 from=seed src=0 shape=1f31534c vocab=72747a07
+-/
 protected theorem dist_comm (z w : ℍ) : dist z w = dist w z := by
   simp only [dist_eq, dist_comm (z : ℂ), mul_comm]
 
+/--
+@isnad1 id=iff.0h3v.s6.e5aa8868f2fb from=seed src=0 shape=e819f985 vocab=87ca4dc1
+-/
 theorem dist_le_iff_le_sinh :
     dist z w ≤ r ↔ dist (z : ℂ) w / (2 * √(z.im * w.im)) ≤ sinh (r / 2) := by
   rw [← div_le_div_iff_of_pos_right (zero_lt_two' ℝ), ← sinh_le_sinh, sinh_half_dist]
 
+/--
+@isnad1 id=iff.0h3v.s6.746688dcbae2 from=seed src=0 shape=e819f985 vocab=fad03285
+-/
 theorem dist_eq_iff_eq_sinh :
     dist z w = r ↔ dist (z : ℂ) w / (2 * √(z.im * w.im)) = sinh (r / 2) := by
   rw [← div_left_inj' (two_ne_zero' ℝ), ← sinh_inj, sinh_half_dist]
 
+/--
+@isnad1 id=iff.1h3v.s7.fc7943e10a09 from=seed src=0 shape=4aa24752 vocab=eda77b83
+-/
 theorem dist_eq_iff_eq_sq_sinh (hr : 0 ≤ r) :
     dist z w = r ↔ dist (z : ℂ) w ^ 2 / (4 * z.im * w.im) = sinh (r / 2) ^ 2 := by
   rw [dist_eq_iff_eq_sinh, ← sq_eq_sq₀, div_pow, mul_pow, sq_sqrt, mul_assoc]
   · norm_num
   all_goals positivity
 
+/--
+@isnad1 id=le.0h3v.s4.b11dc13ccc6a from=seed src=0 shape=6501c2e2 vocab=62e09f0b
+-/
 protected theorem dist_triangle (a b c : ℍ) : dist a c ≤ dist a b + dist b c := by
   rw [dist_le_iff_le_sinh, sinh_half_dist_add_dist, div_mul_eq_div_div _ _ (dist _ _), le_div_iff₀,
     div_mul_eq_mul_div]
@@ -104,6 +140,9 @@ protected theorem dist_triangle (a b c : ℍ) : dist a c ≤ dist a b + dist b c
   · rw [dist_comm, dist_pos, Ne, Complex.conj_eq_iff_im]
     exact b.im_ne_zero
 
+/--
+@isnad1 id=le.0h2v.s5.7e06c666a763 from=seed src=0 shape=c0867458 vocab=5130b0a9
+-/
 theorem dist_le_dist_coe_div_sqrt (z w : ℍ) : dist z w ≤ dist (z : ℂ) w / √(z.im * w.im) := by
   rw [dist_le_iff_le_sinh, ← div_mul_eq_div_div_swap, self_le_sinh_iff]
   positivity
@@ -121,6 +160,9 @@ def metricSpaceAux : MetricSpace ℍ where
 
 open Complex
 
+/--
+@isnad1 id=eq.0h2v.s6.fb167eb558e8 from=seed src=0 shape=62e9cc60 vocab=26164d38
+-/
 theorem cosh_dist' (z w : ℍ) :
     Real.cosh (dist z w) = ((z.re - w.re) ^ 2 + z.im ^ 2 + w.im ^ 2) / (2 * z.im * w.im) := by
   simp [field, cosh_dist, Complex.dist_eq, Complex.sq_norm, normSq_apply]
@@ -130,18 +172,30 @@ theorem cosh_dist' (z w : ℍ) :
 def center (z : ℍ) (r : ℝ) : ℍ :=
   ⟨⟨z.re, z.im * Real.cosh r⟩, by positivity⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.b1a0067f96ed from=seed src=0 shape=393de0b8 vocab=10d3339f
+-/
 @[simp]
 theorem center_re (z r) : (center z r).re = z.re :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.9a64d181abef from=seed src=0 shape=c960bd49 vocab=22f88a93
+-/
 @[simp]
 theorem center_im (z r) : (center z r).im = z.im * Real.cosh r :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.a1fff0815f65 from=seed src=0 shape=bb0110a5 vocab=6c725aa3
+-/
 @[simp]
 theorem center_zero (z : ℍ) : center z 0 = z := by
   apply ext_re_im <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s6.3804c913ecec from=seed src=0 shape=f9d164e0 vocab=b04187ae
+-/
 theorem dist_coe_center_sq (z w : ℍ) (r : ℝ) : dist (z : ℂ) (w.center r) ^ 2 =
     2 * z.im * w.im * (Real.cosh (dist z w) - Real.cosh r) + (w.im * Real.sinh r) ^ 2 := by
   have H : 2 * z.im * w.im ≠ 0 := by positivity
@@ -150,10 +204,16 @@ theorem dist_coe_center_sq (z w : ℍ) (r : ℝ) : dist (z : ℂ) (w.center r) ^
     sq]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.6df049a9fc0a from=seed src=0 shape=4c20dcdc vocab=cdd25ebe
+-/
 theorem dist_coe_center (z w : ℍ) (r : ℝ) : dist (z : ℂ) (w.center r) =
     √(2 * z.im * w.im * (Real.cosh (dist z w) - Real.cosh r) + (w.im * Real.sinh r) ^ 2) := by
   rw [← sqrt_sq dist_nonneg, dist_coe_center_sq]
 
+/--
+@isnad1 id=eq.0h3v.s5.86a70414db9a from=seed src=0 shape=5326b051 vocab=6f7a5eec
+-/
 theorem cmp_dist_eq_cmp_dist_coe_center (z w : ℍ) (r : ℝ) :
     cmp (dist z w) r = cmp (dist (z : ℂ) (w.center r)) (w.im * Real.sinh r) := by
   let := metricSpaceAux
@@ -168,39 +228,62 @@ theorem cmp_dist_eq_cmp_dist_coe_center (z w : ℍ) (r : ℝ) :
     dist_coe_center_sq]
   rw [← cmp_mul_pos_left hzw₀, ← cmp_sub_zero, ← mul_sub, ← cmp_add_right, zero_add]
 
+/--
+@isnad1 id=iff.0h3v.s5.3321adc75990 from=seed src=0 shape=9fd5e986 vocab=8a47c6e9
+-/
 theorem dist_eq_iff_dist_coe_center_eq :
     dist z w = r ↔ dist (z : ℂ) (w.center r) = w.im * Real.sinh r :=
   eq_iff_eq_of_cmp_eq_cmp (cmp_dist_eq_cmp_dist_coe_center z w r)
 
+/--
+@isnad1 id=eq.0h2v.s5.49fadc5bffcc from=seed src=0 shape=49ef7b91 vocab=2dbf72bd
+-/
 @[simp]
 theorem dist_self_center (z : ℍ) (r : ℝ) :
     dist (z : ℂ) (z.center r) = z.im * (Real.cosh r - 1) := by
   rw [dist_of_re_eq (z.center_re r).symm, dist_comm, Real.dist_eq, mul_sub, mul_one]
   exact abs_of_nonneg (sub_nonneg.2 <| le_mul_of_one_le_right z.im_pos.le (one_le_cosh _))
 
+/--
+@isnad1 id=eq.0h2v.s5.2636ac1591ef from=seed src=0 shape=cbd135b8 vocab=8a47c6e9
+-/
 @[simp]
 theorem dist_center_dist (z w : ℍ) :
     dist (z : ℂ) (w.center (dist z w)) = w.im * Real.sinh (dist z w) :=
   dist_eq_iff_dist_coe_center_eq.1 rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.30850e5d675e from=seed src=0 shape=9fd5e986 vocab=3211bc54
+-/
 theorem dist_lt_iff_dist_coe_center_lt :
     dist z w < r ↔ dist (z : ℂ) (w.center r) < w.im * Real.sinh r :=
   lt_iff_lt_of_cmp_eq_cmp (cmp_dist_eq_cmp_dist_coe_center z w r)
 
+/--
+@isnad1 id=iff.0h3v.s5.81bed974275b from=seed src=0 shape=ef6c8856 vocab=3211bc54
+-/
 theorem lt_dist_iff_lt_dist_coe_center :
     r < dist z w ↔ w.im * Real.sinh r < dist (z : ℂ) (w.center r) :=
   lt_iff_lt_of_cmp_eq_cmp (cmp_eq_cmp_symm.1 <| cmp_dist_eq_cmp_dist_coe_center z w r)
 
+/--
+@isnad1 id=iff.0h3v.s5.deb3b34dc392 from=seed src=0 shape=9fd5e986 vocab=c3ed952b
+-/
 theorem dist_le_iff_dist_coe_center_le :
     dist z w ≤ r ↔ dist (z : ℂ) (w.center r) ≤ w.im * Real.sinh r :=
   le_iff_le_of_cmp_eq_cmp (cmp_dist_eq_cmp_dist_coe_center z w r)
 
+/--
+@isnad1 id=iff.0h3v.s5.6c75e936c637 from=seed src=0 shape=ef6c8856 vocab=c3ed952b
+-/
 theorem le_dist_iff_le_dist_coe_center :
     r ≤ dist z w ↔ w.im * Real.sinh r ≤ dist (z : ℂ) (w.center r) :=
   le_iff_le_of_cmp_eq_cmp (cmp_eq_cmp_symm.1 <| cmp_dist_eq_cmp_dist_coe_center z w r)
 
 /-- For two points on the same vertical line, the distance is equal to the distance between the
-logarithms of their imaginary parts. -/
+logarithms of their imaginary parts.
+@isnad1 id=eq.1h2v.s4.e19a641aad45 from=seed src=0 shape=b396e610 vocab=96c687f5
+-/
 nonrec theorem dist_of_re_eq (h : z.re = w.re) : dist z w = dist (log z.im) (log w.im) := by
   have h₀ : 0 < z.im / w.im := by positivity
   rw [dist_eq_iff_dist_coe_center_eq, Real.dist_eq, ← abs_sinh, ← log_div z.im_ne_zero w.im_ne_zero,
@@ -212,7 +295,9 @@ nonrec theorem dist_of_re_eq (h : z.re = w.re) : dist z w = dist (log z.im) (log
   field
 
 /-- Hyperbolic distance between two points is greater than or equal to the distance between the
-logarithms of their imaginary parts. -/
+logarithms of their imaginary parts.
+@isnad1 id=le.0h2v.s4.798f28cd23b5 from=seed src=0 shape=ef9de64f vocab=75b824c2
+-/
 theorem dist_log_im_le (z w : ℍ) : dist (log z.im) (log w.im) ≤ dist z w :=
   calc
     dist (log z.im) (log w.im) = dist (mk ⟨0, z.im⟩ z.im_pos) (mk ⟨0, w.im⟩ w.im_pos) :=
@@ -223,15 +308,23 @@ theorem dist_log_im_le (z w : ℍ) : dist (log z.im) (log w.im) ≤ dist z w :=
       gcongr
       simpa [sqrt_sq_eq_abs, ← dist_eq_norm] using Complex.abs_im_le_norm (z - w)
 
+/--
+@isnad1 id=le.0h2v.s4.24770f5b5fa2 from=seed src=0 shape=ba59aa8a vocab=a4f60982
+-/
 theorem im_le_im_mul_exp_dist (z w : ℍ) : z.im ≤ w.im * Real.exp (dist z w) := by
   rw [← div_le_iff₀' w.im_pos, ← exp_log z.im_pos, ← exp_log w.im_pos, ← Real.exp_sub, exp_le_exp]
   exact (le_abs_self _).trans (dist_log_im_le z w)
 
+/--
+@isnad1 id=le.0h2v.s4.dde8e1a3e78a from=seed src=0 shape=dda805cb vocab=ddbeebbb
+-/
 theorem im_div_exp_dist_le (z w : ℍ) : z.im / Real.exp (dist z w) ≤ w.im :=
   (div_le_iff₀ (exp_pos _)).2 (im_le_im_mul_exp_dist z w)
 
 /-- An upper estimate on the complex distance between two points in terms of the hyperbolic distance
-and the imaginary part of one of the points. -/
+and the imaginary part of one of the points.
+@isnad1 id=le.0h2v.s5.4d9f50598331 from=seed src=0 shape=d172fe71 vocab=b23fc426
+-/
 theorem dist_coe_le (z w : ℍ) : dist (z : ℂ) w ≤ w.im * (Real.exp (dist z w) - 1) :=
   calc
     dist (z : ℂ) w ≤ dist (z : ℂ) (w.center (dist z w)) + dist (w : ℂ) (w.center (dist z w)) :=
@@ -240,7 +333,9 @@ theorem dist_coe_le (z w : ℍ) : dist (z : ℂ) w ≤ w.im * (Real.exp (dist z 
       rw [dist_center_dist, dist_self_center, ← mul_add, ← add_sub_assoc, Real.sinh_add_cosh]
 
 /-- An upper estimate on the complex distance between two points in terms of the hyperbolic distance
-and the imaginary part of one of the points. -/
+and the imaginary part of one of the points.
+@isnad1 id=le.0h2v.s5.5eda94ab4a8e from=seed src=0 shape=d85b1f72 vocab=9e7dec86
+-/
 theorem le_dist_coe (z w : ℍ) : w.im * (1 - Real.exp (-dist z w)) ≤ dist (z : ℂ) w :=
   calc
     w.im * (1 - Real.exp (-dist z w)) =
@@ -269,6 +364,9 @@ instance : MetricSpace ℍ :=
       refine fun w hw => (dist_coe_le w z).trans_lt ?_
       rwa [← lt_div_iff₀' z.im_pos, sub_lt_iff_lt_add, ← Real.lt_log_iff_exp_lt h₀]
 
+/--
+@isnad1 id=lt.1h3v.s5.a51e68e1a19f from=seed src=0 shape=f06ca1ad vocab=f17295d9
+-/
 theorem im_pos_of_dist_center_le {z : ℍ} {r : ℝ} {w : ℂ}
     (h : dist w (center z r) ≤ z.im * Real.sinh r) : 0 < w.im :=
   calc
@@ -278,6 +376,9 @@ theorem im_pos_of_dist_center_le {z : ℍ} {r : ℝ} {w : ℂ}
     _ ≤ w.im := sub_le_comm.1 <|
       (le_abs_self _).trans ((abs_im_le_norm <| z.center r - w).trans_eq (dist_eq_norm _ _).symm)
 
+/--
+@isnad1 id=eq.0h2v.s5.f4bf0c51012e from=seed src=0 shape=3f618d5a vocab=cb0ef8b2
+-/
 theorem image_coe_closedBall (z : ℍ) (r : ℝ) :
     ((↑) : ℍ → ℂ) '' closedBall (α := ℍ) z r = closedBall ↑(z.center r) (z.im * Real.sinh r) := by
   ext w; constructor
@@ -287,6 +388,9 @@ theorem image_coe_closedBall (z : ℍ) (r : ℝ) :
     lift w to ℍ using im_pos_of_dist_center_le hw
     exact mem_image_of_mem _ (dist_le_iff_dist_coe_center_le.2 hw)
 
+/--
+@isnad1 id=eq.0h2v.s5.9caa9d36b977 from=seed src=0 shape=3f618d5a vocab=200be522
+-/
 theorem image_coe_ball (z : ℍ) (r : ℝ) :
     ((↑) : ℍ → ℂ) '' ball (α := ℍ) z r = ball ↑(z.center r) (z.im * Real.sinh r) := by
   ext w; constructor
@@ -296,6 +400,9 @@ theorem image_coe_ball (z : ℍ) (r : ℝ) :
     lift w to ℍ using im_pos_of_dist_center_le (ball_subset_closedBall hw)
     exact mem_image_of_mem _ (dist_lt_iff_dist_coe_center_lt.2 hw)
 
+/--
+@isnad1 id=eq.0h2v.s5.b81404c2fe74 from=seed src=0 shape=3f618d5a vocab=96d5c2cd
+-/
 theorem image_coe_sphere (z : ℍ) (r : ℝ) :
     ((↑) : ℍ → ℂ) '' sphere (α := ℍ) z r = sphere ↑(z.center r) (z.im * Real.sinh r) := by
   ext w; constructor
@@ -310,14 +417,23 @@ instance : ProperSpace ℍ := by
   rw [isEmbedding_coe.isCompact_iff (f := ((↑) : ℍ → ℂ)), image_coe_closedBall]
   apply isCompact_closedBall
 
+/--
+@isnad1 id=isometry.0h1v.s4.0c1286621725 from=seed src=0 shape=812c4424 vocab=8ce4c887
+-/
 theorem isometry_vertical_line (a : ℝ) : Isometry fun y => mk ⟨a, exp y⟩ (exp_pos y) := by
   refine Isometry.of_dist_eq fun y₁ y₂ => ?_
   rw [dist_of_re_eq]
   exacts [congr_arg₂ _ (log_exp _) (log_exp _), rfl]
 
+/--
+@isnad1 id=isometry.0h1v.s5.33a9ce1640cc from=seed src=0 shape=aeb55a63 vocab=e3c6f534
+-/
 theorem isometry_real_vadd (a : ℝ) : Isometry (a +ᵥ · : ℍ → ℍ) :=
   Isometry.of_dist_eq fun y₁ y₂ => by simp only [dist_eq, coe_vadd, vadd_im, dist_add_left]
 
+/--
+@isnad1 id=isometry.0h1v.s6.8857bf4a98df from=seed src=0 shape=4bbe4b87 vocab=067be633
+-/
 theorem isometry_pos_mul (a : { x : ℝ // 0 < x }) : Isometry (a • · : ℍ → ℍ) := by
   refine Isometry.of_dist_eq fun y₁ y₂ => ?_
   simp only [dist_eq, coe_pos_real_smul, pos_real_im]; congr 2

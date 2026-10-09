@@ -93,11 +93,17 @@ variable {A E : Type*} [NonUnitalRing A] [StarRing A] [AddCommGroup E] [Module �
 
 local notation "⟪" x ", " y "⟫" => inner A x y
 
+/--
+@isnad1 id=eq.0h5v.s7.6fc9dbf62ead from=seed src=0 shape=e2fcd0ec vocab=4dc1260b
+-/
 @[simp]
 lemma inner_add_left {x y z : E} : ⟪x + y, z⟫ = ⟪x, z⟫ + ⟪y, z⟫ := by
   rw [← star_star (r := ⟪x + y, z⟫)]
   simp only [inner_add_right, star_add, star_inner]
 
+/--
+@isnad1 id=eq.0h5v.s7.2e3a1ef00589 from=seed src=0 shape=6340204d vocab=11ccb82c
+-/
 @[simp]
 lemma inner_op_smul_left {a : A} {x y : E} : ⟪a • x, y⟫ = ⟪x, y⟫ * star a := by
   rw [← star_inner]; simp
@@ -106,17 +112,26 @@ section StarModule
 
 variable [StarModule ℂ A]
 
+/--
+@isnad1 id=eq.0h5v.s8.412cbd218ac8 from=seed src=0 shape=99a216be vocab=7db3414c
+-/
 @[simp]
 lemma inner_smul_left_complex {z : ℂ} {x y : E} : ⟪z • x, y⟫ = star z • ⟪x, y⟫ := by
   rw [← star_inner]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s8.daa2990cc0f0 from=seed src=0 shape=6840a212 vocab=51e3cac4
+-/
 @[simp]
 lemma inner_smul_left_real {z : ℝ} {x y : E} : ⟪z • x, y⟫ = z • ⟪x, y⟫ := by
   have h₁ : z • x = (z : ℂ) • x := by simp
   rw [h₁, ← star_inner, inner_smul_right_complex]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s8.c872e0eb39f7 from=seed src=0 shape=7509f4a8 vocab=51e3cac4
+-/
 @[simp]
 lemma inner_smul_right_real {z : ℝ} {x y : E} : ⟪x, z • y⟫ = z • ⟪x, y⟫ := by
   have h₁ : z • y = (z : ℂ) • y := by simp
@@ -131,22 +146,49 @@ def innerₛₗ : E →ₗ⋆[ℂ] E →ₗ[ℂ] A where
   map_add' z y := by ext; simp
   map_smul' z y := by ext; simp
 
+/--
+@isnad1 id=eq.0h4v.s8.3ff81eb7a7d9 from=seed src=0 shape=0ebe5ae4 vocab=bf00525a
+-/
 lemma innerₛₗ_apply {x y : E} : innerₛₗ x y = ⟪x, y⟫ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.756cefaa4a00 from=seed src=0 shape=bcc719f5 vocab=e36a7c9e
+-/
 @[simp] lemma inner_zero_right {x : E} : ⟪x, 0⟫ = 0 := by simp [← innerₛₗ_apply]
+/--
+@isnad1 id=eq.0h3v.s7.5cf04eb1e3bd from=seed src=0 shape=48d215b0 vocab=e36a7c9e
+-/
 @[simp] lemma inner_zero_left {x : E} : ⟪0, x⟫ = 0 := by simp [← innerₛₗ_apply]
+/--
+@isnad1 id=eq.0h4v.s8.95fda1ebcd19 from=seed src=0 shape=c0e431fb vocab=8257aac9
+-/
 @[simp] lemma inner_neg_right {x y : E} : ⟪x, -y⟫ = -⟪x, y⟫ := by simp [← innerₛₗ_apply]
+/--
+@isnad1 id=eq.0h4v.s8.00a75b79cc0b from=seed src=0 shape=3e062e3a vocab=8257aac9
+-/
 @[simp] lemma inner_neg_left {x y : E} : ⟪-x, y⟫ = -⟪x, y⟫ := by simp [← innerₛₗ_apply]
+/--
+@isnad1 id=eq.0h5v.s8.5862bc383b42 from=seed src=0 shape=5fbd704b vocab=4ef13799
+-/
 @[simp] lemma inner_sub_right {x y z : E} : ⟪x, y - z⟫ = ⟪x, y⟫ - ⟪x, z⟫ := by
   simp [← innerₛₗ_apply]
+/--
+@isnad1 id=eq.0h5v.s8.afd3119b5d3b from=seed src=0 shape=9771d0c6 vocab=4ef13799
+-/
 @[simp] lemma inner_sub_left {x y z : E} : ⟪x - y, z⟫ = ⟪x, z⟫ - ⟪y, z⟫ := by
   simp [← innerₛₗ_apply]
 
+/--
+@isnad1 id=eq.0h6v.s8.4a1bab2a4e1d from=seed src=0 shape=c4bb3cbc vocab=239ac353
+-/
 @[simp]
 lemma inner_sum_right {ι : Type*} {s : Finset ι} {x : E} {y : ι → E} :
     ⟪x, ∑ i ∈ s, y i⟫ = ∑ i ∈ s, ⟪x, y i⟫ :=
   map_sum (innerₛₗ x) ..
 
+/--
+@isnad1 id=eq.0h6v.s8.268f530fe6b9 from=seed src=0 shape=3409b74b vocab=239ac353
+-/
 @[simp]
 lemma inner_sum_left {ι : Type*} {s : Finset ι} {x : ι → E} {y : E} :
     ⟪∑ i ∈ s, x i, y⟫ = ∑ i ∈ s, ⟪x i, y⟫ :=
@@ -154,6 +196,9 @@ lemma inner_sum_left {ι : Type*} {s : Finset ι} {x : ι → E} {y : E} :
 
 end StarModule
 
+/--
+@isnad1 id=isselfad.0h3v.s6.28e44b01e49d from=seed src=0 shape=334de566 vocab=2754cdfb
+-/
 @[simp]
 lemma isSelfAdjoint_inner_self {x : E} : IsSelfAdjoint ⟪x, x⟫ := star_inner _ _
 
@@ -178,18 +223,33 @@ include A
 
 variable (A)
 
+/--
+@isnad1 id=eq.0h3v.s7.266f83b0211a from=seed src=0 shape=92db3263 vocab=ade4a990
+-/
 lemma norm_sq_eq {x : E} : ‖x‖ ^ 2 = ‖⟪x, x⟫‖ := by simp [norm_eq_sqrt_norm_inner_self (A := A)]
 
+/--
+@isnad1 id=le.0h3v.s6.d6f42e5ec29a from=seed src=0 shape=e845b778 vocab=9d8c11ca
+-/
 protected lemma norm_nonneg {x : E} : 0 ≤ ‖x‖ := by simp [norm_eq_sqrt_norm_inner_self (A := A)]
 
+/--
+@isnad1 id=lt.1h3v.s6.e1b7cc6dba2f from=seed src=0 shape=ec22c6c5 vocab=4936fdf7
+-/
 protected lemma norm_pos {x : E} (hx : x ≠ 0) : 0 < ‖x‖ := by
   simp only [norm_eq_sqrt_norm_inner_self (A := A), Real.sqrt_pos, norm_pos_iff]
   intro H
   rw [inner_self] at H
   exact hx H
 
+/--
+@isnad1 id=eq.0h2v.s6.1c3fb2bbb2bb from=seed src=0 shape=7c41f4cb vocab=9675e4d9
+-/
 protected lemma norm_zero : ‖(0 : E)‖ = 0 := by simp [norm_eq_sqrt_norm_inner_self (A := A)]
 
+/--
+@isnad1 id=iff.0h3v.s6.fc629e3cf61a from=seed src=0 shape=c633c040 vocab=9675e4d9
+-/
 lemma norm_zero_iff (x : E) : ‖x‖ = 0 ↔ x = 0 :=
   ⟨fun h => by simpa [norm_eq_sqrt_norm_inner_self (A := A), inner_self] using h,
     fun h => by simp [h, norm_eq_sqrt_norm_inner_self (A := A)]⟩
@@ -199,7 +259,9 @@ end
 variable [StarOrderedRing A]
 
 open scoped InnerProductSpace in
-/-- The C⋆-algebra-valued Cauchy-Schwarz inequality for Hilbert C⋆-modules. -/
+/-- The C⋆-algebra-valued Cauchy-Schwarz inequality for Hilbert C⋆-modules.
+@isnad1 id=le.0h4v.s8.22edd0877ec5 from=seed src=0 shape=744a05e6 vocab=bef4bc11
+-/
 lemma inner_mul_inner_swap_le {x y : E} : ⟪x, y⟫ * ⟪y, x⟫ ≤ ‖x‖ ^ 2 • ⟪y, y⟫ := by
   rcases eq_or_ne x 0 with h | h
   · simp [h, CStarModule.norm_zero A (E := E)]
@@ -229,7 +291,9 @@ lemma inner_mul_inner_swap_le {x y : E} : ⟪x, y⟫ * ⟪y, x⟫ ≤ ‖x‖ ^ 
 
 open scoped InnerProductSpace in
 variable (E) in
-/-- The Cauchy-Schwarz inequality for Hilbert C⋆-modules. -/
+/-- The Cauchy-Schwarz inequality for Hilbert C⋆-modules.
+@isnad1 id=le.0h4v.s7.6e7c88ecbfb7 from=seed src=0 shape=bd8cdca7 vocab=10c13137
+-/
 lemma norm_inner_le {x y : E} : ‖⟪x, y⟫‖ ≤ ‖x‖ * ‖y‖ := by
   have := calc ‖⟪x, y⟫‖ ^ 2 = ‖⟪x, y⟫ * ⟪y, x⟫‖ := by
                 rw [← star_inner x, CStarRing.norm_self_mul_star, pow_two]
@@ -246,6 +310,9 @@ lemma norm_inner_le {x y : E} : ‖⟪x, y⟫‖ ≤ ‖x‖ * ‖y‖ := by
 
 include A in
 variable (A) in
+/--
+@isnad1 id=le.0h4v.s6.87b5b82da072 from=seed src=0 shape=f9c6ec60 vocab=62c3a09c
+-/
 protected lemma norm_triangle (x y : E) : ‖x + y‖ ≤ ‖x‖ + ‖y‖ := by
   have h : ‖x + y‖ ^ 2 ≤ (‖x‖ + ‖y‖) ^ 2 := by
     calc _ ≤ ‖⟪x, x⟫ + ⟪y, x⟫‖ + ‖⟪x, y⟫‖ + ‖⟪y, y⟫‖ := by
@@ -263,7 +330,9 @@ protected lemma norm_triangle (x y : E) : ‖x + y‖ ≤ ‖x‖ + ‖y‖ := b
 include A in
 variable (A) in
 /-- This allows us to get `NormedAddCommGroup` and `NormedSpace` instances on `E` via
-`NormedAddCommGroup.ofCore` and `NormedSpace.ofCore`. -/
+`NormedAddCommGroup.ofCore` and `NormedSpace.ofCore`.
+@isnad1 id=core.0h2v.s6.6d1e056a5d01 from=seed src=0 shape=bfaae84e vocab=c064c718
+-/
 lemma normedSpaceCore : NormedSpace.Core ℂ E where
   norm_nonneg _ := (CStarModule.norm_nonneg A)
   norm_eq_zero_iff x := norm_zero_iff A x
@@ -277,6 +346,9 @@ noncomputable abbrev normedAddCommGroup : NormedAddCommGroup E :=
   NormedAddCommGroup.ofCore (CStarModule.normedSpaceCore A)
 
 open scoped InnerProductSpace in
+/--
+@isnad1 id=eq.0h3v.s7.5986cc19f8e5 from=seed src=0 shape=071b1090 vocab=1e501d2f
+-/
 lemma norm_eq_csSup (v : E) :
     ‖v‖ = sSup { ‖⟪w, v⟫_A‖ | (w : E) (_ : ‖w‖ ≤ 1) } := by
   let instNACG : NormedAddCommGroup E := NormedAddCommGroup.ofCore (normedSpaceCore A)
@@ -307,8 +379,14 @@ noncomputable def innerSL : E →L⋆[ℂ] E →L[ℂ] A :=
   LinearMap.mkContinuous₂ (innerₛₗ : E →ₗ⋆[ℂ] E →ₗ[ℂ] A) 1 <| fun x y => by
     simp [innerₛₗ_apply, norm_inner_le E]
 
+/--
+@isnad1 id=eq.0h4v.s10.a0dc9a41a025 from=seed src=0 shape=e3ebf215 vocab=4441568f
+-/
 lemma innerSL_apply {x y : E} : innerSL x y = ⟪x, y⟫_A := rfl
 
+/--
+@isnad1 id=continuo.0h2v.s7.64f320030572 from=seed src=0 shape=25d5ad79 vocab=c2fac020
+-/
 @[continuity, fun_prop]
 lemma continuous_inner : Continuous (fun x : E × E => ⟪x.1, x.2⟫_A) := by
   simp_rw [← innerSL_apply]

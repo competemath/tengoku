@@ -74,11 +74,17 @@ class InnerProductSpaceable : Prop where
 
 variable (𝕜) {E}
 
+/--
+@isnad1 id=innerpro.0h2v.s4.e59063bd91de from=seed src=0 shape=c221ff1f vocab=af4191f6
+-/
 theorem InnerProductSpace.toInnerProductSpaceable [InnerProductSpace 𝕜 E] :
     InnerProductSpaceable E :=
   ⟨parallelogram_law_with_norm_mul 𝕜⟩
 
 -- See note [lower instance priority]
+/--
+@isnad1 id=innerpro.0h1v.s4.0e7aad105b09 from=seed src=0 shape=c9705861 vocab=d6965599
+-/
 instance (priority := 100) InnerProductSpace.toInnerProductSpaceable_ofReal
     [InnerProductSpace ℝ E] : InnerProductSpaceable E :=
   ⟨parallelogram_law_with_norm_mul ℝ⟩
@@ -115,6 +121,9 @@ theorem _root_.Continuous.inner_ {f g : ℝ → E} (hf : Continuous f) (hg : Con
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
+/--
+@isnad1 id=eq.0h3v.s7.6394a91eca3a from=seed src=0 shape=f1b3097e vocab=26b16668
+-/
 theorem inner_.norm_sq (x : E) : ‖x‖ ^ 2 = re (inner_ 𝕜 x x) := by
   simp only [inner_, normSq_apply, ofNat_re, ofNat_im, map_sub, map_add,
     ofReal_re, ofReal_im, mul_re, inv_re, mul_im, I_re, inv_im]
@@ -125,6 +134,9 @@ theorem inner_.norm_sq (x : E) : ‖x‖ ^ 2 = re (inner_ 𝕜 x x) := by
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
+/--
+@isnad1 id=eq.0h4v.s7.b76bf8025ce9 from=seed src=0 shape=eedb0920 vocab=a3d6f591
+-/
 theorem inner_.conj_symm (x y : E) : conj (inner_ 𝕜 y x) = inner_ 𝕜 x y := by
   simp only [inner_, map_sub, map_add, map_mul, map_inv₀, map_ofNat, conj_ofReal, conj_I]
   rw [add_comm y x, norm_sub_rev]
@@ -145,6 +157,9 @@ variable [InnerProductSpaceable E]
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
+/--
+@isnad1 id=eq.0h5v.s6.34dc9eb72188 from=seed src=0 shape=f149b5e8 vocab=44ba2313
+-/
 theorem add_left (x y z : E) : inner_ 𝕜 (x + y) z = inner_ 𝕜 x z + inner_ 𝕜 y z := by
   unfold inner_
   have h1 := parallelogram_identity (x + y + z) (x - z)
@@ -190,6 +205,9 @@ private theorem I_prop : innerProp' E (I : 𝕜) := by
 
 set_option backward.privateInPublic true in
 set_option backward.privateInPublic.warn false in
+/--
+@isnad1 id=innerpro.0h3v.s5.7b25e1aa37b1 from=seed src=0 shape=ff11b587 vocab=c7625e49
+-/
 theorem innerProp (r : 𝕜) : innerProp' E r := by
   intro x y
   rw [← re_add_im r, add_smul, add_left, real_prop _ x, ← smul_smul, real_prop _ _ y, I_prop,
@@ -221,7 +239,9 @@ variable [InnerProductSpaceable E]
 /-- **Fréchet–von Neumann–Jordan Theorem**. A normed space `E` whose norm satisfies the
 parallelogram identity can be given a compatible inner product. Do
 `casesI nonempty_innerProductSpace 𝕜 E` to locally upgrade `InnerProductSpaceable E` to
-`InnerProductSpace 𝕜 E`. -/
+`InnerProductSpace 𝕜 E`.
+@isnad1 id=nonempty.0h2v.s5.fbbf8c6054ef from=seed src=0 shape=0e5cb783 vocab=993cf28c
+-/
 theorem nonempty_innerProductSpace : Nonempty (InnerProductSpace 𝕜 E) :=
   ⟨{  inner := inner_ 𝕜
       norm_sq_eq_re_inner := inner_.norm_sq
@@ -234,5 +254,8 @@ variable [NormedSpace ℝ E]
 
 -- TODO: Replace `InnerProductSpace.toUniformConvexSpace`
 -- See note [lower instance priority]
+/--
+@isnad1 id=uniformc.0h1v.s4.54d413d84d67 from=seed src=0 shape=e5776696 vocab=cec7e62a
+-/
 instance (priority := 100) InnerProductSpaceable.to_uniformConvexSpace : UniformConvexSpace E := by
   cases nonempty_innerProductSpace ℝ E; infer_instance

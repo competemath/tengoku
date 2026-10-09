@@ -72,12 +72,21 @@ section ZeroOne
 
 variable {p t x : ℝ}
 
+/--
+@isnad1 id=eq.0h2v.s4.651db07e6150 from=seed src=0 shape=9bf57cd7 vocab=a2460c9a
+-/
 @[simp]
 lemma rpowIntegrand₀₁_zero_right : rpowIntegrand₀₁ p t 0 = 0 := by simp [rpowIntegrand₀₁]
 
+/--
+@isnad1 id=eq.1h2v.s5.7e9d8aeebffb from=seed src=0 shape=c5978dc3 vocab=f66ff22f
+-/
 lemma rpowIntegrand₀₁_zero_left (hp : 0 < p) : rpowIntegrand₀₁ p 0 x = 0 := by
   simp [rpowIntegrand₀₁, Real.zero_rpow hp.ne']
 
+/--
+@isnad1 id=eq.2h2v.s6.803ca9acd52a from=seed src=0 shape=73902b9f vocab=dce5e7f2
+-/
 lemma rpowIntegrand₀₁_eq_sub {p t : ℝ} (hp : p ≠ 1) (ht : 0 < t) :
     rpowIntegrand₀₁ p t = fun x => t ^ (p - 1) - t ^ p * (t + x)⁻¹ := by
   unfold rpowIntegrand₀₁
@@ -85,6 +94,9 @@ lemma rpowIntegrand₀₁_eq_sub {p t : ℝ} (hp : p ≠ 1) (ht : 0 < t) :
   rw [mul_sub, ← rpow_neg_one, ← rpow_add' (by grind) (by grind)]
   grind only
 
+/--
+@isnad1 id=le.3h3v.s5.14e59a00f460 from=seed src=0 shape=2275529e vocab=75a3c611
+-/
 lemma rpowIntegrand₀₁_nonneg (hp : 0 < p) (ht : 0 ≤ t) (hx : 0 ≤ x) :
     0 ≤ rpowIntegrand₀₁ p t x := by
   unfold rpowIntegrand₀₁
@@ -96,6 +108,9 @@ lemma rpowIntegrand₀₁_nonneg (hp : 0 < p) (ht : 0 ≤ t) (hx : 0 ≤ x) :
     gcongr
     linarith
 
+/--
+@isnad1 id=eq.3h3v.s6.2f5c6c3a84d9 from=seed src=0 shape=267f6707 vocab=cf55b278
+-/
 lemma rpowIntegrand₀₁_eq_pow_div (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) (hx : 0 ≤ x) :
     rpowIntegrand₀₁ p t x = t ^ (p - 1) * x / (t + x) := by
   by_cases ht' : t = 0
@@ -113,11 +128,17 @@ lemma rpowIntegrand₀₁_eq_pow_div (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) (hx : 0
     have hp₂ : p - 1 ≠ 0 := by linarith
     simp [rpowIntegrand₀₁, ht', hp.1.ne', hp₂]
 
+/--
+@isnad1 id=eqon.2h2v.s6.8420f486fbf1 from=seed src=0 shape=e2231932 vocab=83628939
+-/
 lemma rpowIntegrand₀₁_eqOn_pow_div (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     Set.EqOn (rpowIntegrand₀₁ p · x) (fun t => t ^ (p - 1) * x / (t + x)) (Ioi 0) := by
   intro t ht
   simp [rpowIntegrand₀₁_eq_pow_div hp (le_of_lt ht) hx]
 
+/--
+@isnad1 id=eq.3h3v.s6.7ada2f6c7160 from=seed src=0 shape=a2f7cb46 vocab=5a8960ab
+-/
 lemma rpowIntegrand₀₁_apply_mul (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) (hx : 0 ≤ x) :
     rpowIntegrand₀₁ p (x * t) x = (rpowIntegrand₀₁ p t 1) * x ^ (p - 1) := by
   have hxt : 0 ≤ x * t := by positivity
@@ -134,17 +155,26 @@ lemma rpowIntegrand₀₁_apply_mul (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) (hx : 0 
     rw [mem_Ioo] at hp
     simp [hx_zero, Real.zero_rpow (by linarith : p - 1 ≠ 0)]
 
+/--
+@isnad1 id=eq.3h3v.s6.10f19d999095 from=seed src=0 shape=7a4fa239 vocab=aeb3a140
+-/
 lemma rpowIntegrand₀₁_apply_mul' (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) (hx : 0 ≤ x) :
     rpowIntegrand₀₁ p (x * t) x * x = (rpowIntegrand₀₁ p t 1) * x ^ p := by
   simp only [rpowIntegrand₀₁_apply_mul hp ht hx, mul_assoc]
   congr
   simpa using Eq.symm <| Real.rpow_add' hx (by aesop : (p - 1) + 1 ≠ 0)
 
+/--
+@isnad1 id=eqon.2h2v.s6.ace29f30c445 from=seed src=0 shape=02d638d2 vocab=eff8c753
+-/
 lemma rpowIntegrand₀₁_apply_mul_eqOn_Ici (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     (Ici 0).EqOn (fun t => rpowIntegrand₀₁ p (x * t) x * x)
       (fun t => (rpowIntegrand₀₁ p t 1) * x ^ p) :=
   fun _ ht => rpowIntegrand₀₁_apply_mul' hp ht hx
 
+/--
+@isnad1 id=continuo.2h2v.s6.4c81763d2aa5 from=seed src=0 shape=27479907 vocab=541d9c69
+-/
 lemma continuousOn_rpowIntegrand₀₁ (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     ContinuousOn (rpowIntegrand₀₁ p · x) (Ioi 0) := by
   refine ContinuousOn.congr ?_ <| rpowIntegrand₀₁_eqOn_pow_div hp hx
@@ -152,10 +182,16 @@ lemma continuousOn_rpowIntegrand₀₁ (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     fun t ht => .inl ht.ne'
   fun_prop (disch := grind -abstractProof)
 
+/--
+@isnad1 id=aestrong.2h2v.s6.09219c1c156f from=seed src=0 shape=4a479583 vocab=cf20f09d
+-/
 lemma aestronglyMeasurable_rpowIntegrand₀₁ (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     AEStronglyMeasurable (rpowIntegrand₀₁ p · x) (volume.restrict (Ioi 0)) :=
   (continuousOn_rpowIntegrand₀₁ hp hx).aestronglyMeasurable measurableSet_Ioi
 
+/--
+@isnad1 id=monotone.2h2v.s5.ef8d7daca9d0 from=seed src=0 shape=b0f49c6a vocab=3c4d8033
+-/
 lemma rpowIntegrand₀₁_monotoneOn (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) :
     MonotoneOn (rpowIntegrand₀₁ p t) (Ici 0) := by
   intro x hx y hy hxy
@@ -165,6 +201,9 @@ lemma rpowIntegrand₀₁_monotoneOn (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) :
     simp only [rpowIntegrand₀₁, mem_Ici] at hx h ⊢
     gcongr
 
+/--
+@isnad1 id=continuo.2h2v.s6.1fc8cd2237be from=seed src=0 shape=4e631f6f vocab=4c399d66
+-/
 lemma continuousOn_rpowIntegrand₀₁_uncurry (hp : p ∈ Ioo 0 1) (s : Set ℝ) (hs : s ⊆ Ici 0) :
     ContinuousOn (rpowIntegrand₀₁ p).uncurry (Ioi 0 ×ˢ s) := by
   let g : ℝ × ℝ → ℝ := fun q => q.1 ^ (p - 1) * q.2 / (q.1 + q.2)
@@ -177,10 +216,16 @@ lemma continuousOn_rpowIntegrand₀₁_uncurry (hp : p ∈ Ioo 0 1) (s : Set ℝ
   · intro hq
     simp [Function.uncurry, g, rpowIntegrand₀₁_eq_pow_div hp (le_of_lt hq.1) (hs hq.2)]
 
+/--
+@isnad1 id=continuo.2h2v.s5.ba5f9cbc796e from=seed src=0 shape=b0f49c6a vocab=c150ef3e
+-/
 lemma continuousOn_rpowIntegrand₀₁_Ici (hp : p ∈ Ioo 0 1) (ht : 0 < t) :
     ContinuousOn (rpowIntegrand₀₁ p t) (Ici 0) :=
   (continuousOn_rpowIntegrand₀₁_uncurry hp _ fun _ a => a).uncurry_left _ ht
 
+/--
+@isnad1 id=le.3h3v.s6.62fd82542d87 from=seed src=0 shape=844a9536 vocab=e314adde
+-/
 lemma rpowIntegrand₀₁_le_rpow_sub_two_mul_self (hp : p ∈ Ioo 0 1) (ht : 0 < t) (hx : 0 ≤ x) :
     rpowIntegrand₀₁ p t x ≤ t ^ (p - 2) * x := calc
   _ = t ^ (p - 1) * x / (t + x) := by rw [rpowIntegrand₀₁_eq_pow_div hp (le_of_lt ht) hx]
@@ -192,6 +237,9 @@ lemma rpowIntegrand₀₁_le_rpow_sub_two_mul_self (hp : p ∈ Ioo 0 1) (ht : 0 
     congr 1
     ring
 
+/--
+@isnad1 id=le.3h3v.s6.208153885063 from=seed src=0 shape=38baf09b vocab=abcb11ab
+-/
 lemma rpowIntegrand₀₁_le_rpow_sub_one (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) (hx : 0 ≤ x) :
     rpowIntegrand₀₁ p t x ≤ t ^ (p - 1) := by
   by_cases hx_zero : x = 0
@@ -206,6 +254,9 @@ lemma rpowIntegrand₀₁_le_rpow_sub_one (hp : p ∈ Ioo 0 1) (ht : 0 ≤ t) (h
     _ = t ^ (p - 1) * 1 := by congr; exact (div_eq_one_iff_eq hx_zero).mpr rfl
     _ = _ := by simp
 
+/--
+@isnad1 id=le.2h2v.s6.aec3c9b695eb from=seed src=0 shape=d4e24cf8 vocab=6767f20e
+-/
 lemma rpowIntegrand₀₁_one_ge_rpow_sub_two (hp : p ∈ Ioo 0 1) (ht : 1 ≤ t) :
     (1 : ℝ) / 2 * t ^ (p - 2) ≤ rpowIntegrand₀₁ p t 1 := calc
   _ = t ^ (p - 1) * (1 / 2 * 1 / t) := by
@@ -220,6 +271,9 @@ lemma rpowIntegrand₀₁_one_ge_rpow_sub_two (hp : p ∈ Ioo 0 1) (ht : 1 ≤ t
   _ = rpowIntegrand₀₁ p t 1 := by
             rw [rpowIntegrand₀₁_eq_pow_div hp (by linarith) zero_le_one, mul_div_assoc]
 
+/--
+@isnad1 id=eqon.1h2v.s6.02f8e408452f from=seed src=0 shape=cbf6bdbb vocab=acdc6f46
+-/
 lemma rpowIntegrand₀₁_eqOn_mul_rpowIntegrand₀₁_one (ht : 0 < t) :
     (Ici 0).EqOn (rpowIntegrand₀₁ p t)
       (fun x => t ^ (p - 1) * (rpowIntegrand₀₁ p 1 (t⁻¹ • x))) := by
@@ -271,6 +325,9 @@ private lemma integrableOn_rpowIntegrand₀₁_Ioi_one (hp : p ∈ Ioo 0 1) (hx 
       rw [Real.norm_of_nonneg (rpowIntegrand₀₁_nonneg hp.1 (by positivity) hx)]
       exact rpowIntegrand₀₁_le_rpow_sub_two_mul_self hp (by positivity) hx
 
+/--
+@isnad1 id=integrab.2h2v.s6.b7465cd74634 from=seed src=0 shape=b6731024 vocab=280ad32d
+-/
 lemma integrableOn_rpowIntegrand₀₁_Ioi (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     IntegrableOn (rpowIntegrand₀₁ p · x) (Ioi 0) := by
   /- The integral converges because it is `O(t ^ (p-1))` at the origin and `O(t ^ (p-2))` at
@@ -279,10 +336,16 @@ lemma integrableOn_rpowIntegrand₀₁_Ioi (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
   exact IntegrableOn.union (integrableOn_rpowIntegrand₀₁_Ioc hp hx)
     (integrableOn_rpowIntegrand₀₁_Ioi_one hp hx)
 
+/--
+@isnad1 id=integrab.2h2v.s6.ecab6bf56076 from=seed src=0 shape=b6731024 vocab=f7406408
+-/
 lemma integrableOn_rpowIntegrand₀₁_Ici (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     IntegrableOn (rpowIntegrand₀₁ p · x) (Ici 0) :=
   integrableOn_rpowIntegrand₀₁_Ioi hp hx |>.congr_set_ae Ioi_ae_eq_Ici.symm
 
+/--
+@isnad1 id=eq.2h2v.s7.6600d2089916 from=seed src=0 shape=36e88d56 vocab=042cb442
+-/
 lemma integral_rpowIntegrand₀₁_eq_rpow_mul_const (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     (∫ t in Ioi 0, rpowIntegrand₀₁ p t x) = x ^ p * (∫ t in Ioi 0, rpowIntegrand₀₁ p t 1) := by
   -- We use the change of variables formula with `f t = x * t`. Here `g = rpowIntegrand₀₁ p · x`.
@@ -305,6 +368,9 @@ lemma integral_rpowIntegrand₀₁_eq_rpow_mul_const (hp : p ∈ Ioo 0 1) (hx : 
     ← smul_eq_mul (b := x ^ p), integral_smul_const]
   rw [smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=le.1h1v.s6.ac4895e6a70b from=seed src=0 shape=76b13449 vocab=7f528620
+-/
 lemma le_integral_rpowIntegrand₀₁_one (hp : p ∈ Ioo 0 1) :
     -1 / (2 * (p - 1)) ≤ ∫ t in Ioi 0, rpowIntegrand₀₁ p t 1 := calc
   _ = (1 / 2) * -((1 : ℝ) ^ (p - 1)) / (p - 1) := by rw [← div_div]; simp [neg_div]
@@ -325,6 +391,9 @@ lemma le_integral_rpowIntegrand₀₁_one (hp : p ∈ Ioo 0 1) :
           exact rpowIntegrand₀₁_nonneg hp.1 (le_of_lt ht) zero_le_one
         · exact .of_forall <| Set.Ioi_subset_Ioi zero_le_one
 
+/--
+@isnad1 id=lt.1h1v.s6.89094e982cde from=seed src=0 shape=af56da24 vocab=6e1e1955
+-/
 lemma integral_rpowIntegrand₀₁_one_pos (hp : p ∈ Ioo 0 1) :
     0 < ∫ t in Ioi 0, rpowIntegrand₀₁ p t 1 := calc
   0 < -1 / (2 * (p - 1)) := by
@@ -333,7 +402,9 @@ lemma integral_rpowIntegrand₀₁_one_pos (hp : p ∈ Ioo 0 1) :
       linarith
   _ ≤ ∫ t in Ioi 0, rpowIntegrand₀₁ p t 1 := le_integral_rpowIntegrand₀₁_one hp
 
-/-- The integral representation of the function `x ↦ x^p` (where `p ∈ (0, 1)`) . -/
+/-- The integral representation of the function `x ↦ x^p` (where `p ∈ (0, 1)`) .
+@isnad1 id=eq.2h2v.s7.0b8fa00c545c from=seed src=0 shape=19f67246 vocab=641dbe74
+-/
 lemma rpow_eq_const_mul_integral (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     x ^ p = (∫ t in Ioi 0, rpowIntegrand₀₁ p t 1)⁻¹ * ∫ t in Ioi 0, rpowIntegrand₀₁ p t x := by
   rcases eq_or_lt_of_le' hx with hx_zero | _
@@ -346,7 +417,9 @@ lemma rpow_eq_const_mul_integral (hp : p ∈ Ioo 0 1) (hx : 0 ≤ x) :
     rw [integral_rpowIntegrand₀₁_eq_rpow_mul_const hp hx, mul_comm, mul_assoc, mul_inv_cancel₀
       this, mul_one]
 
-/-- The integral representation of the function `x ↦ x ^ p` (where `p ∈ (0, 1)`) . -/
+/-- The integral representation of the function `x ↦ x ^ p` (where `p ∈ (0, 1)`) .
+@isnad1 id=ex.1h1v.s7.1cee99b2eb35 from=seed src=0 shape=ed6843fe vocab=461c60b9
+-/
 lemma exists_measure_rpow_eq_integral_rpowIntegrand₀₁ (hp : p ∈ Ioo 0 1) :
     ∃ μ : Measure ℝ, ∀ x ∈ Ici 0,
       (IntegrableOn (fun t => rpowIntegrand₀₁ p t x) (Ioi 0) μ)
@@ -360,6 +433,9 @@ lemma exists_measure_rpow_eq_integral_rpowIntegrand₀₁ (hp : p ∈ Ioo 0 1) :
   · simp_rw [Measure.restrict_smul, integral_smul_nnreal_measure, rpow_eq_const_mul_integral hp hx,
       NNReal.smul_def, C, NNReal.coe_mk, smul_eq_mul]
 
+/--
+@isnad1 id=ex.1h1v.s7.1cee99b2eb35 from=seed src=0 shape=ed6843fe vocab=461c60b9
+-/
 @[deprecated (since := "2026-04-03")]
 alias exists_measure_rpow_eq_integral := exists_measure_rpow_eq_integral_rpowIntegrand₀₁
 
@@ -371,10 +447,16 @@ section OneTwo
 -/
 variable {p t x : ℝ}
 
+/--
+@isnad1 id=eq.2h3v.s5.fb104da0a67b from=seed src=0 shape=f4e36c5a vocab=b075a053
+-/
 lemma rpowIntegrand₁₂_eq_mul_rpowIntegrand₀₁ (hx : 0 ≤ x) (ht : 0 < t) :
     rpowIntegrand₁₂ p t x = x * rpowIntegrand₀₁ (p - 1) t x := by
   grind [rpowIntegrand₁₂, rpowIntegrand₀₁]
 
+/--
+@isnad1 id=le.3h3v.s5.3b11d69fb321 from=seed src=0 shape=2275529e vocab=45b644d3
+-/
 lemma rpowIntegrand₁₂_nonneg (hp : 1 < p) (ht : 0 ≤ t) (hx : 0 ≤ x) :
     0 ≤ rpowIntegrand₁₂ p t x := by
   by_cases ht' : 0 < t
@@ -384,20 +466,32 @@ lemma rpowIntegrand₁₂_nonneg (hp : 1 < p) (ht : 0 ≤ t) (hx : 0 ≤ x) :
   · have ht' : t = 0 := by grind
     simp [rpowIntegrand₁₂, ht', zero_rpow (by grind : p - 1 ≠ 0)]
 
+/--
+@isnad1 id=eq.1h2v.s5.d73d2f42e2ba from=seed src=0 shape=b135f1e8 vocab=82c17a02
+-/
 lemma rpowIntegrand₁₂_zero (ht : 0 < t) :
     rpowIntegrand₁₂ p t 0 = 0 := by grind [rpowIntegrand₁₂]
 
+/--
+@isnad1 id=continuo.2h2v.s6.af217f590134 from=seed src=0 shape=3c2ec318 vocab=98faa822
+-/
 @[fun_prop]
 lemma continuousOn_rpowIntegrand₁₂_uncurry (hp : p ∈ Ioi 1) (s : Set ℝ) (hs : s ⊆ Ici 0) :
     ContinuousOn (rpowIntegrand₁₂ p).uncurry (Ioi 0 ×ˢ s) := by
   unfold rpowIntegrand₁₂
   fun_prop (disch := grind)
 
+/--
+@isnad1 id=monotone.2h2v.s5.107e9a860bc0 from=seed src=0 shape=b0f49c6a vocab=3622de00
+-/
 lemma monotoneOn_rpowIntegrand₁₂ (hp : p ∈ Ioo 1 2) (ht : 0 < t) :
     MonotoneOn (rpowIntegrand₁₂ p t) (Ici 0) := by
   refine MonotoneOn.congr ?_ fun x hx ↦ (rpowIntegrand₁₂_eq_mul_rpowIntegrand₀₁ hx ht).symm
   apply monotoneOn_id.mul <;> grind [rpowIntegrand₀₁_monotoneOn, rpowIntegrand₀₁_nonneg]
 
+/--
+@isnad1 id=integrab.2h2v.s6.750d18b53e49 from=seed src=0 shape=b6731024 vocab=6a27309c
+-/
 lemma integrableOn_rpowIntegrand₁₂ (hp : p ∈ Ioo 1 2) (hx : 0 ≤ x) :
     IntegrableOn (rpowIntegrand₁₂ p · x) (Ioi 0) := by
   have hmain : (rpowIntegrand₁₂ p · x)
@@ -408,7 +502,9 @@ lemma integrableOn_rpowIntegrand₁₂ (hp : p ∈ Ioo 1 2) (hx : 0 ≤ x) :
   refine Integrable.const_mul ?_ _
   exact integrableOn_rpowIntegrand₀₁_Ioi (by grind) hx
 
-/-- The integral representation of the function `x ↦ x^p` (where `p ∈ (1, 2)`) . -/
+/-- The integral representation of the function `x ↦ x^p` (where `p ∈ (1, 2)`) .
+@isnad1 id=eq.2h2v.s7.e0c39600fb31 from=seed src=0 shape=dd9d3e1f vocab=08c133f0
+-/
 lemma rpow_eq_const_mul_integral_rpowIntegrand₁₂ (hp : p ∈ Ioo 1 2) (hx : 0 ≤ x) :
     x ^ p
       = (∫ t in Ioi 0, rpowIntegrand₀₁ (p - 1) t 1)⁻¹ * ∫ t in Ioi 0, rpowIntegrand₁₂ p t x := by
@@ -424,7 +520,9 @@ lemma rpow_eq_const_mul_integral_rpowIntegrand₁₂ (hp : p ∈ Ioo 1 2) (hx : 
   rw [h₁, rpow_eq_const_mul_integral (by grind) hx]
   grind
 
-/-- The integral representation of the function `x ↦ x^p` (where `p ∈ (1, 2)`) . -/
+/-- The integral representation of the function `x ↦ x^p` (where `p ∈ (1, 2)`) .
+@isnad1 id=ex.1h1v.s7.47123c8d313e from=seed src=0 shape=ed6843fe vocab=4d77605b
+-/
 lemma exists_measure_rpow_eq_integral_rpowIntegrand₁₂ (hp : p ∈ Ioo 1 2) :
     ∃ μ : Measure ℝ, ∀ x ∈ Ici 0,
       (IntegrableOn (fun t => rpowIntegrand₁₂ p t x) (Ioi 0) μ)
@@ -455,6 +553,9 @@ variable {A : Type*} [NonUnitalNormedRing A] [StarRing A] [NormedSpace ℝ A] [S
   [IsScalarTower ℝ A A] [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A]
   [NonUnitalContinuousFunctionalCalculus ℝ A IsSelfAdjoint]
 
+/--
+@isnad1 id=eq.3h4v.s9.19a8277b9f08 from=seed src=0 shape=6a086e3c vocab=33da7ada
+-/
 lemma cfcₙ_rpowIntegrand₀₁_eq_cfcₙ_rpowIntegrand₀₁_one {p t : ℝ} (hp : p ∈ Ioo 0 1) (ht : 0 < t)
     (a : A) (ha : 0 ≤ a) :
     cfcₙ (rpowIntegrand₀₁ p t) a = t ^ (p - 1) • cfcₙ (rpowIntegrand₀₁ p 1) (t⁻¹ • a) := by
@@ -478,7 +579,9 @@ lemma cfcₙ_rpowIntegrand₀₁_eq_cfcₙ_rpowIntegrand₀₁_one {p t : ℝ} (
             (h_mapsTo.mono_left hspec).image_subset
 
 variable (A) in
-/-- The integral representation of the function `x ↦ x ^ p` (where `p ∈ (0, 1)`). -/
+/-- The integral representation of the function `x ↦ x ^ p` (where `p ∈ (0, 1)`).
+@isnad1 id=ex.1h2v.s9.467d4c6a7e13 from=seed src=0 shape=29ed3a3b vocab=23f6d6a8
+-/
 lemma exists_measure_nnrpow_eq_integral_cfcₙ_rpowIntegrand₀₁ [CompleteSpace A] {p : ℝ≥0}
     (hp : p ∈ Ioo 0 1) :
     ∃ μ : Measure ℝ, ∀ a ∈ Ici (0 : A),
@@ -522,7 +625,9 @@ lemma exists_measure_nnrpow_eq_integral_cfcₙ_rpowIntegrand₀₁ [CompleteSpac
                 hbound_finite_integral ha.isSelfAdjoint
 
 variable (A) in
-/-- The integral representation of the function `x ↦ x ^ p` (where `p ∈ (1, 2)`). -/
+/-- The integral representation of the function `x ↦ x ^ p` (where `p ∈ (1, 2)`).
+@isnad1 id=ex.1h2v.s9.3bc862f8f06a from=seed src=0 shape=29ed3a3b vocab=3694c9ba
+-/
 lemma exists_measure_nnrpow_eq_integral_cfcₙ_rpowIntegrand₁₂ [CompleteSpace A] {p : ℝ≥0}
     (hp : p ∈ Ioo 1 2) :
     ∃ μ : Measure ℝ, ∀ a ∈ Ici (0 : A),
@@ -575,7 +680,9 @@ section UnitalCStarAlgebra
 
 variable {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
-/-- `rpowIntegrand₀₁ p t` is operator concave for all `p ∈ Ioo 0 1` -/
+/-- `rpowIntegrand₀₁ p t` is operator concave for all `p ∈ Ioo 0 1`
+@isnad1 id=concaveo.2h3v.s8.88011f7c3546 from=seed src=0 shape=ab6e45f8 vocab=67b9c239
+-/
 lemma concaveOn_cfc_rpowIntegrand₀₁ {p t : ℝ} (hp : p ∈ Ioo 0 1) (ht : 0 < t) :
     ConcaveOn ℝ (Ici (0 : A)) (cfc (rpowIntegrand₀₁ p t)) := by
   have h₁ : (Ici (0 : A)).EqOn (cfc (rpowIntegrand₀₁ p t))
@@ -600,7 +707,9 @@ section NonUnitalCStarAlgebra
 
 variable {A : Type*} [NonUnitalCStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
-/-- `rpowIntegrand₀₁ p t` is operator monotone for all `p ∈ Ioo 0 1` and all `t ∈ Ioi 0`. -/
+/-- `rpowIntegrand₀₁ p t` is operator monotone for all `p ∈ Ioo 0 1` and all `t ∈ Ioi 0`.
+@isnad1 id=monotone.2h3v.s7.6cdf81bc36ed from=seed src=0 shape=da0ee885 vocab=194b86fc
+-/
 lemma monotoneOn_cfcₙ_rpowIntegrand₀₁ {p : ℝ} {t : ℝ} (hp : p ∈ Ioo 0 1) (ht : 0 < t) :
     MonotoneOn (cfcₙ (rpowIntegrand₀₁ p t)) (Ici (0 : A)) := by
   intro a (ha : 0 ≤ a) b (hb : 0 ≤ b) hab
@@ -618,7 +727,9 @@ lemma monotoneOn_cfcₙ_rpowIntegrand₀₁ {p : ℝ} {t : ℝ} (hp : p ∈ Ioo 
       rw [cfcₙ_rpowIntegrand₀₁_eq_cfcₙ_rpowIntegrand₀₁_one hp ht b hb]
 
 open CStarAlgebra in
-/-- `rpowIntegrand₀₁ p t` is operator concave for all `p ∈ Ioo 0 1` and all `0 < t`. -/
+/-- `rpowIntegrand₀₁ p t` is operator concave for all `p ∈ Ioo 0 1` and all `0 < t`.
+@isnad1 id=concaveo.2h3v.s8.1264b666987c from=seed src=0 shape=ab6e45f8 vocab=69866480
+-/
 lemma concaveOn_cfcₙ_rpowIntegrand₀₁ {p : ℝ} {t : ℝ} (hp : p ∈ Ioo 0 1) (ht : 0 < t) :
     ConcaveOn ℝ (Ici (0 : A)) (cfcₙ (rpowIntegrand₀₁ p t)) := by
   apply concaveOn_cfcₙ_of_concaveOn_cfc

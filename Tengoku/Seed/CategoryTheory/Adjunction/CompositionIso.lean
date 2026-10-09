@@ -45,6 +45,9 @@ so is the left adjoint. -/
 def leftAdjointIdIso {F : C₀ ⥤ C₀} {G : C₀ ⥤ C₀} (adj : F ⊣ G) (e : G ≅ 𝟭 C₀) :
     F ≅ 𝟭 C₀ := (conjugateIsoEquiv .id adj).symm e.symm
 
+/--
+@isnad1 id=eq.0h5v.s8.a009c4eacf28 from=seed src=0 shape=3963f97c vocab=ecea90d0
+-/
 @[simp]
 lemma conjugateEquiv_leftAdjointIdIso_hom :
     conjugateEquiv .id adj (leftAdjointIdIso adj e).hom = e.inv := by
@@ -74,11 +77,17 @@ def leftAdjointCompIso (e₀₁₂ : G₂₁ ⋙ G₁₀ ≅ G₂₀) :
     F₀₁ ⋙ F₁₂ ≅ F₀₂ :=
   (conjugateIsoEquiv adj₀₂ (adj₀₁.comp adj₁₂)).symm e₀₁₂.symm
 
+/--
+@isnad1 id=eq.0h13v.s7.f96734901d75 from=seed src=0 shape=6639ee72 vocab=ec365c8f
+-/
 lemma leftAdjointCompIso_hom (e₀₁₂ : G₂₁ ⋙ G₁₀ ≅ G₂₀) :
     (leftAdjointCompIso adj₀₁ adj₁₂ adj₀₂ e₀₁₂).hom =
       leftAdjointCompNatTrans adj₀₁ adj₁₂ adj₀₂ e₀₁₂.inv :=
   rfl
 
+/--
+@isnad1 id=eq.0h13v.s9.f6cccfb0def3 from=seed src=0 shape=dffdd643 vocab=7e1939aa
+-/
 @[simp]
 lemma conjugateEquiv_leftAdjointCompIso_inv (e₀₁₂ : G₂₁ ⋙ G₁₀ ≅ G₂₀) :
     conjugateEquiv (adj₀₁.comp adj₁₂) adj₀₂
@@ -89,6 +98,9 @@ lemma conjugateEquiv_leftAdjointCompIso_inv (e₀₁₂ : G₂₁ ⋙ G₁₀ �
 end
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h10v.s8.065bed9d3b34 from=seed src=0 shape=556cc780 vocab=81dee1a6
+-/
 lemma leftAdjointCompIso_comp_id
     {F₀₁ : C₀ ⥤ C₁} {F₁₁' : C₁ ⥤ C₁} {G₁₀ : C₁ ⥤ C₀} {G₁'₁ : C₁ ⥤ C₁}
     (adj₀₁ : F₀₁ ⊣ G₁₀) (adj₁₁' : F₁₁' ⊣ G₁'₁)
@@ -102,6 +114,9 @@ lemma leftAdjointCompIso_comp_id
     ← Functor.map_comp_assoc, -Functor.map_comp]
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.1h10v.s8.17c7f2c1d803 from=seed src=0 shape=fd7386e7 vocab=81dee1a6
+-/
 lemma leftAdjointCompIso_id_comp
     {F₀₀' : C₀ ⥤ C₀} {F₀'₁ : C₀ ⥤ C₁} {G₀'₀ : C₀ ⥤ C₀} {G₁₀' : C₁ ⥤ C₀}
     (adj₀₀' : F₀₀' ⊣ G₀'₀) (adj₀'₁ : F₀'₁ ⊣ G₁₀')
@@ -130,6 +145,9 @@ section
 variable (τ₀₁₂ : G₂₀ ⟶ G₂₁ ⋙ G₁₀) (τ₁₂₃ : G₃₁ ⟶ G₃₂ ⋙ G₂₁)
   (τ₀₁₃ : G₃₀ ⟶ G₃₁ ⋙ G₁₀) (τ₀₂₃ : G₃₀ ⟶ G₃₂ ⋙ G₂₀)
 
+/--
+@isnad1 id=eq.0h21v.s9.e2e98258b53d from=seed src=0 shape=d40b3a68 vocab=aa380269
+-/
 lemma leftAdjointCompNatTrans₀₁₃_eq_conjugateEquiv_symm :
     whiskerLeft _ (leftAdjointCompNatTrans adj₁₂ adj₂₃ adj₁₃ τ₁₂₃) ≫
       leftAdjointCompNatTrans adj₀₁ adj₁₃ adj₀₃ τ₀₁₃ =
@@ -140,6 +158,9 @@ lemma leftAdjointCompNatTrans₀₁₃_eq_conjugateEquiv_symm :
   apply (conjugateEquiv adj₀₃ (adj₀₁.comp (adj₁₂.comp adj₂₃))).injective
   simp [leftAdjointCompNatTrans, ← conjugateEquiv_whiskerLeft _ _ adj₀₁]
 
+/--
+@isnad1 id=eq.0h21v.s10.d12cae81beb2 from=seed src=0 shape=9cc15884 vocab=57ea14f1
+-/
 lemma leftAdjointCompNatTrans₀₂₃_eq_conjugateEquiv_symm :
     (associator _ _ _).inv ≫
       whiskerRight (leftAdjointCompNatTrans adj₀₁ adj₁₂ adj₀₂ τ₀₁₂) F₂₃ ≫
@@ -155,6 +176,9 @@ lemma leftAdjointCompNatTrans₀₂₃_eq_conjugateEquiv_symm :
     ← conjugateEquiv_whiskerRight _ _ adj₂₃, conjugateEquiv_comp, Iso.hom_inv_id_assoc,
     conjugateEquiv_comp]
 
+/--
+@isnad1 id=eq.1h26v.s9.cf33fb00f2e1 from=seed src=0 shape=114a4d68 vocab=a0c403f1
+-/
 lemma leftAdjointCompNatTrans_assoc
     (h : τ₀₂₃ ≫ whiskerLeft G₃₂ τ₀₁₂ =
       τ₀₁₃ ≫ whiskerRight τ₁₂₃ G₁₀ ≫ (associator _ _ _).hom) :
@@ -168,6 +192,9 @@ lemma leftAdjointCompNatTrans_assoc
 
 end
 
+/--
+@isnad1 id=eq.1h26v.s9.cf9aba1c24e5 from=seed src=0 shape=fd3faab5 vocab=ab3bb4e4
+-/
 lemma leftAdjointCompIso_assoc
     (e₀₁₂ : G₂₁ ⋙ G₁₀ ≅ G₂₀) (e₁₂₃ : G₃₂ ⋙ G₂₁ ≅ G₃₁)
     (e₀₁₃ : G₃₁ ⋙ G₁₀ ≅ G₃₀) (e₀₂₃ : G₃₂ ⋙ G₂₀ ≅ G₃₀)

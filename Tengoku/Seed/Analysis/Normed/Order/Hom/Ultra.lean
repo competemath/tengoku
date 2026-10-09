@@ -28,7 +28,9 @@ public section
 variable {F α : Type*} [FunLike F α ℝ]
 
 /-- Proves that when a `SeminormedAddGroup` structure is constructed from an
-`AddGroupSeminormClass` that satisfies `IsNonarchimedean`, the group has an `IsUltrametricDist`. -/
+`AddGroupSeminormClass` that satisfies `IsNonarchimedean`, the group has an `IsUltrametricDist`.
+@isnad1 id=isultram.1h4v.s6.eec1e414d31f from=seed src=0 shape=7bcd8008 vocab=fd8a4d7c
+-/
 lemma AddGroupSeminormClass.isUltrametricDist [AddGroup α] [AddGroupSeminormClass F α ℝ]
     [inst : Dist α] {f : F} (hna : IsNonarchimedean f)
     (hd : inst = (AddGroupSeminormClass.toSeminormedAddGroup f).toDist := by rfl) :

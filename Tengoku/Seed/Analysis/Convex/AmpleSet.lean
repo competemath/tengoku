@@ -54,20 +54,26 @@ if the convex hull of each of its connected components is the full space. -/
 def AmpleSet (s : Set F) : Prop :=
   ∀ x ∈ s, convexHull ℝ (connectedComponentIn s x) = univ
 
-/-- A whole vector space is ample. -/
+/-- A whole vector space is ample.
+@isnad1 id=ampleset.0h1v.s5.045af8de2335 from=seed src=0 shape=6bebe499 vocab=b1f1d041
+-/
 @[simp]
 theorem ampleSet_univ {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] :
     AmpleSet (univ : Set F) := by
   intro x _
   rw [connectedComponentIn_univ, PreconnectedSpace.connectedComponent_eq_univ, convexHull_univ]
 
-/-- The empty set in a vector space is ample. -/
+/-- The empty set in a vector space is ample.
+@isnad1 id=ampleset.0h1v.s4.ff2eb329a6c8 from=seed src=0 shape=8c9a5aa9 vocab=389916a6
+-/
 @[simp]
 theorem ampleSet_empty : AmpleSet (∅ : Set F) := fun _ ↦ False.elim
 
 namespace AmpleSet
 
-/-- The union of two ample sets is ample. -/
+/-- The union of two ample sets is ample.
+@isnad1 id=ampleset.2h3v.s5.762143100eb5 from=seed src=0 shape=a04fb47e vocab=f54bfe90
+-/
 theorem union {s t : Set F} (hs : AmpleSet s) (ht : AmpleSet t) : AmpleSet (s ∪ t) := by
   intro x hx
   rcases hx with (h | h) <;>
@@ -81,7 +87,9 @@ theorem union {s t : Set F} (hs : AmpleSet s) (ht : AmpleSet t) : AmpleSet (s �
 
 variable {E : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E]
 
-/-- Images of ample sets under continuous affine equivalences are ample. -/
+/-- Images of ample sets under continuous affine equivalences are ample.
+@isnad1 id=ampleset.1h4v.s6.7195301129c6 from=seed src=0 shape=709d5902 vocab=a9221d74
+-/
 theorem image {s : Set E} (h : AmpleSet s) (L : E ≃ᴬ[ℝ] F) :
     AmpleSet (L '' s) := forall_mem_image.mpr fun x hx ↦
   calc (convexHull ℝ) (connectedComponentIn (L '' s) (L x))
@@ -91,29 +99,39 @@ theorem image {s : Set E} (h : AmpleSet s) (L : E ≃ᴬ[ℝ] F) :
           .symm <| L.toAffineMap.image_convexHull _
     _ = univ := by rw [h x hx, image_univ, L.surjective.range_eq]
 
-/-- A set is ample iff its image under a continuous affine equivalence is. -/
+/-- A set is ample iff its image under a continuous affine equivalence is.
+@isnad1 id=iff.0h4v.s6.e6365f162879 from=seed src=0 shape=5edbf58f vocab=a9221d74
+-/
 theorem image_iff {s : Set E} (L : E ≃ᴬ[ℝ] F) :
     AmpleSet (L '' s) ↔ AmpleSet s :=
   ⟨fun h ↦ (L.symm_image_image s) ▸ h.image L.symm, fun h ↦ h.image L⟩
 
-/-- Pre-images of ample sets under continuous affine equivalences are ample. -/
+/-- Pre-images of ample sets under continuous affine equivalences are ample.
+@isnad1 id=ampleset.1h4v.s6.853c3a206105 from=seed src=0 shape=9558096b vocab=eb2c3985
+-/
 theorem preimage {s : Set F} (h : AmpleSet s) (L : E ≃ᴬ[ℝ] F) : AmpleSet (L ⁻¹' s) := by
   rw [← L.image_symm_eq_preimage]
   exact h.image L.symm
 
-/-- A set is ample iff its pre-image under a continuous affine equivalence is. -/
+/-- A set is ample iff its pre-image under a continuous affine equivalence is.
+@isnad1 id=iff.0h4v.s6.a664b3012381 from=seed src=0 shape=392bfbaf vocab=eb2c3985
+-/
 theorem preimage_iff {s : Set F} (L : E ≃ᴬ[ℝ] F) :
     AmpleSet (L ⁻¹' s) ↔ AmpleSet s :=
   ⟨fun h ↦ L.image_preimage s ▸ h.image L, fun h ↦ h.preimage L⟩
 
 open scoped Pointwise
 
-/-- Affine translations of ample sets are ample. -/
+/-- Affine translations of ample sets are ample.
+@isnad1 id=ampleset.1h3v.s6.d1003d5e181f from=seed src=0 shape=56c0950a vocab=bb853391
+-/
 theorem vadd [ContinuousAdd E] {s : Set E} (h : AmpleSet s) {y : E} :
     AmpleSet (y +ᵥ s) :=
   h.image (ContinuousAffineEquiv.constVAdd ℝ E y)
 
-/-- A set is ample iff its affine translation is. -/
+/-- A set is ample iff its affine translation is.
+@isnad1 id=iff.0h3v.s6.ae578e906f5c from=seed src=0 shape=11701b3b vocab=bb853391
+-/
 theorem vadd_iff [ContinuousAdd E] {s : Set E} {y : E} :
     AmpleSet (y +ᵥ s) ↔ AmpleSet s :=
   AmpleSet.image_iff (ContinuousAffineEquiv.constVAdd ℝ E y)
@@ -122,7 +140,9 @@ theorem vadd_iff [ContinuousAdd E] {s : Set E} {y : E} :
 section Codimension
 
 /-- Let `E` be a linear subspace in a real vector space.
-If `E` has codimension at least two, its complement is ample. -/
+If `E` has codimension at least two, its complement is ample.
+@isnad1 id=ampleset.1h2v.s7.ce05ca0610bb from=seed src=0 shape=1958e0bd vocab=05b316b2
+-/
 theorem of_one_lt_codim [IsTopologicalAddGroup F] [ContinuousSMul ℝ F] {E : Submodule ℝ F}
     (hcodim : 1 < Module.rank ℝ (F ⧸ E)) :
     AmpleSet (Eᶜ : Set F) := fun x hx ↦ by

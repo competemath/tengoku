@@ -29,7 +29,9 @@ variable {𝕜 α β : Type*} [Semiring 𝕜] [PartialOrder 𝕜] [PartialOrder 
     [SMul 𝕜 α] [SMul 𝕜 β]
     [ContinuousConstSMul 𝕜 β] [ContinuousAdd β]
 
-/-- The set of convex functions on a set `s` is closed. -/
+/-- The set of convex functions on a set `s` is closed.
+@isnad1 id=isclosed.0h4v.s6.c6ed9d022152 from=seed src=0 shape=82b710a1 vocab=3f3676e0
+-/
 public theorem isClosed_setOfPred_convexOn {s : Set α} :
     IsClosed {f : α → β | ConvexOn 𝕜 s f} := by
   simp only [ConvexOn, ofPred_and, ofPred_forall]
@@ -39,13 +41,21 @@ public theorem isClosed_setOfPred_convexOn {s : Set α} :
       isClosed_iInter fun ha => isClosed_iInter fun hb => isClosed_iInter fun hab =>
       isClosed_le (by fun_prop) (by fun_prop)
 
+/--
+@isnad1 id=isclosed.0h4v.s6.c6ed9d022152 from=seed src=0 shape=82b710a1 vocab=3f3676e0
+-/
 @[deprecated (since := "2026-07-09")]
 public alias isClosed_setOf_convexOn := isClosed_setOfPred_convexOn
 
-/-- The set of concave functions on a set `s` is closed. -/
+/-- The set of concave functions on a set `s` is closed.
+@isnad1 id=isclosed.0h4v.s6.3204c38a377e from=seed src=0 shape=82b710a1 vocab=659ef48e
+-/
 public theorem isClosed_setOfPred_concaveOn {s : Set α} :
     IsClosed {f : α → β | ConcaveOn 𝕜 s f} :=
   isClosed_setOfPred_convexOn (α := α) (β := βᵒᵈ)
 
+/--
+@isnad1 id=isclosed.0h4v.s6.3204c38a377e from=seed src=0 shape=82b710a1 vocab=659ef48e
+-/
 @[deprecated (since := "2026-07-09")]
 public alias isClosed_setOf_concaveOn := isClosed_setOfPred_concaveOn

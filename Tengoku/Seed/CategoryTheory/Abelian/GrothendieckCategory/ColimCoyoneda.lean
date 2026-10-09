@@ -83,6 +83,9 @@ noncomputable def f : colimit (kernel (g y)) ⟶ X :=
   IsColimit.map (colimit.isColimit _) (constCocone _ X) (kernel.ι _)
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=eq.0h7v.s9.07ca14a3c577 from=seed src=0 shape=b9d9f4b1 vocab=cf188ceb
+-/
 lemma hf (j : Under j₀) :
     colimit.ι (kernel (g y)) j ≫ f y = (kernel.ι (g y)).app j :=
   (IsColimit.ι_map _ _ _ _).trans (by simp)
@@ -91,6 +94,9 @@ set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
 variable {y} in
 include hc hy in
+/--
+@isnad1 id=epi.1h8v.s8.baa89238ed64 from=seed src=0 shape=d8d57c83 vocab=bbc86e2c
+-/
 lemma epi_f [IsFiltered J] : Epi (f y) := by
   exact (colim.exact_mapShortComplex
     ((ShortComplex.mk _ _ (kernel.condition (g y))).exact_of_f_is_kernel
@@ -119,6 +125,9 @@ include hXκ hc
 
 set_option backward.defeqAttrib.useBackward true in
 open injectivity₀ in
+/--
+@isnad1 id=ex.2h9v.s8.6c9eec80546d from=seed src=0 shape=6acb6e52 vocab=4e47294e
+-/
 lemma injectivity₀ {j₀ : J} (y : X ⟶ Y.obj j₀) (hy : y ≫ c.ι.app j₀ = 0) :
     ∃ (j : J) (φ : j₀ ⟶ j), y ≫ Y.map φ = 0 := by
   have := isFiltered_of_isCardinalFiltered J κ
@@ -130,6 +139,9 @@ lemma injectivity₀ {j₀ : J} (y : X ⟶ Y.obj j₀) (hy : y ≫ c.ι.app j₀
   simpa only [← cancel_epi ((kernel.ι (g y)).app j), comp_zero]
     using! NatTrans.congr_app (kernel.condition (g y)) j
 
+/--
+@isnad1 id=ex.2h10v.s8.37ebf8082e04 from=seed src=0 shape=4b4ce8cf vocab=4e47294e
+-/
 lemma injectivity (j₀ : J) (y₁ y₂ : X ⟶ Y.obj j₀)
     (hy : y₁ ≫ c.ι.app j₀ = y₂ ≫ c.ι.app j₀) :
     ∃ (j : J) (φ : j₀ ⟶ j), y₁ ≫ Y.map φ = y₂ ≫ Y.map φ := by
@@ -174,6 +186,9 @@ noncomputable def f : colimit (pullback c.ι ((Functor.const J).map z)) ⟶ X :=
   colimit.desc _ (Cocone.mk X
     { app j := (pullback.snd c.ι ((Functor.const _).map z)).app j })
 
+/--
+@isnad1 id=eq.0h7v.s9.6fa3f9d2f679 from=seed src=0 shape=7c4015cc vocab=b677fd41
+-/
 lemma hf (j : J) :
     colimit.ι (pullback c.ι ((Functor.const J).map z)) j ≫ f z =
       (pullback.snd c.ι ((Functor.const J).map z)).app j :=
@@ -183,6 +198,9 @@ include hc
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.0h7v.s7.69dc86ec2ec8 from=seed src=0 shape=62ad6ca0 vocab=2eead40e
+-/
 lemma isIso_f [IsFiltered J] : IsIso (f z) := by
   refine ((MorphismProperty.isomorphisms C).arrow_mk_iso_iff ?_).1
     (MorphismProperty.of_isPullback
@@ -200,6 +218,9 @@ lemma isIso_f [IsFiltered J] : IsIso (f z) := by
       (IsColimit.coconePointUniqueUpToIso (colimit.isColimit _)
         (isColimitConstCocone J c.pt))
 
+/--
+@isnad1 id=epi.0h7v.s7.81fff052f8b1 from=seed src=0 shape=62ad6ca0 vocab=8c727293
+-/
 lemma epi_f [IsFiltered J] : Epi (f z) := by
   have := isIso_f hc z
   infer_instance
@@ -210,6 +231,9 @@ set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 include hc in
 open surjectivity in
+/--
+@isnad1 id=ex.1h8v.s7.6503c6f00e22 from=seed src=0 shape=53658128 vocab=d5f426cb
+-/
 lemma surjectivity [∀ (j j' : J) (φ : j ⟶ j'), Mono (Y.map φ)]
     {κ : Cardinal.{w}} [hκ : Fact κ.IsRegular] [IsCardinalFiltered J κ]
     (hXκ : HasCardinalLT (Subobject X) κ) (z : X ⟶ c.pt) :
@@ -230,7 +254,9 @@ open IsPresentable in
 /-- If `X` is an object in a Grothendieck abelian category, then
 the functor `coyoneda.obj (op X)` commutes with colimits corresponding
 to diagrams of monomorphisms indexed by `κ`-filtered categories
-for a big enough regular cardinal `κ`. -/
+for a big enough regular cardinal `κ`.
+@isnad1 id=preserve.1h5v.s6.34431c4e27a8 from=seed src=0 shape=2173e9d3 vocab=dad62e7b
+-/
 lemma preservesColimit_coyoneda_obj_of_mono
     (Y : J ⥤ C) {κ : Cardinal.{w}} [hκ : Fact κ.IsRegular]
     [IsCardinalFiltered J κ] (hXκ : HasCardinalLT (Subobject X) κ)

@@ -67,9 +67,15 @@ def toPreGNS : A ≃ₗ[ℂ] f.PreGNS := LinearEquiv.refl ℂ _
 /-- The map from the GNS space to the C⋆-algebra, as a linear equivalence. -/
 def ofPreGNS : f.PreGNS ≃ₗ[ℂ] A := f.toPreGNS.symm
 
+/--
+@isnad1 id=eq.0h3v.s8.38d81d1a8970 from=seed src=0 shape=2b7462b1 vocab=c8dad401
+-/
 @[simp]
 lemma toPreGNS_ofPreGNS (a : f.PreGNS) : f.toPreGNS (f.ofPreGNS a) = a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.2884d06bd0db from=seed src=0 shape=dff63989 vocab=c8dad401
+-/
 @[simp]
 lemma ofPreGNS_toPreGNS (a : A) : f.ofPreGNS (f.toPreGNS a) = a := rfl
 
@@ -92,17 +98,29 @@ noncomputable instance : SeminormedAddCommGroup f.PreGNS :=
 noncomputable instance : InnerProductSpace ℂ f.PreGNS :=
   InnerProductSpace.ofCore f.preGNSpreInnerProdSpace
 
+/--
+@isnad1 id=eq.0h4v.s9.fe884f0ffa36 from=seed src=0 shape=2b3a272f vocab=9cae63bf
+-/
 lemma preGNS_inner_def (a b : f.PreGNS) :
     ⟪a, b⟫_ℂ = f (star (f.ofPreGNS a) * f.ofPreGNS b) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.cab676fc1757 from=seed src=0 shape=fc7b931f vocab=14e09c9c
+-/
 lemma preGNS_norm_def (a : f.PreGNS) :
     ‖a‖ = √(f (star (f.ofPreGNS a) * f.ofPreGNS a)).re := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.056a41313eb7 from=seed src=0 shape=d7168eb4 vocab=f5f74136
+-/
 lemma preGNS_norm_sq (a : f.PreGNS) :
     ‖a‖ ^ 2 = f (star (f.ofPreGNS a) * f.ofPreGNS a) := by
   have : 0 ≤ f (star (f.ofPreGNS a) * f.ofPreGNS a) := f.map_nonneg (star_mul_self_nonneg _)
   simp [preGNS_norm_def, ← ofReal_pow, Real.sq_sqrt this.1, conj_eq_iff_re.mp this.star_eq]
 
+/--
+@isnad1 id=eq.0h3v.s9.22339d74b616 from=seed src=0 shape=9f712a6a vocab=6b6efcf1
+-/
 lemma preGNS_norm_def' (f : A →ₚ[ℂ] ℂ) (a : f.PreGNS) :
     ‖a‖ = √‖f (star (f.ofPreGNS a) * f.ofPreGNS a)‖ := by
   rw [← sq_eq_sq₀ (by positivity) (by positivity), ← Complex.ofReal_inj]
@@ -111,20 +129,30 @@ lemma preGNS_norm_def' (f : A →ₚ[ℂ] ℂ) (a : f.PreGNS) :
 variable {F : Type*} [FunLike F A ℂ] [LinearMapClass F ℂ A ℂ] [OrderHomClass F A ℂ]
 
 /-- The **Cauchy--Schwarz** lemma for positive linear functionals on a non-unital
-star-ordered `ℂ`-algebra. -/
+star-ordered `ℂ`-algebra.
+@isnad1 id=le.0h5v.s9.fe77355ff6ab from=seed src=0 shape=40ee82cb vocab=3784b21c
+-/
 lemma norm_map_star_mul_le (f : F) (x y : A) :
     ‖f (star x * y)‖ ≤ √‖f (star x * x)‖ * √‖f (star y * y)‖ := by
   simpa [preGNS_inner_def, preGNS_norm_def'] using!
     norm_inner_le_norm ((ofClass f).toPreGNS x) ((ofClass f).toPreGNS y)
 
+/--
+@isnad1 id=le.0h5v.s9.fe77355ff6ab from=seed src=0 shape=40ee82cb vocab=3784b21c
+-/
 alias cauchy_schwarz_star_mul := norm_map_star_mul_le
 
 /-- The **Cauchy--Schwarz** lemma for positive linear functionals on a non-unital
-star-ordered `ℂ`-algebra. -/
+star-ordered `ℂ`-algebra.
+@isnad1 id=le.0h5v.s9.1f05b0f3d0b6 from=seed src=0 shape=da06801e vocab=3784b21c
+-/
 lemma norm_map_mul_star_le (f : F) (x y : A) :
     ‖f (x * star y)‖ ≤ √‖f (x * star x)‖ * √‖f (y * star y)‖ := by
   simpa using cauchy_schwarz_star_mul f (star x) (star y)
 
+/--
+@isnad1 id=le.0h5v.s9.1f05b0f3d0b6 from=seed src=0 shape=da06801e vocab=3784b21c
+-/
 alias cauchy_schwarz_mul_star := norm_map_mul_star_le
 
 end PreGNS
@@ -163,6 +191,9 @@ noncomputable def leftMulMapPreGNS (a : A) : f.PreGNS →L[ℂ] f.PreGNS :=
         simpa using OrderHomClass.mono f this
       _ = _ := by simp [← Complex.coe_smul, preGNS_norm_sq, smul_mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s10.caae00b91140 from=seed src=0 shape=ec00e692 vocab=71f39fc4
+-/
 @[simp]
 lemma leftMulMapPreGNS_mul_eq_comp (a b : A) :
     f.leftMulMapPreGNS (a * b) = f.leftMulMapPreGNS a ∘L f.leftMulMapPreGNS b := by
@@ -209,9 +240,15 @@ noncomputable def gnsNonUnitalStarAlgHom : A →⋆ₙₐ[ℂ] (f.GNS →L[ℂ] 
     | hp => apply isClosed_eq <;> fun_prop
     | ih x y => simp [mul_assoc, preGNS_inner_def]
 
+/--
+@isnad1 id=eq.0h3v.s13.2d6159f4e493 from=seed src=0 shape=203f606d vocab=6818ba81
+-/
 lemma gnsNonUnitalStarAlgHom_apply {a : A} :
     f.gnsNonUnitalStarAlgHom a = (f.leftMulMapPreGNS a).completion := rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.54a1d0c79f54 from=seed src=0 shape=55d8e184 vocab=739b83ac
+-/
 @[simp]
 lemma gnsNonUnitalStarAlgHom_apply_coe {a : A} {b : f.PreGNS} :
     f.gnsNonUnitalStarAlgHom a b = f.leftMulMapPreGNS a b := by

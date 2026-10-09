@@ -57,6 +57,9 @@ section HasFDerivAt
 
 variable [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=hasstric.0h6v.s15.26a084aeb870 from=seed src=0 shape=bd2e98ef vocab=a298d85c
+-/
 theorem ContinuousMultilinearMap.hasStrictFDerivAt_compContinuousLinearMap
     (fg : ContinuousMultilinearMap 𝕜 G H × ∀ i, F i →L[𝕜] G i) :
     HasStrictFDerivAt
@@ -69,6 +72,9 @@ theorem ContinuousMultilinearMap.hasStrictFDerivAt_compContinuousLinearMap
   convert! this.comp fg hasStrictFDerivAt_snd |>.clm_apply hasStrictFDerivAt_fst
   ext <;> simp [fderivCompContinuousLinearMap]
 
+/--
+@isnad1 id=hasstric.2h11v.s13.27166bdf93ab from=seed src=0 shape=b580518a vocab=2cb936d2
+-/
 theorem HasStrictFDerivAt.continuousMultilinearMapCompContinuousLinearMap
     (hf : HasStrictFDerivAt f f' x) (hg : ∀ i, HasStrictFDerivAt (g i) (g' i) x) :
     HasStrictFDerivAt (fun x ↦ (f x).compContinuousLinearMap (g · x))
@@ -77,6 +83,9 @@ theorem HasStrictFDerivAt.continuousMultilinearMapCompContinuousLinearMap
   hasStrictFDerivAt_compContinuousLinearMap (f x, (g · x))
     |>.comp x (hf.prodMk (hasStrictFDerivAt_pi.2 hg))
 
+/--
+@isnad1 id=hasfderi.2h11v.s13.e4991756ee2b from=seed src=0 shape=b580518a vocab=cce4949d
+-/
 theorem HasFDerivAt.continuousMultilinearMapCompContinuousLinearMap
     (hf : HasFDerivAt f f' x) (hg : ∀ i, HasFDerivAt (g i) (g' i) x) :
     HasFDerivAt (fun x ↦ (f x).compContinuousLinearMap (g · x))
@@ -86,6 +95,9 @@ theorem HasFDerivAt.continuousMultilinearMapCompContinuousLinearMap
     hasStrictFDerivAt_compContinuousLinearMap (f x, (g · x)) |>.hasFDerivAt |>.comp x
       (hf.prodMk (hasFDerivAt_pi.2 hg))
 
+/--
+@isnad1 id=hasfderi.2h12v.s13.71021ee85be6 from=seed src=0 shape=d5d7ab23 vocab=aa157bf4
+-/
 theorem HasFDerivWithinAt.continuousMultilinearMapCompContinuousLinearMap
     (hf : HasFDerivWithinAt f f' s x) (hg : ∀ i, HasFDerivWithinAt (g i) (g' i) s x) :
     HasFDerivWithinAt (fun x ↦ (f x).compContinuousLinearMap (g · x))
@@ -96,6 +108,9 @@ theorem HasFDerivWithinAt.continuousMultilinearMapCompContinuousLinearMap
           (f x, (g · x)) |>.hasFDerivAt |>.comp_hasFDerivWithinAt
       x (hf.prodMk (hasFDerivWithinAt_pi.2 hg))
 
+/--
+@isnad1 id=eq.3h10v.s13.23beba7e0fb2 from=seed src=0 shape=3002069f vocab=53147d0d
+-/
 theorem fderivWithin_continuousMultilinearMapCompContinuousLinearMap
     (hf : DifferentiableWithinAt 𝕜 f s x) (hg : ∀ i, DifferentiableWithinAt 𝕜 (g i) s x)
     (hs : UniqueDiffWithinAt 𝕜 s x) :
@@ -105,6 +120,9 @@ theorem fderivWithin_continuousMultilinearMapCompContinuousLinearMap
   hf.hasFDerivWithinAt.continuousMultilinearMapCompContinuousLinearMap
     (fun i ↦ (hg i).hasFDerivWithinAt) |>.fderivWithin hs
 
+/--
+@isnad1 id=eq.2h9v.s13.83002ce07be3 from=seed src=0 shape=2333e671 vocab=e64d7533
+-/
 theorem fderiv_continuousMultilinearMapCompContinuousLinearMap
     (hf : DifferentiableAt 𝕜 f x) (hg : ∀ i, DifferentiableAt 𝕜 (g i) x) :
     fderiv 𝕜 (fun x ↦ (f x).compContinuousLinearMap (g · x)) x =
@@ -117,6 +135,9 @@ end HasFDerivAt
 
 variable [Finite ι]
 
+/--
+@isnad1 id=differen.2h10v.s10.2e4f0005b195 from=seed src=0 shape=a4fac777 vocab=793ef221
+-/
 theorem DifferentiableWithinAt.continuousMultilinearMapCompContinuousLinearMap
     (hf : DifferentiableWithinAt 𝕜 f s x) (hg : ∀ i, DifferentiableWithinAt 𝕜 (g i) s x) :
     DifferentiableWithinAt 𝕜 (fun x ↦ (f x).compContinuousLinearMap (g · x)) s x := by
@@ -125,6 +146,9 @@ theorem DifferentiableWithinAt.continuousMultilinearMapCompContinuousLinearMap
   exact hf.hasFDerivWithinAt.continuousMultilinearMapCompContinuousLinearMap
     (fun i ↦ (hg i).hasFDerivWithinAt) |>.differentiableWithinAt
 
+/--
+@isnad1 id=differen.2h9v.s10.3f50621c8a9c from=seed src=0 shape=23ac9ef1 vocab=0f2c94ee
+-/
 theorem DifferentiableAt.continuousMultilinearMapCompContinuousLinearMap
     (hf : DifferentiableAt 𝕜 f x) (hg : ∀ i, DifferentiableAt 𝕜 (g i) x) :
     DifferentiableAt 𝕜 (fun x ↦ (f x).compContinuousLinearMap (g · x)) x := by
@@ -133,11 +157,17 @@ theorem DifferentiableAt.continuousMultilinearMapCompContinuousLinearMap
   exact hf.hasFDerivAt.continuousMultilinearMapCompContinuousLinearMap
     (fun i ↦ (hg i).hasFDerivAt) |>.differentiableAt
 
+/--
+@isnad1 id=differen.2h9v.s10.c244b950d176 from=seed src=0 shape=cb0ad5db vocab=77de8b0d
+-/
 theorem DifferentiableOn.continuousMultilinearMapCompContinuousLinearMap
     (hf : DifferentiableOn 𝕜 f s) (hg : ∀ i, DifferentiableOn 𝕜 (g i) s) :
     DifferentiableOn 𝕜 (fun x ↦ (f x).compContinuousLinearMap (g · x)) s := fun x hx ↦
   (hf x hx).continuousMultilinearMapCompContinuousLinearMap (hg · x hx)
 
+/--
+@isnad1 id=differen.2h8v.s10.0943ce4a62e0 from=seed src=0 shape=515c00aa vocab=a0476e21
+-/
 theorem Differentiable.continuousMultilinearMapCompContinuousLinearMap
     (hf : Differentiable 𝕜 f) (hg : ∀ i, Differentiable 𝕜 (g i)) :
     Differentiable 𝕜 (fun x ↦ (f x).compContinuousLinearMap (g · x)) := fun x ↦

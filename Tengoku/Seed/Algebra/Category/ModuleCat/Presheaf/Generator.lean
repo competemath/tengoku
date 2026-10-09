@@ -62,11 +62,17 @@ noncomputable def freeYonedaEquiv {M : PresheafOfModules.{v} R} {X : C} :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s11.c020a5f8f4f0 from=seed src=0 shape=b9c195ce vocab=5300c5b6
+-/
 lemma freeYonedaEquiv_symm_app (M : PresheafOfModules.{v} R) (X : C)
     (x : M.obj (Opposite.op X)) :
     (freeYonedaEquiv.symm x).app (Opposite.op X) (ModuleCat.freeMk (𝟙 _)) = x := by
   simp [freeYonedaEquiv, freeHomEquiv, yonedaEquiv]
 
+/--
+@isnad1 id=eq.0h7v.s11.dc820b708dd7 from=seed src=0 shape=760c1028 vocab=7f6b0596
+-/
 lemma freeYonedaEquiv_comp {M N : PresheafOfModules.{v} R} {X : C}
     (m : ((free R).obj (yoneda.obj X) ⟶ M)) (φ : M ⟶ N) :
     freeYonedaEquiv (m ≫ φ) = φ.app _ (freeYonedaEquiv m) := rfl
@@ -84,21 +90,33 @@ instance : ObjectProperty.Small.{u} (freeYoneda R) := by
 
 variable (R)
 
+/--
+@isnad1 id=issepara.0h2v.s4.9285c11dbc56 from=seed src=0 shape=186e83d6 vocab=046c5ee7
+-/
 lemma isSeparating : ObjectProperty.IsSeparating (freeYoneda R) := by
   intro M N f₁ f₂ h
   ext ⟨X⟩ m
   obtain ⟨g, rfl⟩ := freeYonedaEquiv.surjective m
   exact congr_arg freeYonedaEquiv (h _ ⟨X⟩ g)
 
+/--
+@isnad1 id=isdetect.0h2v.s4.3a09c2dc1855 from=seed src=0 shape=186e83d6 vocab=cc83bc93
+-/
 lemma isDetecting : ObjectProperty.IsDetecting (freeYoneda R) :=
   (isSeparating R).isDetecting
 
 end freeYoneda
 
+/--
+@isnad1 id=hassepar.0h2v.s4.2141c5191b8b from=seed src=0 shape=b2d09be1 vocab=986d5798
+-/
 instance hasSeparator {C₀ : Type u} [SmallCategory C₀] (R₀ : C₀ᵒᵖ ⥤ RingCat.{u}) :
     HasSeparator (PresheafOfModules.{u} R₀) :=
   ⟨_, (freeYoneda.isSeparating R₀).isSeparator_coproduct⟩
 
+/--
+@isnad1 id=wellpowe.0h2v.s4.dd5895cefe04 from=seed src=0 shape=b2d09be1 vocab=789ffd33
+-/
 instance wellPowered {C₀ : Type u} [SmallCategory C₀] (R₀ : C₀ᵒᵖ ⥤ RingCat.{u}) :
     WellPowered.{u} (PresheafOfModules.{u} R₀) :=
   wellPowered_of_isDetecting (freeYoneda.isDetecting R₀)
@@ -129,6 +147,9 @@ noncomputable abbrev fromFreeYoneda (m : M.Elements) :
     m.freeYoneda ⟶ M :=
   freeYonedaEquiv.symm m.2
 
+/--
+@isnad1 id=eq.0h4v.s14.edb98baff8e0 from=seed src=0 shape=eb402e47 vocab=115b8ab7
+-/
 lemma fromFreeYoneda_app_apply (m : M.Elements) :
     m.fromFreeYoneda.app m.1 (ModuleCat.freeMk (𝟙 _)) = m.2 := by
   apply freeYonedaEquiv_symm_app
@@ -162,11 +183,17 @@ noncomputable def freeYonedaCoproductMk (m : M.Elements) :
     M.freeYonedaCoproduct.obj m.1 :=
   (M.ιFreeYonedaCoproduct m).app _ (ModuleCat.freeMk (𝟙 _))
 
+/--
+@isnad1 id=eq.0h4v.s6.e61133ad6192 from=seed src=0 shape=e20758a2 vocab=4b9cbe4b
+-/
 @[reassoc (attr := simp)]
 lemma ι_fromFreeYonedaCoproduct (m : M.Elements) :
     M.ιFreeYonedaCoproduct m ≫ M.fromFreeYonedaCoproduct = m.fromFreeYoneda := by
   apply Sigma.ι_desc
 
+/--
+@isnad1 id=eq.0h6v.s12.ca7969db610c from=seed src=0 shape=6b74a5c4 vocab=4a7109c5
+-/
 lemma ι_fromFreeYonedaCoproduct_apply (m : M.Elements) (X : Cᵒᵖ) (x : m.freeYoneda.obj X) :
     M.fromFreeYonedaCoproduct.app X ((M.ιFreeYonedaCoproduct m).app X x) =
       m.fromFreeYoneda.app X x :=
@@ -174,6 +201,9 @@ lemma ι_fromFreeYonedaCoproduct_apply (m : M.Elements) (X : Cᵒᵖ) (x : m.fre
     ((evaluation R X ⋙ forget _).congr_map (M.ι_fromFreeYonedaCoproduct m)) x
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s14.5484ae5b0c21 from=seed src=0 shape=e5fd9816 vocab=3d3ac885
+-/
 @[simp]
 lemma fromFreeYonedaCoproduct_app_mk (m : M.Elements) :
     M.fromFreeYonedaCoproduct.app _ (M.freeYonedaCoproductMk m) = m.2 := by
@@ -190,6 +220,9 @@ noncomputable def toFreeYonedaCoproduct :
     (kernel M.fromFreeYonedaCoproduct).freeYonedaCoproduct ⟶ M.freeYonedaCoproduct :=
   (kernel M.fromFreeYonedaCoproduct).fromFreeYonedaCoproduct ≫ kernel.ι _
 
+/--
+@isnad1 id=eq.0h3v.s8.31b01d85e9da from=seed src=0 shape=110668c6 vocab=ab72f318
+-/
 @[reassoc (attr := simp)]
 lemma toFreeYonedaCoproduct_fromFreeYonedaCoproduct :
     M.toFreeYonedaCoproduct ≫ M.fromFreeYonedaCoproduct = 0 := by

@@ -52,6 +52,9 @@ noncomputable def extEquivCohomologyClass :
       CochainComplex.HomComplex.CohomologyClass.equivOfIsKProjective.{w}.symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s13.09898f43298b from=seed src=0 shape=62bb55e2 vocab=954ba69b
+-/
 lemma extEquivCohomologyClass_symm_mk_hom [HasDerivedCategory C]
     (x : Cocycle R.cochainComplex ((singleFunctor C 0).obj Y) n) :
     (R.extEquivCohomologyClass.symm (.mk x)).hom =
@@ -68,6 +71,9 @@ lemma extEquivCohomologyClass_symm_mk_hom [HasDerivedCategory C]
   congr
   exact (ShiftedHom.comp_mk₀_id ..).symm
 
+/--
+@isnad1 id=eq.0h7v.s11.f9d9e7393aa2 from=seed src=0 shape=cc6ef918 vocab=7b9d7f6d
+-/
 @[simp]
 lemma extEquivCohomologyClass_symm_add
     (x y : CohomologyClass R.cochainComplex ((singleFunctor C 0).obj Y) n) :
@@ -89,6 +95,9 @@ noncomputable def extAddEquivCohomologyClass :
     { toEquiv := R.extEquivCohomologyClass.symm
       map_add' := by simp }
 
+/--
+@isnad1 id=eq.0h7v.s11.f25c45ee6c67 from=seed src=0 shape=cc6ef918 vocab=a703e424
+-/
 @[simp]
 lemma extEquivCohomologyClass_symm_sub
     (x y : CohomologyClass R.cochainComplex ((singleFunctor C 0).obj Y) n) :
@@ -96,6 +105,9 @@ lemma extEquivCohomologyClass_symm_sub
       R.extEquivCohomologyClass.symm x - R.extEquivCohomologyClass.symm y :=
   R.extAddEquivCohomologyClass.symm.map_sub _ _
 
+/--
+@isnad1 id=eq.0h6v.s11.3322c538e330 from=seed src=0 shape=323dfc8d vocab=94c44423
+-/
 @[simp]
 lemma extEquivCohomologyClass_symm_neg
     (x : CohomologyClass R.cochainComplex ((singleFunctor C 0).obj Y) n) :
@@ -103,23 +115,35 @@ lemma extEquivCohomologyClass_symm_neg
       -R.extEquivCohomologyClass.symm x :=
   R.extAddEquivCohomologyClass.symm.map_neg _
 
+/--
+@isnad1 id=eq.0h5v.s10.f963dbd96175 from=seed src=0 shape=5a3fbd3d vocab=a100f6f5
+-/
 @[simp]
 lemma extEquivCohomologyClass_symm_zero :
     (R.extEquivCohomologyClass (Y := Y) (n := n)).symm 0 = 0 :=
   R.extAddEquivCohomologyClass.symm.map_zero
 
+/--
+@isnad1 id=eq.0h7v.s11.4937adad3804 from=seed src=0 shape=4a78dacc vocab=ed3fe76b
+-/
 @[simp]
 lemma extEquivCohomologyClass_add (x y : Ext X Y n) :
     R.extEquivCohomologyClass (x + y) =
       R.extEquivCohomologyClass x + R.extEquivCohomologyClass y :=
   R.extAddEquivCohomologyClass.map_add _ _
 
+/--
+@isnad1 id=eq.0h7v.s11.95cd617ba4bf from=seed src=0 shape=4a78dacc vocab=bed30a63
+-/
 @[simp]
 lemma extEquivCohomologyClass_sub (x y : Ext X Y n) :
     R.extEquivCohomologyClass (x - y) =
       R.extEquivCohomologyClass x - R.extEquivCohomologyClass y :=
   R.extAddEquivCohomologyClass.map_sub _ _
 
+/--
+@isnad1 id=eq.0h6v.s10.327fa65da7db from=seed src=0 shape=43db6f74 vocab=d6dae30e
+-/
 @[simp]
 lemma extEquivCohomologyClass_neg (x : Ext X Y n) :
     R.extEquivCohomologyClass (-x) =
@@ -127,6 +151,9 @@ lemma extEquivCohomologyClass_neg (x : Ext X Y n) :
   R.extAddEquivCohomologyClass.map_neg _
 
 variable (X n) in
+/--
+@isnad1 id=eq.0h5v.s10.dd9878fc44cd from=seed src=0 shape=1efcf90d vocab=8ff024a2
+-/
 @[simp]
 lemma extEquivCohomologyClass_zero :
     R.extEquivCohomologyClass (0 : Ext X Y n) = 0 :=
@@ -142,6 +169,9 @@ noncomputable def extMk {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 
     (.mk (Cocycle.toSingleMk ((R.cochainComplexXIso (-n) n rfl).hom ≫ f) (by simp)
       (-m) (by lia) (by simpa [cochainComplex_d _ _ _ m n rfl rfl])))
 
+/--
+@isnad1 id=eq.2h7v.s10.0fede8f8e0e3 from=seed src=0 shape=02dbd806 vocab=6b6c23ca
+-/
 @[simp]
 lemma extEquivCohomologyClass_extMk {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0) :
@@ -150,6 +180,9 @@ lemma extEquivCohomologyClass_extMk {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ
         (-m) (by lia) (by simpa [cochainComplex_d _ _ _ m n rfl rfl]))) := by
   simp [extMk]
 
+/--
+@isnad1 id=eq.3h8v.s10.6915aca23c81 from=seed src=0 shape=273b260a vocab=80da835c
+-/
 lemma add_extMk {n : ℕ} (f g : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0) (hg : R.complex.d m n ≫ g = 0) :
     R.extMk f m hm hf + R.extMk g m hm hg =
@@ -160,6 +193,9 @@ lemma add_extMk {n : ℕ} (f g : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (by simpa [cochainComplex_d _ _ _ m n rfl rfl])]
   simp
 
+/--
+@isnad1 id=eq.3h8v.s10.e32dab9af900 from=seed src=0 shape=2dfd0db1 vocab=6227a8f9
+-/
 lemma sub_extMk {n : ℕ} (f g : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0) (hg : R.complex.d m n ≫ g = 0) :
     R.extMk f m hm hf - R.extMk g m hm hg =
@@ -170,6 +206,9 @@ lemma sub_extMk {n : ℕ} (f g : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (by simpa [cochainComplex_d _ _ _ m n rfl rfl])]
   simp
 
+/--
+@isnad1 id=eq.2h7v.s9.fa7647b237a8 from=seed src=0 shape=5dc0e508 vocab=197635d6
+-/
 lemma neg_extMk {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0) :
     -R.extMk f m hm hf =
@@ -179,11 +218,17 @@ lemma neg_extMk {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (by simpa [cochainComplex_d _ _ _ m n rfl rfl])]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s8.87a3c3a4c18d from=seed src=0 shape=3d2b4710 vocab=0ca7a431
+-/
 @[simp]
 lemma extMk_zero {n : ℕ} (m : ℕ) (hm : n + 1 = m) :
     R.extMk (0 : R.complex.X n ⟶ Y) m hm (by simp) = 0 := by
   simp [extMk]
 
+/--
+@isnad1 id=eq.2h7v.s13.bc5d91c90fea from=seed src=0 shape=fd0e5308 vocab=4f85419f
+-/
 lemma extMk_hom
     [HasDerivedCategory C] {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0) :
@@ -197,6 +242,9 @@ lemma extMk_hom
                 (zero_add _)) (add_zero _) :=
   extEquivCohomologyClass_symm_mk_hom _ _
 
+/--
+@isnad1 id=iff.3h8v.s9.2c74800f91a9 from=seed src=0 shape=bfd0f002 vocab=d4a59463
+-/
 lemma extMk_eq_zero_iff (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0)
     (p : ℕ) (hp : p + 1 = n) :
@@ -212,6 +260,9 @@ lemma extMk_eq_zero_iff (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
   rw [← cancel_epi (R.cochainComplexXIso (-n) n rfl).hom]
   simpa [Category.assoc] using hg
 
+/--
+@isnad1 id=ex.1h7v.s9.d5675495420c from=seed src=0 shape=4d817402 vocab=d4a59463
+-/
 lemma extMk_surjective (α : Ext X Y n) (m : ℕ) (hm : n + 1 = m) :
     ∃ (f : R.complex.X n ⟶ Y) (hf : R.complex.d m n ≫ f = 0),
       R.extMk f m hm hf = α := by
@@ -222,6 +273,9 @@ lemma extMk_surjective (α : Ext X Y n) (m : ℕ) (hm : n + 1 = m) :
   rw [← cancel_epi (R.cochainComplexXIso (-m) m rfl).hom]
   simpa [R.cochainComplex_d _ _ _ _ rfl rfl] using hf
 
+/--
+@isnad1 id=eq.2h9v.s9.414e3ead12fb from=seed src=0 shape=0953041b vocab=06d7b4b1
+-/
 lemma extMk_comp_mk₀ {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0) {Y' : C} (g : Y ⟶ Y') :
     (R.extMk f m hm hf).comp (Ext.mk₀ g) (add_zero _) =
@@ -243,6 +297,9 @@ lemma extMk_comp_mk₀ {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1
   dsimp
 
 variable {R} in
+/--
+@isnad1 id=eq.2h11v.s9.939e7070cea3 from=seed src=0 shape=3d86109c vocab=7f7970c9
+-/
 lemma mk₀_comp_extMk {n : ℕ} (f : R.complex.X n ⟶ Y) (m : ℕ) (hm : n + 1 = m)
     (hf : R.complex.d m n ≫ f = 0)
     {X' : C} {R' : ProjectiveResolution X'} {g : X' ⟶ X} (φ : Hom R' R g) :

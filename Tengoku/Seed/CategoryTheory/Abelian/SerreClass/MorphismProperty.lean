@@ -69,67 +69,115 @@ def isoModSerre [P.IsSerreClass] : MorphismProperty C :=
 
 variable [P.IsSerreClass]
 
+/--
+@isnad1 id=iff.0h5v.s5.96579a03235c from=seed src=0 shape=0e071d06 vocab=eef50f72
+-/
 lemma monoModSerre_iff {X Y : C} (f : X ⟶ Y) :
     P.monoModSerre f ↔ P (kernel f) := Iff.rfl
 
+/--
+@isnad1 id=le.0h2v.s6.0a1fe32e137c from=seed src=0 shape=75e484ad vocab=28edcfe9
+-/
 lemma monomorphisms_le_monoModSerre : monomorphisms C ≤ P.monoModSerre :=
   fun _ _ f (_ : Mono f) ↦ P.prop_of_isZero (isZero_kernel_of_mono f)
 
+/--
+@isnad1 id=monomods.0h5v.s5.49a8540f4dd0 from=seed src=0 shape=98ee2f00 vocab=bfc332cc
+-/
 lemma monoModSerre_of_mono {X Y : C} (f : X ⟶ Y) [Mono f] :
     P.monoModSerre f :=
   P.monomorphisms_le_monoModSerre f (monomorphisms.infer_property f)
 
+/--
+@isnad1 id=iff.0h5v.s5.6741795947d2 from=seed src=0 shape=0e071d06 vocab=468a0927
+-/
 lemma epiModSerre_iff {X Y : C} (f : X ⟶ Y) :
     P.epiModSerre f ↔ P (cokernel f) := Iff.rfl
 
+/--
+@isnad1 id=le.0h2v.s6.3cdcaea71fce from=seed src=0 shape=75e484ad vocab=bb9dac93
+-/
 lemma epimorphisms_le_epiModSerre : epimorphisms C ≤ P.epiModSerre :=
   fun _ _ f (_ : Epi f) ↦ P.prop_of_isZero (isZero_cokernel_of_epi f)
 
+/--
+@isnad1 id=epimodse.0h5v.s5.b0c3737b7743 from=seed src=0 shape=98ee2f00 vocab=1e3efd26
+-/
 lemma epiModSerre_of_epi {X Y : C} (f : X ⟶ Y) [Epi f] :
     P.epiModSerre f :=
   P.epimorphisms_le_epiModSerre f (epimorphisms.infer_property f)
 
+/--
+@isnad1 id=iff.0h4v.s6.eb615edebd96 from=seed src=0 shape=23f74aef vocab=ca161b7b
+-/
 @[simp]
 lemma epiModSerre_zero_iff (X Y : C) :
     P.epiModSerre (0 : X ⟶ Y) ↔ P Y :=
   P.prop_iff_of_iso cokernelZeroIsoTarget
 
+/--
+@isnad1 id=iff.0h4v.s6.a6cb84108ffd from=seed src=0 shape=87b92707 vocab=ff5ab322
+-/
 @[simp]
 lemma monoModSerre_zero_iff (X Y : C) :
     P.monoModSerre (0 : X ⟶ Y) ↔ P X :=
   P.prop_iff_of_iso kernelZeroIsoSource
 
+/--
+@isnad1 id=iff.0h5v.s6.7bd1617693d2 from=seed src=0 shape=7a1fa42f vocab=9a17bc1f
+-/
 lemma isoModSerre_iff {X Y : C} (f : X ⟶ Y) :
     P.isoModSerre f ↔ P.monoModSerre f ∧ P.epiModSerre f := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.3106e8dfa221 from=seed src=0 shape=6abd246b vocab=3018a7f1
+-/
 lemma isoModSerre_iff_of_mono {X Y : C} (f : X ⟶ Y) [Mono f] :
     P.isoModSerre f ↔ P.epiModSerre f := by
   have := P.monoModSerre_of_mono f
   rw [isoModSerre_iff]
   tauto
 
+/--
+@isnad1 id=iff.0h5v.s5.9d046e7fd15e from=seed src=0 shape=6abd246b vocab=c7ffe30c
+-/
 lemma isoModSerre_iff_of_epi {X Y : C} (f : X ⟶ Y) [Epi f] :
     P.isoModSerre f ↔ P.monoModSerre f := by
   have := P.epiModSerre_of_epi f
   rw [isoModSerre_iff]
   tauto
 
+/--
+@isnad1 id=isomodse.0h6v.s5.94548a41d42e from=seed src=0 shape=04fe16e1 vocab=3018a7f1
+-/
 lemma isoModSerre_of_mono {X Y : C} (f : X ⟶ Y) [Mono f] (hf : P.epiModSerre f) :
     P.isoModSerre f := by
   rwa [isoModSerre_iff_of_mono]
 
+/--
+@isnad1 id=isomodse.0h6v.s5.d07ef3f891cb from=seed src=0 shape=04fe16e1 vocab=c7ffe30c
+-/
 lemma isoModSerre_of_epi {X Y : C} (f : X ⟶ Y) [Epi f] (hf : P.monoModSerre f) :
     P.isoModSerre f := by
   rwa [isoModSerre_iff_of_epi]
 
+/--
+@isnad1 id=iff.0h4v.s6.2b8e75adb0be from=seed src=0 shape=8725c526 vocab=413300cf
+-/
 @[simp]
 lemma isoModSerre_zero_iff (X Y : C) :
     P.isoModSerre (0 : X ⟶ Y) ↔ P X ∧ P Y := by
   simp [isoModSerre_iff]
 
+/--
+@isnad1 id=le.0h2v.s6.6e65a1817d41 from=seed src=0 shape=75e484ad vocab=704c5ab6
+-/
 lemma isomorphisms_le_isoModSerre : isomorphisms C ≤ P.isoModSerre :=
   fun _ _ f (_ : IsIso f) ↦ ⟨P.monoModSerre_of_mono f, P.epiModSerre_of_epi f⟩
 
+/--
+@isnad1 id=isomodse.0h5v.s5.2d8bdf300dc7 from=seed src=0 shape=98ee2f00 vocab=8f967aed
+-/
 lemma isoModSerre_of_isIso {X Y : C} (f : X ⟶ Y) [IsIso f] : P.isoModSerre f :=
   P.isomorphisms_le_isoModSerre f (isomorphisms.infer_property f)
 
@@ -167,6 +215,9 @@ instance : P.isoModSerre.HasTwoOutOfThreeProperty where
     ⟨P.prop_X₂_of_exact ((kernelCokernelCompSequence_exact f g).exact 1) hfg.1 hf.2,
       P.prop_of_epi (cokernel.map (f ≫ g) g f (𝟙 _) (by simp)) hfg.2⟩
 
+/--
+@isnad1 id=le.1h4v.s6.6539528ce7e8 from=seed src=0 shape=167c24ed vocab=b6aeb62d
+-/
 lemma le_kernel_of_isoModSerre_isInvertedBy (F : C ⥤ D) [F.PreservesZeroMorphisms]
     (hF : P.isoModSerre.IsInvertedBy F) :
     P ≤ F.kernel := by
@@ -176,6 +227,9 @@ lemma le_kernel_of_isoModSerre_isInvertedBy (F : C ⥤ D) [F.PreservesZeroMorphi
     ((P.prop_iff_of_iso cokernelZeroIsoTarget).2 hX))
   exact (asIso (F.map f)).isZero_iff.1 (F.map_isZero (isZero_zero C))
 
+/--
+@isnad1 id=iff.0h4v.s6.fabee81ed8f6 from=seed src=0 shape=2278aa1a vocab=1544df3d
+-/
 lemma isoModSerre_isInvertedBy_iff (F : C ⥤ D)
     [PreservesFiniteLimits F] [PreservesFiniteColimits F] :
     P.isoModSerre.IsInvertedBy F ↔ P ≤ F.kernel := by

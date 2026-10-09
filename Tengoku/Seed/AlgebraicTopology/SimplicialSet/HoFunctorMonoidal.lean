@@ -44,44 +44,68 @@ def tensor {x x' : X _⦋0⦌₂} (e₁ : Edge x x') {y y' : Y _⦋0⦌₂}
   src_eq := Prod.ext e₁.src_eq e₂.src_eq
   tgt_eq := Prod.ext e₁.tgt_eq e₂.tgt_eq
 
+/--
+@isnad1 id=ex.0h7v.s9.b78e2446261f from=seed src=0 shape=89dc7b6f vocab=45862722
+-/
 lemma tensor_surjective {x x' : X _⦋0⦌₂} {y y' : Y _⦋0⦌₂}
     (e : Edge (X := X ⊗ Y) (x, y) (x', y')) :
     ∃ (e₁ : Edge x x') (e₂ : Edge y y'), e₁.tensor e₂ = e :=
   ⟨e.map (fst _ _), e.map (snd _ _), rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.35ccf300425b from=seed src=0 shape=b34e9175 vocab=330dc8c2
+-/
 @[simp]
 lemma id_tensor_id (x : X _⦋0⦌₂) (y : Y _⦋0⦌₂) :
     (id x).tensor (id y) = id (X := X ⊗ Y) (x, y) := rfl
 
+/--
+@isnad1 id=eq.0h12v.s12.bd9709b43014 from=seed src=0 shape=5ea2d175 vocab=cc15c9b3
+-/
 @[simp]
 lemma map_tensorHom {x x' : X _⦋0⦌₂} (e₁ : Edge x x') {y y' : Y _⦋0⦌₂}
     (e₂ : Edge y y') (f : X ⟶ X') (g : Y ⟶ Y') :
     (e₁.tensor e₂).map (f ⊗ₘ g) =
       (e₁.map f).tensor (e₂.map g) := rfl
 
+/--
+@isnad1 id=eq.0h10v.s12.2823d07340ad from=seed src=0 shape=175d5980 vocab=b3777877
+-/
 @[simp]
 lemma map_whiskerRight {x x' : X _⦋0⦌₂} (e₁ : Edge x x') {y y' : Y _⦋0⦌₂}
     (e₂ : Edge y y') (f : X ⟶ X') :
     (e₁.tensor e₂).map (f ▷ _) =
       (e₁.map f).tensor e₂ := rfl
 
+/--
+@isnad1 id=eq.0h10v.s12.7b2a109aabe7 from=seed src=0 shape=6c47dbd7 vocab=7516a46a
+-/
 @[simp]
 lemma map_whiskerLeft {x x' : X _⦋0⦌₂} (e₁ : Edge x x') {y y' : Y _⦋0⦌₂}
     (e₂ : Edge y y') (g : Y ⟶ Y') :
     (e₁.tensor e₂).map (_ ◁ g) =
       e₁.tensor (e₂.map g) := rfl
 
+/--
+@isnad1 id=eq.0h12v.s13.e77d0ed1002e from=seed src=0 shape=93434b1b vocab=6664317c
+-/
 @[simp]
 lemma map_associator_hom {x x' : X _⦋0⦌₂} (e₁ : Edge x x') {y y' : Y _⦋0⦌₂} (e₂ : Edge y y')
     {z z' : Z _⦋0⦌₂} (e₃ : Edge z z') :
     ((e₁.tensor e₂).tensor e₃).map (α_ _ _ _).hom = e₁.tensor (e₂.tensor e₃) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.5015050e3389 from=seed src=0 shape=80df2d72 vocab=f017e805
+-/
 @[simp]
 lemma map_fst {x x' : X _⦋0⦌₂} (e₁ : Edge x x') {y y' : Y _⦋0⦌₂}
     (e₂ : Edge y y') :
     (e₁.tensor e₂).map (fst _ _) = e₁ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.849e84bff203 from=seed src=0 shape=28ec56f7 vocab=cd5638b4
+-/
 @[simp]
 lemma map_snd {x x' : X _⦋0⦌₂} (e₁ : Edge x x') {y y' : Y _⦋0⦌₂}
     (e₂ : Edge y y') :
@@ -116,6 +140,9 @@ def isoTerminal (X : Truncated.{u} 2) [Unique (X _⦋0⦌₂)] [Subsingleton (X 
 
 namespace BinaryProduct
 
+/--
+@isnad1 id=eq.0h8v.s12.157bcca79440 from=seed src=0 shape=ec7648d5 vocab=8a2cf02c
+-/
 lemma square {X Y : Truncated.{u} 2}
     {x₀ x₁ : X _⦋0⦌₂} (ex : Edge x₀ x₁) {y₀ y₁ : Y _⦋0⦌₂} (ey : Edge y₀ y₁) :
     homMk (ex.tensor (.id y₀)) ≫ homMk (Edge.tensor (.id x₁) ey) =
@@ -131,10 +158,16 @@ when `X` and `Y` are `2`-truncated simplicial sets. -/
 def functor : (X ⊗ Y).HomotopyCategory ⥤ X.HomotopyCategory × Y.HomotopyCategory :=
   (mapHomotopyCategory (fst _ _)).prod' (mapHomotopyCategory (snd _ _))
 
+/--
+@isnad1 id=eq.0h4v.s9.5e5dbd2e76a8 from=seed src=0 shape=f13197b3 vocab=d8667e93
+-/
 @[simp]
 lemma functor_obj (x : X _⦋0⦌₂) (y : Y _⦋0⦌₂) :
     (functor X Y).obj (mk (x, y)) = (mk x, mk y) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.9304268db6db from=seed src=0 shape=374cac82 vocab=aa3032e4
+-/
 @[simp]
 lemma functor_map {x₀ x₁ : X _⦋0⦌₂} (e : Edge x₀ x₁)
     {y₀ y₁ : Y _⦋0⦌₂} (e' : Edge y₀ y₁) :
@@ -160,17 +193,29 @@ when `X` and `Y` are `2`-truncated simplicial sets. -/
 def inverse : X.HomotopyCategory × Y.HomotopyCategory ⥤ (X ⊗ Y).HomotopyCategory :=
   Functor.uncurry.obj (curriedInverse X Y)
 
+/--
+@isnad1 id=eq.0h4v.s9.68ae0199f0f6 from=seed src=0 shape=a5b96959 vocab=ee781389
+-/
 @[simp]
 lemma inverse_obj (x : X _⦋0⦌₂) (y : Y _⦋0⦌₂) : (inverse X Y).obj (mk x, mk y) = mk (x, y) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.a83e9ea0fc1d from=seed src=0 shape=57b6f356 vocab=730d34d7
+-/
 @[simp]
 lemma inverse_map_mkHom_homMk_id {x₀ x₁ : X _⦋0⦌₂} (e : Edge x₀ x₁) (y : Y _⦋0⦌₂) :
     (inverse X Y).map (Prod.mkHom (homMk e) (𝟙 (mk y))) = homMk (e.tensor (.id y)) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.7206f7972c9f from=seed src=0 shape=5617f2c2 vocab=730d34d7
+-/
 @[simp]
 lemma inverse_map_mkHom_id_homMk (x : X _⦋0⦌₂) {y₀ y₁ : Y _⦋0⦌₂} (e : Edge y₀ y₁) :
     (inverse X Y).map (Prod.mkHom (𝟙 (mk x)) (homMk e)) = homMk ((Edge.id x).tensor e) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.3dfc0fb7159c from=seed src=0 shape=f4a833d4 vocab=255d5df1
+-/
 lemma inverse_map_mkHom_homMk_homMk {x₀ x₁ : X _⦋0⦌₂} (e : Edge x₀ x₁)
     {y₀ y₁ : Y _⦋0⦌₂} (e' : Edge y₀ y₁) :
     (inverse X Y).map (Prod.mkHom (homMk e) (homMk e')) = homMk (e.tensor e') :=
@@ -187,10 +232,16 @@ def functorCompInverseIso : functor X Y ⋙ inverse X Y ≅ 𝟭 _ :=
     dsimp
     rw [Category.comp_id, Category.id_comp, inverse_map_mkHom_homMk_homMk])
 
+/--
+@isnad1 id=eq.0h4v.s12.d6be4fcee4c9 from=seed src=0 shape=8feb5835 vocab=568a1cd3
+-/
 @[simp]
 lemma functorCompInverseIso_hom_app (x : X _⦋0⦌₂) (y : Y _⦋0⦌₂) :
     (functorCompInverseIso X Y).hom.app (mk (x, y)) = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.c4e2323bb737 from=seed src=0 shape=a77fb2d7 vocab=308e1ff9
+-/
 @[simp]
 lemma functorCompInverseIso_inv_app (x : X _⦋0⦌₂) (y : Y _⦋0⦌₂) :
     (functorCompInverseIso X Y).inv.app (mk (x, y)) = 𝟙 _ := rfl
@@ -205,19 +256,31 @@ def inverseCompFunctorIso : inverse X Y ⋙ functor X Y ≅ 𝟭 _ :=
         obtain ⟨y, rfl⟩ := y.mk_surjective
         cat_disch))
 
+/--
+@isnad1 id=eq.0h4v.s10.51b8d8209004 from=seed src=0 shape=84339f7d vocab=339ccc16
+-/
 @[simp]
 lemma inverseCompFunctorIso_hom_app (x : X _⦋0⦌₂) (y : Y _⦋0⦌₂) :
     (inverseCompFunctorIso X Y).hom.app (mk x, mk y) = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.221349e258f4 from=seed src=0 shape=b216e149 vocab=b28bfba4
+-/
 @[simp]
 lemma inverseCompFunctorIso_inv_app (x : X _⦋0⦌₂) (y : Y _⦋0⦌₂) :
     (inverseCompFunctorIso X Y).inv.app (mk x, mk y) = 𝟙 _ := rfl
 
 variable (X Y)
 
+/--
+@isnad1 id=eq.0h2v.s9.7c0529e16be3 from=seed src=0 shape=19d0d115 vocab=416f8aea
+-/
 lemma functor_comp_inverse : functor X Y ⋙ inverse X Y = 𝟭 _ :=
   Functor.ext_of_iso (functorCompInverseIso X Y) (fun _ ↦ rfl)
 
+/--
+@isnad1 id=eq.0h2v.s8.706bdae47f95 from=seed src=0 shape=b21a3d09 vocab=416f8aea
+-/
 lemma inverse_comp_functor : inverse X Y ⋙ functor X Y = 𝟭 _ :=
   Functor.ext_of_iso (inverseCompFunctorIso X Y) (fun _ ↦ rfl)
 
@@ -269,12 +332,18 @@ def idProdMapHomotopyCategoryCompInverseIso (g : Y ⟶ Y') :
       rfl))
 
 variable {X} in
+/--
+@isnad1 id=eq.0h4v.s10.c84310f45215 from=seed src=0 shape=0fdd4bd6 vocab=b7c6fbe0
+-/
 lemma mapHomotopyCategory_prod_id_comp_inverse (f : X ⟶ X') :
     (mapHomotopyCategory f).prod (𝟭 _) ⋙ inverse X' Y =
       inverse X Y ⋙ mapHomotopyCategory (f ▷ Y) :=
   Functor.ext_of_iso (mapHomotopyCategoryProdIdCompInverseIso _ _) (fun _ ↦ rfl)
 
 variable {Y} in
+/--
+@isnad1 id=eq.0h4v.s10.40ef30db8194 from=seed src=0 shape=de09b174 vocab=7b0d692a
+-/
 lemma id_prod_mapHomotopyCategory_comp_inverse (g : Y ⟶ Y') :
     Functor.prod (𝟭 _) (mapHomotopyCategory g) ⋙ inverse X Y' =
       inverse X Y ⋙ mapHomotopyCategory (X ◁ g) :=
@@ -309,20 +378,32 @@ def inverseCompMapHomotopyCategorySndIso :
       simp only [Category.comp_id]
       exact homMk_id y))
 
+/--
+@isnad1 id=eq.0h2v.s8.ad365d14e759 from=seed src=0 shape=dd194cf2 vocab=07bcc3d9
+-/
 lemma inverse_comp_mapHomotopyCategory_fst :
     inverse X Y ⋙ mapHomotopyCategory (fst _ _) = CategoryTheory.Prod.fst _ _ :=
   Functor.ext_of_iso (inverseCompMapHomotopyCategoryFstIso _ _) (fun _ ↦ rfl)
 
+/--
+@isnad1 id=eq.0h2v.s8.de11b24c6350 from=seed src=0 shape=086a5292 vocab=c5bb7da3
+-/
 lemma inverse_comp_mapHomotopyCategory_snd :
     inverse X Y ⋙ mapHomotopyCategory (snd _ _) = CategoryTheory.Prod.snd _ _ :=
   Functor.ext_of_iso (inverseCompMapHomotopyCategorySndIso _ _) (fun _ ↦ rfl)
 
+/--
+@isnad1 id=eq.0h2v.s9.e84f94e2ae61 from=seed src=0 shape=adf23d96 vocab=938fc2cd
+-/
 lemma left_unitality [Unique (X _⦋0⦌₂)] [Subsingleton (X _⦋1⦌₂)] :
     CategoryTheory.Prod.snd _ _ = Functor.prod (isoTerminal X).inv.toFunctor (𝟭 _) ⋙
       inverse X Y ⋙ mapHomotopyCategory (snd _ _) := by
   rw [inverse_comp_mapHomotopyCategory_snd]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.5ff146db9019 from=seed src=0 shape=ec254ec6 vocab=5907586c
+-/
 lemma right_unitality [Unique (Y _⦋0⦌₂)] [Subsingleton (Y _⦋1⦌₂)] :
     CategoryTheory.Prod.fst _ _ = Functor.prod (𝟭 _) (isoTerminal Y).inv.toFunctor ⋙
       inverse X Y ⋙ mapHomotopyCategory (fst _ _) := by
@@ -362,6 +443,9 @@ def associativity'Iso :
 
 set_option backward.isDefEq.respectTransparency.types false in
 variable {X Y Z} in
+/--
+@isnad1 id=eq.0h4v.s14.4e773d7bd9fd from=seed src=0 shape=0f2a1a52 vocab=55f71b1b
+-/
 lemma associativity'Iso_hom_app (xyz) :
     (associativity'Iso X Y Z).hom.app xyz = 𝟙 _ := by
   change 𝟙 _ ≫ _ ≫ 𝟙 _ = _
@@ -382,6 +466,9 @@ def associativityIso :
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 variable {X Y Z} in
+/--
+@isnad1 id=eq.0h4v.s14.f1d481812c22 from=seed src=0 shape=c8faf3a1 vocab=2e75c7ac
+-/
 lemma associativityIso_hom_app (xyz) :
     (associativityIso X Y Z).hom.app xyz = 𝟙 _ := by
   dsimp [associativityIso]
@@ -391,6 +478,9 @@ lemma associativityIso_hom_app (xyz) :
     Category.comp_id, ← prod_id, CategoryTheory.Functor.map_id,
     CategoryTheory.Functor.map_id]
 
+/--
+@isnad1 id=eq.0h3v.s12.9a9c74c70ce2 from=seed src=0 shape=3abec57f vocab=8e69b078
+-/
 lemma associativity :
     (inverse X Y).prod (𝟭 _) ⋙ inverse (X ⊗ Y) Z ⋙ mapHomotopyCategory (α_ _ _ _).hom =
     (prod.associativity _ _ _).functor ⋙ Functor.prod (𝟭 _) (inverse Y Z) ⋙
@@ -425,6 +515,9 @@ def hoFunctor.unitHomEquiv (X : SSet.{u}) :
   (SSet.unitHomEquiv X).trans <|
     HomotopyCategory.objEquiv.symm.trans Cat.fromChosenTerminalEquiv.symm
 
+/--
+@isnad1 id=eq.0h2v.s9.e5224c733916 from=seed src=0 shape=c16eb0ba vocab=12a48025
+-/
 theorem hoFunctor.unitHomEquiv_eq (X : SSet.{u}) (x : 𝟙_ SSet ⟶ X) :
     hoFunctor.unitHomEquiv X x =
       (Functor.LaxMonoidal.ε hoFunctor.{u}).toFunctor ⋙ (hoFunctor.map x).toFunctor :=

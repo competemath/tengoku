@@ -59,15 +59,24 @@ lemma _root_.HomotopyEquiv.isKInjective {L₁ L₂ : CochainComplex C ℤ}
       ((e.homotopyInvHomId.symm.compLeft f).trans (.ofEq (by simp))))
         (((IsKInjective.homotopyZero (f ≫ e.inv) hK).compRight e.hom).trans (.ofEq (by simp)))⟩
 
+/--
+@isnad1 id=iskinjec.0h4v.s7.ec6a935cda66 from=seed src=0 shape=e030ae96 vocab=23d26258
+-/
 lemma isKInjective_of_iso {L₁ L₂ : CochainComplex C ℤ} (e : L₁ ≅ L₂)
     [L₁.IsKInjective] :
     L₂.IsKInjective :=
   (HomotopyEquiv.ofIso e).isKInjective
 
+/--
+@isnad1 id=iff.0h4v.s7.97467c821ff7 from=seed src=0 shape=c4e3914e vocab=23d26258
+-/
 lemma isKInjective_iff_of_iso {L₁ L₂ : CochainComplex C ℤ} (e : L₁ ≅ L₂) :
     L₁.IsKInjective ↔ L₂.IsKInjective :=
   ⟨fun _ ↦ isKInjective_of_iso e, fun _ ↦ isKInjective_of_iso e.symm⟩
 
+/--
+@isnad1 id=iff.0h2v.s7.ef9be628cbab from=seed src=0 shape=fc552400 vocab=5a4a6014
+-/
 lemma isKInjective_iff_rightOrthogonal (L : CochainComplex C ℤ) :
     L.IsKInjective ↔
       (HomotopyCategory.subcategoryAcyclic C).rightOrthogonal
@@ -81,6 +90,9 @@ lemma isKInjective_iff_rightOrthogonal (L : CochainComplex C ℤ) :
   · rw [← HomotopyCategory.quotient_obj_mem_subcategoryAcyclic_iff_acyclic] at hK
     rw [hL ((HomotopyCategory.quotient _ _).map f) hK, Functor.map_zero]
 
+/--
+@isnad1 id=rightort.0h2v.s7.aeed0c6c05a7 from=seed src=0 shape=e3cffc10 vocab=5a4a6014
+-/
 lemma IsKInjective.rightOrthogonal (L : CochainComplex C ℤ) [L.IsKInjective] :
     (HomotopyCategory.subcategoryAcyclic C).rightOrthogonal
         ((HomotopyCategory.quotient _ _).obj L) := by
@@ -93,11 +105,17 @@ instance (L : CochainComplex C ℤ) [hL : L.IsKInjective] (n : ℤ) :
     (((HomotopyCategory.quotient C (.up ℤ)).commShiftIso n).symm.app L)
     ((HomotopyCategory.subcategoryAcyclic C).rightOrthogonal.le_shift n _ hL)
 
+/--
+@isnad1 id=iff.0h3v.s7.95ca67b1c28f from=seed src=0 shape=42586b63 vocab=b8bdb4cf
+-/
 lemma isKInjective_shift_iff (L : CochainComplex C ℤ) (n : ℤ) :
     (L⟦n⟧).IsKInjective ↔ L.IsKInjective :=
   ⟨fun _ ↦ isKInjective_of_iso (show L⟦n⟧⟦-n⟧ ≅ L from (shiftEquiv _ n).unitIso.symm.app L),
     fun _ ↦ inferInstance⟩
 
+/--
+@isnad1 id=ex.3h7v.s9.cf4af1c4f227 from=seed src=0 shape=c712f34b vocab=e3f29020
+-/
 lemma isKInjective_of_injective_aux {K L : CochainComplex C ℤ}
     (f : K ⟶ L) (α : Cochain K L (-1)) (n m : ℤ) (hnm : n + 1 = m)
     (hK : K.ExactAt m) [Injective (L.X m)]
@@ -131,6 +149,9 @@ lemma isKInjective_of_injective_aux {K L : CochainComplex C ℤ}
     simp [hβ, u]
 
 open Cochain.InductionUp in
+/--
+@isnad1 id=iskinjec.0h3v.s6.8efef5a3c50a from=seed src=0 shape=9785c443 vocab=89ae5dfd
+-/
 lemma isKInjective_of_injective (L : CochainComplex C ℤ) (d : ℤ)
     [L.IsStrictlyGE d] [∀ (n : ℤ), Injective (L.X n)] :
     L.IsKInjective where

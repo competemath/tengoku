@@ -44,6 +44,9 @@ variable [Semiring R] [PartialOrder R]
 variable [NormedField 𝕜₁] [NormedField 𝕜₂] [Module 𝕜₁ E] [Module 𝕜₂ F] {σ : 𝕜₁ →+* 𝕜₂}
 variable [Module R F] [ContinuousConstSMul R F] [LocallyConvexSpace R F] [SMulCommClass 𝕜₂ R F]
 
+/--
+@isnad1 id=locallyc.2h7v.s8.e01b5b17cae6 from=seed src=0 shape=e3167303 vocab=ffdeb8ec
+-/
 theorem locallyConvexSpace (𝔖 : Set (Set E)) (h𝔖₁ : 𝔖.Nonempty)
     (h𝔖₂ : DirectedOn (· ⊆ ·) 𝔖) :
     LocallyConvexSpace R (UniformConvergenceCLM σ F 𝔖) := by
@@ -65,6 +68,9 @@ variable [Semiring R] [PartialOrder R]
 variable [NormedField 𝕜₁] [NormedField 𝕜₂] [Module 𝕜₁ E] [Module 𝕜₂ F] {σ : 𝕜₁ →+* 𝕜₂}
 variable [Module R F] [ContinuousConstSMul R F] [LocallyConvexSpace R F] [SMulCommClass 𝕜₂ R F]
 
+/--
+@isnad1 id=locallyc.0h6v.s8.213b945ed938 from=seed src=0 shape=1a2c4ffe vocab=50a9147f
+-/
 instance instLocallyConvexSpace : LocallyConvexSpace R (E →SL[σ] F) :=
   UniformConvergenceCLM.locallyConvexSpace R _ ⟨∅, Bornology.isVonNBounded_empty 𝕜₁ E⟩
     (directedOn_of_sup_mem fun _ _ => Bornology.IsVonNBounded.union)

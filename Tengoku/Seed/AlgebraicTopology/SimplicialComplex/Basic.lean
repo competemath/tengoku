@@ -212,15 +212,24 @@ instance : IsConcreteLE (AbstractSimplicialComplex ι) (Finset ι) where
 instance : PartialOrder (AbstractSimplicialComplex ι) :=
   PartialOrder.lift (fun K => K.faces) (fun _ _ => AbstractSimplicialComplex.ext)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.ac58eb638630 from=seed src=0 shape=fc766b23 vocab=9627c1d9
+-/
 theorem toPreAbstractSimplicialComplex_injective :
     Function.Injective (toPreAbstractSimplicialComplex (ι := ι)) :=
   fun _ _ h => AbstractSimplicialComplex.ext (congrArg PreAbstractSimplicialComplex.faces h)
 
+/--
+@isnad1 id=iff.0h3v.s4.134e8473591b from=seed src=0 shape=4028ca5a vocab=102003b4
+-/
 @[simp]
 theorem toPreAbstractSimplicialComplex_le_iff {K L : AbstractSimplicialComplex ι} :
     K.toPreAbstractSimplicialComplex ≤ L.toPreAbstractSimplicialComplex ↔ K ≤ L :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s4.2f303a429d71 from=seed src=0 shape=4028ca5a vocab=01e71ac1
+-/
 @[simp]
 theorem toPreAbstractSimplicialComplex_lt_iff {K L : AbstractSimplicialComplex ι} :
     K.toPreAbstractSimplicialComplex < L.toPreAbstractSimplicialComplex ↔ K < L :=
@@ -254,6 +263,9 @@ instance : Top (AbstractSimplicialComplex ι) where
     { (⊤ : PreAbstractSimplicialComplex ι) with
       singleton_mem _ := Finset.singleton_nonempty _ }
 
+/--
+@isnad1 id=eq.0h1v.s4.10aaf1434775 from=seed src=0 shape=1014f1d5 vocab=8070601e
+-/
 lemma top_toPreAbstractSimplicialComplex :
     (⊤ : AbstractSimplicialComplex ι).toPreAbstractSimplicialComplex = ⊤ :=
   rfl

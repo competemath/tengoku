@@ -41,11 +41,17 @@ variable [NonUnitalCStarAlgebra A₁] [NonUnitalCStarAlgebra A₂] [PartialOrder
   [CStarAlgebra B₁] [CStarAlgebra B₂] [PartialOrder B₁] [PartialOrder B₂]
   [StarOrderedRing B₁]
 
+/--
+@isnad1 id=le.1h4v.s8.cdb41d860c85 from=seed src=0 shape=3886b565 vocab=9d85b73d
+-/
 lemma apply_le_of_isSelfAdjoint (f : B₁ →ₚ[ℂ] B₂) (x : B₁) (hx : IsSelfAdjoint x) :
     f x ≤ f (algebraMap ℝ B₁ ‖x‖) := by
   gcongr
   exact IsSelfAdjoint.le_algebraMap_norm_self _
 
+/--
+@isnad1 id=le.1h4v.s8.30b410e9eb82 from=seed src=0 shape=642bd541 vocab=38435f59
+-/
 lemma norm_apply_le_of_nonneg [StarOrderedRing B₂] (f : B₁ →ₚ[ℂ] B₂) (x : B₁) (hx : 0 ≤ x) :
     ‖f x‖ ≤ ‖f 1‖ * ‖x‖ := by
   have h : ‖‖x‖‖ = ‖x‖ := by simp
@@ -60,6 +66,7 @@ lemma norm_apply_le_of_nonneg [StarOrderedRing B₂] (f : B₁ →ₚ[ℂ] B₂)
 open Complex Filter in
 /--
 If `f` is a positive map, then it is bounded (and therefore continuous).
+@isnad1 id=ex.0h3v.s8.87dd33b930af from=seed src=0 shape=98969afc vocab=6ee17a99
 -/
 lemma exists_norm_apply_le (f : A₁ →ₚ[ℂ] A₂) : ∃ C : ℝ≥0, ∀ a, ‖f a‖ ≤ C * ‖a‖ := by
   /- It suffices to only consider for positive `a`, by decomposing `a` into positive and negative

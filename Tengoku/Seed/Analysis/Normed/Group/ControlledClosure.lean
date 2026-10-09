@@ -31,6 +31,7 @@ variable {H : Type*} [NormedAddCommGroup H]
 element `x` of `K` has a preimage under `f` whose norm is at most `C*‖x‖` then the same holds for
 elements of the (topological) closure of `K` with constant `C+ε` instead of `C`, for any
 positive `ε`.
+@isnad1 id=surjecti.3h6v.s6.f14a8581b7eb from=seed src=0 shape=c4d6db94 vocab=c1ed22dd
 -/
 theorem controlled_closure_of_complete {f : NormedAddGroupHom G H} {K : AddSubgroup H} {C ε : ℝ}
     (hC : 0 < C) (hε : 0 < ε) (hyp : f.SurjectiveOnWith K C) :
@@ -114,6 +115,7 @@ an isometric immersion `j : NormedAddGroupHom K H` has a preimage under `f` whos
 `C+ε` instead of `C`, for any positive `ε`.
 This is useful in particular if `j` is the inclusion of a normed group into its completion
 (in this case the closure is the full target group).
+@isnad1 id=surjecti.4h7v.s7.9ccc78a65407 from=seed src=0 shape=3a1ef1c4 vocab=ab33d15d
 -/
 theorem controlled_closure_range_of_complete {f : NormedAddGroupHom G H} {K : Type*}
     [SeminormedAddCommGroup K] {j : NormedAddGroupHom K H} (hj : ∀ x, ‖j x‖ = ‖x‖) {C ε : ℝ}

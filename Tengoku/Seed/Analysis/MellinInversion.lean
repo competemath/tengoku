@@ -47,6 +47,9 @@ private theorem rexp_cexp_aux (x : ℝ) (s : ℂ) (f : E) :
     Complex.log_exp (by simp [pi_pos]) (by simpa using pi_nonneg)]
   ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s7.8cd356c855e7 from=seed src=0 shape=d4e2cd7e vocab=dfa30861
+-/
 theorem mellin_eq_fourier (f : ℝ → E) {s : ℂ} :
     mellin f s = 𝓕 (fun (u : ℝ) ↦ (Real.exp (-s.re * u) • f (Real.exp (-u)))) (s.im / (2 * π)) :=
   calc
@@ -70,6 +73,9 @@ theorem mellin_eq_fourier (f : ℝ → E) {s : ℂ} :
     _ = 𝓕 (fun (u : ℝ) ↦ (Real.exp (-s.re * u) • f (Real.exp (-u)))) (s.im / (2 * π)) := by
       simp [fourier_eq', mul_comm (_ / _)]
 
+/--
+@isnad1 id=eq.1h4v.s7.949744fcdd5d from=seed src=0 shape=a53f85a6 vocab=8f4c1fa0
+-/
 theorem mellinInv_eq_fourierInv (σ : ℝ) (f : ℂ → E) {x : ℝ} (hx : 0 < x) :
     mellinInv σ f x =
     (x : ℂ) ^ (-σ : ℂ) • 𝓕⁻ (fun (y : ℝ) ↦ f (σ + 2 * π * y * I)) (-Real.log x) := calc
@@ -89,7 +95,9 @@ theorem mellinInv_eq_fourierInv (σ : ℝ) (f : ℂ → E) {x : ℝ} (hx : 0 < x
 
 variable [CompleteSpace E]
 
-/-- The inverse Mellin transform of the Mellin transform applied to `x > 0` is x. -/
+/-- The inverse Mellin transform of the Mellin transform applied to `x > 0` is x.
+@isnad1 id=eq.4h4v.s6.2cf4e6e03c0e from=seed src=0 shape=424d70f4 vocab=75f84aef
+-/
 theorem mellinInv_mellin_eq (σ : ℝ) (f : ℝ → E) {x : ℝ} (hx : 0 < x) (hf : MellinConvergent f σ)
     (hFf : VerticalIntegrable (mellin f) σ) (hfx : ContinuousAt f x) :
     mellinInv σ (mellin f) x = f x := by

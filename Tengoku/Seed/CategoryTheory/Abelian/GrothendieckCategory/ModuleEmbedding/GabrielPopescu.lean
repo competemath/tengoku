@@ -68,6 +68,9 @@ noncomputable def d {G A : C} {M : ModuleCat (End G)ᵐᵒᵖ}
     (g : M ⟶ ModuleCat.of (End G)ᵐᵒᵖ (G ⟶ A)) : ∐ (fun (_ : M) => G) ⟶ A :=
   Sigma.desc fun (m : M) => g m
 
+/--
+@isnad1 id=eq.0h6v.s10.ae1b7660e78e from=seed src=0 shape=1deb2943 vocab=c43f046f
+-/
 @[reassoc]
 theorem ι_d {G A : C} {M : ModuleCat (End G)ᵐᵒᵖ} (g : M ⟶ ModuleCat.of (End G)ᵐᵒᵖ (G ⟶ A)) (m : M) :
     Sigma.ι _ m ≫ d g = g.hom m := by
@@ -76,7 +79,9 @@ theorem ι_d {G A : C} {M : ModuleCat (End G)ᵐᵒᵖ} (g : M ⟶ ModuleCat.of 
 set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.defeqAttrib.useBackward true in
 attribute [local instance] IsFiltered.isConnected in
-/-- This is the "Lemma" in [mitchell1981]. -/
+/-- This is the "Lemma" in [mitchell1981].
+@isnad1 id=eq.2h7v.s9.ec2c000afc42 from=seed src=0 shape=639389e9 vocab=a449a527
+-/
 theorem kernel_ι_d_comp_d {G : C} (hG : IsSeparator G) {A B : C} {M : ModuleCat (End G)ᵐᵒᵖ}
     (g : M ⟶ ModuleCat.of (End G)ᵐᵒᵖ (G ⟶ A)) (hg : Mono g)
     (f : M ⟶ ModuleCat.of (End G)ᵐᵒᵖ (G ⟶ B)) :
@@ -97,6 +102,9 @@ theorem kernel_ι_d_comp_d {G : C} (hG : IsSeparator G) {A B : C} {M : ModuleCat
   simp only [← ι_d g, End.smul_left, MulOpposite.unop_op, Category.assoc, r]
   simp [← Preadditive.comp_sum, ← Preadditive.sum_comp', pullback.condition_assoc]
 
+/--
+@isnad1 id=ex.2h7v.s9.d005da28810f from=seed src=0 shape=883cf8be vocab=5e708ab6
+-/
 theorem exists_d_comp_eq_d {G : C} (hG : IsSeparator G) {A} (B : C) [Injective B]
     {M : ModuleCat (End G)ᵐᵒᵖ} (g : M ⟶ ModuleCat.of (End G)ᵐᵒᵖ (G ⟶ A)) (hg : Mono g)
     (f : M ⟶ ModuleCat.of (End G)ᵐᵒᵖ (G ⟶ B)) : ∃ (l : A ⟶ B), d g ≫ l = d f := by
@@ -114,7 +122,9 @@ open GabrielPopescuAux
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Faithfulness follows because `G` is a separator, see
-`isSeparator_iff_faithful_preadditiveCoyonedaObj`. -/
+`isSeparator_iff_faithful_preadditiveCoyonedaObj`.
+@isnad1 id=full.1h2v.s6.856b18272561 from=seed src=0 shape=202f08f1 vocab=1d543a18
+-/
 theorem GabrielPopescu.full (G : C) (hG : IsSeparator G) : (preadditiveCoyonedaObj G).Full where
   map_surjective {A B} f := by
     have := (isSeparator_iff_epi G).1 hG A
@@ -126,6 +136,9 @@ theorem GabrielPopescu.full (G : C) (hG : IsSeparator G) : (preadditiveCoyonedaO
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=preserve.1h2v.s6.b1701edc08da from=seed src=0 shape=202f08f1 vocab=c7996952
+-/
 theorem GabrielPopescu.preservesInjectiveObjects (G : C) (hG : IsSeparator G) :
     (preadditiveCoyonedaObj G).PreservesInjectiveObjects where
   injective_obj {B} hB := by
@@ -143,7 +156,9 @@ theorem GabrielPopescu.preservesInjectiveObjects (G : C) (hG : IsSeparator G) :
       cat_disch
 
 /-- `tensorObj G` is left exact: it is additive and preserves monomorphisms and cokernels,
-so it preserves homology and therefore finite limits. -/
+so it preserves homology and therefore finite limits.
+@isnad1 id=preserve.1h2v.s6.64e6dd393b00 from=seed src=0 shape=9deb8770 vocab=3fe6f8c1
+-/
 theorem GabrielPopescu.preservesFiniteLimits (G : C) (hG : IsSeparator G) :
     PreservesFiniteLimits (tensorObj G) := by
   have := preservesInjectiveObjects G hG

@@ -54,16 +54,25 @@ def homEquiv {n m : SemiSimplexCategory} :
     (n ⟶ m) ≃ (Fin (n.len + 1) ↪o Fin (m.len + 1)) :=
   .refl _
 
+/--
+@isnad1 id=eq.0h1v.s9.ed8b3b09e5ac from=seed src=0 shape=226f6d01 vocab=c2bc7d11
+-/
 @[simp]
 lemma homEquiv_id (a : SemiSimplexCategory) :
     homEquiv (𝟙 a) = .refl _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.3a1fb0265886 from=seed src=0 shape=ff2fdd3c vocab=5a68beb1
+-/
 @[simp]
 lemma homEquiv_comp {a b c : SemiSimplexCategory} (f : a ⟶ b) (g : b ⟶ c) :
     homEquiv (f ≫ g) = (homEquiv f).trans (homEquiv g) := rfl
 
 attribute [irreducible] Hom
 
+/--
+@isnad1 id=eq.1h4v.s9.aed6e818ba50 from=seed src=0 shape=4fa7ef33 vocab=851989b2
+-/
 @[ext]
 theorem hom_ext {a b : SemiSimplexCategory} {f g : a ⟶ b}
     (h : homEquiv f = homEquiv g) : f = g :=
@@ -74,6 +83,9 @@ def toSimplexCategory : SemiSimplexCategory ⥤ SimplexCategory where
   obj n := ⦋n.len⦌
   map f := SimplexCategory.Hom.mk (homEquiv f).toOrderHom
 
+/--
+@isnad1 id=eq.0h1v.s3.385c9c1a7a07 from=seed src=0 shape=19bb8685 vocab=0925e752
+-/
 @[simp]
 lemma toSimplexCategory_obj (n : ℕ) :
     toSimplexCategory.obj ⦋n⦌ₛ = ⦋n⦌ := rfl
@@ -100,6 +112,9 @@ def homOfMono {n m : SemiSimplexCategory}
     ((SimplexCategory.Hom.toOrderHom f).monotone.strictMono_of_injective
       (by rwa [← SimplexCategory.mono_iff_injective])))
 
+/--
+@isnad1 id=eq.0h3v.s6.9658be1c6e10 from=seed src=0 shape=191bf337 vocab=bbab0ae1
+-/
 @[simp]
 lemma toSimplexCategory_map_homOfMono {n m : SemiSimplexCategory}
     (f : toSimplexCategory.obj n ⟶ toSimplexCategory.obj m) [Mono f] :

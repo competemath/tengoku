@@ -77,6 +77,9 @@ scoped[MultiplierAlgebra] notation "𝓜(" 𝕜 ", " A ")" => DoubleCentralizer 
 
 open MultiplierAlgebra
 
+/--
+@isnad1 id=eq.1h4v.s9.423976b433b5 from=seed src=0 shape=49c48073 vocab=d9da9942
+-/
 @[ext]
 lemma DoubleCentralizer.ext (𝕜 : Type u) (A : Type v) [NontriviallyNormedField 𝕜]
     [NonUnitalNormedRing A] [NormedSpace 𝕜 A] [SMulCommClass 𝕜 A A] [IsScalarTower 𝕜 A A]
@@ -102,6 +105,9 @@ and algebra structure from `(A →L[𝕜] A) × (A →L[𝕜] A)ᵐᵒᵖ` to `�
 
 variable {𝕜 A}
 
+/--
+@isnad1 id=eq.0h2v.s11.842f97d868c2 from=seed src=0 shape=c07bb365 vocab=61b6e35b
+-/
 theorem range_toProd :
     Set.range toProd = { lr : (A →L[𝕜] A) × (A →L[𝕜] A) | ∀ x y, lr.2 x * y = x * lr.1 y } :=
   Set.ext fun x =>
@@ -147,25 +153,43 @@ instance instSMul : SMul S 𝓜(𝕜, A) where
         show (s • a.snd) x * y = x * (s • a.fst) y by
           simp only [smul_apply, mul_smul_comm, smul_mul_assoc, central] }
 
+/--
+@isnad1 id=eq.0h5v.s11.2e5db7143bc3 from=seed src=0 shape=4b65f404 vocab=4c77bb94
+-/
 @[simp]
 theorem smul_toProd (s : S) (a : 𝓜(𝕜, A)) : (s • a).toProd = s • a.toProd :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.7e5db64e3248 from=seed src=0 shape=a8ff145d vocab=e0b03f8c
+-/
 theorem smul_fst (s : S) (a : 𝓜(𝕜, A)) : (s • a).fst = s • a.fst :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.959f3e1b0211 from=seed src=0 shape=a8ff145d vocab=744bad74
+-/
 theorem smul_snd (s : S) (a : 𝓜(𝕜, A)) : (s • a).snd = s • a.snd :=
   rfl
 
 variable {T : Type*} [Monoid T] [DistribMulAction T A] [SMulCommClass 𝕜 T A]
   [ContinuousConstSMul T A] [IsScalarTower T A A] [SMulCommClass T A A]
 
+/--
+@isnad1 id=isscalar.0h4v.s10.6157e1aeeb15 from=seed src=0 shape=4ad329e1 vocab=4426c02f
+-/
 instance instIsScalarTower [SMul S T] [IsScalarTower S T A] : IsScalarTower S T 𝓜(𝕜, A) where
   smul_assoc _ _ a := ext (𝕜 := 𝕜) (A := A) _ _ <| smul_assoc _ _ a.toProd
 
+/--
+@isnad1 id=smulcomm.0h4v.s10.47d3ad7dabb3 from=seed src=0 shape=3f2b4d35 vocab=29611517
+-/
 instance instSMulCommClass [SMulCommClass S T A] : SMulCommClass S T 𝓜(𝕜, A) where
   smul_comm _ _ a := ext (𝕜 := 𝕜) (A := A) _ _ <| smul_comm _ _ a.toProd
 
+/--
+@isnad1 id=iscentra.0h3v.s10.a877e5654215 from=seed src=0 shape=ae92b748 vocab=8ef1fcae
+-/
 instance instIsCentralScalar {R : Type*} [Semiring R] [Module R A] [SMulCommClass 𝕜 R A]
     [ContinuousConstSMul R A] [IsScalarTower R A A] [SMulCommClass R A A] [Module Rᵐᵒᵖ A]
     [IsCentralScalar R A] : IsCentralScalar R 𝓜(𝕜, A) where
@@ -207,91 +231,169 @@ instance instPow : Pow 𝓜(𝕜, A) ℕ where
 instance instInhabited : Inhabited 𝓜(𝕜, A) :=
   ⟨0⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.7895eec91880 from=seed src=0 shape=d904816b vocab=21a1e30f
+-/
 @[simp]
 theorem add_toProd (a b : 𝓜(𝕜, A)) : (a + b).toProd = a.toProd + b.toProd :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.7b9a7a4ddeab from=seed src=0 shape=30cfc904 vocab=d9da9942
+-/
 @[simp]
 theorem zero_toProd : (0 : 𝓜(𝕜, A)).toProd = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.78a9bdaa4704 from=seed src=0 shape=980159f3 vocab=559ecf49
+-/
 @[simp]
 theorem neg_toProd (a : 𝓜(𝕜, A)) : (-a).toProd = -a.toProd :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.d5895ca8440e from=seed src=0 shape=d904816b vocab=70da4bd9
+-/
 @[simp]
 theorem sub_toProd (a b : 𝓜(𝕜, A)) : (a - b).toProd = a.toProd - b.toProd :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.c8bd1348434e from=seed src=0 shape=30cfc904 vocab=d9da9942
+-/
 @[simp]
 theorem one_toProd : (1 : 𝓜(𝕜, A)).toProd = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.6a450263d666 from=seed src=0 shape=83060098 vocab=6ee62c1b
+-/
 @[simp]
 theorem natCast_toProd (n : ℕ) : (n : 𝓜(𝕜, A)).toProd = n :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.977e790a6fb0 from=seed src=0 shape=83060098 vocab=61ab6957
+-/
 @[simp]
 theorem intCast_toProd (n : ℤ) : (n : 𝓜(𝕜, A)).toProd = n :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.0d9e7fd2214b from=seed src=0 shape=11dba21b vocab=0bd11282
+-/
 @[simp]
 theorem pow_toProd (n : ℕ) (a : 𝓜(𝕜, A)) : (a ^ n).toProd = a.toProd ^ n :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.6eb7db681e64 from=seed src=0 shape=08173ed0 vocab=ae0b56d3
+-/
 theorem add_fst (a b : 𝓜(𝕜, A)) : (a + b).fst = a.fst + b.fst :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.2d96099b4d86 from=seed src=0 shape=08173ed0 vocab=1f5146c0
+-/
 theorem add_snd (a b : 𝓜(𝕜, A)) : (a + b).snd = a.snd + b.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.1a2db76c40a9 from=seed src=0 shape=43b38e82 vocab=ca2d4e53
+-/
 theorem zero_fst : (0 : 𝓜(𝕜, A)).fst = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.4eaa79fa16bb from=seed src=0 shape=43b38e82 vocab=77309e26
+-/
 theorem zero_snd : (0 : 𝓜(𝕜, A)).snd = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.2ece6d80eb6e from=seed src=0 shape=be33d9fc vocab=035999c5
+-/
 theorem neg_fst (a : 𝓜(𝕜, A)) : (-a).fst = -a.fst :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.85aa48e9de9f from=seed src=0 shape=be33d9fc vocab=d8308531
+-/
 theorem neg_snd (a : 𝓜(𝕜, A)) : (-a).snd = -a.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.7dbbd8e1bc21 from=seed src=0 shape=08173ed0 vocab=3936929b
+-/
 theorem sub_fst (a b : 𝓜(𝕜, A)) : (a - b).fst = a.fst - b.fst :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.cc377f4557e7 from=seed src=0 shape=08173ed0 vocab=6455b406
+-/
 theorem sub_snd (a b : 𝓜(𝕜, A)) : (a - b).snd = a.snd - b.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.affcf204f198 from=seed src=0 shape=43b38e82 vocab=ca2d4e53
+-/
 theorem one_fst : (1 : 𝓜(𝕜, A)).fst = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.25a511bcf4d0 from=seed src=0 shape=43b38e82 vocab=77309e26
+-/
 theorem one_snd : (1 : 𝓜(𝕜, A)).snd = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.d3b7948ab0a1 from=seed src=0 shape=08173ed0 vocab=7ec0f85c
+-/
 @[simp]
 theorem mul_fst (a b : 𝓜(𝕜, A)) : (a * b).fst = a.fst * b.fst :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.acfef4a2c2bb from=seed src=0 shape=d31638f6 vocab=49cbcb86
+-/
 @[simp]
 theorem mul_snd (a b : 𝓜(𝕜, A)) : (a * b).snd = b.snd * a.snd :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.2215af7a531e from=seed src=0 shape=4e055f0b vocab=8e5f47c0
+-/
 theorem natCast_fst (n : ℕ) : (n : 𝓜(𝕜, A)).fst = n :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.1728fb2028f4 from=seed src=0 shape=4e055f0b vocab=dd66893f
+-/
 theorem natCast_snd (n : ℕ) : (n : 𝓜(𝕜, A)).snd = n :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.4f96e21fad6c from=seed src=0 shape=4e055f0b vocab=bed54046
+-/
 theorem intCast_fst (n : ℤ) : (n : 𝓜(𝕜, A)).fst = n :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.16717b52063f from=seed src=0 shape=4e055f0b vocab=d1a4e67c
+-/
 theorem intCast_snd (n : ℤ) : (n : 𝓜(𝕜, A)).snd = n :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.7d0f935c35b4 from=seed src=0 shape=d31a09e7 vocab=e1112500
+-/
 theorem pow_fst (n : ℕ) (a : 𝓜(𝕜, A)) : (a ^ n).fst = a.fst ^ n :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.6508a84e1555 from=seed src=0 shape=d31a09e7 vocab=3025ec55
+-/
 theorem pow_snd (n : ℕ) (a : 𝓜(𝕜, A)) : (a ^ n).snd = a.snd ^ n :=
   rfl
 
@@ -300,12 +402,18 @@ theorem pow_snd (n : ℕ) (a : 𝓜(𝕜, A)) : (a ^ n).snd = a.snd ^ n :=
 def toProdMulOpposite : 𝓜(𝕜, A) → (A →L[𝕜] A) × (A →L[𝕜] A)ᵐᵒᵖ := fun a =>
   (a.fst, MulOpposite.op a.snd)
 
+/--
+@isnad1 id=injectiv.0h2v.s9.d62c00594f4b from=seed src=0 shape=f167d6f6 vocab=e6742e1a
+-/
 theorem toProdMulOpposite_injective :
     Function.Injective (toProdMulOpposite : 𝓜(𝕜, A) → (A →L[𝕜] A) × (A →L[𝕜] A)ᵐᵒᵖ) :=
   fun _a _b h =>
     let h' := Prod.ext_iff.mp h
     ext (𝕜 := 𝕜) (A := A) _ _ <| Prod.ext h'.1 <| MulOpposite.op_injective h'.2
 
+/--
+@isnad1 id=eq.0h2v.s11.1bd678441c54 from=seed src=0 shape=43de2521 vocab=12c2063b
+-/
 theorem range_toProdMulOpposite :
     Set.range toProdMulOpposite =
       { lr : (A →L[𝕜] A) × (A →L[𝕜] A)ᵐᵒᵖ | ∀ x y, unop lr.2 x * y = x * lr.1 y } :=
@@ -365,13 +473,22 @@ instance instAlgebra : Algebra 𝕜 𝓜(𝕜, A) where
   smul_def' _ _ := ext (𝕜 := 𝕜) (A := A) _ _ <|
     Prod.ext (Algebra.smul_def _ _) ((Algebra.smul_def _ _).trans <| Algebra.commutes _ _)
 
+/--
+@isnad1 id=eq.0h3v.s11.55903994e9ed from=seed src=0 shape=59955762 vocab=df01d58e
+-/
 @[simp]
 theorem algebraMap_toProd (k : 𝕜) : (algebraMap 𝕜 𝓜(𝕜, A) k).toProd = algebraMap 𝕜 _ k :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.e8094da64e97 from=seed src=0 shape=a72dd5dc vocab=6d74715f
+-/
 theorem algebraMap_fst (k : 𝕜) : (algebraMap 𝕜 𝓜(𝕜, A) k).fst = algebraMap 𝕜 _ k :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.86d9a9c4f1a6 from=seed src=0 shape=a72dd5dc vocab=522bbb24
+-/
 theorem algebraMap_snd (k : 𝕜) : (algebraMap 𝕜 𝓜(𝕜, A) k).snd = algebraMap 𝕜 _ k :=
   rfl
 
@@ -398,10 +515,16 @@ instance instStar : Star 𝓜(𝕜, A) where
         simpa only [star_mul, star_star]
           using! (congr_arg star (a.central (star y) (star x))).symm }
 
+/--
+@isnad1 id=eq.0h4v.s10.47afd776230a from=seed src=0 shape=4806acbe vocab=6b79c357
+-/
 @[simp]
 theorem star_fst (a : 𝓜(𝕜, A)) (b : A) : (star a).fst b = star (a.snd (star b)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.9afa35e1c0d2 from=seed src=0 shape=4806acbe vocab=6b79c357
+-/
 @[simp]
 theorem star_snd (a : 𝓜(𝕜, A)) (b : A) : (star a).snd b = star (a.fst (star b)) :=
   rfl
@@ -415,6 +538,9 @@ instance instStarRing : StarRing 𝓜(𝕜, A) :=
   { DoubleCentralizer.instStarAddMonoid with
     star_mul _ _ := by ext <;> simp }
 
+/--
+@isnad1 id=starmodu.0h2v.s9.df205e788345 from=seed src=0 shape=f0665d0e vocab=18336094
+-/
 instance instStarModule : StarModule 𝕜 𝓜(𝕜, A) :=
   { DoubleCentralizer.instStarAddMonoid (𝕜 := 𝕜) (A := A) with
     star_smul _ _ := by ext <;> exact star_smul _ _ }
@@ -447,14 +573,23 @@ Warning: if `A = 𝕜`, then this is a coercion which is not definitionally equa
 noncomputable instance : CoeTC A 𝓜(𝕜, A) where
   coe := DoubleCentralizer.coe 𝕜
 
+/--
+@isnad1 id=eq.0h3v.s10.6dd866df20e5 from=seed src=0 shape=c9454159 vocab=fc1e976a
+-/
 @[simp, norm_cast]
 theorem coe_fst (a : A) : (a : 𝓜(𝕜, A)).fst = ContinuousLinearMap.mul 𝕜 A a :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.91e72d11bf09 from=seed src=0 shape=b9f91b69 vocab=68aa1f6f
+-/
 @[simp, norm_cast]
 theorem coe_snd (a : A) : (a : 𝓜(𝕜, A)).snd = (ContinuousLinearMap.mul 𝕜 A).flip a :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.530138528d5c from=seed src=0 shape=f900bfdb vocab=2a342440
+-/
 theorem coe_eq_algebraMap : (DoubleCentralizer.coe 𝕜 : 𝕜 → 𝓜(𝕜, 𝕜)) = algebraMap 𝕜 𝓜(𝕜, 𝕜) := by
   ext x : 3
   · rfl -- `fst` is defeq
@@ -497,15 +632,27 @@ noncomputable instance : NormedRing 𝓜(𝕜, A) :=
 
 -- even though the definition is actually in terms of `DoubleCentralizer.toProdMulOpposite`, we
 -- choose to see through that here to avoid `MulOpposite.op` appearing.
+/--
+@isnad1 id=eq.0h3v.s11.9c4af5ceff1b from=seed src=0 shape=15f3b73d vocab=68e207f6
+-/
 theorem norm_def (a : 𝓜(𝕜, A)) : ‖a‖ = ‖toProdHom a‖ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.e6399eaf8c81 from=seed src=0 shape=15f3b73d vocab=a78ef687
+-/
 theorem nnnorm_def (a : 𝓜(𝕜, A)) : ‖a‖₊ = ‖toProdHom a‖₊ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.c2f17145f0b8 from=seed src=0 shape=d11642e0 vocab=2f2eafe7
+-/
 theorem norm_def' (a : 𝓜(𝕜, A)) : ‖a‖ = ‖toProdMulOppositeHom a‖ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.f3bc6fd2b273 from=seed src=0 shape=d11642e0 vocab=7da60840
+-/
 theorem nnnorm_def' (a : 𝓜(𝕜, A)) : ‖a‖₊ = ‖toProdMulOppositeHom a‖₊ :=
   rfl
 
@@ -516,6 +663,9 @@ noncomputable instance instNormedSpace : NormedSpace 𝕜 𝓜(𝕜, A) :=
 noncomputable instance instNormedAlgebra : NormedAlgebra 𝕜 𝓜(𝕜, A) :=
   { DoubleCentralizer.instAlgebra, DoubleCentralizer.instNormedSpace with }
 
+/--
+@isnad1 id=isunifor.0h2v.s10.45856efce64f from=seed src=0 shape=f167d6f6 vocab=fa213bca
+-/
 theorem isUniformEmbedding_toProdMulOpposite :
     IsUniformEmbedding (toProdMulOpposite (𝕜 := 𝕜) (A := A)) :=
   isUniformEmbedding_comap toProdMulOpposite_injective
@@ -529,7 +679,9 @@ instance [CompleteSpace A] : CompleteSpace 𝓜(𝕜, A) := by
 variable [StarRing A] [CStarRing A]
 
 /-- For `a : 𝓜(𝕜, A)`, the norms of `a.fst` and `a.snd` coincide, and hence these
-also coincide with `‖a‖` which is `max (‖a.fst‖) (‖a.snd‖)`. -/
+also coincide with `‖a‖` which is `max (‖a.fst‖) (‖a.snd‖)`.
+@isnad1 id=eq.0h3v.s10.fbd8c70ad229 from=seed src=0 shape=749dbddf vocab=531ca59d
+-/
 theorem norm_fst_eq_snd (a : 𝓜(𝕜, A)) : ‖a.fst‖ = ‖a.snd‖ := by
   -- a handy lemma for this proof
   have h0 : ∀ f : A →L[𝕜] A, ∀ C : ℝ≥0, (∀ b : A, ‖f b‖₊ ^ 2 ≤ C * ‖f b‖₊ * ‖b‖₊) → ‖f‖₊ ≤ C := by
@@ -561,20 +713,35 @@ theorem norm_fst_eq_snd (a : 𝓜(𝕜, A)) : ‖a.fst‖ = ‖a.snd‖ := by
         nnnorm_star (a.snd b) ▸ mul_le_mul_left (a.fst.le_opNNNorm _) _
   exact le_antisymm (h0 _ _ h1) (h0 _ _ h2)
 
+/--
+@isnad1 id=eq.0h3v.s10.d9b96ee2aaaf from=seed src=0 shape=749dbddf vocab=18ae6ba4
+-/
 theorem nnnorm_fst_eq_snd (a : 𝓜(𝕜, A)) : ‖a.fst‖₊ = ‖a.snd‖₊ :=
   Subtype.ext <| norm_fst_eq_snd a
 
+/--
+@isnad1 id=eq.0h3v.s9.dc2b72fc6a10 from=seed src=0 shape=89a9bba1 vocab=7518f328
+-/
 @[simp]
 theorem norm_fst (a : 𝓜(𝕜, A)) : ‖a.fst‖ = ‖a‖ := by
   simp only [norm_def, toProdHom_apply, Prod.norm_def, norm_fst_eq_snd, max_eq_right le_rfl]
 
+/--
+@isnad1 id=eq.0h3v.s9.9d4a4c2bcc6b from=seed src=0 shape=89a9bba1 vocab=4c03950c
+-/
 @[simp]
 theorem norm_snd (a : 𝓜(𝕜, A)) : ‖a.snd‖ = ‖a‖ := by rw [← norm_fst, norm_fst_eq_snd]
 
+/--
+@isnad1 id=eq.0h3v.s9.7c46fe227ef1 from=seed src=0 shape=89a9bba1 vocab=846475a4
+-/
 @[simp]
 theorem nnnorm_fst (a : 𝓜(𝕜, A)) : ‖a.fst‖₊ = ‖a‖₊ :=
   Subtype.ext (norm_fst a)
 
+/--
+@isnad1 id=eq.0h3v.s9.5cc738032dce from=seed src=0 shape=89a9bba1 vocab=f625fcb9
+-/
 @[simp]
 theorem nnnorm_snd (a : 𝓜(𝕜, A)) : ‖a.snd‖₊ = ‖a‖₊ :=
   Subtype.ext (norm_snd a)
@@ -587,6 +754,9 @@ variable {𝕜 A : Type*} [DenselyNormedField 𝕜] [StarRing 𝕜]
 variable [NonUnitalNormedRing A] [StarRing A] [CStarRing A]
 variable [NormedSpace 𝕜 A] [SMulCommClass 𝕜 A A] [IsScalarTower 𝕜 A A] [StarModule 𝕜 A]
 
+/--
+@isnad1 id=cstarrin.0h2v.s9.b78663fc7035 from=seed src=0 shape=a5f25b27 vocab=29a42d47
+-/
 instance instCStarRing : CStarRing 𝓜(𝕜, A) where
   norm_mul_self_le := fun (a : 𝓜(𝕜, A)) => le_of_eq <| Eq.symm <| congr_arg ((↑) : ℝ≥0 → ℝ) <|
     show ‖star a * a‖₊ = ‖a‖₊ * ‖a‖₊ by

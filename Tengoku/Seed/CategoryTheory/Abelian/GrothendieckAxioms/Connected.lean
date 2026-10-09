@@ -53,7 +53,9 @@ noncomputable def IsColimit.pullbackOfHasExactColimitsOfShape [HasPullbacks C]
   apply hpull.isIso_snd_of_isIso
 
 /-- Detecting equality of morphisms factoring through a connected colimit by pulling back along
-the inclusions of the colimit. -/
+the inclusions of the colimit.
+@isnad1 id=eq.1h10v.s9.958af6072376 from=seed src=0 shape=66243b18 vocab=c1a31de3
+-/
 theorem IsColimit.pullback_hom_ext [HasPullbacks C] [HasColimitsOfShape J C]
     [HasExactColimitsOfShape J C] {F : J ⥤ C} {c : Cocone F} (hc : IsColimit c) {X Y : C}
     {f : X ⟶ c.pt} {g h : c.pt ⟶ Y}
@@ -64,7 +66,9 @@ theorem IsColimit.pullback_hom_ext [HasPullbacks C] [HasColimitsOfShape J C]
   simpa using! hf j
 
 /-- Detecting vanishing of a morphism factoring through a connected colimit by pulling back along
-the inclusions of the colimit. -/
+the inclusions of the colimit.
+@isnad1 id=eq.1h9v.s9.bab79e8efe45 from=seed src=0 shape=5ad20865 vocab=614f4a21
+-/
 theorem IsColimit.pullback_zero_ext [HasZeroMorphisms C] [HasPullbacks C] [HasColimitsOfShape J C]
     [HasExactColimitsOfShape J C] {F : J ⥤ C} {c : Cocone F} (hc : IsColimit c) {X Y : C}
     {f : X ⟶ c.pt} {g : c.pt ⟶ Y} (hf : ∀ j, pullback.snd (c.ι.app j) f ≫ f ≫ g = 0) :
@@ -90,7 +94,9 @@ noncomputable def IsLimit.pushoutOfHasExactLimitsOfShape [HasPushouts C]
   apply hpush.isIso_inr_of_isIso
 
 /-- Detecting equality of morphisms factoring through a connected limit by pushing out along
-the projections of the limit. -/
+the projections of the limit.
+@isnad1 id=eq.1h10v.s9.4b042c558d42 from=seed src=0 shape=f4c449e9 vocab=95b52696
+-/
 theorem IsLimit.pushout_hom_ext [HasPushouts C] [HasLimitsOfShape J C]
     [HasExactLimitsOfShape J C] {F : J ⥤ C} {c : Cone F} (hc : IsLimit c) {X Y : C}
     {g h : Y ⟶ c.pt} {f : c.pt ⟶ X}
@@ -101,7 +107,9 @@ theorem IsLimit.pushout_hom_ext [HasPushouts C] [HasLimitsOfShape J C]
   simpa using! hf j
 
 /-- Detecting vanishing of a morphism factoring through a connected limit by pushing out along the
-projections of the limit. -/
+projections of the limit.
+@isnad1 id=eq.1h9v.s9.8482cb5416cd from=seed src=0 shape=c478903d vocab=4129d05f
+-/
 theorem IsLimit.pushout_zero_ext [HasZeroMorphisms C] [HasPushouts C] [HasLimitsOfShape J C]
     [HasExactLimitsOfShape J C] {F : J ⥤ C} {c : Cone F} (hc : IsLimit c) {X Y : C}
     {g : Y ⟶ c.pt} {f : c.pt ⟶ X} (hf : ∀ j, g ≫ f ≫ pushout.inr (c.π.app j) f = 0) :

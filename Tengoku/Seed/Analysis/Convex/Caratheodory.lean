@@ -52,7 +52,9 @@ variable {𝕜 : Type*} {E : Type u} [Field 𝕜] [LinearOrder 𝕜] [IsStrictOr
 namespace Caratheodory
 
 /-- If `x` is in the convex hull of some finset `t` whose elements are not affine-independent,
-then it is in the convex hull of a strict subset of `t`. -/
+then it is in the convex hull of a strict subset of `t`.
+@isnad1 id=ex.2h4v.s8.5a45d559b423 from=seed src=0 shape=ad905519 vocab=81007bd4
+-/
 theorem mem_convexHull_erase [DecidableEq E] {t : Finset E} (h : ¬AffineIndependent 𝕜 ((↑) : t → E))
     {x : E} (m : x ∈ convexHull 𝕜 (↑t : Set E)) :
     ∃ y : (↑t : Set E), x ∈ convexHull 𝕜 (↑(t.erase y) : Set E) := by
@@ -111,21 +113,36 @@ noncomputable def minCardFinsetOfMemConvexHull (hx : x ∈ convexHull 𝕜 s) : 
 
 variable (hx : x ∈ convexHull 𝕜 s)
 
+/--
+@isnad1 id=le.1h4v.s7.ca1022466f79 from=seed src=0 shape=f645a6ba vocab=fa64a798
+-/
 theorem minCardFinsetOfMemConvexHull_subseteq : ↑(minCardFinsetOfMemConvexHull hx) ⊆ s :=
   (Function.argminOn_mem _ { t : Finset E | ↑t ⊆ s ∧ x ∈ convexHull 𝕜 (t : Set E) } _).1
 
+/--
+@isnad1 id=mem.1h4v.s7.72466de357ff from=seed src=0 shape=6b999108 vocab=4963c5c6
+-/
 theorem mem_minCardFinsetOfMemConvexHull :
     x ∈ convexHull 𝕜 (minCardFinsetOfMemConvexHull hx : Set E) :=
   (Function.argminOn_mem _ { t : Finset E | ↑t ⊆ s ∧ x ∈ convexHull 𝕜 (t : Set E) } _).2
 
+/--
+@isnad1 id=nonempty.1h4v.s7.7a45dcc4f043 from=seed src=0 shape=41d91097 vocab=4026dfb6
+-/
 theorem minCardFinsetOfMemConvexHull_nonempty : (minCardFinsetOfMemConvexHull hx).Nonempty := by
   rw [← Finset.coe_nonempty, ← @convexHull_nonempty_iff 𝕜]
   exact ⟨x, mem_minCardFinsetOfMemConvexHull hx⟩
 
+/--
+@isnad1 id=le.3h5v.s7.f92b9721fb5f from=seed src=0 shape=eaaecf51 vocab=138196c3
+-/
 theorem minCardFinsetOfMemConvexHull_card_le_card {t : Finset E} (ht₁ : ↑t ⊆ s)
     (ht₂ : x ∈ convexHull 𝕜 (t : Set E)) : #(minCardFinsetOfMemConvexHull hx) ≤ #t :=
   Function.argminOn_le _ _ (by exact ⟨ht₁, ht₂⟩)
 
+/--
+@isnad1 id=affinein.1h4v.s7.caef578b2f24 from=seed src=0 shape=78ab7ed0 vocab=9fcb80fd
+-/
 theorem affineIndependent_minCardFinsetOfMemConvexHull :
     AffineIndependent 𝕜 ((↑) : minCardFinsetOfMemConvexHull hx → E) := by
   let k := #(minCardFinsetOfMemConvexHull hx) - 1
@@ -146,7 +163,9 @@ end Caratheodory
 
 variable {s : Set E}
 
-/-- **Carathéodory's convexity theorem** -/
+/-- **Carathéodory's convexity theorem**
+@isnad1 id=eq.0h3v.s8.bd23900e3cf3 from=seed src=0 shape=38025936 vocab=2bba417c
+-/
 theorem convexHull_eq_union : convexHull 𝕜 s =
     ⋃ (t : Finset E) (_ : ↑t ⊆ s) (_ : AffineIndependent 𝕜 ((↑) : t → E)), convexHull 𝕜 ↑t := by
   apply Set.Subset.antisymm

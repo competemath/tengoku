@@ -53,6 +53,9 @@ variable {X₁ X₂ X₃ X₄ : C} {t : X₁ ⟶ X₂} {l : X₁ ⟶ X₃} {r : 
 
 namespace IsPushout
 
+/--
+@isnad1 id=exact.1h9v.s6.72b54eaa8462 from=seed src=0 shape=02b0e2cf vocab=096bb86d
+-/
 lemma exact_shortComplex (h : IsPushout t l r b) : h.shortComplex.Exact :=
   h.shortComplex.exact_of_g_is_cokernel
     h.isColimitCokernelCofork
@@ -69,7 +72,9 @@ X₃ ⟶ X₄
 the morphism `X₂ ⊞ X₃ ⟶ X₄` is an epimorphism. This lemma translates this
 as the existence of liftings up to refinements: a morphism `z : T ⟶ X₄`
 can be written as a sum of a morphism to `X₂` and a morphism to `X₃`,
-at least if we allow a precomposition with an epimorphism `π : T' ⟶ T`. -/
+at least if we allow a precomposition with an epimorphism `π : T' ⟶ T`.
+@isnad1 id=ex.1h11v.s8.c04e9b95a01e from=seed src=0 shape=e21620c6 vocab=b5819f86
+-/
 lemma hom_eq_add_up_to_refinements (h : IsPushout t l r b) {T : C} (x₄ : T ⟶ X₄) :
     ∃ (T' : C) (π : T' ⟶ T) (_ : Epi π) (x₂ : T' ⟶ X₂) (x₃ : T' ⟶ X₃),
       π ≫ x₄ = x₂ ≫ r + x₃ ≫ b := by
@@ -95,6 +100,7 @@ where the top/left square is a pushout square,
 the outer square involving `X₁`, `X₂`, `X₃` and `X₅`
 is a pullback square, and `X₂ ⟶ X₅` is mono,
 then `X₄ ⟶ X₅` is a mono.
+@isnad1 id=mono.4h13v.s7.d58f0371cc9e from=seed src=0 shape=5cef52c7 vocab=a07a8776
 -/
 lemma mono_of_isPullback_of_mono
     (h₁ : IsPushout t l r b) {X₅ : C} {r' : X₂ ⟶ X₅} {b' : X₃ ⟶ X₅}
@@ -117,6 +123,9 @@ end IsPushout
 
 namespace IsPullback
 
+/--
+@isnad1 id=exact.1h9v.s6.c4df49027e7f from=seed src=0 shape=02b0e2cf vocab=f7ce6c21
+-/
 lemma exact_shortComplex' (h : IsPullback t l r b) : h.shortComplex'.Exact :=
   h.shortComplex'.exact_of_f_is_kernel
     h.isLimitKernelFork
@@ -135,6 +144,9 @@ namespace Abelian
 
 variable {X₁ X₂ X₃ X₄ : C} {t : X₁ ⟶ X₂} {l : X₁ ⟶ X₃} {r : X₂ ⟶ X₄} {b : X₃ ⟶ X₄}
 
+/--
+@isnad1 id=mono.1h9v.s6.62a43c392502 from=seed src=0 shape=06b46c7f vocab=f614a50e
+-/
 lemma mono_cokernel_map_of_isPullback (sq : IsPullback t l r b) :
     Mono (cokernel.map _ _ _ _ sq.w) := by
   rw [Preadditive.mono_iff_cancel_zero]
@@ -148,6 +160,9 @@ lemma mono_cokernel_map_of_isPullback (sq : IsPullback t l r b) :
   obtain ⟨x₁, hx₁, rfl⟩ := sq.exists_lift (π₂ ≫ x₂) x₃ (by simpa)
   simp [← cancel_epi π₁, ← cancel_epi π₂, hx₂, ← reassoc_of% hx₁]
 
+/--
+@isnad1 id=epi.1h9v.s6.e131a8bddd77 from=seed src=0 shape=06b46c7f vocab=fd5d3128
+-/
 lemma epi_kernel_map_of_isPushout (sq : IsPushout t l r b) :
     Epi (kernel.map _ _ _ _ sq.w) := by
   rw [epi_iff_surjective_up_to_refinements]

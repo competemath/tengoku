@@ -43,6 +43,9 @@ def boundary (n : ℕ) : (Δ[n] : SSet.{u}).Subcomplex where
 /-- The boundary `∂Δ[n]` of the `n`-th standard simplex -/
 scoped[Simplicial] notation3 "∂Δ[" n "]" => SSet.boundary n
 
+/--
+@isnad1 id=eq.0h1v.s8.5632d0df5dd9 from=seed src=0 shape=16ca2395 vocab=5fcac39f
+-/
 lemma boundary_eq_iSup (n : ℕ) :
     boundary.{u} n = ⨆ (i : Fin (n + 1)), stdSimplex.face {i}ᶜ := by
   ext
@@ -54,26 +57,41 @@ instance {n : ℕ} : HasDimensionLT (boundary n) n := by
   intro i
   exact stdSimplex.hasDimensionLT_face _ _ (by simp [Finset.card_compl])
 
+/--
+@isnad1 id=iff.0h3v.s8.a65b223545a3 from=seed src=0 shape=b5c26ccd vocab=0161a6fe
+-/
 lemma mem_boundary_iff_notMem_range {n d : ℕ} (s : Δ[n] _⦋d⦌) :
     s ∈ (boundary n).obj _ ↔ ∃ (j : Fin (n + 1)), j ∉ Set.range s := by
   rw [boundary_eq_iSup]
   simp
 
+/--
+@isnad1 id=le.0h2v.s7.06ea26b3ff27 from=seed src=0 shape=07d4171a vocab=ba4c426e
+-/
 lemma face_singleton_compl_le_boundary {n : ℕ} (i : Fin (n + 1)) :
     stdSimplex.face.{u} {i}ᶜ ≤ boundary n := by
   rw [boundary_eq_iSup]
   exact le_iSup (fun (i : Fin (n +1)) ↦ stdSimplex.face {i}ᶜ) i
 
+/--
+@isnad1 id=not.0h1v.s7.856698d779eb from=seed src=0 shape=1597b580 vocab=65fff394
+-/
 lemma stdSimplex.notMem_boundary (n : ℕ) :
     stdSimplex.objMk (m := op ⦋n⦌) .id ∉ (boundary.{u} n).obj (op ⦋n⦌) := by
   rw [boundary_eq_iSup, Subfunctor.iSup_obj, Set.mem_iUnion, not_exists]
   intro i hi
   simpa using @hi i (by aesop)
 
+/--
+@isnad1 id=lt.0h1v.s8.6f3b61f0f04b from=seed src=0 shape=8b1fc11e vocab=99dc6d47
+-/
 lemma boundary_lt_top (n : ℕ) :
     boundary.{u} n < ⊤ :=
   lt_of_le_not_ge (by simp) (fun h ↦ stdSimplex.notMem_boundary n (h _ (by simp)))
 
+/--
+@isnad1 id=eq.0h3v.s6.3ac01ba92538 from=seed src=0 shape=f66f3e98 vocab=f15c00c2
+-/
 lemma boundary_obj_eq_univ (m n : ℕ) (h : m < n := by lia) :
     (boundary.{u} n).obj (op ⦋m⦌) = .univ := by
   ext x
@@ -90,6 +108,9 @@ lemma boundary_obj_eq_univ (m n : ℕ) (h : m < n := by lia) :
       ← Subcomplex.ofSimplex_le_iff]
     apply Subcomplex.ofSimplex_map_le
 
+/--
+@isnad1 id=eq.0h0v.s8.1fbc4205df6b from=seed src=0 shape=d7b9fd48 vocab=db0e2a55
+-/
 @[simp]
 lemma boundary_zero : boundary.{u} 0 = ⊥ := by
   ext m x
@@ -98,6 +119,9 @@ lemma boundary_zero : boundary.{u} 0 = ⊥ := by
   intro x
   exact ⟨0, by subsingleton⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.38dc223850cc from=seed src=0 shape=ffafd9c9 vocab=9f7b9469
+-/
 lemma op_boundary (n : ℕ) :
     ∂Δ[n].op.preimage (stdSimplex.opIso.{u} ⦋n⦌).inv = ∂Δ[n] := by
   ext ⟨⟨d⟩⟩ j
@@ -114,6 +138,9 @@ namespace stdSimplex
 variable {n : ℕ} (A : (Δ[n] : SSet.{u}).Subcomplex)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=hasdimen.1h2v.s8.6458d9d2c3cd from=seed src=0 shape=cda2e9d4 vocab=7527d829
+-/
 lemma subcomplex_hasDimensionLT_of_neq_top (h : A ≠ ⊤) :
     HasDimensionLT A n where
   degenerate_eq_top i hi := by
@@ -127,6 +154,9 @@ lemma subcomplex_hasDimensionLT_of_neq_top (h : A ≠ ⊤) :
       exact h (le_antisymm (by simp) (by simpa [← ofSimplex_objEquiv_symm_id]))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h2v.s8.c646ffc22548 from=seed src=0 shape=9758ec8c vocab=87a574ef
+-/
 lemma le_boundary_iff :
     A ≤ boundary.{u} n ↔ A ≠ ⊤ := by
   refine ⟨fun h ↦ ?_, fun hA ↦ ?_⟩
@@ -161,6 +191,9 @@ def faceι {n : ℕ} (i : Fin (n + 1)) :
 instance {n : ℕ} (i : Fin (n + 1)) : Mono (faceι.{u} i) := by
   dsimp [faceι]; infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s9.ade2dfd25de4 from=seed src=0 shape=9e144e33 vocab=8fac9145
+-/
 @[reassoc (attr := simp)]
 lemma faceι_ι {n : ℕ} (i : Fin (n + 2)) :
     faceι i ≫ (boundary.{u} (n + 1)).ι = (stdSimplex.face {i}ᶜ).ι := by
@@ -175,10 +208,16 @@ def ι {n : ℕ} (i : Fin (n + 2)) :
     refine le_trans ?_ (face_singleton_compl_le_boundary i)
     rw [stdSimplex.face_singleton_compl, yonedaEquiv_map])
 
+/--
+@isnad1 id=eq.0h2v.s7.391ea71ba65a from=seed src=0 shape=aa02da61 vocab=b47ae969
+-/
 @[reassoc (attr := simp)]
 lemma ι_ι {n : ℕ} (i : Fin (n + 2)) :
     ι.{u} i ≫ ∂Δ[n + 1].ι = stdSimplex.δ i := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.174de250f997 from=seed src=0 shape=d1aebb0d vocab=7351a425
+-/
 @[reassoc (attr := simp)]
 lemma faceSingletonComplIso_inv_ι {n : ℕ} (i : Fin (n + 2)) :
     (stdSimplex.faceSingletonComplIso i).inv ≫ ι i = boundary.faceι i := by
@@ -194,6 +233,9 @@ instance {n : ℕ} (i : Fin (n + 2)) : Mono (stdSimplex.{u}.δ i) := by
   rw [← ι_ι]
   infer_instance
 
+/--
+@isnad1 id=eq.1h4v.s8.62ee3f9cfd5b from=seed src=0 shape=b6a47f0c vocab=7e51a42c
+-/
 lemma hom_ext {n : ℕ} {X : SSet.{u}} {f g : (∂Δ[n + 1] : SSet) ⟶ X}
     (h : ∀ (i : Fin (n + 2)), ι i ≫ f = ι i ≫ g) :
     f = g := by
@@ -203,6 +245,9 @@ lemma hom_ext {n : ℕ} {X : SSet.{u}} {f g : (∂Δ[n + 1] : SSet) ⟶ X}
   obtain ⟨i, ⟨y, rfl⟩⟩ := hx
   exact ConcreteCategory.congr_hom (congr_app (h i) _) _
 
+/--
+@isnad1 id=eq.0h3v.s7.a52fadb08a2a from=seed src=0 shape=fd72bef8 vocab=fa595790
+-/
 @[ext]
 lemma hom_ext₀ {X : SSet.{u}} {f g : (∂Δ[0] : SSet) ⟶ X} : f = g := by
   ext _ ⟨x, hx⟩

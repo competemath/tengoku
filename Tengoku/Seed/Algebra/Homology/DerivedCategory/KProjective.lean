@@ -41,6 +41,9 @@ namespace IsKProjective
 
 open HomologicalComplex
 
+/--
+@isnad1 id=bijectiv.0h3v.s9.34d4ab886a3a from=seed src=0 shape=e9bd2b08 vocab=e37b4352
+-/
 lemma Qh_map_bijective [HasDerivedCategory C]
     (K : CochainComplex C ℤ) (L : HomotopyCategory C (.up ℤ))
     [K.IsKProjective] :
@@ -49,6 +52,9 @@ lemma Qh_map_bijective [HasDerivedCategory C]
   (CochainComplex.IsKProjective.leftOrthogonal K).map_bijective_of_isTriangulated _ _
 
 attribute [local instance] HasDerivedCategory.standard in
+/--
+@isnad1 id=iff.0h4v.s7.48f931bfb6aa from=seed src=0 shape=c1ad23b4 vocab=b67cd04e
+-/
 lemma quasiIso_iff {K L : CochainComplex C ℤ} [K.IsKProjective] [L.IsKProjective] (f : K ⟶ L) :
     QuasiIso f ↔ homotopyEquivalences C (.up ℤ) f := by
   refine ⟨fun _ ↦ ?_, fun hf ↦ homotopyEquivalences_le_quasiIso _ _ _ hf⟩
@@ -67,6 +73,9 @@ namespace HomComplex.CohomologyClass
 variable (K L : CochainComplex C ℤ) (n : ℤ)
   [HasSmallLocalizedShiftedHom.{w} (HomologicalComplex.quasiIso C (.up ℤ)) ℤ K L]
 
+/--
+@isnad1 id=bijectiv.0h4v.s7.8417a1fa8219 from=seed src=0 shape=ab3c4204 vocab=38671827
+-/
 lemma bijective_toSmallShiftedHom_of_isKProjective [K.IsKProjective] :
     Function.Bijective (toSmallShiftedHom.{w} (K := K) (L := L) (n := n)) := by
   let := HasDerivedCategory.standard C
@@ -97,6 +106,9 @@ namespace ChainComplex
 
 open HomologicalComplex
 
+/--
+@isnad1 id=iff.0h4v.s8.e3ddbe4bf7f7 from=seed src=0 shape=04294bf2 vocab=a1641aa8
+-/
 lemma quasiIso_iff_of_projective {K L : ChainComplex C ℕ}
     [∀ n, Projective (K.X n)] [∀ n, Projective (L.X n)]
     (f : K ⟶ L) :

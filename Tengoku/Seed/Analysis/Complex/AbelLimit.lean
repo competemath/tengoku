@@ -51,6 +51,9 @@ def stolzSet (M : ℝ) : Set ℂ := {z | ‖z‖ < 1 ∧ ‖1 - z‖ < M * (1 - 
 /-- The cone to the left of `1` with angle `2θ` such that `tan θ = s`. -/
 def stolzCone (s : ℝ) : Set ℂ := {z | |z.im| < s * (1 - z.re)}
 
+/--
+@isnad1 id=eq.1h1v.s4.2526c4e773e7 from=seed src=0 shape=e64d07c6 vocab=11d56086
+-/
 theorem stolzSet_empty {M : ℝ} (hM : M ≤ 1) : stolzSet M = ∅ := by
   ext z
   rw [stolzSet, Set.mem_ofPred, Set.mem_empty_iff_false, iff_false, not_and, not_lt, ← sub_pos]
@@ -60,6 +63,9 @@ theorem stolzSet_empty {M : ℝ} (hM : M ≤ 1) : stolzSet M = ∅ := by
     _ = ‖(1 : ℂ)‖ - ‖z‖ := by rw [one_mul, norm_one]
     _ ≤ _ := norm_sub_norm_le _ _
 
+/--
+@isnad1 id=le.1h1v.s6.276da3fd4a2d from=seed src=0 shape=b363b6b3 vocab=83f74369
+-/
 theorem nhdsWithin_lt_le_nhdsWithin_stolzSet {M : ℝ} (hM : 1 < M) :
     (𝓝[<] 1).map ofReal ≤ 𝓝[stolzSet M] 1 := by
   rw [← tendsto_id']
@@ -97,6 +103,9 @@ private lemma stolzCone_subset_stolzSet_aux' (s : ℝ) :
     _ < (2 * √(1 + s ^ 2) + 1) * (x / 2) := by gcongr; exact lt_add_one _
     _ ≤ _ := by gcongr; exact le_sub_comm.mpr H
 
+/--
+@isnad1 id=ex.1h1v.s6.fa51383fb129 from=seed src=0 shape=e4fc0260 vocab=1f315e3e
+-/
 lemma stolzCone_subset_stolzSet_aux {s : ℝ} (hs : 0 < s) :
     ∃ M ε, 0 < M ∧ 0 < ε ∧ {z : ℂ | 1 - ε < z.re} ∩ stolzCone s ⊆ stolzSet M := by
   peel stolzCone_subset_stolzSet_aux' s with M ε hM hε H
@@ -111,6 +120,9 @@ lemma stolzCone_subset_stolzSet_aux {s : ℝ} (hs : 0 < s) :
     ← norm_eq_sqrt_sq_add_sq] at H
   exact ⟨sub_pos.mp <| (mul_pos_iff_of_pos_left hM).mp <| (norm_nonneg _).trans_lt H, H⟩
 
+/--
+@isnad1 id=ex.1h1v.s6.50d74f25fa5b from=seed src=0 shape=4f5dbc6b vocab=84dd0d72
+-/
 lemma nhdsWithin_stolzCone_le_nhdsWithin_stolzSet {s : ℝ} (hs : 0 < s) :
     ∃ M, 𝓝[stolzCone s] 1 ≤ 𝓝[stolzSet M] 1 := by
   obtain ⟨M, ε, _, hε, H⟩ := stolzCone_subset_stolzSet_aux hs
@@ -125,7 +137,9 @@ variable {f : ℕ → ℂ} {l : ℂ}
 
 /-- Auxiliary lemma for Abel's limit theorem. The difference between the sum `l` at 1 and the
 power series's value at a point `z` away from 1 can be rewritten as `1 - z` times a power series
-whose coefficients are tail sums of `l`. -/
+whose coefficients are tail sums of `l`.
+@isnad1 id=tendsto.2h3v.s7.23810e5c2739 from=seed src=0 shape=80db8fc9 vocab=866b708d
+-/
 lemma abel_aux (h : Tendsto (fun n ↦ ∑ i ∈ range n, f i) atTop (𝓝 l)) {z : ℂ} (hz : ‖z‖ < 1) :
     Tendsto (fun n ↦ (1 - z) * ∑ i ∈ range n, (l - ∑ j ∈ range (i + 1), f j) * z ^ i)
       atTop (𝓝 (l - ∑' n, f n * z ^ n)) := by
@@ -158,7 +172,9 @@ lemma abel_aux (h : Tendsto (fun n ↦ ∑ i ∈ range n, f i) atTop (𝓝 l)) {
     simp only [zero_div, zero_add, tendsto_const_nhds_iff]
 
 /-- **Abel's limit theorem**. Given a power series converging at 1, the corresponding function
-is continuous at 1 when approaching 1 within a fixed Stolz set. -/
+is continuous at 1 when approaching 1 within a fixed Stolz set.
+@isnad1 id=tendsto.1h3v.s7.daf7859b42e2 from=seed src=0 shape=242fb90f vocab=8b827815
+-/
 theorem tendsto_tsum_powerSeries_nhdsWithin_stolzSet
     (h : Tendsto (fun n ↦ ∑ i ∈ range n, f i) atTop (𝓝 l)) {M : ℝ} :
     Tendsto (fun z ↦ ∑' n, f n * z ^ n) (𝓝[stolzSet M] 1) (𝓝 l) := by
@@ -238,13 +254,18 @@ theorem tendsto_tsum_powerSeries_nhdsWithin_stolzSet
   linarith only
 
 /-- **Abel's limit theorem**. Given a power series converging at 1, the corresponding function
-is continuous at 1 when approaching 1 within any fixed Stolz cone. -/
+is continuous at 1 when approaching 1 within any fixed Stolz cone.
+@isnad1 id=tendsto.2h3v.s7.d9b7de01c1b8 from=seed src=0 shape=088c3349 vocab=4d57804c
+-/
 theorem tendsto_tsum_powerSeries_nhdsWithin_stolzCone
     (h : Tendsto (fun n ↦ ∑ i ∈ range n, f i) atTop (𝓝 l)) {s : ℝ} (hs : 0 < s) :
     Tendsto (fun z ↦ ∑' n, f n * z ^ n) (𝓝[stolzCone s] 1) (𝓝 l) :=
   (tendsto_tsum_powerSeries_nhdsWithin_stolzSet h).mono_left
     (nhdsWithin_stolzCone_le_nhdsWithin_stolzSet hs).choose_spec
 
+/--
+@isnad1 id=tendsto.1h2v.s7.23ea30949fb4 from=seed src=0 shape=cf9a1466 vocab=791098e0
+-/
 theorem tendsto_tsum_powerSeries_nhdsWithin_lt
     (h : Tendsto (fun n ↦ ∑ i ∈ range n, f i) atTop (𝓝 l)) :
     Tendsto (fun z ↦ ∑' n, f n * z ^ n) ((𝓝[<] 1).map ofReal) (𝓝 l) :=
@@ -260,7 +281,9 @@ open Complex
 variable {f : ℕ → ℝ} {l : ℝ}
 
 /-- **Abel's limit theorem**. Given a real power series converging at 1, the corresponding function
-is continuous at 1 when approaching 1 from the left. -/
+is continuous at 1 when approaching 1 from the left.
+@isnad1 id=tendsto.1h2v.s6.4c83e25f2979 from=seed src=0 shape=d7892936 vocab=1c7aab94
+-/
 theorem tendsto_tsum_powerSeries_nhdsWithin_lt
     (h : Tendsto (fun n ↦ ∑ i ∈ range n, f i) atTop (𝓝 l)) :
     Tendsto (fun x ↦ ∑' n, f n * x ^ n) (𝓝[<] 1) (𝓝 l) := by

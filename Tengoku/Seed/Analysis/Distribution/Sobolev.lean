@@ -73,11 +73,17 @@ def besselPotential (s : ℝ) : 𝓢'(E, F) →L[ℂ] 𝓢'(E, F) :=
   fourierMultiplierCLM F (fun x ↦ ((1 + ‖x‖ ^ 2) ^ (s / 2) : ℝ))
 
 variable (E F) in
+/--
+@isnad1 id=eq.0h2v.s11.048bf2f7bd74 from=seed src=0 shape=133a3a5b vocab=410e0768
+-/
 @[simp]
 theorem besselPotential_zero : besselPotential E F 0 = ContinuousLinearMap.id ℂ _ := by
   ext f
   simp [besselPotential]
 
+/--
+@isnad1 id=eq.0h5v.s13.a8d050b3f819 from=seed src=0 shape=f073c487 vocab=8d055a5f
+-/
 @[simp]
 theorem besselPotential_besselPotential_apply (s s' : ℝ) (f : 𝓢'(E, F)) :
     besselPotential E F s' (besselPotential E F s f) = besselPotential E F (s + s') f := by
@@ -92,11 +98,17 @@ theorem besselPotential_besselPotential_apply (s s' : ℝ) (f : 𝓢'(E, F)) :
       rw [← Real.rpow_add (by positivity)]
     _ = _ := by congr; ring
 
+/--
+@isnad1 id=eq.0h4v.s11.6dd7d8aa0789 from=seed src=0 shape=30b14299 vocab=144993b3
+-/
 theorem besselPotential_compL_besselPotential (s s' : ℝ) :
     besselPotential E F s' ∘L besselPotential E F s = besselPotential E F (s + s') := by
   ext f : 1
   exact besselPotential_besselPotential_apply s s' f
 
+/--
+@isnad1 id=iff.0h5v.s12.e105e6f2481b from=seed src=0 shape=961f793f vocab=28ee794d
+-/
 theorem besselPotential_neg_apply_eq_iff (s : ℝ) (f g : 𝓢'(E, F)) :
     besselPotential E F (-s) f = g ↔ besselPotential E F s g = f := by
   constructor <;>
@@ -104,6 +116,9 @@ theorem besselPotential_neg_apply_eq_iff (s : ℝ) (f g : 𝓢'(E, F)) :
 
 open scoped Real Laplacian LineDeriv
 
+/--
+@isnad1 id=eq.0h4v.s12.4579a3370734 from=seed src=0 shape=353b58da vocab=ab85656b
+-/
 theorem besselPotential_neg_one_lineDerivOp_eq {m : E} (f : 𝓢'(E, F)) :
     (besselPotential E F (-1)) (∂_{m} f) =
       (2 * π * Complex.I) • fourierMultiplierCLM F (fun x ↦ Complex.ofReal <|
@@ -115,6 +130,9 @@ theorem besselPotential_neg_one_lineDerivOp_eq {m : E} (f : 𝓢'(E, F)) :
   ext x
   simp
 
+/--
+@isnad1 id=eq.0h3v.s12.c1e69f7f4d88 from=seed src=0 shape=862e598e vocab=38e1dc43
+-/
 theorem besselPotential_neg_two_laplacian_eq (f : 𝓢'(E, F)) :
     (besselPotential E F (-2)) (Δ f) = -(2 * π) ^ 2 •
       fourierMultiplierCLM F (fun x ↦ Complex.ofReal <| ‖x‖ ^ 2 * (1 + ‖x‖ ^ 2) ^ (-1 : ℝ)) f := by
@@ -133,6 +151,9 @@ variable [InnerProductSpace ℂ F]
 
 open FourierTransform
 
+/--
+@isnad1 id=eq.0h4v.s12.6fde72e2e1ad from=seed src=0 shape=739b8368 vocab=af41115c
+-/
 @[simp]
 theorem fourier_besselPotential_eq_smulLeftCLM_fourier_apply (s : ℝ) (f : 𝓢'(E, F)) :
     𝓕 (besselPotential E F s f) =
@@ -151,10 +172,16 @@ def MemSobolev (s : ℝ) (p : ℝ≥0∞) [hp : Fact (1 ≤ p)] (f : 𝓢'(E, F)
   ∃ (f' : Lp F p (volume : Measure E)),
     besselPotential E F s f = f'
 
+/--
+@isnad1 id=iff.0h4v.s9.f4d23234bc96 from=seed src=0 shape=936b93fe vocab=11768b83
+-/
 theorem memSobolev_zero_iff {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f : 𝓢'(E, F)} : MemSobolev 0 p f ↔
     ∃ (f' : Lp F p (volume : Measure E)), f = f' := by
   simp [MemSobolev]
 
+/--
+@isnad1 id=memsobol.2h6v.s9.7f76a0e54ddb from=seed src=0 shape=b3701263 vocab=b471a0f1
+-/
 theorem MemSobolev.add {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f g : 𝓢'(E, F)}
     (hf : MemSobolev s p f) (hg : MemSobolev s p g) : MemSobolev s p (f + g) := by
   obtain ⟨f', hf⟩ := hf
@@ -163,6 +190,9 @@ theorem MemSobolev.add {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f g : �
   rw [← Lp.toTemperedDistributionCLM_apply]
   simp [map_add, hf, hg]
 
+/--
+@isnad1 id=memsobol.2h6v.s9.23581b654df3 from=seed src=0 shape=b3701263 vocab=b85517d5
+-/
 theorem MemSobolev.sub {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f g : 𝓢'(E, F)}
     (hf : MemSobolev s p f) (hg : MemSobolev s p g) : MemSobolev s p (f - g) := by
   obtain ⟨f', hf⟩ := hf
@@ -171,6 +201,9 @@ theorem MemSobolev.sub {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f g : �
   rw [← Lp.toTemperedDistributionCLM_apply]
   simp [map_sub, hf, hg]
 
+/--
+@isnad1 id=memsobol.1h5v.s9.297a79ef77ca from=seed src=0 shape=2831be09 vocab=98193d2b
+-/
 theorem MemSobolev.neg {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f : 𝓢'(E, F)}
     (hf : MemSobolev s p f) : MemSobolev s p (-f) := by
   obtain ⟨f', hf⟩ := hf
@@ -178,6 +211,9 @@ theorem MemSobolev.neg {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f : �
   rw [← Lp.toTemperedDistributionCLM_apply]
   simp [map_neg, hf]
 
+/--
+@isnad1 id=memsobol.1h6v.s8.8eaf6380d5ef from=seed src=0 shape=10b32f56 vocab=56c54c93
+-/
 theorem MemSobolev.smul {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] (c : ℂ) {f : 𝓢'(E, F)}
     (hf : MemSobolev s p f) : MemSobolev s p (c • f) := by
   obtain ⟨f', hf⟩ := hf
@@ -186,6 +222,9 @@ theorem MemSobolev.smul {s : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] (c : �
   simp [hf]
 
 variable (E F) in
+/--
+@isnad1 id=memsobol.0h4v.s9.cae4e0dca78b from=seed src=0 shape=0c74bd5d vocab=35f5f212
+-/
 @[simp]
 theorem memSobolev_fun_zero (s : ℝ) (p : ℝ≥0∞) [hp : Fact (1 ≤ p)] :
     MemSobolev s p (0 : 𝓢'(E, F)) := by
@@ -193,6 +232,9 @@ theorem memSobolev_fun_zero (s : ℝ) (p : ℝ≥0∞) [hp : Fact (1 ≤ p)] :
   rw [← Lp.toTemperedDistributionCLM_apply]
   simp only [map_zero]
 
+/--
+@isnad1 id=iff.0h6v.s11.f558b13f3c64 from=seed src=0 shape=9f5e3a10 vocab=246b3735
+-/
 @[simp]
 theorem memSobolev_besselPotential_iff {s r : ℝ} {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f : 𝓢'(E, F)} :
     MemSobolev s p (besselPotential E F r f) ↔ MemSobolev (r + s) p f := by
@@ -215,7 +257,9 @@ section inner
 variable [InnerProductSpace ℂ F] [CompleteSpace F]
 
 /-- A tempered distribution belongs to the Sobolev space of order `s` and `p = 2` if and only if
-its Fourier transform multiplied by `(1 + ‖x‖ ^ 2) ^ (s / 2)` is in `Lp`. -/
+its Fourier transform multiplied by `(1 + ‖x‖ ^ 2) ^ (s / 2)` is in `Lp`.
+@isnad1 id=iff.0h4v.s12.c8f037db9dc8 from=seed src=0 shape=5111c1ed vocab=6908d07b
+-/
 theorem memSobolev_iff_exists_smulLeftCLM_fourier {s : ℝ} {f : 𝓢'(E, F)} :
     MemSobolev s 2 f ↔ ∃ (f' : Lp F 2 (volume : Measure E)),
     smulLeftCLM F (fun x ↦ ((1 + ‖x‖ ^ 2) ^ (s / 2) : ℝ)) (𝓕 f) = f' := by
@@ -231,6 +275,9 @@ theorem memSobolev_iff_exists_smulLeftCLM_fourier {s : ℝ} {f : 𝓢'(E, F)} :
     apply_fun 𝓕⁻ at hf'
     rw [hf', Lp.fourierInv_toTemperedDistribution_eq f']
 
+/--
+@isnad1 id=iff.0h3v.s10.f77518023584 from=seed src=0 shape=e1d66d5a vocab=5677466f
+-/
 theorem memSobolev_zero_iff_exists_fourier {f : 𝓢'(E, F)} :
     MemSobolev 0 2 f ↔ ∃ (f' : Lp F 2 (volume : Measure E)), 𝓕 f = f' := by
   simp [memSobolev_iff_exists_smulLeftCLM_fourier]
@@ -238,7 +285,9 @@ theorem memSobolev_zero_iff_exists_fourier {f : 𝓢'(E, F)} :
 /-- The Fourier transform of a Sobolev function of order `s` with `s > d / 2` can be represented by
 a `L1` function.
 
-This is the main calculation of the Sobolev embedding theorem. -/
+This is the main calculation of the Sobolev embedding theorem.
+@isnad1 id=ex.2h4v.s10.faee75c52920 from=seed src=0 shape=f7babea0 vocab=2576952a
+-/
 theorem MemSobolev.fourier_memL1 {s : ℝ} (hs : Module.finrank ℝ E < 2 * s) {f : 𝓢'(E, F)}
     (hf : MemSobolev s 2 f) :
     ∃ (v : Lp F 1 (volume : Measure E)), 𝓕 f = (v : 𝓢'(E, F)) := by
@@ -278,7 +327,9 @@ theorem MemSobolev.fourier_memL1 {s : ℝ} (hs : Module.finrank ℝ E < 2 * s) {
 
 open scoped BoundedContinuousFunction
 
-/-- The Fourier multiplier with a bounded function maps `H ^ s` to `H ^ s`. -/
+/-- The Fourier multiplier with a bounded function maps `H ^ s` to `H ^ s`.
+@isnad1 id=memsobol.3h5v.s11.41703608ab4a from=seed src=0 shape=3690399b vocab=03fce638
+-/
 theorem MemSobolev.fourierMultiplierCLM_of_bounded {s : ℝ} {f : 𝓢'(E, F)}
     (hf : MemSobolev s 2 f) {g : E → ℂ} (hg₁ : g.HasTemperateGrowth) (hg₂ : ∃ C, ∀ x, ‖g x‖ ≤ C) :
     MemSobolev s 2 (fourierMultiplierCLM F g f) := by
@@ -296,6 +347,9 @@ theorem MemSobolev.fourierMultiplierCLM_of_bounded {s : ℝ} {f : 𝓢'(E, F)}
   rw [mul_comm]
   congr
 
+/--
+@isnad1 id=memsobol.2h5v.s7.1a28943bff2a from=seed src=0 shape=f86753bb vocab=46da0d65
+-/
 theorem MemSobolev.mono {s s' : ℝ} (h : s' ≤ s) {f : 𝓢'(E, F)} (hf : MemSobolev s 2 f) :
     MemSobolev s' 2 f := by
   have h' : (s' - s) / 2 ≤ 0 := by
@@ -313,7 +367,9 @@ section LineDeriv
 
 open scoped LineDeriv Laplacian Real
 
-/-- The directional derivative maps `H ^ s` to `H ^ {s - 1}`. -/
+/-- The directional derivative maps `H ^ s` to `H ^ {s - 1}`.
+@isnad1 id=memsobol.1h5v.s8.4887999ec17d from=seed src=0 shape=0d568951 vocab=68252fbe
+-/
 theorem MemSobolev.lineDerivOp {s : ℝ} {f : 𝓢'(E, F)} (hf : MemSobolev s 2 f) {m : E} :
     MemSobolev (s - 1) 2 (∂_{m} f) := by
   rw [SubNegMonoid.sub_eq_add_neg s 1, add_comm, ← memSobolev_besselPotential_iff,
@@ -341,7 +397,9 @@ theorem MemSobolev.lineDerivOp {s : ℝ} {f : 𝓢'(E, F)} (hf : MemSobolev s 2 
   apply le_of_eq
   field_simp
 
-/-- The Laplacian maps `H ^ s` to `H ^ {s - 2}`. -/
+/-- The Laplacian maps `H ^ s` to `H ^ {s - 2}`.
+@isnad1 id=memsobol.1h4v.s8.56d4d6a50a55 from=seed src=0 shape=a19cbeec vocab=a22804e9
+-/
 theorem MemSobolev.laplacian {s : ℝ} {f : 𝓢'(E, F)} (hf : MemSobolev s 2 f) :
     MemSobolev (s - 2) 2 (Δ f) := by
   rw [SubNegMonoid.sub_eq_add_neg s 2, add_comm, ← memSobolev_besselPotential_iff,

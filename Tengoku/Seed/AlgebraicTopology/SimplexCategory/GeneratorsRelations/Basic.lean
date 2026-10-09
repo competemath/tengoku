@@ -93,6 +93,9 @@ abbrev σ {n : ℕ} (i : Fin (n + 1)) : mk (n + 1) ⟶ mk n :=
 /-- The length of an object of `SimplexCategoryGenRel`. -/
 def len (x : SimplexCategoryGenRel) : ℕ := by rcases x with ⟨n⟩; exact n
 
+/--
+@isnad1 id=eq.0h1v.s3.5e96bc21dae7 from=seed src=0 shape=47dcad53 vocab=125e010b
+-/
 @[simp]
 lemma mk_len (n : ℕ) : len (mk n) = n := rfl
 
@@ -111,13 +114,21 @@ abbrev generators := faces ⊔ degeneracies
 
 namespace generators
 
+/--
+@isnad1 id=generato.0h2v.s5.38d8204113cc from=seed src=0 shape=5a06a673 vocab=57511fe3
+-/
 lemma δ {n : ℕ} (i : Fin (n + 2)) : generators (δ i) := le_sup_left (a := faces) _ (.δ i)
 
+/--
+@isnad1 id=generato.0h2v.s5.ffcddec4a532 from=seed src=0 shape=d4252d60 vocab=0ec63b8e
+-/
 lemma σ {n : ℕ} (i : Fin (n + 1)) : generators (σ i) := le_sup_right (a := faces) _ (.σ i)
 
 end generators
 
-/-- A property is true for every morphism iff it holds for generators and is multiplicative. -/
+/-- A property is true for every morphism iff it holds for generators and is multiplicative.
+@isnad1 id=eq.0h0v.s5.f471ed304a66 from=seed src=0 shape=687008b2 vocab=e9a10699
+-/
 lemma multiplicativeClosure_isGenerator_eq_top : generators.multiplicativeClosure = ⊤ := by
   apply le_antisymm (by simp)
   rintro x y f -
@@ -129,7 +140,9 @@ lemma multiplicativeClosure_isGenerator_eq_top : generators.multiplicativeClosur
     · exact generators.multiplicativeClosure.comp_mem _ _ h <| .of _ <| .δ _
     · exact generators.multiplicativeClosure.comp_mem _ _ h <| .of _ <| .σ _
 
-/-- An unrolled version of the induction principle obtained in the previous lemma. -/
+/-- An unrolled version of the induction principle obtained in the previous lemma.
+@isnad1 id=var.0h7v.s7.8322be11607d from=seed src=0 shape=f5f8ccf9 vocab=0d31cb19
+-/
 @[elab_as_elim, cases_eliminator, induction_eliminator]
 lemma hom_induction (P : MorphismProperty SimplexCategoryGenRel)
     (id : ∀ {n : ℕ}, P (𝟙 (mk n)))
@@ -153,7 +166,9 @@ lemma hom_induction (P : MorphismProperty SimplexCategoryGenRel)
     · simpa using! (comp_σ f i hrec)
 
 /-- An induction principle for reasoning about morphisms in SimplexCategoryGenRel, where we compose
-with generators on the right. -/
+with generators on the right.
+@isnad1 id=var.0h7v.s7.820aef0b1672 from=seed src=0 shape=bb0f67ee vocab=0d31cb19
+-/
 lemma hom_induction' (P : MorphismProperty SimplexCategoryGenRel)
     (id : ∀ {n : ℕ}, P (𝟙 (mk n)))
     (δ_comp : ∀ {n m : ℕ} (u : mk (m + 1) ⟶ mk n)
@@ -187,7 +202,9 @@ protected def rec {P : SimplexCategoryGenRel → Sort*}
   intro x
   exact H x.len
 
-/-- A basic `ext` lemma for objects of `SimplexCategoryGenRel`. -/
+/-- A basic `ext` lemma for objects of `SimplexCategoryGenRel`.
+@isnad1 id=eq.1h2v.s3.145695496005 from=seed src=0 shape=296f4854 vocab=045e1061
+-/
 @[ext]
 lemma ext {x y : SimplexCategoryGenRel} (h : x.len = y.len) : x = y := by
   cases x
@@ -199,47 +216,69 @@ end InductionPrinciples
 
 section SimplicialIdentities
 
+/--
+@isnad1 id=eq.1h3v.s8.b9341a123f54 from=seed src=0 shape=6a2e4663 vocab=61481d62
+-/
 @[reassoc]
 theorem δ_comp_δ {n} {i j : Fin (n + 2)} (H : i ≤ j) :
     δ i ≫ δ j.succ = δ j ≫ δ i.castSucc := by
   apply CategoryTheory.Quotient.sound
   exact FreeSimplexQuiver.homRel.δ_comp_δ H
 
+/--
+@isnad1 id=eq.1h3v.s8.9e714920241b from=seed src=0 shape=9de9474a vocab=447721c1
+-/
 @[reassoc]
 theorem δ_comp_σ_of_le {n} {i : Fin (n + 2)} {j : Fin (n + 1)} (H : i ≤ j.castSucc) :
     δ i.castSucc ≫ σ j.succ = σ j ≫ δ i := by
   apply CategoryTheory.Quotient.sound
   exact FreeSimplexQuiver.homRel.δ_comp_σ_of_le H
 
+/--
+@isnad1 id=eq.0h2v.s6.d07a2cb78633 from=seed src=0 shape=70658d7c vocab=b26b78b1
+-/
 @[reassoc]
 theorem δ_comp_σ_self {n} {i : Fin (n + 1)} :
     δ i.castSucc ≫ σ i = 𝟙 (mk n) := by
   apply CategoryTheory.Quotient.sound
   exact FreeSimplexQuiver.homRel.δ_comp_σ_self
 
+/--
+@isnad1 id=eq.0h2v.s6.21be3c673565 from=seed src=0 shape=70658d7c vocab=3e3c7037
+-/
 @[reassoc]
 theorem δ_comp_σ_succ {n} {i : Fin (n + 1)} : δ i.succ ≫ σ i = 𝟙 (mk n) := by
   apply CategoryTheory.Quotient.sound
   exact FreeSimplexQuiver.homRel.δ_comp_σ_succ
 
+/--
+@isnad1 id=eq.1h3v.s8.17f321be86e0 from=seed src=0 shape=bce8095f vocab=77f95cd9
+-/
 @[reassoc]
 theorem δ_comp_σ_of_gt {n} {i : Fin (n + 2)} {j : Fin (n + 1)} (H : j.castSucc < i) :
     δ i.succ ≫ σ j.castSucc = σ j ≫ δ i := by
   apply CategoryTheory.Quotient.sound
   exact FreeSimplexQuiver.homRel.δ_comp_σ_of_gt H
 
+/--
+@isnad1 id=eq.1h3v.s8.9ed0bcf8c852 from=seed src=0 shape=a22a820e vocab=eeb034f6
+-/
 @[reassoc]
 theorem σ_comp_σ {n} {i j : Fin (n + 1)} (H : i ≤ j) :
     σ i.castSucc ≫ σ j = σ j.succ ≫ σ i := by
   apply CategoryTheory.Quotient.sound
   exact FreeSimplexQuiver.homRel.σ_comp_σ H
 
-/-- A version of δ_comp_δ with indices in ℕ satisfying relevant inequalities. -/
+/-- A version of δ_comp_δ with indices in ℕ satisfying relevant inequalities.
+@isnad1 id=eq.3h3v.s8.52988cb13699 from=seed src=0 shape=4c6c3cb6 vocab=92e6171c
+-/
 lemma δ_comp_δ_nat {n} (i j : ℕ) (hi : i < n + 2) (hj : j < n + 2) (H : i ≤ j) :
     δ ⟨i, hi⟩ ≫ δ ⟨j + 1, by lia⟩ = δ ⟨j, hj⟩ ≫ δ ⟨i, by lia⟩ :=
   δ_comp_δ (n := n) (i := ⟨i, by lia⟩) (j := ⟨j, by lia⟩) (by simpa)
 
-/-- A version of σ_comp_σ with indices in ℕ satisfying relevant inequalities. -/
+/-- A version of σ_comp_σ with indices in ℕ satisfying relevant inequalities.
+@isnad1 id=eq.3h3v.s8.3ec30a8a201a from=seed src=0 shape=b6012b2a vocab=4d761925
+-/
 lemma σ_comp_σ_nat {n} (i j : ℕ) (hi : i < n + 1) (hj : j < n + 1) (H : i ≤ j) :
     σ ⟨i, by lia⟩ ≫ σ ⟨j, hj⟩ = σ ⟨j + 1, by lia⟩ ≫ σ ⟨i, hi⟩ :=
   σ_comp_σ (n := n) (i := ⟨i, by lia⟩) (j := ⟨j, by lia⟩) (by simpa)
@@ -263,17 +302,29 @@ def toSimplexCategory : SimplexCategoryGenRel ⥤ SimplexCategory :=
       | .δ_comp_σ_of_gt H => SimplexCategory.δ_comp_σ_of_gt H
       | .σ_comp_σ H => SimplexCategory.σ_comp_σ H)
 
+/--
+@isnad1 id=eq.0h1v.s3.fb6be03b8c6c from=seed src=0 shape=19bb8685 vocab=f5e409ba
+-/
 @[simp]
 lemma toSimplexCategory_obj_mk (n : ℕ) : toSimplexCategory.obj (mk n) = .mk n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.a1a949312784 from=seed src=0 shape=5fdd6929 vocab=6668ebd1
+-/
 @[simp]
 lemma toSimplexCategory_map_δ {n : ℕ} (i : Fin (n + 2)) :
     toSimplexCategory.map (δ i) = SimplexCategory.δ i := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.bbd4b5cdcc2a from=seed src=0 shape=cd905a04 vocab=a70c2e5f
+-/
 @[simp]
 lemma toSimplexCategory_map_σ {n : ℕ} (i : Fin (n + 1)) :
     toSimplexCategory.map (σ i) = SimplexCategory.σ i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.a55bc2bf0c9e from=seed src=0 shape=bab7c7c3 vocab=e229e343
+-/
 @[simp]
 lemma toSimplexCategory_len {x : SimplexCategoryGenRel} : (toSimplexCategory.obj x).len = x.len :=
   rfl

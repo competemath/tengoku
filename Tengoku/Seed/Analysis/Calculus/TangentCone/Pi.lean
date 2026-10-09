@@ -29,7 +29,9 @@ variable {𝕜 : Type*} [Semiring 𝕜]
   [∀ i, TopologicalSpace (E i)] [∀ i, ContinuousAdd (E i)] [∀ i, ContinuousConstSMul 𝕜 (E i)]
   {s : ∀ i, Set (E i)} {x : ∀ i, E i}
 
-/-- The tangent cone of a product contains the tangent cone of each factor. -/
+/-- The tangent cone of a product contains the tangent cone of each factor.
+@isnad1 id=mapsto.1h6v.s8.7dc4fd337997 from=seed src=0 shape=29502d34 vocab=004d1f05
+-/
 theorem mapsTo_tangentConeAt_pi [DecidableEq ι] {i : ι} (hi : ∀ j ≠ i, x j ∈ closure (s j)) :
     MapsTo (Pi.single i) (tangentConeAt 𝕜 (s i) (x i)) (tangentConeAt 𝕜 (Set.pi univ s) x) := by
   rw [← tangentConeAt_closure (s := .pi _ _)]
@@ -47,6 +49,9 @@ theorem mapsTo_tangentConeAt_pi [DecidableEq ι] {i : ι} (hi : ∀ j ≠ i, x j
     intro j
     rcases eq_or_ne j i with rfl | hj <;> simp [*, tendsto_const_nhds]
 
+/--
+@isnad1 id=uniquedi.1h5v.s7.74f3e1a8d289 from=seed src=0 shape=cea9e14a vocab=471de2af
+-/
 theorem UniqueDiffWithinAt.univ_pi {s : ∀ i, Set (E i)} {x : ∀ i, E i}
     (h : ∀ i, UniqueDiffWithinAt 𝕜 (s i) (x i)) : UniqueDiffWithinAt 𝕜 (Set.pi univ s) x := by
   classical
@@ -59,7 +64,9 @@ theorem UniqueDiffWithinAt.univ_pi {s : ∀ i, Set (E i)} {x : ∀ i, E i}
   exact mapsTo_tangentConeAt_pi (fun j _ ↦ (h j).2) |>.image_subset
 
 /-- The product of a family of sets of unique differentiability is a set of unique
-differentiability. -/
+differentiability.
+@isnad1 id=uniquedi.1h4v.s7.17e7264de0ac from=seed src=0 shape=2b1d7883 vocab=26e45c01
+-/
 theorem UniqueDiffOn.univ_pi {s : ∀ i, Set (E i)} (h : ∀ i, UniqueDiffOn 𝕜 (s i)) :
     UniqueDiffOn 𝕜 (Set.pi univ s) :=
   fun _x hx ↦ .univ_pi fun i ↦ h i _ <| hx i (mem_univ i)
@@ -72,6 +79,9 @@ variable {𝕜 : Type*} [DivisionSemiring 𝕜]
   [∀ i, TopologicalSpace (E i)] [∀ i, ContinuousAdd (E i)] [∀ i, ContinuousSMul 𝕜 (E i)]
   {s : ∀ i, Set (E i)} {x : ∀ i, E i} {I : Set ι}
 
+/--
+@isnad1 id=uniquedi.1h6v.s8.36a068b34044 from=seed src=0 shape=7302fd2f vocab=be548823
+-/
 theorem UniqueDiffWithinAt.pi (h : ∀ i ∈ I, UniqueDiffWithinAt 𝕜 (s i) (x i)) :
     UniqueDiffWithinAt 𝕜 (Set.pi I s) x := by
   classical
@@ -80,6 +90,8 @@ theorem UniqueDiffWithinAt.pi (h : ∀ i ∈ I, UniqueDiffWithinAt 𝕜 (s i) (x
   by_cases hi : i ∈ I <;> simp [*, uniqueDiffWithinAt_univ]
 
 /-- The product of a family of sets of unique differentiability is a set of unique
-differentiability. -/
+differentiability.
+@isnad1 id=uniquedi.1h5v.s8.d71a381377b8 from=seed src=0 shape=58d7d46a vocab=7b8b2d33
+-/
 theorem UniqueDiffOn.pi (h : ∀ i ∈ I, UniqueDiffOn 𝕜 (s i)) : UniqueDiffOn 𝕜 (Set.pi I s) :=
   fun x hx => UniqueDiffWithinAt.pi fun i hi => h i hi (x i) (hx i hi)

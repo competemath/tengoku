@@ -35,6 +35,9 @@ variable {C D : Type*} [Category* C] [Category* D]
 
 namespace Abelian
 
+/--
+@isnad1 id=eq.0h3v.s6.fb7d45283034 from=seed src=0 shape=87e68011 vocab=41c79d25
+-/
 lemma isoModSerre_kernel_eq_inverseImage_isomorphisms :
     G.kernel.isoModSerre = (isomorphisms C).inverseImage G := by
   ext X Y f
@@ -48,12 +51,18 @@ lemma isoModSerre_kernel_eq_inverseImage_isomorphisms :
 
 variable {G}
 
+/--
+@isnad1 id=eq.0h5v.s6.b80fbca448b9 from=seed src=0 shape=9f01b9b7 vocab=f1e53a6c
+-/
 lemma isoModSerre_kernel_eq_isLocal_of_rightAdjoint
     {F : C ⥤ D} (adj : G ⊣ F) [F.Full] [F.Faithful] :
     G.kernel.isoModSerre = ObjectProperty.isLocal (· ∈ Set.range F.obj) := by
   rw [ObjectProperty.isLocal_eq_inverseImage_isomorphisms adj,
     isoModSerre_kernel_eq_inverseImage_isomorphisms]
 
+/--
+@isnad1 id=islocali.0h5v.s6.58e3a58a8d12 from=seed src=0 shape=30bf0ee9 vocab=f8d60bd0
+-/
 lemma isLocalization_isoModSerre_kernel_of_leftAdjoint
     {F : C ⥤ D} (adj : G ⊣ F) [F.Full] [F.Faithful] :
     G.IsLocalization G.kernel.isoModSerre := by

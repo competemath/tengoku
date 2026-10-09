@@ -70,27 +70,51 @@ instance instFunLike : FunLike H X V where
   coe f := coeCLM 𝕜 f
   coe_injective := coeCLM_injective
 
+/--
+@isnad1 id=eq.1h6v.s6.e49bcb238d78 from=seed src=0 shape=f81e4bef vocab=48428148
+-/
 @[ext]
 lemma ext {f g : H} (h : ∀ x, f x = g x) : f = g := DFunLike.ext _ _ h
 
+/--
+@isnad1 id=eq.0h5v.s8.25b626e6514f from=seed src=0 shape=597cfd35 vocab=9ad84fe2
+-/
 @[simp]
 lemma coeCLM_apply (f : H) : coeCLM 𝕜 f = f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.14dd20ac14d0 from=seed src=0 shape=56fbd505 vocab=48428148
+-/
 @[simp]
 lemma coe_zero : ⇑(0 : H) = 0 := (coeCLM 𝕜).map_zero ..
 
+/--
+@isnad1 id=eq.0h6v.s7.942782f44295 from=seed src=0 shape=f727c56d vocab=3e135d86
+-/
 @[simp]
 lemma coe_add (f g : H) : ⇑(f + g) = f + g := (coeCLM 𝕜).map_add ..
 
+/--
+@isnad1 id=eq.0h6v.s7.fac718d7db84 from=seed src=0 shape=f727c56d vocab=bc640df1
+-/
 @[simp]
 lemma coe_sub (f g : H) : ⇑(f - g) = f - g := (coeCLM 𝕜).map_sub (M₂ := X → V) ..
 
+/--
+@isnad1 id=eq.0h5v.s6.bcd1c642ac4b from=seed src=0 shape=7174e09e vocab=9af49f92
+-/
 @[simp]
 lemma coe_neg (f : H) : ⇑(-f) = -f := (coeCLM 𝕜).map_neg (M₂ := X → V) ..
 
+/--
+@isnad1 id=eq.0h6v.s8.01621aa57f26 from=seed src=0 shape=60875543 vocab=1659939e
+-/
 @[simp]
 lemma coe_smul (f : H) (c : 𝕜) : ⇑(c • f) = c • f := (coeCLM 𝕜).map_smul ..
 
+/--
+@isnad1 id=continuo.0h5v.s6.fd6d8c67722c from=seed src=0 shape=d5cb86f0 vocab=56383c68
+-/
 @[simp]
 lemma continuous_eval (x : X) : Continuous (fun (f : H) ↦ f x) := by
   simp_rw [← coeCLM_apply]
@@ -106,57 +130,87 @@ def kerFun (x : X) : V →L[𝕜] H := (.proj x ∘L coeCLM 𝕜).adjoint
 kernel functions. -/
 def kernel : Matrix X X (V →L[𝕜] V) := .of fun x y ↦ (kerFun H x).adjoint ∘L kerFun H y
 
+/--
+@isnad1 id=eq.0h7v.s9.867735543401 from=seed src=0 shape=d4b25a35 vocab=d19143f0
+-/
 lemma kerFun_apply (y : X) (v : V) (x : X) : kerFun H y v x = kernel H x y v := by
   simp [kernel, kerFun]
 
+/--
+@isnad1 id=eq.0h6v.s11.38ceed9f1bd8 from=seed src=0 shape=483b6388 vocab=1eb951c6
+-/
 lemma kernel_apply (x y : X) : kernel H x y = (kerFun H x).adjoint ∘L kerFun H y := by
   simp [kerFun, kernel]
 
 variable {H} in
-/-- Point evaluation `f ↦ f x` is the adjoint of the kernel function `kerFun H x`. -/
+/-- Point evaluation `f ↦ f x` is the adjoint of the kernel function `kerFun H x`.
+@isnad1 id=eq.0h6v.s11.cad20d961f99 from=seed src=0 shape=2da0472d vocab=7d97c994
+-/
 @[simp]
 lemma adjoint_kerFun (x : X) (f : H) : (kerFun H x).adjoint f = f x := by
   simp [kerFun]
 
 variable {H} in
-/-- The "reproducing" property of the kernel functions, left version. -/
+/-- The "reproducing" property of the kernel functions, left version.
+@isnad1 id=eq.0h7v.s8.d3cfeaa59cc8 from=seed src=0 shape=7bdd7180 vocab=84606b7f
+-/
 @[simp]
 lemma kerFun_inner (x : X) (v : V) (f : H) : ⟪kerFun H x v, f⟫_𝕜 = ⟪v, f x⟫_𝕜 := by
   simp [kerFun, ← adjoint_inner_right]
 
 variable {H} in
-/-- The "reproducing" property of the kernel functions, right version. -/
+/-- The "reproducing" property of the kernel functions, right version.
+@isnad1 id=eq.0h7v.s8.a85d1e70d19e from=seed src=0 shape=d7816360 vocab=84606b7f
+-/
 @[simp]
 lemma inner_kerFun (x : X) (v : V) (f : H) : ⟪f, kerFun H x v⟫_𝕜 = ⟪f x, v⟫_𝕜 := by
   simp [kerFun, ← adjoint_inner_left]
 
-/-- The "reproducing" property of the kernel. -/
+/-- The "reproducing" property of the kernel.
+@isnad1 id=eq.0h8v.s9.c53f373ae402 from=seed src=0 shape=d4cde292 vocab=4c5e9a76
+-/
 lemma kernel_inner (x y : X) (v w : V) :
     ⟪kernel H x y v, w⟫_𝕜 = ⟪kerFun H y v, kerFun H x w⟫_𝕜 := by
   simp [← adjoint_inner_left, kernel]
 
+/--
+@isnad1 id=eq.0h5v.s8.fbc2ac6b00a1 from=seed src=0 shape=a0d68c9d vocab=fc904b39
+-/
 lemma norm_kernel_eq_norm_kerFun_sq (x) : ‖kernel H x x‖ = ‖kerFun H x‖ ^ 2 := by
   rw [sq, ← ContinuousLinearMap.norm_adjoint_comp_self, kernel_apply]
 
+/--
+@isnad1 id=eq.0h5v.s8.c14717fb7150 from=seed src=0 shape=56819fe7 vocab=8e69cc9f
+-/
 lemma norm_kerFun_eq_sqrt_norm_kernel (x) : ‖kerFun H x‖ = √‖kernel H x x‖ := by
   rw [norm_kernel_eq_norm_kerFun_sq, Real.sqrt_sq (norm_nonneg _)]
 
+/--
+@isnad1 id=le.0h6v.s9.8734d71c261e from=seed src=0 shape=f3765b42 vocab=e018ecf5
+-/
 lemma norm_kernel_le (x y) : ‖kernel H x y‖ ≤ √‖kernel H x x‖ * √‖kernel H y y‖ := by
   grw [kernel_apply, opNorm_comp_le]
   simp [norm_kerFun_eq_sqrt_norm_kernel]
 
+/--
+@isnad1 id=le.0h6v.s9.08bec89947e4 from=seed src=0 shape=f41b9f8a vocab=20679e60
+-/
 lemma norm_kernel_sq_le (x y) : ‖kernel H x y‖ ^ 2 ≤ ‖kernel H x x‖ * ‖kernel H y y‖ := by
   grw [norm_kernel_le]; simp [mul_pow]
 
 variable {H} in
 /-- The evaluation of an element `f` of a reproducing kernel Hilbert space at a point `x` is
-bounded by `‖f‖` times the square root of the kernel diagonal `‖kernel H x x‖` at `x`. -/
+bounded by `‖f‖` times the square root of the kernel diagonal `‖kernel H x x‖` at `x`.
+@isnad1 id=le.0h6v.s8.dce03e735136 from=seed src=0 shape=38a5fe9d vocab=3ccc217f
+-/
 lemma norm_apply_le (f : H) (x : X) : ‖f x‖ ≤ ‖f‖ * √‖kernel H x x‖ := by
   grw [← adjoint_kerFun, le_opNorm, norm_map, norm_kerFun_eq_sqrt_norm_kernel, mul_comm]
 
 variable {H} in
 /-- If the kernel functions are uniformly bounded on a set `s` (`‖kerFun H x‖ ≤ C` for `x ∈ s`),
-then convergence in `H`-norm implies uniform convergence of the underlying functions on `s`. -/
+then convergence in `H`-norm implies uniform convergence of the underlying functions on `s`.
+@isnad1 id=tendstou.2h10v.s8.8d33b17d3ab3 from=seed src=0 shape=fd99c16b vocab=f971339b
+-/
 theorem tendstoUniformlyOn_of_norm_kerFun_le {C : ℝ} {s : Set X}
     (hC : ∀ x ∈ s, ‖kerFun H x‖ ≤ C)
     {ι : Type*} {l : Filter ι} {F : ι → H} {f : H} (h : Tendsto F l (𝓝 f)) :
@@ -171,14 +225,18 @@ theorem tendstoUniformlyOn_of_norm_kerFun_le {C : ℝ} {s : Set X}
 
 variable {H} in
 /-- If the kernel functions are uniformly bounded (`‖kerFun H x‖ ≤ C` for all `x`), then
-convergence in `H`-norm implies uniform convergence of the underlying functions. -/
+convergence in `H`-norm implies uniform convergence of the underlying functions.
+@isnad1 id=tendstou.2h9v.s8.e74eb0f099ac from=seed src=0 shape=1761baf9 vocab=61cf34eb
+-/
 theorem tendstoUniformly_of_norm_kerFun_le {C : ℝ} (hC : ∀ x, ‖kerFun H x‖ ≤ C)
     {ι : Type*} {l : Filter ι} {F : ι → H} {f : H} (h : Tendsto F l (𝓝 f)) :
     TendstoUniformly (fun n => ⇑(F n)) (⇑f) l := by
   rw [← tendstoUniformlyOn_univ]
   exact tendstoUniformlyOn_of_norm_kerFun_le (fun x _ => hC x) h
 
-/-- The span of the kernel functions is dense. -/
+/-- The span of the kernel functions is dense.
+@isnad1 id=eq.0h4v.s9.a0c7cc3ddd15 from=seed src=0 shape=a447f00a vocab=f7f58c90
+-/
 theorem kerFun_dense : topologicalClosure (span 𝕜 {kerFun H x v | (x) (v)}) = ⊤ := by
   refine (orthogonal_eq_bot_iff.mp ((Submodule.eq_bot_iff _).mpr fun f fin ↦ DFunLike.ext f 0 ?_))
   refine fun x ↦ ext_inner_left 𝕜 fun v ↦ ?_
@@ -186,6 +244,9 @@ theorem kerFun_dense : topologicalClosure (span 𝕜 {kerFun H x v | (x) (v)}) =
   refine inner_right_of_mem_orthogonal (subset_closure ?_) fin
   simp [mem_span_of_mem]
 
+/--
+@isnad1 id=ishermit.0h4v.s7.199e8893dc3b from=seed src=0 shape=0bb5c196 vocab=1b662a27
+-/
 lemma isHermitian_kernel : (kernel H).IsHermitian := by
   ext
   refine ext_inner_right 𝕜 fun w ↦ ?_
@@ -193,7 +254,9 @@ lemma isHermitian_kernel : (kernel H).IsHermitian := by
     ← inner_conj_symm _ (kernel H _ _ _), kernel_inner, inner_conj_symm]
 
 open scoped ComplexOrder in
-/-- The kernel is a positive semidefinite matrix. -/
+/-- The kernel is a positive semidefinite matrix.
+@isnad1 id=possemid.0h4v.s7.fccba5b0e2cc from=seed src=0 shape=daf0ba24 vocab=9f074a68
+-/
 theorem posSemidef_kernel : (kernel H).PosSemidef := by
   refine ⟨isHermitian_kernel H, fun s ↦ (ContinuousLinearMap.isPositive_iff' _).2 ⟨?_, fun v ↦ ?_⟩⟩
   · rw [IsSelfAdjoint, sub_zero, star_finsuppSum, Finsupp.sum_comm]
@@ -216,6 +279,9 @@ private lemma isSelfAdjoint_finsuppSum (h : K.IsHermitian) (f : X →₀ V →L[
     star_star]
   rw [Finsupp.sum_comm]
 
+/--
+@isnad1 id=tfae.0h4v.s10.b2a3e78ae216 from=seed src=0 shape=d016cf9d vocab=364fc20d
+-/
 theorem posSemidef_tfae : List.TFAE [K.PosSemidef, K.IsHermitian ∧ ∀ (f : X × V →₀ 𝕜),
     0 ≤ RCLike.re (f.sum fun xv z ↦ f.sum fun xv' w ↦ conj z * w * ⟪K xv'.1 xv.1 xv.2, xv'.2⟫_𝕜),
     K.IsHermitian ∧ ∀ (vv : X →₀ V),
@@ -338,6 +404,7 @@ instance instRKHS : RKHS 𝕜 (OfKernel K) X V where
 
 /-- The kernel of the reproducing kernel Hilbert space generated by a positive semidefinite matrix
 is the original positive semidefinite matrix.
+@isnad1 id=eq.0h4v.s9.003632e7b9be from=seed src=0 shape=bf4fe6b7 vocab=d6284911
 -/
 @[simp]
 theorem kernel_ofKernel : kernel (OfKernel K) = K := by
@@ -398,6 +465,9 @@ private lemma equivAux_apply_coe (h : kernel H = kernel H') (x₀ : H₀ (kernel
 def equiv (h : kernel H = kernel H') : H ≃ₗᵢ[𝕜] H' :=
   (OfKernel.equivAux rfl).symm.trans (OfKernel.equivAux h)
 
+/--
+@isnad1 id=eq.1h7v.s10.04a7fe742246 from=seed src=0 shape=13e19764 vocab=545a5370
+-/
 theorem equiv_kerFun (h : kernel H = kernel H') (x : X) (v : V) :
     equiv h (kerFun H x v) = kerFun H' x v := by
   apply (OfKernel.equivAux h).symm.injective
@@ -406,7 +476,9 @@ theorem equiv_kerFun (h : kernel H = kernel H') (x : X) (v : V) :
   simp
 
 /-- If the two RKHS have the same kernel, then the functions in the RKHSs agree as functions on
-`X → V`. -/
+`X → V`.
+@isnad1 id=eq.1h6v.s9.fba1f718e731 from=seed src=0 shape=3a9fcaad vocab=6e06d953
+-/
 @[simp]
 theorem coe_equiv (h : kernel H = kernel H') (f : H) : ⇑(equiv h f) = f := by
   ext

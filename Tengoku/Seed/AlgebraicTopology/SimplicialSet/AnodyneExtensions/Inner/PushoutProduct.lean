@@ -54,6 +54,9 @@ namespace SSet
 
 namespace prodStdSimplex
 
+/--
+@isnad1 id=innerano.2h3v.s8.c4e2e504352f from=seed src=0 shape=9ec41d53 vocab=e28424f8
+-/
 lemma innerAnodyneExtensions_unionProd_ι {m : ℕ} (k : Fin (m + 2)) (h0 : 0 < k)
     (hn : k < Fin.last (m + 1)) (n : ℕ) :
     innerAnodyneExtensions (Subcomplex.unionProd.{u} Λ[m + 1, k] ∂Δ[n]).ι := by
@@ -69,6 +72,9 @@ section
 variable {X₁ X₂ Y₁ Y₂ E B : SSet.{u}}
   {i : X₁ ⟶ Y₁} {j : X₂ ⟶ Y₂} {p : E ⟶ B}
 
+/--
+@isnad1 id=innerfib.0h7v.s8.fe2f5afa3418 from=seed src=0 shape=c0f2372d vocab=f1d6ad44
+-/
 lemma innerFibration_pullbackObjObjπ [Mono i] [InnerFibration p]
     (sq₁₃ : MonoidalClosed.internalHom.PullbackObjObj i p) :
     InnerFibration sq₁₃.π := by
@@ -92,6 +98,9 @@ lemma innerFibration_pullbackObjObjπ [Mono i] [InnerFibration p]
     Subcomplex.unionProd.pushoutObjObj_ι]
   exact prodStdSimplex.innerAnodyneExtensions_unionProd_ι k h0 hn n _ hp
 
+/--
+@isnad1 id=innerano.0h8v.s8.925ed0f3e7c0 from=seed src=0 shape=0d90a848 vocab=6db7d049
+-/
 lemma innerAnodyneExtensions_pushoutObjObjι
     (sq₁₂ : (curriedTensor _).PushoutObjObj i j) [Mono i] (hj : innerAnodyneExtensions j) :
     innerAnodyneExtensions sq₁₂.ι := by
@@ -102,6 +111,9 @@ lemma innerAnodyneExtensions_pushoutObjObjι
   rw [← innerFibration_iff] at hp ⊢
   exact innerFibration_pullbackObjObjπ sq₁₃
 
+/--
+@isnad1 id=innerano.0h8v.s8.b157e65f5304 from=seed src=0 shape=07473c19 vocab=6db7d049
+-/
 lemma innerAnodyneExtensions_pushoutObjObjι'
     (sq₁₂ : (curriedTensor _).PushoutObjObj i j)
     [Mono j] (hi : innerAnodyneExtensions i) :
@@ -112,24 +124,36 @@ lemma innerAnodyneExtensions_pushoutObjObjι'
 
 end
 
+/--
+@isnad1 id=innerano.0h5v.s6.c6d466c0c981 from=seed src=0 shape=87c1ec2b vocab=bfec3f61
+-/
 lemma innerAnodyneExtensions_unionProd_ι
     {X Y : SSet.{u}} (A : X.Subcomplex) (B : Y.Subcomplex)
     (hB : innerAnodyneExtensions B.ι) :
     innerAnodyneExtensions (A.unionProd B).ι :=
   innerAnodyneExtensions_pushoutObjObjι (Subcomplex.unionProd.pushoutObjObj A B) hB
 
+/--
+@isnad1 id=innerano.0h5v.s6.30de46fc5fb3 from=seed src=0 shape=d199ade1 vocab=bfec3f61
+-/
 lemma innerAnodyneExtensions_unionProd_ι'
     {X Y : SSet.{u}} (A : X.Subcomplex) (B : Y.Subcomplex)
     (hA : innerAnodyneExtensions A.ι) :
     innerAnodyneExtensions (A.unionProd B).ι :=
   innerAnodyneExtensions_pushoutObjObjι' (Subcomplex.unionProd.pushoutObjObj A B) hA
 
+/--
+@isnad1 id=innerano.0h5v.s6.83b493a65e32 from=seed src=0 shape=69d1a85a vocab=d2ee8725
+-/
 lemma innerAnodyneExtensions.whiskerRight
     {X Y : SSet.{u}} {f : X ⟶ Y} (hf : innerAnodyneExtensions f) (Z : SSet.{u}) :
     innerAnodyneExtensions (f ▷ Z) :=
   innerAnodyneExtensions_pushoutObjObjι'
     (.ofIsInitialRight (curriedTensor _) f (initial.to Z) initialIsInitial) hf
 
+/--
+@isnad1 id=innerano.0h5v.s6.3489bae50a7f from=seed src=0 shape=74dc22d5 vocab=0efeffe5
+-/
 lemma innerAnodyneExtensions.whiskerLeft
     {X Y : SSet.{u}} {f : X ⟶ Y} (hf : innerAnodyneExtensions f) (Z : SSet.{u}) :
     innerAnodyneExtensions (Z ◁ f) :=

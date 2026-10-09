@@ -36,6 +36,9 @@ abbrev GroupSeminormClass.toSeminormedGroup [Group α] [GroupSeminormClass F α 
   dist_comm x y := by simp [← map_inv_eq_map f (x⁻¹ * y)]
   dist_triangle x y z := by convert! map_mul_le_add f (x⁻¹ * y) (y⁻¹ * z) using 2; group
 
+/--
+@isnad1 id=eq.0h4v.s5.b4b6b594d030 from=seed src=0 shape=57dd2dc9 vocab=20ea5e98
+-/
 @[to_additive]
 lemma GroupSeminormClass.toSeminormedGroup_norm_eq [Group α] [GroupSeminormClass F α ℝ]
     (f : F) (x : α) : @norm _ (GroupSeminormClass.toSeminormedGroup f).toNorm x = f x := rfl
@@ -49,6 +52,9 @@ abbrev GroupSeminormClass.toSeminormedCommGroup [CommGroup α] [GroupSeminormCla
   __ := GroupSeminormClass.toSeminormedGroup f
   __ : CommGroup α := inferInstance
 
+/--
+@isnad1 id=eq.0h4v.s5.f6ee2aaf8284 from=seed src=0 shape=57dd2dc9 vocab=6f5fb4b6
+-/
 @[to_additive]
 lemma GroupSeminormClass.toSeminormedCommGroup_norm_eq [CommGroup α] [GroupSeminormClass F α ℝ]
     (f : F) (x : α) : @norm _ (GroupSeminormClass.toSeminormedCommGroup f).toNorm x = f x := rfl
@@ -62,6 +68,9 @@ abbrev GroupNormClass.toNormedGroup [Group α] [GroupNormClass F α ℝ]
   __ := GroupSeminormClass.toSeminormedGroup f
   eq_of_dist_eq_zero h := inv_mul_eq_one.mp (eq_one_of_map_eq_zero f h)
 
+/--
+@isnad1 id=eq.0h4v.s5.779c19f29e34 from=seed src=0 shape=57dd2dc9 vocab=aa4b7316
+-/
 @[to_additive]
 lemma GroupNormClass.toNormedGroup_norm_eq [Group α] [GroupNormClass F α ℝ]
     (f : F) (x : α) : @norm _ (GroupNormClass.toNormedGroup f).toNorm x = f x := rfl
@@ -75,6 +84,9 @@ abbrev GroupNormClass.toNormedCommGroup [CommGroup α] [GroupNormClass F α ℝ]
   __ := GroupNormClass.toNormedGroup f
   __ : CommGroup α := inferInstance
 
+/--
+@isnad1 id=eq.0h4v.s5.f50dac88a82d from=seed src=0 shape=57dd2dc9 vocab=0559295c
+-/
 @[to_additive]
 lemma GroupNormClass.toNormedCommGroup_norm_eq [CommGroup α] [GroupNormClass F α ℝ]
     (f : F) (x : α) : @norm _ (GroupNormClass.toNormedCommGroup f).toNorm x = f x := rfl

@@ -66,10 +66,16 @@ def N₂ : Karoubi (SimplicialObject C) ⥤ Karoubi (ChainComplex C ℕ) :=
 def toKaroubiCompN₂IsoN₁ : toKaroubi (SimplicialObject C) ⋙ N₂ ≅ N₁ :=
   (functorExtension₁CompWhiskeringLeftToKaroubiIso _ _).app N₁
 
+/--
+@isnad1 id=eq.0h2v.s10.69d5c1e67b15 from=seed src=0 shape=e1e6b44e vocab=3a5299e5
+-/
 @[simp]
 lemma toKaroubiCompN₂IsoN₁_hom_app (X : SimplicialObject C) :
     (toKaroubiCompN₂IsoN₁.hom.app X).f = PInfty := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.857d74c834ef from=seed src=0 shape=0c01ab33 vocab=e399f42d
+-/
 @[simp]
 lemma toKaroubiCompN₂IsoN₁_inv_app (X : SimplicialObject C) :
     (toKaroubiCompN₂IsoN₁.inv.app X).f = PInfty := rfl

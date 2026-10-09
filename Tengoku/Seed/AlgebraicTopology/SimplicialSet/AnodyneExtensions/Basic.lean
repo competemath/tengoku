@@ -75,14 +75,23 @@ deriving IsMultiplicative, RespectsIso, IsStableUnderCobaseChange,
   IsStableUnderRetracts, IsStableUnderTransfiniteComposition,
   IsStableUnderCoproducts
 
+/--
+@isnad1 id=anodynee.0h3v.s5.1cad190ff8b3 from=seed src=0 shape=31ca8f87 vocab=163f50af
+-/
 lemma anodyneExtensions.of_isIso {X Y : SSet.{u}} (f : X ⟶ Y) [IsIso f] :
     anodyneExtensions f :=
   MorphismProperty.of_isIso anodyneExtensions f
 
+/--
+@isnad1 id=eq.0h0v.s5.d30987a53179 from=seed src=0 shape=e82b111c vocab=e4f02202
+-/
 lemma anodyneExtensions_eq_llp_rlp :
     anodyneExtensions.{u} = modelCategoryQuillen.J.rlp.llp :=
   rfl
 
+/--
+@isnad1 id=anodynee.0h2v.s6.19f9a0376238 from=seed src=0 shape=0647724a vocab=52a615cd
+-/
 lemma anodyneExtensions.horn_ι {n : ℕ} [NeZero n] (i : Fin (n + 1)) :
     anodyneExtensions.{u} Λ[n, i].ι := by
   rw [anodyneExtensions_eq_llp_rlp]
@@ -109,11 +118,17 @@ instance : IsCardinalForSmallObjectArgument modelCategoryQuillen.J.{u} Cardinal.
 instance : HasSmallObjectArgument.{u} modelCategoryQuillen.J.{u} :=
   ⟨.aleph0, inferInstance, inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.3af94b30fc22 from=seed src=0 shape=a3ba6194 vocab=0d6c5fd8
+-/
 lemma anodyneExtensions_eq_retracts_transfiniteCompositions :
     anodyneExtensions = (transfiniteCompositions.{u}
       (coproducts.{u} modelCategoryQuillen.J.{u}).pushouts).retracts := by
   rw [anodyneExtensions_eq_llp_rlp, llp_rlp_of_hasSmallObjectArgument]
 
+/--
+@isnad1 id=eq.0h0v.s5.6e339f4e74f3 from=seed src=0 shape=46760855 vocab=cfb40a89
+-/
 lemma anodyneExtensions_eq_retracts_transfiniteCompositionsOfShape :
     anodyneExtensions = (transfiniteCompositionsOfShape
       (coproducts.{u} modelCategoryQuillen.J.{u}).pushouts ℕ).retracts := by
@@ -129,9 +144,15 @@ and there exists a regular pairing (in the sense of Moss) for the subcomplex
 def strongAnodyneExtensions : MorphismProperty SSet.{u} :=
   fun _ _ f ↦ Mono f ∧ ∃ (P : (Subcomplex.range f).Pairing), P.IsRegular
 
+/--
+@isnad1 id=mono.0h4v.s5.3b88006d575b from=seed src=0 shape=d03ea59f vocab=4d91f383
+-/
 lemma strongAnodyneExtensions.mono {X Y : SSet.{u}} {f : X ⟶ Y}
     (hf : strongAnodyneExtensions f) : Mono f := hf.1
 
+/--
+@isnad1 id=strongan.0h3v.s4.a3a9b28d62aa from=seed src=0 shape=f5bd1cf9 vocab=b073008e
+-/
 lemma Subcomplex.Pairing.strongAnodyneExtensions {X : SSet.{u}} {A : X.Subcomplex}
     (P : A.Pairing) [P.IsRegular] :
     strongAnodyneExtensions A.ι :=
@@ -140,6 +161,9 @@ lemma Subcomplex.Pairing.strongAnodyneExtensions {X : SSet.{u}} {A : X.Subcomple
     obtain rfl : B = A := by simpa using h.symm
     exact ⟨P, inferInstance⟩⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.06efcd1b989f from=seed src=0 shape=4cffade3 vocab=b073008e
+-/
 lemma strongAnodyneExtensions_ι_iff {X : SSet.{u}} (A : X.Subcomplex) :
     strongAnodyneExtensions A.ι ↔ ∃ (P : A.Pairing), P.IsRegular :=
   ⟨fun hA ↦ by
@@ -150,6 +174,9 @@ lemma strongAnodyneExtensions_ι_iff {X : SSet.{u}} (A : X.Subcomplex) :
     exact ⟨P, inferInstance⟩,
   fun ⟨P, _⟩ ↦ P.strongAnodyneExtensions⟩
 
+/--
+@isnad1 id=anodynee.0h3v.s4.3ffab7cc516f from=seed src=0 shape=f5bd1cf9 vocab=095f8471
+-/
 lemma Subcomplex.Pairing.anodyneExtensions {X : SSet.{u}} {A : X.Subcomplex}
     (P : A.Pairing) [P.IsRegular] :
     anodyneExtensions A.ι :=
@@ -172,6 +199,9 @@ instance : strongAnodyneExtensions.{u}.RespectsIso where
     refine ⟨inferInstance, P.ofIso (asIso e).symm ?_, inferInstance⟩
     simp [Subcomplex.preimage_inv, Subcomplex.range_comp]
 
+/--
+@isnad1 id=le.0h0v.s6.b41567aab375 from=seed src=0 shape=836e6cbb vocab=69819f58
+-/
 lemma strongAnodyneExtensions_le_anodyneExtensions :
     strongAnodyneExtensions.{u} ≤ anodyneExtensions := by
   rintro X Y f ⟨_, P, _⟩

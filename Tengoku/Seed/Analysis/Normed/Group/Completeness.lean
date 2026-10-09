@@ -40,6 +40,9 @@ section Metric
 
 variable {α : Type*} [PseudoMetricSpace α]
 
+/--
+@isnad1 id=ex.1h2v.s6.f6940c48af8c from=seed src=0 shape=d682ee05 vocab=c3588cdc
+-/
 lemma Metric.exists_subseq_summable_dist_of_cauchySeq (u : ℕ → α) (hu : CauchySeq u) :
     ∃ f : ℕ → ℕ, StrictMono f ∧ Summable fun i => dist (u (f (i + 1))) (u (f i)) := by
   obtain ⟨f, hf₁, hf₂⟩ := Metric.exists_subseq_bounded_of_cauchySeq u hu
@@ -55,7 +58,9 @@ section Normed
 variable {E : Type*} [NormedAddCommGroup E]
 
 /-- A normed additive group is complete if any absolutely convergent series converges in the
-space. -/
+space.
+@isnad1 id=complete.1h1v.s6.0f609fe851cc from=seed src=0 shape=97ce4dcf vocab=db7b53c3
+-/
 lemma NormedAddCommGroup.completeSpace_of_summable_imp_tendsto
     (h : ∀ u : ℕ → E,
       Summable (‖u ·‖) → ∃ a, Tendsto (fun n => ∑ i ∈ range n, u i) atTop (𝓝 a)) :
@@ -77,14 +82,18 @@ lemma NormedAddCommGroup.completeSpace_of_summable_imp_tendsto
   simpa only [sub_add_cancel] using! h₁
 
 /-- In a complete normed additive group, every absolutely convergent series converges in the
-space. -/
+space.
+@isnad1 id=ex.1h2v.s6.58220d8c92b9 from=seed src=0 shape=7ef8daf4 vocab=db7b53c3
+-/
 lemma NormedAddCommGroup.summable_imp_tendsto_of_complete [CompleteSpace E] (u : ℕ → E)
     (hu : Summable (‖u ·‖)) : ∃ a, Tendsto (fun n => ∑ i ∈ range n, u i) atTop (𝓝 a) := by
   refine cauchySeq_tendsto_of_complete <| cauchySeq_of_summable_dist ?_
   simp [dist_eq_norm, sum_range_succ, hu]
 
 /-- In a normed additive group, every absolutely convergent series converges in the
-space iff the space is complete. -/
+space iff the space is complete.
+@isnad1 id=iff.0h1v.s6.edb6ed00f133 from=seed src=0 shape=d1edbf3c vocab=db7b53c3
+-/
 lemma NormedAddCommGroup.summable_imp_tendsto_iff_completeSpace :
     (∀ u : ℕ → E, Summable (‖u ·‖) → ∃ a, Tendsto (fun n => ∑ i ∈ range n, u i) atTop (𝓝 a))
      ↔ CompleteSpace E :=

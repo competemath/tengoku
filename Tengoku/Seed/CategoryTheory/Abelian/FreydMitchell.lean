@@ -164,7 +164,9 @@ instance : PreservesFiniteColimits (functor C) := by
 end FreydMitchell
 
 /-- The Freyd-Mitchell embedding theorem. See also `FreydMitchell.functor` for a functor which
-has the relevant instances. -/
+has the relevant instances.
+@isnad1 id=ex.0h1v.s6.65c261329df9 from=seed src=0 shape=5a5bdf8d vocab=6e3fd7a2
+-/
 @[stacks 05PP]
 theorem freyd_mitchell (C : Type u) [Category.{v} C] [Abelian C] :
     ∃ (R : Type (max u v)) (_ : Ring R) (F : C ⥤ ModuleCat.{max u v} R),

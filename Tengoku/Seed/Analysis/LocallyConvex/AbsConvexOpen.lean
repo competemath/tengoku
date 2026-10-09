@@ -57,23 +57,41 @@ namespace AbsConvexOpenSets
 
 variable {𝕜 E}
 
+/--
+@isnad1 id=mem.0h3v.s6.63af650073f0 from=seed src=0 shape=d28a084a vocab=9e345877
+-/
 theorem coe_zero_mem (s : AbsConvexOpenSets 𝕜 E) : (0 : E) ∈ (s : Set E) :=
   s.2.1
 
+/--
+@isnad1 id=isopen.0h3v.s6.ecde93ea7596 from=seed src=0 shape=e96bc5f3 vocab=9e345877
+-/
 theorem coe_isOpen (s : AbsConvexOpenSets 𝕜 E) : IsOpen (s : Set E) :=
   s.2.2.1
 
+/--
+@isnad1 id=mem.0h3v.s6.ac997cd9bb34 from=seed src=0 shape=ba59196b vocab=f5bb4c5f
+-/
 theorem coe_nhds (s : AbsConvexOpenSets 𝕜 E) : (s : Set E) ∈ 𝓝 (0 : E) :=
   s.coe_isOpen.mem_nhds s.coe_zero_mem
 
+/--
+@isnad1 id=balanced.0h3v.s6.fe19ce24b3b8 from=seed src=0 shape=96442550 vocab=da62c674
+-/
 theorem coe_balanced (s : AbsConvexOpenSets 𝕜 E) : Balanced 𝕜 (s : Set E) :=
   s.2.2.2.1
 
+/--
+@isnad1 id=convex.0h3v.s6.efe8a860f133 from=seed src=0 shape=96442550 vocab=91f4c10c
+-/
 theorem coe_convex (s : AbsConvexOpenSets 𝕜 E) : Convex 𝕜 (s : Set E) :=
   s.2.2.2.2
 
 end AbsConvexOpenSets
 
+/--
+@isnad1 id=nonempty.0h2v.s4.edfa654f158e from=seed src=0 shape=1a7537da vocab=a9e721b5
+-/
 instance AbsConvexOpenSets.instNonempty : Nonempty (AbsConvexOpenSets 𝕜 E) := by
   rw [← exists_true_iff_nonempty]
   dsimp only [AbsConvexOpenSets]
@@ -96,6 +114,9 @@ noncomputable def gaugeSeminormFamily : SeminormFamily 𝕜 E (AbsConvexOpenSets
 
 variable {𝕜 E}
 
+/--
+@isnad1 id=eq.0h3v.s9.16f1b02217c6 from=seed src=0 shape=001cb5f1 vocab=9b9ecf65
+-/
 theorem gaugeSeminormFamily_ball (s : AbsConvexOpenSets 𝕜 E) :
     (gaugeSeminormFamily 𝕜 E s).ball 0 1 = (s : Set E) := by
   dsimp only [gaugeSeminormFamily]
@@ -107,7 +128,9 @@ variable [IsTopologicalAddGroup E] [ContinuousSMul 𝕜 E]
 variable [LocallyConvexSpace 𝕜 E]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The topology of a locally convex space is induced by the gauge seminorm family. -/
+/-- The topology of a locally convex space is induced by the gauge seminorm family.
+@isnad1 id=withsemi.0h2v.s8.7623837ec792 from=seed src=0 shape=7be8324a vocab=1571d061
+-/
 theorem with_gaugeSeminormFamily : WithSeminorms (gaugeSeminormFamily 𝕜 E) := by
   refine SeminormFamily.withSeminorms_of_hasBasis _ ?_
   refine (nhds_hasBasis_absConvex_open 𝕜 E).to_hasBasis (fun s hs => ?_) fun s hs => ?_
@@ -131,6 +154,8 @@ theorem with_gaugeSeminormFamily : WithSeminorms (gaugeSeminormFamily 𝕜 E) :=
   rw [hr', ← Seminorm.smul_ball_zero hr'', gaugeSeminormFamily_ball]
   exact S.coe_isOpen.smul₀ hr''
 
-/-- Any locally convex real or complex vector space is polynormable. -/
+/-- Any locally convex real or complex vector space is polynormable.
+@isnad1 id=polynorm.0h2v.s8.442b644ac495 from=seed src=0 shape=ac2e374a vocab=f74908f9
+-/
 instance LocallyConvexSpace.toPolynormableSpace : PolynormableSpace 𝕜 E :=
   with_gaugeSeminormFamily.toPolynormableSpace

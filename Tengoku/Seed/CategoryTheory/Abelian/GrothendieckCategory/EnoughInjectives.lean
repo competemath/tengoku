@@ -86,6 +86,9 @@ instance (G : C) [Small.{w} (Subobject G)] :
   dsimp [generatingMonomorphisms]
   infer_instance
 
+/--
+@isnad1 id=le.0h2v.s5.dcb72b99bcd9 from=seed src=0 shape=f2a46d0f vocab=82f4fe3a
+-/
 lemma generatingMonomorphisms_le_monomorphisms (G : C) :
     generatingMonomorphisms G ≤ MorphismProperty.monomorphisms C := by
   rintro _ _ _ ⟨X⟩
@@ -93,6 +96,9 @@ lemma generatingMonomorphisms_le_monomorphisms (G : C) :
 
 variable (G : C)
 
+/--
+@isnad1 id=le.0h2v.s5.cc815ddd0e09 from=seed src=0 shape=d5f67733 vocab=b7888a4e
+-/
 lemma isomorphisms_le_pushouts_generatingMonomorphisms [HasZeroMorphisms C] :
     MorphismProperty.isomorphisms C ≤ (generatingMonomorphisms G).pushouts :=
   MorphismProperty.isomorphisms_le_pushouts _
@@ -110,7 +116,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- If `p : X ⟶ Y` is a monomorphism that is not an isomorphism, there exists
 a subobject `X'` of `Y` containing `X` (but different from `X`) such that
 the inclusion `X ⟶ X'` is a pushout of a monomorphism in the family
-`generatingMonomorphisms G`. -/
+`generatingMonomorphisms G`.
+@isnad1 id=ex.2h5v.s7.07001c553f6c from=seed src=0 shape=d71b86d2 vocab=2ba1a54c
+-/
 lemma exists_pushouts
     {X Y : C} (p : X ⟶ Y) [Mono p] (hp : ¬ IsIso p) :
     ∃ (X' : C) (i : X ⟶ X') (p' : X' ⟶ Y) (_ : (generatingMonomorphisms G).pushouts i)
@@ -137,6 +145,9 @@ lemma exists_pushouts
       (IsPullback.of_hasPullback p f) _ (by simp) (by simp)
 
 set_option backward.defeqAttrib.useBackward true in
+/--
+@isnad1 id=ex.2h4v.s7.8fb5959879d7 from=seed src=0 shape=a227be9a vocab=09c65e91
+-/
 lemma exists_larger_subobject {X : C} (A : Subobject X) (hA : A ≠ ⊤) :
     ∃ (A' : Subobject X) (h : A < A'),
       (generatingMonomorphisms G).pushouts (Subobject.ofLE A A' h.le) := by
@@ -163,15 +174,24 @@ noncomputable def largerSubobject (A : Subobject X) : Subobject X :=
   if hA : A = ⊤ then ⊤ else (exists_larger_subobject hG A hA).choose
 
 variable (X) in
+/--
+@isnad1 id=eq.1h3v.s6.747e76095b52 from=seed src=0 shape=80a5f24e vocab=583794c6
+-/
 @[simp]
 lemma largerSubobject_top : largerSubobject hG (⊤ : Subobject X) = ⊤ := dite_eq_left rfl
 
+/--
+@isnad1 id=lt.2h4v.s6.6c868a72b27e from=seed src=0 shape=0923c983 vocab=6c363440
+-/
 lemma lt_largerSubobject (A : Subobject X) (hA : A ≠ ⊤) :
     A < largerSubobject hG A := by
   dsimp only [largerSubobject]
   rw [dite_eq_right hA]
   exact (exists_larger_subobject hG A hA).choose_spec.choose
 
+/--
+@isnad1 id=le.1h4v.s5.b9497cdc1c87 from=seed src=0 shape=85541a44 vocab=923e1c24
+-/
 lemma le_largerSubobject (A : Subobject X) :
     A ≤ largerSubobject hG A := by
   by_cases hA : A = ⊤
@@ -181,6 +201,9 @@ lemma le_largerSubobject (A : Subobject X) :
 
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=pushouts.1h4v.s6.e8e55448e141 from=seed src=0 shape=c7a77e65 vocab=e44c8f27
+-/
 lemma pushouts_ofLE_le_largerSubobject (A : Subobject X) :
       (generatingMonomorphisms G).pushouts
         (Subobject.ofLE _ _ (le_largerSubobject hG A)) := by
@@ -198,12 +221,18 @@ lemma pushouts_ofLE_le_largerSubobject (A : Subobject X) :
 
 variable [IsGrothendieckAbelian.{w} C]
 
+/--
+@isnad1 id=ex.2h5v.s7.4052e6caf2a9 from=seed src=0 shape=d8ceda31 vocab=ab8ecb14
+-/
 lemma top_mem_range (A₀ : Subobject X) {J : Type w} [LinearOrder J] [OrderBot J] [SuccOrder J]
     [WellFoundedLT J] (hJ : HasCardinalLT (Subobject X) (Cardinal.mk J)) :
     ∃ (j : J), transfiniteIterate (largerSubobject hG) j A₀ = ⊤ :=
   top_mem_range_transfiniteIterate (largerSubobject hG) A₀ (lt_largerSubobject hG) (by simp)
     (fun h ↦ by simpa [hasCardinalLT_iff_cardinal_mk_lt] using hJ.of_injective _ h)
 
+/--
+@isnad1 id=ex.1h4v.s6.89bb28fab948 from=seed src=0 shape=63fba956 vocab=6abe69a2
+-/
 lemma exists_ordinal (A₀ : Subobject X) :
     ∃ (o : Ordinal.{w}) (j : o.ToType), transfiniteIterate (largerSubobject hG) j A₀ = ⊤ := by
   let κ := Order.succ (Cardinal.mk (Shrink.{w} (Subobject X)))
@@ -293,7 +322,9 @@ variable (f)
 /-- Let `C` be a Grothendieck abelian category. Assume that `G : C` is a generator
 of `C`. Then, any morphism in `C` is a transfinite composition of pushouts
 of monomorphisms in the family `generatingMonomorphisms G` which consists
-of the inclusions of the subobjects of `G`. -/
+of the inclusions of the subobjects of `G`.
+@isnad1 id=ex.1h5v.s7.453e30210f23 from=seed src=0 shape=6d678860 vocab=4288ab73
+-/
 lemma exists_transfiniteCompositionOfShape :
     ∃ (J : Type w) (_ : LinearOrder J) (_ : OrderBot J) (_ : SuccOrder J)
         (_ : WellFoundedLT J),
@@ -309,6 +340,9 @@ open MorphismProperty
 
 variable {G}
 
+/--
+@isnad1 id=eq.1h2v.s5.d63d7642e9ac from=seed src=0 shape=175cb0d3 vocab=329a4623
+-/
 lemma generatingMonomorphisms_rlp [IsGrothendieckAbelian.{w} C] (hG : IsSeparator G) :
     (generatingMonomorphisms G).rlp = (monomorphisms C).rlp := by
   apply le_antisymm
@@ -342,6 +376,9 @@ instance : HasSmallObjectArgument.{w} (generatingMonomorphisms G) := by
         obtain ⟨S⟩ := hi
         exact Subobject.hasCardinalLT_of_mono hκ S.arrow }⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.3470475e53e9 from=seed src=0 shape=c8c9e36f vocab=1f4c33d2
+-/
 lemma llp_rlp_monomorphisms (hG : IsSeparator G) :
     (monomorphisms C).rlp.llp = monomorphisms C := by
   refine le_antisymm ?_ (le_llp_rlp _)
@@ -376,7 +413,9 @@ instance {X : C} : Injective (monoMapFactorizationDataRlp (0 : X ⟶ 0)).Z := by
   simpa only [injective_iff_rlp_monomorphisms_zero,
     (isZero_zero C).eq_of_tgt fac.p 0] using fac.hp
 
-/-- A Grothendieck abelian category has enough injectives. -/
+/-- A Grothendieck abelian category has enough injectives.
+@isnad1 id=enoughin.0h1v.s4.9ac8e8e4a74f from=seed src=0 shape=affebb5f vocab=3e485d17
+-/
 @[stacks 079H]
 instance enoughInjectives : EnoughInjectives C where
   presentation X := ⟨{ J := _, f := (monoMapFactorizationDataRlp (0 : X ⟶ 0)).i }⟩

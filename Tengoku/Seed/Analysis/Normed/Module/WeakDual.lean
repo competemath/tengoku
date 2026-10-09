@@ -132,12 +132,16 @@ For Banach spaces, these notions coincide via `isBounded_iff_isVonNBounded`.
 See the module docstring for more details. -/
 instance instBornology : Bornology (WeakDual 𝕜 E) := inferInstanceAs (Bornology (StrongDual 𝕜 E))
 
-/-- A set in `WeakDual 𝕜 E` is bounded iff its image in `StrongDual 𝕜 E` is bounded. -/
+/-- A set in `WeakDual 𝕜 E` is bounded iff its image in `StrongDual 𝕜 E` is bounded.
+@isnad1 id=iff.0h3v.s11.317938bbfb20 from=seed src=0 shape=a5a21f1a vocab=af973fff
+-/
 @[simp]
 theorem isBounded_toStrongDual_preimage_iff_isBounded {s : Set (StrongDual 𝕜 E)} :
     IsBounded (WeakDual.toStrongDual ⁻¹' s) ↔ IsBounded s := Iff.rfl
 
-/-- A set in `StrongDual 𝕜 E` is bounded iff its image in `WeakDual 𝕜 E` is bounded. -/
+/-- A set in `StrongDual 𝕜 E` is bounded iff its image in `WeakDual 𝕜 E` is bounded.
+@isnad1 id=iff.0h3v.s11.0fd1258bfd8d from=seed src=0 shape=a5a21f1a vocab=4308d10d
+-/
 @[simp]
 theorem isBounded_toWeakDual_preimage_iff_isBounded {s : Set (WeakDual 𝕜 E)} :
     IsBounded (StrongDual.toWeakDual ⁻¹' s) ↔ IsBounded s := Iff.rfl
@@ -159,6 +163,9 @@ namespace NormedSpace
 
 namespace Dual
 
+/--
+@isnad1 id=continuo.0h2v.s11.a5d3835f11d1 from=seed src=0 shape=bc0aafca vocab=3d0dcc1f
+-/
 @[fun_prop]
 theorem toWeakDual_continuous : Continuous fun x' : StrongDual 𝕜 E => StrongDual.toWeakDual x' :=
   WeakBilin.continuous_of_continuous_eval _ fun z => (ContinuousLinearMap.apply 𝕜 𝕜 z).continuous
@@ -170,7 +177,9 @@ def continuousLinearMapToWeakDual : StrongDual 𝕜 E →L[𝕜] WeakDual 𝕜 E
   { StrongDual.toWeakDual with }
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The weak-star topology is coarser than the dual-norm topology. -/
+/-- The weak-star topology is coarser than the dual-norm topology.
+@isnad1 id=le.0h2v.s8.4bb47820906d from=seed src=0 shape=49b4c7e6 vocab=915979b1
+-/
 theorem dual_norm_topology_le_weak_dual_topology :
     (UniformSpace.toTopologicalSpace : TopologicalSpace (StrongDual 𝕜 E)) ≤
       (instTopologicalSpaceWeakDual .. : TopologicalSpace (WeakDual 𝕜 E)) := by
@@ -201,15 +210,23 @@ variable (𝕜 E) in
 This is the seminorm family associated to the weak-\* topology via `topDualPairing`. -/
 def seminormFamily : SeminormFamily 𝕜 (WeakDual 𝕜 E) E := (topDualPairing 𝕜 E).toSeminormFamily
 
+/--
+@isnad1 id=eq.0h4v.s11.7436557897cc from=seed src=0 shape=71665f57 vocab=08e31f06
+-/
 @[simp]
 lemma seminormFamily_apply (x : E) (f : WeakDual 𝕜 E) : seminormFamily 𝕜 E x f = ‖f x‖ := rfl
 
 variable (𝕜 E) in
+/--
+@isnad1 id=withsemi.0h2v.s7.fd01b64314fe from=seed src=0 shape=58cf080f vocab=61893e9b
+-/
 lemma withSeminorms : WithSeminorms (seminormFamily 𝕜 E) :=
   (topDualPairing 𝕜 E).weakBilin_withSeminorms
 
 /-- By the Uniform Boundedness Principle, norm-boundedness (the default bornology)
-and pointwise-boundedness (`IsVonNBounded`) coincide on the weak dual of a Banach space. -/
+and pointwise-boundedness (`IsVonNBounded`) coincide on the weak dual of a Banach space.
+@isnad1 id=iff.0h3v.s10.1eca5be93b15 from=seed src=0 shape=f6931e6a vocab=4428305d
+-/
 theorem isBounded_iff_isVonNBounded [CompleteSpace E] {s : Set (WeakDual 𝕜 E)} :
     IsBounded s ↔ Bornology.IsVonNBounded 𝕜 s := by
   constructor
@@ -230,13 +247,17 @@ While the coercion `↑ : WeakDual 𝕜 E → (E → 𝕜)` is not a closed map,
 closed sets to closed sets.
 -/
 
-/-- The coercion `↑ : WeakDual 𝕜 E → (E → 𝕜)` sends bounded closed sets to closed sets. -/
+/-- The coercion `↑ : WeakDual 𝕜 E → (E → 𝕜)` sends bounded closed sets to closed sets.
+@isnad1 id=isclosed.2h3v.s8.5cd9e330d349 from=seed src=0 shape=3507d11e vocab=3ff7b253
+-/
 theorem isClosed_image_coe_of_bounded_of_closed {s : Set (WeakDual 𝕜 E)}
     (hb : IsBounded s) (hc : IsClosed s) :
     IsClosed (((↑) : WeakDual 𝕜 E → E → 𝕜) '' s) :=
   ContinuousLinearMap.isClosed_image_coe_of_bounded_of_weak_closed hb (isClosed_induced_iff'.1 hc)
 
-/-- Bounded closed sets in `WeakDual 𝕜 E` are compact when `𝕜` is a proper space. -/
+/-- Bounded closed sets in `WeakDual 𝕜 E` are compact when `𝕜` is a proper space.
+@isnad1 id=iscompac.2h3v.s8.ea41055a0c80 from=seed src=0 shape=140ded06 vocab=d91348d9
+-/
 theorem isCompact_of_bounded_of_closed [ProperSpace 𝕜] {s : Set (WeakDual 𝕜 E)}
     (hb : IsBounded s) (hc : IsClosed s) : IsCompact s :=
   DFunLike.coe_injective.isEmbedding_induced.isCompact_iff.mpr <|
@@ -247,18 +268,24 @@ theorem isCompact_of_bounded_of_closed [ProperSpace 𝕜] {s : Set (WeakDual �
 ### Closed balls
 -/
 
-/-- Closed balls in `StrongDual 𝕜 E` pull back to closed sets in `WeakDual 𝕜 E`. -/
+/-- Closed balls in `StrongDual 𝕜 E` pull back to closed sets in `WeakDual 𝕜 E`.
+@isnad1 id=isclosed.0h4v.s11.fccc5da42fce from=seed src=0 shape=63912823 vocab=1c5674d2
+-/
 theorem isClosed_closedBall (x' : StrongDual 𝕜 E) (r : ℝ) :
     IsClosed (toStrongDual ⁻¹' closedBall x' r) :=
   isClosed_induced_iff'.2 (ContinuousLinearMap.is_weak_closed_closedBall x' r)
 
-/-- Closed balls are bounded in the weak dual. -/
+/-- Closed balls are bounded in the weak dual.
+@isnad1 id=isbounde.0h4v.s11.547c2f3f2853 from=seed src=0 shape=63912823 vocab=0de1924d
+-/
 theorem isBounded_closedBall (x' : StrongDual 𝕜 E) (r : ℝ) :
     IsBounded (toStrongDual ⁻¹' closedBall x' r) :=
   isBounded_toStrongDual_preimage_iff_isBounded.mpr Metric.isBounded_closedBall
 
 /-- The weak-\* closure of a norm-bounded set is norm-bounded, because norm-closed balls
-are weak-\* closed. -/
+are weak-\* closed.
+@isnad1 id=isbounde.1h3v.s8.f42e59b6a732 from=seed src=0 shape=5043399a vocab=fdb27491
+-/
 theorem isBounded_closure {s : Set (WeakDual 𝕜 E)} (hb : IsBounded s) :
     IsBounded (closure s) := by
   obtain ⟨R, hR⟩ := (Metric.isBounded_iff_subset_closedBall (0 : StrongDual 𝕜 E)).mp hb
@@ -266,7 +293,9 @@ theorem isBounded_closure {s : Set (WeakDual 𝕜 E)} (hb : IsBounded s) :
     (closure_minimal (fun y hy ↦ hR (a := toStrongDual y) hy) (isClosed_closedBall 0 R))
 
 /-- The **Banach-Alaoglu theorem**: closed balls of the dual of a normed space `E` are compact in
-the weak-star topology. -/
+the weak-star topology.
+@isnad1 id=iscompac.0h4v.s11.3d816ca3b013 from=seed src=0 shape=c287c1af vocab=80e61493
+-/
 theorem isCompact_closedBall [ProperSpace 𝕜] (x' : StrongDual 𝕜 E) (r : ℝ) :
     IsCompact (toStrongDual ⁻¹' closedBall x' r) :=
   isCompact_of_bounded_of_closed (isBounded_closedBall x' r) (isClosed_closedBall x' r)
@@ -283,21 +312,30 @@ variable (𝕜)
 weak-star topology is `WeakDual.polar 𝕜 s`. -/
 def polar (s : Set M) : Set (WeakDual 𝕜 M) := toStrongDual ⁻¹' (StrongDual.polar 𝕜) s
 
+/--
+@isnad1 id=eq.0h3v.s7.595305ffc70e from=seed src=0 shape=7026316b vocab=1b11beae
+-/
 theorem polar_def (s : Set M) : polar 𝕜 s = { f : WeakDual 𝕜 M | ∀ x ∈ s, ‖f x‖ ≤ 1 } := rfl
 
 /-- The polar `polar 𝕜 s` of a set `s : E` is a closed subset when the weak star topology
-is used. -/
+is used.
+@isnad1 id=isclosed.0h3v.s6.9c2947797e73 from=seed src=0 shape=a3dab884 vocab=a1e22c24
+-/
 theorem isClosed_polar (s : Set M) : IsClosed (polar 𝕜 s) := by
   simp only [polar_def, ofPred_forall]
   exact isClosed_biInter fun x hx => isClosed_Iic.preimage (WeakBilin.eval_continuous _ _).norm
 
-/-- Polar sets of neighborhoods of the origin are bounded in the weak dual. -/
+/-- Polar sets of neighborhoods of the origin are bounded in the weak dual.
+@isnad1 id=isbounde.1h3v.s7.68f8b4ce02f6 from=seed src=0 shape=bcbf0087 vocab=055a4020
+-/
 theorem isBounded_polar {s : Set E} (s_nhds : s ∈ 𝓝 (0 : E)) : IsBounded (polar 𝕜 s) :=
   isBounded_toStrongDual_preimage_iff_isBounded.mpr
   (NormedSpace.isBounded_polar_of_mem_nhds_zero 𝕜 s_nhds)
 
 /-- The image under `↑ : WeakDual 𝕜 E → (E → 𝕜)` of a polar `WeakDual.polar 𝕜 s` of a
-neighborhood `s` of the origin is a closed set. -/
+neighborhood `s` of the origin is a closed set.
+@isnad1 id=isclosed.1h3v.s8.004db4f79c89 from=seed src=0 shape=8f02ecaf vocab=d13bfa87
+-/
 theorem isClosed_image_polar_of_mem_nhds {s : Set E} (s_nhds : s ∈ 𝓝 (0 : E)) :
     IsClosed (((↑) : WeakDual 𝕜 E → E → 𝕜) '' polar 𝕜 s) :=
   isClosed_image_coe_of_bounded_of_closed (isBounded_polar 𝕜 s_nhds) (isClosed_polar _ _)
@@ -310,7 +348,9 @@ theorem _root_.NormedSpace.Dual.isClosed_image_polar_of_mem_nhds {s : Set E}
   WeakDual.isClosed_image_polar_of_mem_nhds 𝕜 s_nhds
 
 /-- The **Banach-Alaoglu theorem**: the polar set of a neighborhood `s` of the origin in a
-normed space `E` is a compact subset of `WeakDual 𝕜 E`. -/
+normed space `E` is a compact subset of `WeakDual 𝕜 E`.
+@isnad1 id=iscompac.1h3v.s7.afb5e396325b from=seed src=0 shape=03a2f6dd vocab=eacadbd7
+-/
 theorem isCompact_polar [ProperSpace 𝕜] {s : Set E} (s_nhds : s ∈ 𝓝 (0 : E)) :
     IsCompact (polar 𝕜 s) :=
   isCompact_of_bounded_of_closed (isBounded_polar 𝕜 s_nhds) (isClosed_polar _ _)
@@ -326,7 +366,9 @@ open TopologicalSpace
 variable (𝕜 E) [TopologicalSpace.SeparableSpace E] (K : Set (WeakDual 𝕜 E))
 
 /-- In a separable normed space, there exists a sequence of continuous functions that
-separates points of the weak dual. -/
+separates points of the weak dual.
+@isnad1 id=ex.0h2v.s8.a940617c0955 from=seed src=0 shape=7b11c9e8 vocab=adade8bb
+-/
 lemma exists_countable_separating : ∃ (gs : ℕ → (WeakDual 𝕜 E) → 𝕜),
     (∀ n, Continuous (gs n)) ∧ (∀ ⦃x y⦄, x ≠ y → ∃ n, gs n x ≠ gs n y) := by
   use (fun n φ ↦ φ (denseSeq E n))
@@ -337,7 +379,9 @@ lemma exists_countable_separating : ∃ (gs : ℕ → (WeakDual 𝕜 E) → 𝕜
     exact DFunLike.ext'_iff.mpr <| (map_continuous w).ext_on
       (denseRange_denseSeq E) (map_continuous y) (Set.eqOn_range.mpr (funext w_ne_y))
 
-/-- A compact subset of the weak dual of a separable normed space is metrizable. -/
+/-- A compact subset of the weak dual of a separable normed space is metrizable.
+@isnad1 id=metrizab.1h3v.s9.1a73ce7061e0 from=seed src=0 shape=8f8b8441 vocab=70976097
+-/
 lemma metrizable_of_isCompact (K_cpt : IsCompact K) : TopologicalSpace.MetrizableSpace K := by
   have : CompactSpace K := isCompact_iff_compactSpace.mp K_cpt
   obtain ⟨gs, gs_cont, gs_sep⟩ := exists_countable_separating 𝕜 E
@@ -347,7 +391,9 @@ lemma metrizable_of_isCompact (K_cpt : IsCompact K) : TopologicalSpace.Metrizabl
 
 variable [ProperSpace 𝕜]
 
-/-- Bounded closed sets in the weak dual of a separable normed space are sequentially compact. -/
+/-- Bounded closed sets in the weak dual of a separable normed space are sequentially compact.
+@isnad1 id=isseqcom.2h3v.s8.122308673daf from=seed src=0 shape=b8d7fc33 vocab=6bd7acd5
+-/
 theorem isSeqCompact_of_isBounded_of_isClosed {s : Set (WeakDual 𝕜 E)}
     (hb : IsBounded s) (hc : IsClosed s) :
     IsSeqCompact s := by
@@ -360,13 +406,17 @@ theorem isSeqCompact_of_isBounded_of_isClosed {s : Set (WeakDual 𝕜 E)}
   simpa using IsSeqCompact.range seq_cont_phi
 
 /-- The **Sequential Banach-Alaoglu theorem**: the polar set of a neighborhood `s` of the origin in
-a separable normed space `V` is a sequentially compact subset of `WeakDual 𝕜 V`. -/
+a separable normed space `V` is a sequentially compact subset of `WeakDual 𝕜 V`.
+@isnad1 id=isseqcom.1h3v.s7.6d77007a286e from=seed src=0 shape=e29596cb vocab=47978b34
+-/
 theorem isSeqCompact_polar {s : Set E} (s_nhd : s ∈ 𝓝 (0 : E)) :
     IsSeqCompact (polar 𝕜 s) :=
   isSeqCompact_of_isBounded_of_isClosed 𝕜 _ (isBounded_polar 𝕜 s_nhd) (isClosed_polar _ _)
 
 /-- The **Sequential Banach-Alaoglu theorem**: closed balls of the dual of a separable
-normed space `V` are sequentially compact in the weak-\* topology. -/
+normed space `V` are sequentially compact in the weak-\* topology.
+@isnad1 id=isseqcom.0h4v.s11.051b4e7aef0f from=seed src=0 shape=9a33f4e1 vocab=bc3d451b
+-/
 theorem isSeqCompact_closedBall (x' : StrongDual 𝕜 E) (r : ℝ) :
     IsSeqCompact (toStrongDual ⁻¹' Metric.closedBall x' r) :=
   isSeqCompact_of_isBounded_of_isClosed 𝕜 _ (isBounded_closedBall x' r) (isClosed_closedBall x' r)
@@ -397,7 +447,9 @@ theorem _root_.WeakBilin.continuous_of_continuous_eval_re (B : E →ₗ[𝕜] F 
 variable [TopologicalSpace F]
 
 /-- A map into `WeakDual 𝕜 F` over `𝕜` (with `RCLike 𝕜`) is continuous if the real parts of all
-the evaluation maps `a ↦ g a y` are continuous for each `y : F`. -/
+the evaluation maps `a ↦ g a y` are continuous for each `y : F`.
+@isnad1 id=continuo.1h4v.s8.9b074dcddde0 from=seed src=0 shape=9aab768d vocab=9a7e61f2
+-/
 theorem continuous_of_continuous_eval_re {g : α → WeakDual 𝕜 F}
     (h : ∀ x, Continuous fun a ↦ re (g a x)) :
     Continuous g :=
@@ -417,30 +469,48 @@ noncomputable def extendRCLikeL : WeakDual ℝ F ≃L[ℝ] WeakDual 𝕜 F where
   continuous_invFun :=
     continuous_of_continuous_eval fun x ↦ RCLike.continuous_re.comp (eval_continuous x)
 
+/--
+@isnad1 id=eq.0h2v.s11.fa2704f656bc from=seed src=0 shape=03c4b656 vocab=3d7c252b
+-/
 @[simp]
 lemma toLinearEquiv_extendRCLikeL :
     (extendRCLikeL (𝕜 := 𝕜) (F := F)).toLinearEquiv =
       toStrongDual ≪≫ₗ extendRCLikeₗ ≪≫ₗ toWeakDual.restrictScalars ℝ := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.f9b5bbd10f39 from=seed src=0 shape=6f07c68e vocab=c96cb2dd
+-/
 lemma extendRCLikeL_apply_apply (f : WeakDual ℝ F) (x : F) :
     extendRCLikeL (𝕜 := 𝕜) f x = f x - (I : 𝕜) • f ((I : 𝕜) • x) := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.425fc5e096f5 from=seed src=0 shape=57a83234 vocab=739c5ade
+-/
 lemma extendRCLikeL_symm_apply_apply (f : WeakDual 𝕜 F) (x : F) :
     extendRCLikeL.symm f x = re (f x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.53a2f24a7c31 from=seed src=0 shape=7b0e97a7 vocab=02492a7f
+-/
 @[simp]
 lemma re_extendRCLikeL_apply_apply (f : WeakDual ℝ F) (x : F) :
     re (extendRCLikeL (𝕜 := 𝕜) f x) = f x := by
   simp [extendRCLikeL_apply_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.e6b4dc443c08 from=seed src=0 shape=760d0008 vocab=6e988acd
+-/
 @[simp]
 lemma im_extendRCLikeL_apply_apply (f : WeakDual ℝ F) (x : F) :
     im (extendRCLikeL (𝕜 := 𝕜) f x) = - f ((I : 𝕜) • x) := by
   simp [extendRCLikeL_apply, extendRCLikeₗ_apply]
 
+/--
+@isnad1 id=eq.0h3v.s12.d4a8bfb614b6 from=seed src=0 shape=4298ed39 vocab=ed38bbca
+-/
 @[simp high]
 lemma toStrongDual_extendRCLikeL_apply (f : WeakDual ℝ F) :
     (extendRCLikeL (𝕜 := 𝕜) f).toStrongDual = extendRCLikeₗ f :=

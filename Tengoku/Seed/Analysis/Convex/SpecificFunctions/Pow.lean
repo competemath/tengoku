@@ -35,6 +35,9 @@ open Set
 
 namespace NNReal
 
+/--
+@isnad1 id=strictco.2h1v.s6.748c78a33acc from=seed src=0 shape=ba6572b3 vocab=114aa401
+-/
 lemma strictConcaveOn_rpow {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) :
     StrictConcaveOn ℝ≥0 univ fun x : ℝ≥0 ↦ x ^ p := by
   have hp₀' : 0 < 1 / p := div_pos zero_lt_one hp₀
@@ -48,6 +51,9 @@ lemma strictConcaveOn_rpow {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) :
   simp only [← h₂]
   exact (f.strictConcaveOn_symm h₁).2 mx my hxy ha hb hab
 
+/--
+@isnad1 id=concaveo.2h1v.s6.231d9315b53e from=seed src=0 shape=ba6572b3 vocab=c7996d51
+-/
 lemma concaveOn_rpow {p : ℝ} (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) :
     ConcaveOn ℝ≥0 univ fun x : ℝ≥0 ↦ x ^ p := by
   rcases eq_or_lt_of_le hp₀ with (rfl | hp₀)
@@ -56,6 +62,9 @@ lemma concaveOn_rpow {p : ℝ} (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) :
   · simpa only [rpow_one] using! concaveOn_id convex_univ
   exact (strictConcaveOn_rpow hp₀ hp₁).concaveOn
 
+/--
+@isnad1 id=strictco.0h0v.s5.b10763052f78 from=seed src=0 shape=fc6a2cd2 vocab=4e23dde7
+-/
 lemma strictConcaveOn_sqrt : StrictConcaveOn ℝ≥0 univ NNReal.sqrt := by
   have : NNReal.sqrt = fun x : ℝ≥0 ↦ x ^ (1 / (2 : ℝ)) := by
     ext x; exact mod_cast NNReal.sqrt_eq_rpow x
@@ -68,6 +77,9 @@ namespace Real
 
 open NNReal
 
+/--
+@isnad1 id=strictco.2h1v.s5.3fac5916fd04 from=seed src=0 shape=669136a4 vocab=0eb18129
+-/
 lemma strictConcaveOn_rpow {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) :
     StrictConcaveOn ℝ (Set.Ici 0) fun x : ℝ ↦ x ^ p := by
   refine ⟨convex_Ici _, fun x hx y hy hxy a b ha hb hab => ?_⟩
@@ -80,6 +92,9 @@ lemma strictConcaveOn_rpow {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) :
   exact_mod_cast (NNReal.strictConcaveOn_rpow hp₀ hp₁).2 (Set.mem_univ x') (Set.mem_univ y')
     hxy' (mod_cast ha) (mod_cast hb) hab'
 
+/--
+@isnad1 id=concaveo.2h1v.s5.d13b7a927bde from=seed src=0 shape=669136a4 vocab=126822ba
+-/
 lemma concaveOn_rpow {p : ℝ} (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) :
     ConcaveOn ℝ (Set.Ici 0) fun x : ℝ ↦ x ^ p := by
   rcases eq_or_lt_of_le hp₀ with (rfl | hp₀)
@@ -88,6 +103,9 @@ lemma concaveOn_rpow {p : ℝ} (hp₀ : 0 ≤ p) (hp₁ : p ≤ 1) :
   · simpa only [rpow_one] using! concaveOn_id (convex_Ici _)
   exact (strictConcaveOn_rpow hp₀ hp₁).concaveOn
 
+/--
+@isnad1 id=strictco.0h0v.s4.edf13d4c89b5 from=seed src=0 shape=52a65bdc vocab=ccb6d7dd
+-/
 lemma strictConcaveOn_sqrt : StrictConcaveOn ℝ (Set.Ici 0) (√· : ℝ → ℝ) := by
   rw [funext Real.sqrt_eq_rpow]
   exact strictConcaveOn_rpow (by positivity) (by linarith)

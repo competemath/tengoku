@@ -91,14 +91,23 @@ variable {X}
 namespace IsLprojection
 
 -- TODO: The literature always uses uppercase 'L' for L-projections
+/--
+@isnad1 id=islproje.1h3v.s6.cef0decc9292 from=seed src=0 shape=c623fe1d vocab=404793f5
+-/
 theorem Lcomplement {P : M} (h : IsLprojection X P) : IsLprojection X (1 - P) :=
   ⟨h.proj.one_sub, fun x => by
     rw [add_comm, sub_sub_cancel]
     exact h.Lnorm x⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.c11e84de3004 from=seed src=0 shape=73cf5376 vocab=404793f5
+-/
 theorem Lcomplement_iff (P : M) : IsLprojection X P ↔ IsLprojection X (1 - P) :=
   ⟨Lcomplement, fun h => sub_sub_cancel 1 P ▸ h.Lcomplement⟩
 
+/--
+@isnad1 id=commute.2h4v.s6.a2840c4c3fcc from=seed src=0 shape=6e9607a7 vocab=4496e05a
+-/
 theorem commute [FaithfulSMul M X] {P Q : M} (h₁ : IsLprojection X P) (h₂ : IsLprojection X Q) :
     Commute P Q := by
   have PR_eq_RPR : ∀ R : M, IsLprojection X R → P * R = R * P * R := fun R h₃ => by
@@ -133,6 +142,9 @@ theorem commute [FaithfulSMul M X] {P Q : M} (h₁ : IsLprojection X P) (h₂ : 
   change P * Q = Q * P
   rw [QP_eq_QPQ, PR_eq_RPR Q h₂]
 
+/--
+@isnad1 id=islproje.2h4v.s7.f4a380b89a98 from=seed src=0 shape=cb27094a vocab=03b094ed
+-/
 theorem mul [FaithfulSMul M X] {P Q : M} (h₁ : IsLprojection X P) (h₂ : IsLprojection X Q) :
     IsLprojection X (P * Q) := by
   refine ⟨IsIdempotentElem.mul_of_commute (h₁.commute h₂) h₁.proj h₂.proj, ?_⟩
@@ -150,6 +162,9 @@ theorem mul [FaithfulSMul M X] {P Q : M} (h₁ : IsLprojection X P) (h₂ : IsLp
       _ = ‖(P * Q) • x‖ + ‖(1 - P * Q) • x‖ := by
         rw [sub_add_sub_cancel', sub_smul, one_smul, mul_smul]
 
+/--
+@isnad1 id=islproje.2h4v.s7.0a828de0e60d from=seed src=0 shape=829df3d1 vocab=ebff1763
+-/
 theorem join [FaithfulSMul M X] {P Q : M} (h₁ : IsLprojection X P) (h₂ : IsLprojection X Q) :
     IsLprojection X (P + Q - P * Q) := by
   convert! (Lcomplement_iff _).mp (h₁.Lcomplement.mul h₂.Lcomplement) using 1
@@ -158,6 +173,9 @@ theorem join [FaithfulSMul M X] {P Q : M} (h₁ : IsLprojection X P) (h₂ : IsL
 instance Subtype.instCompl : Compl { f : M // IsLprojection X f } :=
   ⟨fun P => ⟨1 - P, P.prop.Lcomplement⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.bf9d9351e98b from=seed src=0 shape=e051910d vocab=c5f0588c
+-/
 @[simp]
 theorem coe_compl (P : { P : M // IsLprojection X P }) : ↑Pᶜ = (1 : M) - ↑P :=
   rfl
@@ -165,6 +183,9 @@ theorem coe_compl (P : { P : M // IsLprojection X P }) : ↑Pᶜ = (1 : M) - ↑
 instance Subtype.inf [FaithfulSMul M X] : Min { P : M // IsLprojection X P } :=
   ⟨fun P Q => ⟨P * Q, P.prop.mul Q.prop⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.2c36918eb940 from=seed src=0 shape=3da2a7b8 vocab=2bd0b76e
+-/
 @[simp]
 theorem coe_inf [FaithfulSMul M X] (P Q : { P : M // IsLprojection X P }) :
     ↑(P ⊓ Q) = (↑P : M) * ↑Q :=
@@ -173,6 +194,9 @@ theorem coe_inf [FaithfulSMul M X] (P Q : { P : M // IsLprojection X P }) :
 instance Subtype.sup [FaithfulSMul M X] : Max { P : M // IsLprojection X P } :=
   ⟨fun P Q => ⟨P + Q - P * Q, P.prop.join Q.prop⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.007efb87a6dd from=seed src=0 shape=e12d73d7 vocab=32c2f7d3
+-/
 @[simp]
 theorem coe_sup [FaithfulSMul M X] (P Q : { P : M // IsLprojection X P }) :
     ↑(P ⊔ Q) = (↑P : M) + ↑Q - ↑P * ↑Q :=
@@ -181,6 +205,9 @@ theorem coe_sup [FaithfulSMul M X] (P Q : { P : M // IsLprojection X P }) :
 instance Subtype.sdiff [FaithfulSMul M X] : SDiff { P : M // IsLprojection X P } :=
   ⟨fun P Q => ⟨P * (1 - Q), P.prop.mul Q.prop.Lcomplement⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.2d57fe882da2 from=seed src=0 shape=867376f2 vocab=df0a5f0e
+-/
 @[simp]
 theorem coe_sdiff [FaithfulSMul M X] (P Q : { P : M // IsLprojection X P }) :
     ↑(P \ Q) = (↑P : M) * (1 - ↑Q) :=
@@ -195,6 +222,9 @@ instance Subtype.partialOrder [FaithfulSMul M X] :
     rw [h₁, mul_assoc, ← h₂]
   le_antisymm P Q h₁ h₂ := Subtype.ext (by convert! (P.prop.commute Q.prop).eq)
 
+/--
+@isnad1 id=iff.0h4v.s7.30397ee4b5e0 from=seed src=0 shape=48780b9c vocab=710e12a1
+-/
 theorem le_def [FaithfulSMul M X] (P Q : { P : M // IsLprojection X P }) :
     P ≤ Q ↔ (P : M) = ↑(P ⊓ Q) :=
   Iff.rfl
@@ -203,6 +233,9 @@ instance Subtype.zero : Zero { P : M // IsLprojection X P } :=
   ⟨⟨0, ⟨by rw [IsIdempotentElem, zero_mul], fun x => by
         simp only [zero_smul, norm_zero, sub_zero, one_smul, zero_add]⟩⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.2e27c95d2840 from=seed src=0 shape=b19ca5eb vocab=4034ae77
+-/
 @[simp]
 theorem coe_zero : ↑(0 : { P : M // IsLprojection X P }) = (0 : M) :=
   rfl
@@ -210,6 +243,9 @@ theorem coe_zero : ↑(0 : { P : M // IsLprojection X P }) = (0 : M) :=
 instance Subtype.one : One { P : M // IsLprojection X P } :=
   ⟨⟨1, sub_zero (1 : M) ▸ (0 : { P : M // IsLprojection X P }).prop.Lcomplement⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.f954c997ce59 from=seed src=0 shape=b19ca5eb vocab=4034ae77
+-/
 @[simp]
 theorem coe_one : ↑(1 : { P : M // IsLprojection X P }) = (1 : M) :=
   rfl
@@ -221,22 +257,37 @@ instance Subtype.boundedOrder [FaithfulSMul M X] :
   bot := 0
   bot_le P := (zero_mul (P : M)).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.3f4188b27547 from=seed src=0 shape=40659250 vocab=c35392e0
+-/
 @[simp]
 theorem coe_bot [FaithfulSMul M X] :
     ↑(BoundedOrder.toOrderBot.toBot.bot : { P : M // IsLprojection X P }) = (0 : M) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.15c445f40344 from=seed src=0 shape=40659250 vocab=3618d499
+-/
 @[simp]
 theorem coe_top [FaithfulSMul M X] :
     ↑(BoundedOrder.toOrderTop.toTop.top : { P : M // IsLprojection X P }) = (1 : M) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.426b24e3aaae from=seed src=0 shape=710de33c vocab=636301eb
+-/
 theorem compl_mul {P : { P : M // IsLprojection X P }} {Q : M} : ↑Pᶜ * Q = Q - ↑P * Q := by
   rw [coe_compl, sub_mul, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s6.6c259dfeb9ac from=seed src=0 shape=d772b364 vocab=c12843a5
+-/
 theorem mul_compl_self {P : { P : M // IsLprojection X P }} : (↑P : M) * ↑Pᶜ = 0 := by
   rw [coe_compl, P.prop.proj.mul_one_sub_self]
 
+/--
+@isnad1 id=eq.0h5v.s8.d83caacc5714 from=seed src=0 shape=39365105 vocab=b7e49165
+-/
 theorem distrib_lattice_lemma [FaithfulSMul M X] {P Q R : { P : M // IsLprojection X P }} :
     ((↑P : M) + ↑Pᶜ * R) * (↑P + ↑Q * ↑R * ↑Pᶜ) = ↑P + ↑Q * ↑R * ↑Pᶜ := by
   rw [add_mul, mul_add, mul_add, (mul_assoc _ (R : M) (↑Q * ↑R * ↑Pᶜ)),

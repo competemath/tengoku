@@ -41,13 +41,18 @@ section GLAction
 
 variable {g : GL (Fin 2) ℝ} {z w : ℍ}
 
+/--
+@isnad1 id=iff.0h3v.s8.bde512cd6995 from=seed src=0 shape=1ed310a4 vocab=ad90af84
+-/
 theorem gl_smul_eq_iff_num_eq :
     g • z = w ↔ num g z = σ g w * denom g z := by
   rw [← (σ g).injective.eq_iff]
   simp [UpperHalfPlane.ext_iff, coe_smul, div_eq_iff]
 
 /-- If `g` is an upper triangular matrix with trace zero,
-then `g` fixes the vertical line `re z = b / (2 * d)`. -/
+then `g` fixes the vertical line `re z = b / (2 * d)`.
+@isnad1 id=iff.2h2v.s9.5d7300dcace8 from=seed src=0 shape=54ecb5bb vocab=ee8f2fdf
+-/
 theorem gl_smul_eq_self_iff_re_eq (htrace : g.val.trace = 0) (hc : g 1 0 = 0) :
     g • z = z ↔ z.re = g 0 1 / (2 * g 1 1) := by
   rw [Matrix.trace_fin_two, add_eq_zero_iff_eq_neg] at htrace
@@ -63,7 +68,9 @@ theorem gl_smul_eq_self_iff_re_eq (htrace : g.val.trace = 0) (hc : g 1 0 = 0) :
 then its action on the upper half plane has a half-circle of fixed points.
 In the hyperbolic geometry, this half-circle is a line.
 If `c = 0`, then this line is a vertical half-line in the usual geometry,
-see `gl_smul_eq_self_iff_re_eq`. -/
+see `gl_smul_eq_self_iff_re_eq`.
+@isnad1 id=iff.3h2v.s9.f8b54d9d586d from=seed src=0 shape=222f1213 vocab=33ec2476
+-/
 theorem gl_smul_eq_self_iff_dist_sq_eq (h : g.val.det < 0) (htrace : g.val.trace = 0)
     (hc : g 1 0 ≠ 0) :
     g • z = z ↔ dist (z : ℂ) (-g 1 1 / g 1 0) ^ 2 = (-g.val.det) / g 1 0 ^ 2 := by
@@ -75,7 +82,9 @@ theorem gl_smul_eq_self_iff_dist_sq_eq (h : g.val.det < 0) (htrace : g.val.trace
 
 /-- If `g` is an orientation reversing matrix with trace zero and `c ≠ 0`,
 then its action on the upper half plane has a half-circle of fixed points.
-In the hyperbolic geometry, this half-circle is a line. -/
+In the hyperbolic geometry, this half-circle is a line.
+@isnad1 id=iff.3h2v.s9.2209a72ea375 from=seed src=0 shape=67eb8e12 vocab=d90b23f4
+-/
 theorem gl_smul_eq_self_iff_dist_eq (h : g.val.det < 0) (htrace : g.val.trace = 0)
     (hc : g 1 0 ≠ 0) :
     g • z = z ↔ dist (z : ℂ) (-g 1 1 / g 1 0) = √(-g.val.det) / |g 1 0| := by
@@ -83,7 +92,9 @@ theorem gl_smul_eq_self_iff_dist_eq (h : g.val.det < 0) (htrace : g.val.trace = 
     Real.sqrt_div', Real.sqrt_sq_eq_abs] <;> positivity [neg_pos.mpr h]
 
 /-- An orientation-reversing isometry of the hyperbolic plane has a fixed point
-iff the corresponding matrix has zero trace. -/
+iff the corresponding matrix has zero trace.
+@isnad1 id=iff.1h1v.s8.a4cfd43acbfb from=seed src=0 shape=aa5de7c5 vocab=a430e6e5
+-/
 theorem exists_gl_smul_eq_self_iff_trace_eq_zero (h : g.val.det < 0) :
     (∃ z : ℍ, g • z = z) ↔ g.val.trace = 0 := by
   constructor
@@ -111,6 +122,7 @@ which has no solutions in the upper half-plane unless `g` is a scalar matrix.
 See also `Matrix.GeneralLinearGroup.fixpointPolynomial_aeval_eq_zero_iff`
 for a similar lemma about the action on the projective line,
 encoded as `OnePoint R`, where `R` is the ring of coefficients.
+@isnad1 id=iff.1h2v.s9.a1b4cc9bb5ef from=seed src=0 shape=4a31c0c4 vocab=425a4510
 -/
 theorem gl_smul_eq_self_iff_quadratic (h : 0 < g.val.det) :
     g • z = z ↔ (g 1 0 * (z * z) + (g 1 1 - g 0 0) * z + -g 0 1 : ℂ) = 0 := by
@@ -118,7 +130,9 @@ theorem gl_smul_eq_self_iff_quadratic (h : 0 < g.val.det) :
   grind
 
 /-- If `g` is a non-scalar orientation preserving matrix with a fixed point in `ℍ`,
-then it's an elliptic matrix. -/
+then it's an elliptic matrix.
+@isnad1 id=isellipt.3h1v.s9.a7ae960c4e8c from=seed src=0 shape=79cf8474 vocab=cde5c68e
+-/
 theorem isElliptic_of_exists_smul_eq_self (h : 0 < g.val.det) (hgc : g ∉ Subgroup.center _)
     (hfix : ∃ z : ℍ, g • z = z) : g.IsElliptic := by
   rcases hfix with ⟨z, hz⟩
@@ -142,6 +156,9 @@ def fixedPt (g : GL (Fin 2) ℝ) (hell : g.IsElliptic) : ℍ :=
   ⟨(g 0 0 - g 1 1) / (2 * g 1 0) + .I * (√(-g.val.discr) / (2 * |g 1 0|)), by
     simpa [div_pos, Complex.div_re, Complex.div_im, hell.c_ne_zero]⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.515812ded3f2 from=seed src=0 shape=935dc84c vocab=f13f428a
+-/
 @[simp]
 theorem fixedPt_neg (hg : (-g).IsElliptic) :
     fixedPt (-g) hg = fixedPt g (isElliptic_neg_iff.mp hg) := by
@@ -150,7 +167,9 @@ theorem fixedPt_neg (hg : (-g).IsElliptic) :
   ring
 
 /-- The action of an elliptic orientation preserving matrix on `ℍ`
-has a unique fixed point given by `fixedPt`. -/
+has a unique fixed point given by `fixedPt`.
+@isnad1 id=iff.2h2v.s8.19c1b7f5e77b from=seed src=0 shape=10dfd8b4 vocab=3db82caa
+-/
 theorem gl_smul_eq_self_iff_eq_fixedPt (hpos : 0 < g.val.det) (hell : g.IsElliptic) :
     g • z = z ↔ z = fixedPt g hell := by
   wlog hc : 0 < g 1 0 generalizing g
@@ -170,18 +189,26 @@ theorem gl_smul_eq_self_iff_eq_fixedPt (hpos : 0 < g.val.det) (hell : g.IsEllipt
     rw [← coe_im, h]
     simp [Complex.div_im, div_nonpos_iff, hc.le, mul_nonneg]
 
+/--
+@isnad1 id=iff.1h1v.s9.665ed3696122 from=seed src=0 shape=31f33286 vocab=5b65b37e
+-/
 theorem gl_smul_I_eq_I_iff_of_pos {g : GL (Fin 2) ℝ} (hg : 0 < g.det.val) :
     g • I = I ↔ g 0 0 = g 1 1 ∧ g 0 1 = -g 1 0 := by
   rw [gl_smul_eq_iff_num_eq, σ, ite_eq_left hg]
   simp [Complex.ext_iff, num, denom, and_comm]
 
+/--
+@isnad1 id=iff.1h1v.s9.29ba6a9a5ad0 from=seed src=0 shape=afaba566 vocab=5b65b37e
+-/
 theorem gl_smul_I_eq_I_iff_of_neg {g : GL (Fin 2) ℝ} (hg : g.det.val < 0) :
     g • I = I ↔ g 0 0 = -g 1 1 ∧ g 0 1 = g 1 0 := by
   rw [gl_smul_eq_iff_num_eq, σ, ite_eq_right (not_lt_of_gt hg)]
   simp [num, denom, Complex.ext_iff, and_comm]
 
 /-- A matrix acts trivially on `ℍ` iff it belongs to the center of `GL(2, ℝ)`,
-i.e., it's a diagonal matrix. -/
+i.e., it's a diagonal matrix.
+@isnad1 id=iff.0h1v.s9.30d131b52b44 from=seed src=0 shape=c7dd3301 vocab=062deac6
+-/
 theorem forall_smul_eq_self_iff_mem_center {g : GL (Fin 2) ℝ} :
     (∀ z : ℍ, g • z = z) ↔ g ∈ Subgroup.center _ := by
   constructor

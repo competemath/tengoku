@@ -51,7 +51,9 @@ variable {C : Type*} [Category* C] [Preadditive C] {X X' : SimplicialObject C}
 As `Q q` is the complement projection to `P q`, this implies that in the case of
 simplicial abelian groups, any $(n+1)$-simplex $x$ can be decomposed as
 $x = x' + \sum (i=0}^{q-1} σ_{n-i}(y_i)$ where $x'$ is in the image of `P q` and
-the $y_i$ are in degree $n$. -/
+the $y_i$ are in degree $n$.
+@isnad1 id=eq.0h4v.s9.4a7f6f9d60db from=seed src=0 shape=6a22d52a vocab=7f906950
+-/
 theorem decomposition_Q (n q : ℕ) :
     ((Q q).f (n + 1) : X _⦋n + 1⦌ ⟶ X _⦋n + 1⦌) =
       ∑ i : Fin (n + 1) with i.val < q, (P i).f (n + 1) ≫ X.δ i.rev.succ ≫ X.σ (Fin.rev i) := by
@@ -110,6 +112,9 @@ def id : MorphComponents X n (X _⦋n + 1⦌) where
   a := PInfty.f (n + 1)
   b i := X.σ i
 
+/--
+@isnad1 id=eq.0h3v.s7.7b71fea94941 from=seed src=0 shape=e5023588 vocab=8b66d7fd
+-/
 @[simp]
 theorem id_φ : (id X n).φ = 𝟙 _ := by
   simp only [← P_add_Q_f (n + 1) (n + 1), φ]
@@ -125,6 +130,9 @@ def postComp : MorphComponents X n Z' where
   a := f.a ≫ h
   b i := f.b i ≫ h
 
+/--
+@isnad1 id=eq.0h7v.s6.3e8d79cbf0e3 from=seed src=0 shape=8f521864 vocab=0e18cd2e
+-/
 @[simp]
 theorem postComp_φ : (f.postComp h).φ = f.φ ≫ h := by
   unfold φ postComp
@@ -136,6 +144,9 @@ def preComp : MorphComponents X' n Z where
   a := g.app (op ⦋n + 1⦌) ≫ f.a
   b i := g.app (op ⦋n⦌) ≫ f.b i
 
+/--
+@isnad1 id=eq.0h7v.s7.72088ae99c57 from=seed src=0 shape=4e964351 vocab=d63fd454
+-/
 @[simp]
 theorem preComp_φ : (f.preComp g).φ = g.app (op ⦋n + 1⦌) ≫ f.φ := by
   unfold φ preComp

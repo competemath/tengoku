@@ -39,6 +39,9 @@ namespace PtSimplex
 
 variable {X} {n : ℕ} {x : X _⦋0⦌}
 
+/--
+@isnad1 id=eq.0h6v.s8.cac10f5ecde0 from=seed src=0 shape=92eb9676 vocab=28403cd4
+-/
 @[reassoc]
 lemma comp_map_eq_const
     (s : X.PtSimplex n x) {Y : SSet.{u}} (φ : Y ⟶ Δ[n]) [Y.HasDimensionLT n] :
@@ -50,6 +53,9 @@ lemma comp_map_eq_const
   exact stdSimplex.not_hasDimensionLT n
     ((hasDimensionLT_iff_of_iso (asIso (Subcomplex.range φ).ι) n).mp inferInstance)
 
+/--
+@isnad1 id=eq.0h5v.s8.b89fc68bd043 from=seed src=0 shape=362eb5a1 vocab=dcd91f9c
+-/
 @[reassoc (attr := simp)]
 lemma δ_map (f : X.PtSimplex (n + 1) x) (i : Fin (n + 2)) :
     stdSimplex.δ i ≫ f.map = const x :=
