@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "003c80020ea0e8c4a48461d6de80209c6a7c56e1c357ddc1f76f6a6beac73ca6",
+ "library": "expdb",
+ "lint_mode": "proposed",
+ "modules": 16,
+ "part": 1,
+ "theorems": 77
+}
