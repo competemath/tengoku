@@ -3,6 +3,7 @@ import Tengoku.Carleson
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
+import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
 import Tengoku.Flt
 import Tengoku.Vcvio
