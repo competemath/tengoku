@@ -48,7 +48,7 @@ class Main(unittest.TestCase):
         rc, out = run("\n".join([*REAL, "frobnicate_cmd"]), listfile=self.listfile(REAL))
         self.assertEqual(rc, 1)
         self.assertIn("frobnicate_cmd", out)
-        self.assertIn("--write", out)
+        self.assertIn("--emit", out)
 
     def test_a_keyword_that_went_fails_too(self):
         rc, out = run("\n".join(REAL[1:]), listfile=self.listfile(REAL))
@@ -60,18 +60,26 @@ class Main(unittest.TestCase):
         self.assertEqual(rc, 2)
         self.assertIn("not the tree's command grammar", out)
 
-    def test_write_regenerates_the_list_sorted(self):
+    def test_emit_prints_the_regenerated_list_sorted_and_writes_nothing(self):
+        """Sonar S2083 (BLOCKER, 2026-10-06 to 2026-10-09): the script wrote the list back to the file it had read. It prints the list now; the caller puts it in place."""
         p = self.listfile(["old"])
-        rc, out = run("\n".join(reversed([*REAL, "zzz_new"])), "--write", listfile=p)
+        before = p.read_text(encoding="utf-8")
+        rc, out = run("\n".join(reversed([*REAL, "zzz_new"])), "--emit", listfile=p)
         self.assertEqual(rc, 0, out)
-        doc = json.loads(p.read_text(encoding="utf-8"))
+        doc = json.loads(out)
         self.assertEqual(doc["commands"], sorted([*REAL, "zzz_new"]))
         self.assertEqual(doc["about"], "x")  # the rest of the file is kept
+        self.assertEqual(p.read_text(encoding="utf-8"), before)  # the file is untouched
+
+    def test_the_script_has_no_way_to_write_a_file(self):
+        source = Path(ck.__file__).read_text(encoding="utf-8")
+        for call in ("write_text", "write_bytes", "open(", ".write("):
+            self.assertNotIn(call, source)
 
     def test_no_path_is_taken_from_the_command_line(self):
         """2026-10-08 (Sonar S2083/S8707): `cmdkw_check.py --write ../../x` wrote the list wherever the argument said. The list is the repository's, and a path is refused."""
         target = self.listfile(["old"])
-        rc, out = run("\n".join(REAL), "--write", str(target))
+        rc, out = run("\n".join(REAL), "--emit", str(target))
         self.assertEqual(rc, 2)
         self.assertIn("takes no path", out)
         self.assertEqual(json.loads(target.read_text(encoding="utf-8"))["commands"], ["old"])  # untouched
