@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "9c88e1c2089e3f514f80dba23544a7a0ac32782eb2995003319064dd87378e02",
+ "library": "formal-math",
+ "lint_mode": "proposed",
+ "modules": 157,
+ "part": 1,
+ "theorems": 1962
+}
