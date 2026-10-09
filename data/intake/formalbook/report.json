@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "d7e68a75edd31a850723ef45d7cbd800650bbd4a83d1645c24dc36b3457fe15b",
+ "library": "formalbook",
+ "lint_mode": "proposed",
+ "modules": 24,
+ "part": 1,
+ "theorems": 187
+}
