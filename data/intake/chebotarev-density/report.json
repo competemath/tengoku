@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "199ec8e24592f80bcfde0e7aa2731578581a8c9bf26ed4e37b99be0d9e050509",
+ "library": "chebotarev-density",
+ "lint_mode": "proposed",
+ "modules": 6,
+ "part": 1,
+ "theorems": 14
+}
