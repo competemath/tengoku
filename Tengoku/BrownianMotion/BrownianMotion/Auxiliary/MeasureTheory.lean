@@ -19,6 +19,9 @@ section CondExp
 variable {Ω E : Type*} {m mΩ : MeasurableSpace Ω} {P : Measure Ω} {f g : Ω → E}
   [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
+/--
+@isnad1 id=integrab.2h6v.s7.881e3a2ac44d from=translated src=- shape=546dc510 vocab=ba555af7
+-/
 lemma integrable_inner (hf : MemLp f 2 P) (hg : MemLp g 2 P) :
     Integrable (fun ω ↦ ⟪f ω, g ω⟫) P := by
   rw [← memLp_one_iff_integrable]
@@ -26,11 +29,17 @@ lemma integrable_inner (hf : MemLp f 2 P) (hg : MemLp g 2 P) :
 
 variable [CompleteSpace E]
 
+/--
+@isnad1 id=eventual.3h7v.s7.0fadc9452e52 from=translated src=- shape=f0c18b23 vocab=ee514173
+-/
 lemma condExp_inner_of_aestronglyMeasurable_left (hf : AEStronglyMeasurable[m] f P)
     (hfg : Integrable (fun ω ↦ ⟪f ω, g ω⟫) P) (hg : Integrable g P) :
     P[fun ω ↦ ⟪f ω, g ω⟫ | m] =ᵐ[P] (fun ω ↦ ⟪f ω, P[g | m] ω⟫) :=
   condExp_bilin_of_aestronglyMeasurable_left (innerSL ℝ) hf hfg hg
 
+/--
+@isnad1 id=eventual.3h7v.s7.c9d3eafe95c5 from=translated src=- shape=9ab1083e vocab=ee514173
+-/
 lemma condExp_inner_of_aestronglyMeasurable_right (hg : AEStronglyMeasurable[m] g P)
     (hfg : Integrable (fun ω ↦ ⟪f ω, g ω⟫) P) (hf : Integrable f P) :
     P[fun ω ↦ ⟪f ω, g ω⟫ | m] =ᵐ[P] (fun ω ↦ ⟪P[f | m] ω, g ω⟫) :=
@@ -40,6 +49,9 @@ end CondExp
 
 attribute [fun_prop] aemeasurable_id'
 
+/--
+@isnad1 id=eventual.2h7v.s6.957e493707c2 from=translated src=- shape=82067035 vocab=89697720
+-/
 @[to_additive]
 lemma Filter.EventuallyEq.div' {α β : Type*} [Div β] {f f' g g' : α → β} {l : Filter α}
     (h : f =ᶠ[l] g) (h' : f' =ᶠ[l] g') : f / f' =ᶠ[l] g / g' :=
@@ -58,6 +70,9 @@ variable {ι : Type*} [Fintype ι] {Ω : ι → Type*} {mΩ : ∀ i, MeasurableS
 
 variable [∀ i, IsProbabilityMeasure (μ i)]
 
+/--
+@isnad1 id=eq.1h5v.s7.88d250b3d9f0 from=translated src=- shape=e371518f vocab=ef30d007
+-/
 lemma variance_pi {X : Π i, Ω i → ℝ} (h : ∀ i, MemLp (X i) 2 (μ i)) :
     Var[∑ i, fun ω ↦ X i (ω i); Measure.pi μ] = ∑ i, Var[X i; μ i] := by
   rw [IndepFun.variance_sum]
@@ -75,6 +90,9 @@ end iIndepFun
 
 section covariance
 
+/--
+@isnad1 id=eq.1h5v.s6.2e6b53a21567 from=translated src=- shape=215c5506 vocab=e4b6387f
+-/
 lemma centralMoment_of_integral_id_eq_zero {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : Measure Ω} {X : Ω → ℝ} (p : ℕ) (hX : μ[X] = 0) :
     centralMoment X p μ = ∫ ω, X ω ^ p ∂μ := by
@@ -85,17 +103,29 @@ end covariance
 
 end ProbabilityTheory
 
+/--
+@isnad1 id=eq.0h1v.s10.b41d5769369b from=translated src=- shape=46064468 vocab=67601a54
+-/
 lemma MeasurableEquiv.coe_toLp_symm_eq {ι : Type*} :
     ⇑(MeasurableEquiv.toLp 2 (ι → ℝ)).symm = ⇑(EuclideanSpace.equiv ι ℝ) := rfl
 
+/--
+@isnad1 id=mem.0h3v.s5.f2455cb5d604 from=translated src=- shape=585236de vocab=d58536ae
+-/
 @[simp]
 lemma zero_mem_parallelepiped {ι E : Type*} [Fintype ι] [AddCommGroup E] [Module ℝ E] {v : ι → E} :
     0 ∈ parallelepiped v := ⟨0, by simp, by simp⟩
 
+/--
+@isnad1 id=nonempty.0h3v.s4.117c754c833d from=translated src=- shape=f59b7155 vocab=5d77e2ea
+-/
 @[simp]
 lemma nonempty_parallelepiped {ι E : Type*} [Fintype ι] [AddCommGroup E] [Module ℝ E] {v : ι → E} :
     (parallelepiped v).Nonempty := ⟨0, zero_mem_parallelepiped⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.ea31afe31ec0 from=translated src=- shape=0caad2e5 vocab=d5f5a445
+-/
 @[simp, nontriviality]
 lemma volume_of_nonempty_of_subsingleton {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [Subsingleton E] {s : Set E} (hs : s.Nonempty) :
@@ -106,6 +136,9 @@ lemma volume_of_nonempty_of_subsingleton {E : Type*} [NormedAddCommGroup E] [Inn
 
 --generalizing `MeasureTheory.Measure.addHaar_ball_center`
 
+/--
+@isnad1 id=eq.0h5v.s6.bb7edb3e9023 from=translated src=- shape=7e176b61 vocab=6c66a937
+-/
 @[to_additive]
 lemma MeasureTheory.Measure.IsMulLeftInvariant.measure_ball_const
     {G : Type*} [Group G] [PseudoMetricSpace G] [MeasurableSpace G]
@@ -117,6 +150,9 @@ lemma MeasureTheory.Measure.IsMulLeftInvariant.measure_ball_const
   · fun_prop
   · exact Metric.isOpen_ball.measurableSet
 
+/--
+@isnad1 id=eq.0h5v.s7.29b65ad12168 from=translated src=- shape=7c77ba21 vocab=c12e5030
+-/
 @[to_additive]
 lemma MeasureTheory.Measure.IsMulRightInvariant.measure_ball_const
     {G : Type*} [CommGroup G] [PseudoMetricSpace G] [MeasurableSpace G]
@@ -128,6 +164,9 @@ lemma MeasureTheory.Measure.IsMulRightInvariant.measure_ball_const
   · fun_prop
   · exact Metric.isOpen_ball.measurableSet
 
+/--
+@isnad1 id=eq.0h5v.s6.718ea1fe7a26 from=translated src=- shape=7e176b61 vocab=b8068c44
+-/
 @[to_additive]
 lemma MeasureTheory.Measure.IsMulLeftInvariant.measure_closedBall_const
     {G : Type*} [Group G] [PseudoMetricSpace G] [MeasurableSpace G]
@@ -139,6 +178,9 @@ lemma MeasureTheory.Measure.IsMulLeftInvariant.measure_closedBall_const
   · fun_prop
   · exact Metric.isClosed_closedBall.measurableSet
 
+/--
+@isnad1 id=eq.0h5v.s7.ee9229bf64a2 from=translated src=- shape=7c77ba21 vocab=c5311b1d
+-/
 @[to_additive]
 lemma MeasureTheory.Measure.IsMulRightInvariant.measure_closeBall_const
     {G : Type*} [CommGroup G] [PseudoMetricSpace G] [MeasurableSpace G]
@@ -150,6 +192,9 @@ lemma MeasureTheory.Measure.IsMulRightInvariant.measure_closeBall_const
   · fun_prop
   · exact Metric.isClosed_closedBall.measurableSet
 
+/--
+@isnad1 id=eq.0h5v.s7.eed5c521e7b3 from=translated src=- shape=f0753658 vocab=db9ceb03
+-/
 @[to_additive]
 lemma MeasureTheory.Measure.IsMulLeftInvariant.measure_ball_const'
     {G : Type*} [Group G] [PseudoEMetricSpace G] [MeasurableSpace G]
@@ -161,6 +206,9 @@ lemma MeasureTheory.Measure.IsMulLeftInvariant.measure_ball_const'
   · fun_prop
   · exact Metric.isOpen_eball.measurableSet
 
+/--
+@isnad1 id=eq.0h5v.s7.ed057b79494c from=translated src=- shape=9a2f1048 vocab=a0798c9c
+-/
 @[to_additive]
 lemma MeasureTheory.Measure.IsMulRightInvariant.measure_ball_const'
     {G : Type*} [CommGroup G] [PseudoEMetricSpace G] [MeasurableSpace G]
@@ -174,6 +222,9 @@ lemma MeasureTheory.Measure.IsMulRightInvariant.measure_ball_const'
 
 open Metric
 
+/--
+@isnad1 id=eq.2h5v.s7.260616e152f1 from=translated src=- shape=a44ce8cf vocab=e6e21ddd
+-/
 lemma InnerProductSpace.volume_closedBall_div {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (x y : E) {r s : ℝ} (hr : 0 < r) (hs : 0 < s) :
@@ -186,6 +237,9 @@ lemma InnerProductSpace.volume_closedBall_div {E : Type*} [NormedAddCommGroup E]
   simp_rw [← ENNReal.rpow_natCast]
   rw [← ENNReal.div_rpow_of_nonneg _ _ (by simp), ENNReal.ofReal_div_of_pos hs]
 
+/--
+@isnad1 id=eq.0h5v.s8.f947f17a2c71 from=translated src=- shape=46bc32bb vocab=20da947c
+-/
 lemma InnerProductSpace.volume_closedBall_div' {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (x y : E) (r s : ℝ≥0∞) :
@@ -214,16 +268,25 @@ namespace ProbabilityTheory
 
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} {X Y Z : Ω → ℝ} (c : ℝ)
 
+/--
+@isnad1 id=eq.3h6v.s7.80a916aa4074 from=translated src=- shape=6d1c4363 vocab=2313302e
+-/
 lemma covariance_fun_add_left [IsFiniteMeasure μ]
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 μ) (hZ : MemLp Z 2 μ) :
     cov[fun ω ↦ X ω + Y ω, Z; μ] = cov[fun ω ↦ X ω, Z; μ] + cov[fun ω ↦ Y ω, Z; μ] :=
   covariance_add_left hX hY hZ
 
+/--
+@isnad1 id=eq.3h6v.s7.37dc9c248f15 from=translated src=- shape=97abec2c vocab=2313302e
+-/
 lemma covariance_fun_add_right [IsFiniteMeasure μ]
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 μ) (hZ : MemLp Z 2 μ) :
     cov[X, fun ω ↦ Y ω + Z ω; μ] = cov[X, fun ω ↦ Y ω; μ] + cov[X, fun ω ↦ Z ω; μ] :=
   covariance_add_right hX hY hZ
 
+/--
+@isnad1 id=eq.1h5v.s6.51f7c01669df from=translated src=- shape=dc44511d vocab=5389650b
+-/
 lemma variance_fun_div (hX : AEMeasurable X μ) :
     Var[fun ω ↦ X ω / c; μ] = Var[X; μ] / c ^ 2 := by
   rw [← covariance_self (by fun_prop), covariance_fun_div_left, covariance_fun_div_right,
@@ -234,6 +297,9 @@ end ProbabilityTheory
 
 open ProbabilityTheory MeasurableSpace
 
+/--
+@isnad1 id=eq.0h4v.s6.9ee2095d4f8a from=translated src=- shape=ad05b2b9 vocab=16d11703
+-/
 lemma MeasurableSpace.comap_process {Ω T : Type*} {𝓧 : T → Type*} [∀ t, MeasurableSpace (𝓧 t)]
     (X : (t : T) → Ω → 𝓧 t) :
     MeasurableSpace.comap (fun ω t ↦ X t ω) MeasurableSpace.pi =
@@ -241,6 +307,9 @@ lemma MeasurableSpace.comap_process {Ω T : Type*} {𝓧 : T → Type*} [∀ t, 
   simp_rw [MeasurableSpace.pi, MeasurableSpace.comap_iSup, MeasurableSpace.comap_comp]
   rfl
 
+/--
+@isnad1 id=le.2h6v.s5.9a759af4eaf0 from=translated src=- shape=8e477177 vocab=0b14570e
+-/
 lemma MeasurableSpace.comap_le_comap
     {Ω 𝓧 𝓨 : Type*} [m𝓧 : MeasurableSpace 𝓧] [m𝓨 : MeasurableSpace 𝓨]
     {X : Ω → 𝓧} {Y : Ω → 𝓨} (f : 𝓧 → 𝓨) (hf : Measurable f) (h : Y = f ∘ X) :
@@ -248,6 +317,9 @@ lemma MeasurableSpace.comap_le_comap
   rw [h, ← MeasurableSpace.comap_comp]
   exact MeasurableSpace.comap_mono hf.comap_le
 
+/--
+@isnad1 id=eq.0h2v.s5.a3a912d8bbeb from=translated src=- shape=ab7b6638 vocab=3dd9f185
+-/
 lemma MeasurableSpace.generateFrom_singleton_eq_comap_indicator_one {Ω : Type*} {A : Set Ω} :
     MeasurableSpace.generateFrom {A} =
       MeasurableSpace.comap (A.indicator (1 : Ω → ℝ)) inferInstance := by
@@ -259,6 +331,9 @@ lemma MeasurableSpace.generateFrom_singleton_eq_comap_indicator_one {Ω : Type*}
   · apply (measurable_indicator_const_iff 1).2 ?_
     exact MeasurableSpace.measurableSet_generateFrom (by simp)
 
+/--
+@isnad1 id=iff.2h7v.s6.127b063307a1 from=translated src=- shape=69f5c436 vocab=2ff7b9db
+-/
 lemma ProbabilityTheory.singleton_indepSets_comap_iff {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω} [IsZeroOrProbabilityMeasure P] {𝓧 : Type*}
     {m𝓧 : MeasurableSpace 𝓧} {A : Set Ω} {X : Ω → 𝓧} (hX : Measurable X) (hA : MeasurableSet A) :
@@ -272,6 +347,9 @@ lemma ProbabilityTheory.singleton_indepSets_comap_iff {Ω : Type*} {mΩ : Measur
     convert h
     simp
 
+/--
+@isnad1 id=eq.4h8v.s7.0170373176ad from=translated src=- shape=f533daff vocab=a10b50dc
+-/
 lemma IndepSets.setIntegral_eq_mul {Ω 𝓧 : Type*} {mΩ : MeasurableSpace Ω}
     {μ : Measure Ω} {m𝓧 : MeasurableSpace 𝓧} {X : Ω → 𝓧} [IsZeroOrProbabilityMeasure μ]
     {f : 𝓧 → ℝ} {A : Set Ω} (hA1 : IndepSets {A} {s | MeasurableSet[m𝓧.comap X] s} μ)
@@ -293,6 +371,9 @@ lemma IndepSets.setIntegral_eq_mul {Ω 𝓧 : Type*} {mΩ : MeasurableSpace Ω}
     · fun_prop
     · exact hf
 
+/--
+@isnad1 id=indepset.2h6v.s5.bef9a729ccf3 from=translated src=- shape=e7bf6e21 vocab=33488111
+-/
 lemma Indep.singleton_indepSets {Ω : Type*} {m1 m2 mΩ : MeasurableSpace Ω}
     {P : Measure Ω} (h : Indep m1 m2 P) {A : Set Ω}
     (hA : MeasurableSet[m1] A) : IndepSets {A} {s | MeasurableSet[m2] s} P := by
@@ -300,6 +381,9 @@ lemma Indep.singleton_indepSets {Ω : Type*} {m1 m2 mΩ : MeasurableSpace Ω}
   apply indepSets_of_indepSets_of_le_left this
   simpa
 
+/--
+@isnad1 id=iff.0h3v.s4.5521168a4056 from=translated src=- shape=04673093 vocab=cc24b656
+-/
 lemma measurableSpace_le_iff {Ω : Type*} {m1 m2 : MeasurableSpace Ω} :
     m1 ≤ m2 ↔ ∀ s, MeasurableSet[m1] s → MeasurableSet[m2] s := by aesop
 

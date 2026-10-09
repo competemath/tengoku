@@ -40,7 +40,9 @@ set_option maxRecDepth 1000000
 
 /-- On [each of the explicit compact parameter cells](hyp:j),
 [the complete outward-rounded rational low-frequency sum is at most
-one quarter](goal). -/
+one quarter](goal).
+@isnad1 id=le.0h1v.s5.c91d29de43a5 from=translated src=- shape=80dd922e vocab=b8bd2d33
+-/
 theorem prawitz_low_rational_sum_certificate (j : Fin 270) :
     prawitzRationalLowSum j.val ≤ (1 / 4 : ℚ) := by
   /- Lowest open layer: EXACT finite rational sums only. Every cell is

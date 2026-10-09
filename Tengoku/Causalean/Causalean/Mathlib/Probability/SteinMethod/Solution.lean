@@ -54,7 +54,9 @@ expectation, multiplied by $e^{-x^2/2}$. -/
 noncomputable def steinIntegrand (h : ℝ → ℝ) (x : ℝ) : ℝ :=
   (h x - gExpect h) * Real.exp (-x ^ 2 / 2)
 
-/-- The Stein integrand is continuous whenever the test function `h` is. -/
+/-- The Stein integrand is continuous whenever the test function `h` is.
+@isnad1 id=continuo.1h1v.s5.812beebe508f from=translated src=- shape=7861e8ca vocab=f83a8f1e
+-/
 @[fun_prop]
 theorem steinIntegrand_continuous (h : ℝ → ℝ) (hh : Continuous h) :
     Continuous (steinIntegrand h) := by
@@ -62,7 +64,9 @@ theorem steinIntegrand_continuous (h : ℝ → ℝ) (hh : Continuous h) :
   fun_prop
 
 /-- The absolute value of the standard-normal expectation of a uniformly bounded function is at
-most the same bound. This is useful throughout Stein-method estimates. -/
+most the same bound. This is useful throughout Stein-method estimates.
+@isnad1 id=le.1h2v.s4.25de52e0465d from=translated src=- shape=d84ac373 vocab=6ba1479d
+-/
 theorem abs_gExpect_le {h : ℝ → ℝ} {C : ℝ} (hb : ∀ x, |h x| ≤ C) :
     |gExpect h| ≤ C := by
   unfold gExpect
@@ -94,7 +98,9 @@ private theorem steinIntegrand_integrable {h : ℝ → ℝ} (hh : Continuous h) 
 /-- **The Stein equation.** For [a continuous test function `h`](hyp:hh) that is [bounded in
 absolute value by a constant `C`](hyp:hb), [the Stein solution `steinSol h` is differentiable at
 every point `w`, with derivative `w·steinSol h w + (h w − E[h(Z)])` for a standard normal
-`Z`](goal), i.e. it solves the Stein equation `f'(w) − w·f(w) = h(w) − E[h(Z)]`. -/
+`Z`](goal), i.e. it solves the Stein equation `f'(w) − w·f(w) = h(w) − E[h(Z)]`.
+@isnad1 id=hasderiv.2h3v.s6.991aded4066a from=translated src=- shape=971143e6 vocab=e5bd9b9c
+-/
 theorem steinSol_hasDerivAt (h : ℝ → ℝ) (hh : Continuous h) {C : ℝ} (hb : ∀ x, |h x| ≤ C)
     (w : ℝ) :
     HasDerivAt (steinSol h) (w * steinSol h w + (h w - gExpect h)) w := by
@@ -143,7 +149,9 @@ theorem steinSol_hasDerivAt (h : ℝ → ℝ) (hh : Continuous h) {C : ℝ} (hb 
   refine hprod.congr_deriv ?_
   rw [hgcancel]; ring
 
-/-- The Stein equation in subtractive form. -/
+/-- The Stein equation in subtractive form.
+@isnad1 id=eq.2h3v.s6.a77f10f46daf from=translated src=- shape=fcc30335 vocab=392ebe4f
+-/
 theorem steinSol_stein_eq (h : ℝ → ℝ) (hh : Continuous h) {C : ℝ} (hb : ∀ x, |h x| ≤ C) (w : ℝ) :
     deriv (steinSol h) w - w * steinSol h w = h w - gExpect h := by
   have := (steinSol_hasDerivAt h hh hb w).deriv

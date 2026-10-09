@@ -65,7 +65,9 @@ noncomputable def quantile (τ : ℝ) : ℝ := sInf (quantileSet μ τ)
 variable {μ}
 
 /-- If [a point belongs to a quantile super-level set](hyp:hx) and [a second point
-is no smaller](hyp:hxx'), then [the second point also belongs to that set](goal). -/
+is no smaller](hyp:hxx'), then [the second point also belongs to that set](goal).
+@isnad1 id=mem.2h4v.s5.54fa28e657a5 from=translated src=- shape=ae2a4901 vocab=441179f6
+-/
 lemma quantileSet_up_closed {τ x x' : ℝ}
     (hx : x ∈ quantileSet μ τ) (hxx' : x ≤ x') :
     x' ∈ quantileSet μ τ :=
@@ -75,7 +77,9 @@ lemma quantileSet_up_closed {τ x x' : ℝ}
 real measure is bounded below](goal).
 
 The CDF tends to zero at negative infinity, so a point where it is below the
-level supplies a lower bound. -/
+level supplies a lower bound.
+@isnad1 id=bddbelow.1h2v.s4.54bec0e6f83a from=translated src=- shape=8c387da7 vocab=523cbc3d
+-/
 lemma bddBelow_quantileSet {τ : ℝ}
     (hτ : 0 < τ) : BddBelow (quantileSet μ τ) := by
   obtain ⟨N, hN⟩ := Filter.eventually_atBot.mp ((tendsto_cdf_atBot μ).eventually_lt_const hτ)
@@ -88,7 +92,9 @@ lemma bddBelow_quantileSet {τ : ℝ}
 real measure is nonempty](goal).
 
 The CDF tends to one at positive infinity, so some point has CDF at least the
-given level. -/
+given level.
+@isnad1 id=nonempty.1h2v.s4.f91d0297e1ca from=translated src=- shape=365e694f vocab=5b72a112
+-/
 lemma nonempty_quantileSet {τ : ℝ}
     (hτ : τ < 1) : (quantileSet μ τ).Nonempty := by
   obtain ⟨N, hN⟩ := Filter.eventually_atTop.mp ((tendsto_cdf_atTop μ).eventually_const_lt hτ)
@@ -98,7 +104,9 @@ lemma nonempty_quantileSet {τ : ℝ}
 of a real measure at its lower quantile reaches that level](goal).
 
 Only the upper endpoint condition is needed. The proof uses right-continuity of
-the CDF. -/
+the CDF.
+@isnad1 id=le.1h2v.s5.50c65bcd632c from=translated src=- shape=ed89c5a9 vocab=a27743be
+-/
 lemma le_cdf_quantile {τ : ℝ} (hτ1 : τ < 1) :
     τ ≤ cdf μ (quantile μ τ) := by
   set a := quantile μ τ with ha
@@ -118,14 +126,18 @@ lemma le_cdf_quantile {τ : ℝ} (hτ1 : τ < 1) :
 
 /-- **Galois connection (one direction).** If [the level is below one](hyp:hτ1)
 and [its quantile is at most a point](hyp:hx), then [the CDF at that point has
-reached the level](goal). -/
+reached the level](goal).
+@isnad1 id=le.2h3v.s5.037ac921e714 from=translated src=- shape=34632771 vocab=a27743be
+-/
 lemma le_cdf_of_quantile_le {τ x : ℝ} (hτ1 : τ < 1)
     (hx : quantile μ τ ≤ x) : τ ≤ cdf μ x :=
   le_trans (le_cdf_quantile hτ1) (monotone_cdf μ hx)
 
 /-- **Galois connection (other direction).** If [the level is positive](hyp:hτ0)
 and [the CDF at a point reaches that level](hyp:hx), then [the quantile is at
-most that point](goal). -/
+most that point](goal).
+@isnad1 id=le.2h3v.s5.ef829f6812c6 from=translated src=- shape=7daccd85 vocab=a27743be
+-/
 lemma quantile_le_of_le_cdf {τ x : ℝ}
     (hτ0 : 0 < τ) (hx : τ ≤ cdf μ x) :
     quantile μ τ ≤ x :=
@@ -133,7 +145,9 @@ lemma quantile_le_of_le_cdf {τ x : ℝ}
 
 /-- **Quantile / CDF Galois connection.** For [an interior probability level
 $\tau\in(0,1)$](hyp:hτ0,hτ1), [the quantile of a real measure at
-level $\tau$ is at most a point exactly when the CDF has reached $\tau$ there](goal). -/
+level $\tau$ is at most a point exactly when the CDF has reached $\tau$ there](goal).
+@isnad1 id=iff.2h3v.s5.de4334a4b1c7 from=translated src=- shape=e6ebd4c0 vocab=a27743be
+-/
 theorem quantile_le_iff {τ x : ℝ}
     (hτ0 : 0 < τ) (hτ1 : τ < 1) :
     quantile μ τ ≤ x ↔ τ ≤ cdf μ x :=
@@ -141,7 +155,9 @@ theorem quantile_le_iff {τ x : ℝ}
 
 /-- If [the lower level is positive](hyp:hτ0), [the upper level is below
 one](hyp:hτ'1), and [the lower level is at most the upper](hyp:hττ'), then [the
-corresponding quantiles of a real measure are ordered](goal). -/
+corresponding quantiles of a real measure are ordered](goal).
+@isnad1 id=le.3h3v.s5.25afa9c5ab11 from=translated src=- shape=c44addfe vocab=f49ad7d2
+-/
 lemma quantile_mono {τ τ' : ℝ}
     (hτ0 : 0 < τ) (hτ'1 : τ' < 1) (hττ' : τ ≤ τ') :
     quantile μ τ ≤ quantile μ τ' :=

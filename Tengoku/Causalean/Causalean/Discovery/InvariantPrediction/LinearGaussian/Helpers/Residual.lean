@@ -37,7 +37,9 @@ regression residual coincide with target noise. -/
 def causalCoeff (M : ObsSEM p) : Fin (p + 1) → ℝ := fun k => M.β (target p) k
 
 /-- With the causal coefficient, the full-sum `Σ_k β₀ₖ X_k` equals the
-structural-equation sum `Σ_{k≠0} β₀ₖ X_k`, since `β₀₀ = 0`. -/
+structural-equation sum `Σ_{k≠0} β₀ₖ X_k`, since `β₀₀ = 0`.
+@isnad1 id=eq.0h3v.s7.40f39ad71a1f from=translated src=- shape=19a02f4e vocab=215c2c4f
+-/
 theorem sum_causalCoeff_eq (M : ObsSEM p) (x : Fin (p + 1) → ℝ) :
     ∑ k, M.β (target p) k * x k
       = ∑ k ∈ Finset.univ.erase (target p), M.β (target p) k * x k := by
@@ -46,7 +48,9 @@ theorem sum_causalCoeff_eq (M : ObsSEM p) (x : Fin (p + 1) → ℝ) :
 
 /-- **Observational residual is the target noise.** For [an observational SEM](hyp:M),
 [evaluated at the causal coefficient `γ* = β₀,·`, the observational residual
-`Y − Σ_k β₀ₖ X_k` equals the target's structural noise `ε₀` almost everywhere](goal). -/
+`Y − Σ_k β₀ₖ X_k` equals the target's structural noise `ε₀` almost everywhere](goal).
+@isnad1 id=eventual.0h2v.s5.d99f7a80fde3 from=translated src=- shape=bb90dd0d vocab=2b2510fd
+-/
 theorem obsResidual_eq_eps (M : ObsSEM p) :
     ∀ᵐ ω ∂M.P, obsResidual M (causalCoeff M) ω = M.ε ω (target p) := by
   filter_upwards [M.hε] with ω hω
@@ -56,7 +60,9 @@ theorem obsResidual_eq_eps (M : ObsSEM p) :
 [a do-intervention environment built on it](hyp:e) — where the target is never itself
 intervened on, so it keeps its structural equation — [the environment residual
 `Yᵉ − Σ_k β₀ₖ Xₖᵉ`, evaluated at the causal coefficient, equals the target's structural
-noise `ε₀` almost everywhere](goal). -/
+noise `ε₀` almost everywhere](goal).
+@isnad1 id=eventual.0h3v.s5.9e9fbdc998ad from=translated src=- shape=7b14bc14 vocab=d1f42690
+-/
 theorem envResidual_eq_eps (M : ObsSEM p) (e : Env M) :
     ∀ᵐ ω ∂M.P, envResidual e (causalCoeff M) ω = M.ε ω (target p) := by
   filter_upwards [e.hDoStruct (target p) e.hAtarget] with ω hω

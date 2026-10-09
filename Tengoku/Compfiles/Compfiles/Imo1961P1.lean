@@ -41,6 +41,9 @@ abbrev ab_that_make_xyz_positive_distinct : Set (ℝ × ℝ) :=
   { q | let ⟨a,b⟩ := q
         0 < a ∧ b^2 < a^2 ∧ a^2 < 3 * b ^ 2 }
 
+/--
+@isnad1 id=and.5h5v.s8.c4d5d7929c3a from=translated src=- shape=0b618278 vocab=ffc9b985
+-/
 lemma aux_1
   (x y z a b : ℝ)
   (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)

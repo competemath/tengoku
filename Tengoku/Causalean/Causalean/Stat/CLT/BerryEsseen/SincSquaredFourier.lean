@@ -20,7 +20,9 @@ open scoped Convolution
 /-- At [every real frequency t](hyp:t), [the Fourier integral of squared sinc is
 the triangular function π·max(1 − |t|/2, 0)](goal): it equals π(1 − |t|/2)
 on frequencies of absolute value at most two and zero outside, including at
-the two support endpoints. -/
+the two support endpoints.
+@isnad1 id=eq.0h1v.s6.9ae676e23015 from=translated src=- shape=43ef2561 vocab=5ffee599
+-/
 theorem sincSquared_fourier_triangle (t : ℝ) :
     ∫ x : ℝ,
         Complex.exp (((t * x : ℝ) : ℂ) * Complex.I) *

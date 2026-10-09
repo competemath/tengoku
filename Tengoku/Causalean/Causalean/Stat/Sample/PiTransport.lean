@@ -66,7 +66,9 @@ noncomputable def iidSample_infinitePi (P : Measure X) [IsProbabilityMeasure P] 
   law := Measure.infinitePi_map_eval _ _
 
 /-- For [an i.i.d. sample `S`](hyp:S) [and a fixed horizon `n`](hyp:n), [the joint map of the first
-`n` sample points pushes `μ` forward to the product measure on `Fin n → X`](goal). -/
+`n` sample points pushes `μ` forward to the product measure on `Fin n → X`](goal).
+@isnad1 id=eq.0h6v.s6.ce7846f87f4c from=translated src=- shape=64c4e4ab vocab=328ff953
+-/
 lemma iidSample_finN_pushforward
     (S : IIDSample Ω X μ P) (n : ℕ) :
     μ.map (fun ω : Ω => fun k : Fin n => S.Z k ω) =
@@ -84,7 +86,9 @@ lemma iidSample_finN_pushforward
         rw [← (S.identDist k).map_eq, S.law]
 
 /-- The joint observable `Ψ ω k = S.Z k ω` is measurable
-`Ω → (Fin n → X)`. -/
+`Ω → (Fin n → X)`.
+@isnad1 id=measurab.0h6v.s5.18c27fb7d4f1 from=translated src=- shape=f91930f6 vocab=aaaef4de
+-/
 lemma iidSample_finN_measurable (S : IIDSample Ω X μ P) (n : ℕ) :
     Measurable (fun ω : Ω => fun k : Fin n => S.Z k ω) :=
   measurable_pi_lambda _ (fun k => S.meas k)
@@ -94,7 +98,9 @@ the space of length-`n` outcome tuples](hyp:hE_meas) whose [product-measure prob
 independent copies of the population law is at least $1-\delta$](hyp:hE_prob), the pullback of `E`
 along the joint observable built from the first `n` coordinates of the i.i.d. sample [is a
 measurable event on the underlying sample space, with probability at least
-$1-\delta$](goal). -/
+$1-\delta$](goal).
+@isnad1 id=other.2h8v.s7.2bb5bcfd01f7 from=translated src=- shape=cd683c9b vocab=77cfacbf
+-/
 lemma event_pullback_along_iidSample
     (S : IIDSample Ω X μ P) (n : ℕ)
     {E : Set (Fin n → X)} (hE_meas : MeasurableSet E)
@@ -132,7 +138,9 @@ variable {ι : Type*} [Fintype ι]
 leaves the product measure over that sub-index: the retained coordinates carry exactly their own
 product law, with no trace of the discarded ones.
 
-The factors are allowed to differ from coordinate to coordinate. -/
+The factors are allowed to differ from coordinate to coordinate.
+@isnad1 id=measurep.0h4v.s7.5a73f52afbcf from=translated src=- shape=48696b69 vocab=5eddc51b
+-/
 theorem measurePreserving_pi_restrict_dep {X : ι → Type*} [∀ i, MeasurableSpace (X i)]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     (p : ι → Prop) [DecidablePred p] :
@@ -146,7 +154,9 @@ theorem measurePreserving_pi_restrict_dep {X : ι → Type*} [∀ i, MeasurableS
   simpa [MeasurableEquiv.piEquivPiSubtypeProd, Function.comp_def] using hfst.comp hsplit
 
 /-- Dropping the coordinates outside a decidable sub-index of an i.i.d. product sample leaves the
-i.i.d. product sample over that sub-index. -/
+i.i.d. product sample over that sub-index.
+@isnad1 id=measurep.0h4v.s6.c25e61abba83 from=translated src=- shape=d5c26b13 vocab=5eddc51b
+-/
 theorem measurePreserving_pi_restrict {X : Type*} [MeasurableSpace X]
     (μ : Measure X) [IsProbabilityMeasure μ] (p : ι → Prop) [DecidablePred p] :
     MeasurePreserving (fun (s : ι → X) (i : Subtype p) => s i.1)
@@ -154,7 +164,9 @@ theorem measurePreserving_pi_restrict {X : Type*} [MeasurableSpace X]
   measurePreserving_pi_restrict_dep (fun _ : ι => μ) p
 
 /-- The law of the sub-index coordinates of an i.i.d. product sample is the product law over that
-sub-index; this is the pushforward packaging of the measure-preserving statement. -/
+sub-index; this is the pushforward packaging of the measure-preserving statement.
+@isnad1 id=eq.0h4v.s7.3db1fee1ffc2 from=translated src=- shape=988a0aea vocab=d7f0122a
+-/
 theorem map_pi_restrict {X : Type*} [MeasurableSpace X]
     (μ : Measure X) [IsProbabilityMeasure μ] (p : ι → Prop) [DecidablePred p] :
     (Measure.pi fun _ : ι => μ).map (fun (s : ι → X) (i : Subtype p) => s i.1) =
@@ -165,7 +177,9 @@ theorem map_pi_restrict {X : Type*} [MeasurableSpace X]
 same as averaging it over an i.i.d. product sample indexed by the sub-index alone.
 
 No measurability hypothesis is needed: when the integrand is not almost everywhere strongly
-measurable both sides vanish. -/
+measurable both sides vanish.
+@isnad1 id=eq.0h6v.s7.0adc6ba9a1a3 from=translated src=- shape=5af9fc4d vocab=3f7f69f8
+-/
 theorem integral_comp_pi_restrict {X E : Type*} [MeasurableSpace X]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     (μ : Measure X) [IsProbabilityMeasure μ] (p : ι → Prop) [DecidablePred p]
@@ -197,7 +211,9 @@ theorem integral_comp_pi_restrict {X E : Type*} [MeasurableSpace X]
     exact AEStronglyMeasurable.of_comp_fst hcomp (IsProbabilityMeasure.ne_zero _)
 
 /-- Dropping the coordinates outside a finite set of indices of an i.i.d. product sample leaves the
-i.i.d. product sample indexed by that finite set. -/
+i.i.d. product sample indexed by that finite set.
+@isnad1 id=measurep.0h4v.s7.bfb713e09e6e from=translated src=- shape=31db1a4f vocab=6cab4db6
+-/
 theorem measurePreserving_pi_restrict_finset {X : Type*} [MeasurableSpace X]
     (μ : Measure X) [IsProbabilityMeasure μ] (S : Finset ι) :
     MeasurePreserving (fun (s : ι → X) (i : {i : ι // i ∈ S}) => s i.1)
@@ -206,7 +222,9 @@ theorem measurePreserving_pi_restrict_finset {X : Type*} [MeasurableSpace X]
   convert measurePreserving_pi_restrict μ (· ∈ S) using 2
 
 /-- The law of the coordinates in a finite index set of an i.i.d. product sample is the product law
-over that finite set; this is the pushforward packaging of the measure-preserving statement. -/
+over that finite set; this is the pushforward packaging of the measure-preserving statement.
+@isnad1 id=eq.0h4v.s8.1edab38817f6 from=translated src=- shape=a88300fe vocab=9d5be34b
+-/
 theorem map_pi_restrict_finset {X : Type*} [MeasurableSpace X]
     (μ : Measure X) [IsProbabilityMeasure μ] (S : Finset ι) :
     (Measure.pi fun _ : ι => μ).map (fun (s : ι → X) (i : {i : ι // i ∈ S}) => s i.1) =
@@ -214,7 +232,9 @@ theorem map_pi_restrict_finset {X : Type*} [MeasurableSpace X]
   (measurePreserving_pi_restrict_finset μ S).map_eq
 
 /-- Averaging a function of the coordinates in a finite index set over the whole i.i.d. product
-sample is the same as averaging it over an i.i.d. product sample indexed by that finite set. -/
+sample is the same as averaging it over an i.i.d. product sample indexed by that finite set.
+@isnad1 id=eq.0h6v.s8.0b2794229b9a from=translated src=- shape=9ddc9ca5 vocab=661403ce
+-/
 theorem integral_comp_pi_restrict_finset {X E : Type*} [MeasurableSpace X]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     (μ : Measure X) [IsProbabilityMeasure μ] (S : Finset ι)
@@ -243,7 +263,9 @@ def HasIIDSample {X : Type u} [MeasurableSpace X] (P : Measure X) : Prop :=
 
 /-- An i.i.d. sample with a given law always exists: every probability measure is the common
 marginal of some independent, identically distributed sample, realised on the infinite product
-space by the coordinate projections. -/
+space by the coordinate projections.
+@isnad1 id=hasiidsa.0h2v.s4.4d10912bc6d2 from=translated src=- shape=b3ed56ef vocab=9eca1f74
+-/
 theorem hasIIDSample_of_isProbabilityMeasure {X : Type u} [MeasurableSpace X]
     (P : Measure X) [IsProbabilityMeasure P] : HasIIDSample P :=
   ⟨ℕ → X, inferInstance, Measure.infinitePi fun _ : ℕ => P, ⟨iidSample_infinitePi P⟩⟩
@@ -254,7 +276,9 @@ marginal being a probability measure.
 In other words, assuming "the data are an i.i.d. draw from `P`" as an *existential* over ambient
 probability spaces adds nothing to the assumption that `P` is a probability law: the infinite
 product space always supplies such a sample. Any substantive sampling content has to come from
-fixing the sample, not from asserting that one exists. -/
+fixing the sample, not from asserting that one exists.
+@isnad1 id=iff.0h2v.s4.2a66868573f5 from=translated src=- shape=238e1b69 vocab=9eca1f74
+-/
 theorem hasIIDSample_iff_isProbabilityMeasure {X : Type u} [MeasurableSpace X] (P : Measure X) :
     HasIIDSample P ↔ IsProbabilityMeasure P := by
   refine ⟨?_, fun _ => hasIIDSample_of_isProbabilityMeasure P⟩
@@ -281,7 +305,9 @@ variable {X : Type uX} {Y : Type uY}
   [MeasurableSpace X] [MeasurableSpace Y]
 
 /-- Applying [a measurable observation rule](hyp:hphi) separately to every position of a
-finite sample [produces a measurable recoded sample](goal). -/
+finite sample [produces a measurable recoded sample](goal).
+@isnad1 id=measurab.1h4v.s6.e5ebc907e036 from=translated src=- shape=ee3f0f23 vocab=3382e6a5
+-/
 theorem measurable_finCoordinatewise (n : ℕ) {phi : X → Y}
     (hphi : Measurable phi) :
     Measurable (fun z : Fin n → X => fun i => phi (z i)) := by
@@ -289,7 +315,9 @@ theorem measurable_finCoordinatewise (n : ℕ) {phi : X → Y}
 
 /-- Under a common probability law, applying [a measurable observation rule](hyp:hphi)
 coordinate by coordinate [turns the finite product law into the finite product of the
-recoded marginal law](goal). -/
+recoded marginal law](goal).
+@isnad1 id=eq.1h5v.s7.ba95c10ffdd7 from=translated src=- shape=5c8d3665 vocab=aa94a1bf
+-/
 theorem map_pi_finCoordinatewise (n : ℕ) (mu : Measure X)
     [IsProbabilityMeasure mu] {phi : X → Y} (hphi : Measurable phi) :
     (Measure.pi (fun _ : Fin n => mu)).map
@@ -302,7 +330,9 @@ theorem map_pi_finCoordinatewise (n : ℕ) (mu : Measure X)
 /-- Under a common probability law, if [the observation rule is measurable](hyp:hphi) and
 [the real-valued statistic of the recoded sample is measurable](hyp:hg), then [its expectation
 after coordinatewise recoding equals its expectation under the product of the recoded
-marginal law](goal). -/
+marginal law](goal).
+@isnad1 id=eq.2h6v.s7.6293ba73506b from=translated src=- shape=dc1d3d12 vocab=3bbb9ab0
+-/
 theorem integral_comp_finCoordinatewise (n : ℕ) (mu : Measure X)
     [IsProbabilityMeasure mu] {phi : X → Y} (hphi : Measurable phi)
     (g : (Fin n → Y) → ℝ) (hg : Measurable g) :

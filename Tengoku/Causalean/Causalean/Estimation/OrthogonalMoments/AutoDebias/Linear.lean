@@ -110,7 +110,9 @@ moment function under the system's observation measure. -/
 noncomputable def L_of_m (S : LinRegFnSys) : S.H_γ → ℝ :=
   fun γ => ∫ z, S.m_lin z γ ∂S.P_Z
 
-/-- Additivity of `L_of_m` on integrable summands. -/
+/-- Additivity of `L_of_m` on integrable summands.
+@isnad1 id=eq.2h3v.s6.a8156fdb7e9d from=translated src=- shape=5989fcd4 vocab=8f9ca010
+-/
 theorem L_of_m_add (S : LinRegFnSys) (γ₁ γ₂ : S.H_γ)
     (h₁ : Integrable (fun z => S.m_lin z γ₁) S.P_Z)
     (h₂ : Integrable (fun z => S.m_lin z γ₂) S.P_Z) :
@@ -120,7 +122,9 @@ theorem L_of_m_add (S : LinRegFnSys) (γ₁ γ₂ : S.H_γ)
     funext z; exact S.m_lin_addLeft z γ₁ γ₂
   rw [hpoint]; exact integral_add h₁ h₂
 
-/-- ℝ-homogeneity of `L_of_m`. -/
+/-- ℝ-homogeneity of `L_of_m`.
+@isnad1 id=eq.0h3v.s6.5618909495d0 from=translated src=- shape=6bac413d vocab=624f747f
+-/
 theorem L_of_m_smul (S : LinRegFnSys) (c : ℝ) (γ : S.H_γ) :
     L_of_m S (c • γ) = c * L_of_m S γ := by
   unfold L_of_m
@@ -154,7 +158,9 @@ noncomputable def linAutoInfluence (S : LinRegFnSys)
 
 /-- For a [linear regression-functional system](hyp:S), its [mean-pairing
 representation](hyp:rep), and an [observation](hyp:z), [the truth-evaluated
-pairing score equals the full automatic-debiasing influence function](goal). -/
+pairing score equals the full automatic-debiasing influence function](goal).
+@isnad1 id=eq.0h3v.s5.055b208cc002 from=translated src=- shape=91a00b05 vocab=b43f0741
+-/
 @[simp] theorem linRieszScore_truth_eq_influence (S : LinRegFnSys)
     (rep : Causalean.Estimation.OrthogonalMoments.MeanPairingRepresentation
       S.H_γ S.γ_target (L_of_m S) S.P_X) (z : S.Z) :
@@ -165,7 +171,9 @@ pairing score equals the full automatic-debiasing influence function](goal). -/
 /-- For a [linear regression-functional system and its mean-pairing representation](hyp:S,rep),
 assume [the α₀-weighted regression residual is integrable](hyp:h_α₀_resid_int) and [the
 observed linear functional at the truth is integrable](hyp:h_m_lin_int). Then [the population
-mean of the observation-level pairing score at the truth is zero](goal). -/
+mean of the observation-level pairing score at the truth is zero](goal).
+@isnad1 id=eq.2h2v.s7.d6f51a6b7183 from=translated src=- shape=4e0823c2 vocab=74d47084
+-/
 theorem linRieszScore_meanZero (S : LinRegFnSys)
     (rep : Causalean.Estimation.OrthogonalMoments.MeanPairingRepresentation
             S.H_γ S.γ_target (L_of_m S) S.P_X)
@@ -194,7 +202,9 @@ theorem linRieszScore_meanZero (S : LinRegFnSys)
 system](hyp:S) with [a mean-pairing witness](hyp:rep) and [any perturbation `ν_g` of the
 regression nuisance](hyp:ν_g), [the Gateaux derivative of the population debiased moment
 in the `g`-direction at the truth vanishes — equivalently, this is the representer identity
-for the perturbation `ν_g`](goal). -/
+for the perturbation `ν_g`](goal).
+@isnad1 id=eq.0h3v.s6.959185c8f574 from=translated src=- shape=7fe50244 vocab=af89287e
+-/
 theorem linRieszScore_directional_g_zero (S : LinRegFnSys)
     (rep : Causalean.Estimation.OrthogonalMoments.MeanPairingRepresentation
             S.H_γ S.γ_target (L_of_m S) S.P_X)
@@ -206,7 +216,9 @@ theorem linRieszScore_directional_g_zero (S : LinRegFnSys)
 /-- **Directional zero in the representer direction.** For any perturbation `ν_α` of the
 representer, assume [ν_α is measurable](hyp:hν_α_meas) and [the ν_α-weighted
 regression-residual product at the truth is integrable](hyp:h_int). Then [the population
-mean of the ν_α-weighted regression residual at the truth is zero](goal). -/
+mean of the ν_α-weighted regression residual at the truth is zero](goal).
+@isnad1 id=eq.2h2v.s7.3b3afee73b8a from=translated src=- shape=2116414e vocab=c59d3135
+-/
 theorem linRieszScore_directional_α_zero (S : LinRegFnSys)
     (ν_α : S.X → ℝ) (hν_α_meas : Measurable ν_α)
     (h_int :
@@ -268,7 +280,9 @@ pointwise](hyp:hRep_eq_idx). Assume [`(γ_target α) ^ 2` is integrable](hyp:h_i
 `γ_target α · γ_target α₀_idx` is integrable](hyp:h_int_αα₀), and [the squared difference
 `(γ_target α − γ_target α₀_idx) ^ 2` is integrable](hyp:h_int_diff_sq). Then [the excess
 linear Riesz loss of α over α₀_idx equals the squared L²(P_X) distance between
-`γ_target α` and `γ_target α₀_idx`](goal). -/
+`γ_target α` and `γ_target α₀_idx`](goal).
+@isnad1 id=eq.5h4v.s8.d28f542ce2fb from=translated src=- shape=db13dad4 vocab=3ade4ea6
+-/
 theorem linRieszLoss_excess_eq_l2dist (S : LinRegFnSys)
     (α α₀_idx : S.H_γ)
     (rep : Causalean.Estimation.OrthogonalMoments.MeanPairingRepresentation
@@ -323,7 +337,9 @@ population pairing function](hyp:α₀_idx), and a [mean-pairing representation]
 candidate's evaluated target is strongly measurable](hyp:h_target_meas), and [every
 candidate has finite squared risk](hyp:h_int_sq). Then [the indexed representer globally
 minimizes the population linear Riesz loss](goal); product and squared-distance
-integrability follow by L² Cauchy–Schwarz and closure. -/
+integrability follow by L² Cauchy–Schwarz and closure.
+@isnad1 id=le.3h4v.s7.f350f96ca8cb from=translated src=- shape=a7a1d6d9 vocab=b443a59d
+-/
 theorem linRieszLoss_representer_is_globalMinimizer (S : LinRegFnSys)
     (α₀_idx : S.H_γ)
     (rep : Causalean.Estimation.OrthogonalMoments.MeanPairingRepresentation
@@ -367,7 +383,9 @@ integrable for every direction ν](hyp:h_int_L), and that [the product
 `γ_target α₀_idx · γ_target ν` is integrable for every direction ν](hyp:h_int_α₀ν_X).
 Then [α₀_idx is a directional minimizer of the Riesz loss along every line through it if
 and only if it indexes a pairing function, i.e. `L_of_m S ν = ∫ γ_target α₀_idx ·
-γ_target ν dP_X` for every ν](goal). -/
+γ_target ν dP_X` for every ν](goal).
+@isnad1 id=iff.3h2v.s8.1eb4872b642b from=translated src=- shape=1ccfa715 vocab=5d6f66e5
+-/
 theorem linRieszLoss_FOC_iff_representer (S : LinRegFnSys)
     (α₀_idx : S.H_γ)
     (h_int_quad :

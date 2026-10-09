@@ -82,11 +82,15 @@ def parents (v : V) : Finset V :=
 def children (v : V) : Finset V :=
   Finset.univ.filter (fun w => G.edge v w)
 
-/-- Membership characterization for `parents`: `u ∈ G.parents v ↔ G.edge u v`. -/
+/-- Membership characterization for `parents`: `u ∈ G.parents v ↔ G.edge u v`.
+@isnad1 id=iff.0h4v.s5.e11f262d6c91 from=translated src=- shape=f01f4c0e vocab=af7ef093
+-/
 theorem mem_parents {v u : V} : u ∈ G.parents v ↔ G.edge u v := by
   simp [parents]
 
-/-- Membership characterization for `children`: `w ∈ G.children v ↔ G.edge v w`. -/
+/-- Membership characterization for `children`: `w ∈ G.children v ↔ G.edge v w`.
+@isnad1 id=iff.0h4v.s5.48ab9253994f from=translated src=- shape=fffb04d8 vocab=4afd315b
+-/
 theorem mem_children {v w : V} : w ∈ G.children v ↔ G.edge v w := by
   simp [children]
 
@@ -100,7 +104,9 @@ inductive isAncestor : V → V → Prop
   | trans {u w v : V} : isAncestor u w → G.edge w v → isAncestor u v
 
 /-- The inductive ancestor relation coincides with `Relation.TransGen` of the edge
-relation: both are the transitive closure of the edge relation. -/
+relation: both are the transitive closure of the edge relation.
+@isnad1 id=iff.0h4v.s5.82ca092bc1dd from=translated src=- shape=e1be8826 vocab=f7fa8953
+-/
 theorem isAncestor_iff_transGen {u v : V} :
     G.isAncestor u v ↔ Relation.TransGen G.edge u v := by
   constructor
@@ -113,24 +119,32 @@ theorem isAncestor_iff_transGen {u v : V} :
     | single he => exact isAncestor.edge he
     | tail _ he ih => exact isAncestor.trans ih he
 
-/-- No vertex has an edge to itself (a directed self-loop would be a length-one cycle). -/
+/-- No vertex has an edge to itself (a directed self-loop would be a length-one cycle).
+@isnad1 id=not.0h3v.s4.5154b2343e67 from=translated src=- shape=5fe41743 vocab=eba14e10
+-/
 theorem irrefl (v : V) : ¬G.edge v v := by
   intro h
   exact G.acyclic v (Relation.TransGen.single h)
 
 /-- If there is an edge from `u` to `v`, then there is no edge from `v` to `u`
-(a two-cycle is forbidden by acyclicity). -/
+(a two-cycle is forbidden by acyclicity).
+@isnad1 id=not.1h4v.s5.3ed30954ce22 from=translated src=- shape=e8a15573 vocab=eba14e10
+-/
 theorem asymm {u v : V} (h : G.edge u v) : ¬G.edge v u := by
   intro h'
   exact G.acyclic u ((Relation.TransGen.single h).tail h')
 
 /-- Ancestor relation is irreflexive: no vertex is its own ancestor (this is
-acyclicity, restated for the inductive ancestor relation). -/
+acyclicity, restated for the inductive ancestor relation).
+@isnad1 id=not.0h3v.s4.e8056c1e2a8e from=translated src=- shape=5fe41743 vocab=246be2ac
+-/
 theorem isAncestor_irrefl (v : V) : ¬G.isAncestor v v := by
   intro h
   exact G.acyclic v (G.isAncestor_iff_transGen.mp h)
 
-/-- Ancestor relation is transitive. -/
+/-- Ancestor relation is transitive.
+@isnad1 id=isancest.2h5v.s5.26cebed96bcf from=translated src=- shape=6c227f92 vocab=246be2ac
+-/
 theorem isAncestor_trans {u v w : V} (h1 : G.isAncestor u v) (h2 : G.isAncestor v w) :
     G.isAncestor u w := by
   induction h2 with
@@ -138,7 +152,9 @@ theorem isAncestor_trans {u v w : V} (h1 : G.isAncestor u v) (h2 : G.isAncestor 
   | trans _ he ih => exact isAncestor.trans ih he
 
 /-- First-step decomposition: if `u` is an ancestor of `v`, then either `edge u v`
-    or there exists a child `c` of `u` such that `c` is an ancestor of `v`. -/
+    or there exists a child `c` of `u` such that `c` is an ancestor of `v`.
+@isnad1 id=or.1h4v.s5.19ac09c08038 from=translated src=- shape=3636eadd vocab=0728d035
+-/
 theorem isAncestor_child {u v : V} (h : G.isAncestor u v) :
     G.edge u v ∨ ∃ c, G.edge u c ∧ G.isAncestor c v := by
   induction h with
@@ -188,7 +204,9 @@ private theorem subset_ancStep (S : Finset V) : S ⊆ G.ancStep S := by
   intro x hx; rw [ancStep, Finset.mem_union]; exact Or.inl hx
 
 /-- Any finite set of graph nodes remains contained after applying the graph's ancestor-step
-operation any number of times. -/
+operation any number of times.
+@isnad1 id=le.0h4v.s5.b11e19fc67bf from=translated src=- shape=195fc83d vocab=248e95cf
+-/
 theorem subset_iterate_ancStep (S : Finset V) (k : ℕ) :
     S ⊆ (G.ancStep)^[k] S := by
   induction k with
@@ -206,7 +224,9 @@ private theorem iterate_of_fixpoint {T : Finset V} (h : G.ancStep T = T) (j : �
 
 omit G [DecidableEq V] [Fintype V] in
 /-- If each of a specified number of successive applications of a function on finite
-    sets strictly increases cardinality, the final set has grown by at least that number. -/
+    sets strictly increases cardinality, the final set has grown by at least that number.
+@isnad1 id=le.1h4v.s6.a21ac33924a8 from=translated src=- shape=364ec7f5 vocab=c26da90d
+-/
 theorem le_card_iterate (f : Finset V → Finset V) (S₀ : Finset V) (k : ℕ)
     (hstrict : ∀ j, j < k →
       (f^[j] S₀).card < (f^[j + 1] S₀).card) :
@@ -254,7 +274,9 @@ private theorem ancStep_ancClosure (v : V) :
   unfold ancClosure
   rw [hSN]; exact hfixk
 
-/-- Every parent of a vertex in its computed ancestor set also belongs to that ancestor set. -/
+/-- Every parent of a vertex in its computed ancestor set also belongs to that ancestor set.
+@isnad1 id=le.1h4v.s5.da57dff6d80f from=translated src=- shape=aaa78e03 vocab=54247528
+-/
 theorem ancClosure_closed (v : V) {x : V} (hx : x ∈ G.ancClosure v) :
     G.parents x ⊆ G.ancClosure v := by
   intro p hp
@@ -264,7 +286,9 @@ theorem ancClosure_closed (v : V) {x : V} (hx : x ∈ G.ancClosure v) :
   rwa [G.ancStep_ancClosure v] at hstep
 
 /-- A finite set that contains every parent of each of its vertices contains every ancestor of
-each vertex it contains. -/
+each vertex it contains.
+@isnad1 id=mem.3h5v.s6.cff5085e573f from=translated src=- shape=fe04dd97 vocab=ed567f5e
+-/
 theorem isAncestor_mem_of_closed {T : Finset V}
     (hT : ∀ x ∈ T, G.parents x ⊆ T) {u w : V} (h : G.isAncestor u w) :
     w ∈ T → u ∈ T := by
@@ -275,7 +299,9 @@ theorem isAncestor_mem_of_closed {T : Finset V}
 /-- Membership in the backward-reachability fixpoint is exactly ancestry:
 a vertex lies in `G.ancClosure v` iff it is an ancestor of `v`. This makes the
 ancestor relation decidable using only the (decidable) edge relation, with no
-reference to any topological order. -/
+reference to any topological order.
+@isnad1 id=iff.0h4v.s5.48cf6ed58163 from=translated src=- shape=9857ac67 vocab=00ee6b8d
+-/
 theorem mem_ancClosure {u v : V} : u ∈ G.ancClosure v ↔ G.isAncestor u v := by
   constructor
   · intro hu
@@ -305,21 +331,29 @@ def ancestors (v : V) : Finset V :=
 def descendants (v : V) : Finset V :=
   Finset.univ.filter (fun w => G.isAncestor v w)
 
-/-- Membership characterization for `ancestors`: `u ∈ G.ancestors v ↔ G.isAncestor u v`. -/
+/-- Membership characterization for `ancestors`: `u ∈ G.ancestors v ↔ G.isAncestor u v`.
+@isnad1 id=iff.0h4v.s5.644d4268032b from=translated src=- shape=f01f4c0e vocab=04a2c197
+-/
 theorem mem_ancestors {v u : V} : u ∈ G.ancestors v ↔ G.isAncestor u v := by
   simp [ancestors]
 
-/-- Membership characterization for `descendants`: `w ∈ G.descendants v ↔ G.isAncestor v w`. -/
+/-- Membership characterization for `descendants`: `w ∈ G.descendants v ↔ G.isAncestor v w`.
+@isnad1 id=iff.0h4v.s5.eb1d69dd11da from=translated src=- shape=fffb04d8 vocab=6da95f08
+-/
 theorem mem_descendants {v w : V} : w ∈ G.descendants v ↔ G.isAncestor v w := by
   simp [descendants]
 
-/-- Parents are a subset of ancestors. -/
+/-- Parents are a subset of ancestors.
+@isnad1 id=le.0h3v.s5.869f413d87d2 from=translated src=- shape=c1085a29 vocab=26db9088
+-/
 theorem parents_subset_ancestors (v : V) : G.parents v ⊆ G.ancestors v := by
   intro u hu
   rw [mem_ancestors]
   exact isAncestor.edge (G.mem_parents.mp hu)
 
-/-- Children are a subset of descendants. -/
+/-- Children are a subset of descendants.
+@isnad1 id=le.0h3v.s5.bf8f2b60870c from=translated src=- shape=c1085a29 vocab=88540849
+-/
 theorem children_subset_descendants (v : V) : G.children v ⊆ G.descendants v := by
   intro w hw
   rw [mem_descendants]
@@ -352,7 +386,9 @@ def nonDescendants (v : V) : Finset V :=
 /-- For [a finite directed acyclic graph on a vertex population](hyp:V,G) and [a vertex](hyp:v), [its ancestor rank](goal) is the number of that vertex’s strict ancestors. -/
 def ancestorRank (v : V) : ℕ := (G.ancClosure v).card
 
-/-- Along an edge the strict-ancestor count strictly increases. -/
+/-- Along an edge the strict-ancestor count strictly increases.
+@isnad1 id=lt.1h4v.s5.9bd9c8422ad6 from=translated src=- shape=46f7544f vocab=34c55bd7
+-/
 theorem ancestorRank_lt_of_edge {a b : V} (hab : G.edge a b) :
     G.ancestorRank a < G.ancestorRank b := by
   unfold ancestorRank
@@ -377,7 +413,9 @@ noncomputable def topoOrder (v : V) : ℕ :=
   G.ancestorRank v * Fintype.card V + (Fintype.equivFin V v).val
 
 /-- The derived topological order is injective, so it provides a choice-dependent
-total order on the finite vertex type. -/
+total order on the finite vertex type.
+@isnad1 id=injectiv.0h2v.s4.bb0e2a413a14 from=translated src=- shape=9780cabd vocab=8f08bfc4
+-/
 theorem topoOrder_injective : Function.Injective G.topoOrder := by
   intro u v huv
   unfold topoOrder at huv
@@ -390,7 +428,9 @@ theorem topoOrder_injective : Function.Injective G.topoOrder := by
   exact (Fintype.equivFin V).injective this
 
 /-- The derived topological order is edge-consistent: if there is an edge from `u`
-to `v`, then `topoOrder u < topoOrder v`. This witnesses acyclicity. -/
+to `v`, then `topoOrder u < topoOrder v`. This witnesses acyclicity.
+@isnad1 id=lt.1h4v.s5.3933db1dbe4a from=translated src=- shape=46f7544f vocab=ea559644
+-/
 theorem topoOrder_lt : ∀ u v, G.edge u v → G.topoOrder u < G.topoOrder v := by
   intro u v huv
   unfold topoOrder
@@ -406,7 +446,9 @@ theorem topoOrder_lt : ∀ u v, G.edge u v → G.topoOrder u < G.topoOrder v := 
   omega
 
 /-- Ancestors respect the topological order: if `u` is an ancestor of `v` then
-`G.topoOrder u < G.topoOrder v`, so ancestor pairs are strictly ordered by `topoOrder`. -/
+`G.topoOrder u < G.topoOrder v`, so ancestor pairs are strictly ordered by `topoOrder`.
+@isnad1 id=lt.1h4v.s5.260236284bb6 from=translated src=- shape=46f7544f vocab=f00e9317
+-/
 theorem isAncestor_topoOrder_lt {u v : V} (h : G.isAncestor u v) :
     G.topoOrder u < G.topoOrder v := by
   induction h with
@@ -449,7 +491,9 @@ The numbering appears only inside this (proof-level) lemma, so a `DAG` whose
 `acyclic` field is `DAG.acyclic_of_topoOrder hτ` stays computable even when the
 witnessing `τ` is `noncomputable` — the witness certifies acyclicity but is erased,
 and the resulting DAG's own `topoOrder` is the choice-dependent derived numbering,
-not `τ`. -/
+not `τ`.
+@isnad1 id=not.0h7v.s5.8ff89fb88fb1 from=translated src=- shape=b155e888 vocab=2760ed54
+-/
 theorem acyclic_of_topoOrder {W : Type*} {r : W → W → Prop} [IsTrans W r] [Std.Irrefl r]
     {e : V → V → Prop} {τ : V → W}
     (hτ : ∀ u v, e u v → r (τ u) (τ v)) : ∀ v, ¬ Relation.TransGen e v v := by
@@ -462,7 +506,9 @@ theorem acyclic_of_topoOrder {W : Type*} {r : W → W → Prop} [IsTrans W r] [S
   exact absurd (key hv) (Std.Irrefl.irrefl _)
 
 /-- Every vertex reached by a nonempty directed path has an incoming edge, namely the
-final edge of that path. -/
+final edge of that path.
+@isnad1 id=ne.1h4v.s5.657d4941085a from=translated src=- shape=15597807 vocab=dad77612
+-/
 theorem isAncestor_has_parent (G : DAG V) {u v : V}
     (h : G.isAncestor u v) : G.parents v ≠ ∅ := by
   intro hempty

@@ -18,7 +18,9 @@ open MeasureTheory ProbabilityTheory
 [the integral of exp(−ity) times their CDF difference evaluated at z − y
 equals the phase exp(−itz) times the Fourier integral at frequency t of their
 CDF difference](goal): reflecting the argument about z extracts that
-phase. -/
+phase.
+@isnad1 id=eq.2h4v.s8.fbb14b6702fa from=translated src=- shape=838175fd vocab=2b096631
+-/
 theorem cdf_difference_fourier_shift
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

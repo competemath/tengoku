@@ -22,7 +22,9 @@ open MeasureTheory ProbabilityTheory
 for a nonnegative constant L](hyp:hL,hν), and [the bandwidth T is
 positive](hyp:hT), [the CDF of μ exceeds the CDF of ν at every point by at most 1/π times the
 integral over [−T, T] of the characteristic-function discrepancy divided by
-|t|, plus the sharp Esseen smoothing error 24L/(πT)](goal). -/
+|t|, plus the sharp Esseen smoothing error 24L/(πT)](goal).
+@isnad1 id=le.5h5v.s8.9019c93cf7e0 from=translated src=- shape=d3295000 vocab=be3f93fa
+-/
 theorem cdf_esseen_inversion_one_sided
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμfirst : Integrable (fun y : ℝ => y) μ)

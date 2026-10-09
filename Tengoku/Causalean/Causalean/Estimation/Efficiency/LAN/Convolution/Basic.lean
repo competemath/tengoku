@@ -45,7 +45,9 @@ def WeaklyConverges [TopologicalSpace H] [MeasurableSpace H]
 
 omit [NormedAddCommGroup H] [InnerProductSpace ℝ H] in
 /-- For [row probability laws](hyp:P), [row random elements](hyp:X), and [a target probability
-law](hyp:Q), [bounded-continuous weak convergence is equivalent to convergence in law](goal). -/
+law](hyp:Q), [bounded-continuous weak convergence is equivalent to convergence in law](goal).
+@isnad1 id=iff.0h5v.s6.3761f29a2217 from=translated src=- shape=78013c13 vocab=fbd04bc7
+-/
 theorem weaklyConverges_iff_tendstoInLaw [TopologicalSpace H] [MeasurableSpace H]
     [OpensMeasurableSpace H]
     (P : (n : ℕ) → Measure (Ω n)) [∀ n, IsProbabilityMeasure (P n)]
@@ -61,7 +63,9 @@ abbrev TendstoInProbability
   Causalean.Stat.Modes.TendstoInProbability P X atTop (fun _ _ => c)
 
 /-- For [row measures](hyp:P), [real row variables](hyp:X), and [a constant target](hyp:c),
-[convergence in probability is equivalent to vanishing real absolute-error tails](goal). -/
+[convergence in probability is equivalent to vanishing real absolute-error tails](goal).
+@isnad1 id=iff.0h4v.s6.c42a43c38be5 from=translated src=- shape=5386901b vocab=45b19dd0
+-/
 lemma tendstoInProbability_iff_real
     (P : (n : ℕ) → Measure (Ω n)) (X : (n : ℕ) → Ω n → ℝ) (c : ℝ) :
     TendstoInProbability P X c ↔
@@ -157,7 +161,9 @@ structure CanonicalGradientPairing
   /-- The pathwise derivative is pairing with the canonical gradient. -/
   derivative_eq_inner : ∀ h, targetDerivative h = inner ℝ gradient (scoreMap h)
 
-/-- Given an information form, a target derivative, a score embedding, and a candidate gradient, [proof that the gradient is in the score range](hyp:hgradient), [that information is the score inner product](hyp:hinfo), and [that the derivative pairs with the gradient](hyp:hderiv) [yield a canonical-gradient pairing](goal). -/
+/-- Given an information form, a target derivative, a score embedding, and a candidate gradient, [proof that the gradient is in the score range](hyp:hgradient), [that information is the score inner product](hyp:hinfo), and [that the derivative pairs with the gradient](hyp:hderiv) [yield a canonical-gradient pairing](goal).
+@isnad1 id=canonica.3h6v.s10.08d806217060 from=translated src=- shape=db404c66 vocab=0fbf8f05
+-/
 theorem canonicalGradientPairing_of_mem_range
     {K : Type*} [NormedAddCommGroup K] [InnerProductSpace ℝ K]
     (information : LinearMap.BilinForm ℝ H) (targetDerivative : H →ₗ[ℝ] ℝ)

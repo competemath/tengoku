@@ -38,11 +38,17 @@ section iHolENorm
 variable {X 𝕜 : Type*} {x z : X} {R t : ℝ} {φ : X → 𝕜}
 variable [MetricSpace X] [NormedField 𝕜]
 
+/--
+@isnad1 id=le.1h7v.s6.6de505b0a695 from=translated src=- shape=85a6ac11 vocab=abadfbca
+-/
 lemma enorm_le_iHolENorm_of_mem (hx : x ∈ ball z R) : ‖φ x‖ₑ ≤ iHolENorm φ z R t := by
   apply le_trans _ le_self_add
   simp only [le_iSup_iff, iSup_le_iff]
   tauto
 
+/--
+@isnad1 id=holderon.2h6v.s6.ec21712618db from=translated src=- shape=ea195074 vocab=a668715e
+-/
 lemma HolderOnWith.of_iHolENorm_ne_top (ht : 0 ≤ t) (hφ : iHolENorm φ z R t ≠ ⊤) :
     HolderOnWith (iHolNNNorm φ z R t / R.toNNReal ^ t) t.toNNReal φ (ball z R) := by
   intro x hx y hy
@@ -64,12 +70,18 @@ lemma HolderOnWith.of_iHolENorm_ne_top (ht : 0 ≤ t) (hφ : iHolENorm φ z R t 
   apply this.trans_eq'
   rw [ENNReal.coe_rpow_of_ne_zero (by simp [hR]), Real.coe_toNNReal t ht, ENNReal.ofReal, mul_comm]
 
+/--
+@isnad1 id=continuo.3h6v.s6.ab5aad55c4aa from=translated src=- shape=b658c68c vocab=0a438c1b
+-/
 lemma continuous_of_iHolENorm_ne_top (ht : 0 < t) (hφ : tsupport φ ⊆ ball z R)
     (h'φ : iHolENorm φ z R t ≠ ∞) :
     Continuous φ :=
   HolderOnWith.of_iHolENorm_ne_top ht.le h'φ |>.continuousOn (by simp [ht])
     |>.continuous_of_tsupport_subset isOpen_ball hφ
 
+/--
+@isnad1 id=continuo.3h6v.s6.7988efde0b5f from=translated src=- shape=f7efe0e2 vocab=8ad81721
+-/
 lemma continuous_of_iHolENorm_ne_top' (ht : 0 < t) (hφ : support φ ⊆ ball z R)
     (h'φ : iHolENorm φ z (2 * R) t ≠ ∞) :
     Continuous φ := by
@@ -85,10 +97,16 @@ lemma continuous_of_iHolENorm_ne_top' (ht : 0 < t) (hφ : support φ ⊆ ball z 
 
 section iHolNNNorm
 
+/--
+@isnad1 id=le.2h7v.s6.1281d241c29c from=translated src=- shape=ac6d79e8 vocab=27ea6a3d
+-/
 lemma norm_le_iHolNNNorm_of_mem (hφ : iHolENorm φ z R t ≠ ⊤) (hx : x ∈ ball z R) :
     ‖φ x‖ ≤ iHolNNNorm φ z R t :=
   (ENNReal.toReal_le_toReal (by simp) hφ).2 (enorm_le_iHolENorm_of_mem hx)
 
+/--
+@isnad1 id=le.2h7v.s6.0d505ed03f0c from=translated src=- shape=5cea966a vocab=1ac377b0
+-/
 lemma norm_le_iHolNNNorm_of_subset (hφ : iHolENorm φ z R t ≠ ⊤) (h : support φ ⊆ ball z R) :
     ‖φ x‖ ≤ iHolNNNorm φ z R t := by
   by_cases hx : x ∈ ball z R

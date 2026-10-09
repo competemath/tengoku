@@ -18,7 +18,9 @@ open MeasureTheory
 /-- For [a positive ratio ρ at most one hundredth](hyp:ρ,hρ,hsmall),
 [the integral over t > 0 of the polynomial Gaussian low-frequency majorant
 (ρt²/(6π) + ρ²t³/(8π) + 5ρ²t³/72 + 5ρ³t⁴/96)·exp(−23t²/100) is at most one
-quarter of ρ](goal). -/
+quarter of ρ](goal).
+@isnad1 id=le.2h1v.s8.3d125534f2eb from=translated src=- shape=a76d93d3 vocab=97411387
+-/
 theorem prawitz_low_gaussian_moment_budget
     (ρ : ℝ) (hρ : 0 < ρ) (hsmall : ρ ≤ 1 / 100) :
     (∫ t in Set.Ioi (0 : ℝ),

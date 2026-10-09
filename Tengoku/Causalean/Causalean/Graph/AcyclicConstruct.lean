@@ -43,7 +43,9 @@ noncomputable def ofAcyclic (e : V → V → Prop)
 
 /-- The directed acyclic graph `ofAcyclic e hac`, built from an edge relation `e` together with
 [a proof that `e` has no directed cycle](hyp:hac), [has exactly `e` as its edge
-relation](goal). -/
+relation](goal).
+@isnad1 id=eq.1h2v.s5.9bdecdac44d5 from=translated src=- shape=5b9df353 vocab=cd1ebd4d
+-/
 @[simp] theorem ofAcyclic_edge (e : V → V → Prop)
     (hac : ∀ v, ¬ Relation.TransGen e v v) :
     (ofAcyclic e hac).edge = e := rfl

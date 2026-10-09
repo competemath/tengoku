@@ -18,7 +18,9 @@ open MeasureTheory Filter Topology
 /-- For [any real spatial frequency x](hyp:x), [as the damping ratio r increases
 to one, the triangularly weighted integrals over [0, 1] of the rational Abel
 kernel 2r·sin(2πt)/(1 − 2r·cos(2πt) + r²) against sin(2πxt) converge to the
-weighted integral of the cotangent cot(πt) against sin(2πxt)](goal). -/
+weighted integral of the cotangent cot(πt) against sin(2πxt)](goal).
+@isnad1 id=tendsto.0h1v.s8.6b46be6bb887 from=translated src=- shape=64c0c815 vocab=1d219dca
+-/
 theorem prawitz_abel_weighted_integral_tendsto (x : ℝ) :
     Tendsto (fun r : ℝ => ∫ t in (0 : ℝ)..1,
       (1 - t) *

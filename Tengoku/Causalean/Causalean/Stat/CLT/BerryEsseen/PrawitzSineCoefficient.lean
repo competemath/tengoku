@@ -16,7 +16,9 @@ open MeasureTheory
 
 /-- At [any two real frequencies a and b](hyp:a,b), [the triangularly weighted
 integral over [0, 1] of (1 − t)·sin(2πat)·sin(2πbt) equals one quarter of
-the difference sinc(π(a − b))² − sinc(π(a + b))²](goal). -/
+the difference sinc(π(a − b))² − sinc(π(a + b))²](goal).
+@isnad1 id=eq.0h2v.s7.6068e607c26e from=translated src=- shape=b2e6b16c vocab=14fe5094
+-/
 theorem triangular_sine_product_integral (a b : ℝ) :
     (∫ t in (0 : ℝ)..1, (1 - t) * Real.sin (2 * Real.pi * a * t) *
       Real.sin (2 * Real.pi * b * t)) =

@@ -90,14 +90,18 @@ noncomputable def RestrictedCone (S₀ : Finset (Fin p)) :
 
 /-- **Restricted cone membership unfolded.** [A vector `ν` lies in the restricted cone
 `RestrictedCone S₀` exactly when its ℓ¹ norm off the support `S₀` is at most three times
-its ℓ¹ norm on `S₀`](goal). -/
+its ℓ¹ norm on `S₀`](goal).
+@isnad1 id=iff.0h3v.s6.a92e49b40acf from=translated src=- shape=1a247918 vocab=b8f98eeb
+-/
 lemma mem_RestrictedCone_iff
     (S₀ : Finset (Fin p)) (ν : EuclideanSpace ℝ (Fin p)) :
     ν ∈ RestrictedCone S₀ ↔
       l1Norm ν ((Finset.univ : Finset (Fin p)) \ S₀) ≤ 3 * l1Norm ν S₀ := by
   rfl
 
-/-- `l1Full` decomposes along any subset and its complement in `Finset.univ`. -/
+/-- `l1Full` decomposes along any subset and its complement in `Finset.univ`.
+@isnad1 id=eq.0h3v.s5.a89a9db9abe6 from=translated src=- shape=8ef712e3 vocab=19b1bc56
+-/
 lemma l1Full_eq (ν : EuclideanSpace ℝ (Fin p)) (S₀ : Finset (Fin p)) :
     l1Full ν =
       l1Norm ν S₀ + l1Norm ν ((Finset.univ : Finset (Fin p)) \ S₀) := by
@@ -106,7 +110,9 @@ lemma l1Full_eq (ν : EuclideanSpace ℝ (Fin p)) (S₀ : Finset (Fin p)) :
   ring
 
 /-- **Cauchy–Schwarz on the support.** [The ℓ¹ norm of a vector `ν` restricted to a finite
-index set `S₀` is bounded by `√|S₀|` times its full ℓ² norm](goal). -/
+index set `S₀` is bounded by `√|S₀|` times its full ℓ² norm](goal).
+@isnad1 id=le.0h3v.s6.5bad6491fb37 from=translated src=- shape=86ba17dd vocab=ca544744
+-/
 lemma l1Norm_supp_le_card_sqrt_mul_l2norm
     (ν : EuclideanSpace ℝ (Fin p)) (S₀ : Finset (Fin p)) :
     l1Norm ν S₀ ≤ Real.sqrt (S₀.card) * ‖ν‖ := by

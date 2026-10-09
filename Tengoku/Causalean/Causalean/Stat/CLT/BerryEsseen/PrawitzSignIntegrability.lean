@@ -17,7 +17,9 @@ open MeasureTheory
 
 /-- For [any real spatial argument y](hyp:y), [the Prawitz sine integrand, the
 cotangent weight at t times sin(ty), is integrable on the unit
-interval](goal). -/
+interval](goal).
+@isnad1 id=interval.0h1v.s5.4f291da94f8a from=translated src=- shape=abf6c290 vocab=38103f4d
+-/
 theorem prawitz_sine_intervalIntegrable (y : ℝ) :
     IntervalIntegrable
       (fun t : ℝ => prawitzSineWeight t * Real.sin (t * y)) volume 0 1 := by

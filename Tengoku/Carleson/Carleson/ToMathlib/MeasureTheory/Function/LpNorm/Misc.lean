@@ -15,11 +15,17 @@ variable {α ε : Type*} {m : MeasurableSpace α} [ENorm ε] {f : α → ε}
 
 namespace MeasureTheory
 
+/--
+@isnad1 id=eq.1h6v.s5.9175a814cf7c from=translated src=- shape=45608f2b vocab=89a43ec1
+-/
 lemma eLpNormEssSup_congr_measure {μ ν : Measure α} (h : ae ν = ae μ) :
     eLpNormEssSup f ν = eLpNormEssSup f μ := by
   unfold eLpNormEssSup essSup
   congr 1
 
+/--
+@isnad1 id=eq.2h6v.s6.d537e24db17e from=translated src=- shape=238ad096 vocab=3f5de98c
+-/
 lemma eLpNormEssSup_withDensity {μ : Measure α} {d : α → ℝ≥0∞} (hd : AEMeasurable d μ)
   (hd' : ∀ᵐ (x : α) ∂μ, d x ≠ 0) :
     eLpNormEssSup f (μ.withDensity d) = eLpNormEssSup f μ := by
@@ -30,6 +36,9 @@ lemma eLpNormEssSup_withDensity {μ : Measure α} {d : α → ℝ≥0∞} (hd : 
   · rw [Measure.ae_le_iff_absolutelyContinuous]
     apply withDensity_absolutelyContinuous' hd  hd'
 
+/--
+@isnad1 id=eq.2h2v.s6.9e0adf4a23cb from=translated src=- shape=432f8dee vocab=aa9618e5
+-/
 lemma eLpNormEssSup_nnreal_scale_constant' {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} (h : a ≠ 0)
   (hf : AEStronglyMeasurable f) :
     eLpNormEssSup (fun x ↦ f (a * x)) volume = eLpNormEssSup f volume := by
@@ -42,6 +51,9 @@ lemma eLpNormEssSup_nnreal_scale_constant' {f : ℝ≥0 → ℝ≥0∞} {a : ℝ
   · rw [NNReal.map_volume_mul_left h]
     apply AEStronglyMeasurable.smul_measure hf
 
+/--
+@isnad1 id=eq.2h3v.s6.3fe12831ad8d from=translated src=- shape=a960a844 vocab=ea1a7a37
+-/
 lemma eLpNorm_withDensity_scale_constant' {f : ℝ≥0 → ℝ≥0∞} (hf : AEStronglyMeasurable f) {p : ℝ≥0∞}
   {a : ℝ≥0} (h : a ≠ 0) :
   eLpNorm (fun t ↦ f (a * t)) p (volume.withDensity (fun (t : ℝ≥0) ↦ t⁻¹))

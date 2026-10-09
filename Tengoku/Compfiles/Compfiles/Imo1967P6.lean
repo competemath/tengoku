@@ -34,7 +34,9 @@ abbrev MedalsProcess (m n : ℕ) (r : ℕ → ℤ) : Prop :=
 
 -- Solution formalized from https://prase.cz/kalva/imo/isoln/isoln676.html
 
-/-- The day-`k` rule implies the recurrence `7 * r k = 6 * (r (k - 1) - k)`. -/
+/-- The day-`k` rule implies the recurrence `7 * r k = 6 * (r (k - 1) - k)`.
+@isnad1 id=eq.2h2v.s7.04b2e79bf82f from=translated src=- shape=4fea7225 vocab=4c42edc7
+-/
 theorem rec_eq {r : ℕ → ℤ} {k : ℕ} (h7 : 7 ∣ r (k - 1) - ↑k)
     (hk : r k = r (k - 1) - (↑k + (r (k - 1) - ↑k) / 7)) :
     7 * r k = 6 * (r (k - 1) - ↑k) := by
@@ -44,7 +46,9 @@ theorem rec_eq {r : ℕ → ℤ} {k : ℕ} (h7 : 7 ∣ r (k - 1) - ↑k)
   linarith
 
 /-- Solving the recurrence: after `k` days the number of remaining medals is
-`(6/7)^k * (m - 36) + 36 - 6k`. -/
+`(6/7)^k * (m - 36) + 36 - 6k`.
+@isnad1 id=eq.3h4v.s7.f83e6091a585 from=translated src=- shape=a8efdb15 vocab=915a33ed
+-/
 theorem closed_form {m n : ℕ} {r : ℕ → ℤ} (h0 : r 0 = ↑m)
     (hrec : ∀ k, 1 ≤ k → k ≤ n - 1 → 7 * r k = 6 * (r (k - 1) - ↑k)) :
     ∀ k, k ≤ n - 1 → (r k : ℚ) = (6 / 7 : ℚ) ^ k * (↑m - 36) + 36 - 6 * ↑k := by
@@ -69,7 +73,9 @@ theorem closed_form {m n : ℕ} {r : ℕ → ℤ} (h0 : r 0 = ↑m)
     ring
 
 /-- Specializing the closed form at `k = n - 1` (where `r (n - 1) = n`) gives the
-key Diophantine relation between `m` and `n`. -/
+key Diophantine relation between `m` and `n`.
+@isnad1 id=eq.4h3v.s7.77e5d800b6ad from=translated src=- shape=fc45892a vocab=0428d0d0
+-/
 theorem key_eq {m n : ℕ} (hn : 1 < n) {r : ℕ → ℤ} (h0 : r 0 = ↑m)
     (hn1 : r (n - 1) = ↑n)
     (hrec : ∀ k, 1 ≤ k → k ≤ n - 1 → 7 * r k = 6 * (r (k - 1) - ↑k)) :
@@ -93,7 +99,9 @@ theorem key_eq {m n : ℕ} (hn : 1 < n) {r : ℕ → ℤ} (h0 : r 0 = ↑m)
   exact_mod_cast hQ
 
 /-- The forward direction: the Diophantine relation forces `n = 6` and `m = 36`,
-because `6 ^ (n - 1)` must divide `n - 6` while growing much faster. -/
+because `6 ^ (n - 1)` must divide `n - 6` while growing much faster.
+@isnad1 id=eq.2h2v.s5.f141061871e4 from=translated src=- shape=91b0bc0a vocab=26ded90c
+-/
 theorem forward {m n : ℕ} (hn : 1 < n) (h : ∃ r : ℕ → ℤ, MedalsProcess m n r) :
     (m, n) = (36, 6) := by
   obtain ⟨r, h0, hn1, hrec⟩ := h
@@ -136,7 +144,9 @@ theorem forward {m n : ℕ} (hn : 1 < n) (h : ∃ r : ℕ → ℤ, MedalsProcess
   rfl
 
 /-- The converse direction: with `m = 36` and `n = 6` exactly six medals are
-awarded on each of the six days. -/
+awarded on each of the six days.
+@isnad1 id=ex.0h0v.s4.ca08bcc508e5 from=translated src=- shape=03bd613a vocab=2cb562f5
+-/
 theorem backward : ∃ r : ℕ → ℤ, MedalsProcess 36 6 r := by
   refine ⟨fun k => if k ≤ 5 then 36 - 6 * (k : ℤ) else 0, ?_, ?_, ?_⟩
   · norm_num

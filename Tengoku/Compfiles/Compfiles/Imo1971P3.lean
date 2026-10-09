@@ -29,6 +29,9 @@ def a (n : ℕ) : ℕ := match n with
 | 0 => 3
 | n+1 => (a n) * ∏ p ∈ (2 ^ (a n) - 3).primeFactors, (p-1)
 
+/--
+@isnad1 id=and.0h1v.s5.112030236903 from=translated src=- shape=dc5f4f56 vocab=dee6d1ca
+-/
 theorem a_ge_and_A_odd (n : ℕ) : 3 ≤ a n ∧ Odd (2 ^ (a n) - 3) := by
   fun_induction a with
   | case1 =>
@@ -58,11 +61,17 @@ theorem a_ge_and_A_odd (n : ℕ) : 3 ≤ a n ∧ Odd (2 ^ (a n) - 3) := by
       · exact Nat.odd_iff.mpr rfl
       · exact h
 
+/--
+@isnad1 id=le.0h1v.s4.a88be22f63bd from=translated src=- shape=350398d8 vocab=ec561887
+-/
 theorem A_ge' (n : ℕ) : 8 ≤ 2 ^ a n := by
   refine (Nat.clog_le_iff_le_pow one_lt_two).mp ?_
   rw [show Nat.clog 2 8 = 3 by rfl]
   exact (a_ge_and_A_odd _).left
 
+/--
+@isnad1 id=strictmo.0h0v.s2.dd456476dff9 from=translated src=- shape=e3d48bcb vocab=b82861af
+-/
 theorem a_strictMono : StrictMono a := by
   refine strictMono_nat_of_lt_succ ?_
   intro n
@@ -84,6 +93,9 @@ theorem a_strictMono : StrictMono a := by
         lia
       · grind only [= Nat.odd_iff]
 
+/--
+@isnad1 id=dvd.3h3v.s6.3e62e0ecde3e from=translated src=- shape=c0d21898 vocab=10ea45e9
+-/
 theorem a_prime_lemma (n1 n2 p : ℕ) (h1 : n1 < n2) (h2 : p ∣ 2 ^ (a n1) - 3) (h3 : Nat.Prime p) : p - 1 ∣ a n2 := by
   fun_induction a n2
   · simp at h1
@@ -97,6 +109,9 @@ theorem a_prime_lemma (n1 n2 p : ℕ) (h1 : n1 < n2) (h2 : p ∣ 2 ^ (a n1) - 3)
     · replace ih1 := ih1 (by lia)
       exact Nat.dvd_mul_right_of_dvd ih1 _
 
+/--
+@isnad1 id=pairwise.0h0v.s2.03f3a71e6b7f from=translated src=- shape=8524eaa4 vocab=a9033c91
+-/
 theorem a_pairwise_coprime : pairwise_coprime_f (Set.range a) := by
   intro x1 hx1 x2 hx2 ne
   let ⟨i1, hi1⟩ := hx1

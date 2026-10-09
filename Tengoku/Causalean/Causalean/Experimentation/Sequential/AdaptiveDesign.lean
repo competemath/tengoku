@@ -66,7 +66,9 @@ def HasOverlap (E : AdaptiveExperiment Ω m0) (δ : ℝ) : Prop :=
   0 < δ ∧ ∀ t ω, δ ≤ E.propensity t ω ∧ E.propensity t ω ≤ 1 - δ
 
 /-- Under [overlap with margin `δ`](hyp:h), [every propensity is at least `δ`, hence strictly
-positive — so inverse-propensity weights are finite](goal). -/
+positive — so inverse-propensity weights are finite](goal).
+@isnad1 id=lt.1h6v.s5.4963d4c278d3 from=translated src=- shape=e56df998 vocab=4362a0d9
+-/
 lemma propensity_pos_of_overlap {E : AdaptiveExperiment Ω m0} {δ : ℝ} (h : E.HasOverlap δ)
     (t : ℕ) (ω : Ω) : 0 < E.propensity t ω :=
   lt_of_lt_of_le h.1 (h.2 t ω).1

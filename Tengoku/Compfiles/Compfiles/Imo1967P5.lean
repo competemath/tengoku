@@ -30,6 +30,9 @@ namespace Imo1967P5
 
 abbrev solution : (Fin 8 → ℝ) → Set ℕ := fun _ => { n | Odd n }
 
+/--
+@isnad1 id=odd.2h4v.s6.a596499a9e69 from=translated src=- shape=340a741e vocab=9626eaff
+-/
 lemma odd_if_sum_eq_zero {α : Type*} {n : ℕ}
     (I : Finset α)
     (f : α → ℝ)
@@ -44,6 +47,9 @@ lemma odd_if_sum_eq_zero {α : Type*} {n : ℕ}
     _ ≤ ∑ i ∈ I, f i^n := Finset.single_le_sum (fun i a ↦ Even.pow_nonneg h_even (f i)) hm
   simp [h2] at h_pos
 
+/--
+@isnad1 id=eq.3h3v.s7.a2eb97e2412b from=translated src=- shape=2e1eb95c vocab=588edc48
+-/
 lemma aux_recursive (I : Finset (Fin 8)) (a : Fin 8 → ℝ)
     (h₁ : Set.Infinite {n | ∑ i ∈ I, a i ^ n = 0})
     (h₂ : ∃ i ∈ I, a i ≠ 0) :

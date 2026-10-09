@@ -22,7 +22,9 @@ open Finset
 
 /-- On [every positive high grid cell](hyp:i,hi), [the squared analytic
 kernel enclosure with real pi is bounded by the rational pi enclosure
-used by the kernel magnitude certificate](goal). -/
+used by the kernel magnitude certificate](goal).
+@isnad1 id=other.1h1v.s9.87d29f477954 from=translated src=- shape=39ead9fb vocab=5a8f89ee
+-/
 theorem prawitz_high_real_kernel_square_enclosure
     (i : ℕ) (hi : i ∈ Ico 1 1000) :
     let a := (i : ℝ) / 1000
@@ -132,7 +134,9 @@ theorem prawitz_high_real_kernel_square_enclosure
 high-frequency grid cell [i/1000, (i+1)/1000], for i from 1 to
 999](hyp:j,i,hi), [the exponential of the rescaled cubic endpoint exponent
 is at most the reciprocal of the rational Taylor polynomial evaluated at the
-matching rational exponent from the high table](goal). -/
+matching rational exponent from the high table](goal).
+@isnad1 id=other.1h2v.s9.df4f3b637cbc from=translated src=- shape=e3493cba vocab=338e27f1
+-/
 theorem prawitz_high_real_exponential_enclosure
     (j : Fin 270) (i : ℕ) (hi : i ∈ Ico 1 1000) :
     let s := (prawitzCompactRight j.val : ℝ)

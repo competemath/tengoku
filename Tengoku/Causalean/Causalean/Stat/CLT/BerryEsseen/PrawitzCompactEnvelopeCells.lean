@@ -20,7 +20,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 
 /-- On [a positive parameter cell](hyp:ρ,r,s,hr,hrρ,hρs),
 [the inner logarithmic cutoff lies between the cutoffs at the cell endpoints,
-and the outer cutoff lies between the reciprocal endpoints](goal). -/
+and the outer cutoff lies between the reciprocal endpoints](goal).
+@isnad1 id=and.3h3v.s8.a4df858b088c from=translated src=- shape=a68f9b7c vocab=75349f1a
+-/
 theorem prawitz_compact_cutoff_cell_bounds
     (ρ r s : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s) :
     max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / s))) ≤
@@ -46,7 +48,9 @@ theorem prawitz_compact_cutoff_cell_bounds
 
 /-- Throughout [a nonnegative frequency cell](hyp:t,a,b,ha,hat,htb) and
 [a nonnegative parameter cell](hyp:ρ,s,hρ,hρs), [the cubic Gaussian exponent
-is bounded by its two endpoint values at the upper parameter](goal). -/
+is bounded by its two endpoint values at the upper parameter](goal).
+@isnad1 id=le.5h5v.s8.bc200b40fb84 from=translated src=- shape=975d1ccd vocab=0a000baf
+-/
 theorem prawitz_cubic_exponent_cell_bound
     (ρ s t a b : ℝ) (hρ : 0 ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 ≤ a) (hat : a ≤ t) (htb : t ≤ b) :
@@ -110,7 +114,9 @@ theorem prawitz_cubic_exponent_cell_bound
 [a nonnegative ratio ρ at most s](hyp:ρ,s,hρ,hρs), with E the larger of the
 endpoint exponents −a²/2 + s·a³/5 and −b²/2 + s·b³/5,
 [the moment envelope at ratio ρ and frequency t is at most min(1, exp E), and
-the Taylor exponential exp(−t²/4 + ρ|t|³/10) is at most exp(E/2)](goal). -/
+the Taylor exponential exp(−t²/4 + ρ|t|³/10) is at most exp(E/2)](goal).
+@isnad1 id=other.5h5v.s8.f03a4357dbcb from=translated src=- shape=818524ad vocab=8ae8bc36
+-/
 theorem prawitz_envelope_cell_bounds
     (ρ s t a b : ℝ) (hρ : 0 ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 ≤ a) (hat : a ≤ t) (htb : t ≤ b) :

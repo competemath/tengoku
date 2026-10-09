@@ -17,7 +17,9 @@ open MeasureTheory
 /-- If [ν assigns every interval at most L times its length](hyp:hν), for
 [a nonnegative constant L](hyp:hL), then for [any points a ≤ b](hyp:hab)
 [the CDF difference Fμ − Fν at a is at most its value at b plus
-L·(b − a)](goal). -/
+L·(b − a)](goal).
+@isnad1 id=le.3h5v.s7.ce5904d4f56a from=translated src=- shape=b3b45a6d vocab=5e6231e1
+-/
 theorem cdf_difference_one_sided_modulus
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (L : ℝ) (hL : 0 ≤ L)

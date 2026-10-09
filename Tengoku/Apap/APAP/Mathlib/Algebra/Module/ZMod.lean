@@ -10,6 +10,9 @@ variable {R M : Type*} [Semiring R] {q : ℕ} [AddCommMonoid M] [Module (ZMod q)
   {r : ZMod q} {x : M}
 
 variable (γ r x) in
+/--
+@isnad1 id=eq.0h6v.s7.2ea726e137b1 from=translated src=- shape=30697f8f vocab=45fea16f
+-/
 lemma map_zmod_smul [NeZero q] : γ (r • x) = γ x ^ r.val := by
   obtain _ | q := q
   · simp_all

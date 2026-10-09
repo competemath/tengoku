@@ -44,16 +44,22 @@ noncomputable def capital (X lam : ℕ → Ω → ℝ) (m : ℝ) : ℕ → Ω �
   | 0 => fun _ => 1
   | (n + 1) => fun ω => capital X lam m n ω * (1 + lam n ω * (X n ω - m))
 
-/-- The betting capital starts at one before any observations are processed. -/
+/-- The betting capital starts at one before any observations are processed.
+@isnad1 id=eq.0h4v.s5.f9588d9b77e8 from=translated src=- shape=6eb7e557 vocab=21cb3e8f
+-/
 @[simp] lemma capital_zero (X lam : ℕ → Ω → ℝ) (m : ℝ) : capital X lam m 0 = fun _ => 1 := rfl
 
 /-- One step of the betting capital multiplies current wealth by the return
-`1 + lam n · (X n − m)`. -/
+`1 + lam n · (X n − m)`.
+@isnad1 id=eq.0h5v.s6.ad87e56c13b1 from=translated src=- shape=a33f4a2c vocab=aa8f0510
+-/
 lemma capital_succ (X lam : ℕ → Ω → ℝ) (m : ℝ) (n : ℕ) :
     capital X lam m (n + 1) = fun ω => capital X lam m n ω * (1 + lam n ω * (X n ω - m)) := rfl
 
 /-- The capital process stays nonnegative provided each bet keeps the per-step factor nonnegative
-(`0 ≤ 1 + lamₙ(Xₙ − m)`) — the admissibility constraint on the betting fractions. -/
+(`0 ≤ 1 + lamₙ(Xₙ − m)`) — the admissibility constraint on the betting fractions.
+@isnad1 id=le.1h5v.s6.c20a654da544 from=translated src=- shape=3a175a2b vocab=5e4f2219
+-/
 lemma capital_nonneg {X lam : ℕ → Ω → ℝ} {m : ℝ}
     (hbet : ∀ n ω, 0 ≤ 1 + lam n ω * (X n ω - m)) : ∀ n, 0 ≤ capital X lam m n := by
   intro n
@@ -76,7 +82,9 @@ capital process, the centered increment `X n − m`, and the bet-scaled incremen
 per-step return factor `1 + lam n (X n − m)` stays nonnegative](hyp:hbet), and [the conditional
 mean of `X n − m` given the time-`n` information is zero, i.e. the bet is conditionally
 fair](hyp:hfair), then [the betting capital process is a nonnegative test supermartingale for
-`ℱ` under `μ`, with `E[K₀] ≤ 1`](goal). -/
+`ℱ` under `μ`, with `E[K₀] ≤ 1`](goal).
+@isnad1 id=istestsu.7h7v.s8.5ea1a36705ec from=translated src=- shape=8c49d235 vocab=264dad8d
+-/
 theorem isTestSupermartingale_capital [IsProbabilityMeasure μ] {X lam : ℕ → Ω → ℝ} {m : ℝ}
     (hadapt : Adapted ℱ (capital X lam m))
     (hlam : ∀ n, StronglyMeasurable[ℱ n] (lam n))
@@ -126,7 +134,9 @@ theorem isTestSupermartingale_capital [IsProbabilityMeasure μ] {X lam : ℕ →
 /-- **Betting confidence sequence (coverage).** If
 [the betting capital is a test supermartingale](hyp:hM) and
 [the target error level `α` is strictly positive](hyp:α,hα), then
-[wealth inversion gives a confidence sequence with time-uniform coverage `1 − α`](goal). -/
+[wealth inversion gives a confidence sequence with time-uniform coverage `1 − α`](goal).
+@isnad1 id=isconfid.2h8v.s6.0c447c8efcb1 from=translated src=- shape=3edaddf5 vocab=e8d57e26
+-/
 theorem isConfidenceSequence_bettingCI [IsFiniteMeasure μ] {X lam : ℕ → Ω → ℝ} {m : ℝ}
     (hM : IsTestSupermartingale (capital X lam m) ℱ μ) {α : ℝ} (hα : 0 < α) :
     IsConfidenceSequence (confSeqOfWealth (capital X lam m) α) μ α :=
@@ -135,7 +145,9 @@ theorem isConfidenceSequence_bettingCI [IsFiniteMeasure μ] {X lam : ℕ → Ω 
 /-- **Anytime-valid test by betting.** If
 [the betting capital is a test supermartingale](hyp:hM) and
 [the target error level `α` is strictly positive](hyp:α,hα), then
-[crossing `1/α` defines an anytime-valid level-`α` test](goal). -/
+[crossing `1/α` defines an anytime-valid level-`α` test](goal).
+@isnad1 id=isanytim.2h8v.s6.a1ee2d8f395e from=translated src=- shape=3edaddf5 vocab=3cf1abd8
+-/
 theorem isAnytimeValid_betting [IsFiniteMeasure μ] {X lam : ℕ → Ω → ℝ} {m : ℝ}
     (hM : IsTestSupermartingale (capital X lam m) ℱ μ) {α : ℝ} (hα : 0 < α) :
     IsAnytimeValid (rejectionRegion (capital X lam m) α) μ α :=

@@ -65,7 +65,9 @@ private theorem gaussian_cdf_increment_le {a b : ℝ} (hab : a ≤ b) :
 /-- For [a cross-fitting family](hyp:F), if [a statistic X converges to the standard Gaussian in
 Kolmogorov distance uniformly over the law class](hyp:X,hX) and [a second statistic Y differs from
 X by an amount vanishing in probability uniformly over the law class](hyp:Y,hDiff), then [Y also
-converges to the standard Gaussian in Kolmogorov distance uniformly over the law class](goal). -/
+converges to the standard Gaussian in Kolmogorov distance uniformly over the law class](goal).
+@isnad1 id=uniformg.2h7v.s6.e54237dd5f86 from=translated src=- shape=4b68e01f vocab=523bd3c9
+-/
 theorem uniformGaussian_of_uniformOP_difference
     (X Y : ℕ → ι → Ω → ℝ)
     (hX : F.UniformGaussian X)

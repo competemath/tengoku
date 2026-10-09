@@ -32,11 +32,15 @@ open scoped BigOperators
 
 variable {C : Type*} [Fintype C]
 
-/-- `l2sq` of a function with itself is zero. -/
+/-- `l2sq` of a function with itself is zero.
+@isnad1 id=eq.0h2v.s4.2f8bfee60c94 from=translated src=- shape=46428dbe vocab=487ae152
+-/
 theorem l2sq_self (a : C → ℝ) : l2sq a a = 0 := by
   simp [l2sq]
 
-/-- `l2sq` is symmetric. -/
+/-- `l2sq` is symmetric.
+@isnad1 id=eq.0h3v.s4.8cab475a1664 from=translated src=- shape=8cef85e8 vocab=487ae152
+-/
 theorem l2sq_comm (a b : C → ℝ) : l2sq a b = l2sq b a := by
   rw [l2sq, l2sq]
   congr 1
@@ -44,7 +48,9 @@ theorem l2sq_comm (a b : C → ℝ) : l2sq a b = l2sq b a := by
   intro x _
   ring
 
-/-- `l2sq` is nonnegative. -/
+/-- `l2sq` is nonnegative.
+@isnad1 id=le.0h3v.s4.51950e922cd5 from=translated src=- shape=7325c23d vocab=0f1005de
+-/
 theorem l2sq_nonneg (a b : C → ℝ) : 0 ≤ l2sq a b := by
   rw [l2sq]
   refine mul_nonneg ?_ ?_
@@ -55,7 +61,9 @@ theorem l2sq_nonneg (a b : C → ℝ) : 0 ≤ l2sq a b := by
 every covariate value](hyp:hσ), then on a nonempty finite covariate space, [the squared
 `L²(P_X)` distance between `b` shifted by `δ·σ` and `b` itself equals `δ²`](goal). This is
 exactly what makes a Rademacher-bump perturbation land on the boundary of the nuisance class
-`ℱ(ε,·)` when `δ = √ε`. -/
+`ℱ(ε,·)` when `δ = √ε`.
+@isnad1 id=eq.1h4v.s6.23b9c0fed900 from=translated src=- shape=9317123f vocab=4a31ce85
+-/
 theorem l2sq_bump [Nonempty C] (b : C → ℝ) (δ : ℝ) (σ : C → ℝ)
     (hσ : ∀ x, (σ x) ^ 2 = 1) :
     l2sq (fun x => b x + δ * σ x) b = δ ^ 2 := by

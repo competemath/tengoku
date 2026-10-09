@@ -19,16 +19,25 @@ namespace ENNReal
 attribute [simp] ofReal_of_nonpos
 -- protect ENNReal.mul_le_mul_left
 
+/--
+@isnad1 id=iff.1h2v.s5.45ca303bd61c from=translated src=- shape=c4a5fdd8 vocab=09620769
+-/
 theorem coe_lt_iff_lt_toNNReal {a : ℝ≥0∞} {t : ℝ≥0} (ha : a ≠ ⊤) :
     t < a ↔ t < a.toNNReal := by
   rw [← ENNReal.toNNReal_coe t, ENNReal.toNNReal_lt_toNNReal ENNReal.coe_ne_top ha]
   simp only [ENNReal.toNNReal_coe]
 
+/--
+@isnad1 id=le.0h1v.s4.aae56b3cc28c from=translated src=- shape=7aeda4f1 vocab=83a3b2e7
+-/
 theorem le_mul_top_self {x : ℝ≥0∞} : x ≤ ⊤ * x := by
   nth_rw 1 [← one_mul x]
   gcongr
   exact OrderTop.le_top 1
 
+/--
+@isnad1 id=eq.1h3v.s6.8139bbf81a68 from=translated src=- shape=5bfd030b vocab=46a111b3
+-/
 lemma coe_biSup {f : ι → ℝ≥0} (hf : BddAbove (range f)) :
     ⨆ x ∈ s, f x = ⨆ x ∈ s, (f x : ℝ≥0∞) := by
   simp_rw [bddAbove_def, mem_range, forall_exists_index, forall_apply_eq_imp_iff] at hf
@@ -44,6 +53,9 @@ lemma coe_biSup {f : ι → ℝ≥0} (hf : BddAbove (range f)) :
     exact ⟨K, fun c ↦ ciSup_le' fun _ ↦ hK c⟩
 
 -- unused
+/--
+@isnad1 id=eq.1h4v.s7.89df9f88d119 from=translated src=- shape=03316154 vocab=c4df52b8
+-/
 lemma biSup_add_biSup {f g : ι → ℝ≥0∞} (h : ∀ i ∈ s, ∀ j ∈ s, ∃ k ∈ s, f i + g j ≤ f k + g k) :
     (⨆ i ∈ s, f i) + ⨆ i ∈ s, g i = ⨆ i ∈ s, f i + g i := by
   rcases s.eq_empty_or_nonempty with hs | hs
@@ -54,6 +66,9 @@ lemma biSup_add_biSup {f g : ι → ℝ≥0∞} (h : ∀ i ∈ s, ∀ j ∈ s, �
     exact hk.trans <| le_iSup₂_of_le k mk le_rfl
 
 -- unused
+/--
+@isnad1 id=eq.1h5v.s7.ba73d3f32ab7 from=translated src=- shape=d8c47db0 vocab=f59bf988
+-/
 lemma finsetSum_biSup {f : α → ι → ℝ≥0∞}
     (hf : ∀ i ∈ s, ∀ j ∈ s, ∃ k ∈ s, ∀ a, f a i ≤ f a k ∧ f a j ≤ f a k) :
     ∑ a ∈ t, ⨆ i ∈ s, f a i = ⨆ i ∈ s, ∑ a ∈ t, f a i := by
@@ -64,10 +79,16 @@ lemma finsetSum_biSup {f : α → ι → ℝ≥0∞}
     exact biSup_add_biSup fun i hi j hj ↦ (hf i hi j hj).imp fun k hk ↦
       ⟨hk.1, add_le_add (hk.2 a).1 (Finset.sum_le_sum fun i a ↦ (hk.2 _).2)⟩
 
+/--
+@isnad1 id=le.0h4v.s7.98d18164256a from=translated src=- shape=d554d3c1 vocab=c4df52b8
+-/
 lemma biSup_add_le_add_biSup {f g : ι → ℝ≥0∞} :
     ⨆ i ∈ s, f i + g i ≤ (⨆ i ∈ s, f i) + ⨆ i ∈ s, g i :=
   iSup₂_le fun _ ma => add_le_add (le_biSup _ ma) (le_biSup _ ma)
 
+/--
+@isnad1 id=le.0h5v.s6.1aa544eb0fc6 from=translated src=- shape=c3c17b3a vocab=f59bf988
+-/
 lemma biSup_finsetSum_le_finsetSum_biSup {f : α → ι → ℝ≥0∞} :
     ⨆ i ∈ s, ∑ a ∈ t, f a i ≤ ∑ a ∈ t, ⨆ i ∈ s, f a i := by
   induction t using Finset.cons_induction with
@@ -78,6 +99,9 @@ lemma biSup_finsetSum_le_finsetSum_biSup {f : α → ι → ℝ≥0∞} :
 
 variable {E : Type*} [SeminormedAddCommGroup E]
 
+/--
+@isnad1 id=le.0h5v.s6.055c41c55dda from=translated src=- shape=dd6c1c8b vocab=ea0ba7ad
+-/
 lemma edist_sum_le_sum_edist {f g : α → E} : edist (∑ i ∈ t, f i) (∑ i ∈ t, g i) ≤
     ∑ i ∈ t, edist (f i) (g i) := by
   induction t using Finset.cons_induction with
@@ -86,6 +110,9 @@ lemma edist_sum_le_sum_edist {f g : α → E} : edist (∑ i ∈ t, f i) (∑ i 
     simp only [Finset.sum_cons]
     exact (edist_add_add_le _ _ _ _).trans (add_le_add_right ihs _)
 
+/--
+@isnad1 id=eq.1h3v.s6.29c95ed58f83 from=translated src=- shape=6ec5b90f vocab=b778e3cb
+-/
 lemma enorm_sum_eq_sum_enorm {f : α → ℝ} (hf : ∀ i ∈ t, 0 ≤ f i) :
     ‖∑ i ∈ t, f i‖ₑ = ∑ i ∈ t, ‖f i‖ₑ := by
   induction t using Finset.cons_induction with
@@ -98,13 +125,18 @@ lemma enorm_sum_eq_sum_enorm {f : α → ℝ} (hf : ∀ i ∈ t, 0 ≤ f i) :
     rw [Real.enorm_of_nonneg (add_nonneg n₁ n₂), ENNReal.ofReal_add n₁ n₂,
       ← Real.enorm_of_nonneg n₁, ← Real.enorm_of_nonneg n₂, ihs hf.2]
 
-/-- The reverse triangle inequality for `enorm`. -/
+/-- The reverse triangle inequality for `enorm`.
+@isnad1 id=le.0h3v.s6.a0db7e9250ec from=translated src=- shape=beffeca3 vocab=30a5c6bb
+-/
 -- TODO: does a seminormed abelian additive group also have an ENormedAddMonoid structure?
 lemma enorm_enorm_sub_enorm_le {E} [NormedAddCommGroup E] {x y : E} : ‖‖x‖ₑ - ‖y‖ₑ‖ₑ ≤ ‖x - y‖ₑ := by
   rw [enorm_eq_self, tsub_le_iff_right]
   nth_rw 1 [← sub_add_cancel x y]
   exact enorm_add_le (x - y) y
 
+/--
+@isnad1 id=ex.3h5v.s7.724e8d3219fe from=translated src=- shape=0cae49d8 vocab=b82b7934
+-/
 lemma exists_biSup_le_enorm_add_eps
     {f : ι → E} {ε : ℝ≥0} (εpos : 0 < ε) (hs : s.Nonempty) (hf : IsBounded (f '' s)) :
     ∃ x ∈ s, ⨆ z ∈ s, ‖f z‖ₑ ≤ ‖f x‖ₑ + ε := by
@@ -121,6 +153,9 @@ lemma exists_biSup_le_enorm_add_eps
   norm_cast at M
   exact lt_irrefl _ (M.trans_lt (lt_add_of_pos_right B εpos))
 
+/--
+@isnad1 id=ex.2h5v.s7.33b18a18c678 from=translated src=- shape=64cf69c4 vocab=e3eee26b
+-/
 lemma exists_enorm_sub_eps_le_biInf
     {f : ι → E} {ε : ℝ≥0} (εpos : 0 < ε) (hs : s.Nonempty) :
     ∃ x ∈ s, ‖f x‖ₑ - ε ≤ ⨅ z ∈ s, ‖f z‖ₑ := by
@@ -138,6 +173,9 @@ lemma exists_enorm_sub_eps_le_biInf
     add_le_iff_nonpos_right] at key
   rw [← NNReal.coe_pos] at εpos; linarith only [εpos, key]
 
+/--
+@isnad1 id=le.0h5v.s7.69131ba67a97 from=translated src=- shape=19cbd1bf vocab=97b7290d
+-/
 lemma biInf_enorm_sub_le {f g : ι → E} :
     ⨅ x ∈ s, ‖f x - g x‖ₑ ≤ (⨅ x ∈ s, ‖f x‖ₑ) + (⨆ x ∈ s, ‖g x‖ₑ) := by
   rcases s.eq_empty_or_nonempty with rfl | hs; · simp
@@ -152,7 +190,9 @@ lemma biInf_enorm_sub_le {f g : ι → E} :
 
 end ENNReal
 
-/-- Transfer an inequality over `ℝ` to one of `ENorm`s over `ℝ≥0∞`. -/
+/-- Transfer an inequality over `ℝ` to one of `ENorm`s over `ℝ≥0∞`.
+@isnad1 id=le.2h2v.s6.5e5046ecdea1 from=translated src=- shape=dbe6a4da vocab=06d8e87b
+-/
 lemma Real.enorm_le_enorm {x y : ℝ} (hx : 0 ≤ x) (hy : x ≤ y) : ‖x‖ₑ ≤ ‖y‖ₑ := by
   rw [Real.enorm_of_nonneg hx, Real.enorm_of_nonneg (hx.trans hy)]
   exact ENNReal.ofReal_le_ofReal hy

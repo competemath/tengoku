@@ -40,7 +40,9 @@ def ValidBounds : Set ℝ :=
 /-- Helper: c_k = √(a_k) -/
 noncomputable def c_seq (seq : IncreasingSequenceFromOne) (k : ℕ) : ℝ := Real.sqrt (seq.a k)
 
-/-- All elements of the sequence are positive -/
+/-- All elements of the sequence are positive
+@isnad1 id=lt.0h2v.s4.4139c784ac14 from=translated src=- shape=0d4521f5 vocab=a13bfb44
+-/
 lemma seq_pos (seq: IncreasingSequenceFromOne) : ∀ n, 0 < seq.a n := by
   intro n
   induction n with
@@ -51,7 +53,9 @@ lemma seq_pos (seq: IncreasingSequenceFromOne) : ∀ n, 0 < seq.a n := by
     have h1 : seq.a n ≤ seq.a (n + 1) := seq.a_mono (Nat.le_succ n)
     exact lt_of_lt_of_le ih h1
 
-/-- Key lemma: each term is bounded by 2(1/c_{k-1} - 1/c_k) -/
+/-- Key lemma: each term is bounded by 2(1/c_{k-1} - 1/c_k)
+@isnad1 id=le.0h2v.s7.e9277487114e from=translated src=- shape=486d2c20 vocab=caa77bdf
+-/
 lemma term_bound (seq : IncreasingSequenceFromOne) (k : ℕ) :
   (1 - seq.a (k - 1) / seq.a k) / Real.sqrt (seq.a k) ≤
   2 * (1 / c_seq seq (k - 1) - 1 / c_seq seq k) := by

@@ -20,6 +20,9 @@ where [x] denotes the greatest integer less than or equal to x.
 namespace Imo1968P6
 
 -- Lemma for the telescoping term structure
+/--
+@isnad1 id=eq.0h2v.s7.17f5994afbe3 from=translated src=- shape=e22a8893 vocab=549e9da6
+-/
 lemma term_telescope (n k : ℕ) :
     (n + 2^k) / 2^(k+1) = n / 2^k - n / 2^(k+1) := by
   rw [pow_succ, ← Nat.div_div_eq_div_mul]

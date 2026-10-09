@@ -31,16 +31,27 @@ def colSum (j : Fin n) : ℕ := ∑ i, Aᵀ j i
 def totalSum : ℕ := ∑ i, ∑ j, A i j
 
 -- Basic lemmas connecting total sum to row/col sums
+/--
+@isnad1 id=eq.0h2v.s4.5eb07f558ec3 from=translated src=- shape=f964740b vocab=5168409e
+-/
 lemma totalSum_eq_rowSum_sum : totalSum A = ∑ i, rowSum A i := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.8819317b812f from=translated src=- shape=f964740b vocab=c834152d
+-/
 lemma totalSum_eq_colSum_sum : totalSum A = ∑ j, colSum A j := Finset.sum_comm
 
+/--
+@isnad1 id=eq.0h2v.s4.dca348a79071 from=translated src=- shape=103b62df vocab=7fb48abd
+-/
 theorem totalSum_transpose_eq : totalSum A = totalSum Aᵀ := by
   simp [totalSum, Matrix.transpose]
   exact Finset.sum_comm
 
 /-- Auxiliary lemma: The inequality holds if there exists a row with sum `x`
-    such that `x` is less than or equal to all row sums and column sums. -/
+    such that `x` is less than or equal to all row sums and column sums.
+@isnad1 id=le.5h3v.s7.dfc173b4eedc from=translated src=- shape=45d0adee vocab=9598083f
+-/
 lemma aux {n : ℕ} (A : Matrix (Fin n) (Fin n) ℕ) (n_pos : 0 < n)
     (h_cond : ∀ i j : Fin n, A i j = 0 → rowSum A i + colSum A j ≥ n)
     (x : ℕ)

@@ -24,7 +24,9 @@ namespace CIIM2022P6
 def d : ℕ → ℕ
 | m => (Nat.divisors m).card
 
-/-- If `p ≥ 2` and `1 ≤ v` then `v * p ≤ p ^ v`. -/
+/-- If `p ≥ 2` and `1 ≤ v` then `v * p ≤ p ^ v`.
+@isnad1 id=le.2h2v.s5.5a6ce0307540 from=translated src=- shape=b007038a vocab=45880164
+-/
 lemma mul_le_self_pow {p v : ℕ} (hp : 2 ≤ p) (hv : 1 ≤ v) : v * p ≤ p ^ v := by
   have h1 : v ≤ 2 ^ (v - 1) := by
     have h := Nat.lt_two_pow_self (n := v - 1)
@@ -37,7 +39,9 @@ lemma mul_le_self_pow {p v : ℕ} (hp : 2 ≤ p) (hv : 1 ≤ v) : v * p ≤ p ^ 
 /-- Key combinatorial estimate. Let `P` be a finset of primes with multiplicities
 `v p ≥ 1`, and set `N = ∏ p ∈ P, p ^ v p`. Then the sum of `(∏ p ∈ S, p ^ v p) / N ^ |S|`
 over nonempty `S ⊆ P` is at most `1`. (Proof: induction on `P`, peeling off one prime.)
-This is the exact estimate behind `d((n+1)!) ≤ 2 d(n!)`. -/
+This is the exact estimate behind `d((n+1)!) ≤ 2 d(n!)`.
+@isnad1 id=le.2h2v.s7.42ca99f205a2 from=translated src=- shape=bb1228c5 vocab=bd7fbbae
+-/
 lemma sum_div_pow_le_one (P : Finset ℕ) (v : ℕ → ℕ) :
     (∀ p ∈ P, p.Prime) → (∀ p ∈ P, 1 ≤ v p) →
     ∑ S ∈ P.powerset.erase ∅, ((∏ p ∈ S, p ^ v p : ℕ) : ℚ) / (∏ p ∈ P, p ^ v p : ℕ) ^ S.card ≤ 1 := by
@@ -221,7 +225,9 @@ lemma sum_div_pow_le_one (P : Finset ℕ) (v : ℕ → ℕ) :
     linarith [h1, h3, h9]
 
 /-- The multiplicative bound `∏_{p | n+1} (v_p(n!) + v_p(n+1) + 1) ≤ 2 ∏_{p | n+1} (v_p(n!) + 1)`.
-Together with the factorization of `(n+1)!` this is the heart of the problem. -/
+Together with the factorization of `(n+1)!` this is the heart of the problem.
+@isnad1 id=le.1h1v.s7.1ba5addf3316 from=translated src=- shape=a3b08461 vocab=0ced6940
+-/
 lemma prod_factorization_le (n : ℕ) (hn : 0 < n) :
     ∏ p ∈ (n + 1).primeFactors, ((Nat.factorial n).factorization p + (n + 1).factorization p + 1)
       ≤ 2 * ∏ p ∈ (n + 1).primeFactors, ((Nat.factorial n).factorization p + 1) := by

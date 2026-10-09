@@ -49,7 +49,9 @@ end Separable
 section SecondCountableTopology
 
 /-- A point of a subset `s` is isolated on the right in the subspace `↥s` exactly when it is
-isolated on the right within `s`. -/
+isolated on the right within `s`.
+@isnad1 id=iff.1h3v.s7.1598e63908f2 from=translated src=- shape=f796e27f vocab=220e631a
+-/
 lemma nhdsGT_subtype_eq_bot_iff {s : Set ι} {x : ι} (hx : x ∈ s) :
     𝓝[>] (⟨x, hx⟩ : s) = ⊥ ↔ 𝓝[s ∩ Ioi x] x = ⊥ := by
   have : ((↑) : s → ι) ⁻¹' Ioi x = Ioi ⟨x, hx⟩ := rfl

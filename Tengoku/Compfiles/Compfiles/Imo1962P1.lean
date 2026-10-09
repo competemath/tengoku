@@ -34,6 +34,9 @@ First, it's inconvenient to work with digits, so let's simplify them out of the 
 abbrev ProblemPredicate' (c n : ℕ) : Prop :=
   n = 10 * c + 6 ∧ 6 * 10 ^ (digits 10 c).length + c = 4 * n
 
+/--
+@isnad1 id=ex.1h1v.s3.2658c773346b from=translated src=- shape=8b74fa62 vocab=b6ce6272
+-/
 theorem without_digits {n : ℕ} (h1 : ProblemPredicate n) : ∃ c : ℕ, ProblemPredicate' c n := by
   use n / 10
   cases n with
@@ -50,34 +53,54 @@ theorem without_digits {n : ℕ} (h1 : ProblemPredicate n) : ∃ c : ℕ, Proble
 Now we can eliminate possibilities for `(digits 10 c).length` until we get to the one that works.
 -/
 
+/--
+@isnad1 id=not.1h2v.s4.0550aa67b9e3 from=translated src=- shape=747c4333 vocab=9a558fff
+-/
 theorem case_0_digit {c n : ℕ} (h1 : (digits 10 c).length = 0) : ¬ProblemPredicate' c n := by
   intro h2
   have h3 : 6 * 10 ^ 0 + c = 6 * 10 ^ (digits 10 c).length + c := by rw [h1]
   lia
 
+/--
+@isnad1 id=not.1h2v.s4.dad30331ab29 from=translated src=- shape=747c4333 vocab=9a558fff
+-/
 theorem case_1_digit {c n : ℕ} (h1 : (digits 10 c).length = 1) : ¬ProblemPredicate' c n := by
   intro h2
   have h3 : 6 * 10 ^ 1 + c = 6 * 10 ^ (digits 10 c).length + c := by rw [h1]
   lia
 
+/--
+@isnad1 id=not.1h2v.s4.d83a500c8ff9 from=translated src=- shape=747c4333 vocab=9a558fff
+-/
 theorem case_2_digit {c n : ℕ} (h1 : (digits 10 c).length = 2) : ¬ProblemPredicate' c n := by
   intro h2
   have h3 : 6 * 10 ^ 2 + c = 6 * 10 ^ (digits 10 c).length + c := by rw [h1]
   lia
 
+/--
+@isnad1 id=not.1h2v.s4.81173eaba6c5 from=translated src=- shape=747c4333 vocab=9a558fff
+-/
 theorem case_3_digit {c n : ℕ} (h1 : (digits 10 c).length = 3) : ¬ProblemPredicate' c n := by
   intro h2
   have h3 : 6 * 10 ^ 3 + c = 6 * 10 ^ (digits 10 c).length + c := by rw [h1]
   lia
 
+/--
+@isnad1 id=not.1h2v.s4.2f5de5394310 from=translated src=- shape=747c4333 vocab=9a558fff
+-/
 theorem case_4_digit {c n : ℕ} (h1 : (digits 10 c).length = 4) : ¬ProblemPredicate' c n := by
   intro h2
   have h3 : 6 * 10 ^ 4 + c = 6 * 10 ^ (digits 10 c).length + c := by rw [h1]
   lia
 
-/-- Putting this inline causes a deep recursion error, so we separate it out. -/
+/-- Putting this inline causes a deep recursion error, so we separate it out.
+@isnad1 id=eq.1h1v.s6.daca9da9a5e8 from=translated src=- shape=2b3cb373 vocab=85af4b90
+-/
 theorem helper_5_digit {c : ℤ} (h : 6 * 10 ^ 5 + c = 4 * (10 * c + 6)) : c = 15384 := by linarith
 
+/--
+@isnad1 id=eq.2h2v.s5.4a53ba382631 from=translated src=- shape=34a3c6d7 vocab=9a558fff
+-/
 theorem case_5_digit {c n : ℕ} (h1 : (digits 10 c).length = 5) (h2 : ProblemPredicate' c n) :
     c = 15384 := by
   have h3 : 6 * 10 ^ 5 + c = 6 * 10 ^ (digits 10 c).length + c := by rw [h1]
@@ -85,6 +108,7 @@ theorem case_5_digit {c n : ℕ} (h1 : (digits 10 c).length = 5) (h2 : ProblemPr
 
 /-- `linarith` fails on numbers this large, so this lemma spells out some of the arithmetic
 that normally would be automated.
+@isnad1 id=le.2h2v.s5.a0d92ee3ff61 from=translated src=- shape=f95725c8 vocab=e30c643b
 -/
 theorem case_more_digits {c n : ℕ} (h1 : (digits 10 c).length ≥ 6) (h2 : ProblemPredicate' c n) :
     n ≥ 153846 := by
@@ -102,10 +126,16 @@ theorem case_more_digits {c n : ℕ} (h1 : (digits 10 c).length ≥ 6) (h2 : Pro
 Now we combine these cases to show that 153846 is the smallest solution.
 -/
 
+/--
+@isnad1 id=problemp.0h0v.s2.3ac4014191da from=translated src=- shape=e590c3e1 vocab=40e4a4d3
+-/
 theorem satisfied_by_153846 : ProblemPredicate 153846 := by
   norm_num [ProblemPredicate]
   decide
 
+/--
+@isnad1 id=le.1h1v.s3.a0628929edc6 from=translated src=- shape=4f29f389 vocab=93a5ea54
+-/
 theorem no_smaller_solutions (n : ℕ) (h1 : ProblemPredicate n) : n ≥ 153846 := by
   have ⟨c, h2⟩ := without_digits h1
   have h3 : (digits 10 c).length < 6 ∨ (digits 10 c).length ≥ 6 := by apply lt_or_ge

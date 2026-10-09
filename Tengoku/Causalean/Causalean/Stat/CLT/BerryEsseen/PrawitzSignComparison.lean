@@ -16,19 +16,25 @@ namespace Causalean.Stat.CLT.BerryEsseen
 
 open MeasureTheory
 
-/-- The [Prawitz sign approximation is zero at zero](goal). -/
+/-- The [Prawitz sign approximation is zero at zero](goal).
+@isnad1 id=eq.0h0v.s3.849d08183e87 from=translated src=- shape=3c26ae4f vocab=f7fc1319
+-/
 theorem prawitzSignApprox_zero : prawitzSignApprox 0 = 0 := by
   simp [prawitzSignApprox]
 
 /-- Reversing [the spatial argument](hyp:y) [reverses the sign of the
-Prawitz approximation](goal). -/
+Prawitz approximation](goal).
+@isnad1 id=eq.0h1v.s3.ef937ccf1056 from=translated src=- shape=c7188113 vocab=edc807d4
+-/
 theorem prawitzSignApprox_neg (y : ℝ) : prawitzSignApprox (-y) = -prawitzSignApprox y := by
   simp only [prawitzSignApprox, mul_neg, Real.sin_neg,
     intervalIntegral.integral_neg]
 
 /-- At [every real point y](hyp:y), [the sine integrand defining Prawitz's sign
 approximation is integrable on [0, 1], and the error between the sign of y
-and Prawitz's sign approximation at y is at most sinc(y/2)²](goal). -/
+and Prawitz's sign approximation at y is at most sinc(y/2)²](goal).
+@isnad1 id=and.0h1v.s6.c7ac46b66272 from=translated src=- shape=0e4ef340 vocab=60236fc3
+-/
 theorem prawitzSignApprox_integrable_and_error (y : ℝ) :
     IntervalIntegrable
       (fun t : ℝ => prawitzSineWeight t * Real.sin (t * y)) volume 0 1 ∧

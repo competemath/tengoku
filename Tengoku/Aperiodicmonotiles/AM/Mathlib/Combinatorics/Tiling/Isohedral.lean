@@ -49,6 +49,9 @@ namespace TileSet
 instance (t : TileSet ps ιₜ) : SMul t.symmetryGroup (t : Set (PlacedTile ps)) where
   smul g pt := ⟨(g : G) • ↑pt, smul_mem_of_mem_of_mem_symmetryGroup g.property pt.property⟩
 
+/--
+@isnad1 id=eq.0h8v.s9.002609457262 from=translated src=- shape=53dc928f vocab=06da2411
+-/
 lemma coe_symmetryGroup_smul (t : TileSet ps ιₜ) (g : t.symmetryGroup)
     (pt : (t : Set (PlacedTile ps))) : ((g • pt : (t : Set (PlacedTile ps))) : PlacedTile ps) =
       g • (pt : PlacedTile ps) :=
@@ -61,17 +64,26 @@ instance (t : TileSet ps ιₜ) : MulAction t.symmetryGroup (t : Set (PlacedTile
   mul_smul x y pt := by
     simp [Subtype.ext_iff, coe_symmetryGroup_smul, mul_smul]
 
+/--
+@isnad1 id=iff.0h9v.s9.240911395af6 from=translated src=- shape=77e42a81 vocab=06da2411
+-/
 lemma mem_smul_symmetryGroup_iff {t : TileSet ps ιₜ} {g : t.symmetryGroup}
     {pt : (t : Set (PlacedTile ps))} {x : X} :
     x ∈ ((g • pt : (t : Set (PlacedTile ps))) : PlacedTile ps) ↔ x ∈ g • (pt : PlacedTile ps) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h9v.s9.27cb07e58774 from=translated src=- shape=4eb104f5 vocab=06da2411
+-/
 lemma smul_mem_smul_symmetryGroup_iff {t : TileSet ps ιₜ} (g : t.symmetryGroup)
     {pt : (t : Set (PlacedTile ps))} {x : X} :
     g • x ∈ ((g • pt : (t : Set (PlacedTile ps))) : PlacedTile ps) ↔
       x ∈ (pt : PlacedTile ps) := by
   simp [mem_smul_symmetryGroup_iff, Subgroup.smul_def]
 
+/--
+@isnad1 id=iff.0h9v.s9.3170ec123675 from=translated src=- shape=39b2a479 vocab=5a6e6381
+-/
 lemma mem_smul_symmetryGroup_iff_smul_inv_mem {t : TileSet ps ιₜ} (g : t.symmetryGroup)
     {pt : (t : Set (PlacedTile ps))} {x : X} :
     x ∈ ((g • pt : (t : Set (PlacedTile ps))) : PlacedTile ps) ↔
@@ -79,6 +91,9 @@ lemma mem_smul_symmetryGroup_iff_smul_inv_mem {t : TileSet ps ιₜ} (g : t.symm
   simp_rw [mem_smul_symmetryGroup_iff, Subgroup.smul_def, Subgroup.coe_inv,
            PlacedTile.mem_smul_iff_smul_inv_mem]
 
+/--
+@isnad1 id=iff.0h9v.s9.6ef87456f395 from=translated src=- shape=28f3f0d9 vocab=5a6e6381
+-/
 lemma mem_inv_smul_symmetryGroup_iff_smul_mem {t : TileSet ps ιₜ} (g : t.symmetryGroup)
     {pt : (t : Set (PlacedTile ps))} {x : X} :
     x ∈ ((g⁻¹ • pt : (t : Set (PlacedTile ps))) : PlacedTile ps) ↔
@@ -145,24 +160,39 @@ def isohedralNumber : TileSetFunction ps Cardinal ⊤ :=
     exact Iff.rfl,
   fun {ιₜ g} (t _) ↦ Cardinal.eq.2 ⟨smulOrbitEquiv g t⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.178061eca2a1 from=translated src=- shape=8f589a37 vocab=62893608
+-/
 lemma isohedralNumber_eq_card (t : TileSet ps ιₜ) :
     t.isohedralNumber = #(MulAction.orbitRel.Quotient t.symmetryGroup (t : Set (PlacedTile ps))) :=
   rfl
 
+/--
+@isnad1 id=iff.0h6v.s6.7eb9e938232a from=translated src=- shape=f8cea536 vocab=a1278f74
+-/
 lemma isohedralNumber_le_one_iff {t : TileSet ps ιₜ} :
     t.isohedralNumber ≤ 1 ↔ MulAction.IsPretransitive t.symmetryGroup
     (t : Set (PlacedTile ps)) := by
   rw [isohedralNumber_eq_card, Cardinal.le_one_iff_subsingleton,
       MulAction.pretransitive_iff_subsingleton_quotient]
 
+/--
+@isnad1 id=iff.0h6v.s6.28856ab0db4a from=translated src=- shape=9f7249d7 vocab=9b9fe59d
+-/
 lemma isohedralNumber_ne_zero_iff (t : TileSet ps ιₜ) : t.isohedralNumber ≠ 0 ↔ Nonempty ιₜ := by
   rw [isohedralNumber_eq_card, Cardinal.mk_ne_zero_iff, nonempty_quotient_iff,
       Set.nonempty_coe_sort, coeSet_apply, Set.range_nonempty_iff_nonempty]
 
+/--
+@isnad1 id=iff.0h6v.s6.ee0e50615c5b from=translated src=- shape=9f7249d7 vocab=57d65c3e
+-/
 lemma isohedralNumber_eq_zero_iff (t : TileSet ps ιₜ) : t.isohedralNumber = 0 ↔ IsEmpty ιₜ := by
   rw [← not_iff_not, not_isEmpty_iff]
   exact t.isohedralNumber_ne_zero_iff
 
+/--
+@isnad1 id=iff.0h6v.s6.f82ad32ec452 from=translated src=- shape=4e576dd1 vocab=93222df1
+-/
 lemma isohedralNumber_eq_one_iff {t : TileSet ps ιₜ} :
     t.isohedralNumber = 1
       ↔ Nonempty ιₜ ∧ MulAction.IsPretransitive t.symmetryGroup (t : Set (PlacedTile ps)) := by
@@ -172,11 +202,17 @@ lemma isohedralNumber_eq_one_iff {t : TileSet ps ιₜ} :
             (Cardinal.one_le_iff_ne_zero.2 (t.isohedralNumber_ne_zero_iff.2 hn)))⟩
   simp [h]
 
+/--
+@isnad1 id=iff.0h6v.s7.f41fae8b62e6 from=translated src=- shape=c29c7cf1 vocab=d87f6f19
+-/
 lemma aleph0_le_isohedralNumber_iff {t : TileSet ps ιₜ} :
     ℵ₀ ≤ t.isohedralNumber ↔
       Infinite (MulAction.orbitRel.Quotient t.symmetryGroup (t : Set (PlacedTile ps))) := by
   rw [Cardinal.infinite_iff, isohedralNumber_eq_card]
 
+/--
+@isnad1 id=iff.0h6v.s7.a47bbeddc333 from=translated src=- shape=1f162124 vocab=4e581e82
+-/
 lemma isohedralNumber_lt_aleph0_iff {t : TileSet ps ιₜ} :
     t.isohedralNumber < ℵ₀ ↔
       Finite (MulAction.orbitRel.Quotient t.symmetryGroup (t : Set (PlacedTile ps))) := by
@@ -186,17 +222,26 @@ lemma isohedralNumber_lt_aleph0_iff {t : TileSet ps ιₜ} :
 natural number; zero if infinite. -/
 def isohedralNumberNat : TileSetFunction ps ℕ ⊤ := isohedralNumber.comp Cardinal.toNat
 
+/--
+@isnad1 id=eq.0h6v.s7.fbeaf1a1f513 from=translated src=- shape=8f589a37 vocab=f99f7523
+-/
 lemma isohedralNumberNat_eq_card (t : TileSet ps ιₜ) :
     t.isohedralNumberNat =
       Nat.card (MulAction.orbitRel.Quotient t.symmetryGroup (t : Set (PlacedTile ps))) :=
   rfl
 
+/--
+@isnad1 id=iff.0h6v.s6.83cb84106fea from=translated src=- shape=4e576dd1 vocab=2a6e82a0
+-/
 lemma isohedralNumberNat_eq_one_iff {t : TileSet ps ιₜ} :
     t.isohedralNumberNat = 1
       ↔ Nonempty ιₜ ∧ MulAction.IsPretransitive t.symmetryGroup (t : Set (PlacedTile ps)) := by
   rw [← isohedralNumber_eq_one_iff]
   simp [isohedralNumberNat]
 
+/--
+@isnad1 id=iff.0h6v.s7.4f9434bd66e7 from=translated src=- shape=53aee561 vocab=9074624d
+-/
 lemma isohedralNumberNat_eq_zero_iff {t : TileSet ps ιₜ} :
     t.isohedralNumberNat = 0 ↔ IsEmpty ιₜ ∨
       Infinite (MulAction.orbitRel.Quotient t.symmetryGroup (t : Set (PlacedTile ps))) := by
@@ -215,6 +260,9 @@ instance (t : TileSet ps ιₜ) : MulAction t.symmetryGroup
     {x : Prod (t : Set (PlacedTile ps)) X // x.2 ∈ (x.1 : PlacedTile ps)} :=
   SubMulAction.SMulMemClass.toMulAction (S' := subMulActionTilePoint t)
 
+/--
+@isnad1 id=eq.0h8v.s10.528aa3b9bea5 from=translated src=- shape=078b8725 vocab=f6c92e50
+-/
 lemma coe_smul_tilePoint {t : TileSet ps ιₜ} (g : t.symmetryGroup)
     (x : {x : Prod (t : Set (PlacedTile ps)) X // x.2 ∈ (x.1 : PlacedTile ps)}) :
     ((g • x : {x : Prod (t : Set (PlacedTile ps)) X // x.2 ∈ (x.1 : PlacedTile ps)}) : Prod _ _) =
@@ -249,16 +297,25 @@ def quotientPointOfquotientTilePoint (t : TileSet ps ιₜ) :
   (Quotient.congrRight <| Setoid.ext_iff.1 <|
     SubMulAction.orbitRel_of_subMul t.subMulActionTilePoint)
 
+/--
+@isnad1 id=eq.0h7v.s9.f2c03778ee3a from=translated src=- shape=0b08be3e vocab=d20fc48d
+-/
 @[simp] lemma quotientPlacedTileOfquotientTilePoint_apply_mk {t : TileSet ps ιₜ}
     (x : {x : Prod (t : Set (PlacedTile ps)) X // x.2 ∈ (x.1 : PlacedTile ps)}) :
     t.quotientPlacedTileOfquotientTilePoint ⟦x⟧ = ⟦(Subtype.val x).1⟧ :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.a67a4a9125e9 from=translated src=- shape=f0b2c966 vocab=8b27b837
+-/
 @[simp] lemma quotientPointOfquotientTilePoint_apply_mk {t : TileSet ps ιₜ}
     (x : {x : Prod (t : Set (PlacedTile ps)) X // x.2 ∈ (x.1 : PlacedTile ps)}) :
       t.quotientPointOfquotientTilePoint ⟦x⟧ = ⟦(Subtype.val x).2⟧ :=
   rfl
 
+/--
+@isnad1 id=surjecti.1h6v.s8.e40903f695be from=translated src=- shape=488b4d1a vocab=3c83de6a
+-/
 lemma surjective_quotientPlacedTileOfquotientTilePoint {t : TileSet ps ιₜ}
     (h : ∀ i, (t i : Set X).Nonempty) :
     Surjective t.quotientPlacedTileOfquotientTilePoint := by
@@ -269,6 +326,9 @@ lemma surjective_quotientPlacedTileOfquotientTilePoint {t : TileSet ps ιₜ}
     obtain ⟨x, hx⟩ := h i
     exact ⟨⟦⟨(⟨t i, apply_mem _ _⟩, x), hx⟩⟧, rfl⟩
 
+/--
+@isnad1 id=surjecti.0h7v.s8.d39eb60902b4 from=translated src=- shape=afd3fff9 vocab=fa04fd4c
+-/
 lemma surjective_quotientPointOfquotientTilePoint {t : TileSet ps ιₜ} (h : t.UnionEqUniv) :
     Surjective t.quotientPointOfquotientTilePoint := by
   intro x
@@ -277,6 +337,9 @@ lemma surjective_quotientPointOfquotientTilePoint {t : TileSet ps ιₜ} (h : t.
     obtain ⟨pt, hpt, hp⟩ := UnionEqUniv.exists_mem_mem h p
     exact ⟨⟦⟨(⟨pt, hpt⟩, p), hp⟩⟧, rfl⟩
 
+/--
+@isnad1 id=eq.0h7v.s10.3f42facb56f0 from=translated src=- shape=a8dcbcf0 vocab=d65aa277
+-/
 lemma preimage_quotientPlacedTileOfquotientTilePoint_eq_range {t : TileSet ps ιₜ}
     (pt : (t : Set (PlacedTile ps))) : t.quotientPlacedTileOfquotientTilePoint ⁻¹' {⟦pt⟧} =
       Set.range (fun x : {x // x ∈ (pt : PlacedTile ps)} ↦ ⟦⟨(pt, x), x.property⟩⟧) := by
@@ -296,6 +359,9 @@ lemma preimage_quotientPlacedTileOfquotientTilePoint_eq_range {t : TileSet ps ι
     refine ⟨g⁻¹, Subtype.ext_iff.2 ?_⟩
     simp [coe_smul_tilePoint]
 
+/--
+@isnad1 id=eq.0h7v.s10.3da7f14fd29e from=translated src=- shape=40d8af5c vocab=9d932820
+-/
 lemma preimage_quotientPointOfquotientTilePoint_eq_range {t : TileSet ps ιₜ} (x : X) :
     t.quotientPointOfquotientTilePoint ⁻¹' {⟦x⟧} =
       Set.range (fun pt : {pt // pt ∈ t ∧ x ∈ pt} ↦
@@ -317,6 +383,9 @@ lemma preimage_quotientPointOfquotientTilePoint_eq_range {t : TileSet ps ιₜ} 
     refine ⟨g⁻¹, Subtype.ext_iff.2 ?_⟩
     simp [coe_smul_tilePoint]
 
+/--
+@isnad1 id=finite.1h7v.s9.69d4cdcfcf8c from=translated src=- shape=592c8ed1 vocab=52f37aee
+-/
 lemma finite_preimage_quotientPlacedTileOfquotientTilePoint {t : TileSet ps ιₜ}
     {pt : (t : Set (PlacedTile ps))} (h : ((pt : PlacedTile ps) : Set X).Finite) :
     (t.quotientPlacedTileOfquotientTilePoint ⁻¹' {⟦pt⟧}).Finite := by
@@ -324,6 +393,9 @@ lemma finite_preimage_quotientPlacedTileOfquotientTilePoint {t : TileSet ps ι�
   rw [preimage_quotientPlacedTileOfquotientTilePoint_eq_range]
   exact Set.finite_range _
 
+/--
+@isnad1 id=finite.0h8v.s9.a3b7f45a23f2 from=translated src=- shape=0445a89d vocab=d13b1c33
+-/
 lemma finite_preimage_quotientPointOfquotientTilePoint {t : TileSet ps ιₜ} (x : X)
     (h : t.FiniteDistinctIntersectionsOn {x}) :
     (t.quotientPointOfquotientTilePoint ⁻¹' {⟦x⟧}).Finite := by
@@ -332,6 +404,9 @@ lemma finite_preimage_quotientPointOfquotientTilePoint {t : TileSet ps ιₜ} (x
   rw [preimage_quotientPointOfquotientTilePoint_eq_range]
   exact Set.finite_range _
 
+/--
+@isnad1 id=finite.2h6v.s8.e172f16e295f from=translated src=- shape=016848c4 vocab=cfc9284d
+-/
 lemma finite_quotient_tilePoint_of_isohedralNumber_lt_aleph0 {t : TileSet ps ιₜ}
     (h : t.isohedralNumber < ℵ₀) (hf : ∀ i, (t i : Set X).Finite) :
     Finite (MulAction.orbitRel.Quotient t.symmetryGroup
@@ -347,6 +422,9 @@ lemma finite_quotient_tilePoint_of_isohedralNumber_lt_aleph0 {t : TileSet ps ι�
     rcases pt with ⟨pt, i, rfl⟩
     exact hf i
 
+/--
+@isnad1 id=lt.2h6v.s8.88b2c9c01f96 from=translated src=- shape=7383dcdf vocab=f92d2cde
+-/
 lemma isohedralNumber_lt_aleph0_of_finite_quotient_tilePoint {t : TileSet ps ιₜ}
     (hf : Finite (MulAction.orbitRel.Quotient t.symmetryGroup
       {x : Prod (t : Set (PlacedTile ps)) X // x.2 ∈ (x.1 : PlacedTile ps)}))
@@ -367,6 +445,9 @@ variable (ιₜ) in
 def isohedralNumber (p : TileSetFunction ps Prop H) : Cardinal :=
   ⨅ (t : {x : TileSet ps ιₜ // p x}), TileSet.isohedralNumber (t : TileSet ps ιₜ)
 
+/--
+@isnad1 id=iff.0h7v.s6.80d44fd48e4e from=translated src=- shape=90fe6e4a vocab=3dca7b43
+-/
 lemma isohedralNumber_eq_zero_iff {p : TileSetFunction ps Prop H} :
     isohedralNumber ιₜ p = 0 ↔ IsEmpty ιₜ ∨ ∀ t : TileSet ps ιₜ, ¬ p t := by
   simp_rw [isohedralNumber, Cardinal.iInf_eq_zero_iff, TileSet.isohedralNumber_eq_zero_iff]
@@ -380,10 +461,16 @@ lemma isohedralNumber_eq_zero_iff {p : TileSetFunction ps Prop H} :
       exact (Classical.em _).symm
     · simp [h, isEmpty_subtype]
 
+/--
+@isnad1 id=iff.0h7v.s6.ebf7b1ceea1e from=translated src=- shape=c433e15f vocab=988e6a80
+-/
 lemma isohedralNumber_ne_zero_iff {p : TileSetFunction ps Prop H} :
     isohedralNumber ιₜ p ≠ 0 ↔ Nonempty ιₜ ∧ ∃ t : TileSet ps ιₜ, p t := by
   simp [isohedralNumber_eq_zero_iff, not_or]
 
+/--
+@isnad1 id=iff.1h8v.s7.3ab70ff665fb from=translated src=- shape=90996530 vocab=8c955077
+-/
 lemma le_isohedralNumber_iff {p : TileSetFunction ps Prop H} {c : Cardinal} (h : c ≠ 0) :
     c ≤ isohedralNumber ιₜ p ↔
       (∃ t : TileSet ps ιₜ, p t) ∧ ∀ t : TileSet ps ιₜ, p t → c ≤ t.isohedralNumber := by
@@ -402,6 +489,9 @@ lemma le_isohedralNumber_iff {p : TileSetFunction ps Prop H} {c : Cardinal} (h :
     convert Cardinal.sInf_empty
     simpa [isEmpty_subtype] using he
 
+/--
+@isnad1 id=iff.0h7v.s7.f9cabf9f9589 from=translated src=- shape=53c8edf2 vocab=acd3c88c
+-/
 lemma isohedralNumber_eq_one_iff {p : TileSetFunction ps Prop H} :
     isohedralNumber ιₜ p = 1 ↔ Nonempty ιₜ ∧ ∃ t : TileSet ps ιₜ, p t
       ∧ MulAction.IsPretransitive t.symmetryGroup (t : Set (PlacedTile ps)) := by
@@ -433,6 +523,9 @@ as a natural number; zero if infinite or if no such `TileSet` exists. -/
 def isohedralNumberNat (p : TileSetFunction ps Prop H) : ℕ :=
   Cardinal.toNat <| isohedralNumber ιₜ p
 
+/--
+@isnad1 id=iff.0h7v.s7.15db1b247577 from=translated src=- shape=53c8edf2 vocab=71d141d6
+-/
 lemma isohedralNumberNat_eq_one_iff {p : TileSetFunction ps Prop H} :
     isohedralNumberNat ιₜ p = 1 ↔ Nonempty ιₜ ∧ ∃ t : TileSet ps ιₜ, p t
       ∧ MulAction.IsPretransitive t.symmetryGroup (t : Set (PlacedTile ps)) := by

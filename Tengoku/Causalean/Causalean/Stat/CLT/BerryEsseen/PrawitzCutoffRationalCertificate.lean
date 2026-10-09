@@ -24,7 +24,9 @@ set_option maxRecDepth 10000 in
 [the rational cutoff tables have endpoints 0 < r < s ≤ 1, a low cutoff index
 between 300 and 859 and a high cutoff index between 1 and 999, a low grid
 endpoint B inside the band 12/(5s), and rational certificates for both
-logarithmic cutoff enclosures](goal). -/
+logarithmic cutoff enclosures](goal).
+@isnad1 id=other.0h1v.s8.a119ffc5afc3 from=translated src=- shape=61c57f0a vocab=a608be3d
+-/
 theorem prawitz_compact_cutoff_rational_certificate (j : Fin 270) :
     let r := prawitzCompactLeft j.val
     let s := prawitzCompactRight j.val

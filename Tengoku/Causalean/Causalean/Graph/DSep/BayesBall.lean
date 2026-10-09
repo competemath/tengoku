@@ -368,7 +368,9 @@ def bbReachableVertices (Z X : Finset V) : Finset V :=
 
 /-- In [a finite directed acyclic graph](hyp:V,G), for [a conditioning set and two
 source sets](hyp:Z,X,X'), [containment of the smaller source set](hyp:hXX') implies that
-[every state reachable from it is reachable from the larger source set](goal). -/
+[every state reachable from it is reachable from the larger source set](goal).
+@isnad1 id=le.1h5v.s6.d00bedd9cf11 from=translated src=- shape=da168754 vocab=5ceb8f13
+-/
 theorem bbReachable_mono_source {Z : Finset V}
     {X X' : Finset V} (hXX' : X' ⊆ X) :
     G.bbReachable Z X' ⊆ G.bbReachable Z X := by
@@ -380,7 +382,9 @@ theorem bbReachable_mono_source {Z : Finset V}
 
 /-- In [a finite directed acyclic graph](hyp:V,G), for [a conditioning set and two
 source sets](hyp:Z,X,X'), [containment of the smaller source set](hyp:hXX') implies that
-[every vertex reachable from it is reachable from the larger source set](goal). -/
+[every vertex reachable from it is reachable from the larger source set](goal).
+@isnad1 id=le.1h5v.s5.f131b5b04732 from=translated src=- shape=0ece4118 vocab=a683698f
+-/
 theorem bbReachableVertices_mono_source {Z : Finset V}
     {X X' : Finset V} (hXX' : X' ⊆ X) :
     G.bbReachableVertices Z X' ⊆ G.bbReachableVertices Z X :=
@@ -392,7 +396,9 @@ theorem bbReachableVertices_mono_source {Z : Finset V}
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [a source set and conditioning
 set](hyp:X,Z) have [their initial Bayes Ball frontier contained in the reachable-state
-set](goal). -/
+set](goal).
+@isnad1 id=le.0h4v.s5.a5f9d3352bf2 from=translated src=- shape=1480f9c6 vocab=16de8cd4
+-/
 theorem bbReachable_init_subset (Z X : Finset V) :
     G.bbInit X ⊆ G.bbReachable Z X := by
   unfold bbReachable
@@ -402,7 +408,9 @@ theorem bbReachable_init_subset (Z X : Finset V) :
     conditioning set `Z` and source set `X`, if [a candidate set `S` of Bayes-Ball states
     contains the initial frontier `bbInit X`](hyp:hinit) and [`S` is closed under the
     Bayes-Ball step relation `bbStep Z`](hyp:hstep), then [`S` contains every state reachable
-    via `bbReachable Z X`](goal). -/
+    via `bbReachable Z X`](goal).
+@isnad1 id=le.2h5v.s6.7cead8566a62 from=translated src=- shape=b15dd737 vocab=c4597ca2
+-/
 theorem bbReachable_minimal (Z X : Finset V) (S : Finset (BBState V))
     (hinit : G.bbInit X ⊆ S)
     (hstep : ∀ s ∈ S, G.bbStep Z s ⊆ S) :
@@ -416,7 +424,9 @@ theorem bbReachable_minimal (Z X : Finset V) (S : Finset (BBState V))
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [a source set, conditioning set,
 and state](hyp:X,Z,s) with [the state already reachable](hyp:hs) have [every one-step
-successor reachable as well](goal). -/
+successor reachable as well](goal).
+@isnad1 id=le.1h5v.s6.b463a93da503 from=translated src=- shape=eb7e6029 vocab=d379a3d8
+-/
 theorem bbReachable_bbStep_subset (Z X : Finset V) {s : BBState V}
     (hs : s ∈ G.bbReachable Z X) :
     G.bbStep Z s ⊆ G.bbReachable Z X := by

@@ -82,7 +82,9 @@ private theorem orientedFourierKernel_integrable_fiber (t a b : ℝ) :
 /-- For [two probability laws with finite first moments](hyp:hμ,hν),
 [the oriented interval Fourier kernel is integrable jointly in its two
 endpoints, drawn independently from the two laws, and the Lebesgue
-variable](goal). -/
+variable](goal).
+@isnad1 id=integrab.2h3v.s7.70edf29650db from=translated src=- shape=87a3bd1b vocab=463014f3
+-/
 theorem orientedFourierKernel_integrable
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun a : ℝ => a) μ)

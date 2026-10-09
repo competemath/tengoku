@@ -25,6 +25,9 @@ variable [NontriviallyNormedField 𝕜]
   {f : G → E} {g g' : G → E'} {L : E →L[𝕜] E' →L[𝕜] F}
   [MeasurableSpace G] {μ ν : Measure G} [AddGroup G]
 
+/--
+@isnad1 id=convolut.0h9v.s9.601740079fcc from=translated src=- shape=17126e12 vocab=15f5947b
+-/
 lemma ConvolutionExists.of_finite [Finite G] [MeasurableSingletonClass G] [IsFiniteMeasure μ] :
     ConvolutionExists f g L μ := fun _ ↦ .of_finite
 
@@ -56,7 +59,9 @@ variable [SFinite μ] [SFinite ν] [μ.IsAddRightInvariant] {f g}
 variable [MeasurableAdd₂ G] [ν.IsAddRightInvariant] [MeasurableNeg G]
 
 /-- Convolution is associative. This has a weak but inconvenient integrability condition.
-See also `MeasureTheory.convolution_assoc`. -/
+See also `MeasureTheory.convolution_assoc`.
+@isnad1 id=eq.4h17v.s13.2dca0aa90969 from=translated src=- shape=11f77b16 vocab=aa76c9dc
+-/
 -- TODO: Rename `convolution_assoc'` to `convolution_assoc_apply'`
 theorem convolution_assoc''' (hL : ∀ x y z, L₂ (L x y) z = L₃ x (L₄ y z))
     (hfg : ∀ᵐ y ∂μ, ConvolutionExistsAt f g y L ν)
@@ -70,7 +75,9 @@ theorem convolution_assoc''' (hL : ∀ x y z, L₂ (L x y) z = L₃ x (L₄ y z)
 * all maps are a.e. strongly measurable w.r.t one of the measures
 * `f ⋆[L, ν] g` exists almost everywhere
 * `‖g‖ ⋆[μ] ‖k‖` exists almost everywhere
-* `‖f‖ ⋆[ν] (‖g‖ ⋆[μ] ‖k‖)` exists at `x₀` -/
+* `‖f‖ ⋆[ν] (‖g‖ ⋆[μ] ‖k‖)` exists at `x₀`
+@isnad1 id=eq.7h17v.s12.fc541e7c8e97 from=translated src=- shape=effdd226 vocab=3ab0400b
+-/
 -- TODO: Rename `convolution_assoc` to `convolution_assoc_apply`
 theorem convolution_assoc'' (hL : ∀ x y z, L₂ (L x y) z = L₃ x (L₄ y z))
     (hf : AEStronglyMeasurable f ν) (hg : AEStronglyMeasurable g μ) (hk : AEStronglyMeasurable k μ)
@@ -85,12 +92,18 @@ end Assoc
 section translate
 variable [AddCommGroup G]
 
+/--
+@isnad1 id=eq.0h10v.s9.f81e57842688 from=translated src=- shape=37ee735d vocab=bfabe21d
+-/
 @[simp] lemma convolution_translate (a : G) (f : G → E) (g : G → E') :
     f ⋆[L, ν] τ a g = τ a (f ⋆[L, ν] g) := by
   ext b; simp [convolution, sub_right_comm]
 
 variable [MeasurableAdd G] [ν.IsAddRightInvariant]
 
+/--
+@isnad1 id=eq.0h10v.s9.a7341cc3a6b6 from=translated src=- shape=443e8266 vocab=34c71c60
+-/
 @[simp] lemma translate_convolution (a : G) (f : G → E) (g : G → E') :
     τ a f ⋆[L, ν] g = τ a (f ⋆[L, ν] g) := by
   ext b; simpa [convolution] using integral_sub_right_eq_self (fun t ↦ L (f t) (g (b - a - t))) a

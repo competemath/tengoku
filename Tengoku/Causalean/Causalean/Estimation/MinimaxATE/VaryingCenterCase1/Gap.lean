@@ -46,11 +46,15 @@ namespace VarConstr
 
 variable {K : ℕ} (P : VarConstr K)
 
-/-- `g₁ⱼ² − β² > 0` since `0 ≤ β < g₁ⱼ`. -/
+/-- `g₁ⱼ² − β² > 0` since `0 ≤ β < g₁ⱼ`.
+@isnad1 id=lt.0h3v.s6.bce34dbb4c91 from=translated src=- shape=75cd67ca vocab=88be29e1
+-/
 theorem g1sq_sub_betasq_pos (j : Fin K) : 0 < P.g₁ j ^ 2 - P.β ^ 2 := by
   have := P.hβg₁ j; have := P.hβ; have := P.hg₁0 j; nlinarith
 
-/-- **Cleared treated arm.**  `gλ(1,x) = (g₁ x.1² + α·g₁ x.1·Δ)/(g₁ x.1 − β·Δ)`. -/
+/-- **Cleared treated arm.**  `gλ(1,x) = (g₁ x.1² + α·g₁ x.1·Δ)/(g₁ x.1 − β·Δ)`.
+@isnad1 id=eq.0h4v.s6.0f01a84f6816 from=translated src=- shape=f4e9483a vocab=7539817c
+-/
 theorem gPertV_true_eq (lam : Fin K → Bool) (x : Fin K × Bool) :
     P.gPertV lam true x
       = (P.g₁ x.1 ^ 2 + P.α * P.g₁ x.1 * Δ lam x) / (P.g₁ x.1 - P.β * Δ lam x) := by
@@ -63,7 +67,9 @@ theorem gPertV_true_eq (lam : Fin K → Bool) (x : Fin K × Bool) :
   rw [div_eq_div_iff hden0.ne' hden]
   field_simp
 
-/-- The null estimate `ĝ` has ATE `(1/2K) Σⱼ 2(g₁ⱼ − g₀ⱼ)`. -/
+/-- The null estimate `ĝ` has ATE `(1/2K) Σⱼ 2(g₁ⱼ − g₀ⱼ)`.
+@isnad1 id=eq.0h2v.s6.a54b32870899 from=translated src=- shape=76ff5e68 vocab=4b6c069a
+-/
 theorem ate_ghatV :
     ate (P.ghatV (K := K))
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹ * ∑ j : Fin K, 2 * (P.g₁ j - P.g₀ j) := by
@@ -101,7 +107,9 @@ private theorem perPairV (lam : Fin K → Bool) (j : Fin K) :
 
 /-- **Exact ATE of the perturbed construction.** [For any Rademacher sign vector `lam`](hyp:lam),
 [the average treatment effect of the perturbed outcome regression equals the average over
-pairs `j` of `2g₁ⱼ(g₁ⱼ²+αβ)/(g₁ⱼ²−β²) − 2g₀ⱼ`, independent of `lam`](goal). -/
+pairs `j` of `2g₁ⱼ(g₁ⱼ²+αβ)/(g₁ⱼ²−β²) − 2g₀ⱼ`, independent of `lam`](goal).
+@isnad1 id=eq.0h3v.s7.ce2c29f50fd7 from=translated src=- shape=b4fcfcc7 vocab=5dd2d406
+-/
 theorem ate_gPertV [NeZero K] (lam : Fin K → Bool) :
     ate (P.gPertV lam)
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹
@@ -116,7 +124,9 @@ theorem ate_gPertV [NeZero K] (lam : Fin K → Bool) :
 
 /-- [For any Rademacher sign vector `lam`](hyp:lam), [the gap between the perturbed
 construction's ATE and the null estimate's ATE equals `2β(α+β)/(2K)` times the sum over
-pairs `j` of `g₁ⱼ/(g₁ⱼ² − β²)`](goal). -/
+pairs `j` of `g₁ⱼ/(g₁ⱼ² − β²)`](goal).
+@isnad1 id=eq.0h3v.s7.d4a52f79670a from=translated src=- shape=003aeb0c vocab=43e6157c
+-/
 theorem ate_gapV [NeZero K] (lam : Fin K → Bool) :
     ate (P.gPertV lam) - ate (P.ghatV (K := K))
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹
@@ -130,7 +140,9 @@ theorem ate_gapV [NeZero K] (lam : Fin K → Bool) :
   field_simp
   ring
 
-/-- The ATE gap is nonnegative. -/
+/-- The ATE gap is nonnegative.
+@isnad1 id=le.0h3v.s6.ab7077fa4cbb from=translated src=- shape=9daf604c vocab=e6a9cb58
+-/
 theorem ate_gap_nonneg [NeZero K] (lam : Fin K → Bool) :
     0 ≤ ate (P.gPertV lam) - ate (P.ghatV (K := K)) := by
   rw [P.ate_gapV lam]

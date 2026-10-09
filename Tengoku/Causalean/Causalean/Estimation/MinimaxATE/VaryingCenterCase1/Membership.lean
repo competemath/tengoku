@@ -47,7 +47,9 @@ namespace VarConstr
 variable {K : ℕ} (P : VarConstr K)
 
 /-- The propensity perturbation's squared `L²` error is `≤ εm` whenever every pair's
-bump magnitude `(m₀ⱼ·(β/g₁ⱼ))²` is `≤ εm`. -/
+bump magnitude `(m₀ⱼ·(β/g₁ⱼ))²` is `≤ εm`.
+@isnad1 id=le.1h4v.s6.47f690288c0c from=translated src=- shape=9dc84c5d vocab=27d6c3d7
+-/
 theorem l2sq_mPertV_le [NeZero K] {εm : ℝ}
     (hm : ∀ j, (P.m₀ j * (P.β / P.g₁ j)) ^ 2 ≤ εm) (lam : Fin K → Bool) :
     l2sq (P.mPertV lam) (P.mhatV (K := K)) ≤ εm := by
@@ -68,7 +70,9 @@ theorem l2sq_mPertV_le [NeZero K] {εm : ℝ}
         apply mul_le_mul_of_nonneg_left hsum; positivity
     _ = εm := by field_simp
 
-/-- The control outcome arm is unchanged, so its `L²` error is `0`. -/
+/-- The control outcome arm is unchanged, so its `L²` error is `0`.
+@isnad1 id=eq.0h3v.s5.aaba57557156 from=translated src=- shape=6bb9cf78 vocab=252c6091
+-/
 theorem l2sq_gPertV_false (lam : Fin K → Bool) :
     l2sq (P.gPertV lam false) (P.ghatV false) = 0 := by
   have h : P.gPertV lam false = P.ghatV false := by
@@ -76,7 +80,9 @@ theorem l2sq_gPertV_false (lam : Fin K → Bool) :
   rw [h, l2sq_self]
 
 /-- The treated arm's pointwise deviation from `ĝ(1,x) = g₁ x.1` is
-`g₁ x.1·(α+β)·Δ/(g₁ x.1 − β·Δ)`. -/
+`g₁ x.1·(α+β)·Δ/(g₁ x.1 − β·Δ)`.
+@isnad1 id=eq.0h4v.s6.51b0273f7e97 from=translated src=- shape=91ba5eb4 vocab=5c996955
+-/
 theorem gPertV_true_sub (lam : Fin K → Bool) (x : Fin K × Bool) :
     P.gPertV lam true x - P.g₁ x.1
       = P.g₁ x.1 * (P.α + P.β) * Δ lam x / (P.g₁ x.1 - P.β * Δ lam x) := by
@@ -87,7 +93,9 @@ theorem gPertV_true_sub (lam : Fin K → Bool) (x : Fin K × Bool) :
   ring
 
 /-- The treated arm's squared `L²` error is `≤ εg` whenever every pair's bound
-`g₁ⱼ²(α+β)²/(g₁ⱼ − β)²` is `≤ εg`. -/
+`g₁ⱼ²(α+β)²/(g₁ⱼ − β)²` is `≤ εg`.
+@isnad1 id=le.1h4v.s7.d24ec09c6d79 from=translated src=- shape=af0970b0 vocab=facabc8c
+-/
 theorem l2sq_gPertV_true_le [NeZero K] {εg : ℝ}
     (hg : ∀ j, P.g₁ j ^ 2 * (P.α + P.β) ^ 2 / (P.g₁ j - P.β) ^ 2 ≤ εg) (lam : Fin K → Bool) :
     l2sq (P.gPertV lam true) (P.ghatV true) ≤ εg := by
@@ -131,7 +139,9 @@ holds](hyp:hm) and [every pair's treated-arm budget `g₁ⱼ²(α+β)²/(g₁ⱼ
 holds](hyp:hg) for [a nonnegative outcome-error tolerance εg](hyp:hεg). Then [the perturbed
 data-generating process `(mλ, gλ)` indexed by a Rademacher sign vector `lam` lies in the
 structure-agnostic nuisance class `ℱ(εg, εm)` around the cell-varying center
-`(m̂, ĝ)`](goal). -/
+`(m̂, ĝ)`](goal).
+@isnad1 id=inclass.3h5v.s7.01042b2b4a44 from=translated src=- shape=19ba1a50 vocab=fef5e985
+-/
 theorem inClassV [NeZero K] {εg εm : ℝ}
     (hm : ∀ j, (P.m₀ j * (P.β / P.g₁ j)) ^ 2 ≤ εm)
     (hg : ∀ j, P.g₁ j ^ 2 * (P.α + P.β) ^ 2 / (P.g₁ j - P.β) ^ 2 ≤ εg)

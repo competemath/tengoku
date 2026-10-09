@@ -19,7 +19,9 @@ open MeasureTheory
 arguments](hyp:hdown) and [the product of the reflected function H(−y) with
 the signed sinc-fourth comparison kernel is integrable](hyp:hprod), then
 [the value of H at zero is at most twice the absolute value of that
-convolution integral plus seven](goal). -/
+convolution integral plus seven](goal).
+@isnad1 id=le.2h1v.s7.7f2d7a3d042d from=translated src=- shape=da14061d vocab=2d214c4f
+-/
 theorem esseenSignedSinc4Kernel_comparison
     (H : ℝ → ℝ)
     (hdown : ∀ a b : ℝ, a ≤ b → H a ≤ H b + (b - a))

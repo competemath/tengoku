@@ -88,7 +88,9 @@ noncomputable def estAIPW (mhat : C → ℝ) (ghat : Bool → C → ℝ) (n : �
   (n : ℝ)⁻¹ * ∑ i, aipwScoreFin mhat ghat (sample i)
 
 /-- **Population mean of the AIPW score** under the DGP `(m, g)` is the finite sum
-`Σ_z obsReal m g z · ψ_AIPW(z; m̂, ĝ)`. -/
+`Σ_z obsReal m g z · ψ_AIPW(z; m̂, ĝ)`.
+@isnad1 id=eq.1h5v.s6.3425b8b4bfb9 from=translated src=- shape=f3f277a7 vocab=84f987b1
+-/
 theorem aipw_pop_mean [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ} (hv : ValidDGP m g)
     (mhat : C → ℝ) (ghat : Bool → C → ℝ) :
     ∫ z, aipwScoreFin mhat ghat z ∂(obsLaw hv)
@@ -107,7 +109,9 @@ between 0 and 1 at every covariate value](hyp:hmhat,hmhat1). Then [the populatio
 AIPW score under the true data-generating process `(m, g)`, minus the true average treatment
 effect, equals a finite doubly-robust remainder built from cell-by-cell products of the
 propensity error `m − mhat` and the outcome-regression errors `g − ghat` on each treatment
-arm](goal). -/
+arm](goal).
+@isnad1 id=eq.2h5v.s8.6090b263abb0 from=translated src=- shape=ac59a591 vocab=fe3ef603
+-/
 theorem aipw_bias_identity [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
     (mhat : C → ℝ) (ghat : Bool → C → ℝ)
     (hmhat : ∀ x, 0 < mhat x) (hmhat1 : ∀ x, mhat x < 1) :
@@ -141,7 +145,9 @@ theorem aipw_bias_identity [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
 
 omit [MeasurableSpace C] [MeasurableSingletonClass C] in
 /-- **Uniform lower bound on the center weights.**  With `mhat` strictly inside `(0,1)` on the
-finite type `C`, there is `ε > 0` with `ε ≤ mhat x` and `ε ≤ 1 − mhat x` for all `x`. -/
+finite type `C`, there is `ε > 0` with `ε ≤ mhat x` and `ε ≤ 1 − mhat x` for all `x`.
+@isnad1 id=ex.2h2v.s6.7e64174c3009 from=translated src=- shape=b379ee33 vocab=cbad1c84
+-/
 theorem exists_center_overlap [Nonempty C] (mhat : C → ℝ)
     (hmhat : ∀ x, 0 < mhat x) (hmhat1 : ∀ x, mhat x < 1) :
     ∃ ε > 0, ∀ x, ε ≤ mhat x ∧ ε ≤ 1 - mhat x := by
@@ -160,7 +166,9 @@ omit [MeasurableSpace C] [MeasurableSingletonClass C] in
 propensity `mhat` stays at least `ε` away from both `0` and `1` at every covariate value — the
 center has uniform overlap](hyp:hco), [the absolute bias of the population AIPW mean relative to
 the true ATE is at most `ε⁻¹` times the product of the combined treated/control `L²(P_X)`
-outcome-regression error and the `L²(P_X)` propensity error](goal). -/
+outcome-regression error and the `L²(P_X)` propensity error](goal).
+@isnad1 id=le.2h6v.s7.a5862ac154c9 from=translated src=- shape=3c502cf2 vocab=1e895aca
+-/
 theorem aipw_bias_bound [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
     (mhat : C → ℝ) (ghat : Bool → C → ℝ) {ε : ℝ} (hε : 0 < ε)
     (hco : ∀ x, ε ≤ mhat x ∧ ε ≤ 1 - mhat x) :
@@ -262,7 +270,9 @@ theorem aipw_bias_bound [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
 
 omit [Fintype C] [MeasurableSpace C] [MeasurableSingletonClass C] in
 /-- **Score bound.**  The AIPW score is bounded by `B = 1 + 2/ε` whenever the center
-nuisances are valid and `mhat` is `ε`-bounded off `{0,1}`. -/
+nuisances are valid and `mhat` is `ε`-bounded off `{0,1}`.
+@isnad1 id=le.3h5v.s6.7919b6abe078 from=translated src=- shape=3c645b4f vocab=7fe25fd8
+-/
 theorem aipwScore_bound [Nonempty C]
     (mhat : C → ℝ) (ghat : Bool → C → ℝ) (hghat : ValidDGP mhat ghat) {ε : ℝ} (hε : 0 < ε)
     (hco : ∀ x, ε ≤ mhat x ∧ ε ≤ 1 - mhat x) (z : Obs C) :
@@ -302,7 +312,9 @@ data-generating process](hyp:hghat), and [that center has uniform overlap: the f
 propensity `mhat` stays at least a positive constant `ε` away from both `0` and `1` at
 every covariate value](hyp:hε,hco). Then [on an `n`-observation i.i.d. sample from the
 true single-observation law, the variance of the fixed-center AIPW sample-average
-estimator is at most `(1 + 2/ε)²/n`](goal). -/
+estimator is at most `(1 + 2/ε)²/n`](goal).
+@isnad1 id=le.4h7v.s7.b03ba1b3bab1 from=translated src=- shape=0d0b7a6e vocab=df0eb84a
+-/
 theorem aipw_var_bound [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ} (hv : ValidDGP m g)
     (mhat : C → ℝ) (ghat : Bool → C → ℝ) (hghat : ValidDGP mhat ghat) {ε : ℝ} (hε : 0 < ε)
     (hco : ∀ x, ε ≤ mhat x ∧ ε ≤ 1 - mhat x) (n : ℕ) :

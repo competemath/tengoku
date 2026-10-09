@@ -17,7 +17,9 @@ open MeasureTheory
 
 /-- For [a moment ratio ρ strictly between zero and one](hyp:ρ,hρ,hρ1),
 [the inner cutoff U0 = max(3/2, √(4 log(1/ρ))) is positive and no larger
-than the outer cutoff U = 12/(5ρ)](goal). -/
+than the outer cutoff U = 12/(5ρ)](goal).
+@isnad1 id=other.2h1v.s7.dc33737a435f from=translated src=- shape=bd9dbdbd vocab=75349f1a
+-/
 theorem prawitz_budget_cutoffs
     (ρ : ℝ) (hρ : 0 < ρ) (hρ1 : ρ < 1) :
     let U0 := max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / ρ)))

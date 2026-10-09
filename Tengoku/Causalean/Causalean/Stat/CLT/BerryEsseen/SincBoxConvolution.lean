@@ -17,7 +17,9 @@ open MeasureTheory
 
 /-- At [every real argument t](hyp:t), [the self-convolution of the interval
 density equal to π on `(−1/(2π), 1/(2π)]`, whose Fourier transform is sinc,
-equals the triangular function π·max(1 − π|t|, 0)](goal). -/
+equals the triangular function π·max(1 − π|t|, 0)](goal).
+@isnad1 id=eq.0h1v.s6.9937ecbb8fdb from=translated src=- shape=adc91b75 vocab=1c46580d
+-/
 theorem sincBox_self_convolution (t : ℝ) :
     ∫ u : ℝ, sincBox (t - u) * sincBox u =
       ((Real.pi * max (1 - Real.pi * |t|) 0 : ℝ) : ℂ) := by

@@ -34,7 +34,9 @@ i.e. `∑ i ≤ m, x i * c ^ i`. -/
 def value (x : ℕ → ℕ) (c : ℕ) (m : ℕ) : ℝ :=
   ∑ i ∈ Finset.range (m + 1), (x i : ℝ) * (c : ℝ) ^ i
 
-/-- For `i < n` and `b < a` we have `bⁿ aⁱ < aⁿ bⁱ`. -/
+/-- For `i < n` and `b < a` we have `bⁿ aⁱ < aⁿ bⁱ`.
+@isnad1 id=lt.3h4v.s6.df7218272a34 from=translated src=- shape=3711f75a vocab=144ed1ee
+-/
 lemma pow_cross_lt {a b : ℕ} (hb : 1 < b) (hab : b < a) {i n : ℕ} (hin : i < n) :
     (b : ℝ) ^ n * (a : ℝ) ^ i < (a : ℝ) ^ n * (b : ℝ) ^ i := by
   have hb0 : (0 : ℝ) < (b : ℝ) := Nat.cast_pos.mpr (by lia)
@@ -53,12 +55,16 @@ lemma pow_cross_lt {a b : ℕ} (hb : 1 < b) (hab : b < a) {i n : ℕ} (hin : i <
         mul_lt_mul_of_pos_right hpow hpos
     _ = (a : ℝ) ^ (n - i) * (a : ℝ) ^ i * (b : ℝ) ^ i := by ring
 
-/-- Splitting off the leading digit: `value x c n = value x c (n-1) + x n * cⁿ`. -/
+/-- Splitting off the leading digit: `value x c n = value x c (n-1) + x n * cⁿ`.
+@isnad1 id=eq.1h3v.s6.65c611e80a40 from=translated src=- shape=cb787e06 vocab=4b988486
+-/
 lemma value_succ (x : ℕ → ℕ) (c n : ℕ) (hn : 1 ≤ n) :
     value x c n = value x c (n - 1) + (x n : ℝ) * (c : ℝ) ^ n := by
   simp only [value, Nat.sub_add_cancel hn, Finset.sum_range_succ]
 
-/-- The full number is positive since its leading digit is nonzero. -/
+/-- The full number is positive since its leading digit is nonzero.
+@isnad1 id=lt.3h3v.s5.b19a931517e9 from=translated src=- shape=5d9efa8f vocab=301980e1
+-/
 lemma value_pos (x : ℕ → ℕ) {c n : ℕ} (hc : 1 < c) (hn : 1 ≤ n) (hxn : x n ≠ 0) :
     0 < value x c n := by
   rw [value_succ x c n hn]
@@ -70,7 +76,9 @@ lemma value_pos (x : ℕ → ℕ) {c n : ℕ} (hc : 1 < c) (hn : 1 ≤ n) (hxn :
 
 /-- The crux: `bⁿ · B' < aⁿ · A'`, where `A'` and `B'` are the numbers obtained
 by stripping the leading digit. Each term of `bⁿ · A'` is at most the matching
-term of `aⁿ · B'`, and the `i = n-1` term is strict since `x_{n-1} ≠ 0`. -/
+term of `aⁿ · B'`, and the `i = n-1` term is strict since `x_{n-1} ≠ 0`.
+@isnad1 id=lt.4h4v.s7.726e34b13dcf from=translated src=- shape=26ca0eeb vocab=3cb16532
+-/
 lemma pow_mul_value_lt (x : ℕ → ℕ) {a b n : ℕ} (hb : 1 < b) (hab : b < a)
     (hn : 1 ≤ n) (hxn1 : x (n - 1) ≠ 0) :
     (b : ℝ) ^ n * value x a (n - 1) < (a : ℝ) ^ n * value x b (n - 1) := by
@@ -93,7 +101,9 @@ lemma pow_mul_value_lt (x : ℕ → ℕ) {a b n : ℕ} (hb : 1 < b) (hab : b < a
       _ = (a : ℝ) ^ n * ((x (n - 1) : ℝ) * (b : ℝ) ^ (n - 1)) := by ring
 
 /-- Cross-multiplied form of the inequality: `A' · B < B' · A`. Indeed,
-`B' · A - A' · B = x n * (aⁿ · B' - bⁿ · A') > 0`. -/
+`B' · A - A' · B = x n * (aⁿ · B' - bⁿ · A') > 0`.
+@isnad1 id=lt.5h4v.s6.4353613ee78c from=translated src=- shape=947e747f vocab=ef9b255c
+-/
 lemma value_mul_lt (x : ℕ → ℕ) {a b n : ℕ} (hb : 1 < b) (hn : 1 ≤ n)
     (hxn : x n ≠ 0) (hxn1 : x (n - 1) ≠ 0) (hab : b < a) :
     value x a (n - 1) * value x b n < value x b (n - 1) * value x a n := by
@@ -104,7 +114,9 @@ lemma value_mul_lt (x : ℕ → ℕ) {a b n : ℕ} (hb : 1 < b) (hn : 1 ≤ n)
     mul_lt_mul_of_pos_left key (Nat.cast_pos.mpr (Nat.pos_of_ne_zero hxn))
   linarith [hmul]
 
-/-- If `b < a` then `A'/A < B'/B`. -/
+/-- If `b < a` then `A'/A < B'/B`.
+@isnad1 id=lt.6h4v.s7.54c8cfcd64fb from=translated src=- shape=d9e429e1 vocab=bb8dd0a3
+-/
 lemma value_div_lt (x : ℕ → ℕ) {a b n : ℕ} (ha : 1 < a) (hb : 1 < b) (hn : 1 ≤ n)
     (hxn : x n ≠ 0) (hxn1 : x (n - 1) ≠ 0) (hab : b < a) :
     value x a (n - 1) / value x a n < value x b (n - 1) / value x b n := by

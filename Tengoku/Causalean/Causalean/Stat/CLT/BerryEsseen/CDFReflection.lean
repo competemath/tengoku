@@ -16,14 +16,18 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory ProbabilityTheory
 
 /-- A scalar law with an integrable first moment retains that property after
-reflection through the origin. -/
+reflection through the origin.
+@isnad1 id=integrab.1h1v.s6.0f5c970e4289 from=translated src=- shape=76c90301 vocab=cc51c366
+-/
 theorem reflected_first_moment_integrable
     (μ : Measure ℝ) (hfirst : Integrable (fun y : ℝ => y) μ) :
     Integrable (fun y : ℝ => y) (μ.map (fun y : ℝ => -y)) := by
   exact (integrable_map_measure (by fun_prop) (by fun_prop)).2 hfirst.neg
 
 /-- Reflecting two finite scalar laws leaves the magnitude of their
-characteristic-function difference unchanged at each frequency. -/
+characteristic-function difference unchanged at each frequency.
+@isnad1 id=eq.0h3v.s7.d2b1f7a9997e from=translated src=- shape=0ce8a8e3 vocab=643484f4
+-/
 theorem reflected_charFun_discrepancy
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν] (t : ℝ) :
     ‖charFun (μ.map (fun y : ℝ => -y)) t -
@@ -39,7 +43,9 @@ theorem reflected_charFun_discrepancy
 length](hyp:hν), for [a nonnegative constant L](hyp:hL), then
 [its reflection y ↦ −y satisfies the same interval bound](goal), and
 [the lower CDF discrepancy Fν(x) − Fμ(x) is at most the upper discrepancy of
-the reflected laws at −x](goal), even when μ has an atom at x. -/
+the reflected laws at −x](goal), even when μ has an atom at x.
+@isnad1 id=and.2h3v.s8.73a812afef8c from=translated src=- shape=2dba24fb vocab=eac5607f
+-/
 theorem reflected_reference_interval_and_cdf
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (L : ℝ) (hL : 0 ≤ L)

@@ -22,7 +22,9 @@ open MeasureTheory
 and [has magnitude at most one](hyp:hnorm), if [the convolution integrand at
 x is integrable](hyp:hconv), then [the convolution of H with K at x is
 bounded in absolute value by 1/(2π) times the integral over [−T, T] of the
-magnitude of the Fourier transform of H](goal). -/
+magnitude of the Fourier transform of H](goal).
+@isnad1 id=le.8h4v.s9.e2985c378648 from=translated src=- shape=6ea1fca0 vocab=4fff7b74
+-/
 theorem bandlimited_convolution_fourier_bound
     (H K : ℝ → ℝ) (hH : Integrable H volume)
     (hK : Integrable K volume) (hKcont : Continuous K)

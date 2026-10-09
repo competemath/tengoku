@@ -14,7 +14,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- [The unit-interval triangular cosine coefficient ∫₀¹ (1 − t)·cos(2πat) dt
-equals one half of sinc(πa)²](goal) at [any real frequency a](hyp:a). -/
+equals one half of sinc(πa)²](goal) at [any real frequency a](hyp:a).
+@isnad1 id=eq.0h1v.s7.e9ee6c4b29ef from=translated src=- shape=dd9690ef vocab=975ced6c
+-/
 theorem triangular_cosine_integral (a : ℝ) :
     (∫ t in (0 : ℝ)..1, (1 - t) * Real.cos (2 * Real.pi * a * t)) =
       Real.sinc (Real.pi * a) ^ 2 / 2 := by

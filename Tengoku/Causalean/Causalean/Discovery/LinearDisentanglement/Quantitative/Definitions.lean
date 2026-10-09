@@ -47,7 +47,9 @@ def simultaneousCongruenceResidual {d : ℕ} {E : Type*} [Fintype E] [Nonempty E
 
 /-- [The worst-environment congruence residual cannot be negative](goal), for [observed
 matrices](hyp:A), [prescribed shifts](hyp:s), and [candidate coordinates](hyp:B) over [environment
-collection `E`](hyp:E) in [dimension `d`](hyp:d). -/
+collection `E`](hyp:E) in [dimension `d`](hyp:d).
+@isnad1 id=le.0h5v.s5.afb47a467ac9 from=translated src=- shape=d5a523ad vocab=15226ec2
+-/
 theorem simultaneousCongruenceResidual_nonneg {d : ℕ} {E : Type*}
     [Fintype E] [Nonempty E] (A : E → SqMatrix d) (s : E → Fin d → ℝ)
     (B : SqMatrix d) :
@@ -59,7 +61,9 @@ theorem simultaneousCongruenceResidual_nonneg {d : ℕ} {E : Type*}
 
 /-- [A simultaneous residual meets a tolerance exactly when every environment does](goal), for
 [observed matrices](hyp:A), [prescribed shifts](hyp:s), [candidate coordinates](hyp:B), and
-[tolerance `ε`](hyp:ε) over [environment collection `E`](hyp:E) in [dimension `d`](hyp:d). -/
+[tolerance `ε`](hyp:ε) over [environment collection `E`](hyp:E) in [dimension `d`](hyp:d).
+@isnad1 id=iff.0h6v.s6.dac7eced888d from=translated src=- shape=993dec9a vocab=9b9b1d52
+-/
 theorem simultaneousCongruenceResidual_le_iff {d : ℕ} {E : Type*}
     [Fintype E] [Nonempty E] (A : E → SqMatrix d) (s : E → Fin d → ℝ)
     (B : SqMatrix d) (ε : ℝ) :
@@ -160,7 +164,9 @@ def admissibleRadius (d : ℕ) (L δ R : ℝ) : ℝ :=
 
 /-- When [the matrix dimension is positive](hyp:hd), [the shift scale is positive](hyp:hL),
 and [the affine separation margin is positive](hyp:hδ), [the coordinate-product
-amplification factor is strictly positive](goal). -/
+amplification factor is strictly positive](goal).
+@isnad1 id=lt.3h3v.s5.865c327b9859 from=translated src=- shape=21487621 vocab=07e287ff
+-/
 theorem productControlFactor_pos {d : ℕ} {L δ : ℝ}
     (hd : 0 < d) (hL : 0 < L) (hδ : 0 < δ) :
     0 < productControlFactor d L δ := by
@@ -169,7 +175,9 @@ theorem productControlFactor_pos {d : ℕ} {L δ : ℝ}
 
 /-- When [the matrix dimension is positive](hyp:hd), [the shift scale is positive](hyp:hL),
 [the affine separation margin is positive](hyp:hδ), and [the matrix scale is positive](hyp:hR),
-[the declared small-residual radius is strictly positive](goal). -/
+[the declared small-residual radius is strictly positive](goal).
+@isnad1 id=lt.4h4v.s6.0c7d83bab373 from=translated src=- shape=746e5d2b vocab=d42c08a1
+-/
 theorem admissibleRadius_pos {d : ℕ} {L δ R : ℝ}
     (hd : 0 < d) (hL : 0 < L) (hδ : 0 < δ) (hR : 0 < R) :
     0 < admissibleRadius d L δ R := by

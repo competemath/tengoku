@@ -46,13 +46,17 @@ namespace GenConstr
 
 variable {K : ℕ} (P : GenConstr)
 
-/-- `g₁² − β² > 0` since `0 ≤ β < g₁`. -/
+/-- `g₁² − β² > 0` since `0 ≤ β < g₁`.
+@isnad1 id=lt.0h1v.s5.e1fb424657a5 from=translated src=- shape=11c992c9 vocab=6348280d
+-/
 theorem g1sq_sub_betasq_pos : 0 < P.g₁ ^ 2 - P.β ^ 2 := by
   have := P.hβg₁; have := P.hβ; have := P.hg₁0; nlinarith
 
 /-- **Cleared treated arm.**  Multiplying numerator and denominator by `g₁` turns the
 inner fraction `β/g₁` into the polynomial denominator `g₁ − β·Δ`:
-`gλ(1,x) = (g₁² + α·g₁·Δ)/(g₁ − β·Δ)`. -/
+`gλ(1,x) = (g₁² + α·g₁·Δ)/(g₁ − β·Δ)`.
+@isnad1 id=eq.0h4v.s6.ad8d81d7d0e8 from=translated src=- shape=c32661b7 vocab=b8c22be9
+-/
 theorem gPertG_true_eq (lam : Fin K → Bool) (x : Fin K × Bool) :
     P.gPertG lam true x = (P.g₁ ^ 2 + P.α * P.g₁ * Δ lam x) / (P.g₁ - P.β * Δ lam x) := by
   have hg₁ne : P.g₁ ≠ 0 := ne_of_gt P.hg₁0
@@ -64,7 +68,9 @@ theorem gPertG_true_eq (lam : Fin K → Bool) (x : Fin K × Bool) :
   rw [div_eq_div_iff hden0.ne' hden]
   field_simp
 
-/-- The null estimate `ĝ` has ATE `g₁ − g₀`: every cell contributes `g₁ − g₀`. -/
+/-- The null estimate `ĝ` has ATE `g₁ − g₀`: every cell contributes `g₁ − g₀`.
+@isnad1 id=eq.0h2v.s5.3caa2d552d8c from=translated src=- shape=745c19a0 vocab=d5a484b1
+-/
 theorem ate_ghatG [NeZero K] : ate (P.ghatG (K := K)) = P.g₁ - P.g₀ := by
   rw [ate]
   have : ∀ x : Fin K × Bool, P.ghatG true x - P.ghatG false x = P.g₁ - P.g₀ := by
@@ -104,7 +110,9 @@ private theorem perPairG (lam : Fin K → Bool) (j : Fin K) :
 `(g₁ − g₀) + g₁β(α+β)/(g₁² − β²)`, independent of `lam`](goal).
 
 Summing the per-pair contributions (each `2g₁(g₁²+αβ)/(g₁²−β²) − 2g₀`, independent of `λ`)
-over the `K` pairs and dividing by `card (Fin K × Bool) = 2K` gives this value. -/
+over the `K` pairs and dividing by `card (Fin K × Bool) = 2K` gives this value.
+@isnad1 id=eq.0h3v.s7.1dfb20f61c80 from=translated src=- shape=839b4008 vocab=faa5437b
+-/
 theorem ate_gPertG [NeZero K] (lam : Fin K → Bool) :
     ate (P.gPertG lam) = (P.g₁ - P.g₀) + P.g₁ * P.β * (P.α + P.β) / (P.g₁ ^ 2 - P.β ^ 2) := by
   have hK : (K : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne K)
@@ -125,7 +133,9 @@ theorem ate_gPertG [NeZero K] (lam : Fin K → Bool) :
   ring
 
 /-- [For any Rademacher sign vector `lam`](hyp:lam), [the gap between the perturbed
-construction's ATE and the null estimate's ATE equals `g₁β(α+β)/(g₁² − β²)`](goal). -/
+construction's ATE and the null estimate's ATE equals `g₁β(α+β)/(g₁² − β²)`](goal).
+@isnad1 id=eq.0h3v.s7.1cfb2220c394 from=translated src=- shape=5ae3ee9d vocab=7290c0d4
+-/
 theorem ate_gapG [NeZero K] (lam : Fin K → Bool) :
     ate (P.gPertG lam) - ate (P.ghatG (K := K))
       = P.g₁ * P.β * (P.α + P.β) / (P.g₁ ^ 2 - P.β ^ 2) := by

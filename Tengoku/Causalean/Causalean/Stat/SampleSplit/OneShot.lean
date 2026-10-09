@@ -72,7 +72,9 @@ This is the set customarily denoted $B(n)=\{n_1(n),\ldots,n-1\}$. -/
 def foldB (n : ℕ) : Finset ℕ :=
   (Finset.range n).filter (fun i => split.n₁ n ≤ i)
 
-/-- Cardinality of the estimation fold: `|B(n)| = n - n₁(n)`. -/
+/-- Cardinality of the estimation fold: `|B(n)| = n - n₁(n)`.
+@isnad1 id=eq.0h7v.s6.a5e89e7e6d1f from=translated src=- shape=7e0cc456 vocab=de860ca1
+-/
 lemma foldB_card (n : ℕ) : (split.foldB n).card = n - split.n₁ n := by
   have hfoldB_eq : split.foldB n = Finset.Ico (split.n₁ n) n := by
     ext i
@@ -80,12 +82,16 @@ lemma foldB_card (n : ℕ) : (split.foldB n).card = n - split.n₁ n := by
   rw [hfoldB_eq]
   exact Nat.card_Ico (split.n₁ n) n
 
-/-- The estimation-fold cardinality grows to infinity. -/
+/-- The estimation-fold cardinality grows to infinity.
+@isnad1 id=tendsto.0h6v.s5.521fd9275b42 from=translated src=- shape=94429f3a vocab=c7b6f524
+-/
 lemma foldB_card_tendsto :
     Tendsto (fun n => (split.foldB n).card) atTop atTop := by
   simpa [split.foldB_card] using split.cogrow
 
-/-- Fold-A and fold-B index sets are disjoint. -/
+/-- Fold-A and fold-B index sets are disjoint.
+@isnad1 id=disjoint.0h7v.s6.7a3f61252b31 from=translated src=- shape=ef83e1ae vocab=7f08d11f
+-/
 lemma foldA_disjoint_foldB (n : ℕ) :
     Disjoint (split.foldA n) (split.foldB n) := by
   rw [foldA, foldB]
@@ -99,7 +105,9 @@ lemma foldA_disjoint_foldB (n : ℕ) :
 by the nuisance fold `A(n)` is independent, under `μ`, of the sub-tuple indexed by the estimation
 fold `B(n)`](goal).
 
-Direct corollary of `iIndepFun.indepFun_finset` applied to the disjoint index sets `A(n), B(n)`. -/
+Direct corollary of `iIndepFun.indepFun_finset` applied to the disjoint index sets `A(n), B(n)`.
+@isnad1 id=indepfun.0h7v.s8.348345f6ad32 from=translated src=- shape=5439d86f vocab=720d84ac
+-/
 theorem folds_indep (n : ℕ) :
     IndepFun
       (fun ω (i : split.foldA n) => S.Z i ω)

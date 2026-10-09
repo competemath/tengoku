@@ -19,7 +19,9 @@ open MeasureTheory
 the logarithmic inner cutoff U0 = max(3/2, √(4 log(1/ρ))) and the reciprocal
 outer cutoff U = 12/(5ρ), [the low-frequency Prawitz contribution
 (2/U)·∫ over [0, U0] of the Prawitz filter magnitude times the discrepancy
-envelope is at most one quarter of ρ](goal). -/
+envelope is at most one quarter of ρ](goal).
+@isnad1 id=other.2h1v.s7.55d9b385a71d from=translated src=- shape=b36f2c3f vocab=17ebdabd
+-/
 theorem prawitz_budget_low_small
     (ρ : ℝ) (hρ : 0 < ρ) (hsmall : ρ ≤ 1 / 100) :
     let U0 := max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / ρ)))

@@ -63,7 +63,9 @@ private theorem norm_pow_sub_pow_le_radius (a b : ℂ) (r : ℝ) (hr : 0 ≤ r)
 at most a bound no smaller than one](hyp:μ,M3,hM3,hmean_int,hmean,hvar_int,hvar,hthird_int,hthird),
 the [standardized iid characteristic-function power at every frequency and
 sample size at least two](hyp:n,hn,t) is [bounded by the explicit cubic
-moment envelope](goal). -/
+moment envelope](goal).
+@isnad1 id=le.8h4v.s8.e52562ae557d from=translated src=- shape=c784fcc9 vocab=c71ef219
+-/
 theorem iid_unit_variance_charFun_prawitz_moment_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (M3 : ℝ) (hM3 : 1 ≤ M3)
@@ -114,7 +116,9 @@ moment at most a bound M3 no smaller than one](hyp:μ,M3,hM3,hmean_int,hmean,hva
 [a frequency t in the full outer Prawitz band |t| ≤ 12√n/(5·M3)](hyp:t,ht),
 [the distance between the characteristic function of the standardized iid sum
 and the standard Gaussian characteristic function is at most Prawitz's
-discrepancy envelope at ratio M3/√n](goal). -/
+discrepancy envelope at ratio M3/√n](goal).
+@isnad1 id=le.9h4v.s8.afff7c069091 from=translated src=- shape=447d138a vocab=ed96a0af
+-/
 theorem iid_unit_variance_charFun_prawitz_discrepancy_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (M3 : ℝ) (hM3 : 1 ≤ M3)

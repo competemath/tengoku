@@ -17,7 +17,9 @@ open MeasureTheory
 [averaging the oriented Fourier kernel at frequency t and point x over
 independent draws a from μ and b from ν gives the Fourier exponential
 exp(itx) times the difference of the two CDFs at x](goal). The weak endpoint
-inequalities preserve this identity at atoms. -/
+inequalities preserve this identity at atoms.
+@isnad1 id=eq.0h4v.s7.5fd06283ec8c from=translated src=- shape=f20352ed vocab=791761b4
+-/
 theorem orientedFourierKernel_endpoint_integral
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (t x : ℝ) :

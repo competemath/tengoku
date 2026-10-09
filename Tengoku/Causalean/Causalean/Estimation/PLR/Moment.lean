@@ -75,19 +75,25 @@ def plrMomentB (η : PLRNuisance γ) (z : γ × ℝ × ℝ) : ℝ :=
   (z.2.2 - η.lFn z.1) * plrResidual η z
 
 /-- **Robinson score decomposition.** [The partialling-out score decomposes into its
-linear coefficient in `θ` times the target parameter `θ` plus a constant term](goal). -/
+linear coefficient in `θ` times the target parameter `θ` plus a constant term](goal).
+@isnad1 id=eq.0h4v.s5.5685d47bdeb5 from=translated src=- shape=fc33b471 vocab=f1be6f35
+-/
 lemma plrMoment_decomp (η : PLRNuisance γ) (z : γ × ℝ × ℝ) (θ : ℝ) :
     plrMomentFunctional η z θ = plrMomentA η z * θ + plrMomentB η z := by
   simp only [plrMomentFunctional, plrMomentA, plrMomentB]
   ring
 
-/-- The treatment residual is measurable as a function of the observed data. -/
+/-- The treatment residual is measurable as a function of the observed data.
+@isnad1 id=measurab.0h2v.s5.c3580b4c9c33 from=translated src=- shape=8daae1c6 vocab=850e8432
+-/
 @[fun_prop]
 lemma measurable_plrResidual (η : PLRNuisance γ) :
     Measurable (fun z : γ × ℝ × ℝ => plrResidual η z) :=
   (measurable_fst.comp measurable_snd).sub (η.mMeas.comp measurable_fst)
 
-/-- The Robinson partialling-out score is measurable in the observed data. -/
+/-- The Robinson partialling-out score is measurable in the observed data.
+@isnad1 id=measurab.0h3v.s5.232a2bfa9234 from=translated src=- shape=ebf67644 vocab=44783fc0
+-/
 @[fun_prop]
 lemma measurable_plrMomentFunctional (η : PLRNuisance γ) (θ : ℝ) :
     Measurable (fun z : γ × ℝ × ℝ => plrMomentFunctional η z θ) := by
@@ -96,14 +102,18 @@ lemma measurable_plrMomentFunctional (η : PLRNuisance γ) (θ : ℝ) :
     fun_prop
   exact (((hy.sub (η.lMeas.comp measurable_fst)).sub (hv.const_mul θ)).mul hv)
 
-/-- The linear-score coefficient is measurable in the observed data. -/
+/-- The linear-score coefficient is measurable in the observed data.
+@isnad1 id=measurab.0h2v.s5.a9ac48eb1bfe from=translated src=- shape=8daae1c6 vocab=56e53774
+-/
 @[fun_prop]
 lemma measurable_plrMomentA (η : PLRNuisance γ) :
     Measurable (fun z : γ × ℝ × ℝ => plrMomentA η z) := by
   have hv := measurable_plrResidual η
   exact (hv.pow_const 2).neg
 
-/-- The linear-score constant term is measurable in the observed data. -/
+/-- The linear-score constant term is measurable in the observed data.
+@isnad1 id=measurab.0h2v.s5.9e6d46c8edfd from=translated src=- shape=8daae1c6 vocab=af912f35
+-/
 @[fun_prop]
 lemma measurable_plrMomentB (η : PLRNuisance γ) :
     Measurable (fun z : γ × ℝ × ℝ => plrMomentB η z) := by

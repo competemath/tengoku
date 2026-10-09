@@ -63,6 +63,9 @@ def IsRealClosedField (F : Type*) [Field F] [LinearOrder F] [IsStrictOrderedRing
     ∀ {a b t : F} , ∀ {P : F[X]},
     a ≤ b → t ∈ Set.Ioo (P.eval a) (P.eval b) → ∃ s, s ∈ Set.Ioo a b ∧ P.eval s = t
 
+/--
+@isnad1 id=isrealcl.0h0v.s2.10f4e2764467 from=translated src=- shape=49959d42 vocab=6c4f224b
+-/
 lemma Real.IsRealClosedField : IsRealClosedField ℝ := by
   rintro a b t P hab h
   let f : ℝ → ℝ := fun x => P.eval x
@@ -74,22 +77,34 @@ namespace IsRealClosedField
 variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 open Set
 
+/--
+@isnad1 id=ex.4h4v.s7.9ef2ea1caeae from=translated src=- shape=08f4b75e vocab=79b83722
+-/
 lemma polynomial_has_root_of_le_zero_of_pos (hc : IsRealClosedField F) {a b : F} (hab : a ≤ b)
     {P : F[X]} (ha : P.eval a < 0) (hb : 0 < P.eval b ) : ∃ s ∈ Ioo a b , P.eval s = 0 := by
   exact hc hab ⟨ha, hb⟩
 
+/--
+@isnad1 id=ex.4h4v.s7.f41b3fd35896 from=translated src=- shape=0634215c vocab=79b83722
+-/
 lemma polynomial_has_root_of_pos_le_zero (hc : IsRealClosedField F) {a b : F} (hab : a ≤ b)
     {P : F[X]} (ha : 0 < P.eval a) (hb : P.eval b < 0 ) : ∃ s ∈ Ioo a b , P.eval s = 0 := by
   obtain ⟨s, hs1, hs2⟩ := @hc a b 0 (- P) hab (by simp[ha, hb])
   simp only [eval_neg, neg_eq_zero] at hs2
   exact ⟨s, hs1, hs2 ⟩
 
+/--
+@isnad1 id=ex.3h5v.s7.f82449a2911c from=translated src=- shape=bb2f4ecf vocab=1c234edb
+-/
 lemma intermediate_value_theorem_swap (hc : IsRealClosedField F) {a b t : F} (hab : a ≤ b)
     {P : F[X]} (hmem : t ∈ Set.Ioo (P.eval b) (P.eval a)) : ∃ s, s ∈ Set.Ioo a b ∧ P.eval s = t := by
   obtain ⟨s, hs1, hs2⟩ := @hc a b (-t) (- P) hab (by simp [hmem.1, hmem.2])
   simp at hs2
   exact ⟨s, hs1, hs2⟩
 
+/--
+@isnad1 id=iff.2h2v.s5.12d569f7fcb7 from=translated src=- shape=d6367d0b vocab=7dcae4f2
+-/
 lemma sign_ne_eq_iff_of_ne_zero {a b : SignType} (ha : a ≠ 0) (hb : b ≠ 0) :
   a ≠ b ↔ a * b = - 1 := by
   cases a ;
@@ -97,6 +112,9 @@ lemma sign_ne_eq_iff_of_ne_zero {a b : SignType} (ha : a ≠ 0) (hb : b ≠ 0) :
   cases b ; simp at hb ; simp ; simp
   cases b ; simp at hb ; simp ; simp
 
+/--
+@isnad1 id=ex.3h4v.s7.0d01762aa400 from=translated src=- shape=86f72ced vocab=aec19c71
+-/
 lemma polynomial_has_root_of_mul_neg (hc : IsRealClosedField F) {a b : F} (hab : a ≤ b)
     {P : F[X]} (habm : (P.eval a) * (P.eval b) < 0) : ∃ s ∈ Ioo a b , P.eval s = 0 := by
   rcases lt_trichotomy (P.eval a) 0 with hl1 | hl2 | hl3
@@ -106,6 +124,9 @@ lemma polynomial_has_root_of_mul_neg (hc : IsRealClosedField F) {a b : F} (hab :
   · have : eval b P < 0 := by nlinarith
     exact polynomial_has_root_of_pos_le_zero hc hab hl3 this
 
+/--
+@isnad1 id=ex.5h4v.s8.825245890cb6 from=translated src=- shape=02f76684 vocab=696823cd
+-/
 lemma polynomial_has_root_of_ne_sign (hc : IsRealClosedField F) {a b : F} (hab : a ≤ b)
     {P : F[X]} (hne : SignType.sign (P.eval a) ≠ SignType.sign (P.eval b)) (hanz : P.eval a ≠ 0)
     (hbnz : P.eval b ≠ 0) : ∃ s ∈ Ioo a b , P.eval s = 0 := by
@@ -113,6 +134,9 @@ lemma polynomial_has_root_of_ne_sign (hc : IsRealClosedField F) {a b : F} (hab :
     sign_eq_neg_one_iff] at hne
   exact polynomial_has_root_of_mul_neg hc hab hne
 
+/--
+@isnad1 id=lt.5h6v.s7.3cdb5381e058 from=translated src=- shape=f6ecaf1c vocab=ffa42ee5
+-/
 lemma neg_of_ne_zero_of_exists_neg (hc : IsRealClosedField F) {a b m : F} {P : F[X]}
     (hP : ∀ x ∈ Ioo a b , P.eval x ≠ 0) (hm : m ∈ Ioo a b) (hneg : P.eval m < 0) :
     ∀ x ∈ Ioo a b , P.eval x < 0 := by
@@ -130,6 +154,9 @@ lemma neg_of_ne_zero_of_exists_neg (hc : IsRealClosedField F) {a b m : F} {P : F
       exact ⟨lt_trans hx.1 hs1.1, lt_trans hs1.2 hm.2⟩
   · exact hP x hx hz2.symm
 
+/--
+@isnad1 id=le.5h6v.s7.298b93cad03a from=translated src=- shape=d4d2059a vocab=4f54e9eb
+-/
 lemma nonpos_of_ne_zero_of_exists_neg (hc : IsRealClosedField F) {a b m : F} {P : F[X]}
     (hP : ∀ x ∈ Ioo a b , P.eval x ≠ 0) (hm : m ∈ Ioo a b) (hneg : P.eval m < 0) :
     ∀ x ∈ Icc a b , P.eval x ≤ 0 := by
@@ -149,6 +176,9 @@ lemma nonpos_of_ne_zero_of_exists_neg (hc : IsRealClosedField F) {a b m : F} {P 
     exact ⟨lt_trans hm.1 hs1.1, hs1.2⟩
   · exact le_of_lt (neg_of_ne_zero_of_exists_neg hc hP hm hneg x hx)
 
+/--
+@isnad1 id=lt.5h6v.s7.3700ef949d18 from=translated src=- shape=f6ecaf1c vocab=fe56e8b7
+-/
 lemma pos_of_ne_zero_of_exists_pos (hc : IsRealClosedField F) {a b m : F} {P : F[X]}
     (hP : ∀ x ∈ Ioo a b , P.eval x ≠ 0) (hm : m ∈ Ioo a b) (hpos : P.eval m > 0) :
     ∀ x ∈ Ioo a b , P.eval x > 0 := by
@@ -157,6 +187,9 @@ lemma pos_of_ne_zero_of_exists_pos (hc : IsRealClosedField F) {a b m : F} {P : F
   simp at this ⊢
   exact this
 
+/--
+@isnad1 id=le.5h6v.s7.b838d000d402 from=translated src=- shape=d4d2059a vocab=2357d0bf
+-/
 lemma nonneg_of_ne_zero_of_exists_pos (hc : IsRealClosedField F) {a b m : F} {P : F[X]}
     (hP : ∀ x ∈ Ioo a b , P.eval x ≠ 0) (hm : m ∈ Ioo a b) (hpos : P.eval m > 0) :
     ∀ x ∈ Icc a b , P.eval x ≥ 0 := by
@@ -165,6 +198,9 @@ lemma nonneg_of_ne_zero_of_exists_pos (hc : IsRealClosedField F) {a b m : F} {P 
   simp at this ⊢
   exact this
 
+/--
+@isnad1 id=or.3h4v.s7.d968a2afb1a5 from=translated src=- shape=b9debcdc vocab=91d3452f
+-/
 lemma constant_sign_of_ne_zero (hc : IsRealClosedField F) {a b : F} (hab : a ≤ b)
     {P : F[X]} (hP : ∀ x ∈ Ioo a b, P.eval x ≠ 0) :
     (∀ x ∈ Ioo a b , P.eval x > 0) ∨ (∀ x ∈ Ioo a b , P.eval x < 0)  := by
@@ -178,6 +214,9 @@ lemma constant_sign_of_ne_zero (hc : IsRealClosedField F) {a b : F} (hab : a ≤
       exact pos_of_ne_zero_of_exists_pos hc hP hm hl3
   · simp [h2]
 
+/--
+@isnad1 id=or.3h4v.s7.d1fdb27c605c from=translated src=- shape=100a61e9 vocab=c397a542
+-/
 lemma constant_sign_of_ne_zero' (hc : IsRealClosedField F) {a b : F} (hab : a ≤ b)
     {P : F[X]} (hP : ∀ x ∈ Ioo a b, P.eval x ≠ 0) :
     (∀ x ∈ Icc a b , P.eval x ≥ 0) ∨ (∀ x ∈ Icc a b , P.eval x ≤ 0) := by
@@ -215,9 +254,15 @@ def signChanges' (L : List R) : ℕ :=
 def signChanges (L : List R) : ℕ  :=
   signChanges' (List.filter (fun x => if x ≠ 0 then true else false) L)
 
+/--
+@isnad1 id=eq.0h2v.s6.09710dd577a3 from=translated src=- shape=34d87eee vocab=59a83aa7
+-/
 lemma signChanges_def (L : List R) : signChanges L = signChanges' (List.filter (fun x => if x ≠ 0 then true else false) L) := by
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.4bcaef5261ea from=translated src=- shape=69fe1827 vocab=ee2febfe
+-/
 lemma signChanges_eq_signChanges' (L : List R) (hz : ∀ x ∈ L, x ≠ 0) : signChanges L = signChanges' L := by
   rw [signChanges_def]
   congr ; simp ; exact hz
@@ -242,12 +287,18 @@ list when evaluating the polys at `a` -/
 def signChangesPolySeq (P : List R[X]) (a : R) : ℕ :=
   signChanges (List.map (fun x => x.eval a) P)
 
+/--
+@isnad1 id=eq.0h3v.s6.8da634a25fec from=translated src=- shape=f14f79e4 vocab=48d940cb
+-/
 lemma signChangesPolySeq_def (P : List R[X]) (a : R) :
   signChangesPolySeq P a = signChanges (List.map (fun x => x.eval a) P) := rfl
 
 def signChangesInfty (P : List R[X]) : ℕ :=
   signChanges (List.map (fun p => p.leadingCoeff) P)
 
+/--
+@isnad1 id=eq.0h2v.s6.c3a7eee57a6a from=translated src=- shape=8ada6dbd vocab=9be85ab4
+-/
 lemma signChangesInfty_def (P : List R[X]) : signChangesInfty P =
   signChanges (List.map (fun p => p.leadingCoeff) P) := rfl
 
@@ -271,12 +322,18 @@ structure IsSturmSequence [LinearOrder R] (P : List R[X]) (p q : R[X])  where
   hrem : ∀ i, ∀ h2 : i + 2 < P.length ,
     (∃ e f : R, ∃ Q : R[X], 0 < e ∧ 0 < f ∧ C e * P[i] = Q * P[i + 1] - C f * P[i + 2] )
 
+/--
+@isnad1 id=ne.1h4v.s5.23c085869dca from=translated src=- shape=bb4b3089 vocab=01e6d382
+-/
 lemma sturm_sequence_ne_nil [LinearOrder R] {P : List R[X]} {p q : R[X]}
   (hs : IsSturmSequence P p q) : P ≠ [] := by
   have := hs.hlen
   intro h
   simp only [h, List.length_nil, nonpos_iff_eq_zero, OfNat.ofNat_ne_zero] at this
 
+/--
+@isnad1 id=eq.1h3v.s4.8ac095d11a0d from=translated src=- shape=2cfd7e9b vocab=2f0701b5
+-/
 lemma getLastD_eq_getLast_of_ne_nil {α : Type*} {a : α} {l : List α} (h : l ≠ []) :
   l.getLastD a = l.getLast h := by
   match l with
@@ -287,6 +344,9 @@ lemma getLastD_eq_getLast_of_ne_nil {α : Type*} {a : α} {l : List α} (h : l �
     | (c :: cs) =>
     rw [List.getLast_eq_getLastD, List.getLastD_cons]
 
+/--
+@isnad1 id=not.3h2v.s8.2fc77af3faf7 from=translated src=- shape=7ab6879c vocab=b984473d
+-/
 lemma zero_not_member_of_mono {P : List R[X]}
   (hlen : 2 ≤ P.length)
   (hc : ∃ c : R, c ≠ 0 ∧ P.getLastD 0 = C c)
@@ -308,7 +368,9 @@ lemma zero_not_member_of_mono {P : List R[X]}
 
 variable [LinearOrder R]
 
-/-- The zero polynomial is not in a sturm sequence. -/
+/-- The zero polynomial is not in a sturm sequence.
+@isnad1 id=not.1h4v.s6.007d006f85da from=translated src=- shape=fa3fc84d vocab=86df5c81
+-/
 lemma zero_not_member {P : List R[X]} {p q : R[X]}
     (hs : IsSturmSequence P p q) : ¬ 0 ∈ P := by
   intro h
@@ -326,12 +388,18 @@ lemma zero_not_member {P : List R[X]} {p q : R[X]}
     rw [hi] at this
     simp at this
 
+/--
+@isnad1 id=ne.2h5v.s7.b528baba4e7b from=translated src=- shape=6f2268d9 vocab=141a5a51
+-/
 lemma zero_not_member' {P : List R[X]} {p q : R[X]}
   (hs : IsSturmSequence P p q) (i : ℕ) (hi : i < P.length) : P[i] ≠ 0 := by
   intro h
   have : P[i] ∈ P := List.getElem_mem hi
   exact zero_not_member hs (h ▸ this)
 
+/--
+@isnad1 id=ne.1h4v.s6.db4805335c14 from=translated src=- shape=d4a1c0dc vocab=02b80ae0
+-/
 lemma p_ne_zero {P : List R[X]} {p q : R[X]}
     (hs : IsSturmSequence P p q) : p ≠ 0 := by
   rw [← hs.h0]
@@ -341,6 +409,9 @@ lemma p_ne_zero {P : List R[X]} {p q : R[X]}
   rw [h] at this
   exact zero_not_member hs this
 
+/--
+@isnad1 id=ne.1h4v.s6.ff2dbc78ec3b from=translated src=- shape=7db76cd0 vocab=02b80ae0
+-/
 lemma q_ne_zero {P : List R[X]} {p q : R[X]}
     (hs : IsSturmSequence P p q) : q ≠ 0 := by
   rw [← hs.h1]
@@ -350,6 +421,9 @@ lemma q_ne_zero {P : List R[X]} {p q : R[X]}
   rw [h] at this
   exact zero_not_member hs this
 
+ /--
+ @isnad1 id=issturms.2h6v.s7.953fc268250b from=translated src=- shape=abb3cb69 vocab=c5aeb32e
+ -/
  lemma IsSturmSequence_map {S : Type*} [CommRing S] [LinearOrder S]  {P : List R[X]}
     {p q : R[X]} (h : IsSturmSequence P p q) (f : R →+* S) (hmono : StrictMono f) :
     IsSturmSequence (List.map (Polynomial.map f) P) (map f p) (map f q) where
@@ -383,7 +457,9 @@ lemma q_ne_zero {P : List R[X]} {p q : R[X]}
       rw[← map_C, ← Polynomial.map_mul, heq]
       simp
 
-/-- A sturm sequence evaluated at any element `a` cannot have two consecutive zeros. -/
+/-- A sturm sequence evaluated at any element `a` cannot have two consecutive zeros.
+@isnad1 id=ne.3h6v.s7.0b0acacac081 from=translated src=- shape=f348f763 vocab=feb13b3b
+-/
 lemma no_consecutive_zero1 [IsStrictOrderedRing R] (P : List R[X]) (p q : R[X])
     (hs : IsSturmSequence P p q) (a : R) (i : ℕ)
     (hlen : i + 1 < P.length) (hz : P[i + 1].eval a = 0) : P[i].eval a ≠ 0 := by
@@ -414,6 +490,9 @@ lemma no_consecutive_zero1 [IsStrictOrderedRing R] (P : List R[X]) (p q : R[X])
   simp only [eval_C] at aux
   exact hcz aux
 
+/--
+@isnad1 id=issturms.2h5v.s7.69977e010961 from=translated src=- shape=ec4f6c6d vocab=064a0cf3
+-/
 lemma sturm_sequence_cons (P : List R[X]) (p q : R[X]) (a : R[X]) (hPl : 2 ≤ P.length)
     (hs : IsSturmSequence (a :: P) p q) : IsSturmSequence P q P[1] where
   hlen := hPl
@@ -442,14 +521,23 @@ open SignType
 
 variable {R : Type*}
 
+/--
+@isnad1 id=eq.0h1v.s5.f67f3e6a272f from=translated src=- shape=aa1e963b vocab=0c57be4c
+-/
 @[simp]
 lemma signChanges_nil [Zero R] [Preorder R] [DecidableLT R]  [DecidableEq R]
   : signChanges (R := R) [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.c38568b5abaf from=translated src=- shape=821d5438 vocab=ac7b50e2
+-/
 @[simp]
 lemma signChanges_single' [Zero R] [Preorder R] [DecidableLT R]  (a : R) : signChanges' [a] = 0 := by
   simp[signChanges']
 
+/--
+@isnad1 id=eq.0h2v.s5.fd3ef3cc0a0a from=translated src=- shape=2c671ba1 vocab=45ad0441
+-/
 @[simp]
 lemma signChanges_single [Zero R] [Preorder R] [DecidableLT R] [DecidableEq R] (a : R)
   : signChanges [a] = 0 := by
@@ -458,16 +546,25 @@ lemma signChanges_single [Zero R] [Preorder R] [DecidableLT R] [DecidableEq R] (
   · push Not at ha
     simp [signChanges, signChanges', ha]
 
+/--
+@isnad1 id=eq.0h2v.s5.8f2d068dbb26 from=translated src=- shape=d4afc0a9 vocab=22dfa576
+-/
 lemma signChanges_zero_head [Zero R] [Preorder R] [DecidableLT R] [DecidableEq R]
   (as : List R)  : signChanges (0 :: as) = signChanges as := by
   unfold signChanges
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.355148a645d1 from=translated src=- shape=13c25f7d vocab=905af9e7
+-/
 lemma signChanges_zero_head' [Zero R] [Preorder R] [DecidableLT R] (as : List R) :
   signChanges' (0 :: as) = signChanges' as := by
   simp_rw [signChanges', sign_zero, zero_mul]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.0befb39946f8 from=translated src=- shape=7cffe46a vocab=d310a891
+-/
 lemma signChanges_length_two  [DecidableEq R] [Ring R] [LinearOrder R] [IsStrictOrderedRing R]
    (a b : R) (hab : a * b < 0) : signChanges [a, b] = 1 := by
   have : a ≠ 0 ∧ b ≠ 0 := by
@@ -480,6 +577,9 @@ lemma signChanges_length_two  [DecidableEq R] [Ring R] [LinearOrder R] [IsStrict
   simp [← sign_mul, hab]
   simp[this]
 
+/--
+@isnad1 id=eq.0h3v.s5.415ce15c42ed from=translated src=- shape=4bf5184e vocab=22dfa576
+-/
 lemma signChanges_modify_zero [Zero R] [Preorder R] [DecidableLT R] [DecidableEq R]
   (a : R) (bs : List R) :
   signChanges (a :: 0 :: bs) = signChanges (a :: bs) := by
@@ -493,6 +593,9 @@ lemma signChanges_modify_zero [Zero R] [Preorder R] [DecidableLT R] [DecidableEq
     simp_rw [signChanges, aux]
     simp[ha]
 
+/--
+@isnad1 id=eq.2h3v.s8.7a409bd6a168 from=translated src=- shape=642cfb6e vocab=b8d71dec
+-/
 lemma signChanges_cons [Zero R] [Preorder R] [DecidableLT R] [DecidableEq R]
   {a : R} {as : List R} (ha : a ≠ 0) (hh : as.headD 0 ≠ 0) :
   signChanges (a :: as) = if sign a * sign (as.headD 0) < 0 then 1 + signChanges as else signChanges as := by
@@ -510,6 +613,9 @@ lemma signChanges_cons [Zero R] [Preorder R] [DecidableLT R] [DecidableEq R]
   nth_rw 1 [signChanges']
   simp_rw [aux2]
 
+/--
+@isnad1 id=eq.3h4v.s6.93fde2a6ddaa from=translated src=- shape=d3e9c65f vocab=c05fb1ba
+-/
 lemma List.getElem_cons_pred {α : Type* } (a : α) (as : List α) (i : ℕ) (h : i  < (a :: as).length)
   (hi' : i - 1 < as.length) (hi : i ≠ 0) : (a :: as)[i] = as[i - 1] := by
   match i with
@@ -518,6 +624,9 @@ lemma List.getElem_cons_pred {α : Type* } (a : α) (as : List α) (i : ℕ) (h 
 
 variable [Ring R] [LinearOrder R] [IsStrictOrderedRing R]
 
+/--
+@isnad1 id=eq.1h4v.s6.3360087af78c from=translated src=- shape=9c348c06 vocab=d310a891
+-/
 lemma signChanges_of_mul_neg [DecidableEq R] {a b c : R}
     (ha : a * c < 0) : signChanges [a, b, c] = 1 := by
     rcases lt_trichotomy b 0 with hb1 | hb2 | hb3
@@ -544,6 +653,9 @@ lemma signChanges_of_mul_neg [DecidableEq R] {a b c : R}
         simp [signChanges', haneg.1, hb3, haneg.2]
         aesop
 
+/--
+@isnad1 id=iff.0h2v.s5.f2efd2130771 from=translated src=- shape=9e927add vocab=800fc8b9
+-/
 lemma List.three_le_length_iff {α : Type*} {l : List α} :  3 ≤ l.length ↔ ∃ (a b c : α), ∃ (as : List α) ,
   l = (a :: b :: c :: as) := by
   constructor
@@ -563,6 +675,9 @@ variable (F : Type*) [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
 open Set IsRealClosedField
 
+/--
+@isnad1 id=and.10h9v.s10.cd3dd4f74ea5 from=translated src=- shape=c39de896 vocab=c2f66803
+-/
 lemma polynomial_change_sign_aux (hc : IsRealClosedField F) {a b e f : F} (P0 P1 P2 Q : F[X])
   (hab : a < b) (hpose : 0 < e ) (hposf : 0 < f) (heq : C e * P0 = Q * P1 - C f * P2)
   (hz0 : ∀ x ∈ Icc a b , P0.eval x ≠ 0) (hz2 : ∀ x ∈ Icc a b , P2.eval x ≠ 0)
@@ -610,6 +725,9 @@ lemma polynomial_change_sign_aux (hc : IsRealClosedField F) {a b e f : F} (P0 P1
 
 open Finset
 
+/--
+@isnad1 id=iff.1h5v.s8.15c8a2980d61 from=translated src=- shape=e2a7e7e9 vocab=4db9611e
+-/
 lemma roots_of_prod_mem_iff (a b : F) (P : List F[X]) (x : F) (hz : 0 ∉ P) :
   x ∈ (((Multiset.toFinset (P.prod).roots).filter (fun x => x ∈ Icc a b))) ↔
   ∃ i : ℕ , (∃ h : i < P.length, P[i].eval x = 0 ∧ x ∈ Icc a b)  := by
@@ -622,6 +740,9 @@ lemma roots_of_prod_mem_iff (a b : F) (P : List F[X]) (x : F) (hz : 0 ∉ P) :
   simp [this, hz,  List.mem_iff_getElem]
 
 omit [Field F] [IsStrictOrderedRing F]
+/--
+@isnad1 id=eq.2h5v.s7.03f83f365725 from=translated src=- shape=13ffa2f3 vocab=7ed28734
+-/
 lemma finset_card_add_interval {a b c : F} (hcmem : c ∈ Icc a b) {S : Finset F} (hcn : c ∉ S)  :
   #(S.filter (fun x => x ∈ Icc a b)) =
     #(S.filter (fun x => x ∈ Icc a c)) + #(S.filter (fun x => x ∈ Icc c b)) := by
@@ -656,6 +777,9 @@ lemma finset_card_add_interval {a b c : F} (hcmem : c ∈ Icc a b) {S : Finset F
       rw [← aux] at hw
       exact hcn hw.1
 
+/--
+@isnad1 id=or.2h6v.s6.d9891c477e8b from=translated src=- shape=345abf50 vocab=47dc98b2
+-/
 lemma finset_sorted_list_cons_cons  {F : Type u_2} [Field F] [LinearOrder F]
     {u v : F} {as : List F} {S : Finset F} (heq : S.sort (fun x y => x ≤ y) = (u :: v :: as)) :
     ∀ x ∈ S , x = u ∨ v ≤ x := by
@@ -674,6 +798,9 @@ lemma finset_sorted_list_cons_cons  {F : Type u_2} [Field F] [LinearOrder F]
     simp at aux1
     grind
 
+  /--
+  @isnad1 id=lt.1h5v.s6.eaba78211ea5 from=translated src=- shape=43b9a47c vocab=a7468b99
+  -/
   lemma u_le_v_of_sort  {u v : F} {as : List F}
     {S : Finset F}  (heqc : (u :: v :: as) = (S.sort (fun x y => x ≤ y))) : u < v := by
     have hauxu := getElem_congr_coll (w := by simp) (i := 0) heqc
@@ -691,6 +818,9 @@ lemma finset_sorted_list_cons_cons  {F : Type u_2} [Field F] [LinearOrder F]
       simp at this
       exact this.1.1
 
+/--
+@isnad1 id=mem.3h8v.s7.5b3f1c350460 from=translated src=- shape=b54fc4f7 vocab=79986486
+-/
 lemma not_mem_finset_card_eq_one_of_sorted_mem_interval {a b d u v : F} {as : List F}
   {S : Finset F}  (heqc : (u :: v :: as) = ((S.filter (fun x => x ∈ Icc a b)).sort (fun x y => x ≤ y)))
   (hle1 : u < d) (hle2 : d < v) : d ∈ Icc a b := by
@@ -709,6 +839,9 @@ lemma not_mem_finset_card_eq_one_of_sorted_mem_interval {a b d u v : F} {as : Li
   · refine le_of_lt (lt_of_le_of_lt humem.2.1 hle1)
   · refine le_of_lt (lt_of_lt_of_le hle2 hwmem.2.2)
 
+/--
+@isnad1 id=iff.3h9v.s7.ff83fbae2222 from=translated src=- shape=79a16039 vocab=b5f86af1
+-/
 lemma not_mem_finset_card_eq_one_of_sorted  {a b d u v : F} [Field F] [IsStrictOrderedRing F] {as : List F}
   {S : Finset F} (heqc : (u :: v :: as) = ((S.filter (fun x => x ∈ Icc a b)).sort (fun x y => x ≤ y)))
   (hle1 : u < d) (hle2 : d < v) (x : F) :
@@ -732,6 +865,9 @@ lemma not_mem_finset_card_eq_one_of_sorted  {a b d u v : F} [Field F] [IsStrictO
     simp [heq]
     exact ⟨humem.1, ⟨humem.2.1, le_of_lt hle1⟩⟩
 
+/--
+@isnad1 id=not.3h8v.s7.62082ac3410e from=translated src=- shape=03ca6251 vocab=b5f86af1
+-/
 lemma not_mem_finset_card_eq_one_of_sorted_not_mem  {a b d u v : F} [Field F]
   [IsStrictOrderedRing F] {as : List F}
   {S : Finset F} (heqc : (u :: v :: as) = ((S.filter (fun x => x ∈ Icc a b)).sort (fun x y => x ≤ y)))
@@ -743,6 +879,9 @@ lemma not_mem_finset_card_eq_one_of_sorted_not_mem  {a b d u v : F} [Field F]
   rw [aux2.1 ⟨hc, aux1.1⟩] at hle1
   simp at hle1
 
+/--
+@isnad1 id=iff.1h6v.s7.ca5545d640b2 from=translated src=- shape=3e1e12b6 vocab=848bb75a
+-/
 lemma not_mem_finset_card_eq_one_of_sorted_single {a b u : F} {S : Finset F}
   (heq : [u] = ((S.filter (fun x => x ∈ Icc a b)).sort (fun x y => x ≤ y)) )
   (x : F) : x ∈ (S.filter (fun x => x ∈ Icc a b)) ↔ x = u := by
@@ -750,6 +889,9 @@ lemma not_mem_finset_card_eq_one_of_sorted_single {a b u : F} {S : Finset F}
   simp
 
 -- Sturm over `(-∞ , ∞)`
+/--
+@isnad1 id=ex.1h2v.s7.dcc85c16c1e0 from=translated src=- shape=04e5ca0b vocab=73b7c148
+-/
 lemma pos_at_infinity_of_leading_coeff_pos [Field F] [IsStrictOrderedRing F]
   (P : F[X]) (hP : P.leadingCoeff > 0) : ∃ N : F, ∀ x, (N < x → 0 < P.eval x) := by
   have hPnz : P ≠ 0 := by
@@ -810,12 +952,18 @@ lemma pos_at_infinity_of_leading_coeff_pos [Field F] [IsStrictOrderedRing F]
     field_simp
     exact Std.IsPreorder.le_refl y
 
+  /--
+  @isnad1 id=ex.1h2v.s7.b3723e681c08 from=translated src=- shape=8aa75def vocab=034438d6
+  -/
   lemma neg_at_infinity_of_leading_coeff_neg [Field F] [IsStrictOrderedRing F]
   (P : F[X]) (hP : P.leadingCoeff < 0) : ∃ N : F, ∀ x, (N < x → P.eval x < 0) := by
     have := pos_at_infinity_of_leading_coeff_pos F (-P)
     simp at this
     exact this hP
 
+/--
+@isnad1 id=ex.1h2v.s8.9741e5db08d9 from=translated src=- shape=98b89427 vocab=384b7f35
+-/
 lemma sign_at_infinity_eq_sign_leading_coeff [Field F] [IsStrictOrderedRing F]
   (P : F[X]) (hn : P ≠ 0) : ∃ N : F, ∀ x, N < x  →
     sign (P.eval x) = sign (P.leadingCoeff) ∧ P.eval x ≠ 0 := by
@@ -856,12 +1004,18 @@ structure SturmBuilderOfList (P : List (List R)) (p : List R) (q : List R) where
   hrem : ∀ i, ∀ h2 : i + 2 < P.length ,
     P[i].mulPointwise e[i] = Q[i] * P[i + 1] - P[i + 2].mulPointwise (f[i])
 
+/--
+@isnad1 id=ne.0h5v.s5.fb103591b26f from=translated src=- shape=7d9ffb61 vocab=2854229b
+-/
 lemma SturmBuilderOfList_ne_nil {P : List (List R)} {p : List R} {q : List R}
   (h : SturmBuilderOfList P p q) : P ≠ [] := by
   have := h.hlen
   rintro ⟨h, rfl⟩
   simp at this
 
+/--
+@isnad1 id=ne.1h6v.s6.548cebf683c7 from=translated src=- shape=c528541c vocab=426ba51c
+-/
 lemma SturmBuilderOfList_not_mem_nil {P : List (List R)} {p : List R} {q : List R}
   (h : SturmBuilderOfList P p q) (i : ℕ) (hio : i < P.length) : P[i] ≠ [] := by
   intro hi

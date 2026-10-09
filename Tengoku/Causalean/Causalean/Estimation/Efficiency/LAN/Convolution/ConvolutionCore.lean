@@ -34,7 +34,9 @@ noncomputable def efficientGaussianLaw
     {K : Type*} [NormedAddCommGroup K] (gradient : K) : Measure ℝ :=
   gaussianReal 0 (‖gradient‖ ^ 2).toNNReal
 
-/-- The efficient Gaussian law is a probability measure. -/
+/-- The efficient Gaussian law is a probability measure.
+@isnad1 id=isprobab.0h2v.s3.778620afcdd2 from=translated src=- shape=f25b81d7 vocab=92c8289a
+-/
 instance efficientGaussianLaw_probability
     {K : Type*} [NormedAddCommGroup K] (gradient : K) :
     IsProbabilityMeasure (efficientGaussianLaw gradient) := by
@@ -67,7 +69,9 @@ structure JointWeakSubsequence
   snd_marginal : Measure.map Prod.snd jointLaw = scoreLimit
 
 /-- Two measurable row-indexed statistics with weakly convergent probability marginals have a
-joint weakly convergent subsequence, and every such joint limit has the prescribed marginals. -/
+joint weakly convergent subsequence, and every such joint limit has the prescribed marginals.
+@isnad1 id=ex.5h7v.s7.1782513e43fe from=translated src=- shape=9b2bbce1 vocab=9eda90a3
+-/
 theorem exists_jointWeakSubsequence
     {P : (n : ℕ) → Measure (Ω n)}
     {statistic : (n : ℕ) → Ω n → ℝ} {centralSequence : (n : ℕ) → Ω n → H}
@@ -365,7 +369,9 @@ private lemma weaklyConverges_add_tendstoInProbability
       ((hX.1 n).add (hRmeas n)) f.continuous.aestronglyMeasurable).symm
   · simp [qPM]
 
-/-- A [locally asymptotically normal experiment](hyp:lan) and [a fixed local direction](hyp:h) [make its guarded log likelihood ratio converge weakly to the affine Gaussian limit](goal). -/
+/-- A [locally asymptotically normal experiment](hyp:lan) and [a fixed local direction](hyp:h) [make its guarded log likelihood ratio converge weakly to the affine Gaussian limit](goal).
+@isnad1 id=weaklyco.1h7v.s7.4eb97b87ec05 from=translated src=- shape=1f3c90d7 vocab=5a074ff0
+-/
 theorem lan_logLikelihoodRatio_weaklyConverges
     {E : LocalExperiment Ω H} {centralSequence : (n : ℕ) → Ω n → H}
     {information : LinearMap.BilinForm ℝ H} {scoreLimit : Measure H}
@@ -409,7 +415,9 @@ theorem lan_logLikelihoodRatio_weaklyConverges
   ring
 
 /-- The expectation of the exponential of the guarded log likelihood ratio is bounded by the
-local probability mass plus the artificial `exp (-n)` contribution on its zero-density set. -/
+local probability mass plus the artificial `exp (-n)` contribution on its zero-density set.
+@isnad1 id=le.0h5v.s7.3c387df49f71 from=translated src=- shape=227e689a vocab=8f58f8bc
+-/
 theorem integral_exp_logLikelihoodRatio_le (E : LocalExperiment Ω H) (n : ℕ) (h : H) :
     ∫ ω, Real.exp (E.logLikelihoodRatio n h ω) ∂E.baseLaw n ≤
       1 + Real.exp (-(n : ℝ)) := by
@@ -460,7 +468,9 @@ theorem integral_exp_logLikelihoodRatio_le (E : LocalExperiment Ω H) (n : ℕ) 
         (μ := E.localLaw n h) (ν := E.baseLaw n) (s := Set.univ)
         (measure_ne_top _ _)).trans measureReal_le_one
 
-/-- The exponential moment of the affine Gaussian LAN log-likelihood limit equals one. -/
+/-- The exponential moment of the affine Gaussian LAN log-likelihood limit equals one.
+@isnad1 id=eq.2h4v.s9.2553eb403445 from=translated src=- shape=e55a86ce vocab=d0ee0193
+-/
 theorem integral_exp_lanLogLikelihoodLimit
     {information : LinearMap.BilinForm ℝ H} {scoreLimit : Measure H}
     (hscoreProb : IsProbabilityMeasure scoreLimit)
@@ -522,7 +532,9 @@ theorem integral_exp_lanLogLikelihoodLimit
 
 /-- In a LAN experiment, the exponential of the guarded log likelihood ratio has expectation
 tending to one under the base law.  Equivalently, the asymptotically negligible singular part
-of the local law cannot lose mass in the Gaussian likelihood-ratio limit. -/
+of the local law cannot lose mass in the Gaussian likelihood-ratio limit.
+@isnad1 id=tendsto.1h7v.s7.d04393e40b68 from=translated src=- shape=441d9ab0 vocab=43ec4968
+-/
 theorem lan_likelihoodRatio_integral_tendsto_one
     {E : LocalExperiment Ω H} {centralSequence : (n : ℕ) → Ω n → H}
     {information : LinearMap.BilinForm ℝ H} {scoreLimit : Measure H}

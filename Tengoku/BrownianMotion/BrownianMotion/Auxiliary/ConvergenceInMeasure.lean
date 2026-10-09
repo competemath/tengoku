@@ -17,6 +17,9 @@ namespace MeasureTheory
 
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 
+/--
+@isnad1 id=tendstoi.2h10v.s7.6506fe9a35ea from=translated src=- shape=091ff066 vocab=da8e205d
+-/
 lemma TendstoInMeasure.add {ι E : Type*} [NormedAddCommGroup E]
     {f g : ι → Ω → E} {l₁ l₂ : Ω → E} {u : Filter ι}
     (hf : TendstoInMeasure μ f u l₁) (hg : TendstoInMeasure μ g u l₂) :

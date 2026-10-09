@@ -26,7 +26,9 @@ open Filter MeasureTheory ProbabilityTheory Topology
 variable {X : Type*} [MeasurableSpace X]
 
 /-- An `L²` approximation of a triangular row by `S / sqrt n` transfers the fixed `L²` tail
-condition of `S` to the Lindeberg tail condition for the row. -/
+condition of `S` to the Lindeberg tail condition for the row.
+@isnad1 id=tendsto.5h5v.s8.67373992e521 from=translated src=- shape=ced2d85a vocab=05fe6363
+-/
 theorem scaledL2Approx_lindeberg
     (P : Measure X) [IsProbabilityMeasure P]
     (W : ℕ → X → ℝ) (S : X → ℝ)
@@ -204,7 +206,9 @@ theorem scaledL2Approx_lindeberg
 
 /-- For an i.i.d. product row, a centered sum of errors converges in probability to zero when
 the row error has total second moment tending to zero.  A convergent scaled row mean supplies
-the stated deterministic limit. -/
+the stated deterministic limit.
+@isnad1 id=tendstoi.6h5v.s8.cf02141f7a83 from=translated src=- shape=02f7a81f vocab=83846fb5
+-/
 theorem iid_sum_approx_tendstoInProbability
     (P : Measure X) [IsProbabilityMeasure P]
     (W : ℕ → X → ℝ) (S : X → ℝ) (m : ℝ)
@@ -294,7 +298,9 @@ theorem iid_sum_approx_tendstoInProbability
           (Nat.cast_nonneg n)
 
 /-- For one square-integrable row, the probability that at least one i.i.d. coordinate exceeds
-`δ` is bounded by `n / δ²` times the second moment on the tail `|W| ≥ δ`. -/
+`δ` is bounded by `n / δ²` times the second moment on the tail `|W| ≥ δ`.
+@isnad1 id=le.3h5v.s8.d35192edbe69 from=translated src=- shape=18cd3630 vocab=8540e80f
+-/
 theorem iid_large_coordinate_measureReal_le
     (P : Measure X) [IsProbabilityMeasure P]
     (W : X → ℝ) (hW : Measurable W) (hW2 : MemLp W 2 P)
@@ -350,7 +356,9 @@ theorem iid_large_coordinate_measureReal_le
       ring
 
 /-- The centered sum of the truncated squares `W² 1{|W|<δ}` under an i.i.d. product law obeys
-a Chebyshev bound controlled by `n δ² E[W²]`. -/
+a Chebyshev bound controlled by `n δ² E[W²]`.
+@isnad1 id=le.4h6v.s8.c4380e88c9e5 from=translated src=- shape=d789ab10 vocab=a7fc0b78
+-/
 theorem iid_truncated_sq_deviation_le
     (P : Measure X) [IsProbabilityMeasure P]
     (W : X → ℝ) (hW : Measurable W) (hW2 : MemLp W 2 P)
@@ -402,7 +410,9 @@ theorem iid_truncated_sq_deviation_le
     _ = ((n : ℝ) * δ ^ 2 * ∫ y, W y ^ 2 ∂P) / ε ^ 2 := by ring
 
 /-- The sum of squares in an infinitesimal i.i.d. triangular row obeys a weak law when its
-scaled second moment converges and its Lindeberg tail vanishes. -/
+scaled second moment converges and its Lindeberg tail vanishes.
+@isnad1 id=tendstoi.4h4v.s8.bd93ea6d1ad2 from=translated src=- shape=1b9a808c vocab=f1df9019
+-/
 theorem iid_sum_sq_tendstoInProbability_of_lindeberg
     (P : Measure X) [IsProbabilityMeasure P]
     (W : ℕ → X → ℝ) (q : ℝ)
@@ -567,7 +577,9 @@ theorem iid_sum_sq_tendstoInProbability_of_lindeberg
     (fun n => measure_ne_top (Measure.pi (fun _ : Fin n => P))
       {x | ε ≤ |(∑ i, W n (x i) ^ 2) - q|})).1 hreal
 
-/-- For an i.i.d. triangular row with [measurable coordinates](hyp:hW), [finite second moments](hyp:hW2), and [a Lindeberg tail condition](hyp:hlindeberg), [the probability that its largest absolute coordinate exceeds any positive threshold vanishes](goal). -/
+/-- For an i.i.d. triangular row with [measurable coordinates](hyp:hW), [finite second moments](hyp:hW2), and [a Lindeberg tail condition](hyp:hlindeberg), [the probability that its largest absolute coordinate exceeds any positive threshold vanishes](goal).
+@isnad1 id=tendsto.4h4v.s8.16eef3fba8c7 from=translated src=- shape=6e65f170 vocab=86f003bd
+-/
 theorem iid_max_tendsto_zero_of_lindeberg
     (P : Measure X) [IsProbabilityMeasure P]
     (W : ℕ → X → ℝ)

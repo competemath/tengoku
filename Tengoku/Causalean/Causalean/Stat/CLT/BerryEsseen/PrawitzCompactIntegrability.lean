@@ -17,7 +17,9 @@ open MeasureTheory
 
 /-- For [a nonnegative ratio](hyp:ρ,hρ) and [an interval contained in a
 positive kernel band](hyp:U,a,hU,ha,haU), the [low-frequency discrepancy
-integrand is interval integrable, including at zero](goal). -/
+integrand is interval integrable, including at zero](goal).
+@isnad1 id=interval.4h3v.s6.399e3d6d05a8 from=translated src=- shape=e34c6e29 vocab=12ab0ae6
+-/
 theorem prawitz_low_compact_intervalIntegrable
     (ρ U a : ℝ) (hρ : 0 ≤ ρ) (hU : 0 < U) (ha : 0 ≤ a) (haU : a ≤ U) :
     IntervalIntegrable
@@ -88,7 +90,9 @@ theorem prawitz_low_compact_intervalIntegrable
 width U](hyp:U,a,b,hU,ha,hab,hbU), [the product of the Prawitz filter
 magnitude at t/U and the cubic moment envelope is interval integrable on
 [a, b]](goal) for [any ratio ρ](hyp:ρ). The statement covers the assigned
-value of the filter at the upper endpoint. -/
+value of the filter at the upper endpoint.
+@isnad1 id=interval.4h4v.s6.17b00e8ef93a from=translated src=- shape=b661b8f4 vocab=7baa56a1
+-/
 theorem prawitz_high_compact_intervalIntegrable
     (ρ U a b : ℝ) (hU : 0 < U) (ha : 0 < a) (hab : a ≤ b) (hbU : b ≤ U) :
     IntervalIntegrable

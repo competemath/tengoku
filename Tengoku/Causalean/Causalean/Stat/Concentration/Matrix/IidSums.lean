@@ -31,7 +31,9 @@ open scoped BigOperators
 
 /-- **Expectation of an iid sum.** For an iid sample of size `N` drawn from a probability
 measure `μ` (modelled by the product measure `Measure.pi`), the expectation of the sum
-`∑ᵢ g(Xᵢ)` of a fixed integrable statistic `g` equals `N · 𝔼[g]`. -/
+`∑ᵢ g(Xᵢ)` of a fixed integrable statistic `g` equals `N · 𝔼[g]`.
+@isnad1 id=eq.1h4v.s7.ac7ee3476fb1 from=translated src=- shape=da55fe9d vocab=9936cee6
+-/
 theorem integral_sum_pi_eq {N : ℕ} {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (g : Ω → ℝ) (hg : Integrable g μ) :
     ∫ ω, (∑ i : Fin N, g (ω i)) ∂(Measure.pi (fun _ : Fin N => μ))
@@ -61,7 +63,9 @@ theorem integral_sum_pi_eq {N : ℕ} {Ω : Type*} [MeasurableSpace Ω]
 
 /-- **Variance of an iid sum.** For an iid sample of size `N` from `μ` (the product measure
 `Measure.pi`), the variance of the sum `∑ᵢ g(Xᵢ)` of a fixed `L²` statistic `g` equals
-`N · Var[g]` — the coordinate copies are independent, so cross-covariances vanish. -/
+`N · Var[g]` — the coordinate copies are independent, so cross-covariances vanish.
+@isnad1 id=eq.1h4v.s7.a6ff59e13834 from=translated src=- shape=49c7840b vocab=69aaefa7
+-/
 theorem variance_sum_pi_eq {N : ℕ} {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (g : Ω → ℝ) (hg : MemLp g 2 μ) :
     Var[fun ω => ∑ i : Fin N, g (ω i); Measure.pi (fun _ : Fin N => μ)]
@@ -81,7 +85,9 @@ Chebyshev's inequality: for [a fixed square-integrable statistic g](hyp:hg) and 
 threshold ε](hyp:hε), [the sum `∑ᵢ g(Xᵢ)` over an iid sample of size N deviates from its mean
 `N·𝔼[g]` by at least ε with probability at most `N·Var[g]/ε²`](goal). For the design weight
 `g = K((·−t)/h)` this is the concentration of the total kernel weight `M₀₀` around
-`N·𝔼[K((A−t)/h)] = Θ(Nh)`. -/
+`N·𝔼[K((A−t)/h)] = Θ(Nh)`.
+@isnad1 id=le.2h5v.s8.50a0bbf47b74 from=translated src=- shape=75bd554b vocab=0fb1f78a
+-/
 theorem iid_sum_chebyshev {N : ℕ} {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (g : Ω → ℝ) (hg : MemLp g 2 μ)
     {ε : ℝ} (hε : 0 < ε) :

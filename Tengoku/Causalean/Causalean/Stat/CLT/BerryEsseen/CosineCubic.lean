@@ -15,7 +15,9 @@ public section
 namespace Causalean.Stat.CLT.BerryEsseen
 
 /-- The cosine of [any real argument](hyp:u) is [bounded above by its
-quartic Taylor polynomial](goal). -/
+quartic Taylor polynomial](goal).
+@isnad1 id=le.0h1v.s6.abad44aca17c from=translated src=- shape=4bfee76a vocab=115fffdc
+-/
 theorem cos_le_quadratic_add_quartic (u : ℝ) :
     Real.cos u ≤ 1 - u ^ 2 / 2 + u ^ 4 / 24 := by
   have hd (x : ℝ) :
@@ -38,7 +40,9 @@ theorem cos_le_quadratic_add_quartic (u : ℝ) :
   linarith only [h]
 
 /-- The cosine of [any real argument](hyp:u) is [bounded above by its quadratic
-Taylor polynomial 1 − u²/2 plus one tenth of the absolute cube |u|³](goal). -/
+Taylor polynomial 1 − u²/2 plus one tenth of the absolute cube |u|³](goal).
+@isnad1 id=le.0h1v.s6.d98311c9dc7b from=translated src=- shape=86ca6eaa vocab=282db768
+-/
 theorem cos_le_quadratic_add_cubic (u : ℝ) :
     Real.cos u ≤ 1 - u ^ 2 / 2 + |u| ^ 3 / 10 := by
   /- Reduce to u≥0 using cosine evenness. For u≥5, cos u≤1 suffices.

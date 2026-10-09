@@ -103,7 +103,9 @@ instance : SMul ℝ (PLRNuisance γ) where
 /-- Two nuisance pairs `η` and `η'` are equal whenever [their outcome-regression
 components agree at every covariate value](hyp:hl) and [their treatment-regression
 components agree at every covariate value](hyp:hm), so [the two pairs are
-equal](goal). -/
+equal](goal).
+@isnad1 id=eq.2h3v.s5.9c26a65bb8b5 from=translated src=- shape=3f4c4307 vocab=fa50927b
+-/
 @[ext]
 theorem ext {η η' : PLRNuisance γ}
     (hl : ∀ x, η.lFn x = η'.lFn x)

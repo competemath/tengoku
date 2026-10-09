@@ -28,6 +28,9 @@ variable {𝓕 : Filtration ι mΩ} {f : ι' → ι} (hf : Monotone f)
 
 variable {E : Type*} [TopologicalSpace E] {X : ι → Ω → E}
 
+/--
+@isnad1 id=strongly.2h8v.s6.775420b3efe9 from=translated src=- shape=47379a96 vocab=b145ce21
+-/
 lemma StronglyAdapted.indexComap (hX : StronglyAdapted 𝓕 X) (hf : Monotone f) :
     StronglyAdapted (𝓕.indexComap hf) (X ∘ f) := fun i ↦ hX (f i)
 

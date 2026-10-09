@@ -44,7 +44,9 @@ variable {V Ω : Type*} [Fintype V] [DecidableEq V] [MeasurableSpace Ω] {μ : M
 
 /-- **The network-HAC estimator is in `L²`.** With summands bounded by `B` and degree `≤ m`, the
 estimator `V̂` is pointwise bounded by `card(V)·m·B²`, hence square-integrable; this is the moment
-hypothesis Chebyshev's inequality needs. -/
+hypothesis Chebyshev's inequality needs.
+@isnad1 id=memlp.3h6v.s7.f30f6abc3741 from=translated src=- shape=6b92b728 vocab=5689fecd
+-/
 theorem netHACVarEst_memLp (F : NetworkDependence V Ω μ) [IsProbabilityMeasure μ]
     {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |F.X i ω| ≤ B)
     {m : ℕ} (hdeg : ∀ i, (F.toDepGraph.nbhd i).card ≤ m) :
@@ -96,7 +98,9 @@ least `ε` tends to zero as `n → ∞`](goal).
 
 By unbiasedness (`netHACVarEst_integral_eq_variance`) the target `variance (depSum (F n).X)` is the
 mean `E[V̂]`, so this is Chebyshev's inequality `(μ n).real {…} ≤ Var(V̂)/ε²` together with the
-variance limit `netHACVarEst_variance_tendsto_zero`. -/
+variance limit `netHACVarEst_variance_tendsto_zero`.
+@isnad1 id=tendsto.8h7v.s9.a68db148c023 from=translated src=- shape=ad6c9edf vocab=c7fdec64
+-/
 theorem netHAC_consistent
     {V : ℕ → Type*} [∀ n, Fintype (V n)] [∀ n, DecidableEq (V n)]
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))

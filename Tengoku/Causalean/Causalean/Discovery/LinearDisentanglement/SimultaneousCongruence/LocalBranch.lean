@@ -27,13 +27,17 @@ namespace Causalean.Discovery.LinearDisentanglement.SimultaneousCongruence
 open Causalean.Discovery.LinearDisentanglement.Quantitative
 
 /-- [Entrywise Euclidean size is submultiplicative](goal), so errors do not amplify beyond the
-product of the sizes of [matrices `X` and `Y`](hyp:X,Y) in [dimension `p`](hyp:p). -/
+product of the sizes of [matrices `X` and `Y`](hyp:X,Y) in [dimension `p`](hyp:p).
+@isnad1 id=le.0h3v.s5.75d4103a6f80 from=translated src=- shape=8fba9195 vocab=de26dcae
+-/
 theorem entryL2_mul_le {p : ℕ} (X Y : SqMatrix p) :
     entryL2 (X * Y) ≤ entryL2 X * entryL2 Y := by
   exact Matrix.frobenius_norm_mul X Y
 
 /-- [Entrywise Euclidean size is at most dimension times operator norm](goal) for [matrix
-`X`](hyp:X) in [dimension `p`](hyp:p), provided [the dimension is positive](hyp:hp). -/
+`X`](hyp:X) in [dimension `p`](hyp:p), provided [the dimension is positive](hyp:hp).
+@isnad1 id=le.1h2v.s5.6e909cd1dc7a from=translated src=- shape=9859e001 vocab=2a19e7a2
+-/
 theorem entryL2_le_dimension_mul_opNorm {p : ℕ} (X : SqMatrix p) (hp : 0 < p) :
     entryL2 X ≤ (p : ℝ) * ‖X‖ := by
   rw [entryL2_eq_sqrt, Real.sqrt_le_iff]
@@ -49,7 +53,9 @@ theorem entryL2_le_dimension_mul_opNorm {p : ℕ} (X : SqMatrix p) (hp : 0 < p) 
 
 /-- [Transition error is the candidate-reference discrepancy expressed in reference
 coordinates](goal), for [reference and candidate matrices](hyp:B₀,B) in [dimension `p`](hyp:p)
-when [the reference is invertible](hyp:hunit). -/
+when [the reference is invertible](hyp:hunit).
+@isnad1 id=eq.1h3v.s6.f03d65e625b7 from=translated src=- shape=267b8c28 vocab=a0e3fb06
+-/
 theorem transitionError_eq_sub_mul_inv {p : ℕ} (B₀ B : SqMatrix p)
     (hunit : IsUnit B₀.det) :
     transitionError B₀ B = (B - B₀) * B₀⁻¹ := by
@@ -59,7 +65,9 @@ theorem transitionError_eq_sub_mul_inv {p : ℕ} (B₀ B : SqMatrix p)
 /-- [A local candidate neighborhood yields a quantitative transition-error bound](goal) for
 [reference and candidate matrices](hyp:B₀,B) in [dimension `p`](hyp:p), with [inverse envelope
 `J` and radius `ρ`](hyp:J,ρ), [positive dimension and nonnegative envelope](hyp:hp,hJ), [invertible
-reference](hyp:hunit), [bounded reference inverse](hyp:hinv), and [local proximity](hyp:hlocal). -/
+reference](hyp:hunit), [bounded reference inverse](hyp:hinv), and [local proximity](hyp:hlocal).
+@isnad1 id=le.5h5v.s6.18373808bec8 from=translated src=- shape=fd5c8812 vocab=813ba812
+-/
 theorem transitionError_entryL2_le_of_neighborhood {p : ℕ} (B₀ B : SqMatrix p)
     {J ρ : ℝ} (hp : 0 < p) (hJ : 0 ≤ J)
     (hunit : IsUnit B₀.det) (hinv : ‖B₀⁻¹‖ ≤ J)
@@ -80,7 +88,9 @@ theorem transitionError_entryL2_le_of_neighborhood {p : ℕ} (B₀ B : SqMatrix 
 
 /-- [A unit-diagonal determinant-condition certificate bounds the inverse operator norm](goal) for
 [matrix `B`](hyp:B) in [dimension `p`](hyp:p) under [condition envelope `κ`](hyp:κ), assuming
-[positive dimension](hyp:hp), [unit diagonal](hyp:hdiag), and [the certificate](hyp:henv). -/
+[positive dimension](hyp:hp), [unit diagonal](hyp:hdiag), and [the certificate](hyp:henv).
+@isnad1 id=le.3h3v.s5.cc14990b1c73 from=translated src=- shape=630a9cec vocab=23804845
+-/
 theorem invOpNorm_le_conditionEnvelope {p : ℕ} {κ : ℝ} (B : SqMatrix p)
     (hp : 0 < p) (hdiag : UnitDiagonal B) (henv : DetConditionEnvelope κ B) :
     ‖B⁻¹‖ ≤ κ := by
@@ -100,7 +110,9 @@ scale, affine margin, matrix scale, and inverse envelope](hyp:hp,hM,hδ,hL,hJ),
 reference](hyp:hunit,hexact,hdiag₀), [a unit-diagonal candidate](hyp:hdiag), [a reference operator norm at most the matrix
 scale](hyp:hB₀), [an inverse bound](hyp:hinv), [nonnegative approximate residual](hyp:hε,happrox), [the explicit residual smallness condition](hyp:hsmall), and [membership
 in the explicit ordinary reference neighborhood](hyp:hlocal), [the transition lies on the
-identity branch needed by the linear stability estimate](goal). -/
+identity branch needed by the linear stability estimate](goal).
+@isnad1 id=inidenti.17h11v.s7.5e30762ffa4c from=translated src=- shape=abd34057 vocab=6331ac9e
+-/
 -- Proof route: the neighborhood and inverse envelope give `u ≤ min 1 (3/(8 max(1,K)M))`
 -- for `u = entryL2 R`.  Pairwise control gives `u ≤ 2 K M u² + 2 K ε`; the coarse
 -- local bound absorbs three quarters of `u`, and the residual radius improves this to

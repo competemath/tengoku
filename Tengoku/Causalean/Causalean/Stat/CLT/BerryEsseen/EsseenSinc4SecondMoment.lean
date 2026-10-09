@@ -14,7 +14,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- [The second-moment density x²·K(x) of the unit-bandwidth sinc-fourth kernel K
-is integrable, and its integral equals twelve](goal). -/
+is integrable, and its integral equals twelve](goal).
+@isnad1 id=and.0h0v.s7.5b98f76048f8 from=translated src=- shape=671934e8 vocab=a2e0280b
+-/
 theorem sinc4Kernel_unit_second_moment :
     Integrable (fun x : ℝ => x ^ 2 * sinc4Kernel 1 x) volume ∧
       (∫ x : ℝ, x ^ 2 * sinc4Kernel 1 x) = 12 := by

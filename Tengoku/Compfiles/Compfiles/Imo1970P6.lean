@@ -45,19 +45,34 @@ quadrilateral sum to `2 * π`, so one of them is at least `π / 2`).
 /-- Abbreviation for the noncollinearity hypothesis on a triple of points. -/
 def NC (x y z : Pt) : Prop := ¬ Collinear ℝ ({x, y, z} : Set Pt)
 
+/--
+@isnad1 id=nc.1h3v.s3.975e20d78f28 from=translated src=- shape=89e289df vocab=de3bfe8c
+-/
 lemma NC.swap₁₂ {x y z : Pt} (h : NC x y z) : NC y x z := by
   unfold NC at h ⊢; rwa [Set.insert_comm]
 
+/--
+@isnad1 id=nc.1h3v.s3.58708d46501f from=translated src=- shape=7289543a vocab=de3bfe8c
+-/
 lemma NC.swap₂₃ {x y z : Pt} (h : NC x y z) : NC x z y := by
   unfold NC at h ⊢; rwa [Set.pair_comm z y]
 
+/--
+@isnad1 id=ne.1h3v.s3.20cf3b66859f from=translated src=- shape=b95ad1be vocab=de3bfe8c
+-/
 lemma NC.ne₁₂ {x y z : Pt} (h : NC x y z) : x ≠ y := by
   rintro rfl
   rw [NC, Set.insert_idem] at h
   exact h (collinear_pair ℝ x z)
 
+/--
+@isnad1 id=ne.1h3v.s3.80630df84f4f from=translated src=- shape=cffd9d39 vocab=de3bfe8c
+-/
 lemma NC.ne₂₃ {x y z : Pt} (h : NC x y z) : y ≠ z := (h.swap₁₂.swap₂₃).ne₁₂
 
+/--
+@isnad1 id=ne.1h3v.s3.f765ba2428e6 from=translated src=- shape=2d62db26 vocab=de3bfe8c
+-/
 lemma NC.ne₁₃ {x y z : Pt} (h : NC x y z) : x ≠ z := h.swap₂₃.ne₁₂
 
 /-! ### Non-acute triangles -/
@@ -67,14 +82,23 @@ lemma NC.ne₁₃ {x y z : Pt} (h : NC x y z) : x ≠ z := h.swap₂₃.ne₁₂
 def Bad (X Y Z : Pt) : Prop :=
   π / 2 ≤ ∠ Y X Z ∨ π / 2 ≤ ∠ X Y Z ∨ π / 2 ≤ ∠ X Z Y
 
+/--
+@isnad1 id=bad.1h3v.s3.533fa6704e85 from=translated src=- shape=89e289df vocab=45a0b3a1
+-/
 lemma Bad.swap₁₂ {X Y Z : Pt} (h : Bad X Y Z) : Bad Y X Z := by
   unfold Bad at h ⊢; rw [angle_comm X Z Y] at h; tauto
 
+/--
+@isnad1 id=bad.1h3v.s3.b350706f0392 from=translated src=- shape=7289543a vocab=45a0b3a1
+-/
 lemma Bad.swap₂₃ {X Y Z : Pt} (h : Bad X Y Z) : Bad X Z Y := by
   unfold Bad at h ⊢; rw [angle_comm Y X Z] at h; tauto
 
 /-! ### The case of a point inside the triangle formed by three others -/
 
+/--
+@isnad1 id=lt.3h2v.s8.14243f5b7d94 from=translated src=- shape=5dcebad3 vocab=db46440a
+-/
 lemma inner_pos_of_angle_lt {u v : Pt} (hu : u ≠ 0) (hv : v ≠ 0)
     (h : InnerProductGeometry.angle u v < π / 2) : 0 < ⟪u, v⟫ := by
   have h0 : 0 < Real.cos (InnerProductGeometry.angle u v) :=
@@ -87,7 +111,9 @@ lemma inner_pos_of_angle_lt {u v : Pt} (hu : u ≠ 0) (hv : v ≠ 0)
 
 /-- If `A` is a combination of `B`, `C`, `D` with positive weights (an interior point
 of the triangle `B C D`), then the angles `∠ B A C` and `∠ B A D` cannot both be
-acute. -/
+acute.
+@isnad1 id=or.7h7v.s10.8dacce3f9834 from=translated src=- shape=87a497e1 vocab=bae85255
+-/
 lemma hull_case {A B C D : Pt} (hAB : A ≠ B) (hAC : A ≠ C) (hAD : A ≠ D)
     {wb wc wd : ℝ} (hwb : 0 < wb) (hwc : 0 < wc) (hwd : 0 < wd)
     (hvec : wb • (B - A) + wc • (C - A) + wd • (D - A) = 0) :
@@ -111,7 +137,9 @@ lemma hull_case {A B C D : Pt} (hAB : A ≠ B) (hAC : A ≠ C) (hAD : A ≠ D)
 
 /-- If the segments `A C` and `B D` cross, then one of the angles of the
 quadrilateral `A B C D` is at least `π / 2`; each of those four angles is an
-angle of one of the four triangles on the points `A`, `B`, `C`, `D`. -/
+angle of one of the four triangles on the points `A`, `B`, `C`, `D`.
+@isnad1 id=or.4h5v.s10.c4c335305006 from=translated src=- shape=2bdea66c vocab=52ba9043
+-/
 lemma quad_case {A B C D Q : Pt} (hAC : Sbtw ℝ A Q C) (hBD : Sbtw ℝ B Q D)
     (hBA : B ≠ A) (hDC : D ≠ C) :
     π / 2 ≤ ∠ B A D ∨ π / 2 ≤ ∠ A B C ∨ π / 2 ≤ ∠ B C D ∨ π / 2 ≤ ∠ C D A := by
@@ -135,7 +163,9 @@ lemma quad_case {A B C D Q : Pt} (hAC : Sbtw ℝ A Q C) (hBD : Sbtw ℝ B Q D)
   linarith
 
 /-- From an affine dependence with two positive and two negative weights, produce
-the crossing point of the two segments. -/
+the crossing point of the two segments.
+@isnad1 id=ex.8h8v.s10.ae32c10e7de3 from=translated src=- shape=67a69bed vocab=d4aa687a
+-/
 lemma crossing_lemma {X Y Z W : Pt} {a b c d : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hc : c < 0) (hd : d < 0) (hsum : a + b + c + d = 0)
     (hvec : a • X + b • Y + c • Z + d • W = 0) (hXY : X ≠ Y) (hZW : Z ≠ W) :
@@ -165,7 +195,9 @@ lemma crossing_lemma {X Y Z W : Pt} {a b c d : ℝ} (ha : 0 < a) (hb : 0 < b)
 
 /-! ### The four-point lemma -/
 
-/-- An affine dependence between three points means they are collinear. -/
+/-- An affine dependence between three points means they are collinear.
+@isnad1 id=collinea.3h6v.s9.4a707bbd1acb from=translated src=- shape=dd332740 vocab=d3319b41
+-/
 lemma collinear_of_dependent {X Y Z : Pt} {a b c : ℝ}
     (hvec : a • X + b • Y + c • Z = 0) (hsum : a + b + c = 0)
     (hne : ¬ (a = 0 ∧ b = 0 ∧ c = 0)) : Collinear ℝ ({X, Y, Z} : Set Pt) := by
@@ -181,7 +213,9 @@ lemma collinear_of_dependent {X Y Z : Pt} {a b c : ℝ}
   exact hne ⟨h 0, h 1, h 2⟩
 
 /-- The core sign-analysis: given an affine dependence with all weights nonzero
-and the first one positive, some triple of the four points is `Bad`. -/
+and the first one positive, some triple of the four points is `Bad`.
+@isnad1 id=or.7h5v.s9.87e37114f6a2 from=translated src=- shape=2de04c8c vocab=1dd328a0
+-/
 lemma four_point_aux {A B C D : Pt} (h₁ : NC A B C) (h₂ : NC A B D)
     (h₃ : NC A C D) (w : Fin 4 → ℝ)
     (hw0 : w 0 + w 1 + w 2 + w 3 = 0)
@@ -254,7 +288,9 @@ lemma four_point_aux {A B C D : Pt} (h₁ : NC A B C) (h₂ : NC A B D)
     exact absurd hw0 (by linarith : (0:ℝ) < w 0 + w 1 + w 2 + w 3).ne'
 
 /-- Among four points in the plane, no three of which are collinear, some triple
-forms a triangle with an angle of at least `π / 2`. -/
+forms a triangle with an angle of at least `π / 2`.
+@isnad1 id=or.4h4v.s5.8fa1629ce867 from=translated src=- shape=33a20f23 vocab=42fc3a09
+-/
 lemma four_point {A B C D : Pt} (h₁ : NC A B C) (h₂ : NC A B D)
     (h₃ : NC A C D) (h₄ : NC B C D) :
     Bad A B C ∨ Bad A B D ∨ Bad A C D ∨ Bad B C D := by
@@ -330,6 +366,9 @@ def AcuteSet (P : Fin 100 → Pt) (w : Finset (Fin 100)) : Prop :=
   ∃ a b c : Fin 100, w = {a, b, c} ∧
     ∃ t : Affine.Triangle ℝ Pt, ![P a, P b, P c] = t.points ∧ t.AcuteAngled
 
+/--
+@isnad1 id=or.4h6v.s8.7f71ed3e6026 from=translated src=- shape=f7b0ba03 vocab=e4d10c48
+-/
 lemma triple_perm {x y z a b c : Fin 100} (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z)
     (h : ({x, y, z} : Finset (Fin 100)) = {a, b, c}) :
     (a = x ∧ b = y ∧ c = z) ∨ (a = x ∧ b = z ∧ c = y) ∨
@@ -340,6 +379,9 @@ lemma triple_perm {x y z a b c : Fin 100} (hxy : x ≠ y) (hxz : x ≠ z) (hyz :
   have h4 := h a; have h5 := h b; have h6 := h c
   grind
 
+/--
+@isnad1 id=not.4h4v.s7.ae4e27e9b8d7 from=translated src=- shape=96e2220a vocab=f72166fb
+-/
 lemma not_acuteSet_of_bad {P : Fin 100 → Pt} {x y z : Fin 100}
     (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z)
     (hbad : Bad (P x) (P y) (P z)) : ¬ AcuteSet P {x, y, z} := by
@@ -363,7 +405,9 @@ lemma not_acuteSet_of_bad {P : Fin 100 → Pt} {x y z : Fin 100}
       Matrix.cons_val_two, Matrix.tail_cons] at h2
     linarith
 
-/-- Among any four of the points, some three of them form a non-acute triangle. -/
+/-- Among any four of the points, some three of them form a non-acute triangle.
+@isnad1 id=ex.2h2v.s8.aa56101d7bc4 from=translated src=- shape=6728470a vocab=6667f7ba
+-/
 lemma exists_nonacute_triple {P : Fin 100 → Pt}
     (hP : ∀ a b c : Fin 100, List.Nodup [a, b, c] → ¬ Collinear ℝ {P a, P b, P c})
     {s : Finset (Fin 100)} (hs : s.card = 4) :
@@ -388,7 +432,9 @@ lemma exists_nonacute_triple {P : Fin 100 → Pt}
       not_acuteSet_of_bad hbc hbd hcd hb⟩
 
 /-- The number of `(w.card + k)`-element subsets of `s` containing a fixed
-`w ⊆ s` is `(s.card - w.card).choose k`. -/
+`w ⊆ s` is `(s.card - w.card).choose k`.
+@isnad1 id=eq.1h3v.s7.03ab2dc1ec0e from=translated src=- shape=a05c5a0d vocab=1713dfee
+-/
 lemma card_supersets {w s : Finset (Fin 100)} (hws : w ⊆ s) (k : ℕ) :
     ((s.powersetCard (w.card + k)).filter (fun u => w ⊆ u)).card =
       (s.card - w.card).choose k := by
@@ -417,7 +463,9 @@ lemma card_supersets {w s : Finset (Fin 100)} (hws : w ⊆ s) (k : ℕ) :
     rw [Finset.union_sdiff_right, hdisj.sdiff_eq_left]
 
 /-- Among any five of the points, at least three of the ten 3-element subsets
-form a non-acute triangle. -/
+form a non-acute triangle.
+@isnad1 id=le.2h2v.s8.9c972cd16e2f from=translated src=- shape=7e374ff3 vocab=e6aba629
+-/
 lemma five_point_bound {P : Fin 100 → Pt}
     (hP : ∀ a b c : Fin 100, List.Nodup [a, b, c] → ¬ Collinear ℝ {P a, P b, P c})
     {s : Finset (Fin 100)} (hs : s.card = 5) :
@@ -466,7 +514,9 @@ lemma five_point_bound {P : Fin 100 → Pt}
     _ ≤ _ := Finset.card_le_card himg
 
 /-- Globally, at least `3 * (100.choose 5) / (97.choose 2) = 48510` of the
-3-element subsets form a non-acute triangle. -/
+3-element subsets form a non-acute triangle.
+@isnad1 id=le.1h1v.s8.6ad28dc04933 from=translated src=- shape=18ea59ec vocab=09fae772
+-/
 lemma global_bound {P : Fin 100 → Pt}
     (hP : ∀ a b c : Fin 100, List.Nodup [a, b, c] → ¬ Collinear ℝ {P a, P b, P c}) :
     48510 ≤ (((univ : Finset (Fin 100)).powersetCard 3).filter

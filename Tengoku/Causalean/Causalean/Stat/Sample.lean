@@ -63,7 +63,9 @@ measured space to the observation space.
 
 This is the `meas` field with the sample index instantiated. The field itself is stated for
 all indices at once, which the function-property tactics cannot use; this per-index form is
-the one they can. -/
+the one they can.
+@isnad1 id=measurab.0h6v.s5.dbaee6740086 from=translated src=- shape=ab3417c5 vocab=6b7db3af
+-/
 @[fun_prop]
 theorem measurable_Z (S : IIDSample Ω X μ P) (i : ℕ) : Measurable (S.Z i) := S.meas i
 
@@ -75,7 +77,9 @@ noncomputable def sampleMean (S : IIDSample Ω X μ P) (f : X → ℝ) (n : ℕ)
   fun ω => (n : ℝ)⁻¹ * ∑ i ∈ Finset.range n, f (S.Z i ω)
 
 /-- For [an i.i.d. sample `S`](hyp:S) [and any sample index `i`](hyp:i), [the pushforward law of
-the `i`-th sample point equals the population law `P`](goal). -/
+the `i`-th sample point equals the population law `P`](goal).
+@isnad1 id=eq.0h6v.s5.00e5dbd28277 from=translated src=- shape=fc62522a vocab=e16ca771
+-/
 theorem map_eq (S : IIDSample Ω X μ P) (i : ℕ) : μ.map (S.Z i) = P := by
   rw [← (S.identDist i).map_eq, S.law]
 
@@ -94,7 +98,9 @@ noncomputable def measurableModification
   fun i => (hX i).mk (X i)
 
 /-- Under [coordinatewise almost-everywhere measurability](hyp:hX), [the
-measurable modification at the specified index](hyp:i) [is measurable](goal). -/
+measurable modification at the specified index](hyp:i) [is measurable](goal).
+@isnad1 id=measurab.1h5v.s5.ec594949cf79 from=translated src=- shape=335b6e8c vocab=0bd822fa
+-/
 @[fun_prop]
 theorem measurableModification_measurable
     (hX : ∀ i, AEMeasurable (X i) μ) (i : ℕ) :
@@ -103,7 +109,9 @@ theorem measurableModification_measurable
 
 /-- Under [coordinatewise almost-everywhere measurability](hyp:hX), [the
 measurable modification at the specified index](hyp:i) [equals the original
-coordinate almost everywhere](goal). -/
+coordinate almost everywhere](goal).
+@isnad1 id=eventual.1h5v.s5.53a69362140f from=translated src=- shape=2d4abc97 vocab=1e7ca516
+-/
 theorem measurableModification_ae_eq
     (hX : ∀ i, AEMeasurable (X i) μ) (i : ℕ) :
     measurableModification X hX i =ᵐ[μ] X i :=
@@ -134,7 +142,9 @@ noncomputable def ofAEMeasurable
 /-- [Coordinatewise almost-everywhere measurability](hyp:hX), [mutual
 independence](hyp:hindep), [a common coordinate law](hyp:hident), and [a
 specified index](hyp:i) imply [that the corresponding constructed sample
-coordinate equals the original coordinate almost everywhere](goal). -/
+coordinate equals the original coordinate almost everywhere](goal).
+@isnad1 id=eventual.3h5v.s6.748323bf5ce4 from=translated src=- shape=c0959905 vocab=6ebba4ab
+-/
 theorem ofAEMeasurable_ae_eq
     (hX : ∀ i, AEMeasurable (X i) μ)
     (hindep : iIndepFun X μ)
@@ -145,7 +155,9 @@ theorem ofAEMeasurable_ae_eq
 /-- [Coordinatewise almost-everywhere measurability](hyp:hX), [a real-valued
 statistic](hyp:ψ), and [a finite set of indices](hyp:s) imply [that the sum of
 the statistic over the measurable modifications equals the original-coordinate
-sum almost everywhere](goal). -/
+sum almost everywhere](goal).
+@isnad1 id=eventual.1h6v.s6.68bc2ddf1898 from=translated src=- shape=7b6af3ad vocab=ea2a97ea
+-/
 theorem finite_sum_ae_eq
     (hX : ∀ i, AEMeasurable (X i) μ) (ψ : E → ℝ) (s : Finset ℕ) :
     (fun ω => ∑ i ∈ s, ψ (measurableModification X hX i ω)) =ᵐ[μ]
@@ -160,7 +172,9 @@ theorem finite_sum_ae_eq
 independence](hyp:hindep), [a common coordinate law](hyp:hident), [a
 real-valued statistic](hyp:ψ), and [a sample size](hyp:n) imply [that the
 measurable sample mean equals the original-coordinate sample mean almost
-everywhere](goal). -/
+everywhere](goal).
+@isnad1 id=eventual.3h6v.s7.582687665b34 from=translated src=- shape=b6759c31 vocab=11702444
+-/
 theorem sampleMean_ae_eq
     (hX : ∀ i, AEMeasurable (X i) μ)
     (hindep : iIndepFun X μ)

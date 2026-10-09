@@ -15,7 +15,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- [Under the n-fold product of a real probability law, the characteristic
 function of the coordinate sum at frequency t is the n-th power of the
-one-coordinate characteristic function at t](goal). -/
+one-coordinate characteristic function at t](goal).
+@isnad1 id=eq.0h3v.s7.541266722bfe from=translated src=- shape=ef59292a vocab=e385699c
+-/
 theorem iid_sum_charFun_product
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (n : ℕ) (t : ℝ) :

@@ -41,7 +41,9 @@ namespace VarConstr2
 variable {K : ℕ} (P : VarConstr2 K)
 
 /-- The propensity perturbation's squared `L²` error is exactly the average of
-`(m₀ⱼ·κⱼ)²`, hence `≤ εm` whenever every pair satisfies `(m₀ⱼ·κⱼ)² ≤ εm`. -/
+`(m₀ⱼ·κⱼ)²`, hence `≤ εm` whenever every pair satisfies `(m₀ⱼ·κⱼ)² ≤ εm`.
+@isnad1 id=le.1h4v.s6.1d9f296e2261 from=translated src=- shape=d7d76a11 vocab=075bf653
+-/
 theorem l2sq_mPert2_le [NeZero K] {εm : ℝ}
     (hm : ∀ j, (P.m₀ j * P.κ j) ^ 2 ≤ εm) (lam : Fin K → Bool) :
     l2sq (P.mPert2 lam) (P.mhat2 (K := K)) ≤ εm := by
@@ -62,7 +64,9 @@ theorem l2sq_mPert2_le [NeZero K] {εm : ℝ}
         apply mul_le_mul_of_nonneg_left hsum; positivity
     _ = εm := by field_simp
 
-/-- The control outcome arm is unchanged, so its `L²` error is `0`. -/
+/-- The control outcome arm is unchanged, so its `L²` error is `0`.
+@isnad1 id=eq.0h3v.s5.304c496cb360 from=translated src=- shape=6bb9cf78 vocab=0be9cf57
+-/
 theorem l2sq_gPert2_false (lam : Fin K → Bool) :
     l2sq (P.gPert2 lam false) (P.ghat2 false) = 0 := by
   have h : P.gPert2 lam false = P.ghat2 false := by
@@ -70,7 +74,9 @@ theorem l2sq_gPert2_false (lam : Fin K → Bool) :
   rw [h, l2sq_self]
 
 /-- The treated arm's pointwise deviation from `ĝ(1,x) = g₁ x.1` is
-`β·(α g₁ x.1 − Δ)/D`. -/
+`β·(α g₁ x.1 − Δ)/D`.
+@isnad1 id=eq.0h4v.s6.37f28f2d3b8a from=translated src=- shape=cb11e8c2 vocab=c3f83f10
+-/
 theorem gPert2_true_sub (lam : Fin K → Bool) (x : Fin K × Bool) :
     P.gPert2 lam true x - P.g₁ x.1
       = P.β * (P.α * P.g₁ x.1 - Δ lam x) / P.D2 lam x := by
@@ -83,7 +89,9 @@ theorem gPert2_true_sub (lam : Fin K → Bool) (x : Fin K × Bool) :
   ring
 
 /-- The treated arm's squared `L²` error is `≤ εg` whenever every pair satisfies
-`β²·(α g₁ⱼ + 1)²/(1 − β/g₁ⱼ − αβ)² ≤ εg`. -/
+`β²·(α g₁ⱼ + 1)²/(1 − β/g₁ⱼ − αβ)² ≤ εg`.
+@isnad1 id=le.1h4v.s7.6d40c7e88f2e from=translated src=- shape=ad714913 vocab=765bdeac
+-/
 theorem l2sq_gPert2_true_le [NeZero K] {εg : ℝ}
     (hg : ∀ j, P.β ^ 2 * (P.α * P.g₁ j + 1) ^ 2
         / (1 - P.β / P.g₁ j - P.α * P.β) ^ 2 ≤ εg) (lam : Fin K → Bool) :
@@ -140,7 +148,9 @@ If [the squared quantity `(m₀ⱼ·κⱼ)²` is at most `εm` at every cell `j`
 worst-case squared deviation of the perturbed treated-arm outcome regression is at most
 `εg` at every cell `j`](hyp:hg), and [`εg` is nonnegative](hyp:hεg), then [the perturbed
 propensity and outcome-regression pair `(mλ, gλ)` lies in the structure-agnostic nuisance
-class `ℱ(εg, εm)` around the cell-varying center `(m̂, ĝ)`](goal). -/
+class `ℱ(εg, εm)` around the cell-varying center `(m̂, ĝ)`](goal).
+@isnad1 id=inclass.3h5v.s7.82ff080bdc05 from=translated src=- shape=8c6aaf46 vocab=8af67502
+-/
 theorem inClass2 [NeZero K] {εg εm : ℝ}
     (hm : ∀ j, (P.m₀ j * P.κ j) ^ 2 ≤ εm)
     (hg : ∀ j, P.β ^ 2 * (P.α * P.g₁ j + 1) ^ 2

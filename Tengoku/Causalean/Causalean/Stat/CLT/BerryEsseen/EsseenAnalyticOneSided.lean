@@ -19,7 +19,9 @@ open MeasureTheory
 distance](hyp:hL,hdown) and
 [a positive bandwidth T](hyp:hT), [the value of H at every point is at most
 1/π times the integral over [−T, T] of the magnitude of its Fourier
-transform, plus the sharp one-sided Esseen smoothing error 24L/(πT)](goal). -/
+transform, plus the sharp one-sided Esseen smoothing error 24L/(πT)](goal).
+@isnad1 id=le.4h4v.s7.c517cab92ad7 from=translated src=- shape=42113c37 vocab=b683fa1c
+-/
 theorem integrable_one_sided_esseen_fourier_bound
     (H : ℝ → ℝ) (hH : Integrable H volume)
     (L : ℝ) (hL : 0 ≤ L)

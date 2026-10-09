@@ -23,7 +23,9 @@ open MeasureTheory ProbabilityTheory
 difference with the fourth-power sinc density equals 1/(2π) times the
 integral over [−T, T] of exp(−itz)·i·(φ_μ(t) − φ_ν(t))/t times the kernel's
 Fourier transform at t](goal). The quotient is assigned zero at frequency
-zero, which does not change the interval integral. -/
+zero, which does not change the interval integral.
+@isnad1 id=eq.3h4v.s8.95b446db3977 from=translated src=- shape=b33f1439 vocab=795a6919
+-/
 theorem sinc4_smoothed_cdf_fourier_identity
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

@@ -42,7 +42,9 @@ namespace Causalean.Mathlib.Probability.SteinMethod
 
 /-- **CDF convergence from characteristic-function convergence.** A sequence of real probability
 laws whose characteristic functions converge to those of an atomless target law has convergent
-CDF values at every threshold. -/
+CDF values at every threshold.
+@isnad1 id=tendsto.1h3v.s7.d3b3ba686eee from=translated src=- shape=58701f10 vocab=7b1d712e
+-/
 theorem cdf_tendsto_of_charFun_tendsto (lawn : ℕ → ProbabilityMeasure ℝ)
     (ν : ProbabilityMeasure ℝ) [NullSingletonClass (ν : Measure ℝ)]
     (hchar : ∀ t : ℝ, Tendsto (fun n => charFun (lawn n : Measure ℝ) t) atTop
@@ -68,7 +70,9 @@ theorem cdf_tendsto_of_charFun_tendsto (lawn : ℕ → ProbabilityMeasure ℝ)
   exact measure_ne_top _ _
 
 /-- A measurable real random variable under a finite measure has a characteristic function whose
-real and imaginary components are the corresponding cosine and sine integrals. -/
+real and imaginary components are the corresponding cosine and sine integrals.
+@isnad1 id=eq.1h4v.s7.9c6b32147b74 from=translated src=- shape=09608720 vocab=ae1d20c0
+-/
 theorem charFun_map_eq_cos_sin {Ω : Type*} [MeasurableSpace Ω] (ν : Measure Ω)
     [IsFiniteMeasure ν] (W : Ω → ℝ) (hW : Measurable W) (t : ℝ) :
     charFun (ν.map W) t
@@ -107,7 +111,9 @@ theorem charFun_map_eq_cos_sin {Ω : Type*} [MeasurableSpace Ω] (ν : Measure �
 
 /-- For uniformly bounded, mean-zero locally dependent sums with unit variance whose Stein error
 terms vanish, expectations of a differentiable test function converge to its standard-normal
-expectation. -/
+expectation.
+@isnad1 id=tendsto.11h9v.s9.0b8bc8c1c62c from=translated src=- shape=928b9ca7 vocab=6c82cac4
+-/
 theorem stein_expect_tendsto
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))
     [∀ n, IsProbabilityMeasure (μ n)]
@@ -161,7 +167,9 @@ of the summands outside its neighborhood](hyp:hindep); suppose the standardized 
 [unit variance](hyp:hvar), and that [the variance of the neighborhood-weighted cross
 term](hyp:herr1) and [the aggregate third-absolute-moment error term](hyp:herr2) both tend
 to zero as `n → ∞`. Then [for every threshold `s`, the CDF of the dependency sum under `μ n`
-at `s` converges, as `n → ∞`, to the standard-normal CDF at `s`](goal). -/
+at `s` converges, as `n → ∞`, to the standard-normal CDF at `s`](goal).
+@isnad1 id=tendsto.8h7v.s9.cac2b36899c6 from=translated src=- shape=70441f8d vocab=049146cc
+-/
 theorem stein_cdf_clt
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))
     [∀ n, IsProbabilityMeasure (μ n)]

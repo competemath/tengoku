@@ -28,6 +28,9 @@ def LeadsTo {X : Type*} (xs : Stream' X) (p q : Set X) : Prop :=
 
 variable {X : Type*} {xs : Stream' X}
 
+/--
+@isnad1 id=leadsto.1h4v.s4.6670893a7475 from=translated src=- shape=176112c9 vocab=6c1376b4
+-/
 theorem leads_to_step {p q : Set X}
     (h : Step xs p q) : LeadsTo xs p q := by
   intro k h_p
@@ -35,6 +38,9 @@ theorem leads_to_step {p q : Set X}
   · omega
   · exact h k h_p
 
+/--
+@isnad1 id=leadsto.2h5v.s4.b058c9aaf898 from=translated src=- shape=306dd523 vocab=540ee736
+-/
 theorem leads_to_trans {p q r : Set X}
     (h1 : LeadsTo xs p q) (h2 : LeadsTo xs q r) : LeadsTo xs p r := by
   intro k h_p
@@ -44,6 +50,9 @@ theorem leads_to_trans {p q r : Set X}
   · omega
   · assumption
 
+/--
+@isnad1 id=frequent.2h4v.s5.7de42194d248 from=translated src=- shape=061f503c vocab=61748018
+-/
 theorem frequently_leads_to_frequently {p q : Set X}
     (h1 : ∃ᶠ k in atTop, xs k ∈ p) (h2 : LeadsTo xs p q) : ∃ᶠ k in atTop, xs k ∈ q := by
   rw [frequently_atTop] at h1 ⊢

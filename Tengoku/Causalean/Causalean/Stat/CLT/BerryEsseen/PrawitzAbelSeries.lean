@@ -18,7 +18,9 @@ open MeasureTheory
 [any real frequency x](hyp:x), [the damped triangularly weighted sine
 coefficients r^(n+1)·∫₀¹ (1 − t)·sin(2π(n+1)t)·sin(2πxt) dt are summable,
 and twice their sum equals the weighted integral of the rational Abel kernel
-2r·sin(2πt)/(1 − 2r·cos(2πt) + r²) against sin(2πxt)](goal). -/
+2r·sin(2πt)/(1 − 2r·cos(2πt) + r²) against sin(2πxt)](goal).
+@isnad1 id=and.2h2v.s9.9bf234ebb77a from=translated src=- shape=fe2546a7 vocab=66bdd16f
+-/
 theorem prawitz_abel_weighted_integral_series
     (x r : ℝ) (hr : 0 < r) (hr1 : r < 1) :
     Summable (fun n : ℕ => r ^ (n + 1) *
