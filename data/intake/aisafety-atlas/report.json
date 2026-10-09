@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "7304ad501663658b448fb18087a1fce36a82f78f7175c4408ef9a87c65a25ab9",
+ "library": "aisafety-atlas",
+ "lint_mode": "proposed",
+ "modules": 1,
+ "part": 1,
+ "theorems": 0
+}
