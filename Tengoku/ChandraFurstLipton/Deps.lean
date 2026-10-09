@@ -1,0 +1,1 @@
+-- ChandraFurstLipton: a factory bundle (data/intake/chandra-furst-lipton). This file only marks the library for Tengoku/All.lean.
