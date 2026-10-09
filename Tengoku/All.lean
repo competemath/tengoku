@@ -1,5 +1,6 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
 import Tengoku.Carleson
+import Tengoku.GibbsMeasure
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
