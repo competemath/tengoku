@@ -18,7 +18,7 @@ import re
 import subprocess
 import sys
 
-from _git import ROOT, changed_files, fail, run
+from _git import ROOT, changed_files, fail, module_name, module_stem, run
 
 IMPORT = re.compile(r"(?:(?:public|private|meta)[ \t]+)*import[ \t]+(?:all[ \t]+)?(?P<mod>[^\s]+)")
 KEYWORD = re.compile(r"(?:module|prelude)\b")
@@ -31,7 +31,7 @@ def module_of(path: str) -> str | None:
     if path == ROOT_FILE:
         return ROOT_MODULE
     if path.startswith("Tengoku/") and path.endswith(".lean"):
-        return path[: -len(".lean")].replace("/", ".")
+        return module_name(path[: -len(".lean")])
     return None
 
 
@@ -110,7 +110,7 @@ def read_blobs(rev: str, paths: list[str]) -> dict[str, str]:
 def what_to_check(changes: list[tuple[str, str]], modules: set[str]) -> tuple[list[str], str]:
     """(the files whose imports are read, and what that covers in words): every module of the tree when the change removes or moves one, else the files it adds or edits."""
     if any(st == "D" for st, _ in changes):
-        targets = sorted(f"{m.replace('.', '/')}.lean" if m != ROOT_MODULE else ROOT_FILE for m in modules)
+        targets = sorted(f"{module_stem(m)}.lean" if m != ROOT_MODULE else ROOT_FILE for m in modules)
         return targets, f"every module of the tree ({len(targets)}): the change removes or moves one"
     targets = sorted(p for st, p in changes if st != "D")
     return targets, f"the {len(targets)} module(s) the change adds or edits"
