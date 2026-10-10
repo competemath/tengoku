@@ -9,7 +9,6 @@ import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
-import Tengoku.MeanFourier
 import Tengoku.OpenaiMath
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
@@ -31,6 +30,7 @@ import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
 import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
+import Tengoku.MeanFourier
 import Tengoku.EquationalTheories
 import Tengoku.ForbiddenMatrix
 import Tengoku.Formalslt
