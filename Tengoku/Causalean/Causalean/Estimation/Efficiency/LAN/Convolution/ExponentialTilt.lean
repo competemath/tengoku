@@ -176,7 +176,9 @@ private lemma weaklyConverges_add_tendstoInProbability_norm
       ((hX.1 n).add (hRmeas n)) f.continuous.aestronglyMeasurable).symm
   · simp [qPM]
 
-/-- Given [probability laws in every row and in the limit](hyp:hP,hQ), [joint weak convergence](hyp:hY), [a negligible additive remainder](hyp:hR), [its measurability](hyp:hRmeas), [row integrability of the exponential weights](hyp:hweight), [integrability of the limiting weight](hyp:hlimitWeight), and [normalization of their expectations](hyp:hnormalized), [bounded complex observables converge under exponential tilting](goal). -/
+/-- Given [probability laws in every row and in the limit](hyp:hP,hQ), [joint weak convergence](hyp:hY), [a negligible additive remainder](hyp:hR), [its measurability](hyp:hRmeas), [row integrability of the exponential weights](hyp:hweight), [integrability of the limiting weight](hyp:hlimitWeight), and [normalization of their expectations](hyp:hnormalized), [bounded complex observables converge under exponential tilting](goal).
+@isnad1 id=tendsto.8h8v.s9.ddea2345ef9b from=translated src=- shape=48dfb50a vocab=f6b0df79
+-/
 theorem integral_boundedContinuous_mul_exp_tendsto_of_normalized
     {S : Type*} [NormedAddCommGroup S] [NormedSpace ℝ S] [FiniteDimensional ℝ S]
     [MeasurableSpace S] [BorelSpace S]

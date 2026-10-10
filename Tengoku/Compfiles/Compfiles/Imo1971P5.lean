@@ -25,6 +25,9 @@ open scoped EuclideanGeometry
 
 abbrev Pt := EuclideanSpace ℝ (Fin 2)
 
+/--
+@isnad1 id=infinite.0h0v.s5.d6575dfd9cf1 from=translated src=- shape=71873979 vocab=9f3d4384
+-/
 lemma norm_one_infinity : {p : Pt | ‖p‖ = 1}.Infinite := by
   suffices h : (Metric.sphere (0 : Pt) 1).Infinite by
     convert h using 1; ext p; simp
@@ -41,6 +44,9 @@ lemma norm_one_infinity : {p : Pt | ‖p‖ = 1}.Infinite := by
 
 universe u
 
+/--
+@isnad1 id=ex.1h2v.s5.dff535b5c71c from=translated src=- shape=beb76a32 vocab=094768e7
+-/
 lemma exists_three_of_infinite
   {α : Type u} {s : Set α} (hs : s.Infinite)
   : ∃ p q r : α, p ∈ s ∧ q ∈ s ∧ r ∈ s
@@ -50,6 +56,9 @@ lemma exists_three_of_infinite
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff, not_or] at hrpq
   exact ⟨p, q, r, hp, hq, hr, hpq, fun h => hrpq.2 h.symm, fun h => hrpq.1 h⟩
 
+/--
+@isnad1 id=finite.1h2v.s8.26611fa9755f from=translated src=- shape=e051562b vocab=a431d91e
+-/
 lemma sphere_inter_finite
   {s₁ s₂ : EuclideanGeometry.Sphere Pt} (hs : s₁ ≠ s₂) :
   ((s₁ : Set Pt) ∩ s₂).Finite := by
@@ -61,11 +70,17 @@ lemma sphere_inter_finite
     hd hs hpq hp.left hq.left hr.left hp.right hq.right hr.right
   grind only
 
+/--
+@isnad1 id=eq.0h2v.s8.a106a86f2fdb from=translated src=- shape=a0518058 vocab=0054c16d
+-/
 lemma sphere_eq_sub_norm (o : Pt) (r : ℝ)
   : {p : Pt | ‖p - o‖ = r} = (EuclideanGeometry.Sphere.mk o r : Set Pt) := by
   ext p
   rw [Set.mem_ofPred_eq, mem_sphere_iff_norm]
 
+/--
+@isnad1 id=finite.1h1v.s8.c3514ba10c7c from=translated src=- shape=202dee7e vocab=51e2bc60
+-/
 lemma norm_one_inter_finite {s : Pt} (hs : s ≠ 0)
   : ({p : Pt | ‖p - 0‖ = 1} ∩ {p : Pt | ‖p - s‖ = 1}).Finite := by
   rw [sphere_eq_sub_norm 0 1, sphere_eq_sub_norm s 1]
@@ -76,6 +91,9 @@ lemma norm_one_inter_finite {s : Pt} (hs : s ≠ 0)
   symm
   exact hs
 
+/--
+@isnad1 id=finite.1h1v.s6.1a49928a4555 from=translated src=- shape=b346c218 vocab=99cb70c0
+-/
 lemma finite₁ {S : Set Pt} (hS : S.Finite)
   : {p | ∃ s t, s ∈ S ∧ t ∈ S ∧ s - t = p}.Finite := by
   have h' : {p | ∃ s t, s ∈ S ∧ t ∈ S ∧ s - t = p}
@@ -91,6 +109,9 @@ lemma finite₁ {S : Set Pt} (hS : S.Finite)
   intro t ht
   apply Set.finite_singleton
 
+/--
+@isnad1 id=finite.1h1v.s7.0866d65cbd79 from=translated src=- shape=c431ad2d vocab=ede4e291
+-/
 lemma finite₂ {S : Set Pt} (hS : S.Finite)
   : {p : Pt | ∃ (s t : Pt), s ∈ S ∧ t ∈ S ∧ s ≠ t ∧ ‖p‖ = 1 ∧ dist s (t + p) = 1}.Finite := by
   have h' : {p : Pt | ∃ (s t : Pt), s ∈ S ∧ t ∈ S ∧ s ≠ t ∧ ‖p‖ = 1 ∧ dist s (t + p) = 1}

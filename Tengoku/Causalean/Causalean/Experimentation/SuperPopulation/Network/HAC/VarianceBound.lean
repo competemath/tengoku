@@ -46,7 +46,9 @@ open Causalean.Experimentation.SuperPopulation Causalean.Mathlib.Probability.Ste
 variable {V Ω : Type*} [Fintype V] [DecidableEq V] [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- The network-HAC estimator equals the localized double sum `∑ᵢ Xᵢ · (∑_{j ∈ N i} Xⱼ)`: the
-pointwise identity that lets the dependency-graph variance bound apply to `V̂` verbatim. -/
+pointwise identity that lets the dependency-graph variance bound apply to `V̂` verbatim.
+@isnad1 id=eq.0h5v.s6.4c2affd42f44 from=translated src=- shape=e97ecb3f vocab=5c728a8d
+-/
 theorem netHACVarEst_eq_locProd (F : NetworkDependence V Ω μ) (ω : Ω) :
     F.netHACVarEst ω = ∑ i, F.X i ω * ∑ k ∈ F.toDepGraph.nbhd i, F.X k ω := by
   simp only [NetworkDependence.netHACVarEst, NetworkDependence.nbhd, Finset.mul_sum]
@@ -60,7 +62,9 @@ This is the genuine content of the consistency argument: because non-adjacent su
 independent (the m-dependence `NetworkDependence.indep`), the covariance between two localized
 products `Xᵢ·Tᵢ` and `Xⱼ·Tⱼ` vanishes unless `i, j` are within graph distance two; there are at
 most `card(V)·m³` such pairs, each covariance bounded by `2(m·B²)²`.  Proved by reducing to the
-dependency-graph pair-counting bound `var_nbhd_prod_le` on `F.toDepGraph`. -/
+dependency-graph pair-counting bound `var_nbhd_prod_le` on `F.toDepGraph`.
+@isnad1 id=le.3h6v.s7.2603581fd46a from=translated src=- shape=82726e9b vocab=9ecea8b5
+-/
 theorem netHACVarEst_variance_le (F : NetworkDependence V Ω μ) [IsProbabilityMeasure μ]
     {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |F.X i ω| ≤ B)
     {m : ℕ} (hdeg : ∀ i, (F.toDepGraph.nbhd i).card ≤ m) :
@@ -77,7 +81,9 @@ in the CLT regime — bounded degree `m`, summands bounded by `B n` with `B n �
 
 Squeeze the bound `2·m⁵·card(V n)·(B n)⁴` from `netHACVarEst_variance_le`, which tends to zero
 because `card(V n)·(B n)⁴ = (card(V n)·(B n)³)·(B n) → 0·0`.  This is the variance half of the
-HAC-consistency statement (`netHAC_consistent`). -/
+HAC-consistency statement (`netHAC_consistent`).
+@isnad1 id=tendsto.5h6v.s8.e59c176d7b1a from=translated src=- shape=aa2ad31e vocab=6fe10827
+-/
 theorem netHACVarEst_variance_tendsto_zero
     {V : ℕ → Type*} [∀ n, Fintype (V n)] [∀ n, DecidableEq (V n)]
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))

@@ -62,7 +62,9 @@ nonnegative benchmark remains bounded by that benchmark after division by the
 square root of the number of terms.
 
 This is the deterministic algebraic part of
-`iid_centered_sum_sq_lintegral_le`. -/
+`iid_centered_sum_sq_lintegral_le`.
+@isnad1 id=le.2h6v.s7.f97f69429d7a from=translated src=- shape=d88649eb vocab=07f237c3
+-/
 lemma lintegral_ofReal_inv_sqrt_smul_sum_sq_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {ι : Type*} (s : Finset ι) (hs_pos : 0 < s.card)
@@ -119,7 +121,9 @@ lemma lintegral_ofReal_inv_sqrt_smul_sum_sq_le
 of its squared norm, for any measure.
 
 The equality is stated in the extended nonnegative-real form used by
-nonnegative integration. -/
+nonnegative integration.
+@isnad1 id=eq.1h4v.s7.8eee9a412d0e from=translated src=- shape=c305fe63 vocab=4cec79b8
+-/
 lemma eLpNorm_two_sq_toReal_eq_integral_sq
     {X : Type*} [MeasurableSpace X] {P : Measure X}
     {E : Type*} [NormedAddCommGroup E] {f : X → E} (hf : MemLp f 2 P) :
@@ -148,7 +152,9 @@ lemma eLpNorm_two_sq_toReal_eq_integral_sq
 /-- Centering a square-integrable real variable cannot increase its second
 moment beyond its uncentered L2 energy under a probability distribution.
 
-This is the usual variance bound in nonnegative-integral form. -/
+This is the usual variance bound in nonnegative-integral form.
+@isnad1 id=le.1h3v.s7.12a93d05c732 from=translated src=- shape=b1767a46 vocab=d8461607
+-/
 lemma centered_sq_lintegral_le_eLpNorm_two_sq
     {X : Type*} [MeasurableSpace X] {P : Measure X}
     [IsProbabilityMeasure P]
@@ -173,7 +179,9 @@ lemma centered_sq_lintegral_le_eLpNorm_two_sq
 
 /-- Finitely many independent coordinates, each with its own square-integrable
 real-valued law, have a centered sum whose second moment is bounded by the sum
-of their individual squared L² norms. -/
+of their individual squared L² norms.
+@isnad1 id=le.1h4v.s8.de1b80082d4e from=translated src=- shape=be27debd vocab=e324710a
+-/
 lemma pi_centered_sum_sq_lintegral_le
     {ι : Type*} [Fintype ι] {X : ι → Type*} [∀ i, MeasurableSpace (X i)]
     {P : ∀ i, Measure (X i)} [∀ i, IsProbabilityMeasure (P i)]
@@ -253,7 +261,9 @@ lemma pi_centered_sum_sq_lintegral_le
 
 /-- Convert independence of a sub-σ-algebra and a random element into the
 product law of the joined map, with the first marginal trimmed to the
-sub-σ-algebra. -/
+sub-σ-algebra.
+@isnad1 id=eq.3h5v.s6.06caa0ef9134 from=translated src=- shape=f93505ff vocab=c87ea040
+-/
 lemma indep_trim_prod_map_eq
     {Ω β : Type*} [mΩ : MeasurableSpace Ω] [mβ : MeasurableSpace β]
     {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -284,7 +294,9 @@ The joined-law hypothesis is the output of `indep_trim_prod_map_eq` plus the
 i.i.d. product law.  What remains is the finite-product variance calculation:
 integrate first over the product coordinates, use `variance_sum_pi` to kill
 cross terms, and apply `centered_sq_lintegral_le_eLpNorm_two_sq` to each
-diagonal term. -/
+diagonal term.
+@isnad1 id=le.5h9v.s9.dbf13df6fac8 from=translated src=- shape=1ebb9862 vocab=4a497492
+-/
 lemma iid_centered_sum_sq_lintegral_unscaled_le_of_joined_law
     {Ω X : Type*} [mΩ : MeasurableSpace Ω] [mX : MeasurableSpace X]
     {μ : Measure Ω} {P : Measure X}
@@ -405,7 +417,9 @@ integrated squared centered sum bounded by its size times the integrated squared
 This is the remaining probability-theoretic core: expand the square, push the
 diagonal and off-diagonal terms through the conditional product law generated
 by `hW_indep_A` and `hW_iid_pi`, kill the cross terms by centering, and bound
-the diagonal variance by the L² norm. -/
+the diagonal variance by the L² norm.
+@isnad1 id=le.6h9v.s9.f780b5ebe39b from=translated src=- shape=b29e5dba vocab=d2e1ed6f
+-/
 lemma iid_centered_sum_sq_lintegral_unscaled_le
     {Ω X : Type*} [mΩ : MeasurableSpace Ω] [mX : MeasurableSpace X]
     {μ : Measure Ω} {P : Measure X}
@@ -492,7 +506,9 @@ inequality is `Var_P(g ω) ≤ E_P[(g ω)²]` (a one-line bound).
 *Combine.*  Summing the `|s|` diagonal terms and using the cross-term
 vanishing,
 `Σ_i Σ_j ∫ Y_i Y_j ≤ |s| · ∫ ‖g‖²_{L²(P)}`.
-Dividing by `|s|` (the `(1/√|s|)²` prefactor) gives the claim. -/
+Dividing by `|s|` (the `(1/√|s|)²` prefactor) gives the claim.
+@isnad1 id=le.7h9v.s9.36f0bd27596a from=translated src=- shape=f90953c8 vocab=a20f5a13
+-/
 theorem iid_centered_sum_sq_lintegral_le
     {Ω X : Type*} [mΩ : MeasurableSpace Ω] [mX : MeasurableSpace X]
     {μ : Measure Ω} {P : Measure X}

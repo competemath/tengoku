@@ -6,6 +6,9 @@ public section
 
 -- Upstreaming status: ready
 
+/--
+@isnad1 id=le.2h5v.s6.1f0fcee70b61 from=translated src=- shape=5a2da1cb vocab=457fa91f
+-/
 theorem ciSup_le_ciSup {α : Type*} {ι ι' : Sort*} [Nonempty ι] [ConditionallyCompleteLattice α]
   {f : ι → α} {g : ι' → α} (h₀ : ∀ i, ∃ j, f i ≤ g j) (hg : BddAbove (Set.range g)) :
     ⨆ i, f i ≤ ⨆ j, g j := by
@@ -15,6 +18,9 @@ theorem ciSup_le_ciSup {α : Type*} {ι ι' : Sort*} [Nonempty ι] [Conditionall
   apply le_ciSup_of_le hg _ hj
 
 --currently unused
+/--
+@isnad1 id=eq.2h5v.s6.9bce3b198fad from=translated src=- shape=9886736f vocab=7ff99aae
+-/
 theorem ciSup_eq_ciSup {α : Type*} {ι ι' : Sort*} [ConditionallyCompleteLinearOrder α]
   {f : ι → α} {g : ι' → α} (h₀ : ∀ i, ∃ j, f i ≤ g j) (h₁ : ∀ j, ∃ i, g j ≤ f i) :
     ⨆ i, f i = ⨆ j, g j := by
@@ -58,6 +64,9 @@ theorem ciSup_eq_ciSup {α : Type*} {ι ι' : Sort*} [ConditionallyCompleteLinea
   push Not at hι hι'
   rw [iSup_of_empty', iSup_of_empty']
 
+/--
+@isnad1 id=eq.0h1v.s6.faa8d29f5adb from=translated src=- shape=a2893651 vocab=b8e6ed2f
+-/
 @[simp]
 theorem WithTop.iSup_coe_eq_top' {α : Type*} [ConditionallyCompleteLinearOrderBot α] [NoTopOrder α] :
   ⨆ (i : α), ↑i = (⊤ : WithTop α) := by

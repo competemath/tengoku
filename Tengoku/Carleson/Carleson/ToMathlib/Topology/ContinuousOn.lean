@@ -9,6 +9,9 @@ public section
 
 open NNReal ENNReal
 
+/--
+@isnad1 id=continuo.4h5v.s6.2a7a1c39765c from=translated src=- shape=59960b74 vocab=89fd6be3
+-/
 theorem ContinuousWithinAt.ennreal_mul {X : Type*}
     [TopologicalSpace X] {f g : X → ℝ≥0∞} {s : Set X} {t : X} (hf : ContinuousWithinAt f s t)
     (hg : ContinuousWithinAt g s t) (h₁ : f t ≠ 0 ∨ g t ≠ ∞) (h₂ : g t ≠ 0 ∨ f t ≠ ∞) :
@@ -18,6 +21,9 @@ theorem ContinuousWithinAt.ennreal_mul {X : Type*}
 open MeasureTheory
 
 --TODO: generalize?
+/--
+@isnad1 id=ne.3h6v.s7.35ecde109b17 from=translated src=- shape=8159992d vocab=fab35a5f
+-/
 lemma ContinuousWithinAt.measure_lt_ne_zero {α : Type*} {m : MeasurableSpace α} {μ : Measure α}
     [TopologicalSpace α] [LinearOrder α] [DenselyOrdered α]
     [OrderTopology α] [ClosedIicTopology α] [μ.IsOpenPosMeasure] {f : α → ℝ≥0∞} {x : α}
@@ -46,6 +52,9 @@ lemma ContinuousWithinAt.measure_lt_ne_zero {α : Type*} {m : MeasurableSpace α
 
 --TODO: generalize?
 --currently unused
+/--
+@isnad1 id=eq.2h1v.s6.def2ef419088 from=translated src=- shape=832f2bb1 vocab=ac99c6de
+-/
 lemma eLpNormEssSup_eq_iSup' {f : ℝ≥0∞ → ℝ≥0∞}
   (hf : ∀ (a : ℝ≥0∞) (x : ℝ≥0∞), a < f x → ContinuousWithinAt f (Set.Ioi x) x) (f_top : f ⊤ = ⊥) :
     eLpNormEssSup f volume = ⨆ x, f x := by
@@ -59,6 +68,9 @@ lemma eLpNormEssSup_eq_iSup' {f : ℝ≥0∞ → ℝ≥0∞}
   exact zero_le
 
 --TODO: generalize?
+/--
+@isnad1 id=eq.1h1v.s6.618ad093cb80 from=translated src=- shape=d3b58f63 vocab=55b3f930
+-/
 lemma eLpNormEssSup_nnreal_eq_iSup_nnreal {f : ℝ≥0∞ → ℝ≥0∞}
   (hf : ∀ (a : ℝ≥0∞) (x : ℝ≥0), a < f x → ContinuousWithinAt f (Set.Ioi ↑x) ↑x) :
     eLpNormEssSup (fun t : ℝ≥0 ↦ f t) volume = ⨆ (x : ℝ≥0), f x := by

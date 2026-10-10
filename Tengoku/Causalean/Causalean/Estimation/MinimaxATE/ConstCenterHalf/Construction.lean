@@ -54,16 +54,24 @@ open scoped BigOperators
 /-- For [a Boolean-valued position](hyp:b), [the sign function](goal) equals $1$ when the position is true and $-1$ when it is false. -/
 def signOf (b : Bool) : ℝ := if b then 1 else -1
 
-/-- The sign of the true Boolean value is one. -/
+/-- The sign of the true Boolean value is one.
+@isnad1 id=eq.0h0v.s3.19dc6b26ac0e from=translated src=- shape=b0ae1d2b vocab=271480c0
+-/
 @[simp] theorem signOf_true : signOf true = 1 := rfl
-/-- The sign of the false Boolean value is minus one. -/
+/-- The sign of the false Boolean value is minus one.
+@isnad1 id=eq.0h0v.s3.e5421017a79c from=translated src=- shape=f7285ee8 vocab=6cb80026
+-/
 @[simp] theorem signOf_false : signOf false = -1 := rfl
 
-/-- The square of every Boolean sign is one. -/
+/-- The square of every Boolean sign is one.
+@isnad1 id=eq.0h1v.s4.46d7041cc386 from=translated src=- shape=d9ef4337 vocab=4fe1794d
+-/
 theorem signOf_sq (b : Bool) : (signOf b) ^ 2 = 1 := by
   cases b <;> norm_num [signOf]
 
-/-- Every Boolean sign is either one or minus one. -/
+/-- Every Boolean sign is either one or minus one.
+@isnad1 id=or.0h1v.s4.72e502da7a97 from=translated src=- shape=af53c325 vocab=d43a399a
+-/
 theorem signOf_mem (b : Bool) : signOf b = 1 ∨ signOf b = -1 := by
   cases b <;> simp [signOf]
 
@@ -75,24 +83,32 @@ Within each pair the two positions have opposite signs, and the sign vector choo
 orientation of each pair. -/
 def Δ (lam : Fin K → Bool) (x : Fin K × Bool) : ℝ := signOf x.2 * signOf (lam x.1)
 
-/-- The Rademacher bump has square one at every paired cell. -/
+/-- The Rademacher bump has square one at every paired cell.
+@isnad1 id=eq.0h3v.s5.90eb3afb967f from=translated src=- shape=154ee3b0 vocab=43baf360
+-/
 theorem Δ_sq (lam : Fin K → Bool) (x : Fin K × Bool) : (Δ lam x) ^ 2 = 1 := by
   unfold Δ
   rw [mul_pow, signOf_sq, signOf_sq, mul_one]
 
-/-- The Rademacher bump only takes the values one and minus one. -/
+/-- The Rademacher bump only takes the values one and minus one.
+@isnad1 id=or.0h3v.s5.3655e8429a5e from=translated src=- shape=8f1c7bee vocab=33e58b70
+-/
 theorem Δ_mem (lam : Fin K → Bool) (x : Fin K × Bool) : Δ lam x = 1 ∨ Δ lam x = -1 := by
   unfold Δ
   rcases signOf_mem x.2 with h2 | h2 <;> rcases signOf_mem (lam x.1) with h1 | h1 <;>
     simp [h2, h1]
 
-/-- The Rademacher bump is always at most one. -/
+/-- The Rademacher bump is always at most one.
+@isnad1 id=le.0h3v.s4.6623dcdb85c3 from=translated src=- shape=0191930f vocab=6e8db8d5
+-/
 theorem Δ_le_one (lam : Fin K → Bool) (x : Fin K × Bool) : Δ lam x ≤ 1 := by
   rcases Δ_mem lam x with h | h
   · rw [h]
   · rw [h]; norm_num
 
-/-- The Rademacher bump is always at least minus one. -/
+/-- The Rademacher bump is always at least minus one.
+@isnad1 id=le.0h3v.s4.69ac83302bf2 from=translated src=- shape=9026536c vocab=0f08b969
+-/
 theorem neg_one_le_Δ (lam : Fin K → Bool) (x : Fin K × Bool) : -1 ≤ Δ lam x := by
   rcases Δ_mem lam x with h | h
   · rw [h]; norm_num
@@ -120,7 +136,9 @@ section Validity
 variable {α β : ℝ}
 
 /-- The treated-arm denominator in the perturbed outcome regression is positive in the
-valid parameter regime. -/
+valid parameter regime.
+@isnad1 id=lt.3h5v.s7.28854669cd30 from=translated src=- shape=3887fd8e vocab=748eb506
+-/
 theorem denom_pos (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2) (hα : 0 ≤ α)
     (lam : Fin K → Bool) (x : Fin K × Bool) : 0 < 1 - 2 * β * Δ lam x := by
   have hβ4 : β ≤ 1 / 4 := by linarith
@@ -130,13 +148,17 @@ theorem denom_pos (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2) (hα : 0 ≤ 
 
 /-- [The null construction's centered propensity and outcome-regression functions, both
 fixed at one half, define a valid finite observed-data model, i.e. take values in
-`[0,1]`](goal). -/
+`[0,1]`](goal).
+@isnad1 id=validdgp.0h1v.s3.741d6fa87958 from=translated src=- shape=daf3eb8d vocab=88d88e93
+-/
 theorem validDGP_hat : ValidDGP (C := Fin K × Bool) mhat ghat := by
   refine ⟨fun x => ?_, fun d x => ?_⟩ <;> · simp only [mhat, ghat]; norm_num
 
 /-- Given [nonnegative bump magnitudes α and β with `α + 2β ≤ 1/2`](hyp:hα,hβ,hαβ), [the
 perturbed propensity and outcome-regression functions indexed by a Rademacher sign vector `lam`
-define a valid finite observed-data model, i.e. take values in `[0,1]`](goal). -/
+define a valid finite observed-data model, i.e. take values in `[0,1]`](goal).
+@isnad1 id=validdgp.3h4v.s6.77ca50fc1af6 from=translated src=- shape=23d6fd01 vocab=24e04110
+-/
 theorem validDGP_perturbed (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2)
     (lam : Fin K → Bool) :
     ValidDGP (mPerturbed β lam) (gPerturbed α β lam) := by

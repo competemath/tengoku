@@ -26,6 +26,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 variable [BorelSpace E]
 
+/--
+@isnad1 id=eq.0h1v.s8.39c81052e475 from=translated src=- shape=381b685a vocab=bb861a8f
+-/
 lemma covMatrix_stdGaussian : covMatrix (stdGaussian E) = 1 := by
   rw [covMatrix, covarianceBilin_stdGaussian]
   exact ContinuousBilinForm.inner_toMatrix_eq_one (stdOrthonormalBasis ℝ E)
@@ -33,6 +36,9 @@ lemma covMatrix_stdGaussian : covMatrix (stdGaussian E) = 1 := by
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
   {μ : EuclideanSpace ℝ ι} {S : Matrix ι ι ℝ} {hS : S.PosSemidef}
 
+/--
+@isnad1 id=eq.0h4v.s12.08b80212f51c from=translated src=- shape=371a4d1c vocab=bc82c2ce
+-/
 lemma inner_toEuclideanCLM (x y : EuclideanSpace ℝ ι) :
     ⟪x, toEuclideanCLM (𝕜 := ℝ) S y⟫
       = (EuclideanSpace.basisFun ι ℝ).toBasis.repr x ⬝ᵥ S
@@ -49,6 +55,9 @@ lemma inner_toEuclideanCLM (x y : EuclideanSpace ℝ ι) :
   rw [mul_comm (x.ofLp i)]
   simp [Pi.single_apply]
 
+/--
+@isnad1 id=haslaw.1h4v.s6.fc9822a17616 from=translated src=- shape=dc69e0ba vocab=48dee139
+-/
 lemma hasLaw_eval_multivariateGaussian (hS : S.PosSemidef) {i : ι} :
     HasLaw (fun x ↦ x i) (gaussianReal (μ i) (S i i).toNNReal) (multivariateGaussian μ S) where
   aemeasurable := Measurable.aemeasurable (by fun_prop)

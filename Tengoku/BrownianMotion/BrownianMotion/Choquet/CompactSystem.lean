@@ -26,6 +26,9 @@ section Aux
 
 variable {α : Type*} {S : Set (Set α)}
 
+/--
+@isnad1 id=iff.0h3v.s7.da07ae6993ca from=translated src=- shape=d5318d35 vocab=57622048
+-/
 lemma mem_supClosure_set_iff (s : Set α) :
     s ∈ supClosure S ↔ ∃ L : Finset (Set α), L.Nonempty ∧ s = ⋃₀ L ∧ ↑L ⊆ S := by
   refine ⟨fun ⟨L, hL⟩ ↦ ?_, fun h ↦ ?_⟩
@@ -36,6 +39,9 @@ lemma mem_supClosure_set_iff (s : Set α) :
     refine ⟨L, hL_nonempty, hL_subset, ?_⟩
     rw [hL_eq, ← Finset.sup_id_set_eq_sUnion, Finset.sup'_eq_sup]
 
+/--
+@isnad1 id=iff.0h3v.s7.246addbea4bd from=translated src=- shape=d5318d35 vocab=039aff57
+-/
 lemma mem_infClosure_set_iff (s : Set α) :
     s ∈ infClosure S ↔ ∃ L : Finset (Set α), L.Nonempty ∧ s = ⋂₀ L ∧ ↑L ⊆ S := by
   refine ⟨fun ⟨L, hL⟩ ↦ ?_, fun h ↦ ?_⟩
@@ -46,6 +52,9 @@ lemma mem_infClosure_set_iff (s : Set α) :
     refine ⟨L, hL_nonempty, hL_subset, ?_⟩
     rw [hL_eq, ← Finset.inf_id_set_eq_sInter, Finset.inf'_eq_inf]
 
+/--
+@isnad1 id=iff.0h3v.s7.283033640f0e from=translated src=- shape=ba3bdc60 vocab=56f10ea6
+-/
 lemma mem_supClosure_set_iff' (s : Set α) :
     s ∈ supClosure S ↔ ∃ (t : Finset ℕ) (_ : t.Nonempty) (A : ℕ → Set α),
       (∀ n ∈ t, A n ∈ S) ∧ s = ⋃ n ∈ t, A n := by
@@ -73,6 +82,9 @@ lemma mem_supClosure_set_iff' (s : Set α) :
         exact ⟨_, Finset.mem_toList.mp (List.getElem_mem hn), hxn⟩
   · exact ⟨t.image A, by simpa, by simpa, by simpa⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.861dca09962d from=translated src=- shape=720e1eb9 vocab=2b804a6f
+-/
 lemma mem_supClosure_insert_empty_iff (s : Set α) :
     s ∈ supClosure (insert ∅ S) ↔ ∃ L : Finset (Set α), s = ⋃₀ L ∧ ↑L ⊆ insert ∅ S := by
   rw [mem_supClosure_set_iff]
@@ -87,6 +99,9 @@ lemma mem_supClosure_insert_empty_iff (s : Set α) :
     · simpa using hL_eq
     · simpa [hL_nonempty]
 
+/--
+@isnad1 id=iff.0h3v.s7.0c86810fe676 from=translated src=- shape=f83533ae vocab=5f9a9d56
+-/
 lemma mem_infClosure_insert_univ_iff (s : Set α) :
     s ∈ infClosure (insert Set.univ S) ↔
       ∃ L : Finset (Set α), s = ⋂₀ L ∧ ↑L ⊆ insert Set.univ S := by
@@ -103,14 +118,23 @@ lemma mem_infClosure_insert_univ_iff (s : Set α) :
 
 end Aux
 
+/--
+@isnad1 id=iscompac.0h1v.s4.6451ba0a10bd from=translated src=- shape=7835ae7f vocab=13a4f156
+-/
 lemma isCompactSystem_singleton_empty {α : Type*} : IsCompactSystem {(∅ : Set α)} :=
   fun C hC _ ↦ ⟨0, by simpa using hC 0⟩
 
+/--
+@isnad1 id=iscompac.0h1v.s5.9c4d73e57d00 from=translated src=- shape=5ebdf361 vocab=a67d31c9
+-/
 lemma isCompactSystem_Icc (α : Type*) [TopologicalSpace α] [T2Space α] [Preorder α]
     [CompactIccSpace α] :
     IsCompactSystem {t | ∃ a b : α, Set.Icc a b = t} :=
   (isCompactSystem_isCompact _).mono fun _ ⟨_, _, heq⟩ ↦ heq ▸ isCompact_Icc
 
+/--
+@isnad1 id=iscompac.0h1v.s5.9bc22a7d7b24 from=translated src=- shape=72e88313 vocab=18ed3719
+-/
 lemma isCompactSystem_insert_empty_Icc (α : Type*) [TopologicalSpace α] [T2Space α] [Preorder α]
     [CompactIccSpace α] :
     IsCompactSystem (insert ∅ {t | ∃ a b : α, Set.Icc a b = t}) := by
@@ -119,7 +143,9 @@ lemma isCompactSystem_insert_empty_Icc (α : Type*) [TopologicalSpace α] [T2Spa
   | inl h => simp [h]
   | inr h => obtain ⟨_, _, heq⟩ := h; exact heq ▸ isCompact_Icc
 
-/-- The set of Finset coercions forms a compact system. -/
+/-- The set of Finset coercions forms a compact system.
+@isnad1 id=iscompac.0h1v.s4.8c711f4b6519 from=translated src=- shape=bbe6beca vocab=9a5d2562
+-/
 lemma IsCompactSystem.finsetCoe :
     IsCompactSystem {t : Set 𝓚 | ∃ s : Finset 𝓚, (s : Set 𝓚) = t} := by
   let : TopologicalSpace 𝓚 := ⊥
@@ -141,7 +167,9 @@ lemma IsCompactSystem.finsetCoe :
   simp only [Set.nonempty_iInter]
   use x
 
-/-- Transport a compact system along an equivalence of types. -/
+/-- Transport a compact system along an equivalence of types.
+@isnad1 id=iscompac.1h4v.s5.a9e76dfad120 from=translated src=- shape=b3797286 vocab=8c1622aa
+-/
 lemma IsCompactSystem.equiv (e : 𝓚 ≃ 𝓚') {S : Set (Set 𝓚)} (hS : IsCompactSystem S) :
     IsCompactSystem {t : Set 𝓚' | e ⁻¹' t ∈ S} := by
   intro D hD hD_empty
@@ -153,6 +181,9 @@ lemma IsCompactSystem.equiv (e : 𝓚 ≃ 𝓚') {S : Set (Set 𝓚)} (hS : IsCo
   rw [Set.dissipate, ← Set.preimage_iInter₂] at hN
   refine ⟨N, by rw [Set.dissipate, h, hN]⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.b1e162f4075e from=translated src=- shape=32301361 vocab=1ef0eb2b
+-/
 lemma iInter_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} (s : β → Set ι)
     (f : β → (i : ι) → Set (𝓚 i)) :
      ⋂ b, (s b).sigma (f b) = ∅ ↔ ∀ i ∈ ⋂ b, s b, ⋂ b, f b i = ∅ := by
@@ -160,7 +191,9 @@ lemma iInter_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} (s : β → S
   exact ⟨fun h i hi x hx => h ⟨i, x⟩ fun b => ⟨hi b, hx b⟩,
     fun h ⟨i, x⟩ hx => h i (fun b => (hx b).1) x (fun b => (hx b).2)⟩
 
-/-- Variant with an additional condition `p b` (e.g. `b ≤ n` for `dissipate`). -/
+/-- Variant with an additional condition `p b` (e.g. `b ≤ n` for `dissipate`).
+@isnad1 id=iff.0h6v.s7.53131f9f624c from=translated src=- shape=0ed8e05e vocab=1ef0eb2b
+-/
 lemma iInter₂_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} {p : β → Prop}
     (s : β → Set ι) (f : β → (i : ι) → Set (𝓚 i)) :
     ⋂ (b) (_ : p b), (s b).sigma (f b) = ∅ ↔
@@ -169,6 +202,9 @@ lemma iInter₂_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} {p : β �
   exact ⟨fun h i hi x hx => h ⟨i, x⟩ fun b hb => ⟨hi b hb, hx b hb⟩,
     fun h ⟨i, x⟩ hx => h i (fun b hb => (hx b hb).1) x (fun b hb => (hx b hb).2)⟩
 
+/--
+@isnad1 id=iscompac.1h3v.s6.fb3c4e9677a3 from=translated src=- shape=8dae1de0 vocab=99fb2a86
+-/
 lemma IsCompactSystem.sigma {𝓚 : ι → Type*} {q : (i : ι) → Set (Set (𝓚 i))}
     (hq : ∀ i, IsCompactSystem (q i)) :
     IsCompactSystem {t : Set (Σ i, 𝓚 i) |
@@ -229,7 +265,9 @@ lemma IsCompactSystem.sigma {𝓚 : ι → Type*} {q : (i : ι) → Set (Set (�
     exact hN j hj0 x
       (Set.iInter₂_mono' (fun b' j' => ⟨b', j'.trans hle, Set.Subset.rfl⟩) hjx)
 
-/-- Sigma variant with fixed `s = Finset.univ`: subsystem of `IsCompactSystem.sigma`. -/
+/-- Sigma variant with fixed `s = Finset.univ`: subsystem of `IsCompactSystem.sigma`.
+@isnad1 id=iscompac.1h3v.s6.475e7f735236 from=translated src=- shape=f158ac77 vocab=9185edf3
+-/
 lemma IsCompactSystem.sigma_ofFintype [Finite ι] {𝓚 : ι → Type*}
     {q : (i : ι) → Set (Set (𝓚 i))} (hq : ∀ i, IsCompactSystem (q i)) :
     IsCompactSystem (Set.univ.sigma '' (Set.univ.pi q)) := by
@@ -240,6 +278,9 @@ lemma IsCompactSystem.sigma_ofFintype [Finite ι] {𝓚 : ι → Type*}
   refine ⟨(Finset.univ : Finset ι), f, fun j _ => hf j (Set.mem_univ _), ?_⟩
   rw [Finset.coe_univ]; exact hfC
 
+/--
+@isnad1 id=iscompac.2h4v.s6.550c97a08e2f from=translated src=- shape=735a2f82 vocab=24f863a2
+-/
 lemma IsCompactSystem.sum.{u} {𝓚 𝓚' : Type u} {q : Set (Set 𝓚)} {q' : Set (Set 𝓚')}
     (hq : IsCompactSystem q) (hq' : IsCompactSystem q') :
     IsCompactSystem {t | Sum.inl ⁻¹' t ∈ q ∧ Sum.inr ⁻¹' t ∈ q'} := by
@@ -279,6 +320,9 @@ lemma IsCompactSystem.sum.{u} {𝓚 𝓚' : Type u} {q : Set (Set 𝓚)} {q' : S
 
 namespace MeasureTheory
 
+/--
+@isnad1 id=mem.3h7v.s7.e47487600f5c from=translated src=- shape=e77d046f vocab=fb495183
+-/
 lemma mem_image2_prod_mono {p' : Set (Set 𝓧)} (hp : p ⊆ p') {q' : Set (Set 𝓚)}
     (hq : q ⊆ q') {s : Set (𝓧 × 𝓚)} (hs : s ∈ Set.image2 (· ×ˢ ·) p q) :
     s ∈ Set.image2 (· ×ˢ ·) p' q' := by
@@ -291,18 +335,27 @@ product of two sets, each satisfying a property. -/
 def prodSigmaDelta (p : Set (Set 𝓧)) (q : Set (Set 𝓚)) : Set (Set (𝓧 × 𝓚)) :=
   countableInfClosure (countableSupClosure (Set.image2 (· ×ˢ ·) p q))
 
+/--
+@isnad1 id=mem.2h4v.s7.975f039993d8 from=translated src=- shape=80daf17c vocab=56f10ea6
+-/
 lemma biUnion_finset_mem_supClosure' {s : Finset ℕ} (hs_nonempty : s.Nonempty)
     {A : ℕ → Set 𝓧} (hs : ∀ n ∈ s, A n ∈ p) :
     (⋃ n ∈ s, A n) ∈ supClosure p := by
   rw [mem_supClosure_set_iff']
   exact ⟨s, hs_nonempty, A, hs, rfl⟩
 
+/--
+@isnad1 id=mem.2h4v.s8.46c06e7492d6 from=translated src=- shape=247395c2 vocab=56f10ea6
+-/
 lemma biUnion_finset_mem_supClosure {s : Finset ℕ} (hs_nonempty : s.Nonempty) {A : ℕ → Set 𝓧}
     (hs : ∀ n ∈ s, A n ∈ supClosure p) :
     (⋃ n ∈ s, A n) ∈ supClosure p := by
   have := biUnion_finset_mem_supClosure' hs_nonempty hs
   rwa [supClosure_idem] at this
 
+/--
+@isnad1 id=iff.0h5v.s7.3455eed981b1 from=translated src=- shape=883a1f11 vocab=7a7961f5
+-/
 lemma mem_prodSigmaDelta_iff {s : Set (𝓧 × 𝓚)} :
     s ∈ prodSigmaDelta p q ↔
       ∃ (A : ℕ → ℕ → Set 𝓧) (_ : ∀ n m, A n m ∈ p) (K : ℕ → ℕ → Set 𝓚) (_ : ∀ n m, K n m ∈ q),
@@ -322,6 +375,9 @@ lemma mem_prodSigmaDelta_iff {s : Set (𝓧 × 𝓚)} :
     refine ⟨fun n ↦ ⋃ m, A n m ×ˢ K n m, fun n ↦ ⟨fun m ↦ A n m ×ˢ K n m, fun m ↦ ?_, rfl⟩, rfl⟩
     exact ⟨A n m, hA n m, ⟨K n m, hK n m, rfl⟩⟩
 
+/--
+@isnad1 id=iff.0h5v.s8.dc5ef2f0440c from=translated src=- shape=707694dd vocab=51166e21
+-/
 lemma mem_countableSupClosure_image2_prod_iff {s : Set (𝓧 × 𝓚)} :
     s ∈ countableSupClosure (Set.image2 (· ×ˢ ·) p q) ↔
       ∃ (A : ℕ → Set 𝓧) (_ : ∀ n, A n ∈ p) (K : ℕ → Set 𝓚) (_ : ∀ n, K n ∈ q),
@@ -336,12 +392,18 @@ lemma mem_countableSupClosure_image2_prod_iff {s : Set (𝓧 × 𝓚)} :
   · obtain ⟨A, hA, K, hK, rfl⟩ := h
     exact ⟨fun n ↦ A n ×ˢ K n, fun n ↦ ⟨A n, hA n, K n, hK n, rfl⟩, rfl⟩
 
+/--
+@isnad1 id=mem.2h6v.s6.f41dded2b38e from=translated src=- shape=bedae935 vocab=67faa8ef
+-/
 lemma mem_prodSigmaDelta_of_mem {s : Set 𝓧} {t : Set 𝓚} (hs : s ∈ p) (hq : t ∈ q) :
     s ×ˢ t ∈ prodSigmaDelta p q := by
   rw [mem_prodSigmaDelta_iff]
   exact ⟨fun n m ↦ s, fun _ _ ↦ hs, fun n m ↦ t, fun _ _ ↦ hq, by
     simp [Set.iInter_const, Set.iUnion_const]⟩
 
+/--
+@isnad1 id=mem.3h7v.s6.6a8e30b4779e from=translated src=- shape=86828ac6 vocab=8c577005
+-/
 lemma prodSigmaDelta.mono {p' : Set (Set 𝓧)} {q' : Set (Set 𝓚)} (hp : p ⊆ p') (hq : q ⊆ q')
     {s : Set (𝓧 × 𝓚)} (hs : s ∈ prodSigmaDelta p q) :
     s ∈ prodSigmaDelta p' q' := by

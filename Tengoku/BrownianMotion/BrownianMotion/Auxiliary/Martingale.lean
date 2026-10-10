@@ -20,20 +20,32 @@ section
 variable {ι Ω E : Type*} [Preorder ι] [NormedAddCommGroup E] [NormedSpace ℝ E]
   {mΩ : MeasurableSpace Ω} {P : Measure Ω} {X Y : ι → Ω → E} {𝓕 : Filtration ι mΩ}
 
+/--
+@isnad1 id=strongly.1h8v.s6.4b5f97f6fbca from=translated src=- shape=057bb413 vocab=bc05a10a
+-/
 lemma Martingale.stronglyMeasurable' (hX : Martingale X 𝓕 P) {t : ι} :
     StronglyMeasurable (X t) :=
   hX.stronglyMeasurable t |>.mono (𝓕.le t)
 
+/--
+@isnad1 id=martinga.2h8v.s6.882abe3a9583 from=translated src=- shape=2afb4455 vocab=05eac444
+-/
 lemma Martingale.indicator [CompleteSpace E] [OrderBot ι] {s : Set Ω}
     (hX : Martingale X 𝓕 P) (hs : MeasurableSet[𝓕 ⊥] s) :
     Martingale (fun t ↦ s.indicator (X t)) 𝓕 P :=
   ⟨fun i ↦ (hX.stronglyAdapted i).indicator (𝓕.mono bot_le _ hs), fun i j hij ↦
     (condExp_indicator (hX.integrable _) (𝓕.mono bot_le _ hs)).trans (hX.2 i j hij).indicator⟩
 
+/--
+@isnad1 id=martinga.2h9v.s6.701e06b86223 from=translated src=- shape=0f5ee5d9 vocab=72f7b4b9
+-/
 lemma Martingale.indexComap {ι' : Type*} [Preorder ι'] (hX : Martingale X 𝓕 P) {f : ι' → ι}
     (hf : Monotone f) : Martingale (X ∘ f) (𝓕.indexComap hf) P :=
   ⟨hX.stronglyAdapted.indexComap hf, fun _ _ hij ↦ hX.condExp_ae_eq (hf hij)⟩
 
+/--
+@isnad1 id=submarti.2h9v.s6.27c1d0940b53 from=translated src=- shape=aeb75132 vocab=19aadafa
+-/
 lemma Submartingale.indexComap {ι' : Type*} [Preorder ι'] [LE E] (hX : Submartingale X 𝓕 P)
     {f : ι' → ι} (hf : Monotone f) : Submartingale (X ∘ f) (𝓕.indexComap hf) P :=
   ⟨hX.stronglyAdapted.indexComap hf, fun _ _ hij ↦ hX.ae_le_condExp (hf hij),
@@ -45,6 +57,9 @@ variable {ι Ω E : Type*} [PartialOrder ι] [NormedAddCommGroup E] [NormedSpace
   {mΩ : MeasurableSpace Ω} {P : Measure Ω} {X Y : ι → Ω → E}
   {𝓕 : Filtration ι mΩ} [SigmaFiniteFiltration P 𝓕]
 
+/--
+@isnad1 id=submarti.4h8v.s7.6bcd1feaccaa from=translated src=- shape=fc294fe6 vocab=f91f4b14
+-/
 lemma Martingale.submartingale_convex_comp (hX : Martingale X 𝓕 P) {φ : E → ℝ}
     (hφ_cvx : ConvexOn ℝ Set.univ φ) (hφ_cont : Continuous φ)
     (hφ_int : ∀ t, Integrable (fun ω ↦ φ (X t ω)) P) :
@@ -55,10 +70,16 @@ lemma Martingale.submartingale_convex_comp (hX : Martingale X 𝓕 P) {φ : E �
     _ ≤ᵐ[P] P[fun ω ↦ φ (X j ω) | 𝓕 i] :=
       hφ_cvx.map_condExp_le_univ (𝓕.le i) hφ_cont.lowerSemicontinuous (hX.integrable j) (hφ_int j)
 
+/--
+@isnad1 id=submarti.1h7v.s6.bb832cb00544 from=translated src=- shape=da01bc11 vocab=bc73756f
+-/
 lemma Martingale.submartingale_norm (hX : Martingale X 𝓕 P) :
     Submartingale (fun t ω ↦ ‖X t ω‖) 𝓕 P :=
   hX.submartingale_convex_comp convexOn_univ_norm continuous_norm fun i ↦ (hX.integrable i).norm
 
+/--
+@isnad1 id=submarti.5h8v.s8.1edf80beafa4 from=translated src=- shape=7fc592c0 vocab=18ced41a
+-/
 lemma Submartingale.monotone_convex_comp [Preorder E] (hX : Submartingale X 𝓕 P) {φ : E → ℝ}
     (hφ_mono : Monotone φ) (hφ_cvx : ConvexOn ℝ Set.univ φ) (hφ_cont : Continuous φ)
     (hφ_int : ∀ t, Integrable (fun ω ↦ φ (X t ω)) P) :

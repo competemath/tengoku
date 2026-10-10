@@ -39,7 +39,9 @@ def IsUpperTri {ι K : Type*} [LT ι] [Zero K] (U : Matrix ι ι K) : Prop :=
   ∀ i j, j < i → U i j = 0
 
 /-- [The entrywise upper-triangular predicate is exactly Mathlib's block-triangular predicate
-for the identity order](goal). -/
+for the identity order](goal).
+@isnad1 id=iff.0h3v.s4.69d64365e3e0 from=translated src=- shape=e50f5167 vocab=5366d8ed
+-/
 theorem isUpperTri_iff_blockTriangular {ι K : Type*} [LT ι] [Zero K]
     {U : Matrix ι ι K} :
     IsUpperTri U ↔ U.BlockTriangular id := by
@@ -52,7 +54,9 @@ section Existence
 variable {M : Matrix (Fin d) (Fin d) ℝ}
 
 /-- [The Gram-Schmidt lower-inverse of a positive-definite matrix](hyp:hM)
-[has unit diagonal](goal), including at [the selected diagonal position](hyp:i). -/
+[has unit diagonal](goal), including at [the selected diagonal position](hyp:i).
+@isnad1 id=eq.1h3v.s5.1f9a484bbbb2 from=translated src=- shape=714a390b vocab=a17a9c2e
+-/
 theorem ldl_lowerInv_diag_one (hM : M.PosDef) (i : Fin d) : LDL.lowerInv hM i i = 1 := by
   letI := (Mᵀ.toNormedAddCommGroup hM.transpose)
   letI := (Mᵀ.toInnerProductSpace hM.transpose.posSemidef)
@@ -69,7 +73,9 @@ theorem ldl_lowerInv_diag_one (hM : M.PosDef) (i : Fin d) : LDL.lowerInv hM i i 
   rw [key c (Finset.mem_Iio.mp hc), mul_zero]
 
 /-- [Every LDL diagonal entry of a real positive-definite matrix](hyp:hM)
-[is strictly positive](goal), including at [the selected position](hyp:i). -/
+[is strictly positive](goal), including at [the selected position](hyp:i).
+@isnad1 id=lt.1h3v.s5.379be0774e68 from=translated src=- shape=5a4363ce vocab=0f3125fa
+-/
 theorem ldl_diagEntries_pos (hM : M.PosDef) (i : Fin d) : 0 < LDL.diagEntries hM i := by
   have hne : LDL.lowerInv hM i ≠ 0 := by
     intro h
@@ -82,21 +88,27 @@ theorem ldl_diagEntries_pos (hM : M.PosDef) (i : Fin d) : 0 < LDL.diagEntries hM
   exact hM.dotProduct_mulVec_pos hne
 
 /-- [The Gram-Schmidt lower-inverse of a positive-definite matrix](hyp:hM)
-[is lower-triangular](goal). -/
+[is lower-triangular](goal).
+@isnad1 id=blocktri.1h2v.s6.1b0dd2e6229c from=translated src=- shape=6349d723 vocab=0dc8cbb0
+-/
 theorem ldl_lowerInv_blockTriangular (hM : M.PosDef) :
     (LDL.lowerInv hM).BlockTriangular toDual := by
   intro i j hij
   exact LDL.lowerInv_triangular hM (by simpa using hij)
 
 /-- [The inverse lower factor of a positive-definite matrix](hyp:hM)
-[is lower-triangular](goal). -/
+[is lower-triangular](goal).
+@isnad1 id=blocktri.1h2v.s6.b02f38aaa324 from=translated src=- shape=6349d723 vocab=6a1ed4fb
+-/
 theorem ldl_lower_blockTriangular (hM : M.PosDef) :
     (LDL.lower hM).BlockTriangular toDual := by
   rw [LDL.lower]
   exact blockTriangular_inv_of_blockTriangular (ldl_lowerInv_blockTriangular hM)
 
 /-- [The inverse lower factor of a positive-definite matrix](hyp:hM)
-[has unit diagonal](goal), including at [the selected diagonal position](hyp:i). -/
+[has unit diagonal](goal), including at [the selected diagonal position](hyp:i).
+@isnad1 id=eq.1h3v.s5.fa226c7ef45c from=translated src=- shape=714a390b vocab=de220153
+-/
 theorem ldl_lower_diag_one (hM : M.PosDef) (i : Fin d) : LDL.lower hM i i = 1 := by
   have hlow := ldl_lower_blockTriangular hM
   have hupp := ldl_lowerInv_blockTriangular hM
@@ -114,7 +126,9 @@ theorem ldl_lower_diag_one (hM : M.PosDef) (i : Fin d) : LDL.lower hM i i = 1 :=
 
 /-- For [a real positive-definite `d × d` matrix `M`](hyp:hM), [there exists an upper-triangular
 matrix `U` (zero below the diagonal) with strictly positive diagonal entries such that `M`
-factors as `Uᵀ · U`](goal). -/
+factors as `Uᵀ · U`](goal).
+@isnad1 id=ex.1h2v.s6.96ab4823e8f5 from=translated src=- shape=b3dae0dd vocab=4639a89a
+-/
 theorem cholesky_exists (hM : M.PosDef) :
     ∃ U : Matrix (Fin d) (Fin d) ℝ,
       (∀ i j, j < i → U i j = 0) ∧ (∀ i, 0 < U i i) ∧ M = U.transpose * U := by
@@ -159,7 +173,9 @@ end Existence
 section Uniqueness
 
 /-- If [a matrix is orthogonal](hyp:hortho), [upper-triangular](hyp:hupp), and has
-[strictly positive diagonal](hyp:hpos), [it is the identity matrix](goal). -/
+[strictly positive diagonal](hyp:hpos), [it is the identity matrix](goal).
+@isnad1 id=eq.3h3v.s8.a77b02a178f6 from=translated src=- shape=e3f2498b vocab=05f75b5b
+-/
 theorem orthogonal_upperTri_pos_diag_eq_one {ι K : Type*} [Fintype ι] [LinearOrder ι]
     [Field K] [LinearOrder K] [IsStrictOrderedRing K] {W : Matrix ι ι K}
     (hortho : Wᵀ * W = 1) (hupp : ∀ i j, j < i → W i j = 0) (hpos : ∀ i, 0 < W i i) :
@@ -208,7 +224,9 @@ matrices `U`, `V` indexed by `ι × ι` and valued in `K`, if [`U` is upper-tria
 below the diagonal](hyp:hUu), with [strictly positive diagonal entries](hyp:hUp), [`V` is
 likewise upper-triangular](hyp:hVu) with [strictly positive diagonal entries](hyp:hVp), and
 [`U` and `V` have the same Gram matrix, `Uᵀ · U = Vᵀ · V`](hyp:hGram), then [`U` equals
-`V`](goal). -/
+`V`](goal).
+@isnad1 id=eq.5h4v.s8.a75c93291734 from=translated src=- shape=8cb2ff59 vocab=05f75b5b
+-/
 theorem cholesky_unique {ι K : Type*} [Fintype ι] [LinearOrder ι]
     [Field K] [LinearOrder K] [IsStrictOrderedRing K] {U V : Matrix ι ι K}
     (hUu : ∀ i j, j < i → U i j = 0) (hUp : ∀ i, 0 < U i i)

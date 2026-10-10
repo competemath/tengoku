@@ -26,6 +26,9 @@ variable {Ω E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpac
 
 variable [IsFiniteMeasure μ]
 
+/--
+@isnad1 id=eventual.0h6v.s6.6ab11763d9c5 from=translated src=- shape=061229fc vocab=7bbbb706
+-/
 lemma norm_condExp_le (f : Ω → E) :
     ∀ᵐ ω ∂μ, ‖μ[f|m] ω‖ ≤ μ[fun ω ↦ ‖f ω‖|m] ω := by
   by_cases hm : m ≤ mΩ
@@ -36,6 +39,9 @@ lemma norm_condExp_le (f : Ω → E) :
   swap; · filter_upwards [this]; simp [condExp_of_not_integrable, hf]
   exact convexOn_univ_norm.map_condExp_le_univ hm continuous_norm.lowerSemicontinuous hf hf.norm
 
+/--
+@isnad1 id=eventual.0h6v.s6.a2a391106c83 from=translated src=- shape=ea86cc32 vocab=599ce718
+-/
 lemma enorm_condExp_le (f : Ω → E) :
     ∀ᵐ ω ∂μ, ‖μ[f|m] ω‖ₑ ≤ .ofReal (μ[fun ω ↦ ‖f ω‖|m] ω) := by
   have : 0 ≤ᵐ[μ] μ[fun ω ↦ ‖f ω‖|m] :=
@@ -43,6 +49,9 @@ lemma enorm_condExp_le (f : Ω → E) :
   filter_upwards [norm_condExp_le f, this] with ω hω1 hω2
   rwa [le_ofReal_iff_toReal_le (by simp) hω2, toReal_enorm]
 
+/--
+@isnad1 id=eventual.3h7v.s7.33adfbb1dfd9 from=translated src=- shape=a2d68215 vocab=d7f155f0
+-/
 lemma norm_rpow_condExp_le {p : ℝ≥0∞} (one_le_p : 1 ≤ p) (p_ne_top : p ≠ ∞) (hf : MemLp f p μ) :
     ∀ᵐ ω ∂μ, ‖μ[f|m] ω‖ ^ p.toReal ≤ μ[fun ω ↦ ‖f ω‖ ^ p.toReal|m] ω := by
   by_cases hm : m ≤ mΩ
@@ -54,6 +63,9 @@ lemma norm_rpow_condExp_le {p : ℝ≥0∞} (one_le_p : 1 ≤ p) (p_ne_top : p �
     (convexOn_rpow_norm (one_le_toReal one_le_p p_ne_top))
     hc.lowerSemicontinuous (hf.integrable one_le_p) hf'] with _ h using h
 
+/--
+@isnad1 id=eventual.3h7v.s7.15ad907d92ec from=translated src=- shape=40f06851 vocab=780049b9
+-/
 lemma enorm_rpow_condExp_le {p : ℝ≥0∞} (one_le_p : 1 ≤ p) (p_ne_top : p ≠ ∞) (hf : MemLp f p μ) :
     ∀ᵐ ω ∂μ, ‖μ[f|m] ω‖ₑ ^ p.toReal ≤ .ofReal (μ[fun ω ↦ ‖f ω‖ ^ p.toReal|m] ω) := by
   have : 0 ≤ᵐ[μ] μ[fun ω ↦ ‖f ω‖ ^ p.toReal|m] :=
@@ -62,6 +74,9 @@ lemma enorm_rpow_condExp_le {p : ℝ≥0∞} (one_le_p : 1 ≤ p) (p_ne_top : p 
   rwa [le_ofReal_iff_toReal_le (by simp) hω2, ← toReal_rpow, toReal_enorm]
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
+/--
+@isnad1 id=eventual.1h6v.s6.aadb7748ed2d from=translated src=- shape=a9b22eb2 vocab=7bf57869
+-/
 lemma ofReal_condExp_norm_ae_le_eLpNormEssSup (hf : AEStronglyMeasurable f μ) :
     ∀ᵐ ω ∂μ, .ofReal (μ[(‖f ·‖)|m] ω) ≤ eLpNormEssSup f μ := by
   by_cases hm : m ≤ mΩ
@@ -77,12 +92,17 @@ lemma ofReal_condExp_norm_ae_le_eLpNormEssSup (hf : AEStronglyMeasurable f μ) :
   exact ofReal_le_of_le_toReal (by simpa [condExp_const hm] using hω)
 
 omit [IsFiniteMeasure μ] in
+/--
+@isnad1 id=memlp.2h7v.s7.2775edfc938d from=translated src=- shape=06e06a30 vocab=07ec5447
+-/
 lemma MemLp.condExp' {p : ℝ≥0∞} (hp : 1 ≤ p) (hf : MemLp f p μ) :
     MemLp μ[f|m] p μ :=
   ⟨integrable_condExp.aestronglyMeasurable, (eLpNorm_condExp_le_eLpNorm f hp).trans_lt hf.2⟩
 
 /-- If a function `f` is bounded almost everywhere by `R`, then so is its conditional
-expectation. -/
+expectation.
+@isnad1 id=eventual.1h7v.s6.2caea3b01df6 from=translated src=- shape=2ff46530 vocab=7bbbb706
+-/
 lemma ae_bdd_condExp_of_ae_bdd' {R : ℝ} {f : Ω → E} (hbdd : ∀ᵐ ω ∂μ, ‖f ω‖ ≤ R) :
     ∀ᵐ x ∂μ, ‖(μ[f|m]) x‖ ≤ R := by
   obtain rfl | hμ := eq_or_ne μ 0

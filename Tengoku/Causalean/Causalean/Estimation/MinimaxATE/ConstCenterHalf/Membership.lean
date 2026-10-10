@@ -45,7 +45,9 @@ open scoped BigOperators
 variable {K : ℕ} {α β : ℝ}
 
 /-- The propensity perturbation has exact squared `L²` size `β²`: it is a Rademacher
-bump of magnitude `β` on `Δ`. -/
+bump of magnitude `β` on `Δ`.
+@isnad1 id=eq.0h3v.s5.7c0885cd7732 from=translated src=- shape=592b8e39 vocab=2877f91f
+-/
 theorem l2sq_mPerturbed [NeZero K] (lam : Fin K → Bool) :
     l2sq (mPerturbed β lam) mhat = β ^ 2 := by
   have hbump : (mPerturbed β lam)
@@ -59,7 +61,9 @@ theorem l2sq_mPerturbed [NeZero K] (lam : Fin K → Bool) :
     rw [this, Δ_sq])
 
 /-- The control outcome arm is unchanged (`gλ(0,·) = 1/2 = ĝ(0,·)`), so its `L²`
-error is `0`. -/
+error is `0`.
+@isnad1 id=eq.0h4v.s5.8e325325f3d5 from=translated src=- shape=1e049a0e vocab=5812e734
+-/
 theorem l2sq_gPerturbed_false (lam : Fin K → Bool) :
     l2sq (gPerturbed α β lam false) (ghat false) = 0 := by
   have h : gPerturbed α β lam false = ghat false := by
@@ -68,7 +72,9 @@ theorem l2sq_gPerturbed_false (lam : Fin K → Bool) :
   rw [h, l2sq_self]
 
 /-- The treated outcome arm: its pointwise deviation from `ĝ(1) = 1/2` is
-`(α+β)·Δ/(1 − 2β·Δ)`. -/
+`(α+β)·Δ/(1 − 2β·Δ)`.
+@isnad1 id=eq.3h5v.s7.c8fa325f3876 from=translated src=- shape=e9dfdd70 vocab=6a8d0b79
+-/
 theorem gPerturbed_true_sub_half (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2)
     (lam : Fin K → Bool) (x : Fin K × Bool) :
     gPerturbed α β lam true x - 1 / 2 = (α + β) * Δ lam x / (1 - 2 * β * Δ lam x) := by
@@ -80,7 +86,9 @@ theorem gPerturbed_true_sub_half (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α +
   · exact hd0
 
 /-- Uniform bound on the treated arm's squared `L²` error: every pointwise term is
-`≤ (α+β)²/(1 − 2β)²`, so the average is too. -/
+`≤ (α+β)²/(1 − 2β)²`, so the average is too.
+@isnad1 id=le.3h4v.s7.eeab8d9ec8ce from=translated src=- shape=cdd3441c vocab=6bd75bcb
+-/
 theorem l2sq_gPerturbed_true_le [NeZero K] (hα : 0 ≤ α) (hβ : 0 ≤ β)
     (hαβ : α + 2 * β ≤ 1 / 2) (lam : Fin K → Bool) :
     l2sq (gPerturbed α β lam true) (ghat true) ≤ (α + β) ^ 2 / (1 - 2 * β) ^ 2 := by
@@ -132,7 +140,9 @@ theorem l2sq_gPerturbed_true_le [NeZero K] (hα : 0 ≤ α) (hβ : 0 ≤ β)
 `α + 2β ≤ 1/2`](hyp:hα,hβ,hαβ) meeting [the Rademacher perturbation budgets `β² ≤ εm` and
 `(α+β)²/(1−2β)² ≤ εg`](hyp:hm,hg), [the perturbed data-generating process `(mλ, gλ)` indexed by
 a Rademacher sign vector `lam` lies in the structure-agnostic nuisance class `ℱ(εg, εm)` around
-the centered estimates `(m̂, ĝ) = (1/2, 1/2)`](goal). -/
+the centered estimates `(m̂, ĝ) = (1/2, 1/2)`](goal).
+@isnad1 id=inclass.5h6v.s7.c2bd792aa5c3 from=translated src=- shape=e4ab59b3 vocab=ffd195b5
+-/
 theorem inClass_perturbed [NeZero K] {εg εm : ℝ}
     (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2)
     (hm : β ^ 2 ≤ εm) (hg : (α + β) ^ 2 / (1 - 2 * β) ^ 2 ≤ εg)

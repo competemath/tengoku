@@ -22,7 +22,9 @@ most L times its length, for a nonnegative constant L](hyp:hL,hν) and
 [the CDF difference of μ and ν, convolved with K, is bounded in absolute
 value at every point by a nonnegative constant B](hyp:hB,hsmooth),
 then [the unsmoothed CDF difference is bounded in absolute value by
-(B + 2aL)/(1 − 2q) at every point](goal). -/
+(B + 2aL)/(1 − 2q) at every point](goal).
+@isnad1 id=le.11h8v.s8.0eba4580af6e from=translated src=- shape=f12f561e vocab=5cc38815
+-/
 theorem cdf_general_kernel_sandwich
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (K : ℝ → ℝ) (a q L B : ℝ)

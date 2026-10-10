@@ -129,7 +129,9 @@ end Solution
 /-! ### Basic facts about permutation matrices -/
 
 /-- [A permutation matrix is orthogonal](goal), so relabeling by [permutation `σ`](hyp:σ) in
-[dimension `d`](hyp:d) preserves the Gram geometry used by the observed precision matrices. -/
+[dimension `d`](hyp:d) preserves the Gram geometry used by the observed precision matrices.
+@isnad1 id=eq.0h2v.s6.41d7d30479b9 from=translated src=- shape=133bc6bf vocab=923bd516
+-/
 theorem permMat_mul_transpose {d : ℕ} (σ : Equiv.Perm (Fin d)) :
     permMat σ * (permMat σ).transpose = 1 := by
   ext i k
@@ -145,7 +147,9 @@ theorem permMat_mul_transpose {d : ℕ} (σ : Equiv.Perm (Fin d)) :
     simp [this]
   · intro h; exact absurd (Finset.mem_univ _) h
 
-/-- `permMat σ` is orthogonal: `(permMat σ)ᵀ * permMat σ = 1`. -/
+/-- `permMat σ` is orthogonal: `(permMat σ)ᵀ * permMat σ = 1`.
+@isnad1 id=eq.0h2v.s6.34b16a51a71c from=translated src=- shape=7b06cd30 vocab=923bd516
+-/
 theorem permMat_transpose_mul {d : ℕ} (σ : Equiv.Perm (Fin d)) :
     (permMat σ).transpose * permMat σ = 1 := by
   ext i k

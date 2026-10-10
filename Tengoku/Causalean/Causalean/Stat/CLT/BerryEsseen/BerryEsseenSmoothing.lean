@@ -23,7 +23,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- With a finite first moment, the characteristic-function difference from
 the standard Gaussian divided by frequency is locally integrable, including
-across frequency zero. -/
+across frequency zero.
+@isnad1 id=interval.1h2v.s7.b75c705b24ba from=translated src=- shape=02746e72 vocab=75c29f4a
+-/
 theorem charFun_normal_quotient_intervalIntegrable
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ)
@@ -92,7 +94,9 @@ theorem charFun_normal_quotient_intervalIntegrable
 the standard Gaussian CDF by at most 1/π times the integral over [−T, T] of
 the characteristic-function discrepancy divided by |t|, plus the smoothing
 error 24/(πT√(2π))](goal). The constant 24/π is the usual Esseen smoothing
-constant. -/
+constant.
+@isnad1 id=le.2h3v.s8.a0793127903e from=translated src=- shape=d0aa5d17 vocab=b1637164
+-/
 theorem normal_cdf_smoothing
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ)

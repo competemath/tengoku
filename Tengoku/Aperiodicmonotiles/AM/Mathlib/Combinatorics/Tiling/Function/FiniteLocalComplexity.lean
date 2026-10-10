@@ -60,6 +60,9 @@ def FiniteLocalComplexityOn (H : Subgroup G) : VarTileSetFunction (Set (Set X)) 
      rw [Quotient.eq, MulAction.orbitRel_apply, MulAction.mem_orbit_symm]
      exact ⟨⟨g, hg⟩, by simp⟩⟩
 
+/--
+@isnad1 id=iff.0h8v.s8.0091f3cf904f from=translated src=- shape=598dc50a vocab=797625c0
+-/
 lemma finiteLocalComplexityOn_iff {H : Subgroup G} {s : Set (Set X)} {t : TileSet ps ιₜ} :
     t.FiniteLocalComplexityOn H s ↔
       ((fun x ↦ Quotient.mk (MulAction.orbitRel H (Set X × TileSetCard ps))
@@ -80,6 +83,9 @@ def FiniteLocalComplexity (H : Subgroup G) : TileSetFunction ps Prop H :=
     · exact ⟨g • x, rfl⟩
     · exact ⟨g⁻¹ • x, by simp⟩)
 
+/--
+@isnad1 id=iff.0h7v.s8.8495520de450 from=translated src=- shape=896288f3 vocab=023db24e
+-/
 lemma finiteLocalComplexity_iff {H : Subgroup G} {t : TileSet ps ιₜ} :
     t.FiniteLocalComplexity H ↔
       ((fun x ↦ Quotient.mk (MulAction.orbitRel H (Set X × TileSetCard ps))

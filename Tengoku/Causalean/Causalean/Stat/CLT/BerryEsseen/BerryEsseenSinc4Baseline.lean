@@ -20,7 +20,9 @@ open MeasureTheory ProbabilityTheory
 [a positive bandwidth T](hyp:hT), [its CDF at every threshold x differs from
 the standard Gaussian CDF by at most 1/π times the integral over [−T, T] of
 the characteristic-function discrepancy divided by |t|, plus
-24/(T√(2π))](goal). -/
+24/(T√(2π))](goal).
+@isnad1 id=le.2h3v.s8.1eb4909eb569 from=translated src=- shape=47694982 vocab=b1637164
+-/
 theorem normal_cdf_smoothing_sinc4_baseline
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ)

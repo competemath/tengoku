@@ -15,7 +15,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- The real triangular Fourier transform `π max (1 - |u|/2) 0` of squared
-sinc is integrable over the whole line. -/
+sinc is integrable over the whole line.
+@isnad1 id=integrab.0h0v.s6.823227d31f99 from=translated src=- shape=ed0b857a vocab=264ae328
+-/
 theorem sincTriangle_integrable :
     Integrable (fun u : ℝ => Real.pi * max (1 - |u| / 2) 0) volume := by
   let f : ℝ → ℝ := fun u => Real.pi * max (1 - |u| / 2) 0
@@ -44,7 +46,9 @@ theorem sincTriangle_integrable :
 
 /-- At [every real point x](hyp:x), including zero, [squared sinc equals 1/(2π)
 times the inverse Fourier integral of its triangle transform
-u ↦ π·max(1 − |u|/2, 0)](goal). -/
+u ↦ π·max(1 − |u|/2, 0)](goal).
+@isnad1 id=eq.0h1v.s7.ec7786863749 from=translated src=- shape=3670c740 vocab=9613f1d8
+-/
 theorem sincSquared_fourier_inversion (x : ℝ) :
     ((Real.sinc x ^ 2 : ℝ) : ℂ) =
       (((1 / (2 * Real.pi) : ℝ) : ℂ) *

@@ -87,7 +87,9 @@ private theorem inner_lpOne_self (μ : Measure α) [IsProbabilityMeasure μ] :
     _ = 1 := by simp
 
 /-- Under [a probability measure `μ`](hyp:μ), [inner product with the constant-one L² vector
-equals integration](goal): `⟪f, 1⟫ = ∫ f dμ`. -/
+equals integration](goal): `⟪f, 1⟫ = ∫ f dμ`.
+@isnad1 id=eq.0h3v.s9.2d5f63250917 from=translated src=- shape=24a3e995 vocab=2720728e
+-/
 theorem inner_lpOne_eq_integral (μ : Measure α) [IsProbabilityMeasure μ]
     (f : Lp ℝ 2 μ) :
     ⟪f, lpOne μ⟫_ℝ = ∫ z, f z ∂μ := by
@@ -139,7 +141,9 @@ is exactly the orthogonal complement of the constants.
 
 This density result supplies an ingredient for the construction in van der Vaart (1998),
 Example 25.16, which builds differentiable parametric submodels with prescribed L²₀ scores to
-identify the full-model tangent set; it is not itself that example's full statement. -/
+identify the full-model tangent set; it is not itself that example's full statement.
+@isnad1 id=eq.0h2v.s10.8d631f8c9e4a from=translated src=- shape=4236b7ca vocab=a4ea7133
+-/
 theorem boundedCenteredLp_topologicalClosure (μ : Measure α) [IsProbabilityMeasure μ] :
     (boundedCenteredLp μ).topologicalClosure = meanZeroLp μ := by
   apply le_antisymm
@@ -153,7 +157,9 @@ theorem boundedCenteredLp_topologicalClosure (μ : Measure α) [IsProbabilityMea
 
 /-- If [an L² vector belongs to the centered-simple subspace](hyp:hf) under [a probability
 measure `μ`](hyp:μ), then [it has an everywhere measurable, everywhere bounded, mean-zero
-representative](goal) whose L² class is that vector. -/
+representative](goal) whose L² class is that vector.
+@isnad1 id=ex.1h3v.s11.9408626664a9 from=translated src=- shape=bb05dd4e vocab=8f3335ff
+-/
 theorem mem_boundedCenteredLp_exists (μ : Measure α) [IsProbabilityMeasure μ]
     (f : Lp ℝ 2 μ) (hf : f ∈ boundedCenteredLp μ) :
     ∃ (g : α → ℝ) (M : ℝ) (hg : MemLp g 2 μ), Measurable g ∧

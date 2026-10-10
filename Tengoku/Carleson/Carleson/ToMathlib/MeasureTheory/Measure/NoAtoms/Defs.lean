@@ -37,6 +37,9 @@ class NoAtoms' (μ : Measure α) : Prop where
 
 export MeasureTheory.NoAtoms' (no_atoms)
 
+/--
+@isnad1 id=iff.0h3v.s7.828fff34bf05 from=translated src=- shape=adcd752c vocab=215956a1
+-/
 theorem no_atoms_iff :
     NoAtoms' μ
       ↔ ∀ s, MeasurableSet s → 0 < μ s → ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ t ∧ μ t < μ s := by
@@ -59,6 +62,9 @@ theorem no_atoms_iff :
 
 namespace NoAtoms'
 
+/--
+@isnad1 id=noatoms.1h3v.s7.6730e0195af0 from=translated src=- shape=507615db vocab=215956a1
+-/
 theorem mk' {μ : Measure α}
   (h : ∀ s, MeasurableSet s → 0 < μ s → ∃ t ⊆ s, 0 < μ t ∧ μ t < μ s) :
     NoAtoms' μ := by
@@ -84,9 +90,15 @@ theorem mk' {μ : Measure α}
 
 variable [na : NoAtoms' μ]
 
+/--
+@isnad1 id=ex.2h4v.s7.82a907bfc74b from=translated src=- shape=7b33bd4a vocab=215956a1
+-/
 theorem exists_measurable_subset_lt {s : Set α} (meas_s : MeasurableSet s) (hs : 0 < μ s) :
     ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ t ∧ μ t < μ s := no_atoms_iff.mp na s meas_s hs
 
+/--
+@isnad1 id=ex.2h4v.s7.af4f9dff5329 from=translated src=- shape=ac8341e3 vocab=5738b579
+-/
 theorem exists_measurable_subset_lt₀ {s : Set α} (meas_s : NullMeasurableSet s μ) (hs : 0 < μ s) :
     ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ t ∧ μ t < μ s := by
   rcases meas_s.exists_measurable_subset_ae_eq with ⟨r, hrs, hr, hrs'⟩
@@ -126,6 +138,9 @@ instance instNullSingletonClass'' :
     exact no_atoms s meas_s this
 -/
 
+/--
+@isnad1 id=noatoms.1h4v.s4.e79fcae78f2e from=translated src=- shape=99f6685c vocab=4ce8bd67
+-/
 lemma restrict (s : Set α) (hs : NullMeasurableSet s μ) :
     NoAtoms' (μ.restrict s) := by
   apply NoAtoms'.mk'

@@ -590,7 +590,9 @@ intervention targets relabel as `i'ₖ = σ(iₖ)`.
 
 The monomial collapse `orthogonal_collapse` supplies `σ`, `μ`, `ν`, `InSG σ` and the
 per-context signed relations; the order-preservation `InSG σ` and the target relabeling
-`i'ₖ = σ(iₖ)` are derived from those relations. -/
+`i'ₖ = σ(iₖ)` are derived from those relations.
+@isnad1 id=ex.6h6v.s9.a7a0c8d6f86b from=translated src=- shape=1a3daed7 vocab=d74e6c59
+-/
 theorem exists_orderPerm (S S' : Solution d p K)
     (hcov : Function.Bijective S.target) (hcov' : Function.Bijective S'.target)
     (hNondeg : ∀ k, S.Theta k ≠ S.Theta0)

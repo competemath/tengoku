@@ -21,7 +21,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- For a nonzero frequency, the oriented integral of the complex exponential
 between two real points equals the difference of their endpoint exponentials
-divided by the frequency, with the Fourier sign convention used here. -/
+divided by the frequency, with the Fourier sign convention used here.
+@isnad1 id=eq.1h3v.s6.2c1f1ca1aa5e from=translated src=- shape=85fe2557 vocab=e814afdc
+-/
 theorem fourier_oriented_interval_identity (a b t : ℝ) (ht : t ≠ 0) :
     (t : ℂ) *
       (∫ x in a..b, Complex.exp (((t * x : ℝ) : ℂ) * Complex.I)) =
@@ -46,7 +48,9 @@ theorem fourier_oriented_interval_identity (a b t : ℝ) (ht : t ≠ 0) :
 /-- For [two probability laws μ and ν with finite first moments](hyp:hμ,hν),
 [the Fourier integral at frequency t of the difference of their CDFs equals
 the average, over independent draws a from μ and b from ν, of the oriented
-integral of the Fourier exponential from a to b](goal). -/
+integral of the Fourier exponential from a to b](goal).
+@isnad1 id=eq.2h3v.s7.e362dd471740 from=translated src=- shape=8106cc62 vocab=add1625c
+-/
 theorem cdf_difference_fourier_fubini
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

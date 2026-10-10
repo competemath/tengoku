@@ -107,7 +107,9 @@ private theorem correction_sq_le (t : ℝ) (ht : 0 < t) (hband : t ≤ 1) :
     nlinarith
 
 /-- At each nonzero frequency in the unit band, Prawitz's spectral filter
-differs from the half-line principal term by at most one half. -/
+differs from the half-line principal term by at most one half.
+@isnad1 id=le.2h1v.s6.6a9fd668e9e6 from=translated src=- shape=5caa6917 vocab=850e0cf4
+-/
 theorem prawitzKernel_principal_correction_norm_le
     (t : ℝ) (ht : 0 < |t|) (hband : |t| ≤ 1) :
     ‖prawitzKernel t - Complex.I / ((2 * Real.pi * t : ℝ) : ℂ)‖ ≤ 1 / 2 := by
@@ -162,7 +164,9 @@ theorem prawitzKernel_principal_correction_norm_le
 
 /-- At [a nonzero](hyp:ht) frequency t [in the unit band |t| ≤ 1](hyp:hband),
 [Prawitz's filter magnitude is at most the reciprocal principal frequency
-term 1/(2π|t|) plus one half](goal). -/
+term 1/(2π|t|) plus one half](goal).
+@isnad1 id=le.2h1v.s6.6a892a2c44b9 from=translated src=- shape=da8e59bb vocab=46df97c8
+-/
 theorem prawitzKernel_norm_le
     (t : ℝ) (ht : 0 < |t|) (hband : |t| ≤ 1) :
     ‖prawitzKernel t‖ ≤ 1 / (2 * Real.pi * |t|) + 1 / 2 := by

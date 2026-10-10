@@ -32,6 +32,7 @@ Substituting Heron's formula leads to a sum of squares identity.
 /--
 Helper lemma: The key algebraic identity for Weitzenböck's inequality.
 (a^2 + b^2 + c^2)^2 - 48 T^2 = 2((a^2-b^2)^2 + (b^2-c^2)^2 + (c^2-a^2)^2)
+@isnad1 id=eq.1h4v.s8.94d2c1d2e832 from=translated src=- shape=e4d47bec vocab=7d7e4cc9
 -/
 lemma weitzenbock_identity (a b c T : ℝ)
     (h_area : 16 * T^2 = (a + b + c) * (a + b - c) * (a - b + c) * (-a + b + c)) :

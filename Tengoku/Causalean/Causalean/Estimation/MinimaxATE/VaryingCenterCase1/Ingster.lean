@@ -44,7 +44,9 @@ open scoped BigOperators
 /-- For [nonnegative per-coordinate weights `d j` summing to at most `1`](hyp:hd0,hdsum)
 satisfying [the regularity budget `(n²/2)·Σⱼ (d j)² ≤ log 2`](hyp:hreg), [the uniform double
 average, over pairs of Rademacher sign vectors `lam, lam' : Fin K → Bool`, of
-`(1 + Σⱼ d j·signOf(lam j)·signOf(lam' j))^n` is at most `2`](goal). -/
+`(1 + Σⱼ d j·signOf(lam j)·signOf(lam' j))^n` is at most `2`](goal).
+@isnad1 id=le.3h3v.s8.4155e16975d6 from=translated src=- shape=9e7d8eef vocab=f31ea3f5
+-/
 theorem ingster_bound_general (K n : ℕ) [NeZero K] {d : Fin K → ℝ}
     (hd0 : ∀ j, 0 ≤ d j) (hdsum : ∑ j, d j ≤ 1)
     (hreg : (n : ℝ) ^ 2 / 2 * ∑ j, (d j) ^ 2 ≤ Real.log 2) :

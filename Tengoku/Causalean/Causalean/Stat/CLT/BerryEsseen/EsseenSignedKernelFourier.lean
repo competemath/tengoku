@@ -16,7 +16,9 @@ open MeasureTheory
 open Filter
 
 /-- [The Fourier integral of the signed sinc-fourth comparison kernel
-vanishes](goal) at [every frequency t with |t| at least one](hyp:ht). -/
+vanishes](goal) at [every frequency t with |t| at least one](hyp:ht).
+@isnad1 id=eq.1h1v.s6.5e3185db9d45 from=translated src=- shape=f3b2a169 vocab=5edb28b6
+-/
 theorem esseenSignedSinc4Kernel_fourier_eq_zero
     (t : ℝ) (ht : 1 ≤ |t|) :
     (∫ y : ℝ, Complex.exp (((t * y : ℝ) : ℂ) * Complex.I) *

@@ -90,12 +90,16 @@ namespace SWIGNode
 variable {N : Type*}
 
 /-- The random-node constructor is injective: equal random SWIG nodes come from the same
-base variable. -/
+base variable.
+@isnad1 id=injectiv.0h1v.s3.5c023e06d9ec from=translated src=- shape=58762991 vocab=ea46eb40
+-/
 theorem random_injective : Function.Injective (@SWIGNode.random N) := by
   intro a b h; cases h; rfl
 
 /-- The fixed-node constructor is injective: equal fixed SWIG nodes come from the same base
-variable. -/
+variable.
+@isnad1 id=injectiv.0h1v.s3.a044d892c40c from=translated src=- shape=58762991 vocab=069421a2
+-/
 theorem fixed_injective : Function.Injective (@SWIGNode.fixed N) := by
   intro a b h; cases h; rfl
 
@@ -138,14 +142,18 @@ instance instMeasurableSpaceSwigΩ {N : Type*} (Ω : N → Type*)
   | .random _ => inferInstance
   | .fixed _ => inferInstance
 
-/-- For [a collection of base variables](hyp:N), [a family of value spaces each equipped with a σ-algebra and forming a standard Borel space](hyp:Ω), and [any split node](hyp:sn), the [standard Borel-space structure on that node's SWIG value space](goal) is inherited from the corresponding base-variable value space. -/
+/-- For [a collection of base variables](hyp:N), [a family of value spaces each equipped with a σ-algebra and forming a standard Borel space](hyp:Ω), and [any split node](hyp:sn), the [standard Borel-space structure on that node's SWIG value space](goal) is inherited from the corresponding base-variable value space.
+@isnad1 id=standard.0h3v.s5.88b862c053a0 from=translated src=- shape=9bee0c12 vocab=5ae7ba5c
+-/
 instance instStandardBorelSpaceSwigΩ {N : Type*} (Ω : N → Type*)
     [∀ n, MeasurableSpace (Ω n)] [∀ n, StandardBorelSpace (Ω n)] :
     ∀ sn, StandardBorelSpace (swigΩ Ω sn)
   | .random _ => inferInstance
   | .fixed _ => inferInstance
 
-/-- For [a collection of base variables](hyp:N), [a family of nonempty base-variable value spaces](hyp:Ω), and [any split node](hyp:sn), the [nonemptiness guarantee for that node's SWIG value space](goal) is inherited from the corresponding base-variable value space. -/
+/-- For [a collection of base variables](hyp:N), [a family of nonempty base-variable value spaces](hyp:Ω), and [any split node](hyp:sn), the [nonemptiness guarantee for that node's SWIG value space](goal) is inherited from the corresponding base-variable value space.
+@isnad1 id=nonempty.0h3v.s4.ff2ffc7a2e6c from=translated src=- shape=0c6dd389 vocab=38b129b5
+-/
 instance instNonemptySwigΩ {N : Type*} (Ω : N → Type*) [∀ n, Nonempty (Ω n)] :
     ∀ sn, Nonempty (swigΩ Ω sn)
   | .random _ => inferInstance
@@ -200,7 +208,9 @@ noncomputable def swigTopo (G : DAG N) : SWIGNode N → ℕ
   | .fixed n => 2 * G.topoOrder n
 
 /-- Every SWIG edge points from a lower to a higher position in the interleaved topological
-order. -/
+order.
+@isnad1 id=lt.1h5v.s5.3e9257d2c39f from=translated src=- shape=890570e9 vocab=cafc376a
+-/
 theorem swigTopo_lt (G : DAG N) (targets : Finset N) :
     ∀ u v, swigEdge G targets u v → swigTopo G u < swigTopo G v := by
   intro u v h
@@ -255,7 +265,9 @@ def iotaMap : SWIGNode N → SWIGNode N
   | .random n => .random n
 
 omit [DecidableEq N] [Fintype N] in
-/-- The link map sends the fixed copy of a base variable to its random copy. -/
+/-- The link map sends the fixed copy of a base variable to its random copy.
+@isnad1 id=eq.0h2v.s3.ff64e2c516ff from=translated src=- shape=eca97296 vocab=4ec72f1d
+-/
 theorem iotaMap_fixed (n : N) : iotaMap (.fixed n : SWIGNode N) = .random n := rfl
 
 -- ============================================================
@@ -264,7 +276,9 @@ theorem iotaMap_fixed (n : N) : iotaMap (.fixed n : SWIGNode N) = .random n := r
 
 /-- For [any base DAG `G`](hyp:G), [any set of intervention targets](hyp:targets), and [any
 node `n`](hyp:n), [the fixed copy of `n` has no parents in the single-world intervention
-graph built from `G` and `targets`](goal). -/
+graph built from `G` and `targets`](goal).
+@isnad1 id=eq.0h4v.s5.07004075045a from=translated src=- shape=0d082e37 vocab=0d9b71ae
+-/
 theorem swig_fixed_are_roots (G : DAG N) (targets : Finset N) (n : N) :
     (swigDAG G targets).parents (.fixed n) = ∅ := by
   rw [Finset.eq_empty_iff_forall_notMem]
@@ -275,7 +289,9 @@ theorem swig_fixed_are_roots (G : DAG N) (targets : Finset N) (n : N) :
 /-- For [any base DAG `G`](hyp:G), [any set of intervention targets](hyp:targets), and [any
 node `d`](hyp:d), [the parents of the random copy of `d` in the single-world intervention
 graph are exactly the copies of `d`'s original parents in `G`, each represented by its random
-version if it is not a target and by its fixed version if it is](goal). -/
+version if it is not a target and by its fixed version if it is](goal).
+@isnad1 id=iff.0h5v.s6.f1ba6cf83660 from=translated src=- shape=f766c211 vocab=fb9dadc8
+-/
 theorem swig_target_parents (G : DAG N) (targets : Finset N) (d : N) :
     ∀ x : SWIGNode N, x ∈ (swigDAG G targets).parents (.random d) ↔
       ∃ p, G.edge p d ∧ x = .random p ∧ p ∉ targets ∨
@@ -297,7 +313,9 @@ theorem swig_target_parents (G : DAG N) (targets : Finset N) (d : N) :
     · simp only [swigEdge]; exact ⟨hedge, hnt⟩
     · simp only [swigEdge]; exact ⟨ht, hedge⟩
 
-/-- If n is a root in G, then random n is a root in the SWIG. -/
+/-- If n is a root in G, then random n is a root in the SWIG.
+@isnad1 id=eq.1h4v.s6.4f93be2c493c from=translated src=- shape=e3bd14f9 vocab=3bb77200
+-/
 theorem swig_random_root_of_root (G : DAG N) (targets : Finset N) (n : N)
     (hroot : G.parents n = ∅) :
     (swigDAG G targets).parents (.random n) = ∅ := by
@@ -330,13 +348,17 @@ def initialSWIG (G : DAG N) : DAG (SWIGNode N) := swigDAG G ∅
 
 /-- For [any base DAG `G`](hyp:G) and [any nodes `u`, `v`](hyp:u,v), [in the initial SWIG of
 `G` (the SWIG with no intervention targets), the random copies of `u` and `v` are joined by
-an edge exactly when `u` and `v` are joined by an edge in `G`](goal). -/
+an edge exactly when `u` and `v` are joined by an edge in `G`](goal).
+@isnad1 id=iff.0h4v.s5.061d14d29f12 from=translated src=- shape=86024c9e vocab=851e94ed
+-/
 theorem initialSWIG_random_edge (G : DAG N) (u v : N) :
     (initialSWIG G).edge (.random u) (.random v) ↔ G.edge u v := by
   simp [initialSWIG, swigDAG, swigEdge]
 
 /-- For [any base DAG `G`](hyp:G) and [any node `n`](hyp:n), [the fixed copy of `n` has no
-parents in the initial SWIG of `G` (the SWIG with no intervention targets)](goal). -/
+parents in the initial SWIG of `G` (the SWIG with no intervention targets)](goal).
+@isnad1 id=eq.0h3v.s5.e3616d3d8eec from=translated src=- shape=5f9d28ef vocab=d3018767
+-/
 theorem initialSWIG_fixed_are_roots (G : DAG N) (n : N) :
     (initialSWIG G).parents (.fixed n) = ∅ :=
   swig_fixed_are_roots G ∅ n
@@ -424,7 +446,9 @@ def iota (G : SWIGGraph N) (s : {s // s ∈ G.fixed}) :
 def iotaNode (G : SWIGGraph N) (s : {s // s ∈ G.fixed}) : SWIGNode N :=
   (G.iota s).1
 
-/-- Forgetting the membership proof in the graph-level link map gives the node-level link map. -/
+/-- Forgetting the membership proof in the graph-level link map gives the node-level link map.
+@isnad1 id=eq.0h3v.s6.dba77edc6e73 from=translated src=- shape=a8b93d16 vocab=19368fe0
+-/
 @[simp] theorem iotaNode_eq_iotaMap (G : SWIGGraph N) (s : {s // s ∈ G.fixed}) :
     G.iotaNode s = iotaMap s := rfl
 
@@ -461,14 +485,18 @@ def Equivalent (G H : SWIGGraph N) : Prop :=
   G.observed = H.observed ∧
   G.unobserved = H.unobserved
 
-/-- SWIG graph equivalence is reflexive. -/
+/-- SWIG graph equivalence is reflexive.
+@isnad1 id=equivale.0h2v.s4.3e11040f45dc from=translated src=- shape=2ccd198a vocab=76b443bc
+-/
 @[refl] theorem Equivalent.refl (G : SWIGGraph N) : Equivalent G G := by
   unfold Equivalent
   refine And.intro ?hedge ?hfix
   · intro u v; exact Iff.rfl
   · exact And.intro rfl (And.intro rfl rfl)
 
-/-- SWIG graph equivalence is symmetric. -/
+/-- SWIG graph equivalence is symmetric.
+@isnad1 id=equivale.1h3v.s4.024cd55f3e42 from=translated src=- shape=27d6db21 vocab=76b443bc
+-/
 @[symm] theorem Equivalent.symm {G H : SWIGGraph N} :
     Equivalent G H → Equivalent H G := by
   intro h
@@ -483,7 +511,9 @@ def Equivalent (G H : SWIGGraph N) : Prop :=
       · simp [hobs]
       · simp [hunobs]
 
-/-- SWIG graph equivalence is transitive. -/
+/-- SWIG graph equivalence is transitive.
+@isnad1 id=equivale.2h4v.s5.b150d408a747 from=translated src=- shape=9add9982 vocab=76b443bc
+-/
 @[trans] theorem Equivalent.trans {G H K : SWIGGraph N} :
     Equivalent G H → Equivalent H K → Equivalent G K := by
   intro hGH hHK
@@ -504,7 +534,9 @@ def Equivalent (G H : SWIGGraph N) : Prop :=
 /-- Equivalent SWIGGraphs have the same `parents` Finset at every node.
 
     Consequence of `Equivalent`'s edge-iff clause and the fact that
-    `DAG.parents` is `Finset.univ.filter (edge · v)`. -/
+    `DAG.parents` is `Finset.univ.filter (edge · v)`.
+@isnad1 id=eq.1h4v.s6.6d4d3abb3a7e from=translated src=- shape=e75bd6dc vocab=ea22658b
+-/
 theorem Equivalent.parents_eq {G H : SWIGGraph N}
     (hEdge : ∀ u v, G.dag.edge u v ↔ H.dag.edge u v) (v : SWIGNode N) :
     G.dag.parents v = H.dag.parents v := by
@@ -513,14 +545,18 @@ theorem Equivalent.parents_eq {G H : SWIGGraph N}
   exact hEdge u v
 
 /-- If `u` is a parent of `v` in `G`, then `u` is classified
-    (fixed, observed, or unobserved). -/
+    (fixed, observed, or unobserved).
+@isnad1 id=mem.1h4v.s6.12036fe660eb from=translated src=- shape=2592b32f vocab=3ed4038d
+-/
 theorem parent_classified (G : SWIGGraph N) {u v : SWIGNode N}
     (h : u ∈ G.dag.parents v) :
     u ∈ G.fixed ∪ G.observed ∪ G.unobserved :=
   (G.dag_edges_classified u v (G.dag.mem_parents.mp h)).1
 
 /-- If `w` is a child of `u` in `G`, then `w` is classified
-    (fixed, observed, or unobserved). -/
+    (fixed, observed, or unobserved).
+@isnad1 id=mem.1h4v.s6.4dbaa48e1017 from=translated src=- shape=95078128 vocab=eb99d417
+-/
 theorem child_classified (G : SWIGGraph N) {u w : SWIGNode N}
     (h : w ∈ G.dag.children u) :
     w ∈ G.fixed ∪ G.observed ∪ G.unobserved :=

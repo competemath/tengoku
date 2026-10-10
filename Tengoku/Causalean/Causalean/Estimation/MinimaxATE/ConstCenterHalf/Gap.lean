@@ -45,7 +45,9 @@ open scoped BigOperators
 variable {K : ℕ} {α β : ℝ}
 
 /-- The null estimate `ĝ ≡ 1/2` has zero ATE: every cell contributes
-`1/2 − 1/2 = 0`. -/
+`1/2 − 1/2 = 0`.
+@isnad1 id=eq.0h1v.s4.c0658ca619fb from=translated src=- shape=10e61507 vocab=fa927378
+-/
 theorem ate_ghat : ate (ghat : Bool → (Fin K × Bool) → ℝ) = 0 := by
   simp [ate, ghat]
 
@@ -86,7 +88,9 @@ private theorem perPair (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β �
 effect of the perturbed construction equals `2β(α+β)/(1−4β²)`, independent of `lam`](goal).
 
 Summing the per-pair contributions (`perPair`, each `4β(α+β)/(1−4β²)`, independent of the signs
-`λ`) over the `K` pairs and dividing by `card (Fin K × Bool) = 2K` gives the closed form. -/
+`λ`) over the `K` pairs and dividing by `card (Fin K × Bool) = 2K` gives the closed form.
+@isnad1 id=eq.3h4v.s7.78ae4c09f837 from=translated src=- shape=d493ebc1 vocab=22fc8650
+-/
 theorem ate_gPerturbed [NeZero K] (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2)
     (lam : Fin K → Bool) :
     ate (gPerturbed α β lam) = 2 * β * (α + β) / (1 - 4 * β ^ 2) := by
@@ -113,7 +117,9 @@ theorem ate_gPerturbed [NeZero K] (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α 
 /-- For [nonnegative bump magnitudes α and β with `α + 2β ≤ 1/2`](hyp:hα,hβ,hαβ) and any
 Rademacher sign vector `lam`, [the gap between the perturbed construction's average treatment
 effect and the null estimate's average treatment effect (which is zero) equals
-`2β(α+β)/(1−4β²)`](goal). -/
+`2β(α+β)/(1−4β²)`](goal).
+@isnad1 id=eq.3h4v.s7.c890b066ef41 from=translated src=- shape=04e2bc54 vocab=ed487422
+-/
 theorem ate_gap [NeZero K] (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2)
     (lam : Fin K → Bool) :
     ate (gPerturbed α β lam) - ate (ghat : Bool → (Fin K × Bool) → ℝ)

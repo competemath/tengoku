@@ -33,7 +33,9 @@ open MeasureTheory
 /-- Within [a positive parameter cell](hyp:ρ,s,hρ,hρs) and
 [a nonnegative cell of the kernel band](hyp:u,a,b,ha,hau,hub,hb),
 the [moment envelope at the rescaled frequency is bounded by the two
-endpoint cubic exponents at the upper parameter](goal). -/
+endpoint cubic exponents at the upper parameter](goal).
+@isnad1 id=le.6h5v.s8.844e66974d80 from=translated src=- shape=d6a510f6 vocab=c48587f2
+-/
 theorem prawitz_rescaled_moment_cell_bound
     (ρ s u a b : ℝ) (hρ : 0 < ρ) (hρs : ρ ≤ s)
     (ha : 0 ≤ a) (hau : a ≤ u) (hub : u ≤ b) (hb : b ≤ 1) :
@@ -82,7 +84,9 @@ theorem prawitz_rescaled_moment_cell_bound
 /-- On [a positive parameter cell](hyp:ρ,r,s,hr,hrρ,hρs) and
 [a positive lower-half kernel cell](hyp:a,b,ha,hab,hb), the
 [high-frequency integral over the corresponding moving frequency cell
-has an explicit endpoint enclosure](goal). -/
+has an explicit endpoint enclosure](goal).
+@isnad1 id=other.6h5v.s9.40bc737cb98b from=translated src=- shape=f24c3720 vocab=bbf08d4b
+-/
 theorem prawitz_high_rescaled_lower_cell_integral_bound
     (ρ r s a b : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) :
@@ -151,7 +155,9 @@ the Prawitz filter magnitude at t/U times the moment envelope is at most
 (12/(5r))·(b − a)·√Q·min(1, exp E)](goal), where
 Q = (1 − a)²/4 + π²(1 − a)⁴/16 is a reflected polynomial bound on the filter
 and E is the larger rescaled endpoint exponent; this includes cells ending at
-the outer cutoff. -/
+the outer cutoff.
+@isnad1 id=other.6h5v.s9.03c0851124e6 from=translated src=- shape=0e83c7e0 vocab=bbf08d4b
+-/
 theorem prawitz_high_rescaled_upper_cell_integral_bound
     (ρ r s a b : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s)
     (ha : 1 / 2 ≤ a) (hab : a ≤ b) (hb : b ≤ 1) :

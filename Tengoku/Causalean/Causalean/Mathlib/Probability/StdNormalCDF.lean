@@ -49,24 +49,36 @@ The standard-normal CDF `Φ(x) = P(N(0,1) ≤ x)`, packaged from Mathlib's `cdf`
 noncomputable def stdNormalCDF (x : ℝ) : ℝ := cdf (gaussianReal 0 1) x
 
 /-- The named standard-normal density is Mathlib's real Gaussian density with mean zero and
-variance one. -/
+variance one.
+@isnad1 id=eq.0h1v.s4.4e17979cd344 from=translated src=- shape=c7562e3e vocab=a6248130
+-/
 @[simp] lemma stdNormalPDF_def (x : ℝ) : stdNormalPDF x = gaussianPDFReal 0 1 x := rfl
 
-/-- The named standard-normal CDF is Mathlib's CDF for the standard real Gaussian law. -/
+/-- The named standard-normal CDF is Mathlib's CDF for the standard real Gaussian law.
+@isnad1 id=eq.0h1v.s4.d67682d082a3 from=translated src=- shape=5f842b98 vocab=c8b7f1d8
+-/
 @[simp] lemma stdNormalCDF_def (x : ℝ) : stdNormalCDF x = cdf (gaussianReal 0 1) x := rfl
 
-/-- `Φ` is monotone (inherited from the `StieltjesFunction` structure of `cdf`). -/
+/-- `Φ` is monotone (inherited from the `StieltjesFunction` structure of `cdf`).
+@isnad1 id=monotone.0h0v.s2.fdf9b796c191 from=translated src=- shape=e3d48bcb vocab=48395407
+-/
 lemma stdNormalCDF_monotone : Monotone stdNormalCDF := by
   intro a b hab
   exact (monotone_cdf (gaussianReal 0 1)) hab
 
-/-- For [each real point](hyp:x), [the standard-normal CDF is nonnegative](goal). -/
+/-- For [each real point](hyp:x), [the standard-normal CDF is nonnegative](goal).
+@isnad1 id=le.0h1v.s3.d121d34b0778 from=translated src=- shape=8a62b088 vocab=95ddb019
+-/
 lemma stdNormalCDF_nonneg (x : ℝ) : 0 ≤ stdNormalCDF x := cdf_nonneg _ x
 
-/-- The standard-normal CDF is at most one at every real point. -/
+/-- The standard-normal CDF is at most one at every real point.
+@isnad1 id=le.0h1v.s3.024b285a3105 from=translated src=- shape=b14ee516 vocab=95ddb019
+-/
 lemma stdNormalCDF_le_one (x : ℝ) : stdNormalCDF x ≤ 1 := cdf_le_one _ x
 
-/-- The CDF of an atomless probability measure invariant under reflection is symmetric. -/
+/-- The CDF of an atomless probability measure invariant under reflection is symmetric.
+@isnad1 id=eq.1h2v.s6.7bfcd255a468 from=translated src=- shape=e535c20e vocab=e2ff6f4f
+-/
 lemma cdf_neg_of_map_neg {μ : Measure ℝ} [IsProbabilityMeasure μ] [NullSingletonClass μ]
     (hmap : μ.map (fun x : ℝ => -x) = μ) (t : ℝ) : cdf μ (-t) = 1 - cdf μ t := by
   have hreal : ∀ s : ℝ, cdf μ s = μ.real (Set.Iic s) := by
@@ -82,7 +94,9 @@ lemma cdf_neg_of_map_neg {μ : Measure ℝ} [IsProbabilityMeasure μ] [NullSingl
     hreal t]
 
 /-- **Symmetry of the standard normal CDF:** `Φ(−t) = 1 − Φ(t)`, from the reflection symmetry
-of the Gaussian law and its atomlessness. -/
+of the Gaussian law and its atomlessness.
+@isnad1 id=eq.0h1v.s4.735b6e3a1197 from=translated src=- shape=c50c3999 vocab=85c0697d
+-/
 lemma stdNormalCDF_neg (t : ℝ) : stdNormalCDF (-t) = 1 - stdNormalCDF t := by
   have hmap : (gaussianReal 0 1).map (fun x : ℝ => -x) = gaussianReal 0 1 := by
     rw [gaussianReal_map_neg, neg_zero]
@@ -90,13 +104,19 @@ lemma stdNormalCDF_neg (t : ℝ) : stdNormalCDF (-t) = 1 - stdNormalCDF t := by
     nullSingletonClass_gaussianReal (v := 1) one_ne_zero
   exact cdf_neg_of_map_neg hmap t
 
-/-- `Φ → 0` at `-∞`. -/
+/-- `Φ → 0` at `-∞`.
+@isnad1 id=tendsto.0h0v.s4.ce27f459b5f6 from=translated src=- shape=95bb6042 vocab=8d810676
+-/
 lemma stdNormalCDF_tendsto_atBot : Tendsto stdNormalCDF atBot (𝓝 0) := tendsto_cdf_atBot _
 
-/-- `Φ → 1` at `+∞`. -/
+/-- `Φ → 1` at `+∞`.
+@isnad1 id=tendsto.0h0v.s4.a6ce3fe152d8 from=translated src=- shape=95bb6042 vocab=d831e096
+-/
 lemma stdNormalCDF_tendsto_atTop : Tendsto stdNormalCDF atTop (𝓝 1) := tendsto_cdf_atTop _
 
-/-- The CDF of an atomless real probability measure is continuous. -/
+/-- The CDF of an atomless real probability measure is continuous.
+@isnad1 id=continuo.0h1v.s5.336c0857d5c5 from=translated src=- shape=d183f2f7 vocab=9b9d1207
+-/
 @[fun_prop]
 lemma cdf_continuous_of_noAtoms (μ : Measure ℝ) [IsProbabilityMeasure μ] [NullSingletonClass μ] :
     Continuous (cdf μ) := by
@@ -114,14 +134,18 @@ lemma cdf_continuous_of_noAtoms (μ : Measure ℝ) [IsProbabilityMeasure μ] [Nu
     f.mono.leftLim_le (le_refl x)
   linarith [hjump, hle]
 
-/-- [The standard normal CDF `Φ` is continuous](goal): the standard normal has no atoms. -/
+/-- [The standard normal CDF `Φ` is continuous](goal): the standard normal has no atoms.
+@isnad1 id=continuo.0h0v.s3.37c0ef4d1f55 from=translated src=- shape=e3d48bcb vocab=5bf5b06b
+-/
 @[fun_prop]
 lemma stdNormalCDF_continuous : Continuous stdNormalCDF := by
   haveI : NullSingletonClass (gaussianReal 0 1) :=
     nullSingletonClass_gaussianReal (v := 1) one_ne_zero
   exact cdf_continuous_of_noAtoms (gaussianReal 0 1)
 
-/-- `Φ` is strictly monotone: the standard normal has full support. -/
+/-- `Φ` is strictly monotone: the standard normal has full support.
+@isnad1 id=strictmo.0h0v.s2.e5ee84d521a6 from=translated src=- shape=e3d48bcb vocab=d00d265f
+-/
 lemma stdNormalCDF_strictMono : StrictMono stdNormalCDF := by
   intro a b hab
   have hfi : IntervalIntegrable (gaussianPDFReal 0 1) volume a b :=
@@ -146,13 +170,17 @@ lemma stdNormalCDF_strictMono : StrictMono stdNormalCDF := by
     exact ENNReal.ofReal_pos.mp (by simpa [hmeasure] using hμpos)
   exact sub_pos.mp hdiff
 
-/-- `0 < Φ(x)` for every real `x` (full support of the Gaussian). -/
+/-- `0 < Φ(x)` for every real `x` (full support of the Gaussian).
+@isnad1 id=lt.0h1v.s3.ba6c49ec361e from=translated src=- shape=8a62b088 vocab=f9937fb9
+-/
 lemma stdNormalCDF_pos (x : ℝ) : 0 < stdNormalCDF x := by
   have hlt := stdNormalCDF_strictMono (by linarith : x - 1 < x)
   have hnon := stdNormalCDF_nonneg (x - 1)
   linarith
 
-/-- `Φ(x) < 1` for every real `x`. -/
+/-- `Φ(x) < 1` for every real `x`.
+@isnad1 id=lt.0h1v.s3.d17f288531ba from=translated src=- shape=b14ee516 vocab=f9937fb9
+-/
 lemma stdNormalCDF_lt_one (x : ℝ) : stdNormalCDF x < 1 := by
   have hlt := stdNormalCDF_strictMono (by linarith : x < x + 1)
   have hle := stdNormalCDF_le_one (x + 1)
@@ -165,7 +193,9 @@ $p$.
 The **probit** `Φ⁻¹(p)` is the standard-normal quantile, the generalized inverse of `Φ`. -/
 noncomputable def probit (p : ℝ) : ℝ := sInf {x : ℝ | p ≤ stdNormalCDF x}
 
-/-- `Φ(Φ⁻¹(p)) = p` for `p ∈ (0,1)` (exact inversion, using continuity + strict monotonicity). -/
+/-- `Φ(Φ⁻¹(p)) = p` for `p ∈ (0,1)` (exact inversion, using continuity + strict monotonicity).
+@isnad1 id=eq.2h1v.s4.084397bd7a6d from=translated src=- shape=80704693 vocab=0519e7bf
+-/
 lemma stdNormalCDF_probit {p : ℝ} (h0 : 0 < p) (h1 : p < 1) :
     stdNormalCDF (probit p) = p := by
   obtain ⟨a, ha⟩ := Filter.eventually_atBot.mp
@@ -192,7 +222,9 @@ lemma stdNormalCDF_probit {p : ℝ} (h0 : 0 < p) (h1 : p < 1) :
   rw [hprobit, hxeq]
 
 /-- [For any real score `x`](hyp:x), [applying the probit transform to `Φ(x)` recovers
-`x`](goal): the probit function `Φ⁻¹` is a left inverse of the standard normal CDF `Φ`. -/
+`x`](goal): the probit function `Φ⁻¹` is a left inverse of the standard normal CDF `Φ`.
+@isnad1 id=eq.0h1v.s3.7915b846c0be from=translated src=- shape=47dcad53 vocab=576c506e
+-/
 lemma probit_stdNormalCDF (x : ℝ) : probit (stdNormalCDF x) = x := by
   rw [probit]
   have hset : {y : ℝ | stdNormalCDF x ≤ stdNormalCDF y} = Set.Ici x := by

@@ -17,7 +17,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- [The first-moment density x·K(x) of the unit-bandwidth sinc-fourth kernel K
-is integrable, and its integral is zero](goal). -/
+is integrable, and its integral is zero](goal).
+@isnad1 id=and.0h0v.s6.dae7e5a0bb2d from=translated src=- shape=2fefba02 vocab=423fde0d
+-/
 theorem sinc4Kernel_unit_first_moment :
     Integrable (fun x : ℝ => x * sinc4Kernel 1 x) volume ∧
       (∫ x : ℝ, x * sinc4Kernel 1 x) = 0 := by

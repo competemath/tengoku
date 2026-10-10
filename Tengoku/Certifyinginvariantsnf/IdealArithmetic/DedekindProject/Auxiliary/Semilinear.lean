@@ -12,6 +12,9 @@ This files includes some results on semilinear maps and bases mapped through the
 
 open Module
 
+/--
+@isnad1 id=mem.1h7v.s8.7e39b04cdb90 from=translated src=- shape=4f20684f vocab=9ecce100
+-/
 theorem Submodule.coord_in_ideal_of_ideal_smul_top_mem {R M ι: Type*} [CommRing R] [AddCommGroup M]
     [Module R M] (b : Basis ι R M) (I : Ideal R) (x : M) (h : x ∈ I • (⊤ : Submodule R M) ) (i : ι):
     b.coord i x ∈ I := by
@@ -27,6 +30,9 @@ variable {ι R S M N : Type _} [CommRing R] [CommRing S] [AddCommGroup M] [AddCo
   [Module R M] [Module S N] (g : R →+* S) (g' : ZeroHom S R) (hg : Function.RightInverse g' g)
    (f : M →ₛₗ[g] N) (f' : N → M) (hf : Function.RightInverse f' f)
 
+/--
+@isnad1 id=eq.0h9v.s9.b6d5f5b96380 from=translated src=- shape=87983c51 vocab=be68722a
+-/
 theorem Finsupp.apply_linearCombination' {α : Type*} (f : M →ₛₗ[g] N) (v) (l : α →₀ R) :
     f (Finsupp.linearCombination R v l)
       = Finsupp.linearCombination S (f ∘ v) (l.mapRange g (map_zero g)) := by
@@ -43,7 +49,9 @@ include hg in
 /-- If `v` is a linearly independent family of vectors and the kernel of a semilinear map `f` is
 disjoint with the submodule spanned by the vectors of `v`, then `f ∘ v` is a linearly independent
 family of vectors· See also `LinearIndependent.mapₛₗ'` for a similar statement with a different
-condition on the kernel of `f` . -/
+condition on the kernel of `f` .
+@isnad1 id=linearin.2h9v.s9.2519363e0bb3 from=translated src=- shape=b0efdcaa vocab=2a0034a7
+-/
 theorem LinearIndependent.mapₛₗ {v : ι → M} {f : M →ₛₗ[g] N}
     (hf_inj : Submodule.comap (Finsupp.linearCombination R v) (LinearMap.ker f) ≤ RingHom.ker g • ⊤) :
     LinearIndependent S (f ∘ v) := by
@@ -72,6 +80,9 @@ theorem LinearIndependent.mapₛₗ {v : ι → M} {f : M →ₛₗ[g] N}
     exact add_mem (hx i) (hy i)
 
 variable [RingHomSurjective g] in
+/--
+@isnad1 id=mem.1h4v.s9.292e546538e4 from=translated src=- shape=1d07b51d vocab=f976ded8
+-/
 theorem Submodule.finsupp_mem_smul_top (x : ι →₀ R) (I : Ideal R)
     (h : ∀ i, x i ∈ I) : x ∈ (I • ⊤ : Submodule R (ι →₀ R)) := by
   induction x using Finsupp.induction
@@ -94,7 +105,9 @@ theorem Submodule.finsupp_mem_smul_top (x : ι →₀ R) (I : Ideal R)
 include hg
 /-- If `v` is a linearly independent family of vectors that can be extended to a basis,
 and `f` is a surjective `g`-semilinear map with kernel contained in `ker g • ⊤`,
-then `f ∘ v` is linearly independent· -/
+then `f ∘ v` is linearly independent·
+@isnad1 id=linearin.4h12v.s9.5c7542cbc485 from=translated src=- shape=c078e6bb vocab=cf091ca0
+-/
 theorem LinearIndependent.mapₛₗ' {τ : Type* } {v : ι → M} (b : Basis τ R M) (φ : ι → τ)
      (phi_inj : φ.Injective) (hext : v = b ∘ φ ) {f : M →ₛₗ[g] N}
      (hf_inj : LinearMap.ker f ≤ RingHom.ker g • ⊤) :
@@ -144,12 +157,18 @@ noncomputable def Basis.comp_semilinear {ι R S M N : Type*} [CommRing R] [CommR
         exact hf.surjective })
 
 variable [RingHomSurjective g]
+/--
+@isnad1 id=eq.3h11v.s9.a95478ceac3f from=translated src=- shape=3532511c vocab=e4df75ac
+-/
 lemma Basis.comp_semilinear_def (b : Basis ι R M)
     (h : LinearMap.ker f ≤ RingHom.ker g • ⊤) (i : ι) :
     (Basis.comp_semilinear g g' hg f f' hf b h) i = f (b i) := by
   erw [Basis.mk_apply]
   rfl
 
+/--
+@isnad1 id=eq.3h11v.s10.1c2160c8883a from=translated src=- shape=38b741f6 vocab=0624ca4c
+-/
 lemma Basis.comp_semilinear_repr
     (b : Basis ι R M)
     (h : LinearMap.ker f ≤ RingHom.ker g • ⊤) (x : M) :

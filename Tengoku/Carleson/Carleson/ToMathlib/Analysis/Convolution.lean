@@ -24,7 +24,9 @@ variable {L : E →L[𝕜] E' →L[𝕜] F}
 
 variable [MeasurableSpace G]
 
-/-- Special case of `convolution_flip` when `L` is symmetric. -/
+/-- Special case of `convolution_flip` when `L` is symmetric.
+@isnad1 id=eq.1h8v.s11.6a88390105b4 from=translated src=- shape=f56712b4 vocab=2f61c92b
+-/
 theorem convolution_symm {f : G → E} {g : G → E} (L : E →L[𝕜] E →L[𝕜] F)
     (hL : ∀ (x y : E), L x y = L y x) [NormedSpace ℝ F] [AddCommGroup G]
     {μ : Measure G} [μ.IsAddLeftInvariant] [μ.IsNegInvariant] [MeasurableNeg G] [MeasurableAdd G] :
@@ -34,7 +36,9 @@ theorem convolution_symm {f : G → E} {g : G → E} (L : E →L[𝕜] E →L[�
 
 variable [AddGroup G] [MeasurableAdd₂ G] [MeasurableNeg G] {μ : Measure G} [SigmaFinite μ]
 
-/-- The convolution of two a.e. strongly measurable functions is a.e. strongly measurable. -/
+/-- The convolution of two a.e. strongly measurable functions is a.e. strongly measurable.
+@isnad1 id=aestrong.2h9v.s9.c1adfd7ba79e from=translated src=- shape=cef57ad4 vocab=f2067a23
+-/
 @[fun_prop]
 protected theorem AEStronglyMeasurable.convolution [NormedSpace ℝ F] [μ.IsAddRightInvariant]
     (hf : AEStronglyMeasurable f μ) (hg : AEStronglyMeasurable g μ) :
@@ -45,7 +49,9 @@ protected theorem AEStronglyMeasurable.convolution [NormedSpace ℝ F] [μ.IsAdd
   filter_upwards with x using ⟨measurable_sub_const x, by rw [map_sub_right_eq_self μ x]⟩
 
 /-- This implies both of the following theorems `convolutionExists_of_memLp_memLp` and
-`enorm_convolution_le_eLpNorm_mul_eLpNorm`. -/
+`enorm_convolution_le_eLpNorm_mul_eLpNorm`.
+@isnad1 id=le.4h12v.s11.591a269ea5bd from=translated src=- shape=c1cb6415 vocab=13de5a3c
+-/
 lemma lintegral_enorm_convolution_integrand_le_eLpNorm_mul_eLpNorm
     [μ.IsNegInvariant] [μ.IsAddLeftInvariant] {p q : ENNReal} (hpq : p.HolderConjugate q)
     (hL : ∀ (x y : G), ‖L (f x) (g y)‖ ≤ ‖f x‖ * ‖g y‖)
@@ -63,7 +69,9 @@ lemma lintegral_enorm_convolution_integrand_le_eLpNorm_mul_eLpNorm
     eLpNorm_le_eLpNorm_mul_eLpNorm'_of_norm hf hg' (L ·) _ hL' (hpqr := hpq)
 
 /-- If `MemLp f p μ` and `MemLp g q μ`, where `p` and `q` are Hölder conjugates, then the
-convolution of `f` and `g` exists everywhere. -/
+convolution of `f` and `g` exists everywhere.
+@isnad1 id=convolut.6h11v.s10.1502e6130df7 from=translated src=- shape=7d9bb83f vocab=50c1efa4
+-/
 theorem ConvolutionExists.of_memLp_memLp
     [μ.IsNegInvariant] [μ.IsAddLeftInvariant] [μ.IsAddRightInvariant]
     {p q : ENNReal} (hpq : p.HolderConjugate q)
@@ -75,7 +83,9 @@ theorem ConvolutionExists.of_memLp_memLp
   finiteness
 
 /-- If `p` and `q` are Hölder conjugates, then the convolution of `f` and `g` is bounded everywhere
-by `eLpNorm f p μ * eLpNorm g q μ`. -/
+by `eLpNorm f p μ * eLpNorm g q μ`.
+@isnad1 id=le.4h12v.s10.ca46673fc622 from=translated src=- shape=632dc536 vocab=2c043224
+-/
 theorem enorm_convolution_le_eLpNorm_mul_eLpNorm [NormedSpace ℝ F]
     [μ.IsNegInvariant] [μ.IsAddLeftInvariant] {p q : ENNReal} (hpq : p.HolderConjugate q)
     (hL : ∀ (x y : G), ‖L (f x) (g y)‖ ≤ ‖f x‖ * ‖g y‖)
