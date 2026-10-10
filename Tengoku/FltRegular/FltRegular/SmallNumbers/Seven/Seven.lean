@@ -1,0 +1,75 @@
+module
+
+public import Tengoku
+
+import Tengoku.FltRegular.FltRegular.SmallNumbers.Cyclotomic
+import Tengoku.FltRegular.FltRegular.SmallNumbers.OrderOf
+
+/-!
+# The ring of integers of the seventh cyclotomic field
+
+This file computes the relevant Minkowski bound and proves that the ring of integers of a
+seventh-cyclotomic number field is a principal ideal domain.
+-/
+
+@[expose] public section
+
+open NumberField Module NumberField.InfinitePlace Nat Real RingOfIntegers Finset Multiset
+  IsCyclotomicExtension.Rat Polynomial cyclotomic UniqueFactorizationMonoid
+
+variable {K : Type*} [Field K] [NumberField K]
+
+local notation "M " K:70 => (4 / π) ^ nrComplexPlaces K *
+  ((finrank ℚ K)! / (finrank ℚ K) ^ (finrank ℚ K) * √|discr K|)
+
+/-- The primality fact for `7`. -/
+instance Nat.fact_prime_seven : Fact (Nat.Prime 7) :=
+  ⟨prime_seven⟩
+
+/-- The explicit floor computation used in the Minkowski bound for the seventh cyclotomic field. -/
+lemma crazy7 : ⌊(4 / π) ^ 3 * (6! / 6 ^ 6 * √16807)⌋₊ = 4 := by
+  refine (floor_eq_iff (by positivity)).mpr ⟨?_, ?_⟩
+  · calc
+      (4 : ℝ) ≤ (4 / 3.15) ^ 3 * (6! / 6 ^ 6 * 129) := by norm_num
+      _ ≤ (4 / π) ^ 3 * (6! / 6 ^ 6 * √16807) := by
+        gcongr
+        · exact pi_lt_d2.le
+        · exact (le_sqrt (by norm_num) (by norm_num)).mpr (by norm_num)
+  · calc
+      (4 / π) ^ 3 * (6! / 6 ^ 6 * √16807) ≤ (4 / 3) ^ 3 * (6! / 6 ^ 6 * 130) := by
+        gcongr
+        · exact pi_gt_three.le
+        · exact (sqrt_le_left (by norm_num)).mpr (by norm_num)
+      _ < _ := by norm_num
+
+variable [IsCyclotomicExtension {7} ℚ K]
+
+/-- The Minkowski bound for a seventh-cyclotomic number field is `4`. -/
+theorem M7 : ⌊(M K)⌋₊ = 4 := by
+  rw [discr_prime 7 K, IsCyclotomicExtension.finrank (n := 7) K
+    (irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 7, totient_prime
+      Nat.prime_seven]
+  simp only [Nat.add_one_sub_one, reduceDiv, cast_ofNat, Int.reduceNeg, Int.reducePow,
+    reduceSub, neg_mul, one_mul, Int.cast_neg, Int.cast_ofNat, abs_neg, abs_ofNat]
+  exact crazy7
+
+/-- The explicit seventh cyclotomic polynomial over `ℤ`. -/
+theorem cyclotomic_7 : cyclotomic 7 ℤ =
+    X ^ 6 + X ^ 5 + X ^ 4 + X ^ 3 + X ^ 2 + X + 1 := by
+  simp [cyclotomic_prime, sum_range_succ]
+  ring
+
+variable (K) in
+/-- The ring of integers of a seventh-cyclotomic number field is a principal ideal domain. -/
+theorem Rat.seven_pid : IsPrincipalIdealRing (𝓞 K) := by
+  apply IsCyclotomicExtension.Rat.pid6 7
+  rw [M7, cyclotomic_7]
+  intro p hple hp hpn
+  fin_cases hple
+  any_goals norm_num at hp
+  all_goals
+    left
+    simp only [reduceAdd]
+    refine orderOf_lt_of (by norm_num) (fun i hi hipos ↦ ?_)
+    have hmem := Finset.mem_Icc.mpr ⟨hipos, hi⟩
+    fin_cases hmem <;> norm_num
