@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "0b5321a3b2495b9bf5f29068bde4f61f062effc6bed04a2a7077dc6bf20758f4",
+ "library": "merely-true",
+ "lint_mode": "proposed",
+ "modules": 4,
+ "part": 1,
+ "theorems": 16
+}
