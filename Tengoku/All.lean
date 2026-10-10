@@ -5,6 +5,7 @@ import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
+import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
