@@ -1,6 +1,7 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
+import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
