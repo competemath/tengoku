@@ -32,6 +32,7 @@ import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
 import Tengoku.EquationalTheories
 import Tengoku.ForbiddenMatrix
+import Tengoku.FormalMath
 import Tengoku.Formalslt
 import Tengoku.Physlib
 import Tengoku.Tautology
