@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "0fe05991197513ade32460225d4d4902252bec1f080950d1f6ace4426096bfce",
+ "library": "algolean",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 6
+}
