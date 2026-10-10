@@ -51,5 +51,6 @@ import Tengoku.Formalslt
 import Tengoku.Physlib
 import Tengoku.Tautology
 import Tengoku.Complexitylib
+import Tengoku.BtcVerified
 import Tengoku.Leaninfotheory
 import Tengoku.ZkevmClean
