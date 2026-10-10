@@ -16,7 +16,9 @@ open MeasureTheory ProbabilityTheory
 open scoped NNReal
 
 /-- At [any real threshold](hyp:x), the [Gaussian sine quotient is
-integrable on the positive frequency half-line](goal). -/
+integrable on the positive frequency half-line](goal).
+@isnad1 id=integrab.0h1v.s6.9f03ad291c5e from=translated src=- shape=49198591 vocab=0fbe39d1
+-/
 theorem gaussian_sine_quotient_integrable (x : ℝ) :
     IntegrableOn (fun t : ℝ =>
       Real.exp (-(t ^ 2 / 2)) * Real.sin (t * x) / t) (Set.Ioi 0) := by
@@ -42,7 +44,9 @@ theorem gaussian_sine_quotient_integrable (x : ℝ) :
 
 /-- At [every real threshold x](hyp:x), [the standard Gaussian probability of
 the half-line `(−∞, x]` equals one half plus 1/π times the integral over
-t > 0 of exp(−t²/2)·sin(tx)/t](goal). -/
+t > 0 of exp(−t²/2)·sin(tx)/t](goal).
+@isnad1 id=eq.0h1v.s7.fee2078e4f5b from=translated src=- shape=3cc6c210 vocab=ade03ad9
+-/
 theorem gaussian_cdf_sine_inversion (x : ℝ) :
     ((gaussianReal 0 1) (Set.Iic x)).toReal =
       1 / 2 + (1 / Real.pi) *

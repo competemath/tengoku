@@ -11,6 +11,9 @@ noncomputable section
 open scoped Real NNReal
 open Complex MeasureTheory Set Bornology
 
+/--
+@isnad1 id=interval.3h4v.s6.3ec9639b09d5 from=translated src=- shape=a32b71bb vocab=e8f079c3
+-/
 lemma ContinuousOn.intervalIntegrable_Ioo_of_bound
     {a b : ℝ} {C : ℝ} {f : ℝ → ℂ} (hf : ContinuousOn f (Ioo a b))
     (hab : a ≤ b) (h'f : ∀ x ∈ Ioo a b, ‖f x‖ ≤ C) :
@@ -20,6 +23,9 @@ lemma ContinuousOn.intervalIntegrable_Ioo_of_bound
   apply HasFiniteIntegral.restrict_of_bounded (by simp) (C := C)
   filter_upwards [ae_restrict_mem measurableSet_Ioo] using h'f
 
+/--
+@isnad1 id=interval.3h5v.s6.e39e5507ec13 from=translated src=- shape=51c97a3d vocab=a3d43cc4
+-/
 lemma intervalIntegrable_continuous_mul_lipschitzOnWith
     {a b : ℝ} {K : ℝ≥0} {f g : ℝ → ℂ} (hab : a ≤ b) (hf : Continuous f)
     (hg : LipschitzOnWith K g (Set.Ioo a b)) :
@@ -50,6 +56,9 @@ lemma intervalIntegrable_continuous_mul_lipschitzOnWith
     apply mem_image_of_mem
     exact Ioo_subset_Icc_self hx
 
+/--
+@isnad1 id=le.3h6v.s8.0dd7fd2bd07c from=translated src=- shape=b8d5400c vocab=5d833440
+-/
 lemma van_der_Corput {a b : ℝ} (hab : a ≤ b) {n : ℤ} {φ : ℝ → ℂ} {B K : ℝ≥0}
     (h1 : LipschitzOnWith K φ (Ioo a b)) (h2 : ∀ x ∈ Ioo a b, ‖φ x‖ ≤ B) :
     ‖∫ x in a..b, exp (I * n * x) * φ x‖ ≤

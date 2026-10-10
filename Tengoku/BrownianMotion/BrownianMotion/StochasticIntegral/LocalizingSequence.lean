@@ -33,6 +33,9 @@ variable [ConditionallyCompleteLinearOrderBot ι] [TopologicalSpace ι] [OrderTo
   [DenselyOrdered ι] [FirstCountableTopology ι] [NoMaxOrder ι]
   {𝓕 : Filtration ι mΩ} {X : ι → Ω → E} {p q : (ι → Ω → E) → Prop}
 
+/--
+@isnad1 id=islocali.2h6v.s7.6ddd2b51d457 from=translated src=- shape=ce816399 vocab=787dabc4
+-/
 lemma isLocalizingSequence_of_isPreLocalizingSequence
     {τ : ℕ → Ω → WithTop ι} (h𝓕 : IsRightContinuous 𝓕) (hτ : IsPreLocalizingSequence 𝓕 τ P) :
     IsLocalizingSequence 𝓕 (fun i ω ↦ ⨅ j ≥ i, τ j ω) P := by
@@ -43,6 +46,9 @@ section
 omit [DenselyOrdered ι] [FirstCountableTopology ι] [NoMaxOrder ι]
 variable [SecondCountableTopology ι] [IsFiniteMeasure P]
 
+/--
+@isnad1 id=ex.2h7v.s7.328c444627ca from=translated src=- shape=0fee891c vocab=8e14df46
+-/
 lemma isPreLocalizingSequence_of_isLocalizingSequence
     [NoMaxOrder ι] {τ : ℕ → Ω → WithTop ι} {σ : ℕ → ℕ → Ω → WithTop ι}
     (hτ : IsLocalizingSequence 𝓕 τ P) (hσ : ∀ n, IsLocalizingSequence 𝓕 (σ n) P) :
@@ -68,6 +74,9 @@ def LocalizingSequenceOfProp (X : ι → Ω → E) (p : (ι → E) → Prop) : �
   Function.const _ <| fun ω ↦ if p (X · ω) then ⊤ else ⊥
 
 omit [OrderBot ι] in
+/--
+@isnad1 id=isstoppi.1h7v.s6.899812ac82b3 from=translated src=- shape=f633ae24 vocab=92a693a5
+-/
 lemma isStoppingTime_ae_const [IsComplete 𝓕 P] (τ : Ω → WithTop ι) (c : WithTop ι)
     (hτ : τ =ᵐ[P] Function.const _ c) :
     IsStoppingTime 𝓕 τ := by
@@ -87,6 +96,9 @@ lemma isStoppingTime_ae_const [IsComplete 𝓕 P] (τ : Ω → WithTop ι) (c : 
 
 variable [TopologicalSpace ι] [OrderTopology ι]
 
+/--
+@isnad1 id=islocali.1h8v.s7.be73c38ee8a4 from=translated src=- shape=ea93499b vocab=29866420
+-/
 lemma isLocalizingSequence_localizingSequenceOfProp [IsComplete 𝓕 P] {p : (ι → E) → Prop}
     (hpX : ∀ᵐ ω ∂P, p (X · ω)) :
     IsLocalizingSequence 𝓕 (LocalizingSequenceOfProp X p) P where

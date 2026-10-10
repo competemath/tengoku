@@ -25,6 +25,9 @@ open BigOperators Module
 
 variable {n : ℕ} {R : Type*} [Semiring R]
 
+/--
+@isnad1 id=eq.2h4v.s6.4729b6fe74a5 from=translated src=- shape=3927b41f vocab=ae375ab0
+-/
 lemma list_sum_length (hn : n ≠ 0) (f : Fin n → List R) (h : ∀ i, (f i).length = m) :
     (List.sum (List.ofFn (fun i => f i))).length = m := by
   induction n with
@@ -48,6 +51,9 @@ def table_mul_list' (a b : List R) : List R :=
   List.sum (List.ofFn (fun i => List.sum (List.ofFn
     (fun j => List.mulPointwise ((List.getD a i 0) * (List.getD b j 0))  (List.ofFn (T i j))))))
 
+/--
+@isnad1 id=eq.0h5v.s5.622fb7992401 from=translated src=- shape=e6390d5b vocab=9d543adf
+-/
 lemma table_mul_list_length (a b : List R) : (table_mul_list' T a b).length = n := by
   by_cases hn : n = 0
   · unfold table_mul_list'
@@ -60,18 +66,27 @@ lemma table_mul_list_length (a b : List R) : (table_mul_list' T a b).length = n 
       · intro j
         rw [List.mulPointwise_length, List.length_ofFn]
 
+/--
+@isnad1 id=eq.1h5v.s6.735dfcbbd79a from=translated src=- shape=22f3ac39 vocab=58c0158a
+-/
 lemma FnOfList_add_ofFn  (a b c : Fin n → R)
     (hc : List.ofFn c = (List.ofFn a) + (List.ofFn b))  :
     c = a + b := by
   rw [List.add_ofFn, List.ofFn_inj] at hc
   exact hc
 
+/--
+@isnad1 id=eq.1h5v.s6.65b1d33799ae from=translated src=- shape=04345c15 vocab=cd160114
+-/
 lemma FnOfList_mulPointwise_ofFin (a c : Fin n → R)
    (hc : List.ofFn c = List.mulPointwise d (List.ofFn a)) :
     c = d • a := by
   rw [List.mulPointwise_ofFn a d, List.ofFn_inj] at hc
   exact hc
 
+/--
+@isnad1 id=eq.1h5v.s6.895bd745a8fa from=translated src=- shape=e8816c7a vocab=62c0beb3
+-/
 lemma FnOfList_sum_ofFn {m : ℕ} (f : Fin m → (Fin n → R))(c : Fin n → R)
     (h : List.ofFn c = List.sum (List.ofFn (fun i => List.ofFn (f i)))) :
     c = ∑ i, f i := by
@@ -87,6 +102,9 @@ lemma FnOfList_sum_ofFn {m : ℕ} (f : Fin m → (Fin n → R))(c : Fin n → R)
     exact h
     · simp only [ne_eq, Nat.succ_ne_zero, not_false_eq_true]
 
+/--
+@isnad1 id=eq.1h5v.s7.d235ff318662 from=translated src=- shape=181697c1 vocab=9179e798
+-/
 lemma List.table_mul_list_ofFn (hn : n ≠ 0) (a b : Fin n → R) :
     List.ofFn (∑ i, (∑ j , (a i * b j) • T i j )) =
     table_mul_list' T (List.ofFn a) (List.ofFn b) := by
@@ -103,6 +121,9 @@ lemma List.table_mul_list_ofFn (hn : n ≠ 0) (a b : Fin n → R) :
   rw [List.getD_eq_getElem _ _ (lt_of_lt_of_eq j.2 (List.length_ofFn).symm )]
   simp only [List.getElem_ofFn, Fin.eta]
 
+/--
+@isnad1 id=eq.1h6v.s7.efa6267fd9f1 from=translated src=- shape=d9fa2378 vocab=9179e798
+-/
 lemma FnOfList_table_mul_list_eq_sum_sum (a b c : Fin n → R)
     (hc : List.ofFn c = table_mul_list' T (List.ofFn a) (List.ofFn b)) :
     c = ∑ i, (∑ j , (a i * b j) • T i j ) := by
@@ -115,6 +136,9 @@ lemma FnOfList_table_mul_list_eq_sum_sum (a b c : Fin n → R)
     rw [← List.table_mul_list_ofFn T (Nat.succ_ne_zero n), List.ofFn_inj] at hc
     exact hc
 
+/--
+@isnad1 id=eq.1h7v.s9.5102f36153ff from=translated src=- shape=1eac9da1 vocab=40255afb
+-/
 lemma table_add_list_eq_add {S : Type*} [AddCommMonoid S] [Module R S] [Mul S]
     (B : Basis (Fin n) R S) (a b c : Fin n → R) (hc : List.ofFn c = (List.ofFn a) + (List.ofFn b) ) :
     (B.equivFun.symm a ) + (B.equivFun.symm b) = B.equivFun.symm c := by
@@ -126,6 +150,9 @@ lemma table_add_list_eq_add {S : Type*} [AddCommMonoid S] [Module R S] [Mul S]
   FnOfList_add_ofFn _ _ _ hc]
   exact LinearEquiv.injective B.repr
 
+/--
+@isnad1 id=eq.1h7v.s9.72fe29fe6f3a from=translated src=- shape=7579f7ef vocab=f6396b98
+-/
 lemma table_mulPointwise_eq_smul
     {S : Type*}[AddCommMonoid S] [Module R S] [Mul S] (B : Basis (Fin n) R S)
     (a c : Fin n → R) (d : R) (hc : List.ofFn c = List.mulPointwise d (List.ofFn a) ) :
@@ -140,7 +167,9 @@ lemma table_mulPointwise_eq_smul
   exact LinearEquiv.injective B.repr
 
 /-- Multiplication of lists with coordinates
-  corresponds to multiplication in the algebra with times table `T`. -/
+  corresponds to multiplication in the algebra with times table `T`.
+@isnad1 id=eq.2h8v.s10.d563ab368c9d from=translated src=- shape=9c4b487e vocab=88aed4cb
+-/
 lemma table_mul_list_eq_mul
     {S : Type*} [NonUnitalNonAssocSemiring S] [Module R S] [SMulCommClass R S S]
     [IsScalarTower R S S] (B : Basis (Fin n) R S) (a b c : Fin n → R)
@@ -157,6 +186,9 @@ lemma table_mul_list_eq_mul
     simp_rw [basisMulBasis]
   simp_rw [this]
 
+/--
+@isnad1 id=eq.1h8v.s9.d326016f7d8e from=translated src=- shape=885cf5b6 vocab=f8924574
+-/
 lemma table_sum_smul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (a : Fin m → Fin n → R) (b : Fin n → R) (c : Fin m → R)
@@ -180,6 +212,9 @@ lemma table_sum_smul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module
       (fun i ↦ c i • Finsupp.equivFunOnFinite.symm (a i)) k)
     exact LinearEquiv.injective B.repr
 
+/--
+@isnad1 id=eq.1h7v.s9.76fc6511ae7e from=translated src=- shape=76ded61c vocab=1582bf98
+-/
 lemma table_sum_smul' {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (a : Fin m → Fin n → R) (b : Fin n → R)
@@ -190,6 +225,9 @@ lemma table_sum_smul' {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Modul
     convert hc
     rw [List.mulPointwise_ofFn, one_smul]
 
+/--
+@isnad1 id=eq.1h8v.s9.5b18403960d6 from=translated src=- shape=facf08dd vocab=1582bf98
+-/
 lemma table_sum_sum {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (a : Fin l → Fin m → Fin n → R) (b : Fin n → R)
@@ -221,11 +259,17 @@ def table_mul_list (T : Fin n → Fin n → List R) (a : List R) (b : List R) :=
   List.sum (List.ofFn (fun i => List.sum (List.ofFn
   (fun j => List.mulPointwise ((List.getD a i 0) * (List.getD b j 0))  (T i j)))))
 
+/--
+@isnad1 id=eq.1h6v.s6.b80ca658ce41 from=translated src=- shape=83c0679e vocab=36575af2
+-/
 lemma table_mul_eq_table_mul' (T' :  Fin n → Fin n → Fin n → R) (T : Fin n → Fin n → List R)
     (h : ∀ i j , T i j = List.ofFn (T' i j)) : table_mul_list T a b = table_mul_list' T' a b := by
   unfold table_mul_list' table_mul_list
   simp_rw [h]
 
+/--
+@isnad1 id=eq.2h9v.s10.b183527e6f25 from=translated src=- shape=d90a2ceb vocab=0bd26588
+-/
 lemma table_sum_mul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (basisMulBasis: ∀ i j k , B.repr (B i * B j) k = T i j k)
@@ -256,6 +300,9 @@ def nPow_sq_table (T : Fin n → Fin n → List R) (a : List R) (m : ℕ) : List
     else table_mul_list T (nPow_sq_table T a ((Nat.succ k) / 2) )
       (nPow_sq_table T a ((Nat.succ k) / 2) )
 
+/--
+@isnad1 id=eq.3h6v.s6.6dfdba5fe0c2 from=translated src=- shape=df7f31e9 vocab=040068ef
+-/
 lemma nPow_sq_table_length (T' : Fin n → Fin n → Fin n → R) (T : Fin n → Fin n → List R)
     (a : List R) (m : ℕ) (hm : 0 < m) (heq : ∀ i j , T i j = List.ofFn (T' i j)) (ha : a.length = n) :
     (nPow_sq_table T a m).length = n := by

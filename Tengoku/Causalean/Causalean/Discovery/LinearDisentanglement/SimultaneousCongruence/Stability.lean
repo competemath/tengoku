@@ -42,7 +42,9 @@ private theorem l2CLM_norm_le_frobenius {p : ℕ} (R : SqMatrix p) :
   simpa using hmul
 
 /-- [Operator norm is bounded by entrywise Euclidean size](goal), allowing aggregate control of
-[matrix error `R`](hyp:R) in [dimension `p`](hyp:p) to imply worst-direction control. -/
+[matrix error `R`](hyp:R) in [dimension `p`](hyp:p) to imply worst-direction control.
+@isnad1 id=le.0h2v.s4.20cfdf1cafa1 from=translated src=- shape=e4284abf vocab=4f3832d8
+-/
 theorem opNorm_le_entryL2 {p : ℕ} (R : SqMatrix p) :
     ‖R‖ ≤ entryL2 R := by
   rw [Matrix.cstar_norm_def]
@@ -54,7 +56,9 @@ theorem opNorm_le_entryL2 {p : ℕ} (R : SqMatrix p) :
 
 /-- [Candidate-reference error factors through transition error](goal), converting relative error
 back to the original scale for [reference and candidate matrices](hyp:B₀,B) in [dimension
-`p`](hyp:p) when [the reference is invertible](hyp:hunit). -/
+`p`](hyp:p) when [the reference is invertible](hyp:hunit).
+@isnad1 id=eq.1h3v.s6.c187c8062791 from=translated src=- shape=b6e13f21 vocab=62070dc5
+-/
 theorem sub_eq_transitionError_mul {p : ℕ} (B₀ B : SqMatrix p)
     (hunit : IsUnit B₀.det) :
     B - B₀ = transitionError B₀ B * B₀ := by
@@ -68,7 +72,9 @@ shift scale, and affine margin](hyp:hp,hM,hδ), [a matrix scale at least one](hy
 scale](hyp:hB₀), [nonnegative
 off-diagonal residual tolerance](hyp:hε), [off-diagonal approximate feasibility](hyp:happrox),
 and [the explicit local identity-branch condition](hyp:hbranch), [the candidate-reference
-Euclidean operator distance is linear in the residual](goal). -/
+Euclidean operator distance is linear in the residual](goal).
+@isnad1 id=le.14h10v.s7.27b9c12b0823 from=translated src=- shape=06b67453 vocab=155ea5c7
+-/
 -- Proof route: `pairwise_offDiagonal_control` and `entryL2_transitionError_le` give
 -- `u ≤ K (2 M u² + 2ε)`.  The second identity-branch inequality absorbs the quadratic
 -- term, yielding `u ≤ 4Kε`.  Factor `B-B₀ = R B₀`, use
@@ -147,7 +153,9 @@ candidate](hyp:hdiag), [a reference operator norm at most the matrix scale](hyp:
 off-diagonal residual below the explicit threshold](hyp:hε,hsmall), [approximate
 feasibility](hyp:happrox), and [membership in the explicit entrywise-L² neighborhood of
 the reference](hyp:hlocal), [the candidate-reference Euclidean operator distance is linear
-in the residual](goal). -/
+in the residual](goal).
+@isnad1 id=le.17h11v.s8.82810c6eab41 from=translated src=- shape=7a190930 vocab=cd5486c7
+-/
 theorem opNorm_sub_le_of_pairwise_affine {p : ℕ} {E : Type*}
     [Fintype E] [Nonempty E]
     (A : E → SqMatrix p) (s : E → Fin p → ℝ) (B₀ B : SqMatrix p)
@@ -174,7 +182,9 @@ this uses [positive dimension, scale, and margin with condition at least one](hy
 [bounded separated shifts](hyp:hscale,hsep), [normalized matrices and a conditioned
 reference](hyp:hdiag₀,hdiag,hcond), [exact and approximate feasibility](hyp:hexact,happrox),
 [nonnegative residual](hyp:hε), and [the small-residual and local-neighborhood
-conditions](hyp:hsmall,hlocal). -/
+conditions](hyp:hsmall,hlocal).
+@isnad1 id=le.14h10v.s8.d5e12fda54c9 from=translated src=- shape=5626aba8 vocab=11f37137
+-/
 theorem opNorm_sub_le_condition_specialization {p : ℕ} {E : Type*}
     [Fintype E] [Nonempty E]
     (A : E → SqMatrix p) (s : E → Fin p → ℝ) (B₀ B : SqMatrix p)

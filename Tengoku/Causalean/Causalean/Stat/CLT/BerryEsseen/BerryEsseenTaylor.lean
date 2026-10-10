@@ -16,7 +16,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- For a real argument, the complex exponential on the imaginary axis differs
 from its quadratic Taylor polynomial by at most one sixth of the cubed
-absolute argument. -/
+absolute argument.
+@isnad1 id=le.0h1v.s7.a2239223faa5 from=translated src=- shape=fcf9f20f vocab=72014df1
+-/
 theorem exp_imag_quadratic_remainder (u : ℝ) :
     ‖Complex.exp ((u : ℂ) * Complex.I) -
       (1 + (u : ℂ) * Complex.I + ((u : ℂ) * Complex.I) ^ 2 / 2)‖ ≤
@@ -94,7 +96,9 @@ theorem exp_imag_quadratic_remainder (u : ℝ) :
 [integrable second moment σ2](hyp:hvar_int,hvar) and
 [integrable third absolute moment at most M3](hyp:hthird_int,hthird),
 [the characteristic function at every real frequency t lies within
-M3·|t|³/6 of the variance quadratic 1 − σ2·t²/2](goal). -/
+M3·|t|³/6 of the variance quadratic 1 − σ2·t²/2](goal).
+@isnad1 id=le.6h4v.s8.06aff461cc3a from=translated src=- shape=7a97ff57 vocab=97fff8a6
+-/
 theorem centered_charFun_quadratic_remainder
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (σ2 M3 : ℝ)

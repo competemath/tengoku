@@ -54,7 +54,9 @@ noncomputable def Submodule.indexPID_aux (N : Submodule R M) [Module.Free R M] [
 
 /-- Auxiliary definition: for `N` a submodule of `M` of the same rank,
   the determinant of the matrix representing the inclusion map `N → M` with
-  respect to some choice of bases.  -/
+  respect to some choice of bases.
+@isnad1 id=eq.1h3v.s11.b9a5b7090e6c from=translated src=- shape=50824299 vocab=25ab66e2
+-/
 lemma Submodule.indexPID_aux_def (N : Submodule R M) [Module.Free R M] [Module.Finite R M]
     (heq : Module.rank R M = Module.rank R N) : Submodule.indexPID_aux N heq =
   (LinearMap.toMatrix (Submodule.basisOfPID_of_eq_rank N heq)
@@ -108,15 +110,23 @@ noncomputable def moduleSmithSubmodule (N : Submodule R M) (b : Basis ι R M) (b
   refine Submodule.smithNormalFormBotBasis b (N := N) ?_
   rw [Module.finrank_eq_card_basis b, Module.finrank_eq_card_basis b2]
 
+/--
+@isnad1 id=eq.0h7v.s9.322a577f01ee from=translated src=- shape=77cf97ee vocab=967201ef
+-/
 @[simp]
 theorem smith_coeffs_property (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
     ∀ i,  (moduleSmithSubmodule N b b2 i : M) =
     moduleSmithCoeffs N b b2 i • smithBasisModule N b b2 i := Submodule.smithNormalFormBotBasis_def b _
 
+/--
+@isnad1 id=ne.0h7v.s7.80bdce70b5ed from=translated src=- shape=3e576bd1 vocab=cd4d40e4
+-/
 theorem moduleSmithCoeffs_ne_zero (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
     ∀ i, moduleSmithCoeffs N b b2 i ≠ 0 := Submodule.smithNormalFormCoeffs_ne_zero b _
 
-/-- If `N` is a proper submodule of `M`, then at least one of the smith coefficients is not a unit. -/
+/-- If `N` is a proper submodule of `M`, then at least one of the smith coefficients is not a unit.
+@isnad1 id=ex.1h6v.s7.f0a78652667a from=translated src=- shape=dae134cd vocab=4d19fb2e
+-/
 lemma moduleSmithCoeff_ne_unit (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N)
     (hneq : N ≠ ⊤) : ∃ i, ¬ (IsUnit (moduleSmithCoeffs N b b2 i)) := by
   by_contra h

@@ -18,6 +18,7 @@ section InfGraphRamsey
 open Classical
 
 /-- The infinitary pigeonhole principle.
+@isnad1 id=ex.1h4v.s5.38ca26cf68b2 from=translated src=- shape=36c59b16 vocab=51732db1
 -/
 lemma pigeonhole_principle {X Y : Type*} [Finite Y] (f : X → Y) {s : Set X} (h_inf : s.Infinite) :
     ∃ y, ∃ t, t.Infinite ∧ t ⊆ s ∧ ∀ x ∈ t, f x = y := by
@@ -45,6 +46,9 @@ structure Selection (Color Vertex : Type*) where
 def selection_prop (ivs : InfVSet Vertex) (S : Selection Color Vertex) : Prop :=
   S.vs.set ⊆ ivs.set ∧ S.v ∈ ivs.set \ S.vs.set ∧ ∀ u ∈ S.vs.set, color {S.v, u} = S.c
 
+/--
+@isnad1 id=ex.0h4v.s4.2caa57aed6f6 from=translated src=- shape=0ee54056 vocab=3fd0aa32
+-/
 lemma selection_exists (ivs : InfVSet Vertex) :
     ∃ S : Selection Color Vertex, selection_prop color ivs S := by
   obtain ⟨v, h_v⟩ := Set.Infinite.nonempty ivs.inf

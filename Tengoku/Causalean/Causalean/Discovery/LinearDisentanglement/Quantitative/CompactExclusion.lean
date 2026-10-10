@@ -33,7 +33,9 @@ open Causalean.Mathlib.Topology.CompactExclusion
 /-- [The worst-environment congruence residual varies continuously with the candidate
 matrix](goal), so compact separation arguments apply to [observed matrices `A`](hyp:A) and
 [prescribed shifts `s`](hyp:s) over [finite environments `E`](hyp:E) in [dimension
-`d`](hyp:d). -/
+`d`](hyp:d).
+@isnad1 id=continuo.0h4v.s5.1940c220cc11 from=translated src=- shape=2f0d1e0b vocab=a416bbad
+-/
 -- Proof route: matrix multiplication, transpose, subtraction, diagonal constants, and
 -- the norm are continuous in finite dimension; close under the finite nonempty `sup'`.
 theorem continuous_simultaneousCongruenceResidual {d : ℕ} {E : Type*}
@@ -63,7 +65,9 @@ theorem continuous_simultaneousCongruenceResidual {d : ℕ} {E : Type*}
 chart](goal): for [observed matrices and shifts](hyp:A,s) over [finite environments](hyp:E) in
 [dimension `d`](hyp:d), [compact candidates](hyp:K,hK), [an open chart](hyp:U,hU), and [a
 reference candidate inside both](hyp:B₀,hB₀K,hB₀U) yield a positive attained residual whenever
-[far candidates exist](hyp:hfar) and [zero residual identifies the reference](hyp:hzero). -/
+[far candidates exist](hyp:hfar) and [zero residual identifies the reference](hyp:hzero).
+@isnad1 id=nonempty.6h7v.s7.bba4aa5aefcc from=translated src=- shape=cd53b42a vocab=b1a3890c
+-/
 theorem exists_simultaneousCongruence_exclusionRadius {d : ℕ} {E : Type*}
     [Fintype E] [Nonempty E]
     (A : E → SqMatrix d) (s : E → Fin d → ℝ)
@@ -84,7 +88,9 @@ residual gap away from the reference](goal), uniformly over [parameter space `P`
 [matrix dimension `d`](hyp:d). For [correspondence `K`, reference section `B₀`, residual `r`, and
 radius `ρ`](hyp:K,B₀,r,ρ), this requires [compactness](hyp:hK), [continuity of the reference,
 residual, and radius](hyp:hB₀,hr_cont,hρ_cont), [positive radii](hyp:hρ_pos), [nonnegative
-feasible residuals](hyp:hr_nonneg), and [uniqueness at zero](hyp:hr_zero). -/
+feasible residuals](hyp:hr_nonneg), and [uniqueness at zero](hyp:hr_zero).
+@isnad1 id=or.7h6v.s8.3206213d2470 from=translated src=- shape=bb7d6a7a vocab=dc629651
+-/
 theorem sqMatrix_uniformCompactCorrespondence_dichotomy
     {P : Type*} [TopologicalSpace P] [T2Space P] {d : ℕ}
     (K : Set (P × SqMatrix d)) (B₀ : P → SqMatrix d)
@@ -103,7 +109,9 @@ reference neighborhood](goal), uniformly over [parameter space `P`](hyp:P) and [
 `d`](hyp:d). For [correspondence `K`, reference section `B₀`, residual `r`, and radius
 `ρ`](hyp:K,B₀,r,ρ), this requires [compactness](hyp:hK), [continuity of the reference, residual,
 and radius](hyp:hB₀,hr_cont,hρ_cont), [positive radii](hyp:hρ_pos), [nonnegative feasible
-residuals](hyp:hr_nonneg), and [uniqueness at zero](hyp:hr_zero). -/
+residuals](hyp:hr_nonneg), and [uniqueness at zero](hyp:hr_zero).
+@isnad1 id=ex.7h6v.s8.f3fe6fb4e9dc from=translated src=- shape=7dbdcbec vocab=3470108b
+-/
 theorem exists_sqMatrix_uniformExclusionTolerance
     {P : Type*} [TopologicalSpace P] [T2Space P] {d : ℕ}
     (K : Set (P × SqMatrix d)) (B₀ : P → SqMatrix d)

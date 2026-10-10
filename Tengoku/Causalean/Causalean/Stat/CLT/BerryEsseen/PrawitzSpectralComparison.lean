@@ -21,7 +21,9 @@ open MeasureTheory ProbabilityTheory
 [any threshold x](hyp:x), [the distance between half the expected Prawitz
 sign approximation at U(x − y) and the Gaussian sine integral, plus half the
 expected squared sinc of U(x − y)/2, is at most the four exact Prawitz
-spectral terms](goal). -/
+spectral terms](goal).
+@isnad1 id=le.3h4v.s9.9a483244887e from=translated src=- shape=317d1ade vocab=25cf24f1
+-/
 theorem prawitz_gaussian_sine_spectral_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ)

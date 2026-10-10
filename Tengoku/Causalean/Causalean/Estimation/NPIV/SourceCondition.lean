@@ -172,7 +172,9 @@ abbrev h_lambda_star_fun (tb : TikhonovBiasBoundAt S β lambda sc) : S.𝒳 → 
   tb.uniform.h_lambda_star_fun lambda
 
 /-- The fixed-level population solution from [a bias certificate](hyp:tb) [belongs to the
-admissible class](goal). -/
+admissible class](goal).
+@isnad1 id=mem.0h7v.s6.555d91c095f4 from=translated src=- shape=e08a171e vocab=fdd966ec
+-/
 lemma h_lambda_star_mem (tb : TikhonovBiasBoundAt S β lambda sc) :
     tb.h_lambda_star_fun ∈ S.Hbar :=
   tb.uniform.h_lambda_star_mem tb.lambda_pos
@@ -180,24 +182,32 @@ lemma h_lambda_star_mem (tb : TikhonovBiasBoundAt S β lambda sc) :
 /-- The [level-independent bias constant](goal) in [a fixed-level view](hyp:tb). -/
 abbrev C (tb : TikhonovBiasBoundAt S β lambda sc) : ℝ := tb.uniform.C
 
-/-- The level-independent constant in [a fixed-level view](hyp:tb) [is nonnegative](goal). -/
+/-- The level-independent constant in [a fixed-level view](hyp:tb) [is nonnegative](goal).
+@isnad1 id=le.0h7v.s5.85f6e5399f8d from=translated src=- shape=8d8bd704 vocab=988b6aac
+-/
 lemma C_nonneg (tb : TikhonovBiasBoundAt S β lambda sc) : 0 ≤ tb.C :=
   tb.uniform.C_nonneg
 
-/-- [A fixed-level view](hyp:tb) [bounds its strong-metric Tikhonov bias](goal). -/
+/-- [A fixed-level view](hyp:tb) [bounds its strong-metric Tikhonov bias](goal).
+@isnad1 id=le.0h7v.s13.08df167992be from=translated src=- shape=a1b507f4 vocab=22b1bb00
+-/
 lemma strong_bias (tb : TikhonovBiasBoundAt S β lambda sc) :
     S.strongNorm (S.hL2 tb.h_lambda_star_mem - S.hL2 S.h₀_mem) ^ 2
       ≤ tb.C * S.strongNorm (S.hL2 sc.w₀_mem) * lambda ^ (min β 2) :=
   tb.uniform.strong_bias tb.lambda_pos
 
-/-- [A fixed-level view](hyp:tb) [satisfies the weak-metric bias bound](goal). -/
+/-- [A fixed-level view](hyp:tb) [satisfies the weak-metric bias bound](goal).
+@isnad1 id=le.0h7v.s13.791eb2421324 from=translated src=- shape=b6d3e994 vocab=bd76a653
+-/
 lemma weak_bias (tb : TikhonovBiasBoundAt S β lambda sc) :
     S.weakNorm (S.hL2 tb.h_lambda_star_mem - S.hL2 S.h₀_mem) ^ 2
       ≤ tb.C * S.strongNorm (S.hL2 sc.w₀_mem) * lambda ^ (min (β + 1) 2) :=
   tb.uniform.weak_bias tb.lambda_pos
 
 /-- [A fixed-level view](hyp:tb) [satisfies population strong convexity](goal) for
-[every admissible candidate](hyp:h,hh). -/
+[every admissible candidate](hyp:h,hh).
+@isnad1 id=le.1h8v.s15.a2a5196a707a from=translated src=- shape=6f9e9726 vocab=ba05dcf6
+-/
 lemma strong_convexity (tb : TikhonovBiasBoundAt S β lambda sc)
     (h : S.𝒳 → ℝ) (hh : h ∈ S.Hbar) :
     lambda * (S.strongNorm (S.hL2 hh - S.hL2 tb.h_lambda_star_mem)) ^ 2

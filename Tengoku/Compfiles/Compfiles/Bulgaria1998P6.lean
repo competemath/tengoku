@@ -23,7 +23,9 @@ has no solutions in positive integers.
 
 namespace Bulgaria1998P6
 
-/-- The square of an odd integer is `1` modulo `4`. -/
+/-- The square of an odd integer is `1` modulo `4`.
+@isnad1 id=eq.1h1v.s5.6fba72febe89 from=translated src=- shape=fbd7857e vocab=875f24ae
+-/
 lemma sq_mod_four_of_odd {z : ℤ} (hz : z % 2 = 1) : z ^ 2 % 4 = 1 := by
   obtain ⟨k, rfl⟩ : Odd z := Int.odd_iff.mpr hz
   have h : (2 * k + 1) ^ 2 = 1 + 4 * (k ^ 2 + k) := by ring
@@ -31,7 +33,9 @@ lemma sq_mod_four_of_odd {z : ℤ} (hz : z % 2 = 1) : z ^ 2 % 4 = 1 := by
 
 /-- The descent step for the case where the even leg is a square: from coprime `p`, `q`
 of opposite parity with `a = p ^ 2 + q ^ 2` and `b ^ 2 = 4 * p * q * (p ^ 2 - q ^ 2)` we
-produce a smaller solution of `A ^ 4 = B ^ 4 + C ^ 2` in positive naturals. -/
+produce a smaller solution of `A ^ 4 = B ^ 4 + C ^ 2` in positive naturals.
+@isnad1 id=ex.10h4v.s8.9afd51653b14 from=translated src=- shape=4db6d884 vocab=d42ce41e
+-/
 lemma descent_aux {a b p q : ℤ} (ha : 0 < a) (_hb : 0 < b)
     (hp : 0 < p) (hq : 0 < q) (hpq : q < p)
     (hgcd : Int.gcd p q = 1)
@@ -187,6 +191,9 @@ lemma descent_aux {a b p q : ℤ} (ha : 0 < a) (_hb : 0 < b)
       rw [e4, e5, e6]; exact key
     exact_mod_cast e
 
+/--
+@isnad1 id=false.4h3v.s6.fe789f1eb8d3 from=translated src=- shape=e94ea9d4 vocab=fbd43e02
+-/
 lemma lemma_1'
     (a b c : ℕ)
     (ha : 0 < a)
@@ -403,6 +410,9 @@ lemma lemma_1'
     have hlt : a1 < p * a1 := lt_mul_of_one_lt_left ha1 hp.one_lt
     exact ih a1 hlt b1 c1 ha1 hb1 hc1 heq
 
+/--
+@isnad1 id=false.4h3v.s6.d1ba421d7a1f from=translated src=- shape=d2429e42 vocab=6f794e13
+-/
 lemma lemma_1
     {s t u : ℤ}
     (hs : 0 < s)

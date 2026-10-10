@@ -27,16 +27,25 @@ noncomputable def Segment (φ : ℕ → ℕ) (k : ℕ) : ℕ :=
 
 variable {φ : ℕ → ℕ}
 
+/--
+@isnad1 id=infinite.1h1v.s4.25330ed6d07d from=translated src=- shape=0d5647d7 vocab=f4c4f5ef
+-/
 theorem strict_mono_infinite (hm : StrictMono φ) :
     (range φ).Infinite := by
   exact infinite_range_of_injective hm.injective
 
+/--
+@isnad1 id=ex.1h1v.s4.fe6d6b9000e8 from=translated src=- shape=549aa96e vocab=20d89dbf
+-/
 theorem infinite_strict_mono {ns : Set ℕ} (h : ns.Infinite) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ range φ = ns := by
   use Nat.nth (· ∈ ns) ; constructor
   · exact Nat.nth_strictMono h
   · exact Nat.range_nth_of_infinite h
 
+/--
+@isnad1 id=not.3h3v.s6.4d453f4c3e6c from=translated src=- shape=a7b9b9c7 vocab=bd1ee236
+-/
 lemma nth_succ_gap {p : ℕ → Prop} (hf : (Set.ofPred p).Infinite) (n : ℕ) :
     ∀ k < Nat.nth p (n + 1) - Nat.nth p n, k > 0 → ¬ p (k + Nat.nth p n) := by
   intro k h_k1 h_k0 h_p_k
@@ -47,6 +56,9 @@ lemma nth_succ_gap {p : ℕ → Prop} (hf : (Set.ofPred p).Infinite) (n : ℕ) :
   omega
 
 -- The following proof is due to Kyle Miller.
+/--
+@isnad1 id=eq.1h2v.s5.f5701a05ed56 from=translated src=- shape=afcac592 vocab=7dfd1696
+-/
 theorem nth_of_strict_mono (hm : StrictMono φ) (n : ℕ) :
     φ n = Nat.nth (· ∈ range φ) n := by
   rw [← Nat.nth_comp_of_strictMono hm (by simp)]
@@ -55,6 +67,9 @@ theorem nth_of_strict_mono (hm : StrictMono φ) (n : ℕ) :
   have : (range φ).Infinite := strict_mono_infinite hm
   exact absurd hf this
 
+/--
+@isnad1 id=lt.2h2v.s6.da1d1b9dca41 from=translated src=- shape=59af2975 vocab=ac9ba211
+-/
 theorem count_out_range_pos (h0 : φ 0 = 0) (n : ℕ) (hn : n ∉ range φ) :
     Nat.count (· ∈ range φ) n > 0 := by
   have h0' : 0 ∈ range φ := by use 0
@@ -64,12 +79,18 @@ theorem count_out_range_pos (h0 : φ 0 = 0) (n : ℕ) (hn : n ∉ range φ) :
   simp [Nat.count_succ, h0', -mem_range] at h3 ⊢
   omega
 
+/--
+@isnad1 id=eq.1h2v.s6.f8fcc4017dfa from=translated src=- shape=e96c5796 vocab=9fa87745
+-/
 theorem segment_plus_one (h0 : φ 0 = 0) (k : ℕ) :
     Segment φ k + 1 = Nat.count (· ∈ range φ) (k + 1) := by
   rcases Classical.em (k ∈ range φ) with h_k | h_k <;> simp [Segment, Nat.count_succ, h_k, -mem_range]
   suffices _ : Nat.count (· ∈ range φ) k > 0 by omega
   exact count_out_range_pos h0 k h_k
 
+/--
+@isnad1 id=lt.2h2v.s5.ad9368fd2f34 from=translated src=- shape=9732d9b2 vocab=f689cd38
+-/
 theorem segment_upper_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
     k < φ (Segment φ k + 1) := by
   rw [nth_of_strict_mono hm (Segment φ k + 1), segment_plus_one h0 k]
@@ -77,6 +98,9 @@ theorem segment_upper_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
   apply Nat.le_nth_count
   exact strict_mono_infinite hm
 
+/--
+@isnad1 id=le.2h2v.s5.34722dcf219f from=translated src=- shape=1e32a80f vocab=bcf1f9d9
+-/
 theorem segment_lower_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
     φ (Segment φ k) ≤ k := by
   rw [nth_of_strict_mono hm (Segment φ k)]
@@ -86,6 +110,9 @@ theorem segment_lower_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
   have : Nat.count (· ∈ range φ) k > 0 := by exact count_out_range_pos h0 k h_k
   omega
 
+/--
+@isnad1 id=eq.1h2v.s4.7f8b62f56254 from=translated src=- shape=d6642784 vocab=dacf31ad
+-/
 theorem segment_idem (hm : StrictMono φ) (k : ℕ) :
     Segment φ (φ k) = k := by
   have h_rng : φ k ∈ range φ := by simp
@@ -94,11 +121,17 @@ theorem segment_idem (hm : StrictMono φ) (k : ℕ) :
   have h_eq := Nat.count_nth_of_infinite (p := (· ∈ range φ)) <| strict_mono_infinite hm
   rw [h_eq]
 
+/--
+@isnad1 id=eq.2h1v.s5.4a039bff7258 from=translated src=- shape=5ad3f251 vocab=dacf31ad
+-/
 theorem segment_zero (hm : StrictMono φ) (h0 : φ 0 = 0) :
     Segment φ 0 = 0 := by
   calc _ = Segment φ (φ 0) := by simp [h0]
        _ = _ := by simp [segment_idem hm]
 
+/--
+@isnad1 id=not.3h3v.s5.bbcd22587e20 from=translated src=- shape=b5c1d3bc vocab=1c841fd0
+-/
 theorem segment_range_gap (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m < k) (hu : k < φ (m + 1)) : k ∉ range φ := by
   rw [nth_of_strict_mono hm m] at hl
@@ -108,6 +141,9 @@ theorem segment_range_gap (hm : StrictMono φ) {m k : ℕ}
   rw [(show k - Nat.nth (· ∈ range φ) m + Nat.nth (· ∈ range φ) m = k by omega)] at h_gap
   exact h_gap
 
+/--
+@isnad1 id=eq.3h3v.s5.428658f55f8f from=translated src=- shape=8bf9f755 vocab=c7160af6
+-/
 theorem segment_range_val (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m ≤ k) (hu : k < φ (m + 1)) : Segment φ k = m := by
   obtain (rfl | hu') := show φ m = k ∨ φ m < k by omega
@@ -128,6 +164,9 @@ theorem segment_range_val (hm : StrictMono φ) {m k : ℕ}
   simp [h1, h2, Nat.count_succ, -mem_range]
   exact h_ind'
 
+/--
+@isnad1 id=galoisco.2h1v.s5.72a304693101 from=translated src=- shape=0876c3a2 vocab=828d1340
+-/
 theorem segment_galois_connection (hm : StrictMono φ) (h0 : φ 0 = 0) :
     GaloisConnection φ (Segment φ) := by
   intro m k ; constructor
@@ -153,10 +192,16 @@ only when k ≥ φ 0 and returns 0 for all k < φ 0.
 noncomputable def Segment' (φ : ℕ → ℕ) (k : ℕ) : ℕ :=
   Segment (φ · - φ 0) (k - φ 0)
 
+/--
+@isnad1 id=eq.0h1v.s5.cfb0e9e66d8f from=translated src=- shape=66a1f7ee vocab=63ce1de5
+-/
 lemma base_zero_shift (φ : ℕ → ℕ) :
     (φ · - φ 0) 0 = 0 := by
   simp
 
+/--
+@isnad1 id=strictmo.1h1v.s5.137a00bddb81 from=translated src=- shape=4155b5ba vocab=7d3f0c93
+-/
 lemma base_zero_strict_mono {φ : ℕ → ℕ} (hm : StrictMono φ) :
     StrictMono (φ · - φ 0) := by
   intro m n h_m_n ; simp
@@ -167,28 +212,43 @@ lemma base_zero_strict_mono {φ : ℕ → ℕ} (hm : StrictMono φ) :
 
 variable {φ : ℕ → ℕ}
 
+/--
+@isnad1 id=eq.2h2v.s5.9c96f25fa845 from=translated src=- shape=c0f1333b vocab=119bec2a
+-/
 theorem segment'_zero (hm : StrictMono φ) {k : ℕ} (h : k ≤ φ 0) :
     Segment' φ k = 0 := by
   simp [Segment', (show k - φ 0 = 0 by omega)]
   exact segment_zero (base_zero_strict_mono hm) (base_zero_shift φ)
 
+/--
+@isnad1 id=lt.2h2v.s5.7bff98929ada from=translated src=- shape=bc606d98 vocab=c696b203
+-/
 theorem segment'_upper_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
     k < φ (Segment' φ k + 1) := by
   simp [Segment']
   have := segment_upper_bound (base_zero_strict_mono hm) (base_zero_shift φ) (k - φ 0)
   omega
 
+/--
+@isnad1 id=le.2h2v.s5.f4fd8b9dff8b from=translated src=- shape=ae4efad0 vocab=119bec2a
+-/
 theorem segment'_lower_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
     φ (Segment' φ k) ≤ k := by
   simp [Segment']
   have := segment_lower_bound (base_zero_strict_mono hm) (base_zero_shift φ) (k - φ 0)
   omega
 
+/--
+@isnad1 id=eq.1h2v.s4.c3d52e130182 from=translated src=- shape=d6642784 vocab=0c166357
+-/
 theorem segment'_idem (hm : StrictMono φ) (k : ℕ) :
     Segment' φ (φ k) = k := by
   simp [Segment']
   exact segment_idem (base_zero_strict_mono hm) k
 
+/--
+@isnad1 id=eq.3h3v.s5.0e97a1daa6d6 from=translated src=- shape=8bf9f755 vocab=c696b203
+-/
 theorem segment'_range_val (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m ≤ k) (hu : k < φ (m + 1)) : Segment' φ k = m := by
   simp [Segment']
@@ -199,6 +259,9 @@ theorem segment'_range_val (hm : StrictMono φ) {m k : ℕ}
   have hu' : k - φ 0 < (φ · - φ 0) (m + 1) := by simp ; omega
   exact segment_range_val (base_zero_strict_mono hm) hl' hu'
 
+/--
+@isnad1 id=le.2h3v.s4.d903d7a3b59c from=translated src=- shape=659ee7fe vocab=119bec2a
+-/
 theorem segment'_lower_val (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m ≤ k) : m ≤ Segment' φ k := by
   simp [Segment']

@@ -4,6 +4,9 @@ import Tengoku
 
 open Module
 
+/--
+@isnad1 id=eq.0h5v.s8.10a4a684cb8a from=translated src=- shape=b42f70be vocab=3700c25e
+-/
 lemma Basis.equivFun_symm_eq_repr_symm {M ι R : Type*}
     [Fintype ι] [AddCommMonoid M] [Semiring R] [Module R M] (b : Basis ι R M) (f : ι →₀ R) :
     b.equivFun.symm f = b.repr.symm f := by
@@ -11,6 +14,9 @@ lemma Basis.equivFun_symm_eq_repr_symm {M ι R : Type*}
   ext i
   rw [LinearEquiv.apply_symm_apply, ← Basis.equivFun_apply, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s9.55fed29c8e3f from=translated src=- shape=bd57e418 vocab=4ab98f6b
+-/
 lemma Basis.equivFun_symm_eq_repr_symm' {M ι R : Type*} [Fintype ι] [AddCommMonoid M]
     [Semiring R] [Module R M] (b : Basis ι R M) (f : ι → R) :
     b.equivFun.symm f = b.repr.symm (Finsupp.equivFunOnFinite.symm f) := by

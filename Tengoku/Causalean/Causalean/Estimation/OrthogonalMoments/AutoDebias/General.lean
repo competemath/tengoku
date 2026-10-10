@@ -118,7 +118,9 @@ attribute [fun_prop] RegNuisanceMomentSys.proj_X_meas RegNuisanceMomentSys.Y_obs
 /-- For [a regression-nuisance moment system](hyp:S), [a scalar](hyp:c), and [a
 nuisance direction](hyp:ν), [the supplied nuisance derivative is homogeneous in
 its direction](goal). This is derived from uniqueness of the one-dimensional
-derivative rather than stored as an independent structure field. -/
+derivative rather than stored as an independent structure field.
+@isnad1 id=eq.0h3v.s6.76e6d788b2f7 from=translated src=- shape=6bac413d vocab=72063db0
+-/
 theorem RegNuisanceMomentSys.D_g_M_smul (S : RegNuisanceMomentSys)
     (c : ℝ) (ν : S.H) : S.D_g_M (c • ν) = c * S.D_g_M ν := by
   have hc : HasDerivAt (fun r : ℝ => r * c) c 0 := by
@@ -193,7 +195,9 @@ noncomputable def autoDebiasedMoment (S : RegNuisanceMomentSys)
 system with representer `rep`, assume [the α₀-weighted regression-residual product at the
 truth is integrable](hyp:h_α₀_resid_int) and [the baseline moment integrand at the truth
 is integrable](hyp:h_int_m_truth). Then [the automatically debiased population moment,
-evaluated at the true nuisance and true parameter, equals zero](goal). -/
+evaluated at the true nuisance and true parameter, equals zero](goal).
+@isnad1 id=eq.2h2v.s6.cfd6d3b35ccd from=translated src=- shape=3be2e5dd vocab=56d73331
+-/
 theorem autoDebiasedMoment_meanZero_at_truth (S : RegNuisanceMomentSys)
     (rep : AutoDebiasMeanRepresentation S)
     (h_α₀_resid_int :
@@ -218,7 +222,9 @@ integrable](hyp:h_dir_int), then [the Gateaux derivative of the auto-debiased po
 moment along `g₀ + rν_g` exists at zero and equals zero](goal). This is the genuine
 Chernozhukov--Newey--Singh (2022) Neyman-orthogonality statement: the derivative link in
 `RegNuisanceMomentSys.D_g_M_hasDerivAt` and the stored pairing identity cancel
-the two path derivatives. -/
+the two path derivatives.
+@isnad1 id=hasderiv.3h3v.s8.30ae7e29dec5 from=translated src=- shape=ca6d4d35 vocab=76f86be8
+-/
 theorem autoDebiasedMoment_directional_g_zero (S : RegNuisanceMomentSys)
     (rep : AutoDebiasMeanRepresentation S) (ν_g : S.H)
     (h_m_int : ∀ r : ℝ,
@@ -281,7 +287,9 @@ moment system](hyp:S) with [a mean-pairing witness](hyp:rep) and [a representer 
 `ν_α`](hyp:ν_α), assume [ν_α is measurable](hyp:hν_α_meas), [the baseline score is
 integrable](hyp:h_m_int,h_resid_int), and [the directional residual correction is
 integrable](hyp:h_dir_int). Then [the derivative of the automatically debiased moment
-along `α₀ + rν_α` exists at zero and equals zero](goal). -/
+along `α₀ + rν_α` exists at zero and equals zero](goal).
+@isnad1 id=hasderiv.4h3v.s7.ef9a2f4c0776 from=translated src=- shape=4963686f vocab=8d04cf7b
+-/
 theorem autoDebiasedMoment_directional_α_zero (S : RegNuisanceMomentSys)
     (rep : AutoDebiasMeanRepresentation S) (ν_α : S.X → ℝ)
     (hν_α_meas : Measurable ν_α)
@@ -331,7 +339,9 @@ and a [measurable representer direction](hyp:ν_α,hν_α_meas), assume
 [integrability of the moment path and all first- and second-order correction
 terms](hyp:h_m_int,h_resid_int,h_g_dir_int,h_α_dir_int,h_cross_int).
 Then [the automatically debiased moment has derivative zero when both nuisances
-move simultaneously along `(ν_g,ν_α)`](goal). -/
+move simultaneously along `(ν_g,ν_α)`](goal).
+@isnad1 id=hasderiv.6h4v.s9.baacfdf9fb46 from=translated src=- shape=49f605d3 vocab=3897a80d
+-/
 theorem autoDebiasedMoment_directional_zero (S : RegNuisanceMomentSys)
     (rep : AutoDebiasMeanRepresentation S) (ν_g : S.H) (ν_α : S.X → ℝ)
     (hν_α_meas : Measurable ν_α)

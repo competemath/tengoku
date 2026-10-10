@@ -34,7 +34,9 @@ def formedQuadraticEval (a b c : ℝ) (t : ℝ) : ℝ :=
     (formedQuadratic a b c).2.2
 
 /-- Squaring the rearranged equation `b * cos x = -(a * cos x ^ 2 + c)`
-eliminates the odd power of `cos x`. -/
+eliminates the odd power of `cos x`.
+@isnad1 id=eq.1h4v.s7.d91c5bce688e from=translated src=- shape=f3b7888a vocab=6dd95506
+-/
 lemma sq_b_mul_cos (a b c x : ℝ) (h : a * cos x ^ 2 + b * cos x + c = 0) :
     b ^ 2 * cos x ^ 2 = (a * cos x ^ 2 + c) ^ 2 := by
   have h1 : b * cos x = -(a * cos x ^ 2 + c) := by linarith
@@ -42,7 +44,9 @@ lemma sq_b_mul_cos (a b c x : ℝ) (h : a * cos x ^ 2 + b * cos x + c = 0) :
     _ = (a * cos x ^ 2 + c) ^ 2 := by rw [h1]; ring
 
 /-- The formed quadratic evaluated at `cos (2 * x)`, expressed back in terms of
-`cos x` via `cos (2 * x) = 2 * cos x ^ 2 - 1`. -/
+`cos x` via `cos (2 * x) = 2 * cos x ^ 2 - 1`.
+@isnad1 id=eq.0h4v.s7.1c22488f2311 from=translated src=- shape=6e172488 vocab=a474ef42
+-/
 lemma formedQuadratic_cos_two_mul (a b c x : ℝ) :
     formedQuadraticEval a b c (cos (2 * x)) =
       4 * ((a * cos x ^ 2 + c) ^ 2 - b ^ 2 * cos x ^ 2) := by

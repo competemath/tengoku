@@ -28,6 +28,9 @@ namespace Imo1966P5
 noncomputable def raw_order {n : ℕ} (a : Fin n → ℝ) : Fin n → ℕ :=
   fun i ↦ Finset.card {j | a j < a i}
 
+/--
+@isnad1 id=lt.0h3v.s4.366b9eb58950 from=translated src=- shape=c55d4e17 vocab=5fb177d4
+-/
 lemma raw_order_lt {n : ℕ} (a : Fin n → ℝ) (i : Fin n)
   : raw_order a i < n := by
   rw [raw_order, ]
@@ -44,6 +47,9 @@ lemma raw_order_lt {n : ℕ} (a : Fin n → ℝ) (i : Fin n)
 noncomputable def order {n : ℕ} (a : Fin n → ℝ) : Fin n → Fin n :=
   fun i ↦ ⟨raw_order a i, raw_order_lt a i⟩
 
+/--
+@isnad1 id=bijectiv.1h2v.s4.85b9c6822367 from=translated src=- shape=e91c1465 vocab=750b1fe9
+-/
 lemma bijective_order {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : Function.Bijective (order a) := by
   rw [Fintype.bijective_iff_injective_and_card]
@@ -75,14 +81,23 @@ noncomputable def nth_smallest_index {n : ℕ} {a : Fin n → ℝ} (ha : Functio
   : Fin n → Fin n :=
   Fintype.bijInv (bijective_order ha)
 
+/--
+@isnad1 id=bijectiv.1h2v.s4.1dbe0d0300ba from=translated src=- shape=7d49f9bb vocab=362d2fd6
+-/
 lemma bijective_nth_smallest_index {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : Function.Bijective (nth_smallest_index ha) := by
   exact Fintype.bijective_bijInv (bijective_order ha)
 
+/--
+@isnad1 id=eq.1h2v.s5.c24c714fe4a9 from=translated src=- shape=ad772292 vocab=54a9b9ed
+-/
 lemma order_comp_nth_smallest_index_eq_id {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : order a ∘ nth_smallest_index ha = id := by
   exact (Fintype.rightInverse_bijInv (bijective_order ha)).id
 
+/--
+@isnad1 id=eq.1h2v.s5.4130985b9328 from=translated src=- shape=d821e1f3 vocab=54a9b9ed
+-/
 lemma nth_smallest_index_comp_order_eq_id {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : nth_smallest_index ha ∘ order a = id := by
   exact (Fintype.leftInverse_bijInv (bijective_order ha)).id
@@ -90,6 +105,9 @@ lemma nth_smallest_index_comp_order_eq_id {n : ℕ} {a : Fin n → ℝ} (ha : Fu
 noncomputable def nth_smallest {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : Fin n → ℝ := a ∘ (nth_smallest_index ha)
 
+/--
+@isnad1 id=strictmo.1h2v.s4.73c20daa9ff8 from=translated src=- shape=3b10b10c vocab=9017cf67
+-/
 lemma nth_smallest_strictMono {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : StrictMono (nth_smallest ha) := by
   intro i j hij
@@ -105,6 +123,9 @@ lemma nth_smallest_strictMono {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injec
   simp at hk ⊢
   exact lt_of_lt_of_le hk hij
 
+/--
+@isnad1 id=eq.1h2v.s4.0a4b8310021f from=translated src=- shape=6abf0e3c vocab=4ce40097
+-/
 lemma order_eq_id_of_strictMono {n : ℕ} {a : Fin n → ℝ} (ha : StrictMono a)
   : order a = id := by
   ext i
@@ -114,6 +135,9 @@ lemma order_eq_id_of_strictMono {n : ℕ} {a : Fin n → ℝ} (ha : StrictMono a
   simp
   exact ha.lt_iff_lt
 
+/--
+@isnad1 id=eq.1h2v.s5.6120c0a5288c from=translated src=- shape=852d118a vocab=e590c706
+-/
 lemma nth_smallest_index_eq_id_of_strictMono {n : ℕ} {a : Fin n → ℝ} (ha : StrictMono a)
   : nth_smallest_index ha.injective = id := by
   rw [nth_smallest_index]
@@ -125,11 +149,17 @@ lemma nth_smallest_index_eq_id_of_strictMono {n : ℕ} {a : Fin n → ℝ} (ha :
   rw [order_eq_id_of_strictMono ha]
   dsimp
 
+/--
+@isnad1 id=eq.1h2v.s4.5431ab5ce3a8 from=translated src=- shape=c7ecb8f9 vocab=bc19df85
+-/
 lemma nth_smallest_nth_smallest_eq_nth_smallest {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : nth_smallest (nth_smallest_strictMono ha).injective = nth_smallest ha := by
   rw [nth_smallest, nth_smallest_index_eq_id_of_strictMono (nth_smallest_strictMono ha)]
   rw [Function.comp_id]
 
+/--
+@isnad1 id=eq.1h2v.s4.3d1991e5b828 from=translated src=- shape=aac4aa28 vocab=a86a13bb
+-/
 lemma order_nth_smallest_eq_id {n : ℕ} {a : Fin n → ℝ} (ha : Function.Injective a)
   : order (nth_smallest ha) = id := by
   apply order_eq_id_of_strictMono
@@ -143,6 +173,9 @@ noncomputable def solution_set_generalized {n : ℕ} (hn : 2 ≤ n)
       else 0
   }
 
+/--
+@isnad1 id=iff.2h3v.s6.fba13e705129 from=translated src=- shape=7271a048 vocab=4ba6252b
+-/
 theorem imo1966_p5_generalized
   {n : ℕ}
   (hn : 2 ≤ n)

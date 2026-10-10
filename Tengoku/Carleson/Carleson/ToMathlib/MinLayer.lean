@@ -51,47 +51,89 @@ def layersBelow (A : Set α) (n : ℕ) : Set α :=
 variable {A : Set α} {m n : ℕ} {a : α}
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h3v.s6.066e1bc4b83f from=translated src=- shape=e93a013d vocab=3c8b3d00
+-/
 lemma maxLayer_def : A.maxLayer n = {a | Maximal (· ∈ A \ ⋃ (k < n), A.maxLayer k) a} := by
   rw [maxLayer, minLayer]; rfl
 
+/--
+@isnad1 id=le.0h3v.s4.2418842c0e6b from=translated src=- shape=2f734e37 vocab=cf4da912
+-/
 lemma minLayer_subset : A.minLayer n ⊆ A :=
   calc
     _ ⊆ A \ ⋃ (k < n), A.minLayer k := by
       rw [minLayer]; refine fun _ h ↦ ?_; rw [mem_ofPred] at h; exact h.prop
     _ ⊆ A := sdiff_subset
 
+/--
+@isnad1 id=le.0h3v.s4.24bf293660bd from=translated src=- shape=2f734e37 vocab=98966279
+-/
 lemma maxLayer_subset : A.maxLayer n ⊆ A := minLayer_subset
 
+/--
+@isnad1 id=le.0h3v.s4.b44821bce173 from=translated src=- shape=2f734e37 vocab=5e10cbb7
+-/
 lemma layersAbove_subset : A.layersAbove n ⊆ A := sdiff_subset
 
+/--
+@isnad1 id=le.0h3v.s4.36bfa3716148 from=translated src=- shape=2f734e37 vocab=97ff9416
+-/
 lemma layersBelow_subset : A.layersBelow n ⊆ A := sdiff_subset
 
 -- XXX(MR): should this and `maxLayer_zero` be simp?
+/--
+@isnad1 id=eq.0h2v.s5.cd3cbd3f6f5d from=translated src=- shape=c4c4c874 vocab=5d510b8e
+-/
 lemma minLayer_zero : A.minLayer 0 = {a | Minimal (· ∈ A) a} := by rw [minLayer]; simp
 
+/--
+@isnad1 id=eq.0h2v.s5.1d4df1c297ba from=translated src=- shape=c4c4c874 vocab=302c121a
+-/
 lemma maxLayer_zero : A.maxLayer 0 = {a | Maximal (· ∈ A) a} := by rw [maxLayer_def]; simp
 
+/--
+@isnad1 id=disjoint.1h4v.s5.4a51cb299ab5 from=translated src=- shape=85af247f vocab=1cfe1866
+-/
 lemma disjoint_minLayer_of_ne (h : m ≠ n) : Disjoint (A.minLayer m) (A.minLayer n) := by
   wlog hl : m < n generalizing m n; · exact (this h.symm (by lia)).symm
   rw [disjoint_right]; intro p hp
   rw [minLayer] at hp; replace hp := hp.1.2; contrapose! hp
   exact mem_iUnion₂_of_mem hl hp
 
+/--
+@isnad1 id=disjoint.1h4v.s5.bbf1b3c88328 from=translated src=- shape=85af247f vocab=31cd8f60
+-/
 lemma disjoint_maxLayer_of_ne (h : m ≠ n) : Disjoint (A.maxLayer m) (A.maxLayer n) :=
   disjoint_minLayer_of_ne h
 
+/--
+@isnad1 id=pairwise.0h2v.s5.fa0c52c77730 from=translated src=- shape=915be36c vocab=3ded2d1b
+-/
 lemma pairwiseDisjoint_minLayer : univ.PairwiseDisjoint A.minLayer := fun _ _ _ _ ↦
   disjoint_minLayer_of_ne
 
+/--
+@isnad1 id=pairwise.0h2v.s5.53beaf9bd522 from=translated src=- shape=915be36c vocab=abb3f113
+-/
 lemma pairwiseDisjoint_maxLayer : univ.PairwiseDisjoint A.maxLayer := fun _ _ _ _ ↦
   disjoint_minLayer_of_ne
 
+/--
+@isnad1 id=isantich.0h3v.s4.4eaa07e404fd from=translated src=- shape=2d215e2d vocab=741e6555
+-/
 lemma isAntichain_minLayer : IsAntichain (· ≤ ·) (A.minLayer n) := by
   rw [minLayer]; apply setOfPred_minimal_antichain
 
+/--
+@isnad1 id=isantich.0h3v.s4.a32c4b343997 from=translated src=- shape=2d215e2d vocab=fbd23cb3
+-/
 lemma isAntichain_maxLayer : IsAntichain (· ≤ ·) (A.maxLayer n) := by
   rw [maxLayer_def]; apply setOfPred_maximal_antichain
 
+/--
+@isnad1 id=ex.2h5v.s5.b8f8df9e7c1d from=translated src=- shape=0d9a8b33 vocab=8238ada9
+-/
 lemma exists_le_in_minLayer_of_le (ha : a ∈ A.minLayer n) (hm : m ≤ n) :
     ∃ c ∈ A.minLayer m, c ≤ a := by
   induction n, hm using Nat.le_induction generalizing a with
@@ -113,12 +155,18 @@ lemma exists_le_in_minLayer_of_le (ha : a ∈ A.minLayer n) (hm : m ≤ n) :
       exact absurd (ha.2 a'l la.1) (ne_eq _ _ ▸ la.2)
     obtain ⟨c, mc, lc⟩ := ih ma'; use c, mc, lc.trans la.1
 
+/--
+@isnad1 id=ex.2h5v.s5.2ed1caf62b12 from=translated src=- shape=35f24d47 vocab=bc54de19
+-/
 lemma exists_le_in_maxLayer_of_le (ha : a ∈ A.maxLayer n) (hm : m ≤ n) :
     ∃ c ∈ A.maxLayer m, a ≤ c := exists_le_in_minLayer_of_le (α := αᵒᵈ) ha hm
 
 open Order
 
 -- XXX: is this in mathlib already/can it also be removed?
+/--
+@isnad1 id=iff.1h4v.s7.0e411d3b0400 from=translated src=- shape=b5f5e54f vocab=c635a681
+-/
 lemma subtype_mk_minimal_iff (α : Type*) [Preorder α]
     (s : Set α) (t : Set s) (x : α) (hx : x ∈ s) :
     Minimal (· ∈ t) (⟨x, hx⟩ : s) ↔ Minimal (fun y ↦ ∃ h, y ∈ s ∧ ⟨y, h⟩ ∈ t) x := by
@@ -130,7 +178,9 @@ lemma subtype_mk_minimal_iff (α : Type*) [Preorder α]
   simp +contextual [← OrderEmbedding.minimal_mem_image_iff
     (f := ⟨Function.Embedding.subtype (· ∈ s), by simp⟩) hxt]
 
-/-- `A.minLayer n` comprises exactly `A`'s elements of height `n`. -/
+/-- `A.minLayer n` comprises exactly `A`'s elements of height `n`.
+@isnad1 id=eq.0h3v.s6.076c60cbbb97 from=translated src=- shape=986250f7 vocab=08656d96
+-/
 lemma minLayer_eq_setOf_height : A.minLayer n = {x | ∃ hx : x ∈ A, height (⟨x, hx⟩ : A) = n} := by
   induction n using Nat.strongRec with
   | ind n ih =>
@@ -156,6 +206,9 @@ lemma minLayer_eq_setOf_height : A.minLayer n = {x | ∃ hx : x ∈ A, height (�
     · simp only [Nat.cast_inj, Nat.cast_le]
       exact ⟨fun h ↦ by contrapose! h; simp [h], fun h m hm ↦ by lia⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.4a36fae840b1 from=translated src=- shape=214b37dc vocab=645e18c0
+-/
 lemma iUnion_lt_minLayer_iff_bounded_series :
     ⋃ (k < n), A.minLayer k = A ↔ ∀ p : LTSeries A, p.length < n := by
   refine ⟨fun h p ↦ ?_, fun hlength ↦ ?_⟩
@@ -184,11 +237,16 @@ lemma iUnion_lt_minLayer_iff_bounded_series :
       exact iSup_le fun _ ↦ by simp [hlength]
 
 /-- `A` equals the union of its `minLayer`s up to `n` iff
-all `LTSeries` in `A` have length at most `n`. -/
+all `LTSeries` in `A` have length at most `n`.
+@isnad1 id=iff.0h3v.s7.eb3e845fe101 from=translated src=- shape=ef007434 vocab=5680c4f5
+-/
 lemma iUnion_minLayer_iff_bounded_series :
     ⋃ (k ≤ n), A.minLayer k = A ↔ ∀ p : LTSeries A, p.length ≤ n := by
   simp_rw [← Nat.lt_succ_iff, iUnion_lt_minLayer_iff_bounded_series]
 
+/--
+@isnad1 id=ex.2h5v.s5.380702f39bf5 from=translated src=- shape=b8233513 vocab=83ebdf57
+-/
 lemma exists_le_in_layersAbove_of_le [Finite α] (ha : a ∈ A.layersAbove n) (hm : m ≤ n) :
     ∃ c ∈ A.minLayer m, c ≤ a := by
   classical
@@ -211,6 +269,9 @@ lemma exists_le_in_layersAbove_of_le [Finite α] (ha : a ∈ A.layersAbove n) (h
   obtain ⟨c, mc, lc⟩ := exists_le_in_minLayer_of_le ma'₁ hm
   use c, mc, lc.trans ma'.2
 
+/--
+@isnad1 id=ex.2h5v.s5.52815df9688d from=translated src=- shape=71ef1fa7 vocab=cb4ad233
+-/
 lemma exists_le_in_layersBelow_of_le [Finite α] (ha : a ∈ A.layersBelow n) (hm : m ≤ n) :
     ∃ c ∈ A.maxLayer m, a ≤ c := exists_le_in_layersAbove_of_le (α := αᵒᵈ) ha hm
 

@@ -21,6 +21,9 @@ by the product c(1) * c(2) * ... * c(n).
 
 namespace Imo1967P3
 
+/--
+@isnad1 id=eq.1h3v.s6.9866303b85a7 from=translated src=- shape=6ee6231e vocab=5a86663e
+-/
 lemma aux_1
     (c : ℕ → ℕ)
     (h₁ : ∀ (s : ℕ), c s = s * (s + 1)) :
@@ -30,6 +33,9 @@ lemma aux_1
   have h_factor : a + a^2 - (b + b^2) = (a - b) * (a + b + 1) := by rw [tsub_mul]; grind
   grind
 
+/--
+@isnad1 id=monotone.1h1v.s5.1a615c4caeba from=translated src=- shape=e16350c9 vocab=be653cda
+-/
 lemma aux_1_mono
     (c : ℕ → ℕ)
     (h₁ : ∀ (s : ℕ), c s = s * (s + 1)) :
@@ -40,6 +46,9 @@ lemma aux_1_mono
   have h2 : b * (a + 1) ≤ b * (b + 1) := Nat.mul_le_mul_left _ (Nat.succ_le_succ h)
   exact h1.trans h2
 
+/--
+@isnad1 id=dvd.1h2v.s5.a67e35d6ad30 from=translated src=- shape=4b9a76cd vocab=81a96b4b
+-/
 lemma aux_2 :
   ∀ (n m : ℕ), 0 < n → n.factorial ∣ ∏ i ∈ Finset.Icc 1 n, (m + i) := by
   intro s t _
@@ -50,6 +59,9 @@ lemma aux_2 :
   rw [hprod]
   exact Nat.factorial_dvd_ascFactorial (t + 1) s
 
+/--
+@isnad1 id=dvd.3h3v.s7.27176c9c2c9b from=translated src=- shape=7e8a5369 vocab=8629d80d
+-/
 lemma aux_3
   (k m n : ℕ)
   (h₀ : 0 < k ∧ 0 < m ∧ 0 < n)
@@ -80,6 +92,9 @@ lemma aux_3
   refine Nat.Coprime.symm ?_
   exact Nat.Prime.coprime_factorial_of_lt h₁ h₂
 
+/--
+@isnad1 id=eq.1h3v.s6.4c33bbe4c955 from=translated src=- shape=953e4470 vocab=4bcc61d3
+-/
 lemma aux_4
     (k m n : ℕ)
     (_ : n ≤ k - (m + 1)) :

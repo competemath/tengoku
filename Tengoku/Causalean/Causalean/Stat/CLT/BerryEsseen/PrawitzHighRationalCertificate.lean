@@ -69,7 +69,9 @@ set_option maxHeartbeats 20000000 in
 -- Kernel reduction checks every finite entry in this block.
 /-- On [every positive kernel grid cell](hyp:i,hi),
 [the rational squared kernel enclosure is bounded by the square of its
-explicit outward integer magnitude enclosure](goal). -/
+explicit outward integer magnitude enclosure](goal).
+@isnad1 id=le.1h1v.s6.8542100d455b from=translated src=- shape=fbed7fe0 vocab=a5fdf02d
+-/
 theorem prawitz_kernel_rational_square_certificate
     (i : ℕ) (hi : i ∈ Ico 1 1000) :
     prawitzRationalKernelSq i ≤
@@ -115,7 +117,9 @@ theorem prawitz_kernel_rational_square_certificate
 
 /-- On [each of the 270 explicit compact parameter cells](hyp:j),
 [the complete outward-rounded raw high-frequency rational sum is at most nine
-fiftieths](goal), which gives the original three-twentieths allocation. -/
+fiftieths](goal), which gives the original three-twentieths allocation.
+@isnad1 id=le.0h1v.s5.4695f72a090a from=translated src=- shape=80dd922e vocab=84f16b98
+-/
 theorem prawitz_high_rational_sum_certificate (j : Fin 270) :
     prawitzRationalHighSum j.val ≤ (9 / 50 : ℚ) := by
   /- Lowest open layer: EXACT finite rational sums only. Rounding UP to

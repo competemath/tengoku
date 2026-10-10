@@ -71,7 +71,9 @@ noncomputable def chiSqOverlapG (lam lam' : Fin K → Bool) : ℝ :=
 
 /-- Denominator-free value of the perturbed observed mass `obsReal mλ gλ` at the four
 `(d, y)` combinations.  The treated arm's denominator `1 − (β/g₁)Δ` cancels against
-`mλ = m₀·(1 − (β/g₁)Δ)`. -/
+`mλ = m₀·(1 − (β/g₁)Δ)`.
+@isnad1 id=eq.0h6v.s8.6d505aab8bad from=translated src=- shape=8ceedbaa vocab=8c0a3e7c
+-/
 theorem obsReal_pertG_eq (lam : Fin K → Bool) (x : Fin K × Bool) (d y : Bool) :
     obsReal (P.mPertG lam) (P.gPertG lam) (x, d, y)
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹ *
@@ -93,7 +95,9 @@ theorem obsReal_pertG_eq (lam : Fin K → Bool) (x : Fin K × Bool) (d y : Bool)
 /-- [For any two Rademacher sign vectors `lam` and `lam'` indexing perturbed
 data-generating processes](hyp:lam,lam'), [the single-observation χ² overlap between them
 equals one plus the per-cell coefficient `Γ/K` times the sum of pairwise sign agreements
-between `lam` and `lam'`](goal). -/
+between `lam` and `lam'`](goal).
+@isnad1 id=eq.0h4v.s6.fc59826c4a2d from=translated src=- shape=bf03e125 vocab=7cd315fc
+-/
 theorem chiSqOverlap_eqG [NeZero K] (lam lam' : Fin K → Bool) :
     P.chiSqOverlapG lam lam'
       = 1 + (P.Γ / (K : ℝ)) * ∑ j, signOf (lam j) * signOf (lam' j) := by

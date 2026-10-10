@@ -107,7 +107,9 @@ noncomputable def autoDebiasedGeneralMoment
 moment](hyp:μ,S,rep,ε,hε,hscore,m_a,m_b,h_m_a_meas,h_m_decomp,hJ₀), if [the truth baseline moment](hyp:h_m_int)
 and [representer-weighted truth residual](hyp:h_resid_int) are integrable, then
 [the bridged general moment has population mean zero at its nuisance and
-parameter truth](goal). -/
+parameter truth](goal).
+@isnad1 id=meanzero.7h7v.s8.3b8c921d7fd3 from=translated src=- shape=ff514e0a vocab=efb2ecbc
+-/
 theorem autoDebiasedGeneralMoment_meanZero
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     (S : RegNuisanceMomentSys) (rep : AutoDebiasMeanRepresentation S)

@@ -9,6 +9,9 @@ open scoped NNReal
 
 namespace ProbabilityTheory
 
+/--
+@isnad1 id=eq.0h3v.s6.1141c6acf0d2 from=translated src=- shape=fe51c956 vocab=36569a06
+-/
 lemma centralMoment_two_mul_gaussianReal (μ : ℝ) (σ : ℝ≥0) (n : ℕ) :
     centralMoment id (2 * n) (gaussianReal μ (σ^2))
     = σ ^ (2 * n) * Nat.doubleFactorial (2 * n - 1) := by
@@ -138,6 +141,9 @@ lemma centralMoment_two_mul_gaussianReal (μ : ℝ) (σ : ℝ≥0) (n : ℕ) :
     field_simp
     ring
 
+/--
+@isnad1 id=eq.0h3v.s6.1578686a6dd7 from=translated src=- shape=af1b53ac vocab=e20d7c20
+-/
 lemma centralMoment_fun_two_mul_gaussianReal (μ : ℝ) (σ : ℝ≥0) (n : ℕ) :
     centralMoment (fun x ↦ x) (2 * n) (gaussianReal μ (σ^2))
     = σ ^ (2 * n) * Nat.doubleFactorial (2 * n - 1) :=

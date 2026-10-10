@@ -28,7 +28,9 @@ open scoped BigOperators
 variable {p : ℕ}
 
 /-- `εⱼ` is a.e.-measurable: by the structural-residual identity `hε` it agrees
-a.e. with the measurable map `Xⱼ − Σ_{k≠j} βⱼₖ Xₖ`. -/
+a.e. with the measurable map `Xⱼ − Σ_{k≠j} βⱼₖ Xₖ`.
+@isnad1 id=aemeasur.0h3v.s5.aeb8cada36fa from=translated src=- shape=7c4e9081 vocab=a0dbd572
+-/
 @[fun_prop]
 theorem eps_aemeasurable (M : ObsSEM p) (j : Fin (p + 1)) :
     AEMeasurable (fun ω => M.ε ω j) M.P := by
@@ -37,7 +39,9 @@ theorem eps_aemeasurable (M : ObsSEM p) (j : Fin (p + 1)) :
   refine hmeasRHS.aemeasurable.congr ?_
   filter_upwards [M.hε] with ω hω using (hω j).symm
 
-/-- The noise `εⱼ` is `M.P`-integrable (Gaussian marginal has a first moment). -/
+/-- The noise `εⱼ` is `M.P`-integrable (Gaussian marginal has a first moment).
+@isnad1 id=integrab.0h3v.s5.640de4652cb9 from=translated src=- shape=6ab95a47 vocab=4f1010b4
+-/
 @[fun_prop]
 theorem eps_integrable (M : ObsSEM p) (j : Fin (p + 1)) :
     Integrable (fun ω => M.ε ω j) M.P := by
@@ -56,7 +60,9 @@ theorem eps_integrable (M : ObsSEM p) (j : Fin (p + 1)) :
 
 /-- [Every structural-noise coordinate has zero observational mean](goal), providing the centering
 identity for residual comparisons in [the linear-Gaussian SEM](hyp:M) with [predictor dimension
-`p`](hyp:p) at [coordinate `j`](hyp:j). -/
+`p`](hyp:p) at [coordinate `j`](hyp:j).
+@isnad1 id=eq.0h3v.s5.46c6152f269c from=translated src=- shape=59724b7e vocab=5bf9f6ae
+-/
 theorem eps_integral_zero (M : ObsSEM p) (j : Fin (p + 1)) :
     ∫ ω, M.ε ω j ∂M.P = 0 := by
   have hmeas : AEMeasurable (fun ω => M.ε ω j) M.P := eps_aemeasurable M j

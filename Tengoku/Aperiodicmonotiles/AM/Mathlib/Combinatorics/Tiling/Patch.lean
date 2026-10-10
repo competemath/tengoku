@@ -44,72 +44,123 @@ namespace TileSet
 protected def subtype (t : TileSet ps ιₜ) (p : ιₜ → Prop) : TileSet ps (Subtype p) :=
   t.reindex Subtype.val
 
+/--
+@isnad1 id=eq.0h7v.s6.3939afb80b93 from=translated src=- shape=399a370a vocab=7f5010a3
+-/
 @[simp] lemma coe_subtype (t : TileSet ps ιₜ) (p : ιₜ → Prop) : ↑(t.subtype p) = ↑t ∘ Subtype.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.fd4e0f5a2a7a from=translated src=- shape=c1700bbe vocab=9c83fb1b
+-/
 @[simp] lemma subtype_apply (t : TileSet ps ιₜ) (p : ιₜ → Prop) (i : Subtype p) :
     t.subtype p i = t i :=
   rfl
 
+/--
+@isnad1 id=injectiv.1h7v.s6.e8b9bba2675b from=translated src=- shape=3191d3f1 vocab=351b628f
+-/
 lemma injective_subtype_of_injective {t : TileSet ps ιₜ} (p : ιₜ → Prop) (ht : Injective t) :
     Injective (t.subtype p) :=
   (injective_reindex_iff_injective ht).2 Subtype.val_injective
 
+/--
+@isnad1 id=eq.1h10v.s7.90fa79948967 from=translated src=- shape=a59c123b vocab=4fe1dc59
+-/
 lemma reindex_subtypeEquiv (t : TileSet ps ιₜ) {p : ιₜ → Prop} {e : ιₜ' ≃ ιₜ} {q : ιₜ' → Prop}
     (h : ∀ i, q i ↔ p (e i)) :
     (t.subtype p).reindex (Equiv.subtypeEquiv e h) = (t.reindex e).subtype q :=
   rfl
 
+/--
+@isnad1 id=eq.1h8v.s7.b97c8e88673f from=translated src=- shape=9e05fe23 vocab=c5e6bdb1
+-/
 lemma reindex_subtypeEquivRight (t : TileSet ps ιₜ) {p q : ιₜ → Prop} (h : ∀ i, q i ↔ p i) :
     (t.subtype p).reindex (Equiv.subtypeEquivRight h) = t.subtype q :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.f074d157214e from=translated src=- shape=548a01ff vocab=fd47400b
+-/
 lemma coeSet_subtype (t : TileSet ps ιₜ) (p : ιₜ → Prop) : t.subtype p = t '' {i | p i} := by
   rw [TileSet.subtype, coeSet_reindex_eq_range_comp, Set.range_comp, Subtype.range_coe_subtype]
 
+/--
+@isnad1 id=le.0h7v.s6.1f2e5e2b246d from=translated src=- shape=2f1c3332 vocab=94fc460e
+-/
 lemma coeSet_subtype_subset (t : TileSet ps ιₜ) (p : ιₜ → Prop) :
     (t.subtype p : Set (PlacedTile ps)) ⊆ t :=
   t.coeSet_reindex_subset _
 
+/--
+@isnad1 id=iff.0h8v.s6.671ede107207 from=translated src=- shape=2bf57f60 vocab=780ccff4
+-/
 lemma mem_subtype_iff {t : TileSet ps ιₜ} {p : ιₜ → Prop} {pt : PlacedTile ps} :
     pt ∈ t.subtype p ↔ ∃ i, p i ∧ t i = pt := by
   rw [← mem_coeSet, coeSet_subtype]
   simp
 
+/--
+@isnad1 id=mem.1h8v.s6.23db060c7311 from=translated src=- shape=c4bc4db0 vocab=919dd1d0
+-/
 lemma mem_of_mem_subtype {t : TileSet ps ιₜ} {p : ιₜ → Prop} {pt : PlacedTile ps}
     (h : pt ∈ t.subtype p) : pt ∈ t :=
   t.mem_of_mem_reindex h
 
+/--
+@isnad1 id=eq.0h8v.s7.6585e5a165cb from=translated src=- shape=25d8113c vocab=18d6a787
+-/
 lemma smul_subtype (g : G) (t : TileSet ps ιₜ) (p : ιₜ → Prop) :
     g • (t.subtype p) = (g • t).subtype p :=
   t.smul_reindex _ _
 
+/--
+@isnad1 id=le.0h7v.s6.33b61eb81e56 from=translated src=- shape=cb9f2ce5 vocab=8ce2d1df
+-/
 lemma card_subtype_le (t : TileSet ps ιₜ) (p : ιₜ → Prop) : (t.subtype p).card ≤ t.card :=
   t.card_reindex_le_of_injective Subtype.val_injective
 
+/--
+@isnad1 id=tofun.0h8v.s6.12a4d42f258b from=translated src=- shape=aae0d3bb vocab=c2d45891
+-/
 protected lemma Disjoint.subtype {t : TileSet ps ιₜ} (hd : t.Disjoint) (p : ιₜ → Prop) :
     (t.subtype p).Disjoint :=
   TileSet.Disjoint.reindex_of_injective hd Subtype.val_injective
 
+/--
+@isnad1 id=tofun.0h8v.s6.15ff0f07b4a4 from=translated src=- shape=aae0d3bb vocab=c1245431
+-/
 protected lemma FiniteIntersections.subtype {t : TileSet ps ιₜ}
     (hfi : t.FiniteIntersections) (p : ιₜ → Prop) :
     (t.subtype p).FiniteIntersections :=
   FiniteIntersections.reindex_of_injective hfi Subtype.val_injective
 
+/--
+@isnad1 id=tofun.0h8v.s6.8fb768298529 from=translated src=- shape=aae0d3bb vocab=1916de23
+-/
 protected lemma FiniteDistinctIntersections.subtype {t : TileSet ps ιₜ}
     (hfi : t.FiniteDistinctIntersections) (p : ιₜ → Prop) :
     (t.subtype p).FiniteDistinctIntersections :=
   FiniteDistinctIntersections.reindex hfi
 
+/--
+@isnad1 id=eq.0h7v.s6.5100aed0a838 from=translated src=- shape=6156c7d6 vocab=3f61769e
+-/
 lemma union_subtype (t : TileSet ps ιₜ) (p : ιₜ → Prop) :
     ⋃ i, (t.subtype p i : Set X) = ⋃ (i) (_ : p i), (t i : Set X) := by
   ext x
   simp
 
+/--
+@isnad1 id=eq.0h7v.s7.ac6c3cc1d84e from=translated src=- shape=17fa55e2 vocab=a08d9286
+-/
 lemma union_subtype' (t : TileSet ps ιₜ) (p : ιₜ → Prop) :
     ⋃ pt ∈ t.subtype p, (pt : Set X) = ⋃ (i) (_ : p i), (t i : Set X) := by
   rw [union_of_mem_eq_iUnion, union_subtype]
 
+/--
+@isnad1 id=eq.0h8v.s8.9865cf3eb061 from=translated src=- shape=bd5c673c vocab=10fb098b
+-/
 lemma reindex_subtypeSubtypeEquivSubtypeInter (t : TileSet ps ιₜ) (p q : ιₜ → Prop) :
     (t.subtype (fun i ↦ p i ∧ q i)).reindex (Equiv.subtypeSubtypeEquivSubtypeInter p q) =
       (t.subtype p).subtype (q ∘ Subtype.val) :=
@@ -120,13 +171,22 @@ def patch (t : TileSet ps ιₜ) (s : Set X) :
     TileSet ps (Subtype (fun i ↦ (s ∩ t i).Nonempty)) :=
   t.subtype _
 
+/--
+@isnad1 id=eq.0h7v.s7.0528b30eac80 from=translated src=- shape=98353886 vocab=f5248dfe
+-/
 @[simp] lemma coe_patch (t : TileSet ps ιₜ) (s : Set X) : ↑(t.patch s) = ↑t ∘ Subtype.val :=
   t.coe_subtype _
 
+/--
+@isnad1 id=eq.0h8v.s7.15f8bb07c211 from=translated src=- shape=ee9fdcc0 vocab=a4cd005d
+-/
 @[simp] lemma patch_apply (t : TileSet ps ιₜ) (s : Set X) (i) :
     t.patch s i = t i :=
   t.subtype_apply _ _
 
+/--
+@isnad1 id=eq.1h8v.s7.c808158e02e6 from=translated src=- shape=7e4697c0 vocab=e4151407
+-/
 lemma card_patch_apply_of_inter_nonempty (t : TileSet ps ιₜ) {s : Set X} {pt : PlacedTile ps}
     (h : (s ∩ pt).Nonempty) : (t.patch s).card pt = #(↑t ⁻¹' {pt}) := by
   rw [card_apply, Cardinal.eq]
@@ -137,6 +197,9 @@ lemma card_patch_apply_of_inter_nonempty (t : TileSet ps ιₜ) {s : Set X} {pt 
     exact i.property
   · exact i.property
 
+/--
+@isnad1 id=eq.1h8v.s7.55226381f8df from=translated src=- shape=7349a285 vocab=f91bb261
+-/
 lemma card_patch_apply_of_inter_eq_empty (t : TileSet ps ιₜ) {s : Set X} {pt : PlacedTile ps}
     (h : (s ∩ pt) = ∅) : (t.patch s).card pt = 0 := by
   rw [card_apply, Cardinal.mk_eq_zero_iff]
@@ -145,37 +208,61 @@ lemma card_patch_apply_of_inter_eq_empty (t : TileSet ps ιₜ) {s : Set X} {pt 
   rintro i hne rfl
   simp [h] at hne
 
+/--
+@isnad1 id=injectiv.1h7v.s7.14352b1e497b from=translated src=- shape=5b450863 vocab=95c15401
+-/
 lemma injective_patch_of_injective {t : TileSet ps ιₜ} (s : Set X) (ht : Injective t) :
     Injective (t.patch s) :=
   injective_subtype_of_injective _ ht
 
+/--
+@isnad1 id=eq.0h9v.s9.d6fb283cdc5b from=translated src=- shape=e58a2d8f vocab=b1c7d757
+-/
 lemma patch_reindex_subtypeEquiv (t : TileSet ps ιₜ) (s : Set X) (e : ιₜ' ≃ ιₜ) :
     (t.patch s).reindex (Equiv.subtypeEquiv e fun _ ↦ Iff.rfl) = (t.reindex e).patch s :=
   rfl
 
+/--
+@isnad1 id=eq.1h8v.s9.06a7b3520598 from=translated src=- shape=5d505c88 vocab=42673d07
+-/
 lemma patch_reindex_subtypeEquivRight (t : TileSet ps ιₜ) {s₁ s₂ : Set X}
     (h : ∀ i, (s₂ ∩ t i).Nonempty ↔ (s₁ ∩ t i).Nonempty) :
     (t.patch s₁).reindex (Equiv.subtypeEquivRight h) = t.patch s₂ :=
   t.reindex_subtypeEquivRight h
 
+/--
+@isnad1 id=eq.0h10v.s7.5e4a7838595b from=translated src=- shape=9988e986 vocab=3d8a6e4a
+-/
 @[simp] lemma card_patch_reindex_of_equivLike (t : TileSet ps ιᵤ) (s : Set X) (e : Eᵤ) :
     ((t.reindex e).patch s).card = (t.patch s).card := by
   change ((t.reindex (e : ιᵤ' ≃ ιᵤ)).patch s).card = _
   rw [← patch_reindex_subtypeEquiv]
   exact card_reindex_of_equivLike _ _
 
+/--
+@isnad1 id=eq.0h7v.s7.eca79d505d5d from=translated src=- shape=79817082 vocab=3a8ec438
+-/
 lemma coeSet_patch (t : TileSet ps ιₜ) (s : Set X) :
     t.patch s = t '' {i | (s ∩ t i).Nonempty} :=
   t.coeSet_subtype _
 
+/--
+@isnad1 id=le.0h7v.s6.fdc611e53569 from=translated src=- shape=28e0f962 vocab=75fea4d9
+-/
 lemma coeSet_patch_subset (t : TileSet ps ιₜ) (s : Set X) :
     (t.patch s : Set (PlacedTile ps)) ⊆ t :=
   t.coeSet_subtype_subset _
 
+/--
+@isnad1 id=mem.1h8v.s7.6676ac2263c4 from=translated src=- shape=0ed7fad9 vocab=fba78ab5
+-/
 lemma mem_of_mem_patch {t : TileSet ps ιₜ} {s : Set X} {pt : PlacedTile ps} (h : pt ∈ t.patch s) :
     pt ∈ t :=
   t.mem_of_mem_subtype h
 
+/--
+@isnad1 id=iff.0h8v.s7.58f86dec77a8 from=translated src=- shape=f9b5222a vocab=fba78ab5
+-/
 lemma mem_patch_iff {t : TileSet ps ιₜ} {s : Set X} {pt : PlacedTile ps} :
     pt ∈ t.patch s ↔ (s ∩ pt).Nonempty ∧ pt ∈ t := by
   rw [patch, mem_subtype_iff, TileSet.mem_def, ←exists_and_left]
@@ -190,35 +277,59 @@ def smulPatchEquiv (g : G) (t : TileSet ps ιₜ) (s : Set X) :
     {i // (g • s ∩ ((g • t) i)).Nonempty} ≃ {i // (s ∩ t i).Nonempty} :=
   Equiv.subtypeEquivRight (by simp)
 
+/--
+@isnad1 id=eq.0h8v.s10.e3bfe6c42270 from=translated src=- shape=4c9bc5c6 vocab=c892fd52
+-/
 lemma smul_patch (g : G) (t : TileSet ps ιₜ) (s : Set X) :
     (g • (t.patch s)).reindex (smulPatchEquiv g t s) = (g • t).patch (g • s) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.c920d528ce65 from=translated src=- shape=6351a526 vocab=a11a5120
+-/
 @[simp] lemma card_smul_patch (g : G) (t : TileSet ps ιₜ) (s : Set X) :
     ((g • t).patch (g • s)).card = g • (t.patch s).card := by
   rw [← smul_patch, ← card_smul, card_reindex_of_equivLike]
 
+/--
+@isnad1 id=le.0h7v.s6.b272a5e37d20 from=translated src=- shape=0d864605 vocab=4b574f8c
+-/
 lemma card_patch_le (t : TileSet ps ιₜ) (s : Set X) : (t.patch s).card ≤ t.card :=
   t.card_subtype_le _
 
+/--
+@isnad1 id=tofun.0h8v.s6.aaef01e01828 from=translated src=- shape=93f60aa1 vocab=65c4640f
+-/
 lemma Disjoint.patch {t : TileSet ps ιₜ} (hd : TileSet.Disjoint t) (s : Set X) :
     TileSet.Disjoint (t.patch s) :=
   TileSet.Disjoint.subtype hd _
 
+/--
+@isnad1 id=tofun.0h8v.s6.96031111aecc from=translated src=- shape=93f60aa1 vocab=4b2e8d0b
+-/
 protected lemma FiniteIntersections.patch {t : TileSet ps ιₜ}
     (hfi : t.FiniteIntersections) (s : Set X) :
     (t.patch s).FiniteIntersections :=
   FiniteIntersections.subtype hfi _
 
+/--
+@isnad1 id=tofun.0h8v.s6.c1655a917f91 from=translated src=- shape=93f60aa1 vocab=8a9635ac
+-/
 protected lemma FiniteDistinctIntersections.patch {t : TileSet ps ιₜ}
     (hfi : t.FiniteDistinctIntersections) (s : Set X) :
     (t.patch s).FiniteDistinctIntersections :=
   FiniteDistinctIntersections.subtype hfi _
 
+/--
+@isnad1 id=eq.0h7v.s7.fc7ffcb61a1c from=translated src=- shape=0d39b4b5 vocab=87342132
+-/
 lemma union_patch (t : TileSet ps ιₜ) (s : Set X) :
     ⋃ i, (t.patch s i : Set X) = ⋃ (i) (_ : (s ∩ t i).Nonempty), (t i : Set X) :=
   t.union_subtype _
 
+/--
+@isnad1 id=eq.0h7v.s8.7410aa2faa00 from=translated src=- shape=2741ea06 vocab=0390818a
+-/
 lemma union_patch' (t : TileSet ps ιₜ) (s : Set X) :
     ⋃ pt ∈ t.patch s, (pt : Set X) = ⋃ (i) (_ : (s ∩ t i).Nonempty), (t i : Set X) :=
   t.union_subtype' _
@@ -232,15 +343,24 @@ def patchPatchEquiv (t : TileSet ps ιₜ) {s₁ s₂ : Set X} (h : s₂ ⊆ s�
   left_inv := by simp [LeftInverse]
   right_inv := by simp [Function.RightInverse, LeftInverse]
 
+/--
+@isnad1 id=eq.1h8v.s10.08ad7dccaaf7 from=translated src=- shape=b97477e1 vocab=e62501f2
+-/
 lemma patch_patch_reindex (t : TileSet ps ιₜ) {s₁ s₂ : Set X} (h : s₂ ⊆ s₁) :
     (t.patch s₂).reindex (t.patchPatchEquiv h) = (t.patch s₁).patch s₂ :=
   rfl
 
+/--
+@isnad1 id=le.1h8v.s7.79c33cab855b from=translated src=- shape=f6e59e69 vocab=4b574f8c
+-/
 lemma card_patch_le_of_subset (t : TileSet ps ιₜ) {s₁ s₂ : Set X} (h : s₂ ⊆ s₁) :
     (t.patch s₂).card ≤ (t.patch s₁).card := by
   rw [← card_reindex_of_equivLike _ (t.patchPatchEquiv h), t.patch_patch_reindex h]
   exact card_patch_le _ _
 
+/--
+@isnad1 id=eq.0h8v.s7.79d9329fd795 from=translated src=- shape=9b27c8d2 vocab=de49388d
+-/
 lemma card_patch_union (t : TileSet ps ιₜ) (s₁ s₂ : Set X) :
     (t.patch (s₁ ∪ s₂)).card = (t.patch s₁).card ⊔ (t.patch s₂).card := by
   ext pt

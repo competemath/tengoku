@@ -27,7 +27,9 @@ namespace Imo1969P6
 
 /-- The core AM–GM chain of the solution: with `p² = x₁y₁ - z₁²` and `q² = x₂y₂ - z₂²`
 we have `pq + z₁z₂ ≤ √(x₁y₁ · x₂y₂) = √(x₁y₂) · √(x₂y₁)` and
-`2 √(x₁y₂) √(x₂y₁) ≤ x₁y₂ + x₂y₁` (AM–GM). -/
+`2 √(x₁y₂) √(x₂y₁) ≤ x₁y₂ + x₂y₁` (AM–GM).
+@isnad1 id=and.6h8v.s8.a0fb7d984c8e from=translated src=- shape=d9ce6f09 vocab=f3eb3156
+-/
 theorem amgm_chain {x₁ x₂ y₁ y₂ z₁ z₂ p q : ℝ}
     (hx₁ : 0 < x₁) (hy₁ : 0 < y₁) (hx₂ : 0 < x₂) (hy₂ : 0 < y₂)
     (hp₂ : p ^ 2 = x₁ * y₁ - z₁ ^ 2) (hq₂ : q ^ 2 = x₂ * y₂ - z₂ ^ 2) :

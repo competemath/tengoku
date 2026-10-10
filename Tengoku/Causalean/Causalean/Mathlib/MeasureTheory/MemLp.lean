@@ -27,7 +27,9 @@ respect to `Q`](hyp:hf_meas) and [the squared norm `‖f x‖^2` is integrable a
 
 The explicit integrability hypothesis is essential:
 Mathlib's Bochner integral convention makes a bare upper bound on
-`∫ x, f x ^ 2 ∂Q` vacuous for non-integrable squares. -/
+`∫ x, f x ^ 2 ∂Q` vacuous for non-integrable squares.
+@isnad1 id=memlp.2h4v.s7.6cc58c2ec58f from=translated src=- shape=e5557398 vocab=da6c068d
+-/
 @[deprecated MeasureTheory.memLp_two_iff_integrable_sq_norm (since := "2026-08-29")]
 theorem MemLp.of_measurable_of_integral_sq_le
     {X F : Type*} [MeasurableSpace X] [NormedAddCommGroup F] {Q : Measure X}

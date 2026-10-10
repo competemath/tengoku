@@ -61,7 +61,9 @@ Then the standardized network sum converges in distribution to the standard norm
 `Φ(t) = (gaussianReal 0 1).real (Iic t)`.
 
 Obtained as a corollary of `networkSum_clt` applied to the standardized field
-`centeredNormalizedField`. -/
+`centeredNormalizedField`.
+@isnad1 id=tendsto.8h11v.s10.3dcb42bbaa27 from=translated src=- shape=37fcb3d2 vocab=18b28bb6
+-/
 theorem networkMean_clt
     {V : ℕ → Type*} [∀ n, Fintype (V n)]
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))

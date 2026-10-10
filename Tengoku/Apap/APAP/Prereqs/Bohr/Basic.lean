@@ -30,20 +30,38 @@ namespace BohrSet
 variable {G : Type*} [AddCommGroup G] {B : BohrSet G} {ψ : AddChar G ℂ} {x : G}
 
 def width (B : BohrSet G) (ψ : AddChar G ℂ) : ℝ≥0 := (B.ewidth ψ).toNNReal
+/--
+@isnad1 id=eq.0h3v.s5.8e7a458d796a from=translated src=- shape=bfdcafcd vocab=488aec31
+-/
 lemma width_def : B.width ψ = (B.ewidth ψ).toNNReal := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.80708ba89e0f from=translated src=- shape=6d72605e vocab=2003e249
+-/
 lemma coe_width (hψ : ψ ∈ B.frequencies) : B.width ψ = B.ewidth ψ := by
   refine ENNReal.coe_toNNReal ?_
   rwa [←lt_top_iff_ne_top, ←B.mem_frequencies]
 
+/--
+@isnad1 id=iff.0h3v.s6.fa1ab38e085c from=translated src=- shape=99af878e vocab=c548fabd
+-/
 lemma ewidth_eq_top_iff : ψ ∉ B.frequencies ↔ B.ewidth ψ = ⊤ := by
   simp [B.mem_frequencies]
 
+/--
+@isnad1 id=eq.1h3v.s6.203ca041719d from=translated src=- shape=a16b7714 vocab=c548fabd
+-/
 alias ⟨ewidth_eq_top_of_not_mem_frequencies, _⟩ := ewidth_eq_top_iff
 
+/--
+@isnad1 id=eq.1h3v.s6.96ebcffeee1c from=translated src=- shape=48d984a2 vocab=7818d77a
+-/
 lemma width_eq_zero_of_not_mem_frequencies (hψ : ψ ∉ B.frequencies) : B.width ψ = 0 := by
   rw [width_def, ewidth_eq_top_of_not_mem_frequencies hψ, ENNReal.toNNReal_top]
 
+/--
+@isnad1 id=injectiv.0h1v.s4.f881d6b7f1f5 from=translated src=- shape=341ea3ad vocab=318aa124
+-/
 lemma ewidth_injective : Function.Injective (BohrSet.ewidth (G := G)) := by
   intro B₁ B₂ h
   ext ψ
@@ -63,6 +81,9 @@ noncomputable def ofWidth (width : AddChar G ℂ → ℝ≥0) (freq : Finset (Ad
     ewidth := fun ψ => if ψ ∈ freq then width ψ else ⊤ ,
     mem_frequencies := fun ψ => by simp [lt_top_iff_ne_top] }
 
+/--
+@isnad1 id=eq.2h3v.s7.c46eae746fb7 from=translated src=- shape=56ff4ca2 vocab=7818d77a
+-/
 @[ext]
 lemma ext_width {B B' : BohrSet G} (freq : B.frequencies = B'.frequencies)
     (width : ∀ ψ : AddChar G ℂ, ψ ∈ B.frequencies → B.width ψ = B'.width ψ) :
@@ -93,8 +114,14 @@ Note that this set **does not** uniquely determine `B`. -/
 instance instCoe : Coe (BohrSet G) (Set G) := ⟨chordSet⟩
 instance instCoeSort : CoeSort (BohrSet G) (Type _) := ⟨Elem⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.3c6ce84a7811 from=translated src=- shape=02946062 vocab=d0edadb3
+-/
 lemma mem_chordSet_iff_nnnorm_ewidth : x ∈ B.chordSet ↔ ∀ ψ, ‖1 - ψ x‖₊ ≤ B.ewidth ψ := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s7.cc250deef48a from=translated src=- shape=31ed08fe vocab=9642fd9f
+-/
 lemma mem_chordSet_iff_nnnorm_width :
     x ∈ B.chordSet ↔ ∀ ⦃ψ⦄, ψ ∈ B.frequencies → ‖1 - ψ x‖₊ ≤ B.width ψ := by
   refine forall_congr' fun ψ => ?_
@@ -111,16 +138,28 @@ lemma mem_chordSet_iff_nnnorm_width :
     intro h₁ h₂
     rwa [←ENNReal.coe_le_coe, coe_width h₂]
 
+/--
+@isnad1 id=iff.0h3v.s7.093aac1a045b from=translated src=- shape=85a25578 vocab=36299d69
+-/
 lemma mem_chordSet_iff_norm_width :
     x ∈ B.chordSet ↔ ∀ ⦃ψ⦄, ψ ∈ B.frequencies → ‖1 - ψ x‖ ≤ B.width ψ :=
   mem_chordSet_iff_nnnorm_width
 
+/--
+@isnad1 id=eq.0h2v.s4.ec6e846a6523 from=translated src=- shape=d8aa5106 vocab=b80f05bb
+-/
 @[simp, norm_cast] lemma coeSort_coe (B : BohrSet G) : ↥(B : Set G) = B := rfl
 
+/--
+@isnad1 id=mem.0h2v.s5.f488e7ecb99a from=translated src=- shape=09a59340 vocab=aeec2b7a
+-/
 @[simp] lemma zero_mem : 0 ∈ B.chordSet := by simp [mem_chordSet_iff_nnnorm_width]
 
 -- TODO: This lemma needs `Finite G` because we are using `AddChar G ℂ` rather than `AddChar G ℂˣ`
 -- as the dual group.
+/--
+@isnad1 id=iff.0h3v.s5.4920d77241c6 from=translated src=- shape=98665973 vocab=a196e7c0
+-/
 @[simp] lemma neg_mem [Finite G] : -x ∈ B.chordSet ↔ x ∈ B.chordSet :=
   forall_congr' fun ψ ↦ by rw [Iff.comm, ← RCLike.nnnorm_conj, map_sub, map_one, map_neg_eq_conj]
 
@@ -154,16 +193,28 @@ instance : Preorder (BohrSet G) := .lift ewidth
 noncomputable instance : DistribLattice (BohrSet G) :=
   ewidth_injective.distribLattice BohrSet.ewidth .rfl .rfl (fun _ _ ↦ rfl) (fun _ _ ↦ rfl)
 
+/--
+@isnad1 id=iff.0h3v.s5.ca94718e36aa from=translated src=- shape=571d8cc0 vocab=e53817f2
+-/
 lemma le_iff_ewidth {B₁ B₂ : BohrSet G} : B₁ ≤ B₂ ↔ ∀ ⦃ψ⦄, B₁.ewidth ψ ≤ B₂.ewidth ψ := Iff.rfl
 
+/--
+@isnad1 id=le.1h3v.s6.8df01ed2492c from=translated src=- shape=ecd66cd0 vocab=ede69882
+-/
 @[gcongr]
 lemma frequencies_anti {B₁ B₂ : BohrSet G} (h : B₁ ≤ B₂) : B₂.frequencies ⊆ B₁.frequencies := by
   intro ψ hψ
   simp only [mem_frequencies] at hψ ⊢
   exact (h ψ).trans_lt hψ
 
+/--
+@isnad1 id=antitone.0h1v.s5.f3ec9a52973e from=translated src=- shape=72cc890d vocab=b6f5adb5
+-/
 lemma frequencies_antitone : Antitone (frequencies : BohrSet G → _) := fun _ _ ↦ frequencies_anti
 
+/--
+@isnad1 id=iff.0h3v.s7.ebecc7c74e69 from=translated src=- shape=ba8f2c26 vocab=29d6fbcf
+-/
 lemma le_iff_width {B₁ B₂ : BohrSet G} : B₁ ≤ B₂ ↔
     B₂.frequencies ⊆ B₁.frequencies ∧ ∀ ⦃ψ⦄, ψ ∈ B₂.frequencies → B₁.width ψ ≤ B₂.width ψ := by
   constructor
@@ -180,6 +231,9 @@ lemma le_iff_width {B₁ B₂ : BohrSet G} : B₁ ≤ B₂ ↔
       rw [←coe_width h', ←coe_width (h₁ h'), ENNReal.coe_le_coe]
       exact h₂ h'
 
+/--
+@isnad1 id=le.2h4v.s7.81962b6f2ee4 from=translated src=- shape=596d4ac0 vocab=29d6fbcf
+-/
 @[gcongr]
 lemma width_le_width {B₁ B₂ : BohrSet G} (h : B₁ ≤ B₂) {ψ : AddChar G ℂ} (hψ : ψ ∈ B₂.frequencies) :
     B₁.width ψ ≤ B₂.width ψ := by
@@ -198,6 +252,9 @@ noncomputable instance [Finite G] : SupSet (BohrSet G) where
     mem_frequencies := by simp
   }
 
+/--
+@isnad1 id=iff.0h4v.s7.7c93e68e624d from=translated src=- shape=c87b1fe9 vocab=251b0e7f
+-/
 lemma iInf_lt_top {α β : Type*} [CompleteLattice β] {S : Set α} {f : α → β} :
     (⨅ i ∈ S, f i) < ⊤ ↔ ∃ i ∈ S, f i < ⊤ := by
   simp [lt_top_iff_ne_top]
@@ -226,6 +283,9 @@ noncomputable instance [Finite G] : CompletelyDistribLattice (BohrSet G) := by
 /-- The rank of a Bohr set is the number of characters which have finite width. -/
 def rank (B : BohrSet G) : ℕ := #B.frequencies
 
+/--
+@isnad1 id=eq.0h2v.s5.723ee489bc1c from=translated src=- shape=85d6ab04 vocab=ad495d98
+-/
 @[simp] lemma card_frequencies (B : BohrSet G) : #B.frequencies = B.rank := rfl
 
 /-! ### Dilation -/
@@ -233,10 +293,16 @@ def rank (B : BohrSet G) : ℕ := #B.frequencies
 section smul
 variable {ρ : ℝ}
 
+/--
+@isnad1 id=lt.1h2v.s5.02908c645422 from=translated src=- shape=48c542f8 vocab=06155759
+-/
 lemma nnreal_smul_lt_top {x : ℝ≥0} {y : ℝ≥0∞} (hy : y < ⊤) : x • y < ⊤ :=
   ENNReal.mul_lt_top (by simp) hy
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.1h2v.s5.17fa5a9dc55e from=translated src=- shape=737aa426 vocab=06155759
+-/
 lemma nnreal_smul_lt_top_iff {x : ℝ≥0} {y : ℝ≥0∞} (hx : x ≠ 0) : x • y < ⊤ ↔ y < ⊤ := by
   constructor
   case mpr => exact nnreal_smul_lt_top
@@ -246,10 +312,16 @@ lemma nnreal_smul_lt_top_iff {x : ℝ≥0} {y : ℝ≥0∞} (hx : x ≠ 0) : x �
     simp only [top_le_iff, not_lt] at hy
     simp [hy, ENNReal.smul_top, hx] at h
 
+/--
+@isnad1 id=ne.1h2v.s5.fc22b790cc2c from=translated src=- shape=48c542f8 vocab=a248fc4f
+-/
 lemma nnreal_smul_ne_top {x : ℝ≥0} {y : ℝ≥0∞} (hy : y ≠ ⊤) : x • y ≠ ⊤ :=
   ENNReal.mul_ne_top (by simp) hy
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.1h2v.s5.b0fe0adc5693 from=translated src=- shape=4ccd0f2d vocab=a248fc4f
+-/
 lemma nnreal_smul_ne_top_iff {x : ℝ≥0} {y : ℝ≥0∞} (hx : x ≠ 0) : x • y ≠ ⊤ ↔ y ≠ ⊤ := by
   constructor
   case mpr => exact nnreal_smul_ne_top
@@ -266,12 +338,24 @@ noncomputable instance instSMul : SMul ℝ (BohrSet G) where
         refine ENNReal.mul_ne_top (by simp) ?_
         rwa [←lt_top_iff_ne_top, ←mem_frequencies]
 
+/--
+@isnad1 id=eq.0h3v.s5.26e1950d75d6 from=translated src=- shape=fd85bec1 vocab=560ec1fd
+-/
 @[simp] lemma frequencies_smul (ρ : ℝ) (B : BohrSet G) : (ρ • B).frequencies = B.frequencies := rfl
+/--
+@isnad1 id=eq.0h3v.s5.f029bbc8602e from=translated src=- shape=5d60b237 vocab=421533b6
+-/
 @[simp] lemma rank_smul (ρ : ℝ) (B : BohrSet G) : (ρ • B).rank = B.rank := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.5cdeedd9ca24 from=translated src=- shape=057124d7 vocab=fe37115e
+-/
 @[simp] lemma ewidth_smul (ρ : ℝ) (B : BohrSet G) (ψ) :
     (ρ • B).ewidth ψ = if ψ ∈ B.frequencies then Real.nnabs ρ * B.ewidth ψ else ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.ff1805a6f3a6 from=translated src=- shape=089f0d71 vocab=6deb3b60
+-/
 @[simp] lemma width_smul_apply (ρ : ℝ) (B : BohrSet G) (ψ) :
     (ρ • B).width ψ = Real.nnabs ρ * B.width ψ := by
   rw [width_def, ewidth_smul]
@@ -279,6 +363,9 @@ noncomputable instance instSMul : SMul ℝ (BohrSet G) where
   case isTrue h => simp [←coe_width h]
   case isFalse h => simp [width_eq_zero_of_not_mem_frequencies h]
 
+/--
+@isnad1 id=eq.0h3v.s7.dc7be41f87e6 from=translated src=- shape=870430b1 vocab=a6cc3a38
+-/
 lemma width_smul (ρ : ℝ) (B : BohrSet G) : (ρ • B).width = Real.nnabs ρ • B.width := by
   ext ψ
   simp [width_smul_apply]
@@ -305,6 +392,9 @@ lemma eq_zero_of_ewidth_eq_zero {B : BohrSet G} [Finite G] (h : B.ewidth = 0) :
   rwa [B.width_def, h, Pi.zero_apply, ENNReal.toNNReal_zero, nonpos_iff_eq_zero, nnnorm_eq_zero,
     sub_eq_zero, eq_comm] at hx
 
+/--
+@isnad1 id=eq.0h4v.s6.c7c25b1befa8 from=translated src=- shape=f3d4923d vocab=84292849
+-/
 @[simp] lemma AddChar.nnnorm_apply {α G : Type*}
     [NormedDivisionRing α] [AddLeftCancelMonoid G] [Finite G] (ψ : AddChar G α)
     (x : G) : ‖ψ x‖₊ = 1 :=
@@ -318,13 +408,22 @@ lemma eq_top_of_two_le_width {B : BohrSet G} [Finite G] (h : ∀ ψ, 2 ≤ B.wid
     _ = 2 := by norm_num
     _ ≤ B.width ψ := h _
 
+/--
+@isnad1 id=le.1h3v.s5.23d89b4be717 from=translated src=- shape=e4a3c269 vocab=acdf00ca
+-/
 @[gcongr] lemma chordSet_mono {B₁ B₂ : BohrSet G} (h : B₁ ≤ B₂) : B₁.chordSet ⊆ B₂.chordSet :=
   fun _ hx ψ => (hx ψ).trans (h ψ)
 
+/--
+@isnad1 id=monotone.0h1v.s5.66b9a3b4e45d from=translated src=- shape=e716c754 vocab=7112e73d
+-/
 lemma chordSet_monotone : Monotone (chordSet : BohrSet G → Set G) := fun _ _ => chordSet_mono
 
 open Pointwise
 
+/--
+@isnad1 id=le.1h4v.s7.3cc853f7d4b4 from=translated src=- shape=8533ec57 vocab=76e9239a
+-/
 lemma add_subset_of_ewidth [Finite G] {B₁ B₂ B₃ : BohrSet G}
     (h : B₁.ewidth + B₂.ewidth ≤ B₃.ewidth) :
     B₁.chordSet + B₂.chordSet ⊆ B₃.chordSet := by
@@ -336,6 +435,9 @@ lemma add_subset_of_ewidth [Finite G] {B₁ B₂ B₃ : BohrSet G}
   rw [←ENNReal.coe_le_coe, ENNReal.coe_add] at this
   exact this.trans <| (h _).trans' <| add_le_add (hx _) (hy _)
 
+/--
+@isnad1 id=le.2h4v.s7.f2088aee28d0 from=translated src=- shape=8f754b1b vocab=6a6098d9
+-/
 lemma smul_add_smul_subset [Finite G] {B : BohrSet G} {ρ₁ ρ₂ : ℝ} (hρ₁ : 0 ≤ ρ₁) (hρ₂ : 0 ≤ ρ₂) :
     (ρ₁ • B).chordSet + (ρ₂ • B).chordSet ⊆ ((ρ₁ + ρ₂) • B).chordSet :=
   add_subset_of_ewidth fun ψ => by

@@ -52,7 +52,9 @@ errors](goal).
 
 For every `h ∈ Hbar` and `q ∈ Qbar`, given a dual solution `q₀`,
 
-    Θ(h, q) − θ₀ = E[(q₀(Z) − q(Z)) (h(X) − h₀(X))]. -/
+    Θ(h, q) − θ₀ = E[(q₀(Z) − q(Z)) (h(X) − h₀(X))].
+@isnad1 id=eq.3h6v.s7.397a685fdacb from=translated src=- shape=9bbca26a vocab=71ce470a
+-/
 theorem mixed_bias_identity
     (S : InverseProblemSystem Ω μ) {q₀ : S.𝒵 → ℝ}
     (hq₀ : S.DualSolution q₀)
@@ -172,7 +174,9 @@ theorem mixed_bias_identity
   ring
 
 /-- DR cancellation at the truth on the primal side: `Θ(h₀, q) = θ₀` for
-every `q ∈ Qbar`. -/
+every `q ∈ Qbar`.
+@isnad1 id=eq.2h5v.s6.784d50213c6d from=translated src=- shape=f649c925 vocab=6af48e60
+-/
 theorem Θ_h₀_eq_θ₀
     (S : InverseProblemSystem Ω μ) {q₀ : S.𝒵 → ℝ}
     (hq₀ : S.DualSolution q₀)
@@ -184,7 +188,9 @@ theorem Θ_h₀_eq_θ₀
   simp
 
 /-- DR cancellation at the truth on the dual side: `Θ(h, q₀) = θ₀` for
-every `h ∈ Hbar`. -/
+every `h ∈ Hbar`.
+@isnad1 id=eq.2h5v.s6.e4160f69e8af from=translated src=- shape=89009a81 vocab=c46b8312
+-/
 theorem Θ_q₀_eq_θ₀
     (S : InverseProblemSystem Ω μ) {q₀ : S.𝒵 → ℝ}
     (hq₀ : S.DualSolution q₀)

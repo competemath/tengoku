@@ -32,7 +32,9 @@ multiple of one hundred millionth preserves an upper bound. -/
 def prawitzRoundUp (x : ℚ) : ℚ :=
   (⌈100000000 * x⌉ : ℤ) / (100000000 : ℚ)
 
-/-- [A rational input](hyp:x) is [no larger than its outward rounding](goal). -/
+/-- [A rational input](hyp:x) is [no larger than its outward rounding](goal).
+@isnad1 id=le.0h1v.s3.81a718ef4c2a from=translated src=- shape=e63234f4 vocab=58d268c5
+-/
 theorem prawitz_le_roundUp (x : ℚ) : x ≤ prawitzRoundUp x := by
   have h := Int.le_ceil (100000000 * x)
   unfold prawitzRoundUp
@@ -40,7 +42,9 @@ theorem prawitz_le_roundUp (x : ℚ) : x ≤ prawitzRoundUp x := by
     simpa only [mul_comm] using h)
 
 /-- [Casting the rational Taylor polynomial](hyp:x) gives
-[the real Taylor polynomial with exactly the same terms](goal). -/
+[the real Taylor polynomial with exactly the same terms](goal).
+@isnad1 id=eq.0h1v.s5.d6a01e546d7f from=translated src=- shape=32664eeb vocab=2622cf53
+-/
 theorem prawitzTaylor16_cast (x : ℚ) :
     (prawitzTaylor16 x : ℝ) =
       ∑ m ∈ range 16, (x : ℝ) ^ m / (m.factorial : ℝ) := by
@@ -48,7 +52,9 @@ theorem prawitzTaylor16_cast (x : ℚ) :
 
 /-- At [a nonnegative real argument](hyp:x,hx),
 [the sixteen-term Taylor polynomial is positive and no larger than
-the exponential](goal). -/
+the exponential](goal).
+@isnad1 id=and.1h1v.s6.bd0f1ec48d04 from=translated src=- shape=9dd07d19 vocab=75eb682d
+-/
 theorem prawitz_taylor16_pos_le_exp (x : ℝ) (hx : 0 ≤ x) :
     0 < (∑ m ∈ range 16, x ^ m / (m.factorial : ℝ)) ∧
       (∑ m ∈ range 16, x ^ m / (m.factorial : ℝ)) ≤ Real.exp x := by
@@ -59,7 +65,9 @@ theorem prawitz_taylor16_pos_le_exp (x : ℝ) (hx : 0 ≤ x) :
   exact ⟨lt_of_lt_of_le (by norm_num) hone, Real.sum_le_exp_of_nonneg hx 16⟩
 
 /-- At [a nonnegative rational argument](hyp:x,hx),
-[the reciprocal Taylor polynomial encloses the negative exponential](goal). -/
+[the reciprocal Taylor polynomial encloses the negative exponential](goal).
+@isnad1 id=le.1h1v.s5.b88035454f7e from=translated src=- shape=a7f0cb5e vocab=21c8fc4d
+-/
 theorem prawitz_exp_neg_le_reciprocal_taylor16 (x : ℚ) (hx : 0 ≤ x) :
     Real.exp (-(x : ℝ)) ≤ (1 / prawitzTaylor16 x : ℚ) := by
   have hx' : (0 : ℝ) ≤ x := by exact_mod_cast hx
@@ -70,7 +78,9 @@ theorem prawitz_exp_neg_le_reciprocal_taylor16 (x : ℚ) (hx : 0 ≤ x) :
   simpa only [one_div] using one_div_le_one_div_of_le h.1 h.2
 
 /-- On [the nonnegative interval through eight](hyp:x,hx,hx8),
-[the rational eighth-power Taylor remainder encloses the exponential](goal). -/
+[the rational eighth-power Taylor remainder encloses the exponential](goal).
+@isnad1 id=le.2h1v.s5.ef00b350379b from=translated src=- shape=f88b6f77 vocab=b03db704
+-/
 theorem prawitz_exp_le_upper8 (x : ℚ) (hx : 0 ≤ x) (hx8 : x ≤ 8) :
     Real.exp (x : ℝ) ≤ (prawitzExpUpper8 x : ℝ) := by
   have hx' : (0 : ℝ) ≤ x := by exact_mod_cast hx
@@ -87,7 +97,9 @@ theorem prawitz_exp_le_upper8 (x : ℚ) (hx : 0 ≤ x) (hx8 : x ≤ 8) :
 
 /-- [The rational endpoints 314159/100000 and 314160/100000 used by the compact
 certificates enclose π](goal). Both inequalities follow from Mathlib's proved
-decimal bounds. -/
+decimal bounds.
+@isnad1 id=and.0h0v.s5.218073cd5952 from=translated src=- shape=22d6e382 vocab=a5a20a71
+-/
 theorem prawitz_rational_pi_bounds :
     (314159 / 100000 : ℝ) ≤ Real.pi ∧ Real.pi ≤ 314160 / 100000 := by
   constructor

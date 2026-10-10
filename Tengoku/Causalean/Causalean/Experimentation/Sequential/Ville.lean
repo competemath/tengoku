@@ -55,7 +55,9 @@ def IsTestSupermartingale (M : ℕ → Ω → ℝ) (ℱ : Filtration ℕ m0) (μ
 
 This is the supermartingale analogue of `MeasureTheory.maximal_ineq` (for nonnegative
 submartingales); it is proved by optional stopping of the supermartingale at the hitting time of
-`[λ,∞)`. -/
+`[λ,∞)`.
+@isnad1 id=le.3h7v.s7.5ac6916af92f from=translated src=- shape=a60f46b0 vocab=02ee55d2
+-/
 theorem supermartingale_maximal_ineq [IsFiniteMeasure μ] {M : ℕ → Ω → ℝ}
     (hM : Supermartingale M ℱ μ) (hnonneg : ∀ n, 0 ≤ M n) {lam : ℝ} (hlam : 0 < lam) (n : ℕ) :
     μ {ω | lam ≤ (Finset.range (n + 1)).sup' Finset.nonempty_range_add_one (fun k => M k ω)}
@@ -131,7 +133,9 @@ theorem supermartingale_maximal_ineq [IsFiniteMeasure μ] {M : ℕ → Ω → �
 [`M` is a supermartingale under the measure](hyp:hM),
 [`M` is everywhere nonnegative](hyp:hnonneg), and
 [the level `λ` is positive](hyp:lam,hlam), then
-[the measure of the event that `M` ever reaches `λ` is at most `E[M₀] / λ`](goal). -/
+[the measure of the event that `M` ever reaches `λ` is at most `E[M₀] / λ`](goal).
+@isnad1 id=le.3h6v.s7.97a8b8bd80b3 from=translated src=- shape=273d9da7 vocab=60c58c30
+-/
 theorem ville_inequality [IsFiniteMeasure μ] {M : ℕ → Ω → ℝ}
     (hM : Supermartingale M ℱ μ) (hnonneg : ∀ n, 0 ≤ M n) {lam : ℝ} (hlam : 0 < lam) :
     μ {ω | ∃ n, lam ≤ M n ω} ≤ ENNReal.ofReal (μ[M 0] / lam) := by
@@ -160,7 +164,9 @@ theorem ville_inequality [IsFiniteMeasure μ] {M : ℕ → Ω → ℝ}
 
 /-- If [`M` is a test supermartingale](hyp:hM) and
 [the level `α` is positive](hyp:α,hα), then
-[the event that `M` ever reaches `1/α` has measure at most `α`](goal). -/
+[the event that `M` ever reaches `1/α` has measure at most `α`](goal).
+@isnad1 id=le.2h6v.s6.fc94cf2e4e5a from=translated src=- shape=52f868b6 vocab=c074d50b
+-/
 theorem ville_test [IsFiniteMeasure μ] {M : ℕ → Ω → ℝ}
     (hM : IsTestSupermartingale M ℱ μ)
     {α : ℝ} (hα : 0 < α) :

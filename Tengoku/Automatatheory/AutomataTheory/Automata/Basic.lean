@@ -85,6 +85,9 @@ def NA.FinAccept' (M : NA A) (acc : Set M.State) (n : ℕ) (as : Fin n → A) :=
 
 variable {M : NA A} {acc : Set M.State}
 
+/--
+@isnad1 id=finrun.1h5v.s6.e91b816d21a4 from=translated src=- shape=57070661 vocab=fa047ab1
+-/
 theorem na_FinRun'_of_FinRun {n : ℕ} {as : Stream' A} {ss : Stream' M.State}
     (h : M.FinRun n as ss) : M.FinRun' n (fun k ↦ as k) (fun k ↦ ss k) := by
   constructor
@@ -93,6 +96,9 @@ theorem na_FinRun'_of_FinRun {n : ℕ} {as : Stream' A} {ss : Stream' M.State}
   simp
   exact h.2 k h_k
 
+/--
+@isnad1 id=finrun.1h5v.s7.57844dfad0d7 from=translated src=- shape=1158c072 vocab=226a7b3a
+-/
 theorem na_FinRun_of_FinRun' [Inhabited A] {n : ℕ} {as : Fin n → A} {ss : Fin (n + 1) → M.State}
     (h : M.FinRun' n as ss) : M.FinRun n (fun k ↦ if h : k < n then as ⟨k, h⟩ else default)
       (fun k ↦ if h : k < n + 1 then ss ⟨k, h⟩ else ss 0) := by
@@ -103,6 +109,9 @@ theorem na_FinRun_of_FinRun' [Inhabited A] {n : ℕ} {as : Fin n → A} {ss : Fi
   simp at h_step
   simpa [h_k, (show k < n + 1 by omega)]
 
+/--
+@isnad1 id=finaccep.1h5v.s5.17df9dfa5fb6 from=translated src=- shape=d50113d5 vocab=afac92ea
+-/
 theorem na_FinAccept'_of_FinAccept {n : ℕ} {as : Stream' A}
     (h : M.FinAccept acc n as) : M.FinAccept' acc n (fun k ↦ as k) := by
   rcases h with ⟨ss, h_run, h_n⟩
@@ -111,6 +120,9 @@ theorem na_FinAccept'_of_FinAccept {n : ℕ} {as : Stream' A}
   · exact na_FinRun'_of_FinRun h_run
   simpa
 
+/--
+@isnad1 id=finaccep.1h5v.s6.cf7d77af1054 from=translated src=- shape=84825d5b vocab=d832a879
+-/
 theorem na_FinAccept_of_FinAccept' [Inhabited A] {n : ℕ} {as : Fin n → A}
     (h : M.FinAccept' acc n as) : M.FinAccept acc n (fun k ↦ if h : k < n then as ⟨k, h⟩ else default) := by
   rcases h with ⟨ss, h_run, h_n⟩
@@ -157,6 +169,9 @@ section AutomataBasicResults
 
 variable {A : Type} {M : NA A}
 
+/--
+@isnad1 id=finrun.1h5v.s5.495bc1812b91 from=translated src=- shape=6c75fafd vocab=a68f14de
+-/
 theorem na_FinRun_fixSuffix [Inhabited A] {n : ℕ} {as : Stream' A} {ss : Stream' M.State}
     (h : M.FinRun n as ss) : M.FinRun n (fixSuffix as n default) (fixSuffix ss (n + 1) (ss 0)) := by
   rcases h with ⟨h_init, h_next⟩
@@ -166,6 +181,9 @@ theorem na_FinRun_fixSuffix [Inhabited A] {n : ℕ} {as : Stream' A} {ss : Strea
   simp [fixSuffix, h_k, (by omega : k < n + 1)]
   exact h_next k h_k
 
+/--
+@isnad1 id=finrun.3h7v.s6.39387341ab53 from=translated src=- shape=69488b0f vocab=b12af423
+-/
 theorem na_FinRun_modulo {n : ℕ} {as as' : Stream' A} {ss ss' : Stream' M.State}
     (ha : ∀ k < n, as k = as' k) (hs : ∀ k < n + 1, ss k = ss' k) (hr : M.FinRun n as ss) : M.FinRun n as' ss' := by
   rcases hr with ⟨h_init, h_next⟩ ; constructor
@@ -173,10 +191,16 @@ theorem na_FinRun_modulo {n : ℕ} {as as' : Stream' A} {ss ss' : Stream' M.Stat
   intro k h_k ; specialize h_next k h_k
   simpa [← ha k h_k, ← hs k (by omega), ← hs (k + 1) (by omega)]
 
+/--
+@isnad1 id=finrun.2h6v.s5.c737f9bb2ec6 from=translated src=- shape=454d656a vocab=95886780
+-/
 theorem na_FinRun_imp_FinRun {m n : ℕ} {as : Stream' A} {ss : Stream' M.State}
     (hmn : m < n) (hr : M.FinRun n as ss) : M.FinRun m as ss :=
   ⟨hr.1, (hr.2 · <| ·.trans hmn)⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.a3cf12f4c7fe from=translated src=- shape=312cf4af vocab=dff432ab
+-/
 theorem na_InfRun_iff_FinRun {as : Stream' A} {ss : Stream' M.State} :
     M.InfRun as ss ↔ ∀ n, M.FinRun n as ss := by
   constructor
@@ -191,6 +215,9 @@ theorem na_InfRun_iff_FinRun {as : Stream' A} {ss : Stream' M.State} :
     intro k
     apply (h_run (k + 1)).2 k ; omega
 
+/--
+@isnad1 id=eq.0h4v.s5.3de68b82d1f3 from=translated src=- shape=226d4905 vocab=df4b4b00
+-/
 theorem acc_lang_acc_union {acc0 acc1 : Set M.State} :
     M.AcceptedLang (acc0 ∪ acc1) = M.AcceptedLang acc0 ∪ M.AcceptedLang acc1 := by
   ext al ; constructor

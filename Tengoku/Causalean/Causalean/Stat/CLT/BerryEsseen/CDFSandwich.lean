@@ -17,7 +17,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory ProbabilityTheory
 
 /-- A probability kernel transfers a one-sided comparison outside a tail set
-to an integral comparison, with tail loss controlled by the uniform bound. -/
+to an integral comparison, with tail loss controlled by the uniform bound.
+@isnad1 id=le.10h8v.s8.3b285cb30eb2 from=translated src=- shape=12090f49 vocab=dc2b5edf
+-/
 theorem kernel_sandwich_step
     (K G : ℝ → ℝ) (s : Set ℝ) (hs : MeasurableSet s)
     (hK : Integrable K) (hG : ∀ z, Integrable (fun y => G (z - y) * K y))
@@ -76,7 +78,9 @@ theorem kernel_sandwich_step
 
 /-- If the reference law assigns every interval at most its length times
 `L`, and the sinc-smoothed CDF discrepancy is everywhere at most `B`, then
-the unsmoothed CDF discrepancy is at most `2 B + 24 L / T`. -/
+the unsmoothed CDF discrepancy is at most `2 B + 24 L / T`.
+@isnad1 id=le.5h6v.s8.9bb39235f73a from=translated src=- shape=84e3c6ac vocab=fa5e9326
+-/
 theorem sinc4_cdf_sandwich
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (T L B : ℝ) (hT : 0 < T) (hL : 0 ≤ L) (hB : 0 ≤ B)
@@ -214,7 +218,9 @@ theorem sinc4_cdf_sandwich
 
 /-- For [real endpoints a ≤ b](hyp:hab), [the standard Gaussian gives the
 interval `(a, b]` probability at most (b − a)/√(2π)](goal), the interval
-length times the maximum of the Gaussian density. -/
+length times the maximum of the Gaussian density.
+@isnad1 id=le.1h2v.s6.6149161a3fde from=translated src=- shape=aed4180d vocab=05099fa1
+-/
 theorem standardGaussian_interval_mass_le
     (a b : ℝ) (hab : a ≤ b) :
     ((gaussianReal 0 1) (Set.Ioc a b)).toReal ≤

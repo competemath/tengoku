@@ -67,7 +67,9 @@ assigned to that fold. -/
 def trainComplement (n : ℕ) (k : Fin K) : Finset ℕ :=
   (Finset.range n) \ split.fold n k
 
-/-- The evaluation fold is disjoint from its training complement. -/
+/-- The evaluation fold is disjoint from its training complement.
+@isnad1 id=disjoint.0h9v.s6.cde8e0211fb6 from=translated src=- shape=971be510 vocab=079fa9a4
+-/
 lemma fold_disjoint_trainComplement (n : ℕ) (k : Fin K) :
     Disjoint (split.fold n k) (split.trainComplement n k) := by
   rw [trainComplement]
@@ -77,7 +79,9 @@ lemma fold_disjoint_trainComplement (n : ℕ) (k : Fin K) :
 
 /-- **Independence of evaluation fold and training complement.** For [a fixed sample size
 `n`](hyp:n) and [fold index `k`](hyp:k), [the sample sub-tuple indexed by the evaluation fold is
-independent, under `μ`, of the sub-tuple indexed by the training complement](goal). -/
+independent, under `μ`, of the sub-tuple indexed by the training complement](goal).
+@isnad1 id=indepfun.0h9v.s8.10712b184a21 from=translated src=- shape=26519153 vocab=a0ed2fe0
+-/
 theorem folds_indep (n : ℕ) (k : Fin K) :
     IndepFun
       (fun ω (i : split.fold n k) => S.Z i ω)

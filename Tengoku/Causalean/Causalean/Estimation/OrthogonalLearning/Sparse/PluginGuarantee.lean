@@ -79,7 +79,9 @@ is at most `12 · lambda · √s / σn`](goal).
 * `h_FOC_pop`     — first-order condition at the truth, `popGrad = 0`.
 * `h_pluginERM`   — `θhat` is a sparse plug-in regularised ERM.
 
-Conclusion: `θhat - θ₀ ∈ RestrictedCone S₀` and the ℓ² bound. -/
+Conclusion: `θhat - θ₀ ∈ RestrictedCone S₀` and the ℓ² bound.
+@isnad1 id=and.11h10v.s9.d973d7a2ab84 from=translated src=- shape=45b7c1fc vocab=d74d22e6
+-/
 theorem sparse_plugin_guarantee
     {p : ℕ}
     (empRiskFn : EuclideanSpace ℝ (Fin p) → ℝ)
@@ -307,7 +309,9 @@ automatically met on the tail event).
 The conclusion is: with `μ`-probability at least `1 − δ`,
 
 * `θhat ω − θ₀ ∈ RestrictedCone S₀`,
-* `‖θhat ω − θ₀‖ ≤ 12 · lambda · √s / σn`. -/
+* `‖θhat ω − θ₀‖ ≤ 12 · lambda · √s / σn`.
+@isnad1 id=ex.10h13v.s9.797f91308d6e from=translated src=- shape=01bd9a2c vocab=b4c73e16
+-/
 theorem sparse_plugin_guarantee_highProb
     {p : ℕ}
     {Ω : Type*} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)

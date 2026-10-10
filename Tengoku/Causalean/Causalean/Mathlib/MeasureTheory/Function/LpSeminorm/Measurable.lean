@@ -55,7 +55,9 @@ real-valued Lp norm `ω ↦ ‖g ω‖_{Lp(P)}` is measurable as a function of `
 * `Measurable.lintegral_prod_right` (Tonelli) on `(ω, x) ↦ ‖g ω x‖₊^p.toReal` —
   joint measurable from `hg` via `Measurable.pow_const` and `enorm`.
 * `Measurable.pow_const` for the `(1/p.toReal)` power.
-* `ENNReal.measurable_toReal` for the final `.toReal`. -/
+* `ENNReal.measurable_toReal` for the final `.toReal`.
+@isnad1 id=measurab.3h6v.s6.ed556f92c45b from=translated src=- shape=927115ad vocab=6d33f773
+-/
 @[fun_prop]
 lemma measurable_eLpNorm_toReal_of_uncurry
     [MeasurableSpace Ω] {P : Measure X} [SFinite P]
@@ -76,7 +78,9 @@ lemma measurable_eLpNorm_toReal_of_uncurry
 /-- Given [an exponent `p` that is neither zero](hyp:hp_zero) [nor infinite](hyp:hp_top) and
 [joint measurability of the parameterized function](hyp:hg), [its real-valued Lp norm is
 measurable in the parameter](goal). This is the deprecated `_two_` spelling, although `p` was
-never fixed to `2`. -/
+never fixed to `2`.
+@isnad1 id=measurab.3h6v.s6.ed556f92c45b from=translated src=- shape=927115ad vocab=6d33f773
+-/
 @[deprecated measurable_eLpNorm_toReal_of_uncurry (since := "2026-08-29")]
 lemma measurable_eLpNorm_two_toReal_of_uncurry
     [MeasurableSpace Ω] {P : Measure X} [SFinite P]
@@ -95,7 +99,9 @@ measurable with respect to `mΩ`](goal).
 
 **Proof sketch.** Apply `Measurable.lintegral_prod_right'` at the
 sub-σ-algebra product level to `‖g ω x‖₊^p.toReal`, then post-process by
-`(·)^(1/p.toReal)` and `.toReal`. -/
+`(·)^(1/p.toReal)` and `.toReal`.
+@isnad1 id=measurab.3h7v.s6.0e7cb58da1ac from=translated src=- shape=927115ad vocab=7c1a6312
+-/
 @[fun_prop]
 lemma measurable_eLpNorm_toReal_of_uncurry_of_factor
     {mΩ : MeasurableSpace Ω}
@@ -120,7 +126,9 @@ lemma measurable_eLpNorm_toReal_of_uncurry_of_factor
 /-- Given [an exponent `p` that is neither zero](hyp:hp_zero) [nor infinite](hyp:hp_top) and
 [joint measurability for the product with a chosen parameter σ-algebra](hyp:hg_uncurry), [the
 real-valued Lp norm is measurable for that parameter σ-algebra](goal). This is the deprecated
-`_two_` spelling, although `p` was never fixed to `2`. -/
+`_two_` spelling, although `p` was never fixed to `2`.
+@isnad1 id=measurab.3h7v.s6.0e7cb58da1ac from=translated src=- shape=927115ad vocab=7c1a6312
+-/
 @[deprecated measurable_eLpNorm_toReal_of_uncurry_of_factor (since := "2026-08-29")]
 lemma measurable_eLpNorm_two_toReal_of_uncurry_of_factor
     {mΩ : MeasurableSpace Ω}

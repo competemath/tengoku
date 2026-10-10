@@ -35,7 +35,9 @@ open scoped Matrix BigOperators
 `ι × ι` valued in `K` with nonzero determinant](hyp:hW), if [every column of `W` has at most one
 non-zero entry](hyp:hcol) (for any two distinct rows `i ≠ k`, at least one of `W i j`, `W k j`
 vanishes at column `j`), then [`W` is a generalized permutation matrix: there are a permutation
-`τ` of `ι` and non-zero scalings `d` with `W i j = if j = τ i then d i else 0`](goal). -/
+`τ` of `ι` and non-zero scalings `d` with `W i j = if j = τ i then d i else 0`](goal).
+@isnad1 id=ex.2h3v.s7.38fb5b7e65ea from=translated src=- shape=0dbb3f88 vocab=f3ce8d4e
+-/
 theorem genPerm_of_det_ne_zero_of_colSupport {ι K : Type*} [Fintype ι] [DecidableEq ι]
     [CommRing K] {W : Matrix ι ι K} (hW : W.det ≠ 0)
     (hcol : ∀ j i k, i ≠ k → W i j = 0 ∨ W k j = 0) :
@@ -102,7 +104,9 @@ theorem genPerm_of_det_ne_zero_of_colSupport {ι K : Type*} [Fintype ι] [Decida
 a matrix `M` over `Fin n × Fin n` that is [lower-triangular](hyp:hLT) (`M i j = 0` whenever
 `i < j`) with [non-zero diagonal entries](hyp:hdiag), and permutations `σ, τ` of `Fin n`,
 [the row/column-permuted matrix `(i ↦ M (σ i) (τ i))` has a non-zero diagonal at every `i` if
-and only if `σ = τ`](goal). -/
+and only if `σ = τ`](goal).
+@isnad1 id=iff.2h5v.s7.87d063da2b08 from=translated src=- shape=15c32146 vocab=b16090e4
+-/
 theorem perm_uniqueness {n : ℕ} {K : Type*} [Zero K] {M : Matrix (Fin n) (Fin n) K}
     (hLT : ∀ i j, i < j → M i j = 0) (hdiag : ∀ i, M i i ≠ 0)
     {σ τ : Equiv.Perm (Fin n)} :

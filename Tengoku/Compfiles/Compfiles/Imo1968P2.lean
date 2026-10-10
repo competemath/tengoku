@@ -19,11 +19,17 @@ the product of the decimal digits of x is equal to x² - 10x - 22.
 
 namespace Imo1968P2
 
+/--
+@isnad1 id=eq.1h4v.s5.933369e04326 from=translated src=- shape=3725d085 vocab=46ea6dbe
+-/
 lemma lemma0 {α β : Type} {f : ℕ → α → β} (l : List α) (h2 : l ≠ []) :
     List.getLast (List.mapIdx f l) (List.mapIdx_ne_nil_iff.mpr h2) =
     f (l.dropLast).length (List.getLast l h2) := by
   rw [List.getLast_mapIdx, List.length_dropLast]
 
+/--
+@isnad1 id=le.2h2v.s5.1d74faa8f5f9 from=translated src=- shape=07a0d151 vocab=d4b5a834
+-/
 lemma prod_digits_le {x b : ℕ} (hb : 2 ≤ b) (xpos : 0 < x) :
     List.prod (Nat.digits b x) ≤ x := by
   have h1 : Nat.digits b x ≠ [] :=

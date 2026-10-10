@@ -50,7 +50,9 @@ noncomputable def fourthCumulantAtZeroMean (X : Ω → ℝ) (P : Measure Ω) : �
 [each has finite fourth moment](hyp:hL4), and [each is centered](hyp:hcent). Then for
 any coefficient vectors `a`, `b` and the linear forms `yₐ = Σⱼ aⱼ eⱼ`,
 `y_b = Σⱼ bⱼ eⱼ`, [the joint fourth cumulant `cum(yₐ,yₐ,y_b,y_b)` equals
-`Σⱼ aⱼ² bⱼ² κ₄(eⱼ)`](goal). -/
+`Σⱼ aⱼ² bⱼ² κ₄(eⱼ)`](goal).
+@isnad1 id=eq.4h6v.s9.50f7068a1869 from=translated src=- shape=6a502dd5 vocab=aa9a8866
+-/
 theorem cross_fourth_cumulant_eq_sum {n : ℕ} {e : Ω → Fin n → ℝ} (a b : Fin n → ℝ)
     (hmeas : ∀ j, Measurable (fun ω => e ω j))
     (hindep : iIndepFun (fun j ω => e ω j) P)
@@ -622,7 +624,9 @@ all positive or all negative](hyp:hsign).
 If [two rows `i` and `k` of a mixing matrix `W` produce independent linear forms
 `Σⱼ Wᵢⱼ eⱼ` and `Σⱼ Wₖⱼ eⱼ`](hyp:hyindep), then
 [every column `j` satisfies `Wᵢⱼ · Wₖⱼ = 0`](goal). This is the input required by
-`genPerm_of_det_ne_zero_of_colSupport`. -/
+`genPerm_of_det_ne_zero_of_colSupport`.
+@isnad1 id=eq.6h8v.s8.cfd8b641e4fc from=translated src=- shape=662e17cd vocab=1c3e3df8
+-/
 theorem colSupport_of_kurtosis {n : ℕ} {e : Ω → Fin n → ℝ} {W : Matrix (Fin n) (Fin n) ℝ}
     (hmeas : ∀ j, Measurable (fun ω => e ω j))
     (hindep : iIndepFun (fun j ω => e ω j) P)

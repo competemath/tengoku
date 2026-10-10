@@ -44,7 +44,9 @@ open scoped BigOperators
 
 /-- **Absolute continuity from full support.** For [measures `μ` and `ν` on the same
 measurable space](hyp:μ,ν), if [`ν` charges every singleton](hyp:hν), then [`μ` is absolutely
-continuous with respect to `ν`](goal). -/
+continuous with respect to `ν`](goal).
+@isnad1 id=absolute.1h3v.s5.c71be72083b0 from=translated src=- shape=b382fbcb vocab=fc37bfbc
+-/
 theorem absolutelyContinuous_of_singleton_pos {Ω : Type*} [MeasurableSpace Ω]
     (μ ν : Measure Ω) (hν : ∀ x, ν {x} ≠ 0) : μ ≪ ν := by
   intro s hs
@@ -54,7 +56,9 @@ theorem absolutelyContinuous_of_singleton_pos {Ω : Type*} [MeasurableSpace Ω]
     exact hν x (le_antisymm (hs ▸ measure_mono (Set.singleton_subset_iff.mpr hx)) zero_le)
   rw [hempty]; exact measure_empty
 
-/-- The one-observation law assigns each observed point exactly its finite observed-data mass. -/
+/-- The one-observation law assigns each observed point exactly its finite observed-data mass.
+@isnad1 id=eq.1h4v.s6.8cccd0432284 from=translated src=- shape=f70d38bd vocab=de7876ce
+-/
 theorem obsLaw_real_singleton {C : Type*} [Fintype C] [Nonempty C] [MeasurableSpace C]
     [MeasurableSingletonClass C] {m : C → ℝ} {g : Bool → C → ℝ} (hv : ValidDGP m g)
     (z : Obs C) : (obsLaw hv).real {z} = obsReal m g z := by
@@ -78,7 +82,9 @@ noncomputable def chiSqOverlap (α β : ℝ) (lam lam' : Fin K → Bool) : ℝ :
 /-- The perturbed observed-data mass has an explicit denominator-free value at every
 treatment-outcome cell.
 
-In the treated arm, the outcome-regression denominator cancels against the perturbed propensity. -/
+In the treated arm, the outcome-regression denominator cancels against the perturbed propensity.
+@isnad1 id=eq.3h7v.s8.83f87fcb3e63 from=translated src=- shape=1b52c040 vocab=1bc70a63
+-/
 theorem obsReal_perturbed_eq (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2)
     (lam : Fin K → Bool) (x : Fin K × Bool) (d y : Bool) :
     obsReal (mPerturbed β lam) (gPerturbed α β lam) (x, d, y)
@@ -101,7 +107,9 @@ theorem obsReal_perturbed_eq (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 *
 with `α + 2β ≤ 1/2`, the regime keeping every perturbed nuisance in `[0,1]`](hyp:hα,hβ,hαβ), and
 any two Rademacher sign vectors `lam`, `lam'` indexing perturbed laws, [the one-observation χ²
 second-moment overlap of the two perturbed laws relative to the null equals
-`1 + (2(α²+2αβ+3β²)/K)·Σⱼ signOf(lam j)·signOf(lam' j)`](goal). -/
+`1 + (2(α²+2αβ+3β²)/K)·Σⱼ signOf(lam j)·signOf(lam' j)`](goal).
+@isnad1 id=eq.3h5v.s8.13ed0b63c571 from=translated src=- shape=3b510ebb vocab=bfef67af
+-/
 theorem chiSqOverlap_eq [NeZero K] (hα : 0 ≤ α) (hβ : 0 ≤ β) (hαβ : α + 2 * β ≤ 1 / 2)
     (lam lam' : Fin K → Bool) :
     chiSqOverlap α β lam lam'

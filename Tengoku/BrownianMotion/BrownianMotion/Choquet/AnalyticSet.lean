@@ -23,12 +23,18 @@ open scoped ENNReal NNReal
 
 variable {𝓧 𝓨 𝓚 𝓚' ι : Type*} {p : Set (Set 𝓧)} {q : Set (Set 𝓚)} {s t : Set 𝓧} {f : ℕ → Set 𝓧}
 
+/--
+@isnad1 id=eq.0h5v.s6.b958ea6dd787 from=translated src=- shape=391ec379 vocab=aa4666d4
+-/
 lemma Set.iInter_prod {α β ι : Type*} {s : Set α} {t : ι → Set β} [hι : Nonempty ι] :
     (⋂ i, t i) ×ˢ s = ⋂ i, t i ×ˢ s := by
   ext x
   simp only [Set.mem_prod, Set.mem_iInter]
   exact ⟨fun ⟨h1, h2⟩ i ↦ ⟨h1 i, h2⟩, fun h ↦ ⟨fun i ↦ (h i).1, (h hι.some).2⟩⟩
 
+/--
+@isnad1 id=measurab.1h3v.s7.79d9833b3ddf from=translated src=- shape=59811d47 vocab=3fde866d
+-/
 lemma MeasurableSet.of_mem_countableInfClosure {m𝓧 : MeasurableSpace 𝓧} {s : Set 𝓧}
     (hs : s ∈ countableInfClosure {t | MeasurableSet t}) :
     MeasurableSet s := by
@@ -36,6 +42,9 @@ lemma MeasurableSet.of_mem_countableInfClosure {m𝓧 : MeasurableSpace 𝓧} {s
   obtain ⟨A, hA, rfl⟩ := hs
   exact MeasurableSet.iInter hA
 
+/--
+@isnad1 id=measurab.2h4v.s7.a7e7480797e7 from=translated src=- shape=c816e09f vocab=129d529f
+-/
 lemma MeasurableSet.of_mem_countableInfClosure' {m𝓧 : MeasurableSpace 𝓧}
     {s : Set 𝓧} {p : Set (Set 𝓧)} (hs : s ∈ countableInfClosure p) (hp : ∀ t ∈ p, MeasurableSet t) :
     MeasurableSet s := by
@@ -43,6 +52,9 @@ lemma MeasurableSet.of_mem_countableInfClosure' {m𝓧 : MeasurableSpace 𝓧}
   obtain ⟨t, ht, rfl⟩ := hs
   exact MeasurableSet.iInter fun n ↦ hp (t n) (ht n)
 
+/--
+@isnad1 id=measurab.2h4v.s7.c217d461214b from=translated src=- shape=c816e09f vocab=29d62ab3
+-/
 lemma MeasurableSet.of_mem_countableSupClosure' {m𝓧 : MeasurableSpace 𝓧}
     {s : Set 𝓧} {p : Set (Set 𝓧)} (hs : s ∈ countableSupClosure p) (hp : ∀ t ∈ p, MeasurableSet t) :
     MeasurableSet s := by
@@ -50,6 +62,9 @@ lemma MeasurableSet.of_mem_countableSupClosure' {m𝓧 : MeasurableSpace 𝓧}
   obtain ⟨t, ht, rfl⟩ := hs
   exact MeasurableSet.iUnion fun n ↦ hp (t n) (ht n)
 
+/--
+@isnad1 id=measurab.2h4v.s7.7a5fd5f5ee2c from=translated src=- shape=c816e09f vocab=db5f5d04
+-/
 lemma MeasurableSet.of_mem_supClosure {m𝓧 : MeasurableSpace 𝓧} {s : Set 𝓧}
     {p : Set (Set 𝓧)} (hs : s ∈ supClosure p) (hp : ∀ t ∈ p, MeasurableSet t) :
     MeasurableSet s := by
@@ -58,6 +73,9 @@ lemma MeasurableSet.of_mem_supClosure {m𝓧 : MeasurableSpace 𝓧} {s : Set �
   rw [h_eq]
   exact MeasurableSet.biUnion (Finset.countable_toSet t) fun n hn ↦ hp (A n) (ht n hn)
 
+/--
+@isnad1 id=measurab.3h7v.s6.a038af0906ed from=translated src=- shape=2172cc68 vocab=19195971
+-/
 lemma MeasurableSet.of_mem_image2_prod {Ω 𝓧 : Type*}
     {mΩ : MeasurableSpace Ω} {m𝓧 : MeasurableSpace 𝓧}
     {s : Set (𝓧 × Ω)} {p : Set (Set 𝓧)} {q : Set (Set Ω)} (hs : s ∈ Set.image2 (· ×ˢ ·) p q)
@@ -66,6 +84,9 @@ lemma MeasurableSet.of_mem_image2_prod {Ω 𝓧 : Type*}
   obtain ⟨A, hA, B, hB, rfl⟩ := hs
   exact MeasurableSet.prod (hp A hA) (hq B hB)
 
+/--
+@isnad1 id=measurab.3h7v.s6.0da3e8ff3be7 from=translated src=- shape=88befaad vocab=7104b9a3
+-/
 lemma MeasurableSet.of_mem_prodSigmaDelta {Ω 𝓧 : Type*}
     {mΩ : MeasurableSpace Ω} {m𝓧 : MeasurableSpace 𝓧}
     {s : Set (𝓧 × Ω)} {p : Set (Set 𝓧)} {q : Set (Set Ω)}
@@ -92,10 +113,16 @@ system `q` of `𝓚` such that `s` is the projections of a set `t` that satisfie
 def IsPavingAnalytic (p : Set (Set 𝓧)) (s : Set 𝓧) : Prop :=
   ∃ 𝓚 : Type, Nonempty 𝓚 ∧ IsPavingAnalyticFor p 𝓚 s
 
+/--
+@isnad1 id=ispaving.1h4v.s4.03f7feee7b1d from=translated src=- shape=0145ee30 vocab=a16f1409
+-/
 lemma IsPavingAnalyticFor.isPavingAnalytic {𝓚 : Type} [Nonempty 𝓚]
     (hs : IsPavingAnalyticFor p 𝓚 s) :
     IsPavingAnalytic p s := ⟨𝓚, ‹_›, hs⟩
 
+/--
+@isnad1 id=ispaving.1h4v.s4.74ce759b9f61 from=translated src=- shape=de79f7b1 vocab=e4107ca3
+-/
 lemma isPavingAnalyticFor_of_mem (𝓚 : Type*) [Nonempty 𝓚] (hs : s ∈ p) :
     IsPavingAnalyticFor p 𝓚 s := by
   classical
@@ -104,21 +131,33 @@ lemma isPavingAnalyticFor_of_mem (𝓚 : Type*) [Nonempty 𝓚] (hs : s ∈ p) :
   · exact IsCompactSystem.insert_univ isCompactSystem_singleton_empty
   · exact mem_prodSigmaDelta_of_mem hs (by simp)
 
+/--
+@isnad1 id=ispaving.1h3v.s4.fd63b88dd557 from=translated src=- shape=b5f67bc8 vocab=c0efbf73
+-/
 lemma isPavingAnalytic_of_mem (hs : s ∈ p) : IsPavingAnalytic p s :=
   (isPavingAnalyticFor_of_mem ℝ hs).isPavingAnalytic
 
+/--
+@isnad1 id=ispaving.2h5v.s5.791dddae224d from=translated src=- shape=517a2554 vocab=6d31045a
+-/
 lemma IsPavingAnalyticFor.mono {p' : Set (Set 𝓧)} (hp : p ⊆ p') (hs : IsPavingAnalyticFor p 𝓚 s) :
     IsPavingAnalyticFor p' 𝓚 s := by
   obtain ⟨q, hq_empty, hq_compact, t, ht_prod, rfl⟩ := hs
   refine ⟨q, hq_empty, hq_compact, ⟨t, ?_, rfl⟩⟩
   exact prodSigmaDelta.mono hp (fun _ ↦ id) ht_prod
 
+/--
+@isnad1 id=ispaving.2h4v.s5.7aacc1f9154d from=translated src=- shape=97e740d0 vocab=8c19d8cd
+-/
 lemma IsPavingAnalytic.mono {p' : Set (Set 𝓧)} (hp : p ⊆ p') (hs : IsPavingAnalytic p s) :
     IsPavingAnalytic p' s := by
   choose 𝓚 h𝓚 hs𝓚 using hs
   exact (IsPavingAnalyticFor.mono hp hs𝓚).isPavingAnalytic
 
 -- He paragraph after 1.25
+/--
+@isnad1 id=ex.1h4v.s7.f425f7407b30 from=translated src=- shape=776fd71e vocab=37e6812f
+-/
 lemma IsPavingAnalyticFor.exists_mem_countableSupClosure_superset (hs : IsPavingAnalyticFor p 𝓚 s) :
     ∃ t, t ∈ countableSupClosure p ∧ s ⊆ t := by
   obtain ⟨q, hq_empty, hq_compact, B, hB_prod, rfl⟩ := hs
@@ -134,6 +173,9 @@ lemma IsPavingAnalyticFor.exists_mem_countableSupClosure_superset (hs : IsPaving
     choose n hn _ using h
     exact ⟨n 0, hn 0⟩
 
+/--
+@isnad1 id=ispaving.1h3v.s5.f502d5f4ecae from=translated src=- shape=0096ef23 vocab=40ca6e0c
+-/
 lemma IsPavingAnalyticFor.empty (𝓚 : Type*) (hp_empty : ∅ ∈ p) : IsPavingAnalyticFor p 𝓚 ∅ := by
   rcases isEmpty_or_nonempty 𝓚 with h_empty | h_nonempty
   · refine ⟨Set.univ, by simp, ?_, ∅ ×ˢ ∅, mem_prodSigmaDelta_of_mem hp_empty (by simp), by simp⟩
@@ -144,10 +186,16 @@ lemma IsPavingAnalyticFor.empty (𝓚 : Type*) (hp_empty : ∅ ∈ p) : IsPaving
     simpa using h_eq_empty 0
   · exact isPavingAnalyticFor_of_mem 𝓚 hp_empty
 
+/--
+@isnad1 id=ispaving.1h2v.s4.311daebd1123 from=translated src=- shape=870f9baa vocab=becd539f
+-/
 @[simp]
 lemma IsPavingAnalytic.empty (hp_empty : ∅ ∈ p) : IsPavingAnalytic p ∅ :=
   (IsPavingAnalyticFor.empty ℝ hp_empty).isPavingAnalytic
 
+/--
+@isnad1 id=iff.1h4v.s5.c0e8c45bbab2 from=translated src=- shape=5a88ca3e vocab=18f9b45c
+-/
 @[simp]
 lemma isPavingAnalyticFor_iff_eq_empty (𝓚 : Type*) [IsEmpty 𝓚] (hp_empty : ∅ ∈ p) (s : Set 𝓧) :
     IsPavingAnalyticFor p 𝓚 s ↔ s = ∅ := by
@@ -162,6 +210,9 @@ lemma isPavingAnalyticFor_iff_eq_empty (𝓚 : Type*) [IsEmpty 𝓚] (hp_empty :
 -- He 1.26
 
 -- He 1.26
+/--
+@isnad1 id=ispaving.1h4v.s5.21fa62dd88c1 from=translated src=- shape=fe637d0f vocab=f9f3e385
+-/
 lemma IsPavingAnalyticFor.iUnion {𝓚 : ℕ → Type*} {s : ℕ → Set 𝓧}
     (hs : ∀ n, IsPavingAnalyticFor p (𝓚 n) (s n)) :
     IsPavingAnalyticFor p (Σ n, 𝓚 n) (⋃ n, s n) := by
@@ -212,6 +263,9 @@ lemma IsPavingAnalyticFor.iUnion {𝓚 : ℕ → Type*} {s : ℕ → Set 𝓧}
       ↓existsAndEq, exists_eq_right_right, Sigma.mk.injEq, and_true]
     grind
 
+/--
+@isnad1 id=ispaving.1h3v.s4.7d18dc29ac82 from=translated src=- shape=b900bfdc vocab=3b0bf90f
+-/
 lemma IsPavingAnalytic.iUnion {s : ℕ → Set 𝓧} (hs : ∀ n, IsPavingAnalytic p (s n)) :
     IsPavingAnalytic p (⋃ n, s n) := by
   choose 𝓚 h𝓚 hs𝓚 using hs
@@ -220,6 +274,9 @@ lemma IsPavingAnalytic.iUnion {s : ℕ → Set 𝓧} (hs : ∀ n, IsPavingAnalyt
 -- He 1.26
 
 -- He 1.26
+/--
+@isnad1 id=ispaving.2h6v.s5.9f985249b2a6 from=translated src=- shape=eaad5245 vocab=5167e5f3
+-/
 lemma IsPavingAnalyticFor.union.{u} {𝓚 𝓚' : Type u} {t : Set 𝓧}
     (hs : IsPavingAnalyticFor p 𝓚 s) (ht : IsPavingAnalyticFor p 𝓚' t) :
     IsPavingAnalyticFor p (𝓚 ⊕ 𝓚') (s ∪ t) := by
@@ -292,6 +349,9 @@ lemma IsPavingAnalyticFor.union.{u} {𝓚 𝓚' : Type u} {t : Set 𝓧}
     ext
     simp [Equiv.prodSumDistrib, Equiv.sumProdDistrib, Set.sumEquiv]
 
+/--
+@isnad1 id=ispaving.2h4v.s5.67c37ec5ff0d from=translated src=- shape=e39acecf vocab=8c672195
+-/
 lemma IsPavingAnalytic.union {t : Set 𝓧}
     (hs : IsPavingAnalytic p s) (ht : IsPavingAnalytic p t) :
     IsPavingAnalytic p (s ∪ t) := by
@@ -299,6 +359,9 @@ lemma IsPavingAnalytic.union {t : Set 𝓧}
   choose 𝓚' h𝓚' ht𝓚' using ht
   exact (IsPavingAnalyticFor.union hs𝓚 ht𝓚').isPavingAnalytic
 
+/--
+@isnad1 id=ispaving.2h5v.s7.379993284b7a from=translated src=- shape=6ee9e741 vocab=67b9fe34
+-/
 lemma isPavingAnalyticFor_of_mem_countableSupClosure_of_imp {p' : Set (Set 𝓧)}
     (hs : s ∈ countableSupClosure p') (hqp : ∀ x, x ∈ p' → IsPavingAnalyticFor p 𝓚 x) :
     IsPavingAnalyticFor p (Σ _ : ℕ, 𝓚) s := by
@@ -306,6 +369,9 @@ lemma isPavingAnalyticFor_of_mem_countableSupClosure_of_imp {p' : Set (Set 𝓧)
   obtain ⟨A, hA, rfl⟩ := hs
   exact IsPavingAnalyticFor.iUnion fun n ↦ hqp _ (hA n)
 
+/--
+@isnad1 id=ispaving.2h4v.s7.856d17de3cf1 from=translated src=- shape=12ac2a83 vocab=d68877b5
+-/
 lemma isPavingAnalytic_of_mem_countableSupClosure_of_imp {p' : Set (Set 𝓧)}
     (hs : s ∈ countableSupClosure p') (hqp : ∀ x, x ∈ p' → IsPavingAnalytic p x) :
     IsPavingAnalytic p s := by
@@ -315,6 +381,9 @@ lemma isPavingAnalytic_of_mem_countableSupClosure_of_imp {p' : Set (Set 𝓧)}
 
 -- He 1.28
 
+/--
+@isnad1 id=ispaving.1h8v.s6.5b674642fc41 from=translated src=- shape=61dec736 vocab=e2c5e751
+-/
 lemma IsPavingAnalyticFor.prod_left {𝓨 : Type*} {r : Set 𝓨 → Prop} {t : Set 𝓨}
     (ht : r t) (hs : IsPavingAnalyticFor p 𝓚 s) :
     IsPavingAnalyticFor (Set.image2 (· ×ˢ ·) r p) 𝓚 (t ×ˢ s) := by
@@ -331,12 +400,18 @@ lemma IsPavingAnalyticFor.prod_left {𝓨 : Type*} {r : Set 𝓨 → Prop} {t : 
     simp
     grind
 
+/--
+@isnad1 id=ispaving.1h7v.s6.9ab4c2a2d626 from=translated src=- shape=1779564a vocab=6d173d32
+-/
 lemma IsPavingAnalytic.prod_left {𝓨 : Type*} {r : Set 𝓨 → Prop} {t : Set 𝓨}
     (ht : r t) (hs : IsPavingAnalytic p s) :
     IsPavingAnalytic (Set.image2 (· ×ˢ ·) r p) (t ×ˢ s) := by
   obtain ⟨𝓚, h𝓚, hs𝓚⟩ := hs
   exact (hs𝓚.prod_left ht).isPavingAnalytic
 
+/--
+@isnad1 id=ispaving.1h8v.s6.5727ad3f5eaa from=translated src=- shape=f4a68e00 vocab=e2c5e751
+-/
 lemma IsPavingAnalyticFor.prod_right {𝓨 : Type*} {r : Set 𝓨 → Prop} {t : Set 𝓨}
     (hs : IsPavingAnalyticFor p 𝓚 s) (ht : r t) :
     IsPavingAnalyticFor (Set.image2 (· ×ˢ ·) p r) 𝓚 (s ×ˢ t) := by
@@ -359,36 +434,54 @@ lemma IsPavingAnalyticFor.prod_right {𝓨 : Type*} {r : Set 𝓨 → Prop} {t :
     simp
     grind
 
+/--
+@isnad1 id=ispaving.1h7v.s6.2ba4e3f06066 from=translated src=- shape=8af78eaf vocab=6d173d32
+-/
 lemma IsPavingAnalytic.prod_right {𝓨 : Type*} {r : Set 𝓨 → Prop} {t : Set 𝓨}
     (hs : IsPavingAnalytic p s) (ht : r t) :
     IsPavingAnalytic (Set.image2 (· ×ˢ ·) p r) (s ×ˢ t) := by
   obtain ⟨𝓚, h𝓚, hs𝓚⟩ := hs
   exact (hs𝓚.prod_right ht).isPavingAnalytic
 
+/--
+@isnad1 id=ispaving.1h6v.s6.bba988dbd87d from=translated src=- shape=77332644 vocab=717c2b2f
+-/
 lemma isPavingAnalyticFor_of_image2_prod_isPavingAnalyticFor_left {𝓨 : Type*} {r : Set 𝓨 → Prop}
     {t : Set (𝓨 × 𝓧)} (ht : t ∈ Set.image2 (· ×ˢ ·) r (IsPavingAnalyticFor p 𝓚)) :
     IsPavingAnalyticFor (Set.image2 (· ×ˢ ·) r p) 𝓚 t := by
   obtain ⟨A, hA, s, hs, rfl⟩ := ht
   exact hs.prod_left hA
 
+/--
+@isnad1 id=ispaving.1h5v.s6.a47d6b62722c from=translated src=- shape=08e4d5d5 vocab=c5a8d83e
+-/
 lemma isPavingAnalytic_of_image2_prod_isPavingAnalytic_left {𝓨 : Type*} {r : Set 𝓨 → Prop}
     {t : Set (𝓨 × 𝓧)} (ht : t ∈ Set.image2 (· ×ˢ ·) r (IsPavingAnalytic p)) :
     IsPavingAnalytic (Set.image2 (· ×ˢ ·) r p) t := by
   obtain ⟨A, hA, s, hs, rfl⟩ := ht
   exact hs.prod_left hA
 
+/--
+@isnad1 id=ispaving.1h6v.s6.34804743eb59 from=translated src=- shape=d9a823b8 vocab=717c2b2f
+-/
 lemma isPavingAnalyticFor_of_image2_prod_isPavingAnalyticFor_right {𝓨 : Type*} {r : Set 𝓨 → Prop}
     {t : Set (𝓧 × 𝓨)} (ht : t ∈ Set.image2 (· ×ˢ ·) (IsPavingAnalyticFor p 𝓚) r) :
     IsPavingAnalyticFor (Set.image2 (· ×ˢ ·) p r) 𝓚 t := by
   obtain ⟨A, hA, s, hs, rfl⟩ := ht
   exact hA.prod_right hs
 
+/--
+@isnad1 id=ispaving.1h5v.s6.5fbb7ea49e01 from=translated src=- shape=4a8060ae vocab=c5a8d83e
+-/
 lemma isPavingAnalytic_of_image2_prod_isPavingAnalytic_right {𝓨 : Type*} {r : Set 𝓨 → Prop}
     {t : Set (𝓧 × 𝓨)} (ht : t ∈ Set.image2 (· ×ˢ ·) (IsPavingAnalytic p) r) :
     IsPavingAnalytic (Set.image2 (· ×ˢ ·) p r) t := by
   obtain ⟨A, hA, s, hs, rfl⟩ := ht
   exact hA.prod_right hs
 
+/--
+@isnad1 id=ispaving.1h6v.s8.937e1b9647d5 from=translated src=- shape=caf1d660 vocab=071d4e2f
+-/
 lemma isPavingAnalyticFor_of_mem_countableSupClosure_image2_prod_isPavingAnalyticFor_left
     {𝓨 : Type*} {r : Set 𝓨 → Prop} {t : Set (𝓨 × 𝓧)}
     (ht : t ∈ countableSupClosure (Set.image2 (· ×ˢ ·) r (IsPavingAnalyticFor p 𝓚))) :
@@ -397,6 +490,9 @@ lemma isPavingAnalyticFor_of_mem_countableSupClosure_image2_prod_isPavingAnalyti
     (p' := Set.image2 (· ×ˢ ·) r (IsPavingAnalyticFor p 𝓚)) ht fun s hs ↦ ?_
   exact isPavingAnalyticFor_of_image2_prod_isPavingAnalyticFor_left hs
 
+/--
+@isnad1 id=ispaving.1h6v.s8.a2392d9fa2dd from=translated src=- shape=b7ac31f6 vocab=071d4e2f
+-/
 lemma isPavingAnalyticFor_of_mem_countableSupClosure_image2_prod_isPavingAnalyticFor_right
     {𝓨 : Type*} {r : Set 𝓨 → Prop} {t : Set (𝓧 × 𝓨)}
     (ht : t ∈ countableSupClosure (Set.image2 (· ×ˢ ·) (IsPavingAnalyticFor p 𝓚) r)) :
@@ -405,6 +501,9 @@ lemma isPavingAnalyticFor_of_mem_countableSupClosure_image2_prod_isPavingAnalyti
     (p' := Set.image2 (· ×ˢ ·) (IsPavingAnalyticFor p 𝓚) r) ht fun s hs ↦ ?_
   exact isPavingAnalyticFor_of_image2_prod_isPavingAnalyticFor_right hs
 
+/--
+@isnad1 id=ispaving.2h7v.s7.9cdb3e704595 from=translated src=- shape=185f0f8e vocab=071d4e2f
+-/
 lemma IsPavingAnalyticFor.prod_mem_countableSupClosure_left {𝓨 : Type*} {r : Set (Set 𝓨)}
     {t : Set 𝓨} (ht : t ∈ countableSupClosure r) (hs : IsPavingAnalyticFor p 𝓚 s) :
     IsPavingAnalyticFor (Set.image2 (· ×ˢ ·) r p) (Σ _ : ℕ, 𝓚) (t ×ˢ s) := by
@@ -415,6 +514,9 @@ lemma IsPavingAnalyticFor.prod_mem_countableSupClosure_left {𝓨 : Type*} {r : 
   simp only [Set.iSup_eq_iUnion]
   rw [Set.iUnion_prod_const]
 
+/--
+@isnad1 id=ispaving.2h7v.s7.25d71021e03e from=translated src=- shape=e9e31018 vocab=071d4e2f
+-/
 lemma IsPavingAnalyticFor.prod_mem_countableSupClosure_right {𝓨 : Type*} {r : Set (Set 𝓨)}
     {t : Set 𝓨} (hs : IsPavingAnalyticFor p 𝓚 s) (ht : t ∈ countableSupClosure r) :
     IsPavingAnalyticFor (Set.image2 (· ×ˢ ·) p r) (Σ _ : ℕ, 𝓚) (s ×ˢ t) := by
@@ -430,6 +532,9 @@ lemma IsPavingAnalyticFor.prod_mem_countableSupClosure_right {𝓨 : Type*} {r :
 -- He 1.29
 
 -- He 1.30
+/--
+@isnad1 id=ispaving.1h5v.s6.3177361f09a3 from=translated src=- shape=84f81d5c vocab=fe47ffcd
+-/
 lemma IsPavingAnalyticFor.inter_set (hs : IsPavingAnalyticFor p 𝓚 s) (t : Set 𝓧) :
     IsPavingAnalyticFor {u | ∃ v, v ∈ p ∧ u = v ∩ t} 𝓚 (s ∩ t) := by
   obtain ⟨q, hq_empty, hq, A, hA, rfl⟩ := hs
@@ -445,6 +550,9 @@ lemma IsPavingAnalyticFor.inter_set (hs : IsPavingAnalyticFor p 𝓚 s) (t : Set
   grind
 
 -- He 1.30
+/--
+@isnad1 id=ex.1h5v.s6.8a5d1c11efee from=translated src=- shape=4bb7f5fa vocab=fe47ffcd
+-/
 lemma exists_isPavingAnalyticFor_of_inter_set (t : Set 𝓧)
     (hs : IsPavingAnalyticFor {u | ∃ v, v ∈ p ∧ u = v ∩ t} 𝓚 s) :
     ∃ s', IsPavingAnalyticFor p 𝓚 s' ∧ s = s' ∩ t := by
@@ -469,6 +577,9 @@ lemma exists_isPavingAnalyticFor_of_inter_set (t : Set 𝓧)
 
 -- He 1.31
 
+/--
+@isnad1 id=mem.0h2v.s7.6d99a634b07c from=translated src=- shape=9611a133 vocab=6be6d75a
+-/
 lemma Iic_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
     [LinearOrder ι] [TopologicalSpace ι] [SecondCountableTopology ι] [OrderTopology ι]
     (u : ι) :
@@ -488,6 +599,9 @@ lemma Iic_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
   intro hxu
   exact (hu₁_tendsto.eventually_le_atBot x).exists
 
+/--
+@isnad1 id=mem.0h2v.s7.7ecd37102c92 from=translated src=- shape=9611a133 vocab=ef12e2d0
+-/
 lemma Ici_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
     [LinearOrder ι] [TopologicalSpace ι] [SecondCountableTopology ι] [OrderTopology ι]
     (u : ι) :
@@ -507,6 +621,9 @@ lemma Ici_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
   intro hxu
   exact (hu₁_tendsto.eventually_ge_atTop x).exists
 
+/--
+@isnad1 id=mem.0h2v.s7.2e2d988381c1 from=translated src=- shape=829f6765 vocab=6d7738f2
+-/
 lemma Iio_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
     [LinearOrder ι] [TopologicalSpace ι] [SecondCountableTopology ι] [OrderTopology ι]
     [DenselyOrdered ι]
@@ -531,6 +648,9 @@ lemma Iio_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
     fun n ↦ Iic_mem_countableSupClosure_Icc (s n)
   exact (countableSupClosure_mono fun s hs ↦ Set.mem_insert_of_mem _ hs) h_mem
 
+/--
+@isnad1 id=mem.0h2v.s7.f62dee1d9e39 from=translated src=- shape=829f6765 vocab=8b7b956d
+-/
 lemma Ioi_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
     [LinearOrder ι] [TopologicalSpace ι] [SecondCountableTopology ι] [OrderTopology ι]
     [DenselyOrdered ι]
@@ -555,6 +675,9 @@ lemma Ioi_mem_countableSupClosure_Icc {ι : Type*} [Nonempty ι]
     fun n ↦ Ici_mem_countableSupClosure_Icc (s n)
   exact (countableSupClosure_mono fun s hs ↦ Set.mem_insert_of_mem _ hs) h_mem
 
+/--
+@isnad1 id=mem.0h1v.s7.0da820a2a2d1 from=translated src=- shape=a82166d9 vocab=cc2f0748
+-/
 lemma univ_mem_countableSupClosure_Icc {ι : Type*} [hι : Nonempty ι]
     [LinearOrder ι] [TopologicalSpace ι] [SecondCountableTopology ι] [OrderTopology ι] :
     (Set.univ : Set ι) ∈ countableSupClosure {t | ∃ a b, Set.Icc a b = t} := by
@@ -564,6 +687,9 @@ lemma univ_mem_countableSupClosure_Icc {ι : Type*} [hι : Nonempty ι]
   exact supClosed_countableSupClosure (Iic_mem_countableSupClosure_Icc x)
     (Ici_mem_countableSupClosure_Icc x)
 
+/--
+@isnad1 id=mem.0h3v.s7.a5dea7eea7b5 from=translated src=- shape=be92c33c vocab=f48f3bb0
+-/
 lemma aux_Icc {ι : Type*} [Nonempty ι]
     [LinearOrder ι] [DenselyOrdered ι] [TopologicalSpace ι] [SecondCountableTopology ι]
     [OrderTopology ι] (l u : ι) :
@@ -577,6 +703,9 @@ lemma aux_Icc {ι : Type*} [Nonempty ι]
     exact supClosed_countableSupClosure (Iio_mem_countableSupClosure_Icc l)
       (Ioi_mem_countableSupClosure_Icc u)
 
+/--
+@isnad1 id=mem.1h3v.s8.349bb0c6260d from=translated src=- shape=8aa534af vocab=7a78e84c
+-/
 lemma aux'_Icc {ι : Type*} [Nonempty ι]
     [LinearOrder ι] [DenselyOrdered ι] [TopologicalSpace ι] [SecondCountableTopology ι]
     [OrderTopology ι] [MeasurableSpace 𝓧] (s : Set (𝓧 × ι))
@@ -619,6 +748,9 @@ lemma aux'_Icc {ι : Type*} [Nonempty ι]
       refine ⟨fun i ↦ Set.univ ×ˢ B i, fun n ↦ ?_, rfl⟩
       exact ⟨Set.univ, .univ, B n, hB n, rfl⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.e6bbf6261e85 from=translated src=- shape=c1c3fd05 vocab=5be7ffaa
+-/
 lemma borel_eq_generateFrom_isCompact :
     borel ℝ = MeasurableSpace.generateFrom {s : Set ℝ | IsCompact s} := by
   refine le_antisymm ?_ ?_
@@ -629,6 +761,9 @@ lemma borel_eq_generateFrom_isCompact :
   · rw [MeasurableSpace.generateFrom_le_iff]
     exact fun _ hs ↦ hs.measurableSet
 
+/--
+@isnad1 id=eq.0h1v.s6.faf82229890e from=translated src=- shape=f9755a0d vocab=8b0a0cb9
+-/
 lemma borel_eq_generateFrom_Icc' (α : Type*) [TopologicalSpace α] [SecondCountableTopology α]
     [LinearOrder α] [OrderTopology α] :
     borel α = .generateFrom { S : Set α | ∃ (l u : α), Set.Icc l u = S } := by
@@ -641,6 +776,9 @@ lemma borel_eq_generateFrom_Icc' (α : Type*) [TopologicalSpace α] [SecondCount
     · exact MeasurableSpace.measurableSet_generateFrom ⟨a, b, hab, rfl⟩
     · simp [hab]
 
+/--
+@isnad1 id=eq.0h1v.s6.bb5f0ce56a50 from=translated src=- shape=fa6a2ae5 vocab=41277a93
+-/
 lemma borel_eq_generateFrom_Icc'' (α : Type*) [TopologicalSpace α] [SecondCountableTopology α]
     [LinearOrder α] [OrderTopology α] :
     borel α = .generateFrom (insert ∅ { S : Set α | ∃ (l u : α), Set.Icc l u = S }) := by
@@ -649,18 +787,27 @@ lemma borel_eq_generateFrom_Icc'' (α : Type*) [TopologicalSpace α] [SecondCoun
 
 -- Icc variant of He 1.32 (1)
 
+/--
+@isnad1 id=iscounta.0h0v.s3.5b943ca6ce2c from=translated src=- shape=3905abf2 vocab=681ee9c2
+-/
 lemma isCountablySpanning_isCompact : IsCountablySpanning (IsCompact (X := ℝ)) := by
   refine ⟨fun n : ℕ ↦ Set.Icc (-n : ℝ) n, fun _ ↦ isCompact_Icc, ?_⟩
   ext x
   simp only [Set.mem_iUnion, Set.mem_Icc, Set.mem_univ, iff_true, ← abs_le]
   exact ⟨⌈|x|⌉₊, Nat.le_ceil _⟩
 
+/--
+@isnad1 id=iscounta.0h0v.s4.aa14e32175dd from=translated src=- shape=f4c4bd70 vocab=b39be009
+-/
 lemma isCountablySpanning_Icc : IsCountablySpanning {t | ∃ a b : ℝ, Set.Icc a b = t} := by
   refine ⟨fun n : ℕ ↦ Set.Icc (-n : ℝ) n, fun n ↦ ⟨-n, n, rfl⟩, ?_⟩
   ext x
   simp only [Set.mem_iUnion, Set.mem_Icc, Set.mem_univ, iff_true, ← abs_le]
   exact ⟨⌈|x|⌉₊, Nat.le_ceil _⟩
 
+/--
+@isnad1 id=iscounta.0h1v.s6.eec0bb9ffdc7 from=translated src=- shape=071ab91a vocab=430df2be
+-/
 lemma isCountablySpanning_insert_empty_Icc {ι : Type*} [Nonempty ι]
     [LinearOrder ι] [TopologicalSpace ι] [SecondCountableTopology ι] [OrderTopology ι] :
     IsCountablySpanning (insert ∅ {t | ∃ a b : ι, Set.Icc a b = t}) := by
@@ -682,6 +829,9 @@ def IsMeasurableAnalyticFor (𝓚 : Type*) [MeasurableSpace 𝓚] [MeasurableSpa
     Prop :=
   ∃ t : Set (𝓧 × 𝓚), MeasurableSet t ∧ s = Prod.fst '' t
 
+/--
+@isnad1 id=ismeasur.2h5v.s5.7e573764c91b from=translated src=- shape=71dcc99e vocab=d02d2c8c
+-/
 lemma isMeasurableAnalyticFor_of_snd {_ : MeasurableSpace 𝓚} [MeasurableSpace 𝓧]
     {s : Set 𝓧} (t : Set (𝓚 × 𝓧)) (ht : MeasurableSet t) (hst : s = Prod.snd '' t) :
     IsMeasurableAnalyticFor 𝓚 s :=
@@ -691,13 +841,18 @@ lemma isMeasurableAnalyticFor_of_snd {_ : MeasurableSpace 𝓚} [MeasurableSpace
 a measurable set of `𝓧 × ℝ`. -/
 def IsMeasurableAnalytic [MeasurableSpace 𝓧] (s : Set 𝓧) : Prop := IsMeasurableAnalyticFor ℝ s
 
+/--
+@isnad1 id=ismeasur.2h3v.s5.91cf82b0d8a9 from=translated src=- shape=3ac7eef2 vocab=80b8ba63
+-/
 lemma isMeasurableAnalytic_of_snd [MeasurableSpace 𝓧] {s : Set 𝓧} (t : Set (ℝ × 𝓧))
     (ht : MeasurableSet t) (hst : s = Prod.snd '' t) :
     IsMeasurableAnalytic s :=
   isMeasurableAnalyticFor_of_snd t ht hst
 
 /-- If a set is measurably analytic for any standard Borel space `𝓚`,
-then it is measurably analytic for `ℝ`. -/
+then it is measurably analytic for `ℝ`.
+@isnad1 id=ismeasur.1h5v.s4.aca256c0b819 from=translated src=- shape=a007148f vocab=f003849e
+-/
 lemma IsMeasurableAnalyticFor.isMeasurableAnalytic {m𝓧 : MeasurableSpace 𝓧}
     {m𝓚 : MeasurableSpace 𝓚} [StandardBorelSpace 𝓚]
     (hs : IsMeasurableAnalyticFor 𝓚 s) :

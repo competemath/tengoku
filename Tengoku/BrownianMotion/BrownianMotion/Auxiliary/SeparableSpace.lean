@@ -28,7 +28,9 @@ open scoped Topology
 
 variable {α : Type*} [LinearOrder α] [TopologicalSpace α] [OrderTopology α]
 
-/-- A dense set contains every point whose singleton is open, that is, every isolated point. -/
+/-- A dense set contains every point whose singleton is open, that is, every isolated point.
+@isnad1 id=mem.2h3v.s5.0815cf395917 from=translated src=- shape=6fd3cf97 vocab=e711a0bc
+-/
 lemma Dense.mem_of_isOpen_singleton {X : Type*} [TopologicalSpace X] {s : Set X} {x : X}
     (hs : Dense s) (hx : IsOpen {x}) : x ∈ s := by
   obtain ⟨y, hys, hy⟩ := hs.exists_mem_open hx ⟨x, rfl⟩
@@ -37,6 +39,7 @@ lemma Dense.mem_of_isOpen_singleton {X : Type*} [TopologicalSpace X] {s : Set X}
 section OrdConnected
 
 /-- Every point `x` of an open set `U` has an open order connected neighbourhood contained in `U`.
+@isnad1 id=ex.2h3v.s6.3ac05b1709d9 from=translated src=- shape=50571e74 vocab=702247fb
 -/
 lemma exists_isOpen_ordConnected_mem_subset {U : Set α} (hU : IsOpen U) {x : α} (hx : x ∈ U) :
     ∃ V, IsOpen V ∧ V.OrdConnected ∧ x ∈ V ∧ V ⊆ U := by
@@ -51,14 +54,18 @@ lemma exists_isOpen_ordConnected_mem_subset {U : Set α} (hU : IsOpen U) {x : α
     (interior_subset hy) (interior_subset hz) ⟨hv.1.le, hv.2.le⟩, isOpen_Ioo, hyw, hwz⟩
 
 /-- The open order connected sets form a topological basis of a linearly ordered topological
-space. -/
+space.
+@isnad1 id=istopolo.0h1v.s5.b497f8449265 from=translated src=- shape=c668cabd vocab=478fef55
+-/
 lemma isTopologicalBasis_isOpen_ordConnected :
     IsTopologicalBasis {V : Set α | IsOpen V ∧ V.OrdConnected} :=
   isTopologicalBasis_of_isOpen_of_nhds (fun _ hu ↦ hu.1) fun _ _ ha hu ↦
     let ⟨V, hVo, hVc, haV, hVu⟩ := exists_isOpen_ordConnected_mem_subset hu ha
     ⟨V, ⟨hVo, hVc⟩, haV, hVu⟩
 
-/-- The open order connected sets containing a point form a basis of its neighbourhood filter. -/
+/-- The open order connected sets containing a point form a basis of its neighbourhood filter.
+@isnad1 id=hasbasis.0h2v.s6.ed484cfbe32d from=translated src=- shape=deaf0228 vocab=91944c6f
+-/
 lemma nhds_basis_isOpen_ordConnected (x : α) :
     (𝓝 x).HasBasis (fun V : Set α ↦ (IsOpen V ∧ V.OrdConnected) ∧ x ∈ V) id :=
   isTopologicalBasis_isOpen_ordConnected.nhds_hasBasis
@@ -80,7 +87,9 @@ private lemma countable_isolated_inter_Ioi_aux [SeparableSpace α] {s : Set α} 
   · exact fun x hx ↦ (hWo x hx.1).inter isOpen_Ioi
 
 /-- In a separable linearly ordered topological space, the points of a subset `s` that are
-isolated in the subspace `s` form a countable set. -/
+isolated in the subspace `s` form a countable set.
+@isnad1 id=countabl.0h2v.s6.97c418258ba9 from=translated src=- shape=e5502308 vocab=385278af
+-/
 lemma countable_setOf_isolated_subtype [SeparableSpace α] (s : Set α) :
     {x : s | IsOpen {x}}.Countable := by
   obtain ⟨D, hDc, hDd⟩ := exists_countable_dense α

@@ -74,14 +74,18 @@ namespace SpectralSourceCondition
 
 variable {S : OperatorSystem Ω μ} {β : ℝ}
 
-/-- `T†T` is a positive operator. -/
+/-- `T†T` is a positive operator.
+@isnad1 id=ispositi.0h3v.s8.776c4b755881 from=translated src=- shape=dc5c3ba3 vocab=02e72dab
+-/
 lemma Tstar_T_isPositive (S : OperatorSystem Ω μ) :
     S.Tstar_T_trim.IsPositive := by
   unfold OperatorSystem.Tstar_T_trim OperatorSystem.TadjointTrim
   simpa [ContinuousLinearMap.comp_def, ContinuousLinearMap.comp_apply] using
     ContinuousLinearMap.isPositive_adjoint_comp_self S.TlinTrim
 
-/-- Positivity of `T†T`: its real spectrum lies in `[0, ∞)`. -/
+/-- Positivity of `T†T`: its real spectrum lies in `[0, ∞)`.
+@isnad1 id=le.1h4v.s12.ed4c6ca323c6 from=translated src=- shape=a05b8c02 vocab=6a4dc9df
+-/
 lemma Tstar_T_spectrum_nonneg (S : OperatorSystem Ω μ) :
     ∀ x ∈ spectrum ℝ S.Tstar_T_trim, 0 ≤ x := by
   intro x hx
@@ -99,7 +103,9 @@ Continuous on all of ℝ for `β ≥ 0`, and agrees with `x^{β/2}` on
 noncomputable def sourceSymbol (β : ℝ) : ℝ → ℝ :=
   fun x => Real.rpow (max x 0) (β/2)
 
-/-- The source symbol is continuous whenever the source exponent is nonnegative. -/
+/-- The source symbol is continuous whenever the source exponent is nonnegative.
+@isnad1 id=continuo.1h1v.s4.38549641e84f from=translated src=- shape=e217721d vocab=2addc8fe
+-/
 lemma continuous_sourceSymbol {β : ℝ} (h : 0 ≤ β) :
     Continuous (sourceSymbol β) := by
   unfold sourceSymbol
@@ -115,7 +121,9 @@ noncomputable def spectralPower (_sc : SpectralSourceCondition S β) :
   @Complexification.realCFC Ω S.m_X (μ.trim S.m_X_le)
     S.Tstar_T_trim (sourceSymbol β)
 
-/-- Restated spectral identity using `spectralPower`. -/
+/-- Restated spectral identity using `spectralPower`.
+@isnad1 id=eq.0h5v.s15.5deb5bdac435 from=translated src=- shape=964ef9cc vocab=314a2bb5
+-/
 lemma spectral_identity_h₀ (sc : SpectralSourceCondition S β) :
     S.primalTrimEquiv (S.hL2 S.h₀_mem) =
       sc.spectralPower (S.primalTrimEquiv (S.hL2 sc.w₀_mem)) :=
@@ -135,7 +143,9 @@ the rate saturates at `λ²`.  We bound both uniformly by
 noncomputable def biasConst (_sc : SpectralSourceCondition S β) : ℝ :=
   Real.rpow (max 1 (‖S.Tstar_T_trim‖ + 1)) β
 
-/-- The uniform Tikhonov bias constant is nonnegative. -/
+/-- The uniform Tikhonov bias constant is nonnegative.
+@isnad1 id=le.0h5v.s5.3d969b2b2c92 from=translated src=- shape=7b461621 vocab=dccad419
+-/
 lemma biasConst_nonneg (sc : SpectralSourceCondition S β) :
     0 ≤ sc.biasConst := by
   unfold biasConst
@@ -326,7 +336,9 @@ private theorem spectrum_complexLift_subset_real_local
 
 /-- Given [a continuous linear operator and two real functions](hyp:Ω,μ,A,f,g), if [the functions
 agree on the operator's spectrum](hyp:h) and [the operator is self-adjoint](hyp:hA), then [their real
-continuous functional calculi at that operator agree](goal). -/
+continuous functional calculi at that operator agree](goal).
+@isnad1 id=eq.2h5v.s13.f5b8dfa539ac from=translated src=- shape=a0956439 vocab=20c3a8e2
+-/
 lemma realCFC_congr_on_spectrum_local
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (f g : ℝ → ℝ)
     (h : ∀ x ∈ spectrum ℝ A, f x = g x) (hA : IsSelfAdjoint A) :
@@ -433,7 +445,9 @@ Proof strategy:
 * By the variational identity `tikhonovMinimiserL2_optimality`, the minimiser
   satisfies the same operator equation on the primal space.  Uniqueness
   (from coercivity / strict convexity)
-  gives the identification. -/
+  gives the identification.
+@isnad1 id=eq.1h4v.s15.db0d50c60f7c from=translated src=- shape=181e72bf vocab=0b4543c9
+-/
 theorem tikhonovMinimiserL2_eq_resolvent
     {lambda : ℝ} (lambda_pos : 0 < lambda) :
     S.primalTrimEquiv (S.tikhonovMinimiserL2 lambda)
@@ -532,7 +546,9 @@ theorem tikhonovMinimiserL2_eq_resolvent
 
 /-- Given [a self-adjoint continuous linear operator](hyp:Ω,μ,A,hA) and [two continuous real
 functions](hyp:f,g,hf,hg), [the real continuous functional calculus of their difference equals the
-difference of their calculi](goal). -/
+difference of their calculi](goal).
+@isnad1 id=eq.3h5v.s14.7bf4490892e7 from=translated src=- shape=47d037bd vocab=706571f3
+-/
 lemma realCFC_sub_local
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (hA : IsSelfAdjoint A)
     (f g : ℝ → ℝ) (hf : Continuous f) (hg : Continuous g) :
@@ -555,7 +571,9 @@ lemma realCFC_sub_local
 
 /-- For [a nonnegative spectral value, a positive regularization level, smoothness between zero and
 two, and a scale at least one](hyp:x,lambda,β,B,hl,hx,hβ0,hβ2,hB), [the absolute residual source
-symbol is bounded by the stated scale and regularization power](goal). -/
+symbol is bounded by the stated scale and regularization power](goal).
+@isnad1 id=le.5h4v.s7.01c2624cf72b from=translated src=- shape=94ee67ba vocab=7df2574e
+-/
 lemma residual_symbol_bound_small
     {x lambda β B : ℝ} (hl : 0 < lambda) (hx : 0 ≤ x)
     (hβ0 : 0 ≤ β) (hβ2 : β ≤ 2) (hB : 1 ≤ B) :
@@ -605,7 +623,9 @@ lemma residual_symbol_bound_small
 
 /-- For [a nonnegative spectral value bounded by a scale, a positive regularization level, a
 smoothness value above two, and a scale at least one](hyp:x,lambda,β,B,hl,hx,hxB,hβ2,hB), [the
-absolute residual source symbol is bounded by the stated scale and regularization power](goal). -/
+absolute residual source symbol is bounded by the stated scale and regularization power](goal).
+@isnad1 id=le.5h4v.s7.e6bf587f5c18 from=translated src=- shape=64ce5af4 vocab=7df2574e
+-/
 lemma residual_symbol_bound_large
     {x lambda β B : ℝ} (hl : 0 < lambda) (hx : 0 ≤ x) (hxB : x ≤ B)
     (hβ2 : 2 < β) (hB : 1 ≤ B) :

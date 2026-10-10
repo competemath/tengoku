@@ -15,7 +15,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 
 /-- At [a complex argument z above the real axis](hyp:z,hz),
 [the integer reciprocal-square series Σ_{m∈ℤ} 1/(z+m)² multiplied by the
-squared sine factor (sin(πz)/π)² equals one](goal). -/
+squared sine factor (sin(πz)/π)² equals one](goal).
+@isnad1 id=eq.1h1v.s7.f81c6a5a1893 from=translated src=- shape=ee30a300 vocab=ea905f74
+-/
 theorem csc_squared_integer_series_upperHalfPlane
     (z : ℂ) (hz : 0 < z.im) :
     (Complex.sin ((Real.pi : ℂ) * z) / (Real.pi : ℂ)) ^ 2 *

@@ -17,7 +17,9 @@ open MeasureTheory
 [the translated, amplitude-normalized product u ↦ H(x − u/T)/a · K(u) is
 integrable](hyp:hprod), then [the dilated convolution integrand
 y ↦ H(x − y)·T·K(Ty) is integrable and its integral is a times the integral
-of the normalized product](goal). -/
+of the normalized product](goal).
+@isnad1 id=and.3h5v.s8.35ed36ca355c from=translated src=- shape=3b2e4508 vocab=950404b6
+-/
 theorem spectral_convolution_dilation
     (H K : ℝ → ℝ) (x a T : ℝ) (ha : 0 < a) (hT : 0 < T)
     (hprod : Integrable (fun u : ℝ => H (x - u / T) / a * K u) volume) :

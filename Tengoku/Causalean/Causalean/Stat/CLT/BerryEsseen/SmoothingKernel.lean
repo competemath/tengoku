@@ -23,14 +23,18 @@ noncomputable def sinc4Kernel (T x : ℝ) : ℝ :=
   (3 * T / (8 * Real.pi)) * (Real.sinc (T * x / 4)) ^ 4
 
 /-- The fourth-power sinc kernel is nonnegative at every real argument when
-its bandwidth is positive. -/
+its bandwidth is positive.
+@isnad1 id=le.1h2v.s4.ac4df0bf4529 from=translated src=- shape=1852429d vocab=3f0c2803
+-/
 theorem sinc4Kernel_nonneg (T : ℝ) (hT : 0 < T) (x : ℝ) :
     0 ≤ sinc4Kernel T x := by
   unfold sinc4Kernel
   positivity
 
 /-- The fourth-power sinc kernel is integrable on the real line at every
-positive bandwidth. -/
+positive bandwidth.
+@isnad1 id=integrab.1h1v.s5.a105f22e5368 from=translated src=- shape=77bdae96 vocab=9e54a93d
+-/
 theorem sinc4Kernel_integrable (T : ℝ) (hT : 0 < T) :
     Integrable (sinc4Kernel T) volume := by
   have hsinc : Integrable (fun x : ℝ => Real.sinc x ^ 4) := by
@@ -82,7 +86,9 @@ theorem sinc4Kernel_integrable (T : ℝ) (hT : 0 < T) :
   exact hscaled.const_mul (3 * T / (8 * Real.pi))
 
 /-- The integral of the fourth-power sinc kernel is one at every positive
-bandwidth, so it defines a probability density. -/
+bandwidth, so it defines a probability density.
+@isnad1 id=eq.1h1v.s5.2684d86c5853 from=translated src=- shape=78831b10 vocab=b5353ece
+-/
 theorem sinc4Kernel_integral_eq_one (T : ℝ) (hT : 0 < T) :
     ∫ x : ℝ, sinc4Kernel T x = 1 := by
   /- Set `t = 0` in `sincFourth_fourier_triangleConvolution`, use
@@ -124,7 +130,9 @@ theorem sinc4Kernel_integral_eq_one (T : ℝ) (hT : 0 < T) :
 
 /-- For [a positive bandwidth T](hyp:hT), [the Fourier transform of the
 fourth-power sinc kernel vanishes](goal) at [every frequency t with
-|t| ≥ T](hyp:ht), that is, outside its bandwidth interval. -/
+|t| ≥ T](hyp:ht), that is, outside its bandwidth interval.
+@isnad1 id=eq.2h2v.s6.1db21e682125 from=translated src=- shape=0c14f88e vocab=5f71cf33
+-/
 theorem sinc4Kernel_fourier_eq_zero (T t : ℝ) (hT : 0 < T) (ht : T ≤ |t|) :
     ∫ x : ℝ,
         Complex.exp (((t * x : ℝ) : ℂ) * Complex.I) *

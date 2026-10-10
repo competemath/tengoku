@@ -43,7 +43,9 @@ order `σ`: `B i j = 0` whenever `σ i < σ j`](hyp:hBacyc), and [the matrices
 `I − B` and `I − B'` are related by a generalized permutation — a permutation `τ`
 composed with a nonzero diagonal scale `d`, so `(I − B') i j = d i · (I − B)
 (τ i) j`](hyp:hICA) (as delivered by ICA identifiability). Then [`B` equals
-`B'`](goal).  This packages `eq_of_genPerm_triangular_unitDiag` for `C = I − B`. -/
+`B'`](goal).  This packages `eq_of_genPerm_triangular_unitDiag` for `C = I − B`.
+@isnad1 id=eq.4h6v.s8.0b414fea15f8 from=translated src=- shape=0ba0e4bb vocab=e39617e4
+-/
 theorem lingam_identifiable {n : ℕ} {B B' : Matrix (Fin n) (Fin n) ℝ}
     (hBdiag : ∀ i, B i i = 0) (hB'diag : ∀ i, B' i i = 0)
     {σ : Equiv.Perm (Fin n)} (hBacyc : ∀ i j, σ i < σ j → B i j = 0)

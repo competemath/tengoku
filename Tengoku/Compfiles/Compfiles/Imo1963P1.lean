@@ -22,6 +22,9 @@ where *p* is a real parameter.
 
 namespace Imo1963P1
 
+/--
+@isnad1 id=iff.1h5v.s4.835ffc40e538 from=translated src=- shape=31f52f94 vocab=e3b0c442
+-/
 lemma iff_comm {a b c : Prop} : (a → c) → (b → c) → (c → (a ↔ b)) → (a ↔ b) := by
   grind
 

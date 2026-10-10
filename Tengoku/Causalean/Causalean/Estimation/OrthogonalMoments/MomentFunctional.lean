@@ -87,7 +87,9 @@ noncomputable def linScaleInv (M : GeneralMoment Ω μ Z P_Z H) : ℝ :=
   M.linScale⁻¹
 
 /-- For [a general orthogonal-moment system](hyp:M), [its linearization scale
-times its reciprocal equals one](goal). -/
+times its reciprocal equals one](goal).
+@isnad1 id=eq.0h6v.s6.9e29a45416d7 from=translated src=- shape=0bfbbbaa vocab=b3adc84f
+-/
 @[simp] lemma linScale_mul_inv (M : GeneralMoment Ω μ Z P_Z H) :
     M.linScale * M.linScaleInv = 1 := by
   unfold linScaleInv

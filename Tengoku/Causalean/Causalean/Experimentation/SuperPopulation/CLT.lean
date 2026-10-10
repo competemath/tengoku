@@ -40,7 +40,9 @@ distribution function converges pointwise to the standard normal CDF:
 
 The randomness is the super-population draw `μ n`; the dependence is the network `(F n).adj`.
 The proof reads off the dependency-graph hypotheses from the field and applies
-`stein_cdf_clt_of_depGraph`. -/
+`stein_cdf_clt_of_depGraph`.
+@isnad1 id=tendsto.7h7v.s9.90e0f759bace from=translated src=- shape=80e53697 vocab=8bc8a017
+-/
 theorem networkSum_clt
     {V : ℕ → Type*} [∀ n, Fintype (V n)] [∀ n, DecidableEq (V n)]
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))

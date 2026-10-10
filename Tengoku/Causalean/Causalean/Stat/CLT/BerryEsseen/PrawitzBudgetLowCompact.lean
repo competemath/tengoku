@@ -24,7 +24,9 @@ open MeasureTheory
 /-- On [a positive parameter cell](hyp:ρ,r,s,hr,hrρ,hρs) and
 [a positive frequency cell inside the original kernel band](hyp:t,a,b,ha,hat,htb,htU),
 the [normalized low-frequency integrand is bounded by the better of the
-Taylor and modulus-sum cell bounds](goal). -/
+Taylor and modulus-sum cell bounds](goal).
+@isnad1 id=le.7h6v.s9.1090e848e7bc from=translated src=- shape=142e92f7 vocab=c8c59367
+-/
 theorem prawitz_low_compact_cell_bound
     (ρ r s t a b : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 < a) (hat : a ≤ t) (htb : t ≤ b) (htU : t ≤ 12 / (5 * ρ)) :
@@ -94,7 +96,9 @@ theorem prawitz_low_compact_cell_bound
 
 /-- On [an initial frequency interval inside the kernel band](hyp:a,ha,haU)
 and [a positive parameter cell with nonpositive Taylor exponent](hyp:ρ,s,hρ,hρs,hsa),
-the [normalized integral has a polynomial bound at its singular endpoint](goal). -/
+the [normalized integral has a polynomial bound at its singular endpoint](goal).
+@isnad1 id=le.5h3v.s8.fe3f143d947c from=translated src=- shape=d61441fc vocab=569cb30e
+-/
 theorem prawitz_low_compact_initial_integral_bound
     (ρ s a : ℝ) (hρ : 0 < ρ) (hρs : ρ ≤ s) (ha : 0 ≤ a)
     (haU : a ≤ 12 / (5 * ρ)) (hsa : s * a ≤ 5 / 2) :
@@ -162,7 +166,9 @@ theorem prawitz_low_compact_initial_integral_bound
 
 /-- On [positive parameter and frequency cells inside the kernel
 band](hyp:ρ,r,s,a,b,hr,hrρ,hρs,ha,hab,hbU),
-the [normalized cell integral is bounded using the better envelope branch](goal). -/
+the [normalized cell integral is bounded using the better envelope branch](goal).
+@isnad1 id=le.6h5v.s9.6043e3067435 from=translated src=- shape=b177f089 vocab=cd733f1b
+-/
 theorem prawitz_low_compact_cell_integral_bound
     (ρ r s a b : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 < a) (hab : a ≤ b) (hbU : b ≤ 12 / (5 * ρ)) :
@@ -201,7 +207,9 @@ set_option maxRecDepth 4096 in
 with cutoffs U0 = max(3/2, √(4 log(1/ρ))) and U = 12/(5ρ),
 [the low-frequency Prawitz contribution (2/U)·∫ over [0, U0] of the Prawitz
 filter magnitude times the minimum discrepancy envelope is at most one
-quarter of ρ](goal). -/
+quarter of ρ](goal).
+@isnad1 id=other.2h1v.s7.c659c8a9e972 from=translated src=- shape=1b58c84c vocab=17ebdabd
+-/
 theorem prawitz_budget_low_compact
     (ρ : ℝ) (hlarge : 1 / 100 < ρ) (hρ1 : ρ < 1) :
     let U0 := max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / ρ)))

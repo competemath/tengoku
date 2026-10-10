@@ -35,11 +35,20 @@ def solution_set (n : ℕ) (a b c : ℝ) : Set (ℕ → ℝ) := {x : ℕ → ℝ
 
 def f (a b c : ℝ) : ℝ → ℝ := fun x ↦ a * x^2 + (b-1)* x + c
 
+/--
+@isnad1 id=continuo.0h3v.s4.0e56d3e58d16 from=translated src=- shape=53906041 vocab=83076d01
+-/
 lemma f_continuous (a b c : ℝ) : Continuous (f a b c) := by unfold f; fun_prop
 
+/--
+@isnad1 id=ex.3h3v.s6.6b9f241ab242 from=translated src=- shape=5b6db65c vocab=e1db5eda
+-/
 lemma IVT {g : ℝ → ℝ} (hg : Continuous g) {a b : ℝ} (ha : g a ≤ 0) (hb : g b ≥ 0) : ∃ z : ℝ, g z = 0 :=
   (intermediate_value_uIcc hg.continuousOn (Set.mem_uIcc.mpr (.inl ⟨ha, hb⟩))).imp fun _ ⟨_, hz⟩ ↦ hz
 
+/--
+@isnad1 id=and.1h3v.s7.a4cd3ff3d760 from=translated src=- shape=3f5b8154 vocab=389526bf
+-/
 lemma sol_structure_f (a b c : ℝ) (a_ne_zero : a ≠ 0) :
   (discrim a (b-1) c < 0 → ¬ ∃ x : ℝ, f a b c x = 0) ∧
   (discrim a (b-1) c = 0 → (∃ x : ℝ, f a b c x = 0 ∧ ∀ y : ℝ, f a b c y = 0 → y = x) ∧ ((∀ x : ℝ, f a b c x ≥ 0) ∨ ∀ x : ℝ, f a b c x ≤ 0)) ∧
@@ -69,6 +78,9 @@ lemma sol_structure_f (a b c : ℝ) (a_ne_zero : a ≠ 0) :
     · exact (f_quad _).mpr ((quadratic_eq_zero_iff a_ne_zero hs _).mpr (.inl (by ring)))
     · exact (f_quad _).mpr ((quadratic_eq_zero_iff a_ne_zero hs _).mpr (.inr (by ring)))
 
+/--
+@isnad1 id=mem.1h5v.s6.d3ef9caf396c from=translated src=- shape=db821f5b vocab=87176fb2
+-/
 lemma solution (n : ℕ) {a b c y : ℝ} (h : f a b c y = 0) : (fun i ↦ if i ∈ range (n+1) then y else 0) ∈ solution_set n a b c := by
   let x := (fun i ↦ if i ∈ range (n+1) then y else 0)
   show x ∈ solution_set n a b c
@@ -91,6 +103,9 @@ lemma solution (n : ℕ) {a b c y : ℝ} (h : f a b c y = 0) : (fun i ↦ if i �
   intro hh
   linarith
 
+/--
+@isnad1 id=eq.1h5v.s6.bb9fd4fae6f5 from=translated src=- shape=4647c6b1 vocab=d30d4458
+-/
 lemma sum_sol {n : ℕ} (a b c : ℝ) (x : ℕ → ℝ) : x ∈ solution_set n a b c → ∑ i∈ range (n+1), f a b c (x i) = 0 := by
   intro h
   unfold f

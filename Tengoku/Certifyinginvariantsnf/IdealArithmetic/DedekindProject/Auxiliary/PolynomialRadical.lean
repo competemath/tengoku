@@ -24,12 +24,17 @@ variable {R : Type*} [CommMonoidWithZero R]
 def IsRadicalPart (b : R) (a : R) : Prop :=
   (∀ p : R, Prime p → (p ∣ a ↔ p ∣ b)) ∧ Squarefree b
 
+/--
+@isnad1 id=iff.0h3v.s5.64b823f5b779 from=translated src=- shape=a051d2b9 vocab=f673fed1
+-/
 lemma isRadicalPart_def (b : R) (a : R) :
     IsRadicalPart b a ↔ (∀ p : R, Prime p → (p ∣ a ↔ p ∣ b)) ∧ Squarefree b :=
   Iff.rfl
 
 /-- If `b` is a squarefree element that divides `a`, and such that `a` divides a power of `b`, then
- `b` is the radical part of `a`·  -/
+ `b` is the radical part of `a`·
+@isnad1 id=isradica.3h3v.s6.23fea0165b2f from=translated src=- shape=1389f936 vocab=cc640307
+-/
 lemma isRadicalPart_of_dvd_pow {R : Type*} [CommMonoidWithZero R] {a b : R}
     (hg : Squarefree b) (hdvd : b ∣ a ) (h : ∃ n : ℕ, a ∣ b ^ n) :
     IsRadicalPart b a := by
@@ -42,7 +47,9 @@ lemma isRadicalPart_of_dvd_pow {R : Type*} [CommMonoidWithZero R] {a b : R}
   · intro hdvd2; exact dvd_trans hdvd2 hdvd
   exact hg
 
-/-- The radical part of `a` is the radical part of any power of `a` -/
+/-- The radical part of `a` is the radical part of any power of `a`
+@isnad1 id=isradica.2h4v.s5.549f15b82e21 from=translated src=- shape=76e601c1 vocab=ccacd821
+-/
 lemma isRadicalPart_pow_of_isRadicalPart {R : Type*} [CommMonoidWithZero R]
     {a b : R} {n : ℕ} (hn : n ≠ 0) (h : IsRadicalPart b a ) :
     IsRadicalPart b (a ^ n) := by
@@ -53,6 +60,9 @@ lemma isRadicalPart_pow_of_isRadicalPart {R : Type*} [CommMonoidWithZero R]
   exact (h.1 a hap).1 (Prime.dvd_of_dvd_pow hap hadvd)
   intro hagdvd; refine dvd_pow ?_ hn; exact (h.1 a hap).2 hagdvd
 
+/--
+@isnad1 id=not.3h4v.s5.fc3814899ece from=translated src=- shape=b3832e6f vocab=462e3901
+-/
 lemma ne_dvd_of_isCoprime {R : Type*} [CommSemiring R] {a b p : R} (hp : ¬IsUnit p)
     (hgcd : IsCoprime a b) (h : p ∣ a ) : ¬p ∣ b := by
   obtain ⟨t, ht⟩ := h
@@ -61,7 +71,9 @@ lemma ne_dvd_of_isCoprime {R : Type*} [CommSemiring R] {a b p : R} (hp : ¬IsUni
   rw [ht, hq, IsCoprime.mul_left_iff, IsCoprime.mul_right_iff, isCoprime_self] at hgcd
   exact hp hgcd.1.1
 
-/-- The associate of a radical part of `a` is also a radical part· -/
+/-- The associate of a radical part of `a` is also a radical part·
+@isnad1 id=isradica.2h4v.s5.2472c91cd03d from=translated src=- shape=b6abee4f vocab=f06f75f8
+-/
 lemma associated_isRadicalPart_of_isRadicalPart {R : Type*} [CommMonoidWithZero R] {a b c : R}
     (ha : Associated b c) (hr : IsRadicalPart b a ) : IsRadicalPart c a := by
   rw [isRadicalPart_def] at hr ⊢
@@ -72,7 +84,9 @@ lemma associated_isRadicalPart_of_isRadicalPart {R : Type*} [CommMonoidWithZero 
   · exact Squarefree.squarefree_of_dvd (Associated.dvd_dvd ha).2 h2
 
 /--  The radical part of the product of two coprime elements
-  is the product of the radical parts of each of these elements· -/
+  is the product of the radical parts of each of these elements·
+@isnad1 id=isradica.3h5v.s6.ce2efa6b7b1a from=translated src=- shape=abc9db95 vocab=75e83b46
+-/
 lemma mul_isRadicalPart_mul {R : Type*} [CommSemiring R] [IsDomain R] [DecompositionMonoid R]
     (a b c d : R) (hgcd : IsRelPrime b d) (hr1 : IsRadicalPart b a ) (hr2 : IsRadicalPart d c) :
     IsRadicalPart (b * d) (a * c) := by
@@ -94,7 +108,9 @@ open UniqueFactorizationMonoid
 
 /-- A certificate for the radical part of polynomials:
   `k` is the radical of `f` if `k ∣ f`, there is `n` such that `f ∣ k ^ n `,
-  and `k` and the derivative of `k` are coprime.  -/
+  and `k` and the derivative of `k` are coprime.
+@isnad1 id=isradica.3h3v.s8.af44d463dc2d from=translated src=- shape=88e36924 vocab=5ca9885a
+-/
 lemma isRadicalPart_of_coprime_derivative_of_dvd_of_dvd_pow {K : Type*}
     [CommSemiring K] [DecidableEq K] (f k : Polynomial K)
     (h : k ∣ f ) (h2 : ∃ n : ℕ, f ∣ k ^ n) (h3 : ∃ a b , a * k + b * derivative k = 1) :
@@ -102,7 +118,9 @@ lemma isRadicalPart_of_coprime_derivative_of_dvd_of_dvd_pow {K : Type*}
   rw [← Polynomial.separable_def'] at h3
   refine isRadicalPart_of_dvd_pow (Polynomial.Separable.squarefree h3) h h2
 
-/-- If a polynomial is coprime with its derivative, then it is its own radical. -/
+/-- If a polynomial is coprime with its derivative, then it is its own radical.
+@isnad1 id=isradica.1h2v.s7.045e48aee103 from=translated src=- shape=f1a03f83 vocab=6ea0d15b
+-/
 lemma self_isRadicalPart_of_gcd_unit {K : Type*} [CommSemiring K] [DecidableEq K] (f : Polynomial K)
     (hgcd : IsCoprime f (derivative f)) : IsRadicalPart f f := by
   refine isRadicalPart_of_coprime_derivative_of_dvd_of_dvd_pow f f (dvd_refl f) ?_ ?_
@@ -111,7 +129,9 @@ lemma self_isRadicalPart_of_gcd_unit {K : Type*} [CommSemiring K] [DecidableEq K
   · exact hgcd
 
 /-- If the gcd of a polynomial `f` in `ZMod p` and its derivative is associated to an integer
-coprime to `p`, then `f` is the radical of `f`· -/
+coprime to `p`, then `f` is the radical of `f`·
+@isnad1 id=isradica.2h3v.s9.61a53b221076 from=translated src=- shape=03325416 vocab=8a4a5946
+-/
 lemma self_isRadicalPart_of_coprime {p n : ℕ}
     (f : Polynomial <| ZMod p) (hgcd : ∃ a b ,  a * f + b * (derivative f) = n)
     (hc : n.Coprime p) : IsRadicalPart f f := by
@@ -126,7 +146,9 @@ lemma self_isRadicalPart_of_coprime {p n : ℕ}
   · use (k * a') , (k * b')
     rw [mul_assoc, mul_assoc, ← mul_add, hab', mul_comm, hk]
 
-/-- A more general version of `self_isRadicalPart_of_coprime` -/
+/-- A more general version of `self_isRadicalPart_of_coprime`
+@isnad1 id=isradica.3h6v.s9.8b19ac924f2c from=translated src=- shape=8020a411 vocab=0c1d6b6a
+-/
 lemma self_isRadicalPart_of_coprime_ideal {K R : Type*} [CommRing R] [CommRing K] [DecidableEq K]
     {n : R } (g : R →+* K ) (P : Ideal R) (hgker : RingHom.ker g = P )
     (f : Polynomial K) (hgcd : ∃ a b , a * f + b * (derivative f) = C (g n))
@@ -147,7 +169,9 @@ lemma self_isRadicalPart_of_coprime_ideal {K R : Type*} [CommRing R] [CommRing K
   use (C k * a') , (C k * b')
   rw [mul_assoc, mul_assoc, ← mul_add, hab', mul_comm, ← C_mul, ← hk, map_one]
 
-/-- A specialized version of `self_isRadicalPart_of_coprime_ideal` -/
+/-- A specialized version of `self_isRadicalPart_of_coprime_ideal`
+@isnad1 id=isradica.3h6v.s9.4499df11ebbf from=translated src=- shape=40efa6a2 vocab=0c1d6b6a
+-/
 lemma self_isRadicalPart_of_coprime' {K R : Type*} [CommRing R] [CommRing K] [DecidableEq K] {π n : R }
     (g : R →+* K ) (hgker : RingHom.ker g = Ideal.span {π} )
     (f : Polynomial K) (hgcd : ∃ a b , a * f + b * (derivative f) = C (g n))
@@ -157,7 +181,9 @@ lemma self_isRadicalPart_of_coprime' {K R : Type*} [CommRing R] [CommRing K] [De
   exact hc
 
 /-- If `f` is a polynomial in `ZMod p` with derivative `0`,
-then the radical part of `f` is the radical part of the `p`-th root of `f`· -/
+then the radical part of `f` is the radical part of the `p`-th root of `f`·
+@isnad1 id=isradica.2h3v.s9.9269b4f498f9 from=translated src=- shape=6d1ee698 vocab=1df19b1b
+-/
 lemma radical_pth_power {p : ℕ} [hp : Fact <| Nat.Prime p] (f g : Polynomial <| ZMod p)
     (h1 : derivative f = 0 ) (h2 : IsRadicalPart g (Polynomial.contract p f)) :
     IsRadicalPart g f := by

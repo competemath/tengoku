@@ -45,6 +45,9 @@ abbrev answer : Equiv.Perm (Fin 5) where
 -- The conditions of the problem determine the outcome uniquely: there are
 -- only `5! = 120` possible outcomes, so they can be checked exhaustively.
 set_option maxRecDepth 4000 in
+/--
+@isnad1 id=eq.4h1v.s10.cc03ebd5b33f from=translated src=- shape=857fb4ad vocab=4087fe03
+-/
 lemma classification : ∀ π : Equiv.Perm (Fin 5),
     (∀ s : Fin 5, π s ≠ s) →
     (∀ i : Fin 4, (π i.succ : ℕ) ≠ (π i.castSucc : ℕ) + 1) →

@@ -19,6 +19,9 @@ natural number `n`.
 
 namespace Imo1959P1
 
+/--
+@isnad1 id=dvd.2h2v.s6.f0557fcfa5b8 from=translated src=- shape=3f8620d1 vocab=e4d01d9c
+-/
 lemma calculation
     (n k : ℕ)
     (h1 : k ∣ 21 * n + 4)

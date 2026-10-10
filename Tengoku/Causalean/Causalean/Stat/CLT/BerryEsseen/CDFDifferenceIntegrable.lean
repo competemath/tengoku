@@ -15,7 +15,9 @@ open MeasureTheory
 
 /-- For [two real probability laws with finite first moments](hyp:hμ,hν),
 [the difference of their cumulative distribution functions is Lebesgue
-integrable](goal). -/
+integrable](goal).
+@isnad1 id=integrab.2h2v.s7.175ea2699bc6 from=translated src=- shape=089be91c vocab=3ead57a8
+-/
 theorem integrable_cdf_difference_of_first_moments
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

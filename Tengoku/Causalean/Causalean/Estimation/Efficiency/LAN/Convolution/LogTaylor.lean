@@ -22,7 +22,9 @@ namespace Causalean.Estimation.Efficiency.AsymptoticLanConvolution
 
 open Filter MeasureTheory Topology
 
-/-- On `[-1,1]`, the quadratic Taylor error of `2 log (1+w/2)` is bounded by `|w|³`. -/
+/-- On `[-1,1]`, the quadratic Taylor error of `2 log (1+w/2)` is bounded by `|w|³`.
+@isnad1 id=le.1h1v.s7.72ad34557e37 from=translated src=- shape=beec6300 vocab=569808be
+-/
 theorem abs_two_mul_log_one_add_half_sub_quadratic_le_cube
     (w : ℝ) (hw : |w| ≤ 1) :
     |2 * Real.log (1 + w / 2) - w + (1 / 4 : ℝ) * w ^ 2| ≤ |w| ^ 3 := by
@@ -57,7 +59,9 @@ theorem abs_two_mul_log_one_add_half_sub_quadratic_le_cube
           ring
     _ ≤ |w| ^ 3 := hscaled
 
-/-- If [each row is a probability law](hyp:hP), [its log likelihood has the stated coordinate representation on the small-increment event](hyp:hidentity), [its quadratic sum converges in probability](hyp:hquadratic), and [its largest coordinate vanishes in probability](hyp:hmax), [the summed quadratic Taylor remainder converges in probability to zero](goal). -/
+/-- If [each row is a probability law](hyp:hP), [its log likelihood has the stated coordinate representation on the small-increment event](hyp:hidentity), [its quadratic sum converges in probability](hyp:hquadratic), and [its largest coordinate vanishes in probability](hyp:hmax), [the summed quadratic Taylor remainder converges in probability to zero](goal).
+@isnad1 id=tendstoi.4h5v.s8.64e15d3a378d from=translated src=- shape=94002e87 vocab=a6fb57a1
+-/
 theorem sum_log_taylor_remainder_tendstoInProbability
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
     (P : (n : ℕ) → Measure (Ω n)) (L : (n : ℕ) → Ω n → ℝ)

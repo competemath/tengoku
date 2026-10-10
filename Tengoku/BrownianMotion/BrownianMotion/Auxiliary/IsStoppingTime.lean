@@ -6,6 +6,9 @@ public import Tengoku
 
 namespace MeasureTheory
 
+/--
+@isnad1 id=eq.1h7v.s6.fd81556a267e from=translated src=- shape=5085935b vocab=c8bd167a
+-/
 lemma stoppedProcess_min_eq_stoppedProcess {ι Ω E : Type*} [Nonempty ι] [LinearOrder ι]
     (X : ι → Ω → E) (τ : Ω → WithTop ι) {i j : ι} (hij : i ≤ j) :
     stoppedProcess X (fun ω ↦ min j (τ ω)) i = stoppedProcess X τ i := by

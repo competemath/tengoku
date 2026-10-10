@@ -46,7 +46,9 @@ def TendstoInProbability {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpac
 
 /-- For [a fixed measure](hyp:μ), [an indexed family of random variables](hyp:X), [a
 filter](hyp:l), and [a fixed limiting random variable](hyp:g), [the hub's convergence in
-probability is exactly Mathlib's convergence in measure](goal). -/
+probability is exactly Mathlib's convergence in measure](goal).
+@isnad1 id=iff.0h7v.s5.a0583279b23c from=translated src=- shape=3e19fd6d vocab=2c01fc5f
+-/
 theorem tendstoInProbability_const_space {ι Ω E : Type*} [MeasurableSpace Ω] [EDist E]
     (μ : Measure Ω) (X : ι → Ω → E) (l : Filter ι) (g : Ω → E) :
     TendstoInProbability (fun _ => μ) X l (fun _ => g) ↔ TendstoInMeasure μ X l g :=
@@ -86,7 +88,9 @@ private lemma tendstoInProbability_iff_dist
 
 /-- For [row measures](hyp:μ), [seminormed-group-valued row variables](hyp:X), [a
 filter](hyp:l), and [row limits](hyp:g), [convergence in probability is equivalent to every
-positive norm-tail probability tending to zero](goal). -/
+positive norm-tail probability tending to zero](goal).
+@isnad1 id=iff.0h7v.s7.0f7f6c1bc879 from=translated src=- shape=68e11a7f vocab=719d6bef
+-/
 theorem tendstoInProbability_iff_norm
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E] (μ : (i : ι) → Measure (Ω i))
@@ -99,7 +103,9 @@ theorem tendstoInProbability_iff_norm
 
 /-- For [finite row measures](hyp:μ), [seminormed-group-valued row variables](hyp:X), [a
 filter](hyp:l), and [row limits](hyp:g), [convergence in probability is equivalent to the
-real-valued measure of every positive norm tail tending to zero](goal). -/
+real-valued measure of every positive norm tail tending to zero](goal).
+@isnad1 id=iff.0h7v.s7.da2fdefc130e from=translated src=- shape=4d5d0dbf vocab=6af2051c
+-/
 theorem tendstoInProbability_iff_measureReal_norm
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E] (μ : (i : ι) → Measure (Ω i))
@@ -125,7 +131,9 @@ def TendstoInLaw {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)
 /-- For [row probability measures](hyp:μ), [row random variables](hyp:X), [an index
 filter](hyp:l), and [a target probability law](hyp:Q), [convergence in law is equivalent to row
 measurability together with convergence of expectations of every bounded continuous real test
-function](goal). -/
+function](goal).
+@isnad1 id=iff.0h7v.s7.c7aa1200cc50 from=translated src=- shape=1c0701c0 vocab=fb794204
+-/
 theorem tendstoInLaw_iff_boundedContinuous
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [MeasurableSpace E] [TopologicalSpace E] [OpensMeasurableSpace E]
@@ -154,7 +162,9 @@ theorem tendstoInLaw_iff_boundedContinuous
 
 /-- For [row probability measures](hyp:μ), [row random variables](hyp:X), [an index
 filter](hyp:l), and [a point defining the target Dirac law](hyp:c), if [the variables converge in
-law to that Dirac law](hyp:h), then [they converge in probability to the point](goal). -/
+law to that Dirac law](hyp:h), then [they converge in probability to the point](goal).
+@isnad1 id=tendstoi.1h7v.s6.cf4fa107a276 from=translated src=- shape=e1ebab50 vocab=da950b42
+-/
 theorem TendstoInLaw.tendstoInProbability_const
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [MeasurableSpace E] [PseudoEMetricSpace E] [BorelSpace E]
@@ -185,7 +195,9 @@ theorem TendstoInLaw.tendstoInProbability_const
 
 /-- If [row random variables converge in probability to row limits](hyp:h) and [a map is
 uniformly continuous](hyp:hf), then [applying that map to both the variables and limits preserves
-convergence in probability](goal). -/
+convergence in probability](goal).
+@isnad1 id=tendstoi.2h9v.s7.0920dbcc3010 from=translated src=- shape=5df083a5 vocab=c9ba542f
+-/
 theorem TendstoInProbability.uniformContinuous_comp
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E F : Type*} [PseudoEMetricSpace E] [PseudoEMetricSpace F]
@@ -218,7 +230,9 @@ universe u v
 
 /-- Given [a coupling with prescribed marginals](hyp:hν) and [a set in the first
 coordinate space](hyp:s), [the first-coordinate pullback has no more mass than
-that set has under its first marginal](goal). -/
+that set has under its first marginal](goal).
+@isnad1 id=le.1h6v.s6.380ed95faa03 from=translated src=- shape=b76ca41e vocab=0fc73242
+-/
 theorem first_preimage_le {X : Type u} {Y : Type v}
     [MeasurableSpace X] [MeasurableSpace Y]
     {ν : Measure (X × Y)} {μ : Measure X} {ρ : Measure Y}
@@ -229,7 +243,9 @@ theorem first_preimage_le {X : Type u} {Y : Type v}
 
 /-- Given [a coupling with prescribed marginals](hyp:hν) and [a set in the second
 coordinate space](hyp:s), [the second-coordinate pullback has no more mass than
-that set has under its second marginal](goal). -/
+that set has under its second marginal](goal).
+@isnad1 id=le.1h6v.s6.28a738e7382f from=translated src=- shape=891edaaf vocab=e476d65c
+-/
 theorem second_preimage_le {X : Type u} {Y : Type v}
     [MeasurableSpace X] [MeasurableSpace Y]
     {ν : Measure (X × Y)} {μ : Measure X} {ρ : Measure Y}
@@ -240,7 +256,9 @@ theorem second_preimage_le {X : Type u} {Y : Type v}
 
 /-- Given [a coupling with prescribed marginals](hyp:hν) and [a measurable set in
 the first coordinate space](hyp:hs), [the first-coordinate pullback has exactly
-the mass assigned by the first marginal](goal). -/
+the mass assigned by the first marginal](goal).
+@isnad1 id=eq.2h6v.s6.6fd49fc4dcc7 from=translated src=- shape=b63b131b vocab=b8265e36
+-/
 theorem first_preimage_eq {X : Type u} {Y : Type v}
     [MeasurableSpace X] [MeasurableSpace Y]
     {ν : Measure (X × Y)} {μ : Measure X} {ρ : Measure Y}
@@ -251,7 +269,9 @@ theorem first_preimage_eq {X : Type u} {Y : Type v}
 
 /-- Given [a coupling with prescribed marginals](hyp:hν) and [a measurable set in
 the second coordinate space](hyp:hs), [the second-coordinate pullback has exactly
-the mass assigned by the second marginal](goal). -/
+the mass assigned by the second marginal](goal).
+@isnad1 id=eq.2h6v.s6.e12db336ba1c from=translated src=- shape=c6ef584d vocab=978ecb08
+-/
 theorem second_preimage_eq {X : Type u} {Y : Type v}
     [MeasurableSpace X] [MeasurableSpace Y]
     {ν : Measure (X × Y)} {μ : Measure X} {ρ : Measure Y}
@@ -263,7 +283,9 @@ theorem second_preimage_eq {X : Type u} {Y : Type v}
 /-- Given [a coupling with prescribed marginals](hyp:hν), [first and second
 observables](hyp:U,V), [their constant limits](hyp:a,b), and [a deviation
 threshold](hyp:ε), [the pair's tail probability is bounded by the sum of the two
-marginal tail probabilities](goal). -/
+marginal tail probabilities](goal).
+@isnad1 id=le.1h12v.s7.495ef0750397 from=translated src=- shape=adc795d4 vocab=9827314f
+-/
 theorem pair_tail_le {X : Type u} {Y : Type v}
     [MeasurableSpace X] [MeasurableSpace Y]
     {E F : Type*} [PseudoEMetricSpace E] [PseudoEMetricSpace F]
@@ -290,7 +312,9 @@ theorem pair_tail_le {X : Type u} {Y : Type v}
 [their constant limits](hyp:a,b), [an index filter](hyp:l), and [their two
 marginal convergence-in-probability statements](hyp:hU,hV), [the paired
 observables converge in probability to the pair of limits under every row
-coupling](goal). -/
+coupling](goal).
+@isnad1 id=tendstoi.3h13v.s8.995de4041b86 from=translated src=- shape=aa2e0bc0 vocab=751dbe0d
+-/
 theorem pair_tendstoInProbability
     {ι : Type*} {X : ι → Type u} {Y : ι → Type v}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]
@@ -316,7 +340,9 @@ theorem pair_tendstoInProbability
 [their constant limits](hyp:a,b), [an index filter](hyp:l), [a map continuous
 at the limiting pair](hyp:hf), and [the two marginal convergence-in-probability
 statements](hyp:hU,hV), [the mapped paired observable converges in probability
-under every row coupling](goal). -/
+under every row coupling](goal).
+@isnad1 id=tendstoi.4h15v.s8.1f84baa72de1 from=translated src=- shape=d1d7805b vocab=6f955e38
+-/
 theorem map_tendstoInProbability
     {ι : Type*} {X : ι → Type u} {Y : ι → Type v}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]
@@ -345,7 +371,9 @@ theorem map_tendstoInProbability
 /-- Given [first and second row measures](hyp:μ,ρ), [row coupling measures](hyp:ν),
 [proof that each row is a coupling](hyp:hν), [the two row observables](hyp:U,V),
 and [their marginal almost-everywhere measurability](hyp:hU,hV), [the paired
-observable is almost-everywhere measurable under every row coupling](goal). -/
+observable is almost-everywhere measurable under every row coupling](goal).
+@isnad1 id=aemeasur.3h11v.s7.f403d1f77ebd from=translated src=- shape=2d4fc32d vocab=710768b5
+-/
 theorem aemeasurable_pair
     {ι : Type*} {X : ι → Type u} {Y : ι → Type v}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]
@@ -374,7 +402,9 @@ theorem aemeasurable_pair
 [proof that each row is a coupling](hyp:hν), [the two row observables](hyp:U,V),
 [a measurable map](hyp:f,hf), and [their marginal almost-everywhere
 measurability](hyp:hU,hV), [the mapped paired observable is almost-everywhere
-measurable under every row coupling](goal). -/
+measurable under every row coupling](goal).
+@isnad1 id=aemeasur.4h13v.s7.fc3c2fad2ece from=translated src=- shape=b436df48 vocab=908ab737
+-/
 theorem aemeasurable_map
     {ι : Type*} {X : ι → Type u} {Y : ι → Type v}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]
@@ -398,7 +428,9 @@ theorem aemeasurable_map
 continuous at the limiting pair](hyp:f,hf,hfc), [marginal almost-everywhere
 measurability](hyp:hUae,hVae), and [marginal convergence in probability](hyp:hU,hV),
 [the mapped paired observable is almost-everywhere measurable and converges in
-probability under every row coupling](goal). -/
+probability under every row coupling](goal).
+@isnad1 id=and.7h15v.s8.a1e2a4774167 from=translated src=- shape=14047fbd vocab=d234642b
+-/
 theorem measurable_map_tendstoInProbability
     {ι : Type*} {X : ι → Type u} {Y : ι → Type v}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]
@@ -428,7 +460,9 @@ noncomputable def sqrtRatioFallback (p : ℝ × ℝ) : ℝ :=
   if 0 < p.2 then Real.sqrt (p.1 / p.2) else 0
 
 /-- [The total square-root-ratio statistic with a zero fallback is Borel
-measurable](goal). -/
+measurable](goal).
+@isnad1 id=measurab.0h0v.s3.a40ae8f1e1b4 from=translated src=- shape=8e22ceaf vocab=1a0ec649
+-/
 theorem measurable_sqrtRatioFallback : Measurable sqrtRatioFallback := by
   change Measurable (fun p : ℝ × ℝ =>
     if 0 < p.2 then Real.sqrt (p.1 / p.2) else 0)
@@ -437,7 +471,9 @@ theorem measurable_sqrtRatioFallback : Measurable sqrtRatioFallback := by
 
 /-- Given [a strictly positive limiting denominator](hyp:hb), [the total
 square-root-ratio statistic is continuous at the limiting numerator--denominator
-pair](goal). -/
+pair](goal).
+@isnad1 id=continuo.1h2v.s5.45afc40f8385 from=translated src=- shape=c317526e vocab=c6073a34
+-/
 theorem continuousAt_sqrtRatioFallback {a b : ℝ} (hb : 0 < b) :
     ContinuousAt sqrtRatioFallback (a, b) := by
   have hc : ContinuousAt (fun p : ℝ × ℝ => Real.sqrt (p.1 / p.2)) (a, b) :=
@@ -451,7 +487,9 @@ theorem continuousAt_sqrtRatioFallback {a b : ℝ} (hb : 0 < b) :
 [proof that each row is a coupling](hyp:hν), [row numerator and denominator
 observables](hyp:U,V), [their limits](hyp:a,b), [a positive denominator limit](hyp:hb),
 [an index filter](hyp:l), and [marginal convergence in probability](hyp:hU,hV),
-[the total square-root ratio converges in probability under every row coupling](goal). -/
+[the total square-root ratio converges in probability under every row coupling](goal).
+@isnad1 id=tendstoi.4h11v.s8.5f9120c50a55 from=translated src=- shape=f2f9511e vocab=377bcdff
+-/
 theorem sqrtRatioFallback_tendstoInProbability
     {ι : Type*} {X : ι → Type u} {Y : ι → Type v}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]
@@ -471,7 +509,9 @@ theorem sqrtRatioFallback_tendstoInProbability
 
 /-- Given [a numerator and denominator](hyp:a,b) with [a nonnegative
 denominator](hyp:hb), [the total square-root-ratio statistic equals the ordinary
-square-root ratio](goal). -/
+square-root ratio](goal).
+@isnad1 id=eq.1h2v.s5.0fe0d659b58a from=translated src=- shape=e97992e8 vocab=112ce5bf
+-/
 lemma sqrtRatioFallback_eq_sqrt_div {a b : ℝ} (hb : 0 ≤ b) :
     sqrtRatioFallback (a, b) = Real.sqrt (a / b) := by
   by_cases hpos : 0 < b
@@ -481,7 +521,9 @@ lemma sqrtRatioFallback_eq_sqrt_div {a b : ℝ} (hb : 0 ≤ b) :
 
 /-- For [row measures](hyp:μ), [real-valued row variables](hyp:U), [a constant
 limit](hyp:a), and [an index filter](hyp:l), [convergence in probability is
-equivalent to convergence to zero of every strict absolute-error tail](goal). -/
+equivalent to convergence to zero of every strict absolute-error tail](goal).
+@isnad1 id=iff.0h6v.s7.6ed5ecf7fe1b from=translated src=- shape=2a3b32bd vocab=f879dddd
+-/
 lemma tendstoInProbability_iff_strict_abs
     {ι : Type*} {X : ι → Type*} [∀ i, MeasurableSpace (X i)]
     (μ : (i : ι) → Measure (X i)) (U : (i : ι) → X i → ℝ)
@@ -514,7 +556,9 @@ measures](hyp:ν), [proof that each row has the prescribed marginals](hyp:hν),
 [a positive denominator limit](hyp:hb), [an index filter](hyp:l), [pointwise
 nonnegativity of every denominator observable](hyp:hVnonneg), and [marginal
 convergence in probability](hyp:hU,hV), [the ordinary square-root ratio
-converges in probability under every row coupling](goal). -/
+converges in probability under every row coupling](goal).
+@isnad1 id=tendstoi.5h11v.s8.d2223e3d8143 from=translated src=- shape=ad482f29 vocab=260a3a29
+-/
 lemma coupled_sqrtRatio_tendstoInProbability
     {ι : Type*} {X : ι → Type*} {Y : ι → Type*}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]
@@ -545,7 +589,9 @@ measures](hyp:ν), [proof that each row has the prescribed marginals](hyp:hν),
 [a positive denominator limit](hyp:hb), [an index filter](hyp:l), [pointwise
 nonnegativity of every denominator observable](hyp:hVnonneg), and [strict-tail
 convergence of both marginals](hyp:hU,hV), [every strict absolute-error tail of
-the ordinary square-root ratio tends to zero under the coupling](goal). -/
+the ordinary square-root ratio tends to zero under the coupling](goal).
+@isnad1 id=tendsto.6h12v.s8.07e9d80b2099 from=translated src=- shape=242f82eb vocab=34d5ec12
+-/
 lemma coupled_sqrtRatio_tendsto_strict_abs
     {ι : Type*} {X : ι → Type*} {Y : ι → Type*}
     [∀ i, MeasurableSpace (X i)] [∀ i, MeasurableSpace (Y i)]

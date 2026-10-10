@@ -79,24 +79,32 @@ noncomputable def nbhd (i : ι) : Finset ι := by
   letI := D.decG; exact Finset.univ.filter (fun j => D.G i j)
 
 omit [IsProbabilityMeasure μ] [DecidableEq ι] in
-/-- Membership in the neighborhood is exactly adjacency. -/
+/-- Membership in the neighborhood is exactly adjacency.
+@isnad1 id=iff.0h7v.s5.a963c91d10b3 from=translated src=- shape=791bfa89 vocab=2a28ba33
+-/
 theorem mem_nbhd_iff {i j : ι} : j ∈ D.nbhd i ↔ D.G i j := by
   letI := D.decG
   simp only [nbhd, Finset.mem_filter, Finset.mem_univ, true_and]
 
 omit [IsProbabilityMeasure μ] [DecidableEq ι] in
-/-- Each index is in its own neighborhood. -/
+/-- Each index is in its own neighborhood.
+@isnad1 id=mem.0h6v.s5.d23c53f9059f from=translated src=- shape=aaf16084 vocab=49108ddf
+-/
 theorem self_mem_nbhd (i : ι) : i ∈ D.nbhd i := D.mem_nbhd_iff.mpr (D.refl i)
 
 omit [IsProbabilityMeasure μ] [DecidableEq ι] in
-/-- The neighborhood sum is measurable. -/
+/-- The neighborhood sum is measurable.
+@isnad1 id=measurab.0h6v.s5.d45b2e1fea73 from=translated src=- shape=bd7a3e2f vocab=7c995053
+-/
 @[fun_prop]
 theorem measurable_nbhdSum (i : ι) :
     Measurable (fun ω => ∑ k ∈ D.nbhd i, X k ω) :=
   Finset.measurable_sum _ (fun k _ => D.meas k)
 
 omit [IsProbabilityMeasure μ] [DecidableEq ι] in
-/-- The localized product `gᵢ = Xᵢ · Tᵢ` is measurable. -/
+/-- The localized product `gᵢ = Xᵢ · Tᵢ` is measurable.
+@isnad1 id=measurab.0h6v.s6.18eacb3ce7f1 from=translated src=- shape=ba6d3046 vocab=a8b635d8
+-/
 @[fun_prop]
 theorem measurable_locProd (i : ι) :
     Measurable (fun ω => X i ω * ∑ k ∈ D.nbhd i, X k ω) :=
@@ -104,7 +112,9 @@ theorem measurable_locProd (i : ι) :
 
 omit [IsProbabilityMeasure μ] [DecidableEq ι] in
 /-- If each summand is bounded in absolute value by B and every closed neighborhood has at most m
-indices, then the absolute value of each neighborhood sum is at most m times B. -/
+indices, then the absolute value of each neighborhood sum is at most m times B.
+@isnad1 id=le.3h9v.s6.09fef4b34c6e from=translated src=- shape=483efb43 vocab=ff0949c9
+-/
 theorem abs_nbhdSum_le {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤ B)
     {m : ℕ} (i : ι) (hdeg : (D.nbhd i).card ≤ m) (ω : Ω) :
     |∑ k ∈ D.nbhd i, X k ω| ≤ (m : ℝ) * B := by
@@ -118,7 +128,9 @@ theorem abs_nbhdSum_le {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤
 omit [IsProbabilityMeasure μ] [DecidableEq ι] in
 /-- If each summand has absolute value at most B and each neighborhood has at
     most m members, then a summand times its neighborhood sum has absolute
-    value at most m times B squared. -/
+    value at most m times B squared.
+@isnad1 id=le.3h9v.s7.e5ccbac3afb9 from=translated src=- shape=a840c029 vocab=957efc20
+-/
 theorem abs_locProd_le {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤ B)
     {m : ℕ} (hdeg : ∀ i, (D.nbhd i).card ≤ m) (i : ι) (ω : Ω) :
     |X i ω * ∑ k ∈ D.nbhd i, X k ω| ≤ (m : ℝ) * B ^ 2 := by
@@ -129,7 +141,9 @@ theorem abs_locProd_le {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤
     _ = (m : ℝ) * B ^ 2 := by ring
 
 omit [IsProbabilityMeasure μ] in
-/-- **Leave-out independence** (the `stein_cdf_clt` hypothesis `hindep`). -/
+/-- **Leave-out independence** (the `stein_cdf_clt` hypothesis `hindep`).
+@isnad1 id=indepfun.0h6v.s6.448eace9593b from=translated src=- shape=5358a360 vocab=03436f42
+-/
 theorem indepFun_leaveOut (i : ι) :
     IndepFun (X i) (fun ω => ∑ j ∈ Finset.univ \ D.nbhd i, X j ω) μ := by
   classical
@@ -161,7 +175,9 @@ theorem indepFun_leaveOut (i : ι) :
 
 omit [IsProbabilityMeasure μ] [DecidableEq ι] in
 /-- **Covariance vanishing for separated indices.** If `Nᵢ` and `Nⱼ` have no edges between them,
-the localized products `Xᵢ·Tᵢ` and `Xⱼ·Tⱼ` are uncorrelated. -/
+the localized products `Xᵢ·Tᵢ` and `Xⱼ·Tⱼ` are uncorrelated.
+@isnad1 id=eq.1h7v.s8.7d5ee68df68d from=translated src=- shape=9deb1e68 vocab=3f3f3cf1
+-/
 theorem cov_mul_nbhd_eq_zero {i j : ι}
     (hsep : ∀ a ∈ D.nbhd i, ∀ b ∈ D.nbhd j, ¬ D.G a b) :
     μ[fun ω => (X i ω * ∑ k ∈ D.nbhd i, X k ω) * (X j ω * ∑ k ∈ D.nbhd j, X k ω)]
@@ -201,7 +217,9 @@ theorem cov_mul_nbhd_eq_zero {i j : ι}
 omit [DecidableEq ι] in
 /-- If every variable is bounded in absolute value by a nonnegative constant and each closed
 dependency neighborhood has bounded size, each variable times its neighborhood sum has a finite
-second moment. -/
+second moment.
+@isnad1 id=memlp.3h8v.s7.89a738fa77ba from=translated src=- shape=6cefa410 vocab=220b9a03
+-/
 theorem memLp_locProd {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤ B)
     {m : ℕ} (hdeg : ∀ i, (D.nbhd i).card ≤ m) (i : ι) :
     MemLp (fun ω => X i ω * ∑ k ∈ D.nbhd i, X k ω) 2 μ :=
@@ -212,7 +230,9 @@ theorem memLp_locProd {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤ 
 omit [DecidableEq ι] in
 /-- If every variable is bounded in absolute value by a nonnegative constant and each closed
 dependency neighborhood has at most m members, the absolute covariance of any two localized
-products is at most twice the square of m times that bound squared. -/
+products is at most twice the square of m times that bound squared.
+@isnad1 id=le.3h9v.s7.f50664193644 from=translated src=- shape=b2037157 vocab=ba523935
+-/
 theorem abs_cov_locProd_le {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤ B)
     {m : ℕ} (hdeg : ∀ i, (D.nbhd i).card ≤ m) (i j : ι) :
     |covariance (fun ω => X i ω * ∑ k ∈ D.nbhd i, X k ω)
@@ -262,7 +282,9 @@ omit [DecidableEq ι] in
 /-- **Pair-counting variance bound (`herr1`).** With bounded summands `|Xᵢ| ≤ B` and degree
 `≤ m`, the covariance double sum collapses to the `≤ N·m³` pairs at graph distance at most
 three, each
-bounded by `2(mB²)²`, giving `Var(∑ᵢ Xᵢ·Tᵢ) ≤ 2·m⁵·N·B⁴`. -/
+bounded by `2(mB²)²`, giving `Var(∑ᵢ Xᵢ·Tᵢ) ≤ 2·m⁵·N·B⁴`.
+@isnad1 id=le.3h7v.s7.ecfd491097dc from=translated src=- shape=65a19f61 vocab=1fe9b1e3
+-/
 theorem var_nbhd_prod_le {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤ B)
     {m : ℕ} (hdeg : ∀ i, (D.nbhd i).card ≤ m) :
     variance (fun ω => ∑ i, X i ω * ∑ k ∈ D.nbhd i, X k ω) μ
@@ -342,7 +364,9 @@ theorem var_nbhd_prod_le {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| �
 
 omit [DecidableEq ι] in
 /-- **Negligibility bound (`herr2`).** For any finite neighborhoods of size at most `m`, measurable
-summands bounded by `B` satisfy `∑ᵢ E[|Xᵢ|·Tᵢ²] ≤ m²·N·B³`. -/
+summands bounded by `B` satisfy `∑ᵢ E[|Xᵢ|·Tᵢ²] ≤ m²·N·B³`.
+@isnad1 id=le.4h7v.s7.ffb8eee47581 from=translated src=- shape=6751e56b vocab=188ac58d
+-/
 theorem sum_E_nbhd_sq_le (N : ι → Finset ι) (hmeas : ∀ i, Measurable (X i))
     {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ i ω, |X i ω| ≤ B)
     {m : ℕ} (hdeg : ∀ i, (N i).card ≤ m) :
@@ -403,7 +427,9 @@ absolute value by a constant sequence `B n`](hyp:hB,hbound) that [tends to zero]
 zero](hyp:hNB3), and suppose each summand is [mean zero](hyp:hmean) with [the standardized sum
 having unit total variance](hyp:hvar). Then [for every threshold `s`, the CDF of the dependency
 sum under `μ n` at `s` converges, as `n → ∞`, to the standard-normal CDF at `s`](goal). The two
-Stein negligibility limits are derived internally. -/
+Stein negligibility limits are derived internally.
+@isnad1 id=tendsto.7h8v.s8.e003ea83443f from=translated src=- shape=28b7fb50 vocab=487a6f88
+-/
 theorem stein_cdf_clt_of_depGraph
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))
     [∀ n, IsProbabilityMeasure (μ n)]

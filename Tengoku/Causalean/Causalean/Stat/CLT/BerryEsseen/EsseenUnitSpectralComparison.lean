@@ -19,7 +19,9 @@ open MeasureTheory
 and [any positive tolerance ε](hyp:hε), [there is a continuous integrable
 kernel K with integrable Fourier transform that vanishes outside (−1, 1) and
 has magnitude at most one, such that y ↦ H(−y)·K(y) is integrable and H(0)
-is at most twice the absolute value of its integral plus 24/π + ε](goal). -/
+is at most twice the absolute value of its integral plus 24/π + ε](goal).
+@isnad1 id=ex.3h2v.s9.aa88b399ed51 from=translated src=- shape=17f2e82d vocab=8c719e5b
+-/
 theorem exists_esseen_unit_spectral_comparator
     (H : ℝ → ℝ) (hH : Integrable H volume)
     (hdown : ∀ a b : ℝ, a ≤ b → H a ≤ H b + (b - a))

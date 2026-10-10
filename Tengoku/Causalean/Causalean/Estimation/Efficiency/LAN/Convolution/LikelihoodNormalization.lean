@@ -25,7 +25,9 @@ variable {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
 
 /-- If real random variables converge weakly, their exponential limit has expectation one, and
 the row exponential expectations have asymptotic upper bound one, then those expectations tend
-to one.  This is the nonnegative lower-semicontinuous Portmanteau step. -/
+to one.  This is the nonnegative lower-semicontinuous Portmanteau step.
+@isnad1 id=tendsto.6h4v.s7.b7646b50ec1e from=translated src=- shape=c601d361 vocab=5174c410
+-/
 theorem exp_integral_tendsto_one_of_weaklyConverges
     {P : (n : ℕ) → Measure (Ω n)} {X : (n : ℕ) → Ω n → ℝ} {Q : Measure ℝ}
     (hP : ∀ n, IsProbabilityMeasure (P n)) (hQ : IsProbabilityMeasure Q)
@@ -102,7 +104,9 @@ theorem exp_integral_tendsto_one_of_weaklyConverges
     filter_upwards [(tendsto_order.mp hup).2 b hb] with n hn
     exact (hupper n).trans_lt hn
 
-/-- For [a fixed local direction](hyp:h), [a complex observable measurable under both the local and base laws](hyp:hlocal,hbase), [a uniform bound for that observable](hyp:hbounded), and [asymptotic likelihood-ratio normalization](hyp:hnormalized), [its local-law integral and guarded likelihood-ratio base-law integral have vanishing difference](goal). -/
+/-- For [a fixed local direction](hyp:h), [a complex observable measurable under both the local and base laws](hyp:hlocal,hbase), [a uniform bound for that observable](hyp:hbounded), and [asymptotic likelihood-ratio normalization](hyp:hnormalized), [its local-law integral and guarded likelihood-ratio base-law integral have vanishing difference](goal).
+@isnad1 id=tendsto.4h5v.s8.01f5f757ffb2 from=translated src=- shape=46401b74 vocab=7264a83c
+-/
 theorem local_integral_sub_exp_logLikelihoodRatio_integral_tendsto_zero
     {H : Type*} [NormedAddCommGroup H] {E : LocalExperiment Ω H} (h : H)
     {φ : (n : ℕ) → Ω n → ℂ}

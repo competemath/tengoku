@@ -196,7 +196,9 @@ Proof strategy:
 3.  Apply `Complexification.realCFC_norm_le` with the sup-on-spectrum
     bound (real-analysis lemma: for `x ∈ [0, ‖T†T‖]` and `λ > 0`,
     `(λ x^{β/2}/(λ+x))² ≤ biasConst · λ^{min(β,2)}`).
-4.  Square to get the squared-norm bound. -/
+4.  Square to get the squared-norm bound.
+@isnad1 id=le.1h6v.s15.e6f45bd545f6 from=translated src=- shape=fbed7975 vocab=7fc0527d
+-/
 theorem strong_bias (sc : SpectralSourceCondition S β)
     {lambda : ℝ} (lambda_pos : 0 < lambda) :
         ‖S.primalTrimEquiv (S.tikhonovMinimiserL2 lambda) - S.primalTrimEquiv (S.hL2 S.h₀_mem)‖ ^ 2
@@ -381,7 +383,9 @@ Proof strategy:
     identities.
 3.  Use `realCFC_mul` and the action of `realCFC (T†T) id = T†T` to
     obtain a single CFC factor.
-4.  Use `realCFC_norm_le` + Cauchy–Schwarz with the sup analysis. -/
+4.  Use `realCFC_norm_le` + Cauchy–Schwarz with the sup analysis.
+@isnad1 id=le.1h6v.s16.ca058580e7c8 from=translated src=- shape=c953eb34 vocab=c19600a5
+-/
 theorem weak_bias (sc : SpectralSourceCondition S β)
     {lambda : ℝ} (lambda_pos : 0 < lambda) :
         ‖S.TlinTrim (S.primalTrimEquiv (S.tikhonovMinimiserL2 lambda) - S.primalTrimEquiv (S.hL2 S.h₀_mem))‖ ^ 2

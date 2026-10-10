@@ -42,7 +42,9 @@ variable {p : ℕ}
 SEM `M` in which [the single intervened coordinate is `k₀`](hyp:hA). Then [every
 coordinate `k` that is neither `k₀` nor a descendant of `k₀` in the observational
 DAG keeps its observational value almost surely: `Xₖᵉ = Xₖ¹`](goal). (The node
-`k₀` itself is pinned to the assigned constant, hence excluded.) -/
+`k₀` itself is pinned to the assigned constant, hence excluded.)
+@isnad1 id=eventual.1h4v.s7.3167d2dc5694 from=translated src=- shape=42509428 vocab=b7f8502f
+-/
 theorem nonDescendant_invariance (M : ObsSEM p) (e : Env M) (k₀ : Fin (p + 1))
     (hA : e.A = {k₀}) :
     ∀ᵐ ω ∂M.P, ∀ k, k ≠ k₀ → ¬ M.dag.isAncestor k₀ k → e.X ω k = M.X ω k := by

@@ -15,7 +15,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- The square of the real sinc function has finite integral over the real
-line. -/
+line.
+@isnad1 id=integrab.0h0v.s5.a426e935ccbe from=translated src=- shape=ade5f55c vocab=ba47b07d
+-/
 theorem sincSquared_integrable :
     Integrable (fun x : ℝ => Real.sinc x ^ 2) volume := by
   apply (integrable_inv_one_add_sq.const_mul (2 : ℝ)).mono
@@ -52,7 +54,9 @@ theorem sincSquared_integrable :
       nlinarith [sq_nonneg (Real.sin x)]
 
 /-- [The two closed intervals of length two centered at zero and at t overlap in
-a set of Lebesgue length max(2 − |t|, 0)](goal), for [every real t](hyp:t). -/
+a set of Lebesgue length max(2 − |t|, 0)](goal), for [every real t](hyp:t).
+@isnad1 id=eq.0h1v.s6.e718adce36cb from=translated src=- shape=19fa633d vocab=577cbd50
+-/
 theorem centeredUnitIntervals_overlap (t : ℝ) :
     volume.real (Set.Icc (-1 : ℝ) 1 ∩ Set.Icc (t - 1) (t + 1)) =
       max (2 - |t|) 0 := by

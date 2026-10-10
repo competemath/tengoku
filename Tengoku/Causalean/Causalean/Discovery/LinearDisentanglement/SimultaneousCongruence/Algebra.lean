@@ -83,7 +83,9 @@ the finitely many equality cases involving `i` and `j`.  Keep those calculations
 the public API remains independent of the chosen representation by `Matrix.single`. -/
 
 /-- [At zero deformation parameter, the normalized pair deformation is the identity
-matrix](goal). -/
+matrix](goal).
+@isnad1 id=eq.0h6v.s5.8fbfaa54f8a2 from=translated src=- shape=659b4d3e vocab=4f944baf
+-/
 @[simp] theorem normalizedPairDeformation_zero {d : ℕ} (B : SqMatrix d)
     (i j : Fin d) (u v : ℝ) :
     normalizedPairDeformation B i j u v 0 = 1 := by
@@ -97,21 +99,27 @@ matrix](goal). -/
   simp [normalizedPairDeformation, hR, hS]
 
 /-- [At zero deformation parameter, the deformed diagonalizer equals the reference
-diagonalizer](goal). -/
+diagonalizer](goal).
+@isnad1 id=eq.0h6v.s5.4b45e244c756 from=translated src=- shape=19b54d2a vocab=73cfa8da
+-/
 @[simp] theorem deformedDiagonalizer_zero {d : ℕ} (B : SqMatrix d)
     (i j : Fin d) (u v : ℝ) :
     deformedDiagonalizer B i j u v 0 = B := by
   simp [deformedDiagonalizer]
 
 /-- [At zero deformation parameter, the transformed invariant is the original invariant
-matrix](goal). -/
+matrix](goal).
+@isnad1 id=eq.0h8v.s5.ab20edf13e85 from=translated src=- shape=79e5d156 vocab=985f4e48
+-/
 @[simp] theorem deformedInvariant_zero {d : ℕ} (B Ω : SqMatrix d)
     (i j : Fin d) (u v c : ℝ) :
     deformedInvariant B Ω i j u v c 0 = Ω := by
   simp [deformedInvariant, commonShiftCrossTerm, pairSymmetricOffDiagonal]
 
 /-- [At zero deformation parameter, the transformed diagonal shift is the original
-shift](goal). -/
+shift](goal).
+@isnad1 id=eq.0h7v.s5.da38c8c7383d from=translated src=- shape=d5ab3d74 vocab=3a881a7f
+-/
 @[simp] theorem deformedShift_zero {d : ℕ} (B : SqMatrix d)
     (i j : Fin d) (u v : ℝ) (s : Fin d → ℝ) :
     deformedShift B i j u v 0 s = s := by
@@ -119,7 +127,9 @@ shift](goal). -/
   simp [deformedShift]
 
 /-- When [the selected coordinates are distinct](hyp:hij) and [the selected shear-block
-determinant is nonzero](hyp:hdet), [the elementary pair shear is invertible](goal). -/
+determinant is nonzero](hyp:hdet), [the elementary pair shear is invertible](goal).
+@isnad1 id=isunit.2h6v.s6.bcd96c79abff from=translated src=- shape=28975df6 vocab=5b3ef26c
+-/
 theorem pairShear_isUnit_det {d : ℕ} {i j : Fin d} (hij : i ≠ j)
     {u v t : ℝ} (hdet : 1 - t ^ 2 * u * v ≠ 0) :
     IsUnit (pairShear i j u v t).det := by
@@ -134,7 +144,9 @@ prove injectivity of `mulVec`; then use Mathlib's matrix-is-unit/determinant bri
 
 /-- When [the selected coordinates are distinct](hyp:hij) and [both row-normalization
 denominators are nonzero](hyp:hfirst,hsecond), [the diagonal row normalizer is
-invertible](goal). -/
+invertible](goal).
+@isnad1 id=isunit.3h7v.s6.8087aac5dd13 from=translated src=- shape=600b3aff vocab=2a72658c
+-/
 theorem pairRowNormalizer_isUnit_det {d : ℕ} (B : SqMatrix d) {i j : Fin d}
     (hij : i ≠ j) {u v t : ℝ}
     (hfirst : firstNormalizationDenom B i j v t ≠ 0)
@@ -149,7 +161,9 @@ theorem pairRowNormalizer_isUnit_det {d : ℕ} (B : SqMatrix d) {i j : Fin d}
 
 /-- When [the selected coordinates are distinct](hyp:hij), [both normalization
 denominators are nonzero](hyp:hfirst,hsecond), and [the shear determinant is
-nonzero](hyp:hdet), [the normalized pair deformation is invertible](goal). -/
+nonzero](hyp:hdet), [the normalized pair deformation is invertible](goal).
+@isnad1 id=isunit.4h7v.s7.cda5d6c03e30 from=translated src=- shape=f7ea030a vocab=371a6ecb
+-/
 theorem normalizedPairDeformation_isUnit_det {d : ℕ} (B : SqMatrix d)
     {i j : Fin d} (hij : i ≠ j) {u v t : ℝ}
     (hfirst : firstNormalizationDenom B i j v t ≠ 0)
@@ -237,7 +251,9 @@ private theorem deformedDiagonalizer_apply_of_ne {d : ℕ} (B : SqMatrix d)
 
 /-- When [the selected coordinates are distinct](hyp:hij), [the reference diagonal is
 unit-normalized](hyp:hB), and [both normalization denominators are
-nonzero](hyp:hfirst,hsecond), [row normalization restores unit diagonal](goal). -/
+nonzero](hyp:hfirst,hsecond), [row normalization restores unit diagonal](goal).
+@isnad1 id=unitdiag.4h7v.s6.ba25a1be4dd1 from=translated src=- shape=eab87bc8 vocab=0fc6389a
+-/
 theorem deformedDiagonalizer_unitDiagonal {d : ℕ} (B : SqMatrix d)
     {i j : Fin d} (hij : i ≠ j) (hB : UnitDiagonal B) {u v t : ℝ}
     (hfirst : firstNormalizationDenom B i j v t ≠ 0)
@@ -263,7 +279,9 @@ theorem deformedDiagonalizer_unitDiagonal {d : ℕ} (B : SqMatrix d)
 /-- When [the selected coordinates are distinct](hyp:hij), [the reference diagonal is
 unit-normalized](hyp:hB), and [both normalization denominators are
 nonzero](hyp:hfirst,hsecond), [the selected cycle-product defect obeys the stated shear
-identity](goal). -/
+identity](goal).
+@isnad1 id=eq.4h7v.s7.dd9eaca79edd from=translated src=- shape=8fd6270e vocab=ae602d6b
+-/
 theorem deformedDiagonalizer_cycle_identity {d : ℕ} (B : SqMatrix d)
     {i j : Fin d} (hij : i ≠ j) (hB : UnitDiagonal B) {u v t : ℝ}
     (hfirst : firstNormalizationDenom B i j v t ≠ 0)
@@ -285,7 +303,9 @@ the nonzero denominators, to
 /-- When [the selected coordinates are distinct](hyp:hij), [the reference diagonal is
 unit-normalized](hyp:hB), [its selected two-cycle is admissible](hyp:hcycle), [both
 normalization denominators are nonzero](hyp:hfirst,hsecond), and [the shear determinant
-is nonzero](hyp:hdet), [the deformed selected two-cycle remains admissible](goal). -/
+is nonzero](hyp:hdet), [the deformed selected two-cycle remains admissible](goal).
+@isnad1 id=paircycl.6h7v.s7.998809b40150 from=translated src=- shape=9c2a70d1 vocab=7bdd8b77
+-/
 theorem deformedDiagonalizer_pairCycleAdmissible {d : ℕ} (B : SqMatrix d)
     {i j : Fin d} (hij : i ≠ j) (hB : UnitDiagonal B)
     (hcycle : PairCycleAdmissible B i j) {u v t : ℝ}
@@ -303,7 +323,9 @@ theorem deformedDiagonalizer_pairCycleAdmissible {d : ℕ} (B : SqMatrix d)
 /-- When [the selected coordinates are distinct](hyp:hij), [the reference diagonalizer
 is invertible](hyp:hBunit), [the line normal is nonzero](hyp:hnormal), [the deformation
 parameter is nonzero](hyp:ht), and [both normalization denominators are
-nonzero](hyp:hfirst,hsecond), [the deformed diagonalizer differs from the reference](goal). -/
+nonzero](hyp:hfirst,hsecond), [the deformed diagonalizer differs from the reference](goal).
+@isnad1 id=ne.6h7v.s6.fa8835d91fc5 from=translated src=- shape=3533ec41 vocab=a0d8aee2
+-/
 theorem deformedDiagonalizer_ne {d : ℕ} (B : SqMatrix d) {i j : Fin d}
     (hij : i ≠ j) (hBunit : IsUnit B.det) {u v t : ℝ}
     (hnormal : u ≠ 0 ∨ v ≠ 0) (ht : t ≠ 0)
@@ -350,7 +372,9 @@ private theorem deformedShift_sum_squares {d : ℕ} (B : SqMatrix d)
   ring
 
 /-- When [the selected coordinates are distinct](hyp:hij), [the first transformed shift
-is its stated nonnegative weighted sum](goal). -/
+is its stated nonnegative weighted sum](goal).
+@isnad1 id=eq.1h8v.s7.7d6a34525684 from=translated src=- shape=4c576b71 vocab=411f5b9c
+-/
 theorem deformedShift_apply_first {d : ℕ} (B : SqMatrix d) {i j : Fin d}
     (hij : i ≠ j) (u v t : ℝ) (s : Fin d → ℝ) :
     deformedShift B i j u v t s i =
@@ -383,7 +407,9 @@ theorem deformedShift_apply_first {d : ℕ} (B : SqMatrix d) {i j : Fin d}
       ring
 
 /-- When [the selected coordinates are distinct](hyp:hij), [the second transformed shift
-is its stated nonnegative weighted sum](goal). -/
+is its stated nonnegative weighted sum](goal).
+@isnad1 id=eq.1h8v.s7.b42fc93852a5 from=translated src=- shape=aec96c5e vocab=ebdd4805
+-/
 theorem deformedShift_apply_second {d : ℕ} (B : SqMatrix d) {i j : Fin d}
     (hij : i ≠ j) (u v t : ℝ) (s : Fin d → ℝ) :
     deformedShift B i j u v t s j =
@@ -416,7 +442,9 @@ theorem deformedShift_apply_second {d : ℕ} (B : SqMatrix d) {i j : Fin d}
       ring
 
 /-- When [the coordinate is neither selected coordinate](hyp:hki,hkj), [its transformed
-shift is unchanged](goal). -/
+shift is unchanged](goal).
+@isnad1 id=eq.2h9v.s5.26895e9c6d8b from=translated src=- shape=0923c9e3 vocab=3a881a7f
+-/
 theorem deformedShift_apply_of_ne {d : ℕ} (B : SqMatrix d) {i j k : Fin d}
     (hki : k ≠ i) (hkj : k ≠ j) (u v t : ℝ) (s : Fin d → ℝ) :
     deformedShift B i j u v t s k = s k := by
@@ -426,7 +454,9 @@ theorem deformedShift_apply_of_ne {d : ℕ} (B : SqMatrix d) {i j k : Fin d}
 
 /-- When [the selected coordinates are distinct](hyp:hij) and [the original shift is
 coordinatewise nonnegative](hyp:hs), [the transformed shift is coordinatewise
-nonnegative](goal). -/
+nonnegative](goal).
+@isnad1 id=le.2h9v.s6.18f7efe10660 from=translated src=- shape=c18ea033 vocab=f5ee758b
+-/
 theorem deformedShift_nonnegative {d : ℕ} (B : SqMatrix d) {i j : Fin d}
     (hij : i ≠ j) (u v t : ℝ) (s : Fin d → ℝ)
     (hs : ∀ k, 0 ≤ s k) :
@@ -548,7 +578,9 @@ private theorem diagonal_congruence_symm_apply {d : ℕ} (T : SqMatrix d)
 
 /-- When [the selected coordinates are distinct](hyp:hij), [the transformed diagonal
 shift matrix splits into the common symmetric off-diagonal term and its new diagonal
-shift](goal). -/
+shift](goal).
+@isnad1 id=other.1h9v.s7.69e601cfa2f6 from=translated src=- shape=9358ab6c vocab=17ce7f5e
+-/
 theorem pairShear_diagonal_congruence_decomposition {d : ℕ} {E : Type*}
     (B : SqMatrix d) {i j : Fin d} (hij : i ≠ j) (s : E → Fin d → ℝ)
     (cert : AffineLineCertificate s i j) (t : ℝ) (e : E) :
@@ -616,7 +648,9 @@ selected off-diagonal entries both equal the row-scale product times
 `t * (cert.u * s e i + cert.v * s e j)`, which rewrites with `cert.equation e`. -/
 
 /-- When [the selected coordinates are distinct](hyp:hij), [the latent congruence is
-exactly the deformed invariant plus the transformed diagonal shift](goal). -/
+exactly the deformed invariant plus the transformed diagonal shift](goal).
+@isnad1 id=other.1h10v.s7.e2089e1bcc6e from=translated src=- shape=44c46de8 vocab=d3f68dfe
+-/
 theorem total_congruence_decomposition {d : ℕ} {E : Type*}
     (B Ω : SqMatrix d) {i j : Fin d} (hij : i ≠ j) (s : E → Fin d → ℝ)
     (cert : AffineLineCertificate s i j) (t : ℝ) (e : E) :
@@ -634,7 +668,9 @@ theorem total_congruence_decomposition {d : ℕ} {E : Type*}
 observational equivalence for [diagonalizer `B`, invariant `Ω`, shifts `s`, certificate `cert`,
 parameter `t`, and environment `e`](hyp:B,Ω,s,cert,t,e) over [environment type `E`](hyp:E) in
 [dimension `d`](hyp:d), when [coordinates `i,j` are distinct](hyp:i,j,hij), [the reference is
-invertible](hyp:hB), and [the normalized deformation is invertible](hyp:hT). -/
+invertible](hyp:hB), and [the normalized deformation is invertible](hyp:hT).
+@isnad1 id=eq.3h10v.s7.ee26f19c3e71 from=translated src=- shape=f0fffec8 vocab=28248d06
+-/
 theorem representedCovariance_deformation_eq {d : ℕ} {E : Type*}
     (B Ω : SqMatrix d) {i j : Fin d} (hij : i ≠ j) (s : E → Fin d → ℝ)
     (cert : AffineLineCertificate s i j) (t : ℝ) (e : E)
@@ -667,7 +703,9 @@ theorem representedCovariance_deformation_eq {d : ℕ} {E : Type*}
 /-- [An invertible representation with positive invariant and nonnegative shifts produces a
 positive-definite covariance](goal), for [diagonalizer `B`, invariant `Ω`, and shift
 `s`](hyp:B,Ω,s) in [dimension `d`](hyp:d), under [invertibility](hyp:hB), [positive
-definiteness](hyp:hΩ), and [coordinatewise nonnegativity](hyp:hs). -/
+definiteness](hyp:hΩ), and [coordinatewise nonnegativity](hyp:hs).
+@isnad1 id=posdef.3h4v.s6.88451e7661d4 from=translated src=- shape=2c573718 vocab=601c4fcf
+-/
 theorem representedCovariance_posDef {d : ℕ} (B Ω : SqMatrix d)
     (s : Fin d → ℝ) (hB : IsUnit B.det) (hΩ : Ω.PosDef)
     (hs : ∀ k, 0 ≤ s k) :
@@ -681,7 +719,9 @@ theorem representedCovariance_posDef {d : ℕ} (B Ω : SqMatrix d)
   simpa [representedCovariance] using hsum.mul_mul_conjTranspose_same hinj
 
 /-- When [the selected coordinates are distinct](hyp:hij) and [the original invariant
-is symmetric](hyp:hΩ), [the deformed invariant is symmetric](goal). -/
+is symmetric](hyp:hΩ), [the deformed invariant is symmetric](goal).
+@isnad1 id=issymm.2h9v.s5.723f5a6ad678 from=translated src=- shape=428d16cf vocab=a486193f
+-/
 theorem deformedInvariant_isSymm {d : ℕ} (B Ω : SqMatrix d) {i j : Fin d}
     (hij : i ≠ j) (hΩ : Ω.IsSymm) (u v c t : ℝ) :
     (deformedInvariant B Ω i j u v c t).IsSymm := by

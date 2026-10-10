@@ -74,7 +74,9 @@ abbrev target (p : ℕ) : Fin (p + 1) := 0
 excluding the target stored at coordinate zero. -/
 def predictors (p : ℕ) : Finset (Fin (p + 1)) := Finset.univ.erase 0
 
-/-- A node is a predictor exactly when it is not the target node. -/
+/-- A node is a predictor exactly when it is not the target node.
+@isnad1 id=iff.0h2v.s7.507fa1a029dd from=translated src=- shape=50fd20d8 vocab=fb3abc52
+-/
 @[simp] theorem mem_predictors {k : Fin (p + 1)} : k ∈ predictors p ↔ k ≠ 0 := by
   simp [predictors]
 
@@ -152,7 +154,9 @@ This is the set the completeness theorem recovers. -/
 def paY : Finset (Fin (p + 1)) := M.dag.parents (target p)
 
 /-- `PA(Y)` consists of predictors only (`0 ∉ PA(Y)`): the target is acyclic, so
-it is not its own parent. -/
+it is not its own parent.
+@isnad1 id=le.0h2v.s6.d254a302aad9 from=translated src=- shape=8f1e6d17 vocab=4927e120
+-/
 theorem paY_subset_predictors : M.paY ⊆ predictors p := by
   intro k hk
   rw [mem_predictors]
@@ -161,7 +165,9 @@ theorem paY_subset_predictors : M.paY ⊆ predictors p := by
 
 /-- [A coordinate is a direct cause of the target exactly when its target-equation coefficient is
 nonzero](goal), for [SEM `M`](hyp:M) with [predictor dimension `p`](hyp:p) and [coordinate
-`k`](hyp:k). -/
+`k`](hyp:k).
+@isnad1 id=iff.0h3v.s6.a25b7721334a from=translated src=- shape=3c637713 vocab=10b897ba
+-/
 theorem mem_paY {k : Fin (p + 1)} : k ∈ M.paY ↔ M.β (target p) k ≠ 0 := by
   rw [paY, M.dag.mem_parents, M.hEdge]
 

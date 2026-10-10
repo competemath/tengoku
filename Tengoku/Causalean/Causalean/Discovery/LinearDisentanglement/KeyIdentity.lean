@@ -34,7 +34,9 @@ private theorem conj_vecMulVec {l m n : ℕ} (A : Matrix (Fin l) (Fin m) ℝ)
   rw [Matrix.mul_vecMulVec, Matrix.vecMulVec_mul, ← Matrix.mulVec_transpose]
 
 /-- **Fact (rank-one decomposition).**  For any square `B`, `BᵀB = Σᵢ (Bᵀeᵢ)⊗²`,
-where `v⊗² = v vᵀ` (`Matrix.vecMulVec v v`). -/
+where `v⊗² = v vᵀ` (`Matrix.vecMulVec v v`).
+@isnad1 id=eq.0h2v.s7.6cd783155037 from=translated src=- shape=418b95f6 vocab=cbd323d0
+-/
 theorem fact_transpose_mul (B : Matrix (Fin d) (Fin d) ℝ) :
     B.transpose * B
       = ∑ i, Matrix.vecMulVec (B.transpose *ᵥ stdVec d i) (B.transpose *ᵥ stdVec d i) := by
@@ -46,7 +48,9 @@ theorem fact_transpose_mul (B : Matrix (Fin d) (Fin d) ℝ) :
 [an interventional context k with target iₖ](hyp:k), [the difference of precision matrices
 `Θ_k − Θ₀` equals exactly the difference between two outer products: one built from the
 target row of the interventional structural matrix, and one built from the target row of the
-observational structural matrix](goal). -/
+observational structural matrix](goal).
+@isnad1 id=eq.0h5v.s8.15b2fafe1b86 from=translated src=- shape=a96f5636 vocab=997ceba9
+-/
 theorem key_identity (S : Solution d p K) (k : Fin K) :
     S.Theta k - S.Theta0
       = Matrix.vecMulVec

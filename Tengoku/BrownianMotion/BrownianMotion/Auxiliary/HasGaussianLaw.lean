@@ -17,6 +17,9 @@ section charFun
 
 variable [Fintype ι]
 
+/--
+@isnad1 id=eq.1h6v.s8.289428c64daa from=translated src=- shape=c4451d0d vocab=055aaf0e
+-/
 lemma HasGaussianLaw.charFun_toLp_pi {X : ι → Ω → ℝ} (hX : HasGaussianLaw (fun ω ↦ (X · ω)) P)
     (ξ : EuclideanSpace ℝ ι) :
     charFun (P.map (fun ω ↦ toLp 2 (X · ω))) ξ =
@@ -35,6 +38,9 @@ lemma HasGaussianLaw.charFun_toLp_pi {X : ι → Ω → ℝ} (hX : HasGaussianLa
     · exact aestronglyMeasurable_id
   · exact fun i ↦ (hX.eval i).memLp_two
 
+/--
+@isnad1 id=eq.1h6v.s9.65710e018835 from=translated src=- shape=0e6a6c7b vocab=cfc1abb1
+-/
 lemma HasGaussianLaw.charFun_toLp_prodMk {X Y : Ω → ℝ} (hXY : HasGaussianLaw (fun ω ↦ (X ω, Y ω)) P)
     (ξ : WithLp 2 (ℝ × ℝ)) :
     charFun (P.map (fun ω ↦ toLp 2 (X ω, Y ω))) ξ =
@@ -67,6 +73,9 @@ variable [Finite ι]
 
 variable {X Y : Ω → ℝ} {μX μY : ℝ} {vX vY : ℝ≥0}
 
+/--
+@isnad1 id=haslaw.4h9v.s7.ef4d463a19ff from=translated src=- shape=9a3d5551 vocab=99dac13a
+-/
 lemma IndepFun.hasLaw_sub_of_gaussian
     (hX : HasLaw X (gaussianReal μX vX) P) (hY : HasLaw Y (gaussianReal μY vY) P)
     (h1 : IndepFun X (Y - X) P) (h2 : vX ≤ vY) :
@@ -86,6 +95,9 @@ lemma IndepFun.hasLaw_sub_of_gaussian
         ring
       all_goals fun_prop
 
+/--
+@isnad1 id=haslaw.3h9v.s6.106c2bb789b6 from=translated src=- shape=6588d3f0 vocab=0a7290d8
+-/
 lemma IndepFun.hasLaw_gaussianReal_of_add
     (hX : HasLaw X (gaussianReal μX vX) P) (hY : HasLaw (X + Y) (gaussianReal μY vY) P)
     (h : IndepFun X Y P) :
@@ -101,6 +113,9 @@ lemma IndepFun.hasLaw_gaussianReal_of_add
   · convert hY.hasGaussianLaw.memLp_two.sub hX.hasGaussianLaw.memLp_two
     simp
 
+/--
+@isnad1 id=hasgauss.3h5v.s6.a894953790f1 from=translated src=- shape=8915b5c4 vocab=d37b1c95
+-/
 lemma IndepFun.hasGaussianLaw_of_add_real
     (hX : HasGaussianLaw X P) (hY : HasGaussianLaw (X + Y) P) (h : IndepFun X Y P) :
     HasGaussianLaw Y P where

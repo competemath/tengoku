@@ -24,7 +24,9 @@ open MeasureTheory ProbabilityTheory
 [a positive bandwidth T](hyp:hT), [the convolution at every point z of their
 CDF difference with the fourth-power sinc density is bounded in absolute
 value by 1/(2π) times the integral over [−T, T] of their
-characteristic-function discrepancy divided by |t|](goal). -/
+characteristic-function discrepancy divided by |t|](goal).
+@isnad1 id=le.3h4v.s8.63ff04f19cbe from=translated src=- shape=72af2da6 vocab=f403d330
+-/
 theorem sinc4_smoothed_cdf_fourier_bound
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

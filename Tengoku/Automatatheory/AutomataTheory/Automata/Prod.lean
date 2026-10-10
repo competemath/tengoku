@@ -29,6 +29,9 @@ def NA.Prod (M : I → NA A) : NA A where
 
 variable {M : I → NA A}
 
+/--
+@isnad1 id=iff.0h6v.s5.22356fc1d109 from=translated src=- shape=2d9c992d vocab=53d7d41d
+-/
 theorem na_prod_fin_run {n : ℕ} {as : Stream' A} {ss : Stream' (NA.Prod M).State} :
     (NA.Prod M).FinRun n as ss ↔ ∀ i, (M i).FinRun n as (fun k ↦ ss k i) := by
   constructor
@@ -41,6 +44,9 @@ theorem na_prod_fin_run {n : ℕ} {as : Stream' A} {ss : Stream' (NA.Prod M).Sta
     · intro i ; exact (h_all i).1
     · intro k h_k i ; exact (h_all i).2 k h_k
 
+/--
+@isnad1 id=iff.0h5v.s5.f03986de2aa9 from=translated src=- shape=7ce5a44f vocab=51670d9f
+-/
 theorem na_prod_inf_run {as : Stream' A} {ss : Stream' (NA.Prod M).State} :
     (NA.Prod M).InfRun as ss ↔ ∀ i, (M i).InfRun as (fun k ↦ ss k i) := by
   constructor
@@ -63,6 +69,7 @@ def NA.Prod_Acc : Set (NA.Prod M).State := { s | ∀ i, (s i) ∈ (acc i) }
 
 /-- The language accepted by the product NA is the intersection of the languages
 accepted by the component automata.
+@isnad1 id=eq.0h4v.s5.08b2f289dbfe from=translated src=- shape=e322ea9a vocab=20853568
 -/
 theorem acc_lang_inter [Inhabited A] :
     (NA.Prod M).AcceptedLang (NA.Prod_Acc M acc) = ⋂ i : I, (M i).AcceptedLang (acc i) := by

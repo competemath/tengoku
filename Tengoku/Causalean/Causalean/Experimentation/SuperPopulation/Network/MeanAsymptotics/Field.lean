@@ -85,13 +85,17 @@ noncomputable def centeredNormalizedField (s : ℝ) : NetworkDependence V Ω μ 
     exact h.comp hφ hψ
 
 /-- [The standardized summand for unit `i` at sample point `ω` is the centered outcome
-`Yᵢ ω − E[Yᵢ]` divided by the normalizing constant `s`](goal). -/
+`Yᵢ ω − E[Yᵢ]` divided by the normalizing constant `s`](goal).
+@isnad1 id=eq.2h10v.s8.780a8a7d2ea6 from=translated src=- shape=f0f42b03 vocab=16b6df46
+-/
 @[simp] theorem centeredNormalizedField_X (s : ℝ) (i : V) (ω : Ω) :
     (centeredNormalizedField Y adj hrefl hsymm hmeasY hindepY s).X i ω
       = (Y i ω - ∫ x, Y i x ∂μ) / s := rfl
 
 /-- [The interference network underlying the standardized field is exactly the supplied network
-`adj`](goal). -/
+`adj`](goal).
+@isnad1 id=eq.2h8v.s8.9ec2ed9e069a from=translated src=- shape=dd87c2ed vocab=8d6d775d
+-/
 @[simp] theorem centeredNormalizedField_adj (s : ℝ) :
     (centeredNormalizedField Y adj hrefl hsymm hmeasY hindepY s).adj = adj := rfl
 

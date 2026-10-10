@@ -14,7 +14,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory ProbabilityTheory
 
 /-- [The standard Gaussian characteristic function differs from its quadratic
-Taylor polynomial 1 − t²/2 by at most t⁴/8 at every real frequency t](goal). -/
+Taylor polynomial 1 − t²/2 by at most t⁴/8 at every real frequency t](goal).
+@isnad1 id=le.0h1v.s7.efc3316095de from=translated src=- shape=8e58de33 vocab=83b7a842
+-/
 theorem gaussian_charFun_quadratic_remainder (t : ℝ) :
     ‖charFun (gaussianReal 0 1) t -
       ((1 : ℂ) - (t : ℂ) ^ 2 / 2)‖ ≤ |t| ^ 4 / 8 := by

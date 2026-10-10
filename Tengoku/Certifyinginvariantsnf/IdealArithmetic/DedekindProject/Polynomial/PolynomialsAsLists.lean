@@ -43,9 +43,15 @@ def List.dropTrailingZeros [Zero R] [DecidableEq R] : List R → List R
   | [] => []
   | x :: xs => if x ≠ 0 ∨ xs.any (fun x => x ≠ 0) then x :: xs.dropTrailingZeros else []
 
+/--
+@isnad1 id=eq.0h1v.s4.ad6b3c7ddc86 from=translated src=- shape=d7ff9a0e vocab=f0a7dbfc
+-/
 @[simp] lemma List.dropTrailingZeros_nil [Zero R]  [DecidableEq R]:
     List.dropTrailingZeros (R := R) [] = [] := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.8261d67d1822 from=translated src=- shape=a1d56d7a vocab=0c78ce08
+-/
 @[simp] lemma List.dropTrailingZeros_eq_empty [Zero R]  [DecidableEq R](xs : List R)
   (hxs : xs.all fun x => x = 0) :
     List.dropTrailingZeros (R := R) (0 :: xs) = [] := ite_eq_right (by aesop)
@@ -65,21 +71,33 @@ def List.dropTrailingZeros' [Zero R][DecidableEq R] : List R → List R
 
 ------------------------------------------------
 
+/--
+@isnad1 id=eq.0h2v.s4.bd16ee42ba2d from=translated src=- shape=2c343361 vocab=1b80798c
+-/
 @[simp]
 lemma addPointwise_nil_left [AddMonoid R] (l : List R) : List.addPointwise [] l = l := by
   induction l
   rfl ; rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c559c369a1e6 from=translated src=- shape=807c4d20 vocab=1b80798c
+-/
 @[simp]
 lemma addPointwise_nil_right [AddMonoid R] (l : List R) : List.addPointwise l [] = l := by
   induction l
   rfl ; rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.9ee1b00f187d from=translated src=- shape=c399a65d vocab=d8b662e8
+-/
 @[simp]
 lemma addPointwise_cons [AddMonoid R] (x y : R) (l l' : List R) :
     List.addPointwise (x :: l) (y :: l') = (x + y) :: (List.addPointwise l l') := by
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.e7445cd0b0bf from=translated src=- shape=bd90f9ee vocab=2ab42701
+-/
 lemma List.dropTrailingZeros_of_zero [Zero R] [DecidableEq R]
     (l : List R) (h : ∀ x ∈ l, x = 0) : l.dropTrailingZeros = [] := by
   match l with
@@ -94,6 +112,9 @@ lemma List.dropTrailingZeros_of_zero [Zero R] [DecidableEq R]
     · simp only [dropTrailingZeros, ne_eq, decide_not, any_eq_true, Bool.not_eq_eq_eq_not,
       Bool.not_true, decide_eq_false_iff_not, h2, ↓reduceIte]
 
+/--
+@isnad1 id=ex.1h2v.s5.4095b505b942 from=translated src=- shape=d1108e14 vocab=bdeb2e49
+-/
 lemma List.dropTrailingZeros_ne_zero_of_ne_zero [Zero R] [DecidableEq R]
     (l : List R) (h : ∃ x ∈ l, x ≠ 0) : ∃ x ∈ l.dropTrailingZeros, x ≠ 0 := by
   induction l with
@@ -105,6 +126,9 @@ lemma List.dropTrailingZeros_ne_zero_of_ne_zero [Zero R] [DecidableEq R]
     · exact Or.inl h1
     · exact not_or_of_imp fun _ => ha h2
 
+/--
+@isnad1 id=eq.0h2v.s4.2f68c05ec004 from=translated src=- shape=12f82b81 vocab=2747adb5
+-/
 lemma dropTrailingZeros_iter [Zero R] (l : List R) [DecidableEq R] :
     l.dropTrailingZeros =  (l.dropTrailingZeros).dropTrailingZeros := by
   induction l with
@@ -124,6 +148,9 @@ lemma dropTrailingZeros_iter [Zero R] (l : List R) [DecidableEq R] :
       simp only [List.dropTrailingZeros, ne_eq, decide_not, List.any_eq_true, Bool.not_eq_true',
         decide_eq_false_iff_not, h, ↓reduceIte, List.dropTrailingZeros]
 
+/--
+@isnad1 id=le.0h2v.s4.5e25017d11fe from=translated src=- shape=48bae449 vocab=15239a35
+-/
 lemma dropTrailingZeros_length [Zero R] [DecidableEq R] (l : List R) :
     (l.dropTrailingZeros).length ≤ l.length := by
   induction l with
@@ -158,6 +185,9 @@ instance [One R] : One (List R) where
 instance : Zero (List R) where
   zero := []
 
+/--
+@isnad1 id=eq.0h1v.s4.3282074285c1 from=translated src=- shape=5e1f9489 vocab=280ff05b
+-/
 lemma zero_def : (0 : List R) = [] := rfl
 
 instance [Semiring R] : NatPow (List R)  where
@@ -178,42 +208,75 @@ instance [Semiring R] : MulZeroClass (List R) where
     intro a
     induction a ; repeat rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.8172a34c97a4 from=translated src=- shape=00a3e51d vocab=ba102663
+-/
 lemma List.zero_def [Zero R] : (0 : List R) = [] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.c6dde093f092 from=translated src=- shape=c1ba714d vocab=71dceb17
+-/
 lemma List.one_def [One R] : (1 : List R) = [1] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.cf024abb8ca3 from=translated src=- shape=affe6082 vocab=784f36d3
+-/
 lemma List.add_def [AddMonoid R] (l₁ l₂ : List R) : l₁ + l₂ = l₁.addPointwise l₂ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.32af12e28ce7 from=translated src=- shape=affe6082 vocab=016c7663
+-/
 lemma List.mul_def [Semiring R] (l₁ l₂ : List R) : l₁ * l₂ = l₁.convolve l₂ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.bdd5a5db1069 from=translated src=- shape=b2fe649d vocab=55086f22
+-/
 lemma List.pow_def [Semiring R] (l : List R) (n : ℕ): l ^ n = npowRec n l := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.ce61369b89bc from=translated src=- shape=1fd9a610 vocab=3841f7d1
+-/
 lemma List.neg_def [AddGroup R] (l : List R) : - l  = l.neg := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.56216e9ff4a5 from=translated src=- shape=1b7eaeb8 vocab=7dfc27b6
+-/
 @[simp]
 lemma List.mul_nil [Semiring R] (l : List R) : l * [] = [] := by
   induction l
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.fbe508465014 from=translated src=- shape=f48447af vocab=7dfc27b6
+-/
 @[simp]
 lemma List.nil_mul [Semiring R] (l : List R) : [] * l = [] := by
   induction l
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.07a8fce55879 from=translated src=- shape=65ba3423 vocab=083553b5
+-/
 @[simp]
 lemma List.nil_add [AddMonoid R] (l : List R) : [] + l = l := by
   induction l
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.363dab31a7c3 from=translated src=- shape=0a5bcad6 vocab=083553b5
+-/
 @[simp]
 lemma List.add_nil [AddMonoid R] (l : List R) : l + [] = l := by
   induction l
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.30825b457c2b from=translated src=- shape=d71b45ea vocab=dd95b587
+-/
 lemma List.neg_eq_neg_one_mul [Ring R] (l : List R) : l.neg = [- 1] * l := by
   match l with
   | [] => rfl
@@ -223,6 +286,9 @@ lemma List.neg_eq_neg_one_mul [Ring R] (l : List R) : l.neg = [- 1] * l := by
     · simp only [neg_mul, one_mul, mul_zero, add_zero]
     · simp only [neg_mul, one_mul, convolve, map_nil, addPointwise]
 
+/--
+@isnad1 id=eq.0h3v.s5.43015b565b36 from=translated src=- shape=c08f1e10 vocab=808ab1ca
+-/
 lemma List.add_length [AddMonoid R] (l₁ l₂ : List R) :
     (l₁ + l₂).length = max l₁.length l₂.length := by
   have : ∀ (l : List R), (l₁ + l).length = max l₁.length l.length := by
@@ -243,11 +309,17 @@ lemma List.add_length [AddMonoid R] (l₁ l₂ : List R) :
         exact (Nat.succ_max_succ (length as) (length bs)).symm
   exact this l₂
 
+/--
+@isnad1 id=eq.0h3v.s4.261c8925641e from=translated src=- shape=abb23ec0 vocab=231af49b
+-/
 lemma List.mulPointwise_length [Semiring R] (l : List R) (a : R) :
     (List.mulPointwise a l).length = l.length := by
   unfold mulPointwise
   simp only [length_map]
 
+/--
+@isnad1 id=eq.0h3v.s5.e9009259059a from=translated src=- shape=95903e02 vocab=1b369854
+-/
 lemma List.mul_eq_mulPointwise [Semiring R] (l : List R) (a : R) :
     [a] * l = List.mulPointwise a l :=
   match l with
@@ -259,10 +331,16 @@ lemma List.mul_eq_mulPointwise [Semiring R] (l : List R) (a : R) :
 
 /- Lemmas relating operations on functions `Fin n → R` and lists. -/
 
+/--
+@isnad1 id=eq.0h4v.s5.ae9472f4cf86 from=translated src=- shape=fb543bb5 vocab=91144685
+-/
 lemma List.add_length_ofFn [AddMonoid R] (a b : Fin n →  R):
     List.length ((List.ofFn a) + (List.ofFn b)) = n := by
   simp only [List.add_length, length_ofFn, max_self]
 
+/--
+@isnad1 id=eq.0h4v.s6.3d209cb192c5 from=translated src=- shape=55cf6e5a vocab=ea646125
+-/
 lemma List.add_ofFn [AddMonoid R] (a b : Fin n →  R) :
     (List.ofFn a) + (List.ofFn b) = List.ofFn (a + b) := by
   induction n with
@@ -276,6 +354,9 @@ lemma List.add_ofFn [AddMonoid R] (a b : Fin n →  R) :
 
 variable [Semiring R]
 
+/--
+@isnad1 id=eq.0h4v.s5.7567fbb0a705 from=translated src=- shape=3cef5579 vocab=cd160114
+-/
 lemma List.mulPointwise_ofFn (a : Fin n → R) (c : R) :
     List.mulPointwise c (List.ofFn a) = List.ofFn (c • a) := by
   match n with
@@ -289,6 +370,9 @@ lemma List.mulPointwise_ofFn (a : Fin n → R) (c : R) :
       true_and]
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.80ef65900182 from=translated src=- shape=eb984fde vocab=62c0beb3
+-/
 lemma List.sum_ofFn' {m n : ℕ} (hm : m ≠ 0) (f : Fin m → (Fin n → R)) :
     List.ofFn (∑ i, f i) = List.sum (List.ofFn (fun i => List.ofFn (f i))) := by
   induction m with
@@ -306,6 +390,9 @@ lemma List.sum_ofFn' {m n : ℕ} (hm : m ≠ 0) (f : Fin m → (Fin n → R)) :
 /- Properties of `ofList` -/
 
 omit [Semiring R] in
+/--
+@isnad1 id=eq.0h1v.s4.3282074285c1 from=translated src=- shape=5e1f9489 vocab=280ff05b
+-/
 lemma List.zero_eq : (0 : List R) = [] := rfl
 
 variable [DecidableEq R]
@@ -316,6 +403,9 @@ def Polynomial.toList [DecidableEq R] (p : Polynomial R) : List R :=
 
 -----------------------
 
+/--
+@isnad1 id=dvd.1h3v.s6.8f2827325940 from=translated src=- shape=03bbaa31 vocab=55db4587
+-/
 lemma List.dvd_foldl_gcd {R : Type u} [CommSemiring R] [IsDomain R]
     [DecidableEq R] [GCDMonoid R] (x : R) (l : List R) (hdvd : ∀ a, a ∈ l → x ∣ a) :
     x ∣ List.foldr gcd 0 l := by
@@ -333,11 +423,17 @@ lemma List.dvd_foldl_gcd {R : Type u} [CommSemiring R] [IsDomain R]
 def FnOfList {α : Type*} (n : ℕ) (l : List α) (hl : l.length = n) : Fin n → α :=
   fun (i : Fin n) => (l.get (Fin.cast hl.symm i))
 
+/--
+@isnad1 id=eq.1h3v.s4.0ed7fa9f5e4a from=translated src=- shape=acc8d326 vocab=b9b0fb25
+-/
 lemma listOfFn_of_FnOfList
   {α : Type*}(n : ℕ)(l : List α)(hl : l.length = n) : List.ofFn (FnOfList n l hl) = l := by
   unfold FnOfList
   rw [← List.ofFn_congr hl _, List.ofFn_get]
 
+/--
+@isnad1 id=eq.0h3v.s4.8a856013fb85 from=translated src=- shape=eac2ae25 vocab=f4544a70
+-/
 lemma FnOfList_of_OfFn {α : Type*} (n : ℕ) (a : Fin n → α) :
     FnOfList n (List.ofFn a) (List.length_ofFn) = a := by
   unfold FnOfList

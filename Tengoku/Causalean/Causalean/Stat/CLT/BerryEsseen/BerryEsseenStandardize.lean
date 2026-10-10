@@ -15,7 +15,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- Dividing a centered scalar law by its positive standard deviation gives
 an integrable law of mean zero and variance one; its third absolute moment
-is divided by the cube of that standard deviation. -/
+is divided by the cube of that standard deviation.
+@isnad1 id=other.7h3v.s9.b54a83dc753e from=translated src=- shape=161186b8 vocab=b6ff1fe7
+-/
 theorem standardized_law_moments
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (σ2 M3 : ℝ) (hσ2 : 0 < σ2)
@@ -66,7 +68,9 @@ theorem standardized_law_moments
 most x" the same probability as the n-fold iid product of the law rescaled by
 1/√σ2 gives the event "sum divided by √n is at most x"](goal): standardizing
 each coordinate before summing is the same as standardizing the sum
-afterward. -/
+afterward.
+@isnad1 id=eq.1h4v.s8.5296ddd1a237 from=translated src=- shape=d8a01a6b vocab=ea686b83
+-/
 theorem standardized_iid_sum_event
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (σ2 : ℝ) (hσ2 : 0 < σ2)

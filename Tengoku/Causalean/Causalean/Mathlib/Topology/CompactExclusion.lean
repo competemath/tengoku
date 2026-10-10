@@ -53,7 +53,9 @@ residual](hyp:r), and [a reference point](hyp:x₀), if [the candidate set is co
 [the residual is continuous](hyp:hr_cont),
 [the residual is nonnegative on candidates](hyp:hr_nonneg),
 and [its only zero among candidates is the reference](hyp:hr_zero), then [the far set has a
-strictly positive attained residual minimum](goal). -/
+strictly positive attained residual minimum](goal).
+@isnad1 id=nonempty.8h5v.s6.da43950c3932 from=translated src=- shape=bfceaf7a vocab=945cc1bb
+-/
 -- Proof route: `K \ U = K ∩ Uᶜ` is compact.  Apply `IsCompact.exists_isMinOn` to `r`
 -- on this nonempty far set.  Nonnegativity makes the minimum nonnegative; equality to
 -- zero forces its minimizer to be `x₀`, contradicting `x₀ ∈ U`.
@@ -125,7 +127,9 @@ structure UniformPositiveExclusionRadius {P X : Type*} [TopologicalSpace P]
 /-- Given [a feasible correspondence](hyp:K), [a reference section](hyp:x₀), and
 [a radius function](hyp:ρ), if [the correspondence is compact](hyp:hK),
 [the reference section is continuous](hyp:hx₀), and [the radius function is continuous](hyp:hρ),
-then [the parameter-dependent far feasible set is closed](goal). -/
+then [the parameter-dependent far feasible set is closed](goal).
+@isnad1 id=isclosed.3h5v.s6.94a16f3bb57a from=translated src=- shape=76de2daa vocab=5f6d6d8d
+-/
 theorem isClosed_farFeasibleSet {P X : Type*} [TopologicalSpace P] [T2Space P]
     [MetricSpace X] (K : Set (P × X)) (x₀ : P → X) (ρ : P → ℝ)
     (hK : IsCompact K) (hx₀ : Continuous x₀) (hρ : Continuous ρ) :
@@ -136,7 +140,9 @@ theorem isClosed_farFeasibleSet {P X : Type*} [TopologicalSpace P] [T2Space P]
 
 /-- Given [a feasible correspondence](hyp:K), [a reference section](hyp:x₀), and
 [a radius function](hyp:ρ), if [the correspondence is compact](hyp:hK) and
-[its far feasible set is closed](hyp:hfar), then [the far feasible set is compact](goal). -/
+[its far feasible set is closed](hyp:hfar), then [the far feasible set is compact](goal).
+@isnad1 id=iscompac.2h5v.s6.8137dd1443d1 from=translated src=- shape=6b1622fb vocab=eae75a00
+-/
 theorem isCompact_farFeasibleSet_of_isClosed {P X : Type*} [TopologicalSpace P]
     [PseudoMetricSpace X] (K : Set (P × X)) (x₀ : P → X) (ρ : P → ℝ)
     (hK : IsCompact K) (hfar : IsClosed (farFeasibleSet K x₀ ρ)) :
@@ -150,7 +156,9 @@ theorem isCompact_farFeasibleSet_of_isClosed {P X : Type*} [TopologicalSpace P]
 [the residual is nonnegative on feasible pairs](hyp:hr_nonneg),
 [only the reference candidate has zero residual among feasible pairs](hyp:hr_zero), and
 [every radius is strictly positive](hyp:hρ_pos), then [some far pair attains a strictly
-positive residual minimum on the far feasible set](goal). -/
+positive residual minimum on the far feasible set](goal).
+@isnad1 id=nonempty.7h6v.s7.33afd79e9c1b from=translated src=- shape=4e72c4be vocab=c47276be
+-/
 theorem exists_uniformPositiveExclusionRadius_of_isClosed
     {P X : Type*} [TopologicalSpace P] [PseudoMetricSpace X]
     (K : Set (P × X)) (x₀ : P → X) (r : P × X → ℝ) (ρ : P → ℝ)
@@ -187,7 +195,9 @@ theorem exists_uniformPositiveExclusionRadius_of_isClosed
 [the residual is nonnegative on feasible pairs](hyp:hr_nonneg), and
 [only the reference candidate has zero residual among feasible pairs](hyp:hr_zero), then
 [either no far feasible pair exists or one attains a strictly positive uniform residual
-minimum](goal). -/
+minimum](goal).
+@isnad1 id=or.7h6v.s7.5247783538ff from=translated src=- shape=4ae33f4f vocab=763d64c0
+-/
 theorem uniformCompactCorrespondence_dichotomy
     {P X : Type*} [TopologicalSpace P] [T2Space P] [MetricSpace X]
     (K : Set (P × X)) (x₀ : P → X) (r : P × X → ℝ) (ρ : P → ℝ)
@@ -212,7 +222,9 @@ theorem uniformCompactCorrespondence_dichotomy
 [the residual is nonnegative on feasible pairs](hyp:hr_nonneg), and
 [only the reference candidate has zero residual among feasible pairs](hyp:hr_zero), then
 [either the far feasible set is empty or a far pair and its strictly positive attained residual
-minimum can be exhibited explicitly](goal). -/
+minimum can be exhibited explicitly](goal).
+@isnad1 id=or.7h6v.s8.3fe0d81e674f from=translated src=- shape=22b10313 vocab=817358e9
+-/
 theorem uniformCompactCorrespondence_dichotomy_explicit
     {P X : Type*} [TopologicalSpace P] [T2Space P] [MetricSpace X]
     (K : Set (P × X)) (x₀ : P → X) (r : P × X → ℝ) (ρ : P → ℝ)
@@ -232,7 +244,9 @@ theorem uniformCompactCorrespondence_dichotomy_explicit
 
 /-- Given [a uniform positive exclusion radius](hyp:h), [a feasible pair](hyp:hK), and
 [a residual strictly below that radius](hyp:hr), then [the candidate lies strictly inside its
-parameter-dependent reference neighborhood](goal). -/
+parameter-dependent reference neighborhood](goal).
+@isnad1 id=lt.2h9v.s6.8006b4be3ac2 from=translated src=- shape=a9ec9f71 vocab=66e17ccb
+-/
 theorem UniformPositiveExclusionRadius.dist_lt_of_residual_lt
     {P X : Type*} [TopologicalSpace P] [PseudoMetricSpace X]
     {K : Set (P × X)} {x₀ : P → X} {ρ : P → ℝ} {r : P × X → ℝ}
@@ -245,7 +259,9 @@ theorem UniformPositiveExclusionRadius.dist_lt_of_residual_lt
 
 /-- Given [a uniform positive exclusion radius](hyp:h), [a feasible pair](hyp:hK), and
 [a residual at most half that radius](hyp:hr), then [the candidate lies strictly inside its
-parameter-dependent reference neighborhood](goal). -/
+parameter-dependent reference neighborhood](goal).
+@isnad1 id=lt.2h9v.s6.edb05bd7f8a6 from=translated src=- shape=91be70c9 vocab=f401e531
+-/
 theorem UniformPositiveExclusionRadius.dist_lt_of_residual_le_half
     {P X : Type*} [TopologicalSpace P] [PseudoMetricSpace X]
     {K : Set (P × X)} {x₀ : P → X} {ρ : P → ℝ} {r : P × X → ℝ}
@@ -262,7 +278,9 @@ theorem UniformPositiveExclusionRadius.dist_lt_of_residual_le_half
 [the residual is nonnegative on feasible pairs](hyp:hr_nonneg), and
 [only the reference candidate has zero residual among feasible pairs](hyp:hr_zero), then
 [one strictly positive tolerance sends every feasible pair with smaller residual inside its
-own reference neighborhood](goal). -/
+own reference neighborhood](goal).
+@isnad1 id=ex.7h6v.s8.caf3288fe767 from=translated src=- shape=6155564b vocab=248a7268
+-/
 theorem exists_uniformExclusionTolerance_lt
     {P X : Type*} [TopologicalSpace P] [T2Space P] [MetricSpace X]
     (K : Set (P × X)) (x₀ : P → X) (r : P × X → ℝ) (ρ : P → ℝ)
@@ -291,7 +309,9 @@ theorem exists_uniformExclusionTolerance_lt
 [the residual is nonnegative on feasible pairs](hyp:hr_nonneg), and
 [only the reference candidate has zero residual among feasible pairs](hyp:hr_zero), then
 [one strictly positive tolerance sends every feasible pair with residual at most that tolerance
-inside its own reference neighborhood](goal). -/
+inside its own reference neighborhood](goal).
+@isnad1 id=ex.7h6v.s8.6cd782fdba3a from=translated src=- shape=c95565b5 vocab=248a7268
+-/
 theorem exists_uniformExclusionTolerance_le
     {P X : Type*} [TopologicalSpace P] [T2Space P] [MetricSpace X]
     (K : Set (P × X)) (x₀ : P → X) (r : P × X → ℝ) (ρ : P → ℝ)

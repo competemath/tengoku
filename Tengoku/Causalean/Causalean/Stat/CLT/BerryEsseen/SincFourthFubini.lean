@@ -18,7 +18,9 @@ open MeasureTheory
 times squared sinc times the inverse transform of the triangle
 u ↦ π·max(1 − |u|/2, 0) equals the integral over u of the triangle times the
 Fourier integral of squared sinc at t − u](goal): the spatial and frequency
-integrals may be exchanged. -/
+integrals may be exchanged.
+@isnad1 id=eq.0h1v.s8.1a4fe04ae7b6 from=translated src=- shape=fe159784 vocab=9613f1d8
+-/
 theorem sincSquared_triangle_integral_swap (t : ℝ) :
     (∫ x : ℝ,
       (Complex.exp (((t * x : ℝ) : ℂ) * Complex.I) *

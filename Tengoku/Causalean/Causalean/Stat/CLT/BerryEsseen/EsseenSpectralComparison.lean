@@ -22,7 +22,9 @@ distance](hyp:hL,hdown), [a positive bandwidth T](hyp:hT), any point x, and
 [a positive tolerance ε](hyp:hε), [there is a continuous integrable kernel K
 with integrable Fourier transform that vanishes outside (−T, T) and has
 magnitude at most one, whose convolution with H at x is integrable and
-satisfies H(x) ≤ 2·|convolution at x| + 24L/(πT) + ε](goal). -/
+satisfies H(x) ≤ 2·|convolution at x| + 24L/(πT) + ε](goal).
+@isnad1 id=ex.5h5v.s9.27523ab6fd48 from=translated src=- shape=f3a507f3 vocab=4c9afa90
+-/
 theorem exists_esseen_one_sided_spectral_comparator
     (H : ℝ → ℝ) (hH : Integrable H volume)
     (L : ℝ) (hL : 0 ≤ L)

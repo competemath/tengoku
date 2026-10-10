@@ -18,7 +18,9 @@ open MeasureTheory
 /-- At [every frequency t](hyp:t), [the Fourier integral of the fourth power of
 sinc equals 1/(2π) times the self-convolution at t of the squared-sinc
 triangle u ↦ π·max(1 − |u|/2, 0)](goal). In particular this identity holds
-at zero and at the support endpoints. -/
+at zero and at the support endpoints.
+@isnad1 id=eq.0h1v.s7.b84f6982507a from=translated src=- shape=ff542f97 vocab=5ffee599
+-/
 theorem sincFourth_fourier_triangleConvolution (t : ℝ) :
     ∫ x : ℝ,
         Complex.exp (((t * x : ℝ) : ℂ) * Complex.I) *

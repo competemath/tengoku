@@ -23,7 +23,9 @@ namespace Causalean.Estimation.Efficiency.AsymptoticLanConvolution
 open Filter MeasureTheory ProbabilityTheory Topology
 
 /-- If the convolution of two probability laws has a finite second moment and the left law has
-a finite second moment, then the right law also has a finite second moment. -/
+a finite second moment, then the right law also has a finite second moment.
+@isnad1 id=memlp.2h2v.s7.f5f8dbf55de8 from=translated src=- shape=004ed58f vocab=595beb5e
+-/
 theorem memLp_two_right_of_conv
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : MemLp id 2 μ) (hconv : MemLp id 2 (μ.conv ν)) :
@@ -51,7 +53,9 @@ theorem memLp_two_right_of_conv
   exact hmap
 
 /-- For probability laws with finite second moments, the variance of their convolution is the
-sum of their variances. -/
+sum of their variances.
+@isnad1 id=eq.2h2v.s7.1ca583947d6b from=translated src=- shape=20fe09a2 vocab=9e4a1bd1
+-/
 theorem variance_id_conv
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : MemLp id 2 μ) (hν : MemLp id 2 ν) :
@@ -68,7 +72,9 @@ theorem variance_id_conv
       simpa [Function.comp_def] using
         (ProbabilityTheory.variance_add_prod (X := id) (Y := id) hμ hν)
 
-/-- The efficient centered Gaussian law has a finite second moment. -/
+/-- The efficient centered Gaussian law has a finite second moment.
+@isnad1 id=memlp.0h2v.s6.a69127bb88f9 from=translated src=- shape=5980ff9c vocab=5e625448
+-/
 theorem efficientGaussianLaw_memLp_two
     {K : Type*} [NormedAddCommGroup K] (gradient : K) :
     MemLp id 2 (efficientGaussianLaw gradient) := by
@@ -77,7 +83,9 @@ theorem efficientGaussianLaw_memLp_two
   exact ProbabilityTheory.memLp_id_gaussianReal 2
 
 /-- The variance of the efficient centered Gaussian law is exactly the squared norm of the
-canonical gradient. -/
+canonical gradient.
+@isnad1 id=eq.0h2v.s5.fea5a8e5e1b2 from=translated src=- shape=99f0cdcd vocab=29610a8c
+-/
 theorem efficientGaussianLaw_variance
     {K : Type*} [NormedAddCommGroup K] (gradient : K) :
     variance id (efficientGaussianLaw gradient) = ‖gradient‖ ^ 2 := by
@@ -87,7 +95,9 @@ theorem efficientGaussianLaw_variance
 
 /-- **Variance bound from convolution.**  If a probability limit law with finite second moment
 factors as the convolution of the efficient `N(0, ‖gradient‖²)` law and a residual probability
-law, then its variance is at least `‖gradient‖²`. -/
+law, then its variance is at least `‖gradient‖²`.
+@isnad1 id=le.2h4v.s7.9d8c7ab37e5c from=translated src=- shape=019bed99 vocab=b702ae9b
+-/
 theorem asymptoticVariance_ge_gradientNormSq_of_factorization
     {K : Type*} [NormedAddCommGroup K] (gradient : K)
     (limitLaw residualLaw : Measure ℝ)
@@ -109,7 +119,9 @@ theorem asymptoticVariance_ge_gradientNormSq_of_factorization
 
 /-- Compatibility with a paper's tangent-density argument: if every finite score collection gives
 a variance lower bound for an approximating gradient and those gradients converge in norm to the
-canonical gradient, then the limiting variance is bounded below by the full gradient norm. -/
+canonical gradient, then the limiting variance is bounded below by the full gradient norm.
+@isnad1 id=le.2h4v.s6.f72cdd389f9d from=translated src=- shape=c8d78618 vocab=62fd3567
+-/
 theorem variance_ge_gradientNormSq_of_dense_scores
     {K : Type*} [NormedAddCommGroup K] [NormedSpace ℝ K]
     (gradient : K) (finiteGradient : ℕ → K) (v : ℝ)
@@ -121,7 +133,9 @@ theorem variance_ge_gradientNormSq_of_dense_scores
   apply le_of_tendsto ((continuous_norm.pow 2).continuousAt.tendsto.comp hdense)
   exact Filter.Eventually.of_forall hfiniteBound
 
-/-- In a finite-dimensional experiment with [local asymptotic normality](hyp:lan), [a regular scalar estimator](hyp:regular), [a canonical-gradient representation](hyp:canonical), and [a finite second moment for its limit law](hyp:hfinite), [the limit variance is at least the squared canonical-gradient norm](goal). -/
+/-- In a finite-dimensional experiment with [local asymptotic normality](hyp:lan), [a regular scalar estimator](hyp:regular), [a canonical-gradient representation](hyp:canonical), and [a finite second moment for its limit law](hyp:hfinite), [the limit variance is at least the squared canonical-gradient norm](goal).
+@isnad1 id=le.4h12v.s8.3e6206f92ca4 from=translated src=- shape=15c9f8f1 vocab=fcd8565a
+-/
 theorem regular_asymptoticVariance_ge_gradientNormSq
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]

@@ -80,17 +80,23 @@ noncomputable def effBound (T : Submodule ℝ H) [T.HasOrthogonalProjection]
 variable {T : Submodule ℝ H} [T.HasOrthogonalProjection]
 
 /-- `efficientIF` is the coerced star-projection (the projection seen as an
-endomorphism of `H`). -/
+endomorphism of `H`).
+@isnad1 id=eq.0h3v.s8.779c68cc14e2 from=translated src=- shape=758aa11b vocab=e3902d82
+-/
 theorem efficientIF_eq_starProjection (g : H) :
     efficientIF T g = T.starProjection g := rfl
 
-/-- The efficient influence function lies in the tangent space. -/
+/-- The efficient influence function lies in the tangent space.
+@isnad1 id=mem.0h3v.s7.da6d3b1b0228 from=translated src=- shape=7c9e8084 vocab=f069aa17
+-/
 theorem efficientIF_mem (g : H) : efficientIF T g ∈ T :=
   (T.orthogonalProjectionOnto g).2
 
 omit [T.HasOrthogonalProjection] in
 /-- A vector is a gradient of `g` iff it differs from `g` by an element of the
-orthogonal complement of the tangent space. -/
+orthogonal complement of the tangent space.
+@isnad1 id=iff.0h4v.s7.034a33526a6b from=translated src=- shape=a47e84a8 vocab=5143f30d
+-/
 theorem isGradient_iff_sub_mem_orthogonal (g ψ : H) :
     IsGradient T g ψ ↔ ψ - g ∈ Tᗮ := by
   constructor
@@ -104,12 +110,16 @@ theorem isGradient_iff_sub_mem_orthogonal (g ψ : H) :
     rw [inner_sub_right, sub_eq_zero] at hzero
     rw [real_inner_comm s ψ, real_inner_comm s g, hzero]
 
-/-- The efficient influence function is itself a gradient of `g`. -/
+/-- The efficient influence function is itself a gradient of `g`.
+@isnad1 id=isgradie.0h3v.s5.933397d7e2f0 from=translated src=- shape=3ec53e69 vocab=0084cbcd
+-/
 theorem efficientIF_isGradient (g : H) : IsGradient T g (efficientIF T g) := by
   intro s hs
   exact T.inner_orthogonalProjectionOnto_eq_of_mem_right ⟨s, hs⟩ g
 
-/-- A gradient `ψ` projects onto the same efficient influence function as `g`. -/
+/-- A gradient `ψ` projects onto the same efficient influence function as `g`.
+@isnad1 id=eq.1h4v.s10.a1a8ccdddca8 from=translated src=- shape=c8b4b678 vocab=bc1ed1cc
+-/
 theorem orthogonalProjection_eq_of_isGradient {g ψ : H} (h : IsGradient T g ψ) :
     (T.orthogonalProjectionOnto ψ : H) = efficientIF T g := by
   have hsub : ψ - g ∈ Tᗮ := (isGradient_iff_sub_mem_orthogonal g ψ).1 h
@@ -123,7 +133,9 @@ theorem orthogonalProjection_eq_of_isGradient {g ψ : H} (h : IsGradient T g ψ)
 
 /-- **Pythagoras for gradients.** [For any function `ψ` that is a gradient at `g`](hyp:h),
 [the squared norm of `ψ` splits into the efficiency bound plus the squared norm of the
-remainder orthogonal to the efficient influence function](goal). -/
+remainder orthogonal to the efficient influence function](goal).
+@isnad1 id=eq.1h4v.s7.46f9528860c3 from=translated src=- shape=b54a0b4f vocab=1bc99bc0
+-/
 theorem normSq_gradient_decomp {g ψ : H} (h : IsGradient T g ψ) :
     ‖ψ‖ ^ 2 = ‖efficientIF T g‖ ^ 2 + ‖ψ - efficientIF T g‖ ^ 2 := by
   have hproj : (T.orthogonalProjectionOnto ψ : H) = efficientIF T g :=
@@ -140,7 +152,9 @@ theorem normSq_gradient_decomp {g ψ : H} (h : IsGradient T g ψ) :
         rw [norm_add_sq_real, hzero]; ring
 
 /-- **Efficiency lower bound.** [For any function `ψ` that is a gradient at `g`](hyp:h),
-[the efficiency bound is at most the squared norm of `ψ`](goal). -/
+[the efficiency bound is at most the squared norm of `ψ`](goal).
+@isnad1 id=le.1h4v.s6.8ec5daa0818b from=translated src=- shape=5fad80fa vocab=674c57e9
+-/
 theorem effBound_le_normSq {g ψ : H} (h : IsGradient T g ψ) :
     effBound T g ≤ ‖ψ‖ ^ 2 := by
   rw [effBound, normSq_gradient_decomp h]
@@ -148,7 +162,9 @@ theorem effBound_le_normSq {g ψ : H} (h : IsGradient T g ψ) :
   linarith
 
 /-- **Sharpness.** [For any function `ψ` that is a gradient at `g`](hyp:h), [`ψ` attains the
-efficiency bound if and only if it equals the efficient influence function](goal). -/
+efficiency bound if and only if it equals the efficient influence function](goal).
+@isnad1 id=iff.1h4v.s6.36a0b7e833af from=translated src=- shape=292751f4 vocab=46b2c494
+-/
 theorem norm_eq_iff_eq_efficientIF {g ψ : H} (h : IsGradient T g ψ) :
     ‖ψ‖ ^ 2 = effBound T g ↔ ψ = efficientIF T g := by
   rw [effBound, normSq_gradient_decomp h]
@@ -163,7 +179,9 @@ theorem norm_eq_iff_eq_efficientIF {g ψ : H} (h : IsGradient T g ψ) :
     rw [heq, sub_self, norm_zero]; ring
 
 /-- A gradient that lies in the tangent space is the efficient influence
-function. -/
+function.
+@isnad1 id=eq.2h4v.s7.5bcfd2902b60 from=translated src=- shape=09e965b8 vocab=3705be4e
+-/
 theorem efficientIF_unique {g ψ : H} (h : IsGradient T g ψ) (hψ : ψ ∈ T) :
     ψ = efficientIF T g := by
   have hproj : (T.orthogonalProjectionOnto ψ : H) = efficientIF T g :=
@@ -174,7 +192,9 @@ theorem efficientIF_unique {g ψ : H} (h : IsGradient T g ψ) (hψ : ψ ∈ T) :
 /-! ### Tangent-shrinking corollary (abstract "role of the propensity score") -/
 
 /-- If the reference gradient already lies in the tangent space, the efficient
-influence function equals it. -/
+influence function equals it.
+@isnad1 id=eq.1h3v.s7.f654b8aa76fa from=translated src=- shape=c36cacc5 vocab=f069aa17
+-/
 theorem efficientIF_eq_self_of_mem (T : Submodule ℝ H) [T.HasOrthogonalProjection]
     {g : H} (hg : g ∈ T) : efficientIF T g = g := by
   rw [efficientIF_eq_starProjection]
@@ -184,7 +204,9 @@ theorem efficientIF_eq_self_of_mem (T : Submodule ℝ H) [T.HasOrthogonalProject
 the smaller tangent space `T' ≤ T`, then both the smaller and larger tangent
 spaces leave it fixed, so the efficiency bound is unchanged. Interpretation:
 knowing the propensity score shrinks the tangent space, but if `ψ_AIPW` already
-lives in the smaller space the efficiency bound does not move. -/
+lives in the smaller space the efficiency bound does not move.
+@isnad1 id=and.2h4v.s8.707095d2306b from=translated src=- shape=211217e9 vocab=7458700e
+-/
 theorem effBound_eq_of_mem_sub
     (T T' : Submodule ℝ H) [T.HasOrthogonalProjection] [T'.HasOrthogonalProjection]
     (hle : T' ≤ T) {g : H} (hg : g ∈ T') :

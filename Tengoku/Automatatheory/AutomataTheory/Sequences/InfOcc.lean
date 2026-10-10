@@ -22,6 +22,7 @@ def InfOcc {X : Type*} (xs : Stream' X) : Set X :=
   { x | ∃ᶠ k in atTop, xs k = x }
 
 /-- Removing any finite prefix of `xs` does not change `InfOcc xs`.
+@isnad1 id=eq.0h3v.s4.9f991b60b5e3 from=translated src=- shape=babeb470 vocab=efe96597
 -/
 theorem inf_occ_suffix {X : Type*} (xs : Stream' X) (k : ℕ) :
     InfOcc (xs.drop k) = InfOcc xs := by
@@ -32,6 +33,7 @@ theorem inf_occ_suffix {X : Type*} (xs : Stream' X) (k : ℕ) :
     use (m - k) ; simp [get_drop', (show n ≤ m - k by omega), (show k + (m - k) = m by omega)]
 
 /-- Over a finite type, `xs k` is in `InfOcc xs` for all sufficiently large `k`.
+@isnad1 id=eventual.0h2v.s4.afad989e7174 from=translated src=- shape=a112abc8 vocab=76337401
 -/
 theorem inf_occ_eventually {X : Type*} [Finite X] (xs : Stream' X) :
     ∀ᶠ k in atTop, xs k ∈ InfOcc xs := by

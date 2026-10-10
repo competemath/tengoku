@@ -24,12 +24,18 @@ namespace ProbabilityTheory
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [MeasurableSpace E] [BorelSpace E] {μ : Measure E}
 
+/--
+@isnad1 id=eq.0h4v.s9.e592986ad857 from=translated src=- shape=9f2977e1 vocab=88974eda
+-/
 nonrec
 lemma IsGaussian.covarianceBilin_apply [IsGaussian μ] [SecondCountableTopology E] [CompleteSpace E]
     (x y : E) :
     covarianceBilin μ x y = ∫ z, ⟪x, z - μ[id]⟫_ℝ * ⟪y, z - μ[id]⟫_ℝ ∂μ :=
   covarianceBilin_apply IsGaussian.memLp_two_id x y
 
+/--
+@isnad1 id=eq.2h7v.s12.04f8be3f2d12 from=translated src=- shape=b25f82a7 vocab=82165f43
+-/
 lemma covarianceBilin_apply_prod {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : Measure Ω} [IsFiniteMeasure μ] {X Y : Ω → ℝ}
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 μ) (x y : WithLp 2 (ℝ × ℝ)) :
@@ -53,6 +59,9 @@ lemma covarianceBilin_apply_prod {Ω : Type*} {mΩ : MeasurableSpace Ω}
   · exact (memLp_map_measure_iff aestronglyMeasurable_id (by fun_prop)).2
       (MemLp.of_fst_of_snd_prodLp ⟨hX, hY⟩)
 
+/--
+@isnad1 id=issymm.0h2v.s6.d9dc73e15d2d from=translated src=- shape=d719cca0 vocab=7745cff9
+-/
 lemma isSymm_covarianceBilin :
     LinearMap.BilinForm.IsSymm (covarianceBilin μ).toBilinForm :=
  isPosSemidef_covarianceBilin.1
@@ -64,17 +73,26 @@ noncomputable
 def covMatrix (μ : Measure E) : Matrix (Fin (Module.finrank ℝ E)) (Fin (Module.finrank ℝ E)) ℝ :=
   LinearMap.BilinForm.toMatrix (stdOrthonormalBasis ℝ E).toBasis (covarianceBilin μ).toBilinForm
 
+/--
+@isnad1 id=eq.0h4v.s10.5507ed7ca330 from=translated src=- shape=5d256d14 vocab=112c251c
+-/
 lemma covMatrix_apply (μ : Measure E) (i j : Fin (Module.finrank ℝ E)) :
     covMatrix μ i j =
       covarianceBilin μ (stdOrthonormalBasis ℝ E i) (stdOrthonormalBasis ℝ E j) := by
   simp [covMatrix]
 
+/--
+@isnad1 id=eq.0h3v.s10.17fdd535ac07 from=translated src=- shape=b6b858b4 vocab=40fecad5
+-/
 lemma covMatrix_mulVec (x : Fin (Module.finrank ℝ E) → ℝ) :
     (covMatrix μ).mulVec x = fun i ↦
       covarianceBilin μ (stdOrthonormalBasis ℝ E i) (∑ j, x j • stdOrthonormalBasis ℝ E j) := by
   ext
   simp [covMatrix, Matrix.mulVec_eq_sum]
 
+/--
+@isnad1 id=eq.0h4v.s10.2761394349ad from=translated src=- shape=8b050962 vocab=e4e03f55
+-/
 lemma dotProduct_covMatrix_mulVec (x y : Fin (Module.finrank ℝ E) → ℝ) :
     x ⬝ᵥ (covMatrix μ).mulVec y =
       covarianceBilin μ (∑ j, x j • stdOrthonormalBasis ℝ E j)
@@ -83,6 +101,9 @@ lemma dotProduct_covMatrix_mulVec (x y : Fin (Module.finrank ℝ E) → ℝ) :
     Module.Basis.equivFun_symm_apply, OrthonormalBasis.coe_toBasis]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s12.29e7e790d549 from=translated src=- shape=4a7144c9 vocab=c89a381f
+-/
 lemma covarianceBilin_eq_dotProduct_covMatrix_mulVec (x y : E) :
     covarianceBilin μ x y =
       ((stdOrthonormalBasis ℝ E).repr x) ⬝ᵥ
@@ -90,6 +111,9 @@ lemma covarianceBilin_eq_dotProduct_covMatrix_mulVec (x y : E) :
   rw [ContinuousBilinForm.apply_eq_dotProduct_toMatrix_mulVec _ (stdOrthonormalBasis ℝ E).toBasis]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s13.a0f86944dd05 from=translated src=- shape=548348ec vocab=2cf07d86
+-/
 lemma covMatrix_map {F : Type*} [NormedAddCommGroup F] [InnerProductSpace ℝ F]
     [MeasurableSpace F] [BorelSpace F] [FiniteDimensional ℝ F]
     [IsFiniteMeasure μ] (h : MemLp id 2 μ) (L : E →L[ℝ] F) (i j : Fin (Module.finrank ℝ F)) :
@@ -98,6 +122,9 @@ lemma covMatrix_map {F : Type*} [NormedAddCommGroup F] [InnerProductSpace ℝ F]
         (stdOrthonormalBasis ℝ E).repr (L.adjoint (stdOrthonormalBasis ℝ F j))) := by
   rw [covMatrix_apply, covarianceBilin_map h, covarianceBilin_eq_dotProduct_covMatrix_mulVec]
 
+/--
+@isnad1 id=possemid.0h2v.s6.10a8e32c8cc7 from=translated src=- shape=904965ca vocab=60ec5e83
+-/
 lemma posSemidef_covMatrix : (covMatrix μ).PosSemidef := by
   rw [covMatrix, ← LinearMap.BilinForm.isPosSemidef_iff_posSemidef_toMatrix]
   exact isPosSemidef_covarianceBilin

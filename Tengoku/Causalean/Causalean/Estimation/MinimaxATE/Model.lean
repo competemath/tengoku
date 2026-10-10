@@ -81,7 +81,9 @@ noncomputable def obsReal (m : C → ℝ) (g : Bool → C → ℝ) (z : Obs C) :
     * (if z.2.2 then g z.2.1 z.1 else 1 - g z.2.1 z.1)
 
 /-- The total mass of `obsReal` is `1` (for nonempty `C`): summing over `Y` gives `1`,
-then over `D` gives `1`, then over `X` gives `card C · (1/card C) = 1`. -/
+then over `D` gives `1`, then over `X` gives `card C · (1/card C) = 1`.
+@isnad1 id=eq.0h3v.s5.a76d9a72dd2c from=translated src=- shape=7c2a0b57 vocab=bbb890f8
+-/
 theorem obsReal_sum [Nonempty C] (m : C → ℝ) (g : Bool → C → ℝ) :
     ∑ z : Obs C, obsReal m g z = 1 := by
   have hC : (Fintype.card C : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr Fintype.card_ne_zero
@@ -95,7 +97,9 @@ theorem obsReal_sum [Nonempty C] (m : C → ℝ) (g : Bool → C → ℝ) :
   rw [key, Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
   field_simp
 
-/-- Nonnegativity of `obsReal` for a valid DGP. -/
+/-- Nonnegativity of `obsReal` for a valid DGP.
+@isnad1 id=le.1h4v.s5.e24760a9a0c0 from=translated src=- shape=551aceba vocab=69d1a55e
+-/
 theorem obsReal_nonneg {m : C → ℝ} {g : Bool → C → ℝ}
     (hv : ValidDGP m g) (z : Obs C) : 0 ≤ obsReal m g z := by
   have hCinv : (0 : ℝ) ≤ (Fintype.card C : ℝ)⁻¹ := by positivity
@@ -127,7 +131,9 @@ noncomputable def obsLaw [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
 
 /-- For every [finite, nonempty covariate space equipped with a $\sigma$-algebra](hyp:C), [propensity function $m$](hyp:m), [binary-treatment outcome-regression function $g$](hyp:g), and [evidence that these functions constitute a valid data-generating process](hyp:hv), [the corresponding single-observation law](goal) is [a probability measure](step:1).
 
-The single-observation law of any valid data-generating process is a probability measure. -/
+The single-observation law of any valid data-generating process is a probability measure.
+@isnad1 id=isprobab.1h3v.s5.32dba1eebe1c from=translated src=- shape=851ef02b vocab=f90003e0
+-/
 instance obsLaw_isProb [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
     (hv : ValidDGP m g) : IsProbabilityMeasure (obsLaw hv) := by
   unfold obsLaw; infer_instance
@@ -175,7 +181,9 @@ noncomputable def productLaw [Nonempty C] {m : C → ℝ} {g : Bool → C → �
 
 /-- For every [finite, nonempty covariate space equipped with a $\sigma$-algebra](hyp:C), [propensity function $m$](hyp:m), [binary-treatment outcome-regression function $g$](hyp:g), [evidence that these functions constitute a valid data-generating process](hyp:hv), and [sample size $n$](hyp:n), [the corresponding independent-sample law](goal) is [a probability measure](step:1).
 
-The independent sample law of any valid data-generating process is a probability measure. -/
+The independent sample law of any valid data-generating process is a probability measure.
+@isnad1 id=isprobab.1h4v.s6.c94b6cbb4f15 from=translated src=- shape=c5133d3f vocab=3e36a086
+-/
 instance productLaw_isProb [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
     (hv : ValidDGP m g) (n : ℕ) : IsProbabilityMeasure (productLaw hv n) := by
   unfold productLaw; infer_instance
@@ -209,7 +217,9 @@ noncomputable def nMSE [Nonempty C] {m : C → ℝ} {g : Bool → C → ℝ}
 that an estimator misses the true average treatment effect by at least `s`, on `n` i.i.d.
 draws, is at most the estimator's mean-squared error](goal). This is the quantitative form of
 the paper's observation that the quantile risk lower bound implies the expected-risk one
-(`𝔐ₙ,γ ≥ ρ ⟹ minimax `𝔼`-risk `≥ (1−γ)ρ`). -/
+(`𝔐ₙ,γ ≥ ρ ⟹ minimax `𝔼`-risk `≥ (1−γ)ρ`).
+@isnad1 id=le.2h6v.s6.ab5bcacd781e from=translated src=- shape=a6043aff vocab=a82b669d
+-/
 theorem nMiss_sq_le_nMSE [Nonempty C] [MeasurableSingletonClass C]
     {m : C → ℝ} {g : Bool → C → ℝ} (hv : ValidDGP m g) (n : ℕ)
     {est : (Fin n → Obs C) → ℝ} {s : ℝ} (hs : 0 ≤ s) :
@@ -241,7 +251,9 @@ noncomputable def minimaxMiss [Nonempty C] (mhat : C → ℝ) (ghat : Bool → C
   ⨆ p : InClassDGP mhat ghat εg εm, nMiss p.2.valid n est s
 
 /-- Each in-class miss probability is bounded above by `1` (it is a probability),
-so the range of `nMiss` over the class is bounded above. -/
+so the range of `nMiss` over the class is bounded above.
+@isnad1 id=bddabove.0h8v.s7.ccdee56b9903 from=translated src=- shape=9ac82b1f vocab=e6c26057
+-/
 theorem bddAbove_nMiss_range [Nonempty C] (mhat : C → ℝ) (ghat : Bool → C → ℝ)
     (εg εm : ℝ) (n : ℕ) (est : (Fin n → Obs C) → ℝ) (s : ℝ) :
     BddAbove (Set.range fun p : InClassDGP mhat ghat εg εm => nMiss p.2.valid n est s) := by
@@ -253,7 +265,9 @@ theorem bddAbove_nMiss_range [Nonempty C] (mhat : C → ℝ) (ghat : Bool → C 
         measureReal_mono (Set.subset_univ _) (measure_ne_top _ _)
     _ = 1 := by rw [probReal_univ]
 
-/-- A specific in-class DGP's miss probability is `≤ minimaxMiss`. -/
+/-- A specific in-class DGP's miss probability is `≤ minimaxMiss`.
+@isnad1 id=le.0h9v.s7.b76098a84a1a from=translated src=- shape=eee8a042 vocab=8ca42123
+-/
 theorem nMiss_le_minimaxMiss [Nonempty C] {mhat : C → ℝ} {ghat : Bool → C → ℝ}
     {εg εm : ℝ} {n : ℕ} {est : (Fin n → Obs C) → ℝ} {s : ℝ}
     (p : InClassDGP mhat ghat εg εm) :

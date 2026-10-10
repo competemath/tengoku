@@ -30,7 +30,9 @@ open Causalean.Discovery.LinearDisentanglement.Quantitative
 lower order near the reference. This holds for [error matrix `R`](hyp:R), [rows `i,j`](hyp:i,j),
 [environments `e₁,e₀`](hyp:e₁,e₀), and [shift family `s`](hyp:s) over [environment type
 `E`](hyp:E) in [dimension `p`](hyp:p), under [scale `M`](hyp:M), [nonnegativity](hyp:hM), and
-[the shift bound](hyp:hscale). -/
+[the shift bound](hyp:hscale).
+@isnad1 id=le.2h9v.s7.5d80eb717415 from=translated src=- shape=cb945ff2 vocab=6054a3ea
+-/
 -- Proof route: `|s₁ k-s₀ k| ≤ 2M`, then Cauchy--Schwarz on the two rows and the
 -- fact that each row's squared sum is bounded by the full entrywise squared sum.
 theorem coordinateProductRemainder_le {p : ℕ} {E : Type*} [Fintype E]
@@ -83,7 +85,9 @@ theorem coordinateProductRemainder_le {p : ℕ} {E : Type*} [Fintype E]
 /-- If [the scale is nonnegative, the determinant margin is positive, and the residual
 bound is nonnegative](hyp:hM,hδ,hη), [all four coefficients have scale at most `2M`](hyp:hcoeff), [the two-by-two coefficient determinant is separated](hyp:hdet), [the
 two displayed equations hold](hyp:heq₁,heq₂), and [both equation residuals are at most
-`η`](hyp:hr₁,hr₂), then [both unknowns obey the conservative explicit Cramer bound](goal). -/
+`η`](hyp:hr₁,hr₂), then [both unknowns obey the conservative explicit Cramer bound](goal).
+@isnad1 id=and.9h11v.s8.39b66904d9b1 from=translated src=- shape=2f19a1ce vocab=5824155a
+-/
 theorem pair_cramer_control {a b c d x y r₁ r₂ M δ η : ℝ}
     (hM : 0 ≤ M) (hδ : 0 < δ) (hη : 0 ≤ η)
     (hcoeff : |a| ≤ 2 * M ∧ |b| ≤ 2 * M ∧
@@ -137,7 +141,9 @@ errors](goal) for [matrix family, shifts, reference, and candidate](hyp:A,s,B₀
 parameters](hyp:M,δ,ε), [selected coordinates and their distinctness](hyp:i,j,hij), [environment
 triple](hyp:e₀,e₁,e₂), [nonnegative scale and residual with positive margin](hyp:hM,hδ,hε),
 [bounded shifts and determinant separation](hyp:hscale,hdet), [an invertible exact
-reference](hyp:hunit,hexact), and [an approximately diagonal candidate](hyp:happrox). -/
+reference](hyp:hunit,hexact), and [an approximately diagonal candidate](hyp:happrox).
+@isnad1 id=other.9h14v.s8.8fd11b785239 from=translated src=- shape=6c513e69 vocab=cb1a9335
+-/
 -- Proof route: put `Q = B B₀⁻¹ = I+R`.  Subtract the congruence equations at `e₀`
 -- from those at `e₁,e₂`.  The `(i,j)` entries give a 2×2 system in `R i j` and
 -- `R j i`; `coordinateProductRemainder_le` bounds its nonlinear terms and the two
@@ -258,7 +264,9 @@ error](goal), for [matrix family, shifts, reference, and candidate](hyp:A,s,B₀
 [environments `E`](hyp:E) in [dimension `p`](hyp:p), with [scale, margin, and residual
 parameters](hyp:M,δ,ε), [nonnegative scale and residual with positive margin](hyp:hM,hδ,hε),
 [bounded separated shifts](hyp:hscale,hsep), [an invertible exact reference](hyp:hunit,hexact),
-and [an approximately diagonal candidate](hyp:happrox). -/
+and [an approximately diagonal candidate](hyp:happrox).
+@isnad1 id=le.9h11v.s7.e59209327059 from=translated src=- shape=6275b140 vocab=f59499e4
+-/
 theorem pairwise_offDiagonal_control {p : ℕ} {E : Type*}
     [Fintype E] [Nonempty E]
     (A : E → SqMatrix p) (s : E → Fin p → ℝ) (B₀ B : SqMatrix p)
@@ -279,7 +287,9 @@ theorem pairwise_offDiagonal_control {p : ℕ} {E : Type*}
 control](goal), for [reference and candidate matrices](hyp:B₀,B) in [dimension `p`](hyp:p) with
 [entry bound `c`](hyp:c), [invertible reference](hyp:hunit),
 [both diagonals normalized](hyp:hdiag₀,hdiag),
-[nonnegative bound](hyp:hc), and [uniform off-diagonal control](hyp:hoff). -/
+[nonnegative bound](hyp:hc), and [uniform off-diagonal control](hyp:hoff).
+@isnad1 id=le.5h5v.s7.744e70097ecf from=translated src=- shape=be03fa6f vocab=e6b4ca80
+-/
 -- Proof route: `B = (I+R)B₀`; comparing diagonal entries gives
 -- `R i i = -∑_{k≠i} R i k B₀ k i`, then apply Cauchy--Schwarz.
 theorem diagonalBranch_control {p : ℕ} (B₀ B : SqMatrix p) {c : ℝ}
@@ -336,7 +346,9 @@ theorem diagonalBranch_control {p : ℕ} (B₀ B : SqMatrix p) {c : ℝ}
 for [reference and candidate matrices](hyp:B₀,B) in [dimension `p`](hyp:p), with [matrix and entry
 bounds `L,c`](hyp:L,c), [positive dimension and nonnegative bounds](hyp:hp,hL,hc), [an invertible
 unit-diagonal reference and unit-diagonal candidate](hyp:hunit,hdiag₀,hdiag), [reference norm
-control](hyp:hB₀), and [common off-diagonal control](hyp:hoff). -/
+control](hyp:hB₀), and [common off-diagonal control](hyp:hoff).
+@isnad1 id=le.8h5v.s7.ac2c57b283db from=translated src=- shape=84422e0d vocab=d2fa490e
+-/
 theorem entryL2_transitionError_le {p : ℕ} (B₀ B : SqMatrix p) {L c : ℝ}
     (hp : 0 < p) (hL : 0 ≤ L) (hc : 0 ≤ c)
     (hunit : IsUnit B₀.det) (hdiag₀ : UnitDiagonal B₀)

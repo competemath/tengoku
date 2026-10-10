@@ -14,6 +14,9 @@ namespace MeasureTheory
 variable {ι Ω β : Type*} {mΩ : MeasurableSpace Ω}
   {f g : ℕ → Ω → ℝ} {a b : ℝ} {N : ℕ} {ω : Ω}
 
+/--
+@isnad1 id=eq.0h7v.s5.d7c42c64769a from=translated src=- shape=d424fc30 vocab=6808e11a
+-/
 @[simp]
 lemma hittingBtwn_self [ConditionallyCompletePartialOrderInf ι]
     (f : ι → Ω → β) (s : Set β) (n : ι) (ω : Ω) :
@@ -23,7 +26,9 @@ lemma hittingBtwn_self [ConditionallyCompletePartialOrderInf ι]
   intro h
   simp [h]
 
-/-- `hittingBtwn` only depends on the hitting predicate. -/
+/-- `hittingBtwn` only depends on the hitting predicate.
+@isnad1 id=eq.1h6v.s6.46456f1870c3 from=translated src=- shape=535186ea vocab=b6d158d9
+-/
 lemma hittingBtwn_congr {s : Set ℝ}
     (h : ∀ i ω, f i ω ∈ s ↔ g i ω ∈ s) (n m : ℕ) :
     hittingBtwn f s n m = hittingBtwn g s n m := by
@@ -31,7 +36,9 @@ lemma hittingBtwn_congr {s : Set ℝ}
   unfold hittingBtwn
   congr <;> ext <;> simp [h]
 
-/-- Upper crossing times only depend on the position of the process relative to `a` and `b`. -/
+/-- Upper crossing times only depend on the position of the process relative to `a` and `b`.
+@isnad1 id=eq.2h7v.s6.3d5f1490bb4e from=translated src=- shape=fef8dd5f vocab=2cf27eaa
+-/
 lemma upperCrossingTime_congr
     (hIic : ∀ i ω, f i ω ≤ a ↔ g i ω ≤ a) (hIci : ∀ i ω, b ≤ f i ω ↔ b ≤ g i ω) (n : ℕ) :
     upperCrossingTime a b f N n = upperCrossingTime a b g N n := by
@@ -44,7 +51,9 @@ lemma upperCrossingTime_congr
     rw [upperCrossingTime_succ_eq, upperCrossingTime_succ_eq, lowerCrossingTime,
       lowerCrossingTime, ih, hittingBtwn_congr hIic', hittingBtwn_congr hIci']
 
-/-- Lower crossing times only depend on the position of the process relative to `a` and `b`. -/
+/-- Lower crossing times only depend on the position of the process relative to `a` and `b`.
+@isnad1 id=eq.2h7v.s6.59ce7b9039bf from=translated src=- shape=fef8dd5f vocab=f2750baa
+-/
 lemma lowerCrossingTime_congr
     (hIic : ∀ i ω, f i ω ≤ a ↔ g i ω ≤ a) (hIci : ∀ i ω, b ≤ f i ω ↔ b ≤ g i ω) (n : ℕ) :
     lowerCrossingTime a b f N n = lowerCrossingTime a b g N n := by
@@ -52,18 +61,26 @@ lemma lowerCrossingTime_congr
   rw [lowerCrossingTime, lowerCrossingTime, upperCrossingTime_congr hIic hIci,
     hittingBtwn_congr hIic]
 
+/--
+@isnad1 id=eq.2h7v.s6.9ff2c3258058 from=translated src=- shape=24f0d1bb vocab=2fb0a9bb
+-/
 lemma upcrossingStrat_congr
     (hIic : ∀ i ω, f i ω ≤ a ↔ g i ω ≤ a) (hIci : ∀ i ω, b ≤ f i ω ↔ b ≤ g i ω) (n : ℕ) :
     upcrossingStrat a b f N n = upcrossingStrat a b g N n := by
   ext ω
   simp_rw [upcrossingStrat, upperCrossingTime_congr hIic hIci, lowerCrossingTime_congr hIic hIci]
 
+/--
+@isnad1 id=eq.2h7v.s6.f5b99acec0da from=translated src=- shape=9f1fd950 vocab=4f9d32dc
+-/
 lemma upcrossingsBefore_congr
     (hIic : ∀ i ω, f i ω ≤ a ↔ g i ω ≤ a) (hIci : ∀ i ω, b ≤ f i ω ↔ b ≤ g i ω) :
     upcrossingsBefore a b f N ω = upcrossingsBefore a b g N ω := by
   simp_rw [upcrossingsBefore, upperCrossingTime_congr hIic hIci]
 
-/-- `upcrossingStrat` takes only the values `0` and `1`. -/
+/-- `upcrossingStrat` takes only the values `0` and `1`.
+@isnad1 id=or.0h7v.s5.35c87bdf8d3d from=translated src=- shape=dc0a4962 vocab=18527ec8
+-/
 lemma upcrossingStrat_eq_zero_or_one (a b : ℝ) (f : ℕ → Ω → ℝ) (N n : ℕ) (ω : Ω) :
     upcrossingStrat a b f N n ω = 0 ∨ upcrossingStrat a b f N n ω = 1 := by
   classical
@@ -88,7 +105,9 @@ lemma upcrossingStrat_eq_zero_or_one (a b : ℝ) (f : ℕ → Ω → ℝ) (N n :
 
 /-- Pathwise upcrossing inequality with correction term: unlike
 `MeasureTheory.mul_upcrossingsBefore_le`, this requires no assumption `a ≤ f N ω`, at the price
-of the extra term `max (a - f N ω) 0`. -/
+of the extra term `max (a - f N ω) 0`.
+@isnad1 id=le.1h6v.s7.b5f5a5d26e42 from=translated src=- shape=f2964dc2 vocab=1a3f11d4
+-/
 lemma mul_upcrossingsBefore_le_sum_add_posPart (hab : a < b) :
     (b - a) * upcrossingsBefore a b f N ω ≤
       (∑ k ∈ Finset.range N, upcrossingStrat a b f N k ω * (f (k + 1) - f k) ω) + (a - f N ω)⁺ := by
@@ -124,7 +143,9 @@ lemma mul_upcrossingsBefore_le_sum_add_posPart (hab : a < b) :
 /-- Non-strict variant of `MeasureTheory.upcrossingsBefore_lt_of_exists_upcrossing`: since the
 lower crossing hits `Set.Iic a` and the upper crossing hits `Set.Ici b`, it suffices that the
 levels are *reached* (`f N₁ ω ≤ a` and `b ≤ f N₂ ω`) rather than strictly crossed. The Mathlib
-proof already only uses the non-strict forms internally. -/
+proof already only uses the non-strict forms internally.
+@isnad1 id=lt.5h8v.s6.04d1a82fb1c4 from=translated src=- shape=e15f87f5 vocab=a32d3b73
+-/
 lemma upcrossingsBefore_lt_of_exists_upcrossing' (hab : a < b) {N₁ N₂ : ℕ} (hN₁ : N ≤ N₁)
     (hN₁' : f N₁ ω ≤ a) (hN₂ : N₁ ≤ N₂) (hN₂' : b ≤ f N₂ ω) :
     upcrossingsBefore a b f N ω < upcrossingsBefore a b f (N₂ + 1) ω := by
@@ -143,7 +164,9 @@ lemma upcrossingsBefore_lt_of_exists_upcrossing' (hab : a < b) {N₁ N₂ : ℕ}
 
 /-- Alternations force upcrossings: if there are `m` pairs of (strictly increasing) times below
 `N` at which `f` is alternately at most `a` and at least `b`, then `f` has at least
-`m` upcrossings of `[a, b]` before `N`. -/
+`m` upcrossings of `[a, b]` before `N`.
+@isnad1 id=le.5h8v.s7.fe517d08f645 from=translated src=- shape=afbc49b0 vocab=b0c266a3
+-/
 lemma le_upcrossingsBefore_of_alternating (hab : a < b) {m : ℕ} {c : ℕ → ℕ}
     (hmono : ∀ i, i + 1 < 2 * m → c i < c (i + 1)) (hN : ∀ i < 2 * m, c i < N)
     (ha : ∀ i < m, f (c (2 * i)) ω ≤ a) (hb : ∀ i < m, b ≤ f (c (2 * i + 1)) ω) :
@@ -169,7 +192,9 @@ lemma le_upcrossingsBefore_of_alternating (hab : a < b) {m : ℕ} {c : ℕ → �
 /-- Converse of `le_upcrossingsBefore_of_alternating`: if `f` has at least `m` upcrossings of
 `[a, b]` before `N`, then there is a strictly increasing sequence of `2 * m` times below `N` at
 which `f` is alternately at most `a` (at even positions) and at least `b` (at odd positions). The
-times are the lower/upper crossing times. -/
+times are the lower/upper crossing times.
+@isnad1 id=ex.2h7v.s7.f9f0d8547299 from=translated src=- shape=4ded07e1 vocab=b0c266a3
+-/
 lemma exists_alternating_of_le_upcrossingsBefore (hab : a < b) {m : ℕ}
     (hm : m ≤ upcrossingsBefore a b f N ω) :
     ∃ c : ℕ → ℕ, (∀ i, i + 1 < 2 * m → c i < c (i + 1)) ∧ (∀ i < 2 * m, c i < N)

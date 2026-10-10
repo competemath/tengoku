@@ -51,7 +51,9 @@ variances, this is the squared sum of their standard deviations. -/
 noncomputable def neymanOptimalValue (A B : ℝ) : ℝ := (Real.sqrt A + Real.sqrt B) ^ 2
 
 /-- **Neyman allocation lower bound.** For nonnegative arm variances `A, B` and any treatment
-fraction `x ∈ (0,1)`, the two-arm variance is at least `(√A + √B)²`. -/
+fraction `x ∈ (0,1)`, the two-arm variance is at least `(√A + √B)²`.
+@isnad1 id=le.4h3v.s6.184a4ade3aa9 from=translated src=- shape=5e3bad70 vocab=766d6443
+-/
 theorem neyman_allocation_lower_bound {A B x : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B)
     (hx0 : 0 < x) (hx1 : x < 1) :
     neymanOptimalValue A B ≤ A / x + B / (1 - x) := by
@@ -70,7 +72,9 @@ theorem neyman_allocation_lower_bound {A B x : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B
   have hsqB : Real.sqrt B ^ 2 = B := Real.sq_sqrt hB
   nlinarith [sq_nonneg (Real.sqrt A - (Real.sqrt A + Real.sqrt B) * x)]
 
-/-- The Neyman fraction lies in `(0,1)`. -/
+/-- The Neyman fraction lies in `(0,1)`.
+@isnad1 id=and.2h2v.s5.f8ad5f9dc7a5 from=translated src=- shape=eb602ad4 vocab=6e99204d
+-/
 theorem neymanFraction_mem_Ioo {A B : ℝ} (hA : 0 < A) (hB : 0 < B) :
     0 < neymanFraction A B ∧ neymanFraction A B < 1 := by
   unfold neymanFraction
@@ -84,7 +88,9 @@ theorem neymanFraction_mem_Ioo {A B : ℝ} (hA : 0 < A) (hB : 0 < B) :
 /-- **Neyman allocation optimum.** For [nonnegative treated-arm and control-arm outcome variances
 `A` and `B`](hyp:hA,hB), [evaluating the two-arm variance `A/x + B/(1−x)` at the Neyman fraction
 `x* = √A/(√A+√B)` yields exactly its lower bound `(√A + √B)²`](goal). When one variance
-is zero, this totalized fraction is a boundary point rather than an element of `(0,1)`. -/
+is zero, this totalized fraction is a boundary point rather than an element of `(0,1)`.
+@isnad1 id=eq.2h2v.s6.1c5cee0c0eac from=translated src=- shape=74a454ae vocab=38135055
+-/
 theorem neyman_allocation_eq_at_fraction {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B) :
     A / neymanFraction A B + B / (1 - neymanFraction A B) = neymanOptimalValue A B := by
   rcases eq_or_lt_of_le hA with rfl | hA
@@ -111,7 +117,9 @@ theorem neyman_allocation_eq_at_fraction {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ 
 /-- Given [nonnegative arm variances](hyp:hA,hB),
 [its value at the totalized fraction is no larger than at every interior fraction](goal).
 This comparison does not assert that the Neyman fraction
-belongs to `(0,1)` in the zero-variance boundary cases. -/
+belongs to `(0,1)` in the zero-variance boundary cases.
+@isnad1 id=le.4h3v.s7.bd7a6d077d95 from=translated src=- shape=f7f60d61 vocab=fe302ad2
+-/
 theorem neyman_fraction_value_le_on_Ioo {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B) :
     ∀ x, 0 < x → x < 1 →
       A / neymanFraction A B + B / (1 - neymanFraction A B) ≤ A / x + B / (1 - x) := by

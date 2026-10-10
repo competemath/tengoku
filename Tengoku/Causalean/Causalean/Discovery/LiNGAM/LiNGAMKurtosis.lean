@@ -38,7 +38,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasur
 /-- [Columnwise source separation forces two unmixing matrices to differ only by permutation and
 scaling](goal), the standard ICA ambiguity. For [dimension `n` and mixing matrices
 `A,A'`](hyp:n,A,A'), this needs [both matrices invertible](hyp:hAu,hA'u) and [at most one nonzero
-entry per column of their relative transform](hyp:hcol). -/
+entry per column of their relative transform](hyp:hcol).
+@isnad1 id=ex.3h3v.s8.c52201473340 from=translated src=- shape=0e9ca2c4 vocab=d28f4ee5
+-/
 theorem ica_genPerm_relation {n : ℕ} {A A' : Matrix (Fin n) (Fin n) ℝ}
     (hAu : IsUnit A.det) (hA'u : IsUnit A'.det)
     (hcol : ∀ j i k, i ≠ k → (A'⁻¹ * A) i j = 0 ∨ (A'⁻¹ * A) k j = 0) :
@@ -88,7 +90,9 @@ B'`)](goal).
 Proof: push `hobs` through `A'⁻¹` so `W·e =ᵈ e'` has independent components, hence the
 two output coordinates are independent; `colSupport_of_kurtosis` gives the column
 support; `ica_genPerm_relation` upgrades it to the generalized-permutation relation;
-`eq_of_genPerm_triangular_unitDiag` concludes. -/
+`eq_of_genPerm_triangular_unitDiag` concludes.
+@isnad1 id=eq.13h8v.s9.ea8dc3baa5be from=translated src=- shape=963dba4a vocab=3848238e
+-/
 theorem lingam_identifiability_kurtosis {n : ℕ} {A A' : Matrix (Fin n) (Fin n) ℝ}
     (hAu : IsUnit A.det) (hA'u : IsUnit A'.det)
     (hCdiag : ∀ i, A⁻¹ i i = 1) (hC'diag : ∀ i, A'⁻¹ i i = 1)

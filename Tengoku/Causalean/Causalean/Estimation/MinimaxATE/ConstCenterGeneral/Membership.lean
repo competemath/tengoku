@@ -48,7 +48,9 @@ namespace GenConstr
 variable {K : ℕ} (P : GenConstr)
 
 /-- The propensity perturbation has exact squared `L²` size `(m₀·(β/g₁))²`: it is a
-Rademacher bump of magnitude `m₀·(β/g₁)` on `Δ`. -/
+Rademacher bump of magnitude `m₀·(β/g₁)` on `Δ`.
+@isnad1 id=eq.0h3v.s6.49eefdb63542 from=translated src=- shape=bb9c6908 vocab=461f7cc1
+-/
 theorem l2sq_mPertG [NeZero K] (lam : Fin K → Bool) :
     l2sq (P.mPertG lam) (P.mhatG (K := K)) = (P.m₀ * (P.β / P.g₁)) ^ 2 := by
   have hbump : (P.mPertG lam)
@@ -63,7 +65,9 @@ theorem l2sq_mPertG [NeZero K] (lam : Fin K → Bool) :
   ring
 
 /-- The control outcome arm is unchanged (`gλ(0,·) = g₀ = ĝ(0,·)`), so its `L²`
-error is `0`. -/
+error is `0`.
+@isnad1 id=eq.0h3v.s5.32ea82adbef1 from=translated src=- shape=acb2a595 vocab=033e7258
+-/
 theorem l2sq_gPertG_false (lam : Fin K → Bool) :
     l2sq (P.gPertG lam false) (P.ghatG false) = 0 := by
   have h : P.gPertG lam false = P.ghatG false := by
@@ -72,7 +76,9 @@ theorem l2sq_gPertG_false (lam : Fin K → Bool) :
   rw [h, l2sq_self]
 
 /-- The treated outcome arm: its pointwise deviation from `ĝ(1) = g₁` is
-`g₁(α+β)·Δ/(g₁ − β·Δ)`. -/
+`g₁(α+β)·Δ/(g₁ − β·Δ)`.
+@isnad1 id=eq.0h4v.s6.4ed4942b2834 from=translated src=- shape=93d9a602 vocab=6d2500df
+-/
 theorem gPertG_true_sub (lam : Fin K → Bool) (x : Fin K × Bool) :
     P.gPertG lam true x - P.g₁ = P.g₁ * (P.α + P.β) * Δ lam x / (P.g₁ - P.β * Δ lam x) := by
   have hden : P.g₁ - P.β * Δ lam x ≠ 0 := by
@@ -82,7 +88,9 @@ theorem gPertG_true_sub (lam : Fin K → Bool) (x : Fin K × Bool) :
   ring
 
 /-- Uniform bound on the treated arm's squared `L²` error: every pointwise term is
-`≤ g₁²(α+β)²/(g₁ − β)²`, so the average is too. -/
+`≤ g₁²(α+β)²/(g₁ − β)²`, so the average is too.
+@isnad1 id=le.0h3v.s7.3806031729cf from=translated src=- shape=7519b63d vocab=2b8b43ee
+-/
 theorem l2sq_gPertG_true_le [NeZero K] (lam : Fin K → Bool) :
     l2sq (P.gPertG lam true) (P.ghatG true) ≤ P.g₁ ^ 2 * (P.α + P.β) ^ 2 / (P.g₁ - P.β) ^ 2 := by
   set C := Fin K × Bool
@@ -135,7 +143,9 @@ theorem l2sq_gPertG_true_le [NeZero K] (lam : Fin K → Bool) :
 outcome-regression perturbation bound `g₁²(α+β)²/(g₁ − β)²` within the budget
 `εg`](hyp:hg), [the Rademacher-perturbed data-generating process `(mλ, gλ)` lies in the
 structure-agnostic nuisance class `ℱ(εg, εm)` around the constant center
-`(m̂, ĝ)`](goal). -/
+`(m̂, ĝ)`](goal).
+@isnad1 id=inclass.2h5v.s7.37381758e9d7 from=translated src=- shape=bed65715 vocab=22925bb1
+-/
 theorem inClassG [NeZero K] {εg εm : ℝ}
     (hm : (P.m₀ * (P.β / P.g₁)) ^ 2 ≤ εm)
     (hg : P.g₁ ^ 2 * (P.α + P.β) ^ 2 / (P.g₁ - P.β) ^ 2 ≤ εg)

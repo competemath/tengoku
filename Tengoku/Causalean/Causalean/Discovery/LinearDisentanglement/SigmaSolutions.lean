@@ -150,7 +150,9 @@ indistinguishable whenever [`σ` preserves the causal order](hyp:hσ). The resul
 dimension `d`](hyp:d), [observed dimension `p`](hyp:p), and [intervention count `K`](hyp:K).
 
 This is the solution-orbit direction: for any `σ ∈ S(𝒢)`, the permuted solution
-`S.permute σ hσ` produces exactly the original precision family `{Θ₀, Θₖ}`. -/
+`S.permute σ hσ` produces exactly the original precision family `{Θ₀, Θₖ}`.
+@isnad1 id=and.1h5v.s6.9288879df2af from=translated src=- shape=3e28f90f vocab=3ab28a40
+-/
 theorem sigma_solutions (S : Solution d p K) (σ : Equiv.Perm (Fin d)) (hσ : S.InSG σ) :
     (S.permute σ hσ).Theta0 = S.Theta0
     ∧ ∀ k, (S.permute σ hσ).Theta k = S.Theta k := by

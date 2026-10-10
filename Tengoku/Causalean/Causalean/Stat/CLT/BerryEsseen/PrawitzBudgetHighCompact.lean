@@ -25,7 +25,9 @@ open MeasureTheory
 with cutoffs U0 = max(3/2, √(4 log(1/ρ))) and U = 12/(5ρ),
 [the high-frequency Prawitz contribution (2/U)·∫ over [U0, U] of the Prawitz
 filter magnitude times the moment envelope is at most three twentieths of
-ρ](goal). -/
+ρ](goal).
+@isnad1 id=other.2h1v.s7.af514f6a9669 from=translated src=- shape=dbb188b8 vocab=fbd3f8de
+-/
 theorem prawitz_budget_high_compact
     (ρ : ℝ) (hlarge : 1 / 100 < ρ) (hρ1 : ρ < 1) :
     let U0 := max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / ρ)))

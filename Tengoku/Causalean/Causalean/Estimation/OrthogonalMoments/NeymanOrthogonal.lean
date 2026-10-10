@@ -76,7 +76,9 @@ dominating the difference quotient of the moment near `t = 0`](hyp:hEnv). Suppos
 the segment from η₀ to η is integrable at every nonzero t](hyp:hMt_int), and that [the
 moment at η₀ is integrable](hyp:hM0_int). Then [the integrated difference quotient
 `(∫ m(η₀ + t · (η − η₀)) dP_Z − ∫ m(η₀) dP_Z) / t` tends to zero as t → 0 along the
-punctured neighborhood](goal). -/
+punctured neighborhood](goal).
+@isnad1 id=tendsto.5h8v.s9.66d75866b1b5 from=translated src=- shape=672b0122 vocab=0048317f
+-/
 theorem integratedMoment_diffQuotient_tendsto_zero
     (M : GeneralMoment Ω μ Z P_Z H) (D : HasDirDeriv M)
     (hNO : NeymanOrthogonal M D)
@@ -137,7 +139,9 @@ system](hyp:M), [almost-everywhere directional derivatives](hyp:D), [vanishing i
 directional derivatives](hyp:hNO), and [a dominating difference-quotient
 envelope](hyp:hEnv), if [every nonzero point on each admissible nuisance path has an
 integrable moment](hyp:hMt_int) and [the true moment is integrable](hyp:hM0_int), then
-[the population moment is Gateaux Neyman-orthogonal](goal). -/
+[the population moment is Gateaux Neyman-orthogonal](goal).
+@isnad1 id=neymanor.4h7v.s8.6cd2a303999e from=translated src=- shape=9cff2e00 vocab=faa83664
+-/
 theorem hasDirDeriv_to_neymanOrthogonalGateaux
     (M : GeneralMoment Ω μ Z P_Z H) (D : HasDirDeriv M)
     (hNO : NeymanOrthogonal M D)

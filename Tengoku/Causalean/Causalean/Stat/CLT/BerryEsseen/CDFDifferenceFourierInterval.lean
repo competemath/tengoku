@@ -15,7 +15,9 @@ open MeasureTheory
 
 /-- [Integrating the oriented Fourier kernel over the real line gives the
 oriented interval integral of the Fourier exponential exp(itx) from a to
-b](goal). -/
+b](goal).
+@isnad1 id=eq.0h3v.s6.5720ce950658 from=translated src=- shape=f03ca70d vocab=64da5684
+-/
 theorem orientedFourierKernel_interval_integral
     (t a b : ℝ) :
     (∫ x : ℝ, orientedFourierKernel t a b x) =

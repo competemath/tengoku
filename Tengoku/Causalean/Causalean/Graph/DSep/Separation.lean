@@ -81,7 +81,9 @@ instance decDSep (X Y Z : Finset V) : Decidable (G.dSep X Y Z) :=
 /-- In [a finite directed acyclic graph](hyp:V,G), for [two nested source sets, a
 target set, and a conditioning set](hyp:X,X',Y,Z), [containment of the smaller source
 set](hyp:hXX') and [d-separation of the larger source set](hyp:h) imply [d-separation of
-the smaller source set](goal). -/
+the smaller source set](goal).
+@isnad1 id=dsep.2h6v.s5.3d7e99b43a4c from=translated src=- shape=416845bf vocab=29168b0b
+-/
 theorem dSep_subset_left {X X' Y Z : Finset V}
     (hXX' : X' ⊆ X) (h : G.dSep X Y Z) : G.dSep X' Y Z := by
   rcases h with ⟨hXY, hXZ, hYZ, hReach⟩
@@ -91,7 +93,9 @@ theorem dSep_subset_left {X X' Y Z : Finset V}
 /-- In [a finite directed acyclic graph](hyp:V,G), for [a source set, two nested
 target sets, and a conditioning set](hyp:X,Y,Y',Z), [containment of the smaller target
 set](hyp:hYY') and [d-separation of the larger target set](hyp:h) imply [d-separation of
-the smaller target set](goal). -/
+the smaller target set](goal).
+@isnad1 id=dsep.2h6v.s5.be5a5c2940b3 from=translated src=- shape=6b442179 vocab=29168b0b
+-/
 theorem dSep_subset_right {X Y Y' Z : Finset V}
     (hYY' : Y' ⊆ Y) (h : G.dSep X Y Z) : G.dSep X Y' Z := by
   rcases h with ⟨hXY, hXZ, hYZ, hReach⟩
@@ -104,7 +108,9 @@ separate activated-collider sets](goal).
 
     `bbZAncestors (Z ∪ S) = bbZAncestors Z ∪ bbZAncestors S` as finsets.
     Used to split a collider-activation witness for `Z ∪ S` into a `Z`-side
-    and an `S`-side witness. -/
+    and an `S`-side witness.
+@isnad1 id=eq.0h4v.s5.7933f2a19ee4 from=translated src=- shape=fc538eea vocab=d2eaf6ea
+-/
 theorem bbZAncestors_union_eq (Z S : Finset V) :
     G.bbZAncestors (Z ∪ S) = G.bbZAncestors Z ∪ G.bbZAncestors S := by
   ext v
@@ -127,7 +133,9 @@ theorem bbZAncestors_union_eq (Z S : Finset V) :
 /-- In [a finite directed acyclic graph](hyp:V,G), if [one vertex is a proper
 ancestor of another](hyp:u,v,huv) and [the ancestor lies outside a conditioning set's
 ancestral closure](hyp:Z,huZ), then [a nontrivial directed walk between them avoids the
-conditioning set](goal). -/
+conditioning set](goal).
+@isnad1 id=ex.2h5v.s7.a20d96663737 from=translated src=- shape=7faf7d71 vocab=0807d9b4
+-/
 theorem exists_directedPath_avoiding
     {u v : V} (huv : G.isAncestor u v)
     {Z : Finset V} (huZ : u ∉ G.ancestralSet Z) :
@@ -273,7 +281,9 @@ newly conditioned vertices](goal).
     Formalized by a 4-way index case split (`r.reverse` interior, the two seam
     triples at the `m*` join, and `qTail` interior), using asymmetry of `G.edge`
     for the reversed-directed portion and maximality of `j_star` on the `qTail`
-    side. -/
+    side.
+@isnad1 id=ex.5h8v.s7.4ea0efa115cb from=translated src=- shape=914832a1 vocab=a41e3964
+-/
 theorem activeWalk_transfer_cond_to_source
     {X Z S : Finset V} {p : List V} {x w : V}
     (hxX : x ∈ X) (hlen : p.length ≥ 2)
@@ -689,7 +699,9 @@ theorem activeWalk_transfer_cond_to_source
     through `S` don't arise because the suffix we keep has no `S`-interior.
 
     Reduces to `activeWalk_transfer_cond_to_source` via the BFS↔active-walk
-    equivalence. -/
+    equivalence.
+@isnad1 id=dsep.2h6v.s6.f6dc2d1dbba7 from=translated src=- shape=bc41d007 vocab=11f50853
+-/
 theorem dSep_source_to_cond {X Y Z S : Finset V}
     (hXS : Disjoint X S) (h : G.dSep (X ∪ S) Y Z) : G.dSep X Y (Z ∪ S) := by
   rcases h with ⟨hXUSY, hXUSZ, hYZ, hReach⟩
@@ -716,7 +728,9 @@ theorem dSep_source_to_cond {X Y Z S : Finset V}
 
 /-- For [two finite directed acyclic graphs](hyp:V,G,G'), if [every edge of the first
 is an edge of the second](hyp:hEdge), then [an ancestor relation between two vertices in
-the first](hyp:u,v,h) [also holds in the second](goal). -/
+the first](hyp:u,v,h) [also holds in the second](goal).
+@isnad1 id=isancest.2h5v.s5.ebd8b3327ea9 from=translated src=- shape=4ccb8004 vocab=0728d035
+-/
 theorem isAncestor_mono_edge
     (G' : DAG V) (hEdge : ∀ u v : V, G'.edge u v → G.edge u v)
     {u v : V} (h : G'.isAncestor u v) : G.isAncestor u v := by
@@ -726,7 +740,9 @@ theorem isAncestor_mono_edge
 
 /-- For [two finite directed acyclic graphs](hyp:V,G,G'), if [every edge of the first
 is an edge of the second](hyp:hEdge), then for [any conditioning set](hyp:Z), [every
-collider activated in the first graph is activated in the second](goal). -/
+collider activated in the first graph is activated in the second](goal).
+@isnad1 id=le.1h4v.s6.865dfa936881 from=translated src=- shape=2eb1c2d3 vocab=d370a3f4
+-/
 theorem bbZAncestors_mono_edge
     (G' : DAG V) (hEdge : ∀ u v : V, G'.edge u v → G.edge u v)
     (Z : Finset V) :
@@ -740,7 +756,9 @@ theorem bbZAncestors_mono_edge
 
 /-- For [two finite directed acyclic graphs](hyp:V,G,G'), if [every edge of the first
 is an edge of the second](hyp:hEdge), then [two vertices adjacent in the first
-graph](hyp:u,v,h) [are adjacent in the second graph](goal). -/
+graph](hyp:u,v,h) [are adjacent in the second graph](goal).
+@isnad1 id=uadj.2h5v.s5.b1aa2c892093 from=translated src=- shape=4ccb8004 vocab=20952f89
+-/
 theorem uAdj_mono_edge
     (G' : DAG V) (hEdge : ∀ u v : V, G'.edge u v → G.edge u v)
     {u v : V} (h : G'.UAdj u v) : G.UAdj u v := by
@@ -751,7 +769,9 @@ theorem uAdj_mono_edge
 /-- For [two finite directed acyclic graphs](hyp:V,G,G'), if [every edge of the first
 is an edge of the second](hyp:hEdge), then [three vertices adjacent in consecutive pairs in
 the first graph](hyp:l,m,r,hadj_lm,hadj_mr) that [form a collider in the second](hyp:hcoll)
-[also form a collider in the first](goal). -/
+[also form a collider in the first](goal).
+@isnad1 id=iscollid.4h6v.s6.5b78d617341c from=translated src=- shape=44c6fa75 vocab=0069e07f
+-/
 theorem isCollider_of_supergraph
     (G' : DAG V) (hEdge : ∀ u v : V, G'.edge u v → G.edge u v)
     {l m r : V} (hadj_lm : G'.UAdj l m) (hadj_mr : G'.UAdj m r)
@@ -768,7 +788,9 @@ theorem isCollider_of_supergraph
 
 /-- For [two finite directed acyclic graphs](hyp:V,G,G'), if [every edge of the first
 is an edge of the second](hyp:hEdge), then [a walk and conditioning set active in the first
-graph](hyp:p,Z,h) [remain active in the second graph](goal). -/
+graph](hyp:p,Z,h) [remain active in the second graph](goal).
+@isnad1 id=isactive.2h5v.s5.dbed05f8bce5 from=translated src=- shape=f80a25fa vocab=76809130
+-/
 theorem isActiveWalk_mono_edge
     (G' : DAG V) (hEdge : ∀ u v : V, G'.edge u v → G.edge u v)
     {Z : Finset V} {p : List V}
@@ -812,7 +834,9 @@ theorem isActiveWalk_mono_edge
     fewer ancestors) and then lifts via `bbReachableVertices_iff_activeWalk`:
     any `G'`-active walk is `G`-active since each `G'`-adjacency is a
     `G`-adjacency and collider activation only grows (collider activation
-    requires ancestor witnesses, which are weaker in `G'`). -/
+    requires ancestor witnesses, which are weaker in `G'`).
+@isnad1 id=dsep.2h6v.s6.7c10e9d39f4c from=translated src=- shape=a731312a vocab=e0abc9d0
+-/
 theorem dSep_of_edge_subgraph {X Y Z : Finset V}
     (G' : DAG V)
     (hEdge : ∀ u v : V, G'.edge u v → G.edge u v)
@@ -833,7 +857,9 @@ theorem dSep_of_edge_subgraph {X Y Z : Finset V}
     Proof strategy: by contrapositive, using the equivalence between the BFS
     computation and the existence of active walks. If `Y` is not d-separated
     from `X`, there is an active walk from `Y` to `X`, which reversed gives
-    an active walk from `X` to `Y`, contradicting `dSep X Y Z`. -/
+    an active walk from `X` to `Y`, contradicting `dSep X Y Z`.
+@isnad1 id=dsep.1h5v.s5.bea9e8f65e78 from=translated src=- shape=dbc8004b vocab=3e1baf39
+-/
 theorem dSep_symm (X Y Z : Finset V) (h : G.dSep X Y Z) :
     G.dSep Y X Z := by
   rcases h with ⟨hXY, hXZ, hYZ, hReach⟩
