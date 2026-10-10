@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "f7c7cbe9fd77abb33205903e24d93af802f7ca7b90cc861e6ee52b0b13d1b34d",
+ "library": "anderson-conjecture",
+ "lint_mode": "proposed",
+ "modules": 21,
+ "part": 1,
+ "theorems": 47
+}
