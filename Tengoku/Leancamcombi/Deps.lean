@@ -1,0 +1,1 @@
+-- Leancamcombi: a factory bundle (data/intake/leancamcombi). This file only marks the library for Tengoku/All.lean.
