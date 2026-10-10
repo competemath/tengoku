@@ -3,7 +3,6 @@ import Tengoku.Algolean
 import Tengoku.AndersonConjecture
 import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
-import Tengoku.ChebotarevDensity
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
 import Tengoku.Leanforcontrol
@@ -19,6 +18,7 @@ import Tengoku.Vcvio
 import Tengoku.Causalean
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.Primenumbertheoremand
+import Tengoku.ChebotarevDensity
 import Tengoku.FormalMathfin
 import Tengoku.SphereEversion
 import Tengoku.Aperiodicmonotiles
