@@ -1,5 +1,4 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
-import Tengoku.AddCombi
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
 import Tengoku.ArchonFirstproofResults
@@ -8,6 +7,7 @@ import Tengoku.Degiorgi
 import Tengoku.FltRegular
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
+import Tengoku.AddCombi
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.OpenaiMath
