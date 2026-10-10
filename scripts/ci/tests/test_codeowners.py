@@ -141,6 +141,20 @@ class OwnerOnly(unittest.TestCase):
         ):
             self.assertEqual(owners_of(p, self.rules), [SECOND], p)
 
+    def test_the_content_lane_has_no_owner_and_the_machinery_of_the_tree_keeps_both(self):
+        """The first part of a library edits Tengoku/All.lean (owned: a person reads it); everything a later part touches in the tree is the library's own folder and umbrella."""
+        both = [MAIN, SECOND]
+        for p in (
+            "Tengoku/Formalbook/FormalBook/Chapter_08.lean",
+            "Tengoku/Formalbook.lean",
+            "Tengoku/SomeNewLibrary/Deep/Module.lean",
+            "Tengoku/SomeNewLibrary.lean",
+            "data/intake/formalbook/manifest.jsonl",
+        ):
+            self.assertEqual(owners_of(p, self.rules), [], p)
+        for p in ("Tengoku/All.lean", "Tengoku/Seed/Logic/Basic.lean", "Tengoku.lean", "lean-toolchain", "scripts/seed.py"):
+            self.assertEqual(owners_of(p, self.rules), both, p)
+
     def test_what_is_not_ci_keeps_both_owners_and_bot_paths_none(self):
         both = [MAIN, SECOND]
         for p in (

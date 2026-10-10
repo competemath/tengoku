@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "7b2a035fc1f392723b5149ea84180d0a656e768aeeb1595bf6baffad58ce05b1",
+ "library": "leanforcontrol",
+ "lint_mode": "proposed",
+ "modules": 10,
+ "part": 1,
+ "theorems": 20
+}
