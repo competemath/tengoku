@@ -5,7 +5,6 @@ import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
-import Tengoku.FrontiermathHypergraphs
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
@@ -21,6 +20,7 @@ import Tengoku.Certifyinginvariantsnf
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
 import Tengoku.SphereEversion
+import Tengoku.FrontiermathHypergraphs
 import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.SpherePackingOrig
