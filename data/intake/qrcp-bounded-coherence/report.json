@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "fe61915d708b9851b4b87b648d175fcbca844c76ff38add8b70b34a3eb41ae3b",
+ "library": "qrcp-bounded-coherence",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 1
+}
