@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "221845342fd715e71826f399b84efa591d179b239fb8cc8ace53f7d24b2f4cfa",
+ "library": "zkevm-clean",
+ "lint_mode": "proposed",
+ "modules": 5,
+ "part": 1,
+ "theorems": 9
+}
