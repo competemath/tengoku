@@ -1,11 +1,11 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
+import Tengoku.InfinityCosmos
 import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
-import Tengoku.InfinityCosmos
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
