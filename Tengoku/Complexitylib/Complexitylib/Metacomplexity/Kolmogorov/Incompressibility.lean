@@ -1,0 +1,212 @@
+/-
+Copyright (c) 2026 Samuel Schlesinger. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Samuel Schlesinger
+-/
+
+module
+public import Tengoku.Complexitylib.Complexitylib.Metacomplexity.Kolmogorov.Incompressibility.Defs
+public import Tengoku.Complexitylib.Complexitylib.Metacomplexity.Kolmogorov.Incompressibility.Internal
+
+/-!
+# Finite incompressibility
+
+At most `2^(k+1)-1` fixed-length strings can have deterministic
+machine-relative time-bounded Kolmogorov complexity at most `k`. Consequently,
+at least `2^n - (2^(k+1)-1)` of the `n`-bit strings exceed `k`, and one such
+string exists whenever `k < n`. In the strict convention used by MINKT, fewer
+than `2^r` strings have complexity below `r`, so at least
+`2^n - (2^r - 1)` strings are `r`-random with complexity at least `r`.
+-/
+
+public section
+
+namespace Complexity
+
+namespace StrictShortProgram
+
+/-- Packaging a strictly bounded list and forgetting the certificate recovers
+the original list. -/
+@[simp] theorem toList_ofList (bound : ℕ) (program : List Bool)
+    (hlength : program.length < bound) :
+    (ofList bound program hlength).toList = program :=
+  toList_ofList_internal bound program hlength
+
+/-- The variable-length contents uniquely determine a strictly short program. -/
+theorem toList_injective {bound : ℕ} :
+    Function.Injective (toList : StrictShortProgram bound → List Bool) :=
+  toList_injective_internal
+
+/-- There are exactly `2^r - 1` binary programs of length strictly below `r`. -/
+theorem card (bound : ℕ) :
+    Fintype.card (StrictShortProgram bound) = 2 ^ bound - 1 :=
+  card_internal bound
+
+end StrictShortProgram
+
+namespace ShortProgram
+
+/-- Packaging a bounded list as a short program and forgetting the certificate
+recovers the original list. -/
+@[simp] theorem toList_ofList (bound : ℕ) (program : List Bool)
+    (hlength : program.length ≤ bound) :
+    (ofList bound program hlength).toList = program :=
+  toList_ofList_internal bound program hlength
+
+/-- The variable-length contents uniquely determine a short program. -/
+theorem toList_injective {bound : ℕ} :
+    Function.Injective (toList : ShortProgram bound → List Bool) :=
+  toList_injective_internal
+
+/-- There are exactly `2^(k+1)-1` binary programs of length at most `k`. -/
+theorem card (bound : ℕ) :
+    Fintype.card (ShortProgram bound) = 2 ^ (bound + 1) - 1 :=
+  card_internal bound
+
+end ShortProgram
+
+namespace TM
+
+variable {tapes : ℕ}
+
+/-- Membership in the strict compressible-string set is exactly the MINKT
+inequality `C_U^t(x) < r`. -/
+theorem mem_timeBoundedStrictlyCompressibleStrings_iff (machine : TM tapes)
+    (outputLength time threshold : ℕ) (output : Fin outputLength → Bool) :
+    output ∈ machine.timeBoundedStrictlyCompressibleStrings
+        outputLength time threshold ↔
+      machine.timeBoundedKolmogorovComplexity (List.ofFn output) time <
+        (threshold : WithTop ℕ) :=
+  mem_timeBoundedStrictlyCompressibleStrings_iff_internal
+    machine outputLength time threshold output
+
+/-- Membership in the complementary random-string set means complexity at
+least the strict MINKT threshold. -/
+theorem mem_timeBoundedRandomStrings_iff (machine : TM tapes)
+    (outputLength time threshold : ℕ) (output : Fin outputLength → Bool) :
+    output ∈ machine.timeBoundedRandomStrings outputLength time threshold ↔
+      (threshold : WithTop ℕ) ≤
+        machine.timeBoundedKolmogorovComplexity (List.ofFn output) time :=
+  mem_timeBoundedRandomStrings_iff_internal
+    machine outputLength time threshold output
+
+/-- Fewer than `2^r` fixed-length strings have time-bounded complexity below
+the strict threshold `r`. -/
+theorem card_timeBoundedStrictlyCompressibleStrings_le (machine : TM tapes)
+    (outputLength time threshold : ℕ) :
+    (machine.timeBoundedStrictlyCompressibleStrings
+      outputLength time threshold).card ≤ 2 ^ threshold - 1 :=
+  card_timeBoundedStrictlyCompressibleStrings_le_internal
+    machine outputLength time threshold
+
+/-- At least `2^n - (2^r - 1)` length-`n` strings are `r`-random within the
+given clock. -/
+theorem card_timeBoundedRandomStrings_ge (machine : TM tapes)
+    (outputLength time threshold : ℕ) :
+    2 ^ outputLength - (2 ^ threshold - 1) ≤
+      (machine.timeBoundedRandomStrings outputLength time threshold).card :=
+  card_timeBoundedRandomStrings_ge_internal
+    machine outputLength time threshold
+
+/-- Under uniform length-`n` strings, strict-MINKT probability is at most
+`(2^r - 1) / 2^n`. -/
+theorem eventProb_timeBoundedStrictlyCompressibleStrings_le
+    (machine : TM tapes) (outputLength time threshold : ℕ) :
+    eventProb (machine.timeBoundedStrictlyCompressibleStrings
+        outputLength time threshold) ≤
+      ((2 ^ threshold - 1 : ℕ) : ℚ) / (2 : ℚ) ^ outputLength :=
+  eventProb_timeBoundedStrictlyCompressibleStrings_le_internal
+    machine outputLength time threshold
+
+/-- Uniform fixed-length strings have the complementary quantitative density
+of `r`-random strings. -/
+theorem eventProb_timeBoundedRandomStrings_ge (machine : TM tapes)
+    (outputLength time threshold : ℕ) :
+    1 - ((2 ^ threshold - 1 : ℕ) : ℚ) / (2 : ℚ) ^ outputLength ≤
+      eventProb (machine.timeBoundedRandomStrings
+        outputLength time threshold) :=
+  eventProb_timeBoundedRandomStrings_ge_internal
+    machine outputLength time threshold
+
+/-- Whenever `r ≤ n`, some `n`-bit string is `r`-random within every fixed
+clock. -/
+theorem exists_timeBoundedKolmogorovComplexity_ge
+    (machine : TM tapes) (outputLength time threshold : ℕ)
+    (hthreshold : threshold ≤ outputLength) :
+    ∃ output : Fin outputLength → Bool,
+      (threshold : WithTop ℕ) ≤
+        machine.timeBoundedKolmogorovComplexity (List.ofFn output) time :=
+  exists_timeBoundedKolmogorovComplexity_ge_internal
+    machine outputLength time threshold hthreshold
+
+/-- Membership in the compressible-string set is exactly the bounded
+Kolmogorov-complexity inequality. -/
+theorem mem_timeBoundedCompressibleStrings_iff (machine : TM tapes)
+    (outputLength time bound : ℕ) (output : Fin outputLength → Bool) :
+    output ∈ machine.timeBoundedCompressibleStrings outputLength time bound ↔
+      machine.timeBoundedKolmogorovComplexity (List.ofFn output) time ≤
+        (bound : WithTop ℕ) :=
+  mem_timeBoundedCompressibleStrings_iff_internal
+    machine outputLength time bound output
+
+/-- Membership in the incompressible-string set is exactly strict complexity
+above the bound. -/
+theorem mem_timeBoundedIncompressibleStrings_iff (machine : TM tapes)
+    (outputLength time bound : ℕ) (output : Fin outputLength → Bool) :
+    output ∈ machine.timeBoundedIncompressibleStrings outputLength time bound ↔
+      (bound : WithTop ℕ) <
+        machine.timeBoundedKolmogorovComplexity (List.ofFn output) time :=
+  mem_timeBoundedIncompressibleStrings_iff_internal
+    machine outputLength time bound output
+
+/-- No deterministic machine has more low-complexity outputs than short
+programs. The bound is independent of the output length and clock. -/
+theorem card_timeBoundedCompressibleStrings_le (machine : TM tapes)
+    (outputLength time bound : ℕ) :
+    (machine.timeBoundedCompressibleStrings outputLength time bound).card ≤
+      2 ^ (bound + 1) - 1 :=
+  card_timeBoundedCompressibleStrings_le_internal
+    machine outputLength time bound
+
+/-- Quantitative finite incompressibility: all but at most `2^(k+1)-1` of the
+`n`-bit strings have time-bounded complexity greater than `k`. -/
+theorem card_timeBoundedIncompressibleStrings_ge (machine : TM tapes)
+    (outputLength time bound : ℕ) :
+    2 ^ outputLength - (2 ^ (bound + 1) - 1) ≤
+      (machine.timeBoundedIncompressibleStrings outputLength time bound).card :=
+  card_timeBoundedIncompressibleStrings_ge_internal
+    machine outputLength time bound
+
+/-- Under the uniform distribution on `n`-bit strings, the probability of
+time-`t` complexity at most `k` is at most `(2^(k+1)-1) / 2^n`. -/
+theorem eventProb_timeBoundedCompressibleStrings_le (machine : TM tapes)
+    (outputLength time bound : ℕ) :
+    eventProb (machine.timeBoundedCompressibleStrings outputLength time bound) ≤
+      ((2 ^ (bound + 1) - 1 : ℕ) : ℚ) / (2 : ℚ) ^ outputLength :=
+  eventProb_timeBoundedCompressibleStrings_le_internal
+    machine outputLength time bound
+
+/-- Uniform fixed-length strings are quantitatively dense above every
+time-bounded complexity threshold. -/
+theorem eventProb_timeBoundedIncompressibleStrings_ge (machine : TM tapes)
+    (outputLength time bound : ℕ) :
+    1 - ((2 ^ (bound + 1) - 1 : ℕ) : ℚ) / (2 : ℚ) ^ outputLength ≤
+      eventProb
+        (machine.timeBoundedIncompressibleStrings outputLength time bound) :=
+  eventProb_timeBoundedIncompressibleStrings_ge_internal
+    machine outputLength time bound
+
+/-- For every clock and every `k < n`, some `n`-bit string has time-bounded
+complexity strictly greater than `k`. -/
+theorem exists_timeBoundedKolmogorovComplexity_gt
+    (machine : TM tapes) (outputLength time bound : ℕ)
+    (hbound : bound < outputLength) :
+    ∃ output : Fin outputLength → Bool,
+      (bound : WithTop ℕ) <
+        machine.timeBoundedKolmogorovComplexity (List.ofFn output) time :=
+  exists_timeBoundedKolmogorovComplexity_gt_internal
+    machine outputLength time bound hbound
+
+end TM
+
+end Complexity
