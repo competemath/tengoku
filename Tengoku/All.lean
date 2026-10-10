@@ -12,6 +12,7 @@ import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.OpenaiMath
+import Tengoku.Prismriver
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
