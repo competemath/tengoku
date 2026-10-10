@@ -4,12 +4,12 @@ import Tengoku.AndersonConjecture
 import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
-import Tengoku.Erdos1196
 import Tengoku.FltRegular
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
+import Tengoku.Erdos1196
 import Tengoku.OpenaiMath
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
