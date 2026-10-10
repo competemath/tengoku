@@ -1,0 +1,1 @@
+-- Algolean: a factory bundle (data/intake/algolean). This file only marks the library for Tengoku/All.lean.
