@@ -5,6 +5,7 @@ import Tengoku.FltRegular
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
+import Tengoku.OpenaiMath
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
 import Tengoku.Flt
