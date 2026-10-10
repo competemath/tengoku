@@ -5,7 +5,6 @@ import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
-import Tengoku.Leancamcombi
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
@@ -13,6 +12,7 @@ import Tengoku.Leanmodularforms
 import Tengoku.OpenaiMath
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
+import Tengoku.Leancamcombi
 import Tengoku.Flt
 import Tengoku.Toric
 import Tengoku.Vcvio
