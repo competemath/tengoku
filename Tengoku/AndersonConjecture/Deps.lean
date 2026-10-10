@@ -1,0 +1,1 @@
+-- AndersonConjecture: a factory bundle (data/intake/anderson-conjecture). This file only marks the library for Tengoku/All.lean.
