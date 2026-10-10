@@ -2,7 +2,7 @@
 
 Tengoku aims to provide continuously improving, reliable context for automated theorem provers. By reliable, we mean
 that our systems are designed to be exceptionally cynical of all dependencies, even the Lean 4 kernel and elaboration
-ecosystem. These are the methods.
+ecosystem. These are the methods; [why we do it](why-cynical.md) has the case studies behind them.
 
 ## The methods
 
