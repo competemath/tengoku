@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "daaa04778797d32af07c424189172996daa419f1d1623abd506f6bd9680f6ba4",
+ "library": "degiorgi",
+ "lint_mode": "proposed",
+ "modules": 12,
+ "part": 1,
+ "theorems": 14
+}

@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "3940182781f2f250d1801c4df87ebb647923713a325b4caddb3d9ec835a47a4f",
+ "library": "archon-firstproof-results",
+ "lint_mode": "proposed",
+ "modules": 25,
+ "part": 1,
+ "theorems": 112
+}
