@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "d63668cbbb2420d509a39eb07cabbd4373836a64ed101b4da71759866cb5e1e7",
+ "library": "zflean",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 46
+}
