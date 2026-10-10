@@ -2,7 +2,6 @@
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
 import Tengoku.ArchonFirstproofResults
-import Tengoku.BtcVerified
 import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
@@ -37,5 +36,6 @@ import Tengoku.Formalslt
 import Tengoku.Physlib
 import Tengoku.Tautology
 import Tengoku.Complexitylib
+import Tengoku.BtcVerified
 import Tengoku.Leaninfotheory
 import Tengoku.ZkevmClean
