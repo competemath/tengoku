@@ -12,6 +12,7 @@ import Tengoku.FltRegular
 import Tengoku.GibbsMeasure
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
+import Tengoku.AddCombi
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.OpenaiMath
