@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "c3135c2d82f25252dcdee56b3aac0a87bff778dae2c90007071ed62af26b1411",
+ "library": "groebner-proj",
+ "lint_mode": "proposed",
+ "modules": 13,
+ "part": 1,
+ "theorems": 105
+}
