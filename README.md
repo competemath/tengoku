@@ -28,7 +28,7 @@ ecosystem. [Why](docs/why-cynical.md) and [how](docs/reliability.md) we do that.
 ## Contributors
 Anyone can contribute, by hand or with AI. Every theorem keeps its author's credit: put a docstring above it with one
 line starting `Author:` that names you, and any AI you used. [How credit works](docs/credit.md) ·
-[Contributing](CONTRIBUTING.md) · [How a theorem gets in](docs/how-a-pr-flows.md) · [What we would like next](GOALS.md)
+[Contributing](CONTRIBUTING.md) · [How a theorem gets in](docs/how-a-pr-flows.md) · [What we would like next](GOALS.md) ·
 [Code of Ethics](https://github.com/competemath/.github/blob/main/CODE_OF_ETHICS.md) · [Posting guidelines](https://github.com/competemath/.github/blob/main/POSTING.md)
 
 Found a bug, or have an idea? [Open an issue](https://github.com/competemath/tengoku/issues/new). Security problems go
