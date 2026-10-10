@@ -1,0 +1,130 @@
+import Tengoku.NavierStokesEuler.Euler.TransverseStrongEquation
+
+/-!
+# Quantitative bounds for the actual transverse coordinate inverse
+
+These bounds use the lower frame constant and coefficient norms. In particular
+no exponential dependence on the undifferentiated coefficient norm is introduced.
+-/
+
+noncomputable section
+
+namespace EulerTransverseStrongEstimates
+
+open Set InnerProductSpace ContinuousLinearMap MeasureTheory
+  EulerTimeLp EulerTerminalTimePrimitive EulerVolterraConvolution
+  EulerTimeH1OperatorProduct EulerTransverseVariationalInverse
+  EulerTransverseGramInverse EulerTransverseGramPath
+  EulerTransverseCoordinateRegularity EulerTransverseStrongEquation
+  EulerTransverseMomentumRegularity
+
+variable {U E : Type*}
+  [NormedAddCommGroup U] [InnerProductSpace ℝ U] [CompleteSpace U]
+  [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
+
+variable (T : ℝ) (Q Q₁ : C(Icc (0 : ℝ) T, U →L[ℝ] E))
+  (c : ℝ) (hc : 0 < c)
+  (hQ : ∀ t x, c * ‖x‖ ^ 2 ≤ ‖Q t x‖ ^ 2)
+
+/-- The genuine inverse coefficient has the uniform coercive inverse bound. -/
+theorem gramInversePath_norm : ‖gramInversePath T Q c hc hQ‖ ≤ c⁻¹ := by
+  apply (ContinuousMap.norm_le _ (inv_nonneg.mpr hc.le)).2
+  intro t
+  exact gramInverse_norm (Q t) c hc (hQ t)
+
+/-- The Gram derivative is controlled by the actual frame and frame derivative norms. -/
+theorem gramDerivativePath_norm :
+    ‖gramDerivativePath T Q Q₁‖ ≤ 2 * ‖Q‖ * ‖Q₁‖ := by
+  apply (ContinuousMap.norm_le _ (by positivity)).2
+  intro t
+  change ‖(Q₁ t).adjoint.comp (Q t) + (Q t).adjoint.comp (Q₁ t)‖ ≤ _
+  calc
+    _ ≤ ‖(Q₁ t).adjoint.comp (Q t)‖ + ‖(Q t).adjoint.comp (Q₁ t)‖ := norm_add_le _ _
+    _ ≤ ‖(Q₁ t).adjoint‖ * ‖Q t‖ + ‖(Q t).adjoint‖ * ‖Q₁ t‖ :=
+      add_le_add (opNorm_comp_le _ _) (opNorm_comp_le _ _)
+    _ = ‖Q₁ t‖ * ‖Q t‖ + ‖Q t‖ * ‖Q₁ t‖ := by
+      simp only [LinearIsometryEquiv.norm_map]
+    _ ≤ ‖Q₁‖ * ‖Q‖ + ‖Q‖ * ‖Q₁‖ := by
+      gcongr
+      · exact Q₁.norm_coe_le_norm t
+      · exact Q.norm_coe_le_norm t
+      · exact Q.norm_coe_le_norm t
+      · exact Q₁.norm_coe_le_norm t
+    _ = _ := by ring
+
+/-- The derivative of the inverse pays two inverse factors and one coefficient derivative. -/
+theorem gramInverseDerivativePath_norm :
+    ‖gramInverseDerivativePath T Q Q₁ c hc hQ‖ ≤ 2 * (c⁻¹)^2 * ‖Q‖ * ‖Q₁‖ := by
+  apply (ContinuousMap.norm_le _ (by positivity)).2
+  intro t
+  change ‖-(gramInversePath T Q c hc hQ t).comp
+    ((gramDerivativePath T Q Q₁ t).comp (gramInversePath T Q c hc hQ t))‖ ≤ _
+  rw [norm_neg]
+  calc
+    _ ≤ ‖gramInversePath T Q c hc hQ t‖ *
+        (‖gramDerivativePath T Q Q₁ t‖ * ‖gramInversePath T Q c hc hQ t‖) :=
+      (opNorm_comp_le _ _).trans
+        (mul_le_mul_of_nonneg_left (opNorm_comp_le _ _) (norm_nonneg _))
+    _ ≤ c⁻¹ * ((2 * ‖Q‖ * ‖Q₁‖) * c⁻¹) := by
+      gcongr
+      · exact gramInverse_norm (Q t) c hc (hQ t)
+      · exact ((gramDerivativePath T Q Q₁).norm_coe_le_norm t).trans
+          (gramDerivativePath_norm T Q Q₁)
+      · exact gramInverse_norm (Q t) c hc (hQ t)
+    _ = _ := by ring
+
+/-- Recovering coordinates has one inverse factor. -/
+theorem frameLeftInversePath_norm :
+    ‖frameLeftInversePath T Q c hc hQ‖ ≤ c⁻¹ * ‖Q‖ := by
+  apply (ContinuousMap.norm_le (frameLeftInversePath T Q c hc hQ)
+    (mul_nonneg (inv_nonneg.mpr hc.le) (norm_nonneg Q))).2
+  intro t
+  change ‖(gramInversePath T Q c hc hQ t).comp (Q t).adjoint‖ ≤ _
+  calc
+    _ ≤ ‖gramInversePath T Q c hc hQ t‖ * ‖(Q t).adjoint‖ := opNorm_comp_le _ _
+    _ = ‖gramInversePath T Q c hc hQ t‖ * ‖Q t‖ := by rw [LinearIsometryEquiv.norm_map]
+    _ ≤ c⁻¹ * ‖Q‖ := mul_le_mul (gramInverse_norm (Q t) c hc (hQ t))
+      (Q.norm_coe_le_norm t) (norm_nonneg _) (inv_nonneg.mpr hc.le)
+
+/-- Differentiating coordinate recovery has polynomial coefficient cost. -/
+theorem frameLeftInverseDerivativePath_norm :
+    ‖frameLeftInverseDerivativePath T Q Q₁ c hc hQ‖ ≤
+      2 * (c⁻¹)^2 * ‖Q‖^2 * ‖Q₁‖ + c⁻¹ * ‖Q₁‖ := by
+  apply (ContinuousMap.norm_le _ (by positivity)).2
+  intro t
+  change ‖(gramInverseDerivativePath T Q Q₁ c hc hQ t).comp (Q t).adjoint +
+    (gramInversePath T Q c hc hQ t).comp (Q₁ t).adjoint‖ ≤ _
+  calc
+    _ ≤ ‖(gramInverseDerivativePath T Q Q₁ c hc hQ t).comp (Q t).adjoint‖ +
+        ‖(gramInversePath T Q c hc hQ t).comp (Q₁ t).adjoint‖ := norm_add_le _ _
+    _ ≤ ‖gramInverseDerivativePath T Q Q₁ c hc hQ t‖ * ‖(Q t).adjoint‖ +
+        ‖gramInversePath T Q c hc hQ t‖ * ‖(Q₁ t).adjoint‖ :=
+      add_le_add (opNorm_comp_le _ _) (opNorm_comp_le _ _)
+    _ = ‖gramInverseDerivativePath T Q Q₁ c hc hQ t‖ * ‖Q t‖ +
+        ‖gramInversePath T Q c hc hQ t‖ * ‖Q₁ t‖ := by
+      simp only [LinearIsometryEquiv.norm_map]
+    _ ≤ (2 * (c⁻¹)^2 * ‖Q‖ * ‖Q₁‖) * ‖Q‖ + c⁻¹ * ‖Q₁‖ := by
+      gcongr
+      · exact ((gramInverseDerivativePath T Q Q₁ c hc hQ).norm_coe_le_norm t).trans
+          (gramInverseDerivativePath_norm T Q Q₁ c hc hQ)
+      · exact Q.norm_coe_le_norm t
+      · exact gramInverse_norm (Q t) c hc (hQ t)
+      · exact Q₁.norm_coe_le_norm t
+    _ = _ := by ring
+
+/-- Explicit polynomial bound for the actual coordinate derivative. -/
+theorem coordinateDerivative_norm (hT : 0 ≤ T) (u : TimeLp T E) :
+    ‖coordinateDerivative T hT Q Q₁ c hc hQ u‖ ≤
+      ((2 * (c⁻¹)^2 * ‖Q‖^2 * ‖Q₁‖ + c⁻¹ * ‖Q₁‖) * T + c⁻¹ * ‖Q‖) * ‖u‖ := by
+  have hs : Real.sqrt (T^2/2) ≤ T := by
+    calc
+      _ ≤ Real.sqrt (T^2) := Real.sqrt_le_sqrt (by nlinarith only [sq_nonneg T])
+      _ = T := Real.sqrt_sq hT
+  apply (productDerivative_norm_le T hT (frameLeftInversePath T Q c hc hQ)
+    (frameLeftInverseDerivativePath T Q Q₁ c hc hQ) u).trans
+  apply mul_le_mul_of_nonneg_right _ (norm_nonneg u)
+  apply add_le_add _ (frameLeftInversePath_norm T Q c hc hQ)
+  exact mul_le_mul (frameLeftInverseDerivativePath_norm T Q Q₁ c hc hQ) hs
+    (Real.sqrt_nonneg _) (by positivity)
+
+end EulerTransverseStrongEstimates
