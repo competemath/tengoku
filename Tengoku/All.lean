@@ -6,6 +6,7 @@ import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.Expdb
 import Tengoku.FltRegular
+import Tengoku.GibbsMeasure
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity

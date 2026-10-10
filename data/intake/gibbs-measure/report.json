@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "2275a0bfcd2f77c1f46448c9ff426a6fe66b0f07f6f9a8af5f5300e657e5fb7d",
+ "library": "gibbs-measure",
+ "lint_mode": "proposed",
+ "modules": 23,
+ "part": 1,
+ "theorems": 66
+}
