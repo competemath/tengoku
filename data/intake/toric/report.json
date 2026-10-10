@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "5dd977f40603b989ee79a96766ad93bea39cb6862da99cce819ce5a368cf5d38",
+ "library": "toric",
+ "lint_mode": "proposed",
+ "modules": 6,
+ "part": 1,
+ "theorems": 9
+}
