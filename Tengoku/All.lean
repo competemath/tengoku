@@ -5,7 +5,6 @@ import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
-import Tengoku.Formalbook
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
@@ -29,6 +28,7 @@ import Tengoku.Pfr
 import Tengoku.Apap
 import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
+import Tengoku.Formalbook
 import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
 import Tengoku.EquationalTheories
