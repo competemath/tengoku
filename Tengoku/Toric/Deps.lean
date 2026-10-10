@@ -1,0 +1,1 @@
+-- Toric: a factory bundle (data/intake/toric). This file only marks the library for Tengoku/All.lean.
