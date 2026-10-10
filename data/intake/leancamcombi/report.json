@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "21acb2e08ca307cf89f91e9bfcf65a0cfa2b1e740a4e386831dbcdce2b615a6a",
+ "library": "leancamcombi",
+ "lint_mode": "proposed",
+ "modules": 8,
+ "part": 1,
+ "theorems": 28
+}

@@ -20,6 +20,7 @@ import Tengoku.OpenaiMath
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
+import Tengoku.Leancamcombi
 import Tengoku.Flt
 import Tengoku.Toric
 import Tengoku.Vcvio
