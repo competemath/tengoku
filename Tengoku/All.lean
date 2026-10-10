@@ -1,6 +1,7 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
 import Tengoku.AndersonConjecture
 import Tengoku.Carleson
+import Tengoku.Formalbook
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
