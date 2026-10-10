@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "2b767ec0ede1b2dfcf7c6f392b156c266b739cf10b52ba02fb5a6998b6c35ddd",
+ "library": "ieantn",
+ "lint_mode": "proposed",
+ "modules": 18,
+ "part": 1,
+ "theorems": 6
+}
