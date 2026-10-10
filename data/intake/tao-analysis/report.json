@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "28698851d967f8d7f76411c26baec2982fa02516d0cb916391501ca0571ae689",
+ "library": "tao-analysis",
+ "lint_mode": "proposed",
+ "modules": 8,
+ "part": 1,
+ "theorems": 44
+}
