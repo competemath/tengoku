@@ -3,7 +3,6 @@ import Tengoku.Algolean
 import Tengoku.AndersonConjecture
 import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
-import Tengoku.ChandraFurstLipton
 import Tengoku.Degiorgi
 import Tengoku.FltRegular
 import Tengoku.Leanforcontrol
@@ -27,6 +26,7 @@ import Tengoku.SpherePackingOrig
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.Apap
+import Tengoku.ChandraFurstLipton
 import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
 import Tengoku.Automatatheory
