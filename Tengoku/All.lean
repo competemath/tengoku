@@ -30,6 +30,7 @@ import Tengoku.Certifyinginvariantsnf
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
 import Tengoku.SphereEversion
+import Tengoku.FrontiermathHypergraphs
 import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.SpherePackingOrig
