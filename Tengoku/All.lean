@@ -10,7 +10,6 @@ import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.OpenaiMath
-import Tengoku.Prismriver
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
 import Tengoku.Flt
@@ -25,6 +24,7 @@ import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.SpherePackingOrig
 import Tengoku.Compfiles
+import Tengoku.Prismriver
 import Tengoku.Pfr
 import Tengoku.Apap
 import Tengoku.LerayHopf
