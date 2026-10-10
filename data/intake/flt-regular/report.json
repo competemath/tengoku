@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "0955851edbd58ff3bfe3d9ea3fb531f059984f52691681e9407a33182f558dce",
+ "library": "flt-regular",
+ "lint_mode": "proposed",
+ "modules": 13,
+ "part": 1,
+ "theorems": 69
+}
