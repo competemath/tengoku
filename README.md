@@ -13,7 +13,7 @@ on one version, so that agentic theorem provers can use all of it at once.
 
 Tengoku aims to provide continuously improving, reliable context for automated theorem provers. By reliable, we mean
 that our systems are designed to be exceptionally cynical of all dependencies, even the Lean 4 kernel and elaboration
-ecosystem. [How we do that](docs/reliability.md).
+ecosystem. [Why](docs/why-cynical.md) and [how](docs/reliability.md) we do that.
 
 ## Try it
 [Leak](https://competemath.com/about/leak) is the intended interface to Tengoku.
@@ -35,6 +35,7 @@ Found a bug, or have an idea? [Open an issue](https://github.com/competemath/ten
 through [SECURITY.md](SECURITY.md), never a public issue.
 
 ## Learn more
+- [Why Tengoku does not trust the toolchain](docs/why-cynical.md): case studies of Lean 4 failures
 - [How Tengoku stays reliable](docs/reliability.md)
 - [Training on Tengoku](docs/for-labs.md): what labs must do, and what we ask
 - [What Tengoku guarantees](docs/why-tengoku.md)

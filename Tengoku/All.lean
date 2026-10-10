@@ -1,10 +1,16 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
+import Tengoku.Algolean
 import Tengoku.AndersonConjecture
+import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
+import Tengoku.Zflean
+import Tengoku.Degiorgi
 import Tengoku.FltRegular
+import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
+import Tengoku.OpenaiMath
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
 import Tengoku.Flt
@@ -32,5 +38,4 @@ import Tengoku.Physlib
 import Tengoku.Tautology
 import Tengoku.Complexitylib
 import Tengoku.Leaninfotheory
-import Tengoku.Zflean
 import Tengoku.ZkevmClean
