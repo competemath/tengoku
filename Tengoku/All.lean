@@ -4,7 +4,6 @@ import Tengoku.AndersonConjecture
 import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
 import Tengoku.Degiorgi
-import Tengoku.ErdosUnitDistance1
 import Tengoku.FltRegular
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
@@ -17,6 +16,7 @@ import Tengoku.Flt
 import Tengoku.Toric
 import Tengoku.Vcvio
 import Tengoku.Causalean
+import Tengoku.ErdosUnitDistance1
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
