@@ -15,6 +15,7 @@ import Tengoku.Leanslt
 import Tengoku.AddCombi
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
+import Tengoku.Erdos1196
 import Tengoku.OpenaiMath
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
