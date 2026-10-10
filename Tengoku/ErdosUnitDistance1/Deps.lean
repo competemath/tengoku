@@ -1,0 +1,1 @@
+-- ErdosUnitDistance1: a factory bundle (data/intake/erdos-unit-distance-1). This file only marks the library for Tengoku/All.lean.

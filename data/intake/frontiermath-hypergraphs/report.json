@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "e8643d56ab8310ec45bb13aa0127442645485c87da3986f091488d9f1978b05e",
+ "library": "frontiermath-hypergraphs",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 2
+}
