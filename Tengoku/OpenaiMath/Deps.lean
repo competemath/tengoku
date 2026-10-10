@@ -1,0 +1,1 @@
+-- OpenaiMath: a factory bundle (data/intake/openai-math). This file only marks the library for Tengoku/All.lean.
