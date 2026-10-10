@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "8aa83c8ff6e36b0fdbd19d76e288cb3c13d4bd614bf0ee729a23454d83f9a6cf",
+ "library": "quantumoptimization",
+ "lint_mode": "proposed",
+ "modules": 7,
+ "part": 1,
+ "theorems": 90
+}
