@@ -57,16 +57,22 @@ instance : CoeFun (ChoquetCapacity Ω) fun _ ↦ Set Ω → ℝ≥0∞ :=
 
 namespace ChoquetCapacity
 
-/-- Capacity values are monotone under inclusion. -/
+/-- Capacity values are monotone under inclusion.
+@isnad1 id=le.1h4v.s5.789f630588f0 from=translated src=- shape=d7de5d8b vocab=63cf16ac
+-/
 theorem mono (c : ChoquetCapacity Ω) {s t : Set Ω} (hst : s ⊆ t) : c s ≤ c t :=
   c.mono' hst
 
-/-- Capacity values on compact sets are finite. -/
+/-- Capacity values on compact sets are finite.
+@isnad1 id=lt.1h3v.s5.19123f537faf from=translated src=- shape=f5f165aa vocab=23cde542
+-/
 theorem isCompact_lt_top (c : ChoquetCapacity Ω) {K : Set Ω} (hK : IsCompact K) :
     c K < ⊤ :=
   c.isCompact_lt_top' hK
 
-/-- A strict upper bound for the capacity of a compact set also bounds some open neighborhood. -/
+/-- A strict upper bound for the capacity of a compact set also bounds some open neighborhood.
+@isnad1 id=ex.2h4v.s6.5686ae363bea from=translated src=- shape=88bf7c44 vocab=357ecee1
+-/
 theorem exists_isOpen_superset_lt (c : ChoquetCapacity Ω) {K : Set Ω} (hK : IsCompact K)
     {a : ℝ≥0∞} (ha : c K < a) : ∃ U, K ⊆ U ∧ IsOpen U ∧ c U < a :=
   c.exists_isOpen_superset_lt' hK ha
@@ -303,7 +309,9 @@ noncomputable def Measure.toChoquetCapacity [PolishSpace Ω] [MeasurableSpace Ω
   exists_isOpen_superset_lt' := fun {_} hK {_} ha ↦ hK.exists_isOpen_lt_of_lt _ ha
 
 /-- The capacity induced by a finite measure assigns every event exactly that measure's outer
-mass. -/
+mass.
+@isnad1 id=eq.0h3v.s5.f00fd1b0782c from=translated src=- shape=cc5900c0 vocab=21e5527a
+-/
 @[simp]
 theorem Measure.toChoquetCapacity_apply [PolishSpace Ω] [MeasurableSpace Ω]
     [BorelSpace Ω] (μ : Measure Ω) [IsFiniteMeasure μ] (s : Set Ω) :

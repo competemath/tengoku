@@ -25,7 +25,9 @@ def expTaylorInterval (z : ℚ) (degree : ℕ) : RatInterval :=
     z degree
 
 /-- On the unit interval, the finite rational Taylor interval encloses the real
-exponential. -/
+exponential.
+@isnad1 id=contains.1h2v.s4.da51a63c5d4a from=translated src=- shape=6d375f60 vocab=7d430827
+-/
 theorem expTaylorInterval_sound (z : ℚ) (hz : |z| ≤ 1) (degree : ℕ) :
     (expTaylorInterval z degree).Contains (Real.exp (z : ℝ)) := by
   -- Follow the reduced-input part of Causalean's `expRaw_sound`: apply
@@ -55,7 +57,9 @@ theorem expTaylorInterval_sound (z : ℚ) (hz : |z| ≤ 1) (degree : ℕ) :
   constructor <;> linarith [hb'.1, hb'.2]
 
 /-- The width of the raw reduced exponential interval is exactly twice its
-explicit rational Taylor remainder radius. -/
+explicit rational Taylor remainder radius.
+@isnad1 id=eq.0h2v.s4.37c4fc91e538 from=translated src=- shape=576c1382 vocab=be6c746c
+-/
 theorem expTaylorInterval_width (z : ℚ) (degree : ℕ) :
     (expTaylorInterval z degree).width =
       2 * Transcendental.expRemainder z degree := by
@@ -65,7 +69,9 @@ theorem expTaylorInterval_width (z : ℚ) (degree : ℕ) :
   ring
 
 /-- The factorial `(n+1)!` dominates `2^n`; this is the discrete estimate used
-to turn Taylor factorial decay into a geometric precision bound. -/
+to turn Taylor factorial decay into a geometric precision bound.
+@isnad1 id=le.0h1v.s5.44604f3c4a31 from=translated src=- shape=a5794fac vocab=6a27f484
+-/
 theorem two_pow_le_factorial_succ (n : ℕ) :
     2 ^ n ≤ (n + 1).factorial := by
   -- Induct on `n`; rewrite both recurrences and use `2 ≤ n+2`.
@@ -80,7 +86,9 @@ theorem two_pow_le_factorial_succ (n : ℕ) :
 
 /-- From degree one onward, the unit-range exponential interval has width at
 most `3 / 2^degree`, explicitly witnessing logarithmic degree in inverse target
-width. -/
+width.
+@isnad1 id=le.2h2v.s5.593f4e183124 from=translated src=- shape=a39ce6df vocab=a578787d
+-/
 theorem expTaylorInterval_width_le_geometric (z : ℚ) (hz : |z| ≤ 1)
     (degree : ℕ) (hdegree : 1 ≤ degree) :
     (expTaylorInterval z degree).width ≤ 3 / (2 : ℚ) ^ degree := by
@@ -140,7 +148,9 @@ def expCheck (q : ℚ) (c : ExpCertificate q) : Bool :=
     c.enclosure.lo ≤ (expCertificateInterval c).lo ∧
     (expCertificateInterval c).hi ≤ c.enclosure.hi)
 
-/-- A [finite rational exponential certificate](hyp:c) whose [executable check succeeds](hyp:hcheck) [contains the real exponential at its certified argument](goal). -/
+/-- A [finite rational exponential certificate](hyp:c) whose [executable check succeeds](hyp:hcheck) [contains the real exponential at its certified argument](goal).
+@isnad1 id=contains.1h2v.s4.1d028030d04e from=translated src=- shape=6e32ada4 vocab=b87d3601
+-/
 theorem ExpCertificate.sound {q : ℚ} (c : ExpCertificate q)
     (hcheck : expCheck q c = true) :
     c.enclosure.Contains (Real.exp (q : ℝ)) := by

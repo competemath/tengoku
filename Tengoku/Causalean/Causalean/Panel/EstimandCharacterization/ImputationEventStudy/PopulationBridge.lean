@@ -124,7 +124,9 @@ noncomputable def toPanel : BJSPanel Treated Untreated Regressor where
   tau c := E.cells.mean E.Y1 (Sum.inl c) - E.cells.mean E.Y0 (Sum.inl c)
 
 /-- On a treated cell the observed mean equals the treated potential-outcome
-mean. -/
+mean.
+@isnad1 id=eq.0h5v.s6.ed537b2223d9 from=translated src=- shape=80fa4239 vocab=3c49f72b
+-/
 theorem toPanel_EY_T_eq_mean_Y1 (c : Treated) :
     (E.toPanel).EY_T c = E.cells.mean E.Y1 (Sum.inl c) := by
   refine (E.cells).mean_congr_on (Sum.inl c) ?_
@@ -133,7 +135,9 @@ theorem toPanel_EY_T_eq_mean_Y1 (c : Treated) :
   exact E.hTreatedCons c ω hcell
 
 /-- On an untreated cell the observed mean equals the untreated potential-outcome
-mean. -/
+mean.
+@isnad1 id=eq.0h5v.s6.95641587d1fe from=translated src=- shape=049cfea4 vocab=37bc59bf
+-/
 theorem toPanel_EY_U_eq_mean_Y0 (u : Untreated) :
     (E.toPanel).EY_U u = E.cells.mean E.Y0 (Sum.inr u) := by
   refine (E.cells).mean_congr_on (Sum.inr u) ?_
@@ -143,14 +147,18 @@ theorem toPanel_EY_U_eq_mean_Y0 (u : Untreated) :
 
 /-- **Causal-meaning certificate.** In the induced panel, `tau c` is literally
 the population treatment-effect contrast `E[Y(1) ∣ cell c] − E[Y(0) ∣ cell c]`,
-so the estimand carries genuine causal content. -/
+so the estimand carries genuine causal content.
+@isnad1 id=eq.0h5v.s7.b8528c3cd64d from=translated src=- shape=d77e97b8 vocab=97d1269a
+-/
 theorem toPanel_tau_eq_po_contrast (c : Treated) :
     (E.toPanel).tau c =
       E.cells.mean E.Y1 (Sum.inl c) - E.cells.mean E.Y0 (Sum.inl c) := rfl
 
 /-- **Treatment-effect-fixed is derived.** `EY_T = EY0_T + tau` holds because on
 treated cells the observed mean is the treated potential-outcome mean and `tau`
-is the treated-minus-untreated contrast. -/
+is the treated-minus-untreated contrast.
+@isnad1 id=treatmen.0h4v.s5.df730737ee0b from=translated src=- shape=9cb47db1 vocab=0d379e8b
+-/
 theorem toPanel_treatmentEffectFixed : (E.toPanel).TreatmentEffectFixed := by
   intro c
   have h := E.toPanel_EY_T_eq_mean_Y1 c
@@ -161,7 +169,9 @@ theorem toPanel_treatmentEffectFixed : (E.toPanel).TreatmentEffectFixed := by
 hypotheses plus consistency.** The two linear-model conjuncts
 `E[Y(0) ∣ cell] = q · β₀` are the genuine modeling hypotheses `hLinT`/`hLinU`
 (additive fixed-effect / parallel-trends form); the observed-equals-untreated
-conjunct is derived from untreated-cell consistency. -/
+conjunct is derived from untreated-cell consistency.
+@isnad1 id=untreate.2h4v.s7.c7aaef3b41c7 from=translated src=- shape=87231c5c vocab=0389285d
+-/
 theorem toPanel_untreatedModel
     (hLinT : ∀ c : Treated, E.cells.mean E.Y0 (Sum.inl c) = dot (E.qT c) E.beta0)
     (hLinU : ∀ u : Untreated, E.cells.mean E.Y0 (Sum.inr u) = dot (E.qU u) E.beta0) :
@@ -186,7 +196,9 @@ an imputation-weight witness for which the population imputation functional
 `psiImp` equals the target `theta`](goal).
 
 The treatment-effect-fixed restriction and untreated consistency are derived, and
-`tau c` is the genuine population contrast. -/
+`tau c` is the genuine population contrast.
+@isnad1 id=ex.3h4v.s8.4a819878fca2 from=translated src=- shape=c6b79385 vocab=ee3a3e65
+-/
 theorem bjs_imputation_identification_population
     (hLinT : ∀ c : Treated, E.cells.mean E.Y0 (Sum.inl c) = dot (E.qT c) E.beta0)
     (hLinU : ∀ u : Untreated, E.cells.mean E.Y0 (Sum.inr u) = dot (E.qU u) E.beta0)

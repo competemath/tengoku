@@ -30,7 +30,9 @@ def IsIntervalPartition {α : Type*} [MeasurableSpace α] [Preorder α]
   (⋃ j, B j) = Set.Icc a b
 
 /-- For [ordered cut points `f` through index `n`](hyp:f,n,hf), [the union of their consecutive
-left-closed, right-open cells is the interval from the first through the last cut point](goal). -/
+left-closed, right-open cells is the interval from the first through the last cut point](goal).
+@isnad1 id=eq.1h3v.s7.9aac06878298 from=translated src=- shape=11d51329 vocab=b39f8961
+-/
 lemma orderedHalfOpenIntervals_cover {α : Type*} [LinearOrder α]
     (f : ℕ → α) (n : ℕ) (hf : ∀ i j, i ≤ j → j ≤ n → f i ≤ f j) :
     (⋃ j ∈ Finset.range n, Set.Ico (f j) (f (j + 1))) = Set.Ico (f 0) (f n) := by
@@ -47,7 +49,9 @@ lemma orderedHalfOpenIntervals_cover {α : Type*} [LinearOrder α]
 
 /-- Given [a positive number `k` of cells](hyp:k,hk) and [ordered cut points `f` through index
 `k`](hyp:f,hf), [the consecutive half-open cells, with a closed final cell, measurably partition
-the closed interval from the first to the last cut point](goal). -/
+the closed interval from the first to the last cut point](goal).
+@isnad1 id=isinterv.2h3v.s7.346b955b9055 from=translated src=- shape=6e692d38 vocab=9eeeea28
+-/
 lemma orderedIntervalCells_partition {α : Type*} [TopologicalSpace α] [MeasurableSpace α]
     [LinearOrder α] [BorelSpace α] [OrderClosedTopology α]
     (f : ℕ → α) (k : ℕ) (hk : 0 < k)

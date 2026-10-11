@@ -103,7 +103,9 @@ residuals `Ỹ` and `D̃` to the second moment of `D̃`, i.e. the residualized c
 `residualizedCoefficient μ H wY wD`](goal).
 
 The residual from the normal equations is square-integrable, so its products
-with the L² witness decompositions are integrable by Cauchy-Schwarz. -/
+with the L² witness decompositions are integrable by Cauchy-Schwarz.
+@isnad1 id=eq.5h9v.s8.93443272d269 from=translated src=- shape=b3b0e958 vocab=6bb8e229
+-/
 theorem residualizedCoefficient_eq_of_normalEqs {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (H : LinearL2Class μ)
     {Y D : Ω → ℝ}

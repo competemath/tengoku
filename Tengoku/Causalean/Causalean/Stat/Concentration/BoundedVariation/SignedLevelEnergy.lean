@@ -17,6 +17,7 @@ namespace Causalean.Stat.Concentration.BoundedVariation
 grid has summed squared path increments at most δ](hyp:hδ), then [the
 sign-average of the squared largest absolute signed increment over the grid
 is at most 32 (1 + log(m + 1)) δ](goal).
+@isnad1 id=le.1h5v.s9.b6eed1d5865d from=translated src=- shape=99f0eaae vocab=21f12bca
 -/
 theorem signed_grid_abs_max_energy_le {m n : ℕ}
     (w : Fin n → Path) (t : Fin (m + 2) → Time) (δ : ℝ)
@@ -78,6 +79,7 @@ over every interval](hyp:henergy), and [the dyadic grids](hyp:grid) are
 point at control value i/2^k times the terminal value](hyp:hgridval). Then
 at every level k [the sign-average of the squared maximal signed increment
 is at most 32 (1 + log 2^(k+1)) times u(1)/2^(k+1)](goal).
+@isnad1 id=le.5h5v.s10.d878663e91bb from=translated src=- shape=5367ee6c vocab=d2b29db7
 -/
 theorem signedDyadicIncrementMax_energy_le {n : ℕ} (w : Fin n → Path)
     (u : Path) (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0)

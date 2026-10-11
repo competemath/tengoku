@@ -23,7 +23,9 @@ namespace Causalean.Stat.EmpiricalProcess.Countable
 /-- For [a real coefficient vector a](hyp:a) and independent uniform
 signs, [the sign-average fourth power of the maximal absolute prefix of the
 signed sum is at most 256/81 times the sign-average fourth power of the
-full signed sum](goal). -/
+full signed sum](goal).
+@isnad1 id=le.0h2v.s7.89cfe05ba053 from=translated src=- shape=85a88892 vocab=21139b38
+-/
 theorem signedPrefixMax_fourth_le_terminal {n : ℕ} (a : Fin n → ℝ) :
     signAverage (fun σ => signedPrefixMax a σ ^ 4) ≤
       (256 / 81 : ℝ) * signAverage
@@ -43,7 +45,9 @@ theorem signedPrefixMax_fourth_le_terminal {n : ℕ} (a : Fin n → ℝ) :
 /-- For [a real coefficient vector a](hyp:a) and independent uniform
 signs, [the sign-average fourth power of the maximal absolute prefix of the
 signed sum is at most 256/27 times the square of the sum of squared
-coefficients](goal), uniformly in the dimension. -/
+coefficients](goal), uniformly in the dimension.
+@isnad1 id=le.0h2v.s6.598c9b96817e from=translated src=- shape=e112bdb5 vocab=a505a137
+-/
 theorem signedPrefixMax_fourth_le_energy {n : ℕ} (a : Fin n → ℝ) :
     signAverage (fun σ => signedPrefixMax a σ ^ 4) ≤
       (256 / 27 : ℝ) * (∑ j, a j ^ 2)^2 := by

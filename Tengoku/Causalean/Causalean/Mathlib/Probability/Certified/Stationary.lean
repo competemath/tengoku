@@ -63,7 +63,9 @@ private theorem RatInterval.abs_le_maxAbs_of_contains
   · exact hx.2.trans (le_trans (le_abs_self (I.hi : ℝ)) (by
       exact_mod_cast (le_max_right |I.lo| |I.hi|)))
 
-/-- The exact rational finite-iterate residual bound is nonnegative. -/
+/-- The exact rational finite-iterate residual bound is nonnegative.
+@isnad1 id=le.0h4v.s5.b00e74a6d61a from=translated src=- shape=357c37ac vocab=f932aa95
+-/
 theorem finiteIterateResidualBound_nonneg {ι : Type*} [Fintype ι]
     {K : IntervalMatrix ι ι} {p0 : RationalProbabilityVector ι}
     (c : FiniteIterateCertificate K p0) :
@@ -72,7 +74,9 @@ theorem finiteIterateResidualBound_nonneg {ι : Type*} [Fintype ι]
     le_max_of_le_left (abs_nonneg ((c.terminal i).sub (c.next i)).lo)
 
 /-- A nonnegative contraction coefficient strictly below one gives a
-nonnegative a posteriori stationary error radius. -/
+nonnegative a posteriori stationary error radius.
+@isnad1 id=le.2h5v.s5.0f5b9fa382e6 from=translated src=- shape=af7ebea3 vocab=0449f2bd
+-/
 theorem stationaryErrorRadius_nonneg {ι : Type*} [Fintype ι]
     {K : IntervalMatrix ι ι} {p0 : RationalProbabilityVector ι}
     (c : FiniteIterateCertificate K p0) (rho : ℚ)
@@ -101,7 +105,9 @@ def stationaryRewardInterval {ι : Type*} [Fintype ι]
     (mul_nonneg r.bound_nonneg (stationaryErrorRadius_nonneg c rho hrho0 hrho1))
 
 /-- Two real vectors enclosed by the terminal and successor rows have `ℓ¹`
-distance at most the exact rational residual bound. -/
+distance at most the exact rational residual bound.
+@isnad1 id=le.2h6v.s6.3be3fbef9f4b from=translated src=- shape=946a3a00 vocab=ba3bca2d
+-/
 theorem l1Distance_le_finiteIterateResidualBound {ι : Type*} [Fintype ι]
     {K : IntervalMatrix ι ι} {p0 : RationalProbabilityVector ι}
     (c : FiniteIterateCertificate K p0) {x y : ι → ℝ}
@@ -114,7 +120,9 @@ theorem l1Distance_le_finiteIterateResidualBound {ι : Type*} [Fintype ι]
 
 /-- An a posteriori contraction estimate bounds the distance from an
 approximate probability vector to any stationary distribution by its one-step
-residual divided by `1 - rho`. -/
+residual divided by `1 - rho`.
+@isnad1 id=le.7h6v.s6.7a6dfb0c79ef from=translated src=- shape=0d9accde vocab=f70ce71a
+-/
 theorem l1Distance_stationary_le_residual {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {p π : ι → ℝ} {rho residual : ℝ}
     (hp : IsProbabilityVector p) (hπ : IsStationary P π)
@@ -141,7 +149,9 @@ theorem l1Distance_stationary_le_residual {ι : Type*} [Fintype ι]
   nlinarith
 
 /-- A bounded reward changes by at most its uniform absolute bound times the
-`ℓ¹` distance between two mass vectors. -/
+`ℓ¹` distance between two mass vectors.
+@isnad1 id=le.2h5v.s6.564537aa81af from=translated src=- shape=4a8e4933 vocab=4baaa12e
+-/
 theorem abs_rewardExpectation_sub_le {ι : Type*} [Fintype ι]
     {p q reward : ι → ℝ} {B : ℝ}
     (hB0 : 0 ≤ B) (hreward : ∀ i, |reward i| ≤ B) :
@@ -168,7 +178,9 @@ theorem abs_rewardExpectation_sub_le {ι : Type*} [Fintype ι]
       ring
 
 /-- The endpoint check in a bounded reward certificate implies the semantic
-absolute bound for every true reward coordinate. -/
+absolute bound for every true reward coordinate.
+@isnad1 id=le.0h4v.s5.d26995e1c27a from=translated src=- shape=933ebae8 vocab=cd5a54af
+-/
 theorem BoundedRewardCertificate.bound_sound {ι : Type*} [Fintype ι]
     {reward : ι → ℝ} (r : BoundedRewardCertificate reward) (i : ι) :
     |reward i| ≤ (r.bound : ℝ) := by
@@ -200,7 +212,9 @@ private theorem finiteIterate_stationary_l1_le {ι : Type*} [Fintype ι]
 
 /-- A checked finite recurrence and a strict `ℓ¹` contraction enclose every
 stationary distribution coordinate in the computed rational expansion of the
-terminal interval row. -/
+terminal interval row.
+@isnad1 id=contains.4h7v.s6.63def5982564 from=translated src=- shape=44f7c63d vocab=ff4bba87
+-/
 theorem stationaryDistributionInterval_sound {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {p0 : RationalProbabilityVector ι}
     (kernel : CertifiedKernel P)
@@ -225,7 +239,9 @@ theorem stationaryDistributionInterval_sound {ι : Type*} [Fintype ι]
   rcases abs_le.mp hcoord with ⟨hcoord_lo, hcoord_hi⟩
   constructor <;> linarith
 
-/-- Given [a certified finite transition kernel](hyp:kernel), [a checked finite interval recurrence](hyp:c), [a certified bounded reward vector](hyp:r), [a rational contraction coefficient](hyp:rho), [its nonnegativity](hyp:hrho0), [its strict upper bound by one](hyp:hrho1), [the corresponding contraction guarantee](hyp:hcontract), and [a stationary distribution](hyp:hπ), [the computed rational interval contains that distribution's stationary reward expectation](goal). -/
+/-- Given [a certified finite transition kernel](hyp:kernel), [a checked finite interval recurrence](hyp:c), [a certified bounded reward vector](hyp:r), [a rational contraction coefficient](hyp:rho), [its nonnegativity](hyp:hrho0), [its strict upper bound by one](hyp:hrho1), [the corresponding contraction guarantee](hyp:hcontract), and [a stationary distribution](hyp:hπ), [the computed rational interval contains that distribution's stationary reward expectation](goal).
+@isnad1 id=contains.4h9v.s6.20de4f9db4ea from=translated src=- shape=2f71e316 vocab=4486cb72
+-/
 theorem stationaryRewardInterval_sound {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {p0 : RationalProbabilityVector ι}
     {reward : ι → ℝ} (kernel : CertifiedKernel P)
@@ -262,7 +278,9 @@ theorem stationaryRewardInterval_sound {ι : Type*} [Fintype ι]
   constructor <;> linarith
 
 /-- An exact rational minorization certificate supplies the contraction needed
-to certify the stationary reward interval with coefficient `1 - epsilon`. -/
+to certify the stationary reward interval with coefficient `1 - epsilon`.
+@isnad1 id=contains.2h9v.s6.8596bd0759f5 from=translated src=- shape=491ce102 vocab=bec8ff71
+-/
 theorem stationaryRewardInterval_sound_of_minorization
     {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {p0 : RationalProbabilityVector ι}
@@ -281,7 +299,9 @@ theorem stationaryRewardInterval_sound_of_minorization
     contractsL1_of_rationalMinorization kernel.stochastic kernel.contains minor
 
 /-- For a nonempty state space, the checked recurrence and contraction both
-produce a unique stationary distribution and certify its reward expectation. -/
+produce a unique stationary distribution and certify its reward expectation.
+@isnad1 id=existsun.3h8v.s6.579680091cbb from=translated src=- shape=ed38c34c vocab=fdedfa31
+-/
 theorem existsUnique_stationary_and_reward_enclosed
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {P : Matrix ι ι ℝ} {p0 : RationalProbabilityVector ι}
@@ -315,7 +335,9 @@ structure CoordinateRecurrenceCertificate {ι : Type*} [Fintype ι] [DecidableEq
   coordinate : ∀ j,
     ChunkedDotCertificate current (fun i => K i j) chunkSize (next j)
 
-/-- When [a coordinate recurrence certificate is supplied](hyp:c), [the interval row-vector recurrence refines the reported next interval vector](goal). -/
+/-- When [a coordinate recurrence certificate is supplied](hyp:c), [the interval row-vector recurrence refines the reported next interval vector](goal).
+@isnad1 id=vectorsu.0h6v.s5.b9e89a908d6e from=translated src=- shape=7d8108c5 vocab=a6f98eae
+-/
 theorem CoordinateRecurrenceCertificate.sound
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     {K : IntervalMatrix ι ι} {current next : IntervalVector ι}
@@ -354,7 +376,9 @@ def ChunkedFiniteIterateCertificate.toFiniteIterateCertificate
     intro k
     exact (c.recurrence k).sound
 
-/-- Given [a chunked finite-iterate certificate](hyp:c), [a real transition matrix enclosed by its interval matrix](hyp:hK), and [a selected trace row](hyp:k), [that row contains the corresponding exact Markov iterate](goal). -/
+/-- Given [a chunked finite-iterate certificate](hyp:c), [a real transition matrix enclosed by its interval matrix](hyp:hK), and [a selected trace row](hyp:k), [that row contains the corresponding exact Markov iterate](goal).
+@isnad1 id=contains.1h6v.s6.524b11d891cb from=translated src=- shape=278496fe vocab=8b921287
+-/
 theorem ChunkedFiniteIterateCertificate.table_sound
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     {P : Matrix ι ι ℝ} {K : IntervalMatrix ι ι}
@@ -364,7 +388,9 @@ theorem ChunkedFiniteIterateCertificate.table_sound
     ContainsVector (c.table k) (markovIterate P p0.toReal k) := by
   exact c.toFiniteIterateCertificate.table_sound hK k
 
-/-- When [a chunked finite-iterate certificate is supplied](hyp:c), [its adapter has exactly the same table, terminal row, and successor row](goal). -/
+/-- When [a chunked finite-iterate certificate is supplied](hyp:c), [its adapter has exactly the same table, terminal row, and successor row](goal).
+@isnad1 id=and.0h4v.s7.8ed9923b730a from=translated src=- shape=ade1b7f4 vocab=cfe43e80
+-/
 theorem ChunkedFiniteIterateCertificate.adapter_rows
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     {K : IntervalMatrix ι ι} {p0 : RationalProbabilityVector ι}
@@ -374,7 +400,9 @@ theorem ChunkedFiniteIterateCertificate.adapter_rows
       c.toFiniteIterateCertificate.next = c.table (Fin.last (c.steps + 1)) := by
   exact ⟨rfl, rfl, rfl⟩
 
-/-- Given [a certified real kernel](hyp:kernel), [a chunked finite-iterate certificate](hyp:c), [a bounded reward certificate](hyp:r), [a rational contraction coefficient](hyp:rho) that is [nonnegative](hyp:hrho0) and [strictly below one](hyp:hrho1), [the contraction property](hyp:hcontract), and [a stationary distribution](hyp:hπ), [the stationary-reward interval obtained through the adapter contains the stationary reward expectation](goal). -/
+/-- Given [a certified real kernel](hyp:kernel), [a chunked finite-iterate certificate](hyp:c), [a bounded reward certificate](hyp:r), [a rational contraction coefficient](hyp:rho) that is [nonnegative](hyp:hrho0) and [strictly below one](hyp:hrho1), [the contraction property](hyp:hcontract), and [a stationary distribution](hyp:hπ), [the stationary-reward interval obtained through the adapter contains the stationary reward expectation](goal).
+@isnad1 id=contains.4h9v.s6.fb8e5c1a81d1 from=translated src=- shape=58bf19d0 vocab=1e6c4f7a
+-/
 theorem stationaryRewardInterval_sound_of_chunked
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     {P : Matrix ι ι ℝ} {p0 : RationalProbabilityVector ι}
@@ -389,7 +417,9 @@ theorem stationaryRewardInterval_sound_of_chunked
   exact stationaryRewardInterval_sound kernel c.toFiniteIterateCertificate r
     rho hrho0 hrho1 hcontract hπ
 
-/-- Given [a certified real kernel](hyp:kernel), [a rational minorization certificate](hyp:minor), [a chunked finite-iterate certificate](hyp:c), [a bounded reward certificate](hyp:r), [positive minorization mass](hyp:hepsilon_pos), and [a stationary distribution](hyp:hπ), [the stationary-reward interval at coefficient one minus the minorization mass contains the stationary reward expectation](goal). -/
+/-- Given [a certified real kernel](hyp:kernel), [a rational minorization certificate](hyp:minor), [a chunked finite-iterate certificate](hyp:c), [a bounded reward certificate](hyp:r), [positive minorization mass](hyp:hepsilon_pos), and [a stationary distribution](hyp:hπ), [the stationary-reward interval at coefficient one minus the minorization mass contains the stationary reward expectation](goal).
+@isnad1 id=contains.2h9v.s7.7349e8886c91 from=translated src=- shape=686a40de vocab=6f4873ce
+-/
 theorem stationaryRewardInterval_sound_of_minorization_chunked
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     {P : Matrix ι ι ℝ} {p0 : RationalProbabilityVector ι}

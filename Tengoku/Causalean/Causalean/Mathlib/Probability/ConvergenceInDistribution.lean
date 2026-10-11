@@ -33,7 +33,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- A deterministic sequence in a seminormed additive commutative group that
 converges in the usual topological sense also converges in measure when
-regarded as a sequence of constant random variables. -/
+regarded as a sequence of constant random variables.
+@isnad1 id=tendstoi.1h7v.s6.2457c3934692 from=translated src=- shape=e79de390 vocab=c0477354
+-/
 lemma tendstoInMeasure_const_of_tendsto {E : Type*} [SeminormedAddCommGroup E]
     {a : ι → E} {a₀ : E}
     (ha : Tendsto a l (𝓝 a₀)) :
@@ -53,7 +55,9 @@ lemma tendstoInMeasure_const_of_tendsto {E : Type*} [SeminormedAddCommGroup E]
   simp
 
 /-- Deprecated compatibility spelling for `tendstoInMeasure_const_of_tendsto`;
-the result is not specific to real-valued constants. -/
+the result is not specific to real-valued constants.
+@isnad1 id=tendstoi.1h7v.s6.2457c3934692 from=translated src=- shape=e79de390 vocab=c0477354
+-/
 @[deprecated tendstoInMeasure_const_of_tendsto (since := "2026-09-19")]
 lemma tendstoInMeasure_const_of_tendsto_real {E : Type*} [SeminormedAddCommGroup E]
     {a : ι → E} {a₀ : E}
@@ -65,6 +69,7 @@ lemma tendstoInMeasure_const_of_tendsto_real {E : Type*} [SeminormedAddCommGroup
 variables `X n` converges in distribution to `Z`, all under the same probability measure
 `μ`](hyp:hXZ) and [a sequence of deterministic real scalars `a n` converges to a limit
 `a₀`](hyp:ha), then [the scaled sequence `a n · X n` converges in distribution to `a₀ · Z`](goal).
+@isnad1 id=tendstoi.2h8v.s7.fd215695319d from=translated src=- shape=a80225bb vocab=cebbb181
 -/
 theorem TendstoInDistribution.const_mul_of_tendsto_const
     [IsProbabilityMeasure μ] [l.IsCountablyGenerated]
@@ -84,7 +89,9 @@ theorem TendstoInDistribution.const_mul_of_tendsto_const
 namespace ProbabilityMeasure
 
 /-- Multiplying a deterministic real value and a random draw has the same distribution as
-scaling that random draw by the deterministic value. -/
+scaling that random draw by the deterministic value.
+@isnad1 id=eq.0h2v.s6.6b8e3ed44413 from=translated src=- shape=3b216d8c vocab=9bd19baa
+-/
 lemma map_mul_eq_map_prod_dirac (c : ℝ) (ν : ProbabilityMeasure ℝ) :
     ((diracProba c).prod ν).map
         ((by fun_prop : Measurable (fun p : ℝ × ℝ => p.1 * p.2)).aemeasurable) =
@@ -112,7 +119,9 @@ tight, and the maps `x ↦ aᵢ * x` converge uniformly on compact sets to
 `x ↦ a₀ * x`.  Equivalently, this is the probability-measure version of
 deterministic-scalar Slutsky.  It is isolated as a Mathlib contribution
 candidate because Mathlib currently has the same-space random-variable
-Slutsky theorem but not this varying-map probability-measure wrapper. -/
+Slutsky theorem but not this varying-map probability-measure wrapper.
+@isnad1 id=tendsto.2h6v.s7.257a2f3981ad from=translated src=- shape=f2d26ed4 vocab=f109a4fb
+-/
 theorem tendsto_map_mul_of_tendsto {ι : Type*} {l : Filter ι}
     {νs : ι → ProbabilityMeasure ℝ} {ν : ProbabilityMeasure ℝ}
     {a : ι → ℝ} {a₀ : ℝ}

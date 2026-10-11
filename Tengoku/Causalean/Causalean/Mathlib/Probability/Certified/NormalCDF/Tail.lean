@@ -20,13 +20,17 @@ namespace Causalean.Mathlib.Probability.CertifiedFiniteMarkovExpectation.Certifi
 
 open Causalean.Mathlib.Analysis.IntervalArithmetic
 open Causalean.Mathlib.Analysis.IntervalArithmetic.Contour
-/-- The standard-normal density is strictly positive at every real argument. -/
+/-- The standard-normal density is strictly positive at every real argument.
+@isnad1 id=lt.0h1v.s3.012a6c23cec4 from=translated src=- shape=8a62b088 vocab=03592d15
+-/
 theorem stdNormalPDF_pos (x : ℝ) :
     0 < Causalean.Mathlib.stdNormalPDF x := by
   simpa [Causalean.Mathlib.stdNormalPDF] using
     ProbabilityTheory.gaussianPDFReal_pos 0 1 x one_ne_zero
 
-/-- The derivative of the standard-normal density is `-x · φ(x)`. -/
+/-- The derivative of the standard-normal density is `-x · φ(x)`.
+@isnad1 id=hasderiv.0h1v.s5.3c2ae812e114 from=translated src=- shape=60e33cdc vocab=bd4d3402
+-/
 theorem hasDerivAt_stdNormalPDF (x : ℝ) :
     HasDerivAt Causalean.Mathlib.stdNormalPDF
       (-x * Causalean.Mathlib.stdNormalPDF x) x := by
@@ -48,14 +52,18 @@ theorem hasDerivAt_stdNormalPDF (x : ℝ) :
     hcomp.const_mul (Real.sqrt (2 * Real.pi))⁻¹
 
 /-- The standard-normal upper-tail probability equals the integral of its
-density over the ray strictly above the endpoint. -/
+density over the ray strictly above the endpoint.
+@isnad1 id=eq.0h1v.s5.9fd5be568cf0 from=translated src=- shape=d9788d11 vocab=24107f68
+-/
 theorem one_sub_stdNormalCDF_eq_integral_Ioi (x : ℝ) :
     1 - Causalean.Mathlib.stdNormalCDF x =
       ∫ t in Set.Ioi x, Causalean.Mathlib.stdNormalPDF t := by
   exact (Causalean.Mathlib.integral_Ioi_stdNormalPDF x).symm
 
 /-- The classical upper Mills inequality bounds the standard-normal upper tail
-by `φ(x)/x` at every positive argument. -/
+by `φ(x)/x` at every positive argument.
+@isnad1 id=le.1h1v.s5.1b1158bc7bd3 from=translated src=- shape=0de92fe8 vocab=5792d2df
+-/
 theorem millsRatio_upper (x : ℝ) (hx : 0 < x) :
     1 - Causalean.Mathlib.stdNormalCDF x ≤
       Causalean.Mathlib.stdNormalPDF x / x := by
@@ -98,7 +106,9 @@ theorem millsRatio_upper (x : ℝ) (hx : 0 < x) :
           ring
 
 /-- The classical lower Mills inequality bounds the standard-normal upper tail
-below by `xφ(x)/(x²+1)` at every positive argument. -/
+below by `xφ(x)/(x²+1)` at every positive argument.
+@isnad1 id=le.1h1v.s6.c54c855d81da from=translated src=- shape=66d4c76c vocab=604825d5
+-/
 theorem millsRatio_lower (x : ℝ) (hx : 0 < x) :
     x / (x ^ 2 + 1) * Causalean.Mathlib.stdNormalPDF x ≤
       1 - Causalean.Mathlib.stdNormalCDF x := by
@@ -224,7 +234,9 @@ theorem millsRatio_lower (x : ℝ) (hx : 0 < x) :
   exact hscaled
 
 /-- The classical two-sided Mills inequality for the standard-normal upper
-tail at a positive real argument. -/
+tail at a positive real argument.
+@isnad1 id=and.1h1v.s6.ebabfba7e1f4 from=translated src=- shape=0f9d168c vocab=604825d5
+-/
 theorem millsRatio_bounds (x : ℝ) (hx : 0 < x) :
     x / (x ^ 2 + 1) * Causalean.Mathlib.stdNormalPDF x ≤
         1 - Causalean.Mathlib.stdNormalCDF x ∧
@@ -245,7 +257,9 @@ def tailDensityInterval (q : ℚ) (c : TailCertificate q) : RatInterval :=
   c.normalization.enclosure.mul c.exponential.enclosure
 
 /-- The product of the certified normalization and exponential intervals
-contains the exact standard-normal density at the absolute endpoint. -/
+contains the exact standard-normal density at the absolute endpoint.
+@isnad1 id=contains.2h2v.s6.dd38b1c30216 from=translated src=- shape=3550527e vocab=a3f8b835
+-/
 theorem tailDensityInterval_sound (q : ℚ) (c : TailCertificate q)
     (hnormalization : normalizationCheck c.normalization = true)
     (hexponential : expCheck (-|q| ^ 2 / 2) c.exponential = true) :
@@ -266,7 +280,9 @@ def millsTailInterval (x : ℚ) (density : RatInterval) : RatInterval :=
     ((RatInterval.point (1 / x)).mul density)
 
 /-- A density enclosure and positivity of `x` imply that the rational Mills
-interval contains the exact standard-normal upper-tail probability. -/
+interval contains the exact standard-normal upper-tail probability.
+@isnad1 id=contains.2h2v.s5.98e4052711dd from=translated src=- shape=f1702624 vocab=ff014913
+-/
 theorem millsTailInterval_sound (x : ℚ) (hx : 0 < x) (density : RatInterval)
     (hdensity : density.Contains (Causalean.Mathlib.stdNormalPDF (x : ℝ))) :
     (millsTailInterval x density).Contains
@@ -312,7 +328,9 @@ def tailCheck (q : ℚ) (c : TailCertificate q) (reported : RatInterval) : Bool 
       reported.lo ≤ (tailInterval q c).lo ∧
       (tailInterval q c).hi ≤ reported.hi)
 
-/-- When [the Mills-tail checker accepts the supplied certificate and interval](hyp:hcheck), [that interval contains the standard-normal CDF at the rational endpoint](goal). -/
+/-- When [the Mills-tail checker accepts the supplied certificate and interval](hyp:hcheck), [that interval contains the standard-normal CDF at the rational endpoint](goal).
+@isnad1 id=contains.1h3v.s4.c0aad8fc8a6e from=translated src=- shape=d08aac5b vocab=e70cc0fc
+-/
 theorem tailCheck_sound {q : ℚ} {c : TailCertificate q} {reported : RatInterval}
     (hcheck : tailCheck q c reported = true) :
     reported.Contains (Causalean.Mathlib.stdNormalCDF (q : ℝ)) := by

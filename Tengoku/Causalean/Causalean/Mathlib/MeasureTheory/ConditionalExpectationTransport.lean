@@ -26,7 +26,9 @@ namespace Causalean.Mathlib.MeasureTheory
 integrable real functions](hyp:ha,hf,hb) satisfy [almost-everywhere lower and upper
 bounds](hyp:hlo,hhi), and [both bounding functions are measurable for the conditioning
 σ-algebra](hyp:ha_meas,hb_meas), then [the conditional expectation satisfies the same
-pointwise functional bounds almost everywhere](goal). -/
+pointwise functional bounds almost everywhere](goal).
+@isnad1 id=eventual.8h7v.s7.fa5d4b6017f0 from=translated src=- shape=fdf14c66 vocab=d5355adf
+-/
 theorem condExp_ae_mem_Icc_of_stronglyMeasurable
     {Ω : Type*} {m mΩ : MeasurableSpace Ω} {μ : Measure Ω}
     [IsFiniteMeasure μ] (hm : m ≤ mΩ) {a f b : Ω → ℝ}
@@ -44,7 +46,9 @@ theorem condExp_ae_mem_Icc_of_stronglyMeasurable
 /-- If [the conditioning σ-algebra is contained in the ambient σ-algebra](hyp:hm) and [an
 integrable real function](hyp:hf) lies [between two constants almost everywhere](hyp:hlo,hhi),
 then [its conditional expectation lies between the same constants
-almost everywhere](goal). -/
+almost everywhere](goal).
+@isnad1 id=eventual.4h7v.s7.b0de268fa777 from=translated src=- shape=9910cd20 vocab=edbca5d7
+-/
 theorem condExp_ae_mem_Icc
     {Ω : Type*} {m mΩ : MeasurableSpace Ω} {μ : Measure Ω}
     [IsFiniteMeasure μ] (hm : m ≤ mΩ) {f : Ω → ℝ} {a b : ℝ}
@@ -63,7 +67,9 @@ theorem condExp_ae_mem_Icc
 /-- If [the conditioning σ-algebra is contained in the ambient σ-algebra](hyp:hm) and [an
 integrable real function](hyp:hf) is bounded below by [a strictly positive
 constant](hyp:hε,hlo), then [its conditional expectation is strictly positive almost
-everywhere](goal). -/
+everywhere](goal).
+@isnad1 id=eventual.4h6v.s7.99521e61dd93 from=translated src=- shape=11709ef6 vocab=14a1af62
+-/
 theorem ae_pos_condExp_of_pos_const_le
     {Ω : Type*} {m mΩ : MeasurableSpace Ω} {μ : Measure Ω}
     [IsFiniteMeasure μ] (hm : m ≤ mΩ) {f : Ω → ℝ} {ε : ℝ}
@@ -77,7 +83,9 @@ theorem ae_pos_condExp_of_pos_const_le
   exact hε.trans_le hω
 
 /-- A [real function strongly measurable for the pullback σ-algebra](hyp:hg) [factors
-exactly through the generating map by a measurable real function](goal). -/
+exactly through the generating map by a measurable real function](goal).
+@isnad1 id=ex.1h4v.s5.cb914a6247ba from=translated src=- shape=c18e1609 vocab=268333c5
+-/
 theorem exists_measurable_real_comp_of_stronglyMeasurable_comap
     {X Y : Type*} [mY : MeasurableSpace Y] {f : X → Y} {g : X → ℝ}
     (hg : @StronglyMeasurable X ℝ _ (MeasurableSpace.comap f mY) g) :
@@ -87,7 +95,9 @@ theorem exists_measurable_real_comp_of_stronglyMeasurable_comap
 
 /-- [A measurable predicate holds almost everywhere after either of two maps under exactly the
 same conditions](goal) when [the maps are measurable](hyp:hφ,hψ), [the predicate and its truth
-set are measurable](hyp:p,hp), and [their pushforward measures coincide](hyp:hmap). -/
+set are measurable](hyp:p,hp), and [their pushforward measures coincide](hyp:hmap).
+@isnad1 id=iff.4h8v.s6.d25804330c3d from=translated src=- shape=1b579119 vocab=010f8207
+-/
 theorem ae_comp_iff_of_map_eq
     {Ω Ω' R : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω'] [MeasurableSpace R]
     {μ : Measure Ω} {ν : Measure Ω'} {φ : Ω → R} {ψ : Ω' → R}
@@ -99,7 +109,9 @@ theorem ae_comp_iff_of_map_eq
 
 /-- [A real function is integrable after composition with one map exactly when it is integrable
 after composition with the other](goal) when [both maps are measurable](hyp:hφ,hψ), [the real
-function is measurable](hyp:k,hk), and [their pushforward measures coincide](hyp:hmap). -/
+function is measurable](hyp:k,hk), and [their pushforward measures coincide](hyp:hmap).
+@isnad1 id=iff.4h8v.s7.974e009a6947 from=translated src=- shape=a71310fd vocab=6a8856ba
+-/
 theorem integrable_comp_iff_of_map_eq
     {Ω Ω' R : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω'] [MeasurableSpace R]
     {μ : Measure Ω} {ν : Measure Ω'} {φ : Ω → R} {ψ : Ω' → R}
@@ -111,7 +123,9 @@ theorem integrable_comp_iff_of_map_eq
 
 /-- [Integrating a real function after either of two maps gives the same value](goal) when [both
 maps are measurable](hyp:hφ,hψ), [the real function is measurable](hyp:k,hk), and [their
-pushforward measures coincide](hyp:hmap). -/
+pushforward measures coincide](hyp:hmap).
+@isnad1 id=eq.4h8v.s6.6e3788146e8e from=translated src=- shape=6c34883e vocab=873b1923
+-/
 theorem integral_comp_eq_of_map_eq
     {Ω Ω' R : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω'] [MeasurableSpace R]
     {μ : Measure Ω} {ν : Measure Ω'} {φ : Ω → R} {ψ : Ω' → R}
@@ -129,7 +143,9 @@ theorem integral_comp_eq_of_map_eq
 pushforward measure](goal). This holds for [two measurable maps](hyp:hφ,hψ), [a measurable
 conditioning map](hyp:design,hdesign), [a measurable weighting function whose first composition
 is integrable](hyp:weight,hweight,hint), [the common pushforward law](hyp:hmap), and [the identity
-in the first representation](hyp:hcond). -/
+in the first representation](hyp:hcond).
+@isnad1 id=eventual.7h10v.s7.b49a23744d08 from=translated src=- shape=0ba7b8b5 vocab=b8cced6e
+-/
 theorem condExp_comp_eq_one_of_map_eq
     {Ω Ω' R D : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω']
     [MeasurableSpace R] [MeasurableSpace D]

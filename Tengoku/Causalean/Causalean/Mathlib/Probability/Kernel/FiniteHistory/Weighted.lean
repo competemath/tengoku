@@ -23,7 +23,9 @@ noncomputable def actionLikelihood
   if (behavior s) {a} = 0 then 0
   else ((target s) {a}).toReal / ((behavior s) {a}).toReal
 
-/-- The [behavior kernel](hyp:behavior) and [target kernel](hyp:target) make [their zero-on-null likelihood ratio jointly measurable](goal). -/
+/-- The [behavior kernel](hyp:behavior) and [target kernel](hyp:target) make [their zero-on-null likelihood ratio jointly measurable](goal).
+@isnad1 id=measurab.0h4v.s5.e78ddce05192 from=translated src=- shape=9fe312d7 vocab=47fbad6e
+-/
 @[fun_prop] theorem actionLikelihood_measurable
     {S A : Type*} [MeasurableSpace S] [MeasurableSpace A]
     [MeasurableSingletonClass A] [Fintype A]
@@ -41,7 +43,9 @@ noncomputable def actionLikelihood
   exact Measurable.ite (hb (measurableSet_singleton 0)) measurable_const
     (ht.ennreal_toReal.div hb.ennreal_toReal)
 
-/-- Markov [behavior and target kernels](hyp:behavior,target) with [target absolute continuity relative to behavior](hyp:hAC) transform the bounded measurable [action score](hyp:g,hg,C,hg_bound) at [the selected state](hyp:s) into [the stated likelihood-weighted expectation identity](goal). -/
+/-- Markov [behavior and target kernels](hyp:behavior,target) with [target absolute continuity relative to behavior](hyp:hAC) transform the bounded measurable [action score](hyp:g,hg,C,hg_bound) at [the selected state](hyp:s) into [the stated likelihood-weighted expectation identity](goal).
+@isnad1 id=eq.3h7v.s7.17e447ffa9a8 from=translated src=- shape=8ce8f079 vocab=c8c32797
+-/
 theorem integral_actionLikelihood
     {S A : Type*} [MeasurableSpace S] [MeasurableSpace A]
     [MeasurableSingletonClass A] [Fintype A]
@@ -128,7 +132,9 @@ private theorem weightedValue_measurable_bounded_aux
           (C := D) (Filter.Eventually.of_forall fun b => by
             simpa only [Real.norm_eq_abs] using hprod_bound h b))
 
-/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable [weight](hyp:w,hw) with [a uniform bound](hyp:Cw,hw_bound), and measurable [terminal score](hyp:f,hf) with [a uniform bound](hyp:Cf,hf_bound) make [the specified finite weighted value](hyp:n) [measurable](goal). -/
+/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable [weight](hyp:w,hw) with [a uniform bound](hyp:Cw,hw_bound), and measurable [terminal score](hyp:f,hf) with [a uniform bound](hyp:Cf,hf_bound) make [the specified finite weighted value](hyp:n) [measurable](goal).
+@isnad1 id=measurab.5h9v.s7.b485b454763a from=translated src=- shape=d37c8d37 vocab=2ef216a8
+-/
 theorem weightedValue_measurable
     {H B : Type*} [MeasurableSpace H] [MeasurableSpace B]
     (K : Kernel H B) [IsMarkovKernel K]
@@ -143,7 +149,9 @@ theorem weightedValue_measurable
   exact (weightedValue_measurable_bounded_aux K append happend w hw Cw hw_bound
     f hf Cf hf_bound n).1
 
-/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable [weight](hyp:w,hw) with [a uniform bound](hyp:Cw,hw_bound), and measurable [terminal score](hyp:f,hf) with [a uniform bound](hyp:Cf,hf_bound) at [horizon](hyp:n) give [a uniform bound for the specified finite weighted value](goal). -/
+/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable [weight](hyp:w,hw) with [a uniform bound](hyp:Cw,hw_bound), and measurable [terminal score](hyp:f,hf) with [a uniform bound](hyp:Cf,hf_bound) at [horizon](hyp:n) give [a uniform bound for the specified finite weighted value](goal).
+@isnad1 id=ex.5h9v.s7.7ef4503c8e54 from=translated src=- shape=197a0e09 vocab=2ef216a8
+-/
 theorem weightedValue_bounded
     {H B : Type*} [MeasurableSpace H] [MeasurableSpace B]
     (K : Kernel H B) [IsMarkovKernel K]
@@ -222,7 +230,9 @@ private theorem integral_weighted_history_step
       rw [integral_const_mul]
       rfl
 
-/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable bounded [weight](hyp:w,hw,Cw,hw_bound), a probability [history-law sequence](hyp:μ,hμprob) satisfying [its extension identity](hyp:hμ), measurable bounded [path weights](hyp:weight,hweight_meas,hweight_bound) satisfying [their initial and recursive identities](hyp:hweight0,hweight_step), and a measurable bounded [terminal score](hyp:f,hf,Cf,hf_bound) at [the selected horizon](hyp:n) identify [the weighted terminal expectation](goal). -/
+/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable bounded [weight](hyp:w,hw,Cw,hw_bound), a probability [history-law sequence](hyp:μ,hμprob) satisfying [its extension identity](hyp:hμ), measurable bounded [path weights](hyp:weight,hweight_meas,hweight_bound) satisfying [their initial and recursive identities](hyp:hweight0,hweight_step), and a measurable bounded [terminal score](hyp:f,hf,Cf,hf_bound) at [the selected horizon](hyp:n) identify [the weighted terminal expectation](goal).
+@isnad1 id=eq.11h11v.s8.cfa1b201cf28 from=translated src=- shape=888c172b vocab=25dfbb37
+-/
 theorem integral_weighted_history
     {H B : Type*} [MeasurableSpace H] [MeasurableSpace B]
     (K : Kernel H B) [IsMarkovKernel K]
@@ -274,7 +284,9 @@ theorem integral_weighted_history
   have hresult := hmain n 0 f hf Cf hf_bound
   simpa only [Nat.zero_add, hweight0, one_mul] using hresult
 
-/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable bounded [weight](hyp:w,hw,Cw,hw_bound), measurable [state projection](hyp:state,hstate), [target matrix](hyp:P), [supplied weighted action-kernel identity](hyp:hweighted), and measurable bounded [reward](hyp:reward,hreward,Cr,hreward_bound) identify [the weighted value after the selected number of steps](hyp:n) at [the selected history](hyp:h) with [the matrix value](goal). -/
+/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable bounded [weight](hyp:w,hw,Cw,hw_bound), measurable [state projection](hyp:state,hstate), [target matrix](hyp:P), [supplied weighted action-kernel identity](hyp:hweighted), and measurable bounded [reward](hyp:reward,hreward,Cr,hreward_bound) identify [the weighted value after the selected number of steps](hyp:n) at [the selected history](hyp:h) with [the matrix value](goal).
+@isnad1 id=eq.7h13v.s8.14e1ea160333 from=translated src=- shape=817553f1 vocab=dee5edf9
+-/
 theorem weightedValue_eq_matrixValue
     {H B S : Type*} [MeasurableSpace H] [MeasurableSpace B]
     [MeasurableSpace S] [Fintype S] [MeasurableSingletonClass S]
@@ -307,7 +319,9 @@ theorem weightedValue_eq_matrixValue
     rw [heq]
     exact hweighted (matrixValue P n reward) (hm n) h
 
-/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable bounded [weight](hyp:w,hw,Cw,hw_bound), a probability [history-law sequence](hyp:μ,hμprob) satisfying [its extension identity](hyp:hμ), measurable bounded [path weights](hyp:weight,hweight_meas,hweight_bound) satisfying [their initial and recursive identities](hyp:hweight0,hweight_step), measurable [state projection](hyp:state,hstate), [target matrix](hyp:P), [supplied weighted action-kernel identity](hyp:hweighted), and measurable bounded [reward](hyp:reward,hreward,Cr,hreward_bound) at [the selected horizon](hyp:n) identify [the weighted reward expectation](goal). -/
+/-- A Markov [kernel](hyp:K), measurable [append map](hyp:append,happend), measurable bounded [weight](hyp:w,hw,Cw,hw_bound), a probability [history-law sequence](hyp:μ,hμprob) satisfying [its extension identity](hyp:hμ), measurable bounded [path weights](hyp:weight,hweight_meas,hweight_bound) satisfying [their initial and recursive identities](hyp:hweight0,hweight_step), measurable [state projection](hyp:state,hstate), [target matrix](hyp:P), [supplied weighted action-kernel identity](hyp:hweighted), and measurable bounded [reward](hyp:reward,hreward,Cr,hreward_bound) at [the selected horizon](hyp:n) identify [the weighted reward expectation](goal).
+@isnad1 id=eq.13h14v.s8.1335a7d0dd04 from=translated src=- shape=463d08f3 vocab=e34f0c4d
+-/
 theorem integral_weighted_reward_eq_matrix
     {H B S : Type*} [MeasurableSpace H] [MeasurableSpace B]
     [MeasurableSpace S] [Fintype S] [MeasurableSingletonClass S]

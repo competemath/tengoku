@@ -23,7 +23,9 @@ namespace Causalean.Mathlib.Topology
 
 /-- For a [compact set](hyp:hK) that is [nonempty](hyp:hKne), the affine interpolation between
 [two endpoint functions continuous on that set](hyp:hf,hg) is [continuous in the topology of
-uniform convergence on the set](goal). -/
+uniform convergence on the set](goal).
+@isnad1 id=continuo.4h5v.s8.b8ff5fab140d from=translated src=- shape=0d9bddfe vocab=1b6e03f2
+-/
 lemma continuous_uniformOnFun_affine_of_compact
     {α E : Type*} [TopologicalSpace α] [NormedAddCommGroup E] [NormedSpace ℝ E]
     {K : Set α} (hK : IsCompact K) (hKne : K.Nonempty) {f g : α → E}
@@ -51,7 +53,9 @@ lemma continuous_uniformOnFun_affine_of_compact
 
 /-- For a [compact set](hyp:hK) that is [nonempty](hyp:hKne), a [path](hyp:path) that
 [agrees there with the affine interpolation](hyp:hpath) of [two endpoint functions continuous on
-the set](hyp:hf,hg) is [continuous in the topology of uniform convergence on the set](goal). -/
+the set](hyp:hf,hg) is [continuous in the topology of uniform convergence on the set](goal).
+@isnad1 id=continuo.5h6v.s8.f1df5c76ae01 from=translated src=- shape=d62c6942 vocab=744f8f2a
+-/
 lemma continuous_uniformOnFun_of_eq_affine_on_compact
     {α E : Type*} [TopologicalSpace α] [NormedAddCommGroup E] [NormedSpace ℝ E]
     {K : Set α} (hK : IsCompact K) (hKne : K.Nonempty) {f g : α → E}

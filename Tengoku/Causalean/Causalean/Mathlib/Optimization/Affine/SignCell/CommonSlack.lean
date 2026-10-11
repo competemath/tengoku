@@ -45,7 +45,9 @@ The Phase-I common-slack value. -/
 noncomputable def commonSlackValue {n : ℕ} (Γ : AffineSystem n) : ℝ :=
   sSup (commonSlackSet Γ)
 
-/-- Given [an affine constraint system](hyp:Γ), [its feasible slack set is bounded above](goal). -/
+/-- Given [an affine constraint system](hyp:Γ), [its feasible slack set is bounded above](goal).
+@isnad1 id=bddabove.0h2v.s3.e11746ca46a7 from=translated src=- shape=595ce0b1 vocab=810f82cb
+-/
 theorem bddAbove_commonSlackSet {n : ℕ} (Γ : AffineSystem n) :
     BddAbove (commonSlackSet Γ) := by
   refine ⟨1, ?_⟩
@@ -54,7 +56,9 @@ theorem bddAbove_commonSlackSet {n : ℕ} (Γ : AffineSystem n) :
   exact hx.2.1
 
 /-- Given [a strictly feasible point](hyp:hx), [there is a positive common slack for that
-same point](goal). -/
+same point](goal).
+@isnad1 id=ex.1h3v.s5.1d7fe411f2aa from=translated src=- shape=54226f09 vocab=8574011b
+-/
 theorem positiveSlackWitness_of_strictPoint {n : ℕ} {Γ : AffineSystem n}
     {x : Fin n → ℝ} (hx : x ∈ strictCell Γ) :
     ∃ δ : ℝ, 0 < δ ∧ commonSlackFeasible Γ x δ := by
@@ -97,7 +101,9 @@ theorem positiveSlackWitness_of_strictPoint {n : ℕ} {Γ : AffineSystem n}
                 linarith
 
 /-- Given [a positive slack](hyp:hδ) and [a common-slack feasible point](hyp:hx), [that point
-belongs to the strict cell](goal). -/
+belongs to the strict cell](goal).
+@isnad1 id=mem.2h4v.s5.d0c236326695 from=translated src=- shape=23875a69 vocab=8574011b
+-/
 theorem strictPoint_of_positiveSlack {n : ℕ} {Γ : AffineSystem n}
     {x : Fin n → ℝ} {δ : ℝ} (hδ : 0 < δ) (hx : commonSlackFeasible Γ x δ) :
     x ∈ strictCell Γ := by
@@ -111,7 +117,9 @@ theorem strictPoint_of_positiveSlack {n : ℕ} {Γ : AffineSystem n}
       linarith
 
 /-- Given [a positive slack](hyp:hδ) and [a common-slack feasible point](hyp:hx), [the
-common-slack value is positive](goal). -/
+common-slack value is positive](goal).
+@isnad1 id=lt.2h4v.s5.49ac3cb9e95b from=translated src=- shape=3072bd63 vocab=67263e5e
+-/
 theorem commonSlackValue_pos_of_witness {n : ℕ} {Γ : AffineSystem n}
     {x : Fin n → ℝ} {δ : ℝ} (hδ : 0 < δ) (hx : commonSlackFeasible Γ x δ) :
     0 < commonSlackValue Γ := by
@@ -121,7 +129,9 @@ theorem commonSlackValue_pos_of_witness {n : ℕ} {Γ : AffineSystem n}
     exact le_csSup (bddAbove_commonSlackSet Γ) hmem
   exact hδ.trans_le hle
 
-/-- Given [a positive common-slack value](hyp:hval), [some feasible slack is positive](goal). -/
+/-- Given [a positive common-slack value](hyp:hval), [some feasible slack is positive](goal).
+@isnad1 id=ex.1h2v.s5.64a0bf8982c3 from=translated src=- shape=0c1cb725 vocab=6c3c93f7
+-/
 theorem positiveSlackWitness_of_commonSlackValue_pos {n : ℕ} {Γ : AffineSystem n}
     (hval : 0 < commonSlackValue Γ) : ∃ δ : ℝ, 0 < δ ∧ δ ∈ commonSlackSet Γ := by
   have hne : (commonSlackSet Γ).Nonempty := by
@@ -137,7 +147,9 @@ theorem positiveSlackWitness_of_commonSlackValue_pos {n : ℕ} {Γ : AffineSyste
   exact hhalf_pos.trans hhalfδ
 
 /-- Given [an affine constraint system](hyp:Γ), [its strict cell is nonempty exactly when
-its bounded common-slack value is positive](goal). -/
+its bounded common-slack value is positive](goal).
+@isnad1 id=iff.0h2v.s4.72175f8a46e2 from=translated src=- shape=c997a1dc vocab=00ca5f3e
+-/
 theorem strictFeasible_iff_commonSlackValue_pos {n : ℕ} (Γ : AffineSystem n) :
     (strictCell Γ).Nonempty ↔ 0 < commonSlackValue Γ := by
   constructor
@@ -149,7 +161,9 @@ theorem strictFeasible_iff_commonSlackValue_pos {n : ℕ} (Γ : AffineSystem n) 
     exact ⟨x, strictPoint_of_positiveSlack hδ hx⟩
 
 /-- Given [a number of coordinates](hyp:n), [the empty system's common-slack value equals
-one](goal). -/
+one](goal).
+@isnad1 id=eq.0h1v.s3.c2f6c59e6179 from=translated src=- shape=4e9d1ce2 vocab=6e2ca651
+-/
 theorem commonSlackValue_nil (n : ℕ) : commonSlackValue ([] : AffineSystem n) = 1 := by
   have hmem : (1 : ℝ) ∈ commonSlackSet ([] : AffineSystem n) := by
     refine ⟨fun _ => 0, ?_⟩

@@ -44,7 +44,9 @@ noncomputable def twoPointMean (B u : ℝ) : Measure ℝ :=
     + ENNReal.ofReal ((1 - u / B) / 2) • Measure.dirac (-B)
 
 /-- When the scale is positive and the target mean lies within that scale, both
-weights in the signed two-point distribution are nonnegative. -/
+weights in the signed two-point distribution are nonnegative.
+@isnad1 id=and.2h2v.s6.20506d1bac73 from=translated src=- shape=90cf6645 vocab=4bf98594
+-/
 lemma twoPointMean_coef_nonneg {B u : ℝ} (hB : 0 < B) (hu : |u| ≤ B) :
     0 ≤ (1 + u / B) / 2 ∧ 0 ≤ (1 - u / B) / 2 := by
   have hbounds := abs_le.mp hu
@@ -52,7 +54,9 @@ lemma twoPointMean_coef_nonneg {B u : ℝ} (hB : 0 < B) (hu : |u| ≤ B) :
 
 /-- **KL-divergence is invariant under a measurable equivalence.**  Pushing both finite measures
 `μ, ν` forward through a measurable equivalence `e` leaves their Kullback–Leibler divergence
-unchanged: `KL(e_* μ, e_* ν) = KL(μ, ν)`. -/
+unchanged: `KL(e_* μ, e_* ν) = KL(μ, ν)`.
+@isnad1 id=eq.0h5v.s6.df616c8409bb from=translated src=- shape=bf89257a vocab=3fbd0a61
+-/
 lemma klDiv_map_measurableEquiv {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (e : α ≃ᵐ β) (μ ν : Measure α) [IsFiniteMeasure μ] [IsFiniteMeasure ν] :
     InformationTheory.klDiv (Measure.map e μ) (Measure.map e ν) =

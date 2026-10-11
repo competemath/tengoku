@@ -30,7 +30,9 @@ proxy `v k = min (a²) (b² * (k.val + 1)^(-α))` is positive.  Apply
 `finite_max_tail_le` to this family, then `expected_max_le_tail_integral`
 with the same clipped finite Gaussian sum as the deterministic majorant in
 `ordered_gaussian_tail_integral`.  Its integrability and integral bound come
-directly from that theorem; no separate argument is needed for `N = 0`. -/
+directly from that theorem; no separate argument is needed for `N = 0`.
+@isnad1 id=ex.1h1v.s8.68a171d9c7f7 from=translated src=- shape=1bff7afc vocab=9a22dded
+-/
 theorem orderedSubGaussianMaximal (α : ℝ) (hα : 0 < α) :
     ∃ Kα : ℝ, 0 < Kα ∧
       ∀ {Ω : Type*} [MeasurableSpace Ω]

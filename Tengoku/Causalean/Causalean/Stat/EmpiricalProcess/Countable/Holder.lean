@@ -23,6 +23,7 @@ product of the integrals of their squares](goal).
 
 This Cauchy–Schwarz form uses ordinary squares, so it needs no
 finite-measure assumption.
+@isnad1 id=and.6h4v.s8.28a7520c38cd from=translated src=- shape=60339906 vocab=d7b08955
 -/
 theorem integral_product_sq_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (f g : Ω → ℝ) (hf : ∀ x, 0 ≤ f x) (hg : ∀ x, 0 ≤ g x)
@@ -54,7 +55,9 @@ B](hyp:A,B) are [nonnegative](hyp:hA,hB), [almost everywhere strongly
 measurable](hyp:hAm,hBm), and [have integrable fourth
 powers](hyp:hA4,hB4), then [A^3·B is integrable and the fourth power of
 its integral is at most the cube of the integral of A^4 times the integral
-of B^4](goal). -/
+of B^4](goal).
+@isnad1 id=and.6h4v.s8.3a8d6a4a9224 from=translated src=- shape=65cbbf0c vocab=d7b08955
+-/
 theorem fourth_moment_holder {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (A B : Ω → ℝ) (hA : ∀ x, 0 ≤ A x) (hB : ∀ x, 0 ≤ B x)
     (hA4 : Integrable (fun x => A x ^ 4) μ)
@@ -97,7 +100,9 @@ theorem fourth_moment_holder {Ω : Type*} [MeasurableSpace Ω]
 functions](hyp:f) consists of [almost everywhere strongly measurable
 functions](hyp:hm) [with integrable fourth powers](hyp:h4), then [their
 pointwise maximum is almost everywhere strongly measurable and has an
-integrable fourth power](goal). -/
+integrable fourth power](goal).
+@isnad1 id=and.2h4v.s7.bdcb940098dc from=translated src=- shape=25894ab8 vocab=5ab39ba2
+-/
 theorem finite_iSup_fourth_integrable {Ω ι : Type*} [MeasurableSpace Ω]
     [Finite ι] [Nonempty ι] (μ : Measure Ω) (f : ι → Ω → ℝ)
     (hm : ∀ i, AEStronglyMeasurable (f i) μ)

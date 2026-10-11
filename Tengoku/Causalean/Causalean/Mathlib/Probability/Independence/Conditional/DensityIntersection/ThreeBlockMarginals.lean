@@ -41,15 +41,21 @@ section MeasurableCoordinates
 variable {A : Type uA} {B : Type uB} {C : Type uC}
 variable [MeasurableSpace A] [MeasurableSpace B] [MeasurableSpace C]
 
-/-- The first coordinate map on the three-block product is measurable. -/
+/-- The first coordinate map on the three-block product is measurable.
+@isnad1 id=measurab.0h3v.s5.8dbb16d72237 from=translated src=- shape=dbc6a48b vocab=bab99c0c
+-/
 @[fun_prop] theorem measurable_firstThreeCoord :
     Measurable (@firstThreeCoord A B C) := measurable_fst
 
-/-- The second coordinate map on the three-block product is measurable. -/
+/-- The second coordinate map on the three-block product is measurable.
+@isnad1 id=measurab.0h3v.s5.2f10ce3ef05a from=translated src=- shape=2e04aecc vocab=475f79ce
+-/
 @[fun_prop] theorem measurable_secondThreeCoord :
     Measurable (@secondThreeCoord A B C) := measurable_fst.comp measurable_snd
 
-/-- The conditioning-coordinate map on the three-block product is measurable. -/
+/-- The conditioning-coordinate map on the three-block product is measurable.
+@isnad1 id=measurab.0h3v.s5.1af36d6ef1ba from=translated src=- shape=2bee10a3 vocab=5b33b9d7
+-/
 @[fun_prop] theorem measurable_thirdThreeCoord :
     Measurable (@thirdThreeCoord A B C) := measurable_snd.comp measurable_snd
 
@@ -114,7 +120,9 @@ variable {d : ThreeBlock A B C → ℝ≥0∞}
 
 /-- For [three reference measures](hyp:muA,muB,muC) and [a measurable three-block density](hyp:hd),
 [pushing the density-weighted law to the conditioning coordinate gives its marginal density-weighted
-reference measure](goal). -/
+reference measure](goal).
+@isnad1 id=eq.1h7v.s7.3580f68407e0 from=translated src=- shape=1e9958e2 vocab=83239fce
+-/
 theorem map_thirdThreeCoord_withDensity (hd : Measurable d) :
     ((threeBlockReference muA muB muC).withDensity d).map
         (@thirdThreeCoord A B C) =
@@ -156,7 +164,9 @@ theorem map_thirdThreeCoord_withDensity (hd : Measurable d) :
         _ = _ := lintegral_mul_const (f c) (by fun_prop)
 
 /-- Pushing a measurable three-block product density to the first and conditioning coordinates
-gives their product reference measure weighted by the first-conditioning marginal density. -/
+gives their product reference measure weighted by the first-conditioning marginal density.
+@isnad1 id=eq.1h7v.s7.c4f1a0a20c46 from=translated src=- shape=8585740a vocab=43a3cab9
+-/
 theorem map_firstThird_withDensity (hd : Measurable d) :
     ((threeBlockReference muA muB muC).withDensity d).map
         (fun q ↦ (firstThreeCoord q, thirdThreeCoord q)) =
@@ -192,7 +202,9 @@ theorem map_firstThird_withDensity (hd : Measurable d) :
       rw [lintegral_prod _ (by fun_prop)]
 
 /-- Pushing a measurable three-block product density to the second and conditioning coordinates
-gives their product reference measure weighted by the second-conditioning marginal density. -/
+gives their product reference measure weighted by the second-conditioning marginal density.
+@isnad1 id=eq.1h7v.s7.37e78c1c81be from=translated src=- shape=ec5f5633 vocab=1a8ad38c
+-/
 theorem map_secondThird_withDensity (hd : Measurable d) :
     ((threeBlockReference muA muB muC).withDensity d).map
         (fun q ↦ (secondThreeCoord q, thirdThreeCoord q)) =
@@ -220,7 +232,9 @@ theorem map_secondThird_withDensity (hd : Measurable d) :
       rw [lintegral_prod _ (by fun_prop)]
 
 /-- Reordering a measurable three-block product density as conditioning-first preserves the law
-and transports its density by the same coordinate permutation. -/
+and transports its density by the same coordinate permutation.
+@isnad1 id=eq.1h7v.s7.708ce69b7769 from=translated src=- shape=283a99f3 vocab=e32ff270
+-/
 theorem map_thirdFirstSecond_withDensity (hd : Measurable d) :
     ((threeBlockReference muA muB muC).withDensity d).map
         (fun q ↦ (thirdThreeCoord q, (firstThreeCoord q, secondThreeCoord q))) =

@@ -87,7 +87,9 @@ private lemma crossingIndicator_eq_ite_val {J : ℕ} (a b : Fin (J + 1)) (j : Fi
 /-- [The change in a response schedule between two ordered treatment levels equals the sum of its
 increments over exactly the crossed margins](goal) for [a finite ordered scale](hyp:J), [the
 response schedule](hyp:f), [the initial and final levels](hyp:a,b), and [their ordering](hyp:hab).
-This converts level contrasts into margin-specific causal responses. -/
+This converts level contrasts into margin-specific causal responses.
+@isnad1 id=eq.1h4v.s6.6c3ecb205ddd from=translated src=- shape=14d6359f vocab=49bef285
+-/
 lemma ordered_telescope_indicator {J : ℕ} (f : Fin (J + 1) → ℝ)
     {a b : Fin (J + 1)} (hab : a ≤ b) :
     f b - f a = ∑ j : Fin J, marginIncrement f j * crossingIndicator a b j := by
@@ -119,7 +121,9 @@ lemma ordered_telescope_indicator {J : ℕ} (f : Fin (J + 1) → ℝ)
 /-- **Ordered telescoping for treatment intensity.** [The numeric increase between two ordered
 treatment levels equals the number of margins crossed](goal) on [a finite ordered scale](hyp:J),
 for [the initial and final levels](hyp:a,b) under [the condition that treatment weakly
-increases](hyp:hab). -/
+increases](hyp:hab).
+@isnad1 id=eq.1h3v.s6.32a462784d41 from=translated src=- shape=5c9b3d09 vocab=64cec1e0
+-/
 lemma ordered_telescope_identity {J : ℕ} {a b : Fin (J + 1)} (hab : a ≤ b) :
     intensityValue b - intensityValue a = ∑ j : Fin J, crossingIndicator a b j := by
   simpa [intensityValue, marginIncrement, lowerLevel, upperLevel] using
@@ -132,14 +136,18 @@ noncomputable abbrev normalizedWeight {ι : Type*} [Fintype ι] (a : ι → ℝ)
 
 /-- [Every normalized weight is nonnegative](goal) when [the finite index set](hyp:ι) carries
 [raw weights](hyp:a) that are [all nonnegative](hyp:ha) with [positive total](hyp:hsum), for [the
-selected index](hyp:i). -/
+selected index](hyp:i).
+@isnad1 id=le.2h3v.s5.923eb4dcdc27 from=translated src=- shape=d37c99c8 vocab=62711c65
+-/
 lemma normalizedWeight_nonneg {ι : Type*} [Fintype ι] (a : ι → ℝ)
     (ha : ∀ i, 0 ≤ a i) (hsum : 0 < ∑ i, a i) (i : ι) :
     0 ≤ normalizedWeight a i := by
   exact Causalean.Stat.Weighted.NormalizedWeights.normalizedWeight_nonneg a ha hsum i
 
 /-- [Normalized weights sum to one](goal) when [the finite index set](hyp:ι) carries [raw
-weights](hyp:a) with [positive total](hyp:hsum), so they form averaging weights. -/
+weights](hyp:a) with [positive total](hyp:hsum), so they form averaging weights.
+@isnad1 id=eq.1h2v.s5.3d0263c52f50 from=translated src=- shape=af88e779 vocab=00c4b4be
+-/
 lemma sum_normalizedWeight_eq_one {ι : Type*} [Fintype ι] (a : ι → ℝ)
     (hsum : 0 < ∑ i, a i) :
     ∑ i, normalizedWeight a i = 1 := by

@@ -49,7 +49,9 @@ variable {Ω : N → Type uΩ} [∀ n, MeasurableSpace (Ω n)]
 
 /-- After an intervention on a set of observed variables, each observed variable
 is still computed by the original structural equation, with intervened parents
-replaced by their assigned intervention values. -/
+replaced by their assigned intervention values.
+@isnad1 id=eq.2h6v.s9.42334cf74cde from=translated src=- shape=32426632 vocab=3e059795
+-/
 @[simp] lemma fixMono_structFun_apply
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -63,7 +65,9 @@ replaced by their assigned intervention values. -/
 
 /-- After an intervention on a set of observed variables, each observed variable
 is still computed by the original structural equation, with intervened parents
-replaced by their assigned intervention values. -/
+replaced by their assigned intervention values.
+@isnad1 id=eq.2h6v.s9.de366c7e4f6e from=translated src=- shape=32426632 vocab=c4ad00eb
+-/
 @[simp] lemma fixSet_structFun_apply
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -78,7 +82,9 @@ replaced by their assigned intervention values. -/
 /-- For one recursive evaluation step after an intervention, the value of an
 observed variable is the original structural equation evaluated at the parent
 values where intervened parents are pinned to their assigned intervention
-values. -/
+values.
+@isnad1 id=eq.2h7v.s11.01a0004834e9 from=translated src=- shape=765d272a vocab=4f85a26e
+-/
 lemma evalMap_fixSet_observed_apply
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -132,7 +138,9 @@ lemma evalMap_fixSet_observed_apply
     - `hOld`: `sx` agrees with `s` on the original `M.fixed` coordinates.
     - `hNew`: for each `D ∈ X`, the base evaluation at `.random D` already
       matches the intervention value `sx ⟨.fixed D, _⟩`.
-    The induction below establishes agreement at every observed node. -/
+    The induction below establishes agreement at every observed node.
+@isnad1 id=eq.4h8v.s9.290fa7620131 from=translated src=- shape=c1548431 vocab=440e9644
+-/
 theorem evalMap_fixSet_factual_eq
     (M : Causalean.SCM N Ω)
     (X : Finset N)
@@ -317,7 +325,9 @@ theorem evalMap_fixSet_factual_eq
       equals `sxU`'s assignment for each `D ∈ X₂` (the "intermediate" condition).
 
     This is an SCM-level composition statement, not a comparison of the two
-    possible intervention orders. -/
+    possible intervention orders.
+@isnad1 id=eq.7h9v.s10.55b8639102aa from=translated src=- shape=a76bbae5 vocab=eb976113
+-/
 theorem evalMap_fixSet_union_eq
     (M : Causalean.SCM N Ω)
     (X₁ X₂ : Finset N)

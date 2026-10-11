@@ -104,7 +104,9 @@ private def blockIndexEquiv (p d q : ℕ) :
     (finFunctionAddEquiv (d + d) q (Fin p))
 
 /-- The Euclidean operator norm of a finite real square matrix is at most its entrywise
-Frobenius norm. [The stated conclusion follows](goal). -/
+Frobenius norm. [The stated conclusion follows](goal).
+@isnad1 id=le.0h2v.s4.2460d211936c from=translated src=- shape=7bd7e1da vocab=9edd5d7a
+-/
 theorem squareOperatorNorm_le_matrixFrobenius {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix ι ι ℝ) : squareOperatorNorm A ≤ matrixFrobeniusNorm A := by
   rw [squareOperatorNorm]
@@ -128,7 +130,9 @@ theorem squareOperatorNorm_le_matrixFrobenius {ι : Type*} [Fintype ι] [Decidab
       simp only [Real.rpow_two, Real.norm_eq_abs, sq_abs]
 
 /-- Contracting a finite tensor against probes of norm at most one cannot increase its
-Frobenius norm. Under [the listed assumptions](hyp:hprobes), [the stated conclusion follows](goal). -/
+Frobenius norm. Under [the listed assumptions](hyp:hprobes), [the stated conclusion follows](goal).
+@isnad1 id=le.1h5v.s7.9d20cb73852e from=translated src=- shape=b242d4d7 vocab=8e63ee78
+-/
 -- Proof route: identify each contraction as an inner product in the product probe index,
 -- apply finite Cauchy--Schwarz, and sum the squared bounds over the two free index blocks.
 theorem contractLast_frobeniusNorm_le {p d q : ℕ} (T : Tensor p (d + d + q))
@@ -181,7 +185,9 @@ theorem contractLast_frobeniusNorm_le {p d q : ℕ} (T : Tensor p (d + d + q))
     _ = _ := (blockIndexEquiv p d q).sum_comp (fun L => T L ^ 2)
 
 /-- The operator norm of a contracted tensor is bounded by the original tensor's Frobenius
-norm when every contraction probe has norm at most one. Under [the listed assumptions](hyp:hprobes), [the stated conclusion follows](goal). -/
+norm when every contraction probe has norm at most one. Under [the listed assumptions](hyp:hprobes), [the stated conclusion follows](goal).
+@isnad1 id=le.1h5v.s7.1bf12168dd8c from=translated src=- shape=057fb729 vocab=5f6b6e6f
+-/
 -- Proof route: first bound the square-matrix operator norm by its Frobenius norm, then invoke
 -- `contractLast_frobeniusNorm_le`.
 theorem contractLast_operatorNorm_le {p d q : ℕ} (T : Tensor p (d + d + q))
@@ -193,7 +199,9 @@ theorem contractLast_operatorNorm_le {p d q : ℕ} (T : Tensor p (d + d + q))
 
 /-- Contracting a weighted symmetric rank-one decomposition against `q-1` copies of `u` and
 one copy of `w` gives the lifted factor matrix times the corresponding diagonal loadings times
-its transpose. Under [the listed assumptions](hyp:hq), [the stated conclusion follows](goal). -/
+its transpose. Under [the listed assumptions](hyp:hq), [the stated conclusion follows](goal).
+@isnad1 id=eq.1h8v.s7.9d8302751469 from=translated src=- shape=e1a5aa5a vocab=c74659f1
+-/
 -- Proof route: ext the two free multi-indices, unfold both matrix products and the tensor sum,
 -- swap finite sums, and factor each probe sum into a dot product.
 theorem contractLast_decompositionTensor {p n d q : ℕ} (hq : 0 < q)
@@ -262,7 +270,9 @@ theorem contractLast_decompositionTensor {p n d q : ℕ} (hq : 0 < q)
       ring
     _ = _ := by rw [hprobe]; ring
 
-/-- Unit columns have unit degree-`d` tensor lifts for every positive lifting degree. Under [the listed assumptions](hyp:hd,hunit), [the stated conclusion follows](goal). -/
+/-- Unit columns have unit degree-`d` tensor lifts for every positive lifting degree. Under [the listed assumptions](hyp:hd,hunit), [the stated conclusion follows](goal).
+@isnad1 id=eq.2h5v.s6.d069139053ef from=translated src=- shape=a3f76f43 vocab=ce30c967
+-/
 -- Proof route: square the norm, factor the sum over functions `Fin d → Fin p` as a product of
 -- coordinate sums, and use the unit-column hypothesis in every factor.
 theorem finiteFrobeniusNorm_liftedColumn_eq_one {p n d : ℕ} (hd : 0 < d)
@@ -288,7 +298,9 @@ theorem finiteFrobeniusNorm_liftedColumn_eq_one {p n d : ℕ} (hd : 0 < d)
   simp
 
 /-- The Frobenius norm of a lifted factor matrix with unit original columns is the square root
-of the number of columns. Under [the listed assumptions](hyp:hd,hunit), [the stated conclusion follows](goal). -/
+of the number of columns. Under [the listed assumptions](hyp:hd,hunit), [the stated conclusion follows](goal).
+@isnad1 id=eq.2h4v.s6.ed4f56e79eb1 from=translated src=- shape=d7c324a0 vocab=590b69de
+-/
 -- Proof route: regroup the matrix sum by columns and use
 -- `finiteFrobeniusNorm_liftedColumn_eq_one`.
 theorem matrixFrobeniusNorm_liftedDirections {p n d : ℕ} (hd : 0 < d)

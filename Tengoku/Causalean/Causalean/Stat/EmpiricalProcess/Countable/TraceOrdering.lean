@@ -21,6 +21,7 @@ observations lying in each member of the family form an initial
 segment](goal).
 
 Ties and repeated observations are retained.
+@isnad1 id=ex.1h5v.s7.49735b6d8b58 from=translated src=- shape=a0c1f85a vocab=8b66c5fd
 -/
 theorem nested_trace_prefix {Ω ι : Type*} (B : ι → Set Ω)
     (hchain : ∀ i k, B i ⊆ B k ∨ B k ⊆ B i) {n : ℕ} (x : Fin n → Ω) :

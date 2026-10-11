@@ -53,7 +53,9 @@ private theorem iUnion_fiber {ι : Type*} (H : Ω → ι) : (⋃ h, H ⁻¹' {h}
 
 /-- [The integral of a function is the sum of its integrals over the fibres of a finite-valued
 map](goal) when [every fibre is measurable](hyp:hfiber) and [the function is
-integrable](hyp:hf). -/
+integrable](hyp:hf).
+@isnad1 id=eq.2h6v.s7.bb2e585ed8dc from=translated src=- shape=8339722c vocab=8dfa3b49
+-/
 theorem integral_eq_sum_setIntegral_fiber {ι : Type*} [Fintype ι]
     {H : Ω → ι} (hfiber : ∀ h, MeasurableSet (H ⁻¹' {h}))
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -73,7 +75,9 @@ integrals with their corresponding weights](goal) when [every fibre is
 measurable](hyp:hfiber), [the weighting assigns a real number to each fibre](hyp:c), and [the
 function is integrable](hyp:hf).
 
-The identity requires no measurability of `c`, because it is constant on each fiber. -/
+The identity requires no measurability of `c`, because it is constant on each fiber.
+@isnad1 id=eq.2h7v.s8.60f80fe0533c from=translated src=- shape=921d7259 vocab=c8ad5446
+-/
 theorem integral_cellConst_mul {ι : Type*} [Fintype ι]
     {H : Ω → ι} (hfiber : ∀ h, MeasurableSet (H ⁻¹' {h})) (c : ι → ℝ)
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -109,7 +113,9 @@ theorem integral_cellConst_mul {ι : Type*} [Fintype ι]
 /-- [The integral of a function constant on each fibre is the sum of each constant times the
 measure of its fibre](goal) for a finite measure, provided [every fibre is
 measurable](hyp:hfiber) and [a real weight is assigned to each fibre](hyp:c). This is the
-constant-function case of `integral_cellConst_mul`. -/
+constant-function case of `integral_cellConst_mul`.
+@isnad1 id=eq.1h5v.s6.415c1d1edcd1 from=translated src=- shape=e7a04181 vocab=d598f044
+-/
 theorem integral_cellConst {ι : Type*} [Fintype ι]
     [IsFiniteMeasure μ] {H : Ω → ι}
     (hfiber : ∀ h, MeasurableSet (H ⁻¹' {h})) (c : ι → ℝ) :

@@ -78,7 +78,9 @@ theorem eq_of_pos_mul_eq_mul {m x y : ℝ} (hm : 0 < m) (h : m * x = m * y) : x 
 /-- For [a positive table](hyp:p), [a kernel](hyp:q), [two coordinates distinct from the row
 coordinate](hyp:a,c,d,had,hcd), [a residual kernel](hyp:K), [its marginal-times-kernel
 form](hyp:hform), [normalized residual rows](hyp:hrows), and [a profile](hyp:x), [the kernel's
-row mass equals the positive table's `a` marginal](goal). -/
+row mass equals the positive table's `a` marginal](goal).
+@isnad1 id=eq.4h9v.s6.4c2bc6a6f4dd from=translated src=- shape=9700af05 vocab=279ef2a2
+-/
 theorem coordinateRowMass_eq_marginalMass
     (p : PositiveTable r) (q : Kernel r) {a c d : V}
     (had : a ≠ d) (hcd : c ≠ d)
@@ -102,7 +104,9 @@ theorem coordinateRowMass_eq_marginalMass
 /-- For [a positive table](hyp:p), [a kernel](hyp:q), [two coordinates distinct from the row
 coordinate](hyp:a,c,d,had,hcd), [a residual kernel](hyp:K), [its marginal-times-kernel
 form](hyp:hform), [normalized residual rows](hyp:hrows), and [a profile](hyp:x), [the kernel's
-rectangle mass equals one](goal). -/
+rectangle mass equals one](goal).
+@isnad1 id=eq.4h9v.s6.711140359734 from=translated src=- shape=1a10dc61 vocab=7de5e7fe
+-/
 theorem coordinateRectangleMass_eq_one
     (p : PositiveTable r) (q : Kernel r) {a c d : V}
     (had : a ≠ d) (hcd : c ≠ d)
@@ -118,7 +122,9 @@ theorem coordinateRectangleMass_eq_one
 
 /-- For [a positive table](hyp:p), [a kernel](hyp:q), [three coordinates](hyp:a,c,d), [a
 residual kernel](hyp:K), [its marginal-times-kernel form](hyp:hform), [nonnegative residual
-entries](hyp:hK), and [a profile](hyp:x), [the kernel is nonnegative](goal). -/
+entries](hyp:hK), and [a profile](hyp:x), [the kernel is nonnegative](goal).
+@isnad1 id=le.2h9v.s6.0ba93d864eda from=translated src=- shape=80ec17f0 vocab=be4d84b2
+-/
 theorem kernel_nonneg_of_marginalKernelForm
     (p : PositiveTable r) (q : Kernel r) {a c d : V}
     (K : Fin (r a) → Fin (r c) → Fin (r d) → ℝ)
@@ -130,7 +136,9 @@ theorem kernel_nonneg_of_marginalKernelForm
 /-- For [a positive table](hyp:p), [a kernel](hyp:q), [three pairwise distinct coordinates](hyp:a,c,d,hac,had,hcd),
 [a residual kernel](hyp:K), [its marginal-times-kernel form](hyp:hform), [normalized residual
 rows](hyp:hrows), and [the kernel's multiplicative conditional-independence identity](hyp:hci),
-[the residual row is unchanged when the positive-marginal coordinate is replaced](goal). -/
+[the residual row is unchanged when the positive-marginal coordinate is replaced](goal).
+@isnad1 id=eq.6h10v.s6.2430378818c1 from=translated src=- shape=513b24ba vocab=4c88b9f6
+-/
 theorem kernelRows_eq_of_condIndep
     (p : PositiveTable r) (q : Kernel r) {a c d : V}
     (hac : a ≠ c) (had : a ≠ d) (hcd : c ≠ d)

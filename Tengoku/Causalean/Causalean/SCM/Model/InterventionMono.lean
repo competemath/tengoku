@@ -95,7 +95,9 @@ omit [∀ n, MeasurableSpace (Ω n)] in
 from the split graph.
 
     Pointwise evaluation of `fixMonoParentMap` at a `.fixed d` coordinate:
-    the input tuple is read directly at `.fixed d`. -/
+    the input tuple is read directly at `.fixed d`.
+@isnad1 id=eq.3h7v.s8.531816035f04 from=translated src=- shape=57df2751 vocab=94c0a9f7
+-/
 lemma fixMonoParentMap_apply_fixed
     (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
@@ -116,7 +118,9 @@ omit [∀ n, MeasurableSpace (Ω n)] in
 random coordinate from the split graph.
 
     Pointwise evaluation of `fixMonoParentMap` at a `.random u` coordinate
-    with `u ∉ X`: the input tuple is read directly at `.random u`. -/
+    with `u ∉ X`: the input tuple is read directly at `.random u`.
+@isnad1 id=eq.4h7v.s8.b5f08a684e5c from=translated src=- shape=1cdffc47 vocab=4b309b74
+-/
 lemma fixMonoParentMap_apply_random_notMem
     (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
@@ -141,7 +145,9 @@ fixed coordinate from the split graph.
 
     Pointwise evaluation of `fixMonoParentMap` at a `.random D` coordinate
     (D ∈ X): value is read from the `.fixed D` position of the split-graph
-    tuple. -/
+    tuple.
+@isnad1 id=eq.4h7v.s8.e4c4c524d81b from=translated src=- shape=64f911bd vocab=0dfd3f0e
+-/
 lemma fixMonoParentMap_apply_random
     (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
@@ -161,7 +167,9 @@ lemma fixMonoParentMap_apply_random
 
 /-- The parent values used by a monolithic intervention depend measurably on the original
     parent values, so this reindexing can be used safely when constructing intervened
-    structural equations and probability kernels. -/
+    structural equations and probability kernels.
+@isnad1 id=measurab.2h5v.s9.51c1cc794dfd from=translated src=- shape=bec6e3eb vocab=0495cde6
+-/
 @[fun_prop]
 lemma measurable_fixMonoParentMap
     (G : SWIGGraph N) (X : Finset N)
@@ -299,21 +307,27 @@ noncomputable def fixMono (M : Causalean.SCM N Ω) (X : Finset N)
 /-- Deprecated compatibility alias for `SWIGGraph.splitMono_observed`: for [a SWIG graph](hyp:G)
 and [an intervention target set](hyp:X) whose [targeted random copies are observed](hyp:hObs)
 and whose [targeted fixed copies are not already fixed](hyp:hFix), [monolithic splitting
-preserves the observed node set](goal). -/
+preserves the observed node set](goal).
+@isnad1 id=eq.2h3v.s6.96c35ef20237 from=translated src=- shape=345ce404 vocab=7aea27ef
+-/
 @[simp, deprecated SWIGGraph.splitMono_observed (since := "2026-09-15")]
 alias fixMono_observed := SWIGGraph.splitMono_observed
 
 /-- Deprecated compatibility alias for `SWIGGraph.splitMono_unobserved`: for [a SWIG graph](hyp:G)
 and [an intervention target set](hyp:X) whose [targeted random copies are observed](hyp:hObs)
 and whose [targeted fixed copies are not already fixed](hyp:hFix), [monolithic splitting
-preserves the unobserved node set](goal). -/
+preserves the unobserved node set](goal).
+@isnad1 id=eq.2h3v.s6.291801247984 from=translated src=- shape=ba601a36 vocab=071859e1
+-/
 @[simp, deprecated SWIGGraph.splitMono_unobserved (since := "2026-09-15")]
 alias fixMono_unobserved := SWIGGraph.splitMono_unobserved
 
 /-- Deprecated compatibility alias for `SWIGGraph.splitMono_fixed`: for [a SWIG graph](hyp:G)
 and [an intervention target set](hyp:X) whose [targeted random copies are observed](hyp:hObs)
 and whose [targeted fixed copies are not already fixed](hyp:hFix), [monolithic splitting adds
-the targeted fixed copies to the fixed node set](goal). -/
+the targeted fixed copies to the fixed node set](goal).
+@isnad1 id=eq.2h3v.s7.430f2e545480 from=translated src=- shape=dd4e7d23 vocab=f9b68ae6
+-/
 @[simp, deprecated SWIGGraph.splitMono_fixed (since := "2026-09-15")]
 alias fixMono_fixed := SWIGGraph.splitMono_fixed
 
@@ -322,7 +336,9 @@ alias fixMono_fixed := SWIGGraph.splitMono_fixed
     random observed node](hyp:hObs) and [none of its fixed copies is already fixed](hyp:hFix),
     and [any latent-root node `u` of the monolithically intervened model](hyp:u), [the
     intervened model's latent distribution at `u` equals `M`'s original latent distribution at
-    `u`](goal). -/
+    `u`](goal).
+@isnad1 id=eq.2h5v.s8.c0280e027a7e from=translated src=- shape=19224c9c vocab=1fa5b400
+-/
 @[simp] lemma fixMono_latentDist (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed)
@@ -330,7 +346,9 @@ alias fixMono_fixed := SWIGGraph.splitMono_fixed
     (M.fixMono X hObs hFix).latentDist u = M.latentDist u := rfl
 
 /-- The original fixed node set is contained in the fixed node set after the monolithic
-intervention. -/
+intervention.
+@isnad1 id=le.2h3v.s6.d42e60ffdfa5 from=translated src=- shape=fbdca2cf vocab=dc398240
+-/
 lemma fixMono_fixed_subset (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ G.fixed) :
@@ -340,7 +358,9 @@ lemma fixMono_fixed_subset (G : SWIGGraph N) (X : Finset N)
   exact Finset.mem_union_left _ hx
 
 /-- The fixed copies of the intervention targets are contained in the fixed node set after the
-monolithic intervention. -/
+monolithic intervention.
+@isnad1 id=le.2h3v.s7.cff0479f9554 from=translated src=- shape=692edfcd vocab=11d7e887
+-/
 lemma fixMono_image_fixed_subset (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ G.fixed) :
@@ -356,7 +376,9 @@ same parents as before.
 
     If no `.fixed D` (D ∈ X) is a parent of `v` in the monolithic-do SCM,
     then `v`'s parent set coincides with `v`'s parent set in the base SCM.
-    Delegates to `SWIGGraph.splitMono_parents_eq_of_no_fixed_parent`. -/
+    Delegates to `SWIGGraph.splitMono_parents_eq_of_no_fixed_parent`.
+@isnad1 id=eq.3h5v.s8.bf1dbab6c126 from=translated src=- shape=7e1b6d53 vocab=c0fc28a9
+-/
 lemma fixMono_parents_eq_of_no_fixed_parent
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)

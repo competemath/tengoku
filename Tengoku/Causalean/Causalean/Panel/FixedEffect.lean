@@ -57,14 +57,18 @@ def H_twfe : Submodule ℝ (V I T) :=
   Causalean.Stat.Weighted.twoAxisAdditiveSpan I T
 
 /-- [The two-way fixed-effect subspace `H_twfe` equals the generic two-axis additive span over
-units and periods](goal). -/
+units and periods](goal).
+@isnad1 id=eq.0h2v.s5.acb06522326c from=translated src=- shape=8e5f3167 vocab=258582e3
+-/
 lemma H_twfe_eq :
     H_twfe = Causalean.Stat.Weighted.twoAxisAdditiveSpan I T := rfl
 
 /-- For [any constant `c₀`](hyp:c₀), [the constant array `c₀` belongs to the two-way
 fixed-effect subspace `H_twfe`](goal).
 
-Delegates to `AdditiveSpan.const_mem`. -/
+Delegates to `AdditiveSpan.const_mem`.
+@isnad1 id=mem.0h3v.s6.c842c0f60e99 from=translated src=- shape=a1a8b04e vocab=717e86b6
+-/
 lemma const_mem_H_twfe (c₀ : ℝ) :
     (fun _ : I × T => c₀) ∈ H_twfe :=
   Causalean.Stat.Weighted.AdditiveSpan.const_mem (Prod.fst : I × T → I) Prod.snd c₀

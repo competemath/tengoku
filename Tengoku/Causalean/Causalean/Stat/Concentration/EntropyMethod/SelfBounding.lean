@@ -114,7 +114,9 @@ structure ReplacementSelfBoundingCGFRegularity {X : Type u} [MeasurableSpace X]
 coordinates](hyp:n), [the tilt is `lam`](hyp:lam), [the statistic is `Z`](hyp:Z), [the modified
 logarithmic-Sobolev integrability conditions hold](hyp:hModified), and [the additional Fubini
 conditions hold](hyp:hFubini), then [the recursive tilted replacement-square sum equals the
-product expectation of the exponential tilt times the pointwise replacement-square sum](goal). -/
+product expectation of the exponential tilt times the pointwise replacement-square sum](goal).
+@isnad1 id=eq.2h5v.s7.c3e7ebedf30d from=translated src=- shape=29951785 vocab=821666fc
+-/
 theorem exponentialReplacementSquareSum_eq_integral
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]
@@ -253,7 +255,9 @@ replacement regularity conditions hold](hyp:hTensor,hModified),
 [the replacement Fubini conditions hold](hyp:hFubini), [the statistic is weakly
 self-bounding](hyp:hSelf), and [both tilted comparison integrands are
 integrable](hyp:hLeftInt,hRightInt), then [the entropy of the exponential tilt is at most
-`lam²` times the tilted expectation of `a Z + b`](goal). -/
+`lam²` times the tilted expectation of `a Z + b`](goal).
+@isnad1 id=le.7h7v.s8.00d28de0fe85 from=translated src=- shape=a2cfba36 vocab=39483a98
+-/
 theorem ReplacementSelfBounding.entropy_exp_le
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]
@@ -321,7 +325,9 @@ coordinates](hyp:n), [the statistic is `Z`](hyp:Z), [the self-bounding coefficie
 nonnegative](hyp:ha,hb), [the statistic is weakly replacement self-bounding](hyp:hSelf), and
 [the exponential-tilt regularity conditions hold](hyp:hReg), then at [a nonnegative tilt
 `lam`](hyp:hlam0) [below the linear pole](hyp:hlam), [the centered cumulant-generating function is
-at most `(a E[Z] + b) lam² / (1 - a lam)`](goal). -/
+at most `(a E[Z] + b) lam² / (1 - a lam)`](goal).
+@isnad1 id=le.6h7v.s8.487982f31623 from=translated src=- shape=2887a4f9 vocab=0b9d827e
+-/
 theorem ReplacementSelfBounding.cgf_centered_le
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]
@@ -392,7 +398,9 @@ coordinates](hyp:n), [the statistic is `Z`](hyp:Z), [the self-bounding coefficie
 nonnegative](hyp:ha,hb), [the statistic is weakly replacement self-bounding](hyp:hSelf), and
 [the exponential-tilt regularity conditions hold](hyp:hReg), then at [a nonnegative tilt
 `lam`](hyp:hlam0) [below the linear pole](hyp:hlam), [the centered moment-generating function is
-at most the exponential of `(a E[Z] + b) lam² / (1 - a lam)`](goal). -/
+at most the exponential of `(a E[Z] + b) lam² / (1 - a lam)`](goal).
+@isnad1 id=le.6h7v.s8.6aab8df72134 from=translated src=- shape=e6b057f6 vocab=dfecf6e4
+-/
 theorem ReplacementSelfBounding.mgf_centered_le
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]
@@ -432,7 +440,9 @@ two more conservative than Theorem 6.19. No conversion theorem in this file make
 configuration-function or VC-entropy examples into applications of
 `ReplacementSelfBounding.upper_tail`. In particular, the centered empirical supremum does not
 satisfy `ReplacementSelfBounding.bound` with universal constants, as established by a finite
-counterexample rather than by a missing proof. -/
+counterexample rather than by a missing proof.
+@isnad1 id=le.6h7v.s8.68f18ef61014 from=translated src=- shape=69902e57 vocab=e5d2c4e0
+-/
 theorem ReplacementSelfBounding.upper_tail
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]

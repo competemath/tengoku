@@ -94,7 +94,9 @@ private lemma inner_empProcVec (S : IIDSample Ω X μ P) (f : X → E)
   rw [hLHS, Finset.sum_sub_distrib, Finset.sum_const, Finset.card_range,
     nsmul_eq_mul, mul_sub, ← mul_assoc, key]
 
-/-- The vector empirical process is measurable in `ω`. -/
+/-- The vector empirical process is measurable in `ω`.
+@isnad1 id=measurab.1h8v.s6.d420924d2ded from=translated src=- shape=2a8ad5c5 vocab=6f88b2bd
+-/
 @[fun_prop]
 lemma measurable_empProcVec [MeasurableSpace E] [BorelSpace E]
     (S : IIDSample Ω X μ P) (f : X → E) (hf : Measurable f) (n : ℕ) :
@@ -113,7 +115,9 @@ process `Gₙ(f)` at sample size `n` is bounded by the population second moment 
     ∫⁻ ‖Gₙ(f)‖² dμ ≤ ENNReal.ofReal (∫ ‖f‖² dP),
 
 uniformly in `n`.  No CLT, no chaining: the `√n` scaling exactly cancels the i.i.d.
-variance growth.  Proved coordinate-wise via Parseval + the scalar bound. -/
+variance growth.  Proved coordinate-wise via Parseval + the scalar bound.
+@isnad1 id=le.2h8v.s7.31c38344cbe9 from=translated src=- shape=9e4fb979 vocab=f9e410d3
+-/
 theorem empProcVec_sq_lintegral_le [IsProbabilityMeasure μ] [IsProbabilityMeasure P]
     [MeasurableSpace E] [BorelSpace E]
     (S : IIDSample Ω X μ P) (f : X → E) (hf_meas : Measurable f)
@@ -225,7 +229,9 @@ exceeds `ε` in norm at sample size `n` is at most $(\int\|f\|^2\,dP)/\varepsilo
 
 uniformly in `n`.  This is the uniform-in-`n` modulus that drives asymptotic
 equicontinuity: as the `L²(P)` size of `f` shrinks, the tail probability shrinks
-at a rate independent of the sample size. -/
+at a rate independent of the sample size.
+@isnad1 id=le.3h9v.s8.9c929b2dd064 from=translated src=- shape=7c27cf8f vocab=a2237c09
+-/
 theorem empProcVec_chebyshev [IsProbabilityMeasure μ] [IsProbabilityMeasure P]
     [MeasurableSpace E] [BorelSpace E]
     (S : IIDSample Ω X μ P) (f : X → E) (hf_meas : Measurable f)

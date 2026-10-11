@@ -20,7 +20,9 @@ namespace Causalean.Mathlib.Probability.Independence.Conditional.ThreeBlockShift
 scores and three coordinate-zero shifts](hyp:f,a) with [measurability](hyp:hfmeas,hameas)
 and [integrability](hyp:hf,ha), [an integrable first shifted pair](hyp:hshift01), and
 [an integrable shifted three-factor product](hyp:hshiftprod) imply that [the conditional
-mean of the shifted three-coordinate product is the product of its shifted means](goal). -/
+mean of the shifted three-coordinate product is the product of its shifted means](goal).
+@isnad1 id=eventual.6h4v.s10.13e957df15c1 from=translated src=- shape=1cc83ef1 vocab=1d4b6bcd
+-/
 theorem condExp_shiftedFourCoordinateProduct
     {X : Fin 4 → Type*} [∀ i, MeasurableSpace (X i)]
     [∀ i, StandardBorelSpace (X i)]

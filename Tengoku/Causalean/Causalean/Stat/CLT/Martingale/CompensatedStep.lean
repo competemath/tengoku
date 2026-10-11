@@ -38,7 +38,9 @@ noncomputable def partialPredictableQuadraticVariation
     (A : MartingaleDifferenceArray Ω μ) (n r : ℕ) : Ω n → ℝ :=
   ∑ k ∈ Finset.range (min r (A.rowLength n)), A.conditionalSecondMoment n k
 
-/-- The partial predictable quadratic variation at time zero is zero. -/
+/-- The partial predictable quadratic variation at time zero is zero.
+@isnad1 id=eq.0h5v.s6.b067fc83bb1f from=translated src=- shape=b94de02e vocab=b0572f51
+-/
 @[simp] theorem partialPredictableQuadraticVariation_zero
     (A : MartingaleDifferenceArray Ω μ) (n : ℕ) :
     A.partialPredictableQuadraticVariation n 0 = 0 := by
@@ -46,7 +48,9 @@ noncomputable def partialPredictableQuadraticVariation
 
 /-- For [an active increment](hyp:hk), [the next partial predictable quadratic
 variation is the current one plus that increment's conditional second
-moment](goal). -/
+moment](goal).
+@isnad1 id=eq.1h6v.s6.e90e28a12572 from=translated src=- shape=87523826 vocab=7513720e
+-/
 theorem partialPredictableQuadraticVariation_succ
     (A : MartingaleDifferenceArray Ω μ) (n k : ℕ)
     (hk : k < A.rowLength n) :
@@ -60,7 +64,9 @@ theorem partialPredictableQuadraticVariation_succ
   exact Finset.sum_range_succ _ _
 
 /-- The partial predictable quadratic variation through time `r` is measurable
-with respect to the row filtration at time `r`. -/
+with respect to the row filtration at time `r`.
+@isnad1 id=strongly.0h6v.s5.e8243b5cb010 from=translated src=- shape=1300a0cb vocab=3fd86514
+-/
 theorem partialPredictableQuadraticVariation_stronglyMeasurable
     (A : MartingaleDifferenceArray Ω μ) (n r : ℕ) :
     StronglyMeasurable[A.filtration n r]
@@ -87,7 +93,9 @@ noncomputable def compensatedWeight
 /-- For [an active martingale increment](hyp:hk), when [the compensated
 predictable variance after that step is almost surely bounded](hyp:hQ), [the
 integral of the next compensated weight equals the integral of the current
-weight times the exact conditionally centered quadratic update](goal). -/
+weight times the exact conditionally centered quadratic update](goal).
+@isnad1 id=eq.2h8v.s8.e4c17439bb48 from=translated src=- shape=4eefd36c vocab=dcc5680b
+-/
 theorem integral_compensatedWeight_succ
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n k : ℕ)
@@ -217,7 +225,9 @@ theorem integral_compensatedWeight_succ
 /-- For [an active martingale increment](hyp:hk), if [the variance budget is nonnegative](hyp:hK)
 and [the compensated predictable variance after that step is at most `K`](hyp:hQ), then [the change
 in the integrated compensated weight is bounded by the integrated Taylor
-remainder and the squared one-step predictable variance](goal). -/
+remainder and the squared one-step predictable variance](goal).
+@isnad1 id=le.3h8v.s8.c9a9e259674b from=translated src=- shape=7222489b vocab=5c950b29
+-/
 theorem norm_integral_compensatedWeight_succ_sub_le
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n k : ℕ)

@@ -32,6 +32,7 @@ Rademacher energy of the paths is at most 4096 times the sum of their
 squared values at time zero plus the terminal control value](goal).
 
 The constant is independent of the number of paths.
+@isnad1 id=le.3h3v.s9.9ee3539a82bc from=translated src=- shape=4552b3ee vocab=1ed3acb4
 -/
 theorem rademacherEnergy_le_scalar_control {n : ℕ} (w : Fin n → Path)
     (u : Path) (hmono : Monotone (u : Time → ℝ))

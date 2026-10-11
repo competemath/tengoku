@@ -20,7 +20,9 @@ open MeasureTheory ProbabilityTheory
 open scoped BigOperators ENNReal
 namespace Causalean.Stat.Concentration
 
-/-- Two independent centered finite-dimensional vectors whose directional second moments are bounded by `Λ` have cross-inner-product second moment at most `M * Λ²`. This statement assumes [the hX condition](hyp:hX), [the hY condition](hyp:hY), [the hXL2 condition](hyp:hXL2), [the hYL2 condition](hyp:hYL2), [the hind condition](hyp:hind), [the hXmom condition](hyp:hXmom), [the hYmom condition](hyp:hYmom). [This is the stated conclusion](goal). -/
+/-- Two independent centered finite-dimensional vectors whose directional second moments are bounded by `Λ` have cross-inner-product second moment at most `M * Λ²`. This statement assumes [the hX condition](hyp:hX), [the hY condition](hyp:hY), [the hXL2 condition](hyp:hXL2), [the hYL2 condition](hyp:hYL2), [the hind condition](hyp:hind), [the hXmom condition](hyp:hXmom), [the hYmom condition](hyp:hYmom). [This is the stated conclusion](goal).
+@isnad1 id=le.7h6v.s9.2223bfff0ced from=translated src=- shape=fc781d9d vocab=85caf049
+-/
 lemma indep_inner_sq_integral_le {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {M : ℕ} [MeasurableSpace (EuclideanSpace ℝ (Fin M))]
     [BorelSpace (EuclideanSpace ℝ (Fin M))]
@@ -100,7 +102,9 @@ lemma indep_inner_sq_integral_le {Ω : Type*} [MeasurableSpace Ω] (μ : Measure
         _ = M * Λ := by simp
     _ = M * Λ ^ 2 := by ring
 
-/-- The squared inner product of two independent square-integrable finite-dimensional vectors is integrable. This statement assumes [the hX condition](hyp:hX), [the hY condition](hyp:hY), [the hXL2 condition](hyp:hXL2), [the hYL2 condition](hyp:hYL2), [the hind condition](hyp:hind). [This is the stated conclusion](goal). -/
+/-- The squared inner product of two independent square-integrable finite-dimensional vectors is integrable. This statement assumes [the hX condition](hyp:hX), [the hY condition](hyp:hY), [the hXL2 condition](hyp:hXL2), [the hYL2 condition](hyp:hYL2), [the hind condition](hyp:hind). [This is the stated conclusion](goal).
+@isnad1 id=integrab.5h5v.s9.e0e3baa7e361 from=translated src=- shape=b2346d23 vocab=321ad0f5
+-/
 lemma integrable_indep_inner_sq {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {M : ℕ} [MeasurableSpace (EuclideanSpace ℝ (Fin M))]
     [BorelSpace (EuclideanSpace ℝ (Fin M))]
@@ -136,7 +140,9 @@ lemma integrable_indep_inner_sq {Ω : Type*} [MeasurableSpace Ω] (μ : Measure 
   apply (integrable_map_measure (by fun_prop) (hX.prodMk hY).aemeasurable).1 at hcross
   simpa [Function.comp_def] using hcross
 
-/-- Markov's inequality converts an independent cross-inner-product second-moment envelope into an absolute tail bound. This statement assumes [the hX condition](hyp:hX), [the hY condition](hyp:hY), [the hXL2 condition](hyp:hXL2), [the hYL2 condition](hyp:hYL2), [the hind condition](hyp:hind), [the ha condition](hyp:ha), [the hmom condition](hyp:hmom). [This is the stated conclusion](goal). -/
+/-- Markov's inequality converts an independent cross-inner-product second-moment envelope into an absolute tail bound. This statement assumes [the hX condition](hyp:hX), [the hY condition](hyp:hY), [the hXL2 condition](hyp:hXL2), [the hYL2 condition](hyp:hYL2), [the hind condition](hyp:hind), [the ha condition](hyp:ha), [the hmom condition](hyp:hmom). [This is the stated conclusion](goal).
+@isnad1 id=le.7h7v.s9.77f692b8bb74 from=translated src=- shape=2ff61136 vocab=ec27570a
+-/
 lemma indep_inner_tail_le {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {M : ℕ} [MeasurableSpace (EuclideanSpace ℝ (Fin M))]
     [BorelSpace (EuclideanSpace ℝ (Fin M))]
@@ -150,7 +156,9 @@ lemma indep_inner_tail_le {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     (integrable_indep_inner_sq μ X Y hX hY hXL2 hYL2 hind)).trans
       (div_le_div_of_nonneg_right hmom (sq_nonneg a))
 
-/-- Projection onto a subspace of dimension at most two has expected squared norm at most twice the common directional second-moment envelope. This statement assumes [the hS condition](hyp:hS), [the hΛ condition](hyp:hΛ), [the hXL2 condition](hyp:hXL2), [the hmom condition](hyp:hmom). [This is the stated conclusion](goal). -/
+/-- Projection onto a subspace of dimension at most two has expected squared norm at most twice the common directional second-moment envelope. This statement assumes [the hS condition](hyp:hS), [the hΛ condition](hyp:hΛ), [the hXL2 condition](hyp:hXL2), [the hmom condition](hyp:hmom). [This is the stated conclusion](goal).
+@isnad1 id=le.4h6v.s12.58594ecddfc2 from=translated src=- shape=a1ef590c vocab=584a6f9a
+-/
 lemma projection_second_moment_le_two {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {M : ℕ} [MeasurableSpace (EuclideanSpace ℝ (Fin M))]
     [BorelSpace (EuclideanSpace ℝ (Fin M))]
@@ -190,7 +198,9 @@ lemma projection_second_moment_le_two {Ω : Type*} [MeasurableSpace Ω] (μ : Me
     _ ≤ 2 * Λ := by
       exact mul_le_mul_of_nonneg_right (by exact_mod_cast hS) hΛ
 
-/-- The squared norm of a finite-dimensional orthogonal projection is integrable whenever the original vector is square integrable. This statement assumes [the hXL2 condition](hyp:hXL2). [This is the stated conclusion](goal). -/
+/-- The squared norm of a finite-dimensional orthogonal projection is integrable whenever the original vector is square integrable. This statement assumes [the hXL2 condition](hyp:hXL2). [This is the stated conclusion](goal).
+@isnad1 id=integrab.1h5v.s12.a375f53d1885 from=translated src=- shape=b63b9d37 vocab=532fb8cd
+-/
 lemma integrable_projection_norm_sq {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     {M : ℕ} [MeasurableSpace (EuclideanSpace ℝ (Fin M))]
     [BorelSpace (EuclideanSpace ℝ (Fin M))]
@@ -212,7 +222,9 @@ lemma integrable_projection_norm_sq {Ω : Type*} [MeasurableSpace Ω] (μ : Meas
   rw [he]
   exact (hXL2.const_inner _).integrable_sq
 
-/-- A rank-at-most-two projection obeys the Markov tail bound obtained from its directional second-moment envelope. This statement assumes [the hS condition](hyp:hS), [the hΛ condition](hyp:hΛ), [the ha condition](hyp:ha), [the hXL2 condition](hyp:hXL2), [the hmom condition](hyp:hmom). [This is the stated conclusion](goal). -/
+/-- A rank-at-most-two projection obeys the Markov tail bound obtained from its directional second-moment envelope. This statement assumes [the hS condition](hyp:hS), [the hΛ condition](hyp:hΛ), [the ha condition](hyp:ha), [the hXL2 condition](hyp:hXL2), [the hmom condition](hyp:hmom). [This is the stated conclusion](goal).
+@isnad1 id=le.5h7v.s12.5d96d49e296b from=translated src=- shape=a32616ed vocab=6efdb6f1
+-/
 lemma projection_norm_tail_le_two {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {M : ℕ} [MeasurableSpace (EuclideanSpace ℝ (Fin M))]
     [BorelSpace (EuclideanSpace ℝ (Fin M))]

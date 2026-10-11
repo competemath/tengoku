@@ -55,7 +55,9 @@ private theorem integral_weighted_condExp (w k : γ → ℝ) (f : Ω → ℝ)
 /-- A [finite-cell observed table](hyp:D), [treatment arm](hyp:d), [covariate
 weight](hyp:w), [measurability of that weight](hyp:hm), and [its integrability
 under the covariate law](hyp:hw) give [the weighted treatment-arm indicator
-mean through the finite-cell arm probability](goal). -/
+mean through the finite-cell arm probability](goal).
+@isnad1 id=eq.2h6v.s7.d5c28dd788d5 from=translated src=- shape=6b0fef2a vocab=40ed3ec0
+-/
 theorem integral_weighted_arm (d : Bool) (w : γ → ℝ) (hm : Measurable w)
     (hw : Integrable w (μ.map D.X)) :
     ∫ ω, w (D.X ω) * armIndicator d (D.A ω) ∂μ =
@@ -70,7 +72,9 @@ theorem integral_weighted_arm (d : Bool) (w : γ → ℝ) (hm : Measurable w)
 /-- A [finite-cell observed table](hyp:D), [treatment arm](hyp:d), [covariate
 weight](hyp:w), [measurability of that weight](hyp:hm), and [its integrability
 under the covariate law](hyp:hw) give [the weighted observed arm-outcome mean
-through the finite-cell arm regression](goal). -/
+through the finite-cell arm regression](goal).
+@isnad1 id=eq.2h6v.s7.25ea45329284 from=translated src=- shape=b5e6fbc9 vocab=04e9dc1e
+-/
 theorem integral_weighted_observedProduct (d : Bool) (w : γ → ℝ)
     (hm : Measurable w) (hw : Integrable w (μ.map D.X)) :
     ∫ ω, w (D.X ω) * armIndicator d (D.A ω) *
@@ -94,7 +98,9 @@ variable [StandardBorelSpace Ω]
 integrability under the covariate law](hyp:hw), [conditional independence of
 treatment and the selected potential outcome given covariates](hyp:hCI), and
 [almost-surely positive probability of that arm](hyp:hpos) give [the weighted
-potential-outcome mean through the observed arm regression](goal). -/
+potential-outcome mean through the observed arm regression](goal).
+@isnad1 id=eq.4h6v.s7.56ee55518c72 from=translated src=- shape=98c5ab96 vocab=9154acdc
+-/
 theorem integral_weighted_potential (d : Bool) (w : γ → ℝ)
     (hm : Measurable w) (hw : Integrable w (μ.map D.X))
     (hCI : CondIndepFun D.sigmaX D.sigmaX_le D.A (D.potential d) μ)
@@ -116,7 +122,9 @@ theorem integral_weighted_potential (d : Bool) (w : γ → ℝ)
 [measurability of that weight](hyp:hm), [its integrability under the covariate
 law](hyp:hw), [armwise conditional independence](hyp:hCI), and [almost-surely
 positive probabilities for both arms](hyp:hpos) give [the weighted
-treated-minus-control potential contrast through the two arm regressions](goal). -/
+treated-minus-control potential contrast through the two arm regressions](goal).
+@isnad1 id=eq.4h5v.s8.5e0390f5b207 from=translated src=- shape=78afd142 vocab=243f781e
+-/
 theorem integral_weighted_treated_sub_control (w : γ → ℝ)
     (hm : Measurable w) (hw : Integrable w (μ.map D.X))
     (hCI : ∀ d, CondIndepFun D.sigmaX D.sigmaX_le D.A (D.potential d) μ)
@@ -138,7 +146,9 @@ theorem integral_weighted_treated_sub_control (w : γ → ℝ)
 omit [StandardBorelSpace Ω] in
 /-- A [finite-cell observed table](hyp:D) under the ambient probability law
 induces [a probability law on observed covariate, treatment, and outcome
-triplets](goal). -/
+triplets](goal).
+@isnad1 id=isprobab.0h4v.s5.0899a698e499 from=translated src=- shape=8a4cf6aa vocab=327e3e78
+-/
 theorem observedLaw_isProbability : IsProbabilityMeasure D.observedLaw := by
   rw [D.observedLaw_eq_map]
   apply Measure.isProbabilityMeasure_map
@@ -152,7 +162,9 @@ omit [StandardBorelSpace Ω] in
 /-- A [finite-cell observed table](hyp:D), [treatment arm](hyp:d), [covariate
 weight](hyp:w), [measurability of that weight](hyp:hm), and [its integrability
 under the covariate law](hyp:hw) give [the observed-law treatment indicator
-mean through the arm probability](goal). -/
+mean through the arm probability](goal).
+@isnad1 id=eq.2h6v.s7.0612e10927fb from=translated src=- shape=90c18a9e vocab=861f3718
+-/
 theorem integral_observedLaw_weighted_arm (d : Bool) (w : γ → ℝ)
     (hm : Measurable w) (hw : Integrable w (μ.map D.X)) :
     ∫ z : γ × Bool × Bool, w z.1 * armIndicator d z.2.1 ∂D.observedLaw =
@@ -181,7 +193,9 @@ omit [StandardBorelSpace Ω] in
 /-- A [finite-cell observed table](hyp:D), [treatment arm](hyp:d), [covariate
 weight](hyp:w), [measurability of that weight](hyp:hm), and [its integrability
 under the covariate law](hyp:hw) give [the observed-law weighted arm-outcome
-mean through the arm probability and regression](goal). -/
+mean through the arm probability and regression](goal).
+@isnad1 id=eq.2h6v.s7.7e928089d0ee from=translated src=- shape=0aba287d vocab=cd66dbc8
+-/
 theorem integral_observedLaw_weighted_observedProduct (d : Bool) (w : γ → ℝ)
     (hm : Measurable w) (hw : Integrable w (μ.map D.X)) :
     ∫ z : γ × Bool × Bool,
@@ -218,7 +232,9 @@ theorem integral_observedLaw_weighted_observedProduct (d : Bool) (w : γ → ℝ
 weight and center](hyp:w,c), [their measurability](hyp:hm,hc), [integrable
 weight](hyp:hw), and [integrable weighted center](hyp:hwc) give [the
 observed-law centered arm-outcome mean through the arm probability and
-regression](goal). The center may be unbounded. -/
+regression](goal). The center may be unbounded.
+@isnad1 id=eq.4h7v.s8.291046c5219a from=translated src=- shape=2cdf9fd3 vocab=57a3302b
+-/
 theorem integral_observedLaw_weighted_centered (d : Bool)
     (w c : γ → ℝ) (hm : Measurable w) (hc : Measurable c)
     (hw : Integrable w (μ.map D.X))

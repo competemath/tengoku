@@ -26,7 +26,9 @@ def RepresentsAtomicLaw {ι : Type*} [Fintype ι] {n : ℕ} {A : RectMatrix n n}
   ∀ f : ℝ → ℝ, LipschitzWith 1 f → f 0 = 0 →
     μ.integral f = anchorEval a c (D.applyFunction f)
 
-/-- [Finite slot types](hyp:ι,κ), [a matrix dimension and two real matrices](hyp:n,A,B), [their real diagonalizations](hyp:DA,DB), [left and right anchor vectors](hyp:a,b,c,d), [finite atomic laws with valid probability weights](hyp:μ,ν,hμ,hν), [their anchored functional-calculus representations](hyp:hrepA,hrepB), [condition-number bounds](hyp:κA,κB,hκA,hκB), and [a nonnegative common spectral envelope](hyp:R,hR0,hRA,hRB) give [a collision-safe one-Wasserstein bound controlled only by operator and anchor perturbations](goal). -/
+/-- [Finite slot types](hyp:ι,κ), [a matrix dimension and two real matrices](hyp:n,A,B), [their real diagonalizations](hyp:DA,DB), [left and right anchor vectors](hyp:a,b,c,d), [finite atomic laws with valid probability weights](hyp:μ,ν,hμ,hν), [their anchored functional-calculus representations](hyp:hrepA,hrepB), [condition-number bounds](hyp:κA,κB,hκA,hκB), and [a nonnegative common spectral envelope](hyp:R,hR0,hRA,hRB) give [a collision-safe one-Wasserstein bound controlled only by operator and anchor perturbations](goal).
+@isnad1 id=le.9h16v.s9.31c0240b44de from=translated src=- shape=5a3ef707 vocab=1fa1e21a
+-/
 theorem atomicW1_le_operator_anchor_perturbation
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     {n : ℕ} {A B : RectMatrix n n}

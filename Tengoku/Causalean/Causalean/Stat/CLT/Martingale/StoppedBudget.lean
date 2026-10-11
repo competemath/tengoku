@@ -32,7 +32,9 @@ noncomputable def budgetMultiplier (x y : ℕ → ℝ) (K delta : ℝ) (k : ℕ)
 and [both budgets are nonnegative](hyp:hK,hdelta), then [the total charges
 selected by the through-time budget multiplier do not exceed their respective
 budgets](goal).  The result permits the charge that first crosses a budget to
-be discarded and uses no probabilistic assumptions. -/
+be discarded and uses no probabilistic assumptions.
+@isnad1 id=and.4h5v.s7.665e07a0c6a4 from=translated src=- shape=72990b4a vocab=49947613
+-/
 theorem budgetWeightedSums_le
     (x y : ℕ → ℝ) (K delta : ℝ) (r : ℕ)
     (hx : ∀ k < r, 0 ≤ x k) (hy : ∀ k < r, 0 ≤ y k)

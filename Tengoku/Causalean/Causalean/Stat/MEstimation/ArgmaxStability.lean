@@ -29,7 +29,9 @@ continuous on `K`](hyp:hLimitContinuous), [`limitArgmax` maximizes `limitCriteri
 values](hyp:hUnique). If [`criterion` converges to `limitCriterion` uniformly on
 `K`](hyp:hUniform), [each `argmax N` eventually lies in `K`](hyp:hArgmaxMem), and [`argmax N`
 eventually maximizes `criterion N` over `K`](hyp:hArgmax), then [the sequence `argmax` converges
-to `limitArgmax`](goal). -/
+to `limitArgmax`](goal).
+@isnad1 id=tendsto.8h6v.s7.646e582e07ac from=translated src=- shape=8bd63941 vocab=f763594a
+-/
 lemma tendsto_argmax_of_eventually_mem_compact {E : Type*} [PseudoMetricSpace E]
     [SecondCountableTopology E]
     (criterion : ℕ → E → ℝ) (limitCriterion : E → ℝ)

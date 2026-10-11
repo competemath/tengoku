@@ -40,7 +40,9 @@ def gaussianFeatureNormalization (m : ℕ) : ℝ :=
   Real.sqrt ((2 : ℝ) ^ m / m.factorial)
 
 /-- A [natural-number coordinate](hyp:m) has [a strictly positive Gaussian feature
-normalization](goal). -/
+normalization](goal).
+@isnad1 id=lt.0h1v.s3.09821b667ec9 from=translated src=- shape=b9369acb vocab=73c20745
+-/
 lemma gaussianFeatureNormalization_pos (m : ℕ) :
     0 < gaussianFeatureNormalization m := by
   unfold gaussianFeatureNormalization
@@ -53,7 +55,9 @@ def gaussianFeatureCoefficient (r : ℝ) (m : ℕ) : ℝ :=
   gaussianFeatureNormalization m * Real.exp (-r ^ 2) * r ^ m
 
 /-- At [a real input](hyp:r), [the sequence of explicit Gaussian feature coefficients is
-square-summable](goal). -/
+square-summable](goal).
+@isnad1 id=memp.0h1v.s4.6bfbaf012a82 from=translated src=- shape=f247c741 vocab=c40c3177
+-/
 lemma gaussianFeature_memℓp (r : ℝ) :
     Memℓp (gaussianFeatureCoefficient r) 2 := by
   apply memℓp_gen
@@ -84,7 +88,9 @@ def gaussianFeature (r : ℝ) : GaussianHilbert :=
   ⟨gaussianFeatureCoefficient r, gaussianFeature_memℓp r⟩
 
 /-- For [two real inputs](hyp:a,b), [the inner product of their explicit Gaussian feature
-vectors equals the Gaussian kernel](goal). -/
+vectors equals the Gaussian kernel](goal).
+@isnad1 id=eq.0h2v.s8.98c04d94d315 from=translated src=- shape=704389ec vocab=d0fd17e2
+-/
 lemma gaussianFeature_inner (a b : ℝ) :
     ⟪gaussianFeature a, gaussianFeature b⟫_ℝ = gaussianKernel a b := by
   rw [lp.inner_eq_tsum]
@@ -112,7 +118,9 @@ lemma gaussianFeature_inner (a b : ℝ) :
   congr 1
   ring
 
-/-- At [a real input](hyp:r), [the explicit Gaussian feature vector has norm one](goal). -/
+/-- At [a real input](hyp:r), [the explicit Gaussian feature vector has norm one](goal).
+@isnad1 id=eq.0h1v.s7.bb3761665e86 from=translated src=- shape=28ae83d7 vocab=d670a1a4
+-/
 lemma gaussianFeature_norm (r : ℝ) : ‖gaussianFeature r‖ = 1 := by
   have hsq : ‖gaussianFeature r‖ ^ 2 = 1 := by
     rw [← real_inner_self_eq_norm_sq, gaussianFeature_inner]
@@ -137,7 +145,9 @@ private lemma UnitNormGaussianFeatureMap.dist_sq
   simp
 
 /-- Given [a unit-norm Gaussian feature realization](hyp:U), [its feature map is continuous on
-the real line](goal). -/
+the real line](goal).
+@isnad1 id=continuo.0h2v.s5.9d65107ad8e8 from=translated src=- shape=4645810c vocab=820e69a0
+-/
 lemma UnitNormGaussianFeatureMap.continuous {H : Type*} [NormedAddCommGroup H]
     [InnerProductSpace ℝ H] (U : UnitNormGaussianFeatureMap H) :
     Continuous U.feature := by
@@ -167,7 +177,9 @@ lemma UnitNormGaussianFeatureMap.continuous {H : Type*} [NormedAddCommGroup H]
   nlinarith
 
 /-- Given [a complete real Hilbert space and its unit-norm Gaussian feature realization](hyp:U)
-and [a finite real measure](hyp:μ), [the feature map is Bochner-integrable](goal). -/
+and [a finite real measure](hyp:μ), [the feature map is Bochner-integrable](goal).
+@isnad1 id=integrab.0h3v.s5.7dc4dee194c9 from=translated src=- shape=cd66ed94 vocab=4b186521
+-/
 lemma UnitNormGaussianFeatureMap.integrable {H : Type*} [NormedAddCommGroup H]
     [InnerProductSpace ℝ H] [CompleteSpace H]
     (U : UnitNormGaussianFeatureMap H) (μ : Measure ℝ) [IsFiniteMeasure μ] :
@@ -188,12 +200,16 @@ def gaussianCoordinate (m : ℕ) : GaussianHilbert →L[ℝ] ℝ :=
   lp.evalCLM ℝ (fun _ : ℕ => ℝ) 2 m
 
 /-- For [a coordinate](hyp:m) and [a real input](hyp:r), [evaluating the explicit Gaussian
-feature at that coordinate returns its defining coefficient](goal). -/
+feature at that coordinate returns its defining coefficient](goal).
+@isnad1 id=eq.0h2v.s10.c28195aa2e75 from=translated src=- shape=4e39e52a vocab=f0e7a71d
+-/
 @[simp] lemma gaussianCoordinate_feature (m : ℕ) (r : ℝ) :
     gaussianCoordinate m (gaussianFeature r) = gaussianFeatureCoefficient r m := rfl
 
 /-- Given [a finite real measure](hyp:μ) and [a coordinate](hyp:m), [coordinate evaluation of
-its explicit Gaussian mean embedding commutes with the Bochner integral](goal). -/
+its explicit Gaussian mean embedding commutes with the Bochner integral](goal).
+@isnad1 id=eq.0h2v.s10.3ad4a472db9f from=translated src=- shape=22fc4744 vocab=43eb931b
+-/
 lemma gaussianCoordinate_meanEmbedding (μ : Measure ℝ) [IsFiniteMeasure μ] (m : ℕ) :
     gaussianCoordinate m (meanEmbedding gaussianFeatureMap μ) =
       ∫ r, gaussianFeatureCoefficient r m ∂μ := by
@@ -210,7 +226,9 @@ def gaussianWeightedMonomial (m : ℕ) (r : ℝ) : ℝ :=
   gaussianWeight r * r ^ m
 
 /-- Given [a finite real measure](hyp:μ) and [a natural-number degree](hyp:m), [the
-Gaussian-weighted monomial is Bochner-integrable](goal). -/
+Gaussian-weighted monomial is Bochner-integrable](goal).
+@isnad1 id=integrab.0h2v.s5.d047a1fb267a from=translated src=- shape=95e44eeb vocab=24917fe4
+-/
 lemma integrable_gaussianWeightedMonomial (μ : Measure ℝ) [IsFiniteMeasure μ] (m : ℕ) :
     Integrable (gaussianWeightedMonomial m) μ := by
   let f : ZeroAtInftyContinuousMap ℝ ℝ :=
@@ -247,7 +265,9 @@ private lemma integrable_gaussianWeightedPolynomial
 
 /-- Given [two finite real measures](hyp:μ,ν), [equality of all their Gaussian-weighted
 monomial integrals](hyp:hmom), and [a real polynomial](hyp:p), [their Gaussian-weighted
-polynomial integrals are equal](goal). -/
+polynomial integrals are equal](goal).
+@isnad1 id=eq.1h3v.s7.4f72b91442f4 from=translated src=- shape=da73ac89 vocab=1ce93417
+-/
 lemma gaussianWeightedPolynomial_integral_eq
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (hmom : ∀ m : ℕ,
@@ -276,7 +296,9 @@ lemma gaussianWeightedPolynomial_integral_eq
 /-- Given [two finite real measures](hyp:μ,ν), [a nonnegative common support radius](hyp:B,hB),
 [their concentration on that closed interval](hyp:hμ,hν), [equality of every Gaussian-weighted
 monomial integral](hyp:hmom), and [a continuous real test function](hyp:f,hf), [their integrals
-of that test function are equal](goal). -/
+of that test function are equal](goal).
+@isnad1 id=eq.5h4v.s7.b61bca275151 from=translated src=- shape=20cdea24 vocab=e9e9a9d0
+-/
 theorem continuousIntegral_eq_of_gaussianWeightedMoments_eq
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (B : ℝ) (hB : 0 ≤ B)
@@ -393,7 +415,9 @@ theorem continuousIntegral_eq_of_gaussianWeightedMoments_eq
       field_simp
 
 /-- Given [two finite real measures](hyp:μ,ν) that [have equal integrals against every continuous
-real test function](hyp:h), [the measures are equal](goal). -/
+real test function](hyp:h), [the measures are equal](goal).
+@isnad1 id=eq.1h2v.s6.66d38ecb8fb4 from=translated src=- shape=60aed513 vocab=453b85c3
+-/
 theorem measure_eq_of_continuousIntegral_eq
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (h : ∀ (f : ℝ → ℝ), Continuous f → ∫ r, f r ∂μ = ∫ r, f r ∂ν) :
@@ -404,7 +428,9 @@ theorem measure_eq_of_continuousIntegral_eq
 
 /-- Given [two finite real measures](hyp:μ,ν), [a nonnegative common support radius](hyp:B,hB),
 [their concentration on that closed interval](hyp:hμ,hν), and [equality of every
-Gaussian-weighted monomial integral](hyp:hmom), [the measures are equal](goal). -/
+Gaussian-weighted monomial integral](hyp:hmom), [the measures are equal](goal).
+@isnad1 id=eq.4h3v.s7.f8cdc1f3795c from=translated src=- shape=8b8bc628 vocab=6242a593
+-/
 theorem measure_eq_of_gaussianWeightedMoments_eq
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (B : ℝ) (hB : 0 ≤ B)
@@ -419,7 +445,9 @@ theorem measure_eq_of_gaussianWeightedMoments_eq
 
 /-- Given [two finite real measures](hyp:μ,ν), [equality of their explicit Gaussian mean
 embeddings](hyp:hemb), and [a natural-number degree](hyp:m), [their Gaussian-weighted monomial
-integrals at that degree are equal](goal). -/
+integrals at that degree are equal](goal).
+@isnad1 id=eq.1h3v.s8.f4e68b90af54 from=translated src=- shape=465aeef2 vocab=ce5427ca
+-/
 lemma gaussianWeightedMoments_eq_of_meanEmbedding_eq
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (hemb : meanEmbedding gaussianFeatureMap μ = meanEmbedding gaussianFeatureMap ν)
@@ -437,7 +465,9 @@ lemma gaussianWeightedMoments_eq_of_meanEmbedding_eq
 
 /-- Given [two finite real measures](hyp:μ,ν), [a nonnegative common support radius](hyp:B,hB),
 [their concentration on that closed interval](hyp:hμ,hν), and [equal explicit Gaussian mean
-embeddings](hyp:hemb), [the measures are equal](goal). -/
+embeddings](hyp:hemb), [the measures are equal](goal).
+@isnad1 id=eq.4h3v.s9.e3c1a7c2234b from=translated src=- shape=f3747a91 vocab=ed869448
+-/
 theorem measure_eq_of_meanEmbedding_eq_of_boundedSupport
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (B : ℝ) (hB : 0 ≤ B)
@@ -449,7 +479,9 @@ theorem measure_eq_of_meanEmbedding_eq_of_boundedSupport
 
 /-- Given [two finite real measures](hyp:μ,ν), [a nonnegative common support radius](hyp:B,hB),
 [their concentration on that closed interval](hyp:hμ,hν), and [equal explicit Gaussian mean
-embeddings](hyp:hemb), [their raw second moments are equal](goal). -/
+embeddings](hyp:hemb), [their raw second moments are equal](goal).
+@isnad1 id=eq.4h3v.s9.f16c6ad97ff1 from=translated src=- shape=e97aac57 vocab=cc4be814
+-/
 theorem secondMoment_eq_of_meanEmbedding_eq_of_boundedSupport
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (B : ℝ) (hB : 0 ≤ B)
@@ -461,7 +493,9 @@ theorem secondMoment_eq_of_meanEmbedding_eq_of_boundedSupport
 /-- Given [two finite real measures](hyp:μ,ν), [a nonnegative common support radius](hyp:B,hB),
 [their concentration on that closed interval](hyp:hμ,hν), and
 [unequal raw second moments](hyp:hmom), [the norm of the difference between their explicit
-Gaussian mean embeddings is strictly positive](goal). -/
+Gaussian mean embeddings is strictly positive](goal).
+@isnad1 id=lt.4h3v.s10.105c64dce741 from=translated src=- shape=88468af1 vocab=38f77411
+-/
 theorem norm_meanEmbedding_sub_pos_of_secondMoment_ne_of_boundedSupport
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (B : ℝ) (hB : 0 ≤ B)

@@ -27,7 +27,9 @@ linear design map is injective](hyp:hA), and [the conditional nuisance fit `u₀
 coordinate held at zero, clears every nuisance-direction score](hyp:hNuisance). Then [the
 selected scalar coefficient of the finite Poisson maximizer has exactly the sign of the
 remaining scalar score](goal): it is negative, zero, or positive exactly when the scalar
-score is. -/
+score is.
+@isnad1 id=other.4h6v.s10.3a101f8b46f4 from=translated src=- shape=7b099cbb vocab=c148bcf0
+-/
 lemma finitePoissonObjective_snd_sign_of_nuisance_score
     {U I : Type*} [NormedAddCommGroup U] [NormedSpace ℝ U]
     [FiniteDimensional ℝ U] [Fintype I] [Nonempty I]

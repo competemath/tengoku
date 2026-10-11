@@ -204,7 +204,9 @@ private lemma exists_head_of_eliminateOne
     linarith
 
 /-- [One Fourier–Motzkin elimination step preserves exactly the feasible
-values of the retained objective coordinate](goal). -/
+values of the retained objective coordinate](goal).
+@isnad1 id=iff.0h4v.s7.250d8ca0c2f1 from=translated src=- shape=237422a6 vocab=d5f0c7b7
+-/
 theorem eliminateOne_iff {rows : List (AugmentedIneq (n + 1))} {x : Fin n → ℚ} {t : ℚ} :
     (∃ z : ℚ, ∀ r ∈ rows, r.Holds (Fin.cons z x) t) ↔
       ∀ r ∈ eliminateOne rows, r.Holds x t := by
@@ -226,7 +228,9 @@ def eliminateAll : (n : ℕ) → List (AugmentedIneq n) → List (AugmentedIneq 
   | n + 1, rows => eliminateAll n (eliminateOne rows)
 
 /-- [Eliminating all ordinary variables preserves exactly the feasible values
-of the retained objective coordinate](goal). -/
+of the retained objective coordinate](goal).
+@isnad1 id=iff.0h3v.s6.05efdad724f7 from=translated src=- shape=ae86c747 vocab=000d7104
+-/
 theorem eliminateAll_iff {n : ℕ} {rows : List (AugmentedIneq n)} {t : ℚ} :
     (∃ x : Fin n → ℚ, ∀ r ∈ rows, r.Holds x t) ↔
       ∀ r ∈ eliminateAll n rows, r.Holds Fin.elim0 t := by
@@ -400,7 +404,9 @@ private lemma scalar_endpoint
 
 /-- If [a finite rational linear program has a feasible rational point](hyp:hne)
 and [its objective is bounded below on feasible rational points](hyp:hbdd), then
-[it has a rational primal optimizer](goal). -/
+[it has a rational primal optimizer](goal).
+@isnad1 id=ex.2h3v.s6.2aead19d9460 from=translated src=- shape=d1beeedb vocab=2787be53
+-/
 theorem exists_rational_primal_optimizer (P : Program ι n)
     (hne : ∃ x, P.PrimalFeasible x)
     (hbdd : ∃ l : ℚ, ∀ x, P.PrimalFeasible x → l ≤ P.objective x) :
@@ -747,7 +753,9 @@ def Program.dualObjective (P : Program ι n) (y : ι → ℚ) : ℚ :=
 linear program in inequality form has a feasible rational point](hyp:hne) and
 [its objective is bounded below on feasible rational points](hyp:hbdd), then
 [it has a rational optimal primal point and rational nonnegative dual
-multipliers with the same objective value](goal). -/
+multipliers with the same objective value](goal).
+@isnad1 id=ex.2h3v.s6.e75e7c3e0429 from=translated src=- shape=7aacc774 vocab=ff521e25
+-/
 theorem exists_rational_optimal_primal_dual (P : Program ι n)
     (hne : ∃ x, P.PrimalFeasible x)
     (hbdd : ∃ l : ℚ, ∀ x, P.PrimalFeasible x → l ≤ P.objective x) :

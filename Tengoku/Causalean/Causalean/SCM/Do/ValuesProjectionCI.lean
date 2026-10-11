@@ -35,7 +35,9 @@ universe uM uΩ
     W](hyp:hZW) all contained in `I`, and let μ be a finite measure on the finite-product value
     space indexed by `I`. If [X is conditionally independent of the union of Y and W given
     Z](hyp:h), then [X is conditionally independent of Y given the union of Z and W](goal),
-    where independence is always of the corresponding coordinate projections under μ. -/
+    where independence is always of the corresponding coordinate projections under μ.
+@isnad1 id=condinde.4h8v.s10.14f997c1c205 from=translated src=- shape=7e9a1501 vocab=2926e886
+-/
 theorem condIndep_valuesProjection_weak_union
     {M : Type uM} [DecidableEq M]
     {I X Y W Z : Finset M}

@@ -48,7 +48,9 @@ measurable](goal) for [an index type](hyp:M), [the original and retained finite
 sets](hyp:I,J), [measurable coordinate types](hyp:Ω'), and [the stated containment](hyp:hJI).
 
     Coordinate restriction `valuesProjection hJI` is measurable; since it coincides with
-    `Finset.restrict₂ hJI`, measurability is exactly `Finset.measurable_restrict₂`. -/
+    `Finset.restrict₂ hJI`, measurability is exactly `Finset.measurable_restrict₂`.
+@isnad1 id=measurab.1h4v.s7.e2bcdb69f5f6 from=translated src=- shape=9b5b14e8 vocab=b2d4d29b
+-/
 @[fun_prop]
 theorem measurable_valuesProjection {M : Type*}
     {I J : Finset M} {Ω' : M → Type*} [∀ n, MeasurableSpace (Ω' n)]
@@ -60,7 +62,9 @@ the original product space](goal) for [an index type](hyp:M), [the original and 
 sets](hyp:I,W), [measurable coordinate types](hyp:Ω'), and [their containment](hyp:hW).
 
     The comap of `valuesProjection` gives a sub-σ-algebra of the ambient
-    measurable space on `ValuesOn I Ω`. -/
+    measurable space on `ValuesOn I Ω`.
+@isnad1 id=le.1h4v.s7.b705fa3ab618 from=translated src=- shape=2b265db2 vocab=f30b85e4
+-/
 theorem comap_valuesProjection_le {M : Type*}
     {I W : Finset M} {Ω' : M → Type*} [∀ n, MeasurableSpace (Ω' n)]
     (hW : W ⊆ I) :
@@ -70,7 +74,9 @@ theorem comap_valuesProjection_le {M : Type*}
 
 /-- For [finite sets `K`, `J`, and `I`](hyp:K,J,I), [an index type](hyp:M),
 [measurable coordinate types](hyp:Ω'), [the inclusion `K ⊆ J`](hyp:hKJ), and
-[the inclusion `J ⊆ I`](hyp:hJI), [coordinate restriction composes](goal). -/
+[the inclusion `J ⊆ I`](hyp:hJI), [coordinate restriction composes](goal).
+@isnad1 id=eq.2h5v.s6.0813797a9bed from=translated src=- shape=e6861395 vocab=34bd2c7d
+-/
 theorem valuesProjection_comp {M : Type*}
     {I J K : Finset M} {Ω' : M → Type*} [∀ n, MeasurableSpace (Ω' n)]
     (hKJ : K ⊆ J) (hJI : J ⊆ I) :
@@ -81,7 +87,9 @@ theorem valuesProjection_comp {M : Type*}
 
 /-- For [finite sets `A`, `B`, and `I`](hyp:A,B,I), [an index type](hyp:M),
 [measurable coordinate types](hyp:Ω'), [the inclusion `A ⊆ B`](hyp:hAB), and
-[the inclusion `B ⊆ I`](hyp:hBI), [the projection pullbacks are monotone](goal). -/
+[the inclusion `B ⊆ I`](hyp:hBI), [the projection pullbacks are monotone](goal).
+@isnad1 id=le.2h5v.s8.7659fe11e8b5 from=translated src=- shape=c68a4b82 vocab=9ed21ea0
+-/
 theorem comap_valuesProjection_mono {M : Type*}
     {I A B : Finset M} {Ω' : M → Type*} [∀ n, MeasurableSpace (Ω' n)]
     (hAB : A ⊆ B) (hBI : B ⊆ I) :
@@ -94,7 +102,9 @@ theorem comap_valuesProjection_mono {M : Type*}
 
 /-- For [finite sets `A`, `B`, and `I`](hyp:A,B,I), [a decidable index type](hyp:M),
 [measurable coordinate types](hyp:Ω'), and [inclusions in `I`](hyp:hA,hB),
-[union projection is measurable for the supremum pullback](goal). -/
+[union projection is measurable for the supremum pullback](goal).
+@isnad1 id=measurab.2h5v.s8.8b0a2d10ca23 from=translated src=- shape=e6b8f02a vocab=cac8736c
+-/
 theorem measurable_valuesProjection_union_sup
     {M : Type*} [DecidableEq M]
     {I A B : Finset M} {Ω' : M → Type*} [∀ n, MeasurableSpace (Ω' n)]
@@ -140,7 +150,9 @@ theorem measurable_valuesProjection_union_sup
 
 /-- For [finite sets `A`, `B`, and `I`](hyp:A,B,I), [a decidable index type](hyp:M),
 [measurable coordinate types](hyp:Ω'), and [inclusions in `I`](hyp:hA,hB),
-[the union-projection pullback equals the supremum of the separate pullbacks](goal). -/
+[the union-projection pullback equals the supremum of the separate pullbacks](goal).
+@isnad1 id=eq.2h5v.s8.f816b409b3e9 from=translated src=- shape=41aca3d0 vocab=fbe3297f
+-/
 theorem comap_valuesProjection_union_eq_sup
     {M : Type*} [DecidableEq M]
     {I A B : Finset M} {Ω' : M → Type*} [∀ n, MeasurableSpace (Ω' n)]
@@ -181,7 +193,9 @@ coordinate of the first set](hyp:μ).
 
     `Measure.pi` transports along `valuesEquivOfEq`: the equiv is measure-preserving
     between the two `Measure.pi`'s whose per-coordinate measures agree through the
-    subtype transport of the index equality. -/
+    subtype transport of the index equality.
+@isnad1 id=measurep.1h5v.s10.3ddebbff0ca3 from=translated src=- shape=2bf77cc8 vocab=f95323f1
+-/
 lemma measurePreserving_valuesEquivOfEq {M : Type*}
     {I J : Finset M} {Ω : M → Type*} [∀ n, MeasurableSpace (Ω n)]
     (h : I = J)
@@ -213,7 +227,9 @@ noncomputable def valuesUnionMk {M : Type*} [DecidableEq M]
   if hA : v ∈ A then a ⟨v, hA⟩
   else b ⟨v, (Finset.mem_union.mp hv).resolve_left hA⟩
 
-/-- Projecting a union assignment to a coordinate from the first input returns that value. -/
+/-- Projecting a union assignment to a coordinate from the first input returns that value.
+@isnad1 id=eq.1h7v.s7.0c459a387b2c from=translated src=- shape=adee6a5a vocab=c6c510eb
+-/
 @[simp] lemma valuesUnionMk_apply_left {M : Type*} [DecidableEq M]
     {Ω : M → Type*} [∀ n, MeasurableSpace (Ω n)] {A B : Finset M}
     (a : ValuesOn A Ω) (b : ValuesOn B Ω)
@@ -222,7 +238,9 @@ noncomputable def valuesUnionMk {M : Type*} [DecidableEq M]
   unfold valuesUnionMk
   exact dite_eq_left hA
 
-/-- Projecting a union assignment outside the first input returns the second input's value. -/
+/-- Projecting a union assignment outside the first input returns the second input's value.
+@isnad1 id=eq.2h7v.s7.4fe127852b3a from=translated src=- shape=c6ef5ca9 vocab=9016ec91
+-/
 @[simp] lemma valuesUnionMk_apply_right {M : Type*} [DecidableEq M]
     {Ω : M → Type*} [∀ n, MeasurableSpace (Ω n)] {A B : Finset M}
     (a : ValuesOn A Ω) (b : ValuesOn B Ω)
@@ -234,7 +252,9 @@ noncomputable def valuesUnionMk {M : Type*} [DecidableEq M]
 /-- Combining dependent functions is measurable in the second input with the first held fixed.
 
 At every output coordinate the value is either constant or a coordinate
-projection of the second assignment. -/
+projection of the second assignment.
+@isnad1 id=measurab.0h5v.s8.78d5728cc7e8 from=translated src=- shape=09a8dc10 vocab=1043b7b1
+-/
 @[fun_prop]
 lemma measurable_valuesUnionMk_right {M : Type*} [DecidableEq M]
     {Ω : M → Type*} [∀ n, MeasurableSpace (Ω n)] {A B : Finset M}
@@ -257,7 +277,9 @@ lemma measurable_valuesUnionMk_right {M : Type*} [DecidableEq M]
     rw [h_eq]
     exact measurable_pi_apply _
 
-/-- Combining dependent functions is jointly measurable in both inputs. -/
+/-- Combining dependent functions is jointly measurable in both inputs.
+@isnad1 id=measurab.0h4v.s8.01f4e027149b from=translated src=- shape=db4450d3 vocab=5ccf5e08
+-/
 @[fun_prop]
 lemma measurable_valuesUnionMk {M : Type*} [DecidableEq M]
     {Ω : M → Type*} [∀ n, MeasurableSpace (Ω n)] {A B : Finset M} :
@@ -287,7 +309,9 @@ lemma measurable_valuesUnionMk {M : Type*} [DecidableEq M]
 
 /-- For [finite sets `A`, `B`, and `I`](hyp:A,B,I), [a decidable index type](hyp:M),
 [measurable coordinate types](hyp:Ω'), and [inclusions in `I`](hyp:hA,hB),
-[assembling the projected blocks equals projection to their union](goal). -/
+[assembling the projected blocks equals projection to their union](goal).
+@isnad1 id=eq.2h5v.s6.7a16f7b72c6a from=translated src=- shape=92802ea7 vocab=8d14260f
+-/
 theorem valuesUnionMk_projection_comp
     {M : Type*} [DecidableEq M]
     {I A B : Finset M} {Ω' : M → Type*} [∀ n, MeasurableSpace (Ω' n)]
@@ -303,7 +327,9 @@ theorem valuesUnionMk_projection_comp
 
 /-- For [finite sets `A` and `B`](hyp:A,B), [their disjointness](hyp:hAB),
 [a decidable index type](hyp:M), [measurable coordinate types](hyp:Ω), and
-[dependent functions `a` and `b`](hyp:a,b), [union commutativity swaps the inputs](goal). -/
+[dependent functions `a` and `b`](hyp:a,b), [union commutativity swaps the inputs](goal).
+@isnad1 id=eq.1h6v.s9.f725fa2e4ce8 from=translated src=- shape=1baa4556 vocab=0f8b4ac9
+-/
 lemma valuesUnionMk_comm {M : Type*} [DecidableEq M] {Ω : M → Type*}
     [∀ m, MeasurableSpace (Ω m)] {A B : Finset M} (hAB : Disjoint A B)
     (a : ValuesOn A Ω) (b : ValuesOn B Ω) :
@@ -320,7 +346,9 @@ lemma valuesUnionMk_comm {M : Type*} [DecidableEq M] {Ω : M → Type*}
 
 /-- For [a finite set `A`](hyp:A), [a decidable index type](hyp:M),
 [measurable coordinate types](hyp:Ω), [a dependent function `a`](hyp:a), and
-[an empty-domain function `e`](hyp:e), [right union with `e` recovers `a`](goal). -/
+[an empty-domain function `e`](hyp:e), [right union with `e` recovers `a`](goal).
+@isnad1 id=eq.0h5v.s9.efff035b9df0 from=translated src=- shape=0419abde vocab=e386b40e
+-/
 lemma valuesUnionMk_empty_right {M : Type*} [DecidableEq M] {Ω : M → Type*}
     [∀ m, MeasurableSpace (Ω m)] {A : Finset M}
     (a : ValuesOn A Ω) (e : ValuesOn (∅ : Finset M) Ω) :
@@ -332,7 +360,9 @@ lemma valuesUnionMk_empty_right {M : Type*} [DecidableEq M] {Ω : M → Type*}
 
 /-- For [finite sets `I` and `J`](hyp:I,J), [their equality](hyp:h),
 [measurable coordinate types](hyp:Ω), [a dependent function `x`](hyp:x), and an [index
-type](hyp:M), [canonical transport is heterogeneously equal to the original function](goal). -/
+type](hyp:M), [canonical transport is heterogeneously equal to the original function](goal).
+@isnad1 id=heq.1h5v.s9.8d13d8a18d6f from=translated src=- shape=6cf7325e vocab=42e8e1ba
+-/
 lemma valuesEquivOfEq_heq {M : Type*} {Ω : M → Type*} [∀ m, MeasurableSpace (Ω m)]
     {I J : Finset M} (h : I = J) (x : ValuesOn I Ω) :
     HEq (valuesEquivOfEq h x) x := by
@@ -342,7 +372,9 @@ lemma valuesEquivOfEq_heq {M : Type*} {Ω : M → Type*} [∀ m, MeasurableSpace
 /-- For [finite sets `A` and `B`](hyp:A,B), [their disjointness](hyp:hAB),
 [a decidable index type](hyp:M), [measurable coordinate types](hyp:Ω), and
 [dependent functions `a` and `b`](hyp:a,b), [the two union orders are heterogeneously
-equal](goal). -/
+equal](goal).
+@isnad1 id=heq.1h6v.s6.314f54c7f542 from=translated src=- shape=84ecc639 vocab=bac63119
+-/
 lemma valuesUnionMk_comm_heq {M : Type*} [DecidableEq M] {Ω : M → Type*}
     [∀ m, MeasurableSpace (Ω m)] {A B : Finset M} (hAB : Disjoint A B)
     (a : ValuesOn A Ω) (b : ValuesOn B Ω) :
@@ -352,7 +384,9 @@ lemma valuesUnionMk_comm_heq {M : Type*} [DecidableEq M] {Ω : M → Type*}
 
 /-- For [a finite set `A`](hyp:A), [a decidable index type](hyp:M),
 [measurable coordinate types](hyp:Ω), [a dependent function `a`](hyp:a), and
-[an empty-domain function `e`](hyp:e), [their union is heterogeneously equal to `a`](goal). -/
+[an empty-domain function `e`](hyp:e), [their union is heterogeneously equal to `a`](goal).
+@isnad1 id=heq.0h5v.s6.146e7f570e8d from=translated src=- shape=1ceb54c2 vocab=04c5b002
+-/
 lemma valuesUnionMk_empty_right_heq {M : Type*} [DecidableEq M] {Ω : M → Type*}
     [∀ m, MeasurableSpace (Ω m)] {A : Finset M}
     (a : ValuesOn A Ω) (e : ValuesOn (∅ : Finset M) Ω) :
@@ -368,7 +402,9 @@ lemma valuesUnionMk_empty_right_heq {M : Type*} [DecidableEq M] {Ω : M → Type
 /-- For [finite sets `I` and `J`](hyp:I,J), [their equality](hyp:hIJ),
 [an index type](hyp:M), [measurable coordinate types](hyp:Ω), [dependent functions `f` and
 `g`](hyp:f,g), and [coordinatewise agreement](hyp:h), [the functions are heterogeneously
-equal](goal). -/
+equal](goal).
+@isnad1 id=heq.2h6v.s7.b3ca3d800675 from=translated src=- shape=f1f0bf43 vocab=5e9b8218
+-/
 lemma valuesOn_heq_of_coord {M : Type*} {Ω : M → Type*} [∀ m, MeasurableSpace (Ω m)]
     {I J : Finset M} (hIJ : I = J) (f : ValuesOn I Ω) (g : ValuesOn J Ω)
     (h : ∀ (v : M) (hI : v ∈ I) (hJ : v ∈ J), f ⟨v, hI⟩ = g ⟨v, hJ⟩) :
@@ -394,7 +430,9 @@ noncomputable def singletonValues {ι : Type*} {α : ι → Type*}
     exact h ▸ x
 
 /-- For [an index type `ι`](hyp:ι), [measurable coordinate types](hyp:α), and
-[an index `v`](hyp:v), [reading a singleton assignment is measurable](goal). -/
+[an index `v`](hyp:v), [reading a singleton assignment is measurable](goal).
+@isnad1 id=measurab.0h3v.s7.ad8513a6dfcc from=translated src=- shape=6e000010 vocab=36596add
+-/
 @[fun_prop]
 lemma measurable_singletonValue {ι : Type*} {α : ι → Type*}
     [∀ i, MeasurableSpace (α i)] {v : ι} :
@@ -403,7 +441,9 @@ lemma measurable_singletonValue {ι : Type*} {α : ι → Type*}
   exact measurable_pi_apply (⟨v, by simp⟩ : {w // w ∈ ({v} : Finset ι)})
 
 /-- For [an index type `ι`](hyp:ι), [measurable coordinate types](hyp:α), and
-[an index `v`](hyp:v), [building a singleton assignment is measurable](goal). -/
+[an index `v`](hyp:v), [building a singleton assignment is measurable](goal).
+@isnad1 id=measurab.0h3v.s7.f8fe51c44a7f from=translated src=- shape=540ddf10 vocab=5e8205d5
+-/
 @[fun_prop]
 lemma measurable_singletonValues {ι : Type*} {α : ι → Type*}
     [∀ i, MeasurableSpace (α i)] {v : ι} :
@@ -416,14 +456,18 @@ lemma measurable_singletonValues {ι : Type*} {α : ι → Type*}
   exact measurable_id
 
 /-- For [an index type `ι`](hyp:ι), [coordinate types](hyp:α), [an index `v`](hyp:v), and
-[a value `x`](hyp:x), [reading its singleton assignment returns `x`](goal). -/
+[a value `x`](hyp:x), [reading its singleton assignment returns `x`](goal).
+@isnad1 id=eq.0h4v.s4.01f2cc055685 from=translated src=- shape=e3fcda2a vocab=64501f66
+-/
 @[simp] lemma singletonValue_singletonValues {ι : Type*} {α : ι → Type*}
     {v : ι} (x : α v) :
     singletonValue (α := α) (v := v) (singletonValues (α := α) (v := v) x) = x := by
   rfl
 
 /-- For [an index type `ι`](hyp:ι), [coordinate types](hyp:α), [an index `v`](hyp:v), and
-[a singleton assignment `x`](hyp:x), [rebuilding from its value returns `x`](goal). -/
+[a singleton assignment `x`](hyp:x), [rebuilding from its value returns `x`](goal).
+@isnad1 id=eq.0h4v.s5.296be0a68cd7 from=translated src=- shape=6d31f3b8 vocab=913506a5
+-/
 @[simp] lemma singletonValues_singletonValue {ι : Type*} {α : ι → Type*}
     {v : ι} (x : ValuesOn ({v} : Finset ι) α) :
     singletonValues (α := α) (v := v) (singletonValue (α := α) (v := v) x) = x := by

@@ -26,7 +26,9 @@ namespace Causalean.Stat
 
 -- @node: finitePoissonObjective_tendstoUniformlyOn
 /-- Pointwise convergence of the finitely many weights and means gives uniform
-convergence of the finite Poisson objective on every compact parameter set. -/
+convergence of the finite Poisson objective on every compact parameter set.
+@isnad1 id=tendstou.3h8v.s7.7542d8d5a443 from=translated src=- shape=6780ed42 vocab=92450fd2
+-/
 lemma finitePoissonObjective_tendstoUniformlyOn {E I : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [Fintype I] (qN mN : ℕ → I → ℝ) (q m : I → ℝ)
@@ -65,7 +67,9 @@ lemma finitePoissonObjective_tendstoUniformlyOn {E I : Type*}
 
 -- @node: finitePoissonObjective_eventually_common_compact
 /-- Convergent positive coefficients and a fixed injective design put any
-eventual sequence of global maximizers in one common compact ball. -/
+eventual sequence of global maximizers in one common compact ball.
+@isnad1 id=ex.6h8v.s8.1da04ff8e87e from=translated src=- shape=4561d9d4 vocab=18c5e442
+-/
 lemma finitePoissonObjective_eventually_common_compact {E I : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [Fintype I]
@@ -202,7 +206,9 @@ cellwise to the limiting weights `q`](hyp:hq), and [the means `mN N` converge ce
 limiting means `m`](hyp:hm). If [`argmax N` maximizes the `N`-th criterion, eventually
 in `N`](hyp:hArgmax), and [`limitArgmax` is the unique global maximizer of the limiting
 criterion](hyp:hLimit), then [the maximizer sequence `argmax` converges to
-`limitArgmax`](goal). -/
+`limitArgmax`](goal).
+@isnad1 id=tendsto.7h9v.s8.80774f6fc036 from=translated src=- shape=404ecaba vocab=e0084868
+-/
 lemma finitePoissonObjective_argmax_tendsto {E I : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [SecondCountableTopology E] [Fintype I]
@@ -241,7 +247,9 @@ lemma finitePoissonObjective_argmax_tendsto {E I : Type*}
 strictly positive](hyp:hq) and [the base mean vector `m₀` has every entry strictly
 positive](hyp:hm₀), and [the linear design map is injective](hyp:hA), then [the selected
 maximizer of the finite Poisson criterion is continuous, as a function of the mean vector,
-at `m₀`](goal). -/
+at `m₀`](goal).
+@isnad1 id=continuo.3h5v.s8.7114ee6aba52 from=translated src=- shape=7d8c597a vocab=faa67259
+-/
 lemma finitePoissonObjective_argmax_continuousAt_mean
     {E I : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [Fintype I] [Nonempty I]

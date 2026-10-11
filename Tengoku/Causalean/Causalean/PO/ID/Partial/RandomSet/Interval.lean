@@ -54,7 +54,9 @@ def IsSelection (L U f : Ω → ℝ) : Prop :=
 
 /-- [A measurable lower endpoint](hyp:hL) is an everywhere-selection whenever
 [it is pointwise no larger than the upper endpoint](hyp:hLU), so [the interval
-has a measurable everywhere-selection](goal). -/
+has a measurable everywhere-selection](goal).
+@isnad1 id=isselect.2h3v.s5.0082a10aa60c from=translated src=- shape=643a2d4d vocab=88ad51f2
+-/
 theorem isSelection_left (hL : Measurable L) (hLU : ∀ ω, L ω ≤ U ω) :
     IsSelection L U L :=
   ⟨hL, fun ω => ⟨le_rfl, hLU ω⟩⟩
@@ -62,7 +64,9 @@ theorem isSelection_left (hL : Measurable L) (hLU : ∀ ω, L ω ≤ U ω) :
 /-- **Measurable everywhere-selection of an interval random set.** Under
 [measurable endpoints](hyp:hL,hU) with [pointwise ordering](hyp:hLU), [a
 function](hyp:f) [belongs to `[L,U]` at every outcome exactly when it has the
-form `L + t·(U − L)` for a measurable weight between zero and one](goal). -/
+form `L + t·(U − L)` for a measurable weight between zero and one](goal).
+@isnad1 id=iff.3h4v.s7.5cce5dec89de from=translated src=- shape=cce30a34 vocab=76fe486b
+-/
 theorem isSelection_iff_exists_param (hL : Measurable L) (hU : Measurable U)
     (hLU : ∀ ω, L ω ≤ U ω) (f : Ω → ℝ) :
     IsSelection L U f ↔
@@ -114,7 +118,9 @@ almost-sure membership in the random interval. -/
 def selectionExpectation (L U : Ω → ℝ) (μ : Measure Ω) : Set ℝ :=
   {r | ∃ f, IsSelection L U f ∧ Integrable f μ ∧ ∫ ω, f ω ∂μ = r}
 
-/-- Monotonicity of the endpoint integrals (used to order the reported bounds). -/
+/-- Monotonicity of the endpoint integrals (used to order the reported bounds).
+@isnad1 id=le.3h4v.s6.e099291cc66d from=translated src=- shape=b552a489 vocab=ddb5a115
+-/
 theorem integral_le_integral_of_le (hLint : Integrable L μ) (hUint : Integrable U μ)
     (hLU : ∀ ω, L ω ≤ U ω) : (∫ ω, L ω ∂μ) ≤ ∫ ω, U ω ∂μ :=
   integral_mono_ae hLint hUint (ae_of_all _ hLU)
@@ -124,7 +130,9 @@ functions `L`, `U`](hyp:hL,hU) that are [integrable](hyp:hLint,hUint) and satisf
 pointwise at most `U`](hyp:hLU), [the integrals of all integrable measurable
 everywhere-selections of `[L, U]` form the closed interval `[∫L dμ, ∫U dμ]`](goal).
 The forward inclusion is integral monotonicity; the reverse inclusion realizes every
-intermediate value with a constant mixing weight, so no atomlessness is needed. -/
+intermediate value with a constant mixing weight, so no atomlessness is needed.
+@isnad1 id=eq.5h4v.s7.4a697dc3b55a from=translated src=- shape=94c2c1b2 vocab=42cd4ce2
+-/
 theorem selectionExpectation_eq_Icc (hL : Measurable L) (hU : Measurable U)
     (hLint : Integrable L μ) (hUint : Integrable U μ) (hLU : ∀ ω, L ω ≤ U ω) :
     selectionExpectation L U μ = Set.Icc (∫ ω, L ω ∂μ) (∫ ω, U ω ∂μ) := by
@@ -167,7 +175,9 @@ theorem selectionExpectation_eq_Icc (hL : Measurable L) (hU : Measurable U)
 sharp lower endpoint of the identified set — the infimum of the everywhere-selection
 expectation over all measurable selections of the interval-valued random set
 `[L, U]` — equals the expectation of the lower endpoint `L`](goal):
-`sInf (selectionExpectation L U μ) = ∫ L dμ`. -/
+`sInf (selectionExpectation L U μ) = ∫ L dμ`.
+@isnad1 id=eq.5h4v.s6.efa0ff794dd5 from=translated src=- shape=2d39549c vocab=d8cb8c48
+-/
 theorem sInf_selectionExpectation (hL : Measurable L) (hU : Measurable U)
     (hLint : Integrable L μ) (hUint : Integrable U μ) (hLU : ∀ ω, L ω ≤ U ω) :
     sInf (selectionExpectation L U μ) = ∫ ω, L ω ∂μ := by
@@ -179,7 +189,9 @@ theorem sInf_selectionExpectation (hL : Measurable L) (hU : Measurable U)
 sharp upper endpoint of the identified set — the supremum of the everywhere-selection
 expectation over all measurable selections of the interval-valued random set
 `[L, U]` — equals the expectation of the upper endpoint `U`](goal):
-`sSup (selectionExpectation L U μ) = ∫ U dμ`. -/
+`sSup (selectionExpectation L U μ) = ∫ U dμ`.
+@isnad1 id=eq.5h4v.s6.caff2837f1d4 from=translated src=- shape=0dfd76c1 vocab=1d684dd1
+-/
 theorem sSup_selectionExpectation (hL : Measurable L) (hU : Measurable U)
     (hLint : Integrable L μ) (hUint : Integrable U μ) (hLU : ∀ ω, L ω ≤ U ω) :
     sSup (selectionExpectation L U μ) = ∫ ω, U ω ∂μ := by

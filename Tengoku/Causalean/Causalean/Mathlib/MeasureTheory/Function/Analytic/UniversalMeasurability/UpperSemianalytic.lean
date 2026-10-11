@@ -32,14 +32,18 @@ lower Lebesgue integrals of all measurable functions that dominate the given fun
 noncomputable def outerLIntegral (μ : Measure Ω) (f : Ω → ℝ≥0∞) : ℝ≥0∞ :=
   ⨅ (g : Ω → ℝ≥0∞) (_ : Measurable g) (_ : f ≤ g), ∫⁻ ω, g ω ∂μ
 
-/-- Outer integration is monotone in its extended-nonnegative integrand. -/
+/-- Outer integration is monotone in its extended-nonnegative integrand.
+@isnad1 id=le.1h4v.s5.8224672e947d from=translated src=- shape=93df9141 vocab=83d2f186
+-/
 theorem outerLIntegral_mono {μ : Measure Ω} {f g : Ω → ℝ≥0∞} (hfg : f ≤ g) :
     outerLIntegral μ f ≤ outerLIntegral μ g := by
   unfold outerLIntegral
   refine le_iInf fun h => le_iInf fun hh => le_iInf fun hgh => ?_
   exact iInf₂_le_of_le h hh (iInf_le_of_le (hfg.trans hgh) le_rfl)
 
-/-- The lower Lebesgue integral is bounded by the outer integral. -/
+/-- The lower Lebesgue integral is bounded by the outer integral.
+@isnad1 id=le.0h3v.s5.8e01e26c47cb from=translated src=- shape=03a1348f vocab=664a14dc
+-/
 theorem lintegral_le_outerLIntegral (μ : Measure Ω) (f : Ω → ℝ≥0∞) :
     (∫⁻ ω, f ω ∂μ) ≤ outerLIntegral μ f := by
   unfold outerLIntegral
@@ -47,13 +51,17 @@ theorem lintegral_le_outerLIntegral (μ : Measure Ω) (f : Ω → ℝ≥0∞) :
   exact lintegral_mono hfg
 
 /-- A pointwise lower bound may be integrated before comparison with an
-outer integral, without measurability of either function. -/
+outer integral, without measurability of either function.
+@isnad1 id=le.1h4v.s5.625f2625e2c2 from=translated src=- shape=98854b32 vocab=664a14dc
+-/
 theorem lintegral_le_outerLIntegral_of_measurable_le
     {μ : Measure Ω} {f g : Ω → ℝ≥0∞} (hfg : f ≤ g) :
     (∫⁻ ω, f ω ∂μ) ≤ outerLIntegral μ g :=
   (lintegral_le_outerLIntegral μ f).trans (outerLIntegral_mono hfg)
 
-/-- Outer integration agrees with Lebesgue integration for measurable functions. -/
+/-- Outer integration agrees with Lebesgue integration for measurable functions.
+@isnad1 id=eq.1h3v.s5.ff87d3372eaf from=translated src=- shape=ab35be28 vocab=4557bf02
+-/
 theorem outerLIntegral_eq_lintegral_of_measurable
     {μ : Measure Ω} {f : Ω → ℝ≥0∞} (hf : Measurable f) :
     outerLIntegral μ f = ∫⁻ ω, f ω ∂μ := by
@@ -63,7 +71,9 @@ theorem outerLIntegral_eq_lintegral_of_measurable
   · exact lintegral_le_outerLIntegral μ f
 
 /-- Completing a measure can only increase the lower integral of an arbitrary
-extended-nonnegative function. -/
+extended-nonnegative function.
+@isnad1 id=le.0h3v.s5.b5e5cae7b249 from=translated src=- shape=1ea33e69 vocab=99b552ed
+-/
 theorem lintegral_le_lintegral_completion (μ : Measure Ω) (f : Ω → ℝ≥0∞) :
     (∫⁻ ω, f ω ∂μ) ≤ ∫⁻ ω, f ω ∂μ.completion := by
   let m₀ : MeasurableSpace (NullMeasurableSpace Ω μ) := ‹MeasurableSpace Ω›
@@ -95,7 +105,9 @@ theorem lintegral_le_lintegral_completion (μ : Measure Ω) (f : Ω → ℝ≥0�
     _ ≤ ∫⁻ ω, f ω ∂μ.completion := lintegral_mono hh'
 
 /-- A measurable extended-nonnegative function has the same integral before
-and after completion of the measure. -/
+and after completion of the measure.
+@isnad1 id=eq.1h3v.s5.37448621eb2d from=translated src=- shape=d2302ef0 vocab=b22772f5
+-/
 theorem lintegral_completion_eq_of_measurable
     (μ : Measure Ω) {f : Ω → ℝ≥0∞} (hf : Measurable f) :
     (∫⁻ ω, f ω ∂μ.completion) = ∫⁻ ω, f ω ∂μ := by
@@ -130,7 +142,9 @@ def UpperSemianalytic (f : Ω → ℝ≥0∞) : Prop :=
 namespace UpperSemianalytic
 
 /-- An upper-semi-analytic extended-nonnegative function is null-measurable for every finite Borel
-measure. -/
+measure.
+@isnad1 id=nullmeas.1h3v.s5.f5f8b27c62c7 from=translated src=- shape=67e80113 vocab=451b8abd
+-/
 theorem nullMeasurable [PolishSpace Ω] [BorelSpace Ω] {f : Ω → ℝ≥0∞}
     (hf : UpperSemianalytic f) (μ : Measure Ω) [IsFiniteMeasure μ] :
     NullMeasurable f μ := by
@@ -140,7 +154,9 @@ theorem nullMeasurable [PolishSpace Ω] [BorelSpace Ω] {f : Ω → ℝ≥0∞}
   exact (hf a).nullMeasurableSet μ
 
 /-- An upper-semi-analytic extended-nonnegative loss is measurable once a finite Borel sampling
-measure is completed, so it is available to ordinary completed-measure integration. -/
+measure is completed, so it is available to ordinary completed-measure integration.
+@isnad1 id=measurab.1h3v.s5.cea23df68606 from=translated src=- shape=a4f4fce1 vocab=0c65c8ed
+-/
 theorem measurable_completion [PolishSpace Ω] [BorelSpace Ω] {f : Ω → ℝ≥0∞}
     (hf : UpperSemianalytic f) (μ : Measure Ω) [IsFiniteMeasure μ] :
     @Measurable (NullMeasurableSpace Ω μ) ℝ≥0∞ _ _ f := by
@@ -150,7 +166,9 @@ theorem measurable_completion [PolishSpace Ω] [BorelSpace Ω] {f : Ω → ℝ�
 [`f` is upper-semi-analytic — every strict superlevel set `{ω | a < f ω}` is
 analytic](hyp:hf), then [the lower Lebesgue integral of `f` against the completion of `μ`
 equals the outer integral of `f` with respect to `μ`, i.e. the infimum of the lower integrals
-of all measurable pointwise majorants of `f`](goal). -/
+of all measurable pointwise majorants of `f`](goal).
+@isnad1 id=eq.1h3v.s5.53e5ab501d69 from=translated src=- shape=4bf3680a vocab=db223a08
+-/
 theorem lintegral_completion_eq_outerLIntegral [PolishSpace Ω] [BorelSpace Ω]
     {f : Ω → ℝ≥0∞}
     (hf : UpperSemianalytic f) (μ : Measure Ω) [IsFiniteMeasure μ] :

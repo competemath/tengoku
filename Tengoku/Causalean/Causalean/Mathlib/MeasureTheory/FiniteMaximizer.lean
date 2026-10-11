@@ -93,7 +93,9 @@ noncomputable def finiteClassMaximizer {Omega : Type u} (I : Type v)
   (listMaximizerPair score (Classical.choice ‹Nonempty I›) Finset.univ.toList).1
 
 /-- If [every score in a nonempty finite family is measurable](hyp:hscore), then [its selected
-finite-class maximizer is measurable into the discrete measurable index space](goal). -/
+finite-class maximizer is measurable into the discrete measurable index space](goal).
+@isnad1 id=measurab.1h3v.s6.d0e3f26f91b8 from=translated src=- shape=e21fc350 vocab=b059fa92
+-/
 @[fun_prop]
 theorem measurable_finiteClassMaximizer
     {Omega : Type u} {I : Type v} [MeasurableSpace Omega] [Fintype I] [Nonempty I]
@@ -104,7 +106,9 @@ theorem measurable_finiteClassMaximizer
     (Classical.choice ‹Nonempty I›) Finset.univ.toList).1
 
 /-- For [a nonempty finite score family `score`](hyp:score), [every member's score is at most
-the score at the selected finite-class maximizer](goal). -/
+the score at the selected finite-class maximizer](goal).
+@isnad1 id=le.0h5v.s5.a227dd7b6758 from=translated src=- shape=5106eef6 vocab=041d470b
+-/
 theorem finiteClassMaximizer_spec
     {Omega : Type u} {I : Type v} [Fintype I] [Nonempty I]
     (score : I → Omega → ℝ) (omega : Omega) (i : I) :

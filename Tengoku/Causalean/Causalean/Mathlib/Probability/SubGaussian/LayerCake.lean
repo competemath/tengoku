@@ -28,7 +28,9 @@ Proof strategy: derive integrability of each coordinate using
 `HasSubgaussianMGF.integrable` or `integrable_of_mem_interior_integrableExpSet`,
 then integrability of the finite maximum.  Use
 `Integrable.integral_eq_integral_meas_lt` and monotonicity of the integral on
-`Set.Ioi 0`; for `N = 0` both sides reduce to zero or a nonnegative bound. -/
+`Set.Ioi 0`; for `N = 0` both sides reduce to zero or a nonnegative bound.
+@isnad1 id=le.3h5v.s7.509d8ba6c9c7 from=translated src=- shape=c5e5d8f5 vocab=3a0dc44b
+-/
 theorem expected_max_le_tail_integral {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (N : ℕ) (Z : Fin N → Ω → ℝ) (g : ℝ → ℝ)

@@ -17,6 +17,7 @@ namespace Causalean.Stat.Concentration.BoundedVariation
 then [there is a chain of dyadic indices i_k < 2^k, one per level k,
 starting at 0, with each next index equal to twice its parent or one more,
 such that x lies between i_k/2^k and (i_k + 1)/2^k at every level](goal).
+@isnad1 id=ex.2h1v.s9.56b22d14d190 from=translated src=- shape=d517f9f1 vocab=333a2027
 -/
 theorem exists_dyadic_lower_chain (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     ∃ i : ∀ k : ℕ, Fin (2 ^ k + 1),
@@ -102,6 +103,7 @@ theorem exists_dyadic_lower_chain (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
 n paths over every ordered pair of times](hyp:henergy), then [for any two
 times, in either order, the summed squared increments are at most the
 absolute difference of the control values](goal).
+@isnad1 id=le.1h5v.s9.83a5dea09a2f from=translated src=- shape=ad6bc589 vocab=1eac728f
 -/
 theorem controlled_path_error_le {n : ℕ} (w : Fin n → Path) (u : Path)
     (henergy : ∀ s t : Time, s ≤ t →
@@ -123,6 +125,7 @@ theorem controlled_path_error_le {n : ℕ} (w : Fin n → Path) (u : Path)
 n paths over every ordered pair of times](hyp:henergy) and [the control
 takes the same value at times s and t](hyp:hst), then [every one of the
 paths takes the same value at s and t](goal).
+@isnad1 id=eq.2h6v.s8.421b8f3977fe from=translated src=- shape=8d856403 vocab=7336261e
 -/
 theorem controlled_path_eq_of_same_control {n : ℕ} (w : Fin n → Path)
     (u : Path)

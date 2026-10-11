@@ -49,7 +49,9 @@ def div (I J : ComplexRatInterval) (hJ : (normSq J).AwayFromZero) : ComplexRatIn
 def tighten (I J : ComplexRatInterval) : ComplexRatInterval :=
   ⟨I.re.tighten J.re, I.im.tighten J.im⟩
 
-/-- The rational point rectangle contains the corresponding complex number. -/
+/-- The rational point rectangle contains the corresponding complex number.
+@isnad1 id=contains.0h2v.s5.c3b9339b6d11 from=translated src=- shape=32b56005 vocab=b2e47a4a
+-/
 theorem point_sound (x y : ℚ) :
     (point x y).Contains ((x : ℝ) + (y : ℝ) * Complex.I) := by
   constructor
@@ -57,7 +59,9 @@ theorem point_sound (x y : ℚ) :
   · simpa [point] using RatInterval.point_sound y
 
 /-- Semantic coordinate bounds and rectangle width give an executable maximum
-endpoint-magnitude bound. -/
+endpoint-magnitude bound.
+@isnad1 id=le.3h4v.s5.33f5a238b364 from=translated src=- shape=c379d473 vocab=dd78ee63
+-/
 theorem maxAbs_le_of_contains_width {I : ComplexRatInterval} {z : ℂ}
     {C w : ℚ} (hz : I.Contains z)
     (hzabs : max |z.re| |z.im| ≤ (C : ℝ)) (hw : width I ≤ w) :
@@ -70,20 +74,26 @@ theorem maxAbs_le_of_contains_width {I : ComplexRatInterval} {z : ℂ}
       ((le_max_right _ _).trans hzabs)
       ((le_max_right I.re.width I.im.width).trans hw)
 
-/-- Complex rectangle negation encloses negated complex values. -/
+/-- Complex rectangle negation encloses negated complex values.
+@isnad1 id=contains.1h2v.s3.ba1104e40652 from=translated src=- shape=5fb129d5 vocab=35aabf8a
+-/
 theorem neg_sound {I : ComplexRatInterval} {z : ℂ} (hz : I.Contains z) :
     (neg I).Contains (-z) := by
   exact ⟨by simpa [neg] using RatInterval.neg_sound hz.1,
     by simpa [neg] using RatInterval.neg_sound hz.2⟩
 
-/-- Complex rectangle subtraction encloses differences of enclosed values. -/
+/-- Complex rectangle subtraction encloses differences of enclosed values.
+@isnad1 id=contains.2h4v.s4.15c88120ad0e from=translated src=- shape=39a5c0e2 vocab=4019f29e
+-/
 theorem sub_sound {I J : ComplexRatInterval} {z w : ℂ}
     (hz : I.Contains z) (hw : J.Contains w) : (sub I J).Contains (z - w) := by
   simpa [sub, sub_eq_add_neg] using
     Causalean.Mathlib.Analysis.IntervalArithmetic.ComplexRatInterval.add_sound
       hz (neg_sound hw)
 
-/-- Complex rectangle multiplication encloses products of enclosed values. -/
+/-- Complex rectangle multiplication encloses products of enclosed values.
+@isnad1 id=contains.2h4v.s4.a8765fb8408e from=translated src=- shape=39a5c0e2 vocab=a895332a
+-/
 theorem mul_sound {I J : ComplexRatInterval} {z w : ℂ}
     (hz : I.Contains z) (hw : J.Contains w) : (mul I J).Contains (z * w) := by
   constructor
@@ -94,7 +104,9 @@ theorem mul_sound {I J : ComplexRatInterval} {z w : ℂ}
       RatInterval.add_sound (RatInterval.mul_sound hz.1 hw.2)
         (RatInterval.mul_sound hz.2 hw.1)
 
-/-- The squared-modulus interval contains the squared complex norm. -/
+/-- The squared-modulus interval contains the squared complex norm.
+@isnad1 id=contains.1h2v.s5.18c8fc77c6e1 from=translated src=- shape=b70091c2 vocab=a6370289
+-/
 theorem normSq_sound {I : ComplexRatInterval} {z : ℂ} (hz : I.Contains z) :
     (normSq I).Contains (‖z‖ ^ 2) := by
   rw [Complex.sq_norm]
@@ -105,7 +117,9 @@ theorem normSq_sound {I : ComplexRatInterval} {z : ℂ} (hz : I.Contains z) :
 enclosing complex values `z` and `w` respectively](hyp:hz,hw), provided [the denominator
 rectangle's squared-modulus interval is bounded away from zero](hyp:hJ), [the rectangle obtained
 by dividing the first rectangle by the second under that guard contains the quotient `z / w`
-](goal). -/
+](goal).
+@isnad1 id=contains.3h4v.s5.e969b6aa8bbf from=translated src=- shape=8757af7b vocab=40bf8bb0
+-/
 theorem div_sound {I J : ComplexRatInterval} {z w : ℂ}
     (hJ : (normSq J).AwayFromZero) (hz : I.Contains z) (hw : J.Contains w) :
     (div I J hJ).Contains (z / w) := by
@@ -124,16 +138,22 @@ theorem div_sound {I J : ComplexRatInterval} {z w : ℂ}
       mul_add, sub_eq_add_neg, add_mul, mul_comm, mul_left_comm, mul_assoc] using
         RatInterval.div_sound hJ hnum.2 hden
 
-/-- Conjugation preserves rectangle width. -/
+/-- Conjugation preserves rectangle width.
+@isnad1 id=eq.0h1v.s3.e2441d201a7d from=translated src=- shape=8d4cac31 vocab=6f691ca1
+-/
 theorem width_conj (I : ComplexRatInterval) : width (conj I) = width I := by
   simp [width, conj, RatInterval.width_neg]
 
-/-- Conjugation preserves the maximum coordinate endpoint magnitude. -/
+/-- Conjugation preserves the maximum coordinate endpoint magnitude.
+@isnad1 id=eq.0h1v.s3.40977d415039 from=translated src=- shape=8d4cac31 vocab=d8716846
+-/
 theorem maxAbs_conj (I : ComplexRatInterval) : maxAbs (conj I) = maxAbs I := by
   simp [maxAbs, conj, RatInterval.maxAbs_neg]
 
 /-- Tightening two rectangles containing a common value preserves that value
-and produces a subrectangle of the first argument. -/
+and produces a subrectangle of the first argument.
+@isnad1 id=and.2h3v.s4.708d67086262 from=translated src=- shape=1e6eed36 vocab=ca2608d2
+-/
 theorem tighten_sound_left {I J : ComplexRatInterval} {z : ℂ}
     (hI : I.Contains z) (hJ : J.Contains z) :
     (tighten I J).Contains z ∧ (tighten I J).Subinterval I := by
@@ -143,14 +163,18 @@ theorem tighten_sound_left {I J : ComplexRatInterval} {z : ℂ}
       RatInterval.tighten_subinterval_left hI.2 hJ.2⟩⟩
 
 /-- Complex rectangle addition has exactly the maximum of the two summed
-coordinate widths. -/
+coordinate widths.
+@isnad1 id=eq.0h2v.s5.ebf08b05c215 from=translated src=- shape=fd4390ed vocab=e1ccc04a
+-/
 theorem width_add (I J : ComplexRatInterval) :
     width (I.add J) = max (I.re.width + J.re.width) (I.im.width + J.im.width) := by
   simp [width, Causalean.Mathlib.Analysis.IntervalArithmetic.ComplexRatInterval.add,
     RatInterval.width_add]
 
 /-- Complex rectangle multiplication has twice the product of operand
-coordinate magnitude bounds as an executable magnitude bound. -/
+coordinate magnitude bounds as an executable magnitude bound.
+@isnad1 id=le.0h2v.s5.22a83654afc1 from=translated src=- shape=2b384727 vocab=d3a5dc66
+-/
 theorem mul_maxAbs (I J : ComplexRatInterval) :
     maxAbs (mul I J) ≤ 2 * maxAbs I * maxAbs J := by
   have hIre : I.re.maxAbs ≤ maxAbs I := le_max_left _ _
@@ -282,13 +306,17 @@ private theorem rat_sq_subinterval_mul (K : RatInterval) :
     exact ⟨by exact_mod_cast hzero.1,
       max_le (by exact_mod_cast hlo.2) (by exact_mod_cast hhi.2)⟩
 
-/-- Squaring an interval has width at most twice its maximum endpoint magnitude times its width. -/
+/-- Squaring an interval has width at most twice its maximum endpoint magnitude times its width.
+@isnad1 id=le.0h1v.s4.90964786d5bd from=translated src=- shape=6a8a039e vocab=ae1be3f5
+-/
 theorem rat_sq_width_le (K : RatInterval) :
     (RatInterval.sq K).width ≤ 2 * K.maxAbs * K.width := by
   exact (RatInterval.width_mono (rat_sq_subinterval_mul K)).trans
     (by simpa [two_mul, add_mul] using interval_mul_width_le K K)
 
-/-- The upper endpoint of a squared interval is bounded by the square of its maximum endpoint magnitude. -/
+/-- The upper endpoint of a squared interval is bounded by the square of its maximum endpoint magnitude.
+@isnad1 id=le.0h1v.s4.c4018be4a4f8 from=translated src=- shape=f5e7aff2 vocab=8030e817
+-/
 theorem rat_sq_hi_le (K : RatInterval) : (RatInterval.sq K).hi ≤ K.maxAbs ^ 2 := by
   have hlo : |K.lo| ≤ K.maxAbs := le_max_left _ _
   have hhi : |K.hi| ≤ K.maxAbs := le_max_right _ _
@@ -303,7 +331,9 @@ theorem rat_sq_hi_le (K : RatInterval) : (RatInterval.sq K).hi ≤ K.maxAbs ^ 2 
   · exact hhi'
   · exact max_le hlo' hhi'
 
-/-- Refining an interval cannot increase its maximum endpoint magnitude. -/
+/-- Refining an interval cannot increase its maximum endpoint magnitude.
+@isnad1 id=le.1h2v.s3.855d25b5d421 from=translated src=- shape=52d409ee vocab=b3ad7b2d
+-/
 theorem rat_maxAbs_mono {K L : RatInterval} (hKL : K.Subinterval L) :
     K.maxAbs ≤ L.maxAbs := by
   apply max_le
@@ -311,7 +341,9 @@ theorem rat_maxAbs_mono {K L : RatInterval} (hKL : K.Subinterval L) :
   · exact abs_le_max_abs_abs (hKL.1.trans K.lo_le_hi) hKL.2
 
 /-- Each coordinate width after complex multiplication is bounded explicitly
-by the operand widths and endpoint magnitudes. -/
+by the operand widths and endpoint magnitudes.
+@isnad1 id=le.0h2v.s5.e7354f82ac19 from=translated src=- shape=85b5e274 vocab=258e0971
+-/
 theorem mul_width (I J : ComplexRatInterval) :
     width (mul I J) ≤
       2 * (maxAbs I * width J + maxAbs J * width I) := by
@@ -362,7 +394,9 @@ theorem mul_width (I J : ComplexRatInterval) :
   exact max_le (by linarith) (by linarith)
 
 /-- The squared-modulus interval width is controlled by rectangle magnitude
-and rectangle width. -/
+and rectangle width.
+@isnad1 id=le.0h1v.s4.58f960c4de92 from=translated src=- shape=6cd2bac1 vocab=9bb2a2fd
+-/
 theorem normSq_width (I : ComplexRatInterval) :
     (normSq I).width ≤ 4 * maxAbs I * width I := by
   have hre := rat_sq_width_le I.re
@@ -380,7 +414,9 @@ theorem normSq_width (I : ComplexRatInterval) :
 
 /-- If the squared-modulus denominator has positive lower bound δ, guarded
 division has maximum coordinate magnitude at most the numerator magnitude
-divided by δ. -/
+divided by δ.
+@isnad1 id=le.3h3v.s5.6a01012f6321 from=translated src=- shape=a0589591 vocab=18c32318
+-/
 theorem div_maxAbs {I J : ComplexRatInterval} (hJ : (normSq J).AwayFromZero)
     {δ : ℚ} (hδ : 0 < δ) (hsep : δ ≤ (normSq J).lo) :
     maxAbs (div I J hJ) ≤ maxAbs (mul I (conj J)) / δ := by
@@ -418,7 +454,9 @@ theorem div_maxAbs {I J : ComplexRatInterval} (hJ : (normSq J).AwayFromZero)
   exact max_le hre' him'
 
 /-- If the squared-modulus denominator has certified lower bound δ, guarded
-division propagates widths with the usual inverse-square factor. -/
+division propagates widths with the usual inverse-square factor.
+@isnad1 id=le.3h3v.s6.0b483e103d97 from=translated src=- shape=b240d508 vocab=f846ee75
+-/
 theorem div_width {I J : ComplexRatInterval} (hJ : (normSq J).AwayFromZero)
     {δ : ℚ} (hδ : 0 < δ) (hsep : δ ≤ (normSq J).lo) :
     width (div I J hJ) ≤
@@ -472,7 +510,9 @@ theorem div_width {I J : ComplexRatInterval} (hJ : (normSq J).AwayFromZero)
   · exact him'.trans_eq (by ring)
 
 /-- For [a rational complex rectangle](hyp:I), [the lower endpoint of its squared-modulus interval is
-nonnegative](goal). -/
+nonnegative](goal).
+@isnad1 id=le.0h1v.s3.43c92661f41b from=translated src=- shape=25e12683 vocab=161f1486
+-/
 theorem normSq_lo_nonneg (I : ComplexRatInterval) : 0 ≤ (normSq I).lo := by
   have hsquare (K : RatInterval) : 0 ≤ (RatInterval.sq K).lo := by
     unfold RatInterval.sq
@@ -486,7 +526,9 @@ executable enclosure of the complex norm. -/
 def normInterval (I : ComplexRatInterval) (fuel : ℕ) : RatInterval :=
   RatInterval.sqrtInterval (normSq I) (normSq_lo_nonneg I) fuel
 
-/-- The executable modulus interval contains the norm of every enclosed complex value. -/
+/-- The executable modulus interval contains the norm of every enclosed complex value.
+@isnad1 id=contains.1h3v.s4.c8f4ab288ad8 from=translated src=- shape=5202fbb6 vocab=f626a52b
+-/
 theorem normInterval_sound {I : ComplexRatInterval} {z : ℂ}
     (hz : I.Contains z) (fuel : ℕ) : (normInterval I fuel).Contains ‖z‖ := by
   have hs := RatInterval.sqrtInterval_sound (normSq_lo_nonneg I)

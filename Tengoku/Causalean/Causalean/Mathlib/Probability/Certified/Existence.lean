@@ -17,20 +17,26 @@ public section
 namespace Causalean.Mathlib.Probability.CertifiedFiniteMarkovExpectation
 
 /-- A real vector [is a probability vector](goal) exactly when [it lies in the standard
-simplex](hyp:p). -/
+simplex](hyp:p).
+@isnad1 id=iff.0h2v.s5.0f6d3c585135 from=translated src=- shape=a7e478cf vocab=68c55af5
+-/
 theorem isProbabilityVector_iff_mem_stdSimplex {ι : Type*} [Fintype ι] (p : ι → ℝ) :
     IsProbabilityVector p ↔ p ∈ stdSimplex ℝ ι :=
   Iff.rfl
 
 /-- For [a real square matrix indexed by a finite state space](hyp:P), [being row-stochastic,
 with nonnegative entries and every row summing to one, is equivalent to membership in Mathlib's
-submonoid of row-stochastic matrices](goal). -/
+submonoid of row-stochastic matrices](goal).
+@isnad1 id=iff.0h2v.s6.f6710c023575 from=translated src=- shape=813b1347 vocab=0b3fd4f2
+-/
 theorem isStochasticMatrix_iff_mem_rowStochastic {ι : Type*} [Fintype ι] [DecidableEq ι]
     (P : Matrix ι ι ℝ) :
     IsStochasticMatrix P ↔ P ∈ Matrix.rowStochastic ℝ ι :=
   Matrix.mem_rowStochastic_iff_sum.symm
 
-/-- On a nonempty finite state space, given [a row-stochastic transition matrix](hyp:hP), [a nonnegative contraction coefficient](hyp:hrho0), [the fact that the coefficient is strictly below one](hyp:hrho1), and [a total-variation contraction bound](hyp:hcontract), [there is exactly one stationary probability distribution](goal). -/
+/-- On a nonempty finite state space, given [a row-stochastic transition matrix](hyp:hP), [a nonnegative contraction coefficient](hyp:hrho0), [the fact that the coefficient is strictly below one](hyp:hrho1), and [a total-variation contraction bound](hyp:hcontract), [there is exactly one stationary probability distribution](goal).
+@isnad1 id=existsun.4h3v.s5.a7f6d3b0c8af from=translated src=- shape=749b5e3f vocab=539b6286
+-/
 theorem existsUnique_stationary_of_contractsL1 {ι : Type*}
     [Fintype ι] [Nonempty ι]
     {P : Matrix ι ι ℝ} {rho : ℝ}

@@ -26,7 +26,9 @@ def SameColumnSpace {ι κ : Type*} [Fintype ι] [Fintype κ] [DecidableEq κ]
     (U V : Matrix ι κ ℝ) : Prop :=
   U.toEuclideanLin.range = V.toEuclideanLin.range
 
-/-- A positive lower bound for the last column singular value implies full column rank. Under [the listed assumptions](hyp:hsigma,hsv), [the stated conclusion follows](goal). -/
+/-- A positive lower bound for the last column singular value implies full column rank. Under [the listed assumptions](hyp:hsigma,hsv), [the stated conclusion follows](goal).
+@isnad1 id=injectiv.2h4v.s12.d9e3492c1684 from=translated src=- shape=43cdf3e9 vocab=b628c77c
+-/
 -- Proof route: positivity rules out
 -- `singularValues_eq_zero_iff_le_finrank_range` at the last domain index.  Hence the range has
 -- full domain finrank, so rank--nullity makes the kernel trivial.  (The existing expansion lemma

@@ -16,7 +16,9 @@ open _root_.MeasureTheory
 
 /-- For [a measurable source and finite index type](hyp:Ω,ι), if [every entry of a finite
 real matrix-valued function is measurable](hyp:A,hA), then [its determinant is
-measurable](goal). -/
+measurable](goal).
+@isnad1 id=measurab.1h3v.s5.5af8db53a636 from=translated src=- shape=1e2aba47 vocab=3d880dc7
+-/
 @[fun_prop]
 theorem measurable_matrix_det {Ω ι : Type*} [MeasurableSpace Ω]
     [Fintype ι] [DecidableEq ι] (A : Ω → Matrix ι ι ℝ)
@@ -32,7 +34,9 @@ theorem measurable_matrix_det {Ω ι : Type*} [MeasurableSpace Ω]
 
 /-- For [a measurable source and finite index type](hyp:Ω,ι), if [every entry of a finite
 real matrix-valued function is measurable](hyp:A,hA), then [the entry at the specified row
-and column](hyp:i,j) [of its nonsingular inverse is measurable](goal). -/
+and column](hyp:i,j) [of its nonsingular inverse is measurable](goal).
+@isnad1 id=measurab.1h5v.s6.293fb6b6cc73 from=translated src=- shape=04dc8b91 vocab=a73298af
+-/
 @[fun_prop]
 theorem measurable_matrix_inv_apply {Ω ι : Type*} [MeasurableSpace Ω]
     [Fintype ι] [DecidableEq ι]

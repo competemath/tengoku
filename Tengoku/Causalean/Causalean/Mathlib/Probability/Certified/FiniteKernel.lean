@@ -139,7 +139,9 @@ def FiniteIterateCertificate.next {ι : Type*} [Fintype ι]
     (c : FiniteIterateCertificate K p0) : IntervalVector ι :=
   c.table (Fin.last (c.steps + 1))
 
-/-- An exact rational probability-vector certificate denotes a real probability vector. -/
+/-- An exact rational probability-vector certificate denotes a real probability vector.
+@isnad1 id=isprobab.0h2v.s4.640652df09bc from=translated src=- shape=ed10201d vocab=aa03eaeb
+-/
 theorem RationalProbabilityVector.isProbability {ι : Type*} [Fintype ι]
     (p : RationalProbabilityVector ι) : IsProbabilityVector p.toReal := by
   unfold IsProbabilityVector RationalProbabilityVector.toReal
@@ -148,7 +150,9 @@ theorem RationalProbabilityVector.isProbability {ι : Type*} [Fintype ι]
     exact_mod_cast p.nonneg i
   · exact_mod_cast p.sum_eq_one
 
-/-- A stochastic matrix sends every probability row vector to a probability row vector. -/
+/-- A stochastic matrix sends every probability row vector to a probability row vector.
+@isnad1 id=isprobab.2h3v.s5.13859e75a450 from=translated src=- shape=1b445e17 vocab=5bf0f1ea
+-/
 theorem IsStochasticMatrix.step_probability {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} (hP : IsStochasticMatrix P)
     {p : ι → ℝ} (hp : IsProbabilityVector p) :
@@ -170,7 +174,9 @@ theorem IsStochasticMatrix.step_probability {ι : Type*} [Fintype ι]
       _ = ∑ i, p i := by simp only [hP_sum, mul_one]
       _ = 1 := hp_sum
 
-/-- Every finite iterate of a probability vector under a stochastic matrix is a probability vector. -/
+/-- Every finite iterate of a probability vector under a stochastic matrix is a probability vector.
+@isnad1 id=isprobab.2h4v.s5.fb89d9a1bb4a from=translated src=- shape=82220098 vocab=666779a3
+-/
 theorem IsStochasticMatrix.iterate_probability {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} (hP : IsStochasticMatrix P)
     {p0 : ι → ℝ} (hp0 : IsProbabilityVector p0) (n : ℕ) :
@@ -181,7 +187,9 @@ theorem IsStochasticMatrix.iterate_probability {ι : Type*} [Fintype ι]
       exact hP.step_probability ih
 
 /-- An exact rational minorization certificate soundly minorizes every real
-kernel contained in its interval table. -/
+kernel contained in its interval table.
+@isnad1 id=minorize.1h4v.s5.a215d447a64a from=translated src=- shape=32f50212 vocab=3978540f
+-/
 theorem RationalMinorizationCertificate.sound {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {K : IntervalMatrix ι ι}
     (c : RationalMinorizationCertificate K)
@@ -197,7 +205,9 @@ theorem RationalMinorizationCertificate.sound {ι : Type*} [Fintype ι]
       _ ≤ ((K i j).lo : ℝ) := by exact_mod_cast c.lower_checked i j
       _ ≤ P i j := (hK i j).1
 
-/-- Doeblin minorization by mass `ε` yields `ℓ¹` contraction coefficient `1 - ε`. -/
+/-- Doeblin minorization by mass `ε` yields `ℓ¹` contraction coefficient `1 - ε`.
+@isnad1 id=contract.2h4v.s5.f1a109773b96 from=translated src=- shape=6062a40a vocab=ae805ff4
+-/
 theorem contractsL1_of_minorization {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {ε : ℝ} {ν : ι → ℝ}
     (hP : IsStochasticMatrix P) (hminor : Minorizes P ε ν) :
@@ -262,7 +272,9 @@ theorem contractsL1_of_minorization {ι : Type*} [Fintype ι]
       intro i hi
       ring
 
-/-- Given [a row-stochastic real transition matrix](hyp:hP), [its containment in an exact rational interval table](hyp:hK), and [a checked rational minorization certificate for that table](hyp:c), [the kernel contracts finite probability vectors in total variation with coefficient one minus the certified minorization mass](goal). -/
+/-- Given [a row-stochastic real transition matrix](hyp:hP), [its containment in an exact rational interval table](hyp:hK), and [a checked rational minorization certificate for that table](hyp:c), [the kernel contracts finite probability vectors in total variation with coefficient one minus the certified minorization mass](goal).
+@isnad1 id=contract.2h4v.s5.7236bf6e058e from=translated src=- shape=c2a969f1 vocab=ddbda923
+-/
 theorem contractsL1_of_rationalMinorization {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {K : IntervalMatrix ι ι}
     (hP : IsStochasticMatrix P) (hK : ContainsMatrix K P)
@@ -271,7 +283,9 @@ theorem contractsL1_of_rationalMinorization {ι : Type*} [Fintype ι]
   exact contractsL1_of_minorization hP (c.sound hK)
 
 /-- Every row of a checked finite interval recurrence contains the corresponding
-true Markov iterate for any real kernel enclosed by the certified table. -/
+true Markov iterate for any real kernel enclosed by the certified table.
+@isnad1 id=contains.1h6v.s6.ea2be66dee11 from=translated src=- shape=823944c5 vocab=816432cd
+-/
 theorem FiniteIterateCertificate.table_sound {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {K : IntervalMatrix ι ι}
     {p0 : RationalProbabilityVector ι}
@@ -285,7 +299,9 @@ theorem FiniteIterateCertificate.table_sound {ι : Type*} [Fintype ι]
   · apply ContainsVector.mono (c.recurrence_checked k)
     exact intervalVecMul_sound ih hK
 
-/-- The terminal stored row contains the true iterate at the certificate's selected step. -/
+/-- The terminal stored row contains the true iterate at the certificate's selected step.
+@isnad1 id=contains.1h5v.s5.e869c6435d7b from=translated src=- shape=9c9cd0c7 vocab=06d5cc4e
+-/
 theorem FiniteIterateCertificate.terminal_sound {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {K : IntervalMatrix ι ι}
     {p0 : RationalProbabilityVector ι}
@@ -293,7 +309,9 @@ theorem FiniteIterateCertificate.terminal_sound {ι : Type*} [Fintype ι]
     ContainsVector c.terminal (markovIterate P p0.toReal c.steps) := by
   exact c.table_sound hK (Fin.castSucc (Fin.last c.steps))
 
-/-- The last stored row contains the true iterate one step after the selected terminal row. -/
+/-- The last stored row contains the true iterate one step after the selected terminal row.
+@isnad1 id=contains.1h5v.s6.4e6d8a415248 from=translated src=- shape=3e26ecfb vocab=bd5499a3
+-/
 theorem FiniteIterateCertificate.next_sound {ι : Type*} [Fintype ι]
     {P : Matrix ι ι ℝ} {K : IntervalMatrix ι ι}
     {p0 : RationalProbabilityVector ι}

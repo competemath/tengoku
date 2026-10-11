@@ -72,7 +72,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-- The law of the sum of `n ≥ 1` squared independent standard normals has no
 atoms.  The squared first coordinate already has an atomless law (its preimage
 under squaring is finite, and `gaussianReal` is atomless), and adding the
-independent remainder preserves atomlessness via Fubini. -/
+independent remainder preserves atomlessness via Fubini.
+@isnad1 id=nullsing.1h1v.s6.f73ad2c72d64 from=translated src=- shape=307ed172 vocab=89e03f88
+-/
 theorem noAtoms_pi_normSq {n : ℕ} (hn : 1 ≤ n) :
     NullSingletonClass ((Measure.pi (fun _ : Fin n => gaussianReal 0 1)).map
       (fun w => ∑ i, (w i) ^ 2)) := by
@@ -126,7 +128,9 @@ theorem noAtoms_pi_normSq {n : ℕ} (hn : 1 ≤ n) :
     exact hfin.measure_zero _
   simp_rw [hfib, lintegral_zero]
 
-/-- **`χ²_d` has no atoms for `d ≥ 1`.** -/
+/-- **`χ²_d` has no atoms for `d ≥ 1`.**
+@isnad1 id=nullsing.1h1v.s4.cbd345766479 from=translated src=- shape=b1a655c7 vocab=754874ec
+-/
 theorem noAtoms_chiSqDist {d : ℕ} (hd : 1 ≤ d) : NullSingletonClass (chiSqDist d) := by
   rw [chiSqDist, stdGaussian_map_normSq_eq_pi]
   exact noAtoms_pi_normSq (by rwa [finrank_euclideanSpace_fin])

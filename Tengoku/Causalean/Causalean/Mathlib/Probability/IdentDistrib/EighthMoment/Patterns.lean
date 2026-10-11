@@ -29,7 +29,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [DecidableEq ι]
 
 /-- Under [an iid probability product law](hyp:μ), the integral of an eight-slot
 coordinate product specified by [an index map](hyp:a) is [the product of the scalar
-moments indexed by coordinate multiplicities](goal), for [any real mark](hyp:g). -/
+moments indexed by coordinate multiplicities](goal), for [any real mark](hyp:g).
+@isnad1 id=eq.0h5v.s7.c269715ba5e4 from=translated src=- shape=de177f6c vocab=43d11a11
+-/
 theorem integral_pattern_factorization (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (a : Fin 8 → ι) :
     (∫ x : ι → Ω, (∏ j : Fin 8, g (x (a j))) ∂Measure.pi (fun _ : ι => μ)) =
@@ -46,7 +48,9 @@ theorem integral_pattern_factorization (μ : Measure Ω) [IsProbabilityMeasure �
 omit [DecidableEq ι] in
 /-- An eight-slot coordinate product of a [measurable mark](hyp:hg) with
 [absolute value at most one](hyp:hb), specified by [an index map](hyp:a), is
-[integrable](goal) under [an iid probability product law](hyp:μ). -/
+[integrable](goal) under [an iid probability product law](hyp:μ).
+@isnad1 id=integrab.2h5v.s7.a263bd2ad5f9 from=translated src=- shape=5b4ad44d vocab=bc1645d8
+-/
 @[fun_prop]
 theorem integrable_pattern (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : Measurable g) (hb : ∀ y, |g y| ≤ 1) (a : Fin 8 → ι) :
@@ -62,7 +66,9 @@ theorem integrable_pattern (μ : Measure Ω) [IsProbabilityMeasure μ]
 
 /-- If [a real mark has zero mean](hyp:hcenter) and [a coordinate occurs exactly
 once](hyp:hr) in [an eight-slot map](hyp:a), the corresponding product has
-[zero integral](goal) under [an iid probability product law](hyp:μ). -/
+[zero integral](goal) under [an iid probability product law](hyp:μ).
+@isnad1 id=eq.2h6v.s7.1fc56e0daab6 from=translated src=- shape=a63a6423 vocab=70887710
+-/
 theorem integral_pattern_eq_zero_of_singleton (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hcenter : (∫ y, g y ∂μ) = 0)
     (a : Fin 8 → ι) (r : ι) (hr : multiplicity a r = 1) :
@@ -74,7 +80,9 @@ theorem integral_pattern_eq_zero_of_singleton (μ : Measure Ω) [IsProbabilityMe
 /-- For [a measurable mark](hyp:hg) with [absolute value at most one](hyp:hb), an
 eight-slot product specified by [a map without singleton fibers](hyp:ha) has
 [absolute integral bounded by its second moment raised to the image size](goal) under
-[an iid probability product law](hyp:μ). -/
+[an iid probability product law](hyp:μ).
+@isnad1 id=le.3h5v.s7.47f9aeb46981 from=translated src=- shape=7af9ccbf vocab=486e6fe9
+-/
 theorem abs_integral_pattern_le (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : Measurable g) (hb : ∀ y, |g y| ≤ 1)
     (a : Fin 8 → ι) (ha : NoSingleton a) :

@@ -24,7 +24,9 @@ def bilinearSign {r c : ℕ} (A : Fin r → Fin c → ℝ)
 
 /-- Given [a finite real matrix](hyp:A) and [a real scale](hyp:t), [the
 double-sign exponential average is bounded by a Gaussian exponential whose
-variance proxy is the sum of squared column ℓ1 norms](goal). -/
+variance proxy is the sum of squared column ℓ1 norms](goal).
+@isnad1 id=le.0h4v.s7.8f0e390c574d from=translated src=- shape=47d1131b vocab=9fd94a22
+-/
 theorem bilinearSignMGF_le {r c : ℕ} (A : Fin r → Fin c → ℝ) (t : ℝ) :
     (∑ σ : Fin r → Bool, ∑ τ : Fin c → Bool,
       Real.exp (t * bilinearSign A σ τ)) /
@@ -78,7 +80,9 @@ theorem bilinearSignMGF_le {r c : ℕ} (A : Fin r → Fin c → ℝ) (t : ℝ) :
 /-- Given [a finite real matrix](hyp:A) whose [total absolute coefficient
 mass is at most one](hyp:hmass), [the double-sign average of the nonnegative
 integer power of one plus its bilinear form is at most the corresponding
-Gaussian bound](goal). -/
+Gaussian bound](goal).
+@isnad1 id=le.1h4v.s8.49788c64b0c4 from=translated src=- shape=6864d291 vocab=c120eeb0
+-/
 theorem bilinearSignPowAverage_le {r c n : ℕ} (A : Fin r → Fin c → ℝ)
     (hmass : ∑ j : Fin c, ∑ i : Fin r, |A i j| ≤ 1) :
     (∑ σ : Fin r → Bool, ∑ τ : Fin c → Bool,

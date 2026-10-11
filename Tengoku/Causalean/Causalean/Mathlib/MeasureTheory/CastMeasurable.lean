@@ -20,7 +20,9 @@ public section
 namespace Causalean.Mathlib.MeasureTheory
 
 /-- For [an equality between two indices of a measurable family](hyp:hab), [transporting a value
-from the fibre over the first index to the fibre over the second is measurable](goal). -/
+from the fibre over the first index to the fibre over the second is measurable](goal).
+@isnad1 id=measurab.1h4v.s5.3a3c5cd791a6 from=translated src=- shape=8a1dd2cd vocab=60ee1453
+-/
 @[fun_prop]
 theorem measurable_cast_family {I : Type*} {X : I → Type*}
     [∀ i, MeasurableSpace (X i)] {a b : I} (hab : a = b) :
@@ -30,7 +32,9 @@ theorem measurable_cast_family {I : Type*} {X : I → Type*}
 
 /-- For [an equality between two indices of a measurable family](hyp:h) and [a measurable
 function into the fibre over the first index](hyp:f,hf), [transporting that function's codomain
-to the fibre over the second index leaves it measurable](goal). -/
+to the fibre over the second index leaves it measurable](goal).
+@isnad1 id=measurab.2h6v.s6.1f85a91afc27 from=translated src=- shape=6193b7b7 vocab=f1bcab14
+-/
 @[fun_prop]
 theorem measurable_family_cast {I γ : Type*} {X : I → Type*}
     [∀ i, MeasurableSpace (X i)] [MeasurableSpace γ]

@@ -38,7 +38,9 @@ def oneSidedBoundary (upper : Bool) (T : Set ℝ) : Set ℝ :=
   {t ∈ T | nhdsWithin t (T ∩ (if upper then Ioi t else Iio t)) = ⊥}
 
 /-- [The one-sided boundary of any set of reals, on either side, is
-countable](goal). -/
+countable](goal).
+@isnad1 id=countabl.0h2v.s3.5207a8a5a4d8 from=translated src=- shape=fcfe4792 vocab=e15a89bb
+-/
 theorem oneSidedBoundary_countable (upper : Bool) (T : Set ℝ) :
     (oneSidedBoundary upper T).Countable := by
   cases upper
@@ -47,7 +49,9 @@ theorem oneSidedBoundary_countable (upper : Bool) (T : Set ℝ) :
 
 /-- [Every set T of reals has a countable subset that contains its
 one-sided boundary and approximates every point of T, from the selected
-side, by a sequence lying entirely in that subset](goal). -/
+side, by a sequence lying entirely in that subset](goal).
+@isnad1 id=ex.0h2v.s6.24ca628456bc from=translated src=- shape=5ed4d159 vocab=4d068425
+-/
 theorem exists_countable_oneSided_skeleton (upper : Bool) (T : Set ℝ) :
     ∃ D : Set ℝ, D.Countable ∧ D ⊆ T ∧ oneSidedBoundary upper T ⊆ D ∧
       ∀ t ∈ T, ∃ s : ℕ → ℝ, (∀ k, s k ∈ D) ∧ OneSidedApproximates upper s t := by

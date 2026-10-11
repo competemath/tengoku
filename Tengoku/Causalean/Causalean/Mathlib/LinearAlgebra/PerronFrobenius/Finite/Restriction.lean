@@ -39,13 +39,17 @@ def zeroExtendMatrix (s : Finset ι) (B : Matrix s s ℝ) : Matrix ι ι ℝ :=
     if hj : j ∈ s then B ⟨i, hi⟩ ⟨j, hj⟩ else 0
   else 0
 
-/-- A [finite coordinate set](hyp:s) and [a vector on its subtype](hyp:x) satisfy [that restricting its zero extension recovers the original subtype vector](goal). -/
+/-- A [finite coordinate set](hyp:s) and [a vector on its subtype](hyp:x) satisfy [that restricting its zero extension recovers the original subtype vector](goal).
+@isnad1 id=eq.0h3v.s6.5bfcd166ed6e from=translated src=- shape=281c6946 vocab=5d9084f5
+-/
 @[simp] theorem restrictVec_zeroExtendVec (s : Finset ι) (x : EVec s) :
     restrictVec s (zeroExtendVec s x) = x := by
   ext i
   simp [restrictVec, zeroExtendVec]
 
-/-- A [finite coordinate set](hyp:s) and [a vector on its subtype](hyp:x) satisfy [that zero extension preserves Euclidean norm](goal). -/
+/-- A [finite coordinate set](hyp:s) and [a vector on its subtype](hyp:x) satisfy [that zero extension preserves Euclidean norm](goal).
+@isnad1 id=eq.0h3v.s7.d7fd37693778 from=translated src=- shape=1f021d68 vocab=2957ac71
+-/
 @[simp] theorem norm_zeroExtendVec (s : Finset ι) (x : EVec s) :
     ‖zeroExtendVec s x‖ = ‖x‖ := by
   apply (sq_eq_sq₀ (norm_nonneg _) (norm_nonneg _)).mp
@@ -62,7 +66,9 @@ def zeroExtendMatrix (s : Finset ι) (B : Matrix s s ℝ) : Matrix ι ι ℝ :=
       rw [← Finset.sum_coe_sort]
       simp
 
-/-- A [finite coordinate set](hyp:s), [a subtype matrix](hyp:B), and [a subtype vector](hyp:x) satisfy [that applying the zero-extended matrix to the zero-extended vector equals the zero extension of the subtype action](goal). -/
+/-- A [finite coordinate set](hyp:s), [a subtype matrix](hyp:B), and [a subtype vector](hyp:x) satisfy [that applying the zero-extended matrix to the zero-extended vector equals the zero extension of the subtype action](goal).
+@isnad1 id=eq.0h4v.s8.2d2b097258da from=translated src=- shape=4541e7bc vocab=7a5abbe8
+-/
 theorem zeroExtendMatrix_mulVec_zeroExtendVec
     (s : Finset ι) (B : Matrix s s ℝ) (x : EVec s) :
     (zeroExtendMatrix s B).mulVec (zeroExtendVec s x) =
@@ -83,7 +89,9 @@ theorem zeroExtendMatrix_mulVec_zeroExtendVec
         simp
   · simp [zeroExtendMatrix, zeroExtendVec, Matrix.mulVec, dotProduct, hi]
 
-/-- A [finite coordinate set](hyp:s), [a subtype matrix](hyp:B), and [a subtype vector](hyp:x) satisfy [that zero extension preserves their Rayleigh form](goal). -/
+/-- A [finite coordinate set](hyp:s), [a subtype matrix](hyp:B), and [a subtype vector](hyp:x) satisfy [that zero extension preserves their Rayleigh form](goal).
+@isnad1 id=eq.0h4v.s6.5d45bce5cb22 from=translated src=- shape=84db323a vocab=d7a8d830
+-/
 theorem rayleighForm_zeroExtendMatrix_zeroExtendVec
     (s : Finset ι) (B : Matrix s s ℝ) (x : EVec s) :
     rayleighForm (zeroExtendMatrix s B) (zeroExtendVec s x) =
@@ -190,7 +198,9 @@ private theorem sphereRayleighValue_nonneg [Nonempty ι]
     _ = rayleighForm A e := he_form.symm
     _ ≤ sphereRayleighValue A := rayleighForm_le_sphereRayleighValue A e he_norm
 
-/-- On a nonempty finite coordinate space, [a nonempty finite coordinate set](hyp:s) and [an entrywise nonnegative subtype matrix](hyp:B,hB) satisfy [that zero extension preserves its top Rayleigh value](goal). -/
+/-- On a nonempty finite coordinate space, [a nonempty finite coordinate set](hyp:s) and [an entrywise nonnegative subtype matrix](hyp:B,hB) satisfy [that zero extension preserves its top Rayleigh value](goal).
+@isnad1 id=eq.1h3v.s7.c952ad42636d from=translated src=- shape=a2bd9634 vocab=6b669879
+-/
 theorem sphereRayleighValue_zeroExtendMatrix [Nonempty ι]
     (s : Finset ι) [Nonempty s] (B : Matrix s s ℝ)
     (hB : ∀ i j, 0 ≤ B i j) :
@@ -240,20 +250,26 @@ theorem sphereRayleighValue_zeroExtendMatrix [Nonempty ι]
         _ ≤ sphereRayleighValue (zeroExtendMatrix s B) :=
           rayleighForm_le_sphereRayleighValue _ _ (by simpa using hx)
 
-/-- A [symmetric finite matrix](hyp:hA) and [a finite coordinate set](hyp:s) ensure [that the principal restricted matrix remains symmetric](goal). -/
+/-- A [symmetric finite matrix](hyp:hA) and [a finite coordinate set](hyp:s) ensure [that the principal restricted matrix remains symmetric](goal).
+@isnad1 id=issymm.1h3v.s5.42a4e4401e46 from=translated src=- shape=60273dc7 vocab=ca02de10
+-/
 theorem restrictMatrix_isSymm {A : Matrix ι ι ℝ} (hA : A.IsSymm)
     (s : Finset ι) :
     (restrictMatrix A s).IsSymm := by
   exact hA.submatrix Subtype.val
 
-/-- An [entrywise nonnegative finite matrix](hyp:hA) and [a finite coordinate set](hyp:s) ensure [that the principal restricted matrix remains entrywise nonnegative](goal). -/
+/-- An [entrywise nonnegative finite matrix](hyp:hA) and [a finite coordinate set](hyp:s) ensure [that the principal restricted matrix remains entrywise nonnegative](goal).
+@isnad1 id=le.1h5v.s6.acc464e0b983 from=translated src=- shape=2e63423b vocab=9cffe890
+-/
 theorem restrictMatrix_nonneg {A : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) (s : Finset ι) :
     ∀ i j, 0 ≤ restrictMatrix A s i j := by
   intro i j
   exact hA i.1 j.1
 
-/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), and [a vector](hyp:x) that [vanishes outside the set](hyp:hx) ensure [that restriction commutes with applying the matrix](goal). -/
+/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), and [a vector](hyp:x) that [vanishes outside the set](hyp:hx) ensure [that restriction commutes with applying the matrix](goal).
+@isnad1 id=eq.1h4v.s8.fe6849d6acad from=translated src=- shape=b62a9473 vocab=7e936cab
+-/
 theorem restrictMatrix_mulVec_restrictVec_of_zero_off
     (A : Matrix ι ι ℝ) (s : Finset ι) (x : EVec ι)
     (hx : ∀ i, i ∉ s → x i = 0) :
@@ -269,7 +285,9 @@ theorem restrictMatrix_mulVec_restrictVec_of_zero_off
       intro j _ hj
       simp [hx j hj]
 
-/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), and [block closure from outside rows into the set](hyp:hclosed) ensure [that applying the original matrix to a zero extension equals the zero extension of the restricted action](goal). -/
+/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), and [block closure from outside rows into the set](hyp:hclosed) ensure [that applying the original matrix to a zero extension equals the zero extension of the restricted action](goal).
+@isnad1 id=eq.1h4v.s8.5fc4f1051df7 from=translated src=- shape=ce540599 vocab=854eb166
+-/
 theorem mulVec_zeroExtendVec_of_closed
     (A : Matrix ι ι ℝ) (s : Finset ι)
     (hclosed : ∀ i j, i ∉ s → j ∈ s → A i j = 0)
@@ -297,7 +315,9 @@ theorem mulVec_zeroExtendVec_of_closed
     · simp [hj, hclosed i j hi hj]
     · simp [hj]
 
-/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), [block closure from outside rows into the set](hyp:hclosed), and [a restricted eigen-equation](hyp:x,hx) ensure [that zero extension satisfies the corresponding global eigen-equation](goal). -/
+/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), [block closure from outside rows into the set](hyp:hclosed), and [a restricted eigen-equation](hyp:x,hx) ensure [that zero extension satisfies the corresponding global eigen-equation](goal).
+@isnad1 id=eq.2h5v.s8.b7c55e97c558 from=translated src=- shape=511e7548 vocab=a6d790c1
+-/
 theorem zeroExtendVec_eigenvector_of_closed
     (A : Matrix ι ι ℝ) (s : Finset ι)
     (hclosed : ∀ i j, i ∉ s → j ∈ s → A i j = 0)
@@ -308,7 +328,9 @@ theorem zeroExtendVec_eigenvector_of_closed
   ext i
   by_cases hi : i ∈ s <;> simp [zeroExtendVec, hi]
 
-/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), and [a vector that vanishes outside that set](hyp:x,hx) ensure [that restriction preserves its Rayleigh form](goal). -/
+/-- A [finite matrix](hyp:A), [a finite coordinate set](hyp:s), and [a vector that vanishes outside that set](hyp:x,hx) ensure [that restriction preserves its Rayleigh form](goal).
+@isnad1 id=eq.1h4v.s6.403e704a5e89 from=translated src=- shape=a78bb047 vocab=08d3b4a3
+-/
 theorem rayleighForm_restrictVec_of_zero_off
     (A : Matrix ι ι ℝ) (s : Finset ι) (x : EVec ι)
     (hx : ∀ i, i ∉ s → x i = 0) :
@@ -326,7 +348,9 @@ theorem rayleighForm_restrictVec_of_zero_off
       intro i _ hi
       simp [hx i hi]
 
-/-- On a nonempty finite coordinate space, [a finite matrix](hyp:A) and [a nonempty finite coordinate set](hyp:s) satisfy [that the restricted top Rayleigh value is at most the global top Rayleigh value](goal). -/
+/-- On a nonempty finite coordinate space, [a finite matrix](hyp:A) and [a nonempty finite coordinate set](hyp:s) satisfy [that the restricted top Rayleigh value is at most the global top Rayleigh value](goal).
+@isnad1 id=le.0h3v.s6.070503ff39d3 from=translated src=- shape=cbdc68c4 vocab=ee44501c
+-/
 theorem sphereRayleighValue_restrictMatrix_le [Nonempty ι]
     (A : Matrix ι ι ℝ) (s : Finset ι) [Nonempty s] :
     sphereRayleighValue (restrictMatrix A s) ≤ sphereRayleighValue A := by
@@ -346,7 +370,9 @@ theorem sphereRayleighValue_restrictMatrix_le [Nonempty ι]
       _ ≤ sphereRayleighValue A :=
         rayleighForm_le_sphereRayleighValue A (zeroExtendVec s x) (by simpa using hx)
 
-/-- On a nonempty finite coordinate space, [a finite matrix](hyp:A), [a nonempty finite coordinate set](hyp:s), and [a global unit maximizer supported on that set](hyp:x,hx_norm,hx_support,hx_top) ensure [that the restricted and global top Rayleigh values agree](goal). -/
+/-- On a nonempty finite coordinate space, [a finite matrix](hyp:A), [a nonempty finite coordinate set](hyp:s), and [a global unit maximizer supported on that set](hyp:x,hx_norm,hx_support,hx_top) ensure [that the restricted and global top Rayleigh values agree](goal).
+@isnad1 id=eq.3h4v.s7.4566a2b97a31 from=translated src=- shape=1c1f8f8c vocab=ae469308
+-/
 theorem sphereRayleighValue_restrictMatrix_eq_of_supported_maximizer
     [Nonempty ι] (A : Matrix ι ι ℝ) (s : Finset ι) [Nonempty s]
     {x : EVec ι} (hx_norm : ‖x‖ = 1)

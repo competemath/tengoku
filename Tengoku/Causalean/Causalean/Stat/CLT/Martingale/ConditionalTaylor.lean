@@ -28,7 +28,9 @@ variable {Ω : Type*} {m mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 /-- If [the conditioning sigma-algebra is contained in the ambient sigma-algebra](hyp:hm),
 [a real random variable is integrable](hyp:hX), and [has conditional mean zero](hyp:hZero),
 then [its complex embedding also has conditional mean
-zero](goal). -/
+zero](goal).
+@isnad1 id=eventual.3h5v.s7.93040d3359f2 from=translated src=- shape=7cf0d9b0 vocab=a75f6c27
+-/
 theorem condExp_ofReal_ae_eq_zero [IsProbabilityMeasure μ] (hm : m ≤ mΩ)
     (X : Ω → ℝ) (hX : Integrable X μ) (hZero : μ[X | m] =ᵐ[μ] 0) :
     μ[(fun ω => (X ω : ℂ)) | m] =ᵐ[μ] 0 := by
@@ -46,7 +48,9 @@ theorem condExp_ofReal_ae_eq_zero [IsProbabilityMeasure μ] (hm : m ≤ mΩ)
 [a square-integrable real random variable](hyp:hX) with [conditional mean zero](hyp:hZero),
 [the conditional characteristic-function increment is
 exactly its constant term, conditional quadratic term, and conditional Taylor
-remainder](goal). -/
+remainder](goal).
+@isnad1 id=eventual.3h6v.s8.7d1296b54a66 from=translated src=- shape=ccd43421 vocab=bc3ddd83
+-/
 theorem condExp_cexp_ae_eq_quadratic_add_remainder
     [IsProbabilityMeasure μ] (hm : m ≤ mΩ)
     (X : Ω → ℝ) (hX : MemLp X 2 μ) (hZero : μ[X | m] =ᵐ[μ] 0) (t : ℝ) :
@@ -159,7 +163,9 @@ theorem condExp_cexp_ae_eq_quadratic_add_remainder
 [an integrable complex function](hyp:hf) is multiplied by [a predictable complex weight](hyp:hg)
 whose [norm has an almost-sure finite bound](hyp:hgBound),
 then [integrating after conditional expectation gives the original weighted
-integral](goal). -/
+integral](goal).
+@isnad1 id=eq.4h7v.s7.1f399869ce67 from=translated src=- shape=c26a69ce vocab=41c920ae
+-/
 theorem integral_mul_condExp_eq_integral_mul_of_ae_bound
     [IsProbabilityMeasure μ] (hm : m ≤ mΩ)
     (f g : Ω → ℂ) (hf : Integrable f μ) (hg : StronglyMeasurable[m] g)
@@ -183,7 +189,9 @@ theorem integral_mul_condExp_eq_integral_mul_of_ae_bound
 [an integrable complex error](hyp:hf) is multiplied by [a predictable complex weight](hyp:hg)
 whose [norm is bounded by a nonnegative constant](hyp:hB,hgBound),
 then [the norm of the integral of the weight times the conditional error is at
-most that constant times the integral norm of the original error](goal). -/
+most that constant times the integral norm of the original error](goal).
+@isnad1 id=le.5h7v.s7.745fca2c79e6 from=translated src=- shape=dab9aa11 vocab=41c920ae
+-/
 theorem norm_integral_mul_condExp_le_of_ae_bound
     [IsProbabilityMeasure μ] (hm : m ≤ mΩ)
     (f g : Ω → ℂ) (hf : Integrable f μ) (hg : StronglyMeasurable[m] g)
@@ -218,7 +226,9 @@ theorem norm_integral_mul_condExp_le_of_ae_bound
 /-- For [a square-integrable real random variable](hyp:hX), [a positive
 truncation level](hyp:hη), and [a frequency small at that level](hyp:htη), [the
 integrated quadratic exponential remainder is bounded by a cubic small-jump
-term plus the truncated second moment of the large jumps](goal). -/
+term plus the truncated second moment of the large jumps](goal).
+@isnad1 id=le.3h6v.s8.909c385788d6 from=translated src=- shape=386a7870 vocab=51e65899
+-/
 theorem integral_norm_expQuadraticRemainder_le
     (X : Ω → ℝ) (hX : MemLp X 2 μ) (t η : ℝ)
     (hη : 0 < η) (htη : |t| * η ≤ 1) :

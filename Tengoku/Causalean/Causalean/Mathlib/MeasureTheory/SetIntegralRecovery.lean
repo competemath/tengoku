@@ -24,7 +24,9 @@ namespace Causalean.Mathlib.MeasureTheory
 /-- If [a weight function `w` is integrable with respect to a reference measure `μ`](hyp:hwint)
 and [a finite measure `ν`'s mass on every measurable event `A` equals, as a real number, the
 integral of `w` over `A` against `μ`](hyp:hν), then [`ν` is obtained from `μ` by weighting with
-the nonnegative part of `w`: `ν = μ.withDensity (fun x => ENNReal.ofReal (w x))`](goal). -/
+the nonnegative part of `w`: `ν = μ.withDensity (fun x => ENNReal.ofReal (w x))`](goal).
+@isnad1 id=eq.2h4v.s6.2e3b3a6504c7 from=translated src=- shape=247b7070 vocab=323adea8
+-/
 lemma measure_eq_withDensity_of_toReal_setIntegral
     {α : Type*} [MeasurableSpace α] {μ ν : Measure α} [IsFiniteMeasure ν]
     {w : α → ℝ} (hwint : Integrable w μ)
@@ -47,7 +49,9 @@ absolute value of its integral over every measurable event is at most that event
 
 No global integrability assumption is needed: the proof restricts attention to bounded
 slices on which the function is automatically integrable, then exhausts the regions above
-one and below minus one. -/
+one and below minus one.
+@isnad1 id=eventual.2h3v.s6.9b0217252ab1 from=translated src=- shape=5f82db90 vocab=b409cb74
+-/
 lemma abs_le_one_ae_of_setIntegral_le_measure
     {Ω : Type*} [MeasurableSpace Ω] (mu : Measure Ω)
     [IsFiniteMeasure mu] (f : Ω → ℝ) (hf : Measurable f)

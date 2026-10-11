@@ -13,7 +13,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- Given [a dimension and level](hyp:d,n), [a traversal and two neighboring cell indices](hyp:T,k,l,hkl),
-and [points localized in those cells](hyp:x,y,hx,hy), [their squared Euclidean distance has the stated cell-width bound](goal). -/
+and [points localized in those cells](hyp:x,y,hx,hy), [their squared Euclidean distance has the stated cell-width bound](goal).
+@isnad1 id=le.3h7v.s8.c740255a500a from=translated src=- shape=ff551f02 vocab=e9f0c9cb
+-/
 theorem sqEuclideanDist_le_of_neighboring_cubeCells {d n : ℕ}
     (T : DyadicTraversal d) (k l : Fin (2 ^ (d * n)))
     (hkl : k.val ≤ l.val + 1 ∧ l.val ≤ k.val + 1)

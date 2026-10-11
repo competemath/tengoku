@@ -15,7 +15,9 @@ namespace Causalean.Mathlib.Probability.Birthday
 open Filter
 
 /-- For a [valid success probability](hyp:heta), pointwise [ordered count
-functions](hyp:hfg) have [ordered binomial averages](goal). -/
+functions](hyp:hfg) have [ordered binomial averages](goal).
+@isnad1 id=le.2h4v.s6.946f67890661 from=translated src=- shape=3031bcc1 vocab=940d46f9
+-/
 theorem binomialAverage_mono (T : ℕ) (eta : ℝ) (f g : ℕ → ℝ)
     (heta : eta ∈ Set.Icc (0 : ℝ) 1)
     (hfg : ∀ r, r ≤ T → f r ≤ g r) :
@@ -31,7 +33,9 @@ theorem binomialAverage_mono (T : ℕ) (eta : ℝ) (f g : ℕ → ℝ)
   exact mul_le_mul_of_nonneg_left (hfg r hrT) hw
 
 /-- For a [valid success probability](hyp:heta), a [nonnegative count
-function](hyp:hf) has a [nonnegative binomial average](goal). -/
+function](hyp:hf) has a [nonnegative binomial average](goal).
+@isnad1 id=le.2h3v.s6.aedf405b5383 from=translated src=- shape=5f6901a3 vocab=940d46f9
+-/
 theorem binomialAverage_nonneg (T : ℕ) (eta : ℝ) (f : ℕ → ℝ)
     (heta : eta ∈ Set.Icc (0 : ℝ) 1)
     (hf : ∀ r, r ≤ T → 0 ≤ f r) :
@@ -43,7 +47,9 @@ theorem binomialAverage_nonneg (T : ℕ) (eta : ℝ) (f : ℕ → ℝ)
 
 /-- For a [valid success probability](hyp:heta) and [positive alphabet](hyp:hm),
 the [averaged repeat probability](goal) is at most the expected pair count
-divided by the alphabet size. -/
+divided by the alphabet size.
+@isnad1 id=le.2h3v.s5.657b07ff9ebf from=translated src=- shape=c40005a6 vocab=b8c11ee7
+-/
 theorem repeat_le_pairScale_div (T m : ℕ) (eta : ℝ)
     (hm : 0 < m) (heta : eta ∈ Set.Icc (0 : ℝ) 1) :
     birthdayRepeat T m eta ≤ pairScale T eta / (m : ℝ) := by
@@ -68,7 +74,9 @@ theorem repeat_le_pairScale_div (T m : ℕ) (eta : ℝ)
 
 /-- The [binomial average for a trial count](hyp:T) and
 [success probability](hyp:eta) of the [squared centered count](goal) is the
-ordinary binomial variance. -/
+ordinary binomial variance.
+@isnad1 id=eq.0h2v.s6.4bba7493da64 from=translated src=- shape=d8929366 vocab=90bc2afc
+-/
 theorem binomialAverage_centered_sq (T : ℕ) (eta : ℝ) :
     binomialAverage T eta (fun r => ((r : ℝ) - mean T eta) ^ 2) =
       mean T eta * (1 - eta) := by
@@ -103,7 +111,9 @@ theorem binomialAverage_centered_sq (T : ℕ) (eta : ℝ) :
 
 /-- For a [valid success probability](hyp:heta), the
 [binomial mass outside a band](goal) with [positive radius](hyp:ha) is at most variance
-divided by the squared band radius. -/
+divided by the squared band radius.
+@isnad1 id=le.2h3v.s7.ec3ce2ef9ff0 from=translated src=- shape=d4e67087 vocab=16c0858b
+-/
 theorem binomialAverage_deviation_le (T : ℕ) {eta a : ℝ}
     (heta : eta ∈ Set.Icc (0 : ℝ) 1) (ha : 0 < a) :
     binomialAverage T eta
@@ -138,7 +148,9 @@ theorem binomialAverage_deviation_le (T : ℕ) {eta a : ℝ}
   exact h.trans_eq havg
 
 /-- For [valid success probabilities](hyp:heta), a
-[diverging expected count](hyp:hmean) makes [every relative-deviation binomial mass for a positive relative radius](hyp:heps) [vanish](goal). -/
+[diverging expected count](hyp:hmean) makes [every relative-deviation binomial mass for a positive relative radius](hyp:heps) [vanish](goal).
+@isnad1 id=tendsto.3h3v.s7.cebd2f39667d from=translated src=- shape=b330751b vocab=980edfcb
+-/
 theorem binomial_relative_deviation_tendsto_zero
     (Tseq : ℕ → ℕ) (etaseq : ℕ → ℝ)
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)

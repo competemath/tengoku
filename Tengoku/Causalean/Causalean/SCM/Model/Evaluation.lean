@@ -93,7 +93,9 @@ noncomputable def parentMap (M : Causalean.SCM N Ω)
            (M.observed_parent_index_lt hn hedge hobs)
            (M.observedIndex ⟨w.val, hobs⟩).isLt
 
-/-- The parent-value tuple reads a latent parent directly from the latent assignment. -/
+/-- The parent-value tuple reads a latent parent directly from the latent assignment.
+@isnad1 id=eq.2h8v.s9.8334e8098fc9 from=translated src=- shape=2634e292 vocab=9f9c2c2f
+-/
 lemma parentMap_unobserved (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M)
     {n : ℕ} (hn : n < M.observed.card)
@@ -105,7 +107,9 @@ lemma parentMap_unobserved (M : Causalean.SCM N Ω)
   unfold parentMap
   rw [dite_eq_left huo]
 
-/-- The parent-value tuple reads a fixed parent directly from the fixed-value assignment. -/
+/-- The parent-value tuple reads a fixed parent directly from the fixed-value assignment.
+@isnad1 id=eq.2h8v.s9.b4ecbcbe387c from=translated src=- shape=8200222e vocab=0e86abd9
+-/
 lemma parentMap_fixed (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M)
     {n : ℕ} (hn : n < M.observed.card)
@@ -123,7 +127,9 @@ lemma parentMap_fixed (M : Causalean.SCM N Ω)
     exact absurd hm (by simp)
   rw [dite_eq_right huo, dite_eq_left hfix]
 
-/-- The parent-value tuple reads an observed parent from the previously computed observed values. -/
+/-- The parent-value tuple reads an observed parent from the previously computed observed values.
+@isnad1 id=eq.2h8v.s10.8596f840f165 from=translated src=- shape=737b5af5 vocab=88a9768b
+-/
 lemma parentMap_observed (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M)
     {n : ℕ} (hn : n < M.observed.card)
@@ -170,7 +176,9 @@ noncomputable def evalObservedAux (M : Causalean.SCM N Ω)
 
     Unfold equation for `evalObservedAux`: the `n`-th observed node's value is
     `structFun` at that node applied to the parent-value tuple assembled via
-    `parentMap` from the earlier observed values. -/
+    `parentMap` from the earlier observed values.
+@isnad1 id=eq.1h6v.s8.dff8edfb3540 from=translated src=- shape=81d6b712 vocab=9a045f52
+-/
 lemma evalObservedAux_eq (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M) (n : ℕ) (hn : n < M.observed.card) :
     evalObservedAux M s ℓ n hn =
@@ -215,7 +223,9 @@ noncomputable def evalMap (M : Causalean.SCM N Ω) :
     ℓ ⟨w.val, huo⟩
 
 /-- On an observed node, the evaluation map is the auxiliary topological-order
-evaluation transported to that node. -/
+evaluation transported to that node.
+@isnad1 id=eq.1h6v.s9.a49a55142feb from=translated src=- shape=d7a78844 vocab=863561a3
+-/
 lemma evalMap_observed (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M)
     (w : {w // w ∈ M.randomVars}) (hobs : w.val ∈ M.observed) :
@@ -226,7 +236,9 @@ lemma evalMap_observed (M : Causalean.SCM N Ω)
   unfold evalMap
   rw [dite_eq_left hobs]
 
-/-- On a latent node, the evaluation map is direct projection from the latent assignment. -/
+/-- On a latent node, the evaluation map is direct projection from the latent assignment.
+@isnad1 id=eq.1h6v.s7.8faff410b023 from=translated src=- shape=d0ae1542 vocab=44ee1efe
+-/
 lemma evalMap_unobserved (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M)
     (w : {w // w ∈ M.randomVars}) (huo : w.val ∈ M.unobserved) :
@@ -322,7 +334,9 @@ applied to fixed, latent, or recursively evaluated parent values.
     from fixed values, latent values, or a recursive `M.evalMap` call.
 
     This is the clean `▸`-free version of `evalMap_observed`/`evalObservedAux_eq` used by
-    the induced-subSCM bridge in `Induced.lean`. -/
+    the induced-subSCM bridge in `Induced.lean`.
+@isnad1 id=eq.0h6v.s10.bb8f9d66a9ae from=translated src=- shape=fab1dae2 vocab=f760760d
+-/
 lemma evalMap_observed_unfold (M : Causalean.SCM N Ω) (s : FixedValues M) (ℓ : LatentValues M)
     (v : {v // v ∈ M.observed}) :
     M.evalMap s ℓ ⟨v.val, Finset.mem_union_left _ v.property⟩
@@ -367,7 +381,9 @@ lemma evalMap_observed_unfold (M : Causalean.SCM N Ω) (s : FixedValues M) (ℓ 
 
 /-- At every position in a causal model's topological ordering of observed variables, the
 recursively evaluated observed value is measurable as a function of the model's fixed and latent
-inputs. -/
+inputs.
+@isnad1 id=measurab.1h4v.s9.1072cf9d4e17 from=translated src=- shape=4f537da4 vocab=8d9513cc
+-/
 @[fun_prop]
 lemma evalObservedAux_measurable (M : Causalean.SCM N Ω) :
     ∀ (n : ℕ) (hn : n < M.observed.card),
@@ -439,7 +455,9 @@ lemma evalObservedAux_measurable (M : Causalean.SCM N Ω) :
     The proof proceeds by structural induction on the topological order: each new
     coordinate is either a projection from `s`/`ℓ` (measurable) or an application of
     `M.structFun v` (measurable by `structFun_measurable`) to a tuple of already-
-    measurable coordinates. -/
+    measurable coordinates.
+@isnad1 id=measurab.0h3v.s9.864715412a8c from=translated src=- shape=fdd5d5a7 vocab=a4322103
+-/
 theorem evalMap_measurable (M : Causalean.SCM N Ω) :
     Measurable (Function.uncurry M.evalMap) := by
   refine measurable_pi_iff.mpr (fun w => ?_)
@@ -475,7 +493,9 @@ theorem evalMap_measurable (M : Causalean.SCM N Ω) :
     map, is measurable.
 
     This is `evalMap_measurable` restated without `Function.uncurry`, which is the shape
-    the pair-valued goals downstream actually have (and the shape `fun_prop` matches on). -/
+    the pair-valued goals downstream actually have (and the shape `fun_prop` matches on).
+@isnad1 id=measurab.0h3v.s9.7c0aabae9629 from=translated src=- shape=8e039869 vocab=5fddba58
+-/
 @[fun_prop]
 theorem measurable_evalMap_prod (M : Causalean.SCM N Ω) :
     Measurable (fun p : FixedValues M × LatentValues M => M.evalMap p.1 p.2) :=
@@ -485,7 +505,9 @@ theorem measurable_evalMap_prod (M : Causalean.SCM N Ω) :
     as a function of the latent realization alone.
 
     This is the partially-applied form of `evalMap_measurable`: freezing the fixed-value
-    argument leaves a measurable map on latent realizations. -/
+    argument leaves a measurable map on latent realizations.
+@isnad1 id=measurab.0h4v.s8.003d3e9fa1a1 from=translated src=- shape=9afbc6d2 vocab=c7dae89c
+-/
 @[fun_prop]
 theorem measurable_evalMap_apply (M : Causalean.SCM N Ω) (s : FixedValues M) :
     Measurable (M.evalMap s) :=
@@ -493,7 +515,9 @@ theorem measurable_evalMap_apply (M : Causalean.SCM N Ω) (s : FixedValues M) :
 
 /-- An observed variable has the same recursively evaluated value under two inputs when
     those inputs agree on every fixed and latent cause that can affect the target variables.
-    This expresses the local ancestral dependence of a structural causal model. -/
+    This expresses the local ancestral dependence of a structural causal model.
+@isnad1 id=eq.4h9v.s9.3f50f6a302c3 from=translated src=- shape=fdda2be3 vocab=c0bdeb46
+-/
 lemma evalObservedAux_agree_anc (M : Causalean.SCM N Ω)
     (T : Finset (SWIGNode N))
     {s s' : FixedValues M} {ℓ ℓ' : LatentValues M}
@@ -575,7 +599,9 @@ lemma evalObservedAux_agree_anc (M : Causalean.SCM N Ω)
     The statement uses the inductive predicate `DAG.isAncestor` rather than the
     computed ancestor set, so the dependence claim is stated directly in terms
     of graph reachability.  It is consumed by `SCM.induce_marginal_compat` and
-    the Markov/do-calculus layers. -/
+    the Markov/do-calculus layers.
+@isnad1 id=eq.4h9v.s9.a8f93909086f from=translated src=- shape=04e6edd9 vocab=2025023b
+-/
 theorem ancestralFactorization (M : Causalean.SCM N Ω)
     (T : Finset (SWIGNode N))
     {s s' : FixedValues M} {ℓ ℓ' : LatentValues M}

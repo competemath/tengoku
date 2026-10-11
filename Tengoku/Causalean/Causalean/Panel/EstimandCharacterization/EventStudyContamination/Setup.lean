@@ -201,7 +201,9 @@ def PathConsistency (P : EventStudySystem T) : Prop :=
 
 /-- Path-consistency, applied to an untreated comparison period, yields the
 observed-equals-untreated path-mean bridge used by the IW comparison-group
-argument. -/
+argument.
+@isnad1 id=eq.2h4v.s5.fd48c7bad8aa from=translated src=- shape=62df7f47 vocab=98835106
+-/
 theorem pathConsistency_observed_eq_untreated (P : EventStudySystem T)
     (hPathConsistency : P.PathConsistency) {h : WithTop (Fin T)} {t : Fin T}
     (hUntreated : absorbingTreatment h t = 0) :
@@ -234,7 +236,9 @@ never-treated potential outcomes for every adopting cohort coincide in every per
 strictly preceding that cohort's own adoption period (no anticipation)](hyp:hNoAnticipation),
 then for [a cohort `g` in the finite adoption-cohort support](hyp:hg) and [a relative
 event time `e` strictly before adoption ($e < 0$)](hyp:he), [the cohort-average
-treatment effect on the treated at cell `(g, e)` is zero](goal). -/
+treatment effect on the treated at cell `(g, e)` is zero](goal).
+@isnad1 id=eq.3h4v.s5.61e48234d6a6 from=translated src=- shape=fcb0d689 vocab=8e653818
+-/
 theorem CATT_eq_zero_of_noAnticipation (P : EventStudySystem T)
     (hNoAnticipation : P.NoAnticipation) {g : Fin T} {e : ℤ}
     (hg : g ∈ P.cohorts) (he : e < 0) :
@@ -260,7 +264,9 @@ untreated paths)](hyp:hMeanParallelUntreated), then for [any cohort `g` in the f
 adoption-cohort support](hyp:hg), [the average observed outcome mean over the target
 periods of cell `(g, e)` decomposes as the average, over those periods, of the additive
 fixed effects `alpha g + lambda t` plus the cohort-average treatment effect on the
-treated `CATT g e`](goal). -/
+treated `CATT g e`](goal).
+@isnad1 id=ex.3h4v.s6.01336ceec086 from=translated src=- shape=c08045bc vocab=7cd8d913
+-/
 theorem observedCellMean_eq_fixedEffects_add_CATT (P : EventStudySystem T)
     (hConsistency : P.Consistency) (hMeanParallelUntreated : P.MeanParallelUntreated)
     {g : Fin T} {e : ℤ}
@@ -297,7 +303,9 @@ theorem observedCellMean_eq_fixedEffects_add_CATT (P : EventStudySystem T)
 
 /-- Under an injective calendar-time encoding, at most one finite period can
 realize a given relative time, so the target-period set of any cell is a
-subsingleton. -/
+subsingleton.
+@isnad1 id=subsingl.1h4v.s5.75a74e4cf88e from=translated src=- shape=34cc298a vocab=0bff3843
+-/
 theorem targetPeriods_subsingleton_of_injective (P : EventStudySystem T)
     (hInj : Function.Injective P.time) (g : Fin T) (e : ℤ) :
     (P.targetPeriods g e : Set (Fin T)).Subsingleton := by
@@ -317,7 +325,9 @@ injective (the usual one-period-per-relative-time encoding), the cell-averaged
 
 This certifies that the cell-averaged `CATT` equals the source's
 point-period object exactly in the injective setting the paper assumes; the
-main theorems hold for the (wider) cell-averaged class and specialize here. -/
+main theorems hold for the (wider) cell-averaged class and specialize here.
+@isnad1 id=eq.2h5v.s6.4e16b27ca846 from=translated src=- shape=c889ec40 vocab=c508d24a
+-/
 theorem CATT_eq_sourceCATT_of_injective (P : EventStudySystem T)
     (hInj : Function.Injective P.time) {g : Fin T} {e : ℤ} {t : Fin T}
     (ht : t ∈ P.targetPeriods g e) :

@@ -23,6 +23,7 @@ namespace Causalean.Mathlib.Probability
 Start from `coeff_hermite_explicit`. Cancel the binomial factorial ratio and
 use the even/odd double-factorial decomposition of `(2*m)!`; handle `m = 0`
 explicitly because the natural subtraction in `(2*m-1)!!` saturates at zero.
+@isnad1 id=eq.0h2v.s7.9d09606c0106 from=translated src=- shape=ff8fe178 vocab=5b06347e
 -/
 theorem coeff_hermite_div_factorial (m k : ℕ) :
     ((hermite (2 * m + k)).coeff k : ℝ) / (Nat.factorial (2 * m + k) : ℝ) =
@@ -61,6 +62,7 @@ theorem coeff_hermite_div_factorial (m k : ℕ) :
 Expand by coefficients through degree `n`. Odd gaps vanish by
 `coeff_hermite_of_odd_add`. Reindex each surviving degree as `n - 2*m` and
 apply `coeff_hermite_div_factorial`; the range is exactly `0 ≤ m ≤ n/2`.
+@isnad1 id=eq.0h2v.s8.ba47013a969a from=translated src=- shape=a03597fb vocab=1922fdaa
 -/
 theorem hermite_eval_div_factorial (n : ℕ) (z : ℝ) :
     (aeval z (hermite n) : ℝ) / (Nat.factorial n : ℝ) =
@@ -113,6 +115,7 @@ Transport `NormedSpace.expSeries_div_hasSum_exp u` through the embedding
 `m ↦ 2*m`, extending by zero outside its range. The range is exactly the even
 natural numbers, and division by two recovers the original index. Convert
 the normed-algebra exponential to `Real.exp` using `Real.exp_eq_exp_ℝ`.
+@isnad1 id=hassum.0h1v.s6.29ea77eb80ec from=translated src=- shape=c74c3f9c vocab=a567aebb
 -/
 theorem hasSum_even_expSeries (u : ℝ) :
     HasSum (fun n : ℕ => if Even n then u ^ (n / 2) / (Nat.factorial (n / 2) : ℝ)
@@ -137,6 +140,7 @@ theorem hasSum_even_expSeries (u : ℝ) :
 Use the same doubling embedding as `hasSum_even_expSeries`, starting with
 `NormedSpace.norm_expSeries_div_summable`. This explicitly justifies the
 Cauchy product and regrouping; no conditional-series interchange is used.
+@isnad1 id=summable.0h1v.s6.456ee0c8a7d1 from=translated src=- shape=5f9f0a59 vocab=b6d1c3d1
 -/
 theorem summable_norm_even_expSeries (u : ℝ) :
     Summable (fun n : ℕ => ‖if Even n then

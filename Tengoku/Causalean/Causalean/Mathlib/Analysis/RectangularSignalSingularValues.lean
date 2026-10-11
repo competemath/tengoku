@@ -35,7 +35,9 @@ index below the signal-subspace dimension](hyp:hdim), and [a lower expansion bou
 subspace](hyp:hbound), [the indexed singular value is at least that factor](goal).
 
 This is the lower-bound half of the singular-value min--max principle, stated so that a map may
-have a nontrivial kernel outside the specified subspace. -/
+have a nontrivial kernel outside the specified subspace.
+@isnad1 id=le.3h6v.s9.0ee321d9345f from=translated src=- shape=052bca1f vocab=5b39fdd8
+-/
 theorem le_singularValues_of_subspace
     (T : E →ₗ[ℝ] F) (S : Submodule ℝ E) {j : ℕ} {c : ℝ}
     (hc : 0 ≤ c) (hdim : j < finrank ℝ S)
@@ -59,7 +61,9 @@ theorem le_singularValues_of_subspace
 
 /-- Given [an injective finite-dimensional real linear map](hyp:T,hT) and [a vector in its
 domain](hyp:x), [the map expands that vector by at least its last domain-indexed singular
-value](goal). -/
+value](goal).
+@isnad1 id=le.1h4v.s8.b3604a2795e1 from=translated src=- shape=deaae400 vocab=c51c586e
+-/
 theorem least_singularValue_mul_norm_le
     [Nontrivial E] (T : E →ₗ[ℝ] F) (hT : Function.Injective T) (x : E) :
     T.singularValues (finrank ℝ E - 1) * ‖x‖ ≤ ‖T x‖ := by
@@ -108,7 +112,9 @@ theorem least_singularValue_mul_norm_le
 space](hyp:y,hy), [the adjoint expands that signal vector by at least the map's least singular
 value](goal).
 
-No claim is made on the whole ambient codomain, where the adjoint can have a nontrivial kernel. -/
+No claim is made on the whole ambient codomain, where the adjoint can have a nontrivial kernel.
+@isnad1 id=le.2h4v.s11.2ef629033373 from=translated src=- shape=55a1c90e vocab=8e79ea82
+-/
 theorem least_singularValue_mul_norm_le_adjoint_on_range
     [Nontrivial K] (B : K →ₗ[ℝ] E) (hB : Function.Injective B)
     (y : E) (hy : y ∈ B.range) :
@@ -137,7 +143,9 @@ product of the three least signal singular values](goal).
 
 The product is a map on the ambient domain of the right adjoint, but the proof uses only the
 rank-sized signal subspace; in particular, it does not pretend that the ambient adjoint is
-injective. -/
+injective.
+@isnad1 id=le.3h6v.s11.93e9ddcec694 from=translated src=- shape=12f5dbe6 vocab=e5d94164
+-/
 theorem singularValues_product_adjoint_lower_bound
     [Nontrivial K]
     (A : K →ₗ[ℝ] F) (D : K →ₗ[ℝ] K) (B : K →ₗ[ℝ] E)
@@ -193,7 +201,9 @@ def verticalStack (M₀ : E →ₗ[ℝ] F₀) (M₁ : E →ₗ[ℝ] F₁) :
   (WithLp.linearEquiv 2 ℝ (F₀ × F₁)).symm.comp (M₀.prod M₁)
 
 /-- Given [two real linear maps with a common domain](hyp:M₀,M₁), [the Gram operator of their
-vertical stack is the sum of their two component Gram operators](goal). -/
+vertical stack is the sum of their two component Gram operators](goal).
+@isnad1 id=eq.0h5v.s13.ea2b6ede40ff from=translated src=- shape=723416cd vocab=a9fe6510
+-/
 theorem verticalStack_adjoint_comp_self
     (M₀ : E →ₗ[ℝ] F₀) (M₁ : E →ₗ[ℝ] F₁) :
     (verticalStack M₀ M₁).adjoint ∘ₗ verticalStack M₀ M₁ =
@@ -235,7 +245,9 @@ private theorem singularValues_le_of_gram_sub_isPositive
 
 /-- Given [a first real linear map](hyp:M₀), [a second compatible real linear map](hyp:M₁), and
 [a singular-value index](hyp:j), [the vertical stack's indexed singular value is at least that
-of the first component](goal). -/
+of the first component](goal).
+@isnad1 id=le.0h6v.s8.3af4a4271fdd from=translated src=- shape=0fe397ba vocab=ee921d81
+-/
 theorem singularValues_le_verticalStack_left
     (M₀ : E →ₗ[ℝ] F₀) (M₁ : E →ₗ[ℝ] F₁) (j : ℕ) :
     M₀.singularValues j ≤ (verticalStack M₀ M₁).singularValues j := by
@@ -245,7 +257,9 @@ theorem singularValues_le_verticalStack_left
 
 /-- Given [a first compatible real linear map](hyp:M₀), [a second real linear map](hyp:M₁), and
 [a singular-value index](hyp:j), [the vertical stack's indexed singular value is at least that
-of the second component](goal). -/
+of the second component](goal).
+@isnad1 id=le.0h6v.s8.68690ac5d867 from=translated src=- shape=6e4aa2ed vocab=ee921d81
+-/
 theorem singularValues_le_verticalStack_right
     (M₀ : E →ₗ[ℝ] F₀) (M₁ : E →ₗ[ℝ] F₁) (j : ℕ) :
     M₁.singularValues j ≤ (verticalStack M₀ M₁).singularValues j := by
@@ -266,7 +280,9 @@ variable {E F K : Type*}
 between the coordinate range and the map's adjoint range](hyp:hrange), and [a singular-value
 index](hyp:j), [compressing to those coordinates preserves the indexed singular value](goal).
 
-The equality includes Mathlib's zero-extended tail, not merely the nonzero singular values. -/
+The equality includes Mathlib's zero-extended tail, not merely the nonzero singular values.
+@isnad1 id=eq.1h6v.s11.8a54e3688163 from=translated src=- shape=21039f66 vocab=e9f019a6
+-/
 theorem singularValues_comp_linearIsometry_of_range_eq_adjoint_range
     (M : E →ₗ[ℝ] F) (V : K →ₗᵢ[ℝ] E)
     (hrange : V.toLinearMap.range = M.adjoint.range) (j : ℕ) :
@@ -358,7 +374,9 @@ theorem singularValues_comp_linearIsometry_of_range_eq_adjoint_range
 
 /-- Given [a real linear map](hyp:M), [orthonormal coordinates for its adjoint range](hyp:V,hrange),
 [the last coordinate-indexed singular value after compression equals the corresponding
-singular value before compression](goal). -/
+singular value before compression](goal).
+@isnad1 id=eq.1h5v.s11.31f1832ee22c from=translated src=- shape=862f820a vocab=f55e03c8
+-/
 theorem singularValues_comp_linearIsometry_last
     (M : E →ₗ[ℝ] F) (V : K →ₗᵢ[ℝ] E)
     (hrange : V.toLinearMap.range = M.adjoint.range) :

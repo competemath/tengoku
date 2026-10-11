@@ -87,6 +87,9 @@ namespace CellPartition
 
 variable {μ : Measure Ω} {ι : Type*} [Fintype ι]
 
+/--
+@isnad1 id=eq.2h5v.s6.e142bfb4242c from=translated src=- shape=e6ca90bf vocab=26898d0d
+-/
 @[simp] theorem cellPartitionOfClassifier_cell {ι : Type*} [Fintype ι]
     (μ : Measure Ω) (g : Ω → ι)
     (hmeas : ∀ i, MeasurableSet (g ⁻¹' {i}))
@@ -105,15 +108,21 @@ cell computed as its integral over the cell divided by the cell's real mass. -/
 noncomputable def mean (P : CellPartition μ ι) (f : Ω → ℝ) (i : ι) : ℝ :=
   normalizedRestrictedIntegral μ (P.cell i) f
 
-/-- Every cell has strictly positive mass. -/
+/-- Every cell has strictly positive mass.
+@isnad1 id=lt.0h5v.s5.5d8dff08c42f from=translated src=- shape=4a2dbab0 vocab=ebe625e0
+-/
 theorem mass_pos (P : CellPartition μ ι) (i : ι) : 0 < P.mass i := P.cell_pos i
 
-/-- Every cell has nonzero mass. -/
+/-- Every cell has nonzero mass.
+@isnad1 id=ne.0h5v.s5.d909924fafc7 from=translated src=- shape=ed5ab3b6 vocab=ff295e61
+-/
 theorem mass_ne_zero (P : CellPartition μ ι) (i : ι) : P.mass i ≠ 0 :=
   (P.mass_pos i).ne'
 
 /-- **Masses sum to one.** The cell probabilities of a partition of a
-probability space add to `1`. -/
+probability space add to `1`.
+@isnad1 id=eq.0h4v.s5.5bc556f82396 from=translated src=- shape=f76cfb1a vocab=45df4c42
+-/
 theorem mass_sum_one (P : CellPartition μ ι) [IsProbabilityMeasure μ] :
     ∑ i, P.mass i = 1 := by
   have hsum : ∑ i, μ (P.cell i) = 1 := by
@@ -127,7 +136,9 @@ theorem mass_sum_one (P : CellPartition μ ι) [IsProbabilityMeasure μ] :
     _ = 1 := ENNReal.toReal_one
 
 /-- **Finite-partition total law.** The integral of `f` is the mass-weighted sum
-of its cell means: `∫ f = ∑ i, π_i · E[f ∣ cell i]`. -/
+of its cell means: `∫ f = ∑ i, π_i · E[f ∣ cell i]`.
+@isnad1 id=eq.1h5v.s6.7fd18bc4a7cb from=translated src=- shape=de862bdd vocab=2ce01476
+-/
 theorem integral_eq_sum_mass_mul_mean (P : CellPartition μ ι)
     [IsFiniteMeasure μ] (f : Ω → ℝ) (hf : Integrable f μ) :
     ∫ ω, f ω ∂μ = ∑ i, P.mass i * P.mean f i :=
@@ -136,31 +147,41 @@ theorem integral_eq_sum_mass_mul_mean (P : CellPartition μ ι)
 
 /-- Cell means agree when the integrands agree pointwise on the cell. This is the
 workhorse "consistency descent" step: on a cell where an observed quantity
-equals a potential-outcome slice, their cell means coincide. -/
+equals a potential-outcome slice, their cell means coincide.
+@isnad1 id=eq.1h7v.s6.d341e004f6f0 from=translated src=- shape=2e3ee5ca vocab=3541f469
+-/
 theorem mean_congr_on (P : CellPartition μ ι) {f g : Ω → ℝ} (i : ι)
     (h : ∀ ω ∈ P.cell i, f ω = g ω) :
     P.mean f i = P.mean g i :=
   eventCondExp_congr_on μ (P.cell_meas i) h
 
-/-- Cell means agree for a.e.-equal integrands. -/
+/-- Cell means agree for a.e.-equal integrands.
+@isnad1 id=eq.1h7v.s6.becc8f10df00 from=translated src=- shape=bb31fd58 vocab=de455b93
+-/
 theorem mean_congr_ae (P : CellPartition μ ι) {f g : Ω → ℝ} (i : ι)
     (h : f =ᵐ[μ] g) :
     P.mean f i = P.mean g i :=
   eventCondExp_congr_ae μ (P.cell i) (ae_restrict_of_ae h)
 
-/-- Cell means are additive over subtraction of integrable integrands. -/
+/-- Cell means are additive over subtraction of integrable integrands.
+@isnad1 id=eq.2h7v.s7.1334f03f126b from=translated src=- shape=be74f76f vocab=0e093783
+-/
 theorem mean_sub (P : CellPartition μ ι) {f g : Ω → ℝ} (i : ι)
     (hf : IntegrableOn f (P.cell i) μ) (hg : IntegrableOn g (P.cell i) μ) :
     P.mean (f - g) i = P.mean f i - P.mean g i :=
   eventCondExp_sub μ (P.cell i) hf hg
 
-/-- Cell means are additive over sums of integrable integrands. -/
+/-- Cell means are additive over sums of integrable integrands.
+@isnad1 id=eq.2h7v.s7.fee471460ad2 from=translated src=- shape=be74f76f vocab=56342c90
+-/
 theorem mean_add (P : CellPartition μ ι) {f g : Ω → ℝ} (i : ι)
     (hf : IntegrableOn f (P.cell i) μ) (hg : IntegrableOn g (P.cell i) μ) :
     P.mean (f + g) i = P.mean f i + P.mean g i :=
   eventCondExp_add μ (P.cell i) hf hg
 
-/-- Cell means are homogeneous under real scalar multiplication. -/
+/-- Cell means are homogeneous under real scalar multiplication.
+@isnad1 id=eq.0h7v.s6.a5c610e063ae from=translated src=- shape=01787a2d vocab=01020096
+-/
 theorem mean_smul (P : CellPartition μ ι) (c : ℝ) (f : Ω → ℝ) (i : ι) :
     P.mean (fun ω => c * f ω) i = c * P.mean f i :=
   eventCondExp_smul μ (P.cell i) c f
@@ -172,7 +193,9 @@ throughout the cell](hyp:hcons), [the cell-conditional means satisfy the same id
 
 This is the shared "observed-mean = untreated-mean + effect" step every binary-treatment
 population bridge uses; the cell effect `E[Y1 ∣ cell] − E[Y0 ∣ cell]` is a genuine
-potential-outcome contrast. -/
+potential-outcome contrast.
+@isnad1 id=eq.2h9v.s7.2bd830c20698 from=translated src=- shape=2a33cc3d vocab=99a2d705
+-/
 theorem mean_consistency (P : CellPartition μ ι) (i : ι) (Y Y0 Y1 : Ω → ℝ)
     {d : ℝ} (hd : d = 0 ∨ d = 1)
     (hcons : ∀ ω ∈ P.cell i, Y ω = Y0 ω + d * (Y1 ω - Y0 ω)) :

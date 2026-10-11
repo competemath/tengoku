@@ -104,7 +104,9 @@ def refines (e₁ e₂ : SCM.Model.EdgeType) : Prop := refinesBool e₁ e₂ = t
 instance decRefines (e₁ e₂ : SCM.Model.EdgeType) : Decidable (refines e₁ e₂) :=
   inferInstanceAs (Decidable (_ = true))
 
-/-- Every edge-type assumption refines itself. -/
+/-- Every edge-type assumption refines itself.
+@isnad1 id=refines.0h1v.s2.e22f59d6c9c0 from=translated src=- shape=b3bac8d8 vocab=3688ca3d
+-/
 theorem refines_refl : (e : SCM.Model.EdgeType) → refines e e
   | .nonparametric => rfl
   | .monotonic k => by cases k <;> rfl
@@ -113,7 +115,9 @@ theorem refines_refl : (e : SCM.Model.EdgeType) → refines e e
 
 /-- [Every edge-type functional-form assumption `e`](hyp:e) [refines the
 nonparametric assumption](goal): nonparametric is the weakest assumption in the
-refinement order, so every other assumption is at least as specific as it. -/
+refinement order, so every other assumption is at least as specific as it.
+@isnad1 id=refines.0h1v.s2.b05f2ac52dbc from=translated src=- shape=2d69f17f vocab=dd596ec6
+-/
 theorem refines_nonparametric (e : SCM.Model.EdgeType) : refines e .nonparametric := by
   cases e <;> simp [refines, refinesBool]
 

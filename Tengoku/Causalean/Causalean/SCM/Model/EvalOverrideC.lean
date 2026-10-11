@@ -108,7 +108,9 @@ noncomputable def parentMapOverride (M : Causalean.SCM N Ω)
              (M.observed_parent_index_lt hn hedge hobs)
              (M.observedIndex ⟨w.val, hobs⟩).isLt
 
-/-- The override parent-value tuple reads a latent parent directly from the latent assignment. -/
+/-- The override parent-value tuple reads a latent parent directly from the latent assignment.
+@isnad1 id=eq.3h10v.s9.e7b6ed808ea7 from=translated src=- shape=293dfdea vocab=74fbb145
+-/
 lemma parentMapOverride_unobserved (M : Causalean.SCM N Ω)
     {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed)
     (s : FixedValues M) (c : ValuesOn C (swigΩ Ω)) (ℓ : LatentValues M)
@@ -122,7 +124,9 @@ lemma parentMapOverride_unobserved (M : Causalean.SCM N Ω)
   rw [dite_eq_left huo]
 
 /-- The override parent-value tuple reads a fixed parent directly from the fixed-value
-assignment. -/
+assignment.
+@isnad1 id=eq.3h10v.s9.c6a76df77959 from=translated src=- shape=37b3a0b7 vocab=81346440
+-/
 lemma parentMapOverride_fixed (M : Causalean.SCM N Ω)
     {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed)
     (s : FixedValues M) (c : ValuesOn C (swigΩ Ω)) (ℓ : LatentValues M)
@@ -141,7 +145,9 @@ lemma parentMapOverride_fixed (M : Causalean.SCM N Ω)
     exact absurd hm (by simp)
   rw [dite_eq_right huo, dite_eq_left hfix]
 
-/-- The override parent-value tuple reads an overridden observed parent directly from the override assignment. -/
+/-- The override parent-value tuple reads an overridden observed parent directly from the override assignment.
+@isnad1 id=eq.3h10v.s9.a4500bd62495 from=translated src=- shape=609396cf vocab=33e65ce2
+-/
 lemma parentMapOverride_C (M : Causalean.SCM N Ω)
     {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed)
     (s : FixedValues M) (c : ValuesOn C (swigΩ Ω)) (ℓ : LatentValues M)
@@ -157,7 +163,9 @@ lemma parentMapOverride_C (M : Causalean.SCM N Ω)
   have hfix : w.val ∉ M.fixed := not_fixed_of_obs M.toSWIGGraph hobs
   rw [dite_eq_right huo, dite_eq_right hfix, dite_eq_left hc]
 
-/-- The override parent-value tuple reads a non-overridden observed parent from the previous recursive values. -/
+/-- The override parent-value tuple reads a non-overridden observed parent from the previous recursive values.
+@isnad1 id=eq.4h10v.s10.f0ff24add64b from=translated src=- shape=43945f99 vocab=b45da0fc
+-/
 lemma parentMapOverride_observed (M : Causalean.SCM N Ω)
     {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed)
     (s : FixedValues M) (c : ValuesOn C (swigΩ Ω)) (ℓ : LatentValues M)
@@ -202,7 +210,9 @@ noncomputable def evalObservedAuxOverride (M : Causalean.SCM N Ω)
     n
 
 /-- The override auxiliary evaluator unfolds to either the override value or the structural
-function applied to overridden parents. -/
+function applied to overridden parents.
+@isnad1 id=eq.2h8v.s9.06c375cfca66 from=translated src=- shape=a77976ce vocab=083af992
+-/
 lemma evalObservedAuxOverride_eq (M : Causalean.SCM N Ω)
     {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed)
     (s : FixedValues M) (c : ValuesOn C (swigΩ Ω)) (ℓ : LatentValues M)
@@ -239,7 +249,9 @@ noncomputable def evalMap_overrideC
 /-- At any target node, the overridden evaluation map is the transported override auxiliary value at that node's topological index.
 
     Unfold: at any `v ∈ Y` the override equals `evalObservedAuxOverride`
-    transported by the topological-index round-trip. -/
+    transported by the topological-index round-trip.
+@isnad1 id=eq.2h9v.s9.37482c73fb92 from=translated src=- shape=7ca638b9 vocab=dcdfde10
+-/
 lemma evalMap_overrideC_eq
     (M : Causalean.SCM N Ω) {Y C : Finset (SWIGNode N)}
     (hY : Y ⊆ M.observed) (hC : C ⊆ M.observed)
@@ -290,7 +302,9 @@ private lemma c_at_observedAt_eq_c_at_self {C : Finset (SWIGNode N)}
   subst hsub_w
   rfl
 
-/-- At a target node inside the override block, the overridden evaluation returns the assigned override value. -/
+/-- At a target node inside the override block, the overridden evaluation returns the assigned override value.
+@isnad1 id=eq.3h9v.s8.a2e7c2dc7168 from=translated src=- shape=723a31dd vocab=190053fc
+-/
 theorem evalMap_overrideC_apply_of_mem_C
     (M : Causalean.SCM N Ω) {Y C : Finset (SWIGNode N)}
     (hY : Y ⊆ M.observed) (hC : C ⊆ M.observed)
@@ -323,7 +337,9 @@ theorem evalMap_overrideC_apply_of_mem_C
 /-- At a target node outside the override block, the overridden evaluation applies the structural function to overridden parent values.
 
     At any `v ∈ Y` with `v.val ∉ C`, the override equals `M.structFun` applied
-    to a parent tuple computed via `parentMapOverride`. -/
+    to a parent tuple computed via `parentMapOverride`.
+@isnad1 id=eq.3h9v.s10.5a2eec6e7016 from=translated src=- shape=59bc2e4b vocab=a0fd404f
+-/
 theorem evalMap_overrideC_apply_of_not_mem_C
     (M : Causalean.SCM N Ω) {Y C : Finset (SWIGNode N)}
     (hY : Y ⊆ M.observed) (hC : C ⊆ M.observed)
@@ -351,7 +367,9 @@ theorem evalMap_overrideC_apply_of_not_mem_C
 -- ============================================================
 
 /-- For an observed node, transporting its recursively evaluated value through the round-trip
-topological-index lookup leaves that value unchanged. -/
+topological-index lookup leaves that value unchanged.
+@isnad1 id=eq.1h6v.s9.85bf09b81ab3 from=translated src=- shape=d8547089 vocab=fc3c8bfd
+-/
 lemma evalObservedAux_cast_collapse_at_observedAt
     (M : Causalean.SCM N Ω) (s : FixedValues M) (ℓ : LatentValues M)
     (j : Fin M.observed.card) (hvObs : (M.observedAt j).val ∈ M.observed) :
@@ -389,7 +407,9 @@ lemma evalObservedAux_cast_collapse_at_observedAt
   rw [hpr_rfl]
 
 /-- When an observed-node override uses the model's own recursively evaluated values, the
-overridden recursive evaluator agrees with the original evaluator at every topological position. -/
+overridden recursive evaluator agrees with the original evaluator at every topological position.
+@isnad1 id=eq.2h7v.s9.1aefe3780bcd from=translated src=- shape=319c8e17 vocab=0cc0a3a5
+-/
 lemma evalObservedAuxOverride_eq_evalObservedAux_at_self
     (M : Causalean.SCM N Ω) {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed)
     (s : FixedValues M) (ℓ : LatentValues M) :
@@ -465,7 +485,9 @@ lemma evalObservedAuxOverride_eq_evalObservedAux_at_self
     (avoiding a dependency on `randomToObserved` from `Kernel.lean`); the form
     used downstream in Phase B is `valuesProjection hC (randomToObserved
     (evalMap s ℓ))`, which equals this `c` definitionally — see the auxiliary
-    `evalMap_overrideC_at_self_randomToObserved` form below for that variant. -/
+    `evalMap_overrideC_at_self_randomToObserved` form below for that variant.
+@isnad1 id=eq.2h7v.s10.19c2435c9cce from=translated src=- shape=913b46b0 vocab=34c44bb3
+-/
 theorem evalMap_overrideC_at_self
     (M : Causalean.SCM N Ω) {Y C : Finset (SWIGNode N)}
     (hY : Y ⊆ M.observed) (hC : C ⊆ M.observed)
@@ -493,7 +515,9 @@ theorem evalMap_overrideC_at_self
 
 /-- At every position in an SCM's topological order, its observed-variable evaluator with
     specified observed values overridden is jointly measurable in fixed, override, and latent
-    inputs. -/
+    inputs.
+@isnad1 id=measurab.2h5v.s9.8ca7065e32f2 from=translated src=- shape=a9c6ead1 vocab=64e587a7
+-/
 @[fun_prop]
 lemma evalObservedAuxOverride_measurable
     (M : Causalean.SCM N Ω) {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed) :
@@ -587,7 +611,9 @@ lemma evalObservedAuxOverride_measurable
 
     **Joint measurability of `evalMap_overrideC`.**
 
-    The override map is jointly measurable in `((s, c), ℓ)`. -/
+    The override map is jointly measurable in `((s, c), ℓ)`.
+@isnad1 id=measurab.2h5v.s9.5deba040088e from=translated src=- shape=e1bb1b04 vocab=20ecda7e
+-/
 @[fun_prop]
 theorem measurable_evalMap_overrideC
     (M : Causalean.SCM N Ω) {Y C : Finset (SWIGNode N)}

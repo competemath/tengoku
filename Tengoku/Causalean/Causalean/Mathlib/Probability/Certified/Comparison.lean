@@ -24,7 +24,9 @@ def stationaryBias {ι : Type*} [Fintype ι]
   rewardExpectation π reward - benchmark
 
 /-- If two rational intervals contain two real values and the first upper
-endpoint is below the second lower endpoint, then the first value is strictly smaller. -/
+endpoint is below the second lower endpoint, then the first value is strictly smaller.
+@isnad1 id=lt.3h4v.s4.ebda4e3de0e3 from=translated src=- shape=b8069a87 vocab=57ad4d32
+-/
 theorem lt_of_disjoint_enclosures {I J : RatInterval} {x y : ℝ}
     (hx : I.Contains x) (hy : J.Contains y) (hsep : I.hi < J.lo) :
     x < y := by
@@ -35,7 +37,9 @@ theorem lt_of_disjoint_enclosures {I J : RatInterval} {x y : ℝ}
   exact hx.2.trans_lt (hsep_real.trans_le hy.1)
 
 /-- Strict ordering of two stationary reward expectations is preserved after
-subtracting the same real benchmark, yielding a strict stationary-bias comparison. -/
+subtracting the same real benchmark, yielding a strict stationary-bias comparison.
+@isnad1 id=lt.1h5v.s5.c9c2b71911fb from=translated src=- shape=e567c1b1 vocab=5121e47b
+-/
 theorem stationaryBias_lt_of_expectation_lt {ι : Type*} [Fintype ι]
     {πP πQ reward : ι → ℝ} {benchmark : ℝ}
     (h : rewardExpectation πP reward < rewardExpectation πQ reward) :
@@ -52,7 +56,9 @@ theorem stationaryBias_lt_of_expectation_lt {ι : Type*} [Fintype ι]
 [the two contraction guarantees](hyp:hcontractP,hcontractQ),
 [their stationary distributions](hyp:hπP,hπQ), and
 [strictly separated computed reward intervals](hyp:hsep),
-[the first stationary reward expectation is strictly smaller than the second](goal). -/
+[the first stationary reward expectation is strictly smaller than the second](goal).
+@isnad1 id=lt.9h15v.s7.fcfd7c05dff8 from=translated src=- shape=8febc9e6 vocab=5885406c
+-/
 theorem stationaryExpectation_lt_of_certified_intervals
     {ι : Type*} [Fintype ι]
     {P Q : Matrix ι ι ℝ}
@@ -91,7 +97,9 @@ theorem stationaryExpectation_lt_of_certified_intervals
 [their stationary distributions](hyp:hπP,hπQ),
 [a common benchmark](hyp:benchmark), and
 [strictly separated computed reward intervals](hyp:hsep),
-[the first stationary bias is strictly smaller than the second](goal). -/
+[the first stationary bias is strictly smaller than the second](goal).
+@isnad1 id=lt.9h16v.s7.1b201f835b0b from=translated src=- shape=de33afe4 vocab=723766ea
+-/
 theorem stationaryBias_lt_of_certified_intervals
     {ι : Type*} [Fintype ι]
     {P Q : Matrix ι ι ℝ}

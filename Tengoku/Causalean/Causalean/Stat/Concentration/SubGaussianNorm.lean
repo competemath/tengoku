@@ -23,7 +23,9 @@ open Causalean.Mathlib.Analysis.NormedSpace
 namespace Causalean.Stat.Concentration
 
 /-- Every nonzero vector in a subspace has a point in a finite half-net whose inner
-product with that vector is at least half of its norm. -/
+product with that vector is at least half of its norm.
+@isnad1 id=ex.3h4v.s8.752cac820604 from=translated src=- shape=b80ab40a vocab=3b74957b
+-/
 lemma half_norm_lt_inner_of_mem_net {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] {N : Finset E} {z : E} (V : Submodule ℝ E)
     (hnet : ∀ x ∈ V, ‖x‖ = 1 → ∃ v ∈ N, ‖x - v‖ ≤ (1 : ℝ) / 2)
@@ -52,7 +54,9 @@ lemma half_norm_lt_inner_of_mem_net {E : Type*} [NormedAddCommGroup E]
   simpa [div_eq_mul_inv, mul_comm] using hmul
 
 /-- If a finite half-net controls every scalar projection with unit sub-Gaussian parameter, then
-the norm has a Gaussian upper tail. The support condition is only required almost everywhere. -/
+the norm has a Gaussian upper tail. The support condition is only required almost everywhere.
+@isnad1 id=le.4h7v.s8.23650cf381c3 from=translated src=- shape=9bd91290 vocab=3a2c4685
+-/
 theorem measure_norm_gt_le_of_half_net {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] (P : Measure Ω)
     [IsFiniteMeasure P] (Z : Ω → E) (V : Submodule ℝ E) (N : Finset E)
@@ -90,7 +94,9 @@ theorem measure_norm_gt_le_of_half_net {Ω E : Type*} [MeasurableSpace Ω]
 If [`Z` lies in `V` almost surely under `P`](hyp:hZV) and [every unit vector `v` in `V` has the
 scalar projection `⟪v, Z⟫` sub-Gaussian with parameter `1` under `P`](hyp:hsubg), then for
 [any nonnegative `t`](hyp:ht), [the probability that `‖Z‖` exceeds `2 * t` is at most `5`
-raised to the dimension of `V`, times `exp (-t ^ 2 / 2)`](goal). -/
+raised to the dimension of `V`, times `exp (-t ^ 2 / 2)`](goal).
+@isnad1 id=le.3h6v.s9.6b5d848cf815 from=translated src=- shape=b19cf6c6 vocab=1f756319
+-/
 theorem measure_norm_gt_le_five_pow_finrank {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (P : Measure Ω) [IsFiniteMeasure P] (Z : Ω → E) (V : Submodule ℝ E)

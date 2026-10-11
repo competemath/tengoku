@@ -79,7 +79,9 @@ def columnSpan : Submodule ℝ (Untreated → ℝ) :=
 variable [Nonempty Untreated]
 
 /-- The panel inner product of an untreated-cell vector `v` with a regressor
-column is the BJS left-null-space sum, rescaled by the uniform weight. -/
+column is the BJS left-null-space sum, rescaled by the uniform weight.
+@isnad1 id=eq.0h6v.s6.15fcd21dc351 from=translated src=- shape=8c6a0e21 vocab=d11c6e81
+-/
 lemma ip_untreatedSupport_regressorColumn (v : Untreated → ℝ) (r : Regressor) :
     (untreatedSupport Untreated).ip v (P.regressorColumn r)
       = (Fintype.card Untreated : ℝ)⁻¹ * ∑ u : Untreated, v u * P.qU u r := by
@@ -90,7 +92,9 @@ lemma ip_untreatedSupport_regressorColumn (v : Untreated → ℝ) (r : Regressor
   ring
 
 /-- `ip`-orthogonality to a single regressor column ⟺ that column's BJS
-left-null-space coordinate vanishes. -/
+left-null-space coordinate vanishes.
+@isnad1 id=iff.0h6v.s6.68be9822362b from=translated src=- shape=52c2a675 vocab=15a4c5ff
+-/
 lemma ip_regressorColumn_eq_zero_iff (v : Untreated → ℝ) (r : Regressor) :
     (untreatedSupport Untreated).ip v (P.regressorColumn r) = 0
       ↔ ∑ u : Untreated, v u * P.qU u r = 0 := by
@@ -107,7 +111,9 @@ lemma ip_regressorColumn_eq_zero_iff (v : Untreated → ℝ) (r : Regressor) :
 /-- **Keystone bridge.**  A vector over the untreated cells is `ip`-orthogonal
 to the whole regressor column span iff it satisfies the BJS left-null-space
 condition `∀ r, ∑_u v_u q_{ur} = 0`.  This is the panel-substrate restatement of
-"`v` lies in the left null space of `Q_U`". -/
+"`v` lies in the left null space of `Q_U`".
+@isnad1 id=iff.0h5v.s7.718e961581c6 from=translated src=- shape=ea6d81be vocab=b80bd5a5
+-/
 lemma columnSpan_ip_orthogonal_iff (v : Untreated → ℝ) :
     (∀ h ∈ P.columnSpan, (untreatedSupport Untreated).ip v h = 0)
       ↔ ∀ r : Regressor, ∑ u : Untreated, v u * P.qU u r = 0 := by
@@ -140,7 +146,9 @@ target-relevant row identity.  The resulting imputation weights `H` represent
 the untreated coefficients: `∑_c a_c · H.weight c u = - vU u` for every `u`.
 
 This is the substrate-citizen form of the finite left-null-space construction
-formerly inlined in `linear_unbiased_of_prediction_identified`. -/
+formerly inlined in `linear_unbiased_of_prediction_identified`.
+@isnad1 id=ex.2h7v.s8.0bd670ef4fef from=translated src=- shape=b9792407 vocab=8218116c
+-/
 theorem exists_imputationWeights_of_gap_orthogonal
     (vU : Untreated → ℝ) {c0 : Treated} (hc0 : P.a c0 ≠ 0)
     (H0 : P.ImputationWeights)
@@ -256,7 +264,9 @@ implies the untreated-coefficient gap lies in the left null space of the
 untreated regressor rows.  The adjustment that absorbs that gap into one nonzero
 target-weight row is `exists_imputationWeights_of_gap_orthogonal`, which phrases
 the left-null-space condition as `ip`-orthogonality to the regressor column span
-in the panel `WeightedSupport`/`Subspace` substrate. -/
+in the panel `WeightedSupport`/`Subspace` substrate.
+@isnad1 id=ex.3h5v.s8.11cfa3b1baee from=translated src=- shape=fb64688c vocab=91797857
+-/
 theorem linear_unbiased_of_prediction_identified
     (L : P.LinearEstimator)
     (hUnbiasedForAllTau : L.unbiasedForAllTau)
@@ -381,7 +391,9 @@ see the efficiency note in `Imputation.lean`):
 
 Together they state: under `PredictionIdentified` and a nonzero target weight,
 a linear estimator `L` is unbiased for every `tau` if and only if it is
-representable as a BJS imputation estimator. -/
+representable as a BJS imputation estimator.
+@isnad1 id=iff.2h5v.s8.5b9808c0fb94 from=translated src=- shape=cf27118a vocab=91797857
+-/
 theorem bjs_linear_unbiased_iff_imputation_form
     (L : P.LinearEstimator)
     (hPredictionSpan : P.PredictionIdentified)

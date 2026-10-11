@@ -23,7 +23,9 @@ variable {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
 /-- [A finite product probability law](hyp:μ), [a training block and held-out
 block](hyp:B0,B1) with [disjointness](hyp:hdisj), [a measurable score](hyp:f,hfmeas),
 and [an integrable pulled-back score](hyp:hf) imply that [its conditional mean given
-the training block is its unconditional mean](goal). -/
+the training block is its unconditional mean](goal).
+@isnad1 id=eventual.3h6v.s9.9f6d56ed27c6 from=translated src=- shape=8e6e9b09 vocab=4c88cd6f
+-/
 theorem condExp_heldoutBlock_eq_integral
     (μ : (i : ι) → Measure (Ω i)) [∀ i, IsProbabilityMeasure (μ i)]
     (B0 B1 : Finset ι) (hdisj : Disjoint B0 B1)
@@ -65,7 +67,9 @@ theorem condExp_heldoutBlock_eq_integral
 block](hyp:B0,B1,hdisj), [a held-out score and training shift](hyp:f,a) with
 [measurability](hyp:hfmeas,hameas) and [integrability](hyp:hf,ha) imply that [the
 conditional mean of their difference is the held-out mean minus the same training
-shift](goal). -/
+shift](goal).
+@isnad1 id=eventual.5h7v.s9.69cfb869e279 from=translated src=- shape=275d7544 vocab=09f36d79
+-/
 theorem condExp_shiftedBlock_eq_integral_sub
     (μ : (i : ι) → Measure (Ω i)) [∀ i, IsProbabilityMeasure (μ i)]
     (B0 B1 : Finset ι) (hdisj : Disjoint B0 B1)

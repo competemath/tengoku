@@ -54,7 +54,9 @@ univariate basis polynomial at node `j` is at most
 `2^D * (D+1)^D / (j! * (D-j)!)`. Summing over `j` gives
 `4^D * (D+1)^D / D!`; the exponential-series bound controls the factorial ratio. Tensor the
 four univariate formulas and compare their total weight with `2^(40K+19)`. This is a
-quantitative finite-dimensional representation, independent of any time-indexed path. -/
+quantitative finite-dimensional representation, independent of any time-indexed path.
+@isnad1 id=ex.1h1v.s10.089dec36cbc5 from=translated src=- shape=81ad11bd vocab=e1ba571e
+-/
 theorem tensorCoeffs_four_cube_weights {K : ℕ} (hK : 0 < K) :
     ∃ (x : (Fin 4 → Fin (2 * (K - 1) + 1)) → Fin 4 → ℝ)
       (w : (Fin 4 → Fin (2 * (K - 1) + 1)) →

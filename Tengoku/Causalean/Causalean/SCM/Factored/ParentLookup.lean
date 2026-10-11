@@ -63,7 +63,9 @@ open scoped MeasureTheory ProbabilityTheory
 
 /-- A parent that is neither fixed nor observed must be an unobserved node.
     This lets an evaluator classify a parent's value source without depending on
-    where the target appears in an observation order. -/
+    where the target appears in an observation order.
+@isnad1 id=mem.3h4v.s6.aad8f8826308 from=translated src=- shape=67eee204 vocab=fe984a69
+-/
 theorem parent_unobserved_of_not_fixed_not_observed
     (G : SWIGGraph N) {u v : SWIGNode N}
     (hedge : G.dag.edge u v)
@@ -133,7 +135,9 @@ noncomputable def parentValuesFromPrefix (M : Causalean.SCM N Ω) {n : ℕ}
     `parentValuesFromPrefix` that reads off the parent values of the `n`-th
     observed node from a fixed-value assignment, a latent assignment, and the
     already-generated length-`n` prefix of observed values is jointly
-    measurable in these three arguments](goal). -/
+    measurable in these three arguments](goal).
+@isnad1 id=measurab.1h4v.s10.9758d5bd3f81 from=translated src=- shape=132fe74c vocab=d5ccadcc
+-/
 @[fun_prop]
 theorem measurable_parentValuesFromPrefix (M : Causalean.SCM N Ω) {n : ℕ}
     (hn : n + 1 ≤ M.observed.card) :

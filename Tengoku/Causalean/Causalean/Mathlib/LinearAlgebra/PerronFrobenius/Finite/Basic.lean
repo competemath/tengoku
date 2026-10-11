@@ -53,7 +53,9 @@ private theorem reApplyInnerSelf_toEuclideanLin_eq_rayleighForm
     EuclideanSpace.inner_eq_star_dotProduct, rayleighForm, dotProduct, Matrix.mulVec,
     Matrix.toLpLin_apply]
 
-/-- With [a finite real matrix](hyp:A), [the coordinate and Euclidean unit-sphere top Rayleigh values agree](goal). -/
+/-- With [a finite real matrix](hyp:A), [the coordinate and Euclidean unit-sphere top Rayleigh values agree](goal).
+@isnad1 id=eq.0h2v.s4.b3ae9639a12c from=translated src=- shape=826ce92d vocab=d67d8ae3
+-/
 theorem coordinateSphereRayleighValue_eq_sphereRayleighValue
     (A : Matrix ι ι ℝ) :
     coordinateSphereRayleighValue A = sphereRayleighValue A := by
@@ -72,7 +74,9 @@ theorem coordinateSphereRayleighValue_eq_sphereRayleighValue
     rw [← EuclideanSpace.real_norm_sq_eq, hx]
     norm_num
 
-/-- On a nonempty finite coordinate space, [a real matrix](hyp:A) has [its Euclidean unit-sphere top value equal to Mathlib's supremum Rayleigh quotient](goal). -/
+/-- On a nonempty finite coordinate space, [a real matrix](hyp:A) has [its Euclidean unit-sphere top value equal to Mathlib's supremum Rayleigh quotient](goal).
+@isnad1 id=eq.0h2v.s4.d6afb3573f67 from=translated src=- shape=f00413a0 vocab=3d63a739
+-/
 theorem sphereRayleighValue_eq_iSupRayleighValue [Nonempty ι]
     (A : Matrix ι ι ℝ) :
     sphereRayleighValue A = iSupRayleighValue A := by
@@ -91,14 +95,18 @@ theorem sphereRayleighValue_eq_iSupRayleighValue [Nonempty ι]
   rw [show ‖(x : EVec ι)‖ = 1 by simpa using x.property]
   simp [T, reApplyInnerSelf_toEuclideanLin_eq_rayleighForm]
 
-/-- On a nonempty finite coordinate space, [a real matrix](hyp:A) has [its coordinate unit-sphere top value equal to Mathlib's supremum Rayleigh quotient](goal). -/
+/-- On a nonempty finite coordinate space, [a real matrix](hyp:A) has [its coordinate unit-sphere top value equal to Mathlib's supremum Rayleigh quotient](goal).
+@isnad1 id=eq.0h2v.s4.bd92b8a3d74a from=translated src=- shape=f00413a0 vocab=330ea670
+-/
 theorem coordinateSphereRayleighValue_eq_iSupRayleighValue [Nonempty ι]
     (A : Matrix ι ι ℝ) :
     coordinateSphereRayleighValue A = iSupRayleighValue A := by
   exact (coordinateSphereRayleighValue_eq_sphereRayleighValue A).trans
     (sphereRayleighValue_eq_iSupRayleighValue A)
 
-/-- On a nonempty finite coordinate space, [a real symmetric matrix](hyp:A,hA) has [a unit vector attaining its Euclidean-sphere top Rayleigh value](goal). -/
+/-- On a nonempty finite coordinate space, [a real symmetric matrix](hyp:A,hA) has [a unit vector attaining its Euclidean-sphere top Rayleigh value](goal).
+@isnad1 id=ex.1h2v.s7.73abf63ce27c from=translated src=- shape=0f91bec1 vocab=f3ad9092
+-/
 theorem exists_unit_isMaxOn_rayleighForm [Nonempty ι]
     (A : Matrix ι ι ℝ) (hA : A.IsSymm) :
     ∃ x : EVec ι, ‖x‖ = 1 ∧
@@ -121,7 +129,9 @@ theorem exists_unit_isMaxOn_rayleighForm [Nonempty ι]
     apply hmax
     simpa using hy
 
-/-- On a nonempty finite coordinate space, [a real symmetric matrix](hyp:A,hA) has [a unit eigenvector at its Euclidean-sphere top Rayleigh value](goal). -/
+/-- On a nonempty finite coordinate space, [a real symmetric matrix](hyp:A,hA) has [a unit eigenvector at its Euclidean-sphere top Rayleigh value](goal).
+@isnad1 id=ex.1h2v.s7.cbf238ed2075 from=translated src=- shape=2353d2c9 vocab=a064ec29
+-/
 theorem exists_unit_eigenvector_sphereRayleighValue [Nonempty ι]
     (A : Matrix ι ι ℝ) (hA : A.IsSymm) :
     ∃ x : EVec ι, ‖x‖ = 1 ∧

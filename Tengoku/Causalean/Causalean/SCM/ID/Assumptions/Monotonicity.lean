@@ -103,7 +103,9 @@ def topo : BoolChainNode → ℕ
   | y => 1
 
 /-- For [two nodes in the Boolean chain joined by a directed edge](hyp:a,b), [the first has a
-smaller topological index](goal). -/
+smaller topological index](goal).
+@isnad1 id=lt.1h2v.s3.74fdf03f2188 from=translated src=- shape=52d409ee vocab=ee6b6edb
+-/
 theorem topo_lt : ∀ a b, edge a b → topo a < topo b := by
   intro a b h
   cases a <;> cases b <;> simp [edge, topo] at h ⊢
@@ -203,7 +205,9 @@ def flipStructFun (v : {v // v ∈ boolChainSWIG.observed}) :
       cases n <;> simp [boolChainSWIG] at hn
 
 /-- Each structural function of the copy mechanism on the Boolean chain example is
-measurable. -/
+measurable.
+@isnad1 id=measurab.0h1v.s9.1407e7070320 from=translated src=- shape=e48c0855 vocab=56e4b155
+-/
 @[fun_prop]
 theorem copyStructFun_measurable (v : {v // v ∈ boolChainSWIG.observed}) :
     Measurable (copyStructFun v) := by
@@ -217,7 +221,9 @@ theorem copyStructFun_measurable (v : {v // v ∈ boolChainSWIG.observed}) :
       cases n <;> simp [boolChainSWIG] at hn
 
 /-- Each structural function of the flip mechanism on the Boolean chain example is
-measurable. -/
+measurable.
+@isnad1 id=measurab.0h1v.s9.45c7bf025f0e from=translated src=- shape=e48c0855 vocab=4f4d0f26
+-/
 @[fun_prop]
 theorem flipStructFun_measurable (v : {v // v ∈ boolChainSWIG.observed}) :
     Measurable (flipStructFun v) := by
@@ -288,7 +294,9 @@ def boolParentAssignment (b : Bool) :
       cases n <;> exact false
 
 /-- Evaluating the Boolean parent assignment at the designated parent returns
-the assigned value. -/
+the assigned value.
+@isnad1 id=eq.0h1v.s5.83620ce42f26 from=translated src=- shape=467363a6 vocab=5a3bf6c4
+-/
 @[simp] theorem boolParentAssignment_boolChainDParent (b : Bool) :
     boolParentAssignment b boolChainDParent = b := by
   cases b <;> rfl
@@ -297,7 +305,9 @@ the assigned value. -/
 in the designated parent coordinate](goal).
 
 The witness is substantive: the proof applies the actual structural equation
-for the outcome node. -/
+for the outcome node.
+@isnad1 id=monotone.0h0v.s3.bf6184a7b0fd from=translated src=- shape=f79c25e9 vocab=738b94d5
+-/
 theorem monotoneBoolSCM_satisfies :
     MonotoneMechanism (Ω := boolChainΩ)
       (SWIGNode.random y) (SWIGNode.random d) monotoneBoolSCM := by
@@ -309,7 +319,9 @@ theorem monotoneBoolSCM_satisfies :
 in the designated parent coordinate](goal).
 
 The low parent value maps to `true` and the high parent value maps to `false`,
-so the required nondecreasing inequality fails. -/
+so the required nondecreasing inequality fails.
+@isnad1 id=not.0h0v.s3.09b651372054 from=translated src=- shape=cf034c94 vocab=ce50036c
+-/
 theorem antitoneBoolSCM_violates :
     ¬ MonotoneMechanism (Ω := boolChainΩ)
       (SWIGNode.random y) (SWIGNode.random d) antitoneBoolSCM := by

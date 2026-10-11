@@ -16,7 +16,9 @@ open Filter
 
 /-- For [valid success probabilities](hyp:heta) and a [diverging expected
 count](hyp:hmean), the [pair scale divided by half the squared mean](goal)
-converges to one. -/
+converges to one.
+@isnad1 id=tendsto.2h2v.s7.ac1daea45206 from=translated src=- shape=b203983b vocab=d735f2e6
+-/
 theorem pairScale_div_half_mean_sq_tendsto_one
     (Tseq : ℕ → ℕ) (etaseq : ℕ → ℝ)
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)

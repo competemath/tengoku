@@ -34,7 +34,9 @@ open _root_.MeasureTheory
 open scoped MeasureTheory ProbabilityTheory
 
 /-- Push an a.e.-equality under `μ.restrict s` to a global equality of
-`s`-indicators. -/
+`s`-indicators.
+@isnad1 id=eventual.2h7v.s6.cb518f976bfe from=translated src=- shape=64ac296b vocab=7541341a
+-/
 lemma indicator_aeEq_of_aeEq_restrict
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : MeasureTheory.Measure Ω}
     {s : Set Ω} (hs : MeasurableSet s) {β : Type*} [Zero β] {f g : Ω → β}
@@ -50,7 +52,9 @@ lemma indicator_aeEq_of_aeEq_restrict
   exact MeasureTheory.ae_of_ae_restrict_of_ae_restrict_compl s h_on h_off
 
 /-- Recover a `μ.restrict s` a.e.-equality from a global equality of
-`s`-indicators. -/
+`s`-indicators.
+@isnad1 id=eventual.2h7v.s6.27e2ffbb6b4f from=translated src=- shape=3f6bf85d vocab=7541341a
+-/
 lemma aeEq_restrict_of_indicator_aeEq
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : MeasureTheory.Measure Ω}
     {s : Set Ω} (hs : MeasurableSet s) {β : Type*} [Zero β] {f g : Ω → β}
@@ -63,7 +67,9 @@ lemma aeEq_restrict_of_indicator_aeEq
   simpa [hf, hg] using hω
 
 /-- If an integrable function vanishes after restriction by an `m`-measurable
-indicator, so does its conditional expectation. -/
+indicator, so does its conditional expectation.
+@isnad1 id=eventual.3h7v.s7.3ea9c12fd6f2 from=translated src=- shape=934e807f vocab=8024f27b
+-/
 lemma condExp_indicator_aeEq_zero
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : MeasureTheory.Measure Ω}
     {m : MeasurableSpace Ω} {s : Set Ω} (hs : MeasurableSet[m] s)
@@ -90,7 +96,9 @@ functions can agree on `E` while differing outside `E` if `E` does not detect al
 positive-measure `m`-measurable sets.
 
 The proof applies the hypothesis to the `m`-measurable set where `f` and `g`
-differ. -/
+differ.
+@isnad1 id=eventual.4h8v.s7.1b7d3deffcb9 from=translated src=- shape=95e1ddbf vocab=39300af7
+-/
 theorem ae_eq_of_ae_eq_restrict_arm
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (m : MeasurableSpace Ω) (hm : m ≤ mΩ)

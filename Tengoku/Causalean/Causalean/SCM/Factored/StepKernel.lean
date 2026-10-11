@@ -70,7 +70,9 @@ noncomputable def stepFun (M : Causalean.SCM N Ω) {n : ℕ}
     deterministic map `stepFun`, which produces the value of the `n`-th
     observed node by assembling its parent tuple from the fixed values,
     latent values, and previously generated observed prefix and applying the
-    node's structural equation, is measurable](goal). -/
+    node's structural equation, is measurable](goal).
+@isnad1 id=measurab.1h4v.s9.bbbbf03cf7b4 from=translated src=- shape=8c3724e4 vocab=85a961ed
+-/
 @[fun_prop]
 theorem measurable_stepFun (M : Causalean.SCM N Ω) {n : ℕ}
     (hn : n + 1 ≤ M.observed.card) :
@@ -101,7 +103,9 @@ noncomputable def stepKernel (M : Causalean.SCM N Ω) {n : ℕ}
 model](hyp:M), [a nonnegative integer](hyp:n), and [proof that adding one to this integer does not
 exceed the number of observed nodes](hyp:hn), [the Markov-kernel structure for the corresponding
 deterministic step kernel](goal) asserts that the kernel assigning the next observed value from its
-structural equation is a Markov kernel. -/
+structural equation is a Markov kernel.
+@isnad1 id=ismarkov.1h4v.s9.a531b1a628a1 from=translated src=- shape=50ccbe88 vocab=16b9fe48
+-/
 instance isMarkov_stepKernel (M : Causalean.SCM N Ω) {n : ℕ}
     (hn : n + 1 ≤ M.observed.card) :
     ProbabilityTheory.IsMarkovKernel (M.stepKernel hn) := by

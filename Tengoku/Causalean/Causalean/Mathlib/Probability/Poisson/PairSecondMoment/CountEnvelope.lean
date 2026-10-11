@@ -18,7 +18,9 @@ open scoped ENNReal NNReal
 namespace Causalean.Mathlib.Probability.Poisson.PairSecondMoment
 
 /-- Given [two nonnegative Poisson rates](hyp:rateA,rateB), [the double series
-weighted by both squared counts is finite](goal). -/
+weighted by both squared counts is finite](goal).
+@isnad1 id=lt.0h2v.s7.7e7336e1a353 from=translated src=- shape=a525bdd5 vocab=afbd7160
+-/
 theorem poisson_pair_count_sq_series_lt_top (rateA rateB : ℝ≥0) :
     (∑' m : ℕ, ∑' n : ℕ,
       (poissonMeasure rateA) ({m} : Set ℕ) *

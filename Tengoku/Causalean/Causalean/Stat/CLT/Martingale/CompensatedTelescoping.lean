@@ -34,7 +34,9 @@ variation is at most `K`](hyp:hVariance), and [its conditional Lindeberg mass at
 `η` is at most `δ`](hyp:hLindeberg),
 then [the integrated compensated row characteristic function differs from the
 standard Gaussian characteristic function by the displayed Taylor and
-predictable-mesh budget](goal). -/
+predictable-mesh budget](goal).
+@isnad1 id=le.6h9v.s9.5d813fc40fa9 from=translated src=- shape=890d0472 vocab=23797f79
+-/
 theorem norm_integral_compensatedWeight_rowSum_sub_gaussian_le_of_budgets
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n : ℕ) (t η K δ : ℝ)
@@ -189,7 +191,9 @@ variation is at most `K`](hyp:hVariance), and [its conditional Lindeberg mass at
 `η` is at most `δ`](hyp:hLindeberg),
 then [its ordinary characteristic function differs from the standard Gaussian
 characteristic function by the compensated budget plus a constant times the
-expected distance of predictable quadratic variation from one](goal). -/
+expected distance of predictable quadratic variation from one](goal).
+@isnad1 id=le.6h9v.s9.c1a0c5adc1d5 from=translated src=- shape=f64cfee5 vocab=33061cf6
+-/
 theorem norm_integral_cexp_rowSum_sub_gaussian_le_of_budgets
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n : ℕ) (t η K δ : ℝ)

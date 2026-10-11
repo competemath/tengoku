@@ -60,7 +60,9 @@ breaks `𝓝`). -/
 def lawPM (m : Measure ℝ) (h : IsProbabilityMeasure m) : ProbabilityMeasure ℝ := ⟨m, h⟩
 
 /-- Coercing the bundled probability law back to a measure returns the
-original measure. -/
+original measure.
+@isnad1 id=eq.1h1v.s4.d7e709742de5 from=translated src=- shape=ae1a6b37 vocab=4bdd98df
+-/
 @[simp] lemma lawPM_coe (m : Measure ℝ) (h : IsProbabilityMeasure m) :
     (lawPM m h : Measure ℝ) = m := rfl
 
@@ -78,6 +80,7 @@ of $S_n$ converges weakly to $G$ as $n \to \infty$](goal).
 This is a real-valued finite-variance specialization of Billingsley's Theorem 3.2: it uses a common
 row limit and an `L²` condition stronger than approximation in probability. It is proved through
 characteristic functions, reusing the `clt` package's Lévy continuity theorem.
+@isnad1 id=tendsto.4h5v.s8.98302ad43ce4 from=translated src=- shape=095d414e vocab=8c106fb5
 -/
 theorem tendsto_inDistribution_of_l2_approx
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
@@ -194,7 +197,9 @@ in $L^2$ in the iterated-limsup sense](hyp:H2), then [the law of $S_n$ converges
 standard normal as $n \to \infty$](goal).
 
 This is exactly the shape an m-dependent-approximation CLT consumes to pass from the per-`m`
-m-dependent CLT to the limit. -/
+m-dependent CLT to the limit.
+@isnad1 id=tendsto.4h4v.s8.0d39a1251b8e from=translated src=- shape=53df3bad vocab=e01e0a0f
+-/
 theorem clt_of_l2_approx
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
     (μ : (n : ℕ) → Measure (Ω n)) [∀ n, IsProbabilityMeasure (μ n)]

@@ -89,7 +89,9 @@ variable {μ : Measure Ω} [IsFiniteMeasure μ] (D : FiniteCellData Ω γ μ)
 
 /-- The [binary observed table](hyp:D) and [treatment arm](hyp:d) imply
 [integrability of that arm's indicator](goal), [because the indicator is
-measurable and bounded by one under the finite population measure](step:1). -/
+measurable and bounded by one under the finite population measure](step:1).
+@isnad1 id=integrab.0h5v.s5.f39b626dfd48 from=translated src=- shape=805e0906 vocab=4a1a6be1
+-/
 theorem FiniteCellData.integrable_armIndicator (d : Bool) :
     Integrable (fun ω => armIndicator d (D.A ω)) μ := by
   refine Integrable.of_bound ?_ 1 ?_
@@ -102,7 +104,9 @@ theorem FiniteCellData.integrable_armIndicator (d : Bool) :
 /-- The [binary observed table](hyp:D) and [treatment arm](hyp:d) imply
 [integrability of the arm indicator times the observed binary outcome](goal),
 [because this product is measurable and bounded by one under the finite
-population measure](step:1). -/
+population measure](step:1).
+@isnad1 id=integrab.0h5v.s6.38b5291ecab0 from=translated src=- shape=5934e28d vocab=0a09adeb
+-/
 theorem FiniteCellData.integrable_observedProduct (d : Bool) :
     Integrable (fun ω => armIndicator d (D.A ω) *
       boolReal (observedY D.A D.Y0 D.Y1 ω)) μ := by
@@ -122,7 +126,9 @@ omit [IsFiniteMeasure μ] in
 /-- The [binary observed table](hyp:D), [treatment arm](hyp:d), [outcome
 value](hyp:y), [covariate set](hyp:s), and [measurability of that set](hyp:hs)
 imply [that the corresponding observed-law cell is the matching event in the
-original sample space](goal). -/
+original sample space](goal).
+@isnad1 id=eq.1h7v.s7.5fcf6abbe976 from=translated src=- shape=afb60924 vocab=51dbb4d6
+-/
 theorem FiniteCellData.measure_cell_pullback (d y : Bool)
     (s : Set γ) (hs : MeasurableSet s) :
     D.observedLaw {z | z.1 ∈ s ∧ z.2.1 = d ∧ z.2.2 = y} =
@@ -145,7 +151,9 @@ theorem FiniteCellData.measure_cell_pullback (d y : Bool)
 omit [IsFiniteMeasure μ] in
 /-- The [binary observed table](hyp:D), [treatment arm](hyp:d), [outcome
 value](hyp:y), [covariate set](hyp:s), and [measurability of that set](hyp:hs)
-imply [the real set-integral identity for the corresponding observed cell](goal). -/
+imply [the real set-integral identity for the corresponding observed cell](goal).
+@isnad1 id=eq.1h7v.s7.96dd657f7970 from=translated src=- shape=4bd6c1a6 vocab=0e3dbc18
+-/
 theorem FiniteCellData.setIntegral_cell (d y : Bool)
     (s : Set γ) (hs : MeasurableSet s) :
     ∫ ω in D.X ⁻¹' s,
@@ -199,7 +207,9 @@ theorem FiniteCellData.setIntegral_cell (d y : Bool)
 
 /-- The [binary observed table](hyp:D), [treatment arm](hyp:d), [covariate
 set](hyp:s), and [measurability of that set](hyp:hs) imply [the set-integral
-identity for the arm indicator](goal), [by summing the two outcome cells](step:1). -/
+identity for the arm indicator](goal), [by summing the two outcome cells](step:1).
+@isnad1 id=eq.1h6v.s6.12a9947cdaf4 from=translated src=- shape=548fe184 vocab=8f291c44
+-/
 theorem FiniteCellData.setIntegral_arm (d : Bool)
     (s : Set γ) (hs : MeasurableSet s) :
     ∫ ω in D.X ⁻¹' s, armIndicator d (D.A ω) ∂μ =
@@ -262,7 +272,9 @@ omit [IsFiniteMeasure μ] in
 /-- The [binary observed table](hyp:D), [treatment arm](hyp:d), [covariate
 set](hyp:s), and [measurability of that set](hyp:hs) imply [the set-integral
 identity for the observed outcome times the arm indicator](goal), [because a
-true Boolean outcome is its real indicator](step:1). -/
+true Boolean outcome is its real indicator](step:1).
+@isnad1 id=eq.1h6v.s7.de4bd3ac5a5e from=translated src=- shape=df350284 vocab=27dffbc4
+-/
 theorem FiniteCellData.setIntegral_observedProduct (d : Bool)
     (s : Set γ) (hs : MeasurableSet s) :
     ∫ ω in D.X ⁻¹' s,
@@ -274,7 +286,9 @@ variable {μ : Measure Ω}
 variable (D : FiniteCellData Ω γ μ)
 
 /-- The [binary observed table](hyp:D) has [a covariate σ-algebra contained in
-the ambient σ-algebra](goal), [because its covariate map is measurable](step:1). -/
+the ambient σ-algebra](goal), [because its covariate map is measurable](step:1).
+@isnad1 id=le.0h4v.s5.2ef155e2469d from=translated src=- shape=48ffe74d vocab=54144ea6
+-/
 theorem FiniteCellData.sigmaX_le : D.sigmaX ≤ (inferInstance : MeasurableSpace Ω) :=
   D.measurable_X.comap_le
 
@@ -283,7 +297,9 @@ variable [StandardBorelSpace Ω] [IsFiniteMeasure μ]
 /-- The [binary observed table](hyp:D), [conditional independence of the
 potential-outcome pair and treatment](hyp:hCI), and [selected arm](hyp:d) imply
 [conditional independence of treatment and that arm's potential outcome](goal),
-[by measurable projection of the potential-outcome pair](step:1). -/
+[by measurable projection of the potential-outcome pair](step:1).
+@isnad1 id=condinde.1h5v.s6.3b9948f21b78 from=translated src=- shape=41f9a01a vocab=38599d51
+-/
 theorem FiniteCellData.condIndep_potential_of_pair
     (hCI : CondIndepFun D.sigmaX D.sigmaX_le
       (fun ω => (D.Y0 ω, D.Y1 ω)) D.A μ) (d : Bool) :
@@ -300,7 +316,9 @@ omit [StandardBorelSpace Ω] in
 /-- The [binary observed table](hyp:D) and [treatment arm](hyp:d) imply [that
 the conditional expectation of the arm indicator is the covariate-indexed
 arm-probability kernel](goal), [by conditional-expectation uniqueness from the
-setwise arm identity](step:1). -/
+setwise arm identity](step:1).
+@isnad1 id=eventual.0h5v.s6.5dd2dd753fc8 from=translated src=- shape=736ced6b vocab=f7290840
+-/
 theorem FiniteCellData.condExp_arm (d : Bool) :
     μ[fun ω => armIndicator d (D.A ω) | D.sigmaX]
       =ᵐ[μ] fun ω => D.armProb d (D.X ω) := by
@@ -321,7 +339,9 @@ omit [StandardBorelSpace Ω] in
 /-- The [binary observed table](hyp:D) and [treatment arm](hyp:d) imply [that
 the conditional expectation of observed outcome times the arm indicator is the
 arm-probability kernel times the arm-specific mean kernel](goal), [by
-conditional-expectation uniqueness from the positive-outcome cell](step:1). -/
+conditional-expectation uniqueness from the positive-outcome cell](step:1).
+@isnad1 id=eventual.0h5v.s7.4ec89386fcf6 from=translated src=- shape=62ae095a vocab=6a360691
+-/
 theorem FiniteCellData.condExp_observedProduct (d : Bool) :
     μ[fun ω => armIndicator d (D.A ω) *
       boolReal (observedY D.A D.Y0 D.Y1 ω) | D.sigmaX]
@@ -347,7 +367,9 @@ omit [StandardBorelSpace Ω] [IsFiniteMeasure μ] in
 /-- The [binary observed table](hyp:D), [treatment arm](hyp:d), and [sample-space
 unit](hyp:ω) imply [that the observed arm-outcome product equals the product
 using the selected potential outcome](goal), [because the observed outcome
-selects that arm's potential outcome whenever its indicator is nonzero](step:1). -/
+selects that arm's potential outcome whenever its indicator is nonzero](step:1).
+@isnad1 id=eq.0h6v.s6.a71003d7e9bc from=translated src=- shape=6934de98 vocab=a8f2ac20
+-/
 theorem FiniteCellData.observedProduct_eq_potentialProduct (d : Bool) (ω : Ω) :
     armIndicator d (D.A ω) * boolReal (observedY D.A D.Y0 D.Y1 ω) =
       armIndicator d (D.A ω) * boolReal (D.potential d ω) := by
@@ -358,7 +380,9 @@ theorem FiniteCellData.observedProduct_eq_potentialProduct (d : Bool) (ω : Ω) 
 independence of treatment and the selected potential outcome given covariates](hyp:hCI)
 imply [the conditional-expectation product factorization for the observed
 arm-outcome product](goal), [by consistency of the observed selection and
-conditional independence](step:1). -/
+conditional independence](step:1).
+@isnad1 id=eventual.1h5v.s7.ebef7d4199d1 from=translated src=- shape=3abcb9ba vocab=afc211f8
+-/
 theorem FiniteCellData.condExp_product_factor (d : Bool)
     (hCI : CondIndepFun D.sigmaX D.sigmaX_le D.A (D.potential d) μ) :
     μ[fun ω => armIndicator d (D.A ω) *
@@ -394,7 +418,9 @@ theorem FiniteCellData.condExp_product_factor (d : Bool)
 independence of treatment and the selected potential outcome given covariates](hyp:hCI),
 and [almost-everywhere nonzero arm probability](hyp:hpos) imply [that the
 selected potential outcome's conditional mean is the observed-table mean
-kernel](goal), [by cancelling the arm-probability factor](step:1). -/
+kernel](goal), [by cancelling the arm-probability factor](step:1).
+@isnad1 id=eventual.2h5v.s7.2ce4bbdd049d from=translated src=- shape=7f713fc4 vocab=0752868a
+-/
 theorem FiniteCellData.condExp_potential (d : Bool)
     (hCI : CondIndepFun D.sigmaX D.sigmaX_le D.A (D.potential d) μ)
     (hpos : ∀ᵐ ω ∂μ, D.armProb d (D.X ω) ≠ 0) :
@@ -410,7 +436,9 @@ theorem FiniteCellData.condExp_potential (d : Bool)
 and [almost-everywhere nonzero probabilities for both arms](hyp:hpos) imply [that
 the conditional treated-minus-control potential-outcome contrast equals the
 difference of the observed-table mean kernels](goal), [by conditional-expectation
-linearity and the two arm-specific identities](step:1). -/
+linearity and the two arm-specific identities](step:1).
+@isnad1 id=eventual.2h4v.s7.11a9b8e79655 from=translated src=- shape=b7d48f42 vocab=b5cae2c7
+-/
 theorem FiniteCellData.condExp_treated_sub_control
     (hCI : ∀ d, CondIndepFun D.sigmaX D.sigmaX_le D.A (D.potential d) μ)
     (hpos : ∀ d, ∀ᵐ ω ∂μ, D.armProb d (D.X ω) ≠ 0) :
@@ -439,7 +467,9 @@ theorem FiniteCellData.condExp_treated_sub_control
 potential-outcome pair and treatment](hyp:hCI), and [almost-everywhere nonzero
 probabilities for both arms](hyp:hpos) imply [that the conditional
 treated-minus-control potential-outcome contrast equals the difference of the
-observed-table mean kernels](goal), [by projecting joint independence to each arm](step:1). -/
+observed-table mean kernels](goal), [by projecting joint independence to each arm](step:1).
+@isnad1 id=eventual.2h4v.s7.1b5c7a95db91 from=translated src=- shape=d0db4771 vocab=c1fc5b0a
+-/
 theorem FiniteCellData.condExp_treated_sub_control_of_pair
     (hCI : CondIndepFun D.sigmaX D.sigmaX_le
       (fun ω => (D.Y0 ω, D.Y1 ω)) D.A μ)

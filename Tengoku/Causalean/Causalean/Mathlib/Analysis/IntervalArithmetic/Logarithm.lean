@@ -125,7 +125,9 @@ def logPrecision (q : ℚ) (ε : PosRat) : ℕ :=
   (ε.1.den + 1) * (q.num.natAbs + q.den + 1) * (q.num.natAbs + q.den + 1)
 
 /-- A positive rational logarithm argument has atanh coordinate of absolute
-value strictly below one. -/
+value strictly below one.
+@isnad1 id=lt.1h1v.s4.39da58c621f5 from=translated src=- shape=9d52f7f2 vocab=f37e5e37
+-/
 theorem abs_logCoordinate_lt_one (q : ℚ) (hq : 0 < q) :
     |logCoordinate q| < 1 := by
   exact abs_logCoordinate_lt_one_aux q hq
@@ -168,7 +170,9 @@ private theorem logCoordinate_gap_lower (q : ℚ) (hq : 0 < q) :
     sq_nonneg ((q.num.natAbs : ℚ) + q.den)]
 
 /-- The raw rational logarithm interval encloses the real logarithm of its
-positive rational input. -/
+positive rational input.
+@isnad1 id=contains.1h2v.s4.d294554ed15e from=translated src=- shape=fd66aa0b vocab=f3176ff4
+-/
 theorem logRaw_sound (q : ℚ) (hq : 0 < q) (n : ℕ) :
     (logRaw q hq n).Contains (Real.log (q : ℝ)) := by
   let z := logCoordinate q
@@ -203,7 +207,9 @@ theorem logRaw_sound (q : ℚ) (hq : 0 < q) (n : ℕ) :
   simp only [logRaw, RatInterval.Contains, Rat.cast_sub, Rat.cast_add]
   constructor <;> linarith [hb.1, hb.2]
 
-/-- Every tightened scalar logarithm interval encloses the real logarithm. -/
+/-- Every tightened scalar logarithm interval encloses the real logarithm.
+@isnad1 id=contains.1h2v.s4.ad8dfd1c015f from=translated src=- shape=fd66aa0b vocab=704fe800
+-/
 theorem logScalar_sound (q : ℚ) (hq : 0 < q) (n : ℕ) :
     (logScalar q hq n).Contains (Real.log (q : ℝ)) := by
   induction n with
@@ -211,7 +217,9 @@ theorem logScalar_sound (q : ℚ) (hq : 0 < q) (n : ℕ) :
   | succ n ih =>
       exact RatInterval.tighten_sound ih (logRaw_sound q hq (n + 1))
 
-/-- Scalar logarithm enclosures are nested as precision increases. -/
+/-- Scalar logarithm enclosures are nested as precision increases.
+@isnad1 id=subinter.1h2v.s5.057925883763 from=translated src=- shape=0aede0a1 vocab=f3302c74
+-/
 theorem logScalar_nested (q : ℚ) (hq : 0 < q) (n : ℕ) :
     (logScalar q hq (n + 1)).Subinterval (logScalar q hq n) := by
   exact RatInterval.tighten_subinterval_left
@@ -228,7 +236,9 @@ private theorem logScalar_subinterval_raw (q : ℚ) (hq : 0 < q) (n : ℕ) :
 /-- **Precision-driven logarithm enclosure width.** For [a positive rational number](hyp:hq) and
 [a requested positive rational tolerance](hyp:ε), evaluating the scalar logarithm enclosure at
 the precision level determined from those two inputs produces [an interval no wider than the
-requested tolerance](goal). -/
+requested tolerance](goal).
+@isnad1 id=le.1h2v.s5.42a7b77acd8f from=translated src=- shape=cab52d81 vocab=da353f54
+-/
 theorem logScalar_width (q : ℚ) (hq : 0 < q) (ε : PosRat) :
     (logScalar q hq (logPrecision q ε)).width ≤ ε.1 := by
   let D : ℚ := ε.1.den

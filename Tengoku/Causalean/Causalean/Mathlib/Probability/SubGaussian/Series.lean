@@ -21,7 +21,9 @@ sum](goal).
 Proof strategy: set `r = exp (-α * log 2 / 2)`, so `0 < r < 1`.
 Use Mathlib's summability of `n * r^n` and of `r^n`, then bound each
 nonnegative partial sum by the corresponding `tsum`.  The weight `j+1`
-also controls the square-root logarithm arising from a dyadic block. -/
+also controls the square-root logarithm arising from a dyadic block.
+@isnad1 id=ex.1h1v.s6.28d4b86ae0fc from=translated src=- shape=0823d1e1 vocab=ab32740c
+-/
 theorem weighted_dyadic_geometric_bound (α : ℝ) (hα : 0 < α) :
     ∃ Cα : ℝ, 0 < Cα ∧
       ∀ J : ℕ,

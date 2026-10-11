@@ -40,12 +40,16 @@ pseudoinverse; the design-balance theorem below separately assumes
 noncomputable def olsWeight (X : Matrix Obs Param ℝ) (c : Param → ℝ) : Obs → ℝ :=
   X *ᵥ ((Xᵀ * X)⁻¹ *ᵥ c)
 
-/-- The OLS weight lies in the column span of `X`. -/
+/-- The OLS weight lies in the column span of `X`.
+@isnad1 id=eq.0h4v.s6.f6ba9194b0e9 from=translated src=- shape=58e1819d vocab=44380721
+-/
 lemma olsWeight_mem_colSpan (X : Matrix Obs Param ℝ) (c : Param → ℝ) :
     olsWeight X c = X *ᵥ ((Xᵀ * X)⁻¹ *ᵥ c) := rfl
 
 /-- For [an invertible normal-equations matrix `XᵀX`](hyp:h), [the OLS weight
-satisfies the design-balance identity `olsWeight X c ᵥ* X = c`](goal). -/
+satisfies the design-balance identity `olsWeight X c ᵥ* X = c`](goal).
+@isnad1 id=eq.1h4v.s6.097ff1d94806 from=translated src=- shape=cfcb09f3 vocab=ae4ea1cf
+-/
 lemma olsWeight_vecMul_eq {X : Matrix Obs Param ℝ} (c : Param → ℝ)
     (h : IsUnit (Xᵀ * X).det) : olsWeight X c ᵥ* X = c := by
   have h1 : ∀ g : Param → ℝ, (X *ᵥ g) ᵥ* X = (Xᵀ * X) *ᵥ g := by
@@ -61,7 +65,9 @@ lemma olsWeight_vecMul_eq {X : Matrix Obs Param ℝ} (c : Param → ℝ)
 invertible normal-equations matrix `Xᵀ X`](hyp:h) and [a spherical matrix
 `S = σ² I`](hyp:hS), among all weight vectors `w` satisfying [the same
 design-balance identity `w ᵥ* X = c`](hyp:hU), [the quadratic form at
-`olsWeight X c` is no larger than at `w`](goal). -/
+`olsWeight X c` is no larger than at `w`](goal).
+@isnad1 id=le.3h7v.s6.1ae3453e2abd from=translated src=- shape=234b81e8 vocab=90ab823d
+-/
 theorem olsWeight_quadVar_spherical_le [DecidableEq Obs]
     {X : Matrix Obs Param ℝ} (c : Param → ℝ)
     (h : IsUnit (Xᵀ * X).det) {S : Matrix Obs Obs ℝ} {σ : ℝ}

@@ -32,7 +32,9 @@ nonnegative vectors that satisfy every defining linear equality. -/
 def Polytope.weights (P : Polytope ι κ) : Set (EuclideanSpace ℝ ι) :=
   {α | (∀ i, 0 ≤ α i) ∧ ∀ j, (∑ i, P.A j i * α i) = P.b j}
 
-/-- The [feasible weight set](goal) of a [fixed compact polytope](hyp:P) is Borel. -/
+/-- The [feasible weight set](goal) of a [fixed compact polytope](hyp:P) is Borel.
+@isnad1 id=measurab.0h3v.s5.70bba693713a from=translated src=- shape=b16c8333 vocab=94f3fb94
+-/
 theorem Polytope.measurableSet_weights (P : Polytope ι κ) :
     MeasurableSet P.weights := by
   exact P.compact.measurableSet
@@ -56,7 +58,9 @@ def Quadratics.objective (Q : Quadratics Θ ι)
   ∑ i, α i * (Q.a i θ * t ^ 2 + Q.b i θ * t + Q.c i θ)
 
 /-- A [quadratic family](hyp:Q) has a [jointly Borel quadratic objective](goal) in the
-parameter, finite weight vector, and scalar decision. -/
+parameter, finite weight vector, and scalar decision.
+@isnad1 id=measurab.0h3v.s6.89af5e521798 from=translated src=- shape=e04c2ec5 vocab=389258d0
+-/
 theorem Quadratics.measurable_objective (Q : Quadratics Θ ι) :
     Measurable (fun x : Θ × (EuclideanSpace ℝ ι × ℝ) =>
       Q.objective x.1 x.2.1 x.2.2) := by
@@ -92,7 +96,9 @@ def value (P : Polytope ι κ) (Q : Quadratics Θ ι) (θ : Θ) : ℝ :=
 
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), [parameter](hyp:θ), [weight
 vector](hyp:α), and [scalar decision](hyp:t) whose [pair is a saddle](hyp:h) have an
-[objective equal to the max-min value](goal). -/
+[objective equal to the max-min value](goal).
+@isnad1 id=eq.1h8v.s6.d65785e4b1cf from=translated src=- shape=fd20d1cc vocab=76f195db
+-/
 theorem value_eq_of_isSaddle (P : Polytope ι κ) (Q : Quadratics Θ ι)
     (θ : Θ) (α : EuclideanSpace ℝ ι) (t : ℝ)
     (h : IsSaddle P Q θ α t) :
@@ -110,7 +116,9 @@ theorem value_eq_of_isSaddle (P : Polytope ι κ) (Q : Quadratics Θ ι)
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), [parameter](hyp:θ), [weight
 vector](hyp:α), and [scalar decision](hyp:t) whose [pair is a saddle](hyp:h) have a [real
 max-min value equal to the extended-real max-min expression](goal), including unbounded-below
-competitors. -/
+competitors.
+@isnad1 id=eq.1h8v.s7.79dbaa2c8f7c from=translated src=- shape=ea7baaa9 vocab=d2ee53bb
+-/
 theorem value_eq_extended_maxMin (P : Polytope ι κ) (Q : Quadratics Θ ι)
     (θ : Θ) (α : EuclideanSpace ℝ ι) (t : ℝ)
     (h : IsSaddle P Q θ α t) :
@@ -142,7 +150,9 @@ def Quadratics.envelope (P : Polytope ι κ) (Q : Quadratics Θ ι)
   sSup ((fun β : EuclideanSpace ℝ ι => Q.objective θ β t) '' P.weights)
 
 /-- A [fixed polytope](hyp:P) and [quadratic family](hyp:Q) have a [jointly Borel maximum
-envelope](goal) in the parameter and scalar decision. -/
+envelope](goal) in the parameter and scalar decision.
+@isnad1 id=measurab.0h5v.s5.1481307d9292 from=translated src=- shape=8b1e4946 vocab=008a79c8
+-/
 theorem Quadratics.measurable_envelope (P : Polytope ι κ)
     (Q : Quadratics Θ ι) :
     Measurable (fun x : Θ × ℝ => Q.envelope P x.1 x.2) := by
@@ -174,7 +184,9 @@ theorem Quadratics.measurable_envelope (P : Polytope ι κ)
     Q.objective x.1 s.1.1 x.2)).symm
 
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), and [parameter](hyp:θ) have a
-[continuous maximum envelope as a function of the scalar decision](goal). -/
+[continuous maximum envelope as a function of the scalar decision](goal).
+@isnad1 id=continuo.0h6v.s5.f5415edf2580 from=translated src=- shape=67f37cea vocab=022fa64a
+-/
 theorem Quadratics.continuous_envelope (P : Polytope ι κ)
     (Q : Quadratics Θ ι) (θ : Θ) : Continuous (Q.envelope P θ) := by
   apply P.compact.continuous_sSup
@@ -185,7 +197,9 @@ theorem Quadratics.continuous_envelope (P : Polytope ι κ)
 
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), [parameter](hyp:θ), [scalar
 decision](hyp:t), and [feasible weight](hyp:β,hβ) have an [objective no larger than the maximum
-envelope](goal). -/
+envelope](goal).
+@isnad1 id=le.1h8v.s6.65528a2e5d49 from=translated src=- shape=43f43659 vocab=4068f10c
+-/
 theorem Quadratics.objective_le_envelope (P : Polytope ι κ) (Q : Quadratics Θ ι)
     (θ : Θ) (t : ℝ) (β : EuclideanSpace ℝ ι) (hβ : β ∈ P.weights) :
     Q.objective θ β t ≤ Q.envelope P θ t := by
@@ -198,7 +212,9 @@ theorem Quadratics.objective_le_envelope (P : Polytope ι κ) (Q : Quadratics Θ
 
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), [parameter](hyp:θ), [weight
 vector](hyp:α), and [scalar decision](hyp:s) whose [pair is a saddle](hyp:hs) have a [maximum
-envelope equal to their objective](goal). -/
+envelope equal to their objective](goal).
+@isnad1 id=eq.1h8v.s6.bcfea3d0576d from=translated src=- shape=5597dd01 vocab=f00723cb
+-/
 theorem Quadratics.envelope_eq_of_isSaddle (P : Polytope ι κ)
     (Q : Quadratics Θ ι) (θ : Θ) (α : EuclideanSpace ℝ ι) (s : ℝ)
     (hs : IsSaddle P Q θ α s) :
@@ -212,7 +228,9 @@ theorem Quadratics.envelope_eq_of_isSaddle (P : Polytope ι κ)
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), [parameter](hyp:θ), [weight
 vector](hyp:α), [known saddle decision](hyp:s), [new decision](hyp:t), [known saddle
 certificate](hyp:hs), and [envelope comparison](hyp:hle) give a [saddle pair at the new
-decision](goal). -/
+decision](goal).
+@isnad1 id=issaddle.2h9v.s6.bd73d895c2ce from=translated src=- shape=31e46a39 vocab=75aff63b
+-/
 theorem Quadratics.isSaddle_at_envelope_le (P : Polytope ι κ)
     (Q : Quadratics Θ ι) (θ : Θ) (α : EuclideanSpace ℝ ι) (s t : ℝ)
     (hs : IsSaddle P Q θ α s)

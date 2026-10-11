@@ -61,7 +61,9 @@ functions `f = charFun (P.map X)` and `g = charFun (P.map Y)` satisfy
 
 This is obtained by evaluating the joint characteristic function of `(X, Y)` at
 `(u+v, u−v)` in two ways: directly (using `X ⟂ Y`) it factors as `f (u+v)·g (u−v)`,
-and through the independent pair `(X+Y, X−Y)` it factors as `f u·g u · f v·g (−v)`. -/
+and through the independent pair `(X+Y, X−Y)` it factors as `f u·g u · f v·g (−v)`.
+@isnad1 id=eq.4h6v.s8.d8aface2f135 from=translated src=- shape=cfd9c6d6 vocab=f25b1a41
+-/
 lemma bernstein_charFun_funeq
     (mX : Measurable X) (mY : Measurable Y)
     (hXY : IndepFun X Y P) (hUV : IndepFun (X + Y) (X - Y) P) (u v : ℝ) :
@@ -136,7 +138,9 @@ lemma bernstein_charFun_funeq
 
 /-- The characteristic function of a probability measure on `ℝ` is nonzero on a
 neighbourhood of `0`: it is continuous and equals `1` at `0`.  This is what makes
-the logarithmic derivative `(charFun μ)' / charFun μ` well defined near `0`. -/
+the logarithmic derivative `(charFun μ)' / charFun μ` well defined near `0`.
+@isnad1 id=eventual.0h1v.s5.b26c6bc6cdf0 from=translated src=- shape=92a1d04b vocab=24fd0a36
+-/
 lemma charFun_eventually_ne_zero (μ : Measure ℝ) [IsProbabilityMeasure μ] :
     ∀ᶠ t in nhds (0 : ℝ), charFun μ t ≠ 0 := by
   exact (continuous_charFun (μ := μ)).continuousAt.eventually_ne
@@ -146,7 +150,9 @@ omit [IsProbabilityMeasure P] in
 /-- `charFun` of a pushforward with a finite second moment is `C²`.  This is a
 specialisation of `contDiff_charFun` (the characteristic function is `Cⁿ` whenever
 the `n`-th moment is finite), transferring `MemLp Z 2 P` to `MemLp id 2 (P.map Z)`
-along the pushforward map. -/
+along the pushforward map.
+@isnad1 id=contdiff.1h3v.s7.ee70042d5530 from=translated src=- shape=118d20e3 vocab=e10efea2
+-/
 lemma charFun_contDiff_two {Z : Ω → ℝ} [IsFiniteMeasure P] (hZ : MemLp Z 2 P) :
     ContDiff ℝ 2 (charFun (P.map Z)) := by
   refine contDiff_charFun (μ := P.map Z) ?_
@@ -171,7 +177,9 @@ differentiating that in `v` gives `h_f'(u+v) = h_g'(u−v)`.  Since `(u+v, u−v
 ranges over a neighbourhood of `0` in `ℝ²`, both `h_f'` and `h_g'` equal one
 constant `c`, hence `h_f(t) = f'(0) + c·t`; the linear ODE `f' = h_f · f` with
 `f 0 = 1` has the claimed exponential as unique solution (verify by differentiating
-`f · exp(−(f'(0)·t + c·t²/2))`, which is constant `1`). -/
+`f · exp(−(f'(0)·t + c·t²/2))`, which is constant `1`).
+@isnad1 id=ex.5h2v.s8.cb9d31267747 from=translated src=- shape=a3df27c7 vocab=d537d7b2
+-/
 lemma gaussianForm_of_funeq {f g : ℝ → ℂ}
     (hf : ContDiff ℝ 2 f) (hg : ContDiff ℝ 2 g) (hf0 : f 0 = 1) (hg0 : g 0 = 1)
     (hfe : ∀ u v : ℝ, f (u + v) * g (u - v) = f u * g u * (f v * g (-v))) :
@@ -494,7 +502,9 @@ equation (`bernstein_charFun_funeq`), so `gaussianForm_of_funeq` gives the local
 forms with linear coefficients `f'(0), g'(0)` and shared quadratic constant `c`.
 `iteratedDeriv_charFun_zero` identifies `f'(0) = I·E[X]`, `g'(0) = I·E[Y]` and
 `c = −Var X = −Var Y`; set `mf = E[X]`, `mg = E[Y]`, `σ² = Var X ≥ 0`
-(`variance_nonneg`). -/
+(`variance_nonneg`).
+@isnad1 id=ex.6h4v.s8.049276d478ca from=translated src=- shape=7cf8b409 vocab=a68a7fae
+-/
 lemma bernstein_charFun_gaussian_nhds_zero
     (mX : Measurable X) (mY : Measurable Y)
     (hX2 : MemLp X 2 P) (hY2 : MemLp Y 2 P)
@@ -624,7 +634,9 @@ difference `X − Y` are independent](hyp:hUV), then [both `X` and `Y` have
 Gaussian laws](goal).
 
 This is a strict fixed-coefficient special case and an input toward Darmois–Skitovich. The
-arbitrary-coefficient and general finite-family Darmois–Skitovich theorems are not proved here. -/
+arbitrary-coefficient and general finite-family Darmois–Skitovich theorems are not proved here.
+@isnad1 id=and.6h4v.s7.64c2398b0018 from=translated src=- shape=53fbfdc8 vocab=46b73127
+-/
 theorem bernsteinCharacterization
     (mX : Measurable X) (mY : Measurable Y)
     (hX2 : MemLp X 2 P) (hY2 : MemLp Y 2 P)
@@ -757,7 +769,9 @@ theorem bernsteinCharacterization
 /-- Compatibility alias for `bernsteinCharacterization`: if [the two random variables are
 measurable](hyp:mX,mY), [have finite second moments](hyp:hX2,hY2), [are
 independent](hyp:hXY), and [their sum and difference are independent](hyp:hUV), then [both
-pushforward laws are Gaussian](goal). -/
+pushforward laws are Gaussian](goal).
+@isnad1 id=and.6h4v.s7.64c2398b0018 from=translated src=- shape=53fbfdc8 vocab=46b73127
+-/
 @[deprecated bernsteinCharacterization (since := "2026-09-15")]
 alias bernstein := bernsteinCharacterization
 

@@ -22,14 +22,18 @@ def FiniteDyadicTraversal.truncate {d m n : ℕ} (T : FiniteDyadicTraversal d n)
   nested k hk a b hab := T.nested k (hk.trans hmn) a b hab
 
 /-- Restricting a traversal twice gives the same finite traversal as a single
-restriction to the final depth. -/
+restriction to the final depth.
+@isnad1 id=eq.2h5v.s5.a38b453b2345 from=translated src=- shape=65d68231 vocab=01dd6d05
+-/
 theorem FiniteDyadicTraversal.truncate_trans {d l m n : ℕ}
     (T : FiniteDyadicTraversal d n) (hlm : l ≤ m) (hmn : m ≤ n) :
     (T.truncate hmn).truncate hlm = T.truncate (hlm.trans hmn) := by
   rfl
 
 /-- At every finite depth there are only finitely many coherent dyadic cell
-orders in a fixed dimension. -/
+orders in a fixed dimension.
+@isnad1 id=finite.0h2v.s3.647c53e2eec6 from=translated src=- shape=b794339c vocab=238387a6
+-/
 theorem finite_finiteDyadicTraversal (d n : ℕ) :
     Finite (FiniteDyadicTraversal d n) := by
   classical
@@ -49,7 +53,9 @@ theorem finite_finiteDyadicTraversal (d n : ℕ) :
       rfl
 
 /-- Given [a cube dimension](hyp:d) and [nonempty finite traversals at every depth](hyp:hfinite),
-[one coherent sequence of finite traversals exists](goal). -/
+[one coherent sequence of finite traversals exists](goal).
+@isnad1 id=ex.1h1v.s5.f7e676fa6299 from=translated src=- shape=0d92dbfa vocab=f1939acf
+-/
 theorem exists_coherent_finiteDyadicTraversals (d : ℕ)
     (hfinite : ∀ n, Nonempty (FiniteDyadicTraversal d n)) :
     ∃ T : ∀ n, FiniteDyadicTraversal d n,

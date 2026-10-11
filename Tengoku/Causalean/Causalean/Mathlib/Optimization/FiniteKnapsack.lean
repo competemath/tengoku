@@ -17,7 +17,9 @@ namespace Causalean.Mathlib.Optimization
 
 /-- A finite fractional knapsack with [dimension, weights, item values, budget, and a
 nonnegative-budget certificate](hyp:d,p,tau,b,hb) [has a feasible policy that maximizes the
-weighted value over every box-constrained policy within budget](goal). -/
+weighted value over every box-constrained policy within budget](goal).
+@isnad1 id=ex.1h4v.s8.4f2eba9135bb from=translated src=- shape=81aef46a vocab=f8b24fd1
+-/
 lemma finite_knapsack_attains {d : ℕ} (p tau : Fin d → ℝ) (b : ℝ)
     (hb : 0 ≤ b) :
     ∃ pi : EuclideanSpace ℝ (Fin d),

@@ -40,7 +40,9 @@ measure](hyp:hm,hm'), [the masking set is measurable at the intermediate level](
     μ[s.indicator f | m]  =ᵐ[μ]  μ[s.indicator (μ[f | m']) | m].
 
 (Here `s.indicator g = 1_s · g`.) Masking and projecting to the coarser `m` commute with
-first taking the conditional expectation for the finer σ-algebra. -/
+first taking the conditional expectation for the finer σ-algebra.
+@isnad1 id=eventual.4h8v.s7.2ea03b6f6ebd from=translated src=- shape=51b78121 vocab=93771a77
+-/
 theorem condExp_setIndicator_condExp_of_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (hm : m ≤ m') (hm' : m' ≤ m0) [SigmaFinite (μ.trim hm')]

@@ -97,7 +97,9 @@ noncomputable def krPotential {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (x : ℝ) : ℝ :=
   ∫ t in (0 : ℝ)..x, cdfSign μ ν t
 
-/-- The CDF-sign potential is one-Lipschitz. -/
+/-- The CDF-sign potential is one-Lipschitz.
+@isnad1 id=lipschit.0h4v.s5.21fe75992ee3 from=translated src=- shape=d4bd81a3 vocab=8551b116
+-/
 theorem krPotential_lipschitz {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) : LipschitzWith 1 (krPotential μ ν) := by
   rw [lipschitzWith_iff_dist_le_mul]
@@ -113,7 +115,9 @@ theorem krPotential_lipschitz {ι κ : Type*} [Fintype ι] [Fintype κ]
       (fun t ht => by simpa [Real.norm_eq_abs] using abs_cdfSign_le_one μ ν t) :
       ‖∫ t in y..x, cdfSign μ ν t‖ ≤ (1 : ℝ) * |x - y|)
 
-/-- The canonical CDF-sign potential is normalized to vanish at zero. -/
+/-- The canonical CDF-sign potential is normalized to vanish at zero.
+@isnad1 id=eq.0h4v.s5.72c65c184f07 from=translated src=- shape=fe584291 vocab=d79b6af8
+-/
 @[simp] theorem krPotential_zero {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) : krPotential μ ν 0 = 0 := by
   simp [krPotential]
@@ -164,7 +168,9 @@ private theorem unsignedPair_integrable (m a b : ℝ) :
   exact ((cutIndicator_integrable a b).add (cutIndicator_integrable b a)).const_mul m
 
 /-- For every transport plan, the CDF difference at a cut is exactly its signed crossing mass at
-that cut. -/
+that cut.
+@isnad1 id=eq.0h6v.s5.605211d35a56 from=translated src=- shape=0460aff9 vocab=51db9075
+-/
 theorem cdfGap_eq_signedCrossing {ι κ : Type*} [Fintype ι] [Fintype κ]
     {μ : AtomicLaw ι} {ν : AtomicLaw κ} (π : TransportPlan μ ν) (x : ℝ) :
     cdfGap μ ν x = signedCrossing π x := by
@@ -208,7 +214,9 @@ theorem cdfGap_eq_signedCrossing {ι κ : Type*} [Fintype ι] [Fintype κ]
         · simp [hix, hjx]
 
 /-- Pointwise triangle inequality for cut flow integrates to domination by the unsigned crossing
-envelope. -/
+envelope.
+@isnad1 id=le.0h5v.s6.d180a98f1fbc from=translated src=- shape=2009156c vocab=b827fc7c
+-/
 theorem integral_abs_cdfGap_le_integral_crossingEnvelope {ι κ : Type*}
     [Fintype ι] [Fintype κ] {μ : AtomicLaw ι} {ν : AtomicLaw κ}
     (π : TransportPlan μ ν) :
@@ -262,7 +270,9 @@ theorem integral_abs_cdfGap_le_integral_crossingEnvelope {ι κ : Type*}
       split_ifs with h₁ h₂ h₃ <;> simp_all [π.nonneg i j]
 
 /-- The integral of the unsigned crossing envelope is exactly the absolute-distance cost of the
-transport plan. -/
+transport plan.
+@isnad1 id=eq.0h5v.s6.e6f9ed465b1c from=translated src=- shape=fe789371 vocab=6eceedf3
+-/
 theorem integral_crossingEnvelope_eq_transportCost {ι κ : Type*}
     [Fintype ι] [Fintype κ] {μ : AtomicLaw ι} {ν : AtomicLaw κ}
     (π : TransportPlan μ ν) :
@@ -295,7 +305,9 @@ theorem integral_crossingEnvelope_eq_transportCost {ι κ : Type*}
     intro j hj
     exact unsignedPair_integrable (π.mass i j) (μ.atom i) (ν.atom j)
 
-/-- [Two finite atomic laws with finite slot types](hyp:ι,κ,μ,ν), [valid probability weights](hyp:hμ,hν), and [any transport plan between them](hyp:π) satisfy [the lower bound of transport cost by integrated absolute CDF gap](goal). -/
+/-- [Two finite atomic laws with finite slot types](hyp:ι,κ,μ,ν), [valid probability weights](hyp:hμ,hν), and [any transport plan between them](hyp:π) satisfy [the lower bound of transport cost by integrated absolute CDF gap](goal).
+@isnad1 id=le.2h5v.s6.b56b1c5cfb52 from=translated src=- shape=6b886e71 vocab=40ef24ec
+-/
 theorem integral_abs_cdfGap_le_transportCost {ι κ : Type*}
     [Fintype ι] [Fintype κ] {μ : AtomicLaw ι} {ν : AtomicLaw κ}
     (hμ : μ.Valid) (hν : ν.Valid) (π : TransportPlan μ ν) :
@@ -431,7 +443,9 @@ private theorem integrable_finset_sum_of_integrable
   simp
 
 /-- Finite-atomic integration by parts expresses the expectation contrast of the CDF-sign
-potential as the negative integral of the sign times the CDF gap. -/
+potential as the negative integral of the sign times the CDF gap.
+@isnad1 id=eq.2h4v.s6.711f1f045517 from=translated src=- shape=d01ca47e vocab=6d8de703
+-/
 theorem integral_krPotential_sub_eq_neg_integral_cdfSign_mul_cdfGap
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :

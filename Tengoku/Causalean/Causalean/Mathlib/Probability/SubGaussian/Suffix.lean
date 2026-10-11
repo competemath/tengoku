@@ -38,7 +38,9 @@ For `L = 2^j m`, the block scale is
 Since `m ≥ 1` and `log 2 ≤ 1`, the remaining factor obeys
 `sqrt (1 + log L) ≤ (j+1) * sqrt (1 + log m)`.
 Use `integrable_finsetSum` and `integral_finsetSum` for the finite block
-majorant, and `setIntegral_mono_ae` for the final comparison. -/
+majorant, and `setIntegral_mono_ae` for the final comparison.
+@isnad1 id=ex.1h1v.s8.18b4567a877c from=translated src=- shape=4f648059 vocab=f1dd7c9c
+-/
 theorem decaying_gaussian_suffix_integral (α : ℝ) (hα : 0 < α) :
     ∃ Cα : ℝ, 0 < Cα ∧
       ∀ (N m : ℕ) (σ : ℝ), 1 ≤ m → 0 < σ →

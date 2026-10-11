@@ -66,21 +66,27 @@ noncomputable def supportFn (C : Set E) (d : E) : ℝ :=
 
 /-- The support function is definitionally the supremum of the linear target over the set.
 
-This unfolding lemma exposes the image form used by comparison arguments. -/
+This unfolding lemma exposes the image form used by comparison arguments.
+@isnad1 id=eq.0h3v.s5.beb9da8b8ac4 from=translated src=- shape=9618221f vocab=170ae0a1
+-/
 lemma supportFn_eq_iSup_image (C : Set E) (d : E) :
     supportFn C d = sSup ((fun x => ⟪d, x⟫) '' C) := rfl
 
 /-- **Lower sandwich.** For a feasible set `C` in a real inner-product space and a direction `d`,
 if [a point `x` belongs to `C`](hyp:hx) and [the linear functional `⟪d, ·⟫` is bounded above on
 `C`](hyp:hbdd), then [`x`'s functional value is at most the support value: `⟪d, x⟫ ≤ supportFn C
-d`](goal). -/
+d`](goal).
+@isnad1 id=le.2h4v.s6.5d5e1073ab2f from=translated src=- shape=a00cf7e5 vocab=1210573d
+-/
 theorem le_supportFn {C : Set E} {d : E} {x : E} (hx : x ∈ C)
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C)) :
     ⟪d, x⟫ ≤ supportFn C d :=
   le_csSup hbdd ⟨x, hx, rfl⟩
 
 /-- **Upper sandwich.** A uniform upper bound `b` on the functional over a
-nonempty `C` bounds the support value: `supportFn C d ≤ b`. -/
+nonempty `C` bounds the support value: `supportFn C d ≤ b`.
+@isnad1 id=le.2h4v.s5.c1171b5169c3 from=translated src=- shape=3d26b29a vocab=636df03e
+-/
 theorem supportFn_le {C : Set E} {d : E} {b : ℝ} (hne : C.Nonempty)
     (hb : ∀ x ∈ C, ⟪d, x⟫ ≤ b) :
     supportFn C d ≤ b := by

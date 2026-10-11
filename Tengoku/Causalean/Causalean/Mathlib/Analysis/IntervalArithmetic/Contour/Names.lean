@@ -52,7 +52,9 @@ private theorem rectangle_width_mono {I J : ComplexRatInterval}
 /-- For [a certified complex name](hyp:z) and [a requested positive rational tolerance](hyp:ε), [the refined rational rectangle](goal) is the rectangle selected by that name's tolerance-to-fuel rule. -/
 def refine (z : CertifiedComplex) (ε : PosRat) : ComplexRatInterval := z.approx (z.modulus ε)
 
-/-- Refinement by the supplied rule preserves containment and meets its requested width. -/
+/-- Refinement by the supplied rule preserves containment and meets its requested width.
+@isnad1 id=and.0h2v.s5.0ebdfa28f0c4 from=translated src=- shape=d39e3f03 vocab=fba46f15
+-/
 theorem refine_spec (z : CertifiedComplex) (ε : PosRat) :
     (z.refine ε).Contains z.value ∧ ComplexRatInterval.width (z.refine ε) ≤ ε.1 := by
   exact ⟨z.contains _, z.width_modulus ε⟩
@@ -119,7 +121,9 @@ def normPrecision (z : CertifiedComplex) (ε : PosRat) : ℕ :=
       exact div_pos (sq_pos_of_pos ε.2) (by nlinarith)⟩
   max (z.modulus δ) (64 * (ε.1.den + 1) * (M.num.natAbs + 2) ^ 2)
 
-/-- Recursive modulus approximations contain the norm and are adjacent-fuel nested. -/
+/-- Recursive modulus approximations contain the norm and are adjacent-fuel nested.
+@isnad1 id=and.0h2v.s5.655c6682909d from=translated src=- shape=7868be8e vocab=d09c57ce
+-/
 theorem normApprox_spec (z : CertifiedComplex) (fuel : ℕ) :
     (normApprox z fuel).Contains ‖z.value‖ ∧
       (normApprox z (fuel + 1)).Subinterval (normApprox z fuel) := by
@@ -166,7 +170,9 @@ private theorem normApprox_subinterval_current (z : CertifiedComplex) (fuel : �
 
 /-- For [a certified complex input](hyp:z) and [a requested positive rational tolerance
 `ε`](hyp:ε), [evaluating the certified-modulus approximation at the precision level selected
-for that tolerance yields an output enclosure whose width is no larger than `ε`](goal). -/
+for that tolerance yields an output enclosure whose width is no larger than `ε`](goal).
+@isnad1 id=le.0h2v.s4.b6742ccade9c from=translated src=- shape=4c0864cd vocab=9832169c
+-/
 theorem norm_width_at_precision (z : CertifiedComplex) (ε : PosRat) :
     (normApprox z (normPrecision z ε)).width ≤ ε.1 := by
   let M := ComplexRatInterval.maxAbs (z.approx 0)

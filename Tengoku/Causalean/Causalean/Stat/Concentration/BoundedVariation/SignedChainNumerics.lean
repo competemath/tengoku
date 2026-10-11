@@ -59,6 +59,7 @@ private theorem dyadic_log_sqrt_le_geometric (k : ℕ) :
 
 /-- [The square roots of the dyadic logarithmic energy factors
 32 (1 + log 2^(k+1)) / 2^(k+1) form a summable sequence in k](goal).
+@isnad1 id=summable.0h0v.s6.1d98d79f05f9 from=translated src=- shape=ba8918df vocab=2f5aa3e3
 -/
 theorem dyadic_log_sqrt_summable :
     Summable (fun k : ℕ => Real.sqrt
@@ -77,6 +78,7 @@ theorem dyadic_log_sqrt_summable :
 
 This is the dyadic factor in the L₂ triangle bound, independent of the
 number of paths and signs.
+@isnad1 id=le.0h0v.s7.e9230b322ace from=translated src=- shape=27af85c3 vocab=b116b251
 -/
 theorem dyadic_log_sqrt_tsum_le_40 :
     (∑' k : ℕ, Real.sqrt

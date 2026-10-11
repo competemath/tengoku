@@ -16,7 +16,9 @@ open Causalean.Mathlib.Probability.CertifiedFiniteMarkovExpectation
 
 namespace Causalean.Mathlib.Probability.Kernel.FiniteHistory
 
-/-- A probability [law](hyp:ρ) on a finite measurable space, [candidate atom masses](hyp:π) that [sum to one](hyp:hπsum) and [match the law's singleton masses](hyp:hπatom), and a measurable [score](hyp:v,hv) yield [the corresponding finite weighted-sum integral](goal). -/
+/-- A probability [law](hyp:ρ) on a finite measurable space, [candidate atom masses](hyp:π) that [sum to one](hyp:hπsum) and [match the law's singleton masses](hyp:hπatom), and a measurable [score](hyp:v,hv) yield [the corresponding finite weighted-sum integral](goal).
+@isnad1 id=eq.3h4v.s7.5aa3078b085c from=translated src=- shape=7c3e7f9b vocab=f3ae65ee
+-/
 theorem integral_finite_eq_sum_of_singleton_masses
     {S : Type*} [Fintype S] [MeasurableSpace S]
     (ρ : Measure S) [IsProbabilityMeasure ρ]
@@ -87,7 +89,9 @@ def pointVector {S : Type*} [Fintype S] [DecidableEq S] (s : S) : S → ℝ :=
 between probability vectors by a factor α](hyp:alpha,hcontract) with [0 ≤ α](hyp:halpha0)
 [< 1](hyp:halpha1). Then for [every starting state s](hyp:s) and [every number of steps
 gap](hyp:gap), [the ℓ¹ distance between the distribution after gap steps from the point mass at s
-and π is at most 2·α^gap](goal). -/
+and π is at most 2·α^gap](goal).
+@isnad1 id=le.5h6v.s6.1756e1763e76 from=translated src=- shape=28867ad9 vocab=850f5545
+-/
 theorem markovIterate_point_stationary_bound
     {S : Type*} [Fintype S] [DecidableEq S]
     (P : Matrix S S ℝ) (π : S → ℝ) (alpha : ℝ)
@@ -125,7 +129,9 @@ theorem markovIterate_point_stationary_bound
       _ ≤ alpha * (2 * alpha ^ n) := mul_le_mul_of_nonneg_left ih halpha0
       _ = 2 * alpha ^ (n + 1) := by rw [pow_succ]; ring
 
-/-- A finite [transition matrix](hyp:P), [stationary distribution](hyp:π), [contraction coefficient](hyp:alpha), [stochasticity certificate](hyp:hP), [stationarity certificate](hyp:hπ), [ℓ¹ contraction certificate](hyp:hcontract), [nonnegative coefficient below one](hyp:halpha0,halpha1), [step gap](hyp:gap), [starting state](hyp:s), and [bounded score](hyp:v,Cv,hv) give [the geometric error bound for its Markov-row mean](goal). -/
+/-- A finite [transition matrix](hyp:P), [stationary distribution](hyp:π), [contraction coefficient](hyp:alpha), [stochasticity certificate](hyp:hP), [stationarity certificate](hyp:hπ), [ℓ¹ contraction certificate](hyp:hcontract), [nonnegative coefficient below one](hyp:halpha0,halpha1), [step gap](hyp:gap), [starting state](hyp:s), and [bounded score](hyp:v,Cv,hv) give [the geometric error bound for its Markov-row mean](goal).
+@isnad1 id=le.6h8v.s7.8528008f3989 from=translated src=- shape=3e21a0e5 vocab=2ebf9675
+-/
 theorem markov_row_score_bound
     {S : Type*} [Fintype S] [DecidableEq S]
     (P : Matrix S S ℝ) (π : S → ℝ) (alpha : ℝ)
@@ -165,7 +171,9 @@ theorem markov_row_score_bound
     _ ≤ Cv * (2 * alpha ^ gap) := mul_le_mul_of_nonneg_left hdist hCv
     _ = 2 * Cv * alpha ^ gap := by ring
 
-/-- A finite [transition matrix](hyp:P), [stationary distribution](hyp:π), [stochasticity and stationarity certificates](hyp:hP,hπ), [gap](hyp:gap), probability [past-window law](hyp:μ), measurable [last-state map](hyp:last,hlast_meas) with [stationary singleton masses](hyp:hlast), [stationary future kernel](hyp:Q), [conditional future kernel](hyp:future), [their supplied gap-kernel representation](hyp:hfuture), [joint law](hyp:ν) satisfying [the composition-product identity](hyp:hν), and a measurable normalized [future score](hyp:g,hg,hg_bound) give [the stationary-mixture formula for its marginal mean](goal). -/
+/-- A finite [transition matrix](hyp:P), [stationary distribution](hyp:π), [stochasticity and stationarity certificates](hyp:hP,hπ), [gap](hyp:gap), probability [past-window law](hyp:μ), measurable [last-state map](hyp:last,hlast_meas) with [stationary singleton masses](hyp:hlast), [stationary future kernel](hyp:Q), [conditional future kernel](hyp:future), [their supplied gap-kernel representation](hyp:hfuture), [joint law](hyp:ν) satisfying [the composition-product identity](hyp:hν), and a measurable normalized [future score](hyp:g,hg,hg_bound) give [the stationary-mixture formula for its marginal mean](goal).
+@isnad1 id=eq.8h12v.s8.ded758823e43 from=translated src=- shape=8c382ea1 vocab=089082d8
+-/
 theorem stationary_future_window_mean
     {S X Y : Type*} [Fintype S] [DecidableEq S]
     [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace Y]
@@ -321,7 +329,9 @@ after gap steps](hyp:gap,hfuture) from the point mass at the last state of x. If
 is μ composed with the future kernel](hyp:ν,hν), [f is a measurable past score bounded in absolute
 value by Cf](hyp:f,hf,Cf,hf_bound) and [g a measurable future score bounded in absolute value by
 Cg](hyp:g,hg,Cg,hg_bound), then [the covariance of f and g under ν is at most 2·Cf·Cg·α^gap in
-absolute value](goal). -/
+absolute value](goal).
+@isnad1 id=le.13h16v.s9.97f76852d6c9 from=translated src=- shape=cf743ea4 vocab=7c540af0
+-/
 theorem separated_window_covariance
     {S X Y : Type*} [Fintype S] [DecidableEq S]
     [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace Y]

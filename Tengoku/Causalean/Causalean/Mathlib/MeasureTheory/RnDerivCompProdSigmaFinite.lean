@@ -46,7 +46,9 @@ variable {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
 
 /-- A composition product is the product reference measure weighted by the fibrewise
 Radon–Nikodym derivative whenever the fibres are almost everywhere dominated by the reference
-measure and that derivative is almost everywhere measurable. -/
+measure and that derivative is almost everywhere measurable.
+@isnad1 id=eq.2h5v.s7.d4414aa64d36 from=translated src=- shape=08fcae1d vocab=b77320fc
+-/
 lemma compProd_eq_prod_withDensity_fiber
     (μ : Measure α) (ρ : Measure β) (κ : Kernel α β)
     [SFinite μ] [SigmaFinite ρ] [IsSFiniteKernel κ]
@@ -77,7 +79,9 @@ product reference `ν × ρ`](hyp:hfiber_meas), and [`f` agrees `ν`-almost ever
 Radon–Nikodym derivative `dμ/dν`](hyp:hf), then [the Radon–Nikodym derivative of the
 composition-product `μ ⊗ₘ κ` with respect to the product reference `ν × ρ` agrees, `ν × ρ`-almost
 everywhere, with the pointwise product `(a, b) ↦ f a · (dκ_a/dρ)(b)` of the base density and the
-fibre derivative](goal). -/
+fibre derivative](goal).
+@isnad1 id=eventual.4h7v.s8.cba44fb13c9a from=translated src=- shape=a9d311cd vocab=9631d64b
+-/
 lemma rnDeriv_compProd_prod_sigmaFinite
     (μ ν : Measure α) (ρ : Measure β) (κ : Kernel α β) (f : α → ℝ≥0∞)
     [SigmaFinite ν] [SigmaFinite ρ] [IsSFiniteKernel κ]

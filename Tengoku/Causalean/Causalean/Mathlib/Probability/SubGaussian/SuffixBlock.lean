@@ -25,7 +25,9 @@ Proof strategy: there are at most `L` indices in the block.  For each of them,
 `(m/(k+1))^α ≤ (m/L)^α`, so the sum is pointwise bounded by
 `2 L exp (-t²/(2 σ² (m/L)^α))`.  Apply `clipped_gaussian_integral` at scale
 `σ (m/L)^(α/2)`.  Prove integrability of the original clipped sum by the
-integrability of its finitely many Gaussian terms. -/
+integrability of its finitely many Gaussian terms.
+@isnad1 id=ex.1h1v.s9.1ba8a75a6597 from=translated src=- shape=b74ef7c0 vocab=f1dd7c9c
+-/
 theorem gaussian_suffix_block_integral (α : ℝ) (hα : 0 < α) :
     ∃ C : ℝ, 0 < C ∧
       ∀ (N m L : ℕ) (σ : ℝ), 1 ≤ m → m ≤ L → 0 < σ →

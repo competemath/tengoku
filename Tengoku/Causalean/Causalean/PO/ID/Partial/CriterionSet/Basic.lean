@@ -46,27 +46,37 @@ def levelSet (Qn : Θ → ℝ) (c : ℝ) : Set Θ := {θ | Qn θ ≤ c}
 
 /-- For [a criterion function `Q`](hyp:Q) and [a candidate parameter `θ`](hyp:θ),
 [`θ` belongs to the identified set of `Q` if and only if `Q` vanishes at
-`θ`](goal). -/
+`θ`](goal).
+@isnad1 id=iff.0h3v.s4.31e1cad196dc from=translated src=- shape=56c442fe vocab=914cafb7
+-/
 @[simp] theorem mem_identifiedSet {Q : Θ → ℝ} {θ : Θ} :
     θ ∈ identifiedSet Q ↔ Q θ = 0 := Iff.rfl
 
-/-- Membership in a level set is the same as having criterion value below the cutoff. -/
+/-- Membership in a level set is the same as having criterion value below the cutoff.
+@isnad1 id=iff.0h4v.s4.3696252245b0 from=translated src=- shape=b76ca41c vocab=a2f0691d
+-/
 @[simp] theorem mem_levelSet {Qn : Θ → ℝ} {c : ℝ} {θ : Θ} :
     θ ∈ levelSet Qn c ↔ Qn θ ≤ c := Iff.rfl
 
-/-- The level set is monotone in the cutoff `c`. -/
+/-- The level set is monotone in the cutoff `c`.
+@isnad1 id=le.1h4v.s4.c3c2435160e1 from=translated src=- shape=8a682b6f vocab=e9446b76
+-/
 theorem levelSet_mono {Qn : Θ → ℝ} {c₁ c₂ : ℝ} (h : c₁ ≤ c₂) :
     levelSet Qn c₁ ⊆ levelSet Qn c₂ := fun _ hθ => le_trans hθ h
 
 /-- For a nonnegative criterion, the identified set is the level-`0` set of the same
-criterion (since `Q θ = 0 ↔ Q θ ≤ 0` under nonnegativity). -/
+criterion (since `Q θ = 0 ↔ Q θ ≤ 0` under nonnegativity).
+@isnad1 id=eq.1h2v.s5.105bf5f91bb5 from=translated src=- shape=441fd40c vocab=bbaab969
+-/
 theorem identifiedSet_eq_levelSet_zero_of_nonneg {Q : Θ → ℝ} (hQ : ∀ θ, 0 ≤ Q θ) :
     identifiedSet Q = levelSet Q 0 := by
   ext θ
   simp only [mem_identifiedSet, mem_levelSet]
   exact ⟨fun h => h.le, fun h => le_antisymm h (hQ θ)⟩
 
-/-- The identified set sits inside any nonnegative-cutoff level set of the same criterion. -/
+/-- The identified set sits inside any nonnegative-cutoff level set of the same criterion.
+@isnad1 id=le.1h3v.s4.fcc84fbdb769 from=translated src=- shape=fb250d52 vocab=bbaab969
+-/
 theorem identifiedSet_subset_levelSet_self {Q : Θ → ℝ} {c : ℝ} (hc : 0 ≤ c) :
     identifiedSet Q ⊆ levelSet Q c := fun _ hθ => by
   rw [mem_levelSet, mem_identifiedSet.mp hθ]; exact hc

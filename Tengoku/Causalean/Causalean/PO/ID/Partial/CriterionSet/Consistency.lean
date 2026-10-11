@@ -73,21 +73,29 @@ variable {Θ : Type*} [PseudoMetricSpace Θ]
 /-! ## Local Hausdorff helpers -/
 
 /-- The directed Hausdorff distance is nonnegative (a sup of nonnegative
-point-to-set distances). -/
+point-to-set distances).
+@isnad1 id=le.0h3v.s4.a5bed195d379 from=translated src=- shape=f29d4371 vocab=40464611
+-/
 lemma directedHausdorff_nonneg (A B : Set Θ) : 0 ≤ directedHausdorff A B :=
   Real.sSup_nonneg (by rintro _ ⟨a, _, rfl⟩; exact Metric.infDist_nonneg)
 
-/-- The symmetric Hausdorff distance is nonnegative. -/
+/-- The symmetric Hausdorff distance is nonnegative.
+@isnad1 id=le.0h3v.s4.c67ae03c87ee from=translated src=- shape=f29d4371 vocab=90c45e83
+-/
 lemma hausdorffDist_nonneg (A B : Set Θ) : 0 ≤ hausdorffDist A B :=
   le_max_of_le_left (directedHausdorff_nonneg A B)
 
 /-- If every point of `A` is within `M` of `B` (and `M ≥ 0`), the directed
-Hausdorff distance from `A` to `B` is at most `M`. -/
+Hausdorff distance from `A` to `B` is at most `M`.
+@isnad1 id=le.2h4v.s5.a5036a353fa9 from=translated src=- shape=17b8e5be vocab=dd94c3d1
+-/
 lemma directedHausdorff_le_of_forall {A B : Set Θ} {M : ℝ} (hM : 0 ≤ M)
     (h : ∀ a ∈ A, Metric.infDist a B ≤ M) : directedHausdorff A B ≤ M :=
   Real.sSup_le (by rintro _ ⟨a, ha, rfl⟩; exact h a ha) hM
 
-/-- If `A ⊆ B` then the directed Hausdorff distance from `A` to `B` is `0`. -/
+/-- If `A ⊆ B` then the directed Hausdorff distance from `A` to `B` is `0`.
+@isnad1 id=eq.1h3v.s5.d714664a224c from=translated src=- shape=b60935d0 vocab=40464611
+-/
 lemma directedHausdorff_eq_zero_of_subset {A B : Set Θ} (h : A ⊆ B) :
     directedHausdorff A B = 0 :=
   le_antisymm
@@ -124,7 +132,9 @@ Hausdorff distance `(c + ε) / δ` of the population identified set
     H(levelSet Qn c, identifiedSet Q) ≤ (c + ε) / δ.
 
 The positive linear minorant makes `Q` nonnegative, so any attained zero is a
-population minimizer and the zero set is the argmin set. -/
+population minimizer and the zero set is the argmin set.
+@isnad1 id=le.5h6v.s6.0d391e27a7ca from=translated src=- shape=e7fdc030 vocab=87d57912
+-/
 theorem hausdorffDist_levelSet_le
     {Q Qn : Θ → ℝ} {δ c ε : ℝ}
     (hδ : 0 < δ) (hε : 0 ≤ ε) (hc : ε ≤ c)
@@ -161,7 +171,9 @@ of `Q` in sup norm at every sample size `n`](hyp:hunif), [the cutoffs tend to
 zero](hyp:hc0), and [the error tolerances tend to zero](hyp:hε0). Then [the
 Hausdorff distance between the level-set estimator `{Qn n ≤ c n}` and the
 population identified set `{Q = 0}` tends to zero as the sample size
-grows](goal): `H(levelSet Qnₙ cₙ, identifiedSet Q) → 0`. -/
+grows](goal): `H(levelSet Qnₙ cₙ, identifiedSet Q) → 0`.
+@isnad1 id=tendsto.7h6v.s7.4faeee8d2bfb from=translated src=- shape=8d552bfd vocab=aad2cb2e
+-/
 theorem tendsto_hausdorffDist_levelSet
     {Q : Θ → ℝ} {Qn : ℕ → Θ → ℝ} {δ : ℝ} {c ε : ℕ → ℝ}
     (hδ : 0 < δ) (hmin : LinearMinorant Q δ)

@@ -26,7 +26,9 @@ open Complex Filter MeasureTheory ProbabilityTheory Topology
 def iidRowSum (n : ℕ) : (Fin n → ℝ) → ℝ := fun y => ∑ i, y i
 
 /-- A [row length](hyp:n) ensures that [its coordinate-sum map is measurable](goal) for the
-product Borel σ-algebra. -/
+product Borel σ-algebra.
+@isnad1 id=measurab.0h1v.s4.e7b1bf0f3084 from=translated src=- shape=bbef8654 vocab=1702593f
+-/
 lemma measurable_iidRowSum (n : ℕ) : Measurable (iidRowSum n) := by
   unfold iidRowSum
   fun_prop
@@ -40,7 +42,9 @@ noncomputable def iidRowSumLaw (Q : ℕ → Measure ℝ) [∀ n, IsProbabilityMe
 
 /-- A [sequence of row probability laws](hyp:Q), [a row index](hyp:n), and [a frequency](hyp:t)
 ensure that [the row-sum characteristic function is the corresponding power of the one-draw
-characteristic function](goal). -/
+characteristic function](goal).
+@isnad1 id=eq.0h3v.s6.6e29b166ab30 from=translated src=- shape=874c00a0 vocab=2c7034c6
+-/
 lemma charFun_iidRowSumLaw (Q : ℕ → Measure ℝ) [∀ n, IsProbabilityMeasure (Q n)]
     (n : ℕ) (t : ℝ) :
     charFun (iidRowSumLaw Q n : Measure ℝ) t = charFun (Q n) t ^ n := by
@@ -64,7 +68,9 @@ noncomputable def scaledRowMeasure (R : ℕ → Measure ℝ) (n : ℕ) : Measure
   (R n).map (fun x => (Real.sqrt (n : ℝ))⁻¹ * x)
 
 /-- A [sequence of row probability laws](hyp:R) and [a row index](hyp:n) ensure that [summing
-individually scaled draws has the same law as scaling the row sum](goal). -/
+individually scaled draws has the same law as scaling the row sum](goal).
+@isnad1 id=eq.0h2v.s5.512f6f65b844 from=translated src=- shape=b2b39baf vocab=8834e1ac
+-/
 theorem iidRowSumLaw_scaledRowMeasure_eq_normalized
     (R : ℕ → Measure ℝ) [∀ n, IsProbabilityMeasure (R n)] (n : ℕ) :
     @iidRowSumLaw (fun n => scaledRowMeasure R n)
@@ -92,7 +98,9 @@ theorem iidRowSumLaw_scaledRowMeasure_eq_normalized
 /-- A [sequence of row probability laws](hyp:Q), [target variance](hyp:σ2), [square-integrable
 row draws](hyp:hQ2), [zero row means](hyp:hcenter), [convergent row variances](hyp:hsecond),
 [vanishing Lindeberg tails](hyp:hlindeberg), and [a frequency](hyp:t) ensure that [the powered
-row characteristic functions converge to the centered Gaussian characteristic function](goal). -/
+row characteristic functions converge to the centered Gaussian characteristic function](goal).
+@isnad1 id=tendsto.4h3v.s8.31272c9cffa1 from=translated src=- shape=5ba65890 vocab=eb4b52e4
+-/
 theorem charFun_pow_tendsto_gaussian
     (Q : ℕ → Measure ℝ) [∀ n, IsProbabilityMeasure (Q n)]
     (σ2 : NNReal)
@@ -326,7 +334,9 @@ theorem charFun_pow_tendsto_gaussian
 /-- A [sequence of row probability laws](hyp:Q), [strictly positive target variance](hyp:σ2,hσ2),
 [square-integrable row draws](hyp:hQ2), [zero row means](hyp:hcenter), [convergent row
 variances](hyp:hsecond), and [vanishing Lindeberg tails](hyp:hlindeberg) ensure that [the laws
-of the i.i.d. row sums converge weakly to the centered Gaussian law](goal). -/
+of the i.i.d. row sums converge weakly to the centered Gaussian law](goal).
+@isnad1 id=tendsto.5h2v.s8.55d803dcc7e4 from=translated src=- shape=b0cf7756 vocab=936c21dc
+-/
 theorem iidRowSumLaw_tendsto_gaussian_of_pos
     (Q : ℕ → Measure ℝ) [∀ n, IsProbabilityMeasure (Q n)]
     (σ2 : NNReal) (hσ2 : 0 < σ2)
@@ -346,7 +356,9 @@ theorem iidRowSumLaw_tendsto_gaussian_of_pos
 /-- A [sequence of row probability laws](hyp:Q), [target variance](hyp:σ2), [square-integrable
 row draws](hyp:hQ2), [zero row means](hyp:hcenter), [convergent row variances](hyp:hsecond), and
 [vanishing Lindeberg tails](hyp:hlindeberg) ensure that [the laws of the i.i.d. row sums converge
-weakly to the centered Gaussian law](goal), including a zero-variance limit. -/
+weakly to the centered Gaussian law](goal), including a zero-variance limit.
+@isnad1 id=tendsto.4h2v.s8.64ae90343459 from=translated src=- shape=cfee277e vocab=936c21dc
+-/
 theorem iidRowSumLaw_tendsto_gaussian
     (Q : ℕ → Measure ℝ) [∀ n, IsProbabilityMeasure (Q n)]
     (σ2 : NNReal)
@@ -364,7 +376,9 @@ theorem iidRowSumLaw_tendsto_gaussian
     charFun_pow_tendsto_gaussian Q σ2 hQ2 hcenter hsecond hlindeberg t
 
 /-- A [sequence of row laws](hyp:R), [row index](hyp:n), and [square-integrable row draw](hyp:hR2)
-ensure that [the correspondingly scaled row draw is square-integrable](goal). -/
+ensure that [the correspondingly scaled row draw is square-integrable](goal).
+@isnad1 id=memlp.1h2v.s6.2bc1b241532c from=translated src=- shape=8f9a2789 vocab=db7ad84b
+-/
 lemma memLp_id_scaledRowMeasure
     (R : ℕ → Measure ℝ) (n : ℕ) (hR2 : MemLp id 2 (R n)) :
     MemLp id 2 (scaledRowMeasure R n) := by

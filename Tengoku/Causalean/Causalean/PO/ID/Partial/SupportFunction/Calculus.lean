@@ -52,13 +52,17 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-! ### Cluster A — direction algebra -/
 
-/-- Support function of a singleton is the functional value at the point. -/
+/-- Support function of a singleton is the functional value at the point.
+@isnad1 id=eq.0h3v.s5.6fba544f894b from=translated src=- shape=a55da380 vocab=21cc9c6f
+-/
 theorem supportFn_singleton (d x₀ : E) : supportFn ({x₀} : Set E) d = ⟪d, x₀⟫ := by
   unfold supportFn
   rw [Set.image_singleton, csSup_singleton]
 
 /-- If `0 ∈ C` then the support value is nonnegative (the functional value `0`
-at the origin is a lower bound for the sup). -/
+at the origin is a lower bound for the sup).
+@isnad1 id=le.2h3v.s6.cb45ddb9635c from=translated src=- shape=0f0b8e7b vocab=1210573d
+-/
 theorem supportFn_nonneg_of_zero_mem {C : Set E} {d : E} (h0 : (0 : E) ∈ C)
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C)) :
     0 ≤ supportFn C d := by
@@ -66,7 +70,9 @@ theorem supportFn_nonneg_of_zero_mem {C : Set E} {d : E} (h0 : (0 : E) ∈ C)
   simpa using h
 
 /-- **Positive homogeneity in the direction.**  For `t ≥ 0`,
-`supportFn C (t • d) = t * supportFn C d`. -/
+`supportFn C (t • d) = t * supportFn C d`.
+@isnad1 id=eq.3h4v.s7.5532859b01c3 from=translated src=- shape=3d472f86 vocab=f0502f42
+-/
 theorem supportFn_smul_dir {C : Set E} {d : E} {t : ℝ} (ht : 0 ≤ t)
     (hne : C.Nonempty) (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C)) :
     supportFn C (t • d) = t * supportFn C d := by
@@ -107,7 +113,9 @@ theorem supportFn_smul_dir {C : Set E} {d : E} {t : ℝ} (ht : 0 ≤ t)
 nonempty](hyp:hne) and [the linear functionals `⟪d₁, ·⟫` and `⟪d₂, ·⟫` are each bounded above on
 `C`](hyp:hb₁,hb₂), then [the support value in the combined direction is at most the sum of the
 support values in each direction: `supportFn C (d₁ + d₂) ≤ supportFn C d₁ + supportFn C
-d₂`](goal). -/
+d₂`](goal).
+@isnad1 id=le.3h4v.s6.219433200579 from=translated src=- shape=00467333 vocab=aca1dff1
+-/
 theorem supportFn_add_dir_le {C : Set E} {d₁ d₂ : E} (hne : C.Nonempty)
     (hb₁ : BddAbove ((fun x => ⟪d₁, x⟫) '' C))
     (hb₂ : BddAbove ((fun x => ⟪d₂, x⟫) '' C)) :
@@ -122,14 +130,18 @@ theorem supportFn_add_dir_le {C : Set E} {d₁ d₂ : E} (hne : C.Nonempty)
 /-! ### Cluster B — set algebra -/
 
 /-- **Monotone in the set.**  If `C ⊆ D` (with `C` nonempty and the functional
-bounded above on `D`), then `supportFn C d ≤ supportFn D d`. -/
+bounded above on `D`), then `supportFn C d ≤ supportFn D d`.
+@isnad1 id=le.3h4v.s6.b74601251386 from=translated src=- shape=c97f6c44 vocab=48c2886f
+-/
 theorem supportFn_mono {C D : Set E} {d : E} (hCD : C ⊆ D) (hne : C.Nonempty)
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' D)) :
     supportFn C d ≤ supportFn D d := by
   refine supportFn_le hne (fun x hx => ?_)
   exact le_supportFn (hCD hx) hbdd
 
-/-- **Union rule.**  The support function of a union is the maximum of the parts. -/
+/-- **Union rule.**  The support function of a union is the maximum of the parts.
+@isnad1 id=eq.4h4v.s6.a065ef4eba67 from=translated src=- shape=42fa767d vocab=5edc243e
+-/
 theorem supportFn_union {C D : Set E} {d : E} (hC : C.Nonempty) (hD : D.Nonempty)
     (hbC : BddAbove ((fun x => ⟪d, x⟫) '' C))
     (hbD : BddAbove ((fun x => ⟪d, x⟫) '' D)) :
@@ -146,7 +158,9 @@ theorem supportFn_union {C D : Set E} {d : E} (hC : C.Nonempty) (hD : D.Nonempty
            supportFn_mono Set.subset_union_right hD hbU⟩
 
 /-- **Intersection rule (one-sided).**  The support function of an intersection is
-at most the minimum of the parts. -/
+at most the minimum of the parts.
+@isnad1 id=le.3h4v.s6.ab9ac531f122 from=translated src=- shape=7f042f2f vocab=9d0d12c4
+-/
 theorem supportFn_inter_le {C D : Set E} {d : E} (hne : (C ∩ D).Nonempty)
     (hbC : BddAbove ((fun x => ⟪d, x⟫) '' C))
     (hbD : BddAbove ((fun x => ⟪d, x⟫) '' D)) :
@@ -156,7 +170,9 @@ theorem supportFn_inter_le {C D : Set E} {d : E} (hne : (C ∩ D).Nonempty)
   · exact supportFn_mono Set.inter_subset_right hne hbD
 
 /-- **Translation rule.**  Translating the set by `x₀` shifts the support value
-by `⟪d, x₀⟫`. -/
+by `⟪d, x₀⟫`.
+@isnad1 id=eq.2h4v.s6.b60bb086860e from=translated src=- shape=8f666494 vocab=5833c939
+-/
 theorem supportFn_translate {C : Set E} {d : E} (x₀ : E) (hne : C.Nonempty)
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C)) :
     supportFn ((fun x => x₀ + x) '' C) d = ⟪d, x₀⟫ + supportFn C d := by
@@ -183,7 +199,9 @@ theorem supportFn_translate {C : Set E} {d : E} (x₀ : E) (hne : C.Nonempty)
     linarith
 
 /-- **Positive scaling rule.**  Scaling the set by `a ≥ 0` scales the support
-value by `a`. -/
+value by `a`.
+@isnad1 id=eq.3h4v.s7.500256f652fe from=translated src=- shape=35e3e3e3 vocab=a0772b32
+-/
 theorem supportFn_smul_set {C : Set E} {d : E} {a : ℝ} (ha : 0 ≤ a)
     (hne : C.Nonempty) (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C)) :
     supportFn (a • C) d = a * supportFn C d := by
@@ -230,7 +248,9 @@ theorem supportFn_smul_set {C : Set E} {d : E} {a : ℝ} (ha : 0 ≤ a)
       rwa [← mul_assoc, mul_inv_cancel₀ (ne_of_gt hpos), one_mul] at h2
 
 /-- **Minkowski additivity.**  The support function is additive over Minkowski
-sums: `supportFn (C + D) d = supportFn C d + supportFn D d`. -/
+sums: `supportFn (C + D) d = supportFn C d + supportFn D d`.
+@isnad1 id=eq.4h4v.s6.26fb35484756 from=translated src=- shape=16768eb6 vocab=d08f026c
+-/
 theorem supportFn_minkowski {C D : Set E} {d : E} (hC : C.Nonempty) (hD : D.Nonempty)
     (hbC : BddAbove ((fun x => ⟪d, x⟫) '' C))
     (hbD : BddAbove ((fun x => ⟪d, x⟫) '' D)) :

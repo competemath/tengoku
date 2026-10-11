@@ -71,7 +71,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
   {X : Ω → ℝ} {g : Ω → ℝ} {f : ℝ → ℝ}
 
 /-- If [`f` represents the conditional mean of `g` given `X`](hyp:h), then
-[`f` is integrable under the pushforward measure `μ.map X`](goal). -/
+[`f` is integrable under the pushforward measure `μ.map X`](goal).
+@isnad1 id=integrab.1h5v.s5.de02df4980f6 from=translated src=- shape=37236153 vocab=be1973e9
+-/
 lemma integrable_pushforward (h : IsRegressionFunction μ X g f) :
     Integrable f (μ.map X) := by
   rw [integrable_map_measure h.measurable.aestronglyMeasurable
@@ -82,7 +84,9 @@ end IsRegressionFunction
 
 /-- If [`f₁` represents the conditional mean of `g₁` given `X`](hyp:h₁) and
 [`f₂` represents the conditional mean of `g₂` given `X`](hyp:h₂), then [their
-difference represents the conditional mean of `g₁ - g₂` given `X`](goal). -/
+difference represents the conditional mean of `g₁ - g₂` given `X`](goal).
+@isnad1 id=isregres.2h7v.s6.e8fe37f2507b from=translated src=- shape=44d88f97 vocab=3a723c33
+-/
 lemma IsRegressionFunction.sub
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {X : Ω → ℝ} {g₁ g₂ : Ω → ℝ} {f₁ f₂ : ℝ → ℝ}
@@ -113,7 +117,9 @@ regression-function representative of the conditional mean of `g₂` given
 `X`](hyp:h₂), then [`f₁` and `f₂` agree `(μ.map X)`-almost everywhere](goal).
 
 Useful for collapsing two equivalent representatives of the same conditional
-expectation. -/
+expectation.
+@isnad1 id=eventual.3h7v.s6.9aab4907a6aa from=translated src=- shape=196676d2 vocab=d5ab9b00
+-/
 lemma IsRegressionFunction.aeEq_of_aeEq_response
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {X : Ω → ℝ} {g₁ g₂ : Ω → ℝ} {f₁ f₂ : ℝ → ℝ}

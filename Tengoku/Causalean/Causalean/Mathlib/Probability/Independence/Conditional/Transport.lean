@@ -24,7 +24,9 @@ Borel spaces `γ` and `δ`](hyp:γ,δ), [a measurable space `ε`](hyp:ε),
 `Z`](hyp:X,Y,Z), [their measurability](hyp:hX,hY,hZ), [a finite measure `ν`
 whose pushforward by `φ` is finite](hyp:ν), and
 [conditional independence after composition](hyp:h),
-[conditional independence holds under the pushforward measure](goal). -/
+[conditional independence holds under the pushforward measure](goal).
+@isnad1 id=condinde.5h10v.s7.9c5d2e8d9c05 from=translated src=- shape=799aa96b vocab=9e9718d6
+-/
 theorem condIndepFun_of_map
     {α : Type*} [MeasurableSpace α] [StandardBorelSpace α]
     {β : Type*} [MeasurableSpace β] [StandardBorelSpace β]

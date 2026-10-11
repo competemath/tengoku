@@ -13,7 +13,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- Given [a cube dimension](hyp:d), [a dyadic traversal](hyp:T), [a dyadic level](hyp:n),
-and [a point certified to lie in the unit cube](hyp:x,hx), [some level cell contains that point](goal). -/
+and [a point certified to lie in the unit cube](hyp:x,hx), [some level cell contains that point](goal).
+@isnad1 id=ex.1h4v.s6.cbfb0dc2d174 from=translated src=- shape=072585df vocab=e6304eaa
+-/
 theorem DyadicTraversal.cubeCell_cover {d : ℕ} (T : DyadicTraversal d)
     (n : ℕ) (x : Fin d → ℝ) (hx : InUnitCube x) :
     ∃ k : Fin (2 ^ (d * n)), dyadicCubeCell T n k x := by

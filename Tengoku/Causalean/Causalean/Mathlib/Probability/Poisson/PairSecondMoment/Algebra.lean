@@ -17,7 +17,9 @@ open MeasureTheory
 namespace Causalean.Mathlib.Probability.Poisson.PairSecondMoment
 
 /-- Given [a finite real array](hyp:K), [its squared bilinear sum is the sum
-of its four index-coincidence classes](goal). -/
+of its four index-coincidence classes](goal).
+@isnad1 id=eq.0h3v.s8.880bfa6b3a3b from=translated src=- shape=7b242054 vocab=c59c0eb7
+-/
 theorem bilinearSum_sq_eq_coincidence
     {ι κ : Type*} [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq κ]
     (K : ι → κ → ℝ) :
@@ -46,7 +48,9 @@ theorem bilinearSum_sq_eq_coincidence
 
 /-- Given [a measure](hyp:μ), [a finite array of real summands](hyp:K), and
 [integrable products of every two summands](hyp:hK), [the integral of its
-squared bilinear sum is the four-class coincidence expansion](goal). -/
+squared bilinear sum is the four-class coincidence expansion](goal).
+@isnad1 id=eq.1h5v.s8.bc9c57d4e332 from=translated src=- shape=7f0ebbc0 vocab=cf311006
+-/
 theorem integral_bilinearSum_sq_eq_coincidence
     {Ω ι κ : Type*} [MeasurableSpace Ω]
     [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq κ]

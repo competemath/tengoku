@@ -14,7 +14,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- Given [a dimension and level](hyp:d,n), [a dimension of at least two](hyp:hd), [a parent grid](hyp:parent),
-[its consecutive-face adjacency](hyp:hadj), and [an initial entry vertex](hyp:first), [compatible child-grid entry and exit gates exist](goal). -/
+[its consecutive-face adjacency](hyp:hadj), and [an initial entry vertex](hyp:first), [compatible child-grid entry and exit gates exist](goal).
+@isnad1 id=ex.2h4v.s9.f72306d4af82 from=translated src=- shape=7464e549 vocab=56b383f4
+-/
 theorem exists_compatible_child_gates (d n : ℕ) (hd : 2 ≤ d)
     (parent : Fin (2 ^ (d * n)) → Fin d → ℕ)
     (hadj : ∀ k l : Fin (2 ^ (d * n)), l.val = k.val + 1 →

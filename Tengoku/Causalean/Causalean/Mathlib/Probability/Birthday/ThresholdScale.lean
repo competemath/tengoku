@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Probability.Birthday
 open Filter
 
 /-- A [tolerance strictly between zero and one](hyp:hdelta) has a
-[positive logarithmic collision scale](goal). -/
+[positive logarithmic collision scale](goal).
+@isnad1 id=lt.1h1v.s5.52d499c97d9e from=translated src=- shape=09d96641 vocab=b05edfa9
+-/
 theorem neg_log_one_sub_pos {delta : ℝ} (hdelta : delta ∈ Set.Ioo (0 : ℝ) 1) :
     0 < -Real.log (1 - delta) := by
   have hpos : 0 < 1 - delta := by linarith [hdelta.2]
@@ -25,7 +27,9 @@ theorem neg_log_one_sub_pos {delta : ℝ} (hdelta : delta ∈ Set.Ioo (0 : ℝ) 
 
 /-- For [valid success probabilities](hyp:heta), a
 [diverging expected count](hyp:hmean), and a [tolerance between zero and
-one](hyp:hdelta), the [calibrated pair scale](goal) diverges. -/
+one](hyp:hdelta), the [calibrated pair scale](goal) diverges.
+@isnad1 id=tendsto.3h3v.s6.bf217c8a0fd1 from=translated src=- shape=b662b0d2 vocab=2ae1245b
+-/
 theorem calibratedScale_tendsto_atTop
     (Tseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {delta : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)
@@ -48,7 +52,9 @@ theorem calibratedScale_tendsto_atTop
 [diverging expected count](hyp:hmean), a [tolerance between zero and
 one](hyp:hdelta), and a [positive multiplier](hyp:hc), the [pair scale per
 positive-ceiling alphabet](goal) tends to the logarithmic scale divided by
-that multiplier. -/
+that multiplier.
+@isnad1 id=tendsto.4h4v.s7.bbe10b65ac20 from=translated src=- shape=4a2d7039 vocab=ad8e13ea
+-/
 theorem pairScale_div_positiveCeil_tendsto
     (Tseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {delta c : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)

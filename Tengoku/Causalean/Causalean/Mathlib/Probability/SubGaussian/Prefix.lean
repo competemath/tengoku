@@ -23,7 +23,9 @@ terms](goal).
 Proof strategy: split the integral at `σ * sqrt (2 * log (2 * m))`.
 Below the split use the bound by one.  Above it use the Gaussian tail
 integral bound `∫_u^∞ exp(-t²/(2σ²)) dt ≤ (σ²/u) exp(-u²/(2σ²))`.
-Simplify with `m ≥ 1`. -/
+Simplify with `m ≥ 1`.
+@isnad1 id=ex.0h0v.s8.f7a7c46d80b8 from=translated src=- shape=6415c5e7 vocab=30319537
+-/
 theorem clipped_gaussian_integral :
     ∃ C : ℝ, 0 < C ∧
       ∀ (m : ℕ) (σ : ℝ), 1 ≤ m → 0 < σ →

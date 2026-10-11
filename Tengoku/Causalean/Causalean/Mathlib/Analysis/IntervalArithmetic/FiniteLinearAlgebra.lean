@@ -112,7 +112,9 @@ def intervalExpectation {ι : Type*} [Fintype ι]
     (mass reward : IntervalVector ι) : RatInterval :=
   intervalDot mass reward
 
-/-- Finite outward interval addition contains the sum of any coordinatewise enclosed real family. -/
+/-- Finite outward interval addition contains the sum of any coordinatewise enclosed real family.
+@isnad1 id=contains.1h3v.s5.37347450d3e1 from=translated src=- shape=c2f4c0d5 vocab=072d231c
+-/
 theorem intervalSum_sound {ι : Type*} [Fintype ι]
     {I : ι → RatInterval} {x : ι → ℝ}
     (hx : ∀ i, (I i).Contains (x i)) :
@@ -126,7 +128,9 @@ theorem intervalSum_sound {ι : Type*} [Fintype ι]
     rw [Finset.sum_insert hi, Finset.sum_insert hi]
     exact RatInterval.add_sound (hx i) ih
 
-/-- An interval dot product contains the real dot product of any two enclosed vectors. -/
+/-- An interval dot product contains the real dot product of any two enclosed vectors.
+@isnad1 id=contains.2h5v.s5.7b0dcad7e976 from=translated src=- shape=3c08c5e1 vocab=e5526834
+-/
 theorem intervalDot_sound {ι : Type*} [Fintype ι]
     {I J : IntervalVector ι} {x y : ι → ℝ}
     (hx : ContainsVector I x) (hy : ContainsVector J y) :
@@ -135,7 +139,9 @@ theorem intervalDot_sound {ι : Type*} [Fintype ι]
   intro i
   exact RatInterval.mul_sound (hx i) (hy i)
 
-/-- Interval matrix-vector multiplication contains the corresponding real matrix-vector product. -/
+/-- Interval matrix-vector multiplication contains the corresponding real matrix-vector product.
+@isnad1 id=contains.2h6v.s5.51438b64f8f6 from=translated src=- shape=c5501ea0 vocab=1ff65cbf
+-/
 theorem intervalMulVec_sound {ι κ : Type*} [Fintype κ]
     {A : IntervalMatrix ι κ} {x : IntervalVector κ}
     {M : Matrix ι κ ℝ} {v : κ → ℝ}
@@ -144,7 +150,9 @@ theorem intervalMulVec_sound {ι κ : Type*} [Fintype κ]
   intro i
   exact intervalDot_sound (hA i) hx
 
-/-- Interval row-vector multiplication contains the corresponding real row-vector action. -/
+/-- Interval row-vector multiplication contains the corresponding real row-vector action.
+@isnad1 id=contains.2h6v.s5.77f1e1f9acb0 from=translated src=- shape=38d37419 vocab=ed102ffe
+-/
 theorem intervalVecMul_sound {ι κ : Type*} [Fintype ι]
     {x : IntervalVector ι} {A : IntervalMatrix ι κ}
     {v : ι → ℝ} {M : Matrix ι κ ℝ}
@@ -155,7 +163,9 @@ theorem intervalVecMul_sound {ι κ : Type*} [Fintype ι]
 
 /-- When [the first interval matrix encloses a real matrix](hyp:hA) and
 [the second interval matrix encloses a real matrix](hyp:hB),
-[their interval product encloses the real matrix product](goal). -/
+[their interval product encloses the real matrix product](goal).
+@isnad1 id=contains.2h7v.s6.2cb7add40714 from=translated src=- shape=92105c37 vocab=6e01dc8a
+-/
 theorem intervalMatrixMul_sound {ι κ υ : Type*} [Fintype κ]
     {A : IntervalMatrix ι κ} {B : IntervalMatrix κ υ}
     {M : Matrix ι κ ℝ} {N : Matrix κ υ ℝ}
@@ -164,14 +174,18 @@ theorem intervalMatrixMul_sound {ι κ υ : Type*} [Fintype κ]
   intro i j
   exact intervalDot_sound (hA i) (fun k => hB k j)
 
-/-- Coordinatewise refinement preserves containment of a real vector. -/
+/-- Coordinatewise refinement preserves containment of a real vector.
+@isnad1 id=contains.2h4v.s4.fe57b35a40dd from=translated src=- shape=5aca3808 vocab=71680b0b
+-/
 theorem ContainsVector.mono {ι : Type*} {I J : IntervalVector ι} {x : ι → ℝ}
     (hIJ : VectorSubinterval I J) (hx : ContainsVector I x) :
     ContainsVector J x := by
   intro i
   exact RatInterval.Contains.mono (hIJ i) (hx i)
 
-/-- Coordinatewise refinement preserves containment of a real matrix. -/
+/-- Coordinatewise refinement preserves containment of a real matrix.
+@isnad1 id=contains.2h5v.s5.445f5fc4de09 from=translated src=- shape=3ec2a058 vocab=4f13e2bc
+-/
 theorem ContainsMatrix.mono {ι κ : Type*}
     {I J : IntervalMatrix ι κ} {A : Matrix ι κ ℝ}
     (hIJ : MatrixSubinterval I J) (hA : ContainsMatrix I A) :
@@ -192,7 +206,9 @@ def scalarSubintervalCheck (inner outer : RatInterval) : Bool :=
   decide (outer.lo ≤ inner.lo ∧ inner.hi ≤ outer.hi)
 
 /-- When [the scalar subinterval check accepts](hyp:h),
-[the inner interval is contained in the outer interval](goal). -/
+[the inner interval is contained in the outer interval](goal).
+@isnad1 id=subinter.1h2v.s3.6d54194a8c8f from=translated src=- shape=dcb42111 vocab=3cf1935b
+-/
 theorem scalarSubintervalCheck_sound {inner outer : RatInterval}
     (h : scalarSubintervalCheck inner outer = true) :
     inner.Subinterval outer := by
@@ -206,7 +222,9 @@ structure ScalarIntervalCertificate (q : ℚ) (I : RatInterval) : Prop where
   checked : (RatInterval.point q).Subinterval I
 
 /-- When [a scalar interval certificate is supplied](hyp:c),
-[its interval contains the certified rational value as a real number](goal). -/
+[its interval contains the certified rational value as a real number](goal).
+@isnad1 id=contains.1h2v.s3.a9fb5d4052d1 from=translated src=- shape=37f9f048 vocab=c9cf05b6
+-/
 theorem ScalarIntervalCertificate.sound {q : ℚ} {I : RatInterval}
     (c : ScalarIntervalCertificate q I) : I.Contains (q : ℝ) := by
   exact RatInterval.Contains.mono c.checked (RatInterval.point_sound q)
@@ -221,7 +239,9 @@ structure FiniteVectorCertificate {ι : Type*} [Fintype ι]
   coordinate : ∀ i, ScalarIntervalCertificate (q i) (I i)
 
 /-- When [a finite-vector certificate is supplied](hyp:c),
-[its interval vector contains the real vector of rational coordinates](goal). -/
+[its interval vector contains the real vector of rational coordinates](goal).
+@isnad1 id=contains.1h3v.s4.a5564e4860d3 from=translated src=- shape=cbe60540 vocab=3288be57
+-/
 theorem FiniteVectorCertificate.sound {ι : Type*} [Fintype ι]
     {q : ι → ℚ} {I : IntervalVector ι} (c : FiniteVectorCertificate q I) :
     ContainsVector I (fun i => (q i : ℝ)) := by
@@ -238,7 +258,9 @@ structure FiniteMatrixCertificate {ι κ : Type*} [Fintype ι] [Fintype κ]
   entry : ∀ i j, ScalarIntervalCertificate (q i j) (I i j)
 
 /-- When [a finite-matrix certificate is supplied](hyp:c),
-[its interval matrix contains the real matrix of rational entries](goal). -/
+[its interval matrix contains the real matrix of rational entries](goal).
+@isnad1 id=contains.1h4v.s5.1f9e08866e77 from=translated src=- shape=f7d0eeb1 vocab=3d7fa957
+-/
 theorem FiniteMatrixCertificate.sound {ι κ : Type*} [Fintype ι] [Fintype κ]
     {q : Matrix ι κ ℚ} {I : IntervalMatrix ι κ}
     (c : FiniteMatrixCertificate q I) :
@@ -260,7 +282,9 @@ inductive IntervalFoldCertificate : List RatInterval → RatInterval → Prop
       IntervalFoldCertificate (head :: tail) output
 
 /-- When [an interval-fold certificate is supplied](hyp:c),
-[the input-list sum refines its reported output interval](goal). -/
+[the input-list sum refines its reported output interval](goal).
+@isnad1 id=subinter.1h2v.s4.7b55dc780609 from=translated src=- shape=6c3c8db4 vocab=806ec7eb
+-/
 theorem IntervalFoldCertificate.refines_sum {xs : List RatInterval}
     {output : RatInterval} (c : IntervalFoldCertificate xs output) :
     xs.sum.Subinterval output := by
@@ -274,7 +298,9 @@ theorem IntervalFoldCertificate.refines_sum {xs : List RatInterval}
 
 /-- Given [an interval-fold certificate](hyp:c) and
 [coordinatewise containment of the real values](hyp:h),
-[the reported interval contains their sum](goal). -/
+[the reported interval contains their sum](goal).
+@isnad1 id=contains.2h3v.s5.8228830ca57c from=translated src=- shape=67e53a9f vocab=77ffd626
+-/
 theorem IntervalFoldCertificate.contains_sum {xs : List RatInterval}
     {values : List ℝ} {output : RatInterval}
     (c : IntervalFoldCertificate xs output)
@@ -293,7 +319,9 @@ theorem IntervalFoldCertificate.contains_sum {xs : List RatInterval}
             (RatInterval.add_sound hhead (ih htail))
 
 /-- When [one interval list refines another coordinatewise](hyp:h),
-[the first list's sum refines the second list's sum](goal). -/
+[the first list's sum refines the second list's sum](goal).
+@isnad1 id=subinter.1h2v.s5.39119e5a04f2 from=translated src=- shape=7f5b58b2 vocab=cf6be226
+-/
 theorem listSum_subinterval {xs ys : List RatInterval}
     (h : List.Forall₂ RatInterval.Subinterval xs ys) :
     xs.sum.Subinterval ys.sum := by
@@ -340,7 +368,9 @@ structure ChunkedSumCertificate {ι : Type*} [Fintype ι] [DecidableEq ι]
 /-- Given [a finite additive family](hyp:f), [a list of index chunks](hyp:chunks),
 [pairwise disjoint chunks](hyp:hdisjoint), and
 [chunks covering every index](hyp:hcovers),
-[the full sum equals the list sum of the chunk sums](goal). -/
+[the full sum equals the list sum of the chunk sums](goal).
+@isnad1 id=eq.2h4v.s6.6da96b3319af from=translated src=- shape=285e54a9 vocab=41a64c18
+-/
 theorem sum_eq_sum_chunks {ι M : Type*} [Fintype ι] [DecidableEq ι]
     [AddCommMonoid M] (f : ι → M) (chunks : List (Finset ι))
     (hdisjoint : chunks.Pairwise (fun s t => Disjoint s t))
@@ -370,7 +400,9 @@ theorem sum_eq_sum_chunks {ι M : Type*} [Fintype ι] [DecidableEq ι]
     _ = (chunks.map (fun s => ∑ i ∈ s, f i)).sum := partition_sum chunks hdisjoint
 
 /-- When [a chunked-sum certificate is supplied](hyp:c),
-[the complete interval sum refines its reported output](goal). -/
+[the complete interval sum refines its reported output](goal).
+@isnad1 id=subinter.0h5v.s4.cf0e55067ff2 from=translated src=- shape=3b4ffe64 vocab=6582feac
+-/
 theorem ChunkedSumCertificate.sound {ι : Type*} [Fintype ι] [DecidableEq ι]
     {terms : ι → RatInterval} {chunkSize : ℕ} {output : RatInterval}
     (c : ChunkedSumCertificate terms chunkSize output) :
@@ -393,7 +425,9 @@ theorem ChunkedSumCertificate.sound {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Given [a chunked-sum certificate](hyp:c) and
 [coordinatewise containment of real summands](hyp:hvalues),
-[the reported interval contains their full sum](goal). -/
+[the reported interval contains their full sum](goal).
+@isnad1 id=contains.1h6v.s5.79248911e794 from=translated src=- shape=36d577b0 vocab=ab62b8c0
+-/
 theorem ChunkedSumCertificate.contains {ι : Type*} [Fintype ι] [DecidableEq ι]
     {terms : ι → RatInterval} {chunkSize : ℕ} {output : RatInterval}
     (c : ChunkedSumCertificate terms chunkSize output) {values : ι → ℝ}
@@ -410,7 +444,9 @@ abbrev ChunkedDotCertificate {ι : Type*} [Fintype ι] [DecidableEq ι]
   ChunkedSumCertificate (fun i => (left i).mul (right i)) chunkSize output
 
 /-- When [a chunked dot-product certificate is supplied](hyp:c),
-[the interval dot product refines its reported coordinate interval](goal). -/
+[the interval dot product refines its reported coordinate interval](goal).
+@isnad1 id=subinter.0h6v.s5.0a00b098a807 from=translated src=- shape=96975258 vocab=a7e51ddc
+-/
 theorem ChunkedDotCertificate.sound {ι : Type*} [Fintype ι] [DecidableEq ι]
     {left right : IntervalVector ι} {chunkSize : ℕ} {output : RatInterval}
     (c : ChunkedDotCertificate left right chunkSize output) :
@@ -419,7 +455,9 @@ theorem ChunkedDotCertificate.sound {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Given [a chunked dot-product certificate](hyp:c),
 [left-vector containment](hyp:hx), and [right-vector containment](hyp:hy),
-[the reported interval contains the corresponding real dot product](goal). -/
+[the reported interval contains the corresponding real dot product](goal).
+@isnad1 id=contains.2h8v.s6.cdcc517a7477 from=translated src=- shape=e13ced47 vocab=17564449
+-/
 theorem ChunkedDotCertificate.contains {ι : Type*} [Fintype ι] [DecidableEq ι]
     {left right : IntervalVector ι} {chunkSize : ℕ} {output : RatInterval}
     (c : ChunkedDotCertificate left right chunkSize output)

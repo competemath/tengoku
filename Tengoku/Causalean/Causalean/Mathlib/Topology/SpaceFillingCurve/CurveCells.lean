@@ -253,7 +253,9 @@ private theorem level_fiber_nonempty {d : ℕ} (T : DyadicTraversal d)
       exact (Fin.ext hlp : l = p) ▸ hpx
 
 /-- Every parameter in the unit interval has a point in all corresponding
-closed dyadic cubes, including both cubes at a subdivision endpoint. -/
+closed dyadic cubes, including both cubes at a subdivision endpoint.
+@isnad1 id=ex.1h3v.s5.22e765443e3d from=translated src=- shape=fb32e306 vocab=daa770ea
+-/
 theorem dyadicCellFiber_nonempty {d : ℕ} (T : DyadicTraversal d)
     (t : ℝ) (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     ∃ x : Fin d → ℝ, dyadicCellFiber T t x := by
@@ -317,7 +319,9 @@ structure LocalizedCubeMap (d : ℕ) (T : DyadicTraversal d) where
     t ∈ dyadicTimeCell d n k → dyadicCubeCell T n k (toFun t)
 
 /-- Given [a cube dimension](hyp:d) of [at least two](hyp:hd) and [a coherent dyadic traversal](hyp:T),
-[a map localized to its matching dyadic cube cells exists](goal). -/
+[a map localized to its matching dyadic cube cells exists](goal).
+@isnad1 id=nonempty.1h2v.s4.98b0e04cc508 from=translated src=- shape=1fbb6cc8 vocab=1c20d509
+-/
 theorem exists_localizedCubeMap_of_traversal (d : ℕ) (hd : 2 ≤ d)
     (T : DyadicTraversal d) : Nonempty (LocalizedCubeMap d T) := by
   let H : ℝ → Fin d → ℝ := fun t =>

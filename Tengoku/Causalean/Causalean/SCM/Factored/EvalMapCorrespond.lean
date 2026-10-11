@@ -96,7 +96,9 @@ noncomputable def partialEvalMap (M : Causalean.SCM N Ω) :
 -- ============================================================
 
 /-- The first component of `partialEvalMap` is always the input latent tuple:
-    the recursion only writes to the `ObservedPrefixValues` factor. -/
+    the recursion only writes to the `ObservedPrefixValues` factor.
+@isnad1 id=eq.1h6v.s6.871d1f95d951 from=translated src=- shape=060618e3 vocab=42955be1
+-/
 theorem partialEvalMap_latent (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M) :
     ∀ (n : ℕ) (hn : n ≤ M.observed.card),
@@ -127,7 +129,9 @@ theorem partialEvalMap_latent (M : Causalean.SCM N Ω)
 /-- `partialEvalMap` is jointly measurable in `(s, ℓ)`.  Proved by induction on
     `n`: the base case is a product of projections, and the step case composes
     the measurable `stepFun`, `extendOrderedLatentPrefix`, and the inductive
-    hypothesis. -/
+    hypothesis.
+@isnad1 id=measurab.1h4v.s9.7ef02eb5a023 from=translated src=- shape=53e231c6 vocab=8c2ac149
+-/
 @[fun_prop]
 theorem measurable_partialEvalMap (M : Causalean.SCM N Ω) :
     ∀ (n : ℕ) (hn : n ≤ M.observed.card),
@@ -161,7 +165,9 @@ theorem measurable_partialEvalMap (M : Causalean.SCM N Ω) :
 -- ============================================================
 
 /-- Appending an observed coordinate to a prefix makes the final coordinate of
-    the expanded prefix equal to the appended value. -/
+    the expanded prefix equal to the appended value.
+@isnad1 id=eq.1h6v.s8.62ff6733e7eb from=translated src=- shape=54ad77e2 vocab=1f116220
+-/
 lemma observedPrefixValue_succ_last
     (M : Causalean.SCM N Ω) {k : ℕ} (hn : k + 1 ≤ M.observed.card)
     (ξ : M.ObservedPrefixValues k (Nat.le_of_succ_le hn))
@@ -171,7 +177,9 @@ lemma observedPrefixValue_succ_last
   simp [observedPrefixValue, Fin.lastCases_last]
 
 /-- Appending an observed coordinate to a prefix leaves every earlier coordinate
-    of the prefix unchanged. -/
+    of the prefix unchanged.
+@isnad1 id=eq.1h7v.s8.9d9e8170c33f from=translated src=- shape=ce38de3e vocab=866d98ad
+-/
 lemma observedPrefixValue_succ_castSucc
     (M : Causalean.SCM N Ω) {k : ℕ} (hn : k + 1 ≤ M.observed.card)
     (ξ : M.ObservedPrefixValues k (Nat.le_of_succ_le hn))
@@ -182,7 +190,9 @@ lemma observedPrefixValue_succ_castSucc
   simp [observedPrefixValue, Fin.lastCases_castSucc]
 
 /-- Extending a deterministic evaluation prefix by one observed variable leaves
-    the previously computed observed prefix unchanged. -/
+    the previously computed observed prefix unchanged.
+@isnad1 id=eq.1h6v.s7.e83577d97392 from=translated src=- shape=2d35a24e vocab=f39068c2
+-/
 lemma partialEvalMap_succ_snd_fst
     (M : Causalean.SCM N Ω) (s : FixedValues M) (ℓ : LatentValues M)
     {k : ℕ} (hn : k + 1 ≤ M.observed.card) :
@@ -200,7 +210,9 @@ lemma partialEvalMap_succ_snd_fst
     `observedPrefixValue` of the extension.
 
     This is the coordinate-level bridge used to connect the deterministic
-    prefix state with the ordinary evaluator. -/
+    prefix state with the ordinary evaluator.
+@isnad1 id=eq.1h7v.s7.99d0ad86e2a7 from=translated src=- shape=5ec21e43 vocab=f02747fe
+-/
 theorem partialEvalMap_observedPrefixValue (M : Causalean.SCM N Ω)
     (s : FixedValues M) (ℓ : LatentValues M) :
     ∀ (n : ℕ) (hn : n ≤ M.observed.card) (i : Fin n),
@@ -307,7 +319,9 @@ theorem partialEvalMap_observedPrefixValue (M : Causalean.SCM N Ω)
       deterministic step kernel into a composition, yielding
       `latentProduct.map (fun ℓ => extendOrderedLatentPrefix hn ((partialEvalMap k _ s ℓ),
         stepFun hn (s, partialEvalMap k _ s ℓ)))`, which is exactly
-      `latentProduct.map (partialEvalMap (k+1) hn s ·)` by definition. -/
+      `latentProduct.map (partialEvalMap (k+1) hn s ·)` by definition.
+@isnad1 id=eq.1h5v.s10.e4cdf9c4e74d from=translated src=- shape=a4b78862 vocab=791313ad
+-/
 theorem jointKernelPrefix_apply_eq (M : Causalean.SCM N Ω) (s : FixedValues M) :
     ∀ (n : ℕ) (hn : n ≤ M.observed.card),
       (M.jointKernelPrefix n hn) s =

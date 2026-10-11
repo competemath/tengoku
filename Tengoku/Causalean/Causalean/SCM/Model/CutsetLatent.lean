@@ -61,7 +61,9 @@ inductive isAncestorAvoiding (C : Finset V) : V → V → Prop
 /-- Every avoiding ancestry relation is also ordinary directed ancestry.
 
     An avoiding path is in particular a directed path: it forgets the
-    interior-avoidance and yields an ordinary ancestor. -/
+    interior-avoidance and yields an ordinary ancestor.
+@isnad1 id=isancest.1h5v.s5.8bb15de543e8 from=translated src=- shape=780f97ae vocab=57edfe5d
+-/
 theorem isAncestorAvoiding.toIsAncestor {C : Finset V} {u v : V}
     (h : G.isAncestorAvoiding C u v) : G.isAncestor u v := by
   induction h with
@@ -72,7 +74,9 @@ theorem isAncestorAvoiding.toIsAncestor {C : Finset V} {u v : V}
 
     Prepend an edge at the source end: if `u → w` is an edge, `w ∉ C`, and there
     is a `C`-avoiding path from `w` to `v`, then there is a `C`-avoiding path
-    from `u` to `v`.  The new interior node is `w`, which avoids `C`. -/
+    from `u` to `v`.  The new interior node is `w`, which avoids `C`.
+@isnad1 id=isancest.3h6v.s5.cbfb91976432 from=translated src=- shape=e497d84a vocab=2a05d357
+-/
 theorem isAncestorAvoiding.cons {C : Finset V} {u w v : V}
     (he : G.edge u w) (hw : w ∉ C) (h : G.isAncestorAvoiding C w v) :
     G.isAncestorAvoiding C u v := by
@@ -87,7 +91,9 @@ theorem isAncestorAvoiding.cons {C : Finset V} {u w v : V}
     A `C`-avoiding path from `u` to `v` materialises as a concrete forward-directed
     path list `q` whose strictly interior nodes all avoid `C`.  Each interior node
     additionally has an incoming edge inside `q` (it is never the head), so it is
-    never a graph root — a fact used downstream to exclude fixed nodes. -/
+    never a graph root — a fact used downstream to exclude fixed nodes.
+@isnad1 id=ex.1h5v.s7.1dc5cf394875 from=translated src=- shape=fdce7fe7 vocab=eba59e76
+-/
 theorem isAncestorAvoiding.exists_path {C : Finset V} {u v : V}
     (h : G.isAncestorAvoiding C u v) :
     ∃ q : List V, q.length ≥ 2 ∧ q.head? = some u ∧ q.getLast? = some v ∧
@@ -193,7 +199,9 @@ noncomputable def cutsetLatent (M : Causalean.SCM N Ω)
     Classical.decPred _
   M.unobserved.filter (fun u => ∃ y ∈ Y, u = y ∨ M.dag.isAncestorAvoiding C u y)
 
-/-- Membership in the latent cutset means being unobserved and reaching the target set along an avoiding path. -/
+/-- Membership in the latent cutset means being unobserved and reaching the target set along an avoiding path.
+@isnad1 id=iff.0h6v.s7.89d153a6100f from=translated src=- shape=42780836 vocab=cc1453bd
+-/
 theorem mem_cutsetLatent (M : Causalean.SCM N Ω)
     {Y C : Finset (SWIGNode N)} {u : SWIGNode N} :
     u ∈ M.cutsetLatent Y C ↔
@@ -206,7 +214,9 @@ theorem mem_cutsetLatent (M : Causalean.SCM N Ω)
   change u ∈ M.unobserved.filter _ ↔ _
   exact Finset.mem_filter
 
-/-- The latent cutset is contained in the model's unobserved node set. -/
+/-- The latent cutset is contained in the model's unobserved node set.
+@isnad1 id=le.0h5v.s6.93c64f7090a2 from=translated src=- shape=54900d3e vocab=2a6ec532
+-/
 theorem cutsetLatent_subset (M : Causalean.SCM N Ω)
     (Y C : Finset (SWIGNode N)) :
     M.cutsetLatent Y C ⊆ M.unobserved := by
@@ -233,7 +243,9 @@ evaluations agree at every observed node that is a target or reaches one along s
     from `c` (when the node is in `C`, no latent dependence) or applies the
     structural function to parent values; each latent parent is in the cutset by
     extending the avoiding path through the non-`C` current node, and each
-    observed non-`C` parent recurses with the avoiding witness extended. -/
+    observed non-`C` parent recurses with the avoiding witness extended.
+@isnad1 id=eq.4h10v.s9.056280870511 from=translated src=- shape=7e56378f vocab=dcc2fdde
+-/
 lemma evalObservedAuxOverride_agree_cutset (M : Causalean.SCM N Ω)
     (T : Finset (SWIGNode N))
     {C : Finset (SWIGNode N)} (hC : C ⊆ M.observed)
@@ -311,7 +323,9 @@ lemma evalObservedAuxOverride_agree_cutset (M : Causalean.SCM N Ω)
 
     No d-separation hypothesis is needed: latents outside the cutset reach `Y`
     only through the overridden block `C`, where the recursion short-circuits to
-    the override value `c` and never reads the latent assignment. -/
+    the override value `c` and never reads the latent assignment.
+@isnad1 id=eq.3h9v.s7.76ad8300b014 from=translated src=- shape=8275ec70 vocab=bbf315d4
+-/
 theorem evalMap_overrideC_agree_cutset (M : Causalean.SCM N Ω)
     {Y C : Finset (SWIGNode N)}
     (hY : Y ⊆ M.observed) (hC : C ⊆ M.observed)
@@ -354,7 +368,9 @@ theorem evalMap_overrideC_agree_cutset (M : Causalean.SCM N Ω)
     to the cutset projection of the latent assignment.  In words, the override
     evaluation on `Y` is a measurable function of the latent values restricted to
     the cutset `cutsetLatent Y C` (together with the fixed and override inputs,
-    held fixed here). -/
+    held fixed here).
+@isnad1 id=ex.2h7v.s9.73aadd7cd9af from=translated src=- shape=7c501ce9 vocab=b8739a89
+-/
 theorem exists_evalMap_overrideC_factors_cutset (M : Causalean.SCM N Ω)
     {Y C : Finset (SWIGNode N)}
     (hY : Y ⊆ M.observed) (hC : C ⊆ M.observed)

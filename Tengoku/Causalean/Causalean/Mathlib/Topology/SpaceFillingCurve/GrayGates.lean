@@ -32,7 +32,9 @@ private theorem grayBit_last (n i : ℕ) (hi : i < n + 1) :
     simp [heq]
 
 /-- Given [a positive dimension](hyp:d,hd) and [two face-adjacent binary vertices](hyp:u,v,huv),
-[a reflected-Gray path visits every vertex once while using them as its endpoints](goal). -/
+[a reflected-Gray path visits every vertex once while using them as its endpoints](goal).
+@isnad1 id=ex.2h3v.s8.0eaaed65ed7c from=translated src=- shape=7049f0cc vocab=9cb5e515
+-/
 theorem exists_grayPath_between_adjacent_vertices (d : ℕ) (hd : 0 < d)
     (u v : Fin d → Bool) (huv : FaceAdjacentVertex u v) :
     ∃ path : Fin (2 ^ d) → Fin d → Bool,

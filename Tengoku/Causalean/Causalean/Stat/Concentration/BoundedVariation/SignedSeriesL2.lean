@@ -17,6 +17,7 @@ summable at every sign pattern](hyp:hF) and [the root sign-average second
 moments of its terms are summable](hyp:hR), then [the sign-average square
 of the series is at most the square of the sum of those root second
 moments](goal).
+@isnad1 id=le.2h2v.s8.39d1fc8272ce from=translated src=- shape=bc9baaf4 vocab=7ffe3d2f
 -/
 theorem finite_sign_l2_tsum_le {n : ℕ} (F : ℕ → (Fin n → Bool) → ℝ)
     (hF : ∀ σ, Summable (fun k => F k σ))

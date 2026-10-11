@@ -54,7 +54,9 @@ noncomputable def hausdorffDist {α : Type*} [PseudoMetricSpace α]
 
 /-- **Distance from a real point to a closed interval.**  For `c ≤ d`,
 `infDist x [c,d] = max 0 (max (c − x) (x − d))` — zero inside the interval, and the
-signed gap to the nearer endpoint outside it. -/
+signed gap to the nearer endpoint outside it.
+@isnad1 id=eq.1h3v.s5.22272aabd4d9 from=translated src=- shape=df37ec3b vocab=8c995779
+-/
 theorem infDist_Icc {c d : ℝ} (hcd : c ≤ d) (x : ℝ) :
     Metric.infDist x (Set.Icc c d) = max 0 (max (c - x) (x - d)) := by
   refine le_antisymm ?_ ?_
@@ -116,7 +118,9 @@ private theorem image_infDist_Icc {a b c d : ℝ} (hcd : c ≤ d) :
 
 /-- **Directed Hausdorff distance between intervals.**
 `dᴴ([a,b], [c,d]) = max 0 (max (c − a) (b − d))` (for `a ≤ b`, `c ≤ d`): the
-worst over-reach of `[a,b]` beyond `[c,d]`, achieved at the endpoints. -/
+worst over-reach of `[a,b]` beyond `[c,d]`, achieved at the endpoints.
+@isnad1 id=eq.2h4v.s6.fdd5de6fe425 from=translated src=- shape=035fecd5 vocab=98ad9c91
+-/
 theorem directedHausdorff_Icc {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
     directedHausdorff (Set.Icc a b) (Set.Icc c d)
       = max 0 (max (c - a) (b - d)) := by
@@ -155,7 +159,9 @@ theorem directedHausdorff_Icc {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
 /-- **The geometric keystone (Beresteanu–Molinari eq. (A.1), `d = 1`).** For real numbers
 `a ≤ b` and `c ≤ d` forming [two well-ordered closed intervals](hyp:hab,hcd), [the
 symmetric Hausdorff distance between `[a,b]` and `[c,d]` equals the larger of the two
-endpoint gaps](goal): `H([a,b], [c,d]) = max(|a − c|, |b − d|)`. -/
+endpoint gaps](goal): `H([a,b], [c,d]) = max(|a − c|, |b − d|)`.
+@isnad1 id=eq.2h4v.s6.e9e4257ab4ea from=translated src=- shape=cbe74857 vocab=fa900634
+-/
 theorem hausdorffDist_Icc {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
     hausdorffDist (Set.Icc a b) (Set.Icc c d) = max |a - c| |b - d| := by
   unfold hausdorffDist

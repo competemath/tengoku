@@ -18,6 +18,7 @@ at time zero](hyp:hzero), and [bounds the increments of the path w_j: for
 s ≤ t, |w_j(t) − w_j(s)| ≤ v_j(t) − v_j(s)](hyp:hinc). Then for [times
 s ≤ t](hyp:hst), [the summed squared increments of the paths w_j from s to
 t are at most the sum of v_j(1)·(v_j(t) − v_j(s))](goal).
+@isnad1 id=le.4h5v.s9.6688442ca040 from=translated src=- shape=60852e1d vocab=a04ab23e
 -/
 theorem increment_energy_le_control {n : ℕ} (w v : Fin n → Path)
     (hmono : ∀ j, Monotone (v j : Time → ℝ))
@@ -49,6 +50,7 @@ energy of the paths w_j is at most 4096 times the sum of
 
 The numerical constant is deliberately generous so that elementary
 sub-Gaussian and chaining bounds can be used without optimizing constants.
+@isnad1 id=le.3h3v.s9.6a8ed46d3ebc from=translated src=- shape=fd7326ab vocab=d582e11d
 -/
 theorem rademacherEnergy_le_control {n : ℕ} (w v : Fin n → Path)
     (hmono : ∀ j, Monotone (v j : Time → ℝ))
