@@ -1420,6 +1420,18 @@ class Intake(unittest.TestCase):
         rc, out = r.gate("intake_check.py")
         self.assertEqual(rc, 0, out)
 
+    def test_instance_reducible_no_expose_and_mk_iff_are_inert_too(self):
+        """Dropping them changes how Lean unfolds a definition (a proof that rewrites through `@[instance_reducible] def bialgebra` stops working: tauceti, 2026-10-11)."""
+        for attr, decl in (
+            ("instance_reducible", "def Fx.one : Nat := 1"),
+            ("no_expose", "def Fx.two : Nat := 2"),
+            ("mk_iff", "inductive Fx.P : Nat -> Prop | zero : Fx.P 0"),
+        ):
+            r = self.repo()
+            self.bundle(r, mod=self.MOD + f"\n@[{attr}] {decl}\n")
+            rc, out = r.gate("intake_check.py")
+            self.assertEqual(rc, 0, f"{attr}: {out}")
+
     def test_a_manifest_that_is_not_made_of_objects_fails_with_a_message(self):
         r = self.repo()
         self.bundle(r)
