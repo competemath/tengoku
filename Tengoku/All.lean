@@ -5,6 +5,7 @@ import Tengoku.AndersonConjecture
 import Tengoku.InfinityCosmos
 import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
+import Tengoku.NavierStokesEuler
 import Tengoku.Zflean
 import Tengoku.Degiorgi
 import Tengoku.Expdb
