@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "687bb7699a39e2a3e86babe89534cba06de4f7160dac0df07237526852305b6c",
+ "library": "navier-stokes-euler",
+ "lint_mode": "proposed",
+ "modules": 182,
+ "part": 4,
+ "theorems": 3298
+}
