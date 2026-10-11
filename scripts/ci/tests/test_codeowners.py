@@ -167,6 +167,13 @@ class OwnerOnly(unittest.TestCase):
         for p in ("Tengoku/Seed/Logic/Basic.lean", "Tengoku.lean", "lean-toolchain", "scripts/seed.py"):
             self.assertEqual(owners_of(p, self.rules), both, p)
 
+    def test_a_raze_marker_needs_a_code_owner_although_what_it_deletes_is_in_the_lane(self):
+        """A raze PR (scripts/ci/raze_check.py) deletes library modules and edits an umbrella and a manifest, all of which have no owner: its marker data/raze/<id>.json is the file that makes a person review it."""
+        both = [MAIN, SECOND]
+        self.assertEqual(owners_of("data/raze/openai-math-1.json", self.rules), both)
+        for p in ("Tengoku/OpenaiMath/OAI/X.lean", "Tengoku/OpenaiMath.lean", "data/intake/openai-math/manifest.jsonl", "Tengoku/All.lean"):
+            self.assertEqual(owners_of(p, self.rules), [], p)
+
     def test_every_file_that_is_not_content_or_bot_data_is_owned_even_when_nobody_listed_it(self):
         """A review (2026-10-10) found machinery with no rule: the leak-scan, isnad and Jinshi roots, tools/*.py, .gitleaks.toml, the widget tree. The default line owns all of it, and anything new."""
         both = [MAIN, SECOND]

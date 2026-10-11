@@ -11,6 +11,7 @@ import re
 import sys
 
 from _git import changed_files, fail, gh_output, pascal, run, tier_of
+from raze_check import is_raze
 from restructure_check import is_restructure
 from tag_check import is_tag
 
@@ -34,6 +35,14 @@ def tier(p: str) -> str:
     return tier_of(p)
 
 
+# A RAZE PR takes modules of an intake library out of the tree (scripts/ci/raze_check.py judges it: the removal and nothing else, dependencies included). It is the only class
+# that removes content, so it is asked first, and it comes from any author: its marker data/raze/<id>.json is under data/, which no content-lane line of CODEOWNERS covers, so a
+# code owner has to review it.
+if is_raze(base, head):
+    print(f"class=raze ({len(files)} files)")
+    gh_output("class", "raze")
+    gh_output("files", " ".join(p for _, p in files))
+    sys.exit(0)
 # A TAG PR writes isnad tags into modules that are already in the tree and changes nothing else (scripts/ci/tag_check.py judges it: after the tags are taken out, code and
 # docstring words are the base's). Asked before the scope-fix shape, which is also "existing modules modified in place", because only the content tells them apart.
 if is_tag(base, head):

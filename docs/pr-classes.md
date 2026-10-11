@@ -205,3 +205,36 @@ are tagged when the generator learns to write tags (not built).
 
 A tag PR is one part of a sweep over the tree: `scripts/isnad_sweep.py` plans it (dependents first, at most 400 modules a part) and the `isnad-tag` workflow tags a part,
 verifies it and opens the PR as the bot (`docs/isnad.md`, "The sweep"). Parts are approved one by one like the parts of an intake bundle.
+
+## 8. The raze class
+
+A **raze PR** takes modules of a library that arrived as an intake bundle **out of the tree**. It is the only operation that removes content from it, and it exists for one
+situation: a library arrives in parts, each part is cut from the tree as it is (`from_tree`, section 6), and so it can only *add* modules. When the factory has cut
+modules wrongly (2026-10-11: the first pruner cut declarations that later parts name, and the later parts of three libraries lost the modules that name them) the merged
+modules cannot be repaired by the next part. Razing them lets the next cut bring them back, rebuilt.
+
+It comes from any author and is recognised by its marker, the one added file `data/raze/<id>.json`:
+
+```json
+{"library": "openai-math", "modules": ["Tengoku.OpenaiMath.OAI.Analysis.Daugavet.Enlargement"], "reason": "the first pruner cut finite_dimensional_enlargement, which a later part names"}
+```
+
+`modules` lists module names, or `"all": true` razes the whole library. `reason` is one sentence and is the first thing a reviewer reads. A marker stays in the tree as the record of
+what was removed and why; it is never edited (a PR that changes one is a tooling PR, owned).
+
+**A code owner reviews it.** The files a raze deletes and edits (library modules, the umbrella, the manifest, `Tengoku/All.lean`) are all in the content lane, which no one owns; the marker is
+under `data/`, which the default line of `CODEOWNERS` owns, so the PR cannot merge without a code owner. `test_codeowners.py` holds that.
+
+`scripts/ci/raze_check.py` judges it in the gate, without Lean and without running anything of the PR:
+
+| Check | What it requires |
+|---|---|
+| shape | exactly one added marker; the library has `data/intake/<library>/manifest.jsonl` at the base; every module named is a module of the library at the base; at most 800 modules in a partial raze |
+| nothing but the removal | the deleted files are exactly the marker's modules; the umbrella `Tengoku/<Library>.lean` loses exactly their `import` lines and gains nothing; the manifest loses exactly the lines of their records, every other line unchanged and in its place; no other file changes. A whole-library raze deletes the library's folder, umbrella and `data/intake/<library>/`, and removes its one line from `Tengoku/All.lean` |
+| dependencies inside the library | no module that remains imports a razed one; every manifest record that remains names a module that remains |
+| dependencies in the rest of the tree | `imports_resolve.py` runs over the whole tree whenever a module is deleted (on the PR and again in the queue): another library importing a razed module fails the PR |
+| credits | `credits.py --raze` lets the credit lines of the deleted files and of their manifest records go, and nothing else |
+
+The merge queue re-runs `raze_check.py` on the entry's base (a part of the library that merged meanwhile may import a module it razes) and builds the library without the modules:
+a partial raze builds `Tengoku.<Library>` and everything builds `Tengoku.All`; a whole-library raze has no root left to build, so `Tengoku.All` is the build.
+In a partial raze the part reports `data/intake/<library>/parts/NNN.json` are history and stay as they are: the next part is numbered from the highest one (`from_tree`). A whole-library raze deletes all of `data/intake/<library>/`, reports included (the library leaves the tree, and comes back as a first part, numbered from 1); `test_raze.py` holds both.
