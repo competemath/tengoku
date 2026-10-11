@@ -206,7 +206,9 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
                 os.replace(fresh, target)
                 fresh = None
         if not problem:
-            while zstd.stdout.read(1 << 20):  # the padding after the end-of-archive blocks: read it, or zstd dies of SIGPIPE and a good archive looks broken
+            while zstd.stdout.read(
+                1 << 20
+            ):  # the padding after the end-of-archive blocks: read it, or zstd dies of SIGPIPE and a good archive looks broken
                 pass
     except tarfile.TarError:
         problem = "does not decompress"  # a stream that stops short or is not a tar

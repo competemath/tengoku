@@ -178,7 +178,9 @@ class Topups(unittest.TestCase):
         )
         r = subprocess.run(
             [sys.executable, "-c", driver, str(ROOT / "scripts"), str(out / "topup-t1.tar.zst"), str(out / "topup-t1.json")],
-            capture_output=True, text=True, env={**os.environ, "TENGOKU_TOPUP_ROOT": str(c)},
+            capture_output=True,
+            text=True,
+            env={**os.environ, "TENGOKU_TOPUP_ROOT": str(c)},
         )
         self.assertEqual(r.returncode, 0, r.stderr)
         rc, peak = (int(x) for x in r.stdout.split()[-2:])
@@ -190,7 +192,9 @@ class Topups(unittest.TestCase):
     def test_an_archive_that_stops_halfway_is_refused_and_the_base_is_back(self):
         """The stream is unpacked as it arrives, so a broken archive has already replaced some files when it is found: they all go back (the digest still matches: it is the manifest's, of the file as published)."""
         p = self.producer()
-        (p / ".lake/build/lib/lean/Tengoku/Zbig.olean").write_bytes(os.urandom(3 << 20))  # last in the archive, incompressible: the small files are unpacked before zstd finds the missing end
+        (p / ".lake/build/lib/lean/Tengoku/Zbig.olean").write_bytes(
+            os.urandom(3 << 20)
+        )  # last in the archive, incompressible: the small files are unpacked before zstd finds the missing end
         out = p / "out"
         run(p, "make", "--tip", "t1", "--out", str(out))
         tar = out / "topup-t1.tar.zst"
@@ -216,7 +220,9 @@ class Topups(unittest.TestCase):
         m = json.loads((out / "topup-t1.json").read_text())
         buf = io.BytesIO()
         with tarfile.open(fileobj=buf, mode="w") as t:  # in this order: the real files first, the member the manifest does not list last
-            for rel, data in [(rel, (p / ".lake" / rel).read_bytes()) for rel in m["files"]] + [("build/lib/lean/Tengoku/Zextra.olean", b"not in the manifest")]:
+            for rel, data in [(rel, (p / ".lake" / rel).read_bytes()) for rel in m["files"]] + [
+                ("build/lib/lean/Tengoku/Zextra.olean", b"not in the manifest")
+            ]:
                 info = tarfile.TarInfo(rel)
                 info.size = len(data)
                 t.addfile(info, io.BytesIO(data))
@@ -229,7 +235,9 @@ class Topups(unittest.TestCase):
         rc, msg = run(c, "apply", "--file", str(tar), "--manifest", str(out / "forged.json"))
         self.assertEqual(rc, 1, msg)
         self.assertIn("unexpected member", msg)
-        self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L0")  # replaced before the bad member arrived, put back
+        self.assertEqual(
+            (c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L0"
+        )  # replaced before the bad member arrived, put back
         self.assertFalse((c / ".lake/build/lib/lean/Tengoku/New.olean").exists())  # created before it, gone
         self.assertFalse((c / ".lake/.topup-applied.json").exists())
 
@@ -252,7 +260,9 @@ class Topups(unittest.TestCase):
         )
         r = subprocess.run(
             [sys.executable, "-c", driver, str(ROOT / "scripts"), str(out / "topup-t1.tar.zst"), str(out / "topup-t1.json")],
-            capture_output=True, text=True, env={**os.environ, "TENGOKU_TOPUP_ROOT": str(c)},
+            capture_output=True,
+            text=True,
+            env={**os.environ, "TENGOKU_TOPUP_ROOT": str(c)},
         )
         self.assertEqual((r.returncode, r.stdout.strip()), (0, "1"), r.stderr)
         self.assertIn("No space left on device", r.stderr)
