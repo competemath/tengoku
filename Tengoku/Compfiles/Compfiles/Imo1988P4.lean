@@ -37,28 +37,46 @@ instance : Coe (Fin 70) singularities := ⟨fun x => ⟨x + 1, by simp⟩⟩
 
 abbrev last : singularities := ⟨70, by simp⟩
 
+/--
+@isnad1 id=nonempty.0h0v.s1.28efbd3e8183 from=translated src=- shape=25b03439 vocab=2622c60a
+-/
 theorem s_nonempty : singularities.Nonempty := ⟨last, Finset.insert_eq_self.mp rfl⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.f39a8dba709a from=translated src=- shape=b449de91 vocab=e6bd9ba3
+-/
 lemma f_aligned : {x | 0 ≤ f x} = S := by simp
 
 -- Extrapolate from a root f x = 0 that the continuous segment to the left has f x > 0 and the continuou segument to the right has f x < 0.
 section Antitone
 
+/--
+@isnad1 id=iff.3h3v.s6.131936aa42aa from=translated src=- shape=9e861b1c vocab=bc32530a
+-/
 lemma div_lt_div' {a b c : ℝ} (ha : 0 < a) (hb : 0 > b) (hc : 0 > c) : a / b < a / c ↔ c < b := by
   rw [← neg_lt_neg_iff, ← div_neg, ← div_neg, div_lt_div_iff_of_pos_left ha (Left.neg_pos_iff.mpr hc) (Left.neg_pos_iff.mpr hb), neg_lt_neg_iff]
 
+/--
+@isnad1 id=strictan.0h0v.s3.5ba8241ffe91 from=translated src=- shape=f2a09be3 vocab=694ea3be
+-/
 lemma anti_io : StrictAntiOn f (Set.Iio 1) := by
   apply StrictAntiOn.add_const <| fun a amem b bmem h_ne => Finset.sum_lt_sum_of_nonempty s_nonempty (fun k kmem => ?_)
   simp_all only [Set.mem_Iio, Finset.mem_Icc]
   have : (1: ℝ) ≤ k := Nat.one_le_cast.mpr kmem.1
   rw [div_lt_div'] <;> linarith
 
+/--
+@isnad1 id=strictan.0h0v.s4.50f8c15c3dc7 from=translated src=- shape=f2a09be3 vocab=a06d557c
+-/
 lemma anti_oi: StrictAntiOn f (Set.Ioi 70) := by
   apply StrictAntiOn.add_const <| fun _ _ _ _ _ => Finset.sum_lt_sum_of_nonempty s_nonempty (fun k kmem => ?_)
   simp_all only [Set.mem_Ioi, Finset.mem_Icc]
   have : k ≤ (70: ℝ) := Nat.cast_le_ofNat.mpr kmem.2
   rw [div_lt_div_iff_of_pos_left] <;> (norm_cast; grind)
 
+/--
+@isnad1 id=strictan.0h2v.s7.afb8aad0c25b from=translated src=- shape=d23a0697 vocab=5589743e
+-/
 lemma component_anti_oo (k n: singularities) : StrictAntiOn (fun x => (k: ℝ) / (x - k)) (Set.Ioo n (n+1)) := by
   obtain ⟨k, hk⟩ := k
   obtain ⟨n, hn⟩ := n
@@ -72,6 +90,9 @@ lemma component_anti_oo (k n: singularities) : StrictAntiOn (fun x => (k: ℝ) /
     rw [div_lt_div']
     all_goals linarith
 
+/--
+@isnad1 id=strictan.0h1v.s6.b79960b76505 from=translated src=- shape=f1472240 vocab=35bab008
+-/
 lemma anti_oo (n: singularities) : StrictAntiOn f (Set.Ioo n (n+1)) :=
   StrictAntiOn.add_const (fun _ amem _ bmem h_ne =>
     Finset.sum_lt_sum_of_nonempty s_nonempty fun k kmem =>
@@ -82,6 +103,9 @@ end Antitone
 -- Used for IVT to find all roots
 section Continuity
 
+/--
+@isnad1 id=continuo.0h1v.s7.5b8a34a8a2ba from=translated src=- shape=802f13fe vocab=fd9fd106
+-/
 lemma component_continuous (k: singularities) : ContinuousOn (fun x => (k: ℝ) / (x-k)) (Set.Iio k ∪ Set.Ioi k) := by
   obtain ⟨k, hk⟩ := k
   rw [continuousOn_union_iff_of_isOpen isOpen_Iio isOpen_Ioi]
@@ -90,12 +114,18 @@ lemma component_continuous (k: singularities) : ContinuousOn (fun x => (k: ℝ) 
       (ContinuousOn.sub continuousOn_id continuousOn_const)
       (by grind only [= Set.mem_Iio, = Set.mem_Ioi])
 
+/--
+@isnad1 id=continuo.0h0v.s4.2c2a8f7bd7f5 from=translated src=- shape=f2a09be3 vocab=86b404da
+-/
 lemma continuous_oi : ContinuousOn f (Set.Ioi 70) :=
   ContinuousOn.add (continuousOn_finsetSum _ (fun n hn => ContinuousOn.mono (component_continuous ⟨n, hn⟩) (by
     simp only [Finset.mem_Icc, Set.Iio_union_Ioi, Set.subset_compl_singleton_iff, Set.mem_Ioi,
       Nat.ofNat_lt_cast, not_lt] at hn ⊢; exact hn.2
   ))) continuousOn_const
 
+/--
+@isnad1 id=continuo.0h1v.s6.d9a8fcd02e34 from=translated src=- shape=f1472240 vocab=9685bc51
+-/
 lemma continuous_oo (n: singularities) : ContinuousOn f (Set.Ioo n (n+1)) := by
   refine ContinuousOn.add (continuousOn_finsetSum _ ?_) continuousOn_const
   refine fun n hn => ContinuousOn.mono (component_continuous ⟨n, hn⟩) ?_
@@ -110,6 +140,9 @@ section Singularity
 open Filter Topology
 
 -- each singularity (at the integers) has the left side approaching bot and right side approaching top
+/--
+@isnad1 id=tendsto.0h1v.s7.143fac9fbc9a from=translated src=- shape=84ffdfde vocab=c21845d0
+-/
 lemma component_atBot (k: singularities) : Tendsto (fun (x: ℝ) => k / (x - k)) (𝓝[<] k) atBot := by
   rw [@Filter.tendsto_atBot]
   intro b
@@ -132,6 +165,9 @@ lemma component_atBot (k: singularities) : Tendsto (fun (x: ℝ) => k / (x - k))
     rw [le_add_iff_nonneg_left]
     positivity
 
+/--
+@isnad1 id=tendsto.0h1v.s7.c1c94376286f from=translated src=- shape=84ffdfde vocab=5a47373c
+-/
 lemma component_atTop (k: singularities) : Tendsto (fun (x: ℝ) => k / (x - k)) (𝓝[>] k) atTop := by
   rw [@Filter.tendsto_atTop]
   intro b
@@ -148,6 +184,9 @@ lemma component_atTop (k: singularities) : Tendsto (fun (x: ℝ) => k / (x - k))
       exact r.le
   · exact ⟨Set.Ioi n, self_mem_nhdsWithin, fun y hy => h.trans <| div_nonneg (Nat.cast_nonneg' _) (sub_pos.mpr hy).le⟩
 
+/--
+@isnad1 id=tendsto.0h0v.s5.10bca39d1ac4 from=translated src=- shape=bd7b6ff2 vocab=ef8a7d9d
+-/
 lemma f_atTop : Tendsto f atTop (nhds (-(5/4): ℝ)) := by
   unfold f
   suffices h: ∀ i ∈ singularities, Tendsto (fun x ↦ (i: ℝ) / (x - ↑i)) atTop (𝓝 0) by
@@ -163,6 +202,9 @@ lemma f_atTop : Tendsto f atTop (nhds (-(5/4): ℝ)) := by
   rw [abs_of_pos, abs_of_pos, div_lt_comm₀ _ hε, lt_sub_iff_add_lt]
   all_goals grind
 
+/--
+@isnad1 id=tendsto.0h0v.s5.688f42f74259 from=translated src=- shape=bd7b6ff2 vocab=603f878c
+-/
 lemma f_atBot : Tendsto f atBot (nhds (-(5/4): ℝ)) := by
   unfold f
   suffices h: ∀ i ∈ singularities, Tendsto (fun x ↦ (i: ℝ) / (x - ↑i)) atBot (𝓝 0) by
@@ -179,6 +221,9 @@ lemma f_atBot : Tendsto f atBot (nhds (-(5/4): ℝ)) := by
   rw [abs_of_pos hi, div_lt_comm₀ (abs_pos.mpr _) hε, abs_of_neg]
   all_goals grind
 
+/--
+@isnad1 id=continuo.0h1v.s7.820fa924ad5e from=translated src=- shape=adb5b170 vocab=6d7688d0
+-/
 lemma erase_continuousOn : ContinuousOn (fun x => ∑ k ∈ (singularities \ {↑n}), (k: ℝ) / (x - ↑k)) (Set.Ioo (n-1) (n+1)) := by
   apply continuousOn_finsetSum
   simp only [Finset.mem_sdiff, Finset.mem_singleton]
@@ -191,14 +236,23 @@ lemma erase_continuousOn : ContinuousOn (fun x => ∑ k ∈ (singularities \ {�
       not_and, not_lt]
     norm_cast; intros; lia
 
+/--
+@isnad1 id=continuo.0h1v.s7.ff8e3b9085cc from=translated src=- shape=ed896f19 vocab=5a7479d1
+-/
 lemma erase_continuousAt : ContinuousAt (fun x => ∑ k ∈ (singularities \ {↑n}), (k: ℝ) / (x - ↑k) - 5 / 4) n :=
   ContinuousAt.add (ContinuousOn.continuousAt erase_continuousOn <| mem_nhds_iff.mpr ⟨Set.Ioo (n-1) (n+1), by rfl, isOpen_Ioo, by simp⟩) continuousAt_const
 
+/--
+@isnad1 id=tendsto.0h1v.s6.30dab57d9a17 from=translated src=- shape=cb1222d4 vocab=e33609f0
+-/
 lemma f_singularities_nhdsLT_atBot (n: singularities) : Tendsto f (𝓝[<] n) atBot := by
   rw [(by simp [← add_sub_assoc] : f = fun x => (n: ℝ) / (x - n) + (∑ k ∈ (singularities \ {↑n}), (k: ℝ) / (x - ↑k) - 5 / 4))]
   apply Tendsto.atBot_add (component_atBot _) <|
     tendsto_iff_forall_eventually_mem.mpr fun _ => (nhdsWithin_le_nhds <| ContinuousAt.tendsto erase_continuousAt ·)
 
+/--
+@isnad1 id=tendsto.0h1v.s6.d8eece4f0ebd from=translated src=- shape=cb1222d4 vocab=9f290e5b
+-/
 lemma f_singularities_nhdsGT_atTop (n: singularities) : Tendsto f (𝓝[>] n) atTop := by
   rw [(by simp [← add_sub_assoc] : f = fun x => (n: ℝ) / (x - n) + (∑ k ∈ (singularities \ {↑n}), (k: ℝ) / (x - ↑k) - 5 / 4))]
   exact Tendsto.atTop_add (component_atTop _) <|
@@ -212,6 +266,9 @@ section Roots
 open Finset Filter Function Topology
 
 -- we can have a stronger condition by replacing ∃ with ∃! from combining the antitone condition
+/--
+@isnad1 id=ex.0h0v.s5.741039c1928a from=translated src=- shape=4cb45128 vocab=5a12673a
+-/
 lemma root_Ioi : ∃ x ∈ Set.Ioi 70, f x = 0 := by
   let I := Set.Ioi (70: ℝ)
   have hl₁ : 𝓝[>] (70: ℝ) ≤ 𝓟 I := by
@@ -223,6 +280,9 @@ lemma root_Ioi : ∃ x ∈ Set.Ioi 70, f x = 0 := by
     (by simp : 0 ∈ Set.Ioi (-((5: ℝ)/4)))
   rwa [Set.mem_image] at this
 
+/--
+@isnad1 id=ex.1h1v.s6.4c52ddb2f03a from=translated src=- shape=8ef1cdf9 vocab=552de2f2
+-/
 lemma root_Ioo (h: (n: ℕ) ≠ 70) : ∃ x ∈ Set.Ioo (n: ℝ) (n+1), f x = 0 := by
   let I := Set.Ioo (n: ℝ) (n+1)
   have hl₁ : 𝓝[>] (n: ℝ) ≤ 𝓟 I := by
@@ -245,6 +305,9 @@ def r (n: singularities): NNReal := if h : (n: ℕ) = 70
   then ⟨root_Ioi.choose, Nat.ofNat_pos'.trans (Set.mem_Ioi.mp root_Ioi.choose_spec.1) |>.le⟩
   else ⟨root_Ioo h |>.choose, (Nat.cast_nonneg' _).trans (Set.mem_Ioo.mp (root_Ioo h |>.choose_spec.1) |>.1).le⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.1b9a79b4a950 from=translated src=- shape=0da93e76 vocab=c37b18bd
+-/
 lemma r_root : f (r n) = 0 := by
   by_cases h : (n: ℕ) = 70
   · simp only [r, h, reduceDIte]
@@ -252,13 +315,22 @@ lemma r_root : f (r n) = 0 := by
   · simp only [r, h, reduceDIte]
     exact root_Ioo h |>.choose_spec.2
 
+/--
+@isnad1 id=mem.1h1v.s6.f1134a098606 from=translated src=- shape=983958e4 vocab=787c9254
+-/
 lemma r_bounds (h: (n: ℕ) ≠ 70) : (r n: ℝ) ∈ Set.Ioo (n: ℝ) (n+1) := by
   simp [r, h]
   exact root_Ioo h |>.choose_spec.1
 
+/--
+@isnad1 id=lt.1h1v.s6.227b9accc1b5 from=translated src=- shape=f3211d90 vocab=8614f539
+-/
 lemma r_bounds₁ (h: (n: ℕ) ≠ 70) : r n < (n+1) :=
   Set.mem_Ioo.mp (r_bounds h) |>.2
 
+/--
+@isnad1 id=lt.0h1v.s5.ff4463e27ae7 from=translated src=- shape=60baaf24 vocab=ff9c9a5e
+-/
 lemma r_bounds₂ (n: singularities) : n < r n := by
   by_cases h : (n: ℕ) = 70
   · simp only [r, h, reduceDIte]
@@ -266,6 +338,9 @@ lemma r_bounds₂ (n: singularities) : n < r n := by
   · simp only [r, h, reduceDIte]
     exact Set.mem_Ioo.mp (root_Ioo h |>.choose_spec.1) |>.1
 
+/--
+@isnad1 id=ne.0h2v.s6.ba2878ac2668 from=translated src=- shape=9de8fcbe vocab=ff9c2578
+-/
 lemma r_not_singularity (n m : singularities) : n ≠ r m := by
   by_cases! h : n ≤ m
   · have : (n: NNReal) ≤ m := by norm_cast
@@ -278,6 +353,9 @@ lemma r_not_singularity (n m : singularities) : n ≠ r m := by
     have h3 : (m + 1 : NNReal) ≤ n := by norm_cast
     grind
 
+/--
+@isnad1 id=le.0h1v.s4.02e478fe14b6 from=translated src=- shape=104f08c4 vocab=0fcba750
+-/
 lemma r_le_r_70 : r n ≤ r last := by
   obtain ⟨n, hn⟩ := n
   by_cases h: (n: ℕ) = 70
@@ -287,6 +365,9 @@ lemma r_le_r_70 : r n ≤ r last := by
       _ ≤ 70 := by rw [Finset.mem_Icc] at hn; norm_cast; lia
       _ < r last := r_bounds₂ last
 
+/--
+@isnad1 id=injectiv.0h0v.s4.b625dbc8c2b9 from=translated src=- shape=1c0675e3 vocab=7f73fc32
+-/
 lemma r_inj: Function.Injective r := by
   intro a b h_eq
   contrapose! h_eq
@@ -302,9 +383,15 @@ lemma r_inj: Function.Injective r := by
 
 abbrev rset : Finset ℝ := Finset.image (NNReal.toReal ∘ r) Finset.univ
 
+/--
+@isnad1 id=eq.0h0v.s3.68a58cd897a3 from=translated src=- shape=b3c4969c vocab=7d06371d
+-/
 lemma rset_card : rset.card = 70 :=
   Finset.card_image_of_injective _ <| Function.Injective.comp NNReal.coe_injective r_inj
 
+/--
+@isnad1 id=eq.0h0v.s6.41a6412c3f64 from=translated src=- shape=859296fc vocab=6975b761
+-/
 lemma singularities_sum : ∑ i: Fin 70, r i = ∑ r ∈ rset, r := by
   rw [rset, sum_image <| Injective.injOn <| Injective.comp NNReal.coe_injective r_inj]
   -- adding simp reduces recursion depth needed for norm_cast
@@ -317,23 +404,38 @@ section Interval
 -- the endpoints don't matter in the volume, so we don't need to know if they are in the solution or not
 def I (n: singularities) := (if 0 ≤ f n then Set.Icc else Set.Ioc) (n: ℝ) (r n)
 
+/--
+@isnad1 id=le.1h1v.s6.9b7e14953d04 from=translated src=- shape=9137f94b vocab=31a28cf2
+-/
 lemma I_bounds (n: singularities) (h: (n: ℕ) ≠ 70) : I n ⊆ Set.Ico n (n+1) := by
   have := r_bounds₁ h
   simp only [I]; split
   · exact Set.Icc_subset_Ico_right this
   · exact Set.Ioc_subset_Icc_self.trans <| Set.Icc_subset_Ico_right (by exact_mod_cast this)
 
+/--
+@isnad1 id=le.0h0v.s5.8a74509584e8 from=translated src=- shape=4d05a715 vocab=51dcae6c
+-/
 lemma I_bounds' : I ⟨70, Finset.insert_eq_self.mp rfl⟩ ⊆ Set.Ici 70 := by
   simp only [I]; split
   · exact Set.Icc_subset_Ici_self
   · exact Set.Ioc_subset_Icc_self.trans Set.Icc_subset_Ici_self
 
+/--
+@isnad1 id=le.1h2v.s5.70b34822c2e8 from=translated src=- shape=832815a9 vocab=3b466af0
+-/
 lemma I_bounds_lower (h: x ∈ I n) : n ≤ x := by
   rw [I] at h; split at h <;> (simp at h; grind)
 
+/--
+@isnad1 id=le.1h2v.s5.5e648daeaef9 from=translated src=- shape=db24672f vocab=8049952d
+-/
 lemma I_bounds_upper (h: x ∈ I n) : x ≤ r n := by
   rw [I] at h; split at h <;> (simp at h; lia)
 
+/--
+@isnad1 id=eq.0h0v.s6.a59c82702a04 from=translated src=- shape=5b30d4be vocab=fcd6eccd
+-/
 lemma ico_stack : Set.Ico (1: ℝ) 71 = ⋃ i : singularities, Set.Ico (i: ℝ) (i+1) := by
   simp only [Set.ext_iff, Set.mem_Ico, Set.mem_iUnion, Subtype.exists, Finset.mem_Icc, exists_and_left, exists_prop]
   refine fun x => ⟨fun ⟨h₁, h₂⟩ => ⟨⌊x⌋₊, ?_⟩, fun ⟨i, h₁, ⟨h₂, h₃⟩, h₄⟩ => ⟨?_, h₄.trans_le ?_⟩⟩
@@ -342,11 +444,17 @@ lemma ico_stack : Set.Ico (1: ℝ) 71 = ⋃ i : singularities, Set.Ico (i: ℝ) 
   · exact_mod_cast Nat.cast_le.mpr h₂ |>.trans h₁
   · exact_mod_cast Nat.add_le_add_right h₃ 1
 
+/--
+@isnad1 id=ordconne.0h1v.s4.48f5cc1c5e31 from=translated src=- shape=54246bd2 vocab=ba9902e8
+-/
 lemma I_connected (n: singularities) : (I n).OrdConnected := by
   dsimp [I]; split
   · exact Set.ordConnected_Icc
   · exact Set.ordConnected_Ioc
 
+/--
+@isnad1 id=disjoint.1h2v.s6.101214b24b99 from=translated src=- shape=40d3475c vocab=f9681ab8
+-/
 lemma I_disjoint {i j : singularities} (h_ne: (i: ℕ) ≠ j) : Disjoint (I i) (I j) := by
   wlog! h: (i: ℕ) < j generalizing i j
   · symm at h_ne ⊢; exact this h_ne (h.lt_iff_ne.mpr h_ne)
@@ -364,6 +472,9 @@ lemma I_disjoint {i j : singularities} (h_ne: (i: ℕ) ≠ j) : Disjoint (I i) (
       rw [Set.Ico_inter_Ico, min_add_add_right, h₂, h₃, Set.Ico_eq_empty_of_le]
       norm_cast
 
+/--
+@isnad1 id=eq.0h0v.s7.a56b8ac5d1f9 from=translated src=- shape=e0d39410 vocab=182f8b8f
+-/
 lemma I_compl : (⋃ i, I i)ᶜ = Set.Iio 1 ∪ (⋃ i: singularities, Set.Ico (i: ℝ) (i+1) \ I i) ∪ Set.Ioi (r last) := by
   ext x; constructor
   · intro hx; by_cases h : x ∈ Set.Ico (1: ℝ) 71
@@ -400,6 +511,9 @@ lemma I_compl : (⋃ i, I i)ᶜ = Set.Iio 1 ∪ (⋃ i: singularities, Set.Ico (
         · exact (I_bounds_lower · |> le_trans (by norm_cast) |> (Set.mem_Ico.mp xmem).2.trans_le |> (lt_self_iff_false _).mp)
     · exact (h.not_ge <| I_bounds_upper · |>.trans r_le_r_70)
 
+/--
+@isnad1 id=eq.0h0v.s5.7d2779c9144a from=translated src=- shape=ee1aa1e9 vocab=a9acdf4a
+-/
 lemma I_aligned : ⋃ i, I i = S := by
   simp_rw [Set.ext_iff]
   intro x
@@ -448,6 +562,9 @@ lemma I_aligned : ⋃ i, I i = S := by
     · rw [Set.mem_Ioi] at h
       simpa only [r_root] using anti_oi (Set.mem_Ioi.mpr hr) (Set.mem_Ioi.mpr (hr.trans h)) h
 
+/--
+@isnad1 id=eq.0h1v.s6.317c8d0a81b1 from=translated src=- shape=927fdb88 vocab=bf62f5a8
+-/
 lemma I_volume (n: singularities) : MeasureTheory.volume (I n) = r n - n := by
   unfold I; split
   · rw [Real.volume_Icc]; rfl
@@ -465,27 +582,48 @@ abbrev M' (n : singularities) : Polynomial ℝ := ∏ k ∈ singularities \ {(n:
 
 abbrev p : Polynomial ℝ := M + C (-(4 / 5)) * ∑ n : singularities, C (n: ℝ) * M' n
 
+/--
+@isnad1 id=eq.0h0v.s6.62f45665fba5 from=translated src=- shape=a30b9e4b vocab=29b94ce3
+-/
 lemma M_sum : ∑ x ∈ singularities.attach, (x: ℝ) = 2485 := by norm_cast
 
+/--
+@isnad1 id=eq.0h0v.s3.254219e87436 from=translated src=- shape=b3c4969c vocab=b1bec7f2
+-/
 lemma M_natDegree : M.natDegree = 70 := by simp
 
+/--
+@isnad1 id=eq.0h1v.s4.0843444ab1f2 from=translated src=- shape=02217b76 vocab=91f2ff60
+-/
 lemma M'_natDegree (n: singularities) : (M' n).natDegree = 69 := by simp [sdiff_singleton_eq_erase]
 
+/--
+@isnad1 id=lt.0h0v.s7.f4091a31d958 from=translated src=- shape=25dca407 vocab=59e215c9
+-/
 lemma M_principal_term' : (C (-(4 / 5)) * ∑ n : singularities, C (n: ℝ) * M' n).natDegree < M.natDegree := by
   rw [natDegree_C_mul (by linarith), M_natDegree]
   exact Nat.lt_add_one_of_le <| natDegree_sum_le_of_forall_le (Finset.univ : Finset singularities)
     (fun n => C (n: ℝ) * M' n) (fun ⟨n, hn⟩ _ => by rw [natDegree_C_mul (by simp at hn ⊢; lia)]; exact M'_natDegree ⟨n, hn⟩ |>.le)
 
+/--
+@isnad1 id=eq.0h0v.s3.5f7c4d7d4316 from=translated src=- shape=b3c4969c vocab=b3ba743a
+-/
 lemma p_natDegree : p.natDegree = 70 := by
   rw [natDegree_add_eq_left_of_degree_lt <| degree_lt_degree M_principal_term']
   exact M_natDegree
 
+/--
+@isnad1 id=ne.0h0v.s4.64dd9088102d from=translated src=- shape=2d527563 vocab=4e07ccb8
+-/
 lemma p_ne_zero : p ≠ 0 := zero_le_degree_iff.mp <| natDegree_pos_iff_degree_pos.mp (by rw [p_natDegree]; lia) |>.le
 
 example (a b: ℕ) (q: Polynomial ℝ) (h : q.degree = b) (h2 : b < a) : q.coeff a = 0 := by
   refine notMem_support_iff.mp ?_
   exact notMem_of_max_lt h2 h
 
+/--
+@isnad1 id=eq.0h0v.s3.9159438479ea from=translated src=- shape=3701a056 vocab=28240e8e
+-/
 lemma p_leadingCoeff : p.leadingCoeff = 1 := by
   rw [leadingCoeff, p_natDegree]
   rw [coeff_add, coeff_C_mul]
@@ -500,6 +638,9 @@ lemma p_leadingCoeff : p.leadingCoeff = 1 := by
   rw [← M_natDegree, ← leadingCoeff]
   simp [leadingCoeff_prod, ↓leadingCoeff_X_sub_C]
 
+/--
+@isnad1 id=eq.0h0v.s4.22560ec55ba6 from=translated src=- shape=ef898e92 vocab=dd77ff1d
+-/
 lemma p_nextCoeff : p.nextCoeff = -4473 := by
   rw [nextCoeff_of_natDegree_pos (by linarith [p_natDegree]), p_natDegree]
   unfold p
@@ -514,9 +655,15 @@ lemma p_nextCoeff : p.nextCoeff = -4473 := by
   simp [↓this, M_sum]
   linarith
 
+/--
+@isnad1 id=le.0h0v.s3.5a3334d91061 from=translated src=- shape=d62aad53 vocab=26d8b184
+-/
 lemma p_roots_card_le_rset_card : p.roots.card ≤ rset.val.card :=
   card_roots' p |>.trans <| by rw [card_val, rset_card, p_natDegree]
 
+/--
+@isnad1 id=isroot.0h1v.s4.17f606646538 from=translated src=- shape=11cb9a25 vocab=23c10e6e
+-/
 lemma p_root_of_r_root : p.IsRoot (r n) := by
   unfold p
   simp only [← sum_coe_sort_eq_attach, map_neg, univ_eq_attach, map_natCast, neg_mul, IsRoot.def, eval_add, eval_prod,
@@ -541,6 +688,9 @@ lemma p_root_of_r_root : p.IsRoot (r n) := by
   rw [add_neg_eq_zero, ← inv_mul_eq_iff_eq_mul₀ (by linarith), inv_div, mul_one]
   exact eq_of_sub_eq_zero this |>.symm
 
+/--
+@isnad1 id=le.0h0v.s4.150cb38d856d from=translated src=- shape=b3e97dc9 vocab=4fd6e4ad
+-/
 lemma rset_le_p_roots : rset.val ≤ p.roots := by
   refine val_le_iff_val_subset.mpr fun _ hx => ?_
   simp only [image_val, univ_eq_attach, attach_val, comp_apply, Multiset.mem_dedup,
@@ -548,15 +698,24 @@ lemma rset_le_p_roots : rset.val ≤ p.roots := by
   rcases hx with ⟨n, hn, -, rfl⟩
   refine mem_roots'.mpr ⟨p_ne_zero, p_root_of_r_root⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.2c81776f3212 from=translated src=- shape=b3e97dc9 vocab=ec59d4a3
+-/
 lemma rset_eq_p_roots : rset.val = p.roots :=
   Multiset.eq_of_le_of_card_le rset_le_p_roots p_roots_card_le_rset_card
 
+/--
+@isnad1 id=eq.0h0v.s6.1829623f0f5e from=translated src=- shape=ec321b0e vocab=25a71a6c
+-/
 lemma p_eq_X_sub_C_rset_prod : p = ∏ r ∈ rset, (X - C r) := by
   have := @C_leadingCoeff_mul_prod_multiset_X_sub_C _ _ _ p ?_
   · simp [p_leadingCoeff, ← rset_eq_p_roots] at this
     exact this.symm
   · rw [← rset_eq_p_roots, card_val, rset_card]; exact p_natDegree.symm
 
+/--
+@isnad1 id=eq.0h0v.s4.12e0703dee3c from=translated src=- shape=e519eae8 vocab=ca583241
+-/
 lemma roots_sum : ∑ r ∈ rset, r = 4473 := by
   have : (∏ r ∈ rset, (X - C r)).nextCoeff = -4473 := by rw [← p_eq_X_sub_C_rset_prod]; exact p_nextCoeff
   simpa [prod_X_sub_C_nextCoeff] using this

@@ -43,7 +43,9 @@ noncomputable def padSimplex {r k : ℕ} (h : r ≤ k)
     · simpa using (sum_pad h R.1).trans R.2.2⟩
 
 /-- Adding zero-mass labels to both probability vectors preserves their L1
-distance exactly. -/
+distance exactly.
+@isnad1 id=eq.1h4v.s5.40b5d71b5f19 from=translated src=- shape=5a369895 vocab=45861b09
+-/
 theorem padSimplex_l1 {r k : ℕ} (h : r ≤ k)
     (R S : ProbabilitySimplex r) :
     simplexL1 (padSimplex h R) (padSimplex h S) = simplexL1 R S := by
@@ -90,7 +92,9 @@ private lemma simplexSampleLaw_pad {r k n : ℕ} (h : r ≤ k)
   rw [PMF.toMeasure_map (Fin.castLE h) (simplexPMF R) (measurable_of_finite _),
     simplexPMF_pad]
 
-/-- Given [smaller and larger alphabet sizes and a sample size](hyp:r,k,n), [an embedding of the smaller alphabet](hyp:h), and [a pair of smaller-alphabet probability vectors](hyp:RS), [relabeling both samples gives exactly the law under zero-mass padding](goal). -/
+/-- Given [smaller and larger alphabet sizes and a sample size](hyp:r,k,n), [an embedding of the smaller alphabet](hyp:h), and [a pair of smaller-alphabet probability vectors](hyp:RS), [relabeling both samples gives exactly the law under zero-mass padding](goal).
+@isnad1 id=eq.1h4v.s8.791dd1972e4d from=translated src=- shape=f9897dbc vocab=191d4554
+-/
 theorem twoSampleLaw_pad {r k n : ℕ} (h : r ≤ k)
     (RS : ProbabilitySimplex r × ProbabilitySimplex r) :
     Measure.map

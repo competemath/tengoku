@@ -23,6 +23,9 @@ We first prove the problem statement for `f : ℕ → ℕ`
 then we use it to prove the statement for positive naturals.
 -/
 
+/--
+@isnad1 id=eq.1h2v.s5.744ecd340843 from=translated src=- shape=bb1f34d4 vocab=13a96747
+-/
 theorem imo1977_p6_nat (f : ℕ → ℕ) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n := by
   have h' : ∀ k n : ℕ, k ≤ n → k ≤ f n := by
     intro k

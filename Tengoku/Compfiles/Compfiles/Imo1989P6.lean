@@ -41,6 +41,9 @@ noncomputable def A :=
 noncomputable def B :=
   {⟨x, k⟩ : Perm (Finset.Icc 1 (2*n)) × Finset.Icc 2 (2*n-1) | ∀ j : Finset.Icc 1 (2*n-1), k.val=j.val ↔ (x ⟨j, by grind⟩ : ℕ).dist (x ⟨j+1, by grind⟩) = n}
 
+/--
+@isnad1 id=iff.0h3v.s8.3bc3023bc366 from=translated src=- shape=8a7e0bc4 vocab=bdec56bf
+-/
 theorem unique_ndiff (i j : Finset.Icc 1 (2*n)) : (i : ℕ).dist j = n ↔ j = (if i ≤ n then i+n else i-n) := by
   simp only [Nat.dist_eq_max_sub_min]
   grind
@@ -53,9 +56,15 @@ def fin_equiv : Finset.Icc 1 (2*n) ≃ Fin (2*n) where
 
 def perm_fin_equiv : Perm (Finset.Icc 1 (2*n)) ≃ Perm (Fin (2*n)) := equivCongr (fin_equiv n) (fin_equiv n)
 
+/--
+@isnad1 id=le.0h2v.s6.dea2927f7af5 from=translated src=- shape=34abc9f6 vocab=89fb3a57
+-/
 @[simp]
 theorem one_le_val (k : Finset.Icc 1 (2 * n)) : 1 ≤ k.val := by grind
 
+/--
+@isnad1 id=le.0h2v.s6.442c59abfd41 from=translated src=- shape=b3e92745 vocab=89fb3a57
+-/
 @[simp]
 theorem val_le_2n (k : Finset.Icc 1 (2 * n)) : k.val ≤ 2*n := by grind
 
@@ -65,6 +74,9 @@ def partial_cycle (k : Finset.Icc 1 (2 * n)) : Perm $ Perm $ Finset.Icc 1 (2 * n
   left_inv x := by simp [mul_assoc, push_end]
   right_inv x := by simp [mul_assoc, push_end]
 
+/--
+@isnad1 id=eq.1h4v.s10.55c2a178bbfd from=translated src=- shape=195adb96 vocab=1e5fa14a
+-/
 theorem partial_cycle.apply_of_eq [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (k i : Finset.Icc 1 (2 * n)) (h : i = k)
     : (partial_cycle n k x) i = x 1 := by
   unfold partial_cycle perm_fin_equiv instOne
@@ -74,6 +86,9 @@ theorem partial_cycle.apply_of_eq [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (
   unfold fin_equiv
   simp
 
+/--
+@isnad1 id=eq.1h4v.s10.b9e7eead9166 from=translated src=- shape=0d879c52 vocab=87eaaab3
+-/
 theorem partial_cycle.apply_of_gt [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (k i : Finset.Icc 1 (2 * n)) (h : k < i)
     : (partial_cycle n k x) i = x i := by
   unfold partial_cycle perm_fin_equiv
@@ -85,6 +100,9 @@ theorem partial_cycle.apply_of_gt [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (
     apply Nat.sub_lt_sub_right _ h
     apply one_le_val
 
+/--
+@isnad1 id=eq.1h4v.s10.659a389d7e7b from=translated src=- shape=c8e82077 vocab=0e6c7495
+-/
 theorem partial_cycle.apply_of_lt [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (k i : Finset.Icc 1 (2 * n)) (h : i < k)
     : (partial_cycle n k x) i = ⟨x ⟨i + 1, by rw [← Subtype.coe_lt_coe] at h; grind⟩, by simp⟩ := by
   unfold partial_cycle perm_fin_equiv
@@ -104,6 +122,9 @@ theorem partial_cycle.apply_of_lt [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (
     apply Nat.sub_lt_sub_right _ h
     apply one_le_val
 
+/--
+@isnad1 id=eq.1h4v.s10.8dfb30fc8862 from=translated src=- shape=7fe18c6c vocab=181bb783
+-/
 theorem partial_cycle.symm.apply_of_eq [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (k i : Finset.Icc 1 (2 * n)) (h : i = 1)
     : ((partial_cycle n k).symm x) i = x k := by
   unfold partial_cycle perm_fin_equiv
@@ -116,6 +137,9 @@ theorem partial_cycle.symm.apply_of_eq [NeZero n] (x : Perm $ Finset.Icc 1 (2 * 
     simp
   · rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.30736134d4ac from=translated src=- shape=92186e9a vocab=65c15578
+-/
 theorem partial_cycle.symm.apply_of_gt [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (k i : Finset.Icc 1 (2 * n)) (h : k < i)
     : ((partial_cycle n k).symm x) i = x i := by
   unfold partial_cycle perm_fin_equiv
@@ -127,6 +151,9 @@ theorem partial_cycle.symm.apply_of_gt [NeZero n] (x : Perm $ Finset.Icc 1 (2 * 
   apply Nat.sub_lt_sub_right _ h
   apply one_le_val
 
+/--
+@isnad1 id=eq.2h4v.s10.5a6310761d46 from=translated src=- shape=f54516ac vocab=66f6adb8
+-/
 theorem partial_cycle.symm.apply_of_le [NeZero n] (x : Perm $ Finset.Icc 1 (2 * n)) (k i : Finset.Icc 1 (2 * n)) (h1 : i ≤ k) (h2 : 1 < i)
     : ((partial_cycle n k).symm x) i = ⟨x ⟨i - 1, by rw [instOne, ← Subtype.coe_lt_coe] at h2; grind⟩, by simp⟩ := by
   unfold partial_cycle perm_fin_equiv
@@ -349,6 +376,9 @@ def embed_B : (B n) ↪ {x | T n x} := {
       rfl
 }
 
+/--
+@isnad1 id=not.0h1v.s9.97515cc2bb48 from=translated src=- shape=acfb7d24 vocab=8d070d41
+-/
 theorem embed_B.not_Surjective [NeZero n] : ¬ Function.Surjective (embed_B n) := by
   have npos := Nat.pos_of_neZero n
   rw [Function.Surjective, not_forall]
@@ -388,6 +418,9 @@ theorem embed_B.not_Surjective [NeZero n] : ¬ Function.Surjective (embed_B n) :
   simp only [coe_fn_mk, Nat.reduceEqDiff] at this
   split_ifs at this <;> grind
 
+/--
+@isnad1 id=lt.0h1v.s7.4b2ca0cbb544 from=translated src=- shape=8c139573 vocab=935b01d3
+-/
 theorem embed_B.card [NeZero n] : (B n).ncard < {x | T n x}.ncard := by
   rw [← Set.ncard_coe, ← Set.ncard_image_of_injective Set.univ (embed_B n).injective]
   apply Set.ncard_lt_card

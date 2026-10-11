@@ -25,7 +25,9 @@ open scoped FourierTransform
 open Causalean.Mathlib.Analysis.Fourier
 namespace Causalean.Stat.Nonparametric
 
-/-- [A compact continuously differentiable frequency profile](hyp:F,hF,hcompact), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a nonnegative Gaussian noise scale and bandwidth in the stated range](hyp:σ,h,hσ,hσmax,hh,hhmax), [nonnegative envelope constants](hyp:a,b,ha,hb), [sinc-six spectral support and uniform envelope bounds](hyp:hsupport,hbound,hderiv), and [integrable inverse-transform and joint design-noise quantities](hyp:hinv,hinvD,hjoint) imply [the stated explicit Gaussian-shifted variance bound](goal). -/
+/-- [A compact continuously differentiable frequency profile](hyp:F,hF,hcompact), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a nonnegative Gaussian noise scale and bandwidth in the stated range](hyp:σ,h,hσ,hσmax,hh,hhmax), [nonnegative envelope constants](hyp:a,b,ha,hb), [sinc-six spectral support and uniform envelope bounds](hyp:hsupport,hbound,hderiv), and [integrable inverse-transform and joint design-noise quantities](hyp:hinv,hinvD,hjoint) imply [the stated explicit Gaussian-shifted variance bound](goal).
+@isnad1 id=le.16h6v.s10.1ece1b8bc4c8 from=translated src=- shape=89f62ec6 vocab=2a8ff4fc
+-/
 theorem inverseGaussian_shiftedVariance_le (F : ℝ → ℂ) (κ σ h a b : ℝ)
     (hF : ContDiff ℝ 1 F) (hcompact : HasCompactSupport F)
     (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) (hh : 0 < h) (hhmax : h ≤ 1 / 4)

@@ -23,7 +23,9 @@ expected integral, over times from 0 to u, of the payoff times the hazard times 
 at-risk indicator](goal).
 
 Integrability of the compensator side follows from the extended-valued compensator identity, so
-both real expectations are well defined. -/
+both real expectations are well defined.
+@isnad1 id=eq.7h7v.s8.8bf0eaadf1ff from=translated src=- shape=bdd38171 vocab=68e7f1dc
+-/
 theorem predictable_censor_compensator_nonnegative {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -189,7 +191,9 @@ hazard](hyp:hazard,hHazard). If the payoff process is [left predictable](hyp:hPr
 measurable in time and sample](hyp:hMeasurable), [the horizon u is nonnegative](hyp:hu), and
 [the payoff at subject i's observed censor event by u is integrable](hyp:hEvent), then [the
 integral over times from 0 to u of the payoff times the hazard times the subject's at-risk
-indicator is integrable over samples](goal). -/
+indicator is integrable over samples](goal).
+@isnad1 id=integrab.6h7v.s8.8f43b55ae7ea from=translated src=- shape=4e30084e vocab=68e7f1dc
+-/
 theorem predictable_censor_compensator_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -253,7 +257,9 @@ hazard](hyp:hazard,hHazard). If the payoff process is [left predictable](hyp:hPr
 measurable in time and sample](hyp:hMeasurable), [the horizon u is nonnegative](hyp:hu), and both
 [the payoff at subject i's observed censor event by u](hyp:hEvent) and [its at-risk hazard
 integral from 0 to u](hyp:hCompensator) are integrable, then [the expected censor-event payoff
-equals the expected at-risk hazard integral](goal). -/
+equals the expected at-risk hazard integral](goal).
+@isnad1 id=eq.7h7v.s9.216c3d5e466e from=translated src=- shape=ef532880 vocab=68e7f1dc
+-/
 theorem predictable_censor_compensator {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -357,7 +363,9 @@ theorem predictable_censor_compensator {n : ℕ}
 /-- Under independent sampling with [failure times following a nonnegative time
 law](hyp:hFailure) and independent [censor times whose law has the given censor
 hazard](hyp:hazard,hHazard), [each subject's compensated censor count at a nonnegative horizon
-u](hyp:hu) [has mean zero](goal). -/
+u](hyp:hu) [has mean zero](goal).
+@isnad1 id=eq.3h6v.s6.b21c41af06c6 from=translated src=- shape=3b7ca5c3 vocab=66066ace
+-/
 theorem compensatedCensor_mean_zero {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)

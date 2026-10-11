@@ -32,6 +32,9 @@ Indeed, if we had `aᵢ + aₘ₊₁₋ᵢ ≤ n`, then `a₁ + aₘ₊₁₋ᵢ
 would be `m` elements of the set of `aᵢ`'s all larger than `aₘ₊₁₋ᵢ`, which is impossible.
 -/
 
+/--
+@isnad1 id=eq.0h2v.s6.b044622bebe0 from=translated src=- shape=a1805e7f vocab=301bc4dd
+-/
 theorem tedious (m : ℕ) (k : Fin (m + 1)) : m - ((m + 1 - ↑k) + m) % (m + 1) = ↑k := by
   obtain ⟨k, hk⟩ := k
   rw [Nat.lt_succ_iff, le_iff_exists_add] at hk

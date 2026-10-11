@@ -32,23 +32,38 @@ open Matrix
 
 def m (_:ℕ) : ℕ → ℕ := fun i => i
 
+/--
+@isnad1 id=eq.0h1v.s4.66f6e182e8f4 from=translated src=- shape=1d838610 vocab=0fe9e5be
+-/
 theorem m_zero : m n 0 = 0 := by
   rfl
 
+/--
+@isnad1 id=lt.1h2v.s4.09671279d523 from=translated src=- shape=61bdc3e7 vocab=22b36d70
+-/
 theorem m_nonzero (i) (hi1 : 0 < i) : 0 < m n i := hi1
 
 def Q : Fin n → Fin n → ℝ := fun i j => q ^ m n (Int.natAbs (i.val - j.val))
 
+/--
+@isnad1 id=eq.0h3v.s4.6c9c52332481 from=translated src=- shape=8edf1c45 vocab=39131b3b
+-/
 theorem Q_diag_one : ∀ i, Q n q i i = 1 := by
   unfold Q
   simp [m_zero]
 
+/--
+@isnad1 id=lt.1h4v.s5.86e74a1d5d24 from=translated src=- shape=2138e021 vocab=fa6fab75
+-/
 theorem Q_pos (hq : q ∈ Set.Ioo 0 1) : ∀ i j, 0 < Q n q i j := by
   unfold Q
   intro i j
   apply pow_pos
   grind only [= Set.mem_Ioo]
 
+/--
+@isnad1 id=ex.2h4v.s6.2ac8dd1f473a from=translated src=- shape=bac68a7a vocab=1dde5256
+-/
 theorem Q_row_neighbour_quot (k) (_ : k+1<n) (j) (hq : q ∈ Set.Ioo 0 1) : ∃ f ∈ ({q, q⁻¹} : Finset _),
     Q n q ⟨k+1, by lia⟩ j = f * Q n q ⟨k, by lia⟩ j := by
   simp only [Finset.mem_insert, Finset.mem_singleton, exists_eq_or_imp, ↓existsAndEq, true_and]
@@ -63,6 +78,9 @@ theorem Q_row_neighbour_quot (k) (_ : k+1<n) (j) (hq : q ∈ Set.Ioo 0 1) : ∃ 
   split <;> split
   all_goals grind
 
+/--
+@isnad1 id=ex.3h3v.s7.75b517f5d051 from=translated src=- shape=f3990858 vocab=70285a05
+-/
 theorem imo1973_p6_of_n_eq_one (hn : n = 1) (hq : q ∈ Set.Ioo 0 1) (apos : ∀ i, 0 < a i)
     : ∃ b : Fin n → ℝ,
       (∀ k, a k < b k)

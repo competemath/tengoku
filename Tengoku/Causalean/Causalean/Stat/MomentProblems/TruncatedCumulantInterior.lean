@@ -96,7 +96,9 @@ The witness is an explicit finite atomic law on `L + 1` equally spaced symmetric
 are recovered from the target moments by inverting a Vandermonde system, the target moments in turn
 coming from the target cumulants by the triangular moment–cumulant inversion.  Both steps are
 continuous, and the uniform-weight law sits strictly inside the weight-positivity constraints, so a
-whole neighborhood of cumulant targets stays realizable. -/
+whole neighborhood of cumulant targets stays realizable.
+@isnad1 id=truncate.0h1v.s2.a502f7192fde from=translated src=- shape=5c11bb93 vocab=3e81e270
+-/
 theorem truncatedCumulantInterior (L : ℕ) : TruncatedCumulantInterior L := by
   by_cases hL : L = 0
   · simpa [hL] using truncatedCumulantInterior_zero

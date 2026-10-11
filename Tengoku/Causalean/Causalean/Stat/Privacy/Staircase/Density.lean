@@ -30,20 +30,26 @@ def rowSum (Q : Kernel (Fin 4) Z) : Measure Z :=
 def rowDensity (Q : Kernel (Fin 4) Z) (i : Fin 4) (z : Z) : ℝ :=
   ((Q i).rnDeriv (rowSum Q) z).toReal
 
-/-- The common dominating measure has finite total mass for a Markov kernel. -/
+/-- The common dominating measure has finite total mass for a Markov kernel.
+@isnad1 id=isfinite.0h2v.s5.340ea5f2138c from=translated src=- shape=8b8e838d vocab=c2ed600b
+-/
 theorem rowSum_finite (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q] :
     IsFiniteMeasure (rowSum Q) := by
   unfold rowSum
   infer_instance
 
-/-- Each row is absolutely continuous with respect to the sum of all rows. -/
+/-- Each row is absolutely continuous with respect to the sum of all rows.
+@isnad1 id=absolute.0h3v.s6.80075c69bc00 from=translated src=- shape=dfd9a39d vocab=2c0e355f
+-/
 theorem row_absolutelyContinuous (Q : Kernel (Fin 4) Z) (i : Fin 4) :
     Q i ≪ rowSum Q := by
   unfold rowSum
   rw [← Measure.sum_fintype]
   exact Measure.absolutelyContinuous_sum_right i (Measure.absolutelyContinuous_refl _)
 
-/-- The Radon–Nikodym density reconstructs each Markov row exactly. -/
+/-- The Radon–Nikodym density reconstructs each Markov row exactly.
+@isnad1 id=eq.0h3v.s6.d6d28d222796 from=translated src=- shape=3d35df64 vocab=be4f3504
+-/
 theorem row_eq_withDensity (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q] (i : Fin 4) :
     Q i = (rowSum Q).withDensity (fun z => ENNReal.ofReal (rowDensity Q i z)) := by
   haveI : IsFiniteMeasure (rowSum Q) := rowSum_finite Q
@@ -58,7 +64,9 @@ theorem row_eq_withDensity (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q] (i : Fin 4)
     (row_absolutelyContinuous Q i)]
   exact withDensity_congr_ae heq.symm
 
-/-- The four real row densities satisfy the finite privacy cone almost everywhere. -/
+/-- The four real row densities satisfy the finite privacy cone almost everywhere.
+@isnad1 id=eventual.2h3v.s6.e5fd1eafb81b from=translated src=- shape=8c603cc7 vocab=86fd3602
+-/
 theorem ae_privateCone (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (hpriv : SetwisePrivate Q r) :
     ∀ᵐ z ∂rowSum Q, PrivateCone r (fun i => rowDensity Q i z) := by
@@ -98,7 +106,9 @@ nonnegative coefficient field that decomposes all four row densities](goal) exis
 common dominating measure.
 
 A measurable nonnegative coefficient field decomposes all four row densities
-simultaneously almost everywhere under the common dominating measure. -/
+simultaneously almost everywhere under the common dominating measure.
+@isnad1 id=ex.2h3v.s8.c8ae50fd045f from=translated src=- shape=3c315fcf vocab=3dce289d
+-/
 theorem measurable_density_decomposition (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (hpriv : SetwisePrivate Q r) :
     ∃ c : Z → RayIndex → ℝ,

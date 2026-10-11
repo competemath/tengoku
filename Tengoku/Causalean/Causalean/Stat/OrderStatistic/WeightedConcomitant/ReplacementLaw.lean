@@ -20,7 +20,9 @@ open Causalean.Mathlib.Probability.PoissonAddOnePoincare
 noncomputable section
 
 /-- For a finite tuple and an independent replacement value, updating one
-coordinate is a measurable map of the tuple and the value. -/
+coordinate is a measurable map of the tuple and the value.
+@isnad1 id=measurab.0h3v.s6.95c766e6669a from=translated src=- shape=92101041 vocab=c8f2e4a7
+-/
 @[fun_prop] theorem measurable_coordinateReplace_pair {N : ℕ} {α : Type*}
     [MeasurableSpace α] (i : Fin N) :
     Measurable (fun p : (Fin N → α) × α =>
@@ -36,7 +38,9 @@ coordinate is a measurable map of the tuple and the value. -/
     simpa [coordinateReplace, h] using hm
 
 /-- If a finite tuple has iid law `μ` and `y` is an independent draw from `μ`,
-the tuple obtained by replacing coordinate `i` with `y` has the original iid law. -/
+the tuple obtained by replacing coordinate `i` with `y` has the original iid law.
+@isnad1 id=eq.0h4v.s7.999fc089a125 from=translated src=- shape=9c3ef4ac vocab=4f00221e
+-/
 theorem coordinateReplace_map_prod {N : ℕ} {α : Type*}
     [MeasurableSpace α] (μ : Measure α) [IsProbabilityMeasure μ]
     (i : Fin N) :
@@ -81,7 +85,9 @@ theorem coordinateReplace_map_prod {N : ℕ} {α : Type*}
   exact Finset.prod_erase_mul Finset.univ (fun j : Fin N => μ (s j)) (by simp)
 
 /-- Integrating an integrable function of an iid tuple is unchanged when one
-coordinate is replaced by an independent draw from the same law. -/
+coordinate is replaced by an independent draw from the same law.
+@isnad1 id=eq.1h5v.s7.a669a8f5b99a from=translated src=- shape=837c4597 vocab=b63a2e05
+-/
 theorem integral_coordinateReplace_prod {N : ℕ} {α : Type*}
     [MeasurableSpace α] (μ : Measure α) [IsProbabilityMeasure μ]
     (i : Fin N) (f : (Fin N → α) → ℝ)
@@ -99,7 +105,9 @@ theorem integral_coordinateReplace_prod {N : ℕ} {α : Type*}
 
 /-- For a square-integrable statistic of an iid finite tuple, the expected
 conditional variance at one coordinate is half the expected squared difference
-between two independent replacements of that coordinate. -/
+between two independent replacements of that coordinate.
+@isnad1 id=eq.1h5v.s8.3f88a70f8b30 from=translated src=- shape=b371f269 vocab=655ef4b9
+-/
 theorem integral_coordinateVariance_eq_half_double_replacement_sq
     {N : ℕ} {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsProbabilityMeasure μ]
@@ -140,7 +148,9 @@ theorem integral_coordinateVariance_eq_half_double_replacement_sq
 
 /-- For a square-integrable statistic of an iid finite tuple, averaging the
 squared difference of two independent coordinate replacements equals averaging
-the squared difference between the original tuple and one replacement. -/
+the squared difference between the original tuple and one replacement.
+@isnad1 id=eq.1h5v.s8.5779de75451f from=translated src=- shape=7a11f9fb vocab=90c86b22
+-/
 theorem integral_double_replacement_sq_eq_replacement_sq
     {N : ℕ} {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsProbabilityMeasure μ]
@@ -198,7 +208,9 @@ theorem integral_double_replacement_sq_eq_replacement_sq
 
 /-- An [iid sampling law](hyp:μ), [selected coordinate](hyp:i), and
 [square-integrable statistic](hyp:F,hF) give [an expected replacement variance
-equal to half its expected squared independent replacement change](goal). -/
+equal to half its expected squared independent replacement change](goal).
+@isnad1 id=eq.1h5v.s8.feb7e24b0b89 from=translated src=- shape=4f995d1a vocab=655ef4b9
+-/
 theorem integral_coordinateVariance_eq_half_replacement_sq
     {N : ℕ} {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsProbabilityMeasure μ]

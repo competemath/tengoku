@@ -25,7 +25,9 @@ noncomputable def SampleModel.crossPayoff (S : SampleModel n Ω μ)
   fun t x => H t x * (S.process j).prefixIntegral H t x
 
 /-- An oriented cross payoff remains predictable for any subject's process,
-since all component processes share the full-sample history filtration. -/
+since all component processes share the full-sample history filtration.
+@isnad1 id=predicta.2h7v.s6.3773da52e438 from=translated src=- shape=58669dfd vocab=538973f3
+-/
 theorem SampleModel.crossPayoff_predictable (S : SampleModel n Ω μ)
     (H : ℝ → (Fin n → Ω) → ℝ) (hH : S.LeftPredictable H)
     (hbound : ∃ C : ℝ, ∀ t x, |H t x| ≤ C) (i j : Fin n) :
@@ -39,7 +41,9 @@ theorem SampleModel.crossPayoff_predictable (S : SampleModel n Ω μ)
   exact (S.process_predictable H hH i).mul hp'
 
 /-- The sum over one subject's jumps of the absolute oriented cross payoff
-is Bochner integrable for a bounded full-sample predictable integrand. -/
+is Bochner integrable for a bounded full-sample predictable integrand.
+@isnad1 id=integrab.2h7v.s7.e82c4e36bcc0 from=translated src=- shape=a038ea4a vocab=2141864d
+-/
 theorem SampleModel.crossPayoff_jump_abs_integrable (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ]
     (H : ℝ → (Fin n → Ω) → ℝ) (hH : S.LeftPredictable H)
@@ -95,7 +99,9 @@ theorem SampleModel.crossPayoff_jump_abs_integrable (S : SampleModel n Ω μ)
     (fun t x ht hT => by simpa only [abs_abs] using hpaybound t x ht hT)
 
 /-- The intensity integral for one subject of the absolute oriented cross
-payoff is Bochner integrable for a bounded full-sample predictable integrand. -/
+payoff is Bochner integrable for a bounded full-sample predictable integrand.
+@isnad1 id=integrab.2h7v.s7.ccc8cf5ec92d from=translated src=- shape=a038ea4a vocab=ea9f5914
+-/
 theorem SampleModel.crossPayoff_energy_abs_integrable (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ]
     (H : ℝ → (Fin n → Ω) → ℝ) (hH : S.LeftPredictable H)
@@ -144,7 +150,9 @@ theorem SampleModel.crossPayoff_energy_abs_integrable (S : SampleModel n Ω μ)
 cross payoff are Bochner integrable under count second moments and bounded rates.
 [The sample model and payoff](hyp:S,H), [left predictability](hyp:hH), [the
 uniform bound](hyp:hbound), and [the two subject indices](hyp:i,j) give [both
-Bochner-integrability conclusions](goal). -/
+Bochner-integrability conclusions](goal).
+@isnad1 id=and.2h7v.s8.fbf99d8e9974 from=translated src=- shape=8486714a vocab=71996162
+-/
 theorem SampleModel.crossPayoff_integrable (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ]
     (H : ℝ → (Fin n → Ω) → ℝ) (hH : S.LeftPredictable H)

@@ -30,7 +30,9 @@ variable {Theta X C : Type*} [TopologicalSpace Theta] [CompactSpace Theta]
 coordinates and a continuous bounded target](hyp:hp,hq,hpcont,hqcont,htau,hlu,htau_mem), every
 [positive tolerance](hyp:hε) has a [finite family of local decisions](goal): smaller side-law
 balls cover the model with a uniform positive margin, and each decision has risk within the
-tolerance of the exact-side minimax value throughout its larger ball. -/
+tolerance of the exact-side minimax value throughout its larger ball.
+@isnad1 id=ex.8h9v.s8.f5e2962ad3fc from=translated src=- shape=19f6f86c vocab=ad5517a2
+-/
 theorem finiteCover_approximateDecision
     (p : Theta → X → ℝ) (q : Theta → C → ℝ) (tau : Theta → ℝ)
     (hp : ∀ theta, p theta ∈ stdSimplex ℝ X)
@@ -219,7 +221,9 @@ theorem finiteCover_approximateDecision
 
 /-- Under the [compact continuous finite-model assumptions](hyp:hp,hq,hpcont,hqcont,htau,hlu,htau_mem),
 the [limsup of empirical-side minimax values is at most the exact-side minimax value](goal).
-The proof uses a measurable finite-cover selector and the uniform empirical L1 Hoeffding tail. -/
+The proof uses a measurable finite-cover selector and the uniform empirical L1 Hoeffding tail.
+@isnad1 id=le.7h8v.s7.29725e13e760 from=translated src=- shape=a03a0d0f vocab=6865c3e6
+-/
 theorem empiricalSideMinimax_limsup_le_exact
     (p : Theta → X → ℝ) (q : Theta → C → ℝ) (tau : Theta → ℝ)
     (hp : ∀ theta, p theta ∈ stdSimplex ℝ X)

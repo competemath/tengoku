@@ -17,7 +17,9 @@ open MeasureTheory Set
 namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 
 /-- The product of payoff sums on disjoint finite time sets splits into the
-two strict temporal orderings, with no same-time contribution. -/
+two strict temporal orderings, with no same-time contribution.
+@isnad1 id=eq.1h4v.s7.465ccebb646f from=translated src=- shape=636972cf vocab=77953ae1
+-/
 theorem finiteJump_sum_product (E F : Finset ℝ) (f g : ℝ → ℝ)
     (hdisjoint : Disjoint E F) :
     (∑ s ∈ E, f s) * (∑ t ∈ F, g t) =
@@ -58,7 +60,9 @@ theorem finiteJump_sum_product (E F : Finset ℝ) (f g : ℝ → ℝ)
 
 /-- A finite event payoff sum times an integrable time integral splits into
 the integrated prefix evaluated at each event and the strict event prefix
-integrated against the time function. -/
+integrated against the time function.
+@isnad1 id=eq.3h4v.s8.0d714db007f9 from=translated src=- shape=893fb29c vocab=179272d2
+-/
 theorem finiteJump_sum_integral_product (E : Finset ℝ) (f g : ℝ → ℝ)
     (T : ℝ) (hT : 0 ≤ T)
     (hE : ∀ s ∈ E, 0 < s ∧ s ≤ T)
@@ -139,7 +143,9 @@ theorem finiteJump_sum_integral_product (E : Finset ℝ) (f g : ℝ → ℝ)
 /-- The product of two integrable finite-horizon time integrals is the sum
 of their two oriented running-prefix integrals. [The two functions and
 horizon](hyp:f,g,T), [nonnegative horizon](hyp:hT), and [integrability of both
-functions](hyp:hf,hg) give [the prefix-product identity](goal). -/
+functions](hyp:hf,hg) give [the prefix-product identity](goal).
+@isnad1 id=eq.3h3v.s8.b920c8163817 from=translated src=- shape=54db2c1e vocab=c040e429
+-/
 theorem integral_prefix_product (f g : ℝ → ℝ) (T : ℝ) (hT : 0 ≤ T)
     (hf : IntegrableOn f (Ioc 0 T) volume)
     (hg : IntegrableOn g (Ioc 0 T) volume) :

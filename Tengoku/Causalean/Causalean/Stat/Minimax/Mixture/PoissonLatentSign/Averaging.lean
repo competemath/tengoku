@@ -27,7 +27,9 @@ def conditionalEnergy (ν : ∀ m, Measure (Cell m)) (τ : ℝ) (m d : ℕ) : �
 def coefficient (ν : ∀ m, Measure (Cell m)) (ξ : NNReal) (τ γ : ℝ) (d : ℕ) : ℝ :=
   γ ^ (2 * d) * ∫ m : ℕ, conditionalEnergy ν τ m d ∂poissonMeasure ξ
 
-/-- Every fixed-count subset energy is integrable under an arbitrary valid conditional cell law. -/
+/-- Every fixed-count subset energy is integrable under an arbitrary valid conditional cell law.
+@isnad1 id=integrab.2h4v.s8.53fa05926b9f from=translated src=- shape=6da029ea vocab=0e5338f2
+-/
 theorem integrable_subsetEnergy (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] {τ : ℝ} (hτ : |τ| ≤ 1 / 4)
     (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (m d : ℕ) :
@@ -52,7 +54,9 @@ private theorem conditionalEnergy_le_choose (ν : ∀ m, Measure (Cell m))
       exact subsetEnergy_le_choose hτ hc.1 d
     _ = _ := by simp
 
-/-- The conditional energy is integrable over the Poisson count law. -/
+/-- The conditional energy is integrable over the Poisson count law.
+@isnad1 id=integrab.2h4v.s8.612b56f34f4b from=translated src=- shape=7300c063 vocab=53476572
+-/
 theorem integrable_conditionalEnergy (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal)
     {τ : ℝ} (hτ : |τ| ≤ 1 / 4) (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (d : ℕ) :
@@ -69,7 +73,9 @@ theorem integrable_conditionalEnergy (ν : ∀ m, Measure (Cell m))
   simpa only [Real.norm_eq_abs, abs_of_nonneg hn] using
     conditionalEnergy_le_choose ν hτ hν m d
 
-/-- Every Poisson coefficient is nonnegative, for any real outcome amplitude. -/
+/-- Every Poisson coefficient is nonnegative, for any real outcome amplitude.
+@isnad1 id=le.0h5v.s6.1221fb65277a from=translated src=- shape=e5882732 vocab=40c42c96
+-/
 theorem coefficient_nonneg (ν : ∀ m, Measure (Cell m)) (ξ : NNReal)
     (τ γ : ℝ) (d : ℕ) : 0 ≤ coefficient ν ξ τ γ d := by
   unfold coefficient conditionalEnergy
@@ -78,7 +84,9 @@ theorem coefficient_nonneg (ν : ∀ m, Measure (Cell m)) (ξ : NNReal)
     exact sq_nonneg _
   · exact integral_nonneg (fun _ => integral_nonneg (fun _ => subsetEnergy_nonneg _ _ _))
 
-/-- Every order has the Poisson factorial bound, including the first order. -/
+/-- Every order has the Poisson factorial bound, including the first order.
+@isnad1 id=le.2h5v.s8.db70e527739d from=translated src=- shape=05f5e3c1 vocab=762edac4
+-/
 theorem coefficient_le_factorial (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal) {τ : ℝ}
     (hτ : |τ| ≤ 1 / 4) (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (γ : ℝ) (d : ℕ) :
@@ -106,7 +114,9 @@ theorem coefficient_le_factorial (ν : ∀ m, Measure (Cell m))
 /-- Given [conditional probability laws for cells](hyp:ν), [a Poisson mean at most
 one](hyp:hξ), [a bounded tilt](hyp:hτ), [almost-surely valid cells](hyp:hν), and
 [an outcome amplitude](hyp:γ), [the singleton Poisson coefficient has the explicit
-mean-squared, tilt-squared collision bound](goal). -/
+mean-squared, tilt-squared collision bound](goal).
+@isnad1 id=le.3h4v.s9.dfe3dc176ef0 from=translated src=- shape=e3ded15e vocab=e9f001fc
+-/
 theorem coefficient_one_le (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] {ξ : NNReal} (hξ : (ξ : ℝ) ≤ 1)
     {τ : ℝ} (hτ : |τ| ≤ 1 / 4) (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (γ : ℝ) :
@@ -140,7 +150,9 @@ theorem coefficient_one_le (ν : ∀ m, Measure (Cell m))
   have hk := mul_le_mul_of_nonneg_left (hi.trans hj) (sq_nonneg γ)
   simpa only [coefficient, mul_one, one_mul, mul_assoc, mul_comm, mul_left_comm] using hk
 
-/-- All positive-order Poisson coefficient terms are absolutely summable at any real overlap. -/
+/-- All positive-order Poisson coefficient terms are absolutely summable at any real overlap.
+@isnad1 id=summable.2h5v.s8.5292bee3c436 from=translated src=- shape=b6806b4e vocab=a3ac978e
+-/
 theorem coefficient_summable_abs (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal) {τ : ℝ}
     (hτ : |τ| ≤ 1 / 4) (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (γ z : ℝ) :
@@ -150,7 +162,9 @@ theorem coefficient_summable_abs (ν : ∀ m, Measure (Cell m))
       coefficient_le_factorial ν ξ hτ hν γ d⟩) z
 
 /-- The positive-order overlap terms have summable Poisson expectations of their
-conditional absolute magnitudes, providing the interchange receipt. -/
+conditional absolute magnitudes, providing the interchange receipt.
+@isnad1 id=summable.2h5v.s9.ba3291d7c1f1 from=translated src=- shape=f7e90a80 vocab=fdbdec3d
+-/
 theorem summable_integral_abs_energy_terms (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal) {τ : ℝ}
     (hτ : |τ| ≤ 1 / 4) (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (γ z : ℝ) :
@@ -195,7 +209,9 @@ theorem summable_integral_abs_energy_terms (ν : ∀ m, Measure (Cell m))
   rw [hγ]
   ring
 
-/-- The Poisson cell overlap is positive throughout the small-radius regime. -/
+/-- The Poisson cell overlap is positive throughout the small-radius regime.
+@isnad1 id=lt.3h5v.s8.a2ee21067567 from=translated src=- shape=2f9400fe vocab=1003ea50
+-/
 theorem poisson_overlap_pos (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal) {τ γ z : ℝ}
     (hτ : |τ| ≤ 1 / 4) (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c)
@@ -208,7 +224,9 @@ theorem poisson_overlap_pos (ν : ∀ m, Measure (Cell m))
 /-- Given [conditional probability laws for cells](hyp:ν), [a Poisson mean](hyp:ξ),
 [a bounded tilt](hyp:hτ), [almost-surely valid cells](hyp:hν), [a small overlap
 radius](hyp:hr), and [a natural power](hyp:k), [the Poisson overlap power has an
-exponential envelope with its exact singleton coefficient](goal). -/
+exponential envelope with its exact singleton coefficient](goal).
+@isnad1 id=le.3h6v.s9.a3ae32281146 from=translated src=- shape=d60a2faa vocab=c259f62d
+-/
 theorem poisson_overlap_pow_le_exp (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal) {τ γ z : ℝ}
     (hτ : |τ| ≤ 1 / 4) (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c)

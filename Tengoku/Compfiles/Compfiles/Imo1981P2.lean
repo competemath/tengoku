@@ -35,6 +35,9 @@ def eraseMin (s : Finset ℕ) :=
   else
     s
 
+/--
+@isnad1 id=eq.1h1v.s4.9a2d93e20a55 from=translated src=- shape=d195e4e2 vocab=d694e305
+-/
 @[simp]
 theorem insert_min'_eraseMin {s : Finset ℕ} (hne : s.Nonempty) : insert (s.min' hne) (eraseMin s) = s := by
   unfold eraseMin
@@ -42,6 +45,9 @@ theorem insert_min'_eraseMin {s : Finset ℕ} (hne : s.Nonempty) : insert (s.min
   apply insert_erase
   exact min'_mem s hne
 
+/--
+@isnad1 id=eq.1h2v.s5.147a30e17490 from=translated src=- shape=92c44084 vocab=63915f57
+-/
 theorem eraseMin_insert {s : Finset ℕ} (x : ℕ) (h : ∀ y ∈ s, x < y) : eraseMin (insert x s) = s := by
   unfold eraseMin
   simp only [insert_nonempty, ↓reduceDIte]
@@ -53,6 +59,9 @@ theorem eraseMin_insert {s : Finset ℕ} (x : ℕ) (h : ∀ y ∈ s, x < y) : er
   apply erase_insert
   grind only
 
+/--
+@isnad1 id=mem.1h3v.s6.39712851dfcb from=translated src=- shape=48d4bc43 vocab=0866169c
+-/
 theorem eraseMin_mem_powersetCard {s : Finset ℕ} (h : s ∈ powersetCard (r + 1) (Icc 0 n)) : eraseMin s ∈ powersetCard r (Icc 1 n) := by
   suffices #(eraseMin s) = r ∧ 0 ∉ eraseMin s by
     grind [eraseMin]
@@ -84,6 +93,9 @@ instance : DecidableRel (G n r).Adj := fun u v =>
   | (.inl a, .inr b) | (.inr b, .inl a) => if h' : eraseMin a = b then .isTrue (by simp_all [G]) else .isFalse (by simp_all [G])
   | (.inl a, .inl b) | (.inr b, .inr a) => .isFalse (by simp_all [G])
 
+/--
+@isnad1 id=ex.2h4v.s6.d717f28e154e from=translated src=- shape=f7867f27 vocab=e26d5b0f
+-/
 theorem bipartite_edge {α β : Type} {G : SimpleGraph (α ⊕ β)} (hbip : G ≤ completeBipartiteGraph α β) (e : Sym2 (α ⊕ β)) (he : e ∈ G.edgeSet)
     : ∃ (a : α) (b : β), e = s(Sum.inl a, Sum.inr b) := by
   obtain ⟨u,v,h⟩ : ∃ u v, e = s(u,v) := by
@@ -101,11 +113,17 @@ theorem bipartite_edge {α β : Type} {G : SimpleGraph (α ⊕ β)} (hbip : G �
     use v.getLeft h2, u.getRight h1
     grind
 
+/--
+@isnad1 id=le.0h2v.s6.9af6e28dc17f from=translated src=- shape=5c71de7c vocab=91f7910a
+-/
 theorem G.bipartite : G n r ≤ completeBipartiteGraph _ _ := by
   rw [le_iff_adj]
   intro u v hadj
   grind [G, completeBipartiteGraph_adj]
 
+/--
+@isnad1 id=eq.0h2v.s7.dfa75eaed36b from=translated src=- shape=86b7c936 vocab=50e0482c
+-/
 theorem G.card_edgeFinset : #(G n r).edgeFinset = Nat.choose (n+1) (r+1) := by
   rw [show n+1 = #(Icc 0 n) by simp, ← card_powersetCard, eq_comm]
   apply card_bij (fun s h => s(.inl ⟨s, h⟩, .inr ⟨eraseMin s, by grind only [eraseMin_mem_powersetCard]⟩))
@@ -120,6 +138,9 @@ theorem G.card_edgeFinset : #(G n r).edgeFinset = Nat.choose (n+1) (r+1) := by
     rw [mem_edgeSet, G] at he
     grind
 
+/--
+@isnad1 id=eq.1h3v.s9.4685cd0ef3e8 from=translated src=- shape=f49bdcd2 vocab=964feb8b
+-/
 theorem G.degree_b (rpos : 1 ≤ r) (b : powersetCard r (Icc 1 n)) : (G n r).degree (Sum.inr b) = b.val.min := by
   match hm : b.val.min with
   | none =>

@@ -28,21 +28,29 @@ variable (C : Type*) [Fintype C]
 real vectors with nonnegative coordinates summing to one. -/
 abbrev FinitePmf := {w : C → ℝ // w ∈ stdSimplex ℝ C}
 
-/-- The [finite probability simplex](hyp:C) is [compact](goal) in its coordinate topology. -/
+/-- The [finite probability simplex](hyp:C) is [compact](goal) in its coordinate topology.
+@isnad1 id=iscompac.0h1v.s5.af9f539dc7fc from=translated src=- shape=39167306 vocab=36718901
+-/
 theorem isCompact_finitePmf : IsCompact (Set.univ : Set (FinitePmf C)) := by
   exact isCompact_univ
 
 /-- Evaluation at an [atom](hyp:c) is a [continuous coordinate](goal) on the finite probability
-simplex. -/
+simplex.
+@isnad1 id=continuo.0h2v.s6.7914d1e1095f from=translated src=- shape=23b78728 vocab=5e042b59
+-/
 theorem continuous_atom (c : C) : Continuous (fun w : FinitePmf C ↦ (w.1 c : ℝ)) := by
   exact (continuous_apply c).comp continuous_subtype_val
 
 /-- The mass assigned by a [finite probability vector](hyp:w) to every atom is
-[nonnegative](goal). -/
+[nonnegative](goal).
+@isnad1 id=le.0h3v.s5.42d3ce8a3b69 from=translated src=- shape=bbf2da2e vocab=c372f070
+-/
 theorem FinitePmf.nonneg (w : FinitePmf C) (c : C) : 0 ≤ w.1 c := by
   exact w.2.1 c
 
-/-- The atom masses of a [finite probability vector](hyp:w) [sum to one](goal). -/
+/-- The atom masses of a [finite probability vector](hyp:w) [sum to one](goal).
+@isnad1 id=eq.0h2v.s5.075a2b4db102 from=translated src=- shape=045a8557 vocab=b6c451bf
+-/
 theorem FinitePmf.sum_eq_one (w : FinitePmf C) : ∑ c, w.1 c = 1 := by
   exact w.2.2
 
@@ -52,19 +60,25 @@ def productProbability {m : ℕ} (w : FinitePmf C) (z : Fin m → C) : ℝ :=
   ∏ i, w.1 (z i)
 
 /-- For a [fixed finite sample](hyp:z), its [product probability varies continuously](goal)
-with the underlying probability vector. -/
+with the underlying probability vector.
+@isnad1 id=continuo.0h3v.s6.bdd7407d1083 from=translated src=- shape=fc3b21ec vocab=be45276f
+-/
 theorem continuous_productProbability {m : ℕ} (z : Fin m → C) :
     Continuous (fun w : FinitePmf C ↦ productProbability C w z) := by
   apply continuous_finsetProd
   intro i _
   exact (continuous_apply (z i)).comp continuous_subtype_val
 
-/-- Every [finite product probability](hyp:w,z) is [nonnegative](goal). -/
+/-- Every [finite product probability](hyp:w,z) is [nonnegative](goal).
+@isnad1 id=le.0h4v.s4.3edb52fc6169 from=translated src=- shape=d994ae96 vocab=300298cf
+-/
 theorem productProbability_nonneg {m : ℕ} (w : FinitePmf C) (z : Fin m → C) :
     0 ≤ productProbability C w z := by
   exact Finset.prod_nonneg fun i _ ↦ FinitePmf.nonneg C w (z i)
 
-/-- The [product probabilities](hyp:w) of all length-`m` samples [sum to one](goal). -/
+/-- The [product probabilities](hyp:w) of all length-`m` samples [sum to one](goal).
+@isnad1 id=eq.0h3v.s5.e2e7dbb84c07 from=translated src=- shape=77fad29f vocab=0387ac59
+-/
 theorem sum_productProbability {m : ℕ} (w : FinitePmf C) :
     ∑ z : Fin m → C, productProbability C w z = 1 := by
   calc

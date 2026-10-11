@@ -76,7 +76,9 @@ private theorem sum_cell_integrals {g : ℝ → ℂ} {n : ℕ} (hn : 0 < n)
   simpa [meshPoint_self hn] using aux n le_rfl
 
 /-- A Lipschitz complex function on the unit parameter interval differs from
-its deterministic trapezoidal rule by at most half a Lipschitz mesh unit. -/
+its deterministic trapezoidal rule by at most half a Lipschitz mesh unit.
+@isnad1 id=le.3h3v.s8.f6a63a42d80c from=translated src=- shape=6b388d91 vocab=7f1c5e89
+-/
 theorem norm_integral_sub_trapezoid_le {g : ℝ → ℂ} {L : ℚ} (hL : 0 ≤ L)
     {n : ℕ} (hn : 0 < n)
     (hLip : ∀ s ∈ Icc (0 : ℝ) 1, ∀ t ∈ Icc (0 : ℝ) 1,
@@ -241,7 +243,9 @@ constant](hyp:hL) and [a positive mesh-cell count](hyp:hn), and suppose [the com
 integrand is Lipschitz on `[0, 1]` with that constant](hyp:hLip) and [each of the `n + 1` complex
 rational rectangles contains the integrand's value at its mesh point](hyp:hnodes). Then [the
 trapezoidal enclosure built from those rectangles contains the true integral of the integrand
-over `[0, 1]`](goal). -/
+over `[0, 1]`](goal).
+@isnad1 id=contains.4h4v.s7.0e3ef8f94967 from=translated src=- shape=7d5a7292 vocab=40eee149
+-/
 theorem integralEnclosure_sound {g : ℝ → ℂ} {nodes : ℕ → ComplexRatInterval}
     {L : ℚ} (hL : 0 ≤ L) {n : ℕ} (hn : 0 < n)
     (hLip : ∀ s ∈ Icc (0 : ℝ) 1, ∀ t ∈ Icc (0 : ℝ) 1,
@@ -262,7 +266,9 @@ theorem integralEnclosure_sound {g : ℝ → ℂ} {nodes : ℕ → ComplexRatInt
   simpa [Rat.cast_div, Rat.cast_natCast] using herr
 
 /-- Each coordinate width of the certified integral is bounded by the uniform
-node width plus one mesh-scale Lipschitz allowance. -/
+node width plus one mesh-scale Lipschitz allowance.
+@isnad1 id=and.4h4v.s7.f494936f50c4 from=translated src=- shape=b6c8fdf7 vocab=7bc8fd76
+-/
 theorem integralEnclosure_width {nodes : ℕ → ComplexRatInterval} {w L : ℚ}
     (hw : 0 ≤ w) (hL : 0 ≤ L) {n : ℕ} (hn : 0 < n)
     (hnodes : ∀ k ≤ n, (nodes k).re.width ≤ w ∧ (nodes k).im.width ≤ w) :
@@ -294,7 +300,9 @@ theorem integralEnclosure_width {nodes : ℕ → ComplexRatInterval} {w L : ℚ}
       RatInterval.width] <;> linarith [herr]
 
 /-- Applying the complex mesh theorem to the parameterized circle integrand
-encloses the contour integral. -/
+encloses the contour integral.
+@isnad1 id=contains.4h6v.s7.ff8724ecf8b6 from=translated src=- shape=9909bc54 vocab=da60554e
+-/
 theorem circleContourIntegral_enclosed {f : ℂ → ℂ} {c : ℂ} {r : ℝ}
     {nodes : ℕ → ComplexRatInterval} {L : ℚ} (hL : 0 ≤ L)
     {n : ℕ} (hn : 0 < n)

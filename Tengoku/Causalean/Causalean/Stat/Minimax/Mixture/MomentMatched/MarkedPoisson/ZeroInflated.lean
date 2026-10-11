@@ -71,7 +71,9 @@ noncomputable def zeroInflatedPrior
 /-- The zero-inflated prior from [a finite signed certificate](hyp:C) [is a probability
 measure](goal) when [the shift](hyp:a) [is positive](hyp:ha), [the support ratio](hyp:κ) [is
 positive](hyp:hκ), and [the certificate variation is supported between the resulting lower
-endpoint and the support bound](hyp:B,hsupp). -/
+endpoint and the support bound](hyp:B,hsupp).
+@isnad1 id=isprobab.3h6v.s6.d6bfd90a0a73 from=translated src=- shape=855a0533 vocab=ff7456d1
+-/
 theorem zeroInflatedPrior_isProbabilityMeasure
     (C : NormalizedFiniteSignedMomentCertificate ι L) (a κ B : ℝ)
     (ha : 0 < a) (hκ : 0 < κ)
@@ -95,7 +97,9 @@ theorem zeroInflatedPrior_isProbabilityMeasure
 /-- The zero-inflated prior from [a finite signed certificate](hyp:C) [is supported on zero
 together with the certificate's compact support interval](goal) when [the shift](hyp:a) [is
 positive](hyp:ha), [the support ratio](hyp:κ) [is positive](hyp:hκ), and [the variation measure
-is supported below the stated upper bound](hyp:B,hsupp). -/
+is supported below the stated upper bound](hyp:B,hsupp).
+@isnad1 id=eventual.3h6v.s7.1c47ff648b6f from=translated src=- shape=82e5381e vocab=139fb5ae
+-/
 theorem zeroInflatedPrior_support
     (C : NormalizedFiniteSignedMomentCertificate ι L) (a κ B : ℝ)
     (ha : 0 < a) (hκ : 0 < κ)
@@ -127,7 +131,9 @@ private theorem integrable_id_zeroInflatedPrior
 shift](hyp:a,ha), [a positive support ratio](hyp:κ,hκ), [a support upper
 bound](hyp:B), and [variation supported on the corresponding compact
 interval](hyp:hsupp), [the zero-inflated prior's first moment equals the shift
-times the variation expectation of the tilted coordinate](goal). -/
+times the variation expectation of the tilted coordinate](goal).
+@isnad1 id=eq.3h6v.s7.0188474f3f12 from=translated src=- shape=80d4d760 vocab=db2c855c
+-/
 theorem integral_id_zeroInflatedPrior
     (C : NormalizedFiniteSignedMomentCertificate ι L) (a κ B : ℝ)
     (ha : 0 < a) (hκ : 0 < κ)
@@ -181,7 +187,9 @@ noncomputable def zeroInflatedProductPrior
 /-- The [finite-coordinate product](hyp:k) of the zero-inflated prior from [a finite signed
 certificate](hyp:C) [is a probability measure](goal) when [the shift](hyp:a) [is
 positive](hyp:ha), [the support ratio](hyp:κ) [is positive](hyp:hκ), and [the certificate
-variation has the stated support bound](hyp:B,hsupp). -/
+variation has the stated support bound](hyp:B,hsupp).
+@isnad1 id=isprobab.3h7v.s6.c268eda9a87d from=translated src=- shape=c3311e66 vocab=577e601a
+-/
 theorem zeroInflatedProductPrior_isProbabilityMeasure
     (C : NormalizedFiniteSignedMomentCertificate ι L) (a κ B : ℝ)
     (k : ℕ) (ha : 0 < a) (hκ : 0 < κ)
@@ -195,7 +203,9 @@ theorem zeroInflatedProductPrior_isProbabilityMeasure
 /-- Every coordinate in the [finite product](hyp:k) of the zero-inflated prior from [a finite
 signed certificate](hyp:C) [lies almost surely at zero or in the certificate's compact support
 interval](goal) when [the shift](hyp:a) [is positive](hyp:ha), [the support ratio](hyp:κ) [is
-positive](hyp:hκ), and [the variation measure has the stated support bound](hyp:B,hsupp). -/
+positive](hyp:hκ), and [the variation measure has the stated support bound](hyp:B,hsupp).
+@isnad1 id=eventual.3h7v.s7.7b6e9ad30f8c from=translated src=- shape=05d4a7ae vocab=783a5064
+-/
 theorem zeroInflatedProductPrior_support
     (C : NormalizedFiniteSignedMomentCertificate ι L) (a κ B : ℝ)
     (k : ℕ) (ha : 0 < a) (hκ : 0 < κ)
@@ -212,7 +222,9 @@ theorem zeroInflatedProductPrior_support
 /-- A selected [coordinate](hyp:i) of the [finite product](hyp:k) from [a finite signed
 certificate](hyp:C) [has the scalar zero-inflated first moment](goal) when [the shift](hyp:a)
 [is positive](hyp:ha), [the support ratio](hyp:κ) [is positive](hyp:hκ), and [the variation
-measure has the stated support bound](hyp:B,hsupp). -/
+measure has the stated support bound](hyp:B,hsupp).
+@isnad1 id=eq.3h8v.s7.f6ded49bf13e from=translated src=- shape=29bb4387 vocab=a6f699fd
+-/
 theorem integral_coordinate_zeroInflatedProductPrior
     (C : NormalizedFiniteSignedMomentCertificate ι L) (a κ B : ℝ)
     (k : ℕ) (i : Fin k) (ha : 0 < a) (hκ : 0 < κ)
@@ -230,7 +242,9 @@ theorem integral_coordinate_zeroInflatedProductPrior
 certificate](hyp:C) [has expectation equal to the coordinate count times the scalar
 zero-inflated first moment](goal) when [the shift](hyp:a) [is positive](hyp:ha), [the support
 ratio](hyp:κ) [is positive](hyp:hκ), and [the variation measure has the stated support
-bound](hyp:B,hsupp). -/
+bound](hyp:B,hsupp).
+@isnad1 id=eq.3h7v.s7.fe254fb78f29 from=translated src=- shape=3e6a0a10 vocab=eb984991
+-/
 theorem integral_sum_zeroInflatedProductPrior
     (C : NormalizedFiniteSignedMomentCertificate ι L) (a κ B : ℝ)
     (k : ℕ) (ha : 0 < a) (hκ : 0 < κ)

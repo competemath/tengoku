@@ -28,7 +28,9 @@ noncomputable section
 def powerCell (N : ℕ) (s : ℝ) (j : Fin N) : ℝ :=
   (1 - (j : ℝ) / N) ^ s - (1 - ((j : ℕ) + 1 : ℝ) / N) ^ s
 
-/-- For a [power](hyp:s) [at least one](hyp:hs), [power cells are nonnegative](goal). -/
+/-- For a [power](hyp:s) [at least one](hyp:hs), [power cells are nonnegative](goal).
+@isnad1 id=le.1h3v.s4.73ef4d7e61bc from=translated src=- shape=07de1eae vocab=6dbff7aa
+-/
 theorem powerCell_nonneg {N : ℕ} {s : ℝ} (hs : 1 ≤ s) (j : Fin N) :
     0 ≤ powerCell N s j := by
   have hN : (0 : ℝ) < N := by exact_mod_cast Nat.zero_lt_of_lt j.isLt
@@ -44,7 +46,9 @@ theorem powerCell_nonneg {N : ℕ} {s : ℝ} (hs : 1 ≤ s) (j : Fin N) :
   exact sub_nonneg.mpr (Real.rpow_le_rpow hleft horder (by linarith))
 
 /-- For a [power](hyp:s) [at least one](hyp:hs),
-[power cell masses decrease with the cell index](goal). -/
+[power cell masses decrease with the cell index](goal).
+@isnad1 id=antitone.1h2v.s4.01cad0a76cac from=translated src=- shape=dd3213c0 vocab=207aa869
+-/
 theorem powerCell_antitone {N : ℕ} {s : ℝ} (hs : 1 ≤ s) :
     Antitone (powerCell N s) := by
   cases N with
@@ -80,7 +84,9 @@ theorem powerCell_antitone {N : ℕ} {s : ℝ} (hs : 1 ≤ s) :
       Nat.cast_add, add_assoc] <;> ring)
 
 /-- For a [positive sample size](hyp:hN) and [power](hyp:s) [at least one](hyp:hs),
- [the power cell masses sum to one](goal). -/
+ [the power cell masses sum to one](goal).
+@isnad1 id=eq.2h2v.s5.829a6bc3dde5 from=translated src=- shape=e390ce8d vocab=9dc3f746
+-/
 theorem sum_powerCell {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s) :
     ∑ j : Fin N, powerCell N s j = 1 := by
   let f : ℕ → ℝ := fun i => (1 - (i : ℝ) / N) ^ s
@@ -93,7 +99,9 @@ theorem sum_powerCell {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s) :
   simp [f, ne_of_gt hN, Real.zero_rpow (by linarith : s ≠ 0)]
 
 /-- For a [positive sample size](hyp:hN) and [power](hyp:s) [at least one](hyp:hs),
- [the first cell mass is at most the power divided by sample size](goal). -/
+ [the first cell mass is at most the power divided by sample size](goal).
+@isnad1 id=le.2h2v.s5.05c8dfc7168e from=translated src=- shape=2feb315a vocab=0466bb1a
+-/
 theorem powerCell_zero_le {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s) :
     powerCell N s ⟨0, hN⟩ ≤ s / N := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -108,7 +116,9 @@ theorem powerCell_zero_le {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s) :
   simpa [powerCell] using h''
 
 /-- For a [positive sample size](hyp:hN) and [power](hyp:s) [at least one](hyp:hs),
- [the sum of squared power cell masses is at most the power divided by sample size](goal). -/
+ [the sum of squared power cell masses is at most the power divided by sample size](goal).
+@isnad1 id=le.2h2v.s6.0d598229a42e from=translated src=- shape=8cb6fd0f vocab=ef54eb09
+-/
 theorem sum_powerCell_sq_le {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s) :
     ∑ j : Fin N, (powerCell N s j) ^ 2 ≤ s / N := by
   haveI : NeZero N := ⟨Nat.ne_of_gt hN⟩
@@ -129,7 +139,9 @@ theorem sum_powerCell_sq_le {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s) :
     _ = s / N := by rw [← Finset.mul_sum, sum_powerCell hN hs, mul_one]
 
 /-- For a [positive sample size](hyp:hN), [power](hyp:s) [at least one](hyp:hs), and [cell](hyp:j),
- [the power cell mass is the integral of the power density over that cell](goal). -/
+ [the power cell mass is the integral of the power density over that cell](goal).
+@isnad1 id=eq.2h3v.s7.168289cc6280 from=translated src=- shape=63445493 vocab=9bd57b1a
+-/
 theorem powerCell_eq_integral {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s)
     (j : Fin N) :
     powerCell N s j =

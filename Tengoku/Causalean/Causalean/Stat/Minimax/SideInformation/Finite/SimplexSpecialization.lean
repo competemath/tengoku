@@ -24,14 +24,18 @@ namespace Causalean.Stat.Minimax.FiniteSideInformation
 variable {I X C : Type*} [Fintype I] [Fintype X] [Fintype C]
   [DecidableEq C] [Nonempty C]
 
-/-- A [closed subset](hyp:hK) of a finite probability simplex is [compact](goal). -/
+/-- A [closed subset](hyp:hK) of a finite probability simplex is [compact](goal).
+@isnad1 id=iscompac.1h2v.s6.e73d8512c31f from=translated src=- shape=90567d55 vocab=730eddd3
+-/
 theorem isCompact_closed_finitePmf {K : Set (FinitePmf I)} (hK : IsClosed K) :
     IsCompact K := by
   -- Proof plan: a closed subset of the compact finite probability simplex is compact.
   exact hK.isCompact
 
 /-- Restricting an [atom coordinate](hyp:i) to a [closed finite-simplex model class](hyp:K)
-gives a [continuous parameter coordinate](goal). -/
+gives a [continuous parameter coordinate](goal).
+@isnad1 id=continuo.0h3v.s7.26c21326261d from=translated src=- shape=1ca8d158 vocab=4d965448
+-/
 theorem continuous_closed_finitePmf_coordinate (K : Set (FinitePmf I)) (i : I) :
     Continuous (fun w : K ↦ w.1.1 i) := by
   -- Proof plan: compose subtype-value maps with the continuous atom evaluation map.
@@ -40,7 +44,9 @@ theorem continuous_closed_finitePmf_coordinate (K : Set (FinitePmf I)) (i : I) :
 /-- For a [nonempty closed model class inside a finite simplex](hyp:hK,hKne), [finite labeled
 and finite nonempty side alphabets](hyp:X,C), [continuous simplex-valid label and side
 coordinates](hyp:hp,hq,hpcont,hqcont), and a [continuous bounded target](hyp:htau,hlu,htau_mem),
-the [empirical-side minimax values converge to the exact-side benchmark](goal). -/
+the [empirical-side minimax values converge to the exact-side benchmark](goal).
+@isnad1 id=tendsto.9h9v.s8.70f1a813b333 from=translated src=- shape=ee147ed7 vocab=c8af9aa7
+-/
 theorem closedSimplex_finiteSideInfo_minimax_tendsto
     (K : Set (FinitePmf I)) (hK : IsClosed K) (hKne : K.Nonempty)
     (p : K → X → ℝ) (q : K → C → ℝ) (tau : K → ℝ)

@@ -17,7 +17,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 /-- Under independent sampling with [failure times following a nonnegative time
 law](hyp:hFailure) and independent [censor times whose law has the given (absolutely continuous)
 censor hazard](hyp:hazard,hHazard), [two different subjects](hyp:hij) [almost surely have different
-censor times](goal). -/
+censor times](goal).
+@isnad1 id=eventual.3h6v.s6.76de538d02a1 from=translated src=- shape=64f4f4fa vocab=5d8e6877
+-/
 theorem distinct_censor_times_ae {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)

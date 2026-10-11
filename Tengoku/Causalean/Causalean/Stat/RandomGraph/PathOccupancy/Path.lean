@@ -32,6 +32,7 @@ has [an occupied left endpoint and lies in a run of length its cardinality](goal
 
 Prove interval saturation between the minimum and maximum, then use the cardinality
 of the integer interval. This gives a sharp span, including singleton sets.
+@isnad1 id=ex.2h2v.s6.e0a4038bd232 from=translated src=- shape=cb4eea49 vocab=606c9705
 -/
 theorem connected_run_cover {K : ℕ} (s : Finset (Fin K))
     (hs : s.Nonempty) (hc : PathConnected s) :
@@ -55,6 +56,7 @@ has [connected occupied cells](goal) under the [given assignment](hyp:x).
 The equivalence closure is taken on the subtype of the subset, so no path can
 leave the subset. One way to prove saturation is to cut the vertices at a missing
 intermediate cell; an eligible edge cannot cross that cut.
+@isnad1 id=pathconn.3h5v.s7.219b359894b4 from=translated src=- shape=795522d4 vocab=0f0dd6c5
 -/
 theorem connected_image_of_local_relation {ι : Type*}
     {K : ℕ} (s : Finset ι) (x : ι → Fin K) (hs : s.Nonempty)

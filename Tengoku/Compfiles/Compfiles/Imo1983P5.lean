@@ -21,6 +21,9 @@ Justify your answer.
 
 namespace Imo1983P5
 
+/--
+@isnad1 id=eq.0h2v.s5.734089833c14 from=translated src=- shape=3bacbb63 vocab=1a238c42
+-/
 lemma Nat.ofDigits_eq (b : ℕ) (L : List ℕ)
     : Nat.ofDigits b L = ∑ i ∈ Finset.range L.length, (L.getI i) * b ^ i := by
   induction L with
@@ -32,10 +35,16 @@ lemma Nat.ofDigits_eq (b : ℕ) (L : List ℕ)
     congr 1
     apply Finset.sum_congr rfl fun i _ ↦ by ring
 
+/--
+@isnad1 id=lt.1h3v.s4.a1dad0bc45ff from=translated src=- shape=fbab25b5 vocab=c2733f00
+-/
 lemma Nat.getI_digits_lt (n i : ℕ) {b : ℕ} (h : 2 ≤ b) : (b.digits n).getI i < b := by
   simp only [← List.getD_default_eq_getI, Nat.default_eq_zero, Nat.getD_digits n i h]
   exact Nat.mod_lt _ (by lia)
 
+/--
+@isnad1 id=eq.2h4v.s6.2f2df2705bcb from=translated src=- shape=01506d9d vocab=62ca6adc
+-/
 lemma Nat.getI_digits_add (m n : ℕ) {b : ℕ} (hb : 2 ≤ b)
   (h : ∀ i : ℕ, (b.digits m).getI i + (b.digits n).getI i < b)
   : ∀ i : ℕ, (b.digits m).getI i  + (b.digits n).getI i = (b.digits (m + n)).getI i := by
@@ -103,6 +112,9 @@ lemma Nat.eq_iff_getI_digits_eq (m n b: ℕ)
 
 def base_two_to_base_three (n : ℕ) := Nat.ofDigits 3 (Nat.digits 2 n)
 
+/--
+@isnad1 id=eq.0h1v.s4.11b2d6823144 from=translated src=- shape=24d9da8a vocab=7945dda1
+-/
 lemma digits_base_two_to_base_three (n : ℕ)
     : Nat.digits 2 n = Nat.digits 3 (base_two_to_base_three n) := by
   symm; rw [base_two_to_base_three]; apply Nat.digits_ofDigits
@@ -110,17 +122,29 @@ lemma digits_base_two_to_base_three (n : ℕ)
   · exact fun l hl => lt_trans (Nat.digits_lt_base (by norm_num) hl) (by norm_num)
   · exact fun h => Nat.getLast_digit_ne_zero 2 (Nat.digits_ne_nil_iff_ne_zero.mp h)
 
+/--
+@isnad1 id=injectiv.0h0v.s2.9ddc226f783c from=translated src=- shape=e3d48bcb vocab=d33b9d7c
+-/
 lemma base_two_to_base_three_inj : Function.Injective base_two_to_base_three := fun m n hmn =>
   Nat.digits_inj_iff.mp (by rw [digits_base_two_to_base_three, digits_base_two_to_base_three, hmn])
 
+/--
+@isnad1 id=eq.0h0v.s3.3669e08fe8fc from=translated src=- shape=3c26ae4f vocab=b025c3c4
+-/
 lemma base_two_to_base_three_zero : base_two_to_base_three 0 = 0 := rfl
 
+/--
+@isnad1 id=lt.1h1v.s4.3b0edc4f860c from=translated src=- shape=35bd48ee vocab=3dcaebd3
+-/
 lemma base_two_to_base_three_pos {m : ℕ} (hm : 0 < m) : 0 < base_two_to_base_three m :=
   Nat.pos_of_ne_zero (base_two_to_base_three_zero ▸ base_two_to_base_three_inj.ne hm.ne')
 
 def zero_or_one_in_base_three (n : ℕ) :=
   ∀ i : ℕ, (Nat.digits 3 n).getI i = 0 ∨ (Nat.digits 3 n).getI i = 1
 
+/--
+@isnad1 id=zerooron.1h2v.s3.4268ea5310c4 from=translated src=- shape=f8e697c9 vocab=111f4ca5
+-/
 lemma zero_or_one_in_base_three_of_eq_base_two_to_base_three
   {m n : ℕ} (hmn : base_two_to_base_three n = m)
   : zero_or_one_in_base_three m := by
@@ -143,6 +167,9 @@ lemma eq_iff_of_zero_or_one_in_base {m n : ℕ} (hm : zero_or_one_in_base_three 
     · have := hm i; have := hn i; have := h i; have := h' i; lia
     · have := hn i; have := h i; have := h' i; lia
 
+/--
+@isnad1 id=ex.0h1v.s7.1a7db0845667 from=translated src=- shape=009accbf vocab=8d7a4dee
+-/
 theorem generalized (n : ℕ+) :
   ∃ S : Finset ℕ+, S.card = 2 ^ n.val - 1 ∧
   (∀ x ∈ S, x.val ≤ (3 ^ n.val - 1) / 2) ∧

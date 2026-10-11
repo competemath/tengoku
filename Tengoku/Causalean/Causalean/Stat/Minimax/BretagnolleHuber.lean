@@ -38,7 +38,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω}
 `y · exp(-½ log y) = √y` for `y ≥ 0`; the engine of the change of variables
 `∫ √p ∂ν = ∫ exp(-½·llr) ∂μ`. -/
 
-/-- For `y ≥ 0`, `y * exp(-(1/2)·log y) = √y`. -/
+/-- For `y ≥ 0`, `y * exp(-(1/2)·log y) = √y`.
+@isnad1 id=eq.1h1v.s5.8f5bea7d730a from=translated src=- shape=b4d86153 vocab=7c7d7749
+-/
 theorem mul_exp_neg_half_log {y : ℝ} (hy : 0 ≤ y) :
     y * Real.exp (-(1 / 2) * Real.log y) = Real.sqrt y := by
   rcases eq_or_lt_of_le hy with h0 | h0
@@ -53,7 +55,9 @@ theorem mul_exp_neg_half_log {y : ℝ} (hy : 0 ≤ y) :
     ring_nf
 
 /-- `√y ≤ (y + 1)/2` for `y ≥ 0` (AM–GM); used to dominate `√p` by an integrable
-function. -/
+function.
+@isnad1 id=le.1h1v.s5.697d6f8e913f from=translated src=- shape=6a2e150a vocab=aae65541
+-/
 theorem sqrt_le_half_add_one {y : ℝ} (hy : 0 ≤ y) :
     Real.sqrt y ≤ (y + 1) / 2 := by
   have hs : 0 ≤ Real.sqrt y := Real.sqrt_nonneg y
@@ -67,7 +71,9 @@ variable (μ ν : Measure Ω) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν
 /-- Abbreviation: the Radon–Nikodym density `p = (dμ/dν).toReal`. -/
 local notation3 "p" => fun x => (μ.rnDeriv ν x).toReal
 
-/-- `√p` is `ν`-integrable (dominated by `(p+1)/2`). -/
+/-- `√p` is `ν`-integrable (dominated by `(p+1)/2`).
+@isnad1 id=integrab.0h4v.s5.b0981fa2bedf from=translated src=- shape=cfcfdfee vocab=88b8e0ff
+-/
 @[fun_prop]
 theorem integrable_sqrt_rnDeriv :
     Integrable (fun x => Real.sqrt ((μ.rnDeriv ν x).toReal)) ν := by
@@ -84,7 +90,9 @@ theorem integrable_sqrt_rnDeriv :
   exact sqrt_le_half_add_one ENNReal.toReal_nonneg
 
 /-- **Affinity lower bound.**  `∫ min(p,1) ∂ν ≤ 1 - tvDist μ ν`.  Derived from
-Scheffé's `≤` inequality together with `∫ min(p,1) ∂ν = 1 - ½∫|p-1|∂ν`. -/
+Scheffé's `≤` inequality together with `∫ min(p,1) ∂ν = 1 - ½∫|p-1|∂ν`.
+@isnad1 id=le.1h4v.s6.a83bc65c6315 from=translated src=- shape=eb411f2b vocab=706b25d0
+-/
 theorem integral_min_le_one_sub_tvDist (hac : μ ≪ ν) :
     ∫ x, min ((μ.rnDeriv ν x).toReal) 1 ∂ν ≤ 1 - tvDist μ ν := by
   set q : Ω → ℝ := fun x => (μ.rnDeriv ν x).toReal with hq_def
@@ -122,7 +130,9 @@ theorem integral_min_le_one_sub_tvDist (hac : μ ≪ ν) :
   linarith [hscheffe]
 
 /-- **Cauchy–Schwarz / Bhattacharyya step.**
-`(∫ √p ∂ν)² ≤ 2·∫ min(p,1) ∂ν`. -/
+`(∫ √p ∂ν)² ≤ 2·∫ min(p,1) ∂ν`.
+@isnad1 id=le.1h4v.s6.e0df2e7c524b from=translated src=- shape=ee481bc0 vocab=28343ff4
+-/
 theorem sq_bhattacharyya_le_two_mul_integral_min (hac : μ ≪ ν) :
     (∫ x, Real.sqrt ((μ.rnDeriv ν x).toReal) ∂ν) ^ 2
       ≤ 2 * ∫ x, min ((μ.rnDeriv ν x).toReal) 1 ∂ν := by
@@ -265,7 +275,9 @@ theorem sq_bhattacharyya_le_two_mul_integral_min (hac : μ ≪ ν) :
     _ ≤ 2 * A := hAB_le
     _ = 2 * ∫ x, min ((μ.rnDeriv ν x).toReal) 1 ∂ν := by rw [hA_def, hq_def]
 
-/-- **Jensen / Bhattacharyya step.**  `exp(-½·KL) ≤ ∫ √p ∂ν`. -/
+/-- **Jensen / Bhattacharyya step.**  `exp(-½·KL) ≤ ∫ √p ∂ν`.
+@isnad1 id=le.2h4v.s6.f9a324b26bb7 from=translated src=- shape=c0318074 vocab=3a504f59
+-/
 theorem exp_neg_half_klDiv_le_bhattacharyya (hac : μ ≪ ν)
     (hint : Integrable (llr μ ν) μ) :
     Real.exp (-(1 / 2) * (klDiv μ ν).toReal)
@@ -333,7 +345,9 @@ divergence is finite](hyp:hfin), [the two-point testing affinity `1 − tvDist �
 
 This weaker corollary of the square-root Bretagnolle-Huber inequality has a floor that is
 positive for *every* finite KL budget, so it powers Le Cam two-point lower bounds
-at an `O(1)` KL budget. -/
+at an `O(1)` KL budget.
+@isnad1 id=le.2h4v.s6.0a68d62c0613 from=translated src=- shape=3e6807e1 vocab=bce8e049
+-/
 theorem bretagnolle_huber_affinity (μ ν : Measure Ω)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hac : μ ≪ ν) (hfin : klDiv μ ν ≠ ⊤) :

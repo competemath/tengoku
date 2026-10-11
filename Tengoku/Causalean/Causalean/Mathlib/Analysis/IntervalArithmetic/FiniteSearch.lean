@@ -49,7 +49,9 @@ def leastTrue {n : ℕ} (accept : Fin (n + 1) → Bool) : Fin (n + 1) :=
     (Finset.univ.filter fun i => accept i).min' h
   else 0
 
-/-- When at least one Boolean test succeeds, the returned index succeeds. -/
+/-- When at least one Boolean test succeeds, the returned index succeeds.
+@isnad1 id=eq.1h2v.s6.6310cf4df2b0 from=translated src=- shape=daef28fa vocab=817d1f82
+-/
 theorem leastTrue_accepts {n : ℕ} {accept : Fin (n + 1) → Bool}
     (h : ∃ i, accept i = true) : accept (leastTrue accept) = true := by
   unfold leastTrue
@@ -62,7 +64,9 @@ theorem leastTrue_accepts {n : ℕ} {accept : Fin (n + 1) → Bool}
     refine ⟨i, Finset.mem_filter.mpr ⟨Finset.mem_univ i, ?_⟩⟩
     exact hi
 
-/-- Every successful index is no smaller than the successful index returned by the search. -/
+/-- Every successful index is no smaller than the successful index returned by the search.
+@isnad1 id=le.1h3v.s6.704ff0235017 from=translated src=- shape=78f4ea8a vocab=63d18d70
+-/
 theorem leastTrue_le {n : ℕ} {accept : Fin (n + 1) → Bool}
     {i : Fin (n + 1)} (hi : accept i = true) : leastTrue accept ≤ i := by
   unfold leastTrue
@@ -73,7 +77,9 @@ theorem leastTrue_le {n : ℕ} {accept : Fin (n + 1) → Bool}
     apply hne
     exact ⟨i, Finset.mem_filter.mpr ⟨Finset.mem_univ i, hi⟩⟩
 
-/-- If no Boolean test succeeds, the total search returns index zero. -/
+/-- If no Boolean test succeeds, the total search returns index zero.
+@isnad1 id=eq.1h2v.s6.3542d5f38e1a from=translated src=- shape=5a7175df vocab=78890aa4
+-/
 theorem leastTrue_eq_zero {n : ℕ} {accept : Fin (n + 1) → Bool}
     (h : ∀ i, accept i = false) : leastTrue accept = 0 := by
   unfold leastTrue
@@ -90,7 +96,9 @@ def finiteRefine {n : ℕ} (candidates : Fin (n + 1) → RatInterval) (ε : PosR
   candidates (leastTrue fun i => decide ((candidates i).width ≤ ε.1))
 
 /-- If a candidate meets the requested width, finite refinement returns the
-least such candidate and meets the width. -/
+least such candidate and meets the width.
+@isnad1 id=le.1h3v.s6.d6e936df29ae from=translated src=- shape=5009f12a vocab=a5f45146
+-/
 theorem finiteRefine_width {n : ℕ} {candidates : Fin (n + 1) → RatInterval}
     (ε : PosRat) (h : ∃ i, (candidates i).width ≤ ε.1) :
     (finiteRefine candidates ε).width ≤ ε.1 := by
@@ -103,7 +111,9 @@ theorem finiteRefine_width {n : ℕ} {candidates : Fin (n + 1) → RatInterval}
   exact hi
 
 /-- Finite refinement is measurable as a function of a finite vector of
-rational interval candidates. -/
+rational interval candidates.
+@isnad1 id=measurab.0h2v.s6.bffcfef4e190 from=translated src=- shape=1d054485 vocab=bf16b5e6
+-/
 @[fun_prop]
 theorem measurable_finiteRefine {n : ℕ} (ε : PosRat) :
     Measurable (fun candidates : Fin (n + 1) → RatInterval => finiteRefine candidates ε) := by
@@ -120,7 +130,9 @@ noncomputable def leastScoreIndex {n : ℕ} (score : Fin (n + 1) → ℝ) : Fin 
     exact Finset.mem_image.mpr ⟨0, Finset.mem_univ _, rfl⟩
   exact (ofLex (keys.min' hkeys)).2
 
-/-- The selected least-score index has score no larger than every competing score. -/
+/-- The selected least-score index has score no larger than every competing score.
+@isnad1 id=le.0h3v.s5.70e3025a7059 from=translated src=- shape=0423b04c vocab=8f337671
+-/
 theorem leastScoreIndex_minimal {n : ℕ} (score : Fin (n + 1) → ℝ)
     (i : Fin (n + 1)) : score (leastScoreIndex score) ≤ score i := by
   classical
@@ -145,7 +157,9 @@ theorem leastScoreIndex_minimal {n : ℕ} (score : Fin (n + 1) → ℝ)
       Prod.Lex.left _ _ hgt
     exact (not_lt_of_ge hle) hlex
 
-/-- Equal minimal scores are resolved in favor of the smaller original index. -/
+/-- Equal minimal scores are resolved in favor of the smaller original index.
+@isnad1 id=le.1h3v.s6.307a2e7c75eb from=translated src=- shape=ea1e35fe vocab=8f337671
+-/
 theorem leastScoreIndex_tie {n : ℕ} (score : Fin (n + 1) → ℝ)
     {i : Fin (n + 1)} (hi : score i = score (leastScoreIndex score)) :
     leastScoreIndex score ≤ i := by
@@ -175,7 +189,9 @@ theorem leastScoreIndex_tie {n : ℕ} (score : Fin (n + 1) → ℝ)
 /-- For [a sample-size index `n`](hyp:n), [the function that selects, from a vector of `n+1`
 real scores, the smallest index attaining the least score is measurable with respect to the
 Borel σ-algebra on the score vector space and the discrete σ-algebra on the finite index
-set](goal). -/
+set](goal).
+@isnad1 id=measurab.0h1v.s6.bd37cc516ef9 from=translated src=- shape=a6842fa8 vocab=ed1b322f
+-/
 @[fun_prop]
 theorem measurable_leastScoreIndex {n : ℕ} :
     Measurable (leastScoreIndex : (Fin (n + 1) → ℝ) → Fin (n + 1)) := by
@@ -225,7 +241,9 @@ theorem measurable_leastScoreIndex {n : ℕ} :
   exact hmeas
 
 /-- A finite least-success search is measurable when every individual success
-event is measurable. -/
+event is measurable.
+@isnad1 id=measurab.1h3v.s6.54e0716249f7 from=translated src=- shape=a0a52dc5 vocab=bf9aff0f
+-/
 @[fun_prop]
 theorem measurable_leastTrue {Ω : Type*} [MeasurableSpace Ω] {n : ℕ}
     (accept : Fin (n + 1) → Ω → Bool)
@@ -237,7 +255,9 @@ theorem measurable_leastTrue {Ω : Type*} [MeasurableSpace Ω] {n : ℕ}
   exact fun s _ => (Set.to_countable _).measurableSet
 
 /-- The rational infimum enclosure is measurable as a function of its finite
-rational node vector. -/
+rational node vector.
+@isnad1 id=measurab.2h2v.s7.9c864c01fd45 from=translated src=- shape=0f7cf42f vocab=448f85f4
+-/
 @[fun_prop]
 theorem measurable_infEnclosure {n : ℕ} (hn : 0 < n) (L : ℚ) (hL : 0 ≤ L) :
     Measurable (fun nodes : Fin (n + 1) → RatInterval =>
@@ -247,7 +267,9 @@ theorem measurable_infEnclosure {n : ℕ} (hn : 0 < n) (L : ℚ) (hL : 0 ≤ L) 
   exact fun s _ => (Set.to_countable _).measurableSet
 
 /-- The rational supremum enclosure is measurable as a function of its finite
-rational node vector. -/
+rational node vector.
+@isnad1 id=measurab.2h2v.s7.578505ff56d2 from=translated src=- shape=0f7cf42f vocab=ca77b275
+-/
 @[fun_prop]
 theorem measurable_supEnclosure {n : ℕ} (hn : 0 < n) (L : ℚ) (hL : 0 ≤ L) :
     Measurable (fun nodes : Fin (n + 1) → RatInterval =>
@@ -257,7 +279,9 @@ theorem measurable_supEnclosure {n : ℕ} (hn : 0 < n) (L : ℚ) (hL : 0 ≤ L) 
   exact fun s _ => (Set.to_countable _).measurableSet
 
 /-- The rational complex integral enclosure is measurable as a function of its
-finite node rectangles. -/
+finite node rectangles.
+@isnad1 id=measurab.2h2v.s7.9583de7ee066 from=translated src=- shape=0f7cf42f vocab=7b711a3d
+-/
 @[fun_prop]
 theorem measurable_integralEnclosure {n : ℕ} (hn : 0 < n) (L : ℚ) (hL : 0 ≤ L) :
     Measurable (fun nodes : Fin (n + 1) → ComplexRatInterval =>

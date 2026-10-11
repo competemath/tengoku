@@ -44,7 +44,9 @@ It is realised as Lebesgue measure restricted to `Ioo 0 1`. -/
 noncomputable def unifOI : Measure ℝ := volume.restrict (Ioo (0 : ℝ) 1)
 
 /-- [The uniform probability measure on the open unit interval is a probability
-law](goal). -/
+law](goal).
+@isnad1 id=isprobab.0h0v.s2.0f97c8a1b2da from=translated src=- shape=54c8eceb vocab=a13e1f66
+-/
 instance instIsProbabilityMeasure_unifOI : IsProbabilityMeasure unifOI := by
   constructor
   rw [unifOI, Measure.restrict_apply_univ, Real.volume_Ioo]
@@ -54,7 +56,9 @@ instance instIsProbabilityMeasure_unifOI : IsProbabilityMeasure unifOI := by
 on the open unit interval](goal).
 
 This follows from `quantile_mono`, whose endpoint hypotheses hold throughout
-the interior. -/
+the interior.
+@isnad1 id=monotone.0h1v.s4.232ff7943df7 from=translated src=- shape=a6740e64 vocab=f1df1694
+-/
 lemma monotoneOn_quantile (μ : Measure ℝ) :
     MonotoneOn (quantile μ) (Ioo (0 : ℝ) 1) := by
   intro a ha b hb hab
@@ -63,7 +67,9 @@ lemma monotoneOn_quantile (μ : Measure ℝ) :
 /-- For [a real measure](hyp:μ), [its quantile function is
 almost-everywhere measurable under the uniform law on the open unit interval](goal).
 
-The function is monotone there, and a monotone function is measurable. -/
+The function is monotone there, and a monotone function is measurable.
+@isnad1 id=aemeasur.0h1v.s3.40dff6acefc3 from=translated src=- shape=9919623c vocab=106443fa
+-/
 @[fun_prop]
 lemma aemeasurable_quantile_unifOI (μ : Measure ℝ) :
     AEMeasurable (quantile μ) unifOI := by
@@ -99,7 +105,9 @@ equals `μ` itself](goal).
 The proof compares the two measures on the rays `Iic x`. For a uniform variable
 `U`, `{u ∈ (0,1) | quantile μ u ≤ x} = {u ∈ (0,1) | u ≤ cdf μ x}` by
 `quantile_le_iff`, whose Lebesgue measure is `cdf μ x = μ (Iic x)`; then
-`Measure.ext_of_Iic` closes the equality. -/
+`Measure.ext_of_Iic` closes the equality.
+@isnad1 id=eq.0h1v.s4.a8ff011e7c1b from=translated src=- shape=cd21a248 vocab=9deba07b
+-/
 theorem quantile_map_uniform (μ : Measure ℝ) [IsProbabilityMeasure μ] :
     unifOI.map (quantile μ) = μ := by
   refine Measure.ext_of_Iic (unifOI.map (quantile μ)) μ (fun x => ?_)

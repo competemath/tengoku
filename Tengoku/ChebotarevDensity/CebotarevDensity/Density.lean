@@ -43,7 +43,9 @@ def primeIdealZetaSum (S : Set (Ideal (𝓞 K))) (s : ℝ) : ℝ :=
   ∑' 𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭 ∈ S ∧ 𝔭.IsPrime ∧ 𝔭 ≠ ⊥},
     (Ideal.absNorm 𝔭.1 : ℝ) ^ (-s)
 
-/-- Equation lemma unfolding `primeIdealZetaSum` to its defining `tsum`. -/
+/-- Equation lemma unfolding `primeIdealZetaSum` to its defining `tsum`.
+@isnad1 id=eq.0h3v.s9.aa3590807754 from=translated src=- shape=2b87da65 vocab=cab02f1c
+-/
 theorem primeIdealZetaSum_def (S : Set (Ideal (𝓞 K))) (s : ℝ) :
     primeIdealZetaSum S s =
       ∑' 𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭 ∈ S ∧ 𝔭.IsPrime ∧ 𝔭 ≠ ⊥},
@@ -83,7 +85,9 @@ def HasLowerDirichletDensity (S : Set (Ideal (𝓞 K))) (δ : ℝ) : Prop :=
     (fun s : ℝ ↦ primeIdealZetaSum S s / primeIdealZetaSum (univ : Set (Ideal (𝓞 K))) s)
     (𝓝[>] 1) = δ
 
-/-- The Dirichlet density of the empty set is `0`. -/
+/-- The Dirichlet density of the empty set is `0`.
+@isnad1 id=hasdiric.0h1v.s5.b94986c4cbd6 from=translated src=- shape=6e52874b vocab=f377c802
+-/
 theorem hasDirichletDensity_empty :
     HasDirichletDensity (∅ : Set (Ideal (𝓞 K))) 0 := by
   have : IsEmpty {𝔭 : Ideal (𝓞 K) // 𝔭 ∈ (∅ : Set (Ideal (𝓞 K))) ∧
@@ -91,13 +95,17 @@ theorem hasDirichletDensity_empty :
   simpa only [HasDirichletDensity, primeIdealZetaSum_def, tsum_empty, zero_div]
     using tendsto_const_nhds
 
-/-- The upper Dirichlet density extracted from `HasDirichletDensity`. -/
+/-- The upper Dirichlet density extracted from `HasDirichletDensity`.
+@isnad1 id=hasupper.1h3v.s5.af519f5dda18 from=translated src=- shape=d5c6ae29 vocab=8c0dd63e
+-/
 theorem HasDirichletDensity.hasUpper
     (h : HasDirichletDensity S δ) :
     HasUpperDirichletDensity S δ :=
   h.limsup_eq
 
-/-- The lower Dirichlet density extracted from `HasDirichletDensity`. -/
+/-- The lower Dirichlet density extracted from `HasDirichletDensity`.
+@isnad1 id=haslower.1h3v.s5.526d753d5881 from=translated src=- shape=d5c6ae29 vocab=61a7e2ad
+-/
 theorem HasDirichletDensity.hasLower
     (h : HasDirichletDensity S δ) :
     HasLowerDirichletDensity S δ :=
@@ -119,7 +127,9 @@ variable (K)
 
 /-- Sharifi 7.1.12 proof (p. 140), simple-pole identity: `log ζ_K(s) = log(1/(s-1)) + O(1)` as
 `s ↓ 1`, from the simple pole of `ζ_K` at `s=1` (mathlib's
-`NumberField.tendsto_sub_one_mul_dedekindZeta_nhdsGT`). -/
+`NumberField.tendsto_sub_one_mul_dedekindZeta_nhdsGT`).
+@isnad1 id=ex.0h1v.s6.92eed8b8e2e7 from=translated src=- shape=871d7692 vocab=272271c7
+-/
 theorem logDedekindZeta_sub_log_inv_sub_one_bounded :
     ∃ C : ℝ, ∀ᶠ (s : ℝ) in 𝓝[>] (1 : ℝ),
       |Real.log (dedekindZeta K (s : ℂ)).re - Real.log (1 / (s - 1))| ≤ C := by
@@ -147,7 +157,9 @@ theorem logDedekindZeta_sub_log_inv_sub_one_bounded :
 
 /-- For a finite set `S`, the partial sum `Σ_{𝔭 ∈ S} N𝔭^{-s}` is bounded above by the
 number of qualifying primes: there are finitely many terms and each `N𝔭^{-s} ≤ 1`
-for `s > 0` (since `N𝔭 ≥ 1`). -/
+for `s > 0` (since `N𝔭 ≥ 1`).
+@isnad1 id=le.2h3v.s7.16dd6170832c from=translated src=- shape=23fbebb1 vocab=1b0f2543
+-/
 theorem primeIdealZetaSum_le_card_of_finite (hS : S.Finite)
     {s : ℝ} (hs : 0 < s) :
     primeIdealZetaSum S s ≤

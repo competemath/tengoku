@@ -51,6 +51,7 @@ fixed labelled subset](hyp:s,a) have [exact reciprocal-power probability](goal).
 
 Use iIndepFun.measure_inter_preimage_eq_mul with singleton targets, then the
 constant-product identity. No constraint is imposed on unsampled labels.
+@isnad1 id=eq.1h9v.s7.0c2b8e5d61cb from=translated src=- shape=a4332d81 vocab=0b3413f3
 -/
 theorem fixed_subset_assignment_probability {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}
@@ -72,6 +73,7 @@ theorem fixed_subset_assignment_probability {n K : ℕ} {μ : Measure Ω}
 subset](hyp:s,a) and [mark assignments on any fixed subset](hyp:t,b) have
 [the reciprocal-power probability times the prescribed Bernoulli product](goal).
 The two subsets may overlap or be different.
+@isnad1 id=eq.1h11v.s8.09e6b9feffee from=translated src=- shape=e64a9ffb vocab=1a9fab23
 -/
 theorem fixed_subset_assignment_mark_probability {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}
@@ -108,7 +110,9 @@ theorem fixed_subset_assignment_mark_probability {n K : ℕ} {μ : Measure Ω}
   rw [fixed_subset_assignment_probability h, hm]
 
 /-- [A fixed cell assignment](hyp:s,a) and [two distinct successful marks](hyp:i,j,hij)
-under [the uniform marked model](hyp:h) have [the exact product probability](goal). -/
+under [the uniform marked model](hyp:h) have [the exact product probability](goal).
+@isnad1 id=eq.2h11v.s7.9e440c052d41 from=translated src=- shape=426c6007 vocab=e307b2a7
+-/
 theorem assignment_two_specified_marks_probability {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}
     (h : UniformMarkedSample μ X B ε) (s : Finset (Fin n)) (a : s → Fin K)
@@ -136,6 +140,7 @@ cell probability times the quadratic Bernoulli union factor.
 
 Union over pairs of distinct marked labels. The deliberately looser s.card²
 factor is convenient for subsequent weighted occupancy bounds.
+@isnad1 id=le.1h9v.s7.54a5586e9f26 from=translated src=- shape=053a835e vocab=942a9e8c
 -/
 theorem assignment_two_marks_probability_le {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}
@@ -174,6 +179,7 @@ theorem assignment_two_marks_probability_le {n K : ℕ} {μ : Measure Ω}
 /-- In [the independent uniform model](hyp:h), [assignments on two disjoint
 labelled subsets](hyp:s,t,a,b,hdisj) with [one mark in each](goal) have probability
 at most the reciprocal-power cell probability times ε² times the two sizes.
+@isnad1 id=le.2h11v.s8.9f431999251e from=translated src=- shape=e85dd55c vocab=ff3a2021
 -/
 theorem assignment_pair_marks_probability_le {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}

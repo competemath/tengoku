@@ -18,7 +18,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- A bounded payoff's intensity integral through a time in the horizon is
-bounded by the payoff bound times the rate bound times the horizon. -/
+bounded by the payoff bound times the rate bound times the horizon.
+@isnad1 id=le.5h8v.s7.387c86a14586 from=translated src=- shape=6377850f vocab=818d1304
+-/
 theorem Model.abs_energyIntegral_le_horizon (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (C R : ℝ) (hC : 0 ≤ C) (hR : 0 ≤ R)
     (hH : ∀ t ω, |H t ω| ≤ C)
@@ -45,7 +47,9 @@ theorem Model.abs_energyIntegral_le_horizon (M : Model Ω μ)
     _ = C * (R * M.horizon) := by ring
 
 /-- A strict-past compensated integral in the horizon is bounded by the
-payoff bound times the full event count plus its deterministic rate envelope. -/
+payoff bound times the full event count plus its deterministic rate envelope.
+@isnad1 id=le.5h8v.s7.c886ea392248 from=translated src=- shape=dc7b706d vocab=ecf9d4c5
+-/
 theorem Model.abs_prefixIntegral_le (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (C R : ℝ) (hC : 0 ≤ C) (hR : 0 ≤ R)
     (hH : ∀ t ω, |H t ω| ≤ C)
@@ -77,7 +81,9 @@ theorem Model.abs_prefixIntegral_le (M : Model Ω μ)
 /-- A terminal compensated integral is bounded by the payoff bound times
 the full event count plus its deterministic rate envelope. [The model and
 payoff](hyp:M,H), [the payoff and rate bounds](hyp:C,R,hC,hR,hH,hr), and [the
-path](hyp:ω) give [the terminal bound](goal). -/
+path](hyp:ω) give [the terminal bound](goal).
+@isnad1 id=le.4h7v.s7.8d629ed89239 from=translated src=- shape=7c1281f7 vocab=a3cda3c3
+-/
 theorem Model.abs_stochasticIntegral_le (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (C R : ℝ) (hC : 0 ≤ C) (hR : 0 ≤ R)
     (hH : ∀ t ω, |H t ω| ≤ C)
@@ -95,7 +101,9 @@ theorem Model.abs_stochasticIntegral_le (M : Model Ω μ)
         M.horizon ⟨M.horizon_pos.le, le_rfl⟩ ω))
 
 /-- A jointly measurable payoff whose horizon values have a sample-dependent
-envelope has an integrable jump sum if envelope times count is integrable. -/
+envelope has an integrable jump sum if envelope times count is integrable.
+@isnad1 id=integrab.3h5v.s7.60c0603aa89c from=translated src=- shape=472b384b vocab=b6815688
+-/
 theorem Model.integrable_jump_of_envelope (M : Model Ω μ)
     (G : ℝ → Ω → ℝ) (hG : Measurable (fun p : ℝ × Ω => G p.1 p.2))
     (B : Ω → ℝ)
@@ -116,7 +124,9 @@ theorem Model.integrable_jump_of_envelope (M : Model Ω μ)
     _ = B ω * ((M.eventTimes ω).card : ℝ) := by simp [mul_comm]
 
 /-- A jointly measurable payoff with an integrable sample-dependent envelope
-on the horizon has an integrable intensity integral under a bounded rate. -/
+on the horizon has an integrable intensity integral under a bounded rate.
+@isnad1 id=integrab.6h6v.s7.9f7f07939cc5 from=translated src=- shape=937a46d4 vocab=8e644c36
+-/
 theorem Model.integrable_energy_of_envelope (M : Model Ω μ)
     (G : ℝ → Ω → ℝ) (hG : Measurable (fun p : ℝ × Ω => G p.1 p.2))
     (B : Ω → ℝ) (hB : Integrable B μ) (hBnonneg : ∀ ω, 0 ≤ B ω)

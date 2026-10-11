@@ -40,7 +40,9 @@ is exactly the composition of the finite release and postprocessing kernels.
 Proof plan: compare both kernels on every measurable set. Expand `Q i` with
 `coefficient_row_measure`. Expand the composition using `Kernel.comp_apply'`
 and the finite integral over `RayIndex`; substitute the singleton and coefficient
-measure identities, and distribute scalar multiplication through the finite sum. -/
+measure identities, and distribute scalar multiplication through the finite sum.
+@isnad1 id=eq.4h7v.s8.7d2908b38252 from=translated src=- shape=ea0b928a vocab=29d65fb4
+-/
 theorem coefficient_factorizes (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (D : CoefficientField Q r)
     (α : RayIndex → ℝ≥0) (T : Kernel (Fin 4) RayIndex)
@@ -74,7 +76,9 @@ Proof plan: integrate each nonnegative measurable coefficient against `rowSum Q`
 normalization follows by integrating the rowwise density identities. For positive
 weights normalize the coefficient's with-density measure; on zero-weight rays choose
 the first row as a Markov fallback. Assemble the finite release from its singleton
-masses and verify composition on measurable sets. -/
+masses and verify composition on measurable sets.
+@isnad1 id=nonempty.2h3v.s5.9d0844fec52b from=translated src=- shape=fbfc06ea vocab=d17cff89
+-/
 theorem exists_refinement (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (hpriv : SetwisePrivate Q r) :
     Nonempty (Refinement Q r) := by

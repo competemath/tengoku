@@ -23,6 +23,7 @@ label cardinality. Choose the occupied left endpoint, subtract it from every
 value, and package these differences in the bounded finite type. Reconstruction
 proves injectivity. Anchor membership is needed to count paired assignments in
 a shared coarse-pair class without excluding coincident occupied cells.
+@isnad1 id=ex.1h2v.s7.c72f6362c600 from=translated src=- shape=d6aa3c42 vocab=569c7d56
 -/
 theorem connected_assignment_encoding {ι : Type*} [Fintype ι] (K : ℕ)
     (hm : 1 ≤ Fintype.card ι) :
@@ -81,6 +82,7 @@ times the cardinality of the labelled type raised to itself.
 
 Encode an assignment by its minimum occupied cell and the labelled offsets in
 a run of length m, using connected_run_cover and card_image_le.
+@isnad1 id=le.1h2v.s6.96dee5c62069 from=translated src=- shape=52a49389 vocab=e4a254e4
 -/
 theorem connected_assignment_count {ι : Type*} [Fintype ι] (K : ℕ)
     (hm : 1 ≤ Fintype.card ι) :

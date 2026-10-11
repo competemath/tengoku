@@ -78,14 +78,18 @@ namespace WeightedSupport
 variable {R : Type*}
 variable [Fintype R] [DecidableEq R]
 
-/-- The weight function `ω` is nonnegative everywhere on `R`. -/
+/-- The weight function `ω` is nonnegative everywhere on `R`.
+@isnad1 id=le.0h3v.s4.cc5401d4ec0a from=translated src=- shape=09a97628 vocab=0c206c39
+-/
 lemma weight_nonneg (c : WeightedSupport R) (r : R) : 0 ≤ c.weight r := by
   by_cases h : r ∈ c.observed
   · exact (c.weight_pos r h).le
   · simp [c.weight_zero_off r h]
 
 /-- Summing `ω` over the full type `R` equals summing over `observed`,
-because `ω` vanishes outside `observed`. -/
+because `ω` vanishes outside `observed`.
+@isnad1 id=eq.0h2v.s5.d396b595acbb from=translated src=- shape=3ed897b9 vocab=30987436
+-/
 lemma sum_weight_univ (c : WeightedSupport R) :
     ∑ r, c.weight r = ∑ r ∈ c.observed, c.weight r := by
   classical
@@ -95,11 +99,15 @@ lemma sum_weight_univ (c : WeightedSupport R) :
 
 /-- For [a weighted-support system `c`](hyp:c),
 [the observed weights sum to one](goal), restating the structure's normalization
-field for convenient reuse. -/
+field for convenient reuse.
+@isnad1 id=eq.0h2v.s5.b7b03c516277 from=translated src=- shape=ebb088b3 vocab=980a9f30
+-/
 lemma sum_weight (c : WeightedSupport R) :
     ∑ r ∈ c.observed, c.weight r = 1 := c.weight_sum_one
 
-/-- Summing the weights over `Finset.univ` gives `1`. -/
+/-- Summing the weights over `Finset.univ` gives `1`.
+@isnad1 id=eq.0h2v.s5.b1a89439f2cf from=translated src=- shape=55e214c5 vocab=4ceebcc4
+-/
 lemma sum_weight_univ_eq_one (c : WeightedSupport R) :
     ∑ r, c.weight r = 1 := by
   rw [c.sum_weight_univ, c.weight_sum_one]

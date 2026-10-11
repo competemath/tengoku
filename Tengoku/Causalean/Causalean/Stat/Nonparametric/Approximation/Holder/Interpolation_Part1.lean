@@ -31,7 +31,9 @@ pointwise signal to the power one plus dimension divided by smoothness.
 
 This is the pure real-analysis kernel of the optimization step: `h⁻ᵈ = c_*⁻ᵈ ·
 Δ^{-d/γ}`, so `3Δ/4 ≤ ‖K‖_∞ c_*⁻ᵈ Δ^{-d/γ} I` rearranges to the claim via
-`Δ · Δ^{d/γ} = Δ^{1 + d/γ}`. -/
+`Δ · Δ^{d/γ} = Δ^{1 + d/γ}`.
+@isnad1 id=le.5h7v.s7.be60134590f5 from=translated src=- shape=6027df2d vocab=d78568b7
+-/
 theorem l1_lower_of_bias_bound {d : ℕ} {γ Ksup Δ Ival cstar h : ℝ}
     (hKsup : 0 < Ksup) (hΔ : 0 < Δ) (hcstar : 0 < cstar)
     (hheq : h = cstar * Δ ^ ((1 : ℝ) / γ))
@@ -73,7 +75,9 @@ theorem l1_lower_of_bias_bound {d : ℕ} {γ Ksup Δ Ival cstar h : ℝ}
 kernel-smoothed value in `u`-coordinates is bounded by the
 scaled local `L¹` mass: `|∫_{[-1,1]^d} K(u) g(x0 + h•u) du| ≤ B^d · h⁻ᵈ · ∫_{supBall x0 r} |g|`.
 Uses `|K| ≤ B^d`, the affine change of variables `x = x0 + h•u`, and that the image cube
-`supBall x0 h ⊆ supBall x0 r` when `h ≤ r`. -/
+`supBall x0 h ⊆ supBall x0 r` when `h ≤ r`.
+@isnad1 id=le.5h10v.s8.7fab7ab9d7cc from=translated src=- shape=5085b557 vocab=a4dea141
+-/
 lemma smoothed_abs_le {d : ℕ} {γ M r : ℝ} {x0 : Fin d → ℝ} {S : Set (Fin d → ℝ)}
     {k : ℝ → ℝ} {B : ℝ}
     (hS : supBall x0 r ⊆ S)
@@ -194,7 +198,9 @@ private lemma kernel_integral_full {k : ℝ → ℝ}
     · rw [lt_abs]; right; linarith
     · rw [lt_abs]; left; linarith
 
-/-- **Kernel mass over the cube.** `∫_{[-1,1]^d} K = 1`. -/
+/-- **Kernel mass over the cube.** `∫_{[-1,1]^d} K = 1`.
+@isnad1 id=eq.2h2v.s7.64189d2e7bad from=translated src=- shape=ae84fe2e vocab=9fa3e343
+-/
 lemma prodKernel_mass_cube {d : ℕ} {k : ℝ → ℝ}
     (hk_supp : ∀ u : ℝ, 1 < |u| → k u = 0)
     (hk_mass : (∫ u in Set.Icc (-1 : ℝ) 1, k u) = 1) :
@@ -261,7 +267,9 @@ private lemma prodKernel_monomial_p_cube {d : ℕ} {k : ℝ → ℝ} {m j : ℕ}
   simp_rw [hreg]
   exact prodKernel_multiIndex_moment_cube hk_supp hk_mom ν (by omega) (by omega)
 
-/-- The tensor kernel is continuous when the 1-D kernel is. -/
+/-- The tensor kernel is continuous when the 1-D kernel is.
+@isnad1 id=continuo.1h2v.s5.31ef5014fe73 from=translated src=- shape=f01af4df vocab=97c7a8d2
+-/
 @[fun_prop]
 lemma prodKernel_continuous {d : ℕ} {k : ℝ → ℝ} (hk : Continuous k) :
     Continuous (prodKernel k d) := by
@@ -269,7 +277,9 @@ lemma prodKernel_continuous {d : ℕ} {k : ℝ → ℝ} (hk : Continuous k) :
   exact continuous_finsetProd _ (fun i _ => hk.comp (continuous_apply i))
 
 /-- Almost every point of the closed unit cube lies in its interior (the boundary
-`{∃ i, |uᵢ| = 1}` is Lebesgue-null). -/
+`{∃ i, |uᵢ| = 1}` is Lebesgue-null).
+@isnad1 id=eventual.0h1v.s7.8798207a338f from=translated src=- shape=40f7e948 vocab=302d14ab
+-/
 lemma ae_lt_one_on_cube {d : ℕ} :
     ∀ᵐ u ∂(volume.restrict (supBall (0 : Fin d → ℝ) 1)), ∀ i, |u i| < 1 := by
   rw [MeasureTheory.ae_restrict_iff' (measurableSet_supBall 0 1)]
@@ -317,7 +327,9 @@ private lemma smul_eq_sum_single {d : ℕ} (h : ℝ) (u : Fin d → ℝ) :
 /-- **The kernel kills each nonconstant diagonal Taylor term.** For `1 ≤ j ≤ m`,
 integrating the diagonal iterated derivative `iteratedFDeriv ℝ j g x0 (fun _ => h•u)`
 against the kernel over the cube gives `0`: expand the diagonal multilinear map into
-monomials and apply the moment cancellation `prodKernel_monomial_p_cube`. -/
+monomials and apply the moment cancellation `prodKernel_monomial_p_cube`.
+@isnad1 id=eq.5h7v.s9.2e364feb9c32 from=translated src=- shape=fb03e069 vocab=ea003513
+-/
 lemma integral_diagonal_taylor_term_cube {d : ℕ} {k : ℝ → ℝ} {m : ℕ}
     (hk_cont : Continuous k)
     (hk_supp : ∀ u : ℝ, 1 < |u| → k u = 0)
@@ -478,7 +490,9 @@ from its diagonal Taylor polynomial by at most the Hölder remainder bound](goal
 **Per-point Taylor + Hölder crux.** For `g` in the standard Hölder ball of order `γ`
 and radius `M` on `S`, `U ⊆ S` open containing the segment `{x0 + t • y : t ∈ [0,1]}`, the
 value `g (x0 + y)` differs from its order-`m` diagonal Taylor polynomial (`m = ⌈γ⌉₊ - 1`) by
-at most `(M / m!) ‖y‖^γ`. -/
+at most `(M / m!) ‖y‖^γ`.
+@isnad1 id=le.5h8v.s9.f1c706f83877 from=translated src=- shape=7bf4bea5 vocab=034ef9c2
+-/
 lemma holder_line_taylor {d : ℕ} {γ M : ℝ} {g : (Fin d → ℝ) → ℝ}
     {S U : Set (Fin d → ℝ)}
     (hγ : 0 < γ) (hg : HolderBallStd g γ M S) (hU : IsOpen U) (hUS : U ⊆ S)

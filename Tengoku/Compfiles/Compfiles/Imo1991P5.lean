@@ -23,6 +23,9 @@ namespace Imo1991P5
 
 open scoped Affine EuclideanGeometry Real
 
+/--
+@isnad1 id=le.3h3v.s6.e2b293dbc470 from=translated src=- shape=7bdd2080 vocab=e624faf6
+-/
 lemma mul3_le_add3_div_three_pow_three {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c)
     : (a * b * c) ≤ ((a + b + c) / 3) ^ 3 := by
@@ -37,6 +40,9 @@ lemma mul3_le_add3_div_three_pow_three {a b c : ℝ}
     rw [← mul_add, ← mul_add, div_mul_comm, mul_one, Real.rpow_ofNat] at h
     exact h
 
+/--
+@isnad1 id=le.4h5v.s7.4d97db2ae6fe from=translated src=- shape=32b23e3a vocab=1c71205a
+-/
 lemma map_mean3_le_mean3_map_of_concaveOn
     {s : Set ℝ} {f : ℝ → ℝ}
     (hf : ConcaveOn ℝ s f) {a b c : ℝ}
@@ -66,6 +72,9 @@ lemma map_mean3_le_mean3_map_of_concaveOn
   rw [← mul_add, ← mul_add, ← mul_add, ← mul_add, div_mul_comm, mul_one, div_mul_comm, mul_one] at h
   exact h
 
+/--
+@isnad1 id=lt.2h1v.s6.a3412bc5d6f3 from=translated src=- shape=999702a6 vocab=721197ad
+-/
 lemma one_div_two_lt_sin {a : ℝ}
     (ha : π / 6 < a) (ha' : a < 5 * π / 6)
     : 1 / 2 < Real.sin a := by
@@ -75,6 +84,9 @@ lemma one_div_two_lt_sin {a : ℝ}
     · nth_rw 2 [← Real.sin_pi_sub]
       apply Real.sin_lt_sin_of_lt_of_le_pi_div_two (by linarith) (by linarith) (by linarith)
 
+/--
+@isnad1 id=or.5h6v.s7.6fd988326e0c from=translated src=- shape=f6af8683 vocab=173b305a
+-/
 theorem analytic_version {a₁ a₂ a₃ b₁ b₂ b₃ : ℝ}
     (hb₁ : 0 ≤ b₁) (hb₂ : 0 ≤ b₂) (hb₃ : 0 ≤ b₃)
     (hab : a₁ + a₂ + a₃ + b₁ + b₂ + b₃ = π)
@@ -111,6 +123,9 @@ theorem analytic_version {a₁ a₂ a₃ b₁ b₂ b₃ : ℝ}
     apply one_div_two_lt_sin ha₁' ha₁''
 
 -- Trigonometric Form of Ceva's Theorem
+/--
+@isnad1 id=eq.1h4v.s10.1d64f4be43f8 from=translated src=- shape=093e8937 vocab=9f92eda9
+-/
 theorem trigonometric_ceva
     (A B C P : EuclideanSpace ℝ (Fin 2))
     (hABC : AffineIndependent ℝ ![A, B, C])
@@ -147,6 +162,9 @@ theorem trigonometric_ceva
     rw [hAB, hBC, hCA]
     field
 
+/--
+@isnad1 id=eq.2h4v.s10.25fb6e581dac from=translated src=- shape=8ed9ae05 vocab=8e4623af
+-/
 lemma angle_eq_angle_add_angle_of_mem_interior
     {A B C P : EuclideanSpace ℝ (Fin 2)}
     (hABC : AffineIndependent ℝ ![A, B, C])
@@ -196,6 +214,9 @@ lemma angle_eq_angle_add_angle_of_mem_interior
   rw [← smul_add, ← smul_add, ← add_smul, ← add_smul, add_right_comm]
   rw [hsum', one_smul, neg_smul, one_smul, neg_add_cancel]
 
+/--
+@isnad1 id=affinein.1h3v.s9.25cbb1b0584b from=translated src=- shape=0ef25fb8 vocab=62b74d07
+-/
 lemma affineIndependent_rotate {A B C : EuclideanSpace ℝ (Fin 2)}
     (hABC : AffineIndependent ℝ ![A, B, C])
     : AffineIndependent ℝ ![B, C, A] := by
@@ -203,6 +224,9 @@ lemma affineIndependent_rotate {A B C : EuclideanSpace ℝ (Fin 2)}
   rw [Set.pair_comm, Set.insert_comm]
   exact hABC
 
+/--
+@isnad1 id=eq.2h4v.s11.428442d057c0 from=translated src=- shape=91eec3d3 vocab=af0cd13b
+-/
 lemma sum_angle {A B C P : EuclideanSpace ℝ (Fin 2)}
     (hABC : AffineIndependent ℝ ![A, B, C])
     (hP : P ∈ interior (convexHull ℝ {A, B, C}))

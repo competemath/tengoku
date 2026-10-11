@@ -32,7 +32,9 @@ noncomputable def measurableEqOfStandardBorel
 
 -- @node: tvDist_eq_half_integral_abs_rnDeriv_sub
 /-- Scheffé's identity with both probability laws dominated by an arbitrary
-finite reference measure. -/
+finite reference measure.
+@isnad1 id=eq.2h4v.s6.88e5d19d9e8e from=translated src=- shape=33ec33ff vocab=7fec8bf1
+-/
 lemma tvDist_eq_half_integral_abs_rnDeriv_sub
     {X : Type*} [MeasurableSpace X]
     (mu nu xi : Measure X) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -117,7 +119,9 @@ noncomputable def rnCommonPart
   xi.withDensity fun x => min (mu.rnDeriv xi x) (nu.rnDeriv xi x)
 
 -- @node: rnCommonPart_le_left
-/-- The RN common part is dominated by its first law. -/
+/-- The RN common part is dominated by its first law.
+@isnad1 id=le.1h4v.s5.7d9694c21c62 from=translated src=- shape=3be13de5 vocab=260e06dd
+-/
 lemma rnCommonPart_le_left
     {X : Type*} [MeasurableSpace X]
     (mu nu xi : Measure X) [IsFiniteMeasure mu] [IsFiniteMeasure xi] (hmu : mu ≪ xi) :
@@ -129,7 +133,9 @@ lemma rnCommonPart_le_left
     _ = mu := Measure.withDensity_rnDeriv_eq mu xi hmu
 
 -- @node: rnCommonPart_le_right
-/-- The RN common part is dominated by its second law. -/
+/-- The RN common part is dominated by its second law.
+@isnad1 id=le.1h4v.s5.9144f3ea1a15 from=translated src=- shape=2e4aa97e vocab=260e06dd
+-/
 lemma rnCommonPart_le_right
     {X : Type*} [MeasurableSpace X]
     (mu nu xi : Measure X) [IsFiniteMeasure nu] [IsFiniteMeasure xi] (hnu : nu ≪ xi) :
@@ -141,7 +147,9 @@ lemma rnCommonPart_le_right
     _ = nu := Measure.withDensity_rnDeriv_eq nu xi hnu
 
 -- @node: rnCommonPart_mass_eq_one_sub_tvDist
-/-- The mass of the RN common part is exactly one minus total variation. -/
+/-- The mass of the RN common part is exactly one minus total variation.
+@isnad1 id=eq.2h4v.s6.cdbcad88ea45 from=translated src=- shape=a1413db0 vocab=24e9a2fb
+-/
 lemma rnCommonPart_mass_eq_one_sub_tvDist
     {X : Type*} [MeasurableSpace X]
     (mu nu xi : Measure X) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -199,7 +207,9 @@ lemma rnCommonPart_mass_eq_one_sub_tvDist
     _ = _ := by rw [hreal]
 
 -- @node: measure_eq_of_tvDist_eq_zero
-/-- Probability measures at total-variation distance zero are equal. -/
+/-- Probability measures at total-variation distance zero are equal.
+@isnad1 id=eq.1h3v.s5.d5c2e6f31330 from=translated src=- shape=ecbc40be vocab=848782e0
+-/
 lemma measure_eq_of_tvDist_eq_zero
     {X : Type*} [MeasurableSpace X]
     (mu nu : Measure X) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -281,7 +291,9 @@ private lemma residual_mass_right
   ring
 
 -- @node: overlapCoupling_map_fst
-/-- The first marginal of the overlap coupling is the first law. -/
+/-- The first marginal of the overlap coupling is the first law.
+@isnad1 id=eq.0h3v.s5.c578576d5857 from=translated src=- shape=930a7da3 vocab=2ca56f3c
+-/
 lemma overlapCoupling_map_fst
     {X : Type*} [MeasurableSpace X]
     (mu nu : Measure X) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu] :
@@ -314,7 +326,9 @@ lemma overlapCoupling_map_fst
     all_goals fun_prop
 
 -- @node: overlapCoupling_map_snd
-/-- The second marginal of the overlap coupling is the second law. -/
+/-- The second marginal of the overlap coupling is the second law.
+@isnad1 id=eq.0h3v.s5.205a2a937cac from=translated src=- shape=4e8d8d89 vocab=b34b5e9f
+-/
 lemma overlapCoupling_map_snd
     {X : Type*} [MeasurableSpace X]
     (mu nu : Measure X) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu] :
@@ -350,7 +364,9 @@ lemma overlapCoupling_map_snd
 -- @node: overlapCoupling.instIsProbabilityMeasure
 /-- [For two probability measures `mu` and `nu`](hyp:mu,nu) [on a standard Borel space
 `X`](hyp:X), [the two coordinates of their overlap coupling agree with probability at
-least one minus their total variation distance](goal). -/
+least one minus their total variation distance](goal).
+@isnad1 id=le.0h3v.s6.86eb80375ce1 from=translated src=- shape=74e8ad30 vocab=c6e09774
+-/
 lemma overlapCoupling_eq_mass_ge
     {X : Type*} [MeasurableSpace X] [MeasurableEq X]
     (mu nu : Measure X) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu] :
@@ -431,7 +447,9 @@ private lemma comap_comp_map_measure
 
 -- @node: compressionCoupling_map_fst
 /-- The first marginal of the lifted compression coupling is the first raw
-law. -/
+law.
+@isnad1 id=eq.1h5v.s6.2f707b380312 from=translated src=- shape=547248e4 vocab=c4674e1d
+-/
 lemma compressionCoupling_map_fst
     {Z S : Type*} [MeasurableSpace Z] [StandardBorelSpace Z]
     [MeasurableSpace S] [StandardBorelSpace S]
@@ -457,7 +475,9 @@ lemma compressionCoupling_map_fst
 
 -- @node: compressionCoupling_map_snd
 /-- The second marginal of the lifted compression coupling is the second raw
-law. -/
+law.
+@isnad1 id=eq.1h5v.s6.32ca18d7c4e8 from=translated src=- shape=6987ca02 vocab=c64abff7
+-/
 lemma compressionCoupling_map_snd
     {Z S : Type*} [MeasurableSpace Z] [StandardBorelSpace Z]
     [MeasurableSpace S] [StandardBorelSpace S]
@@ -483,7 +503,9 @@ lemma compressionCoupling_map_snd
 
 -- @node: compressionCoupling_map_compress_pair
 /-- Compressing both coordinates of the lifted coupling recovers the overlap
-coupling of the compressed laws. -/
+coupling of the compressed laws.
+@isnad1 id=eq.1h5v.s7.27514e20908d from=translated src=- shape=deca402b vocab=841a17b0
+-/
 lemma compressionCoupling_map_compress_pair
     {Z S : Type*} [MeasurableSpace Z] [StandardBorelSpace Z]
     [MeasurableSpace S] [StandardBorelSpace S]
@@ -538,7 +560,9 @@ lemma compressionCoupling_map_compress_pair
 -- @node: compressionCoupling.instIsProbabilityMeasure
 /-- For [two probability measures](hyp:Q0,Q1) and [a measurable compression
 map](hyp:compress,hcompress), [the associated compression coupling is a probability
-measure](goal), because [the coupling has unit total mass](step:1). -/
+measure](goal), because [the coupling has unit total mass](step:1).
+@isnad1 id=isprobab.1h5v.s6.9a750bb1d517 from=translated src=- shape=fad94fe7 vocab=e420e5d0
+-/
 noncomputable instance compressionCoupling.instIsProbabilityMeasure
     {Z S : Type*} [MeasurableSpace Z] [StandardBorelSpace Z]
     [MeasurableSpace S] [StandardBorelSpace S]
@@ -555,7 +579,9 @@ noncomputable instance compressionCoupling.instIsProbabilityMeasure
 
 -- @node: isCoupling_compressionCoupling
 /-- In the lifted coupling, the compressed observations agree with probability
-at least one minus the total variation of their compressed laws. -/
+at least one minus the total variation of their compressed laws.
+@isnad1 id=le.1h5v.s7.07de7c6a383f from=translated src=- shape=ee0161a5 vocab=fcb34fcb
+-/
 lemma compressionCoupling_equal_compression_mass_ge
     {Z S : Type*} [MeasurableSpace Z] [StandardBorelSpace Z]
     [MeasurableSpace S] [StandardBorelSpace S]

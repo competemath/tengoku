@@ -33,7 +33,9 @@ bounded by `σbar²`](hyp:hnoise), with [an invertible design
 moment matrix](hyp:hM) and [nonnegative weights](hyp:hw) [bounded above by a constant
 `W`](hyp:hwW), has [variance `Var[∑ᵢ Sᵢ Yᵢ] ≤ σ² · W · (M⁻¹)₀₀`](goal). This reduces the interior
 `O((Nh)^{−1/2})` stochastic-error rate to the single design-concentration bound
-`(M⁻¹)₀₀ = O(1/(Nh))`. -/
+`(M⁻¹)₀₀ = O(1/(Nh))`.
+@isnad1 id=le.5h9v.s8.57138dd35934 from=translated src=- shape=825851f4 vocab=f1975bcd
+-/
 theorem localPoly_intercept_variance_le {Ω : Type*} {N p : ℕ} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {x w : Fin N → ℝ} {Y : Fin N → Ω → ℝ}
     {σbar W : ℝ}

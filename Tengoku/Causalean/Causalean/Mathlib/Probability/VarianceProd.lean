@@ -28,7 +28,9 @@ square-integrable](hyp:hsection), that [the map `m` of slice means is square-int
 coordinate at almost every value of the second coordinate equals `m` there](hyp:hmean). Then
 [the variance of `F` under the product measure equals the `ν`-average of the within-slice
 variances of `F` plus the variance, across the second coordinate, of the slice-mean map
-`m`](goal). -/
+`m`](goal).
+@isnad1 id=eq.4h6v.s8.6e4f52b229cf from=translated src=- shape=b29de398 vocab=c3238d89
+-/
 lemma variance_prod_eq_integral_variance_add
     {Ω T : Type*} [MeasurableSpace Ω] [MeasurableSpace T]
     (μ : Measure Ω) (ν : Measure T)

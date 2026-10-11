@@ -695,7 +695,9 @@ private theorem integral_sq_tendsto_of_integral_sq_sub_tendsto_zero
         rw [integral_add hdsq (hprod.const_mul 2), integral_const_mul]
   · simp
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) with [finite support](hyp:hf) has [variance no larger than the rate times the expected squared add-one increment](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) with [finite support](hyp:hf) has [variance no larger than the rate times the expected squared add-one increment](goal).
+@isnad1 id=le.1h2v.s6.a03ee8e097a0 from=translated src=- shape=640a54b2 vocab=65cf2d4c
+-/
 theorem poisson_addOne_poincare_finiteSupport
     (lambda : NNReal) (f : Nat → Real)
     (hf : (Function.support f).Finite) :
@@ -782,7 +784,9 @@ theorem poisson_addOne_poincare_finiteSupport
   rw [henergy]
   nlinarith
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) whose [values are square-integrable](hyp:hf) and whose [add-one increments are square-integrable](hyp:hdf) has [variance no larger than the rate times the expected squared add-one increment](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) whose [values are square-integrable](hyp:hf) and whose [add-one increments are square-integrable](hyp:hdf) has [variance no larger than the rate times the expected squared add-one increment](goal).
+@isnad1 id=le.2h2v.s7.b6be44ed1836 from=translated src=- shape=d56f0d28 vocab=49fbf2cd
+-/
 theorem poisson_addOne_poincare
     (lambda : NNReal) (f : Nat → Real)
     (hf : MemLp f 2 (poissonMeasure lambda))
@@ -816,7 +820,9 @@ theorem poisson_addOne_poincare
     (fun K ↦ poisson_addOne_poincare_finiteSupport lambda (fK K)
       (supportTruncation_finiteSupport K f))
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) whose [values are square-integrable](hyp:hf) and whose [add-one increments are square-integrable](hyp:hdf) has [the Poisson Poincaré variance bound in explicit countable-series form](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) whose [values are square-integrable](hyp:hf) and whose [add-one increments are square-integrable](hyp:hdf) has [the Poisson Poincaré variance bound in explicit countable-series form](goal).
+@isnad1 id=le.2h2v.s7.3cab6a110ff7 from=translated src=- shape=1d543d6c vocab=577fadeb
+-/
 theorem poisson_addOne_poincare_tsum
     (lambda : NNReal) (f : Nat → Real)
     (hf : MemLp f 2 (poissonMeasure lambda))
@@ -830,7 +836,9 @@ theorem poisson_addOne_poincare_tsum
   rw [integral_poissonMeasure] at h
   simpa only [poissonWeight, smul_eq_mul] using h
 
-/-- A [real sequence](hyp:f) that [is square-integrable under the zero-rate Poisson law](hyp:hf) has [zero variance](goal). -/
+/-- A [real sequence](hyp:f) that [is square-integrable under the zero-rate Poisson law](hyp:hf) has [zero variance](goal).
+@isnad1 id=eq.1h1v.s6.103e093bd25f from=translated src=- shape=230b0325 vocab=f77ee238
+-/
 theorem variance_poissonMeasure_zero
     (f : Nat → Real) (hf : MemLp f 2 (poissonMeasure 0)) :
     variance f (poissonMeasure 0) = 0 := by

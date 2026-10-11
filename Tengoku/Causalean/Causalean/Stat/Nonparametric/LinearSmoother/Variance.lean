@@ -48,7 +48,9 @@ is bounded by `σbar²`](hyp:hnoise), and [the
 sum of squared smoother weights, `∑ᵢ Sᵢ²`, is bounded by `V`](hyp:hlev), then [the
 variance of the linear smoother `∑ᵢ Sᵢ Yᵢ` is at most `σbar² V`](goal).
 
-Taking `V = O(1/(Nh))` gives the interior `O((Nh)^{−1/2})` stochastic-error rate. -/
+Taking `V = O(1/(Nh))` gives the interior `O((Nh)^{−1/2})` stochastic-error rate.
+@isnad1 id=le.3h7v.s7.c7d7f8e4edc5 from=translated src=- shape=055342d6 vocab=5562bea2
+-/
 theorem linearSmoother_variance_le {Ω : Type*} {N : ℕ} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {Y : Fin N → Ω → ℝ} {S : Fin N → ℝ}
     {σbar V : ℝ}

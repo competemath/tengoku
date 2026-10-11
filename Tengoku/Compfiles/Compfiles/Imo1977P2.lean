@@ -32,6 +32,9 @@ instance {α : Type*} : Coe (α → ℤ) (α → ℝ) := {
   coe := coeFunctionInt2Real
 }
 
+/--
+@isnad1 id=eq.1h4v.s6.8e826d9db43e from=translated src=- shape=b8f52e82 vocab=fecb41be
+-/
 theorem sum_successive_terms_intCast {n : ℕ} (s : Fin n → ℤ) (start : Fin n) (count : ℕ) [NeZero count] (h : start+count-1 < n) :
     sum_successive_terms s start count h = (sum_successive_terms s start count h : ℝ) := by
   unfold sum_successive_terms coeFunctionInt2Real

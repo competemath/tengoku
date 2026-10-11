@@ -31,7 +31,9 @@ def powerCurvature (s t : ℝ) : ℝ :=
   s * (s - 1) * (1 - t) ^ (s - 2)
 
 /-- For a positive sample size, a hinge-cell increment is its full width below
-the cell, the remaining width inside it, and zero above it. -/
+the cell, the remaining width inside it, and zero above it.
+@isnad1 id=eq.1h3v.s7.e34fd9edc856 from=translated src=- shape=569e8b79 vocab=da3d8ebc
+-/
 theorem hingeCell_eq_piecewise {N : ℕ} (hN : 0 < N) (t : ℝ)
     (j : Fin N) :
     hingeCell N t j =
@@ -58,7 +60,9 @@ theorem hingeCell_eq_piecewise {N : ℕ} (hN : 0 < N) (t : ℝ)
     ring
 
 /-- For a power above one, integrating its curvature from zero to a point in
-the unit interval gives the drop of the power density from its initial value. -/
+the unit interval gives the drop of the power density from its initial value.
+@isnad1 id=eq.2h2v.s6.b5ea1b0af69d from=translated src=- shape=cce1ab86 vocab=1dca6a3b
+-/
 theorem integral_powerCurvature_Icc {s u : ℝ} (hs : 1 < s)
     (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     (∫ t in Set.Icc (0 : ℝ) u, powerCurvature s t ∂volume) =
@@ -77,14 +81,18 @@ theorem integral_powerCurvature_Icc {s u : ℝ} (hs : 1 < s)
   field_simp
 
 /-- For a real power above one, the curvature density has total mass `s` on
-the unit interval. -/
+the unit interval.
+@isnad1 id=eq.1h1v.s5.41018b81cda1 from=translated src=- shape=2cda3bcd vocab=9d623d4c
+-/
 theorem integral_powerCurvature_unit {s : ℝ} (hs : 1 < s) :
     (∫ t in Set.Icc (0 : ℝ) 1, powerCurvature s t ∂volume) = s := by
   rw [integral_powerCurvature_Icc hs (by norm_num)]
   simp [powerDensity, Real.zero_rpow (by linarith : s - 1 ≠ 0)]
 
 /-- For a real power above one, the first moment of its curvature density
-on the unit interval is one. -/
+on the unit interval is one.
+@isnad1 id=eq.1h1v.s6.e8a9f1ae707c from=translated src=- shape=55e6188c vocab=f703671b
+-/
 theorem integral_mul_powerCurvature_unit {s : ℝ} (hs : 1 < s) :
     (∫ t in Set.Icc (0 : ℝ) 1, t * powerCurvature s t ∂volume) = 1 := by
   have hp : -1 < s - 2 := by linarith
@@ -134,7 +142,9 @@ theorem integral_mul_powerCurvature_unit {s : ℝ} (hs : 1 < s) :
       ring
 
 /-- A [real power above one](hyp:hs) has [a curvature-weighted square-root
-integral bounded by the square root of that power](goal). -/
+integral bounded by the square root of that power](goal).
+@isnad1 id=le.1h1v.s6.44be8b459d48 from=translated src=- shape=927b542d vocab=dcaadde2
+-/
 theorem integral_powerCurvature_mul_sqrt_le {s : ℝ} (hs : 1 < s) :
     (∫ t in Set.Icc (0 : ℝ) 1,
       powerCurvature s t * Real.sqrt t ∂volume) ≤ Real.sqrt s := by

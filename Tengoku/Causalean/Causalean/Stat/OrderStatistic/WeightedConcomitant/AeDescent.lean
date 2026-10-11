@@ -20,7 +20,9 @@ open Causalean.Stat.OrderStatistic
 noncomputable section
 
 /-- For a probability law on real pairs, a set of first-coordinate values
-whose full inverse image is null is itself null under the first marginal. -/
+whose full inverse image is null is itself null under the first marginal.
+@isnad1 id=eq.1h2v.s6.3ddcc1b9ecb0 from=translated src=- shape=934e73e9 vocab=3b42e007
+-/
 theorem fst_null_of_preimage_null (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ] (s : Set ℝ)
     (hs : μ (Prod.fst ⁻¹' s) = 0) : (μ.map Prod.fst) s = 0 := by
@@ -52,7 +54,9 @@ theorem fst_null_of_preimage_null (μ : Measure (ℝ × ℝ))
     _ = 0 := hu0
 
 /-- If two real functions of the first coordinate agree almost surely under a
-probability law on real pairs, then they agree almost surely under its first marginal. -/
+probability law on real pairs, then they agree almost surely under its first marginal.
+@isnad1 id=eventual.1h3v.s6.a1f17a98c080 from=translated src=- shape=8b464ab3 vocab=e1aa8b7d
+-/
 theorem ae_eq_of_comp_fst (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (f g : ℝ → ℝ)
     (h : (fun p : ℝ × ℝ => f p.1) =ᵐ[μ] (fun p => g p.1)) :
@@ -63,7 +67,9 @@ theorem ae_eq_of_comp_fst (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
 
 /-- A [real probability law](hyp:ν) with [a continuous CDF](hyp:hcont) carries
 [two real functions](hyp:f,g) that [agree after CDF composition](hyp:h) to
-[agreement under the unit-uniform law](goal). -/
+[agreement under the unit-uniform law](goal).
+@isnad1 id=eventual.2h3v.s6.9dff0a82a0ad from=translated src=- shape=f36613b1 vocab=a4243b84
+-/
 theorem ae_eq_of_comp_continuous_cdf (ν : Measure ℝ)
     [IsProbabilityMeasure ν]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf ν t))

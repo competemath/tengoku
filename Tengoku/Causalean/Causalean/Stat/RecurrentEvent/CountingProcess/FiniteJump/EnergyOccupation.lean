@@ -24,7 +24,9 @@ noncomputable def Model.energyOccupation (M : Model Ω μ) : Measure (ℝ × Ω)
     (fun p => ENNReal.ofReal (M.atRisk p.1 p.2 * M.intensity p.1 p.2))
 
 /-- On the observed horizon the at-risk intensity is nonnegative and has a
-common finite upper bound, uniformly over sample paths. -/
+common finite upper bound, uniformly over sample paths.
+@isnad1 id=ex.0h3v.s6.8a5f3abcb0e1 from=translated src=- shape=ec84d516 vocab=bf3106f8
+-/
 theorem Model.rate_horizon_uniform_bound (M : Model Ω μ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t ω, 0 ≤ t → t ≤ M.horizon →
       0 ≤ M.atRisk t ω * M.intensity t ω ∧
@@ -36,7 +38,9 @@ theorem Model.rate_horizon_uniform_bound (M : Model Ω μ) :
     (hC t ω ht hT).trans (le_max_left _ _)⟩
 
 /-- A uniformly bounded at-risk intensity on the finite horizon makes the
-intensity occupation measure finite under a probability law. -/
+intensity occupation measure finite under a probability law.
+@isnad1 id=lt.0h3v.s6.d0e0e2d8827f from=translated src=- shape=952b3125 vocab=4acf9ebf
+-/
 theorem Model.energyOccupation_finite (M : Model Ω μ) [IsProbabilityMeasure μ] :
     M.energyOccupation univ < ⊤ := by
   obtain ⟨C, hC, hrate⟩ := M.rate_horizon_uniform_bound
@@ -59,7 +63,9 @@ theorem Model.energyOccupation_finite (M : Model Ω μ) [IsProbabilityMeasure μ
 /-- The intensity occupation mass of a measurable time-sample set equals
 the expected integral of its indicator against at-risk intensity. [The model
 and measurable set](hyp:M,S,hS), together with [integrability of its energy
-indicator](hyp:henergy), give [the occupation-mass identity](goal). -/
+indicator](hyp:henergy), give [the occupation-mass identity](goal).
+@isnad1 id=eq.2h4v.s7.fccc8f4bb6fb from=translated src=- shape=39df0f8f vocab=3a0fb24f
+-/
 theorem Model.energyOccupation_indicator (M : Model Ω μ)
     [IsProbabilityMeasure μ] (S : Set (ℝ × Ω)) (hS : MeasurableSet S)
     (henergy : Integrable

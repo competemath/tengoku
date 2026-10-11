@@ -42,7 +42,9 @@ def sortedGap (n k : ℕ) (x : Fin n → ℝ) : ℝ :=
     sortedSample n x ⟨k + 1, h⟩ - sortedSample n x ⟨k, by omega⟩
   else 0
 
-/-- Given [a finite sample size](hyp:n), [the iid unit-uniform product law is Lebesgue measure restricted to the unit cube](goal). -/
+/-- Given [a finite sample size](hyp:n), [the iid unit-uniform product law is Lebesgue measure restricted to the unit cube](goal).
+@isnad1 id=eq.0h1v.s6.746189fa9933 from=translated src=- shape=7e2b41e2 vocab=a9e77448
+-/
 theorem iid_uniform_cube_law (n : ℕ) :
     iidSample uniform01 n = volume.restrict (unitCube n) := by
   change (Measure.pi fun _ : Fin n => volume.restrict (Set.Icc (0 : ℝ) 1)) = _
@@ -182,7 +184,9 @@ private theorem cube_chamber_decomposition (n : ℕ) :
     _ = ∑ σ, volume.restrict (s σ) := Measure.sum_fintype _
     _ = _ := rfl
 
-/-- Given [a finite dimension](hyp:n), [sorting Lebesgue measure on the unit cube yields factorial density on the ordered chamber](goal). -/
+/-- Given [a finite dimension](hyp:n), [sorting Lebesgue measure on the unit cube yields factorial density on the ordered chamber](goal).
+@isnad1 id=eq.0h1v.s8.d5152f30dbec from=translated src=- shape=7efa4bc6 vocab=1b2ff80a
+-/
 theorem sorted_cube_law (n : ℕ) :
     (volume.restrict (unitCube n)).map (sortedSample n) =
       (n.factorial : ENNReal) • (volume.restrict (orderedUnitRegion n)) := by
@@ -222,7 +226,9 @@ theorem sorted_cube_law (n : ℕ) :
     _ = (n.factorial : ENNReal) • (volume.restrict (orderedUnitRegion n)) := by
       simp [Finset.sum_const, Fintype.card_perm, Nat.cast_smul_eq_nsmul]
 
-/-- Given [a finite sample size](hyp:n), [the sorted iid unit-uniform sample has factorial density on the ordered unit region](goal). -/
+/-- Given [a finite sample size](hyp:n), [the sorted iid unit-uniform sample has factorial density on the ordered unit region](goal).
+@isnad1 id=eq.0h1v.s7.640eaaf33d20 from=translated src=- shape=1e2a8c5c vocab=4f45e528
+-/
 theorem sorted_uniform_law (n : ℕ) :
     (iidSample uniform01 n).map (sortedSample n) =
       (n.factorial : ENNReal) • (volume.restrict (orderedUnitRegion n)) := by

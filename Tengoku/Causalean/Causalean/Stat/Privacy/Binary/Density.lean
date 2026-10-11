@@ -91,20 +91,26 @@ def information (Q : Kernel Bool Z) (τ : ℝ) : ℝ :=
   ∫ z, mixtureDensity Q τ z * (score Q τ z) ^ 2 ∂reference Q
 
 /-- A [Boolean-input Markov kernel](hyp:Q) has [a finite row-sum reference
-measure](goal). -/
+measure](goal).
+@isnad1 id=isfinite.0h2v.s4.7ccdb6a3613b from=translated src=- shape=a8c9f545 vocab=6b85c2e2
+-/
 theorem reference_finite (Q : Kernel Bool Z) [IsMarkovKernel Q] :
     IsFiniteMeasure (reference Q) := by
   unfold reference
   infer_instance
 
 /-- A [Boolean-input Markov kernel](hyp:Q) and [an input sign](hyp:b) give [a
-measurable real row density](goal) on the output σ-algebra. -/
+measurable real row density](goal) on the output σ-algebra.
+@isnad1 id=measurab.0h3v.s4.ae2e1f014f2e from=translated src=- shape=f2531528 vocab=50a0a8cd
+-/
 theorem measurable_rowDensity (Q : Kernel Bool Z) (b : Bool) :
     Measurable (rowDensity Q b) := by
   exact ((Q b).measurable_rnDeriv (reference Q)).ennreal_toReal
 
 /-- A [Boolean-input Markov kernel](hyp:Q) and [an input sign](hyp:b) give [an
-output row absolutely continuous with respect to the row-sum measure](goal). -/
+output row absolutely continuous with respect to the row-sum measure](goal).
+@isnad1 id=absolute.0h3v.s5.b66747494b1f from=translated src=- shape=e61b4627 vocab=b3e93684
+-/
 theorem row_ac (Q : Kernel Bool Z) (b : Bool) :
     Q b ≪ reference Q := by
   cases b
@@ -115,7 +121,9 @@ theorem row_ac (Q : Kernel Bool Z) (b : Bool) :
 
 /-- A [Boolean-input Markov kernel](hyp:Q) and [an input sign](hyp:b) make [its
 Radon–Nikodym density reconstruct the corresponding output row exactly](goal),
-including on zero-reference-mass sets. -/
+including on zero-reference-mass sets.
+@isnad1 id=eq.0h3v.s5.8c5afe8b652b from=translated src=- shape=2de41b5d vocab=b3955398
+-/
 theorem row_eq_withDensity (Q : Kernel Bool Z) [IsMarkovKernel Q] (b : Bool) :
     Q b = (reference Q).withDensity
       (fun z => ENNReal.ofReal (rowDensity Q b z)) := by
@@ -132,7 +140,9 @@ theorem row_eq_withDensity (Q : Kernel Bool Z) [IsMarkovKernel Q] (b : Bool) :
 
 /-- A [Boolean-input Markov kernel](hyp:Q), [a sign-family parameter](hyp:τ), and
 [an output point](hyp:z) make [the Bernoulli-mixture density differentiable with
-the stated row-difference derivative](goal). -/
+the stated row-difference derivative](goal).
+@isnad1 id=hasderiv.0h4v.s5.e6b4d4023f1a from=translated src=- shape=8f0954b5 vocab=6f6f8718
+-/
 theorem hasDerivAt_mixtureDensity (Q : Kernel Bool Z) (τ : ℝ) (z : Z) :
     HasDerivAt (fun t => mixtureDensity Q t z) (derivativeDensity Q z) τ := by
   have h := ((hasDerivAt_id τ).add_const 1 |>.div_const 2 |>.mul_const
@@ -155,7 +165,9 @@ theorem hasDerivAt_mixtureDensity (Q : Kernel Bool Z) (τ : ℝ) (z : Z) :
 /-- A [Boolean-input Markov kernel](hyp:Q), [a privacy level](hyp:ε), and [setwise
 local privacy](hyp:hpriv) make [the two Radon–Nikodym row densities satisfy the
 corresponding privacy inequalities almost everywhere](goal) under their common
-reference measure. -/
+reference measure.
+@isnad1 id=eventual.1h3v.s6.e2093728c26b from=translated src=- shape=151d334e vocab=d3e75db2
+-/
 theorem ae_density_private (Q : Kernel Bool Z) [IsMarkovKernel Q]
     (ε : ℝ) (hpriv : SetwisePrivate Q ε) :
     ∀ᵐ z ∂reference Q,
@@ -185,7 +197,9 @@ theorem ae_density_private (Q : Kernel Bool Z) [IsMarkovKernel Q]
   exact ⟨h₁, h₂⟩
 
 /-- A [Boolean-input Markov kernel](hyp:Q) has [balanced density with unit integral
-under its row-sum reference measure](goal). -/
+under its row-sum reference measure](goal).
+@isnad1 id=eq.0h2v.s5.a12155eb433f from=translated src=- shape=7ca1b07e vocab=155087a3
+-/
 theorem integral_balancedDensity (Q : Kernel Bool Z) [IsMarkovKernel Q] :
     ∫ z, balancedDensity Q z ∂reference Q = 1 := by
   haveI : IsFiniteMeasure (reference Q) := reference_finite Q
@@ -201,7 +215,9 @@ theorem integral_balancedDensity (Q : Kernel Bool Z) [IsMarkovKernel Q] :
   norm_num
 
 /-- A [Boolean-input Markov kernel](hyp:Q) has [balanced density times normalized
-contrast with mean zero under its row-sum reference measure](goal). -/
+contrast with mean zero under its row-sum reference measure](goal).
+@isnad1 id=eq.0h2v.s6.69a7229c1345 from=translated src=- shape=43faa616 vocab=48f9fa47
+-/
 theorem integral_balanced_contrast (Q : Kernel Bool Z) [IsMarkovKernel Q] :
     ∫ z, balancedDensity Q z * contrast Q z ∂reference Q = 0 := by
   haveI : IsFiniteMeasure (reference Q) := reference_finite Q
@@ -233,7 +249,9 @@ theorem integral_balanced_contrast (Q : Kernel Bool Z) [IsMarkovKernel Q] :
   norm_num
 
 /-- A [positive privacy level](hyp:hε) at [the supplied privacy parameter](hyp:ε)
-has [a contraction parameter in the half-open unit interval](goal). -/
+has [a contraction parameter in the half-open unit interval](goal).
+@isnad1 id=and.1h1v.s5.ed89cbbc432c from=translated src=- shape=d407fd95 vocab=f601fc53
+-/
 theorem contraction_mem (ε : ℝ) (hε : 0 < ε) :
     0 ≤ contraction ε ∧ contraction ε < 1 := by
   have he : 1 < Real.exp ε := (Real.one_lt_exp_iff).2 hε
@@ -244,7 +262,9 @@ theorem contraction_mem (ε : ℝ) (hε : 0 < ε) :
 
 /-- A [Boolean-input Markov kernel](hyp:Q), [a positive privacy level](hyp:ε,hε),
 and [setwise local privacy](hyp:hpriv) make [the absolute normalized row contrast
-almost everywhere bounded by the sharp contraction parameter](goal). -/
+almost everywhere bounded by the sharp contraction parameter](goal).
+@isnad1 id=eventual.2h3v.s6.4c05624f65e7 from=translated src=- shape=a06f3f3c vocab=4955de04
+-/
 theorem ae_abs_contrast_le (Q : Kernel Bool Z) [IsMarkovKernel Q]
     (ε : ℝ) (hε : 0 < ε) (hpriv : SetwisePrivate Q ε) :
     ∀ᵐ z ∂reference Q, |contrast Q z| ≤ contraction ε := by
@@ -273,7 +293,9 @@ theorem ae_abs_contrast_le (Q : Kernel Bool Z) [IsMarkovKernel Q]
 
 /-- A [Boolean-input Markov kernel](hyp:Q) at [a sign-family parameter](hyp:τ) has
 [the same Fisher information as the guarded likelihood-score API](goal) when that
-API is supplied the Bernoulli-mixture density and its derivative. -/
+API is supplied the Bernoulli-mixture density and its derivative.
+@isnad1 id=eq.0h3v.s5.05eaac9998ad from=translated src=- shape=7540199e vocab=5b1584cb
+-/
 theorem information_eq_causalean_fisher (Q : Kernel Bool Z) (τ : ℝ) :
     information Q τ =
       Causalean.Stat.Minimax.ObservationDependentVanTrees.fisherInformation
@@ -283,7 +305,9 @@ theorem information_eq_causalean_fisher (Q : Kernel Bool Z) (τ : ℝ) :
 
 /-- A [Boolean-input Markov kernel](hyp:Q) at [an interior sign-family
 parameter](hyp:τ,hτ) has [Fisher information equal to the balanced-density
-contrast integral](goal), including zero-density outputs. -/
+contrast integral](goal), including zero-density outputs.
+@isnad1 id=eq.1h3v.s7.ea8a2501b712 from=translated src=- shape=42aea5a2 vocab=73a0ae52
+-/
 theorem information_eq_contrast_integral (Q : Kernel Bool Z)
     [IsMarkovKernel Q] (τ : ℝ) (hτ : |τ| < 1) :
     information Q τ =
@@ -333,7 +357,9 @@ theorem information_eq_contrast_integral (Q : Kernel Bool Z)
 /-- A [Boolean-input Markov kernel](hyp:Q), [a positive privacy level](hyp:ε,hε),
 [an interior sign-family parameter](hyp:τ,hτ), and [setwise local privacy](hyp:hpriv)
 give [a scalar output Fisher-information bound equal to the randomized-response
-value](goal). -/
+value](goal).
+@isnad1 id=le.3h4v.s7.59ae92d94f8a from=translated src=- shape=c56793df vocab=e0d6cfd8
+-/
 theorem information_le_sharp (Q : Kernel Bool Z) [IsMarkovKernel Q]
     (ε τ : ℝ) (hε : 0 < ε) (hτ : |τ| < 1)
     (hpriv : SetwisePrivate Q ε) :

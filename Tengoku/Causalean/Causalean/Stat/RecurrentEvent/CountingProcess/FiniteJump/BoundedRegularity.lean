@@ -18,7 +18,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- A predictable process is jointly measurable for ordinary time and sample
-σ-algebras because each filtration is contained in the sample σ-algebra. -/
+σ-algebras because each filtration is contained in the sample σ-algebra.
+@isnad1 id=measurab.1h4v.s5.f0716e9b0a19 from=translated src=- shape=f238a7fe vocab=e5cc88ca
+-/
 theorem Model.predictable_joint_measurable (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H) :
     Measurable (fun p : ℝ × Ω => H p.1 p.2) := by
@@ -28,7 +30,9 @@ theorem Model.predictable_joint_measurable (M : Model Ω μ)
   exact measurableSet_Ioc.prod ((M.filtration_le a) B hB)
 
 /-- A finite-horizon compensated integral of a predictable integrand is a
-measurable function of the sample path. -/
+measurable function of the sample path.
+@isnad1 id=measurab.1h4v.s5.dcb288c84ee6 from=translated src=- shape=5d89888d vocab=81013ec9
+-/
 theorem Model.measurable_stochasticIntegral (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H) :
     Measurable (M.stochasticIntegral H M.horizon) := by
@@ -37,7 +41,9 @@ theorem Model.measurable_stochasticIntegral (M : Model Ω μ)
     (M.measurable_energyIntegral H (M.predictable_joint_measurable H hH))
 
 /-- The finite event count has an integrable first moment under the assumed
-second moment of the count. -/
+second moment of the count.
+@isnad1 id=integrab.0h3v.s5.b26a9954ec23 from=translated src=- shape=726b474f vocab=6a9ce0b7
+-/
 theorem Model.integrable_eventCount (M : Model Ω μ) [IsProbabilityMeasure μ] :
     Integrable (fun ω => ((M.eventTimes ω).card : ℝ)) μ := by
   have hmeas : Measurable (fun ω => ((M.eventTimes ω).card : ℝ)) := by
@@ -56,7 +62,9 @@ theorem Model.integrable_eventCount (M : Model Ω μ) [IsProbabilityMeasure μ] 
     M.count_square_integrable).integrable one_le_two
 
 /-- A uniformly bounded event payoff has absolute finite sum at most its
-bound times the number of events in the horizon. -/
+bound times the number of events in the horizon.
+@isnad1 id=le.2h6v.s6.4dd49671fb70 from=translated src=- shape=2fb71022 vocab=5d5097f2
+-/
 theorem Model.abs_jumpIntegral_le_card (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (C : ℝ) (hC : 0 ≤ C)
     (hbound : ∀ t ω, |H t ω| ≤ C) (ω : Ω) :
@@ -74,7 +82,9 @@ theorem Model.abs_jumpIntegral_le_card (M : Model Ω μ)
     _ = C * ((M.eventTimes ω).card : ℝ) := by simp [mul_comm]
 
 /-- The absolute intensity integral of a uniformly bounded payoff is at
-most its bound times the nonnegative compensator at the horizon. -/
+most its bound times the nonnegative compensator at the horizon.
+@isnad1 id=le.2h6v.s6.8c45ed52c799 from=translated src=- shape=c9f95e17 vocab=57d70a03
+-/
 theorem Model.abs_energyIntegral_le_compensator (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (C : ℝ) (hC : 0 ≤ C)
     (hbound : ∀ t ω, |H t ω| ≤ C) (ω : Ω) :
@@ -99,7 +109,9 @@ theorem Model.abs_energyIntegral_le_compensator (M : Model Ω μ)
 
 /-- A bounded predictable integrand has an integrable finite event sum.
 [The model and payoff](hyp:M,H), [predictability](hyp:hH), and [the uniform
-bound](hyp:hbound) give [Bochner integrability of the event sum](goal). -/
+bound](hyp:hbound) give [Bochner integrability of the event sum](goal).
+@isnad1 id=integrab.2h4v.s6.821ac5f536ae from=translated src=- shape=92b65370 vocab=08f66cee
+-/
 theorem Model.integrable_jump (M : Model Ω μ) [IsProbabilityMeasure μ]
     (H : ℝ → Ω → ℝ)
     (hH : M.Predictable H)
@@ -114,7 +126,9 @@ theorem Model.integrable_jump (M : Model Ω μ) [IsProbabilityMeasure μ]
       (fun t ω => (hC t ω).trans (le_abs_self C)) ω
 
 /-- A bounded predictable integrand has an integrable time integral against
-the at-risk intensity. -/
+the at-risk intensity.
+@isnad1 id=integrab.2h4v.s6.b249991aa0bc from=translated src=- shape=92b65370 vocab=356e604f
+-/
 theorem Model.integrable_energy (M : Model Ω μ) [IsProbabilityMeasure μ]
     (H : ℝ → Ω → ℝ)
     (hH : M.Predictable H)

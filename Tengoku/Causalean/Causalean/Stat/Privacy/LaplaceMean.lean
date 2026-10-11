@@ -16,7 +16,9 @@ namespace Causalean.Stat.Privacy
 open MeasureTheory Causalean.Stat.Privacy
 
 /-- At [a real scale](hyp:b) with [a positive-scale certificate](hyp:hb), [a centered
-Laplace draw has an integrable signed value](goal). -/
+Laplace draw has an integrable signed value](goal).
+@isnad1 id=integrab.1h1v.s5.d0e3c38625c1 from=translated src=- shape=3c93f67d vocab=5b6b7a18
+-/
 theorem laplaceMeasure_integrable_id (b : ℝ) (hb : 0 < b) :
     Integrable (fun x : ℝ => x) (laplaceMeasure b) := by
   exact (laplaceMeasure_integrable_abs b hb).mono' (by fun_prop)
@@ -27,6 +29,7 @@ preserves that measure](goal).
 
 Prove this directly from `laplaceMeasure`, `abs_neg`, and the invariance of
 Lebesgue measure under negation. No distribution moment is assumed.
+@isnad1 id=eq.0h1v.s4.bfa40fea7fb3 from=translated src=- shape=ecae0a8b vocab=fc6e0b0e
 -/
 theorem laplaceMeasure_map_neg (b : ℝ) :
     (laplaceMeasure b).map (fun x : ℝ => -x) = laplaceMeasure b := by
@@ -48,6 +51,7 @@ Laplace draw has mean zero](goal).
 
 Use reflection invariance to equate the mean with its negative. Integrability
 is supplied separately by `laplaceMeasure_integrable_id`.
+@isnad1 id=eq.1h1v.s5.74c7f40858f7 from=translated src=- shape=8c8c1771 vocab=f8b2462f
 -/
 theorem laplaceMeasure_integral_id (b : ℝ) (hb : 0 < b) :
     ∫ x : ℝ, x ∂laplaceMeasure b = 0 := by

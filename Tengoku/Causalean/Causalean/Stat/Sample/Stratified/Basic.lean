@@ -160,7 +160,9 @@ noncomputable def fixedStratumArmMassFluctuation {m : Nat} (mu : Measure Omega)
       center a k
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [every fixed
-empirical arm/category count measurable on the product sample space](goal). -/
+empirical arm/category count measurable on the product sample space](goal).
+@isnad1 id=measurab.2h7v.s6.50c1f1b16ac2 from=translated src=- shape=8d5d2fdf vocab=db8c0cd6
+-/
 @[fun_prop]
 theorem measurable_categoryArmCount {m : Nat} (group : Omega → kappa)
     (arm : Omega → Bool) (hgroup : Measurable group) (harm : Measurable arm)
@@ -169,7 +171,9 @@ theorem measurable_categoryArmCount {m : Nat} (group : Omega → kappa)
   exact Causalean.Stat.measurable_groupArmCount group arm hgroup harm a k
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [every fixed
-empirical category count measurable on the product sample space](goal). -/
+empirical category count measurable on the product sample space](goal).
+@isnad1 id=measurab.2h6v.s6.1112a4394922 from=translated src=- shape=1e299a48 vocab=6496a387
+-/
 @[fun_prop]
 theorem measurable_categoryCount {m : Nat} (group : Omega → kappa)
     (arm : Omega → Bool) (hgroup : Measurable group) (harm : Measurable arm)
@@ -177,7 +181,9 @@ theorem measurable_categoryCount {m : Nat} (group : Omega → kappa)
   exact Causalean.Stat.measurable_groupCount group arm hgroup harm k
 
 /-- [Measurable group and arm labels and a measurable mark](hyp:hgroup,harm,hY)
-make [every empirical arm/category mark sum measurable](goal). -/
+make [every empirical arm/category mark sum measurable](goal).
+@isnad1 id=measurab.3h8v.s6.1a9e4af11ef9 from=translated src=- shape=3352a6b9 vocab=93263ea4
+-/
 @[fun_prop]
 theorem measurable_armMarkSum {m : Nat} (group : Omega → kappa)
     (arm : Omega → Bool) (Y : Omega → Real) (hgroup : Measurable group)
@@ -193,7 +199,9 @@ theorem measurable_armMarkSum {m : Nat} (group : Omega → kappa)
 
 /-- [Measurable group and arm labels and a measurable mark](hyp:hgroup,harm,hY)
 make [every totalized empirical arm/category mark mean measurable, including
-at zero count](goal). -/
+at zero count](goal).
+@isnad1 id=measurab.3h8v.s6.e5e14cc72259 from=translated src=- shape=3352a6b9 vocab=f7dc50d9
+-/
 @[fun_prop]
 theorem measurable_totalizedArmMean {m : Nat} (group : Omega → kappa)
     (arm : Omega → Bool) (Y : Omega → Real) (hgroup : Measurable group)
@@ -212,7 +220,9 @@ theorem measurable_totalizedArmMean {m : Nat} (group : Omega → kappa)
     measurable_const
 
 /-- [Measurable group and arm labels and a measurable mark](hyp:hgroup,harm,hY)
-make [the fixed-set marked ratio score measurable](goal). -/
+make [the fixed-set marked ratio score measurable](goal).
+@isnad1 id=measurab.3h7v.s6.7eff08b693d0 from=translated src=- shape=4096fccb vocab=e0db5488
+-/
 @[fun_prop]
 theorem measurable_fixedStratumMarkedRatio {m : Nat} (group : Omega → kappa)
     (arm : Omega → Bool) (Y : Omega → Real) (H : Finset kappa)
@@ -235,7 +245,9 @@ theorem measurable_fixedStratumMarkedRatio {m : Nat} (group : Omega → kappa)
   exact (harmScore true).sub (harmScore false)
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [each missing-arm
-category count measurable](goal). -/
+category count measurable](goal).
+@isnad1 id=measurab.2h7v.s6.4659d615547e from=translated src=- shape=8d5d2fdf vocab=523e8321
+-/
 @[fun_prop]
 theorem measurable_missingArmCount {m : Nat} (group : Omega → kappa)
     (arm : Omega → Bool) (hgroup : Measurable group) (harm : Measurable arm)
@@ -307,7 +319,9 @@ private lemma armCell_sub_center_decomposition {m : Nat}
 
 /-- [The single-arm empirical score error around a supplied center target is
 exactly centered ratio noise plus empirical-mass fluctuation minus the explicit
-missing-arm remainder](goal). -/
+missing-arm remainder](goal).
+@isnad1 id=eq.0h11v.s7.3711453215a4 from=translated src=- shape=8dea7035 vocab=1b98d4bb
+-/
 theorem fixedStratumArmScore_sub_centerTarget_decomposition {m : Nat}
     (mu : Measure Omega) (group : Omega → kappa) (arm : Omega → Bool)
     (Y : Omega → Real) (center : Bool → kappa → Real) (H : Finset kappa)
@@ -342,7 +356,9 @@ theorem fixedStratumArmScore_sub_centerTarget_decomposition {m : Nat}
 /-- [Measurable group and arm labels](hyp:hgroup,harm), [square-integrable
 supported residuals](hyp:hmem), [cellwise residual centering](hyp:hcenter), and
 [positive arm mass in every selected positive-mass category](hyp:hpositive)
-ensure that [the center-weighted target equals the population arm target](goal). -/
+ensure that [the center-weighted target equals the population arm target](goal).
+@isnad1 id=eq.5h9v.s8.f5ee7344a0d9 from=translated src=- shape=236ba43b vocab=7aa473c7
+-/
 theorem fixedStratumArmCenterTarget_eq_target
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool) (Y : Omega → Real)

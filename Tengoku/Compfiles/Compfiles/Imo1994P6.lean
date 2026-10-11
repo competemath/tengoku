@@ -32,6 +32,9 @@ noncomputable def primes_iso : ℕ ≃o ↑Primes := Nat.Subtype.orderIsoOfNat P
 -- Number of distinct prime factors of x
 def ω : ℕ → ℕ := fun x ↦ (Nat.primeFactors x).card
 
+/--
+@isnad1 id=eq.1h2v.s6.60d31e544260 from=translated src=- shape=5a81d78e vocab=11bfc5c3
+-/
 lemma prod_of_primes {S : Set ℕ} {S' : Finset S} (h : ∀p ∈ S, p.Prime) :
   (∏ p ∈ S', p.val).primeFactors = S'.map ⟨Subtype.val, Subtype.val_injective⟩ := by
   have : ∏ p ∈ S', p.val = ∏ p ∈ S'.map ⟨Subtype.val, Subtype.val_injective⟩, p :=
@@ -39,6 +42,9 @@ lemma prod_of_primes {S : Set ℕ} {S' : Finset S} (h : ∀p ∈ S, p.Prime) :
   rw [this, Nat.primeFactors_prod]
   aesop
 
+/--
+@isnad1 id=eq.2h4v.s7.87deba7c24ca from=translated src=- shape=0072bea8 vocab=7093475b
+-/
 lemma minFac_prod_primes {S : Set ℕ} (k i : ℕ) (f : ℕ ≃o S)
     (hS : ∀ s ∈ S, s.Prime) (hk : 0 < k) :
     (∏ p ∈ (Finset.range k).image (fun j ↦ f (j + i)), (p : ℕ)).minFac = (f i).val := by
@@ -66,6 +72,9 @@ lemma minFac_prod_primes {S : Set ℕ} (k i : ℕ) (f : ℕ ≃o S)
     obtain ⟨j, _, rfl⟩ := Finset.mem_image.mp ha_mem
     exact (f.monotone (Nat.le_add_left i j))
 
+/--
+@isnad1 id=isproduc.0h4v.s7.abfe27bd5c65 from=translated src=- shape=aae0e28e vocab=89ef91dc
+-/
 lemma prod_of_distinct_members (k i : ℕ) (S : Set ℕ) (f : ℕ ≃o S) : IsProductOfkDistinctMembers (∏ p ∈ ((Finset.range k).image (fun j ↦ f (j+i))), p) k S := by
   unfold IsProductOfkDistinctMembers
   let Sₘ := (Finset.range k).image (fun j ↦ f (j+i))
@@ -78,6 +87,9 @@ lemma prod_of_distinct_members (k i : ℕ) (S : Set ℕ) (f : ℕ ≃o S) : IsPr
     grind
   exact ⟨this, rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.9d1144d141d3 from=translated src=- shape=152f8cd3 vocab=2062a16a
+-/
 lemma primeFactors_card  {S : Set ℕ} (k i : ℕ) (f : ℕ ≃o S) (h : ∀ s ∈ S, s.Prime) : ω (∏ p ∈ ((Finset.range k).image (fun j ↦ f (j+i))), p) = k := by
   let Sₙ := (Finset.range k).image (fun j ↦ f (j+i))
   let n : ℕ := ∏ p ∈ Sₙ, p

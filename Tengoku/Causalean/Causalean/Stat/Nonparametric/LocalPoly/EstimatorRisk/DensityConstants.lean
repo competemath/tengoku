@@ -50,7 +50,9 @@ noncomputable def weightMomentMatrix (p : ℕ) (W : ℝ → ℝ) :
   Matrix.of (fun j k => ∫ u, W u * (u ^ (j : ℕ) * u ^ (k : ℕ)))
 
 /-- **Gram quadratic form of the weight moment matrix.** `vᵀ (weightMomentMatrix p W) v =
-∫ W(u) (∑ⱼ vⱼ uʲ)² du`. -/
+∫ W(u) (∑ⱼ vⱼ uʲ)² du`.
+@isnad1 id=eq.1h3v.s8.63147ce3df02 from=translated src=- shape=c1c50e29 vocab=76226936
+-/
 theorem weightMomentMatrix_quadForm {W : ℝ → ℝ}
     (hint : ∀ j k : Fin (p + 1),
       Integrable (fun u => W u * (u ^ (j : ℕ) * u ^ (k : ℕ))))
@@ -107,7 +109,9 @@ theorem weightMomentMatrix_quadForm {W : ℝ → ℝ}
               intro k _
               ring))
 
-/-- The weight moment matrix is symmetric. -/
+/-- The weight moment matrix is symmetric.
+@isnad1 id=ishermit.0h2v.s5.c7bc14e55c05 from=translated src=- shape=7989eede vocab=e84376d6
+-/
 theorem weightMomentMatrix_isHermitian {W : ℝ → ℝ} :
     (weightMomentMatrix p W).IsHermitian := by
   ext j k
@@ -120,7 +124,9 @@ built from `WT` is integrable](hyp:hintT) and [the same holds for `WG`](hyp:hint
 weights obey the pointwise domination `c · WG(u) ≤ WT(u)` for every `u`](hyp:hdom), then [for every
 coefficient vector `v` the shape-matrix quadratic form dominates `c` times the pure-matrix
 quadratic form: `c · (vᵀ G v) ≤ vᵀ T v`, where `T = weightMomentMatrix p WT` and
-`G = weightMomentMatrix p WG`](goal). -/
+`G = weightMomentMatrix p WG`](goal).
+@isnad1 id=le.4h5v.s9.354049a03717 from=translated src=- shape=cfd5ba78 vocab=851bbdae
+-/
 theorem weightMomentMatrix_quadForm_sandwich {WT WG : ℝ → ℝ} {c : ℝ} (hc : 0 ≤ c)
     (hintT : ∀ j k : Fin (p + 1), Integrable (fun u => WT u * (u ^ (j : ℕ) * u ^ (k : ℕ))))
     (hintG : ∀ j k : Fin (p + 1), Integrable (fun u => WG u * (u ^ (j : ℕ) * u ^ (k : ℕ))))
@@ -173,7 +179,9 @@ theorem weightMomentMatrix_quadForm_sandwich {WT WG : ℝ → ℝ} {c : ℝ} (hc
 
 /-- **Loewner sandwich on quadratic forms, upper direction.** If `W_T(u) ≤ C · W_G(u)` pointwise
 (`C ≥ 0`) and both monomial integrands are integrable, then `vᵀ T v ≤ C · (vᵀ G v)` for every `v`,
-where `T = weightMomentMatrix p W_T`, `G = weightMomentMatrix p W_G`. -/
+where `T = weightMomentMatrix p W_T`, `G = weightMomentMatrix p W_G`.
+@isnad1 id=le.4h5v.s9.0c921147e47b from=translated src=- shape=5c9b1acd vocab=851bbdae
+-/
 theorem weightMomentMatrix_quadForm_sandwich_upper {WT WG : ℝ → ℝ} {C : ℝ} (hC : 0 ≤ C)
     (hintT : ∀ j k : Fin (p + 1), Integrable (fun u => WT u * (u ^ (j : ℕ) * u ^ (k : ℕ))))
     (hintG : ∀ j k : Fin (p + 1), Integrable (fun u => WG u * (u ^ (j : ℕ) * u ^ (k : ℕ))))
@@ -228,7 +236,9 @@ theorem weightMomentMatrix_quadForm_sandwich_upper {WT WG : ℝ → ℝ} {C : �
 /-- **Pointwise weight domination from the design-density window bound.** If the kernel `K` is
 nonnegative and supported in `[-1,1]` and the design density `p` obeys `cDesign ≤ p(a)` for every
 `a` within bandwidth `h` of `t`, then `cDesign · K(u) ≤ K(u) · p(t + h·u)` for every `u`: on the
-support `|u| ≤ 1` the argument `t + h·u` lies in the window, off the support both sides vanish. -/
+support `|u| ≤ 1` the argument `t + h·u` lies in the window, off the support both sides vanish.
+@isnad1 id=le.4h6v.s7.66b4f60de1e0 from=translated src=- shape=52a7e696 vocab=752da123
+-/
 theorem kernelDensity_lower_dom {K pdens : ℝ → ℝ} {t h cDesign : ℝ} (hh : 0 < h)
     (hKnn : ∀ u, 0 ≤ K u) (hKsupp : ∀ u, 1 < |u| → K u = 0)
     (hlo : ∀ a, |a - t| ≤ h → cDesign ≤ pdens a) :
@@ -249,7 +259,9 @@ theorem kernelDensity_lower_dom {K pdens : ℝ → ℝ} {t h cDesign : ℝ} (hh 
     simp [hK]
 
 /-- **Pointwise weight domination, upper side.** Same hypotheses with an upper density bound
-`p(a) ≤ CDesign` on the window give `K(u) · p(t + h·u) ≤ CDesign · K(u)` for every `u`. -/
+`p(a) ≤ CDesign` on the window give `K(u) · p(t + h·u) ≤ CDesign · K(u)` for every `u`.
+@isnad1 id=le.4h6v.s7.125e719990d0 from=translated src=- shape=d97c2558 vocab=752da123
+-/
 theorem kernelDensity_upper_dom {K pdens : ℝ → ℝ} {t h CDesign : ℝ} (hh : 0 < h)
     (hKnn : ∀ u, 0 ≤ K u) (hKsupp : ∀ u, 1 < |u| → K u = 0)
     (hhi : ∀ a, |a - t| ≤ h → pdens a ≤ CDesign) :

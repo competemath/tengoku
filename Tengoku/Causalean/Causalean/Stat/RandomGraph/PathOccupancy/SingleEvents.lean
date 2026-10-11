@@ -26,6 +26,7 @@ with [positive cell count](hyp:hK).
 
 Union over assignments to the subtype C, use connected_assignment_count, and
 apply assignment_two_marks_probability_le to each assignment.
+@isnad1 id=le.3h8v.s7.3e938df00461 from=translated src=- shape=09d18277 vocab=392efc30
 -/
 theorem subset_connected_two_marks_le {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}

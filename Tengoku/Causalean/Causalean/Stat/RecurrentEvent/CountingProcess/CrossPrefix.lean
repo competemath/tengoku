@@ -26,7 +26,9 @@ noncomputable def subjectIntegralBefore {n : ℕ} (hazard : ℝ → ℝ)
 
 /-- If [the integrand is left predictable](hyp:hPredictable), then [each subject's strict-past
 compensated integral, as a process in time, is left predictable](goal), whatever [the censor
-hazard](hyp:hazard) used in its compensator. -/
+hazard](hyp:hazard) used in its compensator.
+@isnad1 id=leftpred.1h4v.s4.56db88abab7c from=translated src=- shape=366fc0cf vocab=d0bde470
+-/
 theorem subjectIntegralBefore_leftPredictable {n : ℕ}
     (hazard : ℝ → ℝ) (H : ℝ → Sample n → ℝ)
     (hPredictable : LeftPredictable H) (i : Fin n) :
@@ -116,7 +118,9 @@ theorem subjectIntegralBefore_leftPredictable {n : ℕ}
 
 /-- If [the censor hazard is measurable](hyp:hazard,hHazard) and [the integrand is jointly measurable in
 time and sample](hyp:hMeasurable), then [a subject's strict-past compensated integral is jointly
-measurable in time and sample](goal). -/
+measurable in time and sample](goal).
+@isnad1 id=measurab.2h4v.s6.7fd37a977509 from=translated src=- shape=4a487aa9 vocab=c1630a06
+-/
 @[fun_prop] theorem subjectIntegralBefore_jointMeasurable {n : ℕ}
     (hazard : ℝ → ℝ) (hHazard : Measurable hazard)
     (H : ℝ → Sample n → ℝ)

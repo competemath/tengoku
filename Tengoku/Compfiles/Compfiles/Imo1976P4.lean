@@ -35,6 +35,9 @@ def result : ℕ → ℕ
   | 4 => 4
   | n + 3 => 3 * (result n)
 
+/--
+@isnad1 id=le.0h1v.s4.90021dc66c57 from=translated src=- shape=b07d74a0 vocab=693989c9
+-/
 lemma prod_le_sum_pow_sum (s : Multiset ℕ) : s.prod ≤ s.sum ^ s.sum := by
   induction' s using Multiset.induction with i s' hs'
   · simp
@@ -56,6 +59,9 @@ lemma prod_le_sum_pow_sum (s : Multiset ℕ) : s.prod ≤ s.sum ^ s.sum := by
           · rw [add_comm]
             exact Nat.add_le_add_right hi s'.sum
 
+/--
+@isnad1 id=ex.1h1v.s4.db15bf69635f from=translated src=- shape=aef75768 vocab=429c9c28
+-/
 lemma exists_mem_of_sum_lt_zero (s : Multiset ℕ) (hs: 0 < s.sum) :
   ∃ x: ℕ, x ∈ s := by
   have hs' : s ≠ 0 := by
@@ -63,6 +69,9 @@ lemma exists_mem_of_sum_lt_zero (s : Multiset ℕ) (hs: 0 < s.sum) :
     rw [hs, Multiset.sum_zero]
   exact Multiset.exists_mem_of_ne_zero hs'
 
+/--
+@isnad1 id=bddabove.0h1v.s4.48d3a5405a2d from=translated src=- shape=93a7ebc9 vocab=e6f97dfb
+-/
 lemma prod_with_given_sum_bddAbove (n₀ : ℕ) :
   BddAbove {n | ∃ s : Multiset ℕ, s.sum = n₀ ∧ s.prod = n} := by
     use n₀ ^ n₀
@@ -71,6 +80,9 @@ lemma prod_with_given_sum_bddAbove (n₀ : ℕ) :
     rw [← hs_sum, ← hs_prod]
     exact prod_le_sum_pow_sum s
 
+/--
+@isnad1 id=ex.0h1v.s3.d55f42ea09f9 from=translated src=- shape=7d4b0599 vocab=cbc20d89
+-/
 lemma exists_max_prod (n : ℕ) :
   ∃ m : ℕ, IsMaxProd n m := by
   apply BddAbove.exists_isGreatest_of_nonempty
@@ -81,6 +93,9 @@ lemma exists_max_prod (n : ℕ) :
     · rw [Multiset.sum_singleton]
     · rw [Multiset.prod_singleton]
 
+/--
+@isnad1 id=ex.1h2v.s4.8ffae3149d29 from=translated src=- shape=2a64d858 vocab=f13c155c
+-/
 lemma exists_max_prod_set {n m : ℕ} (hnm: IsMaxProd n m):
   ∃ s : Multiset ℕ, s.sum = n ∧ IsMaxProdSet s := by
   rcases hnm.left with ⟨s, ⟨hs_sum, hs_prod⟩⟩
@@ -90,12 +105,18 @@ lemma exists_max_prod_set {n m : ℕ} (hnm: IsMaxProd n m):
   · rw [IsMaxProdSet, hs_prod, hs_sum]
     exact hnm
 
+/--
+@isnad1 id=le.2h3v.s4.6affc0facd66 from=translated src=- shape=0d5b8831 vocab=88b44d44
+-/
 lemma prod_le_max_prod {n m : ℕ} (hnm: IsMaxProd n m)
   {s : Multiset ℕ} (hs : s.sum = n) : s.prod ≤ m := by
   have h := hnm.right
   simp [upperBounds] at h
   exact h s hs
 
+/--
+@isnad1 id=not.2h2v.s5.8bda8b9830d7 from=translated src=- shape=fe5d5015 vocab=7e77b950
+-/
 lemma not_max_prod_set_of_prod_lt_prod {s t: Multiset ℕ}
   (hst' : s.sum = t.sum) (hst : s.prod < t.prod) : ¬IsMaxProdSet s := by
   contrapose! hst
@@ -103,6 +124,9 @@ lemma not_max_prod_set_of_prod_lt_prod {s t: Multiset ℕ}
   simp [upperBounds] at h'
   exact h' t hst'.symm
 
+/--
+@isnad1 id=ex.2h2v.s5.72039942b1d2 from=translated src=- shape=9bdac4ef vocab=de1f4a78
+-/
 lemma exists_cons_le_of_le_of_sum_lt_sum {s t : Multiset ℕ}
   (hst' : s ≤ t) (hst : s.sum < t.sum) : ∃ n : ℕ, s.cons n ≤ t := by
   have ht_sub_s : t - s ≠ 0 := by
@@ -119,6 +143,9 @@ lemma exists_cons_le_of_le_of_sum_lt_sum {s t : Multiset ℕ}
   rw [Multiset.add_le_add_iff_right, Multiset.singleton_le]
   exact hm
 
+/--
+@isnad1 id=ex.2h2v.s5.0344f3c840ac from=translated src=- shape=70b7b3b8 vocab=506f83aa
+-/
 lemma exists_le_of_mem_of_lt_sum {n : ℕ} {s : Multiset ℕ}
   (hns' : n ∈ s) (hns : n < s.sum) : ∃ m : ℕ, {n, m} ≤ s := by
   rcases Multiset.exists_cons_of_mem hns' with ⟨t, ht⟩
@@ -130,6 +157,9 @@ lemma exists_le_of_mem_of_lt_sum {n : ℕ} {s : Multiset ℕ}
   rw [ht, Multiset.insert_eq_cons]
   exact Multiset.cons_le_cons n (Multiset.singleton_le.mpr hm)
 
+/--
+@isnad1 id=not.1h1v.s4.5d96eeb355d5 from=translated src=- shape=058b41bb vocab=baca74ac
+-/
 lemma zero_not_in_max_prod_set {s : Multiset ℕ}
   (hs: IsMaxProdSet s) : 0 ∉ s := by
   contrapose! hs
@@ -139,6 +169,9 @@ lemma zero_not_in_max_prod_set {s : Multiset ℕ}
   rw [Multiset.prod_replicate, one_pow (M := ℕ), Multiset.prod_eq_zero hs]
   norm_num
 
+/--
+@isnad1 id=ismaxpro.2h2v.s4.8737eac8e1a9 from=translated src=- shape=784e798f vocab=65e8ae7f
+-/
 lemma max_prod_set_of_subset_of_max_prod_set {s t : Multiset ℕ}
   (hst : s ≤ t) (ht: IsMaxProdSet t) : IsMaxProdSet s := by
   constructor
@@ -165,6 +198,9 @@ lemma max_prod_set_of_subset_of_max_prod_set {s t : Multiset ℕ}
       _ = (t - s + s).sum := by rw [Multiset.sum_add]
       _ = t.sum := by rw [Multiset.sub_add_cancel hst]
 
+/--
+@isnad1 id=not.2h1v.s5.3d7ffa61ae31 from=translated src=- shape=8a95e764 vocab=7e2a843d
+-/
 lemma one_not_in_max_prod_set_of_one_lt_sum {s : Multiset ℕ}
   (hs' : 1 < s.sum) (hs: IsMaxProdSet s) : 1 ∉ s := by
   intro h1s
@@ -177,6 +213,9 @@ lemma one_not_in_max_prod_set_of_one_lt_sum {s : Multiset ℕ}
   rw [Multiset.prod_singleton, Multiset.insert_eq_cons, Multiset.prod_cons, Multiset.prod_singleton]
   lia
 
+/--
+@isnad1 id=not.2h2v.s4.beee5da80404 from=translated src=- shape=a7db7da8 vocab=8a31f0b4
+-/
 lemma not_in_max_prod_set_of_five_le {s : Multiset ℕ} {n : ℕ}
   (hn : 4 < n) (hs: IsMaxProdSet s) : n ∉ s := by
   intro hn'
@@ -191,6 +230,9 @@ lemma not_in_max_prod_set_of_five_le {s : Multiset ℕ} {n : ℕ}
   rw [Multiset.prod_singleton, Multiset.insert_eq_cons, Multiset.prod_cons, Multiset.prod_singleton]
   lia
 
+/--
+@isnad1 id=and.3h2v.s5.1dd50f082648 from=translated src=- shape=bad419d2 vocab=7e2a843d
+-/
 lemma lt_and_gt_of_in_max_prod_set_of_four_lt_sum {s : Multiset ℕ} {n : ℕ}
   (hn : n ∈ s) (hs' : 4 < s.sum) (hs: IsMaxProdSet s) : 1 < n ∧  n < 5 := by
   have hn_ne_0 : n ≠ 0 := by
@@ -207,6 +249,9 @@ lemma lt_and_gt_of_in_max_prod_set_of_four_lt_sum {s : Multiset ℕ} {n : ℕ}
       exact not_in_max_prod_set_of_five_le hn hs
   lia
 
+/--
+@isnad1 id=mem.2h1v.s4.06c1bd200900 from=translated src=- shape=f3f79305 vocab=7e2a843d
+-/
 lemma three_in_max_prod_set_of_four_lt_sum {s : Multiset ℕ}
   (hs' : 4 < s.sum) (hs: IsMaxProdSet s) : 3 ∈ s := by
   rw [← Multiset.count_ne_zero, Nat.ne_zero_iff_zero_lt]
@@ -280,6 +325,9 @@ lemma three_in_max_prod_set_of_four_lt_sum {s : Multiset ℕ}
     simp [Multiset.prod_singleton, Multiset.insert_eq_cons, Multiset.prod_cons]
   lia
 
+/--
+@isnad1 id=ismaxpro.0h0v.s3.82124c0516cf from=translated src=- shape=6d6f5044 vocab=cbc20d89
+-/
 lemma max_prod_zero : IsMaxProd 0 1 := by
   constructor
   · use 0
@@ -295,6 +343,9 @@ lemma max_prod_zero : IsMaxProd 0 1 := by
       rw [← s_prod, Multiset.prod_eq_zero hm]
       lia
 
+/--
+@isnad1 id=ismaxpro.0h0v.s3.933da56411c6 from=translated src=- shape=6d6f5044 vocab=cbc20d89
+-/
 lemma max_prod_one : IsMaxProd 1 1 := by
   constructor
   · use {1}
@@ -315,6 +366,9 @@ lemma max_prod_one : IsMaxProd 1 1 := by
     · have h := prod_le_max_prod max_prod_zero ht'
       lia
 
+/--
+@isnad1 id=ismaxpro.0h0v.s3.81b50b528eb9 from=translated src=- shape=6d6f5044 vocab=cbc20d89
+-/
 lemma max_prod_two : IsMaxProd 2 2 := by
   constructor
   · use {2}
@@ -337,6 +391,9 @@ lemma max_prod_two : IsMaxProd 2 2 := by
     · have h := prod_le_max_prod max_prod_zero ht'
       lia
 
+/--
+@isnad1 id=ismaxpro.0h0v.s3.92fbe8ec53c6 from=translated src=- shape=6d6f5044 vocab=cbc20d89
+-/
 lemma max_prod_three : IsMaxProd 3 3 := by
   constructor
   · use {3}
@@ -361,6 +418,9 @@ lemma max_prod_three : IsMaxProd 3 3 := by
     · have h := prod_le_max_prod max_prod_zero ht'
       lia
 
+/--
+@isnad1 id=ismaxpro.0h0v.s3.94b2cca2ddfe from=translated src=- shape=6d6f5044 vocab=cbc20d89
+-/
 lemma max_prod_four : IsMaxProd 4 4 := by
   constructor
   · use {4}
@@ -387,6 +447,9 @@ lemma max_prod_four : IsMaxProd 4 4 := by
     · have h := prod_le_max_prod max_prod_zero ht'
       lia
 
+/--
+@isnad1 id=ismaxpro.0h1v.s2.92f0eb57f0a8 from=translated src=- shape=9d44d080 vocab=ee8e4497
+-/
 theorem generalized (n : ℕ) :
   IsMaxProd n (result n) := by
   fun_induction result with

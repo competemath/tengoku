@@ -23,7 +23,9 @@ noncomputable def cellSetMass {X C : Type*} [MeasurableSpace X] [Fintype C]
 [a probability covariate law](hyp:ν), [an observed law](hyp:Q), [cell masses](hyp:q),
 [an exact finite-cell event-mass representation](hyp:hQ), and
 [cell masses that sum to one at every covariate value](hyp:hsum),
-[the observed law is a probability measure](goal). -/
+[the observed law is a probability measure](goal).
+@isnad1 id=isprobab.2h5v.s7.beaa3cac045f from=translated src=- shape=fff8e7b4 vocab=a7e4b169
+-/
 theorem isProbability_of_cellSetMass {X C : Type*} [MeasurableSpace X] [MeasurableSpace C] [Fintype C] (ν : Measure X)
     [IsProbabilityMeasure ν] (Q : Measure (X × C)) (q : X → C → ℝ≥0∞) (hQ : ∀ A, MeasurableSet A → Q A = cellSetMass ν q
     A) (hsum : ∀ x, ∑ c : C, q x c = 1) : IsProbabilityMeasure Q := by
@@ -34,7 +36,9 @@ theorem isProbability_of_cellSetMass {X C : Type*} [MeasurableSpace X] [Measurab
 [a finite latent-state space](hyp:Z), [a covariate law](hyp:ν),
 [latent-state weights](hyp:w), [an observed-cell reporting map](hyp:obs),
 [measurable weights](hyp:hw), and [a measurable reporting map](hyp:hobs),
-[the bound latent law has the stated finite-cell event masses](goal). -/
+[the bound latent law has the stated finite-cell event masses](goal).
+@isnad1 id=eq.3h7v.s8.2b8f957a8793 from=translated src=- shape=eb49d2b0 vocab=a9ef6175
+-/
 theorem bind_latent_map_cellSetMass {X C Z : Type*} [MeasurableSpace X] [MeasurableSpace C] [Fintype C] [DecidableEq C]
     [Fintype Z] (ν : Measure X) (w : X → Z → ℝ≥0∞) (obs : X → Z → C) (hw : ∀ z, Measurable fun x => w x z) (hobs : ∀ z,
     Measurable fun x => obs x z) : ∀ A, MeasurableSet A → (ν.bind (fun x => ∑ z : Z, w x z • Measure.dirac (x, obs x

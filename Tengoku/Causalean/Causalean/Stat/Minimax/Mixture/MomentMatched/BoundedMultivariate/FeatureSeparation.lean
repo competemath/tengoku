@@ -17,7 +17,9 @@ namespace Causalean.Stat.Minimax.Mixture.MomentMatched.BoundedMultivariate
   It is the domain on which the maximal target width of a constraint fiber
   is attained. -/
 
-/-- A [compact joint feature set](hyp:hS) has [a compact set of pairs in its convex hull with matching constraint coordinates](goal). -/
+/-- A [compact joint feature set](hyp:hS) has [a compact set of pairs in its convex hull with matching constraint coordinates](goal).
+@isnad1 id=iscompac.1h2v.s9.bb488efeee2c from=translated src=- shape=5602fa68 vocab=cd030860
+-/
 theorem isCompact_matchingFiberPairs
     {m : ℕ} {S : Set (ℝ × (Fin m → ℝ))} (hS : IsCompact S) :
     IsCompact {p : (ℝ × (Fin m → ℝ)) × (ℝ × (Fin m → ℝ)) |
@@ -39,7 +41,9 @@ theorem isCompact_matchingFiberPairs
   error below `δ` on `S`, contradicting `hgap`. Keep the endpoint case by
   taking maxima on compact fibers rather than a strict approximation bound. -/
 
-/-- A [compact feature set](hyp:hS) with a [positive gap size](hyp:hδ) that [no affine combination of its constraint coordinates can approximate uniformly](hyp:hgap) has [two convex-hull points sharing all constraint coordinates while their target coordinates are separated by that gap](goal). -/
+/-- A [compact feature set](hyp:hS) with a [positive gap size](hyp:hδ) that [no affine combination of its constraint coordinates can approximate uniformly](hyp:hgap) has [two convex-hull points sharing all constraint coordinates while their target coordinates are separated by that gap](goal).
+@isnad1 id=ex.3h3v.s9.9afcd7457009 from=translated src=- shape=9f76c02c vocab=3c2aa90a
+-/
 theorem exists_matching_convexHull_of_compact_feature_gap
     {m : ℕ} {S : Set (ℝ × (Fin m → ℝ))} {δ : ℝ}
     (hS : IsCompact S) (hδ : 0 < δ)

@@ -40,7 +40,9 @@ def cellMean (μ : Measure Ω) (label : A → κ) (X : Ω → A)
 
 /-- [A conditional-expectation equality](hyp:hcond) for [measurable covariates
 and regression function and integrable responses](hyp:hX,hg,hY) implies
-[the conditional-mean relation](goal). -/
+[the conditional-mean relation](goal).
+@isnad1 id=conditio.4h6v.s6.cce1d536d186 from=translated src=- shape=88a99e25 vocab=a289d610
+-/
 theorem conditionalMean_of_condExp (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → A) (Y : Ω → ℝ) (g : A → ℝ)
     (hX : Measurable X) (hg : Measurable g) (hY : Integrable Y μ)
@@ -61,7 +63,9 @@ theorem conditionalMean_of_condExp (μ : Measure Ω) [IsProbabilityMeasure μ]
 
 /-- [Measurable covariates and regression function](hyp:hX,hg),
 [unit-interval responses](hyp:hY), and [the conditional-mean relation](hyp:hmean)
-imply that [the regression function is almost surely in the unit interval](goal). -/
+imply that [the regression function is almost surely in the unit interval](goal).
+@isnad1 id=eventual.4h6v.s7.453d77e9bcdc from=translated src=- shape=ff8bf714 vocab=1ccae35f
+-/
 theorem regression_mem_Icc_ae (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → A) (Y : Ω → ℝ) (g : A → ℝ)
     (hX : Measurable X) (hg : Measurable g)
@@ -106,7 +110,9 @@ theorem regression_mem_Icc_ae (μ : Measure Ω) [IsProbabilityMeasure μ]
   exact ⟨hlo, by linarith⟩
 
 /-- [Measurable partition labels](hyp:hlabel) and [the conditional-mean relation](hyp:hmean)
-imply that [the response cell mean equals the regression cell mean](goal). -/
+imply that [the response cell mean equals the regression cell mean](goal).
+@isnad1 id=eq.2h9v.s6.d0de2e8d614a from=translated src=- shape=3d77125a vocab=3bd0e806
+-/
 theorem cellMean_eq_regression (μ : Measure Ω) (label : A → κ)
     (X : Ω → A) (Y : Ω → ℝ) (g : A → ℝ) (k : κ)
     (hlabel : Measurable label) (hmean : ConditionalMean μ X Y g) :
@@ -117,7 +123,9 @@ theorem cellMean_eq_regression (μ : Measure Ω) (label : A → κ)
 
 /-- [Measurable covariates, partition, and responses](hyp:hX,hlabel,hYm) and
 [bounded responses](hyp:hY)
-ensure [the totalized population cell mean belongs to the unit interval](goal). -/
+ensure [the totalized population cell mean belongs to the unit interval](goal).
+@isnad1 id=mem.4h8v.s7.2d1cea07b6f2 from=translated src=- shape=0e2c2743 vocab=90dda131
+-/
 theorem cellMean_mem_Icc (μ : Measure Ω) [IsProbabilityMeasure μ]
     (label : A → κ) (X : Ω → A) (Y : Ω → ℝ) (k : κ)
     (hlabel : Measurable label) (hX : Measurable X) (hYm : Measurable Y)
@@ -140,7 +148,9 @@ theorem cellMean_mem_Icc (μ : Measure Ω) [IsProbabilityMeasure μ]
 /-- [Measurable inputs](hyp:hlabel,hX,hg), [bounded responses](hyp:hY),
 [the conditional-mean relation](hyp:hmean), and [a nonnegative within-cell
 oscillation envelope](hyp:hδ,hosc) imply [the integrated squared cell bias is
-at most cell mass times the squared envelope](goal). -/
+at most cell mass times the squared envelope](goal).
+@isnad1 id=le.7h10v.s8.58b071802128 from=translated src=- shape=a9396d58 vocab=635ab388
+-/
 theorem cell_bias_le (μ : Measure Ω) [IsProbabilityMeasure μ]
     (label : A → κ) (X : Ω → A) (Y : Ω → ℝ) (g : A → ℝ) (k : κ)
     (δ : ℝ) (hlabel : Measurable label) (hX : Measurable X) (hg : Measurable g)

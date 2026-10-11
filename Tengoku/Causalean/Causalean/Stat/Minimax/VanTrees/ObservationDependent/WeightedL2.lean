@@ -21,7 +21,9 @@ open MeasureTheory
 
 namespace Causalean.Stat.Minimax.ObservationDependentVanTrees
 
-/-- A real-valued product field that is [almost-everywhere strongly measurable and integrable under two σ-finite measures](hyp:hsm,hint) has [both iterated integrals equal to its product-measure integral](goal). -/
+/-- A real-valued product field that is [almost-everywhere strongly measurable and integrable under two σ-finite measures](hyp:hsm,hint) has [both iterated integrals equal to its product-measure integral](goal).
+@isnad1 id=and.2h5v.s8.97d08f51f5aa from=translated src=- shape=6b211378 vocab=2c48e5a3
+-/
 theorem product_integral_eq_iterated
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     {μ : Measure A} {ν : Measure B} [SigmaFinite μ] [SigmaFinite ν]
@@ -32,7 +34,9 @@ theorem product_integral_eq_iterated
   have hint' : Integrable F (μ.prod ν) := ⟨hsm, hint.hasFiniteIntegral⟩
   exact ⟨integral_prod F hint', integral_prod_symm F hint'⟩
 
-/-- Under a [nonnegative weight and measurable, integrable weighted square and cross-product fields](hyp:hq,hfsm,hssm,hfssm,hfint,hsint,hfsint), [the squared weighted pairing is bounded by the product of the two weighted second moments](goal). -/
+/-- Under a [nonnegative weight and measurable, integrable weighted square and cross-product fields](hyp:hq,hfsm,hssm,hfssm,hfint,hsint,hfsint), [the squared weighted pairing is bounded by the product of the two weighted second moments](goal).
+@isnad1 id=le.7h5v.s8.3bd76661df1f from=translated src=- shape=9a3c96ac vocab=05e8a671
+-/
 theorem weighted_integral_mul_sq_le
     {A : Type*} [MeasurableSpace A] {μ : Measure A}
     {q f s : A → ℝ}

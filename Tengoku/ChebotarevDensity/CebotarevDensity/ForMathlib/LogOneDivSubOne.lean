@@ -24,7 +24,9 @@ noncomputable section
 open Filter Topology
 
 /-- `log(1/(s-1)) → +∞` as `s ↓ 1` — the divergence driving the density
-asymptotics. -/
+asymptotics.
+@isnad1 id=tendsto.0h0v.s5.635a6b80d346 from=translated src=- shape=f67324b0 vocab=b154b36f
+-/
 theorem tendsto_log_one_div_sub_one_atTop :
     Tendsto (fun s : ℝ ↦ Real.log (1 / (s - 1))) (𝓝[>] (1 : ℝ)) atTop := by
   refine Real.tendsto_log_atTop.comp ?_
@@ -39,7 +41,9 @@ theorem tendsto_log_one_div_sub_one_atTop :
 /-- Generic squeeze: if `f(s) = log(1/(s-1)) + bounded` on a right
 neighbourhood of `1`, then `f(s) / log(1/(s-1)) → 1` as `s ↓ 1`. The
 analytic content is just that `log(1/(s-1)) → ∞`, so the additive
-bounded term washes out under division. -/
+bounded term washes out under division.
+@isnad1 id=tendsto.2h1v.s7.ca1731f3c6b7 from=translated src=- shape=e8498024 vocab=409eb06b
+-/
 theorem tendsto_ratio_one_of_log_pm_bounded
     (f : ℝ → ℝ) (h_le : ∃ C : ℝ, ∀ᶠ s in 𝓝[>] (1 : ℝ), f s ≤ Real.log (1 / (s - 1)) + C)
     (h_lower : ∃ C : ℝ, ∀ᶠ s in 𝓝[>] (1 : ℝ), Real.log (1 / (s - 1)) - C ≤ f s) :

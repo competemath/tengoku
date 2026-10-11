@@ -52,13 +52,17 @@ def EdgeColoring.HasMonoTriangle (c : EdgeColoring) : Prop :=
     ∃ b : Fin 2, c.color s(i, j) = some b ∧ c.color s(j, k) = some b ∧
       c.color s(k, i) = some b
 
-/-- In `Fin 2`, two elements different from a common one are equal. -/
+/-- In `Fin 2`, two elements different from a common one are equal.
+@isnad1 id=eq.2h3v.s5.3346a3ba13e3 from=translated src=- shape=fdfbb44d vocab=00dd0f92
+-/
 lemma fin2_eq_of_ne (u v b : Fin 2) (hu : u ≠ b) (hv : v ≠ b) : u = v := by
   revert u v b
   decide
 
 /-- The Ramsey fact `R(3,3) ≤ 6`: every red/blue coloring of the edges of the
-complete graph on 6 vertices contains a monochromatic triangle. -/
+complete graph on 6 vertices contains a monochromatic triangle.
+@isnad1 id=ex.1h1v.s7.4ae2a935392e from=translated src=- shape=60ee1a85 vocab=00dd0f92
+-/
 lemma ramsey6 (f : Fin 6 → Fin 6 → Fin 2) (hsym : ∀ i j, f i j = f j i) :
     ∃ i j k : Fin 6, i ≠ j ∧ j ≠ k ∧ k ≠ i ∧ f i j = f j k ∧ f j k = f k i := by
   -- Among the 5 edges leaving vertex `0`, at least 3 have the same color `b`.
@@ -119,10 +123,15 @@ lemma ramsey6 (f : Fin 6 → Fin 6 → Fin 2) (hsym : ∀ i j, f i j = f j i) :
 def minEndpoint (e : Sym2 (Fin 9)) : Fin 9 :=
   Sym2.lift ⟨fun i j => min i j, fun _ _ => min_comm _ _⟩ e
 
+/--
+@isnad1 id=eq.0h2v.s5.e69725dcacb7 from=translated src=- shape=f3bb0b2e vocab=81989094
+-/
 lemma minEndpoint_mk (i j : Fin 9) : minEndpoint s(i, j) = min i j := rfl
 
 /-- First part: any coloring with at least 33 colored edges contains a
-monochromatic triangle. -/
+monochromatic triangle.
+@isnad1 id=hasmonot.1h1v.s4.49e01434e133 from=translated src=- shape=8168d84c vocab=4ab6c32a
+-/
 lemma mono_triangle_of_colored_ge (c : EdgeColoring)
     (h : 33 ≤ c.coloredEdges.card) : c.HasMonoTriangle := by
   -- There are at most 3 uncolored edges.
@@ -225,6 +234,9 @@ def auxColor : Sym2 (Fin 9) → Option (Fin 2) :=
     else if i.val ≤ 3 ∨ j.val ≤ 3 then some 1
     else some 0, by decide⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.3ba4276200f9 from=translated src=- shape=03b2fa40 vocab=9c84dd8a
+-/
 lemma auxColor_diag : ∀ i : Fin 9, auxColor s(i, i) = none := by
   decide
 
@@ -233,9 +245,15 @@ def auxColoring : EdgeColoring where
   color := auxColor
   diag := auxColor_diag
 
+/--
+@isnad1 id=eq.0h0v.s4.969e00132f56 from=translated src=- shape=96c9d6b6 vocab=ac39e71e
+-/
 lemma aux_colored_card : auxColoring.coloredEdges.card = 32 := by
   decide
 
+/--
+@isnad1 id=not.0h0v.s1.699c2cf1d4f3 from=translated src=- shape=87ceb31f vocab=086eebf4
+-/
 lemma aux_no_mono : ¬ auxColoring.HasMonoTriangle := by
   unfold EdgeColoring.HasMonoTriangle
   decide
@@ -244,9 +262,15 @@ lemma aux_no_mono : ¬ auxColoring.HasMonoTriangle := by
 def shrinkColor (P : Finset (Sym2 (Fin 9))) : Sym2 (Fin 9) → Option (Fin 2) :=
   fun e => if e ∈ P then none else auxColor e
 
+/--
+@isnad1 id=eq.0h2v.s7.18d48ec08372 from=translated src=- shape=77e87e15 vocab=881ab44c
+-/
 lemma shrinkColor_apply (P : Finset (Sym2 (Fin 9))) (e : Sym2 (Fin 9)) :
     shrinkColor P e = if e ∈ P then none else auxColor e := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.63ae73bf436a from=translated src=- shape=bb2f9a54 vocab=1799b99f
+-/
 lemma shrinkColor_diag (P : Finset (Sym2 (Fin 9))) :
     ∀ i : Fin 9, shrinkColor P s(i, i) = none := by
   intro i
@@ -261,6 +285,9 @@ def shrinkColoring (P : Finset (Sym2 (Fin 9))) : EdgeColoring where
   color := shrinkColor P
   diag := shrinkColor_diag P
 
+/--
+@isnad1 id=eq.1h3v.s5.d7e9f5780f6f from=translated src=- shape=1703720e vocab=58cc0104
+-/
 lemma shrinkColor_some_of {P : Finset (Sym2 (Fin 9))} {e : Sym2 (Fin 9)} {b : Fin 2}
     (h : shrinkColor P e = some b) : auxColor e = some b := by
   rw [shrinkColor_apply] at h
@@ -270,6 +297,9 @@ lemma shrinkColor_some_of {P : Finset (Sym2 (Fin 9))} {e : Sym2 (Fin 9)} {b : Fi
   · rw [ite_eq_right hc] at h
     exact h
 
+/--
+@isnad1 id=eq.0h1v.s6.2017d7d762a4 from=translated src=- shape=ef045faf vocab=0c7ccfea
+-/
 lemma shrink_coloredEdges (P : Finset (Sym2 (Fin 9))) :
     (shrinkColoring P).coloredEdges = auxColoring.coloredEdges \ P := by
   have hcolor : ∀ e : Sym2 (Fin 9), (shrinkColoring P).color e = shrinkColor P e :=
@@ -290,7 +320,9 @@ lemma shrink_coloredEdges (P : Finset (Sym2 (Fin 9))) :
     exact hsome
 
 /-- Second part: for every `m ≤ 32` there is a coloring with exactly `m`
-colored edges and no monochromatic triangle. -/
+colored edges and no monochromatic triangle.
+@isnad1 id=ex.1h1v.s5.bd8417f68712 from=translated src=- shape=24d4f416 vocab=4ab6c32a
+-/
 lemma exists_avoiding (m : ℕ) (hm : m ≤ 32) :
     ∃ c : EdgeColoring, c.coloredEdges.card = m ∧ ¬ c.HasMonoTriangle := by
   obtain ⟨P, hPsub, hPcard⟩ := Finset.exists_subset_card_eq

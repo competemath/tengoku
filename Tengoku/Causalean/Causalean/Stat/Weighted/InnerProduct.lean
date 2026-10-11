@@ -74,11 +74,15 @@ def ip (c : WeightedSupport R) (A B : R → ℝ) : ℝ :=
   ∑ r ∈ c.observed, c.weight r * A r * B r
 
 /-- The weighted inner product unfolds to its finite weighted sum over observed
-records. -/
+records.
+@isnad1 id=eq.0h4v.s6.e44e8f7d2db6 from=translated src=- shape=2c9584e6 vocab=7c1dc75c
+-/
 @[simp] lemma ip_def (c : WeightedSupport R) (A B : R → ℝ) :
     c.ip A B = ∑ r ∈ c.observed, c.weight r * A r * B r := rfl
 
-/-- Symmetry of the weighted inner product. -/
+/-- Symmetry of the weighted inner product.
+@isnad1 id=eq.0h4v.s5.ae6e3f2c2c80 from=translated src=- shape=7de29e3c vocab=cf36604d
+-/
 lemma ip_symm (c : WeightedSupport R) (A B : R → ℝ) :
     c.ip A B = c.ip B A := by
   unfold ip
@@ -86,7 +90,9 @@ lemma ip_symm (c : WeightedSupport R) (A B : R → ℝ) :
   intro r _
   ring
 
-/-- Additivity in the left argument. -/
+/-- Additivity in the left argument.
+@isnad1 id=eq.0h5v.s6.a7ec5b1554e7 from=translated src=- shape=fc7fe164 vocab=696db164
+-/
 lemma ip_add_left (c : WeightedSupport R) (A A' B : R → ℝ) :
     c.ip (A + A') B = c.ip A B + c.ip A' B := by
   unfold ip
@@ -95,12 +101,16 @@ lemma ip_add_left (c : WeightedSupport R) (A A' B : R → ℝ) :
   intro r _
   simp [Pi.add_apply]; ring
 
-/-- Additivity in the right argument. -/
+/-- Additivity in the right argument.
+@isnad1 id=eq.0h5v.s6.12281537ac8d from=translated src=- shape=eec6d863 vocab=696db164
+-/
 lemma ip_add_right (c : WeightedSupport R) (A B B' : R → ℝ) :
     c.ip A (B + B') = c.ip A B + c.ip A B' := by
   rw [ip_symm, ip_add_left, ip_symm c A B, ip_symm c A B']
 
-/-- Scalar homogeneity in the left argument. -/
+/-- Scalar homogeneity in the left argument.
+@isnad1 id=eq.0h5v.s6.e399a5b38705 from=translated src=- shape=ee511c74 vocab=2875dbcc
+-/
 lemma ip_smul_left (c : WeightedSupport R) (s : ℝ) (A B : R → ℝ) :
     c.ip (s • A) B = s * c.ip A B := by
   unfold ip
@@ -109,12 +119,16 @@ lemma ip_smul_left (c : WeightedSupport R) (s : ℝ) (A B : R → ℝ) :
   intro r _
   simp [Pi.smul_apply]; ring
 
-/-- Scalar homogeneity in the right argument. -/
+/-- Scalar homogeneity in the right argument.
+@isnad1 id=eq.0h5v.s6.4e3f375a8f61 from=translated src=- shape=0f493d8a vocab=2875dbcc
+-/
 lemma ip_smul_right (c : WeightedSupport R) (s : ℝ) (A B : R → ℝ) :
     c.ip A (s • B) = s * c.ip A B := by
   rw [ip_symm, ip_smul_left, ip_symm c A B]
 
-/-- Each summand of `⟨A, A⟩_ω` is nonnegative. -/
+/-- Each summand of `⟨A, A⟩_ω` is nonnegative.
+@isnad1 id=le.1h4v.s6.f5d3d502df26 from=translated src=- shape=04a824c4 vocab=44e19e03
+-/
 lemma ip_self_summand_nonneg (c : WeightedSupport R) (A : R → ℝ) :
     ∀ r ∈ c.observed, 0 ≤ c.weight r * A r * A r := by
   intro r hr
@@ -123,7 +137,9 @@ lemma ip_self_summand_nonneg (c : WeightedSupport R) (A : R → ℝ) :
   have : 0 ≤ c.weight r * (A r * A r) := mul_nonneg hw hsq
   simpa [mul_assoc] using this
 
-/-- Positivity: `⟨A, A⟩_ω ≥ 0`. -/
+/-- Positivity: `⟨A, A⟩_ω ≥ 0`.
+@isnad1 id=le.0h3v.s5.63f78081d663 from=translated src=- shape=b7e0c066 vocab=151d68fe
+-/
 lemma ip_self_nonneg (c : WeightedSupport R) (A : R → ℝ) :
     0 ≤ c.ip A A := by
   unfold ip
@@ -131,7 +147,9 @@ lemma ip_self_nonneg (c : WeightedSupport R) (A : R → ℝ) :
 
 /-- For [a weighted-support system `c`](hyp:c),
 [zero weighted self inner product is equivalent to vanishing on the observed set](goal).
-Arrays that differ only off `c.observed` are thus identified by this inner product. -/
+Arrays that differ only off `c.observed` are thus identified by this inner product.
+@isnad1 id=iff.0h3v.s5.301d4190e996 from=translated src=- shape=9c8049d5 vocab=2a20e3f9
+-/
 lemma ip_self_eq_zero_iff (c : WeightedSupport R) (A : R → ℝ) :
     c.ip A A = 0 ↔ ∀ r ∈ c.observed, A r = 0 := by
   unfold ip
@@ -171,18 +189,24 @@ def ipMat (c : WeightedSupport R) (A B : J → R → ℝ) :
   fun j k => c.ip (A j) (B k)
 
 /-- Each entry of the matrix-valued inner product is the scalar weighted inner
-product of the corresponding two columns. -/
+product of the corresponding two columns.
+@isnad1 id=eq.0h7v.s5.859879749ecf from=translated src=- shape=f0c72446 vocab=f28159c8
+-/
 @[simp] lemma ipMat_apply (c : WeightedSupport R) (A B : J → R → ℝ)
     (j k : J) :
     c.ipMat A B j k = c.ip (A j) (B k) := rfl
 
-/-- The transpose of `⟨A, B⟩_ω` is `⟨B, A⟩_ω`. -/
+/-- The transpose of `⟨A, B⟩_ω` is `⟨B, A⟩_ω`.
+@isnad1 id=eq.0h5v.s5.ac06cbbd6929 from=translated src=- shape=09d17c41 vocab=228fb6dd
+-/
 lemma ipMat_transpose (c : WeightedSupport R) (A B : J → R → ℝ) :
     (c.ipMat A B).transpose = c.ipMat B A := by
   ext j k
   rw [Matrix.transpose_apply, ipMat_apply, ipMat_apply, ip_symm]
 
-/-- Additivity in the left tuple argument (entrywise). -/
+/-- Additivity in the left tuple argument (entrywise).
+@isnad1 id=eq.0h6v.s6.7990af0db693 from=translated src=- shape=061ab1f3 vocab=5e3b66b2
+-/
 lemma ipMat_add_left (c : WeightedSupport R) (A A' B : J → R → ℝ) :
     c.ipMat (A + A') B = c.ipMat A B + c.ipMat A' B := by
   ext j k
@@ -190,7 +214,9 @@ lemma ipMat_add_left (c : WeightedSupport R) (A A' B : J → R → ℝ) :
   rw [Pi.add_apply, ip_add_left]
   simp [ipMat_apply]
 
-/-- Additivity in the right tuple argument (entrywise). -/
+/-- Additivity in the right tuple argument (entrywise).
+@isnad1 id=eq.0h6v.s6.ebd6b49cc3a4 from=translated src=- shape=534a0b76 vocab=5e3b66b2
+-/
 lemma ipMat_add_right (c : WeightedSupport R) (A B B' : J → R → ℝ) :
     c.ipMat A (B + B') = c.ipMat A B + c.ipMat A B' := by
   ext j k
@@ -198,7 +224,9 @@ lemma ipMat_add_right (c : WeightedSupport R) (A B B' : J → R → ℝ) :
   rw [Pi.add_apply, ip_add_right]
   simp [ipMat_apply]
 
-/-- Scalar homogeneity in the left tuple argument (entrywise). -/
+/-- Scalar homogeneity in the left tuple argument (entrywise).
+@isnad1 id=eq.0h6v.s6.48bd2169a426 from=translated src=- shape=bc2f727e vocab=e1597c5d
+-/
 lemma ipMat_smul_left (c : WeightedSupport R) (s : ℝ) (A B : J → R → ℝ) :
     c.ipMat (s • A) B = s • c.ipMat A B := by
   ext j k
@@ -206,7 +234,9 @@ lemma ipMat_smul_left (c : WeightedSupport R) (s : ℝ) (A B : J → R → ℝ) 
   rw [Pi.smul_apply, ip_smul_left]
   simp [ipMat_apply, smul_eq_mul]
 
-/-- Scalar homogeneity in the right tuple argument (entrywise). -/
+/-- Scalar homogeneity in the right tuple argument (entrywise).
+@isnad1 id=eq.0h6v.s6.b1a82a79180a from=translated src=- shape=4b51949c vocab=e1597c5d
+-/
 lemma ipMat_smul_right (c : WeightedSupport R) (s : ℝ) (A B : J → R → ℝ) :
     c.ipMat A (s • B) = s • c.ipMat A B := by
   ext j k

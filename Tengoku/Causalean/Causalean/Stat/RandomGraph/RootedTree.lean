@@ -52,7 +52,9 @@ def ParentEncoding.graph (P : ParentEncoding V r) : SimpleGraph V where
     exact h.1 rfl
 
 /-- The [number of all candidate parent encodings](goal) on a finite vertex type is exactly
-the number of vertices raised to one less than that number, for a [chosen root](hyp:r). -/
+the number of vertices raised to one less than that number, for a [chosen root](hyp:r).
+@isnad1 id=eq.0h2v.s6.a740959e0ca8 from=translated src=- shape=5c9693a9 vocab=0bc6b038
+-/
 theorem card_parentEncoding [Fintype V] [DecidableEq V] (r : V) :
     Fintype.card (ParentEncoding V r) = Fintype.card V ^ (Fintype.card V - 1) := by
   rw [Fintype.card_fun]
@@ -60,7 +62,9 @@ theorem card_parentEncoding [Fintype V] [DecidableEq V] (r : V) :
   simp
 
 /-- In a [valid](hyp:hP) [parent encoding](hyp:P), [no nonroot vertex](hyp:v) [is equal to its own
-chosen parent](goal). -/
+chosen parent](goal).
+@isnad1 id=ne.1h4v.s5.9ca6578a3a32 from=translated src=- shape=8aef393e vocab=85df3ca5
+-/
 theorem ParentEncoding.parent_ne (P : ParentEncoding V r) (hP : P.Valid)
     (v : {v : V // v ≠ r}) : P v ≠ v.val := by
   obtain ⟨height, _, hheight⟩ := hP
@@ -70,7 +74,9 @@ theorem ParentEncoding.parent_ne (P : ParentEncoding V r) (hP : P.Valid)
   exact (Nat.lt_irrefl _) this
 
 /-- Iterating the parent step in a [valid encoding](hyp:hP) [eventually reaches the root](goal)
-from any [starting vertex](hyp:v). -/
+from any [starting vertex](hyp:v).
+@isnad1 id=ex.1h4v.s5.51f2c925706f from=translated src=- shape=7cdec83f vocab=04faca49
+-/
 theorem ParentEncoding.iterate_eq_root [DecidableEq V]
     (P : ParentEncoding V r) (hP : P.Valid) (v : V) :
     ∃ k : ℕ, (P.step)^[k] v = r := by
@@ -88,7 +94,9 @@ theorem ParentEncoding.iterate_eq_root [DecidableEq V]
         simpa [Function.iterate_succ_apply, ParentEncoding.step, hr] using hk
   exact arrival (height v) v rfl
 
-/-- The graph of a [valid parent encoding](hyp:hP) [is a tree](goal). -/
+/-- The graph of a [valid parent encoding](hyp:hP) [is a tree](goal).
+@isnad1 id=istree.1h3v.s4.55e0ad2cb2a8 from=translated src=- shape=64eb0c81 vocab=c2cb0fff
+-/
 theorem ParentEncoding.isTree (P : ParentEncoding V r) (hP : P.Valid) : P.graph.IsTree := by
   classical
   have stepReach (v : V) : P.graph.Reachable v (P.step v) := by
@@ -135,7 +143,9 @@ theorem ParentEncoding.isTree (P : ParentEncoding V r) (hP : P.Valid) : P.graph.
     exact hq.snd_ne_penultimate (hes.symm.trans hep)
 
 /-- In a [connected graph](hyp:hG), every [nonroot vertex](hyp:v) has [an adjacent vertex
-exactly one step closer to the root](goal). -/
+exactly one step closer to the root](goal).
+@isnad1 id=ex.1h4v.s6.0ae81479de2f from=translated src=- shape=bbc7d8ea vocab=84094026
+-/
 theorem exists_parent_step_closer (G : SimpleGraph V) (hG : G.Connected) (r : V)
     (v : {v : V // v ≠ r}) :
     ∃ w : V, G.Adj v.val w ∧ G.dist r w + 1 = G.dist r v.val := by
@@ -153,7 +163,9 @@ theorem exists_parent_step_closer (G : SimpleGraph V) (hG : G.Connected) (r : V)
 
 /-- A [connected finite graph](hyp:hG) with a [chosen root](hyp:r) [admits a valid parent
 encoding using its edges, with at most p to the power p minus one candidates](goal), where
-p is the number of vertices. -/
+p is the number of vertices.
+@isnad1 id=ex.1h3v.s7.bd11b95bd713 from=translated src=- shape=13dadb08 vocab=fd8be736
+-/
 theorem rooted_spanning_parent_cover [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (hG : G.Connected) (r : V) :
     ∃ P : ParentEncoding V r, P.Valid ∧ (∀ v, G.Adj v.val (P v)) ∧
@@ -172,7 +184,9 @@ def ParentEncoding.ParentClosed (P : ParentEncoding V r)
   ∀ v ∈ A, P v = r ∨ ∃ h : P v ≠ r, (⟨P v, h⟩ : {v : V // v ≠ r}) ∈ A
 
 /-- In a [valid](hyp:hP) [parent encoding](hyp:P), every [nonempty](hyp:hA) [active set of nonroot
-vertices](hyp:A) [contains a vertex that is not the parent of any active vertex](goal). -/
+vertices](hyp:A) [contains a vertex that is not the parent of any active vertex](goal).
+@isnad1 id=ex.2h4v.s7.7178fd0ea256 from=translated src=- shape=ffae12a6 vocab=d1c8b292
+-/
 theorem ParentEncoding.exists_leaf (P : ParentEncoding V r) (hP : P.Valid)
     (A : Finset {v : V // v ≠ r}) (hA : A.Nonempty) :
     ∃ l ∈ A, ∀ v ∈ A, P v ≠ l.val := by
@@ -186,7 +200,9 @@ theorem ParentEncoding.exists_leaf (P : ParentEncoding V r) (hP : P.Valid)
 
 /-- For a [parent encoding](hyp:P), deleting from a [parent-closed](hyp:hA) [active set of nonroot
 vertices](hyp:A) [a vertex](hyp:l) that [is not the parent of any active vertex](hyp:hl) [leaves a
-parent-closed set](goal). -/
+parent-closed set](goal).
+@isnad1 id=parentcl.2h5v.s7.0951316c891e from=translated src=- shape=626875ce vocab=f6e4c451
+-/
 theorem ParentEncoding.parentClosed_erase [DecidableEq V] (P : ParentEncoding V r)
     (A : Finset {v : V // v ≠ r}) (hA : P.ParentClosed A)
     (l : {v : V // v ≠ r}) (hl : ∀ v ∈ A, P v ≠ l.val) :
@@ -205,7 +221,9 @@ occur is at most the probability of the first event times β](goal). Here the [t
 are [measurable](hyp:hA,hB), [the first event does not depend on a chosen
 coordinate](hyp:i,hinvariant), and [β](hyp:β) is a number such that, [whatever the other
 coordinates are, the values of the chosen coordinate that put the outcome in the second event have
-probability at most β](hyp:hsection). -/
+probability at most β](hyp:hsection).
+@isnad1 id=le.4h7v.s8.9486d1b95483 from=translated src=- shape=1f846057 vocab=fa7520cb
+-/
 theorem pi_measure_intersection_le_of_section
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     (i : V) (A B : Set (∀ i, X i)) (β : ℝ≥0∞)
@@ -268,7 +286,9 @@ def partialTreeEvent {r : W} (e : W ↪ V) (P : ParentEncoding W r)
 
 /-- For an [embedded parent tree](hyp:e,P) and an [active set of nonroot vertices](hyp:A), a [root
 event](hyp:rootEvent) and [edge events](hyp:edgeEvent) that are [measurable](hyp:hroot,hedge) give
-a [measurable partial rooted-tree event](goal). -/
+a [measurable partial rooted-tree event](goal).
+@isnad1 id=measurab.2h9v.s7.1dd4c00d951a from=translated src=- shape=768b27d1 vocab=c29134c7
+-/
 theorem measurableSet_partialTreeEvent {r : W} (e : W ↪ V) (P : ParentEncoding W r)
     (rootEvent : Set (X (e r))) (edgeEvent : ∀ i j, Set (X i × X j))
     (A : Finset {v : W // v ≠ r}) (hroot : MeasurableSet rootEvent)
@@ -293,7 +313,9 @@ theorem measurableSet_partialTreeEvent {r : W} (e : W ↪ V) (P : ParentEncoding
 omit [∀ i, MeasurableSpace (X i)] in
 /-- For [any vertex](hyp:l) [in the active set](hyp:hl), the [partial tree
 event](hyp:e,P,rootEvent,edgeEvent,A) [is exactly the partial tree event of the active set with
-that vertex removed, intersected with the edge event joining that vertex to its parent](goal). -/
+that vertex removed, intersected with the edge event joining that vertex to its parent](goal).
+@isnad1 id=eq.1h10v.s8.e6503efbdc27 from=translated src=- shape=ddb7e0e2 vocab=baefb322
+-/
 theorem partialTreeEvent_erase_inter [DecidableEq W] {r : W}
     (e : W ↪ V) (P : ParentEncoding W r)
     (rootEvent : Set (X (e r))) (edgeEvent : ∀ i j, Set (X i × X j))
@@ -316,7 +338,9 @@ omit [∀ i, MeasurableSpace (X i)] in
 /-- After deleting from the active set of an [embedded partial tree](hyp:e,P,rootEvent,edgeEvent,A)
 [a vertex](hyp:l) that [is not the parent of any active vertex](hyp:hleaf), [membership in the
 remaining partial tree event is unaffected by replacing the deleted vertex's coordinate](goal), for
-every [outcome and replacement value](hyp:x,z). -/
+every [outcome and replacement value](hyp:x,z).
+@isnad1 id=iff.1h12v.s8.d688cb560ad9 from=translated src=- shape=3e62959b vocab=0577d6a4
+-/
 theorem partialTreeEvent_update_erase [DecidableEq V] [DecidableEq W] {r : W}
     (e : W ↪ V) (P : ParentEncoding W r)
     (rootEvent : Set (X (e r))) (edgeEvent : ∀ i j, Set (X i × X j))
@@ -341,7 +365,9 @@ theorem partialTreeEvent_update_erase [DecidableEq V] [DecidableEq W] {r : W}
 /-- Under [coordinate probability laws](hyp:μ), the
 [partial tree with no active edges](hyp:e,P,edgeEvent)
 [has exactly the mass of its measurable root event](goal),
-for [measurable root events](hyp:hroot). -/
+for [measurable root events](hyp:hroot).
+@isnad1 id=eq.1h9v.s8.d2d87a829486 from=translated src=- shape=fd0ed655 vocab=6eb282b2
+-/
 theorem pi_measure_partialTreeEvent_empty [Fintype V]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     {r : W} (e : W ↪ V) (P : ParentEncoding W r)
@@ -362,7 +388,9 @@ vertices](hyp:A) that is [parent closed](hyp:hA). If [the root event has probabi
 α](hyp:hrootMass) and [for any two distinct coordinates and any value of the second, the values of
 the first that satisfy their edge event have probability at most β](hyp:hsection), then [the
 partial tree event has probability at most α times β raised to the number of active
-vertices](goal). -/
+vertices](goal).
+@isnad1 id=le.6h12v.s8.31661279037d from=translated src=- shape=88d40d9c vocab=2d8706a9
+-/
 theorem pi_measure_partial_tree_event_le [Fintype V]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     {r : W} (e : W ↪ V) (P : ParentEncoding W r) (hP : P.Valid)
@@ -412,6 +440,7 @@ probability at most α](hyp:hrootMass) and [for any two distinct coordinates and
 second, the values of the first that satisfy their edge event have probability at most
 β](hyp:hsection), then [the event that the root event and every edge event of the tree occur has
 probability at most α times β to the power p minus one](goal), where p is the tree's vertex count.
+@isnad1 id=le.5h11v.s8.07ee4550744f from=translated src=- shape=774bb79b vocab=ecb70ca7
 -/
 theorem pi_measure_rooted_tree_event_le [Fintype V] [Fintype W] [DecidableEq W]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]

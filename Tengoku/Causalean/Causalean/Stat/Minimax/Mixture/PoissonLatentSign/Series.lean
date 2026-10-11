@@ -20,7 +20,9 @@ def overlapSeries (t : ℕ → ℝ) (z : ℝ) : ℝ :=
   1 + ∑' d : ℕ, t (d + 1) * z ^ (d + 1)
 
 /-- An exponential majorant makes the cell overlap series absolutely convergent at every real
-  argument. -/
+  argument.
+@isnad1 id=summable.2h3v.s7.e46a0f4ebfa6 from=translated src=- shape=a99ef745 vocab=4e63be78
+-/
 theorem overlapSeries_summable_abs {t : ℕ → ℝ} {b : ℝ}
     (hb : 0 ≤ b) (ht : ∀ d, 1 ≤ d → 0 ≤ t d ∧ t d ≤ b ^ d / (d.factorial : ℝ))
     (z : ℝ) : Summable (fun d : ℕ => |t (d + 1) * z ^ (d + 1)|) := by
@@ -34,7 +36,9 @@ theorem overlapSeries_summable_abs {t : ℕ → ℝ} {b : ℝ}
     _ = (b * |z|) ^ (d + 1) / ((d + 1).factorial : ℝ) := by rw [mul_pow]; ring
 
 /-- After removing the exact linear term, the overlap remainder is bounded in
-absolute value by the squared exponential radius when that radius is at most one half. -/
+absolute value by the squared exponential radius when that radius is at most one half.
+@isnad1 id=le.3h3v.s7.917a8f19e0da from=translated src=- shape=063225f5 vocab=792feb64
+-/
 theorem overlapSeries_remainder {t : ℕ → ℝ} {b z : ℝ}
     (hb : 0 ≤ b) (ht : ∀ d, 1 ≤ d → 0 ≤ t d ∧ t d ≤ b ^ d / (d.factorial : ℝ))
     (hr : b * |z| ≤ 1 / 2) :
@@ -86,7 +90,9 @@ theorem overlapSeries_remainder {t : ℕ → ℝ} {b z : ℝ}
       ring
 
 /-- The cell overlap series is strictly positive when the absolute exponential radius is at most
-  one half. -/
+  one half.
+@isnad1 id=lt.3h3v.s7.b5e351f4c93c from=translated src=- shape=30193d74 vocab=40dc72d7
+-/
 theorem overlapSeries_pos {t : ℕ → ℝ} {b z : ℝ}
     (hb : 0 ≤ b) (ht : ∀ d, 1 ≤ d → 0 ≤ t d ∧ t d ≤ b ^ d / (d.factorial : ℝ))
     (hr : b * |z| ≤ 1 / 2) : 0 < overlapSeries t z := by
@@ -106,7 +112,9 @@ theorem overlapSeries_pos {t : ℕ → ℝ} {b z : ℝ}
 /-- Given [a nonnegative exponential radius](hyp:hb), [nonnegative coefficients with
 the factorial majorant](hyp:ht), [a small absolute radius](hyp:hr), and [a natural
 power](hyp:k), [the overlap power is bounded by an exponential retaining its exact
-first coefficient](goal). -/
+first coefficient](goal).
+@isnad1 id=le.3h4v.s7.03cb04f92cdf from=translated src=- shape=8e28630b vocab=98c92b1b
+-/
 theorem overlapSeries_pow_le_exp {t : ℕ → ℝ} {b z : ℝ}
     (hb : 0 ≤ b) (ht : ∀ d, 1 ≤ d → 0 ≤ t d ∧ t d ≤ b ^ d / (d.factorial : ℝ))
     (hr : b * |z| ≤ 1 / 2) (k : ℕ) :

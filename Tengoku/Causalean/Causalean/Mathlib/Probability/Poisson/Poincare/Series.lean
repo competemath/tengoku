@@ -27,26 +27,34 @@ noncomputable section
 def poissonWeight (lambda : NNReal) (n : Nat) : Real :=
   Real.exp (-(lambda : Real)) * (lambda : Real) ^ n / Nat.factorial n
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), the mass at [any count](hyp:n) [is nonnegative](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), the mass at [any count](hyp:n) [is nonnegative](goal).
+@isnad1 id=le.0h2v.s4.e3377570f726 from=translated src=- shape=0d4521f5 vocab=75a77b6d
+-/
 lemma poissonWeight_nonneg (lambda : NNReal) (n : Nat) :
     0 ≤ poissonWeight lambda n := by
   unfold poissonWeight
   positivity
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), [the Poisson probability masses sum to one](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), [the Poisson probability masses sum to one](goal).
+@isnad1 id=hassum.0h1v.s4.4727f3573104 from=translated src=- shape=a98592d8 vocab=f2eab012
+-/
 lemma poissonWeight_hasSum_one (lambda : NNReal) :
     HasSum (poissonWeight lambda) 1 := by
   change HasSum
     (fun n ↦ Real.exp (-(lambda : Real)) * (lambda : Real) ^ n / Nat.factorial n) 1
   simpa using ProbabilityTheory.hasSum_one_poissonMeasure lambda
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), the singleton probability of [a count](hyp:n) [equals its explicit real Poisson mass](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), the singleton probability of [a count](hyp:n) [equals its explicit real Poisson mass](goal).
+@isnad1 id=eq.0h2v.s4.0dfb6a4e3ca0 from=translated src=- shape=a1758fa1 vocab=547b2dbf
+-/
 lemma poissonWeight_eq_measureReal_singleton (lambda : NNReal) (n : Nat) :
     poissonWeight lambda n = (poissonMeasure lambda).real {n} := by
   simpa only [poissonWeight] using
     (ProbabilityTheory.poissonMeasure_real_singleton lambda n).symm
 
-/-- At [a nonnegative Poisson rate](hyp:lambda) and [a count](hyp:n), [successive Poisson masses obey the size-bias shift identity](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda) and [a count](hyp:n), [successive Poisson masses obey the size-bias shift identity](goal).
+@isnad1 id=eq.0h2v.s5.94749f117bb7 from=translated src=- shape=f8894caf vocab=16712c69
+-/
 lemma poissonWeight_succ_shift (lambda : NNReal) (n : Nat) :
     ((n + 1 : Nat) : Real) * poissonWeight lambda (n + 1) =
       (lambda : Real) * poissonWeight lambda n := by
@@ -56,7 +64,9 @@ lemma poissonWeight_succ_shift (lambda : NNReal) (n : Nat) :
     Nat.cast_one, pow_succ]
   field_simp
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), a [positive count](hyp:hn) [satisfies the predecessor form of the Poisson size-bias shift identity](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), a [positive count](hyp:hn) [satisfies the predecessor form of the Poisson size-bias shift identity](goal).
+@isnad1 id=eq.1h2v.s5.0f06a22ad90c from=translated src=- shape=2f25322a vocab=3684ee46
+-/
 lemma poissonWeight_shift (lambda : NNReal) {n : Nat} (hn : 0 < n) :
     (n : Real) * poissonWeight lambda n =
       (lambda : Real) * poissonWeight lambda (n - 1) := by
@@ -64,7 +74,9 @@ lemma poissonWeight_shift (lambda : NNReal) {n : Nat} (hn : 0 < n) :
   have h : n - 1 + 1 = n := Nat.sub_add_cancel hn
   simpa only [h] using poissonWeight_succ_shift lambda (n - 1)
 
-/-- For [a nonnegative doubly indexed series](hyp:a), [summing its strict upper triangle by endpoints equals summing its finite rows](goal). -/
+/-- For [a nonnegative doubly indexed series](hyp:a), [summing its strict upper triangle by endpoints equals summing its finite rows](goal).
+@isnad1 id=eq.0h1v.s6.803c437b62bb from=translated src=- shape=a4adcb2b vocab=aa943f2f
+-/
 theorem ENNReal_tsum_lt_eq_tsum_fin (a : Nat → Nat → ENNReal) :
     (∑' m : Nat, ∑' n : Nat, if n < m then a n m else 0) =
       ∑' m : Nat, ∑' n : Fin m, a n m := by
@@ -86,7 +98,9 @@ theorem ENNReal_tsum_lt_eq_tsum_fin (a : Nat → Nat → ENNReal) :
       simpa using (Fin.equivSubtype.tsum_eq
         (fun n : {n : Nat // n < m} => a n m))
 
-/-- For [a nonnegative doubly indexed series](hyp:a), [the strict upper triangle has equal sums under the gap and endpoint parametrizations](goal). -/
+/-- For [a nonnegative doubly indexed series](hyp:a), [the strict upper triangle has equal sums under the gap and endpoint parametrizations](goal).
+@isnad1 id=eq.0h1v.s6.c796271353d0 from=translated src=- shape=f77f15f0 vocab=0445aa24
+-/
 theorem ENNReal_tsum_upperTriangle_gap (a : Nat → Nat → ENNReal) :
     (∑' n : Nat, ∑' k : Nat, a n (n + k + 1)) =
       ∑' m : Nat, ∑' n : Fin m, a n m := by
@@ -122,7 +136,9 @@ theorem ENNReal_tsum_upperTriangle_gap (a : Nat → Nat → ENNReal) :
     _ = ∑' m : Nat, ∑' n : Fin m, a n m :=
       ENNReal.tsum_sigma (fun (m : Nat) (n : Fin m) => a n m)
 
-/-- For [a real sequence](hyp:f) and [ordered endpoints](hyp:hnm), [the squared endpoint difference is bounded by path length times the sum of squared adjacent increments](goal). -/
+/-- For [a real sequence](hyp:f) and [ordered endpoints](hyp:hnm), [the squared endpoint difference is bounded by path length times the sum of squared adjacent increments](goal).
+@isnad1 id=le.1h3v.s6.059cfc91f1ea from=translated src=- shape=feb5ac1b vocab=d8647ed3
+-/
 theorem sq_sub_le_nat_sub_mul_sum_sq_step
     (f : Nat → Real) {n m : Nat} (hnm : n ≤ m) :
     (f m - f n) ^ 2 ≤

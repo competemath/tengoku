@@ -27,6 +27,9 @@ noncomputable def P (j : ℕ) : ℝ[X] :=
   | 1 => X^2 - 2
   | j+2 => (P 1).comp (P (j+1))
 
+/--
+@isnad1 id=eq.2h2v.s6.951fc358c333 from=translated src=- shape=241627af vocab=571bbb78
+-/
 theorem all_real_roots (P : ℝ[X]) (rs : Finset ℝ) (hrs : ∀ x ∈ rs, IsRoot P x) (hc : rs.card = P.natDegree) : P.aroots ℂ = (rs.image Complex.ofReal).val := by
   wlog nontrivial : P ≠ 0
   · rw [ne_eq, not_not] at nontrivial
@@ -49,6 +52,9 @@ theorem all_real_roots (P : ℝ[X]) (rs : Finset ℝ) (hrs : ∀ x ∈ rs, IsRoo
     · rw [Finset.nodup_map_iff_injOn]
       simp
 
+/--
+@isnad1 id=ex.3h5v.s8.3f63b8f1a8a5 from=translated src=- shape=faf09f3a vocab=8b60cd43
+-/
 theorem root_of_sign_flip {α : Type} [ConditionallyCompleteLinearOrder α] [TopologicalSpace α] [OrderTopology α] [DenselyOrdered α]
   {δ : Type} [Ring δ] [LinearOrder δ] [TopologicalSpace δ] [OrderClosedTopology δ] [AddLeftMono δ] [MulPosMono δ] [PosMulMono δ] {a b : α}
   (hab : a ≤ b) {f : α → δ} (hf : ContinuousOn f (Set.Icc a b)) (hs : f a * f b < 0) : ∃ r ∈ Set.Ioo a b, f r = 0 := by
@@ -86,6 +92,9 @@ theorem root_of_sign_flip {α : Type} [ConditionallyCompleteLinearOrder α] [Top
           · simp [this]
       exact this hz
 
+/--
+@isnad1 id=eq.1h1v.s5.a9e9108cb0a4 from=translated src=- shape=43e124d3 vocab=36b36cf2
+-/
 theorem P_natDegree (n : ℕ) (npos : 0 < n) : (P n).natDegree = 2^n := by
   fun_induction P
   · simp at npos
@@ -106,6 +115,9 @@ structure NicePlotOfP (n : ℕ) (npos : 0 < n) where
   x_first : x ⟨0, Nat.lt_of_sub_eq_succ len⟩ = -2 := by simp
   x_last : x ⟨k-1, by simp [len]⟩ = 2 := by simp
 
+/--
+@isnad1 id=ex.2h3v.s6.c6230884e0a4 from=translated src=- shape=ad0ce46e vocab=bc3a1cc2
+-/
 theorem NicePlotOfP.findRoot {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : i+1 < pl.k) :
     ∃ r ∈ Set.Ioo (pl.x ⟨i, by lia⟩) (pl.x ⟨i+1, hi⟩), IsRoot (P n) r := by
   let a := pl.x ⟨i, by lia⟩
@@ -124,6 +136,9 @@ theorem NicePlotOfP.findRoot {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : 
   use r, hr1
   grind only [IsRoot]
 
+/--
+@isnad1 id=lt.3h4v.s6.031c5e221dad from=translated src=- shape=e0437949 vocab=6fd54051
+-/
 theorem NicePlotOfP.findRoot.spec_gt {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : i+1 < pl.k) (i') (e : i'.val = i) :
     (pl.x i') < (NicePlotOfP.findRoot pl i hi).choose := by
   let := Exists.choose_spec (NicePlotOfP.findRoot pl i hi)
@@ -132,17 +147,26 @@ theorem NicePlotOfP.findRoot.spec_gt {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ
     rw [show i' = ⟨i, by lia⟩ by simp_rw [← e]]
   exact (Set.mem_Ioo.mpr this.left).left
 
+/--
+@isnad1 id=lt.3h4v.s7.6228db56923b from=translated src=- shape=aa6c584a vocab=6fd54051
+-/
 theorem NicePlotOfP.findRoot.spec_lt {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : i+1 < pl.k) (i') (e : i'.val = i+1)  :
     (NicePlotOfP.findRoot pl i hi).choose < (pl.x i') := by
   let := Exists.choose_spec (NicePlotOfP.findRoot pl i hi)
   conv_rhs => rw [show i' = ⟨i+1, hi⟩ by simp_rw [← e]]
   exact (Set.mem_Ioo.mpr this.left).right
 
+/--
+@isnad1 id=isroot.2h3v.s6.c038582afdcf from=translated src=- shape=c16d0c95 vocab=f504f967
+-/
 theorem NicePlotOfP.findRoot.spec_root {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : i+1 < pl.k) :
     IsRoot (P n) (NicePlotOfP.findRoot pl i hi).choose := by
   let := Exists.choose_spec (NicePlotOfP.findRoot pl i hi)
   exact this.right
 
+/--
+@isnad1 id=eq.1h2v.s8.d809a4bb1e68 from=translated src=- shape=640945f0 vocab=113c1111
+-/
 theorem Fin.val_orderSucc_of_notTop {n : ℕ} (i : Fin (n+1)) (hi : i ≠ ⊤) : (Order.succ i).val = i+1 := by
   rw [show i = (Fin.mk i (Fin.val_lt_last hi)).castSucc by simp]
   rw [Fin.orderSucc_castSucc]
@@ -248,6 +272,9 @@ noncomputable def makePlot (n : ℕ) (npos : 0 < n) : NicePlotOfP n npos :=
         grind only [= Nat.odd_iff]
   }
 
+/--
+@isnad1 id=ex.2h3v.s7.f90c98060ee1 from=translated src=- shape=73ce6289 vocab=27c7be4b
+-/
 theorem P_intersect_X {n : ℕ} {npos : 0 < n} (pl : NicePlotOfP n npos) (i : ℕ) (hi : i ∈ Finset.range ((P n).natDegree-1)) :
     ∃ r ∈ Set.Ioo (pl.x ⟨i, by grind [pl.len]⟩) (pl.x ⟨i+1, by grind [pl.len]⟩), (P n - X).eval r = 0 := by
   let a := pl.x ⟨i, by grind [pl.len]⟩
@@ -309,16 +336,25 @@ theorem P_intersect_X {n : ℕ} {npos : 0 < n} (pl : NicePlotOfP n npos) (i : �
   let ⟨r, hr1, hr2⟩ := root_of_sign_flip aleb f_cont.continuousOn fafb
   use r
 
+/--
+@isnad1 id=lt.3h4v.s7.0bbcfcd11c5d from=translated src=- shape=457bb1e3 vocab=bd1ab2f7
+-/
 theorem P_intersect_X.spec_gt {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : i ∈ Finset.range ((P n).natDegree-1))(i') (e : i'.val = i) :
     (pl.x i') < (P_intersect_X pl i hi).choose := by
   let := Exists.choose_spec (P_intersect_X pl i hi)
   grind only [= Set.mem_Ioo]
 
+/--
+@isnad1 id=lt.3h4v.s7.0f26c3e57264 from=translated src=- shape=360f9b17 vocab=bd1ab2f7
+-/
 theorem P_intersect_X.spec_lt {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : i ∈ Finset.range ((P n).natDegree-1)) (i') (e : i'.val = i+1) :
     (P_intersect_X pl i hi).choose < (pl.x i') := by
   let := Exists.choose_spec (P_intersect_X pl i hi)
   grind only [= Set.mem_Ioo]
 
+/--
+@isnad1 id=isroot.2h3v.s7.4d421485be7c from=translated src=- shape=26c19460 vocab=d8ea35bf
+-/
 theorem P_intersect_X.spec_root {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi : i ∈ Finset.range ((P n).natDegree-1)) :
     IsRoot (P n - X) (P_intersect_X pl i hi).choose := by
   let := Exists.choose_spec (P_intersect_X pl i hi)

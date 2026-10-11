@@ -75,12 +75,21 @@ maximum is proved in `packing_card_le` (upper bound) and `exists_packing`
 noncomputable def maxNumCubes (a b c : ℕ) : ℕ :=
   ⌊(a : ℝ) / k⌋₊ * ⌊(b : ℝ) / k⌋₊ * ⌊(c : ℝ) / k⌋₊
 
+/--
+@isnad1 id=lt.0h0v.s3.328ee9518ef1 from=translated src=- shape=ff3a10fc vocab=628d0798
+-/
 theorem k_pos : 0 < k :=
   Real.rpow_pos_of_pos (by norm_num) _
 
+/--
+@isnad1 id=eq.0h0v.s4.6a9057c7f829 from=translated src=- shape=f9867af3 vocab=d36399f4
+-/
 theorem k_cube : k ^ 3 = 2 :=
   Real.rpow_inv_natCast_pow (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.0h0v.s3.49acdf263f42 from=translated src=- shape=ff3a10fc vocab=628d0798
+-/
 theorem one_lt_k : 1 < k := by
   by_contra h
   push Not at h
@@ -88,6 +97,9 @@ theorem one_lt_k : 1 < k := by
   rw [k_cube] at g
   norm_num at g
 
+/--
+@isnad1 id=lt.0h0v.s3.b1782c94c874 from=translated src=- shape=ffdda526 vocab=191e9303
+-/
 theorem k_lt_two : k < 2 := by
   by_contra h
   push Not at h
@@ -96,7 +108,9 @@ theorem k_lt_two : k < 2 := by
   norm_num at g
 
 /-- The number of cubes that fit along an edge of integer length `n`, times the
-cube side, is at most the edge length. -/
+cube side, is at most the edge length.
+@isnad1 id=le.0h1v.s5.ac3cdf74897d from=translated src=- shape=f5042e8a vocab=65e5d97b
+-/
 theorem floor_div_k_mul_le (n : ℕ) : (⌊(n : ℝ) / k⌋₊ : ℝ) * k ≤ n := by
   have h : (⌊(n : ℝ) / k⌋₊ : ℝ) ≤ (n : ℝ) / k :=
     Nat.floor_le (div_nonneg (Nat.cast_nonneg _) k_pos.le)
@@ -105,7 +119,9 @@ theorem floor_div_k_mul_le (n : ℕ) : (⌊(n : ℝ) / k⌋₊ : ℝ) * k ≤ n 
     _ = n := div_mul_cancel₀ _ k_pos.ne'
 
 /-- A cube whose left face is at `i * k` with `i < ⌊n / k⌋₊` lies within an
-edge of integer length `n`. -/
+edge of integer length `n`.
+@isnad1 id=le.0h2v.s6.0e9a0874781e from=translated src=- shape=e9155f57 vocab=01962c3c
+-/
 theorem fin_cast_k_add_k_le {n : ℕ} (i : Fin ⌊(n : ℝ) / k⌋₊) :
     (i.1 : ℝ) * k + k ≤ n := by
   have h1 : i.1 + 1 ≤ ⌊(n : ℝ) / k⌋₊ := i.isLt
@@ -116,7 +132,9 @@ theorem fin_cast_k_add_k_le {n : ℕ} (i : Fin ⌊(n : ℝ) / k⌋₊) :
     _ ≤ n := floor_div_k_mul_le n
 
 /-- A cube inside an edge of integer length `n`, with left face at `x`, has
-`⌊x / k⌋₊ < ⌊n / k⌋₊`. -/
+`⌊x / k⌋₊ < ⌊n / k⌋₊`.
+@isnad1 id=lt.2h2v.s6.888b4c22f303 from=translated src=- shape=739e67dd vocab=1c4d96cd
+-/
 theorem floor_lt_floor_of_add_k_le {n : ℕ} {x : ℝ} (hx0 : 0 ≤ x) (hxn : x + k ≤ n) :
     ⌊x / k⌋₊ < ⌊(n : ℝ) / k⌋₊ := by
   have h1 : (⌊x / k⌋₊ : ℝ) ≤ x / k := Nat.floor_le (div_nonneg hx0 k_pos.le)
@@ -130,7 +148,9 @@ theorem floor_lt_floor_of_add_k_le {n : ℕ} {x : ℝ} (hx0 : 0 ≤ x) (hxn : x 
   exact_mod_cast h5
 
 /-- Two positions with the same integer part of `x / k` differ by less than
-`k`. -/
+`k`.
+@isnad1 id=and.3h2v.s6.2f5c38a1e254 from=translated src=- shape=a2100c80 vocab=d88688b8
+-/
 theorem sub_lt_k_of_floor_eq {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y)
     (h : ⌊x / k⌋₊ = ⌊y / k⌋₊) : x - y < k ∧ y - x < k := by
   have h1 : x / k < y / k + 1 := by
@@ -157,7 +177,9 @@ noncomputable def cubeCode (p : ℝ × ℝ × ℝ) : ℕ × ℕ × ℕ :=
   (⌊p.1 / k⌋₊, ⌊p.2.1 / k⌋₊, ⌊p.2.2 / k⌋₊)
 
 /-- The upper bound half of the maximal condition: no packing of the
-`a × b × c` box has more than `maxNumCubes a b c` cubes. -/
+`a × b × c` box has more than `maxNumCubes a b c` cubes.
+@isnad1 id=le.1h4v.s5.7ad9da9f3cf5 from=translated src=- shape=cb63c57a vocab=fd3ccc90
+-/
 theorem packing_card_le (a b c : ℕ) (P : Finset (ℝ × ℝ × ℝ)) (hP : IsPacking a b c P) :
     P.card ≤ maxNumCubes a b c := by
   have hmaps : Set.MapsTo cubeCode P
@@ -204,6 +226,9 @@ noncomputable abbrev gridPos {a b c : ℕ}
     (t : Fin ⌊(a : ℝ) / k⌋₊ × Fin ⌊(b : ℝ) / k⌋₊ × Fin ⌊(c : ℝ) / k⌋₊) : ℝ × ℝ × ℝ :=
   ((t.1.1 : ℝ) * k, (t.2.1.1 : ℝ) * k, (t.2.2.1 : ℝ) * k)
 
+/--
+@isnad1 id=injectiv.0h3v.s6.5c0f21493bd7 from=translated src=- shape=c647e820 vocab=21d9e5e2
+-/
 theorem grid_inj {a b c : ℕ} : Function.Injective (@gridPos a b c) := by
   intro t t' h
   simp only [gridPos, Prod.mk.injEq] at h
@@ -220,7 +245,9 @@ theorem grid_inj {a b c : ℕ} : Function.Injective (@gridPos a b c) := by
   exact Prod.ext_iff.mpr
     ⟨Fin.ext_iff.mpr g1, Prod.ext_iff.mpr ⟨Fin.ext_iff.mpr g2, Fin.ext_iff.mpr g3⟩⟩
 
-/-- Two distinct grid indices give cubes separated along that axis. -/
+/-- Two distinct grid indices give cubes separated along that axis.
+@isnad1 id=or.1h2v.s6.8a3492e63cc4 from=translated src=- shape=402a99ba vocab=0143e575
+-/
 theorem separated_of_ne {i j : ℕ} (h : i ≠ j) :
     (i : ℝ) * k + k ≤ (j : ℝ) * k ∨ (j : ℝ) * k + k ≤ (i : ℝ) * k := by
   rcases lt_or_gt_of_ne h with h | h
@@ -236,7 +263,9 @@ theorem separated_of_ne {i j : ℕ} (h : i ≠ j) :
       _ ≤ (i : ℝ) * k := h2
 
 /-- The attainment half of the maximal condition: the grid arrangement is a
-packing with exactly `maxNumCubes a b c` cubes. -/
+packing with exactly `maxNumCubes a b c` cubes.
+@isnad1 id=ex.0h3v.s5.4c26b1326c54 from=translated src=- shape=0560f278 vocab=fc0df7f9
+-/
 theorem exists_packing (a b c : ℕ) :
     ∃ P : Finset (ℝ × ℝ × ℝ), IsPacking a b c P ∧ P.card = maxNumCubes a b c := by
   refine ⟨Finset.univ.image (@gridPos a b c), ⟨?_, ?_⟩, ?_⟩
@@ -269,7 +298,9 @@ theorem exists_packing (a b c : ℕ) :
     simp only [Finset.card_univ, Fintype.card_prod, Fintype.card_fin, maxNumCubes, mul_assoc]
 
 /-- The defining property of `⌊n / k⌋₊`, expressed with integers only:
-`2 * n'^3 ≤ n^3 < 2 * (n' + 1)^3`, obtained by cubing `n' * k ≤ n < (n' + 1) * k`. -/
+`2 * n'^3 ≤ n^3 < 2 * (n' + 1)^3`, obtained by cubing `n' * k ≤ n < (n' + 1) * k`.
+@isnad1 id=and.0h1v.s7.31cb5fd57762 from=translated src=- shape=03bd3434 vocab=39a64357
+-/
 theorem floor_spec (n : ℕ) :
     2 * ⌊(n : ℝ) / k⌋₊ ^ 3 ≤ n ^ 3 ∧ n ^ 3 < 2 * (⌊(n : ℝ) / k⌋₊ + 1) ^ 3 := by
   have h1 : (⌊(n : ℝ) / k⌋₊ : ℝ) ≤ (n : ℝ) / k :=
@@ -291,14 +322,18 @@ theorem floor_spec (n : ℕ) :
       exact h6'
     exact_mod_cast h7
 
-/-- Comparing `x * k` with an integer by comparing cubes. -/
+/-- Comparing `x * k` with an integer by comparing cubes.
+@isnad1 id=le.1h2v.s6.553fb1e64191 from=translated src=- shape=18836819 vocab=8193f812
+-/
 theorem le_of_cube_le {x : ℝ} (n : ℕ) (h : (x * k) ^ 3 ≤ (n : ℝ) ^ 3) : x * k ≤ (n : ℝ) := by
   by_contra h'
   push Not at h'
   have g : (n : ℝ) ^ 3 < (x * k) ^ 3 := pow_lt_pow_left₀ h' (Nat.cast_nonneg _) three_ne_zero
   linarith
 
-/-- Comparing an integer with `x * k` by comparing cubes. -/
+/-- Comparing an integer with `x * k` by comparing cubes.
+@isnad1 id=lt.2h2v.s6.b2beec4c7492 from=translated src=- shape=98836dd6 vocab=5f270411
+-/
 theorem lt_of_cube_lt {x : ℝ} (hx : 0 ≤ x) (n : ℕ) (h : (n : ℝ) ^ 3 < (x * k) ^ 3) :
     (n : ℝ) < x * k := by
   by_contra h'
@@ -306,12 +341,17 @@ theorem lt_of_cube_lt {x : ℝ} (hx : 0 ≤ x) (n : ℕ) (h : (n : ℝ) ^ 3 < (x
   have g : (x * k) ^ 3 ≤ (n : ℝ) ^ 3 := pow_le_pow_left₀ (mul_nonneg hx k_pos.le) h' 3
   linarith
 
-/-- Evaluating `⌊n / k⌋₊` from the two inequalities `c * k ≤ n < (c + 1) * k`. -/
+/-- Evaluating `⌊n / k⌋₊` from the two inequalities `c * k ≤ n < (c + 1) * k`.
+@isnad1 id=eq.2h2v.s6.d0679ffb86c1 from=translated src=- shape=728fed3a vocab=61815b3c
+-/
 theorem floor_val (n c : ℕ) (h1 : (c : ℝ) * k ≤ (n : ℝ)) (h2 : (n : ℝ) < ((c : ℝ) + 1) * k) :
     ⌊(n : ℝ) / k⌋₊ = c :=
   (Nat.floor_eq_iff (div_nonneg (Nat.cast_nonneg _) k_pos.le)).mpr
     ⟨(le_div_iff₀ k_pos).mpr h1, (div_lt_iff₀ k_pos).mpr h2⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.4fc338b6683c from=translated src=- shape=8788c099 vocab=761bfdd0
+-/
 theorem floor_two : ⌊(2 : ℝ) / k⌋₊ = 1 := by
   refine floor_val 2 1 ?_ ?_
   · rw [Nat.cast_one, one_mul]
@@ -319,6 +359,9 @@ theorem floor_two : ⌊(2 : ℝ) / k⌋₊ = 1 := by
   · push_cast
     linarith [one_lt_k]
 
+/--
+@isnad1 id=eq.0h0v.s5.aff47044b619 from=translated src=- shape=8788c099 vocab=761bfdd0
+-/
 theorem floor_three : ⌊(3 : ℝ) / k⌋₊ = 2 := by
   refine floor_val 3 2 ?_ ?_
   · apply le_of_cube_le
@@ -327,6 +370,9 @@ theorem floor_three : ⌊(3 : ℝ) / k⌋₊ = 2 := by
   · push_cast
     linarith [one_lt_k]
 
+/--
+@isnad1 id=eq.0h0v.s5.55158e12a9a3 from=translated src=- shape=8788c099 vocab=761bfdd0
+-/
 theorem floor_five : ⌊(5 : ℝ) / k⌋₊ = 3 := by
   refine floor_val 5 3 ?_ ?_
   · apply le_of_cube_le
@@ -338,6 +384,9 @@ theorem floor_five : ⌊(5 : ℝ) / k⌋₊ = 3 := by
     · rw [mul_pow, k_cube]
       norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.6a9fa793fb3c from=translated src=- shape=8788c099 vocab=761bfdd0
+-/
 theorem floor_six : ⌊(6 : ℝ) / k⌋₊ = 4 := by
   refine floor_val 6 4 ?_ ?_
   · apply le_of_cube_le
@@ -350,7 +399,9 @@ theorem floor_six : ⌊(6 : ℝ) / k⌋₊ = 4 := by
       norm_num
 
 /-- From here on everything is integer arithmetic. `det_of` pins down `n'`
-once `n` is known concretely. -/
+once `n` is known concretely.
+@isnad1 id=eq.4h3v.s7.ba93e4547e6c from=translated src=- shape=3d012a88 vocab=3f16b8dd
+-/
 theorem det_of {n x c : ℕ} (hc1 : 2 * c ^ 3 ≤ n ^ 3) (hc2 : n ^ 3 < 2 * (c + 1) ^ 3)
     (h1 : 2 * x ^ 3 ≤ n ^ 3) (h2 : n ^ 3 < 2 * (x + 1) ^ 3) : x = c := by
   have hx1 : x ≤ c := by
@@ -365,7 +416,9 @@ theorem det_of {n x c : ℕ} (hc1 : 2 * c ^ 3 ≤ n ^ 3) (hc2 : n ^ 3 < 2 * (c +
     nlinarith [hc1, h2, g]
   lia
 
-/-- If `1 ≤ n'` and `2 * n'^3 ≤ n^3` then `2 ≤ n`. -/
+/-- If `1 ≤ n'` and `2 * n'^3 ≤ n^3` then `2 ≤ n`.
+@isnad1 id=le.2h2v.s6.8638086f417b from=translated src=- shape=17fea0e3 vocab=45880164
+-/
 theorem two_le_of {n n' : ℕ} (hn' : 1 ≤ n') (h1 : 2 * n' ^ 3 ≤ n ^ 3) : 2 ≤ n := by
   have g2 : 2 ≤ n ^ 3 := by
     calc 2 = 2 * 1 ^ 3 := by norm_num
@@ -375,7 +428,9 @@ theorem two_le_of {n n' : ℕ} (hn' : 1 ≤ n') (h1 : 2 * n' ^ 3 ≤ n ^ 3) : 2 
   push Not at h'
   interval_cases n <;> norm_num at g2
 
-/-- The key ratio bound: for `n ≥ 3`, `n^3 < 5 * n'^3`. -/
+/-- The key ratio bound: for `n ≥ 3`, `n^3 < 5 * n'^3`.
+@isnad1 id=lt.3h2v.s7.5254e70b037f from=translated src=- shape=16281ebd vocab=3f16b8dd
+-/
 theorem five_cubed {n n' : ℕ} (hn : 3 ≤ n) (h1 : 2 * n' ^ 3 ≤ n ^ 3)
     (h2 : n ^ 3 < 2 * (n' + 1) ^ 3) : n ^ 3 < 5 * n' ^ 3 := by
   rcases Nat.lt_or_ge n 8 with h8 | h8
@@ -412,12 +467,16 @@ theorem five_cubed {n n' : ℕ} (hn : 3 ≤ n) (h1 : 2 * n' ^ 3 ≤ n ^ 3)
       _ = n' ^ 2 := by ring
     nlinarith [hc, h2, g3, g4, hn']
 
-/-- Auxiliary estimate: `343 * (m + 1)^3 ≤ 500 * m^3` for `m ≥ 8`. -/
+/-- Auxiliary estimate: `343 * (m + 1)^3 ≤ 500 * m^3` for `m ≥ 8`.
+@isnad1 id=le.1h1v.s6.d53ae19032d2 from=translated src=- shape=bab19cd0 vocab=f96c6fce
+-/
 theorem key500 {m : ℕ} (hm : 8 ≤ m) : 343 * (m + 1) ^ 3 ≤ 500 * m ^ 3 := by
   obtain ⟨t, rfl⟩ : ∃ t, m = 8 + t := ⟨m - 8, by lia⟩
   nlinarith [Nat.zero_le t, Nat.zero_le (t ^ 2), Nat.zero_le (t ^ 3)]
 
-/-- The second ratio bound: for `n ≥ 11`, `7 * n < 10 * n'`. -/
+/-- The second ratio bound: for `n ≥ 11`, `7 * n < 10 * n'`.
+@isnad1 id=lt.3h2v.s7.0522cd36da9a from=translated src=- shape=4f6c81c1 vocab=3f16b8dd
+-/
 theorem seven_lt_ten {n n' : ℕ} (hn : 11 ≤ n) (_h1 : 2 * n' ^ 3 ≤ n ^ 3)
     (h2 : n ^ 3 < 2 * (n' + 1) ^ 3) : 7 * n < 10 * n' := by
   have hn' : 8 ≤ n' := by
@@ -433,7 +492,9 @@ theorem seven_lt_ten {n n' : ℕ} (hn : 11 ≤ n) (_h1 : 2 * n' ^ 3 ≤ n ^ 3)
   nlinarith [h2, key, g3]
 
 /-- The integer core of the problem: the only sorted triples satisfying the
-volume equation are `(2, 3, 5)` and `(2, 5, 6)`. -/
+volume equation are `(2, 3, 5)` and `(2, 5, 6)`.
+@isnad1 id=or.12h6v.s8.b84103fd58e8 from=translated src=- shape=c8942e3c vocab=3f16b8dd
+-/
 theorem main_nat {a b c a' b' c' : ℕ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hab : a ≤ b) (hbc : b ≤ c)
     (ha1 : 2 * a' ^ 3 ≤ a ^ 3) (ha2 : a ^ 3 < 2 * (a' + 1) ^ 3)

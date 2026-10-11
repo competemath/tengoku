@@ -73,7 +73,9 @@ private lemma diagonal_expansion {d j : ℕ} (f : (Fin d → ℝ) → ℝ)
 and neighbourhood parameters](hyp:β,L,r,hβ,hL,hr), and [an exponent enumeration containing
 every multi-index through the Taylor order](hyp:expo,hcover), [one nonnegative approximation
 constant works simultaneously for every centre, every containing domain, and every function
-in the corresponding standard Hölder ball](goal). -/
+in the corresponding standard Hölder ball](goal).
+@isnad1 id=ex.4h6v.s8.f02a5ea0ce60 from=translated src=- shape=680b8db0 vocab=619c4f5c
+-/
 theorem holder_taylor_monomial_approx_uniform_center {d p : ℕ} {β L r : ℝ}
     (hβ : 0 < β) (hL : 0 < L) (hr : 0 < r)
     (expo : Fin p → (Fin d → ℕ))
@@ -165,7 +167,9 @@ multi-index of total degree up to the Taylor order](hyp:hcover), then [there is 
 `C_b ≥ 0`, depending only on `β` and `d`, such that every function `f` in the standard
 Hölder ball of exponent `β`, constant `L`, and domain `S` is approximated near `x0`, at any
 bandwidth `h ∈ (0, r)`, by a monomial combination in the `expo` basis with error at most
-`C_b · L · h^β`, uniformly over the unit cube of rescaled directions](goal). -/
+`C_b · L · h^β`, uniformly over the unit cube of rescaled directions](goal).
+@isnad1 id=ex.5h8v.s8.87e913b69f6a from=translated src=- shape=9d419136 vocab=619c4f5c
+-/
 theorem holder_taylor_monomial_approx {d p : ℕ} {β L r : ℝ} {x0 : Fin d → ℝ}
     {S : Set (Fin d → ℝ)}
     (hβ : 0 < β) (hL : 0 < L) (_hr : 0 < r)

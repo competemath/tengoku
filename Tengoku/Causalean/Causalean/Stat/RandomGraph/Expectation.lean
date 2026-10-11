@@ -36,14 +36,18 @@ variable {V : Type u} [Fintype V]
 variable {X : V → Type v} [∀ i, MeasurableSpace (X i)]
 
 /-- For a [root](hyp:r), [the number of unordered completion sets](goal) of
-[size p minus one](hyp:p) is the population size minus one choose p minus one. -/
+[size p minus one](hyp:p) is the population size minus one choose p minus one.
+@isnad1 id=eq.0h3v.s6.32e6ac448fd7 from=translated src=- shape=6c088cc3 vocab=94764820
+-/
 theorem card_root_completions [DecidableEq V] (r : V) (p : ℕ) :
     (((Finset.univ : Finset V).erase r).powersetCard (p - 1)).card =
       Nat.choose (Fintype.card V - 1) (p - 1) := by
   simp
 
 /-- For [p at least one](hyp:hp), adjoining the [root](hyp:r) to a
-[completion set of size p minus one](hyp:hT) [gives a selected set of size p](goal). -/
+[completion set of size p minus one](hyp:hT) [gives a selected set of size p](goal).
+@isnad1 id=eq.2h4v.s6.0cc4e78657d9 from=translated src=- shape=2dcfdab2 vocab=27765d04
+-/
 theorem card_insert_root_of_mem_completions [DecidableEq V] (r : V) (p : ℕ) (hp : 1 ≤ p)
     (T : Finset V) (hT : T ∈ ((Finset.univ : Finset V).erase r).powersetCard (p - 1)) :
     (insert r T).card = p := by
@@ -54,7 +58,9 @@ theorem card_insert_root_of_mem_completions [DecidableEq V] (r : V) (p : ℕ) (h
 
 /-- The [witness count for one root and completion set](hyp:M,rootEvent,r,T)
 [is integrable](goal) under [coordinate probability laws](hyp:μ), provided the
-[root event is measurable](hyp:hroot). -/
+[root event is measurable](hyp:hroot).
+@isnad1 id=integrab.1h7v.s6.c6d027dfc40f from=translated src=- shape=bf05e4d5 vocab=54453dbe
+-/
 @[fun_prop]
 theorem integrable_rootTreeWitnessCount
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
@@ -78,7 +84,9 @@ theorem integrable_rootTreeWitnessCount
     exact integrable_const 0
 
 /-- The [rooted witness count](hyp:M,R,rootEvent,p) [is integrable](goal) under
-[coordinate probability laws](hyp:μ) when [root events are measurable](hyp:hroot). -/
+[coordinate probability laws](hyp:μ) when [root events are measurable](hyp:hroot).
+@isnad1 id=integrab.1h7v.s6.ee4958b2e4ef from=translated src=- shape=1f31c994 vocab=50e0eee6
+-/
 @[fun_prop]
 theorem integrable_treeWitnessCount [DecidableEq V]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
@@ -97,7 +105,9 @@ theorem integrable_treeWitnessCount [DecidableEq V]
 and completion set](hyp:M,rootEvent,r,T) [is at most the parent-array cardinality times
 the fixed-tree mass bound](goal), for [nonnegative constants](hyp:hα,hβ),
 [a measurable root event](hyp:hroot), [root mass at most α](hyp:hrootMass), and
-[oriented child-section masses at most β](hyp:hsection). -/
+[oriented child-section masses at most β](hyp:hsection).
+@isnad1 id=le.5h9v.s8.3831c96c53bc from=translated src=- shape=2e97bcd0 vocab=27e8866a
+-/
 theorem integral_rootTreeWitnessCount_le [DecidableEq V]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     (M : CoordinateGraph X) (rootEvent : ∀ r, Set (X r)) (r : V) (T : Finset V)
@@ -166,7 +176,9 @@ root events](hyp:hroot), [root-event probabilities at most α](hyp:hrootMass), a
 child-section probabilities at most β for distinct coordinates](hyp:hsection), [the expected total
 rooted witness count is at most n times choose(N minus one, p minus one) times p to the power p
 minus one times α times β to the power p minus one](goal). Here n is the root-set size and N the
-population size. -/
+population size.
+@isnad1 id=le.6h9v.s8.37fe0998d6df from=translated src=- shape=95539c78 vocab=a5149333
+-/
 theorem integral_treeWitnessCount_le [DecidableEq V]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     (M : CoordinateGraph X) (R : Finset V) (rootEvent : ∀ r, Set (X r))
@@ -214,7 +226,9 @@ root events](hyp:hroot), [root-event probabilities at most α](hyp:hrootMass), a
 child-section probabilities at most β for distinct coordinates](hyp:hsection), [the expected number
 of size-p components containing a distinguished root satisfying its root event is at most n times
 choose(N minus one, p minus one) times p to the power p minus one times α times β to the power p
-minus one](goal). Here n is the root-set size and N the population size. -/
+minus one](goal). Here n is the root-set size and N the population size.
+@isnad1 id=le.6h9v.s8.14cf0a3a190b from=translated src=- shape=68131624 vocab=afe24312
+-/
 theorem expected_labeled_component_count_le
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     (M : CoordinateGraph X) (R : Finset V) (rootEvent : ∀ r, Set (X r))

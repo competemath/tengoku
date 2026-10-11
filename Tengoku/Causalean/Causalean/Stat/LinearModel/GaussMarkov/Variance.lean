@@ -41,7 +41,9 @@ noncomputable def covMatrix (Y : Obs → Ω → ℝ) (μ : Measure Ω) : Matrix 
 finite family of random variables `Y i`, each [square-integrable](hyp:hY), and
 any weight vector `w`, [the variance of the random linear combination
 `∑ i, w i * Y i` equals the quadratic form `wᵀ Σ w`, where `Σ` is the family's
-covariance matrix](goal). -/
+covariance matrix](goal).
+@isnad1 id=eq.1h6v.s7.92c3ababfa4f from=translated src=- shape=c44a7795 vocab=20d7a7e8
+-/
 theorem variance_linearCombination [IsProbabilityMeasure μ]
     (Y : Obs → Ω → ℝ) (hY : ∀ i, MemLp (Y i) 2 μ) (w : Obs → ℝ) :
     Var[fun ω => ∑ i, w i * Y i ω; μ] = quadVar (covMatrix Y μ) w := by
@@ -76,7 +78,9 @@ def SphericalFamily (Y : Obs → Ω → ℝ) (μ : Measure Ω) (σ : ℝ) : Prop
   (∀ i, Var[Y i; μ] = σ ^ 2) ∧ (∀ i j, i ≠ j → cov[Y i, Y j; μ] = 0)
 
 omit [Fintype Obs] in
-/-- A spherical random family has a spherical (scalar-identity) covariance matrix. -/
+/-- A spherical random family has a spherical (scalar-identity) covariance matrix.
+@isnad1 id=spherica.2h6v.s5.1fafe1bbb479 from=translated src=- shape=41c5bda5 vocab=da5cdcfe
+-/
 lemma sphericalFamily_covMatrix [DecidableEq Obs] {Y : Obs → Ω → ℝ} {σ : ℝ}
     (hY : ∀ i, AEMeasurable (Y i) μ) (h : SphericalFamily Y μ σ) :
     SphericalErrors (covMatrix Y μ) σ := by

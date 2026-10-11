@@ -35,7 +35,9 @@ private theorem Model.eventTimes_eq_image (M : Model Ω μ) (ω : Ω) :
     (Finset.mem_range.mp hj) heq
 
 /-- A simple finite-jump process with an absolutely continuous conditional
-intensity has probability zero of a jump at a fixed deterministic time. -/
+intensity has probability zero of a jump at a fixed deterministic time.
+@isnad1 id=eventual.0h4v.s5.a972546a2f28 from=translated src=- shape=6bed7fdc vocab=41893d92
+-/
 theorem Model.deterministic_jump_null (M : Model Ω μ)
     [IsProbabilityMeasure μ] (t : ℝ) :
     ∀ᵐ ω ∂μ, t ∉ M.eventTimes ω := by
@@ -83,7 +85,9 @@ theorem Model.deterministic_jump_null (M : Model Ω μ)
 
 /-- A measurable random time independent of each enumerated event time and
 the event count almost surely avoids every event of a process with an
-absolutely continuous conditional intensity. -/
+absolutely continuous conditional intensity.
+@isnad1 id=eventual.2h4v.s6.4fef9a60312a from=translated src=- shape=ba2a8ee6 vocab=58286413
+-/
 theorem Model.independent_time_avoids_events (M : Model Ω μ)
     [IsProbabilityMeasure μ] (τ : Ω → ℝ) (hτ : Measurable τ)
     (hindependent : ∀ k : ℕ, ProbabilityTheory.IndepFun τ
@@ -129,7 +133,9 @@ theorem Model.independent_time_avoids_events (M : Model Ω μ)
 stopped recurrent-event time, as a consequence of conditional intensity and
 independence of their coordinate paths. [The sample model](hyp:S), [the two
 indices](hyp:i,j), and [their distinctness](hyp:hij) give [almost-sure
-disjointness of their stopped jumps](goal). -/
+disjointness of their stopped jumps](goal).
+@isnad1 id=eventual.1h6v.s7.4ab14bab0c6f from=translated src=- shape=fc65829f vocab=20230b2d
+-/
 theorem SampleModel.no_common_jumps {n : ℕ} (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ] (i j : Fin n) (hij : i ≠ j) :
     ∀ᵐ x ∂finiteSampleLaw n μ,

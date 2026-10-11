@@ -29,7 +29,9 @@ noncomputable abbrev rawMoment (ν : Measure ℝ) (k : ℕ) : ℝ :=
   ProbabilityTheory.moment id k ν
 
 /-- For [a real measure](hyp:ν) at [a nonnegative integer order](hyp:k), [the raw-moment
-notation equals the integral of the corresponding power](goal). -/
+notation equals the integral of the corresponding power](goal).
+@isnad1 id=eq.0h2v.s5.16fe6d61c615 from=translated src=- shape=bbf44865 vocab=a6b1e510
+-/
 @[simp] theorem rawMoment_eq_integral (ν : Measure ℝ) (k : ℕ) :
     rawMoment ν k = ∫ x, x ^ k ∂ν := rfl
 

@@ -27,14 +27,18 @@ def bernsteinCell (N : ℕ) (a : Fin N → ℝ) (u : ℝ) : ℝ :=
   N * ∑ j : Fin N, a j * (Nat.choose (N - 1) (j : ℕ) : ℝ) *
     u ^ (j : ℕ) * (1 - u) ^ (N - 1 - (j : ℕ))
 
-/-- For [any finite cell masses](hyp:a), [the Bernstein kernel is measurable](goal). -/
+/-- For [any finite cell masses](hyp:a), [the Bernstein kernel is measurable](goal).
+@isnad1 id=measurab.0h2v.s3.5918b686df8a from=translated src=- shape=755642f9 vocab=c2b94861
+-/
 theorem measurable_bernsteinCell {N : ℕ} (a : Fin N → ℝ) :
     Measurable (bernsteinCell N a) := by
   unfold bernsteinCell
   fun_prop
 
 /-- For [nonnegative cell masses](hyp:ha) and [a point in the unit interval](hyp:hu),
- [the Bernstein kernel is nonnegative](goal). -/
+ [the Bernstein kernel is nonnegative](goal).
+@isnad1 id=le.2h3v.s5.b2b8cf640273 from=translated src=- shape=97a878dc vocab=f4d606fc
+-/
 theorem bernsteinCell_nonneg {N : ℕ} {a : Fin N → ℝ}
     (ha : ∀ j, 0 ≤ a j) {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     0 ≤ bernsteinCell N a u := by
@@ -46,7 +50,9 @@ theorem bernsteinCell_nonneg {N : ℕ} {a : Fin N → ℝ}
     (pow_nonneg hu.1 _)) (pow_nonneg (sub_nonneg.mpr hu.2) _)
 
 /-- For a [positive sample size](hyp:hN) and [cell index](hyp:j),
- [the Bernstein basis density associated with that cell integrates to one](goal). -/
+ [the Bernstein basis density associated with that cell integrates to one](goal).
+@isnad1 id=eq.1h2v.s7.b75c08a0d94e from=translated src=- shape=c9e6d154 vocab=8450f4f2
+-/
 theorem integral_bernstein_basis {N : ℕ} (hN : 0 < N) (j : Fin N) :
     (∫ u in Set.Icc (0 : ℝ) 1,
       (N : ℝ) * (Nat.choose (N - 1) (j : ℕ) : ℝ) *
@@ -102,7 +108,9 @@ theorem integral_bernstein_basis {N : ℕ} (hN : 0 < N) (j : Fin N) :
   nlinarith [hchoose]
 
 /-- For a [positive sample size](hyp:hN), [cell masses](hyp:a) with [unit sum](hyp:hsum),
- [the Bernstein kernel integrates to one on the unit interval](goal). -/
+ [the Bernstein kernel integrates to one on the unit interval](goal).
+@isnad1 id=eq.2h2v.s6.64347834c843 from=translated src=- shape=11156583 vocab=ea82a565
+-/
 theorem integral_bernsteinCell {N : ℕ} (hN : 0 < N) (a : Fin N → ℝ)
     (hsum : ∑ j : Fin N, a j = 1) :
     ∫ u in Set.Icc (0 : ℝ) 1, bernsteinCell N a u ∂volume = 1 := by

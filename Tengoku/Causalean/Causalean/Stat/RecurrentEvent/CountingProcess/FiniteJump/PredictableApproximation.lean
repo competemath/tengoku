@@ -22,7 +22,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 predictable approximants with the same bound and pointwise convergence. [The
 model and payoff](hyp:M,H), [predictability](hyp:hH), and [the nonnegative
 common bound](hyp:C,hC,hbound) give [the finite-valued approximation
-sequence](goal). -/
+sequence](goal).
+@isnad1 id=ex.3h5v.s7.ff8623fabc5d from=translated src=- shape=a4198c27 vocab=363d3898
+-/
 theorem Model.bounded_predictable_approximation (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (C : ℝ) (hC : 0 ≤ C) (hbound : ∀ t ω, |H t ω| ≤ C) :

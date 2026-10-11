@@ -25,7 +25,9 @@ noncomputable def scalarMomentPrior {L : ℕ} (P : ScalarMomentPriors L)
     ENNReal.ofReal (if side then P.w₁ i else P.w₀ i) • Measure.dirac (P.node i)
 
 /-- Each side of a finite scalar moment-prior pair is a probability measure
-on the real line. -/
+on the real line.
+@isnad1 id=isprobab.0h3v.s3.243b50a0ba4b from=translated src=- shape=d513b196 vocab=8e06765a
+-/
 theorem scalarMomentPrior_isProbability {L : ℕ}
     (P : ScalarMomentPriors L) (side : Bool) :
     IsProbabilityMeasure (scalarMomentPrior P side) := by
@@ -40,7 +42,9 @@ theorem scalarMomentPrior_isProbability {L : ℕ}
       simpa [scalarMomentPrior, ENNReal.ofReal_sum_of_nonneg
         (fun i _ => P.w₁_nonneg i)] using congrArg ENNReal.ofReal P.w₁_sum
 
-/-- Each real-valued scalar moment prior is supported on the unit interval. -/
+/-- Each real-valued scalar moment prior is supported on the unit interval.
+@isnad1 id=eq.0h3v.s5.2f97390d4abe from=translated src=- shape=ba880496 vocab=a6052894
+-/
 theorem scalarMomentPrior_supported {L : ℕ}
     (P : ScalarMomentPriors L) (side : Bool) :
     scalarMomentPrior P side {u : ℝ | |u| ≤ 1} = 1 := by
@@ -54,7 +58,9 @@ theorem scalarMomentPrior_supported {L : ℕ}
   exact hmass.trans (IsProbabilityMeasure.measure_univ
     (self := scalarMomentPrior_isProbability P side))
 
-/-- Given [a scalar moment prior](hyp:P), [a moment order](hyp:j), and [a proof that the order is within the matched degree](hyp:hj), [the two prior measures have equal moments of that order](goal). -/
+/-- Given [a scalar moment prior](hyp:P), [a moment order](hyp:j), and [a proof that the order is within the matched degree](hyp:hj), [the two prior measures have equal moments of that order](goal).
+@isnad1 id=eq.1h3v.s6.2233f86b522f from=translated src=- shape=cfba8875 vocab=ad8cf7c6
+-/
 theorem scalarMomentPrior_moments_eq {L : ℕ}
     (P : ScalarMomentPriors L) (j : ℕ) (hj : j ≤ L) :
     (∫ u : ℝ, u ^ j ∂scalarMomentPrior P false) =

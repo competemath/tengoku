@@ -81,7 +81,9 @@ private lemma missingArmCount_le_sampleSize {m : Nat}
 
 /-- When the stratum label and the arm assignment are measurable, the product of the counts of
 missing arm/category cells for two categories is integrable over the product sample, because
-the two counts are bounded by the sample size. -/
+the two counts are bounded by the sample size.
+@isnad1 id=integrab.2h9v.s7.ffbc4da3fe52 from=translated src=- shape=ae4b2f99 vocab=f0242198
+-/
 @[fun_prop]
 lemma integrable_missingArmCount_mul {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
@@ -394,7 +396,9 @@ private lemma integral_sum_missingArmCount_sq_le {m : Nat}
 absolute value by the envelope](hyp:hcenterBound), [a positive overlap
 margin](hyp:hepsilon), and [arm mass at least that margin times category
 mass](hyp:hoverlap) imply that [the missing-arm remainder has a boundary-safe
-diagonal-plus-exponential second-moment bound](goal). -/
+diagonal-plus-exponential second-moment bound](goal).
+@isnad1 id=le.5h11v.s8.019bd7a67c00 from=translated src=- shape=081e3842 vocab=1cbb37a5
+-/
 theorem integral_fixedStratumArmMissingRemainder_sq_le_aux {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool)

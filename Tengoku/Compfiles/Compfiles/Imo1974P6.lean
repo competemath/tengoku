@@ -26,39 +26,51 @@ namespace Imo1974P6
 
 open Polynomial
 
-/-- The integers `k` with `Q.eval k = 0` are exactly the roots of `Q`. -/
+/-- The integers `k` with `Q.eval k = 0` are exactly the roots of `Q`.
+@isnad1 id=eq.1h1v.s5.ee917f73a997 from=translated src=- shape=409f7592 vocab=cbf5243d
+-/
 theorem setOf_eval_eq_zero {Q : Polynomial ℤ} (hQ : Q ≠ 0) :
     {k : ℤ | Q.eval k = 0} = ↑(Q.roots.toFinset) := by
   ext k
   simp only [Set.mem_ofPred_eq, Finset.mem_coe, Multiset.mem_toFinset]
   rw [mem_roots hQ, IsRoot.def]
 
-/-- A nonzero integer polynomial has only finitely many integer roots. -/
+/-- A nonzero integer polynomial has only finitely many integer roots.
+@isnad1 id=finite.1h1v.s5.ae9c7f12adc5 from=translated src=- shape=14bc1e47 vocab=e781cd45
+-/
 theorem finite_eval_eq_zero {Q : Polynomial ℤ} (hQ : Q ≠ 0) :
     {k : ℤ | Q.eval k = 0}.Finite := by
   rw [setOf_eval_eq_zero hQ]
   exact Finset.finite_toSet _
 
 /-- A nonzero integer polynomial has at most `natDegree` distinct integer
-roots. -/
+roots.
+@isnad1 id=le.1h1v.s5.4380f619f81c from=translated src=- shape=603c91a5 vocab=98e11fa5
+-/
 theorem ncard_eval_eq_zero_le {Q : Polynomial ℤ} (hQ : Q ≠ 0) :
     {k : ℤ | Q.eval k = 0}.ncard ≤ Q.natDegree := by
   rw [setOf_eval_eq_zero hQ, Set.ncard_coe_finset]
   exact (Multiset.toFinset_card_le _).trans (card_roots' _)
 
-/-- `P k = 1` means that `k` is a root of `P - 1`. -/
+/-- `P k = 1` means that `k` is a root of `P - 1`.
+@isnad1 id=eq.0h1v.s6.0a2e2781b274 from=translated src=- shape=3136911f vocab=e53f0306
+-/
 theorem setOf_eval_eq_one (P : Polynomial ℤ) :
     {k : ℤ | P.eval k = 1} = {k : ℤ | (P - 1).eval k = 0} := by
   ext k
   simp only [Set.mem_ofPred_eq, eval_sub, eval_one, sub_eq_zero]
 
-/-- `P k = -1` means that `k` is a root of `P + 1`. -/
+/-- `P k = -1` means that `k` is a root of `P + 1`.
+@isnad1 id=eq.0h1v.s6.2aa1174818de from=translated src=- shape=2afad8e5 vocab=b7190437
+-/
 theorem setOf_eval_eq_neg_one (P : Polynomial ℤ) :
     {k : ℤ | P.eval k = -1} = {k : ℤ | (P + 1).eval k = 0} := by
   ext k
   simp only [Set.mem_ofPred_eq, eval_add, eval_one, add_eq_zero_iff_eq_neg]
 
-/-- Key divisibility: if `P r = 1` and `P k = -1`, then `k - r ∣ 2`. -/
+/-- Key divisibility: if `P r = 1` and `P k = -1`, then `k - r ∣ 2`.
+@isnad1 id=dvd.2h3v.s5.0debfd376c4a from=translated src=- shape=dcd25594 vocab=cb608af9
+-/
 theorem sub_dvd_two {P : Polynomial ℤ} {r k : ℤ} (hr : P.eval r = 1)
     (hk : P.eval k = -1) : k - r ∣ 2 := by
   have h0 := sub_dvd_eval_sub k r P
@@ -67,7 +79,9 @@ theorem sub_dvd_two {P : Polynomial ℤ} {r k : ℤ} (hr : P.eval r = 1)
   exact h0
 
 /-- Main step: if `r` is a least integer with `P r = ±1` and `P r = 1`, then
-at most `deg P + 2` integers satisfy `P k = ±1`. -/
+at most `deg P + 2` integers satisfy `P k = ±1`.
+@isnad1 id=le.3h2v.s7.7459edf5d1c3 from=translated src=- shape=fd712a5e vocab=f8955d39
+-/
 theorem ncard_le_of_exists_min {P : Polynomial ℤ} (hP : 0 < P.natDegree) {r : ℤ}
     (hmin : ∀ k : ℤ, P.eval k = 1 ∨ P.eval k = -1 → r ≤ k) (hr : P.eval r = 1) :
     ({k : ℤ | P.eval k = 1} ∪ {k : ℤ | P.eval k = -1}).ncard ≤ P.natDegree + 2 := by

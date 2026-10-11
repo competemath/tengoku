@@ -17,6 +17,7 @@ most the Gaussian exponential moment with variance equal to the sum of
 squared coefficients](goal).
 
 This includes the empty family.
+@isnad1 id=le.0h3v.s7.88f84f3ec373 from=translated src=- shape=00f9064d vocab=c8f2c7b6
 -/
 theorem signMGF_le {n : ℕ} (a : Fin n → ℝ) (t : ℝ) :
     (∑ σ : Fin n → Bool,

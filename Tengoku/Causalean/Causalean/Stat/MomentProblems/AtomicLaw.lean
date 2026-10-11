@@ -45,7 +45,9 @@ noncomputable def atomicLaw (n : ℕ) (x : Fin n → ℝ) (p : Fin n → ℝ) : 
     (atomicWeight n x p)
 
 /-- When the atom locations are pairwise distinct, the total weight sitting at one of them is
-exactly that atom's own weight — no two indices collide. -/
+exactly that atom's own weight — no two indices collide.
+@isnad1 id=eq.1h4v.s5.092e2b46ad69 from=translated src=- shape=e8984349 vocab=7997356d
+-/
 theorem atomicWeight_apply {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
     (hx : Function.Injective x) (j : Fin n) :
     atomicWeight n x p (x j) = p j := by
@@ -53,7 +55,9 @@ theorem atomicWeight_apply {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
   simp [atomicWeight, hx.eq_iff]
 
 /-- Integrating a function against a finite atomic law with distinct locations and nonnegative
-weights gives the weighted sum of the function's values at the atoms. -/
+weights gives the weighted sum of the function's values at the atoms.
+@isnad1 id=eq.2h4v.s6.878cede7f97b from=translated src=- shape=a36e8b8a vocab=75d06cbd
+-/
 theorem integral_atomicLaw {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
     (hx : Function.Injective x) (hp : ∀ i, 0 ≤ p i) (f : ℝ → ℝ) :
     ∫ t, f t ∂(atomicLaw n x p) = ∑ i : Fin n, p i * f (x i) := by
@@ -71,7 +75,9 @@ theorem integral_atomicLaw {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
 
 /-- A finite atomic law on the real line, built from `n` [pairwise distinct atom
 locations](hyp:hx) carrying [nonnegative weights](hyp:hp) that [sum to one](hyp:hsum), [is a
-probability measure](goal). -/
+probability measure](goal).
+@isnad1 id=isprobab.3h3v.s6.2362932ed34c from=translated src=- shape=aab2aaa6 vocab=e6344e67
+-/
 theorem isProbabilityMeasure_atomicLaw {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
     (hx : Function.Injective x) (hp : ∀ i, 0 ≤ p i) (hsum : ∑ i, p i = 1) :
     IsProbabilityMeasure (atomicLaw n x p) := by
@@ -85,7 +91,9 @@ theorem isProbabilityMeasure_atomicLaw {n : ℕ} {x : Fin n → ℝ} {p : Fin n 
     simpa only [atomicWeight_apply hx] using hsum
 
 /-- A finite atomic law with distinct locations and nonnegative weights puts exactly its own
-weight of mass on each single atom. -/
+weight of mass on each single atom.
+@isnad1 id=eq.2h4v.s6.4bbfbba0f2d2 from=translated src=- shape=c3fb79b3 vocab=ef43812a
+-/
 theorem atomicLaw_singleton {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
     (hx : Function.Injective x) (hp : ∀ i, 0 ≤ p i) (j : Fin n) :
     atomicLaw n x p {x j} = ENNReal.ofReal (p j) := by
@@ -96,7 +104,9 @@ theorem atomicLaw_singleton {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
   · exact Finset.mem_image.mpr ⟨j, Finset.mem_univ j, rfl⟩
 
 /-- A finite atomic probability law has finite moments of every order: its support is a bounded
-finite set, so the identity function is bounded almost everywhere and hence in every `Lᵖ`. -/
+finite set, so the identity function is bounded almost everywhere and hence in every `Lᵖ`.
+@isnad1 id=memlp.3h4v.s6.79c44d1ce7cc from=translated src=- shape=58f02a05 vocab=8c360e45
+-/
 theorem memLp_id_atomicLaw {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
     (hx : Function.Injective x) (hp : ∀ i, 0 ≤ p i) (hsum : ∑ i, p i = 1)
     (q : ℝ≥0∞) : MemLp (id : ℝ → ℝ) q (atomicLaw n x p) := by
@@ -119,7 +129,9 @@ theorem memLp_id_atomicLaw {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
 /-- A finite atomic probability law with [at least two locations](hyp:hn) that are [pairwise
 distinct](hyp:hx) and [each carry strictly positive mass](hyp:hp) [is **not** a Gaussian
 law](goal): a normal law with positive variance has no point masses at all, and one with zero
-variance is a single point mass. -/
+variance is a single point mass.
+@isnad1 id=not.3h3v.s5.0db6e2dca876 from=translated src=- shape=b4cfbfb1 vocab=77327cff
+-/
 theorem not_isGaussianLaw_atomicLaw {n : ℕ} {x : Fin n → ℝ} {p : Fin n → ℝ}
     (hx : Function.Injective x) (hp : ∀ i, 0 < p i)
     (hn : 2 ≤ n) : ¬ IsGaussianLaw (atomicLaw n x p) := by

@@ -17,7 +17,9 @@ namespace Causalean.Stat.Sample.OccupancyWeightedMean.ObservedRisk
 open MeasureTheory
 
 /-- Selecting the first `n` coordinates of an `N`-observation iid sample
-pushes its law forward to the `n`-fold observed product law. -/
+pushes its law forward to the `n`-fold observed product law.
+@isnad1 id=eq.1h4v.s6.51f0316e78aa from=translated src=- shape=e3bd632f vocab=ada41e56
+-/
 theorem iid_prefix_map {Ω : Type} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     {n N : ℕ} (hnN : n ≤ N) :
@@ -36,7 +38,9 @@ theorem iid_prefix_map {Ω : Type} [MeasurableSpace Ω]
 /-- Given [an observed probability law and finite cell setting](hyp:Ω,κ,μ),
 [measurable cell, arm, and outcome maps with centers](hyp:X,A,Y,center,hX,hA,hY),
 and [a prefix contained in a larger sample](hyp:n,N,hnN), [the pilot-prefix
-squared error has the fresh-prefix expectation](goal). -/
+squared error has the fresh-prefix expectation](goal).
+@isnad1 id=eq.4h9v.s8.dd1ff4af97e0 from=translated src=- shape=f7000372 vocab=0167ff46
+-/
 theorem integral_prefix_collision_error_sq
     {Ω κ : Type} [MeasurableSpace Ω] [Fintype κ] [DecidableEq κ]
     [MeasurableSpace κ] [MeasurableSingletonClass κ]

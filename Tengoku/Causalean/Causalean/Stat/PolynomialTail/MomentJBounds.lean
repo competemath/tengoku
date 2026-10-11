@@ -48,7 +48,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} {U : Ω → ℝ}
 
 /-! ## Power-integral evaluation per regime -/
 
-/-- `PowInt = (λ^{κ-1} − t₀^{κ-1})/(1−κ)` when `κ ≠ 1`. -/
+/-- `PowInt = (λ^{κ-1} − t₀^{κ-1})/(1−κ)` when `κ ≠ 1`.
+@isnad1 id=eq.4h8v.s7.65d76086f34b from=translated src=- shape=6d7d4d80 vocab=65f4dba0
+-/
 theorem powInt_ne_one (h : PolyTail P U κ t₀ cm cp) (hκ : κ ≠ 1)
     (hlam_pos : 0 < lam) (hlam_le : lam ≤ t₀) :
     ∫ t in Ioc t₀⁻¹ lam⁻¹, t ^ (-κ) = (lam ^ (κ - 1) - t₀ ^ (κ - 1)) / (1 - κ) := by
@@ -57,7 +59,9 @@ theorem powInt_ne_one (h : PolyTail P U κ t₀ cm cp) (hκ : κ ≠ 1)
     inv_rpow_eq_rpow_neg hlam_pos (1 - κ), inv_rpow_eq_rpow_neg h.t0_pos (1 - κ)]
   simp only [neg_sub]
 
-/-- `PowInt = log(1/λ) − log(1/t₀)` when `κ = 1`. -/
+/-- `PowInt = log(1/λ) − log(1/t₀)` when `κ = 1`.
+@isnad1 id=eq.4h8v.s7.9bae00185a8d from=translated src=- shape=43aea7f5 vocab=1048bc7f
+-/
 theorem powInt_eq_one (h : PolyTail P U κ t₀ cm cp) (hκ : κ = 1)
     (hlam_pos : 0 < lam) (hlam_le : lam ≤ t₀) :
     ∫ t in Ioc t₀⁻¹ lam⁻¹, t ^ (-κ) = Real.log (1 / lam) - Real.log (1 / t₀) := by
@@ -71,7 +75,9 @@ theorem powInt_eq_one (h : PolyTail P U κ t₀ cm cp) (hκ : κ = 1)
 cp`](hyp:h) with [`U` measurable and almost surely in `(0,1]`](hyp:hsetup) and [tail exponent
 strictly between `0` and `1`](hyp:hκ1), [there exist constants `0 < a ≤ A`, depending only on
 `κ, cm, cp, t₀`, such that the truncated inverse first moment `J P U λ` is squeezed between
-`a·λ^{κ-1}` and `A·λ^{κ-1}`, uniformly for every `λ ∈ (0, t₀]`](goal). -/
+`a·λ^{κ-1}` and `A·λ^{κ-1}`, uniformly for every `λ ∈ (0, t₀]`](goal).
+@isnad1 id=ex.3h7v.s7.eb3757bf3636 from=translated src=- shape=a4a525c5 vocab=00e30c4d
+-/
 theorem invMomentJ_bounds_lt [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hsetup : TailSetup P U) (hκ1 : κ < 1) :
     ∃ a A : ℝ, 0 < a ∧ a ≤ A ∧ ∀ lam : ℝ, 0 < lam → lam ≤ t₀ →
@@ -132,7 +138,9 @@ theorem invMomentJ_bounds_lt [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ 
 cp`](hyp:h) with [`U` measurable and almost surely in `(0,1]`](hyp:hsetup) and [tail exponent
 exactly `1`](hyp:hκ), [there exist constants `0 < a ≤ A` such that the truncated inverse first
 moment `J P U λ` is squeezed between `a·log(1/λ)` and `A·log(1/λ) + A`, uniformly for every
-`λ ∈ (0, t₀]`](goal). -/
+`λ ∈ (0, t₀]`](goal).
+@isnad1 id=ex.3h7v.s7.00c35026fe16 from=translated src=- shape=62ba601a vocab=3f715dd8
+-/
 theorem invMomentJ_bounds_eq [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hsetup : TailSetup P U) (hκ : κ = 1) :
     ∃ a A : ℝ, 0 < a ∧ a ≤ A ∧ ∀ lam : ℝ, 0 < lam → lam ≤ t₀ →
@@ -179,7 +187,9 @@ theorem invMomentJ_bounds_eq [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ 
 cp`](hyp:h) with [`U` measurable and almost surely in `(0,1]`](hyp:hsetup) and [tail exponent
 strictly above `1`](hyp:hκ1), [there exist constants `0 < a ≤ A` such that the truncated inverse
 first moment `J P U λ` is bounded between `a` and `A`, uniformly for every `λ ∈ (0,
-t₀]`](goal): the inverse first moment does not blow up. -/
+t₀]`](goal): the inverse first moment does not blow up.
+@isnad1 id=ex.3h7v.s6.4cf6b5421b75 from=translated src=- shape=fadf912c vocab=ff3198be
+-/
 theorem invMomentJ_bounds_gt [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hsetup : TailSetup P U) (hκ1 : 1 < κ) :
     ∃ a A : ℝ, 0 < a ∧ a ≤ A ∧ ∀ lam : ℝ, 0 < lam → lam ≤ t₀ →

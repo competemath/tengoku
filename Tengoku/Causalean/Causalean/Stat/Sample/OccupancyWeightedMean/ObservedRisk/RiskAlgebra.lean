@@ -21,7 +21,9 @@ variable {Ω κ : Type} [MeasurableSpace Ω] [Fintype κ] [DecidableEq κ]
 
 omit [DecidableEq κ] in
 /-- The observed arm-center envelope itself forces the real scale to be
-nonnegative under a probability law, since some measurable cell is inhabited. -/
+nonnegative under a probability law, since some measurable cell is inhabited.
+@isnad1 id=le.1h10v.s6.b19e520ac90c from=translated src=- shape=0cb38487 vocab=84866d99
+-/
 theorem center_envelope_nonneg (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (epsilon M rho : ℝ)
@@ -33,7 +35,9 @@ theorem center_envelope_nonneg (μ : Measure Ω) [IsProbabilityMeasure μ]
 
 omit [DecidableEq κ] in
 /-- The observed population contrast has magnitude at most twice the arm-center
-envelope under a probability law. -/
+envelope under a probability law.
+@isnad1 id=le.1h10v.s6.a0ac38be2cbb from=translated src=- shape=f8f72fcd vocab=bc7aa5bd
+-/
 theorem populationContrast_abs_le (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (epsilon M rho : ℝ)
@@ -74,7 +78,9 @@ theorem populationContrast_abs_le (μ : Measure Ω) [IsProbabilityMeasure μ]
 observed population mass; hence every empirically matched cell is supported.
 The finite-cell hypothesis is essential: an atomless cell law gives zero mass
 to every realized singleton. Prove the claim by taking the finite union of
-null cell events, then the finite union over sample coordinates. -/
+null cell events, then the finite union over sample coordinates.
+@isnad1 id=eventual.2h6v.s7.7455ac322748 from=translated src=- shape=10157fbb vocab=bec78e77
+-/
 theorem usable_supported_ae (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (hX : Measurable X) (hA : Measurable A)
     (n : ℕ) :
@@ -111,7 +117,9 @@ theorem usable_supported_ae (μ : Measure Ω) [IsProbabilityMeasure μ]
 
 /-- The collision estimator minus its design center is exactly the
 occupancy-weighted difference of guarded arm-cell residual means, even when
-the usable total is zero. -/
+the usable total is zero.
+@isnad1 id=eq.0h9v.s6.d624ab176064 from=translated src=- shape=73ad75de vocab=d68fe318
+-/
 theorem collision_sub_designCenter_eq_residual {n : ℕ}
     (μ : Measure Ω) (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (z : Fin n → Ω) :
@@ -162,7 +170,9 @@ theorem collision_sub_designCenter_eq_residual {n : ℕ}
     simp [ht]
 
 /-- Approximate homogeneity bounds squared design bias on supported samples;
-if no cell is usable, the zero fallback incurs at most four envelope squares. -/
+if no cell is usable, the zero fallback incurs at most four envelope squares.
+@isnad1 id=le.2h12v.s7.49bec058b984 from=translated src=- shape=8cdf6511 vocab=94322d44
+-/
 theorem designCenter_bias_sq_le {n : ℕ} (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (epsilon M rho : ℝ)
@@ -233,7 +243,9 @@ theorem designCenter_bias_sq_le {n : ℕ} (μ : Measure Ω) [IsProbabilityMeasur
     nlinarith [mul_nonneg (sq_nonneg M) (sq_nonneg rho)]
 
 /-- Measurable cell, arm, and outcome maps make the guarded collision estimator
-measurable on every finite iid sample space. -/
+measurable on every finite iid sample space.
+@isnad1 id=measurab.3h6v.s6.72ba0f0bb426 from=translated src=- shape=a4aa3550 vocab=df6471b8
+-/
 @[fun_prop] theorem measurable_collisionEstimator {n : ℕ}
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (hX : Measurable X) (hA : Measurable A) (hY : Measurable Y) :
@@ -249,7 +261,9 @@ measurable on every finite iid sample space. -/
     (fun _ _ => 0) hX hA hY
 
 /-- The centered design statistic has a finite second moment under bounded
-arm-cell centers and an observed probability law. -/
+arm-cell centers and an observed probability law.
+@isnad1 id=memlp.1h11v.s7.0c1553a698b5 from=translated src=- shape=687ac837 vocab=bc3ad877
+-/
 theorem designCenter_sub_target_memLp {n : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
@@ -323,7 +337,9 @@ theorem designCenter_sub_target_memLp {n : ℕ}
 /-- Given [a sample size, observed probability law, finite cell setting,
 observed maps, centers, and envelope parameters](hyp:n,μ,X,A,Y,center,epsilon,M,rho)
 and [the observed-law assumptions](hyp:h), [the collision error has a finite
-second moment](goal). -/
+second moment](goal).
+@isnad1 id=memlp.1h11v.s7.d4804c812390 from=translated src=- shape=c1e58a88 vocab=db7064f1
+-/
 theorem collision_sub_target_memLp {n : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)

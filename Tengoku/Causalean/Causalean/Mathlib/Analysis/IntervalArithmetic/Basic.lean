@@ -99,11 +99,15 @@ def tighten (I J : RatInterval) : RatInterval :=
 def expand (I : RatInterval) (e : ℚ) (he : 0 ≤ e) : RatInterval :=
   ⟨I.lo - e, I.hi + e, by linarith [I.lo_le_hi]⟩
 
-/-- Every rational interval has nonnegative width. -/
+/-- Every rational interval has nonnegative width.
+@isnad1 id=le.0h1v.s3.26cac82784b0 from=translated src=- shape=b9369acb vocab=d4a8b503
+-/
 theorem width_nonneg (I : RatInterval) : 0 ≤ I.width := by
   exact sub_nonneg.mpr I.lo_le_hi
 
-/-- Containment in a point interval is equality with that rational point. -/
+/-- Containment in a point interval is equality with that rational point.
+@isnad1 id=iff.0h2v.s4.3b6ee18393ae from=translated src=- shape=514d88df vocab=b67e75d6
+-/
 @[simp]
 theorem contains_point_iff (q : ℚ) (x : ℝ) : (point q).Contains x ↔ x = (q : ℝ) := by
   constructor
@@ -112,47 +116,63 @@ theorem contains_point_iff (q : ℚ) (x : ℝ) : (point q).Contains x ↔ x = (q
   · rintro rfl
     exact ⟨le_rfl, le_rfl⟩
 
-/-- Subinterval is reflexive. -/
+/-- Subinterval is reflexive.
+@isnad1 id=subinter.0h1v.s2.524e76fa3323 from=translated src=- shape=b3bac8d8 vocab=dfef5d6e
+-/
 theorem subinterval_refl (I : RatInterval) : I.Subinterval I := by
   exact ⟨le_rfl, le_rfl⟩
 
-/-- Subinterval is transitive. -/
+/-- Subinterval is transitive.
+@isnad1 id=subinter.2h3v.s4.059fa14a0015 from=translated src=- shape=0bc0c4a6 vocab=dfef5d6e
+-/
 theorem subinterval_trans {I J K : RatInterval} :
     I.Subinterval J → J.Subinterval K → I.Subinterval K := by
   rintro ⟨hlo₁, hhi₁⟩ ⟨hlo₂, hhi₂⟩
   exact ⟨hlo₂.trans hlo₁, hhi₁.trans hhi₂⟩
 
-/-- A real point contained in a subinterval is contained in the enclosing interval. -/
+/-- A real point contained in a subinterval is contained in the enclosing interval.
+@isnad1 id=contains.2h3v.s4.46f1ef7ea039 from=translated src=- shape=78a9c62b vocab=9232fa60
+-/
 theorem Contains.mono {I J : RatInterval} {x : ℝ}
     (hIJ : I.Subinterval J) (hx : I.Contains x) : J.Contains x := by
   have hlo : (J.lo : ℝ) ≤ I.lo := by exact_mod_cast hIJ.1
   have hhi : (I.hi : ℝ) ≤ J.hi := by exact_mod_cast hIJ.2
   exact ⟨hlo.trans hx.1, hx.2.trans hhi⟩
 
-/-- Inclusion of rational intervals cannot increase their width. -/
+/-- Inclusion of rational intervals cannot increase their width.
+@isnad1 id=le.1h2v.s3.d70a593c07b3 from=translated src=- shape=52d409ee vocab=ccfdab95
+-/
 theorem width_mono {I J : RatInterval} (hIJ : I.Subinterval J) : I.width ≤ J.width := by
   unfold width
   linarith [hIJ.1, hIJ.2]
 
-/-- The point interval soundly encloses its rational value viewed as a real. -/
+/-- The point interval soundly encloses its rational value viewed as a real.
+@isnad1 id=contains.0h1v.s3.b462c6d82b26 from=translated src=- shape=ce0f8464 vocab=b67e75d6
+-/
 theorem point_sound (q : ℚ) : (point q).Contains (q : ℝ) := by
   simp
 
-/-- Rational interval addition encloses the sum of any enclosed real operands. -/
+/-- Rational interval addition encloses the sum of any enclosed real operands.
+@isnad1 id=contains.2h4v.s4.566bcba94618 from=translated src=- shape=39a5c0e2 vocab=6d4dc0af
+-/
 theorem add_sound {I J : RatInterval} {x y : ℝ}
     (hx : I.Contains x) (hy : J.Contains y) : (add I J).Contains (x + y) := by
   constructor <;> simp only [add, Contains, Rat.cast_add]
   · exact add_le_add hx.1 hy.1
   · exact add_le_add hx.2 hy.2
 
-/-- Rational interval negation encloses the negation of every enclosed real operand. -/
+/-- Rational interval negation encloses the negation of every enclosed real operand.
+@isnad1 id=contains.1h2v.s3.f6c2380ee183 from=translated src=- shape=5fb129d5 vocab=08aaaef5
+-/
 theorem neg_sound {I : RatInterval} {x : ℝ}
     (hx : I.Contains x) : I.neg.Contains (-x) := by
   constructor <;> simp only [neg, Contains, Rat.cast_neg]
   · exact neg_le_neg hx.2
   · exact neg_le_neg hx.1
 
-/-- Rational interval subtraction encloses the difference of any enclosed real operands. -/
+/-- Rational interval subtraction encloses the difference of any enclosed real operands.
+@isnad1 id=contains.2h4v.s4.2f583959f570 from=translated src=- shape=39a5c0e2 vocab=65c1c3a6
+-/
 theorem sub_sound {I J : RatInterval} {x y : ℝ}
     (hx : I.Contains x) (hy : J.Contains y) : (sub I J).Contains (x - y) := by
   simpa [sub_eq_add_neg, sub] using add_sound hx (neg_sound hy)
@@ -160,7 +180,9 @@ theorem sub_sound {I J : RatInterval} {x y : ℝ}
 /-- For rational intervals `I` and `J`, if [`x` is a real number contained in
 `I`](hyp:hx) and [`y` is a real number contained in `J`](hyp:hy), then [the
 interval-multiplication enclosure `mul I J` contains the real product
-`x * y`](goal). -/
+`x * y`](goal).
+@isnad1 id=contains.2h4v.s4.a4549124960b from=translated src=- shape=39a5c0e2 vocab=595a03a6
+-/
 theorem mul_sound {I J : RatInterval} {x y : ℝ}
     (hx : I.Contains x) (hy : J.Contains y) : (mul I J).Contains (x * y) := by
   rcases hx with ⟨hxl, hxu⟩
@@ -235,7 +257,9 @@ theorem mul_sound {I J : RatInterval} {x y : ℝ}
           x * y ≤ (I.lo : ℝ) * y := mul_le_mul_of_nonpos_right hxl hy0'
           _ ≤ I.lo * J.lo := mul_le_mul_of_nonpos_left hyl (hxl.trans hx0')
 
-/-- A real number contained in an interval separated from zero is nonzero. -/
+/-- A real number contained in an interval separated from zero is nonzero.
+@isnad1 id=ne.2h2v.s4.63c8e1c2a651 from=translated src=- shape=01d998c2 vocab=6e7503dc
+-/
 theorem ne_zero_of_contains {I : RatInterval} {x : ℝ}
     (hI : I.AwayFromZero) (hx : I.Contains x) : x ≠ 0 := by
   rcases hI with hI | hI
@@ -244,7 +268,9 @@ theorem ne_zero_of_contains {I : RatInterval} {x : ℝ}
   · have hI' : (0 : ℝ) < I.lo := by exact_mod_cast hI
     exact ne_of_gt (hI'.trans_le hx.1)
 
-/-- Rational interval reciprocal encloses the reciprocal of every enclosed real operand. -/
+/-- Rational interval reciprocal encloses the reciprocal of every enclosed real operand.
+@isnad1 id=contains.2h2v.s4.c7d9e36a8e48 from=translated src=- shape=614184c4 vocab=d691ea87
+-/
 theorem inv_sound {I : RatInterval} {x : ℝ} (hI : I.AwayFromZero)
     (hx : I.Contains x) : (inv I hI).Contains x⁻¹ := by
   rcases hI with hneg | hpos
@@ -261,12 +287,16 @@ theorem inv_sound {I : RatInterval} {x : ℝ} (hI : I.AwayFromZero)
     exact ⟨(inv_le_inv₀ hhipos hxpos).2 hx.2,
       (inv_le_inv₀ hxpos hlopos).2 hx.1⟩
 
-/-- Rational interval division encloses every quotient whose denominator interval avoids zero. -/
+/-- Rational interval division encloses every quotient whose denominator interval avoids zero.
+@isnad1 id=contains.3h4v.s5.5f6ca5c82e39 from=translated src=- shape=9a4647dd vocab=b9769b85
+-/
 theorem div_sound {I J : RatInterval} {x y : ℝ} (hJ : J.AwayFromZero)
     (hx : I.Contains x) (hy : J.Contains y) : (div I J hJ).Contains (x / y) := by
   simpa [div, div_eq_mul_inv] using mul_sound hx (inv_sound hJ hy)
 
-/-- Repeated interval multiplication encloses every natural power of an enclosed real number. -/
+/-- Repeated interval multiplication encloses every natural power of an enclosed real number.
+@isnad1 id=contains.1h3v.s4.3e1919a179bc from=translated src=- shape=b4b3d35f vocab=873432c5
+-/
 theorem npow_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) (n : ℕ) :
     (I.npow n).Contains (x ^ n) := by
   induction n with
@@ -274,7 +304,9 @@ theorem npow_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) (n : ℕ) :
   | succ n ih => simpa [npow, pow_succ] using mul_sound ih hx
 
 /-- Tightening two intervals that share an enclosed real point returns their
-intersection and continues to enclose that point. -/
+intersection and continues to enclose that point.
+@isnad1 id=contains.2h3v.s4.fce89dd530d0 from=translated src=- shape=dc26f0f0 vocab=0d94b3fa
+-/
 theorem tighten_sound {I J : RatInterval} {x : ℝ}
     (hI : I.Contains x) (hJ : J.Contains x) :
     (tighten I J).Contains x := by
@@ -288,7 +320,9 @@ theorem tighten_sound {I J : RatInterval} {x : ℝ}
   simp only [tighten, hlohi, dite_eq_left, Contains, Rat.cast_max, Rat.cast_min]
   exact ⟨max_le hI.1 hJ.1, le_min hI.2 hJ.2⟩
 
-/-- Tightening by another sound interval produces a subinterval of the first interval. -/
+/-- Tightening by another sound interval produces a subinterval of the first interval.
+@isnad1 id=subinter.2h3v.s4.29e8a6861296 from=translated src=- shape=8ebd101a vocab=3962f2a0
+-/
 theorem tighten_subinterval_left {I J : RatInterval} {x : ℝ}
     (hI : I.Contains x) (hJ : J.Contains x) :
     (tighten I J).Subinterval I := by
@@ -302,24 +336,32 @@ theorem tighten_subinterval_left {I J : RatInterval} {x : ℝ}
   simp only [tighten, hlohi, dite_eq_left, Subinterval]
   exact ⟨le_max_left _ _, min_le_left _ _⟩
 
-/-- Addition is inclusion-isotone in both interval arguments. -/
+/-- Addition is inclusion-isotone in both interval arguments.
+@isnad1 id=subinter.2h4v.s4.b9096d8f2956 from=translated src=- shape=ad0aa300 vocab=69f3337e
+-/
 theorem add_mono {I I' J J' : RatInterval}
     (hI : I.Subinterval I') (hJ : J.Subinterval J') :
     (add I J).Subinterval (add I' J') := by
   exact ⟨add_le_add hI.1 hJ.1, add_le_add hI.2 hJ.2⟩
 
-/-- Negation preserves interval inclusion. -/
+/-- Negation preserves interval inclusion.
+@isnad1 id=subinter.1h2v.s3.38099f83f7b5 from=translated src=- shape=f01b29cf vocab=744c90bc
+-/
 theorem neg_mono {I J : RatInterval} (hIJ : I.Subinterval J) :
     I.neg.Subinterval J.neg := by
   exact ⟨neg_le_neg hIJ.2, neg_le_neg hIJ.1⟩
 
-/-- Subtraction is inclusion-isotone in both interval arguments. -/
+/-- Subtraction is inclusion-isotone in both interval arguments.
+@isnad1 id=subinter.2h4v.s4.2a5c1e909529 from=translated src=- shape=ad0aa300 vocab=5e11ba8b
+-/
 theorem sub_mono {I I' J J' : RatInterval}
     (hI : I.Subinterval I') (hJ : J.Subinterval J') :
     (sub I J).Subinterval (sub I' J') := by
   exact add_mono hI (neg_mono hJ)
 
-/-- Multiplication is inclusion-isotone in both interval arguments. -/
+/-- Multiplication is inclusion-isotone in both interval arguments.
+@isnad1 id=subinter.2h4v.s4.6627e4ebbd93 from=translated src=- shape=ad0aa300 vocab=0c5b5f82
+-/
 theorem mul_mono {I I' J J' : RatInterval}
     (hI : I.Subinterval I') (hJ : J.Subinterval J') :
     (mul I J).Subinterval (mul I' J') := by
@@ -356,14 +398,18 @@ theorem mul_mono {I I' J J' : RatInterval}
       · exact_mod_cast p₃.2
       · exact_mod_cast p₄.2
 
-/-- Natural interval powers preserve interval inclusion. -/
+/-- Natural interval powers preserve interval inclusion.
+@isnad1 id=subinter.1h3v.s4.1b95b594c061 from=translated src=- shape=ac646d39 vocab=994b4716
+-/
 theorem npow_mono {I J : RatInterval} (hIJ : I.Subinterval J) (n : ℕ) :
     (I.npow n).Subinterval (J.npow n) := by
   induction n with
   | zero => exact subinterval_refl _
   | succ n ih => exact mul_mono ih hIJ
 
-/-- Reciprocal preserves inclusion when both intervals are certified away from zero. -/
+/-- Reciprocal preserves inclusion when both intervals are certified away from zero.
+@isnad1 id=subinter.3h2v.s4.51c2bee822a8 from=translated src=- shape=ab14830a vocab=3c2a8e11
+-/
 theorem inv_mono {I J : RatInterval} (hIJ : I.Subinterval J)
     (hI : I.AwayFromZero) (hJ : J.AwayFromZero) :
     (inv I hI).Subinterval (inv J hJ) := by
@@ -379,29 +425,39 @@ theorem inv_mono {I J : RatInterval} (hIJ : I.Subinterval J)
         (J.lo_le_hi.trans_lt hJneg)).2 hIJ.1
     · exact (inv_le_inv₀ (hJpos.trans_le hIJ.1) hJpos).2 hIJ.1
 
-/-- Division is inclusion-isotone when both denominator intervals avoid zero. -/
+/-- Division is inclusion-isotone when both denominator intervals avoid zero.
+@isnad1 id=subinter.4h4v.s4.60027385f3f2 from=translated src=- shape=5be44291 vocab=078a13cb
+-/
 theorem div_mono {I I' J J' : RatInterval}
     (hI : I.Subinterval I') (hJ : J.Subinterval J')
     (hJ0 : J.AwayFromZero) (hJ0' : J'.AwayFromZero) :
     (div I J hJ0).Subinterval (div I' J' hJ0') := by
   exact mul_mono hI (inv_mono hJ hJ0 hJ0')
 
-/-- Addition makes widths add exactly. -/
+/-- Addition makes widths add exactly.
+@isnad1 id=eq.0h2v.s4.8686d2b84657 from=translated src=- shape=88b36870 vocab=2318ee25
+-/
 theorem width_add (I J : RatInterval) : (add I J).width = I.width + J.width := by
   simp [width, add]
   ring
 
-/-- Negation preserves interval width exactly. -/
+/-- Negation preserves interval width exactly.
+@isnad1 id=eq.0h1v.s3.d403528a81c5 from=translated src=- shape=8d4cac31 vocab=4c032071
+-/
 theorem width_neg (I : RatInterval) : I.neg.width = I.width := by
   simp [width, neg]
   ring
 
-/-- Subtraction makes widths add exactly. -/
+/-- Subtraction makes widths add exactly.
+@isnad1 id=eq.0h2v.s4.f0d77c29b2dc from=translated src=- shape=88b36870 vocab=fcbace6b
+-/
 theorem width_sub (I J : RatInterval) : (sub I J).width = I.width + J.width := by
   simp [sub, width_add, width_neg]
 
 /-- Widening an interval by a nonnegative amount on each side increases its width
-by twice that amount. -/
+by twice that amount.
+@isnad1 id=eq.1h2v.s5.4139fc161c4b from=translated src=- shape=50bed48e vocab=505a324e
+-/
 theorem width_expand (I : RatInterval) (e : ℚ) (he : 0 ≤ e) :
     (expand I e he).width = I.width + 2 * e := by
   simp [expand, width]

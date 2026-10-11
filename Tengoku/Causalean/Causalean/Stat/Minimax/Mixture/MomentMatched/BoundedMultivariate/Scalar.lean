@@ -45,7 +45,9 @@ structure ScalarPriors (K : ℕ) (a q gap : ℝ) where
   ordinary, and target integrals.  The existing `FiniteMomentDual`
   annihilates only ordinary powers, so it is not enough by itself. -/
 
-/-- A [positive inverse coefficient](hyp:hq₀) bounded [above by one](hyp:hq₁), [positive scale and gap constants](hyp:hc₀,hδ) with [scale below one](hyp:hc₁), and [a uniform inverse-rational approximation gap](hyp:happrox) yield [finite scalar probability priors with matched inverse and degree-`3K` moments](goal). -/
+/-- A [positive inverse coefficient](hyp:hq₀) bounded [above by one](hyp:hq₁), [positive scale and gap constants](hyp:hc₀,hδ) with [scale below one](hyp:hc₁), and [a uniform inverse-rational approximation gap](hyp:happrox) yield [finite scalar probability priors with matched inverse and degree-`3K` moments](goal).
+@isnad1 id=nonempty.7h4v.s7.324ef2e1a40c from=translated src=- shape=72338255 vocab=271b1e1a
+-/
 theorem exists_scalarPriors_of_inverseGap {q c₀ δ : ℝ}
     (hq₀ : 0 < q) (hq₁ : q ≤ 1)
     (hc₀ : 0 < c₀) (hc₁ : c₀ < 1) (hδ : 0 < δ)
@@ -135,7 +137,9 @@ theorem exists_scalarPriors_of_inverseGap {q c₀ δ : ℝ}
     have h := hmatch j.succ
     simpa [g, j] using h
 
-/-- A [positive inverse coefficient no larger than one](hyp:q,hq₀,hq₁) admits [positive constants that construct finite scalar priors at every positive degree with matched inverse and ordinary moments and a rational-target gap](goal). -/
+/-- A [positive inverse coefficient no larger than one](hyp:q,hq₀,hq₁) admits [positive constants that construct finite scalar priors at every positive degree with matched inverse and ordinary moments and a rational-target gap](goal).
+@isnad1 id=ex.2h1v.s6.5edd5401a2c7 from=translated src=- shape=d8e3a58c vocab=a8ea5ba1
+-/
 theorem exists_scalarPriors (q : ℝ) (hq₀ : 0 < q) (hq₁ : q ≤ 1) :
     ∃ c₀ gap : ℝ, 0 < c₀ ∧ c₀ < 1 ∧ 0 < gap ∧
       ∀ K : ℕ, 1 ≤ K →

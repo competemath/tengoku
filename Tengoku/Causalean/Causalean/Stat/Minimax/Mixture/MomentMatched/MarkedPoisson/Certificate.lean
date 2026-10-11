@@ -129,7 +129,9 @@ private theorem abs_atomicPolarSign_ae_absoluteMeasure
         (continuous_abs.measurable.comp (measurable_atomicPolarSign C)) measurable_const
 
 /-- The variation of the signed measure represented by [a finite signed certificate](hyp:C)
-[equals its atomic absolute-weight measure](goal). -/
+[equals its atomic absolute-weight measure](goal).
+@isnad1 id=eq.0h3v.s5.2d0110d1cd53 from=translated src=- shape=834633bd vocab=34cbe31d
+-/
 theorem variation_eq_absoluteMeasure
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     C.signedMeasure.variation = C.absoluteMeasure := by
@@ -145,7 +147,9 @@ theorem variation_eq_absoluteMeasure
     _ = C.absoluteMeasure := withDensity_one
 
 /-- The signed measure represented by [a finite signed certificate](hyp:C) [has total mass
-zero](goal), as required by its degree-zero moment constraint. -/
+zero](goal), as required by its degree-zero moment constraint.
+@isnad1 id=eq.0h3v.s5.55c412e7df92 from=translated src=- shape=8cc33714 vocab=24520834
+-/
 theorem signedMeasure_univ_eq_zero
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     C.signedMeasure Set.univ = 0 := by
@@ -155,7 +159,9 @@ theorem signedMeasure_univ_eq_zero
 
 /-- Integrating the [requested power](hyp:j) against the atomic signed measure of [a finite
 signed certificate](hyp:C) [gives zero](goal) whenever [that degree is within the certificate's
-matching range](hyp:hj). -/
+matching range](hyp:hj).
+@isnad1 id=eq.1h4v.s8.2a552dcb5bf8 from=translated src=- shape=7f2c720d vocab=da55988a
+-/
 theorem integral_pow_signedMeasure_eq_zero
     (C : NormalizedFiniteSignedMomentCertificate ι L)
     (j : ℕ) (hj : j ≤ L) :
@@ -169,7 +175,9 @@ theorem integral_pow_signedMeasure_eq_zero
   simpa using C.moments_zero j hj
 
 /-- The variation measure of [a normalized finite signed certificate](hyp:C) [is a probability
-measure](goal), because [its total absolute weight is one](step:1). -/
+measure](goal), because [its total absolute weight is one](step:1).
+@isnad1 id=isprobab.0h3v.s5.6533848a1b31 from=translated src=- shape=9211146a vocab=636cd271
+-/
 noncomputable instance variation_isProbabilityMeasure
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     IsProbabilityMeasure C.signedMeasure.variation := by
@@ -187,14 +195,18 @@ noncomputable def polarSign
     (C : NormalizedFiniteSignedMomentCertificate ι L) (x : ℝ) : ℝ :=
   ∑ i, if x = C.node i then Real.sign (C.weight i) else 0
 
-/-- The atomic polar sign of [a finite signed certificate](hyp:C) [is Borel measurable](goal). -/
+/-- The atomic polar sign of [a finite signed certificate](hyp:C) [is Borel measurable](goal).
+@isnad1 id=measurab.0h3v.s4.27d8f3f5700d from=translated src=- shape=ab621ec0 vocab=d318be09
+-/
 theorem measurable_polarSign
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     Measurable C.polarSign := by
   exact measurable_atomicPolarSign C
 
 /-- The atomic polar sign of [a finite signed certificate](hyp:C) [has absolute value one almost
-everywhere under its variation measure](goal). -/
+everywhere under its variation measure](goal).
+@isnad1 id=eventual.0h3v.s5.06a504c59972 from=translated src=- shape=6e9da0f9 vocab=c655aaea
+-/
 theorem abs_polarSign_ae
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     ∀ᵐ x ∂C.signedMeasure.variation, |C.polarSign x| = 1 := by
@@ -202,7 +214,9 @@ theorem abs_polarSign_ae
   exact abs_atomicPolarSign_ae_absoluteMeasure C
 
 /-- The atomic polar sign of [a finite signed certificate](hyp:C) [is integrable against its
-variation measure](goal). -/
+variation measure](goal).
+@isnad1 id=integrab.0h3v.s5.cd9f09c05378 from=translated src=- shape=829b34ee vocab=3f85f649
+-/
 theorem integrable_polarSign
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     Integrable C.polarSign C.signedMeasure.variation := by
@@ -210,7 +224,9 @@ theorem integrable_polarSign
   exact integrable_atomicPolarSign_absoluteMeasure C
 
 /-- The atomic signed measure of [a finite signed certificate](hyp:C) [equals its variation
-measure weighted by its measurable polar sign](goal). -/
+measure weighted by its measurable polar sign](goal).
+@isnad1 id=eq.0h3v.s5.fd97db5d52a3 from=translated src=- shape=bd9e9d72 vocab=7c482b01
+-/
 theorem signedMeasure_eq_withDensity_polarSign
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     C.signedMeasure = C.signedMeasure.variation.withDensityᵥ C.polarSign := by
@@ -319,7 +335,9 @@ private theorem prior_integral_sub
     _ = 2 * ∑ i, C.weight i * f (C.node i) := by rw [Finset.mul_sum]
 
 /-- The positive Jordan prior of [a normalized finite signed certificate](hyp:C) [is a
-probability measure](goal), because [its doubled positive weights have total mass one](step:1). -/
+probability measure](goal), because [its doubled positive weights have total mass one](step:1).
+@isnad1 id=isprobab.0h3v.s4.0c89d06c1921 from=translated src=- shape=6706f83c vocab=38fd6abf
+-/
 noncomputable instance positivePrior_isProbabilityMeasure
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     IsProbabilityMeasure C.positivePrior := by
@@ -333,7 +351,9 @@ noncomputable instance positivePrior_isProbabilityMeasure
   norm_num
 
 /-- The negative Jordan prior of [a normalized finite signed certificate](hyp:C) [is a
-probability measure](goal), because [its doubled negative weights have total mass one](step:1). -/
+probability measure](goal), because [its doubled negative weights have total mass one](step:1).
+@isnad1 id=isprobab.0h3v.s4.1be633aa105b from=translated src=- shape=6706f83c vocab=75bb3856
+-/
 noncomputable instance negativePrior_isProbabilityMeasure
     (C : NormalizedFiniteSignedMomentCertificate ι L) :
     IsProbabilityMeasure C.negativePrior := by
@@ -348,7 +368,9 @@ noncomputable instance negativePrior_isProbabilityMeasure
 
 /-- The normalized Jordan priors of [a finite signed certificate](hyp:C) [have equal moments at
 the requested degree](goal) whenever [that degree](hyp:j) [does not exceed the matching
-degree](hyp:hj). -/
+degree](hyp:hj).
+@isnad1 id=eq.1h4v.s6.22cc0cdfc0c7 from=translated src=- shape=f64965c4 vocab=7df7b157
+-/
 theorem jordanPriors_moments_eq
     (C : NormalizedFiniteSignedMomentCertificate ι L)
     (j : ℕ) (hj : j ≤ L) :
@@ -373,7 +395,9 @@ noncomputable def orientedPrior1
 
 /-- Orienting the Jordan priors of [a finite signed certificate](hyp:C) for [a target
 function](hyp:f) [makes the alternative-minus-null expectation gap equal twice the absolute
-signed certificate evaluation](goal). -/
+signed certificate evaluation](goal).
+@isnad1 id=eq.0h4v.s6.5e73c5870070 from=translated src=- shape=77d84dd6 vocab=fed5ef9e
+-/
 theorem orientedPrior_target_separation
     (C : NormalizedFiniteSignedMomentCertificate ι L) (f : ℝ → ℝ) :
     ∫ x, f x ∂C.orientedPrior1 f - ∫ x, f x ∂C.orientedPrior0 f =
@@ -388,7 +412,9 @@ theorem orientedPrior_target_separation
 
 /-- The priors obtained by orienting [a finite signed certificate](hyp:C) for [a target
 function](hyp:f) [retain equal moments at the requested degree](goal) whenever [that
-degree](hyp:j) [does not exceed the matching degree](hyp:hj). -/
+degree](hyp:j) [does not exceed the matching degree](hyp:hj).
+@isnad1 id=eq.1h5v.s6.ab92e977a5c2 from=translated src=- shape=7bf9a33a vocab=353320d8
+-/
 theorem orientedPriors_moments_eq
     (C : NormalizedFiniteSignedMomentCertificate ι L) (f : ℝ → ℝ)
     (j : ℕ) (hj : j ≤ L) :

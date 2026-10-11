@@ -41,7 +41,9 @@ They are symmetric about the origin and pairwise distinct. -/
 noncomputable def symmetricAtoms (L : ℕ) : Fin (L + 1) → ℝ :=
   fun i => 2 * (i.val : ℝ) - (L : ℝ)
 
-/-- The symmetric atoms are pairwise distinct. -/
+/-- The symmetric atoms are pairwise distinct.
+@isnad1 id=injectiv.0h1v.s4.0cf998493e51 from=translated src=- shape=e16e573f vocab=efcdc6e2
+-/
 theorem symmetricAtoms_injective (L : ℕ) : Function.Injective (symmetricAtoms L) := by
   intro i j hij
   apply Fin.ext
@@ -49,7 +51,9 @@ theorem symmetricAtoms_injective (L : ℕ) : Function.Injective (symmetricAtoms 
   have : (i.val : ℝ) = j.val := by linarith
   exact_mod_cast this
 
-/-- The symmetric atoms sum to zero — they are balanced about the origin. -/
+/-- The symmetric atoms sum to zero — they are balanced about the origin.
+@isnad1 id=eq.0h1v.s6.25147f2bbcea from=translated src=- shape=79f2aa44 vocab=ded5a531
+-/
 theorem symmetricAtoms_sum (L : ℕ) : ∑ i : Fin (L + 1), symmetricAtoms L i = 0 := by
   change ∑ i : Fin (L + 1), (2 * (i.val : ℝ) - (L : ℝ)) = 0
   rw [Fin.sum_univ_eq_sum_range (fun i => 2 * (i : ℝ) - (L : ℝ))]
@@ -72,18 +76,24 @@ $1/(L+1)$ to each of the L + 1 symmetric atoms. -/
 noncomputable def uniformWeights (L : ℕ) : Fin (L + 1) → ℝ :=
   fun _ => 1 / (L + 1 : ℝ)
 
-/-- Every uniform weight is strictly positive. -/
+/-- Every uniform weight is strictly positive.
+@isnad1 id=lt.0h2v.s4.f0f57537b47a from=translated src=- shape=b0f210c1 vocab=729241f4
+-/
 theorem uniformWeights_pos (L : ℕ) : ∀ i, 0 < uniformWeights L i := by
   intro i
   dsimp [uniformWeights]
   positivity
 
-/-- The uniform weights sum to one, so the uniform-weight atomic law is a probability law. -/
+/-- The uniform weights sum to one, so the uniform-weight atomic law is a probability law.
+@isnad1 id=eq.0h1v.s6.d9c77805e569 from=translated src=- shape=79f2aa44 vocab=64531b27
+-/
 theorem uniformWeights_sum (L : ℕ) : ∑ i, uniformWeights L i = 1 := by
   simp [uniformWeights]
   field_simp
 
-/-- The uniform-weight law on the symmetric atoms has mean zero. -/
+/-- The uniform-weight law on the symmetric atoms has mean zero.
+@isnad1 id=eq.0h1v.s6.8e251fc1cca7 from=translated src=- shape=ca714683 vocab=a8a2d743
+-/
 theorem uniformWeights_mean (L : ℕ) :
     ∑ i, uniformWeights L i * symmetricAtoms L i = 0 := by
   change ∑ i, (1 / (L + 1 : ℝ)) * symmetricAtoms L i = 0
@@ -96,11 +106,15 @@ power of the L + 1 symmetric atom locations. -/
 noncomputable def uniformMoments (L : ℕ) : ℕ → ℝ :=
   fun k => ∑ i, uniformWeights L i * symmetricAtoms L i ^ k
 
-/-- The uniform-weight law has total mass one. -/
+/-- The uniform-weight law has total mass one.
+@isnad1 id=eq.0h1v.s4.44f86b9111ec from=translated src=- shape=8fc7241c vocab=3293cef6
+-/
 theorem uniformMoments_zero (L : ℕ) : uniformMoments L 0 = 1 := by
   simpa [uniformMoments] using uniformWeights_sum L
 
-/-- The uniform-weight law is centered. -/
+/-- The uniform-weight law is centered.
+@isnad1 id=eq.0h1v.s4.7414cefcf961 from=translated src=- shape=8fc7241c vocab=3293cef6
+-/
 theorem uniformMoments_one (L : ℕ) : uniformMoments L 1 = 0 := by
   simpa [uniformMoments] using uniformWeights_mean L
 
@@ -112,7 +126,9 @@ noncomputable def uniformCumulants (L : ℕ) : ℕ → ℝ :=
   fun r => cumFromMom r (uniformMoments L)
 
 /-- Inverting the cumulants of the uniform-weight law returns its moments: the base point is a
-fixed point of the moment↔cumulant round trip. -/
+fixed point of the moment↔cumulant round trip.
+@isnad1 id=eq.0h2v.s3.164ef164db94 from=translated src=- shape=4c0f3495 vocab=86ea34ab
+-/
 theorem momFromCum_uniformCumulants (L k : ℕ) :
     momFromCum (uniformCumulants L) k = uniformMoments L k := by
   apply momFromCum_eq_of_cum (uniformMoments L) (uniformMoments_zero L) (uniformMoments_one L)
@@ -129,7 +145,9 @@ noncomputable def atomVandermonde (L : ℕ) :
   Matrix.vandermonde (symmetricAtoms L)
 
 /-- The transposed Vandermonde matrix of the symmetric atoms is invertible, because the atoms are
-pairwise distinct. -/
+pairwise distinct.
+@isnad1 id=isunit.0h1v.s6.a1fb7e60f401 from=translated src=- shape=9f19e490 vocab=5023ac3a
+-/
 theorem atomVandermonde_transpose_isUnit (L : ℕ) :
     IsUnit (atomVandermonde L).transpose.det := by
   rw [Matrix.det_transpose, isUnit_iff_ne_zero]
@@ -145,7 +163,9 @@ noncomputable def atomSolve (L : ℕ) (b : Fin (L + 1) → ℝ) :
   (atomVandermonde L).transpose⁻¹.mulVec b
 
 /-- The solved weights do reproduce the target: the weighted sum of the `k`-th powers of the atoms
-is the `k`-th target moment, for every order `k` from `0` to `L`. -/
+is the `k`-th target moment, for every order `k` from `0` to `L`.
+@isnad1 id=eq.0h3v.s7.4b350dd2cb1b from=translated src=- shape=682a746c vocab=ed2e5752
+-/
 theorem atomSolve_spec (L : ℕ) (b : Fin (L + 1) → ℝ) (k : Fin (L + 1)) :
     ∑ i, atomSolve L b i * symmetricAtoms L i ^ (k : ℕ) = b k := by
   have h := congrFun (Matrix.mulVec_mulVec b (atomVandermonde L).transpose
@@ -162,7 +182,9 @@ theorem atomSolve_spec (L : ℕ) (b : Fin (L + 1) → ℝ) (k : Fin (L + 1)) :
     _ = b k := by simpa [atomSolve] using h
 
 /-- The solve is a left inverse of taking moments: solving for the weights from the moments that a
-given weight vector produces returns that same weight vector. -/
+given weight vector produces returns that same weight vector.
+@isnad1 id=eq.0h2v.s6.b2bedbde42d2 from=translated src=- shape=1cd2a680 vocab=d7bd5eb5
+-/
 theorem atomSolve_mulVec (L : ℕ) (q : Fin (L + 1) → ℝ) :
     atomSolve L ((atomVandermonde L).transpose.mulVec q) = q := by
   funext k
@@ -171,7 +193,9 @@ theorem atomSolve_mulVec (L : ℕ) (q : Fin (L + 1) → ℝ) :
   rw [Matrix.nonsing_inv_mul _ (atomVandermonde_transpose_isUnit L), Matrix.one_mulVec] at h
   exact h
 
-/-- Solving at the moments of the uniform-weight law returns the uniform weights. -/
+/-- Solving at the moments of the uniform-weight law returns the uniform weights.
+@isnad1 id=eq.0h1v.s5.666eb29fb5df from=translated src=- shape=eff8f265 vocab=9a701f70
+-/
 theorem atomSolve_uniformMoments (L : ℕ) :
     atomSolve L (fun k => uniformMoments L k.val) = uniformWeights L := by
   rw [← atomSolve_mulVec L (uniformWeights L)]
@@ -180,7 +204,9 @@ theorem atomSolve_uniformMoments (L : ℕ) :
   simp [atomVandermonde, uniformMoments, Matrix.mulVec, dotProduct, Matrix.vandermonde_apply,
     mul_comm]
 
-/-- The moment-matching solve depends continuously on the target moments — it is linear. -/
+/-- The moment-matching solve depends continuously on the target moments — it is linear.
+@isnad1 id=continuo.0h1v.s7.078f223e4b89 from=translated src=- shape=bd14d91d vocab=00e38c75
+-/
 @[fun_prop]
 theorem continuous_atomSolve (L : ℕ) : Continuous (atomSolve L) := by
   apply continuous_pi
@@ -199,7 +225,9 @@ normalization placeholders and are ignored by the centered moment reconstruction
 noncomputable def padCumulants (L : ℕ) (y : Fin (L + 1) → ℝ) : ℕ → ℝ :=
   fun k => if h : k < L + 1 then y ⟨k, h⟩ else 0
 
-/-- Zero-extension of a finite cumulant target is continuous in the target. -/
+/-- Zero-extension of a finite cumulant target is continuous in the target.
+@isnad1 id=continuo.0h1v.s6.03659c149b6d from=translated src=- shape=ccbf30e8 vocab=082fd8de
+-/
 @[fun_prop]
 theorem continuous_padCumulants (L : ℕ) : Continuous (padCumulants L) := by
   apply continuous_pi
@@ -220,7 +248,9 @@ noncomputable def cumulantToWeights (L : ℕ) (y : Fin (L + 1) → ℝ) :
 
 /-- **The cumulant-to-weights map is continuous.** For [any truncation order `L`](hyp:L), [the map
 sending a truncated cumulant target to the recovered symmetric-atom weights is continuous](goal),
-since both the moment↔cumulant inversion and the Vandermonde solve it composes are continuous. -/
+since both the moment↔cumulant inversion and the Vandermonde solve it composes are continuous.
+@isnad1 id=continuo.0h1v.s7.4b6860eb9e11 from=translated src=- shape=bd14d91d vocab=d4ebeff1
+-/
 @[fun_prop]
 theorem continuous_cumulantToWeights (L : ℕ) : Continuous (cumulantToWeights L) := by
   apply (continuous_atomSolve L).comp
@@ -234,7 +264,9 @@ noncomputable def uniformCumulantPoint (L : ℕ) : Fin (L + 1) → ℝ :=
   fun k => uniformCumulants L k.val
 
 /-- Inverting the base cumulant target order by order returns the moments of the uniform-weight
-law. -/
+law.
+@isnad1 id=eq.0h2v.s5.16a13213c648 from=translated src=- shape=14b66c29 vocab=b38c9f69
+-/
 theorem momFromCum_padCumulants_uniform (L : ℕ) (k : Fin (L + 1)) :
     momFromCum (padCumulants L (uniformCumulantPoint L)) k.val = uniformMoments L k.val := by
   rw [← momFromCum_uniformCumulants L k.val]
@@ -245,7 +277,9 @@ theorem momFromCum_padCumulants_uniform (L : ℕ) (k : Fin (L + 1)) :
 /-- **The base point maps to the uniform weights.** For [any truncation order `L`](hyp:L), [feeding
 the cumulants of the uniform-weight law on the symmetric atoms into the cumulant-to-weights map
 returns exactly the uniform weights](goal) — all strictly positive, hence strictly inside the
-positivity constraints. -/
+positivity constraints.
+@isnad1 id=eq.0h1v.s4.c8ad0013bf3a from=translated src=- shape=baa0704a vocab=fba004a2
+-/
 theorem cumulantToWeights_uniformCumulantPoint (L : ℕ) :
     cumulantToWeights L (uniformCumulantPoint L) = uniformWeights L := by
   calc

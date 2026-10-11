@@ -16,7 +16,9 @@ open MeasureTheory
 
 noncomputable section
 
-/-- Given [a finite dimension](hyp:n) and [a coordinate index](hyp:i), [the factorial-scaled second moment of that simplex coordinate has the stated exact value](goal). -/
+/-- Given [a finite dimension](hyp:n) and [a coordinate index](hyp:i), [the factorial-scaled second moment of that simplex coordinate has the stated exact value](goal).
+@isnad1 id=eq.0h2v.s7.70a77486b1c5 from=translated src=- shape=2edbfd6e vocab=0a0fe9d1
+-/
 theorem simplex_coordinate_second_moment (n : ℕ) (i : Fin n) :
     (n.factorial : ℝ) * (∫ z in spacingSimplex n, (z i) ^ 2 ∂volume) =
       (2 : ℝ) / ((n + 1 : ℕ) * (n + 2 : ℕ)) := by
@@ -67,7 +69,9 @@ private theorem firstNSpacings_aemeasurable (n : ℕ) :
   funext x
   exact firstNSpacings_eq_orderedSpacings n x
 
-/-- Given [a finite sample size](hyp:n), [an adjacent-gap index](hyp:k), and [proof that the gap is interior](hyp:hk), [the squared sorted unit-uniform gap has the stated exact second moment](goal). -/
+/-- Given [a finite sample size](hyp:n), [an adjacent-gap index](hyp:k), and [proof that the gap is interior](hyp:hk), [the squared sorted unit-uniform gap has the stated exact second moment](goal).
+@isnad1 id=eq.1h2v.s7.e64afc241cb6 from=translated src=- shape=4ff72e4c vocab=e80acc60
+-/
 theorem uniform_gap_second_moment (n k : ℕ) (hk : k + 1 < n) :
     ∫ x, (sortedGap n k x) ^ 2 ∂iidSample uniform01 n =
       (2 : ℝ) / ((n + 1 : ℕ) * (n + 2 : ℕ)) := by
@@ -86,7 +90,9 @@ theorem uniform_gap_second_moment (n k : ℕ) (hk : k + 1 < n) :
           simp
     _ = _ := simplex_coordinate_second_moment n i
 
-/-- Given [a finite sample size](hyp:n), [an adjacent-gap index](hyp:k), and [proof that the gap is interior](hyp:hk), [the squared sorted unit-uniform gap is integrable](goal). -/
+/-- Given [a finite sample size](hyp:n), [an adjacent-gap index](hyp:k), and [proof that the gap is interior](hyp:hk), [the squared sorted unit-uniform gap is integrable](goal).
+@isnad1 id=integrab.1h2v.s6.f307d82ab80c from=translated src=- shape=9c812386 vocab=60b4fd7b
+-/
 theorem uniform_gap_square_integrable (n k : ℕ) (hk : k + 1 < n) :
     Integrable (fun x => (sortedGap n k x) ^ 2) (iidSample uniform01 n) := by
   let i : Fin n := ⟨k + 1, hk⟩
@@ -134,7 +140,9 @@ theorem uniform_gap_square_integrable (n k : ℕ) (hk : k + 1 < n) :
       (by simpa only [Measure.restrict_univ] using hbound) :
       IntegrableOn (fun x => (sortedGap n k x) ^ 2) Set.univ (iidSample uniform01 n))
 
-/-- Given [a finite sample size](hyp:n) and [proof that it is even](hyp:hn), [the alternating sum of squared sorted unit-uniform gaps has the stated exact second moment](goal). -/
+/-- Given [a finite sample size](hyp:n) and [proof that it is even](hyp:hn), [the alternating sum of squared sorted unit-uniform gaps has the stated exact second moment](goal).
+@isnad1 id=eq.1h1v.s7.3e5b60ab850f from=translated src=- shape=8681cac5 vocab=c859e6b3
+-/
 theorem uniform_alternating_gap_second_moment (n : ℕ) (hn : Even n) :
     ∫ x, (∑ j ∈ Finset.range (n / 2), (sortedGap n (2 * j) x) ^ 2)
         ∂iidSample uniform01 n =

@@ -225,7 +225,9 @@ private theorem adjacentOrderMix_integral {N k : ℕ} (hN : 0 < N) (hk : k < N)
 
 /-- For a [positive sample size](hyp:hN), [interpolation index](hyp:hk), and
  [unit interpolation fraction](hyp:hδ),
- [the adjacent order-statistic mixture has mean `(k+δ)/N`](goal). -/
+ [the adjacent order-statistic mixture has mean `(k+δ)/N`](goal).
+@isnad1 id=eq.3h3v.s6.93f852711e61 from=translated src=- shape=b60f40e7 vocab=731c0c6a
+-/
 theorem adjacentOrderMix_mean {N k : ℕ} (hN : 0 < N) (hk : k < N)
     {δ : ℝ} (hδ : δ ∈ Set.Icc (0 : ℝ) 1) :
     ∫ u, u ∂adjacentOrderMix N k δ = (k + δ) / N := by
@@ -276,7 +278,9 @@ private theorem adjacentOrderMix_second_moment {N k : ℕ} (hN : 0 < N) (hk : k 
 
 /-- For a [positive sample size](hyp:hN), [interpolation index](hyp:hk), and
  [unit interpolation fraction](hyp:hδ),
- [the adjacent order-statistic mixture has the stated centered second moment](goal). -/
+ [the adjacent order-statistic mixture has the stated centered second moment](goal).
+@isnad1 id=eq.3h3v.s8.6e6c07e55253 from=translated src=- shape=2013e84d vocab=89e7bc7d
+-/
 theorem adjacentOrderMix_variance {N k : ℕ} (hN : 0 < N) (hk : k < N)
     {δ : ℝ} (hδ : δ ∈ Set.Icc (0 : ℝ) 1) :
     (∫ u, (u - ((k + δ) / N)) ^ 2 ∂adjacentOrderMix N k δ) =
@@ -351,7 +355,9 @@ theorem adjacentOrderMix_variance {N k : ℕ} (hN : 0 < N) (hk : k < N)
 
 /-- For a probability law supported on the unit interval and a threshold in
 that interval, the integrated absolute difference between its CDF and the
-threshold step equals its mean absolute displacement from that threshold. -/
+threshold step equals its mean absolute displacement from that threshold.
+@isnad1 id=eq.2h2v.s7.c3a77704d8d3 from=translated src=- shape=52ac8253 vocab=09e48873
+-/
 theorem integral_abs_cdf_sub_step_eq_mean_abs (ν : Measure ℝ)
     [IsProbabilityMeasure ν]
     (hsupp : ∀ᵐ x ∂ν, x ∈ Set.Icc (0 : ℝ) 1)
@@ -402,7 +408,9 @@ theorem integral_abs_cdf_sub_step_eq_mean_abs (ν : Measure ℝ)
   by_cases h : t ≤ u <;> simp [Measure.real, Set.mem_Iic, h]
 
 /-- The mean absolute displacement of an adjacent order-statistic mixture from
-its interpolation threshold is bounded by its root mean-square displacement. -/
+its interpolation threshold is bounded by its root mean-square displacement.
+@isnad1 id=le.3h3v.s8.02d3250e5a4a from=translated src=- shape=7c954ab2 vocab=86cc5ee4
+-/
 theorem adjacentOrderMix_abs_deviation_le_sqrt {N k : ℕ}
     (hN : 0 < N) (hk : k < N)
     {δ : ℝ} (hδ : δ ∈ Set.Icc (0 : ℝ) 1) :
@@ -471,7 +479,9 @@ theorem adjacentOrderMix_abs_deviation_le_sqrt {N k : ℕ}
 
 /-- A [positive sample size](hyp:hN), [valid adjacent index](hyp:hk), and
 [unit-interval interpolation fraction](hyp:hδ) give [an integrated indicator
-error bounded by the mixture's root mean-square displacement](goal). -/
+error bounded by the mixture's root mean-square displacement](goal).
+@isnad1 id=le.3h3v.s8.b789a3c9613b from=translated src=- shape=841fb35d vocab=1936cf7f
+-/
 theorem adjacentOrderMix_indicator_L1 {N k : ℕ} (hN : 0 < N) (hk : k < N)
     {δ : ℝ} (hδ : δ ∈ Set.Icc (0 : ℝ) 1) :
     (∫ u in Set.Icc (0 : ℝ) 1,
@@ -528,7 +538,9 @@ theorem adjacentOrderMix_indicator_L1 {N k : ℕ} (hN : 0 < N) (hk : k < N)
  [interpolation fraction](hyp:hδ) in the unit interval, [the threshold-indicator
  error is at most the square root of twice the threshold divided by `N`](goal).
  This coarse bound isolates the algebra needed to integrate the coupling error
- against the power curvature, including the deterministic endpoint cases. -/
+ against the power curvature, including the deterministic endpoint cases.
+@isnad1 id=le.3h3v.s7.65579754cbe9 from=translated src=- shape=5e34c8e0 vocab=1936cf7f
+-/
 theorem adjacentOrderMix_indicator_L1_le_sqrt_two_t_over_N {N k : ℕ}
     (hN : 0 < N) (hk : k < N) {δ : ℝ}
     (hδ : δ ∈ Set.Icc (0 : ℝ) 1) :
@@ -584,7 +596,9 @@ theorem adjacentOrderMix_indicator_L1_le_sqrt_two_t_over_N {N k : ℕ}
       exact add_le_add hfirst hsecond
 
 /-- For a [real power](hyp:hs) at least one,
- [the power density integrates to one over the unit interval](goal). -/
+ [the power density integrates to one over the unit interval](goal).
+@isnad1 id=eq.1h1v.s6.0730485da0d9 from=translated src=- shape=14f955ce vocab=b3202f10
+-/
 theorem integral_powerDensity {s : ℝ} (hs : 1 ≤ s) :
     (∫ u in Set.Icc (0 : ℝ) 1, powerDensity s u ∂volume) = 1 := by
   have h := powerCell_eq_integral (N := 1) (by omega) hs (0 : Fin 1)

@@ -38,14 +38,18 @@ noncomputable def empiricalFrequency {m : ℕ} (hm : 0 < m) (z : Fin m → C) (c
 noncomputable def empiricalL1 {m : ℕ} (hm : 0 < m) (z : Fin m → C) (w : FinitePmf C) : ℝ :=
   ∑ c, |empiricalFrequency C hm z c - w.1 c|
 
-/-- Every [empirical atom frequency](hyp:hm,z,c) is [nonnegative](goal). -/
+/-- Every [empirical atom frequency](hyp:hm,z,c) is [nonnegative](goal).
+@isnad1 id=le.1h4v.s5.ddc498407202 from=translated src=- shape=783efdeb vocab=22932552
+-/
 theorem empiricalFrequency_nonneg {m : ℕ} (hm : 0 < m) (z : Fin m → C) (c : C) :
     0 ≤ empiricalFrequency C hm z c := by
   unfold empiricalFrequency
   exact div_nonneg (Finset.sum_nonneg fun _ _ ↦ by positivity) (Nat.cast_nonneg _)
 
 /-- Over a [finite nonempty alphabet](hyp:C), the [empirical atom frequencies of a positive
-sample](hyp:hm,z) [sum to one](goal). -/
+sample](hyp:hm,z) [sum to one](goal).
+@isnad1 id=eq.1h3v.s5.c1a977616742 from=translated src=- shape=bde5ef2e vocab=73777a82
+-/
 theorem sum_empiricalFrequency [Nonempty C] {m : ℕ} (hm : 0 < m) (z : Fin m → C) :
     ∑ c, empiricalFrequency C hm z c = 1 := by
   unfold empiricalFrequency
@@ -60,7 +64,9 @@ noncomputable def empiricalPmf [Nonempty C] {m : ℕ} (hm : 0 < m)
     ⟨empiricalFrequency_nonneg C hm z, sum_empiricalFrequency C hm z⟩⟩
 
 /-- Given a [positive sample size](hyp:hm), a [sample](hyp:z), and an [atom](hyp:c), the
-[corresponding empirical probability-vector coordinate equals the empirical frequency](goal). -/
+[corresponding empirical probability-vector coordinate equals the empirical frequency](goal).
+@isnad1 id=eq.1h4v.s6.148263bb389f from=translated src=- shape=e4679203 vocab=ddd269ad
+-/
 @[simp]
 theorem empiricalPmf_apply [Nonempty C] {m : ℕ} (hm : 0 < m)
     (z : Fin m → C) (c : C) :
@@ -69,7 +75,9 @@ theorem empiricalPmf_apply [Nonempty C] {m : ℕ} (hm : 0 < m)
 
 /-- For a [finite nonempty alphabet](hyp:C), a [positive sample](hyp:hm,z), and a
 [probability vector](hyp:w), the [distance from the empirical simplex point to the vector
-is at most their coordinatewise L1 error](goal). -/
+is at most their coordinatewise L1 error](goal).
+@isnad1 id=le.1h4v.s6.cc74fac52de1 from=translated src=- shape=367359ea vocab=c5729b31
+-/
 theorem dist_empiricalPmf_le_empiricalL1 [Nonempty C] {m : ℕ} (hm : 0 < m)
     (z : Fin m → C) (w : FinitePmf C) :
     dist (empiricalPmf C hm z) w ≤ empiricalL1 C hm z w := by
@@ -115,7 +123,9 @@ private theorem measureReal_iUnion_fintype_le {Ω ι : Type*} [MeasurableSpace �
 /-- For a [finite nonempty alphabet](hyp:C), a [probability vector](hyp:w), a [positive sample
 size](hyp:hm), and a [positive tolerance](hyp:hε), the [total product probability of samples
 whose empirical L1 error is at least the tolerance](goal) is at most the finite-union
-Hoeffding bound `2 |C| exp (-2 m (ε/|C|)^2)`. -/
+Hoeffding bound `2 |C| exp (-2 m (ε/|C|)^2)`.
+@isnad1 id=le.2h4v.s7.47609e8b29d4 from=translated src=- shape=340765ae vocab=58c0c185
+-/
 theorem empiricalL1_tail [Nonempty C] {m : ℕ} (hm : 0 < m) (w : FinitePmf C)
     {ε : ℝ} (hε : 0 < ε) :
     (∑ z : Fin m → C,
@@ -222,7 +232,9 @@ theorem empiricalL1_tail [Nonempty C] {m : ℕ} (hm : 0 < m) (w : FinitePmf C)
     exact hB
 
 /-- For every [positive tolerance](hyp:hε), the [uniform finite-category empirical L1 tail
-bound](goal) tends to zero as the sample size tends to infinity. -/
+bound](goal) tends to zero as the sample size tends to infinity.
+@isnad1 id=tendsto.1h2v.s7.2e47928d4a1a from=translated src=- shape=83cd7b9d vocab=1762265f
+-/
 theorem empiricalL1_tail_bound_tendsto_zero [Nonempty C] {ε : ℝ} (hε : 0 < ε) :
     Tendsto (fun m : ℕ ↦
       2 * Fintype.card C * Real.exp (-2 * m * (ε / Fintype.card C) ^ 2))

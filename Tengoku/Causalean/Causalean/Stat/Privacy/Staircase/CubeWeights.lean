@@ -21,7 +21,9 @@ def cubeWeight (t : Fin 4 → ℝ) (S : Finset (Fin 4)) : ℝ :=
   ∏ i : Fin 4, if i ∈ S then t i else 1 - t i
 
 /-- Every cube vertex has nonnegative product weight when all four coordinates
-lie in the unit interval. -/
+lie in the unit interval.
+@isnad1 id=le.1h2v.s5.1841b17b3f71 from=translated src=- shape=b16beb01 vocab=4a5d19b2
+-/
 theorem cubeWeight_nonneg (t : Fin 4 → ℝ)
     (ht : ∀ i, 0 ≤ t i ∧ t i ≤ 1) (S : Finset (Fin 4)) :
     0 ≤ cubeWeight t S := by
@@ -35,7 +37,9 @@ theorem cubeWeight_nonneg (t : Fin 4 → ℝ)
 /-- The product weights of all sixteen cube vertices sum to one.
 
 Proof hint: expand `∏ i, (t i + (1 - t i))` with `Finset.prod_add`;
-its powerset is `Finset.univ` here. -/
+its powerset is `Finset.univ` here.
+@isnad1 id=eq.0h1v.s5.c00990de6dfa from=translated src=- shape=c2347225 vocab=1101bb83
+-/
 theorem cubeWeight_sum (t : Fin 4 → ℝ) :
     (∑ S : Finset (Fin 4), cubeWeight t S) = 1 := by
   have hweight (S : Finset (Fin 4)) :
@@ -56,7 +60,9 @@ theorem cubeWeight_sum (t : Fin 4 → ℝ) :
 weights on the sixteen cube vertices.
 
 Proof hint: split the sum by membership of `i`, factor out `t i`, and apply
-`cubeWeight_sum` to the remaining three coordinates. -/
+`cubeWeight_sum` to the remaining three coordinates.
+@isnad1 id=eq.0h2v.s7.a61c785fba18 from=translated src=- shape=7d38d96f vocab=617d9ca3
+-/
 theorem cubeWeight_coordinate (t : Fin 4 → ℝ) (i : Fin 4) :
     (∑ S : Finset (Fin 4), cubeWeight t S * (if i ∈ S then 1 else 0)) = t i := by
   let g : Fin 4 → ℝ := fun j => if j = i then 0 else 1 - t j

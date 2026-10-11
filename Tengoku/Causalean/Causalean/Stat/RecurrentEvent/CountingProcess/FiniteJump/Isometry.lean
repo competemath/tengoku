@@ -22,7 +22,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasu
 
 /-- The square of a finite-jump compensated integral is its jump-sum of
 quadratic payoffs plus the mixed jump payoff minus the mixed compensator
-payoff. -/
+payoff.
+@isnad1 id=eq.2h5v.s7.497f60f803db from=translated src=- shape=36696c31 vocab=7a8b6fb0
+-/
 theorem Model.square_pathwise (M : Model Ω μ) (H : ℝ → Ω → ℝ)
     (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) (ω : Ω) :
@@ -136,7 +138,9 @@ theorem Model.square_pathwise (M : Model Ω μ) (H : ℝ → Ω → ℝ)
   nlinarith [hj, hc, hBval]
 
 /-- The expected finite-horizon stochastic integral of a bounded predictable
-integrand against the compensated count is zero. -/
+integrand against the compensated count is zero.
+@isnad1 id=eq.2h4v.s6.03f29da78082 from=translated src=- shape=19ca4e78 vocab=90a06afa
+-/
 theorem Model.stochasticIntegral_centered (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) :
@@ -152,7 +156,9 @@ theorem Model.stochasticIntegral_centered (M : Model Ω μ)
 integral equals the expected integral of its squared integrand against the
 at-risk intensity. [The model and payoff](hyp:M,H), [predictability](hyp:hH),
 and [boundedness](hyp:hbound) give [the subject compensated-integral
-isometry](goal). -/
+isometry](goal).
+@isnad1 id=eq.2h4v.s7.2e24e0a9c748 from=translated src=- shape=00571e08 vocab=531484e8
+-/
 theorem Model.stochasticIntegral_isometry (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) :

@@ -73,13 +73,17 @@ structure Model (n : ℕ) (Z : Fin n → Type*) [∀ i, MeasurableSpace (Z i)] w
     qdot u z = q u z * ∑ i : Fin n, increment D i u z
 
 /-- A [sequential score model](hyp:M) at [a parameter in its domain](hyp:hu) has [a transcript
-law that is a probability measure](goal). -/
+law that is a probability measure](goal).
+@isnad1 id=isprobab.1h4v.s5.91c1861598e3 from=translated src=- shape=b7964a11 vocab=b47c8d60
+-/
 theorem Model.law_probability (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) : IsProbabilityMeasure (law M.Q u) := by
   exact isProbabilityMeasure_transcriptLaw (M.Q u) (M.markov u hu) (fun _ => ())
 
 /-- A [sequential score model](hyp:M) at [a parameter in its domain](hyp:hu) has [a positive
-transcript density that integrates to one against its common reference measure](goal). -/
+transcript density that integrates to one against its common reference measure](goal).
+@isnad1 id=eq.1h4v.s6.67ffffe71bf9 from=translated src=- shape=7f26d861 vocab=8f4db9a8
+-/
 theorem Model.q_normalized (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) :
     (∫ z, M.q u z ∂M.reference) = 1 := by
@@ -101,7 +105,9 @@ theorem Model.q_normalized (M : Model n Z)
 
 /-- A [sequential score model](hyp:M), [a parameter in its domain](hyp:hu), [a stage](hyp:i),
 and [a preceding transcript history](hyp:h) have [a next-output score with conditional mean
-zero](goal). -/
+zero](goal).
+@isnad1 id=eq.1h6v.s7.b92b52f1d8e5 from=translated src=- shape=9945d85b vocab=8eb2c607
+-/
 theorem Model.stage_score_centered (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) (i : Fin n)
     (h : History Z i.val (Nat.le_of_lt i.isLt)) :
@@ -119,7 +125,9 @@ theorem Model.stage_score_centered (M : Model n Z)
   simpa using hderiv.unique hzero
 
 /-- A [sequential score model](hyp:M) at [a parameter in its domain](hyp:hu) has [a transcript
-score equal almost everywhere to the sum of its stage score increments](goal). -/
+score equal almost everywhere to the sum of its stage score increments](goal).
+@isnad1 id=eventual.1h4v.s6.8386b7652c5b from=translated src=- shape=48701d80 vocab=db765f21
+-/
 theorem Model.score_ae_eq_sum (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) :
     (fun z => M.qdot u z / M.q u z) =ᵐ[M.reference]
@@ -181,7 +189,9 @@ private theorem integral_next_local (M : Model n Z) {u : ℝ}
 
 /-- A [sequential score model](hyp:M), [a parameter in its domain](hyp:hu), [a stage](hyp:i),
 and [a measurable event of the preceding history](hyp:A,hA) have [a stage increment whose
-integral over that event is zero](goal). -/
+integral over that event is zero](goal).
+@isnad1 id=eq.2h6v.s7.89a9b7db35bc from=translated src=- shape=3593756c vocab=22767dcc
+-/
 theorem Model.increment_prefix_centered (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) (i : Fin n)
     (A : Set (History Z i.val (Nat.le_of_lt i.isLt))) (hA : MeasurableSet A) :
@@ -246,7 +256,9 @@ theorem Model.increment_prefix_centered (M : Model n Z)
 
 /-- A [sequential score model](hyp:M), [a parameter in its domain](hyp:hu), [two stages](hyp:i,j),
 and [the first stage preceding the second](hyp:hij) have [orthogonal score increments under the
-transcript law](goal). -/
+transcript law](goal).
+@isnad1 id=eq.2h6v.s6.a93d7b3b083c from=translated src=- shape=e6aaaba7 vocab=fa9e8db0
+-/
 theorem Model.increment_orthogonal (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) (i j : Fin n) (hij : i < j) :
     (∫ z, increment M.D i u z * increment M.D j u z
@@ -320,7 +332,9 @@ theorem Model.increment_orthogonal (M : Model n Z)
 
 /-- A [sequential score model](hyp:M), [a parameter in its domain](hyp:hu), and [a stage](hyp:i)
 have [a score-increment second moment equal to the prefix average of its conditional
-next-output second moment](goal). -/
+next-output second moment](goal).
+@isnad1 id=eq.1h5v.s8.e09faeee52b1 from=translated src=- shape=90658f45 vocab=b04a7182
+-/
 theorem Model.increment_second_moment_eq_prefix (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) (i : Fin n) :
     (∫ z, (increment M.D i u z) ^ 2 ∂law M.Q u) =
@@ -355,7 +369,9 @@ noncomputable def Model.fisherInformation (M : Model n Z) (u : ℝ) : ℝ :=
     M.reference M.q M.qdot u
 
 /-- A [sequential score model](hyp:M) at [a parameter in its domain](hyp:hu) has [Fisher
-information equal to the transcript-law second moment of its unguarded score](goal). -/
+information equal to the transcript-law second moment of its unguarded score](goal).
+@isnad1 id=eq.1h4v.s6.6f9e2aed3b1b from=translated src=- shape=29c20000 vocab=4f994396
+-/
 theorem Model.fisher_eq_law_score_sq (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) :
     M.fisherInformation u =
@@ -372,7 +388,9 @@ theorem Model.fisher_eq_law_score_sq (M : Model n Z)
     M.q_positive u hu z, ENNReal.toReal_ofReal (le_of_lt (M.q_positive u hu z))]
 
 /-- A [sequential score model](hyp:M) at [a parameter in its domain](hyp:hu) has [transcript
-Fisher information equal to the sum of its stage score-increment second moments](goal). -/
+Fisher information equal to the sum of its stage score-increment second moments](goal).
+@isnad1 id=eq.1h4v.s6.89d8c73391a4 from=translated src=- shape=7a32bbeb vocab=1ecf8134
+-/
 theorem Model.fisher_eq_sum_increment (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) :
     M.fisherInformation u =
@@ -435,7 +453,9 @@ theorem Model.fisher_eq_sum_increment (M : Model n Z)
 
 /-- A [sequential score model](hyp:M), [a parameter in its domain](hyp:hu), [a uniform
 conditional second-moment bound](hyp:B,hB) have [transcript Fisher information at most the
-horizon times that bound](goal). -/
+horizon times that bound](goal).
+@isnad1 id=le.2h5v.s7.9fa6aebe5148 from=translated src=- shape=08437493 vocab=79bed1e7
+-/
 theorem Model.fisher_le_horizon_mul_bound (M : Model n Z)
     {u : ℝ} (hu : u ∈ M.domain) (B : ℝ)
     (hB : ∀ (i : Fin n) (h : History Z i.val (Nat.le_of_lt i.isLt)),

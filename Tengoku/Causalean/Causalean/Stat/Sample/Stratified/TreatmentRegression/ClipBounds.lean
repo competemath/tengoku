@@ -20,7 +20,9 @@ from −R to R](hyp:theta,htheta), then for [every real estimate t](hyp:t) [the 
 the clipped estimate about θ is at most the squared error of t about θ](goal).
 
 Clipping to a symmetric interval never increases squared error relative
-to a target contained in that interval. -/
+to a target contained in that interval.
+@isnad1 id=le.2h3v.s6.8a1127b4bc1c from=translated src=- shape=9d24970e vocab=03df2a99
+-/
 lemma clip_sq_error_le (R t theta : ℝ) (hR : 0 ≤ R) (htheta : theta ∈ Icc (-R) R) :
     (clip R t - theta) ^ 2 ≤ (t - theta) ^ 2 := by
   rcases htheta with ⟨hlo, hhi⟩
@@ -35,7 +37,9 @@ lemma clip_sq_error_le (R t theta : ℝ) (hR : 0 ≤ R) (htheta : theta ∈ Icc 
 
 /-- If [the clipping radius R is nonnegative](hyp:R,hR) and [the target θ lies in the interval
 from −R to R](hyp:theta,htheta), then for [every real estimate t](hyp:t) [the squared error of the
-clipped estimate about θ is at most 4R²](goal), irrespective of the un-clipped estimate. -/
+clipped estimate about θ is at most 4R²](goal), irrespective of the un-clipped estimate.
+@isnad1 id=le.2h3v.s6.ed4ca658580a from=translated src=- shape=013b0ffb vocab=f87a599d
+-/
 lemma clip_sq_error_le_four (R t theta : ℝ) (hR : 0 ≤ R)
     (htheta : theta ∈ Icc (-R) R) : (clip R t - theta) ^ 2 ≤ 4 * R ^ 2 := by
   rcases htheta with ⟨hlo, hhi⟩

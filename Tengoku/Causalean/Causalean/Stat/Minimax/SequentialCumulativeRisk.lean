@@ -40,7 +40,9 @@ open Filter
 
 /-- Elementary per-term bound `log(x+1) - log x ≤ 1/x` for `x > 0`, i.e.
 `log(1 + 1/x) ≤ 1/x`.  This is the pointwise ingredient of the harmonic-tail
-lower bound. -/
+lower bound.
+@isnad1 id=le.1h1v.s5.9d5bda0c73dd from=translated src=- shape=541b7232 vocab=5d2b6371
+-/
 lemma log_add_one_sub_log_le_inv {x : ℝ} (hx : 0 < x) :
     Real.log (x + 1) - Real.log x ≤ 1 / x := by
   have hx_ne : x ≠ 0 := ne_of_gt hx
@@ -55,7 +57,9 @@ lemma log_add_one_sub_log_le_inv {x : ℝ} (hx : 0 < x) :
 
 /-- Harmonic-tail lower bound: for natural numbers with `1 ≤ m`,
 `∑_{t=m}^{n} 1/t ≥ log(n+1) - log m`.  Proof by telescoping the pointwise bound
-`1/t ≥ log(t+1) - log t`. -/
+`1/t ≥ log(t+1) - log t`.
+@isnad1 id=le.1h2v.s6.3ea537779257 from=translated src=- shape=283e3c37 vocab=a661f31b
+-/
 lemma harmonic_sum_ge_log_sub_log (m n : ℕ) (hm : 1 ≤ m) :
     Real.log ((n : ℝ) + 1) - Real.log (m : ℝ)
       ≤ ∑ t ∈ Finset.Icc m n, (1 : ℝ) / (t : ℝ) := by
@@ -124,7 +128,9 @@ private lemma log_lin_log_le_half_log_of_log_ge {c x : ℝ} (hc : 0 < c)
 threshold `N` beyond which `log (c · log T + 1) ≤ (1/2) · log T`.  This is the
 `log log T = o(log T)` book-keeping that lets the harmonic tail dominate the
 `t_* = Θ(log T)` cutoff.  (Route: `c·log T + 1 ≤ (log T)²/16 ≤ exp((log T)/2)`
-for large `T`, then take `log`.) -/
+for large `T`, then take `log`.)
+@isnad1 id=ex.1h1v.s6.5c1e74a734da from=translated src=- shape=51792165 vocab=63e6f9ca
+-/
 lemma log_lin_log_le_half_log {c : ℝ} (hc : 0 < c) :
     ∃ N : ℕ, ∀ T : ℕ, N ≤ T →
       Real.log (c * Real.log (T : ℝ) + 1) ≤ (1 / 2) * Real.log (T : ℝ) := by
@@ -154,7 +160,9 @@ least logarithmically: there is a threshold `T₀` such that for every `T ≥ T�
     `B T ≥ (d² / (32 J)) · log T`.
 
 The constant `1/32` is independent of the four coefficients. The threshold may depend on all
-of them. -/
+of them.
+@isnad1 id=ex.6h6v.s8.7f6ebbc24786 from=translated src=- shape=98a0367c vocab=f2b10ad6
+-/
 theorem cumulative_risk_engine
     (J d L Iq : ℝ) (hJ : 0 < J) (hd : d ≠ 0) (hL : 0 ≤ L) (hIq : 0 ≤ Iq)
     (b : ℕ → ℝ)
@@ -395,7 +403,9 @@ This theorem combines `cumulative_risk_engine` with the two abstract assumptions
     `Rsup T ≥ (S² d² / (16 J)) · log T`  for all `T ≥ T₀`,
 
 with constant `1/16`. The result is purely deterministic; any statistical interpretation or
-proof of the three comparison assumptions must be supplied by a separate development. -/
+proof of the three comparison assumptions must be supplied by a separate development.
+@isnad1 id=ex.8h9v.s8.9a105642b8ff from=translated src=- shape=dc8aed4b vocab=f2b10ad6
+-/
 theorem sequential_cumulative_risk_regret_of_recursion
     (S J d L Iq : ℝ) (hJ : 0 < J) (hd : d ≠ 0)
     (hL : 0 ≤ L) (hIq : 0 ≤ Iq)

@@ -24,7 +24,9 @@ variable {Ω A κ : Type*} [MeasurableSpace Ω] [MeasurableSpace A]
 
 /-- [A measurable finite partition and covariates](hyp:hlabel,hX) and
 [an integrable observation function](hyp:hf) give
-[its integral as the sum of set integrals over positive-mass cells](goal). -/
+[its integral as the sum of set integrals over positive-mass cells](goal).
+@isnad1 id=eq.3h7v.s7.0abb7cc1bff1 from=translated src=- shape=fe1cf316 vocab=bd1dbaf5
+-/
 theorem integral_eq_sum_positive_cells
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (f : Ω → ℝ) (hlabel : Measurable label) (hX : Measurable X)
@@ -64,7 +66,9 @@ theorem integral_eq_sum_positive_cells
       rw [Measure.restrict_eq_zero.mpr hzero, integral_zero_measure]
 
 /-- [Measurable finite partition labels and covariates](hyp:hlabel,hX) imply
-[the real masses of the positive-mass cells sum to one](goal). -/
+[the real masses of the positive-mass cells sum to one](goal).
+@isnad1 id=eq.2h6v.s6.3a2d25076c3e from=translated src=- shape=a5f1baa4 vocab=6ba3964c
+-/
 theorem sum_positiveCells_mass
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (hlabel : Measurable label) (hX : Measurable X) :

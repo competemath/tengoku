@@ -24,7 +24,9 @@ Lebesgue integral, over times s from 0 to u strictly before the subject's failur
 payoff at s evaluated with that subject's censor time reset to s, times the hazard at s, times
 the probability of censoring at or after s](goal).
 
-Both sides are extended nonnegative integrals and may be infinite. -/
+Both sides are extended nonnegative integrals and may be infinite.
+@isnad1 id=eq.5h7v.s8.06a0e09ac6c9 from=translated src=- shape=a05a7c70 vocab=084a5b7b
+-/
 theorem predictable_censor_event_hazard_lintegral {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -69,7 +71,9 @@ subject i's at-risk indicator equals the expected value, over samples whose subj
 time is at least s, of the payoff evaluated with that subject's censor time reset to s, times the
 hazard at s, times the probability of censoring at or after s](goal).
 
-The failure-time boundary remains inclusive in this fixed-time identity. -/
+The failure-time boundary remains inclusive in this fixed-time identity.
+@isnad1 id=eq.6h7v.s8.ec0b485ce1a1 from=translated src=- shape=176a36b2 vocab=9a0bd8e2
+-/
 theorem predictable_censor_atRisk_fixed_time_resample {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -143,7 +147,9 @@ theorem predictable_censor_atRisk_fixed_time_resample {n : ℕ}
 the process restricted to times at or before subject i's failure time equals the same quantity
 with times strictly before the failure time](goal), whatever the failure and censor laws.
 
-The two integrands differ only at each sample's single failure time, a Lebesgue-null set. -/
+The two integrands differ only at each sample's single failure time, a Lebesgue-null set.
+@isnad1 id=eq.0h6v.s7.666a7b96532e from=translated src=- shape=40c1f3f1 vocab=82ed245e
+-/
 theorem lintegral_failure_time_boundary {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (i : Fin n) (u : ℝ)
     (G : ℝ → Sample n → ENNReal) :
@@ -175,7 +181,9 @@ subject's failure time, of the payoff with that subject's censor time reset to s
 hazard at s, times the probability of censoring at or after s](goal).
 
 This is the same resampled time integral as for the censor-event payoff; the strict failure-time
-test differs from the inclusive at-risk test only on a Lebesgue-null singleton. -/
+test differs from the inclusive at-risk test only on a Lebesgue-null singleton.
+@isnad1 id=eq.6h7v.s8.cf2cf96bec88 from=translated src=- shape=798939a9 vocab=f303ce61
+-/
 theorem predictable_censor_atRisk_hazard_lintegral {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -281,7 +289,9 @@ hazard](hyp:hazard,hHazard), and let the payoff process be [left predictable](hy
 [jointly measurable in time and sample](hyp:hMeasurable), and [nonnegative](hyp:hNonnegative).
 For [a nonnegative horizon u](hyp:hu), [the expected payoff at subject i's observed censor event
 by u equals the expected integral from 0 to u of the payoff times the hazard times the subject's
-at-risk indicator](goal), as extended nonnegative integrals that may be infinite. -/
+at-risk indicator](goal), as extended nonnegative integrals that may be infinite.
+@isnad1 id=eq.6h7v.s8.6cd3cc090173 from=translated src=- shape=671ded45 vocab=938913c9
+-/
 theorem predictable_censor_compensator_lintegral {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)

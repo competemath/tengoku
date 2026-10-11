@@ -53,7 +53,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ ν : Measure Ω}
 measurable set is bounded in absolute value by half the `L¹` norm of `f`.
 
 Proof: `∫_A f + ∫_{Aᶜ} f = ∫ f = 0`, so `∫_A f = −∫_{Aᶜ} f`.  Bounding each piece
-by the corresponding integral of `|f|` gives `2∫_A f ≤ ∫|f|` and `−2∫_A f ≤ ∫|f|`. -/
+by the corresponding integral of `|f|` gives `2∫_A f ≤ ∫|f|` and `−2∫_A f ≤ ∫|f|`.
+@isnad1 id=le.3h5v.s7.f4bf0988a7a0 from=translated src=- shape=a08fefbd vocab=c9632322
+-/
 theorem abs_setIntegral_le_half_integral_abs_of_integral_eq_zero
     {f : Ω → ℝ} (hf : Integrable f ν) (hf0 : ∫ x, f x ∂ν = 0)
     {A : Set Ω} (hA : MeasurableSet A) :
@@ -94,7 +96,9 @@ theorem abs_setIntegral_le_half_integral_abs_of_integral_eq_zero
 variable [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
 
 /-- With density `p = dμ/dν` and `μ ≪ ν`, the signed gap `μ.real A − ν.real A`
-equals `∫ x in A, (p x − 1) ∂ν`. -/
+equals `∫ x in A, (p x − 1) ∂ν`.
+@isnad1 id=eq.2h5v.s6.993963725413 from=translated src=- shape=849352f1 vocab=4a1749fa
+-/
 theorem measureReal_sub_eq_setIntegral_rnDeriv_sub_one (hac : μ ≪ ν)
     {A : Set Ω} (_hA : MeasurableSet A) :
     μ.real A - ν.real A
@@ -111,7 +115,9 @@ theorem measureReal_sub_eq_setIntegral_rnDeriv_sub_one (hac : μ ≪ ν)
 /-- **Scheffé's inequality (≤ direction).** For probability measures `μ` and `ν` on the
 same space with [`μ` absolutely continuous with respect to `ν`](hyp:hac), [the total
 variation distance between `μ` and `ν` is at most half the `L¹(ν)`-distance of the
-Radon–Nikodym density `dμ/dν` to the constant `1`](goal). -/
+Radon–Nikodym density `dμ/dν` to the constant `1`](goal).
+@isnad1 id=le.1h4v.s6.d93f1d09ba48 from=translated src=- shape=7d86dc08 vocab=52c49f2f
+-/
 theorem tvDist_le_half_integral_abs_rnDeriv (μ ν : Measure Ω)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] (hac : μ ≪ ν) :
     tvDist μ ν ≤ (1/2) * ∫ x, |(μ.rnDeriv ν x).toReal - 1| ∂ν := by

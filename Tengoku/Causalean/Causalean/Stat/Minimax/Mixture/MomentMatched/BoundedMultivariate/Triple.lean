@@ -65,7 +65,9 @@ noncomputable def triplePrior (b a q : ℝ) (ω : Measure ℝ) :
   ∫ a/x and the added atom has its complementary mass. Finite support is
   preserved by weighting, adjoining zero, and mapping. -/
 
-/-- A [positive scale](hyp:ha₀) no larger than one [in its support endpoint](hyp:ha₁), [probability prior](hyp:ω), [finite support certificate](hyp:hfinite), and [interval support certificate](hyp:hsupport) give [a reweighted finite probability prior supported at zero and on the original interval](goal). -/
+/-- A [positive scale](hyp:ha₀) no larger than one [in its support endpoint](hyp:ha₁), [probability prior](hyp:ω), [finite support certificate](hyp:hfinite), and [interval support certificate](hyp:hsupport) give [a reweighted finite probability prior supported at zero and on the original interval](goal).
+@isnad1 id=and.4h2v.s7.e2be3f062892 from=translated src=- shape=4740ed6f vocab=1399c484
+-/
 theorem reweightedScalar_probability_finite_supported
     {a : ℝ} (ha₀ : 0 < a) (ha₁ : a ≤ 1) (ω : Measure ℝ)
     [IsProbabilityMeasure ω]
@@ -131,7 +133,9 @@ theorem reweightedScalar_probability_finite_supported
 [nonnegative inverse coefficient](hyp:q,hq), [probability prior supported on
 its positive interval](hyp:ω,hsupport), and [three degrees with positive total
 degree](hyp:i,j,k,hdegree), [the transported mixed moment has the stated
-scalar-integral formula](goal). -/
+scalar-integral formula](goal).
+@isnad1 id=eq.4h7v.s8.084cf2a8a982 from=translated src=- shape=58cf18c8 vocab=70085a0d
+-/
 theorem integral_mixedMonomial_triplePrior
     {a b q : ℝ} (ha : 0 < a) (hq : 0 ≤ q) (ω : Measure ℝ)
     [IsProbabilityMeasure ω] (hsupport : ω (Set.Icc a 1) = 1)
@@ -215,7 +219,9 @@ theorem integral_mixedMonomial_triplePrior
     _ = ∫ x, R x ∂ω := integral_congr_ae (hae.mono fun x hx => hpoint x hx)
     _ = _ := rfl
 
-/-- A [positive scalar scale](hyp:ha), [nonnegative inverse coefficient](hyp:hq), [probability prior](hyp:ω), and [its interval support](hyp:hsupport) give [the target mean of the triple prior as the stated scaled scalar rational-target mean](goal). -/
+/-- A [positive scalar scale](hyp:ha), [nonnegative inverse coefficient](hyp:hq), [probability prior](hyp:ω), and [its interval support](hyp:hsupport) give [the target mean of the triple prior as the stated scaled scalar rational-target mean](goal).
+@isnad1 id=eq.3h4v.s7.e4c1f400db68 from=translated src=- shape=60fa6338 vocab=c300279f
+-/
 theorem integral_targetFunctional_triplePrior
     {a b q : ℝ} (ha : 0 < a) (hq : 0 ≤ q) (ω : Measure ℝ)
     [IsProbabilityMeasure ω] (hsupport : ω (Set.Icc a 1) = 1) :

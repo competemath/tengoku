@@ -100,7 +100,9 @@ prior-average mean-squared error](goal).
 This is a scalar, unweighted specialization of Gill–Levit (1995), Theorem 1, obtained by taking
 one-dimensional parameters and targets with scalar unit weight. Unlike `van_trees_inequality`,
 callers provide weighted L² model conditions; all proof-internal square, product, cross, and
-strong-measurability hypotheses are derived here. -/
+strong-measurability hypotheses are derived here.
+@isnad1 id=le.2h11v.s8.0c84cfd8ffca from=translated src=- shape=3c01d87a vocab=8d141c15
+-/
 theorem van_trees_inequality_of_smooth_model
     {X : Type*} [MeasurableSpace X] (μ : Measure X) [SigmaFinite μ]
     {ell u : ℝ} (hellu : ell < u)

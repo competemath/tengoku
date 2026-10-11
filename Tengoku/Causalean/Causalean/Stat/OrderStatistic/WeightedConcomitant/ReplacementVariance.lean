@@ -21,7 +21,9 @@ noncomputable section
 
 /-- Under a continuous sorting-coordinate CDF, almost every original sample
 and independent coordinate replacement have distinct coordinates and bounded
-marks, so the pointwise rank replacement sensitivity applies. -/
+marks, so the pointwise rank replacement sensitivity applies.
+@isnad1 id=eventual.4h4v.s8.acf59607952f from=translated src=- shape=332a1d0e vocab=c5ab0335
+-/
 theorem rankConcomitant_replacement_sensitivity_ae {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -78,7 +80,9 @@ theorem rankConcomitant_replacement_sensitivity_ae {N : ℕ}
   exact rankConcomitant_replacement_sensitivity a ha hmono p.1 i p.2 hm hy hp hp'
 
 /-- The squared change of a bounded rank concomitant after one independent
-coordinate replacement is integrable under the sample–replacement product law. -/
+coordinate replacement is integrable under the sample–replacement product law.
+@isnad1 id=integrab.1h4v.s8.b15e8a4b7718 from=translated src=- shape=d304a654 vocab=e320d3fd
+-/
 theorem rankConcomitant_replacement_difference_sq_integrable {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hmark : ∀ᵐ p ∂μ, p.2 ∈ Set.Icc (0 : ℝ) 1)
@@ -109,7 +113,9 @@ theorem rankConcomitant_replacement_difference_sq_integrable {N : ℕ}
   exact (memLp_two_iff_integrable_sq hdiff.aestronglyMeasurable).mp hdiff
 
 /-- Under a continuous sorting-coordinate CDF, the square of a fixed
-observation's rank weight is integrable for any finite real weight vector. -/
+observation's rank weight is integrable for any finite real weight vector.
+@isnad1 id=integrab.1h4v.s7.c57cfef181af from=translated src=- shape=30aa8b9b vocab=4dab3be2
+-/
 theorem rankPosition_weight_sq_integrable {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -174,7 +180,9 @@ theorem rankPosition_weight_sq_integrable {N : ℕ}
     (Finset.mem_univ (rankPosition x i))
 
 /-- Independent replacement preserves the expected squared weight of
-the replaced observation's rank. -/
+the replaced observation's rank.
+@isnad1 id=eq.1h4v.s8.a506c40fd257 from=translated src=- shape=52697a3d vocab=47ae8f32
+-/
 theorem integral_replaced_rankPosition_weight_sq {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -190,7 +198,9 @@ theorem integral_replaced_rankPosition_weight_sq {N : ℕ}
 
 /-- Almost surely under the sample–replacement product law, the squared
 change in a rank concomitant is at most twice the sum of the squared weights
-at the removed and inserted ranks. -/
+at the removed and inserted ranks.
+@isnad1 id=eventual.4h4v.s9.d1077a596feb from=translated src=- shape=fd17ad3f vocab=eb88c847
+-/
 theorem rankConcomitant_replacement_sq_ae {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -228,7 +238,9 @@ theorem rankConcomitant_replacement_sq_ae {N : ℕ}
 
 /-- For an iid marked sample with a continuous sorting-coordinate CDF and
 unit-bounded marks, the mean squared change after resampling one observation
-is at most four times the mean squared weight at its original rank. -/
+is at most four times the mean squared weight at its original rank.
+@isnad1 id=le.4h4v.s8.f45da934f8ac from=translated src=- shape=4f8dd7e5 vocab=86bc574d
+-/
 theorem integral_replacement_sq_le_four_rank_weight_sq {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -289,7 +301,9 @@ theorem integral_replacement_sq_le_four_rank_weight_sq {N : ℕ}
 
 /-- For an iid marked sample with continuous sorting-coordinate CDF and marks
  in `[0,1]`, the expected variance from resampling one coordinate is bounded
- by twice that coordinate's expected squared rank weight. -/
+ by twice that coordinate's expected squared rank weight.
+@isnad1 id=le.4h4v.s8.9f122c04957b from=translated src=- shape=fa0d16d8 vocab=907da31b
+-/
 theorem integral_coordinateVariance_rankConcomitant_le {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -310,7 +324,9 @@ theorem integral_coordinateVariance_rankConcomitant_le {N : ℕ}
 
 /-- For an [iid marked law](hyp:μ) with [continuous sorting-coordinate CDF](hyp:hcont) and
  [unit-bounded marks](hyp:hmark), and [cell weights](hyp:a) that are [nonnegative and antitone](hyp:ha,hmono),
- [the concomitant variance is at most twice the squared-weight sum](goal). -/
+ [the concomitant variance is at most twice the squared-weight sum](goal).
+@isnad1 id=le.4h3v.s8.2408c74deca2 from=translated src=- shape=fe6400cd vocab=c3c474a9
+-/
 theorem variance_rankConcomitant_le_twice_sum_sq {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))

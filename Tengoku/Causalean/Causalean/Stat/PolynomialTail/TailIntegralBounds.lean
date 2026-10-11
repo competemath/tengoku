@@ -50,11 +50,15 @@ open MeasureTheory Set
 variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} {U : Ω → ℝ}
   {κ t₀ cm cp lam : ℝ}
 
-/-- `(t⁻¹)^κ = t^{-κ}` for `t > 0`. -/
+/-- `(t⁻¹)^κ = t^{-κ}` for `t > 0`.
+@isnad1 id=eq.1h2v.s5.dd454be258c2 from=translated src=- shape=a3cb8861 vocab=005ddf73
+-/
 theorem inv_rpow_eq_rpow_neg {t : ℝ} (ht : 0 < t) (κ : ℝ) : (t⁻¹) ^ κ = t ^ (-κ) := by
   rw [Real.inv_rpow ht.le, ← Real.rpow_neg ht.le]
 
-/-- Upper sandwich of the tail integrand on the polynomial window. -/
+/-- Upper sandwich of the tail integrand on the polynomial window.
+@isnad1 id=le.2h9v.s6.3b90d46a57a9 from=translated src=- shape=166f3edc vocab=8dad7ff7
+-/
 theorem tailIntegrand_upper_window [IsFiniteMeasure P] (h : PolyTail P U κ t₀ cm cp)
     {t : ℝ} (ht : t ∈ Ioc t₀⁻¹ lam⁻¹) :
     P.real {ω | U ω ≤ t⁻¹} ≤ cp * t ^ (-κ) := by
@@ -63,7 +67,9 @@ theorem tailIntegrand_upper_window [IsFiniteMeasure P] (h : PolyTail P U κ t₀
   calc P.real {ω | U ω ≤ t⁻¹} ≤ cp * (t⁻¹) ^ κ := h.tail_upper t⁻¹ (inv_pos.mpr htpos) htinv_le
     _ = cp * t ^ (-κ) := by rw [inv_rpow_eq_rpow_neg htpos]
 
-/-- Lower sandwich of the tail integrand on the polynomial window. -/
+/-- Lower sandwich of the tail integrand on the polynomial window.
+@isnad1 id=le.2h9v.s6.cb1898c944f4 from=translated src=- shape=d468d96f vocab=8dad7ff7
+-/
 theorem tailIntegrand_lower_window [IsFiniteMeasure P] (h : PolyTail P U κ t₀ cm cp)
     {t : ℝ} (ht : t ∈ Ioc t₀⁻¹ lam⁻¹) :
     cm * t ^ (-κ) ≤ P.real {ω | U ω ≤ t⁻¹} := by
@@ -72,7 +78,9 @@ theorem tailIntegrand_lower_window [IsFiniteMeasure P] (h : PolyTail P U κ t₀
   calc cm * t ^ (-κ) = cm * (t⁻¹) ^ κ := by rw [inv_rpow_eq_rpow_neg htpos]
     _ ≤ P.real {ω | U ω ≤ t⁻¹} := h.tail_lower t⁻¹ (inv_pos.mpr htpos) htinv_le
 
-/-- `t^{-κ}` is integrable on the window `(t₀⁻¹, λ⁻¹]`. -/
+/-- `t^{-κ}` is integrable on the window `(t₀⁻¹, λ⁻¹]`.
+@isnad1 id=integrab.3h8v.s6.d83883ff4b8c from=translated src=- shape=35ded3af vocab=8f13eed4
+-/
 theorem integrableOn_rpow_neg_window (h : PolyTail P U κ t₀ cm cp) (hlam_pos : 0 < lam)
     (hlam_le : lam ≤ t₀) :
     IntegrableOn (fun t : ℝ => t ^ (-κ)) (Ioc t₀⁻¹ lam⁻¹) volume := by
@@ -94,7 +102,9 @@ the power comparison integral over `(t₀⁻¹, λ⁻¹]`](goal):
 `tailIntegral P U λ ≤ (t₀⁻¹ - 1) + cp * ∫ t in Ioc t₀⁻¹ λ⁻¹, t ^ (-κ)`.
 
 The split at `t₀⁻¹` keeps the part where the polynomial tail assumption is unavailable bounded by
-`1`, and uses `tailIntegrand_upper_window` on the polynomial window. -/
+`1`, and uses `tailIntegrand_upper_window` on the polynomial window.
+@isnad1 id=le.3h8v.s7.9d384d9f7446 from=translated src=- shape=1df57f6e vocab=664358c4
+-/
 theorem tailIntegral_le [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hlam_pos : 0 < lam) (hlam_le : lam ≤ t₀) :
     tailIntegral P U lam ≤ (t₀⁻¹ - 1) + cp * ∫ t in Ioc t₀⁻¹ lam⁻¹, t ^ (-κ) := by
@@ -132,7 +142,9 @@ theorem tailIntegral_le [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp
 `cm * ∫ t in Ioc t₀⁻¹ λ⁻¹, t ^ (-κ) ≤ tailIntegral P U λ`.
 
 The proof discards the nonnegative pre-window contribution and applies
-`tailIntegrand_lower_window` on `(t₀⁻¹, λ⁻¹]`. -/
+`tailIntegrand_lower_window` on `(t₀⁻¹, λ⁻¹]`.
+@isnad1 id=le.3h8v.s6.d0acb055966d from=translated src=- shape=d8397af8 vocab=3b6b9eea
+-/
 theorem tailIntegral_ge [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hlam_pos : 0 < lam) (hlam_le : lam ≤ t₀) :
     cm * ∫ t in Ioc t₀⁻¹ lam⁻¹, t ^ (-κ) ≤ tailIntegral P U lam := by

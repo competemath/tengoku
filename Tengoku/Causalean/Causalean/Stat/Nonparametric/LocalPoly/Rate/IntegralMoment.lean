@@ -41,7 +41,9 @@ noncomputable def intMomentMatrix (p : ℕ) (ν : Measure ℝ) (t : ℝ) :
   Matrix.of (fun j k => ∫ a, (a - t) ^ (j : ℕ) * (a - t) ^ (k : ℕ) ∂ν)
 
 /-- **Gram quadratic form of the integral moment matrix.** `vᵀ S v = ∫ (∑ⱼ vⱼ (a−t)^j)² dν` —
-the population moment matrix is the integral Gram matrix of the centered monomial features. -/
+the population moment matrix is the integral Gram matrix of the centered monomial features.
+@isnad1 id=eq.1h4v.s8.0ceb08f277a7 from=translated src=- shape=252e6b00 vocab=65ddf2e5
+-/
 theorem intMomentMatrix_quadForm {p : ℕ} {ν : Measure ℝ} {t : ℝ}
     (hint : ∀ j k : Fin (p + 1),
       Integrable (fun a => (a - t) ^ (j : ℕ) * (a - t) ^ (k : ℕ)) ν)
@@ -96,14 +98,18 @@ theorem intMomentMatrix_quadForm {p : ℕ} {ν : Measure ℝ} {t : ℝ}
               intro k _
               ring))
 
-/-- The integral moment matrix is symmetric. -/
+/-- The integral moment matrix is symmetric.
+@isnad1 id=ishermit.0h3v.s5.d8c835480513 from=translated src=- shape=792b8f77 vocab=0ebc78f0
+-/
 theorem intMomentMatrix_isHermitian {p : ℕ} {ν : Measure ℝ} {t : ℝ} :
     (intMomentMatrix p ν t).IsHermitian := by
   ext j k
   simp only [Matrix.conjTranspose_apply, intMomentMatrix, Matrix.of_apply, star_trivial]
   exact MeasureTheory.integral_congr_ae (Filter.Eventually.of_forall (fun a => by ring))
 
-/-- **The integral moment matrix is positive semidefinite** (a Gram matrix of an `L²` family). -/
+/-- **The integral moment matrix is positive semidefinite** (a Gram matrix of an `L²` family).
+@isnad1 id=possemid.1h3v.s7.1d6fad9cd7f0 from=translated src=- shape=ee9d9ec9 vocab=447dc1fe
+-/
 theorem intMomentMatrix_posSemidef {p : ℕ} {ν : Measure ℝ} {t : ℝ}
     (hint : ∀ j k : Fin (p + 1),
       Integrable (fun a => (a - t) ^ (j : ℕ) * (a - t) ^ (k : ℕ)) ν) :
@@ -117,7 +123,9 @@ theorem intMomentMatrix_posSemidef {p : ℕ} {ν : Measure ℝ} {t : ℝ}
 `(a−t)^j·(a−t)^k` is integrable against the design measure `ν`](hyp:hint) and [the design law is
 non-degenerate: no nonzero coefficient vector `v` makes the centered polynomial `∑ⱼ vⱼ (a−t)^j`
 vanish `ν`-almost everywhere](hyp:hnd). Then [the integral moment matrix `intMomentMatrix p ν t` is
-positive definite](goal). -/
+positive definite](goal).
+@isnad1 id=posdef.2h3v.s8.72659521d7db from=translated src=- shape=ff29a44e vocab=92d99df9
+-/
 theorem intMomentMatrix_posDef {p : ℕ} {ν : Measure ℝ} {t : ℝ}
     (hint : ∀ j k : Fin (p + 1),
       Integrable (fun a => (a - t) ^ (j : ℕ) * (a - t) ^ (k : ℕ)) ν)
@@ -157,7 +165,9 @@ theorem intMomentMatrix_posDef {p : ℕ} {ν : Measure ℝ} {t : ℝ}
 
 /-- **Invertibility of the integral moment matrix** from design non-degeneracy: a positive
 definite matrix has a unit determinant, discharging the `IsUnit S.det` hypothesis for the
-population shape matrix. -/
+population shape matrix.
+@isnad1 id=isunit.2h3v.s8.86fbb5f2c4fa from=translated src=- shape=3a890e5e vocab=9e63d13e
+-/
 theorem intMomentMatrix_isUnit_det {p : ℕ} {ν : Measure ℝ} {t : ℝ}
     (hint : ∀ j k : Fin (p + 1),
       Integrable (fun a => (a - t) ^ (j : ℕ) * (a - t) ^ (k : ℕ)) ν)

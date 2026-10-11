@@ -25,7 +25,9 @@ variable {Ω A κ : Type*} [MeasurableSpace Ω] [MeasurableSpace A]
   [Finite κ] [DecidableEq κ] [MeasurableSpace κ] [MeasurableSingletonClass κ]
 
 /-- [A measurable covariate partition](hyp:hlabel,hX) implies that
-[expectations of functions of a cell count equal the corresponding binomial sum](goal). -/
+[expectations of functions of a cell count equal the corresponding binomial sum](goal).
+@isnad1 id=eq.2h9v.s7.41c379acfdfb from=translated src=- shape=965e36a4 vocab=67f606ee
+-/
 theorem integral_cellCount_eq_binomial {m : ℕ} (μ : Measure Ω) [IsProbabilityMeasure μ]
     (label : A → κ) (X : Ω → A) (k : κ) (F : ℕ → ℝ)
     (hlabel : Measurable label) (hX : Measurable X) :
@@ -98,7 +100,9 @@ theorem integral_cellCount_eq_binomial {m : ℕ} (μ : Measure Ω) [IsProbabilit
         (ι := Fin m) (cellMass μ label X k) F
 
 /-- [A measurable covariate partition](hyp:hlabel,hX) gives
-[empty-cell probability equal to the failure probability raised to the sample size](goal). -/
+[empty-cell probability equal to the failure probability raised to the sample size](goal).
+@isnad1 id=eq.2h8v.s7.5c283974e023 from=translated src=- shape=3cd0ad30 vocab=bc68c336
+-/
 theorem empty_cell_probability {m : ℕ} (μ : Measure Ω) [IsProbabilityMeasure μ]
     (label : A → κ) (X : Ω → A) (k : κ)
     (hlabel : Measurable label) (hX : Measurable X) :
@@ -119,7 +123,9 @@ theorem empty_cell_probability {m : ℕ} (μ : Measure Ω) [IsProbabilityMeasure
   simpa [Causalean.Mathlib.Probability.binomialWeight] using h
 
 /-- [A probability in the unit interval](hyp:hp) satisfies
-[the mass-weighted empty-cell bound](goal), including zero observations. -/
+[the mass-weighted empty-cell bound](goal), including zero observations.
+@isnad1 id=le.1h2v.s6.e9d1c5eb7ebf from=translated src=- shape=43bb6e0d vocab=74c3286b
+-/
 theorem mass_mul_empty_probability_le (m : ℕ) (p : ℝ) (hp : p ∈ Set.Icc (0 : ℝ) 1) :
     p * (1 - p) ^ m ≤ 1 / (m + 1 : ℝ) := by
   -- The first m+1 terms of the geometric series are each at least (1-p)^m;
@@ -145,7 +151,9 @@ theorem mass_mul_empty_probability_le (m : ℕ) (p : ℝ) (hp : p ∈ Set.Icc (0
 
 /-- [A measurable partition](hyp:hlabel,hX) and [positive cell mass](hyp:hp)
 give [mass-weighted expected reciprocal count at most twice the reciprocal
-sample-size successor](goal). -/
+sample-size successor](goal).
+@isnad1 id=le.3h8v.s7.8f1d62f8f409 from=translated src=- shape=829e82fc vocab=cee6857b
+-/
 theorem mass_mul_integral_inverse_count_le {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A) (k : κ)
     (hlabel : Measurable label) (hX : Measurable X) (hp : 0 < cellMass μ label X k) :

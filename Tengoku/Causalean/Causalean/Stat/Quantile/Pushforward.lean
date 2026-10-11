@@ -20,7 +20,9 @@ namespace Causalean.Stat.Quantile.Pushforward
 
 /-- [Two probability laws](hyp:μ,ν) [concentrated on the common closed interval
 from `a` to `b`](hyp:a,b,hμ,hν) and [a coupling of them](hyp:π,hπ) have
-[an integrable absolute coordinate difference](goal). -/
+[an integrable absolute coordinate difference](goal).
+@isnad1 id=integrab.3h5v.s7.cb3e8c02ccd4 from=translated src=- shape=6793e484 vocab=bc81fd18
+-/
 lemma coupling_abs_cost_integrable (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hμ : μ (Icc a b)ᶜ = 0) (hν : ν (Icc a b)ᶜ = 0)
@@ -46,7 +48,9 @@ lemma coupling_abs_cost_integrable (μ ν : Measure ℝ)
 
 /-- [Two probability laws](hyp:μ,ν), [a coupling of them](hyp:π,hπ), and
 [a threshold](hyp:t) have [a CDF difference at that threshold bounded by the
-coupling's expected lower-ray-indicator disagreement](goal). -/
+coupling's expected lower-ray-indicator disagreement](goal).
+@isnad1 id=le.1h4v.s7.83b50cdb7ef6 from=translated src=- shape=63b57785 vocab=07a2d7a4
+-/
 lemma cdf_distance_le_threshold_disagreement (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {π : Measure (ℝ × ℝ)} (hπ : IsCoupling π μ ν) (t : ℝ) :
@@ -94,7 +98,9 @@ lemma cdf_distance_le_threshold_disagreement (μ ν : Measure ℝ)
 /-- [Two probability laws](hyp:μ,ν) [concentrated on the ordered common closed
 interval from `a` to `b`](hyp:a,b,hab,hμ,hν) and [a coupling](hyp:π,hπ) have
 [integrated lower-ray disagreement equal to expected absolute coordinate
-distance](goal). -/
+distance](goal).
+@isnad1 id=eq.4h5v.s8.47479af3584f from=translated src=- shape=700a77de vocab=3aa9b626
+-/
 lemma coupling_indicator_integral_eq_cost (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hab : a ≤ b)
@@ -153,7 +159,9 @@ lemma coupling_indicator_integral_eq_cost (μ ν : Measure ℝ)
 /-- [Two probability laws](hyp:μ,ν) [concentrated on the ordered common closed
 interval from `a` to `b`](hyp:a,b,hab,hμ,hν) and [a coupling](hyp:π,hπ) have
 [integrated CDF distance no larger than the coupling's expected absolute
-coordinate distance](goal). -/
+coordinate distance](goal).
+@isnad1 id=le.4h5v.s7.f81e52036043 from=translated src=- shape=24198b0c vocab=c281b447
+-/
 theorem cdf_distance_le_coupling_cost (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hab : a ≤ b)
@@ -202,7 +210,9 @@ theorem cdf_distance_le_coupling_cost (μ ν : Measure ℝ)
 /-- [Two probability laws](hyp:μ,ν) [concentrated on the ordered common closed
 interval from `a` to `b`](hyp:a,b,hab,hμ,hν) and [a coupling](hyp:π,hπ) have
 [shared-uniform quantile cost no larger than the coupling's expected absolute
-coordinate distance](goal). -/
+coordinate distance](goal).
+@isnad1 id=le.4h5v.s7.c901d2322055 from=translated src=- shape=a8fa78c7 vocab=7aae821b
+-/
 theorem quantile_cost_le_coupling_cost (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hab : a ≤ b)
@@ -216,7 +226,9 @@ theorem quantile_cost_le_coupling_cost (μ ν : Measure ℝ)
 
 /-- [A measurable transformation](hyp:f,hf) sends [a coupling of two real
 laws](hyp:μ,ν,π,hπ) to [a coupling of their transformed laws](goal) by acting
-on both coordinates. -/
+on both coordinates.
+@isnad1 id=iscoupli.2h4v.s6.39d81485c186 from=translated src=- shape=3e56eb44 vocab=61842f65
+-/
 lemma map_pair_isCoupling (μ ν : Measure ℝ)
     (f : ℝ → ℝ) (hf : Measurable f)
     {π : Measure (ℝ × ℝ)} (hπ : IsCoupling π μ ν) :
@@ -237,7 +249,9 @@ lemma map_pair_isCoupling (μ ν : Measure ℝ)
 /-- [A law](hyp:μ) [concentrated on the ordered interval from `a`
 to `b`](hyp:a,b,hab,hμ), mapped by [a measurable transformation](hyp:f,hf)
 with [a Lipschitz factor](hyp:L) [that is nonnegative](hyp:hL) [and controls the transformation on that interval](hyp:hLip), is
-[concentrated on the corresponding bounded image interval](goal). -/
+[concentrated on the corresponding bounded image interval](goal).
+@isnad1 id=eq.5h5v.s7.ed70295eb354 from=translated src=- shape=d24f8269 vocab=a5ac5415
+-/
 lemma map_supported_in_lipschitz_range (μ : Measure ℝ)
     {a b L : ℝ} (hab : a ≤ b)
     (hμ : μ (Icc a b)ᶜ = 0) (hL : 0 ≤ L)
@@ -266,7 +280,9 @@ lemma map_supported_in_lipschitz_range (μ : Measure ℝ)
 /-- [A coupling of two probability laws](hyp:μ,ν,π,hπ) [concentrated on the
 ordered interval from `a` to `b`](hyp:a,b,hab,hμ,hν), mapped by [a measurable
 transformation](hyp:f,hf) with [a Lipschitz factor](hyp:L) [that is nonnegative](hyp:hL) [and controls the transformation there](hyp:hLip), has [image absolute cost at most that factor times its source
-cost](goal). -/
+cost](goal).
+@isnad1 id=le.7h7v.s8.f0e11315c753 from=translated src=- shape=c50dee47 vocab=af19d924
+-/
 lemma mapped_coupling_cost_le (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b L : ℝ} (hab : a ≤ b)
@@ -311,7 +327,9 @@ lemma mapped_coupling_cost_le (μ ν : Measure ℝ)
 /-- [Two probability laws](hyp:μ,ν) [concentrated on an ordered common closed
 interval](hyp:a,b,hab,hμ,hν), and [a measurable transformation](hyp:f,hf)
 with [a Lipschitz factor](hyp:L) [that is nonnegative](hyp:hL) [and controls the transformation on that interval](hyp:hLip), have
-[image quantile transport cost at most that factor times their source cost](goal). This conclusion allows atoms and decreasing transformations. -/
+[image quantile transport cost at most that factor times their source cost](goal). This conclusion allows atoms and decreasing transformations.
+@isnad1 id=le.6h6v.s8.dc0046d132e4 from=translated src=- shape=557ceca5 vocab=4c65a754
+-/
 theorem quantile_pushforward_lipschitzOn (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b L : ℝ} (hab : a ≤ b)
@@ -361,7 +379,9 @@ theorem quantile_pushforward_lipschitzOn (μ ν : Measure ℝ)
 /-- [Two probability laws](hyp:μ,ν) [concentrated on an ordered common closed
 interval](hyp:a,b,hab,hμ,hν), and [a measurable globally Lipschitz
 transformation](hyp:f,hf,L,hL,hLip), have [image quantile transport cost at
-most the global Lipschitz factor times their source cost](goal). -/
+most the global Lipschitz factor times their source cost](goal).
+@isnad1 id=le.6h6v.s8.86694a8522ad from=translated src=- shape=34e1d370 vocab=dd64dd5e
+-/
 theorem quantile_pushforward_lipschitz (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b L : ℝ} (hab : a ≤ b)

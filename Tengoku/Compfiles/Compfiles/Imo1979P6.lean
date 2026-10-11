@@ -51,11 +51,17 @@ instance Set.instFintypeElemOfSubtype {α : Type} (p: α → Prop) [inst : Finty
     apply Fintype.complete
 }
 
+/--
+@isnad1 id=eq.0h7v.s5.0e8325b123ed from=translated src=- shape=85f7446a vocab=c34be683
+-/
 @[simp]
 theorem Walk.append_getVert {V : Type} {G : SimpleGraph V} {u v w : V}
   (w1 : G.Walk u v) (w2 : G.Walk v w) : (w1.append w2).getVert w1.length = v
     := by simp [Walk.getVert_append]
 
+/--
+@isnad1 id=eq.0h7v.s6.093d5ae3917c from=translated src=- shape=5c7c9fba vocab=2c75526e
+-/
 @[simp]
 theorem Walk.take_append {V : Type} {G : SimpleGraph V} {u v w : V}
   (w1 : G.Walk u v) (w2 : G.Walk v w) :
@@ -64,6 +70,9 @@ theorem Walk.take_append {V : Type} {G : SimpleGraph V} {u v w : V}
     rw [Walk.support_take, Walk.support_append]
     simp
 
+/--
+@isnad1 id=eq.0h7v.s6.2a1eeedc5983 from=translated src=- shape=e9a0e455 vocab=75f9ed3f
+-/
 @[simp]
 theorem Walk.drop_append_of_length_eq {V : Type} {G : SimpleGraph V} {u v w : V}
   (w1 : G.Walk u v) (w2 : G.Walk v w) :
@@ -72,11 +81,17 @@ theorem Walk.drop_append_of_length_eq {V : Type} {G : SimpleGraph V} {u v w : V}
     rw [Walk.drop_support_eq_support_drop_min, Walk.support_append_eq_support_dropLast_append]
     simp
 
+/--
+@isnad1 id=istermin.3h7v.s5.1f46f84dd814 from=translated src=- shape=9d40aaa9 vocab=2c0a110f
+-/
 theorem isTerminalWalk_copy {V : Type} {G : SimpleGraph V} {u v u' v' : V} (h1 : u = u') (h2 : v = v') (w : G.Walk u v) : isTerminalWalk w → isTerminalWalk (w.copy h1 h2) := by
   unfold isTerminalWalk
   intro h
   simp [← h2, h]
 
+/--
+@isnad1 id=istermin.1h8v.s6.2f34f77577c7 from=translated src=- shape=cdc5ec0d vocab=4a08afc6
+-/
 theorem isTerminalWalk_map {V V' : Type} {G : SimpleGraph V} {G' : SimpleGraph V'} (f : G ↪g G') {u v : V} (w : G.Walk u v) :
     isTerminalWalk w → isTerminalWalk (w.map f.toHom) := by
   unfold isTerminalWalk
@@ -88,6 +103,9 @@ theorem isTerminalWalk_map {V V' : Type} {G : SimpleGraph V} {G' : SimpleGraph V
   simp only [List.getElem_map, EmbeddingLike.apply_eq_iff_eq] at h
   grind only [= List.length_map]
 
+/--
+@isnad1 id=istermin.2h7v.s5.8c26257e0704 from=translated src=- shape=f1d35f3f vocab=eb153a9e
+-/
 theorem isTerminalWalk_of_isSubwalk {V : Type} {G : SimpleGraph V} {u u' t : V} {w : G.Walk u t} {w' : G.Walk u' t} (htw : isTerminalWalk w) (hsub : w'.IsSubwalk w)
     : isTerminalWalk w' := by
   unfold isTerminalWalk at htw ⊢
@@ -200,6 +218,9 @@ def isTerminalWalk_length_cons_equiv {V : Type} {G : SimpleGraph V} {u t : V} (m
         · simp [Walk.copy]
   }
 
+/--
+@isnad1 id=eq.1h1v.s5.cc52aad67add from=translated src=- shape=b554a135 vocab=01c06306
+-/
 theorem a_b_recurrence_1 (n : ℕ) (npos : 0 < n) : a (n+2) = 2 * a n + 2 * b n := by
   have walks_from_A (v) : Fintype.card { w : Octagon.Walk A v // E ∉ w.support ∧ w.length = 2 } =
     match v with
@@ -231,6 +252,9 @@ theorem a_b_recurrence_1 (n : ℕ) (npos : 0 < n) : a (n+2) = 2 * a n + 2 * b n 
       rw [← Fintype.card_eq.mpr (Nonempty.intro (C_G_symm _))]
       ring_nf
 
+/--
+@isnad1 id=eq.1h1v.s5.f8562ee2bc80 from=translated src=- shape=15000369 vocab=01c06306
+-/
 theorem a_b_recurrence_2 (n : ℕ) (npos : 0 < n) : b (n+2) = a n + 2 * b n := by
   have walks_from_C (v) : Fintype.card { w : Octagon.Walk C v // E ∉ w.support ∧ w.length = 2 } =
     match v with
@@ -260,6 +284,9 @@ theorem a_b_recurrence_2 (n : ℕ) (npos : 0 < n) : b (n+2) = a n + 2 * b n := b
       simp only [Set.ncard_eq_toFinset_card', Set.toFinset_card, Set.coe_ofPred]
       ring_nf
 
+/--
+@isnad1 id=eq.1h1v.s7.38f1e7f172e8 from=translated src=- shape=1da437f6 vocab=0e0d56bd
+-/
 theorem a_even (n : ℕ) (npos : 0 < n) : a (2*n) = ((2+√2)^(n-1) - (2-√2)^(n-1)) / √2 := by
   suffices a (2*n) = ((2+√2)^(n-1) - (2-√2)^(n-1)) / √2 ∧ b (2*n) = ((2+√2)^(n-1) + (2-√2)^(n-1)) / 2 from this.left
   revert n
@@ -287,11 +314,17 @@ theorem a_even (n : ℕ) (npos : 0 < n) : a (2*n) = ((2+√2)^(n-1) - (2-√2)^(
       rw [show 2 * (α - β + √2 * (α + β)) = √2 * (2+√2) * α + √2 * (2-√2) * β by grind]
       field
 
+/--
+@isnad1 id=even.0h1v.s4.111804496f2b from=translated src=- shape=0cd89b1b vocab=b04d3152
+-/
 theorem walk_even (w : Octagon.Walk A E) : Even w.length := by
   let coloring := cycleGraph.bicoloring_of_even 8 (by simp [Nat.even_iff])
   rw [coloring.even_length_iff_congr]
   decide
 
+/--
+@isnad1 id=eq.1h1v.s5.609d2ffcc6aa from=translated src=- shape=6ccab218 vocab=fed6c66d
+-/
 theorem a_odd (n : ℕ) (npos : 0 < n) : a (2*n-1) = 0 := by
   unfold a
   rw [Set.ncard_eq_toFinset_card', Finset.card_eq_zero]

@@ -21,7 +21,9 @@ abbrev RayIndex := {S : Finset (Fin 4) // S.Nonempty ∧ S ≠ Finset.univ}
 
 instance : MeasurableSpace RayIndex := ⊤
 
-/-- There are exactly fourteen nonconstant staircase rays on four inputs. -/
+/-- There are exactly fourteen nonconstant staircase rays on four inputs.
+@isnad1 id=eq.0h0v.s7.73c5b668bfa1 from=translated src=- shape=b0ae1d2b vocab=0eeef1d7
+-/
 theorem card_rayIndex : Fintype.card RayIndex = 14 := by
   decide
 
@@ -51,7 +53,9 @@ def cubeRayCoeff (r : ℝ) (t : Fin 4 → ℝ) (S : RayIndex) : ℝ :=
     else 0
 
 /-- Every coefficient in the explicit fourteen-ray cube expansion is nonnegative
-when the cube coordinates lie in the unit interval and the privacy ratio exceeds one. -/
+when the cube coordinates lie in the unit interval and the privacy ratio exceeds one.
+@isnad1 id=le.2h3v.s6.3669de35ae88 from=translated src=- shape=307cb17e vocab=47b4efff
+-/
 theorem cubeRayCoeff_nonneg (r : ℝ) (hr : 1 < r) (t : Fin 4 → ℝ)
     (ht : ∀ i, 0 ≤ t i ∧ t i ≤ 1) (S : RayIndex) :
     0 ≤ cubeRayCoeff r t S := by
@@ -71,7 +75,9 @@ privacy-scaled cube, including zero weights and tied coordinates.
 Proof plan: use `cubeWeight_sum` and `cubeWeight_coordinate` for the sixteen-pattern
 expansion. The empty and full patterns together contribute the constant
 `cubeWeight t ∅ + r * cubeWeight t univ`. The distinguished complementary rays sum
-coordinatewise to `r + 1`, so their shared extra coefficient gives that constant. -/
+coordinatewise to `r + 1`, so their shared extra coefficient gives that constant.
+@isnad1 id=eq.1h3v.s7.88851b7fb2b4 from=translated src=- shape=4866f27b vocab=7e924e3b
+-/
 theorem cubeRayCoeff_coordinate (r : ℝ) (hr : 1 < r) (t : Fin 4 → ℝ)
     (i : Fin 4) :
     1 + (r - 1) * t i = ∑ S, cubeRayCoeff r t S * ray r S i := by
@@ -142,7 +148,9 @@ of the fourteen nonconstant staircase rays equal to `1 + (r - 1) * t` coordinate
 
 Proof plan: use `cubeRayCoeff_nonneg` and `cubeRayCoeff_coordinate`. The shared
 extra coefficient on the complementary pair is the constant-pattern contribution
-divided by `r + 1`. -/
+divided by `r + 1`.
+@isnad1 id=ex.2h2v.s8.20b85f58a1b2 from=translated src=- shape=879375db vocab=337ea74b
+-/
 theorem cube_ray_decomposition (r : ℝ) (hr : 1 < r) (t : Fin 4 → ℝ)
     (ht : ∀ i, 0 ≤ t i ∧ t i ≤ 1) :
     ∃ c : RayIndex → ℝ,
@@ -166,7 +174,9 @@ bounds every coordinate between itself and `r` times itself, and can vanish
 only when the whole vector vanishes.
 
 Proof plan: split the finite minimum into four cases; apply pairwise privacy
-with an input attaining the minimum. -/
+with an input attaining the minimum.
+@isnad1 id=and.2h2v.s6.83f1a92b4b23 from=translated src=- shape=950ec388 vocab=6e9c547c
+-/
 theorem coneBase_geometry (r : ℝ) (hr : 1 < r) (f : Fin 4 → ℝ)
     (hf : PrivateCone r f) :
     0 ≤ coneBase f ∧
@@ -197,7 +207,9 @@ theorem coneBase_geometry (r : ℝ) (hr : 1 < r) (f : Fin 4 → ℝ)
 in the unit interval, including the zero vector.
 
 Proof plan: use `coneBase_geometry`; in the positive-base case, multiply the
-two desired quotient inequalities by the positive base and by `r - 1`. -/
+two desired quotient inequalities by the positive base and by `r - 1`.
+@isnad1 id=and.2h3v.s5.2771acd36d11 from=translated src=- shape=c3cf72cd vocab=ab3c4fef
+-/
 theorem coneCubeCoord_bounds (r : ℝ) (hr : 1 < r) (f : Fin 4 → ℝ)
     (hf : PrivateCone r f) :
     ∀ i, 0 ≤ coneCubeCoord r f i ∧ coneCubeCoord r f i ≤ 1 := by
@@ -220,7 +232,9 @@ theorem coneCubeCoord_bounds (r : ℝ) (hr : 1 < r) (f : Fin 4 → ℝ)
 recovers the original coordinate, including when the entire vector is zero.
 
 Proof plan: in the zero-base case use `coneBase_geometry`; otherwise unfold
-`coneCubeCoord` and cancel the nonzero base and `r - 1`. -/
+`coneCubeCoord` and cancel the nonzero base and `r - 1`.
+@isnad1 id=eq.2h3v.s6.b2d2f5fb97d2 from=translated src=- shape=c8062b7b vocab=b9277e6e
+-/
 theorem coneCubeCoord_scale (r : ℝ) (hr : 1 < r) (f : Fin 4 → ℝ)
     (hf : PrivateCone r f) (i : Fin 4) :
     f i = coneBase f * (1 + (r - 1) * coneCubeCoord r f i) := by
@@ -242,7 +256,9 @@ densities, including where the least coordinate is zero.
 
 Proof plan: the four coordinate projections and their finite minimum are
 measurable; division and the zero-base `ite` are measurable; `cubeWeight` is a
-finite product. -/
+finite product.
+@isnad1 id=measurab.0h2v.s5.25f97ec2f1d8 from=translated src=- shape=0add8149 vocab=47d896e5
+-/
 theorem measurable_coneRayCoeff (r : ℝ) (S : RayIndex) :
     Measurable fun f : Fin 4 → ℝ => coneRayCoeff r f S := by
   have hcoord (i : Fin 4) : Measurable (fun f : Fin 4 → ℝ => f i) :=
@@ -278,7 +294,9 @@ four-input privacy cone as a nonnegative fourteen-ray combination.
 
 Proof plan: use `coneBase_geometry` and `coneCubeCoord_bounds`; when the base is
 zero, every coordinate and coefficient vanishes. Otherwise multiply
-`cubeRayCoeff_coordinate` by the base and simplify the quotient. -/
+`cubeRayCoeff_coordinate` by the base and simplify the quotient.
+@isnad1 id=and.2h2v.s7.cfb812858072 from=translated src=- shape=ccc36a8f vocab=9721f42a
+-/
 theorem coneRayCoeff_decomposition (r : ℝ) (hr : 1 < r) (f : Fin 4 → ℝ)
     (hf : PrivateCone r f) :
     (∀ S, 0 ≤ coneRayCoeff r f S) ∧
@@ -311,7 +329,9 @@ fourteen nonconstant staircase rays. The coefficients can be selected measurably
 function of the vector, including at ties and at the zero vector.
 
 Proof plan: use `coneRayCoeff`, `measurable_coneRayCoeff`, and
-`coneRayCoeff_decomposition`. -/
+`coneRayCoeff_decomposition`.
+@isnad1 id=ex.1h1v.s8.33b214bd01d9 from=translated src=- shape=765d41a7 vocab=a21bf0a8
+-/
 theorem measurable_ray_selector (r : ℝ) (hr : 1 < r) :
     ∃ c : (Fin 4 → ℝ) → RayIndex → ℝ,
       (∀ S, Measurable fun f => c f S) ∧

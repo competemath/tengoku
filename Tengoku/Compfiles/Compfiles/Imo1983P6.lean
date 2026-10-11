@@ -22,7 +22,9 @@ Determine when equality occurs.
 
 namespace Imo1983P6
 
-/-- Equality in Cauchy-Schwarz implies linear dependence. -/
+/-- Equality in Cauchy-Schwarz implies linear dependence.
+@isnad1 id=ex.2h4v.s7.7b31ee2bd312 from=translated src=- shape=fa76880c vocab=b3429d04
+-/
 lemma cauchy_schwarz_equals {ι: Type*} (s : Finset ι)
     (f g : ι → ℝ) (hf : ∃ i ∈ s, f i ≠ 0) :
     (∑ i ∈ s, f i * g i) ^ 2 = (∑ i ∈ s, f i ^ 2) * ∑ i ∈ s, g i ^ 2 →
@@ -59,6 +61,9 @@ lemma cauchy_schwarz_equals {ι: Type*} (s : Finset ι)
   specialize ht0 i hi
   linarith
 
+/--
+@isnad1 id=and.4h3v.s7.18173551f7b5 from=translated src=- shape=13e389db vocab=4daac01f
+-/
 theorem lemma1 {x y z : ℝ} (hx : 0 < x) (hy : 0 < y) (hz : 0 < z)
     (hxyz : x * y * z * (z + x + y) = x * y ^ 3 + y * z ^ 3 + z * x ^ 3) :
     x = y ∧ x = z := by

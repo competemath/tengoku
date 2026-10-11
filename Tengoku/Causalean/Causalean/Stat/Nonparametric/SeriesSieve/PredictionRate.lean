@@ -57,7 +57,9 @@ the explicit doubled-exponent bias rate `A ≤ ((∑ᵢ wᵢ)·C_J²) · J^{−2
     A ≤ ((∑ᵢ wᵢ)·C_J²) · J^{−2s/d}.
 
 The power `J^{−s/d}` is the real power `(J : ℝ) ^ (-(s/d))`; squaring it doubles the exponent to
-`−2s/d`. The Jackson approximation power is an assumed hypothesis (no concrete basis). -/
+`−2s/d`. The Jackson approximation power is an assumed hypothesis (no concrete basis).
+@isnad1 id=le.1h10v.s7.86981268564a from=translated src=- shape=a642b8ea vocab=bdc85c5a
+-/
 theorem seriesBiasRate_of_jackson_bound {N : ℕ} {ι : Type*} [Fintype ι]
     {Φ : Fin N → ι → ℝ} {w f : Fin N → ℝ} {c0 : ι → ℝ}
     {s d C_J : ℝ} {J : ℕ}
@@ -86,7 +88,9 @@ coefficient sum — the effective degrees of freedom `V` of the oracle inequalit
 
 For a rank-`J` projection hat matrix the Frobenius sum equals the trace `= J`, so this expresses the
 standard "effective DoF ≈ J" fact after normalization by `N`; the trace bound is taken as an
-explicit hypothesis rather than derived from an explicit Gram matrix. -/
+explicit hypothesis rather than derived from an explicit Gram matrix.
+@isnad1 id=le.3h5v.s7.34eaf65dc6e5 from=translated src=- shape=5bb0a25f vocab=061efeff
+-/
 theorem seriesEffectiveDoF_le {N : ℕ} {a : Fin N → Fin N → ℝ} {w : Fin N → ℝ}
     {Cvar : ℝ} {J : ℕ} (hN : 0 < N)
     (hw : ∀ i, w i = (1 : ℝ) / N)
@@ -110,7 +114,9 @@ bounded by `σbar²`](hyp:hnoise). If [the noise-free closed-form least-squares 
 Jackson approximation bound](hyp:hJack), then [the expected normalized prediction error of the
 closed-form fit to `f+ε` is at most the doubled-exponent Jackson term plus
 `σbar² · card(ι)/N`](goal).  The normal equations, least-squares linearity, and exact hat-matrix
-Frobenius identity are conclusions of Gram invertibility, not assumptions. -/
+Frobenius identity are conclusions of Gram invertibility, not assumptions.
+@isnad1 id=le.6h11v.s9.69a649dfd9fc from=translated src=- shape=865eccf5 vocab=caac49a8
+-/
 theorem seriesLS_prediction_rate_of_jackson_bound {Ω : Type*} {N : ℕ} {ι : Type*} [Fintype ι]
     [DecidableEq ι]
     [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω} [MeasureTheory.IsProbabilityMeasure μ]

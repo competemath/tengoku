@@ -49,7 +49,9 @@ least-squares fit `c` to target values `f` has residual orthogonal to every desi
 (`lstsq_normal_equations`) and some comparator `cstar` approximates `f` uniformly within `δ` at
 the design points (`|fᵢ − ∑ⱼ cstarⱼ Φᵢⱼ| ≤ δ`), then the empirical fit error is at most
 `(∑ᵢ wᵢ)·δ²`. Applying this to a Jackson approximant requires separately supplying coefficients
-`cstar` that represent that approximant in the chosen finite design. -/
+`cstar` that represent that approximant in the chosen finite design.
+@isnad1 id=le.3h8v.s7.64c843c80e4f from=translated src=- shape=1468b498 vocab=b8b0eadb
+-/
 theorem seriesApprox_le_of_sup {N : ℕ} {ι : Type*} [Fintype ι]
     {Φ : Fin N → ι → ℝ} {w f : Fin N → ℝ} {c cstar : ι → ℝ} {δ : ℝ}
     (hw : ∀ i, 0 ≤ w i)
@@ -82,7 +84,9 @@ fitted-value gap:
 `‖f − Φ·chat‖²_w = ‖f − Φ·c0‖²_w + ∑ᵢ wᵢ (∑ⱼ (c0ⱼ − chatⱼ) Φᵢⱼ)²`.
 
 For `chat` the data least-squares fit, the second term is the projected noise. (Immediate from
-`lstsq_pythagoras` with target `f`, base `c0`, comparator `chat`.) -/
+`lstsq_pythagoras` with target `f`, base `c0`, comparator `chat`.)
+@isnad1 id=eq.1h7v.s7.bc04e4edd9cc from=translated src=- shape=87e2683a vocab=61770b83
+-/
 theorem seriesLS_prediction_decomp {N : ℕ} {ι : Type*} [Fintype ι]
     {Φ : Fin N → ι → ℝ} {w f : Fin N → ℝ} {c0 chat : ι → ℝ}
     (hortho : ∀ k : ι, ∑ i, w i * lstsqResidual Φ f c0 i * Φ i k = 0) :
@@ -97,7 +101,9 @@ whose [coordinates are uncorrelated and have variances bounded by `σbar²`](hyp
 linear image `Dᵢ(ω) = ∑ₖ aᵢₖ εₖ(ω)` has [expected weighted sum of squares bounded by
 `σbar² · ∑ᵢ wᵢ ∑ₖ aᵢₖ²`](goal).
 
-`𝔼[∑ᵢ wᵢ Dᵢ²] ≤ σbar² · ∑ᵢ wᵢ ∑ₖ aᵢₖ²`. -/
+`𝔼[∑ᵢ wᵢ Dᵢ²] ≤ σbar² · ∑ᵢ wᵢ ∑ₖ aᵢₖ²`.
+@isnad1 id=le.4h7v.s8.b0513a336896 from=translated src=- shape=68ff66ce vocab=bc4a4a92
+-/
 theorem expected_weighted_sq_image_le {Ω : Type*} {N : ℕ} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {ε : Fin N → Ω → ℝ} {a : Fin N → Fin N → ℝ}
     {w : Fin N → ℝ} {σbar : ℝ}
@@ -196,7 +202,9 @@ bridge is formalized here.
 Hypotheses: `c0` is the noise-free projection (orthogonal residual against `f`); the data fit
 `chat ω` differs from `c0` by the deterministic linear image `a` of the noise `ε`
 (`hlin` — the hat-matrix linearity of least squares); `ε` is uncorrelated mean-zero `L²` with
-uniformly bounded coordinate variances. -/
+uniformly bounded coordinate variances.
+@isnad1 id=le.8h14v.s8.88c0446b2167 from=translated src=- shape=4a214386 vocab=8f6b885e
+-/
 theorem seriesLS_expected_prediction_le {Ω : Type*} {N : ℕ} {ι : Type*} [Fintype ι]
     [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Φ : Fin N → ι → ℝ} {w f : Fin N → ℝ} {c0 : ι → ℝ}

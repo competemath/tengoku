@@ -40,7 +40,9 @@ structure CertifiedReal where
 
 namespace CertifiedReal
 
-/-- Nestedness extends from successive precisions to every pair of ordered precisions. -/
+/-- Nestedness extends from successive precisions to every pair of ordered precisions.
+@isnad1 id=subinter.1h3v.s4.1a74ea066819 from=translated src=- shape=31b1f21a vocab=cde79d31
+-/
 theorem approx_mono (x : CertifiedReal) {m n : ℕ} (hmn : m ≤ n) :
     (x.approx n).Subinterval (x.approx m) := by
   induction n, hmn using Nat.le_induction with
@@ -54,20 +56,26 @@ Refinement evaluates the certified modulus and returns its rational enclosure. -
 def refine (x : CertifiedReal) (ε : PosRat) : RatInterval :=
   x.approx (x.modulus ε)
 
-/-- Refinement always encloses the real value named by the certificate. -/
+/-- Refinement always encloses the real value named by the certificate.
+@isnad1 id=contains.0h2v.s3.1b3a1ad7e135 from=translated src=- shape=e972a313 vocab=e7df2aff
+-/
 theorem refine_contains (x : CertifiedReal) (ε : PosRat) :
     (x.refine ε).Contains x.value := by
   exact x.contains (x.modulus ε)
 
 /-- For [a certified real number `x`](hyp:x) and [a requested positive rational tolerance
 `ε`](hyp:ε), [refining `x` to the precision selected by `ε`'s modulus yields an enclosure
-whose width is at most `ε`](goal). -/
+whose width is at most `ε`](goal).
+@isnad1 id=le.0h2v.s4.0cd344c4af2e from=translated src=- shape=2989641a vocab=131a7bc7
+-/
 theorem refine_width (x : CertifiedReal) (ε : PosRat) :
     (x.refine ε).width ≤ ε.1 := by
   exact x.width_modulus ε
 
 /-- Every positive rational tolerance admits an explicitly returned enclosing
-interval of at most that width. -/
+interval of at most that width.
+@isnad1 id=ex.1h2v.s5.bdcab537466b from=translated src=- shape=f3ae3f1f vocab=4417eab1
+-/
 theorem exists_refinement (x : CertifiedReal) (ε : ℚ) (hε : 0 < ε) :
     ∃ n : ℕ, (x.approx n).Contains x.value ∧ (x.approx n).width ≤ ε := by
   exact ⟨x.modulus ⟨ε, hε⟩, x.contains _, x.width_modulus ⟨ε, hε⟩⟩
@@ -140,12 +148,16 @@ def add (x y : CertifiedReal) : CertifiedReal where
 Subtracting certified names adds the first enclosure to the negation of the second. -/
 def sub (x y : CertifiedReal) : CertifiedReal := add x (neg y)
 
-/-- Certified subtraction denotes the difference of the two named real values. -/
+/-- Certified subtraction denotes the difference of the two named real values.
+@isnad1 id=eq.0h2v.s4.dd02862d447b from=translated src=- shape=88b36870 vocab=fe507132
+-/
 @[simp]
 theorem sub_value (x y : CertifiedReal) : (sub x y).value = x.value - y.value := by
   rfl
 
-/-- Two certified names whose every approximation is shared denote the same real value. -/
+/-- Two certified names whose every approximation is shared denote the same real value.
+@isnad1 id=eq.1h2v.s4.2e9aec20068e from=translated src=- shape=58ab60ae vocab=2053bfb4
+-/
 theorem value_eq_of_common_approximations (x y : CertifiedReal)
     (hxy : ∀ n, x.approx n = y.approx n) : x.value = y.value := by
   apply le_antisymm

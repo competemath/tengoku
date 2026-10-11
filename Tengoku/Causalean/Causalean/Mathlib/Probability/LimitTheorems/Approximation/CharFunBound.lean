@@ -38,7 +38,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 /-- **Pointwise Lipschitz bound for the unit-circle exponential.**
 For real arguments `a b`, the chord between the points `e^{ia}` and `e^{ib}` on the unit circle is
 no longer than the arc, i.e. `‖exp (a·I) − exp (b·I)‖ ≤ |a − b|`.  This is the elementary input to
-the characteristic-function approximation bound. -/
+the characteristic-function approximation bound.
+@isnad1 id=le.0h2v.s5.2ade71f4e42b from=translated src=- shape=c9103e48 vocab=95df0439
+-/
 theorem norm_cexp_mul_I_sub_cexp_mul_I_le (a b : ℝ) :
     ‖Complex.exp (a * Complex.I) - Complex.exp (b * Complex.I)‖ ≤ |a - b| := by
   have harg :
@@ -64,7 +66,9 @@ theorem norm_cexp_mul_I_sub_cexp_mul_I_le (a b : ℝ) :
 
 /-- Almost-everywhere measurable real variables with an integrable difference
 have characteristic functions whose distance is at most the frequency magnitude
-times their expected absolute difference. -/
+times their expected absolute difference.
+@isnad1 id=le.3h5v.s7.7bc0c0de6d6f from=translated src=- shape=28739753 vocab=5a6645bf
+-/
 theorem norm_charFun_sub_le (μ : Measure Ω) [IsFiniteMeasure μ]
     {S T : Ω → ℝ} (hS : AEMeasurable S μ) (hT : AEMeasurable T μ)
     (hint : Integrable (fun ω => S ω - T ω) μ) (t : ℝ) :
@@ -129,7 +133,9 @@ theorem norm_charFun_sub_le (μ : Measure Ω) [IsFiniteMeasure μ]
           rw [integral_const_mul]
 
 /-- On a probability space, the expected norm of a square-integrable variable
-is at most the square root of its expected squared norm. -/
+is at most the square root of its expected squared norm.
+@isnad1 id=le.1h4v.s7.ffd219cc7783 from=translated src=- shape=4e17bc00 vocab=9c363834
+-/
 theorem integral_abs_le_sqrt_integral_sq (μ : Measure Ω) [IsProbabilityMeasure μ]
     {E : Type*} [NormedAddCommGroup E] (f : Ω → E) (hf : MemLp f 2 μ) :
     ∫ ω, ‖f ω‖ ∂μ ≤ Real.sqrt (∫ ω, ‖f ω‖ ^ 2 ∂μ) := by
@@ -172,7 +178,9 @@ $t$ by at most $|t|$ times the $L^2$ norm of $S - T$: $\|{\rm charFun}(\mu \circ
 {\rm charFun}(\mu \circ T^{-1})(t)\| \le |t| \cdot \sqrt{\int (S - T)^2 \, d\mu}$](goal).
 
 Proof: `∫ |S − T| ≤ √(∫ (S − T)²)` on a probability measure (Cauchy–Schwarz against the constant
-`1`, `integral_mul_norm_le_Lp_mul_Lq`), then chain with the `L¹` form (`norm_charFun_sub_le`). -/
+`1`, `integral_mul_norm_le_Lp_mul_Lq`), then chain with the `L¹` form (`norm_charFun_sub_le`).
+@isnad1 id=le.3h5v.s7.d560b80e8058 from=translated src=- shape=04695906 vocab=2c4cf2f6
+-/
 theorem norm_charFun_sub_le_L2 (μ : Measure Ω) [IsProbabilityMeasure μ]
     {S T : Ω → ℝ} (hS : AEMeasurable S μ) (hT : AEMeasurable T μ)
     (hdiff : MemLp (fun ω => S ω - T ω) 2 μ) (t : ℝ) :

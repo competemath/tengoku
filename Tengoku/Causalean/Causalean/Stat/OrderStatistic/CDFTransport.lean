@@ -19,7 +19,9 @@ open MeasureTheory
 
 noncomputable section
 
-/-- Given [a real probability law](hyp:μ), [a real density](hyp:p), and [an equality representing the law by that density](hyp:hμ), [its cumulative distribution function is continuous](goal). -/
+/-- Given [a real probability law](hyp:μ), [a real density](hyp:p), and [an equality representing the law by that density](hyp:hμ), [its cumulative distribution function is continuous](goal).
+@isnad1 id=continuo.1h2v.s5.b62a686f894a from=translated src=- shape=fa47e31e vocab=278bf88f
+-/
 theorem cdf_continuous_of_withDensity (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (p : ℝ → ℝ)
     (hμ : μ = volume.withDensity (fun x => ENNReal.ofReal (p x))) :
@@ -27,7 +29,9 @@ theorem cdf_continuous_of_withDensity (μ : Measure ℝ) [IsProbabilityMeasure �
   haveI : NullSingletonClass μ := hμ ▸ inferInstance
   exact Causalean.Mathlib.cdf_continuous_of_noAtoms μ
 
-/-- Given [a real probability law](hyp:μ) and [continuity of its cumulative distribution function](hyp:hcont), [that CDF pushes the law forward to the unit-uniform law](goal). -/
+/-- Given [a real probability law](hyp:μ) and [continuity of its cumulative distribution function](hyp:hcont), [that CDF pushes the law forward to the unit-uniform law](goal).
+@isnad1 id=eq.1h1v.s5.e8ab2858af28 from=translated src=- shape=371a5a42 vocab=3b23e497
+-/
 theorem cdf_pushforward_of_continuous (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun x => ProbabilityTheory.cdf μ x)) :
     μ.map (fun x => ProbabilityTheory.cdf μ x) = uniform01 := by
@@ -53,7 +57,9 @@ theorem cdf_pushforward_of_continuous (μ : Measure ℝ) [IsProbabilityMeasure �
         volume.restrict (Set.Icc (0 : ℝ) 1)
       exact restrict_Ioo_eq_restrict_Icc
 
-/-- Given [a real probability law](hyp:μ) and [ordered endpoints](hyp:hxy), [its CDF increment equals the interval's real-valued probability mass](goal). -/
+/-- Given [a real probability law](hyp:μ) and [ordered endpoints](hyp:hxy), [its CDF increment equals the interval's real-valued probability mass](goal).
+@isnad1 id=eq.1h3v.s5.d1643e1b03da from=translated src=- shape=be7b1677 vocab=5c4d213d
+-/
 theorem cdf_increment_eq_interval_mass (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {x y : ℝ} (hxy : x ≤ y) :
     ProbabilityTheory.cdf μ y - ProbabilityTheory.cdf μ x =
@@ -77,7 +83,9 @@ theorem cdf_increment_eq_interval_mass (μ : Measure ℝ) [IsProbabilityMeasure 
   rw [hunion] at hadd
   linarith
 
-/-- Given [a sample size](hyp:n), [a monotone real transformation](hyp:f,hf), and [a real tuple](hyp:x), [sorting after transformation equals transforming the sorted tuple](goal). -/
+/-- Given [a sample size](hyp:n), [a monotone real transformation](hyp:f,hf), and [a real tuple](hyp:x), [sorting after transformation equals transforming the sorted tuple](goal).
+@isnad1 id=eq.1h3v.s5.2eb7b0bf641f from=translated src=- shape=ffe323b8 vocab=522c07c1
+-/
 theorem sortedSample_map_monotone (n : ℕ) (f : ℝ → ℝ) (hf : Monotone f)
     (x : Fin n → ℝ) :
     sortedSample n (fun i => f (x i)) = fun i => f (sortedSample n x i) := by

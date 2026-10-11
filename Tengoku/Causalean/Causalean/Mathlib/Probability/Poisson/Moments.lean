@@ -23,7 +23,9 @@ open MeasureTheory ProbabilityTheory
 open Causalean.Mathlib.Probability.PoissonAddOnePoincare
 
 /-- For [a Poisson law with nonnegative mean](hyp:lambda) and [a real tilt](hyp:theta),
-[the exponential of the natural-valued count is integrable](goal). -/
+[the exponential of the natural-valued count is integrable](goal).
+@isnad1 id=integrab.0h2v.s5.f5cdd2072024 from=translated src=- shape=d1f9f173 vocab=9b8a271d
+-/
 lemma integrable_exp_natCast_poisson (lambda : NNReal) (theta : Real) :
     Integrable (fun w : Nat ↦ Real.exp (theta * (w : Real)))
       (poissonMeasure lambda) := by
@@ -39,7 +41,9 @@ lemma integrable_exp_natCast_poisson (lambda : NNReal) (theta : Real) :
 
 -- @node: poisson_natCast_memLp_two
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the natural-valued
-count is square-integrable](goal). -/
+count is square-integrable](goal).
+@isnad1 id=memlp.0h1v.s5.3edd81045b36 from=translated src=- shape=5880f1e5 vocab=ea4d7330
+-/
 lemma poisson_natCast_memLp_two (lambda : NNReal) :
     MemLp (fun k : Nat => (k : Real)) 2 (poissonMeasure lambda) := by
   apply (memLp_two_iff_integrable_sq
@@ -64,7 +68,9 @@ lemma poisson_natCast_memLp_two (lambda : NNReal) :
 
 -- @node: poisson_natCast_first_moment
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the expected natural-valued
-count equals its mean parameter](goal). -/
+count equals its mean parameter](goal).
+@isnad1 id=eq.0h1v.s4.c72c59d2f7ea from=translated src=- shape=6ef05e15 vocab=d020d26c
+-/
 lemma poisson_natCast_first_moment (lambda : NNReal) :
     (∫ k : Nat, (k : Real) ∂poissonMeasure lambda) = (lambda : Real) := by
   have hk : Integrable (fun k : Nat ↦ (k : Real)) (poissonMeasure lambda) :=
@@ -97,7 +103,9 @@ lemma poisson_natCast_first_moment (lambda : NNReal) :
 
 /-- For [a Poisson law with nonnegative mean](hyp:lambda) and [a real tilt](hyp:theta),
 [the moment-generating function of the natural-valued count is the exponential of the mean
-times the exponential remainder](goal). -/
+times the exponential remainder](goal).
+@isnad1 id=eq.0h2v.s5.c8325f3d04cb from=translated src=- shape=01edf557 vocab=e01116a8
+-/
 lemma mgf_natCast_poisson (lambda : NNReal) (theta : Real) :
     mgf (fun w : Nat ↦ (w : Real)) (poissonMeasure lambda) theta =
       Real.exp ((lambda : Real) * (Real.exp theta - 1)) := by

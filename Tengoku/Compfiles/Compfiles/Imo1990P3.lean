@@ -20,6 +20,9 @@ namespace Imo1990P3
 
 abbrev solution_set : Set ℕ := { 3 }
 
+/--
+@isnad1 id=or.0h1v.s6.836d3bc125e9 from=translated src=- shape=89543899 vocab=40d5d354
+-/
 lemma aux_1
     (n : ℕ) :
     (2 : ℕ) ^ n ≡ (1 : ℕ) [MOD (7 : ℕ)] ∨
@@ -49,6 +52,9 @@ lemma aux_1
       rw [mul_add, mul_one, add_assoc, add_comm 3 2, ← add_assoc, pow_add]
       exact Nat.ModEq.mul ht₀ rfl
 
+/--
+@isnad1 id=eq.2h1v.s6.0d6705e24ab7 from=translated src=- shape=648075e1 vocab=ead419d1
+-/
 lemma imo_1990_p3_forward
     (n : ℕ)
     (h₀ : 2 ≤ n)

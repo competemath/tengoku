@@ -24,12 +24,21 @@ open Finset
 
 def last_divides_lcm_remaining (n k : ℕ) : Prop := k+n ∣ lcm (Icc (k+1) (k+n-1)) id
 
+/--
+@isnad1 id=not.1h2v.s4.6fc57d18980f from=translated src=- shape=5a174f64 vocab=473e8df7
+-/
 theorem not_existsUnique_of_not_exists {α : Type} {p : α → Prop} : (¬∃ x, p x) → ¬∃! x, p x := by
   grind only [ExistsUnique]
 
+/--
+@isnad1 id=not.1h6v.s4.a5c19b3a0695 from=translated src=- shape=31b2a50f vocab=473e8df7
+-/
 theorem not_existsUnique_of_exists_ne {α : Type} {p : α → Prop} (a b : α) : p a → p b → a ≠ b → ¬∃! x, p x := by
   grind only [ExistsUnique]
 
+/--
+@isnad1 id=dvd.1h2v.s5.dc67f9a9a682 from=translated src=- shape=95386c7b vocab=58575a9c
+-/
 theorem dvd_factorial {n k : ℕ} (h : last_divides_lcm_remaining n k) : k+n ∣ Nat.factorial (n-1) := by
   have := dvd_trans h (lcm_dvd_prod (Icc (k+1) (k+n-1)) id)
   rw [Nat.dvd_iff_mod_eq_zero, prod_nat_mod] at this
@@ -54,6 +63,9 @@ theorem dvd_factorial {n k : ℕ} (h : last_divides_lcm_remaining n k) : k+n ∣
     · grind only [= mem_Icc]
     · grind only [= mem_Icc]
 
+/--
+@isnad1 id=not.0h0v.s3.a07728005e94 from=translated src=- shape=bd0ed588 vocab=0b5dd539
+-/
 theorem not_3 : ¬ ∃ k, last_divides_lcm_remaining 3 k := by
   by_contra! c
   let ⟨k, h⟩ := c
@@ -63,6 +75,9 @@ theorem not_3 : ¬ ∃ k, last_divides_lcm_remaining 3 k := by
   have := Nat.le_of_dvd (by simp) this
   lia
 
+/--
+@isnad1 id=existsun.0h0v.s3.5ae44618e04b from=translated src=- shape=03946bf9 vocab=e04adc76
+-/
 theorem unique_4 : ∃! k, last_divides_lcm_remaining 4 k := by
   use 2
   and_intros
@@ -79,15 +94,24 @@ theorem unique_4 : ∃! k, last_divides_lcm_remaining 4 k := by
     revert hdvd
     decide +revert
 
+/--
+@isnad1 id=coprime.1h2v.s5.297f14129405 from=translated src=- shape=eb99fc8f vocab=df1e3a58
+-/
 theorem coprime_sub_succ {n d : ℕ} (h : d < n) : Nat.Coprime (n-d) (n-(d+1)) := by
   rw [Nat.sub_succ', Nat.coprime_self_sub_right]
   · simp
   · lia
 
+/--
+@isnad1 id=eq.1h2v.s6.a9e474f5ca30 from=translated src=- shape=6577b5d2 vocab=84d4ec67
+-/
 theorem lcm_sub_succ {n d : ℕ} (h : d < n) : Nat.lcm (n-d) (n-(d+1)) = (n-d)*(n-(d+1)) := by
   refine Nat.Coprime.lcm_eq_mul ?_
   apply coprime_sub_succ h
 
+/--
+@isnad1 id=lastdivi.2h2v.s6.99791225b138 from=translated src=- shape=0c2d3e78 vocab=4a221329
+-/
 theorem ge_5 (n d : ℕ) (hge : 5 ≤ n) (hd : d = 1 ∨ d = 2) : last_divides_lcm_remaining n (Nat.lcm (n-d) (n-(d+1)) - n) := by
   rw [lcm_sub_succ (by lia)]
   unfold last_divides_lcm_remaining

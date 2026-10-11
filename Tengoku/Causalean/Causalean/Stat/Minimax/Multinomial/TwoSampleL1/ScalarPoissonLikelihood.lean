@@ -30,7 +30,9 @@ noncomputable def scalarPoissonPairLikelihood (t u : ℝ) (z : ℕ × ℕ) : ℝ
   (1 + t * u) ^ z.1 * (1 - t * u) ^ z.2
 
 /-- The expectation of a real power under a Poisson law is the exponential
-of the intensity times the power base minus one. -/
+of the intensity times the power base minus one.
+@isnad1 id=eq.0h2v.s5.52bbbc950c26 from=translated src=- shape=aeeff976 vocab=88d35461
+-/
 theorem poisson_power_mgf (q : NNReal) (u : ℝ) :
     (∫ n : ℕ, u ^ n ∂poissonMeasure q) =
       Real.exp ((q : ℝ) * (u - 1)) := by
@@ -54,7 +56,9 @@ theorem poisson_power_mgf (q : NNReal) (u : ℝ) :
 
 /-- At positive baseline intensity and a nonnegative pair of perturbed rates,
 the balanced Poisson law has the stated likelihood density relative to the
-unperturbed pair. This localizes the real-to-nonnegative-rate conversion. -/
+unperturbed pair. This localizes the real-to-nonnegative-rate conversion.
+@isnad1 id=eq.3h3v.s6.55a1fe297637 from=translated src=- shape=00ddcac6 vocab=c872f0ac
+-/
 theorem scalarPoissonPairLaw_eq_withDensity
     (lambda t u : ℝ) (hlambda : 0 < lambda)
     (hplus : 0 ≤ 1 + t * u) (hminus : 0 ≤ 1 - t * u) :
@@ -92,7 +96,9 @@ theorem scalarPoissonPairLaw_eq_withDensity
         ring
     _ = _ := by rw [hexp]; ring
 
-/-- Given [a nonnegative Poisson intensity](hyp:lambda,hlambda) and [two scalar tilt coordinates](hyp:t,u,v), [the likelihood inner product under the untitled scalar-Poisson law equals the stated exponential expression](goal). -/
+/-- Given [a nonnegative Poisson intensity](hyp:lambda,hlambda) and [two scalar tilt coordinates](hyp:t,u,v), [the likelihood inner product under the untitled scalar-Poisson law equals the stated exponential expression](goal).
+@isnad1 id=eq.1h4v.s7.9fe821929c82 from=translated src=- shape=3a49a3f7 vocab=b996cd48
+-/
 theorem scalarPoissonPairLikelihood_inner
     (lambda t u v : ℝ) (hlambda : 0 ≤ lambda) :
     (∫ z, scalarPoissonPairLikelihood t u z *

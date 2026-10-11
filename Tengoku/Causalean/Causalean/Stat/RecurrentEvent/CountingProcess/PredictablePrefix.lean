@@ -17,7 +17,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 /-- For [any censor hazard](hyp:hazard), if [the payoff process is left
 predictable](hyp:hPredictable), then [the process whose value at time s is subject i's
 hazard-weighted accumulated at-risk payoff up to s times the payoff at s is also left
-predictable](goal). -/
+predictable](goal).
+@isnad1 id=leftpred.1h4v.s6.ed65eccff322 from=translated src=- shape=884a7d95 vocab=50570a0a
+-/
 theorem subject_prefix_mixed_predictable {n : ℕ}
     (hazard : ℝ → ℝ) (H : ℝ → Sample n → ℝ)
     (hPredictable : LeftPredictable H) (i : Fin n) :
@@ -77,7 +79,9 @@ theorem subject_prefix_mixed_predictable {n : ℕ}
 /-- If [the censor hazard is measurable](hyp:hazard,hHazardMeasurable) and [the payoff is jointly
 measurable in time and sample](hyp:hMeasurable), then [subject i's accumulated hazard-weighted
 at-risk payoff up to each time, multiplied by the payoff at that time, is jointly measurable in
-time and sample](goal). -/
+time and sample](goal).
+@isnad1 id=measurab.2h4v.s7.256addd8b0e1 from=translated src=- shape=b18dc2c2 vocab=f639060b
+-/
 theorem subject_prefix_mixed_jointMeasurable {n : ℕ}
     (hazard : ℝ → ℝ) (hHazardMeasurable : Measurable hazard)
     (H : ℝ → Sample n → ℝ)

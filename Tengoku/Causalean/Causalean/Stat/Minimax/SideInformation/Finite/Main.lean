@@ -25,7 +25,9 @@ namespace Causalean.Stat.Minimax.FiniteSideInformation
 alphabets](hyp:X,C), [continuous simplex-valid label and side probabilities](hyp:hp,hq,hpcont,hqcont),
 and a [continuous target contained in an ordered bounded action interval](hyp:htau,hlu,htau_mem),
 the [bounded squared-loss empirical-side minimax values converge to the exact-side minimax
-benchmark](goal) as the iid side sample size tends to infinity. -/
+benchmark](goal) as the iid side sample size tends to infinity.
+@isnad1 id=tendsto.7h8v.s7.2fd965c43b68 from=translated src=- shape=b4019596 vocab=87ecf180
+-/
 theorem finiteSideInfo_minimax_tendsto
     {Theta X C : Type*} [TopologicalSpace Theta] [CompactSpace Theta] [Nonempty Theta]
     [Fintype X] [Fintype C] [DecidableEq C] [Nonempty C]

@@ -50,7 +50,9 @@ noncomputable def equivKernelWeight (p : ℕ) {N : ℕ} (x w : Fin N → ℝ) (i
 /-- **Polynomial reproduction of the equivalent kernel.** If [the weighted design moment matrix is
 invertible](hyp:hM), then [the local-polynomial equivalent-kernel weights reproduce polynomials up
 to degree `p`: `∑ᵢ Sᵢ xᵢᵐ = [m = 0]` for every `m ≤ p`](goal). This discharges the reproduction
-hypothesis of `linearSmoother_bias_of_reproduces`. -/
+hypothesis of `linearSmoother_bias_of_reproduces`.
+@isnad1 id=eq.2h5v.s7.ab8b2362fd92 from=translated src=- shape=7922546f vocab=659feced
+-/
 theorem equivKernelWeight_reproduces {N p : ℕ} {x w : Fin N → ℝ}
     (hM : IsUnit (designMatrix p x w).det) :
     ∀ m : ℕ, m ≤ p →
@@ -98,7 +100,9 @@ theorem equivKernelWeight_reproduces {N p : ℕ} {x w : Fin N → ℝ}
 
 /-- **Normal equations for weighted polynomial least squares** (the Vandermonde design
 `Φᵢⱼ = xᵢʲ`). The weighted least-squares minimizer of `∑ᵢ wᵢ (Yᵢ − ∑ⱼ cⱼ xᵢʲ)²` has
-residual orthogonal to every design monomial: `∑ᵢ wᵢ (Yᵢ − ∑ⱼ cⱼ xᵢʲ) xᵢᵏ = 0`. -/
+residual orthogonal to every design monomial: `∑ᵢ wᵢ (Yᵢ − ∑ⱼ cⱼ xᵢʲ) xᵢᵏ = 0`.
+@isnad1 id=eq.2h7v.s9.4ed6d5b11f51 from=translated src=- shape=19142f86 vocab=2891f95b
+-/
 theorem wls_normal_equations {N p : ℕ} {x w Y : Fin N → ℝ} {c : Fin (p + 1) → ℝ}
     (hw : ∀ i, 0 ≤ w i)
     (hmin : ∀ c' : Fin (p + 1) → ℝ,
@@ -121,7 +125,9 @@ weighted design moment matrix is invertible and `c` minimizes the weighted sum o
 then the fitted intercept `c 0` equals the linear smoother `∑ᵢ Sᵢ Yᵢ` with the
 equivalent-kernel weights `Sᵢ = equivKernelWeight p x w i`. Combined with
 `equivKernelWeight_reproduces` and `linearSmoother_bias_of_reproduces`, this yields the
-interior local-polynomial bias estimate. -/
+interior local-polynomial bias estimate.
+@isnad1 id=eq.3h6v.s8.e71a770a3b13 from=translated src=- shape=cac20e5e vocab=559da356
+-/
 theorem wls_intercept_eq_equivKernelSmoother {N p : ℕ} {x w Y : Fin N → ℝ}
     {c : Fin (p + 1) → ℝ}
     (hw : ∀ i, 0 ≤ w i)
@@ -207,7 +213,9 @@ theorem wls_intercept_eq_equivKernelSmoother {N p : ℕ} {x w Y : Fin N → ℝ}
 /-- **Leverage identity for the equivalent kernel.** Writing the equivalent-kernel weight as
 `Sᵢ = wᵢ · gᵢ` with `gᵢ = ∑ₖ (M⁻¹)₀ₖ xᵢᵏ` the unweighted kernel, the weighted leverage equals
 the `(0,0)` entry of the inverse moment matrix:
-`∑ᵢ wᵢ gᵢ² = (M⁻¹)₀₀`. (Algebraically `e₀ᵀ M⁻¹ M M⁻¹ e₀ = e₀ᵀ M⁻¹ e₀`.) -/
+`∑ᵢ wᵢ gᵢ² = (M⁻¹)₀₀`. (Algebraically `e₀ᵀ M⁻¹ M M⁻¹ e₀ = e₀ᵀ M⁻¹ e₀`.)
+@isnad1 id=eq.1h4v.s8.e44764dbeda1 from=translated src=- shape=893b409a vocab=640695b5
+-/
 theorem equivKernel_weighted_sq_sum {N p : ℕ} {x w : Fin N → ℝ}
     (hM : IsUnit (designMatrix p x w).det) :
     (∑ i, w i * (∑ k, (designMatrix p x w)⁻¹ 0 k * x i ^ (k : ℕ)) ^ 2)
@@ -286,7 +294,9 @@ theorem equivKernel_weighted_sq_sum {N p : ℕ} {x w : Fin N → ℝ}
 /-- **Leverage bound for the equivalent kernel.** With nonnegative weights bounded by `W`, the
 local-polynomial equivalent-kernel weights satisfy `∑ᵢ Sᵢ² ≤ W · (M⁻¹)₀₀`. Combined with
 `linearSmoother_variance_le`, this reduces the interior `O((Nh)^{−1/2})` stochastic-error rate
-to the single concentration bound `(M⁻¹)₀₀ = O(1/(Nh))`. -/
+to the single concentration bound `(M⁻¹)₀₀ = O(1/(Nh))`.
+@isnad1 id=le.3h5v.s8.f5b3b9a386fb from=translated src=- shape=73f7225c vocab=56aab05b
+-/
 theorem equivKernelWeight_sq_sum_le {N p : ℕ} {x w : Fin N → ℝ} {W : ℝ}
     (hM : IsUnit (designMatrix p x w).det)
     (hw : ∀ i, 0 ≤ w i) (hwW : ∀ i, w i ≤ W) :
@@ -342,7 +352,9 @@ moment matrix and its inverse:
 where `M₀₀ = ∑ᵢ wᵢ` is the total weight. (Cauchy–Schwarz on `Sᵢ = wᵢ gᵢ` split as
 `√wᵢ · √wᵢ gᵢ`, using `∑ᵢ wᵢ gᵢ² = (M⁻¹)₀₀`.) Together with `equivKernelWeight_sq_sum_le` this
 reduces *both* the bias leverage `∑ᵢ|Sᵢ|` and the variance leverage `∑ᵢ Sᵢ²` to the design
-quantities `M₀₀` and `(M⁻¹)₀₀`. -/
+quantities `M₀₀` and `(M⁻¹)₀₀`.
+@isnad1 id=le.2h4v.s8.d8076b43b80b from=translated src=- shape=bc3a1e32 vocab=7eda04d5
+-/
 theorem equivKernelWeight_abs_sum_sq_le {N p : ℕ} {x w : Fin N → ℝ}
     (hM : IsUnit (designMatrix p x w).det) (hw : ∀ i, 0 ≤ w i) :
     (∑ i, |equivKernelWeight p x w i|) ^ 2

@@ -33,7 +33,9 @@ def cellPattern {m : ℕ} (label : A → κ) (X : Ω → A) (k : κ)
   {z | ∀ r, label (X (z r)) = k ↔ r ∈ T}
 
 /-- The [membership pattern](hyp:label,X,k,T) is [the rectangle with the
-cell in selected coordinates and its complement elsewhere](goal). -/
+cell in selected coordinates and its complement elsewhere](goal).
+@isnad1 id=eq.0h8v.s6.172c862908c3 from=translated src=- shape=cd5ec600 vocab=6fcecae3
+-/
 theorem cellPattern_eq_pi {m : ℕ} (label : A → κ) (X : Ω → A) (k : κ)
     (T : Finset (Fin m)) :
     cellPattern label X k T =
@@ -51,7 +53,9 @@ theorem cellPattern_eq_pi {m : ℕ} (label : A → κ) (X : Ω → A) (k : κ)
     · simpa [hr, cell] using hz r
 
 /-- [Measurable labels and covariates](hyp:hlabel,hX) give [a measurable
-membership pattern](goal) for any selected subset. -/
+membership pattern](goal) for any selected subset.
+@isnad1 id=measurab.2h8v.s6.bdc4df1199fa from=translated src=- shape=e91da2a3 vocab=15b6d00d
+-/
 theorem measurableSet_cellPattern {m : ℕ} (label : A → κ) (X : Ω → A)
     (k : κ) (T : Finset (Fin m)) (hlabel : Measurable label) (hX : Measurable X) :
     MeasurableSet (cellPattern label X k T) := by
@@ -63,7 +67,9 @@ theorem measurableSet_cellPattern {m : ℕ} (label : A → κ) (X : Ω → A)
   split_ifs <;> first | exact hc | exact hc.compl
 
 /-- [A sample in the specified membership pattern](hyp:hz) has [cell count
-equal to the size of the selected index set](goal). -/
+equal to the size of the selected index set](goal).
+@isnad1 id=eq.1h9v.s6.3f53bf31bc8d from=translated src=- shape=9c3c5eeb vocab=ab30c7c7
+-/
 theorem cellCount_on_pattern {m : ℕ} (label : A → κ) (X : Ω → A) (k : κ)
     (T : Finset (Fin m)) (z : Fin m → Ω) (hz : z ∈ cellPattern label X k T) :
     cellCount label X k z = T.card := by
@@ -73,7 +79,9 @@ theorem cellCount_on_pattern {m : ℕ} (label : A → κ) (X : Ω → A) (k : κ
   simpa only [Finset.mem_filter, Finset.mem_univ, true_and] using hz r
 
 /-- [Integrable coordinate factors](hyp:hf) have [an integrable product on
-every membership pattern](goal) under the iid law. -/
+every membership pattern](goal) under the iid law.
+@isnad1 id=integrab.1h10v.s7.ae48df8c7cf7 from=translated src=- shape=68d64317 vocab=337ebe61
+-/
 theorem integrableOn_pattern_prod {m : ℕ} (μ : Measure Ω) [IsProbabilityMeasure μ]
     (label : A → κ) (X : Ω → A) (k : κ) (T : Finset (Fin m))
     (f : Fin m → Ω → ℝ) (hf : ∀ r, Integrable (f r) μ) :
@@ -83,7 +91,9 @@ theorem integrableOn_pattern_prod {m : ℕ} (μ : Measure Ω) [IsProbabilityMeas
 
 /-- The [coordinate product on a fixed membership pattern](hyp:label,X,k,T,f)
 has [integral equal to the product of the corresponding cell or complement
-set integrals](goal) under the iid probability law. -/
+set integrals](goal) under the iid probability law.
+@isnad1 id=eq.0h10v.s7.725faa3af27c from=translated src=- shape=375605aa vocab=32006704
+-/
 theorem integral_pattern_prod {m : ℕ} (μ : Measure Ω) [IsProbabilityMeasure μ]
     (label : A → κ) (X : Ω → A) (k : κ) (T : Finset (Fin m))
     (f : Fin m → Ω → ℝ) :
@@ -98,7 +108,9 @@ omit [DecidableEq κ] in
 /-- [Measurable partition inputs](hyp:hlabel,hX) and [a selected coordinate](hyp:hi)
 give [a pattern-restricted squared residual
 integral equal to its cell second moment times the masses of all other
-coordinates](goal). -/
+coordinates](goal).
+@isnad1 id=eq.3h12v.s8.299caf98c6fe from=translated src=- shape=ecf16bd8 vocab=a75477a4
+-/
 theorem integral_pattern_coordinate_sq {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (c : ℝ) (k : κ) (T : Finset (Fin m))
@@ -146,7 +158,9 @@ theorem integral_pattern_coordinate_sq {m : ℕ}
 
 omit [DecidableEq κ] in
 /-- [Two distinct selected coordinates](hyp:hi,hj,hij) with [centered cell
-residuals](hyp:hcenter) have [zero cross moment on the fixed pattern](goal). -/
+residuals](hyp:hcenter) have [zero cross moment on the fixed pattern](goal).
+@isnad1 id=eq.4h13v.s8.37530ff2e8ec from=translated src=- shape=1c54bdf8 vocab=5381c53f
+-/
 theorem integral_pattern_cross_eq_zero {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (c : ℝ) (k : κ) (T : Finset (Fin m))
@@ -168,7 +182,9 @@ theorem integral_pattern_cross_eq_zero {m : ℕ}
 omit [DecidableEq κ] in
 /-- [Measurable inputs and integrable first and second response moments](hyp:hlabel,hX,hY,hint,hsq),
 with [zero cell residual mean](hyp:hcenter), imply [the exact second moment
-of the selected residual sum on a fixed membership pattern](goal). -/
+of the selected residual sum on a fixed membership pattern](goal).
+@isnad1 id=eq.6h11v.s8.c746fcb19d0b from=translated src=- shape=df168d20 vocab=8197a84a
+-/
 theorem integral_centered_sum_sq_on_pattern {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (c : ℝ) (k : κ) (T : Finset (Fin m))

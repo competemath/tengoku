@@ -29,7 +29,9 @@ variable {Ω κ : Type*} [MeasurableSpace Ω] [Fintype κ] [DecidableEq κ]
 /-- Clipped regression squared error is integrable under any finite iid law
 when the [observation maps are measurable](hyp:hX,hA,hY), the [clipping radius
 is nonnegative](hyp:hR), and the [target lies in the clipping interval](hyp:htheta).
-The [integrability conclusion](goal) needs no outcome moment bound. -/
+The [integrability conclusion](goal) needs no outcome moment bound.
+@isnad1 id=integrab.5h9v.s7.a35aa08de92f from=translated src=- shape=b5aa41dc vocab=6b81e934
+-/
 lemma integrable_clipped_error_sq (n : ℕ) (μ : Measure Ω) [IsFiniteMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ) (R theta : ℝ)
     (hX : Measurable X) (hA : Measurable A) (hY : Measurable Y)
@@ -63,7 +65,9 @@ with integral_indicator. The design-only function W d * inverseGram d lies
 between zero and 1/t: on S use t>0 and reciprocal monotonicity, outside S it
 is zero. Integrable.of_bound and integral_mono_ae bound its integral by 1/t.
 This route avoids enumerating positive-mass fibers or introducing conditional
-expectations, and applies without any sample-size or overlap assumption. -/
+expectations, and applies without any sample-size or overlap assumption.
+@isnad1 id=le.5h12v.s8.08868490ca85 from=translated src=- shape=2b63c0e9 vocab=8506a916
+-/
 theorem integral_good_error_sq_le (n : ℕ) (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ) (center : Bool → κ → ℝ)
     (M R theta t : ℝ) (h : ResidualAssumptions μ X A Y center M)
@@ -150,7 +154,9 @@ Its complementary contribution is at most the integral of the constant
 4*R^2 by clip_sq_error_le_four and setIntegral_mono_ae. Rewrite that constant
 integral with setIntegral_const, and identify S complement with {z | D<t}.
 Keep the zero-Gram case in the complementary event; no division by D is
-needed there. -/
+needed there.
+@isnad1 id=le.5h12v.s8.65fd8033ed4c from=translated src=- shape=b20149ce vocab=40a48a74
+-/
 theorem integral_clipped_error_sq_le_split (n : ℕ) (μ : Measure Ω)
     [IsProbabilityMeasure μ] (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (M R theta t : ℝ)
@@ -190,7 +196,9 @@ theorem integral_clipped_error_sq_le_split (n : ℕ) (μ : Measure Ω)
     _ = _ := by rw [hcompl]
 
 /-- [The quarter-overlap risk constant 33152/9 is at most the reference constant
-72 + 4(1296 + 729/64)](goal). -/
+72 + 4(1296 + 729/64)](goal).
+@isnad1 id=le.0h0v.s6.86f8bd5fa359 from=translated src=- shape=c936194b vocab=a31a7c56
+-/
 lemma quarter_constant_le_paper :
     (33152 / 9 : ℝ) ≤ 72 + 4 * (1296 + 729 / 64) := by
   norm_num

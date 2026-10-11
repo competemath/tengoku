@@ -15,7 +15,9 @@ open MeasureTheory
 
 namespace Causalean.Stat.Minimax.Mixture.MomentMatched.BoundedMultivariate
 
-/-- A [positive matching degree](hyp:hK), [scalar and triple parameters](hyp:a,q,gap,b,ε), [a positive scalar scale bounded by one](hyp:ha₀,ha₁), [the overlap parametrization](hyp:hq), [an overlap margin between zero and one half](hyp:hε₀,hε₁), [a positive arrival-mass scale](hyp:hb), and [scalar moment priors](hyp:S) produce [bounded triple priors with the stated explicit branches and common mean arrival mass](goal). -/
+/-- A [positive matching degree](hyp:hK), [scalar and triple parameters](hyp:a,q,gap,b,ε), [a positive scalar scale bounded by one](hyp:ha₀,ha₁), [the overlap parametrization](hyp:hq), [an overlap margin between zero and one half](hyp:hε₀,hε₁), [a positive arrival-mass scale](hyp:hb), and [scalar moment priors](hyp:S) produce [bounded triple priors with the stated explicit branches and common mean arrival mass](goal).
+@isnad1 id=ex.7h7v.s8.3a8512ff6fc8 from=translated src=- shape=685f4c59 vocab=5e4c7bdb
+-/
 theorem scalarPriors_to_triple {K : ℕ} (hK : 1 ≤ K)
     {a q gap b ε : ℝ} (ha₀ : 0 < a) (ha₁ : a ≤ 1)
     (hq : q = 1 - 2 * ε) (hε₀ : 0 < ε) (hε₁ : ε < 1 / 2)
@@ -308,7 +310,9 @@ theorem scalarPriors_to_triple {K : ℕ} (hK : 1 ≤ K)
     mean_p_match := hmean₀.trans hmean₁.symm
     target_gap := hgap }, rfl, rfl, hmean₀⟩
 
-/-- An [overlap margin](hyp:ε,hε₀,hε₁) and [positive arrival-mass scale](hyp:b,hb) admit [positive constants that construct bounded finite triple priors at every positive degree with matched mixed moments and mean arrival mass, and a quantitative mean success-mass gap](goal). -/
+/-- An [overlap margin](hyp:ε,hε₀,hε₁) and [positive arrival-mass scale](hyp:b,hb) admit [positive constants that construct bounded finite triple priors at every positive degree with matched mixed moments and mean arrival mass, and a quantitative mean success-mass gap](goal).
+@isnad1 id=ex.3h2v.s7.798a3f5342af from=translated src=- shape=27978f56 vocab=c7fa7f68
+-/
 theorem exists_triplePriors (ε b : ℝ) (hε₀ : 0 < ε) (hε₁ : ε < 1 / 2)
     (hb : 0 < b) :
     ∃ c₀ gap : ℝ, 0 < c₀ ∧ c₀ < 1 ∧ 0 < gap ∧

@@ -32,7 +32,9 @@ Fréchet derivative everywhere](hyp:hD), [its changes on a closed ball are
 bounded by a nonnegative Lipschitz constant](hyp:hLnonneg,hLbound), and [the
 comparison point lies in that ball](hyp:hθ). Then [the first-order Taylor
 remainder between the center and comparison point is bounded by the Lipschitz
-constant times their squared distance](goal). -/
+constant times their squared distance](goal).
+@isnad1 id=le.4h8v.s9.9292c3e11cf7 from=translated src=- shape=e4318ca7 vocab=1f2a3cdc
+-/
 theorem norm_taylor_remainder_le_of_fderiv_lipschitz
     (f : Θ → V) (D : Θ → (Θ →L[ℝ] V)) (θ₀ θ : Θ)
     {L δ : ℝ}

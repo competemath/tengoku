@@ -70,7 +70,9 @@ The hypotheses are the standard van Trees regularity conditions written in
 "regularity (DQM) form": `hscore_mean` (score has conditional mean zero),
 `hfisher` (`I h` is the conditional second moment of the score), and `hDQM`
 (the posterior mean of `δ` is differentiable with derivative equal to its
-covariance with the score). -/
+covariance with the score).
+@isnad1 id=le.28h11v.s10.a6bfb1c14062 from=translated src=- shape=a8e20cb4 vocab=880391bb
+-/
 @[deprecated (since := "2026-09-17")]
 theorem van_trees_inequality_of_estimator_differentiation
     {Z : Type*} [MeasurableSpace Z]
@@ -426,7 +428,9 @@ at most the prior-average mean-squared error](goal).
 This is a scalar, unweighted specialization of Gill--Levit (1995), Theorem 1, obtained by taking
 one-dimensional parameters and targets with scalar unit weight. It specializes the
 observation-dependent theorem with `g θ x = ψ θ`; the estimator-specific differentiation
-identity is derived from model regularity. -/
+identity is derived from model regularity.
+@isnad1 id=le.35h11v.s11.ee9bd32603c9 from=translated src=- shape=0843ed69 vocab=78588438
+-/
 theorem van_trees_inequality
     {X : Type*} [MeasurableSpace X] (μ : Measure X) [SigmaFinite μ]
     {ell u : ℝ} (hellu : ell < u)

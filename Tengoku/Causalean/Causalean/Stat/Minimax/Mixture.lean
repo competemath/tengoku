@@ -39,13 +39,17 @@ scaled by its corresponding weight. -/
 noncomputable def mixture (w : ι → ℝ≥0∞) (P : ι → Measure Ω) : Measure Ω :=
   ∑ i, w i • P i
 
-/-- Evaluation: the mixture's mass on a set is the weighted sum of the parts' masses. -/
+/-- Evaluation: the mixture's mass on a set is the weighted sum of the parts' masses.
+@isnad1 id=eq.0h6v.s6.b754eb37f150 from=translated src=- shape=39382995 vocab=d2df34a7
+-/
 theorem mixture_apply (w : ι → ℝ≥0∞) (P : ι → Measure Ω) (A : Set Ω) :
     mixture w P A = ∑ i, w i * P i A := by
   simp only [mixture, Measure.coe_finsetSum, Finset.sum_apply, Measure.smul_apply,
     smul_eq_mul]
 
-/-- If the weights sum to 1 and each part is a probability measure, the mixture is one. -/
+/-- If the weights sum to 1 and each part is a probability measure, the mixture is one.
+@isnad1 id=isprobab.1h5v.s5.6683d3019dd4 from=translated src=- shape=9353185a vocab=adde92ee
+-/
 theorem mixture_isProbabilityMeasure (w : ι → ℝ≥0∞) (hw : ∑ i, w i = 1)
     (P : ι → Measure Ω) [∀ i, IsProbabilityMeasure (P i)] :
     IsProbabilityMeasure (mixture w P) := by
@@ -57,7 +61,9 @@ theorem mixture_isProbabilityMeasure (w : ι → ℝ≥0∞) (hw : ∑ i, w i = 
 /-- **Domination.** If [the mixture weights `w` sum to `1`](hyp:w,hw), each component
 measure `P i` is a probability measure, and [every component assigns `.real`-mass at most
 `B` to the set `A`](hyp:hB), then [the mixture measure also assigns `.real`-mass at most
-`B` to `A`](goal). -/
+`B` to `A`](goal).
+@isnad1 id=le.2h7v.s6.ba9aaa4b8a9e from=translated src=- shape=46a2949b vocab=afc4499c
+-/
 theorem mixtureReal_le (w : ι → ℝ≥0∞) (hw : ∑ i, w i = 1)
     (P : ι → Measure Ω) [∀ i, IsProbabilityMeasure (P i)]
     (A : Set Ω) (B : ℝ) (hB : ∀ i, (P i).real A ≤ B) :
@@ -86,7 +92,9 @@ theorem mixtureReal_le (w : ι → ℝ≥0∞) (hw : ∑ i, w i = 1)
 
 /-- **Witness extraction.**  Some component carries at least the mixture's `.real`-mass:
 since the mixture is a weighted average (weights summing to `1`), its mass on `A` is at
-most the maximal component mass, attained over the finite index. -/
+most the maximal component mass, attained over the finite index.
+@isnad1 id=ex.1h6v.s6.b7a000a94dd4 from=translated src=- shape=1aff977a vocab=3861ff79
+-/
 theorem exists_real_ge_mixture [Nonempty ι] (w : ι → ℝ≥0∞) (hw : ∑ i, w i = 1)
     (P : ι → Measure Ω) [∀ i, IsProbabilityMeasure (P i)] (A : Set Ω) :
     ∃ i, (mixture w P).real A ≤ (P i).real A := by
@@ -117,7 +125,9 @@ noncomputable def priorPredictive (π : Measure Θ) (K : Kernel Θ X) : Measure 
   π.bind fun θ => K θ
 
 /-- Mixing [probability experiment laws](hyp:hK) from [a measurable kernel](hyp:K) against
-[a probability prior](hyp:π) [produces a probability law on observations](goal). -/
+[a probability prior](hyp:π) [produces a probability law on observations](goal).
+@isnad1 id=isprobab.1h4v.s5.45cc6e8e405c from=translated src=- shape=568ab1ca vocab=e2984171
+-/
 theorem priorPredictive_isProbability (π : Measure Θ) (K : Kernel Θ X)
     [IsProbabilityMeasure π] (hK : ∀ θ, IsProbabilityMeasure (K θ)) :
     IsProbabilityMeasure (priorPredictive π K) := by
@@ -129,7 +139,9 @@ theorem priorPredictive_isProbability (π : Measure Θ) (K : Kernel Θ X)
 
 /-- The mass that [a prior](hyp:π) and [experiment kernel](hyp:K) assign to
 [a measurable observation event](hyp:hA) [equals the prior average of its conditional event
-probabilities](goal). -/
+probabilities](goal).
+@isnad1 id=eq.1h5v.s6.56bd57be37f4 from=translated src=- shape=9386ace1 vocab=de521075
+-/
 theorem priorPredictive_apply (π : Measure Θ) (K : Kernel Θ X) {A : Set X}
     (hA : MeasurableSet A) :
     priorPredictive π K A = ∫⁻ θ, K θ A ∂π := by
@@ -137,7 +149,9 @@ theorem priorPredictive_apply (π : Measure Θ) (K : Kernel Θ X) {A : Set X}
 
 /-- The lower integral of [a nonnegative measurable statistic](hyp:f,hf) under the mixture from
 [a prior](hyp:π) and [experiment kernel](hyp:K) [equals the iterated prior-then-experiment lower
-integral](goal). -/
+integral](goal).
+@isnad1 id=eq.1h5v.s6.961dfabd2425 from=translated src=- shape=5639d343 vocab=603caa25
+-/
 theorem lintegral_priorPredictive (π : Measure Θ) (K : Kernel Θ X) (f : X → ℝ≥0∞)
     (hf : Measurable f) :
     ∫⁻ x, f x ∂priorPredictive π K = ∫⁻ θ, ∫⁻ x, f x ∂K θ ∂π := by
@@ -145,7 +159,9 @@ theorem lintegral_priorPredictive (π : Measure Θ) (K : Kernel Θ X) (f : X →
 
 /-- The expectation of [an integrable real-valued statistic](hyp:f,hf) under the mixture from
 [a prior](hyp:π) and [experiment kernel](hyp:K) [equals the prior average of its conditional
-expectations](goal). -/
+expectations](goal).
+@isnad1 id=eq.1h5v.s7.fbcbb0129342 from=translated src=- shape=6129ffca vocab=b66cdc98
+-/
 theorem integral_priorPredictive (π : Measure Θ) (K : Kernel Θ X) (f : X → ℝ)
     (hf : Integrable f (priorPredictive π K)) :
     ∫ x, f x ∂priorPredictive π K = ∫ θ, ∫ x, f x ∂K θ ∂π := by
@@ -160,7 +176,9 @@ open scoped ProbabilityTheory
 
 /-- Given [a probability prior](hyp:pi), [an experiment Markov kernel](hyp:K),
 and [a common post-processing Markov kernel](hyp:R), mixing the composed
-experiment [equals post-processing the prior-predictive mixture](goal). -/
+experiment [equals post-processing the prior-predictive mixture](goal).
+@isnad1 id=eq.0h6v.s6.46dade144b87 from=translated src=- shape=84a0bc1a vocab=8eedf89d
+-/
 theorem kernel_comp_priorPredictive
     {Theta A B : Type*} [MeasurableSpace Theta]
     [MeasurableSpace A] [MeasurableSpace B]

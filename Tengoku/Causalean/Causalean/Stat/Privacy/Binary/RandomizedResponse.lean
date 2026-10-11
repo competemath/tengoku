@@ -32,7 +32,9 @@ def randomizedResponse (ε : ℝ) : Kernel Bool Bool :=
     Causalean.Mathlib.Probability.bernoulliBool (responseProbability ε b)
 
 /-- A [positive privacy level](hyp:hε) at [the supplied parameter](hyp:ε) makes
-[binary randomized response a Markov kernel](goal). -/
+[binary randomized response a Markov kernel](goal).
+@isnad1 id=ismarkov.1h1v.s4.264b23534a91 from=translated src=- shape=079225b2 vocab=cf491ca2
+-/
 theorem randomizedResponse_markov (ε : ℝ) (hε : 0 < ε) :
     IsMarkovKernel (randomizedResponse ε) := by
   have he : 0 < Real.exp ε := Real.exp_pos ε
@@ -53,7 +55,9 @@ theorem randomizedResponse_markov (ε : ℝ) (hε : 0 < ε) :
       linarith
 
 /-- A [positive privacy level](hyp:hε) at [the supplied parameter](hyp:ε) makes
-[binary randomized response satisfy pairwise setwise local privacy](goal). -/
+[binary randomized response satisfy pairwise setwise local privacy](goal).
+@isnad1 id=setwisep.1h1v.s4.72fd131fe085 from=translated src=- shape=0143b885 vocab=19eda201
+-/
 theorem randomizedResponse_private (ε : ℝ) (hε : 0 < ε) :
     SetwisePrivate (randomizedResponse ε) ε := by
   intro b c s hs
@@ -207,7 +211,9 @@ private theorem integrable_contrast_fisher (Q : Kernel Bool Z) [IsMarkovKernel Q
 
 /-- A [Boolean-input Markov kernel](hyp:Q) on a countable measurable output alphabet
 at [an interior sign-family parameter](hyp:τ,hτ) has [Radon–Nikodym Fisher
-information equal to its atomic Fisher sum](goal). -/
+information equal to its atomic Fisher sum](goal).
+@isnad1 id=eq.1h3v.s5.d2286579e165 from=translated src=- shape=f098a078 vocab=0654b610
+-/
 theorem information_eq_discrete (Q : Kernel Bool Z) [IsMarkovKernel Q]
     (τ : ℝ) (hτ : |τ| < 1) :
     information Q τ = discreteInformation Q τ := by
@@ -260,7 +266,9 @@ theorem information_eq_discrete (Q : Kernel Bool Z) [IsMarkovKernel Q]
 
 /-- A [positive privacy level](hyp:ε,hε) and [an interior sign-family
 parameter](hyp:τ,hτ) make [binary randomized response attain the sharp scalar
-Fisher-information bound](goal). -/
+Fisher-information bound](goal).
+@isnad1 id=eq.2h2v.s6.4a4f5abda49f from=translated src=- shape=7c81328a vocab=21d11f6e
+-/
 theorem randomizedResponse_information_eq (ε τ : ℝ)
     (hε : 0 < ε) (hτ : |τ| < 1) :
     letI : IsMarkovKernel (randomizedResponse ε) := randomizedResponse_markov ε hε
@@ -334,7 +342,9 @@ theorem randomizedResponse_information_eq (ε τ : ℝ)
 /-- A [Boolean-input Markov kernel](hyp:Q) on a countable measurable output alphabet,
 [a positive privacy level](hyp:ε,hε), [an interior sign-family parameter](hyp:τ,hτ),
 and [setwise local privacy](hyp:hpriv) give [the sharp atomic Fisher-information
-bound](goal). -/
+bound](goal).
+@isnad1 id=le.3h4v.s7.44fc6446967e from=translated src=- shape=43440f78 vocab=4e32ede6
+-/
 theorem discreteInformation_le_sharp (Q : Kernel Bool Z) [IsMarkovKernel Q]
     (ε τ : ℝ) (hε : 0 < ε) (hτ : |τ| < 1)
     (hpriv : SetwisePrivate Q ε) :

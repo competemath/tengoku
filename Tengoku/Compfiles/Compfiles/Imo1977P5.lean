@@ -24,10 +24,15 @@ namespace Imo1977P5
 abbrev solution_set : Set (ℕ×ℕ) := {(7,50), (37, 50), (50, 7), (50, 37)}
 
 /-- 1009 is prime and `≡ 1 (mod 4)`, so its representation as a sum of two
-squares is unique: `1009 = 15² + 28²`. -/
+squares is unique: `1009 = 15² + 28²`.
+@isnad1 id=or.3h2v.s6.a209f8b941ff from=translated src=- shape=4ff98830 vocab=fbd43e02
+-/
 lemma sq_add_sq_eq : ∀ m < 32, ∀ n < 32, m ^ 2 + n ^ 2 = 1009 →
     (m = 15 ∧ n = 28) ∨ (m = 28 ∧ n = 15) := by decide
 
+/--
+@isnad1 id=mem.2h2v.s6.ff767b3f2d0d from=translated src=- shape=be2a6f6e vocab=913912ef
+-/
 lemma aux_1
     (a b : ℕ)
     (hp : 0 < a ∧ 0 < b)
@@ -55,6 +60,9 @@ lemma aux_1
   simp only [solution_set, Set.mem_insert_iff, Set.mem_singleton_iff, Prod.mk.injEq]
   lia
 
+/--
+@isnad1 id=mem.4h4v.s7.a972a55a7093 from=translated src=- shape=ec020ad0 vocab=9af214d0
+-/
 lemma aux_2
     (a b q r : ℕ)
     (hp : 0 < a ∧ 0 < b)

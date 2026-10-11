@@ -27,7 +27,9 @@ noncomputable def fourRateFactorialTail (K : ℕ) (r : Fin 4 → ℝ) : ℝ :=
   `Nat.multinomial`. For nonnegative rates, the degree-m coefficient
   is `(∑ i, r i)^m / m!`; compare with `x^m / m!` termwise. -/
 
-/-- A [positive degree](hyp:K,hK), [four nonnegative rates](hyp:r,hr), and [an upper bound on their total rate](hyp:x,hx) give [a four-rate factorial tail no larger than the corresponding one-dimensional tail](goal). -/
+/-- A [positive degree](hyp:K,hK), [four nonnegative rates](hyp:r,hr), and [an upper bound on their total rate](hyp:x,hx) give [a four-rate factorial tail no larger than the corresponding one-dimensional tail](goal).
+@isnad1 id=le.3h3v.s7.e026c40a0b3d from=translated src=- shape=3735b64e vocab=49d0e46f
+-/
 theorem fourRateFactorialTail_le (K : ℕ) (hK : 1 ≤ K)
     (r : Fin 4 → ℝ) (hr : ∀ i, 0 ≤ r i)
     (x : ℝ) (hx : ∑ i, r i ≤ x) :

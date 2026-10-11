@@ -82,7 +82,9 @@ def positiveCells [Fintype κ] (μ : Measure Ω) (label : A → κ) (X : Ω → 
   Finset.univ.filter fun k => 0 < cellMass μ label X k
 
 /-- [Measurable covariates and partition labels](hyp:hX,hlabel) give
-[measurable cell counts](goal). -/
+[measurable cell counts](goal).
+@isnad1 id=measurab.2h7v.s6.a231da55d9f1 from=translated src=- shape=711f8647 vocab=f9ee8058
+-/
 @[fun_prop] theorem measurable_cellCount {m : ℕ} (label : A → κ) (X : Ω → A) (k : κ)
     (hlabel : Measurable label) (hX : Measurable X) :
     Measurable (cellCount (m := m) label X k) := by
@@ -100,7 +102,9 @@ def positiveCells [Fintype κ] (μ : Measure Ω) (label : A → κ) (X : Ω → 
   simpa only [Finset.card_filter] using hsum
 
 /-- [Measurable covariates, responses, and labels](hyp:hX,hY,hlabel) give
-[measurable cell estimates](goal), for every fixed default and cell. -/
+[measurable cell estimates](goal), for every fixed default and cell.
+@isnad1 id=measurab.3h9v.s6.9da74d4e6c57 from=translated src=- shape=f4d4e59c vocab=4e10ce56
+-/
 @[fun_prop] theorem measurable_cellEstimate {m : ℕ} (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (a : ℝ) (k : κ) (hlabel : Measurable label)
     (hX : Measurable X) (hY : Measurable Y) :
@@ -122,7 +126,9 @@ def positiveCells [Fintype κ] (μ : Measure Ω) (label : A → κ) (X : Ω → 
     measurable_const (measurable_const.max (measurable_const.min (hsum.div hcast)))
 
 /-- [Measurable covariates, responses, and labels](hyp:hX,hY,hlabel) give
-[jointly measurable histogram predictions in the sample and query](goal). -/
+[jointly measurable histogram predictions in the sample and query](goal).
+@isnad1 id=measurab.3h8v.s6.7572fc73d6f3 from=translated src=- shape=a1cd68a8 vocab=13e98bf6
+-/
 @[fun_prop] theorem measurable_histogram {m : ℕ} (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (a : ℝ) (hlabel : Measurable label)
     (hX : Measurable X) (hY : Measurable Y) :
@@ -140,7 +146,9 @@ def positiveCells [Fintype κ] (μ : Measure Ω) (label : A → κ) (X : Ω → 
   simpa [histogram] using hsum
 
 /-- [Unit-interval responses and default](hyp:hY,ha) ensure that
-[every cell estimate belongs to the unit interval](goal). -/
+[every cell estimate belongs to the unit interval](goal).
+@isnad1 id=mem.2h10v.s7.31a854908964 from=translated src=- shape=69227b04 vocab=13b1d7d3
+-/
 theorem cellEstimate_mem_Icc {m : ℕ} (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (a : ℝ) (k : κ) (z : Fin m → Ω)
     (hY : ∀ r, Y (z r) ∈ Set.Icc (0 : ℝ) 1) (ha : a ∈ Set.Icc (0 : ℝ) 1) :

@@ -26,7 +26,9 @@ abbrev KernelFamily (X : Type*) [MeasurableSpace X] (Z : Fin n → Type*)
   (i : Fin n) → Kernel (X × History Z i.val (Nat.le_of_lt i.isLt)) (Z i)
 
 /-- Given [a successor bound](hyp:hk), [appending a next output to a preceding dependent
-history is measurable](goal). -/
+history is measurable](goal).
+@isnad1 id=measurab.1h3v.s7.63241a67e5ae from=translated src=- shape=bf9b4457 vocab=5c3d467c
+-/
 theorem measurable_snoc {k : ℕ} (hk : k + 1 ≤ n) :
     Measurable (fun p : History Z k (Nat.le_of_succ_le hk) × Z (nextIndex hk) =>
       snoc hk p.1 p.2) := by
@@ -53,7 +55,9 @@ theorem measurable_snoc {k : ℕ} (hk : k + 1 ≤ n) :
     rfl
 
 /-- Given [a successor bound](hyp:hk), [splitting a nonempty dependent history into its
-preceding history and final output is measurable](goal). -/
+preceding history and final output is measurable](goal).
+@isnad1 id=measurab.1h3v.s7.40ff81cf5c2a from=translated src=- shape=1c81d3bd vocab=41cc72d1
+-/
 theorem measurable_init_last {k : ℕ} (hk : k + 1 ≤ n) :
     Measurable (fun u : History Z (k + 1) hk => (init hk u, last hk u)) := by
   apply Measurable.prodMk
@@ -79,7 +83,9 @@ noncomputable def prefixLaw (Q : KernelFamily X Z) (x : Fin n → X) (k : ℕ)
 
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), [a fixed input vector](hyp:x), [a prefix length](hyp:k), and [evidence that the
-prefix lies within the horizon](hyp:hk), [the prefix law has total mass one](goal). -/
+prefix lies within the horizon](hyp:hk), [the prefix law has total mass one](goal).
+@isnad1 id=isprobab.2h6v.s6.c0a24075d14b from=translated src=- shape=c160f8a0 vocab=c4878ec1
+-/
 theorem isProbabilityMeasure_prefixLaw (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X) (k : ℕ) (hk : k ≤ n) :
     IsProbabilityMeasure (prefixLaw Q x k hk) := by

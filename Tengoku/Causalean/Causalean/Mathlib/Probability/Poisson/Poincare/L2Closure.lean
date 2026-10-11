@@ -27,7 +27,9 @@ noncomputable section
 def addOne (f : Nat → Real) (n : Nat) : Real :=
   f (n + 1) - f n
 
-/-- Under [a probability law](hyp:mu), a [square-integrable real statistic](hyp:f,hf) has [variance equal to one half of the expected squared difference between two independent draws](goal). -/
+/-- Under [a probability law](hyp:mu), a [square-integrable real statistic](hyp:f,hf) has [variance equal to one half of the expected squared difference between two independent draws](goal).
+@isnad1 id=eq.1h3v.s7.bbce6db8d1b5 from=translated src=- shape=6ccdf55d vocab=b0103eec
+-/
 theorem variance_eq_half_integral_prod_sq_sub
     {alpha : Type*} [MeasurableSpace alpha]
     (mu : Measure alpha) [IsProbabilityMeasure mu]
@@ -83,7 +85,9 @@ theorem variance_eq_half_integral_prod_sq_sub
 def supportTruncation (K : Nat) (f : Nat → Real) : Nat → Real :=
   fun n ↦ if n < K then f n else 0
 
-/-- A [cutoff index](hyp:K) of [a real sequence](hyp:f) [has finite support](goal). -/
+/-- A [cutoff index](hyp:K) of [a real sequence](hyp:f) [has finite support](goal).
+@isnad1 id=finite.0h2v.s3.d0f065f37941 from=translated src=- shape=726849dd vocab=1b96b911
+-/
 lemma supportTruncation_finiteSupport (K : Nat) (f : Nat → Real) :
     (Function.support (supportTruncation K f)).Finite := by
   refine (Set.finite_Iio K).subset ?_
@@ -93,7 +97,9 @@ lemma supportTruncation_finiteSupport (K : Nat) (f : Nat → Real) :
   have hkn : ¬ n < K := by simpa using hnot
   exact hn (by simp [supportTruncation, hkn])
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) with [finite support](hyp:hf) [is square-integrable under the Poisson law](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), a [real sequence](hyp:f) with [finite support](hyp:hf) [is square-integrable under the Poisson law](goal).
+@isnad1 id=memlp.1h2v.s6.b6a289275e0a from=translated src=- shape=38bdfe89 vocab=f3969c70
+-/
 lemma memLp_poissonMeasure_of_finiteSupport
     (lambda : NNReal) (f : Nat → Real)
     (hf : (Function.support f).Finite) :
@@ -109,7 +115,9 @@ lemma memLp_poissonMeasure_of_finiteSupport
   intro hfn
   simp [hfn] at hn
 
-/-- The add-one increment of [a real sequence](hyp:f) with [finite support](hyp:hf) [also has finite support](goal). -/
+/-- The add-one increment of [a real sequence](hyp:f) with [finite support](hyp:hf) [also has finite support](goal).
+@isnad1 id=finite.1h1v.s4.d8495d5d5ec2 from=translated src=- shape=af000b3c vocab=9f722bbb
+-/
 lemma finiteSupport_addOne (f : Nat → Real)
     (hf : (Function.support f).Finite) :
     (Function.support (addOne f)).Finite := by
@@ -124,7 +132,9 @@ lemma finiteSupport_addOne (f : Nat → Real)
   simp only [not_or, not_not] at hnot
   exact hn (by simp [addOne, hnot.1, hnot.2])
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), support truncations of [a real sequence](hyp:f) that [is square-integrable](hyp:hf) [converge to it in squared L² distance](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), support truncations of [a real sequence](hyp:f) that [is square-integrable](hyp:hf) [converge to it in squared L² distance](goal).
+@isnad1 id=tendsto.1h2v.s7.10a3ca1ee705 from=translated src=- shape=1b934f2a vocab=dd97de70
+-/
 theorem supportTruncation_integral_sq_tendsto_zero
     (lambda : NNReal) (f : Nat → Real)
     (hf : MemLp f 2 (poissonMeasure lambda)) :
@@ -160,7 +170,9 @@ theorem supportTruncation_integral_sq_tendsto_zero
         simp [a, Set.indicator, supportTruncation, hn]
     _ = _ := (tsum_subtype ({n : Nat | n ∉ (Finset.range K : Set Nat)}) a).symm
 
-/-- At [a nonnegative Poisson rate](hyp:lambda), support truncations of [a real sequence](hyp:f) whose [values are square-integrable](hyp:hf) and whose [add-one increments are square-integrable](hyp:hdf) [converge to those increments in squared L² distance](goal). -/
+/-- At [a nonnegative Poisson rate](hyp:lambda), support truncations of [a real sequence](hyp:f) whose [values are square-integrable](hyp:hf) and whose [add-one increments are square-integrable](hyp:hdf) [converge to those increments in squared L² distance](goal).
+@isnad1 id=tendsto.2h2v.s7.907949729752 from=translated src=- shape=8fa50213 vocab=d1820ce0
+-/
 theorem supportTruncation_addOne_integral_sq_tendsto_zero
     (lambda : NNReal) (f : Nat → Real)
     (hf : MemLp f 2 (poissonMeasure lambda))
@@ -204,7 +216,9 @@ theorem supportTruncation_addOne_integral_sq_tendsto_zero
         have hsn : n + 1 < K := by omega
         simp [addOne, supportTruncation, hn, hsn]))
 
-/-- Under [a probability law](hyp:mu), a [sequence of real statistics](hyp:f) and [a limiting statistic](hyp:g), with [each sequence member square-integrable](hyp:hf), [the limit square-integrable](hyp:hg), and [squared L² distance tending to zero](hyp:hconv), have [variances converging to the limiting variance](goal). -/
+/-- Under [a probability law](hyp:mu), a [sequence of real statistics](hyp:f) and [a limiting statistic](hyp:g), with [each sequence member square-integrable](hyp:hf), [the limit square-integrable](hyp:hg), and [squared L² distance tending to zero](hyp:hconv), have [variances converging to the limiting variance](goal).
+@isnad1 id=tendsto.3h4v.s7.3bd011f45d42 from=translated src=- shape=2bce90f9 vocab=345a611f
+-/
 theorem variance_tendsto_of_integral_sq_sub_tendsto_zero
     {alpha : Type*} [MeasurableSpace alpha]
     (mu : Measure alpha) [IsProbabilityMeasure mu]

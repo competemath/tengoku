@@ -108,12 +108,16 @@ noncomputable def ofProbabilityMeasure (μ : Measure R) [IsProbabilityMeasure μ
     exact lt_of_le_of_ne ENNReal.toReal_nonneg (Ne.symm hne)
 
 /-- The induced weighted support assigns each record the point mass of that
-record under the probability measure. -/
+record under the probability measure.
+@isnad1 id=eq.0h3v.s5.561b0cefa124 from=translated src=- shape=7f02a431 vocab=c43b627f
+-/
 @[simp] lemma ofProbabilityMeasure_weight (μ : Measure R) [IsProbabilityMeasure μ]
     (r : R) : (ofProbabilityMeasure μ).weight r = (μ {r}).toReal := rfl
 
 /-- For [a finite probability measure `μ`](hyp:μ),
-[its weighted inner product equals the corresponding `L²(μ)` integral pairing](goal). -/
+[its weighted inner product equals the corresponding `L²(μ)` integral pairing](goal).
+@isnad1 id=eq.0h4v.s6.ed70feff88e1 from=translated src=- shape=fe80b10b vocab=1c6bf7e5
+-/
 theorem ip_eq_integral (μ : Measure R) [IsProbabilityMeasure μ] (A B : R → ℝ) :
     (ofProbabilityMeasure μ).ip A B = ∫ r, A r * B r ∂μ := by
   classical

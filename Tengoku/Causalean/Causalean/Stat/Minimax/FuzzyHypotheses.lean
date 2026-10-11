@@ -56,7 +56,9 @@ noncomputable def minimaxSquaredRisk (K : Kernel Θ X) (target : Θ → ℝ) : �
 and [a nonnegative predictive-distance bound](hyp:beta,hbeta), if [the first prior concentrates
 around its center](hyp:hmass0), [the second prior concentrates around its center](hyp:hmass1), and
 [the predictive mixtures satisfy the distance bound](hyp:htv), then [the larger Bayes squared
-risk is at least half the squared residual separation times one minus the three error terms](goal). -/
+risk is at least half the squared residual separation times one minus the three error terms](goal).
+@isnad1 id=le.13h14v.s8.7631c1b803cd from=translated src=- shape=53c4c71a vocab=02e4bca8
+-/
 theorem twoFuzzyHypotheses_bayesRisk_lower
     (π0 π1 : Measure Θ) (K : Kernel Θ X) (target : Θ → ℝ)
     [IsProbabilityMeasure π0] [IsProbabilityMeasure π1]
@@ -226,7 +228,9 @@ theorem twoFuzzyHypotheses_bayesRisk_lower
 
 /-- Given [a probability prior](hyp:π), [an experiment kernel](hyp:K), [a real-valued
 target](hyp:target), and [an estimator](hyp:estimator), [Bayes squared risk is at most worst-case
-squared risk over the parameter class](goal). -/
+squared risk over the parameter class](goal).
+@isnad1 id=le.0h6v.s5.f5e89bfe9498 from=translated src=- shape=a0a6aead vocab=99644b5e
+-/
 theorem bayesSquaredRisk_le_worstCase
     (π : Measure Θ) (K : Kernel Θ X) (target : Θ → ℝ) (estimator : X → ℝ)
     [IsProbabilityMeasure π] :
@@ -242,7 +246,9 @@ theorem bayesSquaredRisk_le_worstCase
 [the centers have at least that separation](hyp:hsep), [each prior puts at most one eighth of its
 mass beyond one quarter of the separation from its center](hyp:hmass0,hmass1), and [the predictive
 mixtures are within one sixteenth in total variation](hyp:htv), then [the estimator's worst-case
-squared risk is at least eleven times the squared separation divided by 512](goal). -/
+squared risk is at least eleven times the squared separation divided by 512](goal).
+@isnad1 id=le.8h10v.s8.67133b199022 from=translated src=- shape=06405e95 vocab=05012d7c
+-/
 theorem twoFuzzyHypotheses_worstCase_lower_standard
     (π0 π1 : Measure Θ) (K : Kernel Θ X) (target : Θ → ℝ)
     [IsProbabilityMeasure π0] [IsProbabilityMeasure π1]
@@ -273,7 +279,9 @@ and [a positive center separation](hyp:Delta,hDelta), if [the centers have at le
 separation](hyp:hsep), [each prior puts at most one eighth of its mass beyond one quarter of the
 separation from its center](hyp:hmass0,hmass1), and [the predictive mixtures are within one
 sixteenth in total variation](hyp:htv), then [the minimax squared risk over all measurable
-estimators is at least eleven times the squared separation divided by 512](goal). -/
+estimators is at least eleven times the squared separation divided by 512](goal).
+@isnad1 id=le.7h9v.s8.8fd2e7fc8c0b from=translated src=- shape=b1b56f01 vocab=ead70b05
+-/
 theorem twoFuzzyHypotheses_minimax_lower_standard
     (π0 π1 : Measure Θ) (K : Kernel Θ X) (target : Θ → ℝ)
     [IsProbabilityMeasure π0] [IsProbabilityMeasure π1]

@@ -46,7 +46,9 @@ def sidePmf (q : Theta → C → ℝ) (hq : ∀ theta, q theta ∈ stdSimplex �
   ⟨q theta, hq theta⟩
 
 /-- When [side-probability coordinates](hyp:q) are [simplex-valid](hyp:hq) and
-[continuous](hyp:hqcont), the [simplex-valued side law is continuous](goal). -/
+[continuous](hyp:hqcont), the [simplex-valued side law is continuous](goal).
+@isnad1 id=continuo.2h3v.s6.6ebfcb9ce3ab from=translated src=- shape=dd05c86d vocab=356b5582
+-/
 theorem continuous_sidePmf [TopologicalSpace Theta]
     (q : Theta → C → ℝ) (hq : ∀ theta, q theta ∈ stdSimplex ℝ C)
     (hqcont : ∀ c, Continuous (fun theta ↦ q theta c)) :
@@ -109,7 +111,9 @@ noncomputable def empiricalSideMinimaxValueENNReal (p : Theta → X → ℝ)
       EmpiricalSideProcedure X C m l u → Theta → ℝ)
 
 /-- Under [probability-simplex label and side coordinates](hyp:hp,hq), empirical-side
-[squared risk is nonnegative](goal). -/
+[squared risk is nonnegative](goal).
+@isnad1 id=le.2h11v.s6.15e60f5698b1 from=translated src=- shape=5ada0ee4 vocab=a5f48882
+-/
 theorem empiricalSideRisk_nonneg (p : Theta → X → ℝ) (q : Theta → C → ℝ)
     (hp : ∀ theta, p theta ∈ stdSimplex ℝ X)
     (hq : ∀ theta, q theta ∈ stdSimplex ℝ C) (tau : Theta → ℝ) (m : ℕ)
@@ -125,7 +129,9 @@ theorem empiricalSideRisk_nonneg (p : Theta → X → ℝ) (q : Theta → C → 
 
 /-- Under [probability-simplex label and side coordinates](hyp:hp,hq), with [ordered action
 bounds containing the target](hyp:hlu,htau), empirical-side [squared risk is at most the
-squared action width](goal). -/
+squared action width](goal).
+@isnad1 id=le.4h11v.s7.c7cc77b2d4f9 from=translated src=- shape=08bed863 vocab=57bbb7a5
+-/
 theorem empiricalSideRisk_le (p : Theta → X → ℝ) (q : Theta → C → ℝ)
     (hp : ∀ theta, p theta ∈ stdSimplex ℝ X)
     (hq : ∀ theta, q theta ∈ stdSimplex ℝ C) (tau : Theta → ℝ)

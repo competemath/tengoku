@@ -22,6 +22,9 @@ def IsForbiddenPatternWithTip (a : ι → ι → G) (v : ι → G) : Prop := ∀
 
 def IsForbiddenPattern (a : ι → ι → G) : Prop := ∃ v, IsForbiddenPatternWithTip a v
 
+/--
+@isnad1 id=iff.0h4v.s5.8b73b5485e76 from=translated src=- shape=df531d0f vocab=92f379fd
+-/
 lemma isForbiddenPatternWithTip_iff_forget :
     IsForbiddenPatternWithTip a v ↔ ∀ i, forget i v = forget i (a i) := by
   simp [funext_iff, IsForbiddenPatternWithTip, eq_comm, forget]
@@ -37,6 +40,9 @@ structure IsMultidimCorner (a : ι → ι → G) (b : ι → G) : Prop where
 
 variable [DecidableEq ι]
 
+/--
+@isnad1 id=ismultid.2h4v.s6.ee84642854d1 from=translated src=- shape=85ee6dc8 vocab=ad393aa3
+-/
 lemma isMultidimCorner_forget_of_isForbiddenPattern (a : ι → ι → G) (h : IsForbiddenPattern a)
     (hS : ∀ i, ∑ j, a i j = 0) (i : ι) :
     IsMultidimCorner (fun j ↦ forget i (a j)) (forget i (a i)) := by

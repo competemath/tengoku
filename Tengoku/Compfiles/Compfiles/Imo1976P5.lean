@@ -44,6 +44,9 @@ def lhs (n : ℕ) (a : Fin n → Fin (2 * n) → ℤ) (x : Fin (2 * n) → ℤ) 
     Fin n → ℤ :=
   fun i => ∑ j, a i j * x j
 
+/--
+@isnad1 id=eq.0h1v.s6.62a98c5f96e4 from=translated src=- shape=500f9f79 vocab=5e527b70
+-/
 theorem card_valueFinset (n : ℕ) :
     (valueFinset n).card = (2 * n + 1) ^ (2 * n) := by
   have h : (Finset.Icc (-(n : ℤ)) (n : ℤ)).card = 2 * n + 1 := by
@@ -53,6 +56,9 @@ theorem card_valueFinset (n : ℕ) :
   simp only [valueFinset, Fintype.piFinset, Finset.card_map, Finset.card_pi,
     h, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h1v.s6.f218def929eb from=translated src=- shape=695719dd vocab=2b82441d
+-/
 theorem card_lhsFinset (n : ℕ) :
     (lhsFinset n).card = (4 * n ^ 2 + 1) ^ n := by
   have h :
@@ -65,7 +71,9 @@ theorem card_lhsFinset (n : ℕ) :
     h, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
 /-- The pigeonhole step: there are more candidate tuples than possible
-values of the left-hand sides. -/
+values of the left-hand sides.
+@isnad1 id=lt.1h1v.s5.af1a212b500c from=translated src=- shape=2c797fc0 vocab=bfa7ed04
+-/
 theorem card_lhs_lt_card_value (n : ℕ) (hn : 0 < n) :
     (lhsFinset n).card < (valueFinset n).card := by
   rw [card_lhsFinset, card_valueFinset,
@@ -75,7 +83,9 @@ theorem card_lhs_lt_card_value (n : ℕ) (hn : 0 < n) :
     lia
   exact Nat.pow_lt_pow_left h2 hn.ne'
 
-/-- Each left-hand side is bounded by `2n²` when every |xⱼ| ≤ n. -/
+/-- Each left-hand side is bounded by `2n²` when every |xⱼ| ≤ n.
+@isnad1 id=mapsto.1h2v.s7.1ae8596a9e6e from=translated src=- shape=8e29a8d6 vocab=dd8ec9d9
+-/
 theorem mapsTo (n : ℕ) (a : Fin n → Fin (2 * n) → ℤ)
     (ha : ∀ i j, a i j = 0 ∨ a i j = 1 ∨ a i j = -1) :
     Set.MapsTo (lhs n a) ↑(valueFinset n) ↑(lhsFinset n) := by

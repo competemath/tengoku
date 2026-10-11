@@ -32,7 +32,9 @@ def pairedNodeVector {L : ℕ} (P : ScalarMomentPriors L)
     {b : ℕ} (u : Fin b → Fin P.m) : Fin b → ℝ :=
   fun j => P.node (u j)
 
-/-- Each coordinate of a product-prior perturbation lies in `[-1,1]`. -/
+/-- Each coordinate of a product-prior perturbation lies in `[-1,1]`.
+@isnad1 id=le.0h5v.s5.4cdb7519c503 from=translated src=- shape=eb804cb1 vocab=2fe202a7
+-/
 theorem pairedNodeVector_abs_le_one {L : ℕ} (P : ScalarMomentPriors L)
     {b : ℕ} (u : Fin b → Fin P.m) (j : Fin b) :
     |pairedNodeVector P u j| ≤ 1 := by
@@ -44,6 +46,7 @@ theorem pairedNodeVector_abs_le_one {L : ℕ} (P : ScalarMomentPriors L)
 `Fintype.prod_sum` factors the sum over coordinate functions. Convert each
 real scalar weight sum to `ENNReal` using nonnegativity and `P.w₀_sum` or
 `P.w₁_sum`; the resulting product is one, including when `b = 0`.
+@isnad1 id=eq.0h4v.s6.42a71f5b21b3 from=translated src=- shape=14114eac vocab=38e67aec
 -/
 theorem pairedProductWeight_sum {L : ℕ} (P : ScalarMomentPriors L)
     (b : ℕ) (side : Bool) :
@@ -63,7 +66,9 @@ theorem pairedProductWeight_sum {L : ℕ} (P : ScalarMomentPriors L)
           ENNReal.ofReal (scalarPriorWeight P side i))).symm
     _ = 1 := by simp [hsum]
 
-/-- Given [a scalar moment prior](hyp:P), [a positive balanced pair count](hyp:b,hb), [a bounded nonnegative tilt](hyp:t,ht,ht1), and [a prior side](hyp:side), [the paired-product mean L1 target equals the scalar absolute-moment expression](goal). -/
+/-- Given [a scalar moment prior](hyp:P), [a positive balanced pair count](hyp:b,hb), [a bounded nonnegative tilt](hyp:t,ht,ht1), and [a prior side](hyp:side), [the paired-product mean L1 target equals the scalar absolute-moment expression](goal).
+@isnad1 id=eq.3h5v.s7.22d29791a28e from=translated src=- shape=40755eed vocab=3f4b7bcb
+-/
 theorem pairedProductTarget_mean {L : ℕ} (P : ScalarMomentPriors L)
     (b : ℕ) (hb : 0 < b)
     (t : ℝ) (ht : 0 ≤ t) (ht1 : t ≤ 1) (side : Bool) :

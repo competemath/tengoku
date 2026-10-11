@@ -22,6 +22,7 @@ times the centered Laplace density is integrable with respect to Lebesgue measur
 Follow the primary module's `integrable_abs_mul_laplacePDF` half-line method:
 use `Real.GammaIntegral_convergent` at shape 3, scale by `1 / b`, and reflect
 the positive half-line. This is a separate obligation from evaluating the integral.
+@isnad1 id=integrab.1h1v.s6.d359aebcdce7 from=translated src=- shape=7b4cbc75 vocab=4f4b0373
 -/
 theorem integrable_sq_mul_laplacePDF (b : ℝ) (hb : 0 < b) :
     Integrable (fun x : ℝ => x ^ 2 * laplacePDF b x) := by
@@ -67,6 +68,7 @@ positive-half-line quadratic exponential integral equals twice the cubed scale](
 
 Apply `Real.integral_rpow_mul_exp_neg_mul_Ioi` with shape 3 and rate `1 / b`,
 then evaluate `Real.Gamma 3` and convert natural real powers to integer powers.
+@isnad1 id=eq.1h1v.s6.b453e07047a7 from=translated src=- shape=239ba6c0 vocab=73872b06
 -/
 theorem integral_sq_mul_exp_neg_div_Ioi (b : ℝ) (hb : 0 < b) :
     (∫ x : ℝ in Ioi 0, x ^ 2 * Real.exp (-x / b)) = 2 * b ^ 3 := by
@@ -90,6 +92,7 @@ Laplace draw has an integrable square](goal).
 Transfer `integrable_sq_mul_laplacePDF` through
 `integrable_withDensity_iff_integrable_smul'` and prove density nonnegativity
 from the existing definition (the primary module's helper is private).
+@isnad1 id=integrab.1h1v.s5.1411e827ca81 from=translated src=- shape=03192cd5 vocab=3ddd1084
 -/
 theorem laplaceMeasure_integrable_sq (b : ℝ) (hb : 0 < b) :
     Integrable (fun x : ℝ => x ^ 2) (laplaceMeasure b) := by
@@ -108,6 +111,7 @@ Laplace draw has second moment exactly twice the squared scale](goal).
 Rewrite the with-density integral, use `integral_comp_abs` for the even
 integrand, and substitute `integral_sq_mul_exp_neg_div_Ioi`. Keep the exact
 coefficient 2; an upper bound is not a substitute for this identity.
+@isnad1 id=eq.1h1v.s6.03021b075028 from=translated src=- shape=d7171bb8 vocab=3c6f613f
 -/
 theorem laplaceMeasure_integral_sq (b : ℝ) (hb : 0 < b) :
     ∫ x : ℝ, x ^ 2 ∂laplaceMeasure b = 2 * b ^ 2 := by
@@ -130,7 +134,9 @@ theorem laplaceMeasure_integral_sq (b : ℝ) (hb : 0 < b) :
   field_simp [hb.ne']
 
 /-- At [a real scale](hyp:b) with [a positive-scale certificate](hyp:hb), [a centered
-Laplace draw has nonnegative extended second moment exactly twice the squared scale](goal). -/
+Laplace draw has nonnegative extended second moment exactly twice the squared scale](goal).
+@isnad1 id=eq.1h1v.s6.24609cedd955 from=translated src=- shape=521ab668 vocab=3c0f306a
+-/
 theorem laplaceMeasure_lintegral_sq (b : ℝ) (hb : 0 < b) :
     ∫⁻ x : ℝ, ENNReal.ofReal (x ^ 2) ∂laplaceMeasure b =
       ENNReal.ofReal (2 * b ^ 2) := by

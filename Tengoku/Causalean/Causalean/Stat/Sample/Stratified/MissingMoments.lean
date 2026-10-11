@@ -375,7 +375,9 @@ private lemma missingArmCount_mul_eq_sum_indicator {m : Nat}
 /-- [Measurable group and arm labels](hyp:hgroup,harm) imply that [the expected
 category occupancy retained only when one arm is absent equals the sample size
 times the off-arm category mass times the empty-arm probability for the other
-coordinates](goal). -/
+coordinates](goal).
+@isnad1 id=eq.2h8v.s7.7034eb631393 from=translated src=- shape=32b6b783 vocab=08256698
+-/
 theorem integral_missingArmCount_eq {m : Nat} (mu : Measure Omega)
     [IsProbabilityMeasure mu] (group : Omega → kappa) (arm : Omega → Bool)
     (hgroup : Measurable group) (harm : Measurable arm) (a : Bool) (k : kappa) :
@@ -431,7 +433,9 @@ theorem integral_missingArmCount_eq {m : Nat} (mu : Measure Omega)
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) imply that [the exact
 second moment of one missing-arm category count is the sum of its one-coordinate
-diagonal and ordered two-coordinate contributions](goal). -/
+diagonal and ordered two-coordinate contributions](goal).
+@isnad1 id=eq.2h8v.s8.b406ca2f5618 from=translated src=- shape=b6df2cd9 vocab=83bdee98
+-/
 theorem integral_missingArmCount_sq_eq {m : Nat} (mu : Measure Omega)
     [IsProbabilityMeasure mu] (group : Omega → kappa) (arm : Omega → Bool)
     (hgroup : Measurable group) (harm : Measurable arm) (a : Bool) (k : kappa) :
@@ -540,7 +544,9 @@ theorem integral_missingArmCount_sq_eq {m : Nat} (mu : Measure Omega)
 /-- [Measurable group and arm labels](hyp:hgroup,harm) and [distinct
 categories](hyp:hkl) imply that [their missing-arm counts have the exact
 ordered-pair cross moment obtained by excluding the union of the two
-arm/category cells](goal). -/
+arm/category cells](goal).
+@isnad1 id=eq.3h9v.s8.9e5f8878b2e2 from=translated src=- shape=3dd9ffca vocab=37633514
+-/
 theorem integral_missingArmCount_mul_eq {m : Nat} (mu : Measure Omega)
     [IsProbabilityMeasure mu] (group : Omega → kappa) (arm : Omega → Bool)
     (hgroup : Measurable group) (harm : Measurable arm) (a : Bool) {k l : kappa}
@@ -688,7 +694,9 @@ label](hyp:group,hgroup), [a sample size](hyp:m), [a positive overlap
 margin](hyp:epsilon,hepsilon), [a category-mass lower bound](hyp:B), [a finite
 set of selected categories](hyp:H), and [the asserted lower bound on every
 selected category mass](hyp:hp), [the exponential missing-arm envelope is at
-most the boundary-safe lower-mass envelope](goal). -/
+most the boundary-safe lower-mass envelope](goal).
+@isnad1 id=le.3h8v.s6.d70c5660f212 from=translated src=- shape=80a71573 vocab=8a7e1eba
+-/
 theorem missingArmExponentialEnvelope_le_lowerMass
     (mu : Measure Omega) [IsProbabilityMeasure mu] (group : Omega → kappa)
     (hgroup : Measurable group) (m : Nat) (epsilon B : Real) (H : Finset kappa)
@@ -755,7 +763,9 @@ theorem missingArmExponentialEnvelope_le_lowerMass
 /-- [A sample size of at least three](hyp:hm), [a positive overlap
 margin](hyp:hepsilon), and [a positive category-mass lower bound](hyp:hB) make
 [the boundary-safe lower-mass envelope equal its inverse-polynomial
-expression](goal). -/
+expression](goal).
+@isnad1 id=eq.3h8v.s7.a18d02cc2ee1 from=translated src=- shape=12158abc vocab=ea1b4ad4
+-/
 theorem lowerMassMissingEnvelope_eq_of_pos
     (mu : Measure Omega) (group : Omega → kappa) {m : Nat} {epsilon B : Real}
     (H : Finset kappa) (hm : 3 ≤ m) (hepsilon : 0 < epsilon) (hB : 0 < B) :

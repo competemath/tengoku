@@ -54,7 +54,9 @@ noncomputable def tvDist (μ ν : Measure Ω) : ℝ :=
 
 variable [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
 
-/-- Every term of the supremum defining `tvDist` is bounded by `1`. -/
+/-- Every term of the supremum defining `tvDist` is bounded by `1`.
+@isnad1 id=le.0h5v.s5.8ff9c389c6f4 from=translated src=- shape=770ca5d5 vocab=ca541725
+-/
 theorem abs_measureReal_sub_le_one (A : Set Ω) : |μ.real A - ν.real A| ≤ 1 := by
   have hμ : μ.real A ∈ Set.Icc (0 : ℝ) 1 :=
     ⟨measureReal_nonneg, by
@@ -67,34 +69,46 @@ theorem abs_measureReal_sub_le_one (A : Set Ω) : |μ.real A - ν.real A| ≤ 1 
   rw [abs_le]
   constructor <;> [nlinarith [hμ.1, hμ.2, hν.1, hν.2]; nlinarith [hμ.1, hμ.2, hν.1, hν.2]]
 
-/-- The family defining `tvDist` is bounded above (by `1`). -/
+/-- The family defining `tvDist` is bounded above (by `1`).
+@isnad1 id=bddabove.0h4v.s6.746071de6119 from=translated src=- shape=4b6a6db9 vocab=521858b5
+-/
 theorem bddAbove_tvDist_range :
     BddAbove (Set.range fun A : {A : Set Ω // MeasurableSet A} => |μ.real A.1 - ν.real A.1|) := by
   refine ⟨1, ?_⟩
   rintro _ ⟨A, rfl⟩
   exact abs_measureReal_sub_le_one A.1
 
-/-- For a measurable set `A`, the gap `|μ.real A − ν.real A|` is at most `tvDist μ ν`. -/
+/-- For a measurable set `A`, the gap `|μ.real A − ν.real A|` is at most `tvDist μ ν`.
+@isnad1 id=le.1h5v.s5.c788c694421e from=translated src=- shape=2cfe5f01 vocab=cfb2d010
+-/
 theorem abs_measureReal_sub_le_tvDist {A : Set Ω} (hA : MeasurableSet A) :
     |μ.real A - ν.real A| ≤ tvDist μ ν :=
   le_ciSup bddAbove_tvDist_range (⟨A, hA⟩ : {A : Set Ω // MeasurableSet A})
 
-/-- The signed gap `ν.real A − μ.real A` is at most `tvDist μ ν`. -/
+/-- The signed gap `ν.real A − μ.real A` is at most `tvDist μ ν`.
+@isnad1 id=le.1h5v.s5.cb98cdd0f409 from=translated src=- shape=1645e9cf vocab=05a8a867
+-/
 theorem measureReal_sub_le_tvDist {A : Set Ω} (hA : MeasurableSet A) :
     ν.real A - μ.real A ≤ tvDist μ ν :=
   (le_abs_self _).trans <| by
     rw [abs_sub_comm]; exact abs_measureReal_sub_le_tvDist hA
 
-/-- Total variation distance between probability measures is nonnegative. -/
+/-- Total variation distance between probability measures is nonnegative.
+@isnad1 id=le.0h4v.s5.235372c12e11 from=translated src=- shape=34555f0f vocab=6016b531
+-/
 theorem tvDist_nonneg : 0 ≤ tvDist μ ν := by
   have := abs_measureReal_sub_le_tvDist (μ := μ) (ν := ν) MeasurableSet.empty
   simpa using (abs_nonneg _).trans this
 
-/-- Total variation distance between probability measures is at most one. -/
+/-- Total variation distance between probability measures is at most one.
+@isnad1 id=le.0h4v.s5.304d3b0c58cb from=translated src=- shape=166d3ff0 vocab=6016b531
+-/
 theorem tvDist_le_one : tvDist μ ν ≤ 1 :=
   ciSup_le fun A => abs_measureReal_sub_le_one A.1
 
-/-- `tvDist` is symmetric. -/
+/-- `tvDist` is symmetric.
+@isnad1 id=eq.0h4v.s4.10b01c5d4e58 from=translated src=- shape=e9f59cb4 vocab=64b26a10
+-/
 theorem tvDist_symm (μ ν : Measure Ω) : tvDist μ ν = tvDist ν μ := by
   unfold tvDist
   congr 1
@@ -106,7 +120,9 @@ theorem tvDist_symm (μ ν : Measure Ω) : tvDist μ ν = tvDist ν μ := by
 probability of `A` under `μ` plus the probability of the complement of `A` under `ν` —
 that is at least `1 − tvDist(μ,ν)`](goal).
 
-This is the single inequality on which the two-point method rests. -/
+This is the single inequality on which the two-point method rests.
+@isnad1 id=le.1h5v.s6.9cfde06c3b03 from=translated src=- shape=554b9887 vocab=13da3955
+-/
 theorem one_sub_tvDist_le_test {A : Set Ω} (hA : MeasurableSet A) :
     1 - tvDist μ ν ≤ μ.real A + ν.real Aᶜ := by
   have hcompl : ν.real Aᶜ = 1 - ν.real A := by
@@ -119,7 +135,9 @@ theorem one_sub_tvDist_le_test {A : Set Ω} (hA : MeasurableSet A) :
 that width times the total-variation distance between the two probability laws.
 
 This is the bounded-function side of the dual characterization of total variation, normalized
-using the supremum over measurable events. -/
+using the supremum over measurable events.
+@isnad1 id=le.3h7v.s7.a5af58a4fd4d from=translated src=- shape=a0543774 vocab=13706545
+-/
 theorem tvDist_integral_range (μ ν : Measure Ω)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (f : Ω → ℝ) (hf : Measurable f) (a c : ℝ) (hc : 0 ≤ c)
@@ -197,7 +215,9 @@ theorem tvDist_integral_range (μ ν : Measure Ω)
 an expectation gap no larger than `c` times their total-variation distance.
 
 The statistic may violate the range restriction on different null sets for the two probability
-measures. -/
+measures.
+@isnad1 id=le.4h7v.s7.52a9ee0e1ebe from=translated src=- shape=b45a8a9d vocab=556e1488
+-/
 theorem tvDist_integral_le_of_range_ae (μ ν : Measure Ω)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (f : Ω → ℝ) (hf : Measurable f) (a c : ℝ) (hc : 0 ≤ c)
@@ -223,7 +243,9 @@ theorem tvDist_integral_le_of_range_ae (μ ν : Measure Ω)
 /-- A measurable statistic bounded in absolute value by `M` almost surely under both laws has an
 expectation gap no larger than `2M` times their total-variation distance.
 
-The factor two is the width of the symmetric interval from `-M` to `M`. -/
+The factor two is the width of the symmetric interval from `-M` to `M`.
+@isnad1 id=le.4h6v.s7.e52e4fa48264 from=translated src=- shape=ee4f4a81 vocab=5ca2f4c4
+-/
 theorem tvDist_integral_le_of_abs_le_ae (μ ν : Measure Ω)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (f : Ω → ℝ) (hf : Measurable f) (M : ℝ) (hM : 0 ≤ M)
@@ -252,7 +274,9 @@ open scoped ProbabilityTheory
 
 /-- Given [two probability laws](hyp:mu,nu) and [a common Markov reconstruction
 channel](hyp:K), applying that channel to both laws [cannot increase their total
-variation distance](goal). -/
+variation distance](goal).
+@isnad1 id=le.0h5v.s6.389b3d895f1d from=translated src=- shape=e0e3b607 vocab=91d1314e
+-/
 theorem tvDist_bind_le
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     (mu nu : Measure A) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -284,7 +308,9 @@ theorem tvDist_bind_le
 
 /-- For [two probability laws](hyp:mu,nu) and [a common Markov kernel](hyp:K),
 the joint input-output laws obtained from that kernel have [exactly the same total
-variation distance as the input laws](goal). -/
+variation distance as the input laws](goal).
+@isnad1 id=eq.0h5v.s6.59c24a867cf4 from=translated src=- shape=e619909e vocab=a92dd5f3
+-/
 theorem tvDist_compProd_eq
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     (mu nu : Measure A) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -323,7 +349,9 @@ theorem tvDist_compProd_eq
 
 /-- For [two probability laws](hyp:mu,nu) and [a common Markov kernel](hyp:K),
 the output marginal distance is [at most the distance between their joint
-input-output laws](goal). -/
+input-output laws](goal).
+@isnad1 id=le.0h5v.s6.2ac9e85b7a21 from=translated src=- shape=d2b82318 vocab=f2286a9c
+-/
 theorem tvDist_bind_le_compProd
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     (mu nu : Measure A) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -333,7 +361,9 @@ theorem tvDist_bind_le_compProd
 
 /-- For [two probability laws](hyp:mu,nu), [a common Markov kernel](hyp:K),
 and [a measurable joint test](hyp:T,hT), the test's total error is [at least one
-minus the input total variation distance](goal). -/
+minus the input total variation distance](goal).
+@isnad1 id=le.1h6v.s7.bdde913877c2 from=translated src=- shape=da6ae3a7 vocab=8f98cb3e
+-/
 theorem one_sub_tvDist_le_compProd_test
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     (mu nu : Measure A) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -345,7 +375,9 @@ theorem one_sub_tvDist_le_compProd_test
 
 /-- For [two probability laws](hyp:mu,nu), [a common Markov kernel](hyp:K),
 and [a measurable output test](hyp:T,hT), the test's total error is [at least one
-minus the input total variation distance](goal). -/
+minus the input total variation distance](goal).
+@isnad1 id=le.1h6v.s7.0b4dc61a7bab from=translated src=- shape=1cfe89e2 vocab=5ae23532
+-/
 theorem one_sub_tvDist_le_bind_test
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     (mu nu : Measure A) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -362,7 +394,9 @@ namespace Causalean.Stat
 open MeasureTheory
 
 /-- For a [probability measure on a countable measurable space with measurable
-singletons](hyp:α,μ), the real masses of all singleton events sum to one. The result is [the unit-sum identity for real singleton masses](goal). -/
+singletons](hyp:α,μ), the real masses of all singleton events sum to one. The result is [the unit-sum identity for real singleton masses](goal).
+@isnad1 id=eq.0h2v.s5.fbc9f0d33d7c from=translated src=- shape=7b363b3f vocab=4488eb48
+-/
 lemma probability_real_singleton_tsum {α : Type*} [Countable α]
     [MeasurableSpace α] [MeasurableSingletonClass α]
     (μ : Measure α) [IsProbabilityMeasure μ] :
@@ -376,7 +410,9 @@ lemma probability_real_singleton_tsum {α : Type*} [Countable α]
 
 /-- For a [probability measure on a countable measurable space with measurable
 singletons](hyp:α,μ) and a [measurable event](hyp:s,hs), the event's real mass
-equals the sum of the real singleton masses it contains. The result is [the singleton-sum formula for the measurable event’s real mass](goal). -/
+equals the sum of the real singleton masses it contains. The result is [the singleton-sum formula for the measurable event’s real mass](goal).
+@isnad1 id=eq.1h3v.s6.bb548892331c from=translated src=- shape=892f95fe vocab=5dec263f
+-/
 lemma probability_measureReal_eq_tsum_singletons {α : Type*} [Countable α]
     [MeasurableSpace α] [MeasurableSingletonClass α]
     (μ : Measure α) [IsProbabilityMeasure μ] (s : Set α)
@@ -396,7 +432,9 @@ lemma probability_measureReal_eq_tsum_singletons {α : Type*} [Countable α]
 
 /-- For [two probability measures on a countable measurable space with measurable
 singletons](hyp:α,μ,ν), total variation is at most one half of the `ℓ¹`
-distance between their real singleton masses. The result is [the half-`ℓ¹` upper bound on total variation](goal). -/
+distance between their real singleton masses. The result is [the half-`ℓ¹` upper bound on total variation](goal).
+@isnad1 id=le.0h3v.s6.78fcbfa6abd7 from=translated src=- shape=d671c6a6 vocab=d1935504
+-/
 lemma tvDist_le_half_tsum_singleton_abs {α : Type*} [Countable α]
     [MeasurableSpace α] [MeasurableSingletonClass α]
     (μ ν : Measure α) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] :

@@ -21,6 +21,9 @@ the sum of the numbers of two (not necessarily distinct) members from his own co
 
 namespace Imo1978P6
 
+/--
+@isnad1 id=lt.2h2v.s5.9a64e5d0f0bb from=translated src=- shape=cbdac857 vocab=986108e6
+-/
 @[grind! .]
 theorem Nat.ceilDiv_pos (a b : ℕ) (apos : 0 < a) (bpos : 0 < b) : 0 < a ⌈/⌉ b := by
   by_contra!
@@ -43,12 +46,18 @@ def motive (Cdone : Finset (Fin N)) (k : ℕ) : Prop :=
 
 def motive' (n : ℕ) (k : ℕ) : Prop := ∃ Cdone, Cdone.card = n ∧ motive C Cdone k
 
+/--
+@isnad1 id=motive.0h3v.s4.233f7a490090 from=translated src=- shape=a330542e vocab=1c20d12b
+-/
 theorem induction_begin : motive' C 0 M := by
   use ∅, by simp
   unfold motive
   use Finset.univ
   simp
 
+/--
+@isnad1 id=false.2h4v.s4.c2fe80909cd4 from=translated src=- shape=3a944349 vocab=2b32c5bd
+-/
 theorem induction_end (k : ℕ) (kpos : 0 < k) : motive' C N k → False := by
   intro ih
   let ⟨Cdone, cc, Δ, h1, h2, h3⟩ := ih
@@ -59,6 +68,9 @@ theorem induction_end (k : ℕ) (kpos : 0 < k) : motive' C N k → False := by
   simp only [Finset.disjoint_iff_inter_eq_empty, Finset.inter_univ, Finset.image_eq_empty] at h2
   grind only [= Finset.card_empty]
 
+/--
+@isnad1 id=motive.4h5v.s7.e09ae9e1ad2d from=translated src=- shape=fd2b9196 vocab=8896f4c0
+-/
 theorem induction_step [NeZero N] (h : ∀ (j i k), C i = C j → C j = C k → i.val + k.val ≠ j.val)
     (n : ℕ) (k : ℕ) (kpos : 0 < k) (hu : n < N)
     : motive' C n k → motive' C (n+1) (k ⌈/⌉ (N-n) - 1) := by
@@ -224,6 +236,9 @@ def compute_k (n: ℕ) : ℕ :=
   | 0 => M
   | n+1 => ((compute_k n) ⌈/⌉ (N-n) - 1)
 
+/--
+@isnad1 id=false.2h3v.s7.6f306301f45a from=translated src=- shape=88b935bc vocab=36e69221
+-/
 theorem compute_finite_induction [NeZero N] (hC : ∀ (j i k), C i = C j → C j = C k → i.val + k.val ≠ j.val)
   : 0 < @compute_k M N N → False := by
     intro hcom

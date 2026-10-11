@@ -21,7 +21,9 @@ noncomputable section
 def scaledSpacingSimplex (n : ℕ) (r : ℝ) : Set (Fin n → ℝ) :=
   {z | (∀ i, 0 ≤ z i) ∧ (∑ i, z i) ≤ r}
 
-/-- Given [a finite dimension](hyp:n), [a real radius](hyp:r), and [its nonnegativity](hyp:hr), [the scaled spacing simplex has the stated factorial-normalized Lebesgue volume](goal). -/
+/-- Given [a finite dimension](hyp:n), [a real radius](hyp:r), and [its nonnegativity](hyp:hr), [the scaled spacing simplex has the stated factorial-normalized Lebesgue volume](goal).
+@isnad1 id=eq.1h2v.s6.5d3d739f9e7b from=translated src=- shape=056b6f1a vocab=372b6849
+-/
 theorem scaledSpacingSimplex_volume (n : ℕ) (r : ℝ) (hr : 0 ≤ r) :
     volume (scaledSpacingSimplex n r) =
       ENNReal.ofReal (r ^ n / (n.factorial : ℝ)) := by
@@ -108,7 +110,9 @@ theorem scaledSpacingSimplex_volume (n : ℕ) (r : ℝ) (hr : 0 ≤ r) :
   rw [abs_of_nonneg (pow_nonneg hr n), ENNReal.ofReal_div_of_pos (by positivity)]
   simp [ENNReal.ofReal_natCast, div_eq_mul_inv]
 
-/-- Given [a finite dimension](hyp:n), [a first coordinate](hyp:t), and [its membership in the unit interval](hyp:ht), [the remaining simplex section has radius one minus that coordinate](goal). -/
+/-- Given [a finite dimension](hyp:n), [a first coordinate](hyp:t), and [its membership in the unit interval](hyp:ht), [the remaining simplex section has radius one minus that coordinate](goal).
+@isnad1 id=eq.1h2v.s7.f6300f9c7867 from=translated src=- shape=f822b25d vocab=ee5585f4
+-/
 theorem simplex_tail_section (n : ℕ) (t : ℝ) (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     {w : Fin n → ℝ | Fin.cons t w ∈ spacingSimplex (n + 1)} =
       scaledSpacingSimplex n (1 - t) := by
@@ -131,7 +135,9 @@ theorem simplex_tail_section (n : ℕ) (t : ℝ) (ht : t ∈ Set.Icc (0 : ℝ) 1
     · rw [Fin.sum_cons]
       linarith
 
-/-- Given [a finite dimension](hyp:n), [integrating the squared first spacing coordinate equals integrating it against its tail-section volume](goal). -/
+/-- Given [a finite dimension](hyp:n), [integrating the squared first spacing coordinate equals integrating it against its tail-section volume](goal).
+@isnad1 id=eq.0h1v.s9.a095c0d33ecb from=translated src=- shape=9b7d8f32 vocab=7b44707d
+-/
 theorem simplex_first_coordinate_square_fubini (n : ℕ) :
     (∫ z in spacingSimplex (n + 1), (z (0 : Fin (n + 1))) ^ 2 ∂volume) =
       ∫ t in Set.Icc (0 : ℝ) 1,
@@ -246,7 +252,9 @@ theorem simplex_first_coordinate_square_fubini (n : ℕ) :
           funext t
           simp [Set.indicator, dite_eq_ite]
 
-/-- Given [a finite dimension](hyp:n), [the squared first-coordinate simplex integral equals its one-dimensional sliced integral](goal). -/
+/-- Given [a finite dimension](hyp:n), [the squared first-coordinate simplex integral equals its one-dimensional sliced integral](goal).
+@isnad1 id=eq.0h1v.s8.fa4f66ebd305 from=translated src=- shape=40718358 vocab=0690a229
+-/
 theorem simplex_first_coordinate_square_slice (n : ℕ) :
     (∫ z in spacingSimplex (n + 1), (z (0 : Fin (n + 1))) ^ 2 ∂volume) =
       ∫ t in (0 : ℝ)..1, t ^ 2 * ((1 - t) ^ n / (n.factorial : ℝ)) := by
@@ -261,7 +269,9 @@ theorem simplex_first_coordinate_square_slice (n : ℕ) :
   rw [scaledSpacingSimplex_volume n (1 - t) hr]
   rw [ENNReal.toReal_ofReal (div_nonneg (pow_nonneg hr n) (by positivity))]
 
-/-- Given [a nonnegative integer exponent](hyp:n), [the unit-interval beta-type polynomial integral has the stated factorial value](goal). -/
+/-- Given [a nonnegative integer exponent](hyp:n), [the unit-interval beta-type polynomial integral has the stated factorial value](goal).
+@isnad1 id=eq.0h1v.s7.38e9807413e1 from=translated src=- shape=a415bdae vocab=8daa55f5
+-/
 theorem unit_beta_square_integral (n : ℕ) :
     (∫ t in (0 : ℝ)..1, t ^ 2 * (1 - t) ^ n) =
       2 * (n.factorial : ℝ) / ((n + 3).factorial : ℝ) := by
@@ -291,7 +301,9 @@ theorem unit_beta_square_integral (n : ℕ) :
   rw [intervalIntegral.integral_ofReal] at heval
   exact Complex.ofReal_inj.mp (by simpa using heval)
 
-/-- Given [a finite dimension](hyp:n) and [a coordinate index](hyp:i), [the squared integral of that simplex coordinate equals the first-coordinate integral](goal). -/
+/-- Given [a finite dimension](hyp:n) and [a coordinate index](hyp:i), [the squared integral of that simplex coordinate equals the first-coordinate integral](goal).
+@isnad1 id=eq.0h2v.s7.654d29784e37 from=translated src=- shape=55e6a117 vocab=b56694da
+-/
 theorem simplex_coordinate_square_eq_first (n : ℕ) (i : Fin n) :
     (∫ z in spacingSimplex n, (z i) ^ 2 ∂volume) =
       ∫ z in spacingSimplex n,

@@ -34,7 +34,9 @@ def equalAtomMeasure (N : ℕ) (w : ℝ) (x : Fin N → ℝ) : Measure ℝ :=
 
 /-- Over [an interval whose endpoints satisfy a ≤ b](hyp:a,b,hab), [the
 integrated-CDF distance between finite measures on the real line satisfies
-the triangle inequality](goal). -/
+the triangle inequality](goal).
+@isnad1 id=le.1h5v.s5.3ec0a1225ebf from=translated src=- shape=88a9808b vocab=e19ae730
+-/
 theorem cdfDistance_triangle (a b : ℝ) (hab : a ≤ b)
     (μ ν ξ : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν] [IsFiniteMeasure ξ] :
     cdfDistance a b μ ξ ≤ cdfDistance a b μ ν + cdfDistance a b ν ξ := by

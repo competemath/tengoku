@@ -36,6 +36,7 @@ Rewrite each inner integral with `laplaceMechPiKernel_apply` and
 `laplaceMechPi_lintegral_coord_sub_sq`, split `ENNReal.ofReal_add` using
 `sq_nonneg` and `mul_nonneg`, and use `lintegral_add` and `lintegral_const`.
 No nonexistent `Measure.lintegral_comp` lemma is needed.
+@isnad1 id=eq.2h7v.s7.2d129e518d10 from=translated src=- shape=2e36e380 vocab=37fd824c
 -/
 theorem laplaceMechPiKernel_lintegral_coord_sub_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (hq : Measurable q)
@@ -77,6 +78,7 @@ then use `(hL2.sub (memLp_const c)).integrable_sq` for the input displacement.
 For the output, `hasFiniteIntegral_iff_ofReal` applies because squares are
 nonnegative. The preceding extended identity makes this integral finite;
 both summands are below infinity. Prove output strong measurability separately.
+@isnad1 id=integrab.3h7v.s7.d6ebb2018d3c from=translated src=- shape=4be7cf86 vocab=41ca7665
 -/
 theorem laplaceMechPiKernel_integrable_coord_sub_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (hq : Measurable q)
@@ -111,6 +113,7 @@ The extended-integral route avoids a new ordinary measure-composition helper:
 apply `ofReal_integral_eq_lintegral_ofReal` to the input and output squares,
 rewrite `ENNReal.ofReal_add` using integral nonnegativity, and cancel `ofReal`
 on nonnegative reals (or apply `ENNReal.toReal` after checking finiteness).
+@isnad1 id=eq.3h7v.s8.98dcb40ee815 from=translated src=- shape=4990951a vocab=c6f7c280
 -/
 theorem laplaceMechPiKernel_integral_coord_sub_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (hq : Measurable q)
@@ -157,6 +160,7 @@ that its conditional norm integral is `|q d i - c| * b`.
 The input displacement is integrable by the same `MemLp` conversion as above
 and `MemLp.integrable (by norm_num)`; its norm times `b` is therefore integrable.
 This avoids introducing joint square helpers solely to bound the product.
+@isnad1 id=integrab.3h7v.s7.102e53d895fb from=translated src=- shape=f5274fb8 vocab=c23c3af8
 -/
 theorem laplaceMechPiKernel_integrable_cross (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (hq : Measurable q)
@@ -200,6 +204,7 @@ then use the conditional centered coordinate mean to cancel every inner integral
 Rewrite kernel evaluation, factor the input displacement with
 `integral_const_mul`, and apply `laplaceMechPi_integral_centered_coord`.
 The iterated integral is then the integral of the constant zero function.
+@isnad1 id=eq.3h7v.s7.5c318ccfb52c from=translated src=- shape=97cd7b5f vocab=624fe837
 -/
 theorem laplaceMechPiKernel_integral_cross (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (hq : Measurable q)

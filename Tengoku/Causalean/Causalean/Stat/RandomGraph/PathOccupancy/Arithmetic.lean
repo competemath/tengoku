@@ -30,6 +30,7 @@ weights is bounded by its exponential majorant term](goal), for [n,m,K](hyp:n,m,
 
 Use Nat.choose_le_pow_div and Stirling.le_factorial_stirling, discarding the square
 root factor (which is at least one). The extra power m is harmless slack.
+@isnad1 id=le.2h4v.s7.05a0817f344d from=translated src=- shape=9b170719 vocab=df04af3d
 -/
 theorem labelled_weight_majorant (n m K : ℕ) (hK : 0 < K) (hm : 2 ≤ m)
     (p : ℕ) :
@@ -75,7 +76,9 @@ theorem labelled_weight_majorant (n m K : ℕ) (hK : 0 < K) (hm : 2 ≤ m)
 
 /-- With [at least two draws and positive cell count](hyp:hn,hK),
 [the finite sum of labelled occupancy terms is bounded by the finite
-exponential series](goal), for [order and counts](hyp:p,n,K). -/
+exponential series](goal), for [order and counts](hyp:p,n,K).
+@isnad1 id=le.2h3v.s7.08ba600f511b from=translated src=- shape=a0ab3e15 vocab=c2acf800
+-/
 theorem finite_labelled_weight_majorant (p n K : ℕ) (hn : 2 ≤ n) (hK : 0 < K) :
     (∑ m ∈ Finset.Icc 2 n,
       (n.choose m : ℝ) * (m : ℝ) ^ p * 8 ^ m * (m : ℝ) ^ m / (K : ℝ) ^ m) ≤
@@ -99,7 +102,9 @@ theorem finite_labelled_weight_majorant (p n K : ℕ) (hn : 2 ≤ n) (hK : 0 < K
 
 /-- For [a sample size n and a cell count K](hyp:n,K) with [K positive](hyp:hK) and [density n / K
 at most 2 to the power −40](hyp:hdensity), [the occupancy parameter lies between zero and 2 to the
-power −35](goal). -/
+power −35](goal).
+@isnad1 id=and.2h2v.s6.7aa59b5eee48 from=translated src=- shape=873bf20b vocab=5ca76eae
+-/
 theorem occupancyZ_small (n K : ℕ) (hK : 0 < K)
     (hdensity : (n : ℝ) / K ≤ (2 : ℝ) ^ (-40 : ℤ)) :
     0 ≤ occupancyZ n K ∧ occupancyZ n K ≤ (2 : ℝ) ^ (-35 : ℤ) := by
@@ -123,6 +128,7 @@ times the square of the occupancy parameter](goal).
 
 The ratio of consecutive terms is at most (3/2)^p times z. Bound it by one
 half, then dominate by an elementary finite geometric sum; no infinite sum is needed.
+@isnad1 id=le.3h3v.s7.b5a6d8bf6e52 from=translated src=- shape=6e23065c vocab=1b1d9fc6
 -/
 theorem occupancySeries_geometric_le (p n K : ℕ) (hp : p ≤ 11) (hK : 0 < K)
     (hdensity : (n : ℝ) / K ≤ (2 : ℝ) ^ (-40 : ℤ)) :

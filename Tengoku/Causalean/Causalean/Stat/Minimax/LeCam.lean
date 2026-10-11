@@ -40,7 +40,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {P₀ P₁ : Measure Ω}
   [IsProbabilityMeasure P₀] [IsProbabilityMeasure P₁]
   {Θ : Type*} [PseudoMetricSpace Θ] [MeasurableSpace Θ] [OpensMeasurableSpace Θ]
 
-/-- The error region `{ω | s ≤ dist (est ω) θ}` of an estimator is measurable. -/
+/-- The error region `{ω | s ≤ dist (est ω) θ}` of an estimator is measurable.
+@isnad1 id=measurab.1h6v.s5.1b89d4487525 from=translated src=- shape=10b6db78 vocab=aa58e94e
+-/
 theorem measurableSet_error {est : Ω → Θ} (hest : Measurable est) (θ : Θ) (s : ℝ) :
     MeasurableSet {ω | s ≤ dist (est ω) θ} := by
   have hclosed : IsClosed {x : Θ | s ≤ dist x θ} :=
@@ -49,7 +51,9 @@ theorem measurableSet_error {est : Ω → Θ} (hest : Measurable est) (θ : Θ) 
 
 /-- **Le Cam two-point bound (summed form).** For [a measurable estimator `est`](hyp:hest), if
 [the parameter values `θ₀, θ₁` are `2s`-separated](hyp:hsep), then [the two error probabilities
-sum to at least `1 − tvDist P₀ P₁`](goal). -/
+sum to at least `1 − tvDist P₀ P₁`](goal).
+@isnad1 id=le.2h9v.s7.80a2b3b36361 from=translated src=- shape=8dbb66e3 vocab=85bf41b1
+-/
 theorem one_sub_tvDist_le_error_sum {est : Ω → Θ} (hest : Measurable est)
     {θ₀ θ₁ : Θ} {s : ℝ} (hsep : 2 * s ≤ dist θ₀ θ₁) :
     1 - tvDist P₀ P₁
@@ -75,7 +79,9 @@ theorem one_sub_tvDist_le_error_sum {est : Ω → Θ} (hest : Measurable est)
 
 /-- **Le Cam two-point bound (max form).** For [a measurable estimator `est`](hyp:hest), under
 [`2s`-separation of `θ₀, θ₁`](hyp:hsep), [the worst-case error probability is at least
-`½ (1 − tvDist P₀ P₁)`](goal). -/
+`½ (1 − tvDist P₀ P₁)`](goal).
+@isnad1 id=le.2h9v.s7.833e14a3faac from=translated src=- shape=b7509f4e vocab=593e0791
+-/
 theorem half_one_sub_tvDist_le_max_error {est : Ω → Θ} (hest : Measurable est)
     {θ₀ θ₁ : Θ} {s : ℝ} (hsep : 2 * s ≤ dist θ₀ θ₁) :
     (1 - tvDist P₀ P₁) / 2

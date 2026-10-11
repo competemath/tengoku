@@ -57,7 +57,9 @@ nonnegative](hyp:hw), [the target point `t` and every design point `a i` lie in 
 `√(M₀₀·(M⁻¹)₀₀) ≤ L` holds for some `L ≥ 0`](hyp:hlev) — supplied by
 `localPoly_density_leverage_bound` — then [the conditional bias obeys
 `|ĉ₀ − f(t)| ≤ (MH/p!) · L · h^β`, the standard local-polynomial bias rate with constant
-`Cbias = (MH/p!) · L`](goal). -/
+`Cbias = (MH/p!) · L`](goal).
+@isnad1 id=le.12h12v.s10.1a7c385cccfb from=translated src=- shape=cf44b570 vocab=292430f2
+-/
 theorem localPoly_estimatorBias_window {N : ℕ} {β MH lo hi t h L : ℝ} {a w : Fin N → ℝ}
     {f : ℝ → ℝ} {c : Fin ((holderDerivOrder β) + 1) → ℝ}
     (hβ : 0 < β) (hMH : 0 ≤ MH) (hh : 0 ≤ h) (hw : ∀ i, 0 ≤ w i)
@@ -99,7 +101,9 @@ constant `W ≥ 0`](hyp:hwW,hW), satisfies, on the good design event where [the 
 obeys the rate `(M⁻¹)₀₀ ≤ 2·cInv/Nh`](hyp:hrate) for [a nonnegative constant `cInv`](hyp:hcInv),
 [the conditional stochastic `L²` error bound
 `√Var(ĉ₀) ≤ √(2σ²·W·cInv) · (Nh)^{-1/2}`, the standard interior stochastic rate with constant
-`Cvar = √(2σ²·W·cInv)`](goal). -/
+`Cvar = √(2σ²·W·cInv)`](goal).
+@isnad1 id=le.8h11v.s8.41098ae2686f from=translated src=- shape=12118893 vocab=23594335
+-/
 theorem localPoly_estimatorStochL2 {Ω : Type*} {N p : ℕ} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {x w : Fin N → ℝ} {Y : Fin N → Ω → ℝ}
     {σbar W cInv Nh : ℝ}

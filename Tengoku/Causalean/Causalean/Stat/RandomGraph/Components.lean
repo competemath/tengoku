@@ -47,7 +47,9 @@ def CoordinateGraph.graph (M : CoordinateGraph X) (x : ∀ i, X i) : SimpleGraph
   loopless := ⟨fun _ h => h.1 rfl⟩
 
 /-- With [finitely many vertices](hyp:V), the event that a [coordinate edge model](hyp:M)
-[equals a specified graph](hyp:G) [is measurable](goal). -/
+[equals a specified graph](hyp:G) [is measurable](goal).
+@isnad1 id=measurab.0h4v.s5.1719325f5f10 from=translated src=- shape=fbff13f2 vocab=d99a37e1
+-/
 theorem CoordinateGraph.measurableSet_graph_eq [Finite V]
     (M : CoordinateGraph X) (G : SimpleGraph V) :
     MeasurableSet {x | M.graph x = G} := by
@@ -79,7 +81,9 @@ def IsComponent (G : SimpleGraph V) (S : Finset V) : Prop :=
   (G.induce (S : Set V)).Connected ∧ ∀ i ∈ S, ∀ j, G.Adj i j → j ∈ S
 
 /-- The finite-set [component predicate](hyp:G,S) [is equivalent to being the support of a
-connected component in Mathlib](goal). -/
+connected component in Mathlib](goal).
+@isnad1 id=iff.0h3v.s5.c84fc3a00f26 from=translated src=- shape=cec0fd6f vocab=f004556a
+-/
 theorem isComponent_iff_exists_connectedComponent (G : SimpleGraph V) (S : Finset V) :
     IsComponent G S ↔ ∃ C : G.ConnectedComponent, C.supp = (S : Set V) := by
   constructor
@@ -153,7 +157,9 @@ def treeWitnessCount [Fintype V] [DecidableEq V] (M : CoordinateGraph X) (R : Fi
 /-- For an [edge model](hyp:M), [distinguished roots](hyp:R), [root events](hyp:rootEvent), a
 [vertex set](hyp:S), and an [outcome](hyp:x), whenever [the vertex set is a qualifying component at
 that outcome](hyp:hcomponent), [some distinguished root in the set whose root event occurs carries
-a valid parent encoding of the set, rooted there, all of whose edge events occur](goal). -/
+a valid parent encoding of the set, rooted there, all of whose edge events occur](goal).
+@isnad1 id=ex.1h7v.s9.cd8180c20000 from=translated src=- shape=07476c19 vocab=0e208a38
+-/
 theorem component_event_parent_cover [DecidableEq V] (M : CoordinateGraph X) (R : Finset V)
     (rootEvent : ∀ r, Set (X r)) (S : Finset V) (x : ∀ i, X i)
     (hcomponent : x ∈ componentEvent M R rootEvent S) :
@@ -170,7 +176,9 @@ theorem component_event_parent_cover [DecidableEq V] (M : CoordinateGraph X) (R 
 
 /-- For an [edge model](hyp:M), [distinguished roots](hyp:R), [root events](hyp:rootEvent), and a
 [component size](hyp:p) that is [at least one](hyp:hp), [the labeled component count is at most the
-total rooted witness count](goal) at every [outcome](hyp:x). -/
+total rooted witness count](goal) at every [outcome](hyp:x).
+@isnad1 id=le.1h7v.s6.a47521ae3328 from=translated src=- shape=674a661d vocab=4db2ae70
+-/
 theorem labeledComponentCount_le_treeWitnessCount [Fintype V] [DecidableEq V]
     (M : CoordinateGraph X) (R : Finset V)
     (rootEvent : ∀ r, Set (X r)) (p : ℕ) (hp : 1 ≤ p) (x : ∀ i, X i) :
@@ -255,7 +263,9 @@ theorem labeledComponentCount_le_treeWitnessCount [Fintype V] [DecidableEq V]
       (fun q _ _ => hnonneg q.1 q.2)
 
 /-- A [qualified component event](hyp:M,R,rootEvent,S) [is measurable](goal) when the
-[coordinate root events are measurable](hyp:hroot). -/
+[coordinate root events are measurable](hyp:hroot).
+@isnad1 id=measurab.1h6v.s6.7daba7e14ab9 from=translated src=- shape=277ae08d vocab=630c698e
+-/
 theorem measurableSet_componentEvent [Finite V] (M : CoordinateGraph X) (R : Finset V)
     (rootEvent : ∀ r, Set (X r)) (S : Finset V)
     (hroot : ∀ r, MeasurableSet (rootEvent r)) :
@@ -286,7 +296,9 @@ theorem measurableSet_componentEvent [Finite V] (M : CoordinateGraph X) (R : Fin
       ((hroot r).preimage (measurable_pi_apply r)))
 
 /-- The [finite component count](hyp:M,R,rootEvent,p) [is measurable](goal) for
-[measurable coordinate root events](hyp:hroot). -/
+[measurable coordinate root events](hyp:hroot).
+@isnad1 id=measurab.1h6v.s6.ab00260f0513 from=translated src=- shape=208dbb08 vocab=f94e0f5b
+-/
 @[fun_prop]
 theorem measurable_labeledComponentCount [Fintype V] (M : CoordinateGraph X) (R : Finset V)
     (rootEvent : ∀ r, Set (X r)) (p : ℕ) (hroot : ∀ r, MeasurableSet (rootEvent r)) :
@@ -299,7 +311,9 @@ theorem measurable_labeledComponentCount [Fintype V] (M : CoordinateGraph X) (R 
     measurable_const measurable_const
 
 /-- The [component count](hyp:M,R,rootEvent,p,x) [lies between zero and the number of
-size-p subsets of the population](goal). -/
+size-p subsets of the population](goal).
+@isnad1 id=and.0h7v.s6.2d85c0593733 from=translated src=- shape=64df4385 vocab=e7be3e58
+-/
 theorem labeledComponentCount_bounds [Fintype V] (M : CoordinateGraph X) (R : Finset V)
     (rootEvent : ∀ r, Set (X r)) (p : ℕ) (x : ∀ i, X i) :
     0 ≤ labeledComponentCount M R rootEvent p x ∧
@@ -319,7 +333,9 @@ theorem labeledComponentCount_bounds [Fintype V] (M : CoordinateGraph X) (R : Fi
       _ = (Nat.choose (Fintype.card V) p : ℝ) := by simp
 
 /-- The [finite component count](hyp:M,R,rootEvent,p) [is integrable](goal) under
-[coordinate probability laws](hyp:μ), for [measurable root events](hyp:hroot). -/
+[coordinate probability laws](hyp:μ), for [measurable root events](hyp:hroot).
+@isnad1 id=integrab.1h7v.s6.201da472576c from=translated src=- shape=988d03cf vocab=71e5330a
+-/
 theorem integrable_labeledComponentCount [Fintype V]
     (μ : ∀ i, Measure (X i)) [∀ i, IsProbabilityMeasure (μ i)]
     (M : CoordinateGraph X) (R : Finset V) (rootEvent : ∀ r, Set (X r)) (p : ℕ)

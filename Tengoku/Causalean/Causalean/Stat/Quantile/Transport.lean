@@ -20,7 +20,9 @@ open MeasureTheory ProbabilityTheory Set Causalean.Stat
 namespace Causalean.Stat.Quantile.Transport
 
 /-- A [probability law](hyp:μ) [concentrated on a closed interval](hyp:hμ) has
-[a quantile in that interval at almost every interior level](goal). -/
+[a quantile in that interval at almost every interior level](goal).
+@isnad1 id=eventual.1h3v.s6.ed4b0fffe868 from=translated src=- shape=10b1ecb7 vocab=339df723
+-/
 lemma quantile_mem_Icc_ae (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {a b : ℝ} (hμ : μ (Icc a b)ᶜ = 0) :
     ∀ᵐ u ∂unifOI, quantile μ u ∈ Icc a b := by
@@ -33,7 +35,9 @@ lemma quantile_mem_Icc_ae (μ : Measure ℝ) [IsProbabilityMeasure μ]
   exact (ae_map_iff (aemeasurable_quantile_unifOI μ) measurableSet_Icc).mp h
 
 /-- [Two probability laws](hyp:μ,ν) have [an absolute CDF difference
-integrable over the given finite interval](goal). -/
+integrable over the given finite interval](goal).
+@isnad1 id=interval.0h4v.s6.c1d85403623c from=translated src=- shape=6902ee67 vocab=850b8b17
+-/
 lemma intervalIntegrable_abs_cdf_sub (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (a b : ℝ) :
@@ -53,7 +57,9 @@ lemma intervalIntegrable_abs_cdf_sub (μ ν : Measure ℝ)
     exact abs_le.mpr ⟨by linarith, by linarith⟩
 
 /-- [Two probability laws](hyp:μ,ν) [concentrated on one closed interval](hyp:hμ,hν)
-have [an integrable absolute quantile difference over the unit interval](goal). -/
+have [an integrable absolute quantile difference over the unit interval](goal).
+@isnad1 id=interval.2h4v.s7.4399232c3890 from=translated src=- shape=1dcc64b8 vocab=84ae5f7f
+-/
 lemma intervalIntegrable_abs_quantile_sub (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hμ : μ (Icc a b)ᶜ = 0) (hν : ν (Icc a b)ᶜ = 0) :
@@ -126,7 +132,9 @@ private lemma integral_abs_cut_indicators (p q : ℝ)
       abs_of_nonneg (sub_nonneg.mpr hqp)]
 
 /-- [Two probability laws and a threshold](hyp:μ,ν,t) have [a mean lower-ray
-indicator disagreement equal to the absolute difference of their CDFs there](goal). -/
+indicator disagreement equal to the absolute difference of their CDFs there](goal).
+@isnad1 id=eq.0h3v.s7.c4c4322c0c1f from=translated src=- shape=dfb54ebd vocab=d2935a01
+-/
 lemma threshold_indicator_integral_eq_cdf_distance (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] (t : ℝ) :
     (∫ u in (0 : ℝ)..1,
@@ -157,7 +165,9 @@ lemma threshold_indicator_integral_eq_cdf_distance (μ ν : Measure ℝ)
 
 /-- [Two probability laws](hyp:μ,ν) and [an ordered finite interval](hyp:hab)
 give [an integrable lower-ray disagreement kernel under the product of the
-uniform-level law and restricted Lebesgue measure](goal). -/
+uniform-level law and restricted Lebesgue measure](goal).
+@isnad1 id=integrab.1h4v.s7.f14728aae18f from=translated src=- shape=08717912 vocab=8a14b069
+-/
 lemma indicator_kernel_integrable (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hab : a ≤ b) :
@@ -201,7 +211,9 @@ lemma indicator_kernel_integrable (μ ν : Measure ℝ)
     split_ifs <;> norm_num)
 
 /-- [Two probability laws](hyp:μ,ν) and [an ordered finite interval](hyp:hab)
-have [equal iterated lower-ray disagreement integrals in either order](goal). -/
+have [equal iterated lower-ray disagreement integrals in either order](goal).
+@isnad1 id=eq.1h4v.s8.3b66aa744a4f from=translated src=- shape=32cb42b0 vocab=b3f2f1f7
+-/
 lemma indicator_integral_swap (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hab : a ≤ b) :
@@ -222,7 +234,9 @@ lemma indicator_integral_swap (μ ν : Measure ℝ)
   exact integral_integral_swap (indicator_kernel_integrable μ ν hab)
 
 /-- [Two points in a common closed interval](hyp:hx,hy) have [a distance equal
-to the integral of their lower-ray indicator disagreement](goal). -/
+to the integral of their lower-ray indicator disagreement](goal).
+@isnad1 id=eq.2h4v.s6.fad992f0c0b5 from=translated src=- shape=82cb9942 vocab=ef4248c7
+-/
 lemma abs_sub_eq_integral_Icc_indicator {a b x y : ℝ}
     (hx : x ∈ Icc a b) (hy : y ∈ Icc a b) :
     |x - y| = ∫ t in a..b,
@@ -293,7 +307,9 @@ lemma abs_sub_eq_integral_Icc_indicator {a b x y : ℝ}
       (sub_nonneg.mpr hyx), abs_of_nonneg (sub_nonneg.mpr hyx)]
 
 /-- [Two probability laws](hyp:μ,ν) [concentrated on one closed interval](hyp:hμ,hν)
-have [a quantile cost equal to the iterated lower-ray indicator integral](goal). -/
+have [a quantile cost equal to the iterated lower-ray indicator integral](goal).
+@isnad1 id=eq.2h4v.s7.f88384dd8261 from=translated src=- shape=c9ae3188 vocab=16a0c3af
+-/
 lemma quantile_cost_eq_indicator_integral (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hμ : μ (Icc a b)ᶜ = 0) (hν : ν (Icc a b)ᶜ = 0) :
@@ -316,7 +332,9 @@ lemma quantile_cost_eq_indicator_integral (μ ν : Measure ℝ)
 
 /-- [Two probability laws](hyp:μ,ν), [an ordered common closed interval](hyp:hab),
 and [concentration of each law on it](hyp:hμ,hν) give [an iterated
-quantile-indicator integral equal to their integrated CDF distance](goal). -/
+quantile-indicator integral equal to their integrated CDF distance](goal).
+@isnad1 id=eq.3h4v.s8.1564c86c5042 from=translated src=- shape=fabc5f12 vocab=196fb635
+-/
 lemma indicator_integral_eq_cdf_distance (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hab : a ≤ b)
@@ -337,7 +355,9 @@ lemma indicator_integral_eq_cdf_distance (μ ν : Measure ℝ)
 
 /-- [Two probability laws](hyp:μ,ν), [an ordered common compact interval](hyp:hab),
 and [concentration of both laws on that interval](hyp:hμ,hν) give [the identity
-between shared-uniform quantile transport cost and integrated CDF distance](goal). -/
+between shared-uniform quantile transport cost and integrated CDF distance](goal).
+@isnad1 id=eq.3h4v.s7.67ebac8eb622 from=translated src=- shape=b8663dd5 vocab=75ec6c72
+-/
 theorem quantile_transport_eq_cdf_distance (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {a b : ℝ} (hab : a ≤ b)

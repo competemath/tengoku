@@ -45,7 +45,9 @@ private noncomputable def hpkGram (m : ℕ) : Matrix (Fin (m + 1)) (Fin (m + 1))
   fun j i => ∫ u in Set.Icc (-1 : ℝ) 1, u ^ ((i : ℕ) + (j : ℕ)) * (1 - u ^ 2)
 
 /-- The coefficient polynomial of degree at most `m` built from a coefficient vector is a
-continuous function on the real line. -/
+continuous function on the real line.
+@isnad1 id=continuo.0h2v.s5.4348e8871d90 from=translated src=- shape=9db872df vocab=0062e3d5
+-/
 @[fun_prop]
 theorem hpkPoly_continuous (m : ℕ) (c : Fin (m + 1) → ℝ) :
     Continuous (hpkPoly m c) := by
@@ -164,7 +166,9 @@ full support (e.g. `w(u) = (1 - u²)`), and set `k = w · p` for a degree-`m`
 polynomial `p`. The requirement `∫ uʲ w p = δ_{j0}` for `0 ≤ j ≤ m` is a linear
 system in the coefficients of `p` whose matrix is the Gram/Hankel matrix of the
 monomials `1, u, …, uᵐ` under the strictly positive measure `w · Leb⌞[-1,1]`; that
-Gram matrix is positive-definite, hence invertible, so a solution `p` exists. -/
+Gram matrix is positive-definite, hence invertible, so a solution `p` exists.
+@isnad1 id=ex.0h1v.s7.460044af860d from=translated src=- shape=c3b5bdeb vocab=fb974e0f
+-/
 theorem exists_moment_cancelling_kernel_1d (m : ℕ) :
     ∃ k : ℝ → ℝ, Continuous k ∧ (∀ u : ℝ, 1 < |u| → k u = 0) ∧
       (∫ u in Set.Icc (-1 : ℝ) 1, k u) = 1 ∧
@@ -209,7 +213,9 @@ theorem exists_moment_cancelling_kernel_1d (m : ℕ) :
     simpa using h0
 
 /-- A product kernel is uniformly bounded by the coordinatewise bound raised to the
-dimension, whenever its one-dimensional factor has that bound. -/
+dimension, whenever its one-dimensional factor has that bound.
+@isnad1 id=le.1h4v.s5.32a62ccdc324 from=translated src=- shape=98973b29 vocab=f9498671
+-/
 theorem prodKernel_abs_le {d : ℕ} {k : ℝ → ℝ} {B : ℝ}
     (hB : ∀ u, |k u| ≤ B) (u : Fin d → ℝ) :
     |prodKernel k d u| ≤ B ^ d := by
@@ -222,7 +228,9 @@ theorem prodKernel_abs_le {d : ℕ} {k : ℝ → ℝ} {B : ℝ}
         rw [Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
 /-- The total mass of a product kernel factorizes into the product of the
-one-dimensional masses, so a unit-mass factor yields a unit-mass multivariate kernel. -/
+one-dimensional masses, so a unit-mass factor yields a unit-mass multivariate kernel.
+@isnad1 id=eq.0h2v.s6.d8810a5879ce from=translated src=- shape=253fb4ad vocab=eb6ccbb5
+-/
 theorem prodKernel_integral {d : ℕ} (k : ℝ → ℝ) :
     ∫ u, prodKernel k d u = (∫ t, k t) ^ d := by
   unfold prodKernel
@@ -231,7 +239,9 @@ theorem prodKernel_integral {d : ℕ} (k : ℝ → ℝ) :
 
 /-- Each polynomial moment of a product kernel factorizes into the corresponding
 one-dimensional moments, allowing any cancelled coordinate moment to cancel the
-entire multivariate moment. -/
+entire multivariate moment.
+@isnad1 id=eq.0h3v.s7.1543c3df1819 from=translated src=- shape=6aae801e vocab=f55c90f3
+-/
 theorem prodKernel_moment {d : ℕ} (k : ℝ → ℝ) (ν : Fin d → ℕ) :
     (∫ u, (∏ i, u i ^ ν i) * prodKernel k d u) = ∏ i, ∫ t, t ^ ν i * k t := by
   unfold prodKernel

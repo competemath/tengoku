@@ -24,6 +24,7 @@ Apply connected_assignment_encoding separately to each labelled type. Its
 occupied-anchor clause and SamePair place both anchors in the ordered_same_pair
 subtype. The product of both offset encodings remains injective. Compare its
 cardinality and substitute ordered_same_pair_count; equal anchors stay valid.
+@isnad1 id=le.6h4v.s7.50db1ac88193 from=translated src=- shape=fc3737c5 vocab=f472f656
 -/
 theorem connected_same_pair_assignment_count {ι κ : Type*} [Fintype ι] [Fintype κ]
     (K M : ℕ) (hm : 1 ≤ Fintype.card ι) (hl : 1 ≤ Fintype.card κ)

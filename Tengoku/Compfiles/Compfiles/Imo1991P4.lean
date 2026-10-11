@@ -31,12 +31,17 @@ def interiorVerts {u v : V} (w : G.Walk u v) : Finset V :=
   (Finset.range (w.length - 1)).image (fun i => w.getVert (i + 1))
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=iff.0h6v.s6.4f5a4d26cb23 from=translated src=- shape=c5812a9b vocab=5ebc9bb9
+-/
 lemma mem_interiorVerts {u v : V} {w : G.Walk u v} {x : V} :
     x ∈ interiorVerts w ↔ ∃ i, i < w.length - 1 ∧ w.getVert (i + 1) = x := by
   simp [interiorVerts]
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- Every vertex of a walk is its start, an interior vertex, or its end. -/
+/-- Every vertex of a walk is its start, an interior vertex, or its end.
+@isnad1 id=or.1h6v.s5.d2030631473b from=translated src=- shape=ea792f1d vocab=581602e2
+-/
 lemma start_or_interior_or_end {u v : V} {w : G.Walk u v} {x : V} (hx : x ∈ w.support) :
     x = u ∨ x ∈ interiorVerts w ∨ x = v := by
   have hidx : w.support.idxOf x < w.support.length := List.idxOf_lt_length_of_mem hx
@@ -57,7 +62,9 @@ lemma start_or_interior_or_end {u v : V} {w : G.Walk u v} {x : V} (hx : x ∈ w.
     exact w.getVert_length
 
 /-- A maximal-length trail starting from `s₀`, which exists whenever `s₀` has an
-incident edge. It ends at a vertex all of whose incident edges are used by the trail. -/
+incident edge. It ends at a vertex all of whose incident edges are used by the trail.
+@isnad1 id=ex.1h3v.s6.823760e8e8ee from=translated src=- shape=ac373c35 vocab=7a559b45
+-/
 lemma exists_maximal_trail {s₀ : V} (h : ∃ x, G.Adj s₀ x) :
     ∃ (t : V) (w : G.Walk s₀ t), w.IsTrail ∧ 1 ≤ w.length ∧
       ∀ x : V, G.Adj t x → s(t, x) ∈ w.edges := by
@@ -106,7 +113,9 @@ lemma exists_maximal_trail {s₀ : V} (h : ∃ x, G.Adj s₀ x) :
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- Key walk lemma: from a vertex `u` that still has an edge outside the trail `w`,
 one can walk to a vertex of `S`, to the start of `w`, or to an interior vertex of `w`,
-using only edges outside the trail. -/
+using only edges outside the trail.
+@isnad1 id=ex.3h9v.s7.b9ce978d44e9 from=translated src=- shape=a6772c06 vocab=fecdf6b3
+-/
 lemma find_good {s₀ t : V} (w : G.Walk s₀ t)
     (hmax : ∀ x : V, G.Adj t x → s(t, x) ∈ w.edges)
     (S : Finset V) {u z : V} (W : G.Walk u z) :
@@ -151,7 +160,9 @@ lemma find_good {s₀ t : V} (w : G.Walk s₀ t)
         exact ⟨s', hs', huv'.reachable.trans hr⟩
 
 omit [Fintype V] [DecidableEq V] [DecidableRel G.Adj] in
-/-- Membership in the edge set of a graph with deleted edges. -/
+/-- Membership in the edge set of a graph with deleted edges.
+@isnad1 id=iff.0h4v.s5.47611096d89c from=translated src=- shape=0a620b70 vocab=92356764
+-/
 lemma mem_edgeSet_deleteEdges {s : Set (Sym2 V)} {e : Sym2 V} :
     e ∈ (G.deleteEdges s).edgeSet ↔ e ∈ G.edgeSet ∧ e ∉ s := by
   induction e using Sym2.ind with
@@ -164,17 +175,25 @@ def trailLabel {s₀ t : V} (w : G.Walk s₀ t) (n : ℕ) (Φ' : Sym2 V → ℕ)
   if e ∈ w.edges then n + 1 + w.edges.idxOf e else Φ' e
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.1h8v.s6.de086b22d1d6 from=translated src=- shape=5bb9d334 vocab=01cc92ce
+-/
 lemma trailLabel_of_mem {s₀ t : V} {w : G.Walk s₀ t} {n : ℕ} {Φ' : Sym2 V → ℕ} {e : Sym2 V}
     (h : e ∈ w.edges) : trailLabel w n Φ' e = n + 1 + w.edges.idxOf e := by
   rw [trailLabel, ite_eq_left h]
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.1h8v.s5.fff7aac6da29 from=translated src=- shape=3e6c162d vocab=42c582f8
+-/
 lemma trailLabel_of_not_mem {s₀ t : V} {w : G.Walk s₀ t} {n : ℕ} {Φ' : Sym2 V → ℕ} {e : Sym2 V}
     (h : e ∉ w.edges) : trailLabel w n Φ' e = Φ' e := by
   rw [trailLabel, ite_eq_right h]
 
 omit [Fintype V] [DecidableEq V] in
-/-- If two elements of a finset have consecutive labels, the gcd of all labels is 1. -/
+/-- If two elements of a finset have consecutive labels, the gcd of all labels is 1.
+@isnad1 id=eq.3h5v.s6.70b96fcc4563 from=translated src=- shape=5a16f364 vocab=283b5ac3
+-/
 lemma gcd_eq_one_of_consecutive {s : Finset (Sym2 V)} {Φ : Sym2 V → ℕ} {e₁ e₂ : Sym2 V}
     (he₁ : e₁ ∈ s) (he₂ : e₂ ∈ s) (h : Φ e₁ + 1 = Φ e₂) :
     s.gcd Φ = 1 := by
@@ -186,7 +205,9 @@ lemma gcd_eq_one_of_consecutive {s : Finset (Sym2 V)} {Φ : Sym2 V → ℕ} {e�
   exact Nat.dvd_one.mp h3
 
 omit [Fintype V] [DecidableEq V] in
-/-- If some element of a finset has label 1, the gcd of all labels is 1. -/
+/-- If some element of a finset has label 1, the gcd of all labels is 1.
+@isnad1 id=eq.2h4v.s5.c44b2e80f2a1 from=translated src=- shape=37fefb01 vocab=2a75e152
+-/
 lemma gcd_eq_one_of_eq_one {s : Finset (Sym2 V)} {Φ : Sym2 V → ℕ} {e : Sym2 V}
     (he : e ∈ s) (h : Φ e = 1) : s.gcd Φ = 1 := by
   have d : s.gcd Φ ∣ Φ e := Finset.gcd_dvd he
@@ -195,13 +216,17 @@ lemma gcd_eq_one_of_eq_one {s : Finset (Sym2 V)} {Φ : Sym2 V → ℕ} {e : Sym2
 
 omit [Fintype V] in
 /-- The gcd over the `attach`ed finset, with the function applied to the underlying
-values, equals the gcd over the finset itself. -/
+values, equals the gcd over the finset itself.
+@isnad1 id=eq.0h3v.s6.c49f06208d18 from=translated src=- shape=ff65fd45 vocab=acc9aaac
+-/
 lemma gcd_attach_val {s : Finset (Sym2 V)} {f : Sym2 V → ℕ} :
     s.attach.gcd (f ∘ Subtype.val) = s.gcd f := by
   rw [← Finset.gcd_image, Finset.attach_image_val]
 
 /-- At an interior vertex of a trail, two consecutive edges meet, so the gcd of
-the labels at that vertex is 1. -/
+the labels at that vertex is 1.
+@isnad1 id=eq.2h8v.s6.38122161851a from=translated src=- shape=6e3e2b3d vocab=643472bb
+-/
 lemma gcd_interior {s₀ t : V} {w : G.Walk s₀ t} (htrail : w.IsTrail) {n : ℕ}
     {Φ' : Sym2 V → ℕ} {v : V} (hv : v ∈ interiorVerts w) :
     (G.incidenceFinset v).gcd (trailLabel w n Φ') = 1 := by
@@ -223,7 +248,9 @@ lemma gcd_interior {s₀ t : V} {w : G.Walk s₀ t} (htrail : w.IsTrail) {n : �
   rfl
 
 /-- If a vertex `v` is neither the start, an interior vertex, nor the end of the
-trail `w`, then no edge of the trail is incident to `v`. -/
+trail `w`, then no edge of the trail is incident to `v`.
+@isnad1 id=not.4h7v.s6.2f6e49ba7462 from=translated src=- shape=97c86196 vocab=2e6ff8e1
+-/
 lemma no_trail_edge_at {s₀ t : V} {w : G.Walk s₀ t} {v : V}
     (hvs : v ≠ s₀) (hvi : v ∉ interiorVerts w) (hvt : v ≠ t)
     {e : Sym2 V} (he : e ∈ G.incidenceFinset v) : e ∉ w.edges := by
@@ -244,7 +271,9 @@ lemma no_trail_edge_at {s₀ t : V} {w : G.Walk s₀ t} {v : V}
     · exact hvi (mem_interiorVerts.mpr ⟨j, by have hle := w.length_edges; lia, h.symm⟩)
 
 /-- If all edges of the trail are incident to the endpoint `t` (maximality) and `t`
-is neither the start nor an interior vertex, then at most one edge is incident to `t`. -/
+is neither the start nor an interior vertex, then at most one edge is incident to `t`.
+@isnad1 id=le.3h5v.s6.a5a1f535a330 from=translated src=- shape=5a5f4f48 vocab=c1eaebe3
+-/
 lemma degree_endpoint_le_one {s₀ t : V} {w : G.Walk s₀ t}
     (hmax : ∀ x : V, G.Adj t x → s(t, x) ∈ w.edges)
     (hts : t ≠ s₀) (hti : t ∉ interiorVerts w) :
@@ -279,7 +308,9 @@ lemma degree_endpoint_le_one {s₀ t : V} {w : G.Walk s₀ t}
   exact he₁q.symm.trans he₂q
 
 /-- If no trail edge is incident to `v`, deleting the trail edges does not change
-the incidence finset of `v`. -/
+the incidence finset of `v`.
+@isnad1 id=eq.1h6v.s8.f8b3e3685ada from=translated src=- shape=2ff0c18c vocab=a4b076e9
+-/
 lemma incidenceFinset_deleteEdges_of_none {s₀ t : V} {w : G.Walk s₀ t} {v : V}
     (hnone : ∀ e ∈ G.incidenceFinset v, e ∉ w.edges) :
     G.incidenceFinset v = (G.deleteEdges (↑w.edges.toFinset)).incidenceFinset v := by
@@ -292,7 +323,9 @@ lemma incidenceFinset_deleteEdges_of_none {s₀ t : V} {w : G.Walk s₀ t} {v : 
   · rintro ⟨he, hv⟩
     exact ⟨(mem_edgeSet_deleteEdges.mp he).1, hv⟩
 
-/-- Transfer of the gcd computation to the graph with the trail edges deleted. -/
+/-- Transfer of the gcd computation to the graph with the trail edges deleted.
+@isnad1 id=eq.1h8v.s8.3bb9bb6bab2e from=translated src=- shape=14252c08 vocab=ddf21311
+-/
 lemma gcd_transfer {s₀ t : V} {w : G.Walk s₀ t} {n : ℕ} {Φ' : Sym2 V → ℕ} {v : V}
     (hnone : ∀ e ∈ G.incidenceFinset v, e ∉ w.edges) :
     (G.incidenceFinset v).gcd (trailLabel w n Φ') =
@@ -305,7 +338,9 @@ lemma gcd_transfer {s₀ t : V} {w : G.Walk s₀ t} {n : ℕ} {Φ' : Sym2 V → 
 
 /-- Main induction: in any graph where every component that contains an edge meets
 the set `S`, the edges can be labeled with `n + 1, …, n + k` in such a way that at
-every vertex outside `S` of degree at least two the gcd of the labels is 1. -/
+every vertex outside `S` of degree at least two the gcd of the labels is 1.
+@isnad1 id=ex.2h5v.s8.37016944e381 from=translated src=- shape=f1041cee vocab=0a588130
+-/
 theorem exists_labeling : ∀ (k : ℕ) (H : SimpleGraph V) [DecidableRel H.Adj] (S : Finset V),
     H.edgeFinset.card = k →
     (∀ u v : V, H.Adj u v → ∃ s ∈ S, H.Reachable u s) →

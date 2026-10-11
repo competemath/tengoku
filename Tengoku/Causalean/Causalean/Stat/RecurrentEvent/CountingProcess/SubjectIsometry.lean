@@ -17,7 +17,9 @@ law](hyp:hFailure) and independent [censor times whose law has the given censor
 hazard](hyp:hazard,hHazard), and let the payoff process be [jointly measurable in time and sample](hyp:hMeasurable).
 For [a nonnegative horizon u](hyp:hu) and [finite expected quadratic energy](hyp:hQuadratic),
 [the square of subject i's accumulated hazard-weighted at-risk payoff up to u is integrable over
-samples](goal). -/
+samples](goal).
+@isnad1 id=integrab.5h7v.s7.d762c8399343 from=translated src=- shape=42a404c9 vocab=483f9aa2
+-/
 theorem subject_hazard_square_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -167,7 +169,9 @@ law](hyp:hFailure) and independent [censor times whose law has the given censor
 hazard](hyp:hazard,hHazard), and let the payoff process be [jointly measurable in time and sample](hyp:hMeasurable).
 For [a nonnegative horizon u](hyp:hu) and [finite expected quadratic energy](hyp:hQuadratic),
 [the expected square of subject i's accumulated hazard-weighted at-risk payoff up to u equals the
-expected integral from 0 to u of twice the accumulated payoff times its current rate](goal). -/
+expected integral from 0 to u of twice the accumulated payoff times its current rate](goal).
+@isnad1 id=eq.5h7v.s8.f0f217923895 from=translated src=- shape=8a101f62 vocab=0b021b72
+-/
 theorem subject_hazard_square_expectation {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -202,7 +206,9 @@ measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](h
 [finite expected quadratic energy](hyp:hQuadratic), [the expected value, at subject i's observed
 censor event by u, of the accumulated hazard-weighted at-risk payoff up to the censor time times
 the payoff there equals the expected integral from 0 to u of the accumulated payoff times the
-payoff times the hazard times the subject's at-risk indicator](goal). -/
+payoff times the hazard times the subject's at-risk indicator](goal).
+@isnad1 id=eq.6h7v.s8.1a51c0dcc9d5 from=translated src=- shape=90126ac7 vocab=77d8fa6d
+-/
 theorem subject_prefix_mixed_compensator_expectation {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -251,7 +257,9 @@ measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](h
 [finite expected quadratic energy](hyp:hQuadratic), [the expected product of the payoff at subject
 i's observed censor event by u and the subject's full hazard-weighted at-risk payoff up to u
 equals the expected integral from 0 to u of the accumulated payoff times the payoff times the
-hazard times the at-risk indicator](goal). -/
+hazard times the at-risk indicator](goal).
+@isnad1 id=eq.6h7v.s8.089e46f12cd9 from=translated src=- shape=503bd643 vocab=77d8fa6d
+-/
 theorem subject_event_hazard_product_expectation {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -316,7 +324,9 @@ hazard](hyp:hazard,hHazard), and let the payoff process be [left predictable](hy
 measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](hyp:hu), [finite
 expected quadratic energy](hyp:hQuadratic), and [an integrable hazard-weighted squared payoff
 while subject i is at risk](hyp:hEnergy), [the expectation of twice the censor-event payoff times
-the subject's compensator up to u, minus the square of that compensator, is zero](goal). -/
+the subject's compensator up to u, minus the square of that compensator, is zero](goal).
+@isnad1 id=eq.7h7v.s9.1dda1e44ece8 from=translated src=- shape=03eb11a7 vocab=c391495c
+-/
 theorem subject_jump_compensator_cancellation {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -465,7 +475,9 @@ time and sample](hyp:hMeasurable). For [a nonnegative horizon u](hyp:hu), [finit
 quadratic energy](hyp:hQuadratic), and [an integrable hazard-weighted squared integrand while
 subject i is at risk](hyp:hEnergy), [the expected square of the subject's integral against its
 compensated censor count up to u equals the expected integral from 0 to u of the squared
-integrand times the hazard times the subject's at-risk indicator](goal). -/
+integrand times the hazard times the subject's at-risk indicator](goal).
+@isnad1 id=eq.7h7v.s8.dd5d708b57a2 from=translated src=- shape=53d9b7de vocab=6e2da741
+-/
 theorem subject_integral_isometry {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)

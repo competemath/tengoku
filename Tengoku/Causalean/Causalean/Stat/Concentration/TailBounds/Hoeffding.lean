@@ -47,7 +47,9 @@ variable {Ω X : Type*} [MeasurableSpace Ω] [MeasurableSpace X]
   {μ : Measure Ω} {P : Measure X}
 
 /-- The population mean of a statistic equals its sample-point expectation:
-`∫ ω, f (S.Z i ω) ∂μ = ∫ x, f x ∂P`. -/
+`∫ ω, f (S.Z i ω) ∂μ = ∫ x, f x ∂P`.
+@isnad1 id=eq.1h7v.s6.7a81e371f56f from=translated src=- shape=5fe011e7 vocab=7f415148
+-/
 lemma IIDSample.integral_comp_eq (S : IIDSample Ω X μ P) {f : X → ℝ}
     (hf : AEMeasurable f P) (i : ℕ) :
     ∫ ω, f (S.Z i ω) ∂μ = ∫ x, f x ∂P := by
@@ -59,7 +61,9 @@ lemma IIDSample.integral_comp_eq (S : IIDSample Ω X μ P) {f : X → ℝ}
       (integral_map (S.meas i).aemeasurable hf').symm
     _ = ∫ x, f x ∂P := by rw [S.map_eq i]
 
-/-- Independence of the composed family `fun i ↦ f ∘ S.Z i`. -/
+/-- Independence of the composed family `fun i ↦ f ∘ S.Z i`.
+@isnad1 id=iindepfu.1h6v.s6.0d8c7771ad4f from=translated src=- shape=d230aefd vocab=f8058906
+-/
 lemma IIDSample.iIndepFun_comp (S : IIDSample Ω X μ P) {f : X → ℝ} (hf : Measurable f) :
     iIndepFun (fun i ω => f (S.Z i ω)) μ :=
   S.indep.comp (fun _ => f) (fun _ => hf)
@@ -68,7 +72,9 @@ namespace Concentration
 
 /-- For `n > 0`, the centered sample-mean tail event coincides with the
 centered-sum tail event: `ε ≤ X̄ₙ − m ⟺ n ε ≤ ∑_{i<n} (f (Z i) − m)`.  Reused
-by both the Hoeffding and Bernstein tail bounds. -/
+by both the Hoeffding and Bernstein tail bounds.
+@isnad1 id=eq.1h9v.s6.a15565eefc07 from=translated src=- shape=7ba65b99 vocab=85178860
+-/
 lemma sampleMean_sub_ge_setEq (S : IIDSample Ω X μ P) (f : X → ℝ) (m : ℝ)
     {n : ℕ} (hn : 0 < n) (ε : ℝ) :
     {ω | ε ≤ S.sampleMean f n ω - m}
@@ -93,7 +99,9 @@ i.i.d. sample and let `f` be [a measurable statistic](hyp:hf) taking values in [
 b]` with `a < b`](hyp:hab,hbound) `P`-almost everywhere. Then for [any sample size `n ≥
 1`](hyp:hn) and [any threshold `ε ≥ 0`](hyp:hε), [the probability that the sample mean of `f`
 over `n` draws exceeds its population mean $E[f]$ by at least `ε` is at most
-$\exp(-2n\varepsilon^2/(b-a)^2)$](goal). -/
+$\exp(-2n\varepsilon^2/(b-a)^2)$](goal).
+@isnad1 id=le.5h10v.s7.19585dcd4481 from=translated src=- shape=3f8940cc vocab=6365314e
+-/
 theorem hoeffding_ge (S : IIDSample Ω X μ P) {f : X → ℝ} (hf : Measurable f)
     {a b : ℝ} (hab : a < b) (hbound : ∀ᵐ x ∂P, f x ∈ Set.Icc a b)
     (n : ℕ) (hn : 0 < n) {ε : ℝ} (hε : 0 ≤ ε) :
@@ -142,7 +150,9 @@ theorem hoeffding_ge (S : IIDSample Ω X μ P) {f : X → ℝ} (hf : Measurable 
 
 /-- Generic two-sided assembly: the two-sided deviation event `{ε ≤ |T − m|}` is
 covered by the two one-sided events, so its measure is at most the sum of their
-one-sided bounds.  Reused by the Hoeffding and Bernstein two-sided tail bounds. -/
+one-sided bounds.  Reused by the Hoeffding and Bernstein two-sided tail bounds.
+@isnad1 id=le.2h7v.s6.3aeca598c803 from=translated src=- shape=ac15f2ec vocab=d84b9b33
+-/
 lemma measureReal_abs_dev_le_two_sided {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsFiniteMeasure μ] (T : Ω → ℝ) (m Bup Blow ε : ℝ)
     (hup : μ.real {ω | ε ≤ T ω - m} ≤ Bup)
@@ -165,7 +175,9 @@ i.i.d. sample and let `f` be [a measurable statistic](hyp:hf) taking values in [
 b]` with `a < b`](hyp:hab,hbound) `P`-almost everywhere. Then for [any sample size `n ≥
 1`](hyp:hn) and [any threshold `ε ≥ 0`](hyp:hε), [the probability that the sample mean of `f`
 over `n` draws deviates from its population mean $E[f]$ by at least `ε` in absolute value is at
-most $2\exp(-2n\varepsilon^2/(b-a)^2)$](goal). -/
+most $2\exp(-2n\varepsilon^2/(b-a)^2)$](goal).
+@isnad1 id=le.5h10v.s8.ce9ceb8dccbe from=translated src=- shape=81c2d7e5 vocab=529e027e
+-/
 theorem hoeffding_abs_ge (S : IIDSample Ω X μ P) {f : X → ℝ} (hf : Measurable f)
     {a b : ℝ} (hab : a < b) (hbound : ∀ᵐ x ∂P, f x ∈ Set.Icc a b)
     (n : ℕ) (hn : 0 < n) {ε : ℝ} (hε : 0 ≤ ε) :

@@ -96,7 +96,9 @@ standard Gaussian law](hyp:hnonzero), and [orthogonal to the required monomials]
 [its amplitude is positive](hyp:hεpos), [below one](hyp:hεone), and [below the requested
 distance radius](hyp:hερho), then [the resulting density perturbation is a distinct nearby
 probability law with the specified raw moments, all absolute moments, and a Gaussian-scale
-even-moment bound](goal). -/
+even-moment bound](goal).
+@isnad1 id=other.7h4v.s8.869f7ccd6d3c from=translated src=- shape=16bd3740 vocab=f0940fd7
+-/
 theorem gaussianPerturbation_spec
     {K : ℕ} {h : ℝ → ℝ} {ε rho : ℝ}
     (hmeas : Measurable h)

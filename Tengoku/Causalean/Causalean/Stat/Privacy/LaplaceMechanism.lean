@@ -38,7 +38,9 @@ private lemma laplacePDF_nonneg {b : ℝ} (hb : 0 < b) (x : ℝ) :
   unfold laplacePDF
   exact mul_nonneg (inv_nonneg.mpr (mul_nonneg (by norm_num) hb.le)) (Real.exp_pos _).le
 
-/-- The Laplace density with scale `b` is a measurable function on the real line. -/
+/-- The Laplace density with scale `b` is a measurable function on the real line.
+@isnad1 id=measurab.0h1v.s3.443da6e01ee5 from=translated src=- shape=f736e2c1 vocab=092596a7
+-/
 @[fun_prop]
 lemma measurable_laplacePDF (b : ℝ) : Measurable (laplacePDF b) := by
   unfold laplacePDF
@@ -103,7 +105,9 @@ private lemma integral_laplacePDF {b : ℝ} (hb : 0 < b) :
   norm_num
 
 /-- At every positive scale, the centered Laplace measure has total mass one and therefore defines
-a probability distribution. -/
+a probability distribution.
+@isnad1 id=isprobab.1h1v.s4.33b891d916a3 from=translated src=- shape=b8038e13 vocab=423ab35a
+-/
 theorem laplaceMeasure_isProbabilityMeasure (b : ℝ) (hb : 0 < b) :
     IsProbabilityMeasure (laplaceMeasure b) := by
   refine ⟨?_⟩
@@ -123,7 +127,9 @@ theorem laplaceMeasure_isProbabilityMeasure (b : ℝ) (hb : 0 < b) :
 
 /-- Moving the center of a positive-scale Laplace density changes its value at any observation by
 at most an exponential factor determined by the distance between the old and new centers divided
-by the scale. -/
+by the scale.
+@isnad1 id=le.1h4v.s6.1e905ddacadf from=translated src=- shape=e6e3cd97 vocab=dd3fb626
+-/
 theorem laplacePDF_shift_le (b u v z : ℝ) (hb : 0 < b) :
     laplacePDF b (z - u) ≤
       Real.exp (|u - v| / b) * laplacePDF b (z - v) := by
@@ -179,7 +185,9 @@ private lemma laplaceMech_eq_withDensity {D : Type*} (b : ℝ) (q : D → ℝ) (
       rw [map_add_right_eq_self]
 
 /-- Adding positive-scale Laplace noise to a scalar query produces a probability distribution for
-the release under every dataset. -/
+the release under every dataset.
+@isnad1 id=isprobab.1h4v.s4.2111ce67c525 from=translated src=- shape=e739caa5 vocab=abace405
+-/
 theorem laplaceMech_isProbabilityMeasure {D : Type*} (b : ℝ) (hb : 0 < b)
     (q : D → ℝ) (d : D) : IsProbabilityMeasure (laplaceMech b q d) := by
   letI : IsProbabilityMeasure (laplaceMeasure b) :=
@@ -192,7 +200,9 @@ bound $\Delta$](hyp:hΔ) and [a positive privacy level $\varepsilon$](hyp:hε) s
 `q` changes by at most $\Delta$ between any pair of adjacent datasets](hyp:hsens), releasing `q`
 after adding independent Laplace noise of scale $\Delta/\varepsilon$ [satisfies pure
 $\varepsilon$-differential privacy: for every adjacent pair, the probability of any measurable
-event under one release is at most $e^\varepsilon$ times its probability under the other](goal). -/
+event under one release is at most $e^\varepsilon$ times its probability under the other](goal).
+@isnad1 id=le.4h9v.s7.da2252af024a from=translated src=- shape=5065430d vocab=2379d68c
+-/
 theorem laplaceMech_pure_dp {D : Type*} (Adj : D → D → Prop) (q : D → ℝ)
     {Δ ε : ℝ} (hΔ : 0 < Δ) (hε : 0 < ε)
     (hsens : ∀ d d', Adj d d' → |q d - q d'| ≤ Δ) :
@@ -254,7 +264,9 @@ def laplaceMechPi {D ι : Type*} [Fintype ι] (b : ℝ) (q : D → (ι → ℝ))
   fun d => (Measure.pi (fun _ : ι => laplaceMeasure b)).map (fun z => z + q d)
 
 /-- Adding independent positive-scale Laplace noise in finitely many coordinates produces a
-probability distribution for the vector release under every dataset. -/
+probability distribution for the vector release under every dataset.
+@isnad1 id=isprobab.1h5v.s5.29571b109e88 from=translated src=- shape=c97e54b1 vocab=6b0790b0
+-/
 theorem laplaceMechPi_isProbabilityMeasure {D ι : Type*} [Fintype ι]
     (b : ℝ) (hb : 0 < b) (q : D → (ι → ℝ)) (d : D) :
     IsProbabilityMeasure (laplaceMechPi b q d) := by
@@ -379,7 +391,9 @@ $\varepsilon$](hyp:hε) such that [the coordinatewise absolute differences of th
 sum to at most $\Delta$ between any pair of adjacent datasets](hyp:hsens), releasing `q` after
 adding independent Laplace noise of scale $\Delta/\varepsilon$ to each coordinate [satisfies pure
 $\varepsilon$-differential privacy: for every adjacent pair, the probability of any measurable
-event under one release is at most $e^\varepsilon$ times its probability under the other](goal). -/
+event under one release is at most $e^\varepsilon$ times its probability under the other](goal).
+@isnad1 id=le.4h10v.s7.d98f37c525be from=translated src=- shape=09d57b4c vocab=09d098ac
+-/
 theorem laplaceMechPi_pure_dp {D ι : Type*} [Fintype ι]
     (Adj : D → D → Prop) (q : D → (ι → ℝ)) {Δ ε : ℝ}
     (hΔ : 0 < Δ) (hε : 0 < ε)
@@ -440,7 +454,9 @@ theorem laplaceMechPi_pure_dp {D ι : Type*} [Fintype ι]
 /-- **A pure measure bound implies the corresponding approximate measure bound.** Given [an
 event-measure bound between `M d` and `M d'`](hyp:hpure), adding [any nonnegative allowance
 $\delta$](hyp:hδ) [preserves the inequality with that allowance](goal). This raw fixed-pair lemma
-does not assert that `M` consists of probability measures. -/
+does not assert that `M` consists of probability measures.
+@isnad1 id=le.3h8v.s6.bf8fec325cc6 from=translated src=- shape=0e4aacf6 vocab=ecacdec3
+-/
 theorem pure_dp_implies_approx_dp {α : Type*} [MeasurableSpace α]
     (M : D → Measure α) (d d' : D) (ε δ : ℝ)
     (hpure : ∀ s, MeasurableSet s →
@@ -454,7 +470,9 @@ theorem pure_dp_implies_approx_dp {α : Type*} [MeasurableSpace α]
 post-processing.** Given [an event-measure bound between the vector-valued measures `M d` and
 `M d'`](hyp:hM), pushing both measures forward by [a measurable scalar map `f`](hyp:hf)
 [preserves the same bound](goal). This raw lemma does not assert probability normalization or
-quantify over an adjacency relation. -/
+quantify over an adjacency relation.
+@isnad1 id=le.3h8v.s7.0f88105363e0 from=translated src=- shape=ece7c212 vocab=5aabb44f
+-/
 theorem pure_dp_postprocess {D ι : Type*}
     (M : D → Measure (ι → ℝ)) (d d' : D) (ε : ℝ)
     (hM : ∀ s, MeasurableSet s →
@@ -471,7 +489,9 @@ theorem pure_dp_postprocess {D ι : Type*}
 post-processing.** Given [an event-measure bound with allowance `δ` between the vector-valued
 measures `M d` and `M d'`](hyp:hM), pushing both measures forward by [a measurable scalar map
 `f`](hyp:hf) [preserves the same bound and allowance](goal). This raw lemma does not assert
-probability normalization or quantify over an adjacency relation. -/
+probability normalization or quantify over an adjacency relation.
+@isnad1 id=le.3h9v.s7.76e71aae2dbd from=translated src=- shape=258a1c2c vocab=aa5c05fa
+-/
 theorem approx_dp_postprocess {D ι : Type*}
     (M : D → Measure (ι → ℝ)) (d d' : D) (ε δ : ℝ)
     (hM : ∀ s, MeasurableSet s →
@@ -526,7 +546,9 @@ private lemma integrable_abs_mul_laplacePDF (b : ℝ) (hb : 0 < b) :
   ring
 
 /-- The absolute value of a centered Laplace draw has a finite expectation at every positive
-scale. -/
+scale.
+@isnad1 id=integrab.1h1v.s5.e314a04ee43b from=translated src=- shape=9376f70c vocab=f63e9f14
+-/
 theorem laplaceMeasure_integrable_abs (b : ℝ) (hb : 0 < b) :
     Integrable (fun x : ℝ => |x|) (laplaceMeasure b) := by
   rw [laplaceMeasure,
@@ -535,7 +557,9 @@ theorem laplaceMeasure_integrable_abs (b : ℝ) (hb : 0 < b) :
   simpa only [ENNReal.toReal_ofReal (laplacePDF_nonneg hb _), smul_eq_mul, mul_comm] using
     integrable_abs_mul_laplacePDF b hb
 
-/-- The expected absolute value of a centered Laplace draw equals its positive scale. -/
+/-- The expected absolute value of a centered Laplace draw equals its positive scale.
+@isnad1 id=eq.1h1v.s5.1c30ee52268c from=translated src=- shape=4bd85ee6 vocab=8e33e6aa
+-/
 theorem laplaceMeasure_integral_abs (b : ℝ) (hb : 0 < b) :
     ∫ x, |x| ∂(laplaceMeasure b) = b := by
   rw [laplaceMeasure, integral_withDensity_eq_integral_toReal_smul
@@ -577,7 +601,9 @@ private lemma sqrt_sum_sq_le_sum_abs {ι : Type*} [Fintype ι] (w : ι → ℝ) 
         (f := fun i => |w i|) fun _ _ => abs_nonneg _)
 
 /-- The expected Euclidean norm of a finite vector of independent centered Laplace draws is at most
-the number of coordinates times their common positive scale. -/
+the number of coordinates times their common positive scale.
+@isnad1 id=le.1h2v.s6.d3d2ef33aaeb from=translated src=- shape=9dcebe77 vocab=1ca53608
+-/
 theorem laplacePi_integral_euclidean_norm_le {ι : Type*} [Fintype ι]
     (b : ℝ) (hb : 0 < b) :
     ∫ w, Real.sqrt (∑ i : ι, (w i) ^ 2)
@@ -614,7 +640,9 @@ theorem laplacePi_integral_euclidean_norm_le {ι : Type*} [Fintype ι]
     _ = (Fintype.card ι : ℝ) * b := by simp
 
 /-- The Euclidean norm of finitely many independent centered Laplace draws has a finite expectation
-whenever their common scale is positive. -/
+whenever their common scale is positive.
+@isnad1 id=integrab.1h2v.s6.779244fa7ee0 from=translated src=- shape=1f5b89b8 vocab=1f8d3f8f
+-/
 theorem laplacePi_integrable_euclidean_norm {ι : Type*} [Fintype ι]
     (b : ℝ) (hb : 0 < b) :
     Integrable (fun w : ι → ℝ => Real.sqrt (∑ i : ι, (w i) ^ 2))

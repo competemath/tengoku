@@ -27,7 +27,9 @@ def coefficientMeasure (Q : Kernel (Fin 4) Z) (D : CoefficientField Q r)
   (rowSum Q).withDensity (fun z => ENNReal.ofReal (D.c z S))
 
 /-- The total mass of a staircase coefficient measure equals the real integral of
-its coefficient, embedded in the extended nonnegative reals. -/
+its coefficient, embedded in the extended nonnegative reals.
+@isnad1 id=eq.1h5v.s6.22e51bbd7a16 from=translated src=- shape=3891e033 vocab=c9ef9cda
+-/
 theorem coefficientMeasure_mass (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (D : CoefficientField Q r) (S : RayIndex) :
     coefficientMeasure Q D S Set.univ =
@@ -44,7 +46,9 @@ theorem coefficientMeasure_mass (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
 including zero-weight rays.
 
 Every measurable ray coefficient measure is a nonnegative scalar multiple of
-a Markov postprocessing row, including the zero-weight case. -/
+a Markov postprocessing row, including the zero-weight case.
+@isnad1 id=ex.1h4v.s7.a0b8382aa79b from=translated src=- shape=76e90155 vocab=0854cde3
+-/
 theorem exists_coefficientPostprocess (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (D : CoefficientField Q r) :
     ∃ K : Kernel RayIndex Z, IsMarkovKernel K ∧

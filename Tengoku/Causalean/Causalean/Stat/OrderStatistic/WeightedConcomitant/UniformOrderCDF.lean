@@ -18,7 +18,9 @@ open Causalean.Stat.OrderStatistic
 noncomputable section
 
 /-- The `r`th sorted coordinate is at most a threshold exactly when at least
-`r+1` coordinates of the original finite tuple are at most that threshold. -/
+`r+1` coordinates of the original finite tuple are at most that threshold.
+@isnad1 id=iff.0h4v.s6.944ff91107ba from=translated src=- shape=6d02f78d vocab=ebefc80b
+-/
 theorem sortedSample_le_iff_count_le {n : ℕ} (x : Fin n → ℝ)
     (r : Fin n) (u : ℝ) :
     sortedSample n x r ≤ u ↔
@@ -37,7 +39,9 @@ theorem sortedSample_le_iff_count_le {n : ℕ} (x : Fin n → ℝ)
   simpa only [sortedSample, σ, hcard, Fin.val_fin_lt, Nat.lt_iff_add_one_le] using h.symm
 
 /-- In an iid sample of `n` unit uniforms, the number of coordinates at most
-`u` has the binomial mass with parameters `n` and `u`. -/
+`u` has the binomial mass with parameters `n` and `u`.
+@isnad1 id=eq.2h3v.s7.ccc26d294608 from=translated src=- shape=aeeae093 vocab=32b95a54
+-/
 theorem uniform_count_le_mass (n k : ℕ) (hk : k ≤ n)
     {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     iidSample uniform01 n
@@ -77,7 +81,9 @@ theorem uniform_count_le_mass (n k : ℕ) (hk : k ≤ n)
   simpa using uniform_subset_lt_count_mass (Finset.univ : Finset (Fin n)) k hu
 
 /-- A [sorted position](hyp:r) and [unit-interval threshold](hyp:hu) give
-[the upper-binomial-tail formula for its iid uniform CDF](goal). -/
+[the upper-binomial-tail formula for its iid uniform CDF](goal).
+@isnad1 id=eq.1h3v.s7.c20230f4e5ad from=translated src=- shape=56c2c377 vocab=f3fec539
+-/
 theorem uniform_sorted_cdf_eq_binomial_tail {n : ℕ} (r : Fin n)
     {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     ((iidSample uniform01 n).map (fun x => sortedSample n x r)) (Set.Iic u) =

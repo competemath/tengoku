@@ -21,12 +21,16 @@ noncomputable section
 ceiling of its reciprocal, with at least one bin for every real input. -/
 def meshCount (b : ℝ) : ℕ := max 1 ⌈b⁻¹⌉₊
 
-/-- The [ceiling mesh count is positive](goal) for [every bandwidth](hyp:b). -/
+/-- The [ceiling mesh count is positive](goal) for [every bandwidth](hyp:b).
+@isnad1 id=lt.0h1v.s3.f98d97009686 from=translated src=- shape=b9369acb vocab=d27066f0
+-/
 theorem meshCount_pos (b : ℝ) : 0 < meshCount b := by
   exact lt_of_lt_of_le Nat.zero_lt_one (le_max_left _ _)
 
 /-- [A bandwidth in `(0,1]`](hyp:hb,hb1) gives [the reciprocal mesh-width
-comparison and ceiling cell-count bound](goal). -/
+comparison and ceiling cell-count bound](goal).
+@isnad1 id=and.2h1v.s6.a843bf60a816 from=translated src=- shape=b6afebe6 vocab=b2e8fb55
+-/
 theorem mesh_bounds (b : ℝ) (hb : 0 < b) (hb1 : b ≤ 1) :
     b / 2 ≤ (meshCount b : ℝ)⁻¹ ∧ (meshCount b : ℝ)⁻¹ ≤ b ∧
       (meshCount b : ℝ) ≤ 2 / b := by
@@ -49,7 +53,9 @@ theorem mesh_bounds (b : ℝ) (hb : 0 < b) (hb1 : b ≤ 1) :
     simpa using h
 
 /-- [A bandwidth in `(0,1]`](hyp:hb,hb1) gives [the dimension-dependent
-ceiling cell-count bound](goal). -/
+ceiling cell-count bound](goal).
+@isnad1 id=le.2h2v.s6.7e9fdd18cae6 from=translated src=- shape=a7c4b210 vocab=6d9786a0
+-/
 theorem mesh_count_pow_le (d : ℕ) (b : ℝ) (hb : 0 < b) (hb1 : b ≤ 1) :
     (meshCount b : ℝ) ^ d ≤ (2 : ℝ) ^ d / b ^ d := by
   have h := pow_le_pow_left₀ (by positivity : 0 ≤ (meshCount b : ℝ))
@@ -62,7 +68,9 @@ def optimizedBandwidth (d : ℕ) (β : ℝ) (m : ℕ) : ℝ :=
   (m : ℝ) ^ (-(1 / (2 * β + d)))
 
 /-- [Positive smoothness and at least one observation](hyp:hβ,hm) imply
-[the optimized bandwidth is in `(0,1]`](goal). -/
+[the optimized bandwidth is in `(0,1]`](goal).
+@isnad1 id=and.2h3v.s5.c9a29be783a4 from=translated src=- shape=b2344c39 vocab=a0365815
+-/
 theorem optimizedBandwidth_mem (d : ℕ) (β : ℝ) (m : ℕ)
     (hβ : 0 < β) (hm : 1 ≤ m) :
     0 < optimizedBandwidth d β m ∧ optimizedBandwidth d β m ≤ 1 := by
@@ -75,7 +83,9 @@ theorem optimizedBandwidth_mem (d : ℕ) (β : ℝ) (m : ℕ)
       (neg_nonpos.mpr (one_div_pos.mpr hden).le)⟩
 
 /-- [Positive smoothness and sample size](hyp:hβ,hm) give [the exact balanced
-bias and reciprocal effective-sample-size powers at the optimized bandwidth](goal). -/
+bias and reciprocal effective-sample-size powers at the optimized bandwidth](goal).
+@isnad1 id=and.2h3v.s7.34357a2084bd from=translated src=- shape=c5627c9a vocab=44b61efa
+-/
 theorem optimized_power_identities (d : ℕ) (β : ℝ) (m : ℕ)
     (hβ : 0 < β) (hm : 1 ≤ m) :
     (optimizedBandwidth d β m) ^ (2 * β) =
@@ -101,7 +111,9 @@ theorem optimized_power_identities (d : ℕ) (β : ℝ) (m : ℕ)
     ring
 
 /-- [Positive smoothness and sample size](hyp:hβ,hm) give [the optimized
-ceiling cell-count variance term at the exact minimax exponent](goal). -/
+ceiling cell-count variance term at the exact minimax exponent](goal).
+@isnad1 id=le.2h3v.s7.4ed1234f98f3 from=translated src=- shape=94f87ca8 vocab=4e495fc3
+-/
 theorem optimized_mesh_variance_le (d : ℕ) (β : ℝ) (m : ℕ)
     (hβ : 0 < β) (hm : 1 ≤ m) :
     (meshCount (optimizedBandwidth d β m) : ℝ) ^ d / (m + 1 : ℝ) ≤

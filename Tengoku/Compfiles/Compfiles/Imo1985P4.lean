@@ -22,6 +22,9 @@ namespace Imo1985P4
 
 universe u v w
 
+/--
+@isnad1 id=ex.2h6v.s7.756fd2a74f1a from=translated src=- shape=3e87230b vocab=202c5126
+-/
 lemma extended_pigeonhole {α : Type u} {β : Type v} [DecidableEq α] [DecidableEq β]
     {s : Finset α} {f: α → β} {s' : Finset β} (hf : ∀ n ∈ s, f n ∈ s')
     (n : ℕ) (hn : 2 * n + s'.card - 1 ≤ s.card)
@@ -106,6 +109,9 @@ lemma extended_pigeonhole {α : Type u} {β : Type v} [DecidableEq α] [Decidabl
         lia
       · exact htn'₅ t' ht'tn'
 
+/--
+@isnad1 id=ex.3h8v.s8.c9357bd33cfe from=translated src=- shape=3d887a1b vocab=2a432888
+-/
 lemma double_pigeonhole {α : Type u} {β : Type v} {γ : Type w} [DecidableEq α] [DecidableEq β] [DecidableEq γ]
     {s : Finset α} {f₁: α → β} {f₂: (Finset α) → γ} {s₁ : Finset β} {s₂ : Finset γ}
     (hf₁ : ∀ n ∈ s, f₁ n ∈ s₁) (hf₂ : ∀ s' ⊆ s, f₂ s' ∈ s₂)
@@ -142,6 +148,9 @@ def two_pow_k_finset (k : ℕ) := Finset.pi (Finset.range k) (fun _ ↦ Finset.r
 noncomputable def pow_of_first_k_prime_mod_two (k : ℕ) (n : ℕ) :=
   fun (k' : ℕ) ↦ fun (_ : k' ∈ Finset.range k) ↦ pow_of_kth_prime_mod_two k' n
 
+/--
+@isnad1 id=mem.0h2v.s6.90f60d9b3abb from=translated src=- shape=cfa968d0 vocab=41c33e6d
+-/
 lemma pow_of_first_k_prime_mod_two_mem_two_pow_k_finset (k : ℕ) (n : ℕ) :
     pow_of_first_k_prime_mod_two k n ∈ two_pow_k_finset k := by
   rw [two_pow_k_finset, Finset.mem_pi]
@@ -150,6 +159,9 @@ lemma pow_of_first_k_prime_mod_two_mem_two_pow_k_finset (k : ℕ) (n : ℕ) :
   apply Nat.mod_lt
   norm_num
 
+/--
+@isnad1 id=ex.3h2v.s6.c103c8181384 from=translated src=- shape=7b9df34e vocab=194510a0
+-/
 lemma square_of_pow_of_pow_of_kth_prime_mod_two_eq {m n : ℕ}
     (hm₀ : m ≠ 0) (hn₀ : n ≠ 0)
     (hmn : ∀ k , pow_of_kth_prime_mod_two k m = pow_of_kth_prime_mod_two k n) :
@@ -175,6 +187,9 @@ lemma square_of_pow_of_pow_of_kth_prime_mod_two_eq {m n : ℕ}
   rw [Nat.nth_count hp'] at hmn'
   lia
 
+/--
+@isnad1 id=eq.3h3v.s5.d8b84e226584 from=translated src=- shape=d6a838f4 vocab=43c2f020
+-/
 lemma padicValNat_eq_zero_of_divisors {k m k': ℕ} (hm₀ : m ≠ 0)
     (hm : ∀ p, p.Prime ∧ p ∣ m → p ≤ Nat.nth Nat.Prime k) (hk' : k < k'):
     padicValNat (Nat.nth Nat.Prime k') m = 0 := by
@@ -185,6 +200,9 @@ lemma padicValNat_eq_zero_of_divisors {k m k': ℕ} (hm₀ : m ≠ 0)
   rw [Nat.nth_le_nth Nat.infinite_setOfPred_prime] at hdiv'
   lia
 
+/--
+@isnad1 id=ex.5h3v.s7.9baedcb2a12e from=translated src=- shape=ac5cafa2 vocab=de8411b7
+-/
 lemma square_of_pow_of_first_k_prime_mod_two_eq {k m n : ℕ}
     (hm₀ : m ≠ 0) (hn₀ : n ≠ 0)
     (hmn : pow_of_first_k_prime_mod_two (k + 1) m = pow_of_first_k_prime_mod_two (k + 1) n)
@@ -207,6 +225,9 @@ lemma square_of_pow_of_first_k_prime_mod_two_eq {k m n : ℕ}
       rw [padicValNat_eq_zero_of_divisors hn₀ hn hk']
   exact square_of_pow_of_pow_of_kth_prime_mod_two_eq hm₀ hn₀ hmn'
 
+/--
+@isnad1 id=ex.5h3v.s7.fa179d9002b7 from=translated src=- shape=6044f013 vocab=3fe6504d
+-/
 lemma prod_square_of_pow_of_first_k_prime_mod_two_eq {M : Finset ℕ} {k : ℕ}
     (Mdivisors : ∀ m ∈ M, ∀ n, n.Prime ∧ n ∣ m → n ≤ Nat.nth Nat.Prime k)
     (Mpos : ∀ m ∈ M, 0 < m) {s : Finset ℕ} (hs₁ : s.card = 2) (hs₂ : s ⊆ M)
@@ -229,6 +250,9 @@ lemma prod_square_of_pow_of_first_k_prime_mod_two_eq {M : Finset ℕ} {k : ℕ}
   exact square_of_pow_of_first_k_prime_mod_two_eq
           hm₀ hn₀ hmn (Mdivisors m hm') (Mdivisors n hn')
 
+/--
+@isnad1 id=ne.3h3v.s6.ea84b758d47a from=translated src=- shape=6e147c58 vocab=caee939b
+-/
 lemma sqrt_prod_subset_ne_zero {M s : Finset ℕ} {k : ℕ}
     (Mpos : ∀ m ∈ M, 0 < m) (hs: s ⊆ M) (hk : s.prod id = k ^ 2) :
     k ≠ 0 := by
@@ -240,6 +264,9 @@ lemma sqrt_prod_subset_ne_zero {M s : Finset ℕ} {k : ℕ}
   intro n hn
   exact Nat.ne_zero_iff_zero_lt.mpr (Mpos n (hs hn))
 
+/--
+@isnad1 id=le.4h5v.s6.29f980695240 from=translated src=- shape=982f97b4 vocab=60cf3a2e
+-/
 lemma sqrt_divisors_subset {M s : Finset ℕ} {k k₁: ℕ}
     (Mdivisors : ∀ m ∈ M, ∀ n, n.Prime ∧ n ∣ m → n ≤ Nat.nth Nat.Prime k)
     (hs: s ⊆ M) (hk₁ : s.prod id = k₁ ^ 2) : ∀ p, p.Prime ∧ p ∣ k₁ → p ≤ Nat.nth Nat.Prime k := by
@@ -250,6 +277,9 @@ lemma sqrt_divisors_subset {M s : Finset ℕ} {k k₁: ℕ}
   rcases h'p' with ⟨n, hn, hn'⟩
   exact Mdivisors n (hs hn) p' ⟨hp', hn'⟩
 
+/--
+@isnad1 id=ex.3h2v.s7.d8bca5de55dd from=translated src=- shape=71c9a1b3 vocab=654a626b
+-/
 theorem generalized (M : Finset ℕ) (k : ℕ)
     (Mcard : 3 * 2 ^ (k + 1) + 1 ≤ M.card) (Mpos : ∀ m ∈ M, 0 < m)
     (Mdivisors : ∀ m ∈ M, ∀ n, n.Prime ∧ n ∣ m → n ≤ Nat.nth Nat.Prime k) :

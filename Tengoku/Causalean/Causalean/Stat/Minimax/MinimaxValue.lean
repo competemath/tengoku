@@ -57,7 +57,9 @@ noncomputable def minimaxValueENNRealOfReal (risk : E → Θ → ℝ) : ℝ≥0�
   minimaxValueENNReal (fun e θ => ENNReal.ofReal (risk e θ))
 
 /-- For an [empty model class](hyp:Θ), every [extended risk](hyp:risk) has [zero worst-case
-value](goal). -/
+value](goal).
+@isnad1 id=eq.0h4v.s4.aa8576eab4e5 from=translated src=- shape=903f186e vocab=fc17f1ef
+-/
 @[simp]
 theorem worstCaseRiskENNReal_of_isEmpty_class [IsEmpty Θ]
     (risk : E → Θ → ℝ≥0∞) (e : E) :
@@ -65,7 +67,9 @@ theorem worstCaseRiskENNReal_of_isEmpty_class [IsEmpty Θ]
   simp [worstCaseRiskENNReal]
 
 /-- For an [empty estimator class](hyp:E), every [extended risk](hyp:risk) has [infinite minimax
-value](goal). -/
+value](goal).
+@isnad1 id=eq.0h3v.s4.862cc5e1a25e from=translated src=- shape=ed1ef410 vocab=f7742f23
+-/
 @[simp]
 theorem minimaxValueENNReal_of_isEmpty_estimators [IsEmpty E]
     (risk : E → Θ → ℝ≥0∞) :
@@ -73,34 +77,44 @@ theorem minimaxValueENNReal_of_isEmpty_estimators [IsEmpty E]
   simp [minimaxValueENNReal]
 
 /-- When the [model class has a unique element](hyp:Θ), the [worst-case extended risk is
-the risk at that element](goal) for the given [risk](hyp:risk) and [estimator](hyp:e). -/
+the risk at that element](goal) for the given [risk](hyp:risk) and [estimator](hyp:e).
+@isnad1 id=eq.0h4v.s4.a0d5afbb1cac from=translated src=- shape=647b472f vocab=036c88bd
+-/
 theorem worstCaseRiskENNReal_of_unique [Unique Θ]
     (risk : E → Θ → ℝ≥0∞) (e : E) :
     worstCaseRiskENNReal risk e = risk e default := by
   simp [worstCaseRiskENNReal]
 
 /-- For a [nonnegative extended risk](hyp:risk), an [estimator](hyp:e), and a
-[model](hyp:θ), the [model-specific risk is at most the worst-case risk](goal). -/
+[model](hyp:θ), the [model-specific risk is at most the worst-case risk](goal).
+@isnad1 id=le.0h5v.s4.9ce5911fdda3 from=translated src=- shape=4d75c30a vocab=19be780d
+-/
 theorem le_worstCaseRiskENNReal {risk : E → Θ → ℝ≥0∞} (e : E) (θ : Θ) :
     risk e θ ≤ worstCaseRiskENNReal risk e :=
   le_iSup (risk e) θ
 
 /-- If a [constant](hyp:c) bounds a fixed [estimator's](hyp:e) [risk](hyp:risk) at every
-model as witnessed by [the uniform bound](hyp:h), then it [bounds the worst-case risk](goal). -/
+model as witnessed by [the uniform bound](hyp:h), then it [bounds the worst-case risk](goal).
+@isnad1 id=le.1h5v.s5.9e15eac0c9f9 from=translated src=- shape=9fd1f1a3 vocab=19be780d
+-/
 theorem worstCaseRiskENNReal_le {risk : E → Θ → ℝ≥0∞} {e : E} {c : ℝ≥0∞}
     (h : ∀ θ, risk e θ ≤ c) :
     worstCaseRiskENNReal risk e ≤ c :=
   iSup_le h
 
 /-- **Any admissible estimator is an upper bound.** For a [risk](hyp:risk) and an
-[estimator](hyp:e), the [minimax value is at most that estimator's worst-case risk](goal). -/
+[estimator](hyp:e), the [minimax value is at most that estimator's worst-case risk](goal).
+@isnad1 id=le.0h4v.s4.1bd2b8ac429f from=translated src=- shape=3be713d1 vocab=8a71111d
+-/
 theorem minimaxValueENNReal_le_worstCaseRisk {risk : E → Θ → ℝ≥0∞} (e : E) :
     minimaxValueENNReal risk ≤ worstCaseRiskENNReal risk e :=
   iInf_le _ e
 
 /-- **A uniform estimator-wise bound is a lower bound.** If [every estimator's worst-case
 risk is at least a constant](hyp:h), then [that constant is at most the minimax value](goal)
-for the given [risk](hyp:risk) and [constant](hyp:c). -/
+for the given [risk](hyp:risk) and [constant](hyp:c).
+@isnad1 id=le.1h4v.s5.5517abc9dd02 from=translated src=- shape=8bd50ff3 vocab=8a71111d
+-/
 theorem le_minimaxValueENNReal {risk : E → Θ → ℝ≥0∞} {c : ℝ≥0∞}
     (h : ∀ e, c ≤ worstCaseRiskENNReal risk e) :
     c ≤ minimaxValueENNReal risk :=
@@ -109,7 +123,9 @@ theorem le_minimaxValueENNReal {risk : E → Θ → ℝ≥0∞} {c : ℝ≥0∞}
 /-- **Two-point reduction to the minimax value.** For a [risk](hyp:risk), a
 [candidate lower bound](hyp:c), and [two models](hyp:θ₀,θ₁), if [every estimator has at
 least that much risk at one of the two models](hyp:htwo), then [the minimax value is at
-least the candidate bound](goal). -/
+least the candidate bound](goal).
+@isnad1 id=le.1h6v.s5.4e47ae2a6ce7 from=translated src=- shape=93f4f285 vocab=d2f5b0a6
+-/
 theorem le_minimaxValueENNReal_of_two_point {risk : E → Θ → ℝ≥0∞} {c : ℝ≥0∞}
     (θ₀ θ₁ : Θ) (htwo : ∀ e, c ≤ max (risk e θ₀) (risk e θ₁)) :
     c ≤ minimaxValueENNReal risk := by
@@ -120,7 +136,9 @@ theorem le_minimaxValueENNReal_of_two_point {risk : E → Θ → ℝ≥0∞} {c 
 
 /-- If a [map between model classes](hyp:φ) sends every [risk](hyp:risk) to no larger than
 the corresponding [comparison risk](hyp:risk') as witnessed by [pointwise domination](hyp:hle),
-then a fixed [estimator's](hyp:e) [worst-case risk is no larger](goal). -/
+then a fixed [estimator's](hyp:e) [worst-case risk is no larger](goal).
+@isnad1 id=le.1h7v.s5.0a41fc0603b3 from=translated src=- shape=e2475d1b vocab=19be780d
+-/
 theorem worstCaseRiskENNReal_mono_class {risk : E → Θ → ℝ≥0∞}
     {risk' : E → Θ' → ℝ≥0∞} {e : E} (φ : Θ → Θ')
     (hle : ∀ θ, risk e θ ≤ risk' e (φ θ)) :
@@ -131,7 +149,9 @@ theorem worstCaseRiskENNReal_mono_class {risk : E → Θ → ℝ≥0∞}
 
 /-- **Comparison of two minimax problems.** If [every estimator in the second problem is
 matched by one in the first with no larger worst-case risk](hyp:h), then the [first minimax
-value is at most the second](goal) for the two [risks](hyp:risk,risk'). -/
+value is at most the second](goal) for the two [risks](hyp:risk,risk').
+@isnad1 id=le.1h6v.s5.7ecd386db56e from=translated src=- shape=048d1ba0 vocab=8a71111d
+-/
 theorem minimaxValueENNReal_le_minimaxValue {risk : E → Θ → ℝ≥0∞}
     {risk' : E' → Θ' → ℝ≥0∞}
     (h : ∀ e' : E', ∃ e : E,
@@ -144,7 +164,9 @@ theorem minimaxValueENNReal_le_minimaxValue {risk : E → Θ → ℝ≥0∞}
 
 /-- **Restricting the model class cannot raise minimax risk.** If a [map between model
 classes](hyp:φ) makes the first [risk](hyp:risk) no larger than the second [risk](hyp:risk')
-under [pointwise domination](hyp:hle), then the [first minimax value is no larger](goal). -/
+under [pointwise domination](hyp:hle), then the [first minimax value is no larger](goal).
+@isnad1 id=le.1h6v.s5.c1e67a691e2b from=translated src=- shape=eca3e53c vocab=5e9bb6f4
+-/
 theorem minimaxValueENNReal_mono_class {risk : E → Θ → ℝ≥0∞}
     {risk' : E → Θ' → ℝ≥0∞} (φ : Θ → Θ')
     (hle : ∀ e θ, risk e θ ≤ risk' e (φ θ)) :
@@ -153,13 +175,17 @@ theorem minimaxValueENNReal_mono_class {risk : E → Θ → ℝ≥0∞}
     ⟨e, worstCaseRiskENNReal_mono_class φ (hle e)⟩
 
 /-- The [worst-case extended risk](goal) for a given [risk](hyp:risk) and
-[estimator](hyp:e) is the supremum of the set of attained risks. -/
+[estimator](hyp:e) is the supremum of the set of attained risks.
+@isnad1 id=eq.0h4v.s5.8a2c25f82693 from=translated src=- shape=0d196061 vocab=949a70a2
+-/
 theorem worstCaseRiskENNReal_eq_sSup_range (risk : E → Θ → ℝ≥0∞) (e : E) :
     worstCaseRiskENNReal risk e = sSup (Set.range (risk e)) :=
   rfl
 
 /-- The [extended minimax value](goal) for a [risk](hyp:risk) is the infimum of the set of
-attained worst-case risks. -/
+attained worst-case risks.
+@isnad1 id=eq.0h3v.s5.1578d1b4f158 from=translated src=- shape=ed57746e vocab=66e48fc6
+-/
 theorem minimaxValueENNReal_eq_sInf_range (risk : E → Θ → ℝ≥0∞) :
     minimaxValueENNReal risk = sInf (Set.range (worstCaseRiskENNReal risk)) :=
   rfl
@@ -167,7 +193,9 @@ theorem minimaxValueENNReal_eq_sInf_range (risk : E → Θ → ℝ≥0∞) :
 variable {A B : Type*}
 
 /-- For an [admissibility predicate](hyp:Adm) and [extended risk](hyp:risk), the [minimax
-value over the admissible subtype is the set infimum of its worst-case risks](goal). -/
+value over the admissible subtype is the set infimum of its worst-case risks](goal).
+@isnad1 id=eq.0h4v.s6.40e51c88ea04 from=translated src=- shape=b07ab2bf vocab=4ec99be0
+-/
 theorem minimaxValueENNReal_subtype_eq_sInf_worstCaseRisk
     {Adm : A → Prop} (risk : A → Θ → ℝ≥0∞) :
     minimaxValueENNReal (fun (e : Subtype Adm) => risk e.1) =
@@ -184,7 +212,9 @@ theorem minimaxValueENNReal_subtype_eq_sInf_worstCaseRisk
 
 /-- For a [model-class predicate](hyp:Cls), an [extended risk](hyp:risk), and an
 [estimator](hyp:e), the [worst-case risk over the subtype is the set supremum of its
-attained risks](goal). -/
+attained risks](goal).
+@isnad1 id=eq.0h5v.s6.c378beba9a9e from=translated src=- shape=54594d26 vocab=72f20c9f
+-/
 theorem worstCaseRiskENNReal_subtype_eq_sSup_setOf
     {Cls : B → Prop} (risk : A → B → ℝ≥0∞) (e : A) :
     worstCaseRiskENNReal (fun (a : A) (θ : Subtype Cls) => risk a θ.1) e =
@@ -202,7 +232,9 @@ theorem worstCaseRiskENNReal_subtype_eq_sSup_setOf
 
 /-- For an [admissibility predicate](hyp:Adm), a [model-class predicate](hyp:Cls), and an
 [extended risk](hyp:risk), the [subtype minimax value equals its nested set-infimum and
-set-supremum spelling](goal). -/
+set-supremum spelling](goal).
+@isnad1 id=eq.0h5v.s6.9e216d835e92 from=translated src=- shape=e6433ccc vocab=d1b085d9
+-/
 theorem minimaxValueENNReal_subtype_eq_sInf_setOf (Adm : A → Prop) (Cls : B → Prop)
     (risk : A → B → ℝ≥0∞) :
     minimaxValueENNReal (fun (e : Subtype Adm) (θ : Subtype Cls) => risk e.1 θ.1) =
@@ -215,7 +247,9 @@ theorem minimaxValueENNReal_subtype_eq_sInf_setOf (Adm : A → Prop) (Cls : B �
   simp only [Set.mem_ofPred_eq, worstCaseRiskENNReal_subtype_eq_sSup_setOf]
 
 /-- If a fixed [estimator's](hyp:e) [worst-case extended risk](hyp:risk) is
-[finite](hyp:hfinite), its [real value is the real supremum of the pointwise risks](goal). -/
+[finite](hyp:hfinite), its [real value is the real supremum of the pointwise risks](goal).
+@isnad1 id=eq.1h4v.s5.b621ed2d3e7b from=translated src=- shape=08a7eef6 vocab=02af93ce
+-/
 theorem worstCaseRiskENNReal_toReal {risk : E → Θ → ℝ≥0∞} {e : E}
     (hfinite : worstCaseRiskENNReal risk e ≠ ∞) :
     (worstCaseRiskENNReal risk e).toReal = ⨆ θ, (risk e θ).toReal := by
@@ -226,7 +260,9 @@ theorem worstCaseRiskENNReal_toReal {risk : E → Θ → ℝ≥0∞} {e : E}
 
 /-- If [every estimator's worst-case extended risk is finite](hyp:hfinite), then the
 [real value of the minimax risk is the real infimum of their real worst-case risks](goal)
-for the given [risk](hyp:risk). -/
+for the given [risk](hyp:risk).
+@isnad1 id=eq.1h3v.s5.e267773a1bf5 from=translated src=- shape=ae3f18fe vocab=1ab2253b
+-/
 theorem minimaxValueENNReal_toReal {risk : E → Θ → ℝ≥0∞}
     (hfinite : ∀ e, worstCaseRiskENNReal risk e ≠ ∞) :
     (minimaxValueENNReal risk).toReal =
@@ -259,7 +295,9 @@ noncomputable def minimaxValueReal (risk : E → Θ → ℝ) : ℝ :=
 
 /-- If a [real-valued risk](hyp:risk) is [nonnegative](hyp:hr) and its lifted
 [worst-case risk for an estimator](hyp:e) is [finite](hyp:hfinite), then [taking the real
-value of the standard extended worst-case risk recovers the real supremum](goal). -/
+value of the standard extended worst-case risk recovers the real supremum](goal).
+@isnad1 id=eq.2h4v.s5.19e1870c4964 from=translated src=- shape=a599aa10 vocab=904fa38e
+-/
 theorem worstCaseRiskENNReal_ofReal_toReal {risk : E → Θ → ℝ} {e : E}
     (hr : ∀ θ, 0 ≤ risk e θ)
     (hfinite : worstCaseRiskOfReal risk e ≠ ∞) :
@@ -271,7 +309,9 @@ theorem worstCaseRiskENNReal_ofReal_toReal {risk : E → Θ → ℝ} {e : E}
 
 /-- If a [real-valued risk](hyp:risk) is [nonnegative](hyp:hr) and [every lifted
 worst-case risk is finite](hyp:hfinite), then [taking the real value of the standard
-extended minimax risk recovers the real minimax infimum](goal). -/
+extended minimax risk recovers the real minimax infimum](goal).
+@isnad1 id=eq.2h3v.s5.e3e9f58122be from=translated src=- shape=8145f461 vocab=8dc81b0b
+-/
 theorem minimaxValueENNRealOfReal_toReal {risk : E → Θ → ℝ}
     (hr : ∀ e θ, 0 ≤ risk e θ)
     (hfinite : ∀ e, worstCaseRiskOfReal risk e ≠ ∞) :
@@ -288,7 +328,9 @@ theorem minimaxValueENNRealOfReal_toReal {risk : E → Θ → ℝ}
 
 /-- If a fixed [estimator's real-valued risk is bounded above](hyp:hbdd), then its
 [lifted worst-case risk is finite](goal) for the given [risk](hyp:risk) and
-[estimator](hyp:e). -/
+[estimator](hyp:e).
+@isnad1 id=ne.1h4v.s5.8236433e7b43 from=translated src=- shape=f607d392 vocab=836450c4
+-/
 theorem worstCaseRiskOfReal_ne_top_of_bddAbove {risk : E → Θ → ℝ} {e : E}
     (hbdd : BddAbove (Set.range (risk e))) :
     worstCaseRiskOfReal risk e ≠ ∞ := by
@@ -299,7 +341,9 @@ theorem worstCaseRiskOfReal_ne_top_of_bddAbove {risk : E → Θ → ℝ} {e : E}
 
 /-- If a [real-valued risk is nonnegative](hyp:hr) and [bounded above for every
 estimator](hyp:hbdd), then [the real value of its lifted minimax risk equals the legacy real
-infimum-supremum expression](goal) for the given [risk](hyp:risk). -/
+infimum-supremum expression](goal) for the given [risk](hyp:risk).
+@isnad1 id=eq.2h3v.s5.9c378dd82b29 from=translated src=- shape=8f587303 vocab=209511c0
+-/
 theorem minimaxValueENNRealOfReal_toReal_of_nonneg_of_bddAbove {risk : E → Θ → ℝ}
     (hr : ∀ e θ, 0 ≤ risk e θ)
     (hbdd : ∀ e, BddAbove (Set.range (risk e))) :
@@ -323,14 +367,18 @@ noncomputable def minimaxValueRealLegacy (risk : E → Θ → ℝ) : ℝ :=
 
 section Degenerate
 
-/-- Over an empty model class the worst-case risk of every estimator is zero. -/
+/-- Over an empty model class the worst-case risk of every estimator is zero.
+@isnad1 id=eq.0h4v.s4.d2c3166d29b7 from=translated src=- shape=903f186e vocab=0a1303bb
+-/
 @[simp]
 theorem worstCaseRisk_of_isEmpty_class [IsEmpty Θ] (risk : E → Θ → ℝ) (e : E) :
     worstCaseRiskReal risk e = 0 :=
   Real.iSup_of_isEmpty _
 
 /-- When no estimator is admissible the minimax value is zero, so no positive lower bound on
-the minimax value can hold vacuously. -/
+the minimax value can hold vacuously.
+@isnad1 id=eq.0h3v.s4.cee3e75fdc9e from=translated src=- shape=0c15bf72 vocab=bcb8b644
+-/
 @[simp]
 theorem minimaxValue_of_isEmpty_estimators [IsEmpty E] (risk : E → Θ → ℝ) :
     minimaxValueReal risk = 0 :=
@@ -338,7 +386,9 @@ theorem minimaxValue_of_isEmpty_estimators [IsEmpty E] (risk : E → Θ → ℝ)
 
 /-- When the model class consists of a single law, the worst-case risk is just the risk at
 that law. This covers decision problems that minimise a functional of the estimator alone,
-with no adversarial choice of model. -/
+with no adversarial choice of model.
+@isnad1 id=eq.0h4v.s4.f35da7c4d796 from=translated src=- shape=647b472f vocab=a6760fbe
+-/
 theorem worstCaseRisk_of_unique [Unique Θ] (risk : E → Θ → ℝ) (e : E) :
     worstCaseRiskReal risk e = risk e default :=
   ciSup_unique
@@ -348,19 +398,25 @@ end Degenerate
 section Nonneg
 
 /-- A worst-case risk is nonnegative as soon as the risk is, with no boundedness or
-nonemptiness caveat: an empty class or an unbounded risk both give the value zero. -/
+nonemptiness caveat: an empty class or an unbounded risk both give the value zero.
+@isnad1 id=le.1h4v.s5.f4412d2f51ae from=translated src=- shape=8f78da91 vocab=617ad379
+-/
 theorem worstCaseRisk_nonneg {risk : E → Θ → ℝ} {e : E} (hr : ∀ θ, 0 ≤ risk e θ) :
     0 ≤ worstCaseRiskReal risk e :=
   Real.iSup_nonneg hr
 
 /-- The minimax value of a nonnegative-risk problem is nonnegative, with no boundedness or
-nonemptiness caveat. Squared-error, absolute-error and regret losses all qualify. -/
+nonemptiness caveat. Squared-error, absolute-error and regret losses all qualify.
+@isnad1 id=le.1h3v.s5.1ae8d43d304f from=translated src=- shape=d2e40c29 vocab=79495884
+-/
 theorem minimaxValue_nonneg {risk : E → Θ → ℝ} (hr : ∀ e θ, 0 ≤ risk e θ) :
     0 ≤ minimaxValueReal risk :=
   Real.iInf_nonneg fun e => worstCaseRisk_nonneg (hr e)
 
 /-- For a nonnegative risk the worst-case risks are bounded below by zero, which is the
-side condition the infimum over estimators needs. -/
+side condition the infimum over estimators needs.
+@isnad1 id=bddbelow.1h3v.s5.d486cfdd8e27 from=translated src=- shape=a57dc5f6 vocab=79f35539
+-/
 theorem bddBelow_range_worstCaseRisk {risk : E → Θ → ℝ} (hr : ∀ e θ, 0 ≤ risk e θ) :
     BddBelow (Set.range (worstCaseRiskReal risk)) := by
   refine ⟨0, ?_⟩
@@ -372,13 +428,17 @@ end Nonneg
 section Bounds
 
 /-- The risk at any single model in the class is at most the estimator's worst-case risk,
-provided that estimator's risk is bounded over the class. -/
+provided that estimator's risk is bounded over the class.
+@isnad1 id=le.1h5v.s5.43c1c6fcb6d6 from=translated src=- shape=f0f66bf8 vocab=e69597bb
+-/
 theorem le_worstCaseRisk {risk : E → Θ → ℝ} {e : E}
     (hbdd : BddAbove (Set.range (risk e))) (θ : Θ) :
     risk e θ ≤ worstCaseRiskReal risk e :=
   le_ciSup hbdd θ
 
-/-- A bound holding at every model in a nonempty class bounds the worst-case risk. -/
+/-- A bound holding at every model in a nonempty class bounds the worst-case risk.
+@isnad1 id=le.1h5v.s5.9a078672ba2b from=translated src=- shape=62c104b3 vocab=a6636f43
+-/
 theorem worstCaseRisk_le [Nonempty Θ] {risk : E → Θ → ℝ} {e : E} {c : ℝ}
     (h : ∀ θ, risk e θ ≤ c) :
     worstCaseRiskReal risk e ≤ c :=
@@ -387,14 +447,18 @@ theorem worstCaseRisk_le [Nonempty Θ] {risk : E → Θ → ℝ} {e : E} {c : �
 /-- **Any admissible estimator is an upper bound.** Exhibiting one estimator and bounding
 its worst-case risk bounds the minimax value, which is how achievability half of a minimax
 rate is certified. The hypothesis rules out a worst-case risk that decreases without bound
-across the estimator family. -/
+across the estimator family.
+@isnad1 id=le.1h4v.s5.601db3ad149d from=translated src=- shape=b6b1306d vocab=b58b2780
+-/
 theorem minimaxValue_le_worstCaseRisk {risk : E → Θ → ℝ}
     (hbdd : BddBelow (Set.range (worstCaseRiskReal risk))) (e : E) :
     minimaxValueReal risk ≤ worstCaseRiskReal risk e :=
   ciInf_le hbdd e
 
 /-- For a nonnegative risk, any admissible estimator is an upper bound on the minimax value
-with no further side condition, since zero already bounds the worst-case risks below. -/
+with no further side condition, since zero already bounds the worst-case risks below.
+@isnad1 id=le.1h4v.s5.693c56062081 from=translated src=- shape=02e18ceb vocab=d6450aaa
+-/
 theorem minimaxValue_le_worstCaseRisk_of_nonneg {risk : E → Θ → ℝ}
     (hr : ∀ e θ, 0 ≤ risk e θ) (e : E) :
     minimaxValueReal risk ≤ worstCaseRiskReal risk e :=
@@ -403,7 +467,9 @@ theorem minimaxValue_le_worstCaseRisk_of_nonneg {risk : E → Θ → ℝ}
 /-- **A bound uniform over admissible estimators is a lower bound.** If every admissible
 estimator has worst-case risk at least `c`, the minimax value is at least `c`. This is the
 converse half of a minimax rate; it needs at least one admissible estimator to exist,
-since otherwise the minimax value is zero by convention. -/
+since otherwise the minimax value is zero by convention.
+@isnad1 id=le.1h4v.s5.8dd9627fc459 from=translated src=- shape=30203c3a vocab=e8ddefb9
+-/
 theorem le_minimaxValue [Nonempty E] {risk : E → Θ → ℝ} {c : ℝ}
     (h : ∀ e, c ≤ worstCaseRiskReal risk e) :
     c ≤ minimaxValueReal risk :=
@@ -416,7 +482,9 @@ is at least `c`](hyp:htwo), then [the minimax value of the problem is at least `
 
 This is the step that turns a Le Cam or divergence-based testing bound, which produces
 exactly such a two-model statement, into a statement about the minimax value. Each
-estimator's risk must be bounded over the class for its supremum to be meaningful. -/
+estimator's risk must be bounded over the class for its supremum to be meaningful.
+@isnad1 id=le.2h6v.s5.323d5251518d from=translated src=- shape=3282b824 vocab=0b5c6c8f
+-/
 theorem le_minimaxValue_of_two_point [Nonempty E] {risk : E → Θ → ℝ} {c : ℝ} (θ₀ θ₁ : Θ)
     (hbdd : ∀ e, BddAbove (Set.range (risk e)))
     (htwo : ∀ e, c ≤ max (risk e θ₀) (risk e θ₁)) :
@@ -432,7 +500,9 @@ section Restriction
 matched, through the map, by a model of the second class whose risk is at least as large,
 the worst-case risk over the first class is at most that over the second. The second class
 must bound the estimator's risk, and the first must be nonempty; see
-`worstCaseRisk_mono_class_of_nonneg` for the version that drops the nonemptiness. -/
+`worstCaseRisk_mono_class_of_nonneg` for the version that drops the nonemptiness.
+@isnad1 id=le.2h7v.s6.2453134b860a from=translated src=- shape=8ea8023b vocab=4a11aa0c
+-/
 theorem worstCaseRisk_mono_class [Nonempty Θ] {risk : E → Θ → ℝ} {risk' : E → Θ' → ℝ}
     {e : E} (φ : Θ → Θ')
     (hbdd : BddAbove (Set.range (risk' e)))
@@ -442,7 +512,9 @@ theorem worstCaseRisk_mono_class [Nonempty Θ] {risk : E → Θ → ℝ} {risk' 
 
 /-- Version of `worstCaseRisk_mono_class` for a nonnegative larger risk: no nonemptiness
 assumption on the smaller class is needed, because an empty class contributes worst-case
-risk zero, which the larger nonnegative worst-case risk already dominates. -/
+risk zero, which the larger nonnegative worst-case risk already dominates.
+@isnad1 id=le.3h7v.s6.31ed06a3c862 from=translated src=- shape=2b646bd2 vocab=e69597bb
+-/
 theorem worstCaseRisk_mono_class_of_nonneg {risk : E → Θ → ℝ} {risk' : E → Θ' → ℝ}
     {e : E} (φ : Θ → Θ')
     (hbdd : BddAbove (Set.range (risk' e))) (hr' : ∀ θ', 0 ≤ risk' e θ')
@@ -456,7 +528,9 @@ theorem worstCaseRisk_mono_class_of_nonneg {risk : E → Θ → ℝ} {risk' : E 
 problem is matched by an estimator of the first whose worst-case risk is no larger, the
 first minimax value is at most the second. Both restricting the model class and enlarging
 the estimator family are instances; the boundedness hypothesis is on the first problem's
-worst-case risks, and the second problem must have at least one estimator. -/
+worst-case risks, and the second problem must have at least one estimator.
+@isnad1 id=le.2h6v.s6.91908b043438 from=translated src=- shape=0879d3a5 vocab=dd1f70e8
+-/
 theorem minimaxValue_le_minimaxValue [Nonempty E'] {risk : E → Θ → ℝ} {risk' : E' → Θ' → ℝ}
     (hbdd : BddBelow (Set.range (worstCaseRiskReal risk)))
     (h : ∀ e' : E', ∃ e : E, worstCaseRiskReal risk e ≤ worstCaseRiskReal risk' e') :
@@ -469,7 +543,9 @@ theorem minimaxValue_le_minimaxValue [Nonempty E'] {risk : E → Θ → ℝ} {ri
 smaller class sits, through the map, inside the larger class with no larger risk, then the
 minimax value over the smaller class is at most the minimax value over the larger one — the
 same estimators face a weaker adversary. This is the standard step that transfers a
-published converse proved on a convenient subclass to the full class. -/
+published converse proved on a convenient subclass to the full class.
+@isnad1 id=le.3h6v.s6.b84ecd01dd2a from=translated src=- shape=8c373ba1 vocab=9a47abf3
+-/
 theorem minimaxValue_mono_class [Nonempty E] [Nonempty Θ] {risk : E → Θ → ℝ}
     {risk' : E → Θ' → ℝ} (φ : Θ → Θ')
     (hbddBelow : BddBelow (Set.range (worstCaseRiskReal risk)))
@@ -490,7 +566,9 @@ Version of `minimaxValue_mono_class` for nonnegative risks. Nonnegativity suppli
 the lower bound on the smaller problem's worst-case risks and the empty-class case, so the
 only remaining side condition is that each estimator's risk be bounded over the larger
 class. Squared-error and absolute-error losses meet the nonnegativity hypotheses by
-inspection. -/
+inspection.
+@isnad1 id=le.4h6v.s6.a7e4438f0da4 from=translated src=- shape=1b7b8f21 vocab=78f232a0
+-/
 theorem minimaxValue_mono_class_of_nonneg [Nonempty E] {risk : E → Θ → ℝ}
     {risk' : E → Θ' → ℝ} (φ : Θ → Θ')
     (hr : ∀ e θ, 0 ≤ risk e θ) (hr' : ∀ e θ', 0 ≤ risk' e θ')
@@ -505,13 +583,17 @@ end Restriction
 section SetSpelling
 
 /-- The worst-case risk is the supremum of the set of risks the estimator attains across the
-class. Rewriting handle for arguments phrased on the set of attained risks. -/
+class. Rewriting handle for arguments phrased on the set of attained risks.
+@isnad1 id=eq.0h4v.s4.097a90d63350 from=translated src=- shape=0d196061 vocab=ed9646ba
+-/
 theorem worstCaseRisk_eq_sSup_range (risk : E → Θ → ℝ) (e : E) :
     worstCaseRiskReal risk e = sSup (Set.range (risk e)) :=
   rfl
 
 /-- The minimax value is the infimum of the set of worst-case risks the admissible
-estimators attain. Rewriting handle for arguments phrased on that set. -/
+estimators attain. Rewriting handle for arguments phrased on that set.
+@isnad1 id=eq.0h3v.s4.e373001531bb from=translated src=- shape=ed57746e vocab=51debc16
+-/
 theorem minimaxValue_eq_sInf_range (risk : E → Θ → ℝ) :
     minimaxValueReal risk = sInf (Set.range (worstCaseRiskReal risk)) :=
   rfl
@@ -521,7 +603,9 @@ variable {A B : Type*}
 /-- The minimax value over the estimators satisfying an admissibility condition, written as
 the infimum of the set of worst-case risks the admissible estimators attain. This is the
 bridge for developments that state admissibility by a predicate rather than by a subtype
-while leaving the inner supremum as it stands. -/
+while leaving the inner supremum as it stands.
+@isnad1 id=eq.0h4v.s5.1eeec3c9b0ee from=translated src=- shape=b07ab2bf vocab=c7fb42f8
+-/
 theorem minimaxValue_subtype_eq_sInf_worstCaseRisk {Adm : A → Prop} (risk : A → Θ → ℝ) :
     minimaxValueReal (fun (e : Subtype Adm) => risk e.1)
       = sInf {r : ℝ | ∃ e, Adm e ∧ r = worstCaseRiskReal risk e} := by
@@ -537,7 +621,9 @@ theorem minimaxValue_subtype_eq_sInf_worstCaseRisk {Adm : A → Prop} (risk : A 
 
 /-- The worst-case risk over a class carved out by a membership condition, written as the
 supremum of the set of risks attained on the class. This is the bridge to the spelling that
-states the class by a predicate rather than by a subtype. -/
+states the class by a predicate rather than by a subtype.
+@isnad1 id=eq.0h5v.s5.54596054ebab from=translated src=- shape=54594d26 vocab=0ba1bf8e
+-/
 theorem worstCaseRisk_subtype_eq_sSup_setOf {Cls : B → Prop} (risk : A → B → ℝ) (e : A) :
     worstCaseRiskReal (fun (a : A) (θ : Subtype Cls) => risk a θ.1) e
       = sSup {q : ℝ | ∃ θ, Cls θ ∧ q = risk e θ} := by
@@ -556,7 +642,9 @@ theorem worstCaseRisk_subtype_eq_sSup_setOf {Cls : B → Prop} (risk : A → B �
 written with set comprehensions instead of subtypes: the infimum of the set of worst-case
 risks attained by admissible estimators, each of which is the supremum of the set of risks
 attained on the class. Runs that spell their minimax risk this way rewrite with this lemma
-and then use the rest of this file. -/
+and then use the rest of this file.
+@isnad1 id=eq.0h5v.s6.cde2b5719644 from=translated src=- shape=e6433ccc vocab=1b3531fb
+-/
 theorem minimaxValue_subtype_eq_sInf_setOf (Adm : A → Prop) (Cls : B → Prop)
     (risk : A → B → ℝ) :
     minimaxValueReal (fun (e : Subtype Adm) (θ : Subtype Cls) => risk e.1 θ.1)

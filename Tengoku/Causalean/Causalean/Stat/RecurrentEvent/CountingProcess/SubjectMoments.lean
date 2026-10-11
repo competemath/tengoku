@@ -21,7 +21,9 @@ hazard](hyp:hazard,hHazard), and let the payoff process be [jointly measurable i
 For [a nonnegative horizon u](hyp:hu) and [finite expected quadratic energy](hyp:hQuadratic),
 [subject i's accumulated hazard-weighted at-risk payoff up to time s times its current
 hazard-weighted at-risk payoff at s is integrable jointly over samples and times s from 0 to
-u](goal). -/
+u](goal).
+@isnad1 id=integrab.5h7v.s8.a4e14bbb76df from=translated src=- shape=86c73411 vocab=fbd064aa
+-/
 theorem subject_prefix_mixed_hazard_integrable_prod {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -198,7 +200,9 @@ hazard](hyp:hazard,hHazard), and let the payoff process be [left predictable](hy
 measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](hyp:hu) and
 [finite expected quadratic energy](hyp:hQuadratic), [the product, at subject i's observed censor
 event by u, of the accumulated hazard-weighted at-risk payoff up to the censor time and the
-payoff there, taken as zero when no such event occurs, is integrable over samples](goal). -/
+payoff there, taken as zero when no such event occurs, is integrable over samples](goal).
+@isnad1 id=integrab.6h7v.s8.34ac603119ae from=translated src=- shape=988df19f vocab=d368e30a
+-/
 theorem subject_prefix_mixed_event_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -309,7 +313,9 @@ theorem subject_prefix_mixed_event_integrable {n : ℕ}
 and [the subject's at-risk payoff weighted by the censor hazard is integrable from 0 to
 u](hyp:hazard,hPath), then
 [the accumulated payoff up to u times the payoff at the censor time equals the accumulated payoff
-up to the censor time times the same payoff](goal). -/
+up to the censor time times the same payoff](goal).
+@isnad1 id=eq.3h6v.s8.1123d601bee2 from=translated src=- shape=f68535e6 vocab=61c6943a
+-/
 theorem subject_mixed_event_stops {n : ℕ}
     (hazard : ℝ → ℝ) (H : ℝ → Sample n → ℝ)
     (i : Fin n) (x : Sample n) (u : ℝ)

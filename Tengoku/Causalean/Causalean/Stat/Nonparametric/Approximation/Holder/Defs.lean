@@ -45,7 +45,9 @@ abbrev supBall {d : ℕ} (x0 : Fin d → ℝ) (r : ℝ) : Set (Fin d → ℝ) :=
   Causalean.Mathlib.Analysis.supBall x0 r
 
 /-- A closed sup-norm ball — the axis-aligned cube of half-width `r` centred at a point — is
-exactly the product of the coordinate intervals of radius `r` around the centre's coordinates. -/
+exactly the product of the coordinate intervals of radius `r` around the centre's coordinates.
+@isnad1 id=eq.0h3v.s5.06bea947fcc5 from=translated src=- shape=6e83989a vocab=8101b7d9
+-/
 lemma supBall_eq_pi {d : ℕ} (x0 : Fin d → ℝ) (r : ℝ) :
     supBall x0 r = Set.univ.pi (fun i => Set.Icc (x0 i - r) (x0 i + r)) := by
   ext x
@@ -56,18 +58,24 @@ lemma supBall_eq_pi {d : ℕ} (x0 : Fin d → ℝ) (r : ℝ) :
 
 /-- [A closed sup-norm ball — the axis-aligned cube, or box, of half-width `r` centred at a
 point `x0` in `d`-dimensional space](hyp:d,x0,r) — [is compact](goal), being a finite
-product of closed bounded intervals. -/
+product of closed bounded intervals.
+@isnad1 id=iscompac.0h3v.s5.592cf74e7a1d from=translated src=- shape=75e91b3b vocab=3ba79cc8
+-/
 lemma isCompact_supBall {d : ℕ} (x0 : Fin d → ℝ) (r : ℝ) :
     IsCompact (supBall x0 r) := by
   rw [supBall_eq_pi]; exact isCompact_univ_pi (fun _ => isCompact_Icc)
 
-/-- A closed sup-norm ball (an axis-aligned cube, or box) is a measurable set. -/
+/-- A closed sup-norm ball (an axis-aligned cube, or box) is a measurable set.
+@isnad1 id=measurab.0h3v.s4.fce996bd7976 from=translated src=- shape=75e91b3b vocab=aa6249be
+-/
 lemma measurableSet_supBall {d : ℕ} (x0 : Fin d → ℝ) (r : ℝ) :
     MeasurableSet (supBall x0 r) := by
   rw [supBall_eq_pi]; exact MeasurableSet.univ_pi (fun _ => measurableSet_Icc)
 
 /-- A closed sup-norm ball (axis-aligned cube) of nonnegative half-width contains its own
-centre. -/
+centre.
+@isnad1 id=mem.1h3v.s5.f94b951f0890 from=translated src=- shape=94d37e7f vocab=13fff294
+-/
 lemma mem_supBall_self {d : ℕ} (x0 : Fin d → ℝ) {r : ℝ} (hr : 0 ≤ r) :
     x0 ∈ supBall x0 r := by
   intro i; simp only [sub_self, abs_zero]; exact hr
@@ -76,7 +84,9 @@ lemma mem_supBall_self {d : ℕ} (x0 : Fin d → ℝ) {r : ℝ} (hr : 0 ≤ r) :
 centred at `x0` in `d` dimensions](hyp:d,x0,r) — [equals the `d`-th power of the side
 length, `(2r)^d`](goal). No sign restriction on `r` is needed: a negative half-width
 gives an empty cube and zero volume when `d > 0`; when `d = 0`, the cube is the singleton
-whole space and both sides equal one. -/
+whole space and both sides equal one.
+@isnad1 id=eq.0h3v.s6.9b1708da843e from=translated src=- shape=cdcf5b5f vocab=72f2f09e
+-/
 lemma volume_supBall {d : ℕ} (x0 : Fin d → ℝ) (r : ℝ) :
     volume (supBall x0 r) = ENNReal.ofReal (2 * r) ^ d := by
   rw [supBall_eq_pi, Set.pi_univ_Icc, Real.volume_Icc_pi]
@@ -84,13 +94,17 @@ lemma volume_supBall {d : ℕ} (x0 : Fin d → ℝ) (r : ℝ) :
   simp
 
 /-- Membership in an axis-aligned box: a point lies in it exactly when each of
-its coordinates lies between `a` and `b`. -/
+its coordinates lies between `a` and `b`.
+@isnad1 id=iff.0h4v.s5.a39c16c3838c from=translated src=- shape=1da4c340 vocab=4d6aea3d
+-/
 lemma mem_cube {ι : Type*} {a b : ℝ} {x : ι → ℝ} :
     x ∈ Set.univ.pi (fun _ : ι => Set.Icc a b) ↔ ∀ i, a ≤ x i ∧ x i ≤ b := by
   simp only [Set.mem_univ_pi, Set.mem_Icc]
 
 /-- An axis-aligned box over a finite index type is compact: it is a finite product of closed
-bounded intervals. -/
+bounded intervals.
+@isnad1 id=iscompac.0h3v.s5.fc5eac445d06 from=translated src=- shape=c58264bc vocab=e048504a
+-/
 lemma isCompact_cube {ι : Type*} [Finite ι] (a b : ℝ) :
     IsCompact (Set.univ.pi (fun _ : ι => Set.Icc a b)) := by
   letI := Fintype.ofFinite ι

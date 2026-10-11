@@ -30,6 +30,9 @@ abbrev dirs : Finset (ℤ × ℤ) := {(1, 0), (-1, 0), (0, 1), (0, -1)}
 /-- The initial position: an n × n block of occupied squares. -/
 noncomputable def initPos (n : ℕ) : Finset (ℤ × ℤ) := Ico 0 (n : ℤ) ×ˢ Ico 0 (n : ℤ)
 
+/--
+@isnad1 id=iff.0h2v.s6.8dbd0d2258d3 from=translated src=- shape=ae0770a0 vocab=a5f104a2
+-/
 lemma mem_initPos {n : ℕ} {c : ℤ × ℤ} :
     c ∈ initPos n ↔ 0 ≤ c.1 ∧ c.1 < (n : ℤ) ∧ 0 ≤ c.2 ∧ c.2 < (n : ℤ) := by
   simp [initPos, Finset.mem_product, Finset.mem_Ico]
@@ -60,19 +63,27 @@ def g2 (k : ℤ) : ZMod 2 := if k % 3 = 0 then 0 else 1
 /-- The total weight of a position. -/
 def Wt (g : ℤ → ZMod 2) (s : Finset (ℤ × ℤ)) : ZMod 2 := ∑ c ∈ s, g (c.1 + c.2)
 
+/--
+@isnad1 id=eq.0h1v.s7.2ff93de23e2b from=translated src=- shape=d1025c09 vocab=de0cb274
+-/
 lemma g1_sum3 (t : ℤ) : g1 t + g1 (t + 1) + g1 (t + 2) = 0 := by
   have e1 : (t + 1) % 3 = (t % 3 + 1) % 3 := by lia
   have e2 : (t + 2) % 3 = (t % 3 + 2) % 3 := by lia
   have h : t % 3 = 0 ∨ t % 3 = 1 ∨ t % 3 = 2 := by lia
   rcases h with h | h | h <;> simp only [g1, h, e1, e2] <;> norm_num <;> decide
 
+/--
+@isnad1 id=eq.0h1v.s7.bcee058d8104 from=translated src=- shape=d1025c09 vocab=d74a52f1
+-/
 lemma g2_sum3 (t : ℤ) : g2 t + g2 (t + 1) + g2 (t + 2) = 0 := by
   have e1 : (t + 1) % 3 = (t % 3 + 1) % 3 := by lia
   have e2 : (t + 2) % 3 = (t % 3 + 2) % 3 := by lia
   have h : t % 3 = 0 ∨ t % 3 = 1 ∨ t % 3 = 2 := by lia
   rcases h with h | h | h <;> simp only [g2, h, e1, e2] <;> norm_num <;> decide
 
-/-- A move changes the weight by `g x + g (x+δ) + g (x+2δ) = 0`. -/
+/-- A move changes the weight by `g x + g (x+δ) + g (x+2δ) = 0`.
+@isnad1 id=eq.2h3v.s8.08f16046da0d from=translated src=- shape=9286531c vocab=8cdbc812
+-/
 lemma Wt_move {g : ℤ → ZMod 2} (hg : ∀ t : ℤ, g t + g (t + 1) + g (t + 2) = 0)
     {s s' : Finset (ℤ × ℤ)} (h : IsMove s s') : Wt g s' = Wt g s := by
   obtain ⟨⟨c1, c2⟩, ⟨⟨d1, d2⟩, hd⟩, hc, hcd, hn, rfl⟩ := h
@@ -104,13 +115,18 @@ lemma Wt_move {g : ℤ → ZMod 2} (hg : ∀ t : ℤ, g t + g (t + 1) + g (t + 2
     rw [h, mul_neg_one, Int.add_neg_eq_sub, show (c1 + c2) + -1 = (c1 + c2) - 2 + 1 by ring]
     linear_combination hgg
 
+/--
+@isnad1 id=eq.2h3v.s8.6925a84c50c5 from=translated src=- shape=ab7a600b vocab=a619edfc
+-/
 lemma Wt_reachable {g : ℤ → ZMod 2} (hg : ∀ t : ℤ, g t + g (t + 1) + g (t + 2) = 0)
     {s t : Finset (ℤ × ℤ)} (h : Relation.ReflTransGen IsMove s t) : Wt g s = Wt g t := by
   induction h with
   | refl => rfl
   | tail _ hm ih => exact ih.trans (Wt_move hg hm).symm
 
-/-- The sum of a period-3 weight with zero triple-sum over `3m` consecutive integers is zero. -/
+/-- The sum of a period-3 weight with zero triple-sum over `3m` consecutive integers is zero.
+@isnad1 id=eq.1h3v.s8.fa31595f066b from=translated src=- shape=a60c4baa vocab=1d916a6b
+-/
 lemma gsum_interval {g : ℤ → ZMod 2} (hg : ∀ t : ℤ, g t + g (t + 1) + g (t + 2) = 0)
     (a : ℤ) (m : ℕ) : ∑ k ∈ Finset.Ico a (a + 3 * (m : ℤ)), g k = 0 := by
   induction m with
@@ -138,7 +154,9 @@ lemma gsum_interval {g : ℤ → ZMod 2} (hg : ∀ t : ℤ, g t + g (t + 1) + g 
       simp only [Finset.mem_Ico] at hx1 hx2
       lia
 
-/-- The weight of the initial `3m × 3m` block is zero. -/
+/-- The weight of the initial `3m × 3m` block is zero.
+@isnad1 id=eq.1h2v.s8.221c55a9611c from=translated src=- shape=debcdf0a vocab=e2ea8e32
+-/
 lemma Wt_init {g : ℤ → ZMod 2} (hg : ∀ t : ℤ, g t + g (t + 1) + g (t + 2) = 0) (m : ℕ) :
     Wt g (initPos (3 * m)) = 0 := by
   have hN : ((3 * m : ℕ) : ℤ) = 3 * (m : ℤ) := by push_cast; ring
@@ -152,7 +170,9 @@ lemma Wt_init {g : ℤ → ZMod 2} (hg : ∀ t : ℤ, g t + g (t + 1) + g (t + 2
   exact gsum_interval hg i m
 
 /-- If `3 ∣ n` the game cannot end with one piece: the two weights of the initial
- block are `(0, 0)`, but the weights of a single piece are never `(0, 0)`. -/
+ block are `(0, 0)`, but the weights of a single piece are never `(0, 0)`.
+@isnad1 id=not.1h1v.s3.92f48340cbdc from=translated src=- shape=c1538fc1 vocab=15b12c6c
+-/
 lemma not_solvable_of_three_dvd {n : ℕ} (h3 : 3 ∣ n) : ¬ Solvable n := by
   obtain ⟨m, rfl⟩ := h3
   rintro ⟨c, hc⟩
@@ -171,7 +191,9 @@ lemma not_solvable_of_three_dvd {n : ℕ} (h3 : 3 ∣ n) : ¬ Solvable n := by
 
 /-! ## The purge lemma (three pieces in a line can be removed using a catalyst) -/
 
-/-- Arithmetic facts about two perpendicular unit directions. -/
+/-- Arithmetic facts about two perpendicular unit directions.
+@isnad1 id=and.3h2v.s8.561f9f2e6796 from=translated src=- shape=66a0213d vocab=8c650b67
+-/
 lemma unit_facts {u w : ℤ × ℤ} (hu : u ∈ dirs) (hw : w ∈ dirs)
     (hperp : u.1 * w.1 + u.2 * w.2 = 0) :
     (u.1 ≠ 0 ∨ u.2 ≠ 0) ∧ (w.1 ≠ 0 ∨ w.2 ≠ 0) ∧ ¬ (u.1 = w.1 ∧ u.2 = w.2) ∧
@@ -185,7 +207,9 @@ lemma unit_facts {u w : ℤ × ℤ} (hu : u ∈ dirs) (hw : w ∈ dirs)
  removed from the board (everything else unchanged) using a catalyst piece at `p + w`
  provided the square `p - w` is empty. The sequence is:
  `p + w` jumps over `p` to `p - w`; `p + u + u` jumps over `p + u` to `p`;
- `p - w` jumps over `p` to `p + w`. -/
+ `p - w` jumps over `p` to `p + w`.
+@isnad1 id=refltran.8h4v.s8.a12d8bb9f767 from=translated src=- shape=39509a7c vocab=054f4964
+-/
 lemma purge {s : Finset (ℤ × ℤ)} {p u w : ℤ × ℤ}
     (hu : u ∈ dirs) (hw : w ∈ dirs) (hperp : u.1 * w.1 + u.2 * w.2 = 0)
     (hp : p ∈ s) (hpu : p + u ∈ s) (hp2 : p + u + u ∈ s) (hpw : p + w ∈ s)
@@ -350,7 +374,9 @@ noncomputable def stateD (n : ℕ) : Finset (ℤ × ℤ) :=
     (fun c => (c.1 < (n : ℤ) ∧ c.2 < (n : ℤ)) ∨ (c.1 = (n : ℤ) ∧ c.2 ≤ 2))
 
 /-- One step of phase 1: purge the vertical triple in column `k` of the top strip,
- using the piece at `(k+1, n)` as catalyst. -/
+ using the piece at `(k+1, n)` as catalyst.
+@isnad1 id=refltran.1h2v.s5.ce2ffc36564b from=translated src=- shape=637e885b vocab=528208ea
+-/
 lemma phase1_step (n k : ℕ) (hk : k < n) :
     Relation.ReflTransGen IsMove (stateA n k) (stateA n (k + 1)) := by
   have h := purge (s := stateA n k) (p := ((k : ℤ), (n : ℤ))) (u := ((0 : ℤ), (1 : ℤ)))
@@ -366,7 +392,9 @@ lemma phase1_step (n k : ℕ) (hk : k < n) :
     omega]
   exact h
 
-/-- Phase 1: clear the top strip, one column at a time. -/
+/-- Phase 1: clear the top strip, one column at a time.
+@isnad1 id=refltran.1h2v.s5.e9923e839bde from=translated src=- shape=bb53e521 vocab=75d8b66d
+-/
 lemma phase1 (n : ℕ) (k : ℕ) (hk : k ≤ n) :
     Relation.ReflTransGen IsMove (initPos (n + 3)) (stateA n k) := by
   induction k with
@@ -378,7 +406,9 @@ lemma phase1 (n : ℕ) (k : ℕ) (hk : k ≤ n) :
   | succ k ih => exact (ih (Nat.le_of_succ_le hk)).trans (phase1_step n k hk)
 
 /-- One step of phase 2a: purge the horizontal triple in row `n + 2 - k` of the right
- strip, using the piece at `(n, n + 1 - k)` as catalyst. -/
+ strip, using the piece at `(n, n + 1 - k)` as catalyst.
+@isnad1 id=refltran.1h2v.s5.db090627ccd5 from=translated src=- shape=637e885b vocab=17565e21
+-/
 lemma phase2a_step (n k : ℕ) (hk : k < n) :
     Relation.ReflTransGen IsMove (stateB n k) (stateB n (k + 1)) := by
   have h := purge (s := stateB n k) (p := ((n : ℤ), (n : ℤ) + 2 - (k : ℤ))) (u := ((1 : ℤ), (0 : ℤ)))
@@ -395,7 +425,9 @@ lemma phase2a_step (n k : ℕ) (hk : k < n) :
     lia]
   exact h
 
-/-- Phase 2a: clear the right strip rows from top to bottom, down to row 3. -/
+/-- Phase 2a: clear the right strip rows from top to bottom, down to row 3.
+@isnad1 id=refltran.1h2v.s5.5d67185bdb19 from=translated src=- shape=bb53e521 vocab=1f2238f1
+-/
 lemma phase2a (n : ℕ) (k : ℕ) (hk : k ≤ n) :
     Relation.ReflTransGen IsMove (initPos (n + 3)) (stateB n k) := by
   induction k with
@@ -408,7 +440,9 @@ lemma phase2a (n : ℕ) (k : ℕ) (hk : k ≤ n) :
   | succ k ih => exact (ih (Nat.le_of_succ_le hk)).trans (phase2a_step n k hk)
 
 /-- Phase 2b: clear the remaining 3 × 3 corner, finishing with a purge whose
- catalyst lies inside the target n × n block. -/
+ catalyst lies inside the target n × n block.
+@isnad1 id=refltran.1h1v.s4.dcea32011d7c from=translated src=- shape=7d492304 vocab=aa3cf517
+-/
 lemma phase2b (n : ℕ) (hn : 1 ≤ n) : Relation.ReflTransGen IsMove (stateB n n) (initPos n) := by
   have h1 := purge (s := stateB n n) (p := (((n : ℤ) + 2), (0 : ℤ))) (u := ((0 : ℤ), (1 : ℤ)))
     (w := ((-1 : ℤ), (0 : ℤ))) (by decide) (by decide) (by decide)
@@ -445,12 +479,16 @@ lemma phase2b (n : ℕ) (hn : 1 ≤ n) : Relation.ReflTransGen IsMove (stateB n 
     omega] at h3
   exact h1.trans (h2.trans h3)
 
-/-- Reduction: if the game is solvable for `n ≥ 1`, it is solvable for `n + 3`. -/
+/-- Reduction: if the game is solvable for `n ≥ 1`, it is solvable for `n + 3`.
+@isnad1 id=solvable.2h1v.s4.e6ecf870c57d from=translated src=- shape=00cb7d71 vocab=c8e08b4e
+-/
 lemma reduction (n : ℕ) (hn : 1 ≤ n) (h : Solvable n) : Solvable (n + 3) := by
   obtain ⟨c, hc⟩ := h
   exact ⟨c, (phase2a n n le_rfl).trans ((phase2b n hn).trans hc)⟩
 
-/-- The 1 × 1 board is trivially solved. -/
+/-- The 1 × 1 board is trivially solved.
+@isnad1 id=solvable.0h0v.s2.4c883b436420 from=translated src=- shape=e590c3e1 vocab=2a8580af
+-/
 lemma solvable_one : Solvable 1 := by
   refine ⟨((0 : ℤ), (0 : ℤ)), ?_⟩
   rw [show initPos 1 = {((0 : ℤ), (0 : ℤ))} by
@@ -458,7 +496,9 @@ lemma solvable_one : Solvable 1 := by
     simp only [mem_initPos, Finset.mem_singleton, Prod.ext_iff]
     lia]
 
-/-- The 2 × 2 board is solved in three moves. -/
+/-- The 2 × 2 board is solved in three moves.
+@isnad1 id=solvable.0h0v.s2.ce237d055cba from=translated src=- shape=e590c3e1 vocab=2a8580af
+-/
 lemma solvable_two : Solvable 2 := by
   refine ⟨((2 : ℤ), (2 : ℤ)), ?_⟩
   have m1 : IsMove (initPos 2)
@@ -505,6 +545,9 @@ lemma solvable_two : Solvable 2 := by
   exact Relation.ReflTransGen.head m1 (Relation.ReflTransGen.head m2 (Relation.ReflTransGen.head
     m3 Relation.ReflTransGen.refl))
 
+/--
+@isnad1 id=solvable.0h1v.s4.b958f0c741d3 from=translated src=- shape=a0148a19 vocab=005de853
+-/
 lemma solvable_three_mul_add_one (m : ℕ) : Solvable (3 * m + 1) := by
   induction m with
   | zero => exact solvable_one
@@ -513,6 +556,9 @@ lemma solvable_three_mul_add_one (m : ℕ) : Solvable (3 * m + 1) := by
     rw [show 3 * m + 1 + 3 = 3 * (m + 1) + 1 by ring] at h
     exact h
 
+/--
+@isnad1 id=solvable.0h1v.s4.577291c1a293 from=translated src=- shape=a0148a19 vocab=005de853
+-/
 lemma solvable_three_mul_add_two (m : ℕ) : Solvable (3 * m + 2) := by
   induction m with
   | zero => exact solvable_two
@@ -521,6 +567,9 @@ lemma solvable_three_mul_add_two (m : ℕ) : Solvable (3 * m + 2) := by
     rw [show 3 * m + 2 + 3 = 3 * (m + 1) + 2 by ring] at h
     exact h
 
+/--
+@isnad1 id=solvable.2h1v.s4.66276859fe0f from=translated src=- shape=223e46e0 vocab=d2c48f43
+-/
 lemma solvable_of_pos_not_three_dvd (n : ℕ) (_h0 : 0 < n) (h3 : ¬ 3 ∣ n) : Solvable n := by
   have hmod : n % 3 = 1 ∨ n % 3 = 2 := by lia
   rcases hmod with h | h

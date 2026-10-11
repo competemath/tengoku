@@ -85,7 +85,9 @@ statistic](hyp:hest) [bounded by `M` in absolute value](hyp:hM) estimating a tar
 [`G` is an `m`-measurable good-design event](hyp:hG) on which, almost everywhere, [the conditional
 bias `|𝔼[est | m] − θ|` is at most a nonnegative constant `B`](hyp:hB,hcond), then [the
 full-sample-law bias obeys `|𝔼[est] − θ| ≤ B + 2M·μ(Gᶜ)`, the conditional bias `B` plus a
-truncation tail proportional to the bad-design probability](goal). -/
+truncation tail proportional to the bad-design probability](goal).
+@isnad1 id=le.7h9v.s7.a859a357de55 from=translated src=- shape=393b6003 vocab=3f2972a1
+-/
 theorem estimatorBias_unconditional {est : Ω → ℝ} {θ B M : ℝ} {G : Set Ω} (hm : m ≤ m0)
     (hest : Integrable est μ) (hM : ∀ ω, |est ω| ≤ M) (hθ : |θ| ≤ M) (hB : 0 ≤ B)
     (hG : MeasurableSet[m] G)
@@ -121,7 +123,9 @@ theorem estimatorBias_unconditional {est : Ω → ℝ} {θ B M : ℝ} {G : Set �
 variance `Var[est | m]` is at most a nonnegative rate `Vrate`](hyp:hVr,hVcond) and [the squared
 conditional bias `(𝔼[est | m] − θ)²` is at most a nonnegative constant `Bsq`](hyp:hBsq,hBcond).
 Then [the full-sample-law variance obeys `Var(est) ≤ Vrate + Bsq + 5M²·μ(Gᶜ)`, the within-design
-variance rate plus the squared bias plus a truncation tail](goal). -/
+variance rate plus the squared bias plus a truncation tail](goal).
+@isnad1 id=le.9h10v.s8.410f7427a9ec from=translated src=- shape=40b5b74f vocab=727e4345
+-/
 theorem estimatorVariance_unconditional {est : Ω → ℝ} {θ Bsq Vrate M : ℝ} {G : Set Ω}
     (hm : m ≤ m0) (hest : MemLp est 2 μ) (hM : ∀ ω, |est ω| ≤ M) (hθ : |θ| ≤ M)
     (hVr : 0 ≤ Vrate) (hBsq : 0 ≤ Bsq) (hG : MeasurableSet[m] G)
@@ -194,7 +198,9 @@ almost everywhere, [the conditional variance is at most a nonnegative rate `Vrat
 and [the squared conditional bias is at most a nonnegative constant `Bsq`](hyp:hBsq,hBcond), [the
 full-sample-law stochastic `L²` error obeys `√Var(est) ≤ √(Vrate + Bsq + 5M²·μ(Gᶜ))`](goal). Any
 specialization to local-polynomial rates requires the caller to prove the displayed choices of
-`Vrate`, `Bsq`, and the bad-event probability for one common random estimator and event. -/
+`Vrate`, `Bsq`, and the bad-event probability for one common random estimator and event.
+@isnad1 id=le.9h10v.s8.9fd1784ac334 from=translated src=- shape=5e37adcd vocab=731a28a1
+-/
 theorem estimatorStochL2_unconditional {est : Ω → ℝ} {θ Bsq Vrate M : ℝ} {G : Set Ω}
     (hm : m ≤ m0) (hest : MemLp est 2 μ) (hM : ∀ ω, |est ω| ≤ M) (hθ : |θ| ≤ M)
     (hVr : 0 ≤ Vrate) (hBsq : 0 ≤ Bsq) (hG : MeasurableSet[m] G)

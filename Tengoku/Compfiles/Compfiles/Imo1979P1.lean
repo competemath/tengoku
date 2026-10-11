@@ -22,6 +22,9 @@ Prove that p is divisible by 1979.
 
 namespace Imo1979P1
 
+/--
+@isnad1 id=eq.0h0v.s7.ff161edf16b5 from=translated src=- shape=c36ee939 vocab=3fcd26cb
+-/
 lemma lemma3 : ∑ i ∈ Finset.range 1319, (-(1:ℚ))^i / (i + 1) =
       ∑ i ∈ Finset.range 1319, (1:ℚ) / (i + 1) -
          2 * ∑ i ∈ Finset.range 659, (1:ℚ) / (2 * (i + 1)) := by
@@ -91,6 +94,9 @@ lemma lemma3 : ∑ i ∈ Finset.range 1319, (-(1:ℚ))^i / (i + 1) =
     field_simp
   rw [h10, Finset.sum_filter_add_sum_filter_not]
 
+/--
+@isnad1 id=eq.0h3v.s6.26d3717f5504 from=translated src=- shape=46f8541a vocab=9e55f18a
+-/
 lemma lemma4 (n m : ℕ) (f : ℕ → ℚ) :
     ∑ i ∈ Finset.Ico n (n + 2 * m), f i =
     ∑ i ∈ Finset.range m, (f (n + i) + f (n + (2 * m - 1 - i))) := by
@@ -102,6 +108,9 @@ lemma lemma4 (n m : ℕ) (f : ℕ → ℚ) :
   rw [Finset.mem_range] at hx
   congr 1; lia
 
+/--
+@isnad1 id=eq.1h1v.s7.c7ed93fef292 from=translated src=- shape=1dcc3a45 vocab=083f1739
+-/
 lemma lemma9' (i : ℕ) (hi : i ∈ Finset.range 330) :
      (((∏ j ∈ Finset.range 330,
          (660 + j) * (1319 - j)):ℕ):ℚ) / ((660 + (i:ℚ)) * (1319 - (i:ℚ)))
@@ -114,6 +123,9 @@ lemma lemma9' (i : ℕ) (hi : i ∈ Finset.range 330) :
   have : (i: ℚ) < 330 := by norm_cast
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s7.5a5cc3dea153 from=translated src=- shape=71b846e5 vocab=cea32c2c
+-/
 lemma lemma9 :
     (∑ i ∈ Finset.range 330, 1 / ((660 + (i:ℚ)) * (1319 - (i:ℚ)))) *
       (((∏ j ∈ Finset.range 330, (660 + j) * (1319 - j)):ℕ):ℚ) =
@@ -124,6 +136,9 @@ lemma lemma9 :
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.e4d71650c47e from=translated src=- shape=96ee7f61 vocab=7e861390
+-/
 lemma h4 (i : ℕ) (hi : i ∈ Finset.range 330) :
     1 / ((((659 + i):ℕ):ℚ) + 1) + 1 / ((((659 + (2 * 330 - 1 - i)):ℕ):ℚ) + 1) =
     1979 / ((660 + (i:ℚ)) * (1319 - (i:ℚ))) := by
@@ -146,6 +161,9 @@ lemma h4 (i : ℕ) (hi : i ∈ Finset.range 330) :
     norm_cast at h9
   field_simp; norm_num
 
+/--
+@isnad1 id=prime.0h0v.s2.23ed16e794ea from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 lemma prime_1979 : Nat.Prime 1979 := by norm_num1
 
 end Imo1979P1

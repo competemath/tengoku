@@ -41,7 +41,9 @@ kernel)](hyp:hκ) and [`f` is Bochner-integrable against the measure `m.bind κ`
 mixing `κ` over the base measure `m`](hyp:hf), then [the Bochner integral of `f` against
 `m.bind κ` equals the iterated integral: first integrate `f` against `κ a` for each base
 point `a`, then integrate the result against `m`](goal). This is the Bochner analogue of
-`MeasureTheory.Measure.lintegral_bind`. -/
+`MeasureTheory.Measure.lintegral_bind`.
+@isnad1 id=eq.2h6v.s6.e2cdbc4d8a5b from=translated src=- shape=9acbf2aa vocab=b4192fc0
+-/
 theorem integral_bind {α β E : Type*} [MeasurableSpace α] [MeasurableSpace β]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {m : Measure α} {κ : α → Measure β} {f : β → E}
@@ -65,7 +67,9 @@ Then [the Bochner integral of `f` against that mixed measure equals the iterated
 of the pulled-back integrand `a ↦ ∫ x, f (g a x) ∂κ a` against the base measure `m`](goal).
 This packages a single application of `integral_bind` with the fibrewise
 `MeasureTheory.integral_map`, supplying the bridge needed to expand a nested bind-then-map
-Bochner integral. -/
+Bochner integral.
+@isnad1 id=eq.3h8v.s7.9542f6fbcecd from=translated src=- shape=fd2a5329 vocab=fd5afc43
+-/
 theorem integral_bind_map {α β γ E : Type*} [MeasurableSpace α] [MeasurableSpace β]
     [MeasurableSpace γ] [NormedAddCommGroup E] [NormedSpace ℝ E]
     {m : Measure α} {κ : α → Measure β} {g : α → β → γ} {f : γ → E}
@@ -104,7 +108,9 @@ Bochner integral of `f` against that triply-nested mixed measure equals the thre
 integral of the pulled-back integrand `(a, b, c) ↦ f (g a b c)`, integrated successively
 against `κ₂ a b`, `κ₁ a`, and `m`](goal). This is the single bridge for a
 `bind`-then-`bind`-then-`map` integrand, which neither `integral_bind` nor `integral_bind_map`
-covers in one step. -/
+covers in one step.
+@isnad1 id=eq.4h10v.s8.70b7e7ea5dff from=translated src=- shape=4f758a96 vocab=fd5afc43
+-/
 theorem integral_bind_bind_map {α β γ δ E : Type*}
     [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
     [MeasurableSpace δ] [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -140,7 +146,9 @@ against the mixed measure `m.bind κ`](hyp:hf). Then [the Bochner integral of `f
 `m.bind κ` equals the integral of the fibrewise constant `f'` against the base measure
 `m`](goal). This is the bridge for the situation where the integrand only depends on a
 coordinate that is constant within each inner kernel, so the inner integral evaluates to that
-constant and the `bind` reduces to `∫ a, f' a ∂m`. -/
+constant and the `bind` reduces to `∫ a, f' a ∂m`.
+@isnad1 id=eq.4h7v.s7.3157815e1eca from=translated src=- shape=f8e16e1e vocab=3659b952
+-/
 theorem integral_bind_of_ae_eq_const {α β E : Type*} [MeasurableSpace α]
     [MeasurableSpace β] [NormedAddCommGroup E] [NormedSpace ℝ E]
     {m : Measure α} {κ : α → Measure β} {f : β → E} {f' : α → E}
@@ -171,7 +179,9 @@ measure identity behind `integral_bind_bind_map_proj`, stated without any integr
 integrand hypotheses: the two inner probability fibres each contribute total mass one over a
 fixed base point, so transporting back along `π` returns `m` unchanged (no hypothesis on `m`
 is needed). It is the bridge for marginalising a nested Giry-monad construction onto its
-reattached coordinate when only measurability of the eventual integrand is available. -/
+reattached coordinate when only measurability of the eventual integrand is available.
+@isnad1 id=eq.7h9v.s7.4a1b916acf35 from=translated src=- shape=3b33540b vocab=e5a96f01
+-/
 theorem map_bind_bind_map_proj {α β γ δ : Type*}
     [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
     [MeasurableSpace δ]
@@ -213,7 +223,9 @@ triply-nested mixed measure equals integrating `f` directly against the base mea
 `m`](goal). This is the one-step bridge for marginalising a nested Giry-monad construction
 back onto the coordinate that the innermost pushforward carries through; the fibrewise
 probability-mass-one hypotheses are what make the two inner integrals of the constant `f a`
-evaluate to `f a` (no assumption on `m` is needed). -/
+evaluate to `f a` (no assumption on `m` is needed).
+@isnad1 id=eq.8h11v.s8.2949a9b14970 from=translated src=- shape=722422ac vocab=be522dc0
+-/
 theorem integral_bind_bind_map_proj {α β γ δ E : Type*}
     [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
     [MeasurableSpace δ] [NormedAddCommGroup E] [NormedSpace ℝ E]

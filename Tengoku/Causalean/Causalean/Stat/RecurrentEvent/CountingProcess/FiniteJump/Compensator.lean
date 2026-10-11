@@ -23,7 +23,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- A bounded observation measurable at time `a` makes the expected weighted
-count increment on `(a,b]` equal the expected weighted intensity integral. -/
+count increment on `(a,b]` equal the expected weighted intensity integral.
+@isnad1 id=eq.7h6v.s8.5e9cb0871dee from=translated src=- shape=f807c9d3 vocab=d339a098
+-/
 theorem Model.conditional_increment (M : Model Ω μ) (a b : ℝ)
     (F : Ω → ℝ) (ha : 0 ≤ a) (hab : a ≤ b) (hb : b ≤ M.horizon)
     (hF : Measurable[M.filtration a] F)
@@ -40,7 +42,9 @@ theorem Model.conditional_increment (M : Model Ω μ) (a b : ℝ)
 
 /-- For an elementary predictable payoff `F(ω) 1_(a,b](t)`, the expected
 jump sum equals its expected compensator integral. The proof unfolds the
-finite sum and applies `conditional_increment`. -/
+finite sum and applies `conditional_increment`.
+@isnad1 id=eq.7h6v.s8.96d3df3df8bc from=translated src=- shape=9c698055 vocab=a612cd5c
+-/
 theorem Model.cylinder_compensator (M : Model Ω μ) (a b : ℝ)
     (F : Ω → ℝ) (ha : 0 ≤ a) (hab : a ≤ b) (hb : b ≤ M.horizon)
     (hF : Measurable[M.filtration a] F)
@@ -102,7 +106,9 @@ theorem Model.cylinder_compensator (M : Model Ω μ) (a b : ℝ)
     M.conditional_increment a b F ha hab hb hF hbounded hcount hrate
 
 /-- The finite jump sum of the indicator of a measurable time-sample set is
-integrable under the finite event-count second-moment assumption. -/
+integrable under the finite event-count second-moment assumption.
+@isnad1 id=integrab.1h4v.s6.1c38960f025f from=translated src=- shape=627e781b vocab=eebda313
+-/
 theorem Model.integrable_jump_indicator (M : Model Ω μ)
     [IsProbabilityMeasure μ] (S : Set (ℝ × Ω)) (hS : MeasurableSet S) :
     Integrable
@@ -135,7 +141,9 @@ theorem Model.integrable_jump_indicator (M : Model Ω μ)
     _ = ((M.eventTimes ω).card : ℝ) := by simp
 
 /-- The finite-horizon intensity integral of the indicator of a measurable
-time-sample set is integrable under the uniform intensity bound. -/
+time-sample set is integrable under the uniform intensity bound.
+@isnad1 id=integrab.1h4v.s6.30001bd27121 from=translated src=- shape=627e781b vocab=33105628
+-/
 theorem Model.integrable_energy_indicator (M : Model Ω μ)
     [IsProbabilityMeasure μ] (S : Set (ℝ × Ω)) (hS : MeasurableSet S) :
     Integrable
@@ -172,7 +180,9 @@ theorem Model.integrable_energy_indicator (M : Model Ω μ)
     Real.volume_Ioc, M.horizon_pos.le, mul_comm] using hbound
 
 /-- The event and intensity occupation measures assign the same mass to a
-predictable cylinder, by the conditional intensity increment identity. -/
+predictable cylinder, by the conditional intensity increment identity.
+@isnad1 id=eq.1h6v.s7.72164cd749b0 from=translated src=- shape=d950a45f vocab=c9932c00
+-/
 theorem Model.occupation_cylinder_agree (M : Model Ω μ)
     [IsProbabilityMeasure μ] (a b : ℝ) (B : Set Ω)
     (hB : MeasurableSet[M.filtration a] B) :
@@ -194,7 +204,9 @@ theorem Model.occupation_cylinder_agree (M : Model Ω μ)
     hreal
 
 /-- The expected total number of jumps equals the expected total integrated
-at-risk intensity, so the two finite occupation measures have equal mass. -/
+at-risk intensity, so the two finite occupation measures have equal mass.
+@isnad1 id=eq.0h3v.s6.8866240cc031 from=translated src=- shape=e025f5ac vocab=9e299c21
+-/
 theorem Model.occupation_univ_agree (M : Model Ω μ)
     [IsProbabilityMeasure μ] :
     M.jumpOccupation univ = M.energyOccupation univ := by
@@ -230,7 +242,9 @@ theorem Model.occupation_univ_agree (M : Model Ω μ)
 
 /-- The event and intensity occupation measures agree on every predictable
 time-sample set. Their equality on cylinders follows from conditional
-intensity; finite-measure uniqueness extends it to the generated σ-algebra. -/
+intensity; finite-measure uniqueness extends it to the generated σ-algebra.
+@isnad1 id=eq.1h4v.s6.5e837379bb90 from=translated src=- shape=1b84e7da vocab=5d3438e0
+-/
 theorem Model.occupation_agree (M : Model Ω μ)
     [IsProbabilityMeasure μ] (S : Set (ℝ × Ω))
     (hS : MeasurableSet[predictableSpace M.filtration] S) :
@@ -251,7 +265,9 @@ theorem Model.occupation_agree (M : Model Ω μ)
   exact M.occupation_cylinder_agree a b B hB
 
 /-- The indicator of any predictable time-sample set has the same expected
-finite jump sum as expected integral against the at-risk intensity. -/
+finite jump sum as expected integral against the at-risk intensity.
+@isnad1 id=eq.3h4v.s8.88d39bfd40df from=translated src=- shape=e931f505 vocab=233393d3
+-/
 theorem Model.predictable_indicator_compensator (M : Model Ω μ)
     [IsProbabilityMeasure μ] (S : Set (ℝ × Ω))
     (hS : MeasurableSet[predictableSpace M.filtration] S)
@@ -274,7 +290,9 @@ theorem Model.predictable_indicator_compensator (M : Model Ω μ)
     M.occupation_agree S hS]
 
 /-- A predictable payoff taking finitely many real values has equal expected
-event and intensity integrals whenever both pathwise integrals are integrable. -/
+event and intensity integrals whenever both pathwise integrals are integrable.
+@isnad1 id=eq.4h4v.s7.e18b5dabb499 from=translated src=- shape=7e1bede8 vocab=3910e68e
+-/
 theorem Model.finiteRange_predictable_compensator (M : Model Ω μ)
     [IsProbabilityMeasure μ]
     (G : ℝ → Ω → ℝ) (hG : M.Predictable G)
@@ -350,7 +368,9 @@ theorem Model.finiteRange_predictable_compensator (M : Model Ω μ)
 
 /-- Every bounded predictable payoff satisfies the expected jump-sum equals
 expected intensity-integral identity. Approximate it by finite-valued
-predictable simple functions after proving the indicator identity. -/
+predictable simple functions after proving the indicator identity.
+@isnad1 id=eq.4h4v.s7.c8fd8e439eab from=translated src=- shape=b4a258fe vocab=f866bede
+-/
 theorem Model.bounded_predictable_compensator (M : Model Ω μ)
     [IsProbabilityMeasure μ]
     (G : ℝ → Ω → ℝ) (hG : M.Predictable G)
@@ -378,7 +398,9 @@ theorem Model.bounded_predictable_compensator (M : Model Ω μ)
 
 /-- An integrable absolute predictable event payoff has an absolutely
 integrable time-sample intensity payoff, as a consequence of conditional
-intensity and finite-horizon bounded compensation. -/
+intensity and finite-horizon bounded compensation.
+@isnad1 id=integrab.2h4v.s7.6d014331f00f from=translated src=- shape=c754f75d vocab=d60df370
+-/
 theorem Model.predictable_rate_product_integrable (M : Model Ω μ)
     [IsProbabilityMeasure μ]
     (G : ℝ → Ω → ℝ) (hG : M.Predictable G)
@@ -487,7 +509,9 @@ equals expected compensator integral identity. Truncate an integrable payoff,
 apply the bounded formula, and pass to the limit in both expectations. [The
 model and payoff](hyp:M,G), [predictability](hyp:hG), and [absolute
 integrability of the event and compensator terms](hyp:hjumpAbs,henergyAbs) give
-[the predictable-compensation identity](goal). -/
+[the predictable-compensation identity](goal).
+@isnad1 id=eq.3h4v.s7.d43ee5f4d7fe from=translated src=- shape=129baad5 vocab=6da9ae15
+-/
 theorem Model.predictable_compensator (M : Model Ω μ)
     [IsProbabilityMeasure μ]
     (G : ℝ → Ω → ℝ) (hG : M.Predictable G)

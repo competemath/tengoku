@@ -39,7 +39,9 @@ open Causalean.Stat.MomentProblems.ResidualQuadratic.MomentAlgebra
 open Set
 
 /-- `envelopeQuartic q q = q² (1 − q)² > 0` for `q ∈ (0,1)`. This is the positive endpoint of the
-sign change that locates the interior root. -/
+sign change that locates the interior root.
+@isnad1 id=lt.2h1v.s5.4c49616a0cba from=translated src=- shape=445ea841 vocab=d85f593e
+-/
 theorem envelopeQuartic_pos_at_q (q : ℝ) (hq0 : 0 < q) (hq1 : q < 1) :
     0 < envelopeQuartic q q := by
   have hid : envelopeQuartic q q = q ^ 2 * (1 - q) ^ 2 := by
@@ -49,7 +51,9 @@ theorem envelopeQuartic_pos_at_q (q : ℝ) (hq0 : 0 < q) (hq1 : q < 1) :
   positivity
 
 /-- `envelopeQuartic v (v²) = −2 v³ (v − 1)² < 0` for `v ∈ (0,1)`. This is the negative endpoint of
-the sign change (at `t = v = √q`) that locates the interior root. -/
+the sign change (at `t = v = √q`) that locates the interior root.
+@isnad1 id=lt.2h1v.s5.dc72a1e4d478 from=translated src=- shape=dc53cef6 vocab=45832f91
+-/
 theorem envelopeQuartic_neg_at_v (v : ℝ) (hv0 : 0 < v) (hv1 : v < 1) :
     envelopeQuartic v (v ^ 2) < 0 := by
   have hid : envelopeQuartic v (v ^ 2) = -(2 * v ^ 3) * (v - 1) ^ 2 := by
@@ -60,13 +64,17 @@ theorem envelopeQuartic_neg_at_v (v : ℝ) (hv0 : 0 < v) (hv1 : v < 1) :
   have hpos : 0 < 2 * v ^ 3 := by positivity
   nlinarith [mul_pos hpos hsq]
 
-/-- The continuous polynomial `t ↦ envelopeQuartic t q`. -/
+/-- The continuous polynomial `t ↦ envelopeQuartic t q`.
+@isnad1 id=continuo.0h1v.s4.13afed7a0580 from=translated src=- shape=b33faf8c vocab=9e3d28eb
+-/
 @[fun_prop]
 theorem continuous_envelopeQuartic (q : ℝ) :
     Continuous (fun t => envelopeQuartic t q) := by
   unfold envelopeQuartic; fun_prop
 
-/-- **Derivative of the quartic.** `d/dt envelopeQuartic t q = 4 t³ − 6 t² + 4 q t − 2 q²`. -/
+/-- **Derivative of the quartic.** `d/dt envelopeQuartic t q = 4 t³ − 6 t² + 4 q t − 2 q²`.
+@isnad1 id=hasderiv.0h2v.s7.efa885d4a1ec from=translated src=- shape=f272b4ee vocab=528b9091
+-/
 theorem hasDerivAt_envelopeQuartic (t q : ℝ) :
     HasDerivAt (fun s => envelopeQuartic s q)
       (4 * t ^ 3 - 6 * t ^ 2 + 4 * q * t - 2 * q ^ 2) t := by
@@ -87,7 +95,9 @@ theorem hasDerivAt_envelopeQuartic (t q : ℝ) :
 
 /-- **Interior existence.** For `v ∈ (0,1)` and `q = v²`, the quartic has a root strictly inside
 `(v², v)`. Proof: the sign change `envelopeQuartic (v²) (v²) > 0`, `envelopeQuartic v (v²) < 0`
-plus continuity, via the intermediate value theorem (`intermediate_value_Ioo'`). -/
+plus continuity, via the intermediate value theorem (`intermediate_value_Ioo'`).
+@isnad1 id=ex.2h1v.s6.92f5e4107e4b from=translated src=- shape=dcedf5c8 vocab=512be005
+-/
 theorem interior_quartic_exists (v : ℝ) (hv0 : 0 < v) (hv1 : v < 1) :
     ∃ u ∈ Ioo (v ^ 2) v, envelopeQuartic u (v ^ 2) = 0 := by
   have hqv : v ^ 2 < v := by nlinarith
@@ -104,7 +114,9 @@ theorem interior_quartic_exists (v : ℝ) (hv0 : 0 < v) (hv1 : v < 1) :
 
 /-- **Strict negativity of the derivative on `(v², v)`.** For `v ∈ (0,1)` and `t ∈ (v², v)`,
 `4 t³ − 6 t² + 4 v² t − 2 v⁴ < 0`.  (This is the derivative of `envelopeQuartic · (v²)`.)
-Proof: `nlinarith` from `v² < t`, `t < v`, `0 < v`, `v < 1`. -/
+Proof: `nlinarith` from `v² < t`, `t < v`, `0 < v`, `v < 1`.
+@isnad1 id=lt.4h2v.s7.d849477c55ab from=translated src=- shape=b2320944 vocab=5233fd79
+-/
 theorem envelopeQuartic_deriv_neg (v t : ℝ) (hv0 : 0 < v) (hv1 : v < 1)
     (ht1 : v ^ 2 < t) (ht2 : t < v) :
     4 * t ^ 3 - 6 * t ^ 2 + 4 * (v ^ 2) * t - 2 * (v ^ 2) ^ 2 < 0 := by
@@ -124,7 +136,9 @@ theorem envelopeQuartic_deriv_neg (v t : ℝ) (hv0 : 0 < v) (hv1 : v < 1)
       hv0]
   exact (fun _ : v < 1 => hmain) hv1
 
-/-- `t ↦ envelopeQuartic t (v²)` is strictly antitone on `Icc (v²) v`. -/
+/-- `t ↦ envelopeQuartic t (v²)` is strictly antitone on `Icc (v²) v`.
+@isnad1 id=strictan.2h1v.s6.04fec9e23d22 from=translated src=- shape=16def088 vocab=fc4955af
+-/
 theorem strictAntiOn_envelopeQuartic (v : ℝ) (hv0 : 0 < v) (hv1 : v < 1) :
     StrictAntiOn (fun t => envelopeQuartic t (v ^ 2)) (Icc (v ^ 2) v) := by
   have hqv : v ^ 2 < v := by nlinarith
@@ -139,7 +153,9 @@ theorem strictAntiOn_envelopeQuartic (v : ℝ) (hv0 : 0 < v) (hv1 : v < 1) :
 `1`](hyp:hv0,hv1) (write `q = v²`), [there is a unique `μᵥ ∈ (v², v)` with
 `envelopeQuartic μᵥ (v²) = 0`](goal).  This `μᵥ` is the envelope maximizer selecting `ρ(v)`.
 Existence is `interior_quartic_exists`; uniqueness follows from strict antitonicity
-(`strictAntiOn_envelopeQuartic`), whose `InjOn` forces two roots to coincide. -/
+(`strictAntiOn_envelopeQuartic`), whose `InjOn` forces two roots to coincide.
+@isnad1 id=existsun.2h1v.s6.3a705ab172b5 from=translated src=- shape=dcedf5c8 vocab=ee1a12a5
+-/
 theorem interior_quartic_unique_root (v : ℝ) (hv0 : 0 < v) (hv1 : v < 1) :
     ∃! u, u ∈ Ioo (v ^ 2) v ∧ envelopeQuartic u (v ^ 2) = 0 := by
   obtain ⟨u, hu, hfu⟩ := interior_quartic_exists v hv0 hv1

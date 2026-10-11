@@ -16,7 +16,9 @@ def innerSign {K : ℕ} (s t : Fin K → Bool) : ℝ :=
   ∑ j : Fin K, (if s j then (1 : ℝ) else -1) * (if t j then (1 : ℝ) else -1)
 /-- Given [two sample sizes](hyp:n₁,n₂), [two overlap coefficients](hyp:ρ₁,ρ₂),
 [an overlap coordinate](hyp:x), and [nonnegative overlap bases](hyp:hbase₁,hbase₂),
-[the product of two overlap powers is bounded by its linearized exponential](goal). -/
+[the product of two overlap powers is bounded by its linearized exponential](goal).
+@isnad1 id=le.2h5v.s7.0e6ffc8e9b8d from=translated src=- shape=897f87ec vocab=c6436769
+-/
 theorem sign_twoPower_pointwise_le_exp (n₁ n₂ : ℕ) (ρ₁ ρ₂ x : ℝ) (hbase₁ : 0 ≤ 1 + ρ₁ * x) (hbase₂ : 0 ≤ 1 + ρ₂ * x) :
     (1 + ρ₁ * x) ^ n₁ * (1 + ρ₂ * x) ^ n₂ ≤ Real.exp (((n₁ : ℝ) * ρ₁ + (n₂ : ℝ) * ρ₂) * x) := by
   have h₁ : (1 + ρ₁ * x) ^ n₁ ≤ (Real.exp (ρ₁ * x)) ^ n₁ :=
@@ -33,7 +35,9 @@ theorem sign_twoPower_pointwise_le_exp (n₁ n₂ : ℕ) (ρ₁ ρ₂ x : ℝ) (
       ring
 /-- Given [a positive sign-vector length](hyp:K) and [an exponential coefficient](hyp:t),
 [the uniform double average of the scaled inner-sign exponential is bounded by
-its Gaussian moment expression](goal). -/
+its Gaussian moment expression](goal).
+@isnad1 id=le.0h2v.s7.ce0b6a3fab27 from=translated src=- shape=0d369e7c vocab=4b2cdb8b
+-/
 theorem uniform_innerSign_exp_le (K : ℕ) [NeZero K] (t : ℝ) : (∑ s : Fin K → Bool, ∑ u : Fin K → Bool, Real.exp (t *
     innerSign s u / (K : ℝ))) / (Fintype.card (Fin K → Bool) : ℝ) ^ 2 ≤ Real.exp (t ^ 2 / (2 * (K : ℝ))) := by
   classical
@@ -91,7 +95,9 @@ theorem uniform_innerSign_exp_le (K : ℕ) [NeZero K] (t : ℝ) : (∑ s : Fin K
 /-- Given [a positive sign-vector length and two sample sizes](hyp:K,n₁,n₂),
 [two overlap coefficients](hyp:ρ₁,ρ₂), and [nonnegative bases for every sign
 pair](hyp:hbase₁,hbase₂), [the uniform double average of two overlap powers is
-bounded by the corresponding Gaussian exponential moment](goal). -/
+bounded by the corresponding Gaussian exponential moment](goal).
+@isnad1 id=le.2h5v.s8.b86be89345de from=translated src=- shape=d14e98ac vocab=30a758db
+-/
 theorem uniform_sign_twoPower_le_exp (K n₁ n₂ : ℕ) [NeZero K] (ρ₁ ρ₂ : ℝ) (hbase₁ : ∀ s t : Fin K → Bool, 0 ≤ 1 + ρ₁ *
     innerSign s t / (K : ℝ)) (hbase₂ : ∀ s t : Fin K → Bool, 0 ≤ 1 + ρ₂ * innerSign s t / (K : ℝ)) : (∑ s : Fin K →
     Bool, ∑ t : Fin K → Bool, (1 + ρ₁ * innerSign s t / (K : ℝ)) ^ n₁ * (1 + ρ₂ * innerSign s t / (K : ℝ)) ^ n₂) /

@@ -17,7 +17,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 and [the subject's at-risk payoff weighted by the censor hazard is integrable from 0 to
 u](hyp:hazard,hPath), then
 [the integral of that payoff from 0 to u equals its integral from 0 to the censor time](goal),
-since the subject leaves the risk set after censoring. -/
+since the subject leaves the risk set after censoring.
+@isnad1 id=eq.3h6v.s7.365e25641243 from=translated src=- shape=bbf03ee8 vocab=61c6943a
+-/
 theorem subject_hazard_stops_at_censor {n : ℕ}
     (hazard : ℝ → ℝ) (H : ℝ → Sample n → ℝ)
     (i : Fin n) (x : Sample n) (u : ℝ)

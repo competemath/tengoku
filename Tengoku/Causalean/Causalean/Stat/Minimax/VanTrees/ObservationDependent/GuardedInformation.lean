@@ -22,7 +22,9 @@ open MeasureTheory Set
 
 namespace Causalean.Stat.Minimax.ObservationDependentVanTrees
 
-/-- A differentiable nonnegative function has zero derivative at any point where [it attains value zero](hyp:hnonneg,hderiv,hzero), so [the supplied derivative is zero](goal). -/
+/-- A differentiable nonnegative function has zero derivative at any point where [it attains value zero](hyp:hnonneg,hderiv,hzero), so [the supplied derivative is zero](goal).
+@isnad1 id=eq.3h3v.s6.bd38a083e365 from=translated src=- shape=26822d22 vocab=c694916f
+-/
 theorem derivative_eq_zero_of_nonnegative_of_eq_zero {f : ℝ → ℝ} {df θ : ℝ}
     (hnonneg : ∀ t, 0 ≤ f t) (hderiv : HasDerivAt f df θ) (hzero : f θ = 0) :
     df = 0 := by
@@ -32,7 +34,9 @@ theorem derivative_eq_zero_of_nonnegative_of_eq_zero {f : ℝ → ℝ} {df θ : 
     exact hnonneg t
   exact IsLocalMin.hasDerivAt_eq_zero hmin hderiv
 
-/-- A nonnegative density with [a derivative numerator that vanishes whenever the density vanishes](hyp:hq,hzero) has [its guarded score times its density equal to that derivative numerator](goal). -/
+/-- A nonnegative density with [a derivative numerator that vanishes whenever the density vanishes](hyp:hq,hzero) has [its guarded score times its density equal to that derivative numerator](goal).
+@isnad1 id=eq.2h2v.s6.e9e1b7f4bbd5 from=translated src=- shape=cb8636a6 vocab=ecdf794c
+-/
 theorem guarded_score_mul_density {q dq : ℝ} (hq : 0 ≤ q)
     (hzero : q = 0 → dq = 0) :
     (if 0 < q then dq / q else 0) * q = dq := by
@@ -41,7 +45,9 @@ theorem guarded_score_mul_density {q dq : ℝ} (hq : 0 ≤ q)
   · have hqzero : q = 0 := le_antisymm (le_of_not_gt hqpos) hq
     simp [hqzero, hzero hqzero]
 
-/-- At a point where [both the prior and likelihood densities are positive](hyp:hw,hp), [the guarded joint score equals the sum of their guarded scores](goal). -/
+/-- At a point where [both the prior and likelihood densities are positive](hyp:hw,hp), [the guarded joint score equals the sum of their guarded scores](goal).
+@isnad1 id=eq.2h7v.s6.896836f1232c from=translated src=- shape=d8b0b238 vocab=ead52b1e
+-/
 theorem jointScore_eq_add {X : Type*} {w dw : ℝ → ℝ} {p dp : ℝ → X → ℝ}
     {θ : ℝ} {x : X} (hw : 0 < w θ) (hp : 0 < p θ x) :
     jointScore w dw p dp (θ, x) = priorScore w dw θ + likelihoodScore p dp θ x := by
@@ -49,7 +55,9 @@ theorem jointScore_eq_add {X : Type*} {w dw : ℝ → ℝ} {p dp : ℝ → X →
     hw, hp, mul_pos hw hp, ite_true]
   field_simp
 
-/-- For nonnegative prior and likelihood densities whose [derivative numerators vanish on their respective zero-density sets](hyp:hw,hp,hwzero,hpzero), [joint density times guarded joint score equals the product-rule derivative numerator](goal). -/
+/-- For nonnegative prior and likelihood densities whose [derivative numerators vanish on their respective zero-density sets](hyp:hw,hp,hwzero,hpzero), [joint density times guarded joint score equals the product-rule derivative numerator](goal).
+@isnad1 id=eq.4h7v.s7.ca9795d36e61 from=translated src=- shape=836b5bda vocab=e31dba43
+-/
 theorem jointScore_mul_jointDensity {X : Type*} {w dw : ℝ → ℝ}
     {p dp : ℝ → X → ℝ} {θ : ℝ} {x : X}
     (hw : 0 ≤ w θ) (hp : 0 ≤ p θ x)
@@ -64,7 +72,9 @@ theorem jointScore_mul_jointDensity {X : Type*} {w dw : ℝ → ℝ}
   · rw [hpzero hpz, hpz]
     ring
 
-/-- For nonnegative prior and likelihood densities whose [derivative numerators vanish wherever the corresponding density is zero](hyp:hw,hp,hwzero,hpzero), [the weighted error--score field equals estimation error times the unguarded product-rule numerator](goal). -/
+/-- For nonnegative prior and likelihood densities whose [derivative numerators vanish wherever the corresponding density is zero](hyp:hw,hp,hwzero,hpzero), [the weighted error--score field equals estimation error times the unguarded product-rule numerator](goal).
+@isnad1 id=eq.4h9v.s7.2ef24baa798a from=translated src=- shape=e20cf9a7 vocab=98f9b415
+-/
 theorem errorScoreField_eq_numerator {X : Type*} {w dw : ℝ → ℝ}
     {p dp g : ℝ → X → ℝ} {T : X → ℝ} {θ : ℝ} {x : X}
     (hw : 0 ≤ w θ) (hp : 0 ≤ p θ x)
@@ -75,7 +85,9 @@ theorem errorScoreField_eq_numerator {X : Type*} {w dw : ℝ → ℝ}
     (θ := θ) (x := x) hw hp hwzero hpzero
   rw [errorScoreField, mul_assoc, hjoint]
 
-/-- At an interior parameter value, a [normalized likelihood whose integral may be differentiated using the supplied derivative, with nonnegative density, zero-set derivative control, and both fields integrable](hyp:hθ,hnorm,hdiff,hp,hpzero,hpint,hdpint) has [conditional mean-zero guarded likelihood score](goal). -/
+/-- At an interior parameter value, a [normalized likelihood whose integral may be differentiated using the supplied derivative, with nonnegative density, zero-set derivative control, and both fields integrable](hyp:hθ,hnorm,hdiff,hp,hpzero,hpint,hdpint) has [conditional mean-zero guarded likelihood score](goal).
+@isnad1 id=eq.7h7v.s8.a99c9b604618 from=translated src=- shape=ebb225b4 vocab=f6cc319a
+-/
 theorem likelihoodScore_integral_eq_zero_of_normalization
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {a b θ : ℝ} {p dp : ℝ → X → ℝ}
@@ -99,7 +111,9 @@ theorem likelihoodScore_integral_eq_zero_of_normalization
     exact guarded_score_mul_density (hp x) hx
   rw [integral_congr_ae hscore_mul, hderiv_zero]
 
-/-- For nonnegative prior and likelihood densities with [zero-set derivative control, likelihood normalization, centered conditional scores, and the stated measurable integrability of all square and cross fields](hyp:hw,hp,hwzero,hpzero,hnorm,hcenter,hscoreSm,hscoreInt,hpriorSm,hpriorInt,hpriorJointSm,hpriorJointInt,hfisherSm,hfisherInt,hcrossSm,hcrossInt), [joint-score information equals prior information plus average conditional Fisher information](goal). -/
+/-- For nonnegative prior and likelihood densities with [zero-set derivative control, likelihood normalization, centered conditional scores, and the stated measurable integrability of all square and cross fields](hyp:hw,hp,hwzero,hpzero,hnorm,hcenter,hscoreSm,hscoreInt,hpriorSm,hpriorInt,hpriorJointSm,hpriorJointInt,hfisherSm,hfisherInt,hcrossSm,hcrossInt), [joint-score information equals prior information plus average conditional Fisher information](goal).
+@isnad1 id=eq.16h8v.s10.a059bc4ee692 from=translated src=- shape=ff23c5b9 vocab=f97b9a8d
+-/
 theorem joint_score_information_decomposition
     {X : Type*} [MeasurableSpace X] {μ : Measure X} [SigmaFinite μ]
     {a b : ℝ} {w dw : ℝ → ℝ} {p dp : ℝ → X → ℝ}
@@ -274,7 +288,9 @@ open MeasureTheory Set
 namespace Causalean.Stat.Minimax.ObservationDependentVanTrees
 
 /-- If [the masses of a finite likelihood sum to one](hyp:hnorm), then [its integral
-against counting measure is one](goal). -/
+against counting measure is one](goal).
+@isnad1 id=eq.1h3v.s6.d92b4ec64e7d from=translated src=- shape=90bdf80f vocab=635d3503
+-/
 theorem finite_likelihood_normalization {X : Type*} [Fintype X] [MeasurableSpace X]
     [MeasurableSingletonClass X] {p : ℝ → X → ℝ} {θ : ℝ}
     (hnorm : ∑ x, p θ x = 1) :
@@ -282,7 +298,9 @@ theorem finite_likelihood_normalization {X : Type*} [Fintype X] [MeasurableSpace
   rw [integral_count, hnorm]
 
 /-- If [each cell probability has the supplied parameter derivative](hyp:hderiv), then
-[the derivative of their finite sum is the sum of those derivatives](goal). -/
+[the derivative of their finite sum is the sum of those derivatives](goal).
+@isnad1 id=hasderiv.1h4v.s6.0fcd3a03761e from=translated src=- shape=336b4336 vocab=5ef88b9f
+-/
 theorem hasDerivAt_finite_likelihood_sum {X : Type*} [Fintype X]
     {p dp : ℝ → X → ℝ} {θ : ℝ}
     (hderiv : ∀ x, HasDerivAt (fun t => p t x) (dp θ x) θ) :
@@ -297,7 +315,9 @@ theorem hasDerivAt_finite_likelihood_sum {X : Type*} [Fintype X]
 
 /-- If [each cell probability has the supplied derivative](hyp:hderiv) and [the finite
 likelihood is locally normalized](hyp:hnorm), then [the derivative masses sum to
-zero](goal). -/
+zero](goal).
+@isnad1 id=eq.2h4v.s6.946e7e2576f9 from=translated src=- shape=b92490ee vocab=9dd2c337
+-/
 theorem finite_derivative_centering {X : Type*} [Fintype X]
     {p dp : ℝ → X → ℝ} {θ : ℝ}
     (hderiv : ∀ x, HasDerivAt (fun t => p t x) (dp θ x) θ)
@@ -309,7 +329,9 @@ theorem finite_derivative_centering {X : Type*} [Fintype X]
 
 /-- If [finite likelihood masses are nonnegative](hyp:hp) and [their derivatives vanish
 on zero-mass cells](hyp:hzero), then [likelihood mass times guarded score equals the
-cell derivative](goal). -/
+cell derivative](goal).
+@isnad1 id=eq.2h5v.s6.73e435d92f7e from=translated src=- shape=fb4ae676 vocab=e8389ad7
+-/
 theorem finite_likelihoodScore_mul {X : Type*} {p dp : ℝ → X → ℝ} {θ : ℝ}
     (hp : ∀ x, 0 ≤ p θ x) (hzero : ∀ x, p θ x = 0 → dp θ x = 0) (x : X) :
     likelihoodScore p dp θ x * p θ x = dp θ x := by
@@ -317,7 +339,9 @@ theorem finite_likelihoodScore_mul {X : Type*} {p dp : ℝ → X → ℝ} {θ : 
 
 /-- If [finite likelihood masses are nonnegative](hyp:hp), [derivatives vanish on
 zero-mass cells](hyp:hzero), and [the derivative masses are centered](hyp:hcenter),
-then [the likelihood-weighted guarded scores sum to zero](goal). -/
+then [the likelihood-weighted guarded scores sum to zero](goal).
+@isnad1 id=eq.3h4v.s6.b786dfb3a39d from=translated src=- shape=92182783 vocab=f28bad4b
+-/
 theorem finite_likelihoodScore_centered {X : Type*} [Fintype X]
     {p dp : ℝ → X → ℝ} {θ : ℝ}
     (hp : ∀ x, 0 ≤ p θ x) (hzero : ∀ x, p θ x = 0 → dp θ x = 0)
@@ -326,7 +350,9 @@ theorem finite_likelihoodScore_centered {X : Type*} [Fintype X]
   simpa only [finite_likelihoodScore_mul hp hzero] using hcenter
 
 /-- [Conditional Fisher information under counting measure equals the finite sum of
-likelihood mass times squared guarded score](goal). -/
+likelihood mass times squared guarded score](goal).
+@isnad1 id=eq.0h4v.s6.dd1aa2b7c411 from=translated src=- shape=1cedd337 vocab=9e514185
+-/
 theorem fisherInformation_count_eq_sum {X : Type*} [Fintype X] [MeasurableSpace X]
     [MeasurableSingletonClass X] (p dp : ℝ → X → ℝ) (θ : ℝ) :
     fisherInformation Measure.count p dp θ =
@@ -337,7 +363,9 @@ theorem fisherInformation_count_eq_sum {X : Type*} [Fintype X] [MeasurableSpace 
 [integrable](hyp:hw_int), [prior-weighted Fisher information is
 integrable](hyp:hweighted_int), and [conditional Fisher information is pointwise bounded wherever
 the prior is positive](hyp:hpointwise), then [average Fisher information is bounded by
-the same constant](goal). -/
+the same constant](goal).
+@isnad1 id=le.5h8v.s7.55cd827e658a from=translated src=- shape=75543c02 vocab=a0d6bb40
+-/
 theorem average_fisherInformation_le
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {ell u I : ℝ} {w : ℝ → ℝ} {p dp : ℝ → X → ℝ}

@@ -78,7 +78,9 @@ variable {R A B : Type*} {f₁ : R → A} {f₂ : R → B}
 
 /-- [A function lies in the additive span exactly when it splits by feature](goal):
 there are component functions `a` and `b` with
-`h r = a (f₁ r) + b (f₂ r)` at every point. -/
+`h r = a (f₁ r) + b (f₂ r)` at every point.
+@isnad1 id=iff.0h6v.s7.d91a54c412f3 from=translated src=- shape=2223b737 vocab=6bc79bde
+-/
 lemma mem_iff {h : R → ℝ} :
     h ∈ AdditiveSpan f₁ f₂ ↔
       ∃ a : A → ℝ, ∃ b : B → ℝ, ∀ r : R, h r = a (f₁ r) + b (f₂ r) :=
@@ -86,7 +88,9 @@ lemma mem_iff {h : R → ℝ} :
 
 /-- [The constant function belongs to the two-feature additive span](goal),
 witnessed by taking the `f₁`-component function constantly `c₀` and the
-`f₂`-component function constantly `0`. -/
+`f₂`-component function constantly `0`.
+@isnad1 id=mem.0h6v.s6.9f39605b0f25 from=translated src=- shape=c73e12e7 vocab=d564a722
+-/
 lemma const_mem (f₁ : R → A) (f₂ : R → B) (c₀ : ℝ) :
     (fun _ : R => c₀) ∈ AdditiveSpan f₁ f₂ := by
   refine ⟨fun _ => c₀, fun _ => 0, ?_⟩

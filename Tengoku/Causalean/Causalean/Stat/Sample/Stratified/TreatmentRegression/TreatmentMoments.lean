@@ -87,7 +87,9 @@ private lemma assignment_pair_mean {n : ℕ} (p : κ → ℝ) (x : Fin n → κ)
 
 omit [Fintype κ] [DecidableEq κ] in
 /-- For [arbitrary real cell weights p](hyp:p) and [fixed labels x of n observations](hyp:n,x),
-[the conditional weights of all Boolean treatment assignments sum to one](goal). -/
+[the conditional weights of all Boolean treatment assignments sum to one](goal).
+@isnad1 id=eq.0h4v.s5.0ff7ab0c119e from=translated src=- shape=fa4e8d4b vocab=9a1d4e9a
+-/
 lemma sum_assignmentWeight {n : ℕ} (p : κ → ℝ) (x : Fin n → κ) :
     (∑ a : Fin n → Bool, assignmentWeight p x a) = 1 := by
   have h := assignment_prod_mean p x (fun _ _ => 1)
@@ -100,7 +102,9 @@ of k times p at k](goal).
 
 Rewrite assignmentWeight using bernoulliDesign and apply its one-coordinate
 expectation to the finite sum of treatment indicators. The identity is
-polynomial and holds even without propensity bounds. -/
+polynomial and holds even without propensity bounds.
+@isnad1 id=eq.0h5v.s6.481b8e99e3c1 from=translated src=- shape=06d3b746 vocab=c23f6dbc
+-/
 lemma assignment_treatedCount_mean {n : ℕ} (p : κ → ℝ) (x : Fin n → κ) (k : κ) :
     (∑ a : Fin n → Bool, assignmentWeight p x a *
       (treatedCount (fun i => (x i, a i)) k : ℝ)) =
@@ -134,7 +138,9 @@ is truncated at zero](goal); it is zero in empty and singleton cells.
 
 Expand into ordered distinct coordinate pairs, using Boolean idempotence on
 the diagonal and product moments off it. Natural subtraction is harmless
-because treatedCount_le holds for every assignment. -/
+because treatedCount_le holds for every assignment.
+@isnad1 id=eq.0h5v.s7.b4934fba1b6f from=translated src=- shape=84840f1c vocab=3f293d76
+-/
 lemma assignment_treated_control_mean {n : ℕ} (p : κ → ℝ)
     (x : Fin n → κ) (k : κ) :
     (∑ a : Fin n → Bool, assignmentWeight p x a *
@@ -203,7 +209,9 @@ lemma assignment_treated_control_mean {n : ℕ} (p : κ → ℝ)
 /-- For [arbitrary real cell weights p](hyp:p) and [fixed labels x of n observations](hyp:n,x),
 [the assignment-weighted sum of the Gram denominator equals the sum over cells of
 (N − 1)·p(1 − p)](goal), where N is the cell count, N − 1 is truncated at zero, and p is the
-weight at that cell — the repeated counts times the Bernoulli variances. -/
+weight at that cell — the repeated counts times the Bernoulli variances.
+@isnad1 id=eq.0h4v.s7.715cd03fffc1 from=translated src=- shape=e143d1b1 vocab=dc33ccf5
+-/
 theorem assignment_gram_mean {n : ℕ} (p : κ → ℝ) (x : Fin n → κ) :
     (∑ a : Fin n → Bool, assignmentWeight p x a * gram (fun i => (x i, a i))) =
       ∑ k, (cellCount x k - 1 : ℕ) * p k * (1 - p k) := by
@@ -227,7 +235,9 @@ theorem assignment_gram_mean {n : ℕ} (p : κ → ℝ) (x : Fin n → κ) :
 count of the labels](goal).
 
 Propensity overlap on cells appearing in the fixed labels lower bounds
-the conditional Gram mean by epsilon(1-epsilon) times the repeat count. -/
+the conditional Gram mean by epsilon(1-epsilon) times the repeat count.
+@isnad1 id=le.3h5v.s7.c84e1b91ea62 from=translated src=- shape=8b839da2 vocab=d3a81b2e
+-/
 theorem assignment_gram_mean_lower {n : ℕ} (p : κ → ℝ) (x : Fin n → κ)
     (epsilon : ℝ) (hepsilon : 0 < epsilon) (hhalf : epsilon ≤ 1 / 2)
     (hoverlap : ∀ k, 0 < cellCount x k → epsilon ≤ p k ∧ p k ≤ 1 - epsilon) :

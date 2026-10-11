@@ -22,6 +22,9 @@ is an integer.
 
 namespace Imo1994P4
 
+/--
+@isnad1 id=or.3h2v.s6.abf48895bd2f from=translated src=- shape=82ab8456 vocab=081db695
+-/
 lemma nonneg_mul_eq_two {a b : ℤ} (ha : 0 ≤ a) (hb : 0 ≤ b)
   (hab: a * b = 2) : (a = 1 ∧ b = 2) ∨ (a = 2 ∧ b = 1) := by
   have ha_pos : 0 < a := by lia
@@ -32,6 +35,9 @@ lemma nonneg_mul_eq_two {a b : ℤ} (ha : 0 ≤ a) (hb : 0 ≤ b)
       _ ≤ a * b := by apply mul_le_mul <;> lia
   interval_cases b <;> lia
 
+/--
+@isnad1 id=or.5h4v.s7.d1b877b1b42d from=translated src=- shape=ab4f6d80 vocab=7833ce1f
+-/
 lemma aux₁ {a b c d : ℤ}
   (hc : 0 < c) (hd : 0 < d)
   (h₁ : a * b = c + d) (h₂ : a + b = c * d) (ha': a = 1) :
@@ -43,6 +49,9 @@ lemma aux₁ {a b c d : ℤ}
   have hcd' := by apply nonneg_mul_eq_two _ _ hcd <;> lia
   lia
 
+/--
+@isnad1 id=false.7h4v.s6.6fe6fb797fa3 from=translated src=- shape=3b5b2189 vocab=f92a5456
+-/
 lemma aux₂ {a b c d : ℤ}
   (ha : 2 ≤ a) (hb : 2 ≤ b) (hc : 2 ≤ c) (hd : 2 ≤ d)
   (h₁ : a * b = c + d) (h₂ : a + b = c * d) (ha' : a ≠ 2): False := by
