@@ -74,7 +74,9 @@ def generate(lib: str, extra: list[str]) -> None:
 intake: set[str] = set()
 for st, p in changed_files(base, head):
     m = re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p)
-    if m:
+    if (
+        m and st != "D"
+    ):  # a raze PR (scripts/ci/raze_check.py) that removes a whole library deletes its manifest: there is no root to build, `Tengoku.All` is built after
         intake.add(m.group(1))
 intake_ns = {pascal(lib) for lib in intake}
 work: dict[str, dict[str, set[str]]] = {}  # library -> source path -> names this group adds to staging

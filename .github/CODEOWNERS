@@ -38,6 +38,9 @@
 /.pre-commit-config.yaml @mikael-bashir @mikaelbashir14096545
 /pyproject.toml          @mikael-bashir @mikaelbashir14096545
 /data/trusted/           @mikael-bashir @mikaelbashir14096545
+# A RAZE PR (docs/pr-classes.md, section 8) takes modules out of the tree: the files it deletes are in the content lane above, so its marker is what a code owner has to review. The default
+# line owns it already; this line says so, and test_codeowners.py holds it.
+/data/raze/              @mikael-bashir @mikaelbashir14096545
 
 # CI tests and CI configuration: the maintainer's SECOND account only. The main account (which an agent may drive) owns none of these, so its approval does
 # not count for a change to them; and nobody approves their own pull request. Later lines win, so this section is last on purpose. Covered: every workflow
