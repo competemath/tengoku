@@ -45,7 +45,9 @@ Standard measure-theoretic argument:
 - Hence `μ(S ∩ E) = 0`.
 - The overlap hypothesis on `m₁` implies `μ(S) = 0`.
 
-Mathlib-contribution candidate. -/
+Mathlib-contribution candidate.
+@isnad1 id=eventual.3h5v.s7.645fd6502995 from=translated src=- shape=da5e6f39 vocab=c3394546
+-/
 theorem ae_pos_condExp_indicator_of_le
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : @MeasureTheory.Measure Ω mΩ} [@MeasureTheory.IsFiniteMeasure Ω mΩ μ]
@@ -115,7 +117,9 @@ the truncated integrals are uniformly bounded by the finite mass of `C`.
 Monotone convergence, measurability, and almost-everywhere nonnegativity then
 give `IntegrableOn g B μ`.
 
-Mathlib-contribution candidate. -/
+Mathlib-contribution candidate.
+@isnad1 id=integrab.6h7v.s7.1b744ad17aa3 from=translated src=- shape=5f4a9f96 vocab=0dca754c
+-/
 theorem integrableOn_of_condExp_indicator_mul
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : @MeasureTheory.Measure Ω mΩ} [@MeasureTheory.IsFiniteMeasure Ω mΩ μ]

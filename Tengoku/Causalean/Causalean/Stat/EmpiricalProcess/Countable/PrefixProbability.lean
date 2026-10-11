@@ -44,12 +44,16 @@ def signLaw (n : ℕ) : Measure (Fin n → Bool) :=
   (PMF.uniformOfFintype (Fin n → Bool)).toMeasure
 
 /-- [The uniform sign law](goal) of [any length n](hyp:n) is a
-probability measure. -/
+probability measure.
+@isnad1 id=isprobab.0h1v.s4.0aadae3ee6d7 from=translated src=- shape=e72d7878 vocab=411bf229
+-/
 instance signLaw_isProbabilityMeasure (n : ℕ) : IsProbabilityMeasure (signLaw n) :=
   inferInstanceAs (IsProbabilityMeasure (PMF.uniformOfFintype (Fin n → Bool)).toMeasure)
 
 /-- [Every real function of sign vectors](hyp:H) [is integrable under the
-sign law, and its integral equals its uniform sign average](goal). -/
+sign law, and its integral equals its uniform sign average](goal).
+@isnad1 id=and.0h2v.s6.e3329ac25d7c from=translated src=- shape=de926a73 vocab=8390c01b
+-/
 theorem signLaw_integral {n : ℕ} (H : (Fin n → Bool) → ℝ) :
     Integrable H (signLaw n) ∧ (∫ σ, H σ ∂signLaw n) = signAverage H := by
   classical
@@ -71,13 +75,17 @@ def signedPrefixProcess {n : ℕ} (a : Fin n → ℝ) (k : ℕ) (σ : Fin n → 
   ∑ j : Fin n, if j.val < k then (if σ j then (1 : ℝ) else -1) * a j else 0
 
 /-- [At every time between 0 and n the signed prefix process agrees with
-the signed prefix](goal). -/
+the signed prefix](goal).
+@isnad1 id=eq.0h4v.s5.c594addc4cb2 from=translated src=- shape=4eab9ee4 vocab=c7abb203
+-/
 theorem signedPrefixProcess_eq {n : ℕ} (a : Fin n → ℝ)
     (k : Fin (n + 1)) (σ : Fin n → Bool) :
     signedPrefixProcess a k σ = signedPrefix a σ k := rfl
 
 /-- [At time n the signed prefix process equals the full signed
-sum](goal). -/
+sum](goal).
+@isnad1 id=eq.0h3v.s6.59ba2278f09c from=translated src=- shape=d2d061b4 vocab=3d7848c3
+-/
 theorem signedPrefixProcess_terminal {n : ℕ} (a : Fin n → ℝ) (σ : Fin n → Bool) :
     signedPrefixProcess a n σ = ∑ j, (if σ j then (1 : ℝ) else -1) * a j := by
   simp only [signedPrefixProcess, Fin.is_lt, ite_true]
@@ -98,7 +106,9 @@ def signRevealFiltration (n : ℕ) :
   le' k := Filtration.le _ _
 
 /-- For [any coefficient vector](hyp:a), [the signed prefix process is
-adapted to the sign reveal filtration](goal). -/
+adapted to the sign reveal filtration](goal).
+@isnad1 id=strongly.0h2v.s5.fb2f8e265c93 from=translated src=- shape=e40dceda vocab=d1d12d16
+-/
 theorem signedPrefixProcess_stronglyAdapted {n : ℕ} (a : Fin n → ℝ) :
     StronglyAdapted (signRevealFiltration n) (signedPrefixProcess a) := by
   classical
@@ -120,7 +130,9 @@ theorem signedPrefixProcess_stronglyAdapted {n : ℕ} (a : Fin n → ℝ) :
 /-- For [any coefficient vector](hyp:a) and [any time k](hyp:k), [the
 increment of the signed prefix process from time k to k + 1 has
 conditional expectation zero, almost surely under the sign law, given the
-signs revealed by time k](goal), also after the terminal time. -/
+signs revealed by time k](goal), also after the terminal time.
+@isnad1 id=eventual.0h3v.s7.351307673f43 from=translated src=- shape=c46a192d vocab=5c54dee4
+-/
 theorem signedPrefixProcess_condExp_increment {n : ℕ} (a : Fin n → ℝ) (k : ℕ) :
     (signLaw n)[signedPrefixProcess a (k + 1) - signedPrefixProcess a k |
       (signRevealFiltration n) k] =ᵐ[signLaw n] 0 := by
@@ -199,7 +211,9 @@ theorem signedPrefixProcess_condExp_increment {n : ℕ} (a : Fin n → ℝ) (k :
 
 /-- For [any coefficient vector](hyp:a), [the signed prefix process is a
 martingale for the sign reveal filtration under the uniform sign
-law](goal). -/
+law](goal).
+@isnad1 id=martinga.0h2v.s5.cbd129850dff from=translated src=- shape=f7c4b5c5 vocab=a5dc5bf2
+-/
 theorem signedPrefixProcess_martingale {n : ℕ} (a : Fin n → ℝ) :
     Martingale (signedPrefixProcess a) (signRevealFiltration n) (signLaw n) := by
   exact martingale_of_condExp_sub_eq_zero_nat

@@ -23,6 +23,7 @@ Expand the polynomial as a finite sum of monomials. For each monomial reuse
 `integrable_rpow_mul_exp_neg_mul_sq` with the exponent a natural number,
 converting real powers by `Real.rpow_natCast`. Integrable finite sums and
 constant multiples then give the polynomial statement.
+@isnad1 id=integrab.1h2v.s6.30f083ab6c03 from=translated src=- shape=743d9dc7 vocab=29c57cb9
 -/
 theorem integrable_eval_mul_gaussian (p : ℝ[X]) (b : ℝ) (hb : 0 < b) :
     Integrable (fun x : ℝ => p.eval x * Real.exp (-b * x ^ 2)) := by
@@ -42,6 +43,7 @@ Expand into monomials and use
 `tendsto_rpow_abs_mul_exp_neg_mul_sq_cocompact`; pass from absolute powers
 to signed monomials by a norm squeeze, then use finite-sum continuity.
 The cocompact filter supplies both boundary limits required by improper IBP.
+@isnad1 id=tendsto.1h2v.s6.dc82ece04f23 from=translated src=- shape=8a6dce85 vocab=ce97a9ee
 -/
 theorem tendsto_eval_mul_gaussian_cocompact (p : ℝ[X]) (b : ℝ) (hb : 0 < b) :
     Tendsto (fun x : ℝ => p.eval x * Real.exp (-b * x ^ 2))
@@ -59,7 +61,9 @@ theorem tendsto_eval_mul_gaussian_cocompact (p : ℝ[X]) (b : ℝ) (hb : 0 < b) 
       simpa only [eval_monomial, mul_assoc, mul_zero] using hn.const_mul a
 
 /-- The variance-one, mean-zero Gaussian density [at a real point](hyp:x)
-[is the normalized exponential of minus half the squared point](goal). -/
+[is the normalized exponential of minus half the squared point](goal).
+@isnad1 id=eq.0h1v.s6.f6aa8a31886d from=translated src=- shape=ba61ecdd vocab=a3228582
+-/
 theorem gaussianPDFReal_standard (x : ℝ) :
     gaussianPDFReal 0 1 x =
       (Real.sqrt (2 * Real.pi))⁻¹ * Real.exp (-(x ^ 2 / 2)) := by
@@ -71,6 +75,7 @@ Use the polynomial Gaussian-weight integrability with precision one half,
 then the `withDensity` integrability equivalence for `gaussianReal 0 1`.
 Alternatively, Mathlib's Gaussian exponential moments imply all monomial
 moments; a finite polynomial expansion finishes. No Hermite facts enter here.
+@isnad1 id=integrab.0h1v.s5.66392f75b84e from=translated src=- shape=3bdf847e vocab=c50aba04
 -/
 theorem integrable_eval_gaussianReal (p : ℝ[X]) :
     Integrable (fun x : ℝ => p.eval x) (gaussianReal 0 1) := by
@@ -87,7 +92,9 @@ theorem integrable_eval_gaussianReal (p : ℝ[X]) :
   ring
 
 /-- Integrating [a real function](hyp:f) under the standard Gaussian law
-[equals its Lebesgue integral against the normalized Gaussian weight](goal). -/
+[equals its Lebesgue integral against the normalized Gaussian weight](goal).
+@isnad1 id=eq.0h1v.s7.cb26088af4a9 from=translated src=- shape=0569f089 vocab=d605ca4a
+-/
 theorem integral_gaussianReal_standard (f : ℝ → ℝ) :
     (∫ x, f x ∂gaussianReal 0 1) =
       (Real.sqrt (2 * Real.pi))⁻¹ * ∫ x, f x * Real.exp (-(x ^ 2 / 2)) := by
@@ -97,7 +104,9 @@ theorem integral_gaussianReal_standard (f : ℝ → ℝ) :
   rw [integral_const_mul]
 
 /-- Evaluating [a successor Hermite polynomial](hyp:n) at [a real point](hyp:x)
-[gives the point times the preceding polynomial minus its polynomial derivative](goal). -/
+[gives the point times the preceding polynomial minus its polynomial derivative](goal).
+@isnad1 id=eq.0h2v.s8.ff0157482758 from=translated src=- shape=5ed284a1 vocab=7b33563d
+-/
 theorem hermite_eval_succ (n : ℕ) (x : ℝ) :
     (aeval x (hermite (n + 1)) : ℝ) =
       x * aeval x (hermite n) - aeval x (derivative (hermite n)) := by
@@ -110,6 +119,7 @@ Prove by induction from `hermite_succ`, `derivative_mul`, and `derivative_X`.
 At the induction step, differentiate the defining recurrence and use the
 previous derivative identity inside the remaining recurrence. This is an
 identity over the integers, before any evaluation or Gaussian analysis.
+@isnad1 id=eq.0h1v.s7.e813450894e2 from=translated src=- shape=19b004cc vocab=2dc8f801
 -/
 theorem derivative_hermite_succ (n : ℕ) :
     derivative (hermite (n + 1)) = C (n + 1 : ℤ) * hermite n := by
@@ -123,7 +133,9 @@ theorem derivative_hermite_succ (n : ℕ) :
     ring
 
 /-- At [a real point](hyp:x), [a successor Hermite polynomial](hyp:n)
-[has derivative equal to its order times the preceding evaluation](goal). -/
+[has derivative equal to its order times the preceding evaluation](goal).
+@isnad1 id=hasderiv.0h2v.s7.68f8b470a54d from=translated src=- shape=89595295 vocab=434bef44
+-/
 theorem hasDerivAt_hermite_succ (n : ℕ) (x : ℝ) :
     HasDerivAt (fun y : ℝ => (aeval y (hermite (n + 1)) : ℝ))
       ((n + 1 : ℝ) * aeval x (hermite n)) x := by
@@ -132,14 +144,18 @@ theorem hasDerivAt_hermite_succ (n : ℕ) (x : ℝ) :
   simpa only [map_add, map_natCast, map_one] using h
 
 /-- The analytic derivative of [a successor Hermite evaluation](hyp:n)
-[at a real point](hyp:x) [is its order times the preceding evaluation](goal). -/
+[at a real point](hyp:x) [is its order times the preceding evaluation](goal).
+@isnad1 id=eq.0h2v.s7.3bd43c408e0c from=translated src=- shape=8a258dad vocab=3fb222c0
+-/
 theorem deriv_hermite_succ (n : ℕ) (x : ℝ) :
     deriv (fun y : ℝ => (aeval y (hermite (n + 1)) : ℝ)) x =
       (n + 1 : ℝ) * aeval x (hermite n) :=
   (hasDerivAt_hermite_succ n x).deriv
 
 /-- At [a real point](hyp:x), [the unnormalized standard Gaussian weight has
-derivative equal to minus the point times the weight](goal). -/
+derivative equal to minus the point times the weight](goal).
+@isnad1 id=hasderiv.0h1v.s6.23c98b402ed4 from=translated src=- shape=592cecfe vocab=699f101a
+-/
 theorem hasDerivAt_standardGaussianWeight (x : ℝ) :
     HasDerivAt (fun y : ℝ => Real.exp (-(y ^ 2 / 2)))
       (-x * Real.exp (-(x ^ 2 / 2))) x := by
@@ -162,6 +178,7 @@ to convert the exponent and sign. Both boundary products tend to zero by
 `atTop_le_cocompact`. The IBP conclusion has zero boundary terms and a minus
 sign on each integral; remove those using `integral_neg` and `neg_injective`.
 The wrapper below transfers this identity to the normalized Gaussian law.
+@isnad1 id=eq.0h1v.s8.6e7028e1e6bb from=translated src=- shape=8110cf7a vocab=b6b4672f
 -/
 theorem integral_mul_eval_mul_gaussian (p : ℝ[X]) :
     (∫ x : ℝ, (x * p.eval x) * Real.exp (-(x ^ 2 / 2))) =
@@ -198,6 +215,7 @@ variable times its evaluation equals the expectation of its derivative](goal).
 
 Multiply the unnormalized polynomial integration-by-parts identity by the
 standard Gaussian normalizer using `integral_gaussianReal_standard`.
+@isnad1 id=eq.0h1v.s7.5ac41e8ba331 from=translated src=- shape=dcb77483 vocab=89c74e31
 -/
 theorem integral_mul_eval_gaussianReal (p : ℝ[X]) :
     (∫ x, x * p.eval x ∂gaussianReal 0 1) =
@@ -206,7 +224,9 @@ theorem integral_mul_eval_gaussianReal (p : ℝ[X]) :
     integral_mul_eval_mul_gaussian]
 
 /-- Products of [two real Hermite evaluations](hyp:j,k)
-[are integrable under the standard Gaussian law](goal). -/
+[are integrable under the standard Gaussian law](goal).
+@isnad1 id=integrab.0h2v.s7.413875c12a90 from=translated src=- shape=47eeb386 vocab=35fc40f2
+-/
 theorem integrable_hermite_mul (j k : ℕ) :
     Integrable (fun x : ℝ => (aeval x (hermite j) : ℝ) * aeval x (hermite k))
       (gaussianReal 0 1) := by
@@ -225,6 +245,7 @@ of the two subtracted functions from `integrable_eval_gaussianReal` applied
 to `X * (hermite n).map (Int.castRingHom ℝ)` and the derivative of that map.
 Rewrite pointwise with `hermite_eval_succ`, then use `integral_sub` and Stein;
 the two resulting integrals agree, including when `n = 0`.
+@isnad1 id=eq.0h1v.s7.8491e4594083 from=translated src=- shape=097a7468 vocab=28b04aa0
 -/
 theorem integral_hermite_succ (n : ℕ) :
     (∫ x, (aeval x (hermite (n + 1)) : ℝ) ∂gaussianReal 0 1) = 0 := by
@@ -265,6 +286,7 @@ Use integrability of `X * (p * q)`, `p.derivative * q`, and
 After `derivative_hermite_succ`, `integral_const_mul` extracts the order.
 Pointwise `ring` normalizes product association; `integral_congr_ae`
 can transport these equalities without unfolding the Gaussian measure.
+@isnad1 id=eq.0h2v.s8.d9919cfbb13d from=translated src=- shape=432d48c1 vocab=dc0c1bb4
 -/
 theorem integral_hermite_succ_mul_succ (j k : ℕ) :
     (∫ x, (aeval x (hermite (j + 1)) : ℝ) * aeval x (hermite (k + 1))
@@ -325,6 +347,7 @@ Induct on the first index, generalizing the second. If either index is zero,
 use `hermite_zero`, `integral_hermite_succ`, and probability normalization.
 The successor/successor case follows from `integral_hermite_succ_mul_succ` and
 `Nat.factorial_succ`, splitting on equality of the preceding indices.
+@isnad1 id=eq.0h2v.s7.5754e5e202ea from=translated src=- shape=a6eca66e vocab=120c1993
 -/
 theorem integral_hermite_mul (j k : ℕ) :
     (∫ x, (aeval x (hermite j) : ℝ) * aeval x (hermite k) ∂gaussianReal 0 1) =

@@ -61,7 +61,9 @@ noncomputable def quantileRealization (κ : ProbabilityTheory.Kernel S ℝ) (p :
 /-- For [a real-valued Markov kernel](hyp:κ) and [a parameter--randomization pair](hyp:p),
 [the corresponding realization value belongs to the closed unit interval](goal).
 
-This pointwise range guarantee does not require a support assumption on the kernel. -/
+This pointwise range guarantee does not require a support assumption on the kernel.
+@isnad1 id=mem.0h3v.s5.03565facf5a1 from=translated src=- shape=d7d9cd11 vocab=5bc609e3
+-/
 theorem quantileRealization_mem_unitInterval (κ : ProbabilityTheory.Kernel S ℝ) (p : S × ℝ) :
     quantileRealization κ p ∈ Icc (0 : ℝ) 1 := by
   exact (kernelUnitQuantile κ p.1 (projIcc (0 : ℝ) 1 zero_le_one p.2)).property
@@ -69,7 +71,9 @@ theorem quantileRealization_mem_unitInterval (κ : ProbabilityTheory.Kernel S �
 /-- For [a real-valued Markov kernel](hyp:κ) that is Markov, [the unit-interval generalized
 inverse is jointly measurable in the kernel parameter and uniform level](goal).
 
-The proof expresses each strict superlevel set as a countable union over rational thresholds. -/
+The proof expresses each strict superlevel set as a countable union over rational thresholds.
+@isnad1 id=measurab.0h2v.s6.dbf83550d887 from=translated src=- shape=504cfef5 vocab=4bdca270
+-/
 theorem measurable_kernelUnitQuantile (κ : ProbabilityTheory.Kernel S ℝ)
     [ProbabilityTheory.IsMarkovKernel κ] :
     Measurable (uncurry (kernelUnitQuantile κ)) := by
@@ -109,7 +113,9 @@ theorem measurable_kernelUnitQuantile (κ : ProbabilityTheory.Kernel S ℝ)
 /-- For [a real-valued Markov kernel](hyp:κ), [the real-valued quantile realization is jointly
 measurable in its parameter and real randomization input](goal).
 
-It follows by composing the measurable unit-interval generalized inverse with the clamping map. -/
+It follows by composing the measurable unit-interval generalized inverse with the clamping map.
+@isnad1 id=measurab.0h2v.s5.d4cc9e5cc387 from=translated src=- shape=c93a06af vocab=7badc36d
+-/
 theorem measurable_quantileRealization (κ : ProbabilityTheory.Kernel S ℝ)
     [ProbabilityTheory.IsMarkovKernel κ] :
     Measurable (quantileRealization κ) := by
@@ -123,7 +129,9 @@ theorem measurable_quantileRealization (κ : ProbabilityTheory.Kernel S ℝ)
 /-- For [a real-valued Markov kernel](hyp:κ) and [a fixed parameter value](hyp:s), [the
 resulting real-valued function of the randomization input is measurable](goal).
 
-This is the section form of joint measurability used in pushforward statements. -/
+This is the section form of joint measurability used in pushforward statements.
+@isnad1 id=measurab.0h3v.s5.2b857ff77374 from=translated src=- shape=a6fe37f6 vocab=09103759
+-/
 @[fun_prop]
 theorem measurable_quantileRealization_section (κ : ProbabilityTheory.Kernel S ℝ)
     [ProbabilityTheory.IsMarkovKernel κ] (s : S) :
@@ -134,7 +142,9 @@ theorem measurable_quantileRealization_section (κ : ProbabilityTheory.Kernel S 
 the closed unit interval](hyp:hκ), and [a parameter value](hyp:s), [pushing canonical uniform
 unit-interval volume through the fiber's quantile map exactly recovers that kernel fiber](goal).
 
-The proof identifies the two measures on every left ray using the generalized-inverse relation. -/
+The proof identifies the two measures on every left ray using the generalized-inverse relation.
+@isnad1 id=eq.1h3v.s6.f20022310c40 from=translated src=- shape=7754cec1 vocab=15cda64c
+-/
 theorem map_kernelUnitQuantile (κ : ProbabilityTheory.Kernel S ℝ)
     [ProbabilityTheory.IsMarkovKernel κ] (hκ : SupportedOnUnitInterval κ) (s : S) :
     Measure.map (fun u : unitInterval => (kernelUnitQuantile κ s u : ℝ)) volume = κ s := by
@@ -238,7 +248,9 @@ the closed unit interval](hyp:hκ), and [a parameter value](hyp:s), [pushing Leb
 restricted to the closed unit interval through the real quantile section exactly recovers that
 kernel fiber](goal).
 
-This is the real-line form of the uniform realization law. -/
+This is the real-line form of the uniform realization law.
+@isnad1 id=eq.1h3v.s6.f330960255e8 from=translated src=- shape=46700891 vocab=af13d7d8
+-/
 theorem map_quantileRealization (κ : ProbabilityTheory.Kernel S ℝ)
     [ProbabilityTheory.IsMarkovKernel κ] (hκ : SupportedOnUnitInterval κ) (s : S) :
     Measure.map (fun u : ℝ => quantileRealization κ (s, u))
@@ -255,7 +267,9 @@ theorem map_quantileRealization (κ : ProbabilityTheory.Kernel S ℝ)
 /-- For [a real-valued Markov kernel](hyp:κ) and [a parameter value](hyp:s), [the realization
 section lies in the closed unit interval almost everywhere under the uniform law](goal).
 
-The underlying range statement is pointwise. -/
+The underlying range statement is pointwise.
+@isnad1 id=eventual.0h3v.s6.3f079c3d3f75 from=translated src=- shape=ab6743cb vocab=b1e8d724
+-/
 theorem ae_quantileRealization_mem_unitInterval (κ : ProbabilityTheory.Kernel S ℝ) (s : S) :
     ∀ᵐ u ∂(volume.restrict (Icc (0 : ℝ) 1)),
       quantileRealization κ (s, u) ∈ Icc (0 : ℝ) 1 := by

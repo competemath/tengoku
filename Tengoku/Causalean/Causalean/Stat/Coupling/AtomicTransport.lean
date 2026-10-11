@@ -54,7 +54,9 @@ noncomputable def w1 {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) : ℝ :=
   sInf {c : ℝ | ∃ π : TransportPlan μ ν, transportCost π = c}
 
-/-- Every feasible finite transport plan upper-bounds finite-atomic one-Wasserstein distance. -/
+/-- Every feasible finite transport plan upper-bounds finite-atomic one-Wasserstein distance.
+@isnad1 id=le.0h5v.s5.bb85cf5ad5f9 from=translated src=- shape=d0f8bd36 vocab=d64b8805
+-/
 theorem w1_le_transportCost {ι κ : Type*} [Fintype ι] [Fintype κ]
     {μ : AtomicLaw ι} {ν : AtomicLaw κ} (π : TransportPlan μ ν) :
     w1 μ ν ≤ transportCost π := by
@@ -66,7 +68,9 @@ theorem w1_le_transportCost {ι κ : Type*} [Fintype ι] [Fintype κ]
       mul_nonneg (q.nonneg i j) (abs_nonneg _)
   · exact ⟨π, rfl⟩
 
-/-- [Two finite atomic laws](hyp:μ,ν) with [finite slot types](hyp:ι,κ) and [nonnegative unit-mass weights](hyp:hμ,hν) have [a transport plan attaining their one-Wasserstein cost](goal). -/
+/-- [Two finite atomic laws](hyp:μ,ν) with [finite slot types](hyp:ι,κ) and [nonnegative unit-mass weights](hyp:hμ,hν) have [a transport plan attaining their one-Wasserstein cost](goal).
+@isnad1 id=ex.2h4v.s5.0fe4523913de from=translated src=- shape=d2f63f6d vocab=d536b51f
+-/
 theorem exists_optimalTransportPlan {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :
     ∃ π : TransportPlan μ ν, transportCost π = w1 μ ν := by

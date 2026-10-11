@@ -60,7 +60,9 @@ serving as the codomain](hyp:F), and [a continuous linear map between them](hyp:
 free-direction subspace](goal) is the kernel of that map: the vectors whose image is zero. -/
 abbrev opKer (A : H →L[ℝ] F) : Submodule ℝ H := LinearMap.ker (A : H →ₗ[ℝ] F)
 
-/-- For [a complete real inner-product space serving as the domain](hyp:H), [a real inner-product space serving as the codomain](hyp:F), and [a continuous linear map from the domain to the codomain](hyp:A), [the map's kernel has an orthogonal projection](goal). [This follows because the kernel is closed and hence complete](step:1). -/
+/-- For [a complete real inner-product space serving as the domain](hyp:H), [a real inner-product space serving as the codomain](hyp:F), and [a continuous linear map from the domain to the codomain](hyp:A), [the map's kernel has an orthogonal projection](goal). [This follows because the kernel is closed and hence complete](step:1).
+@isnad1 id=hasortho.0h3v.s6.166564a0338a from=translated src=- shape=80139849 vocab=45af1060
+-/
 instance kerHasOrthogonalProjection (A : H →L[ℝ] F) :
     (opKer A).HasOrthogonalProjection := by
   haveI := (ContinuousLinearMap.isClosed_ker A).completeSpace_coe
@@ -73,7 +75,9 @@ of the domain vectors whose image equals the target vector and whose norm is at 
 def affineBall (A : H →L[ℝ] F) (b : F) (B : ℝ) : Set H := {h | A h = b ∧ ‖h‖ ≤ B}
 
 omit [CompleteSpace H] in
-/-- Membership in the affine-ball fiber is exactly satisfying the equation and the norm bound. -/
+/-- Membership in the affine-ball fiber is exactly satisfying the equation and the norm bound.
+@isnad1 id=iff.0h6v.s8.9c99ce9f3bcd from=translated src=- shape=29162971 vocab=7e14fb72
+-/
 @[simp] theorem mem_affineBall {A : H →L[ℝ] F} {b : F} {B : ℝ} {h : H} :
     h ∈ affineBall A b B ↔ A h = b ∧ ‖h‖ ≤ B := Iff.rfl
 
@@ -83,7 +87,9 @@ between real inner-product spaces, `b` a target value, `B` a radius, and `c` a d
 (the minimum-norm solution)](hyp:hperp), and [`h₀`'s norm is at most `B` (`h₀` fits the
 ball)](hyp:hfit). Then [the support value of `⟪c, ·⟫` over the fiber `{h : A h = b, ‖h‖ ≤ B}`
 equals `⟪c, h₀⟫ + √(B² − ‖h₀‖²)·‖P c‖`, where `P` is the orthogonal projection onto the kernel of
-`A`](goal). -/
+`A`](goal).
+@isnad1 id=eq.3h7v.s10.82b81221dba0 from=translated src=- shape=84cdf05c vocab=13e5d281
+-/
 theorem supportFn_affineBall_eq (A : H →L[ℝ] F) {b : F} {B : ℝ} {c h₀ : H}
     (hsol : A h₀ = b) (hperp : h₀ ∈ (opKer A)ᗮ) (hfit : ‖h₀‖ ≤ B) :
     supportFn (affineBall A b B) c
@@ -201,7 +207,9 @@ theorem supportFn_affineBall_eq (A : H →L[ℝ] F) {b : F} {B : ℝ} {c h₀ : 
 `supportFn_affineBall_eq` — [`h₀` solves `A h₀ = b`](hyp:hsol), [`h₀` is orthogonal to the kernel
 of `A`](hyp:hperp), and [`h₀`'s norm is at most `B`](hyp:hfit) — [the width of the identified set
 of `⟪c, ·⟫` over the fiber `{h : A h = b, ‖h‖ ≤ B}` equals `2·√(B² − ‖h₀‖²)·‖P c‖`, twice the
-residual radius times the norm of `c`'s projection onto the kernel of `A`](goal). -/
+residual radius times the norm of `c`'s projection onto the kernel of `A`](goal).
+@isnad1 id=eq.3h7v.s10.946687923adb from=translated src=- shape=c3fe7f6e vocab=fc127968
+-/
 theorem width_affineBall_eq (A : H →L[ℝ] F) {b : F} {B : ℝ} {c h₀ : H}
     (hsol : A h₀ = b) (hperp : h₀ ∈ (opKer A)ᗮ) (hfit : ‖h₀‖ ≤ B) :
     width (affineBall A b B) c
@@ -223,7 +231,9 @@ constraint `A h₀ = b`](hyp:hsol), [`h₀` is orthogonal to the kernel of `A` (
 solution)](hyp:hperp), and [`h₀`'s norm is strictly less than `B` (strict slack in the norm
 bound)](hyp:hfit). Then [the identified set of `⟪c, ·⟫` over the fiber `{h : A h = b, ‖h‖ ≤ B}`
 collapses to a point if and only if the orthogonal projection of `c` onto the kernel of `A`
-vanishes](goal), i.e. `c` is orthogonal to that kernel. -/
+vanishes](goal), i.e. `c` is orthogonal to that kernel.
+@isnad1 id=iff.3h7v.s10.935e20637ab1 from=translated src=- shape=a8d1307c vocab=ef4c490d
+-/
 theorem affineBall_point_identified_iff (A : H →L[ℝ] F) {b : F} {B : ℝ} {c h₀ : H}
     (hsol : A h₀ = b) (hperp : h₀ ∈ (opKer A)ᗮ) (hfit : ‖h₀‖ < B) :
     width (affineBall A b B) c = 0

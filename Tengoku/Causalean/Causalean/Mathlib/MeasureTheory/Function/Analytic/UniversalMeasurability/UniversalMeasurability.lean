@@ -26,7 +26,9 @@ namespace MeasureTheory
 variable {Ω : Type*} [TopologicalSpace Ω] [MeasurableSpace Ω]
 
 /-- A set capacitable for the outer measure of a finite measure is null-measurable for that
-measure. -/
+measure.
+@isnad1 id=nullmeas.1h3v.s5.64535dea2df1 from=translated src=- shape=c63d8583 vocab=870e376e
+-/
 theorem ChoquetCapacity.IsCapacitable.nullMeasurableSet [PolishSpace Ω]
     [BorelSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ] {s : Set Ω}
     (hs : μ.toChoquetCapacity.IsCapacitable s) : NullMeasurableSet s μ := by
@@ -71,7 +73,9 @@ theorem ChoquetCapacity.IsCapacitable.nullMeasurableSet [PolishSpace Ω]
 /-- On a Polish sample space equipped with its Borel σ-algebra, if [a set `s` is
 analytic](hyp:hs), then [`s` is null-measurable for every finite Borel measure `μ`: it becomes
 measurable after completing `μ`, so it differs from an ordinary measurable event only on a
-`μ`-null set](goal). -/
+`μ`-null set](goal).
+@isnad1 id=nullmeas.1h3v.s5.00bb4dd1338d from=translated src=- shape=48be0795 vocab=6d0354ed
+-/
 theorem AnalyticSet.nullMeasurableSet [PolishSpace Ω] [BorelSpace Ω]
     {s : Set Ω} (hs : AnalyticSet s) (μ : Measure Ω) [IsFiniteMeasure μ] :
     NullMeasurableSet s μ := by

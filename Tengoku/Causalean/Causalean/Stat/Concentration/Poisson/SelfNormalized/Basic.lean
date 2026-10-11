@@ -47,26 +47,36 @@ def universalH : ℝ := 1024
 /-- The [pre-aggregation exponential decay rate](goal) is 40. -/
 def scalarDecay : ℝ := 40
 
-/-- The [universal self-normalization multiplier is strictly positive](goal). -/
+/-- The [universal self-normalization multiplier is strictly positive](goal).
+@isnad1 id=lt.0h0v.s3.646cf6dfdcc6 from=translated src=- shape=ff3a10fc vocab=e883af1c
+-/
 theorem universalH_pos : 0 < universalH := by
   norm_num [universalH]
 
-/-- The [scalar exponential decay rate is at least forty](goal), and hence is positive. -/
+/-- The [scalar exponential decay rate is at least forty](goal), and hence is positive.
+@isnad1 id=le.0h0v.s3.805299db4549 from=translated src=- shape=ff3a10fc vocab=4afac937
+-/
 theorem forty_le_scalarDecay : (40 : ℝ) ≤ scalarDecay := by
   norm_num [scalarDecay]
 
-/-- The [absolute-deviation function for a nonnegative mean](hyp:lambda) is [measurable](goal). -/
+/-- The [absolute-deviation function for a nonnegative mean](hyp:lambda) is [measurable](goal).
+@isnad1 id=measurab.0h1v.s3.0009804e43ca from=translated src=- shape=7000f90d vocab=4b4aa61f
+-/
 @[fun_prop]
 theorem measurable_deviation (lambda : ℝ≥0) : Measurable (deviation lambda) := by
   fun_prop
 
-/-- The [self-normalizing radius at a fixed logarithmic level](hyp:L) is [measurable](goal). -/
+/-- The [self-normalizing radius at a fixed logarithmic level](hyp:L) is [measurable](goal).
+@isnad1 id=measurab.0h1v.s3.068941f4c75e from=translated src=- shape=6806422f vocab=1f3bc954
+-/
 @[fun_prop]
 theorem measurable_radius (L : ℝ) : Measurable (radius L) := by
   fun_prop
 
 /-- Given [a multiplier and logarithmic level](hyp:H,L) and [a nonnegative Poisson mean](hyp:lambda),
-the [self-normalized bad event is measurable](goal). -/
+the [self-normalized bad event is measurable](goal).
+@isnad1 id=measurab.0h3v.s3.49e95ac862b8 from=translated src=- shape=3ebfdadb vocab=642f16c1
+-/
 theorem measurableSet_badEvent (H L : ℝ) (lambda : ℝ≥0) :
     MeasurableSet (badEvent H L lambda) := by
   exact measurableSet_lt (measurable_const.mul (measurable_radius L))
@@ -86,7 +96,9 @@ private theorem integrable_natCast_poisson (lambda : ℝ≥0) :
   field_simp
 
 /-- The [absolute deviation under the Poisson law with a nonnegative mean](hyp:lambda) is
-[integrable](goal). -/
+[integrable](goal).
+@isnad1 id=integrab.0h1v.s4.292eabb61a5f from=translated src=- shape=1255339d vocab=ec408f3d
+-/
 theorem integrable_deviation (lambda : ℝ≥0) :
     Integrable (deviation lambda) (poissonMeasure lambda) := by
   change Integrable (fun w : ℕ => |(w : ℝ) - (lambda : ℝ)|) _
@@ -94,7 +106,9 @@ theorem integrable_deviation (lambda : ℝ≥0) :
     ((integrable_natCast_poisson lambda).sub (integrable_const _)).norm
 
 /-- Under [a Poisson law with a nonnegative mean](hyp:lambda), the [self-normalizing radius at a
-nonnegative logarithmic level](hyp:L,hL) is [integrable](goal). -/
+nonnegative logarithmic level](hyp:L,hL) is [integrable](goal).
+@isnad1 id=integrab.1h2v.s5.f7dd198dac3c from=translated src=- shape=3bc07316 vocab=2288fbac
+-/
 theorem integrable_radius (lambda : ℝ≥0) (L : ℝ) (hL : 0 ≤ L) :
     Integrable (radius L) (poissonMeasure lambda) := by
   have hlin : Integrable (fun w : ℕ => (w : ℝ) * L) (poissonMeasure lambda) :=
@@ -114,7 +128,9 @@ theorem integrable_radius (lambda : ℝ≥0) (L : ℝ) (hL : 0 ≤ L) :
   · linarith
   · exact add_nonneg (Real.sqrt_nonneg _) hL
 
-/-- Under a zero-mean Poisson law, [the count is almost surely zero](goal). -/
+/-- Under a zero-mean Poisson law, [the count is almost surely zero](goal).
+@isnad1 id=eventual.0h0v.s5.485a3ce4c1f7 from=translated src=- shape=f5235c70 vocab=4ea1bf60
+-/
 theorem poissonMeasure_zero_ae :
     (fun w : ℕ => w) =ᵐ[poissonMeasure 0] 0 := by
   rw [Filter.EventuallyEq, ae_iff]

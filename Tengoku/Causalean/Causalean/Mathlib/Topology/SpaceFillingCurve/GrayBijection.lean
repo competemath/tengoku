@@ -12,7 +12,9 @@ public section
 
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
-/-- Given [a cube dimension](hyp:d), [the reflected Gray-code map visits every binary cube vertex exactly once](goal). -/
+/-- Given [a cube dimension](hyp:d), [the reflected Gray-code map visits every binary cube vertex exactly once](goal).
+@isnad1 id=bijectiv.0h1v.s6.ad913010c89f from=translated src=- shape=a1090671 vocab=32c1dd9e
+-/
 theorem grayBits_bijective (d : ℕ) :
     Function.Bijective
       (fun k : Fin (2 ^ d) => fun i : Fin d => grayBit k.val i.val) := by

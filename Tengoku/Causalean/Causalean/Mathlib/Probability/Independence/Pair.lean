@@ -28,7 +28,9 @@ variable {J Ω Ω' A B : Type*}
 /-- Given [an indexed collection of probability laws on the first value space](hyp:μj) and
 [an indexed collection of probability laws on the second value space](hyp:νj), [pairing the
 corresponding coordinates sends the product of their array laws to the array law with
-coordinatewise product factors](goal). -/
+coordinatewise product factors](goal).
+@isnad1 id=eq.0h5v.s7.4e140dcfd2c5 from=translated src=- shape=bdd31fc9 vocab=b3093302
+-/
 theorem map_pair_infinitePi_prod
     (μj : J → Measure A) (νj : J → Measure B)
     [∀ j, IsProbabilityMeasure (μj j)]
@@ -76,7 +78,9 @@ theorem map_pair_infinitePi_prod
 /-- Given [measurable first-coordinate observations](hyp:mX), [measurable second-coordinate
 observations](hyp:mY), [independence of the first indexed family](hyp:hX), and [independence
 of the second indexed family](hyp:hY), [coordinatewise pairs are an independent indexed family
-under the product law](goal). -/
+under the product law](goal).
+@isnad1 id=iindepfu.4h9v.s7.10fb84b182fb from=translated src=- shape=c8dbde26 vocab=e9e684d7
+-/
 theorem iIndepFun_pair_prod
     (mX : ∀ j, Measurable (X j)) (mY : ∀ j, Measurable (Y j))
     (hX : iIndepFun X μ) (hY : iIndepFun Y ν) :

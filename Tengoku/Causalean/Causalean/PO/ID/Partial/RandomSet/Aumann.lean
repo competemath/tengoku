@@ -44,14 +44,18 @@ private lemma inner_one_left (y : ℝ) : ⟪(1 : ℝ), y⟫ = y := by
 private lemma inner_neg_one_left (y : ℝ) : ⟪(-1 : ℝ), y⟫ = -y := by
   rw [show (-1 : ℝ) = -(1 : ℝ) from rfl, inner_neg_left, inner_one_left]
 
-/-- Support function of a real interval at `+1`: the upper endpoint. -/
+/-- Support function of a real interval at `+1`: the upper endpoint.
+@isnad1 id=eq.1h2v.s4.da844b8e784e from=translated src=- shape=e875dccf vocab=5d485ec1
+-/
 theorem supportFn_Icc_one {a b : ℝ} (hab : a ≤ b) :
     supportFn (Set.Icc a b) (1 : ℝ) = b := by
   rw [supportFn_eq_iSup_image]
   simp only [inner_one_left, Set.image_id']
   exact csSup_Icc hab
 
-/-- Support function of a real interval at `−1`: the negated lower endpoint. -/
+/-- Support function of a real interval at `−1`: the negated lower endpoint.
+@isnad1 id=eq.1h2v.s5.826ed1c98520 from=translated src=- shape=3715cf68 vocab=0814e606
+-/
 theorem supportFn_Icc_neg_one {a b : ℝ} (hab : a ≤ b) :
     supportFn (Set.Icc a b) (-1 : ℝ) = -a := by
   rw [supportFn_eq_iSup_image]
@@ -63,7 +67,9 @@ theorem supportFn_Icc_neg_one {a b : ℝ} (hab : a ≤ b) :
 `a ≤ b` and `c ≤ d` forming [two well-ordered closed intervals](hyp:hab,hcd), [the
 Hausdorff distance between the intervals `[a,b]` and `[c,d]` equals the largest, over
 the two unit directions `+1` and `−1`, of the absolute difference between their
-support functions in that direction](goal). -/
+support functions in that direction](goal).
+@isnad1 id=eq.2h4v.s7.cee911f8f311 from=translated src=- shape=8a3ec8ee vocab=7a4188ed
+-/
 theorem hausdorffDist_Icc_eq_supportFn {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
     hausdorffDist
         (Set.Icc a b) (Set.Icc c d)
@@ -79,7 +85,9 @@ endpoint functions `L`, `U` of an interval-valued random set](hyp:hL,hU) that ar
 support function of the everywhere-selection expectation of `[L, U]` in direction
 `+1` equals the expected support function of the realized interval in that
 direction](goal):
-`s(+1, E[F]) = E[s(+1, F)]`. -/
+`s(+1, E[F]) = E[s(+1, F)]`.
+@isnad1 id=eq.5h4v.s7.2ec716ee6c4a from=translated src=- shape=87ce8c29 vocab=42ed4d27
+-/
 theorem artstein_supportFn_one (hL : Measurable L) (hU : Measurable U)
     (hLint : Integrable L μ) (hUint : Integrable U μ) (hLU : ∀ ω, L ω ≤ U ω) :
     supportFn (selectionExpectation L U μ) (1 : ℝ)
@@ -95,7 +103,9 @@ endpoint functions `L`, `U` of an interval-valued random set](hyp:hL,hU) that ar
 support function of the everywhere-selection expectation of `[L, U]` in direction
 `−1` equals the expected support function of the realized interval in that
 direction](goal):
-`s(−1, E[F]) = E[s(−1, F)]`. -/
+`s(−1, E[F]) = E[s(−1, F)]`.
+@isnad1 id=eq.5h4v.s7.6063d388a61c from=translated src=- shape=d998dfda vocab=5d041ac8
+-/
 theorem artstein_supportFn_neg_one (hL : Measurable L) (hU : Measurable U)
     (hLint : Integrable L μ) (hUint : Integrable U μ) (hLU : ∀ ω, L ω ≤ U ω) :
     supportFn (selectionExpectation L U μ) (-1 : ℝ)

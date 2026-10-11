@@ -21,7 +21,9 @@ open Set
 namespace Causalean.Mathlib.Optimization.Affine.SignCell
 
 /-- Given [a nonempty strict cell](hyp:hΓ) and [a continuous real objective](hyp:hφ), [the
-closures of its strict-cell and weak-cell image sets are equal](goal). -/
+closures of its strict-cell and weak-cell image sets are equal](goal).
+@isnad1 id=eq.2h3v.s6.53ab9b55519f from=translated src=- shape=06de4f30 vocab=66285966
+-/
 theorem closure_image_strictCell_eq_closure_image_weakCell {n : ℕ}
     {Γ : AffineSystem n} {φ : (Fin n → ℝ) → ℝ}
     (hΓ : (strictCell Γ).Nonempty) (hφ : Continuous φ) :
@@ -29,7 +31,9 @@ theorem closure_image_strictCell_eq_closure_image_weakCell {n : ℕ}
   rw [← closure_strictCell_eq_weakCell hΓ, closure_image_closure hφ]
 
 /-- Given [a nonempty strict cell](hyp:hΓ), [a continuous real objective](hyp:hφ), and [a
-lower bound for its strict-cell image](hyp:hBdd), [the weak-cell image is bounded below](goal). -/
+lower bound for its strict-cell image](hyp:hBdd), [the weak-cell image is bounded below](goal).
+@isnad1 id=bddbelow.3h3v.s6.c5116d879e4a from=translated src=- shape=84977e11 vocab=9d355d29
+-/
 theorem bddBelow_image_weakCell_of_strictCell {n : ℕ}
     {Γ : AffineSystem n} {φ : (Fin n → ℝ) → ℝ}
     (hΓ : (strictCell Γ).Nonempty) (hφ : Continuous φ)
@@ -39,7 +43,9 @@ theorem bddBelow_image_weakCell_of_strictCell {n : ℕ}
   exact hBdd
 
 /-- Given [a nonempty strict cell](hyp:hΓ), [a continuous real objective](hyp:hφ), and [an
-upper bound for its strict-cell image](hyp:hBdd), [the weak-cell image is bounded above](goal). -/
+upper bound for its strict-cell image](hyp:hBdd), [the weak-cell image is bounded above](goal).
+@isnad1 id=bddabove.3h3v.s6.25a9376caf48 from=translated src=- shape=84977e11 vocab=0a2ffb0c
+-/
 theorem bddAbove_image_weakCell_of_strictCell {n : ℕ}
     {Γ : AffineSystem n} {φ : (Fin n → ℝ) → ℝ}
     (hΓ : (strictCell Γ).Nonempty) (hφ : Continuous φ)
@@ -50,7 +56,9 @@ theorem bddAbove_image_weakCell_of_strictCell {n : ℕ}
 
 /-- Given [a nonempty strict cell](hyp:hΓ), [a continuous real objective](hyp:hφ), and [a
 lower bound for its strict-cell image](hyp:hBdd), [the strict and weak image sets have the
-same infimum](goal). -/
+same infimum](goal).
+@isnad1 id=eq.3h3v.s6.d589fabbb6d9 from=translated src=- shape=133998f2 vocab=70efb5f8
+-/
 theorem sInf_image_strictCell_eq_weakCell {n : ℕ}
     {Γ : AffineSystem n} {φ : (Fin n → ℝ) → ℝ}
     (hΓ : (strictCell Γ).Nonempty) (hφ : Continuous φ)
@@ -67,7 +75,9 @@ theorem sInf_image_strictCell_eq_weakCell {n : ℕ}
 
 /-- Given [a nonempty strict cell](hyp:hΓ), [a continuous real objective](hyp:hφ), and [an
 upper bound for its strict-cell image](hyp:hBdd), [the strict and weak image sets have the
-same supremum](goal). -/
+same supremum](goal).
+@isnad1 id=eq.3h3v.s6.2f925e1b77ab from=translated src=- shape=133998f2 vocab=7acc1837
+-/
 theorem sSup_image_strictCell_eq_weakCell {n : ℕ}
     {Γ : AffineSystem n} {φ : (Fin n → ℝ) → ℝ}
     (hΓ : (strictCell Γ).Nonempty) (hφ : Continuous φ)
@@ -84,7 +94,9 @@ theorem sSup_image_strictCell_eq_weakCell {n : ℕ}
 
 /-- Given [an affine objective](hyp:f), [a nonempty strict cell](hyp:hΓ), and [a lower bound
 for the strict-cell objective image](hyp:hBdd), [the affine objective has the same infimum
-on the strict cell and weak relaxation](goal). -/
+on the strict cell and weak relaxation](goal).
+@isnad1 id=eq.2h3v.s6.4dc674baa0b1 from=translated src=- shape=906a2650 vocab=6f2ab05b
+-/
 theorem sInf_affineEval_strictCell_eq_weakCell {n : ℕ}
     {Γ : AffineSystem n} (f : AffineFn n) (hΓ : (strictCell Γ).Nonempty)
     (hBdd : BddBelow (f.eval '' strictCell Γ)) :
@@ -93,7 +105,9 @@ theorem sInf_affineEval_strictCell_eq_weakCell {n : ℕ}
 
 /-- Given [an affine objective](hyp:f), [a nonempty strict cell](hyp:hΓ), and [an upper bound
 for the strict-cell objective image](hyp:hBdd), [the affine objective has the same supremum
-on the strict cell and weak relaxation](goal). -/
+on the strict cell and weak relaxation](goal).
+@isnad1 id=eq.2h3v.s6.2cfb89ee0826 from=translated src=- shape=906a2650 vocab=a959a8e7
+-/
 theorem sSup_affineEval_strictCell_eq_weakCell {n : ℕ}
     {Γ : AffineSystem n} (f : AffineFn n) (hΓ : (strictCell Γ).Nonempty)
     (hBdd : BddAbove (f.eval '' strictCell Γ)) :

@@ -32,7 +32,9 @@ noncomputable def affineInversionSet (region : Set ℝ) (A B r : ℝ) : Set ℝ 
 /-- Given [a nonnegative affine slope](hyp:hB), [a nonnegative radius](hyp:hr), and
 [an intercept whose absolute value is at most the slope plus the radius](hyp:hA),
 [there is a parameter in the interval from minus one to one whose affine discrepancy is at
-most the radius](goal). -/
+most the radius](goal).
+@isnad1 id=ex.3h3v.s6.c7cda9caab36 from=translated src=- shape=1dadea32 vocab=5a5914f2
+-/
 theorem affineInterval_witness_of_nonneg_slope (A B r : ℝ)
     (hB : 0 ≤ B) (hr : 0 ≤ r) (hA : |A| ≤ B + r) :
     ∃ theta ∈ Set.Icc (-1 : ℝ) 1, |A - theta * B| ≤ r := by
@@ -58,7 +60,9 @@ theorem affineInterval_witness_of_nonneg_slope (A B r : ℝ)
 
 /-- For [an affine intercept, slope, and radius](hyp:A,B,r), [the affine-inversion set over the
 interval from minus one to one is nonempty exactly when the radius is nonnegative and the
-intercept's absolute value is at most the slope's absolute value plus the radius](goal). -/
+intercept's absolute value is at most the slope's absolute value plus the radius](goal).
+@isnad1 id=iff.0h3v.s5.f07487bcae53 from=translated src=- shape=c6f2f3d3 vocab=10002fa6
+-/
 theorem affineInterval_nonempty_iff (A B r : ℝ) :
     (affineInversionSet (Set.Icc (-1 : ℝ) 1) A B r).Nonempty ↔
       0 ≤ r ∧ |A| ≤ |B| + r := by
@@ -83,7 +87,9 @@ theorem affineInterval_nonempty_iff (A B r : ℝ) :
       simpa [abs_of_neg (lt_of_not_ge hB)] using hdist
 
 /-- Affine inversion has restricted volume at most the parameter-region volume
-and at most twice the radius divided by the nonzero slope. -/
+and at most twice the radius divided by the nonzero slope.
+@isnad1 id=le.3h4v.s6.b29b485ff0e9 from=translated src=- shape=ea1f8070 vocab=0ca2306b
+-/
 theorem affineInversionSet_restrictedVolume_le
     (region : Set ℝ) (hregionFinite : volume region ≠ ⊤)
     (A B r : ℝ) (hB : B ≠ 0) (hr : 0 ≤ r) :
@@ -118,7 +124,9 @@ theorem affineInversionSet_restrictedVolume_le
         field_simp
         ring
 
-/-- Affine inversion is always bounded by the volume of its parameter region. -/
+/-- Affine inversion is always bounded by the volume of its parameter region.
+@isnad1 id=le.1h4v.s6.62901929cc59 from=translated src=- shape=e926e73e vocab=21b5a55d
+-/
 theorem affineInversionSet_restrictedVolume_le_region
     (region : Set ℝ) (hregionFinite : volume region ≠ ⊤) (A B r : ℝ) :
     restrictedSetVolume region (affineInversionSet region A B r) ≤
@@ -144,7 +152,9 @@ private theorem integrable_sqrt_of_nonneg
 
 /-- Expected restricted volume for affine inversion is controlled by the mean
 radius and by the probability that the random slope is less than half its
-positive target value. -/
+positive target value.
+@isnad1 id=le.8h11v.s8.2e670122eb7a from=translated src=- shape=91e3e013 vocab=11a9f3c3
+-/
 theorem expectedRestrictedVolume_affineInversion_le
     {Ω : Type*} [MeasurableSpace Ω]
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -293,7 +303,9 @@ private theorem expectedRestrictedVolume_affineInversion_le_region
     exact ENNReal.toReal_nonneg
 
 /-- An inverse-root plus inverse-strength bound, capped by a nonnegative region
-volume, is bounded by the compact inverse-square-root frontier form. -/
+volume, is bounded by the compact inverse-square-root frontier form.
+@isnad1 id=le.2h4v.s7.a2d65bd43fb5 from=translated src=- shape=e998e06b vocab=487064ac
+-/
 theorem inverseStrength_to_frontier
     {cap A B t : ℝ} (hB : 0 ≤ B) (ht : 0 < t) :
     min cap (A / Real.sqrt t + B / t) ≤
@@ -359,7 +371,9 @@ Lebesgue measure](hyp:hregionFinite). Suppose [a nonnegative radius scale `L`](h
 contribution `(vol region) · q` controlled by `Y / t`](hyp:hbadContribution), where
 [`t` is defined as `n · mu² / kappa`](hyp:ht). Then [the `Q`-expected restricted volume of the
 affine-inversion set built from `A`, `B` and the shrinking radius `L · √(K/n)` is at most
-`max(vol region, 4·√inflation·L + Y) · min(1, t^(-1/2))`](goal). -/
+`max(vol region, 4·√inflation·L + Y) · min(1, t^(-1/2))`](goal).
+@isnad1 id=le.14h15v.s9.f2d56abff731 from=translated src=- shape=66cf404e vocab=f8d6ba73
+-/
 theorem expectedRestrictedVolume_affineInversion_frontier_le
     {Ω : Type*} [MeasurableSpace Ω]
     (Q : Measure Ω) [IsProbabilityMeasure Q]

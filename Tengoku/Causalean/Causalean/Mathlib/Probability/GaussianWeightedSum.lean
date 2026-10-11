@@ -30,7 +30,9 @@ The proof peels one summand at a time over a `Finset`: each `a i * ξ i` is
 Gaussian with variance `(a i)²` (`gaussianReal_map_const_mul`), and the partial
 sum is independent of the new term
 (`iIndepFun.indepFun_finset_sum_of_notMem`), so their laws convolve to a
-Gaussian with variances adding (`gaussianReal_add_gaussianReal_of_indepFun`). -/
+Gaussian with variances adding (`gaussianReal_add_gaussianReal_of_indepFun`).
+@isnad1 id=eq.3h5v.s7.6eff7d0a298b from=translated src=- shape=ad5249b3 vocab=82736fc8
+-/
 theorem map_weighted_sum_gaussian {n : ℕ} (ξ : Fin n → Ω → ℝ)
     (hindep : iIndepFun ξ μ) (hmeas : ∀ i, Measurable (ξ i))
     (hlaw : ∀ i, μ.map (ξ i) = gaussianReal 0 1) (a : Fin n → ℝ) :

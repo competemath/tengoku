@@ -86,7 +86,9 @@ private lemma herbst_calculus
 
 /-- Under [exponential integrability at every real tilt](hyp:hExp) and [the entropy bound at every
 positive tilt](hyp:hEnt), the centered cumulant-generating function at [a positive
-tilt](hyp:hlam) is at most `lam ^ 2 * v / 2` as [claimed](goal). -/
+tilt](hyp:hlam) is at most `lam ^ 2 * v / 2` as [claimed](goal).
+@isnad1 id=le.3h5v.s8.a66f0d011521 from=translated src=- shape=21d8a637 vocab=24e2ac0a
+-/
 theorem herbst_cgf_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Z : Ω → ℝ} {v : ℝ}
@@ -133,7 +135,9 @@ theorem herbst_cgf_le
 
 /-- Under [exponential integrability at every real tilt](hyp:hExp) and [the entropy bound at every
 positive tilt](hyp:hEnt), the moment-generating function of the centered variable at [a positive
-tilt](hyp:hlam) satisfies the [sub-Gaussian bound](goal). -/
+tilt](hyp:hlam) satisfies the [sub-Gaussian bound](goal).
+@isnad1 id=le.3h5v.s8.adb2563d37bb from=translated src=- shape=a9b26aa1 vocab=c3b12a3f
+-/
 theorem herbst_mgf_centered_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Z : Ω → ℝ} {v : ℝ}
@@ -152,7 +156,9 @@ theorem herbst_mgf_centered_le
 
 /-- Under [exponential integrability at every real tilt](hyp:hExp), [the entropy bound at every
 positive tilt](hyp:hEnt), and [a positive variance proxy](hyp:hv), every [positive
-deviation](hyp:ht) of the centered variable obeys the [sub-Gaussian upper-tail bound](goal). -/
+deviation](hyp:ht) of the centered variable obeys the [sub-Gaussian upper-tail bound](goal).
+@isnad1 id=le.4h5v.s8.4e47a7b85fa1 from=translated src=- shape=79b7a0f0 vocab=d2b83c99
+-/
 theorem herbst_upper_tail
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Z : Ω → ℝ} {v : ℝ}

@@ -62,20 +62,26 @@ def BinaryHistory (p : ℕ)
   History 0 p D i t
 
 /-- [Lag `0` of the finite-memory treatment history equals the unit's
-contemporaneous treatment value](goal). -/
+contemporaneous treatment value](goal).
+@isnad1 id=eq.0h8v.s6.1831ec81d81d from=translated src=- shape=b2bf88bf vocab=f1d2ed68
+-/
 @[simp] lemma History_zero (a0 : A) (p : ℕ)
     (D : TreatmentPath I (Fin T₀) A) (i : I) (t : Fin T₀) :
     History a0 p D i t 0 = D i t := by
   unfold History
   simp
 
-/-- Lag `0` of the default-boundary history is the contemporaneous treatment. -/
+/-- Lag `0` of the default-boundary history is the contemporaneous treatment.
+@isnad1 id=eq.0h7v.s6.ea4a971bf5a2 from=translated src=- shape=1011acbb vocab=cc80fd14
+-/
 @[simp] lemma HistoryDefault_zero [Inhabited A] (p : ℕ)
     (D : TreatmentPath I (Fin T₀) A) (i : I) (t : Fin T₀) :
     HistoryDefault p D i t 0 = D i t := by
   simp [HistoryDefault]
 
-/-- Lag `0` of the binary zero-baseline history is the contemporaneous treatment. -/
+/-- Lag `0` of the binary zero-baseline history is the contemporaneous treatment.
+@isnad1 id=eq.0h6v.s6.250d291ff6d1 from=translated src=- shape=c114cede vocab=b4b45a9e
+-/
 @[simp] lemma BinaryHistory_zero (p : ℕ)
     (D : TreatmentPath I (Fin T₀) (Fin 2)) (i : I) (t : Fin T₀) :
     BinaryHistory p D i t 0 = D i t := by

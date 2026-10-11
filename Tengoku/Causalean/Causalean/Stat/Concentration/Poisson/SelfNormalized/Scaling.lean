@@ -88,7 +88,9 @@ measurable](hyp:hWmeas), [each count is Poisson with mean exposure times intensi
 [the counts are mutually independent](hyp:hWindep), then under [a fixed coordinate-cardinality
 cap](hyp:r,hcard), for [moment order one, two, or four](hyp:t,ht) and [a logarithmic level of at
 least one](hyp:L,hL), [the normalized aggregate score moment on the union of bad coordinates
-decays exponentially at the local scale determined by total intensity and exposure](goal). -/
+decays exponentially at the local scale determined by total intensity and exposure](goal).
+@isnad1 id=le.7h9v.s8.c5f7437cf0a8 from=translated src=- shape=f5aa21e9 vocab=8aa98df1
+-/
 -- Proof route after `Product` is closed: for `m > 0`, prove pointwise
 -- `normalizedDeviation m q w = deviation (m*q) w / m` and
 -- `normalizedRadius m L w = radius L w / m` (use `Real.sqrt_div` and
@@ -211,7 +213,9 @@ exposure](hyp:m,hm). If [the counts are measurable](hyp:hWmeas), [each count is 
 exposure times intensity](hyp:hWlaw), and [the counts are mutually independent](hyp:hWindep), then
 for [moment order one, two, or four](hyp:t,ht) and [a logarithmic level of at least
 one](hyp:L,hL), [the normalized four-coordinate bad-event moment has the corresponding
-exponentially decaying local-scale bound](goal). -/
+exponentially decaying local-scale bound](goal).
+@isnad1 id=le.6h7v.s8.6e98b46a8bd4 from=translated src=- shape=8f1ba17a vocab=6317842a
+-/
 -- Apply the general normalized theorem with `r = 4`.
 theorem independent_poisson_normalized_badAny_moment_four
     {Ω : Type*} [MeasurableSpace Ω]

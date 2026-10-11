@@ -56,7 +56,9 @@ noncomputable def jointSurv (π : Measure (ℝ × ℝ)) (s t : ℝ) : ℝ :=
 
 /-- The first marginal survival function of a coupling is `1 - F`, where
 `F = cdf μ`. Proof: `Prod.fst ⁻¹' Ioi s` is the complement of
-`Prod.fst ⁻¹' Iic s`, whose `π`-mass is `μ (Iic s) = F s` by `h.map_fst`. -/
+`Prod.fst ⁻¹' Iic s`, whose `π`-mass is `μ (Iic s) = F s` by `h.map_fst`.
+@isnad1 id=eq.1h4v.s5.1afedcdfe8ae from=translated src=- shape=40d2214b vocab=c3abf217
+-/
 lemma survFst_eq (h : IsCoupling π μ ν) (s : ℝ) : survFst π s = 1 - cdf μ s := by
   letI : IsProbabilityMeasure π := h.isProbabilityMeasure
   haveI : IsProbabilityMeasure μ := by
@@ -88,7 +90,9 @@ lemma survFst_eq (h : IsCoupling π μ ν) (s : ℝ) : survFst π s = 1 - cdf μ
   linarith
 
 /-- The second marginal survival function of a coupling is `1 - G`, where
-`G = cdf ν`. -/
+`G = cdf ν`.
+@isnad1 id=eq.1h4v.s5.75277732d281 from=translated src=- shape=0d088f5a vocab=1c4de336
+-/
 lemma survSnd_eq (h : IsCoupling π μ ν) (t : ℝ) : survSnd π t = 1 - cdf ν t := by
   letI : IsProbabilityMeasure π := h.isProbabilityMeasure
   haveI : IsProbabilityMeasure μ := by
@@ -123,7 +127,9 @@ lemma survSnd_eq (h : IsCoupling π μ ν) (t : ℝ) : survSnd π t = 1 - cdf ν
 `S s t = 1 - F s - G t + H_π s t`. Proof: `Ioi s ×ˢ Ioi t` is the complement of
 `(Prod.fst ⁻¹' Iic s) ∪ (Prod.snd ⁻¹' Iic t)`, and the mass of that union is
 `F s + G t - H_π s t` by `measureReal_union_add_inter`, the intersection being
-the lower-left quadrant `Iic s ×ˢ Iic t`. -/
+the lower-left quadrant `Iic s ×ˢ Iic t`.
+@isnad1 id=eq.1h5v.s6.bc5bcdb0efa0 from=translated src=- shape=a30c1cd2 vocab=414ed90b
+-/
 lemma jointSurv_eq (h : IsCoupling π μ ν) (s t : ℝ) :
     jointSurv π s t = 1 - cdf μ s - cdf ν t + jointCdf π s t := by
   letI : IsProbabilityMeasure π := h.isProbabilityMeasure
@@ -188,7 +194,9 @@ product-of-marginals cumulative distribution functions](goal).
 
 This is pure algebra from `survFst_eq`, `survSnd_eq` and `jointSurv_eq`:
 `(1 - F - G + H) - (1 - F)(1 - G) = H - F·G`. It is the reason the Fubini
-computation, which produces survival functions, lands on the Fréchet gap. -/
+computation, which produces survival functions, lands on the Fréchet gap.
+@isnad1 id=eq.1h5v.s6.2a642bcd15df from=translated src=- shape=394839e4 vocab=6da8c168
+-/
 lemma surv_gap_eq (h : IsCoupling π μ ν) (s t : ℝ) :
     jointSurv π s t - survFst π s * survSnd π t
       = jointCdf π s t - cdf μ s * cdf ν t := by

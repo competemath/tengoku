@@ -60,33 +60,47 @@ section MeasurableCoordinates
 variable {X : Type uX} {Y : Type uY} {V : Type uV} {Z : Type uZ}
 variable [MeasurableSpace X] [MeasurableSpace Y] [MeasurableSpace V] [MeasurableSpace Z]
 
-/-- [The first-coordinate map of a four-block observation is measurable](goal). -/
+/-- [The first-coordinate map of a four-block observation is measurable](goal).
+@isnad1 id=measurab.0h4v.s5.3515003ac0cd from=translated src=- shape=98c3035e vocab=95c19fee
+-/
 @[fun_prop] theorem measurable_xCoord : Measurable (@xCoord X Y V Z) := by
   exact measurable_fst
 
-/-- The `Y` coordinate map on the four-block product is measurable. -/
+/-- The `Y` coordinate map on the four-block product is measurable.
+@isnad1 id=measurab.0h4v.s5.f62cb186e750 from=translated src=- shape=6bf355dc vocab=61a0f734
+-/
 @[fun_prop] theorem measurable_yCoord : Measurable (@yCoord X Y V Z) := by
   exact measurable_fst.comp measurable_snd
 
-/-- The `V` coordinate map on the four-block product is measurable. -/
+/-- The `V` coordinate map on the four-block product is measurable.
+@isnad1 id=measurab.0h4v.s5.8e73b0c53b81 from=translated src=- shape=ce52ef86 vocab=9e32fc75
+-/
 @[fun_prop] theorem measurable_vCoord : Measurable (@vCoord X Y V Z) := by
   exact measurable_fst.comp (measurable_snd.comp measurable_snd)
 
-/-- The `Z` coordinate map on the four-block product is measurable. -/
+/-- The `Z` coordinate map on the four-block product is measurable.
+@isnad1 id=measurab.0h4v.s5.22a253247a5e from=translated src=- shape=2f251bff vocab=666be701
+-/
 @[fun_prop] theorem measurable_zCoord : Measurable (@zCoord X Y V Z) := by
   exact measurable_snd.comp (measurable_snd.comp measurable_snd)
 
-/-- The conditioning-pair map `(Z,V)` is measurable. -/
+/-- The conditioning-pair map `(Z,V)` is measurable.
+@isnad1 id=measurab.0h4v.s5.a66f1553b62e from=translated src=- shape=02a2330f vocab=f1680b00
+-/
 @[fun_prop] theorem measurable_zvCoord : Measurable (@zvCoord X Y V Z) := by
   change Measurable (fun q : X × (Y × (V × Z)) => (q.2.2.2, q.2.2.1))
   fun_prop
 
-/-- The conditioning-pair map `(Z,Y)` is measurable. -/
+/-- The conditioning-pair map `(Z,Y)` is measurable.
+@isnad1 id=measurab.0h4v.s5.309fd37ca0cf from=translated src=- shape=5f2dacba vocab=febba48a
+-/
 @[fun_prop] theorem measurable_zyCoord : Measurable (@zyCoord X Y V Z) := by
   change Measurable (fun q : X × (Y × (V × Z)) => (q.2.2.2, q.2.1))
   fun_prop
 
-/-- The combined-block map `(Y,V)` is measurable. -/
+/-- The combined-block map `(Y,V)` is measurable.
+@isnad1 id=measurab.0h4v.s5.a0094e51586d from=translated src=- shape=c4b3b03e vocab=c9b3de6d
+-/
 @[fun_prop] theorem measurable_yvCoord : Measurable (@yvCoord X Y V Z) := by
   change Measurable (fun q : X × (Y × (V × Z)) => (q.2.1, q.2.2.1))
   fun_prop
@@ -146,39 +160,53 @@ section FourBlockSubsets
 variable {M : Type uM} [DecidableEq M]
 variable (I J K L : Finset M)
 
-/-- The first block is contained in the union of all four blocks. -/
+/-- The first block is contained in the union of all four blocks.
+@isnad1 id=le.0h5v.s5.de460fe4fdd3 from=translated src=- shape=3ea99601 vocab=5d33de52
+-/
 theorem first_subset_fourBlock : I ⊆ fourBlockIndices I J K L := by
   simp [fourBlockIndices]
 
-/-- The second block is contained in the union of all four blocks. -/
+/-- The second block is contained in the union of all four blocks.
+@isnad1 id=le.0h5v.s5.39bbbd5e4fb8 from=translated src=- shape=ffa6bf14 vocab=5d33de52
+-/
 theorem second_subset_fourBlock : J ⊆ fourBlockIndices I J K L := by
   intro i hi
   simp [fourBlockIndices, hi]
 
-/-- The third block is contained in the union of all four blocks. -/
+/-- The third block is contained in the union of all four blocks.
+@isnad1 id=le.0h5v.s5.1c82f4558810 from=translated src=- shape=b71f49dd vocab=5d33de52
+-/
 theorem third_subset_fourBlock : K ⊆ fourBlockIndices I J K L := by
   intro i hi
   simp [fourBlockIndices, hi]
 
-/-- The fourth block is contained in the union of all four blocks. -/
+/-- The fourth block is contained in the union of all four blocks.
+@isnad1 id=le.0h5v.s5.19c67de917f2 from=translated src=- shape=27d118b8 vocab=5d33de52
+-/
 theorem fourth_subset_fourBlock : L ⊆ fourBlockIndices I J K L := by
   intro i hi
   simp [fourBlockIndices, hi]
 
 /-- [Four finite coordinate blocks](hyp:I,J,K,L) determine [a union of the second and third
-blocks contained in their full union](goal). -/
+blocks contained in their full union](goal).
+@isnad1 id=le.0h5v.s5.851db8328145 from=translated src=- shape=16bb0d3e vocab=62ad50dd
+-/
 theorem secondThird_subset_fourBlock : J ∪ K ⊆ fourBlockIndices I J K L := by
   intro i hi
   simp only [fourBlockIndices, Finset.mem_union] at hi ⊢
   aesop
 
-/-- The union of the fourth and third blocks is contained in the union of all four blocks. -/
+/-- The union of the fourth and third blocks is contained in the union of all four blocks.
+@isnad1 id=le.0h5v.s5.0914ecea53ea from=translated src=- shape=a57e2199 vocab=62ad50dd
+-/
 theorem fourthThird_subset_fourBlock : L ∪ K ⊆ fourBlockIndices I J K L := by
   intro i hi
   simp only [fourBlockIndices, Finset.mem_union] at hi ⊢
   aesop
 
-/-- The union of the fourth and second blocks is contained in the union of all four blocks. -/
+/-- The union of the fourth and second blocks is contained in the union of all four blocks.
+@isnad1 id=le.0h5v.s5.88db52d0a2a7 from=translated src=- shape=dafc0392 vocab=62ad50dd
+-/
 theorem fourthSecond_subset_fourBlock : L ∪ J ⊆ fourBlockIndices I J K L := by
   intro i hi
   simp only [fourBlockIndices, Finset.mem_union] at hi ⊢

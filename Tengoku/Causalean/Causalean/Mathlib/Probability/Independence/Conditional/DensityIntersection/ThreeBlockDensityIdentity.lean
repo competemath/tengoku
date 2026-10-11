@@ -31,7 +31,9 @@ variable {d : ThreeBlock A B C → ℝ≥0∞}
 variable [IsFiniteMeasure ((threeBlockReference muA muB muC).withDensity d)]
 
 /-- A measurable conditional product factorization of a finite three-block density implies the
-cross-multiplied conditional-density identity. -/
+cross-multiplied conditional-density identity.
+@isnad1 id=threeblo.2h7v.s7.e52a8e969182 from=translated src=- shape=7ea706b4 vocab=b9008fd3
+-/
 theorem threeBlockDensityIdentity_of_factors (hd : Measurable d)
     (hfac : ThreeBlockFactors muA muB muC d) :
     ThreeBlockDensityIdentity muA muB muC d := by
@@ -110,7 +112,9 @@ theorem threeBlockDensityIdentity_of_factors (hd : Measurable d)
   ac_rfl
 
 /-- For a measurable finite three-block density, the cross-multiplied conditional-density
-identity yields a measurable product factorization given the third block. -/
+identity yields a measurable product factorization given the third block.
+@isnad1 id=threeblo.2h7v.s7.f2b0e1a4f31c from=translated src=- shape=7ea706b4 vocab=b9008fd3
+-/
 theorem threeBlockFactors_of_densityIdentity (hd : Measurable d)
     (hid : ThreeBlockDensityIdentity muA muB muC d) :
     ThreeBlockFactors muA muB muC d := by
@@ -207,7 +211,9 @@ theorem threeBlockFactors_of_densityIdentity (hd : Measurable d)
 
 /-- For [a measurable](hyp:hd) finite three-block density, [measurable factorization through the
 conditioning block is equivalent to the cross-multiplied identity between the joint density, its
-conditioning marginal, and its two block-with-conditioning marginals](goal). -/
+conditioning marginal, and its two block-with-conditioning marginals](goal).
+@isnad1 id=iff.1h7v.s7.3ae870557c99 from=translated src=- shape=726daa0d vocab=b9008fd3
+-/
 theorem threeBlockFactors_iff_densityIdentity (hd : Measurable d) :
     ThreeBlockFactors muA muB muC d ↔ ThreeBlockDensityIdentity muA muB muC d :=
   ⟨threeBlockDensityIdentity_of_factors muA muB muC hd,

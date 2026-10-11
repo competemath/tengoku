@@ -26,7 +26,9 @@ section ProductDensity
 variable {α : Type*} {mα : MeasurableSpace α} {β : Type*} {mβ : MeasurableSpace β}
 
 /-- **Product density factorization.** For `μ₁ ≪ ν₁` and `μ₂ ≪ ν₂`, the Radon–Nikodym
-density of the product is (a.e.) the product of the marginal densities. -/
+density of the product is (a.e.) the product of the marginal densities.
+@isnad1 id=eventual.2h8v.s7.50833e050820 from=translated src=- shape=9c6c8405 vocab=9db85171
+-/
 theorem rnDeriv_prod_eq (μ₁ ν₁ : Measure α) (μ₂ ν₂ : Measure β)
     [SigmaFinite ν₁] [SigmaFinite ν₂] [SFinite ν₂]
     [μ₁.HaveLebesgueDecomposition ν₁] [μ₂.HaveLebesgueDecomposition ν₂]
@@ -59,7 +61,9 @@ absolutely continuous with respect to the n-fold product of ν](goal), [for ever
 number of factors n](hyp:n).
 
 Proved by induction via the `piFinSuccAbove` equivalence and the binary
-`AbsolutelyContinuous.prod`. -/
+`AbsolutelyContinuous.prod`.
+@isnad1 id=absolute.1h4v.s6.74479267cf48 from=translated src=- shape=718d691c vocab=6ab380b4
+-/
 theorem pi_iid_absolutelyContinuous {Ω : Type*} [MeasurableSpace Ω]
     (μ ν : Measure Ω) [SigmaFinite μ] [SigmaFinite ν] (hac : μ ≪ ν) (n : ℕ) :
     Measure.pi (fun _ : Fin n => μ) ≪ Measure.pi (fun _ : Fin n => ν) := by

@@ -21,7 +21,9 @@ namespace Causalean.Stat
 open Complex
 
 /-- For [a nonnegative real argument](hyp:hx), [the error in the exponential
-Euler factor `exp(x) * (1 - x)` is at most `exp(x) * x² / 2`](goal). -/
+Euler factor `exp(x) * (1 - x)` is at most `exp(x) * x² / 2`](goal).
+@isnad1 id=le.1h1v.s6.e8b667131a33 from=translated src=- shape=bda78979 vocab=dc0abcdb
+-/
 theorem abs_exp_mul_one_sub_sub_one_le (x : ℝ) (hx : 0 ≤ x) :
     |Real.exp x * (1 - x) - 1| ≤ Real.exp x * x ^ 2 / 2 := by
   let f : ℝ → ℝ := fun y => 1 - y + y ^ 2 / 2 - Real.exp (-y)
@@ -57,7 +59,9 @@ theorem abs_exp_mul_one_sub_sub_one_le (x : ℝ) (hx : 0 ≤ x) :
   nlinarith
 
 /-- For [any real argument](hyp:x), [the increment of the real exponential is
-bounded by `exp(|x|) * |x|`](goal). -/
+bounded by `exp(|x|) * |x|`](goal).
+@isnad1 id=le.0h1v.s5.03810d8bc3c6 from=translated src=- shape=f2313757 vocab=53b54c29
+-/
 theorem abs_exp_sub_one_le_exp_abs_mul_abs (x : ℝ) :
     |Real.exp x - 1| ≤ Real.exp |x| * |x| := by
   have h := Complex.norm_exp_sub_sum_le_norm_mul_exp (x : ℂ) 1
@@ -70,7 +74,9 @@ theorem abs_exp_sub_one_le_exp_abs_mul_abs (x : ℝ) :
 
 /-- For [nonnegative coefficients](hyp:hc,hv) and [a complex Taylor error](hyp:r),
 [one compensated Gaussian step differs from one by at most the exponential
-weight times the Taylor error plus a quadratic Euler error](goal). -/
+weight times the Taylor error plus a quadratic Euler error](goal).
+@isnad1 id=le.2h3v.s7.b12cddd4bf5b from=translated src=- shape=b39533a5 vocab=03e6cb13
+-/
 theorem norm_exp_mul_quadraticFactor_sub_one_le
     (c v : ℝ) (r : ℂ) (hc : 0 ≤ c) (hv : 0 ≤ v) :
     ‖((Real.exp (c * v) : ℝ) : ℂ) *
@@ -100,7 +106,9 @@ theorem norm_exp_mul_quadraticFactor_sub_one_le
 /-- If [the exponential coefficient is nonnegative](hyp:hc) and [a variance value lies between
 zero and a nonnegative budget](hyp:hV0,hVK),
 then [its terminal Gaussian correction is Lipschitz in its distance from one,
-with a constant depending only on the budget](goal). -/
+with a constant depending only on the budget](goal).
+@isnad1 id=le.3h3v.s7.bde7da8d22c9 from=translated src=- shape=489fc825 vocab=e293a1b5
+-/
 theorem abs_exp_varianceCorrection_sub_one_le
     (c V K : ℝ) (hc : 0 ≤ c) (hV0 : 0 ≤ V) (hVK : V ≤ K) :
     |Real.exp (c * (V - 1)) - 1| ≤

@@ -30,7 +30,9 @@ namespace MartingaleDifferenceArray
 most one](hyp:htη), [both budgets are nonnegative](hyp:hK,hδ), [a row has predictable variance
 at most `K`](hyp:hVariance), and [conditional Lindeberg mass at most `δ`](hyp:hLindeberg), then [the sum of its
 integrated quadratic exponential remainders obeys the corresponding truncated
-Taylor bound](goal). -/
+Taylor bound](goal).
+@isnad1 id=le.6h9v.s8.fec901286fc4 from=translated src=- shape=a1f3f5c9 vocab=dacee6fd
+-/
 theorem sum_integral_norm_expQuadraticRemainder_le_of_budgets
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n : ℕ) (t η K δ : ℝ)

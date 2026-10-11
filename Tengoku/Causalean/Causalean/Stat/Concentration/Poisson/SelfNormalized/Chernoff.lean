@@ -19,7 +19,9 @@ open scoped ENNReal NNReal
 namespace Causalean.Stat.Concentration.PoissonSelfNormalized
 
 /-- Under [a Poisson law with a nonnegative mean](hyp:lambda), the exponential of its centered count
-at [a real tilt](hyp:theta) is [integrable](goal). -/
+at [a real tilt](hyp:theta) is [integrable](goal).
+@isnad1 id=integrab.0h2v.s5.4730860bb8d7 from=translated src=- shape=3cb7efa7 vocab=0efb054e
+-/
 theorem integrable_exp_centered_poisson (lambda : ℝ≥0) (theta : ℝ) :
     Integrable (fun w : ℕ => Real.exp (theta * ((w : ℝ) - (lambda : ℝ))))
       (poissonMeasure lambda) := by
@@ -44,7 +46,9 @@ theorem integrable_exp_centered_poisson (lambda : ℝ≥0) (theta : ℝ) :
 
 /-- For [a Poisson law with a nonnegative mean](hyp:lambda) and [a real tilt](hyp:theta), the
 [centered moment-generating function equals the exponential of the mean times the exponential
-remainder](goal). -/
+remainder](goal).
+@isnad1 id=eq.0h2v.s6.1444584f847e from=translated src=- shape=4c5fd252 vocab=e3defc45
+-/
 theorem integral_exp_centered_poisson (lambda : ℝ≥0) (theta : ℝ) :
     ∫ w : ℕ, Real.exp (theta * ((w : ℝ) - (lambda : ℝ))) ∂poissonMeasure lambda =
       Real.exp ((lambda : ℝ) * (Real.exp theta - 1 - theta)) := by
@@ -82,7 +86,9 @@ theorem integral_exp_centered_poisson (lambda : ℝ≥0) (theta : ℝ) :
 
 /-- For [a Poisson law with a nonnegative mean](hyp:lambda) and [a nonnegative deviation
 level](hyp:z,hz), [the probability of exceeding the upper Bernstein threshold is at most the
-exponential of minus that level](goal). -/
+exponential of minus that level](goal).
+@isnad1 id=le.1h2v.s6.61d899aab49e from=translated src=- shape=060f7e3c vocab=1ddd1562
+-/
 -- Proof strategy: split `lambda = 0`; otherwise apply
 -- `measure_ge_le_exp_mul_mgf` to the centered count at the Bennett tilt
 -- `log (1 + x / lambda)`, where
@@ -202,7 +208,9 @@ theorem poisson_upper_bernstein (lambda : ℝ≥0) {z : ℝ} (hz : 0 ≤ z) :
 
 /-- For [a Poisson law with a nonnegative mean](hyp:lambda) and [a nonnegative deviation
 level](hyp:z,hz), [the probability of exceeding the lower Gaussian threshold is at most the
-exponential of minus that level](goal). -/
+exponential of minus that level](goal).
+@isnad1 id=le.1h2v.s6.0e0ce8ca824e from=translated src=- shape=752e446b vocab=60d111b7
+-/
 -- Proof strategy: split the zero-mean and zero-threshold cases, and note that
 -- the event is empty when `sqrt (2 * lambda * z) ≥ lambda`.  Otherwise put
 -- `x = sqrt (2 * lambda * z)` and apply
@@ -363,7 +371,9 @@ theorem poisson_lower_bernstein (lambda : ℝ≥0) {z : ℝ} (hz : 0 ≤ z) :
 
 /-- For [a Poisson law with a nonnegative mean](hyp:lambda) and [a nonnegative deviation
 level](hyp:z,hz), [the probability that the absolute deviation exceeds the Bernstein threshold is
-at most twice the exponential of minus that level](goal), including when the mean is zero. -/
+at most twice the exponential of minus that level](goal), including when the mean is zero.
+@isnad1 id=le.1h2v.s6.a7f3d0afbf14 from=translated src=- shape=4d733f03 vocab=e0c9826a
+-/
 -- Proof strategy: rewrite `deviation`, split the absolute-value event into
 -- upper and lower deviations, apply `measure_union_le`, and use the preceding
 -- one-sided bounds.  The lower event with the larger displayed threshold is
@@ -425,7 +435,9 @@ theorem poisson_abs_bernstein (lambda : ℝ≥0) {z : ℝ} (hz : 0 ≤ z) :
 
 /-- For [a Poisson law with a nonnegative mean](hyp:lambda) and [a logarithmic level of at least
 one](hyp:L,hL), [the universal self-normalized bad event is contained in the Bernstein event at
-forty times that level](goal). -/
+forty times that level](goal).
+@isnad1 id=le.1h2v.s6.f30623937a68 from=translated src=- shape=e0c8212d vocab=39bb2f4b
+-/
 -- Proof strategy: contrapose and put `d = deviation lambda w`.  From
 -- `lambda ≤ w + d`, monotonicity and subadditivity of `sqrt` turn the remote
 -- Bernstein threshold into
@@ -484,7 +496,9 @@ theorem badEvent_subset_remote_bernstein (lambda : ℝ≥0) {L : ℝ} (hL : 1 �
 
 /-- For [a Poisson law with a nonnegative mean](hyp:lambda) and [a logarithmic level of at least
 one](hyp:L,hL), [the universal self-normalized bad event has probability at most twice the
-exponential of minus forty times that level](goal). -/
+exponential of minus forty times that level](goal).
+@isnad1 id=le.1h2v.s6.3f6b2b490733 from=translated src=- shape=bac9a4df vocab=548a96f0
+-/
 -- Apply `measure_mono` to `badEvent_subset_remote_bernstein`, then invoke
 -- `poisson_abs_bernstein` at `z = scalarDecay * L`; `hL` makes this level
 -- nonnegative and the threshold is definitionally the same after unfolding.
@@ -516,7 +530,9 @@ open Causalean.Stat.Concentration.PoissonSelfNormalized
 
 /-- For [a positive sample size](hyp:hn), [a Poisson count with mean one quarter
 of that size overshoots the sample size with probability at most
-`exp (-n/8)`](goal). -/
+`exp (-n/8)`](goal).
+@isnad1 id=le.1h1v.s6.903d4b486e89 from=translated src=- shape=4e832632 vocab=bc9f7c00
+-/
 theorem poisson_quarter_overflow_le_exp (n : ℕ) (hn : 0 < n) :
     (poissonMeasure ((n : ℝ≥0) / 4)).real (Set.Ioi n) ≤
       Real.exp (-(n : ℝ) / 8) := by
@@ -552,7 +568,9 @@ theorem poisson_quarter_overflow_le_exp (n : ℕ) (hn : 0 < n) :
     ENNReal.toReal_mono ENNReal.ofReal_ne_top (hmono.trans hbern)
 
 /-- For [a positive sample size](hyp:hn), [a Poisson count with mean one quarter
-of that size overshoots the sample size with probability at most `8 / n`](goal). -/
+of that size overshoots the sample size with probability at most `8 / n`](goal).
+@isnad1 id=le.1h1v.s6.9ef574597a85 from=translated src=- shape=3efe6be8 vocab=6ececaf2
+-/
 theorem poisson_quarter_overflow_le_inv (n : ℕ) (hn : 0 < n) :
     (poissonMeasure ((n : ℝ≥0) / 4)).real (Set.Ioi n) ≤
       8 / (n : ℝ) := by

@@ -19,7 +19,9 @@ open scoped ENNReal BigOperators
 namespace Causalean.Mathlib.Probability
 
 /-- Given [a probability measure](hyp:μ), [a finite collection of cells](hyp:C), [measurability
-of every cell](hyp:hC), [pairwise disjointness of distinct cells](hyp:hdisj), [coverage of the whole sample space](hyp:hcover), [an event](hyp:E), and [measurability of that event](hyp:hE), [its probability equals the finite sum of cell mass times conditional event probability](goal). -/
+of every cell](hyp:hC), [pairwise disjointness of distinct cells](hyp:hdisj), [coverage of the whole sample space](hyp:hcover), [an event](hyp:E), and [measurability of that event](hyp:hE), [its probability equals the finite sum of cell mass times conditional event probability](goal).
+@isnad1 id=eq.4h5v.s7.97f77cda7ec5 from=translated src=- shape=c5907ec6 vocab=889df14a
+-/
 theorem measure_eq_sum_mul_cond_of_finite_partition
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (C : ι → Set Ω)
@@ -47,7 +49,9 @@ theorem measure_eq_sum_mul_cond_of_finite_partition
           ENNReal.mul_inv_cancel hzero (measure_ne_top μ (C i)), one_mul]
 
 /-- Given [a probability measure](hyp:μ), [a finite collection of cells](hyp:C), [measurability
-of every cell](hyp:hC), [pairwise disjointness of distinct cells](hyp:hdisj), [coverage of the whole sample space](hyp:hcover), [an event](hyp:E), [measurability of that event](hyp:hE), [a probability bound](hyp:β), and [that bound conditional on each positive-mass cell](hyp:hcond), [the unconditional event probability is at most the same bound](goal). -/
+of every cell](hyp:hC), [pairwise disjointness of distinct cells](hyp:hdisj), [coverage of the whole sample space](hyp:hcover), [an event](hyp:E), [measurability of that event](hyp:hE), [a probability bound](hyp:β), and [that bound conditional on each positive-mass cell](hyp:hcond), [the unconditional event probability is at most the same bound](goal).
+@isnad1 id=le.5h6v.s7.a9ca120780f9 from=translated src=- shape=c10d1645 vocab=47efd775
+-/
 theorem measure_le_of_cond_le_on_finite_partition
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (C : ι → Set Ω)

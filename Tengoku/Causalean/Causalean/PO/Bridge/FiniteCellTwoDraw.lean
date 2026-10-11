@@ -25,7 +25,9 @@ variable (D : FiniteCellData Ω γ μ)
 
 /-- A [finite-cell observed table](hyp:D) sends the covariates of two
 independent observed-law draws to [two independent draws from the covariate
-law](goal). -/
+law](goal).
+@isnad1 id=eq.0h4v.s7.4de2257aaa29 from=translated src=- shape=ecd8b5a2 vocab=791f7e3b
+-/
 theorem pair_covariate_map :
     (D.observedLaw.prod D.observedLaw).map
         (fun z : (γ × Bool × Bool) × (γ × Bool × Bool) => (z.1.1, z.2.1)) =
@@ -56,7 +58,9 @@ theorem pair_covariate_map :
 [covariate-pair weight](hyp:W), [measurability of that weight](hyp:hW), and
 [its integrability under the independent covariate-pair law](hyp:hInt) give
 [the independent two-draw treatment-arm kernel expectation through the two arm
-probabilities](goal). -/
+probabilities](goal).
+@isnad1 id=eq.2h7v.s8.51db50eef0e4 from=translated src=- shape=f28c6e51 vocab=b3929a5f
+-/
 theorem integral_pair_arm (d e : Bool) (W : γ → γ → ℝ)
     (hW : Measurable fun p : γ × γ => W p.1 p.2)
     (hInt : Integrable (fun p : γ × γ => W p.1 p.2)
@@ -170,7 +174,9 @@ theorem integral_pair_arm (d e : Bool) (W : γ → γ → ℝ)
 and [integrability of the displayed envelope under the independent covariate-pair
 law](hyp:hInt) give [the centered observed-outcome product expectation through
 arm probabilities and arm regressions](goal). The integrable envelope permits
-unbounded centering functions. -/
+unbounded centering functions.
+@isnad1 id=eq.4h9v.s9.67bcee2f639e from=translated src=- shape=8b5ca48b vocab=a1c16684
+-/
 theorem integral_pair_centered (d e : Bool) (W : γ → γ → ℝ)
     (c k : γ → ℝ)
     (hW : Measurable fun p : γ × γ => W p.1 p.2)
@@ -499,7 +505,9 @@ theorem integral_pair_centered (d e : Bool) (W : γ → γ → ℝ)
 /-- A [finite-cell observed table](hyp:D), [two treatment arms](hyp:d,e),
 [pair-eligibility weight](hyp:W), [measurability of that weight](hyp:hW), and
 [its integrability under the independent covariate-pair law](hyp:hInt) give
-[an arm-regression-centered outcome product with zero two-draw mean](goal). -/
+[an arm-regression-centered outcome product with zero two-draw mean](goal).
+@isnad1 id=eq.2h7v.s8.1370e1b3dfc3 from=translated src=- shape=96ed97a4 vocab=3be96e5e
+-/
 theorem integral_pair_regressionResidual (d e : Bool) (W : γ → γ → ℝ)
     (hW : Measurable fun p : γ × γ => W p.1 p.2)
     (hInt : Integrable (fun p : γ × γ => W p.1 p.2)

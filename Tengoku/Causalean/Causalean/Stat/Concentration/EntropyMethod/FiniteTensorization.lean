@@ -84,7 +84,9 @@ coordinates](hyp:n) and [a real-valued function of the whole coordinate vector](
 independent product law is at most the sum of the expected one-coordinate entropies](goal).
 
 Positivity of the function is carried by the regularity bundle, not by the function itself; at
-zero coordinates that bundle is vacuous, so the statement covers a function of any sign there. -/
+zero coordinates that bundle is vacuous, so the statement covers a function of any sign there.
+@isnad1 id=le.1h4v.s6.3d65db4efc25 from=translated src=- shape=861a0162 vocab=995aef84
+-/
 theorem entropy_pi_le_coordinateEntropySum
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]

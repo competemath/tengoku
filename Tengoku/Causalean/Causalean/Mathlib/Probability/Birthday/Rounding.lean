@@ -22,17 +22,23 @@ noncomputable def positiveCeil (x : ℝ) : ℕ := max 1 (Nat.ceil x)
 larger of one and its natural-number floor](step:1). -/
 noncomputable def positiveFloor (x : ℝ) : ℕ := max 1 (Nat.floor x)
 
-/-- For every [real scale](hyp:x), its [positive ceiling](goal) is positive. -/
+/-- For every [real scale](hyp:x), its [positive ceiling](goal) is positive.
+@isnad1 id=lt.0h1v.s3.c4d62119ecd4 from=translated src=- shape=b9369acb vocab=f0434fb0
+-/
 theorem positiveCeil_pos (x : ℝ) : 0 < positiveCeil x := by
   simp [positiveCeil]
 
-/-- For every [real scale](hyp:x), its [positive floor](goal) is positive. -/
+/-- For every [real scale](hyp:x), its [positive floor](goal) is positive.
+@isnad1 id=lt.0h1v.s3.e6eec2ec2607 from=translated src=- shape=b9369acb vocab=28a2c4b8
+-/
 theorem positiveFloor_pos (x : ℝ) : 0 < positiveFloor x := by
   simp [positiveFloor]
 
 /-- For a [diverging positive scale](hyp:ha) and [positive multiplier](hyp:hc),
 the [positive ceiling divided by the original scale](goal) converges to the
-multiplier. -/
+multiplier.
+@isnad1 id=tendsto.2h2v.s6.f2fb31c1ccaf from=translated src=- shape=7b612a95 vocab=64f8850d
+-/
 theorem positiveCeil_mul_div_tendsto
     (a : ℕ → ℝ) {c : ℝ} (ha : Tendsto a atTop atTop) (hc : 0 < c) :
     Tendsto (fun j => (positiveCeil (c * a j) : ℝ) / a j) atTop (nhds c) := by
@@ -44,7 +50,9 @@ theorem positiveCeil_mul_div_tendsto
 
 /-- For a [diverging positive scale](hyp:ha) and [positive multiplier](hyp:hc),
 the [positive floor divided by the original scale](goal) converges to the
-multiplier. -/
+multiplier.
+@isnad1 id=tendsto.2h2v.s6.2b7736bf5058 from=translated src=- shape=7b612a95 vocab=3b1365fb
+-/
 theorem positiveFloor_mul_div_tendsto
     (a : ℕ → ℝ) {c : ℝ} (ha : Tendsto a atTop atTop) (hc : 0 < c) :
     Tendsto (fun j => (positiveFloor (c * a j) : ℝ) / a j) atTop (nhds c) := by

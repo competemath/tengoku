@@ -25,7 +25,9 @@ namespace Causalean.Stat.EmpiricalProcess.Countable
 /-- Under a probability law, if [a real function g](hyp:g) is
 [integrable](hyp:hg) and [has an integrable fourth power](hyp:hg4), then
 [the fourth power of the integral of g is at most the integral of its
-fourth power](goal), by Jensen's inequality. -/
+fourth power](goal), by Jensen's inequality.
+@isnad1 id=le.2h3v.s7.d44a081e0b12 from=translated src=- shape=39f8ef94 vocab=65de9e47
+-/
 theorem integral_fourth_jensen {S : Type*} [MeasurableSpace S]
     (ν : Measure S) [IsProbabilityMeasure ν] (g : S → ℝ)
     (hg : Integrable g ν) (hg4 : Integrable (fun s => g s ^ 4) ν) :
@@ -41,7 +43,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω] [Countable ι] [Nonempty ι]
 /-- For [a positive sample size n](hyp:n,hn), [any sample x](hyp:x), and
 [any function of the class](hyp:i), [the population-centered empirical
 average of that function equals the expectation, over an independent ghost
-sample y drawn from μ, of (1/n) Σ_j (f(x_j) − f(y_j))](goal). -/
+sample y drawn from μ, of (1/n) Σ_j (f(x_j) − f(y_j))](goal).
+@isnad1 id=eq.1h7v.s7.46b1a6278e33 from=translated src=- shape=b507d164 vocab=32ab5d59
+-/
 theorem centeredAverage_eq_ghost_integral (n : ℕ) (hn : 0 < n)
     (x : Fin n → Ω) (i : ι) :
     Causalean.Stat.Concentration.centeredEmpiricalAverage μ x (F.f i) =
@@ -71,7 +75,9 @@ theorem centeredAverage_eq_ghost_integral (n : ℕ) (hn : 0 < n)
 /-- For [a positive sample size n](hyp:n,hn) and [any fixed sample
 x](hyp:x), [the fourth power of the centered supremum at x is at most the
 expected fourth power of the ghost supremum of x against an independent
-ghost sample drawn from μ](goal). -/
+ghost sample drawn from μ](goal).
+@isnad1 id=le.1h6v.s7.7cd4aa83b2bf from=translated src=- shape=dd92768d vocab=f4838af1
+-/
 theorem centeredSup_fourth_le_ghost (n : ℕ) (hn : 0 < n) (x : Fin n → Ω) :
     centeredSup μ F.f x ^ 4 ≤
       ∫ y, ghostSup F.f x y ^ 4 ∂Measure.pi (fun _ : Fin n => μ) := by
@@ -138,7 +144,9 @@ theorem centeredSup_fourth_le_ghost (n : ℕ) (hn : 0 < n) (x : Fin n → Ω) :
 fixed sign vector σ](hyp:σ), [the expected fourth power of the ghost
 supremum equals the expected fourth power of the σ-signed ghost
 supremum](goal), since swapping paired iid coordinates preserves the joint
-law. -/
+law.
+@isnad1 id=eq.0h6v.s8.eec757d61231 from=translated src=- shape=924073a8 vocab=bb6add2e
+-/
 theorem ghost_fourth_eq_signedGhost (n : ℕ) (σ : Fin n → Bool) :
     (∫ p : (Fin n → Ω) × (Fin n → Ω), ghostSup F.f p.1 p.2 ^ 4
       ∂((Measure.pi (fun _ : Fin n => μ)).prod (Measure.pi (fun _ : Fin n => μ)))) =
@@ -151,7 +159,9 @@ theorem ghost_fourth_eq_signedGhost (n : ℕ) (σ : Fin n → Bool) :
 /-- For [a positive sample size n](hyp:n,hn), [the expected fourth power
 of the centered supremum over an iid sample from μ is at most the expected
 fourth power of the ghost supremum over two independent iid
-samples](goal), with constant one. -/
+samples](goal), with constant one.
+@isnad1 id=le.1h5v.s8.e1fa0ed6beaa from=translated src=- shape=511929d1 vocab=aed2a987
+-/
 theorem centered_fourth_le_ghost_integral (n : ℕ) (hn : 0 < n) :
     (∫ x, centeredSup μ F.f x ^ 4 ∂Measure.pi (fun _ : Fin n => μ)) ≤
     ∫ p : (Fin n → Ω) × (Fin n → Ω), ghostSup F.f p.1 p.2 ^ 4
@@ -164,7 +174,9 @@ theorem centered_fourth_le_ghost_integral (n : ℕ) (hn : 0 < n) :
 /-- For [any sample size n](hyp:n), [the expected fourth power of the
 ghost supremum over two independent iid samples from μ is at most sixteen
 times the expected sign-average fourth power of the signed supremum of the
-class on one iid sample](goal). -/
+class on one iid sample](goal).
+@isnad1 id=le.0h5v.s8.79fadb19c55c from=translated src=- shape=b0a3f5c8 vocab=8d2a2e03
+-/
 theorem ghost_fourth_le_rademacher (n : ℕ) :
     (∫ p : (Fin n → Ω) × (Fin n → Ω), ghostSup F.f p.1 p.2 ^ 4
       ∂((Measure.pi (fun _ : Fin n => μ)).prod (Measure.pi (fun _ : Fin n => μ)))) ≤
@@ -250,7 +262,9 @@ theorem ghost_fourth_le_rademacher (n : ℕ) :
 positive sample size n](hyp:n,hn), [the expected fourth power of the
 centered supremum over an iid sample from μ is at most sixteen times the
 expected sign-average fourth power of the signed supremum](goal): the
-fourth-moment Rademacher symmetrization inequality. -/
+fourth-moment Rademacher symmetrization inequality.
+@isnad1 id=le.1h5v.s7.0a44ad265c42 from=translated src=- shape=607c69b3 vocab=5204d48d
+-/
 theorem centered_fourth_le_rademacher (n : ℕ) (hn : 0 < n) :
     (∫ x, centeredSup μ F.f x ^ 4 ∂Measure.pi (fun _ : Fin n => μ)) ≤
     16 * ∫ x, signAverage (fun σ => signedSup F.f x σ ^ 4)

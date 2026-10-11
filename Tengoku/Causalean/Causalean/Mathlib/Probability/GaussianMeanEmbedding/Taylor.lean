@@ -27,7 +27,9 @@ def secondMomentTaylorPolynomial (N : ℕ) : ℝ[X] :=
 
 /-- Given [a truncation order](hyp:N) and [a real argument](hyp:r),
 [evaluating the second-moment Taylor polynomial yields its finite sum of even
-powers with reciprocal-factorial coefficients](goal). -/
+powers with reciprocal-factorial coefficients](goal).
+@isnad1 id=eq.0h2v.s6.9aed8cbdc360 from=translated src=- shape=61e9c7f2 vocab=f198ac03
+-/
 theorem secondMomentTaylorPolynomial_eval (N : ℕ) (r : ℝ) :
     (secondMomentTaylorPolynomial N).eval r =
       ∑ k ∈ Finset.range (N + 1), r ^ (2 * k + 2) / (k.factorial : ℝ) := by
@@ -38,7 +40,9 @@ theorem secondMomentTaylorPolynomial_eval (N : ℕ) (r : ℝ) :
   ring
 
 /-- [The truncation through index one hundred has polynomial degree exactly
-202](goal). -/
+202](goal).
+@isnad1 id=eq.0h0v.s4.b5ff8831ae03 from=translated src=- shape=f79d1c6f vocab=6ca6ba74
+-/
 theorem secondMomentTaylorPolynomial_natDegree_oneHundred :
     (secondMomentTaylorPolynomial 100).natDegree = 202 := by
   apply Polynomial.natDegree_eq_of_le_of_coeff_ne_zero
@@ -81,7 +85,9 @@ private lemma factorial_mul_pow_le_factorial_add (N j : ℕ) :
 /-- Given [a truncation order](hyp:N), [a nonnegative real argument](hyp:x,hx),
 and [the condition that the next denominator exceeds that argument](hyp:hden),
 [the exponential-series tail after the truncation is bounded by its first omitted
-term times the displayed geometric factor](goal). -/
+term times the displayed geometric factor](goal).
+@isnad1 id=le.2h2v.s7.0a8344d3d3e7 from=translated src=- shape=3b13ba08 vocab=8a8fb14e
+-/
 theorem exp_series_tail_le_geometric
     (N : ℕ) (x : ℝ) (hx : 0 ≤ x) (hden : x < N + 2) :
     Real.exp x - ∑ k ∈ Finset.range (N + 1), x ^ k / (k.factorial : ℝ) ≤
@@ -144,7 +150,9 @@ theorem exp_series_tail_le_geometric
 
 /-- Given [a real point in the interval from zero to five](hyp:r,hr),
 [the degree-202 Taylor polynomial approximates r² exp(r²) within the certified
-factorial-tail error](goal). -/
+factorial-tail error](goal).
+@isnad1 id=le.1h1v.s7.1ecd508ecf34 from=translated src=- shape=34a77c5b vocab=485f6ca3
+-/
 theorem abs_secondMoment_exp_sub_taylor_oneHundred_le
     {r : ℝ} (hr : r ∈ Icc (0 : ℝ) 5) :
     |r ^ 2 * Real.exp (r ^ 2) -
@@ -219,7 +227,9 @@ theorem abs_secondMoment_exp_sub_taylor_oneHundred_le
 
 /-- Given [a real point in the interval from zero to five](hyp:r,hr),
 [multiplying the degree-202 approximation by the reciprocal Gaussian weight
-approximates the raw square within the same certified error](goal). -/
+approximates the raw square within the same certified error](goal).
+@isnad1 id=le.1h1v.s7.9eca9b46a70e from=translated src=- shape=5e9ce487 vocab=c183442b
+-/
 theorem abs_sq_sub_gaussianWeightedTaylor_oneHundred_le
     {r : ℝ} (hr : r ∈ Icc (0 : ℝ) 5) :
     |r ^ 2 - Real.exp (-r ^ 2) *
@@ -256,7 +266,9 @@ theorem abs_sq_sub_gaussianWeightedTaylor_oneHundred_le
       simpa using hprev
 
 /-- [Twice the uniform degree-202 approximation error is at most the exact
-rational remainder 10⁻¹⁵](goal). -/
+rational remainder 10⁻¹⁵](goal).
+@isnad1 id=le.0h0v.s7.cdafac534dc3 from=translated src=- shape=9b1cb852 vocab=91331a8b
+-/
 theorem two_taylorRemainder_oneHundred_le :
     2 * (25 * (25 ^ 101 / ((101 : ℕ).factorial : ℝ)) * (102 / 77)) ≤
       (1 / 10 ^ 15 : ℝ) := by

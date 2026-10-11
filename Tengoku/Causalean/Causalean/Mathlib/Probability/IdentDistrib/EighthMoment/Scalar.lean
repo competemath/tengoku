@@ -23,7 +23,9 @@ namespace Causalean.Mathlib.Probability.IdentDistrib.EighthMoment
 variable {Ω : Type*} [MeasurableSpace Ω]
 
 /-- A [measurable real mark](hyp:hg) whose [absolute value is at most one](hyp:hb) has
-[integrable natural powers](goal) under a [probability law](hyp:μ). -/
+[integrable natural powers](goal) under a [probability law](hyp:μ).
+@isnad1 id=integrab.2h4v.s6.fe043b814a24 from=translated src=- shape=58f4fe52 vocab=3a4cafe0
+-/
 @[fun_prop]
 theorem integrable_pow_of_abs_le_one (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : Measurable g) (hb : ∀ y, |g y| ≤ 1) (n : ℕ) :
@@ -36,7 +38,9 @@ theorem integrable_pow_of_abs_le_one (μ : Measure Ω) [IsProbabilityMeasure μ]
 
 /-- For a [measurable real mark](hyp:hg) with [absolute value at most one](hyp:hb), the
 absolute integral of a power [of order at least two](hyp:hn) is [at most its second
-moment](goal) under a [probability law](hyp:μ). -/
+moment](goal) under a [probability law](hyp:μ).
+@isnad1 id=le.3h4v.s7.a6e3aa7c3f28 from=translated src=- shape=38af004f vocab=0a676101
+-/
 theorem abs_integral_pow_le_secondMoment (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : Measurable g) (hb : ∀ y, |g y| ≤ 1)
     (n : ℕ) (hn : 2 ≤ n) :
@@ -52,7 +56,9 @@ theorem abs_integral_pow_le_secondMoment (μ : Measure Ω) [IsProbabilityMeasure
   exact pow_le_pow_of_le_one (abs_nonneg (g y)) (hb y) hn
 
 /-- A [measurable mark](hyp:hf) [valued in the unit interval](hyp:h0,h1) has its
-[mean in the unit interval](goal) under a [probability law](hyp:μ). -/
+[mean in the unit interval](goal) under a [probability law](hyp:μ).
+@isnad1 id=and.3h3v.s6.0625bd8fb4fd from=translated src=- shape=b6ed42f0 vocab=f900840a
+-/
 theorem mean_mem_unitInterval (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) (hf : Measurable f) (h0 : ∀ y, 0 ≤ f y) (h1 : ∀ y, f y ≤ 1) :
     0 ≤ (∫ y, f y ∂μ) ∧ (∫ y, f y ∂μ) ≤ 1 := by
@@ -66,7 +72,9 @@ theorem mean_mem_unitInterval (μ : Measure Ω) [IsProbabilityMeasure μ]
   simpa using integral_mono hi (integrable_const (1 : ℝ)) h1
 
 /-- A [measurable mark](hyp:hf) [valued in the unit interval](hyp:h0,h1) differs from
-its mean by [at most one in absolute value](goal) under a [probability law](hyp:μ). -/
+its mean by [at most one in absolute value](goal) under a [probability law](hyp:μ).
+@isnad1 id=le.3h4v.s6.3ba271137789 from=translated src=- shape=0b1b338f vocab=19c1863d
+-/
 theorem abs_centered_mark_le_one (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) (hf : Measurable f) (h0 : ∀ y, 0 ≤ f y) (h1 : ∀ y, f y ≤ 1)
     (y : Ω) : |f y - ∫ z, f z ∂μ| ≤ 1 := by
@@ -75,7 +83,9 @@ theorem abs_centered_mark_le_one (μ : Measure Ω) [IsProbabilityMeasure μ]
   constructor <;> linarith [h0 y, h1 y]
 
 /-- Subtracting the mean from a [measurable mark](hyp:hf) [in the unit
-interval](hyp:h0,h1) gives a [zero integral](goal) under a [probability law](hyp:μ). -/
+interval](hyp:h0,h1) gives a [zero integral](goal) under a [probability law](hyp:μ).
+@isnad1 id=eq.3h3v.s6.f3df2bf09a67 from=translated src=- shape=e5c8824a vocab=9f7c5375
+-/
 theorem integral_centered_mark_eq_zero (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) (hf : Measurable f) (h0 : ∀ y, 0 ≤ f y) (h1 : ∀ y, f y ≤ 1) :
     (∫ y, (f y - ∫ z, f z ∂μ) ∂μ) = 0 := by
@@ -87,7 +97,9 @@ theorem integral_centered_mark_eq_zero (μ : Measure Ω) [IsProbabilityMeasure �
 
 /-- Every centered power [of order at least two](hyp:hn) of a [measurable
 mark](hyp:hf) [in the unit interval](hyp:h0,h1) has its [absolute integral bounded by
-the variance](goal) under a [probability law](hyp:μ). -/
+the variance](goal) under a [probability law](hyp:μ).
+@isnad1 id=le.4h4v.s7.623ea94436c1 from=translated src=- shape=3ac2bf18 vocab=b3b21dbc
+-/
 theorem abs_integral_centered_pow_le_variance (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) (hf : Measurable f) (h0 : ∀ y, 0 ≤ f y) (h1 : ∀ y, f y ≤ 1)
     (n : ℕ) (hn : 2 ≤ n) :

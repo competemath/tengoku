@@ -24,7 +24,9 @@ variable {Θ ι κ : Type*} [TopologicalSpace Θ] [MeasurableSpace Θ]
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), [parameter](hyp:θ), [weight vector](hyp:α),
 [scalar decision](hyp:t), and [saddle certificate](hyp:hs) give [the equality of the existing
 quadratic max-min value with the unrestricted envelope minimum and the global minimality of that
-scalar envelope value](goal). -/
+scalar envelope value](goal).
+@isnad1 id=and.1h8v.s6.f61dd543978f from=translated src=- shape=e31336dc vocab=d852c3d7
+-/
 theorem quadratic_value_eq_envelope_min_of_isSaddle
     (P : Polytope ι κ) (Q : Quadratics Θ ι) (θ : Θ)
     (α : EuclideanSpace ℝ ι) (t : ℝ) (hs : IsSaddle P Q θ α t) :
@@ -56,7 +58,9 @@ theorem quadratic_value_eq_envelope_min_of_isSaddle
 [parameter](hyp:θ₀), [open parameter neighborhood](hyp:U,hUopen,hθU), [joint continuity of the
 quadratic objective on that neighborhood](hyp:hobj), and [eventually attaining saddle pairs whose
 scalar decisions lie in the compact set](hyp:hatt) give a [continuous existing quadratic max-min
-value at the parameter](goal). -/
+value at the parameter](goal).
+@isnad1 id=continuo.6h8v.s8.be792cdd8fc7 from=translated src=- shape=282baa79 vocab=b32b90d2
+-/
 theorem continuousAt_quadratic_value
     (P : Polytope ι κ) (Q : Quadratics Θ ι) (K : Set ℝ)
     (hK : IsCompact K) (hKne : K.Nonempty) (θ₀ : Θ)
@@ -83,7 +87,9 @@ theorem continuousAt_quadratic_value
 quadratic objective on that neighborhood](hyp:hobj), [eventually attaining saddle pairs whose
 scalar decisions lie in the compact set](hyp:hatt), and a [strictly positive existing quadratic
 max-min value at the parameter](hyp:hpos) give a [continuous reciprocal quadratic max-min value
-at that parameter](goal). -/
+at that parameter](goal).
+@isnad1 id=continuo.7h8v.s8.a594f925de81 from=translated src=- shape=8278d5a6 vocab=6bfe95e8
+-/
 theorem continuousAt_inv_quadratic_value
     (P : Polytope ι κ) (Q : Quadratics Θ ι) (K : Set ℝ)
     (hK : IsCompact K) (hKne : K.Nonempty) (θ₀ : Θ)

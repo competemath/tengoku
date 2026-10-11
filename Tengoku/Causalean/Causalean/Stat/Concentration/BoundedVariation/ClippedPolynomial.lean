@@ -28,7 +28,9 @@ Scalar clipping to the symmetric interval with radius `cap`.
 def scalarClip (cap x : ℝ) : ℝ := min cap (max (-cap) x)
 
 /-- A finite linear combination of continuous coefficient paths remains continuous after scalar
-clipping. -/
+clipping.
+@isnad1 id=continuo.0h4v.s6.1990a3d221fe from=translated src=- shape=3ba53d35 vocab=03dabe26
+-/
 theorem continuous_clipped_finite_sum {ι : Type*} [Fintype ι]
     (c : ι → Path) (x : ι → ℝ) (cap : ℝ) :
     Continuous (fun t : Time => scalarClip cap (∑ a, x a * c a t)) := by
@@ -48,7 +50,9 @@ def clippedFinitePath {ι Ω : Type*} [Fintype ι]
     continuous_clipped_finite_sum c (X ω) cap⟩
 
 /-- Measurable scalar monomials produce a measurable random continuous path when their
-coefficient paths and clipping radius are deterministic. -/
+coefficient paths and clipping radius are deterministic.
+@isnad1 id=measurab.1h5v.s5.04ca32e77984 from=translated src=- shape=78602806 vocab=dc6473bd
+-/
 theorem measurable_clippedFinitePath {ι Ω : Type*} [Fintype ι]
     [MeasurableSpace Ω] (c : ι → Path) (X : Ω → ι → ℝ)
     (hX : ∀ a, Measurable (fun ω => X ω a)) (cap : ℝ) :
@@ -65,7 +69,9 @@ theorem measurable_clippedFinitePath {ι Ω : Type*} [Fintype ι]
   exact hcont.measurable.comp hvec
 
 /-- Measurable functions of independent coordinate blocks produce independent clipped finite
-paths, even when every block uses the same deterministic coefficient family. -/
+paths, even when every block uses the same deterministic coefficient family.
+@isnad1 id=iindepfu.1h7v.s6.1119fb201dfb from=translated src=- shape=67128da8 vocab=86605932
+-/
 theorem clippedFinitePath_independent_blocks
     {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω]
     {n : ℕ} (μ : Measure Ω) (block : Fin n → Ω → (ι → ℝ))

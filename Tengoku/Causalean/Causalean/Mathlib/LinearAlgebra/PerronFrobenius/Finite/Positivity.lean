@@ -19,7 +19,9 @@ noncomputable section
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- An [entrywise nonnegative matrix](hyp:A,hA_nonneg), [a nonnegative eigenvector](hyp:x,hx_nonneg,hx_eigen), [a row coordinate where it vanishes](hyp:i,hxi), and [a strictly positive matrix entry from that row](hyp:j,hAij) ensure [that the eigenvector also vanishes at the entry’s target coordinate](goal). -/
+/-- An [entrywise nonnegative matrix](hyp:A,hA_nonneg), [a nonnegative eigenvector](hyp:x,hx_nonneg,hx_eigen), [a row coordinate where it vanishes](hyp:i,hxi), and [a strictly positive matrix entry from that row](hyp:j,hAij) ensure [that the eigenvector also vanishes at the entry’s target coordinate](goal).
+@isnad1 id=eq.5h6v.s8.1b013516ed34 from=translated src=- shape=b7dde82f vocab=a00f2dd9
+-/
 theorem zero_coordinate_propagates_across_positive_entry
     (A : Matrix ι ι ℝ) (hA_nonneg : ∀ i j, 0 ≤ A i j)
     {x : EVec ι} (hx_nonneg : ∀ i, 0 ≤ x i) {ρ : ℝ}
@@ -34,7 +36,9 @@ theorem zero_coordinate_propagates_across_positive_entry
       (fun k _ => mul_nonneg (hA_nonneg i k) (hx_nonneg k))).mp hsum j (Finset.mem_univ j)
   exact (mul_eq_zero.mp hterm).resolve_left (ne_of_gt hAij)
 
-/-- An [irreducible finite matrix](hyp:hA) and [a nonnegative nonzero eigenvector](hyp:x,hx_nonneg,hx_ne,hx_eigen) ensure [that every coordinate is strictly positive](goal). -/
+/-- An [irreducible finite matrix](hyp:hA) and [a nonnegative nonzero eigenvector](hyp:x,hx_nonneg,hx_ne,hx_eigen) ensure [that every coordinate is strictly positive](goal).
+@isnad1 id=lt.4h5v.s8.a6b596f5f2be from=translated src=- shape=529093ab vocab=e9b282e7
+-/
 theorem IsIrreducible.eigenvector_pos
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible)
     {x : EVec ι} (hx_nonneg : ∀ i, 0 ≤ x i) (hx_ne : x ≠ 0) {ρ : ℝ}
@@ -57,7 +61,9 @@ theorem IsIrreducible.eigenvector_pos
   obtain ⟨p, _⟩ := hA.connected i j
   exact hpath p hxi
 
-/-- An [irreducible finite matrix](hyp:hA) and [a normalized nonnegative eigenvector](hyp:x,hx_nonneg,hx_norm,hx_eigen) ensure [that every coordinate is strictly positive](goal). -/
+/-- An [irreducible finite matrix](hyp:hA) and [a normalized nonnegative eigenvector](hyp:x,hx_nonneg,hx_norm,hx_eigen) ensure [that every coordinate is strictly positive](goal).
+@isnad1 id=lt.4h5v.s7.3ceb8d5e3e62 from=translated src=- shape=8d350878 vocab=9224be8f
+-/
 theorem IsIrreducible.unit_eigenvector_pos
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible)
     {x : EVec ι} (hx_nonneg : ∀ i, 0 ≤ x i) (hx_norm : ‖x‖ = 1) {ρ : ℝ}

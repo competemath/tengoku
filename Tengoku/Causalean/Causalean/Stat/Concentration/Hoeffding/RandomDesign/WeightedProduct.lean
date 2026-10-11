@@ -31,7 +31,9 @@ def designVector {N : Nat} {Omega D : Type*}
   fun i => design (z i)
 
 /-- For [a design map](hyp:design) that is [measurable](hyp:hdesign), [the corresponding
-finite-sample vector of design values is measurable](goal). -/
+finite-sample vector of design values is measurable](goal).
+@isnad1 id=measurab.1h4v.s5.6d7f8a68c54b from=translated src=- shape=7118ed1b vocab=5b371452
+-/
 @[fun_prop] theorem measurable_designVector
     {N : Nat} {Omega D : Type*} [MeasurableSpace Omega] [MeasurableSpace D]
     (design : Omega -> D) (hdesign : Measurable design) :
@@ -660,7 +662,9 @@ natural square-integrability conditions](hyp:hweight_sq,hsum_sq), [the second mo
 weighted centered sum is at most one quarter of the expected sum of squared weights](goal).
 
 The proof derives both vanishing cross terms and the one-quarter conditional-variance bound;
-they are not additional assumptions. -/
+they are not additional assumptions.
+@isnad1 id=le.9h8v.s9.7cf419e8762e from=translated src=- shape=8f71a290 vocab=5a8a7e1f
+-/
 theorem product_weighted_centered_sq_integral_le
     {N : Nat} {Omega D : Type*} [MeasurableSpace Omega] [MeasurableSpace D]
     (P : Measure Omega) [IsProbabilityMeasure P]
@@ -820,7 +824,9 @@ natural square-integrability conditions](hyp:hweight_sq,hsum_sq), [the expected 
 weighted centered sum is at most one half the square root of the expected sum of squared
 weights](goal).
 
-Weights may depend on all observed designs, rather than only their own coordinate. -/
+Weights may depend on all observed designs, rather than only their own coordinate.
+@isnad1 id=le.9h8v.s9.6b4e286da113 from=translated src=- shape=d99ee03c vocab=3878216c
+-/
 theorem product_weighted_centered_l1_le
     {N : Nat} {Omega D : Type*} [MeasurableSpace Omega] [MeasurableSpace D]
     (P : Measure Omega) [IsProbabilityMeasure P]

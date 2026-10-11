@@ -97,7 +97,9 @@ reference is continuous at the cutoff](hyp:hg_cont), and [the running-variable l
 positive mass arbitrarily close on the right](hyp:h_support), then [any right-hand limit
 of the observable regression](hyp:hL) [must equal the reference value at the
 cutoff](goal). This turns one-sided a.e. regression agreement into an identified cutoff
-limit. -/
+limit.
+@isnad1 id=eq.4h5v.s7.5dabfa24274c from=translated src=- shape=63578c89 vocab=b1a9cdf7
+-/
 theorem oneSidedLimit_eq_right
     (h_aeEq : f =ᵐ[π.restrict (Set.Ici c)] g)
     (hg_cont : ContinuousAt g c)
@@ -133,7 +135,9 @@ theorem oneSidedLimit_eq_right
 respect to a measure `π`, on the half-line to the left of the cutoff `c`](hyp:h_aeEq),
 [`g` is continuous at `c`](hyp:hg_cont), and [every open interval immediately to the left
 of `c` has positive `π`-measure](hyp:h_support), then [any left-hand limit `L` of `f`
-at `c`](hyp:hL) [must equal `g` evaluated at `c`](goal). -/
+at `c`](hyp:hL) [must equal `g` evaluated at `c`](goal).
+@isnad1 id=eq.4h5v.s7.097309859d71 from=translated src=- shape=6043665c vocab=9bf9b855
+-/
 theorem oneSidedLimit_eq_left
     (h_aeEq : f =ᵐ[π.restrict (Set.Iio c)] g)
     (hg_cont : ContinuousAt g c)
@@ -168,7 +172,9 @@ theorem oneSidedLimit_eq_left
 representatives agree almost everywhere to the right of the cutoff](hyp:h_aeEq), [the
 first is continuous there](hyp:hf_cont), [the second is continuous there](hyp:hg_cont),
 and [the running-variable law has positive mass arbitrarily close on the
-right](hyp:h_support), then [their cutoff values coincide](goal). -/
+right](hyp:h_support), then [their cutoff values coincide](goal).
+@isnad1 id=eq.4h4v.s6.da008f90beaf from=translated src=- shape=9cd292ff vocab=9146da6b
+-/
 theorem value_eq_of_aeEq_right
     (h_aeEq : f =ᵐ[π.restrict (Set.Ici c)] g)
     (hf_cont : ContinuousAt f c) (hg_cont : ContinuousAt g c)
@@ -182,7 +188,9 @@ theorem value_eq_of_aeEq_right
 representatives agree almost everywhere to the left of the cutoff](hyp:h_aeEq), [the
 first is continuous there](hyp:hf_cont), [the second is continuous there](hyp:hg_cont),
 and [the running-variable law has positive mass arbitrarily close on the
-left](hyp:h_support), then [their cutoff values coincide](goal). -/
+left](hyp:h_support), then [their cutoff values coincide](goal).
+@isnad1 id=eq.4h4v.s6.28e26d693557 from=translated src=- shape=4232eaa1 vocab=acb7f8f0
+-/
 theorem value_eq_of_aeEq_left
     (h_aeEq : f =ᵐ[π.restrict (Set.Iio c)] g)
     (hf_cont : ContinuousAt f c) (hg_cont : ContinuousAt g c)

@@ -63,13 +63,17 @@ structure HasSubexponentialMGF (X : Ω → ℝ) (v b : ℝ≥0)
 namespace HasSubexponentialMGF
 
 /-- A sub-exponential random variable lives on a finite measure (integrability of
-`exp (0 · X) = 1`). -/
+`exp (0 · X) = 1`).
+@isnad1 id=isfinite.1h6v.s4.879e4229a50b from=translated src=- shape=f5b1c4ba vocab=cee809e9
+-/
 lemma isFiniteMeasure (hX : HasSubexponentialMGF X v b μ) : IsFiniteMeasure μ := by
   have h := hX.integrable_exp_mul 0 (by simp)
   simp only [zero_mul, Real.exp_zero] at h
   exact (integrable_const_iff.mp h).resolve_left one_ne_zero
 
-/-- Sub-exponentiality is preserved under negation (same parameters). -/
+/-- Sub-exponentiality is preserved under negation (same parameters).
+@isnad1 id=hassubex.1h6v.s5.6182b6c3acdc from=translated src=- shape=b9d3bff4 vocab=35c9b9df
+-/
 lemma neg (hX : HasSubexponentialMGF X v b μ) :
     HasSubexponentialMGF (fun ω => -X ω) v b μ where
   integrable_exp_mul t ht := by
@@ -84,7 +88,9 @@ lemma neg (hX : HasSubexponentialMGF X v b μ) :
     refine h.trans_eq ?_
     congr 1; ring
 
-/-- Sub-exponentiality transfers along an a.e.-equality. -/
+/-- Sub-exponentiality transfers along an a.e.-equality.
+@isnad1 id=hassubex.2h7v.s5.2cedcbc07e25 from=translated src=- shape=a6261873 vocab=8e437936
+-/
 lemma congr (hX : HasSubexponentialMGF X v b μ) {Y : Ω → ℝ} (hXY : X =ᵐ[μ] Y) :
     HasSubexponentialMGF Y v b μ where
   integrable_exp_mul t ht := by
@@ -95,7 +101,9 @@ lemma congr (hX : HasSubexponentialMGF X v b μ) {Y : Ω → ℝ} (hXY : X =ᵐ[
     exact hX.mgf_le t ht
 
 /-- Sub-exponentiality is preserved under scaling: `r • X` has parameters
-`(r² v, |r| b)`. -/
+`(r² v, |r| b)`.
+@isnad1 id=hassubex.1h7v.s6.41f2d2a5febc from=translated src=- shape=28e5f279 vocab=9d526c77
+-/
 lemma const_mul (hX : HasSubexponentialMGF X v b μ) (r : ℝ) :
     HasSubexponentialMGF (fun ω => r * X ω) (⟨r ^ 2, sq_nonneg r⟩ * v)
       (⟨|r|, abs_nonneg r⟩ * b) μ := by
@@ -115,7 +123,9 @@ lemma const_mul (hX : HasSubexponentialMGF X v b μ) (r : ℝ) :
     rw [hvcoe]; congr 1; ring
 
 /-- Independent sub-exponential variables add: `X + Y` has parameters
-`(vX + vY, max bX bY)`. -/
+`(vX + vY, max bX bY)`.
+@isnad1 id=hassubex.3h9v.s6.dcf1cbcfe45f from=translated src=- shape=159ea16a vocab=14d52f8f
+-/
 lemma add_of_indepFun {Y : Ω → ℝ} {vX bX vY bY : ℝ≥0}
     (hX : HasSubexponentialMGF X vX bX μ) (hY : HasSubexponentialMGF Y vY bY μ)
     (hindep : IndepFun X Y μ) :
@@ -148,7 +158,9 @@ lemma add_of_indepFun {Y : Ω → ℝ} {vX bX vY bY : ℝ≥0}
       _ = Real.exp (((vX + vY : ℝ≥0) : ℝ) * t ^ 2 / 2) := by
           rw [← Real.exp_add]; congr 1; push_cast; ring
 
-/-- The constant `0` is sub-exponential with parameters `(0, b)` (any `b`). -/
+/-- The constant `0` is sub-exponential with parameters `(0, b)` (any `b`).
+@isnad1 id=hassubex.0h4v.s5.5a4484217441 from=translated src=- shape=43f4b903 vocab=2cd4efcc
+-/
 lemma zero [IsProbabilityMeasure μ] : HasSubexponentialMGF (fun _ : Ω => (0 : ℝ)) 0 b μ := by
   refine ⟨fun t _ => ?_, fun t _ => ?_⟩
   · simp
@@ -157,7 +169,9 @@ lemma zero [IsProbabilityMeasure μ] : HasSubexponentialMGF (fun _ : Ω => (0 : 
 /-- **Chernoff bound** for the right tail of a sub-exponential random variable. If
 [`X` has a sub-exponential moment-generating function with parameters `(v, b)`
 with respect to `μ`](hyp:hX) and [`ε` is nonnegative](hyp:hε), then [the probability
-that `X` is at least `ε` is at most $\exp(-ε^2/(2(v+bε)))$](goal). -/
+that `X` is at least `ε` is at most $\exp(-ε^2/(2(v+bε)))$](goal).
+@isnad1 id=le.2h7v.s6.23d037435c20 from=translated src=- shape=6192903a vocab=f566a41e
+-/
 theorem measure_ge_le (hX : HasSubexponentialMGF X v b μ) {ε : ℝ} (hε : 0 ≤ ε) :
     μ.real {ω | ε ≤ X ω} ≤ Real.exp (-ε ^ 2 / (2 * ((v : ℝ) + b * ε))) := by
   haveI := hX.isFiniteMeasure
@@ -204,7 +218,9 @@ theorem measure_ge_le (hX : HasSubexponentialMGF X v b μ) {ε : ℝ} (hε : 0 �
 
 /-- A sum of `n` independent sub-exponential variables sharing common parameters
 `(v, b)` is sub-exponential with parameters `(n • v, b)` (the `b`-parameters
-coincide, so they do not grow). -/
+coincide, so they do not grow).
+@isnad1 id=hassubex.3h7v.s6.f33242c9285e from=translated src=- shape=dd25c8d8 vocab=5f9c973c
+-/
 lemma sum_range_of_iIndepFun {Z : ℕ → Ω → ℝ} (h_indep : iIndepFun Z μ)
     (h_meas : ∀ i, AEMeasurable (Z i) μ) {v b : ℝ≥0} {n : ℕ}
     (h : ∀ i < n, HasSubexponentialMGF (Z i) v b μ) :

@@ -17,7 +17,9 @@ variable {Θ ι κ : Type*} [MeasurableSpace Θ] [StandardBorelSpace Θ]
 
 /-- A [fixed polytope](hyp:P) and [quadratic family](hyp:Q) have a [Borel saddle relation](goal)
 in the parameter, finite weight vector, and scalar decision, including tied saddles and zero
-quadratic coefficients. -/
+quadratic coefficients.
+@isnad1 id=measurab.0h5v.s7.b267556e869f from=translated src=- shape=0ab08c92 vocab=dc4e0fb1
+-/
 theorem measurableSet_isSaddle (P : Polytope ι κ) (Q : Quadratics Θ ι) :
     MeasurableSet {x : Θ × (EuclideanSpace ℝ ι × ℝ) |
       IsSaddle P Q x.1 x.2.1 x.2.2} := by
@@ -86,7 +88,9 @@ theorem measurableSet_isSaddle (P : Polytope ι κ) (Q : Quadratics Θ ι) :
 
 /-- A [fixed polytope](hyp:P), [quadratic family](hyp:Q), [Borel parameter domain](hyp:D,hD),
 and [pointwise saddle-attainment certificate](hyp:hAttains) give a [Borel max-min value on that
-domain](goal). -/
+domain](goal).
+@isnad1 id=measurab.2h6v.s6.6d586902878e from=translated src=- shape=6c9153cb vocab=f1792da5
+-/
 theorem measurable_value_on (P : Polytope ι κ) (Q : Quadratics Θ ι)
     (D : Set Θ) (hD : MeasurableSet D)
     (hAttains : ∀ θ ∈ D, ∃ α t, IsSaddle P Q θ α t) :

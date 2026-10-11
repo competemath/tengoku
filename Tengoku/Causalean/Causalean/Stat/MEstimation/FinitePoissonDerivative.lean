@@ -38,7 +38,9 @@ design map is injective](hyp:hA); consider replacing cell `j`'s mean by the expo
 `x ↦ B · exp x`. If [`betaDot` is the unique value solving the score equation linearized at the
 maximizer for base point `x₀`, for every perturbation direction](hyp:hbeta), then [the second
 (scalar) coordinate of the maximizer, as a function of `x`, has derivative `betaDot`
-at `x₀`](goal). -/
+at `x₀`](goal).
+@isnad1 id=hasderiv.5h9v.s9.a4422ce3170a from=translated src=- shape=c767204d vocab=f2c2cbb2
+-/
 lemma finitePoissonObjective_expCell_argmax_snd_hasDerivAt
     {U I : Type*} [NormedAddCommGroup U] [NormedSpace ℝ U]
     [FiniteDimensional ℝ U] [Fintype I] [DecidableEq I] [Nonempty I]

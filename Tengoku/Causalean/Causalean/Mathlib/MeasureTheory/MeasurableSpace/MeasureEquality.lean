@@ -20,7 +20,9 @@ namespace Causalean.Mathlib.MeasureTheory.MeasurableSpace
 
 /-- For [measurable spaces](hyp:γ,β), [measure-valued maps `f` and `g`](hyp:f,g),
 [their measurability](hyp:hf,hg), and [finiteness of every `f p`](hyp:hf_fin),
-[their agreement set is measurable](goal). -/
+[their agreement set is measurable](goal).
+@isnad1 id=measurab.3h4v.s6.43dc4e850541 from=translated src=- shape=bed2a5f1 vocab=b51d2553
+-/
 theorem measurableSet_measure_eq
     {γ β : Type*} [MeasurableSpace γ] [MeasurableSpace β]
     [MeasurableSpace.CountablyGenerated β]

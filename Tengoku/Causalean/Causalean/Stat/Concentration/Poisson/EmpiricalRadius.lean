@@ -26,7 +26,9 @@ noncomputable def empiricalRadius (H : ℝ) (m : ℝ≥0) (δ : ℝ)
 
 /-- [The empirical radius with multiplier H at level L/m equals H times the
 normalized radius at level numerator L](goal), for every [nonnegative
-exposure m](hyp:m) and count w. -/
+exposure m](hyp:m) and count w.
+@isnad1 id=eq.0h4v.s5.7af47bfce007 from=translated src=- shape=0077e6d5 vocab=8682b869
+-/
 theorem empiricalRadius_eq_normalizedRadius (H L : ℝ) (m : ℝ≥0)
     (w : ℕ) :
     empiricalRadius H m (L / (m : ℝ)) w =
@@ -92,7 +94,9 @@ private theorem empirical_bad_subset (q m : ℝ≥0) (hm : 0 < m)
 and exposure m](hyp:q,m), where [the exposure is positive](hyp:hm), [the radius multiplier H is at least the universal
 constant 1024](hyp:hH), and [the level L is at least 1](hyp:hL), [the
 probability that the normalized deviation |w/m − q| exceeds a quarter of the
-empirical radius at level L/m is at most 2·exp(−40 L)](goal). -/
+empirical radius at level L/m is at most 2·exp(−40 L)](goal).
+@isnad1 id=le.3h4v.s7.60dc8f4c2ad1 from=translated src=- shape=9ddc2806 vocab=61ea48a1
+-/
 -- Rewrite the normalized deviation and radius with the private algebra in
 -- `SelfNormalized.Scaling`; on `H ≥ universalH`, include this bad event in
 -- `badEvent universalH L (m*q)` and apply `poisson_badEvent_probability`.
@@ -281,7 +285,9 @@ expected squared failure score — the square of the normalized deviation plus
 the empirical radius at level L/m, taken on the event that the deviation
 exceeds a quarter of that radius and zero otherwise — is at most
 (H/1024)^2 times the order-2 bad-moment constant times exp(−20 L) times
-(√(qL/m) + L/m)^2](goal). -/
+(√(qL/m) + L/m)^2](goal).
+@isnad1 id=le.3h4v.s8.d38e9886e676 from=translated src=- shape=bebc1474 vocab=c704e224
+-/
 -- On the larger universal bad event, compare the H-score to
 -- `(H/universalH) * score universalH`; then apply
 -- `poisson_weighted_bad_moment` at `t=2` and divide by `m^2`.
@@ -304,7 +310,9 @@ expected fourth-power failure score — the fourth power of the normalized
 deviation plus the empirical radius at level L/m, taken on the event that
 the deviation exceeds a quarter of that radius and zero otherwise — is at
 most (H/1024)^4 times the order-4 bad-moment constant times exp(−20 L) times
-(√(qL/m) + L/m)^4](goal). -/
+(√(qL/m) + L/m)^4](goal).
+@isnad1 id=le.3h4v.s8.c881c6fb0615 from=translated src=- shape=bebc1474 vocab=c704e224
+-/
 -- Same comparison as the second moment, using the existing scalar theorem at
 -- `t=4`; its `exp (-40L)` decay is stronger than the displayed `exp (-20L)`.
 theorem poisson_empiricalRadius_bad_fourth_moment

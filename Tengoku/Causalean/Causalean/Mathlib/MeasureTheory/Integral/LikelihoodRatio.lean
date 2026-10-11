@@ -38,7 +38,9 @@ Proof outline:
 4. The hypothesis `hSpec` rewrites `μ[𝟙t | m]` as
    `μ[𝟙s | m] · L`, identifying the two integrands μ-a.e.
 
-Mathlib-contribution candidate. -/
+Mathlib-contribution candidate.
+@isnad1 id=eq.8h8v.s8.b92633f9ad59 from=translated src=- shape=d77f3b08 vocab=53da84a8
+-/
 lemma setIntegral_eq_setIntegral_mul_of_likelihoodRatio_swap
     {Ω : Type*} {m mΩ : MeasurableSpace Ω} (hm : m ≤ mΩ)
     {μ : Measure Ω} [IsFiniteMeasure μ]

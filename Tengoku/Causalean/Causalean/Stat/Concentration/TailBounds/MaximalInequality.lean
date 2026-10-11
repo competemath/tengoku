@@ -47,7 +47,9 @@ namespace HasSubexponentialMGF
 /-- **Two-sided Chernoff bound.** If [the random variable `X` has a sub-exponential
 moment-generating function with parameters `(v, b)` with respect to `μ`](hyp:hX) and
 [`ε` is nonnegative](hyp:hε), then [the probability that `|X|` is at least `ε` is at
-most $2\exp(-ε^2/(2(v+bε)))$](goal). -/
+most $2\exp(-ε^2/(2(v+bε)))$](goal).
+@isnad1 id=le.2h7v.s7.d60a39bae161 from=translated src=- shape=e4f0c552 vocab=293009b8
+-/
 theorem measure_abs_ge_le (hX : HasSubexponentialMGF X v b μ) {ε : ℝ} (hε : 0 ≤ ε) :
     μ.real {ω | ε ≤ |X ω|} ≤ 2 * Real.exp (-ε ^ 2 / (2 * ((v : ℝ) + b * ε))) := by
   haveI := hX.isFiniteMeasure
@@ -73,7 +75,9 @@ end HasSubexponentialMGF
 finite family indexed by `t` has a sub-exponential moment-generating function with
 common parameters `(v, b)` with respect to `μ`](hyp:hY) and [`ε` is
 nonnegative](hyp:hε), then [the probability that `|Y i| ≥ ε` for at least one `i ∈ t`
-is at most the union bound `card t · 2 exp(−ε² / (2 (v + b ε)))`](goal). -/
+is at most the union bound `card t · 2 exp(−ε² / (2 (v + b ε)))`](goal).
+@isnad1 id=le.2h9v.s7.0f99cf6bbfde from=translated src=- shape=df56eb23 vocab=86ac4bc7
+-/
 theorem measure_exists_abs_ge_le {ι : Type*} (t : Finset ι) (Y : ι → Ω → ℝ) {v b : ℝ≥0}
     (hY : ∀ i ∈ t, HasSubexponentialMGF (Y i) v b μ) {ε : ℝ} (hε : 0 ≤ ε) :
     μ.real {ω | ∃ i ∈ t, ε ≤ |Y i ω|} ≤
@@ -96,7 +100,9 @@ set](hyp:ht), [every member `Y i`, `i ∈ t`, has a sub-exponential moment-gener
 function with common parameters `(v, b)` with respect to `μ`](hyp:hY), and [`ε` is
 nonnegative](hyp:hε), then [the probability that the pointwise maximum of `|Y i|`
 over `i ∈ t` is at least `ε` is at most the union bound
-`card t · 2 exp(−ε² / (2 (v + b ε)))`](goal). -/
+`card t · 2 exp(−ε² / (2 (v + b ε)))`](goal).
+@isnad1 id=le.3h9v.s7.9c70d3f4bebb from=translated src=- shape=15a6e0f8 vocab=ab70fdf4
+-/
 theorem measure_sup'_ge_le {ι : Type*} (t : Finset ι) (ht : t.Nonempty) (Y : ι → Ω → ℝ)
     {v b : ℝ≥0} (hY : ∀ i ∈ t, HasSubexponentialMGF (Y i) v b μ) {ε : ℝ} (hε : 0 ≤ ε) :
     μ.real {ω | ε ≤ t.sup' ht (fun i => |Y i ω|)} ≤

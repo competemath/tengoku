@@ -43,14 +43,18 @@ noncomputable def condQuantile (ρ : Measure (α × ℝ)) (τ : α → ℝ) (a :
   sInf {x : ℝ | τ a ≤ condCDF ρ a x}
 
 /-- If a response value's conditional cumulative distribution function reaches a target level,
-    then every larger response value also reaches that level. -/
+    then every larger response value also reaches that level.
+@isnad1 id=mem.2h6v.s6.599980a48826 from=translated src=- shape=0907ac5a vocab=61f1a136
+-/
 lemma condQuantileSet_up_closed {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a : α}
     {x x' : ℝ} (hx : x ∈ {y : ℝ | τ a ≤ condCDF ρ a y}) (hxx' : x ≤ x') :
     x' ∈ {y : ℝ | τ a ≤ condCDF ρ a y} :=
   le_trans hx ((condCDF ρ a).mono hxx')
 
 /-- At a strictly positive conditional-quantile level, the response values whose
-conditional cumulative distribution function reaches that level are bounded below. -/
+conditional cumulative distribution function reaches that level are bounded below.
+@isnad1 id=bddbelow.1h4v.s5.274e567813c4 from=translated src=- shape=bae7e7cb vocab=8ed309f8
+-/
 lemma bddBelow_condQuantileSet {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a : α}
     (hτ0 : 0 < τ a) : BddBelow {x : ℝ | τ a ≤ condCDF ρ a x} := by
   obtain ⟨N, hN⟩ :=
@@ -61,7 +65,9 @@ lemma bddBelow_condQuantileSet {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a :
   exact absurd hs (not_le.mpr (hN s hlt.le))
 
 /-- At a conditional-quantile level strictly below one, some response value has a
-conditional cumulative distribution function that reaches that level. -/
+conditional cumulative distribution function that reaches that level.
+@isnad1 id=nonempty.1h4v.s5.e8357e8aaf40 from=translated src=- shape=8bf32f87 vocab=ed290319
+-/
 lemma nonempty_condQuantileSet {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a : α}
     (hτ1 : τ a < 1) : ({x : ℝ | τ a ≤ condCDF ρ a x}).Nonempty := by
   obtain ⟨N, hN⟩ :=
@@ -69,7 +75,9 @@ lemma nonempty_condQuantileSet {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a :
   exact ⟨N, (hN N le_rfl).le⟩
 
 /-- At a target level below one, the conditional generalized inverse reaches at least that
-level in the conditional cumulative distribution function. -/
+level in the conditional cumulative distribution function.
+@isnad1 id=le.1h4v.s5.10d208d6f8a5 from=translated src=- shape=c59d65a9 vocab=3c61e707
+-/
 lemma le_condCDF_condQuantile {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a : α}
     (hτ1 : τ a < 1) : τ a ≤ condCDF ρ a (condQuantile ρ τ a) := by
   set q := condQuantile ρ τ a with hq
@@ -85,7 +93,9 @@ lemma le_condCDF_condQuantile {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a : 
     filter_upwards [self_mem_nhdsWithin] with x hx using hgt x hx
   exact ge_of_tendsto htends hev
 
-/-- A conditional quantile below a value makes the conditional CDF reach any level below one. -/
+/-- A conditional quantile below a value makes the conditional CDF reach any level below one.
+@isnad1 id=le.2h5v.s6.dcd678930743 from=translated src=- shape=b7f9c3b9 vocab=3c61e707
+-/
 lemma le_condCDF_of_condQuantile_le {ρ : Measure (α × ℝ)} {τ : α → ℝ}
     {a : α} {x : ℝ} (hτ1 : τ a < 1) (hx : condQuantile ρ τ a ≤ x) :
     τ a ≤ condCDF ρ a x :=
@@ -93,14 +103,18 @@ lemma le_condCDF_of_condQuantile_le {ρ : Measure (α × ℝ)} {τ : α → ℝ}
     ((condCDF ρ a).mono hx)
 
 /-- When the conditional cumulative distribution function has reached a positive target level
-at a point, the conditional generalized inverse is no larger than that point. -/
+at a point, the conditional generalized inverse is no larger than that point.
+@isnad1 id=le.2h5v.s6.2565e62d1ea8 from=translated src=- shape=7f005ccd vocab=3c61e707
+-/
 lemma condQuantile_le_of_le_condCDF {ρ : Measure (α × ℝ)} {τ : α → ℝ}
     {a : α} {x : ℝ} (hτ0 : 0 < τ a) (hx : τ a ≤ condCDF ρ a x) :
     condQuantile ρ τ a ≤ x :=
   csInf_le (bddBelow_condQuantileSet (ρ := ρ) (τ := τ) (a := a) hτ0) hx
 
 /-- At an interior target level, a point is above the conditional generalized inverse exactly
-when its conditional cumulative distribution function has reached that level. -/
+when its conditional cumulative distribution function has reached that level.
+@isnad1 id=iff.2h5v.s6.7f485fa234f5 from=translated src=- shape=433bf8aa vocab=3c61e707
+-/
 lemma condQuantile_le_iff {ρ : Measure (α × ℝ)} {τ : α → ℝ} {a : α}
     {x : ℝ} (hτ0 : 0 < τ a) (hτ1 : τ a < 1) :
     condQuantile ρ τ a ≤ x ↔ τ a ≤ condCDF ρ a x :=
@@ -116,7 +130,9 @@ conditional quantile, for every parameter value](hyp:hcont), then [the condition
 selected quantile equals `τ a` for every `a`](goal).
 
 This is the conditional analogue of an unconditional generalized inverse, with measurability
-of the selection in the conditioning variable. -/
+of the selection in the conditioning variable.
+@isnad1 id=and.4h3v.s7.1539b62f84a2 from=translated src=- shape=f98e1e73 vocab=8981182b
+-/
 theorem measurable_condQuantile_and_attains (ρ : Measure (α × ℝ))
     (τ : α → ℝ) (hτ : Measurable τ) (hτ0 : ∀ a, 0 < τ a) (hτ1 : ∀ a, τ a < 1)
     (hcont : ∀ a, ContinuousAt (condCDF ρ a) (condQuantile ρ τ a)) :

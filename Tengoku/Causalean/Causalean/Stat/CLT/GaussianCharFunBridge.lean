@@ -56,7 +56,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 [mean zero](hyp:hmean), [its characteristic function at any point `t` equals
 $\exp(-\tfrac12\,\mathrm{covarianceBilin}\ Q\ t\ t)$](goal).
 
-    Specialisation of `IsGaussian.charFun_eq'` with `Q[id] = 0`. -/
+    Specialisation of `IsGaussian.charFun_eq'` with `Q[id] = 0`.
+@isnad1 id=eq.1h3v.s9.c19926de09c2 from=translated src=- shape=d7b5d97a vocab=a656371d
+-/
 theorem charFun_isGaussian_centered (Q : Measure E) [IsGaussian Q]
     (hmean : ∫ x, x ∂Q = 0) (t : E) :
     charFun Q t = Complex.exp (-(covarianceBilin Q t t : ℂ) / 2) := by
@@ -71,7 +73,9 @@ theorem charFun_isGaussian_centered (Q : Measure E) [IsGaussian Q]
 influence-function second moment $\int \langle t,\psi(x)\rangle^2\,dP$](hyp:hcov), [its
 characteristic function at `t` equals $\exp(-\tfrac12\int
 \langle t,\psi(x)\rangle^2\,dP)$](goal) — the exact target shape consumed as the hypothesis `hQ`
-by `IIDSample.clt_normalizedSum_vec_of_charFun` and friends. -/
+by `IIDSample.clt_normalizedSum_vec_of_charFun` and friends.
+@isnad1 id=eq.2h6v.s9.9fa5d637d3c7 from=translated src=- shape=18f9511b vocab=15a1654f
+-/
 theorem charFun_isGaussian_of_cov_eq {X : Type*} [MeasurableSpace X]
     {P : Measure X} {ψ : X → E} (Q : Measure E) [IsGaussian Q]
     (hmean : ∫ x, x ∂Q = 0)

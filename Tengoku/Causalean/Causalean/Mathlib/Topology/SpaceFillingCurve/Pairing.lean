@@ -22,7 +22,9 @@ structure PerfectPairing (N : ℕ) where
     i = (edge j).1 ∨ i = (edge j).2
 
 /-- Given [a family size](hyp:N) that is [even and at least two](hyp:hN,hN2), and [unit-interval parameters](hyp:t,ht),
-[a perfect pairing has total absolute parameter gap at most one](goal). -/
+[a perfect pairing has total absolute parameter gap at most one](goal).
+@isnad1 id=ex.3h2v.s7.48f499356d2b from=translated src=- shape=e6d2067f vocab=cf303f46
+-/
 theorem exists_pairing_gap_le_one (N : ℕ) (hN : Even N) (hN2 : 2 ≤ N)
     (t : Fin N → ℝ) (ht : ∀ i, t i ∈ Set.Icc (0 : ℝ) 1) :
     ∃ M : PerfectPairing N,
@@ -131,7 +133,9 @@ theorem exists_pairing_gap_le_one (N : ℕ) (hN : Even N) (hN2 : 2 ≤ N)
 
 /-- For nonnegative gaps totaling at most one, the sum of their `p`th
 powers is at most the number of gaps to the power `1-p`, for `0<p≤1`.
-This is finite Jensen concavity for the power function. -/
+This is finite Jensen concavity for the power function.
+@isnad1 id=le.5h3v.s7.754027ff746a from=translated src=- shape=90d85ee4 vocab=fb05c729
+-/
 theorem sum_rpow_le_card_rpow {m : ℕ} (hm : 0 < m) (p : ℝ)
     (hp0 : 0 < p) (hp1 : p ≤ 1) (a : Fin m → ℝ)
     (ha : ∀ i, 0 ≤ a i) (hsum : (∑ i, a i) ≤ 1) :

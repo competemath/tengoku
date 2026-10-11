@@ -25,7 +25,9 @@ variable {X : Type*} [TopologicalSpace X] [FirstCountableTopology X]
 
 /-- For [a sequence in a first-countable space](hyp:x), [a point is the limit
 along a strictly increasing subsequence exactly when it is a mapped cluster
-point at infinity](goal). -/
+point at infinity](goal).
+@isnad1 id=iff.0h3v.s5.1f8175005fb5 from=translated src=- shape=3b0fda42 vocab=9f8fd3c0
+-/
 theorem isSubsequentialLimit_iff_mapClusterPt (x : ℕ → X) (a : X) :
     (∃ φ : ℕ → ℕ, StrictMono φ ∧ Tendsto (x ∘ φ) atTop (nhds a)) ↔
       MapClusterPt a atTop x := by
@@ -39,7 +41,9 @@ variable [T2Space X]
 /-- If [a sequence](hyp:x) is [eventually contained](hyp:hx) in a [compact
 set](hyp:hs), then
 [its set of limits along strictly increasing subsequences is nonempty and
-compact](goal). -/
+compact](goal).
+@isnad1 id=and.2h3v.s6.aa5d79cba221 from=translated src=- shape=c1887e90 vocab=91328c82
+-/
 theorem subsequentialLimitSet_nonempty_compact_of_eventually_mem_compact
     (x : ℕ → X) {s : Set X} (hs : IsCompact s)
     (hx : ∀ᶠ n in atTop, x n ∈ s) :

@@ -115,7 +115,9 @@ Lemma 1).  If the true value `θ` lies in the identified set `[L, U]`, then ever
 sample realization whose random interval covers all of `[L, U]` also covers `θ`.
 Consequently a confidence interval that is honest for the *set* is automatically
 honest for the *parameter* — which is why parameter-coverage intervals can be no
-larger, and generically strictly smaller. -/
+larger, and generically strictly smaller.
+@isnad1 id=le.1h6v.s5.791ab40be711 from=translated src=- shape=0a4678bf vocab=f23c6f0f
+-/
 theorem randomCoversIcc_subset_randomCoversPoint (A B : Ω → ℝ) {L U θ : ℝ}
     (hθ : θ ∈ Set.Icc L U) :
     RandomCoversIcc A B L U ⊆ RandomCoversPoint A B θ := by
@@ -127,7 +129,9 @@ variable [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 omit [MeasurableSpace Ω] in
 /-- The complement of the set-coverage event is contained in the union of the
 two one-sided endpoint-failure events: lower overshoot after widening or upper
-undershoot after widening. -/
+undershoot after widening.
+@isnad1 id=le.0h7v.s6.ce07f30c53fe from=translated src=- shape=40512e3d vocab=d408b71e
+-/
 theorem randomCoversIcc_compl_subset {lo hi : Ω → ℝ} {L U wL wU : ℝ} :
     (RandomCoversIcc (fun ω => lo ω - wL) (fun ω => hi ω + wU) L U)ᶜ
       ⊆ {ω | L < lo ω - wL} ∪ {ω | hi ω + wU < U} := by
@@ -141,7 +145,9 @@ theorem randomCoversIcc_compl_subset {lo hi : Ω → ℝ} {L U wL wU : ℝ} :
 
 omit [MeasurableSpace Ω] in
 /-- A lower endpoint overshoot after widening implies the corresponding
-two-sided absolute-deviation miss. -/
+two-sided absolute-deviation miss.
+@isnad1 id=le.0h4v.s5.d089f568ed2e from=translated src=- shape=7a41e384 vocab=4cb50940
+-/
 theorem lowerOvershoot_subset_absMiss {lo : Ω → ℝ} {L wL : ℝ} :
     {ω | L < lo ω - wL} ⊆ {ω | wL ≤ |lo ω - L|} := by
   intro ω hω
@@ -151,7 +157,9 @@ theorem lowerOvershoot_subset_absMiss {lo : Ω → ℝ} {L wL : ℝ} :
 
 omit [MeasurableSpace Ω] in
 /-- An upper endpoint undershoot after widening implies the corresponding
-two-sided absolute-deviation miss. -/
+two-sided absolute-deviation miss.
+@isnad1 id=le.0h4v.s5.3a2271cc5dd7 from=translated src=- shape=e4b933c0 vocab=094a3e7f
+-/
 theorem upperUndershoot_subset_absMiss {hi : Ω → ℝ} {U wU : ℝ} :
     {ω | hi ω + wU < U} ⊆ {ω | wU ≤ |hi ω - U|} := by
   intro ω hω
@@ -177,7 +185,9 @@ one-sided endpoint-failure events. The union bound needs no ordering of `L` and
 regime `L ≤ U`, and remains a true statement about the two endpoint inequalities
 otherwise. It is stated
 abstractly in the miss probabilities so that any concentration inequality
-(Hoeffding, Bernstein, …) can be plugged in; see `Inference/IntervalCI.lean`. -/
+(Hoeffding, Bernstein, …) can be plugged in; see `Inference/IntervalCI.lean`.
+@isnad1 id=le.4h10v.s7.8e022ddaabf6 from=translated src=- shape=166162a1 vocab=da8ef985
+-/
 theorem honest_ci_set_cover {lo hi : Ω → ℝ} (hlo : Measurable lo) (hhi : Measurable hi)
     {L U wL wU δL δU : ℝ}
     (hML : μ.real {ω | L < lo ω - wL} ≤ δL)
@@ -221,7 +231,9 @@ Obtained by composing `honest_ci_set_cover` with
 covering any point of it.  This is the conservative (Horowitz–Manski-style)
 parameter confidence interval; the sharper Imbens–Manski interval, which replaces
 the two-sided half-widths by one-sided critical values when `U − L > 0`, is in
-`Inference/ImbensManski.lean`. -/
+`Inference/ImbensManski.lean`.
+@isnad1 id=le.5h11v.s7.144505692ba0 from=translated src=- shape=ddac4dc3 vocab=4ea5ac1e
+-/
 theorem honest_ci_point_cover {lo hi : Ω → ℝ} (hlo : Measurable lo) (hhi : Measurable hi)
     {L U wL wU δL δU θ : ℝ} (hθ : θ ∈ Set.Icc L U)
     (hML : μ.real {ω | L < lo ω - wL} ≤ δL)

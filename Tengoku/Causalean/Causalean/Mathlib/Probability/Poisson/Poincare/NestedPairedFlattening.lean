@@ -41,7 +41,9 @@ def nestedPairedPoissonRates
   fun p => Fin.cases (lambda₁ p.1 p.2.1) (fun _ => lambda₂ p.1 p.2.1) p.2.2
 
 /-- A [finite family of probability laws](hyp:mu) has
-[the same product law after regrouping a dependent pair of finite indices](goal). -/
+[the same product law after regrouping a dependent pair of finite indices](goal).
+@isnad1 id=measurep.0h4v.s9.5df9cfaed8a8 from=translated src=- shape=9c277977 vocab=43fe85fa
+-/
 theorem measurePreserving_piCurry_probability
     {alpha : Type*} {beta : alpha → Type*}
     [Fintype alpha] [∀ i, Fintype (beta i)]
@@ -97,7 +99,9 @@ def nestedPairedPoissonFlattening
   (nestedPairedPoissonUnflattening iota kappa).symm
 
 /-- A [flat count vector](hyp:z) and [selected nested-array cell](hyp:i,j) have
-[an unflattened count pair equal to the two tagged flat counts](goal). -/
+[an unflattened count pair equal to the two tagged flat counts](goal).
+@isnad1 id=eq.0h5v.s8.76ad9d46482e from=translated src=- shape=9fde3c61 vocab=41ff2819
+-/
 @[simp] theorem nestedPairedPoissonUnflattening_apply
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (z : NestedPairedPoissonIndex iota kappa → Nat) (i : iota) (j : kappa) :
@@ -106,7 +110,9 @@ def nestedPairedPoissonFlattening
   rfl
 
 /-- A [nested count-pair array](hyp:x) and [selected cell](hyp:i,j) have
-[a first-tag flattened coordinate equal to that cell's first count](goal). -/
+[a first-tag flattened coordinate equal to that cell's first count](goal).
+@isnad1 id=eq.0h5v.s8.3e39643191ba from=translated src=- shape=d27a9ae9 vocab=83a6118d
+-/
 @[simp] theorem nestedPairedPoissonFlattening_apply_zero
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (x : iota → kappa → Nat × Nat) (i : iota) (j : kappa) :
@@ -114,7 +120,9 @@ def nestedPairedPoissonFlattening
   rfl
 
 /-- A [nested count-pair array](hyp:x) and [selected cell](hyp:i,j) have
-[a second-tag flattened coordinate equal to that cell's second count](goal). -/
+[a second-tag flattened coordinate equal to that cell's second count](goal).
+@isnad1 id=eq.0h5v.s8.6d8f7dbefdb3 from=translated src=- shape=d27a9ae9 vocab=03bab396
+-/
 @[simp] theorem nestedPairedPoissonFlattening_apply_one
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (x : iota → kappa → Nat × Nat) (i : iota) (j : kappa) :
@@ -122,7 +130,9 @@ def nestedPairedPoissonFlattening
   rfl
 
 /-- Two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂) have
-[a flat independent-Poisson product law transported to their nested paired-count law](goal). -/
+[a flat independent-Poisson product law transported to their nested paired-count law](goal).
+@isnad1 id=measurep.0h4v.s8.6755b5f6cdd2 from=translated src=- shape=5ed059c1 vocab=ca3f77d6
+-/
 theorem measurePreserving_nestedPairedPoissonUnflattening
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (lambda₁ lambda₂ : iota → kappa → NNReal) :
@@ -176,7 +186,9 @@ theorem measurePreserving_nestedPairedPoissonUnflattening
 
 /-- Two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂) have
 [their nested paired-count law transported to the corresponding flat independent-Poisson
-product law](goal). -/
+product law](goal).
+@isnad1 id=measurep.0h4v.s8.54eb9d7e620d from=translated src=- shape=5ec9d320 vocab=6be92b53
+-/
 theorem measurePreserving_nestedPairedPoissonFlattening
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (lambda₁ lambda₂ : iota → kappa → NNReal) :
@@ -187,7 +199,9 @@ theorem measurePreserving_nestedPairedPoissonFlattening
     (measurePreserving_nestedPairedPoissonUnflattening lambda₁ lambda₂)
 
 /-- A [flat count vector](hyp:z) and [selected nested-array cell](hyp:i,j) have
-[a first-tag increment that unflattens to adding one to that cell's first count](goal). -/
+[a first-tag increment that unflattens to adding one to that cell's first count](goal).
+@isnad1 id=eq.0h5v.s10.dc3302dcb551 from=translated src=- shape=62f23bb1 vocab=4760c7eb
+-/
 theorem nestedPairedPoissonUnflattening_update_fst
     {iota kappa : Type*}
     [Fintype iota] [DecidableEq iota] [Fintype kappa] [DecidableEq kappa]
@@ -210,7 +224,9 @@ theorem nestedPairedPoissonUnflattening_update_fst
   · simp [hi]
 
 /-- A [flat count vector](hyp:z) and [selected nested-array cell](hyp:i,j) have
-[a second-tag increment that unflattens to adding one to that cell's second count](goal). -/
+[a second-tag increment that unflattens to adding one to that cell's second count](goal).
+@isnad1 id=eq.0h5v.s10.d7243579a93c from=translated src=- shape=716fd22d vocab=4760c7eb
+-/
 theorem nestedPairedPoissonUnflattening_update_snd
     {iota kappa : Type*}
     [Fintype iota] [DecidableEq iota] [Fintype kappa] [DecidableEq kappa]

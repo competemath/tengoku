@@ -30,7 +30,9 @@ sum of conditional variances in each row converges in probability to one](hyp:hV
 and [the conditional Lindeberg sum converges in probability to zero at every positive
 threshold](hyp:hLindeberg), then [the row sums converge in distribution to the standard
 normal law](goal).  Row lengths may vary with the row index, and no independence between
-increments is assumed. -/
+increments is assumed.
+@isnad1 id=tendstoi.2h4v.s7.f0dff125bfec from=translated src=- shape=eac2516f vocab=6ee45f02
+-/
 theorem martingaleArrayCLT
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ)
@@ -49,7 +51,9 @@ theorem martingaleArrayCLT
 quadratic variations converge in probability to one](hyp:hVariance), if [all increments
 have finite fourth moments](hyp:hFourth) and [the conditional fourth-moment row sums vanish
 in probability](hyp:hFourthConditional), then [the row sums converge in distribution to
-the standard normal law](goal). -/
+the standard normal law](goal).
+@isnad1 id=tendstoi.3h4v.s8.e8e5faa5b81a from=translated src=- shape=71630f90 vocab=c47c50ad
+-/
 theorem martingaleArrayCLT_of_conditionalFourthMoment
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ)
@@ -67,7 +71,9 @@ theorem martingaleArrayCLT_of_conditionalFourthMoment
 quadratic variations converge in probability to one](hyp:hVariance), if [all increments
 have finite fourth moments](hyp:hFourth) and [the deterministic sum of their unconditional
 fourth moments vanishes](hyp:hFourthSum), then [the row sums converge in distribution to
-the standard normal law](goal). -/
+the standard normal law](goal).
+@isnad1 id=tendstoi.3h4v.s7.71f6fd514ec1 from=translated src=- shape=cf2aa8fb vocab=465268c8
+-/
 theorem martingaleArrayCLT_of_fourthMomentSum
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ)
@@ -83,7 +89,9 @@ theorem martingaleArrayCLT_of_fourthMomentSum
 quadratic variation equals a deterministic row variance](hyp:hVarianceEq), [those variances
 converge to one](hyp:hVariance), [all increments have finite fourth moments](hyp:hFourth),
 and [the deterministic fourth-moment row sums vanish](hyp:hFourthSum).  Then [the row sums
-converge in distribution to the standard normal law](goal). -/
+converge in distribution to the standard normal law](goal).
+@isnad1 id=tendstoi.4h5v.s7.b852704d8c5b from=translated src=- shape=8b599cef vocab=3491731f
+-/
 theorem martingaleArrayCLT_of_deterministicVariance_fourthMomentSum
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (v : ℕ → ℝ)

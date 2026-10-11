@@ -17,7 +17,9 @@ open Filter
 /-- A [bounded count kernel](hyp:hbound) that is [uniformly close on a
 relative mean band](hyp:hband) has [a convergent binomial average](goal) when
 the [success parameters are valid](hyp:heta), the [mean diverges](hyp:hmean),
-and the [target lies in the unit interval](hyp:hc). -/
+and the [target lies in the unit interval](hyp:hc).
+@isnad1 id=tendsto.5h4v.s8.f67e57e5bfd0 from=translated src=- shape=2492dd0a vocab=a90f024c
+-/
 theorem binomialAverage_tendsto_of_relative_band
     (Tseq : ℕ → ℕ) (etaseq : ℕ → ℝ) (f : ℕ → ℕ → ℝ) (c : ℝ)
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)

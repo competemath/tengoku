@@ -18,7 +18,9 @@ namespace Causalean.Mathlib.Probability.Kernel.FiniteHistory
 /-- If [a joint law ν](hyp:ν) [is the composition product of an s-finite base measure μ with an
 s-finite kernel K](hyp:μ,K,hν), then for [every real function f integrable under ν](hyp:f,hf),
 [the integral of f under ν equals the integral under μ of the inner integral of f against
-K](goal). -/
+K](goal).
+@isnad1 id=eq.2h6v.s7.ec436c407cb7 from=translated src=- shape=95592c84 vocab=f462d37c
+-/
 theorem integral_compProd_of_law
     {H B : Type*} [MeasurableSpace H] [MeasurableSpace B]
     (μ : Measure H) (K : Kernel H B) [SFinite μ] [IsSFiniteKernel K]
@@ -31,7 +33,9 @@ theorem integral_compProd_of_law
 /-- If [a joint law ν](hyp:ν) [is the composition product of a probability measure μ with a
 Markov kernel K](hyp:μ,K,hν), then for [every measurable real function f](hyp:f,hf) [bounded in
 absolute value by a constant C](hyp:C,hbound), [the integral of f under ν equals the integral
-under μ of the inner integral of f against K](goal). -/
+under μ of the inner integral of f against K](goal).
+@isnad1 id=eq.3h7v.s7.62cb4518eb13 from=translated src=- shape=5113cf75 vocab=2a7528b7
+-/
 theorem integral_compProd_bounded
     {H B : Type*} [MeasurableSpace H] [MeasurableSpace B]
     (μ : Measure H) (K : Kernel H B) [IsProbabilityMeasure μ] [IsMarkovKernel K]
@@ -52,7 +56,9 @@ composed with the action kernel](hyp:νA,hA) and [the full law ν is νA compose
 transition kernel](hyp:ν,hν), then for [every measurable function f of history, action, reward
 and next state](hyp:f,hf) [bounded in absolute value by a constant C](hyp:C,hbound), [the
 integral of f under ν equals the iterated integral over histories, then actions, then reward and
-next state](goal). -/
+next state](goal).
+@isnad1 id=eq.4h10v.s9.aea34ef2d194 from=translated src=- shape=13634137 vocab=6cf7d820
+-/
 theorem integral_action_transition
     {H A S : Type*} [MeasurableSpace H] [MeasurableSpace A]
     [MeasurableSpace S] [Finite A] [Finite S]
@@ -95,7 +101,9 @@ Cf](hyp:Cf,hCf,hf_bound), and [g a measurable function of the second window](hyp
 [bounded in absolute value by a nonnegative constant Cg](hyp:Cg,hCg,hg_bound). If [for every first
 window x the kernel mean of g given x differs from the overall mean of g under ν by at most a
 nonnegative constant D](hyp:D,hD,hkernel), then [the covariance of f and g under ν — the mean of
-their product minus the product of their means — is at most Cf·D in absolute value](goal). -/
+their product minus the product of their means — is at most Cf·D in absolute value](goal).
+@isnad1 id=le.9h10v.s8.b22ad64ca6e9 from=translated src=- shape=abb7e883 vocab=ba5a31d5
+-/
 theorem covariance_compProd_of_centered_kernel_bound
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     (μ : Measure X) [IsProbabilityMeasure μ]

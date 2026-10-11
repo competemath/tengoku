@@ -42,7 +42,9 @@ structure IsBody (C : Set E) : Prop where
   isCompact : IsCompact C
   convex : Convex ℝ C
 
-/-- On a compact set the linear functional `⟪d, ·⟫` is bounded above. -/
+/-- On a compact set the linear functional `⟪d, ·⟫` is bounded above.
+@isnad1 id=bddabove.1h3v.s5.3abef8468b14 from=translated src=- shape=124556b6 vocab=151168fc
+-/
 lemma bddAbove_inner_image {C : Set E} (hC : IsCompact C) (d : E) :
     BddAbove ((fun x => ⟪d, x⟫) '' C) := by
   obtain ⟨R, hR⟩ := hC.isBounded.subset_closedBall (0 : E)
@@ -52,12 +54,16 @@ lemma bddAbove_inner_image {C : Set E} (hC : IsCompact C) (d : E) :
   calc ⟪d, x⟫ ≤ ‖d‖ * ‖x‖ := real_inner_le_norm d x
     _ ≤ ‖d‖ * R := mul_le_mul_of_nonneg_left hxR (norm_nonneg d)
 
-/-- The support function of a body is bounded above, hence meaningful. -/
+/-- The support function of a body is bounded above, hence meaningful.
+@isnad1 id=bddabove.1h3v.s5.28dcb7fddc4d from=translated src=- shape=124556b6 vocab=28205bc4
+-/
 lemma IsBody.bddAbove {C : Set E} (h : IsBody C) (d : E) :
     BddAbove ((fun x => ⟪d, x⟫) '' C) :=
   bddAbove_inner_image h.isCompact d
 
-/-- A finite Minkowski sum of bodies is a body. -/
+/-- A finite Minkowski sum of bodies is a body.
+@isnad1 id=isbody.1h4v.s6.974cb4b9e82c from=translated src=- shape=33ee8065 vocab=6e1db286
+-/
 lemma isBody_finsetSum {ι : Type*} (s : Finset ι) (F : ι → Set E)
     (h : ∀ i ∈ s, IsBody (F i)) : IsBody (∑ i ∈ s, F i) := by
   classical
@@ -73,7 +79,9 @@ lemma isBody_finsetSum {ι : Type*} (s : Finset ι) (F : ι → Set E)
         ha.convex.add hr.convex⟩
 
 /-- **Support function commutes with finite Minkowski sums**:
-`s(∑ᵢ Fᵢ, d) = ∑ᵢ s(Fᵢ, d)`. -/
+`s(∑ᵢ Fᵢ, d) = ∑ᵢ s(Fᵢ, d)`.
+@isnad1 id=eq.1h5v.s6.91fb27b3c064 from=translated src=- shape=76c69a26 vocab=06b22eba
+-/
 theorem supportFn_finsetSum {ι : Type*} (s : Finset ι) (F : ι → Set E) (d : E)
     (h : ∀ i ∈ s, IsBody (F i)) :
     supportFn (∑ i ∈ s, F i) d = ∑ i ∈ s, supportFn (F i) d := by
@@ -103,7 +111,9 @@ noncomputable def minkowskiMean {ι : Type*} (s : Finset ι) (F : ι → Set E) 
 values `F i` are bodies — nonempty, compact, convex subsets](hyp:h), [the support function of the
 empirical Minkowski average `(1/|s|) · ∑ᵢ Fᵢ` in a direction `d` equals the arithmetic average of
 the individual support functions: `s(d, F̄ₙ) = (1/|s|) · ∑ᵢ s(d, Fᵢ)`](goal). This is the identity
-that turns the support process into an ordinary sample mean, so the multivariate CLT applies. -/
+that turns the support process into an ordinary sample mean, so the multivariate CLT applies.
+@isnad1 id=eq.1h5v.s6.51fb137d5b33 from=translated src=- shape=cfe3f92d vocab=5ed2d9bd
+-/
 theorem supportFn_minkowskiMean {ι : Type*} (s : Finset ι) (F : ι → Set E) (d : E)
     (h : ∀ i ∈ s, IsBody (F i)) :
     supportFn (minkowskiMean s F) d

@@ -50,7 +50,9 @@ private theorem scalar_normalizedRadius_eq_div
 
 /-- For [a positive exposure](hyp:m,hm), [an intensity](hyp:q), [a multiplier and level](hyp:H,L)
 with [the standard lower bounds](hyp:hH,hL), [every empirical-radius bad count belongs to the
-universal raw-score bad event](goal). -/
+universal raw-score bad event](goal).
+@isnad1 id=le.3h4v.s6.f6d98209488e from=translated src=- shape=3d626d1e vocab=786ea9fb
+-/
 -- Rewrite normalized deviation and empirical radius as the corresponding raw
 -- quantities divided by m; compare thresholds using H ≥ universalH.
 theorem empiricalRadius_bad_subset_raw (q m : ℝ≥0) (hm : 0 < m)
@@ -79,7 +81,9 @@ theorem empiricalRadius_bad_subset_raw (q m : ℝ≥0) (hm : 0 < m)
 
 /-- For [a positive exposure](hyp:m,hm), [an intensity](hyp:q), [a multiplier and level](hyp:H,L)
 with [the standard lower bounds](hyp:hH,hL), [each empirical deviation-plus-radius score is
-at most the scaled universal raw score](goal). -/
+at most the scaled universal raw score](goal).
+@isnad1 id=le.3h5v.s6.6217895a2e2c from=translated src=- shape=f0d789a1 vocab=d76d77ae
+-/
 -- Use the same normalized/raw identities as the subset lemma, then the
 -- nonnegativity of the raw deviation and H/universalH ≥ 1.
 theorem empiricalRadius_score_le_raw (q m : ℝ≥0) (hm : 0 < m)
@@ -113,7 +117,9 @@ theorem empiricalRadius_score_le_raw (q m : ℝ≥0) (hm : 0 < m)
     _ = _ := by ring
 
 /-- For [an intensity and positive exposure](hyp:q,m,hm) and [a level of at least one](hyp:L,hL),
-[the raw local scale divided by exposure equals the normalized local scale](goal). -/
+[the raw local scale divided by exposure equals the normalized local scale](goal).
+@isnad1 id=eq.2h3v.s6.f484607cdfef from=translated src=- shape=638471fe vocab=c8ce8124
+-/
 -- Rewrite sqrt ((m*q)*L)/m using sqrt_div and sqrt (m²) = m.
 theorem empiricalRadius_localScale_div (q m : ℝ≥0) (hm : 0 < m)
     (L : ℝ) (hL : 1 ≤ L) :
@@ -163,7 +169,9 @@ noncomputable def empiricalAggregateScore {ι Ω : Type*} [Fintype ι]
 
 /-- For [finite count coordinates](hyp:ι,Ω,W), [positive exposure](hyp:m,hm),
 [intensities](hyp:q), and [a multiplier and level with their lower bounds](hyp:H,L,hH,hL),
-[the empirical bad union is contained in the universal raw-score bad union](goal). -/
+[the empirical bad union is contained in the universal raw-score bad union](goal).
+@isnad1 id=le.3h7v.s6.2177cfc9c0f6 from=translated src=- shape=e07af3b3 vocab=f76fb798
+-/
 -- Unpack the witnessing coordinate and apply empiricalRadius_bad_subset_raw.
 theorem empiricalBadAny_subset_raw {ι Ω : Type*} [Fintype ι]
     (W : ι → Ω → ℕ) (q : ι → ℝ≥0) (m : ℝ≥0) (hm : 0 < m)
@@ -177,7 +185,9 @@ theorem empiricalBadAny_subset_raw {ι Ω : Type*} [Fintype ι]
 /-- For [finite count coordinates](hyp:ι,Ω,W), [positive exposure](hyp:m,hm),
 [intensities](hyp:q), and [a multiplier and level with their lower bounds](hyp:H,L,hH,hL),
 [the empirical aggregate score is bounded by the scaled universal raw aggregate score](goal)
-at [every outcome](hyp:ω). -/
+at [every outcome](hyp:ω).
+@isnad1 id=le.3h8v.s6.d744118a32f9 from=translated src=- shape=f87cb52f vocab=12df7dec
+-/
 -- Sum empiricalRadius_score_le_raw over coordinates and use Finset.sum_div.
 theorem empiricalAggregateScore_le_raw {ι Ω : Type*} [Fintype ι]
     (W : ι → Ω → ℕ) (q : ι → ℝ≥0) (m : ℝ≥0) (hm : 0 < m)
@@ -200,7 +210,9 @@ theorem empiricalAggregateScore_le_raw {ι Ω : Type*} [Fintype ι]
 
 /-- For [finite intensities](hyp:ι,q), [positive exposure](hyp:m,hm), and
 [a level of at least one](hyp:L,hL), [the total raw local scale divided by exposure
-equals the normalized scale of the total intensity](goal). -/
+equals the normalized scale of the total intensity](goal).
+@isnad1 id=eq.2h4v.s7.51ae1b0aab25 from=translated src=- shape=32ab3116 vocab=678d4b33
+-/
 -- Convert the NNReal sum of m*q_i to m times the NNReal sum q_i, apply
 -- empiricalRadius_localScale_div, and rewrite the cast of the sum.
 theorem empiricalRadius_totalLocalScale_div {ι : Type*} [Fintype ι]
@@ -224,7 +236,9 @@ namespace Causalean.Stat.Concentration.Poisson.EmpiricalRadius
 with [intensities and positive exposure](hyp:q,m,hm) and [mutual independence](hyp:hWindep),
 for [moment order one, two, or four](hyp:t,ht) and [a multiplier and level above their
 universal thresholds](hyp:H,L,hH,hL), [the empirical aggregate score moment on the union of
-empirical-radius bad events obeys the explicit exponentially decaying product bound](goal). -/
+empirical-radius bad events obeys the explicit exponentially decaying product bound](goal).
+@isnad1 id=le.7h8v.s8.1fe5e0114f66 from=translated src=- shape=14fa0780 vocab=e126f568
+-/
 -- Apply empiricalBadAny_subset_raw and empiricalAggregateScore_le_raw
 -- pointwise. Use the integrability of the universal raw indicator score
 -- (from the product theorem's supporting lemmas), integral_mono_of_nonneg,

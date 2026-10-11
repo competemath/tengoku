@@ -21,7 +21,9 @@ variable {T : ℝ}
 variable {Ω L β : Type*} [MeasurableSpace Ω] [MeasurableSpace L] [MeasurableSpace β]
 
 /-- [Two finite torus measures](hyp:μ,ν) whose [integer-character integrals agree](hyp:h)
-are [the same measure](goal). -/
+are [the same measure](goal).
+@isnad1 id=eq.1h3v.s8.82ed806e1d99 from=translated src=- shape=84f75abd vocab=85cad9d2
+-/
 theorem torus_measure_ext_of_fourier_eq [Fact (0 < T)]
     (μ ν : Measure (AddCircle T)) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (h : ∀ n : ℤ, (∫ x, fourier n x ∂μ) = ∫ x, fourier n x ∂ν) : μ = ν := by
@@ -66,7 +68,9 @@ theorem torus_measure_ext_of_fourier_eq [Fact (0 < T)]
   exact hspan g.toContinuousMap hg'
 
 /-- The [integer index](hyp:n) Fourier coefficient of the convolution of [two finite torus
-measures](hyp:μ,ν) [is the product of their coefficients](goal). -/
+measures](hyp:μ,ν) [is the product of their coefficients](goal).
+@isnad1 id=eq.0h4v.s8.37c9eae5c941 from=translated src=- shape=b43de287 vocab=6a9379da
+-/
 theorem torus_integral_fourier_conv [Fact (0 < T)]
     (μ ν : Measure (AddCircle T)) [IsFiniteMeasure μ] [IsFiniteMeasure ν] (n : ℤ) :
     (∫ x, fourier n x ∂(μ ∗ ν)) =
@@ -79,7 +83,9 @@ theorem torus_integral_fourier_conv [Fact (0 < T)]
 
 /-- A [finite torus channel](hyp:κ) with [no zero integer Fourier coefficient](hyp:hκ)
 maps [two finite torus measures](hyp:μ,ν) with [equal convolution outputs](hyp:hconv) to
-[the same input measure](goal). -/
+[the same input measure](goal).
+@isnad1 id=eq.2h4v.s8.cd495e84c823 from=translated src=- shape=6154544d vocab=c49c9570
+-/
 theorem torus_conv_injective_right [Fact (0 < T)]
     (κ μ ν : Measure (AddCircle T)) [IsFiniteMeasure κ]
     [IsFiniteMeasure μ] [IsFiniteMeasure ν]
@@ -99,7 +105,9 @@ noncomputable def markedConv (ρ : Measure (AddCircle T × β))
     (ρ.prod κ)
 
 /-- Restricting [a marked torus measure](hyp:ρ) convolved with [a torus channel](hyp:κ)
-to [a measurable mark set](hyp:B,hB) [commutes with marked convolution](goal). -/
+to [a measurable mark set](hyp:B,hB) [commutes with marked convolution](goal).
+@isnad1 id=eq.1h5v.s7.d7da8d2c2d66 from=translated src=- shape=3df3ef13 vocab=5f9a5c8f
+-/
 theorem markedConv_restrict_mark
     (ρ : Measure (AddCircle T × β)) (κ : Measure (AddCircle T))
     [SFinite ρ] [SFinite κ]
@@ -121,7 +129,9 @@ theorem markedConv_restrict_mark
   rfl
 
 /-- The torus marginal of [a marked torus measure](hyp:ρ) after convolution with [a torus
-channel](hyp:κ) [is the convolution of its original marginal and that channel](goal). -/
+channel](hyp:κ) [is the convolution of its original marginal and that channel](goal).
+@isnad1 id=eq.0h4v.s8.792338a3120d from=translated src=- shape=28318459 vocab=5f322a00
+-/
 theorem markedConv_map_fst
     (ρ : Measure (AddCircle T × β)) (κ : Measure (AddCircle T))
     [SFinite ρ] [SFinite κ] :
@@ -153,7 +163,9 @@ theorem markedConv_map_fst
 
 /-- A [finite torus channel](hyp:κ) with [no zero integer Fourier coefficient](hyp:hκ)
 maps [two finite marked torus measures](hyp:ρ,σ) with [equal marked convolutions](hyp:hconv)
-to [the same marked measure](goal). -/
+to [the same marked measure](goal).
+@isnad1 id=eq.2h5v.s8.89b7f11d2380 from=translated src=- shape=ac539828 vocab=3804cc99
+-/
 theorem markedConv_injective_right [Fact (0 < T)]
     (κ : Measure (AddCircle T)) (ρ σ : Measure (AddCircle T × β))
     [IsFiniteMeasure κ] [IsFiniteMeasure ρ] [IsFiniteMeasure σ]
@@ -183,7 +195,9 @@ theorem markedConv_injective_right [Fact (0 < T)]
 /-- Under [a probability law](hyp:P), a [measurable torus channel](hyp:U,hU) and a
 [measurable record](hyp:R,hR) that are [independent](hyp:hind), conditioning on [a measurable
 record event](hyp:A,hA) with [positive probability](hyp:hpos) leaves [the channel marginal
-unchanged](goal). -/
+unchanged](goal).
+@isnad1 id=eq.5h7v.s7.c406e87ba7b5 from=translated src=- shape=01533f37 vocab=f711d7f7
+-/
 theorem independent_channel_map_cond
     (P : Measure Ω) [IsProbabilityMeasure P]
     (U : Ω → AddCircle T) (R : Ω → L)
@@ -203,7 +217,9 @@ theorem independent_channel_map_cond
 /-- Under [a probability law](hyp:P), a [measurable torus channel](hyp:U,hU) and a
 [measurable record](hyp:R,hR) that are [independent](hyp:hind), conditioning on [a measurable
 record event](hyp:A,hA) with [positive probability](hyp:hpos) makes [the joint law the product
-of the unchanged channel law and the conditioned record law](goal). -/
+of the unchanged channel law and the conditioned record law](goal).
+@isnad1 id=eq.5h7v.s7.37b680403abb from=translated src=- shape=a5593a4a vocab=6379eef3
+-/
 theorem independent_channel_record_map_cond
     (P : Measure Ω) [IsProbabilityMeasure P]
     (U : Ω → AddCircle T) (R : Ω → L)
@@ -234,7 +250,9 @@ theorem independent_channel_record_map_cond
 [measurable record](hyp:R,hR) with [a measurable mark map](hyp:M,hM) that are
 [independent](hyp:hind), conditioning on [a measurable record event](hyp:A,hA) with
 [positive probability](hyp:hpos) and then restricting to [a measurable mark set](hyp:B,hB)
-[preserves the channel-product factorization](goal). -/
+[preserves the channel-product factorization](goal).
+@isnad1 id=eq.7h10v.s8.9b28cdf05314 from=translated src=- shape=37e6f2fd vocab=4d72ebec
+-/
 theorem independent_channel_mark_restrict_cond
     (P : Measure Ω) [IsProbabilityMeasure P]
     (U : Ω → AddCircle T) (R : Ω → L) (M : L → β)

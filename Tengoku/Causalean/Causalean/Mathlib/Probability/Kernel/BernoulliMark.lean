@@ -42,7 +42,9 @@ noncomputable def reciprocalTilt
   ν₁.withDensity fun a => ENNReal.ofReal (1 / h a)
 
 /-- The [reciprocal tilt of an s-finite base measure](hyp:ν₁) by [any real-valued
-weight](hyp:h) [is s-finite](goal). -/
+weight](hyp:h) [is s-finite](goal).
+@isnad1 id=sfinite.0h3v.s4.6f965a5a05cc from=translated src=- shape=a629a1a8 vocab=2a2b251c
+-/
 noncomputable instance reciprocalTilt.instSFinite
     {α : Type*} [MeasurableSpace α] (ν₁ : Measure α) [SFinite ν₁] (h : α → ℝ) :
     SFinite (reciprocalTilt ν₁ h) := by
@@ -57,7 +59,9 @@ noncomputable def bernoulliMarkedLaw
   reciprocalTilt ν₁ h ⊗ₘ bernoulliMarkKernel h
 
 /-- For [a measurable weight](hyp:h,hh), [the Bernoulli-mark kernel fiber at a base
-point](hyp:a) [is the Boolean Bernoulli measure with that point's weight](goal). -/
+point](hyp:a) [is the Boolean Bernoulli measure with that point's weight](goal).
+@isnad1 id=eq.1h3v.s5.57dd030b5874 from=translated src=- shape=fef5bc99 vocab=4b172837
+-/
 theorem bernoulliMarkKernel_apply
     {α : Type*} [MeasurableSpace α] (h : α → ℝ) (hh : Measurable h) (a : α) :
     bernoulliMarkKernel h a = bernoulliBool (h a) := by
@@ -70,7 +74,9 @@ theorem bernoulliMarkKernel_apply
       (ENNReal.measurable_ofReal.comp
         (measurable_const.sub (hh.comp measurable_fst)))
 
-/-- The [Bernoulli-mark kernel built from a weight](hyp:h) [is s-finite](goal). -/
+/-- The [Bernoulli-mark kernel built from a weight](hyp:h) [is s-finite](goal).
+@isnad1 id=issfinit.0h2v.s4.fa309e22c6be from=translated src=- shape=727f41d7 vocab=40a0c312
+-/
 noncomputable instance bernoulliMarkKernel.instIsSFiniteKernel
     {α : Type*} [MeasurableSpace α] (h : α → ℝ) :
     IsSFiniteKernel (bernoulliMarkKernel h) := by
@@ -80,7 +86,9 @@ noncomputable instance bernoulliMarkKernel.instIsSFiniteKernel
   split_ifs <;> exact ENNReal.ofReal_ne_top
 
 /-- For [a measurable weight](hyp:h,hh) and [a base point](hyp:a), [the success singleton
-has kernel mass `max(h(a),0)`](goal). -/
+has kernel mass `max(h(a),0)`](goal).
+@isnad1 id=eq.1h3v.s6.7484fff784e5 from=translated src=- shape=6c420883 vocab=6ff64a14
+-/
 theorem bernoulliMarkKernel_apply_true
     {α : Type*} [MeasurableSpace α] (h : α → ℝ) (hh : Measurable h) (a : α) :
     bernoulliMarkKernel h a {true} = ENNReal.ofReal (h a) := by
@@ -88,7 +96,9 @@ theorem bernoulliMarkKernel_apply_true
   simp [bernoulliBool]
 
 /-- For [a measurable weight](hyp:h,hh) and [a base point](hyp:a), [the failure singleton
-has kernel mass `max(1-h(a),0)`](goal). -/
+has kernel mass `max(1-h(a),0)`](goal).
+@isnad1 id=eq.1h3v.s6.c8dbd78f59ed from=translated src=- shape=264fe6b0 vocab=345f3566
+-/
 theorem bernoulliMarkKernel_apply_false
     {α : Type*} [MeasurableSpace α] (h : α → ℝ) (hh : Measurable h) (a : α) :
     bernoulliMarkKernel h a {false} = ENNReal.ofReal (1 - h a) := by
@@ -97,7 +107,9 @@ theorem bernoulliMarkKernel_apply_false
 
 /-- If [a measurable weight](hyp:h,hh) [lies strictly above zero and at most one almost
 everywhere](hyp:hpos,hle) under [a measure](hyp:μ), then [the corresponding Bernoulli-mark
-fibers have total mass one almost everywhere](goal). -/
+fibers have total mass one almost everywhere](goal).
+@isnad1 id=eventual.3h3v.s7.9133e468450f from=translated src=- shape=9e73eee8 vocab=948390e4
+-/
 theorem ae_bernoulliMarkKernel_apply_univ_eq_one
     {α : Type*} [MeasurableSpace α] (μ : Measure α) (h : α → ℝ)
     (hh : Measurable h) (hpos : ∀ᵐ a ∂μ, 0 < h a) (hle : ∀ᵐ a ∂μ, h a ≤ 1) :
@@ -109,7 +121,9 @@ theorem ae_bernoulliMarkKernel_apply_univ_eq_one
 
 /-- For [a finite base measure](hyp:ν₁), [a measurable success weight](hyp:h,hh), and
 [a positive success weight bounded above by one almost everywhere](hyp:hpos,hle), [the first-coordinate
-pushforward of the reciprocal-tilt Bernoulli law is the reciprocal tilt](goal). -/
+pushforward of the reciprocal-tilt Bernoulli law is the reciprocal tilt](goal).
+@isnad1 id=eq.3h3v.s6.749e3cb91c90 from=translated src=- shape=cb10236f vocab=63e81d5b
+-/
 theorem bernoulliMarkedLaw_map_fst
     {α : Type*} [MeasurableSpace α] (ν₁ : Measure α) [IsFiniteMeasure ν₁]
     (h : α → ℝ) (hh : Measurable h)
@@ -136,7 +150,9 @@ theorem bernoulliMarkedLaw_map_fst
 /-- For [a finite base measure](hyp:ν₁), [a measurable success weight](hyp:h,hh),
 [a positive success weight bounded above by one almost everywhere](hyp:hpos,hle), and [unit total mass of
 the reciprocal tilt](hyp:hcal), [the reciprocal-tilt Bernoulli-marked law is a probability
-measure](goal). -/
+measure](goal).
+@isnad1 id=isprobab.4h3v.s6.11158bbe7592 from=translated src=- shape=f07a774d vocab=f9935baf
+-/
 theorem bernoulliMarkedLaw_isProbabilityMeasure
     {α : Type*} [MeasurableSpace α] (ν₁ : Measure α) [IsFiniteMeasure ν₁]
     (h : α → ℝ) (hh : Measurable h)
@@ -155,7 +171,9 @@ theorem bernoulliMarkedLaw_isProbabilityMeasure
 
 /-- For [a finite base measure](hyp:ν₁), [a measurable success weight](hyp:h,hh), and
 [strict positivity almost everywhere](hyp:hpos), [restricting the marked
-law to successful marks and then forgetting the mark recovers the base measure](goal). -/
+law to successful marks and then forgetting the mark recovers the base measure](goal).
+@isnad1 id=eq.2h3v.s6.412b4cf95562 from=translated src=- shape=d6edf789 vocab=6bc89ce4
+-/
 theorem bernoulliMarkedLaw_restrict_true_map_fst
     {α : Type*} [MeasurableSpace α] (ν₁ : Measure α) [IsFiniteMeasure ν₁]
     (h : α → ℝ) (hh : Measurable h)
@@ -176,7 +194,9 @@ theorem bernoulliMarkedLaw_restrict_true_map_fst
 /-- For [a finite base measure](hyp:ν₁), [a measurable success weight](hyp:h,hh), and
 [a positive success weight bounded above by one almost everywhere](hyp:hpos,hle), [restricting the marked
 law to failed marks and then forgetting the mark gives the base measure tilted by the
-failure odds `(1-h)/h`](goal). -/
+failure odds `(1-h)/h`](goal).
+@isnad1 id=eq.3h3v.s7.7e7be781b449 from=translated src=- shape=869caf95 vocab=38636657
+-/
 theorem bernoulliMarkedLaw_restrict_false_map_fst
     {α : Type*} [MeasurableSpace α] (ν₁ : Measure α) [IsFiniteMeasure ν₁]
     (h : α → ℝ) (hh : Measurable h)
@@ -204,7 +224,9 @@ theorem bernoulliMarkedLaw_restrict_false_map_fst
 /-- For [a finite base measure](hyp:ν₁), [a measurable success weight](hyp:h,hh),
 [a positive success weight bounded above by one almost everywhere](hyp:hpos,hle), and [unit total mass of
 the reciprocal tilt](hyp:hcal), [the conditional mean of the Boolean mark given the base
-coordinate equals the success weight at that coordinate](goal). -/
+coordinate equals the success weight at that coordinate](goal).
+@isnad1 id=eventual.4h3v.s7.25192bc454c9 from=translated src=- shape=8ca654f9 vocab=ef5623d2
+-/
 theorem bernoulliMarkedLaw_condExp_mark
     {α : Type*} [MeasurableSpace α] (ν₁ : Measure α) [IsFiniteMeasure ν₁]
     (h : α → ℝ) (hh : Measurable h)
@@ -301,7 +323,9 @@ theorem bernoulliMarkedLaw_condExp_mark
 /-- For [a finite base measure](hyp:ν₁), [a measurable success weight](hyp:h,hh) that is
 [strictly positive almost everywhere](hyp:hpos), and [a measurable statistic of a marked
 point](hyp:g,hg), [the statistic's law on successful marks is the pushforward of the base
-measure by evaluating that statistic at a successful mark](goal). -/
+measure by evaluating that statistic at a successful mark](goal).
+@isnad1 id=eq.3h5v.s7.b91976b12a88 from=translated src=- shape=3b541872 vocab=82494748
+-/
 theorem bernoulliMarkedLaw_map_restrict_true
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (ν₁ : Measure α) [IsFiniteMeasure ν₁]

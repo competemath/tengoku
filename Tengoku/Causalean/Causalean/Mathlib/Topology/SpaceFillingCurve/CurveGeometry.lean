@@ -16,7 +16,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- At every parameter in the unit interval, a localized dyadic map takes
-its value in the unit cube. -/
+its value in the unit cube.
+@isnad1 id=inunitcu.1h4v.s5.d4165efab67e from=translated src=- shape=972ca2b7 vocab=caf972ad
+-/
 theorem LocalizedCubeMap.mapsToCube {d : ℕ} {T : DyadicTraversal d}
     (H : LocalizedCubeMap d T) {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     InUnitCube (H.toFun t) := by
@@ -26,7 +28,9 @@ theorem LocalizedCubeMap.mapsToCube {d : ℕ} {T : DyadicTraversal d}
   simpa [dyadicCubeCell, InUnitCube] using hcube
 
 /-- A localized dyadic cube map reaches every point of the unit cube from a
-parameter in the unit interval. -/
+parameter in the unit interval.
+@isnad1 id=ex.1h4v.s5.1a8aec95601a from=translated src=- shape=447ce498 vocab=e56c5531
+-/
 theorem LocalizedCubeMap.surjectiveOn {d : ℕ} {T : DyadicTraversal d}
     (H : LocalizedCubeMap d T) (x : Fin d → ℝ) (hx : InUnitCube x) :
     ∃ t : ℝ, t ∈ Set.Icc (0 : ℝ) 1 ∧ H.toFun t = x := by
@@ -38,7 +42,9 @@ theorem LocalizedCubeMap.surjectiveOn {d : ℕ} {T : DyadicTraversal d}
   exact ⟨k, H.localizes n k t htk, hxk⟩
 
 /-- Given [a cube dimension and traversal](hyp:d,T), [a localized map](hyp:H), [a dimension of at least two](hyp:hd),
-and [two unit-interval parameters](hyp:s,t,hs,ht), [the map's squared Euclidean increment obeys the stated Hölder bound](goal). -/
+and [two unit-interval parameters](hyp:s,t,hs,ht), [the map's squared Euclidean increment obeys the stated Hölder bound](goal).
+@isnad1 id=le.3h5v.s7.b8281473e4fb from=translated src=- shape=5b9d5256 vocab=9dd3b6cc
+-/
 theorem LocalizedCubeMap.modulus {d : ℕ} {T : DyadicTraversal d}
     (H : LocalizedCubeMap d T) (hd : 2 ≤ d) {s t : ℝ}
     (hs : s ∈ Set.Icc (0 : ℝ) 1) (ht : t ∈ Set.Icc (0 : ℝ) 1) :
@@ -73,7 +79,9 @@ theorem LocalizedCubeMap.modulus {d : ℕ} {T : DyadicTraversal d}
     nlinarith [mul_le_mul_of_nonneg_left hscale (mul_nonneg (by norm_num : (0 : ℝ) ≤ 4) hdR)]
 
 /-- The quantitative squared-distance modulus makes a localized dyadic cube
-map continuous on the unit interval. -/
+map continuous on the unit interval.
+@isnad1 id=continuo.1h3v.s6.d6a6183f804b from=translated src=- shape=7d0b354b vocab=b75edd22
+-/
 theorem LocalizedCubeMap.continuousOn {d : ℕ} {T : DyadicTraversal d}
     (H : LocalizedCubeMap d T) (hd : 2 ≤ d) :
     ContinuousOn H.toFun (Set.Icc (0 : ℝ) 1) := by

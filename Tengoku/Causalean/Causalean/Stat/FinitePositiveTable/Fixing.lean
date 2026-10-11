@@ -69,7 +69,9 @@ def fixingConditionalProduct (q : Kernel r) : List (FixingStep V) → ProfileSpa
           (fixKernelCoordinate q s.coordinate s.conditioning) ss x
 
 /-- For [a kernel](hyp:q), [a coordinate and conditioning set](hyp:v,C), and [a profile](hyp:x),
-[one fixing step has its defining pointwise quotient form](goal). -/
+[one fixing step has its defining pointwise quotient form](goal).
+@isnad1 id=eq.0h6v.s5.25942f781edb from=translated src=- shape=390d90a4 vocab=6d9e4f5c
+-/
 theorem fixKernelCoordinate_apply (q : Kernel r) (v : V) (C : Finset V)
     (x : ProfileSpace r) :
     fixKernelCoordinate q v C x =
@@ -78,7 +80,9 @@ theorem fixKernelCoordinate_apply (q : Kernel r) (v : V) (C : Finset V)
 
 /-- For [a pointwise strictly positive kernel](hyp:q,hq), [a coordinate and conditioning
 set](hyp:v,C), and [a profile](hyp:x), [one fixing step equals the original mass times the
-conditioning marginal divided by the joint marginal](goal). -/
+conditioning marginal divided by the joint marginal](goal).
+@isnad1 id=eq.1h6v.s6.06f0108b98be from=translated src=- shape=dea83705 vocab=3588288a
+-/
 theorem fixKernelCoordinate_eq_mul_marginal_div {q : Kernel r}
     (hq : q.IsStrictlyPositive) (v : V) (C : Finset V) (x : ProfileSpace r) :
     fixKernelCoordinate q v C x =
@@ -93,7 +97,9 @@ theorem fixKernelCoordinate_eq_mul_marginal_div {q : Kernel r}
   · exact div_div_eq_mul_div _ _ _
 
 /-- For [a positive table](hyp:p), [a coordinate and conditioning set](hyp:v,C), and [a
-profile](hyp:x), [one fixing step has the corresponding table marginal-ratio expansion](goal). -/
+profile](hyp:x), [one fixing step has the corresponding table marginal-ratio expansion](goal).
+@isnad1 id=eq.0h6v.s6.142d5bf63822 from=translated src=- shape=89339b00 vocab=97beabc2
+-/
 theorem fixCoordinate_eq_mul_marginal_div (p : PositiveTable r)
     (v : V) (C : Finset V) (x : ProfileSpace r) :
     fixCoordinate p v C x =
@@ -101,7 +107,9 @@ theorem fixCoordinate_eq_mul_marginal_div (p : PositiveTable r)
   exact fixKernelCoordinate_eq_mul_marginal_div p.mass_pos v C x
 
 /-- For [a pointwise strictly positive kernel](hyp:q,hq), [a coordinate](hyp:v), and [a
-conditioning set](hyp:C), [fixing preserves pointwise strict positivity](goal). -/
+conditioning set](hyp:C), [fixing preserves pointwise strict positivity](goal).
+@isnad1 id=isstrict.1h5v.s5.0b683a24099a from=translated src=- shape=98249ecf vocab=4f430bb1
+-/
 theorem fixKernelCoordinate_pos {q : Kernel r} (hq : q.IsStrictlyPositive)
     (v : V) (C : Finset V) :
     (fixKernelCoordinate q v C).IsStrictlyPositive := by
@@ -109,7 +117,9 @@ theorem fixKernelCoordinate_pos {q : Kernel r} (hq : q.IsStrictlyPositive)
   exact div_pos (hq x) (kernelConditionalMass_pos hq v C x (x v))
 
 /-- For [a pointwise strictly positive kernel](hyp:q,hq) and [a list of fixing steps](hyp:steps),
-[sequential fixing preserves pointwise strict positivity](goal). -/
+[sequential fixing preserves pointwise strict positivity](goal).
+@isnad1 id=isstrict.1h4v.s5.f0ab6f0416b4 from=translated src=- shape=93bf99c5 vocab=614fc3ce
+-/
 theorem fixKernelSequence_pos {q : Kernel r} (hq : q.IsStrictlyPositive)
     (steps : List (FixingStep V)) :
     (fixKernelSequence q steps).IsStrictlyPositive := by
@@ -119,13 +129,17 @@ theorem fixKernelSequence_pos {q : Kernel r} (hq : q.IsStrictlyPositive)
       exact ih (fixKernelCoordinate_pos hq s.coordinate s.conditioning)
 
 /-- For [a positive table](hyp:p), [a list of fixing steps](hyp:steps), and [a profile](hyp:x),
-[the sequentially fixed kernel is nonnegative](goal). -/
+[the sequentially fixed kernel is nonnegative](goal).
+@isnad1 id=le.0h5v.s5.89acba8b914f from=translated src=- shape=425ab3fb vocab=5262d73c
+-/
 theorem fixSequence_nonneg (p : PositiveTable r) (steps : List (FixingStep V))
     (x : ProfileSpace r) : 0 ≤ fixSequence p steps x := by
   exact (fixKernelSequence_pos p.mass_pos steps x).le
 
 /-- For [a pointwise strictly positive kernel](hyp:q,hq), [a list of fixing steps](hyp:steps),
-and [a profile](hyp:x), [the product of successive conditional factors is strictly positive](goal). -/
+and [a profile](hyp:x), [the product of successive conditional factors is strictly positive](goal).
+@isnad1 id=lt.1h5v.s5.ba0059c7a6c1 from=translated src=- shape=4583b230 vocab=7f53d8ff
+-/
 theorem fixingConditionalProduct_pos {q : Kernel r} (hq : q.IsStrictlyPositive)
     (steps : List (FixingStep V)) (x : ProfileSpace r) :
     0 < fixingConditionalProduct q steps x := by
@@ -138,7 +152,9 @@ theorem fixingConditionalProduct_pos {q : Kernel r} (hq : q.IsStrictlyPositive)
 
 /-- For [a pointwise strictly positive kernel](hyp:q,hq), [an algebraically valid list of fixing
 steps](hyp:steps,hvalid), and [a profile](hyp:x), [sequential fixing equals the original mass
-divided by the product of its successive conditional factors](goal). -/
+divided by the product of its successive conditional factors](goal).
+@isnad1 id=eq.2h5v.s5.0a2e346f3908 from=translated src=- shape=e0372c4e vocab=049d7fa1
+-/
 theorem fixKernelSequence_eq_div_conditionalProduct {q : Kernel r}
     (hq : q.IsStrictlyPositive) (steps : List (FixingStep V))
     (hvalid : FixingSequenceValid steps) (x : ProfileSpace r) :
@@ -152,7 +168,9 @@ theorem fixKernelSequence_eq_div_conditionalProduct {q : Kernel r}
       · exact ⟨hvalid.1.tail, fun t ht ↦ hvalid.2 t (List.mem_cons_of_mem s ht)⟩
 
 /-- For [a positive table](hyp:p), [an algebraically valid list of fixing steps](hyp:steps,hvalid),
-and [a profile](hyp:x), [sequential fixing has the same conditional-product expansion](goal). -/
+and [a profile](hyp:x), [sequential fixing has the same conditional-product expansion](goal).
+@isnad1 id=eq.1h5v.s6.e849605a9e8a from=translated src=- shape=4a9f48cf vocab=80c62c57
+-/
 theorem fixSequence_eq_div_conditionalProduct (p : PositiveTable r)
     (steps : List (FixingStep V)) (hvalid : FixingSequenceValid steps)
     (x : ProfileSpace r) :
@@ -161,7 +179,9 @@ theorem fixSequence_eq_div_conditionalProduct (p : PositiveTable r)
 
 /-- For [a pointwise strictly positive kernel](hyp:q,hq), [a first fixing step](hyp:s), [the
 remaining fixing steps](hyp:ss), and [a profile](hyp:x), [the first conditional-product factor
-is the ratio of its joint and conditioning marginals](goal). -/
+is the ratio of its joint and conditioning marginals](goal).
+@isnad1 id=eq.1h6v.s6.c9b344fcdb8b from=translated src=- shape=e3787841 vocab=506ac2a2
+-/
 theorem fixingConditionalProduct_cons_eq_marginal_ratio {q : Kernel r}
     (hq : q.IsStrictlyPositive) (s : FixingStep V) (ss : List (FixingStep V))
     (x : ProfileSpace r) :

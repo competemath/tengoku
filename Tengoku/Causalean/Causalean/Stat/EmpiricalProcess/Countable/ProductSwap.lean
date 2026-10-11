@@ -55,7 +55,9 @@ def pairedSampleSwap {Ω : Type*} [MeasurableSpace Ω] {n : ℕ}
 
 /-- For two independent iid samples from [a probability law μ](hyp:μ) and
 [any fixed sign vector σ](hyp:σ), [the paired-sample swap selected by σ
-preserves the joint product law of the two samples](goal). -/
+preserves the joint product law of the two samples](goal).
+@isnad1 id=measurep.0h4v.s9.af4d32e54378 from=translated src=- shape=5578ed8c vocab=0b86f386
+-/
 theorem pairedSampleSwap_measurePreserving {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {n : ℕ} (σ : Fin n → Bool) :
     MeasurePreserving (pairedSampleSwap (Ω := Ω) σ)
@@ -87,7 +89,9 @@ theorem pairedSampleSwap_measurePreserving {Ω : Type*} [MeasurableSpace Ω]
 /-- For [an indexed function class](hyp:f), [a sign vector σ](hyp:σ), and
 [a pair of samples](hyp:p), [the ghost supremum after applying the
 paired-sample swap selected by σ equals the σ-signed ghost supremum of the
-original pair](goal). -/
+original pair](goal).
+@isnad1 id=eq.0h6v.s9.2e141e4ad123 from=translated src=- shape=0e148c8d vocab=b64b245e
+-/
 theorem ghostSup_pairedSampleSwap {Ω ι : Type*} [MeasurableSpace Ω]
     (f : ι → Ω → ℝ) {n : ℕ} (σ : Fin n → Bool)
     (p : (Fin n → Ω) × (Fin n → Ω)) :

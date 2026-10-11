@@ -24,7 +24,9 @@ namespace Causalean.Mathlib.MeasureTheory
 variable {𝒳 : Type*} [MeasurableSpace 𝒳]
 
 /-- Given [a probability measure on a finite measurable space](hyp:μ), [some
-singleton has nonzero probability](goal). -/
+singleton has nonzero probability](goal).
+@isnad1 id=ex.0h2v.s5.9fa47dacdc0d from=translated src=- shape=0d6b3e82 vocab=1cbc5dc2
+-/
 lemma exists_singleton_ne_zero_of_probability_finite
     {Z : Type*} [MeasurableSpace Z] [Finite Z]
     (μ : Measure Z) [IsProbabilityMeasure μ] : ∃ z : Z, μ {z} ≠ 0 := by
@@ -44,7 +46,9 @@ lemma exists_singleton_ne_zero_of_probability_finite
 measures](hyp:μ), [a dominating measure](hyp:ν), [absolute continuity on the
 selected indices](hyp:hac), and [pairwise mutual singularity on distinct selected
 indices](hyp:hsing), [the number of selected measures is at most the number of
-singletons having nonzero mass under the dominating measure](goal). -/
+singletons having nonzero mass under the dominating measure](goal).
+@isnad1 id=le.2h5v.s7.2b684834c842 from=translated src=- shape=a418b832 vocab=a673debe
+-/
 lemma pairwise_singular_card_le_positive_atoms
     {I Z : Type*} [MeasurableSpace Z] [Finite Z]
     (A : Finset I) (μ : I → Measure Z)
@@ -92,7 +96,9 @@ lemma pairwise_singular_card_le_positive_atoms
 sample space, indexed by a finite type `ι`. If [every singleton `{cell i}` is
 measurable](hyp:hcell) and [`μ` assigns its full mass to the range of `cell`, i.e. `μ` puts no
 mass outside these finitely many points](hyp:hrange), then [`μ` equals the sum, over the index
-`i`, of the point mass `μ {cell i}` scaling the Dirac measure at `cell i`](goal). -/
+`i`, of the point mass `μ {cell i}` scaling the Dirac measure at `cell i`](goal).
+@isnad1 id=eq.2h4v.s7.bc92f803c057 from=translated src=- shape=25376fa0 vocab=00187536
+-/
 lemma measure_eq_fin_sum_smul_dirac_of_range
     (μ : Measure 𝒳) [IsFiniteMeasure μ] {ι : Type*} [Fintype ι]
     (cell : ι ↪ 𝒳) (hcell : ∀ i, MeasurableSet {cell i})
@@ -143,7 +149,9 @@ lemma measure_eq_fin_sum_smul_dirac_of_range
   · intro i
     exact (hcell i).inter hA
 
-/-- An almost-sure property holds at every point to which the measure assigns nonzero mass. -/
+/-- An almost-sure property holds at every point to which the measure assigns nonzero mass.
+@isnad1 id=var.2h4v.s6.e4ddd649bfdc from=translated src=- shape=4779c2cf vocab=3f93074a
+-/
 lemma property_at_of_ae_of_singleton_pos
     (μ : Measure 𝒳) (p : 𝒳 → Prop) {x : 𝒳}
     (hp : ∀ᵐ y ∂μ, p y) (hx : μ {x} ≠ 0) :
@@ -157,7 +165,9 @@ lemma property_at_of_ae_of_singleton_pos
   exact measure_mono_null (by simpa [Set.singleton_subset_iff]) hnull
 
 /-- Every strongly measurable normed-vector-valued function is integrable under a finite measure
-concentrated on finitely many measurable points. -/
+concentrated on finitely many measurable points.
+@isnad1 id=integrab.3h6v.s7.b5c56274be1b from=translated src=- shape=d05b603e vocab=9f5ca38b
+-/
 lemma integrable_of_finite_atomic_support
     (μ : Measure 𝒳) [IsFiniteMeasure μ] {ι : Type*} [Finite ι]
     (cell : ι ↪ 𝒳) (hcell : ∀ i, MeasurableSet {cell i})

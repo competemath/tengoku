@@ -33,7 +33,9 @@ variable {α β γ : Type*} [MeasurableSpace α] [MeasurableSpace β] [Measurabl
 /-- [For the joint law formed by combining a finite base measure `ρ` with the product of
 two Markov kernels `κ` and `η`](hyp:ρ,κ,η), [the conditional distribution of the first
 product-kernel coordinate given the base coordinate equals `κ`, for `ρ`-almost every base
-point](goal). -/
+point](goal).
+@isnad1 id=eventual.0h6v.s7.d35388d6b099 from=translated src=- shape=54d73c92 vocab=0a5df4bb
+-/
 theorem condDistrib_fst_of_compProd_prod
     [StandardBorelSpace β] [Nonempty β]
     {ρ : Measure α} [IsFiniteMeasure ρ]
@@ -75,7 +77,9 @@ theorem condDistrib_fst_of_compProd_prod
 /-- [For the joint law formed by combining a finite base measure `ρ` with the product of
 two Markov kernels `κ` and `η`](hyp:ρ,κ,η), [the conditional distribution of the second
 product-kernel coordinate given the base coordinate equals `η`, for `ρ`-almost every base
-point](goal). -/
+point](goal).
+@isnad1 id=eventual.0h6v.s7.baddad704c5b from=translated src=- shape=5b93a91a vocab=0a5df4bb
+-/
 theorem condDistrib_snd_of_compProd_prod
     [StandardBorelSpace γ] [Nonempty γ]
     {ρ : Measure α} [IsFiniteMeasure ρ]

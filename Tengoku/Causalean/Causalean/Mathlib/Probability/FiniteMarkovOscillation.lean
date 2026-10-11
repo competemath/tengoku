@@ -34,7 +34,9 @@ noncomputable def markovOperatorIter {S : Type*} [Fintype S]
   | n + 1, f => markovOperator P (markovOperatorIter P n f)
 
 /-- For [a finite transition matrix](hyp:P), [a step count](hyp:n), and [a function](hyp:f),
-[the successor iterate is one backward Markov step after the preceding iterate](goal). -/
+[the successor iterate is one backward Markov step after the preceding iterate](goal).
+@isnad1 id=eq.0h4v.s5.adeb3d685c96 from=translated src=- shape=fab16042 vocab=f76b17df
+-/
 lemma markovOperatorIter_succ {S : Type*} [Fintype S]
     (P : S → S → ℝ) (n : Nat) (f : S → ℝ) :
     markovOperatorIter P (n + 1) f =
@@ -45,7 +47,9 @@ pairwise oscillation at most that bound](goal) when every two values differ by a
 def OscillationBound {S : Type*} (B : ℝ) (f : S → ℝ) : Prop :=
   ∀ x y, |f x - f y| ≤ B
 
-/-- If [a function has an oscillation bound](hyp:h), [that bound is nonnegative](goal). -/
+/-- If [a function has an oscillation bound](hyp:h), [that bound is nonnegative](goal).
+@isnad1 id=le.1h3v.s4.f06bb7b0f0b0 from=translated src=- shape=b616d529 vocab=16ec9bb4
+-/
 lemma oscillationBound_nonneg {S : Type*} [Nonempty S] {B : ℝ} {f : S → ℝ}
     (h : OscillationBound B f) : 0 ≤ B := by
   let x : S := Classical.choice inferInstance
@@ -53,7 +57,9 @@ lemma oscillationBound_nonneg {S : Type*} [Nonempty S] {B : ℝ} {f : S → ℝ}
 
 /-- Given [two finite probability vectors](hyp:hp,hq) and [a function with oscillation at most
 `B`](hyp:hf), [the difference of their expectations is at most `B` times half their ℓ¹
-distance](goal). -/
+distance](goal).
+@isnad1 id=le.3h5v.s7.fd5ce2036a48 from=translated src=- shape=76789146 vocab=d57467c7
+-/
 lemma abs_sum_sub_mul_le_oscillation_halfL1 {S : Type*} [Fintype S] [Nonempty S]
     {p q : S → ℝ} (hp : IsProbabilityVector p) (hq : IsProbabilityVector q)
     {B : ℝ} {f : S → ℝ} (hf : OscillationBound B f) :
@@ -99,7 +105,9 @@ lemma abs_sum_sub_mul_le_oscillation_halfL1 {S : Type*} [Fintype S] [Nonempty S]
 
 /-- Given [two finite probability vectors](hyp:hp,hq) and [a complex-valued function whose
 pairwise distances are at most `B`](hyp:hf), [the difference of their complex expectations is at
-most `B` times half their ℓ¹ distance](goal). -/
+most `B` times half their ℓ¹ distance](goal).
+@isnad1 id=le.3h5v.s7.7bd599fc9211 from=translated src=- shape=a0e223d0 vocab=8faa3917
+-/
 lemma probability_complex_mean_tv_diameter {S : Type*} [Fintype S] [Nonempty S]
     {p q : S → ℝ} (hp : IsProbabilityVector p) (hq : IsProbabilityVector q)
     {B : ℝ} {f : S → ℂ} (hf : ∀ i j, ‖f i - f j‖ ≤ B) :
@@ -141,7 +149,9 @@ lemma probability_complex_mean_tv_diameter {S : Type*} [Fintype S] [Nonempty S]
   exact le_of_mul_le_mul_left (by simpa only [mul_assoc] using hdual)
     (norm_pos_iff.mpr hw)
 
-/-- For [a state](hyp:x), [its point mass is a finite probability vector](goal). -/
+/-- For [a state](hyp:x), [its point mass is a finite probability vector](goal).
+@isnad1 id=isprobab.0h2v.s5.c0b6e70bccb6 from=translated src=- shape=ff1ffd77 vocab=a407aea0
+-/
 lemma isProbabilityVector_indicator {S : Type*} [Fintype S] [DecidableEq S] (x : S) :
     IsProbabilityVector (fun y : S ↦ if y = x then 1 else 0) := by
   constructor
@@ -150,7 +160,9 @@ lemma isProbabilityVector_indicator {S : Type*} [Fintype S] [DecidableEq S] (x :
   · simp
 
 /-- For [two states](hyp:x,y), [half the ℓ¹ distance between their point masses is at most
-one](goal). -/
+one](goal).
+@isnad1 id=le.0h3v.s6.4a28d3f473f6 from=translated src=- shape=785fd767 vocab=6220cbc2
+-/
 lemma halfL1_indicator_sub_indicator_le_one {S : Type*} [Fintype S] [DecidableEq S]
     (x y : S) :
     (1 / 2 : ℝ) * ∑ z,
@@ -180,7 +192,9 @@ lemma halfL1_indicator_sub_indicator_le_one {S : Type*} [Fintype S] [DecidableEq
 
 /-- Given [a finite stochastic matrix](hyp:hP), [a nonnegative contraction coefficient](hyp:halpha),
 [half-ℓ¹ contraction of its forward action](hyp:hcontract), and [a function with oscillation at
-most `B`](hyp:hf), [one backward Markov step has oscillation at most `alpha * B`](goal). -/
+most `B`](hyp:hf), [one backward Markov step has oscillation at most `alpha * B`](goal).
+@isnad1 id=oscillat.4h5v.s7.c1ed4dab742e from=translated src=- shape=c49aedb4 vocab=5b40ea42
+-/
 lemma oscillationBound_markovOperator {S : Type*} [Fintype S] [Nonempty S]
     (P : S → S → ℝ) (hP : ∀ s, IsProbabilityVector (P s))
     {alpha B : ℝ} (halpha : 0 ≤ alpha)
@@ -226,7 +240,9 @@ lemma oscillationBound_markovOperator {S : Type*} [Fintype S] [Nonempty S]
 and [a number of steps](hyp:n), [the iterated backward operator's oscillation is bounded by the
 coefficient raised to the
 number of steps times the initial bound](goal), which decays geometrically when the coefficient is
-below one. -/
+below one.
+@isnad1 id=oscillat.4h6v.s7.fd5a4c4e98ae from=translated src=- shape=b37f5494 vocab=fad87cea
+-/
 lemma oscillationBound_markovOperatorIter {S : Type*} [Fintype S] [Nonempty S]
     (P : S → S → ℝ) (hP : ∀ s, IsProbabilityVector (P s))
     {alpha B : ℝ} (halpha : 0 ≤ alpha)
@@ -242,7 +258,9 @@ lemma oscillationBound_markovOperatorIter {S : Type*} [Fintype S] [Nonempty S]
         oscillationBound_markovOperator P hP halpha hcontract ih
 
 /-- If [a function has oscillation at most `A`](hyp:hf) and [`A` is at most `B`](hyp:hAB),
-[the function has oscillation at most `B`](goal). -/
+[the function has oscillation at most `B`](goal).
+@isnad1 id=oscillat.2h4v.s4.188757b6fdc1 from=translated src=- shape=8d502301 vocab=96670286
+-/
 lemma OscillationBound.mono {S : Type*} {A B : ℝ} {f : S → ℝ}
     (hf : OscillationBound A f) (hAB : A ≤ B) : OscillationBound B f :=
   fun x y ↦ (hf x y).trans hAB

@@ -163,7 +163,9 @@ weighted sum of treatment effects `theta`](goal).
 The hypothesis `hPredictionSpan : P.PredictionIdentified` is the natural
 existence condition (Assumption 2 of BJS): some imputation weight matrix
 satisfies the target-relevant row-span identity.  The concrete witness is
-extracted internally via `Classical.choice`. -/
+extracted internally via `Classical.choice`.
+@isnad1 id=ex.3h4v.s6.c9b4708b907a from=translated src=- shape=7e0599a1 vocab=a4a383b5
+-/
 theorem bjs_imputation_identification
     (hUntreatedModel : P.UntreatedOutcomeModel)
     (hPredictionSpan : P.PredictionIdentified)
@@ -264,7 +266,9 @@ def unbiasedForAllTau (L : P.LinearEstimator) : Prop :=
 
 /-- Unrestricted treatment-effect heterogeneity forces the treated-cell weights to
 equal the target weights (`vT = a`).  Proved by an indicator-`tau` test.  Hoisted
-here so the variance-comparison layer can reuse it without re-running the argument. -/
+here so the variance-comparison layer can reuse it without re-running the argument.
+@isnad1 id=eq.1h6v.s6.6427bf05e771 from=translated src=- shape=436e0256 vocab=64171bd7
+-/
 lemma vT_eq_a (L : P.LinearEstimator) (h : L.unbiasedForAllTau) (c : Treated) :
     L.vT c = P.a c := by
   classical
@@ -274,7 +278,9 @@ lemma vT_eq_a (L : P.LinearEstimator) (h : L.unbiasedForAllTau) (c : Treated) :
 
 /-- Nuisance unbiasedness for every `beta` gives the BJS left-null-space coordinate
 constraint `aᵀ Q_T + vUᵀ Q_U = 0` (row by row). Hoisted for the
-variance-comparison layer. -/
+variance-comparison layer.
+@isnad1 id=eq.1h6v.s7.fcfea38a6a1a from=translated src=- shape=74021605 vocab=127a8b37
+-/
 lemma nuisance_coord (L : P.LinearEstimator) (h : L.unbiasedForAllTau) (r : Regressor) :
     (∑ c : Treated, P.a c * P.qT c r) + ∑ u : Untreated, L.vU u * P.qU u r = 0 := by
   classical
@@ -309,7 +315,9 @@ The source derives the imputation representation from raw row-span and
 left-null-space infrastructure.  This lemma deliberately takes an explicit
 `hImputationWitness` carrying both the row identity and untreated-weight
 representation; it proves the algebraic representation once that finite
-linear-algebra existence step has been supplied. -/
+linear-algebra existence step has been supplied.
+@isnad1 id=ex.1h6v.s8.1e6b3647ac1d from=translated src=- shape=adc28871 vocab=4f594943
+-/
 theorem linear_unbiased_of_imputation_representation_of_vT_eq_a
     (L : P.LinearEstimator)
     (hVT : ∀ c : Treated, L.vT c = P.a c)
@@ -408,7 +416,9 @@ theorem linear_unbiased_of_imputation_representation_of_vT_eq_a
   exact hValue P.EY_T P.EY_U
 
 /-- Universal unbiasedness supplies the treated-coefficient identity required
-by `linear_unbiased_of_imputation_representation_of_vT_eq_a`. -/
+by `linear_unbiased_of_imputation_representation_of_vT_eq_a`.
+@isnad1 id=ex.1h6v.s8.e40abc78bc14 from=translated src=- shape=a5f3cb82 vocab=3aa2aecf
+-/
 theorem linear_unbiased_of_imputation_representation
     (L : P.LinearEstimator)
     (hUnbiasedForAllTau : L.unbiasedForAllTau)

@@ -29,7 +29,9 @@ structure HolderCubeCurve (d : ℕ) where
 /-- A coherent dyadic traversal in dimension at least two yields a continuous
 surjection of the cube with squared Hölder constant `16*d`. The proof takes
 the uniform limit of piecewise-linear traversal approximants, then uses the
-two dyadic cells around a parameter pair to bound their displacement. -/
+two dyadic cells around a parameter pair to bound their displacement.
+@isnad1 id=nonempty.1h2v.s4.76eca9f8032d from=translated src=- shape=e0eb79f3 vocab=4f0dc932
+-/
 theorem exists_holderCubeCurve_of_traversal (d : ℕ) (hd : 2 ≤ d)
     (T : DyadicTraversal d) : Nonempty (HolderCubeCurve d) := by
   obtain ⟨H⟩ := exists_localizedCubeMap_of_traversal d hd T
@@ -41,7 +43,9 @@ theorem exists_holderCubeCurve_of_traversal (d : ℕ) (hd : 2 ≤ d)
     modulus := fun hs ht => H.modulus hd hs ht
   }⟩
 
-/-- Given [a cube dimension](hyp:d) of [at least two](hyp:hd), [a continuous unit-interval traversal of the unit cube with the stated squared Hölder bound exists](goal). -/
+/-- Given [a cube dimension](hyp:d) of [at least two](hyp:hd), [a continuous unit-interval traversal of the unit cube with the stated squared Hölder bound exists](goal).
+@isnad1 id=nonempty.1h1v.s3.651e6640ab6d from=translated src=- shape=c1538fc1 vocab=65e26ae6
+-/
 theorem exists_holderCubeCurve (d : ℕ) (hd : 2 ≤ d) :
     Nonempty (HolderCubeCurve d) := by
   obtain ⟨T⟩ := exists_dyadicTraversal d (by omega)

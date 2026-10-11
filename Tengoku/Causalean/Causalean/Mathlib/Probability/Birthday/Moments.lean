@@ -13,7 +13,9 @@ public section
 namespace Causalean.Mathlib.Probability.Birthday
 
 /-- The [binomial weights for a trial count](hyp:T) and
-[success probability](hyp:eta) [sum to one](goal). -/
+[success probability](hyp:eta) [sum to one](goal).
+@isnad1 id=eq.0h2v.s4.f903dbb50059 from=translated src=- shape=f4ad1fbb vocab=fb8cc5d8
+-/
 theorem binomialAverage_one (T : ℕ) (eta : ℝ) :
     binomialAverage T eta (fun _ => 1) = 1 := by
   unfold binomialAverage
@@ -30,7 +32,9 @@ theorem binomialAverage_one (T : ℕ) (eta : ℝ) :
     _ = 1 := by ring
 
 /-- The [binomial average for a trial count](hyp:T) and
-[success probability](hyp:eta) of the [count](goal) equals its mean. -/
+[success probability](hyp:eta) of the [count](goal) equals its mean.
+@isnad1 id=eq.0h2v.s4.be92523fd1ff from=translated src=- shape=0482d172 vocab=ba3aef60
+-/
 theorem binomialAverage_count (T : ℕ) (eta : ℝ) :
     binomialAverage T eta (fun r => (r : ℝ)) = mean T eta := by
   by_cases hT : T = 0
@@ -72,7 +76,9 @@ theorem binomialAverage_count (T : ℕ) (eta : ℝ) :
 
 /-- The [binomial average for a trial count](hyp:T) and
 [success probability](hyp:eta) of the [unordered pair count](goal) is the
-expected pair scale. -/
+expected pair scale.
+@isnad1 id=eq.0h2v.s4.31b40d4e46e7 from=translated src=- shape=7521d2e5 vocab=c8c1342c
+-/
 theorem binomialAverage_pairs (T : ℕ) (eta : ℝ) :
     binomialAverage T eta (fun r => (r.choose 2 : ℝ)) = pairScale T eta := by
   by_cases hT : T < 2

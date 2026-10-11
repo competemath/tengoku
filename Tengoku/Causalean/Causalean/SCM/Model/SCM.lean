@@ -158,12 +158,16 @@ unobserved latent node of the model. -/
 abbrev RandomValues (M : Causalean.SCM N Ω) :=
   ValuesOn M.randomVars (swigΩ Ω)
 
-/-- An observed node cannot also be an unobserved node. -/
+/-- An observed node cannot also be an unobserved node.
+@isnad1 id=not.1h3v.s5.f72a73dc8916 from=translated src=- shape=fc0e9f06 vocab=83b21026
+-/
 theorem not_unobs_of_obs (G : SWIGGraph N) {n : SWIGNode N} (h : n ∈ G.observed) :
     n ∉ G.unobserved :=
   Finset.disjoint_left.mp G.obs_unobs_disjoint h
 
-/-- An unobserved node cannot also be an observed node. -/
+/-- An unobserved node cannot also be an observed node.
+@isnad1 id=not.1h3v.s5.da25ba396cdc from=translated src=- shape=fc0e9f06 vocab=83b21026
+-/
 theorem not_obs_of_unobs (G : SWIGGraph N) {n : SWIGNode N} (h : n ∈ G.unobserved) :
     n ∉ G.observed :=
   Finset.disjoint_right.mp G.obs_unobs_disjoint h
@@ -171,7 +175,9 @@ theorem not_obs_of_unobs (G : SWIGGraph N) {n : SWIGNode N} (h : n ∈ G.unobser
 /-- An observed node cannot also be a fixed node.
 
     A node in `observed` is not in `fixed`: `observed` elements are of the form
-    `.random _` while `fixed` elements are of the form `.fixed _`. -/
+    `.random _` while `fixed` elements are of the form `.fixed _`.
+@isnad1 id=not.1h3v.s5.e46cf3e7595f from=translated src=- shape=fc0e9f06 vocab=344dd1f6
+-/
 theorem not_fixed_of_obs (G : SWIGGraph N) {n : SWIGNode N} (h : n ∈ G.observed) :
     n ∉ G.fixed := by
   intro hfix
@@ -200,7 +206,9 @@ noncomputable def latentProduct (M : Causalean.SCM N Ω) :
 
 /-- For [a finite node population with measurable value spaces](hyp:N,Ω) and [a structural causal
 model](hyp:M), [the probability-measure structure for the model's latent product measure](goal)
-asserts that this measure assigns total mass one to the joint space of latent-root values. -/
+asserts that this measure assigns total mass one to the joint space of latent-root values.
+@isnad1 id=isprobab.0h3v.s7.babd67fb3745 from=translated src=- shape=70fad979 vocab=0c8f2ac0
+-/
 instance instProbabilityLatentProduct (M : Causalean.SCM N Ω) :
     MeasureTheory.IsProbabilityMeasure (M.latentProduct) := by
   let := M.isProbability_latent
@@ -236,7 +244,9 @@ noncomputable def observedIndex (M : Causalean.SCM N Ω) (v : {v // v ∈ M.obse
   letI := M.topoLinearOrder
   exact (M.observed.orderIsoOfFin rfl).symm v
 
-/-- Looking up an observed node by its canonical index recovers the same node. -/
+/-- Looking up an observed node by its canonical index recovers the same node.
+@isnad1 id=eq.0h4v.s7.ea3a188c85b1 from=translated src=- shape=1a1ba19a vocab=1e65aa91
+-/
 @[simp]
 theorem observedAt_observedIndex (M : Causalean.SCM N Ω) (v : {v // v ∈ M.observed}) :
     (M.observedAt (M.observedIndex v)).val = v.val := by
@@ -247,7 +257,9 @@ theorem observedAt_observedIndex (M : Causalean.SCM N Ω) (v : {v // v ∈ M.obs
 /-- Looking up the canonical index of the observed node at a position recovers that position.
 
     Round-trip the other way: looking up the index of the node at position `k`
-    recovers `k`. -/
+    recovers `k`.
+@isnad1 id=eq.0h4v.s6.e6ebdf55c135 from=translated src=- shape=3c4b179a vocab=edbc1694
+-/
 @[simp]
 theorem observedIndex_observedAt (M : Causalean.SCM N Ω) (k : Fin M.observed.card) :
     M.observedIndex (M.observedAt k) = k := by
@@ -259,7 +271,9 @@ theorem observedIndex_observedAt (M : Causalean.SCM N Ω) (k : Fin M.observed.ca
 nodes](hyp:hn), and let `p` be a node such that [there is an edge from `p` to the `n`-th node in
 the canonical observed order](hyp:hparent) and [`p` itself is observed](hyp:hobs); then [the
 canonical index of `p` among the observed nodes is strictly less than `n`](goal) — an observed
-parent always precedes its child in the canonical observed topological order. -/
+parent always precedes its child in the canonical observed topological order.
+@isnad1 id=lt.3h5v.s7.b1781b6e0bfe from=translated src=- shape=0c75b60e vocab=eae789ce
+-/
 theorem observed_parent_index_lt (M : Causalean.SCM N Ω) {n : ℕ}
     (hn : n < M.observed.card) {p : SWIGNode N}
     (hparent : M.dag.edge p (M.observedAt ⟨n, hn⟩).val)
@@ -296,7 +310,9 @@ def Equiv (M₁ M₂ : Causalean.SCM N Ω) : Prop :=
   HEq M₁.structFun M₂.structFun ∧
   HEq M₁.latentDist M₂.latentDist
 
-/-- Structural equivalence is reflexive. -/
+/-- Structural equivalence is reflexive.
+@isnad1 id=equiv.0h3v.s5.b532536dbcdb from=translated src=- shape=2d2c9f0d vocab=21fc42f6
+-/
 lemma Equiv.refl (M : Causalean.SCM N Ω) : Equiv M M := by
   refine And.intro (SWIGGraph.Equivalent.refl _) ?_
   refine And.intro ?_ ?_
@@ -304,7 +320,9 @@ lemma Equiv.refl (M : Causalean.SCM N Ω) : Equiv M M := by
     rfl
   · exact And.intro HEq.rfl HEq.rfl
 
-/-- Structural equivalence is symmetric. -/
+/-- Structural equivalence is symmetric.
+@isnad1 id=equiv.1h4v.s5.dd8b4a49148b from=translated src=- shape=694550a4 vocab=21fc42f6
+-/
 lemma Equiv.symm {M₁ M₂ : Causalean.SCM N Ω} (h : Equiv M₁ M₂) :
     Equiv M₂ M₁ := by
   rcases h with ⟨hG, hE, hF, hL⟩
@@ -316,7 +334,9 @@ lemma Equiv.symm {M₁ M₂ : Causalean.SCM N Ω} (h : Equiv M₁ M₂) :
 
 /-- Structural equivalence is transitive: if [`M₁` and `M₂` are structurally
 equivalent](hyp:h₁) and [`M₂` and `M₃` are structurally equivalent](hyp:h₂), then [`M₁` and `M₃`
-are structurally equivalent](goal). -/
+are structurally equivalent](goal).
+@isnad1 id=equiv.2h5v.s6.e1d7650d4436 from=translated src=- shape=38077c5d vocab=21fc42f6
+-/
 lemma Equiv.trans {M₁ M₂ M₃ : Causalean.SCM N Ω}
     (h₁ : Equiv M₁ M₂) (h₂ : Equiv M₂ M₃) : Equiv M₁ M₃ := by
   rcases h₁ with ⟨hG₁, hE₁, hF₁, hL₁⟩

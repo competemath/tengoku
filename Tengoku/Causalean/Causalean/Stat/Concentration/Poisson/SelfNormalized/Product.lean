@@ -38,7 +38,9 @@ moment constant](goal) is a fixed power of ten depending only on those two quant
 def productMomentConstant (r t : ℕ) : ℝ := 10 ^ (16 * (r + 1) * (t + 1))
 
 /-- For [a coordinate-cardinality cap and moment order](hyp:r,t), the [finite-product moment
-constant is strictly positive](goal). -/
+constant is strictly positive](goal).
+@isnad1 id=lt.0h2v.s4.41beb3815228 from=translated src=- shape=5ffe46ab vocab=c55d5912
+-/
 theorem productMomentConstant_pos (r t : ℕ) : 0 < productMomentConstant r t := by
   exact pow_pos (by norm_num) _
 
@@ -312,7 +314,9 @@ law](hyp:hWlaw), and [the counts are mutually independent](hyp:hWindep), then un
 coordinate-cardinality cap](hyp:r,hcard), for [moment order one, two, or four](hyp:t,ht) and [a
 logarithmic level of at least one](hyp:L,hL), [the aggregate score moment on the union of bad
 coordinates decays exponentially while retaining the local scale determined by the sum of the
-means](goal). -/
+means](goal).
+@isnad1 id=le.6h8v.s8.afffa79c0d05 from=translated src=- shape=72f16d20 vocab=136c6d85
+-/
 -- Proof route: dominate `1_{BadAny}` by the sum of coordinate bad-event
 -- indicators and use `pow_sum_le_card_mul_sum_pow` on the nonnegative scores.
 -- This reduces the integral to terms `E[score_i^t 1_{Bad_j}]`.  For `i = j`,
@@ -517,7 +521,9 @@ counts are measurable](hyp:hWmeas), [each count has its stated Poisson law](hyp:
 counts are mutually independent](hyp:hWindep), then for [moment order one, two, or
 four](hyp:t,ht) and [a logarithmic level of at least one](hyp:L,hL), [the four-coordinate aggregate
 score moment on the union of bad coordinates has the corresponding exponentially decaying local
-scale bound](goal). -/
+scale bound](goal).
+@isnad1 id=le.5h6v.s8.789fd96989f5 from=translated src=- shape=5c61810a vocab=17440ba4
+-/
 -- Apply `independent_poisson_badAny_moment` with `r = 4`; the cardinality side
 -- condition is `Fintype.card_fin 4`.
 theorem independent_poisson_badAny_moment_four

@@ -52,7 +52,9 @@ some subsequence, of the countable subfamily `g ∘ g0`](hyp:hdense), [each `g i
 measurable](hyp:hmeas), and [there is a single `μ`-integrable envelope `G` dominating `|g i|`
 uniformly in `i`](hyp:hdom). Then [the countable subfamily indexed by `g0` realizes the full
 continuum empirical-process supremum of `g` almost surely under every finite product law of
-`μ`](goal). -/
+`μ`](goal).
+@isnad1 id=hascount.4h6v.s7.328fbe3837a6 from=translated src=- shape=ddea181e vocab=b0168848
+-/
 lemma hasCountableEmpiricalSupReduction_of_pointwise_dense
     {Ω ι : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [SigmaFinite μ]
     (g : ι → Ω → ℝ)

@@ -35,7 +35,9 @@ def finite {T : ℕ} (g : Fin T) : WithTop (Fin T) :=
   (g : WithTop (Fin T))
 
 /-- Embedding a finite adoption period into the shared adoption-path type is
-definitionally the ordinary finite-period inclusion. -/
+definitionally the ordinary finite-period inclusion.
+@isnad1 id=eq.0h2v.s4.7606feab1fdc from=translated src=- shape=7bb58983 vocab=1c37df63
+-/
 @[simp] theorem finite_eq {T : ℕ} (g : Fin T) :
     finite g = (g : WithTop (Fin T)) := rfl
 
@@ -44,7 +46,9 @@ def le {T : ℕ} (a : WithTop (Fin T)) (t : Fin T) : Prop :=
   a ≤ (t : WithTop (Fin T))
 
 /-- The treated-by-period predicate is exactly the order comparison with the
-finite period viewed as an adoption date. -/
+finite period viewed as an adoption date.
+@isnad1 id=eq.0h3v.s5.44109f298931 from=translated src=- shape=84ad168e vocab=768b3de6
+-/
 @[simp] theorem le_eq {T : ℕ} (a : WithTop (Fin T)) (t : Fin T) :
     le a t = (a ≤ (t : WithTop (Fin T))) := rfl
 
@@ -53,7 +57,9 @@ def lt {T : ℕ} (a : WithTop (Fin T)) (t : Fin T) : Prop :=
   (t : WithTop (Fin T)) < a
 
 /-- The untreated-before-adoption predicate is exactly the strict order
-comparison with the finite period viewed as an adoption date. -/
+comparison with the finite period viewed as an adoption date.
+@isnad1 id=eq.0h3v.s5.b119236a3e37 from=translated src=- shape=6134f9ef vocab=70af4e3d
+-/
 @[simp] theorem lt_eq {T : ℕ} (a : WithTop (Fin T)) (t : Fin T) :
     lt a t = ((t : WithTop (Fin T)) < a) := rfl
 
@@ -61,7 +67,9 @@ comparison with the finite period viewed as an adoption date. -/
 def isFinite {T : ℕ} (a : WithTop (Fin T)) : Prop :=
   a ≠ ⊤
 
-/-- A path is eventually treated exactly when its adoption date is not infinite. -/
+/-- A path is eventually treated exactly when its adoption date is not infinite.
+@isnad1 id=eq.0h2v.s4.7ad6e1bf9e5a from=translated src=- shape=0e2d5b47 vocab=c69e0157
+-/
 @[simp] theorem isFinite_eq {T : ℕ} (a : WithTop (Fin T)) :
     isFinite a = (a ≠ ⊤) := rfl
 
@@ -69,7 +77,9 @@ def isFinite {T : ℕ} (a : WithTop (Fin T)) : Prop :=
 def isInfinite {T : ℕ} (a : WithTop (Fin T)) : Prop :=
   a = ⊤
 
-/-- A path is never treated exactly when its adoption date is infinite. -/
+/-- A path is never treated exactly when its adoption date is infinite.
+@isnad1 id=eq.0h2v.s4.166ff9a2ea73 from=translated src=- shape=95cd3768 vocab=bf041469
+-/
 @[simp] theorem isInfinite_eq {T : ℕ} (a : WithTop (Fin T)) :
     isInfinite a = (a = ⊤) := rfl
 
@@ -78,7 +88,9 @@ def isNeverTreated {T : ℕ} (h : WithTop (Fin T)) : Prop :=
   isInfinite h
 
 /-- The Sun-Abraham-compatible never-treated name is the infinite adoption-date
-predicate. -/
+predicate.
+@isnad1 id=eq.0h2v.s4.bee0ad8a31d7 from=translated src=- shape=95cd3768 vocab=87421334
+-/
 @[simp] theorem isNeverTreated_eq {T : ℕ} (h : WithTop (Fin T)) :
     isNeverTreated h = (h = ⊤) := rfl
 
@@ -87,7 +99,9 @@ def isEventuallyTreated {T : ℕ} (h : WithTop (Fin T)) : Prop :=
   isFinite h
 
 /-- The Sun-Abraham-compatible eventually-treated name is the finite
-adoption-date predicate. -/
+adoption-date predicate.
+@isnad1 id=eq.0h2v.s4.4cd8c8c23559 from=translated src=- shape=0e2d5b47 vocab=ce1f4ed5
+-/
 @[simp] theorem isEventuallyTreated_eq {T : ℕ} (h : WithTop (Fin T)) :
     isEventuallyTreated h = (h ≠ ⊤) := rfl
 
@@ -100,19 +114,25 @@ noncomputable def absorbingTreatment {T : ℕ} (h : WithTop (Fin T)) (t : Fin T)
 
 /-- [For an adoption date `h` and period `t` within a horizon of `T` periods](hyp:h,t,T),
 [the absorbing treatment indicator equals one exactly when adoption has occurred by that
-period, and zero otherwise](goal). -/
+period, and zero otherwise](goal).
+@isnad1 id=eq.0h3v.s6.3b0c35e811d0 from=translated src=- shape=9ebffb8d vocab=7333661d
+-/
 @[simp] theorem absorbingTreatment_eq {T : ℕ} (h : WithTop (Fin T)) (t : Fin T) :
     absorbingTreatment h t = if h ≤ (t : WithTop (Fin T)) then 1 else 0 := by
   unfold absorbingTreatment le
   by_cases hle : h ≤ (t : WithTop (Fin T)) <;> simp [hle]
 
-/-- If `t < A`, then adoption has not occurred by `t`. -/
+/-- If `t < A`, then adoption has not occurred by `t`.
+@isnad1 id=not.1h3v.s4.df0a63111124 from=translated src=- shape=99e0aa37 vocab=82fd5b3d
+-/
 theorem not_le_of_lt {T : ℕ} {a : WithTop (Fin T)} {t : Fin T}
     (hlt : lt a t) : ¬ le a t := by
   cases a <;> simp [lt, le] at *
   exact hlt
 
-/-- Never-treated paths are untreated in every finite period. -/
+/-- Never-treated paths are untreated in every finite period.
+@isnad1 id=lt.1h3v.s4.7f11f0edf214 from=translated src=- shape=285994c0 vocab=b4b97beb
+-/
 theorem lt_of_isInfinite {T : ℕ} {a : WithTop (Fin T)} {t : Fin T}
     (ha : isInfinite a) : lt a t := by
   unfold isInfinite lt at *

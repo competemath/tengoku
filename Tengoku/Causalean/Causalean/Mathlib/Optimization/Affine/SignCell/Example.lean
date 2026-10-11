@@ -27,24 +27,32 @@ def mixedExample : AffineSystem 1 :=
     { fn := { coeff := fun _ => 1, constant := -1 }, kind := .weak } ]
 
 /-- Given [a one-dimensional coordinate vector](hyp:x), [it belongs to the example's strict
-cell exactly when its coordinate lies above zero and at most one](goal). -/
+cell exactly when its coordinate lies above zero and at most one](goal).
+@isnad1 id=iff.0h1v.s6.6df6d3d20893 from=translated src=- shape=2700e843 vocab=9c04b83d
+-/
 theorem mem_strictCell_mixedExample (x : Fin 1 → ℝ) :
     x ∈ strictCell mixedExample ↔ 0 < x 0 ∧ x 0 ≤ 1 := by
   simp [strictCell, mixedExample, Constraint.strictHolds, AffineFn.eval]
 
 /-- Given [a one-dimensional coordinate vector](hyp:x), [it belongs to the example's weak
-cell exactly when its coordinate lies between zero and one inclusively](goal). -/
+cell exactly when its coordinate lies between zero and one inclusively](goal).
+@isnad1 id=iff.0h1v.s6.72638700acda from=translated src=- shape=2700e843 vocab=9b2e37be
+-/
 theorem mem_weakCell_mixedExample (x : Fin 1 → ℝ) :
     x ∈ weakCell mixedExample ↔ 0 ≤ x 0 ∧ x 0 ≤ 1 := by
   simp [weakCell, mixedExample, Constraint.weakHolds, AffineFn.eval]
 
-/-- [The constant one-half coordinate vector belongs to the example's strict cell](goal). -/
+/-- [The constant one-half coordinate vector belongs to the example's strict cell](goal).
+@isnad1 id=mem.0h0v.s6.8e47926e551f from=translated src=- shape=0073fd52 vocab=a543455e
+-/
 theorem half_mem_strictCell_mixedExample :
     (fun _ : Fin 1 => (1 / 2 : ℝ)) ∈ strictCell mixedExample := by
   rw [mem_strictCell_mixedExample]
   norm_num
 
-/-- [The closure of the example's half-open strict interval equals its closed weak interval](goal). -/
+/-- [The closure of the example's half-open strict interval equals its closed weak interval](goal).
+@isnad1 id=eq.0h0v.s5.0293be5b15d1 from=translated src=- shape=fdeef8e7 vocab=5ab03e33
+-/
 theorem closure_strictCell_mixedExample :
     closure (strictCell mixedExample) = weakCell mixedExample := by
   apply closure_strictCell_eq_weakCell

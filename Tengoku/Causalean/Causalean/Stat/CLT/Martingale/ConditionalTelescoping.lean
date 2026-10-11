@@ -36,7 +36,9 @@ noncomputable def partialRowSum
 
 /-- For [a martingale-difference triangular array](hyp:A), [a row](hyp:n), and [a time
 index](hyp:r), [the partial row sum is measurable with respect to that row's filtration at
-that time](goal). -/
+that time](goal).
+@isnad1 id=strongly.0h6v.s5.cc613b5f664f from=translated src=- shape=1300a0cb vocab=ed1654f2
+-/
 theorem partialRowSum_stronglyMeasurable
     (A : MartingaleDifferenceArray Ω μ) (n r : ℕ) :
     StronglyMeasurable[A.filtration n r] (A.partialRowSum n r) := by
@@ -49,7 +51,9 @@ theorem partialRowSum_stronglyMeasurable
 
 /-- For [an active increment](hyp:hk), [the integral characteristic function
 after that increment equals the preceding exponential weight times the exact
-conditional quadratic expansion](goal). -/
+conditional quadratic expansion](goal).
+@isnad1 id=eq.1h7v.s8.7b7896336be1 from=translated src=- shape=7f8e664c vocab=0da9bd78
+-/
 theorem integral_cexp_partialRowSum_succ
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n k : ℕ)
@@ -230,7 +234,9 @@ theorem integral_cexp_partialRowSum_succ
 
 /-- For [an active increment](hyp:hk), [the error in replacing its conditional
 characteristic-function factor by the quadratic factor is bounded by the
-expected norm of its Taylor remainder](goal). -/
+expected norm of its Taylor remainder](goal).
+@isnad1 id=le.1h7v.s8.6ac4b8e6f629 from=translated src=- shape=37999ecd vocab=a4952bee
+-/
 theorem norm_integral_cexp_partialRowSum_succ_sub_quadratic_le
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n k : ℕ)
@@ -334,7 +340,9 @@ theorem norm_integral_cexp_partialRowSum_succ_sub_quadratic_le
 
 /-- For [one finite martingale-difference row](hyp:A), [the error in its full
 characteristic function after extracting all conditional quadratic terms is
-bounded by the sum of the expected one-increment Taylor remainders](goal). -/
+bounded by the sum of the expected one-increment Taylor remainders](goal).
+@isnad1 id=le.0h6v.s8.2f7faccc55e1 from=translated src=- shape=8a407ebd vocab=e5f6cb17
+-/
 theorem norm_integral_cexp_rowSum_sub_quadraticTelescoping_le
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n : ℕ) (t : ℝ) :

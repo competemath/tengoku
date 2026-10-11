@@ -107,7 +107,9 @@ private theorem atanRaw_sound_of_nonneg_lt_one (q : ℚ) (hq0 : 0 ≤ q) (hq1 : 
   rw [← hp, ← he, abs_le] at hb
   exact ⟨by simpa [atanRaw] using hb.1, by simpa [atanRaw, add_comm] using hb.2⟩
 
-/-- Every raw Machin rectangle contains the mathematical constant π. -/
+/-- Every raw Machin rectangle contains the mathematical constant π.
+@isnad1 id=contains.0h1v.s2.e0b40daac84e from=translated src=- shape=7955a1cf vocab=dbad0f57
+-/
 theorem piRaw_sound (fuel : ℕ) : (piRaw fuel).Contains Real.pi := by
   have hfour := RatInterval.point_sound 4
   have h5 := atanRaw_sound_of_nonneg_lt_one (1 / 5) (by norm_num) (by norm_num) fuel
@@ -122,14 +124,18 @@ theorem piRaw_sound (fuel : ℕ) : (piRaw fuel).Contains Real.pi := by
   rw [← heq]
   simpa [piRaw] using h
 
-/-- Every recursively intersected π rectangle contains π. -/
+/-- Every recursively intersected π rectangle contains π.
+@isnad1 id=contains.0h1v.s2.7aab180690c0 from=translated src=- shape=7955a1cf vocab=595030bb
+-/
 theorem piInterval_sound (fuel : ℕ) : (piInterval fuel).Contains Real.pi := by
   induction fuel with
   | zero => exact piRaw_sound 0
   | succ fuel ih =>
       exact RatInterval.tighten_sound ih (piRaw_sound (fuel + 1))
 
-/-- Adjacent π fuel values are nested by construction through finite intersection. -/
+/-- Adjacent π fuel values are nested by construction through finite intersection.
+@isnad1 id=subinter.0h1v.s4.ae787f5a6cdb from=translated src=- shape=728c05ab vocab=e3ceaef8
+-/
 theorem piInterval_nested (fuel : ℕ) :
     (piInterval (fuel + 1)).Subinterval (piInterval fuel) := by
   exact RatInterval.tighten_subinterval_left
@@ -160,7 +166,9 @@ private theorem piInterval_subinterval_raw (fuel : ℕ) :
 
 /-- For [a requested positive rational tolerance `ε`](hyp:ε), [evaluating the certified
 π-enclosure at the precision level selected for that tolerance yields an enclosure whose
-width is no larger than `ε`](goal). -/
+width is no larger than `ε`](goal).
+@isnad1 id=le.0h1v.s4.cb26cb2c0101 from=translated src=- shape=eb863612 vocab=35ecd47c
+-/
 theorem piInterval_width (ε : PosRat) :
     (piInterval (piPrecision ε)).width ≤ ε.1 := by
   let N := piPrecision ε
@@ -451,7 +459,9 @@ private theorem cos_taylor_error_bound (q : ℝ) (fuel : ℕ) :
     · simp
   · exact cos_taylor_error_bound_pos q hpos fuel
 
-/-- Raw rational sine bounds contain the exact sine at every rational center. -/
+/-- Raw rational sine bounds contain the exact sine at every rational center.
+@isnad1 id=contains.0h2v.s3.5c90c5961fa9 from=translated src=- shape=bf61600e vocab=f6958e20
+-/
 theorem sinRaw_sound (q : ℚ) (fuel : ℕ) :
     (sinRaw q fuel).Contains (Real.sin q) := by
   have hb := sin_taylor_error_bound (q : ℝ) fuel
@@ -465,7 +475,9 @@ theorem sinRaw_sound (q : ℚ) (fuel : ℕ) :
   rw [← hp, ← he, abs_le] at hb
   exact ⟨by simpa [sinRaw] using hb.1, by simpa [sinRaw, add_comm] using hb.2⟩
 
-/-- Raw rational cosine bounds contain the exact cosine at every rational center. -/
+/-- Raw rational cosine bounds contain the exact cosine at every rational center.
+@isnad1 id=contains.0h2v.s3.fe3ad84e0dac from=translated src=- shape=bf61600e vocab=d7ea4f66
+-/
 theorem cosRaw_sound (q : ℚ) (fuel : ℕ) :
     (cosRaw q fuel).Contains (Real.cos q) := by
   have hb := cos_taylor_error_bound (q : ℝ) fuel
@@ -480,7 +492,9 @@ theorem cosRaw_sound (q : ℚ) (fuel : ℕ) :
   exact ⟨by simpa [cosRaw] using hb.1, by simpa [cosRaw, add_comm] using hb.2⟩
 
 /-- Every real point enclosed by a rational interval is at most half its
-width away from the interval's rational midpoint. -/
+width away from the interval's rational midpoint.
+@isnad1 id=le.1h2v.s5.ccb502c34e4c from=translated src=- shape=0374e9c2 vocab=53c4e835
+-/
 theorem abs_sub_intervalMid_le_radius {I : RatInterval} {x : ℝ}
     (hx : I.Contains x) : |x - (intervalMid I : ℝ)| ≤ (intervalRadius I : ℝ) := by
   have hlo : (I.lo : ℝ) ≤ x := hx.1
@@ -512,21 +526,27 @@ private theorem cosIntervalRaw_sound {I : RatInterval} {x : ℝ}
   simp only [RatInterval.expand, RatInterval.Contains, Rat.cast_sub, Rat.cast_add]
   constructor <;> linarith [hc.1, hc.2, hd.1, hd.2]
 
-/-- Sine interval evaluation encloses sine throughout the input interval. -/
+/-- Sine interval evaluation encloses sine throughout the input interval.
+@isnad1 id=contains.1h3v.s4.e32489b3ddad from=translated src=- shape=3a72387f vocab=086a479c
+-/
 theorem sinInterval_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) (fuel : ℕ) :
     (sinInterval I fuel).Contains (Real.sin x) := by
   induction fuel with
   | zero => exact sinIntervalRaw_sound hx 0
   | succ fuel ih => exact RatInterval.tighten_sound ih (sinIntervalRaw_sound hx (fuel + 1))
 
-/-- Cosine interval evaluation encloses cosine throughout the input interval. -/
+/-- Cosine interval evaluation encloses cosine throughout the input interval.
+@isnad1 id=contains.1h3v.s4.6f1ad13a855f from=translated src=- shape=3a72387f vocab=21902bcd
+-/
 theorem cosInterval_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) (fuel : ℕ) :
     (cosInterval I fuel).Contains (Real.cos x) := by
   induction fuel with
   | zero => exact cosIntervalRaw_sound hx 0
   | succ fuel ih => exact RatInterval.tighten_sound ih (cosIntervalRaw_sound hx (fuel + 1))
 
-/-- Adjacent sine outputs are nested by recursive finite intersection. -/
+/-- Adjacent sine outputs are nested by recursive finite intersection.
+@isnad1 id=subinter.0h2v.s4.f4875dc78e06 from=translated src=- shape=67f6e8d6 vocab=36ec4d94
+-/
 theorem sinInterval_nested (I : RatInterval) (fuel : ℕ) :
     (sinInterval I (fuel + 1)).Subinterval (sinInterval I fuel) := by
   have hmid : I.Contains (intervalMid I : ℝ) := by
@@ -536,7 +556,9 @@ theorem sinInterval_nested (I : RatInterval) (fuel : ℕ) :
   exact RatInterval.tighten_subinterval_left
     (sinInterval_sound hmid fuel) (sinIntervalRaw_sound hmid (fuel + 1))
 
-/-- Adjacent cosine outputs are nested by recursive finite intersection. -/
+/-- Adjacent cosine outputs are nested by recursive finite intersection.
+@isnad1 id=subinter.0h2v.s4.9c49e0be1276 from=translated src=- shape=67f6e8d6 vocab=d2c27968
+-/
 theorem cosInterval_nested (I : RatInterval) (fuel : ℕ) :
     (cosInterval I (fuel + 1)).Subinterval (cosInterval I fuel) := by
   have hmid : I.Contains (intervalMid I : ℝ) := by
@@ -546,7 +568,9 @@ theorem cosInterval_nested (I : RatInterval) (fuel : ℕ) :
   exact RatInterval.tighten_subinterval_left
     (cosInterval_sound hmid fuel) (cosIntervalRaw_sound hmid (fuel + 1))
 
-/-- Sine output width is the shrinking input diameter plus its explicit Taylor error. -/
+/-- Sine output width is the shrinking input diameter plus its explicit Taylor error.
+@isnad1 id=le.0h2v.s5.f814f81bad91 from=translated src=- shape=c21abecb vocab=e3bbe260
+-/
 theorem sinInterval_width (I : RatInterval) (fuel : ℕ) :
     (sinInterval I fuel).width ≤ I.width + 2 * sinError (intervalMid I) fuel := by
   have hraw : (sinIntervalRaw I fuel).width =
@@ -565,7 +589,9 @@ theorem sinInterval_width (I : RatInterval) (fuel : ℕ) :
         (Transcendental.tighten_subinterval_right
           (sinInterval_sound hmid fuel) (sinIntervalRaw_sound hmid (fuel + 1)))).trans_eq hraw
 
-/-- Cosine output width is the shrinking input diameter plus its explicit Taylor error. -/
+/-- Cosine output width is the shrinking input diameter plus its explicit Taylor error.
+@isnad1 id=le.0h2v.s5.055cdf668206 from=translated src=- shape=c21abecb vocab=ca8e23f3
+-/
 theorem cosInterval_width (I : RatInterval) (fuel : ℕ) :
     (cosInterval I fuel).width ≤ I.width + 2 * cosError (intervalMid I) fuel := by
   have hraw : (cosIntervalRaw I fuel).width =

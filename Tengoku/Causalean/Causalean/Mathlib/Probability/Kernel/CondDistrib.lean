@@ -61,7 +61,9 @@ open scoped MeasureTheory ProbabilityTheory
 /-- For [measurable source spaces](hyp:α,α'), [measurable target spaces](hyp:β,γ),
 [random elements `X`, `Y`, `X'`, and `Y'`](hyp:X,Y,X',Y'),
 [finite measures `μ` and `ν`](hyp:μ,ν), and [equal joint laws](hyp:h),
-[the conditional distributions are equal](goal). -/
+[the conditional distributions are equal](goal).
+@isnad1 id=eq.1h10v.s7.964de5302c42 from=translated src=- shape=e5866641 vocab=f93ae769
+-/
 theorem condDistrib_eq_of_map_prod_eq
     {α α' β γ : Type*}
     [MeasurableSpace α] [MeasurableSpace α'] [MeasurableSpace β] [MeasurableSpace γ]
@@ -84,7 +86,9 @@ inverse](goal).
 
     Proved by computing both sides on measurable rectangles via
     `Measure.compProd_apply` and the change-of-variables formula
-    `lintegral_map`. -/
+    `lintegral_map`.
+@isnad1 id=eq.0h6v.s7.8804fdb38a16 from=translated src=- shape=bf880e1d vocab=cb0de7ee
+-/
 theorem map_compProd_prodMap_left_eq_compProd_comap
     {β β' γ : Type*} [MeasurableSpace β] [MeasurableSpace β']
     [MeasurableSpace γ]
@@ -126,7 +130,9 @@ theorem map_compProd_prodMap_left_eq_compProd_comap
     `map_compProd_prodMap_left_eq_compProd_comap` above.  We then
     transport the resulting `(μ.map (e ∘ X))`-a.e. equality back to
     `μ.map X`-a.e. via `ae_of_ae_map` applied to `e`, evaluating both
-    sides at points of the form `e x`. -/
+    sides at points of the form `e x`.
+@isnad1 id=eventual.2h12v.s7.3aba3707981e from=translated src=- shape=16202624 vocab=027e346a
+-/
 theorem condDistrib_comp_right_measurableEquiv
     {α β Ω γ : Type*} {mα : MeasurableSpace α} {mβ : MeasurableSpace β}
     {mΩ : MeasurableSpace Ω} [StandardBorelSpace Ω] [Nonempty Ω]
@@ -196,7 +202,9 @@ coordinate from its regular conditional distribution given that second coordinat
 
     Used by the backdoor completeness chain-rule step to decompose
     `(M.fixSet X).obsKernel s` (projected to `ValuesOn (Y ∪ Z)`) into its
-    `Z`-marginal bound against its `Y | Z` conditional. -/
+    `Z`-marginal bound against its `Y | Z` conditional.
+@isnad1 id=eq.0h5v.s7.2602a19dec6d from=translated src=- shape=96c7dac1 vocab=e5fd74cf
+-/
 theorem measure_eq_bind_marginal_condDistrib
     {β γ : Type*} {mβ : MeasurableSpace β} {mγ : MeasurableSpace γ}
     [StandardBorelSpace β] [Nonempty β]
@@ -291,7 +299,9 @@ theorem measure_eq_bind_marginal_condDistrib
     available.  Proved by uniqueness of disintegration
     (`condDistrib_ae_eq_of_measure_eq_compProd_of_measurable`): the required
     `compProd` identity is `compProd_map_condDistrib` for `g ∘ φ`, `f ∘ φ`,
-    transported across `φ` by `Measure.map_map`. -/
+    transported across `φ` by `Measure.map_map`.
+@isnad1 id=eventual.3h8v.s7.d055aac99271 from=translated src=- shape=f7d2b490 vocab=c0e6e239
+-/
 @[deprecated ProbabilityTheory.condDistrib_map (since := "2026-09-15")]
 theorem condDistrib_map_comp
     {Ω Ω' 𝒳 𝒴 : Type*}

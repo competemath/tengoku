@@ -21,7 +21,9 @@ namespace Causalean.Stat.EmpiricalProcess.Countable
 power](hyp:n) [is integrable](hyp:hi), and [c is a nonnegative
 constant](hyp:c,hc), then [the function t ↦ c t^n μ(A ≥ t) is integrable
 over the positive levels t, and its integral equals c/(n + 1) times the
-integral of A^(n + 1)](goal), the polynomial layer-cake formula. -/
+integral of A^(n + 1)](goal), the polynomial layer-cake formula.
+@isnad1 id=and.4h5v.s8.6522fea28969 from=translated src=- shape=051889e3 vocab=dcbf8f33
+-/
 theorem polynomial_tail_identity {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (A : Ω → ℝ)
     (hA : ∀ x, 0 ≤ A x) (hm : Measurable A) (n : ℕ) (c : ℝ) (hc : 0 ≤ c)
@@ -71,7 +73,9 @@ theorem polynomial_tail_identity {Ω : Type*} [MeasurableSpace Ω]
 A](hyp:A) is [nonnegative](hyp:hA), [measurable](hyp:hm), and [has an
 integrable fourth power](hyp:h4), then [the function t ↦ 4 t^3 μ(A ≥ t) is
 integrable over the positive levels t, and its integral equals the
-expectation of A^4](goal). -/
+expectation of A^4](goal).
+@isnad1 id=and.3h3v.s8.f2953293dd48 from=translated src=- shape=b196c8c8 vocab=1e7452cc
+-/
 theorem fourth_tail_identity {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (A : Ω → ℝ)
     (hA : ∀ x, 0 ≤ A x) (hm : Measurable A)
@@ -91,7 +95,9 @@ B](hyp:A,B) are [nonnegative](hyp:hA,hB), [A is measurable](hyp:hAm) and [B
 almost everywhere strongly measurable](hyp:hBm), and [both have integrable
 fourth powers](hyp:hA4,hB4), then [the function t ↦ 4 t^2 times the
 integral of B over the event A ≥ t is integrable over the positive levels t,
-and its integral equals 4/3 times the expectation of A^3·B](goal). -/
+and its integral equals 4/3 times the expectation of A^3·B](goal).
+@isnad1 id=and.6h4v.s8.c032ba7b49e0 from=translated src=- shape=4f2b0fb5 vocab=9a68758d
+-/
 theorem mixed_tail_identity {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (A B : Ω → ℝ)
     (hA : ∀ x, 0 ≤ A x) (hB : ∀ x, 0 ≤ B x)
@@ -138,7 +144,9 @@ B](hyp:A,B) be [nonnegative](hyp:hA,hB), with [A measurable](hyp:hAm) and
 integrable fourth powers](hyp:hA4,hB4). If [for every positive level t, t
 times the probability that A ≥ t is at most the integral of B over that
 event](hyp:hweak), then [the expectation of A^4 is at most 4/3 times the
-expectation of A^3·B](goal). -/
+expectation of A^3·B](goal).
+@isnad1 id=le.7h4v.s8.58406feadc9e from=translated src=- shape=adffbbbc vocab=c107a091
+-/
 theorem weak_fourth_mixed {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (A B : Ω → ℝ)
     (hA : ∀ x, 0 ≤ A x) (hB : ∀ x, 0 ≤ B x)

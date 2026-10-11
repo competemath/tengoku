@@ -18,7 +18,9 @@ open Causalean.Stat
 
 /-- For [a finite coordinate type](hyp:I) and [nonnegative coordinate
 rates](hyp:rate), the product Poisson factorial likelihood sums to one over all
-count vectors. The result is [the unit-mass identity for the product Poisson factorial likelihood](goal). -/
+count vectors. The result is [the unit-mass identity for the product Poisson factorial likelihood](goal).
+@isnad1 id=eq.0h2v.s6.e0aa5ecc2e7d from=translated src=- shape=6471bed4 vocab=d1235f96
+-/
 lemma poissonFactorial_countVector_tsum_one {I : Type*} [Fintype I]
     (rate : I → ℝ≥0) :
     (∑' counts : I → ℕ, ∏ i : I,
@@ -40,7 +42,9 @@ lemma poissonFactorial_countVector_tsum_one {I : Type*} [Fintype I]
 
 /-- For [a finite coordinate type](hyp:I) and [nonnegative coordinate
 rates](hyp:rate), the sum of the factorial-normalized monomials over all count
-vectors equals the exponential of the total rate. The result is [the exponential identity for the factorial-normalized count-vector series](goal). -/
+vectors equals the exponential of the total rate. The result is [the exponential identity for the factorial-normalized count-vector series](goal).
+@isnad1 id=eq.0h2v.s6.49b8829840cc from=translated src=- shape=0336c0d6 vocab=bd746527
+-/
 lemma factorial_countVector_tsum_eq_exp_sum {I : Type*} [Fintype I]
     (rate : I → ℝ≥0) :
     (∑' counts : I → ℕ, ∏ i : I,
@@ -82,7 +86,9 @@ lemma factorial_countVector_tsum_eq_exp_sum {I : Type*} [Fintype I]
 
 /-- For [a finite coordinate type](hyp:I) and [nonnegative coordinate
 rates](hyp:rate), the product Poisson factorial likelihood is summable over all
-count vectors, including zero-rate coordinates. The result is [summability of the product Poisson factorial likelihood](goal). -/
+count vectors, including zero-rate coordinates. The result is [summability of the product Poisson factorial likelihood](goal).
+@isnad1 id=summable.0h2v.s6.63fc1cde0623 from=translated src=- shape=0a313a73 vocab=ccde3901
+-/
 lemma summable_poissonFactorial_countVector {I : Type*} [Fintype I]
     (rate : I → ℝ≥0) :
     Summable fun counts : I → ℕ => ∏ i : I,
@@ -108,7 +114,9 @@ lemma summable_poissonFactorial_countVector {I : Type*} [Fintype I]
 
 /-- For [nonnegative coordinate rates](hyp:rate), a [nonnegative count-vector
 envelope](hyp:f,hf) that is [pointwise dominated by the product Poisson
-factorial likelihood](hyp:hdom) has total mass at most one. The result is [the unit upper bound on the dominated envelope’s total mass](goal). -/
+factorial likelihood](hyp:hdom) has total mass at most one. The result is [the unit upper bound on the dominated envelope’s total mass](goal).
+@isnad1 id=le.2h3v.s7.d8329f136032 from=translated src=- shape=b96b7c06 vocab=d9066b63
+-/
 lemma tsum_le_one_of_le_poissonFactorial {I : Type*} [Fintype I]
     (rate : I → ℝ≥0) (f : (I → ℕ) → ℝ)
     (hf : ∀ counts, 0 ≤ f counts)

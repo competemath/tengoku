@@ -13,7 +13,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- Given [a cube dimension and level](hyp:d,n), [two unit-interval parameters](hyp:s,t,hs,ht), and [a gap no larger than one level-cell width](hyp:hgap),
-[the parameters lie in equal or neighboring dyadic time cells](goal). -/
+[the parameters lie in equal or neighboring dyadic time cells](goal).
+@isnad1 id=ex.3h4v.s8.18a4b4f510e7 from=translated src=- shape=14eecd79 vocab=d194bc41
+-/
 theorem exists_neighboring_timeCells (d n : ℕ) {s t : ℝ}
     (hs : s ∈ Set.Icc (0 : ℝ) 1) (ht : t ∈ Set.Icc (0 : ℝ) 1)
     (hgap : |s - t| ≤ (1 : ℝ) / (2 : ℝ) ^ (d * n)) :

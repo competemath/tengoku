@@ -36,7 +36,9 @@ $n^{-1/2}\sum_i (x_i-\bar x)\,\xi_i$ has exactly the centered Gaussian law with 
 to the sample variance $n^{-1}\sum_i(x_i-\bar x)^2$](goal).
 
     Immediate from `Causalean.Mathlib.map_weighted_sum_gaussian` with weights
-`aᵢ = n^{-1/2} (xᵢ − x̄)`, using `∑ aᵢ² = n⁻¹ ∑ (xᵢ − x̄)² = sₙ²`. -/
+`aᵢ = n^{-1/2} (xᵢ − x̄)`, using `∑ aᵢ² = n⁻¹ ∑ (xᵢ − x̄)² = sₙ²`.
+@isnad1 id=eq.3h5v.s8.cc12b542bb4f from=translated src=- shape=32523902 vocab=8b3ca79d
+-/
 theorem multiplierBootstrap_law {n : ℕ} (ξ : Fin n → Ω → ℝ)
     (hindep : iIndepFun ξ μ) (hmeas : ∀ i, Measurable (ξ i))
     (hlaw : ∀ i, μ.map (ξ i) = gaussianReal 0 1) (x : Fin n → ℝ) :

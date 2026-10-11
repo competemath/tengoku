@@ -88,7 +88,9 @@ def HasHadamardDirDerivAt (φ : E → F) (φ' : E → F) (θ : E) : Prop :=
 /-- **Fréchet implies Hadamard.** If [the map `φ` is Fréchet-differentiable at the point `θ`,
 with continuous linear derivative `L`](hyp:hL), then [`φ` is Hadamard directionally
 differentiable at `θ`, with the same map `L` serving as its Hadamard directional
-derivative](goal). -/
+derivative](goal).
+@isnad1 id=hashadam.1h5v.s8.ccea23c657ee from=translated src=- shape=e16e86f3 vocab=789f0e39
+-/
 theorem HasFDerivAt.hasHadamardDirDerivAt {φ : E → F} {L : E →L[ℝ] F} {θ : E}
     (hL : HasFDerivAt φ L θ) :
     HasHadamardDirDerivAt φ (fun x => L x) θ := by
@@ -171,7 +173,9 @@ $a<b$, to $v$ when $b<a$, and to $\min(u,v)$ when $a=b$. -/
 noncomputable def minDirDeriv (a b : ℝ) : ℝ × ℝ → ℝ :=
   fun z => if a < b then z.1 else if b < a then z.2 else min z.1 z.2
 
-/-- The directional derivative of the maximum functional is continuous. -/
+/-- The directional derivative of the maximum functional is continuous.
+@isnad1 id=continuo.0h2v.s4.56b80cdfa1a0 from=translated src=- shape=74ae2556 vocab=179964d1
+-/
 @[fun_prop]
 theorem continuous_maxDirDeriv (a b : ℝ) : Continuous (maxDirDeriv a b) := by
   unfold maxDirDeriv
@@ -180,7 +184,9 @@ theorem continuous_maxDirDeriv (a b : ℝ) : Continuous (maxDirDeriv a b) := by
   · exact continuous_snd
   · exact continuous_fst.max continuous_snd
 
-/-- The directional derivative of the minimum functional is continuous. -/
+/-- The directional derivative of the minimum functional is continuous.
+@isnad1 id=continuo.0h2v.s4.f016e15d038e from=translated src=- shape=74ae2556 vocab=0d56de7b
+-/
 @[fun_prop]
 theorem continuous_minDirDeriv (a b : ℝ) : Continuous (minDirDeriv a b) := by
   unfold minDirDeriv
@@ -190,7 +196,9 @@ theorem continuous_minDirDeriv (a b : ℝ) : Continuous (minDirDeriv a b) := by
   · exact continuous_fst.min continuous_snd
 
 /-- **`max` is Hadamard directionally differentiable.**  At `(a, b)` the
-derivative is `maxDirDeriv a b` (linear off the diagonal, sublinear at a tie). -/
+derivative is `maxDirDeriv a b` (linear off the diagonal, sublinear at a tie).
+@isnad1 id=hashadam.0h2v.s6.77e430c3bfc1 from=translated src=- shape=60ae0b01 vocab=79c5393c
+-/
 theorem hasHadamardDirDerivAt_max (a b : ℝ) :
     HasHadamardDirDerivAt (fun z : ℝ × ℝ => max z.1 z.2) (maxDirDeriv a b) (a, b) := by
   intro h hn tn hhn htn htn_pos
@@ -263,7 +271,9 @@ theorem hasHadamardDirDerivAt_max (a b : ℝ) :
     exact hh1.max hh2
 
 /-- **`min` is Hadamard directionally differentiable.**  At `(a, b)` the
-derivative is `minDirDeriv a b`. -/
+derivative is `minDirDeriv a b`.
+@isnad1 id=hashadam.0h2v.s6.a543338211d3 from=translated src=- shape=60ae0b01 vocab=fbd5a162
+-/
 theorem hasHadamardDirDerivAt_min (a b : ℝ) :
     HasHadamardDirDerivAt (fun z : ℝ × ℝ => min z.1 z.2) (minDirDeriv a b) (a, b) := by
   intro h hn tn hhn htn htn_pos
@@ -347,7 +357,9 @@ def HasContinuousHadamardDirDerivAt (f : E → F) (x : E) : Prop :=
 
 /-- If [the outer map has a Hadamard directional derivative](hyp:hg) and [the inner map has
 a Hadamard directional derivative](hyp:hf), then [their composition has the composed
-directional derivative](goal). -/
+directional derivative](goal).
+@isnad1 id=hashadam.2h8v.s6.0c43ca61b945 from=translated src=- shape=472bdf4e vocab=243be6ec
+-/
 theorem HasHadamardDirDerivAt.comp
     {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
     {f : E → F} {f' : E → F} {g : F → G} {g' : F → G} {x : E}
@@ -367,7 +379,9 @@ theorem HasHadamardDirDerivAt.comp
   simp only [Function.comp_apply, hrecover, kn]
 
 /-- If [the outer map](hyp:hg) and [the inner map](hyp:hf) are continuously Hadamard
-directionally differentiable, then [their composition is too](goal). -/
+directionally differentiable, then [their composition is too](goal).
+@isnad1 id=hasconti.2h6v.s6.7429dda16547 from=translated src=- shape=08167040 vocab=f1badbaf
+-/
 theorem HasContinuousHadamardDirDerivAt.comp
     {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
     {f : E → F} {g : F → G} {x : E}
@@ -379,21 +393,27 @@ theorem HasContinuousHadamardDirDerivAt.comp
   exact ⟨g' ∘ f', hg'c.comp hf'c, HasHadamardDirDerivAt.comp hg' hf'⟩
 
 /-- If [a map has a Fréchet derivative](hyp:hf), then [it is continuously Hadamard
-directionally differentiable](goal). -/
+directionally differentiable](goal).
+@isnad1 id=hasconti.1h5v.s7.1d68e1971249 from=translated src=- shape=b3806ca7 vocab=34b1ec11
+-/
 theorem HasContinuousHadamardDirDerivAt.of_hasFDerivAt
     {f : E → F} {L : E →L[ℝ] F} {x : E} (hf : HasFDerivAt f L x) :
     HasContinuousHadamardDirDerivAt f x :=
   ⟨fun h => L h, L.continuous, HasFDerivAt.hasHadamardDirDerivAt hf⟩
 
 /-- If [a map is differentiable at a point](hyp:hf), then [it is continuously Hadamard
-directionally differentiable there](goal). -/
+directionally differentiable there](goal).
+@isnad1 id=hasconti.1h4v.s6.39f07faf82e2 from=translated src=- shape=e0d20722 vocab=9bb415cb
+-/
 theorem HasContinuousHadamardDirDerivAt.of_differentiableAt
     {f : E → F} {x : E} (hf : DifferentiableAt ℝ f x) :
     HasContinuousHadamardDirDerivAt f x :=
   .of_hasFDerivAt hf.hasFDerivAt
 
 /-- If [two maps agree near a point](hyp:hfg) and [one is continuously Hadamard directionally
-differentiable there](hyp:hg), then [the other has the same property](goal). -/
+differentiable there](hyp:hg), then [the other has the same property](goal).
+@isnad1 id=hasconti.2h5v.s6.9e47cab56e11 from=translated src=- shape=7335b0f1 vocab=801a52f6
+-/
 theorem HasContinuousHadamardDirDerivAt.congr_of_eventuallyEq
     {f g : E → F} {x : E} (hfg : Filter.EventuallyEq (nhds x) f g)
     (hg : HasContinuousHadamardDirDerivAt g x) :
@@ -410,7 +430,9 @@ theorem HasContinuousHadamardDirDerivAt.congr_of_eventuallyEq
   rw [hnfg, hfx]
 
 /-- If [each component map is continuously Hadamard directionally differentiable](hyp:hf,hg),
-then [their product-valued pairing has the same property](goal). -/
+then [their product-valued pairing has the same property](goal).
+@isnad1 id=hasconti.2h6v.s6.3f7d677556c0 from=translated src=- shape=d8a7ffd8 vocab=31c1588b
+-/
 theorem HasContinuousHadamardDirDerivAt.prod
     {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
     {f : E → F} {g : E → G} {x : E}
@@ -429,7 +451,9 @@ theorem HasContinuousHadamardDirDerivAt.prod
   exact hf_lim.prodMk_nhds hg_lim
 
 /-- If [two real-valued maps are continuously Hadamard directionally differentiable](hyp:hf,hg),
-then [their pointwise sum has the same property](goal). -/
+then [their pointwise sum has the same property](goal).
+@isnad1 id=hasconti.2h4v.s6.370458949d42 from=translated src=- shape=b08ef635 vocab=de44626c
+-/
 theorem HasContinuousHadamardDirDerivAt.add
     {f g : E → ℝ} {x : E}
     (hf : HasContinuousHadamardDirDerivAt f x)
@@ -445,7 +469,9 @@ theorem HasContinuousHadamardDirDerivAt.add
     ho (hf.prod hg)
 
 /-- If [two real-valued maps are continuously Hadamard directionally differentiable](hyp:hf,hg),
-then [their pointwise difference has the same property](goal). -/
+then [their pointwise difference has the same property](goal).
+@isnad1 id=hasconti.2h4v.s6.9ddd9265fd6c from=translated src=- shape=b08ef635 vocab=e45446a3
+-/
 theorem HasContinuousHadamardDirDerivAt.sub
     {f g : E → ℝ} {x : E}
     (hf : HasContinuousHadamardDirDerivAt f x)
@@ -461,7 +487,9 @@ theorem HasContinuousHadamardDirDerivAt.sub
     ho (hf.prod hg)
 
 /-- If [two real-valued maps are continuously Hadamard directionally differentiable](hyp:hf,hg),
-then [their pointwise product has the same property](goal). -/
+then [their pointwise product has the same property](goal).
+@isnad1 id=hasconti.2h4v.s6.51e012ca0150 from=translated src=- shape=b08ef635 vocab=58ed74ce
+-/
 theorem HasContinuousHadamardDirDerivAt.mul
     {f g : E → ℝ} {x : E}
     (hf : HasContinuousHadamardDirDerivAt f x)
@@ -478,7 +506,9 @@ theorem HasContinuousHadamardDirDerivAt.mul
 
 /-- If [the denominator is nonzero](hyp:hg0) and [the numerator and denominator maps are
 continuously Hadamard directionally differentiable](hyp:hf,hg), then [their pointwise quotient
-has the same property](goal). -/
+has the same property](goal).
+@isnad1 id=hasconti.3h4v.s6.abafa61d4ef8 from=translated src=- shape=5b82e03c vocab=55a97f32
+-/
 theorem HasContinuousHadamardDirDerivAt.div
     {f g : E → ℝ} {x : E} (hg0 : g x ≠ 0)
     (hf : HasContinuousHadamardDirDerivAt f x)
@@ -494,7 +524,9 @@ theorem HasContinuousHadamardDirDerivAt.div
     ho (hf.prod hg)
 
 /-- If [every map indexed by a finite set is continuously Hadamard directionally
-differentiable](hyp:hf), then [their pointwise finite sum has the same property](goal). -/
+differentiable](hyp:hf), then [their pointwise finite sum has the same property](goal).
+@isnad1 id=hasconti.1h5v.s6.fb2a34d3f921 from=translated src=- shape=4c194a2e vocab=82efeb90
+-/
 theorem HasContinuousHadamardDirDerivAt.finset_sum
     {I : Type*} (s : Finset I) {f : I → E → ℝ} {x : E}
     (hf : ∀ i ∈ s, HasContinuousHadamardDirDerivAt (f i) x) :
@@ -510,7 +542,9 @@ theorem HasContinuousHadamardDirDerivAt.finset_sum
         (ih fun i hi => hf i (Finset.mem_insert_of_mem hi))
 
 /-- If [two real-valued maps are continuously Hadamard directionally differentiable](hyp:hf,hg),
-then [their pointwise maximum has the same property](goal). -/
+then [their pointwise maximum has the same property](goal).
+@isnad1 id=hasconti.2h4v.s6.c979d0b07d41 from=translated src=- shape=e5ef4fe2 vocab=fa3d5f2d
+-/
 theorem HasContinuousHadamardDirDerivAt.max
     {f g : E → ℝ} {x : E}
     (hf : HasContinuousHadamardDirDerivAt f x)
@@ -525,7 +559,9 @@ theorem HasContinuousHadamardDirDerivAt.max
   exact HasContinuousHadamardDirDerivAt.comp ho (hf.prod hg)
 
 /-- If [two real-valued maps are continuously Hadamard directionally differentiable](hyp:hf,hg),
-then [their pointwise minimum has the same property](goal). -/
+then [their pointwise minimum has the same property](goal).
+@isnad1 id=hasconti.2h4v.s6.d7da6118210f from=translated src=- shape=e5ef4fe2 vocab=9f240df2
+-/
 theorem HasContinuousHadamardDirDerivAt.min
     {f g : E → ℝ} {x : E}
     (hf : HasContinuousHadamardDirDerivAt f x)
@@ -541,7 +577,9 @@ theorem HasContinuousHadamardDirDerivAt.min
 
 /-- If [a finite index set is nonempty](hyp:hs) and [every indexed map is continuously
 Hadamard directionally differentiable](hyp:hf), then [their pointwise finite supremum has the
-same property](goal). -/
+same property](goal).
+@isnad1 id=hasconti.2h5v.s6.74aab6e8d017 from=translated src=- shape=6148a89a vocab=d2d90c07
+-/
 theorem HasContinuousHadamardDirDerivAt.finset_sup'
     {I : Type*} (s : Finset I) (hs : s.Nonempty)
     {f : I → E → ℝ} {x : E}
@@ -568,7 +606,9 @@ theorem HasContinuousHadamardDirDerivAt.finset_sup'
 
 /-- If [a finite index set is nonempty](hyp:hs) and [every indexed map is continuously
 Hadamard directionally differentiable](hyp:hf), then [their pointwise finite infimum has the
-same property](goal). -/
+same property](goal).
+@isnad1 id=hasconti.2h5v.s6.369c1a45d046 from=translated src=- shape=6148a89a vocab=bd4f6d27
+-/
 theorem HasContinuousHadamardDirDerivAt.finset_inf'
     {I : Type*} (s : Finset I) (hs : s.Nonempty)
     {f : I → E → ℝ} {x : E}

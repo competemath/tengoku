@@ -28,7 +28,9 @@ variable {Ω : ℕ → Type*} {mΩ : (n : ℕ) → MeasurableSpace (Ω n)}
 constant](hyp:hTendsto), [the bound is nonnegative](hyp:hB), and [their absolute
 deviations are uniformly bounded almost everywhere](hyp:hBound), then [their
 expected absolute deviations tend to zero](goal). The probability spaces may
-vary with the row. -/
+vary with the row.
+@isnad1 id=tendsto.4h6v.s7.3da1a7130590 from=translated src=- shape=11b26542 vocab=ef3ef0f6
+-/
 theorem tendsto_integral_abs_sub_of_tendstoInProbability_of_ae_bound
     [∀ n, IsProbabilityMeasure (μ n)]
     (Y : (n : ℕ) → Ω n → ℝ) (c B : ℝ)

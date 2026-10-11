@@ -182,6 +182,7 @@ squared Rademacher sum is at most 32 (1 + log(m + 1)) times the largest
 squared Euclidean norm of the vectors](goal).
 
 The numerical constant is uniform in both finite sizes.
+@isnad1 id=le.0h3v.s7.30ab53add05c from=translated src=- shape=1adb9a2f vocab=053295ec
 -/
 theorem signMaxEnergy_le {m n : ℕ} (a : Fin (m + 1) → Fin n → ℝ) :
     signMaxEnergy a ≤

@@ -66,7 +66,9 @@ private lemma coeff_linear_sum_single {n : ℕ} (p : MvPolynomial (Fin n) ℝ) (
 
 /-- Given [a real multivariate polynomial](hyp:p), [a proof that its total degree is at most
 one](hyp:hp), and [a coordinate vector](hyp:x), [evaluating its compiled affine function equals
-evaluating the polynomial](goal). -/
+evaluating the polynomial](goal).
+@isnad1 id=eq.1h3v.s6.ec34eb1df3d1 from=translated src=- shape=083e8e5f vocab=b155ad32
+-/
 theorem affineFnOfMvPolynomial_eval {n : ℕ} (p : MvPolynomial (Fin n) ℝ)
     (hp : p.totalDegree ≤ 1) (x : Fin n → ℝ) :
     (affineFnOfMvPolynomial p).eval x = MvPolynomial.eval x p := by
@@ -149,7 +151,9 @@ The weak cell written directly in polynomial syntax. -/
 def polynomialWeakCell {n : ℕ} (Γ : List (PolynomialConstraint n)) : Set (Fin n → ℝ) :=
   {x | ∀ c ∈ Γ, MvPolynomial.eval x c.polynomial ≤ 0}
 
-/-- Given [a finite checked polynomial system](hyp:Γ), [compilation preserves its strict cell](goal). -/
+/-- Given [a finite checked polynomial system](hyp:Γ), [compilation preserves its strict cell](goal).
+@isnad1 id=eq.0h2v.s4.bc11c508d062 from=translated src=- shape=ad2e4d18 vocab=a00d5860
+-/
 theorem strictCell_affineSystemOfPolynomials {n : ℕ} (Γ : List (PolynomialConstraint n)) :
     strictCell (affineSystemOfPolynomials Γ) = polynomialStrictCell Γ := by
   ext x
@@ -167,7 +171,9 @@ theorem strictCell_affineSystemOfPolynomials {n : ℕ} (Γ : List (PolynomialCon
     cases hk : d.kind <;> simpa [polynomialStrictCell, Constraint.strictHolds,
       PolynomialConstraint.toConstraint, hk, hev] using h
 
-/-- Given [a finite checked polynomial system](hyp:Γ), [compilation preserves its weak cell](goal). -/
+/-- Given [a finite checked polynomial system](hyp:Γ), [compilation preserves its weak cell](goal).
+@isnad1 id=eq.0h2v.s4.1764f11621d4 from=translated src=- shape=ad2e4d18 vocab=a3496753
+-/
 theorem weakCell_affineSystemOfPolynomials {n : ℕ} (Γ : List (PolynomialConstraint n)) :
     weakCell (affineSystemOfPolynomials Γ) = polynomialWeakCell Γ := by
   ext x

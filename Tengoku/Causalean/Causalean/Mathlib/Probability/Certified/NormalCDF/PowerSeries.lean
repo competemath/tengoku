@@ -36,7 +36,9 @@ noncomputable def gaussianIntegrandTerm (k : ℕ) (t : ℝ) : ℝ :=
     ((2 : ℝ) ^ k * (k.factorial : ℝ))
 
 /-- At every real argument, the Gaussian integrand is the sum of its classical
-everywhere-convergent power series. -/
+everywhere-convergent power series.
+@isnad1 id=hassum.0h1v.s5.26d905e083a8 from=translated src=- shape=53c26cca vocab=57dd2e93
+-/
 theorem gaussianIntegrand_hasSum (t : ℝ) :
     HasSum (fun k => gaussianIntegrandTerm k t)
       (Real.exp (-(t ^ 2) / 2)) := by
@@ -50,7 +52,9 @@ theorem gaussianIntegrand_hasSum (t : ℝ) :
   exact NormedSpace.exp_series_hasSum_exp' (𝕂 := ℝ) (x := (-(t ^ 2) / 2 : ℝ))
 
 /-- Integrating one Gaussian power-series term from zero to a nonnegative
-endpoint gives the corresponding signed integrated-series coefficient. -/
+endpoint gives the corresponding signed integrated-series coefficient.
+@isnad1 id=eq.1h2v.s6.f2d7244f3874 from=translated src=- shape=b4a0afbc vocab=350296e6
+-/
 theorem gaussianIntegrandTerm_integral (x : ℝ) (hx : 0 ≤ x) (k : ℕ) :
     (∫ t in (0 : ℝ)..x, gaussianIntegrandTerm k t) =
       (-1 : ℝ) ^ k * gaussianIntegralMagnitude x k := by
@@ -67,7 +71,9 @@ theorem gaussianIntegrandTerm_integral (x : ℝ) (hx : 0 ≤ x) (k : ℕ) :
   ring
 
 /-- On `[0,x]`, the norm of one Gaussian-series function is bounded by the
-same unsigned monomial evaluated at the nonnegative right endpoint. -/
+same unsigned monomial evaluated at the nonnegative right endpoint.
+@isnad1 id=le.2h3v.s6.5956212c699a from=translated src=- shape=d89dc118 vocab=e7a11a9a
+-/
 theorem gaussianIntegrandTerm_norm_le (x : ℝ) (hx : 0 ≤ x) (k : ℕ)
     {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) x) :
     ‖gaussianIntegrandTerm k t‖ ≤
@@ -82,7 +88,9 @@ theorem gaussianIntegrandTerm_norm_le (x : ℝ) (hx : 0 ≤ x) (k : ℕ)
   exact div_le_div_of_nonneg_right hp hden
 
 /-- The endpoint majorants for the Gaussian integrand's power series are
-summable for every fixed nonnegative endpoint. -/
+summable for every fixed nonnegative endpoint.
+@isnad1 id=summable.1h1v.s6.09591a4b4963 from=translated src=- shape=2a4e9627 vocab=564bce92
+-/
 theorem gaussianIntegrandMajorant_summable (x : ℝ) (hx : 0 ≤ x) :
     Summable (fun k =>
       x ^ (2 * k) / ((2 : ℝ) ^ k * (k.factorial : ℝ))) := by
@@ -117,7 +125,9 @@ def gaussianIntegralInterval (x : ℚ) (n : ℕ) : RatInterval :=
     min_le_max⟩
 
 /-- For a nonnegative endpoint, all unsigned Gaussian-series coefficients are
-nonnegative. -/
+nonnegative.
+@isnad1 id=le.1h2v.s4.f82d557843ff from=translated src=- shape=9141f3a7 vocab=fb442a87
+-/
 theorem gaussianIntegralMagnitude_nonneg (x : ℝ) (hx : 0 ≤ x) (k : ℕ) :
     0 ≤ gaussianIntegralMagnitude x k := by
   -- Unfold; every factor in the numerator and denominator is nonnegative and
@@ -126,7 +136,9 @@ theorem gaussianIntegralMagnitude_nonneg (x : ℝ) (hx : 0 ≤ x) (k : ℕ) :
   positivity
 
 /-- If `x² ≤ 2(n+2)`, the coefficient magnitudes decrease at every index after
-the partial sum boundary `n`. -/
+the partial sum boundary `n`.
+@isnad1 id=le.3h3v.s6.c25108307bee from=translated src=- shape=8f09648e vocab=2e3d0581
+-/
 theorem gaussianIntegralMagnitude_antitone_from (x : ℝ) (hx : 0 ≤ x) (n : ℕ)
     (hmono : x ^ 2 ≤ 2 * (n + 2 : ℕ)) :
     ∀ k, n + 1 ≤ k →
@@ -166,7 +178,9 @@ theorem gaussianIntegralMagnitude_antitone_from (x : ℝ) (hx : 0 ≤ x) (n : �
     _ = gaussianIntegralMagnitude x k := by ring
 
 /-- The signed integrated Gaussian coefficients sum to the exact Gaussian
-integral on every finite nonnegative interval. -/
+integral on every finite nonnegative interval.
+@isnad1 id=hassum.1h1v.s6.7a3cd86b7e29 from=translated src=- shape=d9b634d1 vocab=0e5c7f1a
+-/
 theorem gaussianIntegral_hasSum (x : ℝ) (hx : 0 ≤ x) :
     HasSum (fun k => (-1 : ℝ) ^ k * gaussianIntegralMagnitude x k)
       (∫ t in (0 : ℝ)..x, Real.exp (-(t ^ 2) / 2)) := by
@@ -203,7 +217,9 @@ theorem gaussianIntegral_hasSum (x : ℝ) (hx : 0 ≤ x) :
     exact (gaussianIntegrand_hasSum t).tsum_eq.symm]
   exact hi
 
-/-- At [a rational endpoint](hyp:x) that is [nonnegative](hyp:hx), with [a partial-sum index](hyp:n) satisfying [the exact decreasing-tail condition](hyp:hmono), [two consecutive rational Gaussian-series sums enclose the unnormalised Gaussian integral](goal). -/
+/-- At [a rational endpoint](hyp:x) that is [nonnegative](hyp:hx), with [a partial-sum index](hyp:n) satisfying [the exact decreasing-tail condition](hyp:hmono), [two consecutive rational Gaussian-series sums enclose the unnormalised Gaussian integral](goal).
+@isnad1 id=contains.2h2v.s7.9ba195e90e09 from=translated src=- shape=d9ef25d2 vocab=af04331e
+-/
 theorem gaussianIntegralInterval_sound (x : ℚ) (hx : 0 ≤ x) (n : ℕ)
     (hmono : x ^ 2 ≤ 2 * (n + 2 : ℕ)) :
     (gaussianIntegralInterval x n).Contains
@@ -291,7 +307,9 @@ theorem gaussianIntegralInterval_sound (x : ℚ) (hx : 0 ≤ x) (n : ℕ)
       linarith
 
 /-- On the full central range `0 ≤ x ≤ 8`, once index 64 is reached each next
-remainder is at most half the preceding remainder. -/
+remainder is at most half the preceding remainder.
+@isnad1 id=le.3h2v.s5.2c87ea05369a from=translated src=- shape=caa7d9fa vocab=0f9158c5
+-/
 theorem gaussianIntegralRemainder_geometric_step (x : ℚ) (hx0 : 0 ≤ x)
     (hx8 : x ≤ centralCutoff) (n : ℕ) (hn : 64 ≤ n) :
     gaussianIntegralRemainder x (n + 1) ≤
@@ -337,7 +355,9 @@ theorem gaussianIntegralRemainder_geometric_step (x : ℚ) (hx0 : 0 ≤ x)
 
 /-- Consequently, adding `j` terms beyond index 64 reduces the central-series
 remainder by at least the rational factor `2^j`; this records logarithmic
-precision scaling for the checker. -/
+precision scaling for the checker.
+@isnad1 id=le.2h2v.s6.a251cda82d37 from=translated src=- shape=3257cfaa vocab=dc299f91
+-/
 theorem gaussianIntegralRemainder_geometric (x : ℚ) (hx0 : 0 ≤ x)
     (hx8 : x ≤ centralCutoff) (j : ℕ) :
     gaussianIntegralRemainder x (64 + j) ≤

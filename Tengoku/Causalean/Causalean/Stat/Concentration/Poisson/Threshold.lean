@@ -25,7 +25,9 @@ open Causalean.Mathlib.Probability.Poisson
 
 /-- For [a Poisson law with nonnegative mean and a natural cutoff](hyp:lambda,k), if
 [the cutoff is below one quarter of the mean](hyp:hk), [the lower-tail probability is at most
-the exponential of minus one quarter of that mean](goal). -/
+the exponential of minus one quarter of that mean](goal).
+@isnad1 id=le.1h2v.s6.3534510e2757 from=translated src=- shape=da3c9cbf vocab=a1632438
+-/
 lemma poisson_le_cutoff_of_cutoff_lt_quarter (lambda : NNReal) (k : Nat)
     (hk : (k : Real) < (lambda : Real) / 4) :
     poissonMeasure lambda {w : Nat | w ≤ k} ≤
@@ -62,7 +64,9 @@ lemma poisson_le_cutoff_of_cutoff_lt_quarter (lambda : NNReal) (k : Nat)
 
 /-- For [a Poisson law with nonnegative mean, a natural cutoff, and a real exponential
 weight](hyp:lambda,k,r), if [the weight is nonnegative](hyp:hr), [the strict upper-tail
-probability times its exponential penalty is bounded by the logarithmic cutoff factor](goal). -/
+probability times its exponential penalty is bounded by the logarithmic cutoff factor](goal).
+@isnad1 id=le.1h3v.s6.1d1e4cba4345 from=translated src=- shape=02cd416b vocab=d35fcfc6
+-/
 lemma poisson_upper_tail_mul_exp_le (lambda : NNReal) (k : Nat) {r : Real}
     (hr : 0 ≤ r) :
     (poissonMeasure lambda).real {w : Nat | k < w} *
@@ -104,7 +108,9 @@ lemma poisson_upper_tail_mul_exp_le (lambda : NNReal) (k : Nat) {r : Real}
 
 /-- For [a real number and a natural exponent](hyp:r,k), if [the real number is
 nonnegative](hyp:hr), [the exponential of the negative logarithmic multiple equals the
-reciprocal natural power](goal). -/
+reciprocal natural power](goal).
+@isnad1 id=eq.1h2v.s6.85d226d1d0e5 from=translated src=- shape=f028b8f6 vocab=46d565bf
+-/
 lemma exp_neg_log_mul_nat_eq_inv_pow {r : Real} (hr : 0 ≤ r) (k : Nat) :
     Real.exp (-Real.log (1 + r) * (k : Real)) = ((1 + r) ^ k)⁻¹ := by
   have hone : 0 < 1 + r := by linarith
@@ -121,7 +127,9 @@ open scoped ENNReal NNReal MeasureTheory
 
 /-- For a [positive requested count](hyp:n,hn) and a [Poisson mean at least twice
 that count](hyp:lambda,hlambda), the probability of falling below the requested
-count is at most `8 / n`. The result is [the `8 / n` Poisson lower-tail bound](goal). -/
+count is at most `8 / n`. The result is [the `8 / n` Poisson lower-tail bound](goal).
+@isnad1 id=le.2h2v.s6.b95c530f0300 from=translated src=- shape=79ac45f2 vocab=834322f6
+-/
 lemma poisson_lower_tail_of_two_mul_le (n : ℕ) (lambda : ℝ≥0)
     (hn : 1 ≤ n) (hlambda : (2 : ℝ) * n ≤ lambda) :
     (poissonMeasure lambda (Set.Iio n)).toReal ≤ 8 / (n : ℝ) := by
@@ -166,7 +174,9 @@ lemma poisson_lower_tail_of_two_mul_le (n : ℕ) (lambda : ℝ≥0)
 
 /-- For a [Poisson rate](hyp:rate) and [real threshold](hyp:B), the probability of
 the count being at most one quarter of the threshold obeys the stated
-exponential lower-tail bound. The result is [the exponential Poisson lower-tail bound at one quarter of the threshold](goal). -/
+exponential lower-tail bound. The result is [the exponential Poisson lower-tail bound at one quarter of the threshold](goal).
+@isnad1 id=le.0h2v.s6.cf8f63db6988 from=translated src=- shape=551e2e33 vocab=b6d3ed83
+-/
 lemma poisson_pilot_lower_tail (rate : NNReal) (B : ℝ) :
     (poissonMeasure rate).real {k : ℕ | (k : ℝ) ≤ B / 4} ≤
       Real.exp (B * Real.log 4 / 4 - 3 * (rate : ℝ) / 4) := by
@@ -194,7 +204,9 @@ lemma poisson_pilot_lower_tail (rate : NNReal) (B : ℝ) :
 
 /-- For a [Poisson rate](hyp:rate) and [real threshold](hyp:B), the probability of
 the count exceeding one quarter of the threshold obeys the stated exponential
-upper-tail bound. The result is [the exponential Poisson upper-tail bound at one quarter of the threshold](goal). -/
+upper-tail bound. The result is [the exponential Poisson upper-tail bound at one quarter of the threshold](goal).
+@isnad1 id=le.0h2v.s6.4f1923480b08 from=translated src=- shape=9e87e3ff vocab=1cec65d2
+-/
 lemma poisson_pilot_upper_tail (rate : NNReal) (B : ℝ) :
     (poissonMeasure rate).real {k : ℕ | B / 4 < (k : ℝ)} ≤
       Real.exp (3 * (rate : ℝ) - B * Real.log 4 / 4) := by

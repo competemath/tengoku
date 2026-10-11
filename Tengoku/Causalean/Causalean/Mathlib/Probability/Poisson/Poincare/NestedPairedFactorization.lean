@@ -38,7 +38,9 @@ def nestedPairedCoordinateProduct
 /-- Two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂) and
 [one scalar function for each flattened coordinate](hyp:g) have
 [a nested paired-count product integral equal to the product of scalar Poisson
-integrals](goal). -/
+integrals](goal).
+@isnad1 id=eq.0h5v.s7.d37e43ccce0c from=translated src=- shape=6e8daf49 vocab=12b78f19
+-/
 theorem integral_nestedPairedCoordinateProduct_eq_prod
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (lambda₁ lambda₂ : iota → kappa → NNReal)
@@ -58,7 +60,9 @@ theorem integral_nestedPairedCoordinateProduct_eq_prod
 /-- Two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂) and
 [one scalar function for each flattened coordinate](hyp:g) have
 [the squared nested coordinate-product integral equal to the product of scalar second
-moments](goal). -/
+moments](goal).
+@isnad1 id=eq.0h5v.s7.08f104729442 from=translated src=- shape=ce610db3 vocab=460c5934
+-/
 theorem integral_sq_nestedPairedCoordinateProduct_eq_prod
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (lambda₁ lambda₂ : iota → kappa → NNReal)
@@ -83,7 +87,9 @@ theorem integral_sq_nestedPairedCoordinateProduct_eq_prod
 /-- Two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂),
 [one scalar function for each flattened coordinate](hyp:g), and
 [integrable scalar squared functions](hyp:hg) give
-[a square-integrable nested flattened coordinate product](goal). -/
+[a square-integrable nested flattened coordinate product](goal).
+@isnad1 id=memlp.1h5v.s7.22a418398dfa from=translated src=- shape=824a2230 vocab=2500b13b
+-/
 theorem memLp_two_nestedPairedCoordinateProduct
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (lambda₁ lambda₂ : iota → kappa → NNReal)
@@ -105,7 +111,9 @@ theorem memLp_two_nestedPairedCoordinateProduct
 
 /-- Two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂) and
 [first- and second-count scalar functions in every cell](hyp:g₁,g₂) have
-[their cellwise nested product integral factored into scalar Poisson integrals](goal). -/
+[their cellwise nested product integral factored into scalar Poisson integrals](goal).
+@isnad1 id=eq.0h6v.s7.6ce0230e250a from=translated src=- shape=68f6076b vocab=80b9a686
+-/
 theorem integral_nestedPaired_cellwise_product_eq_prod
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (lambda₁ lambda₂ : iota → kappa → NNReal)
@@ -128,7 +136,9 @@ theorem integral_nestedPaired_cellwise_product_eq_prod
 /-- Two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂) and
 [first- and second-count scalar functions in every cell](hyp:g₁,g₂) have
 [their squared cellwise nested product integral factored into scalar Poisson second
-moments](goal). -/
+moments](goal).
+@isnad1 id=eq.0h6v.s8.652a08806d33 from=translated src=- shape=0257f4ea vocab=13930932
+-/
 theorem integral_sq_nestedPaired_cellwise_product_eq_prod
     {iota kappa : Type*} [Fintype iota] [Fintype kappa]
     (lambda₁ lambda₂ : iota → kappa → NNReal)

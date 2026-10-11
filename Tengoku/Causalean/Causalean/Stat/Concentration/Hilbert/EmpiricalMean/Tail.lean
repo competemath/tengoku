@@ -33,7 +33,9 @@ variable {Ω X H : Type*} [MeasurableSpace Ω] [MeasurableSpace X]
 
 /-- Under [a probability law](hyp:μ), [a strongly measurable Hilbert-valued
 random variable](hyp:g,hg) with [integrable squared norm](hyp:hg_sq) has
-[expected norm at most the square root of its expected squared norm](goal). -/
+[expected norm at most the square root of its expected squared norm](goal).
+@isnad1 id=le.2h4v.s7.96a6f52d1542 from=translated src=- shape=8043815f vocab=b57adc8d
+-/
 theorem integral_norm_le_sqrt_integral_norm_sq
     (μ : Measure Ω) [IsProbabilityMeasure μ] (g : Ω → H)
     (hg : StronglyMeasurable g)
@@ -48,7 +50,9 @@ theorem integral_norm_le_sqrt_integral_norm_sq
 /-- For [a probability law](hyp:P), [a strongly measurable Hilbert-valued
 feature map](hyp:f,hf) with [unit-norm bound at every observation](hyp:hbound),
 and [a nonempty sample size](hyp:hm), [the expected norm of the centered
-empirical mean is at most one divided by the square root of the sample size](goal). -/
+empirical mean is at most one divided by the square root of the sample size](goal).
+@isnad1 id=le.3h5v.s8.c471ca979d8a from=translated src=- shape=6c758472 vocab=0b109359
+-/
 theorem centeredEmpiricalMean_norm_integral_le_inv_sqrt
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : StronglyMeasurable f) (hbound : ∀ x, ‖f x‖ ≤ 1)

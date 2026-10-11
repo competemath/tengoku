@@ -27,7 +27,9 @@ namespace Causalean.Stat.Concentration
 attribute [local instance] Classical.propDecidable
 
 /-- A totally bounded set has a finite positive-radius net, with the net size
-recorded as a natural number. -/
+recorded as a natural number.
+@isnad1 id=ex.2h3v.s6.83a1183e7234 from=translated src=- shape=f985b2d6 vocab=b9b3ae67
+-/
 lemma coveringNumber_exists {X : Type*} {A : Set X} [PseudoMetricSpace X]
     (ha : TotallyBounded A) {ε : ℝ} (εpos : ε > 0) :
     ∃ n : Nat, ∃ t : Finset X, t.card = n ∧ A ⊆ ⋃ y ∈ t, Metric.ball y ε := by
@@ -60,7 +62,9 @@ noncomputable def coveringNumber' {X : Type*} [PseudoMetricSpace X] {A : Set X}
 
 /-- For [a totally bounded subset of a pseudometric space](hyp:ha) and [a
 positive covering radius](hyp:hε), [the extended covering number is the natural
-minimum cardinality selected by `coveringNumber_exists`](goal). -/
+minimum cardinality selected by `coveringNumber_exists`](goal).
+@isnad1 id=eq.2h3v.s7.1be281952823 from=translated src=- shape=bca8a20b vocab=226d28ba
+-/
 theorem coveringNumber_eq {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) {ε : ℝ} (hε : ε > 0) :
     coveringNumber A ε = (Nat.find (coveringNumber_exists ha hε) : ℕ∞) := by
@@ -75,7 +79,9 @@ theorem coveringNumber_eq {X : Type*} [PseudoMetricSpace X] {A : Set X}
       ⟨t, rfl, htcover⟩
 
 /-- A [totally bounded set](hyp:ha) at [a positive radius](hyp:hε) has
-[finite extended covering number](goal). -/
+[finite extended covering number](goal).
+@isnad1 id=lt.2h3v.s5.97f9745264ad from=translated src=- shape=9ea5728b vocab=1fbc1867
+-/
 theorem coveringNumber_lt_top_of_totallyBounded
     {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) {ε : ℝ} (hε : ε > 0) :
@@ -85,14 +91,18 @@ theorem coveringNumber_lt_top_of_totallyBounded
 
 /-- For [a totally bounded subset](hyp:ha) and [a positive radius](hyp:hε),
 the [natural-valued compatibility covering number equals the selected minimum
-finite-net cardinality](goal). -/
+finite-net cardinality](goal).
+@isnad1 id=eq.2h3v.s7.0b32a316c2a5 from=translated src=- shape=cdd36dad vocab=88ead367
+-/
 theorem coveringNumber'_eq {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) {ε : ℝ} (hε : ε > 0) :
     coveringNumber' ha ε = Nat.find (coveringNumber_exists ha hε) := by
   simp [coveringNumber', coveringNumber_eq ha hε]
 
 /-- For [a totally bounded set](hyp:ha), [its natural-valued covering number weakly decreases
-as the positive covering radius grows](goal). -/
+as the positive covering radius grows](goal).
+@isnad1 id=antitone.1h2v.s5.fbc325e07461 from=translated src=- shape=ba292180 vocab=4f91d57f
+-/
 theorem coveringNumber'_antitone {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) :
     AntitoneOn (coveringNumber' ha) (Set.Ioi 0) := by
@@ -109,7 +119,9 @@ theorem coveringNumber'_antitone {X : Type*} [PseudoMetricSpace X] {A : Set X}
   exact Metric.ball_subset_ball hε₁ε₂
 
 /-- For [a nonempty set](hyp:hs), [total boundedness](hyp:ha), and [a positive radius](hyp:hε),
-[the natural-valued covering number is positive](goal). -/
+[the natural-valued covering number is positive](goal).
+@isnad1 id=lt.3h3v.s5.aaeb91d35530 from=translated src=- shape=9253fc7e vocab=ebb81794
+-/
 theorem coveringNumber'_nonzero {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (hs : A.Nonempty) (ha : TotallyBounded A) {ε : ℝ} (hε : ε > 0) :
     0 < coveringNumber' ha ε := by
@@ -119,7 +131,9 @@ theorem coveringNumber'_nonzero {X : Type*} [PseudoMetricSpace X] {A : Set X}
 
 /-- For [a totally bounded subset](hyp:ha) at [a nonpositive radius](hyp:hε),
 the [natural-valued compatibility covering number is zero](goal), matching the
-legacy convention. -/
+legacy convention.
+@isnad1 id=eq.2h3v.s5.694c4a5c8a0e from=translated src=- shape=85e82093 vocab=fefb5a2a
+-/
 theorem coveringNumber'_eq_zero_of_nonpos
     {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) {ε : ℝ} (hε : ε ≤ 0) :
@@ -147,7 +161,9 @@ theorem coveringNumber'_eq_zero_of_nonpos
     · simpa [Set.not_nonempty_iff_eq_empty.mp hA]
 
 /-- For [a totally bounded set](hyp:ha) and [a measure on the radius line](hyp:μ), [the
-natural-valued covering-number function is almost-everywhere measurable](goal). -/
+natural-valued covering-number function is almost-everywhere measurable](goal).
+@isnad1 id=aemeasur.1h3v.s4.328df5cd17ed from=translated src=- shape=738eee5c vocab=e9936b83
+-/
 @[fun_prop]
 theorem coveringNumber'_aemeasurable {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) (μ : MeasureTheory.Measure ℝ) :
@@ -171,7 +187,9 @@ noncomputable def coveringFinset
   Classical.choose (Nat.find_spec (coveringNumber_exists (X := X) (A := A) ha hε))
 
 /-- For [a totally bounded set](hyp:ha) and [a positive radius](hyp:hε), [the chosen covering
-finset covers the target set by balls of that radius](goal). -/
+finset covers the target set by balls of that radius](goal).
+@isnad1 id=le.2h3v.s6.27668a865735 from=translated src=- shape=2c5a3c81 vocab=5a7c0d59
+-/
 lemma coveringFinset_cover
     {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) {ε : ℝ} (hε : ε > 0) :
@@ -181,7 +199,9 @@ lemma coveringFinset_cover
       (Nat.find_spec (coveringNumber_exists (X := X) (A := A) ha hε))).2
 
 /-- For [a totally bounded set](hyp:ha) and [a positive radius](hyp:hε), [the chosen covering
-finset has cardinality equal to the natural-valued covering number](goal). -/
+finset has cardinality equal to the natural-valued covering number](goal).
+@isnad1 id=eq.2h3v.s5.4e4e70f38489 from=translated src=- shape=562b81d5 vocab=15c180ed
+-/
 lemma coveringFinset_card
     {X : Type*} [PseudoMetricSpace X] {A : Set X}
     (ha : TotallyBounded A) {ε : ℝ} (hε : ε > 0) :

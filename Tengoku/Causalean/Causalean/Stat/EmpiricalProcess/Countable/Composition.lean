@@ -30,7 +30,9 @@ namespace Causalean.Stat.EmpiricalProcess.Countable
 chain cover](hyp:cover) and [any sample of size n](hyp:x), [the sign
 average of the fourth power of the signed supremum is at most 256/27
 divided by n^4 times the sum over branches of the squared branch
-energies](goal). -/
+energies](goal).
+@isnad1 id=le.0h7v.s7.1883966ef317 from=translated src=- shape=87f43ee0 vocab=fa343abb
+-/
 theorem signedSup_fourth_le_coverEnergy {Ω ι : Type*} [MeasurableSpace Ω]
     [Countable ι] [Nonempty ι] (F : BoundedClass Ω ι) {m : ℕ}
     (cover : ChainCover F m) {n : ℕ} (x : Fin n → Ω) :
@@ -60,7 +62,9 @@ draws from [a probability measure μ](hyp:μ) with [n positive](hyp:hn), and
 suppose [each squared branch energy is integrable under the sample
 law](hyp:henergy). Then [the fourth moment of the centered supremum is at
 most 4096/27 divided by n^4 times the sum over branches of the expected
-squared branch energies](goal). -/
+squared branch energies](goal).
+@isnad1 id=le.2h7v.s8.3c4ecbe2a137 from=translated src=- shape=c41e7512 vocab=b39dcb59
+-/
 theorem centered_fourth_le_coverEnergy {Ω ι : Type*} [MeasurableSpace Ω]
     [Countable ι] [Nonempty ι] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (F : BoundedClass Ω ι) {m : ℕ} (cover : ChainCover F m) (n : ℕ) (hn : 0 < n)
@@ -93,7 +97,9 @@ draws from [a probability measure μ](hyp:μ) with [n positive](hyp:hn), and
 suppose [each squared branch energy is integrable under the sample
 law](hyp:henergy) with [expectation at most](hyp:hbudget) [a branch
 budget](hyp:budget). Then [the fourth moment of the centered supremum is at
-most 4096/27 divided by n^4 times the sum of the budgets](goal). -/
+most 4096/27 divided by n^4 times the sum of the budgets](goal).
+@isnad1 id=le.3h8v.s8.a4084ab091fb from=translated src=- shape=ebe8cca8 vocab=b39dcb59
+-/
 theorem centered_fourth_le_energy_budget {Ω ι : Type*} [MeasurableSpace Ω]
     [Countable ι] [Nonempty ι] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (F : BoundedClass Ω ι) {m : ℕ} (cover : ChainCover F m) (n : ℕ) (hn : 0 < n)
@@ -114,6 +120,7 @@ at most 81920/3 times (z^2 / (n^2 a^2) + z / (n^3 a^3))](goal).
 
 This is the arithmetic of the five-branch localized rate after
 symmetrization.
+@isnad1 id=le.3h3v.s8.a8d917d9b160 from=translated src=- shape=c6b62a98 vocab=5c9d27ef
 -/
 theorem five_branch_budget_arithmetic (n a z : ℝ)
     (hn : 0 < n) (ha : 0 < a) (hz : 0 ≤ z) :

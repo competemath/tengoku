@@ -37,6 +37,7 @@ value](hyp:hgridval), then for every sign pattern [the maximal signed
 increments at successive levels form a summable sequence](goal).
 
 The terms are dominated by a geometric series of ratio 1/√2.
+@isnad1 id=summable.5h5v.s9.de2b4dd47e21 from=translated src=- shape=e75ee01d vocab=92eb6594
 -/
 theorem signedDyadicIncrementMax_summable {n : ℕ} (w : Fin n → Path)
     (u : Path) (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0)
@@ -120,6 +121,7 @@ time](hyp:hgridcompat). If [the level-(k+1) index j is a child (2i or
 2i + 1) of the level-k index i](hyp:hparent), then [the absolute signed
 path sum at the child grid point is at most the absolute signed sum at the
 parent grid point plus the maximal signed increment at level k](goal).
+@isnad1 id=le.2h7v.s9.ef8276ec432e from=translated src=- shape=4362371c vocab=1d09198e
 -/
 theorem signed_dyadic_chain_step_le {n : ℕ} (w : Fin n → Path)
     (grid : ∀ k : ℕ, Fin (2 ^ k + 1) → Time)
@@ -193,6 +195,7 @@ a child at the next](hyp:hiparent), then [at every level m the absolute
 signed path sum at the chain's grid point is at most the absolute signed
 sum at time zero plus the maximal signed increments of levels 0 through
 m − 1](goal).
+@isnad1 id=le.6h7v.s10.b2d1cdef760c from=translated src=- shape=f1a0b06c vocab=cd9b3f21
 -/
 theorem signed_dyadic_chain_finite_le {n : ℕ} (w : Fin n → Path)
     (u : Path) (hzero : u timeZero = 0)
@@ -255,6 +258,7 @@ between i_k/2^k and (i_k + 1)/2^k at every level k](hyp:hiapprox), then
 its value at s](goal).
 
 This holds even when the control has flat intervals.
+@isnad1 id=tendsto.6h8v.s10.acb1c925d920 from=translated src=- shape=d2cf39c2 vocab=502143a3
 -/
 theorem controlled_grid_coordinate_tendsto {n : ℕ} (w : Fin n → Path)
     (u : Path) (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0)
@@ -337,6 +341,7 @@ between i_k/2^k and (i_k + 1)/2^k at every level k](hyp:hiapprox), then
 σ-signed sum at s](goal).
 
 This holds even when the control has flat intervals.
+@isnad1 id=tendsto.6h8v.s10.288e7735d576 from=translated src=- shape=3345b4e0 vocab=e38ec2c6
 -/
 theorem signed_dyadic_chain_tendsto {n : ℕ} (w : Fin n → Path)
     (u : Path) (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0)
@@ -373,6 +378,7 @@ zero](hyp:hzero), then [its value at any time s equals x times its terminal
 value for some x between 0 and 1](goal).
 
 This also covers a zero terminal value.
+@isnad1 id=ex.2h2v.s8.3bfcdc80a10e from=translated src=- shape=5f278e3a vocab=95f20870
 -/
 theorem control_value_unit_fraction (u : Path)
     (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0)
@@ -404,6 +410,7 @@ time zero plus the total of the maximal signed increments over all
 levels](goal).
 
 This includes points inside flat intervals of the control.
+@isnad1 id=le.7h6v.s10.588d6f9a0882 from=translated src=- shape=83872199 vocab=7568ad61
 -/
 theorem signed_path_le_dyadic_increment_series {n : ℕ} (w : Fin n → Path)
     (u : Path) (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0)

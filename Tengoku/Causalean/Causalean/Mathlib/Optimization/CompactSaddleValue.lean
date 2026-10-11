@@ -37,7 +37,9 @@ def compactMin (S : Set A) (f : Θ → A → ℝ → ℝ) (K : Set ℝ) (θ : Θ
   sInf ((fun t : ℝ => envelope S f θ t) '' K)
 
 /-- A [compact action set](hyp:S,hS) and [jointly continuous objective](hyp:f,hf) give a
-[jointly continuous maximum envelope](goal) in the parameter and scalar decision. -/
+[jointly continuous maximum envelope](goal) in the parameter and scalar decision.
+@isnad1 id=continuo.2h4v.s6.48370444429b from=translated src=- shape=3e788397 vocab=7eba05c8
+-/
 theorem continuous_envelope (S : Set A) (hS : IsCompact S)
     (f : Θ → A → ℝ → ℝ)
     (hf : Continuous (fun x : (Θ × ℝ) × A => f x.1.1 x.2 x.1.2)) :
@@ -45,7 +47,9 @@ theorem continuous_envelope (S : Set A) (hS : IsCompact S)
   exact hS.continuous_sSup hf
 
 /-- A [compact action set](hyp:S,hS), [objective family](hyp:f), [compact scalar set](hyp:K,hK),
-and [jointly continuous objective](hyp:hf) give a [continuous compact scalar minimum](goal). -/
+and [jointly continuous objective](hyp:hf) give a [continuous compact scalar minimum](goal).
+@isnad1 id=continuo.3h5v.s6.03fd6868bc57 from=translated src=- shape=4c22b47c vocab=4e78f7fa
+-/
 theorem continuous_compactMin (S : Set A) (hS : IsCompact S)
     (f : Θ → A → ℝ → ℝ) (K : Set ℝ) (hK : IsCompact K)
     (hf : Continuous (fun x : (Θ × ℝ) × A => f x.1.1 x.2 x.1.2)) :
@@ -55,7 +59,9 @@ theorem continuous_compactMin (S : Set A) (hS : IsCompact S)
 /-- An [action set](hyp:S), [objective family](hyp:f), [compact scalar set](hyp:K),
 [parameter](hyp:θ), and [scalar point belonging to that set](hyp:t,ht) whose [envelope value is
 no larger than at every scalar point](hyp:hmin) give [equality of the unrestricted saddle value
-and compact scalar minimum](goal). -/
+and compact scalar minimum](goal).
+@isnad1 id=eq.2h7v.s6.3fe18e63fa45 from=translated src=- shape=2c132d2b vocab=6339036f
+-/
 theorem value_eq_compactMin_of_attained (S : Set A) (f : Θ → A → ℝ → ℝ)
     (K : Set ℝ) (θ : Θ) (t : ℝ) (ht : t ∈ K)
     (hmin : ∀ u : ℝ, envelope S f θ t ≤ envelope S f θ u) :
@@ -76,7 +82,9 @@ theorem value_eq_compactMin_of_attained (S : Set A) (f : Θ → A → ℝ → �
 
 /-- A [compact nonempty action set](hyp:S,hS,hSne), [objective family](hyp:f), [compact
 nonempty scalar set](hyp:K,hK,hKne), [parameter](hyp:θ₀), [joint continuity of the objective](hyp:hf), and [eventual attainment of scalar envelope minima in the compact set](hyp:hatt) give
-a [continuous max-inf saddle value at the parameter](goal). -/
+a [continuous max-inf saddle value at the parameter](goal).
+@isnad1 id=continuo.6h6v.s7.0b01fc0bf293 from=translated src=- shape=b495cb72 vocab=1bd7e809
+-/
 theorem continuousAt_value (S : Set A) (hS : IsCompact S) (hSne : S.Nonempty)
     (f : Θ → A → ℝ → ℝ) (K : Set ℝ) (hK : IsCompact K) (hKne : K.Nonempty)
     (θ₀ : Θ)
@@ -93,7 +101,9 @@ theorem continuousAt_value (S : Set A) (hS : IsCompact S) (hSne : S.Nonempty)
 /-- A [compact nonempty action set](hyp:S,hS,hSne), [objective family](hyp:f), [compact
 nonempty scalar set](hyp:K,hK,hKne), [parameter](hyp:θ₀), [joint continuity of the objective](hyp:hf), [eventual attainment of scalar envelope minima in the compact set](hyp:hatt), and a
 [strictly positive saddle value at the parameter](hyp:hpos) give a [continuous reciprocal saddle
-value at that parameter](goal). -/
+value at that parameter](goal).
+@isnad1 id=continuo.7h6v.s7.a16ac05ae2e8 from=translated src=- shape=79228caa vocab=1b851478
+-/
 theorem continuousAt_inv_value (S : Set A) (hS : IsCompact S) (hSne : S.Nonempty)
     (f : Θ → A → ℝ → ℝ) (K : Set ℝ) (hK : IsCompact K) (hKne : K.Nonempty)
     (θ₀ : Θ)
@@ -107,7 +117,9 @@ theorem continuousAt_inv_value (S : Set A) (hS : IsCompact S) (hSne : S.Nonempty
 /-- A [compact nonempty action set](hyp:S,hS,hSne), [objective family](hyp:f), [compact
 nonempty scalar set](hyp:K,hK,hKne), [parameter](hyp:θ₀), [parameter neighborhood](hyp:U), [openness of that neighborhood](hyp:hUopen), and [membership of the parameter](hyp:hθU), [joint continuity of the objective on that neighborhood](hyp:hf), and
 [eventual attainment of scalar envelope minima in the compact set](hyp:hatt) give a [continuous
-max-inf saddle value at the parameter](goal). -/
+max-inf saddle value at the parameter](goal).
+@isnad1 id=continuo.8h7v.s7.0aaa3bf4a3be from=translated src=- shape=38686218 vocab=341595f9
+-/
 theorem continuousAt_value_of_continuousOn (S : Set A) (hS : IsCompact S)
     (hSne : S.Nonempty) (f : Θ → A → ℝ → ℝ) (K : Set ℝ)
     (hK : IsCompact K) (hKne : K.Nonempty) (θ₀ : Θ)

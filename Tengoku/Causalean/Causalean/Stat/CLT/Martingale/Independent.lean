@@ -49,7 +49,9 @@ def pastFiltration {S : Type*} [MeasurableSpace S] (X : ℕ → S → ℝ)
     exact (hX j).measurable.comap_le
 
 /-- A [strongly measurable sequence](hyp:hX) that is [independent](hyp:hIndep) has its
-[coordinate at an indicated index](hyp:k) [independent of its strict past](goal). -/
+[coordinate at an indicated index](hyp:k) [independent of its strict past](goal).
+@isnad1 id=indep.2h4v.s6.728d116a3640 from=translated src=- shape=4db19341 vocab=ee2485c3
+-/
 theorem indep_past_of_iIndepFun {S : Type*} [MeasurableSpace S] {X : ℕ → S → ℝ}
     {ν : Measure S} (hX : ∀ k, StronglyMeasurable (X k))
     (hIndep : iIndepFun X ν) (k : ℕ) :
@@ -63,7 +65,9 @@ theorem indep_past_of_iIndepFun {S : Type*} [MeasurableSpace S] {X : ℕ → S �
 
 /-- For [strongly measurable coordinates](hyp:hX) under [rowwise independence](hyp:hIndep), at
 [an indicated index](hyp:k), [the conditional expectation given the strict past equals the
-unconditional mean](goal). -/
+unconditional mean](goal).
+@isnad1 id=eventual.2h4v.s6.34c4b8e0df72 from=translated src=- shape=34e9af00 vocab=adc82a91
+-/
 theorem condExp_past_ae_eq_of_iIndepFun
     {S : Type*} [MeasurableSpace S] {ν : Measure S} [IsProbabilityMeasure ν]
     {X : ℕ → S → ℝ}
@@ -75,7 +79,9 @@ theorem condExp_past_ae_eq_of_iIndepFun
 /-- For [strongly measurable coordinates](hyp:hX) under [independence](hyp:hIndep), and [a
 transform](hyp:g) that is [measurable](hyp:hg), at [an indicated index](hyp:k), [the conditional
 expectation of the transformed coordinate given its strict past is its unconditional
-expectation](goal). -/
+expectation](goal).
+@isnad1 id=eventual.3h5v.s7.eb0c5fd4b435 from=translated src=- shape=1a262df6 vocab=628c4fce
+-/
 theorem condExp_comp_past_ae_eq_of_iIndepFun
     {S : Type*} [MeasurableSpace S] {ν : Measure S} [IsProbabilityMeasure ν]
     {X : ℕ → S → ℝ} (hX : ∀ k, StronglyMeasurable (X k))
@@ -152,7 +158,9 @@ noncomputable def lyapunovSum (A : IndependentTriangularArray Ω μ)
     ∫ ω, |A.increment n k ω| ^ (2 + δ) ∂(μ n)
 
 /-- For [an independent array](hyp:A) and [a row](hyp:n), [predictable quadratic variation equals
-the unconditional variance sum almost everywhere](goal). -/
+the unconditional variance sum almost everywhere](goal).
+@isnad1 id=eventual.0h5v.s6.11f979f768c5 from=translated src=- shape=3ace4c09 vocab=6b2f0c2a
+-/
 theorem predictableQuadraticVariation_ae_eq [∀ n, IsProbabilityMeasure (μ n)]
     (A : IndependentTriangularArray Ω μ) (n : ℕ) :
     A.toMartingale.predictableQuadraticVariation n =ᵐ[μ n]
@@ -174,7 +182,9 @@ theorem predictableQuadraticVariation_ae_eq [∀ n, IsProbabilityMeasure (μ n)]
   exact hω k
 
 /-- For [an independent array](hyp:A), [a threshold](hyp:ε), and [a row](hyp:n), [the conditional
-Lindeberg sum equals the unconditional Lindeberg sum almost everywhere](goal). -/
+Lindeberg sum equals the unconditional Lindeberg sum almost everywhere](goal).
+@isnad1 id=eventual.0h6v.s6.0119770e9024 from=translated src=- shape=9c5a1e1d vocab=584793ba
+-/
 theorem conditionalLindeberg_ae_eq [∀ n, IsProbabilityMeasure (μ n)]
     (A : IndependentTriangularArray Ω μ) (ε : ℝ) (n : ℕ) :
     A.toMartingale.conditionalLindeberg ε n =ᵐ[μ n]
@@ -207,7 +217,9 @@ threshold](hyp:hLindeberg), then [the row sums converge in distribution to the s
 Gaussian law](goal).
 
 This is Billingsley, Theorem 27.2 (also van der Vaart, Proposition 2.27), obtained from
-`martingaleArrayCLT` because independence makes conditional moments unconditional. -/
+`martingaleArrayCLT` because independence makes conditional moments unconditional.
+@isnad1 id=tendstoi.2h4v.s7.842a6a459223 from=translated src=- shape=659d410f vocab=b11a857b
+-/
 theorem lindebergFeller_clt [∀ n, IsProbabilityMeasure (μ n)]
     (A : IndependentTriangularArray Ω μ)
     (hVariance : Tendsto A.varianceSum atTop (𝓝 1))
@@ -243,7 +255,9 @@ normalization](hyp:hVariance), and [vanishing `2 + δ` moment sums](hyp:hLyapuno
 [the row sums converge in distribution to the standard Gaussian law](goal).
 
 The proof derives the Lindeberg condition from
-`x² 1{|x|>ε} ≤ ε⁻ᵟ |x|²⁺ᵟ` and invokes `lindebergFeller_clt`. -/
+`x² 1{|x|>ε} ≤ ε⁻ᵟ |x|²⁺ᵟ` and invokes `lindebergFeller_clt`.
+@isnad1 id=tendstoi.4h5v.s7.1df4f50c2508 from=translated src=- shape=32218579 vocab=4f860b29
+-/
 theorem lyapunov_clt [∀ n, IsProbabilityMeasure (μ n)]
     (A : IndependentTriangularArray Ω μ) {δ : ℝ} (hδ : 0 < δ)
     (hMoment : ∀ n k, k < A.rowLength n →

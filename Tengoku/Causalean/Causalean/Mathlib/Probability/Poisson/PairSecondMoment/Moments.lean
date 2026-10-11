@@ -18,13 +18,17 @@ open scoped NNReal
 namespace Causalean.Mathlib.Probability.Poisson.PairSecondMoment
 
 /-- Under [a Poisson law with nonnegative rate](hyp:rate), [the expected
-count equals that rate](goal). -/
+count equals that rate](goal).
+@isnad1 id=eq.0h1v.s4.c72c59d2f7ea from=translated src=- shape=6ef05e15 vocab=d020d26c
+-/
 theorem poisson_count_first_moment (rate : ℝ≥0) :
     (∫ n : ℕ, (n : ℝ) ∂poissonMeasure rate) = (rate : ℝ) :=
   Causalean.Mathlib.Probability.Poisson.poisson_natCast_first_moment rate
 
 /-- Under [a Poisson law with nonnegative rate](hyp:rate), [the ordered count
-of two distinct positions is integrable](goal). -/
+of two distinct positions is integrable](goal).
+@isnad1 id=integrab.0h1v.s5.77f4f66d0811 from=translated src=- shape=4b1ed417 vocab=26404612
+-/
 theorem integrable_poisson_ordered_pairs (rate : ℝ≥0) :
     Integrable (fun n : ℕ => (n : ℝ) * ((n : ℝ) - 1)) (poissonMeasure rate) := by
   have hsq :=
@@ -54,7 +58,9 @@ private lemma poisson_descFactorial_two_shift (rate : ℝ≥0) (k : ℕ) :
   linear_combination ((rate : ℝ) ^ k * (rate : ℝ) ^ 2) * hfac
 
 /-- Under [a Poisson law with nonnegative rate](hyp:rate), [the expected
-ordered number of distinct count positions is the squared rate](goal). -/
+ordered number of distinct count positions is the squared rate](goal).
+@isnad1 id=eq.0h1v.s6.6010a282333a from=translated src=- shape=c60e47c9 vocab=cca34dbe
+-/
 theorem poisson_ordered_pairs_second_moment (rate : ℝ≥0) :
     (∫ n : ℕ, (n : ℝ) * ((n : ℝ) - 1) ∂poissonMeasure rate) =
       (rate : ℝ) ^ 2 := by
@@ -102,13 +108,17 @@ theorem poisson_ordered_pairs_second_moment (rate : ℝ≥0) :
       simp
 
 /-- Under [a Poisson law with nonnegative rate](hyp:rate), [the squared count
-is integrable](goal). -/
+is integrable](goal).
+@isnad1 id=integrab.0h1v.s5.234264a7c61e from=translated src=- shape=7d84a3bf vocab=26b3935f
+-/
 theorem integrable_poisson_count_sq (rate : ℝ≥0) :
     Integrable (fun n : ℕ => (n : ℝ) ^ 2) (poissonMeasure rate) :=
   (Causalean.Mathlib.Probability.Poisson.poisson_natCast_memLp_two rate).integrable_sq
 
 /-- Under [a Poisson law with nonnegative rate](hyp:rate), [the expected
-squared count is its squared rate plus its rate](goal). -/
+squared count is its squared rate plus its rate](goal).
+@isnad1 id=eq.0h1v.s6.f0fb2881bd32 from=translated src=- shape=cf14407c vocab=4606b326
+-/
 theorem poisson_count_second_moment (rate : ℝ≥0) :
     (∫ n : ℕ, (n : ℝ) ^ 2 ∂poissonMeasure rate) =
       (rate : ℝ) ^ 2 + (rate : ℝ) := by

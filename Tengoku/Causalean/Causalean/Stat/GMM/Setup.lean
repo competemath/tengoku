@@ -158,7 +158,9 @@ noncomputable def asympVar : E →L[ℝ] E :=
   gmmSandwich prob.G prob.W prob.Cov prob.breadInv
 
 omit [BorelSpace F] in
-/-- The covariance operator is positive — it is a second moment. -/
+/-- The covariance operator is positive — it is a second moment.
+@isnad1 id=ispositi.0h5v.s6.aaaf630d1d35 from=translated src=- shape=48873176 vocab=b3381da2
+-/
 theorem cov_isPositive : prob.Cov.IsPositive := by
   refine ⟨fun t s => ?_, fun t => ?_⟩
   · -- symmetric: `⟪Cov t, s⟫ = ⟪Cov s, t⟫` (both `∫ ⟪t,g⟫⟪s,g⟫`), then flip.
@@ -208,7 +210,9 @@ Theorem 3.2), statistical form.** For [an efficient GMM problem](hyp:prob),
 [its sandwich variance minus its efficient variance is positive semidefinite](goal).
 
 Equivalently, the arbitrary symmetric-weight sandwich variance dominates
-`(GᵀCov⁻¹G)⁻¹` in the Löwner order. -/
+`(GᵀCov⁻¹G)⁻¹` in the Löwner order.
+@isnad1 id=ispositi.0h5v.s8.29278ee6dea5 from=translated src=- shape=8a047558 vocab=afabf785
+-/
 theorem efficiency : (prob.asympVar - prob.effVar).IsPositive :=
   gmm_efficiency prob.G prob.W prob.Cov prob.CovInv prob.hWsa prob.cov_isPositive
     prob.CovInv_left prob.CovInv_right prob.breadInv prob.breadInv_left

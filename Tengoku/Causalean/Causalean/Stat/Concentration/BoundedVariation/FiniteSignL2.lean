@@ -15,6 +15,7 @@ namespace Causalean.Stat.Concentration.BoundedVariation
 /-- For finitely many real functions on the sign patterns of length n,
 [the uniform sign-average of the square of their sum is at most the square
 of the sum of their individual root sign-average second moments](goal).
+@isnad1 id=le.0h3v.s7.7f50324cbd8a from=translated src=- shape=1b2b3183 vocab=fdcfd7a7
 -/
 theorem finite_sign_l2_sum_le {n m : ℕ}
     (F : Fin m → (Fin n → Bool) → ℝ) :

@@ -75,13 +75,17 @@ instance : Fintype (UntreatedCell g) := by unfold UntreatedCell; infer_instance
 
 omit [Fintype I] [DecidableEq I] in
 /-- The cell partition is exclusive: no cell is both adopted-by-`t` and
-untreated-at-`t`. -/
+untreated-at-`t`.
+@isnad1 id=false.2h4v.s5.ea8574c855c2 from=translated src=- shape=81827719 vocab=b4ebd388
+-/
 theorem treated_not_untreated {c : I × Fin T}
     (hT : AdoptionPath.le (g c.1) c.2) (hU : AdoptionPath.lt (g c.1) c.2) : False :=
   AdoptionPath.not_le_of_lt hU hT
 
 omit [Fintype I] [DecidableEq I] in
-/-- The cell partition is exhaustive: every cell is treated or untreated. -/
+/-- The cell partition is exhaustive: every cell is treated or untreated.
+@isnad1 id=or.0h4v.s5.18fda463932f from=translated src=- shape=2173e976 vocab=b4ebd388
+-/
 theorem treated_or_untreated (c : I × Fin T) :
     AdoptionPath.le (g c.1) c.2 ∨ AdoptionPath.lt (g c.1) c.2 := by
   unfold AdoptionPath.le AdoptionPath.lt
@@ -96,7 +100,9 @@ def feRow (c : I × Fin T) : (I ⊕ Fin T) → ℝ :=
     (fun t' => if t' = c.2 then (1 : ℝ) else 0)
 
 /-- The two-way FE row evaluates the additive fixed-effect model:
-`q_{(i,t)} · (α, λ) = α_i + λ_t`. -/
+`q_{(i,t)} · (α, λ) = α_i + λ_t`.
+@isnad1 id=eq.0h5v.s6.350376206ac8 from=translated src=- shape=a18bcb56 vocab=2c6b58f9
+-/
 lemma dot_feRow (c : I × Fin T) (α : I → ℝ) (lam : Fin T → ℝ) :
     dot (feRow c) (Sum.elim α lam) = α c.1 + lam c.2 := by
   unfold dot feRow
@@ -122,7 +128,9 @@ def ofStaggeredTWFE (α : I → ℝ) (lam : Fin T → ℝ)
 [period fixed effects `lam`](hyp:lam), and [target weights and treated-cell effects `a`,
 `tau`](hyp:a,tau), [the staggered-adoption grounded panel `ofStaggeredTWFE g α lam a tau`
 satisfies the BJS untreated-outcome model: treated and untreated cell means both equal the
-two-way fixed-effect model `α_i + λ_t`, and untreated cells exhibit no anticipation](goal). -/
+two-way fixed-effect model `α_i + λ_t`, and untreated cells exhibit no anticipation](goal).
+@isnad1 id=untreate.0h7v.s6.78c44bfe07df from=translated src=- shape=b929f49d vocab=bdfe0ac1
+-/
 theorem ofStaggeredTWFE_untreatedModel (α : I → ℝ) (lam : Fin T → ℝ)
     (a tau : TreatedCell g → ℝ) :
     (ofStaggeredTWFE g α lam a tau).UntreatedOutcomeModel := by
@@ -133,7 +141,9 @@ theorem ofStaggeredTWFE_untreatedModel (α : I → ℝ) (lam : Fin T → ℝ)
     rw [dot_feRow]
 
 /-- The grounded panel satisfies the BJS fixed-effect equation
-`E[Y_T] = E[Y_T(0)] + τ`. -/
+`E[Y_T] = E[Y_T(0)] + τ`.
+@isnad1 id=treatmen.0h7v.s6.e510d2f0f08a from=translated src=- shape=b929f49d vocab=6ad60b62
+-/
 theorem ofStaggeredTWFE_treatmentFixed (α : I → ℝ) (lam : Fin T → ℝ)
     (a tau : TreatedCell g → ℝ) :
     (ofStaggeredTWFE g α lam a tau).TreatmentEffectFixed :=

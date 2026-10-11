@@ -41,7 +41,9 @@ evaluation disjointness](hyp:heval), [held-out scores and training shifts](hyp:f
 with [measurability](hyp:hfmeas,hameas) and [integrability](hyp:hf,ha), [an integrable
 first shifted pair](hyp:hshift01), and [an integrable shifted three-block product](hyp:hshiftprod)
 imply that [its conditional mean is the product of held-out means minus the corresponding
-training shifts](goal). -/
+training shifts](goal).
+@isnad1 id=eventual.8h7v.s10.d524c969438d from=translated src=- shape=7751a536 vocab=d69af354
+-/
 theorem condExp_shiftedThreeBlockProduct
     (μ : (i : ι) → Measure (Ω i)) [∀ i, IsProbabilityMeasure (μ i)]
     (B0 : Finset ι) (B : Fin 3 → Finset ι)
@@ -119,7 +121,9 @@ training-shift families](hyp:a,b), [measurability](hyp:hfmeas,hgmeas,hameas,hbme
 products](hyp:hfg), [square-integrable shifted scores](hyp:hflp,hglp), [an integrable
 first shifted cross pair](hyp:hcross01), and [square-integrable shifted three-block
 products](hyp:hflpProd,hglpProd) imply that [the conditional cross moment factors into
-the three shifted blockwise cross moments](goal). -/
+the three shifted blockwise cross moments](goal).
+@isnad1 id=eventual.16h9v.s11.2498fa1c8743 from=translated src=- shape=43b3b50a vocab=379a4104
+-/
 theorem condExp_shiftedThreeBlockCross
     (μ : (i : ι) → Measure (Ω i)) [∀ i, IsProbabilityMeasure (μ i)]
     (B0 : Finset ι) (B : Fin 3 → Finset ι)
@@ -247,7 +251,9 @@ products](hyp:hfg), [square-integrable shifted scores](hyp:hflp,hglp), [integrab
 first shifted pairs](hyp:hf01,hg01), [an integrable first shifted cross pair](hyp:hcross01),
 and [square-integrable shifted three-block products](hyp:hflpProd,hglpProd) imply that
 [their conditional covariance equals the product of shifted blockwise cross moments minus
-the product of shifted conditional means](goal). -/
+the product of shifted conditional means](goal).
+@isnad1 id=eventual.18h9v.s11.5cfe92f1bcb8 from=translated src=- shape=40a1e676 vocab=379a4104
+-/
 theorem condCov_shiftedThreeBlockProduct
     (μ : (i : ι) → Measure (Ω i)) [∀ i, IsProbabilityMeasure (μ i)]
     (B0 : Finset ι) (B : Fin 3 → Finset ι)

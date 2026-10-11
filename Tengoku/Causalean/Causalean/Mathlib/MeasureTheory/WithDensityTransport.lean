@@ -19,7 +19,9 @@ namespace Causalean.Mathlib.MeasureTheory
 
 /-- With [a measurable equivalence](hyp:e), [a certificate that it preserves the two
 measures](hyp:he), and [a target-domain density](hyp:d), [pushing forward the source measure
-weighted by the pulled-back density yields the target measure weighted by that density](goal). -/
+weighted by the pulled-back density yields the target measure weighted by that density](goal).
+@isnad1 id=eq.1h6v.s7.37ac6cad9c13 from=translated src=- shape=4de87171 vocab=6129423d
+-/
 theorem map_withDensity_comp_measurableEquiv
     {Ω Ω' : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω']
     (e : Ω ≃ᵐ Ω') {μ : Measure Ω} {μ' : Measure Ω'}

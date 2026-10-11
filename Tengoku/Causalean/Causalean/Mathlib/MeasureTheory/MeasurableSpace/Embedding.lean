@@ -31,7 +31,9 @@ variable {α β : Type*} {_ : MeasurableSpace α} {_ : MeasurableSpace β} {F : 
     Proof: by `MeasurableEmbedding.comap_apply`, the assumption shows
     `μ.comap F = ν.comap F` as measures on `α`; pushing forward through
     the measurable embedding `F` (via `MeasurableEmbedding.map_comap`)
-    yields the displayed restriction equality on `range F`. -/
+    yields the displayed restriction equality on `range F`.
+@isnad1 id=eq.2h7v.s6.3480dc3dff51 from=translated src=- shape=ec039dca vocab=1be7c45c
+-/
 theorem restrict_range_eq_of_forall_image (hF : MeasurableEmbedding F)
     (μ ν : Measure β)
     (h : ∀ A, MeasurableSet A → μ (F '' A) = ν (F '' A)) :

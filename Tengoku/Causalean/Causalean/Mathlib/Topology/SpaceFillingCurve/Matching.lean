@@ -14,7 +14,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- Given [a cube dimension and family size](hyp:d,N), [a dimension of at least two](hyp:hd), [an even family of at least two labels](hyp:hN,hN2),
-and [unit-cube points at those labels](hyp:x,hx), [a perfect pairing has total squared edge cost at most the stated dimension-dependent rate](goal). -/
+and [unit-cube points at those labels](hyp:x,hx), [a perfect pairing has total squared edge cost at most the stated dimension-dependent rate](goal).
+@isnad1 id=ex.4h3v.s7.b7d715cc64a0 from=translated src=- shape=29ed51e3 vocab=65f1394e
+-/
 theorem exists_perfectPairing_sqEuclidean_cost_le
     (d N : ℕ) (hd : 2 ≤ d) (hN : Even N) (hN2 : 2 ≤ N)
     (x : Fin N → Fin d → ℝ) (hx : ∀ i, InUnitCube (x i)) :

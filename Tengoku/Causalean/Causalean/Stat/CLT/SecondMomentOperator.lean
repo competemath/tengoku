@@ -57,7 +57,9 @@ variable {X E : Type*} [MeasurableSpace X] {P : Measure X}
   {ψ : X → E}
 
 /-- The integrand `x ↦ ⟪t, ψ x⟫ • ψ x` is integrable when `‖ψ‖²` is, by the
-Cauchy–Schwarz bound `‖⟪t,ψ⟫ • ψ‖ ≤ ‖t‖ ‖ψ‖²`. -/
+Cauchy–Schwarz bound `‖⟪t,ψ⟫ • ψ‖ ≤ ‖t‖ ‖ψ‖²`.
+@isnad1 id=integrab.2h5v.s8.ab18c9466ef3 from=translated src=- shape=13e3ff06 vocab=215e9398
+-/
 @[fun_prop]
 theorem integrable_inner_smul (hψ : Measurable ψ)
     (hvar : Integrable (fun x => ‖ψ x‖ ^ 2) P) (t : E) :
@@ -96,7 +98,9 @@ variable [CompleteSpace E]
 
 /-- For [vectors `t` and `s`](hyp:t,s), [the inner product of the second-moment
 operator applied to `t` with `s` equals the expectation under `P` of the product
-of the inner products `⟪t, ψ⟩` and `⟪s, ψ⟩`](goal). -/
+of the inner products `⟪t, ψ⟩` and `⟪s, ψ⟩`](goal).
+@isnad1 id=eq.2h6v.s8.8744ecaa2853 from=translated src=- shape=ba7743a9 vocab=533fd1b9
+-/
 theorem secondMomentLM_inner (t s : E) :
     ⟪secondMomentLM hψ hvar t, s⟫ = ∫ x, ⟪t, ψ x⟫ * ⟪s, ψ x⟫ ∂P := by
   rw [show ⟪secondMomentLM hψ hvar t, s⟫ = ⟪s, secondMomentLM hψ hvar t⟫ from real_inner_comm _ _]
@@ -106,7 +110,9 @@ theorem secondMomentLM_inner (t s : E) :
   simp only [inner_smul_right]
 
 /-- [The second-moment operator is a positive linear operator, hence symmetric
-and self-adjoint](goal). -/
+and self-adjoint](goal).
+@isnad1 id=ispositi.2h4v.s7.d03855e7c532 from=translated src=- shape=fa5614f4 vocab=c2ca20ba
+-/
 theorem secondMomentLM_isPositive : (secondMomentLM hψ hvar).IsPositive := by
   refine (LinearMap.isPositive_iff _).mpr ⟨fun t s => ?_, fun t => ?_⟩
   · rw [secondMomentLM_inner hψ hvar t s,

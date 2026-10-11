@@ -19,7 +19,9 @@ open Filter
 [diverging expected count](hyp:hmean), [positive alphabets](hyp:hm), and
 [positive finite pair scale](hyp:hscale,hq), then the [birthday kernel](goal)
 approaches its Poisson collision value uniformly on a sufficiently narrow
-relative band around the binomial mean. -/
+relative band around the binomial mean.
+@isnad1 id=ex.6h5v.s7.4f1957b4262c from=translated src=- shape=677ce2de vocab=8912ecaf
+-/
 theorem repeatKernel_uniform_on_relative_band
     (Tseq mseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {q : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)
@@ -100,7 +102,9 @@ theorem repeatKernel_uniform_on_relative_band
 [diverging expected draw count](hyp:hmean), [positive alphabets](hyp:hm), and
 [pair scale per label tending to a positive value](hyp:hscale,hq), the
 [binomially averaged repeat probability](goal) tends to one minus the
-corresponding Poisson no-collision probability. -/
+corresponding Poisson no-collision probability.
+@isnad1 id=tendsto.5h4v.s7.ac8e60cb7780 from=translated src=- shape=f8a16953 vocab=42bb354f
+-/
 theorem repeat_tendsto
     (Tseq mseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {q : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)

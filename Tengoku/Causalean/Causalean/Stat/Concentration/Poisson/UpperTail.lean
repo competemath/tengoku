@@ -18,7 +18,9 @@ open scoped ENNReal NNReal
 
 namespace Causalean.Stat.Concentration.Poisson
 
-/-- [A natural cap](hyp:n) gives [an exponential upper bound for a Poisson count with one-quarter of that mean exceeding the cap](goal). -/
+/-- [A natural cap](hyp:n) gives [an exponential upper bound for a Poisson count with one-quarter of that mean exceeding the cap](goal).
+@isnad1 id=le.0h1v.s6.2d4c5bb0ec24 from=translated src=- shape=e7c1868d vocab=5310497f
+-/
 -- Use `poisson_upper_tail_mul_exp_le` with r=3, then show
 -- `log 4 - 3/4 ≥ 1/2` and rearrange the positive exponential factor.
 theorem poisson_quarter_mean_cap_tail (n : ℕ) :
@@ -52,7 +54,9 @@ theorem poisson_quarter_mean_cap_tail (n : ℕ) :
         nlinarith
   exact (ENNReal.le_ofReal_iff_toReal_le (measure_ne_top _ _) (Real.exp_nonneg _)).mpr hp
 
-/-- Under [a probability law](hyp:μ), [a cap](hyp:n), [a count with the stated Poisson law](hyp:M,hM), [a random continuous path and target path](hyp:Z,F), [a unit supremum bound on the target](hyp:hF), and [integrability of the original and capped squared losses](hyp:hZ,hcap), [capping increases squared supremum risk by at most the exponential cap tail](goal). -/
+/-- Under [a probability law](hyp:μ), [a cap](hyp:n), [a count with the stated Poisson law](hyp:M,hM), [a random continuous path and target path](hyp:Z,F), [a unit supremum bound on the target](hyp:hF), and [integrability of the original and capped squared losses](hyp:hZ,hcap), [capping increases squared supremum risk by at most the exponential cap tail](goal).
+@isnad1 id=le.4h6v.s9.4e3ae595efe1 from=translated src=- shape=3c518db0 vocab=a2c2323c
+-/
 -- Split on `M ω ≤ n` pointwise. On overflow the capped loss is `‖F‖² ≤ 1`.
 -- Integrate the pointwise comparison and transfer overflow probability using
 -- `hM.measureReal_eq` and `poisson_quarter_mean_cap_tail`.

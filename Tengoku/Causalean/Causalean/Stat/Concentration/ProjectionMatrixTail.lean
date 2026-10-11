@@ -28,7 +28,9 @@ open scoped BigOperators RealInnerProductSpace
 noncomputable section
 
 /-- A matrix admitting a Gram factorization through `r` vectors has rank at
-most `r`. -/
+most `r`.
+@isnad1 id=le.1h5v.s6.4576374aded9 from=translated src=- shape=d098726f vocab=250da00b
+-/
 theorem matrix_rank_le_of_gram_factor {R ι : Type*} [Nontrivial R] [CommRing R]
     [Fintype ι] {r : ℕ}
     (Pi : Matrix ι ι R) (vectors : Fin r → ι → R)
@@ -53,7 +55,9 @@ then for [any nonnegative `t`](hyp:ht), [the squared Euclidean norm of the proje
 
 The hypotheses say that the matrix is an orthogonal projection and that the
 coordinates of the noise are measurable, mutually independent, centered, and
-bounded by one almost surely. -/
+bounded by one almost surely.
+@isnad1 id=le.8h7v.s8.345997b3d31a from=translated src=- shape=e528e670 vocab=0b9ef0fa
+-/
 theorem measure_projection_energy_gt_le
     {Ω : Type*} [MeasurableSpace Ω] {n r : ℕ}
     (P : Measure Ω) [IsProbabilityMeasure P]

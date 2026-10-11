@@ -22,7 +22,9 @@ namespace Causalean.Stat.EmpiricalProcess.Countable
 probability measure μ](hyp:μ,f,hf) and [its values at every time up to a
 horizon N](hyp:N) [have integrable fourth powers](hyp:h4), then [the
 running maximum of f over times 0 through N is measurable and has an
-integrable fourth power](goal). -/
+integrable fourth power](goal).
+@isnad1 id=and.2h6v.s7.2597b1148733 from=translated src=- shape=efd2c60c vocab=f62920a5
+-/
 theorem submartingale_max_fourth_legal {Ω : Type*} {m : MeasurableSpace Ω}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (ℱ : Filtration ℕ m)
     (f : ℕ → Ω → ℝ) (hf : Submartingale f ℱ μ) (N : ℕ)
@@ -41,7 +43,9 @@ probability measure μ](hyp:μ,f,hf) and [is nonnegative everywhere](hyp:hpos),
 then for [any horizon N](hyp:N) and [any positive level t](hyp:t,ht), [t
 times the probability that the maximum of f over times 0 through N is at
 least t is at most the integral of the terminal value f_N over that
-event](goal). -/
+event](goal).
+@isnad1 id=le.3h7v.s7.c2c6ba20c8ee from=translated src=- shape=622f398f vocab=06372153
+-/
 theorem submartingale_max_tail_le {Ω : Type*} {m : MeasurableSpace Ω}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (ℱ : Filtration ℕ m)
     (f : ℕ → Ω → ℝ) (hf : Submartingale f ℱ μ)
@@ -76,6 +80,7 @@ cube of that maximum times the terminal value f_N](goal).
 
 The proof integrates the weak Doob inequality against the cubic
 layer-cake weight.
+@isnad1 id=and.3h6v.s8.86e2664412cb from=translated src=- shape=8b9ced22 vocab=389068b0
 -/
 theorem doob_fourth_mixed {Ω : Type*} {m : MeasurableSpace Ω}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (ℱ : Filtration ℕ m)
@@ -99,7 +104,9 @@ under a probability measure μ](hyp:μ,f,hf) and [has integrable fourth powers
 at every time up to a horizon N](hyp:N,h4), then [the fourth power of its
 maximal absolute value over times 0 through N is integrable, with
 expectation at most 256/81 times the expected fourth power of the terminal
-value f_N](goal). -/
+value f_N](goal).
+@isnad1 id=and.2h6v.s8.add62aa7546f from=translated src=- shape=5577a3b9 vocab=66d92f12
+-/
 theorem doob_fourth_maximal {Ω : Type*} {m : MeasurableSpace Ω}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (ℱ : Filtration ℕ m)
     (f : ℕ → Ω → ℝ) (hf : Martingale f ℱ μ) (N : ℕ)

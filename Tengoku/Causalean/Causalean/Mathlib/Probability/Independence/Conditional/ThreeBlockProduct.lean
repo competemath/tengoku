@@ -27,7 +27,9 @@ variable (μ : (i : ι) → Measure (Ω i)) [∀ i, IsProbabilityMeasure (μ i)]
 /-- For [a finite product probability law](hyp:μ), a [training block and three evaluation
 blocks](hyp:B0,B) whose [training and evaluation blocks are disjoint](hyp:htrain) and whose
 [evaluation blocks are pairwise disjoint](hyp:heval), [the views indexed by two distinct
-evaluation blocks](hyp:s,t,hst) satisfy [conditional independence given the training view](goal). -/
+evaluation blocks](hyp:s,t,hst) satisfy [conditional independence given the training view](goal).
+@isnad1 id=condinde.3h7v.s9.76f437aa1a37 from=translated src=- shape=240bd8ae vocab=278f3b33
+-/
 theorem condIndepFun_eval_pair (B0 : Finset ι) (B : Fin 3 → Finset ι)
     (htrain : ∀ t, Disjoint B0 (B t))
     (heval : Pairwise (fun s t : Fin 3 =>
@@ -54,7 +56,9 @@ theorem condIndepFun_eval_pair (B0 : Finset ι) (B : Fin 3 → Finset ι)
 /-- For [a finite product probability law](hyp:μ), a [training block and three evaluation
 blocks](hyp:B0,B) whose [training and evaluation blocks are disjoint](hyp:htrain) and whose
 [evaluation blocks are pairwise disjoint](hyp:heval), [the combined first two evaluation views
-are conditionally independent of the third given the training view](goal). -/
+are conditionally independent of the third given the training view](goal).
+@isnad1 id=condinde.2h5v.s10.0f7ff09de7b9 from=translated src=- shape=b8e1a3d0 vocab=0f675686
+-/
 theorem condIndepFun_eval_union (B0 : Finset ι) (B : Fin 3 → Finset ι)
     [DecidableEq ι]
     (htrain : ∀ t, Disjoint B0 (B t))
@@ -93,7 +97,9 @@ omit [∀ i, StandardBorelSpace (Ω i)] in
 /-- Under [a finite product probability law](hyp:μ), [two coordinate blocks](hyp:S,T) with
 [disjointness](hyp:hST), [two block scores](hyp:f,g), [their measurability](hyp:hfmeas,hgmeas),
 and [integrability after pullback to the full experiment](hyp:hf,hg), [the product of the
-pulled-back scores is integrable](goal). -/
+pulled-back scores is integrable](goal).
+@isnad1 id=integrab.5h7v.s9.3120b0241cd3 from=translated src=- shape=a72c2067 vocab=eeeb42f2
+-/
 theorem integrable_twoBlockProduct (S T : Finset ι) (hST : Disjoint S T)
     (f : ((i : {i // i ∈ S}) → Ω i.val) → ℝ)
     (g : ((i : {i // i ∈ T}) → Ω i.val) → ℝ)
@@ -117,7 +123,9 @@ theorem integrable_twoBlockProduct (S T : Finset ι) (hST : Disjoint S T)
 omit [∀ i, StandardBorelSpace (Ω i)] in
 /-- Under [a finite product probability law](hyp:μ), [three pairwise-disjoint coordinate
 blocks](hyp:B,heval), [measurable block scores](hyp:η,hηmeas), and [square-integrability of
-their pullbacks](hyp:hη), [the three-block product is square-integrable](goal). -/
+their pullbacks](hyp:hη), [the three-block product is square-integrable](goal).
+@isnad1 id=memlp.3h5v.s8.f0c4fad43e06 from=translated src=- shape=723ff8c9 vocab=32933029
+-/
 theorem memLp_threeBlockProduct (B : Fin 3 → Finset ι)
     (heval : Pairwise (fun s t : Fin 3 => Disjoint (B s) (B t)))
     (η : (t : Fin 3) → ((i : {i // i ∈ B t}) → Ω i.val) → ℝ)
@@ -177,7 +185,9 @@ omit [∀ i, StandardBorelSpace (Ω i)] in
 /-- Under [a finite product probability law](hyp:μ), [three pairwise-disjoint coordinate
 blocks](hyp:B,heval), [two families of measurable block scores](hyp:η,ζ,hηmeas,hζmeas), and
 [square-integrability of every pulled-back score](hyp:hη,hζ), [the product of the two
-three-block products is integrable](goal). -/
+three-block products is integrable](goal).
+@isnad1 id=integrab.5h6v.s9.9170b562ee71 from=translated src=- shape=a0ce676c vocab=26919ccd
+-/
 theorem integrable_threeBlockCross (B : Fin 3 → Finset ι)
     (heval : Pairwise (fun s t : Fin 3 => Disjoint (B s) (B t)))
     (η ζ : (t : Fin 3) → ((i : {i // i ∈ B t}) → Ω i.val) → ℝ)
@@ -196,7 +206,9 @@ blocks](hyp:B0,B) with [training/evaluation disjointness](hyp:htrain), [pairwise
 disjointness](hyp:heval), [measurable block scores](hyp:η,hηmeas), [integrable individual
 scores](hyp:hη), [an integrable product over the first two blocks](hyp:hη01), and [an integrable
 three-block product](hyp:hηprod), [the conditional mean of the three-block product is the
-product of its three blockwise conditional means](goal). -/
+product of its three blockwise conditional means](goal).
+@isnad1 id=eventual.6h6v.s10.4759eafb098f from=translated src=- shape=ec261e91 vocab=58e5ac84
+-/
 theorem condExp_threeBlockProduct_of_integrable
     (B0 : Finset ι) (B : Fin 3 → Finset ι)
     (htrain : ∀ t, Disjoint B0 (B t))
@@ -276,7 +288,9 @@ theorem condExp_threeBlockProduct_of_integrable
 blocks](hyp:B0,B) with [training/evaluation disjointness](hyp:htrain), [pairwise evaluation
 disjointness](hyp:heval), [measurable left and right scores](hyp:η,ζ,hηmeas,hζmeas), and
 [square-integrability of every block score](hyp:hη,hζ), [the conditional cross moment of the
-two three-block products factors into three blockwise conditional cross moments](goal). -/
+two three-block products factors into three blockwise conditional cross moments](goal).
+@isnad1 id=eventual.6h7v.s10.43e0cfe114af from=translated src=- shape=87a891d6 vocab=a94d1d59
+-/
 theorem condExp_threeBlockCross
     (B0 : Finset ι) (B : Fin 3 → Finset ι)
     (htrain : ∀ t, Disjoint B0 (B t))
@@ -329,7 +343,9 @@ theorem condExp_threeBlockCross
 blocks](hyp:B0,B) with [training/evaluation disjointness](hyp:htrain), [pairwise evaluation
 disjointness](hyp:heval), [measurable square-integrable block scores](hyp:η,hηmeas,hη), and
 [conditional centering of every block score](hyp:hcenter), [the conditional mean of their
-three-block product is zero](goal). -/
+three-block product is zero](goal).
+@isnad1 id=eventual.5h6v.s9.939bab3ad36e from=translated src=- shape=54bb7b22 vocab=92886144
+-/
 theorem condExp_threeBlockProduct_zero
     (B0 : Finset ι) (B : Fin 3 → Finset ι)
     (htrain : ∀ t, Disjoint B0 (B t))
@@ -368,7 +384,9 @@ disjointness](hyp:heval), [measurable square-integrable left and right block
 scores](hyp:η,ζ,hηmeas,hζmeas,hη,hζ),
 and [conditional centering of both channels](hyp:hηcenter,hζcenter), [the conditional covariance
 of the two three-block products is the product of their three blockwise conditional cross
-moments](goal). -/
+moments](goal).
+@isnad1 id=eventual.8h7v.s11.d85bdc1505d5 from=translated src=- shape=5926778e vocab=9035cd31
+-/
 theorem condCov_threeBlockProduct
     (B0 : Finset ι) (B : Fin 3 → Finset ι)
     (htrain : ∀ t, Disjoint B0 (B t))
@@ -411,7 +429,9 @@ theorem condCov_threeBlockProduct
 /-- For [a four-coordinate product probability law](hyp:ν), [left and right scores on the
 three held-out coordinates](hyp:η,ζ), [their measurability](hyp:hηmeas,hζmeas), and
 [square-integrability of their pullbacks](hyp:hη,hζ), [the conditional cross moment of their two
-three-coordinate products factors by coordinate](goal). -/
+three-coordinate products factors by coordinate](goal).
+@isnad1 id=eventual.4h4v.s11.ac9f6911c6c4 from=translated src=- shape=1da4a313 vocab=7019f435
+-/
 theorem condExp_threeSingletonCross
     {X : Fin 4 → Type*} [∀ i, MeasurableSpace (X i)]
     [∀ i, StandardBorelSpace (X i)]

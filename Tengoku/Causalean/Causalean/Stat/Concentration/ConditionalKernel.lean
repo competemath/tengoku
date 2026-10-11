@@ -27,7 +27,9 @@ open scoped BigOperators NNReal
 /-- Kernel independence of a finite family of measurable real random variables
 specializes to ordinary independence on almost every probability fiber.  The
 countable rational half-line generator is what permits one common outer null
-set for all measurable events. -/
+set for all measurable events.
+@isnad1 id=eventual.2h6v.s6.6c2581594f83 from=translated src=- shape=6524f79f vocab=d1e8b661
+-/
 theorem ProbabilityTheory.Kernel.iIndepFun.ae_iIndepFun_real
     {α Ω ι : Type*} [MeasurableSpace α] [MeasurableSpace Ω]
     {κ : Kernel α Ω} {ν : Measure α} [Finite ι]
@@ -97,7 +99,9 @@ theorem ProbabilityTheory.Kernel.iIndepFun.ae_iIndepFun_real
 `eps i` is a.e. measurable](hyp:hmeas), [each `eps i` is a.s. bounded by 1 in absolute
 value](hyp:hbound), [each `eps i` has mean zero](hyp:hcenter), and [the family `eps` is
 independent](hyp:hindep), then [the linear combination $\sum_i v_i \cdot \mathrm{eps}_i$ is
-sub-Gaussian with variance proxy $\sum_i v_i^2$](goal). -/
+sub-Gaussian with variance proxy $\sum_i v_i^2$](goal).
+@isnad1 id=hassubga.4h5v.s7.5d299b4d1a48 from=translated src=- shape=45a5532e vocab=65d3d6ce
+-/
 theorem hasSubgaussianMGF_linearCombination_of_iIndep
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     {P : Measure Ω} [IsProbabilityMeasure P]
@@ -146,7 +150,9 @@ theorem hasSubgaussianMGF_linearCombination_of_iIndep
   simpa only [Y] using hsum
 
 /-- An ambient almost-sure proposition holds on almost every fiber of the
-regular conditional distribution. -/
+regular conditional distribution.
+@isnad1 id=eventual.2h4v.s6.3c43e2670533 from=translated src=- shape=78369103 vocab=61a294c8
+-/
 theorem ae_ae_condExpKernel_of_ae
     {Ω : Type*} [mΩ : MeasurableSpace Ω] [StandardBorelSpace Ω]
     {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -158,7 +164,9 @@ theorem ae_ae_condExpKernel_of_ae
   rwa [ProbabilityTheory.condExpKernel_comp_trim (mΩ := mΩ) hm]
 
 /-- A random variable measurable with respect to the conditioning
-σ-algebra equals its observed value on almost every conditional fiber. -/
+σ-algebra equals its observed value on almost every conditional fiber.
+@isnad1 id=eventual.2h5v.s6.bca13e4f4b4d from=translated src=- shape=c1602cdd vocab=2ece1657
+-/
 theorem ae_eq_const_condExpKernel_of_measurable
     {Ω : Type*} [mΩ : MeasurableSpace Ω] [StandardBorelSpace Ω]
     {μ : Measure Ω} [IsFiniteMeasure μ]
