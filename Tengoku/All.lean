@@ -38,6 +38,7 @@ import Tengoku.FrontiermathHypergraphs
 import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Ieantn
+import Tengoku.GroebnerProj
 import Tengoku.SpherePackingOrig
 import Tengoku.Compfiles
 import Tengoku.Pfr
