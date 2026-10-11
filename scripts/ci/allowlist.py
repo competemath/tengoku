@@ -121,6 +121,9 @@ ATTRIBUTES = {
     "irreducible",
     "semireducible",
     "implicit_reducible",
+    "instance_reducible",  # the reducibility attributes of the module system / instances: they change how Lean unfolds a definition, nothing runs
+    "no_expose",  # the opposite of `expose`
+    "mk_iff",  # Mathlib's generator of the iff lemma of an inductive predicate: the tree's own code, like `to_additive`
     "inline",
     "specialize",
     "match_pattern",
