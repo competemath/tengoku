@@ -27,7 +27,9 @@ open MeasureTheory ProbabilityTheory
 scalar law with [integrable third absolute moment at most M3](hyp:hthird_int,hthird)
 and [any sample size n of at least two](hyp:hn),
 [the CDF of the iid sum divided by √n differs from the standard Gaussian CDF
-at every threshold x by at most M3/√n](goal). -/
+at every threshold x by at most M3/√n](goal).
+@isnad1 id=le.7h4v.s8.115ff1ee6cb9 from=translated src=- shape=8af0b033 vocab=538bc0db
+-/
 theorem iid_unit_variance_berry_esseen
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (M3 : ℝ)

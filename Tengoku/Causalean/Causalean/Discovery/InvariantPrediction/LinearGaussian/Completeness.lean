@@ -113,7 +113,9 @@ contained in the target's parents, `S(E) ⊆ PA(Y)`](goal).
 
 The null `H_{0,PA(Y)}` is correct with the causal coefficient `γ* = β₀,·` and residual
 `ε₁`, so `PA(Y) ∈ invariantSets` and hence is one of the intersected sets. The
-exogeneity facts are assumed in the model fields, not derived here. -/
+exogeneity facts are assumed in the model fields, not derived here.
+@isnad1 id=le.0h2v.s6.8cff18c4737c from=translated src=- shape=0b3681be vocab=c040ae41
+-/
 theorem icp_sound_linearGaussian_of_exogeneity :
     F.identifiedSet ⊆ F.paY := by
   -- It suffices that `PA(Y)` itself satisfies the invariance null, since the
@@ -150,7 +152,9 @@ theorem icp_sound_linearGaussian_of_exogeneity :
 [a nonempty set of coordinate indices $T$](hyp:hT), [there is an index $k_0 \in T$
 such that no other element of $T$ is a descendant of $k_0$ along the observational
 DAG's directed edges](goal) — i.e. $k_0$ is a sink of the subgraph induced by $T$.
-This is the "youngest" node with non-zero `α` of the paper's proof. -/
+This is the "youngest" node with non-zero `α` of the paper's proof.
+@isnad1 id=ex.1h3v.s8.5f4e6b124814 from=translated src=- shape=fb868663 vocab=238f6bd1
+-/
 theorem exists_youngest_nonzero (T : Finset (Fin (p + 1))) (hT : T.Nonempty) :
     ∃ k₀ ∈ T, ∀ k ∈ T, k ≠ k₀ → ¬ F.obs.dag.isAncestor k₀ k := by
   -- Pick the index of `T` with the largest topological order: it cannot be a
@@ -183,7 +187,9 @@ The `hyoung` hypothesis encodes the **youngest-node** property supplied at the c
 site (from `exists_youngest_nonzero`): every *other* index `k ≠ k₀` with a nonzero
 `α_k = β₀ₖ − γ_k` is not a descendant of `k₀`.  Hence those coordinates are
 non-descendants of the intervention and keep their observational mean, so the only
-surviving mean contribution is the pinned coordinate `k₀`. -/
+surviving mean contribution is the pinned coordinate `k₀`.
+@isnad1 id=not.5h5v.s8.30907c269e04 from=translated src=- shape=df55f00f vocab=3578b59b
+-/
 theorem residual_mean_shift_of_doIntervention
     (hInt : F.ObsIntegrable) (γ : Fin (p + 1) → ℝ)
     (k₀ : Fin (p + 1)) (hk₀ : (F.obs.β (target p) k₀ - γ k₀) ≠ 0)
@@ -298,7 +304,9 @@ observational mean $E[X^1_j]$](hyp:hInterv), [the ICP identified set — the
 intersection of all invariant predictor sets — equals exactly the parent set of the
 target node, $S(E) = PA(Y)$](goal).
 
-This is the main result of this sub-development. -/
+This is the main result of this sub-development.
+@isnad1 id=eq.2h2v.s5.b8c76f1cfc62 from=translated src=- shape=96e64c4c vocab=07469007
+-/
 theorem icp_complete_linearGaussian_of_exogeneity
     (hInt : F.ObsIntegrable) (hInterv : F.HasShiftedSingleInterventions) :
     F.identifiedSet = F.paY := by

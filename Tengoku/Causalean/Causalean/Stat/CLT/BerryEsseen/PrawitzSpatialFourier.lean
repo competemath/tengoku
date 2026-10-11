@@ -18,7 +18,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory ProbabilityTheory
 
 /-- The [Prawitz sign approximation is measurable](goal), including its
-assigned endpoint values. -/
+assigned endpoint values.
+@isnad1 id=measurab.0h0v.s2.76274dccd9e1 from=translated src=- shape=e3d48bcb vocab=c1f6d7d6
+-/
 @[fun_prop]
 theorem measurable_prawitzSignApprox : Measurable prawitzSignApprox := by
   have hm : Measurable (fun p : ℝ × ℝ =>
@@ -32,7 +34,9 @@ theorem measurable_prawitzSignApprox : Measurable prawitzSignApprox := by
     (0 : ℝ) ≤ 1)] using hi.measurable.const_mul 2
 
 /-- At [every spatial argument](hyp:y), the [sign approximation has absolute
-value at most two](goal). -/
+value at most two](goal).
+@isnad1 id=le.0h1v.s4.9740b8f0308e from=translated src=- shape=38becc55 vocab=1e467fcb
+-/
 theorem prawitzSignApprox_abs_le_two (y : ℝ) : |prawitzSignApprox y| ≤ 2 := by
   have he := (prawitzSignApprox_integrable_and_error y).2
   have hs : Real.sinc (y / 2) ^ 2 ≤ 1 := by
@@ -49,7 +53,9 @@ theorem prawitzSignApprox_abs_le_two (y : ℝ) : |prawitzSignApprox y| ≤ 2 := 
 
 /-- At [positive bandwidth](hyp:U,hU), the [closed-half-line indicator at
 the threshold and spatial point](hyp:x,y) lies between the two Prawitz
-majorants, [with the endpoint included in the upper bound](goal). -/
+majorants, [with the endpoint included in the upper bound](goal).
+@isnad1 id=and.1h3v.s8.fa46cdeff013 from=translated src=- shape=12566184 vocab=1beb9521
+-/
 theorem prawitz_halfLine_indicator_bounds (U : ℝ) (hU : 0 < U) (x y : ℝ) :
     (1 + prawitzSignApprox (U * (x - y)) - Real.sinc (U * (x - y) / 2) ^ 2) / 2 ≤
       (Set.Iic x).indicator (fun _ : ℝ => (1 : ℝ)) y ∧
@@ -70,7 +76,9 @@ theorem prawitz_halfLine_indicator_bounds (U : ℝ) (hU : 0 < U) (x y : ℝ) :
 
 /-- For [any probability law](hyp:μ) at [any bandwidth and threshold](hyp:U,x),
 both spatial factors are [integrable](goal).
-No moment or absence-of-atoms hypothesis is needed for this step. -/
+No moment or absence-of-atoms hypothesis is needed for this step.
+@isnad1 id=and.0h3v.s7.dccbfe9daecb from=translated src=- shape=4a42ff9f vocab=2d09d21b
+-/
 theorem prawitz_spatial_integrable (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (U x : ℝ) :
     Integrable (fun y : ℝ => prawitzSignApprox (U * (x - y))) μ ∧
@@ -89,7 +97,9 @@ theorem prawitz_spatial_integrable (μ : Measure ℝ) [IsProbabilityMeasure μ]
 
 /-- Integrating the spatial majorants for [a probability law](hyp:μ), at
 [positive bandwidth](hyp:U,hU) and [any threshold](hyp:x), gives [a CDF
-sandwich valid even when the law has an atom at the threshold](goal). -/
+sandwich valid even when the law has an atom at the threshold](goal).
+@isnad1 id=and.1h3v.s8.13e80f5eac3b from=translated src=- shape=caf52694 vocab=c7c3783d
+-/
 theorem prawitz_cdf_spatial_bounds (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (U : ℝ) (hU : 0 < U) (x : ℝ) :
     (1 + (∫ y, prawitzSignApprox (U * (x - y)) ∂μ) -
@@ -111,7 +121,9 @@ theorem prawitz_cdf_spatial_bounds (μ : Measure ℝ) [IsProbabilityMeasure μ]
   exact ⟨hlo, hhi⟩
 
 /-- On [the positive unit band](hyp:t,ht,hband), the [sine-weight singularity
-is at most reciprocal-linear](goal). -/
+is at most reciprocal-linear](goal).
+@isnad1 id=le.2h1v.s6.1dbe8952cc8e from=translated src=- shape=81aba295 vocab=c2fba0b3
+-/
 theorem prawitzSineWeight_abs_le (t : ℝ) (ht : 0 < t) (hband : t ≤ 1) :
     |prawitzSineWeight t| ≤ 1 / (Real.pi * t) + 1 := by
   have him : (prawitzKernel t).im = prawitzSineWeight t / 2 := by
@@ -131,7 +143,9 @@ theorem prawitzSineWeight_abs_le (t : ℝ) (ht : 0 < t) (hband : t ≤ 1) :
 
 /-- Multiplying by the sine wave cancels the zero-frequency singularity:
 on [the positive unit band](hyp:t,ht,hband), the [integrand at spatial
-argument](hyp:z) is [bounded linearly in that argument](goal). -/
+argument](hyp:z) is [bounded linearly in that argument](goal).
+@isnad1 id=le.2h2v.s6.33b7b4760ca1 from=translated src=- shape=915a3bed vocab=b507e994
+-/
 theorem prawitz_sine_abs_le (t z : ℝ) (ht : 0 < t) (hband : t ≤ 1) :
     |prawitzSineWeight t * Real.sin (t * z)| ≤ (1 / Real.pi + 1) * |z| := by
   have hsin : |Real.sin (t * z)| ≤ t * |z| := by
@@ -148,7 +162,9 @@ theorem prawitz_sine_abs_le (t z : ℝ) (ht : 0 < t) (hband : t ≤ 1) :
 
 /-- With [a finite first moment](hyp:μ,hfirst), the [Prawitz sine integrand
 at any bandwidth and threshold](hyp:U,x) is [jointly integrable](goal).
-This is the cancellation needed for the singular-filter Fubini step. -/
+This is the cancellation needed for the singular-filter Fubini step.
+@isnad1 id=integrab.1h3v.s7.ef5decf6ca65 from=translated src=- shape=c3ac7c37 vocab=137e3bb3
+-/
 theorem prawitz_sine_joint_integrable (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ) (U x : ℝ) :
     Integrable (fun p : ℝ × ℝ =>
@@ -169,7 +185,9 @@ theorem prawitz_sine_joint_integrable (μ : Measure ℝ) [IsProbabilityMeasure �
 
 /-- For [a probability law with finite first moment](hyp:μ,hfirst),
 the [expected sign approximation at any bandwidth and threshold](hyp:U,x)
-equals [the frequency-first sine integral](goal). -/
+equals [the frequency-first sine integral](goal).
+@isnad1 id=eq.1h3v.s7.1b04cd81ad71 from=translated src=- shape=502b90d8 vocab=badf07bf
+-/
 theorem prawitz_sign_expectation_fubini (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ) (U x : ℝ) :
     (∫ y, prawitzSignApprox (U * (x - y)) ∂μ) =
@@ -188,7 +206,9 @@ theorem prawitz_sign_expectation_fubini (μ : Measure ℝ) [IsProbabilityMeasure
 
 /-- For [any probability law](hyp:μ), the [expected squared-sinc majorant
 at any bandwidth and threshold](hyp:U,x) equals [the triangular cosine
-integral](goal). -/
+integral](goal).
+@isnad1 id=eq.0h3v.s7.0ea727cf7beb from=translated src=- shape=7e6326b7 vocab=fa2cbf61
+-/
 theorem prawitz_sinc_expectation_fubini (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (U x : ℝ) :
     (∫ y, Real.sinc (U * (x - y) / 2) ^ 2 ∂μ) =
@@ -236,7 +256,9 @@ theorem prawitz_sinc_expectation_fubini (μ : Measure ℝ) [IsProbabilityMeasure
 U(x − y) and 2q, plus the expected squared sinc of U(x − y)/2, is at most
 2R](hyp:hspectral), then [the CDF of μ at x is within R of q](goal).
 This isolates the remaining spectral comparison from the atomic endpoint
-step. -/
+step.
+@isnad1 id=le.2h5v.s7.133354b6e4b7 from=translated src=- shape=19646c67 vocab=20f55646
+-/
 theorem prawitz_cdf_error_of_spectral_bound (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (U : ℝ) (hU : 0 < U) (x q R : ℝ)
     (hspectral :

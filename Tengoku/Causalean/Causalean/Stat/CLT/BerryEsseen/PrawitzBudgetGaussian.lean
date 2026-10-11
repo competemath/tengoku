@@ -183,7 +183,9 @@ private theorem gaussian_correction_integral_le (U a : ℝ) (hU : 0 < U) (ha : 0
 /-- For [a moment ratio ρ strictly between zero and one](hyp:ρ,hρ,hρ1), with
 cutoffs U0 = max(3/2, √(4 log(1/ρ))) and U = 12/(5ρ),
 [the Gaussian principal correction on [0, U0] plus the omitted Gaussian
-tail beyond U0 is at most three fifths of ρ](goal). -/
+tail beyond U0 is at most three fifths of ρ](goal).
+@isnad1 id=other.2h1v.s8.d5a2078986aa from=translated src=- shape=2ca1ba27 vocab=fcf3a40b
+-/
 theorem prawitz_budget_gaussian
     (ρ : ℝ) (hρ : 0 < ρ) (hρ1 : ρ < 1) :
     let U0 := max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / ρ)))

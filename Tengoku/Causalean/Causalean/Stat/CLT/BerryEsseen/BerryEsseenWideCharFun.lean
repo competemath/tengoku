@@ -23,7 +23,9 @@ open MeasureTheory ProbabilityTheory
 /-- For [a centered](hyp:hmean_int,hmean) [unit-variance](hyp:hvar_int,hvar) law
 with [integrable third absolute moment at most M3](hyp:hthird_int,hthird),
 [the squared modulus of the characteristic function at every real frequency
-t is at most 1 − t² + (M3 + 1)·|t|³/5](goal). -/
+t is at most 1 − t² + (M3 + 1)·|t|³/5](goal).
+@isnad1 id=le.6h3v.s8.c27206ebb806 from=translated src=- shape=cd1541ec vocab=ab72bf65
+-/
 theorem unit_variance_charFun_norm_sq_cubic_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (M3 : ℝ)

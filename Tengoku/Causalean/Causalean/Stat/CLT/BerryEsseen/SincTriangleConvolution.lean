@@ -15,7 +15,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- The squared-sinc Fourier triangle has squared integral `4π²/3` over the
-real line. The triangle is `π max (1 - |u|/2) 0`. -/
+real line. The triangle is `π max (1 - |u|/2) 0`.
+@isnad1 id=eq.0h0v.s7.e1be7401f5e7 from=translated src=- shape=fa4b5d81 vocab=4a31a373
+-/
 theorem sincTriangle_square_integral :
     (∫ u : ℝ, (Real.pi * max (1 - |u| / 2) 0) ^ 2) =
       4 * Real.pi ^ 2 / 3 := by
@@ -110,7 +112,9 @@ theorem sincTriangle_square_integral :
 
 /-- [The self-convolution of the squared-sinc Fourier triangle
 u ↦ π·max(1 − |u|/2, 0) vanishes](goal) at [every frequency t of absolute
-value at least four](hyp:ht), including the endpoints. -/
+value at least four](hyp:ht), including the endpoints.
+@isnad1 id=eq.1h1v.s7.88367f215eb8 from=translated src=- shape=fb757aea vocab=dad7ea58
+-/
 theorem sincTriangle_convolution_outside (t : ℝ) (ht : 4 ≤ |t|) :
     (∫ u : ℝ,
       (Real.pi * max (1 - |u| / 2) 0) *

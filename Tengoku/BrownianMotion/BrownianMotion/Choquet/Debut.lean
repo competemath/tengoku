@@ -25,6 +25,9 @@ open scoped Topology
 
 namespace MeasureTheory
 
+/--
+@isnad1 id=nullmeas.1h6v.s5.be71273b1549 from=translated src=- shape=86793c6c vocab=9a8ce5cc
+-/
 lemma nullMeasurable_generateFrom {α β : Type*} {_ : MeasurableSpace α} {μ : Measure α}
     {s : Set (Set β)} {f : α → β}
     (h : ∀ t ∈ s, NullMeasurableSet (f ⁻¹' t) μ) :
@@ -34,6 +37,9 @@ lemma nullMeasurable_generateFrom {α β : Type*} {_ : MeasurableSpace α} {μ :
   simp only [Set.preimage_iUnion]
   exact fun t _ hft ↦ NullMeasurableSet.iUnion hft
 
+/--
+@isnad1 id=nullmeas.1h5v.s6.c3c41494100e from=translated src=- shape=f6711684 vocab=fbc753ce
+-/
 lemma nullMeasurable_of_Iio {α δ : Type*} [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α]
     [LinearOrder α] [OrderTopology α] [SecondCountableTopology α]
     {mδ : MeasurableSpace δ} {μ : Measure δ}
@@ -51,10 +57,16 @@ noncomputable def debut [Preorder ι] [InfSet ι] (E : Set (ι × Ω)) (n : ι) 
   hittingAfter (fun t ω ↦ (t, ω)) E n
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h4v.s7.2cda75b12b48 from=translated src=- shape=f0ce0c20 vocab=959aa3de
+-/
 lemma debut_eq_ite [Preorder ι] [InfSet ι] (E : Set (ι × Ω)) (n : ι) :
     debut E n = fun ω ↦ if ∃ t ≥ n, (t, ω) ∈ E then
       ((sInf {t ≥ n | (t, ω) ∈ E} : ι) : WithTop ι) else ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.35302e46761c from=translated src=- shape=83748cf7 vocab=a5199535
+-/
 lemma debut_eq_hittingAfter_indicator [Preorder ι] [InfSet ι] (E : Set (ι × Ω))
     [∀ t ω, Decidable ((t, ω) ∈ E)] (n : ι) :
     debut E n = hittingAfter (fun t ω ↦ if (t, ω) ∈ E then 1 else 0) {1} n := by
@@ -62,22 +74,33 @@ lemma debut_eq_hittingAfter_indicator [Preorder ι] [InfSet ι] (E : Set (ι × 
   simp only [debut, hittingAfter]
   split_ifs <;> simp <;> grind
 
+/--
+@isnad1 id=eq.0h6v.s6.2650c3a77e36 from=translated src=- shape=61188b69 vocab=d63949f1
+-/
 lemma hittingAfter_eq_debut [Preorder ι] [InfSet ι] {β : Type*} (u : ι → Ω → β)
     (s : Set β) (n : ι) :
     hittingAfter u s n = debut {p : ι × Ω | u p.1 p.2 ∈ s} n := rfl
 
 section Debut
 
-/-- The debut of the empty set is the constant function that returns `m`. -/
+/-- The debut of the empty set is the constant function that returns `m`.
+@isnad1 id=eq.0h3v.s5.9f89461d6918 from=translated src=- shape=7ba0e270 vocab=d613df9d
+-/
 @[simp]
 lemma debut_empty [Preorder ι] [InfSet ι] (n : ι) : debut (∅ : Set (ι × Ω)) n = fun _ ↦ ⊤ :=
   hittingAfter_empty n
 
+/--
+@isnad1 id=eq.0h3v.s5.efb40a86cde2 from=translated src=- shape=21e5be4e vocab=8aa60d99
+-/
 @[simp]
 lemma debut_univ [ConditionallyCompleteLattice ι] (n : ι) :
     debut (.univ : Set (ι × Ω)) n = fun _ ↦ (n : WithTop ι) := hittingAfter_univ n
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h5v.s7.0ab77983a05e from=translated src=- shape=6cbb6bd5 vocab=e18d5d1e
+-/
 @[simp]
 lemma debut_prod [Preorder ι] [InfSet ι] (n : ι) (I : Set ι) (A : Set Ω) :
     debut (I ×ˢ A) n = fun ω ↦ if .Ici n ∩ I ≠ ∅ then
@@ -93,10 +116,16 @@ lemma debut_prod [Preorder ι] [InfSet ι] (n : ι) (I : Set ι) (A : Set Ω) :
     simp only [Set.mem_prod, not_exists, not_and]
     exact fun i hni hiI _ ↦ Set.notMem_empty i (hI ▸ ⟨hni, hiI⟩)
 
+/--
+@isnad1 id=eq.0h4v.s6.c65fb691a551 from=translated src=- shape=39cc3d5f vocab=ec0dd85c
+-/
 lemma debut_prod_univ [Preorder ι] [InfSet ι] (n : ι) (I : Set ι) [Decidable (Set.Ici n ∩ I ≠ ∅)] :
     debut (I ×ˢ (.univ : Set Ω)) n = fun _ ↦ if .Ici n ∩ I ≠ ∅ then
       ((sInf (.Ici n ∩ I) : ι) : WithTop ι) else ⊤ := by simp
 
+/--
+@isnad1 id=eq.0h4v.s6.0348fc8cf304 from=translated src=- shape=92b6f1a8 vocab=3f4a0faa
+-/
 lemma debut_univ_prod [ConditionallyCompleteLattice ι] (n : ι) (A : Set Ω) [DecidablePred (· ∈ A)] :
     debut ((.univ : Set ι) ×ˢ A) n = fun ω ↦ if ω ∈ A then (n : WithTop ι) else ⊤ := by
   rw [debut_eq_ite]
@@ -109,6 +138,9 @@ lemma debut_univ_prod [ConditionallyCompleteLattice ι] (n : ι) (A : Set Ω) [D
     simpa only [le_refl, not_true_eq_false] using hi n
   · simp_all
 
+/--
+@isnad1 id=antitone.0h3v.s6.c6a316a00acb from=translated src=- shape=813a74eb vocab=1e379ef3
+-/
 lemma debut_anti [ConditionallyCompleteLinearOrder ι] (n : ι) : Antitone (debut (Ω := Ω) · n) :=
   hittingAfter_anti _ n
 
@@ -116,25 +148,49 @@ section Inequalities
 
 variable [ConditionallyCompleteLinearOrder ι] {E : Set (ι × Ω)} {n t : ι} {ω : Ω}
 
+/--
+@isnad1 id=not.2h6v.s6.39f4d3114a59 from=translated src=- shape=56005166 vocab=151b31cc
+-/
 lemma notMem_of_lt_debut (ht : t < debut E n ω) (hnt : n ≤ t) : (t, ω) ∉ E :=
   notMem_of_lt_hittingAfter ht hnt
 
+/--
+@isnad1 id=iff.0h5v.s6.2dd3ada84d9b from=translated src=- shape=7ab4eb48 vocab=81e23d10
+-/
 lemma debut_eq_top_iff : debut E n ω = ⊤ ↔ ∀ t ≥ n, (t, ω) ∉ E := hittingAfter_eq_top_iff
 
+/--
+@isnad1 id=iff.0h5v.s6.d1716955db05 from=translated src=- shape=4400a6cf vocab=81e23d10
+-/
 lemma debut_ne_top_iff : debut E n ω ≠ ⊤ ↔ ∃ t ≥ n, (t, ω) ∈ E := by simp [debut_eq_top_iff]
 
+/--
+@isnad1 id=le.0h5v.s6.b0a9c7fba3c6 from=translated src=- shape=7e6a801f vocab=4e0aed2e
+-/
 lemma le_debut (ω : Ω) : n ≤ debut E n ω := le_hittingAfter ω
 
+/--
+@isnad1 id=mem.1h5v.s6.df4ddbd0ef53 from=translated src=- shape=68d74821 vocab=b8074354
+-/
 lemma debut_mem_set [WellFoundedLT ι] (h : ∃ t ≥ n, (t, ω) ∈ E) :
     ((debut E n ω).untopA, ω) ∈ E := hittingAfter_mem_set h
 
+/--
+@isnad1 id=mem.1h5v.s6.63a56088a121 from=translated src=- shape=677c1288 vocab=abef78cb
+-/
 lemma debut_mem_set_of_ne_top [WellFoundedLT ι] (h : debut E n ω ≠ ⊤) :
     ((debut E n ω).untopA, ω) ∈ E := hittingAfter_mem_set_of_ne_top h
 
+/--
+@isnad1 id=le.2h6v.s6.47ed07a2bb72 from=translated src=- shape=2ddafdf3 vocab=ae88a6ca
+-/
 lemma debut_le_of_mem (ht : n ≤ t) (h_mem : (t, ω) ∈ E) :
     debut E n ω ≤ t := hittingAfter_le_of_mem ht h_mem
 
 -- todo: replace `hittingAfter_lt_iff` with this
+/--
+@isnad1 id=iff.0h8v.s6.8ef2ff0e8969 from=translated src=- shape=7554f4d4 vocab=d278be33
+-/
 lemma hittingAfter_lt_iff' {Ω β ι : Type*} [ConditionallyCompleteLinearOrder ι]
     {u : ι → Ω → β} {s : Set β} {n : ι} {ω : Ω} {i : ι} :
     hittingAfter u s n ω < i ↔ ∃ j ∈ Set.Ico n i, u j ω ∈ s := by
@@ -158,16 +214,28 @@ lemma hittingAfter_lt_iff' {Ω β ι : Type*} [ConditionallyCompleteLinearOrder 
     refine lt_of_le_of_lt ?_ (mod_cast hj₁.2 : (j : WithTop ι) < i)
     exact hittingAfter_le_of_mem hj₁.1 hj₂
 
+/--
+@isnad1 id=iff.0h6v.s7.0b738badb397 from=translated src=- shape=cb44fc66 vocab=025405e9
+-/
 lemma debut_le_iff [WellFoundedLT ι] : debut E n ω ≤ t ↔ ∃ j ∈ Set.Icc n t, (j, ω) ∈ E :=
   hittingAfter_le_iff
 
+/--
+@isnad1 id=iff.0h6v.s6.99effb29007d from=translated src=- shape=e693dd9d vocab=42ffb1ef
+-/
 lemma debut_lt_iff : debut E n ω < t ↔ ∃ j ∈ Set.Ico n t, (j, ω) ∈ E :=
   hittingAfter_lt_iff'
 
+/--
+@isnad1 id=monotone.0h4v.s6.17b4215ca447 from=translated src=- shape=c3ada020 vocab=495b8e5d
+-/
 lemma debut_mono (E : Set (ι × Ω)) (ω : Ω) : Monotone (debut E · ω) := hittingAfter_apply_mono _ _ _
 
 end Inequalities
 
+/--
+@isnad1 id=mem.2h5v.s7.839c32f4b48d from=translated src=- shape=68ed84ce vocab=9497fdd1
+-/
 lemma debut_mem_of_isClosed {𝓧 ι : Type*} [TopologicalSpace ι] [ConditionallyCompleteLinearOrder ι]
     [OrderTopology ι] [FirstCountableTopology ι]
     {s : Set (ι × 𝓧)} {ω : 𝓧} {n : ι}
@@ -193,6 +261,9 @@ indicator function of `E` is a progressively measurable process with respect to 
 def ProgMeasurableSet [Preorder ι] [MeasurableSpace ι] (E : Set (ι × Ω)) (𝓕 : Filtration ι mΩ) :=
   IsStronglyProgressive 𝓕 (E.indicator fun _ ↦ 1).curry
 
+/--
+@isnad1 id=measurab.1h6v.s7.46a407c6b6f1 from=translated src=- shape=c076dbec vocab=6c171497
+-/
 lemma ProgMeasurableSet.measurableSet_prod [Preorder ι] [MeasurableSpace ι]
     {E : Set (ι × Ω)} {𝓕 : Filtration ι mΩ} (hE : ProgMeasurableSet E 𝓕) (t : ι) :
     MeasurableSet[Subtype.instMeasurableSpace.prod (𝓕 t)]
@@ -200,6 +271,9 @@ lemma ProgMeasurableSet.measurableSet_prod [Preorder ι] [MeasurableSpace ι]
   rw [← measurable_indicator_const_iff (b := 1)]
   exact (hE t).measurable
 
+/--
+@isnad1 id=measurab.1h7v.s6.b76505d04db8 from=translated src=- shape=7d1d0e17 vocab=4c941e9d
+-/
 lemma ProgMeasurableSet.measurableSet_inter_Iic [Preorder ι]
     [TopologicalSpace ι] [ClosedIicTopology ι] {mι : MeasurableSpace ι} [OpensMeasurableSpace ι]
     {E : Set (ι × Ω)} {𝓕 : Filtration ι mΩ} (hE : ProgMeasurableSet E 𝓕) (t : ι) :
@@ -214,6 +288,9 @@ lemma ProgMeasurableSet.measurableSet_inter_Iic [Preorder ι]
   refine MeasurableEmbedding.prodMap ?_ .id
   exact MeasurableEmbedding.subtype_coe measurableSet_Iic
 
+/--
+@isnad1 id=le.2h6v.s5.691707539559 from=translated src=- shape=27f089b3 vocab=0253709b
+-/
 @[gcongr]
 lemma MeasurableSpace.prod_mono {mι : MeasurableSpace ι} {mι' : MeasurableSpace ι}
     {mΩ : MeasurableSpace Ω} {mΩ' : MeasurableSpace Ω}
@@ -226,6 +303,9 @@ lemma MeasurableSpace.prod_mono {mι : MeasurableSpace ι} {mι' : MeasurableSpa
   · rw [MeasurableSpace.comap_le_iff_le_map]
     exact h₂.trans MeasurableSpace.le_map_comap
 
+/--
+@isnad1 id=measurab.1h7v.s7.7a86bfc66adf from=translated src=- shape=6c67ef43 vocab=28cbd56e
+-/
 lemma ProgMeasurableSet.measurableSet_inter_Iio [ConditionallyCompleteLinearOrder ι]
     [TopologicalSpace ι] [FirstCountableTopology ι] [OrderTopology ι]
     {mι : MeasurableSpace ι} [OpensMeasurableSpace ι]
@@ -266,6 +346,9 @@ lemma ProgMeasurableSet.measurableSet_inter_Iio [ConditionallyCompleteLinearOrde
     (𝓕.mono (hs_gt _).le)
   exact h_le _ hs
 
+/--
+@isnad1 id=measurab.1h8v.s7.a9b3c6789228 from=translated src=- shape=c106ecc1 vocab=653e3ecd
+-/
 lemma ProgMeasurableSet.measurableSet_inter_Ico [ConditionallyCompleteLinearOrder ι]
     [TopologicalSpace ι] [FirstCountableTopology ι] [OrderTopology ι]
     {mι : MeasurableSpace ι} [OpensMeasurableSpace ι]
@@ -284,6 +367,9 @@ lemma ProgMeasurableSet.measurableSet_inter_Ico [ConditionallyCompleteLinearOrde
   simp
   grind
 
+/--
+@isnad1 id=measurab.1h8v.s7.245d3cfa87ce from=translated src=- shape=c106ecc1 vocab=a415a138
+-/
 lemma ProgMeasurableSet.measurableSet_inter_Icc [ConditionallyCompleteLinearOrder ι]
     [TopologicalSpace ι] [FirstCountableTopology ι] [OrderTopology ι]
     {mι : MeasurableSpace ι} [OpensMeasurableSpace ι]
@@ -301,6 +387,9 @@ lemma ProgMeasurableSet.measurableSet_inter_Icc [ConditionallyCompleteLinearOrde
   simp
   grind
 
+/--
+@isnad1 id=iff.3h6v.s7.4b004fd0591e from=translated src=- shape=b03988fa vocab=f1f0d12d
+-/
 lemma debut_eq_iff_of_nhdsGT_eq_bot
     [ConditionallyCompleteLinearOrder ι] [TopologicalSpace ι] [OrderTopology ι]
     (E : Set (ι × Ω)) {n t : ι} (hnt : n ≤ t) (ht : 𝓝[>] t = ⊥) (ω : Ω)
@@ -354,6 +443,9 @@ noncomputable def leastGT {ι Ω β : Type*} [Preorder ι] [OrderBot ι] [InfSet
     (f : ι → Ω → β) (r : β) : Ω → WithTop ι :=
   hittingAfter f (Set.Ioi r) ⊥
 
+/--
+@isnad1 id=iff.0h7v.s6.989eeb2fc2f4 from=translated src=- shape=539e76ff vocab=ee5a1c67
+-/
 lemma leastGT_lt_iff {ι β : Type*} [ConditionallyCompleteLinearOrder ι] [OrderBot ι] [Preorder β]
     (X : ι → Ω → β) (a : β) (t : ι) (ω : Ω) :
     leastGT X a ω < t ↔ ∃ s < t, a < X s ω := by simp [leastGT, hittingAfter_lt_iff']

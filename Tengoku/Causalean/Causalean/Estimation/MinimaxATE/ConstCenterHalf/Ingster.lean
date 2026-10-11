@@ -39,7 +39,9 @@ open scoped BigOperators
 /-- For [a nonnegative coefficient γ with `2γ ≤ 1`](hyp:hγ0,hγ) satisfying [the regularity
 budget `2n²γ² ≤ K·log 2`](hyp:hreg), [the uniform double average, over pairs of Rademacher sign
 vectors `lam, lam' : Fin K → Bool`, of `(1 + (2γ/K)·Σⱼ signOf(lam j)·signOf(lam' j))^n` is at
-most `2`](goal). -/
+most `2`](goal).
+@isnad1 id=le.3h3v.s8.91e79098b4fe from=translated src=- shape=f4cc9eba vocab=f31ea3f5
+-/
 theorem ingster_bound (K n : ℕ) [NeZero K] {γ : ℝ} (hγ0 : 0 ≤ γ)
     (hγ : 2 * γ ≤ 1) (hreg : 2 * (n : ℝ) ^ 2 * γ ^ 2 ≤ (K : ℝ) * Real.log 2) :
     ∑ lam : Fin K → Bool, ∑ lam' : Fin K → Bool,

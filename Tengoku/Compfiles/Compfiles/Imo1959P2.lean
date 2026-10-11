@@ -41,6 +41,9 @@ Namely, we rewrite the equation as $\sqrt{2x-1}+1+|\sqrt{2x-1}-1|=A\sqrt{2}$,
 then consider the cases $\sqrt{2x-1}\le 1$ and $1 < \sqrt{2x-1}$ separately.
 -/
 
+/--
+@isnad1 id=iff.0h2v.s7.d0bd6f8ccd58 from=translated src=- shape=dcba2e58 vocab=e7da3664
+-/
 theorem isGood_iff : IsGood x A ↔
     sqrt (2 * x - 1) + 1 + |sqrt (2 * x - 1) - 1| = A * sqrt 2 ∧ 1 / 2 ≤ x := by
   cases le_or_gt (1 / 2) x with
@@ -58,11 +61,20 @@ theorem isGood_iff : IsGood x A ↔
     have : 2 * x - 1 < 0 := by linarith
     simp only [IsGood, this.not_ge, hx.not_ge]; simp
 
+/--
+@isnad1 id=le.1h2v.s5.278f1a341fc3 from=translated src=- shape=e79d142a vocab=7d18e212
+-/
 theorem IsGood.one_half_le (h : IsGood x A) : 1 / 2 ≤ x := (isGood_iff.1 h).2
 
+/--
+@isnad1 id=iff.0h1v.s5.5eed8c5cb1a6 from=translated src=- shape=53ed7fa1 vocab=840cf164
+-/
 theorem sqrt_two_mul_sub_one_le_one : sqrt (2 * x - 1) ≤ 1 ↔ x ≤ 1 := by
   simp [sqrt_le_iff, ← two_mul]
 
+/--
+@isnad1 id=iff.1h2v.s5.36f8c40652fd from=translated src=- shape=6248ac2a vocab=170e0458
+-/
 theorem isGood_iff_eq_sqrt_two (hx : x ∈ Icc (1 / 2) 1) : IsGood x A ↔ A = sqrt 2 := by
   have : sqrt (2 * x - 1) ≤ 1 := sqrt_two_mul_sub_one_le_one.2 hx.2
   simp only [isGood_iff, hx.1, abs_sub_comm _ (1 : ℝ), abs_of_nonneg (sub_nonneg.2 this), and_true]
@@ -70,6 +82,9 @@ theorem isGood_iff_eq_sqrt_two (hx : x ∈ Icc (1 / 2) 1) : IsGood x A ↔ A = s
   rw [← div_eq_iff, div_sqrt, eq_comm]
   positivity
 
+/--
+@isnad1 id=iff.1h2v.s5.d32f71ac6773 from=translated src=- shape=000ecb96 vocab=928d8963
+-/
 theorem isGood_iff_eq_sqrt (hx : 1 < x) : IsGood x A ↔ A = sqrt (4 * x - 2) := by
   have h₁ : 1 < sqrt (2 * x - 1) := by simpa only [← not_le, sqrt_two_mul_sub_one_le_one] using hx
   have h₂ : 1 / 2 ≤ x := by linarith
@@ -78,6 +93,9 @@ theorem isGood_iff_eq_sqrt (hx : 1 < x) : IsGood x A ↔ A = sqrt (4 * x - 2) :=
     eq_comm]
   ring_nf
 
+/--
+@isnad1 id=lt.2h2v.s5.e93829214b15 from=translated src=- shape=1ea7e90b vocab=88634b22
+-/
 theorem IsGood.sqrt_two_lt_of_one_lt (h : IsGood x A) (hx : 1 < x) : sqrt 2 < A := by
   rw [(isGood_iff_eq_sqrt hx).1 h]
   refine sqrt_lt_sqrt zero_le_two ?_
@@ -87,13 +105,22 @@ theorem IsGood.eq_sqrt_two_iff_le_one (h : IsGood x A) : A = sqrt 2 ↔ x ≤ 1 
   ⟨fun hA ↦ not_lt.1 fun hx ↦ (h.sqrt_two_lt_of_one_lt hx).ne' hA, fun hx ↦
     (isGood_iff_eq_sqrt_two ⟨h.one_half_le, hx⟩).1 h⟩
 
+/--
+@isnad1 id=iff.1h2v.s5.20f129ebf5db from=translated src=- shape=7bade32d vocab=88634b22
+-/
 theorem IsGood.sqrt_two_lt_iff_one_lt (h : IsGood x A) : sqrt 2 < A ↔ 1 < x :=
   ⟨fun hA ↦ not_le.1 fun hx ↦ hA.ne' <| h.eq_sqrt_two_iff_le_one.2 hx, h.sqrt_two_lt_of_one_lt⟩
 
+/--
+@isnad1 id=le.1h2v.s4.1017863725e0 from=translated src=- shape=e1192eca vocab=db4d4ff0
+-/
 theorem IsGood.sqrt_two_le (h : IsGood x A) : sqrt 2 ≤ A :=
   (le_or_gt x 1).elim (fun hx ↦ (h.eq_sqrt_two_iff_le_one.2 hx).ge) fun hx ↦
     (h.sqrt_two_lt_of_one_lt hx).le
 
+/--
+@isnad1 id=iff.1h2v.s6.a2f2a4abc89f from=translated src=- shape=540ff19f vocab=db454dbe
+-/
 theorem isGood_iff_of_sqrt_two_lt (hA : sqrt 2 < A) : IsGood x A ↔ x = (A / 2) ^ 2 + 1 / 2 := by
   have : 0 < A := lt_trans (by simp) hA
   constructor

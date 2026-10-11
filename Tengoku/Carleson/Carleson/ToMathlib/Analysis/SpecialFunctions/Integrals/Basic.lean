@@ -11,6 +11,9 @@ namespace MeasureTheory
 
 open ENNReal
 
+/--
+@isnad1 id=eq.1h3v.s7.590c1a116130 from=translated src=- shape=a7493eb8 vocab=4f939a2c
+-/
 theorem setLIntegral_Ioo_rpow {p : ℝ} {a b : ℝ≥0∞} (hp : -1 < p) :
     ∫⁻ (t : ℝ≥0∞) in Set.Ioo a b, t ^ p = (b ^ (p + 1) - a ^ (p + 1)) / ENNReal.ofReal (p + 1) := by
   have hp' : 0 < p + 1 := by linarith
@@ -74,6 +77,9 @@ theorem setLIntegral_Ioo_rpow {p : ℝ} {a b : ℝ≥0∞} (hp : -1 < p) :
       ← ENNReal.ofReal_rpow_of_nonneg ENNReal.toReal_nonneg hp'.le,
       ENNReal.ofReal_toReal ha, ENNReal.ofReal_toReal hb]
 
+/--
+@isnad1 id=eq.1h2v.s6.1afae69f3bae from=translated src=- shape=1e3304c6 vocab=78fa18dd
+-/
 theorem setLIntegral_Iio_rpow {p : ℝ} {b : ℝ≥0∞} (hp : -1 < p) :
     ∫⁻ (t : ℝ≥0∞) in Set.Iio b, t ^ p = b ^ (p + 1) / ENNReal.ofReal (p + 1) := by
   have := setLIntegral_Ioo_rpow (a := 0) (b := b) hp

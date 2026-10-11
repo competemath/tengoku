@@ -99,10 +99,14 @@ namespace VarConstr
 
 variable (P : VarConstr K)
 
-/-- `0 ≤ β/g₁ j` always. -/
+/-- `0 ≤ β/g₁ j` always.
+@isnad1 id=le.0h3v.s5.3084fbd4fa7b from=translated src=- shape=aeb98431 vocab=39dc383e
+-/
 theorem ratio_nonneg (j : Fin K) : 0 ≤ P.β / P.g₁ j := div_nonneg P.hβ (P.hg₁0 j).le
 
-/-- `β/g₁ j < 1` since `β < g₁ j`. -/
+/-- `β/g₁ j < 1` since `β < g₁ j`.
+@isnad1 id=lt.0h3v.s5.f8c847a1ae33 from=translated src=- shape=beb5b01c vocab=dccd33bf
+-/
 theorem ratio_lt_one (j : Fin K) : P.β / P.g₁ j < 1 := (div_lt_one (P.hg₁0 j)).mpr (P.hβg₁ j)
 
 /-- For every [number $K$ of paired cells](hyp:K) and [cell-varying construction
@@ -131,7 +135,9 @@ ratio. -/
 noncomputable def gPertV (lam : Fin K → Bool) : Bool → (Fin K × Bool) → ℝ :=
   fun d x => if d then (P.g₁ x.1 + P.α * Δ lam x) / (1 - (P.β / P.g₁ x.1) * Δ lam x) else P.g₀ x.1
 
-/-- The denominator `1 − (β/g₁ j)·Δ` is positive. -/
+/-- The denominator `1 − (β/g₁ j)·Δ` is positive.
+@isnad1 id=lt.0h4v.s6.06a5ac3b8def from=translated src=- shape=4f3e65fa vocab=fdd2c1d1
+-/
 theorem denomV_pos (lam : Fin K → Bool) (x : Fin K × Bool) :
     0 < 1 - (P.β / P.g₁ x.1) * Δ lam x := by
   have hr := P.ratio_nonneg x.1
@@ -142,7 +148,9 @@ theorem denomV_pos (lam : Fin K → Bool) (x : Fin K × Bool) :
 
 /-- [The null cell-varying-center data-generating process, with propensity `mhatV` and outcome
 regressions `ghatV`, is a valid finite observed-data model, i.e. all its component
-probabilities lie in `[0,1]`](goal). -/
+probabilities lie in `[0,1]`](goal).
+@isnad1 id=validdgp.0h2v.s4.e47a95be57b7 from=translated src=- shape=e91b7ab1 vocab=6e83c654
+-/
 theorem validDGP_hatV : ValidDGP (C := Fin K × Bool) P.mhatV P.ghatV := by
   refine ⟨fun x => ?_, fun d x => ?_⟩
   · simp only [mhatV]; exact ⟨(P.hm₀0 x.1).le, (P.hm₀1 x.1).le⟩
@@ -152,7 +160,9 @@ theorem validDGP_hatV : ValidDGP (C := Fin K × Bool) P.mhatV P.ghatV := by
 
 /-- [For any Rademacher sign vector `lam` indexing the perturbation](hyp:lam), [the perturbed
 propensity and outcome-regression functions define a valid finite observed-data model, i.e.
-take values in `[0,1]`](goal). -/
+take values in `[0,1]`](goal).
+@isnad1 id=validdgp.0h3v.s4.e91150a474fd from=translated src=- shape=1f35fa82 vocab=0782c1f3
+-/
 theorem validDGP_pertV (lam : Fin K → Bool) :
     ValidDGP (P.mPertV lam) (P.gPertV lam) := by
   refine ⟨fun x => ?_, fun d x => ?_⟩

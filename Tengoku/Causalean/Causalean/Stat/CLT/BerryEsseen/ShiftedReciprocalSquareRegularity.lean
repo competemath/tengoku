@@ -14,7 +14,9 @@ public section
 namespace Causalean.Stat.CLT.BerryEsseen
 
 /-- [The integer shifted reciprocal-square series Σ_{m∈ℤ} 1/(z+m)² converges
-locally uniformly on the complex plane with the integers removed](goal). -/
+locally uniformly on the complex plane with the integers removed](goal).
+@isnad1 id=summable.0h0v.s6.16585d7abbec from=translated src=- shape=eb28d958 vocab=dab8995f
+-/
 theorem shifted_reciprocal_sq_summableLocallyUniformlyOn :
     SummableLocallyUniformlyOn
       (fun m : ℤ => fun z : ℂ => 1 / (z + (m : ℂ)) ^ 2)

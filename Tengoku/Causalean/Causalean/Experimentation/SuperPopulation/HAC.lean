@@ -48,7 +48,9 @@ network-HAC estimator equals the variance of the network sum](goal): `E[V̂] = V
 
 The off-neighborhood cross-covariances vanish by the m-dependence (non-adjacent summands are
 independent, hence uncorrelated), so summing products over the neighborhoods recovers the full
-covariance double sum. -/
+covariance double sum.
+@isnad1 id=eq.2h4v.s7.f30b0eeab738 from=translated src=- shape=13d5b8b3 vocab=3b7ba5a1
+-/
 theorem NetworkDependence.netHACVarEst_integral_eq_variance
     (F : NetworkDependence V Ω μ) [IsProbabilityMeasure μ]
     (hL2 : ∀ i, MemLp (F.X i) 2 μ)

@@ -17,6 +17,9 @@ namespace ProbabilityTheory
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [SecondCountableTopology E]
   [CompleteSpace E] [MeasurableSpace E] [BorelSpace E] {μ : Measure E}
 
+/--
+@isnad1 id=eq.1h5v.s7.d12faa632594 from=translated src=- shape=c26d014f vocab=036f5ce3
+-/
 lemma HasGaussianLaw.charFun_map_real {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}
     {X : Ω → ℝ} (h : HasGaussianLaw X P) (t : ℝ) :
     charFun (P.map X) t = cexp (t * P[X] * I - t ^ 2 * Var[X; P] / 2) := by

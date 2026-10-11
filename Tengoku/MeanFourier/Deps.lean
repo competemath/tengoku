@@ -1,0 +1,1 @@
+-- MeanFourier: a factory bundle (data/intake/mean-fourier). This file only marks the library for Tengoku/All.lean.

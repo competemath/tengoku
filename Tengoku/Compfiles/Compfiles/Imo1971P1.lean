@@ -30,11 +30,17 @@ def P (n : ℕ) : Prop :=
   ∀ (a : Fin n → ℝ), E a ≥ 0
 
 -- This makes working with the sum easier and simp more powerful.
+/--
+@isnad1 id=eq.0h3v.s6.76c8ce581fb2 from=translated src=- shape=b078b395 vocab=bad54a05
+-/
 lemma prod_ne_eq_prod_ite {n : ℕ} {i : Fin n} {a : Fin n → ℝ} : ∏ j ≠ i, (a i - a j) = ∏ j, if j = i then 1 else a i - a j := by
   rw [← Finset.mul_prod_erase Finset.univ _ (Finset.mem_univ i)]
   grind [Finset.prod_congr]
 
 -- A proof that E a = E b, where b is obtained by permuting a's indices.
+/--
+@isnad1 id=eq.1h3v.s6.e1b10d3f4541 from=translated src=- shape=24574bde vocab=de045523
+-/
 lemma E_equiv_perm {n : ℕ} {a b : Fin n → ℝ} (h : ∃ σ : Equiv.Perm (Fin n), b = a ∘ σ) : E a = E b := by
   obtain ⟨σ, hσ⟩ := h
   simp [E]
@@ -46,12 +52,18 @@ lemma E_equiv_perm {n : ℕ} {a b : Fin n → ℝ} (h : ∃ σ : Equiv.Perm (Fin
 
 -- This gets a permutation of the indices of a such that the resulting sequence is antitone.
 -- Uses Tuple.sort (which gives monotone) composed with Fin.revPerm (which reverses) to get antitone.
+/--
+@isnad1 id=antitone.1h3v.s7.48f4e8db8a3e from=translated src=- shape=c286c0fe vocab=8c5b3fd2
+-/
 lemma antitone_of_monotone_comp_rev {n : ℕ} (f : Fin n → ℝ) (σ : Equiv.Perm (Fin n))
     (hm : Monotone (f ∘ σ)) : Antitone (f ∘ σ ∘ Fin.revPerm) := by
   intro i j hij
   simp only [Function.comp_apply]
   exact hm (by simp [Fin.revPerm_apply, Fin.rev_le_rev, hij])
 
+/--
+@isnad1 id=ex.0h2v.s6.aa425c58e6f2 from=translated src=- shape=318f26e7 vocab=2be268cb
+-/
 lemma exists_antitone_perm {n : ℕ} (a : Fin n → ℝ) :
     ∃ b, ∃ σ : Equiv.Perm (Fin n), b = a ∘ σ ∧ Antitone b := by
   let σ : Equiv.Perm (Fin n) := Tuple.sort a * Fin.revPerm

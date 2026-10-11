@@ -21,7 +21,9 @@ open MeasureTheory
 /-- For [a third-moment ratio ρ strictly between zero and one](hyp:hρ,hρ1), with
 inner cutoff U0 = max(3/2, √(4 log(1/ρ))) and outer cutoff U = 12/(5ρ),
 [the inner cutoff is at most the outer cutoff and the full deterministic
-Prawitz smoothing envelope at these cutoffs is at most ρ](goal). -/
+Prawitz smoothing envelope at these cutoffs is at most ρ](goal).
+@isnad1 id=other.2h1v.s7.4b401ae7d579 from=translated src=- shape=ba34ef6d vocab=eba9b2ce
+-/
 theorem prawitz_berry_esseen_budget
     (ρ : ℝ) (hρ : 0 < ρ) (hρ1 : ρ < 1) :
     let U0 := max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / ρ)))

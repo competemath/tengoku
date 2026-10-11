@@ -15,7 +15,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- [The Fourier integral of the signed sinc-fourth comparison kernel has
-magnitude at most one at every real frequency](goal). -/
+magnitude at most one at every real frequency](goal).
+@isnad1 id=le.0h1v.s5.f970ae31be12 from=translated src=- shape=d8e6d6d0 vocab=acf6af7a
+-/
 theorem esseenSignedSinc4Kernel_fourier_norm_le_one (t : ℝ) :
     ‖∫ y : ℝ, Complex.exp (((t * y : ℝ) : ℂ) * Complex.I) *
       (esseenSignedSinc4Kernel y : ℂ)‖ ≤ 1 := by

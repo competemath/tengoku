@@ -14,7 +14,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- The Fourier transform of an integrable real kernel is integrable when it
-vanishes outside the unit interval and has magnitude at most one. -/
+vanishes outside the unit interval and has magnitude at most one.
+@isnad1 id=integrab.3h1v.s8.70d76e2360af from=translated src=- shape=c7fcf970 vocab=b62620cc
+-/
 theorem integrable_unit_supported_kernel_fourier
     (K : ℝ → ℝ) (hK : Integrable K volume)
     (hsupp : ∀ t : ℝ, 1 ≤ |t| →
@@ -73,7 +75,9 @@ theorem integrable_unit_supported_kernel_fourier
 /-- For [an integrable function H](hyp:hH) and [an integrable](hyp:hK)
 [continuous](hyp:hKcont) kernel K whose [Fourier transform vanishes outside
 (−1, 1)](hyp:hsupp) and [has magnitude at most one](hyp:hnorm),
-[the product y ↦ H(−y)·K(y) is integrable](goal). -/
+[the product y ↦ H(−y)·K(y) is integrable](goal).
+@isnad1 id=integrab.5h2v.s8.53f64f0fe3e4 from=translated src=- shape=1ae44285 vocab=dc1579a0
+-/
 theorem integrable_reflected_mul_unit_supported_kernel
     (H K : ℝ → ℝ) (hH : Integrable H volume)
     (hK : Integrable K volume) (hKcont : Continuous K)

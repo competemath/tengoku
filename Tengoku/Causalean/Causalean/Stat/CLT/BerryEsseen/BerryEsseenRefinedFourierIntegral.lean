@@ -19,7 +19,9 @@ real law with [integrable third absolute moment at most M3](hyp:hthird_int,hthir
 where [M3 is at least one](hyp:hM3), and [a sample size n of at least four](hyp:hn),
 [the integral over the refined window |t| ≤ √n/(2·M3) of the distance between
 the characteristic function of the standardized iid sum and the standard
-Gaussian characteristic function, divided by |t|, is at most 2·M3/√n](goal). -/
+Gaussian characteristic function, divided by |t|, is at most 2·M3/√n](goal).
+@isnad1 id=le.8h3v.s8.578e8a414266 from=translated src=- shape=5e726feb vocab=c729e399
+-/
 theorem iid_unit_variance_charFun_refined_interval_integral_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (M3 : ℝ) (hM3 : 1 ≤ M3)

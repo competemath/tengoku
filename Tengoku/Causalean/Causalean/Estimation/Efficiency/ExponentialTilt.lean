@@ -59,7 +59,9 @@ noncomputable def tiltMeasure (P : Measure Z) (s : Z → ℝ) (t : ℝ) : Measur
   (ENNReal.ofReal (tiltNorm P s t))⁻¹ •
     P.withDensity (fun z => ENNReal.ofReal (Real.exp (t * s z)))
 
-/-- At `t = 0` the normalizing constant is the total mass `= 1`. -/
+/-- At `t = 0` the normalizing constant is the total mass `= 1`.
+@isnad1 id=eq.0h3v.s5.163ac3f0dfe8 from=translated src=- shape=a04c9b7f vocab=e8c676db
+-/
 @[simp] lemma tiltNorm_zero {P : Measure Z} [IsProbabilityMeasure P] {s : Z → ℝ} :
     tiltNorm P s 0 = 1 := by
   simp [tiltNorm]
@@ -83,7 +85,9 @@ private lemma nonempty_of_isProbabilityMeasure
   simp at h1
 
 /-- **Numerator derivative.** `d/dt ∫ φ·e^{t·s} dP |₀ = ∫ φ·s dP`, for bounded
-measurable score `s` and integrable `φ`. -/
+measurable score `s` and integrable `φ`.
+@isnad1 id=hasderiv.4h5v.s7.50c9901c66a3 from=translated src=- shape=34cfb91d vocab=460e09bd
+-/
 lemma hasDerivAt_tilt_numerator
     (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M)
     (hφ_meas : AEStronglyMeasurable φ P) (hφ_int : Integrable φ P) :
@@ -153,7 +157,9 @@ expectation of a fixed function `φ` that is [almost-everywhere strongly
 measurable](hyp:hφ_meas) and [integrable](hyp:hφ_int) against `P` is
 [differentiable at `t = 0`, with derivative equal to `∫ φ·s dP`](goal).
 (Mean-zero `s` makes the normalizing-constant contribution vanish, so the
-derivative is the raw covariance `∫ φ·s dP`.) -/
+derivative is the raw covariance `∫ φ·s dP`.)
+@isnad1 id=hasderiv.5h5v.s7.93751727b9e1 from=translated src=- shape=8fce6f0c vocab=b941ac61
+-/
 theorem hasDerivAt_tiltExp
     (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M)
     (hs_mean : ∫ z, s z ∂P = 0)
@@ -190,7 +196,9 @@ section Measure
 variable {P : Measure Z} [IsProbabilityMeasure P] {s : Z → ℝ} {M : ℝ} {t : ℝ}
 
 /-- For a bounded measurable score, `e^{t·s}` is `P`-integrable (it is bounded by
-the constant `e^{|t|·M}` on the finite measure `P`). -/
+the constant `e^{|t|·M}` on the finite measure `P`).
+@isnad1 id=integrab.2h5v.s6.f113b3140982 from=translated src=- shape=f9e6f478 vocab=29d56b21
+-/
 lemma tilt_exp_integrable (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M) :
     Integrable (fun z => Real.exp (t * s z)) P := by
   apply Integrable.mono' (integrable_const (Real.exp (|t| * M)))
@@ -202,7 +210,9 @@ lemma tilt_exp_integrable (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M) :
     _ = |t| * |s z| := abs_mul _ _
     _ ≤ |t| * M := mul_le_mul_of_nonneg_left (hsM z) (abs_nonneg _)
 
-/-- The normalizing constant `c(t) = ∫ e^{t·s} dP` is strictly positive. -/
+/-- The normalizing constant `c(t) = ∫ e^{t·s} dP` is strictly positive.
+@isnad1 id=lt.2h5v.s5.492b6669ef7e from=translated src=- shape=2d296b16 vocab=3faad7e0
+-/
 lemma tiltNorm_pos (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M) :
     0 < tiltNorm P s t := by
   have hlow : ∀ z, Real.exp (-(|t| * M)) ≤ Real.exp (t * s z) := by
@@ -222,7 +232,9 @@ lemma tiltNorm_pos (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M) :
 
 /-- For [a probability law `P`](hyp:P), [a measurable bounded score `s`](hyp:s,hs_meas,hsM),
 and [a perturbation `t`](hyp:t), [the exponential tilt is `P` weighted by the normalized
-density `exp(ts)/∫exp(ts)dP`](goal). -/
+density `exp(ts)/∫exp(ts)dP`](goal).
+@isnad1 id=eq.2h5v.s6.085622d5d4d1 from=translated src=- shape=8a15f939 vocab=bc47d708
+-/
 lemma tiltMeasure_eq_withDensity_div
     (P : Measure Z) [IsProbabilityMeasure P] (s : Z → ℝ) (M t : ℝ)
     (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M) :
@@ -241,7 +253,9 @@ lemma tiltMeasure_eq_withDensity_div
   congr 1
   simp [tiltNorm, div_eq_mul_inv, mul_comm]
 
-/-- The tilted law `tiltMeasure P s t` is a probability measure. -/
+/-- The tilted law `tiltMeasure P s t` is a probability measure.
+@isnad1 id=isprobab.2h5v.s5.ef0df1f9d09a from=translated src=- shape=6e723cd5 vocab=9a23f74f
+-/
 lemma isProbabilityMeasure_tiltMeasure
     (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M) :
     IsProbabilityMeasure (tiltMeasure P s t) := by
@@ -263,7 +277,9 @@ lemma isProbabilityMeasure_tiltMeasure
 /-- The expectation of `h_fn` under the tilted law equals `tiltExp P s h_fn t`.
 (No integrability hypothesis is needed: both sides reduce to the same `P`-integral
 of `h_fn · e^{t·s}` scaled by `1/c(t)`, and a non-integrable `h_fn` makes both
-the integral and `tiltExp`'s numerator the same junk default.) -/
+the integral and `tiltExp`'s numerator the same junk default.)
+@isnad1 id=eq.2h6v.s6.7c732a78b1ef from=translated src=- shape=d8080fe2 vocab=d40059b2
+-/
 lemma integral_tiltMeasure (hs_meas : Measurable s) (hsM : ∀ z, |s z| ≤ M)
     {h_fn : Z → ℝ} :
     ∫ z, h_fn z ∂(tiltMeasure P s t) = tiltExp P s h_fn t := by

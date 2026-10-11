@@ -44,11 +44,15 @@ namespace VarConstr2
 
 variable {K : ℕ} (P : VarConstr2 K)
 
-/-- `αβ ≤ 1` (a consequence of `hgU` and `g₁ⱼ > 0`). -/
+/-- `αβ ≤ 1` (a consequence of `hgU` and `g₁ⱼ > 0`).
+@isnad1 id=le.0h3v.s4.d92d2ed9df4a from=translated src=- shape=255d9793 vocab=9436538e
+-/
 theorem alphabeta_le_one (j : Fin K) : P.α * P.β ≤ 1 := by
   have := P.hgU j; have := P.ratio_nonneg j; have := P.hg₁0 j; nlinarith
 
-/-- `g₁ⱼ(1 − αβ) − β ≥ g₁ⱼ² > 0`: clearing `hgU` by `g₁ⱼ`. -/
+/-- `g₁ⱼ(1 − αβ) − β ≥ g₁ⱼ² > 0`: clearing `hgU` by `g₁ⱼ`.
+@isnad1 id=le.0h3v.s6.b6bebc06bc1c from=translated src=- shape=e9234c59 vocab=94e52d39
+-/
 theorem g1_one_sub_ab_sub_beta (j : Fin K) :
     P.g₁ j ^ 2 ≤ P.g₁ j * (1 - P.α * P.β) - P.β := by
   have hg1 := P.hg₁0 j
@@ -61,7 +65,9 @@ theorem g1_one_sub_ab_sub_beta (j : Fin K) :
   rw [hh] at this
   nlinarith [this]
 
-/-- The pair denominator `Eⱼ = g₁ⱼ²(1 − αβ)² − β² > 0`. -/
+/-- The pair denominator `Eⱼ = g₁ⱼ²(1 − αβ)² − β² > 0`.
+@isnad1 id=lt.0h3v.s6.2937e79c8a7e from=translated src=- shape=bcb57ec1 vocab=57cd2568
+-/
 theorem denomE_pos (j : Fin K) : 0 < P.g₁ j ^ 2 * (1 - P.α * P.β) ^ 2 - P.β ^ 2 := by
   have hg1 := P.hg₁0 j
   have hlin := P.g1_one_sub_ab_sub_beta j
@@ -72,7 +78,9 @@ theorem denomE_pos (j : Fin K) : 0 < P.g₁ j ^ 2 * (1 - P.α * P.β) ^ 2 - P.β
   nlinarith [mul_pos h1 h2]
 
 /-- **Cleared treated arm.**  `gλ(1,x) = g₁ x.1² / (g₁ x.1·(1 − αβ) + β·Δ)` — no
-nested fractions, so `field_simp` can clear it given the (positive) denominator. -/
+nested fractions, so `field_simp` can clear it given the (positive) denominator.
+@isnad1 id=eq.0h4v.s6.1888aa86303c from=translated src=- shape=67090585 vocab=e9e4c91f
+-/
 theorem gPert2_true_eq2 (lam : Fin K → Bool) (x : Fin K × Bool) :
     P.gPert2 lam true x
       = P.g₁ x.1 ^ 2 / (P.g₁ x.1 * (1 - P.α * P.β) + P.β * Δ lam x) := by
@@ -83,7 +91,9 @@ theorem gPert2_true_eq2 (lam : Fin K → Bool) (x : Fin K × Bool) :
   simp only [gPert2, ite_true]
   rw [hdc, sq, mul_div_mul_left _ _ hg₁ne]
 
-/-- The cleared denominator `g₁ⱼ(1 − αβ) + β·σ` is positive. -/
+/-- The cleared denominator `g₁ⱼ(1 − αβ) + β·σ` is positive.
+@isnad1 id=lt.1h4v.s6.12ddaaae047a from=translated src=- shape=256faed5 vocab=9bf3a3b1
+-/
 theorem clearedDenom_pos (j : Fin K) (σ : ℝ) (hσ : σ = 1 ∨ σ = -1) :
     0 < P.g₁ j * (1 - P.α * P.β) + P.β * σ := by
   have hg1 := P.hg₁0 j
@@ -93,7 +103,9 @@ theorem clearedDenom_pos (j : Fin K) (σ : ℝ) (hσ : σ = 1 ∨ σ = -1) :
   · rw [h]; nlinarith [hg1]
   · rw [h]; nlinarith [hg1]
 
-/-- The null estimate `ĝ` has ATE `(1/2K) Σⱼ 2(g₁ⱼ − g₀ⱼ)`. -/
+/-- The null estimate `ĝ` has ATE `(1/2K) Σⱼ 2(g₁ⱼ − g₀ⱼ)`.
+@isnad1 id=eq.0h2v.s6.d2806da9a2c0 from=translated src=- shape=76ff5e68 vocab=7cd8e93b
+-/
 theorem ate_ghat2 :
     ate (P.ghat2 (K := K))
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹ * ∑ j : Fin K, 2 * (P.g₁ j - P.g₀ j) := by
@@ -150,7 +162,9 @@ private theorem perPair2 (lam : Fin K → Bool) (j : Fin K) :
 
 /-- **Exact ATE of the perturbed construction.** [For any Rademacher sign vector `lam`](hyp:lam),
 [the average treatment effect of the perturbed outcome regression equals the average over
-pairs `j` of `2g₁ⱼ³(1−αβ)/(g₁ⱼ²(1−αβ)²−β²) − 2g₀ⱼ`, independent of `lam`](goal). -/
+pairs `j` of `2g₁ⱼ³(1−αβ)/(g₁ⱼ²(1−αβ)²−β²) − 2g₀ⱼ`, independent of `lam`](goal).
+@isnad1 id=eq.0h3v.s8.1b364653c138 from=translated src=- shape=b1313508 vocab=9cacea71
+-/
 theorem ate_gPert2 [NeZero K] (lam : Fin K → Bool) :
     ate (P.gPert2 lam)
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹
@@ -165,7 +179,9 @@ theorem ate_gPert2 [NeZero K] (lam : Fin K → Bool) :
 
 /-- [For any Rademacher sign vector `lam`](hyp:lam), [the gap between the perturbed
 construction's ATE and the null estimate's ATE equals `2β/(2K)` times the sum over pairs
-`j` of `g₁ⱼ(αg₁ⱼ²(1−αβ) + β)/(g₁ⱼ²(1−αβ)² − β²)`](goal). -/
+`j` of `g₁ⱼ(αg₁ⱼ²(1−αβ) + β)/(g₁ⱼ²(1−αβ)² − β²)`](goal).
+@isnad1 id=eq.0h3v.s8.e128473973f5 from=translated src=- shape=4989c97f vocab=08624597
+-/
 theorem ate_gap2 [NeZero K] (lam : Fin K → Bool) :
     ate (P.gPert2 lam) - ate (P.ghat2 (K := K))
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹ * (2 * P.β)
@@ -181,7 +197,9 @@ theorem ate_gap2 [NeZero K] (lam : Fin K → Bool) :
   field_simp
   ring
 
-/-- The ATE gap is nonnegative. -/
+/-- The ATE gap is nonnegative.
+@isnad1 id=le.0h3v.s6.84c6d1e2c74a from=translated src=- shape=9daf604c vocab=75057302
+-/
 theorem ate_gap2_nonneg [NeZero K] (lam : Fin K → Bool) :
     0 ≤ ate (P.gPert2 lam) - ate (P.ghat2 (K := K)) := by
   rw [P.ate_gap2 lam]

@@ -17,7 +17,9 @@ open MeasureTheory
 /-- For [a positive lower endpoint a and damping rate b](hyp:a,b,ha,hb) and
 [a nonnegative constant weight c](hyp:c,hc), [the integral over t > a of
 (1/(πt) + c)·exp(−bt²) is at most
-(1/(2πba²) + c/(2ba))·exp(−ba²)](goal). -/
+(1/(2πba²) + c/(2ba))·exp(−ba²)](goal).
+@isnad1 id=le.3h3v.s8.94b6a997a88e from=translated src=- shape=4d9b912a vocab=97411387
+-/
 theorem gaussian_reciprocal_linear_tail_bound
     (a b c : ℝ) (ha : 0 < a) (hb : 0 < b) (hc : 0 ≤ c) :
     (∫ t in Set.Ioi a,

@@ -81,7 +81,9 @@ noncomputable def tikhonovBilin (S : OperatorSystem Ω μ) (lambda : ℝ) :
       S.Tlin).flip.comp S.Tlin).flip
     + lambda • (innerSL ℝ : S.PrimalL2 →L[ℝ] S.PrimalL2 →L[ℝ] ℝ)
 
-/-- Pointwise formula for `tikhonovBilin`. -/
+/-- Pointwise formula for `tikhonovBilin`.
+@isnad1 id=eq.0h6v.s17.f04800088e63 from=translated src=- shape=dce6434e vocab=55aa3405
+-/
 lemma tikhonovBilin_apply (S : OperatorSystem Ω μ) (lambda : ℝ)
     (u v : S.PrimalL2) :
     S.tikhonovBilin lambda u v
@@ -92,14 +94,18 @@ lemma tikhonovBilin_apply (S : OperatorSystem Ω μ) (lambda : ℝ)
     = inner ℝ (S.Tlin u) (S.Tlin v) + lambda * inner ℝ u v
   simp [coe_innerSL_apply]
 
-/-- Symmetry of `tikhonovBilin`. -/
+/-- Symmetry of `tikhonovBilin`.
+@isnad1 id=eq.0h6v.s17.2d6c661afdc6 from=translated src=- shape=15f7c71e vocab=816ee889
+-/
 lemma tikhonovBilin_symm (S : OperatorSystem Ω μ) (lambda : ℝ)
     (u v : S.PrimalL2) :
     S.tikhonovBilin lambda u v = S.tikhonovBilin lambda v u := by
   simp [tikhonovBilin_apply, real_inner_comm]
 
 /-- For [a nonparametric instrumental-variables operator system](hyp:Ω,μ,S) and [a strictly
-positive regularization level](hyp:lambda,lambda_pos), [the primal Tikhonov bilinear form is coercive](goal). -/
+positive regularization level](hyp:lambda,lambda_pos), [the primal Tikhonov bilinear form is coercive](goal).
+@isnad1 id=iscoerci.1h4v.s11.a5c3c88eead2 from=translated src=- shape=fec8156c vocab=3c6af1a8
+-/
 lemma tikhonovBilin_isCoercive
     (S : OperatorSystem Ω μ)
     {lambda : ℝ} (lambda_pos : 0 < lambda) :
@@ -123,7 +129,9 @@ noncomputable def tikhonovTarget (S : OperatorSystem Ω μ) :
   ((innerSL ℝ : S.InstrumentL2 →L[ℝ] S.InstrumentL2 →L[ℝ] ℝ)
       (S.Tlin (S.hL2 S.h₀_mem))).comp S.Tlin
 
-/-- Pointwise formula for the target functional. -/
+/-- Pointwise formula for the target functional.
+@isnad1 id=eq.0h4v.s16.a89d5e9ecaa9 from=translated src=- shape=1fd8f900 vocab=02f79e43
+-/
 lemma tikhonovTarget_apply (S : OperatorSystem Ω μ) (v : S.PrimalL2) :
     S.tikhonovTarget v
       = inner ℝ (S.Tlin (S.hL2 S.h₀_mem)) (S.Tlin v) := by
@@ -161,7 +169,9 @@ regularization level λ](hyp:lambda_pos) and [any element `v` of `L²(σ(X))`](h
 identity `⟪T h*_λ, T v⟫ + λ · ⟪h*_λ, v⟫ = ⟪T h₀, T v⟫`, where `T` is the projection-composed
 conditional-expectation operator and `h₀` is the L² class of the structural function](goal).
 
-Direct restatement of the Lax–Milgram identity `tikhonovBilin h*_λ v = tikhonovTarget v`. -/
+Direct restatement of the Lax–Milgram identity `tikhonovBilin h*_λ v = tikhonovTarget v`.
+@isnad1 id=eq.1h5v.s17.dc621c0d4eac from=translated src=- shape=4e97903a vocab=0afaecdd
+-/
 lemma tikhonovMinimiserL2_optimality
     (S : OperatorSystem Ω μ)
     {lambda : ℝ} (lambda_pos : 0 < lambda)
@@ -219,7 +229,9 @@ Proof sketch (Taylor at the minimiser).  Expand both sides:
 Both bracketed terms are `B(h*, ĥ) − ⟨T h₀, T ĥ⟩` (resp. with `h*` in
 place of `ĥ`), which vanishes by `tikhonovMinimiserL2_optimality`.  So
 `RHS − LHS = 0` (in fact equality holds — strong convexity is an
-**equality** at the minimiser, not a strict inequality). -/
+**equality** at the minimiser, not a strict inequality).
+@isnad1 id=le.1h5v.s17.c22ffcf2d598 from=translated src=- shape=b58b6f84 vocab=38c6963b
+-/
 lemma tikhonovMinimiserL2_strong_convexity
     (S : OperatorSystem Ω μ)
     {lambda : ℝ} (lambda_pos : 0 < lambda)

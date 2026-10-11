@@ -91,7 +91,9 @@ controlled by
 
 The proof is the AM–GM absorption sketched in the note's proof of
 `thm:est-osl-plugin-erm-oracle`, with the conservative `4/σ` coefficient on
-the optimization slack. -/
+the optimization slack.
+@isnad1 id=le.5h18v.s9.388346bcfbce from=translated src=- shape=553902a4 vocab=d4ab6fa3
+-/
 -- TODO(faithfulness): `thm:est-osl-plugin-erm-oracle` displays a `2/σ`
 -- optimization-slack coefficient; deriving it from the current approximate-ERM
 -- hypothesis needs an additional sharp basic inequality/slack convention.
@@ -203,7 +205,9 @@ Rademacher bridge in `LocalEmpProcess.Rademacher`).
 This theorem pins the plug-in nuisance to a fixed `g` (`ghat ≡ g`). The sibling
 `LocalEmpProcess.RandomNuisance` module already proves a fold-A/fold-B concentration
 result with conclusion `LocalEmpProcessModulusRandom`; this theorem does not consume that
-random-nuisance predicate. A final random-nuisance oracle composition is not exported. -/
+random-nuisance predicate. A final random-nuisance oracle composition is not exported.
+@isnad1 id=ex.5h18v.s9.54d220639f2c from=translated src=- shape=8a0959e1 vocab=b184d8a2
+-/
 theorem oracle_inequality_plugin_ERM_highProb
     (S : LearningSystem Ω μ Z P_Z Θ G)
     (S_iid : IIDSample Ω Z μ P_Z)

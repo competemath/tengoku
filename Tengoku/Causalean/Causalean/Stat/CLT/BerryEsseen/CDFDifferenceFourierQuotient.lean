@@ -17,7 +17,9 @@ open MeasureTheory ProbabilityTheory
 /-- For [two probability laws with finite first moments](hyp:hμ,hν),
 [the integral over [−T, T] of the magnitude of the Fourier transform of their
 CDF difference equals the integral over [−T, T] of their
-characteristic-function discrepancy divided by |t|](goal). -/
+characteristic-function discrepancy divided by |t|](goal).
+@isnad1 id=eq.2h3v.s8.f956be02d417 from=translated src=- shape=893b3f4e vocab=5183ee01
+-/
 theorem cdf_difference_fourier_magnitude_integral
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

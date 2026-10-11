@@ -15,7 +15,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory
 
 /-- Dilating a real kernel by a positive bandwidth and multiplying by that
-bandwidth divides the frequency in its Fourier integral by the bandwidth. -/
+bandwidth divides the frequency in its Fourier integral by the bandwidth.
+@isnad1 id=eq.1h3v.s7.a6532efd0763 from=translated src=- shape=c30112d9 vocab=32374b67
+-/
 theorem spectral_kernel_dilation_fourier
     (K : ℝ → ℝ) (T : ℝ) (hT : 0 < T) (t : ℝ) :
     (∫ y : ℝ, Complex.exp (((t * y : ℝ) : ℂ) * Complex.I) *
@@ -48,7 +50,9 @@ theorem spectral_kernel_dilation_fourier
 [has magnitude at most one](hyp:hnorm), and [a positive dilation T](hyp:hT),
 [the dilated kernel y ↦ T·K(Ty) is integrable and continuous, has an
 integrable Fourier transform that vanishes outside (−T, T), and keeps Fourier
-magnitude at most one](goal). -/
+magnitude at most one](goal).
+@isnad1 id=and.5h2v.s9.43c04a162b58 from=translated src=- shape=f0da38bc vocab=f018777c
+-/
 theorem spectral_kernel_dilation_properties
     (K : ℝ → ℝ) (hK : Integrable K volume) (hKcont : Continuous K)
     (hsupp : ∀ t : ℝ, 1 ≤ |t| →

@@ -21,7 +21,9 @@ from the standard Gaussian CDF by at most the four Prawitz Fourier terms: the
 filtered low-frequency characteristic-function discrepancy on [0, U0], the
 filtered high-frequency characteristic-function modulus on [U0, U], the
 Gaussian principal correction on [0, U0], and the Gaussian tail beyond
-U0](goal). -/
+U0](goal).
+@isnad1 id=le.3h4v.s9.9e5f6bc526a8 from=translated src=- shape=ee9708d0 vocab=fe407598
+-/
 theorem normal_cdf_prawitz_smoothing
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ)

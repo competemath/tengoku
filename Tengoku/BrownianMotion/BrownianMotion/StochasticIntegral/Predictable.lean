@@ -58,12 +58,18 @@ section IsStronglyPredictable
 
 variable {ι Ω E : Type*} [Preorder ι] [OrderBot ι] [TopologicalSpace E]
 
+/--
+@isnad1 id=isstrong.0h6v.s5.85a522365d0f from=translated src=- shape=3962b033 vocab=fb6ccf2c
+-/
 lemma IsStronglyPredictable.const {ι E : Type*} [Preorder ι] [OrderBot ι]
     [TopologicalSpace E] {c : E} {mΩ : MeasurableSpace Ω} {𝓕 : Filtration ι mΩ} :
     IsStronglyPredictable 𝓕 (fun _ _ ↦ c : ι → Ω → E) := by
   unfold IsStronglyPredictable
   fun_prop
 
+/--
+@isnad1 id=isstrong.2h7v.s6.b41107cd0e87 from=translated src=- shape=20027e95 vocab=d68b04dc
+-/
 @[to_additive (attr := to_fun)]
 lemma IsStronglyPredictable.mul [Mul E] [ContinuousMul E]
     {mΩ : MeasurableSpace Ω} {𝓕 : Filtration ι mΩ} {X Y : ι → Ω → E}
@@ -72,6 +78,9 @@ lemma IsStronglyPredictable.mul [Mul E] [ContinuousMul E]
   unfold IsStronglyPredictable at hX hY ⊢
   exact hX.mul hY
 
+/--
+@isnad1 id=isstrong.1h6v.s6.59c5d6e549af from=translated src=- shape=7e0ba304 vocab=3c4368af
+-/
 @[to_additive (attr := to_fun)]
 lemma IsStronglyPredictable.inv [Inv E] [ContinuousInv E]
     {mΩ : MeasurableSpace Ω} {𝓕 : Filtration ι mΩ} {X : ι → Ω → E}
@@ -80,6 +89,9 @@ lemma IsStronglyPredictable.inv [Inv E] [ContinuousInv E]
   unfold IsStronglyPredictable at hX ⊢
   exact hX.inv
 
+/--
+@isnad1 id=isstrong.2h7v.s6.2735f4b39831 from=translated src=- shape=20027e95 vocab=a6b1209b
+-/
 @[to_fun]
 lemma IsStronglyPredictable.sub [Sub E] [ContinuousSub E]
     {mΩ : MeasurableSpace Ω} {𝓕 : Filtration ι mΩ} {X Y : ι → Ω → E}
@@ -88,6 +100,9 @@ lemma IsStronglyPredictable.sub [Sub E] [ContinuousSub E]
   unfold IsStronglyPredictable at hX hY ⊢
   exact hX.sub hY
 
+/--
+@isnad1 id=isstrong.1h7v.s6.f6c991f3a73d from=translated src=- shape=047db168 vocab=356b9c01
+-/
 @[to_fun]
 lemma IsStronglyPredictable.const_smul [SMul ℝ E] [ContinuousSMul ℝ E]
     {mΩ : MeasurableSpace Ω} {𝓕 : Filtration ι mΩ} {X : ι → Ω → E} (c : ℝ)
@@ -121,6 +136,9 @@ private lemma roundDown_le_of_subset {s t : Finset ι} {i : ι} (h : s ⊆ t) :
 
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {𝓕 : Filtration ι mΩ}
 
+/--
+@isnad1 id=measurab.1h5v.s6.aef3cba62058 from=translated src=- shape=194ec42d vocab=aa57b743
+-/
 lemma measurableSet_predictable_univ_prod {s : Set Ω} (hs : MeasurableSet[𝓕 ⊥] s) :
     MeasurableSet[𝓕.predictable] (univ ×ˢ s) := by
   rw [(by simp : univ = {⊥} ∪ Ioi ⊥), union_prod]
@@ -128,6 +146,9 @@ lemma measurableSet_predictable_univ_prod {s : Set Ω} (hs : MeasurableSet[𝓕 
   · exact measurableSet_predictable_singleton_bot_prod hs
   · exact measurableSet_predictable_Ioi_prod hs
 
+/--
+@isnad1 id=measurab.1h6v.s7.92361458680c from=translated src=- shape=42b1c681 vocab=ecb3a4bc
+-/
 lemma measurableSet_predictable_Iic_prod {s : Set Ω} (hs : MeasurableSet[𝓕 ⊥] s) {i} :
     MeasurableSet[𝓕.predictable] (Iic i ×ˢ s) := by
   rw [(by simp : Iic i = {⊥} ∪ Ioc ⊥ i), union_prod]
@@ -187,6 +208,9 @@ private lemma StronglyAdapted.isStronglyPredictable_roundDown {times : Finset ι
 
 variable [TopologicalSpace ι] [OrderTopology ι] [SecondCountableTopology ι] [DenselyOrdered ι]
 
+/--
+@isnad1 id=isstrong.2h6v.s7.7a6fa3a350a4 from=translated src=- shape=839e3cb5 vocab=d3037414
+-/
 lemma StronglyAdapted.isStronglyPredictable_of_leftContinuous (h_adap : StronglyAdapted 𝓕 X)
     (h_cont : ∀ ω a, ContinuousWithinAt (X · ω) (Iio a) a) :
     IsStronglyPredictable 𝓕 X := by
@@ -241,11 +265,17 @@ def predictableRectangles [OrderBot ι] (𝓕 : Filtration ι m) :
 
 variable {Ω ι : Type*} {m : MeasurableSpace Ω} [LinearOrder ι] [OrderBot ι]
 
+/--
+@isnad1 id=mem.1h5v.s7.eb356e45dc68 from=translated src=- shape=9065df57 vocab=134aa36d
+-/
 lemma singletonBot_prod_mem_predictableRectangles (𝓕 : Filtration ι m) {A : Set Ω}
     (hA : MeasurableSet[𝓕 ⊥] A) :
     {⊥} ×ˢ A ∈ 𝓕.predictableRectangles :=
   Or.inl ⟨A, hA, rfl⟩
 
+/--
+@isnad1 id=mem.1h7v.s7.b9a6021cfcaf from=translated src=- shape=169e38aa vocab=b717f859
+-/
 lemma Ioc_prod_mem_predictableRectangles (𝓕 : Filtration ι m) (i j : ι) {A : Set Ω}
     (hA : MeasurableSet[𝓕 i] A) :
     Set.Ioc i j ×ˢ A ∈ 𝓕.predictableRectangles := by
@@ -268,7 +298,9 @@ private lemma disjoint_singletonBot_prod_Ioc_prod {i j : ι} {A B : Set Ω} :
   left
   exact Set.disjoint_left.mpr fun _ hx hx' ↦ (not_lt_of_ge bot_le) (hx ▸ hx'.1)
 
-/-- The predictable rectangles associated with a filtration form a semiring of sets. -/
+/-- The predictable rectangles associated with a filtration form a semiring of sets.
+@isnad1 id=issetsem.0h4v.s5.32f8d3e21719 from=translated src=- shape=4289a317 vocab=2edb17ce
+-/
 lemma isSetSemiring_predictableRectangles (𝓕 : Filtration ι m) :
     IsSetSemiring 𝓕.predictableRectangles where
   empty_mem := by

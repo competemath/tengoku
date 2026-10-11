@@ -33,15 +33,21 @@ namespace Causalean.Mathlib.Probability.SteinMethod
 /-- For every [real argument](hyp:x), the [Gaussian weight](goal) is $e^{-x^2/2}$. -/
 noncomputable def phi (x : ℝ) : ℝ := Real.exp (-x ^ 2 / 2)
 
-/-- At [every real argument](hyp:x), [the Gaussian weight is strictly positive](goal). -/
+/-- At [every real argument](hyp:x), [the Gaussian weight is strictly positive](goal).
+@isnad1 id=lt.0h1v.s3.ce7b5d0b334f from=translated src=- shape=8a62b088 vocab=5773863e
+-/
 theorem phi_pos (x : ℝ) : 0 < phi x := Real.exp_pos _
 
-/-- The Gaussian weight `φ(x) = e^{-x²/2}` is continuous on the real line. -/
+/-- The Gaussian weight `φ(x) = e^{-x²/2}` is continuous on the real line.
+@isnad1 id=continuo.0h0v.s3.f425ebc1018f from=translated src=- shape=e3d48bcb vocab=70ba8fba
+-/
 @[fun_prop]
 theorem phi_continuous : Continuous phi := by
   unfold phi; fun_prop
 
-/-- `∫ φ = √(2π)`. -/
+/-- `∫ φ = √(2π)`.
+@isnad1 id=eq.0h0v.s5.e46a8a274079 from=translated src=- shape=9cec6915 vocab=994b1d66
+-/
 theorem integral_phi : ∫ x, phi x = Real.sqrt (2 * π) := by
   have h := integral_gaussian (1 / 2 : ℝ)
   have he : (fun x : ℝ => Real.exp (-(1 / 2 : ℝ) * x ^ 2)) = phi := by
@@ -60,7 +66,9 @@ private theorem gaussianPDFReal_eq (x : ℝ) :
   · norm_num
   · ring
 
-/-- **Bridge:** `E[h(Z)] = (√(2π))⁻¹ ∫ h(x) φ(x) dx`. -/
+/-- **Bridge:** `E[h(Z)] = (√(2π))⁻¹ ∫ h(x) φ(x) dx`.
+@isnad1 id=eq.0h1v.s6.df4eaa41e3de from=translated src=- shape=90e65ebd vocab=85a5f169
+-/
 theorem gExpect_eq (h : ℝ → ℝ) :
     gExpect h = (Real.sqrt (2 * π))⁻¹ * ∫ x, h x * phi x := by
   unfold gExpect
@@ -71,7 +79,9 @@ theorem gExpect_eq (h : ℝ → ℝ) :
   rw [gaussianPDFReal_eq, smul_eq_mul]
   ring
 
-/-- The Gaussian weight `φ` is integrable over the real line. -/
+/-- The Gaussian weight `φ` is integrable over the real line.
+@isnad1 id=integrab.0h0v.s4.a2a37a9d4f60 from=translated src=- shape=e14394ff vocab=b3807e37
+-/
 @[fun_prop]
 theorem phi_integrable : Integrable phi := by
   have : phi = fun x : ℝ => Real.exp (-(1 / 2 : ℝ) * x ^ 2) := by
@@ -79,7 +89,9 @@ theorem phi_integrable : Integrable phi := by
   rw [this]
   exact integrable_exp_neg_mul_sq (by norm_num)
 
-/-- `h·φ` is integrable when `h` is continuous and bounded. -/
+/-- `h·φ` is integrable when `h` is continuous and bounded.
+@isnad1 id=integrab.2h2v.s6.293244d5314f from=translated src=- shape=6b9c4184 vocab=fa31c7d8
+-/
 theorem mul_phi_integrable {h : ℝ → ℝ} (hh : Continuous h) {C : ℝ}
     (hb : ∀ x, |h x| ≤ C) : Integrable (fun x => h x * phi x) := by
   have hdom : Integrable (fun x : ℝ => C * Real.exp (-(1 / 2 : ℝ) * x ^ 2)) :=
@@ -124,13 +136,17 @@ private theorem neg_phi_hasDerivAt (x : ℝ) : HasDerivAt (fun y => -phi y) (x *
   exact hcomp.fun_neg.congr_deriv (by ring)
 
 /-- The absolute value of any real number is at most the exponential of one quarter of its
-square. -/
+square.
+@isnad1 id=le.0h1v.s5.728767b34943 from=translated src=- shape=8cb5c27d vocab=8558e9e9
+-/
 theorem abs_le_exp_sq_div_four (x : ℝ) : |x| ≤ Real.exp (x ^ 2 / 4) := by
   have h1 : |x| ≤ 1 + x ^ 2 / 4 := by
     nlinarith [sq_nonneg (|x| / 2 - 1), sq_abs x, abs_nonneg x]
   exact h1.trans (by have := Real.add_one_le_exp (x ^ 2 / 4); linarith)
 
-/-- The map `x ↦ x·φ(x)` is integrable over the real line. -/
+/-- The map `x ↦ x·φ(x)` is integrable over the real line.
+@isnad1 id=integrab.0h0v.s5.699f3b822a6a from=translated src=- shape=ea8c438d vocab=d71a79d4
+-/
 @[fun_prop]
 theorem x_mul_phi_integrable : Integrable (fun x : ℝ => x * phi x) := by
   have hdom : Integrable (fun x : ℝ => Real.exp (-(1/4 : ℝ) * x ^ 2)) :=
@@ -184,7 +200,9 @@ private theorem integral_Iic_mul_phi (w : ℝ) : ∫ x in Set.Iic w, (-x) * phi 
     hderiv (neg_mul_phi_integrableOn_Iic w) phi_tendsto_atBot
   simpa using this
 
-/-- `-φ → 0` at `+∞`. -/
+/-- `-φ → 0` at `+∞`.
+@isnad1 id=tendsto.0h0v.s4.0fad3fc9e26f from=translated src=- shape=34e8d584 vocab=3680b94d
+-/
 theorem neg_phi_tendsto_atTop : Filter.Tendsto (fun x => -phi x) Filter.atTop (nhds 0) := by
   have : Filter.Tendsto phi Filter.atTop (nhds 0) := by
     unfold phi
@@ -256,7 +274,9 @@ private theorem sub_mul_phi_integrableOn_Iic (w : ℝ) :
   exact hw.add hx
 
 /-- At [a real cutoff](hyp:w), the upper-tail integral of the distance above the cutoff times the
-Gaussian weight [equals the weight minus the cutoff times its upper-tail mass](goal). -/
+Gaussian weight [equals the weight minus the cutoff times its upper-tail mass](goal).
+@isnad1 id=eq.0h1v.s6.4bcd6d02ef20 from=translated src=- shape=51960f10 vocab=20b6dd36
+-/
 theorem integral_Ioi_sub_mul_phi (w : ℝ) :
     ∫ x in Set.Ioi w, (x - w) * phi x =
       phi w - w * ∫ x in Set.Ioi w, phi x := by
@@ -275,7 +295,9 @@ theorem integral_Ioi_sub_mul_phi (w : ℝ) :
           rw [integral_Ioi_mul_phi, integral_const_mul]
 
 /-- At [a real cutoff](hyp:w), [the lower-tail integral of the distance below the cutoff times the
-Gaussian weight equals the cutoff times the lower-tail mass plus the weight at the cutoff](goal). -/
+Gaussian weight equals the cutoff times the lower-tail mass plus the weight at the cutoff](goal).
+@isnad1 id=eq.0h1v.s6.a33e28b0998b from=translated src=- shape=89454e1a vocab=52ee14b4
+-/
 theorem integral_Iic_sub_mul_phi (w : ℝ) :
     ∫ x in Set.Iic w, (w - x) * phi x =
       w * (∫ x in Set.Iic w, phi x) + phi w := by
@@ -321,7 +343,9 @@ private theorem diff_phi_integrableOn_Iic {h : ℝ → ℝ} (hh : Continuous h) 
 /-- If [a real function is continuous](hyp:hh), [is uniformly bounded](hyp:hb), [has derivative
 bounded in absolute value by a constant](hyp:hd), and [is differentiable](hyp:hdiff), then at [a
 real cutoff](hyp:w), [the absolute upper-tail integral of its increment times the Gaussian weight
-is at most that derivative bound times the corresponding Gaussian first-moment expression](goal). -/
+is at most that derivative bound times the corresponding Gaussian first-moment expression](goal).
+@isnad1 id=le.4h4v.s7.94ea9978121b from=translated src=- shape=725d0092 vocab=39773a56
+-/
 theorem abs_integral_diff_phi_Ioi_le {h : ℝ → ℝ} (hh : Continuous h) {C L : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L) (hdiff : Differentiable ℝ h)
     (w : ℝ) :
@@ -355,7 +379,9 @@ theorem abs_integral_diff_phi_Ioi_le {h : ℝ → ℝ} (hh : Continuous h) {C L 
 /-- If [a real function is continuous](hyp:hh), [is uniformly bounded](hyp:hb), [has derivative
 bounded in absolute value by a constant](hyp:hd), and [is differentiable](hyp:hdiff), then at [a
 real cutoff](hyp:w), [the absolute lower-tail integral of its increment times the Gaussian weight
-is at most that derivative bound times the corresponding Gaussian first-moment expression](goal). -/
+is at most that derivative bound times the corresponding Gaussian first-moment expression](goal).
+@isnad1 id=le.4h4v.s7.9dd57e1be590 from=translated src=- shape=3c5ae41e vocab=c868522b
+-/
 theorem abs_integral_diff_phi_Iic_le {h : ℝ → ℝ} (hh : Continuous h) {C L : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L) (hdiff : Differentiable ℝ h)
     (w : ℝ) :
@@ -387,7 +413,9 @@ theorem abs_integral_diff_phi_Iic_le {h : ℝ → ℝ} (hh : Continuous h) {C L 
           rw [integral_const_mul, integral_Iic_sub_mul_phi]
 
 /-- At [a real cutoff](hyp:w), [the lower- and upper-tail Gaussian-weight integrals sum to the
-square root of twice π](goal). -/
+square root of twice π](goal).
+@isnad1 id=eq.0h1v.s6.5989b39b21a4 from=translated src=- shape=8feef9a0 vocab=cabd2b85
+-/
 theorem integral_Iic_add_Ioi_phi (w : ℝ) :
     (∫ x in Set.Iic w, phi x) + ∫ x in Set.Ioi w, phi x = Real.sqrt (2 * π) := by
   have h := intervalIntegral.integral_Iic_add_Ioi
@@ -441,7 +469,9 @@ private theorem integral_centered_split_Ioi {h : ℝ → ℝ} (hh : Continuous h
 /-- If [a real function is continuous](hyp:hh) and [uniformly bounded](hyp:hb), then at [a real
 argument](hyp:w), [its Stein solution, multiplied by the square root of twice π, equals the
 exponentially weighted difference of the two products formed from the opposite Gaussian-tail
-masses and the corresponding centered tail integrals](goal). -/
+masses and the corresponding centered tail integrals](goal).
+@isnad1 id=eq.2h3v.s8.e6f0873c5391 from=translated src=- shape=76eaf5e8 vocab=e486b027
+-/
 theorem steinSol_weighted_identity {h : ℝ → ℝ} (hh : Continuous h) {C : ℝ}
     (hb : ∀ x, |h x| ≤ C) (w : ℝ) :
     Real.sqrt (2 * π) * steinSol h w =
@@ -476,7 +506,9 @@ theorem steinSol_weighted_identity {h : ℝ → ℝ} (hh : Continuous h) {C : �
     _ = E * (P * A - Q * B) := by ring
 
 /-- At [every real argument](hyp:w), [the Gaussian weight times the exponential of half the
-squared argument equals one](goal). -/
+squared argument equals one](goal).
+@isnad1 id=eq.0h1v.s5.9a560ec2d941 from=translated src=- shape=c745c2c2 vocab=e88fc4de
+-/
 theorem exp_mul_phi (w : ℝ) : Real.exp (w ^ 2 / 2) * phi w = 1 := by
   unfold phi
   rw [← Real.exp_add]
@@ -509,7 +541,9 @@ private theorem weighted_moment_cancel (w : ℝ) :
 /-- For a real-valued test function `h` that is [bounded in absolute value by a constant
 `C`](hyp:hb), [has derivative bounded in absolute value by a constant `L`](hyp:hd), and
 [is differentiable everywhere](hyp:hdiff), [the Stein equation's solution `steinSol h`, evaluated
-at any point `w`, is bounded in absolute value by the derivative bound `L`](goal). -/
+at any point `w`, is bounded in absolute value by the derivative bound `L`](goal).
+@isnad1 id=le.3h4v.s6.010fe543194a from=translated src=- shape=9a6c22c1 vocab=3f8a7a8f
+-/
 theorem steinSol_abs_le (h : ℝ → ℝ) {C L : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L) (hdiff : Differentiable ℝ h) (w : ℝ) :
     |steinSol h w| ≤ L := by

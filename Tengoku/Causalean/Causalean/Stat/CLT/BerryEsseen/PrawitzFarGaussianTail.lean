@@ -18,7 +18,9 @@ open MeasureTheory
 /-- For [a positive ratio ρ at most one hundredth](hyp:ρ,hρ,hsmall),
 [the integral from the reciprocal-ratio cutoff 1/(2ρ) to the fixed outer
 cutoff 12/(5ρ) of (1/(πt) + 5ρ/12)·exp(−t²/50) is at most one twentieth of
-ρ](goal). -/
+ρ](goal).
+@isnad1 id=le.2h1v.s7.7b56adec9aae from=translated src=- shape=3095e964 vocab=a77368e4
+-/
 theorem prawitz_far_gaussian_tail_budget
     (ρ : ℝ) (hρ : 0 < ρ) (hsmall : ρ ≤ 1 / 100) :
     (∫ t in (1 / (2 * ρ))..(12 / (5 * ρ)),

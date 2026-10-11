@@ -37,7 +37,9 @@ variable {d p K : ℕ}
 /-- **(L3) Gram ⟹ orthogonal.**  If `XᵀX = YᵀY` with `X`, `Y` invertible, then the
 transition matrix `O = Y X⁻¹` is orthogonal: `Oᵀ O = 1`.  This is the algebraic step that
 turns the equality of Gram matrices `BᵀB = (B' M)ᵀ(B' M)` into an orthogonality statement
-about `O = B' M B⁻¹`. -/
+about `O = B' M B⁻¹`.
+@isnad1 id=eq.1h3v.s8.9b906b20adcc from=translated src=- shape=8c513bf5 vocab=55854eb7
+-/
 theorem gram_to_orthogonal {q : ℕ} {X Y : Matrix (Fin q) (Fin q) ℝ}
     [Invertible X] [Invertible Y] (h : Xᵀ * X = Yᵀ * Y) :
     (Y * X⁻¹)ᵀ * (Y * X⁻¹) = 1 := by
@@ -50,12 +52,16 @@ theorem gram_to_orthogonal {q : ℕ} {X Y : Matrix (Fin q) (Fin q) ℝ}
 `B0` and every `Bint k` are upper triangular with strictly positive diagonal, hence have
 positive determinant and are invertible. -/
 
-/-- `B0` is upper triangular in the `BlockTriangular id` sense. -/
+/-- `B0` is upper triangular in the `BlockTriangular id` sense.
+@isnad1 id=blocktri.0h4v.s4.09968c58a825 from=translated src=- shape=ce85bd74 vocab=bab6988a
+-/
 theorem B0_blockTriangular (S : Solution d p K) : S.B0.BlockTriangular id := S.hB0up
 
 /-- `Bint k` is upper triangular: the perfect intervention only rewrites the target row
 (which keeps the diagonal at `λₖ` and zeroes the strictly-lower entries already zero in
-`B0`). -/
+`B0`).
+@isnad1 id=blocktri.0h5v.s5.58ff83e888fd from=translated src=- shape=13b2accc vocab=128f26c3
+-/
 theorem Bint_blockTriangular (S : Solution d p K) (k : Fin K) :
     (S.Bint k).BlockTriangular id := by
   intro i j hji
@@ -69,13 +75,17 @@ theorem Bint_blockTriangular (S : Solution d p K) (k : Fin K) :
     simp [stdVec, Pi.single_eq_of_ne hjne]
   · simp [stdVec, Pi.single_eq_of_ne hi]
 
-/-- `det B0 = ∏ᵢ (B0)ᵢᵢ > 0`. -/
+/-- `det B0 = ∏ᵢ (B0)ᵢᵢ > 0`.
+@isnad1 id=lt.0h4v.s5.2ecf7a99aa4e from=translated src=- shape=61859d2c vocab=ba6380cb
+-/
 theorem B0_det_pos (S : Solution d p K) : 0 < S.B0.det := by
   rw [Matrix.det_of_isUpperTriangular (B0_blockTriangular S)]
   exact Finset.prod_pos (fun i _ => S.hB0pos i)
 
 /-- `(Bint k)ᵢᵢ = (B0)ᵢᵢ` off the target, and `= λₖ` on the target — in both cases
-strictly positive. -/
+strictly positive.
+@isnad1 id=lt.0h6v.s5.66c007d351a5 from=translated src=- shape=e940665a vocab=8589d56d
+-/
 theorem Bint_diag_pos (S : Solution d p K) (k : Fin K) (i : Fin d) : 0 < S.Bint k i i := by
   rw [S.hInt k, Matrix.add_apply, Matrix.vecMulVec_apply]
   by_cases hi : i = S.target k
@@ -87,7 +97,9 @@ theorem Bint_diag_pos (S : Solution d p K) (k : Fin K) (i : Fin d) : 0 < S.Bint 
   · simp only [stdVec, Pi.single_eq_of_ne hi, zero_mul, add_zero]
     exact S.hB0pos i
 
-/-- `det (Bint k) = ∏ᵢ (Bint k)ᵢᵢ > 0`. -/
+/-- `det (Bint k) = ∏ᵢ (Bint k)ᵢᵢ > 0`.
+@isnad1 id=lt.0h5v.s5.edb3e04d9785 from=translated src=- shape=363d1a1c vocab=0b54699d
+-/
 theorem Bint_det_pos (S : Solution d p K) (k : Fin K) : 0 < (S.Bint k).det := by
   rw [Matrix.det_of_isUpperTriangular (Bint_blockTriangular S k)]
   exact Finset.prod_pos (fun i _ => Bint_diag_pos S k i)
@@ -112,12 +124,16 @@ noncomputable instance Bint_invertible (S : Solution d p K) (k : Fin K) :
 
 /-! ### The latent Gram matrix `H Hᵀ` is positive definite, hence invertible -/
 
-/-- `vecMul · H` is injective (full row rank of `H`). -/
+/-- `vecMul · H` is injective (full row rank of `H`).
+@isnad1 id=injectiv.0h4v.s5.4488eceaa21f from=translated src=- shape=28f17232 vocab=6dbecc76
+-/
 theorem vecMul_H_injective (S : Solution d p K) :
     Function.Injective (fun v => Matrix.vecMul v S.H) :=
   Matrix.vecMul_injective_iff.mpr (by rw [Matrix.row_def]; exact S.hH)
 
-/-- The latent Gram matrix `H Hᵀ` is positive definite. -/
+/-- The latent Gram matrix `H Hᵀ` is positive definite.
+@isnad1 id=posdef.0h4v.s6.bf7807d0e73b from=translated src=- shape=f1c6bfd3 vocab=e6056a61
+-/
 theorem HHt_posDef (S : Solution d p K) : (S.H * S.H.transpose).PosDef := by
   have := Matrix.PosDef.mul_conjTranspose_self S.H (vecMul_H_injective S)
   rwa [Matrix.conjTranspose_eq_transpose_of_trivial] at this
@@ -143,12 +159,16 @@ noncomputable instance B0H_gram_invertible (S : Solution d p K) :
   exact ((B0_invertible S).mul (HHt_invertible S)).mul
     (inferInstanceAs (Invertible S.B0.transpose))
 
-/-- `R := Hᵀ (H Hᵀ)⁻¹` is a right inverse of `H`: `H R = 1`. -/
+/-- `R := Hᵀ (H Hᵀ)⁻¹` is a right inverse of `H`: `H R = 1`.
+@isnad1 id=eq.0h4v.s7.23d5f10b6cb5 from=translated src=- shape=78881a9f vocab=90da6cea
+-/
 theorem H_mul_rightInv (S : Solution d p K) :
     S.H * (S.H.transpose * (S.H * S.H.transpose)⁻¹) = 1 := by
   rw [← Matrix.mul_assoc, Matrix.mul_inv_of_invertible]
 
-/-- `L := (H Hᵀ)⁻¹ H` is a left inverse of `Hᵀ`: `L Hᵀ = 1`. -/
+/-- `L := (H Hᵀ)⁻¹ H` is a left inverse of `Hᵀ`: `L Hᵀ = 1`.
+@isnad1 id=eq.0h4v.s7.dfbfa3eda1e3 from=translated src=- shape=967d90fe vocab=90da6cea
+-/
 theorem leftInv_mul_Ht (S : Solution d p K) :
     ((S.H * S.H.transpose)⁻¹ * S.H) * S.H.transpose = 1 := by
   rw [Matrix.mul_assoc, Matrix.inv_mul_of_invertible]
@@ -162,7 +182,9 @@ writing `C = B₀ H` (full row rank, `Θ₀ = Cᵀ C`), the Gram `C Cᵀ` is inv
 Applied to the primed system and substituting `Θ₀' = Θ₀`, this exhibits `H' = M H`. -/
 
 /-- **The recovery identity `H = W Θ₀`.**  With `C = B₀ H` and `Θ₀ = Cᵀ C`, the matrix
-`W = B₀⁻¹ (C Cᵀ)⁻¹ C` satisfies `W Θ₀ = H`. -/
+`W = B₀⁻¹ (C Cᵀ)⁻¹ C` satisfies `W Θ₀ = H`.
+@isnad1 id=eq.0h4v.s8.245d7bc1c4df from=translated src=- shape=310ddaef vocab=a957a8eb
+-/
 theorem H_eq_recover_mul_Theta0 (S : Solution d p K) :
     (S.B0⁻¹ * ((S.B0 * S.H) * (S.B0 * S.H).transpose)⁻¹ * (S.B0 * S.H)) * S.Theta0 = S.H := by
   have hΘ : S.Theta0 = (S.B0 * S.H).transpose * (S.B0 * S.H) := by
@@ -176,7 +198,9 @@ theorem H_eq_recover_mul_Theta0 (S : Solution d p K) :
 /-- **(L1) The change-of-basis matrix.**  There is an invertible `M` with `H' = M H`.
 `M` is built from the recovery identity for `H'` (`H' = W' Θ₀'`) by substituting
 `Θ₀' = Θ₀ = Hᵀ B₀ᵀ B₀ H`, giving `H' = (W' Hᵀ B₀ᵀ B₀) H`.  Invertibility follows from
-the symmetric matrix `N` with `H = N H'` by right-cancelling the full-row-rank `H`/`H'`. -/
+the symmetric matrix `N` with `H = N H'` by right-cancelling the full-row-rank `H`/`H'`.
+@isnad1 id=ex.1h5v.s6.9aa9326f8d39 from=translated src=- shape=b42e6eca vocab=a8778f99
+-/
 theorem exists_change_of_basis (S S' : Solution d p K) (hΘ0 : S.Theta0 = S'.Theta0) :
     ∃ M : Matrix (Fin d) (Fin d) ℝ, IsUnit M ∧ S'.H = M * S.H := by
   -- `M := W' Hᵀ B₀ᵀ B₀` from `H' = W' Θ₀' = W' Θ₀ = W' (Hᵀ B₀ᵀ B₀ H)`.
@@ -214,7 +238,9 @@ From `Θₖ = Θₖ'` and `H' = M H`, cancelling `Hᵀ` on the left and `H` on t
 the `d × d` identity `BₖᵀBₖ = (B'ₖ M)ᵀ (B'ₖ M)`. -/
 
 /-- Left-cancel `Hᵀ` and right-cancel `H` in `Hᵀ X H = Hᵀ Y H`.  `H` has full row rank,
-so `Hᵀ` has a left inverse and `H` a right inverse. -/
+so `Hᵀ` has a left inverse and `H` a right inverse.
+@isnad1 id=eq.1h6v.s7.c460517279f4 from=translated src=- shape=3fd4e26d vocab=d5da3df7
+-/
 theorem cancel_Ht_H (S : Solution d p K) {X Y : Matrix (Fin d) (Fin d) ℝ}
     (h : S.H.transpose * X * S.H = S.H.transpose * Y * S.H) : X = Y := by
   set R := S.H.transpose * (S.H * S.H.transpose)⁻¹ with hR
@@ -231,7 +257,9 @@ theorem cancel_Ht_H (S : Solution d p K) {X Y : Matrix (Fin d) (Fin d) ℝ}
 
 /-- **(L2) The per-context Gram identity.**  Given `H' = M H` and `Θₖ = Θₖ'` for the
 observational (`B₀`/`B'₀`) and interventional (`Bₖ`/`B'ₖ`) matrices, the `d × d` Gram
-identity `BᵀB = (B' M)ᵀ (B' M)` holds. -/
+identity `BᵀB = (B' M)ᵀ (B' M)` holds.
+@isnad1 id=eq.2h8v.s8.e876ede68943 from=translated src=- shape=81c3b334 vocab=d5da3df7
+-/
 theorem gram_identity (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) ℝ}
     (hM : S'.H = M * S.H) {B B' : Matrix (Fin d) (Fin d) ℝ}
     (hΘ : S.H.transpose * B.transpose * B * S.H
@@ -259,14 +287,18 @@ def cvec (S : Solution d p K) (k : Fin K) : Fin d → ℝ :=
   fun j => S.lam k * stdVec d (S.target k) j - S.B0 (S.target k) j
 
 /-- **Rank-one perturbation.**  `Bₖ − B₀ = e_{iₖ} cₖᵀ` (`Matrix.vecMulVec`): a perfect
-single-node intervention rewrites only the target row of `B₀`. -/
+single-node intervention rewrites only the target row of `B₀`.
+@isnad1 id=eq.0h5v.s6.29a4d57b225a from=translated src=- shape=b1f9203e vocab=f78c559c
+-/
 theorem Bint_sub_B0 (S : Solution d p K) (k : Fin K) :
     S.Bint k - S.B0 = Matrix.vecMulVec (stdVec d (S.target k)) (cvec S k) := by
   rw [S.hInt k, add_sub_cancel_left]; rfl
 
 /-- **(C, target-row form / sub-lemma (B)).**  The perturbation row is non-degenerate
 exactly when the intervention changes the precision matrix.  Under `Θₖ ≠ Θ₀`, `cₖ ≠ 0`
-(equivalently `Bₖ ≠ B₀`): if `cₖ = 0` then `Bₖ = B₀`, hence `Θₖ = Θ₀`. -/
+(equivalently `Bₖ ≠ B₀`): if `cₖ = 0` then `Bₖ = B₀`, hence `Θₖ = Θ₀`.
+@isnad1 id=ne.1h5v.s6.9096f8a01fbb from=translated src=- shape=b5065f34 vocab=b6f89053
+-/
 theorem cvec_ne_zero (S : Solution d p K) (k : Fin K) (hk : S.Theta k ≠ S.Theta0) :
     cvec S k ≠ 0 := by
   intro hc
@@ -279,7 +311,9 @@ theorem cvec_ne_zero (S : Solution d p K) (k : Fin K) (hk : S.Theta k ≠ S.Thet
 
 /-- **(B) Target row of `Bₖ`.**  `(Bₖ)ᵀ *ᵥ e_{iₖ} = λₖ • e_{iₖ}`: the `iₖ`-th row of a
 perfect-intervention matrix is `λₖ e_{iₖ}ᵀ` (the intervention zeroes the parent entries and
-sets the diagonal to `λₖ`). -/
+sets the diagonal to `λₖ`).
+@isnad1 id=eq.0h5v.s6.be4e1eb1392f from=translated src=- shape=ad000ade vocab=50c73643
+-/
 theorem Bint_transpose_mulVec_target (S : Solution d p K) (k : Fin K) :
     (S.Bint k).transpose *ᵥ stdVec d (S.target k) = (S.lam k) • stdVec d (S.target k) := by
   funext j
@@ -297,7 +331,9 @@ theorem Bint_transpose_mulVec_target (S : Solution d p K) (k : Fin K) :
 matrices is a difference of two rank-one (outer-product) matrices:
 `BₖᵀBₖ − B₀ᵀB₀ = λₖ² (e_{iₖ} e_{iₖ}ᵀ) − wₖ wₖᵀ` where `wₖ = B₀ᵀ *ᵥ e_{iₖ}` is the `iₖ`-th
 row of `B₀` (supported on `Pa(iₖ)`).  This is the latent analogue of `key_identity`, and
-the structural engine of the orthogonal-correctness core. -/
+the structural engine of the orthogonal-correctness core.
+@isnad1 id=eq.0h5v.s8.ee39c807f4f9 from=translated src=- shape=5492cfb7 vocab=872413e1
+-/
 theorem latent_key_identity (S : Solution d p K) (k : Fin K) :
     (S.Bint k).transpose * S.Bint k - S.B0.transpose * S.B0
       = (S.lam k) ^ 2 • Matrix.vecMulVec (stdVec d (S.target k)) (stdVec d (S.target k))
@@ -329,7 +365,9 @@ theorem latent_key_identity (S : Solution d p K) (k : Fin K) :
   abel
 
 /-- **(D) The transition factor is orthogonal.**  From the per-context Gram identity
-`BₖᵀBₖ = (B'ₖ M)ᵀ(B'ₖ M)` and invertibility, `Oₖ = B'ₖ M Bₖ⁻¹` satisfies `Oₖᵀ Oₖ = 1`. -/
+`BₖᵀBₖ = (B'ₖ M)ᵀ(B'ₖ M)` and invertibility, `Oₖ = B'ₖ M Bₖ⁻¹` satisfies `Oₖᵀ Oₖ = 1`.
+@isnad1 id=eq.2h8v.s9.ba289a9ce75d from=translated src=- shape=1a60beae vocab=f0b50949
+-/
 theorem transition_orthogonal (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) ℝ}
     (hM : S'.H = M * S.H) {B B' : Matrix (Fin d) (Fin d) ℝ} [Invertible B] [Invertible (B' * M)]
     (hΘ : S.H.transpose * B.transpose * B * S.H
@@ -346,7 +384,9 @@ likewise).  This is the algebraic content of (R1): the change-of-basis `M` conju
 primed Gram differences into the unprimed ones. -/
 
 /-- The per-context Gram identity in the symmetric form `BᵀB = Mᵀ B'ᵀ B' M` (the conjugation
-form of `gram_identity`). -/
+form of `gram_identity`).
+@isnad1 id=eq.2h8v.s8.c7964c059d37 from=translated src=- shape=ef0ae968 vocab=d5da3df7
+-/
 theorem gram_identity_conj (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) ℝ}
     (hM : S'.H = M * S.H) {B B' : Matrix (Fin d) (Fin d) ℝ}
     (hΘ : S.H.transpose * B.transpose * B * S.H
@@ -356,7 +396,9 @@ theorem gram_identity_conj (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) �
   simp only [Matrix.mul_assoc]
 
 /-- **(R1) Latent Gram-difference transport.**  `Bₖᵀ Bₖ − B₀ᵀ B₀ = Mᵀ (B'ₖᵀ B'ₖ − B'₀ᵀ B'₀) M`.
-Subtracting the observational conjugation identity from the `k`-th one. -/
+Subtracting the observational conjugation identity from the `k`-th one.
+@isnad1 id=eq.3h7v.s8.a42156b90bcf from=translated src=- shape=3d7148c5 vocab=7c638479
+-/
 theorem gram_diff_transport (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) ℝ}
     (hM : S'.H = M * S.H) (hΘ0 : S.Theta0 = S'.Theta0) (hΘ : ∀ k, S.Theta k = S'.Theta k)
     (k : Fin K) :
@@ -375,7 +417,9 @@ theorem gram_diff_transport (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) 
     exact hΘ0
   rw [hk, h0, Matrix.mul_sub, Matrix.sub_mul]
 
-/-- `Mᵀ (u vᵀ) M = (Mᵀ u)(Mᵀ v)ᵀ` (conjugation of a rank-one matrix by `Mᵀ · M`). -/
+/-- `Mᵀ (u vᵀ) M = (Mᵀ u)(Mᵀ v)ᵀ` (conjugation of a rank-one matrix by `Mᵀ · M`).
+@isnad1 id=eq.0h4v.s7.281b78026fb8 from=translated src=- shape=6bc99263 vocab=14fae938
+-/
 theorem conj_vecMulVec_transpose {q : ℕ} (M : Matrix (Fin q) (Fin q) ℝ) (u v : Fin q → ℝ) :
     M.transpose * Matrix.vecMulVec u v * M
       = Matrix.vecMulVec (M.transpose *ᵥ u) (M.transpose *ᵥ v) := by
@@ -391,7 +435,9 @@ relation](hyp:hM), [observational and interventional precision equality](hyp:hΘ
 `Δₖ = Mᵀ Δ'ₖ M` (`gram_diff_transport`) with the latent key identity (C) on both sides,
 `Δₖ = λₖ²(eₖeₖᵀ) − wₖwₖᵀ` and `Δ'ₖ = λ'ₖ²(e'ₖe'ₖᵀ) − w'ₖw'ₖᵀ`, gives the rank-≤2 identity
 in fully outer-product form, with the primed outer products transported by `Mᵀ`:
-`λₖ²(eₖeₖᵀ) − wₖwₖᵀ = λ'ₖ²((Mᵀe'ₖ)(Mᵀe'ₖ)ᵀ) − (Mᵀw'ₖ)(Mᵀw'ₖ)ᵀ`. -/
+`λₖ²(eₖeₖᵀ) − wₖwₖᵀ = λ'ₖ²((Mᵀe'ₖ)(Mᵀe'ₖ)ᵀ) − (Mᵀw'ₖ)(Mᵀw'ₖ)ᵀ`.
+@isnad1 id=eq.3h7v.s9.3be6bd610ef8 from=translated src=- shape=4a421629 vocab=b08449ff
+-/
 theorem central_rank2_eq (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) ℝ}
     (hM : S'.H = M * S.H) (hΘ0 : S.Theta0 = S'.Theta0) (hΘ : ∀ k, S.Theta k = S'.Theta k)
     (k : Fin K) :
@@ -409,7 +455,9 @@ theorem central_rank2_eq (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) ℝ
 
 /-- `Mᵀ *ᵥ eᵢ` is the `i`-th **row** of `M`, viewed as a vector: `(Mᵀ *ᵥ eᵢ) j = Mᵢⱼ`.
 This is the bridge that turns the transported outer products of `central_rank2_eq` into
-statements about the rows of `M`. -/
+statements about the rows of `M`.
+@isnad1 id=eq.0h3v.s5.2fee1336fc39 from=translated src=- shape=2ccc0cac vocab=bdd548e4
+-/
 theorem transpose_mulVec_stdVec {n : ℕ} (M : Matrix (Fin n) (Fin n) ℝ) (i : Fin n) :
     M.transpose *ᵥ stdVec n i = (fun j => M i j) := by
   funext j
@@ -419,7 +467,9 @@ theorem transpose_mulVec_stdVec {n : ℕ} (M : Matrix (Fin n) (Fin n) ℝ) (i : 
 (no parents: `(B₀)_{iₖ,j} = 0` for every `j ≠ iₖ`), then `wₖ = B₀ᵀ *ᵥ e_{iₖ} = β e_{iₖ}`
 with `β = (B₀)_{iₖ,iₖ} > 0`.  This collapses the latent key identity (C) to the rank-one
 `Δₖ = (λₖ² − β²) e_{iₖ} e_{iₖ}ᵀ`, the base case of the monomial induction (R3): the
-transported equation then forces the `i'ₖ`-th row of `M` to be a multiple of `e_{iₖ}`. -/
+transported equation then forces the `i'ₖ`-th row of `M` to be a multiple of `e_{iₖ}`.
+@isnad1 id=eq.1h5v.s6.c5a4b10e7c13 from=translated src=- shape=f196767e vocab=ef2dc474
+-/
 theorem B0_source_row (S : Solution d p K) (i : Fin d)
     (hsrc : ∀ j, j ≠ i → S.B0 i j = 0) :
     S.B0.transpose *ᵥ stdVec d i = (S.B0 i i) • stdVec d i := by
@@ -442,7 +492,9 @@ then subtracting the observational equation isolates the rank-one rows and force
 `i'ₖ = σ(iₖ)`. -/
 
 /-- `permMat σ *ᵥ eᵢ = e_{σ i}`: the permutation matrix sends the `i`-th basis vector to the
-`σ(i)`-th. -/
+`σ(i)`-th.
+@isnad1 id=eq.0h3v.s6.4e4e7de10a17 from=translated src=- shape=b583d149 vocab=dc08b22e
+-/
 theorem permMat_mulVec_stdVec (σ : Equiv.Perm (Fin d)) (i : Fin d) :
     permMat σ *ᵥ stdVec d i = stdVec d (σ i) := by
   rw [stdVec, Matrix.mulVec_single_one]
@@ -450,7 +502,9 @@ theorem permMat_mulVec_stdVec (σ : Equiv.Perm (Fin d)) (i : Fin d) :
   simp only [permMat, Matrix.col_apply, Matrix.of_apply, stdVec, Pi.single_apply]
 
 /-- A signed permutation matrix sends `eᵢ` to the signed basis vector
-`ν (σ i) • e_{σ i}`. -/
+`ν (σ i) • e_{σ i}`.
+@isnad1 id=eq.0h4v.s7.e731fbed4b05 from=translated src=- shape=7d66f0fd vocab=1deba61a
+-/
 theorem diag_permMat_mulVec_stdVec (σ : Equiv.Perm (Fin d)) (ν : Fin d → ℝ) (i : Fin d) :
     (Matrix.diagonal ν * permMat σ) *ᵥ stdVec d i =
       (ν (σ i)) • stdVec d (σ i) := by
@@ -463,7 +517,9 @@ theorem diag_permMat_mulVec_stdVec (σ : Equiv.Perm (Fin d)) (ν : Fin d → ℝ
     rw [stdVec, Pi.single_eq_same, mul_one]
   · rw [stdVec, Pi.single_eq_of_ne ha, mul_zero, mul_zero]
 
-/-- Left multiplication by a diagonal matrix rescales rows. -/
+/-- Left multiplication by a diagonal matrix rescales rows.
+@isnad1 id=eq.0h5v.s6.1c619f57b029 from=translated src=- shape=762a96b3 vocab=0564bcf5
+-/
 theorem diagonal_mul_apply (ν : Fin d → ℝ) (X : Matrix (Fin d) (Fin d) ℝ)
     (a b : Fin d) :
     (Matrix.diagonal ν * X) a b = ν a * X a b := by
@@ -481,7 +537,9 @@ Then the primed target equals the relabelled target: `i'ₖ = σ(iₖ)`.
 Subtracting the two relations gives `(B'ₖ − B'₀) M = diagonal ν permMat σ (Bₖ − B₀)`,
 i.e. `e_{i'ₖ} (Mᵀ c'ₖ)ᵀ = (ν_{σ iₖ} e_{σ iₖ}) cₖᵀ` as rank-one matrices.  Since
 `cₖ ≠ 0` (`cvec_ne_zero`) and `ν_{σ iₖ} ≠ 0`, comparing the `(σ iₖ, ·)` row forces the
-basis index `i'ₖ` to be `σ iₖ`. -/
+basis index `i'ₖ` to be `σ iₖ`.
+@isnad1 id=eq.4h9v.s8.0b73e2127d0a from=translated src=- shape=0b004b03 vocab=e7876737
+-/
 theorem target_readoff (S S' : Solution d p K) {M : Matrix (Fin d) (Fin d) ℝ}
     {σ : Equiv.Perm (Fin d)} {ν : Fin d → ℝ} (k : Fin K) (hk : S.Theta k ≠ S.Theta0)
     (hν : ∀ i, ν i = 1 ∨ ν i = -1)
@@ -518,7 +576,9 @@ the rank-one targets `e_{i_{kof n}} = e_n` sum to the identity-weighting `diagon
 rows `w_n = B₀ᵀ e_n` sum, via `fact_transpose_mul`, to `B₀ᵀB₀`. -/
 
 /-- `∑ n, (c n) • (e_n e_nᵀ) = diagonal c` (the rank-one standard-basis outer products sum to a
-diagonal matrix). -/
+diagonal matrix).
+@isnad1 id=eq.0h2v.s6.e6eeef1b4333 from=translated src=- shape=c41aea6b vocab=7b134f86
+-/
 theorem sum_smul_vecMulVec_stdVec_eq_diagonal {n : ℕ} (c : Fin n → ℝ) :
     (∑ i, (c i) • Matrix.vecMulVec (stdVec n i) (stdVec n i)) = Matrix.diagonal c := by
   ext a b
@@ -533,7 +593,9 @@ theorem sum_smul_vecMulVec_stdVec_eq_diagonal {n : ℕ} (c : Fin n → ℝ) :
 
 /-- **(S1) The unprimed SUM TRICK.**  Let `kof` be a section of the surjective target map
 (`S.target (kof n) = n`).  Summing the latent key identity over `kof` gives
-`∑ₙ (B_{kof n}ᵀ B_{kof n} − B₀ᵀB₀) = diagonal(d) − B₀ᵀB₀` with `d n = (λ_{kof n})²`. -/
+`∑ₙ (B_{kof n}ᵀ B_{kof n} − B₀ᵀB₀) = diagonal(d) − B₀ᵀB₀` with `d n = (λ_{kof n})²`.
+@isnad1 id=eq.1h5v.s8.56366f095482 from=translated src=- shape=a19e9bf5 vocab=515c5316
+-/
 theorem sum_latent_diff_unprimed (S : Solution d p K)
     (kof : Fin d → Fin K) (hkof : ∀ n, S.target (kof n) = n) :
     (∑ n, ((S.Bint (kof n)).transpose * S.Bint (kof n) - S.B0.transpose * S.B0))
@@ -556,7 +618,9 @@ theorem sum_latent_diff_unprimed (S : Solution d p K)
 
 /-- **(S1') The primed SUM TRICK with reindexed targets.**  If the primed targets along
 the same section `kof` are `σ n`, summing the primed latent key identities gives a diagonal
-whose `m`-th entry comes from the unique preimage `σ.symm m`. -/
+whose `m`-th entry comes from the unique preimage `σ.symm m`.
+@isnad1 id=eq.1h6v.s8.0999a61cf05e from=translated src=- shape=48cce19e vocab=d1da51d4
+-/
 theorem sum_latent_diff_primed_reindexed (S' : Solution d p K)
     (kof : Fin d → Fin K) (σ : Equiv.Perm (Fin d))
     (hσtarget : ∀ n, S'.target (kof n) = σ n) :
@@ -599,7 +663,9 @@ theorem sum_latent_diff_primed_reindexed (S' : Solution d p K)
   rw [hdiag, hgram, sum_smul_vecMulVec_stdVec_eq_diagonal, ← fact_transpose_mul S'.B0]
 
 /-- Summing the per-context Gram-difference transport pulls the common conjugation
-`Mᵀ · _ · M` outside the finite sum. -/
+`Mᵀ · _ · M` outside the finite sum.
+@isnad1 id=eq.3h7v.s8.f025d01f476f from=translated src=- shape=97bef9ef vocab=7a2f30d2
+-/
 theorem sum_gram_diff_transport (S S' : Solution d p K)
     {M : Matrix (Fin d) (Fin d) ℝ} (hM : S'.H = M * S.H)
     (hΘ0 : S.Theta0 = S'.Theta0) (hΘ : ∀ k, S.Theta k = S'.Theta k)

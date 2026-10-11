@@ -9,12 +9,18 @@ open MeasureTheory
 variable {T Ω E : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}
     {X Y : T → Ω → E}
 
+/--
+@isnad1 id=eventual.1h8v.s6.bb74c0f95165 from=translated src=- shape=e9f3905a vocab=17fae960
+-/
 lemma modification_of_indistinguishable (h : ∀ᵐ ω ∂P, ∀ t, X t ω = Y t ω) :
     ∀ t, X t =ᵐ[P] Y t := by
   intro t
   filter_upwards [h] with ω hω using hω t
 
 open TopologicalSpace in
+/--
+@isnad1 id=eventual.3h7v.s7.dd5d71207f20 from=translated src=- shape=c37a7439 vocab=906201c8
+-/
 lemma indistinguishable_of_modification [TopologicalSpace E] [TopologicalSpace T]
     [SeparableSpace T] [T2Space E]
     (hX : ∀ᵐ ω ∂P, Continuous fun t ↦ X t ω) (hY : ∀ᵐ ω ∂P, Continuous fun t ↦ Y t ω)
@@ -28,6 +34,9 @@ lemma indistinguishable_of_modification [TopologicalSpace E] [TopologicalSpace T
   rw [Continuous.ext_on D_dense hX hY h]
 
 open scoped Topology in
+/--
+@isnad1 id=le.2h3v.s5.7c13bbdf144c from=translated src=- shape=e60b9b26 vocab=eb50bec0
+-/
 lemma subset_closure_dense_inter {α : Type*} [TopologicalSpace α] {T' U : Set α}
     (hT'_dense : Dense T') (hU : IsOpen U) :
     U ⊆ closure (T' ∩ U) := by
@@ -37,6 +46,9 @@ lemma subset_closure_dense_inter {α : Type*} [TopologicalSpace α] {T' U : Set 
   exact hT'_dense.inter_nhds_nonempty htU
 
 open TopologicalSpace in
+/--
+@isnad1 id=eventual.4h8v.s7.3603cf5fe708 from=translated src=- shape=de23217f vocab=f1a48c25
+-/
 lemma indistinguishable_of_modification_on [TopologicalSpace E] [TopologicalSpace T]
     [SeparableSpace T] [T2Space E] {U : Set T} (hU : IsOpen U)
     (hX : ∀ᵐ ω ∂P, ContinuousOn (X · ω) U) (hY : ∀ᵐ ω ∂P, ContinuousOn (Y · ω) U)

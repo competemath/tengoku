@@ -60,7 +60,9 @@ open MeasureTheory ProbabilityTheory
 `Y`](hyp:hindep). Suppose the family of "bad" subsets of `β` indexed by ω has
 [an `m_A`-measurable joint dependence on `(ω, ·)`](hyp:hBad) and
 [each individual bad set has `ν`-mass at most δ](hyp:hsec). Then [the random event
-where `Y ω` falls in the ω-dependent bad set also has `μ`-mass at most δ](goal). -/
+where `Y ω` falls in the ω-dependent bad set also has `μ`-mass at most δ](goal).
+@isnad1 id=le.6h8v.s7.47c112234f52 from=translated src=- shape=993d41aa vocab=8ea04237
+-/
 theorem randomParam_event_le
     {Ω β : Type*} [mΩ : MeasurableSpace Ω] [mβ : MeasurableSpace β]
     {μ : Measure Ω} [IsProbabilityMeasure μ]

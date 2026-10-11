@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "71302be65808d738962626aa836b789c9659d78ce19cd10d8622abf8f8038570",
+ "library": "misc-yd",
+ "lint_mode": "proposed",
+ "modules": 7,
+ "part": 1,
+ "theorems": 79
+}
