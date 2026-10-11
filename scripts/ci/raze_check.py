@@ -56,11 +56,8 @@ def library_modules(rev: str, ns: str) -> dict[str, str]:
 
 
 def read_marker(head: str, path: str) -> dict:
-    data = blob(head, path)
-    if data is None:
-        fail(f"{path}: the marker is not readable at the head")
     try:
-        m = json.loads(data)
+        m = json.loads(blob(head, path) or b"")  # the diff lists the marker as added, so it is there; an unreadable one is not JSON
     except Exception as e:  # noqa: BLE001
         fail(f"{path}: not JSON: {e}")
     if not isinstance(m, dict) or set(m) - {"library", "modules", "all", "reason"}:

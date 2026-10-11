@@ -58,7 +58,7 @@ def umbrella(keys) -> str:
 
 
 class Raze(unittest.TestCase):
-    def repo(self, other_importing=None, parts=True, ghost=False):
+    def repo(self, other_importing=None, parts=True, ghost=False, garbage=False):
         r = Repo()
         r.write("lean-toolchain", TOOLCHAIN + "\n")
         r.write("schemas/sources.json", json.dumps({"corpora": {}}))
@@ -70,7 +70,9 @@ class Raze(unittest.TestCase):
         r.write("Tengoku/FxLib.lean", umbrella(MODULES))
         r.write(
             "data/intake/fx-lib/manifest.jsonl",
-            "".join(record(k) for k in MODULES) + (json.dumps({"name": "Fx.ghost", "module": P + "Ghost"}) + "\n" if ghost else ""),
+            "".join(record(k) for k in MODULES)
+            + (json.dumps({"name": "Fx.ghost", "module": P + "Ghost"}) + "\n" if ghost else "")
+            + ('not json at all "source_url"\n' if garbage else ""),
         )
         r.write("data/intake/fx-lib/report.json", json.dumps({"library": "fx-lib", "part": 1}) + "\n")
         if parts:
@@ -272,6 +274,8 @@ class Raze(unittest.TestCase):
             {"reason": "short"},
             {"all": True},  # both
             {"extra": 1},
+            {"modules": [mod_name("C"), mod_name("C")]},  # a module twice
+            {"modules": {mod_name("C"): 1}},  # not a list (a dict iterates over the same names)
             {"library": ""},
         ):
             r = self.repo()
@@ -283,6 +287,47 @@ class Raze(unittest.TestCase):
         rc, out = self.judge(r)
         self.assertEqual(rc, 1)
         self.assertIn("not both and not neither", out)
+
+    def test_a_marker_that_is_not_json_is_refused(self):
+        r = self.repo()
+        self.raze(r, ["C"])
+        r.write("data/raze/fx-1.json", "{not json")
+        r.commit("break the marker")
+        rc, out = self.judge(r)
+        self.assertEqual(rc, 1)
+        self.assertIn("not JSON", out)
+
+    def test_a_library_with_a_manifest_but_no_module_at_the_base_is_refused(self):
+        r = self.repo()
+        r.write("data/intake/zz-lib/manifest.jsonl", "")
+        r.commit("a manifest with no module")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        r.write(
+            "data/raze/zz.json",
+            json.dumps({"library": "zz-lib", "modules": ["Tengoku.ZzLib.A"], "reason": "a library that has no module at all"}),
+        )
+        r.commit("raze")
+        rc, out = self.judge(r)
+        self.assertEqual(rc, 1)
+        self.assertIn("has no module at the base", out)
+
+    def test_the_umbrella_and_the_manifest_must_survive_a_partial_raze(self):
+        r = self.repo()
+        self.raze(r, ["C"])
+        (r.dir / "Tengoku/FxLib.lean").unlink()
+        r.commit("delete the umbrella")
+        rc, out = self.judge(r)
+        self.assertEqual(rc, 1)
+        self.assertIn("Tengoku/FxLib.lean: not readable at the base and the head", out)
+        r = self.repo()
+        self.raze(r, ["C"])
+        (r.dir / "data/intake/fx-lib/manifest.jsonl").unlink()
+        r.commit("delete the manifest")
+        rc, out = self.judge(r)
+        self.assertEqual(rc, 1)
+        self.assertIn("manifest.jsonl: not readable at the head", out)
 
     def test_only_a_library_that_arrived_as_an_intake_bundle_can_be_razed(self):
         r = self.repo()
@@ -373,6 +418,13 @@ class Raze(unittest.TestCase):
         )  # the record of a module that STAYS loses its source_url line
         r.commit("a kept record goes")
         self.assertEqual(r.gate("credits.py", "main", "pr", "--raze")[0], 1)
+
+    def test_a_removed_manifest_line_that_is_not_json_is_a_credit_that_goes_with_nothing(self):
+        r = self.repo(garbage=True)
+        self.raze(r, ["C"])  # the manifest is rewritten from the modules: the line that names no module goes with the rest
+        rc, out = r.gate("credits.py", "main", "pr", "--raze")
+        self.assertEqual(rc, 1)
+        self.assertIn("source_url", out)
 
     def test_the_queue_builds_the_library_without_the_modules_and_has_no_root_for_a_whole_raze(self):
         r = self.repo()
