@@ -72,7 +72,9 @@ def FactorSupClose (factorM factorN : Accessor V X) (ε : ℝ) : Prop :=
   ∀ i x, |factorN i x - factorM i x| < ε
 
 /-- A [nonzero local contrast witness](hyp:w) for [a factor accessor](hyp:factorM) remains
-[nonzero throughout some positive uniform neighborhood](goal). -/
+[nonzero throughout some positive uniform neighborhood](goal).
+@isnad1 id=ex.0h6v.s6.b43ea58f7039 from=translated src=- shape=e60dd287 vocab=4ef235fe
+-/
 theorem EdgeWitness.eventually_nonzero [Fintype V]
     (factorM : Accessor V X) {i j : V} (w : EdgeWitness factorM i j) :
     ∃ ε > 0, ∀ factorN : Accessor V X,

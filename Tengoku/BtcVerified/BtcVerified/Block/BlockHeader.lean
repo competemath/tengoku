@@ -64,7 +64,9 @@ instance instCodecBlockHeader : Codec BlockHeader :=
   Codec.ofEquiv BlockHeader.equivProd inferInstance
 
 /-- A block header encodes to exactly 80 bytes: the fixed size of the
-proof-of-work preimage. -/
+proof-of-work preimage.
+@isnad1 id=eq.0h1v.s3.305e594bd487 from=translated src=- shape=6b3487b1 vocab=3b112780
+-/
 theorem BlockHeader.encode_length (h : BlockHeader) : (Codec.encode h).length = 80 := by
   simp [Codec.encode, List.length_append, encodeBitVecLE_length]
 

@@ -26,7 +26,9 @@ open scoped Topology
 namespace Causalean.Mathlib.Analysis.Complex.ArgumentPrinciple
 
 /-- A complex function analytic on a neighborhood of a closed disk and nonzero on its boundary
-has only finitely many zeros strictly inside that disk. -/
+has only finitely many zeros strictly inside that disk.
+@isnad1 id=finite.3h3v.s6.30b3d4653592 from=translated src=- shape=ecf791d9 vocab=40d50aa5
+-/
 theorem finite_interiorZeros {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hR : 0 < R) (hf : AnalyticOnNhd ℂ f (closedBall c R))
     (hboundary : ∀ z ∈ sphere c R, f z ≠ 0) :
@@ -56,7 +58,9 @@ theorem finite_interiorZeros {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
 
 open Classical in
 /-- Under disk analyticity and boundary nonvanishing, the function assigning each interior zero
-its analytic multiplicity and all other points zero has finite support. -/
+its analytic multiplicity and all other points zero has finite support.
+@isnad1 id=hasfinit.3h3v.s7.6ec96de1b68c from=translated src=- shape=bc42b89e vocab=82350b6f
+-/
 theorem finiteSupport_orderWithinBall {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hR : 0 < R) (hf : AnalyticOnNhd ℂ f (closedBall c R))
     (hboundary : ∀ z ∈ sphere c R, f z ≠ 0) :
@@ -70,7 +74,9 @@ theorem finiteSupport_orderWithinBall {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
   · simp [hzb] at hz
 
 /-- A boundary-zero-free analytic function that vanishes somewhere strictly inside the disk has
-a strictly positive multiplicity-weighted interior zero count. -/
+a strictly positive multiplicity-weighted interior zero count.
+@isnad1 id=lt.4h3v.s7.61309fc69f55 from=translated src=- shape=4920d8d1 vocab=8dfce900
+-/
 theorem zeroMultiplicityCount_pos_of_exists_zero {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hR : 0 < R) (hf : AnalyticOnNhd ℂ f (closedBall c R))
     (hboundary : ∀ z ∈ sphere c R, f z ≠ 0)

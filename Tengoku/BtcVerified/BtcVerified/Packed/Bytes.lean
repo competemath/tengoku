@@ -29,7 +29,9 @@ contents (hashes, script bytes, witness items). -/
 def pushBytes (bs : List UInt8) (acc : ByteArray) : ByteArray :=
   bs.foldl ByteArray.push acc
 
-/-- Appending a byte list appends exactly those bytes. -/
+/-- Appending a byte list appends exactly those bytes.
+@isnad1 id=eq.0h2v.s4.44802d321c7c from=translated src=- shape=00155db8 vocab=18cf089d
+-/
 theorem toList_pushBytes (bs : List UInt8) (acc : ByteArray) :
     (pushBytes bs acc).toList = acc.toList ++ bs := by
   induction bs generalizing acc with
@@ -48,7 +50,9 @@ def readBytes (n : Nat) (s : ByteSlice) : Option (Bytes n × ByteSlice) :=
       s.drop n)
   else none
 
-/-- The packed width read, through the abstraction, is the spec's. -/
+/-- The packed width read, through the abstraction, is the spec's.
+@isnad1 id=eq.0h2v.s4.e1fbda6a436d from=translated src=- shape=dd717a01 vocab=66024e80
+-/
 theorem abstractParse_readBytes (n : Nat) (s : ByteSlice) :
     abstractParse (readBytes n s) = decodeBytes n s.toList := by
   rw [readBytes, decodeBytes]

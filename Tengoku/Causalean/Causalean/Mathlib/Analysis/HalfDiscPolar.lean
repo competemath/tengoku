@@ -24,7 +24,9 @@ This is explicit because the product type `ℝ × ℝ` carries the max product n
 noncomputable def planarRadius (z : ℝ × ℝ) : ℝ :=
   Real.sqrt (z.1 ^ 2 + z.2 ^ 2)
 
-/-- The Euclidean radius on the coordinate plane is Borel measurable. -/
+/-- The Euclidean radius on the coordinate plane is Borel measurable.
+@isnad1 id=measurab.0h0v.s3.6525aabd242f from=translated src=- shape=8e22ceaf vocab=b998bd15
+-/
 -- @node: planarRadius_measurable
 @[fun_prop]
 lemma planarRadius_measurable : Measurable planarRadius := by
@@ -39,7 +41,9 @@ Only its values on the open upper half-plane are used below. -/
 noncomputable def planarAngle (z : ℝ × ℝ) : ℝ :=
   (polarCoord z).2
 
-/-- The cosine has zero integral on a half-circle. -/
+/-- The cosine has zero integral on a half-circle.
+@isnad1 id=eq.0h0v.s5.f7114d494365 from=translated src=- shape=aadd246c vocab=602f34fd
+-/
 lemma integral_cos_zero_to_pi :
     (∫ θ : ℝ in Ioc 0 Real.pi, Real.cos θ) = 0 := by
   rw [← intervalIntegral.integral_of_le Real.pi_pos.le]
@@ -48,7 +52,9 @@ lemma integral_cos_zero_to_pi :
     (Real.continuous_cos.intervalIntegrable 0 Real.pi)]
   simp
 
-/-- The quadratic cosine moment on a half-circle is `π / 2`. -/
+/-- The quadratic cosine moment on a half-circle is `π / 2`.
+@isnad1 id=eq.0h0v.s6.cc1f8a1bf940 from=translated src=- shape=94c7c20a vocab=afaa7a56
+-/
 -- @node: integral_cos_sq_zero_to_pi
 lemma integral_cos_sq_zero_to_pi :
     (∫ θ : ℝ in Ioc 0 Real.pi, Real.cos θ ^ 2) = Real.pi / 2 := by
@@ -58,7 +64,9 @@ lemma integral_cos_sq_zero_to_pi :
 /-- For [radial and angular weight functions `g` and `h`](hyp:g,h) and [a radius `r`](hyp:r),
 [the integral of the product `g(radius)·h(angle)` over the open upper half-disc of radius `r`
 factors as the product of the radial integral `∫ s·g(s) ds` over `(0, r]` and the angular
-integral `∫ h(θ) dθ` over `(0, π)`](goal). -/
+integral `∫ h(θ) dθ` over `(0, π)`](goal).
+@isnad1 id=eq.0h3v.s7.496b2292accd from=translated src=- shape=5b4bdd69 vocab=70ac61e0
+-/
 -- @node: halfDisc_weighted_polar_integral
 lemma halfDisc_weighted_polar_integral
     (g h : ℝ → ℝ) (r : ℝ) :
@@ -140,7 +148,9 @@ lemma halfDisc_weighted_polar_integral
     (fun s : ℝ => s * g s) h (Ioc 0 r) (Ioo 0 Real.pi)
 
 /-- A cosine angular tilt has zero integral against every radial weight on an
-upper half-disc. -/
+upper half-disc.
+@isnad1 id=eq.0h2v.s6.8ad1c118c826 from=translated src=- shape=21005f1f vocab=51473244
+-/
 -- @node: halfDisc_weighted_cos_cancellation
 lemma halfDisc_weighted_cos_cancellation (g : ℝ → ℝ) (r : ℝ) :
     (∫ z : ℝ × ℝ in {z | 0 < z.2 ∧ planarRadius z ≤ r},
@@ -153,7 +163,9 @@ lemma halfDisc_weighted_cos_cancellation (g : ℝ → ℝ) (r : ℝ) :
 
 /-- A cosine angular tilt has zero mass on every measurable radial subset of
 an upper half-disc.  This is the setwise interface used to identify radial
-pushforwards, rather than merely their total masses. -/
+pushforwards, rather than merely their total masses.
+@isnad1 id=eq.1h3v.s7.3c1d561a358b from=translated src=- shape=41b6df08 vocab=5233f38d
+-/
 -- @node: halfDisc_radialSet_weighted_cos_cancellation
 lemma halfDisc_radialSet_weighted_cos_cancellation
     (g : ℝ → ℝ) (r : ℝ) {A : Set ℝ} (hA : MeasurableSet A) :
@@ -177,7 +189,9 @@ lemma halfDisc_radialSet_weighted_cos_cancellation
   split_ifs <;> simp_all
 
 /-- On the open upper half-plane, the first coordinate divided by the radius
-is the cosine of the polar angle. -/
+is the cosine of the polar angle.
+@isnad1 id=eq.1h1v.s5.c892161bd038 from=translated src=- shape=e196ee16 vocab=ca5d8a9e
+-/
 -- @node: planarFirst_div_radius_eq_cos
 lemma planarFirst_div_radius_eq_cos (z : ℝ × ℝ) (hz : 0 < z.2) :
     z.1 / planarRadius z = Real.cos (planarAngle z) := by
@@ -198,7 +212,9 @@ lemma planarFirst_div_radius_eq_cos (z : ℝ × ℝ) (hz : 0 < z.2) :
   ring
 
 /-- A radial weight times the Cartesian direction cosine has zero integral on
-an open upper half-disc. -/
+an open upper half-disc.
+@isnad1 id=eq.0h2v.s6.ad4bf5d258f0 from=translated src=- shape=e7518b1e vocab=501b6ba4
+-/
 -- @node: halfDisc_weighted_first_div_radius_cancellation
 lemma halfDisc_weighted_first_div_radius_cancellation
     (g : ℝ → ℝ) (r : ℝ) :
@@ -222,7 +238,9 @@ lemma halfDisc_weighted_first_div_radius_cancellation
   exact halfDisc_weighted_cos_cancellation g r
 
 /-- Replacing the open diameter of an upper half-disc by the closed diameter
-does not affect the Cartesian cosine integral. -/
+does not affect the Cartesian cosine integral.
+@isnad1 id=eq.0h2v.s6.c80c6be45c1f from=translated src=- shape=9c69d75a vocab=79c1e105
+-/
 -- @node: closedHalfDisc_weighted_first_div_radius_cancellation
 lemma closedHalfDisc_weighted_first_div_radius_cancellation
     (g : ℝ → ℝ) (r : ℝ) :
@@ -254,7 +272,9 @@ lemma closedHalfDisc_weighted_first_div_radius_cancellation
   exact halfDisc_weighted_first_div_radius_cancellation g r
 
 /-- Translation preserves the zero Cartesian-cosine integral over a closed
-upper half-disc. -/
+upper half-disc.
+@isnad1 id=eq.0h3v.s7.3db37e74e1cd from=translated src=- shape=47a24176 vocab=b18f6145
+-/
 -- @node: translatedClosedHalfDisc_weighted_first_div_radius_cancellation
 lemma translatedClosedHalfDisc_weighted_first_div_radius_cancellation
     (g : ℝ → ℝ) (r : ℝ) (c : ℝ × ℝ) :
@@ -287,7 +307,9 @@ lemma translatedClosedHalfDisc_weighted_first_div_radius_cancellation
   exact closedHalfDisc_weighted_first_div_radius_cancellation g r
 
 /-- The cosine-squared angular moment converts a radial weight into the
-nonzero `π/2` factor used to cancel the affine regression term. -/
+nonzero `π/2` factor used to cancel the affine regression term.
+@isnad1 id=eq.0h2v.s7.a0fcfeb4f4de from=translated src=- shape=49185d46 vocab=1086d698
+-/
 -- @node: halfDisc_weighted_cos_sq
 lemma halfDisc_weighted_cos_sq (g : ℝ → ℝ) (r : ℝ) :
     (∫ z : ℝ × ℝ in {z | 0 < z.2 ∧ planarRadius z ≤ r},
@@ -303,7 +325,9 @@ lemma halfDisc_weighted_cos_sq (g : ℝ → ℝ) (r : ℝ) :
     _ = _ := by rw [hcosSq]
 
 /-- A radial integrand on a half-disc admits the expected polar-coordinate
-decomposition. -/
+decomposition.
+@isnad1 id=eq.0h2v.s7.e4d8ed2b87ac from=translated src=- shape=ca83b014 vocab=3c2079a0
+-/
 -- @node: halfDisc_radial_integral
 lemma halfDisc_radial_integral
     (g : ℝ → ℝ) (r : ℝ) :
@@ -385,7 +409,9 @@ lemma halfDisc_radial_integral
   ring
 
 /-- Multiplication by cosine contributes zero after angular integration on
-every radial shell. -/
+every radial shell.
+@isnad1 id=eq.0h2v.s6.b8f08ccf3ac6 from=translated src=- shape=2469027a vocab=1113fbc9
+-/
 lemma halfDisc_cos_radial_cancellation
     (g : ℝ → ℝ) (r : ℝ) :
     (∫ s : ℝ in Ioc 0 r,
@@ -393,7 +419,9 @@ lemma halfDisc_cos_radial_cancellation
   rw [integral_cos_zero_to_pi]
   simp
 
-/-- Translating an upper half-disc does not change the cosine cancellation. -/
+/-- Translating an upper half-disc does not change the cosine cancellation.
+@isnad1 id=eq.0h3v.s7.01244ccf19a8 from=translated src=- shape=a048803c vocab=0cd555a5
+-/
 -- @node: translatedHalfDisc_weighted_cos_cancellation
 lemma translatedHalfDisc_weighted_cos_cancellation
     (g : ℝ → ℝ) (r : ℝ) (c : ℝ × ℝ) :
@@ -419,7 +447,9 @@ lemma translatedHalfDisc_weighted_cos_cancellation
   exact halfDisc_weighted_cos_cancellation g r
 
 /-- Translation preserves cosine cancellation on every measurable radial
-subset of a half-disc. -/
+subset of a half-disc.
+@isnad1 id=eq.1h4v.s7.2b794572aebd from=translated src=- shape=d42c88f7 vocab=95f75b5e
+-/
 -- @node: translatedHalfDisc_radialSet_weighted_cos_cancellation
 lemma translatedHalfDisc_radialSet_weighted_cos_cancellation
     (g : ℝ → ℝ) (r : ℝ) (c : ℝ × ℝ)

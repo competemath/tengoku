@@ -45,7 +45,9 @@ variable {ι : Type*} [LinearOrder ι]
 
 namespace NSubringChain
 
-/-- The family of carriers is directed (since ι is linearly ordered). -/
+/-- The family of carriers is directed (since ι is linearly ordered).
+@isnad1 id=directed.0h3v.s7.edfdc2b282fa from=translated src=- shape=2ef8fead vocab=d1e8a890
+-/
 lemma directed_carriers (chain : NSubringChain T ι) :
     Directed (· ≤ ·) (fun α => (chain.ring α).carrier) :=
   fun α β => ⟨max α β, chain.mono (le_max_left α β), chain.mono (le_max_right α β)⟩
@@ -54,19 +56,25 @@ lemma directed_carriers (chain : NSubringChain T ι) :
 def unionSubring (chain : NSubringChain T ι) : Subring T :=
   ⨆ (α : ι), (chain.ring α).carrier
 
-/-- Every chain member is contained in the union. -/
+/-- Every chain member is contained in the union.
+@isnad1 id=le.0h4v.s6.6291de203860 from=translated src=- shape=74926b7f vocab=44b51ba7
+-/
 lemma le_union (chain : NSubringChain T ι) (α : ι) :
     (chain.ring α).carrier ≤ chain.unionSubring :=
   le_iSup (fun α => (chain.ring α).carrier) α
 
-/-- An element is in the union iff it's in some chain member. -/
+/-- An element is in the union iff it's in some chain member.
+@isnad1 id=iff.0h4v.s7.065488a22e59 from=translated src=- shape=fc5fce5d vocab=323cfe43
+-/
 lemma mem_union_iff [Nonempty ι] (chain : NSubringChain T ι) {x : T} :
     x ∈ chain.unionSubring ↔ ∃ α, x ∈ (chain.ring α).carrier := by
   exact Subring.mem_iSup_of_directed chain.directed_carriers
 
 end NSubringChain
 
-/-- Prime elements of any R_α remain prime in the union. -/
+/-- Prime elements of any R_α remain prime in the union.
+@isnad1 id=prime.3h6v.s9.7c87f45f782d from=translated src=- shape=63219077 vocab=c62d26f4
+-/
 theorem transfinite_union_primes_preserved
     [Nonempty ι]
     (chain : NSubringChain T ι)
@@ -136,7 +144,9 @@ theorem transfinite_union_primes_preserved
 
 /-- The union of A-extensions is a UFD.
 If x is irreducible in ⋃ R_α, then x ∈ R_β for some β, and x is prime
-in R_β (since R_β is a UFD), hence x | a or x | b in R_β ⊆ ⋃ R_α. -/
+in R_β (since R_β is a UFD), hence x | a or x | b in R_β ⊆ ⋃ R_α.
+@isnad1 id=uniquefa.2h4v.s8.2df63da7a8fe from=translated src=- shape=362f7f0c vocab=adb6d892
+-/
 theorem transfinite_union_isUFD
     [Nonempty ι]
     (chain : NSubringChain T ι)
@@ -176,7 +186,9 @@ Key properties preserved:
 - UFD: factors in some R_α
 irreducibles are prime.
 - N-subring conditions (2) and (3) pass to unions.
-- Cardinality: |⋃ R_α| ≤ sup(ℵ₀, |R₀|, |α|). -/
+- Cardinality: |⋃ R_α| ≤ sup(ℵ₀, |R₀|, |α|).
+@isnad1 id=ex.2h3v.s7.a68b83aa5572 from=translated src=- shape=02ff15da vocab=a4cc8512
+-/
 theorem transfinite_union_isNSubring
     {ι' : Type u_1} [LinearOrder ι'] [Nonempty ι']
     (chain : NSubringChain T ι')

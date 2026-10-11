@@ -52,7 +52,9 @@ def IsTrigPolyLE (n : ℕ) (f : ℝ → ℝ) : Prop :=
 
 /-- The constant function with [a chosen real value](hyp:c) is, for [any specified nonnegative
 degree bound](hyp:n), [a real trigonometric polynomial within that bound](goal); it uses only the
-zero-frequency term. -/
+zero-frequency term.
+@isnad1 id=istrigpo.0h2v.s3.214e81c60c6a from=translated src=- shape=88107567 vocab=cfac1f71
+-/
 theorem isTrigPolyLE_const (n : ℕ) (c : ℝ) : IsTrigPolyLE n (fun _ => c) := by
   refine ⟨fun k => if k = 0 then c else 0, fun _ => 0, ?_⟩
   intro t
@@ -60,7 +62,9 @@ theorem isTrigPolyLE_const (n : ℕ) (c : ℝ) : IsTrigPolyLE n (fun _ => c) := 
 
 /-- A [real trigonometric polynomial with one degree bound](hyp:n,f,hf) is, for [a second degree
 bound](hyp:m), [also a trigonometric polynomial within that second bound](goal) whenever [the
-first bound does not exceed the second](hyp:hnm); the additional coefficients can be set to zero. -/
+first bound does not exceed the second](hyp:hnm); the additional coefficients can be set to zero.
+@isnad1 id=istrigpo.2h3v.s4.9f22bd9e0a82 from=translated src=- shape=59ba4c38 vocab=a5b600f8
+-/
 theorem IsTrigPolyLE.mono {n m : ℕ} {f : ℝ → ℝ} (hf : IsTrigPolyLE n f)
     (hnm : n ≤ m) : IsTrigPolyLE m f := by
   rcases hf with ⟨a, b, hf⟩
@@ -91,7 +95,9 @@ theorem IsTrigPolyLE.mono {n m : ℕ} {f : ℝ → ℝ} (hf : IsTrigPolyLE n f)
 
 /-- The pointwise difference of [two real trigonometric polynomials with a common degree
 bound](hyp:n,f,g,hf,hg) is [a real trigonometric polynomial with the same bound](goal), obtained by
-subtracting their coefficient sequences term by term. -/
+subtracting their coefficient sequences term by term.
+@isnad1 id=istrigpo.2h3v.s5.dd99fe217508 from=translated src=- shape=befcebd0 vocab=885559d5
+-/
 theorem IsTrigPolyLE.sub {n : ℕ} {f g : ℝ → ℝ} (hf : IsTrigPolyLE n f)
     (hg : IsTrigPolyLE n g) : IsTrigPolyLE n (fun t => f t - g t) := by
   rcases hf with ⟨af, bf, hf⟩
@@ -216,7 +222,9 @@ private lemma trigPolyComplexPoly_natDegree_le (n : ℕ) (a b : ℕ → ℝ) :
 
 /-- In [the half-open real interval of one full period beginning at a chosen point](hyp:c),
 [two angles in that interval](hyp:s,t,hs,ht) [are equal](goal) if [their unit-circle complex
-exponentials agree](hyp:h). -/
+exponentials agree](hyp:h).
+@isnad1 id=eq.3h3v.s6.a54a23b58278 from=translated src=- shape=b2bbe7b8 vocab=f7794a17
+-/
 lemma exp_mul_I_injOn_Ico {c s t : ℝ}
     (hs : s ∈ Set.Ico c (c + 2 * Real.pi)) (ht : t ∈ Set.Ico c (c + 2 * Real.pi))
     (h : Complex.exp ((s : ℂ) * Complex.I) = Complex.exp ((t : ℂ) * Complex.I)) :
@@ -255,7 +263,9 @@ an algebraic polynomial `P : ℂ[X]` with `P.natDegree ≤ 2 n`, and `P ≠ 0`
 precisely because `f ≢ 0`.  Distinct points of `S` give distinct unit-circle
 values `e^{i t}` (since `S` lies in one half-open period), each a root of `P`; hence
 `S.card ≤ P.roots.card ≤ P.natDegree ≤ 2 n` via
-`Polynomial.card_roots_le_degree`. -/
+`Polynomial.card_roots_le_degree`.
+@isnad1 id=le.4h4v.s6.266abe985ef5 from=translated src=- shape=e910a727 vocab=fb487d64
+-/
 theorem IsTrigPolyLE.card_zeros_le {n : ℕ} {f : ℝ → ℝ} (hf : IsTrigPolyLE n f)
     (hne : ∃ t, f t ≠ 0) {c : ℝ} {S : Finset ℝ}
     (hS : ↑S ⊆ Set.Ico c (c + 2 * Real.pi)) (hzero : ∀ t ∈ S, f t = 0) :
@@ -315,7 +325,9 @@ identity `P(e^{i t}) = e^{i n t} · f(t)` at `t₀` where `f t₀ = f' t₀ = 0`
 `S.card` points `e^{i t}` (`t ∈ S`) are distinct roots, all `≠ e^{i t₀}`; counting
 them once and adding the double root gives root-multiset cardinality
 `≥ S.card + 2`, and
-`S.card + 2 ≤ P.roots.card ≤ P.natDegree ≤ 2 n`. -/
+`S.card + 2 ≤ P.roots.card ≤ P.natDegree ≤ 2 n`.
+@isnad1 id=le.8h5v.s7.65fd50a61233 from=translated src=- shape=1b9546b8 vocab=5e44ef02
+-/
 theorem IsTrigPolyLE.card_simple_add_double_le {n : ℕ} {f : ℝ → ℝ}
     (hf : IsTrigPolyLE n f) (hne : ∃ t, f t ≠ 0) {c : ℝ} {S : Finset ℝ}
     (hS : ↑S ⊆ Set.Ico c (c + 2 * Real.pi)) (hzero : ∀ t ∈ S, f t = 0)

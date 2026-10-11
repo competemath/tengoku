@@ -53,14 +53,18 @@ As a function of `s` it is `+1` on `[0, a)` when `a ≥ 0`, `-1` on `[a, 0)` whe
 `a < 0`, and `0` elsewhere; its Lebesgue integral is exactly `a`. -/
 noncomputable def signedTail (a s : ℝ) : ℝ := tailInd a s - tailInd 0 s
 
-/-- The tail indicator equals one below the threshold and zero at or above it. -/
+/-- The tail indicator equals one below the threshold and zero at or above it.
+@isnad1 id=eq.0h2v.s4.21a1de7fb87f from=translated src=- shape=faa7cd2b vocab=89abe6ff
+-/
 @[simp] lemma tailInd_apply (a s : ℝ) : tailInd a s = if s < a then 1 else 0 := by
   simp [tailInd, Set.indicator_apply, Set.mem_Iio]
 
 /-- `signedTail a` is, as a function of `s`, the difference of the indicators of
 the two intervals `Ico 0 a` and `Ico a 0` (at most one of which is nonempty).
 This is the normal form used to compute its integral and to see it is
-integrable. -/
+integrable.
+@isnad1 id=eq.0h1v.s6.09c09377ca73 from=translated src=- shape=62103a91 vocab=14b046d2
+-/
 lemma signedTail_eq_indicator_sub (a : ℝ) :
     signedTail a =
       (Ico 0 a).indicator (fun _ => (1 : ℝ)) - (Ico a 0).indicator (fun _ => (1 : ℝ)) := by
@@ -68,7 +72,9 @@ lemma signedTail_eq_indicator_sub (a : ℝ) :
   by_cases hsa : s < a <;> by_cases hs0 : s < 0 <;>
     simp [signedTail, tailInd_apply, Set.indicator_apply, Set.mem_Ico, hsa, hs0]
 
-/-- `signedTail a` is measurable in the tail variable `s`. -/
+/-- `signedTail a` is measurable in the tail variable `s`.
+@isnad1 id=measurab.0h1v.s3.603f2b35b7bf from=translated src=- shape=f736e2c1 vocab=4fdde802
+-/
 @[fun_prop]
 lemma measurable_signedTail (a : ℝ) : Measurable (signedTail a) := by
   rw [signedTail_eq_indicator_sub]
@@ -76,7 +82,9 @@ lemma measurable_signedTail (a : ℝ) : Measurable (signedTail a) := by
     (measurable_const.indicator measurableSet_Ico)
 
 /-- `signedTail` is jointly measurable in `(a, s)`, since `{z | z.2 < z.1}` is
-an open (hence measurable) subset of `ℝ × ℝ`. -/
+an open (hence measurable) subset of `ℝ × ℝ`.
+@isnad1 id=measurab.0h0v.s4.d70f33e3e4f7 from=translated src=- shape=1c9bbd5f vocab=234bfb34
+-/
 @[fun_prop]
 lemma measurable_signedTail_uncurry :
     Measurable (fun z : ℝ × ℝ => signedTail z.1 z.2) := by
@@ -92,13 +100,17 @@ lemma measurable_signedTail_uncurry :
     measurable_const.indicator hx0
   simpa [signedTail, tailInd, Set.indicator_apply, Set.mem_Iio] using h1.fun_sub h0
 
-/-- The signed tail indicator is bounded by `1` in absolute value. -/
+/-- The signed tail indicator is bounded by `1` in absolute value.
+@isnad1 id=le.0h2v.s4.64f7be75984d from=translated src=- shape=4ed13b70 vocab=ed18f159
+-/
 lemma abs_signedTail_le_one (a s : ℝ) : |signedTail a s| ≤ 1 := by
   simp [signedTail, tailInd_apply]
   split_ifs <;> norm_num
 
 /-- `signedTail a` is Lebesgue integrable: it is a bounded function supported on
-a bounded interval. -/
+a bounded interval.
+@isnad1 id=integrab.0h1v.s4.f7af966f86de from=translated src=- shape=b231e927 vocab=ccec1fcb
+-/
 @[fun_prop]
 lemma integrable_signedTail (a : ℝ) : Integrable (signedTail a) volume := by
   rw [signedTail_eq_indicator_sub]
@@ -112,7 +124,9 @@ lemma integrable_signedTail (a : ℝ) : Integrable (signedTail a) volume := by
     rw [Real.volume_Ico]
     exact ENNReal.ofReal_ne_top
 
-/-- **Signed tail representation.** `∫ s, (𝟙{s < a} - 𝟙{s < 0}) ds = a`. -/
+/-- **Signed tail representation.** `∫ s, (𝟙{s < a} - 𝟙{s < 0}) ds = a`.
+@isnad1 id=eq.0h1v.s4.878ad02bce78 from=translated src=- shape=8eae69fc vocab=2f3dcca4
+-/
 lemma integral_signedTail (a : ℝ) : (∫ s : ℝ, signedTail a s ∂volume) = a := by
   have hrw : (fun s : ℝ => signedTail a s)
       = fun s : ℝ => (({s : ℝ | s < a}.indicator (fun _ : ℝ => (1 : ℝ)) s) -
@@ -168,7 +182,9 @@ lemma integral_signedTail (a : ℝ) : (∫ s : ℝ, signedTail a s ∂volume) = 
             · exact sub_nonneg.mpr hle
 
 /-- The `L¹` norm of the signed tail indicator is `|a|`: the integrand is `±1`
-on an interval of length `|a|`. -/
+on an interval of length `|a|`.
+@isnad1 id=eq.0h1v.s5.73ab04bac41b from=translated src=- shape=b160f627 vocab=b58003da
+-/
 lemma integral_abs_signedTail (a : ℝ) : (∫ s : ℝ, |signedTail a s| ∂volume) = |a| := by
   by_cases ha : 0 ≤ a
   · have hnonneg : ∀ s : ℝ, 0 ≤ signedTail a s := by
@@ -190,7 +206,9 @@ lemma integral_abs_signedTail (a : ℝ) : (∫ s : ℝ, |signedTail a s| ∂volu
     rw [habs, integral_neg, integral_signedTail, abs_of_neg hlt]
 
 /-- The tensor product `(s, t) ↦ signedTail x s * signedTail y t` is integrable
-on `ℝ × ℝ` for Lebesgue×Lebesgue. -/
+on `ℝ × ℝ` for Lebesgue×Lebesgue.
+@isnad1 id=integrab.0h2v.s6.5c3d0a91b001 from=translated src=- shape=c8c3752b vocab=334cb7fb
+-/
 @[fun_prop]
 lemma integrable_signedTail_prod (x y : ℝ) :
     Integrable (fun q : ℝ × ℝ => signedTail x q.1 * signedTail y q.2)
@@ -199,7 +217,9 @@ lemma integrable_signedTail_prod (x y : ℝ) :
 
 /-- **Product tail representation.** [For any two reals `x` and `y`](hyp:x,y), [their
 product `x * y` equals the two-dimensional Lebesgue integral of the product of their
-signed tail indicators, `∫∫ (𝟙{s<x} - 𝟙{s<0})(𝟙{t<y} - 𝟙{t<0}) ds dt`](goal). -/
+signed tail indicators, `∫∫ (𝟙{s<x} - 𝟙{s<0})(𝟙{t<y} - 𝟙{t<0}) ds dt`](goal).
+@isnad1 id=eq.0h2v.s6.95b9f8a2871a from=translated src=- shape=696942bf vocab=38201bc0
+-/
 lemma integral_signedTail_prod (x y : ℝ) :
     (∫ q : ℝ × ℝ, signedTail x q.1 * signedTail y q.2 ∂(volume.prod volume)) = x * y := by
   rw [integral_prod_mul (fun s => signedTail x s) (fun t => signedTail y t),
@@ -207,7 +227,9 @@ lemma integral_signedTail_prod (x y : ℝ) :
 
 /-- The `L¹` norm of the product tail representation is `|x| * |y|`. This is the
 domination bound that makes the Fubini swap against an `L²` coupling valid:
-its `π`-integral is `E|XY| < ∞` by Cauchy–Schwarz. -/
+its `π`-integral is `E|XY| < ∞` by Cauchy–Schwarz.
+@isnad1 id=eq.0h2v.s6.0d1123f4c1d3 from=translated src=- shape=49ad33b7 vocab=aa2c9ac8
+-/
 lemma integral_norm_signedTail_prod (x y : ℝ) :
     (∫ q : ℝ × ℝ, ‖signedTail x q.1 * signedTail y q.2‖ ∂(volume.prod volume))
       = |x| * |y| := by

@@ -101,6 +101,7 @@ private lemma polyCoeffL1_sum_le {ι : Type*}
 trigonometric polynomial within that limit](hyp:hq) and [is symmetric about zero](hyp:heven),
 then [it is an ordinary polynomial in the cosine coordinate with degree at most that
 limit](goal).
+@isnad1 id=ex.2h2v.s5.a442cbda0b68 from=translated src=- shape=cd97e5e9 vocab=78929bdb
 -/
 theorem even_trigPoly_exists_polynomial {n : ℕ} {q : ℝ → ℝ}
     (hq : IsTrigPolyLE n q) (heven : Function.Even q) :
@@ -151,6 +152,7 @@ theorem even_trigPoly_exists_polynomial {n : ℕ} {q : ℝ → ℝ}
 /-- Given [a frequency limit](hyp:n) and [a real polynomial](hyp:p) whose [degree is at most that
 limit](hyp:hp), [composition with cosine is an even trigonometric polynomial within the same
 frequency limit](goal).
+@isnad1 id=and.1h2v.s5.465967290aa5 from=translated src=- shape=b6d6ae2d vocab=78929bdb
 -/
 theorem polynomial_cos_is_even_trigPoly {n : ℕ} (p : Polynomial ℝ)
     (hp : p.natDegree ≤ n) :
@@ -162,6 +164,7 @@ theorem polynomial_cos_is_even_trigPoly {n : ℕ} (p : Polynomial ℝ)
 
 /-- For [a nonnegative integer index](hyp:n), [the coefficient one-norm of the corresponding
 first-kind Chebyshev polynomial is at most three to that index](goal).
+@isnad1 id=le.0h1v.s5.69144e9e3756 from=translated src=- shape=fff231ad vocab=5ee27bd3
 -/
 theorem chebyshev_coeffL1_le (n : ℕ) :
     polyCoeffL1 (Polynomial.Chebyshev.T ℝ (n : ℤ)) ≤ (3 : ℝ) ^ n := by
@@ -216,7 +219,9 @@ theorem chebyshev_coeffL1_le (n : ℕ) :
 polynomial of degree at most n whose value at the cosine of every angle t equals the cosine sum of
 the coefficients over frequencies 0 through n at t, and whose coefficients have absolute values
 summing to at most the sum over frequencies k of the absolute k-th coefficient times 3 to the power
-k](goal). -/
+k](goal).
+@isnad1 id=ex.0h2v.s7.4130c32ee4e9 from=translated src=- shape=73b3c3a7 vocab=9712fd07
+-/
 theorem cosine_sum_exists_polynomial (n : ℕ) (a : ℕ → ℝ) :
     ∃ p : Polynomial ℝ,
       p.natDegree ≤ n ∧

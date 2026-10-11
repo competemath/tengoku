@@ -41,7 +41,9 @@ noncomputable def fejerKernel (n : ℕ) (t : AddCircle Real.pi) : ℝ :=
 
 /-- For [a Fejér order](hyp:n), [the normalized Fejér kernel is continuous](goal).
 
- The normalized Fejér kernel is continuous. -/
+ The normalized Fejér kernel is continuous.
+@isnad1 id=continuo.0h1v.s4.8b8f5ca4bc63 from=translated src=- shape=360773cc vocab=45c9fd61
+-/
 lemma continuous_fejerKernel (n : ℕ) : Continuous (fejerKernel n) := by
   unfold fejerKernel oneSidedFourierSum
   fun_prop
@@ -53,7 +55,9 @@ noncomputable def fejerMean (n : ℕ) (f : C(AddCircle Real.pi, ℂ)) : ℂ :=
 /-- For [a Fourier frequency](hyp:k), [its Haar integral is one at frequency zero and zero otherwise](goal).
 
  A Fourier character has Haar integral one at frequency zero and zero at
-every nonzero frequency. -/
+every nonzero frequency.
+@isnad1 id=eq.0h1v.s7.d7b8982de36c from=translated src=- shape=5c03dacd vocab=fc2e0129
+-/
 lemma integral_fourier (k : ℤ) :
     (∫ x : AddCircle Real.pi, fourier k x ∂AddCircle.haarAddCircle) =
       if k = 0 then 1 else 0 := by
@@ -68,7 +72,9 @@ lemma integral_fourier (k : ℤ) :
 /-- For [a Fejér order, Fourier frequency, and circle point](hyp:n,k,t), [the kernel-weighted character has the stated finite Fourier expansion](goal).
 
  Multiplying a nonnegative Fourier character by the Fejér kernel expands
-as the normalized double sum of characters with shifted frequencies. -/
+as the normalized double sum of characters with shifted frequencies.
+@isnad1 id=eq.0h3v.s7.607dbff248a0 from=translated src=- shape=c84ffd0d vocab=413ad317
+-/
 lemma fejer_integrand_expand (n k : ℕ) (t : AddCircle Real.pi) :
     (fejerKernel n t : ℂ) * fourier (k : ℤ) t =
       (n : ℂ)⁻¹ * ∑ r ∈ Finset.range n, ∑ s ∈ Finset.range n,
@@ -93,7 +99,9 @@ lemma fejer_integrand_expand (n k : ℕ) (t : AddCircle Real.pi) :
 /-- For [a positive Fejér order](hyp:n,hn) and [a nonnegative frequency](hyp:k), [the Fejér mean has the stated triangular multiplier](goal).
 
  The Fejér mean multiplies the nonnegative frequency `k` by
-`(n-k)/n` below the cutoff and by zero above it. -/
+`(n-k)/n` below the cutoff and by zero above it.
+@isnad1 id=eq.1h2v.s6.d6284c51e1af from=translated src=- shape=0e285784 vocab=843acfbc
+-/
 lemma fejerMean_fourier_nat (n k : ℕ) (hn : 0 < n) :
     fejerMean n (fourier (k : ℤ)) =
       if k < n then ((n - k : ℕ) : ℝ) / n else 0 := by
@@ -159,7 +167,9 @@ lemma fejerMean_fourier_nat (n k : ℕ) (hn : 0 < n) :
 /-- For [a positive Fejér order](hyp:n,hn) and [a negative frequency magnitude](hyp:k), [the Fejér mean has the same triangular multiplier](goal).
 
  The Fejér mean has the same triangular multiplier at negative natural
-frequencies. -/
+frequencies.
+@isnad1 id=eq.1h2v.s6.e8615a24c77c from=translated src=- shape=ea353b47 vocab=a03ca123
+-/
 lemma fejerMean_fourier_neg_nat (n k : ℕ) (hn : 0 < n) :
     fejerMean n (fourier (-(k : ℤ))) =
       if k < n then ((n - k : ℕ) : ℝ) / n else 0 := by
@@ -180,7 +190,9 @@ lemma fejerMean_fourier_neg_nat (n k : ℕ) (hn : 0 < n) :
 
 /-- For [a positive Fejér order](hyp:n,hn), [the normalized kernel integrates to one](goal).
 
- Every positive-order normalized Fejér kernel has Haar integral one. -/
+ Every positive-order normalized Fejér kernel has Haar integral one.
+@isnad1 id=eq.1h1v.s5.f0d1ee7cdbfb from=translated src=- shape=9497e3c0 vocab=02c2e616
+-/
 lemma integral_fejerKernel (n : ℕ) (hn : 0 < n) :
     (∫ t, fejerKernel n t ∂AddCircle.haarAddCircle) = 1 := by
   have hcomplex := fejerMean_fourier_nat n 0 hn
@@ -204,7 +216,9 @@ lemma integral_fejerKernel (n : ℕ) (hn : 0 < n) :
 
 /-- For [a positive Fejér order](hyp:n,hn), [a continuous input](hyp:f), and [a uniform norm bound](hyp:E,hE), [the Fejér mean obeys that bound](goal).
 
- A Fejér mean is bounded in norm by any uniform bound on its input. -/
+ A Fejér mean is bounded in norm by any uniform bound on its input.
+@isnad1 id=le.2h3v.s7.950eafffae04 from=translated src=- shape=5aa7a611 vocab=39124ed9
+-/
 lemma fejerMean_norm_le (n : ℕ) (hn : 0 < n)
     (f : C(AddCircle Real.pi, ℂ)) (E : ℝ) (hE : ∀ t, ‖f t‖ ≤ E) :
     ‖fejerMean n f‖ ≤ E := by
@@ -273,7 +287,9 @@ noncomputable def fejerMeanCLM (n : ℕ) (hn : 0 < n) :
 /-- For [a positive Fejér order](hyp:n,hn) and [a continuous input](hyp:f), [the packaged linear map equals the integral definition](goal).
 
  Applying the continuous-linear Fejér mean agrees with its integral
-definition. -/
+definition.
+@isnad1 id=eq.1h2v.s8.8b48ef9f5f66 from=translated src=- shape=620728f1 vocab=c1252da6
+-/
 @[simp] lemma fejerMeanCLM_apply (n : ℕ) (hn : 0 < n)
     (f : C(AddCircle Real.pi, ℂ)) : fejerMeanCLM n hn f = fejerMean n f := rfl
 
@@ -285,7 +301,9 @@ noncomputable def valleePoussinMeanCLM (n : ℕ) (hn : 0 < n) :
 /-- For [a positive order](hyp:n,hn) and [a frequency at most that order](hyp:k,hk), [the de la Vallée--Poussin mean preserves the nonnegative Fourier character](goal).
 
  The de la Vallée--Poussin mean acts as the identity on nonnegative
-frequencies at most `n`. -/
+frequencies at most `n`.
+@isnad1 id=eq.2h2v.s8.c5adcdd0028b from=translated src=- shape=65e1ea9e vocab=2960bf1b
+-/
 lemma valleePoussinMean_fourier_nat (n k : ℕ) (hn : 0 < n) (hk : k ≤ n) :
     valleePoussinMeanCLM n hn (fourier (k : ℤ)) = 1 := by
   rw [valleePoussinMeanCLM]
@@ -315,7 +333,9 @@ lemma valleePoussinMean_fourier_nat (n k : ℕ) (hn : 0 < n) (hk : k ≤ n) :
 /-- For [a positive order](hyp:n,hn) and [a frequency magnitude at most that order](hyp:k,hk), [the de la Vallée--Poussin mean preserves the negative Fourier character](goal).
 
  The de la Vallée--Poussin mean acts as the identity on negative
-frequencies of magnitude at most `n`. -/
+frequencies of magnitude at most `n`.
+@isnad1 id=eq.2h2v.s8.b0cffeb4f8ae from=translated src=- shape=1cddeee3 vocab=4be5ab1a
+-/
 lemma valleePoussinMean_fourier_neg_nat (n k : ℕ) (hn : 0 < n) (hk : k ≤ n) :
     valleePoussinMeanCLM n hn (fourier (-(k : ℤ))) = 1 := by
   rw [valleePoussinMeanCLM]
@@ -351,7 +371,9 @@ noncomputable def cuspFunctionalCLM (n : ℕ) (hn : 0 < n) :
 
 /-- For [a positive order](hyp:n,hn) and [a nonnegative frequency at most that order](hyp:k,hk), [the cusp functional annihilates the Fourier character](goal).
 
- The cusp functional annihilates nonnegative frequencies at most `n`. -/
+ The cusp functional annihilates nonnegative frequencies at most `n`.
+@isnad1 id=eq.2h2v.s8.303024e83566 from=translated src=- shape=65e1ea9e vocab=2de04342
+-/
 lemma cuspFunctional_fourier_nat (n k : ℕ) (hn : 0 < n) (hk : k ≤ n) :
     cuspFunctionalCLM n hn (fourier (k : ℤ)) = 0 := by
   simp [cuspFunctionalCLM, valleePoussinMean_fourier_nat n k hn hk, fourier_eval_zero]
@@ -359,7 +381,9 @@ lemma cuspFunctional_fourier_nat (n k : ℕ) (hn : 0 < n) (hk : k ≤ n) :
 /-- For [a positive order](hyp:n,hn) and [a negative frequency magnitude at most that order](hyp:k,hk), [the cusp functional annihilates the Fourier character](goal).
 
  The cusp functional annihilates negative frequencies of magnitude at most
-`n`. -/
+`n`.
+@isnad1 id=eq.2h2v.s8.43af6f13b183 from=translated src=- shape=1cddeee3 vocab=37273980
+-/
 lemma cuspFunctional_fourier_neg_nat (n k : ℕ) (hn : 0 < n) (hk : k ≤ n) :
     cuspFunctionalCLM n hn (fourier (-(k : ℤ))) = 0 := by
   simp [cuspFunctionalCLM, valleePoussinMean_fourier_neg_nat n k hn hk,
@@ -368,7 +392,9 @@ lemma cuspFunctional_fourier_neg_nat (n k : ℕ) (hn : 0 < n) (hk : k ≤ n) :
 /-- For [a positive order](hyp:n,hn) and [a nonnegative frequency](hyp:k), [the real part of the cusp multiplier is nonnegative](goal).
 
  The real part of the cusp multiplier is nonnegative at every nonnegative
-frequency. -/
+frequency.
+@isnad1 id=le.1h2v.s8.ebf061bd41d4 from=translated src=- shape=a03e1ecd vocab=03f22317
+-/
 lemma cuspFunctional_fourier_nat_nonneg (n k : ℕ) (hn : 0 < n) :
     0 ≤ (cuspFunctionalCLM n hn (fourier (k : ℤ))).re := by
   rw [cuspFunctionalCLM, valleePoussinMeanCLM]
@@ -405,7 +431,9 @@ lemma cuspFunctional_fourier_nat_nonneg (n k : ℕ) (hn : 0 < n) :
 /-- For [a positive order](hyp:n,hn) and [a negative frequency magnitude](hyp:k), [the real part of the cusp multiplier is nonnegative](goal).
 
  The real part of the cusp multiplier is nonnegative at every negative
-frequency. -/
+frequency.
+@isnad1 id=le.1h2v.s8.105cde706f95 from=translated src=- shape=d773eb0d vocab=5b70440d
+-/
 lemma cuspFunctional_fourier_neg_nat_nonneg (n k : ℕ) (hn : 0 < n) :
     0 ≤ (cuspFunctionalCLM n hn (fourier (-(k : ℤ)))).re := by
   rw [cuspFunctionalCLM, valleePoussinMeanCLM]
@@ -442,7 +470,9 @@ lemma cuspFunctional_fourier_neg_nat_nonneg (n k : ℕ) (hn : 0 < n) :
 /-- For [a positive order](hyp:n,hn) and [a nonnegative frequency at least twice that order](hyp:k,hk), [the cusp functional has multiplier one](goal).
 
  The cusp functional has multiplier one at nonnegative frequencies at
-least `2n`. -/
+least `2n`.
+@isnad1 id=eq.2h2v.s8.4f2d33dcaa77 from=translated src=- shape=acf123df vocab=82aec8f8
+-/
 lemma cuspFunctional_fourier_nat_high (n k : ℕ) (hn : 0 < n)
     (hk : 2 * n ≤ k) : cuspFunctionalCLM n hn (fourier (k : ℤ)) = 1 := by
   rw [cuspFunctionalCLM, valleePoussinMeanCLM]
@@ -455,7 +485,9 @@ lemma cuspFunctional_fourier_nat_high (n k : ℕ) (hn : 0 < n)
 /-- For [a positive order](hyp:n,hn) and [a negative frequency magnitude at least twice that order](hyp:k,hk), [the cusp functional has multiplier one](goal).
 
  The cusp functional has multiplier one at negative frequencies of
-magnitude at least `2n`. -/
+magnitude at least `2n`.
+@isnad1 id=eq.2h2v.s8.404f7fc88019 from=translated src=- shape=b846c817 vocab=9356ba93
+-/
 lemma cuspFunctional_fourier_neg_nat_high (n k : ℕ) (hn : 0 < n)
     (hk : 2 * n ≤ k) : cuspFunctionalCLM n hn (fourier (-(k : ℤ))) = 1 := by
   rw [cuspFunctionalCLM, valleePoussinMeanCLM]
@@ -468,7 +500,9 @@ lemma cuspFunctional_fourier_neg_nat_high (n k : ℕ) (hn : 0 < n)
 /-- For [a positive order](hyp:n,hn) and [a continuous input](hyp:f), [the cusp functional is bounded by four times the uniform norm](goal).
 
  The cusp functional is bounded pointwise by four times the uniform norm
-of its input. -/
+of its input.
+@isnad1 id=le.1h2v.s9.c7cd61efebdf from=translated src=- shape=6f0fe35b vocab=9a908933
+-/
 lemma cuspFunctional_norm_apply_le (n : ℕ) (hn : 0 < n)
     (f : C(AddCircle Real.pi, ℂ)) :
     ‖cuspFunctionalCLM n hn f‖ ≤ 4 * ‖f‖ := by
@@ -499,7 +533,9 @@ lemma cuspFunctional_norm_apply_le (n : ℕ) (hn : 0 < n)
 /-- For [two real coefficients, a frequency, and a circle coordinate](hyp:A,B,k,t), [the conjugate Fourier pair equals the corresponding real sine--cosine mode](goal).
 
  A conjugate pair of Fourier characters equals the corresponding real
-sine-cosine mode. -/
+sine-cosine mode.
+@isnad1 id=eq.0h4v.s8.25ae5f874ae8 from=translated src=- shape=fe3c49b2 vocab=7670a15f
+-/
 lemma fourier_pair_eq (A B : ℝ) (k : ℕ) (t : ℝ) :
     (((A : ℂ) - B * Complex.I) / 2) * fourier (k : ℤ) (t : AddCircle Real.pi) +
       (((A : ℂ) + B * Complex.I) / 2) * fourier (-(k : ℤ)) (t : AddCircle Real.pi) =
@@ -527,7 +563,9 @@ lemma fourier_pair_eq (A B : ℝ) (k : ℕ) (t : ℝ) :
 /-- For [a polynomial of degree at most a positive order](hyp:p,n,hn,hp), [there is a corresponding Fourier polynomial that agrees after sine composition and is annihilated by the cusp functional](goal).
 
  Composing a degree-at-most-`n` real polynomial with `sin (2t)` produces a
-Fourier polynomial annihilated by the order-`n` cusp functional. -/
+Fourier polynomial annihilated by the order-`n` cusp functional.
+@isnad1 id=ex.2h2v.s9.ee08e0ca9acb from=translated src=- shape=5468635c vocab=752c7a4b
+-/
 lemma exists_fourierPoly_sinDouble (p : Polynomial ℝ) (n : ℕ) (hn : 0 < n)
     (hp : p.natDegree ≤ n) :
     ∃ q : C(AddCircle Real.pi, ℂ),
@@ -583,7 +621,9 @@ noncomputable def circleDouble : C(AddCircle Real.pi, AddCircle Real.pi) :=
 
 /-- For [a Fourier frequency](hyp:j), [composition with circle doubling doubles that frequency](goal).
 
- Composing a Fourier character with circle doubling doubles its frequency. -/
+ Composing a Fourier character with circle doubling doubles its frequency.
+@isnad1 id=eq.0h1v.s6.4d2004cd2d1d from=translated src=- shape=e00fd3cb vocab=f72ede3a
+-/
 lemma fourier_comp_circleDouble (j : ℤ) :
     (fourier j).comp circleDouble = fourier (2 * j) := by
   ext t

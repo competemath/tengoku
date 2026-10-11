@@ -68,13 +68,17 @@ def rawPushAll [LinearOrder α] (score : ι → α) : List ι → List ι → Ra
         backPopped := removed ++ rest.backPopped }
 
 /-- [One raw rightmost-stable push](hyp:score,q,x) has [the newly pushed key as its final
-element](goal), including when all old entries tie with it. -/
+element](goal), including when all old entries tie with it.
+@isnad1 id=eq.0h5v.s4.197fbd376618 from=translated src=- shape=69009f47 vocab=256d1a7f
+-/
 theorem rawPush_getLast?_eq [LinearOrder α] (score : ι → α) (q : List ι) (x : ι) :
     (rawPush score q x).getLast? = some x := by
   simp [rawPush]
 
 /-- [A key removed by rightmost-stable back pruning](hyp:hy) has [score no larger than the newly
-pushed key](goal), so equal-score ties deterministically favor the newer occurrence. -/
+pushed key](goal), so equal-score ties deterministically favor the newer occurrence.
+@isnad1 id=le.1h6v.s5.90d0dddace15 from=translated src=- shape=3163b1f9 vocab=9fafea4e
+-/
 theorem rawPrunedBack_score_le [LinearOrder α] (score : ι → α) (q : List ι) (x y : ι)
     (hy : y ∈ rawPrunedBack score q x) : score y ≤ score x := by
   have h := List.mem_rtakeWhile_imp hy
@@ -155,7 +159,9 @@ noncomputable def PredicateWindowSchedule.rawScan [LinearOrder α]
   P.rawScanFrom score { pending := keys, deque := [] } steps
 
 /-- [A predicate schedule](hyp:P) and [a raw score](hyp:score) produce [one raw trace entry per
-step](goal). -/
+step](goal).
+@isnad1 id=eq.0h7v.s5.276557f0c0be from=translated src=- shape=9deba362 vocab=3a76c93e
+-/
 theorem PredicateWindowSchedule.length_rawScan [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) :
     (P.rawScan score).length = steps.length := by
@@ -723,7 +729,9 @@ commutes with front `takeWhile`/`dropWhile`; a separate induction shows that map
 /-- [A predicate schedule](hyp:P), [a raw-key score](hyp:score), and
 [a fallback score](hyp:fallback) have
 [the generic position scan mapped through raw-key lookup exactly equal to the corresponding
-raw-key predicate scan](goal), including every deque state and push/pop log. -/
+raw-key predicate scan](goal), including every deque state and push/pop log.
+@isnad1 id=eq.0h8v.s6.a361f04cce3e from=translated src=- shape=dde898a3 vocab=3a547096
+-/
 theorem scan_predicateSchedule_state_eq [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α) :
     (scan (keyedStream keys score fallback) P.schedule).map (mapStepTrace keys) =
@@ -741,7 +749,9 @@ theorem scan_predicateSchedule_state_eq [LinearOrder α]
 
 /-- [A predicate schedule](hyp:P), [a raw score](hyp:score), [a valid step position](hyp:hk), and
 [a fallback score](hyp:fallback) have [the generic deque after that step mapped through key lookup
-equal to the raw predicate-scan deque](goal). -/
+equal to the raw predicate-scan deque](goal).
+@isnad1 id=ex.1h9v.s7.6c8ec791c469 from=translated src=- shape=2c28589e vocab=4f8d1c28
+-/
 theorem scan_predicateSchedule_after_eq [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α)
     {k : ℕ} (hk : k < steps.length) :

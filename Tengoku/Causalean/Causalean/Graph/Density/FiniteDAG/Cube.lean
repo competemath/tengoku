@@ -40,7 +40,9 @@ def unitCubeReference : Measure (V → ℝ) :=
   Measure.pi (fun _ : V ↦ unitIntervalReference)
 
 /-- A [finite vertex population](hyp:V) [has a unit-cube product reference measure concentrated
-on the ambient finite unit cube](goal). -/
+on the ambient finite unit cube](goal).
+@isnad1 id=eq.0h1v.s6.3920747267c8 from=translated src=- shape=d9da8487 vocab=377ca367
+-/
 theorem unitCubeReference_compl (V : Type*) [DecidableEq V] [Fintype V] :
     unitCubeReference V (unitCube V)ᶜ = 0 := by
   -- Rewrite `Set.pi Set.univ` as an intersection of coordinate preimages, take complements,
@@ -67,7 +69,9 @@ abbrev UnitCubeFactorization (G : Causalean.Graph.DAG V) :=
 /-- A [unit-cube DAG factorization](hyp:B), [distinct intervention and queried nodes](hyp:hji),
 evidence that [the intervention target is not an ancestor of the queried node](hyp:hnotAncestor),
 and a [normalized replacement density](hyp:q) [give identical observational and interventional
-laws on the queried node's ancestral closure](goal). -/
+laws on the queried node's ancestral closure](goal).
+@isnad1 id=eq.2h6v.s8.8f929e045104 from=translated src=- shape=137306fe vocab=b83bded9
+-/
 theorem UnitCubeFactorization.ancestralMarginal_eq
     {G : Causalean.Graph.DAG V} (B : UnitCubeFactorization V G) {i j : V}
     (hji : j ≠ i) (hnotAncestor : ¬ G.isAncestor j i)
@@ -105,7 +109,9 @@ and one](step:1). -/
 def clampCube (v : V → ℝ) : V → ℝ :=
   fun i ↦ max 0 (min 1 (v i))
 
-/-- The [coordinatewise clamp for a finite coordinate type](hyp:V) [is measurable](goal). -/
+/-- The [coordinatewise clamp for a finite coordinate type](hyp:V) [is measurable](goal).
+@isnad1 id=measurab.0h1v.s5.bac51da66274 from=translated src=- shape=cf1a08ef vocab=326603fe
+-/
 @[fun_prop]
 theorem measurable_clampCube : Measurable (clampCube V) := by
   -- Prove each coordinate measurable from `measurable_pi_iff`, using measurability of `min` and
@@ -114,7 +120,9 @@ theorem measurable_clampCube : Measurable (clampCube V) := by
   exact measurable_const.max (measurable_const.min (measurable_pi_apply i))
 
 /-- Every [real assignment](hyp:v) over [a finite coordinate type](hyp:V) is [sent by the
-coordinatewise clamp into the finite unit cube](goal). -/
+coordinatewise clamp into the finite unit cube](goal).
+@isnad1 id=mem.0h2v.s4.8ab33d28628f from=translated src=- shape=6d279c67 vocab=62b016fb
+-/
 theorem clampCube_mem (v : V → ℝ) :
     clampCube V v ∈ Causalean.Graph.FiniteDensity.unitCube V := by
   -- Unfold membership in `Set.pi`; the scalar expression is between zero and one by the linear
@@ -126,7 +134,9 @@ theorem clampCube_mem (v : V → ℝ) :
   · exact max_le zero_le_one (min_le_left _ _)
 
 /-- A [finite coordinate type](hyp:V) and [a point in its unit cube](hyp:hv) are such that [the
-coordinatewise clamp fixes that point](goal). -/
+coordinatewise clamp fixes that point](goal).
+@isnad1 id=eq.1h2v.s5.f3de50a28074 from=translated src=- shape=cce9a3b8 vocab=62b016fb
+-/
 @[simp]
 theorem clampCube_eq_self {v : V → ℝ}
     (hv : v ∈ Causalean.Graph.FiniteDensity.unitCube V) :
@@ -138,7 +148,9 @@ theorem clampCube_eq_self {v : V → ℝ}
   simp [clampCube, min_eq_right hi.2, max_eq_right hi.1]
 
 /-- [An assignment](hyp:v), [a coordinate](hyp:i), and [a replacement value](hyp:x) satisfy
-[the update-and-clamp identity](goal). -/
+[the update-and-clamp identity](goal).
+@isnad1 id=eq.0h4v.s5.eeb2a64011ac from=translated src=- shape=345b1a0d vocab=83c97d20
+-/
 theorem clampCube_update (v : V → ℝ) (i : V) (x : ℝ) :
     clampCube V (Function.update v i x) =
       Function.update (clampCube V v) i (max 0 (min 1 x)) := by
@@ -150,7 +162,9 @@ theorem clampCube_update (v : V → ℝ) (i : V) (x : ℝ) :
 
 /-- [An assignment](hyp:v), [a coordinate](hyp:i), and [a replacement value in the unit
 interval](hyp:hx) satisfy [the update identity in which only the unchanged context is
-clamped](goal). -/
+clamped](goal).
+@isnad1 id=eq.1h4v.s6.439c83f82228 from=translated src=- shape=f2d66886 vocab=6169385c
+-/
 theorem clampCube_update_of_mem (v : V → ℝ) (i : V) {x : ℝ}
     (hx : x ∈ Set.Icc (0 : ℝ) 1) :
     clampCube V (Function.update v i x) =
@@ -172,7 +186,9 @@ namespace Causalean.Graph.FiniteDensity
 open Causalean.Mathlib.MeasureTheory.FiniteCoordinate
 
 /-- For a [finite coordinate type](hyp:V), [the product of unit-interval Lebesgue restrictions is
-Lebesgue volume restricted to the finite unit cube](goal). -/
+Lebesgue volume restricted to the finite unit cube](goal).
+@isnad1 id=eq.0h1v.s5.d4013621f5d0 from=translated src=- shape=07cfc52c vocab=32effe85
+-/
 theorem unitCubeReference_eq_volume_restrict
     (V : Type*) [DecidableEq V] [Fintype V] :
     Causalean.Graph.FiniteDensity.unitCubeReference V =
@@ -230,7 +246,9 @@ def clampedOfRealFactor (p : (V → ℝ) → ℝ) : (V → ℝ) → ℝ≥0∞ :
   fun v ↦ ENNReal.ofReal (p (clampCube V v))
 
 /-- [A cube-local extended-nonnegative function](hyp:p) with [cube-local measurability](hyp:hp)
-has [a globally measurable clamped extension](goal). -/
+has [a globally measurable clamped extension](goal).
+@isnad1 id=measurab.1h2v.s5.6d2fb59da2c9 from=translated src=- shape=5b9bc8ea vocab=1d4f84ff
+-/
 @[fun_prop]
 theorem measurable_clampedFactor {p : (V → ℝ) → ℝ≥0∞}
     (hp : MeasurableOnSet p (Causalean.Graph.FiniteDensity.unitCube V)) :
@@ -240,7 +258,9 @@ theorem measurable_clampedFactor {p : (V → ℝ) → ℝ≥0∞}
   exact hp.comp ((measurable_clampCube V).subtype_mk (h := clampCube_mem V))
 
 /-- [A cube-local real function](hyp:p) with [cube-local measurability](hyp:hp) has [a globally
-measurable nonnegative clamped extension](goal). -/
+measurable nonnegative clamped extension](goal).
+@isnad1 id=measurab.1h2v.s5.ddb8a9d30108 from=translated src=- shape=342375f0 vocab=7593a2da
+-/
 @[fun_prop]
 theorem measurable_clampedOfRealFactor {p : (V → ℝ) → ℝ}
     (hp : MeasurableOnSet p (Causalean.Graph.FiniteDensity.unitCube V)) :
@@ -284,7 +304,9 @@ def unitCubeFactorizationOfCubeFactors
 
 /-- [Cube-local factors](hyp:p) with [cube measurability](hyp:hmeas), [node-and-parent
 locality](hyp:hlocal), and [coordinate-wise normalization](hyp:hnorm), evaluated at [a node](hyp:i)
-and [a cube point](hyp:hv), give [a constructed factor equal to the original factor](goal). -/
+and [a cube point](hyp:hv), give [a constructed factor equal to the original factor](goal).
+@isnad1 id=eq.4h5v.s7.987ff9853643 from=translated src=- shape=e7c4f6b6 vocab=e43cecd3
+-/
 theorem unitCubeFactorizationOfCubeFactors_factor_eq
     {G : Causalean.Graph.DAG V} (p : ∀ i : V, (V → ℝ) → ℝ≥0∞)
     (hmeas : ∀ i : V, MeasurableOnSet (p i) (Causalean.Graph.FiniteDensity.unitCube V))
@@ -314,7 +336,9 @@ def cubeInterventionDensityMeasure (p : ∀ i : V, (V → ℝ) → ℝ≥0∞)
 
 /-- [Cube-local factors](hyp:p) with [cube measurability](hyp:hmeas), [node-and-parent
 locality](hyp:hlocal), and [coordinate-wise normalization](hyp:hnorm) give [an observational law
-of the clamped factorization equal to the cube-restricted product-density measure](goal). -/
+of the clamped factorization equal to the cube-restricted product-density measure](goal).
+@isnad1 id=eq.3h3v.s7.f0740d4d73ba from=translated src=- shape=35a9af2b vocab=119374ae
+-/
 theorem observationalMeasure_unitCubeFactorizationOfCubeFactors
     {G : Causalean.Graph.DAG V} (p : ∀ i : V, (V → ℝ) → ℝ≥0∞)
     (hmeas : ∀ i : V, MeasurableOnSet (p i) (Causalean.Graph.FiniteDensity.unitCube V))
@@ -367,7 +391,9 @@ def interventionDensityOfCube
 locality](hyp:hlocal), and [coordinate-wise normalization](hyp:hnorm), together with [a target
 coordinate](hyp:j), [a replacement density](hyp:q), [its interval measurability](hyp:hqmeas), and
 [its normalization](hyp:hqnorm), give [an intervention law equal to the cube-restricted
-replacement product-density measure](goal). -/
+replacement product-density measure](goal).
+@isnad1 id=eq.5h5v.s8.61622705aecd from=translated src=- shape=02c3c2d9 vocab=1f51995a
+-/
 theorem interventionMeasure_unitCubeFactorizationOfCubeFactors
     {G : Causalean.Graph.DAG V} (p : ∀ i : V, (V → ℝ) → ℝ≥0∞)
     (hmeas : ∀ i : V, MeasurableOnSet (p i) (Causalean.Graph.FiniteDensity.unitCube V))
@@ -441,7 +467,9 @@ def unitCubeFactorizationOfRealCubeFactors
 /-- [Real cube factors](hyp:p) with [cube measurability](hyp:hmeas), [nonnegativity](hyp:hnonneg),
 [node-and-parent locality](hyp:hlocal), and [coordinate-wise normalization](hyp:hnorm), evaluated
 at [a node](hyp:i) and [a cube point](hyp:hv), give [a constructed factor equal to the
-nonnegative-real conversion of the original factor](goal). -/
+nonnegative-real conversion of the original factor](goal).
+@isnad1 id=eq.5h5v.s8.e97750673e2a from=translated src=- shape=efea1602 vocab=00249cd6
+-/
 theorem unitCubeFactorizationOfRealCubeFactors_factor_eq
     {G : Causalean.Graph.DAG V} (p : ∀ i : V, (V → ℝ) → ℝ)
     (hmeas : ∀ i : V, MeasurableOnSet (p i) (Causalean.Graph.FiniteDensity.unitCube V))
@@ -479,7 +507,9 @@ def realCubeInterventionDensityMeasure (p : ∀ i : V, (V → ℝ) → ℝ)
 
 /-- [Real cube factors](hyp:p) with [cube measurability](hyp:hmeas), [nonnegativity](hyp:hnonneg),
 [node-and-parent locality](hyp:hlocal), and [coordinate-wise normalization](hyp:hnorm) give [an
-observational law equal to the usual cube-restricted real product-density measure](goal). -/
+observational law equal to the usual cube-restricted real product-density measure](goal).
+@isnad1 id=eq.4h3v.s8.1191edec4f33 from=translated src=- shape=c3013eae vocab=ffd19caf
+-/
 theorem observationalMeasure_unitCubeFactorizationOfRealCubeFactors
     {G : Causalean.Graph.DAG V} (p : ∀ i : V, (V → ℝ) → ℝ)
     (hmeas : ∀ i : V, MeasurableOnSet (p i) (Causalean.Graph.FiniteDensity.unitCube V))
@@ -535,7 +565,9 @@ def interventionDensityOfRealCube
 with [a target coordinate](hyp:j), [a real replacement density](hyp:q), [its interval
 measurability](hyp:hqmeas), [its nonnegativity](hyp:hqnonneg), and [its normalization](hyp:hqnorm),
 give [an intervention law equal to the usual cube-restricted real replacement product-density
-measure](goal). -/
+measure](goal).
+@isnad1 id=eq.7h5v.s8.01e273ab33fe from=translated src=- shape=f05168d9 vocab=dc29239e
+-/
 theorem interventionMeasure_unitCubeFactorizationOfRealCubeFactors
     {G : Causalean.Graph.DAG V} (p : ∀ i : V, (V → ℝ) → ℝ)
     (hmeas : ∀ i : V, MeasurableOnSet (p i) (Causalean.Graph.FiniteDensity.unitCube V))
@@ -575,7 +607,9 @@ theorem interventionMeasure_unitCubeFactorizationOfRealCubeFactors
       p hmeas hnonneg hlocal hnorm i hv
 
 /-- [Real cube factors](hyp:p) with [continuity on the finite unit cube](hyp:hcont) have [the
-cube-local measurability required by the real-valued factorization constructor](goal). -/
+cube-local measurability required by the real-valued factorization constructor](goal).
+@isnad1 id=measurab.1h3v.s6.190e909eba50 from=translated src=- shape=acdfaf91 vocab=1f19ed7b
+-/
 theorem measurableOnSet_of_continuousOn_cube
     (p : ∀ i : V, (V → ℝ) → ℝ)
     (hcont : ∀ i : V, ContinuousOn (p i) (Causalean.Graph.FiniteDensity.unitCube V)) :

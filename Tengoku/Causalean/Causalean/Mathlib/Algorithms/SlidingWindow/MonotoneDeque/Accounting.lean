@@ -209,7 +209,9 @@ private theorem foldl_max_le_of_forall (xs : List ℕ) (acc bound : ℕ)
       exact hxs y (by simp [hy])
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), and [an index](hyp:i)
-ensure [that the index is pushed at most once in the aggregate scan log](goal). -/
+ensure [that the index is pushed at most once in the aggregate scan log](goal).
+@isnad1 id=le.0h4v.s5.2320c98a7bfd from=translated src=- shape=b39739e2 vocab=fd64bb1e
+-/
 theorem scan_push_count_le_one (stream : Stream α) (schedule : Schedule stream.length) (i : ℕ) :
     (TracePushed stream (scan stream schedule)).count i ≤ 1 := by
   apply (List.nodup_iff_count_le_one.mp ?_) i
@@ -220,7 +222,9 @@ theorem scan_push_count_le_one (stream : Stream α) (schedule : Schedule stream.
   · exact schedule.right_mono
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), and [an index](hyp:i)
-ensure [that the index is front-popped at most once in the aggregate scan log](goal). -/
+ensure [that the index is front-popped at most once in the aggregate scan log](goal).
+@isnad1 id=le.0h4v.s5.13a0a9589056 from=translated src=- shape=b39739e2 vocab=a7e38ac8
+-/
 theorem scan_front_pop_count_le_one (stream : Stream α)
     (schedule : Schedule stream.length) (i : ℕ) :
     (TraceFrontPopped stream (scan stream schedule)).count i ≤ 1 := by
@@ -229,7 +233,9 @@ theorem scan_front_pop_count_le_one (stream : Stream α)
   omega
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), and [an index](hyp:i)
-ensure [that the index is back-popped at most once in the aggregate scan log](goal). -/
+ensure [that the index is back-popped at most once in the aggregate scan log](goal).
+@isnad1 id=le.0h4v.s5.b61750afbfd0 from=translated src=- shape=b39739e2 vocab=9fc308d3
+-/
 theorem scan_back_pop_count_le_one (stream : Stream α)
     (schedule : Schedule stream.length) (i : ℕ) :
     (TraceBackPopped stream (scan stream schedule)).count i ≤ 1 := by
@@ -238,7 +244,9 @@ theorem scan_back_pop_count_le_one (stream : Stream α)
   omega
 
 /-- [A stream](hyp:stream) and [a monotone window schedule](hyp:schedule) ensure [that no index
-appears in both front-pop and back-pop logs](goal). -/
+appears in both front-pop and back-pop logs](goal).
+@isnad1 id=disjoint.0h3v.s4.34fd358d065b from=translated src=- shape=fe84961d vocab=81e89955
+-/
 theorem scan_pop_logs_disjoint (stream : Stream α) (schedule : Schedule stream.length) :
     List.Disjoint (TraceFrontPopped stream (scan stream schedule))
       (TraceBackPopped stream (scan stream schedule)) := by
@@ -254,7 +262,9 @@ theorem scan_pop_logs_disjoint (stream : Stream α) (schedule : Schedule stream.
   omega
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), and [an index recorded as
-a front or back pop](hyp:hi) ensure [that the index was previously pushed](goal). -/
+a front or back pop](hyp:hi) ensure [that the index was previously pushed](goal).
+@isnad1 id=mem.1h4v.s5.95c0e795fd95 from=translated src=- shape=c8643a10 vocab=55b2bc6a
+-/
 theorem scan_popped_was_pushed (stream : Stream α) (schedule : Schedule stream.length) {i : ℕ}
     (hi : i ∈ TraceFrontPopped stream (scan stream schedule) ∨
       i ∈ TraceBackPopped stream (scan stream schedule)) :
@@ -270,7 +280,9 @@ theorem scan_popped_was_pushed (stream : Stream α) (schedule : Schedule stream.
     omega
 
 /-- [A stream](hyp:stream) and [a monotone window schedule](hyp:schedule) ensure [that total front
-and back pops are no more numerous than total pushes](goal). -/
+and back pops are no more numerous than total pushes](goal).
+@isnad1 id=le.0h3v.s5.45094258672e from=translated src=- shape=5bd9d05b vocab=2d850580
+-/
 theorem scan_total_pops_le_pushes (stream : Stream α) (schedule : Schedule stream.length) :
     (TraceFrontPopped stream (scan stream schedule)).length +
       (TraceBackPopped stream (scan stream schedule)).length ≤
@@ -292,7 +304,9 @@ theorem scan_total_pops_le_pushes (stream : Stream α) (schedule : Schedule stre
   simpa [popped] using hlen
 
 /-- [A stream](hyp:stream) and [a monotone window schedule](hyp:schedule) ensure [that total
-pushes are at most the stream length](goal). -/
+pushes are at most the stream length](goal).
+@isnad1 id=le.0h3v.s4.7f19a3102832 from=translated src=- shape=a91a90d7 vocab=c012de64
+-/
 theorem scan_total_pushes_le_length (stream : Stream α)
     (schedule : Schedule stream.length) :
     (TracePushed stream (scan stream schedule)).length ≤ stream.length := by
@@ -310,7 +324,9 @@ theorem scan_total_pushes_le_length (stream : Stream α)
   simpa using hnodup.length_le_of_subset hsubset
 
 /-- [A stream](hyp:stream) and [a monotone window schedule](hyp:schedule) ensure [that total deque
-mutations are at most twice the stream length](goal). -/
+mutations are at most twice the stream length](goal).
+@isnad1 id=le.0h3v.s5.d0acbf60eefe from=translated src=- shape=5beaa16d vocab=11bec3c8
+-/
 theorem dequeMutationCount_le_two_mul_length (stream : Stream α)
     (schedule : Schedule stream.length) :
     dequeMutationCount stream (scan stream schedule) ≤ 2 * stream.length := by
@@ -320,14 +336,18 @@ theorem dequeMutationCount_le_two_mul_length (stream : Stream α)
   omega
 
 /-- [A stream](hyp:stream) and [a monotone window schedule](hyp:schedule) ensure [that the scan
-mutation count is at most twice stream length plus the number of scheduled windows](goal). -/
+mutation count is at most twice stream length plus the number of scheduled windows](goal).
+@isnad1 id=le.0h3v.s5.dd1dfd4f9c00 from=translated src=- shape=a1c6ea5a vocab=cd8dd531
+-/
 theorem scanMutationCount_le (stream : Stream α) (schedule : Schedule stream.length) :
     scanMutationCount stream schedule ≤ 2 * stream.length + schedule.steps := by
   have h := dequeMutationCount_le_two_mul_length stream schedule
   unfold scanMutationCount
   omega
 
-/-- [A valid bounded-window deque](hyp:hq) has [stored length at most its window width](goal). -/
+/-- [A valid bounded-window deque](hyp:hq) has [stored length at most its window width](goal).
+@isnad1 id=le.1h4v.s5.9465fcf08ee0 from=translated src=- shape=e633b3b5 vocab=2dda72dd
+-/
 theorem Valid.length_le_windowWidth {stream : Stream α}
     {window : Window stream.length} {q : Deque} (hq : Valid stream window q) :
     q.length ≤ window.right - window.left := by
@@ -340,7 +360,9 @@ theorem Valid.length_le_windowWidth {stream : Stream α}
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), and [a valid schedule
 position](hyp:hk) ensure [that the corresponding scan state stores no more indices than its
-window width](goal). -/
+window width](goal).
+@isnad1 id=ex.1h4v.s7.13da2884d7f1 from=translated src=- shape=10823b95 vocab=560ccdb1
+-/
 theorem scan_memory_le_windowWidth (stream : Stream α)
     (schedule : Schedule stream.length) {k : ℕ} (hk : k < schedule.steps) :
     ∃ step, (scan stream schedule)[k]? = some step ∧
@@ -352,7 +374,9 @@ theorem scan_memory_le_windowWidth (stream : Stream α)
   simpa [hwindow] using hlen
 
 /-- [A stream](hyp:stream) and [a monotone window schedule](hyp:schedule) ensure that
-[the maximum recorded post-update deque length is at most the stream length](goal). -/
+[the maximum recorded post-update deque length is at most the stream length](goal).
+@isnad1 id=le.0h3v.s4.ac75694ac953 from=translated src=- shape=d4fde892 vocab=11e6c6f4
+-/
 theorem maxRecordedPostUpdateLength_le_length (stream : Stream α)
     (schedule : Schedule stream.length) :
     maxRecordedPostUpdateLength stream (scan stream schedule) ≤ stream.length := by

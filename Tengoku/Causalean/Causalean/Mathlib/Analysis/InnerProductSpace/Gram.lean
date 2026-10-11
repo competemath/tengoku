@@ -38,7 +38,9 @@ def IsPSDkernel {X : Type*} (k : X → X → ℝ) : Prop :=
 /-- For a finite sample `x` and kernel `k`, if [`k` is positive semidefinite, i.e. every
 Gram matrix it produces is PSD](hyp:hk) and [the regularization level `lam` is strictly
 positive](hyp:hlam), then [the regularized Gram matrix `gram k x + lam·I` is positive
-definite, hence invertible](goal). -/
+definite, hence invertible](goal).
+@isnad1 id=posdef.2h5v.s7.68c40a3e32b6 from=translated src=- shape=1b214f00 vocab=bdf53df0
+-/
 theorem gram_add_lambda_posDef {X : Type*} {n : ℕ} {k : X → X → ℝ}
     (hk : IsPSDkernel k) (x : Fin n → X) {lam : ℝ} (hlam : 0 < lam) :
     (gram k x + lam • (1 : Matrix (Fin n) (Fin n) ℝ)).PosDef := by

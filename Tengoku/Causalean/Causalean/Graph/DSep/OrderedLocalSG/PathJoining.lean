@@ -33,7 +33,9 @@ from the first endpoint to the join](hyp:hpa_len,hpa_head,hpa_last,hpa_act), [th
 is active from the join to the second endpoint](hyp:hpb_len,hpb_head,hpb_last,hpb_act),
 [its first edge points out of the join](hyp:hseam_out), and [the joining vertex is not
 conditioned on](hyp:hmZ), then [concatenating the walks gives an active walk between the
-endpoints](goal). -/
+endpoints](goal).
+@isnad1 id=other.10h8v.s7.2da2699cf22c from=translated src=- shape=5768434d vocab=6315dc9b
+-/
 theorem chain_join_active
     {Z : Finset V} {m x y : V} {pa pb : List V}
     (hpa_len : pa.length ≥ 2) (hpa_head : pa.head? = some x)
@@ -217,7 +219,9 @@ theorem chain_join_active
 and a selected position](hyp:q,w,j). If [the walk is nontrivial](hyp:hlen), [has the stated
 endpoint](hyp:hlast), [follows forward directed edges](hyp:hedge), and [the position lies
 on the walk](hyp:hj), then [the selected vertex is either the endpoint or its proper
-ancestor](goal). -/
+ancestor](goal).
+@isnad1 id=or.4h5v.s7.13f6c715801d from=translated src=- shape=b59d36ec vocab=2ac10125
+-/
 theorem node_isAncestor_last_of_directed {q : List V} {w : V}
     (hlen : q.length ≥ 2) (hlast : q.getLast? = some w)
     (hedge : ∀ (i : ℕ) (hi : i + 1 < q.length),
@@ -288,7 +292,9 @@ private theorem descent_active_insert {S : Finset V} {c w n : V}
   exact ⟨q, hlen, hhead, hlast, G.isActiveWalk_of_directed hedge hins, hfirst⟩
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [a conditioning set, walk, and
-prefix length](hyp:Z,p,k) with [an active full walk](hyp:hact) have [an active prefix](goal). -/
+prefix length](hyp:Z,p,k) with [an active full walk](hyp:hact) have [an active prefix](goal).
+@isnad1 id=isactive.1h5v.s5.6f525529a24c from=translated src=- shape=1141d59a vocab=6b5c0c2f
+-/
 theorem isActiveWalk_take {Z : Finset V} {p : List V} {k : ℕ}
     (hact : G.IsActiveWalk Z p) : G.IsActiveWalk Z (p.take k) := by
   obtain ⟨hadj, hcoll⟩ := hact
@@ -319,7 +325,9 @@ directed inward](goal).
     query ancestral set `bigQ`: either (splice) there is an active `A → W` walk given
     `insert n S` — obtained by cutting at the closest-to-`a` `W`-only-activated
     collider and descending to `W` — or (survive) `p` itself lifts to an active
-    `A → n` walk given `insert n S` whose last edge points into `n`. -/
+    `A → n` walk given `insert n S` whose last edge points into `n`.
+@isnad1 id=or.7h9v.s8.d32cd5e67a37 from=translated src=- shape=ad9e183b vocab=0f5e21ae
+-/
 theorem survive_or_splice {S A W bigQ : Finset V} {p : List V} {a n : V}
     (hbigQ : A ∪ {n} ∪ (S ∪ W) ⊆ bigQ)
     (hmax : ∀ m ∈ G.ancestralSet bigQ, G.topoOrder m ≤ G.topoOrder n)

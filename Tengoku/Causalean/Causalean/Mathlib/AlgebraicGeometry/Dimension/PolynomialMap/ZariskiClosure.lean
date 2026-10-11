@@ -29,18 +29,24 @@ Algebraic closure in a complex affine space. -/
 def affineZariskiClosure {ι : Type*} (A : Set (ι → ℂ)) : Set (ι → ℂ) :=
   MvPolynomial.zeroLocus ℂ (MvPolynomial.vanishingIdeal ℂ A)
 
-/-- Every set is contained in its affine Zariski closure. -/
+/-- Every set is contained in its affine Zariski closure.
+@isnad1 id=le.0h2v.s4.3613c058aa7c from=translated src=- shape=f3308a8d vocab=e9d1cd04
+-/
 lemma affineZariskiClosure_extensive {ι : Type*} (A : Set (ι → ℂ)) :
     A ⊆ affineZariskiClosure A :=
   MvPolynomial.zeroLocus_vanishingIdeal_le A
 
-/-- Affine Zariski closure is monotone. -/
+/-- Affine Zariski closure is monotone.
+@isnad1 id=le.1h3v.s5.b2afeec66544 from=translated src=- shape=0e502c56 vocab=e9d1cd04
+-/
 lemma affineZariskiClosure_mono {ι : Type*} {A B : Set (ι → ℂ)} (h : A ⊆ B) :
     affineZariskiClosure A ⊆ affineZariskiClosure B := by
   exact MvPolynomial.zeroLocus_anti_mono
     (MvPolynomial.vanishingIdeal_anti_mono h)
 
-/-- Affine Zariski closure is idempotent. -/
+/-- Affine Zariski closure is idempotent.
+@isnad1 id=eq.0h2v.s4.379adc232698 from=translated src=- shape=2d9855c8 vocab=ef90d02d
+-/
 lemma affineZariskiClosure_idem {ι : Type*} (A : Set (ι → ℂ)) :
     affineZariskiClosure (affineZariskiClosure A) = affineZariskiClosure A := by
   apply Set.Subset.antisymm
@@ -48,13 +54,17 @@ lemma affineZariskiClosure_idem {ι : Type*} (A : Set (ι → ℂ)) :
     exact hx P (fun y hy => hy P hP)
   · exact affineZariskiClosure_extensive _
 
-/-- A closed affine set is the zero locus of its vanishing ideal. -/
+/-- A closed affine set is the zero locus of its vanishing ideal.
+@isnad1 id=eq.1h2v.s5.f375f5dd72c8 from=translated src=- shape=3469ab18 vocab=80d14f23
+-/
 lemma affineZariskiClosure_eq_zeroLocus {ι : Type*}
     {Z : Set (ι → ℂ)} (hZ : affineZariskiClosure Z = Z) :
     Z = MvPolynomial.zeroLocus ℂ (MvPolynomial.vanishingIdeal ℂ Z) := by
   exact hZ.symm
 
-/-- The intersection of two affine-closed sets is affine-closed. -/
+/-- The intersection of two affine-closed sets is affine-closed.
+@isnad1 id=eq.2h3v.s5.2a899cd86e77 from=translated src=- shape=d805468e vocab=79552554
+-/
 lemma affineZariskiClosure_inter {ι : Type*}
     {A B : Set (ι → ℂ)}
     (hA : affineZariskiClosure A = A) (hB : affineZariskiClosure B = B) :
@@ -65,7 +75,9 @@ lemma affineZariskiClosure_inter {ι : Type*}
       hB ▸ affineZariskiClosure_mono Set.inter_subset_right hx⟩
   · exact affineZariskiClosure_extensive _
 
-/-- The zero set of one multivariate polynomial is affine-closed. -/
+/-- The zero set of one multivariate polynomial is affine-closed.
+@isnad1 id=eq.0h2v.s7.647dbb277d6b from=translated src=- shape=48781381 vocab=a4fb1378
+-/
 lemma affineZariskiClosure_zero_of_polynomial {ι : Type*}
     (P : MvPolynomial ι ℂ) :
     affineZariskiClosure {x | MvPolynomial.eval x P = 0} =
@@ -75,7 +87,9 @@ lemma affineZariskiClosure_zero_of_polynomial {ι : Type*}
     exact hx P (fun y hy => by simpa [MvPolynomial.aeval_def] using hy)
   · exact affineZariskiClosure_extensive _
 
-/-- The union of two affine-closed sets is affine-closed. -/
+/-- The union of two affine-closed sets is affine-closed.
+@isnad1 id=eq.2h3v.s5.2707b54bdb3e from=translated src=- shape=d805468e vocab=79c5b5d8
+-/
 lemma affineZariskiClosure_union {ι : Type*} {A B : Set (ι → ℂ)}
     (hA : affineZariskiClosure A = A) (hB : affineZariskiClosure B = B) :
     affineZariskiClosure (A ∪ B) = A ∪ B := by
@@ -103,7 +117,9 @@ lemma affineZariskiClosure_union {ι : Type*} {A B : Set (ι → ℂ)}
 
 /-- For a polynomial `P` in coordinates indexed by `ι`, if [`P` is not the zero
 polynomial](hyp:hP), then [the set of points where `P` does not vanish is
-Zariski-dense in the whole affine space](goal). -/
+Zariski-dense in the whole affine space](goal).
+@isnad1 id=eq.1h2v.s7.a35c3a4b4b83 from=translated src=- shape=cdb0b37f vocab=ec978faf
+-/
 lemma affineZariskiClosure_nonvanishing_eq_univ {ι : Type*}
     (P : MvPolynomial ι ℂ) (hP : P ≠ 0) :
     affineZariskiClosure {x : ι → ℂ | MvPolynomial.eval x P ≠ 0} = Set.univ := by

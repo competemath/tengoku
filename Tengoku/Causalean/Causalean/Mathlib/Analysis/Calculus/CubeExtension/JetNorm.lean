@@ -20,7 +20,9 @@ set_option maxHeartbeats 1000000 in
 /-- In [dimension d](hyp:d) and through [order m](hyp:m), [there is a positive
 constant C such that every continuous j-linear map T on coordinate space with
 j ≤ m whose values on all tuples of standard basis vectors are bounded in
-absolute value by B ≥ 0 has operator norm at most C·B](goal). -/
+absolute value by B ≥ 0 has operator norm at most C·B](goal).
+@isnad1 id=ex.0h2v.s8.177735b93413 from=translated src=- shape=51201715 vocab=dc8515e4
+-/
 theorem exists_coord_multilinear_norm_constant (d m : ℕ) :
     ∃ C : ℝ, 0 < C ∧
       ∀ j ≤ m,
@@ -78,7 +80,9 @@ intrinsic Hölder ball of order m, exponent s and radius L ≥ 0 on the closed c
 has within-cube Fréchet derivatives of every order at most m with operator norm
 at most C·L on the cube, and its order-m within-cube Fréchet derivative is
 s-Hölder on the cube with coefficient C·L](goal). The constant does not depend on
-the response or the radius. -/
+the response or the radius.
+@isnad1 id=ex.0h3v.s11.9c55c50a5811 from=translated src=- shape=c44373de vocab=1a56374c
+-/
 theorem exists_full_intrinsic_jet_bounds (d m : ℕ) (s : ℝ) :
     ∃ C : ℝ, 0 < C ∧
       ∀ (u : (Fin d → ℝ) → ℝ) (L : ℝ), 0 ≤ L →

@@ -29,7 +29,9 @@ noncomputable def rectAffine {d : ℕ} (lo hi lo' hi' : Fin d → ℝ)
 
 /-- If [the box with corners lo and hi has strictly positive side
 lengths](hyp:h), then [it has unique within-set derivatives at every point,
-including its faces](goal). -/
+including its faces](goal).
+@isnad1 id=uniquedi.1h3v.s6.e9032deaee2c from=translated src=- shape=a92d3e97 vocab=b05c9f5f
+-/
 theorem uniqueDiffOn_rectBox {d : ℕ} (lo hi : Fin d → ℝ)
     (h : ∀ i, lo i < hi i) : UniqueDiffOn ℝ (rectBox lo hi) := by
   have hbox : rectBox lo hi = Set.univ.pi (fun i : Fin d => Set.Icc (lo i) (hi i)) := by
@@ -45,7 +47,9 @@ lies in the target box](goal).
 
 For each coordinate, cancel the positive source width and compare the two
 endpoint inequalities. The reverse implication needs positivity of the target
-width as well. -/
+width as well.
+@isnad1 id=eq.2h5v.s6.b3f36db3cc80 from=translated src=- shape=9ac74573 vocab=82658a6b
+-/
 theorem rectAffine_preimage_rectBox {d : ℕ}
     (lo hi lo' hi' : Fin d → ℝ)
     (hsource : ∀ i, lo i < hi i)
@@ -90,7 +94,9 @@ two points under the coordinatewise affine map is at most C times the s-th power
 of the distance between the points](goal).
 
 Use the upper Lipschitz bound when `0 ≤ s` and the lower Lipschitz bound when
-`s < 0`. At `x = y`, both sides are zero in Lean's real-power convention. -/
+`s < 0`. At `x = y`, both sides are zero in Lean's real-power convention.
+@isnad1 id=ex.2h6v.s7.e496b33f71d6 from=translated src=- shape=aead674e vocab=18cbf82a
+-/
 theorem exists_rectAffine_rpow_constant {d : ℕ}
     (lo hi lo' hi' : Fin d → ℝ) (s : ℝ)
     (hsource : ∀ i, lo i < hi i)

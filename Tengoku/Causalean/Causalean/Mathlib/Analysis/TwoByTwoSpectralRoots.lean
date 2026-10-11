@@ -30,37 +30,49 @@ noncomputable def lambda₂ (G : Matrix (Fin 2) (Fin 2) ℝ) : ℝ :=
 def strictGapSet : Set (Matrix (Fin 2) (Fin 2) ℝ) :=
   {G | lambda₂ G < lambda₁ G}
 
-/-- For [a real two-by-two matrix](hyp:G), [its explicit discriminant is nonnegative](goal). -/
+/-- For [a real two-by-two matrix](hyp:G), [its explicit discriminant is nonnegative](goal).
+@isnad1 id=le.0h1v.s4.9d518337c314 from=translated src=- shape=0c5cd9ab vocab=32807984
+-/
 theorem rootDiscriminant_nonneg (G : Matrix (Fin 2) (Fin 2) ℝ) :
     0 ≤ rootDiscriminant G := by
   unfold rootDiscriminant
   positivity
 
-/-- For [a real two-by-two matrix](hyp:G), [the difference between its upper and lower roots is the nonnegative square root of its discriminant](goal). -/
+/-- For [a real two-by-two matrix](hyp:G), [the difference between its upper and lower roots is the nonnegative square root of its discriminant](goal).
+@isnad1 id=eq.0h1v.s4.254a231a0953 from=translated src=- shape=f3f7bdb8 vocab=395c3beb
+-/
 theorem lambda₁_sub_lambda₂ (G : Matrix (Fin 2) (Fin 2) ℝ) :
     lambda₁ G - lambda₂ G = Real.sqrt (rootDiscriminant G) := by
   unfold lambda₁ lambda₂
   ring
 
-/-- For [a real two-by-two matrix](hyp:G), [its lower explicit root does not exceed its upper explicit root](goal). -/
+/-- For [a real two-by-two matrix](hyp:G), [its lower explicit root does not exceed its upper explicit root](goal).
+@isnad1 id=le.0h1v.s4.4a8b40c03699 from=translated src=- shape=984dd50f vocab=92f78f80
+-/
 theorem lambda₂_le_lambda₁ (G : Matrix (Fin 2) (Fin 2) ℝ) :
     lambda₂ G ≤ lambda₁ G := by
   rw [← sub_nonneg, lambda₁_sub_lambda₂]
   exact Real.sqrt_nonneg _
 
-/-- For [a real two-by-two matrix](hyp:G), [having distinct ordered roots is equivalent to strict positivity of its discriminant](goal). -/
+/-- For [a real two-by-two matrix](hyp:G), [having distinct ordered roots is equivalent to strict positivity of its discriminant](goal).
+@isnad1 id=iff.0h1v.s6.7ebcd8d098e2 from=translated src=- shape=ef360cce vocab=f93319f2
+-/
 theorem mem_strictGapSet_iff_discriminant_pos (G : Matrix (Fin 2) (Fin 2) ℝ) :
     G ∈ strictGapSet ↔ 0 < rootDiscriminant G := by
   change lambda₂ G < lambda₁ G ↔ 0 < rootDiscriminant G
   rw [← sub_pos, lambda₁_sub_lambda₂, Real.sqrt_pos]
 
-/-- For [a real two-by-two matrix](hyp:G), [the two explicit roots add to its trace](goal). -/
+/-- For [a real two-by-two matrix](hyp:G), [the two explicit roots add to its trace](goal).
+@isnad1 id=eq.0h1v.s6.46720b73e4e8 from=translated src=- shape=7cce5d60 vocab=ec56d3be
+-/
 theorem lambda₁_add_lambda₂ (G : Matrix (Fin 2) (Fin 2) ℝ) :
     lambda₁ G + lambda₂ G = G 0 0 + G 1 1 := by
   unfold lambda₁ lambda₂
   ring
 
-/-- Given [a real two-by-two matrix](hyp:G) that [is symmetric](hyp:hG), [the product of its two explicit roots equals its determinant](goal). -/
+/-- Given [a real two-by-two matrix](hyp:G) that [is symmetric](hyp:hG), [the product of its two explicit roots equals its determinant](goal).
+@isnad1 id=eq.1h1v.s6.7b663d4ceddc from=translated src=- shape=05745afd vocab=40e1cb63
+-/
 theorem lambda₁_mul_lambda₂ {G : Matrix (Fin 2) (Fin 2) ℝ} (hG : G.IsHermitian) :
     lambda₁ G * lambda₂ G = G.det := by
   have hsym : G 1 0 = G 0 1 := by
@@ -71,7 +83,9 @@ theorem lambda₁_mul_lambda₂ {G : Matrix (Fin 2) (Fin 2) ℝ} (hG : G.IsHermi
   unfold lambda₁ lambda₂ rootDiscriminant at *
   nlinarith
 
-/-- Given [a real symmetric two-by-two matrix](hyp:G,hG) and [one of the two root labels](hyp:i), [subtracting that labelled explicit root from the diagonal has zero determinant](goal). -/
+/-- Given [a real symmetric two-by-two matrix](hyp:G,hG) and [one of the two root labels](hyp:i), [subtracting that labelled explicit root from the diagonal has zero determinant](goal).
+@isnad1 id=eq.1h2v.s8.459b217b7399 from=translated src=- shape=48ad9c26 vocab=03c5c176
+-/
 theorem det_sub_lambda_mul_one_eq_zero {G : Matrix (Fin 2) (Fin 2) ℝ}
     (hG : G.IsHermitian) (i : Fin 2) :
     (G - (if i = 0 then lambda₁ G else lambda₂ G) •
@@ -87,7 +101,9 @@ theorem det_sub_lambda_mul_one_eq_zero {G : Matrix (Fin 2) (Fin 2) ℝ}
     unfold rootDiscriminant at * <;>
     nlinarith
 
-/-- Given [a real symmetric two-by-two matrix](hyp:G,hG), [a real number](hyp:μ), [a nonzero two-vector](hyp:v,hv), and [an eigenvector relation for that number](hyp:heig), [the number is one of the two explicit ordered roots](goal). -/
+/-- Given [a real symmetric two-by-two matrix](hyp:G,hG), [a real number](hyp:μ), [a nonzero two-vector](hyp:v,hv), and [an eigenvector relation for that number](hyp:heig), [the number is one of the two explicit ordered roots](goal).
+@isnad1 id=or.3h3v.s7.b7f9947866c1 from=translated src=- shape=46f897e9 vocab=1ac5cf08
+-/
 theorem eigenvalue_eq_lambda₁_or_lambda₂ {G : Matrix (Fin 2) (Fin 2) ℝ}
     (hG : G.IsHermitian) {μ : ℝ} {v : Fin 2 → ℝ} (hv : v ≠ 0)
     (heig : G.mulVec v = μ • v) :
@@ -129,7 +145,9 @@ theorem eigenvalue_eq_lambda₁_or_lambda₂ {G : Matrix (Fin 2) (Fin 2) ℝ}
   · right
     linarith
 
-/-- Given [a real two-by-two matrix](hyp:G) with [a strict gap between its explicit roots](hyp:hG), [the upper root varies continuously differentiably near that matrix](goal). -/
+/-- Given [a real two-by-two matrix](hyp:G) with [a strict gap between its explicit roots](hyp:hG), [the upper root varies continuously differentiably near that matrix](goal).
+@isnad1 id=contdiff.1h1v.s7.924917feefac from=translated src=- shape=a37acbaa vocab=f0742dca
+-/
 theorem contDiffAt_lambda₁ {G : Matrix (Fin 2) (Fin 2) ℝ} (hG : G ∈ strictGapSet) :
     ContDiffAt ℝ 1 lambda₁ G := by
   have hdisc : ContDiffAt ℝ 1 rootDiscriminant G := by
@@ -142,7 +160,9 @@ theorem contDiffAt_lambda₁ {G : Matrix (Fin 2) (Fin 2) ℝ} (hG : G ∈ strict
   exact (((contDiff_apply_apply ℝ ℝ (0 : Fin 2) (0 : Fin 2)).contDiffAt.add
     (contDiff_apply_apply ℝ ℝ (1 : Fin 2) (1 : Fin 2)).contDiffAt).add hsqrt).div_const 2
 
-/-- Given [a real two-by-two matrix](hyp:G) with [a strict gap between its explicit roots](hyp:hG), [the lower root varies continuously differentiably near that matrix](goal). -/
+/-- Given [a real two-by-two matrix](hyp:G) with [a strict gap between its explicit roots](hyp:hG), [the lower root varies continuously differentiably near that matrix](goal).
+@isnad1 id=contdiff.1h1v.s7.b387ddac2d4e from=translated src=- shape=a37acbaa vocab=17b9ef70
+-/
 theorem contDiffAt_lambda₂ {G : Matrix (Fin 2) (Fin 2) ℝ} (hG : G ∈ strictGapSet) :
     ContDiffAt ℝ 1 lambda₂ G := by
   have hdisc : ContDiffAt ℝ 1 rootDiscriminant G := by
@@ -155,7 +175,9 @@ theorem contDiffAt_lambda₂ {G : Matrix (Fin 2) (Fin 2) ℝ} (hG : G ∈ strict
   exact (((contDiff_apply_apply ℝ ℝ (0 : Fin 2) (0 : Fin 2)).contDiffAt.add
     (contDiff_apply_apply ℝ ℝ (1 : Fin 2) (1 : Fin 2)).contDiffAt).sub hsqrt).div_const 2
 
-/-- [The region of real two-by-two matrices with distinct explicit roots is open](goal). -/
+/-- [The region of real two-by-two matrices with distinct explicit roots is open](goal).
+@isnad1 id=isopen.0h0v.s5.105294905cce from=translated src=- shape=8e009dd1 vocab=f7038cf4
+-/
 theorem isOpen_strictGapSet : IsOpen strictGapSet := by
   have hdisc : Continuous rootDiscriminant := by
     unfold rootDiscriminant
@@ -165,12 +187,16 @@ theorem isOpen_strictGapSet : IsOpen strictGapSet := by
     exact mem_strictGapSet_iff_discriminant_pos G]
   exact isOpen_lt continuous_const hdisc
 
-/-- [The upper explicit root is continuously differentiable throughout the strict-gap region](goal). -/
+/-- [The upper explicit root is continuously differentiable throughout the strict-gap region](goal).
+@isnad1 id=contdiff.0h0v.s6.c45a3b42dcdc from=translated src=- shape=419ff7ae vocab=807ff523
+-/
 theorem contDiffOn_lambda₁ : ContDiffOn ℝ 1 lambda₁ strictGapSet := by
   intro G hG
   exact (contDiffAt_lambda₁ hG).contDiffWithinAt
 
-/-- [The lower explicit root is continuously differentiable throughout the strict-gap region](goal). -/
+/-- [The lower explicit root is continuously differentiable throughout the strict-gap region](goal).
+@isnad1 id=contdiff.0h0v.s6.91714ffdffe0 from=translated src=- shape=419ff7ae vocab=88b4c4ba
+-/
 theorem contDiffOn_lambda₂ : ContDiffOn ℝ 1 lambda₂ strictGapSet := by
   intro G hG
   exact (contDiffAt_lambda₂ hG).contDiffWithinAt

@@ -31,7 +31,9 @@ noncomputable def reciprocalError (a b : ℝ) (m : ℕ) : ℝ :=
     ((b - a) * ((intervalShape a b) ^ 2 - 1))
 
 /-- A [positive lower endpoint](hyp:a,ha) and [strictly larger upper
-endpoint](hyp:b,hab) imply [that the interval shape exceeds one](goal). -/
+endpoint](hyp:b,hab) imply [that the interval shape exceeds one](goal).
+@isnad1 id=lt.2h2v.s5.2b1a7de448da from=translated src=- shape=ef926fc7 vocab=fe7ec74a
+-/
 theorem intervalShape_gt_one {a b : ℝ} (ha : 0 < a) (hab : a < b) :
     1 < intervalShape a b := by
   unfold intervalShape
@@ -41,7 +43,9 @@ theorem intervalShape_gt_one {a b : ℝ} (ha : 0 < a) (hab : a < b) :
 
 /-- A [positive lower endpoint](hyp:a,ha) and [strictly larger upper
 endpoint](hyp:b,hab) imply [that the decay parameter lies strictly between
-zero and one](goal). -/
+zero and one](goal).
+@isnad1 id=mem.2h2v.s5.8c28d4483b1a from=translated src=- shape=0573554c vocab=01c19e50
+-/
 theorem intervalDecay_mem_Ioo {a b : ℝ} (ha : 0 < a) (hab : a < b) :
     intervalDecay a b ∈ Set.Ioo (0 : ℝ) 1 := by
   let v := intervalShape a b
@@ -64,7 +68,9 @@ theorem intervalDecay_mem_Ioo {a b : ℝ} (ha : 0 < a) (hab : a < b) :
 
 /-- A [positive lower endpoint](hyp:a,ha) and [strictly larger upper
 endpoint](hyp:b,hab) imply [that the decay parameter plus its reciprocal
-equals twice the interval shape](goal). -/
+equals twice the interval shape](goal).
+@isnad1 id=eq.2h2v.s5.6bb53d499ea6 from=translated src=- shape=6beb0775 vocab=9ea520ec
+-/
 theorem intervalDecay_add_inv {a b : ℝ} (ha : 0 < a) (hab : a < b) :
     intervalDecay a b + (intervalDecay a b)⁻¹ = 2 * intervalShape a b := by
   let v := intervalShape a b
@@ -87,7 +93,9 @@ theorem intervalDecay_add_inv {a b : ℝ} (ha : 0 < a) (hab : a < b) :
 
 /-- A [positive lower endpoint](hyp:a,ha), [strictly larger upper
 endpoint](hyp:b,hab), and [finite degree](hyp:m) imply [that the claimed
-reciprocal error is positive](goal). -/
+reciprocal error is positive](goal).
+@isnad1 id=lt.2h3v.s5.9fdc36edca33 from=translated src=- shape=5788bb3c vocab=00b1b8f3
+-/
 theorem reciprocalError_pos {a b : ℝ} (ha : 0 < a) (hab : a < b) (m : ℕ) :
     0 < reciprocalError a b m := by
   unfold reciprocalError
@@ -97,7 +105,9 @@ theorem reciprocalError_pos {a b : ℝ} (ha : 0 < a) (hab : a < b) (m : ℕ) :
   exact div_pos (by positivity) (mul_pos (sub_pos.mpr hab) hsq)
 
 /-- A [natural number K at least two](hyp:K,hK) implies [that the decay parameter of the interval
-from one to K² equals (K − 1) / (K + 1)](goal). -/
+from one to K² equals (K − 1) / (K + 1)](goal).
+@isnad1 id=eq.1h1v.s6.96170d9e96e9 from=translated src=- shape=2ceb2266 vocab=d784ae4f
+-/
 theorem intervalDecay_one_sq (K : ℕ) (hK : 2 ≤ K) :
     intervalDecay 1 ((K : ℝ) ^ 2) = ((K : ℝ) - 1) / ((K : ℝ) + 1) := by
   let x : ℝ := K
@@ -126,7 +136,9 @@ theorem intervalDecay_one_sq (K : ℕ) (hK : 2 ≤ K) :
 
 /-- A [natural number K at least two](hyp:K,hK) implies [that the degree-K reciprocal approximation
 error on the interval from one to K² equals (K² − 1) / (2 K²) times the K-th power of (K − 1) / (K
-+ 1)](goal). -/
++ 1)](goal).
+@isnad1 id=eq.1h1v.s7.8edbf82ec680 from=translated src=- shape=8b19a378 vocab=473d63a0
+-/
 theorem reciprocalError_one_sq (K : ℕ) (hK : 2 ≤ K) :
     reciprocalError 1 ((K : ℝ) ^ 2) K =
       (((K : ℝ) ^ 2 - 1) / (2 * (K : ℝ) ^ 2)) *

@@ -38,7 +38,9 @@ abbrev polynomialImageClosure {ι κ : Type*} (f : κ → MvPolynomial ι ℂ) :
 /-- For [index types `ι`, `κ`](hyp:ι,κ), [a polynomial parameterization `f`](hyp:f), [a point
 `x`](hyp:x), and [a polynomial `P`](hyp:P), [substituting the coordinate polynomials `f` into
 `P` and evaluating at `x` agrees with evaluating `P` directly at the point obtained by
-evaluating `f`'s coordinates at `x`](goal). -/
+evaluating `f`'s coordinates at `x`](goal).
+@isnad1 id=eq.0h5v.s8.1fb270b80ea5 from=translated src=- shape=34746f17 vocab=61f2c648
+-/
 lemma eval_polynomialPullback {ι κ : Type*} (f : κ → MvPolynomial ι ℂ)
     (x : ι → ℂ) (P : MvPolynomial κ ℂ) :
     MvPolynomial.eval x (polynomialPullback f P) =

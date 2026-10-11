@@ -22,7 +22,9 @@ namespace Causalean.Mathlib.AlgebraicGeometry.PolynomialImageDimension
 noncomputable section
 
 /-- The closure of the image of a dense set under a polynomial map equals the
-closure of the full range. -/
+closure of the full range.
+@isnad1 id=eq.2h4v.s5.bfaa028a2551 from=translated src=- shape=a533a3ca vocab=b6c546d7
+-/
 lemma affineZariskiClosure_polynomial_image_of_dense
     {ι κ : Type*} {f : (ι → ℂ) → (κ → ℂ)} (hf : IsPolynomialMap f)
     {A : Set (ι → ℂ)} (hA : affineZariskiClosure A = Set.univ) :
@@ -46,7 +48,9 @@ lemma affineZariskiClosure_polynomial_image_of_dense
       simpa [MvPolynomial.aeval_def, MvPolynomial.eval₂_id] using hx)
 
 /-- The closure of a polynomial image of a nonempty dense subset of finite
-complex affine space is irreducible. -/
+complex affine space is irreducible.
+@isnad1 id=isirredu.3h4v.s5.eefb4eeebf86 from=translated src=- shape=ffd47bd9 vocab=0cac29b0
+-/
 theorem irreducible_affineClosure_polynomial_image_of_dense
     {ι κ : Type*} [Finite ι]
     {f : (ι → ℂ) → (κ → ℂ)} (hf : IsPolynomialMap f)
@@ -111,7 +115,9 @@ theorem irreducible_affineClosure_polynomial_image_of_dense
 
 /-- For a map `f` from the affine space `ℂ^ι` (with `ι` finite) to `ℂ^κ` that
 [is coordinatewise polynomial](hyp:hf), the Zariski closure of the range of
-`f` [is irreducible as a polynomially closed set](goal). -/
+`f` [is irreducible as a polynomially closed set](goal).
+@isnad1 id=isirredu.1h3v.s5.9fcfb34fd813 from=translated src=- shape=a0690eb3 vocab=eacab497
+-/
 theorem polynomialImageClosure_isIrreducible
     {ι κ : Type*} [Finite ι]
     {f : (ι → ℂ) → (κ → ℂ)} (hf : IsPolynomialMap f) :

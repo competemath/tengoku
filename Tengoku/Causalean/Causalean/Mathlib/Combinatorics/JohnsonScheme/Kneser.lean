@@ -46,7 +46,9 @@ when `A` and `S` are disjoint, identify every admissible neighbor uniquely as
 those `C` with `powersetCard`.
 -/
 
-/-- For [a set of labelled units](hyp:S), [its disjointness indicator equals the alternating inclusion-exclusion sum of the inclusion monomials of its subsets](goal). -/
+/-- For [a set of labelled units](hyp:S), [its disjointness indicator equals the alternating inclusion-exclusion sum of the inclusion monomials of its subsets](goal).
+@isnad1 id=eq.0h3v.s7.32fa1eca98e0 from=translated src=- shape=e42b36fe vocab=606febf1
+-/
 theorem disjointIndicator_eq_sum_powerset (S : Finset (Fin n)) :
     disjointIndicator (M := M) S =
       ∑ T ∈ S.powerset, ((-1 : ℝ) ^ T.card) • inclusionMonomial (M := M) T := by
@@ -74,7 +76,9 @@ theorem disjointIndicator_eq_sum_powerset (S : Finset (Fin n)) :
     _ = ∑ T ∈ S.powerset, if T ⊆ A.1 then (-1 : ℝ) ^ T.card else 0 := by
       rw [Finset.sum_filter]
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2) and [the indexing set is no larger than the slice size](hyp:hSM), [Kneser adjacency maps the given inclusion monomial to its disjointness indicator times the number of compatible completions](goal), for [the indexing set](hyp:S). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2) and [the indexing set is no larger than the slice size](hyp:hSM), [Kneser adjacency maps the given inclusion monomial to its disjointness indicator times the number of compatible completions](goal), for [the indexing set](hyp:S).
+@isnad1 id=eq.2h3v.s9.f5e16984ecc6 from=translated src=- shape=6fd7e72b vocab=33e255e6
+-/
 theorem kneserAdjacency_inclusionMonomial_eq (h2 : 2 * M ≤ n)
     (S : Finset (Fin n)) (hSM : S.card ≤ M) :
     kneserAdjacency n M (inclusionMonomial (M := M) S) =
@@ -155,7 +159,9 @@ from generators with `Submodule.span_induction`; generators of cardinality
 strictly below `d` are already in the lower filtration.
 -/
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the degree is positive](hyp:hd), [the indexing set](hyp:S) has [exactly that degree](hyp:hSd), and [the degree does not exceed the slice size](hyp:hdM), [Kneser adjacency differs from its classical degree eigenvalue times that monomial only by a lower-degree function](goal). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the degree is positive](hyp:hd), [the indexing set](hyp:S) has [exactly that degree](hyp:hSd), and [the degree does not exceed the slice size](hyp:hdM), [Kneser adjacency differs from its classical degree eigenvalue times that monomial only by a lower-degree function](goal).
+@isnad1 id=mem.4h4v.s9.d135bc49705e from=translated src=- shape=47d2b979 vocab=00eb3626
+-/
 theorem kneserAdjacency_inclusionMonomial_mod_lower (h2 : 2 * M ≤ n)
     {d : ℕ} (hd : 0 < d) (S : Finset (Fin n))
     (hSd : S.card = d) (hdM : d ≤ M) :
@@ -189,7 +195,9 @@ theorem kneserAdjacency_inclusionMonomial_mod_lower (h2 : 2 * M ≤ n)
   dsimp only [c]
   module
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the degree bound does not exceed the slice size](hyp:hdM), and [the given function belongs to that inclusion-degree subspace](hyp:hf), [Kneser adjacency remains in the same inclusion-degree subspace](goal), for [the slice function](hyp:f). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the degree bound does not exceed the slice size](hyp:hdM), and [the given function belongs to that inclusion-degree subspace](hyp:hf), [Kneser adjacency remains in the same inclusion-degree subspace](goal), for [the slice function](hyp:f).
+@isnad1 id=mem.3h4v.s10.9dbd017a7a28 from=translated src=- shape=32ea3013 vocab=8e9a98ba
+-/
 theorem kneserAdjacency_mem_degreeAtMost (h2 : 2 * M ≤ n)
     {d : ℕ} (hdM : d ≤ M) (f : SliceFn n M)
     (hf : f ∈ degreeAtMost n M d) :
@@ -215,7 +223,9 @@ theorem kneserAdjacency_mem_degreeAtMost (h2 : 2 * M ≤ n)
     rw [map_smul]
     exact (degreeAtMost n M d).smul_mem c hx
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the degree is positive](hyp:hd), [the degree does not exceed the slice size](hyp:hdM), and [the given function has inclusion degree at most that degree](hyp:hf), [subtracting the classical degree eigenvalue leaves a function one degree lower](goal), for [the slice function](hyp:f). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the degree is positive](hyp:hd), [the degree does not exceed the slice size](hyp:hdM), and [the given function has inclusion degree at most that degree](hyp:hf), [subtracting the classical degree eigenvalue leaves a function one degree lower](goal), for [the slice function](hyp:f).
+@isnad1 id=mem.4h4v.s10.538ce7d36051 from=translated src=- shape=0f35f271 vocab=4fc7e819
+-/
 theorem kneserAdjacency_sub_eigen_mem_lower (h2 : 2 * M ≤ n)
     {d : ℕ} (hd : 0 < d) (hdM : d ≤ M) (f : SliceFn n M)
     (hf : f ∈ degreeAtMost n M d) :
@@ -249,7 +259,9 @@ theorem kneserAdjacency_sub_eigen_mem_lower (h2 : 2 * M ≤ n)
     rw [map_smul, smul_smul]
     convert hcx using 1; module
 
-/-- For [a first slice function](hyp:f) and [a second slice function](hyp:g), [Kneser adjacency is self-adjoint under the uniform slice inner product](goal). -/
+/-- For [a first slice function](hyp:f) and [a second slice function](hyp:g), [Kneser adjacency is self-adjoint under the uniform slice inner product](goal).
+@isnad1 id=eq.0h4v.s9.11222dc049c2 from=translated src=- shape=55a51002 vocab=807637f5
+-/
 theorem sliceInner_kneserAdjacency (f g : SliceFn n M) :
     sliceInner (kneserAdjacency n M f) g =
       sliceInner f (kneserAdjacency n M g) := by
@@ -280,7 +292,9 @@ with itself therefore vanishes.  Degree zero is handled separately using
 monomial.  The projection corollary then only needs `harmonicProjection_mem`.
 -/
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given function belongs to that degree's Johnson harmonic subspace](hyp:hf), [unnormalized Kneser adjacency acts by its classical signed binomial eigenvalue](goal), for [the slice function](hyp:f). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given function belongs to that degree's Johnson harmonic subspace](hyp:hf), [unnormalized Kneser adjacency acts by its classical signed binomial eigenvalue](goal), for [the slice function](hyp:f).
+@isnad1 id=eq.2h4v.s9.a8b43865a8e8 from=translated src=- shape=21d3f9c2 vocab=f35d34dc
+-/
 theorem kneserAdjacency_eigen (h2 : 2 * M ≤ n) (k : Fin (M + 1))
     (f : SliceFn n M) (hf : f ∈ johnsonHarmonic n M k.1) :
     kneserAdjacency n M f =
@@ -348,7 +362,9 @@ theorem kneserAdjacency_eigen (h2 : 2 * M ≤ n) (k : Fin (M + 1))
       have hr0 : r = 0 := inner_self_eq_zero.mp hir
       exact sub_eq_zero.mp (by simpa [r, eig, hk] using hr0)
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given slice function](hyp:f), [Kneser adjacency acts on its projected harmonic component by the classical signed binomial eigenvalue](goal). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given slice function](hyp:f), [Kneser adjacency acts on its projected harmonic component by the classical signed binomial eigenvalue](goal).
+@isnad1 id=eq.1h4v.s10.4a75463d69dd from=translated src=- shape=46ffa473 vocab=8263ec50
+-/
 theorem kneserAdjacency_harmonicProjection (h2 : 2 * M ≤ n)
     (k : Fin (M + 1)) (f : SliceFn n M) :
     kneserAdjacency n M (harmonicProjection n M k f) =
@@ -370,7 +386,9 @@ The two normalized action theorems then follow by unfolding the scaled linear
 map, rewriting the unnormalized eigen theorem, and using the ratio identity.
 -/
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2) and [the selected harmonic degree](hyp:k), [the normalized Kneser eigenvalue magnitude equals the corresponding ratio of falling factorials](goal). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2) and [the selected harmonic degree](hyp:k), [the normalized Kneser eigenvalue magnitude equals the corresponding ratio of falling factorials](goal).
+@isnad1 id=eq.1h3v.s7.12be25d7e94f from=translated src=- shape=e20c1ed0 vocab=7119e4e8
+-/
 theorem normalizedKneser_eigenvalue_eq (h2 : 2 * M ≤ n)
     (k : Fin (M + 1)) :
     ((n - M).choose M : ℝ)⁻¹ *
@@ -394,7 +412,9 @@ theorem normalizedKneser_eigenvalue_eq (h2 : 2 * M ≤ n)
   rw [← hfacM, ← hfacN]
   ring
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given function belongs to that degree's Johnson harmonic subspace](hyp:hf), [normalized Kneser adjacency acts by the signed falling-factorial eigenvalue](goal), for [the slice function](hyp:f). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given function belongs to that degree's Johnson harmonic subspace](hyp:hf), [normalized Kneser adjacency acts by the signed falling-factorial eigenvalue](goal), for [the slice function](hyp:f).
+@isnad1 id=eq.2h4v.s9.ae0f88648de9 from=translated src=- shape=8ca2fe6a vocab=b9d4fec7
+-/
 theorem normalizedKneserAdjacency_eigen (h2 : 2 * M ≤ n)
     (k : Fin (M + 1)) (f : SliceFn n M)
     (hf : f ∈ johnsonHarmonic n M k.1) :
@@ -408,7 +428,9 @@ theorem normalizedKneserAdjacency_eigen (h2 : 2 * M ≤ n)
   rw [mul_left_comm ((n - M).choose M : ℝ)⁻¹]
   rw [normalizedKneser_eigenvalue_eq h2 k]
 
-/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given slice function](hyp:f), [normalized Kneser adjacency acts on its projected harmonic component by the signed falling-factorial eigenvalue](goal). -/
+/-- When [two disjoint slice-sized subsets can fit in the population](hyp:h2), [the selected harmonic degree](hyp:k), and [the given slice function](hyp:f), [normalized Kneser adjacency acts on its projected harmonic component by the signed falling-factorial eigenvalue](goal).
+@isnad1 id=eq.1h4v.s10.53f7ce44579b from=translated src=- shape=cfaf2641 vocab=d05ddd00
+-/
 theorem normalizedKneserAdjacency_harmonicProjection (h2 : 2 * M ≤ n)
     (k : Fin (M + 1)) (f : SliceFn n M) :
     normalizedKneserAdjacency n M (harmonicProjection n M k f) =

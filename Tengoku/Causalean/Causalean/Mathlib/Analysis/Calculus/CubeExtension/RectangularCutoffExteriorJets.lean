@@ -15,7 +15,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 /-- If [the closed support of a cutoff χ lies inside the open box](hyp:hsupp)
 and [a point x lies outside the open box](hyp:hx), then for [every order
 j](hyp:j) [the ambient order-j derivative at x of the zero extension of χ·v from
-the closed box vanishes](goal). -/
+the closed box vanishes](goal).
+@isnad1 id=eq.2h7v.s9.4c1dde242bcc from=translated src=- shape=72d8aa74 vocab=e5dc4267
+-/
 theorem rectCutoffExtension_iteratedFDeriv_eq_zero_of_not_mem
     {d : ℕ} {lo hi : Fin d → ℝ} {χ v : (Fin d → ℝ) → ℝ}
     (hsupp : tsupport χ ⊆ rectOpenBox lo hi)

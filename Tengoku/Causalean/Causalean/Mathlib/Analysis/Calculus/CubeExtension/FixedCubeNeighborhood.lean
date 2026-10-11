@@ -20,7 +20,9 @@ closed coordinate box strictly containing the normalized cube in every
 coordinate and a positive constant C such that every response in the intrinsic
 Hölder ball of radius L ≥ 0 on the cube agrees on the cube with a response in
 the intrinsic Hölder ball of radius C·L on that box](goal). The box and the
-constant depend only on d, m and s. -/
+constant depend only on d, m and s.
+@isnad1 id=ex.2h3v.s7.9ac1996bec10 from=translated src=- shape=8d72012b vocab=0592407f
+-/
 theorem exists_fixedCubeNeighborhood_holder_constant
     (d m : ℕ) (s : ℝ) (hs : 0 < s) (hs1 : s ≤ 1) :
     ∃ (lo hi : Fin d → ℝ) (C : ℝ),

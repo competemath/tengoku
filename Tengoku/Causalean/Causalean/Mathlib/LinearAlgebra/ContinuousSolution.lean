@@ -29,7 +29,9 @@ noncomputable def anchoredSolution
 /-- A [coefficient family](hyp:A), [right-hand-side family](hyp:b), [fixed
 correction matrix](hyp:R₀), [base vector](hyp:y₀), and [parameter](hyp:x),
 under [a nonzero determinant of the correction matrix](hyp:hx), have [an
-anchored solution that solves the linear system at that parameter](goal). -/
+anchored solution that solves the linear system at that parameter](goal).
+@isnad1 id=eq.1h8v.s6.b96b0d17de6e from=translated src=- shape=e5801200 vocab=9bc9b78f
+-/
 theorem anchoredSolution_eq_of_det_ne_zero
     (A : X → Matrix (Fin k) (Fin n) ℝ) (b : X → Fin k → ℝ)
     (R₀ : Matrix (Fin n) (Fin k) ℝ) (y₀ : Fin n → ℝ) (x : X)
@@ -44,7 +46,9 @@ theorem anchoredSolution_eq_of_det_ne_zero
 correction matrix](hyp:R₀), [prescribed base solution](hyp:y₀), and [base
 parameter](hyp:x₀), with [a right-inverse identity at the base](hyp:hR) and
 [a solved base system](hyp:hy), have [an anchored solution equal to the
-prescribed base solution at the base parameter](goal). -/
+prescribed base solution at the base parameter](goal).
+@isnad1 id=eq.2h8v.s7.fb1a64032bb9 from=translated src=- shape=6dd59a8c vocab=84c7ad27
+-/
 theorem anchoredSolution_at_base
     (A : X → Matrix (Fin k) (Fin n) ℝ) (b : X → Fin k → ℝ)
     (R₀ : Matrix (Fin n) (Fin k) ℝ) (y₀ : Fin n → ℝ) (x₀ : X)
@@ -56,7 +60,9 @@ theorem anchoredSolution_at_base
 correction matrix](hyp:R₀), [base vector](hyp:y₀), and [parameter](hyp:x),
 with [continuous coefficients](hyp:hA), [a continuous right-hand side](hyp:hb),
 and [a nonsingular correction matrix at that parameter](hyp:hx), have [an
-anchored solution continuous at that parameter](goal). -/
+anchored solution continuous at that parameter](goal).
+@isnad1 id=continuo.3h8v.s7.d3e9fc27c2ca from=translated src=- shape=912d57fe vocab=0f90bed3
+-/
 theorem continuousAt_anchoredSolution
     [TopologicalSpace X]
     (A : X → Matrix (Fin k) (Fin n) ℝ) (b : X → Fin k → ℝ)
@@ -87,7 +93,9 @@ theorem continuousAt_anchoredSolution
 
 /-- A [coefficient family](hyp:A) and [fixed correction matrix](hyp:R₀), with
 [continuous coefficients](hyp:hA), have [an open set of parameters where the
-correction matrix is nonsingular](goal). -/
+correction matrix is nonsingular](goal).
+@isnad1 id=isopen.1h5v.s6.e3cfae6929f5 from=translated src=- shape=15df7e98 vocab=3c5d6fdf
+-/
 theorem isOpen_nonSingular_set
     [TopologicalSpace X]
     (A : X → Matrix (Fin k) (Fin n) ℝ)
@@ -105,7 +113,9 @@ correction matrix](hyp:R₀), [base parameter](hyp:x₀), and [prescribed base
 solution](hyp:y₀), with [continuous coefficients](hyp:hA), [a continuous
 right-hand side](hyp:hb), [a right inverse at the base](hyp:hR), and [a solved
 base system](hyp:hy), have [an open neighborhood carrying a continuous anchored
-solution that agrees at the base and solves every system in the neighborhood](goal). -/
+solution that agrees at the base and solves every system in the neighborhood](goal).
+@isnad1 id=ex.4h8v.s8.92e68165a46d from=translated src=- shape=10f07a26 vocab=b41dd20d
+-/
 theorem exists_local_anchoredSolution_of_rightInverse
     (A : X → Matrix (Fin k) (Fin n) ℝ) (b : X → Fin k → ℝ)
     (R₀ : Matrix (Fin n) (Fin k) ℝ) (x₀ : X) (y₀ : Fin n → ℝ)
@@ -129,7 +139,9 @@ theorem exists_local_anchoredSolution_of_rightInverse
 parameter](hyp:x₀), and [prescribed base solution](hyp:y₀), with [continuous
 coefficients](hyp:hA), [a continuous right-hand side](hyp:hb), [full row rank
 at the base](hyp:hfull), and [a solved base system](hyp:hy), have [an open
-neighborhood with a continuous solution through the prescribed base solution](goal). -/
+neighborhood with a continuous solution through the prescribed base solution](goal).
+@isnad1 id=ex.4h7v.s7.830264c4af72 from=translated src=- shape=da6c59c3 vocab=3119b6b2
+-/
 theorem exists_local_anchoredSolution_of_surjective
     (A : X → Matrix (Fin k) (Fin n) ℝ) (b : X → Fin k → ℝ)
     (x₀ : X) (y₀ : Fin n → ℝ)

@@ -53,7 +53,9 @@ noncomputable def tiltMeasure (μ : Measure Z) (s : Z → ℝ) (h : ℝ) : Measu
   μ.withDensity (fun y => ENNReal.ofReal (1 + h * s y))
 
 /-- The tilt is absolutely continuous with respect to the base measure `μ`
-(any `withDensity` measure is). -/
+(any `withDensity` measure is).
+@isnad1 id=absolute.0h4v.s4.5bc4071bb8e3 from=translated src=- shape=009dae34 vocab=bb3e8cbf
+-/
 lemma tiltMeasure_absolutelyContinuous (μ : Measure Z) (s : Z → ℝ) (h : ℝ) :
     tiltMeasure μ s h ≪ μ :=
   withDensity_absolutelyContinuous _ _
@@ -63,7 +65,9 @@ omit [MeasurableSpace Z] in
 density `1 + h · s y` is nonnegative: `|h · s y| ≤ |h| · C ≤ 1`.
 
 Proof sketch: `|h * s y| = |h| * |s y| ≤ |h| * C ≤ 1`, hence `h * s y ≥ -1`, i.e.
-`1 + h * s y ≥ 0`. -/
+`1 + h * s y ≥ 0`.
+@isnad1 id=le.2h5v.s6.c79a1857f3ec from=translated src=- shape=284ae173 vocab=81afb728
+-/
 lemma tiltDensity_nonneg {s : Z → ℝ} {C h : ℝ} (hsC : ∀ y, |s y| ≤ C)
     (hh : |h| * C ≤ 1) (y : Z) : 0 ≤ 1 + h * s y := by
   have h_abs : |h * s y| ≤ |h| * C := by
@@ -83,7 +87,9 @@ probability measure `μ` and a mean-zero score `s`.
 
 Proof sketch: split `∫ (1 + h · s) = ∫ 1 + h · ∫ s` via `integral_add`
 (`s` integrable by hypothesis), then `∫ 1 = 1` (probability measure)
-and `∫ s = 0`. -/
+and `∫ s = 0`.
+@isnad1 id=eq.2h4v.s6.337640d104d5 from=translated src=- shape=a4fdfd68 vocab=9f6ac371
+-/
 lemma integral_tiltDensity {μ : Measure Z} [IsProbabilityMeasure μ] {s : Z → ℝ} {h : ℝ}
     (hs_int : Integrable s μ) (hs_mean : ∫ y, s y ∂μ = 0) :
     ∫ y, (1 + h * s y) ∂μ = 1 := by
@@ -106,7 +112,9 @@ a probability measure](goal).
 Proof sketch: its total mass is `withDensity f univ = ∫⁻ f dμ`; since the density
 `f = ofReal (1 + h · s)` is nonnegative (`tiltDensity_nonneg`) and integrable, this
 equals `ENNReal.ofReal (∫ (1 + h · s) dμ) = ENNReal.ofReal 1 = 1`
-(`integral_tiltDensity`). -/
+(`integral_tiltDensity`).
+@isnad1 id=isprobab.4h5v.s6.e8b9c3b347b3 from=translated src=- shape=aabe1213 vocab=2faa8f8a
+-/
 lemma isProbabilityMeasure_tiltMeasure {μ : Measure Z} [IsProbabilityMeasure μ]
     {s : Z → ℝ} {C h : ℝ} (hs_meas : Measurable s) (hsC : ∀ y, |s y| ≤ C)
     (hs_mean : ∫ y, s y ∂μ = 0) (hh : |h| * C ≤ 1) :

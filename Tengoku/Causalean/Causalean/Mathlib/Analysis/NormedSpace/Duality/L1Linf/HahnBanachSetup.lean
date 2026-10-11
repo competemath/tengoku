@@ -52,7 +52,9 @@ Its node values are given by `Ev`, and its endpoint contrast is given by `contra
 noncomputable def coeffPoly (b : Fin (β + 1) → ℝ) : Polynomial ℝ :=
   ∑ i, Polynomial.C (b i) * Polynomial.X ^ (i : ℕ)
 
-/-- `coeffPoly b` has degree at most `β` (each monomial `X^i` has `i ≤ β`). -/
+/-- `coeffPoly b` has degree at most `β` (each monomial `X^i` has `i ≤ β`).
+@isnad1 id=le.0h2v.s4.c22224a84244 from=translated src=- shape=96283a38 vocab=1bb84b9b
+-/
 theorem coeffPoly_natDegree_le (b : Fin (β + 1) → ℝ) :
     (coeffPoly b).natDegree ≤ β := by
   rw [coeffPoly]
@@ -62,7 +64,9 @@ theorem coeffPoly_natDegree_le (b : Fin (β + 1) → ℝ) :
   exact (Polynomial.natDegree_C_mul_X_pow_le (b i) (i : ℕ)).trans
     (Nat.le_of_lt_succ i.isLt)
 
-/-- Evaluating `coeffPoly b` at `t` gives the polynomial value `∑ i, b i * t^i`. -/
+/-- Evaluating `coeffPoly b` at `t` gives the polynomial value `∑ i, b i * t^i`.
+@isnad1 id=eq.0h3v.s7.62754b975880 from=translated src=- shape=037340a4 vocab=fd53ebe1
+-/
 theorem coeffPoly_eval (b : Fin (β + 1) → ℝ) (t : ℝ) :
     (coeffPoly b).eval t = ∑ i, b i * t ^ (i : ℕ) := by
   rw [coeffPoly, Polynomial.eval_finsetSum]
@@ -86,12 +90,16 @@ def Ev (p : Fin (k + 1) → ℝ) (β : ℕ) :
     ext j
     simp [Finset.mul_sum, mul_assoc]
 
-/-- Unfolding lemma for `Ev` (definitional). -/
+/-- Unfolding lemma for `Ev` (definitional).
+@isnad1 id=eq.0h5v.s9.df09928a06e0 from=translated src=- shape=432159f0 vocab=054ace3e
+-/
 theorem Ev_apply (b : Fin (β + 1) → ℝ) (j : Fin (k + 1)) :
     Ev p β b j = ∑ i, b i * p j ^ (i : ℕ) := by
   rfl
 
-/-- Node values of `coeffPoly b` coincide with `Ev p β b`. -/
+/-- Node values of `coeffPoly b` coincide with `Ev p β b`.
+@isnad1 id=eq.0h5v.s8.b8f8e2ccdc49 from=translated src=- shape=166e4210 vocab=6a45b2d7
+-/
 theorem coeffPoly_eval_node (b : Fin (β + 1) → ℝ) (j : Fin (k + 1)) :
     (coeffPoly b).eval (p j) = Ev p β b j := by
   rw [coeffPoly_eval, Ev_apply]
@@ -114,12 +122,16 @@ def contrastL (β : ℕ) : (Fin (β + 1) → ℝ) →ₗ[ℝ] ℝ where
     intro c b
     simp [Finset.mul_sum]
 
-/-- Unfolding lemma for `contrastL` (definitional). -/
+/-- Unfolding lemma for `contrastL` (definitional).
+@isnad1 id=eq.0h2v.s8.37a92c03567e from=translated src=- shape=7412b35e vocab=e2f440ad
+-/
 theorem contrastL_apply (b : Fin (β + 1) → ℝ) :
     contrastL β b = ∑ i, b i * (if (i : ℕ) = 0 then (0 : ℝ) else 1) := by
   rfl
 
-/-- The contrast functional computes the endpoint contrast of `coeffPoly b`. -/
+/-- The contrast functional computes the endpoint contrast of `coeffPoly b`.
+@isnad1 id=eq.0h2v.s8.b82750785569 from=translated src=- shape=17411efa vocab=5f2ea246
+-/
 theorem coeffPoly_contrast (b : Fin (β + 1) → ℝ) :
     (coeffPoly b).eval 1 - (coeffPoly b).eval 0 = contrastL β b := by
   rw [coeffPoly_eval, coeffPoly_eval, contrastL_apply]
@@ -136,7 +148,9 @@ vector to its values at the nodes is injective](goal).
 
 A degree-`≤ β ≤ k` polynomial vanishing at the `k + 1` distinct nodes has more roots than
 its degree, so it is zero; hence its coefficient vector is zero (Vandermonde).
-This makes the contrast a well-defined functional on `range (Ev p β)`. -/
+This makes the contrast a well-defined functional on `range (Ev p β)`.
+@isnad1 id=injectiv.2h3v.s8.7fe36b309351 from=translated src=- shape=55761434 vocab=a58f71e4
+-/
 theorem Ev_injective (hp : Function.Injective p) (hβ : β ≤ k) :
     Function.Injective (Ev p β) := by
   classical
@@ -176,7 +190,9 @@ theorem Ev_injective (hp : Function.Injective p) (hβ : β ≤ k) :
   exact sub_eq_zero.mp hsub
 
 /-- Node evaluation of the `ℓ`-th coordinate vector recovers the monomial column
-`(p j)^ℓ`. -/
+`(p j)^ℓ`.
+@isnad1 id=eq.0h5v.s9.3b838ff26cd9 from=translated src=- shape=c3bef0d3 vocab=4489ac61
+-/
 theorem Ev_single (ℓ : Fin (β + 1)) (j : Fin (k + 1)) :
     Ev p β (Pi.single ℓ 1) j = p j ^ (ℓ : ℕ) := by
   rw [Ev_apply]
@@ -187,7 +203,9 @@ theorem Ev_single (ℓ : Fin (β + 1)) (j : Fin (k + 1)) :
   · intro h
     exact (h (Finset.mem_univ ℓ)).elim
 
-/-- The contrast of the `ℓ`-th coordinate vector is `1^ℓ - 0^ℓ`. -/
+/-- The contrast of the `ℓ`-th coordinate vector is `1^ℓ - 0^ℓ`.
+@isnad1 id=eq.0h2v.s8.262f0bfbf1fb from=translated src=- shape=1586fa11 vocab=748142d9
+-/
 theorem contrastL_single (ℓ : Fin (β + 1)) :
     contrastL β (Pi.single ℓ (1 : ℝ)) = if (ℓ : ℕ) = 0 then (0 : ℝ) else 1 := by
   rw [contrastL_apply]
@@ -205,15 +223,21 @@ The finite index set is nonempty; this quantity is used as the majorant in the H
 def ninf (x : Fin (k + 1) → ℝ) : ℝ :=
   Finset.univ.sup' ⟨0, Finset.mem_univ 0⟩ (fun j => |x j|)
 
-/-- Each coordinate is bounded by the sup norm: `|x j| ≤ ninf x`. -/
+/-- Each coordinate is bounded by the sup norm: `|x j| ≤ ninf x`.
+@isnad1 id=le.0h3v.s5.ee0d7a505c5a from=translated src=- shape=9f2f1876 vocab=aa84dc81
+-/
 theorem le_ninf (x : Fin (k + 1) → ℝ) (j : Fin (k + 1)) : |x j| ≤ ninf x := by
   exact Finset.le_sup' (s := Finset.univ) (f := fun j => |x j|) (Finset.mem_univ j)
 
-/-- The sup norm is nonnegative. -/
+/-- The sup norm is nonnegative.
+@isnad1 id=le.0h2v.s4.cd302610d926 from=translated src=- shape=bae3d103 vocab=12fe73f2
+-/
 theorem ninf_nonneg (x : Fin (k + 1) → ℝ) : 0 ≤ ninf x := by
   exact (abs_nonneg (x 0)).trans (le_ninf x 0)
 
-/-- Positive homogeneity (with absolute value) of the sup norm. -/
+/-- Positive homogeneity (with absolute value) of the sup norm.
+@isnad1 id=eq.0h3v.s6.337d40488f72 from=translated src=- shape=903c67d2 vocab=b97b73b2
+-/
 theorem ninf_smul (c : ℝ) (x : Fin (k + 1) → ℝ) : ninf (c • x) = |c| * ninf x := by
   apply le_antisymm
   · rw [ninf]
@@ -235,7 +259,9 @@ theorem ninf_smul (c : ℝ) (x : Fin (k + 1) → ℝ) : ninf (c • x) = |c| * n
         simp [smul_eq_mul, abs_mul]
       _ ≤ ninf (c • x) := le_ninf (c • x) j
 
-/-- Subadditivity (triangle inequality) of the sup norm. -/
+/-- Subadditivity (triangle inequality) of the sup norm.
+@isnad1 id=le.0h3v.s7.c8f09c31df98 from=translated src=- shape=f3c07ab2 vocab=12fe73f2
+-/
 theorem ninf_add_le (x y : Fin (k + 1) → ℝ) : ninf (x + y) ≤ ninf x + ninf y := by
   rw [ninf]
   apply Finset.sup'_le
@@ -245,14 +271,18 @@ theorem ninf_add_le (x y : Fin (k + 1) → ℝ) : ninf (x + y) ≤ ninf x + ninf
     _ ≤ |x j| + |y j| := abs_add_le (x j) (y j)
     _ ≤ ninf x + ninf y := add_le_add (le_ninf x j) (le_ninf y j)
 
-/-- The sup norm of a `±1` sign vector is `1`. -/
+/-- The sup norm of a `±1` sign vector is `1`.
+@isnad1 id=eq.1h2v.s5.c1664b221fc2 from=translated src=- shape=13347df9 vocab=b4805be8
+-/
 theorem ninf_sign (s : Fin (k + 1) → ℝ) (hs : ∀ j, |s j| = 1) : ninf s = 1 := by
   rw [ninf]
   exact Finset.sup'_eq_of_forall (s := Finset.univ) (H := ⟨0, Finset.mem_univ 0⟩)
     (f := fun j => |s j|) (fun j hj => hs j)
 
 /-- **Dual value is nonnegative.**  `0 ∈ dualValSet p β` (the zero polynomial)
-and the set is bounded above, so its supremum is `≥ 0`. -/
+and the set is bounded above, so its supremum is `≥ 0`.
+@isnad1 id=le.1h3v.s5.9a94af14592e from=translated src=- shape=2c11f871 vocab=4d74837d
+-/
 theorem dual_nonneg (hbounded : BddAbove (dualValSet p β)) :
     0 ≤ sSup (dualValSet p β) := by
   have h0 : 0 ∈ dualValSet p β := by
@@ -272,7 +302,9 @@ Proof idea: let `r = coeffPoly b`, `s = ninf (Ev p β b)`.  If `s = 0` then `r`
 vanishes at all nodes, so `r = 0` and both sides are `0`.  If `s > 0`, scale
 `r' = (1/s) • r`: then `|r'.eval (p j)| ≤ 1`, so `|r'.eval 1 - r'.eval 0| =
 |contrastL β b| / s ∈ dualValSet p β`, hence `≤ M`, i.e. `|contrastL β b| ≤ M s`;
-drop the absolute value on the left. -/
+drop the absolute value on the left.
+@isnad1 id=le.2h4v.s9.acd00518e5ff from=translated src=- shape=b24cf25d vocab=f11a29f3
+-/
 theorem contrastL_le_dual_mul_ninf (hp : Function.Injective p) (hβ : β ≤ k)
     (b : Fin (β + 1) → ℝ) :
     contrastL β b ≤ sSup (dualValSet p β) * ninf (Ev p β b) := by

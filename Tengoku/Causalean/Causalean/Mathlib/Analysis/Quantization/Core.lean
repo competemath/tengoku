@@ -42,7 +42,9 @@ def diagonalWeight (S : ℕ) (β : Fin S → ℝ → ℝ → ℝ) (x : ℝ) : �
   ∑ s : Fin S, β s x x
 
 /-- All members of a finite family of continuous positive coefficients have
-one strictly positive lower bound and one finite upper bound on the square. -/
+one strictly positive lower bound and one finite upper bound on the square.
+@isnad1 id=ex.4h4v.s7.31cff393cdb0 from=translated src=- shape=f0cc1577 vocab=66866b67
+-/
 theorem coefficient_bounds (a b : ℝ) (hab : a < b) (S : ℕ) (hS : 0 < S)
     (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -75,7 +77,9 @@ theorem coefficient_bounds (a b : ℝ) (hab : a < b) (S : ℕ) (hS : 0 < S)
   exact ⟨(hi s).trans hl, hu.trans (hj s)⟩
 
 /-- Joint continuity on the compact square is uniform across the finite family.
-Here closeness of pairs uses the product metric. -/
+Here closeness of pairs uses the product metric.
+@isnad1 id=ex.3h5v.s7.6d31e2b7ed94 from=translated src=- shape=cf6842c4 vocab=9b560c3a
+-/
 theorem coefficient_uniform_continuity (a b : ℝ) (hab : a < b) (S : ℕ)
     (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -111,7 +115,9 @@ theorem coefficient_uniform_continuity (a b : ℝ) (hab : a < b) (S : ℕ)
     exact Fin.elim0 s
 
 /-- The diagonal density is continuous and strictly positive throughout the
-source interval. -/
+source interval.
+@isnad1 id=and.3h4v.s7.274527344f95 from=translated src=- shape=152d437f vocab=b8a4b113
+-/
 theorem diagonal_regular (a b : ℝ) (S : ℕ) (hS : 0 < S)
     (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -137,7 +143,9 @@ theorem diagonal_regular (a b : ℝ) (S : ℕ) (hS : 0 < S)
 /-- On [the interval endpoints](hyp:a,b) with [strict positive length](hyp:hab),
 a [nonempty finite family](hyp:S,hS) of [loss weights](hyp:β) that are
 [jointly continuous](hyp:hcont) and [strictly positive](hyp:hpos) has
-[a continuous square-root diagonal density with positive total mass](goal). -/
+[a continuous square-root diagonal density with positive total mass](goal).
+@isnad1 id=and.4h4v.s7.127c531dcc2b from=translated src=- shape=da6ec097 vocab=e39b794a
+-/
 theorem sqrt_mass_regular (a b : ℝ) (hab : a < b) (S : ℕ) (hS : 0 < S)
     (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -156,7 +164,9 @@ theorem sqrt_mass_regular (a b : ℝ) (hab : a < b) (S : ℕ) (hS : 0 < S)
     exact Real.sqrt_pos.2 (hp a ⟨le_refl a, le_of_lt hab⟩)
 
 /-- Every feasible paired distortion is nonnegative when its weights are
-nonnegative on the source square. -/
+nonnegative on the source square.
+@isnad1 id=le.3h7v.s6.28e733bcba7c from=translated src=- shape=fab9592e vocab=16e4463c
+-/
 theorem weightedCost_nonneg (a b : ℝ) (S k : ℕ)
     (β : Fin S → ℝ → ℝ → ℝ) (B : Fin k → Set ℝ)
     (z : Fin k → Fin S → ℝ)
@@ -179,7 +189,9 @@ theorem weightedCost_nonneg (a b : ℝ) (S k : ℕ)
     mul_nonneg (hβ s x (z j s) (hsub j hx) (hz j s)) (abs_nonneg _))
 
 /-- Every feasible code bounds the optimal paired cost from above when the
-weights are nonnegative on the source square. -/
+weights are nonnegative on the source square.
+@isnad1 id=le.3h7v.s6.1497ae776375 from=translated src=- shape=eb1f49fe vocab=89c4d622
+-/
 theorem optimalCost_le_feasible (a b : ℝ) (S k : ℕ)
     (β : Fin S → ℝ → ℝ → ℝ) (B : Fin k → Set ℝ)
     (z : Fin k → Fin S → ℝ)

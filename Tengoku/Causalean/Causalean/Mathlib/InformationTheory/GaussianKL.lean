@@ -58,7 +58,9 @@ variable {m₀ m₁ : ℝ} {v : ℝ≥0}
 /-- **Absolute continuity of nondegenerate Gaussians.** For `v₀ ≠ 0` and `v₁ ≠ 0`,
 `gaussianReal m₀ v₀` is absolutely continuous with respect to `gaussianReal m₁ v₁`:
 both are `volume.withDensity` of a strictly positive density, so each is mutually
-absolutely continuous with Lebesgue measure, and absolute continuity is transitive. -/
+absolutely continuous with Lebesgue measure, and absolute continuity is transitive.
+@isnad1 id=absolute.2h4v.s5.32285948890b from=translated src=- shape=e9f167a3 vocab=785cf193
+-/
 lemma gaussianReal_ac_gaussianReal (m₀ m₁ : ℝ) {v₀ v₁ : ℝ≥0}
     (hv₀ : v₀ ≠ 0) (hv₁ : v₁ ≠ 0) :
     gaussianReal m₀ v₀ ≪ gaussianReal m₁ v₁ :=
@@ -68,7 +70,9 @@ lemma gaussianReal_ac_gaussianReal (m₀ m₁ : ℝ) {v₀ v₁ : ℝ≥0}
 /-- **Radon–Nikodym ratio of equal-variance Gaussians, as a real number.** For `v ≠ 0`,
 the real part of the Radon–Nikodym derivative `∂(gaussianReal m₀ v)/∂(gaussianReal m₁ v)`
 is a.e. (with respect to `gaussianReal m₀ v`) the pointwise ratio of the two Gaussian
-densities `gaussianPDFReal m₀ v x / gaussianPDFReal m₁ v x`. -/
+densities `gaussianPDFReal m₀ v x / gaussianPDFReal m₁ v x`.
+@isnad1 id=eventual.1h3v.s5.5b39e43ccd75 from=translated src=- shape=1ae54472 vocab=8fabdb15
+-/
 lemma rnDeriv_toReal_gaussianReal_ae (m₀ m₁ : ℝ) (hv : v ≠ 0) :
     (fun x ↦ ((gaussianReal m₀ v).rnDeriv (gaussianReal m₁ v) x).toReal)
       =ᵐ[gaussianReal m₀ v]
@@ -97,7 +101,9 @@ log-likelihood ratio `llr (gaussianReal m₀ v) (gaussianReal m₁ v)` is a.e. (
 to `gaussianReal m₀ v`) equal to the affine function
 `x ↦ (m₀ - m₁) * (2*x - m₀ - m₁) / (2*v)`.  At equal variance the `(√(2πv))⁻¹`
 normalising constants cancel in the density ratio, so the log-ratio reduces to
-`((x - m₁)^2 - (x - m₀)^2) / (2*v) = (m₀ - m₁)*(2*x - m₀ - m₁)/(2*v)`. -/
+`((x - m₁)^2 - (x - m₀)^2) / (2*v) = (m₀ - m₁)*(2*x - m₀ - m₁)/(2*v)`.
+@isnad1 id=eventual.1h3v.s6.c57f4d32f02d from=translated src=- shape=51af0d89 vocab=bfc9e5a6
+-/
 lemma llr_gaussianReal_ae (m₀ m₁ : ℝ) (hv : v ≠ 0) :
     llr (gaussianReal m₀ v) (gaussianReal m₁ v)
       =ᵐ[gaussianReal m₀ v]
@@ -124,7 +130,9 @@ lemma llr_gaussianReal_ae (m₀ m₁ : ℝ) (hv : v ≠ 0) :
 
 /-- **Integrability of the Gaussian log-likelihood ratio.** For `v ≠ 0`, the affine
 log-likelihood ratio `x ↦ (m₀ - m₁) * (2*x - m₀ - m₁) / (2*v)` is integrable with respect
-to `gaussianReal m₀ v`, because the Gaussian has a finite first moment. -/
+to `gaussianReal m₀ v`, because the Gaussian has a finite first moment.
+@isnad1 id=integrab.1h3v.s5.e587179da1c7 from=translated src=- shape=d43651a9 vocab=e6027275
+-/
 @[fun_prop]
 lemma integrable_llr_gaussianReal (m₀ m₁ : ℝ) (hv : v ≠ 0) :
     Integrable (llr (gaussianReal m₀ v) (gaussianReal m₁ v)) (gaussianReal m₀ v) := by
@@ -146,7 +154,9 @@ lemma integrable_llr_gaussianReal (m₀ m₁ : ℝ) (hv : v ≠ 0) :
 
 /-- **Integral of the Gaussian log-likelihood ratio.** For `v ≠ 0`,
 `∫ llr (gaussianReal m₀ v) (gaussianReal m₁ v) ∂(gaussianReal m₀ v) = (m₀ - m₁)^2 / (2*v)`,
-obtained by integrating the affine a.e. form against `∫ x ∂gaussianReal m₀ v = m₀`. -/
+obtained by integrating the affine a.e. form against `∫ x ∂gaussianReal m₀ v = m₀`.
+@isnad1 id=eq.1h3v.s6.5e906d29012e from=translated src=- shape=036dff1d vocab=49de19f8
+-/
 lemma integral_llr_gaussianReal (m₀ m₁ : ℝ) (hv : v ≠ 0) :
     ∫ x, llr (gaussianReal m₀ v) (gaussianReal m₁ v) x ∂(gaussianReal m₀ v)
       = (m₀ - m₁) ^ 2 / (2 * (v : ℝ)) := by
@@ -181,6 +191,7 @@ means](hyp:m₀,m₁) and [a strictly positive common variance](hyp:v,hv),
 equals their squared mean difference divided by twice the variance](goal):
 
   `klDiv (gaussianReal m₀ v) (gaussianReal m₁ v) = ENNReal.ofReal ((m₀ - m₁)^2 / (2*v))`.
+@isnad1 id=eq.1h3v.s6.2c7181053fcc from=translated src=- shape=1587a987 vocab=a3548aa8
 -/
 theorem gaussianKL_eq (m₀ m₁ : ℝ) (hv : 0 < v) :
     InformationTheory.klDiv (gaussianReal m₀ v) (gaussianReal m₁ v)
@@ -193,7 +204,9 @@ theorem gaussianKL_eq (m₀ m₁ : ℝ) (hv : 0 < v) :
 
 /-- [Two real Gaussian locations](hyp:m₀,m₁) with [a common nonzero
 variance](hyp:v,hv) have [Kullback--Leibler divergence equal to the squared location
-difference divided by twice the variance](goal). -/
+difference divided by twice the variance](goal).
+@isnad1 id=eq.1h3v.s6.5f6ab58e00bd from=translated src=- shape=9ef04fe3 vocab=0c13f9f1
+-/
 theorem gaussianReal_klDiv_eq_of_ne_zero (m₀ m₁ : ℝ) (v : ℝ≥0) (hv : v ≠ 0) :
     InformationTheory.klDiv (gaussianReal m₀ v) (gaussianReal m₁ v) =
       ENNReal.ofReal ((m₀ - m₁) ^ 2 / (2 * (v : ℝ))) :=

@@ -22,7 +22,9 @@ namespace Causalean.Mathlib.Analysis.SpecialFunctions
 
 /-- For [a nonnegative real-valued function](hyp:f,hf) and [a positive exponent](hyp:s,hs),
 [convergence to zero is equivalent to convergence to zero after taking the real power and truncating
-at one](goal). -/
+at one](goal).
+@isnad1 id=iff.2h4v.s6.b99d5c6bb7df from=translated src=- shape=b33fbdd1 vocab=b31e2145
+-/
 theorem tendsto_min_one_rpow_zero_iff {α : Type*} {l : Filter α}
     (f : α → ℝ) (hf : ∀ a, 0 ≤ f a) (s : ℝ) (hs : 0 < s) :
     Tendsto (fun a => min 1 (f a ^ s)) l (𝓝 0) ↔ Tendsto f l (𝓝 0) := by

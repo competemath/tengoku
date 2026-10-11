@@ -47,6 +47,7 @@ noncomputable def cosPoint {d : ℕ} (t : Fin d → ℝ) : Fin d → ℝ := fun 
 
 /-- For [a finite dimension](hyp:d) and [a point in period coordinates](hyp:t), [the
 coordinatewise cosine point lies in the normalized cube](goal).
+@isnad1 id=mem.0h2v.s4.2043ffd2961c from=translated src=- shape=ebeab411 vocab=d35fd7a3
 -/
 theorem cosPoint_mem_normalizedCube {d : ℕ} (t : Fin d → ℝ) :
     cosPoint t ∈ normalizedCube d := by
@@ -67,6 +68,7 @@ noncomputable def tensorConvolution {d : ℕ} (K : ℕ)
 
 /-- For [a finite dimension](hyp:d), [integer order K](hyp:K) that is [strictly positive](hyp:hK),
 and [a point in period coordinates](hyp:u), [the tensor Jackson kernel is nonnegative](goal).
+@isnad1 id=le.1h3v.s5.1f10e933ac79 from=translated src=- shape=c9b9872b vocab=bfb1969e
 -/
 theorem tensorJackson_nonneg {d K : ℕ} (hK : 0 < K) (u : Fin d → ℝ) :
     0 ≤ tensorJackson K d u := by
@@ -74,6 +76,7 @@ theorem tensorJackson_nonneg {d K : ℕ} (hK : 0 < K) (u : Fin d → ℝ) :
 
 /-- For [integer order K](hyp:K) and [a finite dimension](hyp:d), [the tensor Jackson kernel is
 measurable](goal).
+@isnad1 id=measurab.0h2v.s4.1acd8b5dde36 from=translated src=- shape=14d05661 vocab=a80b2a82
 -/
 @[measurability, fun_prop]
 theorem measurable_tensorJackson (K d : ℕ) : Measurable (tensorJackson K d) := by
@@ -82,6 +85,7 @@ theorem measurable_tensorJackson (K d : ℕ) : Measurable (tensorJackson K d) :=
 
 /-- For [integer order K](hyp:K) and [a finite dimension](hyp:d), [the tensor Jackson kernel is
 integrable over the standard period box](goal).
+@isnad1 id=integrab.0h2v.s6.7af738b12d05 from=translated src=- shape=cabeabe9 vocab=75028de5
 -/
 theorem integrableOn_tensorJackson (K d : ℕ) :
     IntegrableOn (tensorJackson K d) (periodBox d) := by
@@ -97,6 +101,7 @@ theorem integrableOn_tensorJackson (K d : ℕ) :
 [integrability of every coordinate integrand over the standard period](hyp:hg), [the integral
 of their product over the period box equals the product of their one-dimensional
 integrals](goal).
+@isnad1 id=eq.1h2v.s7.f9aa54da5c1e from=translated src=- shape=380ec710 vocab=11e66715
 -/
 theorem integral_periodBox_prod {d : ℕ} (g : Fin d → ℝ → ℝ)
     (hg : ∀ i, IntegrableOn (g i) (Set.Icc (-Real.pi) Real.pi)) :
@@ -110,6 +115,7 @@ theorem integral_periodBox_prod {d : ℕ} (g : Fin d → ℝ → ℝ)
 
 /-- For [a finite dimension](hyp:d) and [integer order K](hyp:K) that is [strictly
 positive](hyp:hK), [the tensor Jackson kernel has unit mass over the period box](goal).
+@isnad1 id=eq.1h2v.s6.4fee6acc009d from=translated src=- shape=7e248857 vocab=b8b96d0d
 -/
 theorem tensorJackson_integral_eq_one {d K : ℕ} (hK : 0 < K) :
     (∫ u in periodBox d, tensorJackson K d u) = 1 := by
@@ -120,6 +126,7 @@ theorem tensorJackson_integral_eq_one {d K : ℕ} (hK : 0 < K) :
 /-- For [a finite dimension](hyp:d), [integer order K](hyp:K) that is [strictly positive](hyp:hK),
 and [a selected coordinate](hyp:i), [the tensor kernel's absolute first moment in that
 coordinate equals the one-dimensional first moment](goal).
+@isnad1 id=eq.1h3v.s7.1167f229f642 from=translated src=- shape=f05b3f0e vocab=c4f7507c
 -/
 theorem tensorJackson_first_moment_eq {d K : ℕ} (hK : 0 < K) (i : Fin d) :
     (∫ u in periodBox d, |u i| * tensorJackson K d u) =
@@ -160,6 +167,7 @@ theorem tensorJackson_first_moment_eq {d K : ℕ} (hK : 0 < K) (i : Fin d) :
 /-- For [a finite dimension](hyp:d), [integer order K](hyp:K) that is [strictly positive](hyp:hK),
 and [a selected coordinate](hyp:i), [the tensor kernel's second moment in that coordinate
 equals the one-dimensional second moment](goal).
+@isnad1 id=eq.1h3v.s7.2eaed9241a1a from=translated src=- shape=0f7ec69f vocab=cd2f5cd5
 -/
 theorem tensorJackson_second_moment_eq {d K : ℕ} (hK : 0 < K) (i : Fin d) :
     (∫ u in periodBox d, (u i) ^ 2 * tensorJackson K d u) =
@@ -201,6 +209,7 @@ theorem tensorJackson_second_moment_eq {d K : ℕ} (hK : 0 < K) (i : Fin d) :
 [a function](hyp:f) that [is nonnegative throughout the normalized cube](hyp:hf), and [a
 selected point in period coordinates](hyp:x), [the tensor convolution is nonnegative at that
 point](goal).
+@isnad1 id=le.2h4v.s6.6a9092ac824d from=translated src=- shape=eb0708e2 vocab=0d508ae7
 -/
 theorem tensorConvolution_nonneg {d K : ℕ} (hK : 0 < K)
     {f : (Fin d → ℝ) → ℝ} (hf : ∀ z ∈ normalizedCube d, 0 ≤ f z) (x : Fin d → ℝ) :
@@ -212,6 +221,7 @@ theorem tensorConvolution_nonneg {d K : ℕ} (hK : 0 < K)
 /-- For [a finite dimension](hyp:d), [integer order K](hyp:K) that is [strictly positive](hyp:hK),
 [a real constant](hyp:c), and [a point in period coordinates](hyp:x), [tensor convolution
 preserves the constant function](goal).
+@isnad1 id=eq.1h4v.s5.b0d3ae5ceb77 from=translated src=- shape=7f8c7ffe vocab=3a977c32
 -/
 theorem tensorConvolution_const {d K : ℕ} (hK : 0 < K) (c : ℝ) (x : Fin d → ℝ) :
     tensorConvolution K (fun _ => c) x = c := by

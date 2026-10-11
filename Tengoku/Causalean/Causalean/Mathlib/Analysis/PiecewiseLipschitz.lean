@@ -26,7 +26,9 @@ condition](hyp:hjk), and [unit-interval coordinates](hyp:u,v) satisfying [the fi
 condition](hyp:hu), [the second coordinate condition](hyp:hv), and [the corresponding global
 order](hyp:horder),
 [the endpoint-telescoped profile difference is bounded by the common constant times the global
-coordinate distance](goal). -/
+coordinate distance](goal).
+@isnad1 id=le.7h7v.s8.bec11237db1f from=translated src=- shape=52cdb74a vocab=bbb537e1
+-/
 theorem piecewiseLipschitz_chain_bound (k : ℕ) (F : ℕ → ℝ → ℝ) (C : ℝ)
     (hlocal : ∀ j < k, ∀ u ∈ Set.Icc (0 : ℝ) 1, ∀ v ∈ Set.Icc (0 : ℝ) 1,
       |F j u - F j v| ≤ C * |u - v|)

@@ -33,7 +33,9 @@ variable (G : DAG V)
 /-- In [a finite directed acyclic graph](hyp:V,G), if [a vertex, target set, and
 conditioning set](hyp:n,Y,D) satisfy
 [d-separation of the vertex from the target](hyp:hdSep), then [the vertex's parents are
-disjoint from the target set](goal). -/
+disjoint from the target set](goal).
+@isnad1 id=disjoint.1h5v.s5.77199682fe11 from=translated src=- shape=5e4ccc2d vocab=e77888d7
+-/
 theorem parents_disjoint_of_dSep_singleton {n : V} {Y D : Finset V}
     (hdSep : G.dSep {n} Y D) : Disjoint (G.parents n) Y := by
   rw [Finset.disjoint_left]
@@ -63,7 +65,9 @@ are d-separated from the target under the same conditioning set](goal).
     Graphically: an active `a → … → Y` walk can be prepended with the edge
     `a → n` (giving `n, a, …, Y`); the new interior vertex `a` is a non-collider
     there (`a → n`, not `n → a`), and `a ∉ D`, so the extended walk is active from
-    `n` to `Y`, contradicting `dSep {n} Y D`. -/
+    `n` to `Y`, contradicting `dSep {n} Y D`.
+@isnad1 id=dsep.3h6v.s6.adf7ab29a2e4 from=translated src=- shape=26a8d672 vocab=e922a354
+-/
 theorem dSep_parents_of_maximal_source {n : V} {Y D A0 : Finset V}
     (hdSep : G.dSep {n} Y D)
     (hA0_par : ∀ a ∈ A0, G.edge a n)
@@ -108,7 +112,9 @@ vertex is added to the conditioning set](goal).
     given `D` and `n` never sits as a *non-collider* on `p`, then `p` stays active
     given `insert n D`: adding `n` to the conditioning set can only widen collider
     activation (the ancestral set grows) and the only non-collider it could block
-    is `n` itself, which is excluded by hypothesis. -/
+    is `n` itself, which is excluded by hypothesis.
+@isnad1 id=isactive.2h5v.s7.fd20188ede8f from=translated src=- shape=fb14eef3 vocab=5ef027e8
+-/
 theorem isActiveWalk_insert_cond {D : Finset V} {p : List V} {n : V}
     (hact : G.IsActiveWalk D p)
     (hno : ∀ (i : ℕ) (hi : i + 2 < p.length),
@@ -143,7 +149,9 @@ that vertex from the random conditioning set preserves the d-separation](goal).
     `X ∪ Y ∪ Zr ∪ Zf`, no proper descendant of `n` lies in that ancestral set, so
     on every active `X → Y` walk the node `n` (if present) can only be a collider,
     and that collider is activated solely by `n` itself. Removing `n` from the
-    conditioning set therefore closes every active walk through `n` and creates none. -/
+    conditioning set therefore closes every active walk through `n` and creates none.
+@isnad1 id=dsep.3h7v.s7.8fa13a275bbe from=translated src=- shape=f0440fac vocab=32fa39c7
+-/
 theorem dSep_erase_maximal_random_condition {X Y Zr Zf : Finset V} {n : V}
     (hnZr : n ∈ Zr)
     (hmax : ∀ m ∈ G.ancestralSet (X ∪ Y ∪ Zr ∪ Zf),
@@ -221,7 +229,9 @@ theorem dSep_erase_maximal_random_condition {X Y Zr Zf : Finset V} {n : V}
 and an added vertex](hyp:S,W,p,n). If [the walk is active under both sets](hyp:hact),
 [every interior collider is activated by the first set](hyp:hcollS), and
 [the added vertex can occur internally only as a collider](hyp:hno_n), then [the walk is
-active when only the first set and added vertex are conditioned on](goal). -/
+active when only the first set and added vertex are conditioned on](goal).
+@isnad1 id=isactive.3h6v.s8.1949ec06cbe0 from=translated src=- shape=4c3da89b vocab=cfef049f
+-/
 theorem lift_crosscond_to_insert {S W : Finset V} {p : List V} {n : V}
     (hact : G.IsActiveWalk (S ∪ W) p)
     (hcollS : ∀ (i : ℕ) (hi : i + 2 < p.length),
@@ -250,7 +260,9 @@ theorem lift_crosscond_to_insert {S W : Finset V} {p : List V} {n : V}
 ancestral seed, active walk, and selected endpoint](hyp:D,bigQ,p,n). If [the walk is
 nontrivial](hyp:hp_len), [is active](hyp:hact), [ends at the selected vertex](hyp:hlast),
 [lies in the seed's ancestral closure](hyp:hpAnc), and [the endpoint maximizes topological
-order there](hyp:hmax), then [the walk's final edge points into that endpoint](goal). -/
+order there](hyp:hmax), then [the walk's final edge points into that endpoint](goal).
+@isnad1 id=edge.5h6v.s7.dfdaf30f95c2 from=translated src=- shape=9991e0ab vocab=6218ce77
+-/
 theorem last_edge_into_max
     {D bigQ : Finset V} {p : List V} {n : V}
     (hp_len : p.length ≥ 2) (hact : G.IsActiveWalk D p) (hlast : p.getLast? = some n)
@@ -283,7 +295,9 @@ from the first endpoint to the join](hyp:hpa_len,hpa_head,hpa_last,hpa_act), [th
 is active from the join to the second endpoint](hyp:hpb_len,hpb_head,hpb_last,hpb_act),
 [both seam edges point into the join](hyp:hpa_in,hpb_in), and [the joining vertex is
 conditioned on](hyp:hnZ), then [concatenating the walks gives an active walk between the
-endpoints](goal). -/
+endpoints](goal).
+@isnad1 id=other.11h8v.s7.350c38141e2f from=translated src=- shape=321c9298 vocab=4bd4d79b
+-/
 theorem activeWalk_join_at_collider
     {Z : Finset V} {n x y : V} {pa pb : List V}
     (hpa_len : pa.length ≥ 2) (hpa_head : pa.head? = some x)

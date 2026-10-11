@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Convex
 /-- A [nonnegative interval radius below one](hyp:hk0,hk1), [a parameter of
 absolute value below one](hyp:ht), and [a point in the symmetric interval](hyp:hd)
 make [the quadratic-over-affine value no larger than its endpoint chord](goal), for
-[the radius](hyp:k), [the parameter](hyp:t), and [the point](hyp:d). -/
+[the radius](hyp:k), [the parameter](hyp:t), and [the point](hyp:d).
+@isnad1 id=le.4h3v.s7.6571a31a4813 from=translated src=- shape=66360916 vocab=36ea17d5
+-/
 theorem contrast_chord (k t d : ℝ) (hk0 : 0 ≤ k) (hk1 : k < 1)
     (ht : |t| < 1) (hd : |d| ≤ k) :
     d ^ 2 / (1 + t * d) ≤

@@ -18,7 +18,9 @@ structure Opening (Nonce : Type) where
 
 /-- If two openings reveal different bits, then the openings themselves are
 different. This is the small structural fact that turns equivocation into a
-collision witness. -/
+collision witness.
+@isnad1 id=ne.1h3v.s4.1a5eeec99609 from=translated src=- shape=08fbeba3 vocab=70ceea0b
+-/
 theorem openings_with_distinct_bits_are_distinct {Nonce : Type}
     (left right : Opening Nonce)
     (hdiff : left.bit ≠ right.bit) : left ≠ right := by
@@ -43,7 +45,9 @@ def Verifies
     Prop :=
   commit hash opening.bit opening.nonce = c
 
-/-- The opening used to create a commitment verifies for that commitment. -/
+/-- The opening used to create a commitment verifies for that commitment.
+@isnad1 id=verifies.0h5v.s4.6056e67ed2e0 from=translated src=- shape=ac485096 vocab=db745890
+-/
 theorem commitment_verifies_against_original_opening
     (hash : Bit → Nonce → Digest)
     (bit : Bit)

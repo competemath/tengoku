@@ -22,7 +22,9 @@ all points x, y of the closed box](goal).
 
 Use `Set.mem_closure_pi` and `closure_Ioo` to put every closed-box point in
 the closure of the open box. Then pass the pairwise inequality to the limit
-using continuity of the map, subtraction, norm, and the positive real power. -/
+using continuity of the map, subtraction, norm, and the positive real power.
+@isnad1 id=le.6h9v.s8.95f2dac48255 from=translated src=- shape=12a42335 vocab=a2921901
+-/
 theorem holder_modulus_on_rectBox_of_openBox
     {d : ℕ} {F : Type*} [NormedAddCommGroup F]
     (lo hi : Fin d → ℝ) (hwidth : ∀ i, lo i < hi i)

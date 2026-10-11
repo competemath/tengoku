@@ -58,7 +58,9 @@ def divX (s : Fin 3) (f : MvPowerSeries (Fin 3) ℂ) : MvPowerSeries (Fin 3) ℂ
   fun m => f (m + Finsupp.single s 1)
 
 open MvPowerSeries in
-/-- f - X s * divX s f vanishes whenever m s ≥ 1, and equals f(m) when m s = 0. -/
+/-- f - X s * divX s f vanishes whenever m s ≥ 1, and equals f(m) when m s = 0.
+@isnad1 id=eq.0h3v.s9.3f804fd38874 from=translated src=- shape=976b3c38 vocab=e79b9a92
+-/
 theorem coeff_sub_X_mul_divX
     (s : Fin 3) (f : MvPowerSeries (Fin 3) ℂ) (m : Fin 3 →₀ ℕ) :
     MvPowerSeries.coeff m (f - X s * divX s f) =
@@ -91,6 +93,9 @@ open MvPowerSeries in
 noncomputable def negSubst_map : Fin 2 → MvPowerSeries (Fin 2) ℂ :=
   fun i => -(X i)
 
+/--
+@isnad1 id=hassubst.0h0v.s4.8a039a68c800 from=translated src=- shape=434a9ff5 vocab=66356a1d
+-/
 lemma negSubst_hasSubst : MvPowerSeries.HasSubst negSubst_map := by
   apply MvPowerSeries.hasSubst_of_constantCoeff_zero
   intro s
@@ -101,12 +106,18 @@ noncomputable def negSubst :
   MvPowerSeries.substAlgHom negSubst_hasSubst
 
 open MvPowerSeries in
+/--
+@isnad1 id=eq.0h1v.s8.0c9d07b72dfd from=translated src=- shape=a60fffee vocab=9e7dd823
+-/
 lemma negSubst_X (i : Fin 2) : negSubst (X i) = -(X i) := by
   change MvPowerSeries.substAlgHom negSubst_hasSubst (X i) = -(X i)
   rw [MvPowerSeries.substAlgHom_X]
   rfl
 
 open MvPowerSeries in
+/--
+@isnad1 id=eq.0h1v.s7.6778f63707fc from=translated src=- shape=a2773449 vocab=fa5138f6
+-/
 lemma negSubst_ψ_map (i : Fin 3) : negSubst (ψ_map i) = ψ_map i := by
   fin_cases i
   · change negSubst (X 0 * X 1) = X 0 * X 1
@@ -117,6 +128,9 @@ lemma negSubst_ψ_map (i : Fin 3) : negSubst (ψ_map i) = ψ_map i := by
     rw [map_pow, negSubst_X, neg_sq]
 
 open MvPowerSeries in
+/--
+@isnad1 id=eq.0h1v.s8.b01c5601bb4e from=translated src=- shape=0a1ded2e vocab=fcd1172a
+-/
 lemma negSubst_comp_ψ_hom (f : MvPowerSeries (Fin 3) ℂ) :
     negSubst (ψ_hom f) = ψ_hom f := by
   have h1 : negSubst (ψ_hom f) =
@@ -138,10 +152,16 @@ lemma negSubst_comp_ψ_hom (f : MvPowerSeries (Fin 3) ℂ) :
     rw [ψ_hom, MvPowerSeries.coe_substAlgHom]]
 
 open MvPowerSeries in
+/--
+@isnad1 id=eq.0h1v.s6.73e48c0a4c49 from=translated src=- shape=bb42872d vocab=977faaff
+-/
 lemma negSubst_map_eq (s : Fin 2) :
     negSubst_map s = ((-1 : ℂ) • MvPowerSeries.X s : MvPowerSeries (Fin 2) ℂ) := by
   simp [negSubst_map]
 
+/--
+@isnad1 id=eq.1h2v.s7.584561a4a247 from=translated src=- shape=384e43f6 vocab=3ec44eda
+-/
 lemma Finsupp.sum_fin2
     (m : Fin 2 →₀ ℕ) (f : Fin 2 → ℕ → ℕ) (hf : ∀ i, f i 0 = 0) :
     m.sum f = f 0 (m 0) + f 1 (m 1) := by

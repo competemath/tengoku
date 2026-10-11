@@ -102,7 +102,9 @@ def foldLevel : List Hash256 → List Hash256
   | [x] => [combine x x]
   | x :: y :: rest => combine x y :: foldLevel rest
 
-/-- Each fold level halves the node count, rounding up. -/
+/-- Each fold level halves the node count, rounding up.
+@isnad1 id=eq.0h1v.s5.32f81e197d86 from=translated src=- shape=73ed2ae8 vocab=629a6bfd
+-/
 theorem foldLevel_length : ∀ xs : List Hash256, (foldLevel xs).length = (xs.length + 1) / 2
   | [] => by simp [foldLevel]
   | [_] => by simp [foldLevel]
@@ -119,7 +121,9 @@ def computeRoot : List Hash256 → Hash256
   termination_by xs => xs.length
   decreasing_by simp [foldLevel_length]; omega
 
-/-- A fold level distributes over an append at an even boundary. -/
+/-- A fold level distributes over an append at an even boundary.
+@isnad1 id=eq.1h2v.s5.345d1962bae2 from=translated src=- shape=3bb983ee vocab=68c1ce78
+-/
 theorem foldLevel_append : ∀ (as bs : List Hash256), as.length % 2 = 0 →
     foldLevel (as ++ bs) = foldLevel as ++ foldLevel bs
   | [], _, _ => rfl
@@ -179,7 +183,9 @@ private def treeMutation : Tree → Bool
 /-! ## What is proved -/
 
 /-- Bitcoin Core returns exactly the spec's `computeRoot` in its first component
-— unconditionally; the mutated flag does not affect the returned root. -/
+— unconditionally; the mutated flag does not affect the returned root.
+@isnad1 id=eq.0h1v.s3.0e1eadd978b2 from=translated src=- shape=76d99874 vocab=58dd17f1
+-/
 theorem computeMerkleRoot_fst : ∀ xs : List Hash256,
     (computeMerkleRoot xs).1 = computeRoot xs
   | [] => by simp [computeMerkleRoot, computeRoot]

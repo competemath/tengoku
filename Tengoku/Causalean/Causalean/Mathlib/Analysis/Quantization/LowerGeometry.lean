@@ -11,7 +11,9 @@ open scoped BigOperators
 namespace Causalean.Mathlib.Analysis.Quantization
 
 /-- If a source point lies at least `δ` from one reproduction point and all
-weights there are at least `c`, its paired distortion is at least `c*δ`. -/
+weights there are at least `c`, its paired distortion is at least `c*δ`.
+@isnad1 id=le.4h6v.s7.3cf431251307 from=translated src=- shape=511f3e1e vocab=c78b0fa2
+-/
 theorem far_point_cost_lower (S : ℕ) (β : Fin S → ℝ → ℝ → ℝ)
     (z : Fin S → ℝ) (x c δ : ℝ) (hc : 0 ≤ c) (hδ : 0 ≤ δ)
     (hβ : ∀ s, c ≤ β s x (z s))
@@ -28,7 +30,9 @@ theorem far_point_cost_lower (S : ℕ) (β : Fin S → ℝ → ℝ → ℝ)
 
 /-- A [nonempty index family](hyp:S,hS) with [reproduction points](hyp:z)
 and [two source points each close to every reproduction](hyp:x,y,δ,hx,hy)
-has [source-point distance at most twice the common radius](goal). -/
+has [source-point distance at most twice the common radius](goal).
+@isnad1 id=le.3h5v.s6.e731d60125ef from=translated src=- shape=0c9164e6 vocab=679e0a37
+-/
 theorem good_cell_diameter (S : ℕ) (hS : 0 < S) (z : Fin S → ℝ)
     (x y δ : ℝ) (hx : ∀ s, |x - z s| ≤ δ)
     (hy : ∀ s, |y - z s| ≤ δ) :

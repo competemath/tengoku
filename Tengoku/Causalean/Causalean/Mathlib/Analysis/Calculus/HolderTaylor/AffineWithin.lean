@@ -21,7 +21,9 @@ open scoped Pointwise
 /-- If [a function f](hyp:f) is [k times continuously differentiable](hyp:k,hf) on [the closed
 interval from a to a + d](hyp:a,d) of [positive length](hyp:hd), then [its pullback by the affine
 map sending the closed one-dimensional unit cube onto that interval is k times continuously
-differentiable on the cube](goal). -/
+differentiable on the cube](goal).
+@isnad1 id=contdiff.2h4v.s8.63232825b408 from=translated src=- shape=e7564f4a vocab=37a4d66d
+-/
 theorem affine_cube_contDiffOn
     (k : ℕ) (a d : ℝ) (hd : 0 < d) (f : ℝ → ℝ)
     (hf : ContDiffOn ℝ k f (Set.Icc a (a + d))) :
@@ -42,7 +44,9 @@ interval from a to a + d](hyp:a,d) of [positive length](hyp:hd), then at [every 
 closed one-dimensional unit cube](hyp:z,hz) and for [every choice of j coordinate
 directions](hyp:q), [the order-j within-cube coordinate derivative of the affine pullback of f
 equals (d/2)^j times the order-j within-interval derivative of f at the image point](goal). This
-includes both endpoints and order zero. -/
+includes both endpoints and order zero.
+@isnad1 id=eq.3h6v.s8.bcf7b70e1630 from=translated src=- shape=934def54 vocab=1773e45e
+-/
 theorem affine_cube_coordJetOn
     (j : ℕ) (a d : ℝ) (hd : 0 < d) (f : ℝ → ℝ)
     (hf : ContDiffOn ℝ j f (Set.Icc a (a + d)))

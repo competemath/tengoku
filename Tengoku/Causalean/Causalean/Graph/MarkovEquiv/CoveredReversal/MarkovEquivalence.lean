@@ -675,7 +675,9 @@ in `flipEdge` and flipping it back yields `G`, it suffices to transport an activ
 The only edge whose orientation changes is `a — b`; a walk not traversing it keeps its
 collider pattern, and one that does is rerouted through the shared parents of `a` and `b`
 (`hcov.2`), whose collider-activation (an `bbZAncestors Z` membership) is preserved because
-`a` and `b` reach `Z` through the same ancestors. -/
+`a` and `b` reach `Z` through the same ancestors.
+@isnad1 id=markoveq.1h4v.s5.5c71c1c3f46a from=translated src=- shape=7856db1c vocab=19729453
+-/
 theorem markovEquiv_flipEdge {a b : V} (hcov : G.IsCoveredEdge a b) :
     MarkovEquiv G (flipEdge hcov) := by
   intro X Y Z

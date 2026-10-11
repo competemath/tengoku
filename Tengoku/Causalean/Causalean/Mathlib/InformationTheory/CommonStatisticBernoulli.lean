@@ -26,7 +26,9 @@ namespace Causalean.Mathlib.InformationTheory
 
 /-- A Bernoulli parameter in the middle half of the unit interval has
 variance between zero and one quarter, so adding unit noise gives variance
-between one and five quarters. -/
+between one and five quarters.
+@isnad1 id=mem.1h1v.s7.280ef2927669 from=translated src=- shape=d7d96637 vocab=3f47f867
+-/
 theorem one_add_mul_one_sub_mem_Icc {p : ℝ}
     (hp : p ∈ Icc (1 / 4 : ℝ) (3 / 4 : ℝ)) :
     1 + p * (1 - p) ∈ Icc (1 : ℝ) (5 / 4 : ℝ) := by
@@ -47,7 +49,9 @@ noncomputable def commonStatisticBernoulliKernel
     fun_prop
 
 /-- Pointwise unit-interval parameters make the common-statistic Bernoulli
-kernel Markov. -/
+kernel Markov.
+@isnad1 id=ismarkov.3h2v.s5.ca201f5da091 from=translated src=- shape=011a70da vocab=866bdab5
+-/
 lemma commonStatisticBernoulliKernel_isMarkovKernel
     {S : Type*} [MeasurableSpace S] (p : S → ℝ) (hp : Measurable p)
     (h0 : ∀ r, 0 ≤ p r) (h1 : ∀ r, p r ≤ 1) :
@@ -63,7 +67,9 @@ interval](hyp:hp0,hp1,hq0,hq1), [a nonnegative discrepancy bound](hyp:D,hD),
 [a measurable exceptional region](hyp:E,hE), and [an almost-everywhere localized
 parameter difference](hyp:hdiff), [the KL divergence of the corresponding Bernoulli
 composition products is bounded by the squared discrepancy times the exceptional
-region's mass](goal). -/
+region's mass](goal).
+@isnad1 id=le.9h5v.s8.7c1e2e23d983 from=translated src=- shape=dc89ef54 vocab=b947f2cb
+-/
 lemma commonStatisticBernoulli_klDiv_le_of_localized_parameter
     (m : Measure ℝ) [IsFiniteMeasure m] (p q : ℝ → ℝ)
     (hp : Measurable p) (hq : Measurable q)
@@ -127,7 +133,9 @@ parameters](hyp:p,q,hp,hq) that [both lie in the middle half of the unit
 interval](hyp:hp0,hp1,hq0,hq1), [a nonnegative discrepancy bound](hyp:D,hD),
 [a measurable exceptional region](hyp:E,hE), and [an almost-everywhere localized
 parameter difference](hyp:hdiff), [swapping each Bernoulli composition product to
-outcome-first coordinate order preserves the localized KL bound](goal). -/
+outcome-first coordinate order preserves the localized KL bound](goal).
+@isnad1 id=le.9h5v.s8.d3de194f2ce9 from=translated src=- shape=820e4200 vocab=de2b4d78
+-/
 lemma commonStatisticBernoulliOutcome_klDiv_le_of_localized_parameter
     (m : Measure ℝ) [IsFiniteMeasure m] (p q : ℝ → ℝ)
     (hp : Measurable p) (hq : Measurable q)
@@ -166,7 +174,9 @@ noncomputable def statisticSuccessParameter {A : Type*} [MeasurableSpace A]
     (Measure.map stat nu) r).toReal
 
 /-- The success-weighted statistic law is dominated by the statistic
-marginal when the pointwise success probability is at most one. -/
+marginal when the pointwise success probability is at most one.
+@isnad1 id=absolute.2h4v.s5.2f6a87c0fb27 from=translated src=- shape=bc99e277 vocab=e3b3caee
+-/
 lemma statisticSuccessMeasure_absolutelyContinuous
     {A : Type*} [MeasurableSpace A] (nu : Measure A) [IsFiniteMeasure nu]
     (p : A → ℝ) (stat : A → ℝ) (hstat : Measurable stat)
@@ -184,7 +194,9 @@ lemma statisticSuccessMeasure_absolutelyContinuous
   · exact hstat
 
 /-- Set integrals of the conditional parameter recover success-weighted
-integrals on statistic preimages. -/
+integrals on statistic preimages.
+@isnad1 id=eq.5h5v.s7.2ed6b87d0237 from=translated src=- shape=026f098d vocab=0fbf641f
+-/
 lemma statisticSuccessParameter_setIntegral
     {A : Type*} [MeasurableSpace A] (nu : Measure A) [IsFiniteMeasure nu]
     (p : A → ℝ) (stat : A → ℝ) (hp : Measurable p)
@@ -226,7 +238,9 @@ lemma statisticSuccessParameter_setIntegral
   exact integral_nonneg_of_ae (Filter.Eventually.of_forall hp0)
 
 /-- Middle-half pointwise bounds pass to the conditional statistic
-parameter almost everywhere. -/
+parameter almost everywhere.
+@isnad1 id=eventual.4h4v.s7.8009d7a5a85b from=translated src=- shape=eb4fb29e vocab=6f70d0df
+-/
 lemma statisticSuccessParameter_mem_Icc_ae
     {A : Type*} [MeasurableSpace A] (nu : Measure A) [IsFiniteMeasure nu]
     (p : A → ℝ) (stat : A → ℝ) (hp : Measurable p)
@@ -314,7 +328,9 @@ noncomputable def clippedStatisticSuccessParameter
     (statisticSuccessParameter nu p stat r))
 
 /-- Given [a measure](hyp:nu), [a success-weight function](hyp:p), and [a statistic](hyp:stat),
-[the clipped statistic-level success parameter is measurable](goal). -/
+[the clipped statistic-level success parameter is measurable](goal).
+@isnad1 id=measurab.0h4v.s4.c458acb1c497 from=translated src=- shape=3d7f71d9 vocab=8ffb17ff
+-/
 @[fun_prop]
 lemma clippedStatisticSuccessParameter_measurable
     {A : Type*} [MeasurableSpace A]
@@ -325,7 +341,9 @@ lemma clippedStatisticSuccessParameter_measurable
 
 /-- Given [a measure](hyp:nu), [a success-weight function](hyp:p), [a statistic](hyp:stat), and
 [a statistic value](hyp:r), [the clipped statistic-level success parameter lies between one
-quarter and three quarters](goal). -/
+quarter and three quarters](goal).
+@isnad1 id=mem.0h5v.s6.59f6da7a7d45 from=translated src=- shape=349eee2e vocab=013ca592
+-/
 lemma clippedStatisticSuccessParameter_mem_Icc
     {A : Type*} [MeasurableSpace A]
     (nu : Measure A) (p : A → ℝ) (stat : A → ℝ) (r : ℝ) :
@@ -337,7 +355,9 @@ lemma clippedStatisticSuccessParameter_mem_Icc
 /-- For [a finite measure](hyp:nu), [a measurable success-weight function](hyp:p,hp), and [a
 measurable statistic](hyp:stat,hstat), if [the success weight is everywhere at least one
 quarter](hyp:hp0) and [at most three quarters](hyp:hp1), then [clipping leaves the statistic-level
-success parameter unchanged almost everywhere under the statistic's distribution](goal). -/
+success parameter unchanged almost everywhere under the statistic's distribution](goal).
+@isnad1 id=eventual.4h4v.s7.fa862a7adc26 from=translated src=- shape=401f0f68 vocab=687a2e9e
+-/
 lemma clippedStatisticSuccessParameter_ae_eq
     {A : Type*} [MeasurableSpace A] (nu : Measure A) [IsFiniteMeasure nu]
     (p : A → ℝ) (stat : A → ℝ) (hp : Measurable p)
@@ -351,7 +371,9 @@ lemma clippedStatisticSuccessParameter_ae_eq
   rw [min_eq_right hr.2, max_eq_right hr.1]
 
 /-- Integrating Bernoulli kernels over two base sets gives the same outcome
-measure when the base masses and success-weighted masses agree. -/
+measure when the base masses and success-weighted masses agree.
+@isnad1 id=eq.8h9v.s8.65e0f5b1b631 from=translated src=- shape=20c7ff3a vocab=7e88ba4a
+-/
 lemma commonStatisticBernoulliKernel_setLIntegral_eq
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     (nu : Measure A) [IsFiniteMeasure nu]
@@ -415,7 +437,9 @@ lemma commonStatisticBernoulliKernel_setLIntegral_eq
     hpL, hqL]
 
 /-- Compressing the base coordinate to a statistic turns a Bernoulli mixture
-into a Bernoulli composition product over the statistic marginal. -/
+into a Bernoulli composition product over the statistic marginal.
+@isnad1 id=eq.4h4v.s7.8b368f22528d from=translated src=- shape=45634a38 vocab=3ceb2c5c
+-/
 lemma statisticBernoulliOutcomeLaw_eq_map_swap_compProd
     {A : Type*} [MeasurableSpace A] (nu : Measure A) [IsFiniteMeasure nu]
     (p : A → ℝ) (stat : A → ℝ) (hp : Measurable p)
@@ -495,7 +519,9 @@ lemma statisticBernoulliOutcomeLaw_eq_map_swap_compProd
 
 /-- A localized setwise bound on success-weighted statistic masses yields
 the corresponding almost-everywhere bound on conditional Bernoulli
-parameters. -/
+parameters.
+@isnad1 id=eventual.11h8v.s8.5a640436ee24 from=translated src=- shape=9a781c51 vocab=19082801
+-/
 lemma clippedStatisticSuccessParameter_abs_sub_le_ae
     {A : Type*} [MeasurableSpace A]
     (nu nu' : Measure A) [IsFiniteMeasure nu] [IsFiniteMeasure nu']
@@ -609,7 +635,9 @@ lemma clippedStatisticSuccessParameter_abs_sub_le_ae
     `|∫_{stat∈B} p dnu − ∫_{stat∈B} p' dnu'|` is at most `D` times the `stat`-pushforward mass of
     `nu` on `B ∩ E`](hyp:hdiff), then [the Kullback–Leibler divergence between the compressed
     Bernoulli-outcome laws obtained by pairing the outcome with `stat` under `nu` and under `nu'`
-    is at most `4·D²` times the `stat`-pushforward mass of `E` under `nu`](goal). -/
+    is at most `4·D²` times the `stat`-pushforward mass of `E` under `nu`](goal).
+@isnad1 id=le.11h8v.s9.508236228f70 from=translated src=- shape=312f6b40 vocab=df3822bd
+-/
 lemma statisticBernoulliOutcome_klDiv_le_of_localized_success_bound
     {A : Type*} [MeasurableSpace A]
     (nu nu' : Measure A) [IsFiniteMeasure nu] [IsFiniteMeasure nu']
@@ -644,7 +672,9 @@ lemma statisticBernoulliOutcome_klDiv_le_of_localized_success_bound
 
 /-- Common statistic marginals and a localized setwise success-mass bound
 also imply exact agreement of the compressed outcome laws away from the
-exceptional statistic set. -/
+exceptional statistic set.
+@isnad1 id=eq.11h8v.s9.492f9df278ef from=translated src=- shape=232cb7b4 vocab=77e5e97d
+-/
 lemma statisticBernoulliOutcome_restrict_compl_eq_of_localized_success_bound
     {A : Type*} [MeasurableSpace A]
     (nu nu' : Measure A) [IsFiniteMeasure nu] [IsFiniteMeasure nu']

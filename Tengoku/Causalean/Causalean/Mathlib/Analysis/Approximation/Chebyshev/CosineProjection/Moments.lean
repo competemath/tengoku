@@ -34,6 +34,7 @@ Use `Real.mul_abs_le_abs_sin` on t/2 to get t² ≤ π² sin²(t/2), then
 cancel two powers of the denominator and bound sin²(Kt/2) by one. At zero
 denominator, the chord bound implies t=0. The corresponding helper in
 Kernel_Part2 is private, so this public reusable statement needs its own proof.
+@isnad1 id=le.2h2v.s7.7fe3dd96d218 from=translated src=- shape=6eb36ec8 vocab=ad63a848
 -/
 theorem weighted_jraw_le_chebyshev {K : ℕ} (hK : 0 < K) {t : ℝ}
     (ht : t ∈ Set.Icc (-Real.pi) Real.pi) :
@@ -81,6 +82,7 @@ period integral 2π times that order](goal).
 
 Expand with `cheb_U_sq_eval`; the nonconstant cosine integrals vanish by
 `integral_cos_nat`. Both facts already exist publicly in Kernel_Part1.
+@isnad1 id=eq.1h1v.s7.d25f4baa094f from=translated src=- shape=9f5e0eb9 vocab=cbc38e5a
 -/
 theorem integral_chebyshev_sq {K : ℕ} (hK : 0 < K) :
     (∫ t in Set.Icc (-Real.pi) Real.pi,
@@ -136,6 +138,7 @@ is at most the square of 2π divided by the order](goal).
 Integrate `weighted_jraw_le_chebyshev`, use `integral_chebyshev_sq`, and
 divide by `jrawMass_lower`. This leaves room in the final constant without
 requiring a sharp kernel moment or a numerical approximation to π.
+@isnad1 id=le.1h1v.s6.505ee69a33c1 from=translated src=- shape=bb93393b vocab=a8e182a0
 -/
 theorem jackson_second_moment_scaled {K : ℕ} (hK : 0 < K) :
     (∫ t in Set.Icc (-Real.pi) Real.pi, t ^ 2 * jackson K t) ≤
@@ -184,6 +187,7 @@ give [a Jackson Hölder moment in unit coordinates at most (2/K)^γ](goal).
 Equip the principal period with density `jackson K`; positivity and unit mass
 come from Kernel_Part2. Jensen for the concave power γ/2 of (t/π)² reduces
 this to `jackson_second_moment_scaled`. Prove the density/norm bridges explicitly.
+@isnad1 id=le.3h2v.s7.5ca9b92c231b from=translated src=- shape=da778e7f vocab=85829de2
 -/
 theorem jackson_holder_moment {K : ℕ} {γ : ℝ}
     (hK : 0 < K) (hγ : 0 < γ) (hγ1 : γ ≤ 1) :
@@ -257,7 +261,9 @@ theorem jackson_holder_moment {K : ℕ} {γ : ℝ}
     _ = _ := hpower _ (by positivity)
 
 /-- For a [positive rank](hyp:hk), its matched Jackson order is
-[positive and has degree strictly below rank](goal). -/
+[positive and has degree strictly below rank](goal).
+@isnad1 id=and.1h1v.s6.84b27063b21f from=translated src=- shape=5e9f8581 vocab=91c4bd75
+-/
 theorem matchedOrder_bounds {k : ℕ} (hk : 1 ≤ k) :
     0 < (k + 1) / 2 ∧ 2 * ((k + 1) / 2 - 1) < k := by
   omega
@@ -267,6 +273,7 @@ theorem matchedOrder_bounds {k : ℕ} (hk : 1 ≤ k) :
 
 Show k ≤ 2*((k+1)/2), hence 2/K ≤ 4/k. Then use 4^γ ≤ 4 ≤ 5.
 This arithmetic includes rank one and does not introduce an asymptotic threshold.
+@isnad1 id=le.3h2v.s6.d236209fcde6 from=translated src=- shape=4b357e67 vocab=d13ac1ca
 -/
 theorem matchedOrder_constant_five {k : ℕ} {γ : ℝ}
     (hk : 1 ≤ k) (hγ : 0 < γ) (hγ1 : γ ≤ 1) :

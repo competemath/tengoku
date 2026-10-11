@@ -41,7 +41,9 @@ namespace Causalean.Mathlib.Analysis.FiniteDimL1LinfDuality
 variable {k β : ℕ} {p : Fin (k + 1) → ℝ}
 
 -- @node: primalNormSet_nonempty_of_momentSol_nonempty
-/-- If the moment system is feasible, the primal norm set is nonempty. -/
+/-- If the moment system is feasible, the primal norm set is nonempty.
+@isnad1 id=nonempty.1h3v.s5.d54e60a0dcee from=translated src=- shape=7da8eda5 vocab=75b8ac09
+-/
 theorem primalNormSet_nonempty_of_momentSol_nonempty
     (hne : (MomentSol p β).Nonempty) : (primalNormSet p β).Nonempty := by
   rcases hne with ⟨w, hw⟩
@@ -51,14 +53,18 @@ theorem primalNormSet_nonempty_of_momentSol_nonempty
 /-- Feasibility of the moment system bounds every dual value by any feasible
 primal norm.  This is the weak-duality estimate: if `w ∈ MomentSol p β`, then
 every node-bounded degree-`≤ β` polynomial has endpoint contrast at most
-`∑ j, |w j|`, so the dual value set is bounded above. -/
+`∑ j, |w j|`, so the dual value set is bounded above.
+@isnad1 id=bddabove.1h3v.s5.245581425800 from=translated src=- shape=14e70c99 vocab=d5a3fbb8
+-/
 theorem dualValSet_bddAbove_of_momentSol_nonempty
     (hne : (MomentSol p β).Nonempty) : BddAbove (dualValSet p β) := by
   rcases primalNormSet_nonempty_of_momentSol_nonempty (p := p) (β := β) hne with ⟨s, hs⟩
   exact ⟨s, fun t ht => dual_le_primal hs ht⟩
 
 -- @node: dual_nonneg_of_momentSol_nonempty
-/-- With a feasible primal system, the dual supremum is nonnegative because `0` is dual-feasible. -/
+/-- With a feasible primal system, the dual supremum is nonnegative because `0` is dual-feasible.
+@isnad1 id=le.1h3v.s5.7266f6bdd902 from=translated src=- shape=e9fbc93d vocab=5baf4964
+-/
 theorem dual_nonneg_of_momentSol_nonempty (hne : (MomentSol p β).Nonempty) :
     0 ≤ sSup (dualValSet p β) := by
   have h0 : 0 ∈ dualValSet p β := by
@@ -72,7 +78,9 @@ theorem dual_nonneg_of_momentSol_nonempty (hne : (MomentSol p β).Nonempty) :
 -- @node: momentSol_contrast_eq_sum_eval
 /-- A feasible moment vector represents the coefficient contrast on node-value
 vectors: for every coefficient vector `b`, `contrastL β b` equals the pairing of
-`w` with the node-evaluation vector `Ev p β b`. -/
+`w` with the node-evaluation vector `Ev p β b`.
+@isnad1 id=eq.1h5v.s9.062b64a8c679 from=translated src=- shape=285c104f vocab=068dbb96
+-/
 theorem momentSol_contrast_eq_sum_eval {w : Fin (k + 1) → ℝ} (hw : w ∈ MomentSol p β)
     (b : Fin (β + 1) → ℝ) :
     contrastL β b = ∑ j, w j * Ev p β b j := by
@@ -90,7 +98,9 @@ instead of node-evaluation injectivity:
 
 If the node-value vector has sup norm zero, feasibility identifies the contrast
 with zero.  Otherwise, scale `coeffPoly b` by this sup norm to make it dual
-feasible and compare its contrast with the dual supremum. -/
+feasible and compare its contrast with the dual supremum.
+@isnad1 id=le.1h4v.s9.3b25038f068b from=translated src=- shape=4b728412 vocab=758db398
+-/
 theorem contrastL_le_dual_mul_ninf_of_momentSol_nonempty
     (hne : (MomentSol p β).Nonempty) (b : Fin (β + 1) → ℝ) :
     contrastL β b ≤ sSup (dualValSet p β) * ninf (Ev p β b) := by
@@ -161,7 +171,9 @@ The proof extends the functional represented by one feasible moment vector from
 `range (Ev p β)` to the whole node-value space under the majorant
 `sSup (dualValSet p β) * ninf`.  Evaluating the extension on coordinate vectors
 gives a new feasible weight, and evaluating it on the sign vector gives the
-ℓ¹-norm bound. -/
+ℓ¹-norm bound.
+@isnad1 id=ex.1h3v.s7.5691d0948711 from=translated src=- shape=e396a0a6 vocab=e6a32479
+-/
 theorem exists_moment_le_dual_of_momentSol_nonempty
     (hne : (MomentSol p β).Nonempty) :
     ∃ w ∈ MomentSol p β, ∑ j, |w j| ≤ sSup (dualValSet p β) := by
@@ -286,7 +298,9 @@ theorem exists_moment_le_dual_of_momentSol_nonempty
       _ = M := hNσ
 
 -- @node: sInf_primal_le_sSup_dual_of_momentSol_nonempty
-/-- Inequality form of strong duality under moment-system feasibility. -/
+/-- Inequality form of strong duality under moment-system feasibility.
+@isnad1 id=le.1h3v.s5.f8cc387a1450 from=translated src=- shape=f5ffa398 vocab=c35fd2f9
+-/
 theorem sInf_primal_le_sSup_dual_of_momentSol_nonempty
     (hne : (MomentSol p β).Nonempty) :
     sInf (primalNormSet p β) ≤ sSup (dualValSet p β) := by
@@ -295,7 +309,9 @@ theorem sInf_primal_le_sSup_dual_of_momentSol_nonempty
   exact le_trans (csInf_le primalNormSet_bddBelow ⟨w, hw, rfl⟩) hw_norm
 
 -- @node: sSup_dual_le_sInf_primal_of_momentSol_nonempty
-/-- Weak duality as an `sSup ≤ sInf` inequality under moment-system feasibility. -/
+/-- Weak duality as an `sSup ≤ sInf` inequality under moment-system feasibility.
+@isnad1 id=le.1h3v.s5.36d3d6fbf299 from=translated src=- shape=f5ffa398 vocab=c35fd2f9
+-/
 theorem sSup_dual_le_sInf_primal_of_momentSol_nonempty
     (hne : (MomentSol p β).Nonempty) :
     sSup (dualValSet p β) ≤ sInf (primalNormSet p β) := by
@@ -310,7 +326,9 @@ feasible weight vectors equals the largest endpoint contrast attained by a degre
 polynomial bounded by `1` at every node](goal).
 
 This version is useful when a caller has a problem-specific feasibility witness
-but not the distinct-node and `β ≤ k` hypotheses used by `l1_repr_eq_sup_dual`. -/
+but not the distinct-node and `β ≤ k` hypotheses used by `l1_repr_eq_sup_dual`.
+@isnad1 id=eq.1h3v.s5.72ccec913f08 from=translated src=- shape=f5ffa398 vocab=54c46682
+-/
 theorem l1_repr_eq_sup_dual_of_momentSol_nonempty
     (hne : (MomentSol p β).Nonempty) :
     sInf (primalNormSet p β) = sSup (dualValSet p β) :=

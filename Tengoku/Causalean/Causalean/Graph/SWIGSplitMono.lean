@@ -503,19 +503,25 @@ def splitMono (G : SWIGGraph N) (X : Finset N)
 -- Interface lemmas
 -- ============================================================
 
-/-- Monolithic splitting preserves the observed node set. -/
+/-- Monolithic splitting preserves the observed node set.
+@isnad1 id=eq.2h3v.s6.96c35ef20237 from=translated src=- shape=345ce404 vocab=7aea27ef
+-/
 @[simp] lemma splitMono_observed (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ G.fixed) :
     (G.splitMono X hObs hFix).observed = G.observed := rfl
 
-/-- Monolithic splitting preserves the unobserved node set. -/
+/-- Monolithic splitting preserves the unobserved node set.
+@isnad1 id=eq.2h3v.s6.291801247984 from=translated src=- shape=ba601a36 vocab=071859e1
+-/
 @[simp] lemma splitMono_unobserved (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ G.fixed) :
     (G.splitMono X hObs hFix).unobserved = G.unobserved := rfl
 
-/-- Monolithic splitting adds the fixed copies of the target variables to the fixed node set. -/
+/-- Monolithic splitting adds the fixed copies of the target variables to the fixed node set.
+@isnad1 id=eq.2h3v.s7.430f2e545480 from=translated src=- shape=dd4e7d23 vocab=f9b68ae6
+-/
 @[simp] lemma splitMono_fixed (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ G.fixed) :
@@ -532,7 +538,9 @@ def splitMono (G : SWIGGraph N) (X : Finset N)
     obtained by monolithically splitting `X` exactly when either `x` is a parent of `v` in the
     original graph and is not the random copy of any variable in `X`, or `x` is the fixed copy
     of some variable `D ∈ X` whose random copy is a parent of `v` in the original
-    graph](goal). -/
+    graph](goal).
+@isnad1 id=iff.2h5v.s8.cecb6191baba from=translated src=- shape=e9e8b9be vocab=7dca78bb
+-/
 theorem splitMono_parents_char (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ G.fixed)
@@ -606,7 +614,9 @@ theorem splitMono_parents_char (G : SWIGGraph N) (X : Finset N)
     in `G`.
 
     This is the key graph-level input to the Rule 3 evalMap-compat bridge
-    (`Causalean/SCM/Do/Rule3.lean:fixSet_evalMap_nonAnc_compat`). -/
+    (`Causalean/SCM/Do/Rule3.lean:fixSet_evalMap_nonAnc_compat`).
+@isnad1 id=eq.3h4v.s7.86a35880efb2 from=translated src=- shape=b37cdaf1 vocab=7dca78bb
+-/
 theorem splitMono_parents_eq_of_no_fixed_parent (G : SWIGGraph N) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ G.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ G.fixed)
@@ -637,7 +647,9 @@ theorem splitMono_parents_eq_of_no_fixed_parent (G : SWIGGraph N) (X : Finset N)
 /-- **Congruence of `splitMono` under `SWIGGraph.Equivalent`.**
 
     If two SWIG graphs are `Equivalent`, then their monolithic splits at the
-    same set `X` are also `Equivalent`. -/
+    same set `X` are also `Equivalent`.
+@isnad1 id=equivale.5h4v.s7.b87dbaa58a15 from=translated src=- shape=de43a2cd vocab=46e67062
+-/
 theorem Equivalent.splitMono_congr
     {G₁ G₂ : SWIGGraph N} (h : Equivalent G₁ G₂)
     (X : Finset N)

@@ -18,7 +18,9 @@ open MeasureTheory Set
 open scoped FourierTransform
 namespace Causalean.Mathlib.Analysis.Fourier
 
-/-- [A complex frequency profile](hyp:F) with [one continuous derivative and compact spectral support](hyp:hF,hcompact), [a Gaussian scale parameter](hyp:σ), and [integrable inverse transforms of the multiplier and its derivative](hyp:hinv,hinvD) give [admissible compact inverse-Fourier data for the inverse-Gaussian multiplier](goal). -/
+/-- [A complex frequency profile](hyp:F) with [one continuous derivative and compact spectral support](hyp:hF,hcompact), [a Gaussian scale parameter](hyp:σ), and [integrable inverse transforms of the multiplier and its derivative](hyp:hinv,hinvD) give [admissible compact inverse-Fourier data for the inverse-Gaussian multiplier](goal).
+@isnad1 id=compacti.4h2v.s7.723cc7128fa8 from=translated src=- shape=35a57fe2 vocab=6daaaafe
+-/
 theorem inverseGaussian_compactInverseData (F : ℝ → ℂ) (σ : ℝ)
     (hF : ContDiff ℝ 1 F) (hcompact : HasCompactSupport F)
     (hinv : Integrable (𝓕⁻ (inverseGaussian σ F)))
@@ -27,7 +29,9 @@ theorem inverseGaussian_compactInverseData (F : ℝ → ℂ) (σ : ℝ)
   exact ⟨inverseGaussian_contDiff F σ hF,
     inverseGaussian_hasCompactSupport F σ hcompact, hinv, hinvD⟩
 
-/-- [A compact continuously differentiable profile](hyp:F,hF,hcompact), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a nonnegative Gaussian scale parameter and positive bandwidth](hyp:σ,h,hσ,hh), [nonnegative envelope constants](hyp:a,b,ha,hb), [sinc-six spectral support and uniform envelope bounds](hyp:hsupport,hbound,hderiv), and [integrable inverse transforms of the multiplier and its derivative](hyp:hinv,hinvD) imply [the stated finite weighted inverse-Fourier energy bound](goal). -/
+/-- [A compact continuously differentiable profile](hyp:F,hF,hcompact), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a nonnegative Gaussian scale parameter and positive bandwidth](hyp:σ,h,hσ,hh), [nonnegative envelope constants](hyp:a,b,ha,hb), [sinc-six spectral support and uniform envelope bounds](hyp:hsupport,hbound,hderiv), and [integrable inverse transforms of the multiplier and its derivative](hyp:hinv,hinvD) imply [the stated finite weighted inverse-Fourier energy bound](goal).
+@isnad1 id=and.13h6v.s9.54feb117120f from=translated src=- shape=dcb300fa vocab=dc002b4f
+-/
 theorem inverseGaussian_weightedEnergy_le (F : ℝ → ℂ) (κ σ h a b : ℝ)
     (hF : ContDiff ℝ 1 F) (hcompact : HasCompactSupport F)
     (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) (hh : 0 < h) (hσ : 0 ≤ σ)

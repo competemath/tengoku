@@ -31,7 +31,9 @@ def complexDelta2 (a : ℤ → ℂ) (j : ℤ) : ℂ :=
 /-- For [a complex sequence indexed by the integers](hyp:a) [with finite support](hyp:ha) and [any
 real angle u](hyp:u), [the Fourier series of the second forward difference of the sequence equals
 the square of (the complex exponential of −i u, minus one) times the Fourier series of the sequence
-itself](goal). -/
+itself](goal).
+@isnad1 id=eq.1h2v.s6.6db955627990 from=translated src=- shape=d31e25f5 vocab=0a09fb34
+-/
 theorem finiteFourier_twice_summation_by_parts (a : ℤ → ℂ)
     (ha : Function.HasFiniteSupport a) (u : ℝ) :
     finiteFourier (complexDelta2 a) u =
@@ -135,7 +137,9 @@ noncomputable def packetAntideriv (N : ℕ) (u : ℝ) : ℝ :=
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN) and [any angle u](hyp:u), [the scaled
 Jackson kernel equals the cosine series over frequencies j between −(2N − 2) and 2N − 2 with the
-normalized Jackson coefficients](goal). -/
+normalized Jackson coefficients](goal).
+@isnad1 id=eq.1h2v.s6.114ff698d104 from=translated src=- shape=591516dc vocab=1af034be
+-/
 theorem packet_kernel_reconstruction (N : ℕ) (hN : 0 < N) (u : ℝ) :
     kernel N u =
       ∑ j ∈ Finset.Icc (-((2 * N - 2 : ℕ) : ℤ)) ((2 * N - 2 : ℕ) : ℤ),
@@ -143,7 +147,9 @@ theorem packet_kernel_reconstruction (N : ℕ) (hN : 0 < N) (u : ℝ) :
   kernel_fourier N hN u
 
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN), [the packet antiderivative integrates
-to zero over the period from −π to π](goal). -/
+to zero over the period from −π to π](goal).
+@isnad1 id=eq.1h1v.s5.c446855e8899 from=translated src=- shape=4bf41447 vocab=9acfc057
+-/
 theorem packet_zero_mean (N : ℕ) (hN : 2 ≤ N) :
     (∫ u in Set.Icc (-Real.pi) Real.pi, packetAntideriv N u) = 0 := by
   have hcos (k : ℤ) (hk : k ≠ 0) :

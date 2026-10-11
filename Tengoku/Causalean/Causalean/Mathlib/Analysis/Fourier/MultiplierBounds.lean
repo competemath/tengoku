@@ -22,7 +22,9 @@ namespace Causalean.Mathlib.Analysis.Fourier
 def inverseGaussian (σ : ℝ) (F : ℝ → ℂ) : ℝ → ℂ :=
   fun ξ => F ξ * (Real.exp (σ ^ 2 * (2 * Real.pi * ξ) ^ 2 / 2) : ℂ)
 
-/-- [A complex frequency profile](hyp:F) with [one continuous derivative](hyp:hF) and [a Gaussian scale parameter](hyp:σ) give [an inverse-Gaussian multiplier with one continuous derivative](goal). -/
+/-- [A complex frequency profile](hyp:F) with [one continuous derivative](hyp:hF) and [a Gaussian scale parameter](hyp:σ) give [an inverse-Gaussian multiplier with one continuous derivative](goal).
+@isnad1 id=contdiff.1h2v.s6.6bd8f4965843 from=translated src=- shape=8ef876cd vocab=9e6179d3
+-/
 theorem inverseGaussian_contDiff (F : ℝ → ℂ) (σ : ℝ) (hF : ContDiff ℝ 1 F) :
     ContDiff ℝ 1 (inverseGaussian σ F) := by
   unfold inverseGaussian
@@ -31,7 +33,9 @@ theorem inverseGaussian_contDiff (F : ℝ → ℂ) (σ : ℝ) (hF : ContDiff ℝ
     (Real.contDiff_exp.comp ((contDiff_const.mul
       ((contDiff_const.mul contDiff_id).pow 2)).div_const 2))
 
-/-- [A complex frequency profile](hyp:F) with [compact spectral support](hyp:hF) and [a Gaussian scale parameter](hyp:σ) give [an inverse-Gaussian multiplier with compact spectral support](goal). -/
+/-- [A complex frequency profile](hyp:F) with [compact spectral support](hyp:hF) and [a Gaussian scale parameter](hyp:σ) give [an inverse-Gaussian multiplier with compact spectral support](goal).
+@isnad1 id=hascompa.1h2v.s4.dfea0b02b8f2 from=translated src=- shape=55e0652b vocab=e812c49c
+-/
 theorem inverseGaussian_hasCompactSupport (F : ℝ → ℂ) (σ : ℝ)
     (hF : HasCompactSupport F) : HasCompactSupport (inverseGaussian σ F) := by
   exact hF.mul_right
@@ -81,7 +85,9 @@ private theorem gaussian_exponent_le (σ h x : ℝ) (hh : 0 < h)
   nlinarith [mul_le_mul_of_nonneg_left hx2
     (show 0 ≤ σ ^ 2 * (2 * Real.pi) ^ 2 / 2 by positivity)]
 
-/-- [A continuous complex frequency profile](hyp:F,hF), [a Gaussian scale parameter and positive bandwidth](hyp:σ,h,hh), [a nonnegative height constant](hyp:a,ha), [sinc-six spectral support](hyp:hsupport), and [a uniform height bound](hyp:hbound) imply [the stated squared L² bound for the inverse-Gaussian multiplier](goal). -/
+/-- [A continuous complex frequency profile](hyp:F,hF), [a Gaussian scale parameter and positive bandwidth](hyp:σ,h,hh), [a nonnegative height constant](hyp:a,ha), [sinc-six spectral support](hyp:hsupport), and [a uniform height bound](hyp:hbound) imply [the stated squared L² bound for the inverse-Gaussian multiplier](goal).
+@isnad1 id=le.5h4v.s7.c5b070aebf4e from=translated src=- shape=1be47510 vocab=a4804b67
+-/
 theorem inverseGaussian_energy_le (F : ℝ → ℂ) (σ h a : ℝ)
     (hF : Continuous F) (hh : 0 < h) (ha : 0 ≤ a)
     (hsupport : Function.support F ⊆ Icc (-(3 / (Real.pi * h))) (3 / (Real.pi * h)))
@@ -137,7 +143,9 @@ private theorem inverseGaussian_deriv (F : ℝ → ℂ) (σ x : ℝ)
   push_cast
   ring
 
-/-- [A complex frequency profile with one continuous derivative](hyp:F,hF), [a nonnegative Gaussian scale parameter and positive bandwidth](hyp:σ,h,hσ,hh), [nonnegative height constants](hyp:a,b,ha,hb), [sinc-six spectral support](hyp:hsupport), and [uniform profile and derivative bounds](hyp:hbound,hderiv) imply [the stated squared L² bound for the multiplier’s first derivative](goal). -/
+/-- [A complex frequency profile with one continuous derivative](hyp:F,hF), [a nonnegative Gaussian scale parameter and positive bandwidth](hyp:σ,h,hσ,hh), [nonnegative height constants](hyp:a,b,ha,hb), [sinc-six spectral support](hyp:hsupport), and [uniform profile and derivative bounds](hyp:hbound,hderiv) imply [the stated squared L² bound for the multiplier’s first derivative](goal).
+@isnad1 id=le.8h5v.s9.750d9941f1b4 from=translated src=- shape=0175da5f vocab=2f084b3d
+-/
 theorem inverseGaussian_deriv_energy_le (F : ℝ → ℂ) (σ h a b : ℝ)
     (hF : ContDiff ℝ 1 F) (hh : 0 < h) (hσ : 0 ≤ σ) (ha : 0 ≤ a) (hb : 0 ≤ b)
     (hsupport : Function.support F ⊆ Icc (-(3 / (Real.pi * h))) (3 / (Real.pi * h)))

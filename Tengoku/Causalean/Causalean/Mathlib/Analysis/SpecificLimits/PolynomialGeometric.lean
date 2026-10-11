@@ -18,7 +18,9 @@ public section
 namespace Causalean.Mathlib.Analysis.SpecificLimits.PolynomialGeometric
 
 /-- A natural-number index shifted by two is bounded by the corresponding dyadic power.
-[The asserted bound holds](goal). -/
+[The asserted bound holds](goal).
+@isnad1 id=le.0h1v.s5.8c11c83d58ca from=translated src=- shape=1ccd570e vocab=5d5ab76f
+-/
 lemma nat_add_two_le_two_pow_succ (j : ℕ) : (j + 2 : ℝ) ≤ 2 ^ (j + 1) := by
   induction j with
   | zero => norm_num
@@ -29,7 +31,9 @@ lemma nat_add_two_le_two_pow_succ (j : ℕ) : (j + 2 : ℝ) ≤ 2 ^ (j + 1) := b
     nlinarith
 
 /-- A polynomially weighted geometric term has an explicit geometric majorant when
-[the base is nonnegative](hyp:hz). [The asserted termwise bound holds](goal). -/
+[the base is nonnegative](hyp:hz). [The asserted termwise bound holds](goal).
+@isnad1 id=le.1h3v.s7.76b70cecda03 from=translated src=- shape=d7257043 vocab=72589b2f
+-/
 lemma polynomial_geometric_term_le (r j : ℕ) (z : ℝ) (hz : 0 ≤ z) :
     (j + 2 : ℝ) ^ r * z ^ (j + 2) ≤
       2 ^ r * z ^ 2 * (2 ^ r * z) ^ j := by
@@ -45,7 +49,9 @@ lemma polynomial_geometric_term_le (r j : ℕ) (z : ℝ) (hz : 0 ≤ z) :
 
 /-- A polynomially weighted geometric series is summable when [the base is nonnegative](hyp:hz)
 and [the explicit geometric ratio is at most one half](hyp:hsmall).
-[The asserted summability holds](goal). -/
+[The asserted summability holds](goal).
+@isnad1 id=summable.2h2v.s7.c17f48b8fc5a from=translated src=- shape=5704ca7e vocab=2797823f
+-/
 lemma polynomial_geometric_series_summable (r : ℕ) (z : ℝ) (hz : 0 ≤ z)
     (hsmall : 2 ^ r * z ≤ 1 / 2) :
     Summable (fun j : ℕ => (j + 2 : ℝ) ^ r * z ^ (j + 2)) := by
@@ -59,7 +65,9 @@ lemma polynomial_geometric_series_summable (r : ℕ) (z : ℝ) (hz : 0 ≤ z)
 /-- A polynomially weighted geometric series has the displayed quadratic bound when
 [the base is nonnegative](hyp:hz) and
 [the explicit geometric ratio is at most one half](hyp:hsmall).
-[The asserted series bound holds](goal). -/
+[The asserted series bound holds](goal).
+@isnad1 id=le.2h2v.s7.af8d7a7de0f0 from=translated src=- shape=5dcbd82f vocab=997f9798
+-/
 lemma polynomial_geometric_series_bound (r : ℕ) (z : ℝ) (hz : 0 ≤ z)
     (hsmall : 2 ^ r * z ≤ 1 / 2) :
     (∑' j : ℕ, (j + 2 : ℝ) ^ r * z ^ (j + 2)) ≤ 2 ^ (r + 1) * z ^ 2 := by

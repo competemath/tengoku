@@ -35,7 +35,9 @@ both y₁ and y₂. This is what makes the intersection approach work.
 
 section CoprimeHeight
 
-/-- In a UFD, every nonzero prime ideal contains a prime element. -/
+/-- In a UFD, every nonzero prime ideal contains a prime element.
+@isnad1 id=ex.1h2v.s7.a3314866b134 from=translated src=- shape=d129b1c9 vocab=fdccec3c
+-/
 lemma exists_prime_mem_of_ne_bot {S : Type*} [CommRing S] [IsDomain S]
     [UniqueFactorizationMonoid S]
     (Q : Ideal S) [hQ : Q.IsPrime] (hQ_ne_bot : Q ≠ ⊥) :

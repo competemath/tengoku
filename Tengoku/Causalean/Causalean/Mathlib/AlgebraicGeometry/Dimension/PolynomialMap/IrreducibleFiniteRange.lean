@@ -31,7 +31,9 @@ private def coordinateValuePolynomial {κ : Type*} (c : κ) (S : Finset ℂ) :
   ∏ z ∈ S, (MvPolynomial.X c - MvPolynomial.C z)
 
 /-- The set of complex coordinate vectors whose chosen coordinate belongs to a
-fixed finite set is closed in the affine Zariski topology. -/
+fixed finite set is closed in the affine Zariski topology.
+@isnad1 id=eq.0h3v.s5.36339b081af8 from=translated src=- shape=e428ba06 vocab=8d927ad3
+-/
 lemma finiteCoordinateRange_closed {κ : Type*} (c : κ) (S : Finset ℂ) :
     affineZariskiClosure {x : κ → ℂ | x c ∈ S} = {x | x c ∈ S} := by
   have heq : {x : κ → ℂ | x c ∈ S} =
@@ -44,7 +46,9 @@ lemma finiteCoordinateRange_closed {κ : Type*} (c : κ) (S : Finset ℂ) :
 /-- On [an irreducible affine-closed set `Z`](hyp:hZ), if [a fixed coordinate
 `c` takes values only within a fixed finite set `S` at every point of
 `Z`](hyp:hrange), then [that coordinate is in fact constant on `Z`, equal to
-some single value in `S`](goal). -/
+some single value in `S`](goal).
+@isnad1 id=ex.2h4v.s6.61b9dc39d434 from=translated src=- shape=cfda4f65 vocab=548df3a2
+-/
 theorem irreducible_coordinate_constant_of_finite_range {κ : Type*}
     {Z : Set (κ → ℂ)} (hZ : IsIrreducibleAffineClosed Z)
     (c : κ) (S : Finset ℂ) (hrange : ∀ x ∈ Z, x c ∈ S) :

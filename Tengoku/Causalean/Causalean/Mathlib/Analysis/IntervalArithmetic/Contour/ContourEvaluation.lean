@@ -17,7 +17,9 @@ namespace Causalean.Mathlib.Analysis.IntervalArithmetic.Contour
 open Causalean.Mathlib.Analysis.IntervalArithmetic
 open Causalean.Mathlib.Analysis.IntervalArithmetic.Contour
 /-- The canceled unit-parameter integral equals the normalized exact circle
-contour integral whenever the denominator is nonzero along the circle. -/
+contour integral whenever the denominator is nonzero along the circle.
+@isnad1 id=eq.1h2v.s6.4d0e622940f1 from=translated src=- shape=c0baf949 vocab=b63bf059
+-/
 theorem normalizedContourIntegral_eq (program : ContourProgram) (schedule : Schedule)
     (hden : ∀ u ∈ Icc (0 : ℝ) 1,
       program.denominator.value
@@ -53,7 +55,9 @@ theorem normalizedContourIntegral_eq (program : ContourProgram) (schedule : Sche
       norm_num
       ring_nf
 
-/-- Every certified finite endpoint rectangle contains the exact normalized integrand. -/
+/-- Every certified finite endpoint rectangle contains the exact normalized integrand.
+@isnad1 id=contains.1h4v.s4.e7b633edd222 from=translated src=- shape=4ab1e99f vocab=48c8184f
+-/
 theorem integrandNodes_sound (program : ContourProgram) (schedule : Schedule)
     (certificate : DenominatorCertificate program schedule) {k : ℕ}
     (hk : k ≤ schedule.mesh) :
@@ -71,7 +75,9 @@ theorem integrandNodes_sound (program : ContourProgram) (schedule : Schedule)
 
 /-- The scheduled node-width bound follows compositionally from circle input
 precision, both map error moduli, their amplification fields, rational
-magnitude bounds, guarded-division separation, and primitive width lemmas. -/
+magnitude bounds, guarded-division separation, and primitive width lemmas.
+@isnad1 id=le.2h6v.s6.0e65df077d03 from=translated src=- shape=8b1f66cd vocab=b7c9d3cd
+-/
 theorem integrandNodes_width_le_propagation (program : ContourProgram)
     (bounds : ContourValueBounds program) (separation : PosRat)
     (scheduled : CertifiedProgramSchedule program bounds separation)
@@ -341,7 +347,9 @@ def ContourProgram.evaluate (program : ContourProgram) (schedule : Schedule)
       (div_nonneg schedule.quadratureBudget_nonneg (by norm_num))
 
 /-- Denominator separation at all certified nodes implies nonvanishing of the
-exact denominator at all mesh endpoints. -/
+exact denominator at all mesh endpoints.
+@isnad1 id=ne.1h4v.s5.c9c6140e0878 from=translated src=- shape=878d9f5a vocab=68cf67af
+-/
 theorem denominator_ne_zero_at_nodes (program : ContourProgram) (schedule : Schedule)
     (certificate : DenominatorCertificate program schedule) {k : ℕ}
     (hk : k ≤ schedule.mesh) :
@@ -359,7 +367,9 @@ theorem denominator_ne_zero_at_nodes (program : ContourProgram) (schedule : Sche
   simp [hz]
 
 /-- Under a Lipschitz bound and denominator nonvanishing on the full circle,
-the returned rational rectangle contains the normalized exact contour integral. -/
+the returned rational rectangle contains the normalized exact contour integral.
+@isnad1 id=contains.2h3v.s7.655e72506641 from=translated src=- shape=e863367b vocab=1aa1149d
+-/
 theorem evaluate_contains (program : ContourProgram) (schedule : Schedule)
     (certificate : DenominatorCertificate program schedule)
     (hden : ∀ u ∈ Icc (0 : ℝ) 1,
@@ -375,7 +385,9 @@ theorem evaluate_contains (program : ContourProgram) (schedule : Schedule)
     hLip (fun k hk => integrandNodes_sound program schedule certificate hk)
 
 /-- Uniform scheduled node widths propagate through mesh and final widening,
-so both result coordinates fit within the three split budgets. -/
+so both result coordinates fit within the three split budgets.
+@isnad1 id=le.1h5v.s6.bc183e2ada2c from=translated src=- shape=097ff473 vocab=d122d94f
+-/
 theorem evaluate_width (program : ContourProgram)
     (bounds : ContourValueBounds program) (separation : PosRat)
     (scheduled : CertifiedProgramSchedule program bounds separation)
@@ -408,7 +420,9 @@ one](hyp:certificate,hseparation); assume also that [the program's denominator n
 anywhere on the parametrized circle](hyp:hden) and [the normalized integrand is Lipschitz in the
 circle parameter with the schedule's constant](hyp:hLip). Then [the rational rectangle obtained by
 evaluating the program both contains the true normalized contour integral and has real-part width
-at most the schedule's requested tolerance](goal). -/
+at most the schedule's requested tolerance](goal).
+@isnad1 id=and.3h5v.s8.4f82869c71f4 from=translated src=- shape=a6cf8ed8 vocab=eaf665b5
+-/
 theorem certified_contour_evaluation (program : ContourProgram)
     (bounds : ContourValueBounds program) (separation : PosRat)
     (scheduled : CertifiedProgramSchedule program bounds separation)
@@ -441,7 +455,9 @@ larger of an integer and one](goal) for [a contour program](hyp:program) with
 Here [the integer determines the reciprocal rate](hyp:n), [a denominator certificate is
 available](hyp:certificate) and [covers the target separation](hyp:hseparation),
 [the exact denominator never vanishes on the circle](hyp:hden), and
-[the normalized integrand obeys the scheduled Lipschitz bound](hyp:hLip). -/
+[the normalized integrand obeys the scheduled Lipschitz bound](hyp:hLip).
+@isnad1 id=le.4h6v.s8.19342024a163 from=translated src=- shape=17591b62 vocab=e8ff32b1
+-/
 theorem certified_contour_evaluation_inverseMax (n : ℕ) (program : ContourProgram)
     (bounds : ContourValueBounds program) (separation : PosRat)
     (scheduled : CertifiedProgramSchedule program bounds separation)
@@ -463,7 +479,9 @@ theorem certified_contour_evaluation_inverseMax (n : ℕ) (program : ContourProg
   exact h
 
 /-- Containment in a rational real interval bounds its midpoint error by half
-the interval width. -/
+the interval width.
+@isnad1 id=le.1h2v.s6.5df750f4f523 from=translated src=- shape=a23825a8 vocab=4db36e57
+-/
 theorem midpoint_error_le_half_width {I : RatInterval} {x : ℝ}
     (hx : I.Contains x) :
     |(((I.lo + I.hi) / 2 : ℚ) : ℝ) - x| ≤ (I.width : ℝ) / 2 := by

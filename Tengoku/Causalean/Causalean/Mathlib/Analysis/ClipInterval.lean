@@ -40,31 +40,43 @@ noncomputable def clipIcc (a b x : ℝ) : ℝ := max a (min b x)
 
 /-- Clipping into an interval is exactly Mathlib's projection onto that interval, read as a plain
 real number instead of as an element of the interval. This is the bridge that makes every fact
-about the projection available to a development that never leaves the reals. -/
+about the projection available to a development that never leaves the reals.
+@isnad1 id=eq.1h3v.s5.accf5c015149 from=translated src=- shape=d88b73cc vocab=5b4bc176
+-/
 lemma coe_projIcc_eq_clipIcc (hab : a ≤ b) (x : ℝ) :
     (Set.projIcc a b hab x : ℝ) = clipIcc a b x := rfl
 
 /-- A clipped value always lies in the interval it was clipped to (provided the interval is
-nonempty, i.e. its left endpoint does not exceed its right endpoint). -/
+nonempty, i.e. its left endpoint does not exceed its right endpoint).
+@isnad1 id=mem.1h3v.s4.0796c7465c50 from=translated src=- shape=85eab566 vocab=439d396c
+-/
 lemma clipIcc_mem_Icc (hab : a ≤ b) (x : ℝ) : clipIcc a b x ∈ Set.Icc a b :=
   (Set.projIcc a b hab x).2
 
-/-- Clipping leaves untouched any number that already lies inside the interval. -/
+/-- Clipping leaves untouched any number that already lies inside the interval.
+@isnad1 id=eq.1h3v.s4.0e7278c09035 from=translated src=- shape=28d61643 vocab=3545b797
+-/
 lemma clipIcc_eq_self (hx : x ∈ Set.Icc a b) : clipIcc a b x = x := by
   rw [clipIcc, min_eq_right hx.2, max_eq_right hx.1]
 
 /-- Clipping from below first and then from above gives the same answer as clipping from above
 first and then from below. This reconciles the two spellings of the same operation that occur in
-practice, `max a (min b x)` and `min b (max a x)`. -/
+practice, `max a (min b x)` and `min b (max a x)`.
+@isnad1 id=eq.1h3v.s4.5861ae9ec272 from=translated src=- shape=ecf9ba40 vocab=2ee3f00c
+-/
 lemma clipIcc_eq_min_max (hab : a ≤ b) (x : ℝ) : clipIcc a b x = min b (max a x) := by
   rw [clipIcc, max_min_distrib_left, max_eq_right hab]
 
 /-- Clipping is a contraction: two numbers are never pushed further apart by being clipped to a
-common interval. -/
+common interval.
+@isnad1 id=lipschit.0h2v.s4.742767e11cb7 from=translated src=- shape=05ebcddd vocab=ebf7c406
+-/
 lemma lipschitzWith_clipIcc (a b : ℝ) : LipschitzWith 1 (clipIcc a b) :=
   (LipschitzWith.id.const_min b).const_max a
 
-/-- Clipping two numbers to the same interval never increases the distance between them. -/
+/-- Clipping two numbers to the same interval never increases the distance between them.
+@isnad1 id=le.0h4v.s5.853b80a40ffb from=translated src=- shape=be0952d3 vocab=9f6e5086
+-/
 lemma abs_clipIcc_sub_clipIcc_le (a b x y : ℝ) :
     |clipIcc a b x - clipIcc a b y| ≤ |x - y| := by
   simpa [Real.dist_eq] using (lipschitzWith_clipIcc a b).dist_le_mul x y
@@ -72,7 +84,9 @@ lemma abs_clipIcc_sub_clipIcc_le (a b x y : ℝ) :
 /-- Capping from above and then flooring from below is a contraction as well: two numbers put
 through that order of operations are never pushed further apart. Unlike `clipIcc_eq_min_max`, this
 needs no assumption on the two thresholds, which is what makes it usable for a propensity band
-`[q, 1 - q]` whose definition carries no `q ≤ 1/2` hypothesis. -/
+`[q, 1 - q]` whose definition carries no `q ≤ 1/2` hypothesis.
+@isnad1 id=le.0h4v.s5.8a02619ffa08 from=translated src=- shape=12d1ee45 vocab=a2f47fe3
+-/
 lemma abs_min_max_sub_min_max_le (a b x y : ℝ) :
     |min b (max a x) - min b (max a y)| ≤ |x - y| := by
   have h : LipschitzWith 1 (fun z : ℝ => min b (max a z)) :=
@@ -84,7 +98,9 @@ in the closed interval from `a` to `b`](hyp:ht), then for any real `x`, [clippin
 interval moves it no farther from the target than `x` itself was](goal).
 
 This is the form used when the target is a true parameter known to obey the same bounds that the
-estimator is clipped to. -/
+estimator is clipped to.
+@isnad1 id=le.1h4v.s5.0509fb90541e from=translated src=- shape=03c9a000 vocab=9d4d3daa
+-/
 lemma abs_clipIcc_sub_le (ht : t ∈ Set.Icc a b) (x : ℝ) :
     |clipIcc a b x - t| ≤ |x - t| := by
   simpa [clipIcc_eq_self ht] using abs_clipIcc_sub_clipIcc_le a b x t
@@ -94,7 +110,9 @@ If [a real number lies in the closed interval from `a` to `b`](hyp:ht), then for
 [the squared distance from the clipped value of `x` to the target is at most the squared distance
 from `x` itself to the target](goal).
 
-So clipping an estimator to a range known to contain the truth can only reduce squared error. -/
+So clipping an estimator to a range known to contain the truth can only reduce squared error.
+@isnad1 id=le.1h4v.s6.5f6ee1811395 from=translated src=- shape=29bed818 vocab=8cfaf018
+-/
 lemma clipIcc_sub_sq_le (ht : t ∈ Set.Icc a b) (x : ℝ) :
     (clipIcc a b x - t) ^ 2 ≤ (x - t) ^ 2 := by
   have h := abs_clipIcc_sub_le ht x
@@ -102,24 +120,32 @@ lemma clipIcc_sub_sq_le (ht : t ∈ Set.Icc a b) (x : ℝ) :
     _ ≤ |x - t| ^ 2 := by gcongr
     _ = (x - t) ^ 2 := sq_abs _
 
-/-- Clipping to a fixed interval is a continuous operation. -/
+/-- Clipping to a fixed interval is a continuous operation.
+@isnad1 id=continuo.0h2v.s4.a577b913bf9f from=translated src=- shape=443e0365 vocab=1d7842fb
+-/
 @[fun_prop]
 lemma continuous_clipIcc (a b : ℝ) : Continuous (clipIcc a b) :=
   continuous_const.max (continuous_const.min continuous_id)
 
 /-- Clipping to a fixed interval is measurable, so clipping a random variable again yields a
-random variable. -/
+random variable.
+@isnad1 id=measurab.0h2v.s3.bf91014b1f30 from=translated src=- shape=443e0365 vocab=bcc226ce
+-/
 @[fun_prop]
 lemma measurable_clipIcc (a b : ℝ) : Measurable (clipIcc a b) :=
   (continuous_clipIcc a b).measurable
 
 /-- Clipping to a symmetric band around zero produces a value whose magnitude is at most the
-half-width of the band. -/
+half-width of the band.
+@isnad1 id=le.1h2v.s4.df6411ed3598 from=translated src=- shape=e2583e77 vocab=cc60a33b
+-/
 lemma abs_clipIcc_neg_le (hB : 0 ≤ B) (x : ℝ) : |clipIcc (-B) B x| ≤ B :=
   abs_le.mpr (clipIcc_mem_Icc (by linarith) x)
 
 /-- Clipping to a symmetric band around zero leaves untouched any number whose magnitude is
-already within the half-width of the band. -/
+already within the half-width of the band.
+@isnad1 id=eq.1h2v.s4.c0320a7f777d from=translated src=- shape=28c7d049 vocab=cc60a33b
+-/
 lemma clipIcc_neg_eq_self (hx : |x| ≤ B) : clipIcc (-B) B x = x :=
   clipIcc_eq_self (Set.mem_Icc.mpr (abs_le.mp hx))
 

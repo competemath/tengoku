@@ -31,7 +31,9 @@ open scoped BigOperators
 /-- **Resolvent inequality.** For [a seminormed ring `R`](hyp:R) and [units `a`
 and `b` of `R`](hyp:a,b), [the norm of the difference of their inverses is
 bounded above by the product of the norms of the two inverses and the norm of
-their difference](goal). -/
+their difference](goal).
+@isnad1 id=le.0h3v.s7.888ca0d6ee0c from=translated src=- shape=2d2c8633 vocab=cc0ea3b8
+-/
 theorem norm_unitInv_sub_unitInv_le {R : Type*} [SeminormedRing R] (a b : Rˣ) :
     ‖(↑a⁻¹ : R) - ↑b⁻¹‖ ≤ ‖(↑a⁻¹ : R)‖ * ‖(↑b⁻¹ : R)‖ * ‖(↑a : R) - ↑b‖ := by
   have hid : (↑a⁻¹ : R) - ↑b⁻¹ = ↑a⁻¹ * (↑b - ↑a) * ↑b⁻¹ := by

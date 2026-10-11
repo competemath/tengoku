@@ -29,7 +29,9 @@ def scan (stream : Stream α) (schedule : Schedule stream.length) : List (StepTr
   scanFrom stream 0 initialDeque schedule.windows
 
 /-- [A stream](hyp:stream) and [a monotone window schedule](hyp:schedule) ensure [that the scan
-has exactly one trace step for each scheduled window](goal). -/
+has exactly one trace step for each scheduled window](goal).
+@isnad1 id=eq.0h3v.s4.4db8d4942998 from=translated src=- shape=7c90d8ec vocab=90e88311
+-/
 theorem length_scan (stream : Stream α) (schedule : Schedule stream.length) :
     (scan stream schedule).length = schedule.steps := by
   have hlength : ∀ (oldRight : ℕ) (q : Deque) (windows : List (Window stream.length)),
@@ -74,7 +76,9 @@ private theorem scanFrom_valid_at_of_valid (stream : Stream α)
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), and [a valid schedule
 position](hyp:hk) ensure
-[that the corresponding scan step has a valid deque for its window](goal). -/
+[that the corresponding scan step has a valid deque for its window](goal).
+@isnad1 id=ex.1h4v.s6.736e7ffff1c0 from=translated src=- shape=815b91ed vocab=06f0807a
+-/
 theorem scan_valid_at (stream : Stream α) (schedule : Schedule stream.length)
     {k : ℕ} (hk : k < schedule.steps) :
     ∃ step, (scan stream schedule)[k]? = some step ∧
@@ -98,7 +102,9 @@ theorem scan_valid_at (stream : Stream α) (schedule : Schedule stream.length)
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), [a valid schedule
 position](hyp:hk), and [a nonempty window at that position](hyp:hne) ensure [that the scan head
-is active and maximizes the stream value in that window](goal). -/
+is active and maximizes the stream value in that window](goal).
+@isnad1 id=ex.2h4v.s7.cec551005983 from=translated src=- shape=39e44f42 vocab=84f39d5a
+-/
 theorem scan_head_argmax (stream : Stream α) (schedule : Schedule stream.length)
     {k : ℕ} (hk : k < schedule.steps)
     (hne : (schedule.windows.get ⟨k, hk⟩).left <
@@ -116,7 +122,9 @@ theorem scan_head_argmax (stream : Stream α) (schedule : Schedule stream.length
 
 /-- [A stream](hyp:stream), [a monotone window schedule](hyp:schedule), [a valid schedule
 position](hyp:hk), and [a nonempty window at that position](hyp:hne) ensure [that the scan head
-is an active argmax whose value equals the finite-window maximum](goal). -/
+is an active argmax whose value equals the finite-window maximum](goal).
+@isnad1 id=ex.2h4v.s8.52751644008d from=translated src=- shape=ee39909c vocab=6387cee9
+-/
 theorem scan_head_value_eq_windowMax (stream : Stream α)
     (schedule : Schedule stream.length) {k : ℕ} (hk : k < schedule.steps)
     (hne : (schedule.windows.get ⟨k, hk⟩).left <

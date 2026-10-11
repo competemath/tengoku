@@ -18,7 +18,9 @@ open Polynomial
 
 /-- [Positive interval endpoints](hyp:a,b,ha,hab), a [degree bound](hyp:m), and
 an [angle](hyp:θ) imply [the sine-square identity for the residual at that
-angle](goal). -/
+angle](goal).
+@isnad1 id=eq.2h4v.s7.38a7e5de38f9 from=translated src=- shape=cd9344bd vocab=f4246cd3
+-/
 theorem reciprocalResidualPoly_sin_square {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) (θ : ℝ) :
     (reciprocalResidualPoly a b m).eval (Real.cos θ) =
@@ -71,7 +73,9 @@ theorem reciprocalResidualPoly_sin_square {a b : ℝ}
 
 /-- [Positive interval endpoints](hyp:a,b,ha,hab), a [degree bound](hyp:m), and
 an [angle](hyp:θ) imply [the cosine-square identity for the residual at that
-angle](goal). -/
+angle](goal).
+@isnad1 id=eq.2h4v.s7.8ae77a52d881 from=translated src=- shape=7b13448e vocab=cd5a268e
+-/
 theorem reciprocalResidualPoly_cos_square {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) (θ : ℝ) :
     (reciprocalResidualPoly a b m).eval (Real.cos θ) =

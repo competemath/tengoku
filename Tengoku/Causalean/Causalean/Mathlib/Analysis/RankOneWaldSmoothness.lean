@@ -34,7 +34,9 @@ private theorem continuous_leftGram_fst :
   unfold leftGram
   fun_prop
 
-/-- [The regularity region of the algebraic rank-one Wald functional is open](goal). -/
+/-- [The regularity region of the algebraic rank-one Wald functional is open](goal).
+@isnad1 id=isopen.0h1v.s6.417eceab7671 from=translated src=- shape=aa7e0af4 vocab=20660e35
+-/
 theorem isOpen_waldRegularSet : IsOpen (waldRegularSet (E := E)) := by
   rw [show waldRegularSet (E := E) =
       (fun x : WaldInput E => leftGram x.1) ⁻¹' strictGapSet ∩
@@ -45,7 +47,9 @@ theorem isOpen_waldRegularSet : IsOpen (waldRegularSet (E := E)) := by
     fun_prop
   exact isOpen_lt continuous_const hlambda
 
-/-- Given [a rank-one Wald input](hyp:x) in [the regularity region](hyp:hx), [the algebraic Wald functional varies continuously differentiably near that input](goal). -/
+/-- Given [a rank-one Wald input](hyp:x) in [the regularity region](hyp:hx), [the algebraic Wald functional varies continuously differentiably near that input](goal).
+@isnad1 id=contdiff.1h2v.s8.92328d917a8e from=translated src=- shape=aeecdb4d vocab=22a3ce0e
+-/
 theorem contDiffAt_algebraicWaldFunctional {x : WaldInput E}
     (hx : x ∈ waldRegularSet (E := E)) :
     ContDiffAt ℝ 1 (algebraicWaldFunctional (E := E)) x := by
@@ -66,13 +70,17 @@ theorem contDiffAt_algebraicWaldFunctional {x : WaldInput E}
   exact (by fun_prop : ContDiffAt ℝ 1 (fun y : WaldInput E => y.2.1 i) x).mul
     (contDiffAt_pi.mp hmulVec i)
 
-/-- [The algebraic Wald functional is continuously differentiable throughout its regularity region](goal). -/
+/-- [The algebraic Wald functional is continuously differentiable throughout its regularity region](goal).
+@isnad1 id=contdiff.0h1v.s8.b1dc6eb09054 from=translated src=- shape=a887689e vocab=38ab5ea1
+-/
 theorem contDiffOn_algebraicWaldFunctional :
     ContDiffOn ℝ 1 (algebraicWaldFunctional (E := E)) (waldRegularSet (E := E)) := by
   intro x hx
   exact (contDiffAt_algebraicWaldFunctional hx).contDiffWithinAt
 
-/-- Given [a rank-one Wald input](hyp:x) in [the regularity region](hyp:hx), [the algebraic Wald functional has a bounded Fréchet derivative on some neighborhood of that input](goal). -/
+/-- Given [a rank-one Wald input](hyp:x) in [the regularity region](hyp:hx), [the algebraic Wald functional has a bounded Fréchet derivative on some neighborhood of that input](goal).
+@isnad1 id=haslocal.1h2v.s8.616e11c125b5 from=translated src=- shape=f813222c vocab=62bf215b
+-/
 theorem algebraicWaldFunctional_hasLocallyBoundedFDerivAt {x : WaldInput E}
     (hx : x ∈ waldRegularSet (E := E)) :
     HasLocallyBoundedFDerivAt (algebraicWaldFunctional (E := E)) x := by

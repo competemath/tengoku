@@ -42,7 +42,9 @@ noncomputable def leftFaceReflection (d m : ℕ) (i : Fin d)
 
 /-- [The one-face reflection of a response u agrees with u at every point of the
 normalized cube](goal), whatever the reflection weights and whatever the values
-of u outside the cube. -/
+of u outside the cube.
+@isnad1 id=eqon.0h5v.s5.2b707bd52c0f from=translated src=- shape=c54689cf vocab=fab1f963
+-/
 theorem leftFaceReflection_eqOn_cube (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ) (u : (Fin d → ℝ) → ℝ) :
     Set.EqOn (leftFaceReflection d m i a u) u (cube d) := by
@@ -53,7 +55,9 @@ theorem leftFaceReflection_eqOn_cube (d m : ℕ) (i : Fin d)
 /-- If [the reflection weights a sum to one](hyp:ha), so that the reflection
 reproduces constants, and [a response u is continuous on the closed
 cube](hyp:hu), then [the one-face reflection of u is continuous on the closed
-left collar](goal). -/
+left collar](goal).
+@isnad1 id=continuo.2h5v.s7.88478dc712b8 from=translated src=- shape=9edc9a1f vocab=42bd30de
+-/
 theorem leftFaceReflection_continuousOn (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ)
     (ha : (∑ q : Fin (m + 1), a q) = 1)

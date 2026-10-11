@@ -32,7 +32,9 @@ def doubledExponent {n : ℕ} : Fin n ⊕ Fin n → ℕ
   | Sum.inl i => i.val
   | Sum.inr i => n + i.val
 
-/-- [The doubled exponent encoding is injective](goal). -/
+/-- [The doubled exponent encoding is injective](goal).
+@isnad1 id=injectiv.0h1v.s3.1a6d47c581f9 from=translated src=- shape=bd3cf385 vocab=ee456349
+-/
 lemma doubledExponent_injective {n : ℕ} :
     Function.Injective (doubledExponent : Fin n ⊕ Fin n → ℕ) := by
   intro i j hij
@@ -50,7 +52,9 @@ lemma doubledExponent_injective {n : ℕ} :
   · simp only [doubledExponent] at hij
     exact congrArg Sum.inr (Fin.ext (Nat.add_left_cancel hij))
 
-/-- [Every index in either block](hyp:i) [receives a doubled exponent below `2n`](goal). -/
+/-- [Every index in either block](hyp:i) [receives a doubled exponent below `2n`](goal).
+@isnad1 id=lt.0h2v.s4.4ef7f4fa83a5 from=translated src=- shape=1892d7a1 vocab=ddbc85ce
+-/
 lemma doubledExponent_lt {n : ℕ} (i : Fin n ⊕ Fin n) :
     doubledExponent i < 2 * n := by
   rcases i with i | i <;> simp only [doubledExponent]
@@ -67,7 +71,9 @@ def doubledCoefficientPolynomial {n : ℕ} {K : Type*} [Semiring K]
   ∑ i, Polynomial.monomial (doubledExponent i) (v i)
 
 /-- [Reading a doubled coefficient polynomial at an encoded exponent recovers its
-coefficient](goal) for [the supplied coefficient vector](hyp:v) and [index](hyp:i). -/
+coefficient](goal) for [the supplied coefficient vector](hyp:v) and [index](hyp:i).
+@isnad1 id=eq.0h4v.s5.8012e7014137 from=translated src=- shape=37020a75 vocab=67e0105d
+-/
 lemma coeff_doubledCoefficientPolynomial {n : ℕ} {K : Type*} [Semiring K]
     (v : Fin n ⊕ Fin n → K) (i : Fin n ⊕ Fin n) :
     (doubledCoefficientPolynomial v).coeff (doubledExponent i) = v i := by
@@ -83,7 +89,9 @@ lemma coeff_doubledCoefficientPolynomial {n : ℕ} {K : Type*} [Semiring K]
   · simp
 
 /-- [A doubled coefficient polynomial vanishes exactly when its coefficient vector
-vanishes](goal) for [the supplied vector](hyp:v). -/
+vanishes](goal) for [the supplied vector](hyp:v).
+@isnad1 id=iff.0h3v.s6.a95a323d71fe from=translated src=- shape=3df3e2d0 vocab=d04a06ff
+-/
 lemma doubledCoefficientPolynomial_eq_zero_iff {n : ℕ} {K : Type*} [Semiring K]
     (v : Fin n ⊕ Fin n → K) : doubledCoefficientPolynomial v = 0 ↔ v = 0 := by
   constructor
@@ -95,7 +103,9 @@ lemma doubledCoefficientPolynomial_eq_zero_iff {n : ℕ} {K : Type*} [Semiring K
     simp [doubledCoefficientPolynomial]
 
 /-- [A doubled coefficient polynomial has degree below `2n`](goal) whenever
-[the number of positions is positive](hyp:hn). -/
+[the number of positions is positive](hyp:hn).
+@isnad1 id=lt.1h3v.s5.da2625227231 from=translated src=- shape=366835d6 vocab=71fa48bb
+-/
 lemma natDegree_doubledCoefficientPolynomial_lt {n : ℕ} {K : Type*} [Semiring K]
     (hn : 1 ≤ n) {v : Fin n ⊕ Fin n → K} :
     (doubledCoefficientPolynomial v).natDegree < 2 * n := by
@@ -117,7 +127,9 @@ def confluentVandermonde {K : Type*} [Semiring K] (s : Fin n → K) :
     | Sum.inr i => (doubledExponent a : K) * s i ^ (doubledExponent a - 1)
 
 /-- [Evaluating a doubled coefficient polynomial gives the coefficient-weighted sum of
-powers](goal) for [the supplied coefficients](hyp:v) and [evaluation point](hyp:x). -/
+powers](goal) for [the supplied coefficients](hyp:v) and [evaluation point](hyp:x).
+@isnad1 id=eq.0h4v.s6.50b829d9d5d7 from=translated src=- shape=0a899ebf vocab=93b478ed
+-/
 lemma eval_doubledCoefficientPolynomial {n : ℕ} {K : Type*} [CommSemiring K]
     (v : Fin n ⊕ Fin n → K) (x : K) :
     (doubledCoefficientPolynomial v).eval x =
@@ -131,7 +143,9 @@ lemma eval_doubledCoefficientPolynomial {n : ℕ} {K : Type*} [CommSemiring K]
 
 /-- [Evaluating the derivative of a doubled coefficient polynomial gives the sum weighted by
 derivative monomial values](goal) for [the supplied coefficients](hyp:v) and
-[evaluation point](hyp:x). -/
+[evaluation point](hyp:x).
+@isnad1 id=eq.0h4v.s8.f7c3cb5f5808 from=translated src=- shape=9baafc01 vocab=5a5aef19
+-/
 lemma eval_derivative_doubledCoefficientPolynomial {n : ℕ} {K : Type*} [CommSemiring K]
     (v : Fin n ⊕ Fin n → K) (x : K) :
     (doubledCoefficientPolynomial v).derivative.eval x =
@@ -146,7 +160,9 @@ lemma eval_derivative_doubledCoefficientPolynomial {n : ℕ} {K : Type*} [CommSe
 
 /-- [A two-block coefficient vector](hyp:v) [is zero](goal) when its polynomial
 [vanishes](hyp:heval) together with [its derivative](hyp:hderiv) on
-[a nonempty finite node family](hyp:hn,s) whose nodes are [pairwise distinct](hyp:hs). -/
+[a nonempty finite node family](hyp:hn,s) whose nodes are [pairwise distinct](hyp:hs).
+@isnad1 id=eq.4h4v.s8.71f8cced5e3a from=translated src=- shape=e278447f vocab=fb7c5106
+-/
 lemma doubledCoefficientPolynomial_eq_zero_of_eval_derivative
     {n : ℕ} {K : Type*} [Field K] (hn : 1 ≤ n) (s : Fin n → K)
     (hs : Function.Injective s) (v : Fin n ⊕ Fin n → K)
@@ -185,7 +201,9 @@ lemma doubledCoefficientPolynomial_eq_zero_of_eval_derivative
 
 /-- For [a positive number of nodes `n`](hyp:hn) (`1 ≤ n`), a field `K`, and [pairwise distinct
 nodes `s : Fin n → K`](hyp:hs), [the confluent Vandermonde determinant at `s` is
-nonzero](goal). -/
+nonzero](goal).
+@isnad1 id=ne.2h3v.s6.529484d3ea26 from=translated src=- shape=72b2e33c vocab=9b1c27a0
+-/
 theorem det_confluentVandermonde_ne_zero {n : ℕ} {K : Type*} [Field K] (hn : 1 ≤ n)
     (s : Fin n → K) (hs : Function.Injective s) :
     (confluentVandermonde s).det ≠ 0 := by
@@ -230,7 +248,9 @@ def pinnedExponent {n : ℕ} : Fin n ⊕ Fin (n - 1) → ℕ
 def pinnedSucc {n : ℕ} (i : Fin (n - 1)) : Fin n :=
   ⟨i.val + 1, by have := i.isLt; omega⟩
 
-/-- [The positive-node embedding is injective](goal). -/
+/-- [The positive-node embedding is injective](goal).
+@isnad1 id=injectiv.0h1v.s4.8c65e8677583 from=translated src=- shape=2a3d8bc8 vocab=e00f64db
+-/
 lemma pinnedSucc_injective {n : ℕ} :
     Function.Injective (pinnedSucc (n := n)) := by
   intro i j hij
@@ -240,14 +260,18 @@ lemma pinnedSucc_injective {n : ℕ} :
   omega
 
 /-- [Every positive-node index](hyp:i) [embeds away from the distinguished zero node](goal)
-when [the node family is nonempty](hyp:hn). -/
+when [the node family is nonempty](hyp:hn).
+@isnad1 id=ne.1h2v.s5.8f203efd6057 from=translated src=- shape=51f3c24d vocab=f84d6064
+-/
 lemma pinnedSucc_ne_zero {n : ℕ} (hn : 1 ≤ n) (i : Fin (n - 1)) :
     pinnedSucc i ≠ ⟨0, hn⟩ := by
   intro h
   have := congrArg Fin.val h
   simp [pinnedSucc] at this
 
-/-- [The pinned exponent encoding is injective](goal). -/
+/-- [The pinned exponent encoding is injective](goal).
+@isnad1 id=injectiv.0h1v.s4.5d3de4883705 from=translated src=- shape=93f1cf04 vocab=eb0c2dcd
+-/
 lemma pinnedExponent_injective {n : ℕ} :
     Function.Injective (pinnedExponent : Fin n ⊕ Fin (n - 1) → ℕ) := by
   intro i j hij
@@ -265,7 +289,9 @@ lemma pinnedExponent_injective {n : ℕ} :
     exact congrArg Sum.inr (Fin.ext (Nat.add_left_cancel hij))
 
 /-- [Every index in either pinned block](hyp:i)
-[receives an exponent below `2n - 1`](goal). -/
+[receives an exponent below `2n - 1`](goal).
+@isnad1 id=lt.0h2v.s5.185abec4486a from=translated src=- shape=541c6490 vocab=51917826
+-/
 lemma pinnedExponent_lt {n : ℕ}
     (i : Fin n ⊕ Fin (n - 1)) : pinnedExponent i < 2 * n - 1 := by
   rcases i with i | i <;> simp only [pinnedExponent]
@@ -283,7 +309,9 @@ def pinnedCoefficientPolynomial {n : ℕ} {K : Type*} [Semiring K]
   ∑ i, Polynomial.monomial (pinnedExponent i) (v i)
 
 /-- [Reading a pinned coefficient polynomial at an encoded exponent recovers its
-coefficient](goal) for [the supplied coefficient vector](hyp:v) and [index](hyp:i). -/
+coefficient](goal) for [the supplied coefficient vector](hyp:v) and [index](hyp:i).
+@isnad1 id=eq.0h4v.s5.84977e9fa20a from=translated src=- shape=067400a9 vocab=c9946f0d
+-/
 lemma coeff_pinnedCoefficientPolynomial {n : ℕ} {K : Type*} [Semiring K]
     (v : Fin n ⊕ Fin (n - 1) → K) (i : Fin n ⊕ Fin (n - 1)) :
     (pinnedCoefficientPolynomial v).coeff (pinnedExponent i) = v i := by
@@ -298,7 +326,9 @@ lemma coeff_pinnedCoefficientPolynomial {n : ℕ} {K : Type*} [Semiring K]
   · simp
 
 /-- [A pinned coefficient polynomial vanishes exactly when its coefficient vector
-vanishes](goal) for [the supplied vector](hyp:v). -/
+vanishes](goal) for [the supplied vector](hyp:v).
+@isnad1 id=iff.0h3v.s7.66f30059b2bf from=translated src=- shape=74254c05 vocab=7b2854ff
+-/
 lemma pinnedCoefficientPolynomial_eq_zero_iff {n : ℕ} {K : Type*} [Semiring K]
     (v : Fin n ⊕ Fin (n - 1) → K) :
     pinnedCoefficientPolynomial v = 0 ↔ v = 0 := by
@@ -312,7 +342,9 @@ lemma pinnedCoefficientPolynomial_eq_zero_iff {n : ℕ} {K : Type*} [Semiring K]
     simp [pinnedCoefficientPolynomial]
 
 /-- [A pinned coefficient polynomial has degree below `2n - 1`](goal) whenever
-[the number of nodes is positive](hyp:hn). -/
+[the number of nodes is positive](hyp:hn).
+@isnad1 id=lt.1h3v.s6.70299d0c94b1 from=translated src=- shape=447cc63c vocab=d5e11268
+-/
 lemma natDegree_pinnedCoefficientPolynomial_lt {n : ℕ} {K : Type*} [Semiring K]
     (hn : 1 ≤ n) {v : Fin n ⊕ Fin (n - 1) → K} :
     (pinnedCoefficientPolynomial v).natDegree < 2 * n - 1 := by
@@ -336,7 +368,9 @@ def pinnedConfluentVandermonde {K : Type*} [Semiring K]
         s (pinnedSucc i) ^ (pinnedExponent a - 1)
 
 /-- [Evaluating a pinned coefficient polynomial gives the coefficient-weighted sum of pinned
-powers](goal) for [the supplied coefficients](hyp:v) and [evaluation point](hyp:x). -/
+powers](goal) for [the supplied coefficients](hyp:v) and [evaluation point](hyp:x).
+@isnad1 id=eq.0h4v.s7.bf311f1ac88b from=translated src=- shape=b37828c5 vocab=17e6d9d8
+-/
 lemma eval_pinnedCoefficientPolynomial {n : ℕ} {K : Type*} [Field K]
     (v : Fin n ⊕ Fin (n - 1) → K) (x : K) :
     (pinnedCoefficientPolynomial v).eval x =
@@ -350,7 +384,9 @@ lemma eval_pinnedCoefficientPolynomial {n : ℕ} {K : Type*} [Field K]
 
 /-- [Evaluating the derivative of a pinned coefficient polynomial gives the sum weighted by
 derivative monomial values](goal) for [the supplied coefficients](hyp:v) and
-[evaluation point](hyp:x). -/
+[evaluation point](hyp:x).
+@isnad1 id=eq.0h4v.s9.dfb34be7ff90 from=translated src=- shape=9857e531 vocab=7147530c
+-/
 lemma eval_derivative_pinnedCoefficientPolynomial {n : ℕ} {K : Type*} [Field K]
     (v : Fin n ⊕ Fin (n - 1) → K) (x : K) :
     (pinnedCoefficientPolynomial v).derivative.eval x =
@@ -366,7 +402,9 @@ lemma eval_derivative_pinnedCoefficientPolynomial {n : ℕ} {K : Type*} [Field K
 /-- [A pinned coefficient vector](hyp:v) [is zero](goal) when its polynomial
 [vanishes at every node](hyp:heval) and [its derivative vanishes at every nondistinguished
 node](hyp:hderiv) in [a nonempty finite node family](hyp:hn,s) whose nodes are
-[pairwise distinct](hyp:hs). -/
+[pairwise distinct](hyp:hs).
+@isnad1 id=eq.4h4v.s9.8f2a1feaeae0 from=translated src=- shape=e71c3175 vocab=45839285
+-/
 lemma pinnedCoefficientPolynomial_eq_zero_of_eval_derivative
     {n : ℕ} {K : Type*} [Field K] (hn : 1 ≤ n) (s : Fin n → K)
     (hs : Function.Injective s) (v : Fin n ⊕ Fin (n - 1) → K)
@@ -431,7 +469,9 @@ lemma pinnedCoefficientPolynomial_eq_zero_of_eval_derivative
 /-- For [a positive number of nodes `n`](hyp:hn) (`1 ≤ n`), a field `K`, and [pairwise distinct
 nodes `s : Fin n → K`](hyp:hs), [the pinned confluent Vandermonde determinant at `s` is
 nonzero](goal): one node contributes only value evaluation and every other node contributes
-both value and first-derivative evaluation. -/
+both value and first-derivative evaluation.
+@isnad1 id=ne.2h3v.s7.8fadb57fbce2 from=translated src=- shape=c9914b2c vocab=5c2ea380
+-/
 theorem det_pinnedConfluentVandermonde_ne_zero {n : ℕ} {K : Type*} [Field K]
     (hn : 1 ≤ n) (s : Fin n → K) (hs : Function.Injective s) :
     (pinnedConfluentVandermonde s).det ≠ 0 := by

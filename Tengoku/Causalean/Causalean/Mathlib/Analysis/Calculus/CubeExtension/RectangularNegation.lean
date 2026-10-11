@@ -14,7 +14,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 
 /-- [A point x lies in the coordinatewise negated box, with corners −hi and −lo,
-exactly when −x lies in the original box with corners lo and hi](goal). -/
+exactly when −x lies in the original box with corners lo and hi](goal).
+@isnad1 id=iff.0h4v.s6.36ee3f732429 from=translated src=- shape=af0bbf3c vocab=c407d783
+-/
 theorem mem_rectBox_neg_iff {d : ℕ} (lo hi : Fin d → ℝ)
     (x : Fin d → ℝ) :
     x ∈ rectBox (fun i => -hi i) (fun i => -lo i) ↔
@@ -38,7 +40,9 @@ the faces of the box.
 Use `LinearIsometryEquiv.neg` and its `iteratedFDerivWithin_comp_right`
 identity. The map sends the negated box to the original box by
 `mem_rectBox_neg_iff`; evaluation on basis vectors gives one negative sign
-per coordinate direction. -/
+per coordinate direction.
+@isnad1 id=eq.2h7v.s7.fccc83773081 from=translated src=- shape=c57cf0dd vocab=9a213ac6
+-/
 theorem coordJetOn_rectBox_neg {d j : ℕ}
     (lo hi : Fin d → ℝ) (hbox : ∀ i, lo i < hi i)
     (u : (Fin d → ℝ) → ℝ) (f : Fin j → Fin d)
@@ -85,7 +89,9 @@ of the original response.
 
 Apply `coordJetOn_rectBox_neg` to each derivative bound and both points in
 the top-order modulus. Negation preserves distances; its sign has absolute
-value one. Regularity follows by composing with the smooth negation map. -/
+value one. Regularity follows by composing with the smooth negation map.
+@isnad1 id=holderba.2h7v.s6.10634606f1c4 from=translated src=- shape=cc0e3840 vocab=4174be2f
+-/
 theorem holderBallOn_rectBox_neg {d m : ℕ}
     (lo hi : Fin d → ℝ) (hbox : ∀ i, lo i < hi i)
     (s L : ℝ) (u : (Fin d → ℝ) → ℝ)

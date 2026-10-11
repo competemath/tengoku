@@ -46,7 +46,9 @@ noncomputable def bestUniformApproxError
 
 /-- For [a function that is continuous on the closed interval from r to s](hyp:hg) with [r at most
 s](hyp:hrs), [the interval supremum norm is at most a number C exactly when the function is at most
-C in absolute value at every point of the interval](goal). -/
+C in absolute value at every point of the interval](goal).
+@isnad1 id=iff.2h4v.s6.4a82ff5f4da5 from=translated src=- shape=a7c50202 vocab=d61ef1c8
+-/
 theorem intervalSupNorm_le_iff {g : ℝ → ℝ} {r s C : ℝ}
     (hg : ContinuousOn g (Set.Icc r s)) (hrs : r ≤ s) :
     intervalSupNorm g r s ≤ C ↔ ∀ x ∈ Set.Icc r s, |g x| ≤ C := by
@@ -63,7 +65,9 @@ theorem intervalSupNorm_le_iff {g : ℝ → ℝ} {r s C : ℝ}
       exact h x hx
 
 /-- For [endpoints with r at most s](hyp:hrs) and [any real polynomial](hyp:Q), [the uniform
-approximation error against any target function is nonnegative](goal). -/
+approximation error against any target function is nonnegative](goal).
+@isnad1 id=le.1h4v.s5.32099ece62a7 from=translated src=- shape=e4c40732 vocab=d1289f70
+-/
 theorem uniformApproxError_nonneg {f : ℝ → ℝ} {r s : ℝ}
     (hrs : r ≤ s) (Q : Polynomial ℝ) :
     0 ≤ uniformApproxError f r s Q := by
@@ -130,7 +134,9 @@ set_option maxHeartbeats 2000000 in
 /-- For [endpoints with r strictly less than s](hyp:hrs), [a target function continuous on the
 closed interval between them](hyp:hf), and [any degree bound L](hyp:L), [there is a real polynomial
 of degree at most L whose uniform approximation error equals the best uniform approximation error
-for that degree bound](goal). -/
+for that degree bound](goal).
+@isnad1 id=ex.2h4v.s6.d45a24853b47 from=translated src=- shape=64889b62 vocab=992ecc1e
+-/
 theorem exists_bestPolynomial
     {f : ℝ → ℝ} {r s : ℝ} (hrs : r < s)
     (hf : ContinuousOn f (Set.Icc r s)) (L : ℕ) :
@@ -210,7 +216,9 @@ theorem exists_bestPolynomial
 /-- For [endpoints with r strictly less than s](hyp:hrs), [a target function continuous on the
 closed interval between them](hyp:hf), and [a real polynomial of degree at most L](hyp:hQ), [the
 best uniform approximation error for degree bound L is at most the uniform approximation error of
-that polynomial](goal). -/
+that polynomial](goal).
+@isnad1 id=le.3h5v.s5.85ebdb2f5e2a from=translated src=- shape=c524dd19 vocab=992ecc1e
+-/
 theorem bestUniformApproxError_le
     {f : ℝ → ℝ} {r s : ℝ} (hrs : r < s) (hf : ContinuousOn f (Set.Icc r s))
     {L : ℕ} {Q : Polynomial ℝ} (hQ : Q.natDegree ≤ L) :
@@ -224,7 +232,9 @@ theorem bestUniformApproxError_le
 
 /-- For [endpoints with r strictly less than s](hyp:hrs), [a target function continuous on the
 closed interval between them](hyp:hf), and [any degree bound L](hyp:L), [the best uniform
-approximation error is nonnegative](goal). -/
+approximation error is nonnegative](goal).
+@isnad1 id=le.2h4v.s5.7432c84f0686 from=translated src=- shape=aec953fb vocab=641cc8e8
+-/
 theorem bestUniformApproxError_nonneg
     {f : ℝ → ℝ} {r s : ℝ} (hrs : r < s)
     (hf : ContinuousOn f (Set.Icc r s)) (L : ℕ) :

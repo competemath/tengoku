@@ -50,14 +50,18 @@ private lemma isCompact_cube (d : ℕ) (r : ℝ) : IsCompact (cube d r) := by
   rw [cube_eq_pi_Icc]
   exact isCompact_univ_pi fun _ => isCompact_Icc
 
-/-- A multivariate real monomial varies continuously with its coordinate vector. -/
+/-- A multivariate real monomial varies continuously with its coordinate vector.
+@isnad1 id=continuo.0h2v.s5.33c18a43d1a9 from=translated src=- shape=0ac4adeb vocab=f2770ab8
+-/
 @[fun_prop]
 lemma continuous_monomial {ι : Type*} [Fintype ι] (e : ι → ℕ) :
     Continuous (monomial e) := by
   unfold monomial
   exact continuous_finsetProd _ fun j _ => (continuous_apply j).pow (e j)
 
-/-- A finite linear combination of multivariate real monomials is continuous. -/
+/-- A finite linear combination of multivariate real monomials is continuous.
+@isnad1 id=continuo.0h4v.s6.ba5f76894bb4 from=translated src=- shape=19ec7165 vocab=33b3b026
+-/
 @[fun_prop]
 lemma continuous_monomialCombination {d p : ℕ}
     (expo : Fin p → (Fin d → ℕ)) (z : Fin p → ℝ) :
@@ -112,7 +116,9 @@ private lemma monomial_coefficients_eq_zero_of_vanishes_on_openCube {d p : ℕ}
     hfs.eq_iff, hexpo.eq_iff] using hcoeff
 
 /-- A linear combination of distinct multivariate monomials that vanishes throughout the interior
-of a cube with positive radius must have every coefficient equal to zero. -/
+of a cube with positive radius must have every coefficient equal to zero.
+@isnad1 id=eq.3h5v.s7.a5a6d53a99a8 from=translated src=- shape=4f94ad53 vocab=bfb8cfd0
+-/
 theorem monomial_linearIndependent_on_cube {d p : ℕ} {expo : Fin p → (Fin d → ℕ)} {r : ℝ}
     (hr : 0 < r) (hexpo : Function.Injective expo) (z : Fin p → ℝ)
     (hz : ∀ u, (∀ j, u j ∈ Set.Ioo (-r) r) → (∑ k, z k * monomial (expo k) u) = 0) :
@@ -120,7 +126,9 @@ theorem monomial_linearIndependent_on_cube {d p : ℕ} {expo : Fin p → (Fin d 
   exact monomial_coefficients_eq_zero_of_vanishes_on_openCube hr hexpo z hz
 
 /-- Evaluating the monomial Gram quadratic form at a coefficient vector equals integrating the
-square of the corresponding monomial combination over the cube. -/
+square of the corresponding monomial combination over the cube.
+@isnad1 id=eq.0h5v.s7.2d96fedaa9c9 from=translated src=- shape=c407061e vocab=d0a11087
+-/
 theorem monomialGram_quadForm {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) {r : ℝ}
     (z : Fin p → ℝ) :
     ∑ k, ∑ l, z k * monomialGram expo r k l * z l =
@@ -159,7 +167,9 @@ theorem monomialGram_quadForm {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) {r 
       funext u
       rw [pow_two, Finset.sum_mul_sum]
 
-/-- The monomial Gram matrix is symmetric, and hence Hermitian over the real numbers. -/
+/-- The monomial Gram matrix is symmetric, and hence Hermitian over the real numbers.
+@isnad1 id=ishermit.0h4v.s5.118d97d9076e from=translated src=- shape=02839cee vocab=f8ae069c
+-/
 theorem monomialGram_isHermitian {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) (r : ℝ) :
     (monomialGram expo r).IsHermitian := by
   apply Matrix.IsHermitian.ext
@@ -167,7 +177,9 @@ theorem monomialGram_isHermitian {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) 
   simp only [star_id_of_comm]
   simp [monomialGram, mul_comm]
 
-/-- Every coefficient vector gives a nonnegative quadratic form under the monomial Gram matrix. -/
+/-- Every coefficient vector gives a nonnegative quadratic form under the monomial Gram matrix.
+@isnad1 id=possemid.0h4v.s4.32fe9050f4a0 from=translated src=- shape=f029a318 vocab=7243e2a4
+-/
 theorem monomialGram_posSemidef {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) {r : ℝ}
     : (monomialGram expo r).PosSemidef := by
   apply Matrix.PosSemidef.of_dotProduct_mulVec_nonneg (monomialGram_isHermitian expo r)
@@ -182,7 +194,9 @@ theorem monomialGram_posSemidef {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) {
 /-- **Positive-definiteness of the monomial Gram matrix.** For a finite family of multivariate
 monomials indexed by their exponent vectors, if [the cube radius `r` is strictly positive](hyp:hr)
 and [the exponent vectors are pairwise distinct](hyp:hexpo), then [the Gram matrix of pairwise
-integrals of the monomials over the cube of radius `r` is positive-definite](goal). -/
+integrals of the monomials over the cube of radius `r` is positive-definite](goal).
+@isnad1 id=posdef.2h4v.s5.dcd276c9666a from=translated src=- shape=0de02c63 vocab=5f6a6091
+-/
 theorem monomialGram_posDef {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) {r : ℝ}
     (hr : 0 < r) (hexpo : Function.Injective expo) :
     (monomialGram expo r).PosDef := by
@@ -224,7 +238,9 @@ theorem monomialGram_posDef {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) {r : 
   intro u hu
   exact hpoint (fun j _ => hu j)
 
-/-- The sum of squared coordinates of a nonzero finite real-valued vector is strictly positive. -/
+/-- The sum of squared coordinates of a nonzero finite real-valued vector is strictly positive.
+@isnad1 id=lt.1h2v.s6.29290eb0c705 from=translated src=- shape=711e37cb vocab=61457607
+-/
 lemma sum_sq_pos {ι : Type*} [Fintype ι] (z : ι → ℝ) (hz : z ≠ 0) :
     0 < ∑ k, (z k) ^ 2 := by
   have hnonneg : 0 ≤ ∑ k, (z k) ^ 2 := Finset.sum_nonneg fun _ _ => sq_nonneg _
@@ -238,7 +254,9 @@ lemma sum_sq_pos {ι : Type*} [Fintype ι] (z : ι → ℝ) (hz : z ≠ 0) :
   exact sq_eq_zero_iff.mp hk
 
 /-- A fixed family of distinct monomials on a cube with positive radius admits a positive uniform
-lower bound: its Gram quadratic form dominates the squared Euclidean norm of the coefficients. -/
+lower bound: its Gram quadratic form dominates the squared Euclidean norm of the coefficients.
+@isnad1 id=ex.2h4v.s7.92e372616b55 from=translated src=- shape=daa42432 vocab=01f04e18
+-/
 theorem exists_monomialGram_coercive {d p : ℕ} (expo : Fin p → (Fin d → ℕ)) {r : ℝ}
     (hr : 0 < r) (hexpo : Function.Injective expo) :
     ∃ cmin : ℝ, 0 < cmin ∧ ∀ z : Fin p → ℝ,

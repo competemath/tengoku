@@ -16,7 +16,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- The order-`n` iterated derivative of a `C^(n+2)` real function is `C²`
-at the same point. -/
+at the same point.
+@isnad1 id=contdiff.1h4v.s9.5de3e509a789 from=translated src=- shape=418aa781 vocab=8cf57811
+-/
 theorem finite_order_lower_jet_contDiffAt_two {d n : ℕ}
     {u : (Fin d → ℝ) → ℝ} {x : Fin d → ℝ}
     (hu : ContDiffAt ℝ (n + 2) u x) :
@@ -25,7 +27,9 @@ theorem finite_order_lower_jet_contDiffAt_two {d n : ℕ}
     (by exact le_of_eq (add_comm (2 : WithTop ℕ∞) (n : WithTop ℕ∞)))
 
 /-- At a `C^(n+2)` point, the second derivative of the order-`n` jet is
-symmetric in its two input directions. -/
+symmetric in its two input directions.
+@isnad1 id=eq.1h6v.s15.bc38110d7dea from=translated src=- shape=099f32b8 vocab=3d4d6912
+-/
 theorem finite_order_lower_jet_second_symmetric {d n : ℕ}
     {u : (Fin d → ℝ) → ℝ} {x : Fin d → ℝ}
     (hu : ContDiffAt ℝ (n + 2) u x) (a b : Fin d → ℝ) :

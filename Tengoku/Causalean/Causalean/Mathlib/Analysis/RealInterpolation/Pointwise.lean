@@ -17,7 +17,9 @@ namespace Causalean.Mathlib.Analysis.RealInterpolation
 satisfy [the harmonic-weight quadratic lower bound](goal).
 
 Multiply by a+b and use the nonnegativity of the squared norm of a*z0-b*z1,
-or complete the square using the real and imaginary parts. -/
+or complete the square using the real and imaginary parts.
+@isnad1 id=le.2h4v.s7.0e2607980d47 from=translated src=- shape=2deca3c8 vocab=7b6f27d5
+-/
 theorem harmonic_quadratic_le (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (z0 z1 : ℂ) :
     a * b / (a + b) * ‖z0 + z1‖ ^ 2 ≤ a * ‖z0‖ ^ 2 + b * ‖z1‖ ^ 2 := by
   have hab : 0 < a + b := add_pos ha hb
@@ -28,7 +30,9 @@ theorem harmonic_quadratic_le (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (z0 z1 : ℂ
 
 /-- [Positive real weights](hyp:a,b,ha,hb) and [a complex vector](hyp:z)
 have [an explicit minimizing quadratic decomposition](goal).
-The first summand has coefficient b/(a+b), and the second has coefficient a/(a+b). -/
+The first summand has coefficient b/(a+b), and the second has coefficient a/(a+b).
+@isnad1 id=and.2h3v.s8.26c83479d396 from=translated src=- shape=b0c729b6 vocab=bba08183
+-/
 theorem harmonic_quadratic_attained (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (z : ℂ) :
     z = (b / (a + b)) • z + (a / (a + b)) • z ∧
     a * ‖(b / (a + b)) • z‖ ^ 2 + b * ‖(a / (a + b)) • z‖ ^ 2 =
@@ -45,7 +49,9 @@ theorem harmonic_quadratic_attained (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (z : �
     ring
 
 /-- [Positive real weights](hyp:a,b,ha,hb) give [the exact extended quadratic
-decomposition infimum](goal) of [a complex vector](hyp:z). -/
+decomposition infimum](goal) of [a complex vector](hyp:z).
+@isnad1 id=eq.2h3v.s7.b501591106fa from=translated src=- shape=a164c2df vocab=8d166c2e
+-/
 theorem harmonic_quadratic_iInf (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (z : ℂ) :
     (⨅ (z0 : ℂ) (z1 : ℂ) (_ : z = z0 + z1),
       ENNReal.ofReal (a * ‖z0‖ ^ 2 + b * ‖z1‖ ^ 2)) =

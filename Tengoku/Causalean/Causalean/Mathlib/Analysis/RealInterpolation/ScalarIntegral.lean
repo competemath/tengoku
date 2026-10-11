@@ -23,7 +23,9 @@ namespace Causalean.Mathlib.Analysis.RealInterpolation
 This is the first normalization obligation: take s=p and t=1-p in the complex
 beta/Gamma identity, use Gamma(1)=1 and Euler reflection, then take real parts.
 Complex.betaIntegral_convergent supplies integrability for the lintegral conversion.
-No half-line substitution is part of this lemma. -/
+No half-line substitution is part of this lemma.
+@isnad1 id=eq.1h1v.s7.706e8664df6d from=translated src=- shape=289e2ea7 vocab=f0650f66
+-/
 theorem lintegral_beta_reflection (p : ℝ) (hp : p ∈ Ioo (0 : ℝ) 1) :
     (∫⁻ x in Ioo (0 : ℝ) 1,
       ENNReal.ofReal (x ^ (p - 1) * (1 - x) ^ (-p))) =
@@ -73,7 +75,9 @@ theorem lintegral_beta_reflection (p : ℝ) (hp : p ∈ Ioo (0 : ℝ) 1) :
 
 Use x=u/(1-u), with Jacobian (1-u)^(-2), or the inverse u=x/(1+x).
 Establish a differentiable bijection between the open intervals and invoke the
-nonnegative change-of-variables theorem. This obligation does not evaluate Gamma. -/
+nonnegative change-of-variables theorem. This obligation does not evaluate Gamma.
+@isnad1 id=eq.1h1v.s7.529dae7e09df from=translated src=- shape=f3f7d872 vocab=064c7a1f
+-/
 theorem lintegral_rpow_div_one_add_eq_beta (p : ℝ) (_hp : p ∈ Ioo (0 : ℝ) 1) :
     (∫⁻ x in Ioi (0 : ℝ), ENNReal.ofReal (x ^ (p - 1) / (1 + x))) =
       ∫⁻ x in Ioo (0 : ℝ) 1,
@@ -124,7 +128,9 @@ theorem lintegral_rpow_div_one_add_eq_beta (p : ℝ) (_hp : p ∈ Ioo (0 : ℝ) 
 
 Reuse Complex.Gamma_mul_Gamma_eq_betaIntegral and Real.Gamma_mul_Gamma_one_sub.
 The substitution x=u/(1-u) transfers the beta integral from (0,1) to (0,∞);
-establish integrability before converting the real integral to a lintegral. -/
+establish integrability before converting the real integral to a lintegral.
+@isnad1 id=eq.1h1v.s6.daa6de9769c4 from=translated src=- shape=a578fd2b vocab=ab342f03
+-/
 theorem lintegral_rpow_div_one_add (p : ℝ) (hp : p ∈ Ioo (0 : ℝ) 1) :
     (∫⁻ x in Ioi (0 : ℝ), ENNReal.ofReal (x ^ (p - 1) / (1 + x))) =
       ENNReal.ofReal (Real.pi / Real.sin (Real.pi * p)) := by
@@ -134,7 +140,9 @@ theorem lintegral_rpow_div_one_add (p : ℝ) (hp : p ∈ Ioo (0 : ℝ) 1) :
 [the exact quadratic normalization integral](goal).
 
 Substitute x=t² in lintegral_rpow_div_one_add with p=1-θ; the Jacobian contributes
-the factor 1/2. Reuse the sine symmetry sin(π*(1-θ))=sin(π*θ). -/
+the factor 1/2. Reuse the sine symmetry sin(π*(1-θ))=sin(π*θ).
+@isnad1 id=eq.1h1v.s7.c3b413089cec from=translated src=- shape=bbf17e57 vocab=32e5482b
+-/
 theorem lintegral_quadratic_kernel (θ : ℝ) (hθ : θ ∈ Ioo (0 : ℝ) 1) :
     (∫⁻ t in Ioi (0 : ℝ), ENNReal.ofReal (t ^ (1 - 2 * θ) / (1 + t ^ 2))) =
       ENNReal.ofReal (Real.pi / (2 * Real.sin (Real.pi * θ))) := by
@@ -191,7 +199,9 @@ give [the exact geometric weight after normalized harmonic-kernel integration](g
 
 Use t=s*sqrt(a.toReal/b.toReal), the preceding normalization integral, and
 ENNReal.ofReal/real-power conversion. Off positive finite weights this statement
-is deliberately not asserted: infinity divided by infinity is not a quadratic weight. -/
+is deliberately not asserted: infinity divided by infinity is not a quadratic weight.
+@isnad1 id=eq.3h3v.s7.14c1a4b643ff from=translated src=- shape=7cc5b053 vocab=b4476a7f
+-/
 theorem normalized_lintegral_harmonicWeight (a b : ℝ≥0∞)
     (ha : 0 < a ∧ a < ⊤) (hb : 0 < b ∧ b < ⊤)
     (θ : ℝ) (hθ : θ ∈ Ioo (0 : ℝ) 1) :

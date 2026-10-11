@@ -51,7 +51,9 @@ def interiorZeros (f : ℂ → ℂ) (c : ℂ) (R : ℝ) : Set ℂ :=
 /-- For [a positive radius `R`](hyp:hR) such that [the point `a` lies strictly
 inside the open disk of radius `R` centered at `c`](hyp:ha), [the normalized
 logarithmic-derivative integral around that circle of the monomial
-`z ↦ (z - a)^n` equals `n`](goal). -/
+`z ↦ (z - a)^n` equals `n`](goal).
+@isnad1 id=eq.2h4v.s6.a10c23e066ed from=translated src=- shape=d6bf3690 vocab=68275f9a
+-/
 theorem normalizedLogDerivCircleIntegral_centeredMonomial {c a : ℂ} {R : ℝ} {n : ℕ}
     (hR : 0 < R) (ha : a ∈ ball c R) :
     normalizedLogDerivCircleIntegral (fun z ↦ (z - a) ^ n) c R = (n : ℂ) := by

@@ -19,7 +19,9 @@ public section
 namespace Causalean.Mathlib.Data.List
 
 /-- For [lists `pa` and `q`](hyp:pa,q), with [`pa` nonempty](hyp:_hpa) and
-[`q` nonempty](hyp:hq), [appending the tail has the stated length and indexing laws](goal). -/
+[`q` nonempty](hyp:hq), [appending the tail has the stated length and indexing laws](goal).
+@isnad1 id=and.2h3v.s7.59947201cb20 from=translated src=- shape=92a4ca2d vocab=e79de833
+-/
 lemma get_appendTail {V : Type*} (pa q : List V)
     (_hpa : pa ≠ []) (hq : q ≠ []) :
     (pa ++ q.tail).length = pa.length + q.length - 1 ∧

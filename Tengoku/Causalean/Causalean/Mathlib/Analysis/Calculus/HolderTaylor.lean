@@ -38,6 +38,9 @@ open scoped BigOperators
 /-- Given a [real smoothness index](hyp:β), the [Hölder derivative order](goal) is the nonnegative integer obtained by subtracting one, with truncation at zero, from the least nonnegative integer that is at least the smoothness index. For positive noninteger $\beta$ this equals $\lfloor\beta\rfloor$, and for positive integer $\beta=m$ it equals $m-1$. -/
 noncomputable def holderDerivOrder (β : ℝ) : ℕ := ⌈β⌉₊ - 1
 
+/--
+@isnad1 id=lt.1h1v.s4.7b8c412e3186 from=translated src=- shape=e481bd26 vocab=98249a49
+-/
 lemma holderDerivOrder_lt {β : ℝ} (hβ : 0 < β) : (holderDerivOrder β : ℝ) < β := by
   have hceil_one : 1 ≤ ⌈β⌉₊ := Nat.one_le_ceil_iff.mpr hβ
   have hcast : ((⌈β⌉₊ - 1 : ℕ) : ℝ) = (⌈β⌉₊ : ℝ) - 1 := by
@@ -50,7 +53,9 @@ noncomputable def taylorPoly (p : ℕ) (f : ℝ → ℝ) (t a : ℝ) : ℝ :=
   ∑ k ∈ Finset.range (p + 1), iteratedDeriv k f t / (k.factorial : ℝ) * (a - t) ^ k
 
 /-- The Taylor polynomial of `f` at base point `t`, evaluated at `t` itself, is `f t`
-(every positive-degree term carries a `(t − t)^k = 0` factor). -/
+(every positive-degree term carries a `(t − t)^k = 0` factor).
+@isnad1 id=eq.0h3v.s4.12f2a8dcbf7f from=translated src=- shape=1d4c379a vocab=842b25b3
+-/
 theorem taylorPoly_eval_base (p : ℕ) (f : ℝ → ℝ) (t : ℝ) : taylorPoly p f t t = f t := by
   have h : taylorPoly p f t t
       = iteratedDeriv 0 f t / (Nat.factorial 0 : ℝ) * (t - t) ^ 0 := by
@@ -62,7 +67,9 @@ theorem taylorPoly_eval_base (p : ℕ) (f : ℝ → ℝ) (t : ℝ) : taylorPoly 
 
 /-- On an interval with distinct endpoints, the Taylor polynomial computed from
 derivatives restricted to the interval equals the usual Taylor polynomial
-computed from ordinary derivatives. -/
+computed from ordinary derivatives.
+@isnad1 id=eq.3h5v.s6.59b2c99353c0 from=translated src=- shape=3bbe9783 vocab=27dde065
+-/
 lemma taylorWithinEval_eq_taylorPoly {f : ℝ → ℝ} {p n : ℕ} {x₀ x : ℝ}
     (hf : ContDiff ℝ p f) (hn : n ≤ p) (hx : x₀ < x) :
     taylorWithinEval f n (Set.Icc x₀ x) x₀ x = taylorPoly n f x₀ x := by
@@ -80,7 +87,9 @@ lemma taylorWithinEval_eq_taylorPoly {f : ℝ → ℝ} {p n : ℕ} {x₀ x : ℝ
   rw [hwithin]
   simp [smul_eq_mul, div_eq_mul_inv, mul_comm, mul_left_comm]
 
-/-- Split the last term off the Taylor polynomial. -/
+/-- Split the last term off the Taylor polynomial.
+@isnad1 id=eq.0h4v.s7.92c433cda337 from=translated src=- shape=005450e0 vocab=2b1ccbf8
+-/
 lemma taylorPoly_succ (n : ℕ) (f : ℝ → ℝ) (t a : ℝ) :
     taylorPoly (n + 1) f t a =
       taylorPoly n f t a
@@ -89,7 +98,9 @@ lemma taylorPoly_succ (n : ℕ) (f : ℝ → ℝ) (t a : ℝ) :
   rw [Finset.sum_range_succ]
 
 /-- Reflecting across the base point preserves the Taylor polynomial value at the reflected
-evaluation point. -/
+evaluation point.
+@isnad1 id=eq.0h4v.s6.b01c9fef4bb7 from=translated src=- shape=c80ff355 vocab=05a913e4
+-/
 lemma taylorPoly_reflect (p : ℕ) (f : ℝ → ℝ) (t a : ℝ) :
     taylorPoly p (fun x => f (2 * t - x)) t (2 * t - a) = taylorPoly p f t a := by
   unfold taylorPoly
@@ -113,7 +124,9 @@ lemma taylorPoly_reflect (p : ℕ) (f : ℝ → ℝ) (t a : ℝ) :
     _ = iteratedDeriv k f t * (↑k.factorial)⁻¹ * (a - t) ^ k := by
           rw [hpow]
 
-/-- Hölder-Taylor remainder when the evaluation point lies to the right of the base. -/
+/-- Hölder-Taylor remainder when the evaluation point lies to the right of the base.
+@isnad1 id=le.8h8v.s8.ef7a0aabd74f from=translated src=- shape=a63eeeca vocab=435c21d9
+-/
 lemma holder_taylor_remainder_of_lt {f : ℝ → ℝ} {M β lo hi t a : ℝ} {p : ℕ}
     (hM : 0 ≤ M) (ht : t ∈ Set.Icc lo hi) (ha : a ∈ Set.Icc lo hi)
     (hf : ContDiff ℝ p f)
@@ -208,7 +221,9 @@ The proof splits on `p = holderDerivOrder β`:
   gives `f a − T_{p−1}(a) = f⁽ᵖ⁾(ξ)/p! · (a − t)^p` for some `ξ` strictly between
   `t` and `a`; subtracting the degree-`p` term yields
   `f a − T_p(a) = (f⁽ᵖ⁾(ξ) − f⁽ᵖ⁾(t))/p! · (a − t)^p`, and the Hölder bound at the
-  pair `(ξ,t)` with `|ξ − t| ≤ |a − t|` closes it. -/
+  pair `(ξ,t)` with `|ξ − t| ≤ |a − t|` closes it.
+@isnad1 id=le.6h7v.s8.23bdd58959bd from=translated src=- shape=850d71c3 vocab=f5d6b560
+-/
 theorem holder_taylor_remainder {f : ℝ → ℝ} {M β lo hi t a : ℝ}
     (hβ : 0 < β) (hM : 0 ≤ M)
     (ht : t ∈ Set.Icc lo hi) (ha : a ∈ Set.Icc lo hi)

@@ -236,7 +236,9 @@ private theorem complex_smul_width (q : ℚ) (hq : 0 ≤ q) (I : ComplexRatInter
   rw [hre, him, ← mul_max_of_nonneg I.re.width I.im.width hq]
 
 /-- The explicit circle input precision and exponential fuel make every
-actually evaluated endpoint rectangle no wider than the requested target. -/
+actually evaluated endpoint rectangle no wider than the requested target.
+@isnad1 id=le.4h4v.s6.9c5d957a5481 from=translated src=- shape=ef81471b vocab=3e1b90ef
+-/
 theorem circleNode_width_at_selected_precision (radius : ℚ) (hradius : 0 ≤ radius)
     (schedule : Schedule) (target : PosRat)
     (hprecision : schedule.inputPrecision = circleInputPrecision radius target)
@@ -408,7 +410,9 @@ noncomputable def exactCircleNode (radius : ℚ) (schedule : Schedule) (k : ℕ)
     (((2 : ℝ) * Real.pi * ((k : ℝ) / schedule.mesh)) * Complex.I)
 
 /-- The angle rectangle contains the exact pure-imaginary angle at every
-endpoint from zero through the terminal mesh endpoint. -/
+endpoint from zero through the terminal mesh endpoint.
+@isnad1 id=contains.1h2v.s6.3286b7425317 from=translated src=- shape=bcbd3cdd vocab=c904cfc0
+-/
 theorem circleAngle_sound (schedule : Schedule) {k : ℕ} (hk : k ≤ schedule.mesh) :
     (circleAngle schedule k).Contains
       (((2 : ℝ) * Real.pi * ((k : ℝ) / schedule.mesh)) * Complex.I) := by
@@ -428,7 +432,9 @@ theorem circleAngle_sound (schedule : Schedule) {k : ℕ} (hk : k ≤ schedule.m
 /-- For a rational radius, a quadrature schedule, and a mesh index `k`, if [`k`
 does not exceed the schedule's mesh size](hyp:hk), then [the computed rational
 circle-node rectangle at index `k` contains the exact complex circle point
-`radius · exp(2πi · k / mesh)`](goal). -/
+`radius · exp(2πi · k / mesh)`](goal).
+@isnad1 id=contains.1h3v.s4.5783bac91a55 from=translated src=- shape=6cdb0a5d vocab=ded49222
+-/
 theorem circleNode_sound (radius : ℚ) (schedule : Schedule) {k : ℕ}
     (hk : k ≤ schedule.mesh) :
     (circleNode radius schedule k).Contains (exactCircleNode radius schedule k) := by
@@ -436,7 +442,9 @@ theorem circleNode_sound (radius : ℚ) (schedule : Schedule) {k : ℕ}
     (Transcendental.complexExp_sound (circleAngle_sound schedule hk) schedule.fuel)
 
 /-- The terminal endpoint `k = mesh`, which is explicitly used by the
-trapezoidal program, is certified and denotes the same point as endpoint zero. -/
+trapezoidal program, is certified and denotes the same point as endpoint zero.
+@isnad1 id=and.0h2v.s4.42257fb28920 from=translated src=- shape=e89fb6c6 vocab=f2dcf8db
+-/
 theorem circleNode_endpoint (radius : ℚ) (schedule : Schedule) :
     (circleNode radius schedule schedule.mesh).Contains (radius : ℂ) ∧
       exactCircleNode radius schedule schedule.mesh = (radius : ℂ) := by
@@ -452,7 +460,9 @@ theorem circleNode_endpoint (radius : ℚ) (schedule : Schedule) :
   · exact hexact
 
 /-- Circle-node width propagation exposes radius scaling and the scheduled
-complex-exponential approximation width. -/
+complex-exponential approximation width.
+@isnad1 id=le.1h3v.s5.a17fb3e90729 from=translated src=- shape=d11198a7 vocab=46d88764
+-/
 theorem circleNode_width (radius : ℚ) (hradius : 0 ≤ radius)
     (schedule : Schedule) (k : ℕ) :
     ComplexRatInterval.width (circleNode radius schedule k) ≤
@@ -476,7 +486,9 @@ theorem circleNode_width (radius : ℚ) (hradius : 0 ≤ radius)
 
 /-- For [a rational radius](hyp:radius), [a schedule](hyp:schedule), and [node and operation
 ordinals](hyp:k,operation), [the manifest's stored schedule data and circle-node construction
-agree definitionally with the supplied schedule](goal). -/
+agree definitionally with the supplied schedule](goal).
+@isnad1 id=and.0h4v.s6.c8b6770f83e0 from=translated src=- shape=43e8260e vocab=35c98c29
+-/
 theorem circleNode_schedule_correspondence (radius : ℚ) (schedule : Schedule)
     (k operation : ℕ) :
     (circleNodeManifestEntry schedule k operation).schedule.operationCount =

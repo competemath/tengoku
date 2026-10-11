@@ -16,23 +16,31 @@ open MeasureTheory
 open scoped ENNReal
 namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.CosineProjection
 
-/-- [Uniform design on the unit interval has total mass one](goal). -/
+/-- [Uniform design on the unit interval has total mass one](goal).
+@isnad1 id=eq.0h0v.s4.51464bd20c5b from=translated src=- shape=7c7ab9f0 vocab=a9af7a23
+-/
 theorem uniformMeasure_univ : uniformMeasure Set.univ = 1 := by
   simp [uniformMeasure, Real.volume_Icc]
 
-/-- [Uniform design is a probability measure](goal). -/
+/-- [Uniform design is a probability measure](goal).
+@isnad1 id=isprobab.0h0v.s2.3154d29dc244 from=translated src=- shape=54c8eceb vocab=c81a0003
+-/
 instance uniformMeasure_isProbabilityMeasure : IsProbabilityMeasure uniformMeasure :=
   ⟨uniformMeasure_univ⟩
 
 /-- The [uniform integral of a real function](hyp:g) [equals its interval
-integral from zero to one](goal), without additional regularity assumptions. -/
+integral from zero to one](goal), without additional regularity assumptions.
+@isnad1 id=eq.0h1v.s5.5c2c0490b0e4 from=translated src=- shape=98d40058 vocab=0c1a43e5
+-/
 theorem uniformIntegral_eq_intervalIntegral (g : ℝ → ℝ) :
     (∫ x, g x ∂uniformMeasure) = ∫ x in (0 : ℝ)..1, g x := by
   rw [uniformMeasure, integral_Icc_eq_integral_Ioc,
     intervalIntegral.integral_of_le (by norm_num : (0 : ℝ) ≤ 1)]
 
 /-- The [extended square-integral norm of a real function](hyp:g)
-[equals Mathlib's L² seminorm under uniform design](goal). -/
+[equals Mathlib's L² seminorm under uniform design](goal).
+@isnad1 id=eq.0h1v.s5.b31456bd31ea from=translated src=- shape=d7541f99 vocab=2ee03c27
+-/
 theorem extendedL2Norm_eq_eLpNorm (g : ℝ → ℝ) :
     extendedL2Norm g = eLpNorm g 2 uniformMeasure := by
   rw [eLpNorm_eq_lintegral_rpow_enorm_toReal (by norm_num) (by simp)]
@@ -45,7 +53,9 @@ theorem extendedL2Norm_eq_eLpNorm (g : ℝ → ℝ) :
   simp [Real.enorm_eq_ofReal_abs]
 
 /-- A [function continuous on the closed unit interval](hyp:hg) has
-[integrable squared absolute value under uniform design](goal). -/
+[integrable squared absolute value under uniform design](goal).
+@isnad1 id=integrab.1h1v.s6.9b78384d3e12 from=translated src=- shape=bade0ae1 vocab=6fc5b7cc
+-/
 theorem integrable_sq_of_continuousOn {g : ℝ → ℝ}
     (hg : ContinuousOn g (Set.Icc (0 : ℝ) 1)) :
     Integrable (fun x => |g x| ^ 2) uniformMeasure := by
@@ -56,6 +66,7 @@ theorem integrable_sq_of_continuousOn {g : ℝ → ℝ}
 
 Use `ofReal_integral_eq_lintegral_ofReal` for the nonnegative square, followed
 by the real/ENNReal square-root bridge. This statement also ensures finiteness.
+@isnad1 id=eq.1h1v.s5.e4072648e68d from=translated src=- shape=64bc495a vocab=85a6009c
 -/
 theorem extendedL2Norm_eq_ofReal {g : ℝ → ℝ}
     (hg : ContinuousOn g (Set.Icc (0 : ℝ) 1)) :
@@ -68,7 +79,9 @@ theorem extendedL2Norm_eq_ofReal {g : ℝ → ℝ}
 
 /-- A [function continuous on the interval](hyp:hg) whose [absolute value is
 bounded there](hyp:hB) by a [nonnegative constant](hyp:hB0) has
-[L² norm at most that constant](goal). -/
+[L² norm at most that constant](goal).
+@isnad1 id=le.3h2v.s6.5fe2f632f24a from=translated src=- shape=ed954e22 vocab=338b8595
+-/
 theorem l2Norm_le_of_abs_le {g : ℝ → ℝ} {B : ℝ}
     (hg : ContinuousOn g (Set.Icc (0 : ℝ) 1)) (hB0 : 0 ≤ B)
     (hB : ∀ x ∈ Set.Icc (0 : ℝ) 1, |g x| ≤ B) : l2Norm g ≤ B := by

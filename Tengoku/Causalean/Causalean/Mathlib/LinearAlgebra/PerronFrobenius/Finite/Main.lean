@@ -20,7 +20,9 @@ noncomputable section
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 
-/-- A [real symmetric irreducible finite matrix](hyp:A,hA_symm,hA_irred) has [a strictly positive unit eigenvector whose eigenvalue is simultaneously the coordinate-sphere, Euclidean-sphere, and nonzero-vector top Rayleigh value](goal). -/
+/-- A [real symmetric irreducible finite matrix](hyp:A,hA_symm,hA_irred) has [a strictly positive unit eigenvector whose eigenvalue is simultaneously the coordinate-sphere, Euclidean-sphere, and nonzero-vector top Rayleigh value](goal).
+@isnad1 id=ex.2h2v.s7.609e63d1aef5 from=translated src=- shape=3dca8618 vocab=eb8a2906
+-/
 theorem finite_positive_perron_eigenvector
     (A : Matrix ι ι ℝ) (hA_symm : A.IsSymm) (hA_irred : A.IsIrreducible) :
     ∃ (v : EVec ι) (ρ : ℝ),
@@ -43,7 +45,9 @@ theorem finite_positive_perron_eigenvector
   · exact (coordinateSphereRayleighValue_eq_sphereRayleighValue A).symm
   · exact sphereRayleighValue_eq_iSupRayleighValue A
 
-/-- A [symmetric finite matrix](hyp:A,hA_symm), [a nonempty finite coordinate set](hyp:s), [an irreducible restricted block](hyp:hA_irred), and [block closure from outside rows into that set](hyp:hclosed) ensure [that the block’s strictly positive unit Perron vector zero-extends to a global eigenvector](goal). -/
+/-- A [symmetric finite matrix](hyp:A,hA_symm), [a nonempty finite coordinate set](hyp:s), [an irreducible restricted block](hyp:hA_irred), and [block closure from outside rows into that set](hyp:hclosed) ensure [that the block’s strictly positive unit Perron vector zero-extends to a global eigenvector](goal).
+@isnad1 id=ex.3h3v.s9.6db9ad8110c3 from=translated src=- shape=78a33a47 vocab=c90aeea2
+-/
 theorem finite_positive_perron_eigenvector_on_restriction
     (A : Matrix ι ι ℝ) (hA_symm : A.IsSymm) (s : Finset ι) [Nonempty s]
     (hA_irred : (restrictMatrix A s).IsIrreducible)

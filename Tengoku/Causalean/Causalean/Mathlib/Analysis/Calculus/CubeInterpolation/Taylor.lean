@@ -22,7 +22,9 @@ and [s at most one](hyp:hs1), [there is a positive constant C such that, for eve
 m times continuously differentiable on the closed normalized cube and satisfies the top-order
 Hölder condition with exponent s and a nonnegative constant L, the function at any point y of the
 closed cube differs from its order-m Taylor polynomial centred at any point x of the open cube by
-at most C times L times the distance from x to y raised to the power m + s](goal). -/
+at most C times L times the distance from x to y raised to the power m + s](goal).
+@isnad1 id=ex.2h3v.s9.94cda483d388 from=translated src=- shape=50e940e7 vocab=d1d34508
+-/
 theorem top_holder_taylor_remainder (d m : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1) :
     ∃ C : ℝ, 0 < C ∧

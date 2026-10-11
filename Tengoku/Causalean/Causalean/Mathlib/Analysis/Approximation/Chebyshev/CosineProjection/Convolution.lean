@@ -33,6 +33,7 @@ half-open or interval integral before applying the Mathlib periodic theorem.
 Search confirmed `intervalIntegral.integral_comp_sub_left` and
 `Function.Periodic.intervalIntegral_add_eq` provide the required two bridges;
 the latter needs no integrability premise.
+@isnad1 id=eq.4h3v.s7.82d2705cb08e from=translated src=- shape=36aa5f6f vocab=f928a0b1
 -/
 theorem angularConvolution_reverse {g h : ℝ → ℝ}
     (hg : Continuous g) (hh : Continuous h)
@@ -62,6 +63,7 @@ theorem angularConvolution_reverse {g h : ℝ → ℝ}
 
 Average the given expansion at t and -t. The sine terms cancel and the cosine
 terms remain; no Fourier uniqueness or orthogonality theorem is needed.
+@isnad1 id=ex.2h2v.s6.de29a96bb78e from=translated src=- shape=95830fd0 vocab=8045bf5f
 -/
 theorem even_trigPoly_cosine {n : ℕ} {h : ℝ → ℝ}
     (hh : IsTrigPolyLE n h) (heven : Function.Even h) :
@@ -92,6 +94,7 @@ at every [angle](hyp:θ).
 Apply the reversed formula, expand `cos_sub`, and integrate the finite sum.
 The sine integrals vanish because the target is even and the period is symmetric.
 Continuity and periodicity of the finite cosine kernel follow from its expansion.
+@isnad1 id=eq.4h5v.s7.ecbd5d7bce00 from=translated src=- shape=601379f1 vocab=9ee34a17
 -/
 theorem angularConvolution_cosine_expansion {n : ℕ} {g h : ℝ → ℝ}
     (hg : Continuous g) (hgeven : Function.Even g)

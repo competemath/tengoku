@@ -20,7 +20,9 @@ open scoped BigOperators
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- The order-`m` Taylor expression at a point is the evaluation of a
-multivariate polynomial with degree at most `m` in each coordinate. -/
+multivariate polynomial with degree at most `m` in each coordinate.
+@isnad1 id=ex.0h4v.s9.94aefe7757c5 from=translated src=- shape=d1ed5faa vocab=214d53b1
+-/
 theorem taylor_expression_polynomial (d m : ℕ)
     (u : (Fin d → ℝ) → ℝ) (x : Fin d → ℝ) :
     ∃ p : MvPolynomial (Fin d) ℝ,

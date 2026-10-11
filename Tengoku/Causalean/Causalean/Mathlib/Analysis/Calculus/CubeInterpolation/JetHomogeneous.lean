@@ -16,7 +16,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- A homogeneous Taylor term of degree `k` has zero coordinate partial of
-every smaller order `j` at its center. -/
+every smaller order `j` at its center.
+@isnad1 id=eq.1h6v.s9.fc4952abc18e from=translated src=- shape=b221bf9b vocab=aa35a8f1
+-/
 theorem homogeneous_taylor_jet_below_degree {d j k : ℕ} (hjk : j < k)
     (u : (Fin d → ℝ) → ℝ) (x : Fin d → ℝ) (f : Fin j → Fin d) :
     coordPartial j
@@ -49,7 +51,9 @@ theorem homogeneous_taylor_jet_below_degree {d j k : ℕ} (hjk : j < k)
   simp
 
 /-- A homogeneous Taylor term of degree `k` has zero coordinate partial of
-every larger order `j` at its center. -/
+every larger order `j` at its center.
+@isnad1 id=eq.1h6v.s9.9c613253b356 from=translated src=- shape=5be6250f vocab=aa35a8f1
+-/
 theorem homogeneous_taylor_jet_above_degree {d j k : ℕ} (hkj : k < j)
     (u : (Fin d → ℝ) → ℝ) (x : Fin d → ℝ) (f : Fin j → Fin d) :
     coordPartial j

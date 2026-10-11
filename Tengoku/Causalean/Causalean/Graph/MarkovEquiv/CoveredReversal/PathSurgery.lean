@@ -34,7 +34,9 @@ variable {G}
 walk is active](hyp:hact), [the index is positive](hyp:hk0), [its successor lies inside the
 walk](hyp:hk), [the vertices on either side are adjacent](hyp:hadj_splice), and [the newly formed
 left](hyp:hleft) and [right](hyp:hright) triples satisfy the active-walk criterion, then [removing
-the indexed vertex leaves an active walk](goal). -/
+the indexed vertex leaves an active walk](goal).
+@isnad1 id=isactive.4h7v.s9.9fbfe6cf95aa from=translated src=- shape=3b2d175b vocab=5e69170a
+-/
 theorem isActiveWalk_skipOne {Z : Finset V} {p : List V} {k : ℕ}
     (hact : G.IsActiveWalk Z p) (hk0 : 0 < k) (hk : k + 1 < p.length)
     (hadj_splice : G.UAdj (p.get ⟨k - 1, by omega⟩) (p.get ⟨k + 1, hk⟩))
@@ -102,7 +104,9 @@ theorem isActiveWalk_skipOne {Z : Finset V} {p : List V} {k : ℕ}
 walk is active](hyp:hact), [the index is positive](hyp:hk0), [its successor lies inside the
 walk](hyp:hk), [the vertices immediately before and after it agree](hyp:hsame), and [the triple
 created by deleting two entries satisfies the active-walk criterion](hyp:hsplice), then [the
-shortened walk is active](goal). -/
+shortened walk is active](goal).
+@isnad1 id=isactive.4h6v.s8.720d1a6bc92d from=translated src=- shape=f476bc3a vocab=290c3912
+-/
 theorem isActiveWalk_skipTwo {Z : Finset V} {p : List V} {k : ℕ}
     (hact : G.IsActiveWalk Z p) (hk0 : 0 < k) (hk : k + 1 < p.length)
     (hsame : p.get ⟨k - 1, by omega⟩ = p.get ⟨k + 1, hk⟩)
@@ -166,7 +170,9 @@ theorem isActiveWalk_skipTwo {Z : Finset V} {p : List V} {k : ℕ}
 omit [DecidableEq V] [Fintype V] in
 /-- If [a list of values has distinct first and last entries](hyp:V,p,hne), [an index has a
 second successor in the list](hyp:j,hj), and [the entries at the index and second successor
-agree](hyp:hback), then [the list has at least four entries](goal). -/
+agree](hyp:hback), then [the list has at least four entries](goal).
+@isnad1 id=le.3h3v.s6.2f78799d9486 from=translated src=- shape=db4cede5 vocab=6d27916f
+-/
 theorem four_le_length_of_backtrack_endpoints_ne {p : List V} {j : ℕ}
     (hne : p.head? ≠ p.getLast?) (hj : j + 2 < p.length)
     (hback : p.get ⟨j, by omega⟩ = p.get ⟨j + 2, hj⟩) :
@@ -191,7 +197,9 @@ When no interior triple of `p` is flip-obstructing, `swapPath` is `flipEdge`-act
 swap repairs exactly the collider-`a` positions whose activation is lost; genuine
 fork-traversals of the covered edge are kept and stay active because `a` (resp. `b`) remains a
 non-collider after the flip. This generalises the no-traversal case: a walk with no `a — b`
-adjacency at all trivially has no flip-obstructing triple. -/
+adjacency at all trivially has no flip-obstructing triple.
+@isnad1 id=isactive.3h6v.s7.a3b8542c0475 from=translated src=- shape=d6291f57 vocab=96c4aff7
+-/
 theorem isActiveWalk_swapPath_of_no_obstruct {a b : V} (hcov : G.IsCoveredEdge a b)
     {Z : Finset V} {p : List V} (hact : G.IsActiveWalk Z p)
     (hfork : ∀ (j : ℕ) (hj : j + 2 < p.length),
@@ -384,7 +392,9 @@ theorem isActiveWalk_swapPath_of_no_obstruct {a b : V} (hcov : G.IsCoveredEdge a
         · exact absurd haj2 hj2ne
       · exact absurd haj hjne
 
-/-- `swapPath` never touches the first vertex, so it preserves the head. -/
+/-- `swapPath` never touches the first vertex, so it preserves the head.
+@isnad1 id=eq.1h6v.s5.f2d4fa32176f from=translated src=- shape=b9baec5d vocab=029377d4
+-/
 theorem swapPath_head? {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
     (p : List V) : (swapPath hcov Z p).head? = p.head? := by
   rw [List.head?_eq_getElem?, List.head?_eq_getElem?]
@@ -397,7 +407,9 @@ theorem swapPath_head? {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
     · simpa using hh
     · omega
 
-/-- `swapPath` never touches the last vertex, so it preserves the last element. -/
+/-- `swapPath` never touches the last vertex, so it preserves the last element.
+@isnad1 id=eq.1h6v.s5.6c24d2e1e646 from=translated src=- shape=b9baec5d vocab=0ae215ee
+-/
 theorem swapPath_getLast? {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
     (p : List V) : (swapPath hcov Z p).getLast? = p.getLast? := by
   rw [List.getLast?_eq_getElem?, List.getLast?_eq_getElem?, swapPath_length]

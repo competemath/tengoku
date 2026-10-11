@@ -122,7 +122,9 @@ private theorem scalarLagrange_on_value {n : ℕ} (value : Fin n → ℝ)
     · exact fun h => hui (hinj h)
 
 /-- For an injective enumeration containing every spectral value, a Lagrange matrix polynomial is
-the aggregate projector at its slot when the slot is spectral, and is zero at every dummy slot. -/
+the aggregate projector at its slot when the slot is spectral, and is zero at every dummy slot.
+@isnad1 id=eq.2h5v.s6.ecbd5320cd2f from=translated src=- shape=4b8d1b0a vocab=ca45bc74
+-/
 theorem polynomialSpectralProjector_eq_projector_or_zero
     {n : ℕ} {A : RectMatrix n n} (D : RealDiagonalization A)
     (value : Fin n → ℝ) (hinj : Function.Injective value)
@@ -167,7 +169,9 @@ theorem polynomialSpectralProjector_eq_projector_or_zero
 
 /-- Completeness alone identifies the Lagrange polynomial with the aggregate projector at every
 listed spectral value.  Injectivity is unnecessary here: repeated listed values give the same
-aggregate projector, while nonspectral dummy values give zero. -/
+aggregate projector, while nonspectral dummy values give zero.
+@isnad1 id=eq.1h5v.s6.a3fd6d0ab6f8 from=translated src=- shape=51eacf3d vocab=0dbfb89a
+-/
 theorem polynomialSpectralProjector_eq_projector_or_zero_of_complete
     {n : ℕ} {A : RectMatrix n n} (D : RealDiagonalization A)
     (value : Fin n → ℝ) (hcomplete : ∀ u, ∃ i, value i = D.eigenvalue u)
@@ -224,7 +228,9 @@ theorem polynomialSpectralProjector_eq_projector_or_zero_of_complete
 
 /-- A complete `n`-slot enumeration whose cluster masses normalize to one cannot repeat a
 positive spectral cluster.  Consequently it integrates every test function exactly as the
-underlying diagonal coordinates do; zero-mass dummy slots are harmless. -/
+underlying diagonal coordinates do; zero-mass dummy slots are harmless.
+@isnad1 id=eq.4h5v.s7.56150b33dadf from=translated src=- shape=bd2f5b75 vocab=0fcb0fa9
+-/
 theorem complete_clusterMass_integral_eq
     {n : ℕ} (mass eig value : Fin n → ℝ)
     (hmasspos : ∀ u, 0 < mass u) (hmasssum : ∑ u, mass u = 1)
@@ -288,7 +294,9 @@ theorem complete_clusterMass_integral_eq
     _ = mass u * f (eig u) := by rw [hc u, mul_one]
 
 /-- Every listed diagonal coordinate is an actual complex eigenvalue of the reconstructed real
-matrix. -/
+matrix.
+@isnad1 id=complexm.0h4v.s4.57655b25c095 from=translated src=- shape=9436eec7 vocab=6a528c9d
+-/
 theorem RealDiagonalization.diagonal_eigenvalue_is_complexEigenvalue
     {n : ℕ} {A : RectMatrix n n} (D : RealDiagonalization A) (u : Fin n) :
     ComplexMatrixEigenvalue A (D.eigenvalue u) := by
@@ -322,7 +330,9 @@ theorem RealDiagonalization.diagonal_eigenvalue_is_complexEigenvalue
     exact_mod_cast hcol
 
 /-- If the diagonal values lie in a nondegenerate symmetric interval, their distinct values have
-an injective `Fin n` enumeration in that interval; unused slots are necessarily nonspectral. -/
+an injective `Fin n` enumeration in that interval; unused slots are necessarily nonspectral.
+@isnad1 id=ex.2h4v.s6.b925c0fcdeea from=translated src=- shape=2ce7908c vocab=b0b57922
+-/
 theorem exists_injective_spectralEnumeration
     {n : ℕ} {A : RectMatrix n n} (D : RealDiagonalization A)
     {radius : ℝ} (hradius : 0 < radius)
@@ -369,7 +379,9 @@ theorem exists_injective_spectralEnumeration
   exact hv.trans (hb.trans hx)
 
 /-- The coordinate functional of an aggregate projector is exactly the total mass in the
-corresponding repeated-eigenvalue cluster. -/
+corresponding repeated-eigenvalue cluster.
+@isnad1 id=eq.2h7v.s7.437eda4edc45 from=translated src=- shape=e9775dab vocab=e099b714
+-/
 theorem anchor_projector_eq_clusterMass
     {n : ℕ} {A : RectMatrix n n} (D : RealDiagonalization A)
     (mass left right : Fin n → ℝ)
@@ -395,7 +407,9 @@ theorem anchor_projector_eq_clusterMass
   unfold dotProduct
   simp [Matrix.mulVec_diagonal]
 
-/-- [A matrix dimension, matrix, and real diagonalization](hyp:n,A,D), [a positive spectral radius](hyp:radius,hradius), [mass and left-right anchor data](hyp:mass,left,right,hmass,hbound,hleft,hright) yield [an injective bounded spectral enumeration with nonnegative normalized aggregate projector weights](goal). -/
+/-- [A matrix dimension, matrix, and real diagonalization](hyp:n,A,D), [a positive spectral radius](hyp:radius,hradius), [mass and left-right anchor data](hyp:mass,left,right,hmass,hbound,hleft,hright) yield [an injective bounded spectral enumeration with nonnegative normalized aggregate projector weights](goal).
+@isnad1 id=ex.5h7v.s8.cb149533f1b9 from=translated src=- shape=7fb85e35 vocab=73d2bdaa
+-/
 theorem exists_polynomialSpectralLaw
     {n : ℕ} {A : RectMatrix n n} (D : RealDiagonalization A)
     {radius : ℝ} (hradius : 0 < radius)
@@ -454,7 +468,9 @@ theorem exists_polynomialSpectralLaw
         · simp
       _ = 1 := hmass.2
 
-/-- Every complex eigenvalue of a real-diagonalized matrix is one of its real diagonal values. -/
+/-- Every complex eigenvalue of a real-diagonalized matrix is one of its real diagonal values.
+@isnad1 id=ex.1h4v.s5.780a6433730f from=translated src=- shape=1edef967 vocab=f38b557f
+-/
 theorem complexEigenvalue_mem_diagonal
     {n : ℕ} {A : RectMatrix n n} (D : RealDiagonalization A)
     {z : ℂ} (hz : ComplexMatrixEigenvalue A z) :

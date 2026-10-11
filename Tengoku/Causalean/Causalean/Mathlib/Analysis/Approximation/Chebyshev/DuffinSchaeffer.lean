@@ -41,7 +41,9 @@ private lemma vertical_rootDistance_le_endpoint
 /-- For [a positive degree L](hyp:hL), [a real x between −1 and 1](hyp:hx), and [any real height
 y](hyp:y), [the product of the distances from the complex point x + i y to the L roots of the
 degree-L Chebyshev polynomial is at most the corresponding product of distances from the point 1 +
-i y](goal). -/
+i y](goal).
+@isnad1 id=le.2h3v.s7.c6141cd61958 from=translated src=- shape=8bae4ca9 vocab=339c7ef4
+-/
 theorem prod_norm_sub_chebyshevZero_le_endpoint
     {L : ℕ} (hL : 0 < L) {x : ℝ} (hx : x ∈ Set.Icc (-1) 1) (y : ℝ) :
     (∏ k ∈ Finset.range L,
@@ -60,7 +62,9 @@ theorem prod_norm_sub_chebyshevZero_le_endpoint
 /-- For [a positive degree L](hyp:hL) and [real numbers x and y](hyp:x,y), [the modulus of the
 degree-L Chebyshev polynomial of the first kind at the complex point x + i y equals the modulus of
 its leading coefficient times the product of the distances from that point to its L cosine
-roots](goal). -/
+roots](goal).
+@isnad1 id=eq.1h3v.s6.100bd789de61 from=translated src=- shape=1394d03c vocab=62409710
+-/
 theorem norm_eval_chebyshev_eq_leadingCoeff_mul_rootProduct
     {L : ℕ} (hL : 0 < L) (x y : ℝ) :
     ‖(Polynomial.Chebyshev.T ℂ (L : ℤ)).eval
@@ -125,7 +129,9 @@ theorem norm_eval_chebyshev_eq_leadingCoeff_mul_rootProduct
 
 /-- For [a real x between −1 and 1](hyp:hx) and [any real height y](hyp:y), [the modulus of the
 degree-L Chebyshev polynomial of the first kind at the complex point x + i y is at most its modulus
-at the point 1 + i y](goal). -/
+at the point 1 + i y](goal).
+@isnad1 id=le.1h3v.s6.019fe342c498 from=translated src=- shape=a0fd6b9b vocab=0ff66f51
+-/
 theorem norm_eval_chebyshev_le_endpoint_vertical
     {L : ℕ} {x : ℝ} (hx : x ∈ Set.Icc (-1) 1) (y : ℝ) :
     ‖(Polynomial.Chebyshev.T ℂ (L : ℤ)).eval
@@ -326,7 +332,9 @@ private lemma negOnePow_mul_derivative_basis_mul_derivative_T_pos
 /-- For [a positive degree L](hyp:hL) and [a real polynomial](hyp:Q) of [degree at most L](hyp:hQ)
 whose [absolute value is at most one at each of the L + 1 extremal Chebyshev nodes](hyp:hnodes), at
 [every real root of the degree-L Chebyshev polynomial](hyp:hx) [the derivative of the polynomial is
-at most the derivative of the Chebyshev polynomial in absolute value](goal). -/
+at most the derivative of the Chebyshev polynomial in absolute value](goal).
+@isnad1 id=le.4h3v.s8.b38d67713c71 from=translated src=- shape=2eed2e0a vocab=430a8d86
+-/
 theorem abs_eval_derivative_le_chebyshev_at_root
     {L : ℕ} (hL : 0 < L) (Q : Polynomial ℝ) (hQ : Q.natDegree ≤ L)
     (hnodes : ∀ i, i ≤ L →
@@ -423,7 +431,9 @@ theorem abs_eval_derivative_le_chebyshev_at_root
 if [at every real root of the degree-L Chebyshev polynomial the derivative of the polynomial is at
 most the derivative of the Chebyshev polynomial in absolute value](hyp:hroots), then at [every
 point between −1 and 1](hyp:hx) [the derivative of the polynomial is at most L² in absolute
-value](goal). -/
+value](goal).
+@isnad1 id=le.4h3v.s9.de9d1b881d48 from=translated src=- shape=db1a701b vocab=216d6073
+-/
 theorem abs_eval_derivative_le_sq_of_chebyshev_root_control
     {L : ℕ} (hL : 0 < L) (Q : Polynomial ℝ) (hQ : Q.natDegree ≤ L)
     (hroots : ∀ z : ℝ,
@@ -448,7 +458,9 @@ noncomputable def chebyshevDerivativeWeight (L : ℕ) (x : ℝ) (i : ℕ) : ℝ 
 /-- For [a real polynomial](hyp:Q) of [degree at most L](hyp:hQ) and [any real point x](hyp:x),
 [the derivative of the polynomial at x equals the sum, over the L + 1 extremal Chebyshev nodes, of
 the polynomial's value at the node times the Chebyshev differentiation weight for that node at
-x](goal). -/
+x](goal).
+@isnad1 id=eq.1h3v.s7.07dd2046513a from=translated src=- shape=5524eab6 vocab=a9bf0550
+-/
 theorem eval_derivative_eq_sum_chebyshevDerivativeWeight
     (Q : Polynomial ℝ) {L : ℕ} (hQ : Q.natDegree ≤ L) (x : ℝ) :
     Q.derivative.eval x =
@@ -473,7 +485,9 @@ theorem eval_derivative_eq_sum_chebyshevDerivativeWeight
       simp [Lagrange.interpolate_apply, eval_finsetSum, chebyshevDerivativeWeight]
 
 /-- For [a positive degree L](hyp:hL) and [a point x between −1 and 1](hyp:hx), [the absolute
-values of the L + 1 Chebyshev differentiation weights at x sum to at most L²](goal). -/
+values of the L + 1 Chebyshev differentiation weights at x sum to at most L²](goal).
+@isnad1 id=le.2h2v.s6.4c4173791655 from=translated src=- shape=6fd1f14c vocab=7e655171
+-/
 theorem sum_abs_chebyshevDerivativeWeight_le_sq
     {L : ℕ} (hL : 0 < L) {x : ℝ} (hx : x ∈ Set.Icc (-1) 1) :
     ∑ i ∈ Finset.range (L + 1), |chebyshevDerivativeWeight L x i| ≤
@@ -529,7 +543,9 @@ theorem sum_abs_chebyshevDerivativeWeight_le_sq
 /-- For [a real polynomial](hyp:Q) of [degree at most L](hyp:hQ) with [L positive](hyp:hL) and [a
 nonnegative bound C](hyp:hC), if [the polynomial is at most C in absolute value at each of the L +
 1 extremal Chebyshev nodes](hyp:hnodes), then at [every point between −1 and 1](hyp:hx) [its
-derivative is at most L² times C in absolute value](goal). -/
+derivative is at most L² times C in absolute value](goal).
+@isnad1 id=le.5h4v.s7.a1fe1cec6197 from=translated src=- shape=cb017b3a vocab=4bbc6c97
+-/
 theorem duffinSchaeffer_derivative_le
     (Q : Polynomial ℝ) {L : ℕ} (hL : 0 < L) (hQ : Q.natDegree ≤ L)
     {C : ℝ} (hC : 0 ≤ C)

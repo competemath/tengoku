@@ -33,7 +33,9 @@ variable {G}
 /-- **Bridge: failure of d-separation is exactly an active walk.** For pairwise-disjoint
 query sets, `X` and `Y` are *not* d-separated by `Z` iff there is an active walk from `X` to
 `Y` given `Z`. Assembled from `bbReachableVertices_iff_activeWalk`. Reduces the covered-flip
-invariance to a pure active-walk statement. -/
+invariance to a pure active-walk statement.
+@isnad1 id=iff.3h5v.s6.516099bf3616 from=translated src=- shape=d7fb21cf vocab=b04069ad
+-/
 theorem not_dSep_iff_hasActiveWalk (H : DAG V) (X Y Z : Finset V)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
     ¬ H.dSep X Y Z ↔ H.HasActiveWalk X Y Z := by
@@ -57,7 +59,9 @@ theorem not_dSep_iff_hasActiveWalk (H : DAG V) (X Y Z : Finset V)
       exact ⟨x, hxX, p, hlen, hact, by rw [hx], by rw [hv]⟩
     exact (Finset.disjoint_left.mp hsep.2.2.2 hvReach) hvY
 
-/-- Graphs with the same directed edges have exactly the same ancestor relations. -/
+/-- Graphs with the same directed edges have exactly the same ancestor relations.
+@isnad1 id=iff.1h5v.s5.bf3a7a114274 from=translated src=- shape=dc379c96 vocab=0728d035
+-/
 theorem isAncestor_edge_congr {G₁ G₂ : DAG V}
     (he : ∀ u w : V, G₁.edge u w ↔ G₂.edge u w) {u v : V} :
     G₁.isAncestor u v ↔ G₂.isAncestor u v := by
@@ -72,7 +76,9 @@ theorem isAncestor_edge_congr {G₁ G₂ : DAG V}
     | trans _ h ih => exact isAncestor.trans ih ((he _ _).mpr h)
 
 /-- Graphs with the same directed edges have exactly the same sets of vertices
-    that are ancestors of the conditioning set and can activate colliders. -/
+    that are ancestors of the conditioning set and can activate colliders.
+@isnad1 id=iff.1h5v.s6.ef9f8f96f1a4 from=translated src=- shape=14a66929 vocab=97b930aa
+-/
 theorem bbZAncestors_edge_congr {G₁ G₂ : DAG V}
     (he : ∀ u w : V, G₁.edge u w ↔ G₂.edge u w) (Z : Finset V) (v : V) :
     v ∈ G₁.bbZAncestors Z ↔ v ∈ G₂.bbZAncestors Z := by
@@ -86,14 +92,18 @@ theorem bbZAncestors_edge_congr {G₁ G₂ : DAG V}
     · exact Or.inl hv
     · exact Or.inr ⟨w, hw, (isAncestor_edge_congr he).mpr h⟩
 
-/-- Graphs with the same directed edges have exactly the same undirected adjacencies. -/
+/-- Graphs with the same directed edges have exactly the same undirected adjacencies.
+@isnad1 id=iff.1h5v.s5.a89722ab98fa from=translated src=- shape=dc379c96 vocab=20952f89
+-/
 theorem uAdj_edge_congr {G₁ G₂ : DAG V}
     (he : ∀ u w : V, G₁.edge u w ↔ G₂.edge u w) {u v : V} :
     G₁.UAdj u v ↔ G₂.UAdj u v := by
   unfold UAdj
   exact or_congr (he u v) (he v u)
 
-/-- Graphs with the same directed edges have exactly the same collider triples. -/
+/-- Graphs with the same directed edges have exactly the same collider triples.
+@isnad1 id=iff.1h6v.s5.01b4152d4aae from=translated src=- shape=d1ab3c3f vocab=b5b971bf
+-/
 theorem isCollider_edge_congr {G₁ G₂ : DAG V}
     (he : ∀ u w : V, G₁.edge u w ↔ G₂.edge u w) {l m r : V} :
     G₁.IsCollider l m r ↔ G₂.IsCollider l m r := by
@@ -101,7 +111,9 @@ theorem isCollider_edge_congr {G₁ G₂ : DAG V}
   exact and_congr (he l m) (he r m)
 
 /-- Graphs with the same directed edges have exactly the same active walks for
-    every conditioning set. -/
+    every conditioning set.
+@isnad1 id=iff.1h5v.s5.f57d6b378888 from=translated src=- shape=d520a00b vocab=76809130
+-/
 theorem isActiveWalk_edge_congr {G₁ G₂ : DAG V}
     (he : ∀ u w : V, G₁.edge u w ↔ G₂.edge u w)
     (Z : Finset V) (p : List V) :
@@ -144,7 +156,9 @@ theorem isActiveWalk_edge_congr {G₁ G₂ : DAG V}
       rw [ite_eq_right hC₁]
       rwa [ite_eq_right hC] at hval
 
-/-- Equal directed-edge relations preserve existence of active walks. -/
+/-- Equal directed-edge relations preserve existence of active walks.
+@isnad1 id=iff.1h6v.s6.fa059443c1bc from=translated src=- shape=1aaa1343 vocab=c5ca5184
+-/
 theorem hasActiveWalk_edge_congr {G₁ G₂ : DAG V}
     (he : ∀ u w : V, G₁.edge u w ↔ G₂.edge u w) (X Y Z : Finset V) :
     G₁.HasActiveWalk X Y Z ↔ G₂.HasActiveWalk X Y Z := by
@@ -154,7 +168,9 @@ theorem hasActiveWalk_edge_congr {G₁ G₂ : DAG V}
   · rintro ⟨p, hlen, hact, hhead, hlast⟩
     exact ⟨p, hlen, (isActiveWalk_edge_congr he Z p).mpr hact, hhead, hlast⟩
 
-/-- In the flipped graph, the reversed edge `b → a` is covered. -/
+/-- In the flipped graph, the reversed edge `b → a` is covered.
+@isnad1 id=iscovere.1h4v.s5.0700e58ab8bf from=translated src=- shape=240e3dbb vocab=6554613a
+-/
 theorem flipEdge_isCoveredEdge_back {a b : V} (hcov : G.IsCoveredEdge a b) :
     (flipEdge hcov).IsCoveredEdge b a := by
   constructor
@@ -186,7 +202,9 @@ theorem flipEdge_isCoveredEdge_back {a b : V} (hcov : G.IsCoveredEdge a b) :
           exact hca hca'
         · exact absurd hcb' hcb
 
-/-- Flipping the reversed covered edge restores the original edge relation. -/
+/-- Flipping the reversed covered edge restores the original edge relation.
+@isnad1 id=iff.1h6v.s5.0a73c5a55603 from=translated src=- shape=116e2012 vocab=3d82a8b2
+-/
 theorem flipEdge_flipEdge_edge {a b : V} (hcov : G.IsCoveredEdge a b) :
     ∀ u w : V, (flipEdge (flipEdge_isCoveredEdge_back hcov)).edge u w ↔ G.edge u w := by
   intro u w
@@ -211,7 +229,9 @@ theorem flipEdge_flipEdge_edge {a b : V} (hcov : G.IsCoveredEdge a b) :
 
 /-- If one node is a strict ancestor of another in a directed acyclic graph,
 then it either has a direct edge to the latter or is a strict ancestor of a
-node that has a direct edge to the latter. -/
+node that has a direct edge to the latter.
+@isnad1 id=or.1h4v.s5.802e52623ec6 from=translated src=- shape=72e6d6e9 vocab=0728d035
+-/
 theorem isAncestor_last {H : DAG V} {u v : V} (h : H.isAncestor u v) :
     H.edge u v ∨ ∃ w, H.isAncestor u w ∧ H.edge w v := by
   induction h with
@@ -243,7 +263,9 @@ private theorem isAncestor_flip_to_b {a b v : V} (hcov : G.IsCoveredEdge a b)
       exact hvq
 
 /-- Under a covered reversal of the edge from `a` to `b`, every directed edge of the original
-    graph either remains an edge or is the deleted edge from `a` to `b`. -/
+    graph either remains an edge or is the deleted edge from `a` to `b`.
+@isnad1 id=or.2h6v.s5.031596f4ffd3 from=translated src=- shape=36624f89 vocab=61c726f4
+-/
 theorem flipEdge_edge_or_deleted {a b u w : V} (hcov : G.IsCoveredEdge a b)
     (he : G.edge u w) : (flipEdge hcov).edge u w ∨ (u = a ∧ w = b) := by
   by_cases hab : u = a ∧ w = b
@@ -278,7 +300,9 @@ private theorem isAncestor_flip {a b s z : V} (hcov : G.IsCoveredEdge a b)
         simpa [hdel.2] using isAncestor_flip_to_b hcov hsb ihA
 
 /-- If a vertex other than the reversed tail belongs to the Bayes-ball ancestor closure of a
-    conditioning set before a covered reversal, it belongs to that closure after the reversal. -/
+    conditioning set before a covered reversal, it belongs to that closure after the reversal.
+@isnad1 id=mem.3h6v.s6.4c1619542e4e from=translated src=- shape=3d7d1e03 vocab=f74ba507
+-/
 theorem bbZAncestors_flip_of_ne {a b v : V} (hcov : G.IsCoveredEdge a b)
     (Z : Finset V) (hva : v ≠ a) :
     v ∈ G.bbZAncestors Z → v ∈ (flipEdge hcov).bbZAncestors Z := by
@@ -288,14 +312,18 @@ theorem bbZAncestors_flip_of_ne {a b v : V} (hcov : G.IsCoveredEdge a b)
   · exact Or.inl hvZ
   · exact Or.inr ⟨z, hzZ, isAncestor_flip hcov hva hvz⟩
 
-/-- The vertex `b` keeps its Bayes-ball ancestor-set membership after flipping `a → b`. -/
+/-- The vertex `b` keeps its Bayes-ball ancestor-set membership after flipping `a → b`.
+@isnad1 id=mem.2h5v.s6.0330fc06ec67 from=translated src=- shape=e1610fd2 vocab=f74ba507
+-/
 theorem bbZAncestors_flip_of_b {a b : V} (hcov : G.IsCoveredEdge a b)
     (Z : Finset V) :
     b ∈ G.bbZAncestors Z → b ∈ (flipEdge hcov).bbZAncestors Z :=
   bbZAncestors_flip_of_ne hcov Z hcov.ne.symm
 
 /-- If `a` reaches `Z` in `G` but not after the flip, that route used `a → b`, so `b` reaches
-`Z`; hence `b` is activated in the flipped graph. -/
+`Z`; hence `b` is activated in the flipped graph.
+@isnad1 id=mem.3h5v.s6.e02905e3ddb3 from=translated src=- shape=a66464cc vocab=f74ba507
+-/
 theorem bbZAncestors_flip_of_lost {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
     (h1 : a ∈ G.bbZAncestors Z) (h2 : a ∉ (flipEdge hcov).bbZAncestors Z) :
     b ∈ (flipEdge hcov).bbZAncestors Z := by
@@ -328,7 +356,9 @@ theorem bbZAncestors_flip_of_lost {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Fi
           (flipEdge hcov).isAncestor_trans (isAncestor.edge hacF)
             (isAncestor_flip hcov hca hcz)⟩) h2
 
-/-- Away from `a`, the covered flip leaves directed edges unchanged. -/
+/-- Away from `a`, the covered flip leaves directed edges unchanged.
+@isnad1 id=iff.3h6v.s5.c45a6827e21e from=translated src=- shape=14357d87 vocab=61c726f4
+-/
 theorem flipEdge_edge_iff_of_ne_a {a b u w : V} (hcov : G.IsCoveredEdge a b)
     (hua : u ≠ a) (hwa : w ≠ a) :
     (flipEdge hcov).edge u w ↔ G.edge u w := by
@@ -354,7 +384,9 @@ private theorem flipEdge_isCollider_iff_of_ne_a {a b l m r : V}
 [that walk remains active after the covered reversal](goal).
 
 A walk that is active relative to a conditioning set and does not contain the tail of a
-covered reversed edge remains active relative to the same set after the reversal. -/
+covered reversed edge remains active relative to the same set after the reversal.
+@isnad1 id=isactive.3h6v.s5.50c2ca07c844 from=translated src=- shape=72873f6f vocab=cfc34515
+-/
 theorem isActiveWalk_flip_of_not_mem {a b : V} (hcov : G.IsCoveredEdge a b)
     {Z : Finset V} {p : List V} (hact : G.IsActiveWalk Z p) (hna : a ∉ p) :
     (flipEdge hcov).IsActiveWalk Z p := by
@@ -407,13 +439,17 @@ noncomputable def swapPath {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
 
 /-- For
 [a directed acyclic graph, a covered edge, a conditioning set, and a walk](hyp:V,G,a,b,hcov,Z,p),
-[replacing affected collider occurrences along the walk preserves its length](goal). -/
+[replacing affected collider occurrences along the walk preserves its length](goal).
+@isnad1 id=eq.1h6v.s5.94e65e025192 from=translated src=- shape=2b376bda vocab=b1408588
+-/
 @[simp] theorem swapPath_length {a b : V} (hcov : G.IsCoveredEdge a b)
     (Z : Finset V) (p : List V) : (swapPath hcov Z p).length = p.length := by
   simp [swapPath]
 
 /-- Each entry of `swapPath` is either the original vertex, or `b` at an interior collider
-occurrence of `a` whose activation is lost. -/
+occurrence of `a` whose activation is lost.
+@isnad1 id=or.3h7v.s8.d593ff61488e from=translated src=- shape=723c0e36 vocab=be92f622
+-/
 theorem swapPath_get_eq {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
     (p : List V) (i : ℕ) (hi : i < (swapPath hcov Z p).length) (hi' : i < p.length) :
     (swapPath hcov Z p).get ⟨i, hi⟩ = p.get ⟨i, hi'⟩ ∨
@@ -427,7 +463,9 @@ theorem swapPath_get_eq {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
   · exact Or.inl rfl
   · exact Or.inl rfl
 
-/-- When the swap predicate holds at `i`, the entry is `b`. -/
+/-- When the swap predicate holds at `i`, the entry is `b`.
+@isnad1 id=eq.8h7v.s7.0858942951bc from=translated src=- shape=fbe3cb77 vocab=1a712a12
+-/
 theorem swapPath_get_b_of {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
     (p : List V) (i : ℕ) (hi : i < (swapPath hcov Z p).length) (hi' : i < p.length)
     (h1 : 1 ≤ i) (h2 : i + 1 < p.length) (ha : p.get ⟨i, hi'⟩ = a)
@@ -437,7 +475,9 @@ theorem swapPath_get_b_of {a b : V} (hcov : G.IsCoveredEdge a b) (Z : Finset V)
   simp only [swapPath, List.get_ofFn, Fin.cast_mk]
   rw [dite_eq_left ⟨h1, h2⟩, ite_eq_left ⟨ha, hanc, hcol⟩]
 
-/-- An edge **into** a vertex `m ∉ {a, b}` is unaffected by the flip. -/
+/-- An edge **into** a vertex `m ∉ {a, b}` is unaffected by the flip.
+@isnad1 id=iff.3h6v.s5.0f753546a2f1 from=translated src=- shape=6ce3deac vocab=61c726f4
+-/
 theorem flipEdge_edge_into_iff {a b m : V} (hcov : G.IsCoveredEdge a b)
     (hma : m ≠ a) (hmb : m ≠ b) (u : V) :
     (flipEdge hcov).edge u m ↔ G.edge u m := by
@@ -457,7 +497,9 @@ def FlipObstruct (a b l m r : V) : Prop :=
   (m = b ∧ l = a ∧ G.edge r b) ∨
   (m = b ∧ r = a ∧ G.edge l b)
 
-/-- Ancestor-set membership moves backwards along a directed edge. -/
+/-- Ancestor-set membership moves backwards along a directed edge.
+@isnad1 id=mem.2h5v.s5.eecea4170b0c from=translated src=- shape=9cdaec82 vocab=97b930aa
+-/
 theorem bbZAncestors_of_edge {Z : Finset V} {u w : V}
     (huw : G.edge u w) (hw : w ∈ G.bbZAncestors Z) :
     u ∈ G.bbZAncestors Z := by
@@ -480,7 +522,9 @@ def skipOne (p : List V) (k : ℕ) : List V :=
 
 omit [DecidableEq V] [Fintype V] in
 /-- For [a list of values and an index](hyp:V,p,k),
-[skipping one entry reduces the length by one](goal). -/
+[skipping one entry reduces the length by one](goal).
+@isnad1 id=eq.0h3v.s4.08738d86c4fb from=translated src=- shape=8d9b7ceb vocab=e52d2540
+-/
 @[simp] theorem skipOne_length (p : List V) (k : ℕ) :
     (skipOne p k).length = p.length - 1 := by
   simp [skipOne]
@@ -496,14 +540,18 @@ def skipTwo (p : List V) (k : ℕ) : List V :=
 
 omit [DecidableEq V] [Fintype V] in
 /-- For [a list of values and an index](hyp:V,p,k),
-[skipping two entries reduces the length by two](goal). -/
+[skipping two entries reduces the length by two](goal).
+@isnad1 id=eq.0h3v.s4.f595549b703c from=translated src=- shape=8d9b7ceb vocab=46a48d65
+-/
 @[simp] theorem skipTwo_length (p : List V) (k : ℕ) :
     (skipTwo p k).length = p.length - 2 := by
   simp [skipTwo]
 
 omit [DecidableEq V] [Fintype V] in
 /-- If [an index is positive](hyp:hk0) and [lies within a list of values](hyp:V,p,k,hk), then
-[skipping that entry preserves the first entry](goal). -/
+[skipping that entry preserves the first entry](goal).
+@isnad1 id=eq.2h3v.s5.6cdc6e792536 from=translated src=- shape=4974daa0 vocab=1a101d4d
+-/
 theorem skipOne_head? {p : List V} {k : ℕ} (hk0 : 0 < k)
     (hk : k < p.length) :
     (skipOne p k).head? = p.head? := by
@@ -515,7 +563,9 @@ theorem skipOne_head? {p : List V} {k : ℕ} (hk0 : 0 < k)
 
 omit [DecidableEq V] [Fintype V] in
 /-- If [an index and its successor lie before the end of a list of values](hyp:V,p,k,hk), then
-[skipping that entry preserves the last entry](goal). -/
+[skipping that entry preserves the last entry](goal).
+@isnad1 id=eq.1h3v.s5.bf8a3acb78e3 from=translated src=- shape=7325927f vocab=8b645867
+-/
 theorem skipOne_getLast? {p : List V} {k : ℕ} (hk : k + 1 < p.length) :
     (skipOne p k).getLast? = p.getLast? := by
   rw [List.getLast?_eq_getElem?, List.getLast?_eq_getElem?, skipOne_length]
@@ -528,7 +578,9 @@ theorem skipOne_getLast? {p : List V} {k : ℕ} (hk : k + 1 < p.length) :
 omit [DecidableEq V] [Fintype V] in
 /-- If
 [an index is positive and its successor lies before the end of a list of values](hyp:V,p,k,hk0,hk),
-then [skipping the two entries beginning there preserves the first entry](goal). -/
+then [skipping the two entries beginning there preserves the first entry](goal).
+@isnad1 id=eq.2h3v.s5.39a5cbd9cc38 from=translated src=- shape=1b96bbb1 vocab=bd33845a
+-/
 theorem skipTwo_head? {p : List V} {k : ℕ} (hk0 : 0 < k)
     (hk : k + 1 < p.length) :
     (skipTwo p k).head? = p.head? := by
@@ -541,7 +593,9 @@ theorem skipTwo_head? {p : List V} {k : ℕ} (hk0 : 0 < k)
 omit [DecidableEq V] [Fintype V] in
 /-- If [a positive index and its successor lie before the end of a list of values](hyp:V,p,k,hk0,hk)
 and [the entries immediately before and after the index agree](hyp:hsame), then [skipping the two
-entries beginning at the index preserves the last entry](goal). -/
+entries beginning at the index preserves the last entry](goal).
+@isnad1 id=eq.3h3v.s6.352df38603d5 from=translated src=- shape=5b00f53d vocab=6f1786fa
+-/
 theorem skipTwo_getLast? {p : List V} {k : ℕ} (hk0 : 0 < k)
     (hk : k + 1 < p.length)
     (hsame : p.get ⟨k - 1, by omega⟩ = p.get ⟨k + 1, hk⟩) :

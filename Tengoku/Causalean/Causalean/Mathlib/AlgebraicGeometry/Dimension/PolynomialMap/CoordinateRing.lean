@@ -19,7 +19,9 @@ noncomputable section
 
 /-- A target polynomial relation holds throughout a polynomial image closure
 exactly when substituting the parameterization's coordinate polynomials makes
-the relation identically zero. -/
+the relation identically zero.
+@isnad1 id=eq.0h3v.s8.b62ed684e947 from=translated src=- shape=8c1f598b vocab=847ef635
+-/
 theorem polynomialImageClosure_vanishingIdeal {ι κ : Type*}
     (f : κ → MvPolynomial ι ℂ) :
     MvPolynomial.vanishingIdeal ℂ (polynomialImageClosure f) =
@@ -59,7 +61,9 @@ noncomputable def polynomialImageClosure_coordinateRing {ι κ : Type*}
 /-- For a subset `Z` of `ι → ℂ` (with `ι` finite), if [`Z` is Zariski-closed](hyp:hclosed),
 then [`Z` has irreducible-chain (Zariski) dimension `d` exactly when the Krull dimension of its
 coordinate ring — the polynomial ring on `ι` variables modulo `Z`'s vanishing ideal — equals
-`d`](goal). -/
+`d`](goal).
+@isnad1 id=iff.1h3v.s7.4e31af1c305b from=translated src=- shape=a4cd2f24 vocab=5a84bc44
+-/
 theorem affineZariskiDimension_iff_coordinateRingKrullDim
     {ι : Type*} [Finite ι] {d : ℕ} {Z : Set (ι → ℂ)}
     (hclosed : affineZariskiClosure Z = Z) :

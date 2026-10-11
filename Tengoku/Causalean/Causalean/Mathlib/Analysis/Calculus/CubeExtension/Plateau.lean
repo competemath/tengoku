@@ -32,7 +32,9 @@ noncomputable def plateauD2 (r : ℝ) : ℝ :=
   if 1 < r ∧ r < 2 then -60 * (r - 1) + 180 * (r - 1) ^ 2 - 120 * (r - 1) ^ 3 else 0
 
 /-- At [every real radius](hyp:r), [the transition polynomial has its exact
-first derivative](goal), before the constant branches are glued. -/
+first derivative](goal), before the constant branches are glued.
+@isnad1 id=hasderiv.0h1v.s8.fbc04c0779b2 from=translated src=- shape=56afb807 vocab=982a4af2
+-/
 theorem plateau_polynomial_hasDerivAt (r : ℝ) :
     HasDerivAt (fun v : ℝ =>
       1 - 10 * (v - 1) ^ 3 + 15 * (v - 1) ^ 4 - 6 * (v - 1) ^ 5)
@@ -42,7 +44,9 @@ theorem plateau_polynomial_hasDerivAt (r : ℝ) :
     ((ht.pow 4).const_mul 15)).sub ((ht.pow 5).const_mul 6)) using 1 <;> (try simp) <;> ring
 
 /-- At [every real radius](hyp:r), [the first transition polynomial has its
-exact second derivative](goal), before the constant branches are glued. -/
+exact second derivative](goal), before the constant branches are glued.
+@isnad1 id=hasderiv.0h1v.s8.f35ab5a189dd from=translated src=- shape=66e5c696 vocab=982a4af2
+-/
 theorem plateau_polynomialD1_hasDerivAt (r : ℝ) :
     HasDerivAt (fun v : ℝ =>
       -30 * (v - 1) ^ 2 + 60 * (v - 1) ^ 3 - 30 * (v - 1) ^ 4)
@@ -52,31 +56,41 @@ theorem plateau_polynomialD1_hasDerivAt (r : ℝ) :
     ((ht.pow 4).const_mul 30)) using 1 <;> (try simp) <;> ring
 
 /-- At [every real radius](hyp:r), [the quintic factors into a cubic boundary
-zero and a positive quadratic on the transition interval](goal). -/
+zero and a positive quadratic on the transition interval](goal).
+@isnad1 id=eq.0h1v.s8.966458814f57 from=translated src=- shape=3b6f929a vocab=3f072e55
+-/
 theorem plateau_polynomial_factor (r : ℝ) :
     1 - 10 * (r - 1) ^ 3 + 15 * (r - 1) ^ 4 - 6 * (r - 1) ^ 5 =
       (2 - r) ^ 3 * (1 + 3 * (r - 1) + 6 * (r - 1) ^ 2) := by
   ring
 
 /-- At [every real radius](hyp:r), [the complement of the quintic factors
-into a cubic boundary zero and a positive quadratic on the transition interval](goal). -/
+into a cubic boundary zero and a positive quadratic on the transition interval](goal).
+@isnad1 id=eq.0h1v.s8.9a93fe734c7b from=translated src=- shape=f7eabda2 vocab=3f072e55
+-/
 theorem plateau_polynomial_complement_factor (r : ℝ) :
     1 - (1 - 10 * (r - 1) ^ 3 + 15 * (r - 1) ^ 4 - 6 * (r - 1) ^ 5) =
       (r - 1) ^ 3 * (1 + 3 * (2 - r) + 6 * (2 - r) ^ 2) := by
   ring
 
-/-- At [a radius](hyp:r) [at most one](hyp:hr), [the plateau is one](goal). -/
+/-- At [a radius](hyp:r) [at most one](hyp:hr), [the plateau is one](goal).
+@isnad1 id=eq.1h1v.s4.5baa568ffe46 from=translated src=- shape=278e0375 vocab=3a0de68a
+-/
 theorem plateau_eq_one (r : ℝ) (hr : r ≤ 1) : plateau r = 1 := by
   simp [plateau, hr]
 
-/-- At [a radius](hyp:r) [at least two](hyp:hr), [the plateau vanishes](goal). -/
+/-- At [a radius](hyp:r) [at least two](hyp:hr), [the plateau vanishes](goal).
+@isnad1 id=eq.1h1v.s4.6b164c01b302 from=translated src=- shape=97c35add vocab=d6acbf1d
+-/
 theorem plateau_eq_zero (r : ℝ) (hr : 2 ≤ r) : plateau r = 0 := by
   simp [plateau, show ¬r ≤ 1 by linarith, show ¬r < 2 by linarith]
 
 /-- [The plateau lies between zero and one](goal) at [every real input](hyp:r).
 
 On the transition region, factor its derivative as
-`-30*(r-1)^2*(2-r)^2`, or factor the polynomial and its complement. -/
+`-30*(r-1)^2*(2-r)^2`, or factor the polynomial and its complement.
+@isnad1 id=and.0h1v.s4.01d6d0983ed3 from=translated src=- shape=fd7c5cb5 vocab=3a0de68a
+-/
 theorem plateau_bounds (r : ℝ) : 0 ≤ plateau r ∧ plateau r ≤ 1 := by
   by_cases h₁ : r ≤ 1
   · simp [plateau, h₁]
@@ -93,7 +107,9 @@ theorem plateau_bounds (r : ℝ) : 0 ≤ plateau r ∧ plateau r ≤ 1 := by
     exact ⟨hp, by linarith⟩
   · simp [plateau, h₁, h₂]
 
-/-- [The nonzero support of the real plateau is the radius-two left half-line](goal). -/
+/-- [The nonzero support of the real plateau is the radius-two left half-line](goal).
+@isnad1 id=eq.0h0v.s4.cb28317bfaea from=translated src=- shape=af22ce47 vocab=581d3f5b
+-/
 theorem plateau_support : Function.support plateau = Set.Iio 2 := by
   ext r
   simp only [Function.mem_support, Set.mem_Iio]
@@ -111,14 +127,18 @@ theorem plateau_support : Function.support plateau = Set.Iio 2 := by
       rw [← plateau_polynomial_factor] at hp
       simpa only [plateau, ite_eq_right h₁, ite_eq_left h₂] using ne_of_gt hp
 
-/-- [The support among nonnegative radii is contained in the closed radius-two interval](goal). -/
+/-- [The support among nonnegative radii is contained in the closed radius-two interval](goal).
+@isnad1 id=le.0h0v.s5.966a3e271f58 from=translated src=- shape=306adda9 vocab=9ebe1c7f
+-/
 theorem plateau_nonnegative_support :
     Function.support plateau ∩ Set.Ici 0 ⊆ Set.Icc 0 2 := by
   intro r hr
   rw [plateau_support] at hr
   exact ⟨hr.2, le_of_lt hr.1⟩
 
-/-- [The plateau is locally constant one near zero](goal). -/
+/-- [The plateau is locally constant one near zero](goal).
+@isnad1 id=eventual.0h0v.s4.2d5134f0008b from=translated src=- shape=5e27f846 vocab=87b6a69e
+-/
 theorem plateau_eventually_one : ∀ᶠ r in nhds (0 : ℝ), plateau r = 1 := by
   filter_upwards [Iio_mem_nhds (show (0 : ℝ) < 1 by norm_num)] with r hr
   exact plateau_eq_one r (le_of_lt hr)
@@ -171,7 +191,9 @@ private theorem plateauD2_eq_join : plateauD2 =
 Use `joinAt 1 (fun _ => 1) (joinAt 2 Q (fun _ => 0))`, where Q is the
 transition polynomial. Its value, first jet, and second jet at 2 are zero;
 at 1 they are one, zero, zero. Equality at 2 is handled by Q(2)=0 rather
-than changing the public formula's strict upper test. -/
+than changing the public formula's strict upper test.
+@isnad1 id=hasderiv.0h1v.s5.1512e43a8d8c from=translated src=- shape=475e04ea vocab=15590f8c
+-/
 theorem plateau_hasDerivAt (r : ℝ) : HasDerivAt plateau (plateauD1 r) r := by
   rw [plateau_eq_join, plateauD1_eq_join]
   have hi := joinAt_hasDerivAt 2 plateau_polynomial_hasDerivAt
@@ -179,7 +201,9 @@ theorem plateau_hasDerivAt (r : ℝ) : HasDerivAt plateau (plateauD1 r) r := by
   exact joinAt_hasDerivAt 1 (fun x => hasDerivAt_const x (1 : ℝ)) hi
     (by norm_num [joinAt]) (by norm_num [joinAt]) r
 
-/-- At [every radius](hyp:r), [the first jet has the explicit second derivative](goal). -/
+/-- At [every radius](hyp:r), [the first jet has the explicit second derivative](goal).
+@isnad1 id=hasderiv.0h1v.s5.a43296ab0128 from=translated src=- shape=475e04ea vocab=b4827e8c
+-/
 theorem plateauD1_hasDerivAt (r : ℝ) : HasDerivAt plateauD1 (plateauD2 r) r := by
   rw [plateauD1_eq_join, plateauD2_eq_join]
   have hi := joinAt_hasDerivAt 2 plateau_polynomialD1_hasDerivAt
@@ -187,7 +211,9 @@ theorem plateauD1_hasDerivAt (r : ℝ) : HasDerivAt plateauD1 (plateauD2 r) r :=
   exact joinAt_hasDerivAt 1 (fun x => hasDerivAt_const x (0 : ℝ)) hi
     (by norm_num [joinAt]) (by norm_num [joinAt]) r
 
-/-- [The exact quintic plateau is globally twice continuously differentiable](goal). -/
+/-- [The exact quintic plateau is globally twice continuously differentiable](goal).
+@isnad1 id=contdiff.0h0v.s5.95ef7096743b from=translated src=- shape=23a74193 vocab=2fa78b98
+-/
 theorem plateau_contDiff : ContDiff ℝ 2 plateau := by
   have he₁ : deriv plateau = plateauD1 :=
     funext fun r => (plateau_hasDerivAt r).deriv
@@ -206,31 +232,41 @@ theorem plateau_contDiff : ContDiff ℝ 2 plateau := by
     · norm_num
   · norm_num [joinAt]
 
-/-- [The ordinary derivative of the plateau is its explicit first jet](goal). -/
+/-- [The ordinary derivative of the plateau is its explicit first jet](goal).
+@isnad1 id=eq.0h0v.s5.d714d75aa311 from=translated src=- shape=1142214a vocab=c50057ff
+-/
 theorem plateau_deriv : deriv plateau = plateauD1 := by
   funext r
   exact (plateau_hasDerivAt r).deriv
 
-/-- [The second ordinary derivative of the plateau is its explicit second jet](goal). -/
+/-- [The second ordinary derivative of the plateau is its explicit second jet](goal).
+@isnad1 id=eq.0h0v.s5.eb95a17b12d1 from=translated src=- shape=d9d6a2dc vocab=c4c3ed82
+-/
 theorem plateau_deriv_two : deriv (deriv plateau) = plateauD2 := by
   rw [plateau_deriv]
   funext r
   exact (plateauD1_hasDerivAt r).deriv
 
 /-- At [a radius in the transition region](hyp:r,hr),
-[the first derivative has the exact quintic derivative formula](goal). -/
+[the first derivative has the exact quintic derivative formula](goal).
+@isnad1 id=eq.1h1v.s7.53634229b374 from=translated src=- shape=e3763b09 vocab=28b829bd
+-/
 theorem plateau_deriv_of_transition (r : ℝ) (hr : 1 < r ∧ r < 2) :
     deriv plateau r = -30 * (r - 1) ^ 2 + 60 * (r - 1) ^ 3 - 30 * (r - 1) ^ 4 := by
   simp [plateau_deriv, plateauD1, hr]
 
 /-- At [a radius in the transition region](hyp:r,hr),
-[the second derivative has the exact quintic second derivative formula](goal). -/
+[the second derivative has the exact quintic second derivative formula](goal).
+@isnad1 id=eq.1h1v.s7.85b605f802f6 from=translated src=- shape=b4272131 vocab=28b829bd
+-/
 theorem plateau_second_deriv_of_transition (r : ℝ) (hr : 1 < r ∧ r < 2) :
     deriv (deriv plateau) r = -60 * (r - 1) + 180 * (r - 1) ^ 2 - 120 * (r - 1) ^ 3 := by
   simp [plateau_deriv_two, plateauD2, hr]
 
 /-- At [a radius](hyp:r) [outside the open transition region](hyp:hr),
-[both derivative jets vanish](goal), including radii one and two. -/
+[both derivative jets vanish](goal), including radii one and two.
+@isnad1 id=and.1h1v.s7.e269d961e49d from=translated src=- shape=cc9c0117 vocab=11231d7f
+-/
 theorem plateau_jets_zero (r : ℝ) (hr : r ≤ 1 ∨ 2 ≤ r) :
     deriv plateau r = 0 ∧ deriv (deriv plateau) r = 0 := by
   have hn : ¬(1 < r ∧ r < 2) := by

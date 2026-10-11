@@ -52,7 +52,9 @@ private theorem leftFaceReflection_withinJet_eq_ambient_on_open
 constant C such that, for every response u in the intrinsic Hölder ball of order
 m, exponent s and radius L ≥ 0 on the normalized cube, the within-collar Fréchet
 derivatives of the one-face reflection of u of every order at most m have
-operator norm at most C·L at every point of the closed exterior slab](goal). -/
+operator norm at most C·L at every point of the closed exterior slab](goal).
+@isnad1 id=ex.1h5v.s9.eb1209e34361 from=translated src=- shape=bef7b13a vocab=a324a4fb
+-/
 theorem exists_leftFaceReflection_closedExterior_jet_bound
     (d m : ℕ) (s : ℝ) (i : Fin d) (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),
@@ -94,7 +96,9 @@ conditions Σ_q a_q·(−(q + 1))^k = 1 for every k ≤ m](hyp:ha), then [there 
 positive constant C such that, for every response u in the intrinsic Hölder ball
 of order m, exponent s and radius L ≥ 0 on the normalized cube, the order-m
 within-collar Fréchet derivative of the one-face reflection of u is s-Hölder
-with coefficient C·L between any two points of the closed exterior slab](goal). -/
+with coefficient C·L between any two points of the closed exterior slab](goal).
+@isnad1 id=ex.2h5v.s10.2884ebbe273f from=translated src=- shape=799e8223 vocab=324115ef
+-/
 theorem exists_leftFaceReflection_closedExterior_top_modulus
     (d m : ℕ) (s : ℝ) (hs : 0 < s)
     (i : Fin d) (a : Fin (m + 1) → ℝ)

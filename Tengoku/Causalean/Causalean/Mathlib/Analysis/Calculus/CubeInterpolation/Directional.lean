@@ -15,7 +15,9 @@ open scoped BigOperators
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- The order-`m` derivative evaluated repeatedly on one vector is the sum of
-its coordinate partials weighted by products of that vector's coordinates. -/
+its coordinate partials weighted by products of that vector's coordinates.
+@isnad1 id=eq.0h5v.s9.ee138733998c from=translated src=- shape=ec46201d vocab=abc6b0d0
+-/
 theorem diagonal_derivative_coordinate_expansion {d m : ℕ}
     (u : (Fin d → ℝ) → ℝ) (x h : Fin d → ℝ) :
     iteratedFDeriv ℝ m u x (fun _ => h) =
@@ -44,7 +46,9 @@ cube with exponent s and constant L](hyp:hu), where [s is positive](hyp:hs) and 
 nonnegative](hyp:hL), and for [two points x and y and a direction h](hyp:x,y,h) with [both points
 in the cube](hyp:hx,hy), [the order-m derivative taken m times in the direction h changes between x
 and y by at most (d + 1)^m times L times the distance between the points to the power s times the
-length of h to the power m](goal). -/
+length of h to the power m](goal).
+@isnad1 id=le.5h8v.s10.80de96f6c1e5 from=translated src=- shape=bfb0764c vocab=03d6e6db
+-/
 theorem topHolder_diagonal_derivative {d m : ℕ} {s L : ℝ}
     (u : (Fin d → ℝ) → ℝ) (hs : 0 < s) (hL : 0 ≤ L)
     (hu : TopHolder d m s L u) (x y h : Fin d → ℝ)

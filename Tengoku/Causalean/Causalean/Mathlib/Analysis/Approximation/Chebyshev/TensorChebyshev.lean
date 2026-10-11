@@ -61,6 +61,7 @@ every positive frequency has normalization `1/π`.
 The unnormalized integral is `2π` at frequency zero, `π` at a matching positive frequency,
 and zero otherwise. Mathlib's `Polynomial.Chebyshev` orthogonality uses `measureT` on `[-1,1]`;
 convert that theorem to the period interval, or prove the cosine product integral directly.
+@isnad1 id=eq.0h2v.s7.20af853f1c68 from=translated src=- shape=8240c6cc vocab=8f339bce
 -/
 theorem chebyshev_one_variable_cosine_orthogonality (k m : ℕ) :
     (if k = 0 then (1 / (2 * Real.pi) : ℝ) else 1 / Real.pi) *
@@ -115,6 +116,7 @@ theorem chebyshev_one_variable_cosine_orthogonality (k m : ℕ) :
 
 Induct on degree using the nonzero leading coefficient of `T_D`. The lower degree remainder
 is handled by the induction hypothesis; equivalently construct the triangular change of basis.
+@isnad1 id=ex.1h2v.s7.20007a666fd7 from=translated src=- shape=3e54bc83 vocab=08fd655d
 -/
 theorem chebyshev_one_variable_finite_span (D : ℕ) (p : Polynomial ℝ)
     (hdeg : p.natDegree ≤ D) :
@@ -147,6 +149,7 @@ cosine kernel yields one at the matching multi-index and zero at every other ind
 
 Use Fubini on the product period box, factor the integrand into four one-variable factors,
 then apply `chebyshev_one_variable_cosine_orthogonality` coordinatewise.
+@isnad1 id=eq.0h3v.s7.6e77cf778e76 from=translated src=- shape=76b2e85d vocab=c469be4a
 -/
 theorem tensorChebyshevCoefficient_basis (D : ℕ)
     (k m : Fin 4 → Fin (D + 1)) :
@@ -183,6 +186,7 @@ Chebyshev basis polynomials with indices at most `D` in every coordinate.
 
 Expand each univariate monomial with `chebyshev_one_variable_finite_span`, map the expansions
 to distinct multivariate coordinates, and distribute the finite product.
+@isnad1 id=ex.0h2v.s8.0402e88ec396 from=translated src=- shape=62b5cb51 vocab=c4abd6c1
 -/
 theorem tensorChebyshevBasis_monomial_span (D : ℕ)
     (a : Fin 4 → Fin (D + 1)) :
@@ -225,6 +229,7 @@ the tensor Chebyshev basis indexed by `(Fin (D+1))^4`.
 
 Expand the fixed monomial basis from `tensorPolynomial_tensorCoeffs`; apply
 `chebyshev_one_variable_finite_span` to each coordinate and distribute the finite products.
+@isnad1 id=ex.1h2v.s6.41ff95888111 from=translated src=- shape=a1b8aa2f vocab=213107f9
 -/
 theorem tensorChebyshevBasis_finite_span (D : ℕ)
     (p : MvPolynomial (Fin 4) ℝ)
@@ -261,6 +266,7 @@ coefficients](goal).
 Apply one-variable cosine orthogonality successively to the four coordinates. Use polynomial
 extensionality after expanding each coordinate in the Chebyshev basis; the degree bound makes
 the expansion finite. The zero frequency uses normalization `1/(2π)`.
+@isnad1 id=eq.1h2v.s5.eb0df8094095 from=translated src=- shape=0ead6df6 vocab=b6ff11c4
 -/
 theorem tensorChebyshev_coeff_recovery (D : ℕ)
     (p : MvPolynomial (Fin 4) ℝ)
@@ -314,6 +320,7 @@ the product of the corresponding one-variable Chebyshev coefficients.
 
 Expand each `Polynomial.toMvPolynomial` into monomials and distribute the product. Distinct
 coordinates make the exponent-sum map injective, so the desired coefficient is one product.
+@isnad1 id=eq.0h3v.s7.c55e7e065d0c from=translated src=- shape=2de32212 vocab=f746df97
 -/
 theorem tensorChebyshevBasis_coeff_factorization (D : ℕ)
     (k a : Fin 4 → Fin (D + 1)) :
@@ -381,6 +388,7 @@ polynomial is at most `(1+√2)^(4D)` for every index bounded by `D`.
 
 Use the submultiplicativity of `polynomialCoeffOneNorm`, its multivariate tensor-product
 counterpart, and `polynomialCoeffOneNorm_chebyshev_le` in each coordinate.
+@isnad1 id=le.0h2v.s7.ea9cb5086251 from=translated src=- shape=619c85fa vocab=afd74415
 -/
 theorem tensorChebyshevBasis_coeff_oneNorm_le (D : ℕ)
     (k : Fin 4 → Fin (D + 1)) :

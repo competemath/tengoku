@@ -607,7 +607,9 @@ private theorem exists_mvPolynomial_of_coord_even_trig {d n : ℕ}
 /-- For [a strictly positive integer order K](hyp:hK) and [a function](hyp:f) of d variables that
 [is continuous on the normalized cube](hyp:hf), [there is a multivariate polynomial that reproduces
 the tensor Jackson convolution at the coordinatewise cosines of every point, has degree at most 2
-(K − 1) in each variable, and has total degree at most d times 2 (K − 1)](goal). -/
+(K − 1) in each variable, and has total degree at most d times 2 (K − 1)](goal).
+@isnad1 id=ex.2h3v.s8.7a260226f1c0 from=translated src=- shape=fee10445 vocab=9e2f82d9
+-/
 theorem tensorConvolution_exists_mvPolynomial {d K : ℕ} (hK : 0 < K)
     (f : (Fin d → ℝ) → ℝ) (hf : ContinuousOn f (normalizedCube d)) :
     ∃ p : MvPolynomial (Fin d) ℝ,
@@ -626,7 +628,9 @@ nonnegative Lipschitz constant L](hyp:L,hL), [continuity on the normalized cube]
 bound that the function changes between any two points of the cube by at most L times the sum of
 their absolute coordinate differences](hyp:hlip), and [a point in period coordinates](hyp:x),
 [tensor Jackson convolution approximates the cosine lift there within thirty-two times dimension
-times the Lipschitz constant divided by K](goal). -/
+times the Lipschitz constant divided by K](goal).
+@isnad1 id=le.4h5v.s7.6ae9dcf1afc9 from=translated src=- shape=2f3abb65 vocab=b66673ca
+-/
 theorem tensorConvolution_approx_lipschitz {d K : ℕ} (hK : 0 < K)
     (f : (Fin d → ℝ) → ℝ) (L : ℝ) (hL : 0 ≤ L)
     (hf : ContinuousOn f (normalizedCube d))

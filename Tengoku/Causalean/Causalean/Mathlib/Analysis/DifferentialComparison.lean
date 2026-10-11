@@ -28,7 +28,9 @@ that [`ψ` is differentiable at zero](hyp:hψ0), [is differentiable at every pos
 the linear pole](hyp:hψ), [vanishes at zero](hyp:hzero), [the coefficients are
 nonnegative](hyp:ha,hb), and [its differential residual is at most `b x²`](hyp:hdiff).  Then at
 [a nonnegative point `lam`](hyp:hlam0) [below the pole](hyp:hlam), [the centered value of `ψ` is
-at most `(a ψ'(0) + b) lam² / (1 - a lam)`](goal). -/
+at most `(a ψ'(0) + b) lam² / (1 - a lam)`](goal).
+@isnad1 id=le.8h4v.s9.2e98232c3a29 from=translated src=- shape=af2cdbb8 vocab=12fbf5af
+-/
 theorem centered_le_of_differential_inequality
     {ψ : ℝ → ℝ} {a b : ℝ}
     (hψ0 : DifferentiableAt ℝ ψ 0)

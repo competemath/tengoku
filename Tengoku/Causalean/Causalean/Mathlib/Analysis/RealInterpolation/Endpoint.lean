@@ -17,7 +17,9 @@ noncomputable section
 namespace Causalean.Mathlib.Analysis.RealInterpolation
 
 /-- An [injective embedding](hyp:i,hi) gives [the original endpoint norm](goal)
-at [an embedded vector](hyp:e). -/
+at [an embedded vector](hyp:e).
+@isnad1 id=eq.1h4v.s8.6a61650bf8da from=translated src=- shape=a49734a1 vocab=b8b060e2
+-/
 theorem embeddedNorm_apply {E V : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup V] [NormedSpace ℝ V] (i : E →L[ℝ] V)
     (hi : Function.Injective i) (e : E) :
@@ -29,7 +31,9 @@ theorem embeddedNorm_apply {E V : Type*} [NormedAddCommGroup E] [NormedSpace ℝ
     rw [hi h]
 
 /-- [A vector outside the range](hyp:v,hv) of [an embedding](hyp:i) has
-[infinite extended endpoint norm](goal). -/
+[infinite extended endpoint norm](goal).
+@isnad1 id=eq.1h4v.s7.d7e7d5a8e3f9 from=translated src=- shape=0c8a455d vocab=ba039a50
+-/
 theorem embeddedNorm_eq_top {E V : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup V] [NormedSpace ℝ V] (i : E →L[ℝ] V)
     (v : V) (hv : v ∉ Set.range i) : embeddedNorm i v = ⊤ := by
@@ -38,7 +42,9 @@ theorem embeddedNorm_eq_top {E V : Type*} [NormedAddCommGroup E] [NormedSpace �
   exact (hv ⟨e, h⟩).elim
 
 /-- [An injective embedding](hyp:i,hi) gives [a finite extended norm exactly on
-its range](goal), at [any ambient vector](hyp:v). -/
+its range](goal), at [any ambient vector](hyp:v).
+@isnad1 id=iff.1h4v.s8.ca904833b114 from=translated src=- shape=1c97870d vocab=b35546ce
+-/
 theorem embeddedNorm_lt_top_iff {E V : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup V] [NormedSpace ℝ V] (i : E →L[ℝ] V)
     (hi : Function.Injective i) (v : V) :
@@ -58,7 +64,9 @@ quadratic K-functional with the endpoint decomposition infimum](goal), at
 [a positive scale](hyp:t,ht) and [an ambient vector](hyp:v).
 
 Prove both inequalities by indexing each infimum. Outside endpoint ranges the
-ambient cost is infinity; positive scale prevents zero times infinity on endpoint 1. -/
+ambient cost is infinity; positive scale prevents zero times infinity on endpoint 1.
+@isnad1 id=eq.3h7v.s10.2ae06be53207 from=translated src=- shape=ae96c764 vocab=d708e938
+-/
 theorem kFunctionalSq_embedded {E0 E1 V : Type*}
     [NormedAddCommGroup E0] [NormedSpace ℝ E0]
     [NormedAddCommGroup E1] [NormedSpace ℝ E1]
@@ -95,7 +103,9 @@ satisfies [the rescaled squared K-functional estimate](goal), for
 [endpoint gauges](hyp:n0,n1,m0,m1), [a positive scale](hyp:t,ht), and [a vector](hyp:v).
 
 Map each admissible decomposition using additivity, square the endpoint bounds,
-and factor out A0² through the infimum. No completeness or attainment is needed. -/
+and factor out A0² through the infimum. No completeness or attainment is needed.
+@isnad1 id=le.5h11v.s8.5d69d85b35cd from=translated src=- shape=837e4529 vocab=71b01a31
+-/
 theorem kFunctionalSq_map_le {V W : Type*} [AddCommGroup V] [AddCommGroup W]
     (n0 n1 : V → ℝ≥0∞) (m0 m1 : W → ℝ≥0∞) (D : V →+ W)
     (A0 A1 : ℝ≥0∞) (hA0 : 0 < A0 ∧ A0 < ⊤) (hA1 : 0 < A1 ∧ A1 < ⊤)

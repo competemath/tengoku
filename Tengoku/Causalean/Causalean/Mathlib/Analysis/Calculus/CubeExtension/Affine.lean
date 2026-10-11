@@ -145,7 +145,9 @@ private theorem cubeAffineInv_norm_sub {d : ℕ} (x y : Fin d → ℝ) :
 intrinsic Hölder ball of order m, exponent s and radius R ≥ 0 on the
 normalized cube `[-1,1]^d`, its pullback x ↦ u(2x − 1) along the coordinatewise
 affine map lies in the intrinsic Hölder ball of radius C·R on the unit cube
-`[0,1]^d`](goal). The constant depends only on d, m and s. -/
+`[0,1]^d`](goal). The constant depends only on d, m and s.
+@isnad1 id=ex.2h3v.s6.d2c027b1ca54 from=translated src=- shape=f9947de4 vocab=89ba5c60
+-/
 theorem cube_holder_affine_transport (d m : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1) :
     ∃ C : ℝ, 0 < C ∧
@@ -202,7 +204,9 @@ theorem cube_holder_affine_transport (d m : ℕ) (s : ℝ)
 intrinsic Hölder ball of order m, exponent s and radius R ≥ 0 on the unit cube
 `[0,1]^d`, its pullback x ↦ u((x + 1)/2) along the inverse coordinatewise affine
 map lies in the intrinsic Hölder ball of radius C·R on the normalized cube
-`[-1,1]^d`](goal). The constant depends only on d, m and s. -/
+`[-1,1]^d`](goal). The constant depends only on d, m and s.
+@isnad1 id=ex.2h3v.s6.68b1d34c78d9 from=translated src=- shape=be9eb63c vocab=71855ad9
+-/
 theorem unit_holder_affine_transport (d m : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1) :
     ∃ C : ℝ, 0 < C ∧

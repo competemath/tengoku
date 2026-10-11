@@ -26,13 +26,17 @@ Every coordinate of `f` is a polynomial in the source coordinates. -/
 def IsPolynomialMap {ι κ : Type*} (f : (ι → ℂ) → (κ → ℂ)) : Prop :=
   ∀ k, ∃ P : MvPolynomial ι ℂ, ∀ x, MvPolynomial.eval x P = f x k
 
-/-- The identity map is polynomial. -/
+/-- The identity map is polynomial.
+@isnad1 id=ispolyno.0h1v.s3.aebbf52234b2 from=translated src=- shape=b741af2e vocab=5f32c05a
+-/
 lemma isPolynomialMap_id {ι : Type*} :
     IsPolynomialMap (id : (ι → ℂ) → (ι → ℂ)) := by
   intro i
   exact ⟨MvPolynomial.X i, by simp⟩
 
-/-- A composite of polynomial maps is polynomial. -/
+/-- A composite of polynomial maps is polynomial.
+@isnad1 id=ispolyno.2h5v.s5.ce9fdf1213d4 from=translated src=- shape=15548908 vocab=a50b0111
+-/
 lemma IsPolynomialMap.comp {ι κ τ : Type*}
     {f : (ι → ℂ) → (κ → ℂ)} {g : (κ → ℂ) → (τ → ℂ)}
     (hg : IsPolynomialMap g) (hf : IsPolynomialMap f) :
@@ -56,7 +60,9 @@ lemma IsPolynomialMap.comp {ι κ τ : Type*}
           exact hPf k x
     _ = g (f x) t := hQ (f x)
 
-/-- Substituting a polynomial map into a target polynomial yields a source polynomial. -/
+/-- Substituting a polynomial map into a target polynomial yields a source polynomial.
+@isnad1 id=ex.1h4v.s7.a4020252631d from=translated src=- shape=0beba6c9 vocab=dfbd450a
+-/
 lemma IsPolynomialMap.eval_comp {ι κ : Type*}
     {f : (ι → ℂ) → (κ → ℂ)} (hf : IsPolynomialMap f)
     (Q : MvPolynomial κ ℂ) :
@@ -75,7 +81,9 @@ lemma IsPolynomialMap.eval_comp {ι κ : Type*}
   funext k
   exact hPf k x
 
-/-- The preimage of an affine-closed set under a polynomial map is affine-closed. -/
+/-- The preimage of an affine-closed set under a polynomial map is affine-closed.
+@isnad1 id=eq.2h4v.s5.f21130010a3d from=translated src=- shape=9236f07c vocab=91f003af
+-/
 lemma polynomial_preimage_closed {ι κ : Type*}
     {f : (ι → ℂ) → (κ → ℂ)} (hf : IsPolynomialMap f)
     {A : Set (κ → ℂ)} (hA : affineZariskiClosure A = A) :
@@ -94,7 +102,9 @@ lemma polynomial_preimage_closed {ι κ : Type*}
       simpa [MvPolynomial.aeval_def, MvPolynomial.eval₂_id] using hQ (f y) hy)
   · exact affineZariskiClosure_extensive _
 
-/-- The fixed-point set of a polynomial endomorphism is affine-closed. -/
+/-- The fixed-point set of a polynomial endomorphism is affine-closed.
+@isnad1 id=eq.1h2v.s5.eb3b04c21ad7 from=translated src=- shape=6b8875da vocab=fb94a5ac
+-/
 lemma polynomial_fixedPoints_closed {ι : Type*}
     {f : (ι → ℂ) → (ι → ℂ)} (hf : IsPolynomialMap f) :
     affineZariskiClosure {x | f x = x} = {x | f x = x} := by
@@ -114,7 +124,9 @@ lemma polynomial_fixedPoints_closed {ι : Type*}
 `ℂ^κ`, if [`f` is coordinatewise polynomial](hyp:hf), [an accompanying map `g`
 back to `ℂ^ι` is coordinatewise polynomial](hyp:hg), and [`g` is a left
 inverse of `f`, i.e. `g (f x) = x` for every `x`](hyp:hleft), then [the range
-of `f` is already Zariski-closed](goal). -/
+of `f` is already Zariski-closed](goal).
+@isnad1 id=eq.3h4v.s5.75c07a156d6f from=translated src=- shape=450ef0c2 vocab=450e4261
+-/
 lemma polynomial_range_closed_of_retract {ι κ : Type*}
     {f : (ι → ℂ) → (κ → ℂ)} {g : (κ → ℂ) → (ι → ℂ)}
     (hf : IsPolynomialMap f) (hg : IsPolynomialMap g)
@@ -130,7 +142,9 @@ lemma polynomial_range_closed_of_retract {ι κ : Type*}
   rw [hfix]
   exact polynomial_fixedPoints_closed (hf.comp hg)
 
-/-- A polynomial retract sends affine-closed source subsets to affine-closed images. -/
+/-- A polynomial retract sends affine-closed source subsets to affine-closed images.
+@isnad1 id=eq.4h5v.s6.74bd63bb8723 from=translated src=- shape=d6e60b14 vocab=d0f5171f
+-/
 lemma polynomial_image_closed_of_retract {ι κ : Type*}
     {f : (ι → ℂ) → (κ → ℂ)} {g : (κ → ℂ) → (ι → ℂ)}
     (hf : IsPolynomialMap f) (hg : IsPolynomialMap g)

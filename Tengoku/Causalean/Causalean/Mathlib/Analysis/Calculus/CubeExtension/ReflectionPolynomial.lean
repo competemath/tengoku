@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 Σ_i a_i·(−(i + 1))^k = 1 for every k ≤ m](hyp:ha), then [for every polynomial with coefficients
 c_0, …, c_m and every real t, the weighted sum over i of a_i times the
 polynomial evaluated at −(i + 1)·t equals the polynomial evaluated at t](goal);
-that is, moment-matched weights reproduce every polynomial of degree at most m. -/
+that is, moment-matched weights reproduce every polynomial of degree at most m.
+@isnad1 id=eq.1h4v.s8.6796f3f30c00 from=translated src=- shape=56842d24 vocab=f9090b26
+-/
 theorem reflection_taylor_polynomial (m : ℕ)
     (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

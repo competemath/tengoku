@@ -59,7 +59,9 @@ the same v-structures (immoralities)](goal).
 
 The easy direction reads the skeleton and v-structures from d-separation. The hard
 direction is supplied by the covered-edge reversal route: same-skeleton/same-immorality
-DAGs are connected by covered edge reversals, each preserving every d-separation. -/
+DAGs are connected by covered edge reversals, each preserving every d-separation.
+@isnad1 id=iff.0h3v.s5.55247278e83f from=translated src=- shape=c6040bba vocab=50933850
+-/
 theorem markovEquiv_iff_sameSkeleton_sameImmoralities (G₁ G₂ : DAG V) :
     MarkovEquiv G₁ G₂ ↔ SameSkeleton G₁ G₂ ∧ SameImmoralities G₁ G₂ :=
   ⟨sameSkeleton_sameImmoralities_of_markovEquiv,

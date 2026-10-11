@@ -54,7 +54,9 @@ def Factorization.observationalDensity {G : Causalean.Graph.DAG V}
   B.partialDensity Finset.univ v
 
 /-- A [DAG factorization](hyp:B) and a [finite node set](hyp:S) [have a measurable partial
-product density](goal). -/
+product density](goal).
+@isnad1 id=measurab.0h6v.s6.7af1b5b4f95d from=translated src=- shape=9eb4f325 vocab=6ef774c4
+-/
 @[fun_prop]
 theorem Factorization.measurable_partialDensity {G : Causalean.Graph.DAG V}
     (B : Factorization G X μ) (S : Finset V) :
@@ -62,7 +64,9 @@ theorem Factorization.measurable_partialDensity {G : Causalean.Graph.DAG V}
   change Measurable (fun v ↦ ∏ i ∈ S, B.factor i v)
   exact Finset.measurable_prod S (fun i _ ↦ B.measurable_factor i)
 
-/-- A [DAG factorization](hyp:B) [has a measurable observational product density](goal). -/
+/-- A [DAG factorization](hyp:B) [has a measurable observational product density](goal).
+@isnad1 id=measurab.0h5v.s6.43a6bb7c56ae from=translated src=- shape=4d3705dc vocab=a18c39b9
+-/
 @[fun_prop]
 theorem Factorization.measurable_observationalDensity {G : Causalean.Graph.DAG V}
     (B : Factorization G X μ) : Measurable B.observationalDensity := by
@@ -70,7 +74,9 @@ theorem Factorization.measurable_observationalDensity {G : Causalean.Graph.DAG V
   exact B.measurable_partialDensity Finset.univ
 
 /-- A [DAG factorization](hyp:B), a [target node](hyp:i), and a [numerator depending on that
-node's value](hyp:numerator) [give a density ratio determined only by the target and its parents](goal). -/
+node's value](hyp:numerator) [give a density ratio determined only by the target and its parents](goal).
+@isnad1 id=dependso.0h7v.s6.b652d3d96d2a from=translated src=- shape=543965ff vocab=40a9cf91
+-/
 theorem Factorization.targetRatio_dependsOn {G : Causalean.Graph.DAG V}
     (B : Factorization G X μ) (i : V) (numerator : X i → ℝ≥0∞) :
     DependsOn (insert i (G.parents i))
@@ -131,7 +137,9 @@ def Factorization.interventionDensity {G : Causalean.Graph.DAG V}
 
 /-- A [DAG factorization](hyp:B), [intervention target](hyp:j), and [replacement density](hyp:q)
 [give the same product density whether intervention is represented by factor replacement or by
-the explicit truncated product](goal). -/
+the explicit truncated product](goal).
+@isnad1 id=eq.0h7v.s6.027de4cc3a7c from=translated src=- shape=1b989dd1 vocab=2e6cf982
+-/
 theorem Factorization.observationalDensity_intervene {G : Causalean.Graph.DAG V}
     (B : Factorization G X μ) (j : V) (q : InterventionDensity j X μ) :
     (B.intervene j q).observationalDensity = B.interventionDensity j q := by
@@ -153,7 +161,9 @@ theorem Factorization.observationalDensity_intervene {G : Causalean.Graph.DAG V}
   exact mul_comm _ _
 
 /-- A [DAG factorization](hyp:B), [intervention target](hyp:j), and [replacement density](hyp:q)
-[give a measurable truncated intervention density](goal). -/
+[give a measurable truncated intervention density](goal).
+@isnad1 id=measurab.0h7v.s6.91452f879344 from=translated src=- shape=b8f277ad vocab=677ff3fd
+-/
 @[fun_prop]
 theorem Factorization.measurable_interventionDensity {G : Causalean.Graph.DAG V}
     (B : Factorization G X μ) (j : V) (q : InterventionDensity j X μ) :

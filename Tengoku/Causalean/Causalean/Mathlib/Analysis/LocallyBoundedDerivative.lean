@@ -19,7 +19,9 @@ def HasLocallyBoundedFDerivAt {E F : Type*} [NormedAddCommGroup E] [NormedSpace 
     [NormedAddCommGroup F] [NormedSpace ℝ F] (f : E → F) (x : E) : Prop :=
   ∃ U ∈ 𝓝 x, ∃ C : ℝ, 0 ≤ C ∧ ∀ y ∈ U, ‖fderiv ℝ f y‖ ≤ C
 
-/-- Given [a function between real normed vector spaces](hyp:f), [a point in its domain](hyp:x), and [continuous differentiability at that point](hyp:hf), [the function has a locally bounded Fréchet derivative there](goal). -/
+/-- Given [a function between real normed vector spaces](hyp:f), [a point in its domain](hyp:x), and [continuous differentiability at that point](hyp:hf), [the function has a locally bounded Fréchet derivative there](goal).
+@isnad1 id=haslocal.1h4v.s6.059149ab58d8 from=translated src=- shape=fc52b561 vocab=34d892e7
+-/
 theorem ContDiffAt.hasLocallyBoundedFDerivAt {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]

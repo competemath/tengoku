@@ -35,7 +35,9 @@ noncomputable def krrRisk {X H : Type*} [NormedAddCommGroup H] [InnerProductSpac
 infinite-dimensional optimization problem to sample
 coefficients. The reduction applies to [the sampled covariates and responses](hyp:x,y) when
 [evaluation has supplied Hilbert-space representers](hyp:hrkhs),
-[the penalty is strictly positive](hyp:hlam), and [the candidate globally minimizes](hyp:hmin). -/
+[the penalty is strictly positive](hyp:hlam), and [the candidate globally minimizes](hyp:hmin).
+@isnad1 id=ex.3h9v.s7.733c17fc78da from=translated src=- shape=08476a21 vocab=736de1cb
+-/
 theorem representer_theorem {X H : Type*}
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
     {feval : H → X → ℝ} {representer : X → H}

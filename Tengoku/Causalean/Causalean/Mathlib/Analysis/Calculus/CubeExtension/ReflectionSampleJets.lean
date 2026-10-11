@@ -22,7 +22,9 @@ q](hyp:q), [there is a positive constant C such that, for every response u in th
 intrinsic Hölder ball of order m, exponent s and radius L ≥ 0 on the normalized
 cube, every ambient derivative of order at most m of the composite
 y ↦ u(inward sample of y) has operator norm at most C·L on the open exterior
-collar](goal). The constant does not depend on the response or the radius. -/
+collar](goal). The constant does not depend on the response or the radius.
+@isnad1 id=ex.0h5v.s9.974732a65c25 from=translated src=- shape=057f0563 vocab=f5f2edf3
+-/
 theorem exists_leftFaceSample_jet_bound (d m : ℕ) (s : ℝ)
     (i : Fin d) (q : Fin (m + 1)) :
     ∃ C : ℝ, 0 < C ∧
@@ -143,7 +145,9 @@ dilation index q](hyp:q) [there is a positive constant C such that, for every
 response u in the intrinsic Hölder ball of order m, exponent s and radius L ≥ 0
 on the normalized cube, the order-m ambient derivative of the composite
 z ↦ u(inward sample of z) is s-Hölder with coefficient C·L between any two
-points of the open exterior collar](goal). -/
+points of the open exterior collar](goal).
+@isnad1 id=ex.1h5v.s10.ef4ab37da0a3 from=translated src=- shape=186245cd vocab=cf1bbfcc
+-/
 theorem exists_leftFaceSample_top_modulus (d m : ℕ) (s : ℝ)
     (hs : 0 < s) (i : Fin d) (q : Fin (m + 1)) :
     ∃ C : ℝ, 0 < C ∧
@@ -290,7 +294,9 @@ cube](hyp:hu), [j ≤ m](hyp:hj), and [x lies in the open exterior
 collar](hyp:hx), then [the order-j ambient derivative of the one-face reflection
 of u at x equals the weighted sum over q of a_q times the order-j ambient
 derivative at x of the composite z ↦ u(inward sample of z with dilation index
-q)](goal). -/
+q)](goal).
+@isnad1 id=eq.3h7v.s10.e7ee1ef75661 from=translated src=- shape=cf50a7f8 vocab=33fd6916
+-/
 theorem leftFaceReflection_iteratedFDeriv_eq_sum
     (d m : ℕ) (i : Fin d) (a : Fin (m + 1) → ℝ)
     (u : (Fin d → ℝ) → ℝ) (hu : ContDiffOn ℝ m u (cube d))
@@ -362,7 +368,9 @@ weights a](hyp:a), [there is a positive constant C such that, for every response
 u in the intrinsic Hölder ball of order m, exponent s and radius L ≥ 0 on the
 normalized cube, every ambient derivative of order at most m of the one-face
 reflection of u has operator norm at most C·L on the open exterior
-collar](goal). The constant may depend on the weights. -/
+collar](goal). The constant may depend on the weights.
+@isnad1 id=ex.0h5v.s8.d58646bb8e9b from=translated src=- shape=746e97e6 vocab=700dc5d6
+-/
 theorem exists_leftFaceReflection_jet_bound (d m : ℕ) (s : ℝ)
     (i : Fin d) (a : Fin (m + 1) → ℝ) :
     ∃ C : ℝ, 0 < C ∧
@@ -406,7 +414,9 @@ reflection weights a](hyp:a) [there is a positive constant C such that, for ever
 response u in the intrinsic Hölder ball of order m, exponent s and radius L ≥ 0
 on the normalized cube, the order-m ambient derivative of the one-face
 reflection of u is s-Hölder with coefficient C·L between any two points of the
-open exterior collar](goal). -/
+open exterior collar](goal).
+@isnad1 id=ex.1h5v.s10.20d9d5316d05 from=translated src=- shape=1e8dc40d vocab=b4187209
+-/
 theorem exists_leftFaceReflection_top_modulus (d m : ℕ) (s : ℝ)
     (hs : 0 < s) (i : Fin d) (a : Fin (m + 1) → ℝ) :
     ∃ C : ℝ, 0 < C ∧

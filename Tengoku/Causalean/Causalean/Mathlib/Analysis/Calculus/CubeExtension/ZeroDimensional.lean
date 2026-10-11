@@ -20,7 +20,9 @@ intrinsic Hölder ball of order m, exponent s and radius L ≥ 0 on the cube has
 global extension U that agrees with u on the cube, is m times continuously
 differentiable, has derivatives of every order at most m bounded in operator
 norm by A·L, and whose order-m derivative is s-Hölder with coefficient
-A·L](goal). -/
+A·L](goal).
+@isnad1 id=ex.0h2v.s11.359d10e8e35b from=translated src=- shape=3c0ce5de vocab=cedabdd0
+-/
 theorem exists_global_holder_extension_zero (m : ℕ) (s : ℝ) :
     ∃ A : ℝ, 0 < A ∧
       ∀ (u : (Fin 0 → ℝ) → ℝ) (L : ℝ), 0 ≤ L →

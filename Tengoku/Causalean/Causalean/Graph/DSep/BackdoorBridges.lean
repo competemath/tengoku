@@ -40,7 +40,9 @@ variable (G : DAG V)
 -- ============================================================
 
 /-- In [a finite directed acyclic graph](hyp:V,G), if [a vertex has no incoming
-edges](hyp:r,hr), then [a selected vertex](hyp:u) [is not its proper ancestor](goal). -/
+edges](hyp:r,hr), then [a selected vertex](hyp:u) [is not its proper ancestor](goal).
+@isnad1 id=not.1h4v.s5.0229092b1794 from=translated src=- shape=89d61181 vocab=0728d035
+-/
 lemma not_isAncestor_of_root' {r : V}
     (hr : ∀ u, ¬ G.edge u r) (u : V) : ¬ G.isAncestor u r := by
   intro h
@@ -64,7 +66,9 @@ lemma not_isAncestor_of_root' {r : V}
     outgoing, since `r` has no incoming edges). A fork is a non-collider, and
     non-colliders in the conditioning set block the walk. Hence no `r ∈ R`
     can appear on an active walk (endpoints are in `X, Y`, disjoint from `R`),
-    so any walk active given `Z ∪ R` is also active given `Z`. -/
+    so any walk active given `Z ∪ R` is also active given `Z`.
+@isnad1 id=dsep.4h6v.s6.f26e8b969e9a from=translated src=- shape=d533bd03 vocab=ebfd201a
+-/
 theorem dSep_union_roots_right {X Y Z R : Finset V}
     (hXY_sep : G.dSep X Y Z)
     (hRoots : ∀ r ∈ R, ∀ u, ¬ G.edge u r)

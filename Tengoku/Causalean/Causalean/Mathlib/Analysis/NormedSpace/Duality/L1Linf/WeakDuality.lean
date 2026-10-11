@@ -39,7 +39,9 @@ Proof: expand `r.eval x = ∑ ℓ ∈ range (r.natDegree + 1), r.coeff ℓ * x ^
 (`Polynomial.eval_eq_sum_range`), swap the order of summation, and apply the
 moment condition `∑ j, w j * (p j)^ℓ = if ℓ = 0 then 0 else 1` for each `ℓ ≤ β`.
 On the left, `r.eval 1 - r.eval 0 = ∑ ℓ ∈ range (n+1), r.coeff ℓ * (1^ℓ - 0^ℓ)`
-matches the same `if`-pattern. -/
+matches the same `if`-pattern.
+@isnad1 id=eq.2h5v.s7.5fe66117705f from=translated src=- shape=9fb9714d vocab=e5fc57fd
+-/
 theorem repr_identity {w : Fin (k + 1) → ℝ} (hw : w ∈ MomentSol p β)
     {r : Polynomial ℝ} (hr : r.natDegree ≤ β) :
     r.eval 1 - r.eval 0 = ∑ j, w j * r.eval (p j) := by
@@ -106,7 +108,9 @@ bounded by every primal value](goal).
 Proof: pick `w ∈ MomentSol p β` with `s = ∑ j, |w j|` and `r` with
 `r.natDegree ≤ β`, `|r.eval (p j)| ≤ 1`, `t = |r.eval 1 - r.eval 0|`.  Then by
 `repr_identity`, `t = |∑ j, w j * r.eval (p j)| ≤ ∑ j, |w j| * |r.eval (p j)|
-≤ ∑ j, |w j| = s`. -/
+≤ ∑ j, |w j| = s`.
+@isnad1 id=le.2h5v.s5.8926fc44dce4 from=translated src=- shape=b27b57ee vocab=41a6922e
+-/
 theorem dual_le_primal {s t : ℝ} (hs : s ∈ primalNormSet p β)
     (ht : t ∈ dualValSet p β) : t ≤ s := by
   rcases hs with ⟨w, hw, rfl⟩
@@ -126,7 +130,9 @@ theorem dual_le_primal {s t : ℝ} (hs : s ∈ primalNormSet p β)
       simp
 
 /-- The dual set is bounded above (by any primal value; the primal set is
-nonempty for distinct nodes and `β ≤ k`). -/
+nonempty for distinct nodes and `β ≤ k`).
+@isnad1 id=bddabove.1h3v.s5.0e008b86a6d4 from=translated src=- shape=d02b9691 vocab=0cf64c0b
+-/
 theorem dualValSet_bddAbove (hne : (primalNormSet p β).Nonempty) :
     BddAbove (dualValSet p β) := by
   rcases hne with ⟨s, hs⟩
@@ -135,7 +141,9 @@ theorem dualValSet_bddAbove (hne : (primalNormSet p β).Nonempty) :
 /-- **Weak duality (inequality form).** If [the primal set of achievable ℓ¹ norms is
 nonempty](hyp:hne), then [the dual supremum is at most the primal infimum](goal): every dual
 value is bounded by every primal value, hence so is the supremum of dual values by the infimum
-of primal values. -/
+of primal values.
+@isnad1 id=le.1h3v.s5.8be7d3318733 from=translated src=- shape=89a6611e vocab=5869c7cd
+-/
 theorem sSup_dual_le_sInf_primal (hne : (primalNormSet p β).Nonempty) :
     sSup (dualValSet p β) ≤ sInf (primalNormSet p β) := by
   exact csSup_le dualValSet_nonempty fun t ht =>

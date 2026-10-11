@@ -252,12 +252,16 @@ private theorem constructedMP_spec {rows cols : ℕ} (A : RectMatrix rows cols) 
     exact (ContinuousLinearMap.isSelfAdjoint_iff_isSymmetric.mp
       (isSelfAdjoint_starProjection T.kerᗮ)).adjoint_eq
 
-/-- Every finite real rectangular matrix has a Moore--Penrose inverse. -/
+/-- Every finite real rectangular matrix has a Moore--Penrose inverse.
+@isnad1 id=ex.0h3v.s4.2e6ae27008bf from=translated src=- shape=13a2a17a vocab=33d08b19
+-/
 theorem exists_moorePenroseInverse {rows cols : ℕ} (A : RectMatrix rows cols) :
     ∃ G : RectMatrix cols rows, IsMoorePenroseInverse A G :=
   ⟨constructedMP A, constructedMP_spec A⟩
 
-/-- A Moore--Penrose inverse of a fixed real matrix is unique. -/
+/-- A Moore--Penrose inverse of a fixed real matrix is unique.
+@isnad1 id=eq.2h5v.s5.cdf5e6475323 from=translated src=- shape=36198fb1 vocab=33d08b19
+-/
 theorem isMoorePenroseInverse_unique {rows cols : ℕ} {A : RectMatrix rows cols}
     {G H : RectMatrix cols rows} (hG : IsMoorePenroseInverse A G)
     (hH : IsMoorePenroseInverse A H) : G = H := by
@@ -303,12 +307,16 @@ noncomputable def moorePenroseInverse {rows cols : ℕ}
 /-- The dagger postfix denotes the canonical Moore--Penrose inverse of a finite real matrix. -/
 postfix:max "†" => moorePenroseInverse
 
-/-- The canonical inverse satisfies all four Penrose equations. -/
+/-- The canonical inverse satisfies all four Penrose equations.
+@isnad1 id=ismoorep.0h3v.s4.58d939ea179c from=translated src=- shape=f93b53ef vocab=dde75bb7
+-/
 theorem moorePenroseInverse_spec {rows cols : ℕ} (A : RectMatrix rows cols) :
     IsMoorePenroseInverse A A† := by
   exact Classical.choose_spec (exists_moorePenroseInverse A)
 
-/-- The product `A A†` is the orthogonal projector onto the moving column space of `A`. -/
+/-- The product `A A†` is the orthogonal projector onto the moving column space of `A`.
+@isnad1 id=and.0h3v.s7.c464d811e089 from=translated src=- shape=4d45bba5 vocab=dfc84e9e
+-/
 theorem rangeProjection_penrose {rows cols : ℕ} (A : RectMatrix rows cols) :
     (A * A†) * (A * A†) = A * A† ∧ (A * A†).transpose = A * A† := by
   have h := moorePenroseInverse_spec A
@@ -316,7 +324,9 @@ theorem rangeProjection_penrose {rows cols : ℕ} (A : RectMatrix rows cols) :
   · rw [← Matrix.mul_assoc, h.1]
   · exact h.2.2.1
 
-/-- The product `A† A` is the orthogonal projector onto the moving row space of `A`. -/
+/-- The product `A† A` is the orthogonal projector onto the moving row space of `A`.
+@isnad1 id=and.0h3v.s7.300d33b61032 from=translated src=- shape=a61f22db vocab=dfc84e9e
+-/
 theorem rowProjection_penrose {rows cols : ℕ} (A : RectMatrix rows cols) :
     (A† * A) * (A† * A) = A† * A ∧ (A† * A).transpose = A† * A := by
   have h := moorePenroseInverse_spec A
@@ -324,20 +334,26 @@ theorem rowProjection_penrose {rows cols : ℕ} (A : RectMatrix rows cols) :
   · rw [← Matrix.mul_assoc, h.2.1]
   · exact h.2.2.2
 
-/-- A Penrose range projector and its orthogonal complement both have norm at most one. -/
+/-- A Penrose range projector and its orthogonal complement both have norm at most one.
+@isnad1 id=and.0h3v.s7.d88f02646b8c from=translated src=- shape=befa16eb vocab=1ad8a923
+-/
 theorem rangeProjection_norms_le_one {rows cols : ℕ} (A : RectMatrix rows cols) :
     ‖A * A†‖ ≤ 1 ∧ ‖(1 : RectMatrix rows rows) - A * A†‖ ≤ 1 := by
   exact symmetricIdempotent_norms_le_one (A * A†)
     (rangeProjection_penrose A).1 (rangeProjection_penrose A).2
 
-/-- A Penrose row projector and its orthogonal complement both have norm at most one. -/
+/-- A Penrose row projector and its orthogonal complement both have norm at most one.
+@isnad1 id=and.0h3v.s7.aeaaf95918c2 from=translated src=- shape=2d447229 vocab=1ad8a923
+-/
 theorem rowProjection_norms_le_one {rows cols : ℕ} (A : RectMatrix rows cols) :
     ‖A† * A‖ ≤ 1 ∧ ‖(1 : RectMatrix cols cols) - A† * A‖ ≤ 1 := by
   exact symmetricIdempotent_norms_le_one (A† * A)
     (rowProjection_penrose A).1 (rowProjection_penrose A).2
 
 /-- Exact ambient Moore--Penrose difference identity.  It permits both ranges to move; the
-equal-rank hypothesis records the perturbative stratum used by the norm corollaries. -/
+equal-rank hypothesis records the perturbative stratum used by the norm corollaries.
+@isnad1 id=eq.1h4v.s9.f5c9d90858a6 from=translated src=- shape=b5a438d1 vocab=76d1e255
+-/
 theorem moorePenrose_sub_eq {rows cols : ℕ} (A B : RectMatrix rows cols)
     (hrank : A.rank = B.rank) :
     B† - A† =
@@ -429,7 +445,9 @@ theorem moorePenrose_sub_eq {rows cols : ℕ} (A B : RectMatrix rows cols)
   abel
 
 /-- Equal-rank Moore--Penrose inverses are Lipschitz with the explicit symmetric maximum of
-their squared inverse norms. -/
+their squared inverse norms.
+@isnad1 id=le.1h4v.s7.df3d0791ad25 from=translated src=- shape=b760b362 vocab=70496569
+-/
 theorem norm_moorePenrose_sub_le {rows cols : ℕ} (A B : RectMatrix rows cols)
     (hrank : A.rank = B.rank) :
     ‖A† - B†‖ ≤
@@ -491,7 +509,9 @@ theorem norm_moorePenrose_sub_le {rows cols : ℕ} (A B : RectMatrix rows cols)
     _ ≤ (M * d + M * d) + M * d := add_le_add (add_le_add ht1 ht2) ht3
     _ = 3 * M * d := by ring
 
-/-- A positive lower bound on the last nonzero singular value bounds the pseudoinverse norm. -/
+/-- A positive lower bound on the last nonzero singular value bounds the pseudoinverse norm.
+@isnad1 id=le.3h5v.s6.2bdff6a4e26c from=translated src=- shape=04272c95 vocab=47f9cd49
+-/
 theorem norm_moorePenroseInverse_le_inv {rows cols r : ℕ}
     (A : RectMatrix rows cols) {s : ℝ} (hrank : A.rank = r)
     (hs : 0 < s) (hmargin : s ≤ singularValue A (r - 1)) :
@@ -536,7 +556,9 @@ theorem norm_moorePenroseInverse_le_inv {rows cols r : ℕ}
   rw [hcanon, constructedMP, LinearEquiv.apply_symm_apply]
   exact hbound
 
-/-- If [two real rectangular matrices A and B](hyp:A,B) [both have rank r](hyp:hrankA,hrankB) and [their r-th largest singular values are both at least a common positive number s](hyp:hs,hmarginA,hmarginB), then [the operator norm of the difference of their Moore–Penrose inverses is at most 3/s² times the operator norm of A − B](goal). -/
+/-- If [two real rectangular matrices A and B](hyp:A,B) [both have rank r](hyp:hrankA,hrankB) and [their r-th largest singular values are both at least a common positive number s](hyp:hs,hmarginA,hmarginB), then [the operator norm of the difference of their Moore–Penrose inverses is at most 3/s² times the operator norm of A − B](goal).
+@isnad1 id=le.5h6v.s7.50b0308198b6 from=translated src=- shape=dcce5a9a vocab=8dc01d59
+-/
 theorem norm_moorePenrose_sub_le_of_singularMargin {rows cols r : ℕ}
     (A B : RectMatrix rows cols) {s : ℝ}
     (hrankA : A.rank = r) (hrankB : B.rank = r) (hs : 0 < s)

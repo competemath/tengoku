@@ -44,7 +44,9 @@ maximal-ideal-adic completion is a domain. -/
 def IsAnalyticallyIrreducible [IsNoetherianRing R] : Prop :=
   IsDomain (AdicCompletion (IsLocalRing.maximalIdeal R) R)
 
-/-- Quasi-completeness implies weak quasi-completeness. -/
+/-- Quasi-completeness implies weak quasi-completeness.
+@isnad1 id=isweakly.1h1v.s4.05b5c8620bf4 from=translated src=- shape=affebb5f vocab=fb737a91
+-/
 theorem IsQuasiComplete.isWeaklyQuasiComplete
     (h : IsQuasiComplete R) : IsWeaklyQuasiComplete R := by
   intro A hA hInt k

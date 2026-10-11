@@ -23,7 +23,9 @@ top-order intrinsic s-Hölder modulus with coefficient L on the cube](hyp:hL),
 then [the contracted response x ↦ u(t·x) is m times continuously
 differentiable within the cube, is still bounded by M on the cube, and its
 top-order ambient coordinate partial derivatives have an s-Hölder modulus with
-coefficient L on the cube](goal). -/
+coefficient L on the cube](goal).
+@isnad1 id=and.6h7v.s8.b24418acf1a1 from=translated src=- shape=9d3a0f56 vocab=f0e0f281
+-/
 theorem contracted_cube_ambient_data {d m : ℕ} {s t M L : ℝ}
     (ht0 : 0 < t) (ht1 : t < 1) (hs : 0 < s)
     (u : (Fin d → ℝ) → ℝ) (hu : ContDiffOn ℝ m u (cube d))

@@ -21,6 +21,9 @@ variable {R : Type*} [CommRing R]
 
 /-! ### R ⧸ I^n is I-adically complete -/
 
+/--
+@isnad1 id=eq.1h4v.s12.1e044c3a9bf7 from=translated src=- shape=626d19f5 vocab=b1e846ca
+-/
 lemma smul_eq_zero_of_quotient (I : Ideal R) (n : ℕ)
     (x : R ⧸ (I ^ n • ⊤ : Submodule R R))
     (hx : x ∈ I ^ n • (⊤ : Submodule R (R ⧸ (I ^ n • ⊤ : Submodule R R)))) :
@@ -39,7 +42,9 @@ lemma smul_eq_zero_of_quotient (I : Ideal R) (n : ℕ)
 /-! ### Key lemma: evalₐ I n x = 0 → x ∈ I^n • ⊤ -/
 
 /-- If evalₐ I n x = 0, then x ∈ I^n • ⊤ (as R-submodule of R̂).
-This is the backward half of ker(evalₐ I n) = (Ideal.map f I)^n. -/
+This is the backward half of ker(evalₐ I n) = (Ideal.map f I)^n.
+@isnad1 id=mem.1h4v.s11.43403211f64e from=translated src=- shape=639c079c vocab=867a6ca5
+-/
 lemma ker_evalₐ_le_smul_top (I : Ideal R) [IsNoetherianRing R] (n : ℕ)
     (x : AdicCompletion I R)
     (hx : evalₐ I n x = 0) :
@@ -140,7 +145,9 @@ lemma ker_evalₐ_le_smul_top (I : Ideal R) [IsNoetherianRing R] (n : ℕ)
 /-! ### Main theorem: kernel of evalₐ is contained in the power of the extended maximal ideal -/
 
 /-- If an element `x` of the `𝔪`-adic completion of a Noetherian local ring `(R, 𝔪)` satisfies
-`evalₐ 𝔪 n x = 0`, then `x ∈ (𝔪̂)^n` where `𝔪̂ = Ideal.map (algebraMap R R̂) 𝔪`. -/
+`evalₐ 𝔪 n x = 0`, then `x ∈ (𝔪̂)^n` where `𝔪̂ = Ideal.map (algebraMap R R̂) 𝔪`.
+@isnad1 id=mem.1h3v.s11.778a7cf4a5a4 from=translated src=- shape=f07530cb vocab=3d3870fd
+-/
 theorem mem_map_pow_of_evalₐ_eq_zero
     (R : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (n : ℕ) (x : AdicCompletion (IsLocalRing.maximalIdeal R) R)

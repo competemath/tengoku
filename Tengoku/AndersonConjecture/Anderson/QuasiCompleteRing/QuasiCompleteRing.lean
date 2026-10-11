@@ -48,6 +48,9 @@ For a 1-dimensional Noetherian local domain:
 We state this as two implications + the general QC → WQC.
 -/
 
+/--
+@isnad1 id=iff.1h1v.s5.92a37487b9f2 from=translated src=- shape=23fab471 vocab=687b0b0f
+-/
 theorem dim1_qc_iff_wqc
     (R : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [IsDomain R]
     (hdim : ringKrullDim R = 1) :

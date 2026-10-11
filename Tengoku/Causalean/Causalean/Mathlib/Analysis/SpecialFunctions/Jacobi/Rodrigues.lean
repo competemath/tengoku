@@ -28,7 +28,9 @@ noncomputable def rodKernel (k : ℕ) (α x : ℝ) : ℝ :=
 
 On positive arguments, the `i`th derivative of the Rodrigues kernel is
 the finite binomial expansion with descending factorial coefficients.  This
-reduces endpoint limits and Rodrigues normalization to finite algebra. -/
+reduces endpoint limits and Rodrigues normalization to finite algebra.
+@isnad1 id=eq.1h4v.s7.bad3ec50476b from=translated src=- shape=a4ee5470 vocab=b2811f93
+-/
 theorem rodKernel_deriv_expansion (k i : ℕ) (α x : ℝ) (hx : 0 < x) :
     (deriv^[i] (rodKernel k α)) x =
       ∑ m ∈ Finset.range (k + 1),
@@ -80,7 +82,9 @@ theorem rodKernel_deriv_expansion (k i : ℕ) (α x : ℝ) (hx : 0 < x) :
 /-- A [degree](hyp:k), [positive shape parameter](hyp:α), and [positive evaluation point](hyp:x), with [parameter positivity](hyp:hα) and [point positivity](hyp:hx), give [the normalized shifted Jacobi expansion after extracting the power weight](goal).
 
 The order-`k` binomial derivative expansion equals the normalized
-shifted Jacobi sum after factoring out `x^α`. -/
+shifted Jacobi sum after factoring out `x^α`.
+@isnad1 id=eq.2h3v.s7.1402b9ccb44f from=translated src=- shape=003d90b4 vocab=269d968b
+-/
 theorem rodKernel_expansion_eq_h (k : ℕ) (α x : ℝ) (hα : 0 < α)
     (hx : 0 < x) :
     (∑ m ∈ Finset.range (k + 1),
@@ -130,7 +134,9 @@ theorem rodKernel_expansion_eq_h (k : ℕ) (α x : ℝ) (hα : 0 < α)
 /-- A [degree](hyp:k), [derivative order](hyp:i), and [shape parameter](hyp:α), when [the derivative order is below the degree](hyp:hik) and [the parameter is positive](hyp:hα), give [a zero Rodrigues-kernel derivative at the right endpoint](goal).
 
 Every derivative of order less than `k` of the Jacobi Rodrigues kernel
-vanishes at the right endpoint. -/
+vanishes at the right endpoint.
+@isnad1 id=eq.2h3v.s6.34b4f6b3274e from=translated src=- shape=5e075d66 vocab=ff17601b
+-/
 theorem rodKernel_deriv_one (k i : ℕ) (α : ℝ) (hik : i < k)
     (hα : 0 < α) : (deriv^[i] (rodKernel k α)) 1 = 0 := by
   change (deriv^[i] (fun x : ℝ => x ^ (α + (k : ℝ)) * (1 - x) ^ k)) 1 = 0
@@ -141,7 +147,9 @@ theorem rodKernel_deriv_one (k i : ℕ) (α : ℝ) (hik : i < k)
 /-- A [degree](hyp:k), [derivative order](hyp:i), and [shape parameter](hyp:α), when [the derivative order is below the degree](hyp:hik) and [the parameter is positive](hyp:hα), give [convergence of the Rodrigues-kernel derivative to zero from the right](goal).
 
 Every derivative of order less than `k` of the Jacobi Rodrigues kernel
-tends to zero from the right at the singular left endpoint. -/
+tends to zero from the right at the singular left endpoint.
+@isnad1 id=tendsto.2h3v.s6.263d6ef60e29 from=translated src=- shape=bb27d3fc vocab=14a3b41a
+-/
 theorem rodKernel_deriv_tendsto_zero (k i : ℕ) (α : ℝ)
     (hik : i < k) (hα : 0 < α) :
     Filter.Tendsto (fun x : ℝ => (deriv^[i] (rodKernel k α)) x)
@@ -176,7 +184,9 @@ theorem rodKernel_deriv_tendsto_zero (k i : ℕ) (α : ℝ)
 /-- A [degree](hyp:k), [positive shape parameter](hyp:α), and [positive evaluation point](hyp:x), with [parameter positivity](hyp:hα) and [point positivity](hyp:hx), give [the normalized shifted Rodrigues formula](goal).
 
 The shifted Rodrigues formula on positive arguments, with the exact
-rising-factorial normalization of `h`. -/
+rising-factorial normalization of `h`.
+@isnad1 id=eq.2h3v.s6.60779a6cac39 from=translated src=- shape=8ec90581 vocab=9bc617dd
+-/
 theorem h_rodrigues (k : ℕ) (α x : ℝ) (hα : 0 < α) (hx : 0 < x) :
     x ^ α * h k α x =
       (deriv^[k] (rodKernel k α)) x / rising (α + 1) k := by

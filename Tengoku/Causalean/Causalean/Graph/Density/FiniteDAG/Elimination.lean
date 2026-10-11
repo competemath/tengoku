@@ -30,7 +30,9 @@ def ParentClosed (G : Causalean.Graph.DAG V) (A : Finset V) : Prop :=
   ∀ ⦃i⦄, i ∈ A → G.parents i ⊆ A
 
 /-- A [parent-closed retained set](hyp:hA), its [disjointness from an eliminable set](hyp:hAT), and
-[a nonempty eliminable set](hyp:hT) [produce an eliminable node that is a leaf of their union](goal). -/
+[a nonempty eliminable set](hyp:hT) [produce an eliminable node that is a leaf of their union](goal).
+@isnad1 id=ex.3h4v.s6.c55b13c8c7fb from=translated src=- shape=d6c7608e vocab=6ed3e4fc
+-/
 theorem exists_leaf_in_union_of_parentClosed
     {A T : Finset V} (hA : ParentClosed G A) (hAT : Disjoint A T) (hT : T.Nonempty) :
     ∃ k ∈ T, IsLeafIn G k (A ∪ T) := by
@@ -45,7 +47,9 @@ theorem exists_leaf_in_union_of_parentClosed
 
 /-- A [DAG factorization](hyp:B), a [parent-closed retained set](hyp:hA), and its [disjointness
 from an eliminable set](hyp:hAT) [show that integrating every eliminable coordinate removes all
-of their factors](goal). -/
+of their factors](goal).
+@isnad1 id=eq.2h7v.s6.5e96067ebd0d from=translated src=- shape=5114afda vocab=896750dc
+-/
 theorem Factorization.lmarginal_partialDensity_union_eq
     (B : Factorization G X μ) {A T : Finset V}
     (hA : ParentClosed G A) (hAT : Disjoint A T) :
@@ -79,7 +83,9 @@ theorem Factorization.lmarginal_partialDensity_union_eq
       simp
 
 /-- A [DAG factorization](hyp:B) and a [parent-closed retained set](hyp:hA) [show that integrating
-the observational density outside the set leaves precisely its retained factor product](goal). -/
+the observational density outside the set leaves precisely its retained factor product](goal).
+@isnad1 id=eq.1h6v.s6.7498652681da from=translated src=- shape=7911bbb4 vocab=80737001
+-/
 theorem Factorization.lmarginal_compl_observationalDensity_eq
     (B : Factorization G X μ) {A : Finset V} (hA : ParentClosed G A) :
     (∫⋯∫⁻_(Finset.univ \ A), B.observationalDensity ∂μ) = B.partialDensity A := by
@@ -97,7 +103,9 @@ theorem Factorization.lmarginal_compl_observationalDensity_eq
 
 /-- A [DAG factorization](hyp:B), a [parent-closed retained set](hyp:hA), an [intervention target
 outside that set](hyp:hj), and a [normalized replacement density](hyp:q) [show that integrating
-the intervention density outside the set leaves the same retained factor product](goal). -/
+the intervention density outside the set leaves the same retained factor product](goal).
+@isnad1 id=eq.2h8v.s7.a91a5c0e71a9 from=translated src=- shape=fe14bd2e vocab=539eccd5
+-/
 theorem Factorization.lmarginal_compl_interventionDensity_eq
     (B : Factorization G X μ) {A : Finset V} (hA : ParentClosed G A)
     {j : V} (hj : j ∉ A) (q : InterventionDensity j X μ) :

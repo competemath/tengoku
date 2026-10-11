@@ -51,7 +51,9 @@ private theorem reciprocalSquare_window (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
 
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN), [an orientation σ](hyp:σ) [equal to
 plus or minus one](hyp:hσ), and [an integer frequency j](hyp:j) [of absolute value at most
-2N](hyp:hj), [the shifted reciprocal square is at most 1 / N² in absolute value](goal). -/
+2N](hyp:hj), [the shifted reciprocal square is at most 1 / N² in absolute value](goal).
+@isnad1 id=le.3h3v.s6.788229dfc390 from=translated src=- shape=daf6055a vocab=21e073cd
+-/
 theorem reciprocalSquare_bound (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
     (hσ : σ = 1 ∨ σ = -1) (j : ℤ) (hj : |j| ≤ (2 * N : ℕ)) :
     |reciprocalSquare N σ j| ≤ 1 / (N : ℝ) ^ 2 := by
@@ -64,7 +66,9 @@ theorem reciprocalSquare_bound (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN), [an orientation σ](hyp:σ) [equal to
 plus or minus one](hyp:hσ), and [an integer frequency j](hyp:j) [of absolute value at most
 2N](hyp:hj), [the forward first difference of the shifted reciprocal square at j is at most 16 / N³
-in absolute value](goal). -/
+in absolute value](goal).
+@isnad1 id=le.3h3v.s6.3fa86312499f from=translated src=- shape=4fa4465e vocab=b38c8927
+-/
 theorem reciprocalSquare_delta_bound (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
     (hσ : σ = 1 ∨ σ = -1) (j : ℤ) (hj : |j| ≤ (2 * N : ℕ)) :
     |delta (reciprocalSquare N σ) j| ≤ 16 / (N : ℝ) ^ 3 := by
@@ -107,7 +111,9 @@ theorem reciprocalSquare_delta_bound (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN), [an orientation σ](hyp:σ) [equal to
 plus or minus one](hyp:hσ), and [an integer frequency j](hyp:j) [of absolute value at most
 2N](hyp:hj), [the forward second difference of the shifted reciprocal square at j is at most 64 /
-N⁴ in absolute value](goal). -/
+N⁴ in absolute value](goal).
+@isnad1 id=le.3h3v.s6.3dc176415035 from=translated src=- shape=4fa4465e vocab=eabbb750
+-/
 theorem reciprocalSquare_delta2_bound (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
     (hσ : σ = 1 ∨ σ = -1) (j : ℤ) (hj : |j| ≤ (2 * N : ℕ)) :
     |delta2 (reciprocalSquare N σ) j| ≤ 64 / (N : ℝ) ^ 4 := by
@@ -154,7 +160,9 @@ theorem reciprocalSquare_delta2_bound (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
 /-- For [any two real sequences f and q indexed by the integers](hyp:f,q) and [any index j](hyp:j),
 [the forward second difference of their product at j equals f at j + 2 times the second difference
 of q at j, plus the sum of the first differences of f at j + 1 and at j times the first difference
-of q at j, plus q at j + 1 times the second difference of f at j](goal). -/
+of q at j, plus q at j + 1 times the second difference of f at j](goal).
+@isnad1 id=eq.0h3v.s7.727637b7b9f4 from=translated src=- shape=a035af1d vocab=44904773
+-/
 theorem delta2_mul (f q : ℤ → ℝ) (j : ℤ) :
     delta2 (fun k => f k * q k) j =
       f (j + 2) * delta2 q j +
@@ -165,14 +173,18 @@ theorem delta2_mul (f q : ℤ → ℝ) (j : ℤ) :
 
 /-- For [any order N](hyp:N), [any orientation σ](hyp:σ), and [an integer frequency j](hyp:j)
 [whose absolute value exceeds 2N − 2](hyp:hj), [the reciprocal-weighted Jackson coefficient is
-zero](goal), including at frequencies where the reciprocal's denominator vanishes. -/
+zero](goal), including at frequencies where the reciprocal's denominator vanishes.
+@isnad1 id=eq.1h3v.s5.0baa20e6660b from=translated src=- shape=90d15f60 vocab=72fe0819
+-/
 theorem weightedCoeff_support (N : ℕ) (σ : ℝ) (j : ℤ)
     (hj : ((2 * N - 2 : ℕ) : ℤ) < |j|) : weightedCoeff N σ j = 0 := by
   simp [weightedCoeff, normalizedCoeff_support N j hj]
 
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN) and [an orientation σ](hyp:σ) [equal to
 plus or minus one](hyp:hσ), [the sum over all integers of the absolute second differences of the
-reciprocal-weighted Jackson coefficients is at most 512 / N³](goal). -/
+reciprocal-weighted Jackson coefficients is at most 512 / N³](goal).
+@isnad1 id=le.2h2v.s6.9a81428c9be3 from=translated src=- shape=d6c3270e vocab=c1c35c12
+-/
 theorem weightedCoeff_delta2_l1 (N : ℕ) (hN : 2 ≤ N) (σ : ℝ)
     (hσ : σ = 1 ∨ σ = -1) :
     (∑' j : ℤ, |delta2 (weightedCoeff N σ) j|) ≤ 512 / (N : ℝ) ^ 3 := by

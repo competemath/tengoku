@@ -94,7 +94,9 @@ private theorem volume_biUnion_balls_le (sites : Finset Plane) (t : ℝ) (ht : 0
 
 /-- When [the separation radius is positive](hyp:hr) and [a finite site set is inclusion-maximal
 at that non-strict separation radius](hyp:hmax), [its open balls of that radius cover the unit
-circle](goal). -/
+circle](goal).
+@isnad1 id=coversun.2h2v.s4.f2e0a7e1098b from=translated src=- shape=5ab92a52 vocab=0ca2cdce
+-/
 theorem unitCircle_maximalSeparated_covers {sites : Finset Plane} {r : ℝ}
     (hr : 0 < r) (hmax : IsMaximalSeparated sites r) :
     CoversUnitCircle sites r := by
@@ -116,7 +118,9 @@ theorem unitCircle_maximalSeparated_covers {sites : Finset Plane} {r : ℝ}
   exact hxsites (hproper ▸ mem_insert x (sites : Set Plane))
 
 /-- At [every positive separation radius](hyp:hr), [there exists a finite inclusion-maximal
-separated subset of the unit circle](goal). -/
+separated subset of the unit circle](goal).
+@isnad1 id=ex.1h1v.s4.4b02fd76f662 from=translated src=- shape=135000ed vocab=aa9bdf21
+-/
 theorem unitCircle_exists_finite_maximalSeparated {r : ℝ} (hr : 0 < r) :
     ∃ sites : Finset Plane, IsMaximalSeparated sites r := by
   let P : Set (Set Plane) := {s | s ⊆ unitCircle ∧ IsSeparatedAtLeast r s}
@@ -279,7 +283,9 @@ private theorem quarter_div_le_card_of_cover {h : ℝ} {sites : Finset Plane}
 /-- [There are positive universal constants with an ordered small-scale range such that every
 finite site set maximal at separation three times a positive scale in that range has open
 three-scale balls covering the unit circle and a number of sites comparable to the reciprocal
-scale](goal). -/
+scale](goal).
+@isnad1 id=ex.0h0v.s7.516f62816f2a from=translated src=- shape=3f6324b5 vocab=3b5d5fe6
+-/
 theorem unitCircle_maximalSeparated_card_bounds :
     ∃ cpack Cpack hstar : ℝ,
       0 < cpack ∧ cpack ≤ Cpack ∧ 0 < hstar ∧
@@ -299,7 +305,9 @@ theorem unitCircle_maximalSeparated_card_bounds :
 /-- [There are positive universal constants with an ordered small-scale range such that at every
 positive scale in that range one can choose a finite site set maximal at separation three times
 that scale, whose open three-scale balls cover the unit circle and whose size is comparable to the
-reciprocal scale](goal). -/
+reciprocal scale](goal).
+@isnad1 id=ex.0h0v.s7.f1e90fb79398 from=translated src=- shape=1258eb0d vocab=3b5d5fe6
+-/
 theorem unitCircle_exists_maximalSeparated_with_card_bounds :
     ∃ cpack Cpack hstar : ℝ,
       0 < cpack ∧ cpack ≤ Cpack ∧ 0 < hstar ∧

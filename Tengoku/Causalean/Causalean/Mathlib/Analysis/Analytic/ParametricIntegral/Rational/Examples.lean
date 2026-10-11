@@ -14,7 +14,9 @@ open MeasureTheory Set
 
 namespace Causalean.Mathlib.Analysis.ParametricRationalIntegralAnalyticity
 
-/-- [The scalar integral of one plus the parameter times the integration variable, divided by two plus that product, is real analytic on the open interval from minus one to one](goal). -/
+/-- [The scalar integral of one plus the parameter times the integration variable, divided by two plus that product, is real analytic on the open interval from minus one to one](goal).
+@isnad1 id=analytic.0h0v.s7.b4af9636e575 from=translated src=- shape=0e8ffac5 vocab=855f9d79
+-/
 theorem analyticOnNhd_integral_one_add_tx_div_two_add_tx :
     AnalyticOnNhd ℝ
       (fun t : ℝ ↦ ∫ x in Set.Icc (0 : ℝ) 1, (1 + t * x) / (2 + t * x))

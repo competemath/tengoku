@@ -15,10 +15,16 @@ whose residue field has the cardinality of C.
 noncomputable section
 
 -- T is local since it's a quotient of a local ring by a proper ideal
+/--
+@isnad1 id=islocalr.0h0v.s4.be366ea6f8b6 from=translated src=- shape=49959d42 vocab=75b051c3
+-/
 instance T_isLocalRing : IsLocalRing T := by
   have : Nontrivial T := Ideal.Quotient.nontrivial_iff.mpr conj_I_ne_top
   exact IsLocalRing.of_surjective' (Ideal.Quotient.mk conj_I) Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=eq.0h5v.s7.ddbdbaf821e1 from=translated src=- shape=1e8f36c0 vocab=9d0060d2
+-/
 lemma Finsupp.cons_add' {n : ℕ} {a b : ℕ} {s t : Fin n →₀ ℕ} :
     Finsupp.cons (a + b) (s + t) = Finsupp.cons a s + Finsupp.cons b t := by
   ext i
@@ -26,11 +32,17 @@ lemma Finsupp.cons_add' {n : ℕ} {a b : ℕ} {s t : Fin n →₀ ℕ} :
   · simp [Finsupp.cons_zero]
   · simp [Finsupp.cons_succ]
 
+/--
+@isnad1 id=eq.0h3v.s7.8d95734f863d from=translated src=- shape=bfc62b12 vocab=80f80689
+-/
 lemma Finsupp.tail_add' {n : ℕ} (s t : Fin (n + 1) →₀ ℕ) :
     Finsupp.tail (s + t) = Finsupp.tail s + Finsupp.tail t := by
   ext i
   simp [Finsupp.tail_apply, Finsupp.add_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.fed38b6a56c1 from=translated src=- shape=2e5265d7 vocab=9410ee70
+-/
 lemma Finsupp.add_cons_zero {n : ℕ} (s t : Fin (n + 1) →₀ ℕ) :
     (s + t) 0 = s 0 + t 0 := by simp [Finsupp.add_apply]
 
@@ -51,6 +63,9 @@ section MvPowerSeriesFinSuccEquiv
 
 variable {n : ℕ} {R : Type*} [CommSemiring R]
 
+/--
+@isnad1 id=eq.0h1v.s6.1531574c752c from=translated src=- shape=71137cf4 vocab=14fe0282
+-/
 lemma fin1_finsupp_eq {u : Fin 1 →₀ ℕ} : u = Finsupp.single 0 (u 0) := by
   refine Finsupp.ext_iff.mpr (fun i => ?_)
   have : i = (0 : Fin 1) := Subsingleton.elim i 0
@@ -67,10 +82,16 @@ abbrev M_PS := IsLocalRing.maximalIdeal (MvPowerSeries (Fin 3) ℂ)
 
 abbrev tdeg (d : Fin 3 →₀ ℕ) : ℕ := d.sum fun _ k => k
 
+/--
+@isnad1 id=eq.0h2v.s6.c445e0ff6b63 from=translated src=- shape=158f9c2c vocab=80cff213
+-/
 lemma tdeg_add (a b : Fin 3 →₀ ℕ) :
     tdeg (a + b) = tdeg a + tdeg b := by
   simp [tdeg, Finsupp.sum_add_index']
 
+/--
+@isnad1 id=eq.1h1v.s8.3cee6bdb3ca4 from=translated src=- shape=4463e0dc vocab=f3faba3f
+-/
 lemma constantCoeff_eq_zero_of_mem_M_PS
     {m : MvPowerSeries (Fin 3) ℂ}
     (hm : m ∈ M_PS) :
@@ -80,6 +101,9 @@ lemma constantCoeff_eq_zero_of_mem_M_PS
   exact hm (IsUnit.mk0 _ h)
 
 -- If f ∈ M_PS^n then all coefficients at degree < n vanish
+/--
+@isnad1 id=mem.1h2v.s8.a14dc869c99a from=translated src=- shape=73151686 vocab=6050af47
+-/
 lemma mem_M_PS_pow_of_coeff_vanish
     (f : MvPowerSeries (Fin 3) ℂ) (n : ℕ)
     (hf : ∀ d : Fin 3 →₀ ℕ, tdeg d < n → coeff d f = 0) :
@@ -227,6 +251,9 @@ lemma mem_M_PS_pow_of_coeff_vanish
 end AdicComplete
 
 open MvPowerSeries Finsupp in
+/--
+@isnad1 id=mem.1h2v.s8.41f74f814aff from=translated src=- shape=cb11134e vocab=e3ce9f79
+-/
 lemma mvPS_mem_span_X_of_constantCoeff_zero {k : Type*} [CommRing k]
     (f : MvPowerSeries (Fin 3) k) (hf : MvPowerSeries.constantCoeff f = 0) :
     f ∈ Ideal.span ({(X 0 : MvPowerSeries (Fin 3) k), X 1, X 2} : Set _) := by
@@ -327,6 +354,9 @@ lemma mvPS_mem_span_X_of_constantCoeff_zero {k : Type*} [CommRing k]
 
 -- maximalIdeal = span{X₀, X₁, X₂}: ⊆ by decomposition, ⊇ since each X_i has zero constant term
 open MvPowerSeries in
+/--
+@isnad1 id=eq.0h0v.s7.7f7cf93e57e4 from=translated src=- shape=d34feb8a vocab=9e1c9f35
+-/
 lemma mvPS_maximalIdeal_eq_span_X :
     IsLocalRing.maximalIdeal (MvPowerSeries (Fin 3) ℂ) =
     Ideal.span ({(X 0 : MvPowerSeries (Fin 3) ℂ), X 1, X 2} : Set _) := by
@@ -348,6 +378,9 @@ lemma mvPS_maximalIdeal_eq_span_X :
 -- dim ≤ 3 by Krull's height theorem: maxIdeal is 3-generated
 
 open MvPowerSeries in
+/--
+@isnad1 id=injectiv.0h0v.s9.7e7ce31069da from=translated src=- shape=7e8d9449 vocab=d0fc127c
+-/
 lemma cToT_injective : Function.Injective
     ((Ideal.Quotient.mk conj_I).comp (MvPowerSeries.C (σ := Fin 3) (R := ℂ))) := by
   intro a b hab
@@ -362,6 +395,9 @@ lemma cToT_injective : Function.Injective
   exact sub_eq_zero.mp h1
 
 -- |Fin 3 →₀ ℕ| = ℵ₀ and |ℂ| = continuum, so |(Fin 3 →₀ ℕ) → ℂ| = |ℂ|
+/--
+@isnad1 id=eq.0h0v.s3.479944f46ddf from=translated src=- shape=72b4a015 vocab=33ea5066
+-/
 lemma mvPS_card_eq : Cardinal.mk (MvPowerSeries (Fin 3) ℂ) = Cardinal.mk ℂ := by
   change Cardinal.mk ((Fin 3 →₀ ℕ) → ℂ) = Cardinal.mk ℂ
   rw [Cardinal.mk_arrow]
@@ -371,7 +407,9 @@ lemma mvPS_card_eq : Cardinal.mk (MvPowerSeries (Fin 3) ℂ) = Cardinal.mk ℂ :
     (fun n => Finsupp.single (0 : Fin 3) n) (Finsupp.single_injective _)))]
   exact Cardinal.continuum_power_aleph0
 
-/-- |T| = |ℂ| (a power series ring over ℂ in finitely many vars has cardinality |ℂ|). -/
+/-- |T| = |ℂ| (a power series ring over ℂ in finitely many vars has cardinality |ℂ|).
+@isnad1 id=eq.0h0v.s2.a5d83011aa0f from=translated src=- shape=7bded134 vocab=e8b7c3fd
+-/
 theorem T_card_eq : Cardinal.mk T = Cardinal.mk ℂ :=
   le_antisymm
     ((Cardinal.mk_le_of_surjective Ideal.Quotient.mk_surjective).trans mvPS_card_eq.le)

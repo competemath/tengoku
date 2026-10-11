@@ -393,7 +393,9 @@ def ContourProgram.nodeManifest (program : ContourProgram)
 /-- For [a contour program](hyp:program), [its value bounds](hyp:bounds), [a target error
 separation](hyp:separation), [a certified schedule for that program](hyp:scheduled), and [a stage
 index `k`](hyp:k), [the node manifest has one entry per recorded operation ordinal and every
-entry stores the schedule with its matching count](goal). -/
+entry stores the schedule with its matching count](goal).
+@isnad1 id=and.0h5v.s5.38952aa5eada from=translated src=- shape=4c300aa1 vocab=cca8c769
+-/
 theorem ContourProgram.nodeManifest_spec (program : ContourProgram)
     {bounds : ContourValueBounds program} {separation : PosRat}
     (scheduled : CertifiedProgramSchedule program bounds separation) (k : ℕ) :

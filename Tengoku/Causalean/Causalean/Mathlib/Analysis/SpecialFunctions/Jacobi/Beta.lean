@@ -17,7 +17,9 @@ open MeasureTheory intervalIntegral
 /-- A [nonnegative integer power](hyp:k) and [positive real shape parameter](hyp:α), with [parameter positivity](hyp:hα), give [the exact beta integral for a left real-power weight and right polynomial bump](goal).
 
 For positive `α`, integrating `x^(α-1) (1-x)^k` over `[0,1]` gives
-`k! / (α (α+1)ₖ)`.  This is the real, integer-parameter beta identity. -/
+`k! / (α (α+1)ₖ)`.  This is the real, integer-parameter beta identity.
+@isnad1 id=eq.1h2v.s7.6f5b377d5dc4 from=translated src=- shape=7a8e34d4 vocab=7238dac2
+-/
 theorem integral_rpow_mul_one_sub_pow (k : ℕ) (α : ℝ) (hα : 0 < α) :
     (∫ x in (0 : ℝ)..1, x ^ (α - 1) * (1 - x) ^ k) =
       (Nat.factorial k : ℝ) / (α * rising (α + 1) k) := by

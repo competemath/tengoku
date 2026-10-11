@@ -13,7 +13,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.Jackson
 
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN), [the sum over all integers of the
-absolute values of the normalized Jackson coefficients is at least N / 2](goal). -/
+absolute values of the normalized Jackson coefficients is at least N / 2](goal).
+@isnad1 id=le.1h1v.s5.fbe66147027c from=translated src=- shape=1191feba vocab=d980cc70
+-/
 theorem normalizedCoeff_l1_lower (N : ℕ) (hN : 2 ≤ N) :
     (N : ℝ) / 2 ≤ ∑' j : ℤ, |normalizedCoeff N j| := by
   have hNpos : 0 < N := by omega

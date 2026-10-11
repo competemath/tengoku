@@ -26,7 +26,9 @@ namespace Causalean.Mathlib
 /-- **Gradient coordinate as a directional derivative.** For a real-valued function `f` on a
 finite-dimensional Euclidean space that [is differentiable at the point `x`](hyp:hf), [the `a`-th
 coordinate of its gradient at `x` equals the derivative at `0` of the one-variable restriction
-`t ↦ f(x + t·eₐ)` along the `a`-th standard basis direction](goal). -/
+`t ↦ f(x + t·eₐ)` along the `a`-th standard basis direction](goal).
+@isnad1 id=eq.1h4v.s8.9b8b2ee7e31e from=translated src=- shape=eeb67347 vocab=44af4e47
+-/
 lemma gradient_coord_eq_deriv {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : EuclideanSpace ℝ ι → ℝ)
     (x : EuclideanSpace ℝ ι) (a : ι)

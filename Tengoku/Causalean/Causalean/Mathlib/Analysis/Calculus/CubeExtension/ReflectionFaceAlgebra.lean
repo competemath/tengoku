@@ -19,7 +19,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 [every continuous j-linear map T](hyp:T) and [coordinate directions f](hyp:f)
 [the weighted sum over q of a_q times T evaluated on the standard basis vectors
 e_{f(k)}, each scaled by −(q + 1) when f(k) = i and left unscaled otherwise,
-equals T evaluated on the unscaled basis vectors](goal). -/
+equals T evaluated on the unscaled basis vectors](goal).
+@isnad1 id=eq.2h7v.s9.3aebf9ededac from=translated src=- shape=8255da12 vocab=3c59cdc7
+-/
 theorem reflection_weighted_coordinate_jet (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),
