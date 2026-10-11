@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "2f333ef08b15798d1413319b9568195f850120c66f57aceaefad0873d3d67369",
+ "library": "causalean",
+ "lint_mode": "proposed",
+ "modules": 255,
+ "part": 4,
+ "theorems": 1043
+}

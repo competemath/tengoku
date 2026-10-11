@@ -1,5 +1,4 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
-import Tengoku.ChebotarevDensity
 import Tengoku.MerelyTrue
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
@@ -38,6 +37,7 @@ import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Ieantn
 import Tengoku.SpherePackingOrig
+import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.Apap
