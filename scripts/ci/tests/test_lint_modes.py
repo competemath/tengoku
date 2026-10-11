@@ -308,12 +308,20 @@ class ChangedModules(unittest.TestCase):
 
     def test_every_word_the_notation_and_macro_rules_name_is_prose_in_a_docstring(self):
         for word in ("notation", "infixl", "infixr", "prefix", "postfix", "macro", "syntax", "elab", "local notation", "scoped macro"):
-            doc = f"/-- Intro.\n{word} of the walk is the thing. -/\ntheorem Lib.t : True := trivial\n"  # the rewritten line is the last one
+            doc = (
+                f"/-- Intro.\n{word} of the walk is the thing. -/\ntheorem Lib.t : True := trivial\n"  # the rewritten line is the last one
+            )
             rc, out = self.changed(doc.replace("thing. -/", "thing.\n@isnad1 id=x\n-/"), before=doc)
             self.assertEqual(rc, 0, f"{word}: {out}")
 
     def test_code_a_change_adds_is_still_judged(self):
-        for added in ('notation "ℓ" => 1', "#eval 1", "initialize x : Nat ← pure 0", "native_decide", 'elab "x" : term => pure (Lean.mkNatLit 1)'):
+        for added in (
+            'notation "ℓ" => 1',
+            "#eval 1",
+            "initialize x : Nat ← pure 0",
+            "native_decide",
+            'elab "x" : term => pure (Lean.mkNatLit 1)',
+        ):
             rc, out = self.changed(self.DOC + "\n" + added + "\n")
             self.assertEqual(rc, 1, f"{added}: {out}")
         rc, out = self.changed(self.DOC + "\n-- #eval 1 in a line comment\n/- initialize x -/\n")  # prose: comments do not run

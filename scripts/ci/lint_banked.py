@@ -142,7 +142,9 @@ def lint_module(
         # The module is read whole and lexed like an added one, and only the lines the PR adds are judged, as code: an isnad tag moves the `-/` of a docstring to its own line, which makes the
         # docstring's last line an added line, and prose that starts with `prefix` or `notation` was refused as a notation command (isnad tag PR #438, 2026-10-11: "prefix length](hyp:Z,p,k) …").
         code = code_only(raw_head.decode("utf-8", "replace")).split("\n")
-        if len(code) == len(raw_head.decode("utf-8", "replace").split("\n")):  # the lexer keeps every line break; if it ever did not, the lines would not line up and the old reading stands
+        if len(code) == len(
+            raw_head.decode("utf-8", "replace").split("\n")
+        ):  # the lexer keeps every line break; if it ever did not, the lines would not line up and the old reading stands
             text = "\n".join(code[no - 1] for no, _ in added_here if no - 1 < len(code) and not re.match(IMPORT_START, code[no - 1]))
             return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
     text = "\n".join(t for _, t in added_here if not re.match(IMPORT_START, t))
