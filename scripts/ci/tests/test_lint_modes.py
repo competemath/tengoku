@@ -285,5 +285,47 @@ class Modes(unittest.TestCase):
             self.assertNotEqual(r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": mode})[0], 0, mode)
 
 
+class ChangedModules(unittest.TestCase):
+    """2026-10-11: isnad tag PR #438 was ejected from the merge queue by `banked content lint: …PathJoining.lean: notation declarations`. A tag moves the `-/` that closes a docstring to its
+    own line, so the docstring's last line (`prefix length](hyp:Z,p,k) with … have [an active prefix](goal).`) was an added line, and read alone it starts with the word `prefix`."""
+
+    DOC = "/-- In [a finite directed acyclic graph](hyp:V,G), [a conditioning set, walk, and\nprefix length](hyp:Z,p,k) with [an active full walk](hyp:hact) have [an active prefix](goal). -/\ntheorem Lib.take : True := trivial\n"
+
+    def changed(self, after: str, before: str | None = None):
+        r = Repo()
+        r.git("checkout", "-q", "main")
+        r.write("Tengoku/Lib/Doc.lean", before if before is not None else self.DOC)
+        r.commit("a module with a docstring")
+        r.git("checkout", "-q", "-B", "pr")
+        r.write("Tengoku/Lib/Doc.lean", after)
+        r.commit("change it")
+        return r.gate("lint_banked.py")
+
+    def test_a_docstring_line_that_starts_with_a_command_word_is_prose_when_the_tag_moves_the_close(self):
+        tagged = self.DOC.replace("(goal). -/", "(goal).\n@isnad1 id=x from=translated src=- shape=1 vocab=2\n-/")
+        rc, out = self.changed(tagged)
+        self.assertEqual(rc, 0, out)
+
+    def test_every_word_the_notation_and_macro_rules_name_is_prose_in_a_docstring(self):
+        for word in ("notation", "infixl", "infixr", "prefix", "postfix", "macro", "syntax", "elab", "local notation", "scoped macro"):
+            doc = f"/-- Intro.\n{word} of the walk is the thing. -/\ntheorem Lib.t : True := trivial\n"  # the rewritten line is the last one
+            rc, out = self.changed(doc.replace("thing. -/", "thing.\n@isnad1 id=x\n-/"), before=doc)
+            self.assertEqual(rc, 0, f"{word}: {out}")
+
+    def test_code_a_change_adds_is_still_judged(self):
+        for added in ('notation "ℓ" => 1', "#eval 1", "initialize x : Nat ← pure 0", "native_decide", 'elab "x" : term => pure (Lean.mkNatLit 1)'):
+            rc, out = self.changed(self.DOC + "\n" + added + "\n")
+            self.assertEqual(rc, 1, f"{added}: {out}")
+        rc, out = self.changed(self.DOC + "\n-- #eval 1 in a line comment\n/- initialize x -/\n")  # prose: comments do not run
+        self.assertEqual(rc, 0, out)
+
+    def test_a_close_added_early_turns_what_follows_into_code_that_is_judged(self):
+        before = "/-- Intro.\nTalk about things. -/\ntheorem Lib.t : True := trivial\n"
+        after = "/-- Intro. -/\n#eval 1\n/- Talk about things. -/\ntheorem Lib.t : True := trivial\n"
+        rc, out = self.changed(after, before=before)
+        self.assertEqual(rc, 1, out)
+        self.assertIn("#eval", out)
+
+
 if __name__ == "__main__":
     unittest.main()
