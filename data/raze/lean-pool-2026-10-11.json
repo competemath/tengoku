@@ -1,0 +1,17 @@
+{
+ "library": "lean-pool",
+ "modules": [
+  "Tengoku.LeanPool.LeanPool.ACMax.Band.CertAllRange",
+  "Tengoku.LeanPool.LeanPool.ACMax.Counting.DecoratedC4",
+  "Tengoku.LeanPool.LeanPool.ACMax.Counting.HubCross",
+  "Tengoku.LeanPool.LeanPool.ACMax.Counting.SparseCore",
+  "Tengoku.LeanPool.LeanPool.ACMax.Counting.StarMoatSharp",
+  "Tengoku.LeanPool.LeanPool.BlockSpectralSensitivity.LLL.Asymmetric",
+  "Tengoku.LeanPool.LeanPool.BlockSpectralSensitivity.LLL.GateExists",
+  "Tengoku.LeanPool.LeanPool.BlockSpectralSensitivity.LLL.Obstruction",
+  "Tengoku.LeanPool.LeanPool.BlockSpectralSensitivity.Main",
+  "Tengoku.LeanPool.LeanPool.BrauerGroupNew.CentralSimple",
+  "Tengoku.LeanPool.LeanPool.Brouwer.BrouwerProduct"
+ ],
+ "reason": "10 merged module(s) lack declarations that the corrected compose keeps (the first pruner cut names that proofs of other modules still use), 1 module(s) import them. A from-tree recut brings all 11 back from the corrected bundle."
+}
