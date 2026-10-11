@@ -53,6 +53,7 @@ import Tengoku.FormalMath
 import Tengoku.Formalslt
 import Tengoku.Physlib
 import Tengoku.TaoAnalysis
+import Tengoku.NavierStokesEuler
 import Tengoku.Tautology
 import Tengoku.Complexitylib
 import Tengoku.BtcVerified
