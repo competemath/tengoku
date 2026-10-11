@@ -29,7 +29,9 @@ def moment (a x : ι → ℝ) : ℝ := ∑ i, a i * x i
 /-- A [nonnegative finite weight vector](hyp:x,hxnonneg) and a [nonzero
 direction](hyp:d,hdnonzero) that [vanishes outside its nonzero coordinates](hyp:hsupp)
 have [a nonnegative boundary perturbation with strictly smaller indexed support](goal).
-No assumption on the signs of the direction is needed. -/
+No assumption on the signs of the direction is needed.
+@isnad1 id=ex.3h3v.s7.51be474a6c3e from=translated src=- shape=d0fff19a vocab=69d33dee
+-/
 theorem exists_boundary_perturbation {ι : Type*} [Fintype ι]
     (x d : ι → ℝ) (hxnonneg : ∀ i, 0 ≤ x i)
     (hdnonzero : d ≠ 0) (hsupp : ∀ i, x i = 0 → d i = 0) :
@@ -105,7 +107,9 @@ theorem exists_boundary_perturbation {ι : Type*} [Fintype ι]
 and a [finite real weight vector](hyp:x) whose [indexed support exceeds the number of
 base moments plus one](hyp:hlarge), there is [a nonzero direction supported on that
 support whose base and additional moments all vanish](goal). The coefficient columns may
-repeat or be linearly dependent. -/
+repeat or be linearly dependent.
+@isnad1 id=ex.1h5v.s7.0df1de6d4c55 from=translated src=- shape=d78715b9 vocab=ccfae5f9
+-/
 theorem exists_kernel_direction {ι κ : Type*} [Fintype ι] [Fintype κ]
     (A : κ → ι → ℝ) (g : ι → ℝ) (x : ι → ℝ)
     (hlarge : Fintype.card κ + 1 < (weightSupport x).card) :
@@ -161,7 +165,9 @@ theorem exists_kernel_direction {ι κ : Type*} [Fintype ι] [Fintype κ]
 [objective coefficient](hyp:c), a [nonnegative base-feasible vector](hyp:x,hxnonneg,hxmoment)
 that [globally maximizes the objective among such vectors](hyp:hmax), and a
 [supported base-moment-kernel direction](hyp:d,hsupp,hkernel), the [objective moment
-of that direction is zero](goal). -/
+of that direction is zero](goal).
+@isnad1 id=eq.5h7v.s7.5c13a18a3493 from=translated src=- shape=cd3ac4eb vocab=4e599c4e
+-/
 theorem objective_orthogonal_of_maximal {ι κ : Type*} [Fintype ι]
     (A : κ → ι → ℝ) (b : κ → ℝ) (c x d : ι → ℝ)
     (hxnonneg : ∀ i, 0 ≤ x i)
@@ -237,7 +243,9 @@ theorem objective_orthogonal_of_maximal {ι κ : Type*} [Fintype ι]
 [initial nonnegative globally maximizing feasible vector](hyp:x,hxnonneg,hxmoment,hmax),
 there is [a nonnegative global maximizer with the same base, additional, and objective
 moments and at most one more nonzero coordinate than the number of base moments](goal).
-Repeated indexed coefficient columns are allowed. -/
+Repeated indexed coefficient columns are allowed.
+@isnad1 id=ex.3h7v.s7.b62492bbde99 from=translated src=- shape=41176bbd vocab=7c6df530
+-/
 theorem exists_sparse_maximizer {ι κ : Type*} [Fintype ι] [Fintype κ]
     (A : κ → ι → ℝ) (b : κ → ℝ) (g c x : ι → ℝ)
     (hxnonneg : ∀ i, 0 ≤ x i)

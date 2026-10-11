@@ -118,7 +118,9 @@ private theorem gmmHatMatrix_idempotent :
 
 omit [MeasurableSpace E] [BorelSpace E] [MeasurableSpace F] [BorelSpace F] in
 include heR in
-/-- **The residual maker `M = I − H` is self-adjoint.** -/
+/-- **The residual maker `M = I − H` is self-adjoint.**
+@isnad1 id=isselfad.1h4v.s11.bbff9f1366c5 from=translated src=- shape=ce2c9d41 vocab=2ea9fd9f
+-/
 theorem gmmResidualMaker_isSelfAdjoint :
     IsSelfAdjoint (gmmResidualMaker G effInv) := by
   rw [ContinuousLinearMap.isSelfAdjoint_iff']
@@ -128,7 +130,9 @@ theorem gmmResidualMaker_isSelfAdjoint :
 
 omit [MeasurableSpace E] [BorelSpace E] [MeasurableSpace F] [BorelSpace F] in
 include heR in
-/-- **The residual maker `M = I − H` is idempotent:** `M ∘L M = M`. -/
+/-- **The residual maker `M = I − H` is idempotent:** `M ∘L M = M`.
+@isnad1 id=eq.1h4v.s11.9caf468286c5 from=translated src=- shape=26eb2008 vocab=b8bd5e2b
+-/
 theorem gmmResidualMaker_idempotent :
     gmmResidualMaker G effInv ∘L gmmResidualMaker G effInv
       = gmmResidualMaker G effInv := by
@@ -140,7 +144,9 @@ theorem gmmResidualMaker_idempotent :
 omit [MeasurableSpace E] [BorelSpace E] [MeasurableSpace F] [BorelSpace F] in
 include heL heR in
 /-- **The rank of the residual maker's range is `m − k`** (`finrank F − finrank E`),
-the Hansen–Sargan degrees of freedom. -/
+the Hansen–Sargan degrees of freedom.
+@isnad1 id=eq.2h4v.s12.c32b086229e6 from=translated src=- shape=00042f48 vocab=381ba045
+-/
 theorem gmmResidualMaker_finrank_range :
     Module.finrank ℝ (LinearMap.range (gmmResidualMaker G effInv : F →ₗ[ℝ] F))
       = Module.finrank ℝ F - Module.finrank ℝ E := by

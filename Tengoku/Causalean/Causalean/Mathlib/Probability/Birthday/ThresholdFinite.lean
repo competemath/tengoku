@@ -22,7 +22,9 @@ noncomputable def mStar (T : ℕ) (eta delta : ℝ) : ℕ :=
 
 /-- For a [valid success probability](hyp:heta) and
 [positive tolerance](hyp:hdelta), [some positive alphabet size](goal) has
-averaged repeat probability at most the tolerance. -/
+averaged repeat probability at most the tolerance.
+@isnad1 id=ex.2h3v.s5.c7522bdb2232 from=translated src=- shape=2c43722c vocab=890fa639
+-/
 theorem threshold_set_nonempty (T : ℕ) (eta delta : ℝ)
     (heta : eta ∈ Set.Icc (0 : ℝ) 1) (hdelta : 0 < delta) :
     ∃ m : ℕ, 0 < m ∧ birthdayRepeat T m eta ≤ delta := by
@@ -39,7 +41,9 @@ theorem threshold_set_nonempty (T : ℕ) (eta delta : ℝ)
   exact (repeat_le_pairScale_div T (n + 1) eta (Nat.succ_pos n) heta).trans hdiv
 
 /-- For a [valid success probability](hyp:heta) and
-[positive tolerance](hyp:hdelta), the [least threshold is positive](goal). -/
+[positive tolerance](hyp:hdelta), the [least threshold is positive](goal).
+@isnad1 id=lt.2h3v.s5.11c32216adf5 from=translated src=- shape=dca53787 vocab=a0c3abb2
+-/
 theorem mStar_pos (T : ℕ) (eta delta : ℝ)
     (heta : eta ∈ Set.Icc (0 : ℝ) 1) (hdelta : 0 < delta) :
     0 < mStar T eta delta := by
@@ -54,7 +58,9 @@ theorem mStar_pos (T : ℕ) (eta delta : ℝ)
 
 /-- For a [valid success probability](hyp:heta),
 [positive tolerance](hyp:hdelta), and [positive alphabet](hyp:hm), the
-[tolerance is met exactly above the least threshold](goal). -/
+[tolerance is met exactly above the least threshold](goal).
+@isnad1 id=iff.3h4v.s6.98549dcb0a90 from=translated src=- shape=204f798e vocab=018cb880
+-/
 theorem repeat_le_iff_mStar_le (T m : ℕ) (eta delta : ℝ)
     (heta : eta ∈ Set.Icc (0 : ℝ) 1) (hdelta : 0 < delta) (hm : 0 < m) :
     birthdayRepeat T m eta ≤ delta ↔ mStar T eta delta ≤ m := by

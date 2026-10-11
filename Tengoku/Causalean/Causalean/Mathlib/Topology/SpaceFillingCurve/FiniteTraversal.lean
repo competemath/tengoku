@@ -33,7 +33,9 @@ structure FiniteDyadicTraversal (d n : ℕ) where
       (cell m (by omega) k i).val
 
 /-- At depth zero, the unique dyadic cell gives a finite coherent traversal
-in every positive dimension. -/
+in every positive dimension.
+@isnad1 id=nonempty.1h1v.s4.df7b9ddd7ffc from=translated src=- shape=1f289047 vocab=977f4f66
+-/
 theorem exists_finiteDyadicTraversal_zero (d : ℕ) (hd : 0 < d) :
     Nonempty (FiniteDyadicTraversal d 0) := by
   refine ⟨{
@@ -74,7 +76,9 @@ theorem exists_finiteDyadicTraversal_zero (d : ℕ) (hd : 0 < d) :
   }⟩
 
 /-- A coherent traversal through depth `n` in dimension at least two extends
-one level by replacing each parent cell with a compatible Gray child path. -/
+one level by replacing each parent cell with a compatible Gray child path.
+@isnad1 id=nonempty.1h3v.s5.8022412f2908 from=translated src=- shape=16a7599c vocab=da368d2d
+-/
 theorem exists_finiteDyadicTraversal_succ (d n : ℕ) (hd : 2 ≤ d)
     (T : FiniteDyadicTraversal d n) :
     Nonempty (FiniteDyadicTraversal d (n + 1)) := by
@@ -122,7 +126,9 @@ theorem exists_finiteDyadicTraversal_succ (d n : ℕ) (hd : 2 ≤ d)
       simpa [cell, htop] using hchildnest k l hkl i
 
 /-- The unit interval has a finite coherent dyadic traversal through every
-depth, using the natural increasing order of its dyadic cells. -/
+depth, using the natural increasing order of its dyadic cells.
+@isnad1 id=nonempty.0h1v.s3.520c5c0033ae from=translated src=- shape=a237e748 vocab=80566043
+-/
 theorem exists_finiteDyadicTraversal_one (n : ℕ) :
     Nonempty (FiniteDyadicTraversal 1 n) := by
   let cell : ∀ m : ℕ, m ≤ n → Fin (2 ^ (1 * m)) → Fin 1 → Fin (2 ^ m) :=
@@ -152,7 +158,9 @@ theorem exists_finiteDyadicTraversal_one (n : ℕ) :
   · intro m hm k l hkl i
     simpa [cell] using hkl
 
-/-- Given [a positive cube dimension](hyp:d,hd) and [a finite depth](hyp:n), [a coherent traversal of all dyadic grids through that depth exists](goal). -/
+/-- Given [a positive cube dimension](hyp:d,hd) and [a finite depth](hyp:n), [a coherent traversal of all dyadic grids through that depth exists](goal).
+@isnad1 id=nonempty.1h2v.s4.0b36a70966e6 from=translated src=- shape=5555e3ac vocab=977f4f66
+-/
 theorem exists_finiteDyadicTraversal (d n : ℕ) (hd : 0 < d) :
     Nonempty (FiniteDyadicTraversal d n) := by
   by_cases h1 : d = 1

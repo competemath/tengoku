@@ -60,7 +60,9 @@ noncomputable def stationaryProjection {K : Type*} [Field K]
 
 /-- For parameters `a`, `b` in a field with [`a + b` nonzero](hyp:hs), [the `k`-th power of the
 two-state transition matrix `transitionMatrix a b` decomposes as the stationary projection
-`stationaryProjection a b` plus `(1 - a - b)^k` times its complement, for every `k`](goal). -/
+`stationaryProjection a b` plus `(1 - a - b)^k` times its complement, for every `k`](goal).
+@isnad1 id=eq.1h4v.s9.641c0b2e03c8 from=translated src=- shape=d8442612 vocab=14c562fb
+-/
 theorem transitionMatrix_pow_eq_spectral
     {K : Type*} [Field K] (a b : K) (hs : a + b ≠ 0) :
     ∀ k : ℕ,
@@ -118,7 +120,9 @@ theorem transitionMatrix_pow_eq_spectral
             field_simp [hs] <;> ring
 
 /-- Pointwise spectral gap: `|1 - a - b| < 1` when `a + b` lies strictly
-between zero and two. -/
+between zero and two.
+@isnad1 id=lt.2h3v.s7.241b73d318c1 from=translated src=- shape=5566d716 vocab=2c73851f
+-/
 theorem one_minus_a_b_abs_lt_one
     {K : Type*} [CommRing K] [LinearOrder K] [IsStrictOrderedRing K]
     {a b : K} (hs_pos : 0 < a + b)
@@ -134,7 +138,9 @@ theorem one_minus_a_b_abs_lt_one
 /-- Uniform spectral gap on compact subsets of the open strip: the continuous
 function `(a,b) ↦ |1 - a - b|` attains its supremum when `0 < a + b < 2`
 at some point of `K`, and that supremum is strictly less than `1` by the
-pointwise bound. -/
+pointwise bound.
+@isnad1 id=ex.2h1v.s7.234534b95327 from=translated src=- shape=cfa0fe22 vocab=0a3ddb58
+-/
 theorem one_minus_a_b_uniform_gap_on_compact
     (K : Set (ℝ × ℝ)) (hK_compact : IsCompact K)
     (hK_open : K ⊆ {p : ℝ × ℝ | 0 < p.1 + p.2 ∧ p.1 + p.2 < 2}) :
@@ -167,7 +173,9 @@ absolute value at most `ε` once `k ≥ N`, for every `(a,b)` in `K`](goal).
 
 Combines the spectral decomposition with the uniform spectral gap: the `(1 - a - b)^k` factor
 decays at rate `ρ^k` uniformly on `K`, while the entries of `1 - Π(a,b)` are continuous on the
-open square and hence bounded on the compact `K`. -/
+open square and hence bounded on the compact `K`.
+@isnad1 id=ex.3h2v.s8.052fa3e03cac from=translated src=- shape=21061016 vocab=0882d506
+-/
 theorem transitionMatrix_pow_tendsto_stationary_uniform
     (K : Set (ℝ × ℝ)) (hK_compact : IsCompact K)
     (hK_open : K ⊆ {p : ℝ × ℝ | 0 < p.1 ∧ p.1 < 1 ∧ 0 < p.2 ∧ p.2 < 1}) :

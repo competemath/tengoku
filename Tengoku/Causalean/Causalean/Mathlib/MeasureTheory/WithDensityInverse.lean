@@ -22,7 +22,9 @@ namespace Causalean.Mathlib.MeasureTheory
 
 /-- For [a measure](hyp:μ), [a measurable real function](hyp:h,hh), and the assumption that
 [the function is positive almost everywhere](hyp:hpos), [weighting the measure first by
-`max(1/h,0)` and then by `max(h,0)` recovers the original measure](goal). -/
+`max(1/h,0)` and then by `max(h,0)` recovers the original measure](goal).
+@isnad1 id=eq.2h3v.s6.ebde040364b3 from=translated src=- shape=ca5687c5 vocab=3a803758
+-/
 theorem withDensity_one_div_ofReal_cancel
     {α : Type*} [MeasurableSpace α] (μ : Measure α) (h : α → ℝ)
     (hh : Measurable h) (hpos : ∀ᵐ a ∂μ, 0 < h a) :

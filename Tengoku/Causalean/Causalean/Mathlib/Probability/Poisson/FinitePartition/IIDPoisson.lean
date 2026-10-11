@@ -27,14 +27,18 @@ noncomputable def iidStreamLaw (P : Measure X) [IsProbabilityMeasure P] :
   Measure.infinitePi (fun _ : ℕ => P)
 
 /-- [The infinite i.i.d. stream law is a probability measure](goal) on
-[a measurable sample space](hyp:X) with [a probability law](hyp:P). -/
+[a measurable sample space](hyp:X) with [a probability law](hyp:P).
+@isnad1 id=isprobab.0h2v.s4.267f67b82477 from=translated src=- shape=58fddcd9 vocab=2b9b94e1
+-/
 instance iidStreamLaw_isProbabilityMeasure (P : Measure X) [IsProbabilityMeasure P] :
     IsProbabilityMeasure (iidStreamLaw P) := by
   unfold iidStreamLaw
   infer_instance
 
 /-- [Every finite prefix length](hyp:n) under [an i.i.d. stream law](hyp:P)
-[has the corresponding finite product law](goal). -/
+[has the corresponding finite product law](goal).
+@isnad1 id=eq.0h3v.s6.d187025d2267 from=translated src=- shape=ce187863 vocab=4228e0b9
+-/
 lemma iidStreamLaw_map_finPrefix (P : Measure X) [IsProbabilityMeasure P] (n : ℕ) :
     Measure.map (fun z : ℕ → X => fun i : Fin n => z i) (iidStreamLaw P) =
       Measure.pi (fun _ : Fin n => P) := by
@@ -77,14 +81,18 @@ noncomputable def poissonIIDStreamLaw (P : Measure X) [IsProbabilityMeasure P]
 
 /-- [The independent Poisson count-and-stream law is a probability measure](goal) on
 [a measurable sample space](hyp:X) with [an observation probability law](hyp:P) and
-[a nonnegative Poisson rate](hyp:lam). -/
+[a nonnegative Poisson rate](hyp:lam).
+@isnad1 id=isprobab.0h3v.s5.d21266087077 from=translated src=- shape=acf3e43f vocab=511510f2
+-/
 instance poissonIIDStreamLaw_isProbabilityMeasure (P : Measure X) [IsProbabilityMeasure P]
     (lam : ℝ≥0) : IsProbabilityMeasure (poissonIIDStreamLaw P lam) := by
   unfold poissonIIDStreamLaw
   infer_instance
 
 /-- For [an observation probability law](hyp:P) and [a nonnegative Poisson rate](hyp:lam),
-[the count coordinate has the scalar Poisson law with that rate](goal). -/
+[the count coordinate has the scalar Poisson law with that rate](goal).
+@isnad1 id=eq.0h3v.s5.1a4c2e49626b from=translated src=- shape=a7eaa7d0 vocab=f5e19d5e
+-/
 lemma poissonIIDStreamLaw_map_count (P : Measure X) [IsProbabilityMeasure P]
     (lam : ℝ≥0) :
     Measure.map Prod.fst (poissonIIDStreamLaw P lam) = poissonMeasure lam := by
@@ -92,7 +100,9 @@ lemma poissonIIDStreamLaw_map_count (P : Measure X) [IsProbabilityMeasure P]
   rw [Measure.map_fst_prod, measure_univ, one_smul]
 
 /-- For [an observation probability law](hyp:P), [a nonnegative Poisson rate](hyp:lam), and
-[a prefix length](hyp:n), [the stream prefix has the exact product observation law](goal). -/
+[a prefix length](hyp:n), [the stream prefix has the exact product observation law](goal).
+@isnad1 id=eq.0h4v.s6.763964dd7a16 from=translated src=- shape=0c232780 vocab=2a76a2db
+-/
 lemma poissonIIDStreamLaw_map_finPrefix (P : Measure X) [IsProbabilityMeasure P]
     (lam : ℝ≥0) (n : ℕ) :
     Measure.map (fun z : ℕ × (ℕ → X) => fun i : Fin n => z.2 i)

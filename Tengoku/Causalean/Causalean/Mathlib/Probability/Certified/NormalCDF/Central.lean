@@ -46,7 +46,9 @@ def centralCheck (q : ℚ) (c : CentralCertificate) (reported : RatInterval) : B
       reported.lo ≤ (centralInterval q c).lo ∧
       (centralInterval q c).hi ≤ reported.hi)
 
-/-- When [the central-series checker accepts the supplied certificate and interval](hyp:hcheck), [that interval contains the standard-normal CDF at the rational endpoint](goal). -/
+/-- When [the central-series checker accepts the supplied certificate and interval](hyp:hcheck), [that interval contains the standard-normal CDF at the rational endpoint](goal).
+@isnad1 id=contains.1h3v.s4.22f4c435cee7 from=translated src=- shape=d5be11e8 vocab=f88fb69f
+-/
 theorem centralCheck_sound {q : ℚ} {c : CentralCertificate} {reported : RatInterval}
     (hcheck : centralCheck q c reported = true) :
     reported.Contains (Causalean.Mathlib.stdNormalCDF (q : ℝ)) := by

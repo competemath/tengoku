@@ -84,7 +84,9 @@ private lemma integrable_mul_log_div
 
 /-- If [the function `f` is integrable](hyp:hf), [`f log f` is integrable](hyp:hflog),
 [`f` is positive almost everywhere](hyp:hfpos), and [its mean is positive](hyp:hm), then
-[its entropy is the integral of `f log (f / E f)`](goal). -/
+[its entropy is the integral of `f log (f / E f)`](goal).
+@isnad1 id=eq.4h3v.s7.58b88c92421d from=translated src=- shape=ae8e9838 vocab=74290554
+-/
 theorem entropy_eq_integral_mul_log_div
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {f : Ω → ℝ}
     (hf : Integrable f μ)
@@ -106,7 +108,9 @@ theorem entropy_eq_integral_mul_log_div
 [positivity of `f` almost everywhere](hyp:hfpos), and [positivity of its mean](hyp:hm),
 every test function for which [`f g` is integrable](hyp:hfg), [`exp g` is
 integrable](hyp:hexp), and [`E[exp g] ≤ 1`](hyp:hconstraint) satisfies
-[`E[f g] ≤ Ent(f)`](goal). -/
+[`E[f g] ≤ Ent(f)`](goal).
+@isnad1 id=le.7h4v.s8.8b496486330e from=translated src=- shape=ee039015 vocab=9e74b0f6
+-/
 theorem integral_mul_le_entropy
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {f g : Ω → ℝ}
@@ -152,7 +156,9 @@ theorem integral_mul_le_entropy
 
 /-- If [the function `f` is integrable](hyp:hf), [`f log f` is integrable](hyp:hflog),
 [`f` is positive almost everywhere](hyp:hfpos), and [its mean is positive](hyp:hm), then
-[its entropy is the greatest Gibbs variational value](goal). -/
+[its entropy is the greatest Gibbs variational value](goal).
+@isnad1 id=isgreate.4h3v.s7.81bb24d0844f from=translated src=- shape=99c29f60 vocab=5a1f2a10
+-/
 theorem entropy_isGreatest_dual
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {f : Ω → ℝ}

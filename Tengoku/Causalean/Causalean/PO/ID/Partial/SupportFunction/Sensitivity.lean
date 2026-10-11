@@ -107,7 +107,9 @@ noncomputable def robustLower (W : Set E) (c : E) : ℝ := -supportFn W (-c)
 
 /-- The robust interval `[robustLower, robustUpper]` is well-ordered under the usual boundedness
 conditions: its width is
-`width W c ≥ 0`. -/
+`width W c ≥ 0`.
+@isnad1 id=le.3h3v.s6.1bb8aea901be from=translated src=- shape=c04af7c2 vocab=0fc0c577
+-/
 theorem robustLower_le_robustUpper {W : Set E} {c : E} (hne : W.Nonempty)
     (hbdd : BddAbove ((fun x => ⟪c, x⟫) '' W))
     (hbdd' : BddAbove ((fun x => ⟪-c, x⟫) '' W)) :
@@ -116,27 +118,35 @@ theorem robustLower_le_robustUpper {W : Set E} {c : E} (hne : W.Nonempty)
   simp only [robustLower, robustUpper, width] at *
   linarith
 
-/-- Any admissible weight has a reweighted mean no larger than the upper robust bound. -/
+/-- Any admissible weight has a reweighted mean no larger than the upper robust bound.
+@isnad1 id=le.2h4v.s6.9ab85f21fa8e from=translated src=- shape=a00cf7e5 vocab=c4282001
+-/
 theorem le_robustUpper {W : Set E} {c : E} {w : E} (hw : w ∈ W)
     (hbdd : BddAbove ((fun x => ⟪c, x⟫) '' W)) :
     ⟪c, w⟫ ≤ robustUpper W c :=
   le_supportFn hw hbdd
 
-/-- Any admissible weight has a reweighted mean no smaller than the lower robust bound. -/
+/-- Any admissible weight has a reweighted mean no smaller than the lower robust bound.
+@isnad1 id=le.2h4v.s6.f635a1af78b9 from=translated src=- shape=9bdc1a6e vocab=6755da73
+-/
 theorem robustLower_le {W : Set E} {c : E} {w : E} (hw : w ∈ W)
     (hbdd' : BddAbove ((fun x => ⟪-c, x⟫) '' W)) :
     robustLower W c ≤ ⟪c, w⟫ :=
   neg_supportFn_neg_le hw hbdd'
 
 /-- **Monotonicity in the budget (upper).** A larger ambiguity set raises the
-upper robust bound. -/
+upper robust bound.
+@isnad1 id=le.3h4v.s6.4d672d4f77ba from=translated src=- shape=c97f6c44 vocab=8b456d50
+-/
 theorem robustUpper_mono {W W' : Set E} {c : E} (hWW' : W ⊆ W') (hne : W.Nonempty)
     (hbdd : BddAbove ((fun x => ⟪c, x⟫) '' W')) :
     robustUpper W c ≤ robustUpper W' c :=
   supportFn_mono hWW' hne hbdd
 
 /-- **Monotonicity in the budget (lower).** A larger ambiguity set lowers the
-lower robust bound, so the robust interval widens. -/
+lower robust bound, so the robust interval widens.
+@isnad1 id=le.3h4v.s6.a73023e369f7 from=translated src=- shape=8386e78c vocab=b292480e
+-/
 theorem robustLower_antitone {W W' : Set E} {c : E} (hWW' : W ⊆ W') (hne : W.Nonempty)
     (hbdd' : BddAbove ((fun x => ⟪-c, x⟫) '' W')) :
     robustLower W' c ≤ robustLower W c := by
@@ -146,14 +156,18 @@ theorem robustLower_antitone {W W' : Set E} {c : E} (hWW' : W ⊆ W') (hne : W.N
 
 /-- **No ambiguity implies point identification (upper).** [When the ambiguity set collapses to
 the singleton `{w₀}`, the upper robust bound for the linear functional `c` equals the identified
-value `⟪c, w₀⟫`](goal). -/
+value `⟪c, w₀⟫`](goal).
+@isnad1 id=eq.0h3v.s5.16072948a18f from=translated src=- shape=a55da380 vocab=ab5c543e
+-/
 @[simp] theorem robustUpper_singleton (c w₀ : E) :
     robustUpper ({w₀} : Set E) c = ⟪c, w₀⟫ := by
   simp only [robustUpper, supportFn_singleton]
 
 /-- **No ambiguity implies point identification (lower).** [When the ambiguity set collapses to
 the singleton `{w₀}`, the lower robust bound for the linear functional `c` equals the identified
-value `⟪c, w₀⟫`](goal). -/
+value `⟪c, w₀⟫`](goal).
+@isnad1 id=eq.0h3v.s5.c43fc0d0e434 from=translated src=- shape=a55da380 vocab=bb94edfc
+-/
 @[simp] theorem robustLower_singleton (c w₀ : E) :
     robustLower ({w₀} : Set E) c = ⟪c, w₀⟫ := by
   simp only [robustLower, supportFn_singleton, inner_neg_left, neg_neg]
@@ -161,7 +175,9 @@ value `⟪c, w₀⟫`](goal). -/
 /-- **The robust interval is the identified set.** When [the ambiguity set W is
 compact](hyp:hcomp), [convex](hyp:hW), and [nonempty](hyp:hne), [the set of reweighted
 means ⟪c, w⟫ attained as w ranges over W is exactly the closed interval
-`[robustLower W c, robustUpper W c]` — the robust bounds are sharp](goal). -/
+`[robustLower W c, robustUpper W c]` — the robust bounds are sharp](goal).
+@isnad1 id=eq.3h3v.s7.bd362e549f7f from=translated src=- shape=85a2882b vocab=b4508ec1
+-/
 theorem robustInterval_eq_image {W : Set E} {c : E}
     (hcomp : IsCompact W) (hW : Convex ℝ W) (hne : W.Nonempty) :
     (fun x => ⟪c, x⟫) '' W = Set.Icc (robustLower W c) (robustUpper W c) :=
@@ -182,13 +198,17 @@ def l2Ball (e : H) (ρ : ℝ) : Set H := {w | ⟪e, w⟫ = 1 ∧ ‖w - e‖ ≤
 
 omit [CompleteSpace H] in
 /-- Membership in the chi-square or L2 ambiguity set is exactly normalization and the radius
-bound. -/
+bound.
+@isnad1 id=iff.0h4v.s6.b3ca90c6418e from=translated src=- shape=62b3d4d7 vocab=b9297e4c
+-/
 @[simp] theorem mem_l2Ball {e : H} {ρ : ℝ} {w : H} :
     w ∈ l2Ball e ρ ↔ ⟪e, w⟫ = 1 ∧ ‖w - e‖ ≤ ρ := Iff.rfl
 
 omit [CompleteSpace H] in
 /-- The free-direction kernel for normalization against the base direction is its orthogonal
-complement: `ker (innerSL ℝ e) = (ℝ ∙ e)ᗮ`. -/
+complement: `ker (innerSL ℝ e) = (ℝ ∙ e)ᗮ`.
+@isnad1 id=eq.0h2v.s10.bb972829fef7 from=translated src=- shape=d8a719f5 vocab=fcb558a7
+-/
 theorem opKer_innerSL_eq (e : H) : opKer (innerSL ℝ e) = (ℝ ∙ e)ᗮ := by
   ext x
   rw [opKer, LinearMap.mem_ker, Submodule.mem_orthogonal_singleton_iff_inner_right,
@@ -199,7 +219,9 @@ omit [CompleteSpace H] in
 product with itself, ⟪e, e⟫ = 1](hyp:he), [the χ²/L² ambiguity set `l2Ball e ρ` equals the
 translate by `e` of the affine ball of radius `ρ` for the linear functional ⟪e, ·⟫ centered
 at the origin — the substitution `v = w - e` turns the normalization constraint ⟪e, w⟫ = 1
-into the linear constraint ⟪e, v⟫ = 0](goal). -/
+into the linear constraint ⟪e, v⟫ = 0](goal).
+@isnad1 id=eq.1h3v.s10.f4181fef592f from=translated src=- shape=1bdf78d9 vocab=8bee51fa
+-/
 theorem l2Ball_eq_translate {e : H} (he : ⟪e, e⟫ = 1) (ρ : ℝ) :
     l2Ball e ρ = (fun v => e + v) '' affineBall (innerSL ℝ e) 0 ρ := by
   ext w
@@ -216,7 +238,9 @@ theorem l2Ball_eq_translate {e : H} (he : ⟪e, e⟫ = 1) (ρ : ℝ) :
     · simpa using hvnorm
 
 /-- The norm of the free-direction projection equals the standard deviation
-`√(‖c‖² − ⟪e,c⟫²)` under `‖e‖ = 1`. -/
+`√(‖c‖² − ⟪e,c⟫²)` under `‖e‖ = 1`.
+@isnad1 id=eq.1h3v.s14.f227b933acc7 from=translated src=- shape=0b1a999e vocab=066afc19
+-/
 theorem norm_orthogonalProjection_opKer_innerSL {e : H} (he : ‖e‖ = 1) (c : H) :
     ‖(Submodule.orthogonalProjectionOnto (opKer (innerSL ℝ e)) c : H)‖
       = Real.sqrt (‖c‖ ^ 2 - ⟪e, c⟫ ^ 2) := by
@@ -244,7 +268,9 @@ theorem norm_orthogonalProjection_opKer_innerSL {e : H} (he : ‖e‖ = 1) (c : 
 /-- **Closed-form worst case (mean plus `ρ·SD`).** For [a unit-norm base direction
 e](hyp:he) and [a nonnegative radius ρ](hyp:hρ), [the largest reweighted value ⟪c, w⟫
 attains over the χ²/L² ambiguity set `l2Ball e ρ` equals ⟪e, c⟫ + ρ · √(‖c‖² − ⟪e, c⟫²)
-— the base-direction mean plus ρ standard deviations of c](goal). -/
+— the base-direction mean plus ρ standard deviations of c](goal).
+@isnad1 id=eq.2h4v.s7.c1b71d88a264 from=translated src=- shape=61039ac2 vocab=cea3d7b0
+-/
 theorem supportFn_l2Ball_eq {e : H} (he : ‖e‖ = 1) (c : H) {ρ : ℝ} (hρ : 0 ≤ ρ) :
     supportFn (l2Ball e ρ) c = ⟪e, c⟫ + ρ * Real.sqrt (‖c‖ ^ 2 - ⟪e, c⟫ ^ 2) := by
   have hee : ⟪e, e⟫ = 1 := by rw [real_inner_self_eq_norm_mul_norm, he, mul_one]
@@ -265,7 +291,9 @@ theorem supportFn_l2Ball_eq {e : H} (he : ‖e‖ = 1) (c : H) {ρ : ℝ} (hρ :
 
 /-- **Closed-form width.** For [a unit-norm base direction e](hyp:he) and [a nonnegative
 radius ρ](hyp:hρ), [the width of the χ²/L² robust interval for the target c equals
-2ρ · √(‖c‖² − ⟪e, c⟫²), twice the radius times the standard deviation of c](goal). -/
+2ρ · √(‖c‖² − ⟪e, c⟫²), twice the radius times the standard deviation of c](goal).
+@isnad1 id=eq.2h4v.s7.87a255f164be from=translated src=- shape=7f1bfe6f vocab=65340029
+-/
 theorem width_l2Ball_eq {e : H} (he : ‖e‖ = 1) (c : H) {ρ : ℝ} (hρ : 0 ≤ ρ) :
     width (l2Ball e ρ) c = 2 * ρ * Real.sqrt (‖c‖ ^ 2 - ⟪e, c⟫ ^ 2) := by
   unfold width
@@ -278,7 +306,9 @@ theorem width_l2Ball_eq {e : H} (he : ‖e‖ = 1) (c : H) {ρ : ℝ} (hρ : 0 �
 positive radius ρ](hyp:hρ), [the χ²/L² robust interval for the target c collapses to a single
 point exactly when ‖c‖² equals ⟪e, c⟫², i.e. when c is collinear with e — equivalently,
 equality holds in the Cauchy–Schwarz inequality, meaning the represented outcome is
-almost-surely constant](goal). -/
+almost-surely constant](goal).
+@isnad1 id=iff.2h4v.s7.67bf384d5d7a from=translated src=- shape=54eb362c vocab=a768eaee
+-/
 theorem l2Ball_point_identified_iff {e : H} (he : ‖e‖ = 1) (c : H) {ρ : ℝ}
     (hρ : 0 < ρ) :
     width (l2Ball e ρ) c = 0 ↔ ‖c‖ ^ 2 = ⟪e, c⟫ ^ 2 := by

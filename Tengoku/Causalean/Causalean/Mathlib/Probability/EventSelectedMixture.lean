@@ -24,7 +24,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- A product of independent square-integrable scalar functions remains square-integrable on
 the product space. [The two factors are square-integrable](hyp:hf,hg), and [their coordinatewise
-product is square-integrable under the product measure](goal). -/
+product is square-integrable under the product measure](goal).
+@isnad1 id=memlp.2h6v.s7.4b7ef36d4fbf from=translated src=- shape=cf761e76 vocab=cebb573c
+-/
 lemma memLp_mul_prod_two {S K : Type*} [Countable S] [Countable K]
     [MeasurableSpace S] [MeasurableSpace K]
     [MeasurableSingletonClass S] [MeasurableSingletonClass K]
@@ -66,7 +68,9 @@ private lemma integral_eventIndicator {J : Type*} [MeasurableSpace J]
 
 /-- For [two probability laws, a measurable event, and two integrable branch
 functions](hyp:μJ,μE,A,hA,P,H,hP,hH), [the selected function's mean is the event-probability
-mixture of the two branch means](goal). -/
+mixture of the two branch means](goal).
+@isnad1 id=eq.3h7v.s7.6a7408444aac from=translated src=- shape=4fdf4084 vocab=f816e716
+-/
 lemma integral_eventSelectedMixture {J E : Type*} [MeasurableSpace J] [MeasurableSpace E]
     (μJ : Measure J) (μE : Measure E) [IsProbabilityMeasure μJ]
     [IsProbabilityMeasure μE] (A : Set J) (hA : MeasurableSet A)
@@ -93,7 +97,9 @@ lemma integral_eventSelectedMixture {J E : Type*} [MeasurableSpace J] [Measurabl
 
 /-- For [two probability laws, a measurable event, and two square-integrable branch
 functions](hyp:μJ,μE,A,hA,P,H,hP,hH), [the selected function's second moment is the
-event-probability mixture of the two branch second moments](goal). -/
+event-probability mixture of the two branch second moments](goal).
+@isnad1 id=eq.3h7v.s8.909be3db0363 from=translated src=- shape=4053d13e vocab=d4a5b457
+-/
 lemma integral_eventSelectedMixture_sq {J E : Type*}
     [MeasurableSpace J] [MeasurableSpace E]
     (μJ : Measure J) (μE : Measure E) [IsProbabilityMeasure μJ]
@@ -111,7 +117,9 @@ lemma integral_eventSelectedMixture_sq {J E : Type*}
 
 /-- For [two probability laws, a measurable event, and two square-integrable branch
 functions](hyp:μJ,μE,A,hA,P,H,hP,hH), [the event-selected mixture is square-integrable
-under the product law](goal). -/
+under the product law](goal).
+@isnad1 id=memlp.3h7v.s7.ffa8be4c977c from=translated src=- shape=2232d731 vocab=a4e9cc79
+-/
 lemma memLp_eventSelectedMixture {J E : Type*}
     [MeasurableSpace J] [MeasurableSpace E]
     (μJ : Measure J) (μE : Measure E) [IsProbabilityMeasure μJ]
@@ -131,7 +139,9 @@ lemma memLp_eventSelectedMixture {J E : Type*}
 
 /-- For [two probability laws, a measurable event, and two square-integrable branch
 functions](hyp:μJ,μE,A,hA,P,H,hP,hH), [the selected function's variance is the mixture of
-branch variances plus the between-branch mean term](goal). -/
+branch variances plus the between-branch mean term](goal).
+@isnad1 id=eq.3h7v.s8.99025ae5f5ce from=translated src=- shape=dea096f5 vocab=b20ae6c9
+-/
 lemma variance_eventSelectedMixture {J E : Type*}
     [MeasurableSpace J] [MeasurableSpace E]
     (μJ : Measure J) (μE : Measure E) [IsProbabilityMeasure μJ]

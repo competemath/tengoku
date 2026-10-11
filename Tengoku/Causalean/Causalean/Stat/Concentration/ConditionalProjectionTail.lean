@@ -38,7 +38,9 @@ and, on almost every `m`-conditioning fiber, [symmetric](hyp:hsymm), [idempotent
 `zeta`](hyp:hzeta). Then, on almost every `m`-conditioning fiber, [the conditional probability
 — under the regular conditional kernel given `m` — that the projected noise's squared energy
 $\sum_i(\sum_j \mathrm{Pi}_{ij}\,\mathrm{eps}_j)^2$ exceeds the threshold
-$8(r\log 5+\log(2/\zeta))$ is at most `zeta`](goal). -/
+$8(r\log 5+\log(2/\zeta))$ is at most `zeta`](goal).
+@isnad1 id=eventual.10h8v.s9.68b3b4ab1ce8 from=translated src=- shape=641638c5 vocab=bb46551c
+-/
 theorem ae_condExpKernel_projection_energy_gt_le
     {Ω : Type*} [mΩ : MeasurableSpace Ω] [StandardBorelSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ]

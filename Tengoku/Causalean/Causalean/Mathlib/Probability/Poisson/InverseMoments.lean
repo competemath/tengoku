@@ -26,7 +26,9 @@ open Causalean.Mathlib.Probability.PoissonAddOnePoincare
 
 -- @node: shifted_reciprocal_memLp_two
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the reciprocal of one plus the
-count is square-integrable](goal). -/
+count is square-integrable](goal).
+@isnad1 id=memlp.0h1v.s6.e7432f27088a from=translated src=- shape=2872635a vocab=557df4b6
+-/
 lemma shifted_reciprocal_memLp_two (lambda : NNReal) :
     MemLp (fun k : Nat => (((k + 1 : Nat) : Real))⁻¹) 2
       (poissonMeasure lambda) := by
@@ -37,7 +39,9 @@ lemma shifted_reciprocal_memLp_two (lambda : NNReal) :
 
 -- @node: shifted_reciprocal_pair_memLp_two
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the reciprocal of the product of
-the first two positive shifts of the count is square-integrable](goal). -/
+the first two positive shifts of the count is square-integrable](goal).
+@isnad1 id=memlp.0h1v.s6.47b1da68670a from=translated src=- shape=9151f51d vocab=7f396c31
+-/
 lemma shifted_reciprocal_pair_memLp_two (lambda : NNReal) :
     MemLp (fun k : Nat =>
       ((((k + 1 : Nat) : Real) * ((k + 2 : Nat) : Real)))⁻¹) 2
@@ -51,7 +55,9 @@ lemma shifted_reciprocal_pair_memLp_two (lambda : NNReal) :
 
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the mean of the reciprocal of one
 plus the count, multiplied by the rate, equals one minus the negative-rate exponential](goal).
-The multiplied form includes the zero-rate law. -/
+The multiplied form includes the zero-rate law.
+@isnad1 id=eq.0h1v.s6.de9b76b25ef9 from=translated src=- shape=63b39dbb vocab=a7d37cc9
+-/
 lemma shifted_reciprocal_first_moment (lambda : NNReal) :
     (lambda : Real) *
         (∫ k : Nat, (((k + 1 : Nat) : Real))⁻¹ ∂poissonMeasure lambda) =
@@ -99,7 +105,9 @@ lemma shifted_reciprocal_first_moment (lambda : NNReal) :
 
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the mean of the reciprocal of the
 first two positive count shifts, multiplied by the squared rate, equals the upper tail of the
-exponential series beyond degree one](goal). -/
+exponential series beyond degree one](goal).
+@isnad1 id=eq.0h1v.s7.86a1a9dccafe from=translated src=- shape=713499fa vocab=a72b5c46
+-/
 lemma shifted_reciprocal_factorial_second_moment (lambda : NNReal) :
     (lambda : Real) ^ 2 *
         (∫ k : Nat,
@@ -167,7 +175,9 @@ lemma shifted_reciprocal_factorial_second_moment (lambda : NNReal) :
       ring
 
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the mean squared reciprocal of one
-plus the count, multiplied by the squared rate, is at most two](goal). -/
+plus the count, multiplied by the squared rate, is at most two](goal).
+@isnad1 id=le.0h1v.s6.eddad16fcee7 from=translated src=- shape=322262d2 vocab=341f86fb
+-/
 lemma shifted_reciprocal_sq_rate_bound (lambda : NNReal) :
     (lambda : Real) ^ 2 *
         (∫ k : Nat, (((k + 1 : Nat) : Real))⁻¹ ^ 2 ∂poissonMeasure lambda) ≤ 2 := by
@@ -235,7 +245,9 @@ lemma shifted_reciprocal_sq_rate_bound (lambda : NNReal) :
       linarith
 
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the mean squared reciprocal of one
-plus the count, multiplied by one plus the rate squared, is at most eight](goal). -/
+plus the count, multiplied by one plus the rate squared, is at most eight](goal).
+@isnad1 id=le.0h1v.s6.bdd6f5b99519 from=translated src=- shape=f750a873 vocab=341f86fb
+-/
 lemma shifted_reciprocal_sq_bound (lambda : NNReal) :
     (1 + (lambda : Real)) ^ 2 *
         (∫ k : Nat, (((k + 1 : Nat) : Real))⁻¹ ^ 2 ∂poissonMeasure lambda) ≤ 8 := by
@@ -275,7 +287,9 @@ lemma shifted_reciprocal_sq_bound (lambda : NNReal) :
 
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the mean reciprocal of the first
 four positive count shifts, multiplied by the fourth power of the rate, equals the upper tail
-of the exponential series beyond degree three](goal). -/
+of the exponential series beyond degree three](goal).
+@isnad1 id=eq.0h1v.s8.12332d2a8df0 from=translated src=- shape=0988d331 vocab=efd677eb
+-/
 lemma shifted_reciprocal_factorial_fourth_moment (lambda : NNReal) :
     (lambda : Real) ^ 4 *
         (∫ k : Nat,
@@ -366,7 +380,9 @@ lemma shifted_reciprocal_factorial_fourth_moment (lambda : NNReal) :
 
 /-- Under [a Poisson law with nonnegative mean](hyp:lambda), [the mean squared reciprocal of the
 first two positive count shifts, multiplied by the fourth power of one plus the rate, is at
-most ninety-six](goal). -/
+most ninety-six](goal).
+@isnad1 id=le.0h1v.s7.9b29357117fb from=translated src=- shape=3c1d31de vocab=341f86fb
+-/
 lemma shifted_reciprocal_pair_sq_bound (lambda : NNReal) :
     (1 + (lambda : Real)) ^ 4 *
         (∫ k : Nat,
@@ -480,7 +496,9 @@ lemma shifted_reciprocal_pair_sq_bound (lambda : NNReal) :
 `1 + V / (K + 1)`.  Here `lambda` and `nu` are the Poisson rates of `K` and
 `V`, while `r1` and `r2` are the first and second shifted-reciprocal moments.
 [Under the stated positivity, overlap, and moment bounds](hyp:heps,hlambda,hnu,hoverlap,hr1,hr1rate,_hr2,hr2rate),
-[the displayed uniform second-moment bound holds](goal). -/
+[the displayed uniform second-moment bound holds](goal).
+@isnad1 id=le.8h5v.s8.3732ea8edb1b from=translated src=- shape=9984593c vocab=217ff380
+-/
 lemma poisson_inverse_weight_second_moment_scalar
     {eps lambda nu r1 r2 : Real}
     (heps : 0 < eps) (hlambda : 0 ≤ lambda) (hnu : 0 ≤ nu)
@@ -532,7 +550,9 @@ lemma poisson_inverse_weight_second_moment_scalar
 `1 + V / (K + 1)`. It is stated in the multiplied form used after the tensorized Poisson
 Poincaré inequality. [Under the stated positivity, overlap, scale, and reciprocal-moment
 bounds](hyp:heps,heps1,hw,hlambda,hnu,hlower,hupper,_hr2,hr2rate,_hr4,hr4rate), [the two
-add-one energies satisfy the displayed uniform estimate](goal). -/
+add-one energies satisfy the displayed uniform estimate](goal).
+@isnad1 id=le.11h6v.s8.7a9d1f10b94b from=translated src=- shape=cdf1e8d3 vocab=217ff380
+-/
 lemma poisson_inverse_weight_poincare_energy_scalar
     {eps w lambda nu r2 r4 : Real}
     (heps : 0 < eps) (heps1 : eps ≤ 1)

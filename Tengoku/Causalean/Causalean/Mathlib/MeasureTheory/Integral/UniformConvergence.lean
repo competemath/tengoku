@@ -23,7 +23,9 @@ namespace Causalean.Mathlib.MeasureTheory
 
 /-- For a [measure](hyp:mu), a [finite-measure integration set](hyp:K,hmu), and an
 [family of functions, each integrable on that set](hyp:F,hInt) that [varies continuously in the topology of uniform
-convergence on that set](hyp:hF), [the corresponding set integrals vary continuously](goal). -/
+convergence on that set](hyp:hF), [the corresponding set integrals vary continuously](goal).
+@isnad1 id=continuo.3h6v.s8.262e6a7dfa72 from=translated src=- shape=a39b7c34 vocab=04f2b9d7
+-/
 lemma continuous_setIntegral_of_continuous_uniformOn
     {X Y E : Type*} [TopologicalSpace X] [MeasurableSpace Y]
     [NormedAddCommGroup E] [NormedSpace ℝ E]

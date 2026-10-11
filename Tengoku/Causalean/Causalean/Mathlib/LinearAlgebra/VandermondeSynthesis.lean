@@ -44,7 +44,9 @@ def endpointOrderSynthesis {n : ℕ} {K : Type*} [CommSemiring K] (s : Fin n →
     split <;> (simp [← Finset.mul_sum, mul_assoc] <;> ring)
 
 /-- [The standard-basis vector for a selected node](hyp:j) is sent by the moment-synthesis map
-determined by [the nodes](hyp:s) to [the vector of that node's powers](goal). -/
+determined by [the nodes](hyp:s) to [the vector of that node's powers](goal).
+@isnad1 id=eq.0h5v.s9.06cd2e0aed5a from=translated src=- shape=15cd673f vocab=fa5504ed
+-/
 lemma endpointOrderSynthesis_single {n r : ℕ} {K : Type*} [CommSemiring K] (s : Fin n → K)
     (j : Fin n) :
     endpointOrderSynthesis s r (Pi.single j.castSucc 1) =
@@ -60,7 +62,9 @@ lemma endpointOrderSynthesis_single {n r : ℕ} {K : Type*} [CommSemiring K] (s 
 
 /-- The moment-synthesis map for [the supplied nodes](hyp:s) [covers every target vector](goal)
 when the nodes are [pairwise distinct](hyp:hs) and [the requested order is below their
-number](hyp:hr). -/
+number](hyp:hr).
+@isnad1 id=surjecti.2h4v.s9.ee7ebfaa87e6 from=translated src=- shape=24746225 vocab=5b40ec2b
+-/
 lemma endpointOrderSynthesis_surjective {n r : ℕ} {K : Type*} [Field K]
     (s : Fin n → K) (hs : Function.Injective s) (hr : r < n) :
     Function.Surjective (endpointOrderSynthesis s r) := by
@@ -103,7 +107,9 @@ lemma endpointOrderSynthesis_surjective {n r : ℕ} {K : Type*} [Field K]
 
 /-- The moment-synthesis map for [the supplied nodes](hyp:s) [uniquely determines its input](goal)
 when the nodes are [pairwise distinct](hyp:hs) and [the requested order is at least their
-number](hyp:hr). -/
+number](hyp:hr).
+@isnad1 id=injectiv.2h4v.s9.6b6c4c3c6910 from=translated src=- shape=30c9fbc2 vocab=c6fbc224
+-/
 lemma endpointOrderSynthesis_injective {n r : ℕ} {K : Type*} [CommRing K] [IsDomain K]
     (s : Fin n → K) (hs : Function.Injective s) (hr : n ≤ r) :
     Function.Injective (endpointOrderSynthesis s r) := by
@@ -129,7 +135,9 @@ lemma endpointOrderSynthesis_injective {n r : ℕ} {K : Type*} [CommRing K] [IsD
 `s : Fin n → K`](hyp:hs), [the dimension of the kernel of the order-`r` endpoint synthesis map
 equals `n - r`](goal): below the square threshold (`r < n`) the kernel has dimension `n - r`,
 and at or above it (`r ≥ n`) the kernel is zero, matching `n - r = 0` under truncated
-subtraction. -/
+subtraction.
+@isnad1 id=eq.1h4v.s10.4d1b9a34fc68 from=translated src=- shape=4fa809cf vocab=d8793bc0
+-/
 theorem endpointOrderSynthesis_ker_finrank {n r : ℕ} {K : Type*} [Field K]
     (s : Fin n → K) (hs : Function.Injective s) :
     Module.finrank K (LinearMap.ker (endpointOrderSynthesis s r)) = n - r := by

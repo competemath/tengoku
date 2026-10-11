@@ -109,7 +109,9 @@ private lemma exp_sub_mul_sub_le_posSq (a b : ℝ) :
 /-- Given [a probability law `μ`](hyp:μ), [a real function `g`](hyp:g), [integrability of `g`,
 its exponential, and their product](hyp:hg,hexp,hexpg), and [integrability of the exponentially
 weighted positive replacement square](hyp:hplus), the [entropy of `exp g` is at most the expected
-positive replacement square against an independent copy](goal). -/
+positive replacement square against an independent copy](goal).
+@isnad1 id=le.4h3v.s8.083cc4e43940 from=translated src=- shape=0d556acb vocab=50c2e6ed
+-/
 theorem entropy_exp_le_replacement
     {X : Type*} [MeasurableSpace X] (μ : Measure X) [IsProbabilityMeasure μ]
     (g : X → ℝ)
@@ -226,7 +228,9 @@ private lemma max_mul_sub_zero {a b lam : ℝ} (hlam : 0 ≤ lam) :
 `lam`](hyp:hlam), [integrability of `Z`, its exponential tilt, and their
 product](hyp:hZ,hexp,hexpZ),
 and [integrability of the tilted positive replacement square](hyp:hplus), the [entropy of the
-exponential tilt is bounded by `lam²` times the expected positive replacement square](goal). -/
+exponential tilt is bounded by `lam²` times the expected positive replacement square](goal).
+@isnad1 id=le.5h4v.s8.a3874f6a6e0e from=translated src=- shape=62c5e553 vocab=50c2e6ed
+-/
 theorem entropy_exp_mul_le_replacement
     {X : Type*} [MeasurableSpace X] (μ : Measure X) [IsProbabilityMeasure μ]
     (Z : X → ℝ) {lam : ℝ} (hlam : 0 ≤ lam)
@@ -333,7 +337,9 @@ def ModifiedLogSobolevRegularity {X : Type u} [MeasurableSpace X]
 nonnegative](hyp:hlam), [the product has `n` coordinates](hyp:n), [the statistic is
 `Z`](hyp:Z), and [the replacement integrability conditions hold recursively](hyp:h), then [the
 finite coordinate-entropy sum of the exponential tilt is at most `lam²` times the tilted sum of
-expected positive coordinate replacement squares](goal). -/
+expected positive coordinate replacement squares](goal).
+@isnad1 id=le.2h5v.s6.0bc1a56be9c0 from=translated src=- shape=f8a30bfb vocab=62c0ddd1
+-/
 theorem coordinateEntropySum_exp_le
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]
@@ -416,7 +422,9 @@ nonnegative](hyp:hlam), [the product has `n` coordinates](hyp:n), [the statistic
 `Z`](hyp:Z), [finite entropy tensorization applies to its exponential tilt](hyp:hTensor), and [the
 replacement integrability conditions hold recursively](hyp:hReplacement), then [the entropy of
 the exponential tilt under the independent product law is at most `lam²` times the tilted sum of
-expected positive coordinate replacement squares](goal). -/
+expected positive coordinate replacement squares](goal).
+@isnad1 id=le.3h5v.s7.63914dfa0725 from=translated src=- shape=76a53776 vocab=ea395381
+-/
 theorem modifiedLogSobolev_pi
     {X : Type u} [MeasurableSpace X]
     (μ : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (μ i)]

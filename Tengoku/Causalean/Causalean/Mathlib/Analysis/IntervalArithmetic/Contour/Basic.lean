@@ -26,7 +26,9 @@ def sq (I : RatInterval) : RatInterval :=
     ⟨0, max (I.lo ^ 2) (I.hi ^ 2), by positivity⟩
 
 /-- The sign-aware rational square enclosure contains the square of every
-real number contained in the input interval. -/
+real number contained in the input interval.
+@isnad1 id=contains.1h2v.s4.6a284c8febc2 from=translated src=- shape=591fe918 vocab=57511eb6
+-/
 theorem sq_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) :
     (sq I).Contains (x ^ 2) := by
   rcases hx with ⟨hxlo, hxhi⟩
@@ -48,7 +50,9 @@ theorem sq_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) :
       · exact le_max_of_le_left (by nlinarith [hxlo])
       · exact le_max_of_le_right (by nlinarith [hxhi])
 
-/-- Squaring is inclusion-isotone for rational intervals. -/
+/-- Squaring is inclusion-isotone for rational intervals.
+@isnad1 id=subinter.1h2v.s3.3416999609ef from=translated src=- shape=f01b29cf vocab=d7ed1fab
+-/
 theorem sq_mono {I J : RatInterval} (hIJ : I.Subinterval J) :
     (sq I).Subinterval (sq J) := by
   have Ilo : J.Contains (I.lo : ℝ) := by
@@ -106,7 +110,9 @@ private theorem sqrtUpper_invariants (q : ℚ) (hq : 0 ≤ q) (n : ℕ) :
 /-- For [a nonnegative rational number `q`](hyp:hq) and any fuel count `n`,
 [the Newton-iterate rational lower bound `sqrtLower q n` and upper bound
 `sqrtUpper q n` both enclose the real square root of `q`:
-`sqrtLower q n ≤ √q ≤ sqrtUpper q n`](goal). -/
+`sqrtLower q n ≤ √q ≤ sqrtUpper q n`](goal).
+@isnad1 id=and.1h2v.s5.caee1934ead5 from=translated src=- shape=ee3a5c8d vocab=6b542398
+-/
 theorem sqrt_iterates_sound (q : ℚ) (hq : 0 ≤ q) (n : ℕ) :
     (sqrtLower q n : ℝ) ≤ Real.sqrt q ∧ Real.sqrt q ≤ (sqrtUpper q n : ℝ) := by
   obtain ⟨hu, hsq⟩ := sqrtUpper_invariants q hq n
@@ -138,7 +144,9 @@ private theorem sqrtLower_mono_step (q : ℚ) (hq : 0 ≤ q) (n : ℕ) :
     linarith
   exact div_le_div_of_nonneg_left hq hv hvu
 
-/-- The Newton upper-minus-lower gap is bounded by an explicit reciprocal fuel rate. -/
+/-- The Newton upper-minus-lower gap is bounded by an explicit reciprocal fuel rate.
+@isnad1 id=le.1h2v.s6.9d471316ea58 from=translated src=- shape=e8a9b37b vocab=7464e61b
+-/
 theorem sqrt_gap_rate (q : ℚ) (hq : 0 ≤ q) (n : ℕ) :
     sqrtUpper q n - sqrtLower q n ≤ (q + 1) / (n + 1) := by
   induction n with
@@ -169,7 +177,9 @@ theorem sqrt_gap_rate (q : ℚ) (hq : 0 ≤ q) (n : ℕ) :
         _ = (q + 1) / ((n + 1 : ℕ) + 1) := by norm_num [Nat.cast_add]
 
 /-- The gap between the Newton lower and upper square-root bounds is eventually
-below every positive rational tolerance. -/
+below every positive rational tolerance.
+@isnad1 id=ex.1h2v.s5.83648cce4752 from=translated src=- shape=60307be2 vocab=c2dd8e17
+-/
 theorem sqrt_iterates_converge (q : ℚ) (hq : 0 ≤ q) (ε : PosRat) :
     ∃ n, sqrtUpper q n - sqrtLower q n ≤ ε.1 := by
   obtain ⟨n, hn⟩ := exists_nat_gt ((q + 1) / ε.1)
@@ -191,7 +201,9 @@ def sqrtInterval (I : RatInterval) (hI : 0 ≤ I.lo) (fuel : ℕ) : RatInterval 
     exact_mod_cast hlo_sound.1.trans (hsqrt.trans hhi_sound.2)⟩
 
 /-- The executable square-root interval encloses the square root of every
-nonnegative real contained in its input. -/
+nonnegative real contained in its input.
+@isnad1 id=contains.2h3v.s4.cc97582c46f8 from=translated src=- shape=65057470 vocab=a9986da1
+-/
 theorem sqrtInterval_sound {I : RatInterval} (hI : 0 ≤ I.lo) {x : ℝ}
     (hx : I.Contains x) (fuel : ℕ) :
     (sqrtInterval I hI fuel).Contains (Real.sqrt x) := by
@@ -203,14 +215,18 @@ theorem sqrtInterval_sound {I : RatInterval} (hI : 0 ≤ I.lo) {x : ℝ}
   · exact (Real.sqrt_le_sqrt hx.2).trans hhi_sound.2
 
 /-- Square-root interval width is exactly the endpoint Newton gap, exposing
-both input-diameter and iteration-error contributions. -/
+both input-diameter and iteration-error contributions.
+@isnad1 id=eq.1h2v.s5.bd40ff535d30 from=translated src=- shape=8e33a6db vocab=5a94fd49
+-/
 theorem sqrtInterval_width (I : RatInterval) (hI : 0 ≤ I.lo) (fuel : ℕ) :
     (sqrtInterval I hI fuel).width =
       sqrtUpper I.hi fuel - sqrtLower I.lo fuel := by
   rfl
 
 /-- Containment of one real value together with interval width controls both
-endpoint magnitudes. -/
+endpoint magnitudes.
+@isnad1 id=le.3h4v.s5.6d74dc06da2a from=translated src=- shape=49d1e51d vocab=8dd2a7aa
+-/
 theorem maxAbs_le_of_contains_width {I : RatInterval} {x : ℝ}
     {C w : ℚ} (hx : I.Contains x) (habs : |x| ≤ C) (hw : I.width ≤ w) :
     I.maxAbs ≤ C + w := by
@@ -236,11 +252,15 @@ theorem maxAbs_le_of_contains_width {I : RatInterval} {x : ℝ}
         push_cast
         linarith)
 
-/-- Negation preserves the maximum endpoint magnitude. -/
+/-- Negation preserves the maximum endpoint magnitude.
+@isnad1 id=eq.0h1v.s3.a96bc0c7d6b4 from=translated src=- shape=8d4cac31 vocab=bd8aeca1
+-/
 theorem maxAbs_neg (I : RatInterval) : I.neg.maxAbs = I.maxAbs := by
   simp [RatInterval.neg, RatInterval.maxAbs, max_comm]
 
-/-- Addition increases endpoint magnitude by at most the sum of operand bounds. -/
+/-- Addition increases endpoint magnitude by at most the sum of operand bounds.
+@isnad1 id=le.0h2v.s4.88fb5cb202ec from=translated src=- shape=88b36870 vocab=2c699394
+-/
 theorem maxAbs_add (I J : RatInterval) :
     (I.add J).maxAbs ≤ I.maxAbs + J.maxAbs := by
   apply max_le
@@ -251,13 +271,17 @@ theorem maxAbs_add (I J : RatInterval) :
       (abs_add_le I.hi J.hi).trans
         (add_le_add (le_max_right _ _) (le_max_right _ _))
 
-/-- Subtraction increases endpoint magnitude by at most the sum of operand bounds. -/
+/-- Subtraction increases endpoint magnitude by at most the sum of operand bounds.
+@isnad1 id=le.0h2v.s4.d8a86ec8b1a1 from=translated src=- shape=88b36870 vocab=032c754c
+-/
 theorem maxAbs_sub (I J : RatInterval) :
     (I.sub J).maxAbs ≤ I.maxAbs + J.maxAbs := by
   simpa [RatInterval.sub, maxAbs_neg] using maxAbs_add I J.neg
 
 /-- Interval multiplication has the product of operand endpoint magnitudes as
-an executable magnitude bound. -/
+an executable magnitude bound.
+@isnad1 id=le.0h2v.s4.f5794df7e12d from=translated src=- shape=88b36870 vocab=68c020c7
+-/
 theorem maxAbs_mul (I J : RatInterval) :
     (I.mul J).maxAbs ≤ I.maxAbs * J.maxAbs := by
   have hI0 : 0 ≤ I.maxAbs := (abs_nonneg I.lo).trans (le_max_left _ _)

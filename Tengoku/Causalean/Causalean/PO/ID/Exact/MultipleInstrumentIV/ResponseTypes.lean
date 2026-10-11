@@ -187,7 +187,9 @@ noncomputable def centeredScoreIVPopulationBridge
 
 /-- [The centered-score moment of the response-type baseline outcome is zero](goal) for [an
 ordered score index](hyp:I) and [finite-support population bridge](hyp:P), so only causal-response
-increments remain in the reduced form. -/
+increments remain in the reduced form.
+@isnad1 id=eq.0h3v.s6.a4ad4f20aca4 from=translated src=- shape=e95e6e81 vocab=2a20f2fa
+-/
 theorem baselineMoment_eq_zero :
     (∑ k : Fin K,
         I.rho k * I.centeredIndex k *
@@ -205,7 +207,9 @@ theorem baselineMoment_eq_zero :
 
 /-- [The finite-support first-stage moment equals the aggregate response-type weight](goal) for
 [an ordered score index](hyp:I) and [population bridge](hyp:P). This identifies the denominator of
-the response-type IV ratio. -/
+the response-type IV ratio.
+@isnad1 id=eq.0h3v.s4.ebe7c8358e3d from=translated src=- shape=77ce0a83 vocab=e60333ce
+-/
 theorem firstStageMoment_eq_typeWeightDenom :
     P.firstStageMoment I = P.stats.typeWeightDenom I := by
   classical
@@ -248,7 +252,9 @@ theorem firstStageMoment_eq_typeWeightDenom :
 
 /-- [The finite-support reduced-form moment equals the response-type-weighted causal-effect
 sum](goal) for [an ordered score index](hyp:I) and [population bridge](hyp:P). This identifies the
-numerator of the response-type IV ratio. -/
+numerator of the response-type IV ratio.
+@isnad1 id=eq.0h3v.s5.c0d2775877f3 from=translated src=- shape=ef0ad858 vocab=6f64c08a
+-/
 theorem reducedFormMoment_eq_typeWeightNumerator :
     P.reducedFormMoment I =
       ∑ g : ResponseType K, P.stats.unnormTypeWeight I g * P.stats.effect g := by
@@ -315,7 +321,9 @@ theorem reducedFormMoment_eq_typeWeightNumerator :
 /-- [The population centered-score IV ratio equals the finite response-type ratio](goal) for [an
 ordered finite score index](hyp:I) and [a finite-support response-type bridge](hyp:P). This is the
 decomposition algebra; a 2SLS interpretation additionally requires a projected first-stage
-score. -/
+score.
+@isnad1 id=eq.0h3v.s4.22e9799865ae from=translated src=- shape=77ce0a83 vocab=f2c43c8e
+-/
 theorem centeredScoreIVPopulationBridge_eq_centeredScoreIVFiniteAlgebra :
     P.centeredScoreIVPopulationBridge I = P.stats.centeredScoreIVFiniteAlgebra I := by
   unfold centeredScoreIVPopulationBridge ResponseTypeStats.centeredScoreIVFiniteAlgebra
@@ -352,7 +360,9 @@ structure OpaqueAdjacentStepRestriction where
 
 /-- [Every unnormalized response-type weight is nonnegative](goal) when [an ordered score and
 finite response-type population](hyp:I,R) satisfy [sign alignment](hyp:hAlign), for [the selected
-response type](hyp:g). Nonnegative type masses then preserve the aligned sign. -/
+response type](hyp:g). Nonnegative type masses then preserve the aligned sign.
+@isnad1 id=le.1h4v.s4.09be11164ef9 from=translated src=- shape=1aed27aa vocab=24f9b798
+-/
 theorem unnormTypeWeight_nonneg_of_signAligned
     (hAlign : R.SignAligned I) (g : ResponseType K) :
     0 ≤ R.unnormTypeWeight I g := by
@@ -366,7 +376,9 @@ theorem unnormTypeWeight_nonneg_of_signAligned
 /-- [Each normalized response-type weight is nonnegative](goal) when [an ordered score and finite
 response-type population](hyp:I,R) satisfy [sign alignment](hyp:hAlign) and have [a positive
 score-weight denominator](hyp:hden), for [the selected response type](hyp:g). The paper-facing
-2SLS claim needs additional first-stage and behavioral conditions. -/
+2SLS claim needs additional first-stage and behavioral conditions.
+@isnad1 id=le.2h4v.s5.eccf81548acb from=translated src=- shape=ab330aa7 vocab=d419a480
+-/
 theorem normalizedTypeWeight_nonneg_of_signAligned
     (hAlign : R.SignAligned I) (hden : 0 < R.typeWeightDenom I)
     (g : ResponseType K) :
@@ -376,7 +388,9 @@ theorem normalizedTypeWeight_nonneg_of_signAligned
 
 /-- [The normalized response-type weights sum to one](goal) for [an ordered score and finite
 response-type population](hyp:I,R) when [the first-stage weight denominator is
-positive](hyp:hden). -/
+positive](hyp:hden).
+@isnad1 id=eq.1h3v.s5.e894adbd25e4 from=translated src=- shape=56623bbe vocab=f88dacef
+-/
 theorem normalizedTypeWeight_sum_eq_one_of_pos
     (hden : 0 < R.typeWeightDenom I) :
     ∑ g : ResponseType K, R.normalizedTypeWeight I g = 1 := by
@@ -388,7 +402,9 @@ within-type causal effects](goal) for [an ordered score](hyp:I) and [finite resp
 statistics](hyp:R) when [the score-weight denominator is nonzero](hyp:hden). This is the
 normalization algebra appearing in
 `prop:po-estimand-mtw-response-type-form`, whose 2SLS interpretation additionally fixes the score
-to the fitted first stage. -/
+to the fitted first stage.
+@isnad1 id=eq.1h3v.s4.6dd194f811be from=translated src=- shape=9cab2c05 vocab=d7278592
+-/
 theorem centeredScoreIVFiniteAlgebra_eq_responseTypeWeightedSum
     (hden : R.typeWeightDenom I ≠ 0) :
     R.centeredScoreIVFiniteAlgebra I = R.responseTypeEstimand I := by
@@ -406,7 +422,9 @@ theorem centeredScoreIVFiniteAlgebra_eq_responseTypeWeightedSum
 /-- [The centered-score IV ratio is a convex average of response-type causal effects](goal) for
 [an ordered score](hyp:I) and [finite response-type statistics](hyp:R) when [response types are
 sign-aligned](hyp:hAlign) and [the score-weight denominator is positive](hyp:hden): every weight is
-nonnegative and the weights sum to one. -/
+nonnegative and the weights sum to one.
+@isnad1 id=and.2h3v.s6.74fcf4d1f021 from=translated src=- shape=89c38b16 vocab=a7bf1189
+-/
 theorem centeredScoreIVFiniteAlgebra_eq_positiveResponseTypeAverage_of_signAligned
     (hAlign : R.SignAligned I) (hden : 0 < R.typeWeightDenom I) :
     R.centeredScoreIVFiniteAlgebra I = R.responseTypeEstimand I ∧
@@ -609,7 +627,9 @@ support points and a 3/4-defier population, that type has positive mass yet a
 negative normalized response-type weight (equal to −1/2)](goal).
 
 This is a finite-algebra counterexample: without sign alignment, the displayed
-centered-score IV ratio need not be a convex average of causal effects. -/
+centered-score IV ratio need not be a convex average of causal effects.
+@isnad1 id=ex.0h0v.s6.c2d5c7aad80b from=translated src=- shape=9eb94303 vocab=aef44fc2
+-/
 theorem exists_negativeNormalizedTypeWeight :
     ∃ (I : FiniteIndex 2) (R : ResponseTypeStats 2) (g : ResponseType 2),
       0 < R.mass g ∧ R.normalizedTypeWeight I g < 0 := by

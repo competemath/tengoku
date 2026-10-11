@@ -20,7 +20,9 @@ namespace Causalean.Mathlib.Probability.Poisson.PairSecondMoment
 /-- Given [two nonnegative Poisson rates](hyp:rateA,rateB), [two scalar count
 functions](hyp:f,g), and [their integrability under the respective Poisson
 laws](hyp:hf,hg), [the weighted double count series factors into their two
-expectations](goal). -/
+expectations](goal).
+@isnad1 id=eq.2h4v.s7.82b837f469a5 from=translated src=- shape=3cc7dbf2 vocab=40d95ab5
+-/
 theorem poisson_pair_weighted_tsum_mul
     (rateA rateB : ℝ≥0) (f g : ℕ → ℝ)
     (hf : Integrable f (poissonMeasure rateA))

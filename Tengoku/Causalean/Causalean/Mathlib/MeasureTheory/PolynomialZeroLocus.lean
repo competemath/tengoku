@@ -22,7 +22,9 @@ open MeasureTheory
 namespace Causalean.Mathlib.MeasureTheory
 
 /-- For [a real polynomial in finitely many numbered variables](hyp:P) that [is
-nonzero](hyp:hP), [its zero locus has Lebesgue measure zero](goal). -/
+nonzero](hyp:hP), [its zero locus has Lebesgue measure zero](goal).
+@isnad1 id=eq.1h2v.s7.149316e03b63 from=translated src=- shape=aaf0048a vocab=66491bc2
+-/
 lemma volume_mk_zeroLocus_mvPolynomial {d : ℕ} (P : MvPolynomial (Fin d) ℝ)
     (hP : P ≠ 0) :
     volume {x : Fin d → ℝ | MvPolynomial.eval x P = 0} = 0 := by
@@ -105,7 +107,9 @@ lemma volume_mk_zeroLocus_mvPolynomial {d : ℕ} (P : MvPolynomial (Fin d) ℝ)
       exact hprodS
 
 /-- For [a real polynomial indexed by an arbitrary finite variable type](hyp:P) that [is
-nonzero](hyp:hP), [its zero locus has Lebesgue measure zero](goal). -/
+nonzero](hyp:hP), [its zero locus has Lebesgue measure zero](goal).
+@isnad1 id=eq.1h2v.s7.9b3926f84c6c from=translated src=- shape=d80bd77d vocab=709fe201
+-/
 lemma volume_zeroLocus_mvPolynomial_finite {α : Type*} [Fintype α]
     (P : MvPolynomial α ℝ) (hP : P ≠ 0) :
     volume {x : α → ℝ | MvPolynomial.eval x P = 0} = 0 := by

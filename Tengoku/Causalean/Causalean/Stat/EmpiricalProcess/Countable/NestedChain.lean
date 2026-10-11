@@ -27,6 +27,7 @@ most 256/27 times the square of the chain energy in U](goal).
 
 The bound is independent of the number of observations and of chain
 members.
+@isnad1 id=le.2h7v.s7.0a0417f2b1e2 from=translated src=- shape=fa6134b3 vocab=4f784b0c
 -/
 theorem nested_chain_fourth_le_energy {Ω ι : Type*} (B : ι → Set Ω)
     (hchain : ∀ i k, B i ⊆ B k ∨ B k ⊆ B i) (U : Set Ω)

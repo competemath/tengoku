@@ -13,7 +13,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- A positive gap of at most one lies between two consecutive time widths
-of a `d`-dimensional dyadic traversal. -/
+of a `d`-dimensional dyadic traversal.
+@isnad1 id=ex.3h2v.s7.15b4516110d4 from=translated src=- shape=c9cd044b vocab=5c9d27ef
+-/
 theorem exists_dyadicScale (d : ℕ) (hd : 0 < d) {δ : ℝ}
     (hδ : 0 < δ) (hδ1 : δ ≤ 1) :
     ∃ n : ℕ,
@@ -29,7 +31,9 @@ theorem exists_dyadicScale (d : ℕ) (hd : 0 < d) {δ : ℝ}
   exact ⟨n, (hw (n + 1)) ▸ hn.le, (hw n) ▸ hn'⟩
 
 /-- Given [a dimension and dyadic level](hyp:d,n), [a positive dimension](hyp:hd), and [a gap at least as large as the next time width](hyp:δ,hδ),
-[the squared spatial width is bounded by four times the fractional power of that gap](goal). -/
+[the squared spatial width is bounded by four times the fractional power of that gap](goal).
+@isnad1 id=le.2h3v.s7.47fd47409d22 from=translated src=- shape=90c0ea61 vocab=341180a7
+-/
 theorem dyadicScale_sq_bound (d n : ℕ) (hd : 0 < d) {δ : ℝ}
     (hδ : (1 : ℝ) / (2 : ℝ) ^ (d * (n + 1)) ≤ δ) :
     ((1 : ℝ) / (2 : ℝ) ^ n) ^ 2 ≤

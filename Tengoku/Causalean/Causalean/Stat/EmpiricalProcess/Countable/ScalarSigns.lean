@@ -33,13 +33,17 @@ def signFlipEquiv {ι : Type*} [DecidableEq ι] (j : ι) : (ι → Bool) ≃ (ι
       simp
     · simp [Function.update_of_ne hi]
 
-/-- Complementing [a Boolean value](hyp:b) [negates its scalar sign](goal). -/
+/-- Complementing [a Boolean value](hyp:b) [negates its scalar sign](goal).
+@isnad1 id=eq.0h1v.s5.7df4f62ade8a from=translated src=- shape=7151a319 vocab=bfb7fddf
+-/
 theorem boolSign_not (b : Bool) :
     (if !b then (1 : ℝ) else -1) = -(if b then (1 : ℝ) else -1) := by
   cases b <;> norm_num
 
 /-- Over [any finite coordinate type](hyp:ι), the unnormalized sum of [one
-Boolean sign coordinate](hyp:j) [vanishes](goal). -/
+Boolean sign coordinate](hyp:j) [vanishes](goal).
+@isnad1 id=eq.0h2v.s6.5144a8a452c4 from=translated src=- shape=86fd2806 vocab=0ff41ebd
+-/
 theorem signCoordinate_sum {ι : Type*} [Fintype ι] [DecidableEq ι] (j : ι) :
     (∑ σ : ι → Bool, if σ j then (1 : ℝ) else -1) = 0 := by
   classical
@@ -49,7 +53,9 @@ theorem signCoordinate_sum {ι : Type*} [Fintype ι] [DecidableEq ι] (j : ι) :
   linarith
 
 /-- Over [any finite coordinate type](hyp:ι), the unnormalized product sum of
-[two distinct Boolean sign coordinates](hyp:j,k,hjk) [vanishes](goal). -/
+[two distinct Boolean sign coordinates](hyp:j,k,hjk) [vanishes](goal).
+@isnad1 id=eq.1h3v.s6.263703c86415 from=translated src=- shape=7960e2be vocab=2a7ad78d
+-/
 theorem signCoordinate_mul_sum {ι : Type*} [Fintype ι] [DecidableEq ι]
     (j k : ι) (hjk : j ≠ k) :
     (∑ σ : ι → Bool,
@@ -62,7 +68,9 @@ theorem signCoordinate_mul_sum {ι : Type*} [Fintype ι] [DecidableEq ι]
   linarith
 
 /-- Over [any finite coordinate type](hyp:ι), every [real linear combination
-of Boolean signs](hyp:a) has [unnormalized sum zero](goal). -/
+of Boolean signs](hyp:a) has [unnormalized sum zero](goal).
+@isnad1 id=eq.0h2v.s6.a0f6666a9cff from=translated src=- shape=e86e52c1 vocab=2a7ad78d
+-/
 theorem signLinear_sum {ι : Type*} [Fintype ι] [DecidableEq ι] (a : ι → ℝ) :
     (∑ σ : ι → Bool, ∑ j, (if σ j then (1 : ℝ) else -1) * a j) = 0 := by
   rw [Finset.sum_comm]
@@ -70,7 +78,9 @@ theorem signLinear_sum {ι : Type*} [Fintype ι] [DecidableEq ι] (a : ι → �
 
 /-- Over [any finite coordinate type](hyp:ι), the unnormalized [second moment
 of a real linear combination of Boolean signs](hyp:a) [equals the number of
-sign vectors times the coefficient energy](goal). -/
+sign vectors times the coefficient energy](goal).
+@isnad1 id=eq.0h2v.s7.cc63a71abdfc from=translated src=- shape=50ffee0a vocab=62b4b38b
+-/
 theorem signLinear_sq_sum {ι : Type*} [Fintype ι] [DecidableEq ι] (a : ι → ℝ) :
     (∑ σ : ι → Bool, (∑ j, (if σ j then (1 : ℝ) else -1) * a j) ^ 2) =
       (Fintype.card (ι → Bool) : ℝ) * ∑ j, a j ^ 2 := by
@@ -107,7 +117,9 @@ theorem signLinear_sq_sum {ι : Type*} [Fintype ι] [DecidableEq ι] (a : ι →
 
 /-- For [a real function of n + 1 Boolean signs](hyp:H), [its sum over all sign patterns equals the
 sum, over the patterns of the remaining n signs, of its values with the first sign set to true and
-to false](goal). -/
+to false](goal).
+@isnad1 id=eq.0h2v.s7.0032880084f6 from=translated src=- shape=2e8254cc vocab=d54dac8f
+-/
 theorem signSum_succ {n : ℕ} (H : (Fin (n + 1) → Bool) → ℝ) :
     (∑ σ, H σ) = ∑ σ : Fin n → Bool, (H (Fin.cons true σ) + H (Fin.cons false σ)) := by
   rw [← Fintype.sum_equiv (Fin.consEquiv (fun _ : Fin (n + 1) => Bool))
@@ -116,7 +128,9 @@ theorem signSum_succ {n : ℕ} (H : (Fin (n + 1) → Bool) → ℝ) :
 
 /-- For [n real coefficients](hyp:n,a), [summing over all 2^n sign patterns, the squared signed sum
 of the coefficients totals 2^n times the sum of squared coefficients, and its fourth power totals
-2^n times three times the squared sum of squares minus twice the sum of fourth powers](goal). -/
+2^n times three times the squared sum of squares minus twice the sum of fourth powers](goal).
+@isnad1 id=and.0h2v.s8.51760dd611b0 from=translated src=- shape=8bada4ef vocab=574d3085
+-/
 theorem signSum_moments (n : ℕ) (a : Fin n → ℝ) :
     (∑ σ : Fin n → Bool, (∑ j, (if σ j then (1 : ℝ) else -1) * a j)^2) =
       (2 : ℝ)^n * (∑ j, a j^2) ∧
@@ -150,7 +164,9 @@ theorem signSum_moments (n : ℕ) (a : Fin n → ℝ) :
 
 /-- For [real coefficients](hyp:a), [the fourth moment of their finite Rademacher sum equals
 exactly three times the squared sum of squared coefficients minus twice the sum of their fourth
-powers](goal). -/
+powers](goal).
+@isnad1 id=eq.0h2v.s7.94471f1bb8dd from=translated src=- shape=9d914013 vocab=8850d34b
+-/
 theorem signAverage_fourth_exact {n : ℕ} (a : Fin n → ℝ) :
     signAverage (fun σ => (∑ j, (if σ j then (1 : ℝ) else -1) * a j)^4) =
       3 * (∑ j, a j ^ 2)^2 - 2 * ∑ j, a j ^ 4 := by

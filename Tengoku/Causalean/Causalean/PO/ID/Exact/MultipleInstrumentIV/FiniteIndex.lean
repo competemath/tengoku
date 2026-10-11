@@ -85,7 +85,9 @@ noncomputable def supportMass {Ω : Type*} [MeasurableSpace Ω] {K : ℕ}
 
 /-- [Every instrument support mass is nonnegative](goal) for [a measurable sample space and
 finite support](hyp:Ω,K), [population measure](hyp:μ), [finite-valued instrument](hyp:Z), and
-[support point](hyp:k). -/
+[support point](hyp:k).
+@isnad1 id=le.0h5v.s5.66aaef4e0b1a from=translated src=- shape=0eb8e5f4 vocab=44dfb776
+-/
 theorem supportMass_nonneg {Ω : Type*} [MeasurableSpace Ω] {K : ℕ}
     (μ : Measure Ω) (Z : Ω → Fin K) (k : Fin K) :
     0 ≤ supportMass μ Z k := by
@@ -93,7 +95,9 @@ theorem supportMass_nonneg {Ω : Type*} [MeasurableSpace Ω] {K : ℕ}
 
 /-- [Instrument support masses sum to one](goal) under [a probability measure](hyp:μ), for [a
 measurable finite-valued instrument](hyp:Z,hZ) on [the measurable sample space and finite
-support](hyp:Ω,K). This makes the masses population weights. -/
+support](hyp:Ω,K). This makes the masses population weights.
+@isnad1 id=eq.1h4v.s5.f057f1b405ca from=translated src=- shape=ad5fd95f vocab=22fcc3da
+-/
 theorem supportMass_sum_eq_one {Ω : Type*} [MeasurableSpace Ω] {K : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (Z : Ω → Fin K) (hZ : Measurable Z) :
@@ -161,7 +165,9 @@ noncomputable def tailCoeff (j : Adj K) : ℝ :=
 index](hyp:I), which removes baseline components from centered-score moments.
 
 This is the finite algebra behind subtracting the baseline term in
-`thm:po-estimand-mtw-signed-decomposition`. -/
+`thm:po-estimand-mtw-signed-decomposition`.
+@isnad1 id=eq.0h2v.s5.6ab95ce44cad from=translated src=- shape=9a8bdb22 vocab=7000ea56
+-/
 theorem centered_weight_sum_zero :
     ∑ k, I.rho k * I.centeredIndex k = 0 := by
   calc
@@ -177,7 +183,9 @@ theorem centered_weight_sum_zero :
 
 /-- [Every ordered-score tail coefficient is nonnegative](goal) in [an ordered finite score
 index](hyp:I) at [an adjacent threshold](hyp:j), because higher support points have weakly higher
-scores. For a projected first stage, this is the MTW coefficient sign result. -/
+scores. For a projected first stage, this is the MTW coefficient sign result.
+@isnad1 id=le.0h3v.s4.bf43d1cc888f from=translated src=- shape=d78b0cc0 vocab=24d01c68
+-/
 theorem tailCoeff_nonneg (j : Adj K) :
     0 ≤ I.tailCoeff j := by
   classical
@@ -246,7 +254,9 @@ theorem tailCoeff_nonneg (j : Adj K) :
 
 /-- [A support-point sum of cumulative margin contributions equals the tail-coefficient-weighted
 sum over margins](goal) for [an ordered finite score index](hyp:I) and [a margin contribution
-schedule](hyp:x). This is the interchange that exposes signed causal-response weights. -/
+schedule](hyp:x). This is the interchange that exposes signed causal-response weights.
+@isnad1 id=eq.0h3v.s7.5c15635ea335 from=translated src=- shape=745729c3 vocab=5838a08c
+-/
 theorem tail_sum_interchange (x : Adj K → ℝ) :
     (∑ k : Fin K,
         I.rho k * I.centeredIndex k *
@@ -293,7 +303,9 @@ The centering of the indicator drops out because `Σ_k ρ_k * centeredIndex_k = 
 algebra to score moments. It has the cited 2SLS meaning only when `dhat` is a
 fitted first-stage value.
 
-Source location: `def:po-estimand-mtw-tail-coefficients` (TeX:135–138). -/
+Source location: `def:po-estimand-mtw-tail-coefficients` (TeX:135–138).
+@isnad1 id=eq.0h3v.s7.de50980fddb4 from=translated src=- shape=87fbf0ce vocab=28660121
+-/
 theorem tailCoeff_eq_cov (j : Adj K) :
     I.tailCoeff j =
       ∑ k : Fin K,

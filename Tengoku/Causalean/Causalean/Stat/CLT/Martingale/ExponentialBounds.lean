@@ -26,7 +26,9 @@ noncomputable def expQuadraticRemainder (u : ℝ) : ℂ :=
   Complex.exp (Complex.I * (u : ℂ)) - 1 - Complex.I * (u : ℂ) + (u : ℂ) ^ 2 / 2
 
 /-- If [the real argument has absolute value at most one](hyp:hu), then [the norm
-of the quadratic Taylor remainder of `exp(iu)` is at most `|u|³`](goal). -/
+of the quadratic Taylor remainder of `exp(iu)` is at most `|u|³`](goal).
+@isnad1 id=le.1h1v.s5.f5daa9b827de from=translated src=- shape=760fe127 vocab=4cf83cab
+-/
 theorem norm_expQuadraticRemainder_le_cube (u : ℝ) (hu : |u| ≤ 1) :
     ‖expQuadraticRemainder u‖ ≤ |u| ^ 3 := by
   /-
@@ -64,7 +66,9 @@ theorem norm_expQuadraticRemainder_le_cube (u : ℝ) (hu : |u| ≤ 1) :
     _ = |u| ^ 3 := by simp [z]
 
 /-- For [every real argument](hyp:u), [the norm of the quadratic Taylor remainder
-of `exp(iu)` is bounded by `2 + |u| + u²/2`](goal). -/
+of `exp(iu)` is bounded by `2 + |u| + u²/2`](goal).
+@isnad1 id=le.0h1v.s6.73318039a500 from=translated src=- shape=360a2c8e vocab=d70e9887
+-/
 theorem norm_expQuadraticRemainder_le_global (u : ℝ) :
     ‖expQuadraticRemainder u‖ ≤ 2 + |u| + u ^ 2 / 2 := by
   /-
@@ -98,7 +102,9 @@ theorem norm_expQuadraticRemainder_le_global (u : ℝ) :
 /-- Given [a frequency](hyp:t), [an increment](hyp:x), and [a positive truncation
 level](hyp:hη) small enough that `|t| · η ≤ 1` [as assumed](hyp:htη), [the
 quadratic exponential remainder is bounded by a small cubic contribution plus
-a quadratic contribution supported on increments larger than `η`](goal). -/
+a quadratic contribution supported on increments larger than `η`](goal).
+@isnad1 id=le.2h3v.s8.08f5bdfdfd92 from=translated src=- shape=f724d2e0 vocab=046801bd
+-/
 theorem norm_expQuadraticRemainder_le_truncated (t x η : ℝ)
     (hη : 0 < η) (htη : |t| * η ≤ 1) :
     ‖expQuadraticRemainder (t * x)‖ ≤

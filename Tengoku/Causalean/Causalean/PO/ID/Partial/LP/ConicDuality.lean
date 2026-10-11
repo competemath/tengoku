@@ -99,7 +99,9 @@ noncomputable def dualValue : ℝ :=
 /-- **Weak duality (pointwise).** For [a conic program](hyp:P) on [real Hilbert
 decision and constraint spaces](hyp:E,F), [a primal-feasible decision
 vector](hyp:x,hx) and [a dual-feasible multiplier](hyp:y,hy) satisfy [the dual
-objective value being no larger than the primal objective value](goal). -/
+objective value being no larger than the primal objective value](goal).
+@isnad1 id=le.2h5v.s7.6a3e30cf3e77 from=translated src=- shape=33940df2 vocab=df287aad
+-/
 theorem weak_duality {x : E} {y : F}
     (hx : P.PrimalFeasible x) (hy : P.DualFeasible y) :
     ⟪P.b, y⟫ ≤ ⟪P.c, x⟫ := by
@@ -117,7 +119,9 @@ theorem weak_duality {x : E} {y : F}
 decision and constraint spaces](hyp:E,F), [nonempty primal feasibility](hyp:hP)
 and [nonempty dual feasibility](hyp:hD) imply [that the dual optimal value is no
 larger than the primal optimal value](goal). Boundedness is unnecessary because
-pointwise weak duality gives an explicit bound. -/
+pointwise weak duality gives an explicit bound.
+@isnad1 id=le.2h3v.s6.18771040ea78 from=translated src=- shape=d758ab4c vocab=35a15eae
+-/
 theorem dualValue_le_primalValue
     (hP : {x | P.PrimalFeasible x}.Nonempty) (hD : {y | P.DualFeasible y}.Nonempty) :
     P.dualValue ≤ P.primalValue := by
@@ -136,7 +140,9 @@ whose pullback lies in the dual constraint cone](goal).
 This is the strong-duality engine: a restatement of
 `ProperCone.relative_hyperplane_separation` in conic-program notation.
 `ProperCone.map` bakes in the closure of `A(K)`, which is exactly the
-constraint-qualification gap between this and literal primal feasibility. -/
+constraint-qualification gap between this and literal primal feasibility.
+@isnad1 id=iff.0h4v.s11.82a2f5917de3 from=translated src=- shape=b7858607 vocab=9a59110f
+-/
 theorem farkas {b : F} :
     b ∈ ProperCone.map P.A P.K ↔
       ∀ y : F, (ContinuousLinearMap.adjoint P.A) y ∈ ProperCone.innerDual (P.K : Set E)
@@ -161,7 +167,9 @@ primal-feasible point attains the primal optimal value](goal).
 
 Proof: the value set `{⟪c,x⟫ : x feasible}` is the slice `r ↦ (b, r)` of the
 closed `augmentedImage`, hence closed; a nonempty closed set in `ℝ` bounded below
-contains its infimum (`IsClosed.csInf_mem`). -/
+contains its infimum (`IsClosed.csInf_mem`).
+@isnad1 id=ex.3h3v.s7.7a424191be2b from=translated src=- shape=da371556 vocab=4776ccce
+-/
 theorem strong_duality_primal_attained
     (hP : {x | P.PrimalFeasible x}.Nonempty)
     (hbdd : BddBelow ((fun x => ⟪P.c, x⟫) '' {x | P.PrimalFeasible x}))
@@ -205,7 +213,9 @@ where `y₀` is the Riesz representative of `v ↦ g (v,0)` and `s := g (0,1)`. 
 `s = 0` is impossible (primal feasibility gives `⟪y₀,b⟫ ≥ 0` while separation
 gives `⟪y₀,b⟫ < 0`) and `s < 0` is impossible (`⟪c,x⟫ ≥ primalValue`); so `s > 0`
 and `ȳ := −(1/s)•y₀` is dual feasible with `⟪b, ȳ⟫ > primalValue − ε`. Letting
-`ε → 0` gives `primalValue ≤ dualValue`; combined with weak duality, equality. -/
+`ε → 0` gives `primalValue ≤ dualValue`; combined with weak duality, equality.
+@isnad1 id=eq.3h3v.s7.1c7d20e9054c from=translated src=- shape=84fe5220 vocab=a0330b37
+-/
 theorem strong_duality_zero_gap
     (hP : {x | P.PrimalFeasible x}.Nonempty)
     (hbdd : BddBelow ((fun x => ⟪P.c, x⟫) '' {x | P.PrimalFeasible x}))

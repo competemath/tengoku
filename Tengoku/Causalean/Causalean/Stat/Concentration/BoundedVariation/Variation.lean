@@ -55,12 +55,14 @@ noncomputable def pathSize (f : Path) : ℝ := ‖f‖ + pathTV f
 
 /-- [The real-valued total variation of every path is
 nonnegative](goal).
+@isnad1 id=le.0h1v.s3.16a9e3b692ee from=translated src=- shape=b9369acb vocab=15142bd8
 -/
 theorem pathTV_nonneg (f : Path) : 0 ≤ pathTV f := by
   exact ENNReal.toReal_nonneg
 
 /-- [The supremum-plus-variation size of every path is
 nonnegative](goal).
+@isnad1 id=le.0h1v.s3.a2f52ac6b79d from=translated src=- shape=b9369acb vocab=66e00aad
 -/
 theorem pathSize_nonneg (f : Path) : 0 ≤ pathSize f := by
   exact add_nonneg (norm_nonneg _) (pathTV_nonneg f)

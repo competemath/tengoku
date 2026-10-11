@@ -18,7 +18,9 @@ open _root_.MeasureTheory
 continuity of the first with respect to the second](hyp:hAC), [a real lower bound](hyp:c),
 [an almost-everywhere lower bound on the real-valued Radon--Nikodym derivative](hyp:hden),
 and [a set](hyp:E), [the first measure of that set is at least the lower bound times the
-second measure of the set](goal). -/
+second measure of the set](goal).
+@isnad1 id=le.2h5v.s6.533e0c8ee99b from=translated src=- shape=e204fc6b vocab=e8bf818b
+-/
 theorem measureReal_lower_of_rnDeriv_lower {α : Type*} [MeasurableSpace α]
     (μ ν : Measure α) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (hAC : μ ≪ ν) (c : ℝ)

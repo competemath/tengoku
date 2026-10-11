@@ -17,7 +17,9 @@ open Causalean.Stat.Concentration.BoundedVariation
 
 namespace Causalean.Stat.Concentration.BoundedVariation
 
-/-- [Nonnegative finite weights summing to one](hyp:weight,hw_nonneg,hw_sum) and [continuous paths](hyp:Z) give [a squared-supremum Jensen inequality for their weighted average](goal). -/
+/-- [Nonnegative finite weights summing to one](hyp:weight,hw_nonneg,hw_sum) and [continuous paths](hyp:Z) give [a squared-supremum Jensen inequality for their weighted average](goal).
+@isnad1 id=le.2h3v.s8.d67ca6a72872 from=translated src=- shape=d74fe072 vocab=a3c9cf8b
+-/
 -- Apply finite Jensen to `ConvexOn ℝ Set.univ (fun z : Path => ‖z‖^2)`;
 -- `convexOn_univ_norm` and `.pow` establish the convexity premise.
 theorem finite_path_average_sq_norm_le
@@ -33,7 +35,9 @@ theorem finite_path_average_sq_norm_le
     hconv.map_sum_le (t := Finset.univ) (w := weight) (p := Z)
       (fun a _ => hw_nonneg a) (by simpa using hw_sum) (fun _ _ => Set.mem_univ _)
 
-/-- Under [a probability law](hyp:μ), [measurable nonnegative auxiliary weights that sum to one](hyp:weight,hw_nonneg,hw_sum,hw_meas), [measurable continuous paths](hyp:Z,hZ_meas), and [an integrable weighted squared-path cost](hyp:hcost), [finite conditional averaging contracts expected squared supremum risk](goal). -/
+/-- Under [a probability law](hyp:μ), [measurable nonnegative auxiliary weights that sum to one](hyp:weight,hw_nonneg,hw_sum,hw_meas), [measurable continuous paths](hyp:Z,hZ_meas), and [an integrable weighted squared-path cost](hyp:hcost), [finite conditional averaging contracts expected squared supremum risk](goal).
+@isnad1 id=le.5h5v.s8.e8bdaf66d275 from=translated src=- shape=9a245875 vocab=f9a1db95
+-/
 -- The observation space may be infinite (in particular, a table of Poisson
 -- counts). Prove measurability of the finite weighted sum from `hw_meas` and
 -- `hZ_meas`. Pointwise Jensen gives domination by the integrable right side;

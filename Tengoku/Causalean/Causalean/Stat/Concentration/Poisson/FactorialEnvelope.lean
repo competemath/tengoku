@@ -28,6 +28,7 @@ is necessary even when `m` is smaller than one.
 Specialize `poisson_factorialLift_mixed` to `h=t`, divide by `R^(2*h)`, use the center and
 variance premises termwise, then bound `choose h r ^ 2 * r!` by `h^(2*r)/r!` and compare the
 finite exponential sum with `Real.exp`.
+@isnad1 id=le.5h6v.s7.f220d27fa21c from=translated src=- shape=6f87566f vocab=2415d2fb
 -/
 theorem poisson_factorialLift_square_envelope (rate : NNReal)
     (m z R L : ℝ) (hm : 0 < m) (hR : 0 < R) (hL : 0 < L)

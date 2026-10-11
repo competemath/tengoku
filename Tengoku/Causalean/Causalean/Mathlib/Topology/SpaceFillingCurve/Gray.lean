@@ -97,7 +97,9 @@ private theorem grayBit_even_succ (n j : ℕ) :
   simp only [grayBit_formula, hs]
 
 /-- Given [a cube dimension and child index](hyp:d,k) whose [successor remains in the dyadic grid](hyp:hk),
-[the two consecutive Gray-code words differ in exactly one coordinate](goal). -/
+[the two consecutive Gray-code words differ in exactly one coordinate](goal).
+@isnad1 id=ex.1h2v.s6.ee03ec264bb1 from=translated src=- shape=d52a6766 vocab=12d52c24
+-/
 theorem grayBit_adjacent (d k : ℕ) (hk : k + 1 < 2 ^ d) :
     ∃ i : Fin d,
       grayBit k i.val ≠ grayBit (k + 1) i.val ∧

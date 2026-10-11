@@ -44,7 +44,9 @@ open scoped MeasureTheory ProbabilityTheory
     equal](goal).
 
     This is the indexed analogue of `compProd_eq_of_inner_ae`; it is useful when the inner
-    integration law is a conditional kernel rather than a fixed marginal. -/
+    integration law is a conditional kernel rather than a fixed marginal.
+@isnad1 id=eq.3h9v.s8.495d436922c6 from=translated src=- shape=e220c937 vocab=2c71f285
+-/
 theorem compProd_eq_of_inner_ae_kernel
     {α γ β : Type*} [MeasurableSpace α] [MeasurableSpace γ] [MeasurableSpace β]
     (ν : Measure α) [IsFiniteMeasure ν] (κ : Kernel α γ) [IsSFiniteKernel κ]
@@ -84,7 +86,9 @@ theorem compProd_eq_of_inner_ae_kernel
     `fL(a,·)` composed with `μ`](hyp:hL) and [`KR a` equals the section `fR(a,·)` composed with
     `μ`](hyp:hR). If [the inner kernels `fL` and `fR` agree almost everywhere with respect to the
     composition product of the base measure `ν` with the constant-`μ` kernel](hyp:hae), then
-    [the composition products `ν ⊗ₘ KL` and `ν ⊗ₘ KR` are equal](goal). -/
+    [the composition products `ν ⊗ₘ KL` and `ν ⊗ₘ KR` are equal](goal).
+@isnad1 id=eq.3h9v.s8.5fa83ba6faee from=translated src=- shape=76dc7785 vocab=3ed87576
+-/
 theorem compProd_eq_of_inner_ae
     {α γ β : Type*} [MeasurableSpace α] [MeasurableSpace γ] [MeasurableSpace β]
     (ν : Measure α) [IsFiniteMeasure ν] (μ : Measure γ) [SFinite μ]
@@ -105,7 +109,9 @@ theorem compProd_eq_of_inner_ae
     `((κ₁ ⊗ₖ κ₂).map Prod.snd) a = (κ₂.sectR a) ∘ₘ (κ₁ a)`.  This is the "adjustment /
     bind unfold" that every do-calculus identification factor performs by hand; naming it
     turns the recurring four-line `map_apply / compProd_apply_eq_compProd_sectR /
-    Measure.snd / snd_compProd` rewrite chain into a single step. -/
+    Measure.snd / snd_compProd` rewrite chain into a single step.
+@isnad1 id=eq.0h6v.s7.6a5d30c46105 from=translated src=- shape=801f16de vocab=cfb4cd20
+-/
 theorem compProd_map_snd_apply
     {α β γ : Type*} [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
     (κ₁ : Kernel α β) (κ₂ : Kernel (α × β) γ)
@@ -123,7 +129,9 @@ open scoped MeasureTheory ProbabilityTheory
 
 /-- For [measurable spaces](hyp:α,β,γ), [an s-finite kernel `κ`](hyp:κ),
 [a function `f`](hyp:f), [its measurability](hyp:hf), and [a base point `a`](hyp:a),
-[composition with the deterministic kernel equals the paired pushforward](goal). -/
+[composition with the deterministic kernel equals the paired pushforward](goal).
+@isnad1 id=eq.1h6v.s7.9be6da79cb70 from=translated src=- shape=7a7835a0 vocab=cc019c25
+-/
 lemma compProd_deterministic_apply
     {α β γ : Type*} [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
     (κ : ProbabilityTheory.Kernel α β) [ProbabilityTheory.IsSFiniteKernel κ]

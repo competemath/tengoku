@@ -52,7 +52,9 @@ noncomputable def stopMultiplier
       A.conditionalLindebergThrough ε n k ω ≤ δ then 1 else 0
 
 /-- For [an active row increment](hyp:hk), [its stopping multiplier is measurable
-at the preceding filtration time](goal). -/
+at the preceding filtration time](goal).
+@isnad1 id=strongly.1h9v.s6.f1a734455436 from=translated src=- shape=ba7391ab vocab=c61d4525
+-/
 theorem stopMultiplier_stronglyMeasurable
     (A : MartingaleDifferenceArray Ω μ) (ε K δ : ℝ) (n k : ℕ)
     (hk : k < A.rowLength n) :
@@ -134,13 +136,17 @@ noncomputable def stoppedArray
     simpa only [M, Pi.zero_apply, mul_zero] using hpullω.trans
       (congrArg (M ω * ·) hzeroω)
 
-/-- Stopping does not change the row length. -/
+/-- Stopping does not change the row length.
+@isnad1 id=eq.0h8v.s6.50cfcf856346 from=translated src=- shape=0b82b982 vocab=6396569f
+-/
 @[simp] theorem stoppedArray_rowLength
     (A : MartingaleDifferenceArray Ω μ) (ε K δ : ℝ) (n : ℕ) :
     (A.stoppedArray ε K δ).rowLength n = A.rowLength n := rfl
 
 /-- A stopped increment is the original increment multiplied by the predictable
-zero-one stopping multiplier. -/
+zero-one stopping multiplier.
+@isnad1 id=eq.0h9v.s6.710822ebd301 from=translated src=- shape=eaa5a57c vocab=4a7211d5
+-/
 @[simp] theorem stoppedArray_increment
     (A : MartingaleDifferenceArray Ω μ) (ε K δ : ℝ) (n k : ℕ) :
     (A.stoppedArray ε K δ).increment n k =
@@ -148,7 +154,9 @@ zero-one stopping multiplier. -/
 
 /-- If [the truncation threshold is positive](hyp:hε) and the original final predictable
 variance and conditional Lindeberg mass stay within their budgets, then [predictable stopping
-leaves the row sum unchanged almost everywhere](goal). -/
+leaves the row sum unchanged almost everywhere](goal).
+@isnad1 id=eventual.1h8v.s7.3315d2d51e71 from=translated src=- shape=fda4366d vocab=26394400
+-/
 theorem stoppedArray_rowSum_ae_eq_of_bounds
     (A : MartingaleDifferenceArray Ω μ) (ε K δ : ℝ) (hε : 0 < ε) (n : ℕ) :
     ∀ᵐ ω ∂(μ n), A.predictableQuadraticVariation n ω ≤ K →
@@ -197,7 +205,9 @@ theorem stoppedArray_rowSum_ae_eq_of_bounds
 
 /-- With [nonnegative variance and Lindeberg budgets](hyp:hK,hδ), [the stopped
 row's predictable quadratic variation never exceeds the variance budget almost
-everywhere](goal). -/
+everywhere](goal).
+@isnad1 id=eventual.2h8v.s6.5283e6bc9af8 from=translated src=- shape=a8b5857b vocab=90d97cd1
+-/
 theorem stoppedArray_predictableQuadraticVariation_le
     (A : MartingaleDifferenceArray Ω μ) (ε K δ : ℝ)
     (hK : 0 ≤ K) (hδ : 0 ≤ δ) (n : ℕ) :
@@ -286,7 +296,9 @@ theorem stoppedArray_predictableQuadraticVariation_le
 
 /-- With [a positive truncation threshold](hyp:hε) and [nonnegative variance
 and Lindeberg budgets](hyp:hK,hδ), [the stopped row's conditional Lindeberg sum
-at that threshold never exceeds its budget almost everywhere](goal). -/
+at that threshold never exceeds its budget almost everywhere](goal).
+@isnad1 id=eventual.3h8v.s7.06ad9fa54e37 from=translated src=- shape=1b28a6cf vocab=b657653c
+-/
 theorem stoppedArray_conditionalLindeberg_le
     (A : MartingaleDifferenceArray Ω μ) (ε K δ : ℝ)
     (hε : 0 < ε) (hK : 0 ≤ K) (hδ : 0 ≤ δ) (n : ℕ) :
@@ -382,7 +394,9 @@ theorem stoppedArray_conditionalLindeberg_le
 
 /-- For [a positive truncation threshold](hyp:hε), [the probability that
 stopping changes a row sum is bounded by the probability that the original
-row exceeds either stopping budget](goal). -/
+row exceeds either stopping budget](goal).
+@isnad1 id=le.1h8v.s7.fef942a3b305 from=translated src=- shape=29ddbd21 vocab=e530060a
+-/
 theorem measure_stoppedArray_rowSum_ne_le
     (A : MartingaleDifferenceArray Ω μ) (ε K δ : ℝ) (hε : 0 < ε) (n : ℕ) :
     (μ n) {ω | (A.stoppedArray ε K δ).rowSum n ω ≠ A.rowSum n ω} ≤

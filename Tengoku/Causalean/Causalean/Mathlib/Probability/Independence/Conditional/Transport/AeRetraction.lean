@@ -24,7 +24,9 @@ noncomputable section
 namespace Causalean.Mathlib.Probability.Independence.Conditional.Transport
 /-- With [a source-to-target map](hyp:r), [a measurable return map](hyp:s,hs), [the return-map
 pushforward identity](hyp:hmap_s), [an almost-everywhere right-inverse identity](hyp:hrs), and
-[an equality after pullback](hyp:hfg), [the target functions agree almost everywhere](goal). -/
+[an equality after pullback](hyp:hfg), [the target functions agree almost everywhere](goal).
+@isnad1 id=eventual.4h9v.s6.cb5a9c8760a3 from=translated src=- shape=f9198643 vocab=2a9dbe5e
+-/
 theorem eventuallyEq_of_comp_aeRetraction
     {Ω Ω' A : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω']
     (r : Ω → Ω') (s : Ω' → Ω) (hs : Measurable s)
@@ -47,7 +49,9 @@ theorem eventuallyEq_of_comp_aeRetraction
 /-- With [a measurable source-to-target map](hyp:r,hr), [its pushforward identity](hyp:hmap_r),
 [a target conditioning σ-algebra contained in the ambient σ-algebra](hyp:m,hm), and [an
 integrable target outcome](hyp:hf), [conditional expectation commutes almost everywhere with
-pullback along the map](goal). -/
+pullback along the map](goal).
+@isnad1 id=eventual.4h8v.s7.38efb39a0ab7 from=translated src=- shape=de27318a vocab=eaf86fef
+-/
 theorem condExp_comp_of_map_eq
     {Ω Ω' E : Type*}
     [mΩ : MeasurableSpace Ω] [mΩ' : MeasurableSpace Ω']
@@ -110,7 +114,9 @@ theorem condExp_comp_of_map_eq
 /-- With [a measurable source-to-target map](hyp:r,hr), [its pushforward identity](hyp:hmap_r),
 [a target conditioning σ-algebra contained in the ambient σ-algebra](hyp:m,hm), and [a
 measurable target event](hyp:ht), [the event's conditional probability commutes almost everywhere
-with pullback along the map](goal). -/
+with pullback along the map](goal).
+@isnad1 id=eventual.4h7v.s7.d648c06e7333 from=translated src=- shape=315d328c vocab=9ae0bbfc
+-/
 theorem condExpInd_preimage_of_map_eq
     {Ω Ω' : Type*}
     [mΩ : MeasurableSpace Ω] [mΩ' : MeasurableSpace Ω']
@@ -135,7 +141,9 @@ theorem condExpInd_preimage_of_map_eq
 /-- With [a measurable source-to-target map](hyp:r,hr), [its pushforward identity](hyp:hmap_r),
 [three target σ-algebras contained in the target ambient σ-algebra](hyp:mX,mY,mZ,hX,hY,hZ),
 [conditional independence on the target pulls back to conditional independence on the
-source](goal). -/
+source](goal).
+@isnad1 id=condinde.6h8v.s6.c275ba23f01a from=translated src=- shape=14fa577b vocab=f7659818
+-/
 theorem condIndep_comap_of_map_eq
     {Ω Ω' : Type*}
     [mΩ : MeasurableSpace Ω] [StandardBorelSpace Ω]
@@ -196,7 +204,9 @@ theorem condIndep_comap_of_map_eq
 /-- With [measurable maps in both directions](hyp:r,s,hr,hs), [their two pushforward
 identities](hyp:hmap_r,hmap_s), [an almost-everywhere right inverse](hyp:hrs), and [three target
 σ-algebras contained in the target ambient σ-algebra](hyp:mX,mY,mZ,hX,hY,hZ), [conditional
-independence of the three pullback σ-algebras implies target conditional independence](goal). -/
+independence of the three pullback σ-algebras implies target conditional independence](goal).
+@isnad1 id=condinde.9h9v.s7.e6fcac2c8565 from=translated src=- shape=ab6c538d vocab=8dbb88fc
+-/
 theorem condIndep_of_comap_aeRetraction
     {Ω Ω' : Type*}
     [mΩ : MeasurableSpace Ω] [StandardBorelSpace Ω]
@@ -251,7 +261,9 @@ identities](hyp:hmap_r,hmap_s),
 [an almost-everywhere right-inverse identity](hyp:hrs),
 and [three target σ-algebras contained in the target ambient σ-algebra](hyp:mX,mY,mZ,hX,hY,hZ),
 [target conditional independence is equivalent to conditional
-independence of the three pullback σ-algebras](goal). -/
+independence of the three pullback σ-algebras](goal).
+@isnad1 id=iff.8h9v.s7.84691c1e4c8f from=translated src=- shape=8b9019ee vocab=8dbb88fc
+-/
 theorem condIndep_comap_aeEquiv_iff
     {Ω Ω' : Type*}
     [mΩ : MeasurableSpace Ω] [StandardBorelSpace Ω]
@@ -284,7 +296,9 @@ identities](hyp:hmap_r,hmap_s),
 [three target random variables](hyp:X,Y,Z), and [their measurability](hyp:hX,hY,hZ),
 [conditional independence of the first two variables given the third is
 equivalent to conditional independence of their pullbacks given the pulled-back third
-variable](goal). -/
+variable](goal).
+@isnad1 id=iff.8h12v.s7.1571b73bca13 from=translated src=- shape=fcc25484 vocab=9d625243
+-/
 theorem condIndepFun_comp_aeEquiv_iff
     {Ω Ω' 𝒳 𝒴 𝒵 : Type*}
     [mΩ : MeasurableSpace Ω] [StandardBorelSpace Ω]

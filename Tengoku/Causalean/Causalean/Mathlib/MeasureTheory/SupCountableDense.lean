@@ -38,7 +38,9 @@ namespace Causalean.Mathlib.MeasureTheory
 /-- [A supremum over an index set equals the supremum over a dense skeleton](goal) when [the
 real functional](hyp:F) is [bounded above on the full set](hyp:S,hbdd), [the skeleton lies
 inside that set](hyp:D,hDS), and [every full-set value is approached along a skeleton-valued
-sequence](hyp:hdense). -/
+sequence](hyp:hdense).
+@isnad1 id=eq.3h4v.s6.a8df10ea4bf7 from=translated src=- shape=ec32929f vocab=378641b5
+-/
 theorem sSup_image_eq_of_dense_tendsto {ι : Type*} (F : ι → ℝ) (S D : Set ι)
     (hDS : D ⊆ S) (hbdd : BddAbove (F '' S))
     (hdense : ∀ x ∈ S, ∃ seq : ℕ → ι, (∀ j, seq j ∈ D) ∧
@@ -64,7 +66,9 @@ theorem sSup_image_eq_of_dense_tendsto {ι : Type*} (F : ι → ℝ) (S D : Set 
 /-- [The pointwise supremum of a real-valued family over an index set is measurable](goal) when
 [the family and its full and skeleton index sets](hyp:F,S,D) satisfy [countability of the
 skeleton](hyp:hD), [measurability at each skeleton index](hyp:hF), and [pointwise equality of
-the full and skeleton suprema](hyp:heq). -/
+the full and skeleton suprema](hyp:heq).
+@isnad1 id=measurab.3h5v.s6.64de1f9e97dd from=translated src=- shape=a7eccf3f vocab=5ac17f2c
+-/
 theorem measurable_sSup_image_of_countable_dense {Ω ι : Type*} [MeasurableSpace Ω]
     (S D : Set ι) (F : Ω → ι → ℝ)
     (hD : D.Countable)
@@ -101,7 +105,9 @@ theorem measurable_sSup_image_of_countable_dense {Ω ι : Type*} [MeasurableSpac
   rw [huniv, sSup_range]
 
 /-- A uniform upper bound `F ω π ≤ C` over the index class `S` makes the image `(F ω) '' S`
-bounded above (for every `ω`).  Companion `BddAbove` fact accompanying the integrability lemma. -/
+bounded above (for every `ω`).  Companion `BddAbove` fact accompanying the integrability lemma.
+@isnad1 id=bddabove.1h6v.s5.97da16e607d2 from=translated src=- shape=1edde541 vocab=33139ffd
+-/
 theorem bddAbove_image_of_bound {Ω ι : Type*} (S : Set ι) (F : Ω → ι → ℝ) (C : ℝ)
     (hbound : ∀ ω, ∀ π ∈ S, F ω π ≤ C) (ω : Ω) :
     BddAbove ((fun π => F ω π) '' S) := by
@@ -114,7 +120,9 @@ measure](goal) when [the family and its full and skeleton index sets](hyp:F,S,D)
 nonnegative uniform bound](hyp:C,hC), [the skeleton is countable](hyp:hD), [each skeleton
 coordinate is measurable](hyp:hF), [the full and skeleton suprema agree pointwise](hyp:heq),
 and [the family is uniformly bounded in absolute value](hyp:hbound), with integration against
-[the given measure](hyp:μ). -/
+[the given measure](hyp:μ).
+@isnad1 id=integrab.5h7v.s7.08f68207e390 from=translated src=- shape=0f6de12f vocab=2a743927
+-/
 theorem integrable_sSup_image_of_countable_dense {Ω ι : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (S D : Set ι) (F : Ω → ι → ℝ) (C : ℝ) (hC : 0 ≤ C)

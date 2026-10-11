@@ -19,7 +19,9 @@ open Filter
 /-- For [valid success probabilities](hyp:heta), a
 [diverging expected draw count](hyp:hmean), and a [tolerance strictly between
 zero and one](hyp:hdelta), the [least positive alphabet threshold divided by
-the calibrated pair scale](goal) converges to one. -/
+the calibrated pair scale](goal) converges to one.
+@isnad1 id=tendsto.3h3v.s7.d1f17b18a773 from=translated src=- shape=1a27e9d0 vocab=8bcb0a6e
+-/
 theorem mStar_div_calibratedScale_tendsto_one
     (Tseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {delta : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)

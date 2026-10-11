@@ -17,7 +17,9 @@ open CertifiedFiniteMarkovExpectation
 open FiniteMarkovOscillation
 
 /-- A [probability-weighted mean](hyp:hp) of [values in the unit interval](hyp:hf)
-[remains in the unit interval](goal). -/
+[remains in the unit interval](goal).
+@isnad1 id=mem.2h3v.s6.4ee91ece51f1 from=translated src=- shape=18ab6ba8 vocab=f313b36c
+-/
 lemma probability_mean_unit {S : Type*} [Fintype S]
     {p f : S → ℝ} (hp : IsProbabilityVector p)
     (hf : ∀ i, f i ∈ Set.Icc (0 : ℝ) 1) :
@@ -30,7 +32,9 @@ lemma probability_mean_unit {S : Type*} [Fintype S]
       _ = 1 := by simpa using hp.2
 
 /-- Averaging under [a probability vector](hyp:hp) cannot increase [a uniform pointwise
-error](hyp:hfg), so [the two weighted means differ by at most that error](goal). -/
+error](hyp:hfg), so [the two weighted means differ by at most that error](goal).
+@isnad1 id=le.2h5v.s6.e1ef1a3e45f8 from=translated src=- shape=9eb83bb9 vocab=fb7bea5f
+-/
 lemma probability_mean_error {S : Type*} [Fintype S]
     {p f g : S → ℝ} {ε : ℝ} (hp : IsProbabilityVector p)
     (hfg : ∀ i, |f i - g i| ≤ ε) :
@@ -46,7 +50,9 @@ lemma probability_mean_error {S : Type*} [Fintype S]
     _ = ε := by rw [← Finset.sum_mul, hp.2, one_mul]
 
 /-- Every [iterate count](hyp:k) of [a stochastic transition matrix](hyp:hP) sends [a
-unit-range reward](hyp:hr) to [another unit-range function](goal). -/
+unit-range reward](hyp:hr) to [another unit-range function](goal).
+@isnad1 id=mem.2h5v.s7.37f0d4d54fe8 from=translated src=- shape=4f034af3 vocab=23891e80
+-/
 lemma stochastic_power_reward_unit {S : Type*} [Fintype S] [DecidableEq S]
     {P : Matrix S S ℝ} (hP : IsStochasticMatrix P) {r : S → ℝ}
     (hr : ∀ i, r i ∈ Set.Icc (0 : ℝ) 1) (k : Nat) :
@@ -61,7 +67,9 @@ lemma stochastic_power_reward_unit {S : Type*} [Fintype S] [DecidableEq S]
 /-- For [two stochastic transition matrices](hyp:hP,hQ), [a unit-range reference
 reward](hyp:hr), [a uniform row total-variation error](hyp:hPQ), [a uniform reward
 error](hyp:hrs), and [a horizon](hyp:k), [the propagated reward error is at most the horizon
-times the transition error plus the reward error](goal). -/
+times the transition error plus the reward error](goal).
+@isnad1 id=le.5h9v.s8.f8c724a713e4 from=translated src=- shape=fffa07cb vocab=d9124d32
+-/
 lemma stochastic_power_reward_error {S : Type*} [Fintype S] [DecidableEq S]
     {P Q : Matrix S S ℝ} (hP : IsStochasticMatrix P) (hQ : IsStochasticMatrix Q)
     {r s : S → ℝ} (hr : ∀ i, r i ∈ Set.Icc (0 : ℝ) 1)
@@ -102,7 +110,9 @@ lemma stochastic_power_reward_error {S : Type*} [Fintype S] [DecidableEq S]
 laws](hyp:hp,hq), [a unit-range reference reward](hyp:hr), [an initial-law total-variation
 error](hyp:hpq), [a uniform row total-variation error](hyp:hPQ), [a uniform reward
 error](hyp:hrs), and [a horizon](hyp:k), [the finite-horizon moments differ by at most the sum
-of the initial, accumulated transition, and reward errors](goal). -/
+of the initial, accumulated transition, and reward errors](goal).
+@isnad1 id=le.8h11v.s8.be0266ea4022 from=translated src=- shape=a5dae458 vocab=1327710c
+-/
 lemma stochastic_moment_error {S : Type*} [Fintype S] [DecidableEq S]
     {P Q : Matrix S S ℝ} (hP : IsStochasticMatrix P) (hQ : IsStochasticMatrix Q)
     {p q r s : S → ℝ} (hp : IsProbabilityVector p) (hq : IsProbabilityVector q)

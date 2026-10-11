@@ -40,7 +40,9 @@ abbrev TendstoInProbability
     (fun _ _ => c)
 
 /-- For [row measures](hyp:μ), [real row variables](hyp:Y), and [a constant target](hyp:c),
-[convergence in probability is equivalent to vanishing real absolute-error tails](goal). -/
+[convergence in probability is equivalent to vanishing real absolute-error tails](goal).
+@isnad1 id=iff.0h5v.s6.260a0a537133 from=translated src=- shape=25fff687 vocab=69c6c403
+-/
 @[deprecated "Use Causalean.Stat.Modes.tendstoInProbability_iff_norm."
   (since := "2026-09-19")]
 lemma tendstoInProbability_iff_real
@@ -86,7 +88,9 @@ noncomputable def rowSum (A : MartingaleDifferenceArray Ω μ) (n : ℕ) : Ω n 
   ∑ k ∈ Finset.range (A.rowLength n), A.increment n k
 
 /-- For [a martingale-difference triangular array](hyp:A) and [one row](hyp:n), [its row
-sum is almost-everywhere measurable under that row's probability measure](goal). -/
+sum is almost-everywhere measurable under that row's probability measure](goal).
+@isnad1 id=aemeasur.0h5v.s5.1b6a56760b2e from=translated src=- shape=cfc41765 vocab=7d6f2371
+-/
 lemma rowSum_aemeasurable (A : MartingaleDifferenceArray Ω μ) (n : ℕ) :
     AEMeasurable (A.rowSum n) (μ n) := by
   unfold rowSum

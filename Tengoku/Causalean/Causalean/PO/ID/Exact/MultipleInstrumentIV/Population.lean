@@ -115,7 +115,9 @@ private lemma eventCondExp_centered_mul_eq
 /-- [The centered-score outcome moment equals the support-mass-weighted sum of instrument-cell
 outcome means](goal) under [a finite population law](hyp:μ), for [a measurable
 instrument](hyp:Z,hZ), [outcome](hyp:Y), [ordered score index](hyp:I), and [integrability of the
-weighted outcome](hyp:hInt). This is the finite-support law of total expectation. -/
+weighted outcome](hyp:hInt). This is the finite-support law of total expectation.
+@isnad1 id=eq.2h6v.s7.01d09d509c27 from=translated src=- shape=1184579d vocab=fb817669
+-/
 theorem observedReducedFormMoment_eq_sum_eventCondExp
     (μ : Measure Ω) [IsFiniteMeasure μ] (Z : Ω → Fin K) (hZ : Measurable Z)
     (Y : Ω → ℝ) (I : FiniteIndex K)
@@ -139,7 +141,9 @@ theorem observedReducedFormMoment_eq_sum_eventCondExp
 /-- [The centered-score treatment moment equals the support-mass-weighted sum of instrument-cell
 treatment means](goal) under [a finite population law](hyp:μ), for [a measurable
 instrument](hyp:Z,hZ), [binary treatment](hyp:D), [ordered score index](hyp:I), and [integrability
-of the weighted treatment](hyp:hInt). -/
+of the weighted treatment](hyp:hInt).
+@isnad1 id=eq.2h6v.s7.a7f3a29256ce from=translated src=- shape=fe48a44f vocab=dc2686cb
+-/
 theorem observedFirstStageMoment_eq_sum_eventCondExp
     (μ : Measure Ω) [IsFiniteMeasure μ] (Z : Ω → Fin K) (hZ : Measurable Z)
     (D : Ω → Bool) (I : FiniteIndex K)
@@ -206,7 +210,9 @@ variable {I : FiniteIndex K} {P : PopulationBridge K}
 
 /-- [The observed centered-score outcome moment equals its finite response-type expansion](goal)
 when [the observed-data bridge](hyp:B) holds, [the instrument is measurable](hyp:hZ), and [the
-weighted outcome is integrable](hyp:hInt). -/
+weighted outcome is integrable](hyp:hInt).
+@isnad1 id=eq.2h9v.s6.6f5b1255c27f from=translated src=- shape=167d7c0c vocab=05fcdb4e
+-/
 theorem observedReducedFormMoment_eq_reducedFormMoment
     (B : ObservedBridge μ Z D Y I P) [IsFiniteMeasure μ] (hZ : Measurable Z)
     (hInt : Integrable (fun ω => I.centeredIndex (Z ω) * Y ω) μ) :
@@ -219,7 +225,9 @@ theorem observedReducedFormMoment_eq_reducedFormMoment
 
 /-- [The observed centered-score treatment moment equals its finite response-type
 expansion](goal) when [the observed-data bridge](hyp:B) holds, [the instrument is
-measurable](hyp:hZ), and [the weighted treatment is integrable](hyp:hInt). -/
+measurable](hyp:hZ), and [the weighted treatment is integrable](hyp:hInt).
+@isnad1 id=eq.2h9v.s6.e410430bdebb from=translated src=- shape=def989ab vocab=f4a5a4d8
+-/
 theorem observedFirstStageMoment_eq_firstStageMoment
     (B : ObservedBridge μ Z D Y I P) [IsFiniteMeasure μ] (hZ : Measurable Z)
     (hInt : Integrable (fun ω => I.centeredIndex (Z ω) * boolToReal (D ω)) μ) :
@@ -260,7 +268,9 @@ theorem observedFirstStageMoment_eq_firstStageMoment
 /-- [The observed centered-score IV ratio equals the finite-support population-bridge
 ratio](goal) under [a measure, instrument, treatment, outcome, ordered score, and observed-data
 bridge](hyp:μ,Z,D,Y,I,B), when [the instrument is measurable](hyp:hZ), [the weighted
-outcome](hyp:hYInt) and [weighted treatment](hyp:hDInt) are integrable. -/
+outcome](hyp:hYInt) and [weighted treatment](hyp:hDInt) are integrable.
+@isnad1 id=eq.3h9v.s7.97432c937308 from=translated src=- shape=26b1e404 vocab=6a5a03a0
+-/
 theorem observedCenteredScoreIV_eq_centeredScoreIVPopulationBridge
     (B : ObservedBridge μ Z D Y I P) [IsFiniteMeasure μ] (hZ : Measurable Z)
     (hYInt : Integrable (fun ω => I.centeredIndex (Z ω) * Y ω) μ)
@@ -273,7 +283,9 @@ theorem observedCenteredScoreIV_eq_centeredScoreIVPopulationBridge
 /-- [The observed centered-score IV ratio equals the finite response-type algebra ratio](goal)
 under [a measure, instrument, treatment, outcome, ordered score, and observed-data
 bridge](hyp:μ,Z,D,Y,I,B), when [the instrument is measurable](hyp:hZ), [the weighted
-outcome](hyp:hYInt) and [weighted treatment](hyp:hDInt) are integrable. -/
+outcome](hyp:hYInt) and [weighted treatment](hyp:hDInt) are integrable.
+@isnad1 id=eq.3h9v.s7.93c3bf3a68cb from=translated src=- shape=15f1175a vocab=96c30665
+-/
 theorem observedCenteredScoreIV_eq_centeredScoreIVFiniteAlgebra
     (B : ObservedBridge μ Z D Y I P) [IsFiniteMeasure μ] (hZ : Measurable Z)
     (hYInt : Integrable (fun ω => I.centeredIndex (Z ω) * Y ω) μ)

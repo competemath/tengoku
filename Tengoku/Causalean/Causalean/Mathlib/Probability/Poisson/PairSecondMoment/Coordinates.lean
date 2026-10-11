@@ -51,7 +51,9 @@ private lemma measurePreserving_fixedCount_two
 /-- Given [two probability laws](hyp:P,Q), [a real kernel](hyp:K), [two fixed
 array lengths](hyp:m,n), [a measurable kernel](hyp:hK), [an integrable kernel
 square](hyp:hK2), and [two selected positions in each array](hyp:i,k,j,l),
-[the product of the two kernel evaluations is integrable](goal). -/
+[the product of the two kernel evaluations is integrable](goal).
+@isnad1 id=integrab.2h11v.s8.a300d4b8a80b from=translated src=- shape=349bfa50 vocab=a2d57231
+-/
 theorem integrable_fixedCount_kernelProduct
     (P : Measure X) [IsProbabilityMeasure P]
     (Q : Measure Y) [IsProbabilityMeasure Q]
@@ -90,7 +92,9 @@ theorem integrable_fixedCount_kernelProduct
 /-- Given [two probability laws](hyp:P,Q), [a measurable real kernel](hyp:K,hK),
 [an integrable kernel square](hyp:hK2), [two fixed array lengths](hyp:m,n), and
 [one selected position in each array](hyp:i,j), [coincident evaluations
-integrate as one independent point-pair kernel square](goal). -/
+integrate as one independent point-pair kernel square](goal).
+@isnad1 id=eq.2h9v.s8.4974f37cbf92 from=translated src=- shape=fc5f63f9 vocab=1c26dc48
+-/
 theorem integral_fixedCount_both_equal
     (P : Measure X) [IsProbabilityMeasure P]
     (Q : Measure Y) [IsProbabilityMeasure Q]
@@ -120,7 +124,9 @@ theorem integral_fixedCount_both_equal
 /-- Given [two probability laws](hyp:P,Q), [a measurable real kernel](hyp:K,hK),
 [an integrable kernel square](hyp:hK2), [two fixed array lengths](hyp:m,n),
 [one left position and distinct right positions](hyp:i,j,l,hjl), [the product
-integrates with a shared left coordinate and independent right coordinates](goal). -/
+integrates with a shared left coordinate and independent right coordinates](goal).
+@isnad1 id=eq.3h10v.s8.b90939c08527 from=translated src=- shape=37353541 vocab=1c26dc48
+-/
 theorem integral_fixedCount_shared_left
     (P : Measure X) [IsProbabilityMeasure P]
     (Q : Measure Y) [IsProbabilityMeasure Q]
@@ -162,7 +168,9 @@ theorem integral_fixedCount_shared_left
 /-- Given [two probability laws](hyp:P,Q), [a measurable real kernel](hyp:K,hK),
 [an integrable kernel square](hyp:hK2), [two fixed array lengths](hyp:m,n),
 [distinct left positions and one right position](hyp:i,k,j,hik), [the product
-integrates with independent left coordinates and a shared right coordinate](goal). -/
+integrates with independent left coordinates and a shared right coordinate](goal).
+@isnad1 id=eq.3h10v.s8.caf47b6a6b65 from=translated src=- shape=70ce83bd vocab=1c26dc48
+-/
 theorem integral_fixedCount_shared_right
     (P : Measure X) [IsProbabilityMeasure P]
     (Q : Measure Y) [IsProbabilityMeasure Q]
@@ -202,7 +210,9 @@ theorem integral_fixedCount_shared_right
 /-- Given [two probability laws](hyp:P,Q), [a measurable real kernel](hyp:K,hK),
 [an integrable kernel square](hyp:hK2), [two fixed array lengths](hyp:m,n), and
 [distinct selected positions in each array](hyp:i,k,j,l,hik,hjl), [the product
-of the two kernel evaluations has the four-independent-coordinate integral](goal). -/
+of the two kernel evaluations has the four-independent-coordinate integral](goal).
+@isnad1 id=eq.4h11v.s8.192f61290deb from=translated src=- shape=1b3fabc0 vocab=1c26dc48
+-/
 theorem integral_fixedCount_both_distinct
     (P : Measure X) [IsProbabilityMeasure P]
     (Q : Measure Y) [IsProbabilityMeasure Q]

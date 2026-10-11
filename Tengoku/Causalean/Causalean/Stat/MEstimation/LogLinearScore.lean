@@ -46,7 +46,9 @@ noncomputable def logLinearScoreDeriv (θ : ℝ) (z : ℝ × ℝ) : ℝ :=
   -(Real.exp (θ * z.1) * z.1 ^ 2)
 
 /-- For [a parameter](hyp:θ) and [an observation](hyp:z), [the log-link Poisson score is
-differentiable in the parameter with the stated derivative](goal). -/
+differentiable in the parameter with the stated derivative](goal).
+@isnad1 id=hasderiv.0h2v.s5.4d89fc31161d from=translated src=- shape=f489e351 vocab=82366b74
+-/
 theorem hasDerivAt_logLinearScore (θ : ℝ) (z : ℝ × ℝ) :
     HasDerivAt (fun s => logLinearScore s z) (logLinearScoreDeriv θ z) θ := by
   have hexp : HasDerivAt (fun s : ℝ => Real.exp (s * z.1)) (Real.exp (θ * z.1) * z.1) θ := by
@@ -66,7 +68,9 @@ envelope times the parameter distance](goal).
 
 The envelope `|x|³ exp ((|θ₀| + δ) |x|)` depends on the radius, which is the point: it is finite
 for each fixed `δ` and integrable under an exponential-moment condition on the regressor, whereas
-no radius-free envelope exists — see `logLinearScoreDeriv_not_globally_lipschitz`. -/
+no radius-free envelope exists — see `logLinearScoreDeriv_not_globally_lipschitz`.
+@isnad1 id=le.2h5v.s7.2ff36f2ecc29 from=translated src=- shape=e659c9d5 vocab=05a5cda1
+-/
 theorem logLinearScoreDeriv_lipschitz_on_ball
     (z : ℝ × ℝ) (θ₀ : ℝ) {δ : ℝ}
     {θ : ℝ} (hθ : θ ∈ Metric.closedBall θ₀ δ)
@@ -125,7 +129,9 @@ derivative](goal), already at the single observation whose regressor and outcome
 
 This is why the Lipschitz hypotheses in the equicontinuity and smooth Z-estimator developments
 ask for a bound on a ball around the target rather than on the whole parameter space: for this
-score the global requirement is not merely hard to verify, it is false. -/
+score the global requirement is not merely hard to verify, it is false.
+@isnad1 id=not.0h0v.s6.2435d63c3905 from=translated src=- shape=ec985b69 vocab=6787a805
+-/
 theorem logLinearScoreDeriv_not_globally_lipschitz :
     ¬ ∃ L : ℝ, ∀ θ θ' : ℝ,
         |logLinearScoreDeriv θ ((1 : ℝ), (1 : ℝ))

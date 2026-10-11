@@ -50,7 +50,9 @@ measures `μ` and `ν`](hyp:h) and [reals `x` and `y`](hyp:x,y), [the joint cdf 
 `x` and `ν` at `y`](goal).
 
 Proof: `Iic x ×ˢ Iic y ⊆ Iic x ×ˢ univ` and `⊆ univ ×ˢ Iic y`, whose masses are
-`μ (Iic x)` and `ν (Iic y)` via the marginals. -/
+`μ (Iic x)` and `ν (Iic y)` via the marginals.
+@isnad1 id=le.1h5v.s5.d7853284d6ee from=translated src=- shape=6e87600a vocab=541f301f
+-/
 theorem frechet_hoeffding_upper (h : IsCoupling π μ ν) (x y : ℝ) :
     jointCdf π x y ≤ min (cdf μ x) (cdf ν y) := by
   letI : IsProbabilityMeasure π := h.isProbabilityMeasure
@@ -108,7 +110,9 @@ measures `μ` and `ν`](hyp:h) and [reals `x` and `y`](hyp:x,y), [the joint cdf 
 marginal cdfs of `μ` at `x` and `ν` at `y`, minus `1`](goal).
 
 Proof: inclusion–exclusion on the complement of `Iic x ×ˢ Iic y`, using `π` a
-probability measure and the two marginals. -/
+probability measure and the two marginals.
+@isnad1 id=le.1h5v.s6.dc742ba6bebf from=translated src=- shape=c121c187 vocab=684096df
+-/
 theorem frechet_hoeffding_lower (h : IsCoupling π μ ν) (x y : ℝ) :
     max (cdf μ x + cdf ν y - 1) 0 ≤ jointCdf π x y := by
   letI : IsProbabilityMeasure π := h.isProbabilityMeasure

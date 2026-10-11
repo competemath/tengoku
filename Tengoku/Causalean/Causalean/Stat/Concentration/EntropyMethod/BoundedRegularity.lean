@@ -61,7 +61,9 @@ private lemma integral_section_mem_Icc
 
 /-- If [a jointly measurable function `f`](hyp:hf) is [bounded below by a positive constant
 `c`](hyp:hc,hlower) and [above by `C`](hyp:hupper), then its [entropy in the first coordinate is
-measurable as a function of the second coordinate](goal) under [the probability law `mu`](hyp:mu). -/
+measurable as a function of the second coordinate](goal) under [the probability law `mu`](hyp:mu).
+@isnad1 id=measurab.4h6v.s6.90be3d659181 from=translated src=- shape=572c03fd vocab=3a6d6ba1
+-/
 @[fun_prop]
 theorem measurable_entropy_section_of_bounded_positive
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
@@ -83,7 +85,9 @@ theorem measurable_entropy_section_of_bounded_positive
 /-- If [a jointly measurable function `f`](hyp:hf) is [bounded below by a positive constant
 `c`](hyp:hc,hlower) and [above by `C`](hyp:hupper), then every [first-coordinate entropy section
 is bounded by twice `C` times the maximum endpoint log-magnitude](goal) under [the probability
-law `mu`](hyp:mu), at each [second-coordinate value `y`](hyp:y). -/
+law `mu`](hyp:mu), at each [second-coordinate value `y`](hyp:y).
+@isnad1 id=le.4h7v.s7.5433922bc775 from=translated src=- shape=2115a422 vocab=e3d2de5d
+-/
 theorem abs_entropy_section_le
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     (mu : Measure X) [IsProbabilityMeasure mu]
@@ -129,7 +133,9 @@ theorem abs_entropy_section_le
 
 /-- If [two probability laws `mu,nu`](hyp:mu,nu) and [a measurable product function
 `f`](hyp:hf) satisfy [a strictly positive lower bound `c`](hyp:hc,hlower) and [a finite upper
-bound `C`](hyp:hupper), then [all regularity hypotheses for binary entropy tensorization hold](goal). -/
+bound `C`](hyp:hupper), then [all regularity hypotheses for binary entropy tensorization hold](goal).
+@isnad1 id=entropyt.4h7v.s6.230fda9bcacf from=translated src=- shape=a4ce2e04 vocab=248049cc
+-/
 theorem entropyTensorizationIntegrable_of_bounded_positive
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     (mu : Measure X) (nu : Measure Y) [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -339,7 +345,9 @@ private theorem measurable_coordinateEntropySum_param
 /-- If [the coordinate laws `mu` are probability laws](hyp:hprob), [a measurable function
 `f`](hyp:hf) on an `n`-fold product is [bounded below by a positive constant `c`](hyp:hc,hlower)
 and [above by a finite constant `C`](hyp:hupper), then [all finite entropy-tensorization
-regularity conditions hold](goal). -/
+regularity conditions hold](goal).
+@isnad1 id=finitete.4h6v.s6.34a4f7de6b92 from=translated src=- shape=16b6cd33 vocab=232df7ca
+-/
 theorem finiteTensorizationRegularity_of_bounded_positive
     {X : Type*} [MeasurableSpace X]
     (mu : ℕ → Measure X) [hprob : ∀ i, IsProbabilityMeasure (mu i)]

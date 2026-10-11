@@ -18,7 +18,9 @@ open MeasureTheory Set
 open scoped Interval
 
 /-- For nonnegative `t`, the square root is bounded by the arithmetic mean of
-`t` and `1`. -/
+`t` and `1`.
+@isnad1 id=le.1h1v.s5.697d6f8e913f from=translated src=- shape=6a2e150a vocab=aae65541
+-/
 lemma sqrt_le_add_one_div_two {t : ℝ} (ht : 0 ≤ t) :
     Real.sqrt t ≤ (t + 1) / 2 := by
   have hsq : 0 ≤ (Real.sqrt t - 1) ^ 2 := sq_nonneg _
@@ -26,7 +28,9 @@ lemma sqrt_le_add_one_div_two {t : ℝ} (ht : 0 ≤ t) :
     rw [Real.sq_sqrt ht]
   nlinarith [hsq, Real.sqrt_nonneg t, hsqrt_sq]
 
-/-- On the interval `[ε, δ]`, the log-ratio kernel is nonnegative. -/
+/-- On the interval `[ε, δ]`, the log-ratio kernel is nonnegative.
+@isnad1 id=le.2h3v.s5.fd5bb92923bd from=translated src=- shape=bb59b703 vocab=d0c53cfa
+-/
 lemma log_div_nonneg_of_mem_Icc {δ ε x : ℝ} (hε : 0 < ε)
     (hx : x ∈ Set.Icc ε δ) :
     0 ≤ Real.log (δ / x) := by
@@ -48,7 +52,9 @@ private lemma continuousOn_sqrt_log_div_Icc {δ ε : ℝ} (hε : 0 < ε)
     exact div_ne_zero (ne_of_gt hδ) (by linarith [hx.1])
 
 /-- When ε is positive and no larger than δ, the square-root log-ratio kernel is integrable on
-the interval from ε to δ with respect to Lebesgue measure. -/
+the interval from ε to δ with respect to Lebesgue measure.
+@isnad1 id=interval.2h2v.s5.31283677c1dc from=translated src=- shape=1689287b vocab=073c6387
+-/
 lemma intervalIntegrable_sqrt_log_div {δ ε : ℝ} (hε : 0 < ε)
     (hεδ : ε ≤ δ) :
     IntervalIntegrable (fun x : ℝ => Real.sqrt (Real.log (δ / x))) volume ε δ := by
@@ -74,7 +80,9 @@ private lemma intervalIntegrable_log_div_avg {δ ε : ℝ} (hε : 0 < ε)
   exact hcont.intervalIntegrable
 
 /-- When ε is positive and no larger than δ, the logarithm of the ratio δ divided by x is
-interval-integrable from ε to δ with respect to Lebesgue measure. -/
+interval-integrable from ε to δ with respect to Lebesgue measure.
+@isnad1 id=interval.2h2v.s5.47706a6c1a14 from=translated src=- shape=80e4520f vocab=c14e1d2b
+-/
 lemma intervalIntegrable_log_div {δ ε : ℝ} (hε : 0 < ε)
     (hεδ : ε ≤ δ) :
     IntervalIntegrable (fun x : ℝ => Real.log (δ / x)) volume ε δ := by
@@ -89,7 +97,9 @@ lemma intervalIntegrable_log_div {δ ε : ℝ} (hε : 0 < ε)
     simpa [Set.uIcc_of_le hεδ] using hcont
   exact hcont'.intervalIntegrable
 
-/-- Exact evaluation of the logarithmic ratio integral on `[ε, δ]`. -/
+/-- Exact evaluation of the logarithmic ratio integral on `[ε, δ]`.
+@isnad1 id=eq.2h2v.s6.caff863d38d8 from=translated src=- shape=9d64e840 vocab=d58a970e
+-/
 lemma integral_log_div_eq {δ ε : ℝ} (hε : 0 < ε) (hεδ : ε ≤ δ) :
     (∫ x in ε..δ, Real.log (δ / x)) =
       δ - ε - ε * Real.log (δ / ε) := by
@@ -115,7 +125,9 @@ lemma integral_log_div_eq {δ ε : ℝ} (hε : 0 < ε) (hεδ : ε ≤ δ) :
           rw [Real.log_div (ne_of_gt hδ) (ne_of_gt hε)]
           ring
 
-/-- The logarithmic ratio integral over `[ε, δ]` is at most the interval length. -/
+/-- The logarithmic ratio integral over `[ε, δ]` is at most the interval length.
+@isnad1 id=le.2h2v.s6.46a4e3de06a4 from=translated src=- shape=036ee67b vocab=b0f31aa8
+-/
 lemma integral_log_div_le {δ ε : ℝ} (hε : 0 < ε) (hεδ : ε ≤ δ) :
     (∫ x in ε..δ, Real.log (δ / x)) ≤ δ - ε := by
   have hratio : 1 ≤ δ / ε := by
@@ -130,7 +142,9 @@ lemma integral_log_div_le {δ ε : ℝ} (hε : 0 < ε) (hεδ : ε ≤ δ) :
 the upper limit δ](hyp:hεδ), [the integral of `√(log(δ/x))` over `[ε,δ]` is at most `δ - ε`](goal).
 
 Elementary (AM-GM `√t ≤ (t+1)/2` + `∫ log(δ/x) ≤ δ - ε`); no special
-functions beyond `Real.log`. -/
+functions beyond `Real.log`.
+@isnad1 id=le.2h2v.s6.89a46093174c from=translated src=- shape=97b94086 vocab=5646f5a0
+-/
 lemma sqrtLog_integral_le {δ ε : ℝ} (hε : 0 < ε) (hεδ : ε ≤ δ) :
     (∫ x in ε..δ, Real.sqrt (Real.log (δ / x))) ≤ δ - ε := by
   have hmono :

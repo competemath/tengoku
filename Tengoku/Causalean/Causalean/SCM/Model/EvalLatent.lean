@@ -71,7 +71,9 @@ open scoped MeasureTheory ProbabilityTheory
     `indepFun_pi_of_disjoint` to show that the projection of `evalMap s` to `{a}`
     (which only sees latent `⟨a, ha⟩`) is independent of the projection to a
     non-descendants set `T` (which only sees latent coordinates excluding
-    `⟨a, ha⟩`). -/
+    `⟨a, ha⟩`).
+@isnad1 id=ex.3h6v.s12.76321170604a from=translated src=- shape=fbc8144a vocab=067bd4dd
+-/
 theorem evalMap_factors_excluding_latent (M : Causalean.SCM N Ω)
     (s : FixedValues M) (a : SWIGNode N) (ha : a ∈ M.unobserved)
     (T : Finset (SWIGNode N)) (hT_sub : T ⊆ M.randomVars)

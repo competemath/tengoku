@@ -33,7 +33,9 @@ tail integrals and compare `log m` with the target logarithm.  Specifically,
 controls both the prefix and suffix bounds.  Pointwise use
 `min 1 (x+y) ≤ min 1 x + min 1 y` for nonnegative partial sums; prove
 integrability of the original function from its finite Gaussian sum.  The
-empty sum at `N = 0` is zero. -/
+empty sum at `N = 0` is zero.
+@isnad1 id=ex.1h1v.s8.f58ff0c8f51c from=translated src=- shape=cae52829 vocab=c3a01e23
+-/
 theorem ordered_gaussian_tail_integral (α : ℝ) (hα : 0 < α) :
     ∃ Kα : ℝ, 0 < Kα ∧
       ∀ (N : ℕ) (a b : ℝ), 0 < a → 0 < b →

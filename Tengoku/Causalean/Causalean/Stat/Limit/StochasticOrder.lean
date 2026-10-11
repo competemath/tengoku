@@ -54,7 +54,9 @@ private lemma measure_norm_tail_mono
 
 /-- If [the rate is eventually positive](hyp:hr), then for [row measures](hyp:μ), [row
 variables](hyp:X), [a filter](hyp:l), and [that rate](hyp:r), [boundedness in probability using
-weak tail events is equivalent to the usual strict-tail formulation](goal). -/
+weak tail events is equivalent to the usual strict-tail formulation](goal).
+@isnad1 id=iff.1h7v.s7.4c4d0b16e509 from=translated src=- shape=15e0b409 vocab=d365c332
+-/
 theorem boundedInProbability_iff_strict
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]
@@ -79,7 +81,9 @@ theorem boundedInProbability_iff_strict
 
 /-- If [the rate is eventually positive](hyp:hr), then for [row measures](hyp:μ), [row
 variables](hyp:X), [a filter](hyp:l), and [that rate](hyp:r), [stochastic little-o using weak
-tail events is equivalent to the usual strict-tail formulation](goal). -/
+tail events is equivalent to the usual strict-tail formulation](goal).
+@isnad1 id=iff.1h7v.s7.14441cc2f4d5 from=translated src=- shape=1a6c94db vocab=45a65375
+-/
 theorem isLittleOpF_iff_strict
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]
@@ -104,7 +108,9 @@ theorem isLittleOpF_iff_strict
 
 /-- For [row measures](hyp:μ), [row variables](hyp:X), [a filter](hyp:l), and [a
 rate](hyp:r), [boundedness in probability is equivalent to the textbook limsup tail
-criterion](goal). -/
+criterion](goal).
+@isnad1 id=iff.0h7v.s7.2b4e1a320f1e from=translated src=- shape=055b5ecd vocab=fda0a430
+-/
 theorem boundedInProbability_iff_limsup
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]
@@ -130,7 +136,9 @@ theorem boundedInProbability_iff_limsup
         δ hhalf_lt).mono fun _ hi => hi.le
 
 /-- If [a row family is stochastic little-o at a rate](hyp:h), then [it is bounded in
-probability at the same rate](goal). -/
+probability at the same rate](goal).
+@isnad1 id=boundedi.1h7v.s6.6da763c9f929 from=translated src=- shape=90898f3d vocab=4b5c4ac8
+-/
 theorem IsLittleOpF.boundedInProbability
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]
@@ -145,7 +153,9 @@ theorem IsLittleOpF.boundedInProbability
 
 /-- For [row measures](hyp:μ), [normed row random variables](hyp:X), and [an index
 filter](hyp:l), [convergence to zero in the row measures is equivalent to stochastic little-o at the
-constant unit rate in those same measures](goal). -/
+constant unit rate in those same measures](goal).
+@isnad1 id=iff.0h6v.s6.9d2ebd8ef35e from=translated src=- shape=7110dd35 vocab=774b116b
+-/
 theorem tendstoInProbability_zero_iff_isLittleOpF_one
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]
@@ -204,7 +214,9 @@ private lemma measure_mul_norm_tail_le
     _ ≤ μ {ω | a * r ≤ ‖X ω‖} + μ {ω | b * s ≤ ‖Y ω‖} := measure_union_le _ _
 
 /-- If [two row families are bounded in probability at the same rate](hyp:hX,hY), then
-[their sum is bounded in probability at that rate](goal). -/
+[their sum is bounded in probability at that rate](goal).
+@isnad1 id=boundedi.2h8v.s6.b36eddd1267a from=translated src=- shape=e5a11c50 vocab=482978e6
+-/
 theorem BoundedInProbability.add
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]
@@ -229,7 +241,9 @@ theorem BoundedInProbability.add
 
 /-- If [two row families are stochastic little-o at the same rate](hyp:hX,hY) and
 [that rate is eventually nonnegative](hyp:hr), then [their sum is stochastic little-o at that
-rate](goal). -/
+rate](goal).
+@isnad1 id=islittle.3h8v.s7.f777f4f4fcf9 from=translated src=- shape=67e64ac1 vocab=155676dd
+-/
 theorem IsLittleOpF.add
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]
@@ -253,7 +267,9 @@ theorem IsLittleOpF.add
 
 /-- If [two row families are bounded in probability at respective rates](hyp:hX,hY) and
 [both rates are eventually positive](hyp:hr,hs), then [their product is bounded in probability
-at the product rate](goal). -/
+at the product rate](goal).
+@isnad1 id=boundedi.4h9v.s7.0016944157d7 from=translated src=- shape=309116c1 vocab=94caffa5
+-/
 theorem BoundedInProbability.mul
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [NormedRing E]
@@ -279,7 +295,9 @@ theorem BoundedInProbability.mul
 
 /-- If [one row family is stochastic little-o at one rate](hyp:hX), [another is bounded in
 probability at a second rate](hyp:hY), and [both rates are eventually positive](hyp:hr,hs), then
-[their product is stochastic little-o at the product rate](goal). -/
+[their product is stochastic little-o at the product rate](goal).
+@isnad1 id=islittle.4h9v.s7.1d4f91bec474 from=translated src=- shape=17e2f8eb vocab=a4c9bffa
+-/
 theorem IsLittleOpF.mul_boundedInProbability
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [NormedRing E]
@@ -306,7 +324,9 @@ theorem IsLittleOpF.mul_boundedInProbability
 
 /-- If [two row families are stochastic little-o at respective rates](hyp:hX,hY) and
 [both rates are eventually positive](hyp:hr,hs), then [their product is stochastic little-o at
-the product rate](goal). -/
+the product rate](goal).
+@isnad1 id=islittle.4h9v.s7.ecef00fecc2a from=translated src=- shape=309116c1 vocab=a97b83fc
+-/
 theorem IsLittleOpF.mul
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [NormedRing E]
@@ -319,7 +339,9 @@ theorem IsLittleOpF.mul
 
 /-- If [a row family is bounded in probability at a rate](hyp:hX), [the comparison rate is
 eventually positive](hyp:hs), and [the ratio of the first rate to the comparison rate tends to
-zero](hyp:hrs), then [the family is stochastic little-o at the comparison rate](goal). -/
+zero](hyp:hrs), then [the family is stochastic little-o at the comparison rate](goal).
+@isnad1 id=islittle.3h8v.s6.270da5ae119f from=translated src=- shape=8a49e0b6 vocab=25235518
+-/
 theorem BoundedInProbability.isLittleOpF_of_tendsto_ratio
     {ι : Type*} {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
     {E : Type*} [SeminormedAddCommGroup E]

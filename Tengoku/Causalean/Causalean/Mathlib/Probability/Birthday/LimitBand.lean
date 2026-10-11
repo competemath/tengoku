@@ -17,7 +17,9 @@ open Filter
 
 /-- For [valid success probabilities](hyp:heta), a [diverging mean](hyp:hmean),
 [positive alphabets](hyp:hm), and a [positive finite collision scale](hyp:hscale,hq),
-the [mean divided by the alphabet](goal) tends to zero. -/
+the [mean divided by the alphabet](goal) tends to zero.
+@isnad1 id=tendsto.5h4v.s7.0a72b6e10548 from=translated src=- shape=9ca92211 vocab=76b2162a
+-/
 theorem mean_div_alphabet_tendsto_zero
     (Tseq mseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {q : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)
@@ -59,7 +61,9 @@ theorem mean_div_alphabet_tendsto_zero
 /-- For [valid success probabilities](hyp:heta), a [diverging mean](hyp:hmean),
 [positive alphabets](hyp:hm), a [positive finite collision scale](hyp:hscale,hq),
 and a [fixed relative band width](hyp:hε), draw counts in that band are
-[eventually below the alphabet](goal). -/
+[eventually below the alphabet](goal).
+@isnad1 id=eventual.6h5v.s7.7a2a364d9d42 from=translated src=- shape=34e22fc9 vocab=2f7bcacd
+-/
 theorem relative_band_below_alphabet
     (Tseq mseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {q ε : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)
@@ -95,7 +99,9 @@ theorem relative_band_below_alphabet
 /-- For [valid success probabilities](hyp:heta), a [diverging mean](hyp:hmean),
 [positive alphabets](hyp:hm), and a [positive finite collision scale](hyp:hscale,hq),
 the [pair count per alphabet](goal) is uniformly close to that scale on a
-sufficiently narrow relative mean band. -/
+sufficiently narrow relative mean band.
+@isnad1 id=ex.6h5v.s7.651f4b7b8716 from=translated src=- shape=4ba97e6d vocab=bf68264f
+-/
 theorem pairCount_div_alphabet_uniform_on_relative_band
     (Tseq mseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {q : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)
@@ -201,7 +207,9 @@ theorem pairCount_div_alphabet_uniform_on_relative_band
 /-- For [valid success probabilities](hyp:heta), a [diverging mean](hyp:hmean),
 [positive alphabets](hyp:hm), and a [positive finite collision scale](hyp:hscale,hq),
 the [pair count per remaining alphabet](goal) is uniformly close to that
-scale on a narrow relative mean band whenever the draw count fits. -/
+scale on a narrow relative mean band whenever the draw count fits.
+@isnad1 id=ex.6h5v.s8.380581689427 from=translated src=- shape=8b20f2a4 vocab=99d6f4a3
+-/
 theorem pairCount_div_remaining_uniform_on_relative_band
     (Tseq mseq : ℕ → ℕ) (etaseq : ℕ → ℝ) {q : ℝ}
     (heta : ∀ j, etaseq j ∈ Set.Icc (0 : ℝ) 1)

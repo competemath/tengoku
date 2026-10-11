@@ -14,7 +14,9 @@ public section
 namespace Causalean.Mathlib.Probability.Birthday
 
 /-- A [positive alphabet](hyp:hm) gives [a collision probability between zero
-and one](goal) for every draw count. -/
+and one](goal) for every draw count.
+@isnad1 id=mem.1h2v.s5.5de47fdf4b07 from=translated src=- shape=c1caed3c vocab=003c792e
+-/
 theorem repeatKernel_mem_Icc (m r : ℕ) (hm : 0 < m) :
     repeatKernel m r ∈ Set.Icc (0 : ℝ) 1 := by
   have hmpos : (0 : ℝ) < m := by exact_mod_cast hm
@@ -31,13 +33,17 @@ theorem repeatKernel_mem_Icc (m r : ℕ) (hm : 0 < m) :
     linarith
 
 /-- If the [draw count exceeds the alphabet](hyp:hr), the
-[repeat probability is one](goal). -/
+[repeat probability is one](goal).
+@isnad1 id=eq.1h2v.s4.9fddca21d86d from=translated src=- shape=b7e35c37 vocab=04d4093b
+-/
 theorem repeatKernel_eq_one_of_lt (m r : ℕ) (hr : m < r) :
     repeatKernel m r = 1 := by
   simp [repeatKernel, noRepeat, Nat.descFactorial_eq_zero_iff_lt.mpr hr]
 
 /-- For a [positive alphabet](hyp:hm), the [repeat probability](goal) is at
-most the number of unordered draw pairs divided by the alphabet size. -/
+most the number of unordered draw pairs divided by the alphabet size.
+@isnad1 id=le.1h2v.s5.ff0aff2aaf6d from=translated src=- shape=4a84a80a vocab=fd111432
+-/
 theorem repeatKernel_le_pairs (m r : ℕ) (hm : 0 < m) :
     repeatKernel m r ≤ (r.choose 2 : ℝ) / (m : ℝ) := by
   induction r with
@@ -94,7 +100,9 @@ theorem repeatKernel_le_pairs (m r : ℕ) (hm : 0 < m) :
       simpa [add_div] using this)
 
 /-- For a [positive alphabet](hyp:hm), the [no-repeat probability](goal) is at
-most the exponential of minus the pair count over the alphabet size. -/
+most the exponential of minus the pair count over the alphabet size.
+@isnad1 id=le.1h2v.s5.08c982100da3 from=translated src=- shape=00b5c296 vocab=8e85bb41
+-/
 theorem noRepeat_le_exp (m r : ℕ) (hm : 0 < m) :
     noRepeat m r ≤ Real.exp (-((r.choose 2 : ℕ) : ℝ) / (m : ℝ)) := by
   have hmpos : (0 : ℝ) < m := by exact_mod_cast hm
@@ -138,7 +146,9 @@ theorem noRepeat_le_exp (m r : ℕ) (hm : 0 < m) :
 
 /-- For a [positive alphabet](hyp:hm) and [draw count within it](hyp:hr),
 the [no-repeat probability](goal) is at least the exponential pair bound with
-the remaining alphabet size in its denominator. -/
+the remaining alphabet size in its denominator.
+@isnad1 id=le.2h2v.s6.5d2f3d68da49 from=translated src=- shape=0fa0ce94 vocab=1e9fa960
+-/
 theorem exp_le_noRepeat (m r : ℕ) (hm : 0 < m) (hr : r ≤ m) :
     Real.exp (-((r.choose 2 : ℕ) : ℝ) / (m + 1 - r : ℕ)) ≤ noRepeat m r := by
   induction r with
@@ -206,7 +216,9 @@ theorem exp_le_noRepeat (m r : ℕ) (hm : 0 < m) (hr : r ≤ m) :
         mul_le_mul_of_nonneg_left ih' (by positivity)
 
 /-- As the [positive alphabet](hyp:hm) grows by one, the
-[no-repeat probability increases](goal). -/
+[no-repeat probability increases](goal).
+@isnad1 id=le.1h2v.s5.6dfb956346b4 from=translated src=- shape=ab7c8f9f vocab=34b6c3e4
+-/
 theorem noRepeat_mono_succ (m r : ℕ) (hm : 0 < m) :
     noRepeat m r ≤ noRepeat (m + 1) r := by
   induction r with
@@ -246,7 +258,9 @@ theorem noRepeat_mono_succ (m r : ℕ) (hm : 0 < m) :
       positivity
 
 /-- For a [valid success probability](hyp:heta) and [positive alphabet](hyp:hm),
-[increasing the alphabet](goal) cannot raise the averaged repeat probability. -/
+[increasing the alphabet](goal) cannot raise the averaged repeat probability.
+@isnad1 id=le.2h3v.s5.6451f4e8991c from=translated src=- shape=b57bed4e vocab=45bb9630
+-/
 theorem repeat_antitone_succ (T m : ℕ) (eta : ℝ)
     (hm : 0 < m) (heta : eta ∈ Set.Icc (0 : ℝ) 1) :
     birthdayRepeat T (m + 1) eta ≤ birthdayRepeat T m eta := by
@@ -263,7 +277,9 @@ theorem repeat_antitone_succ (T m : ℕ) (eta : ℝ)
 
 /-- For a [valid success probability](hyp:heta), [positive smaller
 alphabet](hyp:hm), and [ordered alphabet sizes](hyp:hmn), the
-[averaged repeat probability is antitone](goal). -/
+[averaged repeat probability is antitone](goal).
+@isnad1 id=le.3h4v.s5.1b3b5221e8a2 from=translated src=- shape=05e92418 vocab=890fa639
+-/
 theorem repeat_antitone (T : ℕ) (eta : ℝ) {m n : ℕ}
     (hm : 0 < m) (hmn : m ≤ n) (heta : eta ∈ Set.Icc (0 : ℝ) 1) :
     birthdayRepeat T n eta ≤ birthdayRepeat T m eta := by

@@ -31,7 +31,9 @@ structure DyadicTraversal (d : ℕ) where
 
 /-- Coherent traversals of every finite depth yield one traversal of all
 dyadic grids. The proof extracts a consistent branch from the finitely
-branching tree of finite cell orders. -/
+branching tree of finite cell orders.
+@isnad1 id=nonempty.2h1v.s4.2861c73af1a0 from=translated src=- shape=dd98b9e7 vocab=ee2f4f12
+-/
 theorem exists_dyadicTraversal_of_finite (d : ℕ) (hd : 0 < d)
     (hfinite : ∀ n, Nonempty (FiniteDyadicTraversal d n)) :
     Nonempty (DyadicTraversal d) := by
@@ -52,7 +54,9 @@ theorem exists_dyadicTraversal_of_finite (d : ℕ) (hd : 0 < d)
       exact heq
     exact hn.trans (congrArg Fin.val hcell)
 
-/-- Given [a positive cube dimension](hyp:d,hd), [a coherent dyadic traversal exists](goal). -/
+/-- Given [a positive cube dimension](hyp:d,hd), [a coherent dyadic traversal exists](goal).
+@isnad1 id=nonempty.1h1v.s3.f83953b79180 from=translated src=- shape=c1538fc1 vocab=505f2e0b
+-/
 theorem exists_dyadicTraversal (d : ℕ) (hd : 0 < d) :
     Nonempty (DyadicTraversal d) :=
   exists_dyadicTraversal_of_finite d hd

@@ -60,7 +60,9 @@ namespace PartialID
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- **Lower endpoint bound.**  If `⟪-d, ·⟫` is bounded above on `C`, then the lower
-endpoint `-supportFn C (-d)` is a lower bound for the functional `⟪d, ·⟫`. -/
+endpoint `-supportFn C (-d)` is a lower bound for the functional `⟪d, ·⟫`.
+@isnad1 id=le.2h4v.s6.925168df47ac from=translated src=- shape=25c6a781 vocab=86cf244b
+-/
 theorem neg_supportFn_neg_le {C : Set E} {d : E} {x : E} (hx : x ∈ C)
     (hbdd' : BddAbove ((fun x => ⟪-d, x⟫) '' C)) :
     -supportFn C (-d) ≤ ⟪d, x⟫ := by
@@ -69,7 +71,9 @@ theorem neg_supportFn_neg_le {C : Set E} {d : E} {x : E} (hx : x ∈ C)
   linarith
 
 /-- **Outer bound.**  The identified set of the linear target lies inside the
-support interval `[-supportFn C (-d), supportFn C d]`. -/
+support interval `[-supportFn C (-d), supportFn C d]`.
+@isnad1 id=le.2h3v.s7.975234c89416 from=translated src=- shape=13ee5d1b vocab=43c21391
+-/
 theorem linearImage_subset_Icc {C : Set E} {d : E}
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C))
     (hbdd' : BddAbove ((fun x => ⟪-d, x⟫) '' C)) :
@@ -78,7 +82,9 @@ theorem linearImage_subset_Icc {C : Set E} {d : E}
   exact ⟨neg_supportFn_neg_le hx hbdd', le_supportFn hx hbdd⟩
 
 /-- **Order-connectedness.**  The linear image of a convex set is convex in `ℝ`,
-hence order-connected: the identified set has "no gaps". -/
+hence order-connected: the identified set has "no gaps".
+@isnad1 id=ordconne.1h3v.s6.cfa309d5f3ae from=translated src=- shape=1deb8dde vocab=8ca2437b
+-/
 theorem linearImage_ordConnected {C : Set E} {d : E} (hC : Convex ℝ C) :
     ((fun x => ⟪d, x⟫) '' C).OrdConnected := by
   have hlin : IsLinearMap ℝ (fun x => ⟪d, x⟫) :=
@@ -92,7 +98,9 @@ bounded above on `C` in the direction `d`](hyp:hbdd) and [in the opposite direct
 `-d`](hyp:hbdd'), and that [the upper support value is attained by some feasible
 point](hyp:hUmem) and [the lower support value `-supportFn C (-d)` is likewise
 attained](hyp:hLmem), then [the identified set of the target functional over `C` is exactly the
-closed interval `[-supportFn C (-d), supportFn C d]`](goal). -/
+closed interval `[-supportFn C (-d), supportFn C d]`](goal).
+@isnad1 id=eq.5h3v.s8.b666b2734498 from=translated src=- shape=50ac8959 vocab=9b85a6b4
+-/
 theorem linearImage_eq_Icc {C : Set E} {d : E} (hC : Convex ℝ C)
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C))
     (hbdd' : BddAbove ((fun x => ⟪-d, x⟫) '' C))
@@ -106,7 +114,9 @@ theorem linearImage_eq_Icc {C : Set E} {d : E} (hC : Convex ℝ C)
 feasible set that is [compact](hyp:hcomp), [convex](hyp:hC), and [nonempty](hyp:hne), [the
 identified set of the target functional `⟪d, ·⟫` over `C` is exactly the closed interval
 `[-supportFn C (-d), supportFn C d]`](goal): a continuous functional attains its supremum and
-infimum on a compact set and is automatically bounded there. -/
+infimum on a compact set and is automatically bounded there.
+@isnad1 id=eq.3h3v.s7.9f6a6062b570 from=translated src=- shape=c99d4e65 vocab=a09eec1d
+-/
 theorem linearImage_eq_Icc_of_isCompact {C : Set E} {d : E}
     (hcomp : IsCompact C) (hC : Convex ℝ C) (hne : C.Nonempty) :
     (fun x => ⟪d, x⟫) '' C = Set.Icc (-supportFn C (-d)) (supportFn C d) := by
@@ -131,7 +141,9 @@ is its upper endpoint minus its lower endpoint, equivalently the sum of the supp
 direction and its negative. -/
 noncomputable def width (C : Set E) (d : E) : ℝ := supportFn C d + supportFn C (-d)
 
-/-- The identified width is nonnegative. -/
+/-- The identified width is nonnegative.
+@isnad1 id=le.3h3v.s6.ccd70a168738 from=translated src=- shape=31e23476 vocab=16f7442d
+-/
 theorem width_nonneg {C : Set E} {d : E} (hne : C.Nonempty)
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C))
     (hbdd' : BddAbove ((fun x => ⟪-d, x⟫) '' C)) :
@@ -146,7 +158,9 @@ theorem width_nonneg {C : Set E} {d : E} (hne : C.Nonempty)
 space, assuming [`C` is nonempty](hyp:hne) and [the target functional `⟪d, ·⟫` is bounded above
 on `C` in the direction `d`](hyp:hbdd) and [in the opposite direction `-d`](hyp:hbdd'), then [the
 identified set collapses to a point (zero width) if and only if the target functional is constant
-on `C`, equal to its support value](goal). -/
+on `C`, equal to its support value](goal).
+@isnad1 id=iff.3h3v.s7.8558546c815a from=translated src=- shape=0e680546 vocab=28920d98
+-/
 theorem width_eq_zero_iff {C : Set E} {d : E} (hne : C.Nonempty)
     (hbdd : BddAbove ((fun x => ⟪d, x⟫) '' C))
     (hbdd' : BddAbove ((fun x => ⟪-d, x⟫) '' C)) :
@@ -174,7 +188,9 @@ theorem width_eq_zero_iff {C : Set E} {d : E} (hne : C.Nonempty)
 and [a feasible set `C`](hyp:C), [the scalar identified interval of `obj` relative
 to membership in `C` equals exactly the image of `obj` on `C`](goal). Specialised
 to `obj = ⟪d, ·⟫`, this identifies the scalar engine's output with the linear
-image studied here. -/
+image studied here.
+@isnad1 id=eq.0h3v.s4.2753c24e063d from=translated src=- shape=6895a57e vocab=9569a9ab
+-/
 theorem identifiedInterval_eq_image {α : Type*} (obj : α → ℝ) (C : Set α) :
     IdentifiedSet obj (· ∈ C) = obj '' C := by
   ext y

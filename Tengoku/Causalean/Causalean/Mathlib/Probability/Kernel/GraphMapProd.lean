@@ -44,7 +44,9 @@ noncomputable def mechanismKernel (νₗ : Measure γ) (Φ : β × γ → δ) :
   ((ProbabilityTheory.Kernel.id : ProbabilityTheory.Kernel β β).prod
     (ProbabilityTheory.Kernel.const β νₗ)).map Φ
 
-/-- Pointwise value of `mechanismKernel`: `κ o = νₗ.map (fun l => Φ (o, l))`. -/
+/-- Pointwise value of `mechanismKernel`: `κ o = νₗ.map (fun l => Φ (o, l))`.
+@isnad1 id=eq.1h6v.s6.1735ec7f0601 from=translated src=- shape=6c2d61bd vocab=c3521014
+-/
 theorem mechanismKernel_apply (νₗ : Measure γ) [SFinite νₗ]
     {Φ : β × γ → δ} (hΦ : Measurable Φ) (o : β) :
     mechanismKernel νₗ Φ o = νₗ.map (fun l => Φ (o, l)) := by
@@ -62,7 +64,9 @@ the mechanism is measurable.
 Declared as a `theorem`, not an `instance`: the measurability hypothesis `hΦ` is an ordinary
 explicit argument that typeclass synthesis can never produce, so Lean rejects it as an instance
 from v4.33.0 on. Every use site already applies it by name, so this is a registration change
-only — the statement is unchanged. -/
+only — the statement is unchanged.
+@isnad1 id=ismarkov.1h5v.s5.777b35cf530f from=translated src=- shape=9d633492 vocab=3bb5c12c
+-/
 theorem instIsMarkovKernelMechanismKernel (νₗ : Measure γ)
     [IsProbabilityMeasure νₗ] {Φ : β × γ → δ} (hΦ : Measurable Φ) :
     IsMarkovKernel (mechanismKernel νₗ Φ) := by
@@ -74,7 +78,9 @@ measure `α` on a first factor, an s-finite measure `νₗ` on a second factor, 
 mechanism map `Φ` combining the two factors into a third space](hyp:hΦ), pushing the product
 measure `α.prod νₗ` forward along the graph map `(o, l) ↦ (o, Φ (o, l))` [equals the composition
 product of `α` with the mechanism kernel that sends each value `o` of the first coordinate to the
-pushforward of `νₗ` through the slice `l ↦ Φ (o, l)`](goal). -/
+pushforward of `νₗ` through the slice `l ↦ Φ (o, l)`](goal).
+@isnad1 id=eq.1h6v.s6.7450432c4c54 from=translated src=- shape=78294105 vocab=a6a3ae68
+-/
 theorem map_graph_prod_eq_compProd
     (α : Measure β) [SFinite α] (νₗ : Measure γ) [SFinite νₗ]
     {Φ : β × γ → δ} (hΦ : Measurable Φ) :

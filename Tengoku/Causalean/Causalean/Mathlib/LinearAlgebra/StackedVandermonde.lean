@@ -74,7 +74,9 @@ and [slope values `slopes : Fin (N + 1) → K`](hyp:slopes) that are
 injective](goal). The first block detects coordinate `0`, while the
 last block is a square Vandermonde system on coordinates `1,…,N`.
 
-This is an explicit-witness existence result; it does not characterize a generic set of weights. -/
+This is an explicit-witness existence result; it does not characterize a generic set of weights.
+@isnad1 id=ex.2h3v.s7.17b8e6d43a6b from=translated src=- shape=da3e100e vocab=377349ec
+-/
 theorem exists_weights_stackedContraction_injective {K : Type*} [CommRing K] [IsDomain K]
   {N : ℕ} (hN : 2 ≤ N) (slopes : Fin (N + 1) → K)
     (hslopes : Function.Injective slopes) :

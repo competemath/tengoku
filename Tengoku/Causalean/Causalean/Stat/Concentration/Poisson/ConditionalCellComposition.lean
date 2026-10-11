@@ -16,7 +16,9 @@ open scoped NNReal
 
 namespace Causalean.Stat.Concentration.Poisson
 
-/-- Given [a cell](hyp:j), [a measurable pilot-cell indicator](hyp:good,hgood), and [a jointly measurable cell statistic](hyp:φ,hφ), [the indicator-weighted pilot/evaluation statistic is jointly measurable](goal). -/
+/-- Given [a cell](hyp:j), [a measurable pilot-cell indicator](hyp:good,hgood), and [a jointly measurable cell statistic](hyp:φ,hφ), [the indicator-weighted pilot/evaluation statistic is jointly measurable](goal).
+@isnad1 id=measurab.2h4v.s8.7e334b9e55d1 from=translated src=- shape=ae9cbc9b vocab=d5e583f9
+-/
 theorem poissonTable_cell_indicator_measurable
     {J : Type*} (j : J)
     (good : (Fin 4 → ℕ) → Bool) (hgood : Measurable good)
@@ -35,7 +37,9 @@ theorem poissonTable_cell_indicator_measurable
   exact Measurable.ite ((hgood.comp hp) (measurableSet_singleton true))
     (hφ.comp (hp.prodMk he)) measurable_const
 
-/-- Given [pilot-cell rates](hyp:pilotRate), [evaluation-cell rates](hyp:evalRate), [a cell](hyp:j), [a measurable pilot indicator](hyp:good,hgood), [a jointly measurable statistic](hyp:φ,hφ), and [an integrable dominating envelope](hyp:envelope,henvelope,hdom), [the joint integral disintegrates into pilot and evaluation integrals](goal). -/
+/-- Given [pilot-cell rates](hyp:pilotRate), [evaluation-cell rates](hyp:evalRate), [a cell](hyp:j), [a measurable pilot indicator](hyp:good,hgood), [a jointly measurable statistic](hyp:φ,hφ), and [an integrable dominating envelope](hyp:envelope,henvelope,hdom), [the joint integral disintegrates into pilot and evaluation integrals](goal).
+@isnad1 id=eq.4h7v.s10.d52f83613d11 from=translated src=- shape=8dafe955 vocab=5a8085d3
+-/
 theorem poissonTable_cell_indicator_integral_prod
     {J : Type*} [Fintype J]
     (pilotRate evalRate : J → Fin 4 → ℝ≥0) (j : J)
@@ -70,7 +74,9 @@ theorem poissonTable_cell_indicator_integral_prod
       (fun pe => by simpa only [Real.norm_eq_abs] using hdom pe))
   exact integral_prod _ hi
 
-/-- Given [pilot-cell rates](hyp:pilotRate), [evaluation-cell rates](hyp:evalRate), [a cell](hyp:j), [a measurable pilot indicator](hyp:good,hgood), [a jointly measurable statistic](hyp:φ,hφ), [an integrable dominating envelope](hyp:envelope,henvelope,hdom), and [an integrable pilot bound on every evaluation section](hyp:bound,hbound,hsection), [the joint integral is bounded by the pilot integral of that bound](goal). -/
+/-- Given [pilot-cell rates](hyp:pilotRate), [evaluation-cell rates](hyp:evalRate), [a cell](hyp:j), [a measurable pilot indicator](hyp:good,hgood), [a jointly measurable statistic](hyp:φ,hφ), [an integrable dominating envelope](hyp:envelope,henvelope,hdom), and [an integrable pilot bound on every evaluation section](hyp:bound,hbound,hsection), [the joint integral is bounded by the pilot integral of that bound](goal).
+@isnad1 id=le.6h8v.s10.628365ef946c from=translated src=- shape=7d136157 vocab=5a8085d3
+-/
 theorem poissonTable_cell_indicator_integral_le
     {J : Type*} [Fintype J]
     (pilotRate evalRate : J → Fin 4 → ℝ≥0) (j : J)
@@ -113,7 +119,9 @@ theorem poissonTable_cell_indicator_integral_le
       (fun pe => by simpa only [Real.norm_eq_abs] using hdom pe))
   exact integral_mono hprod.integral_prod_left hbound hsection
 
-/-- Given [pilot-cell rates](hyp:pilotRate), [evaluation-cell rates](hyp:evalRate), [a cell](hyp:j), [a measurable pilot indicator](hyp:good,hgood), [a jointly measurable nonnegative statistic](hyp:φ,hφ,hφ_nonneg), [integrable evaluation sections](hyp:hsection_int), and [an integrable pilot bound on those sections](hyp:bound,hbound,hsection_bound), [the joint expectation is bounded by the pilot expectation of that bound](goal). -/
+/-- Given [pilot-cell rates](hyp:pilotRate), [evaluation-cell rates](hyp:evalRate), [a cell](hyp:j), [a measurable pilot indicator](hyp:good,hgood), [a jointly measurable nonnegative statistic](hyp:φ,hφ,hφ_nonneg), [integrable evaluation sections](hyp:hsection_int), and [an integrable pilot bound on those sections](hyp:bound,hbound,hsection_bound), [the joint expectation is bounded by the pilot expectation of that bound](goal).
+@isnad1 id=le.6h7v.s10.7b8bf7e6cb90 from=translated src=- shape=301144ed vocab=c21f3790
+-/
 -- Use `integrable_prod_iff` after proving the outer integral of the absolute
 -- value is dominated by `bound`; nonnegativity identifies that absolute value
 -- with the conditional integral already bounded by `hsection_bound`.

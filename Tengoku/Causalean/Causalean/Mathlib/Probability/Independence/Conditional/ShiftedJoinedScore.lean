@@ -33,7 +33,9 @@ noncomputable def shiftedJoinedScore (B0 B1 : Finset ι)
 
 /-- [The training block and evaluation block](hyp:B0,B1), [a held-out score](hyp:f),
 [a training-block shift](hyp:a), and [a full product point](hyp:x) imply that [evaluating
-the joined shifted score equals the held-out score minus its training shift](goal). -/
+the joined shifted score equals the held-out score minus its training shift](goal).
+@isnad1 id=eq.0h7v.s7.58f9ed073490 from=translated src=- shape=a9acc049 vocab=3ea63681
+-/
 theorem shiftedJoinedScore_comp_proj (B0 B1 : Finset ι)
     (f : ((i : {i // i ∈ B1}) → Ω i.val) → ℝ)
     (a : ((i : {i // i ∈ B0}) → Ω i.val) → ℝ)
@@ -43,7 +45,9 @@ theorem shiftedJoinedScore_comp_proj (B0 B1 : Finset ι)
 
 /-- [The training block and evaluation block](hyp:B0,B1), [a held-out score](hyp:f),
 [a training-block shift](hyp:a), and [measurability of both functions](hyp:hf,ha) imply
-that [the joined shifted score is measurable](goal). -/
+that [the joined shifted score is measurable](goal).
+@isnad1 id=measurab.2h6v.s9.3018dd05d45d from=translated src=- shape=18fdd5be vocab=e88eb0e5
+-/
 @[fun_prop] theorem measurable_shiftedJoinedScore (B0 B1 : Finset ι)
     (f : ((i : {i // i ∈ B1}) → Ω i.val) → ℝ)
     (a : ((i : {i // i ∈ B0}) → Ω i.val) → ℝ)

@@ -31,12 +31,16 @@ variable {Obs Param : Type*} [Fintype Obs] [Fintype Param]
 
 /-- Column span is Euclidean-orthogonal to the left null space: if `z` lies in the
 left null space of `X` (`z ᵥ* X = 0`), then any column-span vector `X *ᵥ g` is
-orthogonal to `z`. -/
+orthogonal to `z`.
+@isnad1 id=eq.1h5v.s6.b3c3d958b846 from=translated src=- shape=29105482 vocab=cd3a44fa
+-/
 lemma colSpan_dotProduct_leftNull {X : Matrix Obs Param ℝ} {g : Param → ℝ}
     {z : Obs → ℝ} (hz : z ᵥ* X = 0) : (X *ᵥ g) ⬝ᵥ z = 0 := by
   rw [dotProduct_comm, dotProduct_mulVec, hz, zero_dotProduct]
 
-/-- Nonnegativity of the Euclidean self dot product. -/
+/-- Nonnegativity of the Euclidean self dot product.
+@isnad1 id=le.0h2v.s4.6e6563b835bf from=translated src=- shape=88b7ad43 vocab=fbc09bd2
+-/
 lemma dotProduct_self_nonneg' (v : Obs → ℝ) : 0 ≤ v ⬝ᵥ v := by
   rw [dotProduct]
   exact Finset.sum_nonneg fun i _ => mul_self_nonneg _
@@ -46,7 +50,9 @@ combination `c`, and suppose [the matrix `S` is spherical:
 `S = σ² I` for some scale `σ`](hyp:hS). Among all weight vectors `w` satisfying
 [the same design-balance identity `w ᵥ* X = c`](hyp:hUStar,hU), if [`wStar` lies
 in the column span of `X`, `wStar = X *ᵥ g`](hyp:hStar), then [the quadratic
-form `wStarᵀ S wStar` is no larger than `wᵀ S w`](goal). -/
+form `wStarᵀ S wStar` is no larger than `wᵀ S w`](goal).
+@isnad1 id=le.4h9v.s6.24f4af695bee from=translated src=- shape=dc20e91c vocab=f3c6c3d9
+-/
 theorem quadVar_spherical_le_of_colSpan [DecidableEq Obs]
     {X : Matrix Obs Param ℝ} {c : Param → ℝ}
     {S : Matrix Obs Obs ℝ} {σ : ℝ} (hS : SphericalErrors S σ)
@@ -77,7 +83,9 @@ a target combination `c`, and [a positive-semidefinite matrix `S`](hyp:hS).
 Among all weight vectors `w` satisfying [the same design-balance identity
 `w ᵥ* X = c`](hyp:hUStar,hU), if [the image `S *ᵥ wStar` lies in the column
 span of `X`](hyp:hGLS), then [the quadratic form `wStarᵀ S wStar` is no larger
-than `wᵀ S w`](goal). -/
+than `wᵀ S w`](goal).
+@isnad1 id=le.4h8v.s7.4b1efcedf21a from=translated src=- shape=9a3d4fed vocab=28be9876
+-/
 theorem quadVar_le_of_mulVec_mem_colSpan {X : Matrix Obs Param ℝ} {c : Param → ℝ}
     {S : Matrix Obs Obs ℝ} (hS : S.PosSemidef)
     {w wStar : Obs → ℝ} {g : Param → ℝ}

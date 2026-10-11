@@ -21,7 +21,9 @@ open scoped BigOperators ENNReal Interval
 
 namespace AtomicLaw
 
-/-- The CDF sign selector multiplied by the CDF gap is its absolute value. -/
+/-- The CDF sign selector multiplied by the CDF gap is its absolute value.
+@isnad1 id=eq.0h5v.s5.526768482fc3 from=translated src=- shape=bf551b2e vocab=59f57478
+-/
 theorem cdfSign_mul_cdfGap_eq_abs {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (x : ℝ) :
     cdfSign μ ν x * cdfGap μ ν x = |cdfGap μ ν x| := by
@@ -35,7 +37,9 @@ theorem cdfSign_mul_cdfGap_eq_abs {ι κ : Type*} [Fintype ι] [Fintype κ]
 
 /-- The expectation contrast of the CDF-sign potential has absolute value equal to the integrated
 absolute CDF gap.  This is finite-atomic integration by parts with cancellation outside the
-atoms. -/
+atoms.
+@isnad1 id=eq.2h4v.s6.ffcd5834ec20 from=translated src=- shape=ec1b1878 vocab=9a785a57
+-/
 theorem abs_integral_krPotential_sub_eq_integral_abs_cdfGap
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :
@@ -50,7 +54,9 @@ theorem abs_integral_krPotential_sub_eq_integral_abs_cdfGap
   exact integral_nonneg fun x => abs_nonneg _
 
 /-- On the real line, finite-atomic one-Wasserstein distance is the integral of the absolute CDF
-difference. -/
+difference.
+@isnad1 id=eq.2h4v.s6.0d8273255e2c from=translated src=- shape=b8893cce vocab=dee2b489
+-/
 theorem w1_eq_integral_abs_cdfGap {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :
     w1 μ ν = ∫ x, |cdfGap μ ν x| := by
@@ -64,7 +70,9 @@ theorem w1_eq_integral_abs_cdfGap {ι κ : Type*} [Fintype ι] [Fintype κ]
     exact integral_abs_cdfGap_le_transportCost hμ hν πopt
 
 /-- Transport cost weakly dominates the expectation contrast of every one-Lipschitz test
-function. -/
+function.
+@isnad1 id=le.1h6v.s6.6ecc211b3512 from=translated src=- shape=2558b605 vocab=5b6c6c2c
+-/
 theorem lipschitz_integral_sub_le_transportCost {ι κ : Type*}
     [Fintype ι] [Fintype κ] {μ : AtomicLaw ι} {ν : AtomicLaw κ}
     (π : TransportPlan μ ν) (f : ℝ → ℝ) (hf : LipschitzWith 1 f) :
@@ -106,7 +114,9 @@ theorem lipschitz_integral_sub_le_transportCost {ι κ : Type*}
       apply mul_le_mul_of_nonneg_left _ (π.nonneg i j)
       simpa [Real.dist_eq] using hf.dist_le_mul (μ.atom i) (ν.atom j)
 
-/-- Finite-atomic one-Wasserstein distance satisfies Kantorovich--Rubinstein weak duality. -/
+/-- Finite-atomic one-Wasserstein distance satisfies Kantorovich--Rubinstein weak duality.
+@isnad1 id=le.3h5v.s6.d43f68e8ba0d from=translated src=- shape=e44cd68d vocab=e19ce17b
+-/
 theorem lipschitz_integral_sub_le_w1 {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid)
     (f : ℝ → ℝ) (hf : LipschitzWith 1 f) :
@@ -116,7 +126,9 @@ theorem lipschitz_integral_sub_le_w1 {ι κ : Type*} [Fintype ι] [Fintype κ]
   exact lipschitz_integral_sub_le_transportCost π f hf
 
 /-- The CDF-sign potential is one-Lipschitz and attains the finite-atomic
-Kantorovich--Rubinstein dual value. -/
+Kantorovich--Rubinstein dual value.
+@isnad1 id=and.2h4v.s6.96510e717c0c from=translated src=- shape=76ef92b8 vocab=91e9075c
+-/
 theorem krPotential_attains {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :
     LipschitzWith 1 (krPotential μ ν) ∧
@@ -125,7 +137,9 @@ theorem krPotential_attains {ι κ : Type*} [Fintype ι] [Fintype κ]
   rw [w1_eq_integral_abs_cdfGap μ ν hμ hν,
     abs_integral_krPotential_sub_eq_integral_abs_cdfGap μ ν hμ hν]
 
-/-- [Two finite atomic laws with finite slot types](hyp:ι,κ,μ,ν) and [valid probability weights](hyp:hμ,hν) have [one-Wasserstein distance equal to the supremum of absolute expectation contrasts over one-Lipschitz functions](goal). -/
+/-- [Two finite atomic laws with finite slot types](hyp:ι,κ,μ,ν) and [valid probability weights](hyp:hμ,hν) have [one-Wasserstein distance equal to the supremum of absolute expectation contrasts over one-Lipschitz functions](goal).
+@isnad1 id=eq.2h4v.s6.eb3747fc45ec from=translated src=- shape=692f451c vocab=36465103
+-/
 theorem w1_eq_sSup_lipschitz {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :
     w1 μ ν = sSup {r : ℝ | ∃ f : ℝ → ℝ,
@@ -149,7 +163,9 @@ theorem w1_eq_sSup_lipschitz {ι κ : Type*} [Fintype ι] [Fintype κ]
       exact lipschitz_integral_sub_le_w1 μ ν hμ hν f hf
 
 /-- A uniform bound on one-Lipschitz expectation contrasts directly bounds finite-atomic
-one-Wasserstein distance. -/
+one-Wasserstein distance.
+@isnad1 id=le.3h5v.s6.512c20d5b6ba from=translated src=- shape=52a25f05 vocab=e19ce17b
+-/
 theorem w1_le_of_lipschitz_integral_sub_le {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid)
     {ε : ℝ} (h : ∀ f : ℝ → ℝ, LipschitzWith 1 f →

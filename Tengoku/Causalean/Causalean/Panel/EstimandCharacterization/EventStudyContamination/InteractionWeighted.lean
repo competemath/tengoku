@@ -29,7 +29,9 @@ open Finset
 to one, then any nonnegative-weighted average of values lying in `[lo, hi]`
 again lies in `[lo, hi]`. This is the algebraic content of "convex combination"
 used to certify that the IW estimand is a genuine convex average of the target
-CATTs (no contamination). -/
+CATTs (no contamination).
+@isnad1 id=and.4h6v.s7.1811eda1932a from=translated src=- shape=87c3df97 vocab=8a7a81ab
+-/
 theorem sum_convex_mem_Icc {ι : Type*} (s : Finset ι) (w f : ι → ℝ)
     {lo hi : ℝ} (hw : ∀ i ∈ s, 0 ≤ w i) (hsum : ∑ i ∈ s, w i = 1)
     (hlo : ∀ i ∈ s, lo ≤ f i) (hhi : ∀ i ∈ s, f i ≤ hi) :
@@ -182,7 +184,9 @@ genuine cohort of the system](hyp:hCohort), and [every comparison unit is untrea
 the baseline and target
 periods](hyp:hComparisonUntreatedBaseline,hComparisonUntreatedTarget), then for
 [any eligible cohort `g`](hyp:hg), [its interaction-weighted DID contrast `Delta I g`
-equals the cohort-relative-time average treatment effect `CATT g I.eventTime`](goal). -/
+equals the cohort-relative-time average treatment effect `CATT g I.eventTime`](goal).
+@isnad1 id=eq.8h4v.s9.d4f5fc49743c from=translated src=- shape=9fca88f0 vocab=1d6dd355
+-/
 theorem IW_Delta_eq_CATT (P : EventStudySystem T) (I : P.IWDesign)
     (hConsistency : P.Consistency)
     (hNoAnticipation : P.NoAnticipation)
@@ -322,7 +326,9 @@ and `hi := ⨆ g, CATT(g,l)` recovers `min_g CATT ≤ nuIW ≤ max_g CATT`; we s
 the bound parametrically in `lo`/`hi` to avoid `Finset.min'`/`max'`
 nonemptiness side goals. The formal statement applies to any event time meeting
 the stated support and causal conditions; it does not impose a separate
-nonnegativity restriction on `I.eventTime`. -/
+nonnegativity restriction on `I.eventTime`.
+@isnad1 id=and.9h5v.s8.b4595242b569 from=translated src=- shape=2d688663 vocab=1e4f7cd7
+-/
 theorem IW_convex_characterization (P : EventStudySystem T) (I : P.IWDesign)
     (hConsistency : P.Consistency)
     (hNoAnticipation : P.NoAnticipation)

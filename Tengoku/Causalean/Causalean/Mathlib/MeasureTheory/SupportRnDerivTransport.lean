@@ -31,7 +31,9 @@ def SupportMeasurableOn {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
 
 /-- [A measurable support set](hyp:hS), [a measure concentrated on it](hyp:hfull), and [a map
 measurable there](hyp:hf) give [a map that is almost-everywhere measurable for that
-measure](goal). -/
+measure](goal).
+@isnad1 id=aemeasur.3h5v.s6.7145f648c2d6 from=translated src=- shape=69fe4ec1 vocab=7217a080
+-/
 theorem aemeasurable_of_supportMeasurableOn
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     [MeasurableSingletonClass Y] [Nonempty Y]
@@ -47,7 +49,9 @@ theorem aemeasurable_of_supportMeasurableOn
 /-- [Finite numerator and denominator measures](hyp:m,n) with [absolute continuity](hyp:hmn),
 [measurable source and target supports](hyp:S,T,hS,hT), [concentration on the source support](hyp:hμS,hνS), and [forward and reverse maps measurable on their supports](hyp:f,g,hf,hg), whose
 [images stay in the matching supports](hyp:hfT,hgS) and [are mutual inverses there](hyp:hgf,hfg),
-give [a canonical Radon--Nikodym derivative preserved after the forward map](goal). -/
+give [a canonical Radon--Nikodym derivative preserved after the forward map](goal).
+@isnad1 id=eventual.11h8v.s8.ddb5d8d5a48a from=translated src=- shape=82acde1c vocab=89cbdc83
+-/
 theorem rnDeriv_map_of_support_equiv
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     [StandardBorelSpace X] [StandardBorelSpace Y]
@@ -132,7 +136,9 @@ theorem rnDeriv_map_of_support_equiv
 /-- [Finite numerator and denominator measures](hyp:m,n) with [absolute continuity](hyp:hmn),
 [measurable source and target supports](hyp:S,T,hS,hT), [concentration on the source support](hyp:hμS,hνS), and [forward and reverse maps measurable on their supports](hyp:f,g,hf,hg), whose
 [images stay in the matching supports](hyp:hfT,hgS) and [are mutual inverses there](hyp:hgf,hfg),
-give [an unchanged pushforward law for the real-valued canonical Radon--Nikodym ratio](goal). -/
+give [an unchanged pushforward law for the real-valued canonical Radon--Nikodym ratio](goal).
+@isnad1 id=eq.11h8v.s8.1fae709726b9 from=translated src=- shape=15ae84b3 vocab=b1287ded
+-/
 theorem map_toReal_rnDeriv_eq_map_toReal_rnDeriv_map_of_support_equiv
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     [StandardBorelSpace X] [StandardBorelSpace Y]

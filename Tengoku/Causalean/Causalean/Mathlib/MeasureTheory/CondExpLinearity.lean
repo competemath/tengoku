@@ -41,7 +41,9 @@ integrable functions](hyp:hf,hg) [is the sum of their conditional expectations, 
 Integrability-free restatement of `MeasureTheory.condExp_add`: the two integrability
 hypotheses are `autoParam`s discharged by `fun_prop`, so a call site that holds the
 witnesses in context — or whose integrands are built from `fun_prop`-tagged
-constructions — supplies neither. -/
+constructions — supplies neither.
+@isnad1 id=eventual.0h9v.s7.13450db6ea2f from=translated src=- shape=dae24056 vocab=5c2158a2
+-/
 theorem condExp_add' (m : MeasurableSpace α)
     (hf : Integrable f μ := by fun_prop) (hg : Integrable g μ := by fun_prop) :
     μ[f + g | m] =ᵐ[μ] μ[f | m] + μ[g | m] :=
@@ -51,7 +53,9 @@ theorem condExp_add' (m : MeasurableSpace α)
 difference of two integrable functions is the difference of their conditional
 expectations, almost everywhere.
 
-Integrability-free restatement of `MeasureTheory.condExp_sub`; see `condExp_add'`. -/
+Integrability-free restatement of `MeasureTheory.condExp_sub`; see `condExp_add'`.
+@isnad1 id=eventual.0h9v.s7.bc81e758691b from=translated src=- shape=dae24056 vocab=f4fed785
+-/
 theorem condExp_sub' (m : MeasurableSpace α)
     (hf : Integrable f μ := by fun_prop) (hg : Integrable g μ := by fun_prop) :
     μ[f - g | m] =ᵐ[μ] μ[f | m] - μ[g | m] :=
@@ -63,7 +67,9 @@ expectations.
 
 Integrability-free restatement of `MeasureTheory.condExp_finsetSum`; the family-wide
 integrability hypothesis is an `autoParam` discharged by `fun_prop` after introducing the
-index and its membership proof. -/
+index and its membership proof.
+@isnad1 id=eventual.0h9v.s7.ba97c6b4fe9a from=translated src=- shape=7c065085 vocab=2296f2ca
+-/
 theorem condExp_finsetSum' {ι : Type*} {s : Finset ι} {F : ι → α → E}
     (m : MeasurableSpace α)
     (hF : ∀ i ∈ s, Integrable (F i) μ := by intro i _; fun_prop) :

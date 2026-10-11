@@ -62,7 +62,9 @@ def branchSignSup {Ω ι : Type*} [MeasurableSpace Ω] {F : BoundedClass Ω ι}
 cover](hyp:cover) and [any sample of size n](hyp:x,n), [the sign average of
 the fourth power of the normalized signed supremum is at most 1/n^4 times
 the sum over branches of the sign averages of the fourth powers of the
-unnormalized branch signed suprema](goal), including sample size zero. -/
+unnormalized branch signed suprema](goal), including sample size zero.
+@isnad1 id=le.0h7v.s7.22e7ead7364a from=translated src=- shape=29c90d74 vocab=8a477bb7
+-/
 theorem signedSup_fourth_le_chainAverages {Ω ι : Type*} [MeasurableSpace Ω]
     [Countable ι] [Nonempty ι] (F : BoundedClass Ω ι) {m : ℕ}
     (cover : ChainCover F m) {n : ℕ} (x : Fin n → Ω) :

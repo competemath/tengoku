@@ -21,7 +21,9 @@ namespace Causalean.Mathlib.Probability.GaussianMeanEmbedding
 
 /-- Given [two finite real measures](hyp:μ,ν) and [a natural-number degree](hyp:m),
 [the difference between their Gaussian-weighted moments is bounded by the
-Gaussian embedding distance divided by that coordinate's normalization](goal). -/
+Gaussian embedding distance divided by that coordinate's normalization](goal).
+@isnad1 id=le.0h3v.s10.2dfe1f774d6b from=translated src=- shape=72d7a30d vocab=4e238824
+-/
 theorem abs_gaussianWeightedMoment_sub_le
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν] (m : ℕ) :
     |(∫ r, gaussianWeightedMonomial m r ∂μ) -
@@ -58,7 +60,9 @@ theorem abs_gaussianWeightedMoment_sub_le
 /-- Given [two finite real measures](hyp:μ,ν), [a finite index set](hyp:s),
 [a degree assigned to each index](hyp:degree), and [real coefficients](hyp:coefficient),
 [the associated finite weighted-moment sum is bounded by the embedding distance
-times the sum of absolute normalization-adjusted coefficients](goal). -/
+times the sum of absolute normalization-adjusted coefficients](goal).
+@isnad1 id=le.0h6v.s10.c835c1eb36db from=translated src=- shape=ff95d530 vocab=880f6420
+-/
 theorem abs_sum_gaussianWeightedMoment_sub_le
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     {ι : Type*} (s : Finset ι) (degree : ι → ℕ) (coefficient : ι → ℝ) :
@@ -107,7 +111,9 @@ def secondMomentRecoveryCoefficient (N : ℕ) : ℝ :=
 
 /-- Given [two finite real measures](hyp:μ,ν) and [a truncation order](hyp:N),
 [the first N + 1 even Gaussian-weighted moment differences with exponential-series
-coefficients are bounded by the recovery coefficient times their embedding distance](goal). -/
+coefficients are bounded by the recovery coefficient times their embedding distance](goal).
+@isnad1 id=le.0h3v.s10.4d2d226f7aab from=translated src=- shape=0cb8a3e9 vocab=541a93df
+-/
 theorem abs_secondMomentWeightedSum_sub_le
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν] (N : ℕ) :
     |∑ k ∈ Finset.range (N + 1), (1 / (k.factorial : ℝ)) *
@@ -122,7 +128,9 @@ theorem abs_secondMomentWeightedSum_sub_le
       (fun k => 1 / (k.factorial : ℝ)))
 
 /-- Given [a natural-number Taylor index](hyp:k), [the normalization-adjusted
-Taylor coefficient is at most its one-based index](goal). -/
+Taylor coefficient is at most its one-based index](goal).
+@isnad1 id=le.0h1v.s6.b54ab133b34b from=translated src=- shape=e551cc3e vocab=f0a92511
+-/
 theorem secondMomentRecoveryCoefficient_term_le (k : ℕ) :
     (1 / (k.factorial : ℝ)) /
         gaussianFeatureNormalization (2 * k + 2) ≤ (k + 1 : ℕ) := by
@@ -173,7 +181,9 @@ theorem secondMomentRecoveryCoefficient_term_le (k : ℕ) :
   nlinarith
 
 /-- [The sum of the 101 normalization-adjusted Taylor coefficients is at most
-5151](goal). -/
+5151](goal).
+@isnad1 id=le.0h0v.s4.25f81f20b8a3 from=translated src=- shape=1ac31801 vocab=68fe8ac5
+-/
 theorem secondMomentRecoveryCoefficient_oneHundred_le :
     secondMomentRecoveryCoefficient 100 ≤ 5151 := by
   unfold secondMomentRecoveryCoefficient

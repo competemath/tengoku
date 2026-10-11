@@ -57,7 +57,9 @@ def normalizationCheck (c : NormalizationCertificate) : Bool :=
 
 /-- For [a normalization schedule](hyp:s) with
 [a successful executable guard](hyp:hcheck),
-[the raw interval contains `1 / sqrt (2π)`](goal). -/
+[the raw interval contains `1 / sqrt (2π)`](goal).
+@isnad1 id=contains.1h1v.s5.600b43a14ac4 from=translated src=- shape=bd6eab41 vocab=1d72c028
+-/
 theorem normalizationInterval_sound (s : NormalizationSchedule)
     (hcheck : normalizationScheduleCheck s = true) :
     (normalizationInterval s).Contains (1 / Real.sqrt (2 * Real.pi)) := by
@@ -80,7 +82,9 @@ theorem normalizationInterval_sound (s : NormalizationSchedule)
   next =>
     contradiction
 
-/-- A [normalization certificate](hyp:c) whose [executable check succeeds](hyp:hcheck) [contains the standard-normal density scale](goal). -/
+/-- A [normalization certificate](hyp:c) whose [executable check succeeds](hyp:hcheck) [contains the standard-normal density scale](goal).
+@isnad1 id=contains.1h1v.s5.1ea0726addfc from=translated src=- shape=bd6eab41 vocab=986961a0
+-/
 theorem NormalizationCertificate.sound (c : NormalizationCertificate)
     (hcheck : normalizationCheck c = true) :
     c.enclosure.Contains (1 / Real.sqrt (2 * Real.pi)) := by

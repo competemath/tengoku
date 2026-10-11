@@ -29,7 +29,9 @@ tails](goal).
 Proof strategy: obtain `HasSubgaussianMGF` for each coordinate from `hInt` and
 `hmgf`; apply `HasSubgaussianMGF.measure_ge_le` to it and its negation.  Use
 `measureReal_biUnion_finset_le` for the finite union.  Identify the finite
-`sSup` with `Finset.univ.sup'` when `N > 0`, and handle `N = 0` separately. -/
+`sSup` with `Finset.univ.sup'` when `N > 0`, and handle `N = 0` separately.
+@isnad1 id=le.4h6v.s8.480cd8ae42c8 from=translated src=- shape=46629332 vocab=b6f06cf6
+-/
 theorem finite_max_tail_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (N : ℕ) (Z : Fin N → Ω → ℝ) (v : Fin N → ℝ)

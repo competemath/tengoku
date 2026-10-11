@@ -27,7 +27,9 @@ of the norm on that subspace](hyp:c,hbound), then [the indexed singular value is
 scalar](goal).
 
 This is the comparison half of the singular-value min--max principle.  It does not require the
-map to be injective or the singular value to be positive. -/
+map to be injective or the singular value to be positive.
+@isnad1 id=le.3h6v.s9.633373cc8f60 from=translated src=- shape=51fe79fa vocab=fbcfa078
+-/
 theorem singularValues_le_of_large_subspace
     (A : V →ₗ[ℝ] W) {j : ℕ} (hj : j < finrank ℝ V)
     (S : Submodule ℝ V) (hdim : finrank ℝ V ≤ finrank ℝ S + j)
@@ -94,7 +96,9 @@ theorem singularValues_le_of_large_subspace
 subspace whose codimension is at most that index and on which the map is bounded by the indexed
 singular value](goal).
 
-This is the constructive half of the singular-value min--max principle for rectangular maps. -/
+This is the constructive half of the singular-value min--max principle for rectangular maps.
+@isnad1 id=ex.1h4v.s9.a11457a52af4 from=translated src=- shape=f8f1606d vocab=fbcfa078
+-/
 theorem exists_large_subspace_norm_le_singularValues
     (A : V →ₗ[ℝ] W) {j : ℕ} (hj : j < finrank ℝ V) :
     ∃ S : Submodule ℝ V,
@@ -188,7 +192,9 @@ theorem exists_large_subspace_norm_le_singularValues
 index](hyp:j), [the perturbation can increase that indexed singular value by no more than its
 operator norm](goal).
 
-The statement includes indices at which Mathlib extends the singular-value sequence by zero. -/
+The statement includes indices at which Mathlib extends the singular-value sequence by zero.
+@isnad1 id=le.0h5v.s11.6fbad93e133e from=translated src=- shape=18fd6bca vocab=d0985f1f
+-/
 theorem singularValues_add_le_add_opNorm
     (A D : V →ₗ[ℝ] W) (j : ℕ) :
     (A + D).singularValues j ≤ A.singularValues j + ‖D.toContinuousLinearMap‖ := by
@@ -211,7 +217,9 @@ index](hyp:j), [the absolute change in the indexed singular value is at most the
 operator norm](goal).
 
 The norm is written on the associated continuous linear map because plain linear maps do not carry
-a norm instance. -/
+a norm instance.
+@isnad1 id=le.0h5v.s11.94fa258eb34e from=translated src=- shape=cc2f5124 vocab=05317dc8
+-/
 theorem abs_singularValues_add_sub_singularValues_le_opNorm
     (A D : V →ₗ[ℝ] W) (j : ℕ) :
     |(A + D).singularValues j - A.singularValues j| ≤ ‖D.toContinuousLinearMap‖ := by
@@ -227,7 +235,9 @@ theorem abs_singularValues_add_sub_singularValues_le_opNorm
 
 /-- Given [a baseline continuous linear map](hyp:A), [an additive continuous perturbation](hyp:D),
 and [a singular-value index](hyp:j), [the absolute change in the indexed singular value is at most
-the perturbation's operator norm](goal). -/
+the perturbation's operator norm](goal).
+@isnad1 id=le.0h5v.s9.db96c731f6e2 from=translated src=- shape=1cbf2fd6 vocab=40185b7a
+-/
 theorem ContinuousLinearMap.abs_singularValues_add_sub_singularValues_le
     (A D : V →L[ℝ] W) (j : ℕ) :
     |(A + D).toLinearMap.singularValues j - A.toLinearMap.singularValues j| ≤ ‖D‖ := by

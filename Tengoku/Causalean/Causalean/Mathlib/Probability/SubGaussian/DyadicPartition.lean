@@ -22,7 +22,9 @@ Proof strategy: for an included index `n = k+1`, take
 `j = Nat.log 2 (n / m)`.  Since `m ≥ 1`, the quotient is positive and
 `2^j m ≤ n < 2^(j+1) m`.  The block number is below `N+1` because
 `j ≤ n ≤ N`.  The dyadic intervals are disjoint, so swapping the two
-finite sums counts each included index exactly once. -/
+finite sums counts each included index exactly once.
+@isnad1 id=eq.1h3v.s8.9eeeb8561c6f from=translated src=- shape=52f6e0de vocab=b3c58936
+-/
 theorem dyadic_suffix_partition (N m : ℕ) (hm : 1 ≤ m)
     (f : Fin N → ℝ) :
     (∑ k : Fin N, if m ≤ k.val + 1 then f k else 0) =

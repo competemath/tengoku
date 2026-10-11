@@ -26,7 +26,9 @@ blocks](hyp:B0,B1,hdisj), [two held-out scores](hyp:f,g), [two training shifts](
 [measurability](hyp:hfmeas,hgmeas,hameas,hbmeas), [integrability of the scores and
 shifts](hyp:hf,hg,ha,hb), [an integrable held-out cross product](hyp:hfg), and
 [square-integrable shifted scores](hyp:hflp,hglp) imply that [their conditional cross
-moment equals unconditional covariance plus the product of shifted means](goal). -/
+moment equals unconditional covariance plus the product of shifted means](goal).
+@isnad1 id=eventual.12h9v.s10.a1fa32970604 from=translated src=- shape=c2131535 vocab=6ca0f485
+-/
 theorem condExp_shiftedBlockCross_eq_covariance_add
     (μ : (i : ι) → Measure (Ω i)) [∀ i, IsProbabilityMeasure (μ i)]
     (B0 B1 : Finset ι) (hdisj : Disjoint B0 B1)

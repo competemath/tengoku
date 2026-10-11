@@ -26,7 +26,9 @@ def expIntervalHi (I : RatInterval) (n : ℕ) : ℚ :=
   (expScalar I.hi n).hi
 
 /-- For [a rational interval](hyp:I) and [a precision index](hyp:n), [the lower endpoint of the
-certified exponential enclosure does not exceed its upper endpoint](goal). -/
+certified exponential enclosure does not exceed its upper endpoint](goal).
+@isnad1 id=le.0h2v.s3.6bb8d057b564 from=translated src=- shape=fee7f684 vocab=0d52c648
+-/
 theorem expInterval_wellFormed (I : RatInterval) (n : ℕ) :
     expIntervalLo I n ≤ expIntervalHi I n := by
   unfold expIntervalLo expIntervalHi
@@ -40,7 +42,9 @@ theorem expInterval_wellFormed (I : RatInterval) (n : ℕ) :
 def expInterval (I : RatInterval) (n : ℕ) : RatInterval :=
   ⟨expIntervalLo I n, expIntervalHi I n, expInterval_wellFormed I n⟩
 
-/-- Positive logarithm interval evaluation uses monotonicity and scalar endpoint enclosures. -/
+/-- Positive logarithm interval evaluation uses monotonicity and scalar endpoint enclosures.
+@isnad1 id=le.1h2v.s4.5b1310fcebc6 from=translated src=- shape=fa10bc48 vocab=538aa8db
+-/
 theorem logInterval_wellFormed (I : RatInterval) (hI : 0 < I.lo) (n : ℕ) :
     (logScalar I.lo hI n).lo ≤
       (logScalar I.hi (hI.trans_le I.lo_le_hi) n).hi := by
@@ -76,14 +80,18 @@ private theorem rpowInterval_succ (base exponent : RatInterval) (hbase : 0 < bas
       RatInterval.tighten (rpowInterval base exponent hbase n)
         (rpowRaw base exponent hbase (n + 1)) := rfl
 
-/-- Exponential interval evaluation encloses the exponential of every enclosed real input. -/
+/-- Exponential interval evaluation encloses the exponential of every enclosed real input.
+@isnad1 id=contains.1h3v.s4.a4948085d14c from=translated src=- shape=3a72387f vocab=a5395189
+-/
 theorem expInterval_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) (n : ℕ) :
     (expInterval I n).Contains (Real.exp x) := by
   constructor
   · exact (expScalar_sound I.lo n).1.trans (Real.exp_monotone hx.1)
   · exact (Real.exp_monotone hx.2).trans (expScalar_sound I.hi n).2
 
-/-- Positive logarithm interval evaluation encloses the logarithm of every enclosed real input. -/
+/-- Positive logarithm interval evaluation encloses the logarithm of every enclosed real input.
+@isnad1 id=contains.2h3v.s4.f2ad94dcc8a7 from=translated src=- shape=a0b3d828 vocab=026768ba
+-/
 theorem logInterval_sound {I : RatInterval} {x : ℝ} (hI : 0 < I.lo)
     (hx : I.Contains x) (n : ℕ) :
     (logInterval I hI n).Contains (Real.log x) := by
@@ -109,7 +117,9 @@ private theorem rpowRaw_sound {base exponent : RatInterval} {x y : ℝ}
 endpoint is strictly positive](hyp:hbase) that encloses [a real base value](hyp:hx), and [an
 exponent rational interval enclosing a real exponent value](hyp:hy), [the real-power interval
 evaluation of the base and exponent, at any precision level, contains the true value of the base
-raised to that exponent](goal). -/
+raised to that exponent](goal).
+@isnad1 id=contains.3h5v.s5.93311867bded from=translated src=- shape=287d1f25 vocab=dc06b931
+-/
 theorem rpowInterval_sound {base exponent : RatInterval} {x y : ℝ}
     (hbase : 0 < base.lo) (hx : base.Contains x) (hy : exponent.Contains y) (n : ℕ) :
     (rpowInterval base exponent hbase n).Contains (x ^ y) := by
@@ -117,7 +127,9 @@ theorem rpowInterval_sound {base exponent : RatInterval} {x y : ℝ}
   | zero => exact rpowRaw_sound hbase hx hy 0
   | succ n ih => exact RatInterval.tighten_sound ih (rpowRaw_sound hbase hx hy (n + 1))
 
-/-- Exponential interval evaluation is nested in its precision argument. -/
+/-- Exponential interval evaluation is nested in its precision argument.
+@isnad1 id=subinter.0h2v.s4.8e19219e167e from=translated src=- shape=67f6e8d6 vocab=3ba7fa7f
+-/
 theorem expInterval_nested (I : RatInterval) (n : ℕ) :
     (expInterval I (n + 1)).Subinterval (expInterval I n) := by
   change expIntervalLo I n ≤ expIntervalLo I (n + 1) ∧
@@ -125,7 +137,9 @@ theorem expInterval_nested (I : RatInterval) (n : ℕ) :
   unfold expIntervalLo expIntervalHi
   exact ⟨(expScalar_nested I.lo n).1, (expScalar_nested I.hi n).2⟩
 
-/-- Positive logarithm interval evaluation is nested in its precision argument. -/
+/-- Positive logarithm interval evaluation is nested in its precision argument.
+@isnad1 id=subinter.1h2v.s5.b54dfeb58c62 from=translated src=- shape=c428170f vocab=4bdf183a
+-/
 theorem logInterval_nested (I : RatInterval) (hI : 0 < I.lo) (n : ℕ) :
     (logInterval I hI (n + 1)).Subinterval (logInterval I hI n) := by
   change (logScalar I.lo hI n).lo ≤ (logScalar I.lo hI (n + 1)).lo ∧
@@ -134,7 +148,9 @@ theorem logInterval_nested (I : RatInterval) (hI : 0 < I.lo) (n : ℕ) :
   exact ⟨(logScalar_nested I.lo hI n).1,
     (logScalar_nested I.hi (hI.trans_le I.lo_le_hi) n).2⟩
 
-/-- Real-power interval evaluation is nested in its precision argument. -/
+/-- Real-power interval evaluation is nested in its precision argument.
+@isnad1 id=subinter.1h3v.s5.8ea5bf135b4b from=translated src=- shape=6e3f085f vocab=49970c71
+-/
 theorem rpowInterval_nested (base exponent : RatInterval) (hbase : 0 < base.lo) (n : ℕ) :
     (rpowInterval base exponent hbase (n + 1)).Subinterval
       (rpowInterval base exponent hbase n) := by

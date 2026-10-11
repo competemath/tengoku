@@ -28,7 +28,9 @@ namespace MartingaleDifferenceArray
 
 /-- For [an active increment](hyp:hk) and [a positive threshold](hyp:hη), [its
 conditional second moment is at most the squared threshold plus its conditional
-Lindeberg term](goal). -/
+Lindeberg term](goal).
+@isnad1 id=eventual.2h7v.s7.45edb7c30d61 from=translated src=- shape=0c315154 vocab=fa7bc435
+-/
 theorem conditionalSecondMoment_le_sq_add_lindebergTerm
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n k : ℕ)
@@ -90,7 +92,9 @@ theorem conditionalSecondMoment_le_sq_add_lindebergTerm
 /-- If [the truncation threshold is positive](hyp:hη), [the row predictable quadratic variation is bounded](hyp:hVariance) and
 [its conditional Lindeberg sum is bounded](hyp:hLindeberg), with [nonnegative
 budgets](hyp:hK,hδ), then [the sum of squared conditional variance increments is
-at most `(η² + δ)K`](goal). -/
+at most `(η² + δ)K`](goal).
+@isnad1 id=eventual.5h8v.s8.8e1bb52e5102 from=translated src=- shape=14deda3e vocab=850fae40
+-/
 theorem sum_sq_conditionalSecondMoment_le_of_budgets
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (n : ℕ) (η K δ : ℝ)

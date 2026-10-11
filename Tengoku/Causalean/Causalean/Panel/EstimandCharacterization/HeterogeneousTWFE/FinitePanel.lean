@@ -161,7 +161,9 @@ def zeroUntreatedResidualContrast (P : DCDHPanel G T) : Prop :=
   ∑ g, ∑ t, P.pi g t * P.Dtilde g t * P.Y0 g t = 0
 
 /-- Orthogonality of the residualized treatment against `D - Dtilde` gives
-the DCDH denominator identity. -/
+the DCDH denominator identity.
+@isnad1 id=eq.2h5v.s7.72ca435a7332 from=translated src=- shape=76abf5b0 vocab=0d61d03e
+-/
 theorem inner_Dtilde_D_eq_SD_core
     (pi D Dtilde : G → T → ℝ)
     (hmem : IsGTFE (fun g t => D g t - Dtilde g t))
@@ -181,14 +183,18 @@ theorem inner_Dtilde_D_eq_SD_core
   exact sub_eq_zero.mp hdiff
 
 /-- Orthogonality of the residualized treatment against `D - Dtilde` gives
-the DCDH denominator identity. -/
+the DCDH denominator identity.
+@isnad1 id=eq.0h3v.s6.2f9ca7b682f7 from=translated src=- shape=32ade622 vocab=b84dd495
+-/
 theorem inner_Dtilde_D_eq_SD (P : DCDHPanel G T) :
   ∑ g, ∑ t, P.pi g t * P.Dtilde g t * P.D g t = P.SD := by
   simpa [SD] using inner_Dtilde_D_eq_SD_core P.pi P.D P.Dtilde
     P.D_minus_resid_mem P.Dtilde_orthogonal
 
 /-- A weighted residual is orthogonal to every additive array, so its contrast
-with an additive untreated-outcome array vanishes. -/
+with an additive untreated-outcome array vanishes.
+@isnad1 id=eq.2h5v.s7.c4b54db19180 from=translated src=- shape=7e980248 vocab=e36dce5c
+-/
 theorem weighted_residual_contrast_eq_zero_of_isGTFE
     (pi Dtilde Y0 : G → T → ℝ)
     (horth : ∀ h : G → T → ℝ, IsGTFE h →
@@ -198,7 +204,9 @@ theorem weighted_residual_contrast_eq_zero_of_isGTFE
   horth Y0 hY0
 
 /-- Group-plus-period untreated means imply the zero untreated residual
-contrast. -/
+contrast.
+@isnad1 id=zerountr.1h3v.s5.18716f3fd36f from=translated src=- shape=4e59ec07 vocab=dbdd4bf1
+-/
 theorem zeroUntreatedResidualContrast_of_Y0_mem_gtfe
   (P : DCDHPanel G T) (hY0 : IsGTFE P.Y0) :
   P.zeroUntreatedResidualContrast := by
@@ -208,7 +216,9 @@ theorem zeroUntreatedResidualContrast_of_Y0_mem_gtfe
 
 /-- **DCDH finite TWFE decomposition (all-cell weighting).** For [a DCDH panel](hyp:P), [the
 finite two-way fixed-effects (TWFE) coefficient decomposes as the sum of the untreated bias and
-the all-cell `D`-weighted treatment-effect component](goal). -/
+the all-cell `D`-weighted treatment-effect component](goal).
+@isnad1 id=eq.0h3v.s5.aa2d4557ee9c from=translated src=- shape=81fe3e4a vocab=0d739833
+-/
 theorem twfe_eq_untreatedBias_add_DWeightedTau (P : DCDHPanel G T) :
   P.betaTWFE = P.untreatedBias + P.DWeightedTau := by
   rw [betaTWFE, untreatedBias, DWeightedTau]
@@ -225,7 +235,9 @@ theorem twfe_eq_untreatedBias_add_DWeightedTau (P : DCDHPanel G T) :
   intro t _ht
   ring
 
-/-- The all-cell `D`-weighted component is the same as the treated-cell sum. -/
+/-- The all-cell `D`-weighted component is the same as the treated-cell sum.
+@isnad1 id=eq.0h3v.s4.e0456860d51d from=translated src=- shape=e65acbe9 vocab=30ff0d4f
+-/
 theorem DWeightedTau_eq_treatedWeightedTau (P : DCDHPanel G T) :
   P.DWeightedTau = P.treatedWeightedTau := by
   unfold DWeightedTau treatedWeightedTau treatedCells omega
@@ -240,7 +252,9 @@ theorem DWeightedTau_eq_treatedWeightedTau (P : DCDHPanel G T) :
 
 /-- **DCDH finite TWFE decomposition (treated-cell weighting).** For [a DCDH panel](hyp:P), [the
 finite TWFE coefficient decomposes as the sum of the untreated bias and the normalized
-treated-cell weighted sum of treatment effects](goal). -/
+treated-cell weighted sum of treatment effects](goal).
+@isnad1 id=eq.0h3v.s5.b97739e12ec1 from=translated src=- shape=81fe3e4a vocab=318f8411
+-/
 theorem twfe_eq_untreatedBias_add_treated_weighted_tau (P : DCDHPanel G T) :
   P.betaTWFE = P.untreatedBias + P.treatedWeightedTau := by
   rw [twfe_eq_untreatedBias_add_DWeightedTau, DWeightedTau_eq_treatedWeightedTau]
@@ -250,7 +264,9 @@ effect.** If [the untreated-outcome residual contrast vanishes — the
 residualized-treatment-weighted average of the untreated potential outcome
 `Y0` over the whole panel is zero](hyp:h0), then [the finite two-way
 fixed-effects (TWFE) coefficient equals the treated-cell weighted sum of
-treatment effects](goal). -/
+treatment effects](goal).
+@isnad1 id=eq.1h3v.s5.68005f597b79 from=translated src=- shape=858874c1 vocab=d163ea32
+-/
 theorem twfe_eq_treated_weighted_tau_of_zeroUntreatedContrast
   (P : DCDHPanel G T) (h0 : P.zeroUntreatedResidualContrast) :
   P.betaTWFE = P.treatedWeightedTau := by
@@ -259,7 +275,9 @@ theorem twfe_eq_treated_weighted_tau_of_zeroUntreatedContrast
   simp
 
 /-- **DCDH weights sum to one.** For [a DCDH panel](hyp:P), [the normalized DCDH weights sum to
-one over all treated cells](goal). -/
+one over all treated cells](goal).
+@isnad1 id=eq.0h3v.s5.719ecd502d8b from=translated src=- shape=2a6bfc10 vocab=b3795ed9
+-/
 theorem treated_omega_sum_eq_one (P : DCDHPanel G T) :
   ∑ gt ∈ P.treatedCells, P.omega gt.1 gt.2 = 1 := by
   have hnum :
@@ -286,7 +304,9 @@ theorem treated_omega_sum_eq_one (P : DCDHPanel G T) :
       exact div_self (ne_of_gt P.SD_pos)
 
 /-- Dividing a positive cell mass times a residual by a positive normalizer
-preserves whether the residual is negative. -/
+preserves whether the residual is negative.
+@isnad1 id=iff.2h3v.s6.a7d6b57a8efa from=translated src=- shape=c15d10d3 vocab=82ac7a76
+-/
 theorem normalized_weight_neg_iff_residual_neg
     {pi Dtilde SD : ℝ} (hpi : 0 < pi) (hSD : 0 < SD) :
     pi * Dtilde / SD < 0 ↔ Dtilde < 0 := by
@@ -304,7 +324,9 @@ theorem normalized_weight_neg_iff_residual_neg
 residualized treatment `D̃_gt` is negative](goal).
 
 The lemma is named for its treated-cell role in the DCDH weight interpretation, but the
-equivalence holds for any cell with positive cell mass and positive `S_D`. -/
+equivalence holds for any cell with positive cell mass and positive `S_D`.
+@isnad1 id=iff.0h5v.s5.eea163d402bb from=translated src=- shape=f2b99a85 vocab=607cd4ee
+-/
 theorem treated_omega_neg_iff_Dtilde_neg
   (P : DCDHPanel G T) {g : G} {t : T} :
   P.omega g t < 0 ↔ P.Dtilde g t < 0 := by
@@ -312,7 +334,9 @@ theorem treated_omega_neg_iff_Dtilde_neg
     (P.pi_pos g t) P.SD_pos
 
 /-- Dividing a positive cell mass times a residual by a positive normalizer
-preserves whether the residual is positive. -/
+preserves whether the residual is positive.
+@isnad1 id=iff.2h3v.s6.57cfb38cc6af from=translated src=- shape=48500f67 vocab=82ac7a76
+-/
 theorem normalized_weight_pos_iff_residual_pos
     {pi Dtilde SD : ℝ} (hpi : 0 < pi) (hSD : 0 < SD) :
     0 < pi * Dtilde / SD ↔ 0 < Dtilde := by
@@ -332,7 +356,9 @@ the residualized treatment `D̃_gt` is positive](goal).
 
 Together with `treated_omega_neg_iff_Dtilde_neg` and `treated_omega_zero_iff_Dtilde_zero` this
 completes the paper's claim `sign(ω_gt) = sign(D̃_gt)` (.tex Theorem 2 / .md
-prop:po-estimand-dcdh-weights-sum-one). -/
+prop:po-estimand-dcdh-weights-sum-one).
+@isnad1 id=iff.0h5v.s5.5f7e639b67de from=translated src=- shape=7886c8a5 vocab=607cd4ee
+-/
 theorem treated_omega_pos_iff_Dtilde_pos
   (P : DCDHPanel G T) {g : G} {t : T} :
   0 < P.omega g t ↔ 0 < P.Dtilde g t := by
@@ -340,7 +366,9 @@ theorem treated_omega_pos_iff_Dtilde_pos
     (P.pi_pos g t) P.SD_pos
 
 /-- A positive cell mass and positive normalizer make the normalized weight
-zero exactly when its residual is zero. -/
+zero exactly when its residual is zero.
+@isnad1 id=iff.2h3v.s6.4a226188f117 from=translated src=- shape=bd298acd vocab=82ac7a76
+-/
 theorem normalized_weight_zero_iff_residual_zero
     {pi Dtilde SD : ℝ} (hpi : 0 < pi) (hSD : 0 < SD) :
     pi * Dtilde / SD = 0 ↔ Dtilde = 0 := by
@@ -361,7 +389,9 @@ theorem normalized_weight_zero_iff_residual_zero
 residualized treatment `D̃_gt` is zero](goal).
 
 Together with the pos/neg sibling lemmas, this completes `sign(ω_gt) = sign(D̃_gt)` for all
-three cases. -/
+three cases.
+@isnad1 id=iff.0h5v.s5.94e28df0eb22 from=translated src=- shape=f2b99a85 vocab=728e23a4
+-/
 theorem treated_omega_zero_iff_Dtilde_zero
   (P : DCDHPanel G T) {g : G} {t : T} :
   P.omega g t = 0 ↔ P.Dtilde g t = 0 := by
@@ -370,7 +400,9 @@ theorem treated_omega_zero_iff_Dtilde_zero
 
 end DCDHPanel
 
-/-- Two-cell signed-weight calculation from the DCDH sign-reversal example. -/
+/-- Two-cell signed-weight calculation from the DCDH sign-reversal example.
+@isnad1 id=and.3h3v.s7.15da901e9d98 from=translated src=- shape=d96bedd4 vocab=fd92e839
+-/
 theorem two_cell_signed_weights_positive_effects_negative_sum
   {c ε M : ℝ} (hc : 0 < c) (hε : 0 < ε)
   (hM : ((1 + c) * ε) / c < M) :
@@ -391,7 +423,9 @@ theorem two_cell_signed_weights_positive_effects_negative_sum
 
 /-- Finite signed-average construction: if normalized weights have a strictly
 negative component, some strictly positive effects have a negative weighted
-sum. -/
+sum.
+@isnad1 id=ex.1h2v.s6.b591dee545c4 from=translated src=- shape=2267037c vocab=f0257491
+-/
 theorem exists_positive_effects_negative_weighted_sum_of_negative_component
   {ι : Type*} [Fintype ι] (w : ι → ℝ)
   (h_neg_component : ∑ i ∈ (Finset.univ.filter fun i => w i < 0), w i < 0) :
@@ -440,7 +474,9 @@ negative-weight-sum precondition used by the sign-reversal theorem.
 Proof: `treated_omega_neg_iff_Dtilde_neg` identifies the filter
 `{gt ∈ treatedCells | omega < 0}` with `{gt ∈ treatedCells | Dtilde < 0}`;
 the hypothesis provides at least one such cell, so the sum is a nonempty
-sum of negative reals, hence strictly negative. -/
+sum of negative reals, hence strictly negative.
+@isnad1 id=lt.1h3v.s7.bd92740bb1fb from=translated src=- shape=e80be53d vocab=bc1666c3
+-/
 theorem neg_component_of_exists_Dtilde_neg
   {G T : Type*} [Fintype G] [Fintype T]
   (P : DCDHPanel G T)
@@ -467,7 +503,9 @@ DCDH weight carry a strictly negative total weight](hyp:h_neg_component), then
 treatment indicator, untreated potential outcomes, and residualized
 treatment, but with strictly positive treatment effects on every cell and zero
 untreated residual contrast — whose two-way fixed-effects (TWFE) coefficient
-is strictly negative](goal). -/
+is strictly negative](goal).
+@isnad1 id=ex.2h3v.s8.9595d502ec62 from=translated src=- shape=2ac5b125 vocab=a693ded7
+-/
 theorem exists_panel_with_positive_treated_effects_twfe_negative_of_negative_component
   {G T : Type*} [Fintype G] [Fintype T]
   (P : DCDHPanel G T)

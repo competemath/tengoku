@@ -14,7 +14,9 @@ public section
 namespace Causalean.Mathlib.Topology.SpaceFillingCurve
 
 /-- Given [a dimension and level](hyp:d,n), [a dimension of at least two](hyp:hd), [a parent-grid order](hyp:parent),
-[its bijectivity](hyp:hbij), and [its consecutive-face adjacency](hyp:hadj), [a bijective face-adjacent child-grid order exists](goal). -/
+[its bijectivity](hyp:hbij), and [its consecutive-face adjacency](hyp:hadj), [a bijective face-adjacent child-grid order exists](goal).
+@isnad1 id=ex.3h3v.s9.c5038ac684cd from=translated src=- shape=f57b1264 vocab=0bf13f4f
+-/
 theorem exists_child_grid_order (d n : ℕ) (hd : 2 ≤ d)
     (parent : Fin (2 ^ (d * n)) → Fin d → Fin (2 ^ n))
     (hbij : Function.Bijective parent)

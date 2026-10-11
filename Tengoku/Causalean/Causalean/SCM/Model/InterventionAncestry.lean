@@ -33,7 +33,9 @@ variable {Ω : N → Type*} [∀ n, MeasurableSpace (Ω n)]
 namespace SCM
 
 /-- An edge in a causal model after intervention is exactly the corresponding
-    edge produced by splitting the intervened variables in the original graph. -/
+    edge produced by splitting the intervened variables in the original graph.
+@isnad1 id=iff.2h6v.s7.d49468d2bdb7 from=translated src=- shape=61faf157 vocab=d4f3258b
+-/
 lemma fixSet_edge_iff
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hX_obs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -58,7 +60,9 @@ lemma fixSet_edge_iff
     `.fixed D → v` path cannot be `.random d` with `d ∈ X` (which has no
     outgoing edges in `fixSet X`), nor `.fixed d` with `d ∈ X` (which is
     isolated in `M.dag`, making the IH vacuous). Consequently each step
-    lifts to a corresponding base edge. -/
+    lifts to a corresponding base edge.
+@isnad1 id=isancest.4h6v.s7.bfb748d21e7d from=translated src=- shape=0ba90326 vocab=5bad4259
+-/
 theorem fixSet_isAncestor_fixed_forward
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hX_obs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)

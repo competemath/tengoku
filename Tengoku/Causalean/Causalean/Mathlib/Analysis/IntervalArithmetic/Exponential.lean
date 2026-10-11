@@ -55,7 +55,9 @@ def expScalar (q : ℚ) : ℕ → RatInterval
 def expPrecision (q : ℚ) (ε : PosRat) : ℕ :=
   (ε.1.den + 1) * (expScale q + 1) * (expScale q + 1)
 
-/-- Range reduction puts the exponential Taylor argument in the closed unit interval. -/
+/-- Range reduction puts the exponential Taylor argument in the closed unit interval.
+@isnad1 id=le.0h1v.s4.f5efbf9eec9a from=translated src=- shape=38becc55 vocab=92e51753
+-/
 theorem abs_expReduced_le_one (q : ℚ) : |expReduced q| ≤ 1 := by
   have hsN : 0 < expScale q :=
     lt_of_lt_of_le Nat.zero_lt_one (le_max_left _ _)
@@ -77,7 +79,9 @@ theorem abs_expReduced_le_one (q : ℚ) : |expReduced q| ≤ 1 := by
     exact_mod_cast (le_max_right 1 q.num.natAbs)
   simpa only [one_mul] using hnum.trans hscale
 
-/-- The raw rational exponential interval encloses the real exponential of the rational input. -/
+/-- The raw rational exponential interval encloses the real exponential of the rational input.
+@isnad1 id=contains.0h2v.s3.2e91e50cd268 from=translated src=- shape=bf61600e vocab=de07c73a
+-/
 theorem expRaw_sound (q : ℚ) (n : ℕ) :
     (expRaw q n).Contains (Real.exp (q : ℝ)) := by
   let z := expReduced q
@@ -110,7 +114,9 @@ theorem expRaw_sound (q : ℚ) (n : ℕ) :
     field_simp [hs]
   simpa [expRaw, ← Real.exp_nat_mul, hq] using hpow
 
-/-- Every tightened scalar exponential interval encloses the real exponential. -/
+/-- Every tightened scalar exponential interval encloses the real exponential.
+@isnad1 id=contains.0h2v.s3.557f379c692c from=translated src=- shape=bf61600e vocab=ddd6d617
+-/
 theorem expScalar_sound (q : ℚ) (n : ℕ) :
     (expScalar q n).Contains (Real.exp (q : ℝ)) := by
   induction n with
@@ -118,13 +124,17 @@ theorem expScalar_sound (q : ℚ) (n : ℕ) :
   | succ n ih =>
       exact RatInterval.tighten_sound ih (expRaw_sound q (n + 1))
 
-/-- Scalar exponential enclosures are nested as precision increases. -/
+/-- Scalar exponential enclosures are nested as precision increases.
+@isnad1 id=subinter.0h2v.s4.bb572bee5d7a from=translated src=- shape=67f6e8d6 vocab=75b76aa6
+-/
 theorem expScalar_nested (q : ℚ) (n : ℕ) :
     (expScalar q (n + 1)).Subinterval (expScalar q n) := by
   exact RatInterval.tighten_subinterval_left
     (expScalar_sound q n) (expRaw_sound q (n + 1))
 
-/-- Tightening two enclosures of the same real value is contained in either input enclosure. -/
+/-- Tightening two enclosures of the same real value is contained in either input enclosure.
+@isnad1 id=subinter.2h3v.s4.e587843c2ed6 from=translated src=- shape=8cee235a vocab=3962f2a0
+-/
 theorem tighten_subinterval_right {I J : RatInterval} {x : ℝ}
     (hI : I.Contains x) (hJ : J.Contains x) :
     (RatInterval.tighten I J).Subinterval J := by
@@ -312,7 +322,9 @@ private theorem nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
       have hpow : 1 ≤ 2 ^ n := one_le_pow₀ (by omega)
       omega
 
-/-- The reciprocal of a positive rational's denominator is no larger than the rational itself. -/
+/-- The reciprocal of a positive rational's denominator is no larger than the rational itself.
+@isnad1 id=le.1h1v.s5.f1d77a5dea7a from=translated src=- shape=c4a0b37e vocab=e9343929
+-/
 theorem inv_den_le_of_pos (u : ℚ) (hu : 0 < u) :
     1 / (u.den : ℚ) ≤ u := by
   have hnum0 : 0 ≤ u.num := Rat.num_nonneg.mpr hu.le
@@ -331,7 +343,9 @@ theorem inv_den_le_of_pos (u : ℚ) (hu : 0 < u) :
 
 /-- For [a rational input `q`](hyp:q) and [a requested positive rational tolerance
 `ε`](hyp:ε), [evaluating the certified scalar exponential at the precision level selected for
-that tolerance yields an enclosure whose width is no larger than `ε`](goal). -/
+that tolerance yields an enclosure whose width is no larger than `ε`](goal).
+@isnad1 id=le.0h2v.s4.387af2d62f97 from=translated src=- shape=d2759405 vocab=be581a95
+-/
 theorem expScalar_width (q : ℚ) (ε : PosRat) :
     (expScalar q (expPrecision q ε)).width ≤ ε.1 := by
   let D : ℕ := ε.1.den

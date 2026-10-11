@@ -58,7 +58,9 @@ statistics](hyp:R), provided [that denominator is nonzero](hyp:_hden).
 
 The `PopulationBridge` facade below upgrades this finite ratio to the
 corresponding finite-support centered-score IV ratio. A population-2SLS interpretation requires
-separate hypotheses tying the score to an observed first-stage projection. -/
+separate hypotheses tying the score to an observed first-stage projection.
+@isnad1 id=eq.1h3v.s5.ad5b816dd73a from=translated src=- shape=81e70c99 vocab=027a9340
+-/
 theorem centeredScoreIVFiniteAlgebra_eq_signedAdjacentRatio
     (_hden : R.signedAdjacentDenominator I ≠ 0) :
     R.centeredScoreIVFiniteAlgebra I =
@@ -67,7 +69,9 @@ theorem centeredScoreIVFiniteAlgebra_eq_signedAdjacentRatio
 
 /-- [The centered-score IV ratio equals the response-type-weighted causal-effect sum](goal) for
 [an ordered score](hyp:I) and [finite response-type statistics](hyp:R) when [the score-weight
-denominator is nonzero](hyp:hden). -/
+denominator is nonzero](hyp:hden).
+@isnad1 id=eq.1h3v.s4.6dd194f811be from=translated src=- shape=9cab2c05 vocab=d7278592
+-/
 theorem centeredScoreIVFiniteAlgebra_eq_responseTypeWeightedSum'
     (hden : R.typeWeightDenom I ≠ 0) :
     R.centeredScoreIVFiniteAlgebra I = R.responseTypeEstimand I := by
@@ -77,7 +81,9 @@ theorem centeredScoreIVFiniteAlgebra_eq_responseTypeWeightedSum'
 score](hyp:I) and [finite response-type statistics](hyp:R) when [response types are
 sign-aligned](hyp:hAlign) and [the score-weight denominator is positive](hyp:hden).
 
-This does not derive sign alignment from a behavioral monotonicity restriction. -/
+This does not derive sign alignment from a behavioral monotonicity restriction.
+@isnad1 id=and.2h3v.s6.74fcf4d1f021 from=translated src=- shape=89c38b16 vocab=a7bf1189
+-/
 theorem centeredScoreIVFiniteAlgebra_eq_positiveResponseTypeAverage_of_signAligned'
     (hAlign : R.SignAligned I)
     (hden : 0 < R.typeWeightDenom I) :
@@ -94,7 +100,9 @@ variable {K : ℕ} (I : FiniteIndex K) (P : ResponseTypeStats.PopulationBridge K
 
 /-- [The population-bridge centered-score IV ratio equals the signed adjacent outcome numerator
 divided by its treatment denominator](goal) for [an ordered score](hyp:I) and [finite-support
-population bridge](hyp:P), provided [the denominator is nonzero](hyp:hden). -/
+population bridge](hyp:P), provided [the denominator is nonzero](hyp:hden).
+@isnad1 id=eq.1h3v.s5.61341d9d8cf8 from=translated src=- shape=a20205cf vocab=d2213b64
+-/
 theorem centeredScoreIVPopulationBridge_eq_signedAdjacentRatio
     (hden : P.stats.signedAdjacentDenominator I ≠ 0) :
     P.centeredScoreIVPopulationBridge I =
@@ -104,7 +112,9 @@ theorem centeredScoreIVPopulationBridge_eq_signedAdjacentRatio
 
 /-- [The population-bridge centered-score IV ratio equals the response-type-weighted sum of
 within-type causal effects](goal) for [an ordered score](hyp:I) and [finite-support population
-bridge](hyp:P), provided [the score-weight denominator is nonzero](hyp:hden). -/
+bridge](hyp:P), provided [the score-weight denominator is nonzero](hyp:hden).
+@isnad1 id=eq.1h3v.s5.91a9bedc699f from=translated src=- shape=4b73dfd7 vocab=d039104c
+-/
 theorem centeredScoreIVPopulationBridge_eq_responseTypeWeightedSum
     (hden : P.stats.typeWeightDenom I ≠ 0) :
     P.centeredScoreIVPopulationBridge I = P.stats.responseTypeEstimand I := by
@@ -113,7 +123,9 @@ theorem centeredScoreIVPopulationBridge_eq_responseTypeWeightedSum
 
 /-- [The population-bridge centered-score IV ratio is a convex response-type average](goal) for
 [an ordered score](hyp:I) and [finite-support population bridge](hyp:P) when [response types are
-sign-aligned](hyp:hAlign) and [the score-weight denominator is positive](hyp:hden). -/
+sign-aligned](hyp:hAlign) and [the score-weight denominator is positive](hyp:hden).
+@isnad1 id=and.2h3v.s6.acbd38ab1442 from=translated src=- shape=539ece83 vocab=9c6a8331
+-/
 theorem centeredScoreIVPopulationBridge_eq_positiveResponseTypeAverage_of_signAligned
     (hAlign : P.stats.SignAligned I)
     (hden : 0 < P.stats.typeWeightDenom I) :
@@ -150,7 +162,9 @@ This has the algebraic form used by `prop:po-estimand-mtw-response-type-form`,
 but the cited 2SLS result additionally requires `h` to be the fitted first-stage
 score. Under `ObservedBridge`, `hden` equals `typeWeightDenom I` by
 `observedFirstStageMoment_eq_firstStageMoment` and
-`firstStageMoment_eq_typeWeightDenom`. -/
+`firstStageMoment_eq_typeWeightDenom`.
+@isnad1 id=eq.4h9v.s7.869cbb7d8c0e from=translated src=- shape=77a1ea5b vocab=21382959
+-/
 theorem observedCenteredScoreIV_eq_responseTypeWeightedSum
     (B : ObservedBridge μ Z D Y I P) [MeasureTheory.IsFiniteMeasure μ]
     (hZ : Measurable Z)

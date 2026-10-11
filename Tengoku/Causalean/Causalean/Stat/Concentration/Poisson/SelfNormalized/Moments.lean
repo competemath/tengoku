@@ -25,12 +25,16 @@ def scalarBadMomentConstant (t : ℕ) : ℝ := 10 ^ (8 * t + 8)
 fixed power of ten large enough for all orders through four. -/
 def scalarMomentConstant (t : ℕ) : ℝ := 10 ^ (4 * t + 4)
 
-/-- For [a moment order](hyp:t), the [scalar bad-event moment constant is strictly positive](goal). -/
+/-- For [a moment order](hyp:t), the [scalar bad-event moment constant is strictly positive](goal).
+@isnad1 id=lt.0h1v.s3.f6a21dbdd119 from=translated src=- shape=b9369acb vocab=aaf87b39
+-/
 theorem scalarBadMomentConstant_pos (t : ℕ) : 0 < scalarBadMomentConstant t := by
   exact pow_pos (by norm_num) _
 
 /-- For [a moment order](hyp:t), the [unconditioned scalar moment constant is strictly
-positive](goal). -/
+positive](goal).
+@isnad1 id=lt.0h1v.s3.9a9e85af6a3f from=translated src=- shape=b9369acb vocab=dbb0d135
+-/
 theorem scalarMomentConstant_pos (t : ℕ) : 0 < scalarMomentConstant t := by
   exact pow_pos (by norm_num) _
 
@@ -342,7 +346,9 @@ private theorem poisson_score_moment_aux (lambda : ℝ≥0) {L : ℝ} (hL : 1 �
 
 /-- Under [a Poisson law with a nonnegative mean](hyp:lambda), at [a logarithmic level of at least
 one](hyp:L,hL), every [moment order through four](hyp:t,ht) gives an [integrable power of the
-universal score](goal). -/
+universal score](goal).
+@isnad1 id=integrab.2h3v.s6.95db8d805dd0 from=translated src=- shape=f6098de4 vocab=4fd8e244
+-/
 -- Reduce `score` to a polynomial envelope in the count: for `L ≥ 1`,
 -- `sqrt (w*L) ≤ w*L + 1`, so every power through four is bounded by a
 -- constant multiple of `(w+1)^4`.  After `integrable_poissonMeasure_iff`,
@@ -443,7 +449,9 @@ private theorem poisson_badEvent_probability_eighty
 /-- Under [a Poisson law with a nonnegative mean](hyp:lambda), at [a logarithmic level of at least
 one](hyp:L,hL), each [moment order one, two, or four](hyp:t,ht) has [its universal score truncated
 to the bad event bounded by an exponentially decaying multiple of the matching local-scale
-power](goal). -/
+power](goal).
+@isnad1 id=le.2h3v.s7.92904f86c625 from=translated src=- shape=014db1ca vocab=eac1f731
+-/
 -- A convenient discrete-tail route is to partition by integer Bernstein
 -- levels `z = 40*L+n`.  On each shell, the deterministic inequalities used
 -- in `badEvent_subset_remote_bernstein` bound `score^t` by a fixed multiple
@@ -567,7 +575,9 @@ theorem poisson_weighted_bad_moment (lambda : ℝ≥0) {L : ℝ} (hL : 1 ≤ L)
 
 /-- Under [a Poisson law with a nonnegative mean](hyp:lambda), at [a logarithmic level of at least
 one](hyp:L,hL), every [moment order through four](hyp:t,ht) has [its universal score moment bounded
-by a constant times the matching local-scale power](goal). -/
+by a constant times the matching local-scale power](goal).
+@isnad1 id=le.2h3v.s6.e3172cd0dda1 from=translated src=- shape=9dbb1355 vocab=609b4841
+-/
 -- Split at a constant Bernstein level and use the same integer-shell sum as
 -- above without the initial `40*L` offset.  Equivalently use Mathlib's
 -- layer-cake formula after deriving a tail bound for `score/localScale`.

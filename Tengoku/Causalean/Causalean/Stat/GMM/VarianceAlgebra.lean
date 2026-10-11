@@ -88,7 +88,9 @@ noncomputable def gmmSandwich (G : E →L[ℝ] F) (W Cov : F →L[ℝ] F)
 /-- The adjoint (self-adjointness) of a right inverse of a self-adjoint
 operator: if `adjoint M = M` and `M ∘L N = id`, then `adjoint N = N`.
 (`adjoint N` is then a left inverse of `M`, and in finite dimension a one-sided
-inverse of an operator that already has a two-sided one is unique.) -/
+inverse of an operator that already has a two-sided one is unique.)
+@isnad1 id=eq.2h3v.s12.03034bc77b6f from=translated src=- shape=7fa9a1c8 vocab=9cfdea2a
+-/
 theorem adjoint_inv_self {M N : E →L[ℝ] E}
     (hM : adjoint M = M) (hMN : M ∘L N = ContinuousLinearMap.id ℝ E) :
     adjoint N = N := by
@@ -118,7 +120,9 @@ Theorem 3.2).** For a Jacobian `G`, a
 Then [the sandwich variance minus the efficient variance is positive semidefinite](goal).
 
 Concretely: `gmmSandwich G W Cov breadInv − effInv` is positive,
-i.e. `V(W) ⪰ V★ = (GᵀCovInvG)⁻¹`. -/
+i.e. `V(W) ⪰ V★ = (GᵀCovInvG)⁻¹`.
+@isnad1 id=ispositi.8h8v.s12.b90eddea85cd from=translated src=- shape=aec53567 vocab=b181a4ef
+-/
 theorem gmm_efficiency
     (G : E →L[ℝ] F) (W Cov CovInv : F →L[ℝ] F)
     (hWsa : adjoint W = W) (hCovpos : Cov.IsPositive)

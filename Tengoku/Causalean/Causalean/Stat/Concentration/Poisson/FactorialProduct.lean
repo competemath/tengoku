@@ -31,6 +31,7 @@ product of coordinatewise powers of the mean minus the center.
 
 Use `iIndepFun.integral_fun_prod_comp` with measurable coordinate lifts, transport each
 one-coordinate integral through `HasLaw`, and apply `poisson_factorialLift_mean`.
+@isnad1 id=eq.3h8v.s7.87bfc5f186e9 from=translated src=- shape=94125c36 vocab=55e6a0b3
 -/
 theorem factorialProduct_mean {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (W : ι → Ω → ℕ)
@@ -58,6 +59,7 @@ the exponential of the sum of coordinatewise squared degrees divided by `L`.
 
 Factor the second moment by `iIndepFun.integral_fun_prod_comp`, use the scalar square envelope
 on each coordinate, then combine the finite exponential product.
+@isnad1 id=le.7h10v.s8.b0497ef5a603 from=translated src=- shape=e4f16c64 vocab=5ab3bc0f
 -/
 theorem factorialProduct_square_envelope
     {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω]
@@ -109,6 +111,7 @@ theorem factorialProduct_square_envelope
 
 For four Poisson coordinates and every degree at most `D`, the normalized factorial product
 has square moment at most `exp(4D²/L)`.
+@isnad1 id=le.8h10v.s8.393e74743aab from=translated src=- shape=c79db3e8 vocab=3979556b
 -/
 theorem factorialProduct_four_square_envelope
     {Ω : Type*} [MeasurableSpace Ω]

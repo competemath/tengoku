@@ -29,7 +29,9 @@ def segmentPoint {n : ℕ} (x x₀ : Fin n → ℝ) (ε : ℝ) : Fin n → ℝ :
   (1 - ε) • x + ε • x₀
 
 /-- Given [a weak endpoint](hyp:x) and [a distinguished strict endpoint](hyp:x₀), [their
-segment points converge to the weak endpoint as the strict-endpoint weight tends to zero](goal). -/
+segment points converge to the weak endpoint as the strict-endpoint weight tends to zero](goal).
+@isnad1 id=tendsto.0h3v.s5.0fd0c6b52b8d from=translated src=- shape=7694e378 vocab=901b736c
+-/
 theorem tendsto_segmentPoint_zero {n : ℕ} (x x₀ : Fin n → ℝ) :
     Tendsto (segmentPoint x x₀) (𝓝 0) (𝓝 x) := by
   have h : Continuous (segmentPoint x x₀) := by
@@ -40,7 +42,9 @@ theorem tendsto_segmentPoint_zero {n : ℕ} (x x₀ : Fin n → ℝ) :
 
 /-- Given [a weakly feasible point](hyp:hx), [a strictly feasible point](hyp:hx₀), [a positive
 segment weight](hyp:hεpos), and [a weight at most one](hyp:hεone), [the corresponding segment
-point is strictly feasible](goal). -/
+point is strictly feasible](goal).
+@isnad1 id=mem.4h5v.s6.de5a4fb6b1a9 from=translated src=- shape=c28a625b vocab=ba290917
+-/
 theorem segmentPoint_mem_strictCell {n : ℕ} {Γ : AffineSystem n}
     {x x₀ : Fin n → ℝ} (hx : x ∈ weakCell Γ) (hx₀ : x₀ ∈ strictCell Γ)
     {ε : ℝ} (hεpos : 0 < ε) (hεone : ε ≤ 1) :
@@ -65,7 +69,9 @@ theorem segmentPoint_mem_strictCell {n : ℕ} {Γ : AffineSystem n}
         (mul_neg_of_pos_of_neg hεpos hx₀c)
 
 /-- Given [a weakly feasible point](hyp:hx) and [a strictly feasible point](hyp:hx₀), [there
-is a sequence of strictly feasible points converging to the weakly feasible point](goal). -/
+is a sequence of strictly feasible points converging to the weakly feasible point](goal).
+@isnad1 id=ex.2h4v.s6.90a272a3ef83 from=translated src=- shape=f020c7f5 vocab=6001e737
+-/
 theorem exists_strictCell_sequence_tendsto {n : ℕ} {Γ : AffineSystem n}
     {x x₀ : Fin n → ℝ} (hx : x ∈ weakCell Γ) (hx₀ : x₀ ∈ strictCell Γ) :
     ∃ u : ℕ → (Fin n → ℝ),
@@ -79,7 +85,9 @@ theorem exists_strictCell_sequence_tendsto {n : ℕ} {Γ : AffineSystem n}
   · exact (tendsto_segmentPoint_zero x x₀).comp tendsto_one_div_add_atTop_nhds_zero_nat
 
 /-- Given [a nonempty strict cell](hyp:hΓ), [every point of the weak relaxation belongs to
-the closure of the strict cell](goal). -/
+the closure of the strict cell](goal).
+@isnad1 id=le.1h2v.s5.7392d21f8e15 from=translated src=- shape=b374cd73 vocab=a3b5fc96
+-/
 theorem weakCell_subset_closure_strictCell {n : ℕ} {Γ : AffineSystem n}
     (hΓ : (strictCell Γ).Nonempty) : weakCell Γ ⊆ closure (strictCell Γ) := by
   intro x hx
@@ -88,7 +96,9 @@ theorem weakCell_subset_closure_strictCell {n : ℕ} {Γ : AffineSystem n}
   exact exists_strictCell_sequence_tendsto hx hx₀
 
 /-- Given [a nonempty strict cell](hyp:hΓ), [the closure of that strict cell equals its weak
-relaxation](goal). -/
+relaxation](goal).
+@isnad1 id=eq.1h2v.s5.e29f24a86258 from=translated src=- shape=fe6b7059 vocab=421f45e4
+-/
 theorem closure_strictCell_eq_weakCell {n : ℕ} {Γ : AffineSystem n}
     (hΓ : (strictCell Γ).Nonempty) : closure (strictCell Γ) = weakCell Γ := by
   apply Set.Subset.antisymm

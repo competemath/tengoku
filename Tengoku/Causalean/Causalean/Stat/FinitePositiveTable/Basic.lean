@@ -58,13 +58,17 @@ def fiberSum {M : Type uM} [AddCommMonoid M] (f : ProfileSpace r → M)
   exact ∑ y : ProfileSpace r, if AgreeOn S y x then f y else 0
 
 omit [Fintype V] [DecidableEq V] in
-/-- The [two complete profiles](hyp:x,y) [agree on the empty coordinate set](goal). -/
+/-- The [two complete profiles](hyp:x,y) [agree on the empty coordinate set](goal).
+@isnad1 id=agreeon.0h4v.s4.281c2219d0c7 from=translated src=- shape=9b041ce5 vocab=c456c190
+-/
 theorem agreeOn_empty (x y : ProfileSpace r) : AgreeOn ∅ x y := by
   simp [AgreeOn]
 
 /-- For [a profile function](hyp:f), [a fixed coordinate set](hyp:S), and [two reference
 profiles](hyp:x,x'), [agreement of the reference profiles on the fixed set](hyp:h) makes [their
-fibre sums equal](goal). -/
+fibre sums equal](goal).
+@isnad1 id=eq.1h7v.s5.7a567152a73d from=translated src=- shape=9a834829 vocab=fbc9d823
+-/
 theorem fiberSum_congr_reference {M : Type uM} [AddCommMonoid M]
     (f : ProfileSpace r → M) {S : Finset V} {x x' : ProfileSpace r}
     (h : AgreeOn S x x') : fiberSum f S x = fiberSum f S x' := by
@@ -78,14 +82,18 @@ theorem fiberSum_congr_reference {M : Type uM} [AddCommMonoid M]
   · exact fun v hv => (hyAgree v hv).trans (h v hv).symm
 
 /-- For [a profile function](hyp:f) and [a reference profile](hyp:x), [the unrestricted finite
-sum equals the fibre sum with no coordinates fixed](goal). -/
+sum equals the fibre sum with no coordinates fixed](goal).
+@isnad1 id=eq.0h5v.s6.46aa78428e3f from=translated src=- shape=c51874cc vocab=3e0242aa
+-/
 theorem fiberSum_empty {M : Type uM} [AddCommMonoid M]
     (f : ProfileSpace r → M) (x : ProfileSpace r) :
     fiberSum f ∅ x = ∑ y, f y := by
   simp [fiberSum, AgreeOn]
 
 /-- For [a profile function](hyp:f) and [a reference profile](hyp:x), [fixing every coordinate
-leaves only that reference profile in the fibre sum](goal). -/
+leaves only that reference profile in the fibre sum](goal).
+@isnad1 id=eq.0h5v.s5.8423a2885aed from=translated src=- shape=eff4636e vocab=2353bc74
+-/
 theorem fiberSum_univ {M : Type uM} [AddCommMonoid M]
     (f : ProfileSpace r → M) (x : ProfileSpace r) :
     fiberSum f Finset.univ x = f x := by
@@ -103,7 +111,9 @@ theorem fiberSum_univ {M : Type uM} [AddCommMonoid M]
 
 /-- For [a profile function](hyp:f), [a fixed coordinate set](hyp:S), [a coordinate outside that
 set](hyp:v,hv), [a reference profile](hyp:x), and [a replacement state](hyp:z), [updating the
-outside coordinate leaves the fibre sum unchanged](goal). -/
+outside coordinate leaves the fibre sum unchanged](goal).
+@isnad1 id=eq.1h8v.s6.615342e20a23 from=translated src=- shape=7ed68c18 vocab=1c786a03
+-/
 theorem fiberSum_update_of_not_mem {M : Type uM} [AddCommMonoid M]
     (f : ProfileSpace r → M) {S : Finset V} {v : V} (hv : v ∉ S)
     (x : ProfileSpace r) (z : Fin (r v)) :
@@ -114,7 +124,9 @@ theorem fiberSum_update_of_not_mem {M : Type uM} [AddCommMonoid M]
 
 /-- For [a profile function](hyp:f), [a fixed coordinate set](hyp:S), [a coordinate outside that
 set](hyp:v,hv), and [a reference profile](hyp:x), [partitioning its fibre by the coordinate
-value recovers the original fibre sum](goal). -/
+value recovers the original fibre sum](goal).
+@isnad1 id=eq.1h7v.s6.9435cab39111 from=translated src=- shape=62dc9ffd vocab=1850c8ec
+-/
 theorem sum_fiberSum_insert_update {M : Type uM} [AddCommMonoid M]
     (f : ProfileSpace r → M) {S : Finset V} {v : V} (hv : v ∉ S)
     (x : ProfileSpace r) :
@@ -153,7 +165,9 @@ theorem sum_fiberSum_insert_update {M : Type uM} [AddCommMonoid M]
         (fun y => if AgreeOn S y x then f y else 0)
 
 /-- For [a profile function](hyp:f), [a coordinate](hyp:v), and [a reference profile](hyp:x),
-[summing its singleton-coordinate fibres recovers the unrestricted finite sum](goal). -/
+[summing its singleton-coordinate fibres recovers the unrestricted finite sum](goal).
+@isnad1 id=eq.0h6v.s6.c5cf6c42874d from=translated src=- shape=e6c1ed58 vocab=003565f6
+-/
 theorem sum_fiberSum_singleton_update {M : Type uM} [AddCommMonoid M]
     (f : ProfileSpace r → M) (v : V) (x : ProfileSpace r) :
     (∑ z : Fin (r v), fiberSum f {v} (Function.update x v z)) = ∑ y, f y := by

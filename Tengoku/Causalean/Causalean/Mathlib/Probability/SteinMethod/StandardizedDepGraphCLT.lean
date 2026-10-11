@@ -61,7 +61,9 @@ noncomputable def depGraph_div_const
   exact h.comp hφ hψ
 
 /-- Dependency-graph CLT wrapper when the linear variance floor holds at every index.
-The public theorem below removes this all-index convenience by shifting to a tail. -/
+The public theorem below removes this all-index convenience by shifting to a tail.
+@isnad1 id=tendsto.9h10v.s8.fdc290b9e286 from=translated src=- shape=45ae3a48 vocab=8cfb3384
+-/
 theorem bounded_degree_dependency_clt_of_variance_floor_all
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))
     [∀ n, IsProbabilityMeasure (μ n)]
@@ -185,7 +187,9 @@ variance `v n`](hyp:hv) satisfying, for [a strictly positive constant `c`](hyp:h
 diverges to infinity](hyp:hcard). Then [for every threshold `s`, the CDF of the standardized sum
 `depSum (X n) / √(v n)` under `μ n` at `s` converges, as `n → ∞`, to the standard-normal CDF at
 `s`](goal). The index-size divergence together with the variance floor forces the Lyapunov ratio
-`card (ι n) · (M / √(v n))³ → 0` that drives the underlying Stein bound. -/
+`card (ι n) · (M / √(v n))³ → 0` that drives the underlying Stein bound.
+@isnad1 id=tendsto.8h10v.s8.4a656842d08a from=translated src=- shape=90ce1a71 vocab=a1c02df9
+-/
 theorem bounded_degree_dependency_clt
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))
     [∀ n, IsProbabilityMeasure (μ n)]
@@ -232,7 +236,9 @@ theorem bounded_degree_dependency_clt
   exact (tendsto_add_atTop_iff_nat N).1 htail
 
 /-- Eventual-bound variant of `bounded_degree_dependency_clt`: only the tail of a triangular array
-affects the limiting CDF, so the uniform summand bound need only hold after a finite prefix. -/
+affects the limiting CDF, so the uniform summand bound need only hold after a finite prefix.
+@isnad1 id=tendsto.8h10v.s8.9667cd1d6e79 from=translated src=- shape=c2f31003 vocab=a1c02df9
+-/
 theorem bounded_degree_dependency_clt_eventually_bounded
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))
     [∀ n, IsProbabilityMeasure (μ n)]

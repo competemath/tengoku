@@ -23,7 +23,9 @@ def childGridCoord {d : ℕ} (u : Fin d → ℕ) (b : Fin d → Bool) : Fin d �
   fun i => 2 * u i + if b i then 1 else 0
 
 /-- Given [a dimension](hyp:d) of [at least two](hyp:hd), [two face-adjacent parent cells](hyp:u,v,huv), and [an entry vertex](hyp:a),
-[an exit vertex and a neighboring child across the shared face exist](goal). -/
+[an exit vertex and a neighboring child across the shared face exist](goal).
+@isnad1 id=ex.2h4v.s6.64d0836aee14 from=translated src=- shape=105edf55 vocab=f530da93
+-/
 theorem exists_adjacent_child_gate (d : ℕ) (hd : 2 ≤ d)
     (u v : Fin d → ℕ) (huv : FaceAdjacentGrid u v)
     (a : Fin d → Bool) :

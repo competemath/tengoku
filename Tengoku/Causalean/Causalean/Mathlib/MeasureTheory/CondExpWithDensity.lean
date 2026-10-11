@@ -32,7 +32,9 @@ variable {Ω : Type*} {m₀ : MeasurableSpace Ω} {μ : Measure Ω}
 /-- If [a measurable density is nonnegative](hyp:hw_meas,hw_nonneg), [normalized to have
 integral one](hyp:hw_norm), and [the conditioning σ-algebra is contained in the ambient
 one](hyp:hm), then [its conditional expectation is strictly positive almost everywhere
-under the probability measure having that density](goal). -/
+under the probability measure having that density](goal).
+@isnad1 id=eventual.4h5v.s7.3b1b1fbff445 from=translated src=- shape=2622c209 vocab=017e1087
+-/
 theorem condExp_density_pos_ae [IsProbabilityMeasure μ]
     {m : MeasurableSpace Ω} (hm : m ≤ m₀) {w : Ω → ℝ}
     (hw_meas : @Measurable Ω ℝ m₀ _ w) (hw_nonneg : ∀ x, 0 ≤ w x)
@@ -71,7 +73,9 @@ nonnegative](hyp:hw_meas,hw_nonneg), [normalized to have integral one](hyp:hw_no
 function is integrable under the density-changed measure](hyp:hf), then [its conditional
 expectation under that measure is the base-measure conditional expectation of the
 density-weighted target divided by the conditional expectation of the density](goal),
-almost everywhere under the changed measure. -/
+almost everywhere under the changed measure.
+@isnad1 id=eventual.5h6v.s7.b6da76ae7a09 from=translated src=- shape=58c81b40 vocab=2b3c5893
+-/
 theorem condExp_withDensity_ae_eq_div [IsProbabilityMeasure μ]
     {m : MeasurableSpace Ω} (hm : m ≤ m₀) {w f : Ω → ℝ}
     (hw_meas : @Measurable Ω ℝ m₀ _ w) (hw_nonneg : ∀ x, 0 ≤ w x)
@@ -164,7 +168,9 @@ exponential tilt](hyp:hf), then [the conditional Bayes ratio for the density
 
 Boundedness makes the exponential integrable and its normalizer finite and strictly
 positive.  The density is therefore strictly positive, so the tilted and base measures
-have the same null sets. -/
+have the same null sets.
+@isnad1 id=eventual.4h7v.s8.b48236d1bc31 from=translated src=- shape=7851f45c vocab=b4ab5c88
+-/
 theorem condExp_expTilt_ae_eq_div [IsProbabilityMeasure μ]
     {m : MeasurableSpace Ω} (hm : m ≤ m₀) {s f : Ω → ℝ} (t : ℝ)
     (hs_meas : @Measurable Ω ℝ m₀ _ s) (hs_bound : ∃ C : ℝ, ∀ x, |s x| ≤ C)

@@ -100,18 +100,24 @@ def nonDescIn (R : Finset (SWIGNode N)) (v₀ : SWIGNode N) :
     Finset (SWIGNode N) :=
   (R.erase v₀) \ (G.induce R).dag.descendants v₀
 
-/-- A node is not a proper descendant of itself inside the induced subgraph. -/
+/-- A node is not a proper descendant of itself inside the induced subgraph.
+@isnad1 id=not.0h4v.s5.b2ead254f495 from=translated src=- shape=83c332ce vocab=66b55569
+-/
 lemma v₀_not_mem_properDescIn (G : SWIGGraph N) (R : Finset (SWIGNode N))
     (v₀ : SWIGNode N) : v₀ ∉ G.properDescIn R v₀ := by
   simp only [properDescIn, DAG.mem_descendants]
   exact DAG.isAncestor_irrefl _ _
 
-/-- The target node is not in its induced non-descendant set because it is explicitly removed. -/
+/-- The target node is not in its induced non-descendant set because it is explicitly removed.
+@isnad1 id=not.0h4v.s5.8039f12fd953 from=translated src=- shape=83c332ce vocab=f4c8d489
+-/
 lemma v₀_not_mem_nonDescIn (G : SWIGGraph N) (R : Finset (SWIGNode N))
     (v₀ : SWIGNode N) : v₀ ∉ G.nonDescIn R v₀ := by
   simp [nonDescIn]
 
-/-- Proper descendants lie in the selected set with the target node removed. -/
+/-- Proper descendants lie in the selected set with the target node removed.
+@isnad1 id=le.0h4v.s5.73c43dc884cd from=translated src=- shape=04b07a4e vocab=63650493
+-/
 lemma properDescIn_subset_erase (G : SWIGGraph N) (R : Finset (SWIGNode N))
     (v₀ : SWIGNode N) :
     G.properDescIn R v₀ ⊆ R.erase v₀ := by
@@ -121,19 +127,25 @@ lemma properDescIn_subset_erase (G : SWIGGraph N) (R : Finset (SWIGNode N))
   exact ⟨fun heq => DAG.isAncestor_irrefl _ v₀ (heq ▸ hw),
          (Finset.mem_inter.mp (G.induce_isAncestor_mem_R R hw)).1⟩
 
-/-- Every induced non-descendant lies in the selected set with the target node removed. -/
+/-- Every induced non-descendant lies in the selected set with the target node removed.
+@isnad1 id=le.0h4v.s5.3bce67cb7179 from=translated src=- shape=04b07a4e vocab=d80c761f
+-/
 lemma nonDescIn_subset_erase (G : SWIGGraph N) (R : Finset (SWIGNode N))
     (v₀ : SWIGNode N) :
     G.nonDescIn R v₀ ⊆ R.erase v₀ :=
   Finset.sdiff_subset
 
-/-- Every induced non-descendant lies in the selected set. -/
+/-- Every induced non-descendant lies in the selected set.
+@isnad1 id=le.0h4v.s5.5750370eb430 from=translated src=- shape=dae77c50 vocab=685756da
+-/
 lemma nonDescIn_subset (G : SWIGGraph N) (R : Finset (SWIGNode N))
     (v₀ : SWIGNode N) :
     G.nonDescIn R v₀ ⊆ R :=
   (G.nonDescIn_subset_erase R v₀).trans (R.erase_subset v₀)
 
-/-- The proper-descendant set and non-descendant set are disjoint inside the selected nodes. -/
+/-- The proper-descendant set and non-descendant set are disjoint inside the selected nodes.
+@isnad1 id=disjoint.0h4v.s5.9160af8d77f5 from=translated src=- shape=15bfef77 vocab=aa58d3a3
+-/
 lemma properDescIn_disjoint_nonDescIn (G : SWIGGraph N)
     (R : Finset (SWIGNode N)) (v₀ : SWIGNode N) :
     Disjoint (G.properDescIn R v₀) (G.nonDescIn R v₀) := by
@@ -147,7 +159,9 @@ lemma properDescIn_disjoint_nonDescIn (G : SWIGGraph N)
 descendants of a node `v₀` together with its non-descendants exhaust the selected
 nodes other than `v₀` itself](goal).
 
-This is the coverage identity used in the graph split for Tian's Lemma 1. -/
+This is the coverage identity used in the graph split for Tian's Lemma 1.
+@isnad1 id=eq.0h4v.s6.290d20c324f0 from=translated src=- shape=5cae6d5e vocab=27175da5
+-/
 lemma properDescIn_union_nonDescIn_eq_erase
     (G : SWIGGraph N) (R : Finset (SWIGNode N)) (v₀ : SWIGNode N) :
     G.properDescIn R v₀ ∪ G.nonDescIn R v₀ = R.erase v₀ := by

@@ -113,12 +113,16 @@ noncomputable def overlapWeightedATE {𝒢 : Type*} [Fintype 𝒢]
 
 variable {𝒢 : Type*} [Fintype 𝒢] (P : FinitePartition 𝒢)
 
-/-- The denominator is positive. Restated from `overlap_pos`. -/
+/-- The denominator is positive. Restated from `overlap_pos`.
+@isnad1 id=lt.0h2v.s4.b43d3820b480 from=translated src=- shape=38fc717e vocab=b2ca17a9
+-/
 theorem overlapDenominator_pos : 0 < P.overlapDenominator := by
   simpa [overlapDenominator, cellOverlap, mul_assoc] using P.overlap_pos
 
 /-- The overlap weights sum to one. Direct from positivity of the
-denominator and pulling the common denominator out of the sum. -/
+denominator and pulling the common denominator out of the sum.
+@isnad1 id=eq.0h2v.s4.d5730c8ca337 from=translated src=- shape=72e514b6 vocab=ba6e3b99
+-/
 theorem omega_sum_eq_one : ∑ g, P.overlapWeight g = 1 := by
   have hD : P.overlapDenominator ≠ 0 := P.overlapDenominator_pos.ne'
   have hsum : ∑ g, P.overlapWeight g = P.overlapDenominator / P.overlapDenominator := by
@@ -127,7 +131,9 @@ theorem omega_sum_eq_one : ∑ g, P.overlapWeight g = 1 := by
 
 /-- **Finite-partition OLS weights** (`prop:po-estimand-sloczynski-ols-finite-weights`). [The
 saturated-OLS estimand equals the sum of normalized overlap weights times cell effects,
-`Σ_g ω_g τ_g`](goal). -/
+`Σ_g ω_g τ_g`](goal).
+@isnad1 id=eq.0h2v.s5.31f1a70c1d5e from=translated src=- shape=ea8c88c8 vocab=8004804c
+-/
 theorem finite_weights_eq_sum :
     P.overlapWeightedATE = ∑ g, P.overlapWeight g * P.τ g := by
   simp only [overlapWeightedATE, overlapNumerator, overlapWeight, Finset.sum_div]
@@ -135,7 +141,9 @@ theorem finite_weights_eq_sum :
   ring
 
 /-- Equal-cell-share weight collapse: if `p_g = 1/2` for every cell, the
-normalized overlap weight reduces to the cell probability `π_g`. -/
+normalized overlap weight reduces to the cell probability `π_g`.
+@isnad1 id=eq.1h3v.s5.0e269ea22a9d from=translated src=- shape=cef54032 vocab=a1fc8403
+-/
 theorem equal_groups_weight_eq_pi
     (h : ∀ g, P.p g = 1 / 2) (g : 𝒢) :
     P.overlapWeight g = P.π g := by
@@ -154,7 +162,9 @@ theorem equal_groups_weight_eq_pi
 `prop:po-estimand-sloczynski-ols-equal-groups`). If [every cell has an equal
 treated share `p_g = 1/2`](hyp:h), then [the saturated-OLS estimand `β_sat`
 equals the probability-weighted average of the cell treatment effects
-`Σ π_g τ_g`](goal). -/
+`Σ π_g τ_g`](goal).
+@isnad1 id=eq.1h2v.s6.c21f95da578b from=translated src=- shape=775e2428 vocab=9096d949
+-/
 theorem equal_groups_collapses
     (h : ∀ g, P.p g = 1 / 2) :
     P.overlapWeightedATE = ∑ g, P.π g * P.τ g := by
@@ -164,7 +174,9 @@ theorem equal_groups_collapses
 
 /-- **Homogeneous-effect collapse.** If [the cell-level treatment
 effect equals a common constant `τ₀` in every cell](hyp:h), then [the
-saturated-OLS estimand `β_sat` equals `τ₀`](goal). -/
+saturated-OLS estimand `β_sat` equals `τ₀`](goal).
+@isnad1 id=eq.1h3v.s4.b7ef38ad939c from=translated src=- shape=18998b84 vocab=dd10660a
+-/
 theorem homogeneous_collapses
     {τ₀ : ℝ} (h : ∀ g, P.τ g = τ₀) :
     P.overlapWeightedATE = τ₀ := by
@@ -201,7 +213,9 @@ noncomputable def perUntreatedWeight {𝒢 : Type*} [Fintype 𝒢]
 
 /-- The cell overlap variance is the product of the two per-observation
 leverage factors: `p_g (1−p_g) = perUntreatedWeight_g · perTreatedWeight_g`.
-This links the finite-cell denominator to its two per-observation factors. -/
+This links the finite-cell denominator to its two per-observation factors.
+@isnad1 id=eq.0h3v.s5.897aecd203be from=translated src=- shape=5aafedde vocab=fa138693
+-/
 theorem cellOverlap_eq_perWeights_mul {𝒢 : Type*} [Fintype 𝒢]
     (P : FinitePartition 𝒢) (g : 𝒢) :
     P.cellOverlap g = P.perUntreatedWeight g * P.perTreatedWeight g := by
@@ -221,7 +235,9 @@ almost no one is treated (`p_g ≈ 0`) upweights each treated observation
 toward 1.
 
 This is a property of the finite-cell overlap factors; it is not the paper's
-ATT/ATU group-weight representation. -/
+ATT/ATU group-weight representation.
+@isnad1 id=le.1h4v.s5.08d66d3fda94 from=translated src=- shape=968d1221 vocab=7300833f
+-/
 theorem perTreatedWeight_antitone {𝒢 : Type*} [Fintype 𝒢]
     (P : FinitePartition 𝒢) {g h : 𝒢}
     (hph : P.p g ≤ P.p h) :
@@ -236,7 +252,9 @@ then [`h`'s per-untreated-observation leverage factor is at least `g`'s:
 `perUntreatedWeight P g ≤ perUntreatedWeight P h`](goal).
 
 Symmetrically to `perTreatedWeight_antitone`: the minority
-untreated group in a cell receives the larger per-observation weight. -/
+untreated group in a cell receives the larger per-observation weight.
+@isnad1 id=le.1h4v.s5.9227d126787d from=translated src=- shape=7d6d548b vocab=1d2f500d
+-/
 theorem perUntreatedWeight_monotone {𝒢 : Type*} [Fintype 𝒢]
     (P : FinitePartition 𝒢) {g h : 𝒢}
     (hph : P.p g ≤ P.p h) :
@@ -289,7 +307,9 @@ def tau_ATE (R : AssumedTwoComponentOLS) : ℝ := R.ρ * R.τ_ATT + (1 - R.ρ) *
 variable (R : AssumedTwoComponentOLS)
 
 /-- For [an assumed two-component scaffold](hyp:R), [the untreated weight equals the treated
-share `ρ`](goal), by substituting the two supplied weight identities. -/
+share `ρ`](goal), by substituting the two supplied weight identities.
+@isnad1 id=eq.0h1v.s3.6ebd0578c9a8 from=translated src=- shape=b70c6bb1 vocab=213c855c
+-/
 theorem w0_eq_rho_of_assumed_weights : R.w₀ = R.ρ := by
   have h := R.weights_sum_one
   rw [R.equalDispersion] at h; linarith
@@ -298,14 +318,18 @@ theorem w0_eq_rho_of_assumed_weights : R.w₀ = R.ρ := by
 identities](hyp:R), [substitution shows that it equals `(1−ρ)·τ_ATT + ρ·τ_ATU`](goal).
 
 This is an algebraic corollary of the fields of `R`, not a derivation of the
-two-component representation from a regression problem. -/
+two-component representation from a regression problem.
+@isnad1 id=eq.0h1v.s5.a8e2f53a40d9 from=translated src=- shape=53ad8328 vocab=33b91bc7
+-/
 theorem opposite_group_identity_of_assumed_twoComponent :
     R.β_ols = (1 - R.ρ) * R.τ_ATT + R.ρ * R.τ_ATU := by
   rw [R.twoComponent, R.equalDispersion, R.w0_eq_rho_of_assumed_weights]
 
 /-- **Equal-group-size collapse within the assumed scaffold.** For [an assumed
 two-component scaffold](hyp:R), if [the treated share `ρ` equals one half](hyp:h), then [the
-supplied OLS coefficient `β_ols` equals the ATE `τ_ATE = ρ·τ_ATT + (1−ρ)·τ_ATU`](goal). -/
+supplied OLS coefficient `β_ols` equals the ATE `τ_ATE = ρ·τ_ATT + (1−ρ)·τ_ATU`](goal).
+@isnad1 id=eq.1h1v.s5.7f3252544932 from=translated src=- shape=067f281e vocab=2ce41805
+-/
 theorem equal_groups_eq_ATE_of_assumed_twoComponent (h : R.ρ = 1 / 2) :
     R.β_ols = R.tau_ATE := by
   rw [R.opposite_group_identity_of_assumed_twoComponent, tau_ATE, h]; ring
@@ -313,7 +337,9 @@ theorem equal_groups_eq_ATE_of_assumed_twoComponent (h : R.ρ = 1 / 2) :
 /-- **Homogeneous-effect collapse within the assumed scaffold.** For [an assumed
 two-component scaffold](hyp:R), if [the ATT equals a common constant `τ₀`](hyp:hT) and
 [the ATU equals that same constant `τ₀`](hyp:hU), then [the supplied OLS coefficient
-`β_ols` equals `τ₀`, regardless of the treated share `ρ`](goal). -/
+`β_ols` equals `τ₀`, regardless of the treated share `ρ`](goal).
+@isnad1 id=eq.2h2v.s4.63db7d84ed3a from=translated src=- shape=75aad369 vocab=b517a378
+-/
 theorem homogeneous_eq_constant_of_assumed_twoComponent
     {τ₀ : ℝ} (hT : R.τ_ATT = τ₀) (hU : R.τ_ATU = τ₀) :
     R.β_ols = τ₀ := by

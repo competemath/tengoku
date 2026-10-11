@@ -49,7 +49,9 @@ noncomputable def normalizedRestrictedIntegral
 variable {Ω : Type*} [MeasurableSpace Ω]
 
 /-- For [a measure `μ`](hyp:μ), [a set `A`](hyp:A), [a real function `g`](hyp:g), and
-[a measurable space](hyp:Ω), [the normalized restricted integral is the mass quotient](goal). -/
+[a measurable space](hyp:Ω), [the normalized restricted integral is the mass quotient](goal).
+@isnad1 id=eq.0h4v.s6.3369f41b4ab6 from=translated src=- shape=7f44c2c5 vocab=3868c822
+-/
 lemma eventCondExp_eq (μ : Measure Ω) (A : Set Ω) (g : Ω → ℝ) :
     normalizedRestrictedIntegral μ A g = (∫ ω in A, g ω ∂μ) / (μ A).toReal := by
   simp only [normalizedRestrictedIntegral, normalizedRestrict,
@@ -58,7 +60,9 @@ lemma eventCondExp_eq (μ : Measure Ω) (A : Set Ω) (g : Ω → ℝ) :
 
 /-- For [a measure `μ`](hyp:μ), [a set `A`](hyp:A), [finite mass](hyp:hA_fin),
 [a real function `f`](hyp:f), and [a measurable space](hyp:Ω),
-[the normalized integral satisfies the scaling identity](goal). -/
+[the normalized integral satisfies the scaling identity](goal).
+@isnad1 id=eq.1h4v.s6.2908e2437608 from=translated src=- shape=8073f2fb vocab=71c368a6
+-/
 lemma eventCondExp_mul_measure_toReal (μ : Measure Ω) (A : Set Ω)
     (hA_fin : μ A ≠ ⊤) (f : Ω → ℝ) :
     normalizedRestrictedIntegral μ A f * (μ A).toReal = ∫ ω in A, f ω ∂μ := by
@@ -76,7 +80,9 @@ lemma eventCondExp_mul_measure_toReal (μ : Measure Ω) (A : Set Ω)
 [measurable cells `A`](hyp:A) that are [measurable](hyp:hmeas),
 [pairwise disjoint](hyp:hdisj), and [cover the space](hyp:hcov), and an
 [integrable real function `f`](hyp:f,hf) on [a measurable space](hyp:Ω),
-[the finite-partition identity holds](goal). -/
+[the finite-partition identity holds](goal).
+@isnad1 id=eq.4h5v.s7.00bc80191fcb from=translated src=- shape=ea17de3c vocab=39a55a3e
+-/
 lemma integral_eq_sum_measure_mul_eventCondExp
     {ι : Type*} [Fintype ι] (μ : Measure Ω) [IsFiniteMeasure μ]
     (A : ι → Set Ω) (hmeas : ∀ i, MeasurableSet (A i))
@@ -98,7 +104,9 @@ lemma integral_eq_sum_measure_mul_eventCondExp
 [a measurable set `A`](hyp:A,hAmeas), [measurable cells `C`](hyp:C,hCmeas) that are
 [pairwise disjoint](hyp:hdisj), [cover the space](hyp:hcov), and whose intersections with
 `A` have [finite mass](hyp:hAC_fin), and an [integrable function `f`](hyp:f,hf) on
-[a measurable space](hyp:Ω), [the mass-ratio cell decomposition holds](goal). -/
+[a measurable space](hyp:Ω), [the mass-ratio cell decomposition holds](goal).
+@isnad1 id=eq.6h6v.s8.1123fb889c07 from=translated src=- shape=9a74e1c1 vocab=a7baabc9
+-/
 lemma eventCondExp_eq_sum_condProb_mul_eventCondExp
     {ι : Type*} [Fintype ι] (μ : Measure Ω)
     (A : Set Ω) (C : ι → Set Ω) (hAmeas : MeasurableSet A)
@@ -134,7 +142,9 @@ lemma eventCondExp_eq_sum_condProb_mul_eventCondExp
 /-- For [a measure `μ`](hyp:μ), [a set `A`](hyp:A), [a real function `f`](hyp:f),
 [a real function `g`](hyp:g), [a measurable space](hyp:Ω), and
 [almost-everywhere agreement](hyp:h),
-[their normalized restricted integrals are equal](goal). -/
+[their normalized restricted integrals are equal](goal).
+@isnad1 id=eq.1h5v.s6.d03f7d0581ac from=translated src=- shape=910780b0 vocab=296f71be
+-/
 lemma eventCondExp_congr_ae (μ : Measure Ω) (A : Set Ω) {f g : Ω → ℝ}
     (h : f =ᵐ[μ.restrict A] g) :
     normalizedRestrictedIntegral μ A f = normalizedRestrictedIntegral μ A g := by
@@ -143,7 +153,9 @@ lemma eventCondExp_congr_ae (μ : Measure Ω) (A : Set Ω) {f g : Ω → ℝ}
 
 /-- For [a measure `μ`](hyp:μ), [a measurable set `A`](hyp:A,hA),
 [real functions `f` and `g`](hyp:f,g), [a measurable space](hyp:Ω), and
-[pointwise agreement on `A`](hyp:h), [their normalized restricted integrals are equal](goal). -/
+[pointwise agreement on `A`](hyp:h), [their normalized restricted integrals are equal](goal).
+@isnad1 id=eq.2h5v.s6.251d2a9026f8 from=translated src=- shape=1635f50f vocab=73ade63c
+-/
 lemma eventCondExp_congr_on (μ : Measure Ω) {A : Set Ω} (hA : MeasurableSet A)
     {f g : Ω → ℝ} (h : ∀ ω ∈ A, f ω = g ω) :
     normalizedRestrictedIntegral μ A f = normalizedRestrictedIntegral μ A g := by
@@ -154,7 +166,9 @@ lemma eventCondExp_congr_on (μ : Measure Ω) {A : Set Ω} (hA : MeasurableSet A
 /-- For [a measure `μ`](hyp:μ), [a set `A`](hyp:A), [a real function `f`](hyp:f),
 [a real function `g`](hyp:g), [a measurable space](hyp:Ω),
 [integrability on `A`](hyp:hf,hg), and
-[almost-everywhere order](hyp:hfg), [the normalized integral order is preserved](goal). -/
+[almost-everywhere order](hyp:hfg), [the normalized integral order is preserved](goal).
+@isnad1 id=le.3h5v.s7.380d24616b2a from=translated src=- shape=a1301928 vocab=2e068df1
+-/
 lemma eventCondExp_mono_ae (μ : Measure Ω) {A : Set Ω} {f g : Ω → ℝ}
     (hf : IntegrableOn f A μ) (hg : IntegrableOn g A μ)
     (hfg : f ≤ᵐ[μ.restrict A] g) :
@@ -168,7 +182,9 @@ lemma eventCondExp_mono_ae (μ : Measure Ω) {A : Set Ω} {f g : Ω → ℝ}
 /-- For [a measure `μ`](hyp:μ), [a set `A`](hyp:A), [a real function `g₁`](hyp:g₁),
 [a real function `g₂`](hyp:g₂), [a measurable space](hyp:Ω), and
 [integrability on `A`](hyp:h₁,h₂),
-[the normalized restricted integral is additive](goal). -/
+[the normalized restricted integral is additive](goal).
+@isnad1 id=eq.2h5v.s7.181c61946b8d from=translated src=- shape=ec020742 vocab=010a0acc
+-/
 lemma eventCondExp_add (μ : Measure Ω) (A : Set Ω)
     {g₁ g₂ : Ω → ℝ}
     (h₁ : IntegrableOn g₁ A μ) (h₂ : IntegrableOn g₂ A μ) :
@@ -179,7 +195,9 @@ lemma eventCondExp_add (μ : Measure Ω) (A : Set Ω)
 /-- For [a measure `μ`](hyp:μ), [a set `A`](hyp:A), [a real function `g₁`](hyp:g₁),
 [a real function `g₂`](hyp:g₂), [a measurable space](hyp:Ω), and
 [integrability on `A`](hyp:h₁,h₂),
-[the normalized restricted integral preserves subtraction](goal). -/
+[the normalized restricted integral preserves subtraction](goal).
+@isnad1 id=eq.2h5v.s7.4d5c0be29813 from=translated src=- shape=ec020742 vocab=f90f2abc
+-/
 lemma eventCondExp_sub (μ : Measure Ω) (A : Set Ω)
     {g₁ g₂ : Ω → ℝ}
     (h₁ : IntegrableOn g₁ A μ) (h₂ : IntegrableOn g₂ A μ) :
@@ -189,7 +207,9 @@ lemma eventCondExp_sub (μ : Measure Ω) (A : Set Ω)
 
 /-- For [a measure `μ`](hyp:μ), [a set `A`](hyp:A), [a scalar `c`](hyp:c),
 [a real function `g`](hyp:g), and [a measurable space](hyp:Ω),
-[the normalized restricted integral commutes with scalar multiplication](goal). -/
+[the normalized restricted integral commutes with scalar multiplication](goal).
+@isnad1 id=eq.0h5v.s6.52b70f8c8a6c from=translated src=- shape=dac29198 vocab=7b1b7a4d
+-/
 lemma eventCondExp_smul (μ : Measure Ω) (A : Set Ω) (c : ℝ) (g : Ω → ℝ) :
     normalizedRestrictedIntegral μ A (fun ω => c * g ω) =
       c * normalizedRestrictedIntegral μ A g := by
@@ -200,7 +220,9 @@ lemma eventCondExp_smul (μ : Measure Ω) (A : Set Ω) (c : ℝ) (g : Ω → ℝ
 [their measurability](hyp:hz,hB),
 [a real function `factualF`](hyp:factualF), [a measurable real function `h`](hyp:h,hh_meas),
 [a point `x`](hyp:x) with [measurable singleton](hyp:hx), [agreement on its preimage](hyp:hF_eq),
-and [nonzero finite cell mass](hyp:hμA_ne_zero), [the independence identity holds](goal). -/
+and [nonzero finite cell mass](hyp:hμA_ne_zero), [the independence identity holds](goal).
+@isnad1 id=eq.7h9v.s7.31cc312d9f8a from=translated src=- shape=d080eae0 vocab=7350f6c6
+-/
 theorem eventCondExp_of_ae_eq_IndepFun
     {α β : Type*} [MeasurableSpace α]
     [MeasurableSpace β] {μ : Measure Ω}
@@ -220,7 +242,9 @@ theorem eventCondExp_of_ae_eq_IndepFun
 
 /-- On a [positive-mass cell](hyp:hCpos), [integrating a function](hyp:f) under
 the normalized cell law is [the restricted integral rescaled by the reciprocal
-cell mass](goal). -/
+cell mass](goal).
+@isnad1 id=eq.1h5v.s7.915e25c4ee25 from=translated src=- shape=11a02a5c vocab=ebc76073
+-/
 theorem normalizedRestrictedIntegral_eq
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -264,7 +288,9 @@ def NormalizedRestrictedBoundedTestFactorization
   BoundedTestFactorization (normalizedRestrict P C) X Y
 
 /-- Under a probability law, [measurable random elements](hyp:hX,hY) whose [all
-bounded measurable real-valued tests factor](hyp:hfactor) are [independent](goal). -/
+bounded measurable real-valued tests factor](hyp:hfactor) are [independent](goal).
+@isnad1 id=indepfun.3h6v.s6.27c02beaa7e8 from=translated src=- shape=86e8178d vocab=dfc1be5f
+-/
 theorem indepFun_of_boundedTestFactorization
     {Ω S T : Type*} [MeasurableSpace Ω] [MeasurableSpace S] [MeasurableSpace T]
     {μ : Measure Ω} [IsProbabilityMeasure μ]

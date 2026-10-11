@@ -25,7 +25,9 @@ def transportSqCost {ι κ : Type*} [Fintype ι] [Fintype κ]
   ∑ i, ∑ j, π.mass i j * (μ.atom i - ν.atom j) ^ 2
 
 /-- Among all transport plans between two valid finite atomic laws, one minimizes the quadratic
-displacement objective. -/
+displacement objective.
+@isnad1 id=ex.2h4v.s6.115234c60ab7 from=translated src=- shape=e5bb0407 vocab=5bf6eb61
+-/
 theorem exists_transportPlan_minimizing_sqCost
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :
@@ -92,7 +94,9 @@ theorem exists_transportPlan_minimizing_sqCost
     hmmin ⟨q.nonneg, q.fst_marginal, q.snd_marginal⟩
 
 /-- A quadratic-cost-minimizing finite transport plan cannot send positive mass in opposite
-directions across the same real cut. -/
+directions across the same real cut.
+@isnad1 id=cutmonot.1h5v.s5.0c2b4066e6c9 from=translated src=- shape=0d2709b3 vocab=78c06b5f
+-/
 theorem cutMonotone_of_sqCost_minimal
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     {μ : AtomicLaw ι} {ν : AtomicLaw κ} (π : TransportPlan μ ν)
@@ -233,7 +237,9 @@ theorem cutMonotone_of_sqCost_minimal
   exact (not_lt_of_ge (hmin q)) hstrict
 
 /-- Any two valid finite atomic laws have a transport plan with no simultaneous flow in opposite
-directions across any cut. -/
+directions across any cut.
+@isnad1 id=ex.2h4v.s5.13ca7c8c9607 from=translated src=- shape=3ca17ebc vocab=e7dbfc68
+-/
 theorem exists_cutMonotone_transportPlan
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :
@@ -241,7 +247,9 @@ theorem exists_cutMonotone_transportPlan
   obtain ⟨π, hπ⟩ := exists_transportPlan_minimizing_sqCost μ ν hμ hν
   exact ⟨π, cutMonotone_of_sqCost_minimal π hπ⟩
 
-/-- A no-counterflow transport plan attains the integrated absolute CDF gap. -/
+/-- A no-counterflow transport plan attains the integrated absolute CDF gap.
+@isnad1 id=eq.1h5v.s6.7d4c9ffd1ff2 from=translated src=- shape=4e52b3ed vocab=e63cbd08
+-/
 theorem transportCost_eq_integral_abs_cdfGap_of_cutMonotone
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     {μ : AtomicLaw ι} {ν : AtomicLaw κ} (π : TransportPlan μ ν)
@@ -310,7 +318,9 @@ theorem transportCost_eq_integral_abs_cdfGap_of_cutMonotone
   · change left = 0 at hleft_zero
     rw [hleft_zero, sub_zero, abs_of_nonneg hright, add_zero]
 
-/-- [Two finite atomic laws with finite slot types](hyp:ι,κ,μ,ν) and [nonnegative unit-mass weights](hyp:hμ,hν) have [a transport plan whose cost equals their integrated absolute CDF gap](goal). -/
+/-- [Two finite atomic laws with finite slot types](hyp:ι,κ,μ,ν) and [nonnegative unit-mass weights](hyp:hμ,hν) have [a transport plan whose cost equals their integrated absolute CDF gap](goal).
+@isnad1 id=ex.2h4v.s6.a0268d69a309 from=translated src=- shape=8dfa1dfd vocab=8ad9d12c
+-/
 theorem exists_transportPlan_cost_eq_integral_abs_cdfGap
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (μ : AtomicLaw ι) (ν : AtomicLaw κ) (hμ : μ.Valid) (hν : ν.Valid) :

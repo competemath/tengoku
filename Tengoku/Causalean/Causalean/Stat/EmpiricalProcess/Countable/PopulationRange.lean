@@ -24,6 +24,7 @@ set's mass](hyp:htest), then [f lies between l and u almost everywhere and
 is integrable](goal).
 
 No integrability of f is assumed.
+@isnad1 id=and.3h5v.s7.e196dcef7cda from=translated src=- shape=467131c4 vocab=fa879763
 -/
 theorem tested_integrals_ae_range {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (f : Ω → ℝ) (hf : Measurable f)

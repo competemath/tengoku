@@ -39,7 +39,9 @@ noncomputable def maximizerOrZero {A : Type*} [Zero A] (f : A → ℝ) : A :=
 -- @node: poissonCell_linear_coercive_bound
 /-- A positive-mean Poisson cell log likelihood is bounded above by a linearly
 coercive function. This is the elementary tail estimate used in the finite
-Poisson maximizer existence argument. -/
+Poisson maximizer existence argument.
+@isnad1 id=le.1h2v.s6.a34321dca950 from=translated src=- shape=581258bb vocab=dfa22825
+-/
 lemma poissonCell_linear_coercive_bound (m x : ℝ) (hm : 0 < m) :
     m * x - Real.exp x ≤ (m + 1) ^ 2 / 2 - min m 1 * |x| := by
   have hc0 : 0 < min m 1 := lt_min hm zero_lt_one
@@ -59,7 +61,9 @@ lemma poissonCell_linear_coercive_bound (m x : ℝ) (hm : 0 < m) :
 
 -- @node: poissonCell_strictConcave_midpoint
 /-- Strict midpoint concavity of a positive-weight Poisson cell whenever the
-two linear predictors differ. -/
+two linear predictors differ.
+@isnad1 id=lt.2h4v.s7.d1daeaa33f52 from=translated src=- shape=f524b346 vocab=ce79bf11
+-/
 lemma poissonCell_strictConcave_midpoint (q m x y : ℝ) (hq : 0 < q) (hxy : x ≠ y) :
     (q * (m * x - Real.exp x) + q * (m * y - Real.exp y)) / 2 <
       q * (m * ((x + y) / 2) - Real.exp ((x + y) / 2)) := by
@@ -87,7 +91,9 @@ noncomputable def finitePoissonObjective {E I : Type*} [AddCommGroup E] [Module 
 
 -- @node: finitePoissonObjective_continuous
 /-- The finite Poisson criterion is continuous in its parameter whenever the
-linear design acts on a finite-dimensional normed space. -/
+linear design acts on a finite-dimensional normed space.
+@isnad1 id=continuo.0h5v.s6.9cbc09b6c6b5 from=translated src=- shape=696a8dd1 vocab=78f07ed9
+-/
 @[fun_prop]
 lemma finitePoissonObjective_continuous {E I : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [Fintype I] (q m : I → ℝ) (A : E →ₗ[ℝ] (I → ℝ)) :
@@ -99,7 +105,9 @@ lemma finitePoissonObjective_continuous {E I : Type*} [NormedAddCommGroup E] [No
 /-- **Existence and uniqueness of the finite Poisson pseudo-true parameter.**  If
 [every cell weight is strictly positive](hyp:hq), [every cell mean is strictly positive](hyp:hm),
 and [the linear design map is injective](hyp:hA), then [the finite Poisson criterion attains its
-supremum over the parameter space at a unique point](goal). -/
+supremum over the parameter space at a unique point](goal).
+@isnad1 id=existsun.3h5v.s8.b7ab0de9b856 from=translated src=- shape=673bba3e vocab=f3d39a8c
+-/
 lemma finitePoissonObjective_exists_unique_max {E I : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [Fintype I] [Nonempty I]
@@ -261,7 +269,9 @@ lemma finitePoissonObjective_exists_unique_max {E I : Type*}
   exact (not_lt_of_ge (hxglobal mid)) hmid'
 
 -- @node: finitePoissonObjective_score
-/-- Every directional score vanishes at a global maximizer. -/
+/-- Every directional score vanishes at a global maximizer.
+@isnad1 id=eq.1h7v.s8.2ffe747776f1 from=translated src=- shape=89b2ae1f vocab=3a4bfb59
+-/
 lemma finitePoissonObjective_score {E I : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [Fintype I]
     (q m : I → ℝ) (A : E →ₗ[ℝ] (I → ℝ)) (x d : E)
@@ -299,7 +309,9 @@ lemma finitePoissonObjective_score {E I : Type*}
 
 -- @node: finitePoissonObjective_isMax_of_score
 /-- For a nonnegative weighted Poisson objective, vanishing of every
-directional score is sufficient for global maximality. -/
+directional score is sufficient for global maximality.
+@isnad1 id=le.2h7v.s8.535984f69a2c from=translated src=- shape=b9901044 vocab=a1c02ac8
+-/
 lemma finitePoissonObjective_isMax_of_score {E I : Type*}
     [AddCommGroup E] [Module ℝ E] [Fintype I]
     (q m : I → ℝ) (A : E →ₗ[ℝ] (I → ℝ)) (x : E)
@@ -331,7 +343,9 @@ lemma finitePoissonObjective_isMax_of_score {E I : Type*}
   linarith
 
 /-- A criterion with a unique global maximum is maximized uniquely by its total
-maximizer selector. -/
+maximizer selector.
+@isnad1 id=isunique.1h2v.s5.214c6b123cf5 from=translated src=- shape=975d11cc vocab=1ec37cf1
+-/
 lemma uniqueGlobalMax_maximizerOrZero {E : Type*} [Zero E] (f : E → ℝ)
     (h : ∃! x : E, ∀ y, f y ≤ f x) :
     IsUniqueGlobalMax f (maximizerOrZero f) := by

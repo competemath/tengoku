@@ -27,7 +27,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [DecidableEq ι]
 omit [DecidableEq ι] in
 /-- For a [measurable mark](hyp:hg) with [absolute value at most one](hyp:hb), the
 eighth moment of its sum on [a finite coordinate subset](hyp:S) is [the sum of the
-integrals of all supported eight-slot products](goal) under [an iid probability law](hyp:μ). -/
+integrals of all supported eight-slot products](goal) under [an iid probability law](hyp:μ).
+@isnad1 id=eq.2h5v.s7.b6d41b8eec7c from=translated src=- shape=ab95b88d vocab=9c105960
+-/
 theorem integral_eighth_sum_eq_pattern_sum (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : Measurable g) (hb : ∀ y, |g y| ≤ 1) (S : Finset ι) :
     (∫ x : ι → Ω, (∑ r ∈ S, g (x r)) ^ 8 ∂Measure.pi (fun _ : ι => μ)) =
@@ -43,7 +45,9 @@ theorem integral_eighth_sum_eq_pattern_sum (μ : Measure Ω) [IsProbabilityMeasu
 /-- For a [measurable mark](hyp:hg) with [absolute value at most one](hyp:hb) and
 [zero mean](hyp:hcenter), the eighth moment of its sum on [a finite coordinate
 subset](hyp:S) is [bounded by the second-moment-weighted surviving patterns](goal)
-under [an iid probability law](hyp:μ). -/
+under [an iid probability law](hyp:μ).
+@isnad1 id=le.3h5v.s7.7f7e14ff9e52 from=translated src=- shape=cf3f8a5d vocab=fd0a5cc8
+-/
 theorem integral_eighth_sum_le_survivors (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : Measurable g) (hb : ∀ y, |g y| ≤ 1)
     (hcenter : (∫ y, g y ∂μ) = 0) (S : Finset ι) :
@@ -80,7 +84,9 @@ omit [DecidableEq ι] in
 /-- A [measurable mark](hyp:hg) with [absolute value at most one](hyp:hb) and
 [zero mean](hyp:hcenter) has its [eighth moment over a finite coordinate
 subset](hyp:S) [bounded by eight factorial times the first and fourth powers of
-subset size times its second moment](goal) under [an iid probability law](hyp:μ). -/
+subset size times its second moment](goal) under [an iid probability law](hyp:μ).
+@isnad1 id=le.3h5v.s8.eaef4146c830 from=translated src=- shape=ba048030 vocab=3e145290
+-/
 theorem centered_sum_eighth_moment_le (μ : Measure Ω) [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : Measurable g) (hb : ∀ y, |g y| ≤ 1)
     (hcenter : (∫ y, g y ∂μ) = 0) (S : Finset ι) :
@@ -96,7 +102,9 @@ omit [DecidableEq ι] in
 /-- A [measurable real mark](hyp:hf) [valued in the unit interval](hyp:h0,h1) has
 its [centered sum over any finite coordinate subset](hyp:S) [bounded in eighth
 moment by eight factorial times the fourth plus first powers of subset size times
-the one-mark variance](goal) under [an iid probability product law](hyp:μ). -/
+the one-mark variance](goal) under [an iid probability product law](hyp:μ).
+@isnad1 id=le.3h5v.s7.5e73787a5c9b from=translated src=- shape=ea378cb5 vocab=081ba072
+-/
 theorem iid_centered_bounded_sum_eighth_moment (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) (hf : Measurable f) (h0 : ∀ y, 0 ≤ f y) (h1 : ∀ y, f y ≤ 1)
     (S : Finset ι) :

@@ -54,7 +54,9 @@ def localizedThresholdSup {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
 
 /-- If [the score](hyp:hs), [offset](hyp:ho), and [mark](hyp:hm) are
 measurable, then [the affine closed-threshold integrand is measurable at
-every fixed cutoff and either orientation](goal). -/
+every fixed cutoff and either orientation](goal).
+@isnad1 id=measurab.3h6v.s5.46ce7fbde7e2 from=translated src=- shape=9628d811 vocab=c2477264
+-/
 @[fun_prop] theorem thresholdFunction_measurable {Ω : Type*} [MeasurableSpace Ω]
     (upper : Bool) (score offset mark : Ω → ℝ)
     (hs : Measurable score) (ho : Measurable offset) (hm : Measurable mark) (t : ℝ) :
@@ -66,7 +68,9 @@ every fixed cutoff and either orientation](goal). -/
 /-- If [a sequence of cutoffs approaches the cutoff t from the side given
 by the orientation](hyp:s,t,hs), then [at every observation the affine
 closed-threshold integrand at the sequence's cutoffs converges to its value
-at t](goal), with exact behavior retained at ties. -/
+at t](goal), with exact behavior retained at ties.
+@isnad1 id=tendsto.1h8v.s5.3aff1a64f16d from=translated src=- shape=c0bc8649 vocab=d45b451c
+-/
 theorem thresholdFunction_tendsto {Ω : Type*} (upper : Bool)
     (score offset mark : Ω → ℝ) (s : ℕ → ℝ) (t : ℝ)
     (hs : OneSidedApproximates upper s t) (x : Ω) :
@@ -96,7 +100,9 @@ and [the mark are integrable under μ](hyp:μ,hmark), and [a sequence of
 cutoffs approaches the cutoff t from the side given by the
 orientation](hyp:s,t,hs), then [the population integrals of the affine
 closed-threshold integrand at the sequence's cutoffs converge to its
-population integral at t](goal). -/
+population integral at t](goal).
+@isnad1 id=tendsto.4h8v.s7.41c62757df1d from=translated src=- shape=e2c60099 vocab=4757cd57
+-/
 theorem thresholdFunction_integral_tendsto {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (upper : Bool) (score offset mark : Ω → ℝ)
     (hscore : Measurable score) (hoffset : Integrable offset μ)
@@ -136,7 +142,9 @@ cutoff set](hyp:T), [population loss](hyp:loss), and [radius z](hyp:z),
 with loss at most z) that contains the one-sided boundary of the eligible
 set, approximates every eligible cutoff from the correct side both pointwise
 and in population integral, and gives exactly the same localized threshold
-supremum as the full eligible set for every finite sample](goal). -/
+supremum as the full eligible set for every finite sample](goal).
+@isnad1 id=ex.3h9v.s8.58a9c9cdb43d from=translated src=- shape=c5c1fa49 vocab=64085778
+-/
 theorem localizedThreshold_countable_reduction {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (upper : Bool) (score offset mark : Ω → ℝ)
     (hscore : Measurable score) (hoffset : Integrable offset μ)
@@ -233,6 +241,7 @@ size](hyp:n), [the localized threshold supremum is a measurable function of
 the sample](goal).
 
 The offset and mark may be unbounded at exceptional observation points.
+@isnad1 id=measurab.5h10v.s7.6997bf55423c from=translated src=- shape=d97ade79 vocab=dcf82c54
 -/
 @[fun_prop] theorem localizedThresholdSup_measurable_of_integrable
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) (upper : Bool)
@@ -274,6 +283,7 @@ size](hyp:n), [the localized threshold supremum is a measurable function of
 the sample](goal).
 
 This holds even at atoms of the score and at the localization boundary.
+@isnad1 id=measurab.5h11v.s7.297abe6c4ac0 from=translated src=- shape=a12a6666 vocab=db10aac0
 -/
 @[fun_prop] theorem localizedThresholdSup_measurable {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (upper : Bool)

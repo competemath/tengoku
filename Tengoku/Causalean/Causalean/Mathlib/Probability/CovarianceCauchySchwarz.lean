@@ -32,7 +32,9 @@ namespace Causalean.Mathlib
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 
 /-- **Cauchy–Schwarz for covariance (squared form).** For square-integrable statistics under a
-finite measure, the squared covariance is at most the product of the two variances. -/
+finite measure, the squared covariance is at most the product of the two variances.
+@isnad1 id=le.2h5v.s7.85c9fdc1794d from=translated src=- shape=37c9c3a8 vocab=3b996a37
+-/
 theorem covariance_sq_le_variance_mul [IsFiniteMeasure μ] {X Y : Ω → ℝ}
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 μ) :
     covariance X Y μ ^ 2 ≤ variance X μ * variance Y μ := by
@@ -72,7 +74,9 @@ theorem covariance_sq_le_variance_mul [IsFiniteMeasure μ] {X Y : Ω → ℝ}
 /-- **Cauchy–Schwarz for covariance.** Under a finite measure, if [$X$ is
 square-integrable](hyp:hX) and [$Y$ is square-integrable](hyp:hY), then [the absolute value of
 their covariance is at most the product of their standard deviations,
-$|\mathrm{Cov}(X,Y)| \le \sqrt{\mathrm{Var}(X)} \cdot \sqrt{\mathrm{Var}(Y)}$](goal). -/
+$|\mathrm{Cov}(X,Y)| \le \sqrt{\mathrm{Var}(X)} \cdot \sqrt{\mathrm{Var}(Y)}$](goal).
+@isnad1 id=le.2h5v.s7.9d39224e5171 from=translated src=- shape=d74f1adf vocab=38dbec72
+-/
 theorem abs_covariance_le_sqrt_mul [IsFiniteMeasure μ] {X Y : Ω → ℝ}
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 μ) :
     |covariance X Y μ| ≤ Real.sqrt (variance X μ) * Real.sqrt (variance Y μ) := by

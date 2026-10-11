@@ -33,7 +33,9 @@ def centralCutoff : ℚ := 8
 def reflectInterval (I : RatInterval) : RatInterval :=
   (RatInterval.point 1).sub I
 
-/-- If an interval contains `x`, its reflection contains `1 - x`. -/
+/-- If an interval contains `x`, its reflection contains `1 - x`.
+@isnad1 id=contains.1h2v.s4.3bda441a8375 from=translated src=- shape=51eca703 vocab=b85f02da
+-/
 theorem reflectInterval_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) :
     (reflectInterval I).Contains (1 - x) := by
   rcases hx with ⟨hlo, hhi⟩
@@ -42,7 +44,9 @@ theorem reflectInterval_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) :
     Rat.cast_one]
   exact ⟨sub_le_sub_left hhi 1, sub_le_sub_left hlo 1⟩
 
-/-- An enclosure of `Φ(x)` reflects to an enclosure of `Φ(-x)`. -/
+/-- An enclosure of `Φ(x)` reflects to an enclosure of `Φ(-x)`.
+@isnad1 id=contains.1h2v.s4.9277044ffa23 from=translated src=- shape=1b101d55 vocab=09b510fc
+-/
 theorem reflectInterval_stdNormalCDF_sound {I : RatInterval} {x : ℝ}
     (hx : I.Contains (Causalean.Mathlib.stdNormalCDF x)) :
     (reflectInterval I).Contains (Causalean.Mathlib.stdNormalCDF (-x)) := by
@@ -50,14 +54,18 @@ theorem reflectInterval_stdNormalCDF_sound {I : RatInterval} {x : ℝ}
   exact reflectInterval_sound hx
 
 /-- At [a rational endpoint](hyp:q), [its central-or-tail classification](goal)
-says that its absolute value is at most the cutoff or strictly above it. -/
+says that its absolute value is at most the cutoff or strictly above it.
+@isnad1 id=or.0h1v.s4.2f15fc791eb6 from=translated src=- shape=a0ac9b25 vocab=17a9d8bd
+-/
 theorem central_or_tail (q : ℚ) :
     |q| ≤ centralCutoff ∨ centralCutoff < |q| := by
   exact le_or_gt |q| centralCutoff
 
 /-- At [a rational endpoint](hyp:q) with [nonnegative value](hyp:hq),
 [the standard-normal CDF](goal) is one half plus the density normalization constant times the
-unnormalised Gaussian integral from zero to that endpoint. -/
+unnormalised Gaussian integral from zero to that endpoint.
+@isnad1 id=eq.1h1v.s7.98470c9bad76 from=translated src=- shape=29756aa1 vocab=74600535
+-/
 theorem stdNormalCDF_eq_half_add_scale_mul_integral (q : ℚ) (hq : 0 ≤ q) :
     Causalean.Mathlib.stdNormalCDF (q : ℝ) =
       (1 / 2 : ℝ) + (1 / Real.sqrt (2 * Real.pi)) *

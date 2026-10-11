@@ -21,6 +21,7 @@ independent draws in any selected coordinates leaves the joint law of the
 array of differences between the draws unchanged](goal).
 
 The statement is distributional and needs no moment assumptions.
+@isnad1 id=eq.2h5v.s8.8dcc1ae48124 from=translated src=- shape=2cac1cd0 vocab=3c674161
 -/
 theorem independent_copy_difference_map_sign_invariant
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]

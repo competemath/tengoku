@@ -97,7 +97,9 @@ private theorem commonFactor_of_ae_eq
 /-- For [four product reference measures](hyp:μX,μY,μV,μZ), [a measurable density](hyp:hd),
 [strict positivity almost everywhere](hyp:hpos), and [the two alternate-conditioning density
 factorizations](hyp:hXY,hXV), [the density has the factorization for independence from the combined
-second and third blocks given the fourth](goal). -/
+second and third blocks given the fourth](goal).
+@isnad1 id=factorsx.4h9v.s8.87c6a59e864a from=translated src=- shape=5dabe29d vocab=abbf5c20
+-/
 theorem positiveDensity_factorization_splice
     {X : Type uX} {Y : Type uY} {V : Type uV} {Z : Type uZ}
     [MeasurableSpace X] [MeasurableSpace Y] [MeasurableSpace V] [MeasurableSpace Z]

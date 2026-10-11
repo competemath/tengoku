@@ -34,19 +34,25 @@ abbrev DependsOn {Y : Type*} (S : Finset V) (f : (∀ i, X i) → Y) : Prop :=
   _root_.DependsOn f (S : Set V)
 
 /-- A function [depending on a smaller coordinate set](hyp:hf) and [that set's inclusion in a
-larger one](hyp:hST) [also depends only on the larger set](goal). -/
+larger one](hyp:hST) [also depends only on the larger set](goal).
+@isnad1 id=dependso.2h6v.s5.ab67889427d5 from=translated src=- shape=b94d21fd vocab=edbe0a37
+-/
 @[deprecated _root_.DependsOn.mono (since := "2026-09-15")]
 theorem DependsOn.mono {Y : Type*} {S T : Finset V} {f : (∀ i, X i) → Y}
     (hf : DependsOn S f) (hST : S ⊆ T) : DependsOn T f :=
   _root_.DependsOn.mono (by simpa using hST) hf
 
-/-- A [chosen coordinate](hyp:i) [can be read from an assignment using only that coordinate](goal). -/
+/-- A [chosen coordinate](hyp:i) [can be read from an assignment using only that coordinate](goal).
+@isnad1 id=dependso.0h3v.s5.ba569c4082b7 from=translated src=- shape=a32f435c vocab=cc0c7f2d
+-/
 theorem dependsOn_apply (i : V) :
     DependsOn (X := X) {i} (fun x : ∀ k, X k ↦ x i) :=
   fun _ _ hxy ↦ hxy i (by simp)
 
 /-- Two functions [depending on the same coordinate set](hyp:hf,hg), combined through a [fixed
-binary operation](hyp:op), [still depend only on that set](goal). -/
+binary operation](hyp:op), [still depend only on that set](goal).
+@isnad1 id=dependso.2h9v.s6.85c6526188a6 from=translated src=- shape=83277b1a vocab=f39635e4
+-/
 theorem DependsOn.combine {Y Z W : Type*} {S : Finset V}
     {f : (∀ i, X i) → Y} {g : (∀ i, X i) → Z}
     (hf : DependsOn S f) (hg : DependsOn S g) (op : Y → Z → W) :
@@ -60,7 +66,9 @@ those coordinates](goal). -/
 def coordinateProjection (S : Finset V) (x : ∀ i, X i) : ∀ i : S, X i :=
   fun i ↦ x i
 
-/-- A [finite coordinate set](hyp:S) [has a measurable assignment-restriction map](goal). -/
+/-- A [finite coordinate set](hyp:S) [has a measurable assignment-restriction map](goal).
+@isnad1 id=measurab.0h3v.s7.9ea360f242d0 from=translated src=- shape=f7b61076 vocab=3fdf2077
+-/
 @[fun_prop]
 theorem measurable_coordinateProjection (S : Finset V) :
     Measurable (coordinateProjection (X := X) S) := by
@@ -75,7 +83,9 @@ def coordinateExtension (S : Finset V) (x₀ : ∀ i, X i) (z : ∀ i : S, X i) 
   fun i ↦ if hi : i ∈ S then z ⟨i, hi⟩ else x₀ i
 
 /-- A [finite coordinate set](hyp:S) and an [anchor assignment](hyp:x₀) [have a measurable
-extension map from restricted to full assignments](goal). -/
+extension map from restricted to full assignments](goal).
+@isnad1 id=measurab.0h4v.s7.a182d58b3b40 from=translated src=- shape=792aa473 vocab=f3fc96bc
+-/
 @[fun_prop]
 theorem measurable_coordinateExtension (S : Finset V) (x₀ : ∀ i, X i) :
     Measurable (coordinateExtension (X := X) S x₀) := by
@@ -87,7 +97,9 @@ theorem measurable_coordinateExtension (S : Finset V) (x₀ : ∀ i, X i) :
     exact measurable_const
 
 /-- A [finite coordinate set](hyp:S), an [anchor assignment](hyp:x₀), and a [restricted
-assignment](hyp:z) [are recovered unchanged after extension followed by restriction](goal). -/
+assignment](hyp:z) [are recovered unchanged after extension followed by restriction](goal).
+@isnad1 id=eq.0h5v.s6.cfd5e724277b from=translated src=- shape=ea99be14 vocab=6ea24b02
+-/
 @[simp]
 theorem coordinateProjection_extension (S : Finset V) (x₀ : ∀ i, X i)
     (z : ∀ i : S, X i) :
@@ -97,7 +109,9 @@ theorem coordinateProjection_extension (S : Finset V) (x₀ : ∀ i, X i)
 
 /-- A function [depending only on a coordinate set](hyp:hf), together with an [anchor
 assignment](hyp:x₀) and a [full assignment](hyp:x), [has the same value after restricting and
-then extending that assignment](goal). -/
+then extending that assignment](goal).
+@isnad1 id=eq.1h7v.s6.43f6af83ae83 from=translated src=- shape=c589a7d8 vocab=43051ff3
+-/
 theorem DependsOn.coordinateExtension_projection {Y : Type*} {S : Finset V}
     {f : (∀ i, X i) → Y} (hf : DependsOn S f) (x₀ x : ∀ i, X i) :
     f (coordinateExtension S x₀ (coordinateProjection S x)) = f x := by
@@ -108,7 +122,9 @@ theorem DependsOn.coordinateExtension_projection {Y : Type*} {S : Finset V}
 
 /-- An [anchor assignment](hyp:x₀), a [measurable outcome map](hyp:hf), its [dependence only on a
 finite coordinate set](hyp:hdepends), and [equality of the two corresponding coordinate
-marginals](hyp:hproj) [imply equality of the outcome laws under the two measures](goal). -/
+marginals](hyp:hproj) [imply equality of the outcome laws under the two measures](goal).
+@isnad1 id=eq.3h8v.s9.07d4e6c5514a from=translated src=- shape=b850d4eb vocab=1624a16c
+-/
 theorem map_eq_of_map_coordinateProjection_eq
     {Y : Type*} [MeasurableSpace Y] {S : Finset V}
     {μ ν : Measure (∀ i, X i)} {f : (∀ i, X i) → Y}
@@ -136,7 +152,9 @@ theorem map_eq_of_map_coordinateProjection_eq
       exact hdepends.coordinateExtension_projection x₀ x
 
 /-- A [measurable source map](hyp:hf), a [measurable common downstream map](hyp:hmix), and
-[equality of the source laws](hyp:hlaw) [imply equality after the common downstream mapping](goal). -/
+[equality of the source laws](hyp:hlaw) [imply equality after the common downstream mapping](goal).
+@isnad1 id=eq.3h8v.s7.40fac1987164 from=translated src=- shape=81a739d0 vocab=220543cb
+-/
 theorem map_comp_eq_of_map_eq
     {Y Z : Type*} [MeasurableSpace Y] [MeasurableSpace Z]
     {μ ν : Measure (∀ i, X i)} {f : (∀ i, X i) → Y} {mix : Y → Z}
@@ -151,7 +169,9 @@ theorem map_comp_eq_of_map_eq
 
 /-- A [finite coordinate set](hyp:S), [measurable observational density](hyp:hf), [measurable
 comparison density](hyp:hg), and [equality after integrating out all complementary coordinates](hyp:hmarginal)
-[imply equality of the projected measures induced by those densities](goal). -/
+[imply equality of the projected measures induced by those densities](goal).
+@isnad1 id=eq.3h6v.s9.821edfc5b370 from=translated src=- shape=92e34b5e vocab=bc49a7d7
+-/
 theorem map_coordinateProjection_withDensity_eq_of_lmarginal_eq
     [Fintype V] {μ : ∀ i, Measure (X i)} [∀ i, SigmaFinite (μ i)]
     (S : Finset V) {f g : (∀ i, X i) → ℝ≥0∞}

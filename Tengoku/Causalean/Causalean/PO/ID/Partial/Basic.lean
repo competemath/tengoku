@@ -26,7 +26,9 @@ open Causalean.Stat.AttainableSet
 namespace Causalean
 namespace PartialID
 
-/-- A feasible parameter's objective value belongs to the identified set. -/
+/-- A feasible parameter's objective value belongs to the identified set.
+@isnad1 id=mem.0h5v.s4.b22398fd6eec from=translated src=- shape=f8619c4a vocab=87d25c00
+-/
 lemma mem_identifiedSet {α : Type*} {obj : α → ℝ} {feasible : α → Prop}
     {x : α} (hx : feasible x) : obj x ∈ IdentifiedSet obj feasible :=
   ⟨⟨x, hx⟩, rfl⟩
@@ -34,7 +36,9 @@ lemma mem_identifiedSet {α : Type*} {obj : α → ℝ} {feasible : α → Prop}
 /-- **Sandwich → membership.**  The literal content of a two-sided bound
 `L ≤ θ ≤ U`: the target functional `θ` lies in the reported interval `[L, U]`.
 Names the step that turns the inequality pair every concrete bound produces into
-the `Set.Icc` vocabulary. -/
+the `Set.Icc` vocabulary.
+@isnad1 id=mem.2h3v.s4.87de8922a43e from=translated src=- shape=79ebba36 vocab=698927a9
+-/
 theorem mem_Icc_of_sandwich {θ L U : ℝ} (hlo : L ≤ θ) (hhi : θ ≤ U) :
     θ ∈ Set.Icc L U :=
   ⟨hlo, hhi⟩
@@ -42,7 +46,9 @@ theorem mem_Icc_of_sandwich {θ L U : ℝ} (hlo : L ≤ θ) (hhi : θ ≤ U) :
 /-- **Worst/best case over a nuisance.**  If a set `s ⊆ ℝ` is bounded, every one
 of its members lies between `sInf s` and `sSup s`.  Applied with `s = range obj`
 this is the engine form of "the truth is bracketed by the extreme feasible
-values". -/
+values".
+@isnad1 id=mem.3h2v.s5.2bb325f49c07 from=translated src=- shape=ecfed329 vocab=166d7cad
+-/
 theorem mem_Icc_csInf_csSup {s : Set ℝ} {y : ℝ}
     (hb : BddBelow s) (ha : BddAbove s) (hy : y ∈ s) :
     y ∈ Set.Icc (sInf s) (sSup s) :=
@@ -52,7 +58,9 @@ variable {α : Type*} {obj : α → ℝ} {feasible : α → Prop}
 
 /-- **Outer bound.**  If the objective is uniformly bounded below by `L` and
 above by `U` over the feasible set, the identified set is contained
-in `[L, U]`. -/
+in `[L, U]`.
+@isnad1 id=le.2h5v.s5.420614260c12 from=translated src=- shape=090b5327 vocab=6b8acf56
+-/
 theorem identifiedSet_subset_Icc {L U : ℝ}
     (hL : ∀ x, feasible x → L ≤ obj x) (hU : ∀ x, feasible x → obj x ≤ U) :
     IdentifiedSet obj feasible ⊆ Set.Icc L U := by
@@ -69,7 +77,9 @@ members](hyp:hconn). Then [the identified interval — the set of all objective 
 attainable over the feasible parameter set — equals the closed interval `[L, U]`
 exactly](goal). Order-connectedness is the abstract substitute for "no gaps", supplied
 concretely by `identifiedSet_param_Icc` through continuity + connectedness of a
-parameterization. -/
+parameterization.
+@isnad1 id=eq.5h5v.s6.e1daa9a6f115 from=translated src=- shape=d097e106 vocab=ffd8781f
+-/
 theorem identifiedSet_eq_Icc {L U : ℝ}
     (hL : ∀ x, feasible x → L ≤ obj x) (hU : ∀ x, feasible x → obj x ≤ U)
     (hLmem : L ∈ IdentifiedSet obj feasible)
@@ -86,7 +96,9 @@ objective stays between `L` and `U` at every point along the path](hyp:hbound). 
 identified set is exactly `[L, U]`](goal). This is the canonical
 partial-identification "mixing" shape: an unidentified nuisance ranging over a connected
 parameter set sweeps the objective continuously across the whole interval between its
-extreme values. -/
+extreme values.
+@isnad1 id=eq.5h6v.s7.c90b9ff2566f from=translated src=- shape=6a9ae35c vocab=dc86d113
+-/
 theorem identifiedSet_param_Icc {γ : ℝ → α} {L U : ℝ}
     (hfeas : ∀ x, feasible x ↔ ∃ t ∈ Set.Icc (0 : ℝ) 1, γ t = x)
     (hcont : ContinuousOn (fun t => obj (γ t)) (Set.Icc 0 1))
@@ -110,16 +122,24 @@ theorem identifiedSet_param_Icc {γ : ℝ → α} {L U : ℝ}
     exact ⟨(hbound t ht).1, (hbound t ht).2⟩
   · exact hord.out ⟨0, by norm_num, hL⟩ ⟨1, by norm_num, hU⟩
 
-/-- Deprecated former name of `mem_identifiedSet`. -/
+/-- Deprecated former name of `mem_identifiedSet`.
+@isnad1 id=mem.0h5v.s4.b22398fd6eec from=translated src=- shape=f8619c4a vocab=87d25c00
+-/
 @[deprecated (since := "2026-09-16")]
 alias mem_identifiedInterval := mem_identifiedSet
-/-- Deprecated former name of `identifiedSet_subset_Icc`. -/
+/-- Deprecated former name of `identifiedSet_subset_Icc`.
+@isnad1 id=le.2h5v.s5.420614260c12 from=translated src=- shape=090b5327 vocab=6b8acf56
+-/
 @[deprecated (since := "2026-09-16")]
 alias identifiedInterval_subset_Icc := identifiedSet_subset_Icc
-/-- Deprecated former name of `identifiedSet_eq_Icc`. -/
+/-- Deprecated former name of `identifiedSet_eq_Icc`.
+@isnad1 id=eq.5h5v.s6.e1daa9a6f115 from=translated src=- shape=d097e106 vocab=ffd8781f
+-/
 @[deprecated (since := "2026-09-16")]
 alias identifiedInterval_eq_Icc := identifiedSet_eq_Icc
-/-- Deprecated former name of `identifiedSet_param_Icc`. -/
+/-- Deprecated former name of `identifiedSet_param_Icc`.
+@isnad1 id=eq.5h6v.s7.c90b9ff2566f from=translated src=- shape=6a9ae35c vocab=dc86d113
+-/
 @[deprecated (since := "2026-09-16")]
 alias identifiedInterval_param_Icc := identifiedSet_param_Icc
 

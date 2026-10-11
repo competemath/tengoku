@@ -66,7 +66,9 @@ expected by the pre-refactor proof scripts.  Definitionally equal (by
 def ip (c : Cells I T) (A B : (I × T) → ℝ) : ℝ :=
   ∑ r ∈ c.observed, c.weight r * A r * B r
 
-/-- `Cells.ip` is definitionally equal to `WeightedSupport.ip`. -/
+/-- `Cells.ip` is definitionally equal to `WeightedSupport.ip`.
+@isnad1 id=eq.0h5v.s6.5d8f26046a01 from=translated src=- shape=0317917b vocab=1c09ea9b
+-/
 lemma ip_eq_weighted (c : Cells I T) (A B : (I × T) → ℝ) :
     ip c A B = Causalean.Stat.Weighted.WeightedSupport.ip c A B := rfl
 
@@ -79,7 +81,9 @@ def ipMat (c : Cells I T) (A B : Fin K → (I × T) → ℝ) :
     Matrix (Fin K) (Fin K) ℝ :=
   fun j k => c.ip (A j) (B k)
 
-/-- `Cells.ipMat` is definitionally equal to `WeightedSupport.ipMat`. -/
+/-- `Cells.ipMat` is definitionally equal to `WeightedSupport.ipMat`.
+@isnad1 id=eq.0h6v.s6.0219796e1f8f from=translated src=- shape=ac5cd493 vocab=bb724ee9
+-/
 lemma ipMat_eq_weighted (c : Cells I T) (A B : Fin K → (I × T) → ℝ) :
     ipMat c A B = Causalean.Stat.Weighted.WeightedSupport.ipMat c A B := rfl
 
@@ -91,78 +95,106 @@ panel-level lemmas whose statements use `Cells.ip` head-symbol (matching
 the goals that arise from `c.ip` dot-notation on `Cells I T`). -/
 
 /-- The panel weighted inner product unfolds to the weighted sum over observed
-unit-period cells. -/
+unit-period cells.
+@isnad1 id=eq.0h5v.s7.113bd3b40b83 from=translated src=- shape=d74a8c6e vocab=97abc6c4
+-/
 @[simp] lemma ip_def (c : Cells I T) (A B : (I × T) → ℝ) :
     c.ip A B = ∑ r ∈ c.observed, c.weight r * A r * B r := rfl
 
-/-- The panel weighted inner product is symmetric in its two arrays. -/
+/-- The panel weighted inner product is symmetric in its two arrays.
+@isnad1 id=eq.0h5v.s5.b1f6a71ae742 from=translated src=- shape=ec7ce656 vocab=625e28b7
+-/
 lemma ip_symm (c : Cells I T) (A B : (I × T) → ℝ) :
     c.ip A B = c.ip B A :=
   Causalean.Stat.Weighted.WeightedSupport.ip_symm c A B
 
-/-- The panel weighted inner product is additive in its left array. -/
+/-- The panel weighted inner product is additive in its left array.
+@isnad1 id=eq.0h6v.s6.ccce3ed242f1 from=translated src=- shape=ba547d7f vocab=4d2c8f48
+-/
 lemma ip_add_left (c : Cells I T) (A A' B : (I × T) → ℝ) :
     c.ip (A + A') B = c.ip A B + c.ip A' B :=
   Causalean.Stat.Weighted.WeightedSupport.ip_add_left c A A' B
 
-/-- The panel weighted inner product is additive in its right array. -/
+/-- The panel weighted inner product is additive in its right array.
+@isnad1 id=eq.0h6v.s6.e8fd160546e8 from=translated src=- shape=d1aa067a vocab=4d2c8f48
+-/
 lemma ip_add_right (c : Cells I T) (A B B' : (I × T) → ℝ) :
     c.ip A (B + B') = c.ip A B + c.ip A B' :=
   Causalean.Stat.Weighted.WeightedSupport.ip_add_right c A B B'
 
-/-- The panel weighted inner product is homogeneous in its left array. -/
+/-- The panel weighted inner product is homogeneous in its left array.
+@isnad1 id=eq.0h6v.s6.aa7913b4fcbe from=translated src=- shape=772c5fec vocab=634b9d03
+-/
 lemma ip_smul_left (c : Cells I T) (s : ℝ) (A B : (I × T) → ℝ) :
     c.ip (s • A) B = s * c.ip A B :=
   Causalean.Stat.Weighted.WeightedSupport.ip_smul_left c s A B
 
-/-- The panel weighted inner product is homogeneous in its right array. -/
+/-- The panel weighted inner product is homogeneous in its right array.
+@isnad1 id=eq.0h6v.s6.73ea2373fe35 from=translated src=- shape=48acdb28 vocab=634b9d03
+-/
 lemma ip_smul_right (c : Cells I T) (s : ℝ) (A B : (I × T) → ℝ) :
     c.ip A (s • B) = s * c.ip A B :=
   Causalean.Stat.Weighted.WeightedSupport.ip_smul_right c s A B
 
-/-- The self inner product of any panel array is nonnegative. -/
+/-- The self inner product of any panel array is nonnegative.
+@isnad1 id=le.0h4v.s5.0f7d70bca6dd from=translated src=- shape=f21a1a99 vocab=9bc0a180
+-/
 lemma ip_self_nonneg (c : Cells I T) (A : (I × T) → ℝ) :
     0 ≤ c.ip A A :=
   Causalean.Stat.Weighted.WeightedSupport.ip_self_nonneg c A
 
 /-- For [a panel cell structure](hyp:c) and [a panel array `A`](hyp:A), [the self inner product
-`c.ip A A` is zero exactly when `A` vanishes on every observed cell of `c`](goal). -/
+`c.ip A A` is zero exactly when `A` vanishes on every observed cell of `c`](goal).
+@isnad1 id=iff.0h4v.s6.08f290de1082 from=translated src=- shape=0171cb7b vocab=60f6cec9
+-/
 lemma ip_self_eq_zero_iff (c : Cells I T) (A : (I × T) → ℝ) :
     c.ip A A = 0 ↔ ∀ r ∈ c.observed, A r = 0 :=
   Causalean.Stat.Weighted.WeightedSupport.ip_self_eq_zero_iff c A
 
 /-- The matrix-valued panel inner product has entries equal to scalar inner
-products of the corresponding array columns. -/
+products of the corresponding array columns.
+@isnad1 id=eq.0h8v.s6.8909dc0e1248 from=translated src=- shape=b7be2e71 vocab=8f311eb6
+-/
 @[simp] lemma ipMat_apply (c : Cells I T) (A B : Fin K → (I × T) → ℝ)
     (j k : Fin K) :
     c.ipMat A B j k = c.ip (A j) (B k) := rfl
 
 /-- Swapping the two tuples of arrays transposes the matrix-valued panel inner
-product. -/
+product.
+@isnad1 id=eq.0h6v.s6.bb19a45b0a12 from=translated src=- shape=483c3a4a vocab=d6d9e7b2
+-/
 lemma ipMat_transpose (c : Cells I T) (A B : Fin K → (I × T) → ℝ) :
     (c.ipMat A B).transpose = c.ipMat B A :=
   Causalean.Stat.Weighted.WeightedSupport.ipMat_transpose c A B
 
 /-- The matrix-valued panel inner product is additive in its left tuple of
-arrays. -/
+arrays.
+@isnad1 id=eq.0h7v.s7.2efaa1aa9710 from=translated src=- shape=f4be4b06 vocab=538cf1d6
+-/
 lemma ipMat_add_left (c : Cells I T) (A A' B : Fin K → (I × T) → ℝ) :
     c.ipMat (A + A') B = c.ipMat A B + c.ipMat A' B :=
   Causalean.Stat.Weighted.WeightedSupport.ipMat_add_left c A A' B
 
 /-- The matrix-valued panel inner product is additive in its right tuple of
-arrays. -/
+arrays.
+@isnad1 id=eq.0h7v.s7.37d2c2d2bdd6 from=translated src=- shape=75993317 vocab=538cf1d6
+-/
 lemma ipMat_add_right (c : Cells I T) (A B B' : Fin K → (I × T) → ℝ) :
     c.ipMat A (B + B') = c.ipMat A B + c.ipMat A B' :=
   Causalean.Stat.Weighted.WeightedSupport.ipMat_add_right c A B B'
 
 /-- The matrix-valued panel inner product is homogeneous in its left tuple of
-arrays. -/
+arrays.
+@isnad1 id=eq.0h7v.s7.bd5c02ce3797 from=translated src=- shape=a9a795a7 vocab=e58b013b
+-/
 lemma ipMat_smul_left (c : Cells I T) (s : ℝ) (A B : Fin K → (I × T) → ℝ) :
     c.ipMat (s • A) B = s • c.ipMat A B :=
   Causalean.Stat.Weighted.WeightedSupport.ipMat_smul_left c s A B
 
 /-- The matrix-valued panel inner product is homogeneous in its right tuple of
-arrays. -/
+arrays.
+@isnad1 id=eq.0h7v.s7.10a913de0289 from=translated src=- shape=64216592 vocab=e58b013b
+-/
 lemma ipMat_smul_right (c : Cells I T) (s : ℝ) (A B : Fin K → (I × T) → ℝ) :
     c.ipMat A (s • B) = s • c.ipMat A B :=
   Causalean.Stat.Weighted.WeightedSupport.ipMat_smul_right c s A B

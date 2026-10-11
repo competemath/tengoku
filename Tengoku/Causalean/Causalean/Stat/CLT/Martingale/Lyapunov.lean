@@ -27,7 +27,9 @@ variable {Ω : ℕ → Type*} {mΩ : (n : ℕ) → MeasurableSpace (Ω n)}
 
 /-- If [the predictable quadratic variation equals a deterministic scalar in every
 row](hyp:hEq) and [those scalars converge to one](hyp:hv), then [the predictable quadratic
-variation converges in probability to one](goal). -/
+variation converges in probability to one](goal).
+@isnad1 id=tendstoi.2h5v.s7.515eade1739c from=translated src=- shape=de4e5ba4 vocab=1aab814e
+-/
 theorem predictableQuadraticVariation_tendstoInProbability_of_ae_eq
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ) (v : ℕ → ℝ)
@@ -52,7 +54,9 @@ theorem predictableQuadraticVariation_tendstoInProbability_of_ae_eq
 
 /-- If [every increment has a finite fourth moment](hyp:hFourth) and [the conditional
 fourth-moment row sums converge in probability to zero](hyp:hFourthConditional), then [the
-conditional Lindeberg condition holds at every positive threshold](goal). -/
+conditional Lindeberg condition holds at every positive threshold](goal).
+@isnad1 id=tendstoi.3h5v.s7.23a42a5dd38e from=translated src=- shape=6dca449c vocab=53b735f0
+-/
 theorem conditionalLindeberg_of_conditionalFourthMoment
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ)
@@ -201,7 +205,9 @@ theorem conditionalLindeberg_of_conditionalFourthMoment
 
 /-- If [every increment has a finite fourth moment](hyp:hFourth) and [the deterministic
 sum of unconditional fourth moments tends to zero](hyp:hFourthSum), then [the conditional
-fourth-moment row sums converge in probability to zero](goal). -/
+fourth-moment row sums converge in probability to zero](goal).
+@isnad1 id=tendstoi.2h4v.s7.bc96952c163a from=translated src=- shape=f51b7427 vocab=69a04746
+-/
 theorem conditionalFourthMoment_tendstoInProbability_of_fourthMomentSum
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ)
@@ -283,7 +289,9 @@ theorem conditionalFourthMoment_tendstoInProbability_of_fourthMomentSum
 
 /-- If [every increment has a finite fourth moment](hyp:hFourth) and [the deterministic
 sum of unconditional fourth moments tends to zero](hyp:hFourthSum), then [the conditional
-Lindeberg condition holds at every positive threshold](goal). -/
+Lindeberg condition holds at every positive threshold](goal).
+@isnad1 id=tendstoi.3h5v.s7.81923f2abf31 from=translated src=- shape=76ee3915 vocab=223dc715
+-/
 theorem conditionalLindeberg_of_fourthMomentSum
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ)

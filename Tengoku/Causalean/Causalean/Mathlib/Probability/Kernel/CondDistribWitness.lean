@@ -93,14 +93,18 @@ noncomputable def witnessKernel (μ : Measure Ω) [IsFiniteMeasure μ]
 
 omit [StandardBorelSpace 𝒴] [Nonempty 𝒴] in
 /-- Evaluating the witness kernel at a conditioning pair gives the residual conditional law
-pushed through the corresponding structural slice. -/
+pushed through the corresponding structural slice.
+@isnad1 id=eq.1h10v.s7.dd81391d1b1a from=translated src=- shape=a0c3888b vocab=9142e5d0
+-/
 @[simp]
 lemma witnessKernel_apply (μ : Measure Ω) [IsFiniteMeasure μ]
     (Z : Ω → 𝒵) (C : Ω → 𝒞) {h : 𝒳 → 𝒵 → 𝒞 → 𝒴}
     (hh : Measurable (fun p : (𝒳 × 𝒵) × 𝒞 => h p.1.1 p.1.2 p.2)) (p : 𝒳 × 𝒵) :
     witnessKernel μ (Z := Z) (C := C) hh p = (condDistrib C Z μ p.2).map (h p.1 p.2) := rfl
 
-/-- For every [sample space, treatment space, covariate space, nonempty standard Borel residual-coordinate space, and outcome space, each equipped with the stated measurable structure](hyp:Ω,𝒳,𝒵,𝒞,𝒴), [finite sampling measure](hyp:μ), [covariate map](hyp:Z), [residual-coordinate map](hyp:C), [structural response map](hyp:h), and [joint measurability of that response map](hyp:hh), [the witness kernel is a Markov kernel](goal). -/
+/-- For every [sample space, treatment space, covariate space, nonempty standard Borel residual-coordinate space, and outcome space, each equipped with the stated measurable structure](hyp:Ω,𝒳,𝒵,𝒞,𝒴), [finite sampling measure](hyp:μ), [covariate map](hyp:Z), [residual-coordinate map](hyp:C), [structural response map](hyp:h), and [joint measurability of that response map](hyp:hh), [the witness kernel is a Markov kernel](goal).
+@isnad1 id=ismarkov.1h9v.s7.3e7ac91b95e8 from=translated src=- shape=341675f4 vocab=7d862c0f
+-/
 instance instIsMarkovKernel_witnessKernel (μ : Measure Ω) [IsFiniteMeasure μ]
     {Z : Ω → 𝒵} {C : Ω → 𝒞} {h : 𝒳 → 𝒵 → 𝒞 → 𝒴}
     (hh : Measurable (fun p : (𝒳 × 𝒵) × 𝒞 => h p.1.1 p.1.2 p.2)) :
@@ -118,7 +122,9 @@ function `h`](hyp:hh), if [the conditional distribution of `C` given the pair `(
 almost everywhere with the conditional distribution of `C` given `Z` alone — conditional
 independence of `C` from `X` given `Z`](hyp:hCI), then [the conditional distribution of the
 outcome `h(X,Z,C)` given `(X,Z)` agrees almost everywhere with the pushforward, by the map
-`h x z`, of the conditional distribution of `C` given `Z`](goal). -/
+`h x z`, of the conditional distribution of `C` given `Z`](goal).
+@isnad1 id=eventual.5h10v.s8.c0f49ce988fb from=translated src=- shape=8325e6d7 vocab=6c0c70ed
+-/
 theorem condDistrib_map_of_condDistrib_fst_eq
     (μ : Measure Ω) [IsFiniteMeasure μ]
     {X : Ω → 𝒳} {Z : Ω → 𝒵} {C : Ω → 𝒞} {h : 𝒳 → 𝒵 → 𝒞 → 𝒴}
@@ -196,7 +202,9 @@ the map `H z`, of the conditional distribution of `C` given `Z`](goal).
 
 This is the `X`-free specialization of `condDistrib_map_of_condDistrib_fst_eq`: with the
 conditioning variable `Z` equal to the full information used to split `Y`, no
-conditional-independence hypothesis is needed (the trivial `X` carries no information). -/
+conditional-independence hypothesis is needed (the trivial `X` carries no information).
+@isnad1 id=eventual.3h8v.s7.9156919fa918 from=translated src=- shape=c99a34b8 vocab=5b14a0d7
+-/
 theorem condDistrib_map_of_funext
     (μ : Measure Ω) [IsFiniteMeasure μ]
     {Z : Ω → 𝒵} {C : Ω → 𝒞} {H : 𝒵 → 𝒞 → 𝒴}

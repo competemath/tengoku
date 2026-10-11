@@ -106,7 +106,9 @@ structure NormalCDFCertificate (q : ℚ) where
   checked : (normalCDFInterval q schedule).Subinterval enclosure
 
 /-- The executable density-scale interval contains the mathematical constant
-`1 / sqrt (2π)`. -/
+`1 / sqrt (2π)`.
+@isnad1 id=contains.0h1v.s5.b98382d528e1 from=translated src=- shape=83fe99f5 vocab=1fbeadd8
+-/
 theorem normalDensityScaleInterval_sound (s : NormalCDFSchedule) :
     (normalDensityScaleInterval s).Contains (1 / Real.sqrt (2 * Real.pi)) := by
   dsimp [normalDensityScaleInterval]
@@ -117,7 +119,9 @@ theorem normalDensityScaleInterval_sound (s : NormalCDFSchedule) :
     (Transcendental.piInterval_sound s.fuel)
 
 /-- Every computed Gaussian quadrature node contains the corresponding value
-of the rescaled standard-normal density. -/
+of the rescaled standard-normal density.
+@isnad1 id=contains.1h3v.s5.a0b7b281b3e2 from=translated src=- shape=3a5f92ab vocab=40277386
+-/
 theorem normalDensityNode_sound (q : ℚ) (hq : 0 ≤ q)
     (s : NormalCDFSchedule) (k : ℕ) :
     (normalDensityNode q s k).Contains
@@ -134,7 +138,9 @@ theorem normalDensityNode_sound (q : ℚ) (hq : 0 ≤ q)
   all_goals ring
 
 /-- The rescaled standard-normal density on the unit interval is Lipschitz
-with the exact rational constant `q³` for every nonnegative rational `q`. -/
+with the exact rational constant `q³` for every nonnegative rational `q`.
+@isnad1 id=le.3h3v.s7.fe673c45ff90 from=translated src=- shape=9bd2112c vocab=4abbabd2
+-/
 theorem rescaledNormalDensity_lipschitz (q : ℚ) (hq : 0 ≤ q) :
     ∀ u ∈ Icc (0 : ℝ) 1, ∀ v ∈ Icc (0 : ℝ) 1,
       |(q : ℝ) * Causalean.Mathlib.stdNormalPDF ((q : ℝ) * u) -
@@ -192,7 +198,9 @@ theorem rescaledNormalDensity_lipschitz (q : ℚ) (hq : 0 ≤ q) :
   simpa [Real.norm_eq_abs, abs_sub_comm] using hmv
 
 /-- The nonnegative-endpoint quadrature interval contains the exact integral
-of the standard-normal density from zero to the endpoint. -/
+of the standard-normal density from zero to the endpoint.
+@isnad1 id=contains.1h2v.s6.6e3c36f41cf6 from=translated src=- shape=06cd861a vocab=4a5d80be
+-/
 theorem nonnegativeNormalIntegralInterval_sound (q : ℚ) (hq : 0 ≤ q)
     (s : NormalCDFSchedule) :
     (nonnegativeNormalIntegralInterval q hq s).Contains
@@ -215,7 +223,9 @@ theorem nonnegativeNormalIntegralInterval_sound (q : ℚ) (hq : 0 ≤ q)
   simpa [nonnegativeNormalIntegralInterval, f] using hre
 
 /-- For a nonnegative real endpoint, its standard-normal CDF is one half plus
-the integral of the rescaled density over the unit interval. -/
+the integral of the rescaled density over the unit interval.
+@isnad1 id=eq.1h1v.s6.84852fde49aa from=translated src=- shape=10187f97 vocab=40e56243
+-/
 theorem stdNormalCDF_eq_half_add_rescaled_integral (q : ℚ) (hq : 0 ≤ q) :
     Causalean.Mathlib.stdNormalCDF (q : ℝ) =
       (1 / 2 : ℝ) + ∫ u in (0 : ℝ)..1,
@@ -269,7 +279,9 @@ theorem stdNormalCDF_eq_half_add_rescaled_integral (q : ℚ) (hq : 0 ≤ q) :
   ring
 
 /-- The internally evaluated interval soundly contains the standard-normal CDF
-at its rational endpoint; no external numerical approximation is assumed. -/
+at its rational endpoint; no external numerical approximation is assumed.
+@isnad1 id=contains.0h2v.s3.ff1641aa5428 from=translated src=- shape=bf61600e vocab=d5b4ab7f
+-/
 theorem normalCDFInterval_sound (q : ℚ) (s : NormalCDFSchedule) :
     (normalCDFInterval q s).Contains
       (Causalean.Mathlib.stdNormalCDF (q : ℝ)) := by
@@ -295,13 +307,17 @@ theorem normalCDFInterval_sound (q : ℚ) (s : NormalCDFSchedule) :
     rw [hneg, Causalean.Mathlib.stdNormalCDF_neg]
     simpa [normalCDFInterval, hq] using hsub
 
-/-- Given [a checked rational certificate at a rational endpoint](hyp:c), [the certificate's reported interval contains the true standard-normal cumulative probability at that endpoint](goal). -/
+/-- Given [a checked rational certificate at a rational endpoint](hyp:c), [the certificate's reported interval contains the true standard-normal cumulative probability at that endpoint](goal).
+@isnad1 id=contains.0h2v.s3.01566fe1450e from=translated src=- shape=628cf842 vocab=59ffab14
+-/
 theorem NormalCDFCertificate.sound {q : ℚ} (c : NormalCDFCertificate q) :
     c.enclosure.Contains (Causalean.Mathlib.stdNormalCDF (q : ℝ)) := by
   exact (normalCDFInterval_sound q c.schedule).mono c.checked
 
 /-- Subtracting two checked CDF enclosures contains the corresponding
-difference of standard-normal CDF values, as used for threshold-cell probabilities. -/
+difference of standard-normal CDF values, as used for threshold-cell probabilities.
+@isnad1 id=contains.0h4v.s5.b79d754301d5 from=translated src=- shape=187748d3 vocab=f64339f5
+-/
 theorem normalCDFDifference_sound {a b : ℚ}
     (ca : NormalCDFCertificate a) (cb : NormalCDFCertificate b) :
     (cb.enclosure.sub ca.enclosure).Contains

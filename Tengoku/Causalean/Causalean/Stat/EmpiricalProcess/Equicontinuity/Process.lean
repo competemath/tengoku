@@ -70,7 +70,9 @@ holds for [an i.i.d. sample, score family, candidate and reference parameters,
 sample size, and sample outcome](hyp:S,ψ,θ,θ₀,n,ω).
 
 This is a definitional unfolding; it is the bridge between the estimator-indexed
-`StochEquicontAt` and the class-level `AsymptoticEquicont`. -/
+`StochEquicontAt` and the class-level `AsymptoticEquicont`.
+@isnad1 id=eq.0h11v.s8.acf0ab140d13 from=translated src=- shape=0fd7409c vocab=cafbe666
+-/
 theorem empProcVec_eq_stochEquicont_gap (S : IIDSample Ω X μ P)
     (ψ : E → X → E) (θ θ₀ : E) (n : ℕ) (ω : Ω) :
     S.empProcVec (fun z => ψ θ z - ψ θ₀ z) n ω

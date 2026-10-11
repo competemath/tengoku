@@ -24,6 +24,7 @@ family is measurable and the integral of g over the union is at most
 L](goal).
 
 The empty family is covered because the budget is nonnegative.
+@isnad1 id=and.6h6v.s7.5d605928b687 from=translated src=- shape=593818f4 vocab=c50ce0e4
 -/
 theorem countable_chain_union_mass_le {Ω ι : Type*} [MeasurableSpace Ω]
     [Countable ι] (μ : Measure Ω) (B : ι → Set Ω)

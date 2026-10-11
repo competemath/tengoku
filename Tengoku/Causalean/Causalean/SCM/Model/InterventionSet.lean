@@ -63,47 +63,61 @@ noncomputable def fixSet
 -- § 2. Interface lemmas
 -- ============================================================
 
-/-- `fixSet` preserves `observed`. -/
+/-- `fixSet` preserves `observed`.
+@isnad1 id=eq.2h4v.s7.99a4323a13d6 from=translated src=- shape=9abf078d vocab=7955ddf1
+-/
 @[simp] lemma fixSet_observed (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed) :
     (M.fixSet X hObs hFix).observed = M.observed := rfl
 
-/-- `fixSet` preserves `unobserved`. -/
+/-- `fixSet` preserves `unobserved`.
+@isnad1 id=eq.2h4v.s7.110e4db629df from=translated src=- shape=d127382b vocab=1e01e367
+-/
 @[simp] lemma fixSet_unobserved (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed) :
     (M.fixSet X hObs hFix).unobserved = M.unobserved := rfl
 
-/-- `fixSet` enlarges `fixed` by exactly `X.image SWIGNode.fixed`. -/
+/-- `fixSet` enlarges `fixed` by exactly `X.image SWIGNode.fixed`.
+@isnad1 id=eq.2h4v.s7.6a4fd09b92e2 from=translated src=- shape=2c361a9c vocab=c3b0b882
+-/
 @[simp] lemma fixSet_fixed (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed) :
     (M.fixSet X hObs hFix).fixed = M.fixed ∪ X.image SWIGNode.fixed := rfl
 
 /-- `fixSet` inherits `latentDist` verbatim.  Both sides have the same type
-    (`(M.fixSet X _ _).unobserved = M.unobserved` by `rfl`) and equal body. -/
+    (`(M.fixSet X _ _).unobserved = M.unobserved` by `rfl`) and equal body.
+@isnad1 id=eq.2h5v.s8.b5512b4fc269 from=translated src=- shape=19224c9c vocab=af600215
+-/
 @[simp] lemma fixSet_latentDist (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed)
     (u : {u // u ∈ (M.fixSet X hObs hFix).unobserved}) :
     (M.fixSet X hObs hFix).latentDist u = M.latentDist u := rfl
 
-/-- `fixSet` only enlarges the `fixed` set. -/
+/-- `fixSet` only enlarges the `fixed` set.
+@isnad1 id=le.2h4v.s7.47d777f73f95 from=translated src=- shape=f13ece3f vocab=f821a6c1
+-/
 lemma fixSet_fixed_subset (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed) :
     M.fixed ⊆ (M.fixSet X hObs hFix).fixed :=
   fixMono_fixed_subset M.toSWIGGraph X hObs hFix
 
-/-- `X.image SWIGNode.fixed ⊆ (M.fixSet X _ _).fixed`. -/
+/-- `X.image SWIGNode.fixed ⊆ (M.fixSet X _ _).fixed`.
+@isnad1 id=le.2h4v.s7.b87e18fff86a from=translated src=- shape=3129215d vocab=885f8441
+-/
 lemma fixSet_image_fixed_subset (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed) :
     X.image SWIGNode.fixed ⊆ (M.fixSet X hObs hFix).fixed :=
   fixMono_image_fixed_subset M.toSWIGGraph X hObs hFix
 
-/-- Every `SWIGNode.fixed D` with `D ∈ X` is in the fixed set of `fixSet X`. -/
+/-- Every `SWIGNode.fixed D` with `D ∈ X` is in the fixed set of `fixSet X`.
+@isnad1 id=mem.3h5v.s7.b803fbf15701 from=translated src=- shape=f65e8317 vocab=7955ddf1
+-/
 lemma fixed_mem_fixSet (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
     (hFix : ∀ D ∈ X, SWIGNode.fixed D ∉ M.fixed)
@@ -119,7 +133,9 @@ lemma fixed_mem_fixSet (M : Causalean.SCM N Ω) (X : Finset N)
     `(M.fixSet X)` is identical to `v`'s parent set in `M`.
 
     Key prerequisite for the Rule 3* non-ancestor `evalMap` bridge
-    `fixSet_evalMap_nonAnc_compat` in `Causalean/SCM/Do/Rule3.lean`. -/
+    `fixSet_evalMap_nonAnc_compat` in `Causalean/SCM/Do/Rule3.lean`.
+@isnad1 id=eq.3h5v.s8.6ea160916cf2 from=translated src=- shape=7e1b6d53 vocab=98b27bef
+-/
 lemma fixSet_parents_eq_of_no_fixed_parent
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -134,7 +150,9 @@ end SCM
 
 namespace SWIGGraph
 
-/-- Splitting no variables leaves every parent set unchanged. -/
+/-- Splitting no variables leaves every parent set unchanged.
+@isnad1 id=eq.0h3v.s7.b5021e5b7823 from=translated src=- shape=87b4b96e vocab=adc40694
+-/
 lemma splitMono_empty_parents
     (G : SWIGGraph N)
     (v : SWIGNode N) :
@@ -159,7 +177,9 @@ namespace SCM
     Specialization of `fixSet_parents_eq_of_no_fixed_parent` at `X = ∅`:
     the hypothesis is vacuous (no `D ∈ ∅`), so parents coincide
     unconditionally.  Used by `fixSet_empty_equiv` and by downstream
-    single-intervention bridges. -/
+    single-intervention bridges.
+@isnad1 id=eq.0h4v.s7.695bb8a9b68b from=translated src=- shape=e2c2849c vocab=8c5194db
+-/
 lemma fixSet_empty_parents
     (M : Causalean.SCM N Ω)
     (v : SWIGNode N) :
@@ -168,7 +188,9 @@ lemma fixSet_empty_parents
       (fun _ hD => absurd hD (Finset.notMem_empty _))).dag.parents v = M.dag.parents v :=
   SWIGGraph.splitMono_empty_parents M.toSWIGGraph v
 
-/-- **Edges of `fixSet ∅` coincide with the base.** -/
+/-- **Edges of `fixSet ∅` coincide with the base.**
+@isnad1 id=iff.0h4v.s7.594cee4fd1f2 from=translated src=- shape=5c08d3a7 vocab=eb1e7f49
+-/
 lemma fixSet_empty_edge
     (G : SWIGGraph N)
     (u v : SWIGNode N) :
@@ -197,7 +219,9 @@ lemma fixSet_empty_edge
     `M.fixSet ∅ … = M` is **not** provable because `splitMonoTopo` at
     `X = ∅` changes the topological order (each node's topoOrder
     becomes `2·orig + 1`).  The equivalence relation ignores topoOrder,
-    which is the right invariant for d-separation and kernel semantics. -/
+    which is the right invariant for d-separation and kernel semantics.
+@isnad1 id=equiv.0h3v.s7.202253a91769 from=translated src=- shape=41bf6d20 vocab=e6f0275a
+-/
 theorem fixSet_empty_equiv
     (M : Causalean.SCM N Ω) :
     SCM.Equiv (M.fixSet ∅
@@ -285,7 +309,9 @@ random coordinate](hyp:hObs₁) and [not already held fixed](hyp:hFix₁), [inte
 both models produces two structurally equivalent post-intervention models](goal) — the analogous
 observed/not-fixed conditions transfer automatically to `M₂` via `h`.
 
-    This is the congruence lemma needed to transport kernel HEq results across interventions. -/
+    This is the congruence lemma needed to transport kernel HEq results across interventions.
+@isnad1 id=other.3h5v.s7.8793f7faee96 from=translated src=- shape=73542f19 vocab=5a9e8e42
+-/
 theorem fixSet_equiv_congr
     {M₁ M₂ : Causalean.SCM N Ω} (h : SCM.Equiv M₁ M₂) (X : Finset N)
     (hObs₁ : ∀ D ∈ X, SWIGNode.random D ∈ M₁.observed)
@@ -460,7 +486,9 @@ theorem fixSet_equiv_congr
     exact hLat
 
 /-- After intervening on a set of variables, the label of every edge leaving a
-    random-coordinate node is unchanged from the original causal model. -/
+    random-coordinate node is unchanged from the original causal model.
+@isnad1 id=eq.2h6v.s7.d620b1ba9205 from=translated src=- shape=9f02c421 vocab=8e96e8fc
+-/
 lemma fixSet_edgeType_random_eq
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -477,7 +505,9 @@ lemma fixSet_edgeType_random_eq
   cases hEq
 
 /-- For a variable included in the intervention set, the edge label from its
-    fixed-coordinate node equals the original label from its random-coordinate node. -/
+    fixed-coordinate node equals the original label from its random-coordinate node.
+@isnad1 id=eq.3h6v.s7.34980e6d410c from=translated src=- shape=0cf90718 vocab=8e96e8fc
+-/
 lemma fixSet_edgeType_fixed_mem_eq
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -496,7 +526,9 @@ lemma fixSet_edgeType_fixed_mem_eq
   rw [hchoose]
 
 /-- For a variable outside the intervention set, the edge label from its
-    fixed-coordinate node is unchanged by the intervention. -/
+    fixed-coordinate node is unchanged by the intervention.
+@isnad1 id=eq.3h6v.s7.03ccd47cfc4d from=translated src=- shape=2e5b930f vocab=8e96e8fc
+-/
 lemma fixSet_edgeType_fixed_notMem_eq
     (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -696,7 +728,9 @@ private theorem swigInterventionSet_insert_equiv_aux
     node](hyp:N,Ω,M,X,y), if [the node is outside the set](hyp:hyX), [all enlarged-set random
     copies are observed](hyp:hInsert_obs), and [none of its fixed copies is already
     fixed](hyp:hInsert_fixed), then [intervening first on the set and then on the singleton node
-    is structurally equivalent to the one-shot enlarged intervention](goal). -/
+    is structurally equivalent to the one-shot enlarged intervention](goal).
+@isnad1 id=other.3h5v.s8.cebde458839a from=translated src=- shape=1425d185 vocab=3ba5855e
+-/
 theorem swigInterventionSet_insert_equiv
     (M : Causalean.SCM N Ω) (X : Finset N) (y : N)
     (hyX : y ∉ X)
@@ -760,7 +794,9 @@ noncomputable def fixSetProj (M : Causalean.SCM N Ω) (X : Finset N)
     (M.fixSet X hObs hFix).FixedValues → M.FixedValues :=
   valuesProjection (fixSet_fixed_subset M X hObs hFix)
 
-/-- `fixSetProj` is measurable. -/
+/-- `fixSetProj` is measurable.
+@isnad1 id=measurab.2h4v.s9.4424e2c86e58 from=translated src=- shape=4537b6ba vocab=123f83c4
+-/
 @[fun_prop]
 theorem measurable_fixSetProj (M : Causalean.SCM N Ω) (X : Finset N)
     (hObs : ∀ D ∈ X, SWIGNode.random D ∈ M.observed)
@@ -800,7 +836,9 @@ noncomputable def fixSetZSlice
   valuesProjection
     (fixSet_image_fixed_subset (M.fixSet X hX_obs hX_fixed) Z hZ_obs hZ_fixed)
 
-/-- `fixSetZSlice` is measurable. -/
+/-- `fixSetZSlice` is measurable.
+@isnad1 id=measurab.4h5v.s9.547ead12e325 from=translated src=- shape=3863b6f5 vocab=ffc9d712
+-/
 @[fun_prop]
 theorem measurable_fixSetZSlice
     (M : Causalean.SCM N Ω) (X Z : Finset N)

@@ -60,7 +60,9 @@ def centeredEmpiricalMeanNorm (P : Measure X) (f : X → H) (m : ℕ)
 
 /-- A [strongly measurable Hilbert-valued feature map](hyp:f,hf) whose norm is
 [at most one at every observation](hyp:hbound) under [a probability law](hyp:P)
-is [Bochner integrable](goal). -/
+is [Bochner integrable](goal).
+@isnad1 id=integrab.2h4v.s6.533e1402e0f2 from=translated src=- shape=62095a71 vocab=e50be84b
+-/
 theorem integrable_of_norm_le_one (P : Measure X) [IsProbabilityMeasure P]
     (f : X → H) (hf : StronglyMeasurable f) (hbound : ∀ x, ‖f x‖ ≤ 1) :
     Integrable f P := by
@@ -68,7 +70,9 @@ theorem integrable_of_norm_le_one (P : Measure X) [IsProbabilityMeasure P]
 
 /-- A [strongly measurable Hilbert-valued feature map](hyp:f,hf) whose norm is
 [at most one at every observation](hyp:hbound) under [a probability law](hyp:P)
-belongs [to the square-integrable class](goal). -/
+belongs [to the square-integrable class](goal).
+@isnad1 id=memlp.2h4v.s6.e02ffc354b5a from=translated src=- shape=9a752735 vocab=7870a737
+-/
 theorem memLp_two_of_norm_le_one (P : Measure X) [IsProbabilityMeasure P]
     (f : X → H) (hf : StronglyMeasurable f) (hbound : ∀ x, ‖f x‖ ≤ 1) :
     MemLp f 2 P := by
@@ -76,7 +80,9 @@ theorem memLp_two_of_norm_le_one (P : Measure X) [IsProbabilityMeasure P]
 
 /-- For [a probability law](hyp:P), [a Hilbert-valued feature map](hyp:f),
 [a positive sample size](hyp:hm), and [a sample](hyp:z), [the centered empirical
-mean equals the inverse sample size times the sum of centered observations](goal). -/
+mean equals the inverse sample size times the sum of centered observations](goal).
+@isnad1 id=eq.1h6v.s7.a4f272d2cc08 from=translated src=- shape=fea3bfe0 vocab=ccd305d1
+-/
 theorem centeredEmpiricalMean_eq_inv_smul_sum_centered
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     {m : ℕ} (hm : 0 < m) (z : Fin m → X) :
@@ -93,7 +99,9 @@ variable [MeasurableSpace H] [BorelSpace H]
 
 /-- For [a probability law](hyp:P), [a strongly measurable Hilbert-valued
 feature map](hyp:f,hf), and [a sample size](hyp:m), [the norm of its centered
-empirical mean is measurable on the finite product sample space](goal). -/
+empirical mean is measurable on the finite product sample space](goal).
+@isnad1 id=measurab.1h5v.s6.81a141966e01 from=translated src=- shape=b6f971c2 vocab=6e46545c
+-/
 @[fun_prop]
 theorem measurable_centeredEmpiricalMeanNorm (P : Measure X) (f : X → H)
     (hf : StronglyMeasurable f) (m : ℕ) :
@@ -111,7 +119,9 @@ theorem measurable_centeredEmpiricalMeanNorm (P : Measure X) (f : X → H)
 [unit-norm bound at every observation](hyp:hbound), [a positive sample size](hyp:hm),
 [a coordinate](hyp:i), [a sample](hyp:z), and [a replacement observation](hyp:x'),
 [changing that coordinate changes the centered-mean norm by at most two divided
-by the sample size](goal). -/
+by the sample size](goal).
+@isnad1 id=le.2h8v.s7.bf795b5364d0 from=translated src=- shape=72aea083 vocab=39fbf9ae
+-/
 theorem centeredEmpiricalMeanNorm_boundedDifference
     (P : Measure X) (f : X → H) (hbound : ∀ x, ‖f x‖ ≤ 1)
     {m : ℕ} (hm : 0 < m) (i : Fin m) (z : Fin m → X) (x' : X) :
@@ -149,7 +159,9 @@ theorem centeredEmpiricalMeanNorm_boundedDifference
     _ = 2 / (m : ℝ) := by ring
 
 /-- For [a finite family of Hilbert vectors](hyp:v), [the squared norm of its
-sum is the double sum of its pairwise inner products](goal). -/
+sum is the double sum of its pairwise inner products](goal).
+@isnad1 id=eq.0h3v.s6.206962f9f1e7 from=translated src=- shape=ec3b1a5c vocab=9b8fe57e
+-/
 theorem norm_sum_sq_eq_sum_inner {ι : Type*} [Fintype ι]
     (v : ι → H) :
     ‖∑ i, v i‖ ^ 2 = ∑ i, ∑ j, inner ℝ (v i) (v j) := by
@@ -157,7 +169,9 @@ theorem norm_sum_sq_eq_sum_inner {ι : Type*} [Fintype ι]
   simp_rw [sum_inner, inner_sum]
 
 /-- For [a probability law](hyp:P) and [an integrable Hilbert-valued feature
-map](hyp:f,hf), [the integral of the map centered at its population mean is zero](goal). -/
+map](hyp:f,hf), [the integral of the map centered at its population mean is zero](goal).
+@isnad1 id=eq.1h4v.s7.9d818d85a7bb from=translated src=- shape=f309dea6 vocab=08467560
+-/
 theorem integral_sub_populationMean_eq_zero
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : Integrable f P) :
@@ -168,7 +182,9 @@ theorem integral_sub_populationMean_eq_zero
 /-- For [a probability law](hyp:P), [a strongly measurable square-integrable
 Hilbert-valued feature map](hyp:f,hf,hf_L2), and [a product coordinate](hyp:i),
 [the coordinate's centered second moment equals the population centered second
-moment](goal). -/
+moment](goal).
+@isnad1 id=eq.2h6v.s8.c7e4b3a824b4 from=translated src=- shape=c921674f vocab=0f8fc055
+-/
 theorem integral_norm_centered_coordinate_sq_eq
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : StronglyMeasurable f) (hf_L2 : MemLp f 2 P)
@@ -187,7 +203,9 @@ theorem integral_norm_centered_coordinate_sq_eq
 /-- For [a probability law](hyp:P), [a strongly measurable square-integrable
 Hilbert-valued feature map](hyp:f,hf,hf_L2), and [two distinct product
 coordinates](hyp:i,j,hij), [the expected inner product of their centered
-values is zero](goal). -/
+values is zero](goal).
+@isnad1 id=eq.3h7v.s8.448a1bf8a211 from=translated src=- shape=f0cd6ddc vocab=6e681b26
+-/
 theorem integral_inner_centered_coordinates_eq_zero
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : StronglyMeasurable f) (hf_L2 : MemLp f 2 P)
@@ -227,7 +245,9 @@ theorem integral_inner_centered_coordinates_eq_zero
 
 /-- For [a probability law](hyp:P) and [a strongly measurable square-integrable
 Hilbert-valued feature map](hyp:f,hf,hf_L2), [centering does not increase its
-population second moment](goal). -/
+population second moment](goal).
+@isnad1 id=le.2h4v.s7.b223686badbe from=translated src=- shape=86677360 vocab=a974072b
+-/
 theorem population_centered_secondMoment_le
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : StronglyMeasurable f) (hf_L2 : MemLp f 2 P) :
@@ -260,7 +280,9 @@ theorem population_centered_secondMoment_le
 /-- For [a probability law](hyp:P), [a strongly measurable square-integrable
 Hilbert-valued feature map](hyp:f,hf,hf_L2), and [a sample size](hyp:m), [the
 second moment of the unscaled centered sum equals the sample size times the
-population centered second moment](goal). -/
+population centered second moment](goal).
+@isnad1 id=eq.2h5v.s8.5f18502663ed from=translated src=- shape=194b9d25 vocab=72429458
+-/
 theorem centeredSum_secondMoment_eq
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : StronglyMeasurable f) (hf_L2 : MemLp f 2 P) (m : ℕ) :
@@ -316,7 +338,9 @@ theorem centeredSum_secondMoment_eq
 /-- For [a probability law](hyp:P), [a strongly measurable square-integrable
 Hilbert-valued feature map](hyp:f,hf,hf_L2), and [a positive sample size](hyp:hm),
 [the centered empirical mean has second moment equal to the inverse sample
-size times the population centered second moment](goal). -/
+size times the population centered second moment](goal).
+@isnad1 id=eq.3h5v.s8.eb0079ac5861 from=translated src=- shape=5f28cbb7 vocab=579439a0
+-/
 theorem centeredEmpiricalMean_secondMoment_eq
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : StronglyMeasurable f) (hf_L2 : MemLp f 2 P)
@@ -339,7 +363,9 @@ theorem centeredEmpiricalMean_secondMoment_eq
 /-- For [a probability law](hyp:P), [a strongly measurable square-integrable
 Hilbert-valued feature map](hyp:f,hf,hf_L2), and [a positive sample size](hyp:hm),
 [the centered empirical mean has second moment at most the inverse sample size
-times the raw population second moment](goal). -/
+times the raw population second moment](goal).
+@isnad1 id=le.3h5v.s8.2911e23db5fa from=translated src=- shape=f7a2e361 vocab=208eccae
+-/
 theorem centeredEmpiricalMean_secondMoment_le
     (P : Measure X) [IsProbabilityMeasure P] (f : X → H)
     (hf : StronglyMeasurable f) (hf_L2 : MemLp f 2 P)

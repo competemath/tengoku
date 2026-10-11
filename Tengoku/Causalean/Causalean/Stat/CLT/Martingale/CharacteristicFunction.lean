@@ -126,7 +126,9 @@ private theorem stoppedArray_predictableQuadraticVariation_ae_eq_of_bounds
 predictable quadratic variations converge in probability to one](hyp:hVariance) and [its
 conditional Lindeberg sums converge in probability to zero at every positive
 threshold](hyp:hLindeberg), then [the characteristic function of each row sum converges
-pointwise to the characteristic function of the standard normal law](goal). -/
+pointwise to the characteristic function of the standard normal law](goal).
+@isnad1 id=tendsto.2h5v.s8.371c2ac4c6d5 from=translated src=- shape=807c1968 vocab=b66ee5af
+-/
 theorem martingaleArrayCharFun_tendsto
     [∀ n, IsProbabilityMeasure (μ n)]
     (A : MartingaleDifferenceArray Ω μ)

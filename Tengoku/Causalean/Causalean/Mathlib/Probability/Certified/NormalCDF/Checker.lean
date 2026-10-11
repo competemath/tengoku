@@ -36,7 +36,9 @@ def normalCDFCheck (q : ℚ) (method : MethodCertificate q)
   | .tail certificate => tailCheck q certificate reported
 
 /-- When [the selected top-level certificate check succeeds](hyp:hcheck),
-[the reported interval contains the exact standard-normal CDF value](goal). -/
+[the reported interval contains the exact standard-normal CDF value](goal).
+@isnad1 id=contains.1h3v.s4.28929931c41f from=translated src=- shape=d08aac5b vocab=6b0d9d7c
+-/
 theorem normalCDFCheck_sound {q : ℚ} {method : MethodCertificate q}
     {reported : RatInterval} (hcheck : normalCDFCheck q method reported = true) :
     reported.Contains (Causalean.Mathlib.stdNormalCDF (q : ℝ)) := by
@@ -54,7 +56,9 @@ def fineNormalCDFCheck (q : ℚ) (method : MethodCertificate q)
     decide (|q| ≤ acceptedEndpointBound ∧ reported.width ≤ targetWidth)
 
 /-- When [the fine checker accepts](hyp:hcheck),
-[CDF containment and both rational acceptance limits follow](goal). -/
+[CDF containment and both rational acceptance limits follow](goal).
+@isnad1 id=and.1h3v.s5.541069150db9 from=translated src=- shape=e1f18d79 vocab=19963798
+-/
 theorem fineNormalCDFCheck_sound {q : ℚ} {method : MethodCertificate q}
     {reported : RatInterval} (hcheck : fineNormalCDFCheck q method reported = true) :
     reported.Contains (Causalean.Mathlib.stdNormalCDF (q : ℝ)) ∧
@@ -75,7 +79,9 @@ structure NormalCDFCertificate (q : ℚ) where
   /-- The exact checker accepts the supplied interval. -/
   checked : normalCDFCheck q method enclosure = true
 
-/-- Every proof-producing endpoint certificate soundly encloses the exact CDF. -/
+/-- Every proof-producing endpoint certificate soundly encloses the exact CDF.
+@isnad1 id=contains.0h2v.s3.ef1cd10d0bc2 from=translated src=- shape=628cf842 vocab=90f068d1
+-/
 theorem NormalCDFCertificate.sound {q : ℚ} (c : NormalCDFCertificate q) :
     c.enclosure.Contains (Causalean.Mathlib.stdNormalCDF (q : ℝ)) :=
   normalCDFCheck_sound c.checked
@@ -104,7 +110,9 @@ def FineNormalCDFCertificate.toNormalCDFCertificate {q : ℚ}
     exact h.1
 
 /-- [A fine certificate](hyp:c)
-[gives containment together with checked endpoint and width bounds](goal). -/
+[gives containment together with checked endpoint and width bounds](goal).
+@isnad1 id=and.0h2v.s5.3f24de37e024 from=translated src=- shape=0b701d5b vocab=64205bb4
+-/
 theorem FineNormalCDFCertificate.sound_range_and_width {q : ℚ}
     (c : FineNormalCDFCertificate q) :
     c.enclosure.Contains (Causalean.Mathlib.stdNormalCDF (q : ℝ)) ∧
@@ -112,7 +120,9 @@ theorem FineNormalCDFCertificate.sound_range_and_width {q : ℚ}
   fineNormalCDFCheck_sound c.checked
 
 /-- Subtracting two checked endpoint enclosures contains the corresponding CDF
-difference, the form used by Gaussian threshold-cell transition probabilities. -/
+difference, the form used by Gaussian threshold-cell transition probabilities.
+@isnad1 id=contains.0h4v.s5.7ccea0f25a7f from=translated src=- shape=187748d3 vocab=4dbded35
+-/
 theorem normalCDFDifference_sound {a b : ℚ}
     (ca : NormalCDFCertificate a) (cb : NormalCDFCertificate b) :
     (cb.enclosure.sub ca.enclosure).Contains
@@ -122,7 +132,9 @@ theorem normalCDFDifference_sound {a b : ℚ}
 
 /-- Subtracting two fine checked endpoint cells contains their exact CDF
 difference while retaining executable validation of each endpoint's range and
-`10⁻¹²` width bound. -/
+`10⁻¹²` width bound.
+@isnad1 id=contains.0h4v.s5.28e8646f655b from=translated src=- shape=187748d3 vocab=55da37fc
+-/
 theorem fineNormalCDFDifference_sound {a b : ℚ}
     (ca : FineNormalCDFCertificate a) (cb : FineNormalCDFCertificate b) :
     (cb.enclosure.sub ca.enclosure).Contains

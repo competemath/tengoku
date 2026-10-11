@@ -43,7 +43,9 @@ noncomputable def survivingPatterns (S : Finset α) : Finset (Fin 8 → α) := b
   exact (Fintype.piFinset (fun _ : Fin 8 => S)).filter NoSingleton
 
 /-- An index map [without singleton fibers](hyp:ha) uses [between one and four
-coordinates](goal). -/
+coordinates](goal).
+@isnad1 id=and.1h2v.s5.4a4113545c12 from=translated src=- shape=4a2f7483 vocab=18a43821
+-/
 theorem patternImage_card_bounds (a : Fin 8 → α) (ha : NoSingleton a) :
     1 ≤ (patternImage a).card ∧ (patternImage a).card ≤ 4 := by
   -- Sum fiber cardinalities to 8 using `Finset.card_eq_sum_card_image`; all fibers contribute ≥2.
@@ -60,7 +62,9 @@ theorem patternImage_card_bounds (a : Fin 8 → α) (ha : NoSingleton a) :
   · omega
 
 /-- Among eight-slot maps supported on [a finite set](hyp:S), the number with
-[a prescribed image](hyp:T) is [at most the eighth power of that image's size](goal). -/
+[a prescribed image](hyp:T) is [at most the eighth power of that image's size](goal).
+@isnad1 id=le.0h3v.s6.0a9106e03e6b from=translated src=- shape=1800dd49 vocab=8d52362f
+-/
 theorem card_patterns_with_image_le (S T : Finset α) :
     ((Fintype.piFinset (fun _ : Fin 8 => S)).filter
       (fun a => patternImage a = T)).card ≤ T.card ^ 8 := by
@@ -77,7 +81,9 @@ theorem card_patterns_with_image_le (S T : Finset α) :
     _ = T.card ^ 8 := Fintype.card_piFinset_const T 8
 
 /-- For [a nonnegative weight](hyp:hv), the sum of image-size powers over surviving maps
-on [a finite coordinate set](hyp:S) is [bounded by an image-size binomial sum](goal). -/
+on [a finite coordinate set](hyp:S) is [bounded by an image-size binomial sum](goal).
+@isnad1 id=le.1h3v.s7.5a3b546e119b from=translated src=- shape=043401f7 vocab=e3b493fd
+-/
 theorem weighted_survivingPatterns_le_choose_sum (S : Finset α) (v : ℝ) (hv : 0 ≤ v) :
     (∑ a ∈ survivingPatterns S, v ^ (patternImage a).card) ≤
       ∑ k ∈ Finset.Icc 1 4, (S.card.choose k : ℝ) * (k : ℝ) ^ 8 * v ^ k := by
@@ -145,7 +151,9 @@ theorem weighted_survivingPatterns_le_choose_sum (S : Finset α) (v : ℝ) (hv :
           exact mul_assoc _ _ _ |>.symm
 
 /-- For [a nonnegative weight](hyp:hv) and [a finite set size](hyp:m), the loose image
-counting polynomial is [bounded by an explicit polynomial in size times weight](goal). -/
+counting polynomial is [bounded by an explicit polynomial in size times weight](goal).
+@isnad1 id=le.1h2v.s8.b0abb19b8c50 from=translated src=- shape=58531450 vocab=268ba45b
+-/
 theorem choose_sum_le_polynomial (m : ℕ) (v : ℝ) (hv : 0 ≤ v) :
     (∑ k ∈ Finset.Icc 1 4, (m.choose k : ℝ) * (k : ℝ) ^ 8 * v ^ k) ≤
       (m : ℝ) * v + 128 * ((m : ℝ) * v) ^ 2 +
@@ -167,7 +175,9 @@ theorem choose_sum_le_polynomial (m : ℕ) (v : ℝ) (hv : 0 ≤ v) :
       (pow_nonneg hv 4)]
 
 /-- For [a nonnegative scalar](hyp:ht), the second power is [bounded by its first plus
-fourth powers](goal). -/
+fourth powers](goal).
+@isnad1 id=le.1h1v.s5.8851a15d880e from=translated src=- shape=c862d0bc vocab=5927dbb3
+-/
 theorem sq_le_self_add_fourth (t : ℝ) (ht : 0 ≤ t) : t ^ 2 ≤ t + t ^ 4 := by
   by_cases h : t ≤ 1
   · have h2 : t ^ 2 ≤ t := by nlinarith
@@ -176,7 +186,9 @@ theorem sq_le_self_add_fourth (t : ℝ) (ht : 0 ≤ t) : t ^ 2 ≤ t + t ^ 4 := 
     nlinarith [sq_nonneg (t ^ 2 - 1)]
 
 /-- For [a nonnegative scalar](hyp:ht), the third power is [bounded by its first plus
-fourth powers](goal). -/
+fourth powers](goal).
+@isnad1 id=le.1h1v.s5.10d09ca76ff8 from=translated src=- shape=c862d0bc vocab=5927dbb3
+-/
 theorem cube_le_self_add_fourth (t : ℝ) (ht : 0 ≤ t) : t ^ 3 ≤ t + t ^ 4 := by
   by_cases h : t ≤ 1
   · have h2 : t ^ 2 ≤ 1 := by nlinarith
@@ -187,7 +199,9 @@ theorem cube_le_self_add_fourth (t : ℝ) (ht : 0 ≤ t) : t ^ 3 ≤ t + t ^ 4 :
     nlinarith
 
 /-- For [a nonnegative scalar](hyp:ht), the loose counting polynomial is [bounded by
-eight factorial times the sum of its first and fourth powers](goal). -/
+eight factorial times the sum of its first and fourth powers](goal).
+@isnad1 id=le.1h1v.s7.81062f1cf609 from=translated src=- shape=86c63c1c vocab=4e48de6d
+-/
 theorem polynomial_le_factorial (t : ℝ) (ht : 0 ≤ t) :
     t + 128 * t ^ 2 + 1094 * t ^ 3 + 2731 * t ^ 4 ≤
       (Nat.factorial 8 : ℝ) * (t ^ 4 + t) := by
@@ -198,7 +212,9 @@ theorem polynomial_le_factorial (t : ℝ) (ht : 0 ≤ t) :
 
 /-- For [a nonnegative weight](hyp:hv), the weighted number of surviving patterns on
 [a finite coordinate set](hyp:S) is [at most eight factorial times the sum of the first
-and fourth powers of size times weight](goal). -/
+and fourth powers of size times weight](goal).
+@isnad1 id=le.1h3v.s7.32ef8becf45c from=translated src=- shape=75bbd1f8 vocab=2aa5f140
+-/
 theorem weighted_survivingPatterns_le (S : Finset α) (v : ℝ) (hv : 0 ≤ v) :
     (∑ a ∈ survivingPatterns S, v ^ (patternImage a).card) ≤
       (Nat.factorial 8 : ℝ) * (((S.card : ℝ) * v) ^ 4 + (S.card : ℝ) * v) := by

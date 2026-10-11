@@ -23,7 +23,9 @@ open scoped ProbabilityTheory
 [two measurable outcome variables `Yv` and `Zv`](hyp:Yv,Zv,hY,hZ), and [a measurable
 conditioning set `s`](hyp:s,hs), if [the outcomes agree almost everywhere on the
 preimage of that set](hyp:h), then [their joint laws agree after restriction to that
-conditioning set](goal). -/
+conditioning set](goal).
+@isnad1 id=eq.5h8v.s7.5ae828438874 from=translated src=- shape=287e443f vocab=60a6564f
+-/
 theorem map_prod_restrict_eq_of_ae_eq_on_preimage
     {Ω B Y : Type*} [MeasurableSpace Ω] [MeasurableSpace B] [MeasurableSpace Y]
     (μ : Measure Ω) (T : Ω → B) (Yv Zv : Ω → Y)
@@ -50,7 +52,9 @@ theorem map_prod_restrict_eq_of_ae_eq_on_preimage
 /-- Given [an s-finite base measure `ν`](hyp:ν), [an s-finite kernel `κ`](hyp:κ), and
 [a measurable base set `s`](hyp:s,hs), [restricting their composition product to that
 set in the first coordinate gives the composition product formed from the restricted
-base measure](goal). -/
+base measure](goal).
+@isnad1 id=eq.1h5v.s6.941ea0d9e4fe from=translated src=- shape=574cf57a vocab=8f970320
+-/
 theorem compProd_restrict_left
     {B Y : Type*} [MeasurableSpace B] [MeasurableSpace Y]
     (ν : Measure B) [SFinite ν]
@@ -68,7 +72,9 @@ theorem compProd_restrict_left
 /-- Given [a finite base measure `ν`](hyp:ν), [two finite kernels `κ` and `η`](hyp:κ,η),
 and [a measurable base set `s`](hyp:s,hs), if [their composition products agree after
 restriction to that set](hyp:h), then [the kernels agree almost everywhere on the
-selected set](goal). -/
+selected set](goal).
+@isnad1 id=eventual.2h6v.s7.2c672efe3855 from=translated src=- shape=41baadfe vocab=4386730d
+-/
 theorem ae_eq_on_of_compProd_restrict_eq
     {B Y : Type*} [MeasurableSpace B] [MeasurableSpace Y]
     [StandardBorelSpace Y] [Nonempty Y]
@@ -87,7 +93,9 @@ theorem ae_eq_on_of_compProd_restrict_eq
 `Zv`](hyp:Yv,Zv,hY,hZ), and [a selected treatment value `a`](hyp:a), if [the outcomes
 agree almost everywhere whenever treatment has that value](hyp:h), then [their conditional
 distributions given covariates and treatment agree almost everywhere on the corresponding
-conditioning fiber](goal). -/
+conditioning fiber](goal).
+@isnad1 id=eventual.5h10v.s8.09d43a81c021 from=translated src=- shape=d79e0233 vocab=27ff70e8
+-/
 theorem condDistrib_congr_on_conditioning_fiber
     {Ω X A Y : Type*}
     [MeasurableSpace Ω] [MeasurableSpace X] [MeasurableSpace A]

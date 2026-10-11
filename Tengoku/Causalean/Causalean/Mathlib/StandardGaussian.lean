@@ -62,14 +62,18 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
-/-- Each coordinate is `MemLp` of order 2 under the product measure. -/
+/-- Each coordinate is `MemLp` of order 2 under the product measure.
+@isnad1 id=memlp.0h2v.s7.e287eec93852 from=translated src=- shape=42549778 vocab=34a5c01f
+-/
 lemma memLp_eval (i : Fin (Module.finrank ℝ E)) :
     MemLp (fun ω : Fin (Module.finrank ℝ E) → ℝ => ω i) 2 (piGaussian E) := by
   have h : MemLp id 2 (gaussianReal (0 : ℝ) 1) := memLp_id_gaussianReal' 2 (by simp)
   exact h.comp_measurePreserving (measurePreserving_eval _ i)
 
 /-- Transporting a measure through a continuous linear equivalence transports its vector integral
-through the same equivalence. -/
+through the same equivalence.
+@isnad1 id=eq.0h4v.s9.a406cef37334 from=translated src=- shape=adb4a66c vocab=0d365711
+-/
 lemma integral_id_map_equiv {F G : Type*}
     [NormedAddCommGroup F] [NormedSpace ℝ F] [MeasurableSpace F] [BorelSpace F]
     [NormedAddCommGroup G] [NormedSpace ℝ G] [MeasurableSpace G] [BorelSpace G]
@@ -80,20 +84,26 @@ lemma integral_id_map_equiv {F G : Type*}
     (aestronglyMeasurable_id.congr (by rfl))]
   exact L.integral_comp_comm (fun x => x)
 
-/-- The standard Gaussian measure is a probability measure. -/
+/-- The standard Gaussian measure is a probability measure.
+@isnad1 id=isprobab.0h1v.s5.ccf9c6566b5d from=translated src=- shape=4b4c0ce2 vocab=c72a4ba9
+-/
 @[deprecated ProbabilityTheory.isProbabilityMeasure_stdGaussian (since := "2026-09-15")]
 instance isProbabilityMeasure_stdGaussian : IsProbabilityMeasure (stdGaussian E) := by
   change IsProbabilityMeasure (ProbabilityTheory.stdGaussian E)
   infer_instance
 
 /-- The standard Gaussian measure on a finite-dimensional real inner-product space has mean
-zero. -/
+zero.
+@isnad1 id=eq.0h1v.s6.2a1a3645dac8 from=translated src=- shape=73194ccd vocab=b0c33115
+-/
 @[deprecated ProbabilityTheory.integral_id_stdGaussian (since := "2026-09-15")]
 theorem stdGaussian_mean : ∫ x, x ∂(stdGaussian E) = 0 := by
   simpa only [stdGaussian] using (ProbabilityTheory.integral_id_stdGaussian (E := E))
 
 /-- The covariance bilinear form of the standard Gaussian measure is the ambient inner
-product. -/
+product.
+@isnad1 id=eq.0h3v.s9.52049df18d83 from=translated src=- shape=002b3425 vocab=c276f7a3
+-/
 @[deprecated ProbabilityTheory.covarianceBilin_stdGaussian (since := "2026-09-15")]
 theorem covarianceBilin_stdGaussian (u v : E) :
     covarianceBilin (stdGaussian E) u v = (inner ℝ u v : ℝ) := by
@@ -104,7 +114,9 @@ theorem covarianceBilin_stdGaussian (u v : E) :
 under the standard Gaussian measure on `E` equals the law of the sum of squared
 coordinates under a product of `finrank ℝ E` independent standard real Gaussians](goal).
 
-This exposes the explicit product structure needed to prove atomlessness of the χ² law. -/
+This exposes the explicit product structure needed to prove atomlessness of the χ² law.
+@isnad1 id=eq.0h1v.s8.021e2615516b from=translated src=- shape=7c17a6f5 vocab=5570fbf6
+-/
 theorem stdGaussian_map_normSq_eq_pi :
     (stdGaussian E).map (fun x => ‖x‖ ^ 2)
       = (Measure.pi (fun _ : Fin (Module.finrank ℝ E) => gaussianReal 0 1)).map

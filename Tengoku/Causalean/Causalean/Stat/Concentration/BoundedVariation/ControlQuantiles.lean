@@ -17,6 +17,7 @@ namespace Causalean.Stat.Concentration.BoundedVariation
 [nondecreasing](hyp:hmono) and [zero at time zero](hyp:hzero), then [every
 level between zero and its terminal value is attained at some time, and these
 representative times can be chosen increasing in the level](goal).
+@isnad1 id=ex.2h1v.s9.2d2efd0981ad from=translated src=- shape=f9b4aa22 vocab=aa503c8b
 -/
 theorem exists_monotone_control_section (u : Path)
     (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0) :

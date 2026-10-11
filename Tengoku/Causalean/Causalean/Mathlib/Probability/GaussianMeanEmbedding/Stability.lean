@@ -23,7 +23,9 @@ nonnegative approximation error](hyp:R,ε,hR,hε), [a Taylor truncation order](h
 [their concentration on the interval from zero to that radius](hyp:hμ,hν), and
 [a uniform approximation of the raw square by the weighted Taylor polynomial](hyp:happrox),
 [their raw second-moment difference is bounded by the recovery coefficient times
-their Gaussian embedding distance plus twice the approximation error](goal). -/
+their Gaussian embedding distance plus twice the approximation error](goal).
+@isnad1 id=le.5h5v.s10.b8aee791b06c from=translated src=- shape=89d2776d vocab=bd3f616e
+-/
 theorem secondMoment_sub_le_of_taylor_error
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (R ε : ℝ) (N : ℕ) (hR : 0 ≤ R) (hε : 0 ≤ ε)
@@ -146,7 +148,9 @@ theorem secondMoment_sub_le_of_taylor_error
 /-- Given [two probability measures concentrated on the interval from zero to
 five](hyp:μ,ν,hμ,hν), [their raw second-moment difference is at most 5151
 times the distance between their explicit Gaussian mean embeddings plus the
-exact rational remainder 10⁻¹⁵](goal). -/
+exact rational remainder 10⁻¹⁵](goal).
+@isnad1 id=le.2h2v.s10.c8065f0e3d80 from=translated src=- shape=b75b957e vocab=4a03b89a
+-/
 theorem gaussian_meanEmbedding_secondMoment_stability_Icc_zero_five
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : μ (Icc (0 : ℝ) 5)ᶜ = 0) (hν : ν (Icc (0 : ℝ) 5)ᶜ = 0) :
@@ -183,7 +187,9 @@ theorem gaussian_meanEmbedding_secondMoment_stability_Icc_zero_five
 /-- Given [two probability measures concentrated on the interval from zero to
 five](hyp:μ,ν,hμ,hν) and [a certified second-moment gap exceeding 10⁻¹⁵](hyp:hgap),
 [their Gaussian mean-embedding distance is at least the positive quantity
-obtained by subtracting that remainder and dividing by 5151](goal). -/
+obtained by subtracting that remainder and dividing by 5151](goal).
+@isnad1 id=and.3h2v.s10.0cda6cf6b3d1 from=translated src=- shape=c35f2ed8 vocab=cb8b3052
+-/
 theorem gaussian_meanEmbedding_norm_lowerBound_of_secondMoment_gap
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : μ (Icc (0 : ℝ) 5)ᶜ = 0) (hν : ν (Icc (0 : ℝ) 5)ᶜ = 0)

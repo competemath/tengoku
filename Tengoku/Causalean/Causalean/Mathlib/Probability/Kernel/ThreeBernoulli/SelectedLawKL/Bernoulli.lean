@@ -26,6 +26,7 @@ interior margin](goal) when [the margin is positive](hyp:hη0),
 
 The coefficient `η⁻²` is deliberately conservative: `log u ≤ u - 1` gives
 `KL(p‖q) ≤ (p-q)²/(q(1-q))`, and both denominator factors are at least `η`.
+@isnad1 id=le.4h3v.s7.9291ade3995c from=translated src=- shape=57c26310 vocab=c2bdde06
 -/
 theorem bernoulliKL_le_inv_margin_sq {η p q : ℝ}
     (hη0 : 0 < η) (hηhalf : η < 1 / 2)
@@ -61,6 +62,7 @@ mean difference](goal) when [its displacement is at most `1/32`](hyp:ht).
 
 Both means lie in `[1/4,3/4]`; apply the existing Causalean quarter-band
 bound after unfolding `bernoulliKL`.
+@isnad1 id=le.1h1v.s7.144618b3f814 from=translated src=- shape=d5250544 vocab=f8746920
 -/
 theorem bernoulliKL_symmetric_le_four {t : ℝ} (ht : |t| ≤ 1 / 32) :
     bernoulliKL (1 / 2 + t) (1 / 2 - t) ≤

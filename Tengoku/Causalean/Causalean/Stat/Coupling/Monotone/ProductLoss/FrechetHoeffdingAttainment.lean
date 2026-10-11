@@ -33,7 +33,9 @@ Fréchet–Hoeffding upper bound `min (cdf μ x) (cdf ν y)`](goal).
 
 For `U ~ Unif(0,1)`, `{u | quantile μ u ≤ x ∧ quantile ν u ≤ y} = {u | u ≤ cdf μ x} ∩
 {u | u ≤ cdf ν y} = {u | u ≤ min (cdf μ x) (cdf ν y)}`, of uniform mass
-`min (cdf μ x) (cdf ν y)`. -/
+`min (cdf μ x) (cdf ν y)`.
+@isnad1 id=eq.0h4v.s5.4a6ab966aed0 from=translated src=- shape=bf613cb6 vocab=cbf53a86
+-/
 theorem jointCdf_comonotoneCoupling (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] (x y : ℝ) :
     jointCdf (comonotoneCoupling μ ν) x y = min (cdf μ x) (cdf ν y) := by
@@ -105,7 +107,9 @@ probability measures `μ` and `ν`](hyp:μ,ν), [evaluated at a point `(x, y)`](
 
 For `U ~ Unif(0,1)`, `{u | quantile μ u ≤ x ∧ quantile ν (1-u) ≤ y}
  = {u | u ≤ cdf μ x} ∩ {u | 1 - cdf ν y ≤ u}`, of uniform mass
-`max (cdf μ x - (1 - cdf ν y)) 0 = max (cdf μ x + cdf ν y - 1) 0`. -/
+`max (cdf μ x - (1 - cdf ν y)) 0 = max (cdf μ x + cdf ν y - 1) 0`.
+@isnad1 id=eq.0h4v.s6.fe22542f63a2 from=translated src=- shape=f95ca0cf vocab=e443a53c
+-/
 theorem jointCdf_countermonotoneCoupling (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] (x y : ℝ) :
     jointCdf (countermonotoneCoupling μ ν) x y = max (cdf μ x + cdf ν y - 1) 0 := by
@@ -213,14 +217,18 @@ theorem jointCdf_countermonotoneCoupling (μ ν : Measure ℝ)
 
 /-- Corollary: for any coupling `π` of `(μ, ν)`, its joint cdf is dominated
 pointwise by the comonotone joint cdf. This is the pointwise inequality that the
-covariance identity turns into optimality of `E[XY]`. -/
+covariance identity turns into optimality of `E[XY]`.
+@isnad1 id=le.1h5v.s5.412b7b1bf3d0 from=translated src=- shape=953825cb vocab=7d6bebd0
+-/
 theorem jointCdf_le_comonotone (h : IsCoupling π μ ν)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] (x y : ℝ) :
     jointCdf π x y ≤ jointCdf (comonotoneCoupling μ ν) x y := by
   rw [jointCdf_comonotoneCoupling]; exact frechet_hoeffding_upper h x y
 
 /-- Corollary: the countermonotone joint cdf is dominated pointwise by any other
-coupling's joint cdf. -/
+coupling's joint cdf.
+@isnad1 id=le.1h5v.s5.4a1a6a384e01 from=translated src=- shape=ba5279c4 vocab=418a1f67
+-/
 theorem countermonotone_le_jointCdf (h : IsCoupling π μ ν)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] (x y : ℝ) :
     jointCdf (countermonotoneCoupling μ ν) x y ≤ jointCdf π x y := by

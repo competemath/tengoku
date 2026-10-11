@@ -42,7 +42,9 @@ def eval {n : ℕ} (f : AffineFn n) (x : Fin n → ℝ) : ℝ :=
 
 /-- Given [an affine function](hyp:f), [two coordinate vectors](hyp:x,y), and [a real
 weight](hyp:t), [evaluation at their affine combination equals the same affine combination
-of their evaluations](goal). -/
+of their evaluations](goal).
+@isnad1 id=eq.0h5v.s7.2214b22d3364 from=translated src=- shape=c23703eb vocab=75690e1b
+-/
 theorem eval_affineCombination {n : ℕ} (f : AffineFn n) (x y : Fin n → ℝ) (t : ℝ) :
     f.eval ((1 - t) • x + t • y) = (1 - t) * f.eval x + t * f.eval y := by
   simp only [eval, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
@@ -59,7 +61,9 @@ theorem eval_affineCombination {n : ℕ} (f : AffineFn n) (x y : Fin n → ℝ) 
           t * ((∑ i, f.coeff i * y i) + f.constant) := by
       ring
 
-/-- Given [an affine function](hyp:f), [its evaluation map is continuous](goal). -/
+/-- Given [an affine function](hyp:f), [its evaluation map is continuous](goal).
+@isnad1 id=continuo.0h2v.s5.a6d758d96155 from=translated src=- shape=22756c0c vocab=c6b3f431
+-/
 theorem continuous_eval {n : ℕ} (f : AffineFn n) : Continuous f.eval := by
   unfold eval
   fun_prop
@@ -124,17 +128,23 @@ def weakCell {n : ℕ} (Γ : AffineSystem n) : Set (Fin n → ℝ) :=
   {x | ∀ c ∈ Γ, c.weakHolds x}
 
 /-- Given [a point](hyp:x), [membership in the strict cell](goal) is equivalent to [satisfying
-every listed constraint with its original comparison](step:1). -/
+every listed constraint with its original comparison](step:1).
+@isnad1 id=iff.0h3v.s5.823a9700862f from=translated src=- shape=39c20d98 vocab=b450ff16
+-/
 @[simp] theorem mem_strictCell {n : ℕ} {Γ : AffineSystem n} {x : Fin n → ℝ} :
     x ∈ strictCell Γ ↔ ∀ c ∈ Γ, c.strictHolds x := Iff.rfl
 
 /-- Given [a point](hyp:x), [membership in the weak relaxation](goal) is equivalent to
-[weakly satisfying every listed constraint](step:1). -/
+[weakly satisfying every listed constraint](step:1).
+@isnad1 id=iff.0h3v.s5.980d86da6109 from=translated src=- shape=39c20d98 vocab=e50d3e39
+-/
 @[simp] theorem mem_weakCell {n : ℕ} {Γ : AffineSystem n} {x : Fin n → ℝ} :
     x ∈ weakCell Γ ↔ ∀ c ∈ Γ, c.weakHolds x := Iff.rfl
 
 /-- Given [an affine constraint system](hyp:Γ), [every strictly feasible point belongs to its
-weak relaxation](goal). -/
+weak relaxation](goal).
+@isnad1 id=le.0h2v.s4.996415338b71 from=translated src=- shape=d2b0371a vocab=2a892b9e
+-/
 theorem strictCell_subset_weakCell {n : ℕ} (Γ : AffineSystem n) :
     strictCell Γ ⊆ weakCell Γ := by
   intro x hx c hc
@@ -143,7 +153,9 @@ theorem strictCell_subset_weakCell {n : ℕ} (Γ : AffineSystem n) :
   | weak => simpa [Constraint.strictHolds, Constraint.weakHolds, hkind] using h
   | strict => exact le_of_lt (by simpa [Constraint.strictHolds, hkind] using h)
 
-/-- Given [an affine constraint system](hyp:Γ), [its weak relaxation is closed](goal). -/
+/-- Given [an affine constraint system](hyp:Γ), [its weak relaxation is closed](goal).
+@isnad1 id=isclosed.0h2v.s4.bb22a087bb7e from=translated src=- shape=6b40eb30 vocab=bd25e947
+-/
 theorem isClosed_weakCell {n : ℕ} (Γ : AffineSystem n) : IsClosed (weakCell Γ) := by
   induction Γ with
   | nil => simp [weakCell]
@@ -153,7 +165,9 @@ theorem isClosed_weakCell {n : ℕ} (Γ : AffineSystem n) : IsClosed (weakCell �
         simp [weakCell, Constraint.weakHolds]]
       exact (isClosed_le c.fn.continuous_eval continuous_const).inter ih
 
-/-- Given [an affine constraint system](hyp:Γ), [its weak relaxation is convex](goal). -/
+/-- Given [an affine constraint system](hyp:Γ), [its weak relaxation is convex](goal).
+@isnad1 id=convex.0h2v.s5.33a6b9977a93 from=translated src=- shape=c23c9233 vocab=26cec76c
+-/
 theorem convex_weakCell {n : ℕ} (Γ : AffineSystem n) : Convex ℝ (weakCell Γ) := by
   intro x hx y hy a b ha hb hab c hc
   have hxc := hx c hc

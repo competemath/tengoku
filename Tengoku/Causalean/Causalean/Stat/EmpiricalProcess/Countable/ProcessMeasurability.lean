@@ -19,7 +19,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω]
   (μ : Measure Ω) [IsProbabilityMeasure μ] (F : BoundedClass Ω ι)
 
 /-- [Every member](hyp:i) of a uniformly bounded measurable class [is
-integrable under the probability law μ](goal). -/
+integrable under the probability law μ](goal).
+@isnad1 id=integrab.0h5v.s5.8f1cff278157 from=translated src=- shape=9756b362 vocab=84aecf31
+-/
 theorem BoundedClass.integrable (i : ι) : Integrable (F.f i) μ := by
   exact Integrable.of_bound (F.measurable i).aestronglyMeasurable F.bound
     (ae_of_all _ (fun x => by simpa only [Real.norm_eq_abs] using F.bounded i x))
@@ -27,7 +29,9 @@ theorem BoundedClass.integrable (i : ι) : Integrable (F.f i) μ := by
 /-- If [a bound B is nonnegative](hyp:B,hB) and [every entry of a real
 vector of length n is at most B in absolute value](hyp:a,ha,n), then [the
 absolute value of the entries' sum divided by n is at most B](goal),
-including the empty sum. -/
+including the empty sum.
+@isnad1 id=le.2h3v.s6.f3fb7c1ae037 from=translated src=- shape=4bb797ff vocab=4a0e4b45
+-/
 theorem normalized_sum_bound {n : ℕ} (a : Fin n → ℝ) (B : ℝ)
     (hB : 0 ≤ B) (ha : ∀ j, |a j| ≤ B) :
     |(n : ℝ)⁻¹ * ∑ j, a j| ≤ B := by
@@ -45,14 +49,18 @@ theorem normalized_sum_bound {n : ℕ} (a : Fin n → ℝ) (B : ℝ)
     _ = B := by simp [hn']
 
 /-- [Multiplying a real number by the sign ±1 attached to a Boolean value
-leaves its absolute value unchanged](goal). -/
+leaves its absolute value unchanged](goal).
+@isnad1 id=eq.0h2v.s5.4cea3c44a8df from=translated src=- shape=adf80525 vocab=68ed19c4
+-/
 theorem abs_bool_sign (b : Bool) (a : ℝ) :
     |(if b then (1 : ℝ) else -1) * a| = |a| := by
   cases b <;> simp
 
 /-- If [every member of a nonempty family of reals lies between 0 and
 B](hyp:a,B,ha), then [the family's supremum also lies between 0 and
-B](goal). -/
+B](goal).
+@isnad1 id=and.1h3v.s5.e1565cec94cb from=translated src=- shape=2b935d00 vocab=e4f0978d
+-/
 theorem supremum_bounds [Nonempty ι] (a : ι → ℝ) (B : ℝ)
     (ha : ∀ i, 0 ≤ a i ∧ a i ≤ B) : 0 ≤ iSup a ∧ iSup a ≤ B := by
   have hb : BddAbove (Set.range a) := ⟨B, by rintro _ ⟨i, rfl⟩; exact (ha i).2⟩
@@ -74,7 +82,9 @@ variable [Countable ι] [Nonempty ι]
 
 /-- For [any sample size n](hyp:n), [the centered supremum of the class is
 a measurable function of the sample, lies between zero and twice the class
-bound, and has an integrable fourth power under the iid product law](goal). -/
+bound, and has an integrable fourth power under the iid product law](goal).
+@isnad1 id=and.0h5v.s7.23503483618f from=translated src=- shape=d538978e vocab=3f4ad766
+-/
 theorem centeredSup_legal (n : ℕ) :
     Measurable (centeredSup μ F.f (n := n)) ∧
     (∀ x : Fin n → Ω, 0 ≤ centeredSup μ F.f x ∧
@@ -108,7 +118,9 @@ theorem centeredSup_legal (n : ℕ) :
 /-- For [any sample size n](hyp:n), [the ghost supremum is jointly
 measurable in the two samples, lies between zero and twice the class bound,
 and has an integrable fourth power under the product of two iid
-laws](goal). -/
+laws](goal).
+@isnad1 id=and.0h5v.s8.287196de9d25 from=translated src=- shape=30c111af vocab=d09a801f
+-/
 theorem ghostSup_legal (n : ℕ) :
     Measurable (fun p : (Fin n → Ω) × (Fin n → Ω) => ghostSup F.f p.1 p.2) ∧
     (∀ x y : Fin n → Ω, 0 ≤ ghostSup F.f x y ∧ ghostSup F.f x y ≤ 2 * F.bound) ∧
@@ -138,7 +150,9 @@ theorem ghostSup_legal (n : ℕ) :
 /-- For [any sample size n](hyp:n), [each fixed-sign signed supremum is a
 measurable function of the sample lying between zero and the class bound,
 and the sign average of its fourth power is integrable under the iid
-product law](goal). -/
+product law](goal).
+@isnad1 id=and.0h5v.s7.b19371706002 from=translated src=- shape=56133e79 vocab=3786c54e
+-/
 theorem signedSup_legal (n : ℕ) :
     (∀ σ : Fin n → Bool, Measurable (fun x => signedSup F.f x σ)) ∧
     (∀ x σ, 0 ≤ signedSup F.f (n := n) x σ ∧ signedSup F.f x σ ≤ F.bound) ∧
@@ -168,7 +182,9 @@ theorem signedSup_legal (n : ℕ) :
 /-- For [any sample size n](hyp:n) and [any fixed sign vector σ](hyp:σ),
 [the σ-signed ghost supremum is jointly measurable in the two samples, its
 fourth power is integrable under the product of two iid laws, and so is
-every section obtained by freezing the first sample](goal). -/
+every section obtained by freezing the first sample](goal).
+@isnad1 id=and.0h6v.s8.6f8413b69811 from=translated src=- shape=a21ee7d2 vocab=635824db
+-/
 theorem signedGhostSup_legal (n : ℕ) (σ : Fin n → Bool) :
     Measurable (fun p : (Fin n → Ω) × (Fin n → Ω) =>
       signedGhostSup F.f p.1 p.2 σ) ∧

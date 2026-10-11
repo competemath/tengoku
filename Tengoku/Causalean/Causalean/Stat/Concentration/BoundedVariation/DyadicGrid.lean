@@ -19,6 +19,7 @@ at time zero](hyp:hzero), then [it admits compatible dyadic time grids:
 the level-k grid has 2^k + 1 points in increasing order, its i-th point has
 control value i/2^k times the terminal value, and equal dyadic fractions at
 different levels have the same representative time](goal).
+@isnad1 id=ex.2h1v.s9.ff40cc21118a from=translated src=- shape=e6949aca vocab=1a5e35a5
 -/
 theorem exists_control_dyadic_grid (u : Path)
     (hmono : Monotone (u : Time → ℝ)) (hzero : u timeZero = 0) :
@@ -64,6 +65,7 @@ theorem exists_control_dyadic_grid (u : Path)
 grid has summed squared path increments at most δ](hyp:hδ), then [the
 sign-averaged largest squared signed increment over the grid is at most
 32 (1 + log(m + 1)) δ](goal).
+@isnad1 id=le.1h5v.s8.23cee56da6c8 from=translated src=- shape=44e68558 vocab=39135822
 -/
 theorem signed_grid_increment_max_energy_le {m n : ℕ}
     (w : Fin n → Path) (t : Fin (m + 2) → Time) (δ : ℝ)

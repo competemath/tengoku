@@ -126,7 +126,9 @@ private lemma entropy_integral_le_integral_entropy
 
 /-- Under [the stated positivity and integrability conditions](hyp:h), the [entropy of a function
 of two independent coordinates is at most the expected entropy in the first coordinate plus the
-expected entropy in the second coordinate](goal). -/
+expected entropy in the second coordinate](goal).
+@isnad1 id=le.1h5v.s7.794d77842dfe from=translated src=- shape=995a1678 vocab=afc42872
+-/
 theorem entropy_prod_le
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     (μ : Measure X) (ν : Measure Y) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]

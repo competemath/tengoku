@@ -67,7 +67,9 @@ open _root_.MeasureTheory ProbabilityTheory
 
 /-- Coordinate-tuple projections at disjoint `Finset`s are `IndepFun` under
     `Measure.pi` of a family of probability measures.  This is the binary
-    aggregation of `iIndepFun_pi` via `iIndepFun.indepFun_finset`. -/
+    aggregation of `iIndepFun_pi` via `iIndepFun.indepFun_finset`.
+@isnad1 id=indepfun.1h5v.s8.dcf5d5b07331 from=translated src=- shape=7b991604 vocab=a11f2bf6
+-/
 theorem indepFun_pi_of_disjoint
     {ι : Type*} [Finite ι]
     {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)]
@@ -91,7 +93,9 @@ def finsetCoordProj
     (∀ i, Ω i) → ((i : {i // i ∈ S}) → Ω i.val) :=
   fun x i => x i.val
 
-/-- `finsetCoordProj` is measurable. -/
+/-- `finsetCoordProj` is measurable.
+@isnad1 id=measurab.0h3v.s7.98aa2a57eaed from=translated src=- shape=e6868c28 vocab=9c338bfe
+-/
 @[fun_prop]
 theorem measurable_finsetCoordProj
     {ι : Type*}
@@ -118,7 +122,9 @@ def finsetCoordProjFromCondResidual
     else
       x.2 ⟨i.val, Finset.mem_sdiff.mpr ⟨i.property, hiU⟩⟩
 
-/-- The residual reassembly map is measurable. -/
+/-- The residual reassembly map is measurable.
+@isnad1 id=measurab.0h4v.s9.942f87da9a33 from=translated src=- shape=fdd647c9 vocab=510e78f5
+-/
 @[fun_prop]
 theorem measurable_finsetCoordProjFromCondResidual
     {ι : Type*} [DecidableEq ι]
@@ -133,7 +139,9 @@ theorem measurable_finsetCoordProjFromCondResidual
   · let j : {j // j ∈ S \ U} := ⟨i.val, Finset.mem_sdiff.mpr ⟨i.property, hiU⟩⟩
     simpa [hiU, j, Function.comp_def] using (measurable_pi_apply j).comp measurable_snd
 
-/-- Reassembling `π_U` with the residual projection `π_{S \ U}` gives `π_S`. -/
+/-- Reassembling `π_U` with the residual projection `π_{S \ U}` gives `π_S`.
+@isnad1 id=eq.0h4v.s8.4b31b20c8482 from=translated src=- shape=6790f41a vocab=e09c3702
+-/
 theorem finsetCoordProjFromCondResidual_comp
     {ι : Type*} [DecidableEq ι]
     {Ω : ι → Type*} (S U : Finset ι) :
@@ -158,7 +166,9 @@ def finsetCoordProjPairFromUnion
     (fun i => x ⟨i.val, Finset.mem_union.mpr (Or.inl i.property)⟩,
      fun i => x ⟨i.val, Finset.mem_union.mpr (Or.inr i.property)⟩)
 
-/-- The union sub-block extraction map is measurable. -/
+/-- The union sub-block extraction map is measurable.
+@isnad1 id=measurab.0h4v.s9.1af7f3f1c379 from=translated src=- shape=5a5e5e68 vocab=ef57cf5a
+-/
 @[fun_prop]
 theorem measurable_finsetCoordProjPairFromUnion
     {ι : Type*} [DecidableEq ι]
@@ -175,7 +185,9 @@ theorem measurable_finsetCoordProjPairFromUnion
         {j // j ∈ A ∪ B})
 
 /-- Projecting to `A ∪ B` and then extracting the two sub-blocks gives the
-    pair of direct projections to `A` and `B`. -/
+    pair of direct projections to `A` and `B`.
+@isnad1 id=eq.0h4v.s8.99a82a773490 from=translated src=- shape=2407a3db vocab=b5e394ee
+-/
 theorem finsetCoordProjPairFromUnion_comp
     {ι : Type*} [DecidableEq ι]
     {Ω : ι → Type*} (A B : Finset ι) :
@@ -193,7 +205,9 @@ theorem finsetCoordProjPairFromUnion_comp
     Proof via `condIndepFun_iff_condExp_inter_preimage_eq_mul` + `condExp_bot`:
     the conditional expectation of an indicator against the trivial σ-algebra
     collapses to the expectation (the measure of the set), so the conditional
-    factorization reduces to the unconditional one. -/
+    factorization reduces to the unconditional one.
+@isnad1 id=condinde.3h6v.s6.8a33a34c5602 from=translated src=- shape=9de225d4 vocab=d9ecd7bd
+-/
 theorem condIndepFun_bot_of_indepFun
     {Ω : Type*} [MeasurableSpace Ω] [StandardBorelSpace Ω]
     {β γ : Type*} [MeasurableSpace β] [MeasurableSpace γ]
@@ -227,7 +241,9 @@ theorem condIndepFun_bot_of_indepFun
 
     Under a finite product probability measure, after conditioning on `π_U`,
     the residual block `S0` is conditionally independent of `T0` when `S0` is
-    disjoint from both `T0` and `U`; no disjointness of `T0` and `U` is assumed. -/
+    disjoint from both `T0` and `U`; no disjointness of `T0` and `U` is assumed.
+@isnad1 id=condinde.2h6v.s10.953c3fc8bda3 from=translated src=- shape=046ebb00 vocab=0ed67326
+-/
 theorem condIndepFun_pi_cond_residual_of_disjoint
     {ι : Type*} [Finite ι]
     {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)] [∀ i, StandardBorelSpace (Ω i)]
@@ -349,7 +365,9 @@ theorem condIndepFun_pi_cond_residual_of_disjoint
     independent of the coordinate tuple on `T`, given the coordinate tuple on `U`](goal).
 
     The proof reduces to `condIndepFun_pi_cond_residual_of_disjoint`, the
-    focused finite-product disintegration fact isolated just above. -/
+    focused finite-product disintegration fact isolated just above.
+@isnad1 id=condinde.1h6v.s9.b6f635cff1e9 from=translated src=- shape=95ae8188 vocab=7b23e791
+-/
 theorem condIndepFun_pi_of_inter_subset
     {ι : Type*} [DecidableEq ι] [Finite ι]
     {Ω : ι → Type*} [∀ i, MeasurableSpace (Ω i)] [∀ i, StandardBorelSpace (Ω i)]
@@ -405,7 +423,9 @@ theorem condIndepFun_pi_of_inter_subset
 
 /-- The comap σ-algebra of a function into a `Subsingleton` codomain is the
     trivial σ-algebra `⊥`.  Every measurable set in the codomain is either
-    empty or the full space, so every preimage is either `∅` or `univ`. -/
+    empty or the full space, so every preimage is either `∅` or `univ`.
+@isnad1 id=eq.0h3v.s5.2068d33d27a7 from=translated src=- shape=700944b8 vocab=27889860
+-/
 theorem comap_eq_bot_of_subsingleton
     {α β : Type*} [MeasurableSpace β] [Subsingleton β] (f : α → β) :
     MeasurableSpace.comap f inferInstance = (⊥ : MeasurableSpace α) := by
@@ -428,7 +448,9 @@ theorem comap_eq_bot_of_subsingleton
 
 /-- Pushforward bridge for `IndepFun`: if `X ∘ φ ⟂ᵢ Y ∘ φ` under `ν`, then
     `X ⟂ᵢ Y` under `ν.map φ`. The conditional-independence analogue is
-    `Causalean.Mathlib.Probability.Independence.Conditional.condIndepFun_of_map`. -/
+    `Causalean.Mathlib.Probability.Independence.Conditional.condIndepFun_of_map`.
+@isnad1 id=indepfun.4h8v.s6.2e9dae8a43ec from=translated src=- shape=20b10477 vocab=4d942b39
+-/
 theorem indepFun_of_map
     {α β γ δ : Type*} [MeasurableSpace α] [MeasurableSpace β]
     [MeasurableSpace γ] [MeasurableSpace δ]
@@ -457,7 +479,9 @@ theorem indepFun_of_map
     not change the (joint or marginal) law of preimages of `X` and `Y`; the
     relevant conditional expectations collapse to their unconditional means via
     `condExp_indep_eq`, and the factorization then follows from the
-    unconditional independence of `X` and `Y`. -/
+    unconditional independence of `X` and `Y`.
+@isnad1 id=condinde.5h8v.s7.c4e76aba57af from=translated src=- shape=77d2a8b9 vocab=7af9f7c1
+-/
 theorem condIndepFun_of_indepFun_indep
     {Ω β γ δ : Type*} [MeasurableSpace Ω] [StandardBorelSpace Ω]
     [MeasurableSpace β] [MeasurableSpace γ] [MeasurableSpace δ]

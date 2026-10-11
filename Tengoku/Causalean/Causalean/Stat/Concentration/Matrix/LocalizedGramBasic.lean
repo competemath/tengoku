@@ -23,7 +23,9 @@ namespace Causalean.Stat.Concentration
 open MeasureTheory ProbabilityTheory
 
 /-- A [measurable local weight](hyp:hqmeas) [between zero and one almost everywhere](hyp:hq)
-is [integrable under the probability law](goal). -/
+is [integrable under the probability law](goal).
+@isnad1 id=integrab.2h3v.s6.a95b0e9585b0 from=translated src=- shape=80503410 vocab=415be9a6
+-/
 theorem localWeight_integrable {X : Type*} [MeasurableSpace X]
     (P : Measure X) [IsProbabilityMeasure P] (q : X → ℝ) (hqmeas : Measurable q)
     (hq : ∀ᵐ x ∂P, 0 ≤ q x ∧ q x ≤ 1) : Integrable q P := by
@@ -32,7 +34,9 @@ theorem localWeight_integrable {X : Type*} [MeasurableSpace X]
   simpa [Real.norm_eq_abs, abs_of_nonneg hx.1] using hx.2
 
 /-- A local weight [between zero and one almost everywhere](hyp:hq), with [the stated population
-mean](hyp:hp), [differs from that mean by at most one almost everywhere](goal). -/
+mean](hyp:hp), [differs from that mean by at most one almost everywhere](goal).
+@isnad1 id=eventual.2h4v.s6.6efb91438dc0 from=translated src=- shape=8a6fe4e5 vocab=396caa8d
+-/
 theorem localWeight_centered_envelope {X : Type*} [MeasurableSpace X]
     (P : Measure X) [IsProbabilityMeasure P] (q : X → ℝ)
     (hq : ∀ᵐ x ∂P, 0 ≤ q x ∧ q x ≤ 1) {p : ℝ}
@@ -55,7 +59,9 @@ theorem localWeight_centered_envelope {X : Type*} [MeasurableSpace X]
 
 /-- A [measurable local weight](hyp:hqmeas) [between zero and one almost everywhere](hyp:hq),
 with [the stated population mean](hyp:hp), has [centered second moment at most that local
-mass](goal). -/
+mass](goal).
+@isnad1 id=le.3h4v.s7.075967e9e5fa from=translated src=- shape=acc7246b vocab=fe81aba6
+-/
 -- Proof route: use `E[(q-Eq)^2] = E[q^2]-(Eq)^2 ≤ E[q^2]` and `q^2 ≤ q`.
 theorem localWeight_centered_secondMoment_le {X : Type*} [MeasurableSpace X]
     (P : Measure X) [IsProbabilityMeasure P] (q : X → ℝ) (hqmeas : Measurable q)
@@ -80,7 +86,9 @@ theorem localWeight_centered_secondMoment_le {X : Type*} [MeasurableSpace X]
 
 /-- A localized Gram coordinate with [a local weight between zero and one](hyp:hq) and
 [features bounded by a nonnegative envelope](hyp:hB,hphi) [differs from its population mean by
-at most twice the squared envelope almost everywhere](goal). -/
+at most twice the squared envelope almost everywhere](goal).
+@isnad1 id=eventual.3h8v.s7.fc4aec7668d0 from=translated src=- shape=a2fa5524 vocab=29b6b9ee
+-/
 theorem localGram_centered_envelope {X κ : Type*} [MeasurableSpace X]
     (P : Measure X) [IsProbabilityMeasure P] (q : X → ℝ) (phi : κ → X → ℝ)
     (hq : ∀ᵐ x ∂P, 0 ≤ q x ∧ q x ≤ 1) {B : ℝ} (hB : 0 ≤ B)
@@ -118,7 +126,9 @@ theorem localGram_centered_envelope {X κ : Type*} [MeasurableSpace X]
 /-- A localized Gram coordinate from [measurable functions](hyp:hqmeas,hphimeas), a
 [unit-interval local weight](hyp:hq), [bounded features](hyp:hB,hphi), and [the stated local
 mass](hyp:hp) has [centered second moment bounded by envelope-to-the-fourth times local
-mass](goal). -/
+mass](goal).
+@isnad1 id=le.6h9v.s8.0d207eb98206 from=translated src=- shape=2a9637b4 vocab=f1e2b48b
+-/
 -- Proof route: discard the nonnegative squared mean from the variance identity, then use
 -- `(q φ_j φ_k)^2 ≤ B^4 q`, which follows from `q^2 ≤ q`.
 theorem localGram_centered_secondMoment_le {X κ : Type*} [MeasurableSpace X]
@@ -185,7 +195,9 @@ theorem localGram_centered_secondMoment_le {X κ : Type*} [MeasurableSpace X]
 
 /-- A localized Gram coordinate from [measurable functions](hyp:hqmeas,hphimeas), a
 [unit-interval local weight](hyp:hq), and [bounded features](hyp:hB,hphi) is [integrable under
-the population law](goal). -/
+the population law](goal).
+@isnad1 id=integrab.5h8v.s7.d78050af2e24 from=translated src=- shape=43de4de5 vocab=4bb4ad3e
+-/
 theorem localGram_integrable {X κ : Type*} [MeasurableSpace X]
     (P : Measure X) [IsProbabilityMeasure P] (q : X → ℝ) (phi : κ → X → ℝ)
     (hqmeas : Measurable q) (hphimeas : ∀ j, Measurable (phi j))
@@ -232,7 +244,9 @@ def LocalizedGramGood {N : ℕ} {κ X : Type*} [Fintype κ]
 
 /-- If [finite-matrix entries are bounded by a nonnegative tolerance](hyp:hepsilon,hE), [the
 absolute quadratic-form error is at most dimension times tolerance times squared vector
-norm](goal). -/
+norm](goal).
+@isnad1 id=le.2h4v.s7.48b44c2033b7 from=translated src=- shape=72556076 vocab=fff8e9e1
+-/
 -- Proof route: triangle inequality, the entrywise bound, then
 -- `(∑ |v j|)^2 ≤ card κ * ∑ (v j)^2` by finite Cauchy--Schwarz.
 theorem entrywise_to_quadratic {κ : Type*} [Fintype κ]
@@ -273,7 +287,9 @@ theorem entrywise_to_quadratic {κ : Type*} [Fintype κ]
 
 /-- If [an empirical matrix is entrywise close to a scaled population matrix with nonnegative
 tolerance](hyp:hepsilon,hentry), [each empirical quadratic form is bounded below by the
-population form minus the dimension-scaled error](goal). -/
+population form minus the dimension-scaled error](goal).
+@isnad1 id=le.2h6v.s7.d3d920a6ff75 from=translated src=- shape=afad90de vocab=f270f57f
+-/
 theorem entrywise_gram_lower_bound {κ : Type*} [Fintype κ]
     (G M : κ → κ → ℝ) (v : κ → ℝ) {scale epsilon : ℝ}
     (hepsilon : 0 ≤ epsilon) (hentry : ∀ j k, |G j k - scale * M j k| ≤ epsilon) :
@@ -315,7 +331,9 @@ theorem entrywise_gram_lower_bound {κ : Type*} [Fintype κ]
 /-- Given [positive sample size, mass, and coercivity](hyp:hN,hp,hlambda), [population
 coercivity](hyp:hcoercive), a [small count error](hyp:hcount), and [small entrywise Gram
 errors](hyp:hentry), [the realised local count is positive and the empirical Gram is coercive
-relative to it](goal). -/
+relative to it](goal).
+@isnad1 id=localize.6h9v.s8.f4134e1fb91b from=translated src=- shape=bef35fe4 vocab=b573c8c1
+-/
 -- Proof route: the count window gives `0 < Q ≤ 3Np/2`; entrywise perturbation gives
 -- `v'Gv ≥ λNp‖v‖² - λNp‖v‖²/4 = 3λNp‖v‖²/4`.
 theorem localizedGram_good_of_entrywise
@@ -389,7 +407,9 @@ theorem localizedGram_good_of_entrywise
 
 /-- Under [positive sample size, mass, and coercivity](hyp:hN,hp,hlambda) and [population
 coercivity](hyp:hcoercive), [failure of empirical local-Gram coercivity implies either a large
-count error or a large entrywise Gram error](goal). -/
+count error or a large entrywise Gram error](goal).
+@isnad1 id=le.4h8v.s8.46e54545c5e7 from=translated src=- shape=887bdb19 vocab=b0b27343
+-/
 theorem localizedGram_failure_subset_deviations
     {N : ℕ} {κ X : Type*} [Fintype κ] [Nonempty κ]
     (q : X → ℝ) (phi : κ → X → ℝ) (M : κ → κ → ℝ)

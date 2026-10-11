@@ -27,6 +27,7 @@ noncomputable def signTailMass {n : ℕ} (a : Fin n → ℝ) (u : ℝ) : ℝ :=
 signed sum has absolute value at least u is at most
 2·exp(−u^2/(2 times the sum of squared coefficients))](goal), uniformly in
 the number of signs.
+@isnad1 id=le.2h3v.s7.215530c513ff from=translated src=- shape=e3ad1b5e vocab=e50be698
 -/
 theorem signTailMass_le {n : ℕ} (a : Fin n → ℝ) (u : ℝ)
     (hu : 0 ≤ u) (hvar : 0 < ∑ j, (a j) ^ 2) :
