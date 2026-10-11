@@ -496,8 +496,17 @@ def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: 
     refused = [(name, why) for name, why in more if why.endswith("does not exist") or why.startswith("tagging would change more than tags")]
     problems += [f"{name}: {why}" for name, why in refused]
     if present != counts["same"]:
+        # say WHERE: a part is hundreds of modules, and the run that finds this takes two hours (2026-10-11: 4880 tag lines, 4881 right, in 365 modules, no module named)
+        odd = []
+        for m in modules:
+            path = module_file(m, root)
+            here = tag_lines_of(read_source(path)) if path.is_file() else 0
+            right = tag_files({m: plan[m]}, root, write=False)[0]["same"] if m in plan else 0
+            if here != right:
+                odd.append(f"{m} ({here} tag line(s), {right} theorem(s) right)")
         problems.append(
             f"{present} tag line(s) in the docstrings but {counts['same']} theorem(s) carry the right one: a tag belongs to no theorem, or is on a theorem twice"
+            + (f" — in {', '.join(odd[:8])}" + (f" and {len(odd) - 8} more" if len(odd) > 8 else "") if odd else "")
         )
     by_rule = len(skipped) + len(more) - len(refused)
     return problems, f"{counts['same']} tags right, {by_rule} theorems skipped by rule, {len(recs)} theorems in {len(modules)} modules"

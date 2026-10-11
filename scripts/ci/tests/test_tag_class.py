@@ -377,6 +377,15 @@ class CheckTags(unittest.TestCase):
             problems, _ = isnad.check_tags(recs, lines, [self.MODULE], root)
         self.assertTrue(any("tagging would change more than tags" in p for p in problems), problems)
 
+    def test_a_tag_that_belongs_to_no_theorem_names_its_module(self):
+        """The count mismatch used to say only 'a tag belongs to no theorem, or is on a theorem twice' (a 365-module part, two hours to find out which)."""
+        text = self.right()
+        recs, lines = self.inputs(text)
+        stray = isnad.format_tag(recs[0], "seed")
+        problems, _ = self.run_check(text + f"\n/-- stray\n{stray}\n-/\ndef stray : Nat := 1\n")
+        msg = next((p for p in problems if "tag belongs to no theorem" in p), "")
+        self.assertIn("— in Tengoku.Seed.Fx (3 tag line(s), 2 theorem(s) right)", msg)
+
     def test_a_theorem_without_a_tag_is_reported(self):
         text = self.right()
         recs, lines = self.inputs(text)
