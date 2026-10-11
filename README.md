@@ -18,8 +18,18 @@ ecosystem. [Why](docs/why-cynical.md) and [how](docs/reliability.md) we do that.
 ## Try it
 [Leak](https://competemath.com/about/leak) is the intended interface to Tengoku.
 
-- **Add the MCP tool to your agent** (free, no sign-up):
-  `claude mcp add --transport sse tengoku-search https://barkingtree-leak-i.hf.space/sse`
+- **Add the MCP tools to your agent** (free, no sign-up): [Leak I](https://github.com/mikael-bashir/leak-i) searches
+  (Loogle + Moogle + ChromaDB), [Leak II](https://github.com/mikael-bashir/leak-ii) steps through proofs (Pantograph),
+  [Leak IV](https://github.com/mikael-bashir/leak-iv) verifies a script (Lean kernel).
+  <details><summary>Connection URLs</summary>
+
+  ```
+  claude mcp add --transport sse tengoku-search https://barkingtree-leak-i.hf.space/sse
+  claude mcp add --transport sse tengoku-proof  https://barkingtree-leak-ii.hf.space/sse
+  claude mcp add --transport sse tengoku-verify https://barkingtree-leak-iv.hf.space/sse
+  ```
+
+  </details>
 - **Search it on the web:** [competemath.com/tengoku](https://competemath.com/tengoku), in plain English or by name.
 - **Run your own:** the [service code](https://github.com/mikael-bashir/leak-services).
 - **HTTP API:** [docs/api.md](docs/api.md).
