@@ -25,6 +25,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -80,14 +81,33 @@ def read_marker(head: str, path: str) -> dict:
     return m
 
 
-def main() -> None:
-    base, head = sys.argv[1], sys.argv[2]
+@dataclass
+class Raze:
+    """What the PR razes, read from its marker and the base."""
+
+    base: str
+    head: str
+    files: list[tuple[str, str]]
+    marker_path: str
+    lib: str
+    ns: str
+    whole: bool
+    razed: set[str]
+    present: dict[str, str]  # module -> path, at the base
+    manifest_path: str
+    old_manifest: list[str]
+
+    @property
+    def umbrella(self) -> str:
+        return f"Tengoku/{self.ns}.lean"
+
+
+def load(base: str, head: str) -> Raze:
     files = changed_files(base, head)
     markers = [p for st, p in files if MARKER.fullmatch(p) and st == "A"]
     if len(markers) != 1:
         fail(f"a raze PR adds exactly one marker data/raze/<id>.json (found {len(markers)})")
-    marker_path = markers[0]
-    m = read_marker(head, marker_path)
+    m = read_marker(head, markers[0])
     lib, ns, whole = m["library"], pascal(m["library"]), m.get("all") is True
     manifest_path = f"data/intake/{lib}/manifest.jsonl"
     old_manifest = lines_of(base, manifest_path)
@@ -105,86 +125,97 @@ def main() -> None:
         fail(f"modules the marker names that are not modules of {lib} at the base (a name is `Tengoku.{ns}.…`): " + ", ".join(stray[:5]))
     if not whole and len(razed) > MAX_MODULES:
         fail(f"a partial raze removes at most {MAX_MODULES} modules (this one {len(razed)}): split it, or raze the whole library")
-    errors: list[str] = []
+    return Raze(base, head, files, markers[0], lib, ns, whole, razed, present, manifest_path, old_manifest)
 
-    # 1. nothing but the removal
-    expected_deleted = {present[x] for x in razed}
-    umbrella = f"Tengoku/{ns}.lean"
-    allowed_other: dict[str, str] = {}  # path -> what may happen to it
-    if whole:
-        expected_deleted.add(umbrella)
-        expected_deleted |= {p for p in run("ls-tree", "-r", "--name-only", base, f"data/intake/{lib}").splitlines()}
-        allowed_other["Tengoku/All.lean"] = "M"
+
+def file_errors(r: Raze) -> list[str]:
+    """Nothing but the removal: the files deleted are exactly the marker's, and no file outside the allowed ones changes."""
+    errors: list[str] = []
+    expected_deleted = {r.present[x] for x in r.razed}
+    allowed_other: set[str] = set()
+    if r.whole:
+        expected_deleted.add(r.umbrella)
+        expected_deleted |= set(run("ls-tree", "-r", "--name-only", r.base, f"data/intake/{r.lib}").splitlines())
+        allowed_other.add("Tengoku/All.lean")
     else:
-        allowed_other[umbrella] = "M"
-        allowed_other[manifest_path] = "M"
-    deleted = {p for st, p in files if st == "D"}
+        allowed_other |= {r.umbrella, r.manifest_path}
+    deleted = {p for st, p in r.files if st == "D"}
     if deleted != expected_deleted:
         missing, extra = sorted(expected_deleted - deleted), sorted(deleted - expected_deleted)
         if missing:
             errors.append(f"the marker razes files the PR does not delete: {', '.join(missing[:4])}")
         if extra:
             errors.append(f"the PR deletes files the marker does not name: {', '.join(extra[:4])}")
-    for st, p in files:
-        if p == marker_path or (st == "D" and p in expected_deleted):
+    allowed = f"the files it removes, the umbrella, the manifest{' and Tengoku/All.lean' if r.whole else ''} and its marker"
+    for st, p in r.files:
+        if p == r.marker_path or (st == "D" and p in expected_deleted) or (st == "M" and p in allowed_other):
             continue
-        if st == "M" and allowed_other.get(p) == "M":
-            continue
+        errors.append(f"{p}: a raze PR changes nothing but {allowed} (this one is {st})")
+    return errors
+
+
+def import_line_errors(r: Raze, path: str, gone: set[str]) -> list[str]:
+    """The umbrella (partial) or All.lean (whole): exactly the import lines of the razed modules go."""
+    old, new = lines_of(r.base, path), lines_of(r.head, path)
+    if old is None or new is None:
+        return [f"{path}: not readable at the base and the head"]
+    want = [ln for ln in old if not (ln.startswith("import ") and ln[len("import ") :].strip() in gone)]
+    if new == want:
+        return []
+    return [f"{path}: must lose exactly the import line(s) of {', '.join(sorted(gone)[:3])}… and nothing else"]
+
+
+def module_of_line(ln: str) -> str | None:
+    try:
+        return json.loads(ln).get("module")
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def manifest_errors(r: Raze) -> list[str]:
+    """The manifest loses exactly the records of the razed modules, in place, and no record that remains names a module that does not."""
+    new = lines_of(r.head, r.manifest_path)
+    if new is None:
+        return [f"{r.manifest_path}: not readable at the head"]
+    errors: list[str] = []
+    want = [ln for ln in r.old_manifest if ln.strip() == "" or module_of_line(ln) not in r.razed]
+    if new != want:
         errors.append(
-            f"{p}: a raze PR changes nothing but the files it removes, the umbrella, the manifest{' and Tengoku/All.lean' if whole else ''} and its marker (this one is {st})"
+            f"{r.manifest_path}: must lose exactly the lines of the records of the razed modules, every other line unchanged and in its place"
         )
-    names_razed = set(razed)
+    modules = {mod for ln in new if (mod := module_of_line(ln))}
+    gone_but_named = sorted(modules & r.razed)
+    if gone_but_named:
+        errors.append(f"{r.manifest_path}: records of razed modules remain: {', '.join(gone_but_named[:3])}")
+    dangling = sorted(modules - (set(r.present) - r.razed))
+    if dangling:
+        errors.append(f"{r.manifest_path}: records that remain name modules that do not remain: {', '.join(dangling[:3])}")
+    return errors
 
-    # the umbrella (partial) or All.lean (whole): exactly the import lines of the razed modules go
-    def removal_only(path: str, gone: set[str]) -> None:
-        old, new = lines_of(base, path), lines_of(head, path)
-        if old is None or new is None:
-            errors.append(f"{path}: not readable at the base and the head")
-            return
-        want = [ln for ln in old if not (ln.startswith("import ") and ln[len("import ") :].strip() in gone)]
-        if new != want:
-            errors.append(f"{path}: must lose exactly the import line(s) of {', '.join(sorted(gone)[:3])}… and nothing else")
 
-    if whole:
-        removal_only("Tengoku/All.lean", {f"Tengoku.{ns}"})
+def dependency_errors(r: Raze) -> list[str]:
+    """The dependencies go with it: nothing that remains in the library imports a razed module."""
+    errors: list[str] = []
+    for path, text in read_blobs(r.head, [r.present[x] for x in r.present if x not in r.razed]).items():
+        used = sorted(set(header_imports(text)) & r.razed)
+        if used:
+            errors.append(f"{path} remains but imports {', '.join(used[:3])}, which the marker razes: raze it too, or leave the module")
+    return errors
+
+
+def main() -> None:
+    r = load(sys.argv[1], sys.argv[2])
+    errors = file_errors(r)
+    if r.whole:
+        errors += import_line_errors(r, "Tengoku/All.lean", {f"Tengoku.{r.ns}"})
     else:
-        removal_only(umbrella, names_razed)
-        # 2. the manifest loses exactly the records of the razed modules
-        new_manifest = lines_of(head, manifest_path)
-        if new_manifest is None:
-            errors.append(f"{manifest_path}: not readable at the head")
-        else:
-
-            def module_of_line(ln: str) -> str | None:
-                try:
-                    return json.loads(ln).get("module")
-                except Exception:  # noqa: BLE001
-                    return None
-
-            want = [ln for ln in old_manifest if ln.strip() == "" or module_of_line(ln) not in razed]
-            if new_manifest != want:
-                errors.append(
-                    f"{manifest_path}: must lose exactly the lines of the records of the razed modules, every other line unchanged and in its place"
-                )
-            gone_but_named = sorted({mod for ln in new_manifest if (mod := module_of_line(ln)) in razed})
-            if gone_but_named:
-                errors.append(f"{manifest_path}: records of razed modules remain: {', '.join(gone_but_named[:3])}")
-            remaining = set(present) - razed
-            dangling = sorted({mod for ln in new_manifest if (mod := module_of_line(ln)) and mod not in remaining})
-            if dangling:
-                errors.append(f"{manifest_path}: records that remain name modules that do not remain: {', '.join(dangling[:3])}")
-
-    # 3. the dependencies go with it: nothing that remains in the library imports a razed module
-    if not whole:
-        remaining_paths = [present[x] for x in present if x not in razed]
-        for path, text in read_blobs(head, remaining_paths).items():
-            used = sorted(set(header_imports(text)) & names_razed)
-            if used:
-                errors.append(f"{path} remains but imports {', '.join(used[:3])}, which the marker razes: raze it too, or leave the module")
+        errors += import_line_errors(r, r.umbrella, r.razed) + manifest_errors(r) + dependency_errors(r)
     if errors:
         shown = errors[:20] + ([f"… and {len(errors) - 20} more"] if len(errors) > 20 else [])
         fail("raze PR:\n  " + "\n  ".join(shown))
-    print(f"raze OK: {len(razed)} module(s) of {lib}{' (the whole library)' if whole else ''}; a code owner reads the marker {marker_path}")
+    print(
+        f"raze OK: {len(r.razed)} module(s) of {r.lib}{' (the whole library)' if r.whole else ''}; a code owner reads the marker {r.marker_path}"
+    )
 
 
 if __name__ == "__main__":
