@@ -20,7 +20,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import io
 import json
 import os
 import re
@@ -139,6 +138,17 @@ def rollback(quiet: bool = False) -> int:
     return 0
 
 
+def undo(created: set[str], overwritten: set[str]) -> None:
+    """Back to the base after an apply that stopped halfway: what it created goes, what it replaced is put back from the kept-aside copies (the previous top-up's files too)."""
+    for rel in created:
+        (LAKE / rel).unlink(missing_ok=True)
+    for rel in overwritten:
+        if (BACKUP / rel).is_file():
+            put_back(rel)
+    shutil.rmtree(BACKUP, ignore_errors=True)
+    APPLIED.unlink(missing_ok=True)
+
+
 def apply(tar_path: Path, manifest_path: Path) -> int:
     manifest = json.loads(manifest_path.read_text())
     if sha256(tar_path) != manifest.get("sha256"):
@@ -173,25 +183,40 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
             overwritten.add(rel)
         else:
             created.add(rel)
-    raw = subprocess.run(["zstd", "-d", "-q", "-c", str(tar_path)], capture_output=True)
-    if raw.returncode != 0:
+    # A stream, never the whole archive in memory: a top-up grows with every merge since the nightly base (772 MB packed, 10.6 GB unpacked on 2026-10-11, after the
+    # openai-math parts) and holding it as bytes (twice, with the copy `capture_output` joins) killed the queue's runner 'with a shutdown signal' in every Lean build.
+    zstd = subprocess.Popen(["zstd", "-d", "-q", "-c", str(tar_path)], stdout=subprocess.PIPE)
+    assert zstd.stdout is not None
+    broken = False
+    try:
+        with tarfile.open(fileobj=zstd.stdout, mode="r|") as tar:
+            for member in tar:
+                if not member.isfile() or member.name not in listed:
+                    print(f"REFUSED: unexpected member {member.name!r}", file=sys.stderr)
+                    zstd.kill()
+                    rollback(quiet=True)
+                    return 1
+                target = LAKE / member.name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                # Never write into a file in place: the services keep serving from a Lean process that has the
+                # old file mapped while the new one arrives. Write beside it, then rename over it.
+                fresh = target.with_name(target.name + ".topup-new")
+                with tar.extractfile(member) as src, fresh.open("wb") as dst:
+                    shutil.copyfileobj(src, dst)
+                os.utime(fresh, (member.mtime, member.mtime))
+                os.replace(fresh, target)
+        while zstd.stdout.read(1 << 20):  # the padding after the end-of-archive blocks: read it, or zstd dies of SIGPIPE and a good archive looks broken
+            pass
+    except tarfile.TarError:
+        broken = True  # a stream that stops short or is not a tar
+    finally:
+        if zstd.poll() is None and broken:
+            zstd.kill()
+        zstd.stdout.close()
+    if zstd.wait() != 0 or broken:
+        undo(created, overwritten)
         print("REFUSED: the top-up does not decompress", file=sys.stderr)
         return 1
-    with tarfile.open(fileobj=io.BytesIO(raw.stdout), mode="r:") as tar:
-        for member in tar:
-            if not member.isfile() or member.name not in listed:
-                print(f"REFUSED: unexpected member {member.name!r}", file=sys.stderr)
-                rollback(quiet=True)
-                return 1
-            target = LAKE / member.name
-            target.parent.mkdir(parents=True, exist_ok=True)
-            # Never write into a file in place: the services keep serving from a Lean process that has the
-            # old file mapped while the new one arrives. Write beside it, then rename over it.
-            fresh = target.with_name(target.name + ".topup-new")
-            with tar.extractfile(member) as src, fresh.open("wb") as dst:
-                shutil.copyfileobj(src, dst)
-            os.utime(fresh, (member.mtime, member.mtime))
-            os.replace(fresh, target)
     APPLIED.write_text(
         json.dumps(
             {

@@ -160,6 +160,51 @@ class Topups(unittest.TestCase):
         self.assertIn("REFUSED", msg)
         self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L0")
 
+    def test_apply_streams_the_archive_it_never_holds_the_unpacked_bytes(self):
+        """2026-10-11: a top-up of 772 MB packed was 10.6 GB unpacked; `zstd -d` captured whole (and joined: twice) killed the queue's runner 'with a shutdown signal' in the seed
+        step of every Lean build, and the merge queue stood still. Python's own memory while it unpacks is a few megabytes, whatever the archive."""
+        p = self.producer()
+        (p / ".lake/build/lib/lean/Tengoku/Big.olean").write_bytes(b"\0" * (150 << 20))  # packs to a few KB, unpacks to 150 MB
+        out = p / "out"
+        rc, msg = run(p, "make", "--tip", "t1", "--out", str(out))
+        self.assertEqual(rc, 0, msg)
+        c = tree(BASE_FILES)
+        mark(c)
+        driver = (
+            "import sys, tracemalloc; from pathlib import Path; sys.path.insert(0, sys.argv[1]); import topup; tracemalloc.start(); "
+            "rc = topup.apply(Path(sys.argv[2]), Path(sys.argv[3])); print(rc, tracemalloc.get_traced_memory()[1])"
+        )
+        r = subprocess.run(
+            [sys.executable, "-c", driver, str(ROOT / "scripts"), str(out / "topup-t1.tar.zst"), str(out / "topup-t1.json")],
+            capture_output=True, text=True, env={**os.environ, "TENGOKU_TOPUP_ROOT": str(c)},
+        )
+        self.assertEqual(r.returncode, 0, r.stderr)
+        rc, peak = (int(x) for x in r.stdout.split()[-2:])
+        self.assertEqual(rc, 0)
+        self.assertLess(peak, 20 << 20, f"python held {peak >> 20} MB while unpacking a 150 MB archive")
+        self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Big.olean").stat().st_size, 150 << 20)
+        self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L1")
+
+    def test_an_archive_that_stops_halfway_is_refused_and_the_base_is_back(self):
+        """The stream is unpacked as it arrives, so a broken archive has already replaced some files when it is found: they all go back (the digest still matches: it is the manifest's, of the file as published)."""
+        p = self.producer()
+        (p / ".lake/build/lib/lean/Tengoku/Zbig.olean").write_bytes(os.urandom(3 << 20))  # last in the archive, incompressible: the small files are unpacked before zstd finds the missing end
+        out = p / "out"
+        run(p, "make", "--tip", "t1", "--out", str(out))
+        tar = out / "topup-t1.tar.zst"
+        tar.write_bytes(tar.read_bytes()[:-40])
+        m = json.loads((out / "topup-t1.json").read_text())
+        m["sha256"] = subprocess.run(["shasum", "-a", "256", str(tar)], capture_output=True, text=True).stdout.split()[0]
+        (out / "topup-t1.json").write_text(json.dumps(m))
+        c = tree(BASE_FILES)
+        mark(c)
+        rc, msg = run(c, "apply", "--file", str(tar), "--manifest", str(out / "topup-t1.json"))
+        self.assertEqual(rc, 1, msg)
+        self.assertIn("does not decompress", msg)
+        self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L0")  # the base again
+        self.assertFalse((c / ".lake/build/lib/lean/Tengoku/New.olean").exists())
+        self.assertFalse((c / ".lake/.topup-applied.json").exists())
+
     def test_manifest_naming_a_path_outside_the_module_trees_is_refused(self):
         p = self.producer()
         out = p / "out"
