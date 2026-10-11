@@ -1,0 +1,1 @@
+-- ChebotarevDensity: a factory bundle (data/intake/chebotarev-density). This file only marks the library for Tengoku/All.lean.

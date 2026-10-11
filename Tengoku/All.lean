@@ -40,6 +40,7 @@ import Tengoku
 import Tengoku.Ieantn
 import Tengoku.GroebnerProj
 import Tengoku.SpherePackingOrig
+import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.Apap
