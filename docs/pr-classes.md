@@ -237,4 +237,4 @@ under `data/`, which the default line of `CODEOWNERS` owns, so the PR cannot mer
 
 The merge queue re-runs `raze_check.py` on the entry's base (a part of the library that merged meanwhile may import a module it razes) and builds the library without the modules:
 a partial raze builds `Tengoku.<Library>` and everything builds `Tengoku.All`; a whole-library raze has no root left to build, so `Tengoku.All` is the build.
-The part reports `data/intake/<library>/parts/NNN.json` are history and stay as they are: the next part is numbered from the highest one (`from_tree`).
+In a partial raze the part reports `data/intake/<library>/parts/NNN.json` are history and stay as they are: the next part is numbered from the highest one (`from_tree`). A whole-library raze deletes all of `data/intake/<library>/`, reports included (the library leaves the tree, and comes back as a first part, numbered from 1); `test_raze.py` holds both.
