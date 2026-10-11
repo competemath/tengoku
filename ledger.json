@@ -1,0 +1,2885 @@
+{
+ "library": "tauceti",
+ "lint_mode": "proposed",
+ "verified": 45959,
+ "shipped": 40993,
+ "left_out": {
+  "imports a module that cannot go to the tree": 3867,
+  "an error outside any declaration (glue)": 10,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.DynkinType.diagramAut": 1,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.SpStd.rootGeneratorWeight_inl_eq_root_simpleIndex_B_two": 2,
+  "names a declaration with sorry that the pruning leaves out: IsDedekindDomain.finite_selmerGroupOfEquiv": 6,
+  "uses a declaration the pruning left out: continuous_matrixBilinearForm": 60,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.primePsi_eq_sum_range": 11,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.not_hasCancellation_of_isNormTwistOnGood": 49,
+  "declares a record the tree already has: Algebra.IsQuadraticExtension.algEquiv_eq_one_or_eq, Algebra.IsQuadraticExtension.algEquiv_mul_self, Algebra.IsQuadraticExtension.exists_algEquiv_ne_one": 10,
+  "declares a record the tree already has: Algebra.IsQuadraticExtension.exists_eq_algebraMap_add_algebraMap_mul, Algebra.IsQuadraticExtension.exists_notMem_range_algebraMap": 4,
+  "declares a record the tree already has: Algebra.IsQuadraticExtension.algebraMap_norm_eq_mul, Algebra.IsQuadraticExtension.algebraMap_trace_eq_add, Algebra.IsQuadraticExtension.discrim_ne_zero": 8,
+  "names a declaration with sorry that the pruning leaves out: hasDerivAt_spatialFDeriv_apply_mixed": 8,
+  "uses a declaration the pruning left out: baseChangeExp_add": 5,
+  "uses a declaration the pruning left out: projectiveStableFunctor_map_cokernelMap_comp": 10,
+  "uses a declaration the pruning left out: projectiveStableFunctor_map_kernelMap_comp": 10,
+  "did not build on the tree": 102,
+  "uses a declaration the pruning left out: map_add, map_zero": 7,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.commutator_pLowerCentralSeries_le": 16,
+  "uses a declaration the pruning left out: lie_bivector_bivector": 1,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.setOf_spinWeightSpace_ne_bot_and_le_spinMinus_eq_image_spinWeight_odd, TauCeti.setOf_spinWeightSpace_ne_bot_and_le_spinPlus_eq_image_spinWeight_even, TauCeti.spinWeightSpace_ne_bot_iff": 14,
+  "uses a declaration the pruning left out: prodCongr_apply, prodCongr_symm": 4,
+  "declares a record the tree already has: WeierstrassCurve.Affine.variableChange_addX, WeierstrassCurve.Affine.variableChange_addY, WeierstrassCurve.Affine.variableChange_equation": 9,
+  "declares a record the tree already has: WeierstrassCurve.Affine.Point.equivVariableChange_some": 2,
+  "uses a declaration the pruning left out: fst_eq, snd_eq": 33,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.truncatedPerronKernel_one_ne_half": 19,
+  "declares a record the tree already has: MeasureTheory.upcrossingsBefore_congr": 3,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.spinWeightSpace_le_spinMinus_iff, TauCeti.spinWeightSpace_le_spinPlus_iff": 4,
+  "uses a declaration the pruning left out: continuous_driftForm, continuous_massForm": 12,
+  "names a declaration with sorry that the pruning leaves out: PowerSeries.logDeriv_mul": 2,
+  "declares a name another library of the tree declares: Finset.prod_zpow_eq_zpow_sum": 5,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.MeasureTheory.isCoupling_diagonalCoupling": 5,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.exists_isCoupling_iff": 25,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.isCoupling_graphPlan_iff": 13,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.IsKantorovichOptimalTransportMap.isMongeMinimizer, TauCeti.transportCost_le_mongeCost": 21,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.exists_isCoupling_iff, TauCeti.hasFiniteMoment_iff_forall_hasFiniteMoment_iff_wassersteinEDist_ne_top": 33,
+  "uses a declaration the pruning left out: edist_def": 21,
+  "uses a declaration the pruning left out: op_mul": 23,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.isPolynomialRep_iff_forall_mem_polynomialFunctions": 10,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.stabilizer_eq_mackeySubgroup_subgroupOf": 9,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.simple_indFDRep_ofLinearCharacter_dihedralGroupFourRotationChar": 5,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.characterPairing_ind_ind_mackey, TauCeti.characterPairing_ind_ind_mackey_erase": 5,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.not_simple_indFDRep_stabilizer_perm_fin_three, TauCeti.simple_indFDRep_ofLinearCharacter_alternatingGroup_fin_three": 5,
+  "uses a declaration the pruning left out: spechtModule\u2102FDRepClass_bijective": 7,
+  "uses a declaration the pruning left out: toAdjoinRoot_mul": 29,
+  "lint: `macro` runs code while the tree compiles (or trusts the compiler); `macro` does not start an allowed command": 30,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.spareStateProcess_not_rowExchangeable_successorProcess": 53,
+  "uses a declaration the pruning left out: marginal_eq": 3,
+  "uses a declaration the pruning left out: mem_unitsCongruenceSubgroupSupTorsion": 18,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.integratedOperator_eq_smul_id": 6,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.averageOperator_comp": 11,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.schur_orthogonality_distinct": 4,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.exists_isUnitary_congr": 2,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.character_orthonormal_distinct, TauCeti.ContRepresentation.character_orthonormal_self": 3,
+  "uses a declaration the pruning left out: translation, translation_add, translation_zero": 3,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.image_val_orbit_eq_rootSet_minpoly, TauCeti.mem_orbit_iff_minpoly_eq, TauCeti.natCard_orbit_eq_natDegree_minpoly": 10,
+  "lint: attribute `hgen\u27e9` is not on the allow-list; attribute `f` is not on the allow-list; attribute `\u00acp` is not on the allow-list": 4,
+  "uses a declaration the pruning left out: card_orbit_eq_relIndex": 27,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.UniversalEnvelopingAlgebra.pPolynomial_\u03b9_mem_augmentation_toIdeal": 1,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.map_lowerTriangleGram_pi_bartlettCoordinateMeasure": 5,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.spinPlus_invariant": 9,
+  "declares a record the tree already has: AdjoinRoot.isSeparable_of_separable": 7,
+  "uses a declaration the pruning left out: mul_assoc": 8,
+  "names a declaration with sorry that the pruning leaves out: HeckeCosetModule.mul_comm_of_antiInvolution": 13,
+  "names a declaration with sorry that the pruning leaves out: UpperHalfPlane.peterssonInner_sum_slash_left_adjugateGL_biUnion": 2,
+  "names a declaration with sorry that the pruning leaves out: CuspForm.peterssonInnerCosets_trace_translate": 1,
+  "uses a declaration the pruning left out: IsRestricted.mul": 24,
+  "uses a declaration the pruning left out: IsWeightedRestricted.mul, hasBasis_nhds_zero_weightedTopology, mem_weightedNhd": 41,
+  "uses a declaration the pruning left out: SobolevStage.instCompleteSpace, Wkp.instCompleteSpace": 4,
+  "names a declaration with sorry that the pruning leaves out: CovariantDerivative.IsLeviCivitaConnection.two_inner_eq_koszul, CovariantDerivative.isLeviCivitaConnection_iff": 12,
+  "lint: `unseal` does not start an allowed command": 2,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.LocalCoefficientSystem.pathTransport_map": 2,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.card_dvd_card_frobeniusKernelSubgroup_sub_one": 16,
+  "uses a declaration the pruning left out: diag_eq": 14,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.mem_doubleCoset_iff_mk_mem_orbit": 37,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.condDistrib_multivariateGaussian": 5,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.condDistrib_multivariateGaussian_of_unique": 6,
+  "declares a record the tree already has: MonoidHom.continuous_of_isOpen_ker": 15,
+  "declares a record the tree already has: MonoidHom.continuous_iff_isOpen_ker": 14,
+  "uses a declaration the pruning left out: coeffPair_comp_comul": 14,
+  "uses a declaration the pruning left out: fgPointTensorIso_hom_hom, isMonoidal_fgPointNatIsoHom_hom, ofHom_scalarExtensionComponent": 2,
+  "uses a declaration the pruning left out: isZero_zero, zero": 9,
+  "declares a record the tree already has: Polynomial.derivative_quadratic, Polynomial.splits_quadratic_iff_exists_root": 10,
+  "names a declaration with sorry that the pruning leaves out: TauCeti.Divisor.degree_conorm": 14
+ },
+ "modules": {
+  "TauCeti.Algebra.AlgebraicGroup.AdditiveGroup.Unipotent": {
+   "reason": "uses a declaration the pruning left out: coeffPair_comp_comul",
+   "names": 14
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Borel.BaseChange": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Borel.Existence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Borel.Radical": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Center.Finite": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Connected.AlgebraicallyClosed": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Connected.BaseChange": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Connected.ComponentGroup.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Connected.Comultiplication": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Connected.GroupScheme": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Connected.Normal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Connected.Translation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Derived.Connected": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.DiagonalizableGroup.Scheme.GeneralLinear": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Adjoint.RootSpace": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Borel": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.DiagonalTorus.Conjugacy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.DiagonalTorus.Maximal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Dynamic.GL2.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Dynamic.Weight.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Dynamic.Weight.Normal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Dynamic.Weight.Parabolic.Geometry": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Reductive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Root.Base": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Root.Datum": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 16
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.StandardComodule": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.UpperTriangular.SmoothConnected": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Weight.Levi.StandardComodule": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GeneralLinear.Weight.Torus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.AlgebraicGroup.GroupAlgebra.Galois.Torus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Hopf.Translation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Radical.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Reductive.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Reductive.LinearlyReductive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.ClosedSubgroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Comodule.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Comodule.Cat": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Comodule.Equivalence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Comodule.Morphism": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Comodule.Trivial": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Embedding": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Faithful.BaseChange": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Faithful.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Normal.Invariants": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.PointsAction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.ScalarExtension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Tannaka.LocalFunctional": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Tannaka.Monoidal": {
+   "reason": "uses a declaration the pruning left out: fgPointTensorIso_hom_hom, isMonoidal_fgPointNatIsoHom_hom, ofHom_scalarExtensionComponent",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.Tannaka.PointFaithful": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.UnipotentPoint.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.UnipotentPoint.Character": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.UnipotentPoint.Naturality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.UnipotentPoint.NoCharacters": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Representation.UpperUnitriangular": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Solvable.LieKolchin": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Solvable.Radical.BaseChange": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Solvable.Radical.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Solvable.Radical.Isomorphism": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Solvable.Radical.Product": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Solvable.Trigonalizable": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.Borel.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.Connected": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.DiagonalTorus.Base": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.DiagonalTorus.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.DiagonalTorus.ClosedImmersion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.DiagonalTorus.Conjugacy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.Reductive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialLinear.StandardComodule": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialOrthogonal.Connected": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialOrthogonal.Irreducible": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialOrthogonal.LowRank": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SpecialOrthogonal.StandardComodule": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.SplitTorus.Weight": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Symplectic.Connected": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Symplectic.DiagonalTorus.Base": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Symplectic.DiagonalTorus.RootDatum": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Symplectic.Reductive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Symplectic.StandardComodule": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Torus.Characterization": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Torus.Existence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Torus.SmoothConnected": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Torus.Splitting": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Unipotent.Embedding": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Unipotent.LinearlyReductive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Unipotent.Product": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Unipotent.Radical.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Unipotent.Radical.Faithful": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Unipotent.Radical.Isomorphism": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.AlgebraicGroup.Unipotent.Radical.Product": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.AlgebraicGroup.UpperUnitriangular.Unipotent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.BigOperators.ZPow": {
+   "reason": "declares a name another library of the tree declares: Finset.prod_zpow_eq_zpow_sum",
+   "names": 5
+  },
+  "TauCeti.Algebra.BrauerGroup.Real": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.CentralSimple.Index": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.Algebra.CentralSimple.MaximalSubfield": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.CentralSimple.Real": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.CentralSimple.Subfield": {
+   "reason": "lint: `macro` runs code while the tree compiles (or trusts the compiler); `macro` does not start an allowed command",
+   "names": 1
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Finite.Basic": {
+   "reason": "uses a declaration the pruning left out: isZero_zero, zero",
+   "names": 8
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Finite.Cofree": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Finite.Monoidal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Finite.Preadditive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Finite.ScalarExtension.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Finite.Symmetric": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Finite.TensorProduct": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.MatrixCoefficient.FiniteType": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.MatrixCoefficient.PointAction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.MatrixCoefficient.Regular": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.PointSeparation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Regular": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.Algebra.Coalgebra.Comodule.Zero": {
+   "reason": "uses a declaration the pruning left out: isZero_zero, zero",
+   "names": 1
+  },
+  "TauCeti.Algebra.Coalgebra.Subcoalgebra.Finite": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 20
+  },
+  "TauCeti.Algebra.Coalgebra.Subcomodule.Multiplication": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.Group.Prod": {
+   "reason": "uses a declaration the pruning left out: prodCongr_apply, prodCongr_symm",
+   "names": 4
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 28
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Augmentation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 22
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.CohomologicalUnit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Cohomology": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 30
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.DG": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Hom.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 25
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Hom.Cohomology": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Hom.Component": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Hom.Strict": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 52
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Hom.Unital": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Algebra.Unit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Coderivation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.Algebra.Homology.AInfinity.Stasheff": {
+   "reason": "lint: `macro` runs code while the tree compiles (or trusts the compiler); `macro` does not start an allowed command",
+   "names": 29
+  },
+  "TauCeti.Algebra.Homology.DG.Algebra.Opposite": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.Lie.D4.Tripled.AdmissibleLattice": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.Lie.D4.Tripled.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 21
+  },
+  "TauCeti.Algebra.Lie.E6.DoubledMinuscule.AdmissibleLattice": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 21
+  },
+  "TauCeti.Algebra.Lie.E7.Minuscule.AdmissibleLattice": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 20
+  },
+  "TauCeti.Algebra.Lie.F4.ShortRoot.AdmissibleLattice": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 32
+  },
+  "TauCeti.Algebra.Lie.G2.ShortRoot.AdmissibleLattice": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 27
+  },
+  "TauCeti.Algebra.Lie.G2.ShortRoot.CrossProduct.Generators": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.Algebra.Lie.G2.ShortRoot.IsogenyMultiplicative": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.Lie.G2.ShortRoot.SpecialIsogeny": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.Algebra.Lie.GeneralLinear.CAR.HighestWeight": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.Algebra.Lie.GeneralLinear.CAR.Occupation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.Lie.GeneralLinear.CompleteReducibility": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.Lie.GeneralLinear.Fock": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.Lie.Orthogonal.TypeD.SpinCarrier.GraphAutomorphism": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.Lie.Sl2.Kostant.GroupScheme": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.Lie.SpecialLinear.StandardCarrier.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 32
+  },
+  "TauCeti.Algebra.Lie.SpecialLinear.StandardCarrier.GraphAutomorphism": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.Lie.SpecialLinear.StandardCarrier.MaximalTorus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.Lie.Symplectic.StandardCarrier.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 46
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.AffineLine": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.Adjoint.Elementary": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.CoordinateLattice": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.MinusculeWeightTable": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.RootSubgroup.Commutator.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.RootSubgroup.Elementary.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.RootSubgroup.Scheme.ToralClosure.Frobenius": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.RootSubgroup.Scheme.Torus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.RootSubgroup.Torus.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 25
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.RootSubgroup.Weyl.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.RootSubgroup.Weyl.Torus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.Weight.Basis": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.Weight.Chevalley": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.Kostant.Weight.Order": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Algebra.Lie.UniversalEnveloping.PCenter": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.UniversalEnvelopingAlgebra.pPolynomial_\u03b9_mem_augmentation_toIdeal",
+   "names": 1
+  },
+  "TauCeti.Algebra.Module.GradedModule.LeftToRight": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Algebra.Polynomial.QuadraticDiscriminant": {
+   "reason": "declares a record the tree already has: Polynomial.derivative_quadratic, Polynomial.splits_quadratic_iff_exists_root",
+   "names": 10
+  },
+  "TauCeti.Algebra.Polynomial.SpecificDegree": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.AlgebraicGeometry.AdicSpace.Spa.Localization.LaurentCover": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.AffineGroupScheme.Reductive.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.AlgebraicGeometry.AffineGroupScheme.Reductive.LinearlyReductive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.AffineGroupScheme.Semisimple.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicGeometry.AffineGroupScheme.Semisimple.Reductive": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicGeometry.AffineGroupScheme.Torus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.AlgebraicGeometry.AffineGroupScheme.Unipotent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Affine.Formula.VariableChange": {
+   "reason": "declares a record the tree already has: WeierstrassCurve.Affine.variableChange_addX, WeierstrassCurve.Affine.variableChange_addY, WeierstrassCurve.Affine.variableChange_equation",
+   "names": 9
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Divisor.Class": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Genus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Translation.Basic": {
+   "reason": "uses a declaration the pruning left out: translation, translation_add, translation_zero",
+   "names": 3
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Affine.InvariantDifferential": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Affine.Point.VariableChange": {
+   "reason": "declares a record the tree already has: WeierstrassCurve.Affine.Point.equivVariableChange_some",
+   "names": 2
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.GaloisDescent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.Differential": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.Dual.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.Factorisation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.Frobenius.Differential": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.Hom.Add": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.Hom.Differential": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.IntermediateRing.PointIdeal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.MulByInt.TorsionSurjective": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.MulByInt.Wronskian": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.OneSubFrobenius.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.PointHom": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.Isogeny.PullbackAdd": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.LocalPolynomial": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MinimalModel.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MinimalModel.DiscriminantIdeal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MinimalModel.LocalDiscriminant": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MinimalModel.Semistable": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MinimalModel.Valuation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.BadPrimes": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.LocalCondition": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 18
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.SelmerGroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.SelmerGroupA": {
+   "reason": "names a declaration with sorry that the pruning leaves out: IsDedekindDomain.finite_selmerGroupOfEquiv",
+   "names": 6
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.SemilocalComparison": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.TwoTorsion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.WeakMordellWeil": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.MordellWeil.XSubT": {
+   "reason": "did not build on the tree",
+   "names": 54
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.NodePolynomial": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.PointCount": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.QuadraticTwist": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 50
+  },
+  "TauCeti.AlgebraicGeometry.EllipticCurve.SingularPointCount": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.AlgebraicTopology.FundamentalGroup.PuncturedStarConvex": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicTopology.SimplicialSet.Homology.HomotopyInvariance": {
+   "reason": "an error outside any declaration (glue)",
+   "names": 1
+  },
+  "TauCeti.AlgebraicTopology.SimplicialSet.Restrict": {
+   "reason": "an error outside any declaration (glue)",
+   "names": 1
+  },
+  "TauCeti.AlgebraicTopology.Singular.Excision": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.AlgebraicTopology.Singular.Relative": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicTopology.ThricePuncturedSphere.PuncturedHalfPlanes": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.AlgebraicTopology.TopologicalSimplex": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.LocalCoefficientSystem.pathTransport_map",
+   "names": 2
+  },
+  "TauCeti.AlgebraicTopology.UniversalCover.Circle.EilenbergMacLane": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicTopology.UniversalCover.Circle.FundamentalGroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.AlgebraicTopology.UniversalCover.Classification.Bijection": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.AlgebraicTopology.UniversalCover.Classification.ProfiniteFiberFunctor": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.AlgebraicTopology.UniversalCover.PathComponent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.AlgebraicTopology.UniversalCover.Torus.EilenbergMacLane": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Analysis.Calculus.ParametricFDeriv": {
+   "reason": "names a declaration with sorry that the pruning leaves out: hasDerivAt_spatialFDeriv_apply_mixed",
+   "names": 8
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Compactification.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Covolume": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Cusp.ChangeScaling": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Cusp.Coordinate": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 21
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Cusp.Extension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Cusp.Finite": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Cusp.Growth": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Cusp.Horodisc": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 19
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.Cusp.Laurent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Analysis.Complex.Fuchsian.LevelOne": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Analysis.Complex.RootsOfUnity.Descent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.Analysis.PDE.Ellipticity.Basic": {
+   "reason": "uses a declaration the pruning left out: continuous_matrixBilinearForm",
+   "names": 60
+  },
+  "TauCeti.Analysis.PDE.Ellipticity.Energy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Analysis.PDE.EnergyForm.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.Analysis.PDE.EnergyForm.Integrability": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Analysis.PDE.EnergyForm.Integrated.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 33
+  },
+  "TauCeti.Analysis.PDE.EnergyForm.Integrated.Symmetry": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Analysis.PDE.EnergyForm.Linearity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Analysis.PDE.EnergyForm.Lp": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.Analysis.PDE.EnergyForm.Measurability": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Analysis.PDE.EnergyLowerBounds": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Analysis.PDE.LowerOrder": {
+   "reason": "uses a declaration the pruning left out: continuous_driftForm, continuous_massForm",
+   "names": 12
+  },
+  "TauCeti.Analysis.PDE.ShiftedLaplacianEnergy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Analysis.PDE.SymmetricEnergy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Analysis.Sobolev.Wkp.Basic": {
+   "reason": "uses a declaration the pruning left out: SobolevStage.instCompleteSpace, Wkp.instCompleteSpace",
+   "names": 4
+  },
+  "TauCeti.Analysis.Sobolev.Wkp.Zero": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.CategoryTheory.Action.ProfiniteCompletion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.Autoequivalence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.Cone": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 19
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.Connecting": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.Functor.Suspension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.Loop": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.Presentation": {
+   "reason": "uses a declaration the pruning left out: projectiveStableFunctor_map_cokernelMap_comp",
+   "names": 10
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.ProjectivePresentation": {
+   "reason": "uses a declaration the pruning left out: projectiveStableFunctor_map_kernelMap_comp",
+   "names": 10
+  },
+  "TauCeti.CategoryTheory.Exact.Stable.Suspension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.AEEqFun": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.CutMetric.Coupling": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.MeasureTheory.isCoupling_diagonalCoupling",
+   "names": 5
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.CutMetric.Distance": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.CutMetric.OfMatrixGrid": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.CutMetric.Pullback.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.CutMetric.Stability": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.ExchangeableGraphLaw.ArrayLaw": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.ExchangeableGraphLaw.Extreme": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.Graphon.Complete": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Combinatorics.DenseGraphLimits.Graphon.L1Limit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Combinatorics.Enumerative.ExcursionProcess": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 30
+  },
+  "TauCeti.Combinatorics.Enumerative.LastExit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.Combinatorics.Enumerative.SuccessorArray": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.spareStateProcess_not_rowExchangeable_successorProcess",
+   "names": 53
+  },
+  "TauCeti.FieldTheory.FunctionField.GeometricDegree": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.Divisor.degree_conorm",
+   "names": 14
+  },
+  "TauCeti.FieldTheory.Galois.Basic": {
+   "reason": "declares a record the tree already has: Algebra.IsQuadraticExtension.algEquiv_eq_one_or_eq, Algebra.IsQuadraticExtension.algEquiv_mul_self, Algebra.IsQuadraticExtension.exists_algEquiv_ne_one",
+   "names": 10
+  },
+  "TauCeti.FieldTheory.GaloisCohomology.Kummer": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Blocks": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Certificate.Evidence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Certificate.Examples": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Cubic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.FieldTheory.GaloisGroups.FrobeniusOrbits": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Label": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.FieldTheory.GaloisGroups.NormalClosure": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Orbits": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.image_val_orbit_eq_rootSet_minpoly, TauCeti.mem_orbit_iff_minpoly_eq, TauCeti.natCard_orbit_eq_natDegree_minpoly",
+   "names": 10
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Quartic.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Quartic.Examples": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 20
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Quintic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Reduction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Resolvent.Label": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Resolvent.Quintic.Solvable": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.FieldTheory.GaloisGroups.Stabilizer": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.FieldTheory.Quadratic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Geometry.Lie.Adjoint.Units.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Geometry.Lie.Adjoint.Units.Exponential": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Geometry.Lie.Functor": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Geometry.Lie.InvariantVectorField.Commutation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Geometry.Lie.Subgroup.LieAlgebra": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Geometry.Manifold.Algebra.Monoid": {
+   "reason": "an error outside any declaration (glue)",
+   "names": 5
+  },
+  "TauCeti.Geometry.Manifold.Instances.Quotient": {
+   "reason": "an error outside any declaration (glue)",
+   "names": 3
+  },
+  "TauCeti.Geometry.Manifold.Riemannian.Convex": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.Geometry.Manifold.Riemannian.Distance": {
+   "reason": "did not build on the tree",
+   "names": 13
+  },
+  "TauCeti.Geometry.Manifold.Riemannian.EVariationComparison": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Geometry.Manifold.Riemannian.Examples.OpenUnitBall": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.Geometry.Manifold.Riemannian.MetricVariation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Geometry.Manifold.VectorBundle.CovariantDerivative.AlongCurve.Surface": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: CovariantDerivative.IsLeviCivitaConnection.two_inner_eq_koszul, CovariantDerivative.isLeviCivitaConnection_iff",
+   "names": 12
+  },
+  "TauCeti.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita.Regularity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Geometry.Symplectic.Manifold.Energy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Geometry.Symplectic.Manifold.TwoForm": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Geometry.Toric.Analytic.Character.Action": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 18
+  },
+  "TauCeti.Geometry.Toric.Analytic.MixedMonomial": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 45
+  },
+  "TauCeti.Geometry.Toric.Analytic.RegularChart": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.GroupTheory.Coset.Fiber": {
+   "reason": "did not build on the tree",
+   "names": 6
+  },
+  "TauCeti.GroupTheory.FrobeniusKernel": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.card_dvd_card_frobeniusKernelSubgroup_sub_one",
+   "names": 16
+  },
+  "TauCeti.GroupTheory.OrderOfElement.Basic": {
+   "reason": "did not build on the tree",
+   "names": 2
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.HalfFrobenius": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.OddPowerSteinberg": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.RootDatumAutomorphism": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.DynkinType.diagramAut",
+   "names": 1
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.SpecialIsogeny": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.Suzuki.FieldDescent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.Suzuki.GeneratorInclusion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.TypeA.Agreement": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.TypeB.Two.Agreement": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.TypeB.Two.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.SpStd.rootGeneratorWeight_inl_eq_root_simpleIndex_B_two",
+   "names": 2
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.TypeC.Agreement": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.GroupTheory.SpecificGroups.CFSG.TypeC.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.GroupTheory.SpecificGroups.Cyclic.Index": {
+   "reason": "did not build on the tree",
+   "names": 4
+  },
+  "TauCeti.GroupTheory.SpecificGroups.Cyclic.OrderCount": {
+   "reason": "lint: attribute `hgen\u27e9` is not on the allow-list; attribute `f` is not on the allow-list; attribute `\u00acp` is not on the allow-list",
+   "names": 4
+  },
+  "TauCeti.GroupTheory.SpecificGroups.Dihedral.Frobenius": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.KnotTheory.GaussCode.PDCode.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.LinearAlgebra.Basis.DiagonalTorus.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 49
+  },
+  "TauCeti.LinearAlgebra.Basis.DiagonalTorus.LaurentFunctions": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.LinearAlgebra.CliffordAlgebra.Quadratic.Lie.Coordinates": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.LinearAlgebra.CliffordAlgebra.Quadratic.Lie.Subalgebra": {
+   "reason": "uses a declaration the pruning left out: lie_bivector_bivector",
+   "names": 1
+  },
+  "TauCeti.LinearAlgebra.Dimension.IsQuadraticExtension": {
+   "reason": "declares a record the tree already has: Algebra.IsQuadraticExtension.exists_eq_algebraMap_add_algebraMap_mul, Algebra.IsQuadraticExtension.exists_notMem_range_algebraMap",
+   "names": 4
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Borel": {
+   "reason": "uses a declaration the pruning left out: diag_eq",
+   "names": 14
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Bruhat": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.mem_doubleCoset_iff_mk_mem_orbit",
+   "names": 19
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Centralizer": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.ConjugacyClasses": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Diagonal.Bruhat": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Diagonal.TitsSystem": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.LaurentFunctions": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.NonSplitTorus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.NormalForm": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.ProjectiveLine": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.ScalarUnipotent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 20
+  },
+  "TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Borel": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.mem_doubleCoset_iff_mk_mem_orbit",
+   "names": 18
+  },
+  "TauCeti.LinearAlgebra.QuadraticForm.QuaternaryDescent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.LinearAlgebra.QuadraticForm.Witt.Pfister": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.LinearAlgebra.QuadraticForm.Witt.Ring": {
+   "reason": "lint: `unseal` does not start an allowed command",
+   "names": 2
+  },
+  "TauCeti.LinearAlgebra.RootSystem.Isogeny.Special": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.LinearAlgebra.RootSystem.SimplyConnectedRootDatum.B.SpinWeight": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.LinearAlgebra.RootSystem.SimplyConnectedRootDatum.D.GraphAutomorphism": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.LinearAlgebra.RootSystem.SimplyConnectedRootDatum.D.SpinWeight": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 18
+  },
+  "TauCeti.LinearAlgebra.RootSystem.SimplyConnectedRootDatum.D.TripledWeight": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 23
+  },
+  "TauCeti.LinearAlgebra.RootSystem.SimplyConnectedRootDatum.F4.SpecialMap": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 27
+  },
+  "TauCeti.MeasureTheory.Group.ProperlyDiscontinuous": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.CTransform.CyclicalMonotonicity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Chain": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Compactness": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Cost.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.exists_isCoupling_iff",
+   "names": 25
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Cost.BoundedBelow": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Cost.Compact": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Cost.Constraint": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Cost.CyclicalMonotonicity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Cost.Mixture": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Cost.Product": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Coupling": {
+   "reason": "uses a declaration the pruning left out: fst_eq, snd_eq",
+   "names": 33
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Disintegration": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Duality.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 15
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Duality.Certificate": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 27
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Duality.Compact": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Finite.Duality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.GraphPlan": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.isCoupling_graphPlan_iff",
+   "names": 13
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Monge": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.IsKantorovichOptimalTransportMap.isMongeMinimizer, TauCeti.transportCost_le_mongeCost",
+   "names": 21
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.MultiMarginal.Basic": {
+   "reason": "uses a declaration the pruning left out: marginal_eq",
+   "names": 3
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.MultiMarginal.Finite.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.MultiMarginal.Finite.Duality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.MultiMarginal.Pair": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Stability": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.exists_isCoupling_iff, TauCeti.hasFiniteMoment_iff_forall_hasFiniteMoment_iff_wassersteinEDist_ne_top",
+   "names": 33
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Complete": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Convolution": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.FiniteSupport": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Mixture": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Moment": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.OneDimensional": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Pushforward": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Quantile": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.Space": {
+   "reason": "uses a declaration the pruning left out: edist_def",
+   "names": 21
+  },
+  "TauCeti.MeasureTheory.OptimalTransport.Wasserstein.WeakConvergence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.AbelSummation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Cancellation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Convergence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Counting": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 25
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.DirichletDensity.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.DirichletDensity.Negligible": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Estimates": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Analytic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Data": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Logarithm.Coeff": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Logarithm.Convergence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Logarithm.DedekindZeta.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Logarithm.Eval": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Logarithm.PrimeSum": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.EulerProduct.Restrict": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.HigherPrimePowers": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Moebius": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 15
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.NaturalDensity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Perron.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.truncatedPerronKernel_one_ne_half",
+   "names": 19
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Perron.Formula": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Prime.Contraction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Prime.IdealZetaSum": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Prime.PowerIndex": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Prime.Psi": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.primePsi_eq_sum_range",
+   "names": 11
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.ResidueDegree": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.VonMangoldt": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.ArithmeticDirichletSeries.Weight": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.not_hasCancellation_of_isNormTwistOnGood",
+   "names": 49
+  },
+  "TauCeti.NumberTheory.Chebotarev.Crossing.CrossingConstant": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Chebotarev.Crossing.TaggedCount": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.Chebotarev.Density.Ramification": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Chebotarev.Density.SplitsCompletely": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Chebotarev.FixedField.FiberCount": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Chebotarev.GaloisCharacter.Cyclotomic.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.Chebotarev.GaloisCharacter.Orthogonality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.Chebotarev.GaloisCharacter.PrimeSum": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Chebotarev.GaloisCharacter.Weight": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.Chebotarev.PrimeCounting.VonMangoldt": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.ClassFieldTheory.Formation.Tate.Corestriction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.NumberTheory.ClassFieldTheory.Formation.Tate.Restriction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.NumberTheory.EffectiveBounds.Discriminant.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.NumberTheory.EffectiveBounds.WorkedExamples": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.HeckeRing.Associativity": {
+   "reason": "uses a declaration the pruning left out: mul_assoc",
+   "names": 8
+  },
+  "TauCeti.NumberTheory.HeckeRing.Commutativity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.NumberTheory.HeckeRing.GL2.Gamma0.AtkinLehner": {
+   "reason": "names a declaration with sorry that the pruning leaves out: HeckeCosetModule.mul_comm_of_antiInvolution",
+   "names": 13
+  },
+  "TauCeti.NumberTheory.HeckeRing.GL2.Gamma0.Diagonal.PrimePower": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.NumberTheory.HeckeRing.GL2.Gamma1.DiamondCosets": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.NumberTheory.HeckeRing.GLn.PolynomialRing.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.HeckeRing.GLn.PolynomialRing.LeadingExponent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.NumberTheory.HeckeRing.GLn.PrimeDecomposition": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.NumberTheory.HeckeRing.GLn.TransposeAntiInvolution": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.HeckeRing.LeftCosetModule.Action": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.HeckeRing.Multiplicity.Equiv": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.HeckeRing.Multiplicity.Handedness": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.LocalField.QuadraticForm.Defect": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.NumberTheory.LocalField.SquareClass": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.LocalField.SquareClasses": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.LocalField.Teichmuller": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.ModularForms.Fricke.AtkinLehnerBar": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.ModularForms.Fricke.OldSpace": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ModularForms.HeckeSlash.Adjugate": {
+   "reason": "names a declaration with sorry that the pruning leaves out: UpperHalfPlane.peterssonInner_sum_slash_left_adjugateGL_biUnion",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.ModularForms.HeckeSlash.Composition": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.NumberTheory.ModularForms.LFunction.FunctionalEquation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.NumberTheory.ModularForms.LFunction.Sign": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.ModularForms.Newforms.Nebentypus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ModularForms.Petersson.AtkinLehner": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.ModularForms.Petersson.Normal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.ModularForms.Petersson.Unitary": {
+   "reason": "names a declaration with sorry that the pruning leaves out: CuspForm.peterssonInnerCosets_trace_translate",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Multiquadratic.CandidateGenusField.Discriminant": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.CandidateGenusField.QuadraticSubfield": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Multiquadratic.CandidateGenusField.RamifiedPrimes": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.CandidateGenusField.Real.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.Multiquadratic.CandidateGenusField.Real.FixedField": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.Multiquadratic.CandidateGenusField.Relative.OrdinaryClassGroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Multiquadratic.CandidateGenusField.Relative.Real": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Cyclotomic.QuadraticCharacter": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.Multiquadratic.FundamentalDiscriminant.Character": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.Multiquadratic.GenusField": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Multiquadratic.MinusFive.ClassNumber": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.MinusFive.GenusField": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.MinusFive.TwoRank": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.MinusTwentyOne.ClassNumber": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.MinusTwentyOne.GenusField": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.MinusTwentyOne.TwoRank": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Prime.Discriminant.Compositum": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Prime.Discriminant.Field": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Prime.Discriminant.QuadraticSubfield": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.AmbiguousClassNumber": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.Discriminant": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.GenusCharacter.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 21
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.GenusCharacter.Dirichlet": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.GenusCharacter.SplitPrime": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.Ramification": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.RamifiedPrime.Independence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.RamifiedPrime.Product": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Quadratic.TwoRank": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Three.ClassNumber": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Three.TwoRank": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Unramified.Maximality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Unramified.NarrowGenusField": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.Multiquadratic.Unramified.Subfields": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.NumberField.ComplexConjugation.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.NumberTheory.NumberField.ComplexConjugation.CMField": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.NumberField.Frobenius.FixedField.Fiber": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.NumberField.Frobenius.FixedField.Inertia": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.NumberTheory.NumberField.Global.Counting.RayFundamentalDomain.Basic": {
+   "reason": "uses a declaration the pruning left out: mem_unitsCongruenceSubgroupSupTorsion",
+   "names": 18
+  },
+  "TauCeti.NumberTheory.NumberField.Global.Counting.RayFundamentalDomain.IntegerSet": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.NumberField.Global.Counting.RayFundamentalDomain.Lipschitz": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.NumberField.Global.RayClass.CongruenceQuotient": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.NumberField.Global.RayClass.Narrow.Kernel": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.NumberField.InfinitePlace.Tower": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.NumberField.Internal.QuadraticIntegralBasis": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.NumberField.LocalGlobal.Completion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.NumberTheory.NumberField.LocalGlobal.Semilocal.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.NumberField.LocalGlobal.Semilocal.Factorization": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.NumberField.LocalGlobal.Semilocal.Integers": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.NumberField.Monogenic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 15
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Ambiguous.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Ambiguous.Ideal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Ambiguous.Structure": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.ClassGroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Hilbert90": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.InfinitePlace": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.NarrowClassGroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Norm.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Norm.NegOne": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Conjugation.Units": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.InfinitePlace": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Norm": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.RingOfIntegers": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.NumberTheory.NumberField.Quadratic.Splitting": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.NumberTheory.NumberField.SplitsCompletely.GaloisClosure": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.NumberTheory.QuadraticForm.Global.CompletionTower": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.NumberTheory.QuadraticForm.Global.Continuity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.NumberTheory.RamificationInertia.DoubleCoset.DecompositionOrbits": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Probability.DeFinetti.Barycenter": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Probability.Distributions.Gaussian.Conditional": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.condDistrib_multivariateGaussian",
+   "names": 5
+  },
+  "TauCeti.Probability.Distributions.Gaussian.LowDimension": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.condDistrib_multivariateGaussian_of_unique",
+   "names": 6
+  },
+  "TauCeti.Probability.Distributions.Wishart.Bartlett": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.Probability.map_lowerTriangleGram_pi_bartlettCoordinateMeasure",
+   "names": 5
+  },
+  "TauCeti.Probability.Distributions.Wishart.Inverse.Moments": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Probability.Exchangeability.Arrays.AldousHoover.Decomposition": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Probability.Exchangeability.Arrays.Coding": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Probability.Exchangeability.Arrays.Ergodic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Probability.Exchangeability.Arrays.Extreme": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Probability.Exchangeability.Arrays.RowCoding": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Probability.Exchangeability.Arrays.ZeroOne": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Probability.Exchangeability.Excursion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Probability.Exchangeability.PathSpace.Law.Extreme": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Probability.Exchangeability.Recurrence.Excursion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Probability.Exchangeability.Recurrence.LastExit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Probability.Exchangeability.Recurrence.MarkovChain": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Probability.Exchangeability.Recurrence.SuccessorArray": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Probability.Exchangeability.Recurrence.UnvisitedRow": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Probability.Exchangeability.RowExchangeable": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Probability.Exchangeability.SuccessorArray": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.Probability.Martingale.AntitoneLimit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Probability.Martingale.Convergence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Probability.Martingale.Crossings.Bounds": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Probability.Martingale.Crossings.Pathwise": {
+   "reason": "declares a record the tree already has: MeasureTheory.upcrossingsBefore_congr",
+   "names": 3
+  },
+  "TauCeti.Probability.Martingale.LevyDownwardEventuallyConst": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.Dixon.Cyclotomic.AlternatingFour": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.Dixon.Cyclotomic.CyclicThree": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.Dixon.Lift": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.Boundary": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.CharacterValues": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.ClassFunction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.Cuspidal": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.EllipticInduction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.Linear": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 19
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.PrincipalSeries.Irreducible": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.ScalarUnipotentInduction": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 15
+  },
+  "TauCeti.RepresentationTheory.CharacterTable.GL2.Steinberg": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.ClassicalGroups.Rational": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.isPolynomialRep_iff_forall_mem_polynomialFunctions",
+   "names": 10
+  },
+  "TauCeti.RepresentationTheory.ClassicalGroups.Weight.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 13
+  },
+  "TauCeti.RepresentationTheory.ClassicalGroups.Weight.Decomposition": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.ClassicalGroups.Weight.Tensor": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.RepresentationTheory.ClassicalGroups.Weight.Weyl": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.RepresentationTheory.Compact.Character.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Compact.Character.IsotypicProjection": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Compact.Character.Projection": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.Compact.Circle": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.RepresentationTheory.Compact.Finite": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Compact.FrobeniusSchur.InvariantForm": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Compact.FrobeniusSchur.StructureMap": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Compact.FrobeniusSchur.Trichotomy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.Compact.Integrated": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.integratedOperator_eq_smul_id",
+   "names": 6
+  },
+  "TauCeti.RepresentationTheory.Compact.Intertwiner.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.averageOperator_comp",
+   "names": 11
+  },
+  "TauCeti.RepresentationTheory.Compact.Intertwiner.Dimension": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.schur_orthogonality_distinct",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.Compact.Invariants": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.RepresentationTheory.Compact.PeterWeyl": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 11
+  },
+  "TauCeti.RepresentationTheory.Continuous.OrthogonalDecomposition": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.exists_isUnitary_congr",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.FrobeniusGroup.Affine": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.RepresentationTheory.FrobeniusGroup.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.FrobeniusGroup.Dihedral": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.FrobeniusGroup.SymmetricThree": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Additive": {
+   "reason": "uses a declaration the pruning left out: map_add, map_zero",
+   "names": 7
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Conjugation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.ContinuousCohomologyIso": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Corestriction.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 21
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Corestriction.IndexTwo": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Cup.Product": {
+   "reason": "did not build on the tree",
+   "names": 21
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.DegreeZero": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Evens.Class": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.ExactCochains": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.ExplicitFunctoriality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 18
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.FiniteQuotient.Colimit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.FiveTerm": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Functoriality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.ProjectionFormula": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Shapiro": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.Transgression": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 18
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.TrivialF2": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.RepresentationTheory.Homological.ContCohomology.TrivialFp": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.RepresentationTheory.Induction.Clifford.Alternating": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.Induction.Clifford.Correspondence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.stabilizer_eq_mackeySubgroup_subgroupOf",
+   "names": 9
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Decomposition": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Dihedral": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.simple_indFDRep_ofLinearCharacter_dihedralGroupFourRotationChar",
+   "names": 5
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Intertwining": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.characterPairing_ind_ind_mackey, TauCeti.characterPairing_ind_ind_mackey_erase",
+   "names": 5
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Irreducible": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.LinearCharacter": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Quaternion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Reducible": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.Subgroup": {
+   "reason": "uses a declaration the pruning left out: card_orbit_eq_relIndex",
+   "names": 27
+  },
+  "TauCeti.RepresentationTheory.Induction.Mackey.SymmetricThree": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.not_simple_indFDRep_stabilizer_perm_fin_three, TauCeti.simple_indFDRep_ofLinearCharacter_alternatingGroup_fin_three",
+   "names": 5
+  },
+  "TauCeti.RepresentationTheory.SU2.Exhaustion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.SU2.Weyl.Integration": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.SU2.Weyl.Orthogonality": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.ContRepresentation.character_orthonormal_distinct, TauCeti.ContRepresentation.character_orthonormal_self",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Spin.Dimension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Spin.HalfSpin.Basic": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.spinPlus_invariant",
+   "names": 9
+  },
+  "TauCeti.RepresentationTheory.Spin.HalfSpin.Weight": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.spinWeightSpace_le_spinMinus_iff, TauCeti.spinWeightSpace_le_spinPlus_iff",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.Spin.OddStructure": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeB.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeB.KostantLattice": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeD.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeD.GraphAutomorphism": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeD.HalfSpin": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeD.RootBivectors": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeD.Serre.Relations": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.RepresentationTheory.Spin.Polarization.TypeD.Split": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.RepresentationTheory.Spin.Structure": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RepresentationTheory.Spin.Weight": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.setOf_spinWeightSpace_ne_bot_and_le_spinMinus_eq_image_spinWeight_odd, TauCeti.setOf_spinWeightSpace_ne_bot_and_le_spinPlus_eq_image_spinWeight_even, TauCeti.spinWeightSpace_ne_bot_iff",
+   "names": 14
+  },
+  "TauCeti.RepresentationTheory.Symmetric.Specht.Complex": {
+   "reason": "uses a declaration the pruning left out: spechtModule\u2102FDRepClass_bijective",
+   "names": 7
+  },
+  "TauCeti.RepresentationTheory.Symmetric.Specht.Orthogonality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 10
+  },
+  "TauCeti.RingTheory.AdjoinRoot.Factors": {
+   "reason": "declares a record the tree already has: AdjoinRoot.isSeparable_of_separable",
+   "names": 7
+  },
+  "TauCeti.RingTheory.Cyclotomic.Basic": {
+   "reason": "uses a declaration the pruning left out: toAdjoinRoot_mul",
+   "names": 29
+  },
+  "TauCeti.RingTheory.Cyclotomic.Lift": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 24
+  },
+  "TauCeti.RingTheory.DedekindDomain.AdicCompletionExtension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 15
+  },
+  "TauCeti.RingTheory.DedekindDomain.AdicValuation.IntegersExtension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.RingTheory.DedekindDomain.AdicValuation.ValuativeExtension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RingTheory.DedekindDomain.SInteger.SelmerGroup.Etale": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.RingTheory.GradedAlgebra.Opposite": {
+   "reason": "uses a declaration the pruning left out: op_mul",
+   "names": 23
+  },
+  "TauCeti.RingTheory.Henselian.Teichmuller": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RingTheory.Huber.LocalizationTopology.Laurent.Flat": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RingTheory.Huber.LocalizationTopology.PolynomialEvaluation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RingTheory.Huber.Restricted.BaseChange": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RingTheory.Huber.Restricted.Laurent": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 7
+  },
+  "TauCeti.RingTheory.Huber.Restricted.PowerSeries": {
+   "reason": "uses a declaration the pruning left out: IsRestricted.mul",
+   "names": 24
+  },
+  "TauCeti.RingTheory.Huber.WeightedEval.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.RingTheory.Huber.WeightedEval.Map": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.RingTheory.Huber.WeightedRestrictedSeries.Basic": {
+   "reason": "uses a declaration the pruning left out: IsWeightedRestricted.mul, hasBasis_nhds_zero_weightedTopology, mem_weightedNhd",
+   "names": 41
+  },
+  "TauCeti.RingTheory.Huber.WeightedRestrictedSeries.PairOfDefinition": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.RingTheory.Nilpotent.BaseChangeAction": {
+   "reason": "uses a declaration the pruning left out: baseChangeExp_add",
+   "names": 5
+  },
+  "TauCeti.RingTheory.Nilpotent.Conjugation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.RingTheory.Norm.Quadratic": {
+   "reason": "declares a record the tree already has: Algebra.IsQuadraticExtension.algebraMap_norm_eq_mul, Algebra.IsQuadraticExtension.algebraMap_trace_eq_add, Algebra.IsQuadraticExtension.discrim_ne_zero",
+   "names": 8
+  },
+  "TauCeti.RingTheory.PowerSeries.Log": {
+   "reason": "names a declaration with sorry that the pruning leaves out: PowerSeries.logDeriv_mul",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.ConstMulAction": {
+   "reason": "did not build on the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.ContinuousMonoidHom": {
+   "reason": "declares a record the tree already has: MonoidHom.continuous_of_isOpen_ker",
+   "names": 15
+  },
+  "TauCeti.Topology.Algebra.Group.FiniteQuotients": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.Topology.Algebra.Group.Generation": {
+   "reason": "declares a record the tree already has: MonoidHom.continuous_iff_isOpen_ker",
+   "names": 14
+  },
+  "TauCeti.Topology.Algebra.Group.LowerCentralSeries": {
+   "reason": "names a declaration with sorry that the pruning leaves out: TauCeti.commutator_pLowerCentralSeries_le",
+   "names": 16
+  },
+  "TauCeti.Topology.Algebra.Group.OpenSubgroup.TopologicallyFinitelyGenerated": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Completion": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 9
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Demushkin.D0": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 20
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.FiniteQuotients": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Free.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 15
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Free.Extension": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Free.PadicInt": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Free.ProC": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 20
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Free.ProP": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 27
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Gaschutz": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Generation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 18
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Hopfian": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Index.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Index.Functoriality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Index.Tower": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 3
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Index.Transitivity": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Lagrange": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Presentation": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 17
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ProP.CompactModule": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ProP.ContinuousDual": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ProP.FiniteGeneration": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ProP.LowerCentralSeries": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ProP.MaximalSubgroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ProP.PadicInt": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 14
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ProP.StructureTheorem": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Rank": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 16
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Sylow.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 12
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Sylow.Commutative": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Sylow.Conjugacy": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Sylow.Containment": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 6
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Sylow.Existence": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Sylow.Functoriality": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 1
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.Sylow.Limit": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ZHat.Basic": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 8
+  },
+  "TauCeti.Topology.Algebra.Group.Profinite.ZHat.PadicInt": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  },
+  "TauCeti.Topology.Algebra.Group.Subgroup": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 4
+  },
+  "TauCeti.Topology.Algebra.GroupAction.FreeLocus": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 5
+  },
+  "TauCeti.Topology.Algebra.GroupExtension.Cohomology": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 24
+  },
+  "TauCeti.Topology.MetricSpace.ProperlyDiscontinuous": {
+   "reason": "imports a module that cannot go to the tree",
+   "names": 2
+  }
+ }
+}
