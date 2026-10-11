@@ -386,6 +386,17 @@ class CheckTags(unittest.TestCase):
         msg = next((p for p in problems if "tag belongs to no theorem" in p), "")
         self.assertIn("— in Tengoku.Seed.Fx (3 tag line(s), 2 theorem(s) right)", msg)
 
+    def test_the_where_clause_lists_eight_modules_and_counts_the_rest(self):
+        self.assertEqual(isnad.where_clause([]), "")
+        self.assertEqual(isnad.where_clause(["A (1 tag line(s), 0 theorem(s) right)"]), " — in A (1 tag line(s), 0 theorem(s) right)")
+        many = [f"M{i}" for i in range(11)]
+        self.assertEqual(isnad.where_clause(many), " — in " + ", ".join(many[:8]) + " and 3 more")
+
+    def test_a_missing_module_has_no_tag_lines_and_no_odd_count(self):
+        root = Path(tempfile.mkdtemp())
+        self.assertEqual(isnad.module_tag_lines(self.MODULE, root), 0)
+        self.assertEqual(isnad.modules_with_odd_tag_counts([self.MODULE], {}, root), [])
+
     def test_a_theorem_without_a_tag_is_reported(self):
         text = self.right()
         recs, lines = self.inputs(text)
