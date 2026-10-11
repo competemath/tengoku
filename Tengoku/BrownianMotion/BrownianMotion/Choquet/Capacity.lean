@@ -16,6 +16,9 @@ public import Tengoku.BrownianMotion.BrownianMotion.Choquet.AnalyticSet
 open Filter
 open scoped ENNReal NNReal Topology
 
+/--
+@isnad1 id=eq.1h4v.s5.427ca845ebff from=translated src=- shape=9f1b14af vocab=20824816
+-/
 lemma Set.dissipate_congr {β : Type*} {s t : ℕ → Set β} {n : ℕ}
     (h_eq : ∀ m ≤ n, s m = t m) :
     Set.dissipate s n = Set.dissipate t n := by
@@ -53,15 +56,27 @@ instance : FunLike (Capacity p) (Set 𝓧) ℝ≥0∞ where
   coe m := m.capacityOf
   coe_injective | ⟨_, _, _, _⟩, ⟨_, _, _, _⟩, rfl => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.dcb41f8a8c3a from=translated src=- shape=34525b14 vocab=eac9091d
+-/
 @[simp] lemma capacityOf_eq_coe (m : Capacity p) : m.capacityOf = m := rfl
 
+/--
+@isnad1 id=le.1h5v.s5.15c21f23000a from=translated src=- shape=1698ba3f vocab=e4dd75ef
+-/
 lemma mono (m : Capacity p) {s t : Set 𝓧} (hst : s ⊆ t) : m s ≤ m t := m.mono' s t hst
 
 end Capacity
 
+/--
+@isnad1 id=eq.1h4v.s6.25a0f0002499 from=translated src=- shape=91eaaa1d vocab=ae5988b2
+-/
 lemma capacity_iUnion (hf : Monotone f) :
     m (⋃ n, f n) = ⨆ n, m (f n) := m.capacityOf_iUnion f hf
 
+/--
+@isnad1 id=eq.2h4v.s6.f5f6faf028c6 from=translated src=- shape=17e6cec1 vocab=7fca6890
+-/
 lemma capacity_iInter (hf : Antitone f) (hp : ∀ n, f n ∈ p) :
     m (⋂ n, f n) = ⨅ n, m (f n) := m.capacityOf_iInter f hf hp
 
@@ -73,6 +88,9 @@ def Measure.capacity {m𝓧 : MeasurableSpace 𝓧} (μ : Measure 𝓧) [IsFinit
   capacityOf_iUnion f hf := hf.measure_iUnion
   capacityOf_iInter f hf hp := hf.measure_iInter (fun i ↦ (hp i).nullMeasurableSet) ⟨0, by simp⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.1c38d3cef2dd from=translated src=- shape=0535ecf1 vocab=474c0d38
+-/
 @[simp]
 lemma Measure.capacity_apply {m𝓧 : MeasurableSpace 𝓧} (μ : Measure 𝓧) [IsFiniteMeasure μ]
     (s : Set 𝓧) :
@@ -85,6 +103,9 @@ from above by countable intersections of sets `t n` such that `p (t n)` and `⋂
 def IsCapacitable (m : Capacity p) (s : Set 𝓧) : Prop :=
   ∀ a, a < m s → ∃ t, t ∈ countableInfClosure p ∧ t ⊆ s ∧ a ≤ m t
 
+/--
+@isnad1 id=iscapaci.1h4v.s4.87c57c836e43 from=translated src=- shape=a3347f8f vocab=7e1086bd
+-/
 lemma isCapacitable_of_mem (hs : s ∈ p) : IsCapacitable m s :=
   fun a ha ↦ ⟨s, subset_countableInfClosure hs, by simp, ha.le⟩
 
@@ -224,6 +245,9 @@ private lemma seq_prop (hp_empty : ∅ ∈ p) (hp_inter : InfClosed p) (hp_union
 end Aux
 
 -- He 1.34
+/--
+@isnad1 id=iscapaci.4h4v.s8.9c9e451a0ee1 from=translated src=- shape=f5999ece vocab=bdf1b210
+-/
 lemma isCapacitable_mem_countableInfClosure_countableSupClosure (m : Capacity p)
     (hp_empty : ∅ ∈ p) (hp_inter : InfClosed p) (hp_union : SupClosed p)
     (hs : s ∈ countableInfClosure (countableSupClosure p)) :
@@ -257,6 +281,9 @@ lemma isCapacitable_mem_countableInfClosure_countableSupClosure (m : Capacity p)
     simp only [le_iInf_iff]
     exact fun n ↦ (hB_gt n).le
 
+/--
+@isnad1 id=iff.0h4v.s5.490733e17be8 from=translated src=- shape=76595ca3 vocab=6dc4f681
+-/
 lemma isCapacitable_measure_iff {m𝓧 : MeasurableSpace 𝓧} (μ : Measure 𝓧) [IsFiniteMeasure μ]
     (s : Set 𝓧) :
     IsCapacitable μ.capacity s ↔ NullMeasurableSet s μ := by
@@ -296,6 +323,9 @@ lemma isCapacitable_measure_iff {m𝓧 : MeasurableSpace 𝓧} (μ : Measure �
       exact ha.le
 
 -- todo: swap could be any measurable embedding?
+/--
+@isnad1 id=ispaving.1h4v.s5.8c202b4ea968 from=translated src=- shape=b4e04684 vocab=62bc0850
+-/
 lemma isPavingAnalytic_swap {Ω 𝓧 : Type*} {s : Set (𝓧 × Ω)}
     {p : Set (Set (𝓧 × Ω))} (hs : IsPavingAnalytic p s) :
     IsPavingAnalytic ((fun s ↦ Prod.swap '' s) '' p) (Prod.swap '' s) := by
@@ -314,6 +344,9 @@ lemma isPavingAnalytic_swap {Ω 𝓧 : Type*} {s : Set (𝓧 × Ω)}
       grind
   · ext; simp; grind
 
+/--
+@isnad1 id=ispaving.1h5v.s6.072a3cb00767 from=translated src=- shape=45457459 vocab=0ccf624a
+-/
 lemma isPavingAnalytic_measurableSet_swap {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {𝓧 : Type*} {m𝓧 : MeasurableSpace 𝓧} {s : Set (𝓧 × Ω)}
     (hs : IsPavingAnalytic {t | MeasurableSet t} s) :

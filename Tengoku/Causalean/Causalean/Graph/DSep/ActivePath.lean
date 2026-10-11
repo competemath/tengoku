@@ -129,7 +129,9 @@ def HasActiveWalk (X Y Z : Finset V) : Prop :=
     p.getLast? ∈ (Y.image some)
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [adjacency of two vertices](hyp:u,v,h)
-implies that [the vertices are adjacent in the opposite order](goal). -/
+implies that [the vertices are adjacent in the opposite order](goal).
+@isnad1 id=uadj.1h4v.s5.fee0bf31f5e0 from=translated src=- shape=0e782517 vocab=89820734
+-/
 theorem UAdj_symm {u v : V} (h : G.UAdj u v) : G.UAdj v u := Or.comm.mp h
 
 omit [DecidableEq V] [Fintype V] in
@@ -145,7 +147,9 @@ set](hyp:p,Z) with [an active-walk certificate](hyp:h) yield [an active reversed
     The proof uses the index-based definition: index `i` in the reversed list
     corresponds to index `p.length - 1 - i` in the original list. Adjacency
     is symmetric (`UAdj_symm`) and collider status swaps the outer vertices
-    (`And.comm`). -/
+    (`And.comm`).
+@isnad1 id=isactive.1h4v.s5.3a508a15208d from=translated src=- shape=a0d616c4 vocab=7b504b60
+-/
 theorem isActiveWalk_reverse {Z : Finset V} {p : List V}
     (h : G.IsActiveWalk Z p) : G.IsActiveWalk Z p.reverse := by
   obtain ⟨hadj, hcoll⟩ := h
@@ -205,7 +209,9 @@ the conditioning set](hyp:hZ) form [an active walk](goal).
     "Reversed directed" means each edge points from the *later* index to the
     *earlier* index (i.e., the list enumerates the walk in the direction opposite
     to the edges). Every interior vertex is then a non-collider, and by the
-    avoidance hypothesis none is in `Z`. -/
+    avoidance hypothesis none is in `Z`.
+@isnad1 id=isactive.2h4v.s7.a0397992cfaa from=translated src=- shape=18e82d8c vocab=7a6bb7ef
+-/
 theorem isActiveWalk_of_reversed_directed
     {Z : Finset V} {p : List V}
     (hdir : ∀ (i : ℕ) (hi : i + 1 < p.length),
@@ -250,7 +256,9 @@ noncomputable def lastIdxLt (n : ℕ) (P : ℕ → Prop) [DecidablePred P] :
 
 /-- For [a bound and decidable predicate](hyp:n,P), if [an index is returned as the final
 qualifying one](hyp:i,h), then [it is below the bound, satisfies the predicate, and no larger
-index below the bound satisfies the predicate](goal). -/
+index below the bound satisfies the predicate](goal).
+@isnad1 id=and.1h3v.s5.a848aac09b4b from=translated src=- shape=51ddcaac vocab=82d823d4
+-/
 theorem lastIdxLt_eq_some {n : ℕ} {P : ℕ → Prop} [DecidablePred P] {i : ℕ}
     (h : lastIdxLt n P = some i) :
     i < n ∧ P i ∧ ∀ j, i < j → j < n → ¬ P j := by
@@ -269,7 +277,9 @@ theorem lastIdxLt_eq_some {n : ℕ} {P : ℕ → Prop} [DecidablePred P] {i : �
     omega
 
 /-- For [a bound and decidable predicate](hyp:n,P), if [no final qualifying index
-exists](hyp:h), then [no index below the bound satisfies the predicate](goal). -/
+exists](hyp:h), then [no index below the bound satisfies the predicate](goal).
+@isnad1 id=not.2h3v.s5.c958f9c5a1c4 from=translated src=- shape=1a84b78f vocab=5f0aeef2
+-/
 theorem lastIdxLt_eq_none {n : ℕ} {P : ℕ → Prop} [DecidablePred P]
     (h : lastIdxLt n P = none) :
     ∀ i, i < n → ¬ P i := by
@@ -287,7 +297,9 @@ endpoints](hyp:V,G,X,Z,S,p,x,w), if [the first endpoint belongs to the source se
 set](hyp:hact), [begins at the stated source](hyp:hhead), and [ends at the stated
 target](hyp:hlast),
 then [some suffix remains active from the source-or-secondary-conditioning set to the same target
-and has no strictly interior vertex in the secondary conditioning set](goal). -/
+and has no strictly interior vertex in the secondary conditioning set](goal).
+@isnad1 id=ex.5h8v.s7.e22511f2c4e6 from=translated src=- shape=86d007d1 vocab=dc03622a
+-/
 theorem take_suffix_at_last_S
     {X Z S : Finset V} {p : List V} {x w : V}
     (hxX : x ∈ X) (hlen : p.length ≥ 2)
@@ -387,7 +399,9 @@ theorem take_suffix_at_last_S
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [a walk and two conditioning
 sets](hyp:q,Z,S) that is [active under their union](hyp:hact) and whose [interior colliders
-are activated by the first set alone](hyp:hNoSOnly) is [active under the first set](goal). -/
+are activated by the first set alone](hyp:hNoSOnly) is [active under the first set](goal).
+@isnad1 id=isactive.2h5v.s7.4454775001a2 from=translated src=- shape=9287186d vocab=4519ffb1
+-/
 theorem isActiveWalk_Z_of_no_S_only_collider
     {Z S : Finset V} {q : List V}
     (hact : G.IsActiveWalk (Z ∪ S) q)
@@ -414,7 +428,9 @@ theorem isActiveWalk_Z_of_no_S_only_collider
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [two endpoint sets and a conditioning
 set](hyp:X,Y,Z) satisfy [active-walk existence in one direction only if it also holds in the
-opposite direction](goal). -/
+opposite direction](goal).
+@isnad1 id=hasactiv.1h5v.s5.e6a422542d04 from=translated src=- shape=dbc8004b vocab=d76af7ad
+-/
 theorem hasActiveWalk_symm (X Y Z : Finset V) :
     G.HasActiveWalk X Y Z → G.HasActiveWalk Y X Z := by
   rintro ⟨p, hlen, hact, hhead, hlast⟩
@@ -559,7 +575,9 @@ private theorem active_triple_of_bbStep
 /-- In [a finite directed acyclic graph](hyp:V,G), [a conditioning set, three leading
 vertices, and a remaining suffix](hyp:Z,z,w,u,r), [adjacency of the new first pair](hyp:hadj),
 [activity of the new first triple](hyp:htri), and [activity of the original walk](hyp:hact)
-ensure that [prepending the new vertex preserves activity](goal). -/
+ensure that [prepending the new vertex preserves activity](goal).
+@isnad1 id=isactive.2h8v.s6.276b08749863 from=translated src=- shape=20a016a2 vocab=25ba46d0
+-/
 theorem isActiveWalk_cons_of_active_triple
     {Z : Finset V} {z w u : V} {r : List V}
     (hadj : G.UAdj z w)
@@ -585,7 +603,9 @@ theorem isActiveWalk_cons_of_active_triple
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [a conditioning set and three
 vertices](hyp:Z,u,w,z) with [an active triple](hyp:h) retain [the active-triple condition when
-the outer vertices are exchanged](goal). -/
+the outer vertices are exchanged](goal).
+@isnad1 id=ite.0h7v.s6.3b29d52b47af from=translated src=- shape=9a919a26 vocab=b5376e1c
+-/
 theorem active_triple_swap_outer
     {Z : Finset V} {u w z : V}
     (h : if G.IsCollider u w z then w ∈ G.bbZAncestors Z else w ∉ Z) :
@@ -605,7 +625,9 @@ private theorem uAdj_reverse_of_stateMatchesEdge
   · exact Or.inl h
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [a conditioning set and two
-vertices](hyp:Z,a,b) whose [vertices are adjacent](hyp:h) form [an active two-vertex walk](goal). -/
+vertices](hyp:Z,a,b) whose [vertices are adjacent](hyp:h) form [an active two-vertex walk](goal).
+@isnad1 id=isactive.1h5v.s5.f8fec25c87ec from=translated src=- shape=97d55285 vocab=7248c0de
+-/
 theorem isActiveWalk_pair
     {Z : Finset V} {a b : V} (h : G.UAdj a b) :
     G.IsActiveWalk Z [a, b] := by
@@ -682,7 +704,9 @@ private theorem bbReachable_state_has_reverse_activeWalk
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [a conditioning set, two leading
 vertices, and a suffix](hyp:Z,u,w,r) with [an active full walk](hyp:h) retain [an active walk
-after the first vertex is removed](goal). -/
+after the first vertex is removed](goal).
+@isnad1 id=isactive.1h6v.s5.fdf067881553 from=translated src=- shape=7e88217c vocab=e84247c6
+-/
 theorem isActiveWalk_cons_tail
     {Z : Finset V} {u w : V} {r : List V}
     (h : G.IsActiveWalk Z (u :: w :: r)) :
@@ -756,7 +780,9 @@ of `X` to `v` containing at least two vertices](goal).
     the BFS fixed point captures exactly the vertices reachable via active walks.
 
     Forward direction (soundness): every BFS-reachable vertex has an active walk.
-    Backward direction (completeness): every vertex with an active walk is BFS-reachable. -/
+    Backward direction (completeness): every vertex with an active walk is BFS-reachable.
+@isnad1 id=iff.0h5v.s6.b95223169e4f from=translated src=- shape=08e36c9b vocab=990f9193
+-/
 theorem bbReachableVertices_iff_activeWalk (X Z : Finset V) (v : V) :
     v ∈ G.bbReachableVertices Z X ↔
     ∃ (x : V), x ∈ X ∧ ∃ (p : List V), p.length ≥ 2 ∧

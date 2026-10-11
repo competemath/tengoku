@@ -70,19 +70,25 @@ def entryL2 {p : ℕ} (R : SqMatrix p) : ℝ :=
   @norm (SqMatrix p) Matrix.frobeniusNormedAddCommGroup.toNorm R
 
 /-- [The entrywise Euclidean size is exactly the Frobenius norm](goal) for [matrix `R`](hyp:R) in
-[dimension `p`](hyp:p), allowing standard matrix-norm results to apply directly. -/
+[dimension `p`](hyp:p), allowing standard matrix-norm results to apply directly.
+@isnad1 id=eq.0h2v.s5.dd1d8594feb1 from=translated src=- shape=dce953af vocab=2b3ecd79
+-/
 theorem entryL2_eq_frobenius_norm {p : ℕ} (R : SqMatrix p) :
     entryL2 R = @norm (SqMatrix p) Matrix.frobeniusNormedAddCommGroup.toNorm R := rfl
 
 /-- [Entrywise Euclidean size is the root-sum-of-squares of all entries](goal) for [matrix
-`R`](hyp:R) in [dimension `p`](hyp:p). -/
+`R`](hyp:R) in [dimension `p`](hyp:p).
+@isnad1 id=eq.0h2v.s5.d19940e14a59 from=translated src=- shape=14120f63 vocab=993e7f8e
+-/
 theorem entryL2_eq_sqrt {p : ℕ} (R : SqMatrix p) :
     entryL2 R = Real.sqrt (∑ i, ∑ j, |R i j| ^ 2) := by
   rw [entryL2, Matrix.frobenius_norm_def, Real.sqrt_eq_rpow]
   simp only [Real.rpow_two, Real.norm_eq_abs]
 
 /-- [Entrywise Euclidean size cannot be negative](goal) for [matrix `R`](hyp:R) in [dimension
-`p`](hyp:p), as required for radius and error bounds. -/
+`p`](hyp:p), as required for radius and error bounds.
+@isnad1 id=le.0h2v.s4.fc61bc52ca30 from=translated src=- shape=9363a417 vocab=db14f113
+-/
 theorem entryL2_nonneg {p : ℕ} (R : SqMatrix p) : 0 ≤ entryL2 R := by
   rw [entryL2_eq_sqrt]
   exact Real.sqrt_nonneg _
@@ -171,7 +177,9 @@ def InIdentityBranch {p : ℕ} (M δ L : ℝ) (B₀ B : SqMatrix p) : Prop :=
 
 /-- [The explicit pairwise residual threshold is strictly positive](goal) when [shift scale `M`
 and separation margin `δ`](hyp:M,δ) are [positive](hyp:hM,hδ), [matrix scale `L`](hyp:L) is [at
-least one](hyp:hL), and the model has [dimension `p`](hyp:p). -/
+least one](hyp:hL), and the model has [dimension `p`](hyp:p).
+@isnad1 id=lt.3h4v.s5.267cc04b8187 from=translated src=- shape=c9a42a2e vocab=5922c99c
+-/
 theorem pairwiseResidualRadius_pos {p : ℕ} {M δ L : ℝ}
     (hM : 0 < M) (hδ : 0 < δ) (hL : 1 ≤ L) :
     0 < pairwiseResidualRadius p M δ L := by
@@ -180,7 +188,9 @@ theorem pairwiseResidualRadius_pos {p : ℕ} {M δ L : ℝ}
 
 /-- [The explicit local reference-neighborhood radius is strictly positive](goal) when [dimension
 `p`, shift scale `M`, separation margin `δ`, and inverse envelope `J`](hyp:p,M,δ,J) are
-[positive](hyp:hp,hM,hδ,hJ) and [matrix scale `L`](hyp:L) is [at least one](hyp:hL). -/
+[positive](hyp:hp,hM,hδ,hJ) and [matrix scale `L`](hyp:L) is [at least one](hyp:hL).
+@isnad1 id=lt.5h5v.s6.98a1dec0f213 from=translated src=- shape=de4974ed vocab=7aef710e
+-/
 theorem pairwiseLocalRadius_pos {p : ℕ} {M δ L J : ℝ}
     (hp : 0 < p) (hM : 0 < M) (hδ : 0 < δ) (hL : 1 ≤ L) (hJ : 0 < J) :
     0 < pairwiseLocalRadius p M δ L J := by
@@ -313,7 +323,9 @@ private theorem opNorm_pow_le_det_mul_condition_pow {p : ℕ} (hp : 0 < p)
 
 /-- [The determinant-condition root is at least one](goal) in [dimension `p`](hyp:p) under
 [condition envelope `κ`](hyp:κ), provided [the dimension is positive](hyp:hp) and [the envelope
-is at least one](hyp:hκ). -/
+is at least one](hyp:hκ).
+@isnad1 id=le.2h2v.s5.6e669fb7ae78 from=translated src=- shape=ff64acc4 vocab=a5773000
+-/
 theorem one_le_conditionRoot {p : ℕ} {κ : ℝ} (hp : 0 < p) (hκ : 1 ≤ κ) :
     1 ≤ conditionRoot p κ := by
   unfold conditionRoot
@@ -327,7 +339,9 @@ theorem one_le_conditionRoot {p : ℕ} {κ : ℝ} (hp : 0 < p) (hκ : 1 ≤ κ) 
 /-- [The determinant-condition root bounds the matrix operator norm](goal), turning [matrix
 `B`](hyp:B)'s [determinant-condition certificate](hyp:henv) into a scale bound in [dimension
 `p`](hyp:p) for [condition envelope `κ`](hyp:κ), when [the dimension is positive](hyp:hp) and
-[the envelope is at least one](hyp:hκ). -/
+[the envelope is at least one](hyp:hκ).
+@isnad1 id=le.3h3v.s5.7a01042fb1fc from=translated src=- shape=57a50158 vocab=b1612850
+-/
 -- Proof route: order the singular values;
 -- `cond(B) ≤ κ` bounds every lower singular value below by `‖B‖/κ`, while their
 -- product is `|det B| ≤ p!`.  Take the positive `p`-th root.
@@ -359,7 +373,9 @@ theorem opNorm_le_conditionRoot {p : ℕ} {κ : ℝ} (B : SqMatrix p)
 /-- [One determinant-condition certificate yields a common operator-norm bound for both
 matrices](goal), for [reference and candidate `B₀,B`](hyp:B₀,B) in [dimension `p`](hyp:p) under
 [condition envelope `κ`](hyp:κ), assuming [positive dimension](hyp:hp), [envelope at least
-one](hyp:hκ), and [the shared certificate](hyp:henv). -/
+one](hyp:hκ), and [the shared certificate](hyp:henv).
+@isnad1 id=pairmatr.3h4v.s5.bf64745eb7d8 from=translated src=- shape=1eee9040 vocab=b27012f3
+-/
 theorem pairMatrixNormBound_conditionRoot {p : ℕ} {κ : ℝ} (B₀ B : SqMatrix p)
     (hp : 0 < p) (hκ : 1 ≤ κ) (henv : PairDetConditionEnvelope κ B₀ B) :
     PairMatrixNormBound (conditionRoot p κ) B₀ B := by

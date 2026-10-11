@@ -19,7 +19,9 @@ open MeasureTheory ProbabilityTheory
 difference with the fourth-power sinc density equals 1/(2π) times the
 integral over [−T, T] of the kernel's Fourier transform times the spatial
 transform of the shifted CDF difference](goal); no change of variables or
-division by frequency is used. -/
+division by frequency is used.
+@isnad1 id=eq.3h4v.s8.5d507bcaf163 from=translated src=- shape=764f8824 vocab=6e020a76
+-/
 theorem sinc4_smoothed_cdf_fourier_swap
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

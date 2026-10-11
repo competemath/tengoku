@@ -20,7 +20,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 /-- At [a real argument x away from the integer zeros of sin(πx)](hyp:x,hsin),
 [the symmetric shifted reciprocal-square series Σ_{n≥1} (1/(x−n)² + 1/(x+n)²)
 is summable, and (sin(πx)/π)² times its sum plus the central term 1/x² equals
-one](goal). -/
+one](goal).
+@isnad1 id=and.1h1v.s8.9ae229dcf3c2 from=translated src=- shape=4ad21554 vocab=3e21a320
+-/
 theorem csc_squared_reciprocal_series (x : ℝ)
     (hsin : Real.sin (Real.pi * x) ≠ 0) :
     Summable (fun n : ℕ =>

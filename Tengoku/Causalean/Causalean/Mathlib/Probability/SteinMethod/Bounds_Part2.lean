@@ -275,7 +275,9 @@ private theorem crux_pure {e p q f k w : ℝ}
           have : (0:ℝ) ≤ -w * k := mul_nonneg hnw.le hkpos.le; linarith
       _ ≤ k := by rw [mul_one_div, div_le_iff₀ hden]; exact (mills_arith hk43).2
 
-/-- **Sup bound on the derivative of the Stein solution** in terms of the `h`-derivative bound. -/
+/-- **Sup bound on the derivative of the Stein solution** in terms of the `h`-derivative bound.
+@isnad1 id=le.3h4v.s7.ce17b403689d from=translated src=- shape=e30b3273 vocab=13705892
+-/
 theorem steinSol_deriv_abs_le (h : ℝ → ℝ) {C L : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L) (hdiff : Differentiable ℝ h) (w : ℝ) :
     |deriv (steinSol h) w| ≤ 2 * L := by
@@ -464,7 +466,9 @@ private theorem steinSol_crux_le (h : ℝ → ℝ) (hh : Continuous h) {C L : �
 
 /-- For a bounded differentiable test function, the derivative of its standard-normal Stein
 solution is differentiable at each point, with derivative equal to the solution value plus the
-point times its first derivative plus the derivative of the test function. -/
+point times its first derivative plus the derivative of the test function.
+@isnad1 id=hasderiv.2h3v.s7.57d2f46e6f85 from=translated src=- shape=8846955d vocab=b999004a
+-/
 theorem steinSol_deriv_hasDerivAt (h : ℝ → ℝ) {C : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hdiff : Differentiable ℝ h) (w : ℝ) :
     HasDerivAt (deriv (steinSol h))
@@ -487,7 +491,9 @@ theorem steinSol_deriv_hasDerivAt (h : ℝ → ℝ) {C : ℝ}
   exact (hprod.fun_add hh').congr_deriv (by rw [hfderiv]; ring)
 
 /-- The absolute second derivative of the standard-normal Stein solution at each point is at most
-twice the uniform bound on the derivative of the test function. -/
+twice the uniform bound on the derivative of the test function.
+@isnad1 id=le.3h4v.s7.3256992280d7 from=translated src=- shape=f093653a vocab=cd3ff85b
+-/
 theorem steinSol_secondDeriv_abs_le (h : ℝ → ℝ) {C L : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L) (hdiff : Differentiable ℝ h)
     (w : ℝ) :
@@ -515,7 +521,9 @@ distance between those points](goal).
 
 **Lipschitz bound on the derivative of the Stein solution** (equivalent to `‖f_h''‖ ≤ 2L`;
 Chen–Goldstein–Shao Lemma 2.4, equation (2.13)). The form `f_h'` is `2L`-Lipschitz is what the
-Taylor step in the local-dependence Stein bound consumes. -/
+Taylor step in the local-dependence Stein bound consumes.
+@isnad1 id=le.3h5v.s7.240db9cec7f6 from=translated src=- shape=2ef6ac90 vocab=53a005ef
+-/
 theorem steinSol_deriv_lipschitz (h : ℝ → ℝ) {C L : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L) (hdiff : Differentiable ℝ h)
     (u v : ℝ) :

@@ -60,7 +60,9 @@ noncomputable def ΓV2 (j : Fin K) : ℝ :=
         / (1 - P.g₁ j)
     + P.m₀ j ^ 2 * P.κ j ^ 2 / (1 - P.m₀ j)
 
-/-- `Γⱼ ≥ 0`. -/
+/-- `Γⱼ ≥ 0`.
+@isnad1 id=le.0h3v.s4.0508e0013200 from=translated src=- shape=d78b0cc0 vocab=937060d5
+-/
 theorem ΓV2_nonneg (j : Fin K) : 0 ≤ P.ΓV2 j := by
   have h1 := P.hm₀0 j; have h2 := P.hm₀1 j; have h3 := P.hg₁0 j; have h4 := P.hg₁1 j
   unfold ΓV2
@@ -84,7 +86,9 @@ noncomputable def chiSqOverlapV2 (lam lam' : Fin K → Bool) : ℝ :=
       * obsReal (P.mPert2 lam') (P.gPert2 lam') z
       / obsReal P.mhat2 P.ghat2 z
 
-/-- Denominator-free value of the perturbed observed mass at the four `(d, y)`. -/
+/-- Denominator-free value of the perturbed observed mass at the four `(d, y)`.
+@isnad1 id=eq.0h6v.s8.f24339f1c7b9 from=translated src=- shape=11d5c161 vocab=e84ea7ef
+-/
 theorem obsReal_pert2_eq (lam : Fin K → Bool) (x : Fin K × Bool) (d y : Bool) :
     obsReal (P.mPert2 lam) (P.gPert2 lam) (x, d, y)
       = (Fintype.card (Fin K × Bool) : ℝ)⁻¹ *
@@ -116,7 +120,9 @@ theorem obsReal_pert2_eq (lam : Fin K → Bool) (x : Fin K × Bool) (d y : Bool)
 /-- [For any two Rademacher sign vectors `lam` and `lam'` indexing perturbed
 data-generating processes](hyp:lam,lam'), [the single-observation χ² overlap between them
 equals one plus the sum over pairs `j` of the second-family coefficient `ΓV2 j / K`
-times the sign agreement between `lam` and `lam'` at pair `j`](goal). -/
+times the sign agreement between `lam` and `lam'` at pair `j`](goal).
+@isnad1 id=eq.0h4v.s6.f032622b6b34 from=translated src=- shape=2d1ea7d5 vocab=d2550dea
+-/
 theorem chiSqOverlap_eq2 [NeZero K] (lam lam' : Fin K → Bool) :
     P.chiSqOverlapV2 lam lam'
       = 1 + ∑ j, (P.ΓV2 j / (K : ℝ)) * (signOf (lam j) * signOf (lam' j)) := by

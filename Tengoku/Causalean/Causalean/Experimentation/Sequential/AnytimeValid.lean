@@ -49,7 +49,9 @@ def IsAnytimeValid (R : Set Ω) (μ : Measure Ω) (α : ℝ) : Prop :=
 /-- **Anytime-valid type-I error control.** If
 [`M` is a test supermartingale under the probability measure](hyp:hM) and
 [the level `α` is positive](hyp:α,hα), then
-[the crossing event has measure at most `α`](goal). -/
+[the crossing event has measure at most `α`](goal).
+@isnad1 id=isanytim.2h6v.s5.4c38d8faaaca from=translated src=- shape=b564dace vocab=6dadee76
+-/
 theorem isAnytimeValid_rejectionRegion [IsFiniteMeasure μ] {M : ℕ → Ω → ℝ}
     (hM : IsTestSupermartingale M ℱ μ) {α : ℝ} (hα : 0 < α) :
     IsAnytimeValid (rejectionRegion M α) μ α :=
@@ -75,7 +77,9 @@ def confSeqOfWealth (M : ℕ → Ω → ℝ) (α : ℝ) : ℕ → Ω → Prop :=
 /-- **Confidence-sequence coverage.** If
 [`M` is a test supermartingale under the probability measure](hyp:hM) and
 [the level `α` is positive](hyp:α,hα), then
-[wealth inversion fails to cover at some time with probability at most `α`](goal). -/
+[wealth inversion fails to cover at some time with probability at most `α`](goal).
+@isnad1 id=isconfid.2h6v.s5.5e6ac8b828ac from=translated src=- shape=b564dace vocab=261ce4b6
+-/
 theorem isConfidenceSequence_confSeqOfWealth [IsFiniteMeasure μ] {M : ℕ → Ω → ℝ}
     (hM : IsTestSupermartingale M ℱ μ) {α : ℝ} (hα : 0 < α) :
     IsConfidenceSequence (confSeqOfWealth M α) μ α := by

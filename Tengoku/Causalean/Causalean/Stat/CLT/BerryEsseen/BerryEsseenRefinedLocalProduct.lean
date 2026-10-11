@@ -20,7 +20,9 @@ where [M3 is at least one](hyp:hM3), [a sample size n of at least four](hyp:hn),
 and [a frequency in the half-size window |t| ≤ √n/(2·M3)](hyp:ht),
 [the characteristic function of the standardized iid sum differs from the
 standard Gaussian characteristic function by at most
-(M3/(4√n))·|t|³·exp(−t²/4)](goal). -/
+(M3/(4√n))·|t|³·exp(−t²/4)](goal).
+@isnad1 id=le.9h4v.s9.b19a87417b22 from=translated src=- shape=908e269f vocab=6fec3e35
+-/
 theorem iid_unit_variance_charFun_refined_local_product_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (M3 : ℝ) (hM3 : 1 ≤ M3)

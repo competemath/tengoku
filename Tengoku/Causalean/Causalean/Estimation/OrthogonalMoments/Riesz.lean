@@ -70,7 +70,9 @@ structure MeanPairingRepresentation
   representation : ∀ γ : H_γ, L γ = ∫ x, α₀ x * γ_target γ x ∂P_X
 
 /-- On [a probability space, the representer's square-integrability](hyp:rep)
-[implies that the representer is integrable](goal). -/
+[implies that the representer is integrable](goal).
+@isnad1 id=integrab.0h6v.s6.4b15c18b8472 from=translated src=- shape=6d356c3f vocab=dacdd228
+-/
 @[fun_prop]
 theorem MeanPairingRepresentation.α₀_integrable
     {H_γ : Type*} [AddCommGroup H_γ] [Module ℝ H_γ]
@@ -116,7 +118,9 @@ given `proj_X`, since residuals are orthogonal to all square-integrable function
 Then [the score `pairingScore` evaluated at the truth (γ₀, α₀, L γ₀) integrates to
 zero under P_Z](goal):
 
-    ∫ z, pairingScore γ_target L proj_X Y_obs γ₀ rep.α₀ (L γ₀) z ∂P_Z = 0. -/
+    ∫ z, pairingScore γ_target L proj_X Y_obs γ₀ rep.α₀ (L γ₀) z ∂P_Z = 0.
+@isnad1 id=eq.1h11v.s7.92d126a0ec52 from=translated src=- shape=8ecc468f vocab=3da8b10c
+-/
 theorem pairingScore_meanZero
     {H_γ : Type*} [AddCommGroup H_γ] [Module ℝ H_γ]
     {γ_target : H_γ → X → ℝ}
@@ -230,7 +234,9 @@ Hypotheses bundle the standard ingredients:
 * finite moments for the perturbed residual and the product terms. The
   residual condition is needed mathematically for Bochner integral linearity;
   product integrability under `P_X` is recovered from the composition
-  integrability under `P_Z` using the pushforward identity. -/
+  integrability under `P_Z` using the pushforward identity.
+@isnad1 id=eq.12h13v.s9.bbfe3d480d0e from=translated src=- shape=dc1b48f6 vocab=2385dc47
+-/
 theorem pairingScore_bilinearRem
     {H_γ : Type*} [AddCommGroup H_γ] [Module ℝ H_γ]
     {γ_target : H_γ → X → ℝ}

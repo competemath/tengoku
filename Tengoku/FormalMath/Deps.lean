@@ -1,0 +1,1 @@
+-- FormalMath: a factory bundle (data/intake/formal-math). This file only marks the library for Tengoku/All.lean.

@@ -222,7 +222,9 @@ set of the intervened target node is contained in `I`](goal).
 
 The `←` direction is unconditional; `hk` is used only in the `→` direction (and there
 only in the case where the witnessed parent is the target itself, to rule out the
-degenerate `λₖ = (B₀)_{iₖ,iₖ}` configuration that would make `Θₖ = Θ₀`). -/
+degenerate `λₖ = (B₀)_{iₖ,iₖ}` configuration that would make `Θₖ = Θ₀`).
+@isnad1 id=iff.1h6v.s7.d24ad285e03b from=translated src=- shape=bc8ab965 vocab=962783b3
+-/
 theorem rowspan_inclusion_a (S : Solution d p K) (k : Fin K) (I : Set (Fin d))
     (hk : S.Theta k ≠ S.Theta0) :
     rowSpan (S.Theta k - S.Theta0) ≤ hSpan S I ↔ S.Pa (S.target k) ⊆ I := by
@@ -356,7 +358,9 @@ private theorem An_subset_An_of_mem_Pa (S : Solution d p K) (k : Fin K) {i : Fin
 RQ decomposition of `S`'s latent-direction matrix `H`, witnessed by `R` and
 `Q`](hyp:hRQ), [the row span of the precision difference `Θₖ − Θ₀` is contained in
 the span of the rows of `Q` indexed by the ancestor set of the intervened target
-node](goal). -/
+node](goal).
+@isnad1 id=le.1h7v.s7.c971dc93c488 from=translated src=- shape=7382df44 vocab=4583a0b3
+-/
 theorem rowspan_inclusion_b (S : Solution d p K)
     {R : Matrix (Fin d) (Fin d) ℝ} {Q : Matrix (Fin d) (Fin p) ℝ} (hRQ : IsPORQ S R Q)
     (k : Fin K) :
@@ -535,7 +539,9 @@ not claimed here. We split on whether `j ∈ ⋃_{i∈I} An(i)`:
    (`coeff_eq_zero_of_sum_mem_hSpan`), contradicting `(B₀)_{iₖ,j} ≠ 0`.
 
 *  **Descendant case (`I_d ≠ ∅`) is vacuous.**  If `j ∈ ⋃_{i∈I} An(i)` then `j ∈ An(i₀)` for
-   some `i₀ ∈ I`; ancestor-closedness gives `An(i₀) ⊆ I`, so `j ∈ I` — contradicting `j ∉ I`. -/
+   some `i₀ ∈ I`; ancestor-closedness gives `An(i₀) ⊆ I`, so `j ∈ I` — contradicting `j ∉ I`.
+@isnad1 id=not.4h8v.s8.e8faad363cb0 from=translated src=- shape=b55af61d vocab=61db7c01
+-/
 theorem rowspan_inclusion_c_of_ancestor_closed (S : Solution d p K)
     {R : Matrix (Fin d) (Fin d) ℝ} {Q : Matrix (Fin d) (Fin p) ℝ} (hRQ : IsPORQ S R Q)
     (k : Fin K) (I : Set (Fin d)) (hk : S.Theta k ≠ S.Theta0)

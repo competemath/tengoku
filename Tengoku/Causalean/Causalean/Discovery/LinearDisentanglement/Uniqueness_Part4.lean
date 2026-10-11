@@ -53,7 +53,9 @@ forced by `Θ₀ = Θ₀'`); (L2) the per-context Gram identity `BᵀB = (B'M)�
 (`gram_identity`); (L3) hence `Oₖ = B'ₖ M Bₖ⁻¹` is orthogonal (`gram_to_orthogonal`);
 (L4) the orthogonal-correctness collapse to a single order-preserving permutation
 (`exists_orderPerm`, the geometric core); (L5) the signed conclusion is obtained by
-substituting the monomial form of `M`. -/
+substituting the monomial form of `M`.
+@isnad1 id=ex.5h5v.s9.84d08eb4a021 from=translated src=- shape=a189d99b vocab=d74e6c59
+-/
 theorem disentanglement_uniqueness_up_to_signed_scaling_of_nondegenerate
     (S S' : Solution d p K)
     (hcov : Function.Bijective S.target) (hcov' : Function.Bijective S'.target)

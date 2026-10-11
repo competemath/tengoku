@@ -13,7 +13,9 @@ public section
 namespace Causalean.Stat.CLT.BerryEsseen
 
 /-- At [a positive shift x](hyp:x,hx), [the reciprocal-square tail
-Σ_{n≥0} 1/(x+n+1)² is summable and lies between 1/(x+1) and 1/x](goal). -/
+Σ_{n≥0} 1/(x+n+1)² is summable and lies between 1/(x+1) and 1/x](goal).
+@isnad1 id=and.1h1v.s8.a4f11d2b47fe from=translated src=- shape=db644bc6 vocab=751b3843
+-/
 theorem reciprocal_sq_tail_bounds (x : ℝ) (hx : 0 < x) :
     Summable (fun n : ℕ => 1 / (x + (n : ℝ) + 1) ^ 2) ∧
       1 / (x + 1) ≤ (∑' n : ℕ, 1 / (x + (n : ℝ) + 1) ^ 2) ∧

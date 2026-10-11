@@ -24,6 +24,9 @@ for every x,y ∈ ℝ⁺.
 
 namespace Bulgaria1998P3
 
+/--
+@isnad1 id=lt.0h1v.s5.308dca170aa5 from=translated src=- shape=7fd802d3 vocab=5c0e3363
+-/
 lemma geom_sum_bound (n : ℕ) : ∑ i ∈ Finset.range n, (1:ℝ) / (2^i) < 3 :=
   calc ∑ i ∈ Finset.range n, (1:ℝ) / ((2:ℝ)^i)
           = ∑ i ∈ Finset.range n, ((1:ℝ) / 2)^i := by {congr; simp [div_eq_mul_inv]}

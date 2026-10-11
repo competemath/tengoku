@@ -40,7 +40,9 @@ variable (hindepY : ∀ A B : Finset V, (∀ a ∈ A, ∀ b ∈ B, ¬ adj a b) �
     IndepFun (fun ω => fun k : A => Y k ω) (fun ω => fun k : B => Y k ω) μ)
 
 /-- **Mean-zero summands.** Each standardized summand has integral zero:
-`E[Xᵢ] = (E[Yᵢ] − E[Yᵢ]) / s = 0`.  (Uses integrability of `Yᵢ`, from `MemLp Yᵢ 2`.) -/
+`E[Xᵢ] = (E[Yᵢ] − E[Yᵢ]) / s = 0`.  (Uses integrability of `Yᵢ`, from `MemLp Yᵢ 2`.)
+@isnad1 id=eq.3h9v.s8.24080bdf92dd from=translated src=- shape=f408dee1 vocab=3836aedd
+-/
 theorem centeredNormalizedField_integral_eq_zero
     (hL2 : ∀ i, MemLp (Y i) 2 μ) (s : ℝ) (i : V) :
     ∫ ω, (centeredNormalizedField Y adj hrefl hsymm hmeasY hindepY s).X i ω ∂μ = 0 := by
@@ -56,7 +58,9 @@ square-integrable](hyp:hL2), [the normalizing constant `s` is positive](hyp:hs_p
 equals the variance of the network sum of outcomes, `s² = Var(∑ᵢ Yᵢ)`](hyp:hs2), then [the standardized network sum
 `∑ᵢ Xᵢ = (∑ᵢ Yᵢ − ∑ᵢ E[Yᵢ]) / s` has unit total variance: `∫ (∑ᵢ Xᵢ)² = 1`](goal).  This is the
 field-variance hypothesis of `networkSum_clt` (`∫ (depSum X)² = 1`), derived from the outcome
-sum-variance. -/
+sum-variance.
+@isnad1 id=eq.5h8v.s9.0b5571bcb563 from=translated src=- shape=bb58a77c vocab=b2125ad2
+-/
 theorem centeredNormalizedField_sq_integral
     (hL2 : ∀ i, MemLp (Y i) 2 μ) (s : ℝ) (hs_pos : 0 < s)
     (hs2 : s ^ 2 = variance (fun ω => ∑ i, Y i ω) μ) :
@@ -128,7 +132,9 @@ omit [IsProbabilityMeasure μ]
 
 /-- **Uniform summand bound.** If the centered outcomes are bounded, `|Yᵢ − E[Yᵢ]| ≤ c`, then each
 standardized summand satisfies `|Xᵢ| ≤ 2c/s` (with `s > 0`).  The tight bound is `c/s`, weakened to
-`2c/s` to match the engine's `card·Bₙ³ → 0` smallness with `Bₙ = 2c/s`. -/
+`2c/s` to match the engine's `card·Bₙ³ → 0` smallness with `Bₙ = 2c/s`.
+@isnad1 id=le.4h11v.s8.8d1d93549bc4 from=translated src=- shape=da0dda94 vocab=3315758e
+-/
 theorem centeredNormalizedField_abs_le
     (s : ℝ) (hs_pos : 0 < s) (c : ℝ)
     (hc : ∀ i ω, |Y i ω - ∫ x, Y i x ∂μ| ≤ c) (i : V) (ω : Ω) :

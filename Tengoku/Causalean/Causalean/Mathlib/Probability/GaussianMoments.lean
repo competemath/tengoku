@@ -33,7 +33,9 @@ open scoped NNReal ENNReal
 
 /-- A real Gaussian distribution with nonnegative variance is the standard
 normal distribution after scaling by the standard deviation and shifting by
-the mean. -/
+the mean.
+@isnad1 id=eq.0h2v.s5.1c3bdbf0c184 from=translated src=- shape=cd76f88e vocab=cf671c73
+-/
 lemma gaussianReal_eq_map_std (m : ℝ) (v : ℝ≥0) :
     gaussianReal m v = (gaussianReal 0 1).map (fun z => Real.sqrt (v : ℝ) * z + m) := by
   have hcoe : (⟨(v : ℝ), v.2⟩ : ℝ≥0) = v := by
@@ -55,7 +57,9 @@ lemma gaussianReal_eq_map_std (m : ℝ) (v : ℝ≥0) :
 
 /-- The inverse image of a right-hand tail under a positive affine
 transformation is a right-hand tail whose threshold is transformed by the
-inverse affine formula. -/
+inverse affine formula.
+@isnad1 id=eq.1h4v.s7.017a72d333da from=translated src=- shape=159deb9a vocab=f36b6662
+-/
 lemma affine_preimage_Ioi {α : Type*} [Field α] [LinearOrder α] [IsStrictOrderedRing α]
     {s c m : α} (hs : 0 < s) :
     (fun z : α => s * z + m) ⁻¹' Set.Ioi c = Set.Ioi ((c - m) / s) := by
@@ -70,7 +74,9 @@ lemma affine_preimage_Ioi {α : Type*} [Field α] [LinearOrder α] [IsStrictOrde
     nlinarith [hz']
 
 /-- The standard normal probability of values above t equals the integral of the standard-normal
-density over that upper-tail region. -/
+density over that upper-tail region.
+@isnad1 id=eq.0h1v.s6.9e325122755f from=translated src=- shape=86b1b2a5 vocab=e83cbb89
+-/
 lemma stdNormalMeasure_Ioi_toReal_eq_integral (t : ℝ) :
     ((gaussianReal 0 1) (Set.Ioi t)).toReal = ∫ x in Set.Ioi t, stdNormalPDF x := by
   have hmeasure := ProbabilityTheory.gaussianReal_apply_eq_integral
@@ -81,7 +87,9 @@ lemma stdNormalMeasure_Ioi_toReal_eq_integral (t : ℝ) :
   rw [ENNReal.toReal_ofReal hnonneg]
   simp [stdNormalPDF]
 
-/-- The standard normal density has a finite first absolute moment. -/
+/-- The standard normal density has a finite first absolute moment.
+@isnad1 id=integrab.0h0v.s5.fc816d0303d4 from=translated src=- shape=ea8c438d vocab=9229043c
+-/
 @[fun_prop]
 lemma integrable_id_mul_stdNormalPDF : Integrable (fun x : ℝ => x * stdNormalPDF x) := by
   have hbase : Integrable (fun x : ℝ => x * Real.exp (-(1 / 2 : ℝ) * x ^ 2)) := by
@@ -101,7 +109,9 @@ lemma integrable_id_mul_stdNormalPDF : Integrable (fun x : ℝ => x * stdNormalP
   ring
 
 /-- Above a threshold, integrating an affine function against the standard-normal density
-equals its slope times the truncated first moment plus its intercept times the tail mass. -/
+equals its slope times the truncated first moment plus its intercept times the tail mass.
+@isnad1 id=eq.0h3v.s7.36e5f08fa755 from=translated src=- shape=389d4daa vocab=4d8d80b6
+-/
 lemma integral_Ioi_affine_stdNormal (s m t : ℝ) :
     ∫ z in Set.Ioi t, gaussianPDFReal 0 1 z * (s * z + m)
       = s * (∫ z in Set.Ioi t, z * stdNormalPDF z)
@@ -130,7 +140,9 @@ lemma integral_Ioi_affine_stdNormal (s m t : ℝ) :
           rw [integral_const_mul, integral_const_mul]
 
 /-- Above a threshold, the integral of an affine function under the standard-normal law
-equals the integral of that function against its density. -/
+equals the integral of that function against its density.
+@isnad1 id=eq.0h3v.s7.0766d195cf88 from=translated src=- shape=c5a99f24 vocab=3a4fc1cf
+-/
 lemma integral_Ioi_affine_gaussianReal_eq_density (s m t : ℝ) :
     ∫ z in Set.Ioi t, (s * z + m) ∂(gaussianReal 0 1)
       = ∫ z in Set.Ioi t, gaussianPDFReal 0 1 z * (s * z + m) := by
@@ -146,7 +158,9 @@ lemma integral_Ioi_affine_gaussianReal_eq_density (s m t : ℝ) :
 
 /-- **Gaussian survival.** For a normal law with mean `m` and [a nonnegative variance
 parameter `v` that is nonzero](hyp:v,hv), [the probability mass above a threshold `c` equals
-one minus the standard-normal CDF evaluated at the standardized threshold `(c − m)/√v`](goal). -/
+one minus the standard-normal CDF evaluated at the standardized threshold `(c − m)/√v`](goal).
+@isnad1 id=eq.1h3v.s6.772e2d9d0488 from=translated src=- shape=feb20d19 vocab=ba7fbfaf
+-/
 lemma gaussianReal_Ioi_eq (m : ℝ) (v : ℝ≥0) (hv : v ≠ 0) (c : ℝ) :
     ((gaussianReal m v) (Set.Ioi c)).toReal
       = 1 - stdNormalCDF ((c - m) / Real.sqrt (v : ℝ)) := by
@@ -177,7 +191,9 @@ lemma gaussianReal_Ioi_eq (m : ℝ) (v : ℝ≥0) (hv : v ≠ 0) (c : ℝ) :
 /-- **Gaussian truncated first moment.** For a normal law with mean `m` and [a nonnegative
 variance parameter `v` that is nonzero](hyp:v,hv), [the first moment integrated over the tail
 above a threshold `c` equals `m·(1 − Φ(t)) + √v·φ(t)`, where `t = (c − m)/√v`](goal) — the
-affine image of the standard-normal truncated moment `∫_{t}^∞ z φ(z) dz = φ(t)`. -/
+affine image of the standard-normal truncated moment `∫_{t}^∞ z φ(z) dz = φ(t)`.
+@isnad1 id=eq.1h3v.s7.276c3b9d92da from=translated src=- shape=c6526cf2 vocab=7027c11c
+-/
 lemma integral_Ioi_id_gaussianReal (m : ℝ) (v : ℝ≥0) (hv : v ≠ 0) (c : ℝ) :
     ∫ y in Set.Ioi c, y ∂(gaussianReal m v)
       = m * (1 - stdNormalCDF ((c - m) / Real.sqrt (v : ℝ)))

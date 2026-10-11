@@ -1,0 +1,1 @@
+-- MerelyTrue: a factory bundle (data/intake/merely-true). This file only marks the library for Tengoku/All.lean.

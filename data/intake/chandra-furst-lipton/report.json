@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "cd02b3806dc00c968b339690f7955d2bb075ef25e21c9d8da07f87e9a1e57adc",
+ "library": "chandra-furst-lipton",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 2
+}

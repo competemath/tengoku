@@ -156,7 +156,9 @@ with the caller's positive bound. -/
 
 /-- When [the selected coordinates are distinct](hyp:hij) and [the original invariant
 is positive definite](hyp:hΩ), [some positive radius keeps every transformed invariant
-positive definite](goal). -/
+positive definite](goal).
+@isnad1 id=ex.2h8v.s6.c85aaf663f9b from=translated src=- shape=01b20f81 vocab=32934405
+-/
 theorem exists_deformedInvariant_posDef_radius {d : ℕ} (B Ω : SqMatrix d)
     {i j : Fin d} (hij : i ≠ j) (hΩ : Ω.PosDef) (u v c : ℝ) :
     ∃ ρ > 0, ∀ t : ℝ, |t| < ρ →
@@ -172,7 +174,9 @@ theorem exists_deformedInvariant_posDef_radius {d : ℕ} (B Ω : SqMatrix d)
   simpa [Metric.mem_ball, Real.dist_eq] using ht
 
 /-- [Some positive radius makes both row-normalization denominators and the selected
-shear determinant nonzero](goal). -/
+shear determinant nonzero](goal).
+@isnad1 id=ex.0h6v.s7.6fe33d2bd7c2 from=translated src=- shape=f98f168c vocab=5f7514fc
+-/
 theorem exists_algebraic_admissibility_radius {d : ℕ} (B : SqMatrix d)
     (i j : Fin d) (u v : ℝ) :
     ∃ ρ > 0, ∀ t : ℝ, |t| < ρ →
@@ -209,7 +213,9 @@ reference diagonalizer `B`, invariant `Ω`, and selected coordinates](hyp:d,E,B,
 [distinctness, unit diagonal, invertibility, cycle admissibility, and positive
 definiteness](hyp:hij,hBdiag,hBunit,hcycle,hΩ), [shift family `s`](hyp:s), [line normal and offset
 `u,v,c`](hyp:u,v,c), [nonzero normal and nonnegative shifts](hyp:hnormal,hs), and [positive radius
-`r`](hyp:r,hr). -/
+`r`](hyp:r,hr).
+@isnad1 id=ex.8h11v.s8.897606a3e57b from=translated src=- shape=57d10a86 vocab=1a723be1
+-/
 theorem exists_small_admissible_parameter {d : ℕ} {E : Type*}
     (B Ω : SqMatrix d) {i j : Fin d}
     (hij : i ≠ j) (hBdiag : UnitDiagonal B) (hBunit : IsUnit B.det)

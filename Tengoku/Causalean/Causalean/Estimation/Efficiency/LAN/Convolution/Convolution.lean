@@ -104,7 +104,9 @@ private lemma weightedExp_eq_of_eq_real
 /-- Given [a LAN experiment](hyp:lan), [a selected joint weak limit](hyp:joint),
 [measurability under its local laws](hyp:hlocalMeasurable), and [normalized likelihood-ratio
 means](hyp:hnormalized), [the local-law characteristic functions converge to the corresponding
-exponentially tilted joint-limit integrals](goal). -/
+exponentially tilted joint-limit integrals](goal).
+@isnad1 id=tendsto.4h12v.s9.0516d41def1a from=translated src=- shape=e556b2ff vocab=e610398a
+-/
 theorem lan_tilted_charFun_tendsto_of_jointWeakSubsequence
     {E : LocalExperiment Ω H} {centralSequence : (n : ℕ) → Ω n → H}
     {information : LinearMap.BilinForm ℝ H}
@@ -274,7 +276,9 @@ theorem lan_tilted_charFun_tendsto_of_jointWeakSubsequence
 /-- Along any joint weak subsequence of the base-law estimator and central sequence, LAN and
 regularity identify the exponentially tilted characteristic function.  This is the scalar
 Le Cam third-lemma step; in particular, contiguity and control of the unbounded likelihood
-weight are conclusions of LAN rather than extra assumptions. -/
+weight are conclusions of LAN rather than extra assumptions.
+@isnad1 id=eq.3h13v.s9.0b52f9aa381d from=translated src=- shape=0c74b865 vocab=fa9de50c
+-/
 theorem lan_tilt_identity_of_jointWeakSubsequence
     {E : LocalExperiment Ω H} {centralSequence : (n : ℕ) → Ω n → H}
     {information : LinearMap.BilinForm ℝ H}
@@ -341,7 +345,9 @@ theorem lan_tilt_identity_of_jointWeakSubsequence
 /-- LAN, convergence of the estimator at the base law, and regularity under every fixed local
 alternative produce a joint subsequential limit satisfying the Gaussian-shift tilt identity.
 The tightness needed to choose a joint limit follows from the two convergent marginals in finite
-dimension. -/
+dimension.
+@isnad1 id=ex.2h9v.s7.60204397fb01 from=translated src=- shape=2eb9ecd1 vocab=555fa931
+-/
 theorem exists_regularLANJointLimit
     {E : LocalExperiment Ω H} {centralSequence : (n : ℕ) → Ω n → H}
     {information : LinearMap.BilinForm ℝ H}
@@ -365,7 +371,9 @@ theorem exists_regularLANJointLimit
 
 /-- The Gaussian-shift tilt identity and a canonical-gradient representer imply that the scalar
 estimator marginal is the convolution of the efficient centered Gaussian law with a residual
-probability law.  This is the limit-experiment form of the convolution argument. -/
+probability law.  This is the limit-experiment form of the convolution argument.
+@isnad1 id=ex.4h9v.s9.3da0ac6814b1 from=translated src=- shape=ef30d365 vocab=fe913077
+-/
 theorem jointLimit_convolution_factorization
     {K : Type*} [NormedAddCommGroup K] [InnerProductSpace ℝ K]
     {information : LinearMap.BilinForm ℝ H} {targetDerivative : H →ₗ[ℝ] ℝ}
@@ -538,7 +546,9 @@ theorem jointLimit_convolution_factorization
     _ = Measure.map Y jointLaw ∗ Measure.map R jointLaw := hadd
     _ = efficientGaussianLaw gradient ∗ residualLaw := by rw [hYmap]
 
-/-- In a finite-dimensional experiment with [local asymptotic normality](hyp:lan), [a scalar estimator regular under each fixed local alternative](hyp:regular), and [a canonical-gradient representation of its target derivative](hyp:canonical), [the common estimator limit is the efficient centered Gaussian law convolved with a residual probability law](goal). -/
+/-- In a finite-dimensional experiment with [local asymptotic normality](hyp:lan), [a scalar estimator regular under each fixed local alternative](hyp:regular), and [a canonical-gradient representation of its target derivative](hyp:canonical), [the common estimator limit is the efficient centered Gaussian law convolved with a residual probability law](goal).
+@isnad1 id=ex.3h12v.s8.535067d088a4 from=translated src=- shape=0b935542 vocab=a064882c
+-/
 theorem regular_convolution_limit
     {K : Type*} [NormedAddCommGroup K] [InnerProductSpace ℝ K]
     {E : LocalExperiment Ω H} {centralSequence : (n : ℕ) → Ω n → H}

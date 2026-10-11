@@ -80,26 +80,34 @@ def inducedDag (active : Finset (SWIGNode N)) : DAG (SWIGNode N) where
 
 /-- For [a set of active nodes](hyp:active) and [vertices `u`, `v`](hyp:u,v), [`u` and `v` are
 joined by an edge of the DAG restricted to the active nodes exactly when they are joined by
-an edge of the original DAG and both are active](goal). -/
+an edge of the original DAG and both are active](goal).
+@isnad1 id=iff.0h5v.s6.2f92b99ba07c from=translated src=- shape=109e78fb vocab=0b62d38b
+-/
 lemma inducedDag_edge_iff (active : Finset (SWIGNode N)) (u v : SWIGNode N) :
     (G.inducedDag active).edge u v ↔
       G.dag.edge u v ∧ u ∈ active ∧ v ∈ active := Iff.rfl
 
-/-- Every parent in the restricted DAG is also a parent in the original graph. -/
+/-- Every parent in the restricted DAG is also a parent in the original graph.
+@isnad1 id=le.0h4v.s6.208c20e05247 from=translated src=- shape=ef858465 vocab=bcf4548d
+-/
 lemma inducedDag_parents_subset (active : Finset (SWIGNode N)) (v : SWIGNode N) :
     (G.inducedDag active).parents v ⊆ G.dag.parents v := by
   intro u hu
   have h := (G.inducedDag active).mem_parents.mp hu
   exact G.dag.mem_parents.mpr h.1
 
-/-- Every child in the restricted DAG is also a child in the original graph. -/
+/-- Every child in the restricted DAG is also a child in the original graph.
+@isnad1 id=le.0h4v.s6.88dcec7428cf from=translated src=- shape=ef858465 vocab=71a7de1e
+-/
 lemma inducedDag_children_subset (active : Finset (SWIGNode N)) (u : SWIGNode N) :
     (G.inducedDag active).children u ⊆ G.dag.children u := by
   intro v hv
   have h := (G.inducedDag active).mem_children.mp hv
   exact G.dag.mem_children.mpr h.1
 
-/-- If `(G.inducedDag active).isAncestor u v`, then both endpoints belong to `active`. -/
+/-- If `(G.inducedDag active).isAncestor u v`, then both endpoints belong to `active`.
+@isnad1 id=and.1h5v.s6.5e531c811c6e from=translated src=- shape=c20cbb5b vocab=675c8011
+-/
 lemma inducedDag_isAncestor_mem_active (active : Finset (SWIGNode N)) {u v : SWIGNode N}
     (h : (G.inducedDag active).isAncestor u v) : u ∈ active ∧ v ∈ active := by
   induction h with
@@ -260,7 +268,9 @@ observed support.
     last edge of the `isAncestor` path), so `w` is not a root.  Since
     `(G.induce R).fixed_are_roots` and `(G.induce R).unobs_are_roots`
     make all fixed and unobserved nodes roots, `w` must lie in
-    `newObserved = R ∩ G.observed ⊆ R`. -/
+    `newObserved = R ∩ G.observed ⊆ R`.
+@isnad1 id=mem.1h5v.s6.c167cd842362 from=translated src=- shape=7543493b vocab=9e0b1c57
+-/
 lemma induce_isAncestor_mem_R (R : Finset (SWIGNode N)) {u v : SWIGNode N}
     (h : (G.induce R).dag.isAncestor u v) : v ∈ R ∩ G.observed := by
   -- v has at least one parent in the induced DAG

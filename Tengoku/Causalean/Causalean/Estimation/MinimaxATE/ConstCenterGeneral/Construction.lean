@@ -84,10 +84,14 @@ namespace GenConstr
 
 variable (P : GenConstr)
 
-/-- `0 < β/g₁` is false in general (β may be 0); but `0 ≤ β/g₁` always. -/
+/-- `0 < β/g₁` is false in general (β may be 0); but `0 ≤ β/g₁` always.
+@isnad1 id=le.0h1v.s4.750cf9d10c4d from=translated src=- shape=6e3647a9 vocab=3eb1ab4e
+-/
 theorem ratio_nonneg : 0 ≤ P.β / P.g₁ := div_nonneg P.hβ P.hg₁0.le
 
-/-- `β/g₁ < 1` since `β < g₁`. -/
+/-- `β/g₁ < 1` since `β < g₁`.
+@isnad1 id=lt.0h1v.s4.bfa310bb2e1d from=translated src=- shape=62cde15b vocab=97ac9a63
+-/
 theorem ratio_lt_one : P.β / P.g₁ < 1 := (div_lt_one P.hg₁0).mpr P.hβg₁
 
 /-- For [general constant-center construction data](hyp:P), [the null propensity function](goal)
@@ -113,7 +117,9 @@ noncomputable def gPertG (lam : Fin K → Bool) : Bool → (Fin K × Bool) → �
   fun d x => if d then (P.g₁ + P.α * Δ lam x) / (1 - (P.β / P.g₁) * Δ lam x) else P.g₀
 
 /-- The denominator `1 − (β/g₁)·Δ` is positive: `Δ ≤ 1` gives
-`1 − (β/g₁)·Δ ≥ 1 − β/g₁ > 0`. -/
+`1 − (β/g₁)·Δ ≥ 1 − β/g₁ > 0`.
+@isnad1 id=lt.0h4v.s5.7f9a61ad91a7 from=translated src=- shape=7d7bb478 vocab=26eaf15b
+-/
 theorem denomG_pos (lam : Fin K → Bool) (x : Fin K × Bool) :
     0 < 1 - (P.β / P.g₁) * Δ lam x := by
   have hr := P.ratio_nonneg
@@ -124,7 +130,9 @@ theorem denomG_pos (lam : Fin K → Bool) (x : Fin K × Bool) :
 
 /-- [The null constant-center data-generating process, with propensity `m₀` and outcome
 regressions `(g₀, g₁)`, is a valid finite observed-data model, i.e. all its component
-probabilities lie in `[0,1]`](goal). -/
+probabilities lie in `[0,1]`](goal).
+@isnad1 id=validdgp.0h2v.s3.641322438c63 from=translated src=- shape=2b27789e vocab=f09b2364
+-/
 theorem validDGP_hatG : ValidDGP (C := Fin K × Bool) P.mhatG P.ghatG := by
   refine ⟨fun x => ?_, fun d x => ?_⟩
   · simp only [mhatG]; exact ⟨P.hm₀0.le, P.hm₀1.le⟩
@@ -134,7 +142,9 @@ theorem validDGP_hatG : ValidDGP (C := Fin K × Bool) P.mhatG P.ghatG := by
 
 /-- [For any Rademacher sign vector `lam` indexing the perturbation](hyp:lam), [the perturbed
 propensity and outcome-regression functions define a valid finite observed-data model, i.e.
-take values in `[0,1]`](goal). -/
+take values in `[0,1]`](goal).
+@isnad1 id=validdgp.0h3v.s4.e360569c3af2 from=translated src=- shape=847e1664 vocab=4351c958
+-/
 theorem validDGP_pertG (lam : Fin K → Bool) :
     ValidDGP (P.mPertG lam) (P.gPertG lam) := by
   have hr := P.ratio_nonneg

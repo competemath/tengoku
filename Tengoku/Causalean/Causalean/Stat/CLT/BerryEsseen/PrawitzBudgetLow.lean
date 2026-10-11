@@ -19,7 +19,9 @@ open MeasureTheory
 cutoffs U0 = max(3/2, √(4 log(1/ρ))) and U = 12/(5ρ),
 [the low-frequency Fourier discrepancy contribution (2/U)·∫ over [0, U0] of
 the Prawitz filter magnitude times the discrepancy envelope is at most one
-quarter of ρ](goal). -/
+quarter of ρ](goal).
+@isnad1 id=other.2h1v.s7.89e6f4a5a30d from=translated src=- shape=167a802e vocab=17ebdabd
+-/
 theorem prawitz_budget_low
     (ρ : ℝ) (hρ : 0 < ρ) (hρ1 : ρ < 1) :
     let U0 := max (3 / 2 : ℝ) (Real.sqrt (4 * Real.log (1 / ρ)))

@@ -16,7 +16,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 open MeasureTheory ProbabilityTheory
 
 /-- A real probability law with second moment one and integrable third
-absolute moment has third absolute moment at least one. -/
+absolute moment has third absolute moment at least one.
+@isnad1 id=le.3h1v.s7.054927a57cbf from=translated src=- shape=5e160c47 vocab=ea95e20c
+-/
 theorem unit_second_moment_third_absolute_moment_ge_one
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hsecond_int : Integrable (fun x : ℝ => x ^ 2) μ)
@@ -44,7 +46,9 @@ theorem unit_second_moment_third_absolute_moment_ge_one
 /-- For [a centered](hyp:hmean_int,hmean) scalar probability law with
 [positive variance σ2](hyp:hσ2,hvar_int,hvar) and
 [integrable third absolute moment at most M3](hyp:hthird_int,hthird),
-[M3 is at least the cube of the standard deviation √σ2](goal). -/
+[M3 is at least the cube of the standard deviation √σ2](goal).
+@isnad1 id=le.7h3v.s8.89cbe06c0fe0 from=translated src=- shape=6a562b01 vocab=403da80f
+-/
 theorem variance_third_absolute_moment_lower_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (σ2 M3 : ℝ) (hσ2 : 0 < σ2)

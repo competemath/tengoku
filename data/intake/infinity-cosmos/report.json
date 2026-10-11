@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "7662babb30ef5295c4176b917eb3bf9ec0fa758fa84c9042fe5afed31b1eb0ca",
+ "library": "infinity-cosmos",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 8
+}

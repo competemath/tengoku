@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "e6c5735e70985614bcb80394c0a359518e3988302a7647bd561702e1d74ca9cc",
+ "library": "erdos1196",
+ "lint_mode": "proposed",
+ "modules": 11,
+ "part": 1,
+ "theorems": 13
+}

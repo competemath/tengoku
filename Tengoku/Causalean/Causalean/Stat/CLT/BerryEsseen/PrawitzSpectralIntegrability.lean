@@ -22,7 +22,9 @@ open MeasureTheory ProbabilityTheory
 Prawitz spectral integrands is integrable on its frequency region: the
 filtered characteristic-function discrepancy on [0, U0], the filtered
 characteristic-function modulus on [U0, U], the Gaussian principal
-correction on [0, U0], and the Gaussian tail integrand on (U0, ∞)](goal). -/
+correction on [0, U0], and the Gaussian tail integrand on (U0, ∞)](goal).
+@isnad1 id=and.3h3v.s8.8d553ed8a4b8 from=translated src=- shape=fe02ece4 vocab=8ccb5c8b
+-/
 theorem prawitz_four_terms_integrable
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hfirst : Integrable (fun y : ℝ => y) μ)

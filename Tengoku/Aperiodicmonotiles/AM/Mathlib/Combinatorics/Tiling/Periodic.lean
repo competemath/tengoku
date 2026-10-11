@@ -77,20 +77,32 @@ def StronglyPeriodic : TileSetFunction ps Prop ⊤ :=
        simp only [Subgroup.mk_smul] at ha'
        exact ⟨g * a * g⁻¹, ha, by simp [mul_smul, ha']⟩⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.ac8a0dd21eea from=translated src=- shape=9139ec80 vocab=1af22bdf
+-/
 lemma stronglyPeriodic_iff {t : TileSet ps ιₜ} :
     t.StronglyPeriodic ↔ Finite (MulAction.orbitRel.Quotient t.symmetryGroup X) :=
   Iff.rfl
 
+/--
+@isnad1 id=tofun.1h6v.s6.b4fcf42bbfe3 from=translated src=- shape=9712097f vocab=2a4ab2ba
+-/
 lemma stronglyPeriodic_of_finite_quotient_of_index_ne_zero {t : TileSet ps ιₜ}
     [Finite <| MulAction.orbitRel.Quotient G X] (hi : t.symmetryGroup.index ≠ 0) :
     t.StronglyPeriodic :=
   Subgroup.finite_quotient_of_finite_quotient_of_index_ne_zero hi
 
+/--
+@isnad1 id=tofun.1h6v.s6.6b313c7095eb from=translated src=- shape=5b338297 vocab=a7f74db2
+-/
 lemma stronglyPeriodic_of_pretransitive_of_index_ne_zero {t : TileSet ps ιₜ}
     [MulAction.IsPretransitive G X] (hi : t.symmetryGroup.index ≠ 0) :
     t.StronglyPeriodic :=
   Subgroup.finite_quotient_of_pretransitive_of_index_ne_zero hi
 
+/--
+@isnad1 id=finite.0h7v.s6.a10014a728a1 from=translated src=- shape=0ae8e213 vocab=e10bc96f
+-/
 lemma StronglyPeriodic.finite_quotient {t : TileSet ps ιₜ} (h : t.StronglyPeriodic) :
     Finite <| MulAction.orbitRel.Quotient G X := by
   rw [stronglyPeriodic_iff, (MulAction.equivSubgroupOrbits X t.symmetryGroup).finite_iff] at h
@@ -105,6 +117,9 @@ lemma StronglyPeriodic.finite_quotient {t : TileSet ps ιₜ} (h : t.StronglyPer
   rw [nonempty_quotient_iff]
   simpa using! ω.nonempty_orbit
 
+/--
+@isnad1 id=ne.2h8v.s7.9a655893f1c1 from=translated src=- shape=15a54aa4 vocab=5a7e12c5
+-/
 lemma StronglyPeriodic.index_ne_zero_of_free [Nonempty X] {t : TileSet ps ιₜ}
     (h : t.StronglyPeriodic) {H : Subgroup G} (free : ∀ x : X, MulAction.stabilizer H x = ⊥)
     (hi : H.index ≠ 0) : t.symmetryGroup.index ≠ 0 := by
@@ -139,6 +154,9 @@ lemma StronglyPeriodic.index_ne_zero_of_free [Nonempty X] {t : TileSet ps ιₜ}
   rw [(MulAction.equivSubgroupOrbitsQuotientGroup y _).infinite_iff]
   exact h0
 
+/--
+@isnad1 id=finite.0h8v.s8.49c3a8ad32d6 from=translated src=- shape=f73652f7 vocab=f2e4adda
+-/
 lemma StronglyPeriodic.finite_quotient_tilePoint {t : TileSet ps ιₜ} (h : t.StronglyPeriodic)
     (hf : t.FiniteDistinctIntersections) :
     Finite (MulAction.orbitRel.Quotient t.symmetryGroup
@@ -153,6 +171,9 @@ lemma StronglyPeriodic.finite_quotient_tilePoint {t : TileSet ps ιₜ} (h : t.S
     exact finite_preimage_quotientPointOfquotientTilePoint x
       (FiniteDistinctIntersections.finiteDistinctIntersectionsOn {x} hf)
 
+/--
+@isnad1 id=tofun.1h7v.s8.2ad8dbfe978c from=translated src=- shape=967a41d2 vocab=15de0cc7
+-/
 lemma stronglyPeriodic_of_finite_quotient_tilePoint {t : TileSet ps ιₜ}
     (hf : Finite (MulAction.orbitRel.Quotient t.symmetryGroup
       {x : Prod (t : Set (PlacedTile ps)) X // x.2 ∈ (x.1 : PlacedTile ps)}))
@@ -162,17 +183,26 @@ lemma stronglyPeriodic_of_finite_quotient_tilePoint {t : TileSet ps ιₜ}
   exact Set.Finite.of_surjOn t.quotientPointOfquotientTilePoint
     (Set.surjOn_univ.2 (surjective_quotientPointOfquotientTilePoint hu)) hf
 
+/--
+@isnad1 id=tofun.2h7v.s7.69b55d4eac15 from=translated src=- shape=0bac68bb vocab=95e1f91e
+-/
 lemma stronglyPeriodic_of_isohedralNumber_lt_aleph0 {t : TileSet ps ιₜ} (h : t.isohedralNumber < ℵ₀)
     (hf : ∀ i, (t i : Set X).Finite) (hu : t.UnionEqUniv) : t.StronglyPeriodic :=
   stronglyPeriodic_of_finite_quotient_tilePoint
     (finite_quotient_tilePoint_of_isohedralNumber_lt_aleph0 h hf) hu
 
+/--
+@isnad1 id=lt.1h8v.s7.4358949725f0 from=translated src=- shape=9a8dbb82 vocab=07b08e03
+-/
 lemma StronglyPeriodic.isohedralNumber_lt_aleph0 {t : TileSet ps ιₜ} (h : t.StronglyPeriodic)
     (hf : t.FiniteDistinctIntersections) (hn : ∀ i, (t i : Set X).Nonempty) :
     t.isohedralNumber < ℵ₀ :=
   isohedralNumber_lt_aleph0_of_finite_quotient_tilePoint
     (StronglyPeriodic.finite_quotient_tilePoint h hf) hn
 
+/--
+@isnad1 id=iff.2h7v.s7.ce1a71ddaf86 from=translated src=- shape=069a8592 vocab=188ed75f
+-/
 lemma stronglyPeriodic_iff_isohedralNumber_lt_aleph0 {t : TileSet ps ιₜ} (ht : t.IsTiling)
     (hf : ∀ i, (t i : Set X).Finite) (hn : ∀ i, (t i : Set X).Nonempty) :
     t.StronglyPeriodic ↔ t.isohedralNumber < ℵ₀ :=
@@ -205,13 +235,22 @@ def WeaklyPeriodic (n : ℕ) : TileSetFunction ps Prop ⊤ :=
          (MulEquiv.subgroupCongr (t.symmetryGroup_smul g).symm)).toMonoidHom.comp f, ?_⟩
        simpa [Injective] using hf⟩
 
+/--
+@isnad1 id=iff.0h7v.s9.e753016d10fc from=translated src=- shape=6a2354e3 vocab=09d09982
+-/
 lemma weaklyPeriodic_iff {n : ℕ} {t : TileSet ps ιₜ} :
     t.WeaklyPeriodic n ↔ ∃ f : (Fin n → Multiplicative ℤ) →* t.symmetryGroup, Injective f :=
   Iff.rfl
 
+/--
+@isnad1 id=tofun.0h6v.s6.b09253e8f3c6 from=translated src=- shape=2c688711 vocab=d51dfe24
+-/
 lemma weaklyPeriodic_zero (t : TileSet ps ιₜ) : t.WeaklyPeriodic 0 :=
   ⟨1, injective_of_subsingleton _⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.2c4a674cf18c from=translated src=- shape=0cf59dd4 vocab=26954314
+-/
 lemma weaklyPeriodic_one_iff {t : TileSet ps ιₜ} :
     t.WeaklyPeriodic 1 ↔ ∃ g ∈ t.symmetryGroup, ¬IsOfFinOrder g := by
   rw [weaklyPeriodic_iff]
@@ -231,12 +270,18 @@ lemma weaklyPeriodic_one_iff {t : TileSet ps ιₜ} :
     have h' := ho h
     simpa [funext_iff_of_subsingleton] using h'
 
+/--
+@isnad1 id=tofun.1h9v.s6.edf09fca0db5 from=translated src=- shape=51d8346c vocab=5fb7eec4
+-/
 lemma weaklyPeriodic_of_le {t : TileSet ps ιₜ} {m n : ℕ} (h : t.WeaklyPeriodic n) (hle : m ≤ n) :
     t.WeaklyPeriodic m := by
   rcases h with ⟨f, hf⟩
   exact ⟨f.comp (ExtendByOne.hom (Multiplicative ℤ) (Fin.castLE hle)),
          hf.comp (extend_injective (Fin.strictMono_castLE hle).injective _)⟩
 
+/--
+@isnad1 id=iff.1h8v.s10.1e69e5b5b1db from=translated src=- shape=e16f0c0c vocab=1f43ba41
+-/
 lemma weaklyPeriodic_iff_of_relIndex_ne_zero {n : ℕ} {t : TileSet ps ιₜ} {H : Subgroup G}
     (hi : H.relIndex t.symmetryGroup ≠ 0) :
     t.WeaklyPeriodic n ↔
@@ -263,6 +308,9 @@ lemma weaklyPeriodic_iff_of_relIndex_ne_zero {n : ℕ} {t : TileSet ps ιₜ} {H
   simp only [MonoidHom.injective_codRestrict, MonoidHom.coe_comp, Subgroup.coe_subtype]
   exact (Subtype.val_injective.comp hf).comp hf'
 
+/--
+@isnad1 id=iff.1h8v.s10.f986019f4ec3 from=translated src=- shape=119bcd75 vocab=7fe947a9
+-/
 lemma weaklyPeriodic_iff_of_index_ne_zero {n : ℕ} {t : TileSet ps ιₜ} {H : Subgroup G}
     (hi : H.index ≠ 0) :
     t.WeaklyPeriodic n ↔
@@ -270,7 +318,9 @@ lemma weaklyPeriodic_iff_of_index_ne_zero {n : ℕ} {t : TileSet ps ιₜ} {H : 
   weaklyPeriodic_iff_of_relIndex_ne_zero (mt Subgroup.index_eq_zero_of_relIndex_eq_zero hi)
 
 /-- In a space with a ℤ^n subgroup of finite index, where `X` has finite quotient by the action
-of `G`, a weakly `n`-periodic `TileSet` is strongly periodic. -/
+of `G`, a weakly `n`-periodic `TileSet` is strongly periodic.
+@isnad1 id=tofun.1h10v.s7.883e80ea2de5 from=translated src=- shape=59fb5a75 vocab=b21e946b
+-/
 lemma WeaklyPeriodic.stronglyPeriodic_of_finite_quotient_of_equiv_of_index_ne_zero {n : ℕ}
     {t : TileSet ps ιₜ} (h : t.WeaklyPeriodic n) [Finite <| MulAction.orbitRel.Quotient G X]
     {H : Subgroup G} (e : H ≃* (Fin n → Multiplicative ℤ)) (hi : H.index ≠ 0) :
@@ -297,7 +347,9 @@ lemma WeaklyPeriodic.stronglyPeriodic_of_finite_quotient_of_equiv_of_index_ne_ze
     (Subgroup.equivMapOfInjective _ _ (Subgroup.subtype_injective _)).symm).trans f'⟩
 
 /-- In a space with a ℤ^n subgroup of finite index, where `G` acts transitively on `X`, a weakly
-`n`-periodic `TileSet` is strongly periodic. -/
+`n`-periodic `TileSet` is strongly periodic.
+@isnad1 id=tofun.1h10v.s7.587b6f18177d from=translated src=- shape=553fb263 vocab=cfcde502
+-/
 lemma WeaklyPeriodic.stronglyPeriodic_of_pretransitive_of_equiv_of_index_ne_zero {n : ℕ}
     {t : TileSet ps ιₜ} (h : t.WeaklyPeriodic n) [MulAction.IsPretransitive G X] {H : Subgroup G}
     (e : H ≃* (Fin n → Multiplicative ℤ)) (hi : H.index ≠ 0) : t.StronglyPeriodic := by
@@ -306,7 +358,9 @@ lemma WeaklyPeriodic.stronglyPeriodic_of_pretransitive_of_equiv_of_index_ne_zero
   exact WeaklyPeriodic.stronglyPeriodic_of_finite_quotient_of_equiv_of_index_ne_zero h e hi
 
 /-- In a space with a ℤ^n subgroup of finite index acting freely, a strongly periodic `TileSet`
-is weakly `n`-periodic. -/
+is weakly `n`-periodic.
+@isnad1 id=tofun.2h10v.s8.f84438dcae46 from=translated src=- shape=49a8cad1 vocab=93a17f34
+-/
 lemma StronglyPeriodic.weaklyPeriodic_of_equiv_of_free [Nonempty X] {n : ℕ} {t : TileSet ps ιₜ}
     (h : t.StronglyPeriodic) {H : Subgroup G} (e : H ≃* (Fin n → Multiplicative ℤ))
     (free : ∀ x : X, MulAction.stabilizer H x = ⊥) (hi : H.index ≠ 0) : t.WeaklyPeriodic n := by
@@ -347,6 +401,9 @@ is, whether it has such a `TileSet`, but none is weakly periodic. -/
 def StronglyAperiodic (p : TileSetFunction ps Prop H) : Prop :=
   (∃ t : TileSet ps ιₜ, p t) ∧ ∀ t : TileSet ps ιₜ, p t → ¬ t.WeaklyPeriodic 1
 
+/--
+@isnad1 id=le.2h8v.s7.3e8274636341 from=translated src=- shape=09726f71 vocab=3e2a0142
+-/
 lemma WeaklyAperiodic.aleph0_le_isohedralNumber {p : TileSetFunction ps Prop H}
     (h : ps.WeaklyAperiodic ιₜ p) (hf : ∀ i, (ps i : Set X).Finite)
     (hu : ∀ t : TileSet ps ιₜ, p t → t.UnionEqUniv) : ℵ₀ ≤ ps.isohedralNumber ιₜ p := by
@@ -358,6 +415,9 @@ lemma WeaklyAperiodic.aleph0_le_isohedralNumber {p : TileSetFunction ps Prop H}
   refine hnp t hpt (TileSet.stronglyPeriodic_of_isohedralNumber_lt_aleph0 hi
     (t.finite_apply_of_forall_finite hf) (hu t hpt))
 
+/--
+@isnad1 id=weaklyap.2h8v.s7.922670facaf6 from=translated src=- shape=c9960a24 vocab=c6f4ac10
+-/
 lemma weaklyAperiodic_of_aleph0_le_isohedralNumber {p : TileSetFunction ps Prop H}
     (h : ℵ₀ ≤ ps.isohedralNumber ιₜ p)
     (hf : ∀ t : TileSet ps ιₜ, p t → t.FiniteDistinctIntersections)
@@ -371,6 +431,9 @@ lemma weaklyAperiodic_of_aleph0_le_isohedralNumber {p : TileSetFunction ps Prop 
   refine TileSet.StronglyPeriodic.isohedralNumber_lt_aleph0 hp (hf t hpt)
     (t.nonempty_apply_of_forall_nonempty hn)
 
+/--
+@isnad1 id=iff.2h8v.s7.b8ad2e394bf7 from=translated src=- shape=4df18306 vocab=6467858b
+-/
 lemma weaklyAperiodic_iff_aleph0_le_isohedralNumber {p : TileSetFunction ps Prop H}
     (ht : ∀ t : TileSet ps ιₜ, p t → t.IsTiling) (hf : ∀ i, (ps i : Set X).Finite)
     (hn : ∀ i, (ps i : Set X).Nonempty) : ps.WeaklyAperiodic ιₜ p ↔ ℵ₀ ≤ ps.isohedralNumber ιₜ p :=

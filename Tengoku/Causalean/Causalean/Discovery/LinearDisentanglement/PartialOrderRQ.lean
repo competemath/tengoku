@@ -64,13 +64,17 @@ def preceq (S : Solution d p K) (i j : Fin d) : Prop := i = j ∨ S.prec i j
 /-- The strict partial order embeds into the `Fin d` linear order: if `i ≺ j`
 (`j` is a strict ancestor of `i`) then `i < j`.  This is the acyclicity of `𝒢`
 lifted through the transitive closure, and the engine behind every "process the
-nodes in a topological order" argument below. -/
+nodes in a topological order" argument below.
+@isnad1 id=lt.1h6v.s5.8b8e2c12a9e6 from=translated src=- shape=e1584c42 vocab=1a4a0c91
+-/
 theorem prec_lt (S : Solution d p K) {i j : Fin d} (hij : S.prec i j) : i < j := by
   induction hij with
   | single hab => exact S.hAcyc _ _ hab
   | tail _ hbc ih => exact lt_trans (S.hAcyc _ _ hbc) ih
 
-/-- `≺` is irreflexive: a node is never its own strict ancestor. -/
+/-- `≺` is irreflexive: a node is never its own strict ancestor.
+@isnad1 id=not.0h5v.s4.b644c3f5e354 from=translated src=- shape=74132b18 vocab=cd6a80ba
+-/
 theorem not_prec_self (S : Solution d p K) (i : Fin d) : ¬ S.prec i i :=
   fun h => lt_irrefl i (S.prec_lt h)
 
@@ -85,7 +89,9 @@ Gram–Schmidt / orthogonal-projection machinery lives on `EuclideanSpace ℝ (F
 
 /-- The `EuclideanSpace ℝ (Fin p)` inner product of `toLp x` and `toLp y` is exactly
 the `dotProduct` `x ⬝ᵥ y`.  This is the bridge used to import all of Mathlib's
-inner-product-space machinery into the `dotProduct` world. -/
+inner-product-space machinery into the `dotProduct` world.
+@isnad1 id=eq.0h3v.s7.c952a413fa6e from=translated src=- shape=808ea3f5 vocab=a761e45f
+-/
 theorem inner_toLp_eq_dotProduct (x y : Fin p → ℝ) :
     (inner ℝ (WithLp.toLp 2 x : EuclideanSpace ℝ (Fin p)) (WithLp.toLp 2 y) : ℝ)
       = dotProduct x y := by
@@ -97,7 +103,9 @@ theorem inner_toLp_eq_dotProduct (x y : Fin p → ℝ) :
 
 /-- The self `dotProduct` of a nonzero real vector is strictly positive
 (positive-definiteness of `⬝ᵥ`).  Equivalently, `x ⬝ᵥ x = 0 ↔ x = 0`; this is what
-makes "normalize the projection residual" well defined in the construction. -/
+makes "normalize the projection residual" well defined in the construction.
+@isnad1 id=lt.1h2v.s5.69c67afdf9f4 from=translated src=- shape=dcae8c00 vocab=eabee010
+-/
 theorem dotProduct_self_pos {x : Fin p → ℝ} (hx : x ≠ 0) : 0 < dotProduct x x := by
   rcases Function.ne_iff.mp hx with ⟨i, hi⟩
   have hnn : 0 ≤ dotProduct x x := Finset.sum_nonneg (fun j _ => mul_self_nonneg _)
@@ -126,7 +134,9 @@ theorem eq_of_mul_eq_mul_row_indep {R R' : Matrix (Fin d) (Fin d) ℝ}
 of `R Q` lie in the span of the rows of `Q`, which has at most `d` of them, so a
 dimension count forces the `d` rows of `Q` to be independent.  Applied to `H = R Q`
 with `H` of full row rank, this shows the rows `qᵢ` of any PORQ factor are
-independent — the hypothesis `eq_of_mul_eq_mul_row_indep` needs. -/
+independent — the hypothesis `eq_of_mul_eq_mul_row_indep` needs.
+@isnad1 id=linearin.1h4v.s6.5922b66bfa67 from=translated src=- shape=b5aa6522 vocab=4a21e13d
+-/
 theorem row_indep_of_mul_row_indep (R : Matrix (Fin d) (Fin d) ℝ)
     (Q : Matrix (Fin d) (Fin p) ℝ) (hH : LinearIndependent ℝ (R * Q).row) :
     LinearIndependent ℝ Q.row := by
@@ -170,7 +180,9 @@ triangular in the `Fin d` order, so `det R = ∏ᵢ Rᵢᵢ`.  Full row rank of 
 (`S.hH`) makes the right factor `R` of full rank too (a `v` with `v R = 0` gives
 `v H = 0`), hence `det R ≠ 0`, so every diagonal entry is nonzero; combined with
 `diag_nonneg` this gives `0 < Rᵢᵢ`.  This is what makes "`Rᵢᵢ ≥ 0` fixes the sign of
-`qᵢ`" effective in the uniqueness argument. -/
+`qᵢ`" effective in the uniqueness argument.
+@isnad1 id=lt.1h7v.s5.0eb25839ca94 from=translated src=- shape=ff644ca3 vocab=01debcf0
+-/
 theorem porq_diag_pos (S : Solution d p K)
     {R : Matrix (Fin d) (Fin d) ℝ} {Q : Matrix (Fin d) (Fin p) ℝ}
     (h : IsPORQ S R Q) (i : Fin d) : 0 < R i i := by
@@ -210,7 +222,9 @@ theorem porq_diag_pos (S : Solution d p K)
 row of `H` is `Rᵢᵢ • qᵢ` plus a combination of the *other* rows `qₖ` (`k ≠ i`); by
 `supp` only the strict ancestors `i ≺ k` contribute, so this is exactly the triangular
 equation `hᵢ = Rᵢᵢ qᵢ + ∑_{i ≺ k} Rᵢₖ qₖ`.  It is the membership half of the
-orthogonal-decomposition uniqueness argument. -/
+orthogonal-decomposition uniqueness argument.
+@isnad1 id=eq.1h7v.s7.220ba231a1ea from=translated src=- shape=2503084f vocab=2294749f
+-/
 theorem porq_row_split (S : Solution d p K)
     {R : Matrix (Fin d) (Fin d) ℝ} {Q : Matrix (Fin d) (Fin p) ℝ}
     (h : IsPORQ S R Q) (i : Fin d) :
@@ -247,20 +261,26 @@ noncomputable def porqAncSpan (S : Solution d p K) (i : Fin d) :
 
 open Classical in
 /-- Unfolding equation for `porqResidual`: it is `toLp hᵢ` minus its orthogonal
-projection onto the ancestor span `porqAncSpan i`. -/
+projection onto the ancestor span `porqAncSpan i`.
+@isnad1 id=eq.0h5v.s10.98adb7e38aca from=translated src=- shape=41057447 vocab=87d69831
+-/
 theorem porqResidual_eq (S : Solution d p K) (i : Fin d) :
     porqResidual S i = (WithLp.toLp 2 (S.H i) : EuclideanSpace ℝ (Fin p))
       - (porqAncSpan S i).starProjection (WithLp.toLp 2 (S.H i)) := by
   rw [porqResidual, porqAncSpan]
 
-/-- Each strict-ancestor residual lies in the ancestor span `porqAncSpan i`. -/
+/-- Each strict-ancestor residual lies in the ancestor span `porqAncSpan i`.
+@isnad1 id=mem.1h6v.s8.1f8c376c042b from=translated src=- shape=2115ad3f vocab=8ecd9161
+-/
 theorem porqResidual_mem_ancSpan (S : Solution d p K) {i k : Fin d} (hk : S.prec i k) :
     porqResidual S k ∈ porqAncSpan S i := by
   classical
   rw [porqAncSpan]
   exact Submodule.subset_span ⟨⟨k, hk⟩, rfl⟩
 
-/-- The `i`-th residual is orthogonal to its ancestor span: `porqResidual i ∈ (Wᵢ)ᗮ`. -/
+/-- The `i`-th residual is orthogonal to its ancestor span: `porqResidual i ∈ (Wᵢ)ᗮ`.
+@isnad1 id=mem.0h5v.s9.679aa977650d from=translated src=- shape=00bcf276 vocab=d177f0a0
+-/
 theorem porqResidual_mem_orthogonal (S : Solution d p K) (i : Fin d) :
     porqResidual S i ∈ (porqAncSpan S i)ᗮ := by
   rw [porqResidual_eq]
@@ -268,7 +288,9 @@ theorem porqResidual_mem_orthogonal (S : Solution d p K) (i : Fin d) :
 
 /-- **Orthogonality along the order.**  The `i`-th residual is orthogonal to every
 strict-ancestor residual `porqResidual k` (`i ≺ k`), since the latter lies in `Wᵢ` and
-the former in `(Wᵢ)ᗮ`. -/
+the former in `(Wᵢ)ᗮ`.
+@isnad1 id=eq.1h6v.s6.c61a170bb14d from=translated src=- shape=a2f11bd9 vocab=6d961270
+-/
 theorem porqResidual_orthogonal (S : Solution d p K) {i k : Fin d} (hk : S.prec i k) :
     (inner ℝ (porqResidual S i) (porqResidual S k) : ℝ) = 0 := by
   rw [real_inner_comm]
@@ -276,7 +298,9 @@ theorem porqResidual_orthogonal (S : Solution d p K) {i k : Fin d} (hk : S.prec 
     (porqResidual_mem_orthogonal S i)
 
 /-- The images of the rows of `H` under `toLp` are linearly independent (full row rank
-of `H` transported through the linear isomorphism `toLp`). -/
+of `H` transported through the linear isomorphism `toLp`).
+@isnad1 id=linearin.0h4v.s7.4d2149ab6764 from=translated src=- shape=3f7ebc9c vocab=e002ed7e
+-/
 theorem toLp_H_linearIndependent (S : Solution d p K) :
     LinearIndependent ℝ (fun j : Fin d =>
       (WithLp.toLp 2 (S.H j) : EuclideanSpace ℝ (Fin p))) := by
@@ -290,7 +314,9 @@ open Classical in
 strict ancestors).  Proved by strong induction on the reversed `Fin d` order: the
 diagonal term is `toLp hᵢ`, and the projection lives in `Wᵢ`, whose generators
 `porqResidual k` (`i ≺ k`) lie, by induction, in `span {toLp hₘ : k ⪯ m} ⊆ span {toLp hₘ : i ⪯ m}`
-(by transitivity of `⪯`). -/
+(by transitivity of `⪯`).
+@isnad1 id=mem.0h5v.s9.591e0e1627b1 from=translated src=- shape=690ec445 vocab=21b1a28e
+-/
 theorem porqResidual_mem_HspanLE (S : Solution d p K) (i : Fin d) :
     porqResidual S i ∈ Submodule.span ℝ
       {x | ∃ m, S.preceq i m ∧ x = (WithLp.toLp 2 (S.H m) : EuclideanSpace ℝ (Fin p))} := by
@@ -318,7 +344,9 @@ theorem porqResidual_mem_HspanLE (S : Solution d p K) (i : Fin d) :
 
 /-- **Non-vanishing of the residual.**  `porqResidual i ≠ 0`: if it were zero then
 `toLp hᵢ` would lie in `Wᵢ ⊆ span {toLp hₘ : i ≺ m}`, contradicting the linear
-independence of `{toLp hⱼ}` (a member is never in the span of the strictly-others). -/
+independence of `{toLp hⱼ}` (a member is never in the span of the strictly-others).
+@isnad1 id=ne.0h5v.s6.61d6a57b9727 from=translated src=- shape=387add82 vocab=5e4cbf08
+-/
 theorem porqResidual_ne_zero (S : Solution d p K) (i : Fin d) :
     porqResidual S i ≠ 0 := by
   intro hzero
@@ -359,7 +387,9 @@ open Classical in
 `‖rᵢ‖ • qᵢ + ∑_{i ≺ k} (coefficient) • qₖ`: the diagonal coefficient is the residual
 norm `‖rᵢ‖ ≥ 0`, the off-diagonal coefficients are supported on the strict ancestors
 `i ≺ k`, and there are none off `⪯`.  This packages `factor`, `diag_nonneg` and `supp`
-into one existence statement (the `i`-th row of `R`). -/
+into one existence statement (the `i`-th row of `R`).
+@isnad1 id=ex.0h5v.s8.1ddb76c1a6a8 from=translated src=- shape=5a155f92 vocab=9a1b66ab
+-/
 theorem porq_rowCoeffs (S : Solution d p K) (i : Fin d) :
     ∃ c : Fin d → ℝ, (∀ j, ¬ S.preceq i j → c j = 0) ∧ c i = ‖porqResidual S i‖ ∧
       (WithLp.toLp 2 (S.H i) : EuclideanSpace ℝ (Fin p))
@@ -452,7 +482,9 @@ span of the already-built ancestor rows, set `qᵢ = ‖rᵢ‖⁻¹ • rᵢ` w
 normalization is valid (`Solution.dotProduct_self_pos`), giving `unit`, and the
 projection gives `orth`.  The `i`-th row of `R` solves the triangular system
 `∑_{j ⪰ i} Rᵢⱼ qⱼ = hᵢ`, with `Rᵢᵢ = ‖rᵢ‖ > 0` (`diag_nonneg`) and `Rᵢⱼ = 0` off
-`⪯` (`supp`); `factor` then holds by construction. -/
+`⪯` (`supp`); `factor` then holds by construction.
+@isnad1 id=ex.0h4v.s5.e0e4197b9098 from=translated src=- shape=d46ac88a vocab=0e5a10da
+-/
 theorem porq_exists (S : Solution d p K) :
     ∃ (R : Matrix (Fin d) (Fin d) ℝ) (Q : Matrix (Fin d) (Fin p) ℝ), IsPORQ S R Q := by
   classical
@@ -511,7 +543,9 @@ Given a solution `S`, if [both `(R,Q)` and `(R',Q')` are partial order RQ
 decompositions of `S`'s latent-direction matrix `H` — factoring `H` as a lower-
 triangular-along-the-order matrix `R` times a row-orthonormal-along-the-order matrix
 `Q`](hyp:h,h'), then [the two decompositions coincide: `R = R'` and `Q =
-Q'`](goal). -/
+Q'`](goal).
+@isnad1 id=and.2h8v.s6.a02c83f99d6e from=translated src=- shape=b9d7483e vocab=0e5a10da
+-/
 theorem porq_unique (S : Solution d p K)
     {R R' : Matrix (Fin d) (Fin d) ℝ} {Q Q' : Matrix (Fin d) (Fin p) ℝ}
     (h : IsPORQ S R Q) (h' : IsPORQ S R' Q') : R = R' ∧ Q = Q' := by

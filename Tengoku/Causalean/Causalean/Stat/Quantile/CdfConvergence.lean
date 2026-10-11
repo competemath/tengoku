@@ -22,14 +22,18 @@ namespace Causalean.Stat
 
 /-- Given [a probability measure on the real line](hyp:μ), if [its cumulative distribution
 function is continuous at a threshold](hyp:hcont), [the measure assigns zero probability to that
-threshold](goal). -/
+threshold](goal).
+@isnad1 id=eq.1h2v.s6.6ede28ca5f16 from=translated src=- shape=7ee1ff27 vocab=448611f8
+-/
 theorem measure_singleton_eq_zero_of_continuousAt_cdf (μ : Measure ℝ)
     [IsProbabilityMeasure μ] {t : ℝ} (hcont : ContinuousAt (cdf μ) t) : μ {t} = 0 := by
   rw [← measure_cdf μ, StieltjesFunction.measure_singleton,
     hcont.continuousWithinAt.leftLim_eq, sub_self, ENNReal.ofReal_zero]
 
 /-- Given [weak convergence of real probability measures](hyp:hν) and [continuity of the limit
-CDF at a threshold](hyp:hcont), [the approximating CDF values converge at that threshold](goal). -/
+CDF at a threshold](hyp:hcont), [the approximating CDF values converge at that threshold](goal).
+@isnad1 id=tendsto.2h5v.s6.0b9f8ea91c67 from=translated src=- shape=9f408007 vocab=f9a4aaf2
+-/
 theorem tendsto_cdf_at_of_tendsto {ι : Type*} {l : Filter ι}
     {νs : ι → ProbabilityMeasure ℝ} {ν : ProbabilityMeasure ℝ}
     (hν : Tendsto νs l (𝓝 ν)) {t : ℝ}
@@ -147,7 +151,9 @@ private theorem tendstoUniformly_of_monotone_of_tendsto_at_of_bounds
 /-- Given [a family of monotone functions](hyp:hF) whose values stay
 [between zero and one](hyp:hF0,hF1), [a continuous monotone limit](hyp:hGmono,hGcont) with
 [limits zero and one at the two tails](hyp:hGbot,hGtop), and [pointwise convergence to that
-limit](hyp:hpoint), [the convergence is uniform on the real line](goal). -/
+limit](hyp:hpoint), [the convergence is uniform on the real line](goal).
+@isnad1 id=tendstou.8h4v.s7.19ffb214aec4 from=translated src=- shape=b8cc974c vocab=16c72d57
+-/
 theorem tendstoUniformly_of_monotone_of_tendsto_at
     {ι : Type*} {l : Filter ι} {F : ι → ℝ → ℝ} {G : ℝ → ℝ}
     (hF : ∀ i, Monotone (F i)) (hF0 : ∀ i x, 0 ≤ F i x) (hF1 : ∀ i x, F i x ≤ 1)
@@ -160,7 +166,9 @@ theorem tendstoUniformly_of_monotone_of_tendsto_at
 
 /-- **Pólya's theorem.** Given [weak convergence of real probability measures](hyp:hν) to a law
 with [a continuous cumulative distribution function](hyp:hcont), [their CDFs converge uniformly
-on the real line](goal). -/
+on the real line](goal).
+@isnad1 id=tendstou.2h4v.s6.4ba30482d4d6 from=translated src=- shape=06fdfcf7 vocab=be250440
+-/
 theorem tendstoUniformly_cdf_of_tendsto {ι : Type*} {l : Filter ι}
     {νs : ι → ProbabilityMeasure ℝ} {ν : ProbabilityMeasure ℝ}
     (hν : Tendsto νs l (𝓝 ν)) (hcont : Continuous (cdf (ν : Measure ℝ))) :
@@ -180,7 +188,9 @@ noncomputable def cdfKolmogorov (μ ν : ProbabilityMeasure ℝ) : ℝ :=
   ⨆ t : ℝ, |cdf (μ : Measure ℝ) t - cdf (ν : Measure ℝ) t|
 
 /-- Given [two probability measures on the real line](hyp:μ,ν), [their Kolmogorov CDF distance
-is nonnegative](goal). -/
+is nonnegative](goal).
+@isnad1 id=le.0h2v.s4.53f5bb34a7d7 from=translated src=- shape=090ed08f vocab=6b61eafc
+-/
 theorem cdfKolmogorov_nonneg (μ ν : ProbabilityMeasure ℝ) : 0 ≤ cdfKolmogorov μ ν := by
   have hb : BddAbove (range fun t : ℝ ↦
       |cdf (μ : Measure ℝ) t - cdf (ν : Measure ℝ) t|) := by
@@ -194,7 +204,9 @@ theorem cdfKolmogorov_nonneg (μ ν : ProbabilityMeasure ℝ) : 0 ≤ cdfKolmogo
     (le_ciSup hb 0)
 
 /-- Given [two probability measures on the real line](hyp:μ,ν), [their Kolmogorov CDF distance
-is at most one](goal). -/
+is at most one](goal).
+@isnad1 id=le.0h2v.s4.16852f4d1f9a from=translated src=- shape=a55bbb3b vocab=6b61eafc
+-/
 theorem cdfKolmogorov_le_one (μ ν : ProbabilityMeasure ℝ) : cdfKolmogorov μ ν ≤ 1 := by
   refine ciSup_le fun t ↦ ?_
   rw [abs_le]
@@ -204,7 +216,9 @@ theorem cdfKolmogorov_le_one (μ ν : ProbabilityMeasure ℝ) : cdfKolmogorov μ
 
 /-- Given [weak convergence of each of two families of real probability measures to the same
 law](hyp:hν,hν') whose [CDF is continuous](hyp:hcont), [their Kolmogorov CDF distance
-converges to zero](goal). -/
+converges to zero](goal).
+@isnad1 id=tendsto.3h5v.s6.cd389f05f8a2 from=translated src=- shape=9cb65472 vocab=8086339b
+-/
 theorem tendsto_cdfKolmogorov_of_tendsto {ι : Type*} {l : Filter ι}
     {νs νs' : ι → ProbabilityMeasure ℝ} {ν : ProbabilityMeasure ℝ}
     (hν : Tendsto νs l (𝓝 ν)) (hν' : Tendsto νs' l (𝓝 ν))
@@ -241,7 +255,9 @@ def StrictlyIncreasingAt (f : ℝ → ℝ) (q : ℝ) : Prop :=
 
 /-- Given [a real probability measure](hyp:μ), [an interior quantile level](hyp:hβ0,hβ1), and
 [continuity of its CDF at the lower quantile](hyp:hcont), [the CDF at that quantile equals the
-requested level](goal). -/
+requested level](goal).
+@isnad1 id=eq.3h2v.s6.abdf55cf542a from=translated src=- shape=e6fa7d21 vocab=1bb55ed7
+-/
 theorem cdf_quantile_eq (μ : Measure ℝ) [IsProbabilityMeasure μ] {β : ℝ}
     (hβ0 : 0 < β) (hβ1 : β < 1)
     (hcont : ContinuousAt (cdf μ) (quantile μ β)) :
@@ -261,7 +277,9 @@ theorem cdf_quantile_eq (μ : Measure ℝ) [IsProbabilityMeasure μ] {β : ℝ}
 /-- Given [a family of real probability measures](hyp:μs),
 [an interior quantile level](hyp:hβ0,hβ1), [a positive radius](hyp:hε), and [eventual CDF
 brackets below and above that level](hyp:hleft,hright), [the corresponding lower quantiles
-eventually lie in the closed ball with that radius](goal). -/
+eventually lie in the closed ball with that radius](goal).
+@isnad1 id=eventual.5h6v.s7.63bb242a621b from=translated src=- shape=4f70376a vocab=26719abb
+-/
 theorem eventually_quantile_mem_of_bracket {ι : Type*} {l : Filter ι}
     {μs : ι → Measure ℝ} [∀ i, IsProbabilityMeasure (μs i)] {β q ε : ℝ}
     (hβ0 : 0 < β) (hβ1 : β < 1) (hε : 0 < ε)
@@ -283,7 +301,9 @@ theorem eventually_quantile_mem_of_bracket {ι : Type*} {l : Filter ι}
 /-- Given [an interior quantile level](hyp:hβ0,hβ1),
 [uniform convergence of approximating CDFs](hyp:hunif), [continuity of the limiting CDF at its
 lower quantile](hyp:hcont), and [strict increase there](hyp:hstrict), [the lower quantiles
-converge to the limiting lower quantile](goal). -/
+converge to the limiting lower quantile](goal).
+@isnad1 id=tendsto.5h5v.s7.c53f6b072176 from=translated src=- shape=fdd598bb vocab=09b2669d
+-/
 theorem tendsto_quantile_of_tendstoUniformly {ι : Type*} {l : Filter ι}
     {μs : ι → Measure ℝ} [∀ i, IsProbabilityMeasure (μs i)]
     {μ : Measure ℝ} [IsProbabilityMeasure μ] {β : ℝ}
@@ -327,7 +347,9 @@ theorem tendsto_quantile_of_tendstoUniformly {ι : Type*} {l : Filter ι}
 
 /-- Given [weak convergence of real probability measures](hyp:hν),
 [an interior quantile level](hyp:hβ0,hβ1), [a continuous limit CDF](hyp:hcont), and [strict
-increase of that CDF at its lower quantile](hyp:hstrict), [the lower quantiles converge](goal). -/
+increase of that CDF at its lower quantile](hyp:hstrict), [the lower quantiles converge](goal).
+@isnad1 id=tendsto.5h5v.s7.f4ce24c5a003 from=translated src=- shape=a5dff02b vocab=6e8b6ca4
+-/
 theorem tendsto_quantile_of_tendsto {ι : Type*} {l : Filter ι}
     {νs : ι → ProbabilityMeasure ℝ} {ν : ProbabilityMeasure ℝ} {β : ℝ}
     (hν : Tendsto νs l (𝓝 ν)) (hβ0 : 0 < β) (hβ1 : β < 1)
@@ -341,7 +363,9 @@ theorem tendsto_quantile_of_tendsto {ι : Type*} {l : Filter ι}
 
 /-- Given [a positive Gaussian variance](hyp:hv) and [a real threshold](hyp:x), [the CDF of
 the centered Gaussian is the standard-normal CDF at the threshold divided by its standard
-deviation](goal). -/
+deviation](goal).
+@isnad1 id=eq.1h2v.s5.885547725809 from=translated src=- shape=d9a1b73f vocab=0d4fe06a
+-/
 theorem cdf_gaussianReal_zero {v : NNReal} (hv : 0 < v) (x : ℝ) :
     cdf (gaussianReal 0 v) x =
       Causalean.Mathlib.stdNormalCDF (x / Real.sqrt (v : ℝ)) := by
@@ -362,7 +386,9 @@ theorem cdf_gaussianReal_zero {v : NNReal} (hv : 0 < v) (x : ℝ) :
   rfl
 
 /-- Given [a positive Gaussian variance](hyp:hv), [the CDF of the centered Gaussian is
-continuous](goal). -/
+continuous](goal).
+@isnad1 id=continuo.1h1v.s5.d22d7065b84c from=translated src=- shape=e29f2ec2 vocab=a51c8ade
+-/
 theorem continuous_cdf_gaussianReal_zero {v : NNReal} (hv : 0 < v) :
     Continuous (cdf (gaussianReal 0 v)) := by
   rw [show cdf (gaussianReal 0 v) =
@@ -372,7 +398,9 @@ theorem continuous_cdf_gaussianReal_zero {v : NNReal} (hv : 0 < v) :
   exact Causalean.Mathlib.stdNormalCDF_continuous.comp (continuous_id.div_const _)
 
 /-- Given [a positive Gaussian variance](hyp:hv), [the CDF of the centered Gaussian is strictly
-increasing](goal). -/
+increasing](goal).
+@isnad1 id=strictmo.1h1v.s5.608d55f157f6 from=translated src=- shape=e29f2ec2 vocab=836a747d
+-/
 theorem strictMono_cdf_gaussianReal_zero {v : NNReal} (hv : 0 < v) :
     StrictMono (cdf (gaussianReal 0 v)) := by
   have hvR : 0 < (v : ℝ) := by exact_mod_cast hv
@@ -385,7 +413,9 @@ theorem strictMono_cdf_gaussianReal_zero {v : NNReal} (hv : 0 < v) :
 
 /-- Given [a positive Gaussian variance](hyp:hv) and [an interior probability level](hyp:hβ0,hβ1),
 [the centered Gaussian lower quantile is its standard deviation times the standard-normal
-probit](goal). -/
+probit](goal).
+@isnad1 id=eq.3h2v.s6.17c89320880d from=translated src=- shape=af900650 vocab=db2f19bd
+-/
 theorem quantile_gaussianReal_zero {v : NNReal} (hv : 0 < v) {β : ℝ}
     (hβ0 : 0 < β) (hβ1 : β < 1) :
     quantile (gaussianReal 0 v) β =

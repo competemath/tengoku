@@ -22,7 +22,9 @@ noncomputable def esseenSignedSinc4Kernel (y : ℝ) : ℝ :=
 
 /-- [The signed sinc-fourth comparison kernel (the reflected, shifted, linearly
 weighted sinc-fourth kernel) is integrable and continuous on the real
-line](goal). -/
+line](goal).
+@isnad1 id=and.0h0v.s5.b51de0f0c30f from=translated src=- shape=01936087 vocab=4ccf8dd9
+-/
 theorem esseenSignedSinc4Kernel_integrable_continuous :
     Integrable esseenSignedSinc4Kernel volume ∧
       Continuous esseenSignedSinc4Kernel := by

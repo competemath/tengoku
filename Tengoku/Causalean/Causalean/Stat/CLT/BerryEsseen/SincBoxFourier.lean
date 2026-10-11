@@ -20,7 +20,9 @@ noncomputable def sincBox (t : ℝ) : ℂ :=
     (fun _ => (Real.pi : ℂ)) t
 
 /-- The compactly supported interval density defining `sincBox` is
-Lebesgue integrable. -/
+Lebesgue integrable.
+@isnad1 id=integrab.0h0v.s5.b7029f60c778 from=translated src=- shape=c57f8401 vocab=5205ace0
+-/
 theorem sincBox_integrable : Integrable sincBox := by
   unfold sincBox
   exact
@@ -29,7 +31,9 @@ theorem sincBox_integrable : Integrable sincBox := by
 
 /-- At [every real frequency x](hyp:x), [the Fourier transform of the compact
 interval density equal to π on `(−1/(2π), 1/(2π)]` is the real sinc function
-sin(x)/x, viewed as a complex number](goal). -/
+sin(x)/x, viewed as a complex number](goal).
+@isnad1 id=eq.0h1v.s5.37f4ee326bac from=translated src=- shape=14706a38 vocab=2b3f50c1
+-/
 theorem sincBox_fourier (x : ℝ) :
     FourierTransform.fourier sincBox x = (Real.sinc x : ℂ) := by
   rw [Real.fourier_real_eq_integral_exp_smul]

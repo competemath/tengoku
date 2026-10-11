@@ -29,6 +29,9 @@ def essProjSnd (s : Set (α × β)) (μ : Measure α) := {y | 0 < μ ((fun x => 
 
 variable {μ : Measure α} {ν : Measure β}
 
+/--
+@isnad1 id=eq.0h5v.s5.a45a9c758961 from=translated src=- shape=01a5f18e vocab=3cbca17d
+-/
 theorem essProjSnd_eq_essProjFst_swap {s : Set (α × β)} :
     essProjSnd s μ = essProjFst (Prod.swap ⁻¹' s) μ := by
   unfold essProjFst essProjSnd
@@ -36,6 +39,9 @@ theorem essProjSnd_eq_essProjFst_swap {s : Set (α × β)} :
   simp only [mem_ofPred_eq]
   congr!
 
+/--
+@isnad1 id=le.0h5v.s5.e02b3af4725f from=translated src=- shape=35a9ef40 vocab=b5336507
+-/
 theorem essProjFst_subset {s : Set (α × β)} :
     essProjFst s ν ⊆ Prod.fst '' s := by
   unfold essProjFst
@@ -47,34 +53,52 @@ theorem essProjFst_subset {s : Set (α × β)} :
   convert measure_empty (μ := ν)
   aesop
 
+/--
+@isnad1 id=le.0h5v.s5.2fd259efa2a2 from=translated src=- shape=d9c45124 vocab=fb57f823
+-/
 theorem essProjSnd_subset {s : Set (α × β)} :
     essProjSnd s μ ⊆ Prod.snd '' s := by
   rw [essProjSnd_eq_essProjFst_swap]
   apply essProjFst_subset.trans_eq
   aesop
 
+/--
+@isnad1 id=eq.0h5v.s6.c7302c7fbf77 from=translated src=- shape=350d6407 vocab=6595fe3c
+-/
 theorem essProjFst_eq {s : Set (α × β)} :
     essProjFst s ν = (fun x => ν ((fun y => (x, y)) ⁻¹' s)) ⁻¹' (Set.Ioi 0) := by
   unfold essProjFst
   ext b
   simp
 
+/--
+@isnad1 id=eq.0h5v.s6.3dccb30a6706 from=translated src=- shape=4fa187f1 vocab=39f5a9db
+-/
 theorem essProjSnd_eq {s : Set (α × β)} :
     essProjSnd s μ = (fun y => μ ((fun x => (x, y)) ⁻¹' s)) ⁻¹' (Set.Ioi 0) := by
   rw [essProjSnd_eq_essProjFst_swap, essProjFst_eq]
   congr with y
 
+/--
+@isnad1 id=eq.0h5v.s5.5573116a99a6 from=translated src=- shape=16efbf63 vocab=f36773e0
+-/
 theorem essProjFst_eq' {s : Set (α × β)} :
     essProjFst s ν = support (fun x => ν ((fun y => (x, y)) ⁻¹' s)) := by
   rw [essProjFst_eq]
   ext b
   simp only [mem_preimage, mem_Ioi, mem_support, ne_eq, pos_iff_ne_zero]
 
+/--
+@isnad1 id=eq.0h5v.s5.185b9b7bc63c from=translated src=- shape=ba9c590c vocab=ee286ebe
+-/
 theorem essProjSnd_eq' {s : Set (α × β)} :
     essProjSnd s μ = support (fun y => μ ((fun x => (x, y)) ⁻¹' s)) := by
   rw [essProjSnd_eq_essProjFst_swap, essProjFst_eq']
   congr with y
 
+/--
+@isnad1 id=eq.1h5v.s5.d74835f63c37 from=translated src=- shape=69d7180f vocab=a2e5e5a6
+-/
 @[simp]
 theorem essProjFst_times_univ {s : Set α} (h : ν ≠ 0) :
     essProjFst (s ×ˢ univ) ν = s := by
@@ -91,11 +115,17 @@ theorem essProjFst_times_univ {s : Set α} (h : ν ≠ 0) :
     convert measure_univ_pos.mpr h
     aesop
 
+/--
+@isnad1 id=eq.1h5v.s5.623f2c5b3bd9 from=translated src=- shape=2358e2e6 vocab=0decc9ea
+-/
 @[simp]
 theorem essProjSnd_univ_times {s : Set β} (h : μ ≠ 0) :
     essProjSnd (univ ×ˢ s) μ = s := by
   rw [essProjSnd_eq_essProjFst_swap, preimage_swap_prod, essProjFst_times_univ h]
 
+/--
+@isnad1 id=le.1h6v.s5.f63fc940955b from=translated src=- shape=c53416be vocab=8e16c492
+-/
 @[gcongr]
 theorem essProjFst_mono {s t : Set (α × β)} (h : s ⊆ t) :
     essProjFst s ν ⊆ essProjFst t ν := by
@@ -105,6 +135,9 @@ theorem essProjFst_mono {s t : Set (α × β)} (h : s ⊆ t) :
   apply hx.trans_le
   gcongr
 
+/--
+@isnad1 id=le.1h6v.s5.7afd66aba4e0 from=translated src=- shape=3c5eacd2 vocab=71882eb2
+-/
 @[gcongr]
 theorem essProjSnd_mono {s t : Set (α × β)} (h : s ⊆ t) :
     essProjSnd s μ ⊆ essProjSnd t μ := by
@@ -124,6 +157,9 @@ theorem essProjFst_inter {s t : Set (α × β)} {ν : Measure α} :
   sorry
 -/
 
+/--
+@isnad1 id=eq.0h6v.s6.7d681401e0ef from=translated src=- shape=70be7785 vocab=4d284f32
+-/
 theorem essProjFst_inter_times_univ {s : Set (α × β)} {t : Set α} :
     essProjFst (s ∩ t ×ˢ univ) ν = essProjFst s ν ∩ t := by
   unfold essProjFst
@@ -142,31 +178,49 @@ theorem essProjFst_inter_times_univ {s : Set (α × β)} {t : Set α} :
     convert hy
     aesop
 
+/--
+@isnad1 id=eq.0h6v.s6.8c174ebddca4 from=translated src=- shape=bb9e9025 vocab=5c488489
+-/
 theorem essProjSnd_inter_univ_times {s : Set (α × β)} {t : Set β} :
     essProjSnd (s ∩ univ ×ˢ t) μ = essProjSnd s μ ∩ t := by
   rw [essProjSnd_eq_essProjFst_swap, essProjSnd_eq_essProjFst_swap, preimage_inter,
     preimage_swap_prod, essProjFst_inter_times_univ]
 
+/--
+@isnad1 id=measurab.1h6v.s5.92b6c8acf98d from=translated src=- shape=1cf9a32f vocab=4a24cc26
+-/
 theorem measurableSet_essProjFst [SFinite ν] {s : Set (α × β)} (hs : MeasurableSet s) :
     MeasurableSet (essProjFst s ν) := by
   rw [essProjFst_eq]
   exact measurable_measure_prodMk_left hs measurableSet_Ioi
 
+/--
+@isnad1 id=measurab.1h6v.s5.2bccc4520f07 from=translated src=- shape=c90f141c vocab=1bf07a01
+-/
 theorem measurableSet_essProjSnd [SFinite μ] {s : Set (α × β)} (hs : MeasurableSet s) :
     MeasurableSet (essProjSnd s μ) := by
   rw [essProjSnd_eq_essProjFst_swap]
   apply measurableSet_essProjFst (measurableSet_swap_iff.mpr hs)
 
+/--
+@isnad1 id=iff.1h7v.s6.8370720aa932 from=translated src=- shape=0a70b999 vocab=42609332
+-/
 theorem measure_essProjFst_pos_iff [SFinite ν] {s : Set (α × β)} (hs : MeasurableSet s) :
     0 < μ (essProjFst s ν) ↔ 0 < (μ.prod ν) s := by
   rw [Measure.prod_apply hs, lintegral_pos_iff_support (measurable_measure_prodMk_left hs),
       ← essProjFst_eq']
 
+/--
+@isnad1 id=iff.1h7v.s7.ea60a1b2b341 from=translated src=- shape=571561c1 vocab=117546e9
+-/
 theorem measure_essProjSnd_pos_iff [SFinite μ] [SFinite ν] {s : Set (α × β)} (hs : MeasurableSet s) :
     0 < ν (essProjSnd s μ) ↔ 0 < (μ.prod ν) s := by
   rw [Measure.prod_apply_symm hs, lintegral_pos_iff_support (measurable_measure_prodMk_right hs),
       ← essProjSnd_eq']
 
+/--
+@isnad1 id=ex.2h7v.s7.4a2321819bbc from=translated src=- shape=461f69f0 vocab=28c3d7f8
+-/
 theorem exists_subset_measure_fst_image_lt_top [SigmaFinite μ] [SFinite ν] {s : Set (α × β)}
   (hs : MeasurableSet s) (h : 0 < μ.prod ν s) :
     ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ.prod ν t ∧ μ (Prod.fst '' t) < ⊤ := by
@@ -192,6 +246,9 @@ theorem exists_subset_measure_fst_image_lt_top [SigmaFinite μ] [SFinite ν] {s 
     rw [← essProjFst_eq', hq]
   · exact hμq_top
 
+/--
+@isnad1 id=ex.2h7v.s7.8966bb0196f4 from=translated src=- shape=5e1349e0 vocab=cd3c7816
+-/
 theorem exists_subset_measure_snd_image_lt_top [SFinite μ] [SigmaFinite ν] {s : Set (α × β)}
   (hs : MeasurableSet s) (h : 0 < μ.prod ν s) :
     ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ.prod ν t ∧ ν (Prod.snd '' t) < ⊤ := by
@@ -204,6 +261,9 @@ theorem exists_subset_measure_snd_image_lt_top [SFinite μ] [SigmaFinite ν] {s 
   convert ht'_top
   aesop
 
+/--
+@isnad1 id=ex.2h7v.s7.2172003ef7af from=translated src=- shape=318259bb vocab=baf101c0
+-/
 theorem exists_subset_measure_essProjFst_lt [NoAtoms' μ] [SFinite ν] {s : Set (α × β)}
   (hs : MeasurableSet s) (h : 0 < μ.prod ν s) :
     ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ.prod ν t ∧ μ (essProjFst t ν) < μ (essProjFst s ν) := by
@@ -224,6 +284,9 @@ theorem exists_subset_measure_essProjFst_lt [NoAtoms' μ] [SFinite ν] {s : Set 
     rw [← essProjFst_eq', this]
   · exact hμqr
 
+/--
+@isnad1 id=ex.2h7v.s7.cd4bb2e321f1 from=translated src=- shape=9d53d642 vocab=1af8a2e1
+-/
 theorem exists_subset_measure_essProjSnd_lt [SFinite μ] [SFinite ν] [NoAtoms' ν]
   {s : Set (α × β)} (hs : MeasurableSet s) (h : 0 < μ.prod ν s) :
     ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ.prod ν t ∧ ν (essProjSnd t μ) < ν (essProjSnd s μ) := by
@@ -239,6 +302,9 @@ theorem exists_subset_measure_essProjSnd_lt [SFinite μ] [SFinite ν] [NoAtoms' 
 open ENNReal
 
 --TODO: move
+/--
+@isnad1 id=lt.7h6v.s7.f2ec355299f4 from=translated src=- shape=f4cfc2ac vocab=38ab9c1d
+-/
 theorem setLIntegral_strict_mono_set {α : Type*} {mα : MeasurableSpace α} {μ : Measure α}
   {f : α → ℝ≥0∞} {s t : Set α} (hf : Measurable f) (hsm : MeasurableSet s) (htm : MeasurableSet t)
   (htsf : t \ s ⊆ support f) (hfi : ∫⁻ (x : α) in s, f x ∂μ ≠ ∞) (hst : s ⊆ t) (h : μ s < μ t) :
@@ -252,6 +318,9 @@ theorem setLIntegral_strict_mono_set {α : Type*} {mα : MeasurableSpace α} {μ
     _ = ∫⁻ (x : α) in t, f x ∂μ := by
       rw [← lintegral_union (htm.diff hsm) disjoint_sdiff_right, union_sdiff_cancel hst]
 
+/--
+@isnad1 id=noatoms.0h6v.s5.5616210497c0 from=translated src=- shape=4aa2f223 vocab=c30d9728
+-/
 instance prod.instNoAtoms_fst [NoAtoms' μ] [SFinite μ] [SigmaFinite ν] :
     NoAtoms' (μ.prod ν) := by
   rw [no_atoms_iff]
@@ -287,6 +356,9 @@ instance prod.instNoAtoms_fst [NoAtoms' μ] [SFinite μ] [SigmaFinite ν] :
       gcongr
 
 --TODO: move?
+/--
+@isnad1 id=iff.1h7v.s6.2fc806a6096b from=translated src=- shape=68902bc1 vocab=ff0e3bc2
+-/
 theorem isAtom_swap_iff [SFinite μ] [SFinite ν] {s : Set (α × β)} (hs : MeasurableSet s) :
     IsAtom (Prod.swap ⁻¹' s) (ν.prod μ) ↔ IsAtom s (μ.prod ν) := by
   unfold IsAtom
@@ -306,6 +378,9 @@ theorem isAtom_swap_iff [SFinite μ] [SFinite ν] {s : Set (α × β)} (hs : Mea
       ← map_apply measurable_swap meas_t, prod_swap] at this
     exact this hts meas_t
 
+/--
+@isnad1 id=noatoms.0h6v.s5.9bf2fb7b05d5 from=translated src=- shape=76395be6 vocab=c30d9728
+-/
 instance prod.instNoAtoms_snd [SigmaFinite μ] [NoAtoms' ν] [SFinite ν] :
     NoAtoms' (μ.prod ν) where
   no_atoms := by

@@ -27,7 +27,9 @@ namespace Causalean.Mathlib
 
 open MeasureTheory ProbabilityTheory Real Filter Topology
 
-/-- **The standard-normal survival integral:** `∫_{c}^∞ φ(t) dt = 1 − Φ(c)`. -/
+/-- **The standard-normal survival integral:** `∫_{c}^∞ φ(t) dt = 1 − Φ(c)`.
+@isnad1 id=eq.0h1v.s5.ddb55d01d3fe from=translated src=- shape=6f51e507 vocab=24107f68
+-/
 lemma integral_Ioi_stdNormalPDF (c : ℝ) :
     ∫ t in Set.Ioi c, stdNormalPDF t = 1 - stdNormalCDF c := by
   have hmeasure := ProbabilityTheory.gaussianReal_apply_eq_integral
@@ -58,7 +60,9 @@ tail integral of `t` times the standard normal density over `(c, ∞)` equals th
 value at `c`](goal).
 
 Because `d/dt[−φ(t)] = t·φ(t)` for the standard normal, the truncated mean integrates to
-the density value at the cutoff. -/
+the density value at the cutoff.
+@isnad1 id=eq.0h1v.s5.ac0de5498b2f from=translated src=- shape=40f5ef38 vocab=7a35bd87
+-/
 lemma integral_Ioi_id_mul_stdNormalPDF (c : ℝ) :
     ∫ t in Set.Ioi c, t * stdNormalPDF t = stdNormalPDF c := by
   let phi : ℝ → ℝ := fun x => Real.exp (-x ^ 2 / 2)

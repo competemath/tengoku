@@ -47,7 +47,9 @@ and [a frequency with |t| ≤ √n/M3](hyp:ht),
 [the characteristic function of the standardized iid sum differs from the
 standard Gaussian characteristic function by at most
 (7·M3/(24√n))·|t|³·exp(−t²/6)](goal), an explicit cubic error with Gaussian
-decay. -/
+decay.
+@isnad1 id=le.9h4v.s9.a4f85335e530 from=translated src=- shape=836e54df vocab=6fec3e35
+-/
 theorem iid_unit_variance_charFun_local_product_bound
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (M3 : ℝ) (hM3 : 1 ≤ M3)
