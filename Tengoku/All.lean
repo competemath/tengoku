@@ -59,6 +59,7 @@ import Tengoku.Physlib
 import Tengoku.TaoAnalysis
 import Tengoku.Tautology
 import Tengoku.Complexitylib
+import Tengoku.Tauceti
 import Tengoku.BtcVerified
 import Tengoku.Leaninfotheory
 import Tengoku.ZkevmClean
