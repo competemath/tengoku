@@ -19,7 +19,9 @@ derivatives](hyp:huniq), [a function v is m times continuously differentiable
 within S](hyp:hv), [j < m](hyp:hj), and [the order-(j + 1) within-S derivative
 of v has operator norm at most R throughout S](hyp:hbound), then for [two points
 x and y of S](hyp:hx,hy) [the order-j within-S derivatives of v at x and at y
-differ in operator norm by at most R·‖x − y‖](goal). -/
+differ in operator norm by at most R·‖x − y‖](goal).
+@isnad1 id=le.7h8v.s11.cec49464fa93 from=translated src=- shape=9e95420a vocab=03686c23
+-/
 theorem norm_iteratedFDerivWithin_sub_le_of_succ_bound
     {d j m : ℕ} {S : Set (Fin d → ℝ)}
     (hconv : Convex ℝ S) (huniq : UniqueDiffOn ℝ S)

@@ -26,6 +26,7 @@ Use superlevel sets g ≥ ofReal (1/(n+1)), whose measures are finite by
 meas_ge_le_lintegral_div. Their union covers s except for a null set; add that
 null set to the exhaustion. Do not assume μ is s-finite or globally sigma-finite.
 The conclusion must follow from hfin, rather than from a strengthened hpos.
+@isnad1 id=sigmafin.4h4v.s6.1d65ca5ccad9 from=translated src=- shape=c45ade4b vocab=41a97f2e
 -/
 theorem sigmaFinite_restrict_of_ae_pos_of_lintegral_lt_top
     {S : Type*} [MeasurableSpace S] (μ : Measure S) (s : Set S)
@@ -68,6 +69,7 @@ finite](hyp:f,hf), then [μ restricted to the set where f is nonzero is σ-finit
 Apply sigmaFinite_restrict_of_ae_pos_of_lintegral_lt_top to the sum of the two
 weighted squared endpoint densities. Its integral is finite by wNorm_sq, and
 where f is nonzero at least one endpoint summand is nonzero almost everywhere.
+@isnad1 id=sigmafin.4h5v.s8.932ab0bc7967 from=translated src=- shape=d060039c vocab=636bb598
 -/
 theorem sigmaFinite_restrict_support_of_endpoint_sum {S : Type*} [MeasurableSpace S]
     (μ : Measure S) (w0 w1 : S → ℝ≥0∞)

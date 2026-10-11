@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Quantization
 /-- On [a nondegenerate interval](hyp:a,b,hab), [a nonempty finite
 weight family](hyp:S,hS) with [continuous strictly positive weights](hyp:β,hcont,hpos),
 each relative error below one gives [a uniform threshold and a sharp
-sum-of-good-cell-masses lower bound for every feasible partition](goal). -/
+sum-of-good-cell-masses lower bound for every feasible partition](goal).
+@isnad1 id=ex.6h5v.s8.abb320ce86c1 from=translated src=- shape=d4414db5 vocab=091eac8a
+-/
 theorem partition_good_square_sum_lower (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

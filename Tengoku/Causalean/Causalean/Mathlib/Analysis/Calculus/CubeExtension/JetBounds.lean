@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- At [a point](hyp:x) where [a scalar function is zero on a neighborhood](hyp:hf),
-[its value and both ambient jets vanish](goal), without a differentiability hypothesis. -/
+[its value and both ambient jets vanish](goal), without a differentiability hypothesis.
+@isnad1 id=and.1h3v.s11.75e086a6122d from=translated src=- shape=a88fd5c1 vocab=0b5932f8
+-/
 theorem jets_zero_of_eventually_zero {f : E → ℝ} (x : E)
     (hf : ∀ᶠ y in nhds x, f y = 0) :
     f x = 0 ∧ fderiv ℝ f x = 0 ∧ fderiv ℝ (fderiv ℝ f) x = 0 := by
@@ -52,7 +54,9 @@ with [compact support](hyp:hc) admits [a finite common bound on all three jets](
 
 Continuity of the second derivative needs only C², not C³. Use compact
 support of derivatives and `bounded_above_of_compact_support`, or use
-`norm_iteratedFDeriv_fderiv` to translate the order-two multilinear bound. -/
+`norm_iteratedFDeriv_fderiv` to translate the order-two multilinear bound.
+@isnad1 id=ex.2h2v.s6.878066ed5f7c from=translated src=- shape=fe27ea1d vocab=a2059b36
+-/
 theorem exists_jetBounds_of_compactSupport {f : E → ℝ}
     (hf : ContDiff ℝ 2 f) (hc : HasCompactSupport f) :
     ∃ C : ℝ, 1 ≤ C ∧ JetBounds f C := by
@@ -75,7 +79,9 @@ theorem exists_jetBounds_of_compactSupport {f : E → ℝ}
   simpa only [Real.norm_eq_abs] using (h₀ x).trans hC₀
 
 /-- [Scaled first-jet bounds](hyp:hf) imply [a global scalar Lipschitz estimate](goal)
-for [the exponent and bandwidth](hyp:β,h) at [any two points](hyp:x,y). -/
+for [the exponent and bandwidth](hyp:β,h) at [any two points](hyp:x,y).
+@isnad1 id=le.1h7v.s6.f737d696e68f from=translated src=- shape=f2ff47f9 vocab=4d249906
+-/
 theorem ScaledJetBounds.value_lipschitz {β h C : ℝ} {f : E → ℝ}
     (hf : ScaledJetBounds β h f C) (x y : E) :
     |f x - f y| ≤ C * h ^ (β - 1) * ‖x - y‖ := by
@@ -85,7 +91,9 @@ theorem ScaledJetBounds.value_lipschitz {β h C : ℝ} {f : E → ℝ}
       (fun z _ => hf.first z) convex_univ (Set.mem_univ y) (Set.mem_univ x)
 
 /-- [Scaled second-jet bounds](hyp:hf) imply [a global derivative Lipschitz estimate](goal)
-for [the exponent and bandwidth](hyp:β,h) at [any two points](hyp:x,y). -/
+for [the exponent and bandwidth](hyp:β,h) at [any two points](hyp:x,y).
+@isnad1 id=le.1h7v.s9.91f00aca4e0f from=translated src=- shape=cfd1578b vocab=36892995
+-/
 theorem ScaledJetBounds.first_lipschitz {β h C : ℝ} {f : E → ℝ}
     (hf : ScaledJetBounds β h f C) (x y : E) :
     ‖fderiv ℝ f x - fderiv ℝ f y‖ ≤ C * h ^ (β - 2) * ‖x - y‖ := by
@@ -102,7 +110,9 @@ and [the constant and distance are nonnegative](hyp:hC,hr).
 
 Split at `r ≤ h`, use monotonicity of the nonpositive power `s - 1`,
 and combine the powers of r.
-This helper is valid at s=1 and r=0. -/
+This helper is valid at s=1 and r=0.
+@isnad1 id=le.8h5v.s7.f9d7ed216bff from=translated src=- shape=8253cf75 vocab=5f25b07a
+-/
 theorem scaled_min_holder {a C h r s : ℝ} (ha : 0 ≤ a) (hC : 0 ≤ C)
     (hh : 0 < h) (hr : 0 ≤ r) (hs : 0 < s) (hs1 : s ≤ 1)
     (hsup : a ≤ 2 * C * h ^ s) (hlip : a ≤ C * h ^ (s - 1) * r) :
@@ -132,7 +142,9 @@ theorem scaled_min_holder {a C h r s : ℝ} (ha : 0 ≤ a) (hC : 0 ≤ C)
       (Real.rpow_le_rpow hh.le (le_of_not_ge hrh) hs.le) (by positivity))
 
 /-- [Scaled jet bounds](hyp:hf) give [a bandwidth-independent scalar Hölder modulus](goal)
-when [the exponent β lies in `(0,1]`](hyp:hβ,hβ1) and [the bandwidth is positive](hyp:hh). -/
+when [the exponent β lies in `(0,1]`](hyp:hβ,hβ1) and [the bandwidth is positive](hyp:hh).
+@isnad1 id=le.4h7v.s7.7ac37766d6a4 from=translated src=- shape=c5367ffb vocab=59e96943
+-/
 theorem ScaledJetBounds.value_holder {β h C : ℝ} {f : E → ℝ}
     (hf : ScaledJetBounds β h f C) (hβ : 0 < β) (hβ1 : β ≤ 1)
     (hh : 0 < h) (x y : E) :
@@ -144,7 +156,9 @@ theorem ScaledJetBounds.value_holder {β h C : ℝ} {f : E → ℝ}
   · exact hf.value_lipschitz x y
 
 /-- [Scaled jet bounds](hyp:hf) give [a bandwidth-independent derivative Hölder modulus](goal)
-when [the exponent β lies in `(1,2]`](hyp:hβ,hβ2) and [the bandwidth is positive](hyp:hh). -/
+when [the exponent β lies in `(1,2]`](hyp:hβ,hβ2) and [the bandwidth is positive](hyp:hh).
+@isnad1 id=le.4h7v.s9.b0f6f884be57 from=translated src=- shape=832dab6e vocab=f2ded382
+-/
 theorem ScaledJetBounds.first_holder {β h C : ℝ} {f : E → ℝ}
     (hf : ScaledJetBounds β h f C) (hβ : 1 < β) (hβ2 : β ≤ 2)
     (hh : 0 < h) (x y : E) :

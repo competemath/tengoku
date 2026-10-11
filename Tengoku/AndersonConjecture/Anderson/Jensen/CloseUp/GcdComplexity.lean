@@ -21,6 +21,9 @@ open Cardinal Ideal
 
 variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T]
 
+/--
+@isnad1 id=eq.2h4v.s7.75c0c392d623 from=translated src=- shape=df774b2c vocab=ce4015be
+-/
 lemma span_eq_mul_span_image_div {R₀ : Type*} [CommRing R₀]
     [DecidableEq R₀]
     (p : R₀) (s : Finset R₀)
@@ -63,6 +66,9 @@ lemma span_eq_mul_span_image_div {R₀ : Type*} [CommRing R₀]
         exact Ideal.mul_mem_left _ r hx)
       hb
 
+/--
+@isnad1 id=le.1h5v.s7.f8a500094679 from=translated src=- shape=367bf080 vocab=004b7e4d
+-/
 lemma prime_mul_span_insert_le {R₀ : Type*} [CommRing R₀]
     [DecidableEq R₀]
     (q' a : R₀) (rest : Finset R₀)

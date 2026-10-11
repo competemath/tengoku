@@ -25,7 +25,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 Σ_q a_q·(−(q + 1))^k = 1 for every k ≤ m](hyp:ha) and [a response u is m times
 continuously differentiable within the closed cube](hyp:hu), then [the one-face
 reflection of u across the left face in coordinate i is m times continuously
-differentiable within the closed left collar](goal). -/
+differentiable within the closed left collar](goal).
+@isnad1 id=contdiff.2h5v.s8.c9556975f89a from=translated src=- shape=7131ce6c vocab=60f85abe
+-/
 theorem leftFaceReflection_contDiffOn_collar (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

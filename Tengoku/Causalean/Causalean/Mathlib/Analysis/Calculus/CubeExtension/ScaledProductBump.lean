@@ -26,7 +26,9 @@ is [the finite coordinate product](goal) given by
 noncomputable def productBump {d : ℕ} (x : Fin d → ℝ) : ℝ :=
   ∏ i : Fin d, bumpProfile (x i)
 
-/-- [The normalized bump profile](goal) is smooth to every finite order. -/
+/-- [The normalized bump profile](goal) is smooth to every finite order.
+@isnad1 id=contdiff.0h0v.s5.106a8c3da399 from=translated src=- shape=3cea26be vocab=378a72f0
+-/
 theorem bumpProfile_contDiff :
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) bumpProfile := by
   unfold bumpProfile
@@ -34,18 +36,24 @@ theorem bumpProfile_contDiff :
       (fun x : ℝ => 1 - x ^ 2) := by fun_prop
   exact contDiff_const.mul (expNegInvGlue.contDiff.comp hinner)
 
-/-- [The normalized bump profile](goal) takes value one at zero. -/
+/-- [The normalized bump profile](goal) takes value one at zero.
+@isnad1 id=eq.0h0v.s3.316eadb9c62b from=translated src=- shape=3c26ae4f vocab=ee1b3839
+-/
 theorem bumpProfile_zero : bumpProfile 0 = 1 := by
   simp [bumpProfile, expNegInvGlue, Real.exp_neg, Real.exp_ne_zero]
 
 /-- When [the real input](hyp:x) [has absolute value at least one](hyp:hx),
-[the normalized bump profile vanishes](goal). -/
+[the normalized bump profile vanishes](goal).
+@isnad1 id=eq.1h1v.s4.4f03d3d4c988 from=translated src=- shape=7a8068be vocab=0ac3b699
+-/
 theorem bumpProfile_eq_zero_of_one_le_abs {x : ℝ} (hx : 1 ≤ |x|) :
     bumpProfile x = 0 := by
   have hx2 : 1 ≤ x ^ 2 := by nlinarith [sq_nonneg (|x|), sq_abs x]
   simp [bumpProfile, expNegInvGlue.zero_of_nonpos (show 1 - x ^ 2 ≤ 0 by linarith)]
 
-/-- In [a finite dimension](hyp:d), [the product bump](goal) is smooth to every finite order. -/
+/-- In [a finite dimension](hyp:d), [the product bump](goal) is smooth to every finite order.
+@isnad1 id=contdiff.0h1v.s6.1e79e243c255 from=translated src=- shape=c36b12e9 vocab=be9e364a
+-/
 theorem productBump_contDiff {d : ℕ} :
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (productBump (d := d)) := by
   change ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞)
@@ -56,18 +64,24 @@ theorem productBump_contDiff {d : ℕ} :
       (fun x : Fin d → ℝ => x i) := by fun_prop
   exact bumpProfile_contDiff.comp hcoord
 
-/-- In [a finite dimension](hyp:d), [the product bump](goal) takes value one at the origin. -/
+/-- In [a finite dimension](hyp:d), [the product bump](goal) takes value one at the origin.
+@isnad1 id=eq.0h1v.s5.4e0beda3778d from=translated src=- shape=1e328ab6 vocab=9eda68cd
+-/
 theorem productBump_zero {d : ℕ} : productBump (d := d) 0 = 1 := by
   simp [productBump, bumpProfile_zero]
 
 /-- In [a finite dimension](hyp:d), when [a point](hyp:x) has
 [a coordinate](hyp:i) [whose absolute value is at least one](hyp:hi),
-[the product bump vanishes](goal). -/
+[the product bump vanishes](goal).
+@isnad1 id=eq.1h3v.s5.d13e490bbe75 from=translated src=- shape=6445af56 vocab=1a5b706a
+-/
 theorem productBump_eq_zero_of_coordinate {d : ℕ} (x : Fin d → ℝ)
     {i : Fin d} (hi : 1 ≤ |x i|) : productBump x = 0 := by
   exact Finset.prod_eq_zero (Finset.mem_univ i) (bumpProfile_eq_zero_of_one_le_abs hi)
 
-/-- In [a finite dimension](hyp:d), [the product bump](goal) has compact support. -/
+/-- In [a finite dimension](hyp:d), [the product bump](goal) has compact support.
+@isnad1 id=hascompa.0h1v.s4.e9529d7d0695 from=translated src=- shape=bbef8654 vocab=aa2d89c3
+-/
 theorem productBump_hasCompactSupport {d : ℕ} :
     HasCompactSupport (productBump (d := d)) := by
   apply HasCompactSupport.intro (K := {x : Fin d → ℝ | ∀ i, x i ∈ Set.Icc (-1) 1})
@@ -86,7 +100,9 @@ theorem productBump_hasCompactSupport {d : ℕ} :
   exact productBump_eq_zero_of_coordinate x hi
 
 /-- In [a finite dimension](hyp:d), at [a derivative order](hyp:j),
-[the product bump has a finite global derivative bound](goal). -/
+[the product bump has a finite global derivative bound](goal).
+@isnad1 id=ex.0h2v.s8.27663732c4c4 from=translated src=- shape=d387b337 vocab=822faa0c
+-/
 theorem productBump_iteratedFDeriv_bounded {d : ℕ} (j : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x : Fin d → ℝ,
       ‖iteratedFDeriv ℝ j (productBump (d := d)) x‖ ≤ C := by
@@ -118,7 +134,9 @@ noncomputable def scaledProductBump {d : ℕ} (β h : ℝ)
 /-- In [a finite dimension](hyp:d), with [a smoothness exponent](hyp:β),
 [a nonzero bandwidth](hyp:_hh), [a center](hyp:x₀), and
 [an evaluation point](hyp:x), [the scaled bump has
-the coordinatewise-division representation](goal). -/
+the coordinatewise-division representation](goal).
+@isnad1 id=eq.1h5v.s6.838853816d6b from=translated src=- shape=6574b3bc vocab=cc2a42c1
+-/
 theorem scaledProductBump_eq_coordinate_div {d : ℕ} (β : ℝ)
     {h : ℝ} (_hh : h ≠ 0) (x₀ x : Fin d → ℝ) :
     scaledProductBump β h x₀ x =
@@ -131,7 +149,9 @@ theorem scaledProductBump_eq_coordinate_div {d : ℕ} (β : ℝ)
 
 /-- In [a finite dimension](hyp:d), for
 [a smoothness exponent and bandwidth](hyp:β,h) and [a center](hyp:x₀),
-[the scaled product bump is smooth to every finite order](goal). -/
+[the scaled product bump is smooth to every finite order](goal).
+@isnad1 id=contdiff.0h4v.s6.899222c8c844 from=translated src=- shape=bac94fcd vocab=43696d74
+-/
 theorem scaledProductBump_contDiff {d : ℕ} (β h : ℝ)
     (x₀ : Fin d → ℝ) :
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (scaledProductBump β h x₀) := by
@@ -143,7 +163,9 @@ theorem scaledProductBump_contDiff {d : ℕ} (β h : ℝ)
 /-- In [a finite dimension](hyp:d), at [a derivative order](hyp:j), with
 [a smoothness exponent and bandwidth](hyp:β,h), [a center](hyp:x₀), and
 [an evaluation point](hyp:x), [the scaled bump derivative has
-the exact dilation formula](goal). -/
+the exact dilation formula](goal).
+@isnad1 id=eq.0h6v.s11.a3df20d2de96 from=translated src=- shape=9d8dc484 vocab=543ca628
+-/
 theorem scaledProductBump_iteratedFDeriv {d : ℕ} (j : ℕ)
     (β h : ℝ) (x₀ x : Fin d → ℝ) :
     iteratedFDeriv ℝ j (scaledProductBump β h x₀) x =
@@ -171,7 +193,9 @@ theorem scaledProductBump_iteratedFDeriv {d : ℕ} (j : ℕ)
 
 /-- In [a finite dimension](hyp:d), for
 [a positive smoothness exponent](hyp:β,hβ), [a nonnegative global Hölder
-coefficient for the normalized top derivative exists](goal). -/
+coefficient for the normalized top derivative exists](goal).
+@isnad1 id=other.1h2v.s10.89e6be5c16bc from=translated src=- shape=8907c01a vocab=f9e400ad
+-/
 theorem exists_productBump_top_modulus {d : ℕ} (β : ℝ) (hβ : 0 < β) :
     let m := ⌈β⌉₊ - 1
     let s := β - (m : ℝ)
@@ -231,7 +255,9 @@ theorem exists_productBump_top_modulus {d : ℕ} (β : ℝ) (hβ : 0 < β) :
 
 /-- In [a finite dimension](hyp:d), for
 [a positive smoothness exponent](hyp:β,hβ), [a nonnegative derivative bound
-uniform over admissible scaled bumps exists](goal). -/
+uniform over admissible scaled bumps exists](goal).
+@isnad1 id=other.1h2v.s8.66f7fd9dcd77 from=translated src=- shape=90be41b6 vocab=a993008a
+-/
 theorem exists_scaledProductBump_deriv_bound {d : ℕ} (β : ℝ) (hβ : 0 < β) :
     let m := ⌈β⌉₊ - 1
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (h : ℝ), 0 < h → h ≤ 1 →
@@ -278,7 +304,9 @@ theorem exists_scaledProductBump_deriv_bound {d : ℕ} (β : ℝ) (hβ : 0 < β)
 
 /-- In [a finite dimension](hyp:d), for
 [a positive smoothness exponent](hyp:β,hβ), [a nonnegative global Hölder
-coefficient uniform over admissible scaled bumps exists](goal). -/
+coefficient uniform over admissible scaled bumps exists](goal).
+@isnad1 id=other.1h2v.s10.7c95e1458d86 from=translated src=- shape=f02d70ba vocab=cc93e945
+-/
 theorem exists_scaledProductBump_top_modulus {d : ℕ} (β : ℝ) (hβ : 0 < β) :
     let m := ⌈β⌉₊ - 1
     let s := β - (m : ℝ)
@@ -332,7 +360,9 @@ theorem exists_scaledProductBump_top_modulus {d : ℕ} (β : ℝ) (hβ : 0 < β)
 /-- In [a finite dimension and derivative order](hyp:d,j), when [a response](hyp:u)
 [is globally smooth](hyp:hu), [a requested coordinate direction list](hyp:f) at
 [a point in the unit cube](hyp:x,hx) has [an intrinsic coordinate jet equal to
-the ambient iterated derivative](goal). -/
+the ambient iterated derivative](goal).
+@isnad1 id=eq.2h5v.s9.47c8a65fd790 from=translated src=- shape=7c8ce121 vocab=f373ecac
+-/
 theorem coordJetOn_unitCube_eq_ambient {d j : ℕ}
     {u : (Fin d → ℝ) → ℝ}
     (hu : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) u)
@@ -350,7 +380,9 @@ theorem coordJetOn_unitCube_eq_ambient {d j : ℕ}
 when [a response](hyp:u) is [globally smooth](hyp:hu), has
 [uniform derivative bounds](hyp:hbound), and has
 [a top-derivative Hölder modulus](hyp:hmod), [it belongs to the same-radius
-intrinsic Hölder ball on the unit cube](goal). -/
+intrinsic Hölder ball on the unit cube](goal).
+@isnad1 id=holderba.3h5v.s11.ae5289c86eb3 from=translated src=- shape=65dfa660 vocab=a168427a
+-/
 theorem holderBallOn_unitCube_of_ambient_bounds {d m : ℕ} {s R : ℝ}
     {u : (Fin d → ℝ) → ℝ}
     (hu : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) u)
@@ -385,7 +417,9 @@ theorem holderBallOn_unitCube_of_ambient_bounds {d m : ℕ} {s R : ℝ}
 /-- In [a finite dimension, derivative order, exponent, and nonnegative radius]
 (hyp:d,m,s,R), [the radius is nonnegative](hyp:_hR), and [a response](hyp:u) [belongs](hyp:hu) to the intrinsic unit-cube
 Hölder ball with that radius and [a baseline and amplitude](hyp:b,amp) are
-chosen, [the affine response belongs to the stated enlarged Hölder ball](goal). -/
+chosen, [the affine response belongs to the stated enlarged Hölder ball](goal).
+@isnad1 id=holderba.2h7v.s6.d766e1be74f8 from=translated src=- shape=c6c69dd9 vocab=81b34c95
+-/
 theorem holderBallOn_unitCube_add_const_mul {d m : ℕ} {s R : ℝ}
     {u : (Fin d → ℝ) → ℝ} (_hR : 0 ≤ R)
     (hu : HolderBallOn (unitCube d) m s R u) (b amp : ℝ) :
@@ -450,7 +484,9 @@ theorem holderBallOn_unitCube_add_const_mul {d m : ℕ} {s R : ℝ}
 /-- In [a finite dimension](hyp:d), for
 [a positive smoothness exponent](hyp:β,hβ), [a positive Hölder radius
 independent of bandwidth and center controls every admissible scaled product
-bump on the unit cube](goal). -/
+bump on the unit cube](goal).
+@isnad1 id=other.1h2v.s6.2bc0e2db7249 from=translated src=- shape=f9f5f486 vocab=0827c9c7
+-/
 theorem exists_uniform_scaledProductBump_holderBallOn {d : ℕ}
     (β : ℝ) (hβ : 0 < β) :
     let m := ⌈β⌉₊ - 1
@@ -475,7 +511,9 @@ theorem exists_uniform_scaledProductBump_holderBallOn {d : ℕ}
 /-- In [a finite dimension](hyp:d), for
 [a positive smoothness exponent](hyp:β,hβ), [a positive radius constant yields
 the stated intrinsic unit-cube Hölder-ball guarantee for every baseline,
-amplitude, bandwidth, and center](goal). -/
+amplitude, bandwidth, and center](goal).
+@isnad1 id=other.1h2v.s7.2f1aac37739e from=translated src=- shape=d1651b41 vocab=8d9c11ea
+-/
 theorem exists_scaledProductBump_holderBallOn {d : ℕ}
     (β : ℝ) (hβ : 0 < β) :
     let m := ⌈β⌉₊ - 1

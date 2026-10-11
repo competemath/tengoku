@@ -17,13 +17,17 @@ open MeasureTheory
 open scoped BigOperators
 namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.CosineProjection
 
-/-- Each [normalized cosine mode](hyp:j) is [continuous on the real line](goal). -/
+/-- Each [normalized cosine mode](hyp:j) is [continuous on the real line](goal).
+@isnad1 id=continuo.0h1v.s4.45ec1d99dada from=translated src=- shape=8735051e vocab=45cbdaf7
+-/
 @[fun_prop]
 theorem continuous_cosineBasis (j : ℕ) : Continuous (cosineBasis j) := by
   unfold cosineBasis
   split_ifs <;> fun_prop
 
-/-- Every [finite cosine polynomial](hyp:k,a) is [continuous on the real line](goal). -/
+/-- Every [finite cosine polynomial](hyp:k,a) is [continuous on the real line](goal).
+@isnad1 id=continuo.0h2v.s4.eb7233d125df from=translated src=- shape=13bbe4cc vocab=0ec24630
+-/
 @[fun_prop]
 theorem continuous_cosinePolynomial (k : ℕ) (a : ℕ → ℝ) :
     Continuous (cosinePolynomial k a) := by
@@ -40,6 +44,7 @@ Library search also found the proved neutral result
 `Causalean.Mathlib.Analysis.Approximation.Chebyshev.Jackson.cosine_mode_orthogonality`
 in Jackson/Coefficients. Its period-integral signature may be reused after evenness
 and scaling bridges; the direct interval calculation may require fewer imports.
+@isnad1 id=eq.0h2v.s5.37a58a287129 from=translated src=- shape=7ccea597 vocab=c5761c05
 -/
 theorem cosineBasis_orthonormal (i j : ℕ) :
     (∫ x, cosineBasis i x * cosineBasis j x ∂uniformMeasure) =
@@ -109,7 +114,9 @@ theorem cosineBasis_orthonormal (i j : ℕ) :
     split_ifs <;> norm_num
 
 /-- The residual of a [continuous target](hyp:hf) after rank-k projection has
-[zero coefficient in every retained mode](goal), for an [index below rank](hyp:hj). -/
+[zero coefficient in every retained mode](goal), for an [index below rank](hyp:hj).
+@isnad1 id=eq.2h3v.s6.4c95c8f145e9 from=translated src=- shape=4bf32ae5 vocab=1491b0b2
+-/
 theorem cosineProjection_residual_orthogonal {f : ℝ → ℝ} {k j : ℕ}
     (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1)) (hj : j < k) :
     (∫ x, (f x - cosineProjection k f x) * cosineBasis j x ∂uniformMeasure) = 0 := by
@@ -135,7 +142,9 @@ theorem cosineProjection_residual_orthogonal {f : ℝ → ℝ} {k j : ℕ}
 
 /-- For a [continuous target](hyp:hf) and [arbitrary cosine coefficients](hyp:a),
 [the squared error decomposes into projection error plus squared distance
-from the projection to that polynomial](goal). -/
+from the projection to that polynomial](goal).
+@isnad1 id=eq.1h3v.s7.407c5931e46c from=translated src=- shape=4352d44a vocab=00a01440
+-/
 theorem cosineProjection_pythagoras {f : ℝ → ℝ} (k : ℕ) (a : ℕ → ℝ)
     (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1)) :
     (∫ x, |f x - cosinePolynomial k a x| ^ 2 ∂uniformMeasure) =
@@ -182,7 +191,9 @@ theorem cosineProjection_pythagoras {f : ℝ → ℝ} (k : ℕ) (a : ℕ → ℝ
 
 /-- The projection of a [continuous target](hyp:hf) has [L² error no greater
 than any competitor](goal) that is [continuous on the interval](hyp:hp)
-and [belongs to the same cosine span](hyp:hspan). -/
+and [belongs to the same cosine span](hyp:hspan).
+@isnad1 id=le.3h3v.s6.ca70548e56e8 from=translated src=- shape=710a306f vocab=0ecc7f1b
+-/
 theorem cosineProjection_bestApproximation {f p : ℝ → ℝ} {k : ℕ}
     (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1))
     (hp : ContinuousOn p (Set.Icc (0 : ℝ) 1)) (hspan : InCosineSpan k p) :

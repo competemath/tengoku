@@ -181,7 +181,9 @@ whose [derivative is at most that of the degree-L Chebyshev polynomial, in absol
 real root of that Chebyshev polynomial](hyp:hroots), and [any real base point x](hyp:x), [there is
 a complex polynomial of degree at most L whose modulus at every purely imaginary point i y equals
 the modulus of the Chebyshev polynomial at x + i y, and whose derivative at zero is at least the
-derivative of the original polynomial at x in absolute value](goal). -/
+derivative of the original polynomial at x in absolute value](goal).
+@isnad1 id=ex.3h3v.s9.2ce6862162d8 from=translated src=- shape=1e405ac8 vocab=e5c01f44
+-/
 theorem exists_chebyshevRootReflection
     {L : ℕ} (hL : 0 < L) (Q : Polynomial ℝ) (hQ : Q.natDegree ≤ L)
     (hroots : ∀ z : ℝ,
@@ -420,7 +422,9 @@ private lemma norm_eval_derivative_zero_le_of_left_half_plane_roots
 /-- For [a positive degree L](hyp:hL) and [a complex polynomial](hyp:R) of [degree at most
 L](hyp:hR), if [at every purely imaginary point i y its modulus is at most the modulus of the
 degree-L Chebyshev polynomial at 1 + i y](hyp:hvertical), then [the modulus of its derivative at
-zero is at most the absolute value of the derivative of the Chebyshev polynomial at one](goal). -/
+zero is at most the absolute value of the derivative of the Chebyshev polynomial at one](goal).
+@isnad1 id=le.3h2v.s8.6f8ea817d1fe from=translated src=- shape=6269e939 vocab=e5c01f44
+-/
 theorem norm_eval_derivative_zero_le_chebyshev_endpoint_of_vertical
     {L : ℕ} (hL : 0 < L) (R : Polynomial ℂ) (hR : R.natDegree ≤ L)
     (hvertical : ∀ y : ℝ,
@@ -464,7 +468,9 @@ whose [derivative is at most that of the degree-L Chebyshev polynomial, in absol
 real root of that Chebyshev polynomial](hyp:hroots), at [a point x between −1 and 1](hyp:hx) for
 which [the modulus of the Chebyshev polynomial at x + i y is at most its modulus at 1 + i y for
 every real y](hyp:hvertical), [the derivative of the polynomial at x is at most the absolute value
-of the derivative of the Chebyshev polynomial at one](goal). -/
+of the derivative of the Chebyshev polynomial at one](goal).
+@isnad1 id=le.5h3v.s9.6525fbf244fe from=translated src=- shape=38774e0b vocab=ca47121a
+-/
 theorem abs_eval_derivative_le_chebyshev_endpoint_of_root_control
     {L : ℕ} (hL : 0 < L) (Q : Polynomial ℝ) (hQ : Q.natDegree ≤ L)
     (hroots : ∀ z : ℝ,

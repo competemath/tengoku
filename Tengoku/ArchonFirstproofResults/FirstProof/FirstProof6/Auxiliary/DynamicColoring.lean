@@ -41,7 +41,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 omit [DecidableEq V] in
 /-- For a Hermitian matrix Lhalf over ℝ, if Lhalf * Lhalf * x = 0 then Lhalf * x = 0.
-    Proof: ‖Lhalf x‖² = xᵀ Lhalf² x = xᵀ 0 = 0. -/
+    Proof: ‖Lhalf x‖² = xᵀ Lhalf² x = xᵀ 0 = 0.
+@isnad1 id=eq.2h3v.s7.dd0dc81ba7f6 from=translated src=- shape=f2fc3e78 vocab=12b68fe3
+-/
 lemma hermitian_mulVec_zero_of_sq_zero
     (Lhalf : Matrix V V ℝ) (hLhalf_herm : Lhalf.IsHermitian) (x : V → ℝ)
     (hx : (Lhalf * Lhalf) *ᵥ x = 0) :
@@ -79,7 +81,9 @@ lemma hermitian_mulVec_zero_of_sq_zero
 
 /-- The normalized graph Laplacian equals the projection P = Lhalf * Lhalf_pinv.
     Proof: Lhalf_pinv * (Lhalf * Lhalf) * Lhalf_pinv = (Lhalf_pinv * Lhalf) * (Lhalf * Lhalf_pinv)
-    = P * P = P (using MP4 for commutativity, MP3 for idempotence). -/
+    = P * P = P (using MP4 for commutativity, MP3 for idempotence).
+@isnad1 id=eq.3h4v.s8.7936ed564f9d from=translated src=- shape=b0dfe274 vocab=8d0f2673
+-/
 lemma normalized_laplacian_eq_proj
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Lhalf Lhalf_pinv : Matrix V V ℝ)
@@ -99,7 +103,9 @@ lemma normalized_laplacian_eq_proj
 
 /-- P ≤ I in Loewner order (since P is an orthogonal projection).
     Proof: (I - P) is PSD because (I - P) = (I - P)^2 for idempotent Hermitian P,
-    and X^2 is PSD for any Hermitian X. -/
+    and X^2 is PSD for any Hermitian X.
+@isnad1 id=possemid.2h2v.s6.62b3819b41a9 from=translated src=- shape=a77836bc vocab=40e1d062
+-/
 lemma proj_le_one
     (P : Matrix V V ℝ)
     (hP_herm : P.IsHermitian)
@@ -123,7 +129,9 @@ lemma proj_le_one
 omit [Fintype V] in
 /-- PSD extraction: if the total sum ∑_γ M_γ is bounded by u·I and each M_γ is PSD,
     then each individual M_γ is bounded by u·I.
-    Proof: u·I - M_γ = (u·I - ∑ M_γ') + ∑_{γ'≠γ} M_γ' = PSD + PSD. -/
+    Proof: u·I - M_γ = (u·I - ∑ M_γ') + ∑_{γ'≠γ} M_γ' = PSD + PSD.
+@isnad1 id=possemid.2h5v.s7.bae27bdd96e3 from=translated src=- shape=3df99f17 vocab=e063f62b
+-/
 lemma psd_sub_sum_le {r : ℕ} (M : Fin r → Matrix V V ℝ) (u : ℝ)
     (hM_psd : ∀ γ, (M γ).PosSemidef)
     (h_total : (u • (1 : Matrix V V ℝ) - ∑ γ : Fin r, M γ).PosSemidef) :

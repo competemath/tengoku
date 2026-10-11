@@ -32,19 +32,25 @@ margin `c`, and interval length `T`, it is `T` if `M = 0` and `min T (c / M)` ot
 noncomputable def descentStep (M c T : ℝ) : ℝ :=
   if M = 0 then T else min T (c / M)
 
-/-- With zero curvature bound, the clipped quadratic-model step is the endpoint. -/
+/-- With zero curvature bound, the clipped quadratic-model step is the endpoint.
+@isnad1 id=eq.0h2v.s4.6591cbf4e72a from=translated src=- shape=6d186b5f vocab=d44e1d97
+-/
 @[simp]
 theorem descentStep_of_eq_zero (c T : ℝ) : descentStep 0 c T = T := by
   simp [descentStep]
 
 /-- With a positive curvature bound, the clipped quadratic-model step is the smaller of the
-available interval length and the unconstrained quadratic-model optimizer. -/
+available interval length and the unconstrained quadratic-model optimizer.
+@isnad1 id=eq.1h3v.s5.48349173b475 from=translated src=- shape=b9cc6b98 vocab=0ca1403f
+-/
 theorem descentStep_of_pos {M : ℝ} (hM : 0 < M) (c T : ℝ) :
     descentStep M c T = min T (c / M) := by
   simp [descentStep, hM.ne']
 
 /-- The clipped quadratic-model step is feasible whenever the interval length, slope margin,
-and curvature bound are nonnegative. -/
+and curvature bound are nonnegative.
+@isnad1 id=mem.3h3v.s5.a98125075f71 from=translated src=- shape=0ff656ed vocab=301a84f2
+-/
 theorem descentStep_mem_Icc {M c T : ℝ} (hM : 0 ≤ M) (hc : 0 ≤ c) (hT : 0 ≤ T) :
     descentStep M c T ∈ Icc 0 T := by
   unfold descentStep
@@ -62,7 +68,9 @@ allowance.
 The formal statement is on `[0, T]`. It assumes twice continuous differentiability on that
 closed interval, differentiability at the left endpoint, and a pointwise bound
 `deriv (deriv f) ≤ M` throughout the open interval. Mathlib's Taylor theorem with Lagrange
-remainder supplies an intermediate point, and the pointwise bound controls the remainder. -/
+remainder supplies an intermediate point, and the pointwise bound controls the remainder.
+@isnad1 id=le.4h4v.s8.e517e648c689 from=translated src=- shape=1f73f6a5 vocab=ef59ef0f
+-/
 theorem second_order_upper_bound {f : ℝ → ℝ} {M T : ℝ}
     (hf : ContDiffOn ℝ 2 f (Icc 0 T)) (hf0 : DifferentiableAt ℝ f 0)
     (hM : ∀ t ∈ Ioo 0 T, deriv (deriv f) t ≤ M) {t : ℝ} (ht : t ∈ Icc 0 T) :
@@ -105,7 +113,9 @@ its tangent line at the left endpoint.
 
 This is the zero-curvature specialization of the second-order upper bound. It is useful
 when the caller has concavity along the segment rather than a strictly positive curvature
-constant. -/
+constant.
+@isnad1 id=le.4h3v.s8.7a013be25c27 from=translated src=- shape=3605aeb3 vocab=82ad8f6b
+-/
 theorem first_order_upper_bound {f : ℝ → ℝ} {T : ℝ}
     (hf : ContDiffOn ℝ 2 f (Icc 0 T)) (hf0 : DifferentiableAt ℝ f 0)
     (hM : ∀ t ∈ Ioo 0 T, deriv (deriv f) t ≤ 0) {t : ℝ} (ht : t ∈ Icc 0 T) :
@@ -125,7 +135,9 @@ quadratic-model step lies in `[0, T]`, and the resulting decrease `f(0) − f(st
 
 The conclusion exposes both feasibility of the chosen step and the raw quadratic-model
 gap. This form is intended for callers that want to keep their own constants visible before
-using the simplified closed forms below. -/
+using the simplified closed forms below.
+@isnad1 id=and.7h4v.s8.eaff82e8e9de from=translated src=- shape=a7cf598e vocab=495a111c
+-/
 theorem second_order_descent_gap {f : ℝ → ℝ} {M c T : ℝ} (hT : 0 ≤ T) (hc : 0 ≤ c)
     (hMnn : 0 ≤ M) (hf : ContDiffOn ℝ 2 f (Icc 0 T)) (hf0 : DifferentiableAt ℝ f 0)
     (hM : ∀ t ∈ Ioo 0 T, deriv (deriv f) t ≤ M) (hslope : deriv f 0 ≤ -c) :
@@ -147,7 +159,9 @@ linear descent term.
 
 The selected step is `min T (c / M)`, so the guaranteed decrease is at least
 `(c / 2) * min T (c / M)`. The factor one half is the standard smooth-optimization
-constant from optimizing a quadratic upper model. -/
+constant from optimizing a quadratic upper model.
+@isnad1 id=le.7h4v.s8.dbdff85f2df0 from=translated src=- shape=49b6aff6 vocab=4f86717f
+-/
 theorem second_order_descent_gap_min {f : ℝ → ℝ} {M c T : ℝ} (hT : 0 ≤ T) (hc : 0 ≤ c)
     (hMpos : 0 < M) (hf : ContDiffOn ℝ 2 f (Icc 0 T)) (hf0 : DifferentiableAt ℝ f 0)
     (hM : ∀ t ∈ Ioo 0 T, deriv (deriv f) t ≤ M) (hslope : deriv f 0 ≤ -c) :
@@ -165,7 +179,9 @@ theorem second_order_descent_gap_min {f : ℝ → ℝ} {M c T : ℝ} (hT : 0 ≤
 /-- With zero curvature, the endpoint step gives the full linear descent guaranteed by the
 negative initial slope.
 
-This is the closed-form descent bound for the concave or affine-along-the-segment case. -/
+This is the closed-form descent bound for the concave or affine-along-the-segment case.
+@isnad1 id=le.5h3v.s8.248b35d435f7 from=translated src=- shape=3e6b6a13 vocab=c08e1bae
+-/
 theorem first_order_descent_gap {f : ℝ → ℝ} {c T : ℝ} (hT : 0 ≤ T)
     (hf : ContDiffOn ℝ 2 f (Icc 0 T)) (hf0 : DifferentiableAt ℝ f 0)
     (hM : ∀ t ∈ Ioo 0 T, deriv (deriv f) t ≤ 0) (hslope : deriv f 0 ≤ -c) :
@@ -181,7 +197,9 @@ uniform half-linear decrease.
 
 For zero curvature the sharper endpoint bound is `c * T`; for positive curvature the
 selected step is `min T (c / M)`. This theorem packages the common guarantee together with
-feasibility of the step. -/
+feasibility of the step.
+@isnad1 id=and.7h4v.s8.fd9f1407ba85 from=translated src=- shape=def933b7 vocab=dacca154
+-/
 theorem second_order_descent_gap_half {f : ℝ → ℝ} {M c T : ℝ} (hT : 0 ≤ T) (hc : 0 ≤ c)
     (hMnn : 0 ≤ M) (hf : ContDiffOn ℝ 2 f (Icc 0 T)) (hf0 : DifferentiableAt ℝ f 0)
     (hM : ∀ t ∈ Ioo 0 T, deriv (deriv f) t ≤ M) (hslope : deriv f 0 ≤ -c) :

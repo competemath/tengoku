@@ -36,7 +36,9 @@ noncomputable def offsetPeelingConstantC (c θ : ℝ) : ℝ :=
   (1 - θ) * (θ / c) ^ (θ / (1 - θ))
 
 /-- Generalized offset peeling at coefficient `c`: for `0 < c`, `0 < θ < 1`,
-`max 0 (a·t^θ − c·t) ≤ offsetPeelingConstantC c θ · a^{1/(1−θ)}` (weighted AM-GM). -/
+`max 0 (a·t^θ − c·t) ≤ offsetPeelingConstantC c θ · a^{1/(1−θ)}` (weighted AM-GM).
+@isnad1 id=le.5h4v.s7.28d23059837e from=translated src=- shape=c6285722 vocab=9be607d3
+-/
 lemma offset_peeling_coeff
     (c θ a t : ℝ) (hc_pos : 0 < c) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (ha : 0 ≤ a) (ht : 0 ≤ t) :
@@ -92,7 +94,9 @@ lemma offset_peeling_coeff
   exact max_le (by simpa using hR_nonneg) (by linarith)
 
 /-- The general offset-peeling constant is nonnegative when the offset is positive and the
-exponent lies between zero and one. -/
+exponent lies between zero and one.
+@isnad1 id=le.3h2v.s5.5895f5639b58 from=translated src=- shape=594a9676 vocab=de6ef195
+-/
 lemma offsetPeelingConstantC_nonneg
     (c θ : ℝ) (hc_nonneg : 0 ≤ c) (hθ_nonneg : 0 ≤ θ) (hθ_le : θ ≤ 1) :
     0 ≤ offsetPeelingConstantC c θ := by
@@ -102,7 +106,9 @@ lemma offsetPeelingConstantC_nonneg
   exact mul_nonneg hsub (Real.rpow_nonneg hbase _)
 
 /-- The general offset-peeling bound remains valid at exponent zero by the same constant
-formula. -/
+formula.
+@isnad1 id=le.5h4v.s7.8da1042653e7 from=translated src=- shape=f860b6dd vocab=9be607d3
+-/
 lemma offset_peeling_coeff_nonneg_theta
     (c θ a t : ℝ) (hc_pos : 0 < c) (hθ_nonneg : 0 ≤ θ) (hθ_lt : θ < 1)
     (ha : 0 ≤ a) (ht : 0 ≤ t) :
@@ -121,7 +127,9 @@ lemma offset_peeling_coeff_nonneg_theta
       (lt_of_le_of_ne hθ_nonneg (Ne.symm hθ_zero)) hθ_lt ha ht
 
 /-- The offset-peeling constant for the quarter-offset case is nonnegative when the exponent
-lies between zero and one. -/
+lies between zero and one.
+@isnad1 id=le.2h1v.s5.2ecb8dffd333 from=translated src=- shape=05b24c01 vocab=7fc65bde
+-/
 lemma offsetPeelingConstant_nonneg
     (θ : ℝ) (hθ_nonneg : 0 ≤ θ) (hθ_le : θ ≤ 1) :
     0 ≤ offsetPeelingConstant θ := by
@@ -131,7 +139,9 @@ lemma offsetPeelingConstant_nonneg
 /-- **Deterministic Young/AM-GM peeling for the quarter-offset.** For [an exponent strictly
 between zero and one](hyp:hθ_pos,hθ_lt) and [nonnegative coefficients `a` and `t`](hyp:ha,ht),
 [the positive part of `a·t^θ − t/4` is at most the offset-peeling constant times `a` raised to
-the power `1/(1−θ)`](goal). -/
+the power `1/(1−θ)`](goal).
+@isnad1 id=le.4h3v.s7.84145a742d62 from=translated src=- shape=db0d447b vocab=6ccc4ec8
+-/
 lemma offset_peeling
     (θ a t : ℝ) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (ha : 0 ≤ a) (ht : 0 ≤ t) :
@@ -141,7 +151,9 @@ lemma offset_peeling
     offset_peeling_coeff (1 / 4) θ a t (by norm_num) hθ_pos hθ_lt ha ht
 
 /-- The quarter-offset peeling bound remains valid at exponent zero by continuity of the
-constant formula. -/
+constant formula.
+@isnad1 id=le.4h3v.s7.ebe014cd9d31 from=translated src=- shape=35432fdb vocab=6ccc4ec8
+-/
 lemma offset_peeling_nonneg_theta
     (θ a t : ℝ) (hθ_nonneg : 0 ≤ θ) (hθ_lt : θ < 1)
     (ha : 0 ≤ a) (ht : 0 ≤ t) :
@@ -152,7 +164,9 @@ lemma offset_peeling_nonneg_theta
       (1 / 4) θ a t (by norm_num) hθ_nonneg hθ_lt ha ht
 
 /-- Split a clipped two-term offset across its summands:
-`max 0 (a − 2r) ≤ max 0 (b − r) + max 0 (c − r)` when `a ≤ b + c`. -/
+`max 0 (a − 2r) ≤ max 0 (b − r) + max 0 (c − r)` when `a ≤ b + c`.
+@isnad1 id=le.1h4v.s6.cf85dccbca65 from=translated src=- shape=f2c98769 vocab=765a5590
+-/
 lemma max_two_split (a b c r : ℝ) (h : a ≤ b + c) :
     max 0 (a - 2 * r) ≤ max 0 (b - r) + max 0 (c - r) := by
   have hb : b - r ≤ max 0 (b - r) := le_max_right _ _

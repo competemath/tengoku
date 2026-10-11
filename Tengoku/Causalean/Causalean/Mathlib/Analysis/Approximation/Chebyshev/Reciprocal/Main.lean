@@ -20,7 +20,9 @@ open Causalean.Mathlib.Analysis.FinitePolynomialAlternationDuality
 
 /-- A [positive lower endpoint](hyp:a,ha), [strictly larger upper endpoint](hyp:b,hab), and [degree
 bound m](hyp:m) imply [that the explicit reciprocal approximating polynomial approximates the
-function 1 / z uniformly on the interval within the reciprocal approximation error](goal). -/
+function 1 / z uniformly on the interval within the reciprocal approximation error](goal).
+@isnad1 id=le.2h3v.s5.f282e89ec57f from=translated src=- shape=dcbd1b05 vocab=4bf2c183
+-/
 theorem reciprocalApproxPoly_upper {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) :
     uniformApproxError (fun z : ℝ => z⁻¹) a b (reciprocalApproxPoly a b m) ≤
@@ -72,7 +74,9 @@ theorem reciprocalApproxPoly_upper {a b : ℝ}
 /-- A [positive lower endpoint](hyp:a,ha), [strictly larger upper
 endpoint](hyp:b,hab), and [degree bound](hyp:m) imply [the existence of
 ordered points with alternating residual values for the explicit reciprocal
-approximant](goal). -/
+approximant](goal).
+@isnad1 id=ex.2h3v.s7.a7ee50c110e8 from=translated src=- shape=80e60fca vocab=d31995f6
+-/
 theorem reciprocalApproxPoly_alternates {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) :
     ∃ nodes : Fin (m + 2) → ℝ,
@@ -101,7 +105,9 @@ theorem reciprocalApproxPoly_alternates {a b : ℝ}
 /-- A [positive lower endpoint](hyp:a,ha), [strictly larger upper endpoint](hyp:b,hab), and [degree
 bound m](hyp:m) imply [that the best uniform error in approximating 1 / z on the interval by
 polynomials of degree at most m equals exactly 2 ρ^m divided by (b − a)(v² − 1), where v = (a + b)
-/ (b − a) and ρ = v minus the square root of v² − 1](goal). -/
+/ (b − a) and ρ = v minus the square root of v² − 1](goal).
+@isnad1 id=eq.2h3v.s7.a0498b3ef0a0 from=translated src=- shape=fab28365 vocab=d757e9b0
+-/
 theorem bestUniformApproxError_reciprocal {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) :
     bestUniformApproxError (fun z : ℝ => z⁻¹) a b m =
@@ -127,7 +133,9 @@ theorem bestUniformApproxError_reciprocal {a b : ℝ}
   exact hbest
 
 /-- A [natural number at least two](hyp:K,hK) implies [the exact degree-matched
-reciprocal approximation error on the interval from one to its square](goal). -/
+reciprocal approximation error on the interval from one to its square](goal).
+@isnad1 id=eq.1h1v.s7.49387351d836 from=translated src=- shape=c07449ad vocab=d99229e7
+-/
 theorem bestUniformApproxError_reciprocal_one_sq
     (K : ℕ) (hK : 2 ≤ K) :
     bestUniformApproxError (fun z : ℝ => z⁻¹) 1 ((K : ℝ) ^ 2) K =

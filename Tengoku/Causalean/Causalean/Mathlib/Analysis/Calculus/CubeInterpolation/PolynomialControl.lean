@@ -96,7 +96,9 @@ private theorem tensor_eval_sum_deriv {d m j : ℕ} (p : MvPolynomial (Fin d) �
 multivariate polynomial of degree at most m in each variable that is bounded in absolute value by a
 nonnegative B at every point of the fixed tensor grid has all its coordinate partial derivatives of
 order at most m bounded in absolute value by C times B throughout the closed normalized
-cube](goal). -/
+cube](goal).
+@isnad1 id=ex.0h2v.s8.4c305920977a from=translated src=- shape=79e535ac vocab=aa8d496d
+-/
 theorem tensor_polynomial_deriv_bound (d m : ℕ) :
     ∃ C : ℝ, 0 < C ∧
       ∀ (p : MvPolynomial (Fin d) ℝ) (B : ℝ),

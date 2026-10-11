@@ -47,7 +47,9 @@ noncomputable def ofPolynomial (p : T → MvPolynomial S ℝ) : RationalMap S T 
   den := fun _ => 1
 
 /-- For a [polynomial coordinate map](hyp:p) and [source assignment](hyp:x), the
-[denominator-one rational representation has ordinary polynomial evaluation](goal). -/
+[denominator-one rational representation has ordinary polynomial evaluation](goal).
+@isnad1 id=eq.0h4v.s6.6f35d6fae91d from=translated src=- shape=8f647c4f vocab=a2174902
+-/
 theorem eval_ofPolynomial (p : T → MvPolynomial S ℝ) (x : S → ℝ) :
     (ofPolynomial p).eval x = fun t => MvPolynomial.eval x (p t) := by
   funext t
@@ -60,7 +62,9 @@ noncomputable def equalityPolynomial (f g : RationalMap S T) (t : T) : MvPolynom
 
 /-- Given [two rational maps](hyp:f,g), [a source assignment](hyp:x), [an output coordinate](hyp:t),
 and [nonzero first and second denominators](hyp:hf,hg), the [rational values agree exactly when
-the cleared equality polynomial vanishes](goal). -/
+the cleared equality polynomial vanishes](goal).
+@isnad1 id=iff.2h6v.s8.251dc3a09f4a from=translated src=- shape=29551431 vocab=8acc5b9d
+-/
 theorem eval_eq_iff_equalityPolynomial_eq_zero (f g : RationalMap S T)
     (x : S → ℝ) (t : T)
     (hf : MvPolynomial.eval x (f.den t) ≠ 0)
@@ -79,7 +83,9 @@ noncomputable def conjunctionPolynomial [Fintype T]
   ∑ t, (p t) ^ 2
 
 /-- For a [finite polynomial family](hyp:p) and [source assignment](hyp:x), the [conjunction
-polynomial vanishes exactly when every constituent polynomial vanishes](goal). -/
+polynomial vanishes exactly when every constituent polynomial vanishes](goal).
+@isnad1 id=iff.0h4v.s7.32925c3e437d from=translated src=- shape=d3845a24 vocab=2c7854b2
+-/
 theorem eval_conjunctionPolynomial_eq_zero_iff [Fintype T]
     (p : T → MvPolynomial S ℝ) (x : S → ℝ) :
     MvPolynomial.eval x (conjunctionPolynomial p) = 0 ↔
@@ -97,7 +103,9 @@ theorem eval_conjunctionPolynomial_eq_zero_iff [Fintype T]
     simp [h t]
 
 /-- Given a [finite polynomial family](hyp:p), [source assignment](hyp:x), [coordinate](hyp:t),
-and [a nonzero value at that coordinate](hyp:h), the [conjunction polynomial is nonzero](goal). -/
+and [a nonzero value at that coordinate](hyp:h), the [conjunction polynomial is nonzero](goal).
+@isnad1 id=ne.1h5v.s7.1dfb77de5e74 from=translated src=- shape=fbcaef27 vocab=2c7854b2
+-/
 theorem conjunctionPolynomial_ne_zero_of_witness [Fintype T]
     (p : T → MvPolynomial S ℝ) (x : S → ℝ) (t : T)
     (h : MvPolynomial.eval x (p t) ≠ 0) :
@@ -115,7 +123,9 @@ noncomputable def unionConjunctionPolynomial [Fintype B] [Fintype T]
   ∏ b, conjunctionPolynomial (p b)
 
 /-- For a [finite family of finite polynomial systems](hyp:p) and [source assignment](hyp:x), the
-[union certificate vanishes exactly when one branch vanishes coordinatewise](goal). -/
+[union certificate vanishes exactly when one branch vanishes coordinatewise](goal).
+@isnad1 id=iff.0h5v.s7.dd4e6b198633 from=translated src=- shape=923b0adf vocab=84238271
+-/
 theorem eval_unionConjunctionPolynomial_eq_zero_iff [Fintype B] [Fintype T]
     (p : B → T → MvPolynomial S ℝ) (x : S → ℝ) :
     MvPolynomial.eval x (unionConjunctionPolynomial p) = 0 ↔
@@ -129,7 +139,9 @@ theorem eval_unionConjunctionPolynomial_eq_zero_iff [Fintype B] [Fintype T]
 
 /-- Given a [finite polynomial-system family](hyp:p), [branchwise witness assignments](hyp:witness),
 [branchwise coordinates](hyp:coordinate), and [nonzero witness values](hyp:h), the [union
-certificate is nonzero](goal). -/
+certificate is nonzero](goal).
+@isnad1 id=ne.1h6v.s7.62c1f31ff8b6 from=translated src=- shape=a03ada27 vocab=84238271
+-/
 theorem unionConjunctionPolynomial_ne_zero_of_witnesses [Fintype B] [Fintype T]
     (p : B → T → MvPolynomial S ℝ)
     (witness : B → S → ℝ) (coordinate : B → T)
@@ -143,7 +155,9 @@ theorem unionConjunctionPolynomial_ne_zero_of_witnesses [Fintype B] [Fintype T]
 /-- Given two finite-coordinate rational maps [f](hyp:f) and [g](hyp:g) on a common
 [domain](hyp:D) where [the denominators of the first map do not vanish](hyp:hf) and
 [the denominators of the second map do not vanish](hyp:hg), the [whole-output equality condition is
-one real polynomial zero locus](goal). -/
+one real polynomial zero locus](goal).
+@isnad1 id=eq.2h5v.s6.a31155955a14 from=translated src=- shape=285a9ae1 vocab=91289fb1
+-/
 theorem rationalMap_eq_locus [Fintype T]
     (f g : RationalMap S T) (D : Set (S → ℝ))
     (hf : f.DefinedOn D) (hg : g.DefinedOn D) :
@@ -167,7 +181,9 @@ theorem rationalMap_eq_locus [Fintype T]
 
 /-- Given [finite families of rational maps](hyp:f,g) on a [common domain](hyp:D), with [all first
 and second denominators nonvanishing](hyp:hf,hg), the [union of their equality conditions is one
-polynomial zero locus](goal). -/
+polynomial zero locus](goal).
+@isnad1 id=eq.2h6v.s7.de23a0b82696 from=translated src=- shape=39b975e1 vocab=6794d6c5
+-/
 theorem rationalMap_eq_union_locus [Fintype B] [Fintype T]
     (f g : B → RationalMap S T) (D : Set (S → ℝ))
     (hf : ∀ b, (f b).DefinedOn D) (hg : ∀ b, (g b).DefinedOn D) :
@@ -213,7 +229,9 @@ noncomputable def polynomialMatrixRationalMap
   RationalMap.ofPolynomial (fun ij => A ij.1 ij.2)
 
 /-- For a [polynomial matrix](hyp:A) and [source assignment](hyp:x), the [rational-matrix
-representation agrees with entrywise polynomial evaluation](goal). -/
+representation agrees with entrywise polynomial evaluation](goal).
+@isnad1 id=eq.0h5v.s5.6bb24da0bbc8 from=translated src=- shape=ce3f3aaf vocab=77f57af5
+-/
 theorem polynomialMatrixRationalMap_eval
     (A : Matrix T U (MvPolynomial S ℝ)) (x : S → ℝ) :
     (polynomialMatrixRationalMap A).evalMatrix x = evalPolynomialMatrix A x := by
@@ -229,7 +247,9 @@ noncomputable def polynomialMatrixInverseRationalMap [Fintype T] [DecidableEq T]
   den := fun _ => A.det
 
 /-- Given a [square polynomial matrix](hyp:A), [source assignment](hyp:x), and [nonzero evaluated
-determinant](hyp:hdet), the [adjugate-over-determinant map evaluates to the matrix inverse](goal). -/
+determinant](hyp:hdet), the [adjugate-over-determinant map evaluates to the matrix inverse](goal).
+@isnad1 id=eq.1h4v.s7.6081e373a85f from=translated src=- shape=bd224785 vocab=2ffaafc3
+-/
 theorem polynomialMatrixInverseRationalMap_eval [Fintype T] [DecidableEq T]
     (A : Matrix T T (MvPolynomial S ℝ)) (x : S → ℝ)
     (hdet : MvPolynomial.eval x A.det ≠ 0) :
@@ -250,7 +270,9 @@ theorem polynomialMatrixInverseRationalMap_eval [Fintype T] [DecidableEq T]
   · simp [Ring.inverse_eq_inv, Matrix.smul_apply, div_eq_mul_inv, mul_comm]
 
 /-- Given a [square polynomial matrix](hyp:A), [domain](hyp:D), and [a nowhere-vanishing evaluated
-determinant](hyp:hdet), the [inverse representation is defined on the domain](goal). -/
+determinant](hyp:hdet), the [inverse representation is defined on the domain](goal).
+@isnad1 id=definedo.1h4v.s7.58f7340baed7 from=translated src=- shape=11cc22ec vocab=42d3423a
+-/
 theorem polynomialMatrixInverseRationalMap_definedOn [Fintype T] [DecidableEq T]
     (A : Matrix T T (MvPolynomial S ℝ)) (D : Set (S → ℝ))
     (hdet : ∀ x ∈ D, MvPolynomial.eval x A.det ≠ 0) :
@@ -269,7 +291,9 @@ noncomputable def renameSource (f : RationalMap S T) (e : S → U) : RationalMap
   den := fun t => MvPolynomial.rename e (f.den t)
 
 /-- For a [rational map](hyp:f), [coordinate renaming](hyp:e), and [renamed-source assignment](hyp:x),
-the [renamed map evaluates as the original map on the pulled-back assignment](goal). -/
+the [renamed map evaluates as the original map on the pulled-back assignment](goal).
+@isnad1 id=eq.0h6v.s5.a0de74d3bb2a from=translated src=- shape=199389d4 vocab=0c641500
+-/
 theorem eval_renameSource (f : RationalMap S T) (e : S → U) (x : U → ℝ) :
     (f.renameSource e).eval x = f.eval (x ∘ e) := by
   funext t
@@ -294,7 +318,9 @@ def sumProductDomain (D : Set (S → ℝ)) (E : Set (U → ℝ)) : Set ((S ⊕ U
 
 /-- Given finite-coordinate rational maps [f](hyp:f) and [g](hyp:g) on [domains](hyp:D,E), with
 [nonvanishing denominators for the first map](hyp:hf) and [the second map](hyp:hg), the [pairs of
-parameters at which their images meet form one polynomial zero locus](goal). -/
+parameters at which their images meet form one polynomial zero locus](goal).
+@isnad1 id=eq.2h7v.s7.aab4b9f1f567 from=translated src=- shape=36c2005e vocab=31c39d61
+-/
 theorem rationalMap_imageIntersection_locus [Fintype T]
     (f : RationalMap S T) (g : RationalMap U T)
     (D : Set (S → ℝ)) (E : Set (U → ℝ))
@@ -322,7 +348,9 @@ theorem rationalMap_imageIntersection_locus [Fintype T]
 
 /-- Given [rational matrix maps](hyp:f,g) on [domains](hyp:D,E), with [nonvanishing denominators
 for both maps](hyp:hf,hg), the [parameter pairs at which their matrix images meet form one
-polynomial zero locus](goal). -/
+polynomial zero locus](goal).
+@isnad1 id=eq.2h8v.s7.99f7b97c21a5 from=translated src=- shape=dc9a4e6c vocab=639fec68
+-/
 theorem rationalMatrixMap_imageIntersection_locus [Fintype R] [Fintype C]
     (f : RationalMatrixMap S R C) (g : RationalMatrixMap U R C)
     (D : Set (S → ℝ)) (E : Set (U → ℝ))

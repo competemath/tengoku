@@ -19,7 +19,9 @@ namespace Causalean.Mathlib.Analysis.RealInterpolation
 
 /-- [A nonnegative extended measurable scale function](hyp:F,hF), [a positive
 dilation](hyp:c,hc), and [an exponent](hyp:θ) satisfy [the weighted dilation identity](goal).
-Only measurability on the positive half-line is required; infinite integrals are allowed. -/
+Only measurability on the positive half-line is required; infinite integrals are allowed.
+@isnad1 id=eq.2h3v.s7.bafe846f7eac from=translated src=- shape=5f93da93 vocab=b897e6fd
+-/
 theorem lintegral_weighted_dilation (F : ℝ → ℝ≥0∞)
     (hF : Measurable (Set.indicator (Ioi (0 : ℝ)) F))
     (c : ℝ) (hc : 0 < c) (θ : ℝ) :

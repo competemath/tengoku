@@ -30,7 +30,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
     where P = (K^{1/2}·U^{1/2})·(K^{1/2}·U^{1/2})ᴴ is PSD with tr(P) = tr(B·U²).
     The proof uses the conjugation identity:
     (U⁻¹ - B)⁻¹ = U^{1/2}·(I - K)⁻¹·U^{1/2}
-    and the decomposition (I-K)⁻¹ = I + K·(I-K)⁻¹ with K commuting with (I-K)⁻¹. -/
+    and the decomposition (I-K)⁻¹ = I + K·(I-K)⁻¹ with K commuting with (I-K)⁻¹.
+@isnad1 id=le.4h3v.s8.03e5961c9ea6 from=translated src=- shape=972e2390 vocab=070e6448
+-/
 lemma psd_resolvent_trace_bound
     (U B : Matrix V V ℝ)
     (hU : U.PosDef) (hB : B.PosSemidef)

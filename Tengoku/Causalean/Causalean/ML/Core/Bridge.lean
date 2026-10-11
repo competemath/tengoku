@@ -36,7 +36,9 @@ def imageClass {Θ X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     exact hmeas θ hθ
 
 /-- A parametric empirical-risk minimizer pushes forward to an extensional
-empirical-risk minimizer over the realized hypothesis class. -/
+empirical-risk minimizer over the realized hypothesis class.
+@isnad1 id=iserm.2h8v.s6.36d9b330a2fe from=translated src=- shape=2efbe923 vocab=7f12bc7a
+-/
 theorem isERMP_to_extensional {ι Θ X Y : Type*} [Fintype ι] [Nonempty ι]
     [MeasurableSpace X] [MeasurableSpace Y]
     (M : Predictor Θ X Y) (loss : Loss Y) (S : ι → X × Y)
@@ -57,7 +59,9 @@ measurable](hyp:hmeas), [the parameter `θhat` is itself admissible](hyp:hmem),
 Then [the predictor `M.predict θhat` is a population-risk minimizer over the
 hypothesis class realized by `M`'s image](goal): a parametric population-risk
 minimizer pushes forward to an extensional minimizer over the realized function
-class. -/
+class.
+@isnad1 id=ispopula.4h7v.s7.422708ef2f9d from=translated src=- shape=7fd53917 vocab=2cc50a64
+-/
 theorem populationTarget_pushforward {Θ X Y : Type*}
     [MeasurableSpace X] [MeasurableSpace Y]
     (M : Predictor Θ X Y) (loss : Loss Y) (P : Measure (X × Y))

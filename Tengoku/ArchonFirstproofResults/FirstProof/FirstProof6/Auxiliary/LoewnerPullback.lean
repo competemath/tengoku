@@ -39,7 +39,9 @@ infrastructure needed. -/
 
 /-- Sub-lemma: If L^{1/2} is a Hermitian matrix with L^{1/2} * L^{1/2} = L (on the relevant
     subspace), and M ≼ u*I, then L^{1/2} * M * L^{1/2} ≼ u * L.
-    This is the key pullback that converts barrier domination into Laplacian domination. -/
+    This is the key pullback that converts barrier domination into Laplacian domination.
+@isnad1 id=possemid.3h5v.s8.2cf7423381d0 from=translated src=- shape=66994453 vocab=f08ad19a
+-/
 lemma sqrt_pullback_loewner
     (L : Matrix V V ℝ)
     (Lhalf : Matrix V V ℝ)

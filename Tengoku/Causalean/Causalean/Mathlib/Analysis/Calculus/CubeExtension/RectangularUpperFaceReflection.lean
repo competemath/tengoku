@@ -40,7 +40,9 @@ the box's right collar in coordinate i](goal). The constant depends only on the
 box, m, s and i.
 
 Reflect coordinate `i` through the box midpoint, apply the lower-face
-reflection theorem to the reversed box, and transport the result back. -/
+reflection theorem to the reversed box, and transport the result back.
+@isnad1 id=ex.3h6v.s7.7fdcdc749c47 from=translated src=- shape=f86158e5 vocab=b54fba2a
+-/
 theorem exists_rectRightFaceReflection_holder_constant {d : ℕ}
     (lo hi : Fin d → ℝ) (m : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1)

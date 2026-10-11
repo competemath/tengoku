@@ -35,7 +35,9 @@ namespace DAG
 variable (G : DAG (SWIGNode N))
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [taking the ancestral closure of a
-vertex set](hyp:S) and then closing it again [leaves that closure unchanged](goal). -/
+vertex set](hyp:S) and then closing it again [leaves that closure unchanged](goal).
+@isnad1 id=eq.0h3v.s5.ee266b9936e3 from=translated src=- shape=925fa903 vocab=cc569c8e
+-/
 theorem ancestralSet_idem {V : Type*} [DecidableEq V] [Fintype V]
     (G : DAG V) (S : Finset V) :
     G.ancestralSet (G.ancestralSet S) = G.ancestralSet S := by
@@ -61,7 +63,9 @@ namespace SWIGGraph
 variable (G : SWIGGraph N)
 
 /-- In [a finite single-world intervention graph](hyp:N,G), [an observed
-vertex](hyp:v,hv) [does not belong to the fixed intervention set](goal). -/
+vertex](hyp:v,hv) [does not belong to the fixed intervention set](goal).
+@isnad1 id=not.1h3v.s5.e46cf3e7595f from=translated src=- shape=fc0e9f06 vocab=344dd1f6
+-/
 lemma not_mem_fixed_of_mem_observed {v : SWIGNode N}
     (hv : v ∈ G.observed) : v ∉ G.fixed := by
   intro hfix
@@ -254,7 +258,9 @@ and conditioning sets, observed endpoints, a walk, and a selected walk vertex]
 [the endpoints belong to their sets](hyp:hxX,hyY), [the walk is active after conditioning
 on both the given and fixed vertices](hyp:hact),
 [it has the stated endpoints](hyp:hhead,hlast), and [the selected vertex lies on it](hyp:hv),
-then [that vertex is not fixed](goal). -/
+then [that vertex is not fixed](goal).
+@isnad1 id=not.8h10v.s8.098944d974cc from=translated src=- shape=d71a752f vocab=7b608168
+-/
 lemma activeWalk_node_not_fixed
     {R X Y Z : Finset (SWIGNode N)} {x y v : SWIGNode N} {p : List (SWIGNode N)}
     (hX : X ⊆ R ∩ G.observed) (hY : Y ⊆ R ∩ G.observed)
@@ -320,7 +326,9 @@ induced support, and uses the extra fixed-node conditioning to rule out active
 walks that pass through fixed roots. The remaining bookkeeping is to translate
 each surviving ambient edge into the induced edge relation, including collider
 activation witnesses whose directed descendant paths remain inside the
-ancestral support. -/
+ancestral support.
+@isnad1 id=dsep.5h6v.s8.065e1802486d from=translated src=- shape=2c3920f5 vocab=9a4986e8
+-/
 theorem dSep_union_fixed_of_induce_dSep
     (R X Y Z : Finset (SWIGNode N))
     (hX : X ⊆ R ∩ G.observed) (hY : Y ⊆ R ∩ G.observed)

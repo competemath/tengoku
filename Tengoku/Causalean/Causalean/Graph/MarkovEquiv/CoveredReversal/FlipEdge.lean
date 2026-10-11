@@ -55,24 +55,32 @@ def flipRel (a b : V) : V → V → Prop :=
 
 variable {G}
 
-/-- A `flipMinus`-edge is in particular a `G`-edge. -/
+/-- A `flipMinus`-edge is in particular a `G`-edge.
+@isnad1 id=edge.1h6v.s5.90342ead9cb4 from=translated src=- shape=9914ccb2 vocab=c0eda245
+-/
 theorem flipMinus_le {a b u w : V} (h : G.flipMinus a b u w) : G.edge u w := h.1
 
-/-- A directed `flipMinus`-path strictly increases the topological order. -/
+/-- A directed `flipMinus`-path strictly increases the topological order.
+@isnad1 id=lt.1h6v.s5.bc53e467c9aa from=translated src=- shape=67a1a60e vocab=c9be86ad
+-/
 theorem topoOrder_lt_of_flipMinus_transGen {a b u w : V}
     (h : Relation.TransGen (G.flipMinus a b) u w) : G.topoOrder u < G.topoOrder w := by
   induction h with
   | single he => exact G.topoOrder_lt _ _ he.1
   | tail _ he ih => exact lt_trans ih (G.topoOrder_lt _ _ he.1)
 
-/-- A covered edge is genuinely an edge `a → b`, so `a ≠ b`. -/
+/-- A covered edge is genuinely an edge `a → b`, so `a ≠ b`.
+@isnad1 id=ne.1h4v.s4.d8484b3112fe from=translated src=- shape=f0be68d4 vocab=7d6035a6
+-/
 theorem IsCoveredEdge.ne {a b : V} (h : G.IsCoveredEdge a b) : a ≠ b := by
   rintro rfl; exact G.irrefl _ h.1
 
 /-- **Reversing a covered edge keeps the graph acyclic.** The transitive closure of the
 flipped relation is irreflexive. Key step (AMP Lemma 3.1): a directed `G`-path `a ⇝ b` of
 length ≥ 2 would end at a parent `c ≠ a` of `b`, hence (covered) a parent of `a`, closing a
-`G`-cycle; so no such detour exists and the single reversal introduces no cycle. -/
+`G`-cycle; so no such detour exists and the single reversal introduces no cycle.
+@isnad1 id=not.1h5v.s5.32afcde1227b from=translated src=- shape=580b1d92 vocab=f355ed7b
+-/
 theorem flipRel_acyclic {a b : V} (hcov : G.IsCoveredEdge a b) :
     ∀ v, ¬ Relation.TransGen (G.flipRel a b) v v := by
   -- last-step destructor for a transitive-closure path
@@ -132,13 +140,17 @@ noncomputable def flipEdge {a b : V} (hcov : G.IsCoveredEdge a b) : DAG V :=
   DAG.ofAcyclic (G.flipRel a b) (flipRel_acyclic hcov)
 
 /-- In the graph obtained by reversing a covered edge, the edges are exactly the old edges
-except for deleting `a → b` and adding `b → a`. -/
+except for deleting `a → b` and adding `b → a`.
+@isnad1 id=iff.1h6v.s6.84956a432730 from=translated src=- shape=bb0032dc vocab=61c726f4
+-/
 @[simp] theorem flipEdge_edge {a b : V} (hcov : G.IsCoveredEdge a b) (u w : V) :
     (flipEdge hcov).edge u w ↔ (G.edge u w ∧ ¬ (u = a ∧ w = b)) ∨ (u = b ∧ w = a) := by
   rfl
 
 /-- **Reversing a covered edge preserves the skeleton.** The undirected adjacency is
-unchanged: only the orientation of the single edge `a — b` flips. -/
+unchanged: only the orientation of the single edge `a — b` flips.
+@isnad1 id=sameskel.1h4v.s5.cdd85cd700d4 from=translated src=- shape=7856db1c vocab=41bc1f50
+-/
 theorem flipEdge_sameSkeleton {a b : V} (hcov : G.IsCoveredEdge a b) :
     SameSkeleton G (flipEdge hcov) := by
   intro u w
@@ -162,7 +174,9 @@ between them is covered](hyp:hcov), then [reversing that edge preserves every un
 collider](goal).
 
 **Reversing a covered edge preserves the immoralities.** Because `a` and `b` share all
-other parents, no v-structure is created or destroyed by the single reversal. -/
+other parents, no v-structure is created or destroyed by the single reversal.
+@isnad1 id=sameimmo.1h4v.s5.a5aa118b2c67 from=translated src=- shape=7856db1c vocab=ddd54032
+-/
 theorem flipEdge_sameImmoralities {a b : V} (hcov : G.IsCoveredEdge a b) :
     SameImmoralities G (flipEdge hcov) := by
   have hU : ∀ x y, G.UAdj x y ↔ (flipEdge hcov).UAdj x y := flipEdge_sameSkeleton hcov

@@ -24,7 +24,9 @@ omit [DecidableEq ι] in
 /-- If [the factor jets J of a finite index set I satisfy the factor envelopes at a point
 (a, u)](hyp:I,J,a,u,h), then for [every index i of I](hyp:i,hi) and [all derivative orders p and
 q](hyp:p,q), [the selected factor jet of i at orders (p, q) has absolute value at most four](goal).
-The selector's zero extensions make this true at arbitrary orders. -/
+The selector's zero extensions make this true at arbitrary orders.
+@isnad1 id=le.2h8v.s5.a706bd7b279f from=translated src=- shape=c3b15696 vocab=d12b2254
+-/
 theorem factorJet_abs_le_four (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : FactorBoundsAt I J a u) (i : ι) (hi : i ∈ I) (p q : ℕ) :
     |factorJet J i p q a u| ≤ 4 := by
@@ -44,7 +46,9 @@ theorem factorJet_abs_le_four (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
 (a, u)](hyp:I,J,a,u,h), and [a first-coordinate hit list](hyp:xs) has [at most two
 entries](hyp:hxs) and [a second-coordinate hit list](hyp:ys) has [at most two entries](hyp:hys),
 then [the corresponding ordered-hit Leibniz summand has absolute value at most 256 times two to
-the number of factors](goal). -/
+the number of factors](goal).
+@isnad1 id=le.3h7v.s6.2d0831430abc from=translated src=- shape=6f080154 vocab=97defc57
+-/
 theorem leibnizTerm_abs_le (I : Finset ι) (J : FactorJets ι)
     (xs ys : List ι) (a u : ℝ) (h : FactorBoundsAt I J a u)
     (hxs : xs.length ≤ 2) (hys : ys.length ≤ 2) :
@@ -90,7 +94,9 @@ theorem leibnizTerm_abs_le (I : Finset ι) (J : FactorJets ι)
 
 /-- If [the factor jets J of a finite index set I satisfy the factor envelopes at a point
 (a, u)](hyp:I,J,a,u,h), then [the mixed (2,2) jet of the finite product has absolute value at
-most 256·|I|⁴·2^|I|, where |I| is the number of factors](goal). -/
+most 256·|I|⁴·2^|I|, where |I| is the number of factors](goal).
+@isnad1 id=le.1h5v.s6.7de1f1f27233 from=translated src=- shape=eb8dbe6f vocab=4b53675e
+-/
 theorem productJet22_abs_le (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : FactorBoundsAt I J a u) :
     |productJet22 I J a u| ≤
@@ -115,7 +121,9 @@ theorem productJet22_abs_le (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
 /-- If [the factor jets J of a finite index set I](hyp:I,J) [satisfy the factor envelopes at every
 point of the closed rectangle from a₀ to a₁ in the first coordinate and from u₀ to u₁ in the
 second](hyp:a₀,a₁,u₀,u₁,h), then [at every point of that rectangle the mixed (2,2) jet of the
-finite product has absolute value at most 256·|I|⁴·2^|I|](goal). -/
+finite product has absolute value at most 256·|I|⁴·2^|I|](goal).
+@isnad1 id=le.3h9v.s7.5613062c1041 from=translated src=- shape=8ac560f4 vocab=68372297
+-/
 theorem productJet22_abs_le_on_rectangle (I : Finset ι) (J : FactorJets ι)
     (a₀ a₁ u₀ u₁ : ℝ)
     (h : ∀ a ∈ Set.Icc a₀ a₁, ∀ u ∈ Set.Icc u₀ u₁, FactorBoundsAt I J a u) :

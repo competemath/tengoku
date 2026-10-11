@@ -17,7 +17,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.HolderTaylor
 constant in the interior of a nondegenerate compact interval, then all
 corresponding within derivatives have that bound throughout the closed
 interval, including both endpoints.
-[The derivative order, interval, bound, function, and regularity assumptions](hyp:k,a,b,B,hab,hB,f,hf,hinterior) yield [the stated closed-interval within-jet bound](goal). -/
+[The derivative order, interval, bound, function, and regularity assumptions](hyp:k,a,b,B,hab,hB,f,hf,hinterior) yield [the stated closed-interval within-jet bound](goal).
+@isnad1 id=le.6h7v.s7.ae9399fba432 from=translated src=- shape=8d8c3358 vocab=ce306238
+-/
 theorem within_jet_bound_of_interior_ambient_bound
     (k : ℕ) (a b B : ℝ) (hab : a < b) (hB : 0 ≤ B)
     (f : ℝ → ℝ) (hf : ContDiffOn ℝ k f (Set.Icc a b))

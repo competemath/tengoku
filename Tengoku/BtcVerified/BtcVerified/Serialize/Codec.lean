@@ -57,7 +57,9 @@ class Codec (α : Type) where
     decode bs = some (a, rest) → bs = encode a ++ rest
 
 /-- Encoders are injective: two values with the same encoding are equal. This
-falls straight out of round-trip with an empty tail. -/
+falls straight out of round-trip with an empty tail.
+@isnad1 id=eq.1h3v.s4.7b4e7ceba8fe from=translated src=- shape=13818d2c vocab=55d6b1ad
+-/
 theorem encode_injective {α : Type} [Codec α] {a b : α}
     (h : Codec.encode a = Codec.encode b) : a = b := by
   have ha := Codec.decode_encode a ([] : List UInt8)
@@ -77,7 +79,9 @@ def decodeProd {α β : Type} [Codec α] [Codec β]
   return ((a, b), rest')
 
 /-- Decoding a pair from the concatenated encodings of its components returns
-both values, leaving the trailing bytes as the unconsumed tail. -/
+both values, leaving the trailing bytes as the unconsumed tail.
+@isnad1 id=eq.0h5v.s6.9aaf28694094 from=translated src=- shape=bad36412 vocab=ae67ecb5
+-/
 theorem decodeProd_encode {α β : Type} [Codec α] [Codec β]
     (a : α) (b : β) (rest : List UInt8) :
     decodeProd ((Codec.encode a ++ Codec.encode b) ++ rest) = some ((a, b), rest) := by
@@ -86,7 +90,9 @@ theorem decodeProd_encode {α β : Type} [Codec α] [Codec β]
     Option.bind_some, Option.pure_def]
 
 /-- If the pair decoder accepts `bs` as `(a, b)` with tail `rest`, then `bs` is
-exactly the two component encodings in sequence followed by `rest`. -/
+exactly the two component encodings in sequence followed by `rest`.
+@isnad1 id=eq.1h6v.s6.e8433a8d5526 from=translated src=- shape=5323d1fd vocab=ae67ecb5
+-/
 theorem decodeProd_canonical {α β : Type} [Codec α] [Codec β]
     (bs : List UInt8) (a : α) (b : β) (rest : List UInt8) :
     decodeProd bs = some ((a, b), rest) →
@@ -171,7 +177,9 @@ private theorem append_split {n : Nat} (v : BitVec (8 * (n + 1))) :
 
 /-- Encoding a `BitVec (8 * n)` as `n` little-endian bytes and then decoding
 returns the original value, leaving any trailing bytes as the unconsumed
-tail. -/
+tail.
+@isnad1 id=eq.0h3v.s6.33f854044fc2 from=translated src=- shape=55dcc8a0 vocab=866daea2
+-/
 theorem decodeBitVecLE_encodeBitVecLE :
     ∀ (n : Nat) (v : BitVec (8 * n)) (rest : List UInt8),
       decodeBitVecLE n (encodeBitVecLE n v ++ rest) = some (v, rest) := by
@@ -190,7 +198,9 @@ theorem decodeBitVecLE_encodeBitVecLE :
     rw [append_split v]
 
 /-- If the little-endian decoder accepts `bs` as the value `v` with tail `rest`,
-then `bs` is exactly the `n`-byte encoding of `v` followed by `rest`. -/
+then `bs` is exactly the `n`-byte encoding of `v` followed by `rest`.
+@isnad1 id=eq.1h4v.s6.46c7ffb5949a from=translated src=- shape=a6ade9a7 vocab=866daea2
+-/
 theorem decodeBitVecLE_canonical :
     ∀ (n : Nat) (bs : List UInt8) (v : BitVec (8 * n)) (rest : List UInt8),
       decodeBitVecLE n bs = some (v, rest) → bs = encodeBitVecLE n v ++ rest := by
@@ -214,7 +224,9 @@ theorem decodeBitVecLE_canonical :
         setWidth_ushiftRight_append, UInt8.ofBitVec_toBitVec, ihbs]
 
 /-- The little-endian decoder succeeds on any input of at least `n` bytes,
-consuming exactly `n` and leaving the rest as the tail. -/
+consuming exactly `n` and leaving the rest as the tail.
+@isnad1 id=ex.1h2v.s6.c79d8e6d84b5 from=translated src=- shape=a7c69a55 vocab=9b06f17d
+-/
 theorem decodeBitVecLE_of_le_length :
     ∀ (n : Nat) (bs : List UInt8), n ≤ bs.length →
       ∃ v, decodeBitVecLE n bs = some (v, bs.drop n) := by
@@ -229,7 +241,9 @@ theorem decodeBitVecLE_of_le_length :
       obtain ⟨v, hv⟩ := ih bs' (by simpa using h)
       exact ⟨v ++ b.toBitVec, by simp [decodeBitVecLE, decodeByte, hv]⟩
 
-/-- A little-endian `BitVec (8 * n)` encoding is exactly `n` bytes long. -/
+/-- A little-endian `BitVec (8 * n)` encoding is exactly `n` bytes long.
+@isnad1 id=eq.0h2v.s4.440e5b962681 from=translated src=- shape=6846e127 vocab=d6b09e18
+-/
 theorem encodeBitVecLE_length :
     ∀ (n : Nat) (v : BitVec (8 * n)), (encodeBitVecLE n v).length = n := by
   intro n

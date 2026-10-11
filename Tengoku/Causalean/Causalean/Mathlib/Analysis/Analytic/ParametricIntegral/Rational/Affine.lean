@@ -15,7 +15,9 @@ open Set
 
 namespace Causalean.Mathlib.Analysis.ParametricRationalIntegralAnalyticity
 
-/-- If [the separation margin is positive](hyp:hε), [the slope bound is nonnegative](hyp:hL), [the affine denominator is separated from zero at the reference parameter](hyp:hden), and [its slope is uniformly bounded on the integration set](hyp:hslope), then [it remains separated from zero by half that margin on an explicit parameter neighborhood](goal). -/
+/-- If [the separation margin is positive](hyp:hε), [the slope bound is nonnegative](hyp:hL), [the affine denominator is separated from zero at the reference parameter](hyp:hden), and [its slope is uniformly bounded on the integration set](hyp:hslope), then [it remains separated from zero by half that margin on an explicit parameter neighborhood](goal).
+@isnad1 id=ex.4h7v.s7.b555c3974a6d from=translated src=- shape=9c1eaff9 vocab=ebfbd647
+-/
 theorem affineDenominator_uniformly_nonzero_near
     {α : Type*} {K : Set α} {a b : α → ℝ} {t₀ ε L : ℝ}
     (hε : 0 < ε) (hL : 0 ≤ L)
@@ -56,7 +58,9 @@ theorem affineDenominator_uniformly_nonzero_near
         _ ≤ _ := abs_sub _ _
     linarith [hden x hx]
 
-/-- If [the parameter set is open](hyp:hO), [the separation margin is positive](hyp:hε), [the affine denominator is uniformly separated from zero throughout that set and the integration set](hyp:hden), and [the reference parameter lies in the open set](hyp:ht₀), then [some positive ball around it stays in the parameter set and retains the same uniform separation](goal). -/
+/-- If [the parameter set is open](hyp:hO), [the separation margin is positive](hyp:hε), [the affine denominator is uniformly separated from zero throughout that set and the integration set](hyp:hden), and [the reference parameter lies in the open set](hyp:ht₀), then [some positive ball around it stays in the parameter set and retains the same uniform separation](goal).
+@isnad1 id=ex.4h7v.s7.313b109adb78 from=translated src=- shape=17be357c vocab=0ef467de
+-/
 theorem affineDenominator_uniformly_nonzero_on_open_near
     {α : Type*} {K : Set α} {a b : α → ℝ} {O : Set ℝ} {ε : ℝ}
     (hO : IsOpen O) (hε : 0 < ε)
@@ -68,7 +72,9 @@ theorem affineDenominator_uniformly_nonzero_on_open_near
   rcases Metric.mem_nhds_iff.mp (hO.mem_nhds ht₀) with ⟨r, hr, hball⟩
   exact ⟨r, hr, hball, fun t ht x hx => hden t (hball ht) x hx⟩
 
-/-- If [the parameter-ball radius and separation margin are positive](hyp:hr,hε) and [the affine denominator is uniformly separated from zero throughout that ball and the integration set](hyp:hden), then [the affine slope divided by its central denominator is bounded by the reciprocal radius](goal). -/
+/-- If [the parameter-ball radius and separation margin are positive](hyp:hr,hε) and [the affine denominator is uniformly separated from zero throughout that ball and the integration set](hyp:hden), then [the affine slope divided by its central denominator is bounded by the reciprocal radius](goal).
+@isnad1 id=le.4h8v.s7.0bb0bef2ffb7 from=translated src=- shape=b306b59a vocab=18b9c121
+-/
 theorem affineDenominator_slope_div_le_inv_radius
     {α : Type*} {K : Set α} {a b : α → ℝ} {t₀ ε r : ℝ}
     (hr : 0 < r) (hε : 0 < ε)
@@ -117,7 +123,9 @@ theorem affineDenominator_slope_div_le_inv_radius
   rw [hzero, abs_zero] at hpositive
   linarith
 
-/-- If [the separation margin is positive](hyp:hε), [the relative-slope bound is nonnegative](hyp:hQ), [the central affine denominator is uniformly separated from zero](hyp:hden), and [the slope-to-denominator ratio is uniformly bounded](hyp:hratio), then [the denominator remains separated by half the margin on an explicit parameter neighborhood](goal). -/
+/-- If [the separation margin is positive](hyp:hε), [the relative-slope bound is nonnegative](hyp:hQ), [the central affine denominator is uniformly separated from zero](hyp:hden), and [the slope-to-denominator ratio is uniformly bounded](hyp:hratio), then [the denominator remains separated by half the margin on an explicit parameter neighborhood](goal).
+@isnad1 id=ex.4h7v.s7.a359773976dc from=translated src=- shape=89142ebd vocab=ebfbd647
+-/
 theorem affineDenominator_uniformly_nonzero_near_of_slope_div_bound
     {α : Type*} {K : Set α} {a b : α → ℝ} {t₀ ε Q : ℝ}
     (hε : 0 < ε) (hQ : 0 ≤ Q)
@@ -177,7 +185,9 @@ theorem affineDenominator_uniformly_nonzero_near_of_slope_div_bound
       _ ≤ _ := abs_sub _ _
   linarith
 
-/-- If [the affine denominator at the expansion center is nonzero](hyp:hden) and [the normalized affine perturbation has absolute value below one](hyp:hsmall), then [the reciprocal affine denominator equals its centered geometric power series](goal). -/
+/-- If [the affine denominator at the expansion center is nonzero](hyp:hden) and [the normalized affine perturbation has absolute value below one](hyp:hsmall), then [the reciprocal affine denominator equals its centered geometric power series](goal).
+@isnad1 id=eq.2h6v.s7.b5dc3abc3250 from=translated src=- shape=87b0d0df vocab=6e8ebce6
+-/
 theorem affineDenominator_reciprocal_eq_tsum
     {α : Type*} {a b : α → ℝ} {t t₀ : ℝ} {x : α}
     (hden : affineDenominator a b t₀ x ≠ 0)

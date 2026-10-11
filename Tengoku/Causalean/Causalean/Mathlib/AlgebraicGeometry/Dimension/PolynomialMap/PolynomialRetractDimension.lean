@@ -47,7 +47,9 @@ private lemma image_strictMono_global {α β ι : Type*} [Preorder ι]
     exact hf hfy.symm ▸ hy
 
 /-- If a function is injective on a set containing every member of a strictly increasing chain
-    of sets, then the images of those sets form a strictly increasing chain. -/
+    of sets, then the images of those sets form a strictly increasing chain.
+@isnad1 id=strictmo.3h6v.s6.0d6b000f22fe from=translated src=- shape=127bc29c vocab=ba1a54ab
+-/
 lemma image_strictMono_on {α β ι : Type*} [Preorder ι]
     (f : α → β) {S : Set α} (hf : Set.InjOn f S)
     {chain : ι → Set α} (hc : StrictMono chain)
@@ -75,7 +77,9 @@ lemma image_strictMono_on {α β ι : Type*} [Preorder ι]
     exact hf (hsub j hx) (hsub i hy) hfy.symm ▸ hy
 
 /-- A polynomial embedding with a polynomial retraction sends irreducible
-affine-closed subsets to irreducible affine-closed images. -/
+affine-closed subsets to irreducible affine-closed images.
+@isnad1 id=isirredu.4h5v.s5.9f0b7525a501 from=translated src=- shape=a94da4b3 vocab=1ba1405c
+-/
 lemma irreducible_image_polynomial_retract {ι κ : Type*}
     {f : (ι → ℂ) → (κ → ℂ)} {g : (κ → ℂ) → (ι → ℂ)}
     (hf : IsPolynomialMap f) (hg : IsPolynomialMap g)
@@ -119,7 +123,9 @@ coordinatewise polynomial](hyp:hf), [an accompanying map `g` back to `ℂ^d` is
 coordinatewise polynomial](hyp:hg), and [`g` is a left inverse of `f`, i.e.
 `g (f x) = x` for every `x`](hyp:hleft), then [the range of `f` has exact
 affine (irreducible-chain) dimension `d`, matching the dimension of its
-source space](goal). -/
+source space](goal).
+@isnad1 id=hasaffin.3h4v.s5.2c5cca6c53bf from=translated src=- shape=aeb27ba5 vocab=da4c45cd
+-/
 theorem polynomialRetract_range_dimension {d : ℕ} {κ : Type*}
     {f : (Fin d → ℂ) → (κ → ℂ)} {g : (κ → ℂ) → (Fin d → ℂ)}
     (hf : IsPolynomialMap f) (hg : IsPolynomialMap g)

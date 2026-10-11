@@ -66,7 +66,9 @@ semi-graphoid rules](hyp:h), then [each query set is contained in the ambient ra
 
 Every triple appearing in an ordered-local derivation has all three sets
     contained in the ambient random set `R`. Used by the SCM interpretation to
-    recover the `⊆ randomVars` side-conditions of `FullCondIndep`. -/
+    recover the `⊆ randomVars` side-conditions of `FullCondIndep`.
+@isnad1 id=and.1h6v.s6.700433d7a4bb from=translated src=- shape=02839030 vocab=f227719f
+-/
 theorem OrderedLocalSG.subset_random {G : DAG V} {R X Y Z : Finset V}
     (h : G.OrderedLocalSG R X Y Z) : X ⊆ R ∧ Y ⊆ R ∧ Z ⊆ R := by
   induction h with
@@ -104,7 +106,9 @@ noncomputable def peelMeasure (G : DAG V) (X Y Zr Zf : Finset V) : ℕ × ℕ :=
 
 /-- In [a finite directed acyclic graph](hyp:V,G), a [vertex in a seed set's ancestral
 closure](hyp:Q,n,hn) that [maximizes topological order there](hyp:hmax) [belongs to the
-seed set itself](goal). -/
+seed set itself](goal).
+@isnad1 id=mem.2h4v.s6.967d73995cb6 from=translated src=- shape=a8e4fee8 vocab=d51e8910
+-/
 theorem topoMax_mem_seed {Q : Finset V} {n : V}
     (hn : n ∈ G.ancestralSet Q)
     (hmax : ∀ m ∈ G.ancestralSet Q, G.topoOrder m ≤ G.topoOrder n) :
@@ -124,7 +128,9 @@ theorem topoMax_mem_seed {Q : Finset V} {n : V}
 
 /-- In [a finite directed acyclic graph](hyp:V,G), if [one set lies inside another
 set's ancestral closure](hyp:Q,Q',h), then [the first set's ancestral closure remains
-inside the second set's ancestral closure](goal). -/
+inside the second set's ancestral closure](goal).
+@isnad1 id=le.1h4v.s5.14e6509214a9 from=translated src=- shape=a1b3ad94 vocab=6d94b744
+-/
 theorem ancestralSet_subset_of_subset_ancestralSet {Q Q' : Finset V}
     (h : Q' ⊆ G.ancestralSet Q) : G.ancestralSet Q' ⊆ G.ancestralSet Q := by
   intro u hu
@@ -144,7 +150,9 @@ theorem ancestralSet_subset_of_subset_ancestralSet {Q Q' : Finset V}
 /-- In [a finite directed acyclic graph](hyp:V,G), let [a selected vertex lie in a
 seed's ancestral closure](hyp:Q,n,hnAnc) and [maximize topological order there](hyp:hmax).
 If [a new seed lies in that closure](hyp:Q',hQ'sub) but [omits that vertex](hyp:hnQ'),
-then [the new seed's ancestral closure has strictly smaller cardinality](goal). -/
+then [the new seed's ancestral closure has strictly smaller cardinality](goal).
+@isnad1 id=lt.4h5v.s6.1d972afbf9c9 from=translated src=- shape=b1967470 vocab=7ca142e8
+-/
 theorem ancestralSet_card_lt_of_peel {Q Q' : Finset V} {n : V}
     (hnAnc : n ∈ G.ancestralSet Q)
     (hmax : ∀ m ∈ G.ancestralSet Q, G.topoOrder m ≤ G.topoOrder n)
@@ -169,7 +177,9 @@ theorem ancestralSet_card_lt_of_peel {Q Q' : Finset V} {n : V}
 topological order in a seed's ancestral closure](hyp:Q,n,hmax) and [belong to a random
 conditioning set](hyp:Zr,hnZr). If [a replacement set lies in the closure](hyp:S,hSsub)
 but [omits the selected vertex](hyp:hnS), then [its topological height is strictly
-smaller than that of the random conditioning set](goal). -/
+smaller than that of the random conditioning set](goal).
+@isnad1 id=lt.4h6v.s7.4ae773b56240 from=translated src=- shape=529e091f vocab=324c5d13
+-/
 theorem sup_topoOrder_lt_of_peel {Q Zr S : Finset V} {n : V}
     (hmax : ∀ m ∈ G.ancestralSet Q, G.topoOrder m ≤ G.topoOrder n)
     (hnZr : n ∈ Zr) (hSsub : S ⊆ G.ancestralSet Q) (hnS : n ∉ S) :

@@ -19,7 +19,9 @@ open MeasureTheory intervalIntegral
 /-- A [degree](hyp:k), [moment index](hyp:j), and [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα), give [interval integrability of the corresponding weighted shifted-Jacobi moment](goal).
 
 For `α > 0`, every nonnegative-integer weighted moment of `h` is
-integrable on `[0,1]`, including the singular weight with exponent `α-1`. -/
+integrable on `[0,1]`, including the singular weight with exponent `α-1`.
+@isnad1 id=interval.1h3v.s6.a3644180ead0 from=translated src=- shape=7d4afce3 vocab=ce3e8da3
+-/
 theorem h_weight_intervalIntegrable (k j : ℕ) (α : ℝ) (hα : 0 < α) :
     IntervalIntegrable
       (fun x : ℝ => x ^ (α - 1 + (j : ℝ)) * h k α x)
@@ -35,7 +37,9 @@ theorem h_weight_intervalIntegrable (k j : ℕ) (α : ℝ) (hα : 0 < α) :
 /-- A [degree](hyp:k), [moment index](hyp:j), and [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα), [a positive moment index](hyp:hj), and [an index no greater than the degree](hyp:hjk), give [a vanishing weighted shifted-Jacobi moment](goal).
 
 For each `1 ≤ j ≤ k`, the `j`th weighted moment of the shifted Jacobi
-perturbation vanishes. -/
+perturbation vanishes.
+@isnad1 id=eq.3h3v.s6.5f53cf3d797c from=translated src=- shape=1060205f vocab=8b5cae7d
+-/
 theorem h_weighted_moment_zero (k j : ℕ) (α : ℝ) (hα : 0 < α)
     (hj : 1 ≤ j) (hjk : j ≤ k) :
     (∫ x in (0 : ℝ)..1, x ^ (α - 1 + (j : ℝ)) * h k α x) = 0 := by
@@ -161,7 +165,9 @@ theorem h_weighted_moment_zero (k j : ℕ) (α : ℝ) (hα : 0 < α)
 /-- A [degree](hyp:k) and [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα), give [the exact zeroth weighted moment as a squared rising-factorial ratio](goal).
 
 The zeroth weighted moment equals the square of a normalized
-rising-factorial ratio. -/
+rising-factorial ratio.
+@isnad1 id=eq.1h2v.s7.2495d3ed31fd from=translated src=- shape=ec050c43 vocab=c3fcf630
+-/
 theorem h_zeroth_moment_rising (k : ℕ) (α : ℝ) (hα : 0 < α) :
     α * (∫ x in (0 : ℝ)..1, x ^ (α - 1) * h k α x) =
       ((Nat.factorial k : ℝ) / rising (α + 1) k) ^ 2 := by
@@ -297,7 +303,9 @@ theorem h_zeroth_moment_rising (k : ℕ) (α : ℝ) (hα : 0 < α) :
 /-- A [degree](hyp:k) and [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα), give [the rising factorial as a Gamma-function ratio](goal).
 
 The rising factorial at `α+1` is the Gamma quotient
-`Γ(α+k+1)/Γ(α+1)` for positive `α`. -/
+`Γ(α+k+1)/Γ(α+1)` for positive `α`.
+@isnad1 id=eq.1h2v.s6.9a24ee498605 from=translated src=- shape=b3e2c78f vocab=3b21d021
+-/
 theorem rising_eq_gamma_ratio (k : ℕ) (α : ℝ) (hα : 0 < α) :
     rising (α + 1) k =
       Real.Gamma (α + (k : ℝ) + 1) / Real.Gamma (α + 1) := by
@@ -320,7 +328,9 @@ theorem rising_eq_gamma_ratio (k : ℕ) (α : ℝ) (hα : 0 < α) :
 /-- A [degree](hyp:k) and [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα), give [the exact zeroth weighted moment as a squared Gamma-function ratio](goal).
 
 The zeroth weighted moment is the square of the Gamma ratio
-`Γ(α+1)Γ(k+1)/Γ(k+α+1)`. -/
+`Γ(α+1)Γ(k+1)/Γ(k+α+1)`.
+@isnad1 id=eq.1h2v.s7.e0406f8d8a85 from=translated src=- shape=d74895ea vocab=d6148993
+-/
 theorem h_zeroth_moment_gamma (k : ℕ) (α : ℝ) (hα : 0 < α) :
     α * (∫ x in (0 : ℝ)..1, x ^ (α - 1) * h k α x) =
       (Real.Gamma (α + 1) * Real.Gamma ((k : ℝ) + 1) /

@@ -61,7 +61,9 @@ abbrev CubeHolderBall (d m : ℕ) (s R : ℝ) (u : (Fin d → ℝ) → ℝ) : Pr
 
 /-- If [two responses u and v agree on a set S](hyp:h), then at [every point x
 of S](hyp:hx) [their intrinsic coordinate jets on S coincide, for every order
-and every choice of coordinate directions](goal). -/
+and every choice of coordinate directions](goal).
+@isnad1 id=eq.2h7v.s6.b7403d55fdc6 from=translated src=- shape=0520ba51 vocab=45fef067
+-/
 theorem coordJetOn_congr {d j : ℕ} {S : Set (Fin d → ℝ)}
     {u v : (Fin d → ℝ) → ℝ} (h : Set.EqOn u v S)
     {f : Fin j → Fin d} {x : Fin d → ℝ} (hx : x ∈ S) :
@@ -71,7 +73,9 @@ theorem coordJetOn_congr {d j : ℕ} {S : Set (Fin d → ℝ)}
 
 /-- If [two responses u and v agree on a set S](hyp:h), then [u lies in the
 intrinsic Hölder ball on S of a given order, exponent and radius exactly when v
-does](goal). -/
+does](goal).
+@isnad1 id=iff.1h7v.s5.bfa1aa1ae7eb from=translated src=- shape=3dcba6d1 vocab=c3b7b7c1
+-/
 theorem holderBallOn_congr {d m : ℕ} {S : Set (Fin d → ℝ)} {s R : ℝ}
     {u v : (Fin d → ℝ) → ℝ} (h : Set.EqOn u v S) :
     HolderBallOn S m s R u ↔ HolderBallOn S m s R v := by
@@ -96,7 +100,9 @@ theorem holderBallOn_congr {d m : ℕ} {S : Set (Fin d → ℝ)} {s R : ℝ}
 /-- If [a response u is m times continuously differentiable within the closed
 cube](hyp:hu) and [j ≤ m](hyp:hj), then at [a point x of the open cube](hyp:hx)
 [the order-j intrinsic coordinate jet of u on the closed cube equals the usual
-ambient order-j coordinate partial derivative](goal). -/
+ambient order-j coordinate partial derivative](goal).
+@isnad1 id=eq.3h6v.s7.2bd9b8b0a92e from=translated src=- shape=831bff64 vocab=394d30b7
+-/
 theorem coordJetOn_cube_eq_ambient {d m j : ℕ}
     {u : (Fin d → ℝ) → ℝ} (hu : ContDiffOn ℝ m u (cube d))
     (hj : j ≤ m) {f : Fin j → Fin d} {x : Fin d → ℝ}
@@ -122,7 +128,9 @@ theorem coordJetOn_cube_eq_ambient {d m j : ℕ}
 /-- If [a response u is m times continuously differentiable within the closed
 cube](hyp:hu) and [j ≤ m](hyp:hj), then for [any coordinate directions
 f](hyp:f) [the order-j intrinsic coordinate jet of u in those directions is
-continuous on the closed cube](goal). -/
+continuous on the closed cube](goal).
+@isnad1 id=continuo.2h5v.s7.04e260ac3b21 from=translated src=- shape=345fe7e7 vocab=9a2303ce
+-/
 theorem continuousOn_coordJetOn_cube {d m j : ℕ}
     {u : (Fin d → ℝ) → ℝ} (hu : ContDiffOn ℝ m u (cube d))
     (hj : j ≤ m) (f : Fin j → Fin d) :

@@ -31,7 +31,9 @@ def polynomial (d : ι → ℕ) (g : Ω → (ι → ℝ) → ℝ) (ω : Ω) :
 target](hyp:g,hg), [a real bound B](hyp:B) such that [the target is at most B in absolute value on
 the cube for every parameter](hyp:hB), [a parameter value](hyp:ω), and [a phase vector](hyp:x),
 [evaluating the canonical polynomial at the coordinatewise cosines of the phase vector gives the
-heterogeneous Jackson convolution of the target at that parameter and phase](goal). -/
+heterogeneous Jackson convolution of the target at that parameter and phase](goal).
+@isnad1 id=eq.3h7v.s7.2167992aa878 from=translated src=- shape=f28f25a0 vocab=70c18aa1
+-/
 theorem eval_cosPoint_polynomial (d : ι → ℕ) (hd : ∀ i, 0 < d i)
     (g : Ω → (ι → ℝ) → ℝ)
     (hg : Measurable (fun z : Ω × (ι → ℝ) => g z.1 z.2))
@@ -84,7 +86,9 @@ theorem eval_cosPoint_polynomial (d : ι → ℕ) (hd : ∀ i, 0 < d i)
 target](hyp:g,hg), [a real bound B](hyp:B) such that [the target is at most B in absolute value on
 the cube for every parameter](hyp:hB), [a parameter value](hyp:ω), and [a point](hyp:θ) [of the
 cube](hyp:hθ), [evaluating the canonical polynomial at that point gives the heterogeneous Jackson
-convolution at the phase vector of coordinatewise arccosines of the point](goal). -/
+convolution at the phase vector of coordinatewise arccosines of the point](goal).
+@isnad1 id=eq.4h7v.s7.3e2ece2d7463 from=translated src=- shape=cab477dc vocab=c61eb9d4
+-/
 theorem eval_polynomial (d : ι → ℕ) (hd : ∀ i, 0 < d i)
     (g : Ω → (ι → ℝ) → ℝ)
     (hg : Measurable (fun z : Ω × (ι → ℝ) => g z.1 z.2))
@@ -101,7 +105,9 @@ theorem eval_polynomial (d : ι → ℕ) (hd : ∀ i, 0 < d i)
           (polynomial d g ω) := by rw [hcos]
     _ = _ := eval_cosPoint_polynomial d hd g hg B hB ω _
 
-/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [a parameter value](hyp:ω), and [a tensor coefficient index](hyp:a) imply that [the canonical coefficient is its explicit finite weighted convolution sum](goal). -/
+/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [a parameter value](hyp:ω), and [a tensor coefficient index](hyp:a) imply that [the canonical coefficient is its explicit finite weighted convolution sum](goal).
+@isnad1 id=eq.0h6v.s7.e172351d7c3b from=translated src=- shape=6d98d6d9 vocab=d98b68db
+-/
 theorem coeff_polynomial (d : ι → ℕ) (g : Ω → (ι → ℝ) → ℝ)
     (ω : Ω) (a : GridIndex d) :
     MvPolynomial.coeff (exponent d a) (polynomial d g ω) =
@@ -109,7 +115,9 @@ theorem coeff_polynomial (d : ι → ℕ) (g : Ω → (ι → ℝ) → ℝ)
         convolution d (g ω) (fun i => Real.arccos (gridPoint d b i)) := by
   exact coeff_interpolate d _ a
 
-/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), and [a monomial exponent](hyp:γ) imply that [the corresponding canonical-polynomial coefficient is measurable in the parameter](goal). -/
+/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), and [a monomial exponent](hyp:γ) imply that [the corresponding canonical-polynomial coefficient is measurable in the parameter](goal).
+@isnad1 id=measurab.1h5v.s6.cc4355227a98 from=translated src=- shape=b2496e72 vocab=daab3de1
+-/
 @[fun_prop] theorem measurable_coeff_polynomial (d : ι → ℕ)
     (g : Ω → (ι → ℝ) → ℝ)
     (hg : Measurable (fun z : Ω × (ι → ℝ) => g z.1 z.2))
@@ -130,7 +138,9 @@ theorem coeff_polynomial (d : ι → ℕ) (g : Ω → (ι → ℝ) → ℝ)
 target](hyp:g,hg), [a real bound B](hyp:B) such that [the target is at most B in absolute value on
 the cube for every parameter](hyp:hB), [a parameter value](hyp:ω), [a monomial exponent](hyp:γ)
 [appearing in the canonical polynomial](hyp:hγ), and [a selected coordinate](hyp:i), [the exponent
-in that coordinate is at most twice (that coordinate's order minus one)](goal). -/
+in that coordinate is at most twice (that coordinate's order minus one)](goal).
+@isnad1 id=le.4h8v.s7.87157251e7f9 from=translated src=- shape=28f8d648 vocab=4240cba9
+-/
 theorem support_polynomial (d : ι → ℕ) (hd : ∀ i, 0 < d i)
     (g : Ω → (ι → ℝ) → ℝ)
     (hg : Measurable (fun z : Ω × (ι → ℝ) => g z.1 z.2))
@@ -183,7 +193,9 @@ theorem support_polynomial (d : ι → ℕ) (hd : ∀ i, 0 < d i)
   rw [heq] at hγ
   exact hbound γ hγ i
 
-/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), [a finite monomial set](hyp:S), [parameter-dependent weights](hyp:w), and [their measurability on that set](hyp:hw) imply that [the finite weighted canonical-coefficient sum is measurable](goal). -/
+/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), [a finite monomial set](hyp:S), [parameter-dependent weights](hyp:w), and [their measurability on that set](hyp:hw) imply that [the finite weighted canonical-coefficient sum is measurable](goal).
+@isnad1 id=measurab.2h6v.s7.e4ff4f126d52 from=translated src=- shape=045710bc vocab=101e78fb
+-/
 theorem measurable_coeff_sum (d : ι → ℕ)
     (g : Ω → (ι → ℝ) → ℝ)
     (hg : Measurable (fun z : Ω × (ι → ℝ) => g z.1 z.2))
@@ -196,7 +208,9 @@ theorem measurable_coeff_sum (d : ι → ℕ)
   intro γ hγ
   exact (measurable_coeff_polynomial d g hg γ).mul (hw γ hγ)
 
-/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), [a parameter-dependent evaluation point](hyp:x), and [its measurability](hyp:hx) imply that [canonical-polynomial evaluation is measurable in the parameter](goal). -/
+/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), [a parameter-dependent evaluation point](hyp:x), and [its measurability](hyp:hx) imply that [canonical-polynomial evaluation is measurable in the parameter](goal).
+@isnad1 id=measurab.2h5v.s7.2f462ed58629 from=translated src=- shape=889d0715 vocab=0351d468
+-/
 @[fun_prop] theorem measurable_eval_polynomial (d : ι → ℕ)
     (g : Ω → (ι → ℝ) → ℝ)
     (hg : Measurable (fun z : Ω × (ι → ℝ) => g z.1 z.2))

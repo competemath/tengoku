@@ -14,7 +14,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- A line from an interior cube point toward a closed-cube point is `C^m` on
-each closed initial subsegment ending strictly before the final endpoint. -/
+each closed initial subsegment ending strictly before the final endpoint.
+@isnad1 id=contdiff.5h6v.s8.9cda27f4688f from=translated src=- shape=5f6ebefa vocab=dd7513fe
+-/
 theorem segment_line_contDiffOn_before_endpoint {d m : ℕ}
     {u : (Fin d → ℝ) → ℝ} (hu : ContDiffOn ℝ m u (cube d))
     {x y : Fin d → ℝ} (hx : x ∈ openCube d) (hy : y ∈ cube d)
@@ -41,7 +43,9 @@ point x in the open cube](hyp:hx), [an end point y in the closed cube](hyp:hy), 
 is nonnegative and strictly less than one](hyp:ht0,ht1). Then for [any two times r and w between 0
 and t](hyp:hr,hw), [the m-th derivative of the function restricted to the segment from x to y
 changes between those times by at most (d + 1)^m times L times the segment length to the power m +
-s times the time difference to the power s](goal). -/
+s times the time difference to the power s](goal).
+@isnad1 id=le.10h10v.s9.a43b264b325c from=translated src=- shape=7331cbd7 vocab=57553de7
+-/
 theorem segment_line_topHolder_before_endpoint {d m : ℕ} {s L : ℝ}
     {u : (Fin d → ℝ) → ℝ} (hu : ContDiffOn ℝ m u (cube d))
     (hs : 0 < s) (hL : 0 ≤ L) (hholder : TopHolder d m s L u)

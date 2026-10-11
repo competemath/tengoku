@@ -39,7 +39,9 @@ def equispacedLagrangeWeight (D : ℕ) (k j : Fin (D + 1)) : ℝ :=
 `j! (D-j)! / (D+1)^D`.
 
 Split the deleted grid into indices below and above `j`; each nonzero distance is a positive
-integer divided by `D+1`. The two integer products are the indicated factorials. -/
+integer divided by `D+1`. The two integer products are the indicated factorials.
+@isnad1 id=eq.0h2v.s7.9b14b7721503 from=translated src=- shape=04ca6ab7 vocab=1a58ec7b
+-/
 theorem equispacedLagrange_denominator_abs (D : ℕ) (j : Fin (D + 1)) :
     |∏ i ∈ (Finset.univ : Finset (Fin (D + 1))).erase j,
       (equispacedLagrangeNode D j - equispacedLagrangeNode D i)| =
@@ -68,7 +70,9 @@ theorem equispacedLagrange_denominator_abs (D : ℕ) (j : Fin (D + 1)) :
 
 /-- The sum of reciprocal factorial pairs over the equispaced grid equals `2^D / D!`.
 
-Rewrite each summand using `D.choose j` and apply the binomial identity. -/
+Rewrite each summand using `D.choose j` and apply the binomial identity.
+@isnad1 id=eq.0h1v.s7.3f13d0fafe1a from=translated src=- shape=993a70c1 vocab=ce7251fc
+-/
 theorem equispacedLagrange_reciprocal_factorial_sum (D : ℕ) :
     (∑ j : Fin (D + 1),
       1 / (((j : ℕ).factorial : ℝ) * ((D - (j : ℕ)).factorial : ℝ))) =
@@ -102,7 +106,9 @@ theorem equispacedLagrange_reciprocal_factorial_sum (D : ℕ) :
 /-- The factorial ratio from the equispaced grid grows at most exponentially in its degree.
 
 An induction using `(D+2)^(D+1) / (D+1)!` and the classical bound
-`(1+1/(D+1))^(D+1) ≤ 4` suffices; the case `D=0` is equality. -/
+`(1+1/(D+1))^(D+1) ≤ 4` suffices; the case `D=0` is equality.
+@isnad1 id=le.0h1v.s6.a4668141167e from=translated src=- shape=f08c1d17 vocab=46d20b7c
+-/
 theorem equispacedLagrange_factorial_ratio_le (D : ℕ) :
     (D + 1 : ℝ) ^ D / (D.factorial : ℝ) ≤ (4 : ℝ) ^ D := by
   calc
@@ -120,6 +126,7 @@ values on the `D+1` equally spaced grid points in `[0,1]`.
 
 Use injectivity of `equispacedLagrangeNode`, `Lagrange.eq_interpolate`, and the coefficient of
 the finite basis expansion.
+@isnad1 id=eq.1h3v.s7.3c171005187f from=translated src=- shape=d2ac9c58 vocab=d1bb6ee5
 -/
 theorem equispacedLagrange_coeff_recovery (D : ℕ) (p : Polynomial ℝ)
     (hp : p.natDegree ≤ D) (k : Fin (D + 1)) :
@@ -148,7 +155,9 @@ bounded by the factorial denominator of its interpolation formula.
 
 Expand `Lagrange.basis` into its `D` linear factors. The coefficient one-norm is
 submultiplicative; each numerator factor has one-norm at most `2`, and the denominator is
-`j! * (D-j)! / (D+1)^D`. -/
+`j! * (D-j)! / (D+1)^D`.
+@isnad1 id=le.0h2v.s7.e74469b5ce6a from=translated src=- shape=4bcc62ad vocab=331c5049
+-/
 theorem equispacedLagrange_basis_oneNorm (D : ℕ) (j : Fin (D + 1)) :
     (∑ k : Fin (D + 1), |equispacedLagrangeWeight D k j|) ≤
       (2 : ℝ) ^ D * (D + 1 : ℝ) ^ D /
@@ -255,7 +264,9 @@ theorem equispacedLagrange_basis_oneNorm (D : ℕ) (j : Fin (D + 1)) :
 `2^(4D+4)`.
 
 Sum `equispacedLagrange_basis_oneNorm` over `j` using the binomial identity, then bound
-`(D+1)^D / D!` by `4^D`. The four spare powers absorb the small-degree endpoints. -/
+`(D+1)^D / D!` by `4^D`. The four spare powers absorb the small-degree endpoints.
+@isnad1 id=le.0h1v.s7.d574881b8fa5 from=translated src=- shape=caea7958 vocab=a77f2665
+-/
 theorem equispacedLagrange_weight_oneNorm (D : ℕ) :
     (∑ k : Fin (D + 1), ∑ j : Fin (D + 1),
       |equispacedLagrangeWeight D k j|) ≤ (2 : ℝ) ^ (4 * D + 4) := by

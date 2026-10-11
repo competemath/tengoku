@@ -59,7 +59,9 @@ def harmonicWeight (a b : ℝ≥0∞) (t : ℝ) : ℝ≥0∞ :=
   a * (ENNReal.ofReal (t ^ 2) * b) / (a + ENNReal.ofReal (t ^ 2) * b)
 
 /-- [The square of the weighted L² norm](goal) is the weighted squared energy of
-[the function](hyp:f) for [the weight and measure](hyp:w,μ), including infinite energies. -/
+[the function](hyp:f) for [the weight and measure](hyp:w,μ), including infinite energies.
+@isnad1 id=eq.0h4v.s7.2ccff1efdaf1 from=translated src=- shape=155facb8 vocab=bd8e014f
+-/
 theorem wNorm_sq {S : Type*} [MeasurableSpace S] (w : S → ℝ≥0∞)
     (μ : Measure S) (f : S →ₘ[μ] ℂ) :
     wNorm w μ f ^ 2 = ∫⁻ x, w x * (‖f x‖₊ : ℝ≥0∞) ^ 2 ∂μ := by

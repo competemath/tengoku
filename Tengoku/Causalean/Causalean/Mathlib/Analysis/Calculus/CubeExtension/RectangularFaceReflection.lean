@@ -23,7 +23,9 @@ positive side lengths](hyp:hbox), then for [derivative order m](hyp:m) and
 in the intrinsic Hölder ball of order m, exponent s and radius L ≥ 0 on the box
 agrees on the box with a response in the intrinsic Hölder ball of radius C·L on
 the box's left collar in coordinate i](goal). The constant depends only on the
-box, m, s and i. -/
+box, m, s and i.
+@isnad1 id=ex.3h6v.s7.499b293703c7 from=translated src=- shape=f86158e5 vocab=e67c74ae
+-/
 theorem exists_rectLeftFaceReflection_holder_constant {d : ℕ}
     (lo hi : Fin d → ℝ) (m : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1)

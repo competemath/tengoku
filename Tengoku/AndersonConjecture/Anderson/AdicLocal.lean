@@ -41,6 +41,9 @@ variable (R : Type*) [CommRing R] [IsLocalRing R]
 abbrev M' := IsLocalRing.maximalIdeal R
 
 omit [IsLocalRing R] in
+/--
+@isnad1 id=or.1h3v.s6.f565f0077adb from=translated src=- shape=3a0afded vocab=b01f6aba
+-/
 lemma field_isUnit_or_isUnit {K : Type*} [Field K] {a b : K} (hab : a + b = 1) :
     IsUnit a ∨ IsUnit b := by
   by_cases ha : a = 0

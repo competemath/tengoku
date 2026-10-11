@@ -22,7 +22,9 @@ One route is to apply the real polarization identity to their difference.
 The case `m = 0` follows directly from the diagonal assumption. For positive
 order, expand the diagonal polynomial at sums of distinct vectors and isolate
 the coefficient of their product; symmetry makes it `m!` times the desired
-mixed value. -/
+mixed value.
+@isnad1 id=eq.3h4v.s10.5e618ab467de from=translated src=- shape=104290d8 vocab=9691e4d1
+-/
 theorem continuousMultilinearMap_eq_of_symmetric_diagonal
     {d m : ℕ}
     (A B : ContinuousMultilinearMap ℝ (fun _ : Fin m => Fin d → ℝ) ℝ)

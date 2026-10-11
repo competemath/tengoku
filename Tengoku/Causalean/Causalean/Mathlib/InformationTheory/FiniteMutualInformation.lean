@@ -22,7 +22,9 @@ matrix `r`](hyp:hr0) whose [rows each sum to one](hyp:hrsum), and a uniform inpu
 the row-wise logarithmic density ratios against the output marginal](goal).
 
 This is the finite-alphabet identity `I(V;Y) = H(V) - H(V | Y)` written in a
-form that can be combined directly with measure-theoretic KL data processing. -/
+form that can be combined directly with measure-theoretic KL data processing.
+@isnad1 id=eq.2h3v.s7.c439ca60d5e6 from=translated src=- shape=9fbeb549 vocab=5bb2cfcd
+-/
 theorem uniform_condEntropy_kl_identity
     {α β : Type*} [Fintype α] [Fintype β] [Nonempty α]
     (r : α → β → ℝ) (hr0 : ∀ i y, 0 ≤ r i y)
@@ -134,7 +136,9 @@ mass function `q`](hyp:hq0) that [sums to one](hyp:hqsum) and [dominates every
 row's support](hyp:hac), [the uniform-input information relative to the output
 marginal is at most the average logarithmic density ratio to `q`](goal).
 
-This is the finite information-radius inequality `I(V;Y) ≤ E KL(P_{Y|V} ‖ Q)`. -/
+This is the finite information-radius inequality `I(V;Y) ≤ E KL(P_{Y|V} ‖ Q)`.
+@isnad1 id=le.5h4v.s8.54deae300ad1 from=translated src=- shape=562e33f2 vocab=8ac80477
+-/
 theorem uniform_information_le_average_logRatio
     {α β : Type*} [Fintype α] [Fintype β] [Nonempty α]
     (r : α → β → ℝ) (hr0 : ∀ i y, 0 ≤ r i y)

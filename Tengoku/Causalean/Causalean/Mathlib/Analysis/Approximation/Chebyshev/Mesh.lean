@@ -58,7 +58,9 @@ noncomputable def czMeshMax (R : Polynomial ℝ) (k : ℕ) : ℝ :=
   ⨆ j ∈ Finset.range (k + 1), |R.eval (czNode k j)|
 
 /-- Evaluating the cosine transform of [a real polynomial](hyp:R) at [the parameter determined by
-a mesh order and node index](hyp:k,j) [recovers the polynomial's value at that mesh node](goal). -/
+a mesh order and node index](hyp:k,j) [recovers the polynomial's value at that mesh node](goal).
+@isnad1 id=eq.0h3v.s5.740f895aa082 from=translated src=- shape=f50ece30 vocab=266fe9c1
+-/
 theorem czTrig_at_meshParam (R : Polynomial ℝ) (k j : ℕ) :
     czTrig R (Real.pi * j / k) = R.eval (czNode k j) := by
   simp only [czTrig, czNode]
@@ -66,7 +68,9 @@ theorem czTrig_at_meshParam (R : Polynomial ℝ) (k j : ℕ) :
 /-- **Node-selection lemma.** For [a positive mesh order](hyp:k,hk) and [an angle between zero
 and π](hyp:t₀,ht₀), [some mesh parameter is within half a mesh step of that angle](goal). The
 mesh parameters partition the interval into equal subintervals, so every point is within a
-half-step of a node. -/
+half-step of a node.
+@isnad1 id=ex.2h2v.s7.712ac2435a7f from=translated src=- shape=7e44cb18 vocab=70cc736e
+-/
 theorem exists_meshParam_close (k : ℕ) (hk : 0 < k) {t₀ : ℝ}
     (ht₀ : t₀ ∈ Set.Icc (0 : ℝ) Real.pi) :
     ∃ j ∈ Finset.range (k + 1), |t₀ - Real.pi * j / k| ≤ Real.pi / (2 * k) := by
@@ -126,7 +130,9 @@ theorem exists_meshParam_close (k : ℕ) (hk : 0 < k) {t₀ : ℝ}
 /-- **Sup transfer.** The supremum absolute value of [a real polynomial](hyp:R) on the unit
 interval is [bounded above by the sup norm of its cosine-parametrized transform on the interval
 from zero to π](goal). This follows because the negative cosine maps that angle interval onto the
-unit interval. -/
+unit interval.
+@isnad1 id=le.0h1v.s5.4bef4a3c76d4 from=translated src=- shape=09331284 vocab=a68a9265
+-/
 theorem czMeshLHS_le_czSup (R : Polynomial ℝ) :
     sSup ((fun x => |R.eval x|) '' Set.Icc (-1 : ℝ) 1) ≤ czSup R := by
   refine Real.sSup_le ?_ (czSup_nonneg R)
@@ -141,7 +147,9 @@ theorem czMeshLHS_le_czSup (R : Polynomial ℝ) :
   simpa [czTrig, hcos] using abs_czTrig_le_czSup R ht
 
 /-- For [a real polynomial and mesh order](hyp:R,k) and [any indexed mesh node](hyp:j,hj),
-[the absolute value at that node is at most the mesh maximum](goal). -/
+[the absolute value at that node is at most the mesh maximum](goal).
+@isnad1 id=le.1h3v.s5.69379aa8371d from=translated src=- shape=b1c247ba vocab=75d2c9a4
+-/
 theorem eval_node_le_czMeshMax (R : Polynomial ℝ) (k : ℕ) {j : ℕ}
     (hj : j ∈ Finset.range (k + 1)) :
     |R.eval (czNode k j)| ≤ czMeshMax R k := by
@@ -164,19 +172,25 @@ theorem eval_node_le_czMeshMax (R : Polynomial ℝ) (k : ℕ) {j : ℕ}
   simpa [czMeshMax, s, f] using houter
 
 /-- The mesh maximum for [a real polynomial at a chosen mesh order](hyp:R,k) is
-[nonnegative](goal). -/
+[nonnegative](goal).
+@isnad1 id=le.0h2v.s4.d2274d811084 from=translated src=- shape=4328188d vocab=b21472f8
+-/
 lemma czMeshMax_nonneg (R : Polynomial ℝ) (k : ℕ) :
     0 ≤ czMeshMax R k := by
   have hmem : 0 ∈ Finset.range (k + 1) := by simp
   exact (abs_nonneg (R.eval (czNode k 0))).trans (eval_node_le_czMeshMax R k hmem)
 
 /-- Negating [a real polynomial](hyp:R) at [any chosen angle](hyp:t) [negates the value of its
-cosine-parametrized transform](goal). -/
+cosine-parametrized transform](goal).
+@isnad1 id=eq.0h2v.s4.b814360c993b from=translated src=- shape=2c72aad0 vocab=2de8e4d5
+-/
 lemma czTrig_neg (R : Polynomial ℝ) (t : ℝ) :
     czTrig (-R) t = -czTrig R t := by
   simp [czTrig, Polynomial.eval_neg]
 
-/-- Negating [a real polynomial](hyp:R) [leaves its cosine-transform sup norm unchanged](goal). -/
+/-- Negating [a real polynomial](hyp:R) [leaves its cosine-transform sup norm unchanged](goal).
+@isnad1 id=eq.0h1v.s4.8d20cf8a304e from=translated src=- shape=21d48a57 vocab=07a52e58
+-/
 lemma czSup_neg (R : Polynomial ℝ) :
     czSup (-R) = czSup R := by
   apply congrArg sSup
@@ -188,13 +202,17 @@ lemma czSup_neg (R : Polynomial ℝ) :
     exact ⟨t, ht, by simp [czTrig_neg]⟩
 
 /-- Negating [a real polynomial](hyp:R) [leaves its maximum absolute value on a chosen
-mesh](goal) for [any mesh order](hyp:k). -/
+mesh](goal) for [any mesh order](hyp:k).
+@isnad1 id=eq.0h2v.s4.3ed4613b6343 from=translated src=- shape=1a752a9f vocab=e744c044
+-/
 lemma czMeshMax_neg (R : Polynomial ℝ) (k : ℕ) :
     czMeshMax (-R) k = czMeshMax R k := by
   simp [czMeshMax, Polynomial.eval_neg]
 
 /-- At [a positive mesh order](hyp:k,hk), [every valid node index](hyp:j,hj) [determines a
-Chebyshev–Lobatto mesh parameter between zero and π](goal). -/
+Chebyshev–Lobatto mesh parameter between zero and π](goal).
+@isnad1 id=mem.2h2v.s6.ed98cde478fb from=translated src=- shape=4a68c79d vocab=7b79e714
+-/
 lemma meshParam_mem_Icc (k : ℕ) (hk : 0 < k) {j : ℕ}
     (hj : j ∈ Finset.range (k + 1)) :
     Real.pi * j / k ∈ Set.Icc (0 : ℝ) Real.pi := by
@@ -285,7 +303,9 @@ The norming constant `sec(π β / (2k))` is finite because `β < k` forces
 trigonometric sup-norm `M = czSup R`: choose a maximizer `t₀` (`czSup_attained`)
 and, replacing `R` by `-R` if necessary so that `czTrig R t₀ = M`, pick a nearby
 mesh parameter `π j / k` (`exists_meshParam_close`); then `czTrig_maximizer_bound`
-gives `M · cos(π β / (2k)) ≤ |R(x_j)| ≤ max_j |R(x_j)|`. -/
+gives `M · cos(π β / (2k)) ≤ |R(x_j)| ≤ max_j |R(x_j)|`.
+@isnad1 id=le.2h3v.s6.1b06b7f56017 from=translated src=- shape=0f2418dd vocab=36ce640f
+-/
 theorem ehlichZeller_mesh_bound (R : Polynomial ℝ) (β k : ℕ)
     (hβ : R.natDegree ≤ β) (hk : β < k) :
     sSup ((fun x => |R.eval x|) '' Set.Icc (-1 : ℝ) 1)
@@ -320,7 +340,9 @@ ratio](goal). Thus the norming constant depends only on the oversampling ratio.
 This specializes `ehlichZeller_mesh_bound`: from `c·β ≤ k` and `c > 1`, `β ≥ 1`
 one gets `β < k` and `β / k ≤ 1 / c`, hence `π β / (2k) ≤ π / (2c) < π / 2`; since
 `cos` is positive and antitone on `[0, π/2)`, `cos(π / (2c)) ≤ cos(π β / (2k))`,
-so `sec(π β / (2k)) ≤ sec(π / (2c))`. -/
+so `sec(π β / (2k)) ≤ sec(π / (2c))`.
+@isnad1 id=le.4h4v.s7.0f642ab28328 from=translated src=- shape=889d35a6 vocab=36ce640f
+-/
 theorem oversampled_norming (R : Polynomial ℝ) (β k : ℕ) (c : ℝ)
     (hc : 1 < c) (hβ : 1 ≤ β) (hβR : R.natDegree ≤ β) (hk : (c * β) ≤ k) :
     sSup ((fun x => |R.eval x|) '' Set.Icc (-1 : ℝ) 1)

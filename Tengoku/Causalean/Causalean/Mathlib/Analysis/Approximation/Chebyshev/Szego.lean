@@ -48,7 +48,9 @@ point](hyp:Q₀,Q₁,t₀), [the Szegő interpolant is a real trigonometric poly
 degree](goal).
 
 (Expand `cos(β(t − t₀))` and `sin(β(t − t₀))` into `cos(βt)`, `sin(βt)` via the
-angle-subtraction formulae; only the `k = β` coefficient is nonzero.) -/
+angle-subtraction formulae; only the `k = β` coefficient is nonzero.)
+@isnad1 id=istrigpo.0h4v.s3.4dcd8d23df73 from=translated src=- shape=452a97b5 vocab=e96bdde7
+-/
 theorem szegoInterp_isTrigPolyLE (β : ℕ) (Q₀ Q₁ t₀ : ℝ) :
     IsTrigPolyLE β (szegoInterp β Q₀ Q₁ t₀) := by
   let A : ℝ :=
@@ -69,7 +71,9 @@ theorem szegoInterp_isTrigPolyLE (β : ℕ) (Q₀ Q₁ t₀ : ℝ) :
     exact False.elim (hnot (Finset.mem_range.mpr (Nat.lt_succ_self β)))
 
 /-- The pointwise sum of [two real trigonometric polynomials with a common degree
-bound](hyp:n,f,g,hf,hg) is [a real trigonometric polynomial with the same degree bound](goal). -/
+bound](hyp:n,f,g,hf,hg) is [a real trigonometric polynomial with the same degree bound](goal).
+@isnad1 id=istrigpo.2h3v.s5.2db9a933ced0 from=translated src=- shape=befcebd0 vocab=e012f651
+-/
 theorem IsTrigPolyLE.add {n : ℕ} {f g : ℝ → ℝ} (hf : IsTrigPolyLE n f)
     (hg : IsTrigPolyLE n g) : IsTrigPolyLE n (fun t => f t + g t) := by
   rcases hf with ⟨a, b, ha⟩
@@ -85,7 +89,9 @@ theorem IsTrigPolyLE.add {n : ℕ} {f g : ℝ → ℝ} (hf : IsTrigPolyLE n f)
   ring
 
 /-- Multiplying [a real trigonometric polynomial with a chosen degree bound](hyp:n,f,hf) by
-[a real scalar](hyp:c) [preserves that degree bound](goal). -/
+[a real scalar](hyp:c) [preserves that degree bound](goal).
+@isnad1 id=istrigpo.1h3v.s4.4eaef80ca5f9 from=translated src=- shape=d2ae14d6 vocab=00cd3bd6
+-/
 theorem IsTrigPolyLE.const_mul {n : ℕ} {f : ℝ → ℝ} (c : ℝ)
     (hf : IsTrigPolyLE n f) : IsTrigPolyLE n (fun t => c * f t) := by
   rcases hf with ⟨a, b, ha⟩
@@ -101,14 +107,18 @@ theorem IsTrigPolyLE.const_mul {n : ℕ} {f : ℝ → ℝ} (c : ℝ)
 
 /-- A [real-valued function](hyp:g) [pointwise equal](hyp:hfg) to [a real trigonometric
 polynomial with a chosen degree bound](hyp:n,f,hf) is [itself a trigonometric polynomial with
-that bound](goal). -/
+that bound](goal).
+@isnad1 id=istrigpo.2h3v.s4.1d165a8ffbd4 from=translated src=- shape=21256f1e vocab=cfac1f71
+-/
 theorem IsTrigPolyLE.congr {n : ℕ} {f g : ℝ → ℝ} (hf : IsTrigPolyLE n f)
     (hfg : ∀ t, g t = f t) : IsTrigPolyLE n g := by
   rcases hf with ⟨a, b, ha⟩
   exact ⟨a, b, fun t => by rw [hfg t, ha t]⟩
 
 /-- The cosine wave at [a nonnegative integer frequency](hyp:n) is [a real trigonometric
-polynomial whose degree is at most that frequency](goal). -/
+polynomial whose degree is at most that frequency](goal).
+@isnad1 id=istrigpo.0h1v.s4.cb918f201e3a from=translated src=- shape=ce353cf7 vocab=1b527dad
+-/
 theorem cos_nat_mul_isTrigPolyLE (n : ℕ) :
     IsTrigPolyLE n (fun t => Real.cos ((n : ℝ) * t)) := by
   classical
@@ -129,7 +139,9 @@ Proof route: expand `R` in the Chebyshev basis `{T_k}_{k ≤ β}` (any polynomia
 degree ≤ `β` is a linear combination of `T_0, …, T_β`) and use
 `Polynomial.Chebyshev.T_real_cos`, `T_k (cos t) = cos (k t)`.  Thus
 `R(cos t) = ∑_{k ≤ β} c_k · cos (k t)`, a trig polynomial of degree ≤ `β` with
-zero sine coefficients. -/
+zero sine coefficients.
+@isnad1 id=istrigpo.1h2v.s4.d8de8768a456 from=translated src=- shape=b3693209 vocab=5a9b80a0
+-/
 theorem cosComp_isTrigPolyLE (R : Polynomial ℝ) (β : ℕ) (hβ : R.natDegree ≤ β) :
     IsTrigPolyLE β (fun t => R.eval (Real.cos t)) := by
   classical
@@ -189,7 +201,9 @@ theorem cosComp_isTrigPolyLE (R : Polynomial ℝ) (β : ℕ) (hβ : R.natDegree 
         ring
 
 /-- The Szegő interpolant determined by [a frequency, prescribed value and derivative, and base
-point](hyp:β,Q₀,Q₁,t₀) is [continuous as a function of its argument](goal). -/
+point](hyp:β,Q₀,Q₁,t₀) is [continuous as a function of its argument](goal).
+@isnad1 id=continuo.0h4v.s4.37606f108c22 from=translated src=- shape=2ec8139e vocab=c7f7979f
+-/
 @[fun_prop]
 theorem szegoInterp_continuous (β : ℕ) (Q₀ Q₁ t₀ : ℝ) :
     Continuous (szegoInterp β Q₀ Q₁ t₀) := by
@@ -269,7 +283,9 @@ zeros counted once with `t₀ ∉ S`, while `t₀` is a *double* zero of `g` (va
 derivative match).  By `card_simple_add_double_le`, `(2β − 1) + 2 ≤ 2β`, i.e.
 `2β + 1 ≤ 2β` — a contradiction.  (A distinct-zero count would *not* suffice: a
 double zero need not create a second distinct zero in its interval, so the extra
-count must come from multiplicity.)  Hence the bound holds at every `t₀`. -/
+count must come from multiplicity.)  Hence the bound holds at every `t₀`.
+@isnad1 id=le.2h4v.s7.53f36eec7a09 from=translated src=- shape=947e732a vocab=426b5da6
+-/
 theorem szego_deriv_sq_bound (R : Polynomial ℝ) (β : ℕ) (hβ : R.natDegree ≤ β)
     (M : ℝ) (hM : ∀ t, |R.eval (Real.cos t)| ≤ M) :
     ∀ t, (deriv (fun s => R.eval (Real.cos s)) t) ^ 2

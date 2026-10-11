@@ -27,7 +27,9 @@ section KernelEvalₐ
 
 variable (I : Ideal R)
 
-/-- `(map f I)ⁿ ⊆ ker(evalₐ I n)`: elements from I^n evaluate to zero. -/
+/-- `(map f I)ⁿ ⊆ ker(evalₐ I n)`: elements from I^n evaluate to zero.
+@isnad1 id=le.0h3v.s10.4c11d146727c from=translated src=- shape=83eb31e6 vocab=e04ac542
+-/
 lemma map_pow_le_ker_evalₐ (n : ℕ) :
     Ideal.map (algebraMap R (AdicCompletion I R)) (I ^ n) ≤
     RingHom.ker (AdicCompletion.evalₐ I n).toRingHom := by
@@ -38,7 +40,9 @@ lemma map_pow_le_ker_evalₐ (n : ℕ) :
   rw [evalₐ_of]
   exact Ideal.Quotient.eq_zero_iff_mem.mpr hr
 
-/-- `ker(evalₐ M n) = M̂ⁿ` for Noetherian local R. -/
+/-- `ker(evalₐ M n) = M̂ⁿ` for Noetherian local R.
+@isnad1 id=eq.0h2v.s11.eb815847a70f from=translated src=- shape=0ba12d6c vocab=66886609
+-/
 lemma ker_evalₐ_eq [IsLocalRing R] [IsNoetherianRing R] (n : ℕ) :
     RingHom.ker (evalₐ (IsLocalRing.maximalIdeal R) n).toRingHom =
     Ideal.map (algebraMap R (AdicCompletion (IsLocalRing.maximalIdeal R) R))
@@ -50,7 +54,9 @@ lemma ker_evalₐ_eq [IsLocalRing R] [IsNoetherianRing R] (n : ℕ) :
   · rw [← Ideal.map_pow]
     exact map_pow_le_ker_evalₐ (IsLocalRing.maximalIdeal R) n
 
-/-- Evaluations are stable along Cauchy sequences. -/
+/-- Evaluations are stable along Cauchy sequences.
+@isnad1 id=eq.2h5v.s11.859cec5d2259 from=translated src=- shape=0e24e663 vocab=e85eb6d9
+-/
 lemma eval_cauchy_stable (f : ℕ → AdicCompletion I R)
     (hf : ∀ {m n : ℕ}, m ≤ n →
       SModEq (I ^ m • (⊤ : Submodule R (AdicCompletion I R))) (f m) (f n))
@@ -62,7 +68,9 @@ lemma eval_cauchy_stable (f : ℕ → AdicCompletion I R)
   rw [RingHom.mem_ker, AlgHom.toRingHom_eq_coe, AlgHom.coe_toRingHom, map_sub, sub_eq_zero] at this
   exact this.symm
 
-/-- `factorPow ∘ evalₐ n = evalₐ m` for m ≤ n. -/
+/-- `factorPow ∘ evalₐ n = evalₐ m` for m ≤ n.
+@isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
+-/
 lemma factorPow_comp_evalₐ_noeth {m n : ℕ} (hmn : m ≤ n) (x : AdicCompletion I R) :
     Ideal.Quotient.factorPow I hmn (evalₐ I n x) = evalₐ I m x := by
   apply induction_on I R
@@ -128,7 +136,9 @@ noncomputable def buildSeq {α : Type*} {P : ℕ → α → Prop}
   fun K => Nat.rec base (fun K prev => step K prev) K
 
 omit [IsLocalRing R] [IsNoetherianRing R] in
-/-- Auxiliary: M * FN(n) ≤ FN(n+1) for the leading-term filtration FN. -/
+/-- Auxiliary: M * FN(n) ≤ FN(n+1) for the leading-term filtration FN.
+@isnad1 id=le.1h5v.s11.de60acfa549d from=translated src=- shape=7865c5f0 vocab=5f4e4f1e
+-/
 lemma filtration_smul_le
     (Mi : Ideal R) (J : Ideal (AdicCompletion Mi R))
     (FN : ℕ → Ideal R)
@@ -188,7 +198,9 @@ lemma filtration_smul_le
     exact Ideal.mul_mem_mul hm hs
 
 omit [IsLocalRing R] [IsNoetherianRing R] in
-/-- Auxiliary: lift elements of Mi^K • FN(n0) to I₀ with evalₐ compatibility. -/
+/-- Auxiliary: lift elements of Mi^K • FN(n0) to I₀ with evalₐ compatibility.
+@isnad1 id=ex.3h8v.s12.f50cc2261429 from=translated src=- shape=96469a2e vocab=9a10ac24
+-/
 lemma smul_lift_of_filtration
     (Mi : Ideal R)
     (n0 K : ℕ)
@@ -234,7 +246,9 @@ lemma smul_lift_of_filtration
     exact ⟨δa + δb, I₀.add_mem hδaI hδbI, by rw [map_add, hδaeq, hδbeq, map_add]⟩
 
 omit [IsLocalRing R] [IsNoetherianRing R] in
-/-- Auxiliary: extract a representative r ∈ Mi^K • FN_n0 from e ∈ Mhat^(n0+K) ∩ J. -/
+/-- Auxiliary: extract a representative r ∈ Mi^K • FN_n0 from e ∈ Mhat^(n0+K) ∩ J.
+@isnad1 id=ex.5h9v.s12.ebf5f7ff3c35 from=translated src=- shape=ae0719e6 vocab=d4f50681
+-/
 lemma extract_filtration_rep
     (Mi : Ideal R) (J : Ideal (AdicCompletion Mi R))
     (FN : ℕ → Ideal R) (n0 K : ℕ)

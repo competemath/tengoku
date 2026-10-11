@@ -38,7 +38,9 @@ noncomputable def reciprocalApproxPoly (a b : ℝ) (m : ℕ) : Polynomial ℝ :=
         (C (intervalShape a b) - C (2 / (b - a)) * X)).divX
 
 /-- The [interval endpoints](hyp:a,b) and [degree bound](hyp:m) imply [that the
-residual polynomial has degree at most one more than the bound](goal). -/
+residual polynomial has degree at most one more than the bound](goal).
+@isnad1 id=le.0h3v.s4.dfef0ac99366 from=translated src=- shape=1f8d42f7 vocab=f83899ef
+-/
 theorem reciprocalResidualPoly_degree_le (a b : ℝ) (m : ℕ) :
     (reciprocalResidualPoly a b m).natDegree ≤ m + 1 := by
   unfold reciprocalResidualPoly
@@ -78,7 +80,9 @@ private theorem reciprocalResidualPoly_recurrence (a b : ℝ) (m : ℕ) :
 
 /-- A [positive lower endpoint](hyp:a,ha), [strictly larger upper endpoint](hyp:b,hab), and [degree
 bound m](hyp:m) imply [that the residual polynomial evaluated at the interval shape parameter v
-equals 2 (v² − 1) divided by the m-th power of the decay parameter](goal). -/
+equals 2 (v² − 1) divided by the m-th power of the decay parameter](goal).
+@isnad1 id=eq.2h3v.s6.a8f66844df5a from=translated src=- shape=c04e8d6d vocab=f3682674
+-/
 theorem reciprocalResidualPoly_at_shape {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) :
     (reciprocalResidualPoly a b m).eval (intervalShape a b) =
@@ -118,7 +122,9 @@ theorem reciprocalResidualPoly_at_shape {a b : ℝ}
 
 /-- A [positive lower endpoint](hyp:a,ha), [strictly larger upper
 endpoint](hyp:b,hab), and [degree bound](hyp:m) imply [that the explicit
-reciprocal approximant has degree at most that bound](goal). -/
+reciprocal approximant has degree at most that bound](goal).
+@isnad1 id=le.2h3v.s5.e205642e62d8 from=translated src=- shape=402ad926 vocab=17ca1e11
+-/
 theorem reciprocalApproxPoly_degree_le {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) :
     (reciprocalApproxPoly a b m).natDegree ≤ m := by
@@ -140,7 +146,9 @@ theorem reciprocalApproxPoly_degree_le {a b : ℝ}
 
 /-- [Positive interval endpoints](hyp:a,b,ha,hab), a [nonzero evaluation
 point](hyp:z,hz), and a [degree bound](hyp:m) imply [the shifted-residual
-identity for the explicit reciprocal approximant](goal). -/
+identity for the explicit reciprocal approximant](goal).
+@isnad1 id=eq.3h4v.s7.28511dd65366 from=translated src=- shape=c2dec810 vocab=5a7ecb69
+-/
 theorem reciprocalApproxPoly_residual {a b z : ℝ}
     (ha : 0 < a) (hab : a < b) (hz : z ≠ 0) (m : ℕ) :
     z⁻¹ - (reciprocalApproxPoly a b m).eval z =

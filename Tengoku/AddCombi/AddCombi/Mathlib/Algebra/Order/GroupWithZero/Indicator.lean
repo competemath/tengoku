@@ -13,9 +13,15 @@ variable {α M : Type*} [Zero M] [One M]
 section Preorder
 variable [Preorder M] [ZeroLEOneClass M] {s : Set α}
 
+/--
+@isnad1 id=le.0h3v.s6.ab0e6f8f5ffd from=translated src=- shape=aeebc6bf vocab=eeb64741
+-/
 @[simp] lemma indicator_one_nonneg : 0 ≤ s.indicator (fun _ ↦ (1 : M)) :=
   indicator_nonneg (by simp)
 
+/--
+@isnad1 id=le.0h4v.s5.cfe2766fee3e from=translated src=- shape=ca5d3b6e vocab=eeb64741
+-/
 @[local simp] lemma indicator_one_apply_nonneg {a : α} :
     0 ≤ s.indicator (fun _ ↦ (1 : M)) a := indicator_one_nonneg a
 
@@ -25,6 +31,9 @@ attribute [local simp] Set.indicator_one_nonneg
 section PartialOrder
 variable [PartialOrder M] [ZeroLEOneClass M] [NeZero (1 : M)] {s : Set α}
 
+/--
+@isnad1 id=iff.0h3v.s6.f25933499055 from=translated src=- shape=338331bb vocab=c1e79238
+-/
 @[local simp]
 lemma indicator_one_pos [Nontrivial M] : 0 < s.indicator (fun _ ↦ (1 : M)) ↔ s.Nonempty := by
   classical

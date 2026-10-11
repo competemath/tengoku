@@ -30,19 +30,25 @@ is [the same exact coordinate formula](step:1). -/
 noncomputable def oddEuclidean {d : ℕ} (x : EuclideanSpace ℝ (Fin d)) : ℝ :=
   oddProduct (fun i => x i)
 
-/-- [The dimension-zero odd profile is identically zero](goal). -/
+/-- [The dimension-zero odd profile is identically zero](goal).
+@isnad1 id=eq.0h0v.s5.c0f6734e247f from=translated src=- shape=15352d13 vocab=2ec0ad0a
+-/
 theorem oddProduct_dim_zero : oddProduct (d := 0) = fun _ => 0 := by
   funext x
   simp [oddProduct]
 
 /-- [The odd product changes sign under simultaneous coordinate negation](goal)
-in [every dimension](hyp:d) at [every point](hyp:x). -/
+in [every dimension](hyp:d) at [every point](hyp:x).
+@isnad1 id=eq.0h2v.s5.1ac2dafc6af8 from=translated src=- shape=417832b8 vocab=086a0983
+-/
 theorem oddProduct_neg {d : ℕ} (x : Fin d → ℝ) : oddProduct (-x) = -oddProduct x := by
   by_cases hd : 0 < d
   · simp [oddProduct, hd, cutoff_neg]
   · simp [oddProduct, hd]
 
-/-- [The odd product has compact support](goal) in [every finite dimension](hyp:d). -/
+/-- [The odd product has compact support](goal) in [every finite dimension](hyp:d).
+@isnad1 id=hascompa.0h1v.s4.841d90725ca6 from=translated src=- shape=bbef8654 vocab=f0224c27
+-/
 -- Reuse the cube argument of CubeExtension.productBump_hasCompactSupport:
 -- `isCompact_pi_infinite (fun _ => isCompact_Icc)` and
 -- `HasCompactSupport.intro`. Off the cube, one cutoff factor is zero.
@@ -61,7 +67,9 @@ theorem oddProduct_hasCompactSupport {d : ℕ} : HasCompactSupport (oddProduct (
   simp [oddProduct, hz]
 
 /-- [The odd product is globally twice continuously differentiable](goal)
-in [every finite dimension](hyp:d). -/
+in [every finite dimension](hyp:d).
+@isnad1 id=contdiff.0h1v.s6.2000f2df9240 from=translated src=- shape=f48dad8c vocab=2ad143e4
+-/
 -- Split `0 < d`, then use `contDiff_prod`, `cutoff_contDiff.comp`,
 -- the coordinate evaluation continuous linear maps, and `ContDiff.mul`.
 theorem oddProduct_contDiff {d : ℕ} : ContDiff ℝ 2 (oddProduct (d := d)) := by
@@ -78,7 +86,9 @@ theorem oddProduct_contDiff {d : ℕ} : ContDiff ℝ 2 (oddProduct (d := d)) := 
       (contDiff_const : ContDiff ℝ 2 (fun _ : Fin d → ℝ => (0 : ℝ)))
 
 /-- At [a point](hyp:x) [off the closed coordinate support](hyp:hx) in
-[dimension](hyp:d), [the value and both ambient jets vanish](goal). -/
+[dimension](hyp:d), [the value and both ambient jets vanish](goal).
+@isnad1 id=and.1h2v.s12.d621b7385379 from=translated src=- shape=adf16b89 vocab=e961e9ee
+-/
 -- Failure of closed coordinate support supplies a STRICT exterior coordinate.
 -- Its continuous absolute value stays > 1 on a neighborhood; the product is
 -- eventually zero there. Apply the closed `jets_zero_of_eventually_zero` helper.
@@ -100,12 +110,16 @@ theorem oddProduct_jets_zero {d : ℕ} (x : Fin d → ℝ) (hx : x ∉ coordinat
   simp [oddProduct, hz]
 
 /-- [A dimension-dependent finite constant bounds all three global jets](goal)
-of the odd product in [dimension](hyp:d). -/
+of the odd product in [dimension](hyp:d).
+@isnad1 id=ex.0h1v.s6.253e145e9bfb from=translated src=- shape=8954fa3c vocab=1f696229
+-/
 theorem oddProduct_jetBounds (d : ℕ) :
     ∃ C : ℝ, 1 ≤ C ∧ JetBounds (oddProduct (d := d)) C := by
   exact exists_jetBounds_of_compactSupport oddProduct_contDiff oddProduct_hasCompactSupport
 
-/-- [The Euclidean odd product has compact support](goal) in [dimension](hyp:d). -/
+/-- [The Euclidean odd product has compact support](goal) in [dimension](hyp:d).
+@isnad1 id=hascompa.0h1v.s5.7c0f635ac292 from=translated src=- shape=3746c959 vocab=146cf139
+-/
 -- `EuclideanSpace.equiv (Fin d) ℝ` is the existing continuous linear equivalence
 -- to the coordinate sup-norm space. Transfer compact support via its homeomorphism.
 theorem oddEuclidean_hasCompactSupport {d : ℕ} : HasCompactSupport (oddEuclidean (d := d)) := by
@@ -113,14 +127,18 @@ theorem oddEuclidean_hasCompactSupport {d : ℕ} : HasCompactSupport (oddEuclide
     (EuclideanSpace.equiv (Fin d) ℝ).toHomeomorph
 
 /-- [The Euclidean odd product is globally twice continuously differentiable](goal)
-in [dimension](hyp:d). -/
+in [dimension](hyp:d).
+@isnad1 id=contdiff.0h1v.s6.6dbf7fc702e9 from=translated src=- shape=4c3f1ed5 vocab=eedc843b
+-/
 -- Compose `oddProduct_contDiff` with `EuclideanSpace.equiv (Fin d) ℝ`.
 -- Its coercion evaluates to the same coordinates as the unchanged definition.
 theorem oddEuclidean_contDiff {d : ℕ} : ContDiff ℝ 2 (oddEuclidean (d := d)) := by
   exact oddProduct_contDiff.comp (EuclideanSpace.equiv (Fin d) ℝ).contDiff
 
 /-- [All three Euclidean jets vanish](goal) at [a point](hyp:x) in [dimension](hyp:d)
-[off its closed coordinate support](hyp:hx). -/
+[off its closed coordinate support](hyp:hx).
+@isnad1 id=and.1h2v.s12.850ba4e8eaff from=translated src=- shape=dc50769e vocab=314b95e7
+-/
 theorem oddEuclidean_jets_zero {d : ℕ} (x : EuclideanSpace ℝ (Fin d))
     (hx : ¬∀ i, |x i| ≤ 1) :
     oddEuclidean x = 0 ∧ fderiv ℝ oddEuclidean x = 0 ∧
@@ -139,7 +157,9 @@ theorem oddEuclidean_jets_zero {d : ℕ} (x : EuclideanSpace ℝ (Fin d))
   simp [oddEuclidean, oddProduct, hz]
 
 /-- [A finite dimension-dependent constant bounds all Euclidean jets through order two](goal)
-in [dimension](hyp:d). -/
+in [dimension](hyp:d).
+@isnad1 id=ex.0h1v.s6.32445db71455 from=translated src=- shape=cb13a190 vocab=44804fb6
+-/
 theorem oddEuclidean_jetBounds (d : ℕ) :
     ∃ C : ℝ, 1 ≤ C ∧ JetBounds (oddEuclidean (d := d)) C := by
   exact exists_jetBounds_of_compactSupport oddEuclidean_contDiff oddEuclidean_hasCompactSupport

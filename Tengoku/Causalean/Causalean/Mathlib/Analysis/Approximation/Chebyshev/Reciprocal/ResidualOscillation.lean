@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.Reciprocal
 
 /-- [Positive interval endpoints](hyp:a,b,ha,hab), an [interval point](hyp:z,hz),
 and a [degree bound](hyp:m) imply [the sharp absolute bound for the shifted
-residual polynomial](goal). -/
+residual polynomial](goal).
+@isnad1 id=le.3h4v.s7.6eaa5873f42e from=translated src=- shape=6940c431 vocab=1dc58d78
+-/
 theorem reciprocalResidualPoly_bound {a b z : ℝ}
     (ha : 0 < a) (hab : a < b) (hz : z ∈ Set.Icc a b) (m : ℕ) :
     |(reciprocalResidualPoly a b m).eval
@@ -58,7 +60,9 @@ theorem reciprocalResidualPoly_bound {a b z : ℝ}
 
 /-- [Positive interval endpoints](hyp:a,b,ha,hab) and a [degree bound](hyp:m)
 imply [the existence of ordered interval points where the shifted residual
-attains alternating sharp values](goal). -/
+attains alternating sharp values](goal).
+@isnad1 id=ex.2h3v.s8.7399a13fa628 from=translated src=- shape=b8ff3981 vocab=65da9f6e
+-/
 theorem reciprocalResidualPoly_alternating_nodes {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (m : ℕ) :
     ∃ nodes : Fin (m + 2) → ℝ,

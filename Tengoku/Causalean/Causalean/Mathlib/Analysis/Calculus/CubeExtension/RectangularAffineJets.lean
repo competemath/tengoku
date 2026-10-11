@@ -20,7 +20,9 @@ corners lo', hi' both have positive side lengths](hyp:htarget), then [there is a
 continuous linear equivalence e that multiplies coordinate i by
 (hi'_i − lo'_i)/(hi_i − lo_i), and the coordinatewise affine map between the
 boxes equals e followed by translation by the vector with i-th coordinate
-lo'_i − (hi'_i − lo'_i)/(hi_i − lo_i)·lo_i](goal). -/
+lo'_i − (hi'_i − lo'_i)/(hi_i − lo_i)·lo_i](goal).
+@isnad1 id=ex.2h5v.s10.7322e10182e1 from=translated src=- shape=109c7dbd vocab=4ff80028
+-/
 theorem exists_rectAffine_linearEquiv {d : ℕ}
     (lo hi lo' hi' : Fin d → ℝ)
     (hsource : ∀ i, lo i < hi i)
@@ -54,7 +56,9 @@ theorem exists_rectAffine_linearEquiv {d : ℕ}
 lengths](hyp:htarget) and [a response u is m times continuously differentiable
 within the target box](hyp:hu), then [its pullback along the coordinatewise
 affine map is m times continuously differentiable within the source
-box](goal). -/
+box](goal).
+@isnad1 id=contdiff.3h7v.s7.75487e88814c from=translated src=- shape=614f1088 vocab=5b7c50cd
+-/
 theorem contDiffOn_rectAffine {d m : ℕ}
     (lo hi lo' hi' : Fin d → ℝ)
     (hsource : ∀ i, lo i < hi i)
@@ -90,7 +94,9 @@ coordinate jet on the source box of the pullback of a response u along the
 coordinatewise affine map, in directions f(0), …, f(j − 1), equals the product
 over k of the scale factors (hi'_{f(k)} − lo'_{f(k)})/(hi_{f(k)} − lo_{f(k)})
 times the corresponding intrinsic jet of u on the target box at the image of
-x](goal). -/
+x](goal).
+@isnad1 id=eq.3h9v.s7.f2c0fcc7aaae from=translated src=- shape=4930b37f vocab=2fb0dd47
+-/
 theorem coordJetOn_rectAffine {d j : ℕ}
     (lo hi lo' hi' : Fin d → ℝ)
     (hsource : ∀ i, lo i < hi i)

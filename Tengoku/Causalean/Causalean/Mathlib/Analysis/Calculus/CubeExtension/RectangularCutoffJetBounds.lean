@@ -22,7 +22,9 @@ bounded in operator norm by B ≥ 0](hyp:hB,hχbound), then [there is a positive
 constant C such that for every response v in the intrinsic Hölder ball of order
 m, exponent s and radius R ≥ 0 on the closed box, every ambient derivative of
 order at most m of the zero extension of χ·v from the box has operator norm at
-most C·R everywhere](goal). -/
+most C·R everywhere](goal).
+@isnad1 id=ex.5h7v.s10.57da61995916 from=translated src=- shape=dc276ece vocab=8066c82c
+-/
 theorem exists_rectCutoffExtension_jet_constant (d m : ℕ) (s : ℝ)
     (lo hi : Fin d → ℝ) (hmargin : ∀ i, lo i < -1 ∧ 1 < hi i)
     (χ : (Fin d → ℝ) → ℝ) (hχ : ContDiff ℝ ∞ χ)

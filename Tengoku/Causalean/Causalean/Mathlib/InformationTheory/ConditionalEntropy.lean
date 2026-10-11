@@ -65,18 +65,24 @@ noncomputable def errorProb (p : α × β → ℝ) (decode : β → α) : ℝ :=
 
 omit [Fintype β] [DecidableEq α] in
 /-- The `β`-marginal is the finite sum of joint masses over the `α`
-coordinate at the chosen value of `β`. -/
+coordinate at the chosen value of `β`.
+@isnad1 id=eq.0h4v.s5.4226d0fcce54 from=translated src=- shape=9ea99240 vocab=7c2f5ef3
+-/
 @[simp] lemma yMarginal_def (p : α × β → ℝ) (y : β) :
     yMarginal p y = ∑ x, p (x, y) := rfl
 
 omit [DecidableEq α] in
 /-- Conditional entropy unfolds to total joint entropy minus the entropy of the
-conditioning marginal. -/
+conditioning marginal.
+@isnad1 id=eq.0h3v.s5.fcbdafa8e188 from=translated src=- shape=c10560bf vocab=ebbbcb01
+-/
 @[simp] lemma condEntropy_def (p : α × β → ℝ) :
     condEntropy p = entropy p - entropy (yMarginal p) := rfl
 
 /-- The decoder error probability unfolds to the sum of the joint masses on
-incorrect decoding cells. -/
+incorrect decoding cells.
+@isnad1 id=eq.0h4v.s6.9f29f1b7cd18 from=translated src=- shape=411d6dbd vocab=c686e399
+-/
 @[simp] lemma errorProb_def (p : α × β → ℝ) (decode : β → α) :
     errorProb p decode = ∑ xy : α × β, (if xy.1 = decode xy.2 then 0 else p xy) := rfl
 
@@ -86,7 +92,9 @@ incorrect decoding cells. -/
 
 On the support (`x > 0`, hence `g > 0`) this is `x · log (g / x) ≤ x · (g/x − 1)` via
 `Real.log_le_sub_one_of_pos`; off the support (`x = 0`) the left side vanishes and the
-bound reads `0 ≤ g`. Summing this over a finite index set yields the Gibbs inequality. -/
+bound reads `0 ≤ g`. Summing this over a finite index set yields the Gibbs inequality.
+@isnad1 id=le.3h2v.s6.47275b838019 from=translated src=- shape=301a5e02 vocab=b35cf4e6
+-/
 lemma negMulLog_add_mul_log_le {x g : ℝ} (hx : 0 ≤ x) (hg : 0 ≤ g)
     (hac : x ≠ 0 → 0 < g) :
     Real.negMulLog x + x * Real.log g ≤ g - x := by
@@ -116,7 +124,9 @@ is bounded by the cross-entropy of `p` relative to `g`](goal):
 This is the elementary Gibbs argument: sum `negMulLog_add_mul_log_le` over `γ`. The right
 telescopes to `∑ g − ∑ p ≤ 0`, leaving `entropy p + ∑ p log g ≤ 0`. It generalises
 the entropy core's `entropy_le_log_card` (case `g ≡ (card γ)⁻¹`) and is the only
-information-theoretic inequality Fano's proof needs. -/
+information-theoretic inequality Fano's proof needs.
+@isnad1 id=le.4h3v.s7.982133f98b3c from=translated src=- shape=5eda0408 vocab=0a382e16
+-/
 theorem entropy_le_crossEntropy {γ : Type*} [Fintype γ] {p g : γ → ℝ}
     (hp0 : ∀ i, 0 ≤ p i)
     (hg0 : ∀ i, 0 ≤ g i) (hgsum : ∑ i, g i ≤ ∑ i, p i)
@@ -147,7 +157,9 @@ theorem entropy_le_crossEntropy {γ : Type*} [Fintype γ] {p g : γ → ℝ}
 
 omit [DecidableEq α] in
 /-- The `β`-marginal of a pmf is itself a pmf summing to one: if `∑ xy, p xy = 1`
-then `∑ y, yMarginal p y = 1`. -/
+then `∑ y, yMarginal p y = 1`.
+@isnad1 id=eq.1h3v.s6.1bc915d5155f from=translated src=- shape=fb75a7c1 vocab=0db2f58b
+-/
 lemma yMarginal_sum {p : α × β → ℝ} (hsum : ∑ xy : α × β, p xy = 1) :
     ∑ y, yMarginal p y = 1 := by
   simp only [yMarginal_def]
@@ -155,7 +167,9 @@ lemma yMarginal_sum {p : α × β → ℝ} (hsum : ∑ xy : α × β, p xy = 1) 
   exact hsum
 
 omit [Fintype β] [DecidableEq α] in
-/-- The `β`-marginal of a nonnegative mass function is nonnegative. -/
+/-- The `β`-marginal of a nonnegative mass function is nonnegative.
+@isnad1 id=le.1h4v.s5.d7d95d993bfc from=translated src=- shape=138ad996 vocab=ad80cf2a
+-/
 lemma yMarginal_nonneg {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy) (y : β) :
     0 ≤ yMarginal p y := by
   rw [yMarginal_def]
@@ -163,13 +177,17 @@ lemma yMarginal_nonneg {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy) (y : β
 
 omit [Fintype β] [DecidableEq α] in
 /-- A joint mass is dominated by its `β`-marginal: `p (x, y) ≤ yMarginal p y`
-for nonnegative `p`. -/
+for nonnegative `p`.
+@isnad1 id=le.1h5v.s5.e2c75ece4301 from=translated src=- shape=485aa44b vocab=25571a87
+-/
 lemma le_yMarginal {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy) (x : α) (y : β) :
     p (x, y) ≤ yMarginal p y := by
   rw [yMarginal_def]
   exact Finset.single_le_sum (fun x' _ => hp0 (x', y)) (Finset.mem_univ x)
 
-/-- The error probability is nonnegative. -/
+/-- The error probability is nonnegative.
+@isnad1 id=le.1h4v.s5.5344591a6627 from=translated src=- shape=4fc048d5 vocab=a4ee4b8c
+-/
 lemma errorProb_nonneg {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy) (decode : β → α) :
     0 ≤ errorProb p decode := by
   rw [errorProb_def]
@@ -179,7 +197,9 @@ lemma errorProb_nonneg {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy) (decode
   · exact le_refl 0
   · exact hp0 xy
 
-/-- The error probability is at most one (it is a sub-sum of the total mass `= 1`). -/
+/-- The error probability is at most one (it is a sub-sum of the total mass `= 1`).
+@isnad1 id=le.2h4v.s6.d0b62366a5e1 from=translated src=- shape=6c1724b2 vocab=729617c2
+-/
 lemma errorProb_le_one {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
     (hsum : ∑ xy : α × β, p xy = 1) (decode : β → α) :
     errorProb p decode ≤ 1 := by
@@ -192,7 +212,9 @@ lemma errorProb_le_one {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
 
 /-- The correct-decision mass equals `1 − errorProb`: splitting the total mass `= 1` into
 the correct cells (`x = decode y`) and the error cells gives
-`∑_{x = decode y} p (x, y) = 1 − errorProb p decode`. -/
+`∑_{x = decode y} p (x, y) = 1 − errorProb p decode`.
+@isnad1 id=eq.1h4v.s7.1a1c55195716 from=translated src=- shape=0ea34fb1 vocab=25a7d839
+-/
 lemma correctMass_eq {p : α × β → ℝ} (hsum : ∑ xy : α × β, p xy = 1) (decode : β → α) :
     (∑ xy : α × β, (if xy.1 = decode xy.2 then p xy else 0)) = 1 - errorProb p decode := by
   have hterm :

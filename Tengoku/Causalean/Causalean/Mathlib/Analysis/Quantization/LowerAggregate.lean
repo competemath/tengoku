@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Quantization
 /-- On [a nondegenerate interval](hyp:a,b,hab), [a nonempty finite
 weight family](hyp:S,hS) with [continuous strictly positive weights](hyp:β,hcont,hpos),
 each relative error below one gives [a uniform mass-deficit lower
-bound for the scaled cost of every feasible partition](goal). -/
+bound for the scaled cost of every feasible partition](goal).
+@isnad1 id=ex.6h5v.s8.f641f2df2ff5 from=translated src=- shape=a2d7fd00 vocab=55eeaa2d
+-/
 theorem partition_good_mass_lower (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

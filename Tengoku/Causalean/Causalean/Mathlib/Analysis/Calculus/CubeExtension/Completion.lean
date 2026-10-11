@@ -20,7 +20,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 within the closed normalized cube](hyp:hu), [j ≤ m](hyp:hj), and [the order-j
 intrinsic coordinate jet of u in a fixed choice of coordinate directions is
 bounded in absolute value by B at every interior point of the cube](hyp:hinterior),
-then [the same bound B holds at every point of the closed cube](goal). -/
+then [the same bound B holds at every point of the closed cube](goal).
+@isnad1 id=le.5h7v.s7.76b77c4c469d from=translated src=- shape=9dd18516 vocab=681b42f7
+-/
 theorem interior_coordJet_bound_extends {d m j : ℕ}
     {u : (Fin d → ℝ) → ℝ} {B : ℝ} (hB : 0 ≤ B)
     (hu : ContDiffOn ℝ m u (cube d)) (hj : j ≤ m)

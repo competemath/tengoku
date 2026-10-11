@@ -36,7 +36,9 @@ variable {ι : Type*}
 /-- **Weighted Cauchy-Schwarz inequality on a finite support, squared form.** Weighting a finite
 collection of index points by [nonnegative weights](hyp:hw), [the square of the weighted inner
 product of two real-valued functions is at most the product of their weighted sums of
-squares](goal). -/
+squares](goal).
+@isnad1 id=le.1h5v.s7.9c831e91aa5a from=translated src=- shape=a51d236e vocab=261e16a0
+-/
 lemma weighted_inner_sq_le (s : Finset ι) (w f g : ι → ℝ) (hw : ∀ i ∈ s, 0 ≤ w i) :
     (∑ i ∈ s, w i * (f i * g i)) ^ 2 ≤
       (∑ i ∈ s, w i * f i ^ 2) * (∑ i ∈ s, w i * g i ^ 2) := by
@@ -70,7 +72,9 @@ lemma weighted_inner_sq_le (s : Finset ι) (w f g : ι → ℝ) (hw : ∀ i ∈ 
 /-- **Weighted Cauchy-Schwarz inequality on a finite support, square-root form.** With
 [nonnegative weights](hyp:hw), [the absolute value of the weighted inner product of two
 real-valued functions is at most the product of the square roots of their weighted sums of
-squares](goal). -/
+squares](goal).
+@isnad1 id=le.1h5v.s7.67fcd3c4ad57 from=translated src=- shape=6c3fe3ec vocab=053717a2
+-/
 lemma abs_weighted_inner_le (s : Finset ι) (w f g : ι → ℝ) (hw : ∀ i ∈ s, 0 ≤ w i) :
     |∑ i ∈ s, w i * (f i * g i)| ≤
       Real.sqrt (∑ i ∈ s, w i * f i ^ 2) * Real.sqrt (∑ i ∈ s, w i * g i ^ 2) := by
@@ -84,7 +88,9 @@ lemma abs_weighted_inner_le (s : Finset ι) (w f g : ι → ℝ) (hw : ∀ i ∈
 
 /-- **Weighted mean is dominated by the weighted root-mean-square.** For weights that are
 nonnegative and sum to at most one, the absolute value of the weighted average of a real-valued
-function is at most the square root of the weighted average of its square. -/
+function is at most the square root of the weighted average of its square.
+@isnad1 id=le.2h5v.s7.c1b3326097e2 from=translated src=- shape=a0686673 vocab=053717a2
+-/
 lemma abs_weighted_mean_le_sqrt_weighted_sq (s : Finset ι) (w f : ι → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (c : ℝ) (hmass : ∑ i ∈ s, w i ≤ c) :
     |∑ i ∈ s, w i * f i| ≤
@@ -102,7 +108,9 @@ lemma abs_weighted_mean_le_sqrt_weighted_sq (s : Finset ι) (w f : ι → ℝ)
 
 /-- **Jensen's inequality for the square root.** Averaging nonnegative values with weights
 that are nonnegative and sum to at most one, the weighted average of their square roots is at most
-the square root of their weighted average. -/
+the square root of their weighted average.
+@isnad1 id=le.3h5v.s7.ab7cdecdf17b from=translated src=- shape=63bb764a vocab=55435d9b
+-/
 lemma weighted_sqrt_le_sqrt_weighted (s : Finset ι) (w q : ι → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (c : ℝ) (hmass : ∑ i ∈ s, w i ≤ c)
     (hq : ∀ i ∈ s, 0 ≤ q i) :

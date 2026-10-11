@@ -25,7 +25,9 @@ noncomputable def radialPlateau (P : E →L[ℝ] F) (x : E) : ℝ := plateau ‖
 
 omit [FiniteDimensional ℝ F] in
 /-- For [a coordinate map](hyp:P) at [a point](hyp:x),
-[the radial plateau lies between zero and one](goal). -/
+[the radial plateau lies between zero and one](goal).
+@isnad1 id=and.0h4v.s7.ed28753cdc38 from=translated src=- shape=848b2066 vocab=b0f3cf84
+-/
 theorem radialPlateau_bounds (P : E →L[ℝ] F) (x : E) :
     0 ≤ radialPlateau P x ∧ radialPlateau P x ≤ 1 := by
   exact plateau_bounds ‖P x‖
@@ -34,7 +36,9 @@ theorem radialPlateau_bounds (P : E →L[ℝ] F) (x : E) :
 whose [projected norm is less than one](hyp:hx) for [the projection](hyp:P).
 
 Use continuity of P and the norm to obtain eventual projected norm ≤ 1.
-This lemma is the required treatment of P x = 0; do not differentiate norm there. -/
+This lemma is the required treatment of P x = 0; do not differentiate norm there.
+@isnad1 id=eventual.1h4v.s8.5abb83451628 from=translated src=- shape=a339405b vocab=0804dc60
+-/
 theorem radialPlateau_eventually_one (P : E →L[ℝ] F) (x : E) (hx : ‖P x‖ < 1) :
     ∀ᶠ y in nhds x, radialPlateau P y = 1 := by
   have h := (P.continuous.norm.continuousAt).eventually (Iio_mem_nhds hx)
@@ -42,7 +46,9 @@ theorem radialPlateau_eventually_one (P : E →L[ℝ] F) (x : E) (hx : ‖P x‖
   exact plateau_eq_one _ hy.le
 
 /-- For [a continuous linear coordinate map](hyp:P), [the radial plateau is
-globally twice continuously differentiable](goal), including the projection kernel. -/
+globally twice continuously differentiable](goal), including the projection kernel.
+@isnad1 id=contdiff.0h3v.s7.f5212404d932 from=translated src=- shape=8adbebc3 vocab=f58967b4
+-/
 -- Use `contDiff_iff_contDiffAt`. If P x = 0, `radialPlateau_eventually_one`
 -- identifies the germ with a constant. Otherwise `contDiffAt_norm ℝ` composed
 -- with P and `plateau_contDiff.contDiffAt` handles the ordinary chain rule.
@@ -62,7 +68,9 @@ theorem radialPlateau_contDiff (P : E →L[ℝ] F) : ContDiff ℝ 2 (radialPlate
 in [the fixed inner-product space](hyp:F).
 
 This is a bound for the codomain profile itself, not for a projection with a
-nontrivial kernel. Its support lies in the compact closed radius-two ball. -/
+nontrivial kernel. Its support lies in the compact closed radius-two ball.
+@isnad1 id=hascompa.0h1v.s5.659526949c46 from=translated src=- shape=5329ea62 vocab=3c43c830
+-/
 theorem radialPlateau_base_hasCompactSupport : HasCompactSupport (fun x : F => plateau ‖x‖) := by
   apply HasCompactSupport.intro (K := Metric.closedBall (0 : F) 2) (isCompact_closedBall _ _)
   intro x hx
@@ -74,7 +82,9 @@ theorem radialPlateau_base_hasCompactSupport : HasCompactSupport (fun x : F => p
 under [the projection](hyp:P), [the value and both ambient jets vanish](goal).
 
 Strict exterior points use local constancy; equality points use continuity of
-the first and second jets and approximation by dilating x. -/
+the first and second jets and approximation by dilating x.
+@isnad1 id=and.1h4v.s11.1cb4504e74a9 from=translated src=- shape=7d9fa6de vocab=d6a9da5c
+-/
 theorem radialPlateau_jets_zero (P : E →L[ℝ] F) (x : E) (hx : 2 ≤ ‖P x‖) :
     radialPlateau P x = 0 ∧ fderiv ℝ (radialPlateau P) x = 0 ∧
       fderiv ℝ (fderiv ℝ (radialPlateau P)) x = 0 := by
@@ -119,7 +129,9 @@ First bound the C² codomain profile `y ↦ plateau ‖y‖` using
 `radialPlateau_base_hasCompactSupport` and `exists_jetBounds_of_compactSupport`.
 Precomposition with P contributes one operator norm for the first jet and two
 for the second jet. This avoids computing the Hessian of the norm explicitly.
-Compact support of the composed function is not available for a map with kernel. -/
+Compact support of the composed function is not available for a map with kernel.
+@isnad1 id=ex.0h2v.s10.e466d5fefcaf from=translated src=- shape=18a6e084 vocab=0061ef7d
+-/
 -- `ContinuousLinearMap.iteratedFDeriv_comp_right` and the norm bound for
 -- `ContinuousMultilinearMap.compContinuousLinearMap` give the codomain jet
 -- bound multiplied by ‖P‖^j. Relate j=1,2 to nested ambient fderiv via

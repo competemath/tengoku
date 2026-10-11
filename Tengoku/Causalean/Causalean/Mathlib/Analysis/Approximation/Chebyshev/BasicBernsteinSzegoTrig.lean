@@ -37,7 +37,9 @@ namespace Causalean.Mathlib.Analysis.BernsteinSzegoTrig
 has derivative `R'(cos t) · (-sin t)` at `t`](goal).
 
 This is the chain rule for the polynomial evaluation `x ↦ R.eval x` (whose derivative is
-`R.derivative.eval x`) composed with `Real.cos` (whose derivative is `-Real.sin`). -/
+`R.derivative.eval x`) composed with `Real.cos` (whose derivative is `-Real.sin`).
+@isnad1 id=hasderiv.0h2v.s7.c64567ef596b from=translated src=- shape=6e861741 vocab=a1a980b1
+-/
 theorem hasDerivAt_cosComp (R : Polynomial ℝ) (t : ℝ) :
     HasDerivAt (fun s => R.eval (Real.cos s))
       (R.derivative.eval (Real.cos t) * (-Real.sin t)) t := by
@@ -47,7 +49,9 @@ theorem hasDerivAt_cosComp (R : Polynomial ℝ) (t : ℝ) :
   exact h1.comp t h2
 
 /-- For [any real polynomial `R`](hyp:R) and [any point `t`](hyp:t), [the derivative of
-`s ↦ R(cos s)` at `t` equals `R'(cos t) · (-sin t)`](goal). -/
+`s ↦ R(cos s)` at `t` equals `R'(cos t) · (-sin t)`](goal).
+@isnad1 id=eq.0h2v.s7.d1c59eebad06 from=translated src=- shape=bba07f9e vocab=3dda01ab
+-/
 theorem deriv_cosComp (R : Polynomial ℝ) (t : ℝ) :
     deriv (fun s => R.eval (Real.cos s)) t
       = R.derivative.eval (Real.cos t) * (-Real.sin t) :=

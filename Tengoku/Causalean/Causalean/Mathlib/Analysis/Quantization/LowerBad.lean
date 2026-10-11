@@ -18,7 +18,9 @@ def badRegion (S k : ℕ) (δ : ℝ) (B : Fin k → Set ℝ)
   B j ∩ {x | ∃ s : Fin S, δ ≤ |x - z j s|}
 
 /-- The bad region of each measurable cell is measurable, even when the cell
-is disconnected. -/
+is disconnected.
+@isnad1 id=measurab.1h6v.s5.fc25d8cabd4c from=translated src=- shape=6523fde8 vocab=c2f6308e
+-/
 theorem badRegion_measurable (S k : ℕ) (δ : ℝ) (B : Fin k → Set ℝ)
     (z : Fin k → Fin S → ℝ) (hB : ∀ j, MeasurableSet (B j)) :
     ∀ j, MeasurableSet (badRegion S k δ B z j) := by
@@ -31,7 +33,9 @@ family](hyp:S,hS), [continuous positive weights](hyp:β,hcont,hpos),
 and [a positive-cell feasible partition](hyp:k,hk,B,z,hB,hz),
 together with [coefficient bounds](hyp:c,hc,hlower) and
 [diagonal-mass bounds](hyp:Q,δ,hQ,hδ,hupper),
-give [a distortion bound for the total bad-region square-root mass](goal). -/
+give [a distortion bound for the total bad-region square-root mass](goal).
+@isnad1 id=le.12h10v.s8.36df6bbb9863 from=translated src=- shape=7d751f79 vocab=82c11813
+-/
 theorem bad_region_sqrt_mass_cost (a b : ℝ) (hab : a < b)
     (S k : ℕ) (hS : 0 < S) (hk : 0 < k)
     (β : Fin S → ℝ → ℝ → ℝ)
@@ -104,7 +108,9 @@ theorem bad_region_sqrt_mass_cost (a b : ℝ) (hab : a < b)
 
 /-- Among candidates whose scaled cost is bounded by a fixed constant, the
 total square-root mass of points far from at least one reproduction point
-vanishes uniformly as the number of cells grows. -/
+vanishes uniformly as the number of cells grows.
+@isnad1 id=ex.7h7v.s8.05ebce92d20e from=translated src=- shape=f1dd9bcf vocab=2a451c1a
+-/
 theorem bad_region_mass_small_of_scaled_cost_bound (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

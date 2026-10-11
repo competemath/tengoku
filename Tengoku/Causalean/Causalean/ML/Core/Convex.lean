@@ -26,7 +26,9 @@ section Convexity
 variable {ι Θ X Y : Type*} [Fintype ι] [Nonempty ι] [AddCommGroup Θ] [Module ℝ Θ]
 
 /-- If every per-sample parameter loss is convex on `Θset`, so is the empirical
-risk of the predictor. -/
+risk of the predictor.
+@isnad1 id=convexon.2h8v.s8.071b5af11c1a from=translated src=- shape=6915ee4c vocab=a8ee1bbb
+-/
 theorem empiricalRiskP_convexOn_of_loss_convex
     (M : Predictor Θ X Y) (loss : Loss Y) (S : ι → X × Y) (Θset : Set Θ)
     (hconv : Convex ℝ Θset)
@@ -64,7 +66,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- A convex scalar function precomposed with the linear score `θ ↦ ⟪θ, x⟫` is
 convex.  This is the workhorse turning convexity of a margin loss into convexity
-of the parameter objective. -/
+of the parameter objective.
+@isnad1 id=convexon.1h3v.s7.d8787fccce76 from=translated src=- shape=533c33da vocab=a9d60eab
+-/
 theorem convexOn_comp_inner
     {φ : ℝ → ℝ} (hφ : ConvexOn ℝ Set.univ φ) (x : E) :
     ConvexOn ℝ Set.univ (fun θ : E => φ (inner ℝ θ x)) := by
@@ -76,7 +80,9 @@ end CompLinear
 section Existence
 variable {Θ : Type*} [TopologicalSpace Θ]
 
-/-- Existence of a minimizer on a nonempty compact set (Weierstrass). -/
+/-- Existence of a minimizer on a nonempty compact set (Weierstrass).
+@isnad1 id=ex.3h3v.s5.9c4cffad8f0c from=translated src=- shape=75ec7e58 vocab=d5159639
+-/
 theorem exists_isMinOn_of_isCompact
     {objective : Θ → ℝ} {Θset : Set Θ}
     (hne : Θset.Nonempty) (hcompact : IsCompact Θset)
@@ -93,7 +99,9 @@ variable {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 function is continuous](hyp:hcont) and [it tends to infinity along the cocompact filter,
 i.e. it is coercive — it grows without bound as the argument leaves every compact
 set](hyp:hcoer), then [a global minimizer of the objective over the whole space
-exists](goal). -/
+exists](goal).
+@isnad1 id=ex.2h2v.s6.d32f6087c20a from=translated src=- shape=37fc93a5 vocab=5d0dedff
+-/
 theorem exists_isMinOn_univ_of_coercive
     {objective : E → ℝ} (hcont : Continuous objective)
     (hcoer : Tendsto objective (cocompact E) atTop) :
@@ -108,7 +116,9 @@ section FirstOrder
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- First-order optimality on the whole space: at an unconstrained minimizer the
-Fréchet derivative vanishes. -/
+Fréchet derivative vanishes.
+@isnad1 id=eq.2h4v.s8.228a9af1a9da from=translated src=- shape=88570652 vocab=8ed9ffe2
+-/
 theorem fderiv_eq_zero_of_isMinOn_univ
     {f : E → ℝ} {f' : E →L[ℝ] ℝ} {a : E}
     (hmin : IsMinOn f Set.univ a) (hderiv : HasFDerivAt f f' a) : f' = 0 := by
@@ -129,7 +139,9 @@ def SubgradientAt (f : E → ℝ) (s : Set E) (g x : E) : Prop :=
   x ∈ s ∧ ∀ y ∈ s, f x + inner ℝ g (y - x) ≤ f y
 
 /-- Fermat's rule, subgradient form: `0` is a subgradient at `x` over `s` iff `x`
-minimizes `f` over `s`. -/
+minimizes `f` over `s`.
+@isnad1 id=iff.1h4v.s6.24e6cb7cf196 from=translated src=- shape=c71aff3e vocab=84c5ebcb
+-/
 theorem subgradientAt_zero_iff_isMinOn
     {f : E → ℝ} {s : Set E} {x : E} (hx : x ∈ s) :
     SubgradientAt f s 0 x ↔ IsMinOn f s x := by

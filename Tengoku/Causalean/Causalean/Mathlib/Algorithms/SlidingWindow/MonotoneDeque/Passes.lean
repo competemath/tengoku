@@ -38,7 +38,9 @@ def FixedPasses.totalSteps {stream : Stream α} {passes : ℕ}
 
 /-- [A fixed family of passes](hyp:family), [a selected pass](hyp:p), [a valid position in that
 pass](hyp:hk), and [a nonempty window there](hyp:hne) ensure [that the scan head is an active
-argmax with the finite-window maximum value](goal). -/
+argmax with the finite-window maximum value](goal).
+@isnad1 id=ex.2h6v.s8.4c5ea3550391 from=translated src=- shape=decc23b5 vocab=b538a190
+-/
 theorem FixedPasses.head_value_eq_windowMax {stream : Stream α} {passes : ℕ}
     (family : FixedPasses stream passes) (p : Fin passes) {k : ℕ}
     (hk : k < (family.schedule p).steps)
@@ -54,7 +56,9 @@ theorem FixedPasses.head_value_eq_windowMax {stream : Stream α} {passes : ℕ}
   exact scan_head_value_eq_windowMax stream (family.schedule p) hk hne
 
 /-- [A finite family of passes](hyp:family) ensures [that its total mutation count is at most twice
-the pass count times stream length plus its total scheduled-window count](goal). -/
+the pass count times stream length plus its total scheduled-window count](goal).
+@isnad1 id=le.0h4v.s5.54d93828c67c from=translated src=- shape=28306bcc vocab=e6dfac32
+-/
 theorem FixedPasses.totalMutationCount_le {stream : Stream α} {passes : ℕ}
     (family : FixedPasses stream passes) :
     family.totalMutationCount ≤ 2 * passes * stream.length + family.totalSteps := by
@@ -73,7 +77,9 @@ theorem FixedPasses.totalMutationCount_le {stream : Stream α} {passes : ℕ}
 
 /-- [A fixed family of passes](hyp:family), [a selected pass](hyp:p), and [a valid position in
 that pass](hyp:hk) ensure
-[that the corresponding state stores no more than its window width](goal). -/
+[that the corresponding state stores no more than its window width](goal).
+@isnad1 id=ex.1h6v.s7.03775ce5ed99 from=translated src=- shape=926ff4b0 vocab=83d77b5a
+-/
 theorem FixedPasses.memory_le_windowWidth {stream : Stream α} {passes : ℕ}
     (family : FixedPasses stream passes) (p : Fin passes) {k : ℕ}
     (hk : k < (family.schedule p).steps) :

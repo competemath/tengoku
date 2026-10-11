@@ -27,12 +27,16 @@ private theorem toList_loop (bs : ByteArray) (i : Nat) (r : List UInt8) :
     simp [ByteArray.get!, hi]
 
 /-- The bytes of a `ByteArray`, as produced by `toList`, are the bytes of its
-underlying array. -/
+underlying array.
+@isnad1 id=eq.0h1v.s3.d688166ffa97 from=translated src=- shape=8b61604f vocab=f018bf5a
+-/
 theorem toList_eq_data_toList (bs : ByteArray) : bs.toList = bs.data.toList := by
   rw [ByteArray.toList, toList_loop]
   simp
 
-/-- Pushing a byte appends it to the bytes. -/
+/-- Pushing a byte appends it to the bytes.
+@isnad1 id=eq.0h2v.s4.2c76a059a4b2 from=translated src=- shape=78c7caf6 vocab=c557871b
+-/
 @[local simp] theorem toList_push (bs : ByteArray) (b : UInt8) :
     (bs.push b).toList = bs.toList ++ [b] := by
   simp [toList_eq_data_toList, ByteArray.data_push]

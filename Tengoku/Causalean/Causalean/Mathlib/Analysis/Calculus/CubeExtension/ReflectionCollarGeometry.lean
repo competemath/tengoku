@@ -45,7 +45,9 @@ private theorem leftClosedExteriorCollar_eq_pi (d m : ℕ) (i : Fin d) :
 
 /-- [The closure of the open exterior collar at the left face in coordinate i is
 the closed exterior slab](goal), including the face itself and all remaining
-coordinate edges. -/
+coordinate edges.
+@isnad1 id=eq.0h3v.s5.2cc9c3aea960 from=translated src=- shape=b8d47d60 vocab=96402a62
+-/
 theorem closure_leftOpenCubeCollar (d m : ℕ) (i : Fin d) :
     closure (leftOpenCubeCollar d m i) =
       leftClosedExteriorCollar d m i := by
@@ -68,7 +70,9 @@ theorem closure_leftOpenCubeCollar (d m : ℕ) (i : Fin d) :
     linarith
   · simp [h, closure_Ioo (by norm_num : (-1 : ℝ) ≠ 1)]
 
-/-- [The closed exterior slab of a one-face cube collar is a closed set](goal). -/
+/-- [The closed exterior slab of a one-face cube collar is a closed set](goal).
+@isnad1 id=isclosed.0h3v.s4.eb1e060c79d2 from=translated src=- shape=58fae128 vocab=d4a63cd6
+-/
 theorem isClosed_leftClosedExteriorCollar (d m : ℕ) (i : Fin d) :
     IsClosed (leftClosedExteriorCollar d m i) := by
   rw [leftClosedExteriorCollar_eq_pi]
@@ -76,7 +80,9 @@ theorem isClosed_leftClosedExteriorCollar (d m : ℕ) (i : Fin d) :
   intro j hj
   split_ifs <;> exact isClosed_Icc
 
-/-- [A one-face cube collar is a closed set](goal). -/
+/-- [A one-face cube collar is a closed set](goal).
+@isnad1 id=isclosed.0h3v.s4.040c70c1dcc9 from=translated src=- shape=58fae128 vocab=96953c6b
+-/
 theorem isClosed_leftCubeCollar (d m : ℕ) (i : Fin d) :
     IsClosed (leftCubeCollar d m i) := by
   have hpi : leftCubeCollar d m i =
@@ -93,7 +99,9 @@ theorem isClosed_leftCubeCollar (d m : ℕ) (i : Fin d) :
   split_ifs <;> exact isClosed_Icc
 
 /-- [The closed exterior slab of a one-face cube collar has unique within-set
-derivatives at every point](goal). -/
+derivatives at every point](goal).
+@isnad1 id=uniquedi.0h3v.s5.84c7edc838e1 from=translated src=- shape=5190363a vocab=c64da95a
+-/
 theorem uniqueDiffOn_leftClosedExteriorCollar (d m : ℕ) (i : Fin d) :
     UniqueDiffOn ℝ (leftClosedExteriorCollar d m i) := by
   rw [leftClosedExteriorCollar_eq_pi]
@@ -106,7 +114,9 @@ theorem uniqueDiffOn_leftClosedExteriorCollar (d m : ℕ) (i : Fin d) :
   · exact uniqueDiffOn_Icc (by norm_num)
 
 /-- [The closed one-face cube collar has unique within-set derivatives at every
-point](goal). -/
+point](goal).
+@isnad1 id=uniquedi.0h3v.s5.177fe2b92f2c from=translated src=- shape=5190363a vocab=f2bd8123
+-/
 theorem uniqueDiffOn_leftCubeCollar (d m : ℕ) (i : Fin d) :
     UniqueDiffOn ℝ (leftCubeCollar d m i) := by
   have hpi : leftCubeCollar d m i =
@@ -127,7 +137,9 @@ theorem uniqueDiffOn_leftCubeCollar (d m : ℕ) (i : Fin d) :
   · exact uniqueDiffOn_Icc (by norm_num)
 
 /-- [The closed exterior slab and the normalized cube together make up the whole
-closed one-face collar](goal). -/
+closed one-face collar](goal).
+@isnad1 id=eq.0h3v.s5.392b222f9b06 from=translated src=- shape=eda39c82 vocab=dc5099a7
+-/
 theorem leftClosedExteriorCollar_union_cube (d m : ℕ) (i : Fin d) :
     leftClosedExteriorCollar d m i ∪ cube d = leftCubeCollar d m i := by
   ext x
@@ -156,7 +168,9 @@ theorem leftClosedExteriorCollar_union_cube (d m : ℕ) (i : Fin d) :
 
 /-- [The closed exterior slab and the normalized cube overlap exactly in the
 selected left face, the set of cube points whose i-th coordinate equals
-−1](goal), edges and corners included. -/
+−1](goal), edges and corners included.
+@isnad1 id=eq.0h3v.s6.8479fe6d2a7f from=translated src=- shape=e81e1f29 vocab=f94be811
+-/
 theorem leftClosedExteriorCollar_inter_cube (d m : ℕ) (i : Fin d) :
     leftClosedExteriorCollar d m i ∩ cube d =
       {x ∈ cube d | x i = -1} := by

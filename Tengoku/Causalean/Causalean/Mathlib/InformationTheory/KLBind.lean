@@ -42,7 +42,9 @@ variable {α β γ : Type*} [MeasurableSpace α] [MeasurableSpace β] [Measurabl
 
 If almost all `μ`-fibres of `κ` are absolutely continuous with respect to the
 corresponding fibres of `η`, then the RN derivative of `μ ⊗ₘ κ` with respect to
-`μ ⊗ₘ η` is the fibre RN derivative. -/
+`μ ⊗ₘ η` is the fibre RN derivative.
+@isnad1 id=eventual.1h5v.s7.31b4b0d41e1b from=translated src=- shape=275765f9 vocab=00f783ed
+-/
 lemma rnDeriv_compProd_right_of_forall_ac
     [MeasurableSpace.CountableOrCountablyGenerated α β]
     [IsFiniteMeasure μ] [IsFiniteKernel κ] [IsFiniteKernel η]
@@ -79,7 +81,9 @@ lemma rnDeriv_compProd_right_of_forall_ac
     of the Kullback–Leibler divergence between `κ` and `η` at that base point](goal).
 
 This is the exact identity form used by bind-chain arguments whose output still
-remembers the base coordinate. -/
+remembers the base coordinate.
+@isnad1 id=eq.1h5v.s7.6051115e4849 from=translated src=- shape=4e5b976d vocab=a387a121
+-/
 lemma klDiv_compProd_right_of_forall_ac
     [MeasurableSpace.CountableOrCountablyGenerated α β]
     [IsFiniteMeasure μ] [IsFiniteKernel κ] [IsFiniteKernel η]
@@ -108,7 +112,9 @@ lemma klDiv_compProd_right_of_forall_ac
       rw [hb]
     · fun_prop
 
-/-- KL is invariant under a measurable embedding. -/
+/-- KL is invariant under a measurable embedding.
+@isnad1 id=eq.1h5v.s5.9a1d402fa00c from=translated src=- shape=81b1ca44 vocab=c8c073cf
+-/
 lemma klDiv_map_measurableEmbedding
     {f : α → γ} (hf : MeasurableEmbedding f)
     [IsFiniteMeasure μ] {ν : Measure α} [IsFiniteMeasure ν] :
@@ -140,7 +146,9 @@ lemma klDiv_map_measurableEmbedding
     rw [_root_.InformationTheory.klDiv_of_not_ac hmap_not_ac]
 
 /-- If a measurable map has a measurable graph, pairing each observation with its map value
-produces a measurable embedding into the corresponding product space. -/
+produces a measurable embedding into the corresponding product space.
+@isnad1 id=measurab.2h3v.s6.66ec064d918a from=translated src=- shape=55ea7ba2 vocab=805faaa5
+-/
 lemma measurableEmbedding_base_recording
     {B Ω : Type*} [MeasurableSpace B] [MeasurableSpace Ω]
     (proj : Ω → B) (hproj : Measurable proj)
@@ -161,7 +169,9 @@ lemma measurableEmbedding_base_recording
 
 /-- If a kernel is supported almost everywhere on outputs that record their base
 coordinate, then mapping its bound measure to the recorded base-output pair gives the
-corresponding composition-product measure. -/
+corresponding composition-product measure.
+@isnad1 id=eq.2h5v.s7.2e53e0f92438 from=translated src=- shape=d6bd86a1 vocab=77be77d3
+-/
 lemma map_bind_eq_compProd_of_base_recording
     {B Ω : Type*} [MeasurableSpace B] [MeasurableSpace Ω]
     (m : Measure B) [SFinite m] (κ : Kernel B Ω) [IsSFiniteKernel κ]
@@ -197,7 +207,9 @@ lemma map_bind_eq_compProd_of_base_recording
     with respect to `η b` for `m`-almost every `b`](hyp:hκη). Then [the Kullback–Leibler
     divergence between the bind of `m` with `κ` and the bind of `m` with `η` equals the
     `m`-average, over the base point `b`, of the Kullback–Leibler divergence between `κ b` and
-    `η b`](goal). -/
+    `η b`](goal).
+@isnad1 id=eq.5h6v.s8.9fe1b835a0e4 from=translated src=- shape=c4c99a44 vocab=5a47f930
+-/
 lemma klDiv_bind_eq_of_base_recording
     {B Ω : Type*} [MeasurableSpace B] [MeasurableSpace Ω]
     [MeasurableSpace.CountableOrCountablyGenerated B Ω]
@@ -248,7 +260,9 @@ namespace Measure
 variable {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
 
 /-- A common measurable observation rule cannot increase the Kullback--Leibler
-divergence between two finite input laws, even when the rule merges distinct inputs. -/
+divergence between two finite input laws, even when the rule merges distinct inputs.
+@isnad1 id=le.1h5v.s6.51a0c8d7319c from=translated src=- shape=754cb008 vocab=922e1f57
+-/
 @[deprecated _root_.InformationTheory.klDiv_map_le (since := "2026-09-15")]
 theorem klDiv_map_le {μ ν : Measure α} [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     {f : α → β} (hf : Measurable f) :
@@ -258,7 +272,9 @@ theorem klDiv_map_le {μ ν : Measure α} [IsFiniteMeasure μ] [IsFiniteMeasure 
 
 /-- Adding an output drawn from the same Markov kernel preserves the
 Kullback--Leibler divergence between two finite input laws because the joint
-observation still retains the input coordinate. -/
+observation still retains the input coordinate.
+@isnad1 id=eq.0h5v.s6.fe05aa0bfddf from=translated src=- shape=e619909e vocab=63e7cec4
+-/
 @[deprecated _root_.InformationTheory.klDiv_compProd_left (since := "2026-09-15")]
 theorem klDiv_compProd_left (μ ν : Measure α) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (κ : Kernel α β) [IsMarkovKernel κ] :
@@ -270,7 +286,9 @@ theorem klDiv_compProd_left (μ ν : Measure α) [IsFiniteMeasure μ] [IsFiniteM
 observation channel `κ`](hyp:κ), [the Kullback–Leibler divergence between the channel's
 output laws is no larger than the divergence between the original input laws, including when
 the channel is non-injective or the original divergence is infinite](goal). Mathlib now provides the
-same data-processing inequality as `InformationTheory.klDiv_comp_right_le`. -/
+same data-processing inequality as `InformationTheory.klDiv_comp_right_le`.
+@isnad1 id=le.0h5v.s6.4290708d2f9b from=translated src=- shape=e0e3b607 vocab=46b6f109
+-/
 @[deprecated _root_.InformationTheory.klDiv_comp_right_le (since := "2026-09-15")]
 theorem klDiv_bind_le (μ ν : Measure α) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (κ : Kernel α β) [IsMarkovKernel κ] :
@@ -280,7 +298,9 @@ theorem klDiv_bind_le (μ ν : Measure α) [IsFiniteMeasure μ] [IsFiniteMeasure
 
 /-- Passing two probability laws through a shared Markov channel cannot increase their
 Kullback--Leibler divergence; this is the probability-law specialization of the
-finite-measure data-processing inequality. -/
+finite-measure data-processing inequality.
+@isnad1 id=le.0h5v.s6.d0879bfa3835 from=translated src=- shape=e0e3b607 vocab=baf06595
+-/
 @[deprecated _root_.InformationTheory.klDiv_comp_right_le (since := "2026-09-15")]
 theorem klDiv_bind_le_of_isProbabilityMeasure (μ ν : Measure α)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]

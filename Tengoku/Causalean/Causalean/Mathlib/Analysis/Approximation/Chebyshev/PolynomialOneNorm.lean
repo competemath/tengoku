@@ -32,6 +32,7 @@ The coefficient one-norm of a product is at most the product of the coefficient 
 
 Expand each coefficient of the product as a finite convolution and apply the triangle inequality;
 finite reindexing then gives the product of the two coefficient sums.
+@isnad1 id=le.0h2v.s5.bd505f027f94 from=translated src=- shape=22876443 vocab=e3cd7126
 -/
 theorem polynomialCoeffOneNorm_mul_le (p q : Polynomial ℝ) :
     polynomialCoeffOneNorm (p * q) ≤
@@ -95,7 +96,9 @@ theorem polynomialCoeffOneNorm_mul_le (p q : Polynomial ℝ) :
         rw [Finset.sum_mul]
         simp only [Finset.mul_sum]
 
-/-- A linear factor `X - x` with `x` in the unit interval has coefficient one-norm at most two. -/
+/-- A linear factor `X - x` with `x` in the unit interval has coefficient one-norm at most two.
+@isnad1 id=le.2h1v.s6.67114eb8f916 from=translated src=- shape=15f55c06 vocab=004063e8
+-/
 theorem polynomialCoeffOneNorm_X_sub_C_le_two (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     polynomialCoeffOneNorm (X - C x : Polynomial ℝ) ≤ 2 := by
   have hd : (X - C x : Polynomial ℝ).natDegree < 2 := by
@@ -117,7 +120,9 @@ noncomputable def shiftedCheb (r : ℕ) : ℝ[X] :=
     (1 - Polynomial.C (2 : ℝ) * Polynomial.X)
 
 /-- For [a real polynomial and truncation length](hyp:p,m), if [the degree lies below that length](hyp:hp),
-its [coefficient one-norm is the corresponding finite range sum](goal). -/
+its [coefficient one-norm is the corresponding finite range sum](goal).
+@isnad1 id=eq.1h2v.s5.89a0eb677d4f from=translated src=- shape=97b122e3 vocab=5fcdfc97
+-/
 lemma polynomialCoeffOneNorm_range (p : ℝ[X]) {m : ℕ}
     (hp : p.natDegree < m) :
     polynomialCoeffOneNorm p = ∑ i ∈ Finset.range m, |p.coeff i| := by
@@ -125,7 +130,9 @@ lemma polynomialCoeffOneNorm_range (p : ℝ[X]) {m : ℕ}
   exact p.sum_over_range' (fun _ => abs_zero) m hp
 
 /-- [The coefficient one-norm of a difference](goal) is at most the sum of the
-coefficient one-norms of [the two real polynomials](hyp:p,q). -/
+coefficient one-norms of [the two real polynomials](hyp:p,q).
+@isnad1 id=le.0h2v.s5.a03331629094 from=translated src=- shape=22876443 vocab=b80ff8fe
+-/
 lemma polynomialCoeffOneNorm_sub_le (p q : ℝ[X]) :
     polynomialCoeffOneNorm (p - q) ≤ polynomialCoeffOneNorm p + polynomialCoeffOneNorm q := by
   let m := max p.natDegree q.natDegree + 1
@@ -159,7 +166,9 @@ private lemma polynomialCoeffOneNorm_two_shift_factor :
   norm_num [Finset.sum_range_succ, coeff_sub, coeff_one, coeff_C_mul, coeff_X]
 
 /-- For a [natural degree](hyp:r), the shifted Chebyshev polynomials satisfy the
-stated two-step recurrence, which controls their coefficient growth. The result is [the two-step recurrence for shifted Chebyshev polynomials](goal). -/
+stated two-step recurrence, which controls their coefficient growth. The result is [the two-step recurrence for shifted Chebyshev polynomials](goal).
+@isnad1 id=eq.0h1v.s7.130f16bd9069 from=translated src=- shape=99262402 vocab=9aa08e05
+-/
 lemma shiftedCheb_recurrence (r : ℕ) :
     shiftedCheb (r + 2) =
       2 * (1 - Polynomial.C (2 : ℝ) * Polynomial.X) *
@@ -170,7 +179,9 @@ lemma shiftedCheb_recurrence (r : ℕ) :
   simp
 
 /-- For a [natural degree](hyp:r), the coefficient one-norm of the shifted
-Chebyshev polynomial is at most `7 ^ r`. The result is [the `7 ^ r` coefficient one-norm bound](goal). -/
+Chebyshev polynomial is at most `7 ^ r`. The result is [the `7 ^ r` coefficient one-norm bound](goal).
+@isnad1 id=le.0h1v.s4.332c2b39334d from=translated src=- shape=b2d260a1 vocab=6ac4b230
+-/
 lemma shiftedCheb_coeffL1_le (r : ℕ) :
     polynomialCoeffOneNorm (shiftedCheb r) ≤ (7 : ℝ) ^ r := by
   induction r using Nat.twoStepInduction with

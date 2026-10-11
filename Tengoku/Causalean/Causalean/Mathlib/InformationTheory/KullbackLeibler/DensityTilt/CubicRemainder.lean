@@ -146,7 +146,9 @@ between `0` and `x`, so `1 + ξ ≥ 1/2`.  Hence the remainder is `≤ (4/6)|x|�
 Handle `x = 0` separately (both sides `0`) and the two sign cases of `x` via the
 `uIcc` Taylor lemma.  Alternatively prove it by an elementary route: bound
 `log (1 + x)` above/below by its own quadratic Taylor remainder and combine with
-`nlinarith`. -/
+`nlinarith`.
+@isnad1 id=le.1h1v.s7.58dfc2fe877e from=translated src=- shape=dc3ccff6 vocab=569808be
+-/
 lemma abs_tiltRemainder_le {x : ℝ} (hx : |x| ≤ 1 / 2) :
     |(1 + x) * Real.log (1 + x) - x - x ^ 2 / 2| ≤ |x| ^ 3 := by
   have hxlo : -(1 / 2 : ℝ) ≤ x := by

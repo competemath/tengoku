@@ -129,12 +129,16 @@ private theorem takeWhile_drop_eq_drop_takeWhile {α : Type*} (p : α → Bool)
               apply ih
               simpa [hpa] using h
 
-/-- [A predicate schedule](hyp:P) has [every right endpoint bounded by the raw-key count](goal). -/
+/-- [A predicate schedule](hyp:P) has [every right endpoint bounded by the raw-key count](goal).
+@isnad1 id=le.0h6v.s4.5623b2565705 from=translated src=- shape=7464c2cb vocab=250aa06d
+-/
 theorem rightEndpoint_le_length (P : PredicateWindowSchedule keys steps) (s : κ) :
     P.rightEndpoint s ≤ keys.length := by
   exact (List.takeWhile_prefix _).length_le
 
-/-- [A predicate schedule](hyp:P) has [every left endpoint bounded by its right endpoint](goal). -/
+/-- [A predicate schedule](hyp:P) has [every left endpoint bounded by its right endpoint](goal).
+@isnad1 id=le.0h6v.s5.846613e6acf8 from=translated src=- shape=9bd7be55 vocab=a539822c
+-/
 theorem leftEndpoint_le_rightEndpoint (P : PredicateWindowSchedule keys steps) (s : κ) :
     P.leftEndpoint s ≤ P.rightEndpoint s := by
   change ((keys.take (P.rightEndpoint s)).takeWhile (P.expiredTest s)).length ≤
@@ -153,7 +157,9 @@ noncomputable def windowAt (P : PredicateWindowSchedule keys steps) (s : κ) : W
     right_le_length := P.rightEndpoint_le_length s }
 
 /-- [A predicate schedule](hyp:P) has [its right prefix exactly equal to the `takeWhile` entry
-segment](goal). -/
+segment](goal).
+@isnad1 id=eq.0h6v.s5.58d31675db85 from=translated src=- shape=a07e5593 vocab=977f87c1
+-/
 theorem take_rightEndpoint_eq_entered (P : PredicateWindowSchedule keys steps) (s : κ) :
     keys.take (P.rightEndpoint s) = P.entered s := by
   change keys.take (keys.takeWhile (P.entryTest s)).length = keys.takeWhile (P.entryTest s)
@@ -164,7 +170,9 @@ theorem take_rightEndpoint_eq_entered (P : PredicateWindowSchedule keys steps) (
     _ = _ := List.take_left
 
 /-- [A predicate schedule](hyp:P) has [its left prefix exactly equal to the `takeWhile` segment of
-entered keys that fail the stay predicate](goal). -/
+entered keys that fail the stay predicate](goal).
+@isnad1 id=eq.0h6v.s5.b567f6b87bb5 from=translated src=- shape=e5964480 vocab=50d9a0a5
+-/
 theorem take_leftEndpoint_eq_expiredPrefix (P : PredicateWindowSchedule keys steps) (s : κ) :
     (keys.take (P.rightEndpoint s)).take (P.leftEndpoint s) = P.expiredPrefix s := by
   change (keys.take (P.rightEndpoint s)).take (P.expiredPrefix s).length = P.expiredPrefix s
@@ -173,7 +181,9 @@ theorem take_leftEndpoint_eq_expiredPrefix (P : PredicateWindowSchedule keys ste
   exact List.take_left
 
 /-- [A predicate schedule](hyp:P) has [the keys between its endpoints exactly equal to dropping the
-non-staying prefix from the entered prefix](goal). -/
+non-staying prefix from the entered prefix](goal).
+@isnad1 id=eq.0h6v.s5.e9ebaa8938d4 from=translated src=- shape=d6c786c5 vocab=bb683547
+-/
 theorem drop_leftEndpoint_eq_dropWhile (P : PredicateWindowSchedule keys steps) (s : κ) :
     (keys.take (P.rightEndpoint s)).drop (P.leftEndpoint s) =
       (keys.take (P.rightEndpoint s)).dropWhile (P.expiredTest s) := by
@@ -224,7 +234,9 @@ private theorem lt_leftEndpoint_iff_not_stay (P : PredicateWindowSchedule keys s
   simpa [leftEndpoint, expiredPrefix, l, expiredTest, List.get_eq_getElem] using h
 
 /-- [A predicate schedule](hyp:P), [a step](hyp:s), and [an in-bounds position](hyp:hi) satisfy
-[the exact equivalence between position activity and the raw entry-and-stay predicates](goal). -/
+[the exact equivalence between position activity and the raw entry-and-stay predicates](goal).
+@isnad1 id=iff.1h7v.s6.4ddc5e1debe7 from=translated src=- shape=b5232fd1 vocab=0780460a
+-/
 theorem active_windowAt_iff (P : PredicateWindowSchedule keys steps) (s : κ)
     {i : ℕ} (hi : i < keys.length) :
     Active (P.windowAt s) i ↔
@@ -241,7 +253,9 @@ theorem active_windowAt_iff (P : PredicateWindowSchedule keys steps) (s : κ)
     exact ((P.lt_leftEndpoint_iff_not_stay s hir).mp hil) hstay
 
 /-- [Predicate inclusion from an earlier step to a later step](hyp:hentry) makes [right endpoints
-nondecreasing](goal). -/
+nondecreasing](goal).
+@isnad1 id=le.1h7v.s6.cd5239b8e256 from=translated src=- shape=7ceb3899 vocab=087a56e2
+-/
 theorem rightEndpoint_mono_of_entry (P : PredicateWindowSchedule keys steps) {s t : κ}
     (hentry : ∀ x ∈ keys, P.entry s x → P.entry t x) :
     P.rightEndpoint s ≤ P.rightEndpoint t := by
@@ -254,7 +268,9 @@ theorem rightEndpoint_mono_of_entry (P : PredicateWindowSchedule keys steps) {s 
   exact (Nat.lt_irrefl _) ((P.lt_rightEndpoint_iff_entry t hi).mpr ht)
 
 /-- [Expanding entry](hyp:hentry) and [shrinking stay](hyp:hstay) from one step to another make
-[left endpoints nondecreasing](goal). -/
+[left endpoints nondecreasing](goal).
+@isnad1 id=le.2h7v.s6.f00c62aebc29 from=translated src=- shape=b1223d87 vocab=a694e171
+-/
 theorem leftEndpoint_mono_of_predicates (P : PredicateWindowSchedule keys steps) {s t : κ}
     (hentry : ∀ x ∈ keys, P.entry s x → P.entry t x)
     (hstay : ∀ x ∈ keys, P.stay t x → P.stay s x) :
@@ -276,7 +292,9 @@ theorem leftEndpoint_mono_of_predicates (P : PredicateWindowSchedule keys steps)
 
 /-- [A predicate schedule](hyp:P), [an earlier step](hyp:s), [a later step](hyp:t), and [entry
 inclusion](hyp:hentry) have [newly entered raw keys exactly equal to the later entered prefix after
-dropping the earlier right endpoint](goal). -/
+dropping the earlier right endpoint](goal).
+@isnad1 id=eq.1h7v.s6.a72debd93415 from=translated src=- shape=12b7a0e3 vocab=6c331709
+-/
 theorem newlyEntering_eq_drop_entered (P : PredicateWindowSchedule keys steps) (s t : κ)
     (hentry : ∀ x ∈ keys, P.entry s x → P.entry t x) :
     (keys.drop (P.rightEndpoint s)).takeWhile (P.entryTest t) =
@@ -286,7 +304,9 @@ theorem newlyEntering_eq_drop_entered (P : PredicateWindowSchedule keys steps) (
 
 /-- [A predicate schedule](hyp:P), [an earlier step](hyp:s), [a later step](hyp:t), and [entry
 inclusion](hyp:hentry) have [later right endpoint equal to the earlier endpoint plus the exact
-`takeWhile` entering-segment length](goal). -/
+`takeWhile` entering-segment length](goal).
+@isnad1 id=eq.1h7v.s6.787c65be0de9 from=translated src=- shape=304d3785 vocab=e6e1b42a
+-/
 theorem rightEndpoint_eq_add_newlyEntering (P : PredicateWindowSchedule keys steps) (s t : κ)
     (hentry : ∀ x ∈ keys, P.entry s x → P.entry t x) :
     P.rightEndpoint t = P.rightEndpoint s +
@@ -296,7 +316,9 @@ theorem rightEndpoint_eq_add_newlyEntering (P : PredicateWindowSchedule keys ste
 
 /-- [A predicate schedule](hyp:P), [an earlier step](hyp:s), [a later step](hyp:t), [entry
 expansion](hyp:hentry), and [stay shrinkage](hyp:hstay) have [the keys crossing the left endpoint
-exactly equal to the `takeWhile` non-staying segment](goal). -/
+exactly equal to the `takeWhile` non-staying segment](goal).
+@isnad1 id=eq.2h7v.s7.91fa58080dd0 from=translated src=- shape=2df41777 vocab=9b9dca23
+-/
 theorem newlyExpired_eq_takeWhile (P : PredicateWindowSchedule keys steps) (s t : κ)
     (hentry : ∀ x ∈ keys, P.entry s x → P.entry t x)
     (hstay : ∀ x ∈ keys, P.stay t x → P.stay s x) :
@@ -321,7 +343,9 @@ theorem newlyExpired_eq_takeWhile (P : PredicateWindowSchedule keys steps) (s t 
 
 /-- [A predicate schedule](hyp:P), [an earlier step](hyp:s), [a later step](hyp:t), [entry
 expansion](hyp:hentry), and [stay shrinkage](hyp:hstay) have [later left endpoint equal to the
-earlier endpoint plus the exact `takeWhile` expiration-segment length](goal). -/
+earlier endpoint plus the exact `takeWhile` expiration-segment length](goal).
+@isnad1 id=eq.2h7v.s7.000ea169e783 from=translated src=- shape=66417b76 vocab=e5bf865b
+-/
 theorem leftEndpoint_eq_add_newlyExpired (P : PredicateWindowSchedule keys steps) (s t : κ)
     (hentry : ∀ x ∈ keys, P.entry s x → P.entry t x)
     (hstay : ∀ x ∈ keys, P.stay t x → P.stay s x) :
@@ -347,13 +371,17 @@ noncomputable def schedule (P : PredicateWindowSchedule keys steps) : Schedule k
   · rw [List.pairwise_map]
     exact P.entry_step_mono.imp (fun h => P.rightEndpoint_mono_of_entry h)
 
-/-- [A predicate schedule](hyp:P) compiles to [one position window for each raw step](goal). -/
+/-- [A predicate schedule](hyp:P) compiles to [one position window for each raw step](goal).
+@isnad1 id=eq.0h5v.s4.075c88be833d from=translated src=- shape=24f80198 vocab=033302d5
+-/
 theorem schedule_steps (P : PredicateWindowSchedule keys steps) :
     P.schedule.steps = steps.length := by
   simp [schedule, Schedule.steps]
 
 /-- [A predicate schedule](hyp:P) and [a valid step-list position](hyp:hk) compile [the window at
-that position to the endpoints of the corresponding raw step](goal). -/
+that position to the endpoints of the corresponding raw step](goal).
+@isnad1 id=eq.1h6v.s6.e663187506c5 from=translated src=- shape=765bdb05 vocab=8fa2812c
+-/
 theorem schedule_window_get (P : PredicateWindowSchedule keys steps) {k : ℕ}
     (hk : k < steps.length) :
     P.schedule.windows.get ⟨k, by simpa [schedule, Schedule.steps] using hk⟩ =
@@ -362,7 +390,9 @@ theorem schedule_window_get (P : PredicateWindowSchedule keys steps) {k : ℕ}
 
 /-- [A predicate schedule](hyp:P), [a valid step position](hyp:hk), and [an in-bounds key
 position](hyp:hi) characterize [activity in the compiled scheduled window by the raw
-predicates](goal). -/
+predicates](goal).
+@isnad1 id=iff.2h7v.s6.aebb4dc0f1c9 from=translated src=- shape=4f879c5d vocab=c2070797
+-/
 theorem active_schedule_iff (P : PredicateWindowSchedule keys steps) {k i : ℕ}
     (hk : k < steps.length) (hi : i < keys.length) :
     Active (P.schedule.windows.get ⟨k, by simpa [schedule, Schedule.steps] using hk⟩) i ↔
@@ -372,7 +402,9 @@ theorem active_schedule_iff (P : PredicateWindowSchedule keys steps) {k i : ℕ}
   exact P.active_windowAt_iff (steps.get ⟨k, hk⟩) hi
 
 /-- [A predicate schedule](hyp:P), [two valid step positions](hyp:hi,hj), and [their strict
-order](hyp:hij) ensure [the earlier compiled right endpoint is no larger](goal). -/
+order](hyp:hij) ensure [the earlier compiled right endpoint is no larger](goal).
+@isnad1 id=le.3h7v.s6.b0060f612b35 from=translated src=- shape=e531ca63 vocab=86923fe0
+-/
 theorem rightEndpoint_le_of_step_lt (P : PredicateWindowSchedule keys steps)
     {i j : ℕ} (hi : i < steps.length) (hj : j < steps.length) (hij : i < j) :
     P.rightEndpoint (steps.get ⟨i, hi⟩) ≤ P.rightEndpoint (steps.get ⟨j, hj⟩) := by
@@ -380,7 +412,9 @@ theorem rightEndpoint_le_of_step_lt (P : PredicateWindowSchedule keys steps)
   exact P.entry_step_mono.rel_get_of_lt hij
 
 /-- [A predicate schedule](hyp:P), [two valid step positions](hyp:hi,hj), and [their strict
-order](hyp:hij) ensure [the earlier compiled left endpoint is no larger](goal). -/
+order](hyp:hij) ensure [the earlier compiled left endpoint is no larger](goal).
+@isnad1 id=le.3h7v.s6.3fde8ac349f9 from=translated src=- shape=e531ca63 vocab=fcfd2dde
+-/
 theorem leftEndpoint_le_of_step_lt (P : PredicateWindowSchedule keys steps)
     {i j : ℕ} (hi : i < steps.length) (hj : j < steps.length) (hij : i < j) :
     P.leftEndpoint (steps.get ⟨i, hi⟩) ≤ P.leftEndpoint (steps.get ⟨j, hj⟩) := by
@@ -389,7 +423,9 @@ theorem leftEndpoint_le_of_step_lt (P : PredicateWindowSchedule keys steps)
   · exact P.stay_step_anti.rel_get_of_lt hij
 
 /-- [A predicate schedule over an empty raw-key list](hyp:P) has [both endpoints equal to zero at
-every step](goal). -/
+every step](goal).
+@isnad1 id=and.0h5v.s5.31f121508c5c from=translated src=- shape=7b3c357e vocab=37461831
+-/
 theorem windowAt_empty (P : PredicateWindowSchedule ([] : List ι) steps) (s : κ) :
     (P.windowAt s).left = 0 ∧ (P.windowAt s).right = 0 := by
   simp [windowAt, leftEndpoint, rightEndpoint, expiredPrefix, entered]

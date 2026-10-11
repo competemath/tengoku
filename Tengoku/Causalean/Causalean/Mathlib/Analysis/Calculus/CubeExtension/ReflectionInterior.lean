@@ -19,7 +19,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 /-- If [a response u is m times continuously differentiable within the closed
 cube](hyp:hu), then [for any reflection weights a the one-face reflection of u
 across the left face in coordinate i is m times continuously differentiable on
-the open exterior collar](goal). -/
+the open exterior collar](goal).
+@isnad1 id=contdiff.1h5v.s7.b2e7ef0c9c55 from=translated src=- shape=07c71a42 vocab=785a1fb0
+-/
 theorem leftFaceReflection_contDiffOn_openCollar (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ) (u : (Fin d → ℝ) → ℝ)
     (hu : ContDiffOn ℝ m u (cube d)) :

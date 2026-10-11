@@ -35,7 +35,9 @@ noncomputable def pullbackToUnitInterval
 
 /-- For [a real polynomial](hyp:Q) and [real numbers r, s, and t](hyp:r,s,t), [the pullback to the
 unit interval evaluated at t equals the original polynomial evaluated at ((s − r) / 2) t + (r + s)
-/ 2](goal). -/
+/ 2](goal).
+@isnad1 id=eq.0h4v.s6.ed840c79b068 from=translated src=- shape=3072dbea vocab=d7027f8d
+-/
 theorem eval_pullbackToUnitInterval
     (Q : Polynomial ℝ) (r s t : ℝ) :
     (pullbackToUnitInterval Q r s).eval t =
@@ -43,7 +45,9 @@ theorem eval_pullbackToUnitInterval
   simp [pullbackToUnitInterval]
 
 /-- For [a real polynomial](hyp:Q) and [any interval endpoints r and s](hyp:r,s), [the degree of
-the pullback to the unit interval is at most the degree of the original polynomial](goal). -/
+the pullback to the unit interval is at most the degree of the original polynomial](goal).
+@isnad1 id=le.0h3v.s4.fd9a5bfb727e from=translated src=- shape=248103e0 vocab=c5f197d8
+-/
 theorem natDegree_pullbackToUnitInterval_le
     (Q : Polynomial ℝ) (r s : ℝ) :
     (pullbackToUnitInterval Q r s).natDegree ≤ Q.natDegree := by
@@ -58,7 +62,9 @@ theorem natDegree_pullbackToUnitInterval_le
 
 /-- For [a real polynomial](hyp:Q) and [real numbers r, s, and t](hyp:r,s,t), [the derivative of
 the pullback to the unit interval at t equals the half-length (s − r) / 2 times the derivative of
-the original polynomial at ((s − r) / 2) t + (r + s) / 2](goal). -/
+the original polynomial at ((s − r) / 2) t + (r + s) / 2](goal).
+@isnad1 id=eq.0h4v.s8.8175026d8532 from=translated src=- shape=1b883fac vocab=0ec26ba8
+-/
 theorem derivative_eval_pullbackToUnitInterval
     (Q : Polynomial ℝ) (r s t : ℝ) :
     (pullbackToUnitInterval Q r s).derivative.eval t =
@@ -68,7 +74,9 @@ theorem derivative_eval_pullbackToUnitInterval
 
 /-- For [a real polynomial](hyp:Q) and [endpoints with r strictly less than s](hyp:hrs), [the
 supremum norm of the pullback on the interval from −1 to 1 equals the supremum norm of the original
-polynomial on the interval from r to s](goal). -/
+polynomial on the interval from r to s](goal).
+@isnad1 id=eq.1h3v.s5.bf4f726776e7 from=translated src=- shape=1e2b4b42 vocab=9b628948
+-/
 theorem intervalSupNorm_pullbackToUnitInterval
     (Q : Polynomial ℝ) {r s : ℝ} (hrs : r < s) :
     intervalSupNorm (fun t => (pullbackToUnitInterval Q r s).eval t) (-1) 1 =
@@ -109,7 +117,9 @@ theorem intervalSupNorm_pullbackToUnitInterval
 
 /-- For [a real polynomial](hyp:Q) of [degree at most L](hyp:L,hQ), [the supremum norm of its
 derivative on the interval from −1 to 1 is at most L² times the supremum norm of the polynomial on
-that interval](goal). -/
+that interval](goal).
+@isnad1 id=le.1h2v.s7.4bd7ba80cd72 from=translated src=- shape=6266b2f8 vocab=d7d4f3c2
+-/
 theorem markov_derivative_unitInterval
     (Q : Polynomial ℝ) (L : ℕ) (hQ : Q.natDegree ≤ L) :
     intervalSupNorm (fun x => Q.derivative.eval x) (-1) 1 ≤
@@ -135,7 +145,9 @@ theorem markov_derivative_unitInterval
 
 /-- For [a real polynomial](hyp:Q) of [degree at most L](hyp:L,hQ) and [endpoints with r strictly
 less than s](hyp:hrs), [the supremum norm of its derivative on the interval from r to s is at most
-2 L² / (s − r) times the supremum norm of the polynomial on that interval](goal). -/
+2 L² / (s − r) times the supremum norm of the polynomial on that interval](goal).
+@isnad1 id=le.2h4v.s7.b46e1bd5b9ce from=translated src=- shape=a624b179 vocab=b771c464
+-/
 theorem markov_derivative_Icc
     (Q : Polynomial ℝ) {r s : ℝ} (hrs : r < s)
     (L : ℕ) (hQ : Q.natDegree ≤ L) :

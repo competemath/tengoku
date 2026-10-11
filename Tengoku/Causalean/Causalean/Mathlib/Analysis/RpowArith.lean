@@ -26,13 +26,17 @@ public section
 namespace Causalean.Mathlib.RpowArith
 
 /-- For [any real number `x`](hyp:x), [its reciprocal equals its real power raised to the
-exponent `−1`](goal). -/
+exponent `−1`](goal).
+@isnad1 id=eq.0h1v.s4.60f4d97bd608 from=translated src=- shape=ac4ebe00 vocab=d2fed6ae
+-/
 lemma inv_eq_rpow_neg_one (x : ℝ) : x⁻¹ = x ^ (-1 : ℝ) := by
   rw [Real.rpow_neg_one]
 
 /-- **Factoring a real power of a quotient.** For [a nonnegative numerator `A`](hyp:hA) and [a
 strictly positive denominator `n`](hyp:hn), [the real power `(A/n)^p` equals `A^p` times `n`
-raised to the power `−p`](goal), for any real exponent `p`. -/
+raised to the power `−p`](goal), for any real exponent `p`.
+@isnad1 id=eq.2h3v.s6.a7bb20b8617a from=translated src=- shape=a9b2cf00 vocab=b06b52d4
+-/
 lemma div_rpow_of_nonneg_of_pos
     (A p n : ℝ) (hA : 0 ≤ A) (hn : 0 < n) :
     (A / n) ^ p = A ^ p * n ^ (-p) := by
@@ -53,7 +57,9 @@ lemma div_rpow_of_nonneg_of_pos
       ring_nf
 
 /-- **Nonpositive real power of a natural number is at most one.** For [a nonpositive real exponent
-`e`](hyp:he), [the real power of any natural-number cast raised to `e` is at most `1`](goal). -/
+`e`](hyp:he), [the real power of any natural-number cast raised to `e` is at most `1`](goal).
+@isnad1 id=le.1h2v.s5.42cbb03b70d8 from=translated src=- shape=9116fa60 vocab=ef525443
+-/
 lemma rpow_natCast_nonpos_le_one
     (n : ℕ) (e : ℝ) (he : e ≤ 0) :
     (n : ℝ) ^ e ≤ 1 := by
@@ -69,7 +75,9 @@ lemma rpow_natCast_nonpos_le_one
 
 /-- **Reciprocal times square root as a negative-half power.** For [a nonnegative real number
 `q`](hyp:hq), [the reciprocal of `q` times the square root of `q` equals `q` raised to the power
-`−1/2`](goal). -/
+`−1/2`](goal).
+@isnad1 id=eq.1h1v.s5.c5e63a96cb6b from=translated src=- shape=5b9c6ea5 vocab=5f274a4c
+-/
 lemma inv_mul_sqrt_eq_rpow_neg_half (q : ℝ) (hq : 0 ≤ q) :
     q⁻¹ * Real.sqrt q = q ^ (-(1 / 2 : ℝ)) := by
   rcases hq.eq_or_lt with rfl | hq
@@ -86,7 +94,9 @@ lemma inv_mul_sqrt_eq_rpow_neg_half (q : ℝ) (hq : 0 ≤ q) :
 [a nonnegative weight `w`](hyp:w,hw), and [positive inputs `a` and `b`](hyp:a,b,ha,hb), if
 [`K` is at least one](hyp:hK) and [`a` is at most `K * b`](hyp:hab), then [multiplying the
 input of `w * x ^ d` by at most `K` increases its positive logarithmic transform by at most
-`d * log K`](goal). -/
+`d * log K`](goal).
+@isnad1 id=le.6h5v.s7.1420c558caa3 from=translated src=- shape=e05ccdab vocab=5f921831
+-/
 lemma window_log_power_le (K d w a b : ℝ) (hK : 1 ≤ K) (hd : 0 ≤ d)
     (hw : 0 ≤ w) (ha : 0 < a) (hb : 0 < b) (hab : a ≤ K * b) :
     Real.log (Real.exp 1 + w * a ^ d) ≤
@@ -106,7 +116,9 @@ lemma window_log_power_le (K d w a b : ℝ) (hK : 1 ≤ K) (hd : 0 ≤ d)
 /-- For [a multiplicative factor `K`](hyp:K), [a nonnegative real exponent `d`](hyp:d,hd),
 [a nonnegative weight `w`](hyp:w,hw), and [positive inputs `a` and `b`](hyp:a,b,ha,hb), if
 [`K` is at least one](hyp:hK) and [`a` is at most `K * b`](hyp:hab), then [their positive
-logarithmic real-power transforms differ by at most the factor `1 + d * log K`](goal). -/
+logarithmic real-power transforms differ by at most the factor `1 + d * log K`](goal).
+@isnad1 id=le.6h5v.s7.9e1335fda283 from=translated src=- shape=0089abb6 vocab=5f921831
+-/
 lemma window_log_power_comparison (K d w a b : ℝ) (hK : 1 ≤ K) (hd : 0 ≤ d)
     (hw : 0 ≤ w) (ha : 0 < a) (hb : 0 < b) (hab : a ≤ K * b) :
     Real.log (Real.exp 1 + w * a ^ d) ≤
@@ -123,7 +135,9 @@ lemma window_log_power_comparison (K d w a b : ℝ) (hK : 1 ≤ K) (hd : 0 ≤ d
 [a nonnegative weight `w`](hyp:w,hw), and [positive inputs `a` and `b`](hyp:a,b,ha,hb), if
 [`K` is at least one](hyp:hK) and [`a` is at most `K * b`](hyp:hab), then [the square roots
 of their positive logarithmic real-power transforms differ by at most the factor
-`1 + d * log K`](goal). -/
+`1 + d * log K`](goal).
+@isnad1 id=le.6h5v.s7.fa71067e9303 from=translated src=- shape=0c531daf vocab=f9f69ec4
+-/
 lemma window_sqrt_log_comparison (K d w a b : ℝ) (hK : 1 ≤ K) (hd : 0 ≤ d)
     (hw : 0 ≤ w) (ha : 0 < a) (hb : 0 < b) (hab : a ≤ K * b) :
     Real.sqrt (Real.log (Real.exp 1 + w * a ^ d)) ≤

@@ -20,7 +20,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 Σ_{i ∈ t} c_i·(‖a_i − a'_i‖·‖b_i‖ + ‖a'_i‖·‖b_i − b'_i‖)](goal).
 
 For each summand, write `B a b - B a' b'` as `B (a-a') b + B a' (b-b')`; then
-apply the bilinear operator norm and the triangle inequality before summing. -/
+apply the bilinear operator norm and the triangle inequality before summing.
+@isnad1 id=le.2h11v.s11.ae0b8eab3d9d from=translated src=- shape=237d5263 vocab=948f238b
+-/
 theorem norm_bilinear_sum_sub_le
     {ι E F G : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]

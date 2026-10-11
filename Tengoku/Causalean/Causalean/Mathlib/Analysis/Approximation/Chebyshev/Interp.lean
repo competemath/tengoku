@@ -54,7 +54,9 @@ noncomputable def szegoInterp (β : ℕ) (Q₀ Q₁ t₀ : ℝ) (t : ℝ) : ℝ 
 
 /-- For [a degree parameter `β`](hyp:β) and [a prescribed value, derivative, and base
 point](hyp:Q₀,Q₁,t₀), [the Szegő interpolant reproduces its prescribed value at the base
-point](goal). -/
+point](goal).
+@isnad1 id=eq.0h4v.s4.adf257ed7d53 from=translated src=- shape=141bc0eb vocab=79a1c1ec
+-/
 theorem szegoInterp_self (β : ℕ) (Q₀ Q₁ t₀ : ℝ) :
     szegoInterp β Q₀ Q₁ t₀ t₀ = Q₀ := by
   simp [szegoInterp]
@@ -66,7 +68,9 @@ base point](goal), provided [the frequency is at least one](hyp:hβ).
 The requirement `β ≥ 1` is needed so the factor `β` produced by the chain rule
 cancels the `1/β` in the sine coefficient. Concretely
 `S'(t) = -Q₀·β·sin(β(t−t₀)) + Q₁·cos(β(t−t₀))`, which at `t = t₀` evaluates to
-`Q₁`. -/
+`Q₁`.
+@isnad1 id=hasderiv.1h4v.s5.1ea25d52ea87 from=translated src=- shape=d4b6279c vocab=ede1b6fb
+-/
 theorem szegoInterp_hasDerivAt (β : ℕ) (hβ : 1 ≤ β) (Q₀ Q₁ t₀ : ℝ) :
     HasDerivAt (fun t => szegoInterp β Q₀ Q₁ t₀ t) Q₁ t₀ := by
   let c : ℝ := β
@@ -101,7 +105,9 @@ coefficients](hyp:Q₀,q), and [a base point](hyp:t₀) [can be expressed as a p
 wave whose amplitude is the Euclidean norm of the two coefficients](goal).
 
 (Write the point `(Q₀, q)` in polar form `A·(cos φ, sin φ)` and expand
-`cos(ω(t−t₀) − φ)` by the angle-subtraction formula.) -/
+`cos(ω(t−t₀) − φ)` by the angle-subtraction formula.)
+@isnad1 id=ex.0h4v.s7.229f8d08bea6 from=translated src=- shape=2b04d392 vocab=718f7c57
+-/
 theorem szegoInterp_amplitude_core (ω : ℝ) (Q₀ q t₀ : ℝ) :
     ∃ φ : ℝ, ∀ t,
       Q₀ * Real.cos (ω * (t - t₀)) + q * Real.sin (ω * (t - t₀))
@@ -132,7 +138,9 @@ theorem szegoInterp_amplitude_core (ω : ℝ) (Q₀ q t₀ : ℝ) :
 
 /-- For [a degree parameter](hyp:β) and [a prescribed value, derivative, and base
 point](hyp:Q₀,Q₁,t₀), [the Szegő interpolant is a phase-shifted cosine wave whose amplitude is
-the Euclidean norm of its cosine and sine coefficients](goal). -/
+the Euclidean norm of its cosine and sine coefficients](goal).
+@isnad1 id=ex.0h4v.s6.b2de2bd2a6b8 from=translated src=- shape=54f009c9 vocab=52e3b770
+-/
 theorem szegoInterp_amplitude (β : ℕ) (Q₀ Q₁ t₀ : ℝ) :
     ∃ φ : ℝ, ∀ t, szegoInterp β Q₀ Q₁ t₀ t
       = Real.sqrt (Q₀ ^ 2 + (Q₁ / (β : ℝ)) ^ 2)
@@ -142,7 +150,9 @@ theorem szegoInterp_amplitude (β : ℕ) (Q₀ Q₁ t₀ : ℝ) :
 
 /-- For [a degree parameter `β`](hyp:β) and [values `Q₀`, `Q₁`, base point `t₀`, and
 evaluation point `t`](hyp:Q₀,Q₁,t₀,t), [the Szegő interpolant's value is bounded in absolute
-value by its amplitude `A = √(Q₀² + (Q₁/β)²)`](goal). -/
+value by its amplitude `A = √(Q₀² + (Q₁/β)²)`](goal).
+@isnad1 id=le.0h5v.s6.5cb7d2a61530 from=translated src=- shape=1de81a70 vocab=fb14008e
+-/
 theorem szegoInterp_abs_le (β : ℕ) (Q₀ Q₁ t₀ t : ℝ) :
     |szegoInterp β Q₀ Q₁ t₀ t| ≤ Real.sqrt (Q₀ ^ 2 + (Q₁ / (β : ℝ)) ^ 2) := by
   obtain ⟨φ, hφ⟩ := szegoInterp_amplitude β Q₀ Q₁ t₀

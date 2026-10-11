@@ -51,12 +51,16 @@ def inclusionMonomial (S : Finset (Fin n)) : SliceFn n M :=
 def degreeAtMost (n M d : ℕ) : Submodule ℝ (SliceFn n M) :=
   Submodule.span ℝ {f | ∃ S : Finset (Fin n), S.card ≤ d ∧ f = inclusionMonomial (M := M) S}
 
-/-- When [the first degree bound does not exceed the second](hyp:hde), [every function in the first inclusion-degree subspace also belongs to the second](goal). -/
+/-- When [the first degree bound does not exceed the second](hyp:hde), [every function in the first inclusion-degree subspace also belongs to the second](goal).
+@isnad1 id=le.1h4v.s8.6ec3f6c0f9d6 from=translated src=- shape=dc88517b vocab=23415c89
+-/
 theorem degreeAtMost_mono {d e : ℕ} (hde : d ≤ e) :
     degreeAtMost n M d ≤ degreeAtMost n M e := by
   exact Submodule.span_mono fun f ⟨S, hSd, hf⟩ => ⟨S, hSd.trans hde, hf⟩
 
-/-- When [the requested slice size is feasible](hyp:hMn), [a slice function belongs to the degree-zero subspace exactly when it is constant](goal), for [the given slice function](hyp:f). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [a slice function belongs to the degree-zero subspace exactly when it is constant](goal), for [the given slice function](hyp:f).
+@isnad1 id=iff.1h3v.s8.4bad3c9d3564 from=translated src=- shape=50a133cb vocab=3c4412da
+-/
 theorem mem_degreeAtMost_zero_iff (hMn : M ≤ n) (f : SliceFn n M) :
     f ∈ degreeAtMost n M 0 ↔ ∃ c : ℝ, f = constFn c := by
   have hgen :
@@ -86,7 +90,9 @@ theorem mem_degreeAtMost_zero_iff (hMn : M ≤ n) (f : SliceFn n M) :
     ext A
     simp [constFn]
 
-/-- When [the requested slice size is feasible](hyp:hMn), [inclusion monomials through degree `M` span every real function on the uniform slice](goal). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [inclusion monomials through degree `M` span every real function on the uniform slice](goal).
+@isnad1 id=eq.1h2v.s8.03b102450978 from=translated src=- shape=a7e53a77 vocab=9244c60b
+-/
 theorem degreeAtMost_eq_top (hMn : M ≤ n) :
     degreeAtMost n M M = ⊤ := by
   apply top_unique
@@ -109,7 +115,9 @@ theorem degreeAtMost_eq_top (hMn : M ≤ n) :
   ext B
   simp [inclusionMonomial, hsubset_iff]
 
-/-- When [the requested slice size is feasible](hyp:hMn), [the uniform slice has exactly the usual binomial number of points](goal). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [the uniform slice has exactly the usual binomial number of points](goal).
+@isnad1 id=eq.1h2v.s4.2d5232621580 from=translated src=- shape=e278be0e vocab=33f3eba3
+-/
 theorem card_omega (hMn : M ≤ n) : Fintype.card (Omega n M) = n.choose M := by
   let e : Omega n M ≃
       {S // S ∈ (Finset.univ : Finset (Fin n)).powersetCard M} :=
@@ -125,13 +133,17 @@ theorem card_omega (hMn : M ≤ n) : Fintype.card (Omega n M) = n.choose M := by
       Fintype.card_coe _
     _ = n.choose M := by simp
 
-/-- When [the requested slice size is feasible](hyp:hMn), [the uniform inner product of the two given slice functions](goal) equals the ordinary function-space inner product divided by the number of slice points, for [the first function](hyp:f) and [the second function](hyp:g). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [the uniform inner product of the two given slice functions](goal) equals the ordinary function-space inner product divided by the number of slice points, for [the first function](hyp:f) and [the second function](hyp:g).
+@isnad1 id=eq.1h4v.s6.5bd1afcb6ed1 from=translated src=- shape=8bb5ab73 vocab=b4b94a10
+-/
 theorem sliceInner_eq (hMn : M ≤ n) (f g : SliceFn n M) :
     sliceInner f g = (n.choose M : ℝ)⁻¹ * inner ℝ f g := by
   rw [sliceInner, card_omega hMn, PiLp.inner_apply]
   simp only [Real.inner_apply]
 
-/-- When [the requested slice size is feasible](hyp:hMn), [the uniform mean of the given constant slice function equals its constant value](goal), for [the real value](hyp:c). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [the uniform mean of the given constant slice function equals its constant value](goal), for [the real value](hyp:c).
+@isnad1 id=eq.1h3v.s4.a71c684bd3ba from=translated src=- shape=ce31a3e7 vocab=7131b6f1
+-/
 theorem mean_constFn (hMn : M ≤ n) (c : ℝ) :
     mean (constFn (n := n) (M := M) c) = c := by
   have hchoose : n.choose M ≠ 0 := Nat.ne_of_gt (Nat.choose_pos hMn)

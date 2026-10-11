@@ -29,7 +29,9 @@ noncomputable def cutoffD2 (u : ℝ) : ℝ :=
   if |u| ≤ 1 then -6 * (1 - u ^ 2) ^ 2 + 24 * u ^ 2 * (1 - u ^ 2) else 0
 
 /-- At [every real input](hyp:u), [the cubic-power branch has its exact first
-derivative](goal), before it is glued to the zero branch. -/
+derivative](goal), before it is glued to the zero branch.
+@isnad1 id=hasderiv.0h1v.s7.0297f8668095 from=translated src=- shape=9050c75a vocab=62e7d8c5
+-/
 theorem cutoff_polynomial_hasDerivAt (u : ℝ) :
     HasDerivAt (fun v : ℝ => (1 - v ^ 2) ^ 3)
       (-6 * u * (1 - u ^ 2) ^ 2) u := by
@@ -37,7 +39,9 @@ theorem cutoff_polynomial_hasDerivAt (u : ℝ) :
     using 1 <;> (try simp) <;> ring
 
 /-- At [every real input](hyp:u), [the first polynomial branch has its exact
-second derivative](goal), before either branch is glued. -/
+second derivative](goal), before either branch is glued.
+@isnad1 id=hasderiv.0h1v.s7.858b11b5a310 from=translated src=- shape=038642c6 vocab=982a4af2
+-/
 theorem cutoff_polynomialD1_hasDerivAt (u : ℝ) :
     HasDerivAt (fun v : ℝ => -6 * v * (1 - v ^ 2) ^ 2)
       (-6 * (1 - u ^ 2) ^ 2 + 24 * u ^ 2 * (1 - u ^ 2)) u := by
@@ -45,15 +49,21 @@ theorem cutoff_polynomialD1_hasDerivAt (u : ℝ) :
     (((hasDerivAt_const u (1 : ℝ)).sub ((hasDerivAt_id u).pow 2)).pow 2))
     using 1 <;> (try simp) <;> ring
 
-/-- [The cutoff takes value one at the origin](goal). -/
+/-- [The cutoff takes value one at the origin](goal).
+@isnad1 id=eq.0h0v.s3.0e2247076c0b from=translated src=- shape=3c26ae4f vocab=13642689
+-/
 theorem cutoff_zero : cutoff 0 = 1 := by
   norm_num [cutoff]
 
-/-- [The cutoff is even](goal) at [every input](hyp:u). -/
+/-- [The cutoff is even](goal) at [every input](hyp:u).
+@isnad1 id=eq.0h1v.s3.ed84411452fb from=translated src=- shape=cd419dad vocab=59b972c6
+-/
 theorem cutoff_neg (u : ℝ) : cutoff (-u) = cutoff u := by
   simp [cutoff]
 
-/-- [The cutoff lies between zero and one](goal) at [every scalar input](hyp:u). -/
+/-- [The cutoff lies between zero and one](goal) at [every scalar input](hyp:u).
+@isnad1 id=and.0h1v.s4.12551767c891 from=translated src=- shape=fd7c5cb5 vocab=7dc07ef7
+-/
 theorem cutoff_bounds (u : ℝ) : 0 ≤ cutoff u ∧ cutoff u ≤ 1 := by
   by_cases hu : |u| ≤ 1
   · rw [cutoff, ite_eq_left hu]
@@ -61,7 +71,9 @@ theorem cutoff_bounds (u : ℝ) : 0 ≤ cutoff u ∧ cutoff u ≤ 1 := by
     exact ⟨pow_nonneg hnonneg 3, pow_le_one₀ hnonneg (by nlinarith [sq_nonneg u])⟩
   · simp [cutoff, hu]
 
-/-- [The nonzero support is exactly the open unit interval](goal). -/
+/-- [The nonzero support is exactly the open unit interval](goal).
+@isnad1 id=eq.0h0v.s4.5f6a183aa0f5 from=translated src=- shape=66c352d6 vocab=24f771f2
+-/
 theorem cutoff_support : Function.support cutoff = Set.Ioo (-1) 1 := by
   ext u
   change cutoff u ≠ 0 ↔ -1 < u ∧ u < 1
@@ -80,12 +92,16 @@ theorem cutoff_support : Function.support cutoff = Set.Ioo (-1) 1 := by
     simp only [cutoff, ite_eq_left h.le]
     exact pow_ne_zero 3 (ne_of_gt (sub_pos.mpr hsq))
 
-/-- [The closed support is exactly the closed unit interval](goal). -/
+/-- [The closed support is exactly the closed unit interval](goal).
+@isnad1 id=eq.0h0v.s4.7ea5280354bd from=translated src=- shape=66c352d6 vocab=58b69b91
+-/
 theorem cutoff_tsupport : tsupport cutoff = Set.Icc (-1) 1 := by
   change closure (Function.support cutoff) = Set.Icc (-1) 1
   rw [cutoff_support, closure_Ioo (by norm_num : (-1 : ℝ) ≠ 1)]
 
-/-- [The cutoff has compact support](goal). -/
+/-- [The cutoff has compact support](goal).
+@isnad1 id=hascompa.0h0v.s3.232ed5b96bb3 from=translated src=- shape=e3d48bcb vocab=d8ba470f
+-/
 theorem cutoff_hasCompactSupport : HasCompactSupport cutoff := by
   change IsCompact (tsupport cutoff)
   rw [cutoff_tsupport]
@@ -132,7 +148,9 @@ Express the cutoff as two `joinAt` operations at -1 and 1. The branch
 polynomials have matching zero first jets at both junctions. Use
 `joinAt (-1) (fun _ => 0) (joinAt 1 (fun v => (1-v^2)^3) (fun _ => 0))`;
 its value at -1 is zero, so the closed-half-line convention agrees with cutoff.
-The two polynomial derivative helpers above supply the branch derivatives. -/
+The two polynomial derivative helpers above supply the branch derivatives.
+@isnad1 id=hasderiv.0h1v.s5.589cc1548606 from=translated src=- shape=475e04ea vocab=c4aa314f
+-/
 theorem cutoff_hasDerivAt (u : ℝ) : HasDerivAt cutoff (cutoffD1 u) u := by
   exact cutoff_branch_hasDerivAt
     (fun v => (1 - v ^ 2) ^ 3) (fun v => -6 * v * (1 - v ^ 2) ^ 2)
@@ -140,7 +158,9 @@ theorem cutoff_hasDerivAt (u : ℝ) : HasDerivAt cutoff (cutoffD1 u) u := by
     (by norm_num) (by norm_num) u
 
 /-- [The explicit first jet has the stated second derivative](goal) at
-[every input](hyp:u), including both glue points. -/
+[every input](hyp:u), including both glue points.
+@isnad1 id=hasderiv.0h1v.s5.672ef932da98 from=translated src=- shape=475e04ea vocab=08be4d5e
+-/
 theorem cutoffD1_hasDerivAt (u : ℝ) : HasDerivAt cutoffD1 (cutoffD2 u) u := by
   exact cutoff_branch_hasDerivAt
     (fun v => -6 * v * (1 - v ^ 2) ^ 2)
@@ -148,7 +168,9 @@ theorem cutoffD1_hasDerivAt (u : ℝ) : HasDerivAt cutoffD1 (cutoffD2 u) u := by
     cutoff_polynomialD1_hasDerivAt (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) u
 
-/-- [The cutoff is globally twice continuously differentiable](goal). -/
+/-- [The cutoff is globally twice continuously differentiable](goal).
+@isnad1 id=contdiff.0h0v.s5.1b03579f6d9e from=translated src=- shape=23a74193 vocab=6660e874
+-/
 theorem cutoff_contDiff : ContDiff ℝ 2 cutoff := by
   have hd : deriv cutoff = cutoffD1 :=
     funext fun u => (cutoff_hasDerivAt u).deriv
@@ -171,31 +193,41 @@ theorem cutoff_contDiff : ContDiff ℝ 2 cutoff := by
   rw [hdd]
   exact hc
 
-/-- [The ordinary derivative equals the explicit first jet](goal). -/
+/-- [The ordinary derivative equals the explicit first jet](goal).
+@isnad1 id=eq.0h0v.s5.d35ea5633d39 from=translated src=- shape=1142214a vocab=86722e48
+-/
 theorem cutoff_deriv : deriv cutoff = cutoffD1 := by
   funext u
   exact (cutoff_hasDerivAt u).deriv
 
-/-- [The second ordinary derivative equals the explicit second jet](goal). -/
+/-- [The second ordinary derivative equals the explicit second jet](goal).
+@isnad1 id=eq.0h0v.s5.3f4efd81e30a from=translated src=- shape=d9d6a2dc vocab=671637f8
+-/
 theorem cutoff_deriv_two : deriv (deriv cutoff) = cutoffD2 := by
   rw [cutoff_deriv]
   funext u
   exact (cutoffD1_hasDerivAt u).deriv
 
 /-- At [an input in the closed polynomial region](hyp:u,hu),
-[the first derivative has the exact polynomial formula](goal). -/
+[the first derivative has the exact polynomial formula](goal).
+@isnad1 id=eq.1h1v.s6.1bdec793c70d from=translated src=- shape=137b6c98 vocab=dbcf1822
+-/
 theorem cutoff_deriv_of_abs_le (u : ℝ) (hu : |u| ≤ 1) :
     deriv cutoff u = -6 * u * (1 - u ^ 2) ^ 2 := by
   simp [cutoff_deriv, cutoffD1, hu]
 
 /-- At [an input in the closed polynomial region](hyp:u,hu),
-[the second derivative has the exact polynomial formula](goal). -/
+[the second derivative has the exact polynomial formula](goal).
+@isnad1 id=eq.1h1v.s7.7bcfeb5fb670 from=translated src=- shape=1b333953 vocab=c8a03542
+-/
 theorem cutoff_second_deriv_of_abs_le (u : ℝ) (hu : |u| ≤ 1) :
     deriv (deriv cutoff) u = -6 * (1 - u ^ 2) ^ 2 + 24 * u ^ 2 * (1 - u ^ 2) := by
   simp [cutoff_deriv_two, cutoffD2, hu]
 
 /-- At [an input](hyp:u) [on or outside the unit boundary](hyp:hu),
-[the value and both ordinary jets vanish](goal). -/
+[the value and both ordinary jets vanish](goal).
+@isnad1 id=and.1h1v.s7.e0b22fe20299 from=translated src=- shape=66dae320 vocab=f0bf8500
+-/
 theorem cutoff_jets_zero (u : ℝ) (hu : 1 ≤ |u|) :
     cutoff u = 0 ∧ deriv cutoff u = 0 ∧ deriv (deriv cutoff) u = 0 := by
   rw [cutoff_deriv_two, cutoff_deriv]

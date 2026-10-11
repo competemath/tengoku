@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.HolderTaylor
 /-- If [an integrand h](hyp:h) is [continuous](hyp:hh) on [the closed interval from a to
 a + d](hyp:a,d) of [positive length](hyp:hd), then [at every point t of the interval, endpoints
 included, the within-interval derivative of the survival function exp(−∫ from a to t of h) equals
-−h(t) times that survival function at t](goal). -/
+−h(t) times that survival function at t](goal).
+@isnad1 id=eq.3h4v.s7.945334e33e17 from=translated src=- shape=066c97ce vocab=61f9f8f7
+-/
 theorem survival_derivWithin
     (a d : ℝ) (hd : 0 < d) (h : ℝ → ℝ)
     (hh : ContDiffOn ℝ 0 h (Set.Icc a (a + d))) :
@@ -45,7 +47,9 @@ interval from a to a + d](hyp:a,d) of [positive length](hyp:hd), then [for every
 k and every point t of the interval, the (j + 1)-th within-interval derivative of the survival
 function S(t) = exp(−∫ from a to t of h) equals minus the Leibniz sum over i from 0 to j of
 (j choose i) times the i-th within-interval derivative of h times the (j − i)-th within-interval
-derivative of S](goal), as obtained from the differential equation S′ = −h·S. -/
+derivative of S](goal), as obtained from the differential equation S′ = −h·S.
+@isnad1 id=eq.4h6v.s8.2a0195af8eaf from=translated src=- shape=b2490e33 vocab=7e5c7ea1
+-/
 theorem survival_iteratedDerivWithin_succ
     (k : ℕ) (a d : ℝ) (hd : 0 < d) (h : ℝ → ℝ)
     (hh : ContDiffOn ℝ k h (Set.Icc a (a + d))) :

@@ -15,7 +15,9 @@ open MeasureTheory
 
 namespace Causalean.Mathlib.Analysis.ParametricRationalIntegralAnalyticity
 
-/-- Given [a finite measure](hyp:μ), [an integrand family](hyp:f), [its coefficient functions](hyp:c), [coefficient envelopes](hyp:M), [an expansion center, radius, and evaluation parameter](hyp:t₀,r,t), [a positive radius and an evaluation inside it](hyp:hr,ht), [measurable coefficients](hyp:hc), [nonnegative envelopes](hyp:hM), [almost-everywhere coefficient domination](hyp:hbound), [a summable radius-weighted envelope](hyp:hsum), and [an almost-everywhere pointwise power-series expansion](hyp:hseries), [the integral equals the series of coefficient integrals at the evaluation parameter](goal). -/
+/-- Given [a finite measure](hyp:μ), [an integrand family](hyp:f), [its coefficient functions](hyp:c), [coefficient envelopes](hyp:M), [an expansion center, radius, and evaluation parameter](hyp:t₀,r,t), [a positive radius and an evaluation inside it](hyp:hr,ht), [measurable coefficients](hyp:hc), [nonnegative envelopes](hyp:hM), [almost-everywhere coefficient domination](hyp:hbound), [a summable radius-weighted envelope](hyp:hsum), and [an almost-everywhere pointwise power-series expansion](hyp:hseries), [the integral equals the series of coefficient integrals at the evaluation parameter](goal).
+@isnad1 id=eq.7h8v.s8.a421efe2eaf8 from=translated src=- shape=b94c71d7 vocab=a0bcf362
+-/
 theorem integral_eq_tsum_of_powerSeries_domination
     {α : Type*} [MeasurableSpace α] (μ : Measure α) [IsFiniteMeasure μ]
     (f : ℝ → α → ℝ) (c : ℕ → α → ℝ) (M : ℕ → ℝ)
@@ -56,7 +58,9 @@ theorem integral_eq_tsum_of_powerSeries_domination
       intro n
       exact integral_mul_const _ _
 
-/-- Given [a finite measure](hyp:μ), [an integrand family](hyp:f), [its coefficient functions](hyp:c), [coefficient envelopes](hyp:M), [an expansion center and radius](hyp:t₀,r), [a positive radius](hyp:hr), [measurable coefficients](hyp:hc), [nonnegative envelopes](hyp:hM), [almost-everywhere coefficient domination](hyp:hbound), [a summable radius-weighted envelope](hyp:hsum), and [an almost-everywhere pointwise power-series expansion throughout that radius](hyp:hseries), [integrating the family produces a real-analytic function at the expansion center](goal). -/
+/-- Given [a finite measure](hyp:μ), [an integrand family](hyp:f), [its coefficient functions](hyp:c), [coefficient envelopes](hyp:M), [an expansion center and radius](hyp:t₀,r), [a positive radius](hyp:hr), [measurable coefficients](hyp:hc), [nonnegative envelopes](hyp:hM), [almost-everywhere coefficient domination](hyp:hbound), [a summable radius-weighted envelope](hyp:hsum), and [an almost-everywhere pointwise power-series expansion throughout that radius](hyp:hseries), [integrating the family produces a real-analytic function at the expansion center](goal).
+@isnad1 id=analytic.6h7v.s8.6ba35b2fc7ea from=translated src=- shape=19f1877e vocab=89d37e17
+-/
 theorem analyticAt_integral_of_powerSeries_domination
     {α : Type*} [MeasurableSpace α] (μ : Measure α) [IsFiniteMeasure μ]
     (f : ℝ → α → ℝ) (c : ℕ → α → ℝ) (M : ℕ → ℝ)

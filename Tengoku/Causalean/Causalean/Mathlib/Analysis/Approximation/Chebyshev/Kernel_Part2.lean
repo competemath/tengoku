@@ -19,6 +19,7 @@ open MeasureTheory Real
 open scoped BigOperators
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the raw Jackson mass equals
 two π thirds times K times two K squared plus one](goal).
+@isnad1 id=eq.1h1v.s6.5ae81bb98468 from=translated src=- shape=f77d7305 vocab=0f4d0c32
 -/
 theorem jrawMass_eq (K : ℕ) (hK : 0 < K) :
     jrawMass K = (2 * Real.pi / 3) * (K : ℝ) * (2 * (K : ℝ) ^ 2 + 1) := by
@@ -69,6 +70,7 @@ theorem jrawMass_eq (K : ℕ) (hK : 0 < K) :
 
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the raw Jackson mass is at
 least four π thirds times K cubed](goal).
+@isnad1 id=le.1h1v.s6.2fd371e6a905 from=translated src=- shape=30fc5f2a vocab=c9d035d3
 -/
 theorem jrawMass_lower (K : ℕ) (hK : 0 < K) :
     (4 * Real.pi / 3) * (K : ℝ) ^ 3 ≤ jrawMass K := by
@@ -79,6 +81,7 @@ theorem jrawMass_lower (K : ℕ) (hK : 0 < K) :
 
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the raw Jackson mass is at
 most two π times K cubed](goal).
+@isnad1 id=le.1h1v.s5.e0988cecc284 from=translated src=- shape=176256c9 vocab=bf7cc707
 -/
 theorem jrawMass_upper (K : ℕ) (hK : 0 < K) :
     jrawMass K ≤ 2 * Real.pi * (K : ℝ) ^ 3 := by
@@ -94,6 +97,7 @@ theorem jrawMass_upper (K : ℕ) (hK : 0 < K) :
 
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the raw Jackson mass is
 strictly positive](goal).
+@isnad1 id=lt.1h1v.s4.90ea989a486e from=translated src=- shape=7f2e781e vocab=0dbffc75
 -/
 theorem jrawMass_pos (K : ℕ) (hK : 0 < K) : 0 < jrawMass K := by
   have hl := jrawMass_lower K hK
@@ -103,6 +107,7 @@ theorem jrawMass_pos (K : ℕ) (hK : 0 < K) : 0 < jrawMass K := by
 
 /-- For [integer order K](hyp:K), [the normalized Jackson kernel is continuous on the real
 line](goal).
+@isnad1 id=continuo.0h1v.s4.29efe7dab73c from=translated src=- shape=8735051e vocab=ad74ec74
 -/
 @[fun_prop]
 theorem continuous_jackson (K : ℕ) : Continuous (jackson K) := by
@@ -110,6 +115,7 @@ theorem continuous_jackson (K : ℕ) : Continuous (jackson K) := by
   fun_prop
 
 /-- For [integer order K](hyp:K), [the normalized Jackson kernel is Borel measurable](goal).
+@isnad1 id=measurab.0h1v.s3.e7e9c1cf4ae5 from=translated src=- shape=8735051e vocab=a59890e3
 -/
 @[measurability, fun_prop]
 theorem measurable_jackson (K : ℕ) : Measurable (jackson K) := by
@@ -117,6 +123,7 @@ theorem measurable_jackson (K : ℕ) : Measurable (jackson K) := by
 
 /-- For [integer order K](hyp:K), [the normalized Jackson kernel is integrable over the standard
 period](goal).
+@isnad1 id=integrab.0h1v.s5.82a75fc2e678 from=translated src=- shape=60ff477b vocab=4f76afba
 -/
 theorem integrableOn_jackson (K : ℕ) :
     IntegrableOn (jackson K) (Set.Icc (-Real.pi) Real.pi) := by
@@ -124,11 +131,13 @@ theorem integrableOn_jackson (K : ℕ) :
 
 /-- At [integer order K](hyp:K) that is [strictly positive](hyp:hK) and [real argument t](hyp:t),
 [the normalized Jackson kernel is nonnegative](goal).
+@isnad1 id=le.1h2v.s4.5a13d613fa51 from=translated src=- shape=aa1774eb vocab=c7c808c4
 -/
 theorem jackson_nonneg (K : ℕ) (hK : 0 < K) (t : ℝ) : 0 ≤ jackson K t := by
   exact div_nonneg (jraw_nonneg K t) (jrawMass_pos K hK).le
 
 /-- For [integer order K](hyp:K), [the normalized Jackson kernel is symmetric about zero](goal).
+@isnad1 id=even.0h1v.s3.6f9a87d5920a from=translated src=- shape=8735051e vocab=f80bc64b
 -/
 theorem jackson_even (K : ℕ) : Function.Even (jackson K) := by
   intro t
@@ -136,6 +145,7 @@ theorem jackson_even (K : ℕ) : Function.Even (jackson K) := by
 
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the normalized Jackson
 kernel has unit mass over the standard period](goal).
+@isnad1 id=eq.1h1v.s5.c839cd102104 from=translated src=- shape=4bf41447 vocab=65e04014
 -/
 theorem jackson_integral_eq_one (K : ℕ) (hK : 0 < K) :
     (∫ t in Set.Icc (-Real.pi) Real.pi, jackson K t) = 1 := by
@@ -323,6 +333,7 @@ private lemma jackson_second_moment_aux (K : ℕ) (hK : 0 < K) :
 
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the normalized absolute
 first moment is at most thirty-two divided by K](goal).
+@isnad1 id=le.1h1v.s6.67f471c8fdf1 from=translated src=- shape=8e727859 vocab=44328f1a
 -/
 theorem jackson_first_moment (K : ℕ) (hK : 0 < K) :
     (∫ t in Set.Icc (-Real.pi) Real.pi, |t| * jackson K t) ≤ 32 / (K : ℝ) := by
@@ -376,6 +387,7 @@ theorem jackson_first_moment (K : ℕ) (hK : 0 < K) :
 
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the normalized second
 moment is at most sixty-four divided by K squared](goal).
+@isnad1 id=le.1h1v.s6.2354fd7d416b from=translated src=- shape=92352b47 vocab=a8e182a0
 -/
 theorem jackson_second_moment (K : ℕ) (hK : 0 < K) :
     (∫ t in Set.Icc (-Real.pi) Real.pi, t ^ 2 * jackson K t) ≤
@@ -387,6 +399,7 @@ theorem jackson_second_moment (K : ℕ) (hK : 0 < K) :
 
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the raw Jackson kernel is a
 real trigonometric polynomial with frequency at most twice the predecessor of K](goal).
+@isnad1 id=istrigpo.1h1v.s5.37102feb4c76 from=translated src=- shape=1e4638f4 vocab=45a145ce
 -/
 theorem jraw_isTrigPolyLE (K : ℕ) (hK : 0 < K) :
     Causalean.Mathlib.Analysis.BernsteinSzegoTrig.IsTrigPolyLE (2 * (K - 1)) (jraw K) := by
@@ -449,6 +462,7 @@ theorem jraw_isTrigPolyLE (K : ℕ) (hK : 0 < K) :
 /-- For [integer order K](hyp:K) that is [strictly positive](hyp:hK), [the normalized Jackson
 kernel is a real trigonometric polynomial with frequency at most twice the predecessor of
 K](goal).
+@isnad1 id=istrigpo.1h1v.s5.124143bf4b6b from=translated src=- shape=1e4638f4 vocab=09667da4
 -/
 theorem jackson_isTrigPolyLE (K : ℕ) (hK : 0 < K) :
     Causalean.Mathlib.Analysis.BernsteinSzegoTrig.IsTrigPolyLE

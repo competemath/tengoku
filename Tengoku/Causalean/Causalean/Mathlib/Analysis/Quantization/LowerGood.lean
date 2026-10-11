@@ -14,7 +14,9 @@ namespace Causalean.Mathlib.Analysis.Quantization
 /-- On a sufficiently small good part of a cell, every actual coefficient is
 uniformly close to the diagonal coefficient at any anchor point in that part,
 and the square-root diagonal density is uniformly close at the same two points.
-The radius works for all reproduction arrays in the source interval. -/
+The radius works for all reproduction arrays in the source interval.
+@isnad1 id=ex.5h5v.s8.62dc4990fa4b from=translated src=- shape=48f68370 vocab=53bdfdd7
+-/
 theorem good_cell_uniform_freeze (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -73,7 +75,9 @@ theorem good_cell_uniform_freeze (a b : ℝ) (hab : a < b)
 
 /-- A frozen nonnegative coefficient family controls the square of the
 square-root diagonal mass on any measurable part of a cell, provided that
-the diagonal square root is bounded there by a compatible constant. -/
+the diagonal square root is bounded there by a compatible constant.
+@isnad1 id=le.13h10v.s8.5283f6904d9e from=translated src=- shape=c9d222d6 vocab=67603fa7
+-/
 theorem frozen_cell_sqrt_mass_lower (a b : ℝ) (hab : a ≤ b)
     (S : ℕ) (β : Fin S → ℝ → ℝ → ℝ)
     (B G : Set ℝ) (hB : MeasurableSet B) (hG : MeasurableSet G)
@@ -118,7 +122,9 @@ theorem frozen_cell_sqrt_mass_lower (a b : ℝ) (hab : a ≤ b)
 
 /-- A single anchor in a short cell supplies nonnegative frozen coefficients
 and a common square-root-density bound for every nearby source point, with a
-uniform relative margin between their squared bound and coefficient sum. -/
+uniform relative margin between their squared bound and coefficient sum.
+@isnad1 id=ex.6h5v.s8.3fa1105776ac from=translated src=- shape=102412ba vocab=0226a10b
+-/
 theorem good_cell_relative_freeze (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -218,7 +224,9 @@ theorem good_cell_relative_freeze (a b : ℝ) (hab : a < b)
 /-- On [a nondegenerate interval](hyp:a,b,hab), [a nonempty finite
 weight family](hyp:S,hS) with [continuous strictly positive weights](hyp:β,hcont,hpos),
 each relative error below one gives [a positive locality radius and
-the sharp quarter-factor good-cell lower bound](goal). -/
+the sharp quarter-factor good-cell lower bound](goal).
+@isnad1 id=ex.6h5v.s8.3b88ca355bba from=translated src=- shape=58fc1170 vocab=08f37dd5
+-/
 theorem good_cell_sqrt_mass_lower (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

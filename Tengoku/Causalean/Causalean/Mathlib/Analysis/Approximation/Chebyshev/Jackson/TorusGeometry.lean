@@ -12,7 +12,9 @@ public section
 
 namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.Jackson
 
-/-- For [any real angle](hyp:u), [its torus distance is nonnegative and at most π](goal). -/
+/-- For [any real angle](hyp:u), [its torus distance is nonnegative and at most π](goal).
+@isnad1 id=and.0h1v.s4.5f32b131e283 from=translated src=- shape=d01b4a96 vocab=268f344a
+-/
 theorem torusDistance_bounds (u : ℝ) :
     0 ≤ torusDistance u ∧ torusDistance u ≤ Real.pi := by
   let S : Set ℝ := {r | ∃ j : ℤ, r = |u - 2 * Real.pi * j|}
@@ -35,7 +37,9 @@ theorem torusDistance_bounds (u : ℝ) :
   · exact (csInf_le hbelow ⟨j, rfl⟩).trans hdist
 
 /-- For [a real angle](hyp:u) [of absolute value at most π](hyp:hu), [its torus distance equals its
-absolute value](goal). -/
+absolute value](goal).
+@isnad1 id=eq.1h1v.s4.0839a088e387 from=translated src=- shape=53717ac0 vocab=4255a17b
+-/
 theorem torusDistance_eq_abs (u : ℝ) (hu : |u| ≤ Real.pi) :
     torusDistance u = |u| := by
   let S : Set ℝ := {r | ∃ j : ℤ, r = |u - 2 * Real.pi * j|}
@@ -66,7 +70,9 @@ theorem torusDistance_eq_abs (u : ℝ) (hu : |u| ≤ Real.pi) :
       _ ≤ |u - 2 * Real.pi * (j : ℝ)| := neg_le_abs _
 
 /-- For [any real angle u](hyp:u), [2 / π times its torus distance is at most the modulus of the
-complex exponential of −i u minus one](goal). -/
+complex exponential of −i u minus one](goal).
+@isnad1 id=le.0h1v.s5.5a48c61c1478 from=translated src=- shape=d32fe9ba vocab=f52eaf0e
+-/
 theorem character_gap_ge_torusDistance (u : ℝ) :
     2 / Real.pi * torusDistance u ≤
       ‖Complex.exp (-Complex.I * (u : ℂ)) - 1‖ := by

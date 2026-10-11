@@ -22,7 +22,9 @@ section LocUFD
 
 variable {R₀ : Type*} [CommRing R₀] [IsDomain R₀] [UniqueFactorizationMonoid R₀]
 
-/-- In a UFD, the localization away from a nonzero element is a UFD. -/
+/-- In a UFD, the localization away from a nonzero element is a UFD.
+@isnad1 id=uniquefa.1h2v.s5.0ad8fc7a84df from=translated src=- shape=dec64591 vocab=46bbc1e4
+-/
 theorem localization_away_UFD (y : R₀) (hy : y ≠ 0) :
     UniqueFactorizationMonoid (Localization.Away y) := by
   open Classical in
@@ -104,7 +106,9 @@ theorem localization_away_UFD (y : R₀) (hy : y ≠ 0) :
 
 /-- In a UFD, the localization at any submonoid of non-zero-divisors
 is a UFD. Generalizes `localization_away_UFD` to an arbitrary
-submonoid `M`. -/
+submonoid `M`.
+@isnad1 id=uniquefa.1h3v.s6.3e82eba6f879 from=translated src=- shape=e3e630ac vocab=bf079896
+-/
 theorem localization_submonoid_UFD {S : Type*} [CommRing S]
     [Algebra R₀ S] {M : Submonoid R₀} [IsLocalization M S]
     (hM : M ≤ nonZeroDivisors R₀) :

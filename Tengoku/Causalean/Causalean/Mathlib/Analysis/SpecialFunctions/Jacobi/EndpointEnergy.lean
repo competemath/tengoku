@@ -19,7 +19,9 @@ namespace Causalean.Mathlib.Analysis.SpecialFunctions.Jacobi
 A continuous energy on `[0,1]` is at most its larger endpoint value when
 its interior derivative is a nonnegative multiple of `-A + B x`, with `A ≥ 0`.
 The affine factor can change sign only from negative to positive, so the
-energy first decreases and then increases. -/
+energy first decreases and then increases.
+@isnad1 id=le.5h4v.s8.8a084da839b5 from=translated src=- shape=91d7e4b9 vocab=fa5b5524
+-/
 theorem affine_deriv_energy_le_max (E : ℝ → ℝ) (A B x : ℝ)
     (hA : 0 ≤ A) (hE : ContinuousOn E (Set.Icc (0 : ℝ) 1))
     (hd : ∀ y ∈ Set.Ioo (0 : ℝ) 1, DifferentiableAt ℝ E y)

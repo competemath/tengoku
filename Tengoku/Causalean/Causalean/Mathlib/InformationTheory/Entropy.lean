@@ -48,12 +48,16 @@ noncomputable def entropy (p : α → ℝ) : ℝ :=
   ∑ i, Real.negMulLog (p i)
 
 /-- The finite-alphabet entropy definition unfolds to the sum of
-`Real.negMulLog` over the alphabet. -/
+`Real.negMulLog` over the alphabet.
+@isnad1 id=eq.0h2v.s4.89e3a6687f2f from=translated src=- shape=0f997e0e vocab=9f6e19dc
+-/
 @[simp] lemma entropy_def (p : α → ℝ) : entropy p = ∑ i, Real.negMulLog (p i) := rfl
 
 /-- Entropy is nonnegative for any sub-probability vector: if `0 ≤ p i ≤ 1` for every
 `i`, then `0 ≤ entropy p`. Each summand `Real.negMulLog (p i)` is nonnegative on `[0,1]`
-(`Real.negMulLog_nonneg`), so the finite sum is nonnegative. -/
+(`Real.negMulLog_nonneg`), so the finite sum is nonnegative.
+@isnad1 id=le.2h2v.s5.d1b4929e19b4 from=translated src=- shape=07a53599 vocab=4b2eeacc
+-/
 lemma entropy_nonneg {p : α → ℝ} (h0 : ∀ i, 0 ≤ p i) (h1 : ∀ i, p i ≤ 1) :
     0 ≤ entropy p := by
   rw [entropy_def]
@@ -66,7 +70,9 @@ minus `x · log c` is bounded by `1/c - x`:
 `Real.negMulLog x - x * Real.log c ≤ c⁻¹ - x`.
 
 For `x > 0`, this is `x · log (1 / (c · x)) ≤ x · (1/(c x) - 1)` via
-`Real.log_le_sub_one_of_pos`; at `x = 0`, the bound follows from `c > 0`. -/
+`Real.log_le_sub_one_of_pos`; at `x = 0`, the bound follows from `c > 0`.
+@isnad1 id=le.2h2v.s5.82bd26a3183c from=translated src=- shape=44c6d128 vocab=d9361d30
+-/
 lemma negMulLog_sub_mul_log_le {c : ℝ} (hc : 0 < c) {x : ℝ} (hx : 0 ≤ x) :
     Real.negMulLog x - x * Real.log c ≤ c⁻¹ - x := by
   rcases eq_or_lt_of_le hx with rfl | hxpos
@@ -98,7 +104,9 @@ This is Cover & Thomas Thm 2.6.4 (`H(p) ≤ log |𝒳|`). The proof is the eleme
 argument: sum the per-coordinate bound `negMulLog_sub_mul_log_le` over `α`. The right
 side telescopes to `n · (1/n) - 1 = 0` (using `∑ p i = 1`), and the left side is
 `entropy p - log n`, giving `entropy p - log n ≤ 0`. Normalization itself rules out an
-empty alphabet. -/
+empty alphabet.
+@isnad1 id=le.2h2v.s5.165606a24952 from=translated src=- shape=e06fc77f vocab=ee7572be
+-/
 theorem entropy_le_log_card {p : α → ℝ} (h0 : ∀ i, 0 ≤ p i)
     (hsum : ∑ i, p i = 1) : entropy p ≤ Real.log (Fintype.card α) := by
   letI : Nonempty α := by
@@ -149,7 +157,9 @@ cardinality](goal).
 
 Each of the `n = card α` summands equals `negMulLog (1/n) = (1/n) · log n`, so the sum is
 `n · (1/n) · log n = log n`. This certifies that `entropy_le_log_card` is tight, hence
-non-vacuous. -/
+non-vacuous.
+@isnad1 id=eq.0h1v.s4.e731ca574316 from=translated src=- shape=90660312 vocab=6ce9749f
+-/
 theorem entropy_const_eq_log_card [Nonempty α] :
     entropy (fun _ : α => (Fintype.card α : ℝ)⁻¹) = Real.log (Fintype.card α) := by
   let n := Fintype.card α

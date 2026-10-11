@@ -12,7 +12,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Normed.Ring.InfiniteSum
 
 /-- For [two summable nonnegative real series](hyp:a,b,ha,hb,ha0,hb0), the
-pointwise absolute difference is summable. The result is [summability of the pointwise absolute difference](goal). -/
+pointwise absolute difference is summable. The result is [summability of the pointwise absolute difference](goal).
+@isnad1 id=summable.4h3v.s6.1c90119c81d8 from=translated src=- shape=08495abe vocab=732bba7d
+-/
 lemma normalized_likelihood_abs_gap_summable {A : Type*} (a b : A → ℝ)
     (ha : Summable a) (hb : Summable b)
     (ha0 : ∀ x, 0 ≤ a x) (hb0 : ∀ x, 0 ≤ b x) :
@@ -25,7 +27,9 @@ lemma normalized_likelihood_abs_gap_summable {A : Type*} (a b : A → ℝ)
 
 /-- For [two pairs of normalized nonnegative real series](hyp:a₀,a₁,b₀,b₁,ha₀,ha₁,hb₀,hb₁,ha₀0,ha₁0,hb₀0,hb₁0),
 the `ℓ¹` gap between their binary products is at most the sum of the two
-marginal gaps. The result is [the binary-product `ℓ¹` gap bound by the two marginal gaps](goal). -/
+marginal gaps. The result is [the binary-product `ℓ¹` gap bound by the two marginal gaps](goal).
+@isnad1 id=le.8h6v.s8.4bb4177d0af6 from=translated src=- shape=8565cd8c vocab=acd12903
+-/
 lemma normalized_likelihood_tensor_gap_le {A B : Type*}
     (a₀ a₁ : A → ℝ) (b₀ b₁ : B → ℝ)
     (ha₀ : HasSum a₀ 1) (ha₁ : HasSum a₁ 1)
@@ -59,7 +63,9 @@ lemma normalized_likelihood_tensor_gap_le {A B : Type*}
 
 /-- For a [finite number of nonnegative factor series](hyp:m,a,ha0), each of
 which [sums to one](hyp:ha), the product series over coordinate assignments also
-sums to one. The result is [normalization of the finite product series](goal). -/
+sums to one. The result is [normalization of the finite product series](goal).
+@isnad1 id=hassum.2h3v.s6.f83358869f28 from=translated src=- shape=ac8ad512 vocab=e51a0534
+-/
 lemma normalized_likelihood_fin_product_hasSum_one {A : Type*} (m : ℕ)
     (a : Fin m → A → ℝ) (ha : ∀ j, HasSum (a j) 1)
     (ha0 : ∀ j x, 0 ≤ a j x) :
@@ -85,7 +91,9 @@ lemma normalized_likelihood_fin_product_hasSum_one {A : Type*} (m : ℕ)
 
 /-- For [two finite families of nonnegative factor series](hyp:m,a,b,ha0,hb0),
 each [normalized to sum to one](hyp:ha,hb), the `ℓ¹` gap between the product
-series is at most the sum of their marginal `ℓ¹` gaps. The result is [the finite-product `ℓ¹` gap bound by the sum of marginal gaps](goal). -/
+series is at most the sum of their marginal `ℓ¹` gaps. The result is [the finite-product `ℓ¹` gap bound by the sum of marginal gaps](goal).
+@isnad1 id=le.4h4v.s7.d2ca00e67e61 from=translated src=- shape=b462a044 vocab=c15d37fd
+-/
 lemma normalized_likelihood_fin_product_l1_le {A : Type*} (m : ℕ)
     (a b : Fin m → A → ℝ) (ha : ∀ j, HasSum (a j) 1)
     (hb : ∀ j, HasSum (b j) 1)

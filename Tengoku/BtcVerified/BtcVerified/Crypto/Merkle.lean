@@ -58,7 +58,9 @@ def combine (l r : Hash256) : Hash256 :=
   ⟨Sha256.sha256d (l.1 ++ r.1), Sha256.sha256d_length _⟩
 
 /-- Equal merkle nodes have equal children — or their two 64-byte preimages
-collide under double-SHA-256. -/
+collide under double-SHA-256.
+@isnad1 id=or.1h4v.s4.d190d12f0be1 from=translated src=- shape=7cd41e88 vocab=fe521bd4
+-/
 theorem combine_binding {l r l' r' : Hash256} (h : combine l r = combine l' r') :
     (l = l' ∧ r = r') ∨ Sha256.Collision := by
   have hd : Sha256.sha256d (l.1 ++ r.1) = Sha256.sha256d (l'.1 ++ r'.1) :=
@@ -146,7 +148,9 @@ abbrev Canonical (xs : List Hash256) : Prop := canonicalCheck xs = true
 
 /-! ## Injectivity -/
 
-/-- A width-`2 ^ k` tree materializes exactly `2 ^ k` leaves. -/
+/-- A width-`2 ^ k` tree materializes exactly `2 ^ k` leaves.
+@isnad1 id=eq.0h2v.s4.e1400032badb from=translated src=- shape=3e90ef53 vocab=7d2dad03
+-/
 theorem length_virtualLeaves_ofList :
     ∀ (k : Nat) (xs : List Hash256), ((ofList xs k).virtualLeaves).length = 2 ^ k := by
   intro k
@@ -159,7 +163,9 @@ theorem length_virtualLeaves_ofList :
     · simp [Tree.virtualLeaves, ih, Nat.two_pow_succ]
     · simp [Tree.virtualLeaves, ih, Nat.two_pow_succ]
 
-/-- A full slice needs no padding: its materialized leaves are itself. -/
+/-- A full slice needs no padding: its materialized leaves are itself.
+@isnad1 id=eq.1h2v.s5.3d3b427139b3 from=translated src=- shape=b8a4a0c4 vocab=7d2dad03
+-/
 theorem virtualLeaves_ofList_of_length_eq :
     ∀ (k : Nat) (xs : List Hash256), xs.length = 2 ^ k →
       (ofList xs k).virtualLeaves = xs := by
@@ -179,7 +185,9 @@ theorem virtualLeaves_ofList_of_length_eq :
       ih _ (by rw [List.length_drop]; omega),
       List.take_append_drop]
 
-/-- The materialized leaves extend the actual list: padding only appends. -/
+/-- The materialized leaves extend the actual list: padding only appends.
+@isnad1 id=ex.1h2v.s5.033a9af9b346 from=translated src=- shape=d713b8ec vocab=8066669b
+-/
 theorem virtualLeaves_ofList_append :
     ∀ (k : Nat) (xs : List Hash256), xs.length ≤ 2 ^ k →
       ∃ ps, (ofList xs k).virtualLeaves = xs ++ ps := by
@@ -206,7 +214,9 @@ theorem virtualLeaves_ofList_append :
 
 /-- Equal roots at one width force equal materialized leaf sequences — or a
 concrete double-SHA-256 collision. The hashing direction of the root's
-binding. -/
+binding.
+@isnad1 id=or.1h3v.s5.dde02c81114d from=translated src=- shape=76f2bef2 vocab=fc8467fd
+-/
 theorem virtualLeaves_eq_of_root_eq :
     ∀ (k : Nat) (xs ys : List Hash256),
       (ofList xs k).root = (ofList ys k).root →
@@ -333,7 +343,9 @@ theorem eq_of_virtualLeaves_eq :
 
 /-- Between equal-length lists the merkle root identifies the list — or two
 concrete byte strings collide under double-SHA-256. No canonicality needed:
-padding only appends, so equal lengths leave no room for ambiguity. -/
+padding only appends, so equal lengths leave no room for ambiguity.
+@isnad1 id=or.2h2v.s4.bf53c0b21c15 from=translated src=- shape=928b5412 vocab=2a4b9d26
+-/
 theorem root_binding_of_length_eq {xs ys : List Hash256}
     (hlen : xs.length = ys.length) (hroot : root xs = root ys) :
     xs = ys ∨ Sha256.Collision := by
@@ -353,7 +365,9 @@ identifies the list — or two concrete byte strings collide under
 double-SHA-256. This is the binding the canonicality rule exists to
 restore: without `Canonical`, a list extended by its own materialized padding
 shares its root (CVE-2012-2459). Equal widths exclude the cross-height
-leaf/interior ambiguity (see the module header). -/
+leaf/interior ambiguity (see the module header).
+@isnad1 id=or.6h2v.s5.782af6220979 from=translated src=- shape=d03c2af4 vocab=583896b3
+-/
 theorem root_binding_of_canonical {xs ys : List Hash256}
     (hcx : Canonical xs) (hcy : Canonical ys)
     (h0x : xs ≠ []) (h0y : ys ≠ [])

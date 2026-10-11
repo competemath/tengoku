@@ -70,7 +70,9 @@ absolutely continuous wrt `μ` (`tiltMeasure_absolutelyContinuous`), so
 `toReal_klDiv_of_measure_eq` gives `KL.toReal = ∫ llr (tilt) μ ∂(tilt)`.  Then
 `llr (tilt) μ =ᵐ[tilt] log (1 + h·s)` via `rnDeriv_withDensity`, and
 `integral_withDensity_eq_integral_toReal_smul` converts the `tilt`-integral to the
-`μ`-integral weighted by the density `1 + h·s`. -/
+`μ`-integral weighted by the density `1 + h·s`.
+@isnad1 id=eq.4h5v.s7.99df948e93b5 from=translated src=- shape=ff047558 vocab=33be6d20
+-/
 lemma klDiv_tiltMeasure_toReal_eq {μ : Measure Z} [IsProbabilityMeasure μ] {s : Z → ℝ}
     {C h : ℝ} (hs_meas : Measurable s) (hsC : ∀ y, |s y| ≤ C) (hs_mean : ∫ y, s y ∂μ = 0)
     (hh : |h| * C ≤ 1) :
@@ -121,7 +123,9 @@ integrand `(1 + h·s)·log(1 + h·s) = h·s + h²·s²/2 + R(h·s)`; integrate t
 `∫ h²·s²/2 = (h²/2)·∫ s²`.  The difference is `∫ R(h·s) dμ`; bound
 `|∫ R(h·s)| ≤ ∫ |R(h·s)| ≤ ∫ |h·s|³ dμ` by `abs_tiltRemainder_le` (its hypothesis
 `|h·s y| ≤ |h|·C ≤ 1/2` holds), and `∫ |h·s|³ = |h|³ ∫ |s|³ ≤ |h|³·C³` since
-`|s| ≤ C` and `μ` is a probability measure. -/
+`|s| ≤ C` and `μ` is a probability measure.
+@isnad1 id=le.4h5v.s8.99acd60a4d47 from=translated src=- shape=91c2a0ab vocab=82a0d599
+-/
 lemma abs_klRemainder_le {μ : Measure Z} [IsProbabilityMeasure μ] {s : Z → ℝ}
     {C h : ℝ} (hs_meas : Measurable s) (hsC : ∀ y, |s y| ≤ C)
     (hs_mean : ∫ y, s y ∂μ = 0) (hh : |h| * C ≤ 1 / 2) :
@@ -226,7 +230,9 @@ a second-order local KL / Fisher-information expansion for one observation.
 Proof sketch: by `Asymptotics.isLittleO_iff`, fix `c > 0`.  Eventually as `h → 0`
 we have both `|h|·C ≤ 1/2` and `C³·|h| ≤ c` (continuity at `0`).  Then
 `abs_klRemainder_le` gives `|remainder h| ≤ C³·|h|³ = (C³·|h|)·|h|² ≤ c·|h²|`,
-which is `≤ c · ‖h²‖`. -/
+which is `≤ c · ‖h²‖`.
+@isnad1 id=islittle.3h4v.s7.39498aabc78e from=translated src=- shape=bd4b4424 vocab=b61b8ffe
+-/
 theorem klDiv_tilt_expansion {μ : Measure Z} [IsProbabilityMeasure μ] {s : Z → ℝ}
     {C : ℝ} (hs_meas : Measurable s) (hsC : ∀ y, |s y| ≤ C) (hs_mean : ∫ y, s y ∂μ = 0) :
     (fun h => (InformationTheory.klDiv (tiltMeasure μ s h) μ).toReal

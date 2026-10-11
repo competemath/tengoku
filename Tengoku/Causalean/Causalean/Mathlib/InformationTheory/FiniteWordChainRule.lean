@@ -27,7 +27,9 @@ def appendSymbol {k : Nat} (u : Fin k → Ω) (x : Ω) : Fin (k + 1) → Ω :=
   Fin.lastCases x u
 
 /-- [Appending a symbol to a finite word](hyp:u,x) [agrees with Mathlib's tuple append
-`Fin.snoc`](goal). -/
+`Fin.snoc`](goal).
+@isnad1 id=eq.0h4v.s6.151e65659aab from=translated src=- shape=eec0d185 vocab=fdef9a70
+-/
 theorem appendSymbol_eq_snoc {k : Nat} (u : Fin k → Ω) (x : Ω) :
     appendSymbol u x = Fin.snoc (α := fun _ ↦ Ω) u x := by
   funext i
@@ -65,7 +67,9 @@ noncomputable def prefixPMF {k : Nat} (p : PMF (Fin (k + 1) → Ω)) :
       _ = 1 := by simpa only [tsum_fintype] using PMF.tsum_coe p)
 
 /-- For [a finite-word law](hyp:p) and [a strict prefix](hyp:u), [the prefix mass is the sum of
-the masses of all one-symbol extensions](goal). -/
+the masses of all one-symbol extensions](goal).
+@isnad1 id=eq.0h4v.s7.90fe0bb2c7db from=translated src=- shape=53719e63 vocab=211dd6dc
+-/
 @[simp]
 lemma prefixPMF_apply {k : Nat} (p : PMF (Fin (k + 1) → Ω)) (u : Fin k → Ω) :
     prefixPMF p u = ∑ x : Ω, p (appendSymbol u x) := by
@@ -95,7 +99,9 @@ noncomputable def nextSymbolKernel {k : Nat} (p : PMF (Fin (k + 1) → Ω)) :
     Kernel (Fin k → Ω) Ω :=
   Kernel.ofFunOfCountable (fun u ↦ (nextSymbolPMF p u).toMeasure)
 
-/-- For [a finite-word law](hyp:p), [the conditional last-symbol kernel is Markov](goal). -/
+/-- For [a finite-word law](hyp:p), [the conditional last-symbol kernel is Markov](goal).
+@isnad1 id=ismarkov.0h3v.s5.152bc1cbf053 from=translated src=- shape=c5600e88 vocab=d8f7ff88
+-/
 instance nextSymbolKernel_isMarkov {k : Nat} (p : PMF (Fin (k + 1) → Ω)) :
     IsMarkovKernel (nextSymbolKernel p) where
   isProbabilityMeasure u := by
@@ -104,7 +110,9 @@ instance nextSymbolKernel_isMarkov {k : Nat} (p : PMF (Fin (k + 1) → Ω)) :
 
 /-- Given [a finite-word law](hyp:p), [a strict prefix](hyp:u), and [a final symbol](hyp:x),
 [prefix mass times conditional final-symbol mass recovers the joint word mass](goal), including
-on null prefixes. -/
+on null prefixes.
+@isnad1 id=eq.0h5v.s7.54e9a1937964 from=translated src=- shape=1498b869 vocab=e90dce2b
+-/
 lemma prefix_mul_nextSymbol {k : Nat} (p : PMF (Fin (k + 1) → Ω))
     (u : Fin k → Ω) (x : Ω) :
     prefixPMF p u * nextSymbolPMF p u x = p (appendSymbol u x) := by
@@ -120,7 +128,9 @@ lemma prefix_mul_nextSymbol {k : Nat} (p : PMF (Fin (k + 1) → Ω))
     exact ENNReal.mul_div_cancel h (PMF.apply_ne_top _ _)
 
 /-- If [a finite-word law has strictly positive mass at every word](hyp:hp), [its strict-prefix
-marginal also has strictly positive mass everywhere](goal). -/
+marginal also has strictly positive mass everywhere](goal).
+@isnad1 id=lt.1h4v.s7.5061671561ff from=translated src=- shape=9d905558 vocab=2a059814
+-/
 lemma prefixPMF_fullSupport {k : Nat} {p : PMF (Fin (k + 1) → Ω)}
     (hp : ∀ w, 0 < p w) : ∀ u, 0 < prefixPMF p u := by
   intro u
@@ -131,7 +141,9 @@ lemma prefixPMF_fullSupport {k : Nat} {p : PMF (Fin (k + 1) → Ω)}
 
 /-- If [a finite-word law has strictly positive mass at every word](hyp:hp), then for [every
 strict prefix](hyp:u), [its totalized conditional last-symbol law has strictly positive mass at
-every symbol](goal). -/
+every symbol](goal).
+@isnad1 id=lt.1h5v.s7.3175bdda31ee from=translated src=- shape=350c20b4 vocab=b98b95d1
+-/
 lemma nextSymbolPMF_fullSupport {k : Nat} {p : PMF (Fin (k + 1) → Ω)}
     (hp : ∀ w, 0 < p w) (u : Fin k → Ω) : ∀ x, 0 < nextSymbolPMF p u x := by
   intro x
@@ -140,7 +152,9 @@ lemma nextSymbolPMF_fullSupport {k : Nat} {p : PMF (Fin (k + 1) → Ω)}
   exact ENNReal.div_pos (ne_of_gt (hp (appendSymbol u x))) (PMF.apply_ne_top _ _)
 
 /-- Given [two strictly positive finite probability mass functions](hyp:hp,hq), [the first
-induced measure is absolutely continuous with respect to the second](goal). -/
+induced measure is absolutely continuous with respect to the second](goal).
+@isnad1 id=absolute.2h3v.s6.6d0ffeb90be6 from=translated src=- shape=f7162ec2 vocab=7c162ff5
+-/
 lemma absolutelyContinuous_of_strictlyPositivePMF {W : Type*} [Fintype W]
     [MeasurableSpace W] [MeasurableSingletonClass W] {p q : PMF W}
     (hp : ∀ w, 0 < p w) (hq : ∀ w, 0 < q w) : p.toMeasure ≪ q.toMeasure := by
@@ -159,7 +173,9 @@ lemma absolutelyContinuous_of_strictlyPositivePMF {W : Type*} [Fintype W]
 
 /-- Given [two finite-word laws that are strictly positive everywhere](hyp:hp,hq), then for
 [every strict prefix](hyp:u), [the first conditional last-symbol law is absolutely continuous
-with respect to the second](goal). -/
+with respect to the second](goal).
+@isnad1 id=absolute.2h5v.s8.a4876ea524d6 from=translated src=- shape=50a9ed66 vocab=93945ce2
+-/
 lemma nextSymbolPMF_absolutelyContinuous {k : Nat}
     {p q : PMF (Fin (k + 1) → Ω)} (hp : ∀ w, 0 < p w) (hq : ∀ w, 0 < q w)
     (u : Fin k → Ω) :
@@ -168,7 +184,9 @@ lemma nextSymbolPMF_absolutelyContinuous {k : Nat}
     (nextSymbolPMF_fullSupport hq u)
 
 /-- Given [a finite-word law](hyp:p), [transport by the last-coordinate split equals the
-composition of its prefix marginal and conditional last-symbol kernel](goal). -/
+composition of its prefix marginal and conditional last-symbol kernel](goal).
+@isnad1 id=eq.0h3v.s8.d86c3bc64408 from=translated src=- shape=93416fff vocab=88b95187
+-/
 lemma lastCoordinateSplit_compProd {k : Nat} (p : PMF (Fin (k + 1) → Ω)) :
     Measure.map (lastCoordinateSplit k) p.toMeasure =
       (prefixPMF p).toMeasure.compProd (nextSymbolKernel p) := by
@@ -202,7 +220,9 @@ lemma lastCoordinateSplit_compProd {k : Nat} (p : PMF (Fin (k + 1) → Ω)) :
   exact (prefix_mul_nextSymbol p u x).symm
 
 /-- Given [two finite-word laws](hyp:p,q), [one chronological extension splits their KL
-divergence into the prefix KL and a shared-prefix conditional-kernel KL](goal). -/
+divergence into the prefix KL and a shared-prefix conditional-kernel KL](goal).
+@isnad1 id=eq.0h4v.s8.9568531c4b31 from=translated src=- shape=b0dd8dba vocab=b5ec623f
+-/
 lemma klDiv_lastCoordinate_eq_add {k : Nat} (p q : PMF (Fin (k + 1) → Ω)) :
     InformationTheory.klDiv p.toMeasure q.toMeasure =
       InformationTheory.klDiv (prefixPMF p).toMeasure (prefixPMF q).toMeasure +
@@ -222,7 +242,9 @@ lemma klDiv_lastCoordinate_eq_add {k : Nat} (p q : PMF (Fin (k + 1) → Ω)) :
 
 /-- Given [two finite-word laws](hyp:p,q) whose conditional last-symbol laws satisfy [pointwise
 absolute continuity](hyp:hac), [their shared-prefix conditional KL is the prefix-probability-
-weighted sum of pointwise conditional divergences](goal). -/
+weighted sum of pointwise conditional divergences](goal).
+@isnad1 id=eq.1h4v.s8.4d05de5ba7e6 from=translated src=- shape=782a7c2d vocab=a78ea10b
+-/
 lemma conditionalKL_eq_sum {k : Nat} (p q : PMF (Fin (k + 1) → Ω))
     (hac : ∀ u, (nextSymbolPMF p u).toMeasure ≪ (nextSymbolPMF q u).toMeasure) :
     InformationTheory.klDiv
@@ -243,7 +265,9 @@ lemma conditionalKL_eq_sum {k : Nat} (p q : PMF (Fin (k + 1) → Ω))
 
 /-- Given [two finite-word laws](hyp:p,q) whose conditional last-symbol laws satisfy [pointwise
 absolute continuity](hyp:hac), [one chronological extension is the prefix KL plus the explicit
-average of pointwise conditional divergences](goal). -/
+average of pointwise conditional divergences](goal).
+@isnad1 id=eq.1h4v.s8.36e49ac688d3 from=translated src=- shape=a071dd81 vocab=55c8a78a
+-/
 lemma klDiv_lastCoordinate_eq_add_sum {k : Nat} (p q : PMF (Fin (k + 1) → Ω))
     (hac : ∀ u, (nextSymbolPMF p u).toMeasure ≪ (nextSymbolPMF q u).toMeasure) :
     InformationTheory.klDiv p.toMeasure q.toMeasure =
@@ -255,7 +279,9 @@ lemma klDiv_lastCoordinate_eq_add_sum {k : Nat} (p q : PMF (Fin (k + 1) → Ω))
 
 /-- Given [two finite-word laws](hyp:p,q) that [have strictly positive mass at every word](hyp:hp,hq),
 [one chronological extension is the prefix KL plus the explicit average of pointwise conditional
-divergences](goal). -/
+divergences](goal).
+@isnad1 id=eq.2h4v.s9.159c70097feb from=translated src=- shape=0939349e vocab=dfa83eba
+-/
 lemma klDiv_lastCoordinate_eq_add_sum_of_fullSupport {k : Nat}
     (p q : PMF (Fin (k + 1) → Ω)) (hp : ∀ w, 0 < p w) (hq : ∀ w, 0 < q w) :
     InformationTheory.klDiv p.toMeasure q.toMeasure =
@@ -278,7 +304,9 @@ noncomputable def chainKL :
           ((prefixPMF p).toMeasure.compProd (nextSymbolKernel q))
 
 /-- Given [a word length](hyp:k) and [two finite-word laws](hyp:p,q), [their KL divergence equals
-the chronological sum of their history-dependent one-step conditional increments](goal). -/
+the chronological sum of their history-dependent one-step conditional increments](goal).
+@isnad1 id=eq.0h4v.s6.0769cad13671 from=translated src=- shape=28e55d78 vocab=a520c095
+-/
 lemma klDiv_eq_chainKL (k : Nat) (p q : PMF (Fin k → Ω)) :
     InformationTheory.klDiv p.toMeasure q.toMeasure = chainKL k p q := by
   induction k with

@@ -29,7 +29,9 @@ s](hyp:hrs) whose [supremum norm on that interval is strictly positive](hyp:hE),
 of the interval where the absolute value of g equals that supremum norm, the product of g and a
 given polynomial is strictly positive](hyp:hsign), then [some strictly positive multiple of the
 polynomial can be subtracted from g so that the supremum norm on the interval becomes strictly
-smaller](goal). -/
+smaller](goal).
+@isnad1 id=ex.4h4v.s7.9962f810d2a7 from=translated src=- shape=e92332a2 vocab=39face4a
+-/
 theorem exists_strict_uniformImprovement
     {g : ℝ → ℝ} {r s : ℝ} (hrs : r ≤ s)
     (hg : ContinuousOn g (Set.Icc r s)) {Q : Polynomial ℝ}
@@ -181,7 +183,9 @@ structure EquioscillationWitness
 closed interval between them](hyp:hf), and [any degree bound L](hyp:L), [there exists an
 equioscillation witness: a best polynomial of degree at most L together with L + 2 strictly
 increasing points of the interval at which the residual equals the best uniform error in magnitude
-with alternating signs](goal). -/
+with alternating signs](goal).
+@isnad1 id=nonempty.2h4v.s5.f1cc8776f2d9 from=translated src=- shape=1fd95885 vocab=80898757
+-/
 theorem exists_equioscillationWitness
     {f : ℝ → ℝ} {r s : ℝ} (hrs : r < s)
     (hf : ContinuousOn f (Set.Icc r s)) (L : ℕ) :

@@ -85,7 +85,9 @@ private theorem mem_dropWhile_lt_iff
 
 /-- [A stream](hyp:stream), [a prior right endpoint](hyp:oldRight), [a new window](hyp:window), and
 [a prior deque](hyp:q) have
-[an update push log equal to the newly entered active interval](goal). -/
+[an update push log equal to the newly entered active interval](goal).
+@isnad1 id=eq.0h5v.s6.271576dbe01c from=translated src=- shape=75b54aee vocab=686b648a
+-/
 theorem update_pushed (stream : Stream α) (oldRight : ℕ)
     (window : Window stream.length) (q : Deque) :
     (update stream oldRight window q).pushed =
@@ -95,7 +97,9 @@ theorem update_pushed (stream : Stream α) (oldRight : ℕ)
 
 /-- [A valid old raw-window deque](hyp:hq) and [a nondecreasing new left endpoint](hyp:hleft)
 ensure [that front expiration preserves the full raw-window invariant](goal), including an empty
-intermediate interval. -/
+intermediate interval.
+@isnad1 id=validat.2h6v.s5.76c1433db2b7 from=translated src=- shape=6cc3d271 vocab=9be1fb1a
+-/
 theorem expireFront_preserves {stream : Stream α} {oldLeft oldRight newLeft : ℕ} {q : Deque}
     (hq : ValidAt stream oldLeft oldRight q) (hleft : oldLeft ≤ newLeft) :
     ValidAt stream newLeft oldRight (expireFront newLeft q) := by
@@ -133,7 +137,9 @@ theorem expireFront_preserves {stream : Stream α} {oldLeft oldRight newLeft : �
         ⟨hjq, le_trans hi.1 (Nat.le_of_lt hij)⟩
 
 /-- [A valid raw-window deque](hyp:hq) remains [valid when its right endpoint is enlarged to at
-least its left endpoint](goal). -/
+least its left endpoint](goal).
+@isnad1 id=validat.1h5v.s5.97cf8cad7093 from=translated src=- shape=608cd6f6 vocab=f63ba024
+-/
 theorem ValidAt.to_max_right {stream : Stream α} {left right : ℕ} {q : Deque}
     (hq : ValidAt stream left right q) :
     ValidAt stream left (max right left) q := by
@@ -157,7 +163,9 @@ theorem ValidAt.to_max_right {stream : Stream α} {left right : ℕ} {q : Deque}
 /-- [A valid raw-window deque](hyp:hq),
 [a left endpoint no larger than the current right endpoint](hyp:hleft), and
 [room for one more stream index](hyp:hbound) ensure [that pushing the right-boundary index
-preserves the invariant for the enlarged window](goal). -/
+preserves the invariant for the enlarged window](goal).
+@isnad1 id=validat.3h5v.s5.9274dda57e53 from=translated src=- shape=55e124c0 vocab=39d63571
+-/
 theorem push_succ_preserves {stream : Stream α} {left right : ℕ} {q : Deque}
     (hq : ValidAt stream left right q) (hleft : left ≤ right)
     (hbound : right < stream.length) :
@@ -210,7 +218,9 @@ theorem push_succ_preserves {stream : Stream α} {left right : ℕ} {q : Deque}
 
 /-- [A valid raw-window deque](hyp:hq), [a left endpoint no larger than the range start](hyp:hleft),
 and [a range ending within the stream](hyp:hbound) ensure [that pushing the whole consecutive
-range preserves the invariant](goal). -/
+range preserves the invariant](goal).
+@isnad1 id=validat.3h6v.s6.4177f9379dc2 from=translated src=- shape=d9dee9cd vocab=24a780f7
+-/
 theorem pushAll_range_preserves {stream : Stream α} {left start count : ℕ} {q : Deque}
     (hq : ValidAt stream left start q) (hleft : left ≤ start)
     (hbound : start + count ≤ stream.length) :
@@ -229,7 +239,9 @@ theorem pushAll_range_preserves {stream : Stream α} {left start count : ℕ} {q
 
 /-- [A valid deque after front expiration](hyp:hq), [a nondecreasing right endpoint](hyp:hright),
 [a new endpoint within the stream](hyp:hbound), and [a valid new raw interval](hyp:hwindow) ensure
-[that inserting newly entered active indices restores the invariant](goal). -/
+[that inserting newly entered active indices restores the invariant](goal).
+@isnad1 id=validat.4h6v.s6.1be6718c1236 from=translated src=- shape=7f1ad903 vocab=f5345938
+-/
 theorem pushAll_interval_preserves {stream : Stream α} {left oldRight newRight : ℕ} {q : Deque}
     (hq : ValidAt stream left oldRight q) (hright : oldRight ≤ newRight)
     (hbound : newRight ≤ stream.length) (hwindow : left ≤ newRight) :
@@ -246,7 +258,9 @@ theorem pushAll_interval_preserves {stream : Stream α} {left oldRight newRight 
 
 /-- [A valid old-window deque](hyp:hq), [a nondecreasing left endpoint](hyp:hleft), and [a
 nondecreasing right endpoint](hyp:hright) ensure [that one update produces a valid new-window
-deque](goal). -/
+deque](goal).
+@isnad1 id=valid.3h5v.s6.0ca839bc3fbb from=translated src=- shape=150d4a50 vocab=0bc6a3f4
+-/
 theorem update_preserves {stream : Stream α} {oldWindow newWindow : Window stream.length}
     {q : Deque} (hq : Valid stream oldWindow q)
     (hleft : oldWindow.left ≤ newWindow.left)
@@ -261,7 +275,9 @@ theorem update_preserves {stream : Stream α} {oldWindow newWindow : Window stre
     newWindow.left_le_right
 
 /-- [A stream](hyp:stream) and [its first bounded window](hyp:window) ensure [that updating from
-the empty initial interval produces a valid deque](goal). -/
+the empty initial interval produces a valid deque](goal).
+@isnad1 id=valid.0h3v.s5.a95827c90fcb from=translated src=- shape=d626b3fa vocab=21e7636a
+-/
 theorem update_initial_preserves (stream : Stream α) (window : Window stream.length) :
     Valid stream window (update stream 0 window []).after := by
   unfold Valid

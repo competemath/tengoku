@@ -33,7 +33,9 @@ The tensor interpolation weight from grid point `b` to monomial coefficient `a`.
 def tensorGridWeight {d D : ℕ} (a b : Fin d → Fin (D + 1)) : ℝ :=
   ∏ i : Fin d, equispacedLagrangeWeight D (a i) (b i)
 
-/-- Every fixed tensor interpolation node lies in the normalized cube. -/
+/-- Every fixed tensor interpolation node lies in the normalized cube.
+@isnad1 id=mem.0h3v.s5.5ec3b1fd3919 from=translated src=- shape=9631a4d4 vocab=813ae1f5
+-/
 theorem tensorGridPoint_mem_cube {d D : ℕ} (b : Fin d → Fin (D + 1)) :
     tensorGridPoint b ∈ normalizedCube d := by
   intro i
@@ -55,6 +57,7 @@ to the fixed weighted sum of its tensor-grid evaluations.
 Expand in the fixed tensor monomial basis. Apply `equispacedLagrange_coeff_recovery` to each
 coordinate of a monomial, then factor the grid sum with `Fintype.prod_sum`. The empty product
 also handles the zero-dimensional case.
+@isnad1 id=eq.1h4v.s7.a09ef33ca03f from=translated src=- shape=5ff41fe1 vocab=80535287
 -/
 theorem tensorGrid_coeff_recovery {d D : ℕ} (p : MvPolynomial (Fin d) ℝ)
     (hdeg : ∀ i, p.degreeOf i ≤ D) (a : Fin d → Fin (D + 1)) :
@@ -125,6 +128,7 @@ one-variable exponential bound `2^(4D+4)`.
 
 Rewrite the double sum of absolute products as a product of one-dimensional double sums, then
 apply `equispacedLagrange_weight_oneNorm` coordinatewise. The bound also covers `d = 0`.
+@isnad1 id=le.0h2v.s8.0e5d1c446df9 from=translated src=- shape=5b905434 vocab=bdd8d04b
 -/
 theorem tensorGrid_weight_oneNorm_le (d D : ℕ) :
     (∑ a : Fin d → Fin (D + 1),

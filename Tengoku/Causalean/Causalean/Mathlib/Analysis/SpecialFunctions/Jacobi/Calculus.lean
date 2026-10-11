@@ -30,7 +30,9 @@ private theorem contDiffAt_iterate_deriv_on (a b : ℝ) (g : ℝ → ℝ)
 /-- A [smooth factor](hyp:g), [power order](hyp:k), and [derivative order](hyp:i), when [the factor is smooth at one](hyp:hg) and [the derivative order is below the power order](hyp:hi), give [a zero derivative at the right endpoint for the power bump](goal).
 
 Multiplication by `(1-x)^k` forces every ordinary derivative of order
-less than `k` to vanish at `x=1`, provided the other factor is smooth there. -/
+less than `k` to vanish at `x=1`, provided the other factor is smooth there.
+@isnad1 id=eq.2h3v.s7.7fc07109a255 from=translated src=- shape=141d1c78 vocab=2c5f97e3
+-/
 theorem iter_deriv_mul_one_sub_pow_at_one (g : ℝ → ℝ) (k i : ℕ)
     (hg : ContDiffAt ℝ ⊤ g 1) (hi : i < k) :
     (deriv^[i] (fun x : ℝ => g x * (1 - x) ^ k)) 1 = 0 := by
@@ -55,7 +57,9 @@ theorem iter_deriv_mul_one_sub_pow_at_one (g : ℝ → ℝ) (k i : ℕ)
 
 Repeated integration by parts transfers `k` derivatives from `f` to `p`
 and records all endpoint products explicitly.  This form applies on a
-truncated interval whose left endpoint terms vanish only in a limit. -/
+truncated interval whose left endpoint terms vanish only in a limit.
+@isnad1 id=eq.3h5v.s9.af679e2a69ad from=translated src=- shape=4652c805 vocab=f9b548ff
+-/
 theorem integral_mul_iterated_deriv_with_boundary (k : ℕ) (a b : ℝ)
     (p f : ℝ → ℝ)
     (hp : ∀ x ∈ Set.Icc a b, ContDiffAt ℝ ⊤ p x)
@@ -123,7 +127,9 @@ theorem integral_mul_iterated_deriv_with_boundary (k : ℕ) (a b : ℝ)
 
 If every derivative of `f` below order `k` vanishes at both endpoints,
 then `k` integrations by parts transfer all derivatives from `f` to `p`.
-The smoothness assumptions hold on the closed integration interval. -/
+The smoothness assumptions hold on the closed integration interval.
+@isnad1 id=eq.4h5v.s8.d20c4880d879 from=translated src=- shape=83092e92 vocab=ebcee42c
+-/
 theorem integral_mul_iterated_deriv_eq (k : ℕ) (a b : ℝ) (p f : ℝ → ℝ)
     (hp : ∀ x ∈ Set.Icc a b, ContDiffAt ℝ ⊤ p x)
     (hf : ∀ x ∈ Set.Icc a b, ContDiffAt ℝ ⊤ f x)
@@ -148,7 +154,9 @@ theorem integral_mul_iterated_deriv_eq (k : ℕ) (a b : ℝ) (p f : ℝ → ℝ)
 /-- A [real integrand](hyp:f), when [it is interval-integrable on the unit interval](hyp:hf), gives [convergence of integrals truncated away from zero to the full integral](goal).
 
 An interval-integrable function on `[0,1]` has the same integral as the
-limit of its integrals over `[1/(n+1),1]`. -/
+limit of its integrals over `[1/(n+1),1]`.
+@isnad1 id=tendsto.1h1v.s7.714f1464ce26 from=translated src=- shape=73036cbe vocab=b66547b0
+-/
 theorem tendsto_integral_one_div_nat (f : ℝ → ℝ)
     (hf : IntervalIntegrable f volume 0 1) :
     Tendsto (fun n : ℕ => ∫ x in (1 / ((n + 1 : ℕ) : ℝ))..1, f x)

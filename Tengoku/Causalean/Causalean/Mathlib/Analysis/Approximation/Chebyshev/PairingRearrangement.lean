@@ -31,7 +31,9 @@ def adjacentPairProduct (t : ℝ) : List ℝ → ℝ
 /-- For four real numbers a, b, c, d that are decreasing, [b at most a](hyp:hab), [c at most
 b](hyp:hbc), and [d at most c](hyp:hcd), and [a nonnegative constant t](hyp:ht), [the product (a c
 + t)(b d + t) from the crossing pairs is at most the product (a b + t)(c d + t) from the adjacent
-pairs](goal). -/
+pairs](goal).
+@isnad1 id=le.4h5v.s6.dc359b7ef00d from=translated src=- shape=269b1ead vocab=7b7bf493
+-/
 lemma crossingPairProduct_le_adjacentPairProduct
     {a b c d t : ℝ} (ht : 0 ≤ t) (hab : b ≤ a) (hbc : c ≤ b)
     (hcd : d ≤ c) :
@@ -48,7 +50,9 @@ lemma crossingPairProduct_le_adjacentPairProduct
 /-- For four real numbers a, b, c, d that are decreasing, [b at most a](hyp:hab), [c at most
 b](hyp:hbc), and [d at most c](hyp:hcd), and [a nonnegative constant t](hyp:ht), [the product (a d
 + t)(b c + t) from the outer and inner pairs is at most the product (a b + t)(c d + t) from the
-adjacent pairs](goal). -/
+adjacent pairs](goal).
+@isnad1 id=le.4h5v.s6.4df6b125689d from=translated src=- shape=620c3a9c vocab=7b7bf493
+-/
 lemma nestedPairProduct_le_adjacentPairProduct
     {a b c d t : ℝ} (ht : 0 ≤ t) (hab : b ≤ a) (hbc : c ≤ b)
     (hcd : d ≤ c) :
@@ -241,7 +245,9 @@ termination_by xs.length
 length](hyp:heven), is [sorted in decreasing order](hyp:hsorted), and has [only nonnegative
 entries](hyp:hnonneg), [every rearrangement of the list](hyp:hperm) [has consecutive-pair product
 at most that of the sorted list itself](goal); the consecutive-pair product multiplies, over
-successive pairs of entries, the product of the pair plus t. -/
+successive pairs of entries, the product of the pair plus t.
+@isnad1 id=le.5h3v.s6.2a89bbe1a897 from=translated src=- shape=846dd9e8 vocab=676a566a
+-/
 theorem adjacentPairProduct_le_of_perm_sorted
     {t : ℝ} (ht : 0 ≤ t) {xs ys : List ℝ} (heven : Even xs.length)
     (hsorted : xs.Pairwise (fun a b => b ≤ a))
@@ -299,7 +305,9 @@ private lemma adjacentPairProduct_flatMap_pairs
 /-- For [a degree L](hyp:L), [an angle θ](hyp:θ), and [a height y](hyp:y), [the consecutive-pair
 product of the paired chord list with additive constant 4y² equals the product, over the L
 Chebyshev cosine roots, of four times the squared distance from the complex point cos θ + i y to
-that root](goal). -/
+that root](goal).
+@isnad1 id=eq.0h3v.s6.6597ae75b9e0 from=translated src=- shape=35b79299 vocab=f1a1ccb0
+-/
 theorem adjacentPairProduct_chebyshevPairedChordList
     (L : ℕ) (θ y : ℝ) :
     adjacentPairProduct (4 * y ^ 2) (chebyshevPairedChordList L θ) =

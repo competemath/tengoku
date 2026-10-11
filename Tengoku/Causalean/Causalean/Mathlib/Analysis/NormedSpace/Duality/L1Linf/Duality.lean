@@ -31,7 +31,9 @@ polynomial bounded by `1` at every node](goal).
 
 This is the min-norm-representation `=` dual-sup identity — the ℓ¹/ℓ∞ pairing on
 `ℝ^{k+1}` specialised to node-sampling — combining weak duality (representation
-identity + triangle inequality) with strong duality (Hahn–Banach extension). -/
+identity + triangle inequality) with strong duality (Hahn–Banach extension).
+@isnad1 id=eq.2h3v.s5.5235c48fd9bc from=translated src=- shape=24708728 vocab=1a3d9740
+-/
 theorem l1_repr_eq_sup_dual (hp : Function.Injective p) (hβ : β ≤ k) :
     sInf (primalNormSet p β) = sSup (dualValSet p β) :=
   le_antisymm (sInf_primal_le_sSup_dual hp hβ)
@@ -41,7 +43,9 @@ theorem l1_repr_eq_sup_dual (hp : Function.Injective p) (hβ : β ≤ k) :
 distinct real interpolation nodes](hyp:hp) and [a degree bound `β` at most `k`](hyp:hβ) — [the
 square of the min-norm-representation value equals the square of the dual sup](goal).
 
-This is the shape consumed downstream (the amplification constant is the squared dual sup). -/
+This is the shape consumed downstream (the amplification constant is the squared dual sup).
+@isnad1 id=eq.2h3v.s6.5d8c47a45883 from=translated src=- shape=b3abe46e vocab=15078fa6
+-/
 theorem l1_repr_sq_eq_sup_dual_sq (hp : Function.Injective p) (hβ : β ≤ k) :
     (sInf (primalNormSet p β)) ^ 2 = (sSup (dualValSet p β)) ^ 2 := by
   rw [l1_repr_eq_sup_dual hp hβ]

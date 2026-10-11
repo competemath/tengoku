@@ -222,7 +222,9 @@ private theorem rawScanFrom_get_step [LinearOrder α]
           · simpa using hstep
 
 /-- [A predicate schedule](hyp:P), [a raw score](hyp:score), and [a fallback score](hyp:fallback)
-have [equal raw and compiled position-scan mutation counts](goal). -/
+have [equal raw and compiled position-scan mutation counts](goal).
+@isnad1 id=eq.0h8v.s5.96e02c057f9d from=translated src=- shape=f8834880 vocab=ad06c43c
+-/
 theorem rawScanMutationCount_eq_scanMutationCount [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α) :
     P.rawScanMutationCount score =
@@ -264,7 +266,9 @@ theorem rawScanMutationCount_eq_scanMutationCount [LinearOrder α]
   omega
 
 /-- [A predicate schedule](hyp:P), [a raw score](hyp:score), and [a fallback score](hyp:fallback)
-have [equal maximum recorded post-update deque lengths for the raw and compiled scans](goal). -/
+have [equal maximum recorded post-update deque lengths for the raw and compiled scans](goal).
+@isnad1 id=eq.0h8v.s6.c6f342691403 from=translated src=- shape=65013c8b vocab=881120cf
+-/
 theorem rawMaxRecordedPostUpdateLength_eq_maxRecordedPostUpdateLength [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α) :
     rawMaxRecordedPostUpdateLength (P.rawScan score) =
@@ -298,6 +302,7 @@ theorem rawMaxRecordedPostUpdateLength_eq_maxRecordedPostUpdateLength [LinearOrd
 /-- [A predicate schedule](hyp:P), [a raw score](hyp:score), and [a fallback score](hyp:fallback)
 ensure
 [the raw scan mutation count is at most twice the sparse-key count plus the step count](goal).
+@isnad1 id=le.0h8v.s6.9a5b35ce537f from=translated src=- shape=f872ae1d vocab=3871f809
 -/
 theorem rawScanMutationCount_le [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α) :
@@ -307,7 +312,9 @@ theorem rawScanMutationCount_le [LinearOrder α]
     scanMutationCount_le (keyedStream keys score fallback) P.schedule
 
 /-- [A predicate schedule](hyp:P), [a raw score](hyp:score), and [a fallback score](hyp:fallback)
-ensure [the maximum recorded post-update raw deque length is at most the sparse-key count](goal). -/
+ensure [the maximum recorded post-update raw deque length is at most the sparse-key count](goal).
+@isnad1 id=le.0h8v.s5.81b2598a2fde from=translated src=- shape=fa729fc2 vocab=ebe83201
+-/
 theorem rawMaxRecordedPostUpdateLength_le_length [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α) :
     rawMaxRecordedPostUpdateLength (P.rawScan score) ≤ keys.length := by
@@ -317,7 +324,9 @@ theorem rawMaxRecordedPostUpdateLength_le_length [LinearOrder α]
 
 /-- [A predicate schedule](hyp:P), [a raw score](hyp:score), [a fallback score](hyp:fallback), and
 [a valid step position](hyp:hk) ensure [the raw deque stored there is no wider than its compiled
-window](goal). -/
+window](goal).
+@isnad1 id=ex.1h9v.s7.2b410f617099 from=translated src=- shape=cb493cc4 vocab=bb185214
+-/
 theorem rawScan_memory_le_windowWidth [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α)
     {k : ℕ} (hk : k < steps.length) :
@@ -356,7 +365,9 @@ theorem rawScan_memory_le_windowWidth [LinearOrder α]
 /-- [A predicate schedule](hyp:P), [a raw score](hyp:score), [a fallback score](hyp:fallback),
 [a valid step position](hyp:hk), and [a nonempty raw predicate window](hyp:hne) ensure [the raw
 deque head is an active score maximizer, with equal maxima resolved at the greatest key
-position](goal). -/
+position](goal).
+@isnad1 id=ex.2h9v.s8.e2e896865999 from=translated src=- shape=3253da37 vocab=8a34da16
+-/
 theorem rawScan_head_argmax [LinearOrder α]
     (P : PredicateWindowSchedule keys steps) (score : ι → α) (fallback : α)
     {k : ℕ} (hk : k < steps.length)
@@ -474,7 +485,9 @@ noncomputable def PredicatePasses.totalRawMutationCount [LinearOrder α]
 
 /-- [A finite predicate-pass family](hyp:family), [a raw score](hyp:score), and [a fallback
 score](hyp:fallback) ensure [its total raw mutation count is at most twice pass count times key
-count plus pass count times step count](goal). -/
+count plus pass count times step count](goal).
+@isnad1 id=le.0h9v.s6.f2c807720db5 from=translated src=- shape=5f8e82d1 vocab=bdd09904
+-/
 theorem PredicatePasses.totalRawMutationCount_le [LinearOrder α]
     {passes : ℕ} (family : PredicatePasses keys steps passes)
     (score : ι → α) (fallback : α) :

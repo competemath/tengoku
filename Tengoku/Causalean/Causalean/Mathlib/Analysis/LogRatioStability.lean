@@ -46,7 +46,9 @@ def C2CloseOn (K : Set ℝ) (ε : ℝ) (f g : ℝ → ℝ) : Prop :=
 def logRatio (q p : ℝ → ℝ) (x : ℝ) : ℝ := Real.log (q x / p x)
 
 /-- On a nondegenerate compact interval, the within-derivative of a positive log ratio is the
-difference of the two logarithmic derivatives. -/
+difference of the two logarithmic derivatives.
+@isnad1 id=eq.6h5v.s8.8d462a1f10a7 from=translated src=- shape=fd48ee43 vocab=23f6b62c
+-/
 theorem derivWithin_logRatio {a b : ℝ} (hab : a < b)
     {q p : ℝ → ℝ} (hq : DifferentiableOn ℝ q (Icc a b))
     (hp : DifferentiableOn ℝ p (Icc a b))
@@ -105,7 +107,9 @@ private theorem abs_div_sub_div_lt {m B ε u u' du du' : ℝ}
 [two continuously differentiable center functions](hyp:q,p,hq,hp), [their shared lower bounds](hyp:hqlower,hplower),
 [a chosen orientation](hyp:sign,hsign), and [a derivative margin in that orientation](hyp:hfixed)
 ensure [a positive uniform C¹ neighborhood in which both perturbed functions stay positive and
-their log-ratio derivative retains that orientation](goal). -/
+their log-ratio derivative retains that orientation](goal).
+@isnad1 id=ex.9h7v.s9.f2a6bf14d34e from=translated src=- shape=02fd6936 vocab=fce329e0
+-/
 theorem logRatioDerivative_fixedSign_open_C1 {a b m margin : ℝ}
     (hab : a < b) (hm : 0 < m) (hmargin : 0 < margin)
     {q p : ℝ → ℝ} (hq : ContDiffOn ℝ 1 q (Icc a b))
@@ -233,7 +237,9 @@ theorem logRatioDerivative_fixedSign_open_C1 {a b m margin : ℝ}
   nlinarith
 
 /-- The same strict fixed-sign derivative property is open under uniform `C²` perturbations,
-because uniform `C²` control includes the required uniform `C¹` control. -/
+because uniform `C²` control includes the required uniform `C¹` control.
+@isnad1 id=ex.9h7v.s9.c2eb7534e796 from=translated src=- shape=02fd6936 vocab=62b02bd5
+-/
 theorem logRatioDerivative_fixedSign_open_C2 {a b m margin : ℝ}
     (hab : a < b) (hm : 0 < m) (hmargin : 0 < margin)
     {q p : ℝ → ℝ} (hq : ContDiffOn ℝ 1 q (Icc a b))

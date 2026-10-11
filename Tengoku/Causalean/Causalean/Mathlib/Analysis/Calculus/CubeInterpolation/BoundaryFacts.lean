@@ -15,7 +15,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- Every point of the closed coordinate cube is a limit of points in the open
-coordinate cube. -/
+coordinate cube.
+@isnad1 id=le.0h1v.s5.89824cd5d88d from=translated src=- shape=e0ab0938 vocab=bc14b072
+-/
 theorem cube_subset_closure_openCube (d : ℕ) :
     cube d ⊆ closure (openCube d) := by
   intro x hx
@@ -46,7 +48,9 @@ private theorem openCube_subset_cube (d : ℕ) : openCube d ⊆ cube d := by
   exact ⟨(hx i trivial).1.le, (hx i trivial).2.le⟩
 
 /-- An interior bound on a coordinate partial extends to the corresponding
-within derivative throughout the closed cube. -/
+within derivative throughout the closed cube.
+@isnad1 id=le.5h7v.s9.912b6934da94 from=translated src=- shape=8fdf64dc vocab=70e5ae44
+-/
 theorem within_coordPartial_bound_extends {d m j : ℕ}
     {u : (Fin d → ℝ) → ℝ} {B : ℝ} (hB : 0 ≤ B)
     (hu : ContDiffOn ℝ m u (cube d)) (hj : j ≤ m)
@@ -80,7 +84,9 @@ theorem within_coordPartial_bound_extends {d m j : ℕ}
 /-- For [a function that is m times continuously differentiable on the closed normalized
 cube](hyp:hu), [an order j at most m](hyp:hj), and [a point](hyp:x) [of that cube](hyp:hx), [the
 order-j iterated derivative taken in the whole space is either zero or equal to the order-j
-iterated derivative taken within the cube](goal). -/
+iterated derivative taken within the cube](goal).
+@isnad1 id=or.3h5v.s10.85f8b1fe424d from=translated src=- shape=7ceb71a6 vocab=6f862b65
+-/
 theorem ambient_jet_zero_or_within {d m j : ℕ}
     {u : (Fin d → ℝ) → ℝ}
     (hu : ContDiffOn ℝ m u (cube d)) (hj : j ≤ m)

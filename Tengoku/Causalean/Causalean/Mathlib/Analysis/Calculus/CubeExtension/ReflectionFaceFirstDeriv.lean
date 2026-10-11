@@ -23,7 +23,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 continuously differentiable within the closed cube](hyp:hu), and [x is a cube
 point](hyp:hx) [on the left face in coordinate i](hyp:hxi), then [the one-face
 reflection of u has, within the closed left collar at x, derivative equal to the
-within-cube derivative of u at x](goal). -/
+within-cube derivative of u at x](goal).
+@isnad1 id=hasfderi.5h6v.s9.12875d49e650 from=translated src=- shape=ddb4f97f vocab=c68739c6
+-/
 theorem leftFaceReflection_hasFDerivWithinAt_face (d m : ℕ) (hm : 1 ≤ m)
     (i : Fin d) (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

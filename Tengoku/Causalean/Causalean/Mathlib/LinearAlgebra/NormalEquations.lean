@@ -84,7 +84,9 @@ private lemma linear_coeff_eq_zero_of_quadratic_nonneg {A B : ℝ} (hB : 0 ≤ B
 nonnegative](hyp:hw) and [the coefficient vector `c` globally minimizes the weighted sum
 of squares `∑ᵢ wᵢ (Yᵢ − ∑ⱼ cⱼ Φᵢⱼ)²` over all coefficient vectors](hyp:hmin), then [the
 weighted residual is orthogonal to every design column: `∑ᵢ wᵢ (Yᵢ − ∑ⱼ cⱼ Φᵢⱼ) Φᵢₖ = 0`
-for each basis index `k`](goal). -/
+for each basis index `k`](goal).
+@isnad1 id=eq.2h7v.s6.21d0e70a039b from=translated src=- shape=b183f12a vocab=5b32ba26
+-/
 theorem lstsq_normal_equations {N : ℕ} {ι : Type*} [Fintype ι]
     {Φ : Fin N → ι → ℝ} {w Y : Fin N → ℝ} {c : ι → ℝ}
     (hw : ∀ i, 0 ≤ w i)
@@ -147,7 +149,9 @@ theorem lstsq_normal_equations {N : ℕ} {ι : Type*} [Fintype ι]
 orthogonal to every design column](hyp:hortho), then for [any coefficient vector `c'`](hyp:c')
 [the weighted sum of squares splits as its value at `c` plus the weighted squared fitted-value
 difference](goal). The orthogonality condition holds, for example, when `c` is a least-squares
-minimizer by `lstsq_normal_equations`. -/
+minimizer by `lstsq_normal_equations`.
+@isnad1 id=eq.1h7v.s7.c97aa3cfbaf5 from=translated src=- shape=87dcd46f vocab=61770b83
+-/
 theorem lstsq_pythagoras {N : ℕ} {ι : Type*} [Fintype ι]
     {Φ : Fin N → ι → ℝ} {w Y : Fin N → ℝ} {c : ι → ℝ}
     (hortho : ∀ k : ι, ∑ i, w i * lstsqResidual Φ Y c i * Φ i k = 0)
@@ -215,7 +219,9 @@ theorem lstsq_pythagoras {N : ℕ} {ι : Type*} [Fintype ι]
 /-- **Optimality of the orthogonal least-squares fit.** If [the weights are nonnegative](hyp:hw)
 and [the residual at `c` is orthogonal to every design column](hyp:hortho), then for
 [any coefficient vector `c'`](hyp:c'), [`c` has no larger weighted sum of squares](goal).
-This follows from `lstsq_pythagoras` because its excess term is nonnegative. -/
+This follows from `lstsq_pythagoras` because its excess term is nonnegative.
+@isnad1 id=le.2h7v.s6.96b14482d118 from=translated src=- shape=82131835 vocab=5b32ba26
+-/
 theorem lstsq_objective_le_of_orthogonal {N : ℕ} {ι : Type*} [Fintype ι]
     {Φ : Fin N → ι → ℝ} {w Y : Fin N → ℝ} {c : ι → ℝ}
     (hw : ∀ i, 0 ≤ w i)

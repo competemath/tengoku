@@ -25,7 +25,9 @@ namespace Causalean.Mathlib.Analysis.FinitePolynomialAlternationDuality
 /-! ## Centered angular remainders -/
 
 /-- [Every real angle](hyp:θ) differs from an integer multiple of the step determined by
-[a positive integer](hyp:L,hL) by [at most half of that step](goal). -/
+[a positive integer](hyp:L,hL) by [at most half of that step](goal).
+@isnad1 id=ex.1h2v.s6.a6aec2da14fa from=translated src=- shape=44a64db9 vocab=6e6db77c
+-/
 theorem exists_int_abs_sub_mul_pi_div_le
     {L : ℕ} (hL : 0 < L) (θ : ℝ) :
     ∃ m : ℤ,
@@ -217,7 +219,9 @@ private theorem chebyshevPairedChordList_add_pi_div_perm
       (chebyshevPairedChordList_perm_grid hL θ).symm
 
 /-- Shifting [a real angle](hyp:θ) by [an integer multiple](hyp:m) of the step determined by
-[a positive integer](hyp:L,hL) [permutes the paired list of Chebyshev chord squares](goal). -/
+[a positive integer](hyp:L,hL) [permutes the paired list of Chebyshev chord squares](goal).
+@isnad1 id=perm.1h3v.s5.f6e93c49e59a from=translated src=- shape=be7e50e7 vocab=69ee35dd
+-/
 theorem chebyshevPairedChordList_add_int_mul_pi_div_perm
     {L : ℕ} (hL : 0 < L) (θ : ℝ) (m : ℤ) :
     (chebyshevPairedChordList L
@@ -269,7 +273,9 @@ private lemma adjacentPairProduct_flatMap_two (t : ℝ) (ks : List ℕ)
 /-- For [a positive degree L](hyp:hL) and [an angle φ of absolute value at most π / (2L)](hyp:hφ),
 [the list of the 2L squared chord lengths, paired by Chebyshev root angle, can be rearranged into
 decreasing order in such a way that the product over consecutive pairs of (the product of the pair
-plus t) is unchanged](goal), for any real additive term t. -/
+plus t) is unchanged](goal), for any real additive term t.
+@isnad1 id=ex.2h3v.s6.b34b66a93c0c from=translated src=- shape=f8092cc1 vocab=651c13a4
+-/
 theorem exists_sorted_chebyshevChordList_with_adjacentPairProduct_eq_of_centered
     {L : ℕ} (hL : 0 < L) {φ t : ℝ}
     (hφ : |φ| ≤ Real.pi / (2 * (L : ℝ))) :
@@ -431,7 +437,9 @@ the decreasing chord squares, so
 
 The imported helper modules isolate centered remainder selection, cyclic
 chord permutation, centered adjacent ordering, and conversion from chord-pair
-products to complex root distances. -/
+products to complex root distances.
+@isnad1 id=ex.2h3v.s7.31b62e57ccd1 from=translated src=- shape=8ebbdb40 vocab=e68f4063
+-/
 theorem exists_rootProduct_dominating_abscissa_past_chebyshevZeros
     {L : ℕ} (hL : 0 < L) {x : ℝ} (hx : x ∈ Set.Icc (-1) 1) (y : ℝ) :
     ∃ x₀ ∈ Set.Icc (-1 : ℝ) 1,

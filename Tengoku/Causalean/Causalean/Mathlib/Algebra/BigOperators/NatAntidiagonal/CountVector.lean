@@ -41,7 +41,9 @@ noncomputable def countTaylorDegreeEquiv (I : Type*) [Fintype I] [DecidableEq I]
 
 /-- For a [count-vector summand](hyp:f) and [combined degree](hyp:s), summing over
 the reindexed fiber equals the finite sum over observed degrees and their count
-antidiagonals. The result is [the equality between a reindexed fiber sum and its antidiagonal sum](goal). -/
+antidiagonals. The result is [the equality between a reindexed fiber sum and its antidiagonal sum](goal).
+@isnad1 id=eq.0h3v.s9.0e7c3b2bd590 from=translated src=- shape=0482ddd0 vocab=b5368afb
+-/
 lemma countTaylorDegree_fiber_sum {I : Type*} [Fintype I] [DecidableEq I]
     (f : ℕ → (I → ℕ) → ℝ) (s : ℕ) :
     (∑ x : Σ r : Fin (s + 1), ↥((Finset.univ : Finset I).piAntidiag r.val),
@@ -56,7 +58,9 @@ lemma countTaylorDegree_fiber_sum {I : Type*} [Fintype I] [DecidableEq I]
 
 /-- For a [nonnegative Taylor/count summand](hyp:f,hf), if its [combined-degree
 grouping is summable](hyp:hs), then the original series over Taylor orders and
-count vectors is summable. The result is [summability of the original Taylor/count series](goal). -/
+count vectors is summable. The result is [summability of the original Taylor/count series](goal).
+@isnad1 id=summable.2h2v.s7.6777d6f0a2b5 from=translated src=- shape=81022332 vocab=d9298fd2
+-/
 lemma summable_countTaylor_of_degree {I : Type*} [Fintype I] [DecidableEq I]
     (f : ℕ → (I → ℕ) → ℝ) (hf : ∀ t c, 0 ≤ f t c)
     (hs : Summable (fun s : ℕ => ∑ r ∈ Finset.range (s + 1),
@@ -76,7 +80,9 @@ lemma summable_countTaylor_of_degree {I : Type*} [Fintype I] [DecidableEq I]
 
 /-- For a [summable Taylor/count series](hyp:f,hf), its total sum equals the
 iterated sum grouped by combined degree, observed degree, and count-vector
-antidiagonal. The result is [the equality between the original total sum and its combined-degree grouping](goal). -/
+antidiagonal. The result is [the equality between the original total sum and its combined-degree grouping](goal).
+@isnad1 id=eq.1h2v.s7.94924710800e from=translated src=- shape=1f221a0f vocab=9a74e7ea
+-/
 lemma tsum_countTaylor_eq_degree {I : Type*} [Fintype I] [DecidableEq I]
     (f : ℕ → (I → ℕ) → ℝ)
     (hf : Summable (fun x : ℕ × (I → ℕ) => f x.1 x.2)) :

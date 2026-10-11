@@ -26,7 +26,9 @@ def rectOpenBox {d : ℕ} (lo hi : Fin d → ℝ) : Set (Fin d → ℝ) :=
 every coordinate, that is lo_i < −1 and 1 < hi_i](hyp:hmargin), then for [any
 order m](hyp:m) [there is a smooth function χ equal to one on the cube, with
 closed support inside the open box, whose ambient derivatives of every order up
-to m + 1 are bounded in operator norm by a positive constant B](goal). -/
+to m + 1 are bounded in operator norm by a positive constant B](goal).
+@isnad1 id=ex.1h4v.s9.aaca31296ed7 from=translated src=- shape=bf5d67fa vocab=34f580bf
+-/
 theorem exists_rectangular_smooth_cutoff (d m : ℕ)
     (lo hi : Fin d → ℝ) (hmargin : ∀ i, lo i < -1 ∧ 1 < hi i) :
     ∃ χ : (Fin d → ℝ) → ℝ,

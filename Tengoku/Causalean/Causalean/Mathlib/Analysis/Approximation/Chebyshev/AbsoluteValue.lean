@@ -23,7 +23,9 @@ open Polynomial
 abbrev absChebPoly (m : ℕ) : Polynomial ℝ :=
   Causalean.Mathlib.Analysis.AbsoluteValueMomentPriorDuality.absChebPoly m
 
-/-- [A truncation length](hyp:m) gives [the constant two over π followed by its first even Chebyshev modes with their exact alternating coefficients](goal). -/
+/-- [A truncation length](hyp:m) gives [the constant two over π followed by its first even Chebyshev modes with their exact alternating coefficients](goal).
+@isnad1 id=eq.0h1v.s8.bf29da68cf57 from=translated src=- shape=8c45ceb6 vocab=487ce18e
+-/
 theorem absChebPoly_eq (m : ℕ) :
     absChebPoly m = C (2 / Real.pi) +
       ∑ j ∈ Finset.range m,
@@ -33,7 +35,9 @@ theorem absChebPoly_eq (m : ℕ) :
   simp only [absChebPoly, Causalean.Mathlib.Analysis.AbsoluteValueMomentPriorDuality.absChebPoly,
     Polynomial.smul_eq_C_mul]
 
-/-- [A truncation length and argument](hyp:m,x) give [the value of the explicit truncation as its finite even Chebyshev expansion](goal). -/
+/-- [A truncation length and argument](hyp:m,x) give [the value of the explicit truncation as its finite even Chebyshev expansion](goal).
+@isnad1 id=eq.0h2v.s7.7b215ad3e656 from=translated src=- shape=12d49492 vocab=af73838e
+-/
 theorem absChebPoly_eval (m : ℕ) (x : ℝ) :
     (absChebPoly m).eval x = 2 / Real.pi +
       ∑ j ∈ Finset.range m,
@@ -42,17 +46,23 @@ theorem absChebPoly_eval (m : ℕ) (x : ℝ) :
             (4 * ((j + 1 : ℕ) : ℝ) ^ 2 - 1) := by
   exact Causalean.Mathlib.Analysis.AbsoluteValueMomentPriorDuality.absChebPoly_eval m x
 
-/-- [A truncation length](hyp:m) gives [a polynomial whose degree is at most twice that length](goal). -/
+/-- [A truncation length](hyp:m) gives [a polynomial whose degree is at most twice that length](goal).
+@isnad1 id=le.0h1v.s4.3ce7e2e25d1b from=translated src=- shape=e96f2693 vocab=d5e9363b
+-/
 theorem absChebPoly_natDegree_le (m : ℕ) : (absChebPoly m).natDegree ≤ 2 * m :=
   Causalean.Mathlib.Analysis.AbsoluteValueMomentPriorDuality.absChebPoly_natDegree_le m
 
-/-- [A truncation length](hyp:m), evaluated [at a point in the closed unit interval](hyp:hx), has [absolute approximation error at most two divided by π times twice the length plus one](goal). -/
+/-- [A truncation length](hyp:m), evaluated [at a point in the closed unit interval](hyp:hx), has [absolute approximation error at most two divided by π times twice the length plus one](goal).
+@isnad1 id=le.1h2v.s6.2c0133960077 from=translated src=- shape=e535d79b vocab=34865cb5
+-/
 theorem absChebPoly_error_le (m : ℕ) {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     abs ((absChebPoly m).eval x - abs x) ≤ 2 / (Real.pi * (2 * (m : ℝ) + 1)) := by
   rw [abs_sub_comm]
   exact Causalean.Mathlib.Analysis.AbsoluteValueMomentPriorDuality.absChebPoly_error_le m hx
 
-/-- [A truncation length](hyp:m) gives [the same explicit polynomial written with one-based Chebyshev mode indices](goal). -/
+/-- [A truncation length](hyp:m) gives [the same explicit polynomial written with one-based Chebyshev mode indices](goal).
+@isnad1 id=eq.0h1v.s8.8efa94afb823 from=translated src=- shape=a9568377 vocab=dfd63ac8
+-/
 theorem absChebPoly_eq_sum_Icc (m : ℕ) :
     absChebPoly m = C (2 / Real.pi) +
       ∑ v ∈ Finset.Icc 1 m,
@@ -70,7 +80,9 @@ theorem absChebPoly_eq_sum_Icc (m : ℕ) :
       ring
     simp only [hsign]
 
-/-- [A positive truncation length](hyp:m,hm) gives [a polynomial whose monomial coefficient one-norm is at most two to the power three times that length](goal). -/
+/-- [A positive truncation length](hyp:m,hm) gives [a polynomial whose monomial coefficient one-norm is at most two to the power three times that length](goal).
+@isnad1 id=le.1h1v.s5.7fe76a8cd8f9 from=translated src=- shape=8e70fe7d vocab=09c0f781
+-/
 theorem absChebPoly_coeffOneNorm_le (m : ℕ) (hm : 1 ≤ m) :
     polynomialCoeffOneNorm (absChebPoly m) ≤ (2 : ℝ) ^ (3 * m) := by
   classical
@@ -161,7 +173,9 @@ theorem absChebPoly_coeffOneNorm_le (m : ℕ) (hm : 1 ≤ m) :
     polynomialCoeffOneNorm (absChebPoly m) ≤ (8 : ℝ) ^ m := hall m
     _ = (2 : ℝ) ^ (3 * m) := by rw [pow_mul]; norm_num
 
-/-- [A positive truncation length](hyp:m,hm) and [a monomial index](hyp:k) give [an absolute coefficient bound of two to the power three times the length](goal). -/
+/-- [A positive truncation length](hyp:m,hm) and [a monomial index](hyp:k) give [an absolute coefficient bound of two to the power three times the length](goal).
+@isnad1 id=le.1h2v.s5.5085e1bf561e from=translated src=- shape=d2f07e35 vocab=9a29738c
+-/
 theorem absChebPoly_coeff_le (m : ℕ) (hm : 1 ≤ m) (k : ℕ) :
     |(absChebPoly m).coeff k| ≤ (2 : ℝ) ^ (3 * m) := by
   classical
@@ -176,16 +190,22 @@ theorem absChebPoly_coeff_le (m : ℕ) (hm : 1 ≤ m) (k : ℕ) :
       exact Finset.sum_nonneg (fun j _ => abs_nonneg ((absChebPoly m).coeff j))
   exact hb.trans (absChebPoly_coeffOneNorm_le m hm)
 
-/-- [An even natural degree](hyp:D,hD) has [degree equal to twice its half-degree](goal). -/
+/-- [An even natural degree](hyp:D,hD) has [degree equal to twice its half-degree](goal).
+@isnad1 id=eq.1h1v.s5.2147a59b8b1c from=translated src=- shape=7d3b9e50 vocab=807043a5
+-/
 theorem two_mul_halfDegree (D : ℕ) (hD : Even D) : 2 * (D / 2) = D := by
   obtain ⟨m, hm⟩ := hD
   omega
 
-/-- [A natural degree at least two](hyp:D,hD2) has [a positive half-degree](goal). -/
+/-- [A natural degree at least two](hyp:D,hD2) has [a positive half-degree](goal).
+@isnad1 id=le.1h1v.s5.752c9dc716d6 from=translated src=- shape=6528d12f vocab=c2bd0f2a
+-/
 theorem halfDegree_pos (D : ℕ) (hD2 : 2 ≤ D) : 1 ≤ D / 2 := by
   omega
 
-/-- [An even natural degree](hyp:D,hD) has [equal natural-power and real-power forms of the coefficient constant](goal). -/
+/-- [An even natural degree](hyp:D,hD) has [equal natural-power and real-power forms of the coefficient constant](goal).
+@isnad1 id=eq.1h1v.s6.286e6e2c06f2 from=translated src=- shape=f3793386 vocab=792a8df6
+-/
 theorem coefficientConstant_eq_rpow (D : ℕ) (hD : Even D) :
     (2 : ℝ) ^ (3 * (D / 2)) = (2 : ℝ) ^ ((3 : ℝ) * (D : ℝ) / 2) := by
   have hn := two_mul_halfDegree D hD
@@ -194,12 +214,16 @@ theorem coefficientConstant_eq_rpow (D : ℕ) (hD : Even D) :
     push_cast
     linarith, Real.rpow_natCast]
 
-/-- [An even natural degree](hyp:D,hD) gives [a half-degree truncation whose degree is at most that degree](goal). -/
+/-- [An even natural degree](hyp:D,hD) gives [a half-degree truncation whose degree is at most that degree](goal).
+@isnad1 id=le.1h1v.s4.fae1a117e1f2 from=translated src=- shape=a4a15831 vocab=bc6b95b8
+-/
 theorem absChebPoly_halfDegree_natDegree_le (D : ℕ) (hD : Even D) :
     (absChebPoly (D / 2)).natDegree ≤ D := by
   simpa only [two_mul_halfDegree D hD] using absChebPoly_natDegree_le (D / 2)
 
-/-- [An even natural degree](hyp:D,hD), evaluated [at a point in the closed unit interval](hyp:hx), has [absolute approximation error at most two divided by π times the degree plus one](goal). -/
+/-- [An even natural degree](hyp:D,hD), evaluated [at a point in the closed unit interval](hyp:hx), has [absolute approximation error at most two divided by π times the degree plus one](goal).
+@isnad1 id=le.2h2v.s6.27245c586af4 from=translated src=- shape=18958e81 vocab=06f9c47d
+-/
 theorem absChebPoly_halfDegree_error_le (D : ℕ) (hD : Even D)
     {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     abs ((absChebPoly (D / 2)).eval x - abs x) ≤ 2 / (Real.pi * ((D : ℝ) + 1)) := by
@@ -207,7 +231,9 @@ theorem absChebPoly_halfDegree_error_le (D : ℕ) (hD : Even D)
     exact_mod_cast two_mul_halfDegree D hD
   simpa only [hr] using absChebPoly_error_le (D / 2) hx
 
-/-- [An even degree at least two](hyp:D,hD,hD2) and [a monomial index](hyp:k) give [an absolute coefficient bound with real-power exponent three halves of the degree](goal). -/
+/-- [An even degree at least two](hyp:D,hD,hD2) and [a monomial index](hyp:k) give [an absolute coefficient bound with real-power exponent three halves of the degree](goal).
+@isnad1 id=le.2h2v.s6.5ec697607952 from=translated src=- shape=b55ee0fe vocab=ee4fd397
+-/
 theorem absChebPoly_halfDegree_coeff_le (D : ℕ) (hD : Even D) (hD2 : 2 ≤ D) (k : ℕ) :
     |(absChebPoly (D / 2)).coeff k| ≤ (2 : ℝ) ^ ((3 : ℝ) * (D : ℝ) / 2) := by
   rw [← coefficientConstant_eq_rpow D hD]

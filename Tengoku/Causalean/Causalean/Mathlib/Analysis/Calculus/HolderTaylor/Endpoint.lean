@@ -23,7 +23,9 @@ that every function f that is k times continuously differentiable on an interval
 with k-th within-interval derivative Hölder with constant L and exponent α there, has a polynomial
 of degree at most k in the distance a + d − t to the right endpoint whose error at every point t
 of the interval is at most C times that distance to the power k + α](goal). The polynomial
-coefficients may depend on f; this includes k = 0. -/
+coefficients may depend on f; this includes k = 0.
+@isnad1 id=ex.4h4v.s9.b90b6d3fb08c from=translated src=- shape=9f6aa5f6 vocab=bb86dbbc
+-/
 theorem endpoint_holder_taylor
     (k : ℕ) (α d L : ℝ) (hα : 0 < α) (hα1 : α ≤ 1)
     (hd : 0 < d) (hL : 0 ≤ L) :
@@ -177,7 +179,9 @@ that every function f that is k times continuously differentiable on the interva
 with k-th within-interval derivative Hölder with constant L and exponent α there, has a polynomial
 of degree at most k in b − t whose error at every point t of the interval is at most
 C·(b − t)^(k + α)](goal). The coefficients may depend on the function, while the remainder
-constant depends only on the order, exponent, length, and Hölder constant. -/
+constant depends only on the order, exponent, length, and Hölder constant.
+@isnad1 id=ex.4h5v.s8.0370283331ae from=translated src=- shape=40552182 vocab=bb86dbbc
+-/
 theorem endpoint_holder_taylor_Icc
     (k : ℕ) (α a b L : ℝ) (hα : 0 < α) (hα1 : α ≤ 1)
     (hab : a < b) (hL : 0 ≤ L) :

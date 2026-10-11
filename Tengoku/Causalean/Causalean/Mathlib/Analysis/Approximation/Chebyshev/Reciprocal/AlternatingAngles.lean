@@ -215,7 +215,9 @@ private theorem exists_reciprocal_zero_in_cell {ρ : ℝ}
 
 /-- A [decay parameter strictly between zero and one](hyp:ρ,hρ) and a
 [degree bound](hyp:m) imply [the existence of ordered angles where the sine
-and cosine factors vanish in alternating parity](goal). -/
+and cosine factors vanish in alternating parity](goal).
+@isnad1 id=ex.1h2v.s8.f62dd635980a from=translated src=- shape=b4c3b79e vocab=e234425a
+-/
 theorem exists_reciprocalAlternatingAngles
     {ρ : ℝ} (hρ : ρ ∈ Set.Ioo (0 : ℝ) 1) (m : ℕ) :
     ∃ angles : Fin (m + 2) → ℝ,

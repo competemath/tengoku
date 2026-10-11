@@ -19,7 +19,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 /-- For [a dimension and a degree m](hyp:d,m), [there is a positive constant C such that every
 multivariate polynomial of degree at most m in each variable that is bounded in absolute value by a
 nonnegative B at every point of the fixed tensor grid has every tensor monomial coefficient bounded
-in absolute value by C times B](goal). -/
+in absolute value by C times B](goal).
+@isnad1 id=ex.0h2v.s7.e56eb1549d9d from=translated src=- shape=c6757ff7 vocab=21b62388
+-/
 theorem tensor_coefficient_bound (d m : ℕ) :
     ∃ C : ℝ, 0 < C ∧
       ∀ (p : MvPolynomial (Fin d) ℝ) (B : ℝ),

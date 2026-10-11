@@ -75,7 +75,9 @@ noncomputable def chartDifferential (f : M → E) (φ : OpenPartialHomeomorph M 
 /-- A smooth embedding has an injective manifold differential, including at boundary points.
 
 Prove from immersion normal-form charts, differentiating the inclusion and using invertible
-chart changes; do not add derivative injectivity as a premise. -/
+chart changes; do not add derivative injectivity as a premise.
+@isnad1 id=injectiv.1h7v.s10.5ca84a14328b from=translated src=- shape=bc7eabe8 vocab=c1483bb4
+-/
 theorem embedding_mfderiv_injective (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M) :
     Function.Injective (mfderiv I (modelWithCornersSelf ℝ E) f x) := by
@@ -168,7 +170,9 @@ under [its atlas condition `hφ`](hyp:hφ) and [source condition `hx`](hyp:hx),
 [has range equal to the full extrinsic tangent space](goal).
 
 Use the MFDeriv chain rule and the inverse chart derivative equivalence. The within-target
-formulation retains the full model-space domain at boundary points. -/
+formulation retains the full model-space domain at boundary points.
+@isnad1 id=eq.3h8v.s8.88df42f7beb9 from=translated src=- shape=07ae2430 vocab=71beb29c
+-/
 theorem chartDifferential_range (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ : OpenPartialHomeomorph M H) (hφ : φ ∈ IsManifold.maximalAtlas I 2 M)
@@ -182,7 +186,9 @@ theorem chartDifferential_range (f : M → E)
     (LinearMap.range_eq_top.mpr (hd.symm.mfderiv_surjective (φ.map_source hx)))
 
 /-- The differential of an admissible chart parametrization is injective on the full model
-space, including at boundary points. -/
+space, including at boundary points.
+@isnad1 id=injectiv.3h8v.s8.1f4323c24da0 from=translated src=- shape=b0ff52d4 vocab=11f21df0
+-/
 theorem chartDifferential_injective (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ : OpenPartialHomeomorph M H) (hφ : φ ∈ IsManifold.maximalAtlas I 2 M)
@@ -195,7 +201,9 @@ theorem chartDifferential_injective (f : M → E)
   exact (embedding_mfderiv_injective I f hf x).comp
     (hd.symm.mfderiv_injective (φ.map_source hx))
 
-/-- The dimension of the full tangent space equals the model dimension. -/
+/-- The dimension of the full tangent space equals the model dimension.
+@isnad1 id=eq.1h7v.s8.caa02f7309f6 from=translated src=- shape=44d2ce02 vocab=1c201a14
+-/
 theorem tangentSpace_finrank (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M) :
     Module.finrank ℝ (tangentSpace I f x) = Module.finrank ℝ F := by
@@ -204,7 +212,9 @@ theorem tangentSpace_finrank (f : M → E)
     (embedding_mfderiv_injective I f hf x)
 
 omit [FiniteDimensional ℝ F] [IsManifold I 2 M] in
-/-- Tangent and normal spaces are complementary subspaces of the ambient Euclidean space. -/
+/-- Tangent and normal spaces are complementary subspaces of the ambient Euclidean space.
+@isnad1 id=iscompl.0h7v.s7.708b021b2f33 from=translated src=- shape=a2534b5b vocab=01605731
+-/
 theorem tangent_normal_isCompl (f : M → E) (x : M) :
     IsCompl (tangentSpace I f x) (normalSpace I f x) :=
   (tangentSpace I f x).isCompl_orthogonal
@@ -217,19 +227,25 @@ noncomputable def tangentNormalEquiv (f : M → E) (x : M) :
     (tangent_normal_isCompl I f x)
 
 omit [FiniteDimensional ℝ F] [IsManifold I 2 M] in
-/-- The tangent-normal decomposition equivalence sends a pair to the sum of its ambient vectors. -/
+/-- The tangent-normal decomposition equivalence sends a pair to the sum of its ambient vectors.
+@isnad1 id=eq.0h8v.s11.9038890bdacf from=translated src=- shape=2919558f vocab=a131e6fa
+-/
 theorem tangentNormalEquiv_apply (f : M → E) (x : M)
     (z : tangentSpace I f x × normalSpace I f x) :
     tangentNormalEquiv I f x z = (z.1 : E) + (z.2 : E) := rfl
 
 omit [FiniteDimensional ℝ F] [IsManifold I 2 M] in
-/-- Tangent and normal dimensions add to the ambient dimension. -/
+/-- Tangent and normal dimensions add to the ambient dimension.
+@isnad1 id=eq.0h7v.s8.da3fb03e05d7 from=translated src=- shape=3504928b vocab=176189f5
+-/
 theorem tangent_normal_finrank (f : M → E) (x : M) :
     Module.finrank ℝ (tangentSpace I f x) + Module.finrank ℝ (normalSpace I f x) =
       Module.finrank ℝ E :=
   (tangentSpace I f x).finrank_add_finrank_orthogonal
 
-/-- The normal dimension is the ambient dimension minus the manifold dimension. -/
+/-- The normal dimension is the ambient dimension minus the manifold dimension.
+@isnad1 id=eq.1h7v.s8.483369833f50 from=translated src=- shape=c88e87bd vocab=f68235e3
+-/
 theorem normalSpace_finrank (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M) :
     Module.finrank ℝ (normalSpace I f x) = Module.finrank ℝ E - Module.finrank ℝ F := by
@@ -242,7 +258,9 @@ set_option backward.isDefEq.respectTransparency false in
 point.
 
 In a local chart, use the injective derivative matrix D and the formula D (D* D)⁻¹ D*.
-Continuity of the C¹ differential and inversion gives the result. -/
+Continuity of the C¹ differential and inversion gives the result.
+@isnad1 id=continuo.1h6v.s8.5f9dbfae8c92 from=translated src=- shape=51719aa8 vocab=7062b141
+-/
 theorem continuous_tangentProjection (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) :
     Continuous (fun x => (tangentSpace I f x).starProjection) := by
@@ -300,7 +318,9 @@ theorem continuous_tangentProjection (f : M → E)
   rw [← hr, starProjection_range_eq (D y) (hinj y hy)]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The ambient orthogonal projection onto the normal varies continuously with the base point. -/
+/-- The ambient orthogonal projection onto the normal varies continuously with the base point.
+@isnad1 id=continuo.1h6v.s8.5a1be1a6baa4 from=translated src=- shape=51719aa8 vocab=dd7eb87b
+-/
 theorem continuous_normalProjection (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) :
     Continuous (fun x => (normalSpace I f x).starProjection) := by

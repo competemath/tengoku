@@ -30,7 +30,9 @@ def IsIrreducibleAffineClosed {ι : Type*} (Z : Set (ι → ℂ)) : Prop :=
       affineZariskiClosure Z₁ = Z₁ → affineZariskiClosure Z₂ = Z₂ →
       Z = Z₁ ∪ Z₂ → Z = Z₁ ∨ Z = Z₂
 
-/-- A nonempty affine set has a proper vanishing ideal. -/
+/-- A nonempty affine set has a proper vanishing ideal.
+@isnad1 id=ne.1h2v.s7.6a87d6967420 from=translated src=- shape=ab73a582 vocab=8563cd6e
+-/
 lemma vanishingIdeal_ne_top_of_nonempty {ι : Type*} {Z : Set (ι → ℂ)}
     (hZ : Z.Nonempty) : MvPolynomial.vanishingIdeal ℂ Z ≠ ⊤ := by
   rintro htop
@@ -40,7 +42,9 @@ lemma vanishingIdeal_ne_top_of_nonempty {ι : Type*} {Z : Set (ι → ℂ)}
     trivial
   simpa using hone x hx
 
-/-- A prime ideal in a finite complex polynomial ring has a nonempty zero locus. -/
+/-- A prime ideal in a finite complex polynomial ring has a nonempty zero locus.
+@isnad1 id=nonempty.0h2v.s6.af69e5e85fa6 from=translated src=- shape=11a5b305 vocab=ae8909f6
+-/
 lemma nonempty_zeroLocus_of_prime {ι : Type*} [Finite ι]
     (P : Ideal (MvPolynomial ι ℂ)) [P.IsPrime] :
     (MvPolynomial.zeroLocus ℂ P).Nonempty := by
@@ -53,7 +57,9 @@ lemma nonempty_zeroLocus_of_prime {ι : Type*} [Finite ι]
 
 /-- [A nonempty](hyp:hnonempty) [polynomially closed](hyp:hclosed) complex set
 `Z` [is irreducible exactly when the polynomial equations that vanish on it
-form a prime ideal](goal). -/
+form a prime ideal](goal).
+@isnad1 id=iff.2h2v.s6.384c536d661c from=translated src=- shape=1804c974 vocab=54c6b88c
+-/
 theorem irreducibleAffineClosed_iff_isPrime {ι : Type*} [Finite ι]
     {Z : Set (ι → ℂ)} (hclosed : affineZariskiClosure Z = Z)
     (hnonempty : Z.Nonempty) :
@@ -123,7 +129,9 @@ theorem irreducibleAffineClosed_iff_isPrime {ι : Type*} [Finite ι]
       · rw [hZ]
         exact Set.subset_union_right
 
-/-- The zero locus of a prime ideal is irreducible affine-closed. -/
+/-- The zero locus of a prime ideal is irreducible affine-closed.
+@isnad1 id=isirredu.0h2v.s6.bf2d341475ce from=translated src=- shape=f2c0cce5 vocab=e7c01d5d
+-/
 theorem irreducible_zeroLocus_of_prime {ι : Type*} [Finite ι]
     (P : Ideal (MvPolynomial ι ℂ)) [P.IsPrime] :
     IsIrreducibleAffineClosed (MvPolynomial.zeroLocus ℂ P) := by
@@ -136,7 +144,9 @@ theorem irreducible_zeroLocus_of_prime {ι : Type*} [Finite ι]
   rw [MvPolynomial.IsPrime.vanishingIdeal_zeroLocus P]
   infer_instance
 
-/-- Strict inclusion of affine-closed sets strictly reverses their vanishing ideals. -/
+/-- Strict inclusion of affine-closed sets strictly reverses their vanishing ideals.
+@isnad1 id=lt.3h3v.s8.8e60ad929820 from=translated src=- shape=27137971 vocab=f7d9ef38
+-/
 lemma vanishingIdeal_strict_anti {ι : Type*}
     {A B : Set (ι → ℂ)} (hA : affineZariskiClosure A = A)
     (hB : affineZariskiClosure B = B) (hAB : A ⊂ B) :
@@ -146,7 +156,9 @@ lemma vanishingIdeal_strict_anti {ι : Type*}
   apply hAB.ne
   rw [← hA, ← hB, affineZariskiClosure, affineZariskiClosure, heq]
 
-/-- Strict inclusion of prime ideals strictly reverses their complex zero loci. -/
+/-- Strict inclusion of prime ideals strictly reverses their complex zero loci.
+@isnad1 id=lt.1h3v.s8.e0e6d13fcf62 from=translated src=- shape=83c6b541 vocab=acfe6e8b
+-/
 lemma zeroLocus_strict_anti {ι : Type*} [Finite ι]
     {P Q : Ideal (MvPolynomial ι ℂ)} [P.IsPrime] [Q.IsPrime] (hPQ : P < Q) :
     MvPolynomial.zeroLocus ℂ Q ⊂ MvPolynomial.zeroLocus ℂ P := by

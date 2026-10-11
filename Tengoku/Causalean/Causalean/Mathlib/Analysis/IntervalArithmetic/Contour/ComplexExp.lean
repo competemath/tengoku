@@ -41,7 +41,9 @@ private theorem complexExpRaw_sound {I : ComplexRatInterval} {z : ℂ}
   exact ⟨by simpa [complexExpRaw, Complex.exp_re] using RatInterval.mul_sound he hc,
     by simpa [complexExpRaw, Complex.exp_im] using RatInterval.mul_sound he hs⟩
 
-/-- Compositional complex exponential evaluation encloses the exact complex exponential. -/
+/-- Compositional complex exponential evaluation encloses the exact complex exponential.
+@isnad1 id=contains.1h3v.s4.b8589b07f532 from=translated src=- shape=3a72387f vocab=7d1d1f28
+-/
 theorem complexExp_sound {I : ComplexRatInterval} {z : ℂ}
     (hz : I.Contains z) (fuel : ℕ) :
     (complexExp I fuel).Contains (Complex.exp z) := by
@@ -51,7 +53,9 @@ theorem complexExp_sound {I : ComplexRatInterval} {z : ℂ}
       (complexExpRaw_sound hz (fuel + 1))).1
 
 /-- Adjacent complex exponential outputs for one fixed input rectangle are
-nested by coordinatewise finite intersection. -/
+nested by coordinatewise finite intersection.
+@isnad1 id=subinter.0h2v.s4.940e3adf9002 from=translated src=- shape=67f6e8d6 vocab=1c550ea8
+-/
 theorem complexExp_nested (I : ComplexRatInterval) (fuel : ℕ) :
     (complexExp I (fuel + 1)).Subinterval (complexExp I fuel) := by
   have hz : I.Contains ((intervalMid I.re : ℝ) +
@@ -69,7 +73,9 @@ theorem complexExp_nested (I : ComplexRatInterval) (fuel : ℕ) :
     (complexExp_sound hz fuel) (complexExpRaw_sound hz (fuel + 1))).2
 
 /-- Complex exponential width is bounded explicitly by the widths and endpoint
-magnitudes of its certified exponential and trigonometric factors. -/
+magnitudes of its certified exponential and trigonometric factors.
+@isnad1 id=le.0h2v.s6.ad450d9210c9 from=translated src=- shape=e6c0a072 vocab=fd5171c8
+-/
 theorem complexExp_width (I : ComplexRatInterval) (fuel : ℕ) :
     ComplexRatInterval.width (complexExp I fuel) ≤
       2 * (max (expInterval I.re fuel).maxAbs 0 *
@@ -177,7 +183,9 @@ private theorem complexExpStage_sound (z : CertifiedComplex) (n : ℕ) :
   exact complexExp_sound (z.contains _) _
 
 /-- Recursive complex-exponential name approximations remain sound and
-adjacent stages are nested by their defining finite intersection. -/
+adjacent stages are nested by their defining finite intersection.
+@isnad1 id=and.0h2v.s4.119e55647130 from=translated src=- shape=f83dae2e vocab=78395b39
+-/
 theorem complexExpNameApprox_spec (z : CertifiedComplex) (n : ℕ) :
     (complexExpNameApprox z n).Contains (Complex.exp z.value) ∧
       (complexExpNameApprox z (n + 1)).Subinterval (complexExpNameApprox z n) := by
@@ -273,7 +281,9 @@ private theorem ratMaxAbs_le_of_contains {I : RatInterval} {x : ℝ} {C w : ℚ}
 set_option maxHeartbeats 2000000 in
 /-- Every scheduled stage has width at most its reciprocal stage tolerance;
 the proof combines input refinement, scalar Taylor convergence, magnitude
-amplification, and explicit rectangle-product propagation. -/
+amplification, and explicit rectangle-product propagation.
+@isnad1 id=le.0h2v.s4.d6dba2595bf7 from=translated src=- shape=a4cd4735 vocab=3d658d34
+-/
 theorem complexExpStage_width (z : CertifiedComplex) (n : ℕ) :
     ComplexRatInterval.width (complexExpStage z n) ≤
       (complexExpStageTolerance n).1 := by
@@ -546,7 +556,9 @@ def complexExpPrecision (_z : CertifiedComplex) (ε : PosRat) : ℕ := ε.1.den
 /-- For [a certified complex input](hyp:z) and [a requested positive rational tolerance
 `ε`](hyp:ε), [evaluating the certified complex-exponential approximation at the precision
 level selected for that tolerance yields an output enclosure whose width is no larger than
-`ε`](goal). -/
+`ε`](goal).
+@isnad1 id=le.0h2v.s4.fc617fe52658 from=translated src=- shape=4c0864cd vocab=39ec056e
+-/
 theorem complexExp_width_at_precision (z : CertifiedComplex) (ε : PosRat) :
     ComplexRatInterval.width
       (complexExpNameApprox z (complexExpPrecision z ε)) ≤ ε.1 := by

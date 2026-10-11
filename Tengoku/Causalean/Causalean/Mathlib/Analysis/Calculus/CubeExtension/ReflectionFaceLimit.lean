@@ -26,7 +26,9 @@ then [as z approaches x from within the open exterior collar, the order-j
 ambient derivative of the one-face reflection of u at z, evaluated on the
 standard basis vectors in directions f, converges to the order-j within-cube
 derivative of u at x evaluated on the same vectors](goal). The moment equations
-cancel the inward sample factors. -/
+cancel the inward sample factors.
+@isnad1 id=tendsto.5h8v.s10.0e71894cea6b from=translated src=- shape=ceb0c9ae vocab=6ddd718f
+-/
 theorem leftFaceReflection_coordinate_jet_tendsto_face (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),
@@ -69,7 +71,9 @@ continuously differentiable within the closed cube](hyp:hu), [j ≤ m](hyp:hj),
 and [x is a cube point](hyp:hx) [on the left face in coordinate i](hyp:hxi),
 then [as z approaches x from within the open exterior collar, the order-j
 ambient derivative of the one-face reflection of u at z converges to the order-j
-within-cube derivative of u at x](goal). -/
+within-cube derivative of u at x](goal).
+@isnad1 id=tendsto.5h7v.s10.f1a5641d68c4 from=translated src=- shape=427086b2 vocab=7a8fb06e
+-/
 theorem leftFaceReflection_jet_tendsto_face (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

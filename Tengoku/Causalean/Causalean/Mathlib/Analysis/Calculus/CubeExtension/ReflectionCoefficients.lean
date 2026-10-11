@@ -15,7 +15,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 /-- For [every derivative order m](hyp:m) [there are real weights a_0, …, a_m
 such that, for every k ≤ m, the sum over i of a_i·(−(i + 1))^k equals one](goal);
 that is, the negative integer dilation factors −1, …, −(m + 1) admit weights all
-of whose moments through order m equal one. -/
+of whose moments through order m equal one.
+@isnad1 id=ex.0h1v.s7.fb82e8feb543 from=translated src=- shape=b1b0845c vocab=f9090b26
+-/
 theorem exists_reflection_coefficients (m : ℕ) :
     ∃ a : Fin (m + 1) → ℝ,
       ∀ k : Fin (m + 1),

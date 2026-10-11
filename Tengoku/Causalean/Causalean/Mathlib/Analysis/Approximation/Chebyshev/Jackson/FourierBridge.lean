@@ -15,7 +15,9 @@ namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.Jackson
 /-- For [any order N](hyp:N) and [any angle u](hyp:u), [the packet antiderivative equals minus one
 half times the sum of two real parts: that of the complex exponential of 4N i u times the Fourier
 series of the plus-shifted coefficients at u, and that of the same exponential times the Fourier
-series of the minus-shifted coefficients at −u](goal). -/
+series of the minus-shifted coefficients at −u](goal).
+@isnad1 id=eq.0h2v.s7.36a3886480fa from=translated src=- shape=3c96fffb vocab=5c9563c8
+-/
 theorem packetAntideriv_eq_finiteFourier (N : ℕ) (u : ℝ) :
     packetAntideriv N u = -(1 / 2 : ℝ) *
       ((Complex.exp (Complex.I * (4 * (N : ℝ) * u : ℂ)) *

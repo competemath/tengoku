@@ -57,13 +57,17 @@ variable (G : DAG V)
 -- ============================================================
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [every member of a vertex
-set](hyp:S) [belongs to that set's ancestral closure](goal). -/
+set](hyp:S) [belongs to that set's ancestral closure](goal).
+@isnad1 id=le.0h3v.s5.7e4eabd57eb3 from=translated src=- shape=f6674387 vocab=6d94b744
+-/
 lemma subset_ancestralSet (S : Finset V) : S ⊆ G.ancestralSet S := by
   intro v hv
   exact Finset.mem_union_left _ hv
 
 /-- In [a finite directed acyclic graph](hyp:V,G), if [one vertex set is contained in
-another](hyp:S,T,h), then [its ancestral closure is contained in the other's](goal). -/
+another](hyp:S,T,h), then [its ancestral closure is contained in the other's](goal).
+@isnad1 id=le.1h4v.s5.422ee3c13662 from=translated src=- shape=1b818e5b vocab=6d94b744
+-/
 lemma ancestralSet_mono {S T : Finset V} (h : S ⊆ T) :
     G.ancestralSet S ⊆ G.ancestralSet T := by
   intro v hv
@@ -77,7 +81,9 @@ lemma ancestralSet_mono {S T : Finset V} (h : S ⊆ T) :
 
 /-- In [a finite directed acyclic graph](hyp:V,G), if [a vertex belongs to a target
 set](hyp:w,S,hwS) and [another vertex is its ancestor](hyp:u,h), then [that ancestor belongs
-to the target set's ancestral closure](goal). -/
+to the target set's ancestral closure](goal).
+@isnad1 id=mem.2h5v.s5.45b8cff190cf from=translated src=- shape=20b3edaa vocab=de058049
+-/
 lemma mem_ancestralSet_of_isAncestor
     {u w : V} {S : Finset V} (hwS : w ∈ S) (h : G.isAncestor u w) :
     u ∈ G.ancestralSet S := by
@@ -87,7 +93,9 @@ lemma mem_ancestralSet_of_isAncestor
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [containment of one conditioning
 set in another](hyp:Z,S,hZS) implies that [every collider activated by the first set belongs
-to the second set's ancestral closure](goal). -/
+to the second set's ancestral closure](goal).
+@isnad1 id=le.1h4v.s5.64646d07e0a8 from=translated src=- shape=1b818e5b vocab=7877c245
+-/
 lemma bbZAncestors_subset_ancestralSet_of_subset
     {Z S : Finset V} (hZS : Z ⊆ S) :
     G.bbZAncestors Z ⊆ G.ancestralSet S := by
@@ -100,7 +108,9 @@ lemma bbZAncestors_subset_ancestralSet_of_subset
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [three vertices](hyp:l,m,r) whose
 [consecutive pairs are adjacent](hyp:hadj_lm,hadj_mr) but whose [middle vertex is not a
-collider](hyp:hnc) have [an outgoing edge from the middle vertex to an outer vertex](goal). -/
+collider](hyp:hnc) have [an outgoing edge from the middle vertex to an outer vertex](goal).
+@isnad1 id=or.3h5v.s5.842114887669 from=translated src=- shape=fb701196 vocab=0069e07f
+-/
 lemma nonCollider_has_outgoing
     {l m r : V} (hadj_lm : G.UAdj l m) (hadj_mr : G.UAdj m r)
     (hnc : ¬ G.IsCollider l m r) :
@@ -121,7 +131,9 @@ lemma nonCollider_has_outgoing
 
 /-- In [a finite directed acyclic graph](hyp:V,G), if [an edge joins two
 vertices](hyp:u,v,huv) and [its target belongs to a set's ancestral closure](hyp:S,hv), then
-[its source also belongs to that ancestral closure](goal). -/
+[its source also belongs to that ancestral closure](goal).
+@isnad1 id=mem.2h5v.s5.c6a5cda13360 from=translated src=- shape=45489035 vocab=015849cb
+-/
 lemma mem_ancestralSet_of_edge_to_mem
     {u v : V} {S : Finset V} (huv : G.edge u v)
     (hv : v ∈ G.ancestralSet S) :
@@ -331,7 +343,9 @@ private theorem walk_forward_witness
 `X ∪ Y ∪ Z`](goal). This is the main classical lemma used to justify ancestral reduction of
 d-separation.
 
-    The per-index witness is supplied by `walk_forward_witness`. -/
+    The per-index witness is supplied by `walk_forward_witness`.
+@isnad1 id=mem.6h9v.s6.624f3136d754 from=translated src=- shape=c1a18698 vocab=d841c0b1
+-/
 theorem activeWalk_nodes_are_ancestors
     {X Y Z : Finset V} {x y : V} {p : List V}
     (hxX : x ∈ X) (hyY : y ∈ Y)
@@ -351,7 +365,9 @@ theorem activeWalk_nodes_are_ancestors
 
 /-- In [a finite directed acyclic graph](hyp:V,G), [containment of one vertex set in
 another](hyp:Y,S,hYS) ensures that [the smaller set lies in the larger set's ancestral
-closure](goal). -/
+closure](goal).
+@isnad1 id=le.1h4v.s5.5b34579783f6 from=translated src=- shape=60513e20 vocab=6d94b744
+-/
 theorem subset_ancestralSet_of_subset
     {Y S : Finset V} (hYS : Y ⊆ S) :
     Y ⊆ G.ancestralSet S := by
@@ -372,7 +388,9 @@ walk whose every vertex lies in the query's ancestral closure](goal).
     Specialization of `activeWalk_nodes_are_ancestors` to a witness
     expressed via `bbReachableVertices`. If `v ∈ Y` is BFS-reachable from
     `X` given `Z`, then for every node `w` along the witnessing active
-    walk, `w ∈ ancestralSet (X ∪ Y ∪ Z)`. -/
+    walk, `w ∈ ancestralSet (X ∪ Y ∪ Z)`.
+@isnad1 id=ex.2h6v.s7.60df270d18e8 from=translated src=- shape=d0e82c54 vocab=ddfa9867
+-/
 theorem activeWalk_witness_subset_ancestralSet
     {X Y Z : Finset V} {v : V}
     (hvR : v ∈ G.bbReachableVertices Z X) (hvY : v ∈ Y) :
@@ -396,7 +414,9 @@ the conditioning set](hyp:hZ) form [an active walk](goal).
 
     "Forward-directed" means each edge points from the *earlier* index to the
     *later* index. Every interior vertex is then a non-collider (incoming +
-    outgoing), and by the avoidance hypothesis none is in `Z`; endpoints may lie in `Z`. -/
+    outgoing), and by the avoidance hypothesis none is in `Z`; endpoints may lie in `Z`.
+@isnad1 id=isactive.2h4v.s7.03e9d708bfd6 from=translated src=- shape=e9f34295 vocab=ce39229e
+-/
 theorem isActiveWalk_of_directed
     {Z : Finset V} {p : List V}
     (hdir : ∀ (i : ℕ) (hi : i + 1 < p.length),
@@ -425,7 +445,9 @@ to the descendant](goal).
 
     The internal
     nodes of the path are also ancestors of `v` (hence members of
-    `ancestralSet S` for any `S ∋ v`). -/
+    `ancestralSet S` for any `S ∋ v`).
+@isnad1 id=ex.2h5v.s6.043fd9914818 from=translated src=- shape=5afea3ea vocab=cf45c205
+-/
 theorem exists_activeWalk_of_ancestor_avoiding
     {Z : Finset V} {u v : V} (huv : G.isAncestor u v)
     (huZ : u ∉ G.ancestralSet Z) :
@@ -443,7 +465,9 @@ and [the second does likewise](hyp:hyp_len,hyp_head,hyp_last,hyp_edge,hyp_Z), th
 [reversing the first and joining it to the second gives an active walk between the
 endpoints](goal).
 
-The resulting walk is active between their endpoints. -/
+The resulting walk is active between their endpoints.
+@isnad1 id=other.10h8v.s8.2a44b71d36cf from=translated src=- shape=27f09eee vocab=dea8a93f
+-/
 theorem fork_isActiveWalk
     {Z : Finset V} {u x y : V} {xp yp : List V}
     (hxp_len : xp.length ≥ 2) (hxp_head : xp.head? = some u)
@@ -754,7 +778,9 @@ theorem fork_isActiveWalk
 /-- **Ancestral intersection from reachability separation.** If [`X` and `Y` are
     disjoint](hyp:hXY) and [no vertex of `Y` is Bayes-Ball-reachable from `X` given
     `Z`](hyp:hReach), then [any vertex lying in both the ancestral closure of `X` and the
-    ancestral closure of `Y` also lies in the ancestral closure of `Z`](goal). -/
+    ancestral closure of `Y` also lies in the ancestral closure of `Z`](goal).
+@isnad1 id=le.2h5v.s6.c62c576607b9 from=translated src=- shape=218a9c69 vocab=e6e62bf9
+-/
 theorem ancestralSet_inter_subset_ancestralSet_of_dSep
     {X Y Z : Finset V} (hXY : Disjoint X Y)
     (hReach : Disjoint (G.bbReachableVertices Z X) Y) :

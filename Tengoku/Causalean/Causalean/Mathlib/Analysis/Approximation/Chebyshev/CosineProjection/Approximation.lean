@@ -29,6 +29,7 @@ evenness and periodicity follow from Fold; the generic convolution helpers
 in Convolution isolate the integration-window and odd-integral obligations.
 Rescale nonzero coefficients by √2, keeping the constant coefficient separate.
 The change of window is a theorem in Convolution, not a definitional equality.
+@isnad1 id=incosine.2h2v.s6.a54cf9182c3e from=translated src=- shape=19058e1a vocab=f9a05380
 -/
 theorem jacksonApproximant_mem_span {K : ℕ} {f : ℝ → ℝ}
     (hK : 0 < K) (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1)) :
@@ -62,6 +63,7 @@ with uniform error at most five times the Hölder constant times k⁻γ](goal).
 
 Choose K=(k+1)/2 in the previous results and zero-pad the coefficient sequence.
 This covers odd and even ranks, including rank one.
+@isnad1 id=ex.6h4v.s7.358489f58ce6 from=translated src=- shape=e1258df3 vocab=1a0466dc
 -/
 theorem exists_cosine_approximant {k : ℕ} {f : ℝ → ℝ} {γ H : ℝ}
     (hk : 1 ≤ k) (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1))

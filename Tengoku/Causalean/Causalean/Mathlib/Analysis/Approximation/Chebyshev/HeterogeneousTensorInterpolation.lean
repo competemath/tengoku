@@ -51,7 +51,9 @@ def interpolate (d : ι → ℕ) (v : GridIndex d → ℝ) : MvPolynomial ι ℝ
   ∑ a : GridIndex d, MvPolynomial.monomial (exponent d a)
     (∑ b : GridIndex d, gridWeight d a b * v b)
 
-/-- [A coordinate-specific degree map](hyp:d), [tensor-grid values](hyp:v), and [a requested tensor index](hyp:a) imply that [the interpolant coefficient is its finite weighted grid-value sum](goal). -/
+/-- [A coordinate-specific degree map](hyp:d), [tensor-grid values](hyp:v), and [a requested tensor index](hyp:a) imply that [the interpolant coefficient is its finite weighted grid-value sum](goal).
+@isnad1 id=eq.0h4v.s6.8d62d698d781 from=translated src=- shape=416baaf7 vocab=5a78adc3
+-/
 theorem coeff_interpolate (d : ι → ℕ) (v : GridIndex d → ℝ)
     (a : GridIndex d) :
     MvPolynomial.coeff (exponent d a) (interpolate d v) =
@@ -72,7 +74,9 @@ theorem coeff_interpolate (d : ι → ℕ) (v : GridIndex d → ℝ)
   · intro h
     exact (h (Finset.mem_univ a)).elim
 
-/-- [A coordinate-specific degree map](hyp:d), [tensor-grid values](hyp:v), [a monomial exponent](hyp:γ), and [an exponent outside the interpolation box](hyp:hγ) imply that [the interpolant coefficient vanishes](goal). -/
+/-- [A coordinate-specific degree map](hyp:d), [tensor-grid values](hyp:v), [a monomial exponent](hyp:γ), and [an exponent outside the interpolation box](hyp:hγ) imply that [the interpolant coefficient vanishes](goal).
+@isnad1 id=eq.1h4v.s6.3ccc70da1a82 from=translated src=- shape=4a76503b vocab=06981458
+-/
 theorem coeff_interpolate_eq_zero (d : ι → ℕ) (v : GridIndex d → ℝ)
     (γ : ι →₀ ℕ) (hγ : ∃ i, interpolationDegree d < γ i) :
     MvPolynomial.coeff γ (interpolate d v) = 0 := by
@@ -89,7 +93,9 @@ theorem coeff_interpolate_eq_zero (d : ι → ℕ) (v : GridIndex d → ℝ)
     omega
   simp [hne]
 
-/-- [A coordinate-specific degree map](hyp:d), [a multivariate polynomial](hyp:p), [its coordinatewise interpolation-degree bounds](hyp:hp), and [an evaluation point](hyp:x) imply that [interpolation from the fixed tensor grid reproduces the polynomial at that point](goal). -/
+/-- [A coordinate-specific degree map](hyp:d), [a multivariate polynomial](hyp:p), [its coordinatewise interpolation-degree bounds](hyp:hp), and [an evaluation point](hyp:x) imply that [interpolation from the fixed tensor grid reproduces the polynomial at that point](goal).
+@isnad1 id=eq.1h4v.s8.263a11da17cb from=translated src=- shape=309b555c vocab=16b16f51
+-/
 theorem interpolate_eval (d : ι → ℕ) (p : MvPolynomial ι ℝ)
     (hp : ∀ i, p.degreeOf i ≤ interpolationDegree d) (x : ι → ℝ) :
     MvPolynomial.eval x

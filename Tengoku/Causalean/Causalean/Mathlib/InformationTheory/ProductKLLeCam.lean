@@ -53,7 +53,9 @@ private lemma klDiv_toReal_map_measurableEquiv {α β : Type*}
       simp [hx]
 
 /-- A measurable property holding almost everywhere under a measure also holds for the first
-coordinate almost everywhere under its product with a probability measure. -/
+coordinate almost everywhere under its product with a probability measure.
+@isnad1 id=eventual.2h5v.s6.084cab512419 from=translated src=- shape=c65cd09b vocab=08fe6330
+-/
 lemma ae_prod_fst_of_ae {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {μ : Measure α} {ν : Measure β} [IsProbabilityMeasure ν] {p : α → Prop}
     (hp_meas : MeasurableSet {x | p x}) (hp : ∀ᵐ x ∂μ, p x) :
@@ -63,7 +65,9 @@ lemma ae_prod_fst_of_ae {α β : Type*} [MeasurableSpace α] [MeasurableSpace β
   exact (ae_map_iff (measurePreserving_fst (μ := μ) (ν := ν)).aemeasurable hp_meas).mp hmap
 
 /-- A measurable property holding almost everywhere under a measure also holds for the second
-coordinate almost everywhere under its product with a probability measure. -/
+coordinate almost everywhere under its product with a probability measure.
+@isnad1 id=eventual.2h5v.s6.31cc09f61404 from=translated src=- shape=4158c79d vocab=e656d242
+-/
 lemma ae_prod_snd_of_ae {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {μ : Measure α} {ν : Measure β} [IsProbabilityMeasure μ] [SFinite ν] {p : β → Prop}
     (hp_meas : MeasurableSet {y | p y}) (hp : ∀ᵐ y ∂ν, p y) :
@@ -74,7 +78,9 @@ lemma ae_prod_snd_of_ae {α β : Type*} [MeasurableSpace α] [MeasurableSpace β
 
 /-- When each component law is absolutely continuous with respect to its reference law,
 the log-likelihood ratio of their product laws is almost surely the sum of the two
-component log-likelihood ratios. -/
+component log-likelihood ratios.
+@isnad1 id=eventual.2h6v.s7.99fbd044a9cc from=translated src=- shape=38986921 vocab=8b6351e3
+-/
 lemma llr_prod_ae {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (μ₁ ν₁ : Measure α) (μ₂ ν₂ : Measure β)
     [IsProbabilityMeasure μ₁] [SigmaFinite ν₁]
@@ -120,7 +126,9 @@ lemma llr_prod_ae {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
   · exact (ENNReal.toReal_pos hposz₂.ne' hfinz₂).ne'
 
 /-- Integrable component log-likelihood ratios imply that the log-likelihood ratio of
-the corresponding product laws is integrable. -/
+the corresponding product laws is integrable.
+@isnad1 id=integrab.4h6v.s7.e701d28c550d from=translated src=- shape=8b8beb7c vocab=7906312f
+-/
 lemma llr_prod_integrable {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (μ₁ ν₁ : Measure α) (μ₂ ν₂ : Measure β)
     [IsProbabilityMeasure μ₁] [SigmaFinite ν₁]
@@ -144,7 +152,9 @@ lemma llr_prod_integrable {α β : Type*} [MeasurableSpace α] [MeasurableSpace 
 log-likelihood ratio, allowing KL side conditions to transfer between equivalent sample spaces.
 
 This direction transfers integrability from the relabelled measures back to the original sample
-space. -/
+space.
+@isnad1 id=integrab.2h5v.s7.d517a6691504 from=translated src=- shape=525c8bc3 vocab=f9be14aa
+-/
 lemma llr_integrable_of_map_measurableEquiv {α β : Type*}
     [MeasurableSpace α] [MeasurableSpace β] (e : α ≃ᵐ β)
     (μ ν : Measure α) [SigmaFinite μ] [SigmaFinite ν] (hμν : μ ≪ ν)
@@ -207,7 +217,9 @@ private lemma pi_llr_integrable_iid {α : Type*} [MeasurableSpace α]
         (pi_iid_absolutelyContinuous μ ν hμν (k + 1)) hprod_int
 
 /-- For product probability laws with integrable component log-likelihood ratios, the
-real-valued KL divergence of the product equals the sum of the component KL divergences. -/
+real-valued KL divergence of the product equals the sum of the component KL divergences.
+@isnad1 id=eq.4h6v.s7.293bc226288b from=translated src=- shape=808ec97b vocab=8c6945c6
+-/
 lemma klDiv_prod_toReal_add {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (μ₁ ν₁ : Measure α) (μ₂ ν₂ : Measure β)
     [IsProbabilityMeasure μ₁] [IsProbabilityMeasure ν₁]
@@ -255,7 +267,9 @@ lemma klDiv_prod_toReal_add {α β : Type*} [MeasurableSpace α] [MeasurableSpac
 
 /-- Under absolute-continuity and integrability conditions for every finite product, the
 real-valued Kullback–Leibler divergence of two n-fold product laws is n times the
-one-law divergence. -/
+one-law divergence.
+@isnad1 id=eq.4h4v.s8.b1a31f9b76b5 from=translated src=- shape=c5f1b777 vocab=fb58956f
+-/
 lemma productKL_tensorization_toReal_eq {α : Type*} [MeasurableSpace α]
     (n : ℕ) (μ ν : Measure α) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hac : μ ≪ ν) (hint : Integrable (llr μ ν) μ)
@@ -347,7 +361,9 @@ def ProductKLTensorizationBound {α : Type*} [MeasurableSpace α]
 
 The one-sample law is absolutely continuous with respect to its reference law and has an
 integrable log-likelihood ratio. These hypotheses imply the corresponding facts for every
-finite product prefix, avoiding the `klDiv = ∞` / `ENNReal.toReal ∞ = 0` branch. -/
+finite product prefix, avoiding the `klDiv = ∞` / `ENNReal.toReal ∞ = 0` branch.
+@isnad1 id=eq.2h4v.s7.30e8059f8d9e from=translated src=- shape=26f3c2e1 vocab=fb58956f
+-/
 theorem productKL_tensorization_of_finite {α : Type*} [MeasurableSpace α]
     (n : ℕ) (μ ν : Measure α) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hac : μ ≪ ν) (hint : Integrable (llr μ ν) μ) :
@@ -365,7 +381,9 @@ theorem productKL_tensorization_of_finite {α : Type*} [MeasurableSpace α]
 with respect to the second](hyp:hac) and [their log-likelihood ratio is integrable under
 the first measure](hyp:hint), then [both the product and one-observation KL divergences
 are finite, and the real-valued product divergence is at most the sample size times the
-one-observation divergence](goal). -/
+one-observation divergence](goal).
+@isnad1 id=productk.2h4v.s6.c9883e558cc4 from=translated src=- shape=1e20a02c vocab=f467ea23
+-/
 theorem productKL_tensorization {α : Type*} [MeasurableSpace α]
     (n : ℕ) (μ ν : Measure α) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hac : μ ≪ ν) (hint : Integrable (llr μ ν) μ) :
@@ -382,7 +400,9 @@ theorem productKL_tensorization {α : Type*} [MeasurableSpace α]
   exact ⟨hleft_ne_top, hright_kl_ne_top, le_of_eq <|
     productKL_tensorization_of_finite n μ ν hac hint⟩
 
-/-- Unpack a supplied product-KL tensorisation bound. -/
+/-- Unpack a supplied product-KL tensorisation bound.
+@isnad1 id=le.1h4v.s6.8748073261cf from=translated src=- shape=4a90f9a6 vocab=b706f794
+-/
 theorem ProductKLTensorizationBound.apply {α : Type*} [MeasurableSpace α]
     {n : ℕ} {μ ν : Measure α}
     (h : ProductKLTensorizationBound n μ ν) :
@@ -392,7 +412,9 @@ theorem ProductKLTensorizationBound.apply {α : Type*} [MeasurableSpace α]
       ≤ (n : ℝ) * (_root_.InformationTheory.klDiv μ ν).toReal :=
   h.2.2
 
-/-- The product KL divergence in a supplied tensorisation bound is finite. -/
+/-- The product KL divergence in a supplied tensorisation bound is finite.
+@isnad1 id=ne.1h4v.s6.37ab80f0b3ed from=translated src=- shape=13264746 vocab=7afc150f
+-/
 theorem ProductKLTensorizationBound.product_ne_top {α : Type*} [MeasurableSpace α]
     {n : ℕ} {μ ν : Measure α}
     (h : ProductKLTensorizationBound n μ ν) :
@@ -401,7 +423,9 @@ theorem ProductKLTensorizationBound.product_ne_top {α : Type*} [MeasurableSpace
         (Measure.pi (fun _ : Fin n => ν)) ≠ ∞ :=
   h.1
 
-/-- The one-observation KL divergence in a supplied tensorisation bound is finite. -/
+/-- The one-observation KL divergence in a supplied tensorisation bound is finite.
+@isnad1 id=ne.1h4v.s5.c33e39c0e645 from=translated src=- shape=99875296 vocab=84a50cf9
+-/
 theorem ProductKLTensorizationBound.one_ne_top {α : Type*} [MeasurableSpace α]
     {n : ℕ} {μ ν : Measure α}
     (h : ProductKLTensorizationBound n μ ν) :
@@ -413,7 +437,9 @@ then [their finite independent product measures satisfy the same relation](goal)
 product length.
 
 Deprecated information-theory spelling of the probability-layer theorem
-`ProductAbsolutelyContinuous.pi_iid_absolutelyContinuous`. -/
+`ProductAbsolutelyContinuous.pi_iid_absolutelyContinuous`.
+@isnad1 id=absolute.1h4v.s6.74479267cf48 from=translated src=- shape=718d691c vocab=6ab380b4
+-/
 @[deprecated Causalean.Mathlib.Probability.ProductAbsolutelyContinuous.pi_iid_absolutelyContinuous
   (since := "2026-09-19")]
 theorem pi_iid_absolutelyContinuous {α : Type*} [MeasurableSpace α]
@@ -427,7 +453,9 @@ theorem pi_iid_absolutelyContinuous {α : Type*} [MeasurableSpace α]
 the one-sample hypotheses `μ ≪ ν` and `Integrable (llr μ ν) μ`.  Combined with
 `ProductAbsolutelyContinuous.pi_iid_absolutelyContinuous` this certifies
 `klDiv (pi μ) (pi ν) ≠ ⊤`
-(via `InformationTheory.klDiv_ne_top`). -/
+(via `InformationTheory.klDiv_ne_top`).
+@isnad1 id=integrab.2h4v.s7.c67a89aa9b51 from=translated src=- shape=c37f8130 vocab=4f345e53
+-/
 theorem pi_iid_llr_integrable {α : Type*} [MeasurableSpace α]
     (μ ν : Measure α) [IsProbabilityMeasure μ] [SigmaFinite ν]
     (hμν : μ ≪ ν) (hint : Integrable (llr μ ν) μ) (n : ℕ) :

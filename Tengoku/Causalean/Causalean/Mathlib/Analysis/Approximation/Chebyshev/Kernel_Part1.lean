@@ -40,13 +40,16 @@ noncomputable def jackson (K : ℕ) (t : ℝ) : ℝ := jraw K t / jrawMass K
 
 /-- At [order K](hyp:K) and argument t, if [the sine of t / 2 is nonzero](hyp:ht), then [the raw
 Jackson kernel equals the fourth power of the ratio of the sine of K t / 2 to the sine of t /
-2](goal). -/
+2](goal).
+@isnad1 id=eq.1h2v.s6.6c6e318121a3 from=translated src=- shape=799b4d71 vocab=7613f6bd
+-/
 theorem jraw_eq_of_sin_ne_zero (K : ℕ) {t : ℝ} (ht : Real.sin (t / 2) ≠ 0) :
     jraw K t = (Real.sin ((K : ℝ) * t / 2) / Real.sin (t / 2)) ^ 4 := by
   simp [jraw, ht]
 
 /-- At [order K](hyp:K) and [argument t](hyp:t), if [the denominator sine vanishes](hyp:ht), then
 [the raw kernel equals K to the fourth power](goal).
+@isnad1 id=eq.1h2v.s5.ad6306088eaf from=translated src=- shape=02910c5b vocab=78c3db89
 -/
 theorem jraw_eq_of_sin_eq_zero (K : ℕ) {t : ℝ} (ht : Real.sin (t / 2) = 0) :
     jraw K t = (K : ℝ) ^ 4 := by
@@ -54,7 +57,9 @@ theorem jraw_eq_of_sin_eq_zero (K : ℕ) {t : ℝ} (ht : Real.sin (t / 2) = 0) :
 
 /-- At [a strictly positive kernel order](hyp:K,hK) and [a real argument](hyp:t), [the raw
 Jackson kernel equals the fourth power of the corresponding Chebyshev polynomial of the second
-kind evaluated at the half-angle cosine](goal). -/
+kind evaluated at the half-angle cosine](goal).
+@isnad1 id=eq.1h2v.s6.f3da0962ebb0 from=translated src=- shape=a43696d4 vocab=7e58c671
+-/
 lemma jraw_eq_chebyshev (K : ℕ) (hK : 0 < K) (t : ℝ) :
     jraw K t =
       ((Polynomial.Chebyshev.U ℝ ((K - 1 : ℕ) : ℤ)).eval (Real.cos (t / 2))) ^ 4 := by
@@ -117,7 +122,9 @@ private lemma coeff_comp_neg_X (p : Polynomial ℝ) (k : ℕ) :
 
 /-- If [a real polynomial](hyp:p) [takes the same value at every pair of opposite
 arguments](hyp:hp), then [it is a polynomial in the square variable, with the outer polynomial's
-degree at most half the original degree](goal). -/
+degree at most half the original degree](goal).
+@isnad1 id=ex.1h1v.s6.2e72e81cafb5 from=translated src=- shape=f7931356 vocab=28fcc534
+-/
 lemma exists_comp_sq_of_eval_neg_eq (p : Polynomial ℝ)
     (hp : ∀ x : ℝ, p.eval (-x) = p.eval x) :
     ∃ q : Polynomial ℝ, q.natDegree ≤ p.natDegree / 2 ∧
@@ -230,7 +237,9 @@ private lemma cheb_U_even_eval (r : ℕ) (t : ℝ) :
       ring
 
 /-- At [a nonnegative integer order](hyp:n) and [a real angle](hyp:t), [the square of the
-corresponding Chebyshev polynomial of the second kind equals its finite cosine expansion](goal). -/
+corresponding Chebyshev polynomial of the second kind equals its finite cosine expansion](goal).
+@isnad1 id=eq.0h2v.s7.1c7e53c2de93 from=translated src=- shape=83d36881 vocab=fb2cd4a8
+-/
 lemma cheb_U_sq_eval (n : ℕ) (t : ℝ) :
     (Polynomial.Chebyshev.U ℝ (n : ℤ)).eval (Real.cos (t / 2)) ^ 2 =
       (n + 1 : ℝ) + 2 * ∑ j ∈ Finset.range n,
@@ -274,7 +283,9 @@ lemma cheb_U_sq_eval (n : ℕ) (t : ℝ) :
           linear_combination 2 * hsum
 
 /-- For [a strictly positive integer frequency](hyp:n,hn), [the cosine of that frequency has
-integral zero over the closed interval from negative π to π](goal). -/
+integral zero over the closed interval from negative π to π](goal).
+@isnad1 id=eq.1h1v.s6.da9c4754d65f from=translated src=- shape=61853018 vocab=77bcedd2
+-/
 lemma integral_cos_nat (n : ℕ) (hn : 0 < n) :
     (∫ t in Set.Icc (-Real.pi) Real.pi, Real.cos ((n : ℝ) * t)) = 0 := by
   rw [MeasureTheory.integral_Icc_eq_integral_Ioc,
@@ -294,7 +305,9 @@ private lemma integral_cos_int (k : ℤ) (hk : k ≠ 0) :
   simp
 
 /-- For [a real constant](hyp:c), [its integral over the closed interval from negative π to π
-equals twice π times that constant](goal). -/
+equals twice π times that constant](goal).
+@isnad1 id=eq.0h1v.s6.eeaefadc314c from=translated src=- shape=ef14c247 vocab=bb98fc59
+-/
 lemma integral_const_Icc (c : ℝ) :
     (∫ _t in Set.Icc (-Real.pi) Real.pi, c) = 2 * Real.pi * c := by
   rw [MeasureTheory.integral_Icc_eq_integral_Ioc,
@@ -350,7 +363,9 @@ private lemma integral_cos_mul_cos (m n : ℕ) (hm : 0 < m) (hn : 0 < n) :
 /-- Given [a number of cosine terms](hyp:N), [a constant coefficient](hyp:c), and [a sequence of
 cosine coefficients](hyp:a), [the integral over the closed interval from negative π to π of
 the squared finite cosine sum equals twice π times the squared constant coefficient plus π
-times the sum of the squared cosine coefficients](goal). -/
+times the sum of the squared cosine coefficients](goal).
+@isnad1 id=eq.0h3v.s7.0b0b5f39d6f5 from=translated src=- shape=253be22c vocab=cb529e7a
+-/
 lemma integral_sq_cos_sum (N : ℕ) (c : ℝ) (a : ℕ → ℝ) :
     (∫ t in Set.Icc (-Real.pi) Real.pi,
       (c + ∑ j ∈ Finset.range N,
@@ -476,7 +491,9 @@ lemma integral_sq_cos_sum (N : ℕ) (c : ℝ) (a : ℕ → ℝ) :
 
 /-- For [a nonnegative integer](hyp:n), [the sum of the squared integers from one through that
 integer equals that integer times its successor times one more than twice it, divided by
-six](goal). -/
+six](goal).
+@isnad1 id=eq.0h1v.s7.24f5802ea39e from=translated src=- shape=d14dde8f vocab=113fc2fa
+-/
 lemma sum_range_sub_sq (n : ℕ) :
     ∑ j ∈ Finset.range n, ((n : ℝ) - (j : ℝ)) ^ 2 =
       (n : ℝ) * (n + 1) * (2 * n + 1) / 6 := by
@@ -501,6 +518,7 @@ lemma sum_range_sub_sq (n : ℕ) :
           ring
 
 /-- For [integer order K](hyp:K), [the raw Jackson kernel is continuous on the real line](goal).
+@isnad1 id=continuo.0h1v.s4.5c1cf474271d from=translated src=- shape=8735051e vocab=2bfcb124
 -/
 @[fun_prop]
 theorem continuous_jraw (K : ℕ) : Continuous (jraw K) := by
@@ -517,6 +535,7 @@ theorem continuous_jraw (K : ℕ) : Continuous (jraw K) := by
     fun_prop
 
 /-- For [integer order K](hyp:K), [the raw Jackson kernel is Borel measurable](goal).
+@isnad1 id=measurab.0h1v.s3.39891e259042 from=translated src=- shape=8735051e vocab=ede07336
 -/
 @[measurability, fun_prop]
 theorem measurable_jraw (K : ℕ) : Measurable (jraw K) := by
@@ -524,18 +543,21 @@ theorem measurable_jraw (K : ℕ) : Measurable (jraw K) := by
 
 /-- For [integer order K](hyp:K), [the raw Jackson kernel is integrable over the standard
 period](goal).
+@isnad1 id=integrab.0h1v.s5.2d6cacaa91e4 from=translated src=- shape=60ff477b vocab=ba5b384e
 -/
 theorem integrableOn_jraw (K : ℕ) : IntegrableOn (jraw K) (Set.Icc (-Real.pi) Real.pi) := by
   exact (continuous_jraw K).continuousOn.integrableOn_compact isCompact_Icc
 
 /-- At [integer order K](hyp:K) and [real argument t](hyp:t), [the raw Jackson kernel is
 nonnegative](goal).
+@isnad1 id=le.0h2v.s4.407298e5b731 from=translated src=- shape=787c1379 vocab=6036b31b
 -/
 theorem jraw_nonneg (K : ℕ) (t : ℝ) : 0 ≤ jraw K t := by
   unfold jraw
   split_ifs <;> positivity
 
 /-- For [integer order K](hyp:K), [the raw Jackson kernel is symmetric about zero](goal).
+@isnad1 id=even.0h1v.s3.462eefab4cd5 from=translated src=- shape=8735051e vocab=e2ae768f
 -/
 theorem jraw_even (K : ℕ) : Function.Even (jraw K) := by
   intro t

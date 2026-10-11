@@ -27,7 +27,9 @@ has [the exact exponent interpolation bound](goal) for [endpoint gauges](hyp:n0,
 [an interior exponent](hyp:θ,hθ), and [any vector](hyp:v).
 
 Integrate kFunctionalSq_map_le and use lintegral_weighted_dilation with
-c=A1.toReal/A0.toReal. Convert the resulting A0²*c^(2*θ) to geometric powers. -/
+c=A1.toReal/A0.toReal. Convert the resulting A0²*c^(2*θ) to geometric powers.
+@isnad1 id=le.5h11v.s8.b229e3d82aee from=translated src=- shape=d5b4bf12 vocab=82821dae
+-/
 theorem kNormSq_map_le_of_pos {V W : Type*} [AddCommGroup V] [AddCommGroup W]
     (n0 n1 : V → ℝ≥0∞) (m0 m1 : W → ℝ≥0∞) (D : V →+ W)
     (A0 A1 : ℝ≥0∞) (hA0 : 0 < A0 ∧ A0 < ⊤) (hA1 : 0 < A1 ∧ A1 < ⊤)
@@ -80,7 +82,9 @@ theorem kNormSq_map_le_of_pos {V W : Type*} [AddCommGroup V] [AddCommGroup W]
 /-- [An endpoint estimate on embedded vectors](hyp:h)
 extends to [the whole ambient space](goal) for [an injective embedding](hyp:i,hi),
 [a positive bound](hyp:A,hA), and [an ambient map and target gauge](hyp:D,m).
-Outside the source endpoint the right side is infinity because A is positive. -/
+Outside the source endpoint the right side is infinity because A is positive.
+@isnad1 id=le.3h8v.s8.27f9d508a819 from=translated src=- shape=6e226dc7 vocab=b166351f
+-/
 theorem embeddedNorm_endpoint_bound_of_pos {E V W : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup V] [NormedSpace ℝ V]
@@ -102,7 +106,9 @@ imply [the bound at the original finite nonnegative constants](goal), for
 
 Take B0=A0+ofReal ε and B1=A1+ofReal ε as ε tends to zero from above. Continuity
 of positive ENNReal powers at zero is needed. Finiteness of K prevents a discontinuous
-zero-times-infinity limit; do not remove it or impose positivity of A0 or A1. -/
+zero-times-infinity limit; do not remove it or impose positivity of A0 or A1.
+@isnad1 id=le.5h5v.s8.bbd23db0746f from=translated src=- shape=0f881226 vocab=86453572
+-/
 theorem le_geometric_of_forall_gt (L K A0 A1 : ℝ≥0∞)
     (hK : K < ⊤) (hA0 : A0 < ⊤) (hA1 : A1 < ⊤)
     (θ : ℝ) (hθ : θ ∈ Ioo (0 : ℝ) 1)
@@ -144,7 +150,9 @@ satisfies [the exact normalized interpolation estimate](goal) for
 This is the full embedded-pair operator contract, with no interpolation theorem
 as a hypothesis. Apply the positive-gauge theorem with slightly larger bounds,
 then le_geometric_of_forall_gt. Completeness remains explicit at all four endpoints.
-Reference: https://arxiv.org/html/1404.3599v4, Theorem 2.2(i), (8)--(9). -/
+Reference: https://arxiv.org/html/1404.3599v4, Theorem 2.2(i), (8)--(9).
+@isnad1 id=le.11h15v.s10.7853769bfcb6 from=translated src=- shape=8496cf60 vocab=a8a37ded
+-/
 theorem exact_interpolation_operators
     (E0 E1 G0 G1 V W : Type*)
     [NormedAddCommGroup E0] [NormedSpace ℝ E0] [CompleteSpace E0]

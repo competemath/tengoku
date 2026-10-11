@@ -15,7 +15,9 @@ open scoped ENNReal
 namespace Causalean.Mathlib.Analysis.RealInterpolation
 
 /-- [Arbitrary endpoint gauges](hyp:n0,n1) and [a vector](hyp:v) give
-[a monotone squared K-functional on positive scales](goal). -/
+[a monotone squared K-functional on positive scales](goal).
+@isnad1 id=monotone.0h4v.s5.2946b296b195 from=translated src=- shape=f24b0937 vocab=d9ea6134
+-/
 theorem monotoneOn_kFunctionalSq {V : Type*} [AddCommGroup V]
     (n0 n1 : V → ℝ≥0∞) (v : V) :
     MonotoneOn (fun t => kFunctionalSq n0 n1 t v) (Ioi (0 : ℝ)) := by
@@ -28,7 +30,9 @@ theorem monotoneOn_kFunctionalSq {V : Type*} [AddCommGroup V]
 
 /-- [Arbitrary endpoint gauges](hyp:n0,n1) and [a vector](hyp:v) give
 [a measurable K-functional after restriction to positive scales](goal).
-Use monotoneOn_kFunctionalSq and measurable extension by zero. -/
+Use monotoneOn_kFunctionalSq and measurable extension by zero.
+@isnad1 id=measurab.0h4v.s5.e3d7c07ea88c from=translated src=- shape=1a1eabf6 vocab=6bb9da5a
+-/
 theorem measurable_kFunctionalSq_indicator {V : Type*} [AddCommGroup V]
     (n0 n1 : V → ℝ≥0∞) (v : V) :
     Measurable (Set.indicator (Ioi (0 : ℝ)) (fun t => kFunctionalSq n0 n1 t v)) := by

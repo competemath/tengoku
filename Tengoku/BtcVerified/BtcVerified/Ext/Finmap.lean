@@ -18,7 +18,9 @@ variable {α : Type*} {β : α → Type*} [DecidableEq α]
 /-- Re-inserting the value found at a key after erasing that key restores
 the original map: erasure only forgets the one entry the insertion puts
 back. Lets a map be peeled one entry at a time by facts about `insert`
-alone. -/
+alone.
+@isnad1 id=eq.1h5v.s5.7851895b735d from=translated src=- shape=a6387d99 vocab=4b332d9c
+-/
 theorem insert_erase {a : α} {b : β a} {s : Finmap β} (h : s.lookup a = some b) :
     (s.erase a).insert a b = s :=
   ext_lookup fun x => by

@@ -24,6 +24,7 @@ give [L² cosine projection error at most five times that constant times k⁻γ]
 
 Combine `exists_cosine_approximant`, `cosineProjection_bestApproximation`,
 and `l2Norm_le_of_abs_le` for the continuous approximation residual.
+@isnad1 id=le.6h4v.s7.25d751a2421a from=translated src=- shape=3a8a4f91 vocab=fca9f809
 -/
 theorem cosineProjection_error_le {f : ℝ → ℝ} {γ H : ℝ} {k : ℕ}
     (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1))
@@ -43,6 +44,7 @@ Split whether `holderSeminorm f γ = ⊤`. The infinite branch uses the explicit
 trivial corollary. The finite branch uses its toReal increment bound, the real
 headline, and the continuous residual's extended norm bridge. This theorem
 does not assume finiteness of the seminorm.
+@isnad1 id=le.4h3v.s7.56cf0c89df7b from=translated src=- shape=cb336005 vocab=b22135a6
 -/
 theorem cosineProjection_error_le_seminorm {f : ℝ → ℝ} {γ : ℝ} {k : ℕ}
     (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1))

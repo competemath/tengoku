@@ -21,7 +21,9 @@ namespace Causalean.Mathlib.AlgebraicGeometry.PolynomialImageDimension
 
 noncomputable section
 
-/-- A linear map from a finite-coordinate source is polynomial. -/
+/-- A linear map from a finite-coordinate source is polynomial.
+@isnad1 id=ispolyno.0h3v.s7.a015d5a42f33 from=translated src=- shape=4f432eba vocab=cb1178f4
+-/
 lemma linearMap_isPolynomial {ι κ : Type*} [Finite ι]
     (F : (ι → ℂ) →ₗ[ℂ] (κ → ℂ)) : IsPolynomialMap F := by
   classical
@@ -47,7 +49,9 @@ lemma linearMap_isPolynomial {ι κ : Type*} [Finite ι]
         simp
   simpa [P, mul_comm] using hFx.symm
 
-/-- An affine-linear map from a finite-coordinate source is polynomial. -/
+/-- An affine-linear map from a finite-coordinate source is polynomial.
+@isnad1 id=ispolyno.0h4v.s7.735fe397c75f from=translated src=- shape=cf619bb9 vocab=5e6168b3
+-/
 lemma affineLinearMap_isPolynomial {ι κ : Type*} [Finite ι]
     (F : (ι → ℂ) →ₗ[ℂ] (κ → ℂ)) (c : κ → ℂ) :
     IsPolynomialMap (fun x => c + F x) := by
@@ -61,7 +65,9 @@ lemma affineLinearMap_isPolynomial {ι κ : Type*} [Finite ι]
 /-- An affine translate of a `d`-dimensional linear subspace has exact
 irreducible-chain dimension `d`. For a complex linear subspace `V` of `κ → ℂ` and a base point
 `x₀`, if [`V` has finite rank exactly `d`](hyp:hdim), then [the affine translate
-`{x | x - x₀ ∈ V}` has irreducible-chain (Zariski) dimension exactly `d`](goal). -/
+`{x | x - x₀ ∈ V}` has irreducible-chain (Zariski) dimension exactly `d`](goal).
+@isnad1 id=hasaffin.1h4v.s8.0548809b2e07 from=translated src=- shape=9d94a360 vocab=9870ca4f
+-/
 theorem affineSubspace_hasAffineZariskiDimension {κ : Type*} [Finite κ]
     (V : Submodule ℂ (κ → ℂ)) (x₀ : κ → ℂ) (d : ℕ)
     (hdim : Module.finrank ℂ V = d) :

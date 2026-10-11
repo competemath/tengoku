@@ -33,7 +33,9 @@ noncomputable def recipC (ε : ℝ) (x : ℝ) : ℝ :=
   Real.smoothTransition ((x - ε / 4) / (ε / 4)) * x⁻¹
 
 /-- On the region `x ≥ ε/2` (with `ε > 0`) the floored reciprocal is exactly `x⁻¹`, because the
-smooth cutoff has already saturated to `1` there. -/
+smooth cutoff has already saturated to `1` there.
+@isnad1 id=eq.2h2v.s5.96897ad1c984 from=translated src=- shape=52f76e83 vocab=608efc3e
+-/
 lemma recipC_eq_inv {ε x : ℝ} (hε : 0 < ε) (hx : ε / 2 ≤ x) :
     recipC ε x = x⁻¹ := by
   unfold recipC
@@ -50,7 +52,9 @@ away from the singularity it is a product of `Cⁿ` functions.
 
 The order is arbitrary because both factors are: `Real.smoothTransition` is `C^∞`, and `x⁻¹` is
 `C^∞` away from `0`. `recipC_contDiff` (`n = 1`) and `recipC_contDiff_two` (`n = 2`) are the
-`fun_prop`-facing specializations. -/
+`fun_prop`-facing specializations.
+@isnad1 id=contdiff.1h2v.s5.f238b64d305f from=translated src=- shape=fbb41aac vocab=37a62766
+-/
 lemma recipC_contDiff_of (n : ℕ∞) (ε : ℝ) (hε : 0 < ε) : ContDiff ℝ n (recipC ε) := by
   rw [contDiff_iff_contDiffAt]
   intro x
@@ -85,13 +89,17 @@ lemma recipC_contDiff_of (n : ℕ∞) (ε : ℝ) (hε : 0 < ε) : ContDiff ℝ n
 threshold `ε`](hyp:hε), [the floored reciprocal `recipC ε` is continuously differentiable on all
 of the reals](goal).
 
-Specialization of `recipC_contDiff_of`. -/
+Specialization of `recipC_contDiff_of`.
+@isnad1 id=contdiff.1h1v.s5.ea8b2a726cc1 from=translated src=- shape=46ef41c1 vocab=765d027f
+-/
 @[fun_prop]
 lemma recipC_contDiff (ε : ℝ) (hε : 0 < ε) : ContDiff ℝ 1 (recipC ε) :=
   recipC_contDiff_of 1 ε hε
 
 /-- `recipC ε` is globally `C²`. Specialization of `recipC_contDiff_of`; this is the order the
-reciprocal-product envelope's directional curvature modulus needs. -/
+reciprocal-product envelope's directional curvature modulus needs.
+@isnad1 id=contdiff.1h1v.s5.1ff554c4ef01 from=translated src=- shape=46ef41c1 vocab=6c632dfe
+-/
 @[fun_prop]
 lemma recipC_contDiff_two (ε : ℝ) (hε : 0 < ε) : ContDiff ℝ 2 (recipC ε) :=
   recipC_contDiff_of 2 ε hε

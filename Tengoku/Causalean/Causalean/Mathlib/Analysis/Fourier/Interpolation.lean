@@ -16,7 +16,9 @@ public section
 open MeasureTheory
 namespace Causalean.Mathlib.Analysis.Fourier
 
-/-- [A moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a positive reference scale](hyp:h,hh), and [a real location](hyp:v) give [the stated bound of its absolute power by zeroth and quadratic weights](goal). -/
+/-- [A moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a positive reference scale](hyp:h,hh), and [a real location](hyp:v) give [the stated bound of its absolute power by zeroth and quadratic weights](goal).
+@isnad1 id=le.3h3v.s6.04c7f5d0b9b0 from=translated src=- shape=5821b913 vocab=f64c45b3
+-/
 theorem abs_rpow_le_scaled_quadratic (κ h v : ℝ)
     (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) (hh : 0 < h) :
     |v| ^ κ ≤ h ^ κ + h ^ (κ - 2) * v ^ 2 := by
@@ -34,7 +36,9 @@ theorem abs_rpow_le_scaled_quadratic (κ h v : ℝ)
     exact (mul_le_mul_of_nonneg_right hpow (sq_nonneg v)).trans
       (le_add_of_nonneg_left (Real.rpow_nonneg hh.le _))
 
-/-- [A complex-valued function with almost-everywhere strong measurability](hyp:g,hg), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), and [finite ordinary and quadratic squared energies](hyp:h0,h2) have [an integrable weighted squared energy](goal). -/
+/-- [A complex-valued function with almost-everywhere strong measurability](hyp:g,hg), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), and [finite ordinary and quadratic squared energies](hyp:h0,h2) have [an integrable weighted squared energy](goal).
+@isnad1 id=integrab.5h2v.s8.535a0f994411 from=translated src=- shape=3edba40f vocab=3584091b
+-/
 theorem integrable_weightedEnergy (g : ℝ → ℂ) (κ : ℝ)
     (hg : AEStronglyMeasurable g) (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2)
     (h0 : Integrable (fun v => ‖g v‖ ^ 2))
@@ -51,7 +55,9 @@ theorem integrable_weightedEnergy (g : ℝ → ℂ) (κ : ℝ)
   simpa only [Pi.add_apply, add_mul, one_mul] using
     mul_le_mul_of_nonneg_right hb (sq_nonneg ‖g v‖)
 
-/-- [A complex-valued function with almost-everywhere strong measurability](hyp:g,hg), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), and [finite ordinary and quadratic squared energies](hyp:h0,h2) satisfy [the geometric interpolation bound for weighted squared energy](goal). -/
+/-- [A complex-valued function with almost-everywhere strong measurability](hyp:g,hg), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), and [finite ordinary and quadratic squared energies](hyp:h0,h2) satisfy [the geometric interpolation bound for weighted squared energy](goal).
+@isnad1 id=le.5h2v.s8.ff4e933e6e88 from=translated src=- shape=ea242aff vocab=8e18a291
+-/
 theorem weightedEnergy_le_interpolation (g : ℝ → ℂ) (κ : ℝ)
     (hg : AEStronglyMeasurable g) (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2)
     (h0 : Integrable (fun v => ‖g v‖ ^ 2))
@@ -118,7 +124,9 @@ theorem weightedEnergy_le_interpolation (g : ℝ → ℂ) (κ : ℝ)
   rw [weightedEnergy_two]
   simpa only [weightedEnergy, energy, a, b] using hhölder
 
-/-- [A complex-valued function with almost-everywhere strong measurability](hyp:g,hg), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a positive reference scale](hyp:h,hh), and [finite ordinary and quadratic squared energies](hyp:h0,h2) satisfy [the scale-dependent additive weighted-energy bound](goal). -/
+/-- [A complex-valued function with almost-everywhere strong measurability](hyp:g,hg), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a positive reference scale](hyp:h,hh), and [finite ordinary and quadratic squared energies](hyp:h0,h2) satisfy [the scale-dependent additive weighted-energy bound](goal).
+@isnad1 id=le.6h3v.s8.e8dcce24a56c from=translated src=- shape=79d90915 vocab=c35b1bd5
+-/
 theorem weightedEnergy_le_scaled (g : ℝ → ℂ) (κ h : ℝ)
     (hg : AEStronglyMeasurable g) (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) (hh : 0 < h)
     (h0 : Integrable (fun v => ‖g v‖ ^ 2))

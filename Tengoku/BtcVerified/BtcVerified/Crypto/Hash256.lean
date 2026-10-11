@@ -46,10 +46,14 @@ def decodeHash256 (bs : List UInt8) : Option (Hash256 × List UInt8) :=
 reinterpretation, because the stored bytes already are the wire bytes. -/
 abbrev instCodecHash256 : Codec Hash256 := instCodecBytes 32
 
-/-- A hash is exactly 32 bytes. -/
+/-- A hash is exactly 32 bytes.
+@isnad1 id=eq.0h1v.s4.42182d41e147 from=translated src=- shape=e395774d vocab=e0f987b6
+-/
 theorem Hash256.length_val (h : Hash256) : h.1.length = 32 := h.2
 
-/-- A hash encodes to exactly its 32 bytes. -/
+/-- A hash encodes to exactly its 32 bytes.
+@isnad1 id=eq.0h1v.s4.d94d06c89429 from=translated src=- shape=6b3487b1 vocab=ef63218e
+-/
 theorem Hash256.encode_length (h : Hash256) : (Codec.encode h).length = 32 := h.2
 
 /-- A natural number as a 256-bit hash, low byte first — distinct numbers give

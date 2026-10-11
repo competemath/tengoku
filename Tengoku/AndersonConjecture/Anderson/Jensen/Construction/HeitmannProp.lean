@@ -45,7 +45,9 @@ From depth T ≥ 2, we derive:
 /-- In a local domain with depth ≥ 2, the maximal ideal M is not an associated
 prime of T/rT for any nonzero r. This follows because if M ∈ Ass(T/rT) then
 depth(M, T/rT) = 0, but depth(M, T) ≥ 2 and r is regular (domain) so
-depth(M, T/rT) ≥ 1 by the depth lemma. -/
+depth(M, T/rT) ≥ 1 by the depth lemma.
+@isnad1 id=not.2h2v.s8.05ebc09c3b38 from=translated src=- shape=452c05c8 vocab=5bd0f70b
+-/
 theorem maximal_not_assoc_of_depth_ge_two
     (hdepth : ∃ (a b : T), a ∈ IsLocalRing.maximalIdeal T ∧
       b ∈ IsLocalRing.maximalIdeal T ∧
@@ -137,7 +139,9 @@ theorem maximal_not_assoc_of_depth_ge_two
 
 /-- In a Noetherian local domain with depth ≥ 2, if all primes P ≠ M have height ≤ 1,
 then associated primes of T/rT for nonzero r have height ≤ 1.
-The height hypothesis holds for our concrete T (dim = 2). -/
+The height hypothesis holds for our concrete T (dim = 2).
+@isnad1 id=le.4h3v.s8.22089b2786e6 from=translated src=- shape=4f1e05c4 vocab=832bb7ca
+-/
 theorem assoc_height_le_one_of_domain
     (hdepth : ∃ (a b : T), a ∈ IsLocalRing.maximalIdeal T ∧
       b ∈ IsLocalRing.maximalIdeal T ∧

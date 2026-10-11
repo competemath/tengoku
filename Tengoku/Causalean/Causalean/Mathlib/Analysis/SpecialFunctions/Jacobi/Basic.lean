@@ -40,13 +40,17 @@ noncomputable def h (k : ℕ) (α x : ℝ) : ℝ :=
 
 /-- A [positive real starting value](hyp:a) and [natural index](hyp:n), together with [its positivity](hyp:ha), ensure that [the associated rising factorial is positive](goal).
 
-Every rising-factorial denominator used for a positive Jacobi parameter is positive. -/
+Every rising-factorial denominator used for a positive Jacobi parameter is positive.
+@isnad1 id=lt.1h2v.s4.0efbc57d57d9 from=translated src=- shape=7626295d vocab=6b042b4c
+-/
 theorem rising_pos (a : ℝ) (n : ℕ) (ha : 0 < a) : 0 < rising a n := by
   exact ascPochhammer_pos n a ha
 
 /-- Any [degree](hyp:k) and [two shape parameters](hyp:α,β) give [a normalized shifted Jacobi polynomial equal to one at the left endpoint](goal).
 
-The normalized shifted Jacobi polynomial has value one at the left endpoint. -/
+The normalized shifted Jacobi polynomial has value one at the left endpoint.
+@isnad1 id=eq.0h3v.s4.8f9a122e5ee0 from=translated src=- shape=12022745 vocab=21c72b8b
+-/
 theorem jacobiShifted_zero (k : ℕ) (α β : ℝ) : jacobiShifted k α β 0 = 1 := by
   unfold jacobiShifted
   calc
@@ -62,7 +66,9 @@ theorem jacobiShifted_zero (k : ℕ) (α β : ℝ) : jacobiShifted k α β 0 = 1
 
 Consecutive coefficients of the normalized shifted Jacobi sum satisfy
 the hypergeometric recurrence.  This is the finite algebraic step behind
-the Jacobi differential equation; it includes the top index `m = k-1`. -/
+the Jacobi differential equation; it includes the top index `m = k-1`.
+@isnad1 id=eq.2h4v.s8.d0187b6f9202 from=translated src=- shape=eaa00d69 vocab=916a0c25
+-/
 theorem jacobiShifted_coefficient_recurrence (k m : ℕ) (α β : ℝ)
     (hα : -1 < α) (hm : m < k) :
     ((m : ℝ) + 1) * (α + (m : ℝ) + 1) *
@@ -101,7 +107,9 @@ theorem jacobiShifted_coefficient_recurrence (k m : ℕ) (α β : ℝ)
 The normalized shifted Jacobi polynomial satisfies its second-order
 Jacobi differential equation when the normalization denominator is nonzero.
 This coefficient identity is the first algebraic input to an endpoint
-comparison proof; it follows term by term from the finite hypergeometric sum. -/
+comparison proof; it follows term by term from the finite hypergeometric sum.
+@isnad1 id=eq.1h4v.s8.9cfe95881799 from=translated src=- shape=ec7c818d vocab=107fa524
+-/
 theorem jacobiShifted_ode (k : ℕ) (α β x : ℝ) (hα : -1 < α) :
     x * (1 - x) * deriv (deriv (jacobiShifted k α β)) x +
       (α + 1 - (α + β + 2) * x) * deriv (jacobiShifted k α β) x +
@@ -175,7 +183,9 @@ theorem jacobiShifted_ode (k : ℕ) (α β x : ℝ) (hα : -1 < α) :
 
 At the right endpoint, the normalized shifted Jacobi polynomial is the
 signed ratio of the two rising factorials.  This is the terminating
-Vandermonde identity for its finite hypergeometric sum. -/
+Vandermonde identity for its finite hypergeometric sum.
+@isnad1 id=eq.1h3v.s6.5f3918edd89c from=translated src=- shape=5df6d6d2 vocab=29e8615f
+-/
 theorem jacobiShifted_one (k : ℕ) (α β : ℝ) (hα : -1 < α) :
     jacobiShifted k α β 1 =
       (-1 : ℝ) ^ k * rising (β + 1) k / rising (α + 1) k := by
@@ -249,7 +259,9 @@ theorem jacobiShifted_one (k : ℕ) (α β : ℝ) (hα : -1 < α) :
 /-- A [degree](hyp:k), [two shape parameters](hyp:α,β), and [point](hyp:x), when [the second parameter is no larger than the first](hyp:hβα), [the second parameter exceeds minus one](hyp:hβ), [the first parameter is at least minus one half](hyp:hα), and [the point lies in the unit interval](hyp:hx), give [an absolute-value bound of one for the normalized shifted Jacobi polynomial](goal).
 
 DLMF 18.14.1: a normalized Jacobi polynomial is bounded by one
-on `[0,1]` when `α ≥ β > -1` and `α ≥ -1/2`. -/
+on `[0,1]` when `α ≥ β > -1` and `α ≥ -1/2`.
+@isnad1 id=le.4h4v.s6.d47e2d5661b0 from=translated src=- shape=b4eb99ae vocab=8f2b02b7
+-/
 theorem jacobiShifted_abs_le_one (k : ℕ) (α β x : ℝ)
     (hβα : β ≤ α) (hβ : -1 < β) (hα : -(1 / 2 : ℝ) ≤ α)
     (hx : x ∈ Set.Icc (0 : ℝ) 1) : |jacobiShifted k α β x| ≤ 1 := by
@@ -383,7 +395,9 @@ theorem jacobiShifted_abs_le_one (k : ℕ) (α β x : ℝ)
 /-- A [degree](hyp:k), [positive shape parameter](hyp:α), and [point in the unit interval](hyp:x,hx), with [parameter positivity](hyp:hα) and [positive degree](hyp:_hk), give [an absolute-value bound of one for the shifted Jacobi perturbation](goal).
 
 For positive `α`, the shifted Jacobi perturbation is bounded in absolute
-value by one throughout `[0,1]`. -/
+value by one throughout `[0,1]`.
+@isnad1 id=le.3h3v.s6.7f167ecb61b9 from=translated src=- shape=7ab9aa18 vocab=82133857
+-/
 theorem abs_h_le_one (k : ℕ) (α x : ℝ) (hα : 0 < α) (_hk : 1 ≤ k)
     (hx : x ∈ Set.Icc (0 : ℝ) 1) : |h k α x| ≤ 1 := by
   exact jacobiShifted_abs_le_one k α 0 x hα.le (by norm_num) (by linarith) hx

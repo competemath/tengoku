@@ -51,14 +51,18 @@ noncomputable def fanoRef (p : α × β → ℝ) (decode : β → α) (xy : α �
       else errorProb p decode / ((Fintype.card α : ℝ) - 1))
 
 /-- The Fano reference mass unfolds to the observation marginal times the
-decoder-dependent correct-or-error weight used in its definition. -/
+decoder-dependent correct-or-error weight used in its definition.
+@isnad1 id=eq.0h5v.s7.47538825b0af from=translated src=- shape=fcf75c94 vocab=3c62f664
+-/
 @[simp] lemma fanoRef_def (p : α × β → ℝ) (decode : β → α) (xy : α × β) :
     fanoRef p decode xy =
       yMarginal p xy.2 *
         (if xy.1 = decode xy.2 then 1 - errorProb p decode
           else errorProb p decode / ((Fintype.card α : ℝ) - 1)) := rfl
 
-/-- The Fano reference distribution is nonnegative. -/
+/-- The Fano reference distribution is nonnegative.
+@isnad1 id=le.2h5v.s6.d33773b7ea38 from=translated src=- shape=a15b6ba1 vocab=f052deda
+-/
 lemma fanoRef_nonneg {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
     (hsum : ∑ xy : α × β, p xy = 1) (decode : β → α)
     (xy : α × β) : 0 ≤ fanoRef p decode xy := by
@@ -73,7 +77,9 @@ lemma fanoRef_nonneg {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
 
 /-- The Fano reference distribution is a probability mass function: `∑ xy, fanoRef = 1`.
 On each column the inner weights sum to `(1 − Pe) + (card α − 1) · Pe/(card α − 1) = 1`,
-so the total is `∑ y, yMarginal p y = 1`. -/
+so the total is `∑ y, yMarginal p y = 1`.
+@isnad1 id=eq.2h4v.s6.c978eaab3bf2 from=translated src=- shape=e13a7063 vocab=5ac06cf0
+-/
 lemma fanoRef_sum_eq_one {p : α × β → ℝ}
     (hsum : ∑ xy : α × β, p xy = 1) (hcard : 2 ≤ Fintype.card α) (decode : β → α) :
     ∑ xy : α × β, fanoRef p decode xy = 1 := by
@@ -128,7 +134,9 @@ lemma fanoRef_sum_eq_one {p : α × β → ℝ}
 /-- The Fano reference distribution dominates the support of `p`: `p xy ≠ 0 → 0 < fanoRef xy`.
 A nonzero `p (x, y)` forces `yMarginal p y > 0`; on a correct cell the complementary mass
 `1 − Pe ≥ p (x,y) > 0` and on an error cell `Pe ≥ p (x,y) > 0`, so the inner weight is
-positive. This is the absolute-continuity hypothesis of the Gibbs inequality. -/
+positive. This is the absolute-continuity hypothesis of the Gibbs inequality.
+@isnad1 id=lt.4h5v.s6.05c99d47b39d from=translated src=- shape=da1c18ce vocab=6caa98a1
+-/
 lemma fanoRef_ac {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
     (hsum : ∑ xy : α × β, p xy = 1) (hcard : 2 ≤ Fintype.card α) (decode : β → α)
     (xy : α × β) (hxy : p xy ≠ 0) : 0 < fanoRef p decode xy := by
@@ -175,7 +183,9 @@ lemma fanoRef_ac {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
 `log` on the support of `p`, into the marginal entropy plus the binary-entropy/error terms:
 `−∑ xy, p xy · log (fanoRef p decode xy)
   = entropy (yMarginal p) + Real.binEntropy Pe + Pe · Real.log (card α − 1)`,
-where `Pe = errorProb p decode`. This is the key algebraic computation behind Fano. -/
+where `Pe = errorProb p decode`. This is the key algebraic computation behind Fano.
+@isnad1 id=eq.3h4v.s7.b8690009f89d from=translated src=- shape=e0d42e79 vocab=74fe1b72
+-/
 lemma neg_crossEntropy_fanoRef {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
     (hsum : ∑ xy : α × β, p xy = 1) (hcard : 2 ≤ Fintype.card α) (decode : β → α) :
     (- ∑ xy : α × β, p xy * Real.log (fanoRef p decode xy))
@@ -295,7 +305,9 @@ size](goal): `condEntropy p ≤ Real.binEntropy Pe + Pe * Real.log (Fintype.card
 The proof feeds the Fano reference distribution `fanoRef` to the Gibbs inequality
 `entropy_le_crossEntropy`, giving `entropy p ≤ −∑ p log (fanoRef)`; the right side is
 `entropy (yMarginal p) + binEntropy Pe + Pe · log (card α − 1)` by `neg_crossEntropy_fanoRef`,
-and `condEntropy p = entropy p − entropy (yMarginal p)`. -/
+and `condEntropy p = entropy p − entropy (yMarginal p)`.
+@isnad1 id=le.3h4v.s7.a05a6c65be89 from=translated src=- shape=161a5c31 vocab=55da3884
+-/
 theorem fano_inequality {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
     (hsum : ∑ xy : α × β, p xy = 1) (hcard : 2 ≤ Fintype.card α) (decode : β → α) :
     condEntropy p ≤ Real.binEntropy (errorProb p decode)
@@ -317,7 +329,9 @@ probability `Pe = errorProb p decode` is bounded below](goal):
 
 It follows from `fano_inequality` using `Real.binEntropy_le_log_two`
 (`binEntropy Pe ≤ log 2`) and the monotonicity `Real.log (card α − 1) ≤ Real.log (card α)`,
-then dividing by the positive `Real.log (Fintype.card α)` (positive since `2 ≤ card α`). -/
+then dividing by the positive `Real.log (Fintype.card α)` (positive since `2 ≤ card α`).
+@isnad1 id=le.3h4v.s7.1de2c1bd2c4e from=translated src=- shape=ef1cb0e1 vocab=731e81eb
+-/
 theorem fano_error_lower_bound {p : α × β → ℝ} (hp0 : ∀ xy, 0 ≤ p xy)
     (hsum : ∑ xy : α × β, p xy = 1) (hcard : 2 ≤ Fintype.card α) (decode : β → α) :
     (condEntropy p - Real.log 2) / Real.log (Fintype.card α) ≤ errorProb p decode := by

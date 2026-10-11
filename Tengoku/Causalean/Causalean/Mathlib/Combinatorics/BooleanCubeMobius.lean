@@ -61,7 +61,9 @@ elsewhere. -/
 def indicator (A : Finset ι) : ι → Fin 2 :=
   fun k => if k ∈ A then 1 else 0
 
-/-- [The indicator vector of the empty subset is the all-zero vector](goal). -/
+/-- [The indicator vector of the empty subset is the all-zero vector](goal).
+@isnad1 id=eq.0h1v.s5.eb9c7f941ff8 from=translated src=- shape=6921ec9a vocab=bab103f1
+-/
 @[simp] lemma indicator_empty :
     indicator (∅ : Finset ι) = fun _ => 0 := by
   funext k; simp [indicator]
@@ -79,7 +81,9 @@ noncomputable def delta (τ : (ι → Fin 2) → ℝ)
   ∑ A ∈ S.powerset, (-1 : ℝ) ^ (S.card - A.card) * τ (indicator A)
 
 /-- Indicator product: `∏ k ∈ S, ((h k).val : ℝ)` equals `1` if `S ⊆ B` and
-`0` otherwise, where `B = {k : h k = 1}`. -/
+`0` otherwise, where `B = {k : h k = 1}`.
+@isnad1 id=eq.1h4v.s6.be1738b655ad from=translated src=- shape=f8f19e2d vocab=6846fb94
+-/
 lemma prod_indicator_eq (h : ι → Fin 2)
     (B : Finset ι) (hB : ∀ k, k ∈ B ↔ h k = 1)
     (S : Finset ι) :
@@ -109,7 +113,9 @@ lemma prod_indicator_eq (h : ι → Fin 2)
 /-- Coefficient sum: for `A ⊆ B`,
 `∑ S, A ⊆ S ⊆ B, (-1)^(|S|-|A|) = if A = B then 1 else 0`.
 
-This is the alternating-sum identity that drives Möbius inversion. -/
+This is the alternating-sum identity that drives Möbius inversion.
+@isnad1 id=eq.1h3v.s6.9ba0f858df79 from=translated src=- shape=ecccde75 vocab=9b64b9f3
+-/
 lemma coeff_sum (A B : Finset ι) (hAB : A ⊆ B) :
     (∑ S ∈ B.powerset.filter (A ⊆ ·), (-1 : ℝ) ^ (S.card - A.card))
       = if A = B then 1 else 0 := by
@@ -201,6 +207,7 @@ value zero at the all-zero vector, and any Boolean vector `h`,
 This is the normalized specialization of the full Boolean-cube Möbius
 expansion: the omitted empty-set term is `δ τ ∅ = τ 0`, which vanishes by
 `hτ0`.
+@isnad1 id=eq.1h3v.s6.dce2a518df12 from=translated src=- shape=162f777d vocab=fa0c4c3f
 -/
 theorem mobius_expansion
     [Fintype ι]

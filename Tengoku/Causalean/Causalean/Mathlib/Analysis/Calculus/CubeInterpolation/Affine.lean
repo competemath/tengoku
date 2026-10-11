@@ -14,7 +14,9 @@ public section
 
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
-/-- [A finite dimension, derivative order, response, coordinate-direction sequence, and evaluation point](hyp:d,j,u,f,x) imply [that affine transport from the unit cube multiplies the coordinate partial by two to that order](goal). -/
+/-- [A finite dimension, derivative order, response, coordinate-direction sequence, and evaluation point](hyp:d,j,u,f,x) imply [that affine transport from the unit cube multiplies the coordinate partial by two to that order](goal).
+@isnad1 id=eq.0h5v.s6.86f1e29cec2c from=translated src=- shape=41aa8360 vocab=8040df1d
+-/
 theorem affine_coordPartial {d j : ℕ} (u : (Fin d → ℝ) → ℝ)
     (f : Fin j → Fin d) (x : Fin d → ℝ) :
     coordPartial j (fun z => u (cubeAffine z)) f x =
@@ -54,7 +56,9 @@ theorem affine_coordPartial {d j : ℕ} (u : (Fin d → ℝ) → ℝ)
   rw [ContinuousMultilinearMap.map_smul_univ]
   simp [hc, a]
 
-/-- [A finite dimension, derivative order, Hölder exponent, seminorm bound, response, closed-cube regularity, and top-order modulus](hyp:d,m,s,L,u,hu,hL) imply [the affine-scaled top-order Hölder modulus on the unit cube](goal). -/
+/-- [A finite dimension, derivative order, Hölder exponent, seminorm bound, response, closed-cube regularity, and top-order modulus](hyp:d,m,s,L,u,hu,hL) imply [the affine-scaled top-order Hölder modulus on the unit cube](goal).
+@isnad1 id=le.4h8v.s8.596e5982c79f from=translated src=- shape=0aa54a54 vocab=506e15f3
+-/
 theorem affine_topHolder {d m : ℕ} {s L : ℝ} (u : (Fin d → ℝ) → ℝ)
     (hu : ContDiffOn ℝ m u (cube d)) (hL : TopHolder d m s L u) :
     ∀ f : Fin m → Fin d, ∀ x ∈ unitCube d, ∀ y ∈ unitCube d,
@@ -85,7 +89,9 @@ theorem affine_topHolder {d m : ℕ} {s L : ℝ} (u : (Fin d → ℝ) → ℝ)
             ((2 : ℝ) ^ m * (2 * ‖x - y‖) ^ s) * L := by ring
         _ = _ := by rw [hpow]; ring
 
-/-- [A finite dimension, derivative order, Hölder exponent, radius, response, exponent bounds, nonnegative radius, and fixed-cube Hölder ball](hyp:d,m,s,R,u,hs,hs1,hR,hu) imply [the affine-transported regularity, derivative bounds, and top-order modulus on the unit cube](goal). -/
+/-- [A finite dimension, derivative order, Hölder exponent, radius, response, exponent bounds, nonnegative radius, and fixed-cube Hölder ball](hyp:d,m,s,R,u,hs,hs1,hR,hu) imply [the affine-transported regularity, derivative bounds, and top-order modulus on the unit cube](goal).
+@isnad1 id=and.4h5v.s8.dd54796893ba from=translated src=- shape=ca7aaf03 vocab=d49f0083
+-/
 theorem affine_holderBall {d m : ℕ} {s R : ℝ} (u : (Fin d → ℝ) → ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1) (hR : 0 ≤ R)
     (hu : HolderBall d m s R u) :

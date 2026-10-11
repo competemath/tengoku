@@ -19,7 +19,9 @@ and [s ≤ 1](hyp:hs1), [there is a positive constant A such that every response
 in the intrinsic order-zero Hölder ball of exponent s and radius L ≥ 0 on the
 normalized cube has a continuous global representative U that agrees with u on
 the cube, is bounded in absolute value by A·L everywhere, and is s-Hölder with
-coefficient A·L on the whole space](goal). -/
+coefficient A·L on the whole space](goal).
+@isnad1 id=ex.2h2v.s11.78892252babc from=translated src=- shape=17ad48ee vocab=dcef7df5
+-/
 theorem exists_global_holder_extension_order_zero (d : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1) :
     ∃ A : ℝ, 0 < A ∧

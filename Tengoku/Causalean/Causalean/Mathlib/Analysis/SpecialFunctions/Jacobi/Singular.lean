@@ -18,7 +18,9 @@ open Filter
 /-- A [degree](hyp:k), [derivative index](hyp:i), and [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα) and [the index below the degree](hyp:hik), give [vanishing of the reciprocal-weight boundary product at zero](goal).
 
 For `i < k`, the product of the `i`th derivative of `x⁻¹` and the
-`(k-1-i)`th derivative of the Rodrigues kernel tends to zero as `x ↓ 0`. -/
+`(k-1-i)`th derivative of the Rodrigues kernel tends to zero as `x ↓ 0`.
+@isnad1 id=tendsto.2h3v.s7.499673206947 from=translated src=- shape=54bdcabe vocab=f3ef080d
+-/
 theorem inv_mul_rodKernel_deriv_tendsto_zero (k i : ℕ) (α : ℝ)
     (hα : 0 < α) (hik : i < k) :
     Tendsto

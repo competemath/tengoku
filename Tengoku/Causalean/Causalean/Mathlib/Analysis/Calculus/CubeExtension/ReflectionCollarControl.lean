@@ -26,7 +26,9 @@ then for [the left face in coordinate i](hyp:i) [there is a positive constant C
 such that the one-face reflection of every response u in the intrinsic Hölder
 ball of order m, exponent s and radius L ≥ 0 on the normalized cube lies in the
 intrinsic Hölder ball of radius C·L on the closed left collar](goal). The
-constant depends only on the dimension, m, s, the face and the weights. -/
+constant depends only on the dimension, m, s, the face and the weights.
+@isnad1 id=ex.3h5v.s8.3bee2347652c from=translated src=- shape=d4a24c7e vocab=fb7ff545
+-/
 theorem exists_leftFaceReflection_collar_holder_constant
     (d m : ℕ) (s : ℝ) (hs : 0 < s) (hs1 : s ≤ 1)
     (i : Fin d) (a : Fin (m + 1) → ℝ)

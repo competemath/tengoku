@@ -35,7 +35,9 @@ def trigNamePrecision (x : CertifiedReal) (ε : PosRat) : ℕ :=
   max (x.modulus δ)
     (32 * (ε.1.den + 1) * ((x.approx 0).maxAbs.num.natAbs + 2) ^ 2)
 
-/-- Recursive sine-name approximations remain sound and adjacent-fuel nested. -/
+/-- Recursive sine-name approximations remain sound and adjacent-fuel nested.
+@isnad1 id=and.0h2v.s4.6fe41aeb3bd4 from=translated src=- shape=f83dae2e vocab=5a88274a
+-/
 theorem sinNameApprox_spec (x : CertifiedReal) (fuel : ℕ) :
     (sinNameApprox x fuel).Contains (Real.sin x.value) ∧
       (sinNameApprox x (fuel + 1)).Subinterval (sinNameApprox x fuel) := by
@@ -55,7 +57,9 @@ theorem sinNameApprox_spec (x : CertifiedReal) (fuel : ℕ) :
       · rw [show fuel + 1 + 1 = fuel + 2 by omega, sinNameApprox]
         exact RatInterval.tighten_subinterval_left hcur hnext
 
-/-- Recursive cosine-name approximations remain sound and adjacent-fuel nested. -/
+/-- Recursive cosine-name approximations remain sound and adjacent-fuel nested.
+@isnad1 id=and.0h2v.s4.3c25827314f6 from=translated src=- shape=f83dae2e vocab=72147089
+-/
 theorem cosNameApprox_spec (x : CertifiedReal) (fuel : ℕ) :
     (cosNameApprox x fuel).Contains (Real.cos x.value) ∧
       (cosNameApprox x (fuel + 1)).Subinterval (cosNameApprox x fuel) := by
@@ -101,7 +105,9 @@ private theorem factorial_power_bound (A d N r : ℕ) (hA : 1 ≤ A) (hd : 1 ≤
       exact h
 
 /-- If the Taylor fuel dominates a rational magnitude and denominator scale,
-the corresponding rational power-over-factorial remainder is explicitly small. -/
+the corresponding rational power-over-factorial remainder is explicitly small.
+@isnad1 id=le.5h5v.s7.7ca1f90e8fdc from=translated src=- shape=fe8e6f57 vocab=14768607
+-/
 theorem power_div_factorial_le (q : ℚ) (A d N r : ℕ)
     (hq : |q| ≤ A) (hA : 1 ≤ A) (hd : 1 ≤ d) (hr : 1 ≤ r)
     (hN : 32 * d * A ^ 2 ≤ N) :
@@ -144,7 +150,9 @@ private theorem cosNameApprox_subinterval_current (x : CertifiedReal) (fuel : �
 /-- For [a certified real input](hyp:x) and [a requested positive rational tolerance
 `ε`](hyp:ε), [evaluating the certified sine name-approximation at the precision level
 selected for that tolerance yields an output enclosure whose width is no larger than
-`ε`](goal). -/
+`ε`](goal).
+@isnad1 id=le.0h2v.s4.5f250904afc8 from=translated src=- shape=4c0864cd vocab=62a58c63
+-/
 theorem sinName_width_at_precision (x : CertifiedReal) (ε : PosRat) :
     (sinNameApprox x (trigNamePrecision x ε)).width ≤ ε.1 := by
   let δ : PosRat := ⟨ε.1 / 2, div_pos ε.2 (by norm_num)⟩
@@ -199,7 +207,9 @@ theorem sinName_width_at_precision (x : CertifiedReal) (ε : PosRat) :
 
 /-- For [a certified real input](hyp:x) and [a positive rational tolerance `ε`](hyp:ε),
 [the cosine enclosure at the selected precision has width at most `ε`](goal), using the
-input name's supplied precision rule together with an explicit Taylor-fuel bound. -/
+input name's supplied precision rule together with an explicit Taylor-fuel bound.
+@isnad1 id=le.0h2v.s4.afc3d2b109a4 from=translated src=- shape=4c0864cd vocab=d8b5bd39
+-/
 theorem cosName_width_at_precision (x : CertifiedReal) (ε : PosRat) :
     (cosNameApprox x (trigNamePrecision x ε)).width ≤ ε.1 := by
   let δ : PosRat := ⟨ε.1 / 2, div_pos ε.2 (by norm_num)⟩

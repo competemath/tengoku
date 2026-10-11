@@ -244,7 +244,9 @@ private theorem dSep_erase_maximal_fixed_root {X Y Zr Zf : Finset V} {n : V}
 omit [Fintype V] in
 /-- For [a finite vertex population](hyp:V), [four vertex sets and a selected
 vertex](hyp:a,b,Zr,c,n), if [the selected vertex belongs to the third set](hyp:hn), then
-[removing and reinserting it while forming the union leaves that union unchanged](goal). -/
+[removing and reinserting it while forming the union leaves that union unchanged](goal).
+@isnad1 id=eq.1h6v.s6.2ce1cd06bee6 from=translated src=- shape=14df1640 vocab=8ef28a39
+-/
 theorem branch_seed_eq {a b Zr c : Finset V} {n : V} (hn : n ∈ Zr) :
     a ∪ {n} ∪ (Zr.erase n ∪ b) ∪ c = a ∪ b ∪ Zr ∪ c := by
   ext x; simp only [Finset.mem_union, Finset.mem_singleton, Finset.mem_erase]
@@ -283,7 +285,9 @@ theorem branch_seed_eq {a b Zr c : Finset V} {n : V} (hn : n ∈ Zr) :
 
     Proved by well-founded induction on the ancestral set, peeling the
     topologically-maximal relevant node; this is the constructive form of the
-    classical local-to-global Markov theorem. -/
+    classical local-to-global Markov theorem.
+@isnad1 id=orderedl.6h7v.s7.fec8bd7fb5e5 from=translated src=- shape=ee1b13c2 vocab=8fa5c551
+-/
 theorem orderedLocalSG_of_dSep_with_fixed
     (R X Y Zr Zf : Finset V)
     (hFixedRoots : ∀ f ∈ Zf, G.parents f = ∅)
@@ -674,7 +678,9 @@ endpoint is Bayes-ball reachable from the first](goal).
 
     The directed arm leaves `c` (its first edge points out of `c`), so `c` is a
     chain/fork point — never a collider — at the seam, and the glued walk stays
-    active.  Public wrapper around `chain_join_active`. -/
+    active.  Public wrapper around `chain_join_active`.
+@isnad1 id=mem.10h8v.s7.7182506ce9c5 from=translated src=- shape=ac476ad5 vocab=41e3f540
+-/
 theorem bbReachable_extend_directed_arm
     {Z : Finset V} {a c b : V} {pa q : List V}
     (hpa_len : pa.length ≥ 2) (hpa_head : pa.head? = some a)
