@@ -58,7 +58,7 @@ def umbrella(keys) -> str:
 
 
 class Raze(unittest.TestCase):
-    def repo(self, other_importing=None, parts=True):
+    def repo(self, other_importing=None, parts=True, ghost=False):
         r = Repo()
         r.write("lean-toolchain", TOOLCHAIN + "\n")
         r.write("schemas/sources.json", json.dumps({"corpora": {}}))
@@ -68,7 +68,10 @@ class Raze(unittest.TestCase):
         for k in MODULES:
             r.write(path_of(k), text_of(k))
         r.write("Tengoku/FxLib.lean", umbrella(MODULES))
-        r.write("data/intake/fx-lib/manifest.jsonl", "".join(record(k) for k in MODULES))
+        r.write(
+            "data/intake/fx-lib/manifest.jsonl",
+            "".join(record(k) for k in MODULES) + (json.dumps({"name": "Fx.ghost", "module": P + "Ghost"}) + "\n" if ghost else ""),
+        )
         r.write("data/intake/fx-lib/report.json", json.dumps({"library": "fx-lib", "part": 1}) + "\n")
         if parts:
             r.write("data/intake/fx-lib/parts/002.json", json.dumps({"library": "fx-lib", "part": 2}) + "\n")
@@ -185,6 +188,18 @@ class Raze(unittest.TestCase):
         rc, out = self.judge(r)
         self.assertEqual(rc, 1)
         self.assertIn("records of razed modules remain", out)
+
+    def test_a_record_of_a_module_the_library_never_had_is_not_left_dangling(self):
+        r = self.repo(ghost=True)  # the base manifest already has a record whose module is no file of the library
+        self.raze(r, ["C"])
+        old = (r.dir / "data/intake/fx-lib/manifest.jsonl").read_text()
+        r.write(
+            "data/intake/fx-lib/manifest.jsonl", old + json.dumps({"name": "Fx.ghost", "module": P + "Ghost"}) + "\n"
+        )  # the raze leaves it where it is
+        r.commit("keep the ghost record")
+        rc, out = self.judge(r)
+        self.assertEqual(rc, 1)
+        self.assertIn("records that remain name modules that do not remain", out)
 
     # --- nothing but the removal
 
