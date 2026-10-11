@@ -17,7 +17,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeExtension
 d-dimensional coordinate space](hyp:F) and [T a continuous j-linear map on the
 same space](hyp:T). If [for every tuple of coordinate directions the values of F
 on the corresponding standard basis vectors converge to the value of T on those
-vectors](hyp:h), then [F converges to T along the filter](goal). -/
+vectors](hyp:h), then [F converges to T along the filter](goal).
+@isnad1 id=tendsto.1h6v.s9.98dac78f8fcd from=translated src=- shape=d89a7495 vocab=44eb8e57
+-/
 theorem tendsto_multilinearMap_of_coordinate_tendsto
     (d j : ℕ) {α : Type*} [TopologicalSpace α] {l : Filter α}
     (F : α → ContinuousMultilinearMap ℝ (fun _ : Fin j => Fin d → ℝ) ℝ)

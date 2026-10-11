@@ -25,7 +25,9 @@ def jacksonApproximant (K : ℕ) (f : ℝ → ℝ) (x : ℝ) : ℝ :=
   ∫ t in Set.Icc (-Real.pi) Real.pi, evenExtension f (Real.pi * x - t) * jackson K t
 
 /-- At a [positive order](hyp:hK), a [target continuous on the closed
-interval](hyp:hf) has [continuous Jackson approximant](goal). -/
+interval](hyp:hf) has [continuous Jackson approximant](goal).
+@isnad1 id=continuo.2h2v.s5.deb4eb4a69f3 from=translated src=- shape=fb5d69c2 vocab=010cf400
+-/
 @[fun_prop]
 theorem continuous_jacksonApproximant {K : ℕ} {f : ℝ → ℝ}
     (hK : 0 < K) (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1)) :
@@ -46,6 +48,7 @@ Subtract the target using unit mass, apply the integral absolute-value bound,
 then `evenExtension_holder` and `jackson_holder_moment`. All integrands are
 continuous on a compact interval, so integral inequalities have their required
 integrability hypotheses.
+@isnad1 id=le.7h5v.s7.6ac1f340221d from=translated src=- shape=cf595825 vocab=59bf4e9a
 -/
 theorem jacksonApproximant_error {K : ℕ} {f : ℝ → ℝ} {γ H x : ℝ}
     (hK : 0 < K) (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1))

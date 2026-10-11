@@ -19,7 +19,9 @@ open Causalean.Mathlib.Analysis.FinitePolynomialAlternationDuality
 [nonnegative error level](hyp:E,hE), [candidate polynomial](hyp:P), [degree
 bound](hyp:m,hdegree), [uniform residual bound](hyp:hbound), and [ordered
 alternating interval nodes](hyp:nodes,hmono,hmem,halt) imply [that the
-candidate and optimal uniform errors equal that level](goal). -/
+candidate and optimal uniform errors equal that level](goal).
+@isnad1 id=and.8h7v.s8.528ef9b898e7 from=translated src=- shape=6c73a507 vocab=c74985fe
+-/
 theorem alternatingResidual_certifiesBest
     {f : ℝ → ℝ} {a b E : ℝ} {m : ℕ}
     (hab : a < b) (hf : ContinuousOn f (Set.Icc a b))

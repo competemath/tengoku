@@ -89,14 +89,18 @@ private theorem expIntervalRaw_sound {I : RatInterval} {x : ℝ}
   constructor <;> linarith [hES.1, hES.2, hd.1, hd.2]
 
 /-- The magnitude-dependent exponential interval contains the exponential of
-every enclosed real input. -/
+every enclosed real input.
+@isnad1 id=contains.1h3v.s4.088ce7838c0e from=translated src=- shape=3a72387f vocab=ee36c966
+-/
 theorem expInterval_sound {I : RatInterval} {x : ℝ} (hx : I.Contains x) (fuel : ℕ) :
     (expInterval I fuel).Contains (Real.exp x) := by
   induction fuel with
   | zero => exact expIntervalRaw_sound hx 0
   | succ fuel ih => exact RatInterval.tighten_sound ih (expIntervalRaw_sound hx (fuel + 1))
 
-/-- Adjacent midpoint exponential outputs are nested by finite intersection. -/
+/-- Adjacent midpoint exponential outputs are nested by finite intersection.
+@isnad1 id=subinter.0h2v.s4.cf006f27aaf6 from=translated src=- shape=67f6e8d6 vocab=1d5f366a
+-/
 theorem expInterval_nested (I : RatInterval) (fuel : ℕ) :
     (expInterval I (fuel + 1)).Subinterval (expInterval I fuel) := by
   have hmid : I.Contains (intervalMid I : ℝ) := by
@@ -109,7 +113,9 @@ theorem expInterval_nested (I : RatInterval) (fuel : ℕ) :
 /-- For [a rational interval `I`](hyp:I) and [a Taylor fuel/iteration count](hyp:fuel), [the
 width of the certified interval exponential is bounded by the scalar Taylor truncation error
 at the interval's midpoint plus twice the interval's radius amplified by a certified bound on
-the exponential's magnitude over the interval](goal). -/
+the exponential's magnitude over the interval](goal).
+@isnad1 id=le.0h2v.s5.97493e542c8f from=translated src=- shape=614e2db9 vocab=51972a93
+-/
 theorem expInterval_width (I : RatInterval) (fuel : ℕ) :
     (expInterval I fuel).width ≤
       (Transcendental.expScalar

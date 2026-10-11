@@ -51,10 +51,14 @@ the packed layer is stated through it. -/
 def abstractParse {α : Type} : Option (α × ByteSlice) → Option (α × List UInt8) :=
   Option.map (Prod.map id ByteSlice.toList)
 
-/-- A failed packed parse reads as a failed spec parse. -/
+/-- A failed packed parse reads as a failed spec parse.
+@isnad1 id=eq.0h1v.s4.15e4fef08e4b from=translated src=- shape=bc4402af vocab=0c52612d
+-/
 @[simp] theorem abstractParse_none {α : Type} : abstractParse (α := α) none = none := rfl
 
-/-- A successful packed parse reads as its value with the abstracted tail. -/
+/-- A successful packed parse reads as its value with the abstracted tail.
+@isnad1 id=eq.0h3v.s5.993a97dd900b from=translated src=- shape=6b57a917 vocab=28558e94
+-/
 @[simp] theorem abstractParse_some {α : Type} (a : α) (s : ByteSlice) :
     abstractParse (some (a, s)) = some (a, s.toList) := rfl
 
@@ -62,7 +66,9 @@ def abstractParse {α : Type} : Option (α × ByteSlice) → Option (α × List 
 continuation agrees with the spec continuation on the abstracted state, the
 whole bind agrees. This is `Option.map_bind` and `Option.bind_map` applied
 to the refinement morphism; composite decoder agreement proofs are chains
-of it, one link per parsed field. -/
+of it, one link per parsed field.
+@isnad1 id=eq.1h5v.s6.409d7577c00d from=translated src=- shape=eaaa4774 vocab=4f917b15
+-/
 theorem abstractParse_bind {α β : Type} (p : Option (α × ByteSlice))
     {f : α × ByteSlice → Option (β × ByteSlice)}
     {g : α × List UInt8 → Option (β × List UInt8)}
@@ -74,7 +80,9 @@ theorem abstractParse_bind {α β : Type} (p : Option (α × ByteSlice))
 
 /-- Threading a value-level step — a smart constructor, a guard — through
 the abstraction: no bytes move, so the bind agrees whenever the
-continuations agree pointwise. An instance of `Option.map_bind`. -/
+continuations agree pointwise. An instance of `Option.map_bind`.
+@isnad1 id=eq.1h5v.s5.dac6305e35df from=translated src=- shape=d9c4179a vocab=2cc5face
+-/
 theorem abstractParse_bindValue {α β : Type} (p : Option α)
     {f : α → Option (β × ByteSlice)} {g : α → Option (β × List UInt8)}
     (h : ∀ a, abstractParse (f a) = g a) :
@@ -84,7 +92,9 @@ theorem abstractParse_bindValue {α β : Type} (p : Option α)
   exact congrArg _ (funext h)
 
 /-- Reading one byte through the abstraction is the spec's single-byte
-decoder — the primitive link every fixed-width chain starts from. -/
+decoder — the primitive link every fixed-width chain starts from.
+@isnad1 id=eq.0h1v.s3.05d4ff3b9a7e from=translated src=- shape=7064732e vocab=07231451
+-/
 theorem abstractParse_uncons (s : ByteSlice) :
     abstractParse s.uncons = decodeByte s.toList := by
   cases hu : s.uncons with
@@ -125,19 +135,25 @@ def decode {α : Type} [Codec α] [PackedCodec α] (bytes : ByteArray) :
     Option (α × ByteSlice) :=
   decodeSlice (ByteSlice.ofByteArray bytes)
 
-/-- The packed encoding of a value is byte-for-byte its spec encoding. -/
+/-- The packed encoding of a value is byte-for-byte its spec encoding.
+@isnad1 id=eq.0h2v.s4.5b7ff32a36f6 from=translated src=- shape=24269ab8 vocab=8e573276
+-/
 theorem toList_encode {α : Type} [Codec α] [PackedCodec α] (a : α) :
     (encode (α := α) a).toList = Codec.encode a := by
   rw [encode, toList_encodeInto, ByteArray.toList_empty, List.nil_append]
 
 /-- Parsing a byte array with the packed decoder, read through the
-abstraction, is the spec parse of the array's bytes. -/
+abstraction, is the spec parse of the array's bytes.
+@isnad1 id=eq.0h2v.s4.fd4d360bc1ee from=translated src=- shape=47fcc4a0 vocab=97fff71a
+-/
 theorem abstractParse_decode {α : Type} [Codec α] [PackedCodec α] (bytes : ByteArray) :
     abstractParse (decode (α := α) bytes) = Codec.decode (α := α) bytes.toList := by
   rw [decode, abstractParse_decodeSlice, ByteSlice.toList_ofByteArray]
 
 /-- Agreement on every spec input: packing any byte list into an array and
-parsing it packed is the spec parse of the list. -/
+parsing it packed is the spec parse of the list.
+@isnad1 id=eq.0h2v.s4.596d506b98c4 from=translated src=- shape=95acd9a1 vocab=e6a46104
+-/
 theorem abstractParse_decode_toByteArray {α : Type} [Codec α] [PackedCodec α]
     (bs : List UInt8) :
     abstractParse (decode (α := α) bs.toByteArray) = Codec.decode (α := α) bs := by
@@ -211,7 +227,9 @@ def pushBitVecLE : (n : Nat) → BitVec (8 * n) → ByteArray → ByteArray
     pushBitVecLE n ((v >>> 8).setWidth (8 * n)) (acc.push (UInt8.ofBitVec (v.setWidth 8)))
 
 /-- The packed little-endian read, through the abstraction, is the spec's
-little-endian decode. -/
+little-endian decode.
+@isnad1 id=eq.0h2v.s5.18f4cc7acbf9 from=translated src=- shape=059a0a78 vocab=7a715ccd
+-/
 theorem abstractParse_readBitVecLE :
     ∀ (n : Nat) (s : ByteSlice),
       abstractParse (readBitVecLE n s) = decodeBitVecLE n s.toList := by
@@ -228,7 +246,9 @@ theorem abstractParse_readBitVecLE :
     exact abstractParse_bind _ fun hi rest => rfl
 
 /-- The packed little-endian append appends exactly the spec's little-endian
-encoding. -/
+encoding.
+@isnad1 id=eq.0h3v.s5.38a53e80d2a9 from=translated src=- shape=a5736c7f vocab=528e7106
+-/
 theorem toList_pushBitVecLE :
     ∀ (n : Nat) (v : BitVec (8 * n)) (acc : ByteArray),
       (pushBitVecLE n v acc).toList = acc.toList ++ encodeBitVecLE n v := by

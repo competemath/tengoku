@@ -36,7 +36,9 @@ def leftOpenCubeCollar (d m : ℕ) (i : Fin d) : Set (Fin d → ℝ) :=
 
 /-- If [x lies in the open exterior collar at the left face in coordinate
 i](hyp:hx), then [for every dilation index q ≤ m, the inward reflection sample of
-x lies in the open normalized cube](goal). -/
+x lies in the open normalized cube](goal).
+@isnad1 id=mem.1h5v.s6.fb8b91ae5ede from=translated src=- shape=ec934941 vocab=02c2da70
+-/
 theorem leftFaceSample_mem_openCube {d m : ℕ} (i : Fin d)
     (q : Fin (m + 1)) (x : Fin d → ℝ)
     (hx : x ∈ leftOpenCubeCollar d m i) :
@@ -67,14 +69,18 @@ theorem leftFaceSample_mem_openCube {d m : ℕ} (i : Fin d)
   · simpa [leftFaceSample, leftOpenCubeCollar, hji] using hx j
 
 /-- If [coordinate j differs from the face coordinate i](hyp:hji), then [the
-inward reflection sample of a point leaves its j-th coordinate unchanged](goal). -/
+inward reflection sample of a point leaves its j-th coordinate unchanged](goal).
+@isnad1 id=eq.1h5v.s5.2cb058e59584 from=translated src=- shape=0cb258ab vocab=8bac44c3
+-/
 theorem leftFaceSample_other {d : ℕ} (i j : Fin d) (q : ℕ)
     (x : Fin d → ℝ) (hji : j ≠ i) :
     leftFaceSample d i q x j = x j := by
   simp [leftFaceSample, hji]
 
 /-- If [a point x lies on the left face, that is its i-th coordinate equals
-−1](hyp:hxi), then [every inward reflection sample of x equals x](goal). -/
+−1](hyp:hxi), then [every inward reflection sample of x equals x](goal).
+@isnad1 id=eq.1h4v.s5.acbd83776dd3 from=translated src=- shape=a0e0fff3 vocab=80e5cc87
+-/
 theorem leftFaceSample_fixed {d : ℕ} (i : Fin d) (q : ℕ)
     (x : Fin d → ℝ) (hxi : x i = -1) :
     leftFaceSample d i q x = x := by
@@ -87,7 +93,9 @@ theorem leftFaceSample_fixed {d : ℕ} (i : Fin d) (q : ℕ)
 /-- If [the i-th coordinate of x lies in `[-1 - 1/(m+1), -1]`](hyp:hxi), so that
 x is at most 1/(m + 1) outside the left face, and [every other coordinate of x
 lies in `[-1,1]`](hyp:hother), then [for every dilation index q ≤ m the inward
-reflection sample of x lies in the closed normalized cube](goal). -/
+reflection sample of x lies in the closed normalized cube](goal).
+@isnad1 id=mem.2h5v.s7.cde4f60e33cc from=translated src=- shape=250e3d32 vocab=a3a84b8c
+-/
 theorem leftFaceSample_mem_cube {d m : ℕ} (i : Fin d)
     (q : Fin (m + 1)) (x : Fin d → ℝ)
     (hxi : x i ∈ Set.Icc

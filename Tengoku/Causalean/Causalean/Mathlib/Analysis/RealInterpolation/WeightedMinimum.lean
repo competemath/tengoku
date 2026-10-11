@@ -52,7 +52,9 @@ everywhere](hyp:hw) give [a pointwise-minimum lower bound on each decomposition'
 quadratic weighted energy](goal), at [a positive scale](hyp:t,ht) for
 [a decomposition modulo null sets](hyp:f,f0,f1,hf).
 Use wNorm_sq, the almost-everywhere addition rule, harmonic_quadratic_le,
-and monotonicity and addition of nonnegative integrals. -/
+and monotonicity and addition of nonnegative integrals.
+@isnad1 id=le.5h8v.s8.f4ed212d068a from=translated src=- shape=e9dbbcf8 vocab=5849c5ec
+-/
 theorem harmonic_energy_le_cost {S : Type*} [MeasurableSpace S]
     (μ : Measure S) (w0 w1 : S → ℝ≥0∞)
     (hw0 : Measurable w0) (hw1 : Measurable w1)
@@ -83,7 +85,9 @@ everywhere](hyp:hw) give [a measurable minimizing decomposition](goal) of
 Construct f0=(t²*w1.toReal)/(w0.toReal+t²*w1.toReal) times f and f1=f-f0
 as AEEqFun.mk of measurable representatives. Bad weights on a null set cause no
 problem. Use harmonic_quadratic_attained for equality of the integrands; endpoint
-energies may be infinite, since this lemma has no finite-energy conclusion. -/
+energies may be infinite, since this lemma has no finite-energy conclusion.
+@isnad1 id=ex.4h6v.s9.f6bcd0799eb2 from=translated src=- shape=a44f720c vocab=c72fa09b
+-/
 theorem exists_harmonic_minimizer {S : Type*} [MeasurableSpace S]
     (μ : Measure S) (w0 w1 : S → ℝ≥0∞)
     (hw0 : Measurable w0) (hw1 : Measurable w1)
@@ -137,7 +141,9 @@ theorem exists_harmonic_minimizer {S : Type*} [MeasurableSpace S]
 /-- [Measurable weights](hyp:w0,w1,hw0,hw1) that are [positive finite almost
 everywhere](hyp:hw) give [the harmonic-weight formula for the squared K-functional](goal)
 of [any measurable function modulo null sets](hyp:f), at [a positive scale](hyp:t,ht).
-Combine the preceding lower bound and attained upper bound by the infimum rules. -/
+Combine the preceding lower bound and attained upper bound by the infimum rules.
+@isnad1 id=eq.4h6v.s8.d5cb9c81ab40 from=translated src=- shape=a1f8da36 vocab=5a157a1f
+-/
 theorem kFunctionalSq_wNorm {S : Type*} [MeasurableSpace S]
     (μ : Measure S) (w0 w1 : S → ℝ≥0∞)
     (hw0 : Measurable w0) (hw1 : Measurable w1)

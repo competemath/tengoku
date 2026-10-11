@@ -31,7 +31,9 @@ structure CompactInverseData (G : ℝ → ℂ) : Prop where
   integrable_inverse : Integrable (𝓕⁻ G)
   integrable_inverse_deriv : Integrable (𝓕⁻ (deriv G))
 
-/-- [A continuous complex frequency function](hyp:G,hcont) with [an integrable frequency representation](hyp:hG) and [an integrable inverse Fourier transform](hyp:hinv) has [equal finite squared L² energies in frequency and physical space](goal). -/
+/-- [A continuous complex frequency function](hyp:G,hcont) with [an integrable frequency representation](hyp:hG) and [an integrable inverse Fourier transform](hyp:hinv) has [equal finite squared L² energies in frequency and physical space](goal).
+@isnad1 id=and.3h1v.s8.fcded4d753cb from=translated src=- shape=d17a18fe vocab=d98e7be6
+-/
 theorem inverse_plancherel (G : ℝ → ℂ) (hcont : Continuous G)
     (hG : Integrable G) (hinv : Integrable (𝓕⁻ G)) :
     Integrable (fun ξ => ‖G ξ‖ ^ 2) ∧
@@ -71,7 +73,9 @@ theorem inverse_plancherel (G : ℝ → ℂ) (hcont : Continuous G)
   simp only [inner_self_eq_norm_sq_to_K] at hsesq
   exact_mod_cast hsesq
 
-/-- [A complex frequency multiplier](hyp:G) with [an integrable frequency representation](hyp:hG), [a differentiable frequency profile](hyp:hdiff), [an integrable first derivative](hyp:hD), and [a physical-space location](hyp:v) has [the stated inverse-Fourier derivative–multiplication identity](goal). -/
+/-- [A complex frequency multiplier](hyp:G) with [an integrable frequency representation](hyp:hG), [a differentiable frequency profile](hyp:hdiff), [an integrable first derivative](hyp:hD), and [a physical-space location](hyp:v) has [the stated inverse-Fourier derivative–multiplication identity](goal).
+@isnad1 id=eq.3h2v.s8.6c014bd1fafc from=translated src=- shape=a8394a69 vocab=7e8a7a12
+-/
 theorem inverse_deriv_eq (G : ℝ → ℂ) (hG : Integrable G)
     (hdiff : Differentiable ℝ G) (hD : Integrable (deriv G)) (v : ℝ) :
     𝓕⁻ (deriv G) v = (-2 * (Real.pi : ℂ) * Complex.I * (v : ℂ)) * 𝓕⁻ G v := by
@@ -79,7 +83,9 @@ theorem inverse_deriv_eq (G : ℝ → ℂ) (hG : Integrable G)
   simpa [smul_eq_mul, mul_neg, neg_mul] using
     congrFun (Real.fourier_deriv hG hdiff hD) (-v)
 
-/-- [A complex frequency multiplier](hyp:G) with [admissible compact inverse-Fourier data](hyp:hG) has [finite ordinary and quadratic physical-space energies with the stated frequency-space identities](goal). -/
+/-- [A complex frequency multiplier](hyp:G) with [admissible compact inverse-Fourier data](hyp:hG) has [finite ordinary and quadratic physical-space energies with the stated frequency-space identities](goal).
+@isnad1 id=and.1h1v.s8.54969cea720d from=translated src=- shape=7bd5c502 vocab=09b79f15
+-/
 theorem inverse_energy_endpoints (G : ℝ → ℂ) (hG : CompactInverseData G) :
     Integrable (fun v => ‖𝓕⁻ G v‖ ^ 2) ∧
     Integrable (fun v => v ^ 2 * ‖𝓕⁻ G v‖ ^ 2) ∧

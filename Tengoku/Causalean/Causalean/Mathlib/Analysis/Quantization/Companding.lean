@@ -24,7 +24,9 @@ def boundary (a b : ℝ) (S k j : ℕ)
         ∫ t in a..x, Real.sqrt (diagonalWeight S β t)}
 
 /-- Every valid companding boundary divides cumulative square-root-diagonal
-mass at precisely its prescribed fraction. -/
+mass at precisely its prescribed fraction.
+@isnad1 id=and.6h6v.s8.ea9abeb05ef5 from=translated src=- shape=7f459033 vocab=e9593259
+-/
 theorem boundary_equal_mass (a b : ℝ) (hab : a < b)
     (S k j : ℕ) (hS : 0 < S) (hk : 0 < k) (hj : j ≤ k)
     (β : Fin S → ℝ → ℝ → ℝ)
@@ -96,7 +98,9 @@ theorem boundary_equal_mass (a b : ℝ) (hab : a < b)
   exact ⟨hx, hFx'⟩
 
 /-- Companding boundaries start at the left endpoint, end at the right
-endpoint, and strictly increase with their valid indices. -/
+endpoint, and strictly increase with their valid indices.
+@isnad1 id=and.5h5v.s7.0ad6a3359224 from=translated src=- shape=2e795a64 vocab=bb1498a7
+-/
 theorem boundary_order (a b : ℝ) (hab : a < b)
     (S k : ℕ) (hS : 0 < S) (hk : 0 < k)
     (β : Fin S → ℝ → ℝ → ℝ)
@@ -184,7 +188,9 @@ def compandingMidpoint (a b : ℝ) (S k : ℕ)
 /-- On [a nondegenerate interval](hyp:a,b,hab), [a nonempty family](hyp:S,hS),
 [a positive number of cells](hyp:k,hk), and [jointly continuous strictly
 positive weights](hyp:β,hcont,hpos) give [a measurable disjoint
-companding partition with feasible midpoint reproductions](goal). -/
+companding partition with feasible midpoint reproductions](goal).
+@isnad1 id=and.5h5v.s7.1c51f9c3aa14 from=translated src=- shape=d18e4696 vocab=e93fb131
+-/
 theorem companding_feasible (a b : ℝ) (hab : a < b)
     (S k : ℕ) (hS : 0 < S) (hk : 0 < k)
     (β : Fin S → ℝ → ℝ → ℝ)
@@ -282,7 +288,9 @@ theorem companding_feasible (a b : ℝ) (hab : a < b)
   exact ⟨by linarith [hj0.1, hj1.1], by linarith [hj0.2, hj1.2]⟩
 
 /-- Each companding cell has exactly one `k`th of the total square-root
-diagonal mass, expressed as an integral between its consecutive boundaries. -/
+diagonal mass, expressed as an integral between its consecutive boundaries.
+@isnad1 id=eq.5h6v.s7.a10c74d0377d from=translated src=- shape=4b6ce5de vocab=ab4f7d94
+-/
 theorem companding_interval_mass (a b : ℝ) (hab : a < b)
     (S k : ℕ) (hS : 0 < S) (hk : 0 < k)
     (β : Fin S → ℝ → ℝ → ℝ)
@@ -322,7 +330,9 @@ theorem companding_interval_mass (a b : ℝ) (hab : a < b)
     _ = (∫ x in a..b, Real.sqrt (diagonalWeight S β x)) / k := by ring
 
 /-- A positive uniform lower bound for square-root diagonal mass forces every
-companding cell length to be at most a constant times `1/k`. -/
+companding cell length to be at most a constant times `1/k`.
+@isnad1 id=ex.4h4v.s8.7bd7fff99252 from=translated src=- shape=efcbcfad vocab=3c1ebd12
+-/
 theorem companding_length_bound (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -366,7 +376,9 @@ noncomputable def compandingSurrogateCost (a b : ℝ) (S k : ℕ)
       (boundary a b S k (j.val + 1) β - boundary a b S k j.val β) ^ 2 / 4
 
 /-- The absolute-distance integral over each half-open companding cell is
-exactly one quarter of the square of its endpoint separation. -/
+exactly one quarter of the square of its endpoint separation.
+@isnad1 id=eq.5h7v.s8.daa1268a0ed8 from=translated src=- shape=7b84d290 vocab=a573f58e
+-/
 theorem companding_cell_midpoint_moment (a b : ℝ) (hab : a < b)
     (S k : ℕ) (hS : 0 < S) (hk : 0 < k)
     (β : Fin S → ℝ → ℝ → ℝ)
@@ -390,7 +402,9 @@ theorem companding_cell_midpoint_moment (a b : ℝ) (hab : a < b)
 
 /-- On sufficiently fine companding cells, the midpoint square-root weight
 times cell length differs from the cell's exact equal mass by at most an
-arbitrarily small multiple of that length, uniformly across cells. -/
+arbitrarily small multiple of that length, uniformly across cells.
+@isnad1 id=ex.5h5v.s8.d10a305ae97a from=translated src=- shape=c8a0a87c vocab=95da7d4a
+-/
 theorem companding_midpoint_mass_error_eventually (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -470,7 +484,9 @@ theorem companding_midpoint_mass_error_eventually (a b : ℝ) (hab : a < b)
   simpa only [abs_of_nonneg (sub_nonneg.mpr hord)] using hnorm
 
 /-- On sufficiently fine companding cells, each actual coefficient differs
-from its midpoint diagonal value by at most any prescribed positive error. -/
+from its midpoint diagonal value by at most any prescribed positive error.
+@isnad1 id=ex.5h5v.s7.610addcbed9f from=translated src=- shape=7ef17120 vocab=f3b70bd2
+-/
 theorem companding_coefficient_error_eventually (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

@@ -22,6 +22,9 @@ def conj_I : Ideal (MvPowerSeries (Fin 3) ℂ) :=
 abbrev T := MvPowerSeries (Fin 3) ℂ ⧸ conj_I
 
 open MvPowerSeries in
+/--
+@isnad1 id=ne.0h0v.s6.f4167068a407 from=translated src=- shape=169e5754 vocab=4af2332c
+-/
 theorem conj_I_ne_top : conj_I ≠ ⊤ := by
   apply Ideal.span_singleton_ne_top
   rw [MvPowerSeries.isUnit_iff_constantCoeff]
@@ -42,6 +45,9 @@ noncomputable def ψ_map : Fin 3 → MvPowerSeries (Fin 2) ℂ :=
   | 1 => (X 0) ^ 2
   | 2 => (X 1) ^ 2
 
+/--
+@isnad1 id=hassubst.0h0v.s4.b21c9efa7bb6 from=translated src=- shape=434a9ff5 vocab=1085225f
+-/
 lemma ψ_hasSubst : HasSubst (a := ψ_map) := by
   apply hasSubst_of_constantCoeff_zero
   intro s
@@ -51,11 +57,17 @@ noncomputable def ψ_hom :
     MvPowerSeries (Fin 3) ℂ →ₐ[ℂ] MvPowerSeries (Fin 2) ℂ :=
   MvPowerSeries.substAlgHom ψ_hasSubst
 
+/--
+@isnad1 id=eq.0h0v.s8.e702140cc9b2 from=translated src=- shape=e9f7286d vocab=d7a5e5f3
+-/
 lemma ψ_kills_gen : ψ_hom ((X 0) ^ 2 - (X 1) * (X 2)) = 0 := by
   simp only [map_sub, map_pow, map_mul, ψ_hom, MvPowerSeries.substAlgHom_X]
   simp [ψ_map]
   ring
 
+/--
+@isnad1 id=le.0h0v.s8.799f0e4176b2 from=translated src=- shape=925b287b vocab=656a5e9e
+-/
 lemma conj_I_le_ker_ψ : conj_I ≤ RingHom.ker ψ_hom.toRingHom := by
   rw [show conj_I = Ideal.span {(X (0 : Fin 3) : MvPowerSeries (Fin 3) ℂ) ^ 2 -
     X 1 * X 2} from rfl, Ideal.span_le]
@@ -77,6 +89,9 @@ def mkFin3 (a b c : ℕ) : Fin 3 →₀ ℕ :=
 @[simp] private lemma mkFin3_one : mkFin3 a b c 1 = b := rfl
 @[simp] private lemma mkFin3_two : mkFin3 a b c 2 = c := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.16a602a972d4 from=translated src=- shape=46f37a07 vocab=6507db06
+-/
 lemma mkFin3_ext (n : Fin 3 →₀ ℕ) : n = mkFin3 (n 0) (n 1) (n 2) := by
   ext i
   fin_cases i <;> rfl
@@ -94,6 +109,9 @@ def divQ (f : MvPowerSeries (Fin 3) ℂ) : MvPowerSeries (Fin 3) ℂ :=
   fun n => ∑ k ∈ Finset.range (min (n 1) (n 2) + 1),
     f (mkFin3 (n 0 + 2 + 2 * k) (n 1 - k) (n 2 - k))
 
+/--
+@isnad1 id=iff.0h4v.s5.8b18cfb47228 from=translated src=- shape=71ada6db vocab=b1535cd0
+-/
 lemma mkFin2_inj {a b c d : ℕ} : mkFin2 a b = mkFin2 c d ↔ a = c ∧ b = d := by
   constructor
   · intro h
@@ -101,6 +119,9 @@ lemma mkFin2_inj {a b c d : ℕ} : mkFin2 a b = mkFin2 c d ↔ a = c ∧ b = d :
   · rintro ⟨rfl, rfl⟩
     rfl
 
+/--
+@isnad1 id=iff.0h6v.s5.f3f4dd73d025 from=translated src=- shape=6fe97741 vocab=214f37c4
+-/
 lemma mkFin3_inj {a b c d e f : ℕ} :
     mkFin3 a b c = mkFin3 d e f ↔ a = d ∧ b = e ∧ c = f := by
   constructor

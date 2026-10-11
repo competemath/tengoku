@@ -26,7 +26,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- **Sublemma 6.1a (Trace bound via SMW)**: Under the barrier hypotheses,
     Φ_{u'}(M+B) ≤ Φ_{u'}(M) + tr(B·U²) / (1 - tr(B·U)).
-    This uses the PSD resolvent trace bound applied with U = (u'I-M)⁻¹. -/
+    This uses the PSD resolvent trace bound applied with U = (u'I-M)⁻¹.
+@isnad1 id=le.6h5v.s9.e77c57c98123 from=translated src=- shape=550637d8 vocab=16ff8439
+-/
 lemma barrier_smw_trace_bound
     (M B : Matrix V V ℝ)
     (u u' : ℝ) (hu : u < u')
@@ -65,7 +67,9 @@ lemma barrier_smw_trace_bound
   exact psd_resolvent_trace_bound U B hU_pd hB htrBU_lt htrBU_nn
 
 /-- **Lemma 6.1 (One-sided barrier)**: If M ≺ uI, u' > u, B ≽ 0, and the
-    barrier condition holds, then M + B ≺ u'I and Φ_{u'}(M + B) ≤ Φ_u(M). -/
+    barrier condition holds, then M + B ≺ u'I and Φ_{u'}(M + B) ≤ Φ_u(M).
+@isnad1 id=le.3h6v.s8.dde8cae5b91b from=translated src=- shape=d08b5b7d vocab=16ff8439
+-/
 lemma one_sided_barrier
     (M B : Matrix V V ℝ)
     (u u' : ℝ) (hu : u < u')
@@ -161,7 +165,9 @@ lemma one_sided_barrier
     then U⁻¹ - B is PD. This is the missing PosDef conclusion of the
     BSS barrier step (Lemma 6.1). The proof constructs U^{1/2} via spectral
     theorem, forms K = U^{1/2}·B·U^{1/2} with tr(K) < 1, shows I - K is PD
-    (eigenvalue bound), and factors U⁻¹ - B = U^{-1/2}·(I-K)·U^{-1/2}. -/
+    (eigenvalue bound), and factors U⁻¹ - B = U^{-1/2}·(I-K)·U^{-1/2}.
+@isnad1 id=posdef.3h3v.s6.3932e49714b9 from=translated src=- shape=4fc9619c vocab=36683cbf
+-/
 lemma inv_sub_posDef_of_trace_lt_one
     (U B : Matrix V V ℝ)
     (hU : U.PosDef) (hB : B.PosSemidef)

@@ -45,6 +45,7 @@ def tensorPolynomial {d D : ℕ} (c : (Fin d → Fin (D + 1)) → ℝ) :
 
 /-- A polynomial of coordinatewise degree at most `D` equals the synthesis of its fixed-basis
 coefficient vector. The support bound should be converted using `degreeOf_le_iff`, then `as_sum`.
+@isnad1 id=eq.1h3v.s5.f31d3b0c9d77 from=translated src=- shape=7d496aab vocab=a0fd675b
 -/
 theorem tensorPolynomial_tensorCoeffs {d D : ℕ} (p : MvPolynomial (Fin d) ℝ)
     (hdeg : ∀ i, p.degreeOf i ≤ D) :
@@ -95,6 +96,7 @@ theorem tensorPolynomial_tensorCoeffs {d D : ℕ} (p : MvPolynomial (Fin d) ℝ)
 
 /-- Evaluation on the integer tensor grid determines a polynomial of coordinatewise degree at
 most `D`. Prove this by induction on the number of coordinates using univariate root bounds.
+@isnad1 id=eq.3h4v.s8.f6fab9b0b6e4 from=translated src=- shape=af06dfb4 vocab=eb916203
 -/
 theorem tensorPolynomial_eq_of_grid {d D : ℕ}
     (p q : MvPolynomial (Fin d) ℝ)
@@ -170,6 +172,7 @@ private theorem tensorPolynomial_degreeOf_le {d D : ℕ}
 A degree-bounded polynomial family has continuous coefficients whenever each value on the
 fixed integer tensor grid varies continuously with the parameter. The inverse of the finite
 tensor Vandermonde evaluation map is linear and continuous.
+@isnad1 id=continuo.2h5v.s7.67e806fe582d from=translated src=- shape=1b59f07c vocab=aa8308b6
 -/
 theorem continuous_tensorCoeffs_of_grid {Λ : Type*} [TopologicalSpace Λ]
     {d D : ℕ} (p : Λ → MvPolynomial (Fin d) ℝ)
@@ -230,7 +233,9 @@ theorem continuous_tensorCoeffs_of_grid {Λ : Type*} [TopologicalSpace Λ]
   simp
 
 /-- The recovered coefficient of a degree-bounded polynomial family is measurable when its
-fixed-grid evaluations are continuous. -/
+fixed-grid evaluations are continuous.
+@isnad1 id=measurab.2h5v.s7.38ec06f0e4cf from=translated src=- shape=cb9dfc98 vocab=96306877
+-/
 theorem measurable_tensorCoeffs_of_grid {Λ : Type*} [TopologicalSpace Λ]
     [MeasurableSpace Λ] [BorelSpace Λ] {d D : ℕ}
     (p : Λ → MvPolynomial (Fin d) ℝ)
@@ -244,6 +249,7 @@ theorem measurable_tensorCoeffs_of_grid {Λ : Type*} [TopologicalSpace Λ]
 /-- A polynomial bounded by `B` on the normalized tensor cube has a coefficient one-norm
 bounded exponentially in its coordinatewise degree. This is the deterministic envelope used for
 the Jackson coefficient path; the estimate is valid for every polynomial representative.
+@isnad1 id=le.3h4v.s8.2c498750a331 from=translated src=- shape=265e8899 vocab=f62b1bb3
 -/
 theorem tensorCoeffs_l1_le_cube_bound {d D : ℕ}
     (p : MvPolynomial (Fin d) ℝ) (B : ℝ) (hB : 0 ≤ B)

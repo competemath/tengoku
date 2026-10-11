@@ -42,6 +42,7 @@ def centeredRectangle {d : ℕ} (c r : Fin d → ℝ) : Set (Fin d → ℝ) :=
 /-- For [a finite dimension](hyp:d), [a center](hyp:c), [coordinate radii](hyp:r), and [normalized
 coordinates](hyp:z), if [every radius is positive](hyp:hr), then [normalizing the affine image
 recovers the original normalized coordinates](goal).
+@isnad1 id=eq.1h4v.s5.bffb9f95de82 from=translated src=- shape=7d2fa70e vocab=ba3569e5
 -/
 theorem normalizedPoint_affinePoint {d : ℕ} (c r z : Fin d → ℝ)
     (hr : ∀ i, 0 < r i) : normalizedPoint c r (affinePoint c r z) = z := by
@@ -53,6 +54,7 @@ theorem normalizedPoint_affinePoint {d : ℕ} (c r z : Fin d → ℝ)
 /-- For [a finite dimension](hyp:d), [a center](hyp:c), [coordinate radii](hyp:r), and [a
 point](hyp:y), if [every radius is positive](hyp:hr), then [applying the affine map to the
 normalized point recovers the original point](goal).
+@isnad1 id=eq.1h4v.s5.ec9091014f92 from=translated src=- shape=7d2fa70e vocab=ba3569e5
 -/
 theorem affinePoint_normalizedPoint {d : ℕ} (c r y : Fin d → ℝ)
     (hr : ∀ i, 0 < r i) : affinePoint c r (normalizedPoint c r y) = y := by
@@ -64,6 +66,7 @@ theorem affinePoint_normalizedPoint {d : ℕ} (c r y : Fin d → ℝ)
 /-- For [a finite dimension](hyp:d), [a center](hyp:c), [coordinate radii](hyp:r), and [normalized
 coordinates](hyp:z), if [every radius is strictly positive](hyp:hr) and [the normalized point lies
 in the normalized cube](hyp:hz), then [its affine image lies in the centered rectangle](goal).
+@isnad1 id=mem.2h4v.s6.6df2345c1dbc from=translated src=- shape=0eee913f vocab=6b3d1d4b
 -/
 theorem affinePoint_mem_centeredRectangle {d : ℕ} (c r z : Fin d → ℝ)
     (hr : ∀ i, 0 < r i) (hz : z ∈ normalizedCube d) :
@@ -76,6 +79,7 @@ theorem affinePoint_mem_centeredRectangle {d : ℕ} (c r z : Fin d → ℝ)
 /-- For [a finite dimension](hyp:d), [a center](hyp:c), [coordinate radii](hyp:r), and [a
 point](hyp:y), if [every radius is positive](hyp:hr) and [the point lies in the centered
 rectangle](hyp:hy), then [its normalized coordinates lie in the normalized cube](goal).
+@isnad1 id=mem.2h4v.s6.857d98a91b1c from=translated src=- shape=dcb626dc vocab=50cd081a
 -/
 theorem normalizedPoint_mem_normalizedCube {d : ℕ} (c r y : Fin d → ℝ)
     (hr : ∀ i, 0 < r i) (hy : y ∈ centeredRectangle c r) :
@@ -247,7 +251,9 @@ polynomial whose value at every point equals the original polynomial at the norm
 of that point, which has degree at most n in each variable and total degree at most that of the
 original, and whose coefficients have absolute values summing to at most the original's coefficient
 sum times the product over coordinates of the n-th power of the larger of one and (1 + |centre|) /
-radius](goal). -/
+radius](goal).
+@isnad1 id=ex.2h4v.s9.fd300281ce36 from=translated src=- shape=0aa2ac6a vocab=2020ad2c
+-/
 theorem mvPolynomial_affine_substitution_four
     (q : MvPolynomial (Fin 4) ℝ) (c r : Fin 4 → ℝ) (n : ℕ)
     (hr : ∀ i, 0 < r i)
@@ -443,7 +449,9 @@ theorem mvPolynomial_affine_substitution_four
 rectangle](hyp:hf), [there are two four-variable polynomials: one reproduces, at the coordinatewise
 cosines of every point, the order-K tensor convolution of the function expressed in normalized
 coordinates; the other equals the first evaluated at the normalized coordinates of its argument,
-has degree at most 2 (K − 1) in each variable, and has total degree at most 8 (K − 1)](goal). -/
+has degree at most 2 (K − 1) in each variable, and has total degree at most 8 (K − 1)](goal).
+@isnad1 id=ex.3h4v.s9.3904740e70d4 from=translated src=- shape=59b7b11c vocab=32ee44e8
+-/
 theorem affineJackson_exists_mvPolynomial_four {K : ℕ} (hK : 0 < K)
     (c r : Fin 4 → ℝ) (hr : ∀ i, 0 < r i)
     (f : (Fin 4 → ℝ) → ℝ) (hf : ContinuousOn f (centeredRectangle c r)) :
@@ -484,7 +492,9 @@ changes between any two points of the rectangle by at most L times the sum of th
 differences divided by the radii](hyp:hlip), [there is a four-variable polynomial of degree at most
 2 (K − 1) in each variable and total degree at most 8 (K − 1) that approximates the function
 throughout the rectangle within one hundred twenty-eight times the Lipschitz constant divided by
-K](goal). -/
+K](goal).
+@isnad1 id=ex.5h5v.s9.8554aac2eeb7 from=translated src=- shape=dbec7414 vocab=b981725e
+-/
 theorem affineJackson_approx_four {K : ℕ} (hK : 0 < K)
     (c r : Fin 4 → ℝ) (hr : ∀ i, 0 < r i)
     (f : (Fin 4 → ℝ) → ℝ) (L : ℝ) (hL : 0 ≤ L)
@@ -556,7 +566,9 @@ in normalized coordinates; the other equals the first evaluated at the normalize
 its argument, has degree at most 2 (K − 1) in each variable and total degree at most 8 (K − 1), and
 has coefficients whose absolute values sum to at most 2 to the power 40 K + 20, times B, times the
 product over coordinates of the 2 (K − 1)-th power of the larger of one and (1 + |centre|) /
-radius](goal). -/
+radius](goal).
+@isnad1 id=ex.5h5v.s9.9f7aa8f8e65c from=translated src=- shape=bf609b60 vocab=18d3f1e8
+-/
 theorem affineJackson_coeffBound_four {K : ℕ} (hK : 0 < K)
     (c r : Fin 4 → ℝ) (hr : ∀ i, 0 < r i)
     (f : (Fin 4 → ℝ) → ℝ) (B : ℝ) (hB : 0 ≤ B)

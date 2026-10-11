@@ -20,7 +20,9 @@ y](goal).
 
 Choose a coordinate where the outside point violates an endpoint. Replace
 only that coordinate of the inside point by the violated endpoint. The `pi`
-norm reduces the distance estimate to the corresponding scalar inequality. -/
+norm reduces the distance estimate to the corresponding scalar inequality.
+@isnad1 id=ex.2h5v.s7.60d83d62c200 from=translated src=- shape=348274ca vocab=22dd46cd
+-/
 theorem exists_rectBox_boundary_point_le {d : ℕ}
     (lo hi : Fin d → ℝ) (x y : Fin d → ℝ)
     (hx : x ∈ rectBox lo hi) (hy : y ∉ rectBox lo hi) :

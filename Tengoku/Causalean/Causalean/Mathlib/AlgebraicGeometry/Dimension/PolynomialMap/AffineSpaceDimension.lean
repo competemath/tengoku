@@ -31,14 +31,18 @@ def primeOfIrreducible {ι : Type*} [Finite ι]
     (irreducibleAffineClosed_iff_isPrime hZ.1 hZ.2.1).mp hZ⟩
 
 /-- For two irreducible affine closed subsets of finite-dimensional complex affine space,
-strict inclusion reverses the strict order of their corresponding vanishing-ideal prime points. -/
+strict inclusion reverses the strict order of their corresponding vanishing-ideal prime points.
+@isnad1 id=lt.3h3v.s7.e6dd8cdcfa8d from=translated src=- shape=3c3d3a85 vocab=5f223088
+-/
 lemma primeOfIrreducible_lt {ι : Type*} [Finite ι]
     {A B : Set (ι → ℂ)} (hA : IsIrreducibleAffineClosed A)
     (hB : IsIrreducibleAffineClosed B) (hAB : A ⊂ B) :
     primeOfIrreducible B hB < primeOfIrreducible A hA := by
   exact vanishingIdeal_strict_anti hA.1 hB.1 hAB
 
-/-- The Krull dimension of the ring of complex polynomials in d variables is d. -/
+/-- The Krull dimension of the ring of complex polynomials in d variables is d.
+@isnad1 id=eq.0h1v.s5.1c0fa387db4d from=translated src=- shape=e9b84b50 vocab=ffd5eadd
+-/
 lemma polynomialRing_dimension (d : ℕ) :
     ringKrullDim (MvPolynomial (Fin d) ℂ) = d := by
   rw [MvPolynomial.ringKrullDim_of_isNoetherianRing]
@@ -46,7 +50,9 @@ lemma polynomialRing_dimension (d : ℕ) :
 
 /-- For [any natural number `d`](hyp:d), [complex affine `d`-space has affine Zariski
 dimension exactly `d`, in the sense of maximal chains of irreducible affine closed
-subsets](goal). -/
+subsets](goal).
+@isnad1 id=hasaffin.0h1v.s3.58feeef8064c from=translated src=- shape=076d7086 vocab=aaa4d216
+-/
 theorem affineSpace_hasAffineZariskiDimension (d : ℕ) :
     HasAffineZariskiDimension d (Set.univ : Set (Fin d → ℂ)) := by
   have hdim : ringKrullDim (MvPolynomial (Fin d) ℂ) = d :=

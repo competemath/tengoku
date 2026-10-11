@@ -14,7 +14,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.HolderTaylor
 
 /-- If [an integrand h](hyp:h) is [continuous](hyp:hh) on [the closed interval from a to
 a + d](hyp:a,d) of [positive length](hyp:hd), then [at every point t of the interval, endpoints
-included, the within-interval derivative of the primitive of h from a equals h(t)](goal). -/
+included, the within-interval derivative of the primitive of h from a equals h(t)](goal).
+@isnad1 id=eq.3h4v.s7.f26dd46450ed from=translated src=- shape=6b751fe8 vocab=a77b5228
+-/
 theorem interval_primitive_derivWithin
     (a d : ℝ) (hd : 0 < d) (h : ℝ → ℝ)
     (hh : ContDiffOn ℝ 0 h (Set.Icc a (a + d))) :
@@ -40,7 +42,9 @@ theorem interval_primitive_derivWithin
 
 /-- If [an integrand h](hyp:h) is [k times continuously differentiable](hyp:k,hh) on [the closed
 interval from a to a + d](hyp:a,d) of [positive length](hyp:hd), then [its primitive from a is
-k + 1 times continuously differentiable on that same interval](goal). -/
+k + 1 times continuously differentiable on that same interval](goal).
+@isnad1 id=contdiff.2h4v.s7.d3431959f2bb from=translated src=- shape=e3de088e vocab=5fa217d0
+-/
 theorem interval_primitive_contDiffOn
     (k : ℕ) (a d : ℝ) (hd : 0 < d) (h : ℝ → ℝ)
     (hh : ContDiffOn ℝ k h (Set.Icc a (a + d))) :
@@ -73,7 +77,9 @@ theorem interval_primitive_contDiffOn
 /-- If [an integrand h](hyp:h) is [k times continuously differentiable](hyp:k,hh) on [the closed
 interval from a to a + d](hyp:a,d) of [positive length](hyp:hd), then [for every order j at most
 k and every point t of the interval, endpoints included, the (j + 1)-th within-interval derivative
-of the primitive of h from a equals the j-th within-interval derivative of h](goal). -/
+of the primitive of h from a equals the j-th within-interval derivative of h](goal).
+@isnad1 id=eq.4h6v.s7.68b01ef61344 from=translated src=- shape=3b9057c5 vocab=ca395135
+-/
 theorem interval_primitive_iteratedDerivWithin_succ
     (k : ℕ) (a d : ℝ) (hd : 0 < d) (h : ℝ → ℝ)
     (hh : ContDiffOn ℝ k h (Set.Icc a (a + d))) :

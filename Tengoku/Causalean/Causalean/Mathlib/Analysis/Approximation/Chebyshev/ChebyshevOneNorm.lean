@@ -61,6 +61,7 @@ most `(1 + √2)^n`. The recurrence has characteristic equation `x² = 2x + 1`.
 Prove the one-norm triangle inequality and that multiplying by `X` preserves it, then induct
 using `T_(n+2) = 2 X T_(n+1) - T_n`. The existing `chebyshev_coeffL1_le` in Causalean uses
 the coarser factor `3`, so it does not imply this bound.
+@isnad1 id=le.0h1v.s5.79821531b948 from=translated src=- shape=1cb0ebd9 vocab=722c38c8
 -/
 theorem polynomialCoeffOneNorm_chebyshev_le (n : ℕ) :
     polynomialCoeffOneNorm (Polynomial.Chebyshev.T ℝ (n : ℤ)) ≤

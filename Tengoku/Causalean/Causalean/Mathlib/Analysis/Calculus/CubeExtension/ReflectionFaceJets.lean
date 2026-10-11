@@ -22,7 +22,9 @@ continuously differentiable within the closed cube](hyp:hu), [j ≤ m](hyp:hj),
 and [x is a cube point](hyp:hx) [on the left face in coordinate i](hyp:hxi),
 then [the order-j derivative of the one-face reflection of u within the closed
 exterior slab at x equals the order-j within-cube derivative of u at x](goal).
-This holds at edges and corners of the face as well as in its relative interior. -/
+This holds at edges and corners of the face as well as in its relative interior.
+@isnad1 id=eq.5h7v.s9.01875fd39864 from=translated src=- shape=268f9a47 vocab=96dd55c3
+-/
 theorem leftFaceReflection_closedExterior_jet_eq_face (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

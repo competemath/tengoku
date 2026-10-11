@@ -49,7 +49,9 @@ noncomputable def kernelCoeff (N : ℕ) (j : ℤ) : ℝ :=
     ∫ u in Set.Icc (-Real.pi) Real.pi, kernel N u * Real.cos ((j : ℝ) * u)
 
 /-- For [an order N](hyp:N) and [an integer frequency j](hyp:j) [whose absolute value is at least
-N](hyp:hj), [the triangular sequence is zero](goal). -/
+N](hyp:hj), [the triangular sequence is zero](goal).
+@isnad1 id=eq.1h2v.s4.bef6eea51781 from=translated src=- shape=040b0c5c vocab=fa1de193
+-/
 theorem triangle_support (N : ℕ) (j : ℤ) (hj : (N : ℤ) ≤ |j|) :
     triangle N j = 0 := by
   have h : N ≤ j.natAbs := by
@@ -58,7 +60,9 @@ theorem triangle_support (N : ℕ) (j : ℤ) (hj : (N : ℤ) ≤ |j|) :
   simp [triangle, Nat.sub_eq_zero_of_le h]
 
 /-- For [an order N](hyp:N) and [an integer frequency j](hyp:j) [whose absolute value exceeds 2N −
-2](hyp:hj), [the raw Jackson Fourier coefficient is zero](goal). -/
+2](hyp:hj), [the raw Jackson Fourier coefficient is zero](goal).
+@isnad1 id=eq.1h2v.s5.93a21ecc2c1b from=translated src=- shape=9959e885 vocab=6b2d8a39
+-/
 theorem convolution_support (N : ℕ) (j : ℤ)
     (hj : ((2 * N - 2 : ℕ) : ℤ) < |j|) : convolution N j = 0 := by
   unfold convolution
@@ -83,7 +87,9 @@ theorem convolution_support (N : ℕ) (j : ℤ)
   · simp [triangle_support N (j - k) h]
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN), [the raw Jackson Fourier coefficient at
-frequency zero equals (2N³ + N) / 3](goal). -/
+frequency zero equals (2N³ + N) / 3](goal).
+@isnad1 id=eq.1h1v.s6.6993e3923e6a from=translated src=- shape=b5dd73b2 vocab=5b5bcc7c
+-/
 theorem convolution_zero (N : ℕ) (hN : 0 < N) :
     convolution N 0 = (2 * (N : ℝ) ^ 3 + N) / 3 := by
   have heven : Function.Even (fun k : ℤ => triangle N k * triangle N (0 - k)) := by
@@ -118,7 +124,9 @@ theorem convolution_zero (N : ℕ) (hN : 0 < N) :
   ring
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN), [the raw Jackson Fourier coefficient at
-frequency zero is strictly positive](goal). -/
+frequency zero is strictly positive](goal).
+@isnad1 id=lt.1h1v.s4.d20740a26266 from=translated src=- shape=72e4bc9f vocab=82698609
+-/
 theorem convolution_zero_pos (N : ℕ) (hN : 0 < N) :
     0 < convolution N 0 := by
   rw [convolution_zero N hN]
@@ -128,7 +136,9 @@ theorem convolution_zero_pos (N : ℕ) (hN : 0 < N) :
 /-- For [an order N](hyp:N) that is [positive](hyp:hN) and [any angle u](hyp:u), [the square of the
 degree-(N − 1) Chebyshev polynomial of the second kind evaluated at the cosine of u / 2 equals the
 finite cosine series, over integer frequencies j from −N to N, with the triangular sequence as
-coefficients](goal). -/
+coefficients](goal).
+@isnad1 id=eq.1h2v.s7.40d678ef8738 from=translated src=- shape=d96f7b48 vocab=0069f658
+-/
 theorem triangle_fourier (N : ℕ) (hN : 0 < N) (u : ℝ) :
     ((Polynomial.Chebyshev.U ℝ ((N - 1 : ℕ) : ℤ)).eval
       (Real.cos (u / 2))) ^ 2 =
@@ -186,7 +196,9 @@ endpoints; `convolution_support` removes them only after reindexing. -/
 [real coefficients](hyp:a) that are [even in the frequency](hyp:ha), and [any angle u](hyp:u), [the
 square of the cosine series with those frequencies and coefficients equals the double sum over
 pairs of frequencies of the product of the two coefficients times the cosine of the sum of the two
-frequencies times u](goal). -/
+frequencies times u](goal).
+@isnad1 id=eq.2h3v.s7.444779a44a79 from=translated src=- shape=0364b28b vocab=4f7b233a
+-/
 theorem finite_cosine_square_of_even (s : Finset ℤ) (a : ℤ → ℝ)
     (hs : ∀ k : ℤ, k ∈ s ↔ -k ∈ s) (ha : ∀ k : ℤ, a (-k) = a k)
     (u : ℝ) :
@@ -232,7 +244,9 @@ theorem finite_cosine_square_of_even (s : Finset ℤ) (a : ℤ → ℝ)
 /-- For [an order N](hyp:N) that is [positive](hyp:hN) and [any angle u](hyp:u), [the double sum
 over pairs of frequencies between −N and N of the product of two triangular coefficients times the
 cosine of the summed frequency times u equals the cosine series over frequencies j between −(2N −
-2) and 2N − 2 with the raw Jackson Fourier coefficients](goal). -/
+2) and 2N − 2 with the raw Jackson Fourier coefficients](goal).
+@isnad1 id=eq.1h2v.s7.aa6dbfa25b5b from=translated src=- shape=04efbec7 vocab=fd948d76
+-/
 theorem triangle_pair_sum_eq_convolution (N : ℕ) (hN : 0 < N) (u : ℝ) :
     (∑ k ∈ Finset.Icc (-(N : ℤ)) (N : ℤ),
       ∑ l ∈ Finset.Icc (-(N : ℤ)) (N : ℤ),
@@ -335,7 +349,9 @@ theorem triangle_pair_sum_eq_convolution (N : ℕ) (hN : 0 < N) (u : ℝ) :
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN) and [any angle u](hyp:u), [the square of the
 triangular cosine series over frequencies between −N and N equals the cosine series over
-frequencies j between −(2N − 2) and 2N − 2 with the raw Jackson Fourier coefficients](goal). -/
+frequencies j between −(2N − 2) and 2N − 2 with the raw Jackson Fourier coefficients](goal).
+@isnad1 id=eq.1h2v.s7.06877d85003d from=translated src=- shape=b091252d vocab=43c0fe7b
+-/
 theorem triangle_fourier_square (N : ℕ) (hN : 0 < N) (u : ℝ) :
     (∑ k ∈ Finset.Icc (-(N : ℤ)) (N : ℤ),
       triangle N k * Real.cos ((k : ℝ) * u)) ^ 2 =
@@ -356,7 +372,9 @@ theorem triangle_fourier_square (N : ℕ) (hN : 0 < N) (u : ℝ) :
 
 /-- For [two integer frequencies k and j](hyp:k,j), [one over 2π times the integral from −π to π of
 the product of the cosines of k u and j u equals one when both frequencies are zero, one half when
-they are not both zero but have the same absolute value, and zero otherwise](goal). -/
+they are not both zero but have the same absolute value, and zero otherwise](goal).
+@isnad1 id=eq.0h2v.s7.4c82d239fd00 from=translated src=- shape=7871ccfc vocab=b246e8f5
+-/
 theorem cosine_mode_orthogonality (k j : ℤ) :
     (1 / (2 * Real.pi)) *
       ∫ u in Set.Icc (-Real.pi) Real.pi,
@@ -427,7 +445,9 @@ theorem cosine_mode_orthogonality (k j : ℤ) :
       simp [hsub, hadd]
 
 /-- For [any order N](hyp:N) and [any integer frequency j](hyp:j), [the raw Jackson Fourier
-coefficient takes the same value at −j as at j](goal). -/
+coefficient takes the same value at −j as at j](goal).
+@isnad1 id=eq.0h2v.s3.1f66bc2cb214 from=translated src=- shape=3b878b1c vocab=419f8ea5
+-/
 theorem convolution_even (N : ℕ) (j : ℤ) :
     convolution N (-j) = convolution N j := by
   open scoped Pointwise in
@@ -453,7 +473,9 @@ theorem convolution_even (N : ℕ) (j : ℤ) :
 /-- For [a finite set of integer frequencies](hyp:s) that is [symmetric under negation](hyp:hs),
 [real coefficients](hyp:a) that are [even in the frequency](hyp:ha), and [an integer frequency
 j](hyp:j), [one over 2π times the integral from −π to π of the cosine series times the cosine of j
-u equals the coefficient at j when j belongs to the frequency set, and zero otherwise](goal). -/
+u equals the coefficient at j when j belongs to the frequency set, and zero otherwise](goal).
+@isnad1 id=eq.2h3v.s7.dbef7d342e5f from=translated src=- shape=e0118d3a vocab=baa2f93d
+-/
 theorem cosine_coefficient_even_finite (s : Finset ℤ) (a : ℤ → ℝ)
     (hs : ∀ k : ℤ, k ∈ s ↔ -k ∈ s)
     (ha : ∀ k : ℤ, a (-k) = a k) (j : ℤ) :
@@ -536,7 +558,9 @@ theorem cosine_coefficient_even_finite (s : Finset ℤ) (a : ℤ → ℝ)
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN) and [any angle u](hyp:u), [the raw Jackson
 kernel equals the cosine series over frequencies j between −(2N − 2) and 2N − 2 with the raw
-Jackson Fourier coefficients](goal). -/
+Jackson Fourier coefficients](goal).
+@isnad1 id=eq.1h2v.s6.66765c72f6c4 from=translated src=- shape=591516dc vocab=b46a78ff
+-/
 theorem raw_kernel_fourier (N : ℕ) (hN : 0 < N) (u : ℝ) :
     Causalean.Mathlib.Analysis.JacksonApproximation.jraw N u =
       ∑ j ∈ Finset.Icc (-((2 * N - 2 : ℕ) : ℤ)) ((2 * N - 2 : ℕ) : ℤ),
@@ -550,7 +574,9 @@ theorem raw_kernel_fourier (N : ℕ) (hN : 0 < N) (u : ℝ) :
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN) and [any angle u](hyp:u), [the scaled
 Jackson kernel equals the cosine series over frequencies j between −(2N − 2) and 2N − 2 with the
-normalized Jackson coefficients](goal). -/
+normalized Jackson coefficients](goal).
+@isnad1 id=eq.1h2v.s6.114ff698d104 from=translated src=- shape=591516dc vocab=1af034be
+-/
 theorem kernel_fourier (N : ℕ) (hN : 0 < N) (u : ℝ) :
     kernel N u =
       ∑ j ∈ Finset.Icc (-((2 * N - 2 : ℕ) : ℤ)) ((2 * N - 2 : ℕ) : ℤ),
@@ -581,7 +607,9 @@ theorem kernel_fourier (N : ℕ) (hN : 0 < N) (u : ℝ) :
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN) and [any integer frequency j](hyp:j), [the
 cosine Fourier coefficient of the scaled Jackson kernel, defined by integration, equals the
-normalized Jackson coefficient](goal). -/
+normalized Jackson coefficient](goal).
+@isnad1 id=eq.1h2v.s4.85539dc03cb6 from=translated src=- shape=ee40ff81 vocab=993c24f1
+-/
 theorem kernelCoeff_eq_normalizedCoeff (N : ℕ) (hN : 0 < N) (j : ℤ) :
     kernelCoeff N j = normalizedCoeff N j := by
   let s : Finset ℤ :=
@@ -615,13 +643,17 @@ theorem kernelCoeff_eq_normalizedCoeff (N : ℕ) (hN : 0 < N) (j : ℤ) :
     simp [hj, normalizedCoeff, convolution_support N j hfar]
 
 /-- For [an order N](hyp:N) and [an integer frequency j](hyp:j) [whose absolute value exceeds 2N −
-2](hyp:hj), [the normalized Jackson coefficient is zero](goal). -/
+2](hyp:hj), [the normalized Jackson coefficient is zero](goal).
+@isnad1 id=eq.1h2v.s5.13ccded2f007 from=translated src=- shape=9959e885 vocab=b9e9db5d
+-/
 theorem normalizedCoeff_support (N : ℕ) (j : ℤ)
     (hj : ((2 * N - 2 : ℕ) : ℤ) < |j|) : normalizedCoeff N j = 0 := by
   simp [normalizedCoeff, convolution_support N j hj]
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN), [the scaled Jackson kernel divided by 2π
-integrates to one over the period from −π to π](goal). -/
+integrates to one over the period from −π to π](goal).
+@isnad1 id=eq.1h1v.s6.a9a68805706c from=translated src=- shape=918ae3b7 vocab=996e3a33
+-/
 theorem kernel_normalized_integral (N : ℕ) (hN : 0 < N) :
     (∫ u in Set.Icc (-Real.pi) Real.pi, kernel N u / (2 * Real.pi)) = 1 := by
   have hden : (2 * Real.pi : ℝ) ≠ 0 := by positivity

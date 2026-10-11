@@ -20,7 +20,9 @@ open scoped BigOperators
 
 /-- A [base phase](hyp:theta) and [phase displacement](hyp:t) give [a bound on
 the cosine displacement by its sine-weighted linear part and quadratic remainder](goal).
-The estimate remains valid at endpoints, where the linear term vanishes. -/
+The estimate remains valid at endpoints, where the linear term vanishes.
+@isnad1 id=le.0h2v.s6.26285494e7be from=translated src=- shape=5e943d8f vocab=2cdafe7b
+-/
 theorem abs_cos_add_sub_cos_le (theta t : ℝ) :
     |Real.cos (theta + t) - Real.cos theta| ≤
       |Real.sin theta| * |t| + t ^ 2 / 2 := by
@@ -49,7 +51,9 @@ theorem abs_cos_add_sub_cos_le (theta t : ℝ) :
 
 /-- A [rectangle center](hyp:c), [positive coordinate radii](hyp:r,hr), [a point
 in the ambient space](hyp:y), and [a selected coordinate](hyp:i) identify [the
-physical sine factor with the square root of the two face distances' product](goal). -/
+physical sine factor with the square root of the two face distances' product](goal).
+@isnad1 id=eq.1h4v.s7.ece9084e8446 from=translated src=- shape=157c1c76 vocab=d08a3066
+-/
 theorem radius_mul_abs_sin_arccos_eq_boundary
     (c r y : Fin 4 → ℝ) (hr : ∀ i, 0 < r i)
     (i : Fin 4) :
@@ -68,7 +72,9 @@ theorem radius_mul_abs_sin_arccos_eq_boundary
 cube](hyp:g,hg), [nonnegative coordinate weights](hyp:r,hr), and [a nonnegative
 Lipschitz constant with its weighted coordinate bound](hyp:L,hL,hlip), evaluated
 at [a phase point](hyp:theta), give [a tensor Jackson error bound with a
-boundary-adaptive first-order term and a second-order remainder](goal). -/
+boundary-adaptive first-order term and a second-order remainder](goal).
+@isnad1 id=le.5h6v.s8.126ace8bea4e from=translated src=- shape=63c888da vocab=d0d32399
+-/
 theorem tensorConvolution_boundary_adaptive {d K : ℕ} (hK : 0 < K)
     (g : (Fin d → ℝ) → ℝ) (hg : ContinuousOn g (normalizedCube d))
     (r : Fin d → ℝ) (hr : ∀ i, 0 ≤ r i)
@@ -233,7 +239,9 @@ theorem tensorConvolution_boundary_adaptive {d K : ℕ} (hK : 0 < K)
 coordinate radii](hyp:c,r,hr), [a continuous physical-coordinate Lipschitz
 function](hyp:f,hf,L,hL,hlip), [a polynomial pair realizing the canonical affine
 tensor convolution](hyp:p,q,hpeval,hqeval), and [a point in that rectangle](hyp:y,hy)
-give [a boundary-adaptive error bound for that same affine Jackson polynomial](goal). -/
+give [a boundary-adaptive error bound for that same affine Jackson polynomial](goal).
+@isnad1 id=le.8h8v.s10.0c2e84c01660 from=translated src=- shape=04104124 vocab=b9a5050f
+-/
 theorem affineJackson_boundary_adaptive_four {K : ℕ} (hK : 0 < K)
     (c r : Fin 4 → ℝ) (hr : ∀ i, 0 < r i)
     (f : (Fin 4 → ℝ) → ℝ) (hf : ContinuousOn f (centeredRectangle c r))
@@ -307,7 +315,9 @@ theorem affineJackson_boundary_adaptive_four {K : ℕ} (hK : 0 < K)
 /-- A [positive Jackson order](hyp:hK), [a centered rectangle with positive
 coordinate radii](hyp:c,r,hr), and [a continuous physical-coordinate Lipschitz
 function](hyp:f,hf,L,hL,hlip) give [the canonical affine tensor Jackson polynomial
-with its evaluation and degree identities and a boundary-adaptive pointwise error bound](goal). -/
+with its evaluation and degree identities and a boundary-adaptive pointwise error bound](goal).
+@isnad1 id=ex.5h5v.s10.69a32bf14df5 from=translated src=- shape=ca33878b vocab=68a2e0a7
+-/
 theorem affineJackson_boundary_exists_four {K : ℕ} (hK : 0 < K)
     (c r : Fin 4 → ℝ) (hr : ∀ i, 0 < r i)
     (f : (Fin 4 → ℝ) → ℝ) (hf : ContinuousOn f (centeredRectangle c r))

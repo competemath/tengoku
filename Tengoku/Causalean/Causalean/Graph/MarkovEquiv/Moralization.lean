@@ -75,7 +75,9 @@ def MoralSep (X Y Z : Finset V) : Prop :=
   ∀ x ∈ X, ∀ y ∈ Y, ¬ G.MoralConn (G.ancestralSet (X ∪ Y ∪ Z)) Z x y
 
 /-- Moral adjacency is symmetric: an undirected moral edge from `u` to `v` is also one
-from `v` to `u`. -/
+from `v` to `u`.
+@isnad1 id=moraladj.1h5v.s5.61e294cda7cb from=translated src=- shape=7f8958b1 vocab=41c20131
+-/
 theorem moralAdj_symm {S : Finset V} {u v : V} (h : G.MoralAdj S u v) :
     G.MoralAdj S v u := by
   obtain ⟨hne, hu, hv, hdisj⟩ := h
@@ -88,24 +90,32 @@ theorem moralAdj_symm {S : Finset V} {u v : V} (h : G.MoralAdj S u v) :
 -- Moral-connectivity plumbing
 -- ============================================================
 
-/-- A single moral step yields moral connectivity. -/
+/-- A single moral step yields moral connectivity.
+@isnad1 id=moralcon.1h6v.s5.d307720ffb80 from=translated src=- shape=748124f5 vocab=348eac38
+-/
 theorem moralConn_of_step {S Z : Finset V} {u v : V}
     (h : G.MoralStep S Z u v) : G.MoralConn S Z u v :=
   Relation.ReflTransGen.single h
 
-/-- Moral connectivity is transitive. -/
+/-- Moral connectivity is transitive.
+@isnad1 id=moralcon.2h7v.s5.65628a0765d8 from=translated src=- shape=0e60ef75 vocab=a74612df
+-/
 theorem moralConn_trans {S Z : Finset V} {u v w : V}
     (h₁ : G.MoralConn S Z u v) (h₂ : G.MoralConn S Z v w) : G.MoralConn S Z u w :=
   Relation.ReflTransGen.trans h₁ h₂
 
-/-- A skeleton edge between two non-`Z` vertices of `S` is a moral step. -/
+/-- A skeleton edge between two non-`Z` vertices of `S` is a moral step.
+@isnad1 id=moralste.6h6v.s6.42d5fb4aa5c4 from=translated src=- shape=095a0e34 vocab=0afd396e
+-/
 theorem moralStep_of_uAdj {S Z : Finset V} {u v : V}
     (hne : u ≠ v) (hu : u ∈ S) (hv : v ∈ S) (hadj : G.UAdj u v)
     (huZ : u ∉ Z) (hvZ : v ∉ Z) : G.MoralStep S Z u v :=
   ⟨⟨hne, hu, hv, Or.inl hadj⟩, huZ, hvZ⟩
 
 /-- A married pair (common child `c ∈ S`) of distinct non-`Z` vertices of `S` is a
-moral step. -/
+moral step.
+@isnad1 id=moralste.8h7v.s6.421f2b9fa97b from=translated src=- shape=8d8f4bd7 vocab=6bf6b268
+-/
 theorem moralStep_of_married {S Z : Finset V} {u v c : V}
     (hne : u ≠ v) (hu : u ∈ S) (hv : v ∈ S) (hc : c ∈ S)
     (huc : G.edge u c) (hvc : G.edge v c) (huZ : u ∉ Z) (hvZ : v ∉ Z) :
@@ -117,7 +127,9 @@ theorem moralStep_of_married {S Z : Finset V} {u v c : V}
 -- ============================================================
 
 /-- In an active walk whose first two vertices are `a` and `b`, those vertices are adjacent in
-the underlying undirected graph. -/
+the underlying undirected graph.
+@isnad1 id=uadj.1h6v.s5.9562360df79b from=translated src=- shape=b69c5a58 vocab=94897bf7
+-/
 theorem activeWalk_head_uAdj {Z : Finset V} {a b : V} {r : List V}
     (h : G.IsActiveWalk Z (a :: b :: r)) : G.UAdj a b := by
   have := h.1 0 (by simp)
@@ -125,7 +137,9 @@ theorem activeWalk_head_uAdj {Z : Finset V} {a b : V} {r : List V}
 
 /-- In an active walk whose first three vertices are `a`, `b`, and `c`, the middle vertex obeys
 the active-walk condition: a collider belongs to the ancestral closure of the conditioning set,
-and a non-collider is not conditioned on. -/
+and a non-collider is not conditioned on.
+@isnad1 id=ite.1h7v.s6.1320f3b102ff from=translated src=- shape=ef6bf181 vocab=ab599d5e
+-/
 theorem activeWalk_head_triple {Z : Finset V} {a b c : V} {r : List V}
     (h : G.IsActiveWalk Z (a :: b :: c :: r)) :
     if G.IsCollider a b c then b ∈ G.bbZAncestors Z else b ∉ Z := by
@@ -133,7 +147,9 @@ theorem activeWalk_head_triple {Z : Finset V} {a b c : V} {r : List V}
   simpa using this
 
 /-- Removing the first two vertices of an active walk with at least three vertices leaves an
-active walk. -/
+active walk.
+@isnad1 id=isactive.1h7v.s5.c654fe14a8ab from=translated src=- shape=e6bdef43 vocab=e84247c6
+-/
 theorem activeWalk_drop2 {Z : Finset V} {a b c : V} {r : List V}
     (h : G.IsActiveWalk Z (a :: b :: c :: r)) : G.IsActiveWalk Z (c :: r) :=
   G.isActiveWalk_cons_tail (G.isActiveWalk_cons_tail h)
@@ -152,7 +168,9 @@ of length ≥ 2, all of whose nodes lie in the ground set `S`, and both endpoint
 The moral path threads the *non-collider* vertices of `p`: consecutive non-colliders are
 skeleton-adjacent, and across a collider apex `b` (skipped) the two flanking parents are
 married through `b ∈ S`. The proof is strong induction on `p.length`, peeling one vertex
-(skeleton step) or two vertices (across a collider) from the front. -/
+(skeleton step) or two vertices (across a collider) from the front.
+@isnad1 id=moralcon.8h8v.s7.3d80f7cd395a from=translated src=- shape=8403d673 vocab=505b8227
+-/
 theorem moralConn_of_activeWalk
     {S Z : Finset V} :
     ∀ (n : ℕ) {x y : V} {p : List V}, p.length ≤ n →
@@ -345,7 +363,9 @@ private theorem bbReachableVertices_of_descent {X Z : Finset V} {a w : V}
   Finset.mem_image.mpr ⟨(w, BBDir.fromParent), G.bbReach_descent ha_reach haAncZ haw, rfl⟩
 
 /-- A vertex in the ancestral closure of a set either belongs to that set itself or is a strict
-ancestor of one of its elements. -/
+ancestor of one of its elements.
+@isnad1 id=or.1h4v.s6.80f371db38f7 from=translated src=- shape=01b3dad3 vocab=de058049
+-/
 theorem ancestralSet_cases {A : Finset V} {a : V} (h : a ∈ G.ancestralSet A) :
     a ∈ A ∨ ∃ w ∈ A, G.isAncestor a w := by
   rcases Finset.mem_union.mp h with hA | hAnc
@@ -512,7 +532,9 @@ private theorem not_moralSep_of_not_dSep {X Y Z : Finset V}
 inside the ancestral set `An(X ∪ Y ∪ Z)` connects them while avoiding `Z`.
 
 Lauritzen, Dawid, Larsen, and Leimer, *Independence properties of directed Markov fields*
-(1990), DOI 10.1002/net.3230200503. -/
+(1990), DOI 10.1002/net.3230200503.
+@isnad1 id=iff.3h5v.s6.90b4f5d82301 from=translated src=- shape=08e65699 vocab=43618948
+-/
 theorem dSep_iff_moralSep {X Y Z : Finset V}
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
     G.dSep X Y Z ↔ G.MoralSep X Y Z := by
@@ -535,7 +557,9 @@ namespace MarkovEquiv
 /-- **Moral adjacency is a skeleton + v-structure invariant.** Two DAGs with the same
 skeleton and the same v-structures induce the same moral adjacency on any ground set: a
 shielded pair is moral-adjacent via the shared skeleton edge, and an unshielded married pair
-is exactly the apex of a shared immorality. -/
+is exactly the apex of a shared immorality.
+@isnad1 id=iff.2h6v.s5.cfd543d458c1 from=translated src=- shape=5a9e7642 vocab=ec0017c6
+-/
 theorem moralAdj_congr {G₁ G₂ : DAG V} (hskel : SameSkeleton G₁ G₂)
     (himm : SameImmoralities G₁ G₂) (S : Finset V) (u v : V) :
     G₁.MoralAdj S u v ↔ G₂.MoralAdj S u v := by
@@ -563,7 +587,9 @@ theorem moralAdj_congr {G₁ G₂ : DAG V} (hskel : SameSkeleton G₁ G₂)
       exact ⟨him₁.1, him₁.2.1⟩
 
 /-- Moral steps agree across DAGs with the same skeleton and v-structures (same ground set,
-same conditioning set). -/
+same conditioning set).
+@isnad1 id=iff.2h7v.s5.d1acbaa14e3a from=translated src=- shape=63bca56b vocab=c0e87000
+-/
 theorem moralStep_congr {G₁ G₂ : DAG V} (hskel : SameSkeleton G₁ G₂)
     (himm : SameImmoralities G₁ G₂) (S Z : Finset V) (u v : V) :
     G₁.MoralStep S Z u v ↔ G₂.MoralStep S Z u v := by
@@ -576,7 +602,9 @@ theorem moralStep_congr {G₁ G₂ : DAG V} (hskel : SameSkeleton G₁ G₂)
 [moral connectivity in one DAG holds exactly when it holds in the other](goal).
 
 This does not identify the graph-dependent ancestral sets used by `MoralSep`; the
-fixed-ground-set qualification is therefore essential. -/
+fixed-ground-set qualification is therefore essential.
+@isnad1 id=iff.2h7v.s5.4e61855f2979 from=translated src=- shape=63bca56b vocab=17f38cde
+-/
 theorem moralConn_congr {G₁ G₂ : DAG V} (hskel : SameSkeleton G₁ G₂)
     (himm : SameImmoralities G₁ G₂) (S Z : Finset V) (u v : V) :
     G₁.MoralConn S Z u v ↔ G₂.MoralConn S Z u v := by

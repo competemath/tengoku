@@ -98,7 +98,9 @@ We use `Submodule.orthogonalProjectionFn` (which lands in `V`, not in `↥H`) so
 noncomputable def residualize (v : V) : V := v - H.orthogonalProjectionFn v
 
 /-- Residualization is the original vector minus its orthogonal projection onto
-the nuisance subspace. -/
+the nuisance subspace.
+@isnad1 id=eq.0h3v.s6.0c82caac5b83 from=translated src=- shape=0102392e vocab=3ef6fa90
+-/
 @[simp] lemma residualize_def (v : V) :
     residualize H v = v - H.orthogonalProjectionFn v := rfl
 
@@ -110,13 +112,17 @@ This bundled form is used only to transfer linearity facts back to `residualize`
 noncomputable def residualizeL : V →L[ℝ] V :=
   ContinuousLinearMap.id ℝ V - H.starProjection
 
-/-- Applying the residual-maker linear map gives the residualized vector. -/
+/-- Applying the residual-maker linear map gives the residualized vector.
+@isnad1 id=eq.0h3v.s7.e83b84541996 from=translated src=- shape=5093444a vocab=c229fa72
+-/
 @[simp] lemma residualizeL_apply (v : V) :
     residualizeL H v = residualize H v := by
   simp [residualizeL, residualize]
 
 /-- Residual is orthogonal to every element of `H`. This is the
-defining property of the orthogonal residual. -/
+defining property of the orthogonal residual.
+@isnad1 id=eq.1h4v.s7.f9d8800bfc4c from=translated src=- shape=76746f7b vocab=ccb24749
+-/
 lemma inner_residualize_of_mem
     (v : V) {w : V} (hw : w ∈ H) :
     inner ℝ (residualize H v) w = 0 := by
@@ -124,7 +130,9 @@ lemma inner_residualize_of_mem
     Submodule.starProjection_inner_eq_zero (K := H) v w hw
 
 /-- **Symmetric residualization in the right slot.**
-Since `M_H` is self-adjoint and idempotent, `⟨X̃, Y⟩ = ⟨X̃, Ỹ⟩`. -/
+Since `M_H` is self-adjoint and idempotent, `⟨X̃, Y⟩ = ⟨X̃, Ỹ⟩`.
+@isnad1 id=eq.0h4v.s6.5b7613964243 from=translated src=- shape=10673cd1 vocab=1cc887e6
+-/
 lemma residualize_inner_swap_right (v w : V) :
     inner ℝ (residualize H v) w
       = inner ℝ (residualize H v) (residualize H w) := by
@@ -155,13 +163,17 @@ is the sum of each regressor multiplied by its corresponding coefficient. -/
 noncomputable def fittedValue (β : Fin K → ℝ) : V :=
   ∑ j, β j • X j
 
-/-- Fitted values are linear in the coefficient vector. -/
+/-- Fitted values are linear in the coefficient vector.
+@isnad1 id=eq.0h5v.s6.5938e8a33bf3 from=translated src=- shape=d4653fe4 vocab=b19fa2fd
+-/
 lemma fittedValue_sub (β γ : Fin K → ℝ) :
     fittedValue X (fun j => β j - γ j) =
       fittedValue X β - fittedValue X γ := by
   simp [fittedValue, sub_smul, Finset.sum_sub_distrib]
 
-/-- Residualization commutes with forming a fitted value. -/
+/-- Residualization commutes with forming a fitted value.
+@isnad1 id=eq.0h5v.s6.989bdfef0cb1 from=translated src=- shape=8d32c13b vocab=d4db1ac6
+-/
 lemma residualize_fittedValue (β : Fin K → ℝ) :
     residualize H (fittedValue X β) =
       fittedValue (fun j => residualize H (X j)) β := by
@@ -171,7 +183,9 @@ lemma residualize_fittedValue (β : Fin K → ℝ) :
   simp [fittedValue]
 
 /-- Residualization of the raw regression residual is the residualized
-outcome minus the fitted value of the residualized regressors. -/
+outcome minus the fitted value of the residualized regressors.
+@isnad1 id=eq.0h6v.s7.afa1d9f6ba6b from=translated src=- shape=07c5a0a5 vocab=1a9ac485
+-/
 lemma residualize_regressionResidual (Y : V) (β : Fin K → ℝ) :
     residualize H (Y - fittedValue X β) =
       residualize H Y - fittedValue (fun j => residualize H (X j)) β := by
@@ -191,7 +205,9 @@ noncomputable def gramResid : Matrix (Fin K) (Fin K) ℝ :=
   fun j k => inner ℝ (residualize H (X j)) (residualize H (X k))
 
 /-- Each entry of the residualized Gram matrix is the inner product of two residualized
-regressors. -/
+regressors.
+@isnad1 id=eq.0h6v.s6.99cfdfaeeb54 from=translated src=- shape=876e42ef vocab=b273e076
+-/
 @[simp] lemma gramResid_apply (j k : Fin K) :
     gramResid H X j k =
       inner ℝ (residualize H (X j)) (residualize H (X k)) := rfl
@@ -204,7 +220,9 @@ noncomputable def residInnerVec (Y : V) : Fin K → ℝ :=
   fun j => inner ℝ (residualize H (X j)) Y
 
 /-- Each entry of the residualized right-hand side is the inner product of a residualized
-regressor with the outcome. -/
+regressor with the outcome.
+@isnad1 id=eq.0h6v.s6.62c987d07dae from=translated src=- shape=5f8f0b37 vocab=a042b21d
+-/
 @[simp] lemma residInnerVec_apply (Y : V) (j : Fin K) :
     residInnerVec H X Y j = inner ℝ (residualize H (X j)) Y := rfl
 
@@ -221,7 +239,9 @@ If `Q_{XX} = gramResid H X` is invertible (equivalently, the residualized
 regressors are linearly independent), the FWL coefficient
 `fwlCoef H X Y = Q_{XX}⁻¹ *ᵥ (fun j => ⟨X̃ j, Y⟩)` satisfies the
 residualized normal equations
-`Q_{XX} *ᵥ fwlCoef H X Y = (fun j => ⟨X̃ j, Y⟩)`. -/
+`Q_{XX} *ᵥ fwlCoef H X Y = (fun j => ⟨X̃ j, Y⟩)`.
+@isnad1 id=eq.1h5v.s6.26f915039605 from=translated src=- shape=922f0ba7 vocab=dcaf1816
+-/
 lemma gramResid_mulVec_fwlCoef
     (Y : V) (hQ : IsUnit (gramResid H X).det) :
     (gramResid H X).mulVec (fwlCoef H X Y) = residInnerVec H X Y := by
@@ -232,7 +252,9 @@ lemma gramResid_mulVec_fwlCoef
 
 /-- **Symmetric residualization for the FWL right-hand side.**
 The residualized inner products `⟨X̃ j, Y⟩` agree with `⟨X̃ j, Ỹ⟩`,
-so the FWL coefficient depends only on the residualized response. -/
+so the FWL coefficient depends only on the residualized response.
+@isnad1 id=eq.0h5v.s6.dac9db93a679 from=translated src=- shape=c46bec80 vocab=bdb06a7e
+-/
 lemma residInnerVec_eq_residualize_right (Y : V) :
     residInnerVec H X Y = residInnerVec H X (residualize H Y) := by
   funext j
@@ -257,7 +279,9 @@ noncomputable def originalObjective (Y : V) (β : Fin K → ℝ) (h : V) : ℝ :
 
 /-- The residual left by `fwlCoef` is orthogonal to every residualized
 regressor. This is the normal-equation form used in the completing-square
-argument. -/
+argument.
+@isnad1 id=eq.1h6v.s7.a0e5acfa7a0b from=translated src=- shape=8d6ea48f vocab=e8ab8c0a
+-/
 lemma inner_residualizedRegressor_fwlResidual
     (Y : V) (hQ : IsUnit (gramResid H X).det) (j : Fin K) :
     inner ℝ (residualize H (X j))
@@ -282,7 +306,9 @@ lemma inner_residualizedRegressor_fwlResidual
     sub_eq_zero.mpr hne.symm
 
 /-- Completing-square identity for the residualized objective around the
-FWL coefficient. -/
+FWL coefficient.
+@isnad1 id=eq.1h6v.s7.eb2229dace95 from=translated src=- shape=418d7c84 vocab=a51132d1
+-/
 theorem residualizedObjective_eq_fwlCoef_add_error
     (Y : V) (hQ : IsUnit (gramResid H X).det) (β : Fin K → ℝ) :
     residualizedObjective H X Y β =
@@ -330,7 +356,9 @@ theorem residualizedObjective_eq_fwlCoef_add_error
     ring
   simpa [z, Xtilde, b] using hpyth
 
-/-- The FWL coefficient minimizes the residualized least-squares objective. -/
+/-- The FWL coefficient minimizes the residualized least-squares objective.
+@isnad1 id=le.1h6v.s6.bd5b4ecff7fb from=translated src=- shape=308d9499 vocab=dad8b045
+-/
 theorem fwlCoef_residualized_minimizes
     (Y : V) (hQ : IsUnit (gramResid H X).det) (β : Fin K → ℝ) :
     residualizedObjective H X Y (fwlCoef H X Y) ≤
@@ -340,7 +368,9 @@ theorem fwlCoef_residualized_minimizes
 
 /-- Pythagorean split of the original objective into the residualized
 objective plus the squared distance from `h` to the projection of the raw
-regression residual onto `H`. -/
+regression residual onto `H`.
+@isnad1 id=eq.1h7v.s8.cba34764d34f from=translated src=- shape=ea600404 vocab=75e78637
+-/
 theorem originalObjective_eq_residualizedObjective_add_projectionError
     (Y : V) (β : Fin K → ℝ) {h : V} (hh : h ∈ H) :
     originalObjective X Y β h =
@@ -377,7 +407,9 @@ theorem originalObjective_eq_residualizedObjective_add_projectionError
   ring
 
 /-- For fixed `β`, the residualized objective is the minimum of the original
-objective over the nuisance subspace `H`. -/
+objective over the nuisance subspace `H`.
+@isnad1 id=le.1h7v.s7.328a54976b3f from=translated src=- shape=f01a950c vocab=21e340da
+-/
 theorem residualizedObjective_le_originalObjective
     (Y : V) (β : Fin K → ℝ) {h : V} (hh : h ∈ H) :
     residualizedObjective H X Y β ≤ originalObjective X Y β h := by
@@ -386,7 +418,9 @@ theorem residualizedObjective_le_originalObjective
     (by simp)
 
 /-- At the nuisance projection, the original objective equals the
-residualized objective. -/
+residualized objective.
+@isnad1 id=eq.0h6v.s6.cb4deec6af13 from=translated src=- shape=b038fd52 vocab=a24d9318
+-/
 theorem originalObjective_projection_eq_residualizedObjective
     (Y : V) (β : Fin K → ℝ) :
     originalObjective X Y β (H.orthogonalProjectionFn (Y - fittedValue X β)) =
@@ -402,7 +436,9 @@ a nuisance subspace `H` admitting an orthogonal projection, and a finite tuple o
 candidate nuisance vector `h` lies in `H`](hyp:hh), then [the original least-squares objective —
 evaluated at the FWL coefficient together with the orthogonal-projection nuisance term of its raw
 residual — is at most the original objective at any other coefficient vector `β` and nuisance term
-`h`](goal). -/
+`h`](goal).
+@isnad1 id=le.2h7v.s7.49a347d39b70 from=translated src=- shape=7e272ec4 vocab=6308229a
+-/
 theorem fwlCoef_original_minimizes
     (Y : V) (hQ : IsUnit (gramResid H X).det)
     (β : Fin K → ℝ) {h : V} (hh : h ∈ H) :
@@ -421,7 +457,9 @@ theorem fwlCoef_original_minimizes
 
 /-- Any minimizer of the original least-squares problem has coefficient block
 equal to the FWL coefficient. This is the uniqueness part of the standard FWL
-statement for the `X`-block. -/
+statement for the `X`-block.
+@isnad1 id=eq.3h7v.s8.21808f16b4d4 from=translated src=- shape=8217874c vocab=b91004ca
+-/
 theorem fwlCoef_eq_of_original_minimizer
     (Y : V) (hQ : IsUnit (gramResid H X).det)
     (β : Fin K → ℝ) {h : V} (hh : h ∈ H)
@@ -474,7 +512,9 @@ theorem fwlCoef_eq_of_original_minimizer
 `X` is invertible](hyp:hQ), [a candidate nuisance vector `h` lies in `H`](hyp:hh), and [the pair
 `(β, h)` minimizes the original least-squares objective over all coefficient vectors and nuisance
 terms in `H`](hyp:hmin), then [`β` equals the FWL coefficient and `h` equals the
-orthogonal-projection nuisance term of the FWL coefficient's raw residual](goal). -/
+orthogonal-projection nuisance term of the FWL coefficient's raw residual](goal).
+@isnad1 id=and.3h7v.s8.d147bbf77527 from=translated src=- shape=e1ad80a3 vocab=6308229a
+-/
 theorem original_minimizer_eq_fwlCoef_projection
     (Y : V) (hQ : IsUnit (gramResid H X).det)
     (β : Fin K → ℝ) {h : V} (hh : h ∈ H)

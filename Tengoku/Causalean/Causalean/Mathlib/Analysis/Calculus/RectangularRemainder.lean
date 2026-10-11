@@ -18,7 +18,9 @@ noncomputable section
 open Set
 namespace Causalean.Mathlib.Analysis.Calculus
 
-/-- Two integrations of a bounded curvature, with zero value and slope at the origin, give the exact quadratic factor one half. The proof uses quadratic comparison functions. This statement assumes [the ha condition](hyp:ha), [the hf condition](hyp:hf), [the hf₁ condition](hyp:hf₁), [the hf₂ condition](hyp:hf₂), [the h0 condition](hyp:h0), [the h10 condition](hyp:h10). [This is the stated conclusion](goal). -/
+/-- Two integrations of a bounded curvature, with zero value and slope at the origin, give the exact quadratic factor one half. The proof uses quadratic comparison functions. This statement assumes [the ha condition](hyp:ha), [the hf condition](hyp:hf), [the hf₁ condition](hyp:hf₁), [the hf₂ condition](hyp:hf₂), [the h0 condition](hyp:h0), [the h10 condition](hyp:h10). [This is the stated conclusion](goal).
+@isnad1 id=le.6h5v.s7.a518da5ee14b from=translated src=- shape=a1f7dcf7 vocab=48889a20
+-/
 lemma quadratic_remainder_bound (f f₁ f₂ : ℝ → ℝ) (a B : ℝ)
     (ha : 0 ≤ a) (hf : ∀ x ∈ Icc 0 a, HasDerivAt f (f₁ x) x)
     (hf₁ : ∀ x ∈ Icc 0 a, HasDerivAt f₁ (f₂ x) x)
@@ -51,7 +53,9 @@ lemma quadratic_remainder_bound (f f₁ f₂ : ℝ → ℝ) (a B : ℝ)
     one_mul, neg_one_mul] at hp hn
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
-/-- Applying the quadratic remainder in each amplitude gives one quarter of the fourth mixed derivative envelope. All derivative fields are explicit; this lemma assumes no likelihood estimate and can be applied once the concrete component jets are certified. This statement assumes [the ha condition](hyp:ha), [the hu condition](hyp:hu), [the hFa condition](hyp:hFa), [the hFaa condition](hyp:hFaa), [the hFaaU condition](hyp:hFaaU), [the hFaaUU condition](hyp:hFaaUU), [the hbound condition](hyp:hbound), [the hF0 condition](hyp:hF0), [the hFa0 condition](hyp:hFa0), [the hFaa0 condition](hyp:hFaa0), [the hFaaU0 condition](hyp:hFaaU0). [This is the stated conclusion](goal). -/
+/-- Applying the quadratic remainder in each amplitude gives one quarter of the fourth mixed derivative envelope. All derivative fields are explicit; this lemma assumes no likelihood estimate and can be applied once the concrete component jets are certified. This statement assumes [the ha condition](hyp:ha), [the hu condition](hyp:hu), [the hFa condition](hyp:hFa), [the hFaa condition](hyp:hFaa), [the hFaaU condition](hyp:hFaaU), [the hFaaUU condition](hyp:hFaaUU), [the hbound condition](hyp:hbound), [the hF0 condition](hyp:hF0), [the hFa0 condition](hyp:hFa0), [the hFaa0 condition](hyp:hFaa0), [the hFaaU0 condition](hyp:hFaaU0). [This is the stated conclusion](goal).
+@isnad1 id=le.11h8v.s9.3df8327bdb15 from=translated src=- shape=7033e9f9 vocab=48889a20
+-/
 lemma fourth_rectangular_remainder_bound
     (F Fa Faa FaaU FaaUU : ℝ → ℝ → ℝ) (a u B : ℝ)
     (ha : 0 ≤ a) (hu : 0 ≤ u)

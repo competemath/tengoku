@@ -40,7 +40,9 @@ structure UniformHolderBounds (β R : ℝ) (f : E → ℝ) : Prop where
 [single-profile scaled bounds](hyp:hbound), [a nonnegative constant](hyp:hC),
 and [coefficients of absolute value at most one](hyp:hσ)
 has [the single-profile scalar sup bound](goal), for [positive bandwidth and factor](hyp:hh,hδ),
-[any exponent](hyp:β), and [every point](hyp:x). -/
+[any exponent](hyp:β), and [every point](hyp:x).
+@isnad1 id=le.7h10v.s7.b3618b0ff8a6 from=translated src=- shape=e1977b71 vocab=bfade646
+-/
 theorem signedSum_value_bound {K : ι → Set E} {β h δ C : ℝ} {f : ι → E → ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hδ : 0 < δ)
     (hloc : JetLocality f K) (hbound : ∀ i, ScaledJetBounds β h (f i) C)
@@ -62,7 +64,9 @@ theorem signedSum_value_bound {K : ι → Set E} {β h δ C : ℝ} {f : ι → E
 [single-profile scaled bounds](hyp:hbound), [a nonnegative constant](hyp:hC),
 and [coefficients of absolute value at most one](hyp:hσ)
 has [the single-profile first-jet bound](goal), for [positive bandwidth and factor](hyp:hh,hδ),
-[any exponent](hyp:β), and [every point](hyp:x). -/
+[any exponent](hyp:β), and [every point](hyp:x).
+@isnad1 id=le.7h10v.s8.de48243eaa2b from=translated src=- shape=5d487e09 vocab=9d60a1ea
+-/
 theorem signedSum_first_bound {K : ι → Set E} {β h δ C : ℝ} {f : ι → E → ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hδ : 0 < δ)
     (hloc : JetLocality f K) (hbound : ∀ i, ScaledJetBounds β h (f i) C)
@@ -89,7 +93,9 @@ theorem signedSum_first_bound {K : ι → Set E} {β h δ C : ℝ} {f : ι → E
 Use `Real.rpow_le_rpow` on h ≤ δ⁻¹*r and `Real.mul_rpow` to separate
 the factors. Bound (δ⁻¹)^s by 1+δ⁻¹, splitting δ⁻¹ ≤ 1 versus 1 ≤ δ⁻¹;
 the first case uses `Real.rpow_le_one`, the second exponent monotonicity.
-The hypotheses give r>0 even at a support boundary point. -/
+The hypotheses give r>0 even at a support boundary point.
+@isnad1 id=le.9h6v.s7.0fd1e9df1216 from=translated src=- shape=9dd165db vocab=217ff380
+-/
 theorem separated_distance_holder {a C h δ r s : ℝ}
     (ha : 0 ≤ a) (hC : 0 ≤ C) (hh : 0 < h) (hδ : 0 < δ) (hr : 0 ≤ r)
     (hs : 0 < s) (hs1 : s ≤ 1) (hsep : δ * h ≤ r)
@@ -125,7 +131,9 @@ Split the two points into: same support (use a single-profile estimate);
 distinct supports (use separation and `separated_distance_holder`);
 one outside every support (use the active profile's global estimate, whose
 value at the other point is zero); both outside (zero). Boundary points belong
-to the closed supports. No sum over index-cardinality is permitted. -/
+to the closed supports. No sum over index-cardinality is permitted.
+@isnad1 id=le.9h11v.s7.933f30cafa9f from=translated src=- shape=41fb12f4 vocab=6bbae50a
+-/
 theorem signedSum_value_holder {K : ι → Set E} {β h δ C : ℝ} {f : ι → E → ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hδ : 0 < δ)
     (hloc : JetLocality f K) (hbound : ∀ i, ScaledJetBounds β h (f i) C)
@@ -194,7 +202,9 @@ for [β in `(1,2]`](hyp:hβ,hβ2) and [positive bandwidth and separation factor]
 
 Repeat the same four support cases as `signedSum_value_holder`, now for
 the first derivative and exponent β-1. Use the Hessian bound for same-cell
-and exterior comparisons. The endpoint β=2 must remain included. -/
+and exterior comparisons. The endpoint β=2 must remain included.
+@isnad1 id=le.9h11v.s9.b00cde0a12d1 from=translated src=- shape=b98a349b vocab=2d0e7d15
+-/
 theorem signedSum_first_holder {K : ι → Set E} {β h δ C : ℝ} {f : ι → E → ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hδ : 0 < δ)
     (hloc : JetLocality f K) (hbound : ∀ i, ScaledJetBounds β h (f i) C)
@@ -258,7 +268,9 @@ theorem signedSum_first_holder {K : ι → Set E} {β h δ C : ℝ} {f : ι → 
 [positive separation factor](hyp:hδ), and [bounded signs](hyp:hσ),
 [the finite signed sum satisfies the uniform Hölder bounds of exponent β with
 radius 2C(1 + 1/δ)](goal), a radius independent of the bandwidth and of the
-number of summands. -/
+number of summands.
+@isnad1 id=uniformh.10h9v.s7.567ac2feb90d from=translated src=- shape=9cabc567 vocab=47f3b98e
+-/
 theorem signedSum_uniform_holder {K : ι → Set E} {β h δ C : ℝ} {f : ι → E → ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hh1 : h ≤ 1) (hδ : 0 < δ)
     (hloc : JetLocality f K) (hbound : ∀ i, ScaledJetBounds β h (f i) C)
@@ -286,7 +298,9 @@ theorem signedSum_uniform_holder {K : ι → Set E} {β h δ C : ℝ} {f : ι �
 
 /-- [A finite signed sum has order-two regularity on any supplied set](goal),
 in particular on any supplied closed cube, when [its summands are globally
-order-two regular](hyp:hf), for [any coefficients, family, and set](hyp:σ,f,S). -/
+order-two regular](hyp:hf), for [any coefficients, family, and set](hyp:σ,f,S).
+@isnad1 id=contdiff.1h5v.s6.c27fdc6fac87 from=translated src=- shape=aa80f601 vocab=4a81b52c
+-/
 theorem signedSum_contDiffOn (σ : ι → ℝ) (f : ι → E → ℝ)
     (hf : ∀ i, ContDiff ℝ 2 (f i)) (S : Set E) : ContDiffOn ℝ 2 (signedSum σ f) S := by
   exact (signedSum_contDiff σ f hf).contDiffOn
@@ -308,7 +322,9 @@ within-set jets with ambient jets even on the boundary. Use
 `iteratedFDerivWithin_eq_iteratedFDeriv` and order-zero/order-one evaluation
 lemmas from Mathlib's ContDiff.FTaylorSeries; coordinate directions have norm
 at most one. The reference ambient bridge in ScaledProductBump assumes C∞,
-so its headline cannot be applied to the present C² profiles. -/
+so its headline cannot be applied to the present C² profiles.
+@isnad1 id=holderba.4h5v.s7.f089c7a2067f from=translated src=- shape=d99b3ebd vocab=4b1a32a3
+-/
 theorem holderBallOn_of_uniformBounds {d : ℕ} {S : Set (Fin d → ℝ)}
     {β R : ℝ} {f : (Fin d → ℝ) → ℝ} (hS : UniqueDiffOn ℝ S)
     (hf : UniformHolderBounds β R f) (hβ : 0 < β) (hβ2 : β ≤ 2) :
@@ -356,7 +372,9 @@ theorem holderBallOn_of_uniformBounds {d : ℕ} {S : Set (Fin d → ℝ)}
 /-- [Ambient uniform Hölder bounds of exponent β and radius R](hyp:hf) for
 [β in `(0,2]`](hyp:hβ,hβ2) give [membership in the same-radius intrinsic Hölder
 ball on the normalized closed cube, of order 0 and exponent β when β ≤ 1 and of
-order 1 and exponent β − 1 otherwise](goal). -/
+order 1 and exponent β − 1 otherwise](goal).
+@isnad1 id=holderba.3h4v.s7.98d2436fff8e from=translated src=- shape=0cd7bca6 vocab=cff865fa
+-/
 theorem holderBallOn_cube_of_uniformBounds {d : ℕ} {β R : ℝ} {f : (Fin d → ℝ) → ℝ}
     (hf : UniformHolderBounds β R f) (hβ : 0 < β) (hβ2 : β ≤ 2) :
     HolderBallOn (cube d) (if β ≤ 1 then 0 else 1)

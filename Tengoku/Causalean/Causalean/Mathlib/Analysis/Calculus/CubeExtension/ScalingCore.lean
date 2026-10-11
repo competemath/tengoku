@@ -29,7 +29,9 @@ def scaledSupport (h : ℝ) (z : E) (K : Set E) : Set E :=
   {x | h⁻¹ • (x - z) ∈ K}
 
 /-- [A globally order-two profile](hyp:hf) has [globally order-two scaled copies](goal)
-for [any exponent, bandwidth, and center](hyp:β,h,z). -/
+for [any exponent, bandwidth, and center](hyp:β,h,z).
+@isnad1 id=contdiff.1h5v.s6.9d844569f103 from=translated src=- shape=0b281df8 vocab=9b69af40
+-/
 theorem scaledCopy_contDiff (β h : ℝ) (z : E) {f : E → ℝ} (hf : ContDiff ℝ 2 f) :
     ContDiff ℝ 2 (scaledCopy β h z f) := by
   unfold scaledCopy
@@ -41,7 +43,9 @@ scales by the amplitude and the inverse bandwidth to the jet order](goal).
 
 Reuse `iteratedFDeriv_comp_sub`, `iteratedFDeriv_comp_const_smul`, and
 `iteratedFDeriv_const_smul_apply'`, as in CubeExtension.ScaledProductBump.
-Unlike that module, regularity is assumed only through order two. -/
+Unlike that module, regularity is assumed only through order two.
+@isnad1 id=eq.2h7v.s10.301797ff56d2 from=translated src=- shape=ede381ab vocab=de2dcea1
+-/
 -- Restrict hf to the finite natural order j using hj (casts into WithTop ℕ∞).
 -- These Mathlib identities include j=0 and h=0; this theorem deliberately
 -- imposes neither a positive bandwidth nor an infinite-order smoothness premise.
@@ -61,7 +65,9 @@ theorem scaledCopy_iteratedFDeriv (β h : ℝ) (z x : E) {f : E → ℝ}
 
 /-- For [a globally order-two profile](hyp:hf), [a positive bandwidth](hyp:hh),
 and [an exponent, center, and point](hyp:β,h,z,x), [the ambient first derivative
-has the expected amplitude and inverse-bandwidth factor](goal). -/
+has the expected amplitude and inverse-bandwidth factor](goal).
+@isnad1 id=eq.2h6v.s9.2401182ae326 from=translated src=- shape=6cca238f vocab=a57ef998
+-/
 theorem scaledCopy_fderiv (β h : ℝ) (z x : E) {f : E → ℝ}
     (hf : ContDiff ℝ 2 f) (hh : 0 < h) :
     fderiv ℝ (scaledCopy β h z f) x =
@@ -75,7 +81,9 @@ theorem scaledCopy_fderiv (β h : ℝ) (z x : E) {f : E → ℝ}
 
 /-- For [a globally order-two profile](hyp:hf), [a positive bandwidth](hyp:hh),
 and [an exponent, center, and point](hyp:β,h,z,x), [the ambient second derivative
-has the expected amplitude and squared inverse-bandwidth factor](goal). -/
+has the expected amplitude and squared inverse-bandwidth factor](goal).
+@isnad1 id=eq.2h6v.s11.4d11d18a827e from=translated src=- shape=ba9cef90 vocab=a31f0a09
+-/
 -- First prove scaledCopy_fderiv as an equality of functions (funext).
 -- Differentiate that identity using C¹ regularity of fderiv f from hf.
 -- Constant scalar dilation contributes another h⁻¹; no third derivative is needed.
@@ -101,7 +109,9 @@ theorem scaledCopy_second_fderiv (β h : ℝ) (z x : E) {f : E → ℝ}
 first two derivatives vanishing off a set K](hyp:hzero), then for [a positive
 bandwidth](hyp:hh), [any exponent and center](hyp:β,h,z), and [a point](hyp:x)
 [outside the scaled support of K](hyp:hx), [the scaled copy and its first two
-derivatives vanish at that point](goal). -/
+derivatives vanish at that point](goal).
+@isnad1 id=and.4h7v.s12.d1a8809b1125 from=translated src=- shape=6510d91c vocab=f0cc4431
+-/
 theorem scaledCopy_jets_zero (β h : ℝ) (z : E) {f : E → ℝ} {K : Set E}
     (hf : ContDiff ℝ 2 f) (hh : 0 < h)
     (hzero : ∀ x ∉ K, f x = 0 ∧ fderiv ℝ f x = 0 ∧ fderiv ℝ (fderiv ℝ f) x = 0)

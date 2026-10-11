@@ -23,7 +23,9 @@ and [a second measure sigma-finite on that set](hyp:μ).
 
 Restrict the second measure to the support set, use Mathlib's Tonelli theorem,
 and remove the restriction with setLIntegral_eq_of_support_subset. No global
-sigma-finiteness of the second measure is required. -/
+sigma-finiteness of the second measure is required.
+@isnad1 id=eq.2h6v.s6.f974fbc9631d from=translated src=- shape=73860fe2 vocab=d87cee60
+-/
 theorem lintegral_lintegral_swap_of_sigmaFinite_support
     {T S : Type*} [MeasurableSpace T] [MeasurableSpace S]
     (ν : Measure T) [SFinite ν] (μ : Measure S) (s : Set S)

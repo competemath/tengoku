@@ -48,7 +48,9 @@ private theorem contDiffAt_matrix_transpose
 def leftGram (H : Matrix (Fin 2) E ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
   H * H.transpose
 
-/-- For [a real matrix with two rows](hyp:H), [its left Gram matrix is symmetric](goal). -/
+/-- For [a real matrix with two rows](hyp:H), [its left Gram matrix is symmetric](goal).
+@isnad1 id=ishermit.0h2v.s5.cb0c659cd671 from=translated src=- shape=dda9aba4 vocab=35147807
+-/
 theorem leftGram_isHermitian (H : Matrix (Fin 2) E ℝ) :
     (leftGram H).IsHermitian := by
   simpa [leftGram, conjTranspose_eq_transpose_of_trivial] using
@@ -74,7 +76,9 @@ noncomputable def algebraicRankOnePseudoInverse (H : Matrix (Fin 2) E ℝ) :
     Matrix E (Fin 2) ℝ :=
   (lambda₁ (leftGram H))⁻¹ • (H.transpose * topProjector (leftGram H))
 
-/-- Given [a real two-row matrix](hyp:H) with [a strict left-Gram root gap](hyp:hgap) and [a unit upper left-Gram eigenvector](hyp:u,hu_unit,hu_eig), [the eigenvector-selected and algebraic rank-one truncations agree](goal). -/
+/-- Given [a real two-row matrix](hyp:H) with [a strict left-Gram root gap](hyp:hgap) and [a unit upper left-Gram eigenvector](hyp:u,hu_unit,hu_eig), [the eigenvector-selected and algebraic rank-one truncations agree](goal).
+@isnad1 id=eq.3h3v.s7.49b3b76a23ff from=translated src=- shape=086b402e vocab=91629152
+-/
 theorem eigenvectorRankOneTruncation_eq_algebraic {H : Matrix (Fin 2) E ℝ}
     (hgap : leftGram H ∈ strictGapSet) {u : Fin 2 → ℝ}
     (hu_unit : dotProduct u u = 1)
@@ -83,7 +87,9 @@ theorem eigenvectorRankOneTruncation_eq_algebraic {H : Matrix (Fin 2) E ℝ}
   rw [eigenvectorRankOneTruncation, algebraicRankOneTruncation,
     topProjector_eq_outerProjector (leftGram_isHermitian H) hgap hu_unit hu_eig]
 
-/-- Given [a real two-row matrix](hyp:H) with [a strict positive upper left-Gram root](hyp:hgap,hpos) and [a unit upper left-Gram eigenvector](hyp:u,hu_unit,hu_eig), [the eigenvector-selected and algebraic rank-one pseudoinverse formulas agree](goal). -/
+/-- Given [a real two-row matrix](hyp:H) with [a strict positive upper left-Gram root](hyp:hgap,hpos) and [a unit upper left-Gram eigenvector](hyp:u,hu_unit,hu_eig), [the eigenvector-selected and algebraic rank-one pseudoinverse formulas agree](goal).
+@isnad1 id=eq.4h3v.s7.fc15680dc0dc from=translated src=- shape=774c238f vocab=4806479d
+-/
 theorem eigenvectorRankOnePseudoInverse_eq_algebraic {H : Matrix (Fin 2) E ℝ}
     (hgap : leftGram H ∈ strictGapSet) (hpos : 0 < lambda₁ (leftGram H))
     {u : Fin 2 → ℝ} (hu_unit : dotProduct u u = 1)
@@ -93,7 +99,9 @@ theorem eigenvectorRankOnePseudoInverse_eq_algebraic {H : Matrix (Fin 2) E ℝ}
   rw [eigenvectorRankOnePseudoInverse, algebraicRankOnePseudoInverse,
     topProjector_eq_outerProjector (leftGram_isHermitian H) hgap hu_unit hu_eig]
 
-/-- Given [a real two-row matrix](hyp:H) with [a strict positive upper left-Gram root](hyp:hgap,hpos), [the algebraic rank-one pseudoinverse satisfies all four Moore--Penrose equations for the algebraic rank-one truncation](goal). -/
+/-- Given [a real two-row matrix](hyp:H) with [a strict positive upper left-Gram root](hyp:hgap,hpos), [the algebraic rank-one pseudoinverse satisfies all four Moore--Penrose equations for the algebraic rank-one truncation](goal).
+@isnad1 id=other.2h2v.s8.2dde366349e7 from=translated src=- shape=a932a222 vocab=15922c31
+-/
 theorem algebraicRankOnePseudoInverse_isMoorePenrose {H : Matrix (Fin 2) E ℝ}
     (hgap : leftGram H ∈ strictGapSet) (hpos : 0 < lambda₁ (leftGram H)) :
     let A := algebraicRankOneTruncation H
@@ -153,7 +161,9 @@ theorem algebraicRankOnePseudoInverse_isMoorePenrose {H : Matrix (Fin 2) E ℝ}
     apply (Matrix.isHermitian_conjTranspose_mul_mul H hP).smul
     simp [isSelfAdjoint_iff]
 
-/-- Given [a real two-row matrix](hyp:H) whose [left Gram matrix has distinct roots](hyp:hgap), [the algebraic rank-one truncation varies continuously differentiably near that matrix](goal). -/
+/-- Given [a real two-row matrix](hyp:H) whose [left Gram matrix has distinct roots](hyp:hgap), [the algebraic rank-one truncation varies continuously differentiably near that matrix](goal).
+@isnad1 id=contdiff.1h2v.s7.29f0d5e5ea03 from=translated src=- shape=220a2e42 vocab=47f6ef28
+-/
 theorem contDiffAt_algebraicRankOneTruncation {H : Matrix (Fin 2) E ℝ}
     (hgap : leftGram H ∈ strictGapSet) :
     ContDiffAt ℝ 1 algebraicRankOneTruncation H := by
@@ -166,7 +176,9 @@ theorem contDiffAt_algebraicRankOneTruncation {H : Matrix (Fin 2) E ℝ}
   unfold algebraicRankOneTruncation
   exact contDiffAt_matrix_mul hprojector contDiffAt_id
 
-/-- Given [a real two-row matrix](hyp:H) whose [left Gram matrix has a strict positive upper root](hyp:hgap,hpos), [the algebraic rank-one pseudoinverse varies continuously differentiably near that matrix](goal). -/
+/-- Given [a real two-row matrix](hyp:H) whose [left Gram matrix has a strict positive upper root](hyp:hgap,hpos), [the algebraic rank-one pseudoinverse varies continuously differentiably near that matrix](goal).
+@isnad1 id=contdiff.2h2v.s7.59b24f6e8d91 from=translated src=- shape=de49595f vocab=dcb32997
+-/
 theorem contDiffAt_algebraicRankOnePseudoInverse {H : Matrix (Fin 2) E ℝ}
     (hgap : leftGram H ∈ strictGapSet) (hpos : 0 < lambda₁ (leftGram H)) :
     ContDiffAt ℝ 1 algebraicRankOnePseudoInverse H := by

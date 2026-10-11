@@ -45,7 +45,9 @@ private theorem projection_restriction_injective (P Q : Submodule ℝ E)
 /-- Orthogonal projections less than one apart in operator norm have subspaces of equal dimension.
 
 Restrict each projection to the other subspace: distance less than one
-forces injectivity, giving both dimension inequalities. -/
+forces injectivity, giving both dimension inequalities.
+@isnad1 id=eq.1h3v.s10.e71e48e00a14 from=translated src=- shape=da0c22c9 vocab=78f55351
+-/
 theorem finrank_eq_of_projection_close (P Q : Submodule ℝ E)
     (h : ‖P.starProjection - Q.starProjection‖ < 1) :
     Module.finrank ℝ P = Module.finrank ℝ Q := by
@@ -102,7 +104,9 @@ onto each fiber.
 
 Project a reference orthonormal basis onto nearby fibers, use the close-projection
 rank lemma and Gram-Schmidt to orthonormalize continuously. Only local continuity
-is asserted; the frame is unrestricted outside the neighborhood. -/
+is asserted; the frame is unrestricted outside the neighborhood.
+@isnad1 id=ex.1h4v.s11.b36909ebb870 from=translated src=- shape=21056092 vocab=364bf6f0
+-/
 theorem exists_local_isometricFrame (P : X → Submodule ℝ E)
     (hP : Continuous (fun x => (P x).starProjection)) (x : X) :
     ∃ U : Set X, IsOpen U ∧ x ∈ U ∧
@@ -172,7 +176,9 @@ abbrev NormalDiskBundle (T : X → Submodule ℝ E) := {z : X × E // z ∈ norm
 space.
 
 Rewrite normal membership as `T(x).starProjection u = 0`; continuity of operator evaluation
-gives a closed zero locus, intersected with the closed norm constraint. -/
+gives a closed zero locus, intersected with the closed norm constraint.
+@isnad1 id=isclosed.1h3v.s8.72c1da13ff05 from=translated src=- shape=b18cc29b vocab=74dc78e8
+-/
 theorem isClosed_normalDiskSet (T : X → Submodule ℝ E)
     (hT : Continuous (fun x => (T x).starProjection)) : IsClosed (normalDiskSet T) := by
   have hp : Continuous (fun z : X × E => (T z.1).starProjection z.2) :=
@@ -190,7 +196,9 @@ def normalCoordinate (T : X → Submodule ℝ E) (f : X → E) (a : ℝ)
   f z.val.1 + a • z.val.2
 
 omit [FiniteDimensional ℝ E] in
-/-- The normal-coordinate map is continuous for every real scaling parameter. -/
+/-- The normal-coordinate map is continuous for every real scaling parameter.
+@isnad1 id=continuo.1h5v.s7.03a2902498ce from=translated src=- shape=d8d780f9 vocab=2e313c00
+-/
 @[fun_prop] theorem continuous_normalCoordinate (T : X → Submodule ℝ E) (f : X → E)
     (hf : Continuous f) (a : ℝ) : Continuous (normalCoordinate T f a) := by
   exact (hf.comp (continuous_fst.comp continuous_subtype_val)).add
@@ -198,12 +206,16 @@ omit [FiniteDimensional ℝ E] in
 
 variable [MeasurableSpace X] [BorelSpace X] [MeasurableSpace E] [BorelSpace E]
 
-/-- The unit normal disk bundle is a Borel subset of base times ambient space. -/
+/-- The unit normal disk bundle is a Borel subset of base times ambient space.
+@isnad1 id=measurab.1h3v.s8.ed25f4d967c8 from=translated src=- shape=97d20bfa vocab=3cceb276
+-/
 theorem measurableSet_normalDiskSet (T : X → Submodule ℝ E)
     (hT : Continuous (fun x => (T x).starProjection)) : MeasurableSet (normalDiskSet T) :=
   (isClosed_normalDiskSet T hT).measurableSet
 
-/-- Continuous normal coordinates are Borel measurable on the normal disk bundle. -/
+/-- Continuous normal coordinates are Borel measurable on the normal disk bundle.
+@isnad1 id=measurab.1h5v.s7.41a664308d00 from=translated src=- shape=98ba09eb vocab=81a807d4
+-/
 @[fun_prop] theorem measurable_normalCoordinate (T : X → Submodule ℝ E) (f : X → E)
     (hf : Continuous f) (a : ℝ) : Measurable (normalCoordinate T f a) :=
   (continuous_normalCoordinate T f hf a).measurable
@@ -217,7 +229,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
 /-- Intrinsic Euclidean volume on a plane is its normalized Hausdorff measure of the plane
-dimension. -/
+dimension.
+@isnad1 id=eq.0h2v.s10.f81843346846 from=translated src=- shape=85a19cc3 vocab=06a94734
+-/
 theorem plane_volume_eq_hausdorff (K : Submodule ℝ E) :
     (volume : Measure K) = Measure.euclideanHausdorffMeasure (Module.finrank ℝ K) :=
   InnerProductSpace.euclideanHausdorffMeasure_eq_volume.symm
@@ -227,7 +241,9 @@ theorem plane_volume_eq_hausdorff (K : Submodule ℝ E) :
 noncomputable def fiberVolume (K : Submodule ℝ E) : Measure E :=
   Measure.map (fun v : K => (v : E)) volume
 
-/-- The ambient fiber volume is normalized Hausdorff measure restricted to the isometric plane. -/
+/-- The ambient fiber volume is normalized Hausdorff measure restricted to the isometric plane.
+@isnad1 id=eq.0h2v.s8.30e1e499a2c5 from=translated src=- shape=b69e6618 vocab=b915788a
+-/
 theorem fiberVolume_eq_hausdorff (K : Submodule ℝ E) :
     fiberVolume K =
       (Measure.euclideanHausdorffMeasure (Module.finrank ℝ K) : Measure E).restrict K := by
@@ -236,7 +252,9 @@ theorem fiberVolume_eq_hausdorff (K : Submodule ℝ E) :
   have h : Isometry (fun v : K => (v : E)) := fun _ _ => rfl
   simpa using h.map_euclideanHausdorffMeasure (d := Module.finrank ℝ K)
 
-/-- Zero-dimensional normal volume is the unit point mass at the zero vector. -/
+/-- Zero-dimensional normal volume is the unit point mass at the zero vector.
+@isnad1 id=eq.0h1v.s7.26efb5607249 from=translated src=- shape=df3946be vocab=0fb27af8
+-/
 theorem fiberVolume_bot : fiberVolume (⊥ : Submodule ℝ E) = Measure.dirac 0 := by
   rw [fiberVolume_eq_hausdorff]
   simp only [finrank_bot, Measure.euclideanHausdorffMeasure_zero,
@@ -248,6 +266,7 @@ noncomputable def fiberDiskVolume (K : Submodule ℝ E) : Measure E :=
   (fiberVolume K).restrict (Metric.closedBall 0 1)
 
 /-- Every closed unit fiber disk has finite Euclidean volume, including the zero-dimensional disk.
+@isnad1 id=lt.0h2v.s6.f7ea429c89d7 from=translated src=- shape=55b04f8c vocab=bbc11696
 -/
 theorem fiberDiskVolume_finite (K : Submodule ℝ E) : fiberDiskVolume K Set.univ < ⊤ := by
   unfold fiberDiskVolume fiberVolume
@@ -260,7 +279,9 @@ theorem fiberDiskVolume_finite (K : Submodule ℝ E) : fiberDiskVolume K Set.uni
   rw [hpre]
   exact (isCompact_closedBall (0 : K) 1).measure_lt_top
 
-/-- Fiber disk volume is supported on vectors in the fiber with norm at most one. -/
+/-- Fiber disk volume is supported on vectors in the fiber with norm at most one.
+@isnad1 id=eventual.0h2v.s7.122f286b2d80 from=translated src=- shape=1347eb75 vocab=3294dd7c
+-/
 theorem fiberDiskVolume_ae_mem (K : Submodule ℝ E) :
     ∀ᵐ u ∂fiberDiskVolume K, u ∈ K ∧ ‖u‖ ≤ 1 := by
   have hK : ∀ᵐ u ∂fiberVolume K, u ∈ K := by
@@ -273,7 +294,9 @@ theorem fiberDiskVolume_ae_mem (K : Submodule ℝ E) :
 /-- The volumes of unit disks in all subspaces have one finite ambient-dimension bound.
 
 Each fiber is isometric to Euclidean space of its finrank; take the maximum of unit-ball
-volumes over the finitely many dimensions up to ambient finrank. -/
+volumes over the finitely many dimensions up to ambient finrank.
+@isnad1 id=ex.0h1v.s6.df6c992f8eeb from=translated src=- shape=316b438b vocab=5035b951
+-/
 theorem fiberDiskVolume_uniform_bound :
     ∃ C : ℝ≥0∞, C < ⊤ ∧ ∀ K : Submodule ℝ E, fiberDiskVolume K Set.univ ≤ C := by
   classical
@@ -313,7 +336,9 @@ variable {X : Type*} [TopologicalSpace X] [MeasurableSpace X] [BorelSpace X]
 Use `exists_local_isometricFrame` to reduce locally to a fixed Euclidean
 fiber; no global frame or chosen orientation is assumed. Alternatively prove continuity of
 integrals of compactly supported continuous test functions and use the measurable structure on
-Radon measures. -/
+Radon measures.
+@isnad1 id=measurab.1h3v.s8.115f6a23bf44 from=translated src=- shape=c991c36a vocab=8093c9f2
+-/
 @[fun_prop] theorem measurable_fiberVolume (P : X → Submodule ℝ E)
     (hP : Continuous (fun x => (P x).starProjection)) :
     Measurable (fun x => fiberVolume (P x)) := by
@@ -374,7 +399,9 @@ Radon measures. -/
     simpa only [Submodule.range_starProjection] using hr
   simpa only [Function.comp_def, hQP] using hmeasQ.comp hf
 
-/-- Continuous orthogonal projections give a measurable family of closed unit fiber disk volumes. -/
+/-- Continuous orthogonal projections give a measurable family of closed unit fiber disk volumes.
+@isnad1 id=measurab.1h3v.s8.afa7891e85d9 from=translated src=- shape=c991c36a vocab=84008a4b
+-/
 @[fun_prop] theorem measurable_fiberDiskVolume (P : X → Submodule ℝ E)
     (hP : Continuous (fun x => (P x).starProjection)) :
     Measurable (fun x => fiberDiskVolume (P x)) := by
@@ -394,7 +421,9 @@ noncomputable def fiberDiskVolumeKernel (P : X → Submodule ℝ E)
     (hP : Continuous (fun x => (P x).starProjection)) : Kernel X E :=
   ⟨fun x => fiberDiskVolume (P x), measurable_fiberDiskVolume P hP⟩
 
-/-- The disk-volume kernel is uniformly finite and hence supports kernel Fubini integration. -/
+/-- The disk-volume kernel is uniformly finite and hence supports kernel Fubini integration.
+@isnad1 id=isfinite.1h3v.s8.3fcb8098bc43 from=translated src=- shape=8c829bcf vocab=fbad347f
+-/
 noncomputable instance fiberDiskVolumeKernel_isFinite (P : X → Submodule ℝ E)
     (hP : Continuous (fun x => (P x).starProjection)) :
     IsFiniteKernel (fiberDiskVolumeKernel P hP) := by
@@ -402,7 +431,9 @@ noncomputable instance fiberDiskVolumeKernel_isFinite (P : X → Submodule ℝ E
   exact ⟨⟨C, hC, fun x => hbound (P x)⟩⟩
 
 /-- Integrating a nonnegative jointly measurable function over varying fiber disks gives a
-measurable base function. -/
+measurable base function.
+@isnad1 id=measurab.2h4v.s8.745dc64d09ca from=translated src=- shape=775b3e13 vocab=4e72068f
+-/
 theorem measurable_lintegral_fiberDiskVolume (P : X → Submodule ℝ E)
     (hP : Continuous (fun x => (P x).starProjection))
     (g : X × E → ℝ≥0∞) (hg : Measurable g) :
@@ -410,7 +441,9 @@ theorem measurable_lintegral_fiberDiskVolume (P : X → Submodule ℝ E)
   exact hg.lintegral_kernel_prod_right' (κ := fiberDiskVolumeKernel P hP)
 
 /-- Integration over the base-disk measure equals iterated integration over base and normal
-fibers. -/
+fibers.
+@isnad1 id=eq.2h5v.s8.5e9bcec9cf4a from=translated src=- shape=9637e9a2 vocab=76ef7226
+-/
 theorem lintegral_fiberDiskVolume_compProd (P : X → Submodule ℝ E)
     (hP : Continuous (fun x => (P x).starProjection)) (μ : Measure X) [SFinite μ]
     (g : X × E → ℝ≥0∞) (hg : Measurable g) :
@@ -429,13 +462,17 @@ variable {F E H M : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
   [MeasurableSpace M] [BorelSpace M] [MeasurableSpace E] [BorelSpace E]
 
 omit [MeasurableSpace M] [BorelSpace M] [MeasurableSpace E] [BorelSpace E] in
-/-- The normal disk bundle of a C² embedding is closed relative to manifold times ambient space. -/
+/-- The normal disk bundle of a C² embedding is closed relative to manifold times ambient space.
+@isnad1 id=isclosed.1h6v.s7.a47d9cefa79e from=translated src=- shape=293e1091 vocab=2680f160
+-/
 theorem embedding_normalDiskSet_isClosed (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) :
     IsClosed (normalDiskSet (tangentSpace I f)) :=
   isClosed_normalDiskSet _ (continuous_tangentProjection I f hf)
 
-/-- The embedded normal disk bundle is a Borel subset of manifold times ambient space. -/
+/-- The embedded normal disk bundle is a Borel subset of manifold times ambient space.
+@isnad1 id=measurab.1h6v.s8.c2d4509b8656 from=translated src=- shape=f59928bc vocab=c4715f7e
+-/
 theorem embedding_normalDiskSet_measurable (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) :
     MeasurableSet (normalDiskSet (tangentSpace I f)) :=
@@ -443,14 +480,18 @@ theorem embedding_normalDiskSet_measurable (f : M → E)
 
 omit [FiniteDimensional ℝ F] [FiniteDimensional ℝ E] [IsManifold I 2 M]
   [MeasurableSpace M] [BorelSpace M] [MeasurableSpace E] [BorelSpace E] in
-/-- Normal coordinates of a C² embedding are continuous on its unit normal disk bundle. -/
+/-- Normal coordinates of a C² embedding are continuous on its unit normal disk bundle.
+@isnad1 id=continuo.1h7v.s7.a74470f25955 from=translated src=- shape=d62212f8 vocab=bd74da73
+-/
 theorem embedding_normalCoordinate_continuous (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (a : ℝ) :
     Continuous (normalCoordinate (tangentSpace I f) f a) :=
   continuous_normalCoordinate _ f hf.contMDiff.continuous a
 
 omit [FiniteDimensional ℝ F] [IsManifold I 2 M] in
-/-- Normal coordinates of a C² embedding are Borel measurable on its unit normal disk bundle. -/
+/-- Normal coordinates of a C² embedding are Borel measurable on its unit normal disk bundle.
+@isnad1 id=measurab.1h7v.s8.2734de5a4594 from=translated src=- shape=f3bd7dfc vocab=871a0be4
+-/
 theorem embedding_normalCoordinate_measurable (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (a : ℝ) :
     Measurable (normalCoordinate (tangentSpace I f) f a) :=
@@ -476,7 +517,9 @@ noncomputable def normalDiskReferenceMeasure (f : M → E)
 certificate `hf`](hyp:f,hf), [a base measure `μ`](hyp:μ), and [a nonnegative
 measurable integrand `g` with measurability certificate `hg`](hyp:g,hg) give
 [integration against the normal-disk reference measure equal to iterated
-integration over the base and its normal fibers](goal). -/
+integration over the base and its normal fibers](goal).
+@isnad1 id=eq.2h8v.s8.a10b872c122c from=translated src=- shape=04b4d08b vocab=b11fcde4
+-/
 theorem lintegral_normalDiskReferenceMeasure (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (μ : Measure M) [SFinite μ]
     (g : M × E → ℝ≥0∞) (hg : Measurable g) :

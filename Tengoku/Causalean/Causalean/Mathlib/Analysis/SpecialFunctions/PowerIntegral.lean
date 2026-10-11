@@ -39,7 +39,9 @@ open MeasureTheory Set intervalIntegral
 
 variable {κ : ℝ}
 
-/-- `0 ∉ [[a,b]]` when `0 < a ≤ b`. -/
+/-- `0 ∉ [[a,b]]` when `0 < a ≤ b`.
+@isnad1 id=not.2h2v.s5.0af9b3dbb0d5 from=translated src=- shape=0b367d69 vocab=083e0100
+-/
 theorem zero_notMem_uIcc {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     (0 : ℝ) ∉ Set.uIcc a b := by
   rw [Set.uIcc_of_le hab, Set.mem_Icc]
@@ -47,14 +49,18 @@ theorem zero_notMem_uIcc {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
 
 /-- **Power integral, `κ ≠ 1`.** If [the exponent `κ` is not equal to `1`](hyp:hκ), [`a` is
 positive](hyp:ha), and [`a` is at most `b`](hyp:hab), then [the interval integral of `t ↦ t^{-κ}`
-over `(a, b]` equals `(b^{1-κ} − a^{1-κ})/(1−κ)`](goal). -/
+over `(a, b]` equals `(b^{1-κ} − a^{1-κ})/(1−κ)`](goal).
+@isnad1 id=eq.3h3v.s7.8b7fcc817030 from=translated src=- shape=da3c73cf vocab=1a4b435f
+-/
 theorem integral_rpow_neg_Ioc (hκ : κ ≠ 1) {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     ∫ t in Ioc a b, t ^ (-κ) = (b ^ (1 - κ) - a ^ (1 - κ)) / (1 - κ) := by
   rw [← intervalIntegral.integral_of_le hab,
     integral_rpow (Or.inr ⟨fun h => hκ (neg_inj.mp h), zero_notMem_uIcc ha hab⟩),
     show (-κ + 1 : ℝ) = 1 - κ from by ring]
 
-/-- **Power integral, `κ = 1`.**  `∫ t in (a,b], t^{-1} = log b − log a`. -/
+/-- **Power integral, `κ = 1`.**  `∫ t in (a,b], t^{-1} = log b − log a`.
+@isnad1 id=eq.2h2v.s6.4df74bd5fa2d from=translated src=- shape=e7986a90 vocab=95599b7d
+-/
 theorem integral_inv_neg_Ioc {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     ∫ t in Ioc a b, t ^ (-(1 : ℝ)) = Real.log b - Real.log a := by
   have hcongr : EqOn (fun t : ℝ => t ^ (-(1 : ℝ))) (fun t => t⁻¹) (Ioc a b) :=

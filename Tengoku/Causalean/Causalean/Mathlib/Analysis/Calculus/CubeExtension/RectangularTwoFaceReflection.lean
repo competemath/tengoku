@@ -19,7 +19,9 @@ in the intrinsic Hölder ball of order m, exponent s and radius L ≥ 0 on the b
 agrees on the box with a response in the intrinsic Hölder ball of radius C·L on
 the box enlarged by collars across both faces of coordinate i (first the left
 collar, then the right collar of the resulting box)](goal). The constant depends
-only on the box, m, s and i. -/
+only on the box, m, s and i.
+@isnad1 id=ex.3h6v.s7.805c705be1fc from=translated src=- shape=4d3853a9 vocab=4ef3bd32
+-/
 theorem exists_rectTwoFaceReflection_holder_constant {d : ℕ}
     (lo hi : Fin d → ℝ) (m : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1)

@@ -15,7 +15,9 @@ open scoped BigOperators
 namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.CosineProjection
 
 /-- A [cosine polynomial](hyp:a) of [smaller rank](hyp:hmn) [equals its
-zero-padded polynomial at the larger rank](goal), at every [position](hyp:x). -/
+zero-padded polynomial at the larger rank](goal), at every [position](hyp:x).
+@isnad1 id=eq.1h4v.s5.3d13cd48be20 from=translated src=- shape=e59e4fbe vocab=9e59d5ba
+-/
 theorem cosinePolynomial_zero_pad {m n : ℕ} (hmn : m ≤ n) (a : ℕ → ℝ) (x : ℝ) :
     cosinePolynomial n (fun j => if j < m then a j else 0) x =
       cosinePolynomial m a x := by
@@ -34,7 +36,9 @@ theorem cosinePolynomial_zero_pad {m n : ℕ} (hmn : m ≤ n) (a : ℕ → ℝ) 
       simp [Finset.mem_range.mp hj]
 
 /-- A [function in a smaller cosine span](hyp:hp) [belongs to every larger
-cosine span](goal), whenever [the ranks are ordered](hyp:hmn). -/
+cosine span](goal), whenever [the ranks are ordered](hyp:hmn).
+@isnad1 id=incosine.2h3v.s4.6bbb6c04e7aa from=translated src=- shape=15d59435 vocab=6ae080f1
+-/
 theorem inCosineSpan_mono {m n : ℕ} {p : ℝ → ℝ}
     (hmn : m ≤ n) (hp : InCosineSpan m p) : InCosineSpan n p := by
   rcases hp with ⟨a, ha⟩

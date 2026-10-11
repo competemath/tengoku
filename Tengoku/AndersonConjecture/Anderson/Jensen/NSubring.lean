@@ -97,7 +97,9 @@ In characteristic 0 over ℂ, this is essentially ℚ embedded in T.
 def NSubring.subtype (N : NSubring T) : N.carrier →+* T :=
   N.carrier.subtype
 
-/-- Two N-subrings are equal if their carriers are equal. -/
+/-- Two N-subrings are equal if their carriers are equal.
+@isnad1 id=eq.1h3v.s6.63d0e1180b85 from=translated src=- shape=296f7bd8 vocab=9af1272a
+-/
 theorem NSubring.ext {N₁ N₂ : NSubring T} (h : N₁.carrier = N₂.carrier) : N₁ = N₂ := by
   cases N₁
   cases N₂

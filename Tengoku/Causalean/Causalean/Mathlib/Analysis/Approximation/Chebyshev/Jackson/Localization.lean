@@ -221,7 +221,9 @@ private theorem integral_rational_envelope (N : ℕ) (hN : 0 < N) :
 
 /-- [There is a positive constant C such that, for every order N at least two and every real angle
 u, the packet antiderivative at u is at most C divided by N times the square of (1 + N times the
-torus distance of u), in absolute value](goal). -/
+torus distance of u), in absolute value](goal).
+@isnad1 id=ex.0h0v.s6.6e155cebe523 from=translated src=- shape=1994e308 vocab=17c114ce
+-/
 theorem packet_pointwise_localization :
     ∃ C : ℝ, 0 < C ∧
       ∀ N : ℕ, 2 ≤ N → ∀ u : ℝ,
@@ -286,7 +288,9 @@ theorem packet_pointwise_localization :
 
 /-- [There is a positive constant C such that, for every order N at least two, the integral over
 the period from −π to π of the absolute value of the packet antiderivative divided by 2π is at most
-C / N²](goal). -/
+C / N²](goal).
+@isnad1 id=ex.0h0v.s7.5a34848aa04a from=translated src=- shape=db59aad3 vocab=5511661b
+-/
 theorem packet_l1_localization :
     ∃ C : ℝ, 0 < C ∧
       ∀ N : ℕ, 2 ≤ N →

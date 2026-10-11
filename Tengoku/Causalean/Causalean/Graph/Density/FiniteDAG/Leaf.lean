@@ -31,7 +31,9 @@ def IsLeafIn (G : Causalean.Graph.DAG V) (k : V) (S : Finset V) : Prop :=
 
 /-- A [DAG factorization](hyp:B), [two distinct nodes](hyp:hkl), [evidence that the updated node
 is not a parent of the other](hyp:hkpar), a [full assignment](hyp:v), and a [new coordinate value](hyp:x)
-[leave the other node's local factor unchanged](goal). -/
+[leave the other node's local factor unchanged](goal).
+@isnad1 id=eq.2h9v.s6.617103d891ae from=translated src=- shape=38ba6b4d vocab=0d987801
+-/
 theorem Factorization.factor_update_eq_of_ne_of_not_parent
     (B : Factorization G X μ) {k l : V} (hkl : k ≠ l) (hkpar : k ∉ G.parents l)
     (v : ∀ i, X i) (x : X k) :
@@ -46,7 +48,9 @@ theorem Factorization.factor_update_eq_of_ne_of_not_parent
   exact Function.update_of_ne hik x v
 
 /-- A [DAG factorization](hyp:B), a [leaf of a finite node set](hyp:hleaf), a [full assignment](hyp:v),
-and a [new leaf-coordinate value](hyp:x) [leave the product of all remaining factors unchanged](goal). -/
+and a [new leaf-coordinate value](hyp:x) [leave the product of all remaining factors unchanged](goal).
+@isnad1 id=eq.1h9v.s6.2e287dbc207e from=translated src=- shape=0beb04d8 vocab=6caeeb7a
+-/
 theorem Factorization.partialDensity_erase_update_leaf
     (B : Factorization G X μ) {S : Finset V} {k : V} (hleaf : IsLeafIn G k S)
     (v : ∀ i, X i) (x : X k) :
@@ -64,7 +68,9 @@ theorem Factorization.partialDensity_erase_update_leaf
 
 /-- A [DAG factorization](hyp:B), a [leaf within a finite node set](hyp:hleaf), and a [fixed
 assignment of the other coordinates](hyp:v) [show that integrating the normalized leaf factor
-removes exactly that factor from the product](goal). -/
+removes exactly that factor from the product](goal).
+@isnad1 id=eq.1h8v.s6.e5f3fa61b883 from=translated src=- shape=6cac666a vocab=59f097f2
+-/
 theorem Factorization.lintegral_partialDensity_leaf
     (B : Factorization G X μ) {S : Finset V} {k : V} (hleaf : IsLeafIn G k S)
     (v : ∀ i, X i) :

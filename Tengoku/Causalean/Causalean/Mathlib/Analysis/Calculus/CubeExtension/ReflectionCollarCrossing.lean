@@ -18,7 +18,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 /-- If [x lies in the closed exterior slab of the left collar in coordinate
 i](hyp:hx) and [y lies in the normalized cube](hyp:hy), then [some point z of the
 segment from x to y lies both in the slab and in the cube (hence on the left
-face), and both ‖x − z‖ and ‖z − y‖ are at most ‖x − y‖](goal). -/
+face), and both ‖x − z‖ and ‖z − y‖ are at most ‖x − y‖](goal).
+@isnad1 id=ex.2h5v.s8.b5f322bd91de from=translated src=- shape=58222a0c vocab=e278b0f3
+-/
 theorem exists_leftFaceReflection_crossing_point
     (d m : ℕ) (i : Fin d) (x y : Fin d → ℝ)
     (hx : x ∈ leftClosedExteriorCollar d m i) (hy : y ∈ cube d) :

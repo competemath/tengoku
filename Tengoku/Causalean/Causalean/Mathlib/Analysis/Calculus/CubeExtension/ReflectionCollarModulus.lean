@@ -24,7 +24,9 @@ then [there is a positive constant C such that, for every response u in the
 intrinsic Hölder ball of order m, exponent s and radius L ≥ 0 on the normalized
 cube, the top-order intrinsic coordinate jets of the one-face reflection of u
 have an s-Hölder modulus with coefficient C·L throughout the closed left
-collar](goal). -/
+collar](goal).
+@isnad1 id=ex.3h5v.s8.866d073aab09 from=translated src=- shape=d4a24c7e vocab=85b60c12
+-/
 theorem exists_leftFaceReflection_collar_modulus_constant
     (d m : ℕ) (s : ℝ) (hs : 0 < s) (hs1 : s ≤ 1)
     (i : Fin d) (a : Fin (m + 1) → ℝ)

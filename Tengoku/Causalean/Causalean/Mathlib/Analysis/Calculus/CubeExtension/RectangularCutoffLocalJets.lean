@@ -30,7 +30,9 @@ does not depend on the response or its radius.
 Use `norm_iteratedFDerivWithin_smul_le` on the closed box, the coordinate-basis
 multilinear norm estimate, and equality of within and ambient derivatives at
 interior points. Local equality of the cutoff extension with the product
-transfers this estimate to its ambient jets. -/
+transfers this estimate to its ambient jets.
+@isnad1 id=ex.4h7v.s10.43962eead787 from=translated src=- shape=be51b0a0 vocab=0bdcd94b
+-/
 theorem exists_rectCutoffExtension_local_jet_constant (d m : ℕ) (s : ℝ)
     (lo hi : Fin d → ℝ) (hmargin : ∀ i, lo i < -1 ∧ 1 < hi i)
     (χ : (Fin d → ℝ) → ℝ) (hχ : ContDiff ℝ ∞ χ)

@@ -14,7 +14,9 @@ open scoped BigOperators
 namespace Causalean.Mathlib.Analysis.Quantization
 
 /-- In any measurable partition of `[a,b]` into `k` cells, the sum of squared
-cell masses is at least the squared interval length divided by `k`. -/
+cell masses is at least the squared interval length divided by `k`.
+@isnad1 id=le.3h4v.s6.02775c9241cd from=translated src=- shape=b42ba6a7 vocab=f5a19303
+-/
 theorem measurable_partition_mass_square_lower (a b : ℝ) (hab : a ≤ b)
     (k : ℕ) (hk : 0 < k) (B : Fin k → Set ℝ)
     (hB : IsMeasurablePartition a b k B) :
@@ -35,7 +37,9 @@ theorem measurable_partition_mass_square_lower (a b : ℝ) (hab : a ≤ b)
     (f := fun j : Fin k => volume.real (B j)))
 
 /-- For constant nonnegative coefficients, every measurable partition and
-separate reproduction array obey the exact quarter-square lower bound. -/
+separate reproduction array obey the exact quarter-square lower bound.
+@isnad1 id=le.4h7v.s7.09aa07f163dc from=translated src=- shape=1a0daa22 vocab=024ee4ec
+-/
 theorem constant_weights_partition_lower (a b : ℝ) (hab : a ≤ b)
     (S k : ℕ) (hk : 0 < k) (γ : Fin S → ℝ)
     (hγ : ∀ s, 0 ≤ γ s) (B : Fin k → Set ℝ)
@@ -75,7 +79,9 @@ theorem constant_weights_partition_lower (a b : ℝ) (hab : a ≤ b)
 /-- On [a nondegenerate interval](hyp:a,b,hab), [a nonempty finite
 weight family](hyp:S,hS) with [continuous strictly positive weights](hyp:β,hcont,hpos),
 each positive tolerance gives [a uniform eventual lower bound for
-every feasible measurable partition](goal). -/
+every feasible measurable partition](goal).
+@isnad1 id=ex.5h5v.s8.1f527e7c7cf4 from=translated src=- shape=a808cdd1 vocab=9a881334
+-/
 theorem arbitrary_partition_lower_eventually (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -157,7 +163,9 @@ theorem arbitrary_partition_lower_eventually (a b : ℝ) (hab : a < b)
   convert hgoal using 1 <;> dsimp [A, I] <;> ring
 
 /-- The same universal lower bound holds for the optimal value, since the
-feasible cost set is nonempty and all its members obey the uniform estimate. -/
+feasible cost set is nonempty and all its members obey the uniform estimate.
+@isnad1 id=ex.5h5v.s8.7062e23cd3ed from=translated src=- shape=6f66ae63 vocab=e339a2b1
+-/
 theorem optimal_lower_eventually (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

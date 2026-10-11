@@ -16,7 +16,9 @@ noncomputable section
 
 /-- The scaled sum of squared companding cell lengths is uniformly bounded
 over every positive cell count. This follows from the equal-mass length
-bound and the telescoping sum of cell lengths. -/
+bound and the telescoping sum of cell lengths.
+@isnad1 id=ex.4h4v.s7.1165f57e941b from=translated src=- shape=999b74c8 vocab=91be3d2f
+-/
 theorem companding_scaled_length_square_bound (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -66,7 +68,9 @@ theorem companding_scaled_length_square_bound (a b : ℝ) (hab : a < b)
 
 /-- The squared midpoint mass of each sufficiently fine companding cell
 differs from the square of its exact equal mass by at most a prescribed
-multiple of the squared cell length. -/
+multiple of the squared cell length.
+@isnad1 id=ex.5h5v.s8.ef1e506130e6 from=translated src=- shape=8e87b57d vocab=dd0fceee
+-/
 theorem companding_surrogate_cell_error_eventually (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -145,7 +149,9 @@ theorem companding_surrogate_cell_error_eventually (a b : ℝ) (hab : a < b)
 
 /-- The true paired cost of one sufficiently fine companding cell differs
 from its midpoint diagonal-weight surrogate by at most a prescribed multiple
-of that cell's squared length. -/
+of that cell's squared length.
+@isnad1 id=ex.5h5v.s8.a5c595bc5110 from=translated src=- shape=78406a3f vocab=affd92a6
+-/
 theorem companding_integrand_cell_error_eventually (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -226,7 +232,9 @@ theorem companding_integrand_cell_error_eventually (a b : ℝ) (hab : a < b)
   simpa only [C, m, L, H, compandingMidpoint, mul_div_assoc] using hgoal
 
 /-- The scaled midpoint diagonal-weight surrogate converges to one quarter
-of the squared total square-root diagonal mass. -/
+of the squared total square-root diagonal mass.
+@isnad1 id=tendsto.4h4v.s7.fafb39ecc2b2 from=translated src=- shape=a0c31c13 vocab=ffc66f48
+-/
 theorem companding_surrogate_scaled_tendsto (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -306,7 +314,9 @@ theorem companding_surrogate_scaled_tendsto (a b : ℝ) (hab : a < b)
   exact lt_of_le_of_lt hfinal hsmall
 
 /-- The scaled difference between the true paired midpoint cost and its
-diagonal-weight surrogate tends to zero as the companding mesh vanishes. -/
+diagonal-weight surrogate tends to zero as the companding mesh vanishes.
+@isnad1 id=tendsto.4h4v.s7.f056e40ddc89 from=translated src=- shape=331f95bc vocab=6ee42bc4
+-/
 theorem companding_surrogate_error_tendsto (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)
@@ -375,7 +385,9 @@ theorem companding_surrogate_error_tendsto (a b : ℝ) (hab : a < b)
 /-- On [a nondegenerate interval](hyp:a,b,hab), [a nonempty finite
 weight family](hyp:S,hS) with [jointly continuous](hyp:β,hcont) and
 [strictly positive](hyp:hpos) losses has [companding midpoint cost converging
-to the exact quarter-square limit](goal). -/
+to the exact quarter-square limit](goal).
+@isnad1 id=tendsto.4h4v.s8.eabac5396f5c from=translated src=- shape=a9060d8c vocab=e044d652
+-/
 theorem companding_scaled_cost_tendsto (a b : ℝ) (hab : a < b)
     (S : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

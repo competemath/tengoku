@@ -35,7 +35,9 @@ namespace ByteSlice
 
 /-! ## Characterizing `slice` -/
 
-/-- A sub-slice views the same base array. -/
+/-- A sub-slice views the same base array.
+@isnad1 id=eq.0h3v.s3.a24485a8d9ac from=translated src=- shape=38be6c85 vocab=76f2d943
+-/
 @[simp] theorem byteArray_slice (s : ByteSlice) (a b : Nat) :
     (s.slice a b).byteArray = s.byteArray := by
   unfold ByteSlice.slice
@@ -45,7 +47,9 @@ namespace ByteSlice
   · rfl
 
 /-- A sub-slice starts at the requested start, clamped by the requested
-stop and then by the slice's size. -/
+stop and then by the slice's size.
+@isnad1 id=eq.0h3v.s5.fa8caf71fdae from=translated src=- shape=9f4ef491 vocab=222881e0
+-/
 theorem start_slice (s : ByteSlice) (a b : Nat) :
     (s.slice a b).start = s.start + min (min a b) s.size := by
   have h1 : s.stop ≤ s.byteArray.size := s.stop_le_size_byteArray
@@ -62,7 +66,9 @@ theorem start_slice (s : ByteSlice) (a b : Nat) :
       omega
   · next h => exact absurd (by omega) h
 
-/-- A sub-slice stops at the clamped stop bound. -/
+/-- A sub-slice stops at the clamped stop bound.
+@isnad1 id=eq.0h3v.s4.fb5499689309 from=translated src=- shape=56f2bcf2 vocab=e1307f55
+-/
 theorem stop_slice (s : ByteSlice) (a b : Nat) :
     (s.slice a b).stop = s.start + min b s.size := by
   have h1 : s.stop ≤ s.byteArray.size := s.stop_le_size_byteArray
@@ -84,21 +90,27 @@ not the base array's. -/
 def toList (s : ByteSlice) : List UInt8 :=
   (s.byteArray.extract s.start s.stop).toList
 
-/-- The abstraction is the drop/take window of the base array's bytes. -/
+/-- The abstraction is the drop/take window of the base array's bytes.
+@isnad1 id=eq.0h1v.s4.a80215bcf865 from=translated src=- shape=eccd6ef8 vocab=e46c313a
+-/
 theorem toList_eq (s : ByteSlice) :
     s.toList = (s.byteArray.data.toList.drop s.start).take s.size := by
   rw [toList, ByteArray.toList_eq_data_toList, ByteArray.data_extract,
     Array.toList_extract, List.extract_eq_take_drop]
   rfl
 
-/-- Viewing a whole byte array abstracts to all of its bytes. -/
+/-- Viewing a whole byte array abstracts to all of its bytes.
+@isnad1 id=eq.0h1v.s3.75ba65391e73 from=translated src=- shape=d403cf25 vocab=2ae5f209
+-/
 @[simp] theorem toList_ofByteArray (bytes : ByteArray) :
     (ByteSlice.ofByteArray bytes).toList = bytes.toList := by
   rw [toList]
   show (bytes.extract 0 bytes.size).toList = _
   rw [ByteArray.extract_zero_size]
 
-/-- A slice abstracts to as many bytes as its size. -/
+/-- A slice abstracts to as many bytes as its size.
+@isnad1 id=eq.0h1v.s3.6979f401e865 from=translated src=- shape=981f0160 vocab=47d15b30
+-/
 @[simp] theorem length_toList (s : ByteSlice) : s.toList.length = s.size := by
   have h1 : s.stop ≤ s.byteArray.data.size := s.stop_le_size_byteArray
   have h2 := s.stop_eq_start_add_size
@@ -114,7 +126,9 @@ def take (s : ByteSlice) (n : Nat) : ByteSlice := s.slice 0 n
 /-- The view past the first `n` bytes (empty, if there are fewer). -/
 def drop (s : ByteSlice) (n : Nat) : ByteSlice := s.slice n s.size
 
-/-- Taking `n` bytes leaves `min n s.size` in view. -/
+/-- Taking `n` bytes leaves `min n s.size` in view.
+@isnad1 id=eq.0h2v.s4.26267f7fa6e7 from=translated src=- shape=d6e27988 vocab=e4ee2806
+-/
 @[simp] theorem size_take (s : ByteSlice) (n : Nat) :
     (s.take n).size = min n s.size := by
   have hst : (s.slice 0 n).start = s.start := by
@@ -124,7 +138,9 @@ def drop (s : ByteSlice) (n : Nat) : ByteSlice := s.slice n s.size
   rw [hst, stop_slice]
   omega
 
-/-- Taking bytes off a slice takes them off its abstraction. -/
+/-- Taking bytes off a slice takes them off its abstraction.
+@isnad1 id=eq.0h2v.s4.217dad755872 from=translated src=- shape=250a521a vocab=15439ad7
+-/
 @[simp] theorem toList_take (s : ByteSlice) (n : Nat) :
     (s.take n).toList = s.toList.take n := by
   have hst : (s.slice 0 n).start = s.start := by
@@ -134,7 +150,9 @@ def drop (s : ByteSlice) (n : Nat) : ByteSlice := s.slice n s.size
   simp only [take] at hsz ⊢
   rw [toList_eq, toList_eq, byteArray_slice, hst, hsz, List.take_take]
 
-/-- Dropping `n` bytes leaves `s.size - n` in view. -/
+/-- Dropping `n` bytes leaves `s.size - n` in view.
+@isnad1 id=eq.0h2v.s4.a11c11919b9d from=translated src=- shape=42db545a vocab=2be1d3fc
+-/
 @[simp] theorem size_drop (s : ByteSlice) (n : Nat) :
     (s.drop n).size = s.size - n := by
   have hst : (s.slice n s.size).start = s.start + min n s.size := by
@@ -144,7 +162,9 @@ def drop (s : ByteSlice) (n : Nat) : ByteSlice := s.slice n s.size
   rw [hst, stop_slice]
   omega
 
-/-- Dropping bytes off a slice drops them off its abstraction. -/
+/-- Dropping bytes off a slice drops them off its abstraction.
+@isnad1 id=eq.0h2v.s4.ca7a6a567e29 from=translated src=- shape=250a521a vocab=939074dc
+-/
 @[simp] theorem toList_drop (s : ByteSlice) (n : Nat) :
     (s.drop n).toList = s.toList.drop n := by
   have h2 := s.stop_eq_start_add_size
@@ -171,7 +191,9 @@ further in. -/
 def uncons (s : ByteSlice) : Option (UInt8 × ByteSlice) :=
   if h : 0 < s.size then some (s[0]'h, s.drop 1) else none
 
-/-- A slice with nothing to read abstracts to the empty byte string. -/
+/-- A slice with nothing to read abstracts to the empty byte string.
+@isnad1 id=eq.1h1v.s4.8e7c392a6880 from=translated src=- shape=2c46987d vocab=2d0837a7
+-/
 theorem toList_of_uncons_none {s : ByteSlice} (h : s.uncons = none) :
     s.toList = [] := by
   rw [uncons] at h
@@ -183,7 +205,9 @@ theorem toList_of_uncons_none {s : ByteSlice} (h : s.uncons = none) :
     omega
 
 /-- Reading one byte is uncons on the abstraction: the byte read is the
-head, and the advanced slice abstracts to the tail. -/
+head, and the advanced slice abstracts to the tail.
+@isnad1 id=eq.1h3v.s5.e1f633a18d88 from=translated src=- shape=6d71e0a1 vocab=aadc764d
+-/
 theorem toList_of_uncons_some {s : ByteSlice} {b : UInt8} {t : ByteSlice}
     (h : s.uncons = some (b, t)) : s.toList = b :: t.toList := by
   rw [uncons] at h

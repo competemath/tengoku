@@ -23,7 +23,9 @@ exponent s](hyp:s) that is [positive](hyp:hs), [there is a positive constant C, 
 the dimension, the order, and the exponent, such that for every function and every nonnegative L:
 if every order-m coordinate partial changes between any two points of the normalized cube by at
 most L times their Euclidean distance to the power s, then the function satisfies the top-order
-Hölder condition with constant C times L in the coordinatewise-maximum norm](goal). -/
+Hölder condition with constant C times L in the coordinatewise-maximum norm](goal).
+@isnad1 id=ex.2h3v.s7.7664e7f28b52 from=translated src=- shape=e0afc3ff vocab=a18e8d88
+-/
 theorem euclidean_to_topHolder (d m : ℕ) (hd : 1 ≤ d) (s : ℝ) (hs : 0 < s) :
     ∃ C : ℝ, 0 < C ∧
       ∀ (u : (Fin d → ℝ) → ℝ) (L : ℝ),

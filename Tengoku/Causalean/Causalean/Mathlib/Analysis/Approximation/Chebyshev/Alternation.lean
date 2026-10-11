@@ -34,7 +34,9 @@ noncomputable def normalizedLagrangeWeight {n : ℕ}
     ∑ k : Fin n, |Lagrange.nodalWeight Finset.univ nodes k|
 
 /-- For [L + 2 pairwise distinct real nodes](hyp:hnodes), [the absolute values of the normalized
-Lagrange weights sum to one](goal). -/
+Lagrange weights sum to one](goal).
+@isnad1 id=eq.1h2v.s6.098595f8928a from=translated src=- shape=eb596715 vocab=28c01f4b
+-/
 theorem sum_abs_normalizedLagrangeWeight_eq_one
     {L : ℕ} {nodes : Fin (L + 2) → ℝ} (hnodes : Function.Injective nodes) :
     ∑ i, |normalizedLagrangeWeight nodes i| = 1 := by
@@ -54,7 +56,9 @@ theorem sum_abs_normalizedLagrangeWeight_eq_one
 
 /-- For [L + 2 strictly increasing real nodes](hyp:hnodes) and [any index i](hyp:i), [the
 normalized Lagrange weight at i equals (−1)^(L + 1 − i) times its own absolute value](goal), so the
-weights alternate in sign. -/
+weights alternate in sign.
+@isnad1 id=eq.1h3v.s7.fcfd4e88e9c0 from=translated src=- shape=8f164325 vocab=74752029
+-/
 theorem normalizedLagrangeWeight_alternates
     {L : ℕ} {nodes : Fin (L + 2) → ℝ} (hnodes : StrictMono nodes)
     (i : Fin (L + 2)) :
@@ -125,7 +129,9 @@ theorem normalizedLagrangeWeight_alternates
 
 /-- For [L + 2 pairwise distinct real nodes](hyp:hnodes) and [an exponent j at most L](hyp:hj),
 [the sum over nodes of the normalized Lagrange weight times the j-th power of the node is
-zero](goal). -/
+zero](goal).
+@isnad1 id=eq.2h3v.s7.b7c8fc6849f0 from=translated src=- shape=0f4e5b9a vocab=ecc41344
+-/
 theorem sum_normalizedLagrangeWeight_mul_pow_eq_zero
     {L j : ℕ} {nodes : Fin (L + 2) → ℝ}
     (hnodes : Function.Injective nodes) (hj : j ≤ L) :
@@ -151,7 +157,9 @@ theorem sum_normalizedLagrangeWeight_mul_pow_eq_zero
 
 /-- For [L + 2 pairwise distinct real nodes](hyp:hnodes) and [a real polynomial of degree at most
 L](hyp:hQ), [the sum over nodes of the normalized Lagrange weight times the polynomial's value at
-the node is zero](goal). -/
+the node is zero](goal).
+@isnad1 id=eq.2h3v.s7.03755bbe5530 from=translated src=- shape=6b59aa56 vocab=48cda7cb
+-/
 theorem sum_normalizedLagrangeWeight_mul_eval_eq_zero
     {L : ℕ} {nodes : Fin (L + 2) → ℝ}
     (hnodes : Function.Injective nodes) {Q : Polynomial ℝ}
@@ -217,7 +225,9 @@ alternation dual certificate: a best polynomial of degree at most L, L + 2 stric
 interval nodes at which its residual equioscillates, and the normalized Lagrange weights of those
 nodes, which alternate in sign, have absolute values summing to one, annihilate every monomial of
 degree at most L, and whose weighted sum of target values equals the best uniform error up to
-sign](goal). -/
+sign](goal).
+@isnad1 id=nonempty.2h4v.s5.3c9afa76af11 from=translated src=- shape=1fd95885 vocab=61334452
+-/
 theorem exists_alternationDualCertificate
     {f : ℝ → ℝ} {r s : ℝ} (hrs : r < s)
     (hf : ContinuousOn f (Set.Icc r s)) (L : ℕ) :
@@ -331,7 +341,9 @@ noncomputable def AlternationDualCertificate.toFiniteMomentDual
 closed interval between them](hyp:hf), and [any degree bound L](hyp:L), [there exist L + 2 strictly
 increasing interval nodes and signed weights whose absolute values sum to one, which annihilate
 every monomial of degree at most L, and whose weighted sum of target values equals the best
-degree-L uniform approximation error in absolute value](goal). -/
+degree-L uniform approximation error in absolute value](goal).
+@isnad1 id=nonempty.2h4v.s5.3924d7b818bd from=translated src=- shape=1fd95885 vocab=5d14695c
+-/
 theorem exists_finiteMomentDual
     {f : ℝ → ℝ} {r s : ℝ} (hrs : r < s)
     (hf : ContinuousOn f (Set.Icc r s)) (L : ℕ) :
@@ -346,7 +358,9 @@ theorem exists_finiteMomentDual
 noncomputable def rationalTarget (a : ℝ) (x : ℝ) : ℝ := x / (x + a)
 
 /-- If [the point −a lies outside the closed interval from r to s](hyp:hpole), then [the rational
-target with parameter a is continuous on that interval](goal). -/
+target with parameter a is continuous on that interval](goal).
+@isnad1 id=continuo.1h3v.s5.cf3a15d9805b from=translated src=- shape=2b745deb vocab=58aac216
+-/
 theorem continuousOn_rationalTarget {a r s : ℝ}
     (hpole : -a ∉ Set.Icc r s) :
     ContinuousOn (rationalTarget a) (Set.Icc r s) := by
@@ -362,7 +376,9 @@ theorem continuousOn_rationalTarget {a r s : ℝ}
 the closed interval between them](hyp:hpole), and [any degree bound L](hyp:L), [there exist L + 2
 strictly increasing interval nodes and signed weights whose absolute values sum to one, which
 annihilate every monomial of degree at most L, and whose weighted sum of values of the rational
-target equals its best degree-L uniform approximation error in absolute value](goal). -/
+target equals its best degree-L uniform approximation error in absolute value](goal).
+@isnad1 id=nonempty.2h4v.s5.b9d17d57aadc from=translated src=- shape=d8c2e451 vocab=4f53e9b0
+-/
 theorem exists_rationalFiniteMomentDual
     {a r s : ℝ} (hrs : r < s) (hpole : -a ∉ Set.Icc r s) (L : ℕ) :
     Nonempty (FiniteMomentDual (rationalTarget a) r s L) := by

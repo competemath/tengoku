@@ -29,7 +29,9 @@ noncomputable def rectCutoffExtension {d : ℕ} (lo hi : Fin d → ℝ)
 open box](hyp:hsupp), and [a response v is m times continuously differentiable
 within the closed box](hyp:hv), then [the zero extension of χ·v from the closed
 box is m times continuously differentiable on the whole space](goal). No
-normalization of the cutoff on the cube is needed. -/
+normalization of the cutoff on the cube is needed.
+@isnad1 id=contdiff.3h6v.s8.9e857ab68e03 from=translated src=- shape=ab8556ad vocab=23625996
+-/
 theorem rectCutoffExtension_contDiff {d : ℕ} (m : ℕ)
     (lo hi : Fin d → ℝ) (χ v : (Fin d → ℝ) → ℝ)
     (hχ : ContDiff ℝ ∞ χ)
@@ -70,7 +72,9 @@ the open box](hyp:hsupp) and [equal to one on the cube](hyp:hone), and [a
 response v is m times continuously differentiable within the closed
 box](hyp:hv), then [the zero extension of χ·v from the closed box is m times
 continuously differentiable on the whole space and agrees with v on the
-cube](goal). -/
+cube](goal).
+@isnad1 id=and.5h6v.s8.eebb1d320368 from=translated src=- shape=c2785334 vocab=432364bf
+-/
 theorem rectCutoffExtension_contDiff_eqOn_cube (d m : ℕ)
     (lo hi : Fin d → ℝ) (hmargin : ∀ i, lo i < -1 ∧ 1 < hi i)
     (χ v : (Fin d → ℝ) → ℝ)

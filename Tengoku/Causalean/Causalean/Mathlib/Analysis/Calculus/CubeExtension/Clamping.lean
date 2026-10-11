@@ -21,7 +21,9 @@ def cubeClamp (d : ℕ) (x : Fin d → ℝ) : Fin d → ℝ :=
   fun i => max (-1) (min 1 (x i))
 
 /-- [Every coordinatewise clamped point lies in the normalized closed cube
-`[-1,1]^d`](goal). -/
+`[-1,1]^d`](goal).
+@isnad1 id=mem.0h2v.s4.c998fcf2c9a8 from=translated src=- shape=ebeab411 vocab=4e44b341
+-/
 theorem cubeClamp_mem_cube (d : ℕ) (x : Fin d → ℝ) : cubeClamp d x ∈ cube d := by
   intro i
   change -1 ≤ cubeClamp d x i ∧ cubeClamp d x i ≤ 1
@@ -31,7 +33,9 @@ theorem cubeClamp_mem_cube (d : ℕ) (x : Fin d → ℝ) : cubeClamp d x ∈ cub
   · exact max_le (by norm_num) (min_le_left _ _)
 
 /-- [Coordinatewise clamping leaves fixed](goal) [every point already in the
-normalized cube](hyp:hx). -/
+normalized cube](hyp:hx).
+@isnad1 id=eq.1h2v.s5.da74513ee34d from=translated src=- shape=cb08ac6e vocab=4e44b341
+-/
 theorem cubeClamp_fixed {d : ℕ} {x : Fin d → ℝ} (hx : x ∈ cube d) :
     cubeClamp d x = x := by
   ext i
@@ -40,7 +44,9 @@ theorem cubeClamp_fixed {d : ℕ} {x : Fin d → ℝ} (hx : x ∈ cube d) :
   simp [cubeClamp, min_eq_right hi.2, max_eq_right hi.1]
 
 /-- [Coordinatewise clamping is nonexpansive for the supremum norm: the clamped
-images of two points are no farther apart than the points themselves](goal). -/
+images of two points are no farther apart than the points themselves](goal).
+@isnad1 id=le.0h3v.s7.4a437f61f7dc from=translated src=- shape=ac73f609 vocab=c5c22541
+-/
 theorem cubeClamp_nonexpansive (d : ℕ) (x y : Fin d → ℝ) :
     ‖cubeClamp d x - cubeClamp d y‖ ≤ ‖x - y‖ := by
   apply (pi_norm_le_iff_of_nonneg (norm_nonneg (x - y))).2

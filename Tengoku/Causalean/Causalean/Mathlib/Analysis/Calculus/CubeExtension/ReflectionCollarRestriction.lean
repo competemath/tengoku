@@ -19,7 +19,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 continuously differentiable within the closed cube](hyp:hu), and [j ≤
 m](hyp:hj), then at [every point x of the cube](hyp:hx) [the order-j
 within-collar Fréchet derivative of the one-face reflection of u equals the
-order-j within-cube derivative of u](goal). -/
+order-j within-cube derivative of u](goal).
+@isnad1 id=eq.4h7v.s9.5b425cc4291d from=translated src=- shape=a6df93f9 vocab=c7c731cb
+-/
 theorem leftFaceReflection_withinJet_eq_cube
     (d m j : ℕ) (i : Fin d) (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

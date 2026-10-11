@@ -26,7 +26,9 @@ the order at each index. -/
 def secondSupport (ys : List ι) : Finset ι := ys.toFinset
 
 /-- [An index](hyp:i) lies in [the second-coordinate support](hyp:ys)
-[exactly when its derivative order is positive](goal). -/
+[exactly when its derivative order is positive](goal).
+@isnad1 id=iff.0h3v.s5.d71bcdd85973 from=translated src=- shape=25711b86 vocab=5c2a3087
+-/
 theorem mem_secondSupport_iff (ys : List ι) (i : ι) :
     i ∈ secondSupport ys ↔ 0 < ys.count i := by
   simpa only [secondSupport, List.mem_toFinset] using
@@ -34,7 +36,9 @@ theorem mem_secondSupport_iff (ys : List ι) (i : ι) :
 
 /-- If [every entry of a hit list ys](hyp:ys) [lies in a finite index set I](hyp:I,hys), then
 [the number of occurrences of each index of I in ys, summed over I, equals the length of
-ys](goal). -/
+ys](goal).
+@isnad1 id=eq.1h3v.s5.34faf6deb49f from=translated src=- shape=76d0fdbc vocab=82fbb496
+-/
 theorem sum_second_orders (I : Finset ι) (ys : List ι)
     (hys : ∀ i ∈ ys, i ∈ I) :
     ∑ i ∈ I, ys.count i = ys.length := by
@@ -48,7 +52,9 @@ theorem sum_second_orders (I : Finset ι) (ys : List ι)
 
 /-- If [two second-coordinate hits r and s](hyp:r,s) [both lie in a finite index set
 I](hyp:I,hr,hs), then [the occurrence counts of the indices of I in the two-element hit list r, s
-sum to two](goal), including when r and s are equal. -/
+sum to two](goal), including when r and s are equal.
+@isnad1 id=eq.2h4v.s6.19ddf8e0af2e from=translated src=- shape=d12f5ef4 vocab=590c55d9
+-/
 theorem summand22_total_second_order (I : Finset ι) (r s : ι)
     (hr : r ∈ I) (hs : s ∈ I) :
     ∑ i ∈ I, ([r, s] : List ι).count i = 2 := by
@@ -58,13 +64,17 @@ theorem summand22_total_second_order (I : Finset ι) (r s : ι)
     rcases hi with rfl | rfl <;> assumption)
 
 /-- [The support of two second-coordinate hits](hyp:r,s)
-[is precisely the pair of hit indices](goal); equal hits give a singleton. -/
+[is precisely the pair of hit indices](goal); equal hits give a singleton.
+@isnad1 id=eq.0h3v.s5.de7c4ea22fd6 from=translated src=- shape=c95cd00a vocab=7217a226
+-/
 theorem secondSupport_pair (r s : ι) : secondSupport [r, s] = {r, s} := by
   simp [secondSupport]
 
 /-- [The explicit (2,0) jet](hyp:I,J,a,u) [equals the diagonal sum of second
 factor jets plus the ordered distinct-index sum of products of first factor
-jets](goal). Thus both first-coordinate Leibniz cases are exposed. -/
+jets](goal). Thus both first-coordinate Leibniz cases are exposed.
+@isnad1 id=eq.0h5v.s7.60cac908f24b from=translated src=- shape=e63b9e76 vocab=cd38a27c
+-/
 theorem productJet20_eq_diagonal_add_offDiagonal (I : Finset ι) (J : FactorJets ι)
     (a u : ℝ) :
     productJet20 I J a u =
@@ -106,7 +116,9 @@ theorem productJet20_eq_diagonal_add_offDiagonal (I : Finset ι) (J : FactorJets
 /-- For [factor jets J of a finite index set I](hyp:I,J) at [a point (a, u)](hyp:a,u), if
 [an index r of I](hyp:r,hr) is hit twice in the second coordinate and [the two first-coordinate
 hits p and q are not both r](hyp:p,q,hnot), then [the corresponding (2,2) Leibniz summand is
-zero](goal). -/
+zero](goal).
+@isnad1 id=eq.2h8v.s6.9d4729fe89fa from=translated src=- shape=36359f21 vocab=52351f84
+-/
 theorem leibnizTerm22_repeated_u_zero (I : Finset ι) (J : FactorJets ι)
     (p q r : ι) (a u : ℝ) (hr : r ∈ I) (hnot : p ≠ r ∨ q ≠ r) :
     leibnizTerm I J [p, q] [r, r] a u = 0 := by
@@ -122,7 +134,9 @@ theorem leibnizTerm22_repeated_u_zero (I : Finset ι) (J : FactorJets ι)
 
 /-- For [factor jets J of a finite index set I](hyp:I,J) at [a point (a, u)](hyp:a,u), if
 [all four hits fall on one index r of I](hyp:r,hr), then [the Leibniz summand equals the (2,2)
-jet of r times the product of the base factors of the other indices](goal). -/
+jet of r times the product of the base factors of the other indices](goal).
+@isnad1 id=eq.1h6v.s6.77e1e5c36ec4 from=translated src=- shape=8d2ecaf4 vocab=b6efbd66
+-/
 theorem leibnizTerm22_all_same (I : Finset ι) (J : FactorJets ι)
     (r : ι) (a u : ℝ) (hr : r ∈ I) :
     leibnizTerm I J [r, r] [r, r] a u =
@@ -140,7 +154,9 @@ theorem leibnizTerm22_all_same (I : Finset ι) (J : FactorJets ι)
 /-- [The explicit fourth mixed jet](hyp:I,J,a,u) [splits into terms whose
 second-coordinate support is a singleton carrying the (2,2) factor jet,
 and terms whose support is two distinct indices each carrying order one](goal).
-The indices in the fourfold sum remain ordered, retaining every Leibniz multiplicity. -/
+The indices in the fourfold sum remain ordered, retaining every Leibniz multiplicity.
+@isnad1 id=eq.0h5v.s6.9837d2d6c635 from=translated src=- shape=e97bc5f6 vocab=93bce00e
+-/
 theorem productJet22_support_decomposition (I : Finset ι) (J : FactorJets ι)
     (a u : ℝ) :
     productJet22 I J a u =
@@ -194,7 +210,9 @@ theorem productJet22_support_decomposition (I : Finset ι) (J : FactorJets ι)
 [first-coordinate hits p and q](hyp:p,q), suppose [the second-coordinate hits r and s lie in
 I](hyp:r,s,hr,hs), [every factor of I outside a set M has vanishing (0,1), (1,1), (2,1) and (2,2)
 jets](hyp:M,hzero), and [r or s lies outside M](hyp:houtside). Then [the corresponding (2,2)
-Leibniz summand is zero](goal). -/
+Leibniz summand is zero](goal).
+@isnad1 id=eq.4h10v.s7.f4e1627aef98 from=translated src=- shape=d63fde4e vocab=0dc5c35a
+-/
 theorem leibnizTerm22_vanishes_outside (I M : Finset ι) (J : FactorJets ι)
     (p q r s : ι) (a u : ℝ) (hr : r ∈ I) (hs : s ∈ I)
     (hzero : ∀ i ∈ I, i ∉ M →

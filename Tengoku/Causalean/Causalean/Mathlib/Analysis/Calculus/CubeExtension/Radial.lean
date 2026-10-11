@@ -27,7 +27,9 @@ def mixedSupport (t c : ℕ) : Set (EuclideanSpace ℝ (Fin t ⊕ Fin c)) :=
   {x | (∀ i : Fin t, |x (Sum.inl i)| ≤ 1) ∧
     ‖(WithLp.toLp 2 (fun i : Fin c => x (Sum.inr i)) : EuclideanSpace ℝ (Fin c))‖ ≤ 2}
 
-/-- [The mixed profile has compact support](goal) in [fixed dimensions](hyp:t,c). -/
+/-- [The mixed profile has compact support](goal) in [fixed dimensions](hyp:t,c).
+@isnad1 id=hascompa.0h2v.s5.f8921dd7cd4a from=translated src=- shape=6bf14011 vocab=577a76a8
+-/
 -- Split the ambient space using `EuclideanSpace.sumEquivProd`. On the product,
 -- use the compact set `tsupport oddEuclidean ×ˢ Metric.closedBall 0 2`,
 -- then transfer it through the inverse homeomorphism. Outside this set either
@@ -54,7 +56,9 @@ theorem mixedProfile_hasCompactSupport {t c : ℕ} :
   exact hp.comp_homeomorph e.toHomeomorph
 
 /-- [The mixed profile is globally twice continuously differentiable](goal)
-in [fixed dimensions](hyp:t,c). -/
+in [fixed dimensions](hyp:t,c).
+@isnad1 id=contdiff.0h2v.s7.2944e7dd9716 from=translated src=- shape=10e4b9bb vocab=ec96f74e
+-/
 -- Compose `oddEuclidean_contDiff` with the first continuous linear projection
 -- of `EuclideanSpace.sumEquivProd`, and use `radialPlateau_contDiff` for the
 -- second projection. Multiply the two C² functions and unfold only to identify
@@ -72,7 +76,9 @@ theorem mixedProfile_contDiff {t c : ℕ} : ContDiff ℝ 2 (mixedProfile (t := t
   exact (oddEuclidean_contDiff.comp P.contDiff).mul (radialPlateau_contDiff Q)
 
 /-- At [a point](hyp:x) [off the mixed closed support](hyp:hx) in
-[fixed dimensions](hyp:t,c), [the value and both ambient jets vanish](goal). -/
+[fixed dimensions](hyp:t,c), [the value and both ambient jets vanish](goal).
+@isnad1 id=and.1h3v.s13.92d20538fe0a from=translated src=- shape=8e479e29 vocab=20da496d
+-/
 -- Negating mixedSupport gives a strict tangent exterior coordinate or a strict
 -- complementary radius > 2. Continuity keeps that strict inequality on a
 -- neighborhood, where one factor vanishes. Apply `jets_zero_of_eventually_zero`
@@ -108,7 +114,9 @@ theorem mixedProfile_jets_zero {t c : ℕ} (x : EuclideanSpace ℝ (Fin t ⊕ Fi
     simp only [mixedProfile, hz, zero_mul]
 
 /-- [A finite dimension-dependent constant bounds all three mixed-profile jets](goal)
-in [fixed dimensions](hyp:t,c). -/
+in [fixed dimensions](hyp:t,c).
+@isnad1 id=ex.0h2v.s7.809c3878948e from=translated src=- shape=88a73c53 vocab=bda56b6a
+-/
 theorem mixedProfile_jetBounds (t c : ℕ) :
     ∃ C : ℝ, 1 ≤ C ∧ JetBounds (mixedProfile (t := t) (c := c)) C := by
   exact exists_jetBounds_of_compactSupport mixedProfile_contDiff mixedProfile_hasCompactSupport

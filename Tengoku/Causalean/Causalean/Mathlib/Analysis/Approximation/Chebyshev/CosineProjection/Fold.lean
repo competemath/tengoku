@@ -23,19 +23,25 @@ def fold (t : ℝ) : ℝ := Real.arccos (Real.cos t) / Real.pi
 at an [angle](hyp:t) evaluates that function at the folded position. -/
 def evenExtension (f : ℝ → ℝ) (t : ℝ) : ℝ := f (fold t)
 
-/-- The folded position at [every angle](hyp:t) [lies in the unit interval](goal). -/
+/-- The folded position at [every angle](hyp:t) [lies in the unit interval](goal).
+@isnad1 id=mem.0h1v.s4.adcd420d9066 from=translated src=- shape=828ff9db vocab=974eed55
+-/
 theorem fold_mem (t : ℝ) : fold t ∈ Set.Icc (0 : ℝ) 1 := by
   constructor
   · exact div_nonneg (Real.arccos_nonneg _) Real.pi_pos.le
   · exact (div_le_one Real.pi_pos).mpr (Real.arccos_le_pi _)
 
-/-- [The angular fold is continuous](goal). -/
+/-- [The angular fold is continuous](goal).
+@isnad1 id=continuo.0h0v.s3.f79eeb45bb25 from=translated src=- shape=e3d48bcb vocab=0fb28e29
+-/
 @[fun_prop]
 theorem continuous_fold : Continuous fold := by
   exact (Real.continuous_arccos.comp Real.continuous_cos).div_const Real.pi
 
 /-- The fold [recovers each unit-interval point](goal) after scaling by π,
-for a [point in that interval](hyp:hx). -/
+for a [point in that interval](hyp:hx).
+@isnad1 id=eq.1h1v.s5.f9e760595910 from=translated src=- shape=7216a3c9 vocab=98c10b91
+-/
 theorem fold_pi_mul {x : ℝ} (hx : x ∈ Set.Icc (0 : ℝ) 1) :
     fold (Real.pi * x) = x := by
   unfold fold
@@ -43,12 +49,16 @@ theorem fold_pi_mul {x : ℝ} (hx : x ∈ Set.Icc (0 : ℝ) 1) :
     (by nlinarith [Real.pi_pos, hx.2])]
   exact mul_div_cancel_left₀ x Real.pi_ne_zero
 
-/-- [The angular fold is even](goal). -/
+/-- [The angular fold is even](goal).
+@isnad1 id=even.0h0v.s2.175104dc72f8 from=translated src=- shape=e3d48bcb vocab=ad643d91
+-/
 theorem fold_even : Function.Even fold := by
   intro t
   simp [fold]
 
-/-- [The angular fold has period 2π](goal). -/
+/-- [The angular fold has period 2π](goal).
+@isnad1 id=periodic.0h0v.s4.5a8125eff82c from=translated src=- shape=85db3316 vocab=f11a3878
+-/
 theorem fold_periodic : Function.Periodic fold (2 * Real.pi) := by
   intro t
   simp [fold, Real.cos_add_two_pi]
@@ -96,6 +106,7 @@ Prove that `arccos ∘ cos` is the triangular wave with slopes ±1. One route
 uses reduction modulo 2π followed by cases at π and at the wrap point. A route
 through distance to the lattice 2πℤ uses the 1-Lipschitz distance-to-set lemma.
 This is a genuine global inequality, including every cusp.
+@isnad1 id=le.0h2v.s5.3788027bc096 from=translated src=- shape=c65a786d vocab=52563391
 -/
 theorem fold_lipschitz (s t : ℝ) : |fold s - fold t| ≤ |s - t| / Real.pi := by
   have h : |Real.arccos (Real.cos s) - Real.arccos (Real.cos t)| ≤ |s - t| := by
@@ -108,32 +119,42 @@ theorem fold_lipschitz (s t : ℝ) : |fold s - fold t| ≤ |s - t| / Real.pi := 
     (div_le_div_of_nonneg_right h Real.pi_pos.le)
 
 /-- A [function continuous on the closed unit interval](hyp:hf) has
-[continuous even periodic extension on the real line](goal). -/
+[continuous even periodic extension on the real line](goal).
+@isnad1 id=continuo.1h1v.s5.aa5841d9f8f2 from=translated src=- shape=85508cde vocab=07b1e023
+-/
 @[fun_prop]
 theorem continuous_evenExtension {f : ℝ → ℝ}
     (hf : ContinuousOn f (Set.Icc (0 : ℝ) 1)) : Continuous (evenExtension f) := by
   exact hf.comp_continuous continuous_fold fold_mem
 
-/-- [The folded extension of an interval function](hyp:f) is [even](goal). -/
+/-- [The folded extension of an interval function](hyp:f) is [even](goal).
+@isnad1 id=even.0h1v.s3.5ac7eb700959 from=translated src=- shape=6e7f11e6 vocab=65c4aa8c
+-/
 theorem evenExtension_even (f : ℝ → ℝ) : Function.Even (evenExtension f) := by
   intro t
   exact congrArg f (fold_even t)
 
-/-- [The folded extension of an interval function](hyp:f) has [period 2π](goal). -/
+/-- [The folded extension of an interval function](hyp:f) has [period 2π](goal).
+@isnad1 id=periodic.0h1v.s4.af433aae306a from=translated src=- shape=67aad0d6 vocab=76d3e668
+-/
 theorem evenExtension_periodic (f : ℝ → ℝ) :
     Function.Periodic (evenExtension f) (2 * Real.pi) := by
   intro t
   exact congrArg f (fold_periodic t)
 
 /-- The even extension [recovers the original function](goal) at a π-scaled
-[unit-interval point](hyp:hx), for an [interval function](hyp:f). -/
+[unit-interval point](hyp:hx), for an [interval function](hyp:f).
+@isnad1 id=eq.1h2v.s5.8b30d886eabb from=translated src=- shape=3d968412 vocab=73f18e06
+-/
 theorem evenExtension_pi_mul (f : ℝ → ℝ) {x : ℝ}
     (hx : x ∈ Set.Icc (0 : ℝ) 1) : evenExtension f (Real.pi * x) = f x := by
   simp only [evenExtension, fold_pi_mul hx]
 
 /-- A [unit-interval Hölder increment bound](hyp:hf) at a [positive
 exponent](hyp:hγ) with a [nonnegative constant](hyp:hH) gives [the angular
-increment bound, with distance divided by π, for its even extension](goal). -/
+increment bound, with distance divided by π, for its even extension](goal).
+@isnad1 id=le.3h5v.s7.88e2067d0b4e from=translated src=- shape=a2149481 vocab=2eaaad2c
+-/
 theorem evenExtension_holder {f : ℝ → ℝ} {γ H : ℝ}
     (hγ : 0 < γ) (hH : 0 ≤ H)
     (hf : ∀ x ∈ Set.Icc (0 : ℝ) 1, ∀ z ∈ Set.Icc (0 : ℝ) 1,

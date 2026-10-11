@@ -25,7 +25,9 @@ variable {k β : ℕ} {p : Fin (k + 1) → ℝ}
 /-- **Strong duality (existence of an optimal weight).** For [`k + 1` pairwise distinct real
 nodes](hyp:hp) and [a degree bound `β` at most `k`](hyp:hβ), [there exists a feasible weight
 vector — one solving the moment system — whose ℓ¹ norm does not exceed the dual
-supremum](goal). -/
+supremum](goal).
+@isnad1 id=ex.2h3v.s7.2a7753825632 from=translated src=- shape=48bb85a6 vocab=51feef80
+-/
 theorem exists_moment_le_dual (hp : Function.Injective p) (hβ : β ≤ k) :
     ∃ w ∈ MomentSol p β, ∑ j, |w j| ≤ sSup (dualValSet p β) :=
   exists_moment_le_dual_of_momentSol_nonempty (momentSol_nonempty hp hβ)
@@ -36,7 +38,9 @@ most the dual supremum](goal).
 
 Immediate from `exists_moment_le_dual`: the witness `w` gives a primal value
 `∑ j, |w j| ∈ primalNormSet p β` that is `≤` the dual value, and the infimum is a
-lower bound. -/
+lower bound.
+@isnad1 id=le.2h3v.s5.b82dc9e04bc9 from=translated src=- shape=ce51dbf1 vocab=1a3d9740
+-/
 theorem sInf_primal_le_sSup_dual (hp : Function.Injective p) (hβ : β ≤ k) :
     sInf (primalNormSet p β) ≤ sSup (dualValSet p β) := by
   obtain ⟨w, hw, hw_norm⟩ := exists_moment_le_dual hp hβ

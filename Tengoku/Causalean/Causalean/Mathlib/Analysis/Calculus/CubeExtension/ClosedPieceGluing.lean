@@ -17,7 +17,9 @@ open Filter
 /-- If [two sets s and t are closed](hyp:hs,ht), [a function f is
 differentiable within s and within t](hyp:hfs,hft), and [the within-s and
 within-t derivatives of f agree at every point of s ∩ t](hyp:hmatch), then [f is
-differentiable within s ∪ t](goal). -/
+differentiable within s ∪ t](goal).
+@isnad1 id=differen.5h4v.s9.e770640d1055 from=translated src=- shape=e11fa95f vocab=e45ec9e2
+-/
 theorem differentiableOn_closed_union_of_matching_fderiv (d : ℕ)
     (s t : Set (Fin d → ℝ)) (hs : IsClosed s) (ht : IsClosed t)
     (f : (Fin d → ℝ) → ℝ)
@@ -55,7 +57,9 @@ derivatives](hyp:hus,hut), [so does their union](hyp:hu), [a function f is m
 times continuously differentiable within s and within t](hyp:hfs,hft), and [for
 every order j ≤ m the j-th within-s and within-t derivatives of f agree on
 s ∩ t](hyp:hmatch), then [f is m times continuously differentiable within
-s ∪ t](goal). -/
+s ∪ t](goal).
+@isnad1 id=contdiff.8h5v.s9.8a0a314478f7 from=translated src=- shape=e889ba3b vocab=4670d7a8
+-/
 theorem contDiffOn_closed_union_of_matching_jets (d m : ℕ)
     (s t : Set (Fin d → ℝ))
     (hs : IsClosed s) (ht : IsClosed t)

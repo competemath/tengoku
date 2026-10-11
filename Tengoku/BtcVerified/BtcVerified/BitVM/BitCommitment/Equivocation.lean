@@ -45,7 +45,9 @@ def Collision.ofEquivocation
   equivocation.toCollision
 
 /-- Any equivocation refutes collision resistance, because the equivocation can
-be converted into a concrete collision. -/
+be converted into a concrete collision.
+@isnad1 id=not.0h4v.s4.bd4bd880b3ac from=translated src=- shape=4428af3d vocab=0c954b33
+-/
 theorem equivocation_refutes_collision_resistance
     (hash : Bit → Nonce → Digest)
     (equivocation : Equivocation hash) :
@@ -59,7 +61,9 @@ equivocation witnesses. -/
 def NonEquivocation (hash : Bit → Nonce → Digest) : Prop := Equivocation hash → False
 
 /-- Collision resistance gives non-equivocation: an equivocation witness would
-produce the collision witness that collision resistance rules out. -/
+produce the collision witness that collision resistance rules out.
+@isnad1 id=nonequiv.1h3v.s4.c941a626d2f4 from=translated src=- shape=1737cfdd vocab=5ce1c9df
+-/
 theorem CollisionResistance.nonEquivocation
     {hash : Bit → Nonce → Digest}
     (resistance : CollisionResistance hash) :
@@ -69,7 +73,9 @@ theorem CollisionResistance.nonEquivocation
   exact equivocation.toCollision
 
 /-- If equivocation is impossible, then two valid openings for the same commitment
-must reveal the same bit. -/
+must reveal the same bit.
+@isnad1 id=binding.1h3v.s4.cd44499478c4 from=translated src=- shape=1737cfdd vocab=690d3c6a
+-/
 theorem NonEquivocation.binding
     {hash : Bit → Nonce → Digest}
     (hashForbidsEquivocation : NonEquivocation hash) :
@@ -85,7 +91,9 @@ theorem NonEquivocation.binding
 /-- Collision resistance makes the induced commitments binding.
 
 Collision resistance gives non-equivocation, and non-equivocation rules out
-pairs of valid openings that reveal different bits. -/
+pairs of valid openings that reveal different bits.
+@isnad1 id=binding.1h3v.s4.e66e67ac7380 from=translated src=- shape=1737cfdd vocab=14205163
+-/
 theorem CollisionResistance.binding
     {hash : Bit → Nonce → Digest}
     (resistance : CollisionResistance hash) :

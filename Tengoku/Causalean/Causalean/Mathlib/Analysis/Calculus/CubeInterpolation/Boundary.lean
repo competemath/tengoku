@@ -17,7 +17,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 /-- For [a function that is m times continuously differentiable on the closed normalized
 cube](hyp:hu) and [a nonnegative bound B](hyp:hB), if [every coordinate partial of order at most m
 is at most B in absolute value throughout the open cube](hyp:hinterior), then [the same bound holds
-at every point of the closed cube](goal). -/
+at every point of the closed cube](goal).
+@isnad1 id=derivbou.3h4v.s7.e5317d089078 from=translated src=- shape=f5ed35a7 vocab=5475f752
+-/
 theorem interior_coordPartial_bound_extends {d m : ℕ}
     {u : (Fin d → ℝ) → ℝ} {B : ℝ} (hB : 0 ≤ B)
     (hu : ContDiffOn ℝ m u (cube d))

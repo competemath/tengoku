@@ -39,7 +39,9 @@ noncomputable def signedSum (σ : ι → ℝ) (f : ι → E → ℝ) (x : E) : �
 omit [Fintype ι] in
 /-- Under [scale separation](hyp:hsep) with [positive scale and factor](hyp:hh,hδ),
 if [a point x lies in the support K_i](hyp:hi) and [in the support
-K_j](hyp:hj), then [i = j](goal): a point lies in at most one support. -/
+K_j](hyp:hj), then [i = j](goal): a point lies in at most one support.
+@isnad1 id=eq.5h8v.s6.2b8df7841eaf from=translated src=- shape=695ce76d vocab=7adb61d8
+-/
 theorem SupportSeparation.unique {K : ι → Set E} {h δ : ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hδ : 0 < δ)
     {i j : ι} {x : E} (hi : x ∈ K i) (hj : x ∈ K j) : i = j := by
@@ -51,7 +53,9 @@ theorem SupportSeparation.unique {K : ι → Set E} {h δ : ℝ}
 
 /-- [A finite signed sum is globally twice continuously differentiable](goal)
 when [each summand is globally twice continuously differentiable](hyp:hf),
-for [any coefficients](hyp:σ) and [family](hyp:f). -/
+for [any coefficients](hyp:σ) and [family](hyp:f).
+@isnad1 id=contdiff.1h4v.s6.b1f4a29d3970 from=translated src=- shape=95bc6689 vocab=b579e29e
+-/
 theorem signedSum_contDiff (σ : ι → ℝ) (f : ι → E → ℝ)
     (hf : ∀ i, ContDiff ℝ 2 (f i)) : ContDiff ℝ 2 (signedSum σ f) := by
   classical
@@ -61,7 +65,9 @@ theorem signedSum_contDiff (σ : ι → ℝ) (f : ι → E → ℝ)
 
 /-- For [globally order-two summands](hyp:hf) and [any coefficients](hyp:σ),
 [the first derivative of the signed sum is the signed sum of derivatives](goal)
-at [every point](hyp:x). -/
+at [every point](hyp:x).
+@isnad1 id=eq.1h5v.s9.42b94db5d894 from=translated src=- shape=7637dfe9 vocab=e8c55690
+-/
 theorem signedSum_fderiv (σ : ι → ℝ) (f : ι → E → ℝ)
     (hf : ∀ i, ContDiff ℝ 2 (f i)) (x : E) :
     fderiv ℝ (signedSum σ f) x = ∑ i, σ i • fderiv ℝ (f i) x := by
@@ -74,7 +80,9 @@ theorem signedSum_fderiv (σ : ι → ℝ) (f : ι → E → ℝ)
 
 /-- For [globally order-two summands](hyp:hf) and [any coefficients](hyp:σ),
 [the second derivative of the signed sum is the signed sum of second derivatives](goal)
-at [every point](hyp:x). -/
+at [every point](hyp:x).
+@isnad1 id=eq.1h5v.s12.792add6782b6 from=translated src=- shape=fd073db2 vocab=3876738f
+-/
 theorem signedSum_second_fderiv (σ : ι → ℝ) (f : ι → E → ℝ)
     (hf : ∀ i, ContDiff ℝ 2 (f i)) (x : E) :
     fderiv ℝ (fderiv ℝ (signedSum σ f)) x =
@@ -93,7 +101,9 @@ theorem signedSum_second_fderiv (σ : ι → ℝ) (f : ι → E → ℝ)
 /-- For [a separated family](hyp:hsep) at [positive scale and factor](hyp:hh,hδ)
 with [jet locality](hyp:hloc), [all signed-sum jets reduce to the unique contributing
 summand](goal) at [a point in a support](hyp:hx), assuming [global order-two
-regularity](hyp:hf) and [any coefficients](hyp:σ). -/
+regularity](hyp:hf) and [any coefficients](hyp:σ).
+@isnad1 id=and.6h9v.s12.825b31e7e127 from=translated src=- shape=14b434f8 vocab=8ff11713
+-/
 theorem signedSum_jets_eq {K : ι → Set E} {h δ : ℝ} {f : ι → E → ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hδ : 0 < δ)
     (hloc : JetLocality f K) (hf : ∀ i, ContDiff ℝ 2 (f i))
@@ -122,7 +132,9 @@ theorem signedSum_jets_eq {K : ι → Set E} {h δ : ℝ} {f : ι → E → ℝ}
 
 /-- For [a family with jet locality](hyp:hloc) and [global order-two regularity](hyp:hf),
 [all signed-sum jets vanish](goal) at [a point outside every support](hyp:hx)
-for [any coefficients](hyp:σ). -/
+for [any coefficients](hyp:σ).
+@isnad1 id=and.3h6v.s11.1e3ad83fb5e8 from=translated src=- shape=be682435 vocab=828d910c
+-/
 theorem signedSum_jets_zero {K : ι → Set E} {f : ι → E → ℝ}
     (hloc : JetLocality f K) (hf : ∀ i, ContDiff ℝ 2 (f i))
     (σ : ι → ℝ) (x : E) (hx : ∀ i, x ∉ K i) :
@@ -143,7 +155,9 @@ signed sum at the second point](goal), under [separation](hyp:hsep),
 [global order-two regularity](hyp:hf).
 
 This identity is useful for two-point proofs: if y is outside every support the
-remaining sum is zero; if y is in another support scale separation applies. -/
+remaining sum is zero; if y is in another support scale separation applies.
+@isnad1 id=eq.7h10v.s7.e4bbcb8a3418 from=translated src=- shape=0afee400 vocab=62c9556f
+-/
 theorem signedSum_sub_outside {K : ι → Set E} {h δ : ℝ} {f : ι → E → ℝ}
     (hsep : SupportSeparation K h δ) (hh : 0 < h) (hδ : 0 < δ)
     (hloc : JetLocality f K) (hf : ∀ i, ContDiff ℝ 2 (f i))

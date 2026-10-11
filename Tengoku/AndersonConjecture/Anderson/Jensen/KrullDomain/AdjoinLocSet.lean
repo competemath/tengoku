@@ -26,7 +26,9 @@ of R[x] at the powers of y, embedded in T via evaluation. -/
 def adjoinLocSetY (R : NSubring T) (x : T) (y : R.carrier) : Set T :=
   {t : T | ∃ (f : Polynomial R.carrier) (n : ℕ), t * (↑y : T) ^ n = aeval x f}
 
-/-- R ⊆ R[x, y⁻¹]. -/
+/-- R ⊆ R[x, y⁻¹].
+@isnad1 id=mem.0h5v.s7.cdb3ac1b0c5d from=translated src=- shape=da744ccd vocab=4fa3e795
+-/
 theorem R_le_adjoinLocSetY (R : NSubring T) (x : T) (y : R.carrier) :
     ∀ r : R.carrier, (↑r : T) ∈ adjoinLocSetY R x y :=
   fun r => ⟨C r, 0, by simp [show algebraMap R.carrier T = R.carrier.subtype from rfl]⟩
@@ -35,7 +37,9 @@ theorem R_le_adjoinLocSetY (R : NSubring T) (x : T) (y : R.carrier) :
 def intersectionSet (R : NSubring T) (x₁ x₂ : T) (y₁ y₂ : R.carrier) : Set T :=
   adjoinLocSetY R x₁ y₂ ∩ adjoinLocSetY R x₂ y₁
 
-/-- R ⊆ R̄. -/
+/-- R ⊆ R̄.
+@isnad1 id=mem.0h7v.s7.505078f55e39 from=translated src=- shape=e9daa40d vocab=15783961
+-/
 theorem R_le_intersectionSet (R : NSubring T) (x₁ x₂ : T) (y₁ y₂ : R.carrier) :
     ∀ r : R.carrier, (↑r : T) ∈ intersectionSet R x₁ x₂ y₁ y₂ :=
   fun r => ⟨R_le_adjoinLocSetY R x₁ y₂ r, R_le_adjoinLocSetY R x₂ y₁ r⟩

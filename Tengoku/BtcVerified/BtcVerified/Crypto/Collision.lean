@@ -36,7 +36,9 @@ def CollisionResistant {α β : Type*} (h : α → β) : Prop := ¬ Collision h
 /-- A collision-resistant function is injective: equal images force equal
 inputs. This is the bridge that turns the `… ∨ Collision` disjunct of the
 hashing binding theorems into outright injectivity under a resistance
-hypothesis. -/
+hypothesis.
+@isnad1 id=eq.2h5v.s4.571014efcd96 from=translated src=- shape=e5eba5a3 vocab=85814278
+-/
 theorem CollisionResistant.injective {α β : Type*} {h : α → β}
     (hcr : CollisionResistant h) {a b : α} (hab : h a = h b) : a = b := by
   by_cases hne : a = b
@@ -44,7 +46,9 @@ theorem CollisionResistant.injective {α β : Type*} {h : α → β}
   · exact absurd ⟨a, b, hne, hab⟩ hcr
 
 /-- A collision in `g ∘ f` is a collision in `f` (its inputs already collide
-under `f`) or in `g` (their distinct `f`-images collide under `g`). -/
+under `f`) or in `g` (their distinct `f`-images collide under `g`).
+@isnad1 id=or.1h5v.s5.a24e1b099575 from=translated src=- shape=b38bb36d vocab=eca21a80
+-/
 theorem Collision.comp {α β γ : Type*} {f : α → β} {g : β → γ}
     (hc : Collision (g ∘ f)) : Collision f ∨ Collision g := by
   match hc with
@@ -54,14 +58,18 @@ theorem Collision.comp {α β γ : Type*} {f : α → β} {g : β → γ}
     · exact Or.inr ⟨f a, f b, hf, h⟩
 
 /-- Collision resistance composes: if `f` and `g` are each collision-resistant,
-so is `g ∘ f`. -/
+so is `g ∘ f`.
+@isnad1 id=collisio.2h5v.s5.fe334ce5e991 from=translated src=- shape=6c2e57d7 vocab=351ca5de
+-/
 theorem CollisionResistant.comp {α β γ : Type*} {f : α → β} {g : β → γ}
     (hf : CollisionResistant f) (hg : CollisionResistant g) :
     CollisionResistant (g ∘ f) :=
   fun hc => (Collision.comp hc).elim hf hg
 
 /-- A collision in the inner function lifts to a collision in the composite:
-the colliding inputs already agree under `f`, hence under `g ∘ f`. -/
+the colliding inputs already agree under `f`, hence under `g ∘ f`.
+@isnad1 id=collisio.1h5v.s4.1b40d7d79abc from=translated src=- shape=1667777c vocab=eca21a80
+-/
 theorem Collision.comp_inner {α β γ : Type*} {f : α → β} {g : β → γ}
     (hc : Collision f) : Collision (g ∘ f) := by
   match hc with
@@ -70,7 +78,9 @@ theorem Collision.comp_inner {α β γ : Type*} {f : α → β} {g : β → γ}
 /-- The partial dual of `CollisionResistant.comp`: resistance of `g ∘ f` forces
 resistance of the *inner* `f` (a collision in `f` would lift to one in the
 composite). It does **not** force resistance of the outer `g` — `g` may collide
-on values outside the range of `f`, where no composite input reaches. -/
+on values outside the range of `f`, where no composite input reaches.
+@isnad1 id=collisio.1h5v.s4.b959bb60a367 from=translated src=- shape=d1f5f383 vocab=351ca5de
+-/
 theorem CollisionResistant.of_comp {α β γ : Type*} {f : α → β} {g : β → γ}
     (h : CollisionResistant (g ∘ f)) : CollisionResistant f :=
   fun hc => h hc.comp_inner

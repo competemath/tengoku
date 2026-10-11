@@ -15,7 +15,9 @@ namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.Jackson
 
 /-- [There are positive constants c and C, with c at most C, such that for every order N at least
 two the absolute value of the packet antiderivative at angle zero lies between c / N and C /
-N](goal). -/
+N](goal).
+@isnad1 id=ex.0h0v.s6.3dc809f0d409 from=translated src=- shape=718ef6a0 vocab=96b3eab0
+-/
 theorem packet_center_bounds :
     ∃ c C : ℝ, 0 < c ∧ c ≤ C ∧
       ∀ N : ℕ, 2 ≤ N →

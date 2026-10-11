@@ -32,12 +32,16 @@ argument. -/
 noncomputable def shapeOperator (B : T →L[ℝ] T →L[ℝ] N) (u : N) : T →L[ℝ] T :=
   InnerProductSpace.continuousLinearMapOfBilin (scalarSecondForm B u)
 
-/-- The shape operator satisfies its defining inner-product identity. -/
+/-- The shape operator satisfies its defining inner-product identity.
+@isnad1 id=eq.0h6v.s10.cb0c04476764 from=translated src=- shape=e6da4819 vocab=6c8b5b76
+-/
 theorem shapeOperator_inner (B : T →L[ℝ] T →L[ℝ] N) (u : N) (v w : T) :
     ⟪shapeOperator B u v, w⟫_ℝ = ⟪u, B v w⟫_ℝ := by
   exact InnerProductSpace.continuousLinearMapOfBilin_apply _ _ _
 
-/-- Shape operators depend additively on the indexing normal vector. -/
+/-- Shape operators depend additively on the indexing normal vector.
+@isnad1 id=eq.0h5v.s9.93005a997e5c from=translated src=- shape=6a5bf7fc vocab=964543cf
+-/
 theorem shapeOperator_add (B : T →L[ℝ] T →L[ℝ] N) (u z : N) :
     shapeOperator B (u + z) = shapeOperator B u + shapeOperator B z := by
   ext v
@@ -45,7 +49,9 @@ theorem shapeOperator_add (B : T →L[ℝ] T →L[ℝ] N) (u z : N) :
   intro w
   simp [shapeOperator_inner, inner_add_left]
 
-/-- Shape operators depend linearly on real rescaling of the indexing normal vector. -/
+/-- Shape operators depend linearly on real rescaling of the indexing normal vector.
+@isnad1 id=eq.0h5v.s9.2145095d0f77 from=translated src=- shape=e4d8a7d8 vocab=d5ba93d7
+-/
 theorem shapeOperator_smul (B : T →L[ℝ] T →L[ℝ] N) (a : ℝ) (u : N) :
     shapeOperator B (a • u) = a • shapeOperator B u := by
   ext v
@@ -53,7 +59,9 @@ theorem shapeOperator_smul (B : T →L[ℝ] T →L[ℝ] N) (a : ℝ) (u : N) :
   intro w
   simp [shapeOperator_inner, inner_smul_left]
 
-/-- A symmetric normal-valued bilinear form gives self-adjoint shape operators. -/
+/-- A symmetric normal-valued bilinear form gives self-adjoint shape operators.
+@isnad1 id=isselfad.1h4v.s11.459f4490c59b from=translated src=- shape=0da90b55 vocab=3bec9759
+-/
 theorem shapeOperator_selfAdjoint (B : T →L[ℝ] T →L[ℝ] N)
     (hB : ∀ v w, B v w = B w v) (u : N) : IsSelfAdjoint (shapeOperator B u) := by
   apply ContinuousLinearMap.isSelfAdjoint_iff_isSymmetric.mpr
@@ -66,14 +74,18 @@ operator. -/
 noncomputable def tubeDeterminant (B : T →L[ℝ] T →L[ℝ] N) (a : ℝ) (u : N) : ℝ :=
   LinearMap.det (LinearMap.id - a • (shapeOperator B u).toLinearMap)
 
-/-- The tube determinant can be computed in any tangent basis without changing its value. -/
+/-- The tube determinant can be computed in any tangent basis without changing its value.
+@isnad1 id=eq.0h7v.s11.e71f4c9f0629 from=translated src=- shape=753aa584 vocab=a782f9ab
+-/
 theorem tubeDeterminant_eq_matrix {ι : Type*} [Fintype ι] [DecidableEq ι]
     (b : Basis ι ℝ T) (B : T →L[ℝ] T →L[ℝ] N) (a : ℝ) (u : N) :
     tubeDeterminant B a u =
       Matrix.det (LinearMap.toMatrix b b (LinearMap.id - a • (shapeOperator B u).toLinearMap)) := by
   exact (LinearMap.det_toMatrix b _).symm
 
-/-- The tube determinant equals one at zero displacement. -/
+/-- The tube determinant equals one at zero displacement.
+@isnad1 id=eq.0h4v.s8.edfed03e26de from=translated src=- shape=50e8af4b vocab=01ef45b9
+-/
 theorem tubeDeterminant_zero (B : T →L[ℝ] T →L[ℝ] N) (u : N) :
     tubeDeterminant B 0 u = 1 := by
   simp [tubeDeterminant]
@@ -89,7 +101,9 @@ variable {F E H M : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 omit [FiniteDimensional ℝ F] [ChartedSpace H M] [IsManifold I 2 M] in
 /-- Every extended chart target is contained in the closure of its interior, including its
-boundary points. -/
+boundary points.
+@isnad1 id=le.0h5v.s6.6dbfaa7735e6 from=translated src=- shape=93ce9c0b vocab=9ebf8a24
+-/
 theorem extendedChart_target_subset_closure_interior (φ : OpenPartialHomeomorph M H) :
     (φ.extend I).target ⊆ closure (interior (φ.extend I).target) := by
   intro y hy
@@ -106,7 +120,9 @@ theorem extendedChart_target_subset_closure_interior (φ : OpenPartialHomeomorph
 
 omit [FiniteDimensional ℝ F] [FiniteDimensional ℝ E] [IsManifold I 2 M] in
 /-- Composing a C² embedding with an admissible inverse extended chart gives a C²
-parametrization on the full chart target. -/
+parametrization on the full chart target.
+@isnad1 id=contdiff.2h7v.s8.686695cb6649 from=translated src=- shape=544899e0 vocab=a416a277
+-/
 theorem contDiffOn_chartParametrization (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ : OpenPartialHomeomorph M H) (hφ : φ ∈ IsManifold.maximalAtlas I 2 M) :
@@ -124,7 +140,9 @@ noncomputable def chartHessian (f : M → E) (φ : OpenPartialHomeomorph M H)
     (φ.extend I).target ((φ.extend I) x)
 
 omit [FiniteDimensional ℝ F] [FiniteDimensional ℝ E] [IsManifold I 2 M] in
-/-- Admissible C² local parametrizations have symmetric Hessians at every chart point. -/
+/-- Admissible C² local parametrizations have symmetric Hessians at every chart point.
+@isnad1 id=eq.3h10v.s10.86888be36919 from=translated src=- shape=611b37af vocab=2dd3ba7f
+-/
 theorem chartHessian_symmetric (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ : OpenPartialHomeomorph M H) (hφ : φ ∈ IsManifold.maximalAtlas I 2 M)
@@ -214,7 +232,9 @@ the chart point. The transition need not map the entire second target into the f
 Use neighborhood congruence to return both derivatives to the displayed full targets.
 `contDiffOn_chartParametrization` supplies the embedding regularity; the atlas supplies
 transition regularity. The extra term must remain the actual transition Hessian, not an
-unspecified tangent error. -/
+unspecified tangent error.
+@isnad1 id=other.5h11v.s12.d6fa8de460b7 from=translated src=- shape=81641a55 vocab=0413fddd
+-/
 theorem chartHessian_change (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ ψ : OpenPartialHomeomorph M H)
@@ -286,7 +306,9 @@ chart.
 First obtain the within-target first-derivative chart-change identity. Injectivity from
 `chartDifferential_injective` identifies the input vectors after the transition derivative.
 Apply `chartHessian_change`, then remove its last term using `chartDifferential_range` and
-orthogonality. These are conclusions of the existing embedding and atlas hypotheses. -/
+orthogonality. These are conclusions of the existing embedding and atlas hypotheses.
+@isnad1 id=eq.7h13v.s12.fcc1e2029ef4 from=translated src=- shape=5e05db49 vocab=8e70fa0f
+-/
 theorem chart_normalHessian_congr (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ ψ : OpenPartialHomeomorph M H)
@@ -333,7 +355,9 @@ noncomputable def chartTangentVector (f : M → E)
     rw [← chartDifferential_range I f hf φ hφ x hx]
     exact ⟨v, rfl⟩⟩
 
-/-- Every full tangent vector is represented by a model vector in any admissible chart. -/
+/-- Every full tangent vector is represented by a model vector in any admissible chart.
+@isnad1 id=surjecti.3h8v.s8.c849e7b8c483 from=translated src=- shape=e3f1f02f vocab=18fea445
+-/
 theorem chartTangentVector_surjective (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ : OpenPartialHomeomorph M H) (hφ : φ ∈ IsManifold.maximalAtlas I 2 M)
@@ -358,7 +382,9 @@ noncomputable def chartTangentEquiv (f : M → E)
     ⟨fun v w h => chartDifferential_injective I f hf φ hφ x hx (congrArg Subtype.val h),
       chartTangentVector_surjective I f hf φ hφ x hx⟩).toContinuousLinearEquiv
 
-/-- The chart tangent equivalence applies the parametrization differential. -/
+/-- The chart tangent equivalence applies the parametrization differential.
+@isnad1 id=eq.3h9v.s10.550e2a33109d from=translated src=- shape=e10bda49 vocab=969e310e
+-/
 theorem chartTangentEquiv_apply (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f)
     (φ : OpenPartialHomeomorph M H) (hφ : φ ∈ IsManifold.maximalAtlas I 2 M)
@@ -369,7 +395,9 @@ theorem chartTangentEquiv_apply (f : M → E)
 admissible chart.
 
 Construct from one chart using its derivative equivalence onto the tangent range;
-chart_normalHessian_congr and chartHessian_symmetric give all other charts. -/
+chart_normalHessian_congr and chartHessian_symmetric give all other charts.
+@isnad1 id=ex.1h7v.s14.0b2e4b13affa from=translated src=- shape=e8ee1277 vocab=67d7a7d4
+-/
 theorem exists_secondFundamentalForm (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M) :
     ∃ B : tangentSpace I f x →L[ℝ] tangentSpace I f x →L[ℝ] normalSpace I f x,
@@ -407,7 +435,9 @@ noncomputable def secondFundamentalForm (f : M → E)
     tangentSpace I f x →L[ℝ] tangentSpace I f x →L[ℝ] normalSpace I f x :=
   Classical.choose (exists_secondFundamentalForm I f hf x)
 
-/-- The second fundamental form is symmetric in its full tangent arguments. -/
+/-- The second fundamental form is symmetric in its full tangent arguments.
+@isnad1 id=eq.1h9v.s13.9ab9ab9b8b53 from=translated src=- shape=3bb5d211 vocab=4fb1e9b0
+-/
 theorem secondFundamentalForm_symmetric (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M)
     (v w : tangentSpace I f x) :
@@ -418,7 +448,9 @@ theorem secondFundamentalForm_symmetric (f : M → E)
 `hf`](hyp:hf), [model with corners `I`](hyp:I), and [an admissible chart `φ` at
 `x` with atlas and source conditions `hφ` and `hx`](hyp:φ,hφ,x,hx), has [a
 second fundamental form whose value on the indicated directions `v` and
-`w`](hyp:v,w) equal to [the normal component of its chart Hessian](goal). -/
+`w`](hyp:v,w) equal to [the normal component of its chart Hessian](goal).
+@isnad1 id=eq.3h10v.s13.96b7c9b16c71 from=translated src=- shape=399cc4af vocab=7d513357
+-/
 theorem secondFundamentalForm_chart (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M)
     (φ : OpenPartialHomeomorph M H) (hφ : φ ∈ IsManifold.maximalAtlas I 2 M)
@@ -428,7 +460,9 @@ theorem secondFundamentalForm_chart (f : M → E)
     (normalSpace I f x).orthogonalProjectionOnto (chartHessian I f φ x v w) :=
   (Classical.choose_spec (exists_secondFundamentalForm I f hf x)).2 φ hφ hx v w
 
-/-- Any bilinear form representing all chart normal Hessians equals the second fundamental form. -/
+/-- Any bilinear form representing all chart normal Hessians equals the second fundamental form.
+@isnad1 id=eq.2h8v.s13.2d6ce34cf795 from=translated src=- shape=00b90406 vocab=7d513357
+-/
 theorem secondFundamentalForm_unique (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M)
     (B : tangentSpace I f x →L[ℝ] tangentSpace I f x →L[ℝ] normalSpace I f x)
@@ -456,7 +490,9 @@ noncomputable def embeddingShapeOperator (f : M → E)
     (u : normalSpace I f x) : tangentSpace I f x →L[ℝ] tangentSpace I f x :=
   shapeOperator (secondFundamentalForm I f hf x) u
 
-/-- The extrinsic shape operator satisfies the geometric inner-product identity. -/
+/-- The extrinsic shape operator satisfies the geometric inner-product identity.
+@isnad1 id=eq.1h10v.s13.3c61bbe83862 from=translated src=- shape=053ed72e vocab=e08ae6e8
+-/
 theorem embeddingShapeOperator_inner (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M)
     (u : normalSpace I f x) (v w : tangentSpace I f x) :
@@ -464,7 +500,9 @@ theorem embeddingShapeOperator_inner (f : M → E)
       ⟪u, secondFundamentalForm I f hf x v w⟫_ℝ :=
   shapeOperator_inner _ _ _ _
 
-/-- Every extrinsic shape operator is self-adjoint, including at boundary points. -/
+/-- Every extrinsic shape operator is self-adjoint, including at boundary points.
+@isnad1 id=isselfad.1h8v.s10.de35224c4363 from=translated src=- shape=792b8502 vocab=09bd2407
+-/
 theorem embeddingShapeOperator_selfAdjoint (f : M → E)
     (hf : IsSmoothEmbedding I (modelWithCornersSelf ℝ E) 2 f) (x : M)
     (u : normalSpace I f x) : IsSelfAdjoint (embeddingShapeOperator I f hf x u) :=

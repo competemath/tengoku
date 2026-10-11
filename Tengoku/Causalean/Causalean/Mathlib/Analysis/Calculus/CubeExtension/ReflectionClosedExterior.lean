@@ -27,7 +27,9 @@ reproduces constants, and [a response u is m times continuously differentiable
 within the closed cube](hyp:hu), then [the one-face reflection of u across the
 left face in coordinate i is m times continuously differentiable within the
 closed exterior slab of the left collar](goal), including all exterior edges
-and corners. -/
+and corners.
+@isnad1 id=contdiff.2h5v.s8.a5ad786f5573 from=translated src=- shape=be6eeffb vocab=ff64fad2
+-/
 theorem leftFaceReflection_contDiffOn_closedExterior (d m : ℕ) (i : Fin d)
     (a : Fin (m + 1) → ℝ)
     (ha : (∑ q : Fin (m + 1), a q) = 1)

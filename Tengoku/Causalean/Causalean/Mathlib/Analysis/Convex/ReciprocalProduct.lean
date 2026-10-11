@@ -30,7 +30,9 @@ namespace Causalean.Mathlib
 
 variable {ι : Type*}
 
-/-- `-log (p k)` is convex on a convex set `s` whose `k`-th coordinate is positive throughout. -/
+/-- `-log (p k)` is convex on a convex set `s` whose `k`-th coordinate is positive throughout.
+@isnad1 id=convexon.2h3v.s6.dde46dcd24cd from=translated src=- shape=770036e6 vocab=9789f97b
+-/
 lemma neg_log_coord_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (k : ι)
     (hk : ∀ p ∈ s, 0 < p k) :
     ConvexOn ℝ s (fun p : ι → ℝ => -Real.log (p k)) := by
@@ -46,7 +48,9 @@ lemma neg_log_coord_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (k : ι)
   exact hcomp.subset (fun p hp => hk p hp) hs
 
 /-- `∑ k ∈ S, -log (p k)` is convex on a convex set `s` whose coordinates indexed by `S` are
-positive throughout. -/
+positive throughout.
+@isnad1 id=convexon.2h3v.s7.1ee1354de19d from=translated src=- shape=cd79a871 vocab=282cb3c6
+-/
 lemma neg_log_sum_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (S : Finset ι)
     (hS : ∀ p ∈ s, ∀ k ∈ S, 0 < p k) :
     ConvexOn ℝ s (fun p : ι → ℝ => ∑ k ∈ S, -Real.log (p k)) := by
@@ -71,7 +75,9 @@ lemma neg_log_sum_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (S : Finse
 /-- **Convexity of a reciprocal coordinate product.** On [a convex subset of the coordinate
 space](hyp:hs), if [every coordinate indexed by a fixed finite index set stays strictly positive
 throughout the set](hyp:hS), then [the map sending a point to the reciprocal of the product of
-its coordinates over that index set is convex on the set](goal). -/
+its coordinates over that index set is convex on the set](goal).
+@isnad1 id=convexon.2h3v.s6.98c7d6caf925 from=translated src=- shape=836e39e2 vocab=bd16d8aa
+-/
 lemma prod_inv_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (S : Finset ι)
     (hS : ∀ p ∈ s, ∀ k ∈ S, 0 < p k) :
     ConvexOn ℝ s (fun p : ι → ℝ => (∏ k ∈ S, p k)⁻¹) := by
@@ -103,7 +109,9 @@ lemma prod_inv_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (S : Finset �
     simpa [smul_eq_mul] using hc
   exact le_trans hmono hexpineq
 
-/-- `-log (1 - p k)` is convex on a convex set `s` where the `k`-th coordinate stays below `1`. -/
+/-- `-log (1 - p k)` is convex on a convex set `s` where the `k`-th coordinate stays below `1`.
+@isnad1 id=convexon.2h3v.s6.1b929eb23a07 from=translated src=- shape=3e347bf8 vocab=fd232cef
+-/
 lemma neg_log_one_sub_coord_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (k : ι)
     (hk : ∀ p ∈ s, p k < 1) :
     ConvexOn ℝ s (fun p : ι → ℝ => -Real.log (1 - p k)) := by
@@ -124,7 +132,9 @@ lemma neg_log_one_sub_coord_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) 
     linarith
 
 /-- `∑ k ∈ S, -log (1 - p k)` is convex on a convex set `s` where the coordinates indexed by `S`
-stay below `1`. -/
+stay below `1`.
+@isnad1 id=convexon.2h3v.s7.f210d41646c2 from=translated src=- shape=ea31e716 vocab=27082d96
+-/
 lemma neg_log_one_sub_sum_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (S : Finset ι)
     (hS : ∀ p ∈ s, ∀ k ∈ S, p k < 1) :
     ConvexOn ℝ s (fun p : ι → ℝ => ∑ k ∈ S, -Real.log (1 - p k)) := by
@@ -147,7 +157,9 @@ lemma neg_log_one_sub_sum_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (S
       exact h0
 
 /-- **Convexity of a reciprocal product of complements.** On a convex set `s` whose coordinates
-indexed by `S` stay below `1`, `p ↦ (∏ k ∈ S, (1 - p k))⁻¹` is convex. -/
+indexed by `S` stay below `1`, `p ↦ (∏ k ∈ S, (1 - p k))⁻¹` is convex.
+@isnad1 id=convexon.2h3v.s7.9093d56398db from=translated src=- shape=d0b9dde2 vocab=57a17336
+-/
 lemma prod_one_sub_inv_convexOn {s : Set (ι → ℝ)} (hs : Convex ℝ s) (S : Finset ι)
     (hS : ∀ p ∈ s, ∀ k ∈ S, p k < 1) :
     ConvexOn ℝ s (fun p : ι → ℝ => (∏ k ∈ S, (1 - p k))⁻¹) := by

@@ -17,7 +17,9 @@ open MeasureTheory Set
 
 namespace Causalean.Mathlib.Analysis.ParametricRationalIntegralAnalyticity
 
-/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an expansion center, positive separation margin, nonnegative slope bound, and coefficient bounds](hyp:t₀,ε,L,C), [positivity and nonnegativity of those bounds](hyp:hε,hL), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [uniform coefficient and slope bounds on the integration set](hyp:hc_bound,hslope), and [uniform separation of the central denominator from zero](hyp:hden), [the polynomial-over-affine set integral is real analytic at the expansion center](goal). -/
+/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an expansion center, positive separation margin, nonnegative slope bound, and coefficient bounds](hyp:t₀,ε,L,C), [positivity and nonnegativity of those bounds](hyp:hε,hL), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [uniform coefficient and slope bounds on the integration set](hyp:hc_bound,hslope), and [uniform separation of the central denominator from zero](hyp:hden), [the polynomial-over-affine set integral is real analytic at the expansion center](goal).
+@isnad1 id=analytic.10h11v.s8.b1b50ad49a7b from=translated src=- shape=8f825a15 vocab=5a13e94d
+-/
 theorem analyticAt_setIntegral_polynomial_div_affine
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {K : Set α} (hK : MeasurableSet K) (hμK : μ K ≠ ∞)
@@ -172,7 +174,9 @@ theorem analyticAt_setIntegral_polynomial_div_affine
   rw [integral_finsetSum Finset.univ (fun i _ ↦ hfi i)]
   simp only [integral_const_mul]
 
-/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an open parameter set, positive separation margin, nonnegative slope bound, and coefficient bounds](hyp:O,ε,L,C), [openness and valid numerical bounds](hyp:hO,hε,hL), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [uniform coefficient and slope bounds on the integration set](hyp:hc_bound,hslope), and [uniform denominator separation over the parameter and integration sets](hyp:hden), [the polynomial-over-affine set integral is real analytic throughout the open parameter set](goal). -/
+/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an open parameter set, positive separation margin, nonnegative slope bound, and coefficient bounds](hyp:O,ε,L,C), [openness and valid numerical bounds](hyp:hO,hε,hL), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [uniform coefficient and slope bounds on the integration set](hyp:hc_bound,hslope), and [uniform denominator separation over the parameter and integration sets](hyp:hden), [the polynomial-over-affine set integral is real analytic throughout the open parameter set](goal).
+@isnad1 id=analytic.11h11v.s8.6189580a508a from=translated src=- shape=948a09d7 vocab=07ef5c1a
+-/
 theorem analyticOnNhd_setIntegral_polynomial_div_affine
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {K : Set α} (hK : MeasurableSet K) (hμK : μ K ≠ ∞)
@@ -190,7 +194,9 @@ theorem analyticOnNhd_setIntegral_polynomial_div_affine
   exact analyticAt_setIntegral_polynomial_div_affine μ hK hμK N c a b t ε L C
     hε hL hc ha hb hc_bound hslope (hden t ht)
 
-/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an expansion center, positive separation margin, nonnegative relative-slope bound, and coefficient bounds](hyp:t₀,ε,Q,C), [positivity and nonnegativity of those bounds](hyp:hε,hQ), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [a uniform coefficient bound](hyp:hc_bound), [a uniform relative affine-slope bound](hyp:hratio), and [uniform central denominator separation](hyp:hden), [the polynomial-over-affine set integral is real analytic at the expansion center](goal). -/
+/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an expansion center, positive separation margin, nonnegative relative-slope bound, and coefficient bounds](hyp:t₀,ε,Q,C), [positivity and nonnegativity of those bounds](hyp:hε,hQ), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [a uniform coefficient bound](hyp:hc_bound), [a uniform relative affine-slope bound](hyp:hratio), and [uniform central denominator separation](hyp:hden), [the polynomial-over-affine set integral is real analytic at the expansion center](goal).
+@isnad1 id=analytic.10h11v.s8.ba837c363017 from=translated src=- shape=c66e018a vocab=5a13e94d
+-/
 theorem analyticAt_setIntegral_polynomial_div_affine_of_slope_div_bound
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {K : Set α} (hK : MeasurableSet K) (hμK : μ K ≠ ∞)
@@ -359,7 +365,9 @@ theorem analyticAt_setIntegral_polynomial_div_affine_of_slope_div_bound
   rw [integral_finsetSum Finset.univ (fun i _ ↦ hfi i)]
   simp only [integral_const_mul]
 
-/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [a center, positive separation margin and radius, and coefficient bounds](hyp:t₀,ε,r,C), [positive numerical bounds](hyp:hε,hr), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [a uniform coefficient bound](hyp:hc_bound), and [uniform denominator separation throughout the parameter ball](hyp:hden), [the polynomial-over-affine set integral is real analytic at the ball center](goal). -/
+/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [a center, positive separation margin and radius, and coefficient bounds](hyp:t₀,ε,r,C), [positive numerical bounds](hyp:hε,hr), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [a uniform coefficient bound](hyp:hc_bound), and [uniform denominator separation throughout the parameter ball](hyp:hden), [the polynomial-over-affine set integral is real analytic at the ball center](goal).
+@isnad1 id=analytic.9h11v.s8.68bddeae1190 from=translated src=- shape=ca0eb454 vocab=5a13e94d
+-/
 theorem analyticAt_setIntegral_polynomial_div_affine_of_uniform_nonzero_near
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {K : Set α} (hK : MeasurableSet K) (hμK : μ K ≠ ∞)
@@ -381,7 +389,9 @@ theorem analyticAt_setIntegral_polynomial_div_affine_of_uniform_nonzero_near
   exact analyticAt_setIntegral_polynomial_div_affine_of_slope_div_bound
     μ hK hμK N c a b t₀ ε r⁻¹ C hε hQ hc ha hb hc_bound hratio hden₀
 
-/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an open parameter set, a positive separation margin, and coefficient bounds](hyp:O,ε,C), [openness and positivity](hyp:hO,hε), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [a uniform coefficient bound](hyp:hc_bound), and [uniform denominator separation throughout the parameter and integration sets](hyp:hden), [the polynomial-over-affine set integral is real analytic throughout the open parameter set](goal). -/
+/-- Given [a measure](hyp:μ), [a measurable integration set of finite measure](hyp:hK,hμK), [a polynomial degree, coefficient functions, and affine endpoint functions](hyp:N,c,a,b), [an open parameter set, a positive separation margin, and coefficient bounds](hyp:O,ε,C), [openness and positivity](hyp:hO,hε), [measurability of the coefficients and endpoints](hyp:hc,ha,hb), [a uniform coefficient bound](hyp:hc_bound), and [uniform denominator separation throughout the parameter and integration sets](hyp:hden), [the polynomial-over-affine set integral is real analytic throughout the open parameter set](goal).
+@isnad1 id=analytic.9h10v.s8.5bbdb62f36d3 from=translated src=- shape=3561c8f8 vocab=43248053
+-/
 theorem analyticOnNhd_setIntegral_polynomial_div_affine_of_uniform_nonzero
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {K : Set α} (hK : MeasurableSet K) (hμK : μ K ≠ ∞)

@@ -20,7 +20,9 @@ def cubeAffine {d : ℕ} (x : Fin d → ℝ) : Fin d → ℝ :=
 def unitCube (d : ℕ) : Set (Fin d → ℝ) :=
   Set.univ.pi (fun _ => Set.Icc (0 : ℝ) 1)
 
-/-- The affine image of each point of the unit cube lies in the normalized cube. -/
+/-- The affine image of each point of the unit cube lies in the normalized cube.
+@isnad1 id=mem.1h2v.s5.dfe73cdce925 from=translated src=- shape=142ea4fb vocab=5334da40
+-/
 theorem cubeAffine_mem_cube {d : ℕ} {x : Fin d → ℝ}
     (hx : x ∈ unitCube d) : cubeAffine x ∈ cube d := by
   intro i
@@ -29,7 +31,9 @@ theorem cubeAffine_mem_cube {d : ℕ} {x : Fin d → ℝ}
   constructor <;> linarith [hi.1, hi.2]
 
 /-- In [any dimension](hyp:d), [the set of points that the affine map x ↦ 2x − 1 (applied to each
-coordinate) sends into the normalized cube is exactly the unit cube](goal). -/
+coordinate) sends into the normalized cube is exactly the unit cube](goal).
+@isnad1 id=eq.0h1v.s4.81142d2c580f from=translated src=- shape=c7a0338f vocab=ae9d7784
+-/
 theorem cubeAffine_preimage_cube (d : ℕ) :
     cubeAffine ⁻¹' cube d = unitCube d := by
   ext x
@@ -42,7 +46,9 @@ theorem cubeAffine_preimage_cube (d : ℕ) :
     constructor <;> linarith
   · exact cubeAffine_mem_cube
 
-/-- Affine transport doubles distances in the ambient finite-product norm. -/
+/-- Affine transport doubles distances in the ambient finite-product norm.
+@isnad1 id=eq.0h3v.s7.9ff21963cb41 from=translated src=- shape=08f58be6 vocab=56fa1bc0
+-/
 theorem cubeAffine_norm_sub {d : ℕ} (x y : Fin d → ℝ) :
     ‖cubeAffine x - cubeAffine y‖ = 2 * ‖x - y‖ := by
   have h : cubeAffine x - cubeAffine y = (2 : ℝ) • (x - y) := by
@@ -52,7 +58,9 @@ theorem cubeAffine_norm_sub {d : ℕ} (x y : Fin d → ℝ) :
   rw [h, norm_smul]
   norm_num
 
-/-- The coordinatewise affine map is smooth to every finite order. -/
+/-- The coordinatewise affine map is smooth to every finite order.
+@isnad1 id=contdiff.0h2v.s7.f2e1a490c896 from=translated src=- shape=f92f66ea vocab=672b77d9
+-/
 theorem cubeAffine_contDiff {d m : ℕ} :
     ContDiff ℝ m (cubeAffine : (Fin d → ℝ) → (Fin d → ℝ)) := by
   unfold cubeAffine

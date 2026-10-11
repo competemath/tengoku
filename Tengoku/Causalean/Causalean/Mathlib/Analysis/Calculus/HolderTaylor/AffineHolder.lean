@@ -19,7 +19,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeExtension
 /-- Pulling a function back from a nondegenerate interval to the closed unit
 cube scales its order-`k` within-derivative Hölder constant by the `k+α`
 power of the affine slope.
-[The interval, derivative-order, function, and regularity inputs](hyp:k,α,a,d,L,hd,f,hf,hholder) yield [the stated affine Hölder transfer](goal). -/
+[The interval, derivative-order, function, and regularity inputs](hyp:k,α,a,d,L,hd,f,hf,hholder) yield [the stated affine Hölder transfer](goal).
+@isnad1 id=topholde.3h6v.s8.146de2bbad6b from=translated src=- shape=13cfd254 vocab=a081fadc
+-/
 theorem affine_cube_topHolderOn
     (k : ℕ) (α a d L : ℝ) (hd : 0 < d)
     (f : ℝ → ℝ) (hf : ContDiffOn ℝ k f (Set.Icc a (a + d)))

@@ -39,7 +39,9 @@ def barrierPotential (u : ℝ) (M : Matrix V V ℝ) : ℝ :=
   (u • (1 : Matrix V V ℝ) - M)⁻¹.trace
 
 omit [DecidableEq V] in
-/-- PSD factorization via spectral theorem: P PSD implies P = Nᴴ * N for some N. -/
+/-- PSD factorization via spectral theorem: P PSD implies P = Nᴴ * N for some N.
+@isnad1 id=ex.1h2v.s6.ba204f715bbe from=translated src=- shape=a8832d86 vocab=26f6992f
+-/
 lemma psd_factorization (P : Matrix V V ℝ) (hP : P.PosSemidef) :
     ∃ (N : Matrix V V ℝ), P = Nᴴ * N := by
   classical
@@ -66,7 +68,9 @@ lemma psd_factorization (P : Matrix V V ℝ) (hP : P.PosSemidef) :
 
 omit [DecidableEq V] in
 /-- For PSD matrices P, Q over ℝ, tr(P * Q) ≥ 0.
-    Proof: write P = Nᴴ * N, then tr(PQ) = tr(NQNᴴ) ≥ 0 since NQNᴴ is PSD. -/
+    Proof: write P = Nᴴ * N, then tr(PQ) = tr(NQNᴴ) ≥ 0 since NQNᴴ is PSD.
+@isnad1 id=le.2h3v.s6.99369ec00599 from=translated src=- shape=4666f9eb vocab=4a762aad
+-/
 lemma trace_mul_nonneg_of_posSemidef
     (P Q : Matrix V V ℝ) (hP : P.PosSemidef) (hQ : Q.PosSemidef) :
     0 ≤ (P * Q).trace := by
@@ -77,7 +81,9 @@ lemma trace_mul_nonneg_of_posSemidef
 omit [DecidableEq V] in
 /-- Trace monotonicity under Loewner order: if X ≤ Y (Loewner) and C ≥ 0,
     then tr(X * C) ≤ tr(Y * C). This follows from tr((Y-X)*C) ≥ 0
-    since Y-X ≥ 0 and C ≥ 0. -/
+    since Y-X ≥ 0 and C ≥ 0.
+@isnad1 id=le.2h4v.s6.24708462be51 from=translated src=- shape=0d5a93af vocab=826c0760
+-/
 lemma trace_mul_le_of_loewner
     (X Y C : Matrix V V ℝ)
     (hXY : (Y - X).PosSemidef) (hC : C.PosSemidef) :
@@ -87,7 +93,9 @@ lemma trace_mul_le_of_loewner
   linarith [Matrix.trace_sub (Y * C) (X * C)]
 
 omit [Fintype V] in
-/-- Helper: u'I - M is positive definite when uI - M is positive definite and u' > u. -/
+/-- Helper: u'I - M is positive definite when uI - M is positive definite and u' > u.
+@isnad1 id=posdef.2h4v.s7.8004b0290b74 from=translated src=- shape=e0c8f61c vocab=c2563b11
+-/
 lemma barrier_shift_posDef
     (M : Matrix V V ℝ) (u u' : ℝ) (hu : u < u')
     (hM : (u • (1 : Matrix V V ℝ) - M).PosDef) :
@@ -99,7 +107,9 @@ lemma barrier_shift_posDef
   exact hM.add_posSemidef (Matrix.PosSemidef.one.smul (sub_nonneg.mpr hu.le))
 
 /-- The barrier potential decreases as the barrier level increases:
-    Φ_u(M) - Φ_{u'}(M) ≥ δ · tr(U²) where δ = u' - u and U = (u'I - M)⁻¹. -/
+    Φ_u(M) - Φ_{u'}(M) ≥ δ · tr(U²) where δ = u' - u and U = (u'I - M)⁻¹.
+@isnad1 id=le.2h4v.s8.11ec9050ef53 from=translated src=- shape=dbf87a9e vocab=0abc5f49
+-/
 lemma barrier_potential_decrease
     (M : Matrix V V ℝ) (u u' : ℝ) (hu : u < u')
     (hM : (u • (1 : Matrix V V ℝ) - M).PosDef) :
@@ -154,7 +164,9 @@ lemma barrier_potential_decrease
   exact mul_le_mul_of_nonneg_left hkey (sub_nonneg.mpr hu.le)
 
 /-- Helper: the barrier potential gap is positive when u' > u and M ≺ uI.
-    Requires Nonempty V since trace is 0 on the empty type. -/
+    Requires Nonempty V since trace is 0 on the empty type.
+@isnad1 id=lt.2h4v.s6.4537da6c18c0 from=translated src=- shape=52d871ff vocab=be39e28e
+-/
 lemma barrier_gap_pos [Nonempty V]
     (M : Matrix V V ℝ) (u u' : ℝ) (hu : u < u')
     (hM : (u • (1 : Matrix V V ℝ) - M).PosDef) :
@@ -173,7 +185,9 @@ lemma barrier_gap_pos [Nonempty V]
   linarith [mul_pos (sub_pos.mpr hu) hU_sq_pd.trace_pos]
 
 /-- Key scalar rearrangement: if a + b/c ≤ 1 with c > 0 and 0 ≤ a < 1, 0 ≤ b,
-    then b/(1-a) ≤ c. This is the algebraic core of the barrier argument. -/
+    then b/(1-a) ≤ c. This is the algebraic core of the barrier argument.
+@isnad1 id=le.5h3v.s6.4d3f5ea030ce from=translated src=- shape=e4dc85e4 vocab=39238a67
+-/
 lemma barrier_rearrange {a b c : ℝ} (hc : 0 < c)
     (_ha_nn : 0 ≤ a) (_hb_nn : 0 ≤ b) (ha_lt : a < 1)
     (hbarr : a + b / c ≤ 1) :
@@ -185,7 +199,9 @@ lemma barrier_rearrange {a b c : ℝ} (hc : 0 < c)
     _ ≤ (1 - a) * c := by nlinarith
     _ = c * (1 - a) := by ring
 
-/-- For a PSD matrix, each eigenvalue is at most the trace. -/
+/-- For a PSD matrix, each eigenvalue is at most the trace.
+@isnad1 id=le.1h3v.s5.3cfbdb31208f from=translated src=- shape=e3c5ce4e vocab=1d0ae9c0
+-/
 lemma eigenvalue_le_trace_of_posSemidef
     (K : Matrix V V ℝ)
     (hK : K.PosSemidef)

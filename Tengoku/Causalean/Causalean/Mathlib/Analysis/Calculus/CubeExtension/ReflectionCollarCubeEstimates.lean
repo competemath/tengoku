@@ -21,7 +21,9 @@ constant C such that, for every response u in the intrinsic Hölder ball of orde
 m, exponent s and radius L ≥ 0 on the normalized cube, the within-collar Fréchet
 derivatives of the one-face reflection of u of every order at most m have
 operator norm at most C·L at every cube point, and its order-m within-collar
-derivative is s-Hölder with coefficient C·L between any two cube points](goal). -/
+derivative is s-Hölder with coefficient C·L between any two cube points](goal).
+@isnad1 id=ex.1h5v.s11.81fa761ac3a4 from=translated src=- shape=c0d61d3f vocab=f6b2ec97
+-/
 theorem exists_leftFaceReflection_cube_jet_control_constant
     (d m : ℕ) (s : ℝ) (i : Fin d) (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

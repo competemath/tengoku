@@ -345,7 +345,9 @@ def mulWithBounds (f g : CertifiedComplexMap) (Bf Bg : ℚ)
 [a requested positive rational error tolerance](hyp:ε), if [the number of iterations
 supplied is at least the algorithm's certified error modulus at that tolerance](hyp:fuel,h),
 then [the algorithm's declared error allowance at that number of iterations, the additive term in its
-certified output-width bound, is at most the requested tolerance](goal). -/
+certified output-width bound, is at most the requested tolerance](goal).
+@isnad1 id=le.1h3v.s5.7cf02c738e99 from=translated src=- shape=02483909 vocab=b742c5ac
+-/
 theorem algorithmError_le_of_modulus {f : CertifiedComplexMap} {ε : PosRat} {fuel : ℕ}
     (h : f.errorModulus ε ≤ fuel) : f.algorithmError fuel ≤ ε.1 := by
   exact (f.algorithmError_antitone h).trans (f.error_at_modulus ε)

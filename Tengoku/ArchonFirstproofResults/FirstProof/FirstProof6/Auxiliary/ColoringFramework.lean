@@ -41,7 +41,9 @@ structure PartialColoring (V : Type*) [Fintype V] (r : ℕ) where
   color : V → Fin r
 
 omit [DecidableEq V] in
-/-- The largest color class in a coloring has size at least |T|/r (pigeonhole). -/
+/-- The largest color class in a coloring has size at least |T|/r (pigeonhole).
+@isnad1 id=ex.1h3v.s6.5eeb7a5cf471 from=translated src=- shape=b74cf9de vocab=10fdc908
+-/
 lemma largest_color_class_bound
     (pc : PartialColoring V r) (hr : 0 < r) :
     ∃ γ : Fin r,
@@ -75,7 +77,9 @@ lemma largest_color_class_bound
 /-- **Parameter bound (Step 3)**: The final barrier parameter u_k = eps/2 + k*(eps/n)
     satisfies u_k <= 3*eps/4 < eps when k = n/4 and n >= 4.
     Proof: u_k = eps/2 + (n/4)*(eps/n). Since n/4 <= n/4 (integer division),
-    (n/4)*(eps/n) <= (n/4)*(eps/n) = eps/4. So u_k <= eps/2 + eps/4 = 3*eps/4 < eps. -/
+    (n/4)*(eps/n) <= (n/4)*(eps/n) = eps/4. So u_k <= eps/2 + eps/4 = 3*eps/4 < eps.
+@isnad1 id=other.2h2v.s7.3442ccb12c4f from=translated src=- shape=701ada8f vocab=3a4e774d
+-/
 lemma barrier_parameter_bound
     (ε : ℝ) (hε : 0 < ε)
     (n : ℕ) (hn : 4 ≤ n) :

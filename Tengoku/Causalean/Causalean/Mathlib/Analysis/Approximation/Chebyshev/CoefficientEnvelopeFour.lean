@@ -287,7 +287,9 @@ private lemma mvCoeffL1_finSucc {d n : ℕ} (p : MvPolynomial (Fin (d + 1)) ℝ)
 /-- For a [polynomial in finitely many variables](hyp:d,p), a
 [coordinatewise degree limit](hyp:n,hcoord), and a
 [nonnegative uniform bound on its normalized-cube values](hyp:B,hB,hbound), the
-[coefficient one-norm has an explicit dimension-dependent bound](goal). -/
+[coefficient one-norm has an explicit dimension-dependent bound](goal).
+@isnad1 id=le.3h4v.s8.92ba4636c3d0 from=translated src=- shape=52fb7abb vocab=72ca79fa
+-/
 theorem mvCoeffL1_le_bounded {d n : ℕ} (p : MvPolynomial (Fin d) ℝ) (B : ℝ)
     (hB : 0 ≤ B) (hcoord : ∀ m ∈ p.support, ∀ i, m i ≤ n)
     (hbound : ∀ x ∈ normalizedCube d, |MvPolynomial.eval x p| ≤ B) :
@@ -366,7 +368,9 @@ uniform bound B](hyp:B,hB), and [the corresponding bound on the function through
 cube](hyp:hbound), [there is a four-variable polynomial that reproduces the tensor convolution at
 the coordinatewise cosines of every point, has degree at most 2 (K − 1) in each variable and total
 degree at most 8 (K − 1), and whose coefficients have absolute values summing to at most 2 to the
-power 40 K + 20, times B](goal). -/
+power 40 K + 20, times B](goal).
+@isnad1 id=ex.4h3v.s9.8d4f238245f9 from=translated src=- shape=8a490552 vocab=ce0d3b22
+-/
 theorem tensorConvolution_exists_mvPolynomial_four_coeffBound {K : ℕ} (hK : 0 < K)
     (f : (Fin 4 → ℝ) → ℝ) (B : ℝ) (hB : 0 ≤ B)
     (hf : ContinuousOn f (normalizedCube 4))

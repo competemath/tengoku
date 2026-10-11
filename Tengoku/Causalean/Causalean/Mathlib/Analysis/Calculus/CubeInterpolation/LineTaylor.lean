@@ -20,7 +20,9 @@ that is m times continuously differentiable on a nondegenerate closed interval a
 derivative changes between any two points of the interval by at most a nonnegative L times their
 distance to the power s, the function at any point y of the interval differs from its order-m
 Taylor polynomial centred at any interior point x by at most C times L times the distance from x to
-y raised to the power m + s](goal). -/
+y raised to the power m + s](goal).
+@isnad1 id=ex.2h2v.s8.eb94385fd92e from=translated src=- shape=3c84e109 vocab=8f6c4275
+-/
 theorem line_holder_taylor (m : ℕ) (s : ℝ) (hs : 0 < s) (hs1 : s ≤ 1) :
     ∃ C : ℝ, 0 < C ∧
       ∀ (v : ℝ → ℝ) (a b L : ℝ),

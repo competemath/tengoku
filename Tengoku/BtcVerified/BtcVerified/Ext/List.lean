@@ -16,7 +16,9 @@ namespace List
 variable {α β γ : Type*}
 
 /-- Recombine a list's two projections with their constructor to recover the
-list, when the constructor and projections round-trip. -/
+list, when the constructor and projections round-trip.
+@isnad1 id=eq.1h7v.s5.a6ebd3c1fd78 from=translated src=- shape=6a24dc34 vocab=f294b06c
+-/
 theorem zipWith_map_map_left_right {f : γ → α} {g : γ → β} {mk : α → β → γ}
     (h : ∀ c, mk (f c) (g c) = c) (l : List γ) :
     zipWith mk (l.map f) (l.map g) = l := by
@@ -24,7 +26,9 @@ theorem zipWith_map_map_left_right {f : γ → α} {g : γ → β} {mk : α → 
   simp [h]
 
 /-- The left projection of a `zipWith mk` is the left list, when the lists agree
-in length and the projection inverts the constructor on the left. -/
+in length and the projection inverts the constructor on the left.
+@isnad1 id=eq.2h7v.s5.15a7a3220101 from=translated src=- shape=fe250577 vocab=e54b3c15
+-/
 theorem map_zipWith_left {mk : α → β → γ} {f : γ → α} (hf : ∀ a b, f (mk a b) = a)
     (as : List α) (bs : List β) (hlen : as.length = bs.length) :
     (zipWith mk as bs).map f = as := by
@@ -36,7 +40,9 @@ theorem map_zipWith_left {mk : α → β → γ} {f : γ → α} (hf : ∀ a b, 
     | cons y bs => simp only [zipWith_cons_cons, map_cons, hf, ih bs (by simpa using hlen)]
 
 /-- The right projection of a `zipWith mk` is the right list, when the lists
-agree in length and the projection inverts the constructor on the right. -/
+agree in length and the projection inverts the constructor on the right.
+@isnad1 id=eq.2h7v.s5.1f38901902ee from=translated src=- shape=44631b82 vocab=e54b3c15
+-/
 theorem map_zipWith_right {mk : α → β → γ} {g : γ → β} (hg : ∀ a b, g (mk a b) = b)
     (as : List α) (bs : List β) (hlen : as.length = bs.length) :
     (zipWith mk as bs).map g = bs := by

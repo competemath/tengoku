@@ -24,7 +24,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 [a real bound B](hyp:B) such that [the target is at most B in absolute value on the cube](hyp:hB),
 [a selected coordinate](hyp:i), and [a phase vector fixing the other coordinates](hyp:x), [the
 heterogeneous Jackson convolution, as a function of the selected coordinate alone, is a
-trigonometric polynomial of degree at most twice (that coordinate's order minus one)](goal). -/
+trigonometric polynomial of degree at most twice (that coordinate's order minus one)](goal).
+@isnad1 id=istrigpo.3h6v.s7.e9198421067e from=translated src=- shape=62f3e56e vocab=531784f3
+-/
 theorem convolution_coord_trig (d : ι → ℕ) (hd : ∀ i, 0 < d i)
     (f : (ι → ℝ) → ℝ) (hf : Measurable f)
     (B : ℝ) (hB : ∀ x ∈ cube, |f x| ≤ B)
@@ -155,7 +157,9 @@ theorem convolution_coord_trig (d : ι → ℕ) (hd : ∀ i, 0 < d i)
 /-- For [a coordinate-specific order map](hyp:d), [a measurable cube target](hyp:f,hf), [a real
 bound B](hyp:B) such that [the target is at most B in absolute value on the cube](hyp:hB), [a
 selected coordinate](hyp:i), and [a phase vector fixing the other coordinates](hyp:x), [the
-heterogeneous Jackson convolution is an even function of the selected coordinate](goal). -/
+heterogeneous Jackson convolution is an even function of the selected coordinate](goal).
+@isnad1 id=even.2h6v.s6.98ab3253af61 from=translated src=- shape=31b7a7d5 vocab=df62a9a7
+-/
 theorem convolution_coord_even (d : ι → ℕ)
     (f : (ι → ℝ) → ℝ) (hf : Measurable f)
     (B : ℝ) (hB : ∀ x ∈ cube, |f x| ≤ B)
@@ -228,7 +232,9 @@ theorem convolution_coord_even (d : ι → ℕ)
         (hem.setIntegral_preimage_emb e.measurableEmbedding
           (fun u => f (cosPoint (Function.update x i t - u)) * kernel d u) periodBox)
 
-/-- [A coordinate-specific degree map](hyp:d), [a phase function](hyp:q), [its coordinatewise trigonometric degree bounds](hyp:htrig), and [its coordinatewise evenness](hyp:heven) imply that [the phase function has a multivariate polynomial representation in coordinate cosines with the same bounds](goal). -/
+/-- [A coordinate-specific degree map](hyp:d), [a phase function](hyp:q), [its coordinatewise trigonometric degree bounds](hyp:htrig), and [its coordinatewise evenness](hyp:heven) imply that [the phase function has a multivariate polynomial representation in coordinate cosines with the same bounds](goal).
+@isnad1 id=ex.2h3v.s8.ba20752d9b9f from=translated src=- shape=096b7d9c vocab=ecd4f4ad
+-/
 theorem polynomial_of_coord_even_trig (d : ι → ℕ) (q : (ι → ℝ) → ℝ)
     (htrig : ∀ i x,
       Causalean.Mathlib.Analysis.JacksonApproximation.IsTrigPolyLE (2 * (d i - 1))
@@ -461,7 +467,9 @@ theorem polynomial_of_coord_even_trig (d : ι → ℕ) (q : (ι → ℝ) → ℝ
 and [a real bound B](hyp:B) such that [the target is at most B in absolute value on the
 cube](hyp:hB), [there is a multivariate polynomial that reproduces the heterogeneous Jackson
 convolution at the coordinatewise cosines of every phase vector and whose degree in each variable
-is at most twice (that coordinate's order minus one)](goal). -/
+is at most twice (that coordinate's order minus one)](goal).
+@isnad1 id=ex.3h4v.s8.25d6254642be from=translated src=- shape=9a91f804 vocab=07d3e277
+-/
 theorem convolution_exists_polynomial (d : ι → ℕ) (hd : ∀ i, 0 < d i)
     (f : (ι → ℝ) → ℝ)
     (hf : Measurable f)

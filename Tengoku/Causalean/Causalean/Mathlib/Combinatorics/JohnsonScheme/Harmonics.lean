@@ -27,13 +27,17 @@ noncomputable def harmonicProjection (n M : ℕ) (k : Fin (M + 1)) :
     SliceFn n M →ₗ[ℝ] SliceFn n M :=
   (johnsonHarmonic n M k.1).starProjection.toLinearMap
 
-/-- For [a harmonic degree](hyp:k), [the projection of the sum](goal) equals the sum of the projections of [the first slice function](hyp:f) and [the second slice function](hyp:g). -/
+/-- For [a harmonic degree](hyp:k), [the projection of the sum](goal) equals the sum of the projections of [the first slice function](hyp:f) and [the second slice function](hyp:g).
+@isnad1 id=eq.0h5v.s10.b26d19832ae4 from=translated src=- shape=95ad67e3 vocab=92eea821
+-/
 theorem harmonicProjection_add (k : Fin (M + 1)) (f g : SliceFn n M) :
     harmonicProjection n M k (f + g) =
       harmonicProjection n M k f + harmonicProjection n M k g :=
   map_add (harmonicProjection n M k) f g
 
-/-- For [a harmonic degree](hyp:k), [a real scalar](hyp:c), and [a slice function](hyp:f), [projecting after scalar multiplication equals scalar multiplication after projection](goal). -/
+/-- For [a harmonic degree](hyp:k), [a real scalar](hyp:c), and [a slice function](hyp:f), [projecting after scalar multiplication equals scalar multiplication after projection](goal).
+@isnad1 id=eq.0h5v.s9.e33bbfb8092d from=translated src=- shape=3e690b54 vocab=ad34bf5c
+-/
 theorem harmonicProjection_smul (k : Fin (M + 1)) (c : ℝ) (f : SliceFn n M) :
     harmonicProjection n M k (c • f) = c • harmonicProjection n M k f :=
   map_smul (harmonicProjection n M k) c f
@@ -93,7 +97,9 @@ private theorem johnsonHarmonic_inner_eq_zero
       exact hf.2 g (degreeAtMost_mono (by omega)
         (johnsonHarmonic_le_degreeAtMost k.1 hg))
 
-/-- For [a degree bound](hyp:d), [the next inclusion-degree space is the sum of the preceding space and its new Johnson harmonic layer](goal). -/
+/-- For [a degree bound](hyp:d), [the next inclusion-degree space is the sum of the preceding space and its new Johnson harmonic layer](goal).
+@isnad1 id=eq.0h3v.s9.729dd99566b8 from=translated src=- shape=2106303f vocab=04c8a28a
+-/
 theorem degreeAtMost_succ_eq_sup_harmonic (d : ℕ) :
     degreeAtMost n M (d + 1) =
       degreeAtMost n M d ⊔ johnsonHarmonic n M (d + 1) := by
@@ -101,28 +107,38 @@ theorem degreeAtMost_succ_eq_sup_harmonic (d : ℕ) :
   exact (Submodule.sup_orthogonal_inf_of_hasOrthogonalProjection
     (degreeAtMost_mono (Nat.le_succ d))).symm
 
-/-- [The full degree-at-most-`M` space is the supremum of the Johnson harmonic layers from degree zero through degree `M`](goal). -/
+/-- [The full degree-at-most-`M` space is the supremum of the Johnson harmonic layers from degree zero through degree `M`](goal).
+@isnad1 id=eq.0h2v.s9.e647af651784 from=translated src=- shape=602294e9 vocab=9cc0ced9
+-/
 theorem degreeAtMost_eq_iSup_harmonic :
     degreeAtMost n M M = ⨆ k : Fin (M + 1), johnsonHarmonic n M k.1 := by
   exact degreeAtMost_eq_iSup_harmonic_fin M
 
-/-- For [a harmonic degree](hyp:k) and [a slice function](hyp:f), [the projected component belongs to that degree's Johnson harmonic subspace](goal). -/
+/-- For [a harmonic degree](hyp:k) and [a slice function](hyp:f), [the projected component belongs to that degree's Johnson harmonic subspace](goal).
+@isnad1 id=mem.0h4v.s9.70eb5b135177 from=translated src=- shape=de165111 vocab=1cb4b099
+-/
 theorem harmonicProjection_mem (k : Fin (M + 1)) (f : SliceFn n M) :
     harmonicProjection n M k f ∈ johnsonHarmonic n M k.1 := by
   exact Submodule.starProjection_apply_mem _ _
 
-/-- For [a harmonic degree](hyp:k) and [a slice function](hyp:f), [projection leaves the function unchanged exactly when it already lies in that harmonic subspace](goal). -/
+/-- For [a harmonic degree](hyp:k) and [a slice function](hyp:f), [projection leaves the function unchanged exactly when it already lies in that harmonic subspace](goal).
+@isnad1 id=iff.0h4v.s9.f4ca3df22b16 from=translated src=- shape=bdf85a85 vocab=1cb4b099
+-/
 theorem harmonicProjection_eq_self_iff (k : Fin (M + 1)) (f : SliceFn n M) :
     harmonicProjection n M k f = f ↔ f ∈ johnsonHarmonic n M k.1 := by
   exact Submodule.starProjection_eq_self_iff
 
-/-- For [a harmonic degree](hyp:k) and [a slice function](hyp:f), [applying the harmonic projection twice gives the same component as applying it once](goal). -/
+/-- For [a harmonic degree](hyp:k) and [a slice function](hyp:f), [applying the harmonic projection twice gives the same component as applying it once](goal).
+@isnad1 id=eq.0h4v.s10.785179b685a1 from=translated src=- shape=94e7864a vocab=92eea821
+-/
 theorem harmonicProjection_idem (k : Fin (M + 1)) (f : SliceFn n M) :
     harmonicProjection n M k (harmonicProjection n M k f) = harmonicProjection n M k f := by
   exact Submodule.starProjection_eq_self_iff.mpr
     (Submodule.starProjection_apply_mem _ _)
 
-/-- When [the requested slice size is feasible](hyp:hMn), [the residual after projection is orthogonal under the uniform slice inner product to the given harmonic function](goal), for [a harmonic degree](hyp:k), [a slice function](hyp:f), [a comparison function](hyp:g), and [evidence that the comparison function is in that harmonic subspace](hyp:hg). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [the residual after projection is orthogonal under the uniform slice inner product to the given harmonic function](goal), for [a harmonic degree](hyp:k), [a slice function](hyp:f), [a comparison function](hyp:g), and [evidence that the comparison function is in that harmonic subspace](hyp:hg).
+@isnad1 id=eq.2h5v.s9.9e379d59af18 from=translated src=- shape=bda1f77b vocab=63645561
+-/
 theorem sliceInner_residual_eq_zero (hMn : M ≤ n) (k : Fin (M + 1))
     (f g : SliceFn n M) (hg : g ∈ johnsonHarmonic n M k.1) :
     sliceInner (f - harmonicProjection n M k f) g = 0 := by
@@ -131,7 +147,9 @@ theorem sliceInner_residual_eq_zero (hMn : M ≤ n) (k : Fin (M + 1))
     inner ℝ (f - (johnsonHarmonic n M k.1).starProjection f) g = 0
   rw [Submodule.starProjection_inner_eq_zero _ _ hg, mul_zero]
 
-/-- When [the requested slice size is feasible](hyp:hMn) and [the two harmonic degrees are distinct](hyp:hjk), [functions in those two Johnson harmonic subspaces are orthogonal under the uniform slice inner product](goal), for [the first function's membership evidence](hyp:hf) and [the second function's membership evidence](hyp:hg). -/
+/-- When [the requested slice size is feasible](hyp:hMn) and [the two harmonic degrees are distinct](hyp:hjk), [functions in those two Johnson harmonic subspaces are orthogonal under the uniform slice inner product](goal), for [the first function's membership evidence](hyp:hf) and [the second function's membership evidence](hyp:hg).
+@isnad1 id=eq.4h6v.s9.ecfdc7e25723 from=translated src=- shape=0e9b0421 vocab=486a5462
+-/
 theorem johnsonHarmonic_pairwise_orthogonal (hMn : M ≤ n)
     {j k : Fin (M + 1)} (hjk : j ≠ k)
     {f g : SliceFn n M} (hf : f ∈ johnsonHarmonic n M j.1)
@@ -139,7 +157,9 @@ theorem johnsonHarmonic_pairwise_orthogonal (hMn : M ≤ n)
     sliceInner f g = 0 := by
   rw [sliceInner_eq hMn, johnsonHarmonic_inner_eq_zero hjk hf hg, mul_zero]
 
-/-- When [the requested slice size is feasible](hyp:hMn), [the given slice function equals the finite sum of its harmonic projections from degree zero through degree `M`](goal), for [the slice function](hyp:f). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [the given slice function equals the finite sum of its harmonic projections from degree zero through degree `M`](goal), for [the slice function](hyp:f).
+@isnad1 id=eq.1h3v.s9.5b0090a70c82 from=translated src=- shape=3810d281 vocab=ca8c0894
+-/
 theorem sum_harmonicProjection_eq (hMn : M ≤ n) (f : SliceFn n M) :
     (∑ k : Fin (M + 1), harmonicProjection n M k f) = f := by
   let V : Fin (M + 1) → Submodule ℝ (SliceFn n M) :=
@@ -151,7 +171,9 @@ theorem sum_harmonicProjection_eq (hMn : M ≤ n) (f : SliceFn n M) :
     rw [← degreeAtMost_eq_iSup_harmonic, degreeAtMost_eq_top hMn]
   exact hV.sum_projection_of_mem_iSup f (by rw [htop]; trivial)
 
-/-- When [the requested slice size is feasible](hyp:hMn), [the degree-zero projection of the given slice function is the constant function at its uniform mean](goal), for [the slice function](hyp:f). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [the degree-zero projection of the given slice function is the constant function at its uniform mean](goal), for [the slice function](hyp:f).
+@isnad1 id=eq.1h3v.s8.d72c20c502bf from=translated src=- shape=759232af vocab=a50903c5
+-/
 theorem harmonicProjection_zero_eq_mean (hMn : M ≤ n) (f : SliceFn n M) :
     harmonicProjection n M (⟨0, Nat.zero_lt_succ M⟩ : Fin (M + 1)) f =
       constFn (mean f) := by
@@ -172,7 +194,9 @@ theorem harmonicProjection_zero_eq_mean (hMn : M ≤ n) (f : SliceFn n M) :
     field_simp
     ring
 
-/-- When [the requested slice size is feasible](hyp:hMn), [centering the given slice function equals the sum of its positive-degree harmonic projections](goal), for [the slice function](hyp:f). -/
+/-- When [the requested slice size is feasible](hyp:hMn), [centering the given slice function equals the sum of its positive-degree harmonic projections](goal), for [the slice function](hyp:f).
+@isnad1 id=eq.1h3v.s9.52d84808ffeb from=translated src=- shape=bd66ab6a vocab=b0228448
+-/
 theorem sum_positive_harmonicProjection_eq_center (hMn : M ≤ n)
     (f : SliceFn n M) :
     (∑ k ∈ Finset.univ.filter (fun k : Fin (M + 1) => 0 < k.1),
@@ -199,7 +223,9 @@ theorem sum_positive_harmonicProjection_eq_center (hMn : M ≤ n)
   rw [center]
   exact eq_sub_of_add_eq hsplit
 
-/-- When [the requested slice size is feasible](hyp:hMn) and [the two harmonic degrees are distinct](hyp:hjk), [the corresponding projected components of the given function are orthogonal under the uniform slice inner product](goal), for [the slice function](hyp:f). -/
+/-- When [the requested slice size is feasible](hyp:hMn) and [the two harmonic degrees are distinct](hyp:hjk), [the corresponding projected components of the given function are orthogonal under the uniform slice inner product](goal), for [the slice function](hyp:f).
+@isnad1 id=eq.2h5v.s9.d7262b73e86e from=translated src=- shape=bf180a78 vocab=1d389c52
+-/
 theorem harmonicProjection_pairwise_orthogonal (hMn : M ≤ n)
     (f : SliceFn n M) {j k : Fin (M + 1)} (hjk : j ≠ k) :
     sliceInner (harmonicProjection n M j f) (harmonicProjection n M k f) = 0 := by

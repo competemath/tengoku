@@ -29,7 +29,9 @@ and [any declared measure](hyp:μ).
 
 Restrict μ to the nonzero support of f, install the preceding SigmaFinite result,
 apply Tonelli to the jointly measurable extended nonnegative integrand, and extend
-back because the integrand vanishes outside this support. Do not assume μ sigma-finite. -/
+back because the integrand vanishes outside this support. Do not assume μ sigma-finite.
+@isnad1 id=eq.4h6v.s9.a1f5906f6e6c from=translated src=- shape=574ae532 vocab=b0657af0
+-/
 theorem lintegral_harmonic_energy_comm {S : Type*} [MeasurableSpace S]
     (μ : Measure S) (w0 w1 : S → ℝ≥0∞)
     (hw0 : Measurable w0) (hw1 : Measurable w1)
@@ -84,7 +86,9 @@ L² energy](goal), for [an interior exponent](hyp:θ,hθ) and
 This is the complete weighted L² contract. Rewrite the K-functional using its
 harmonic minimum, interchange the nonnegative integrals using sigma-finite support,
 and apply normalized_lintegral_harmonicWeight almost everywhere. Infinite values
-are retained on both sides. Reference: https://arxiv.org/html/1404.3599v4, Theorem 3.1. -/
+are retained on both sides. Reference: https://arxiv.org/html/1404.3599v4, Theorem 3.1.
+@isnad1 id=eq.5h6v.s9.6d21788d8d2e from=translated src=- shape=053c55ef vocab=96b0b6fa
+-/
 theorem weighted_l2_interpolation {S : Type*} [MeasurableSpace S]
     (μ : Measure S) (w0 w1 : S → ℝ≥0∞)
     (hw0 : Measurable w0) (hw1 : Measurable w1)

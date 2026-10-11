@@ -110,7 +110,9 @@ private lemma applyFunction_independent_aux {n : ℕ} {A : RectMatrix n n}
           simp only [← Matrix.mul_assoc, D.basis_mul_inv, Matrix.one_mul]
 
 /-- Aggregate projectors are independent of the eigenbasis and of coordinate choices within
-repeated eigenspaces. -/
+repeated eigenspaces.
+@isnad1 id=eq.0h5v.s4.d2c597eabd3c from=translated src=- shape=f6099499 vocab=411fc30e
+-/
 theorem projector_independent {n : ℕ} {A : RectMatrix n n}
     (D D' : RealDiagonalization A) (x : ℝ) :
     D.projector x = D'.projector x := by
@@ -118,13 +120,17 @@ theorem projector_independent {n : ℕ} {A : RectMatrix n n}
     Function.comp_def] using
     applyFunction_independent_aux D D' (fun z => if z = x then 1 else 0)
 
-/-- Finite functional calculus is independent of the chosen real diagonalization certificate. -/
+/-- Finite functional calculus is independent of the chosen real diagonalization certificate.
+@isnad1 id=eq.0h5v.s5.857641f539eb from=translated src=- shape=d890fb85 vocab=45b3f565
+-/
 theorem applyFunction_independent {n : ℕ} {A : RectMatrix n n}
     (D D' : RealDiagonalization A) (f : ℝ → ℝ) :
     D.applyFunction f = D'.applyFunction f := by
   exact applyFunction_independent_aux D D' f
 
-/-- The aggregate spectral projectors sum to the identity. -/
+/-- The aggregate spectral projectors sum to the identity.
+@isnad1 id=eq.0h3v.s5.9eb0af66008b from=translated src=- shape=9976dec3 vocab=877e022f
+-/
 theorem sum_projector_eq_one {n : ℕ} {A : RectMatrix n n}
     (D : RealDiagonalization A) :
     ∑ x ∈ D.spectralValues, D.projector x = 1 := by
@@ -145,7 +151,9 @@ theorem sum_projector_eq_one {n : ℕ} {A : RectMatrix n n}
   rw [hdiag, Matrix.mul_one]
   exact D.basis_mul_inv
 
-/-- Functional calculus is the sum of the scalar values times aggregate spectral projectors. -/
+/-- Functional calculus is the sum of the scalar values times aggregate spectral projectors.
+@isnad1 id=eq.0h4v.s6.648d8c9f7211 from=translated src=- shape=23171693 vocab=3b7771d7
+-/
 theorem applyFunction_eq_sum_projector {n : ℕ} {A : RectMatrix n n}
     (D : RealDiagonalization A) (f : ℝ → ℝ) :
     D.applyFunction f = ∑ x ∈ D.spectralValues, f x • D.projector x := by
@@ -163,7 +171,9 @@ theorem applyFunction_eq_sum_projector {n : ℕ} {A : RectMatrix n n}
   rw [hdiag]
   simp [Finset.mul_sum, Finset.sum_mul]
 
-/-- An aggregate projector extracts its own eigenvalue on either side of its operator. -/
+/-- An aggregate projector extracts its own eigenvalue on either side of its operator.
+@isnad1 id=and.1h4v.s7.8037c7287f2d from=translated src=- shape=03c84c84 vocab=4f354ee0
+-/
 theorem projector_mul_operator {n : ℕ} {A : RectMatrix n n}
     (D : RealDiagonalization A) {x : ℝ} (hx : x ∈ D.spectralValues) :
     D.projector x * A = x • D.projector x ∧
@@ -216,7 +226,9 @@ theorem projector_mul_operator {n : ℕ} {A : RectMatrix n n}
       _ = x • D.projector x := by rfl
 
 /-- Cross-projecting two separately diagonalized operators gives
-`E_λ (A-B) F_γ = (λ-γ) E_λ F_γ`. -/
+`E_λ (A-B) F_γ = (λ-γ) E_λ F_γ`.
+@isnad1 id=eq.2h7v.s7.2d88b291e5e9 from=translated src=- shape=e2550b11 vocab=96084bb5
+-/
 theorem crossProjector_sub {n : ℕ} {A B : RectMatrix n n}
     (DA : RealDiagonalization A) (DB : RealDiagonalization B)
     {x y : ℝ} (hx : x ∈ DA.spectralValues) (hy : y ∈ DB.spectralValues) :
@@ -235,7 +247,9 @@ theorem crossProjector_sub {n : ℕ} {A B : RectMatrix n n}
           simp [sub_smul]
 
 /-- At a common eigenvalue the cross-projected perturbation vanishes, so the corresponding
-divided-difference summand is zero without division by `λ-γ`. -/
+divided-difference summand is zero without division by `λ-γ`.
+@isnad1 id=eq.2h6v.s7.9a0e1c64e3e5 from=translated src=- shape=696fef88 vocab=bfbf610c
+-/
 theorem crossProjector_common_eigenvalue_vanish {n : ℕ} {A B : RectMatrix n n}
     (DA : RealDiagonalization A) (DB : RealDiagonalization B)
     {x : ℝ} (hAx : x ∈ DA.spectralValues) (hBx : x ∈ DB.spectralValues) :
@@ -243,7 +257,9 @@ theorem crossProjector_common_eigenvalue_vanish {n : ℕ} {A B : RectMatrix n n}
   rw [crossProjector_sub DA DB hAx hBx, sub_self, zero_smul]
 
 /-- Collision-safe divided-difference expansion for two unrelated diagonalizers.  Equal-node
-summands are explicitly zero and therefore never divide by zero. -/
+summands are explicitly zero and therefore never divide by zero.
+@isnad1 id=eq.0h6v.s8.24ed2f28f255 from=translated src=- shape=d386a569 vocab=806271f3
+-/
 theorem applyFunction_sub_eq_dividedDifference {n : ℕ} {A B : RectMatrix n n}
     (DA : RealDiagonalization A) (DB : RealDiagonalization B) (f : ℝ → ℝ) :
     DA.applyFunction f - DB.applyFunction f =
@@ -312,7 +328,9 @@ theorem applyFunction_sub_eq_dividedDifference {n : ℕ} {A B : RectMatrix n n}
             intro y hy
             exact (hsummand x hx y hy).symm
 
-/-- Every aggregate projector has norm at most the condition number of its diagonalizer. -/
+/-- Every aggregate projector has norm at most the condition number of its diagonalizer.
+@isnad1 id=le.0h4v.s5.9e54ffb22d79 from=translated src=- shape=30052d6a vocab=93eee5d5
+-/
 theorem norm_projector_le_conditionNumber {n : ℕ} {A : RectMatrix n n}
     (D : RealDiagonalization A) (x : ℝ) :
     ‖D.projector x‖ ≤ D.conditionNumber := by
@@ -341,7 +359,9 @@ theorem norm_projector_le_conditionNumber {n : ℕ} {A : RectMatrix n n}
     _ = ‖D.basis‖ * ‖D.basisInv‖ := by ring
 
 /-- A one-Lipschitz scalar function obeys the two-diagonalizer, collision-free perturbation
-bound with the product of the numbers of distinct eigenvalues. -/
+bound with the product of the numbers of distinct eigenvalues.
+@isnad1 id=le.3h8v.s7.8f30e07b3a30 from=translated src=- shape=dea4a240 vocab=3f101a36
+-/
 theorem norm_applyFunction_sub_le {n : ℕ} {A B : RectMatrix n n}
     (DA : RealDiagonalization A) (DB : RealDiagonalization B)
     (f : ℝ → ℝ) (hf : LipschitzWith 1 f) {κA κB : ℝ}
@@ -414,7 +434,9 @@ theorem norm_applyFunction_sub_le {n : ℕ} {A B : RectMatrix n n}
           simp [RealDiagonalization.specCount]
           ring
 
-/-- [A matrix dimension and two real matrices](hyp:n,A,B), [their real diagonalizations](hyp:DA,DB), [a one-Lipschitz scalar function](hyp:f,hf), and [bounds on both diagonalizer condition numbers](hyp:κA,κB,hκA,hκB) give [a collision-safe dimension-squared functional-calculus perturbation bound](goal). -/
+/-- [A matrix dimension and two real matrices](hyp:n,A,B), [their real diagonalizations](hyp:DA,DB), [a one-Lipschitz scalar function](hyp:f,hf), and [bounds on both diagonalizer condition numbers](hyp:κA,κB,hκA,hκB) give [a collision-safe dimension-squared functional-calculus perturbation bound](goal).
+@isnad1 id=le.3h8v.s7.529614eddbdc from=translated src=- shape=f0ec1725 vocab=56a78630
+-/
 theorem norm_applyFunction_sub_le_dim_sq {n : ℕ} {A B : RectMatrix n n}
     (DA : RealDiagonalization A) (DB : RealDiagonalization B)
     (f : ℝ → ℝ) (hf : LipschitzWith 1 f) {κA κB : ℝ}
@@ -449,7 +471,9 @@ def RealDiagonalization.SpectrumBound {n : ℕ} {A : RectMatrix n n}
   ∀ i, |D.eigenvalue i| ≤ R
 
 /-- If `f(0)=0`, `f` is one-Lipschitz, and the spectrum lies in `[-R,R]`, then functional
-calculus has norm at most the diagonalizer condition number times `R`. -/
+calculus has norm at most the diagonalizer condition number times `R`.
+@isnad1 id=le.5h6v.s6.5e8e483e7a3f from=translated src=- shape=6aaefb63 vocab=40026f66
+-/
 theorem norm_applyFunction_le {n : ℕ} {A : RectMatrix n n}
     (D : RealDiagonalization A) (f : ℝ → ℝ) (hf : LipschitzWith 1 f)
     (hf0 : f 0 = 0) {κ R : ℝ} (hκ : D.conditionNumber ≤ κ)
@@ -486,7 +510,9 @@ theorem norm_applyFunction_le {n : ℕ} {A : RectMatrix n n}
 noncomputable def anchorEval {n : ℕ} (a c : Euc n) (M : RectMatrix n n) : ℝ :=
   inner ℝ a (matrixCLM M c)
 
-/-- A left-right matrix evaluation is bounded by the two anchor norms and the operator norm. -/
+/-- A left-right matrix evaluation is bounded by the two anchor norms and the operator norm.
+@isnad1 id=le.0h4v.s6.6425dbf97e04 from=translated src=- shape=b6301f08 vocab=f9c7f499
+-/
 theorem abs_anchorEval_le {n : ℕ} (a c : Euc n) (M : RectMatrix n n) :
     |anchorEval a c M| ≤ ‖a‖ * ‖M‖ * ‖c‖ := by
   unfold anchorEval
@@ -503,7 +529,9 @@ theorem abs_anchorEval_le {n : ℕ} (a c : Euc n) (M : RectMatrix n n) :
       ring
 
 /-- Normalized one-Lipschitz functional calculus is stable under simultaneous operator and
-left/right anchor perturbations, without eigenvalue matching or diagonalizer matching. -/
+left/right anchor perturbations, without eigenvalue matching or diagonalizer matching.
+@isnad1 id=le.7h13v.s9.427a4d7850c2 from=translated src=- shape=1c4ec233 vocab=8a1c8d11
+-/
 theorem abs_anchorEval_applyFunction_sub_le {n : ℕ} {A B : RectMatrix n n}
     (DA : RealDiagonalization A) (DB : RealDiagonalization B)
     (a b c d : Euc n) (f : ℝ → ℝ) (hf : LipschitzWith 1 f) (hf0 : f 0 = 0)

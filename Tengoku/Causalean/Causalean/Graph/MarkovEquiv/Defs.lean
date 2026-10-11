@@ -100,15 +100,21 @@ have identical v-structures for every ordered triple of vertices. -/
 instance (G₁ G₂ : DAG V) : Decidable (SameImmoralities G₁ G₂) := by
   unfold SameImmoralities; infer_instance
 
-/-- For [any DAG `G`](hyp:G), [`G` is Markov equivalent to itself](goal). -/
+/-- For [any DAG `G`](hyp:G), [`G` is Markov equivalent to itself](goal).
+@isnad1 id=markoveq.0h2v.s4.82b864e0ec4a from=translated src=- shape=2ccd198a vocab=9e65679e
+-/
 @[refl] theorem MarkovEquiv.refl (G : DAG V) : MarkovEquiv G G :=
   fun _ _ _ => Iff.rfl
 
-/-- Markov equivalence is symmetric. -/
+/-- Markov equivalence is symmetric.
+@isnad1 id=markoveq.1h3v.s4.a3cc051ddc10 from=translated src=- shape=27d6db21 vocab=9e65679e
+-/
 theorem MarkovEquiv.symm {G₁ G₂ : DAG V} (h : MarkovEquiv G₁ G₂) : MarkovEquiv G₂ G₁ :=
   fun X Y Z => (h X Y Z).symm
 
-/-- Markov equivalence is transitive. -/
+/-- Markov equivalence is transitive.
+@isnad1 id=markoveq.2h4v.s5.8bc3106e7695 from=translated src=- shape=9add9982 vocab=9e65679e
+-/
 theorem MarkovEquiv.trans {G₁ G₂ G₃ : DAG V}
     (h₁ : MarkovEquiv G₁ G₂) (h₂ : MarkovEquiv G₂ G₃) : MarkovEquiv G₁ G₃ :=
   fun X Y Z => (h₁ X Y Z).trans (h₂ X Y Z)

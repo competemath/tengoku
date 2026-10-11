@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev
 
 /-- The product of positive integer distances from `j` to the indices below it is `j!`.
 
-Reflect `Finset.range j`, then use `Finset.prod_range_add_one_eq_factorial`. -/
+Reflect `Finset.range j`, then use `Finset.prod_range_add_one_eq_factorial`.
+@isnad1 id=eq.0h1v.s5.7fa25be60051 from=translated src=- shape=7092d361 vocab=693e5bd1
+-/
 theorem equispacedDistance_lower_factorial (j : ℕ) :
     (∏ i ∈ Finset.range j, ((j : ℝ) - (i : ℝ))) = (j.factorial : ℝ) := by
   calc
@@ -37,7 +39,9 @@ theorem equispacedDistance_lower_factorial (j : ℕ) :
 /-- The product of positive integer distances from `j` to the indices above it through `D`
 is `(D-j)!`.
 
-Translate `Finset.Ico (j+1) (D+1)` to `range (D-j)` and apply the factorial product formula. -/
+Translate `Finset.Ico (j+1) (D+1)` to `range (D-j)` and apply the factorial product formula.
+@isnad1 id=eq.0h2v.s6.05263f357eb8 from=translated src=- shape=81bb75b0 vocab=4a44fb45
+-/
 theorem equispacedDistance_upper_factorial (D : ℕ) (j : Fin (D + 1)) :
     (∏ i ∈ Finset.Ico ((j : ℕ) + 1) (D + 1), ((i : ℝ) - (j : ℝ))) =
       ((D - (j : ℕ)).factorial : ℝ) := by
@@ -62,6 +66,7 @@ product over the indices below `j` and the indices above `j`.
 
 Partition `univ.erase j` by `< j` and `j < ·`; use `Fin.sum_univ_eq_sum_range` or a finite
 equivalence to reindex each part, then remove the absolute values by their sign.
+@isnad1 id=eq.0h2v.s8.a26e262a8cf4 from=translated src=- shape=3282c1e3 vocab=5d0ae755
 -/
 theorem equispacedDistance_erase_split (D : ℕ) (j : Fin (D + 1)) :
     (∏ i ∈ (Finset.univ : Finset (Fin (D + 1))).erase j,

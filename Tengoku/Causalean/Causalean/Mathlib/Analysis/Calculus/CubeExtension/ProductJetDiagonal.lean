@@ -39,7 +39,9 @@ differentiate the lower-order formula in the repeated direction, using the
 within-set first-derivative product rule and the `ContDiffOn` hypotheses.
 The two shifted binomial sums combine by Pascal's identity. Mathlib's
 `iteratedDerivWithin_mul` proves the analogous one-variable formula, while
-`iteratedFDerivWithin_succ_apply_left` exposes the added slot here. -/
+`iteratedFDerivWithin_succ_apply_left` exposes the added slot here.
+@isnad1 id=eq.4h7v.s10.6045fbc8a5ad from=translated src=- shape=1918b759 vocab=ee5e5af4
+-/
 theorem iteratedFDerivWithin_mul_diagonal
     {d m : ℕ} {S : Set (Fin d → ℝ)}
     (huniq : UniqueDiffOn ℝ S)

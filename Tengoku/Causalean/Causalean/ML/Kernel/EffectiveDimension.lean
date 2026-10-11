@@ -53,17 +53,23 @@ The effective dimension is the trace-style quantity used in kernel-ridge varianc
 noncomputable def effectiveDimension (μ : ι → ℝ) (lam : ℝ) : ℝ :=
   ∑' i, μ i / (μ i + lam)
 
-/-- Each summand `μᵢ/(μᵢ+λ)` is nonnegative (for nonnegative eigenvalues and `λ > 0`). -/
+/-- Each summand `μᵢ/(μᵢ+λ)` is nonnegative (for nonnegative eigenvalues and `λ > 0`).
+@isnad1 id=le.2h4v.s6.da868b77f7ec from=translated src=- shape=c584e0c1 vocab=a36accce
+-/
 lemma effectiveDimension_term_nonneg {μ : ι → ℝ} {lam : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam : 0 < lam) (i : ι) : 0 ≤ μ i / (μ i + lam) :=
   div_nonneg (hμ i) (add_nonneg (hμ i) hlam.le)
 
-/-- Each summand is dominated by `μᵢ/λ`. -/
+/-- Each summand is dominated by `μᵢ/λ`.
+@isnad1 id=le.2h4v.s6.5c95f10990f5 from=translated src=- shape=e4c2c2b7 vocab=a36accce
+-/
 lemma effectiveDimension_term_le_div {μ : ι → ℝ} {lam : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam : 0 < lam) (i : ι) : μ i / (μ i + lam) ≤ μ i / lam := by
   gcongr <;> linarith [hμ i]
 
-/-- Each summand is at most `1`. -/
+/-- Each summand is at most `1`.
+@isnad1 id=le.2h4v.s6.407ca06fa2b4 from=translated src=- shape=3bc11063 vocab=a36accce
+-/
 lemma effectiveDimension_term_le_one {μ : ι → ℝ} {lam : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam : 0 < lam) (i : ι) : μ i / (μ i + lam) ≤ 1 := by
   rw [div_le_one (add_pos_of_nonneg_of_pos (hμ i) hlam)]
@@ -72,14 +78,18 @@ lemma effectiveDimension_term_le_one {μ : ι → ℝ} {lam : ℝ}
 /-- [The effective-dimension summands form a summable family](goal) when
 [the eigenvalues are nonnegative](hyp:hμ), [the regularization level is positive](hyp:hlam),
 and [the eigenvalue family is summable](hyp:hsum). Thus
-[the indexed spectral sum](hyp:ι,μ,lam) is genuine rather than a nonsummable-series default. -/
+[the indexed spectral sum](hyp:ι,μ,lam) is genuine rather than a nonsummable-series default.
+@isnad1 id=summable.3h3v.s6.74c4909f6a83 from=translated src=- shape=5122d83f vocab=78786a00
+-/
 lemma summable_effectiveDimension_term {μ : ι → ℝ} {lam : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam : 0 < lam) (hsum : Summable μ) :
     Summable (fun i => μ i / (μ i + lam)) :=
   Summable.of_nonneg_of_le (fun i => effectiveDimension_term_nonneg hμ hlam i)
     (fun i => effectiveDimension_term_le_div hμ hlam i) (hsum.div_const lam)
 
-/-- The effective dimension is nonnegative. -/
+/-- The effective dimension is nonnegative.
+@isnad1 id=le.2h3v.s5.c37fbe7f68c4 from=translated src=- shape=c3f8afa1 vocab=cb62ce61
+-/
 lemma effectiveDimension_nonneg {μ : ι → ℝ} {lam : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam : 0 < lam) : 0 ≤ effectiveDimension μ lam :=
   tsum_nonneg (fun i => effectiveDimension_term_nonneg hμ hlam i)
@@ -88,7 +98,9 @@ lemma effectiveDimension_nonneg {μ : ι → ℝ} {lam : ℝ}
 regularization level](goal) for [a nonnegative, summable eigenvalue family](hyp:μ,hμ,hsum)
 over [the index set](hyp:ι) at [a positive regularization level](hyp:lam,hlam). This gives
 only inverse-linear dependence on regularization; sharper decay-dependent rates require a
-separate argument. -/
+separate argument.
+@isnad1 id=le.3h3v.s6.9c74746b4aa3 from=translated src=- shape=e2879e01 vocab=22953c69
+-/
 lemma effectiveDimension_le_trace_div {μ : ι → ℝ} {lam : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam : 0 < lam) (hsum : Summable μ) :
     effectiveDimension μ lam ≤ (∑' i, μ i) / lam := by
@@ -97,7 +109,9 @@ lemma effectiveDimension_le_trace_div {μ : ι → ℝ} {lam : ℝ}
       (summable_effectiveDimension_term hμ hlam hsum) (hsum.div_const lam)
   rwa [tsum_div_const] at hle
 
-/-- Over finitely many eigenvalues, `N(λ)` never exceeds the ambient dimension `#ι`. -/
+/-- Over finitely many eigenvalues, `N(λ)` never exceeds the ambient dimension `#ι`.
+@isnad1 id=le.2h3v.s5.9a8b17cb3d68 from=translated src=- shape=0918328c vocab=7d67fc57
+-/
 lemma effectiveDimension_le_card [Fintype ι] {μ : ι → ℝ} {lam : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam : 0 < lam) :
     effectiveDimension μ lam ≤ (Fintype.card ι : ℝ) := by
@@ -110,7 +124,9 @@ lemma effectiveDimension_le_card [Fintype ι] {μ : ι → ℝ} {lam : ℝ}
 /-- If [all eigenvalues are nonnegative](hyp:hμ), [the first regularization level is
 positive](hyp:hlam₁), [the first level is no larger than the second](hyp:hle), and [the
 eigenvalues are summable](hyp:hsum), then [effective dimension is antitone in the regularization
-level](goal). -/
+level](goal).
+@isnad1 id=le.4h4v.s6.f19995e402b6 from=translated src=- shape=70ad3061 vocab=ba5bc176
+-/
 lemma effectiveDimension_antitone {μ : ι → ℝ} {lam₁ lam₂ : ℝ}
     (hμ : ∀ i, 0 ≤ μ i) (hlam₁ : 0 < lam₁) (hle : lam₁ ≤ lam₂) (hsum : Summable μ) :
     effectiveDimension μ lam₂ ≤ effectiveDimension μ lam₁ := by

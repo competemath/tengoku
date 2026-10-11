@@ -41,7 +41,9 @@ variable (G : DAG V)
 
 /-- An edge makes its endpoints inseparable: if `a` and `b` are adjacent then no
 conditioning set d-separates them, because the single edge `[a, b]` is an active walk
-regardless of the conditioning set. -/
+regardless of the conditioning set.
+@isnad1 id=not.1h5v.s5.744f0af423a6 from=translated src=- shape=145a233b vocab=af5e3254
+-/
 theorem not_dSeparable_of_uAdj {a b : V} (h : G.UAdj a b) (Z : Finset V) :
     ¬ G.dSep {a} {b} Z := by
   intro hsep
@@ -67,7 +69,9 @@ are non-adjacent, then conditioning on the parents of `y` d-separates `x` from `
 active walk from `x` to `y` ends with an edge incident to `y`; that edge cannot point *into*
 `y` (the second-to-last vertex would then be a conditioned non-collider) nor *out of* `y` (the
 second-to-last vertex would be a topological descendant of `y`, contradicting that all walk
-nodes are ancestors of `{x} ∪ {y} ∪ parents y`, all of which are `≤ y` in topological order). -/
+nodes are ancestors of `{x} ∪ {y} ∪ parents y`, all of which are `≤ y` in topological order).
+@isnad1 id=dsep.2h4v.s6.49abbefac72a from=translated src=- shape=1daeeca6 vocab=ab514d2b
+-/
 theorem dSep_parents_of_topoOrder_lt {x y : V}
     (hlt : G.topoOrder x < G.topoOrder y) (hxy : ¬ G.UAdj x y) :
     G.dSep {x} {y} (G.parents y) := by
@@ -167,7 +171,9 @@ theorem dSep_parents_of_topoOrder_lt {x y : V}
       omega
 
 /-- Two distinct non-adjacent vertices can always be d-separated: conditioning on the
-parents of the topologically later vertex blocks every active walk between them. -/
+parents of the topologically later vertex blocks every active walk between them.
+@isnad1 id=ex.2h4v.s5.3fc30d7a833a from=translated src=- shape=8455ebcf vocab=af5e3254
+-/
 theorem dSeparable_of_not_uAdj {a b : V} (hne : a ≠ b) (h : ¬ G.UAdj a b) :
     ∃ Z : Finset V, G.dSep {a} {b} Z := by
   -- Pick the topologically later endpoint; condition on its parents. The helper only needs
@@ -182,7 +188,9 @@ theorem dSeparable_of_not_uAdj {a b : V} (hne : a ≠ b) (h : ¬ G.UAdj a b) :
 
 /-- **Skeleton read-off.** For [two distinct vertices `a` and `b`](hyp:hne), [`a` and `b` are
 adjacent (in either direction) exactly when no conditioning set d-separates `a` from
-`b`](goal). -/
+`b`](goal).
+@isnad1 id=iff.1h4v.s5.4c16b23b2086 from=translated src=- shape=1d18a93a vocab=af5e3254
+-/
 theorem adjacent_iff_not_dSeparable {a b : V} (hne : a ≠ b) :
     G.UAdj a b ↔ ¬ ∃ Z : Finset V, G.dSep {a} {b} Z := by
   constructor
@@ -199,7 +207,9 @@ On an unshielded triple `x — b
 — y` whose ends satisfy `topoOrder x ≤ topoOrder y`, if `b` is *not* a collider then `b` is
 a parent of the topologically-later end `y`. Indeed the non-collider has an outgoing edge `b
 → x` or `b → y`; in the former case `b` precedes `x` hence `y`, so the adjacency `b — y`
-cannot point into `b` (that would make `b` later than `y`), forcing `b → y`. -/
+cannot point into `b` (that would make `b` later than `y`), forcing `b → y`.
+@isnad1 id=edge.4h5v.s6.e787e8b02561 from=translated src=- shape=5439da3e vocab=3cb0be19
+-/
 theorem edge_to_later_of_nonCollider {x y b : V}
     (hxy_le : G.topoOrder x ≤ G.topoOrder y)
     (hxb : G.UAdj x b) (hyb : G.UAdj y b) (hnc : ¬ G.IsCollider x b y) :
@@ -218,7 +228,9 @@ theorem edge_to_later_of_nonCollider {x y b : V}
 `b` adjacent](hyp:hab), [`c` and `b` adjacent](hyp:hcb), and [`a`, `c` non-adjacent and
 distinct](hyp:hac,hne), [the middle vertex `b` is a collider `a → b ← c` — equivalently
 `a → b ← c` is a v-structure — exactly when `b` belongs to no conditioning set that
-d-separates `a` and `c`](goal). -/
+d-separates `a` and `c`](goal).
+@isnad1 id=iff.4h5v.s6.f0eda86e710b from=translated src=- shape=b31285f5 vocab=70904d67
+-/
 theorem immorality_iff_colliderSep {a b c : V}
     (hab : G.UAdj a b) (hcb : G.UAdj c b) (hac : ¬ G.UAdj a c) (hne : a ≠ c) :
     G.IsImmorality a b c ↔ ∀ Z : Finset V, b ∈ Z → ¬ G.dSep {a} {c} Z := by
@@ -280,13 +292,17 @@ theorem immorality_iff_colliderSep {a b c : V}
           G.dSep_symm _ _ _ (G.dSep_parents_of_topoOrder_lt hlt hac')
         exact H (G.parents a) (G.mem_parents.mpr heby) hsep
 
-/-- No self-adjacency in a DAG. -/
+/-- No self-adjacency in a DAG.
+@isnad1 id=not.0h3v.s4.6aeb9a4c6961 from=translated src=- shape=5fe41743 vocab=89820734
+-/
 theorem not_uAdj_self (a : V) : ¬ G.UAdj a a :=
   fun h => h.elim (G.irrefl a) (G.irrefl a)
 
 /-- **Disjoint skeleton read-off witness.** Two distinct non-adjacent vertices are
 d-separated by a conditioning set disjoint from both endpoints (the parents of the
-topologically later one, which contain neither `a` nor `b`). -/
+topologically later one, which contain neither `a` nor `b`).
+@isnad1 id=ex.2h4v.s6.46710353e335 from=translated src=- shape=a8acc06e vocab=0d6476c3
+-/
 theorem dSeparable_disjoint_of_not_uAdj {a b : V} (hne : a ≠ b) (h : ¬ G.UAdj a b) :
     ∃ Z : Finset V, a ∉ Z ∧ b ∉ Z ∧ G.dSep {a} {b} Z := by
   have htop_ne : G.topoOrder a ≠ G.topoOrder b := fun htop => hne (G.topoOrder_injective htop)
@@ -302,7 +318,9 @@ theorem dSeparable_disjoint_of_not_uAdj {a b : V} (hne : a ≠ b) (h : ¬ G.UAdj
 /-- **Disjoint collider read-off.** For an unshielded triple `a — b — c`, `b` is the
 collider `a → b ← c` iff every separator of `a, c` that contains `b` and excludes `a, c`
 fails to d-separate — equivalently, `b` lies in no such separator. (The endpoint-disjoint
-form used to transport immoralities across Markov-equivalent graphs.) -/
+form used to transport immoralities across Markov-equivalent graphs.)
+@isnad1 id=iff.4h5v.s6.40687590b298 from=translated src=- shape=4ff4f0f2 vocab=70904d67
+-/
 theorem immorality_iff_colliderSep_disjoint {a b c : V}
     (hab : G.UAdj a b) (hcb : G.UAdj c b) (hac : ¬ G.UAdj a c) (hne : a ≠ c) :
     G.IsImmorality a b c ↔ ∀ Z : Finset V, b ∈ Z → a ∉ Z → c ∉ Z → ¬ G.dSep {a} {c} Z := by
@@ -334,7 +352,9 @@ end DAG
 
 namespace MarkovEquiv
 
-/-- **Markov equivalence ⇒ same skeleton.** -/
+/-- **Markov equivalence ⇒ same skeleton.**
+@isnad1 id=sameskel.1h3v.s4.598b91fe5b72 from=translated src=- shape=e171c694 vocab=1fd5d6b2
+-/
 theorem sameSkeleton_of_markovEquiv {G₁ G₂ : DAG V} (h : MarkovEquiv G₁ G₂) :
     SameSkeleton G₁ G₂ := by
   -- One-directional transfer: a disjoint separator of a non-adjacent pair transports.
@@ -351,7 +371,9 @@ theorem sameSkeleton_of_markovEquiv {G₁ G₂ : DAG V} (h : MarkovEquiv G₁ G�
     · intro h1; by_contra h2; exact key h.symm a b hne h2 h1
     · intro h1; by_contra h2; exact key h a b hne h2 h1
 
-/-- **Markov equivalence ⇒ same v-structures.** -/
+/-- **Markov equivalence ⇒ same v-structures.**
+@isnad1 id=sameimmo.1h3v.s4.5f56698d634a from=translated src=- shape=e171c694 vocab=28b8b011
+-/
 theorem sameImmoralities_of_markovEquiv {G₁ G₂ : DAG V} (h : MarkovEquiv G₁ G₂) :
     SameImmoralities G₁ G₂ := by
   have hskel : SameSkeleton G₁ G₂ := sameSkeleton_of_markovEquiv h
@@ -386,7 +408,9 @@ theorem sameImmoralities_of_markovEquiv {G₁ G₂ : DAG V} (h : MarkovEquiv G�
 
 /-- **Easy direction of Verma–Pearl.** For [two DAGs `G₁`, `G₂`](hyp:G₁,G₂), if
 [they are Markov equivalent](hyp:h) then [they share the same skeleton and the same
-v-structures (immoralities)](goal). -/
+v-structures (immoralities)](goal).
+@isnad1 id=and.1h3v.s5.03d91d307a19 from=translated src=- shape=170314ed vocab=50933850
+-/
 theorem sameSkeleton_sameImmoralities_of_markovEquiv {G₁ G₂ : DAG V}
     (h : MarkovEquiv G₁ G₂) : SameSkeleton G₁ G₂ ∧ SameImmoralities G₁ G₂ :=
   ⟨sameSkeleton_of_markovEquiv h, sameImmoralities_of_markovEquiv h⟩

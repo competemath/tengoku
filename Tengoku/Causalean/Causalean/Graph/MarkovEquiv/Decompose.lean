@@ -28,25 +28,35 @@ variable {V : Type*} [DecidableEq V] [Fintype V]
 
 namespace MarkovEquiv
 
-/-- `SameSkeleton` is symmetric. -/
+/-- `SameSkeleton` is symmetric.
+@isnad1 id=sameskel.1h3v.s4.d153aa806352 from=translated src=- shape=27d6db21 vocab=3ca184d3
+-/
 theorem SameSkeleton.symm {G₁ G₂ : DAG V} (h : SameSkeleton G₁ G₂) : SameSkeleton G₂ G₁ :=
   fun a b => (h a b).symm
 
-/-- `SameSkeleton` is transitive. -/
+/-- `SameSkeleton` is transitive.
+@isnad1 id=sameskel.2h4v.s5.7f70615488a2 from=translated src=- shape=9add9982 vocab=3ca184d3
+-/
 theorem SameSkeleton.trans {G₁ G₂ G₃ : DAG V} (h₁ : SameSkeleton G₁ G₂)
     (h₂ : SameSkeleton G₂ G₃) : SameSkeleton G₁ G₃ := fun a b => (h₁ a b).trans (h₂ a b)
 
-/-- `SameImmoralities` is symmetric. -/
+/-- `SameImmoralities` is symmetric.
+@isnad1 id=sameimmo.1h3v.s4.8ebeca6be86a from=translated src=- shape=27d6db21 vocab=be35fa77
+-/
 theorem SameImmoralities.symm {G₁ G₂ : DAG V} (h : SameImmoralities G₁ G₂) :
     SameImmoralities G₂ G₁ := fun a b c => (h a b c).symm
 
-/-- `SameImmoralities` is transitive. -/
+/-- `SameImmoralities` is transitive.
+@isnad1 id=sameimmo.2h4v.s5.c0b334a042b9 from=translated src=- shape=9add9982 vocab=be35fa77
+-/
 theorem SameImmoralities.trans {G₁ G₂ G₃ : DAG V} (h₁ : SameImmoralities G₁ G₂)
     (h₂ : SameImmoralities G₂ G₃) : SameImmoralities G₁ G₃ :=
   fun a b c => (h₁ a b c).trans (h₂ a b c)
 
 /-- **Edge-congruence for Markov equivalence.** DAGs with the same directed-edge relation are
-Markov equivalent (d-separation depends only on the edge relation). -/
+Markov equivalent (d-separation depends only on the edge relation).
+@isnad1 id=markoveq.1h3v.s5.f2ccc83f670f from=translated src=- shape=d19a3a1f vocab=cfcfd029
+-/
 theorem markovEquiv_of_same_edge {G₁ G₂ : DAG V}
     (he : ∀ u w, G₁.edge u w ↔ G₂.edge u w) : MarkovEquiv G₁ G₂ := by
   intro X Y Z
@@ -74,7 +84,9 @@ def edgeDiff (G₁ G₂ : DAG V) : Finset (V × V) :=
 first graph that are absent from the second graph. -/
 def edgeDiffCount (G₁ G₂ : DAG V) : ℕ := (edgeDiff G₁ G₂).card
 
-/-- With a one-way skeleton inclusion, an empty edge-difference forces equal edge relations. -/
+/-- With a one-way skeleton inclusion, an empty edge-difference forces equal edge relations.
+@isnad1 id=iff.2h5v.s6.53944656f8b0 from=translated src=- shape=9e5ab4a0 vocab=36ca5fc5
+-/
 theorem same_edge_of_edgeDiff_empty {G₁ G₂ : DAG V}
     (hskel : ∀ u w, G₂.UAdj u w → G₁.UAdj u w)
     (h : edgeDiff G₁ G₂ = ∅) : ∀ u w, G₁.edge u w ↔ G₂.edge u w := by
@@ -97,7 +109,9 @@ vertex set, suppose [`G₁` and `G₂` have the same skeleton](hyp:hskel),
 [a covered `G₁` edge that is reversed in `G₂` exists](goal). The proof
 chooses a head of a reversed edge that is minimal in the first graph's topological order, then
 a tail into that head that is maximal among reversed tails; the skeleton and immorality
-hypotheses force this edge to have the same non-tail parents at both endpoints. -/
+hypotheses force this edge to have the same non-tail parents at both endpoints.
+@isnad1 id=ex.4h5v.s6.6963e991a3e8 from=translated src=- shape=51edc8fa vocab=fe76c9c0
+-/
 theorem exists_covered_reversed_edge {G₁ G₂ : DAG V} (hskel : SameSkeleton G₁ G₂)
     (himm : SameImmoralities G₁ G₂) {a₀ b₀ : V} (h₀ : G₁.edge a₀ b₀) (h₀' : G₂.edge b₀ a₀) :
     ∃ a b, G₁.edge a b ∧ G₂.edge b a ∧ G₁.IsCoveredEdge a b := by
@@ -190,7 +204,9 @@ theorem exists_covered_reversed_edge {G₁ G₂ : DAG V} (hskel : SameSkeleton G
     · exact hiff ⟨fun h => False.elim (hca h), fun h => False.elim (hcb h)⟩
 
 /-- Flipping a covered, oppositely oriented edge strictly decreases the edge-difference count
-(it fixes exactly the pair `(a,b)` and changes nothing else). -/
+(it fixes exactly the pair `(a,b)` and changes nothing else).
+@isnad1 id=lt.2h5v.s5.cfb91f8f9a3f from=translated src=- shape=c78d89fa vocab=808ddb27
+-/
 theorem edgeDiffCount_flipEdge_lt {G₁ G₂ : DAG V} {a b : V}
     (hcov : G₁.IsCoveredEdge a b) (hba : G₂.edge b a) :
     edgeDiffCount (DAG.flipEdge hcov) G₂ < edgeDiffCount G₁ G₂ := by
@@ -243,7 +259,9 @@ private theorem markovEquiv_covered_aux (G₂ : DAG V) :
 vertex set, if [`G₁` and `G₂` have the same skeleton](hyp:hskel) and [the same
 immoralities](hyp:himm), then [`G₁` and `G₂` are Markov equivalent: they license exactly the
 same d-separation statements](goal) — proven via AMP Lemma 3.2 (covered-edge reversals),
-independent of the moralization/ancestral kernel. -/
+independent of the moralization/ancestral kernel.
+@isnad1 id=markoveq.2h3v.s5.427b3398194f from=translated src=- shape=815a64de vocab=50933850
+-/
 theorem markovEquiv_of_sameSkeleton_sameImmoralities {G₁ G₂ : DAG V}
     (hskel : SameSkeleton G₁ G₂) (himm : SameImmoralities G₁ G₂) : MarkovEquiv G₁ G₂ :=
   markovEquiv_covered_aux G₂ (edgeDiffCount G₁ G₂) G₁ hskel himm rfl

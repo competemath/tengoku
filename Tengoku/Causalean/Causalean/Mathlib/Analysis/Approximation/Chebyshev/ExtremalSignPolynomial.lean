@@ -260,7 +260,9 @@ interval between them](hyp:hg) whose [supremum norm there is strictly positive](
 degree bound L](hyp:L), if [g has no L + 2 alternating extrema, for any nodes and
 orientation](hyp:hno), then [there is a polynomial of degree at most L whose product with g is
 strictly positive at every point of the interval where the absolute value of g equals its supremum
-norm](goal). -/
+norm](goal).
+@isnad1 id=ex.4h4v.s7.4e8dd5de5c21 from=translated src=- shape=01233603 vocab=1f73682b
+-/
 theorem exists_signPolynomial_of_no_alternatingExtrema
     {g : ℝ → ℝ} {r s : ℝ} (hrs : r < s)
     (hg : ContinuousOn g (Set.Icc r s)) (L : ℕ)

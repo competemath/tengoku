@@ -14,7 +14,9 @@ namespace Causalean.Mathlib.Analysis.Approximation.Chebyshev.Jackson
 
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN) and [any real angle u](hyp:u), [the
 second derivative of the packet antiderivative at u equals the oscillatory Jackson packet at
-u](goal). -/
+u](goal).
+@isnad1 id=eq.1h2v.s6.0f4a1f0247c1 from=translated src=- shape=a451febe vocab=53f69b46
+-/
 theorem packet_twice_deriv (N : ℕ) (hN : 2 ≤ N) (u : ℝ) :
     deriv (deriv (packetAntideriv N)) u = packetOscillation N u := by
   let S : Finset ℤ := Finset.Icc (-((2 * N - 2 : ℕ) : ℤ)) ((2 * N - 2 : ℕ) : ℤ)

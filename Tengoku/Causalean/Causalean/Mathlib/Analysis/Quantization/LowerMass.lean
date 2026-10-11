@@ -16,7 +16,9 @@ namespace Causalean.Mathlib.Analysis.Quantization
 weight family](hyp:S,k,hS) with [continuous strictly positive
 weights](hyp:β,hcont,hpos),
 and [a measurable partition with reproductions and a distance threshold](hyp:B,z,hB,δ),
-[total square-root mass minus bad-region mass equals good-region mass](goal). -/
+[total square-root mass minus bad-region mass equals good-region mass](goal).
+@isnad1 id=eq.5h8v.s8.7c750d74c140 from=translated src=- shape=ff9f85b8 vocab=fd21de68
+-/
 theorem partition_good_mass_identity (a b : ℝ) (hab : a < b)
     (S k : ℕ) (hS : 0 < S) (β : Fin S → ℝ → ℝ → ℝ)
     (hcont : ∀ s, ContinuousOn (fun p : ℝ × ℝ => β s p.1 p.2)

@@ -317,7 +317,9 @@ noncomputable def absChebPoly (m : ℕ) : Polynomial ℝ :=
       ((4 / Real.pi) * (-1 : ℝ) ^ j / (4 * ((j + 1 : ℕ) : ℝ) ^ 2 - 1)) •
         Polynomial.Chebyshev.T ℝ (2 * (j + 1) : ℕ)
 
-/-- [The truncation at a real argument](hyp:m,x) [evaluates to the constant term plus the finite absolute-value Chebyshev series](goal). -/
+/-- [The truncation at a real argument](hyp:m,x) [evaluates to the constant term plus the finite absolute-value Chebyshev series](goal).
+@isnad1 id=eq.0h2v.s5.6d92daab78cf from=translated src=- shape=74f9ee5d vocab=ea0f9544
+-/
 lemma absChebPoly_eval (m : ℕ) (x : ℝ) :
     (absChebPoly m).eval x = 2 / Real.pi + ∑ j ∈ Finset.range m, absChebTerm j x := by
   rw [absChebPoly, Polynomial.eval_add, Polynomial.eval_C]
@@ -329,7 +331,9 @@ lemma absChebPoly_eval (m : ℕ) (x : ℝ) :
   simp [absChebTerm]
   ring
 
-/-- [The explicit truncation with the specified length](hyp:m) has [degree at most twice that length](goal). -/
+/-- [The explicit truncation with the specified length](hyp:m) has [degree at most twice that length](goal).
+@isnad1 id=le.0h1v.s4.d57272e2c713 from=translated src=- shape=e96f2693 vocab=33eea138
+-/
 lemma absChebPoly_natDegree_le (m : ℕ) :
     (absChebPoly m).natDegree ≤ 2 * m := by
   apply (Polynomial.natDegree_add_le _ _).trans
@@ -360,7 +364,9 @@ private lemma abs_absChebTerm_le (j : ℕ) {x : ℝ} (hx : |x| ≤ 1) :
 /-- [The explicit truncation](hyp:m) at [an argument in the closed unit interval](hyp:hx) has [absolute error at most two divided by pi times twice the truncation length plus one](goal).
 
 The estimate follows from the Fourier series of absolute sine and the exact telescoping
-sum of the discarded coefficient magnitudes. -/
+sum of the discarded coefficient magnitudes.
+@isnad1 id=le.1h2v.s6.5bf81a59d22d from=translated src=- shape=5bfdd5ca vocab=be0800fe
+-/
 lemma absChebPoly_error_le (m : ℕ) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     abs (abs x - (absChebPoly m).eval x) ≤
@@ -415,7 +421,9 @@ private lemma bestUniformApproxErrorAbs_le_explicit {K : ℕ} {p : Polynomial �
 /-- For [a positive polynomial degree](hyp:K,hK), [the best absolute-value approximation error is at most one divided by that degree](goal).
 
  Every positive degree admits an absolute-value approximating polynomial
-with best error at most `1 / K`. -/
+with best error at most `1 / K`.
+@isnad1 id=le.1h1v.s5.f835b77040b3 from=translated src=- shape=f2a83fe8 vocab=9d5da2c0
+-/
 theorem bestUniformApproxErrorAbs_upper (K : ℕ) (hK : 0 < K) :
     bestUniformApproxErrorAbs K ≤ 1 / (K : ℝ) := by
   let m := K / 2
@@ -637,7 +645,9 @@ private lemma cuspFunctional_doubleSinCircle_lower (n : ℕ) (hn : 0 < n) :
 /-- For [a positive polynomial degree](hyp:K,hK), [the cusp of absolute value forces the stated inverse-degree lower bound](goal).
 
  The cusp at zero forces every positive-degree polynomial approximation of
-absolute value to incur error at least `(1/100) / K`. -/
+absolute value to incur error at least `(1/100) / K`.
+@isnad1 id=le.1h1v.s5.4ae18f53eb30 from=translated src=- shape=7f78a49f vocab=9d5da2c0
+-/
 theorem bestUniformApproxErrorAbs_lower (K : ℕ) (hK : 0 < K) :
     (1 / 100 : ℝ) / (K : ℝ) ≤ bestUniformApproxErrorAbs K := by
   -- Symmetrizing a best approximant and using only a Markov derivative bound
@@ -698,7 +708,9 @@ theorem bestUniformApproxErrorAbs_lower (K : ℕ) (hK : 0 < K) :
 /-- [There are universal positive constants](goal) that sandwich the best absolute-value approximation error between constant multiples of the reciprocal degree for every positive degree.
 
  Universal positive constants sandwich the best approximation error between
-constant multiples of `1 / K` for every positive degree. -/
+constant multiples of `1 / K` for every positive degree.
+@isnad1 id=ex.0h0v.s6.63f9eb99b6c4 from=translated src=- shape=5f291cf8 vocab=9d5da2c0
+-/
 theorem bestUniformApproxErrorAbs_order :
     ∃ c C : ℝ, 0 < c ∧ c ≤ C ∧
       ∀ K : ℕ, 0 < K →

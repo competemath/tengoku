@@ -126,11 +126,15 @@ def sha256 (msg : List UInt8) : List UInt8 := stateBytes (sha256State msg)
 block hashes, and merkle nodes. -/
 def sha256d (msg : List UInt8) : List UInt8 := sha256 (sha256 msg)
 
-/-- A SHA-256 digest is exactly 32 bytes. -/
+/-- A SHA-256 digest is exactly 32 bytes.
+@isnad1 id=eq.0h1v.s3.3a0469888cb9 from=translated src=- shape=3ef63426 vocab=45292cf2
+-/
 theorem sha256_length (msg : List UInt8) : (sha256 msg).length = 32 := by
   simp [sha256, stateBytes, wordBytes]
 
-/-- A double-SHA-256 digest is exactly 32 bytes. -/
+/-- A double-SHA-256 digest is exactly 32 bytes.
+@isnad1 id=eq.0h1v.s3.92904122aa9e from=translated src=- shape=3ef63426 vocab=121123cb
+-/
 theorem sha256d_length (msg : List UInt8) : (sha256d msg).length = 32 :=
   sha256_length _
 
@@ -144,19 +148,25 @@ abbrev Collision : Prop := BtcVerified.Collision sha256d
 /-- Bitcoin's double hashing inherits collision resistance from `sha256`: a
 `sha256d` collision is a `sha256` collision (in the outer call if the inner
 digests differ, in the inner call otherwise), so resistance of `sha256` gives
-resistance of `sha256d = sha256 ∘ sha256`. -/
+resistance of `sha256d = sha256 ∘ sha256`.
+@isnad1 id=collisio.1h0v.s3.7238b05adccf from=translated src=- shape=e6f007a7 vocab=200e3987
+-/
 theorem collisionResistant_sha256d (h : CollisionResistant sha256) :
     CollisionResistant sha256d :=
   h.comp h
 
 /-- The converse: a `sha256d` collision forces a `sha256` collision in the inner
 call, so resistance of `sha256d` gives resistance of `sha256`. Together with
-`collisionResistant_sha256d`, the two resistances are equivalent. -/
+`collisionResistant_sha256d`, the two resistances are equivalent.
+@isnad1 id=collisio.1h0v.s3.0c6cfeae6484 from=translated src=- shape=e6f007a7 vocab=200e3987
+-/
 theorem collisionResistant_sha256_of_sha256d (h : CollisionResistant sha256d) :
     CollisionResistant sha256 :=
   CollisionResistant.of_comp (f := sha256) (g := sha256) h
 
-/-- Collision resistance of `sha256` and of `sha256d` are equivalent. -/
+/-- Collision resistance of `sha256` and of `sha256d` are equivalent.
+@isnad1 id=iff.0h0v.s3.969ff50d1dd3 from=translated src=- shape=f22f7c30 vocab=200e3987
+-/
 theorem collisionResistant_sha256_iff_sha256d :
     CollisionResistant sha256 ↔ CollisionResistant sha256d :=
   ⟨collisionResistant_sha256d, collisionResistant_sha256_of_sha256d⟩

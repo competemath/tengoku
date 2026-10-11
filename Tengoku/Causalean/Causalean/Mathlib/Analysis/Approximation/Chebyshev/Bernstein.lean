@@ -64,7 +64,9 @@ noncomputable def czSup (R : Polynomial ℝ) : ℝ :=
   sSup ((fun t => |czTrig R t|) '' Set.Icc 0 Real.pi)
 
 /-- The [cosine-parametrized transform of a real polynomial](hyp:R) is
-[continuous on the real line](goal). -/
+[continuous on the real line](goal).
+@isnad1 id=continuo.0h1v.s4.13909eceb480 from=translated src=- shape=0d7ff717 vocab=d03cb0ee
+-/
 @[fun_prop]
 theorem czTrig_continuous (R : Polynomial ℝ) : Continuous (czTrig R) := by
   unfold czTrig
@@ -72,7 +74,9 @@ theorem czTrig_continuous (R : Polynomial ℝ) : Continuous (czTrig R) := by
 
 /-- The [cosine-transform sup norm of a real polynomial](hyp:R) is
 [attained at some angle between zero and π](goal). This is the extreme-value theorem applied to
-the continuous absolute transform on that compact interval. -/
+the continuous absolute transform on that compact interval.
+@isnad1 id=ex.0h1v.s5.c5a1deff600c from=translated src=- shape=42a2f53f vocab=202dff12
+-/
 theorem czSup_attained (R : Polynomial ℝ) :
     ∃ t₀ ∈ Set.Icc (0 : ℝ) Real.pi, |czTrig R t₀| = czSup R := by
   classical
@@ -83,14 +87,18 @@ theorem czSup_attained (R : Polynomial ℝ) :
   rcases hK.exists_sSup_image_eq hne hcont with ⟨t₀, ht₀, hsup⟩
   exact ⟨t₀, ht₀, hsup.symm⟩
 
-/-- The [cosine-transform sup norm of a real polynomial](hyp:R) is [nonnegative](goal). -/
+/-- The [cosine-transform sup norm of a real polynomial](hyp:R) is [nonnegative](goal).
+@isnad1 id=le.0h1v.s3.b5791536768a from=translated src=- shape=b29cab32 vocab=7872c480
+-/
 theorem czSup_nonneg (R : Polynomial ℝ) : 0 ≤ czSup R := by
   rcases czSup_attained R with ⟨t₀, _ht₀, hsup⟩
   rw [← hsup]
   exact abs_nonneg _
 
 /-- At [any angle between zero and π](hyp:t,ht), the absolute cosine-parametrized value of
-[a real polynomial](hyp:R) is [bounded by its cosine-transform sup norm](goal). -/
+[a real polynomial](hyp:R) is [bounded by its cosine-transform sup norm](goal).
+@isnad1 id=le.1h2v.s5.2b5d3bfa8a08 from=translated src=- shape=8f566869 vocab=2ac8fa45
+-/
 theorem abs_czTrig_le_czSup (R : Polynomial ℝ) {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) Real.pi) :
     |czTrig R t| ≤ czSup R := by
   classical
@@ -107,7 +115,9 @@ Equivalently, with `Q = czTrig R` one has `Q'(t)² + β² Q(t)² ≤ β² M²`. 
 sharp Bernstein/Szegő bound for trigonometric polynomials of degree `β`; it is the
 only genuinely deep ingredient of the Ehlich–Zeller mesh inequality and must be
 proved from the trigonometric-polynomial structure of `czTrig R` (e.g. via the
-Riesz interpolation formula), *not* assumed. -/
+Riesz interpolation formula), *not* assumed.
+@isnad1 id=le.1h3v.s6.d689eaa68570 from=translated src=- shape=33e87907 vocab=26caef8c
+-/
 theorem czTrig_szego_deriv (R : Polynomial ℝ) (β : ℕ) (hβ : R.natDegree ≤ β) (t : ℝ) :
     |deriv (czTrig R) t| ≤ (β : ℝ) * Real.sqrt ((czSup R) ^ 2 - (czTrig R t) ^ 2) := by
   let S : Polynomial ℝ := R.comp (-(Polynomial.X : Polynomial ℝ))
@@ -165,7 +175,9 @@ theorem czTrig_szego_deriv (R : Polynomial ℝ) (β : ℕ) (hβ : R.natDegree �
 bound](hyp:β,hβ), normalized by its sup norm plus [a positive regularizer](hyp:δ,hδ), is
 evaluated at [any two specified angles in the interval from zero to π](hyp:s,t,hs,ht), with
 [the difference of the resulting arccosine values bounded by the degree times their
-distance](goal). -/
+distance](goal).
+@isnad1 id=le.4h5v.s7.dd516b8aa53b from=translated src=- shape=a5d2d373 vocab=99e70f68
+-/
 theorem czTrig_arccos_lipschitz_regularized (R : Polynomial ℝ) (β : ℕ)
     (hβ : R.natDegree ≤ β) {δ : ℝ} (hδ : 0 < δ) {s t : ℝ}
     (hs : s ∈ Set.Icc 0 Real.pi) (ht : t ∈ Set.Icc 0 Real.pi) :
@@ -289,7 +301,9 @@ angles](goal).
 This follows from `czTrig_szego_deriv`: on the open region where `|Q| < M` the
 derivative of `arccos (Q/M)` has magnitude `|Q'| / √(M² − Q²) ≤ β`, and the
 mean-value boundary lemma extends the Lipschitz estimate across the points where
-`Q = ±M`. -/
+`Q = ±M`.
+@isnad1 id=le.4h4v.s7.9289613af41b from=translated src=- shape=a6901753 vocab=09f888d1
+-/
 theorem czTrig_arccos_lipschitz (R : Polynomial ℝ) (β : ℕ) (hβ : R.natDegree ≤ β)
     (hM : 0 < czSup R) {s t : ℝ} (hs : s ∈ Set.Icc 0 Real.pi) (ht : t ∈ Set.Icc 0 Real.pi) :
     |Real.arccos (czTrig R t / czSup R) - Real.arccos (czTrig R s / czSup R)|
@@ -347,7 +361,9 @@ Proof sketch: put `φ(u) = arccos(czTrig R u / M)`.  Then `φ(t₀) = arccos 1 =
 and by `czTrig_arccos_lipschitz`, `φ(s) = |φ(s) − φ(t₀)| ≤ β·|t₀ − s|`.  Since
 `β·|t₀ − s| ≤ π/2` and `cos` is antitone on `[0, π]`, taking `cos` gives
 `czTrig R s / M = cos(φ(s)) ≥ cos(β·|t₀ − s|)`, whence the claim.  (The sign case
-`czTrig R t₀ = -M` is handled by the mesh file by replacing `R` with `-R`.) -/
+`czTrig R t₀ = -M` is handled by the mesh file by replacing `R` with `-R`.)
+@isnad1 id=le.6h4v.s7.a315a93424b0 from=translated src=- shape=83b188f8 vocab=c6b2caa2
+-/
 theorem czTrig_maximizer_bound (R : Polynomial ℝ) (β : ℕ) (hβ : R.natDegree ≤ β)
     (hM : 0 < czSup R) {t₀ s : ℝ} (ht₀ : t₀ ∈ Set.Icc 0 Real.pi) (hs : s ∈ Set.Icc 0 Real.pi)
     (hmax : czTrig R t₀ = czSup R) (hclose : (β : ℝ) * |t₀ - s| ≤ Real.pi / 2) :

@@ -45,13 +45,17 @@ def nodeAncestralClosure (G : Causalean.Graph.DAG V) (i : V) : Finset V :=
   insert i (G.ancestors i)
 
 /-- A [queried node](hyp:i) and a [candidate node](hyp:j) [satisfy ancestral-closure membership
-exactly when the candidate is the queried node or an ancestor of it](goal). -/
+exactly when the candidate is the queried node or an ancestor of it](goal).
+@isnad1 id=iff.0h4v.s5.c0c9fe05ddfa from=translated src=- shape=d645f1d8 vocab=cd382f3a
+-/
 theorem mem_nodeAncestralClosure_iff {i j : V} :
     j ∈ nodeAncestralClosure G i ↔ j = i ∨ G.isAncestor j i := by
   -- Unfold the closure and the graph's `ancestors` membership characterization.
   simp only [nodeAncestralClosure, Finset.mem_insert, G.mem_ancestors]
 
-/-- A [node](hyp:i) [has an ancestral closure that contains every parent of each of its nodes](goal). -/
+/-- A [node](hyp:i) [has an ancestral closure that contains every parent of each of its nodes](goal).
+@isnad1 id=parentcl.0h3v.s4.a2eef2cc28dc from=translated src=- shape=a6e41627 vocab=9cbad6b8
+-/
 theorem parentClosed_nodeAncestralClosure (i : V) :
     ParentClosed G (nodeAncestralClosure G i) := by
   -- A parent of `i` is an ancestor; a parent of an ancestor reaches `i` by transitivity.
@@ -62,7 +66,9 @@ theorem parentClosed_nodeAncestralClosure (i : V) :
   · exact Or.inr (G.isAncestor_trans
       (G.mem_ancestors.mp (G.parents_subset_ancestors k hl)) hki)
 
-/-- A [node](hyp:i) [and all of its parents belong to that node's ancestral closure](goal). -/
+/-- A [node](hyp:i) [and all of its parents belong to that node's ancestral closure](goal).
+@isnad1 id=le.0h3v.s5.047543432d3f from=translated src=- shape=701dc572 vocab=4bcfb6ea
+-/
 theorem selfParents_subset_nodeAncestralClosure (i : V) :
     insert i (G.parents i) ⊆ nodeAncestralClosure G i := by
   -- Combine self-membership with `G.parents_subset_ancestors i`.
@@ -74,7 +80,9 @@ theorem selfParents_subset_nodeAncestralClosure (i : V) :
 
 /-- A [DAG factorization](hyp:B), a [parent-closed retained set](hyp:hA), an [intervention target
 outside that set](hyp:hj), and a [normalized replacement density](hyp:q) [give identical
-observational and interventional marginals on the retained set](goal). -/
+observational and interventional marginals on the retained set](goal).
+@isnad1 id=eq.2h8v.s9.96ee1707e745 from=translated src=- shape=0beb8606 vocab=3802c0df
+-/
 theorem Factorization.parentClosed_marginal_eq
     (B : Factorization G X μ) {A : Finset V} (hA : ParentClosed G A)
     {j : V} (hj : j ∉ A) (q : InterventionDensity j X μ) :
@@ -89,7 +97,9 @@ theorem Factorization.parentClosed_marginal_eq
 /-- A [DAG factorization](hyp:B), [distinct intervention and queried nodes](hyp:hji), evidence
 that [the intervention target is not an ancestor of the queried node](hyp:hnotAncestor), and a
 [normalized replacement density](hyp:q) [give identical observational and interventional laws on
-the queried node's ancestral closure](goal). -/
+the queried node's ancestral closure](goal).
+@isnad1 id=eq.2h8v.s9.1149dbdd3eee from=translated src=- shape=778bec53 vocab=2d4a4178
+-/
 theorem Factorization.ancestralMarginal_eq
     (B : Factorization G X μ) {i j : V} (hji : j ≠ i)
     (hnotAncestor : ¬ G.isAncestor j i) (q : InterventionDensity j X μ) :
@@ -107,7 +117,9 @@ theorem Factorization.ancestralMarginal_eq
 that [the intervention target is not an ancestor of the queried node](hyp:hnotAncestor), a
 [normalized replacement density](hyp:q), a [measurable outcome map](hyp:f,hf), its [dependence
 only on the queried node's ancestral closure](hyp:hdepends), and an [anchor assignment](hyp:x₀)
-[give the same observational and interventional outcome law](goal). -/
+[give the same observational and interventional outcome law](goal).
+@isnad1 id=eq.4h11v.s7.9d4fb8b8c1f8 from=translated src=- shape=2fbe3c84 vocab=11a50760
+-/
 theorem Factorization.map_eq_of_dependsOn_nodeAncestralClosure
     (B : Factorization G X μ) {i j : V} (hji : j ≠ i)
     (hnotAncestor : ¬ G.isAncestor j i) (q : InterventionDensity j X μ)
@@ -123,7 +135,9 @@ theorem Factorization.map_eq_of_dependsOn_nodeAncestralClosure
 /-- A [DAG factorization](hyp:B), [distinct intervention and queried nodes](hyp:hji), evidence
 that [the intervention target is not an ancestor of the queried node](hyp:hnotAncestor), a
 [normalized replacement density](hyp:q), and a [measurable map of the ancestral subproduct](hyp:mix,hmix)
-[give the same observational and interventional law after that map](goal). -/
+[give the same observational and interventional law after that map](goal).
+@isnad1 id=eq.3h10v.s8.0fbe8f6e8557 from=translated src=- shape=cba21107 vocab=83d505b8
+-/
 theorem Factorization.map_ancestralProjection_eq
     (B : Factorization G X μ) {i j : V} (hji : j ≠ i)
     (hnotAncestor : ¬ G.isAncestor j i) (q : InterventionDensity j X μ)
@@ -163,7 +177,9 @@ variable {μ : ∀ i, Measure (X i)} [∀ i, SigmaFinite (μ i)]
 variable {G : Causalean.Graph.DAG V}
 
 /-- The [observational density of a normalized finite DAG factorization](hyp:B) [has finite
-integral against the product reference measure](goal). -/
+integral against the product reference measure](goal).
+@isnad1 id=lt.0h5v.s6.f2c6623a6470 from=translated src=- shape=82a98ddb vocab=d21a81b0
+-/
 theorem Factorization.lintegral_observationalDensity_lt_top
     (B : Factorization G X μ) :
     ∫⁻ x, B.observationalDensity x ∂Measure.pi μ < ∞ := by
@@ -190,7 +206,9 @@ theorem Factorization.lintegral_observationalDensity_lt_top
     exact ENNReal.zero_lt_top
 
 /-- The [observational measure induced by a normalized finite DAG factorization](hyp:B) [is a
-finite measure](goal). -/
+finite measure](goal).
+@isnad1 id=isfinite.0h5v.s6.eb0b5986abe2 from=translated src=- shape=7930bb13 vocab=64e1a499
+-/
 noncomputable instance Factorization.instIsFiniteMeasureObservationalMeasure
     (B : Factorization G X μ) : IsFiniteMeasure B.observationalMeasure := by
   rw [Factorization.observationalMeasure]

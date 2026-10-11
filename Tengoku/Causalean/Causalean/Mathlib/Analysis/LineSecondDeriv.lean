@@ -50,12 +50,16 @@ the direction twice. -/
 noncomputable def secondDirDeriv (f : E → ℝ) (d : E) (q : E) : ℝ :=
   fderiv ℝ (fun x => fderiv ℝ f x d) q d
 
-/-- The line `s ↦ q + s • d` is differentiable with derivative `d`, as a `HasDerivAt`. -/
+/-- The line `s ↦ q + s • d` is differentiable with derivative `d`, as a `HasDerivAt`.
+@isnad1 id=hasderiv.0h4v.s7.a34ac3bb52d2 from=translated src=- shape=405da137 vocab=841bf814
+-/
 lemma hasDerivAt_line (q d : E) (t : ℝ) :
     HasDerivAt (fun s : ℝ => q + s • d) d t := by
   simpa using ((hasDerivAt_id t).smul_const d).const_add q
 
-/-- **First directional derivative along a line.** -/
+/-- **First directional derivative along a line.**
+@isnad1 id=eq.1h5v.s9.b605f04885b9 from=translated src=- shape=9f4c8040 vocab=05fad962
+-/
 lemma deriv_line {f : E → ℝ} (q d : E) (t : ℝ)
     (hf : DifferentiableAt ℝ f (q + t • d)) :
     deriv (fun s : ℝ => f (q + s • d)) t = fderiv ℝ f (q + t • d) d := by
@@ -63,14 +67,18 @@ lemma deriv_line {f : E → ℝ} (q d : E) (t : ℝ)
     (hf.hasFDerivAt.comp_hasDerivAt t (hasDerivAt_line q d t)).deriv
 
 /-- `x ↦ fderiv ℝ f x d` is `Cⁿ` when `f` is `Cⁿ⁺¹`. It is the composition of the
-derivative map with the continuous linear evaluation `L ↦ L d`. -/
+derivative map with the continuous linear evaluation `L ↦ L d`.
+@isnad1 id=contdiff.1h4v.s8.61742c6192cd from=translated src=- shape=a0361d4e vocab=8b881610
+-/
 lemma contDiff_one_fderiv_apply {n : ℕ} {f : E → ℝ}
     (hf : ContDiff ℝ (n + 1) f) (d : E) :
     ContDiff ℝ n (fun x => fderiv ℝ f x d) := by
   exact (ContinuousLinearMap.apply ℝ ℝ d).contDiff.comp
     (hf.fderiv_right (m := n) (by rfl))
 
-/-- `x ↦ fderiv ℝ f x d` is differentiable when `f` is `C²`. -/
+/-- `x ↦ fderiv ℝ f x d` is differentiable when `f` is `C²`.
+@isnad1 id=differen.1h3v.s8.c989ff11f30e from=translated src=- shape=a029c2d8 vocab=19b5bfde
+-/
 lemma differentiable_fderiv_apply {f : E → ℝ} (hf : ContDiff ℝ 2 f) (d : E) :
     Differentiable ℝ (fun x => fderiv ℝ f x d) :=
   (contDiff_one_fderiv_apply hf d).differentiable (by norm_num)
@@ -78,7 +86,9 @@ lemma differentiable_fderiv_apply {f : E → ℝ} (hf : ContDiff ℝ 2 f) (d : E
 /-- **Second directional derivative along a line.** The second derivative of the line
 restriction at parameter `t` is the second directional derivative of `f` at the moving base
 point `q + t • d`. Note this is an identity of `deriv` (not `derivWithin`): it holds at every
-`t` because the line restriction is differentiable on all of `ℝ`. -/
+`t` because the line restriction is differentiable on all of `ℝ`.
+@isnad1 id=eq.1h5v.s8.7d408b90053d from=translated src=- shape=6e739b48 vocab=baceaefe
+-/
 lemma deriv_deriv_line {f : E → ℝ} (hf : ContDiff ℝ 2 f) (q d : E) (t : ℝ) :
     deriv (deriv fun s : ℝ => f (q + s • d)) t = secondDirDeriv f d (q + t • d) := by
   have hstep : (deriv fun s : ℝ => f (q + s • d)) =
@@ -89,7 +99,9 @@ lemma deriv_deriv_line {f : E → ℝ} (hf : ContDiff ℝ 2 f) (q d : E) (t : �
   exact deriv_line q d t ((differentiable_fderiv_apply hf d) (q + t • d))
 
 /-- **The curvature modulus is continuous in the base point.** Hence bounded on any compact
-set, which supplies the `BddAbove` hypothesis of `le_ciSup`. -/
+set, which supplies the `BddAbove` hypothesis of `le_ciSup`.
+@isnad1 id=continuo.1h3v.s6.a337cced9291 from=translated src=- shape=6e085b15 vocab=f06d8eab
+-/
 @[fun_prop]
 lemma continuous_secondDirDeriv {f : E → ℝ} (hf : ContDiff ℝ 2 f) (d : E) :
     Continuous (secondDirDeriv f d) := by
@@ -101,7 +113,9 @@ of its domain.** If [`g` is convex on the set `S`](hyp:hconv), [differentiable a
 `S`](hyp:hdiff), [`x` lies in the interior of `S`](hyp:hx), and [the derivative of `g` is itself
 differentiable at `x`](hyp:hdd), then [the second derivative of `g` at `x` is nonnegative](goal).
 
-The converse direction (`convexOn_of_deriv2_nonneg`) is in Mathlib; this one is not. -/
+The converse direction (`convexOn_of_deriv2_nonneg`) is in Mathlib; this one is not.
+@isnad1 id=le.4h3v.s7.156a34e63c0b from=translated src=- shape=cd8a787c vocab=6f7dec42
+-/
 lemma convexOn_deriv2_nonneg {S : Set ℝ} {g : ℝ → ℝ} {x : ℝ}
     (hconv : ConvexOn ℝ S g) (hdiff : ∀ y ∈ S, DifferentiableAt ℝ g y)
     (hx : x ∈ interior S) (hdd : DifferentiableAt ℝ (deriv g) x) :

@@ -48,7 +48,9 @@ def convolution (d : ι → ℕ) (f : (ι → ℝ) → ℝ) (x : ι → ℝ) : �
 [measurable](hyp:hf), [a real bound B](hyp:B) such that [the target is at most B in absolute value
 on the cube](hyp:hB), and [a phase vector](hyp:x), [the heterogeneous Jackson integrand, the
 translated cosine lift of the target times the product kernel, is integrable on the period
-box](goal). -/
+box](goal).
+@isnad1 id=integrab.2h5v.s7.3d22ce7242b2 from=translated src=- shape=27a36176 vocab=eb2fcc01
+-/
 theorem integrableOn_convolution_integrand (d : ι → ℕ)
     (f : (ι → ℝ) → ℝ) (hf : Measurable f)
     (B : ℝ) (hB : ∀ x ∈ cube, |f x| ≤ B) (x : ι → ℝ) :
@@ -73,7 +75,9 @@ theorem integrableOn_convolution_integrand (d : ι → ℕ)
   simpa [Real.norm_eq_abs, abs_mul] using
     mul_le_mul_of_nonneg_right hfB (abs_nonneg (kernel d u))
 
-/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), and [a fixed phase vector](hyp:x) imply that [the heterogeneous convolution is measurable in the parameter](goal). -/
+/-- [A coordinate-specific order map](hyp:d), [a parameter-indexed target](hyp:g), [its joint measurability](hyp:hg), and [a fixed phase vector](hyp:x) imply that [the heterogeneous convolution is measurable in the parameter](goal).
+@isnad1 id=measurab.1h5v.s6.1bb8019df17e from=translated src=- shape=21f904b8 vocab=598412bf
+-/
 @[fun_prop] theorem measurable_convolution (d : ι → ℕ)
     (g : Ω → (ι → ℝ) → ℝ)
     (hg : Measurable (fun z : Ω × (ι → ℝ) => g z.1 z.2))
@@ -95,7 +99,9 @@ theorem integrableOn_convolution_integrand (d : ι → ℕ)
 
 variable [DecidableEq ι]
 
-/-- [A finite dimension](hyp:n), [a function on its phase vectors](hyp:F), [its measurability](hyp:hF), [a uniform bound](hyp:B), [the bound on every vector](hyp:hB), [coordinatewise periodicity](hyp:hper), and [a translation vector](hyp:x) imply that [reflection and translation leave the period-box integral unchanged](goal). -/
+/-- [A finite dimension](hyp:n), [a function on its phase vectors](hyp:F), [its measurability](hyp:hF), [a uniform bound](hyp:B), [the bound on every vector](hyp:hB), [coordinatewise periodicity](hyp:hper), and [a translation vector](hyp:x) imply that [reflection and translation leave the period-box integral unchanged](goal).
+@isnad1 id=eq.3h4v.s8.4f6f0b3a5802 from=translated src=- shape=27e75989 vocab=5b300a85
+-/
 theorem periodBox_integral_sub_eq_fin (n : ℕ) (F : (Fin n → ℝ) → ℝ)
     (hF : Measurable F) (B : ℝ) (hB : ∀ y, |F y| ≤ B)
     (hper : ∀ i y,
@@ -215,7 +221,9 @@ theorem periodBox_integral_sub_eq_fin (n : ℕ) (F : (Fin n → ℝ) → ℝ)
         ← integral_Icc_eq_integral_Ioc]
       rw [hsplit F hF hB]
 
-/-- [A function on finitely many phase coordinates](hyp:F), [its measurability](hyp:hF), [a uniform bound](hyp:B), [the bound on every vector](hyp:hB), [coordinatewise periodicity](hyp:hper), and [a translation vector](hyp:x) imply that [reflection and translation leave the period-box integral unchanged](goal). -/
+/-- [A function on finitely many phase coordinates](hyp:F), [its measurability](hyp:hF), [a uniform bound](hyp:B), [the bound on every vector](hyp:hB), [coordinatewise periodicity](hyp:hper), and [a translation vector](hyp:x) imply that [reflection and translation leave the period-box integral unchanged](goal).
+@isnad1 id=eq.3h4v.s7.42fa4f858007 from=translated src=- shape=125ed9cd vocab=ade9630f
+-/
 theorem periodBox_integral_sub_eq (F : (ι → ℝ) → ℝ)
     (hF : Measurable F) (B : ℝ) (hB : ∀ y, |F y| ≤ B)
     (hper : ∀ i y,
@@ -276,7 +284,9 @@ theorem periodBox_integral_sub_eq (F : (ι → ℝ) → ℝ)
 /-- For [a coordinate-specific positive order map](hyp:d,hd), [a measurable cube target](hyp:f,hf),
 [a real bound B](hyp:B) such that [the target is at most B in absolute value on the cube](hyp:hB),
 and [a phase vector x](hyp:x), [the heterogeneous Jackson convolution at x equals the integral over
-the period box of the cosine lift of the target at v times the product kernel at x − v](goal). -/
+the period box of the cosine lift of the target at v times the product kernel at x − v](goal).
+@isnad1 id=eq.3h5v.s7.c63bc3f3adc1 from=translated src=- shape=d51072b0 vocab=32e4a14c
+-/
 theorem convolution_shifted (d : ι → ℕ) (hd : ∀ i, 0 < d i)
     (f : (ι → ℝ) → ℝ) (hf : Measurable f)
     (B : ℝ) (hB : ∀ y ∈ cube, |f y| ≤ B) (x : ι → ℝ) :

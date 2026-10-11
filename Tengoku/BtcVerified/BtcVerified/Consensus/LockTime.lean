@@ -58,14 +58,18 @@ def LockTime.isPast : LockTime → Nat → Nat → Bool
   | .blockTime lockTime, _, time => decide (lockTime < time)
 
 /-- The executable absolute-lock-time comparison enforces exactly its
-semantic proposition. -/
+semantic proposition.
+@isnad1 id=iff.0h3v.s4.8b4bf0fc66c1 from=translated src=- shape=f22b4cb8 vocab=5d2558fa
+-/
 theorem LockTime.isPast_iff {lockTime : LockTime} {height time : Nat} :
     lockTime.isPast height time = true ↔ lockTime.Past height time := by
   cases lockTime <;> simp [isPast, Past]
 
 /-- Interpreting the wire field and comparing its semantic value is exactly
 Core's raw zero-or-threshold conditional. This is the compatibility bridge
-from the reasoning type back to the wire-shaped statement. -/
+from the reasoning type back to the wire-shaped statement.
+@isnad1 id=iff.0h3v.s5.ae07b5ed0944 from=translated src=- shape=4a1e5669 vocab=f970dc10
+-/
 theorem LockTime.ofUInt32_past_iff {value : UInt32} {height time : Nat} :
     (LockTime.ofUInt32 value).Past height time ↔
       value = 0 ∨ value.toNat <

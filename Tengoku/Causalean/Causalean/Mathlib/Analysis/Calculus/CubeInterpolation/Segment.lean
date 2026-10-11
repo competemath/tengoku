@@ -15,7 +15,9 @@ public section
 namespace Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- Every point before the final endpoint of a segment from an interior cube
-point to a closed cube point remains in the open cube. -/
+point to a closed cube point remains in the open cube.
+@isnad1 id=mem.3h4v.s7.830f284b261a from=translated src=- shape=43231e46 vocab=f9296186
+-/
 theorem segment_mem_openCube {d : ℕ} {x y : Fin d → ℝ}
     (hx : x ∈ openCube d) (hy : y ∈ cube d)
     {t : ℝ} (ht : t ∈ Set.Ico (0 : ℝ) 1) :
@@ -39,7 +41,9 @@ cube](hyp:hu), [a starting point x in the open cube](hyp:hx), [an end point y in
 cube](hyp:hy), [a time t in the half-open unit interval](hyp:ht), and [an order k](hyp:k) [at most
 m](hyp:hk), [the k-th derivative at time t of the function restricted to the segment from x to y
 equals the order-k derivative of the function at the point x + t (y − x), taken k times in the
-direction y − x](goal). -/
+direction y − x](goal).
+@isnad1 id=eq.5h7v.s9.b81dcb50a770 from=translated src=- shape=ffae4aa6 vocab=f704dca9
+-/
 theorem segment_iteratedDeriv_eq_diagonal {d m : ℕ}
     {u : (Fin d → ℝ) → ℝ} (hu : ContDiffOn ℝ m u (cube d))
     {x y : Fin d → ℝ} (hx : x ∈ openCube d) (hy : y ∈ cube d)

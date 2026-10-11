@@ -51,7 +51,9 @@ open scoped Matrix
 
 /-! ### CNOT unitary -/
 
-/-- In `Fin 2`, subtracting twice from `1` is the identity. -/
+/-- In `Fin 2`, subtracting twice from `1` is the identity.
+@isnad1 id=eq.0h1v.s6.ac147c0b4973 from=translated src=- shape=b08dafff vocab=dcfa4cf8
+-/
 lemma fin2_sub_sub_self (b : Fin 2) : (1 : Fin 2) - (1 - b) = b := by
   fin_cases b <;> rfl
 
@@ -59,7 +61,9 @@ lemma fin2_sub_sub_self (b : Fin 2) : (1 : Fin 2) - (1 - b) = b := by
 def cnotAction {n : ℕ} (c t : Fin n) : (Fin n → Fin 2) → (Fin n → Fin 2) :=
   fun x => if x c = 1 then Function.update x t (1 - x t) else x
 
-/-- `cnotAction c t` is an involution when control and target differ. -/
+/-- `cnotAction c t` is an involution when control and target differ.
+@isnad1 id=involuti.1h3v.s4.55d51cecb2ba from=translated src=- shape=b0c879af vocab=f162ba7c
+-/
 lemma cnotAction_involutive {n : ℕ} {c t : Fin n} (h : c ≠ t) :
     Function.Involutive (cnotAction c t) := by
   intro x

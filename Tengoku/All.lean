@@ -1,5 +1,5 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
-import Tengoku.GroebnerProj
+import Tengoku.LeanPool
 import Tengoku.MerelyTrue
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
@@ -37,6 +37,7 @@ import Tengoku.FrontiermathHypergraphs
 import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Ieantn
+import Tengoku.GroebnerProj
 import Tengoku.SpherePackingOrig
 import Tengoku.Compfiles
 import Tengoku.Pfr

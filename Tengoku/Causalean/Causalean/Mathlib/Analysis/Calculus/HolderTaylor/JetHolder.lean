@@ -15,7 +15,9 @@ namespace Causalean.Mathlib.Analysis.Calculus.HolderTaylor
 /-- On an interval of fixed length, a uniform bound on the order-`j+1`
 within derivative gives a uniform Hölder-`α` bound on the order-`j` within
 derivative. The conclusion includes pairs involving either endpoint.
-[The jet order, exponent, interval, bound, function, and regularity assumptions](hyp:j,α,a,d,B,hα,hα1,hd,hB,f,hf,hbound) yield [the stated lower-jet Hölder bound](goal). -/
+[The jet order, exponent, interval, bound, function, and regularity assumptions](hyp:j,α,a,d,B,hα,hα1,hd,hB,f,hf,hbound) yield [the stated lower-jet Hölder bound](goal).
+@isnad1 id=le.8h8v.s8.efc78bc2d7b0 from=translated src=- shape=020d67d1 vocab=413ed990
+-/
 theorem lower_jet_holder_of_next_bound
     (j : ℕ) (α a d B : ℝ) (hα : 0 < α) (hα1 : α ≤ 1)
     (hd : 0 < d) (hB : 0 ≤ B) (f : ℝ → ℝ)

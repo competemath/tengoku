@@ -22,7 +22,9 @@ collar, the order-j ambient derivative at z of the composite
 y ↦ u(inward sample of y with dilation index q), evaluated on the standard basis
 vectors in directions f, converges to the order-j within-cube derivative of u at
 x evaluated on the same basis vectors, those in direction i scaled by
-−(q + 1)](goal). -/
+−(q + 1)](goal).
+@isnad1 id=tendsto.4h8v.s10.bfd5eac0a66e from=translated src=- shape=94af798f vocab=67e8087b
+-/
 theorem leftFaceSample_coordinate_jet_tendsto_face (d m : ℕ) (i : Fin d)
     (q : Fin (m + 1)) (u : (Fin d → ℝ) → ℝ)
     (hu : ContDiffOn ℝ m u (cube d)) (j : ℕ) (hj : j ≤ m)

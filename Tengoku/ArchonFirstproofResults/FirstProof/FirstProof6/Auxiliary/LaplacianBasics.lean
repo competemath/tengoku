@@ -76,7 +76,9 @@ instance inducedSubgraph.instDecidableRel (G : SimpleGraph V) [DecidableRel G.Ad
 
 omit [Fintype V] [DecidableEq V] in
 /-- Adjacency in the induced subgraph:
-`(inducedSubgraph G S).Adj v w ↔ G.Adj v w ∧ v ∈ S ∧ w ∈ S`. -/
+`(inducedSubgraph G S).Adj v w ↔ G.Adj v w ∧ v ∈ S ∧ w ∈ S`.
+@isnad1 id=iff.0h5v.s5.ba82c12136c1 from=translated src=- shape=45477997 vocab=0b576085
+-/
 lemma inducedSubgraph_adj (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) (v w : V) :
     (inducedSubgraph G S).Adj v w ↔ G.Adj v w ∧ v ∈ S ∧ w ∈ S := by
@@ -85,12 +87,16 @@ lemma inducedSubgraph_adj (G : SimpleGraph V) [DecidableRel G.Adj]
   tauto
 
 omit [Fintype V] [DecidableEq V] in
-/-- The induced subgraph is a subgraph of G. -/
+/-- The induced subgraph is a subgraph of G.
+@isnad1 id=le.0h3v.s4.19a647f2ebdc from=translated src=- shape=3316f5a4 vocab=631d6fe4
+-/
 lemma inducedSubgraph_le (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) : inducedSubgraph G S ≤ G :=
   fun _ _ h => ((inducedSubgraph_adj G S _ _).mp h).1
 
-/-- The graph Laplacian equals the Mathlib lapMatrix (degree minus adjacency). -/
+/-- The graph Laplacian equals the Mathlib lapMatrix (degree minus adjacency).
+@isnad1 id=eq.0h2v.s5.6f2c547aeb87 from=translated src=- shape=f8bad52d vocab=ed0a4650
+-/
 lemma graphLaplacian_eq_lapMatrix (G : SimpleGraph V) [DecidableRel G.Adj] :
     graphLaplacian G = G.lapMatrix ℝ := by
   ext i j
@@ -110,7 +116,9 @@ lemma graphLaplacian_eq_lapMatrix (G : SimpleGraph V) [DecidableRel G.Adj] :
     norm_num
 
 /-- The graph Laplacian is positive semidefinite.
-    xᵀLx = ∑_{u~v} (x_u - x_v)² ≥ 0. -/
+    xᵀLx = ∑_{u~v} (x_u - x_v)² ≥ 0.
+@isnad1 id=possemid.0h2v.s4.f9ce6385f853 from=translated src=- shape=816774ba vocab=c3ce9fab
+-/
 lemma graphLaplacian_posSemidef (G : SimpleGraph V) [DecidableRel G.Adj] :
     (graphLaplacian G).PosSemidef := by
   rw [graphLaplacian_eq_lapMatrix]

@@ -18,7 +18,9 @@ together with a uniform value bound on its exponential primitive, gives one
 uniform bound on all derivatives of the exponential primitive through order
 `k + 1`. The resulting constant is independent of the interval location and
 of the integrand.
-[The derivative order, length, envelopes, and sign assumptions](hyp:k,d,C,E,hd,hC,hE) yield [the stated survival-jet bound](goal). -/
+[The derivative order, length, envelopes, and sign assumptions](hyp:k,d,C,E,hd,hC,hE) yield [the stated survival-jet bound](goal).
+@isnad1 id=ex.3h4v.s8.1c918a646b03 from=translated src=- shape=a52a8ef1 vocab=1ad4bb20
+-/
 theorem survival_jet_bound_of_integrand_jet_bound
     (k : ℕ) (d C E : ℝ) (hd : 0 < d) (hC : 0 ≤ C) (hE : 0 ≤ E) :
     ∃ B : ℝ, 0 ≤ B ∧

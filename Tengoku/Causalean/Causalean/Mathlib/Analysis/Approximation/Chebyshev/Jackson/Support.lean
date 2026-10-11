@@ -17,7 +17,9 @@ open MeasureTheory
 /-- For [an order N](hyp:N) that is [at least two](hyp:hN) and [an integer frequency r](hyp:r)
 [whose absolute value is either less than 2N + 2 or greater than 6N − 2](hyp:hr), [the integrals
 over the period from −π to π of the oscillatory Jackson packet against both the cosine and the sine
-of r u are zero](goal). -/
+of r u are zero](goal).
+@isnad1 id=and.2h2v.s7.11c89f418e1f from=translated src=- shape=3ec134b1 vocab=cd21a27b
+-/
 theorem packet_shifted_support (N : ℕ) (hN : 2 ≤ N) (r : ℤ)
     (hr : |r| < (2 * N + 2 : ℕ) ∨ (6 * N - 2 : ℕ) < |r|) :
     (∫ u in Set.Icc (-Real.pi) Real.pi,

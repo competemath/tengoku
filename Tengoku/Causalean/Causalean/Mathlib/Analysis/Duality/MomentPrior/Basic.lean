@@ -44,7 +44,9 @@ noncomputable def bestUniformApproxErrorAbs (K : ℕ) : ℝ :=
 /-- For [a real polynomial](hyp:p), [its uniform absolute-value approximation error is the supremum of its pointwise residual on the unit interval](goal).
 
  The uniform error is the compact-interval supremum of the pointwise
-absolute residual. -/
+absolute residual.
+@isnad1 id=eq.0h1v.s5.f2b513d50096 from=translated src=- shape=08ace606 vocab=bb8e0081
+-/
 theorem uniformApproxErrorAbs_eq_sSup (p : Polynomial ℝ) :
     uniformApproxErrorAbs p =
       sSup ((fun x : ℝ => abs (abs x - p.eval x)) '' Set.Icc (-1) 1) := by
@@ -53,7 +55,9 @@ theorem uniformApproxErrorAbs_eq_sSup (p : Polynomial ℝ) :
 /-- For [a real polynomial](hyp:p) and [a proposed error bound](hyp:e), [the bound holds exactly when it bounds every residual on the unit interval](goal).
 
  A number bounds the uniform approximation error exactly when it bounds
-every pointwise residual on `[-1,1]`. -/
+every pointwise residual on `[-1,1]`.
+@isnad1 id=iff.0h2v.s6.f31a2a92c60f from=translated src=- shape=f8a3b8e6 vocab=57601a6b
+-/
 theorem uniformApproxErrorAbs_le_iff {p : Polynomial ℝ} {e : ℝ} :
     uniformApproxErrorAbs p ≤ e ↔
       ∀ x ∈ Set.Icc (-1 : ℝ) 1, abs (abs x - p.eval x) ≤ e := by
@@ -74,7 +78,9 @@ theorem uniformApproxErrorAbs_le_iff {p : Polynomial ℝ} {e : ℝ} :
 /-- For [a polynomial degree limit](hyp:K), [the best absolute-value approximation error is the infimum over all admissible polynomial errors](goal).
 
  The best error has its intrinsic infimum formulation over all
-degree-at-most-`K` real polynomials. -/
+degree-at-most-`K` real polynomials.
+@isnad1 id=eq.0h1v.s5.1e468be5a54a from=translated src=- shape=a89a1d78 vocab=4f513df4
+-/
 theorem bestUniformApproxErrorAbs_eq_sInf (K : ℕ) :
     bestUniformApproxErrorAbs K =
       sInf {e : ℝ | ∃ p : Polynomial ℝ,
@@ -83,7 +89,9 @@ theorem bestUniformApproxErrorAbs_eq_sInf (K : ℕ) :
 
 /-- For [a polynomial degree limit](hyp:K), [the best approximation error cannot be negative](goal).
 
- The best degree-`K` approximation error is nonnegative. -/
+ The best degree-`K` approximation error is nonnegative.
+@isnad1 id=le.0h1v.s3.c8acb2e81431 from=translated src=- shape=b9369acb vocab=fbc4e439
+-/
 theorem bestUniformApproxErrorAbs_nonneg (K : ℕ) :
     0 ≤ bestUniformApproxErrorAbs K := by
   rw [bestUniformApproxErrorAbs_eq_sInf]
@@ -97,7 +105,9 @@ theorem bestUniformApproxErrorAbs_nonneg (K : ℕ) :
 /-- For [two degree limits with the first no larger than the second](hyp:K,L,hKL), [allowing the larger degree cannot increase the best error](goal).
 
  Increasing the allowed polynomial degree cannot increase the best uniform
-approximation error. -/
+approximation error.
+@isnad1 id=le.1h2v.s4.82ea3834e978 from=translated src=- shape=3f8b8077 vocab=fbc4e439
+-/
 theorem bestUniformApproxErrorAbs_antitone {K L : ℕ} (hKL : K ≤ L) :
     bestUniformApproxErrorAbs L ≤ bestUniformApproxErrorAbs K := by
   rw [bestUniformApproxErrorAbs_eq_sInf, bestUniformApproxErrorAbs_eq_sInf]
@@ -162,7 +172,9 @@ set_option maxHeartbeats 2000000 in
 /-- For [a polynomial degree limit](hyp:K), [some admissible polynomial attains the best absolute-value approximation error](goal).
 
  A best degree-`K` approximating polynomial exists and attains the infimum
-defining `bestUniformApproxErrorAbs K`. -/
+defining `bestUniformApproxErrorAbs K`.
+@isnad1 id=ex.0h1v.s4.121eb8dd6c61 from=translated src=- shape=3194810e vocab=5becbf2a
+-/
 theorem exists_bestPolynomialAbs (K : ℕ) :
     ∃ p : Polynomial ℝ,
       p.natDegree ≤ K ∧
@@ -235,7 +247,9 @@ theorem exists_bestPolynomialAbs (K : ℕ) :
 /-- For [a polynomial degree limit](hyp:K), [some admissible polynomial bounds every absolute-value residual by the best error on the unit interval](goal).
 
  The best error is equivalently the least pointwise residual bound, and a
-polynomial attaining that bound exists. -/
+polynomial attaining that bound exists.
+@isnad1 id=ex.0h1v.s6.a255c5bfc586 from=translated src=- shape=d68cfd92 vocab=c19f3425
+-/
 theorem exists_bestPolynomialAbs_interval (K : ℕ) :
     ∃ p : Polynomial ℝ,
       p.natDegree ≤ K ∧

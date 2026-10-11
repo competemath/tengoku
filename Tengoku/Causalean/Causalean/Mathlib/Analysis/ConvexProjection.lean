@@ -33,20 +33,26 @@ noncomputable def convexProj (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
   Classical.choose (exists_norm_eq_iInf_of_complete_convex hne hc.isComplete hconv x)
 
 /-- A point's metric projection onto a nonempty closed convex set belongs to that set and attains
-the smallest possible distance from the point among all points in the set. -/
+the smallest possible distance from the point among all points in the set.
+@isnad1 id=and.3h3v.s7.5ec91355b811 from=translated src=- shape=320c6c85 vocab=b1a13af4
+-/
 lemma convexProj_spec (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (hconv : Convex ℝ K) (x : E) :
     convexProj K hne hc hconv x ∈ K ∧
       ‖x - convexProj K hne hc hconv x‖ = ⨅ y : K, ‖x - y‖ :=
   Classical.choose_spec (exists_norm_eq_iInf_of_complete_convex hne hc.isComplete hconv x)
 
-/-- The metric projection of every point belongs to its nonempty closed convex target set. -/
+/-- The metric projection of every point belongs to its nonempty closed convex target set.
+@isnad1 id=mem.3h3v.s7.39406dd9d1a4 from=translated src=- shape=23385c6d vocab=72cc70d6
+-/
 theorem convexProj_mem (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (hconv : Convex ℝ K) (x : E) : convexProj K hne hc hconv x ∈ K :=
   (convexProj_spec K hne hc hconv x).1
 
 /-- The residual from a point to its metric projection has nonpositive inner product with every
-feasible direction based at the projection. -/
+feasible direction based at the projection.
+@isnad1 id=le.4h4v.s7.89b246df1ff5 from=translated src=- shape=70b16436 vocab=940be036
+-/
 theorem convexProj_variational (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (hconv : Convex ℝ K) (x : E) (y : E) (hy : y ∈ K) :
     ⟪x - convexProj K hne hc hconv x, y - convexProj K hne hc hconv x⟫_ℝ ≤ 0 := by
@@ -54,7 +60,9 @@ theorem convexProj_variational (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (convexProj_mem K hne hc hconv x)).1 (convexProj_spec K hne hc hconv x).2 y hy
 
 /-- Projecting a point onto a nonempty closed convex set cannot increase its distance from any
-point already in that set. -/
+point already in that set.
+@isnad1 id=le.4h4v.s7.609b2be6a06a from=translated src=- shape=82d5030b vocab=71971621
+-/
 theorem convexProj_le_of_mem (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (hconv : Convex ℝ K) (x y : E) (hy : y ∈ K) :
     ‖convexProj K hne hc hconv x - y‖ ≤ ‖x - y‖ := by
@@ -68,7 +76,9 @@ theorem convexProj_le_of_mem (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
   nlinarith [sq_nonneg ‖x - p‖]
 
 /-- Every point in a nonempty closed convex target set is unchanged by metric projection onto that
-set. -/
+set.
+@isnad1 id=eq.4h3v.s7.c37000e31475 from=translated src=- shape=7c283f96 vocab=72cc70d6
+-/
 theorem convexProj_eq_self (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (hconv : Convex ℝ K) (x : E) (hx : x ∈ K) : convexProj K hne hc hconv x = x := by
   have h := convexProj_le_of_mem K hne hc hconv x x hx
@@ -76,7 +86,9 @@ theorem convexProj_eq_self (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
   exact sub_eq_zero.mp (norm_eq_zero.mp this)
 
 /-- Metric projection onto a nonempty closed convex set is nonexpansive: projected distances never
-exceed the original distances. -/
+exceed the original distances.
+@isnad1 id=lipschit.3h2v.s7.973b8af62920 from=translated src=- shape=7b875fc8 vocab=eec41bc0
+-/
 theorem convexProj_lipschitz (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (hconv : Convex ℝ K) : LipschitzWith 1 (convexProj K hne hc hconv) := by
   apply LipschitzWith.of_dist_le_mul
@@ -101,14 +113,18 @@ theorem convexProj_lipschitz (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
   simpa [dist_eq_norm, px, py] using hn
 
 /-- Metric projection onto a nonempty closed convex set varies continuously with the point being
-projected. -/
+projected.
+@isnad1 id=continuo.3h2v.s7.75a0ee775023 from=translated src=- shape=1a5bc349 vocab=407aeda2
+-/
 @[fun_prop]
 theorem continuous_convexProj (K : Set E) (hne : K.Nonempty) (hc : IsClosed K)
     (hconv : Convex ℝ K) : Continuous (convexProj K hne hc hconv) :=
   (convexProj_lipschitz K hne hc hconv).continuous
 
 /-- Metric projection onto a nonempty closed convex set is measurable under the Borel
-sigma-algebra of the Hilbert space. -/
+sigma-algebra of the Hilbert space.
+@isnad1 id=measurab.3h2v.s7.bd99df10af00 from=translated src=- shape=6a5b4788 vocab=8b916be3
+-/
 @[fun_prop]
 theorem measurable_convexProj [MeasurableSpace E] [BorelSpace E] (K : Set E)
     (hne : K.Nonempty) (hc : IsClosed K) (hconv : Convex ℝ K) :
@@ -142,7 +158,9 @@ noncomputable def mtxHomeo (p : ℕ) :
   Homeomorph.piCurry.symm.trans (EuclideanSpace.equiv (Fin p × Fin p) ℝ).symm.toHomeomorph
 
 /-- The Frobenius distance between two finite real matrices equals the Euclidean norm of their
-difference after vectorizing the entries. -/
+difference after vectorizing the entries.
+@isnad1 id=eq.0h3v.s10.9210b8d982b9 from=translated src=- shape=67f84f45 vocab=ead15756
+-/
 theorem frobDist_eq_norm (A B : Matrix (Fin p) (Fin p) ℝ) :
     frobDist A B = ‖mtx p A - mtx p B‖ := by
   rw [EuclideanSpace.norm_eq]
@@ -150,11 +168,15 @@ theorem frobDist_eq_norm (A B : Matrix (Fin p) (Fin p) ℝ) :
       mtx p M i = M i.1 i.2 := rfl
   simp [frobDist, Fintype.sum_prod_type, Real.norm_eq_abs, sq_abs, hmtx]
 
-/-- Frobenius distance is nonnegative. -/
+/-- Frobenius distance is nonnegative.
+@isnad1 id=le.0h3v.s4.6abcf1606034 from=translated src=- shape=9c3744a5 vocab=d40a50b4
+-/
 theorem frobDist_nonneg (A B : Matrix (Fin p) (Fin p) ℝ) : 0 ≤ frobDist A B :=
   Real.sqrt_nonneg _
 
-/-- Frobenius distance is symmetric in its two matrix arguments. -/
+/-- Frobenius distance is symmetric in its two matrix arguments.
+@isnad1 id=eq.0h3v.s4.d789c51767ce from=translated src=- shape=8724ae85 vocab=c91bc175
+-/
 theorem frobDist_comm (A B : Matrix (Fin p) (Fin p) ℝ) : frobDist A B = frobDist B A := by
   simp only [frobDist]
   congr 1
@@ -164,13 +186,17 @@ theorem frobDist_comm (A B : Matrix (Fin p) (Fin p) ℝ) : frobDist A B = frobDi
   intro j _
   ring
 
-/-- Frobenius distance satisfies the triangle inequality. -/
+/-- Frobenius distance satisfies the triangle inequality.
+@isnad1 id=le.0h4v.s5.a969749bb4a8 from=translated src=- shape=107edec5 vocab=e256e469
+-/
 theorem frobDist_triangle (A B D : Matrix (Fin p) (Fin p) ℝ) :
     frobDist A D ≤ frobDist A B + frobDist B D := by
   rw [frobDist_eq_norm, frobDist_eq_norm, frobDist_eq_norm]
   exact norm_sub_le_norm_sub_add_norm_sub (mtx p A) (mtx p B) (mtx p D)
 
-/-- A Loewner interval with ordered scalar endpoints is nonempty. -/
+/-- A Loewner interval with ordered scalar endpoints is nonempty.
+@isnad1 id=nonempty.1h3v.s4.3171f83a89ec from=translated src=- shape=a659b5cf vocab=3853ee6a
+-/
 theorem loewnerSet_nonempty (p : ℕ) (c C : ℝ) (hcC : c ≤ C) :
     (loewnerSet p c C).Nonempty := by
   refine ⟨c • (1 : Matrix (Fin p) (Fin p) ℝ), ?_⟩
@@ -183,7 +209,9 @@ theorem loewnerSet_nonempty (p : ℕ) (c C : ℝ) (hcC : c ≤ C) :
     simp only [Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul]
     ring
 
-/-- Every Loewner interval of finite real matrices is convex. -/
+/-- Every Loewner interval of finite real matrices is convex.
+@isnad1 id=convex.0h3v.s5.e90060eee044 from=translated src=- shape=b7748523 vocab=98634960
+-/
 theorem loewnerSet_convex (p : ℕ) (c C : ℝ) : Convex ℝ (loewnerSet p c C) := by
   intro A hA B hB a b ha hb hab
   constructor
@@ -199,7 +227,9 @@ theorem loewnerSet_convex (p : ℕ) (c C : ℝ) : Convex ℝ (loewnerSet p c C) 
     ring
 
 /-- Real positive-semidefinite matrices indexed by any finite set form a closed set in the
-coordinatewise topology. -/
+coordinatewise topology.
+@isnad1 id=isclosed.0h1v.s5.5e8252b79226 from=translated src=- shape=b7d9ff07 vocab=67ad21fc
+-/
 theorem isClosed_posSemidef {ι : Type*} [Finite ι] :
     IsClosed {A : Matrix ι ι ℝ | A.PosSemidef} := by
   classical
@@ -226,13 +256,17 @@ theorem isClosed_posSemidef {ι : Type*} [Finite ι] :
       (continuous_const.dotProduct (continuous_id.matrix_mulVec continuous_const))
 
 /-- Every Loewner interval of finite real matrices is closed in the coordinatewise product
-topology. -/
+topology.
+@isnad1 id=isclosed.0h3v.s4.9cd2a74818e3 from=translated src=- shape=db17ba3c vocab=7238aa89
+-/
 theorem loewnerSet_isClosed (p : ℕ) (c C : ℝ) : IsClosed (loewnerSet p c C) := by
   exact (isClosed_posSemidef (ι := Fin p)).preimage (by fun_prop) |>.inter
     ((isClosed_posSemidef (ι := Fin p)).preimage (by fun_prop))
 
 /-- Every matrix in a Loewner interval with a strictly positive lower endpoint is positive
-definite. -/
+definite.
+@isnad1 id=posdef.2h3v.s7.a02e5b3635d6 from=translated src=- shape=d75d60e3 vocab=938a1143
+-/
 theorem loewnerSet_posDef (hc : 0 < c) {G : Matrix (Fin p) (Fin p) ℝ}
     (hG : (G - c • (1 : Matrix (Fin p) (Fin p) ℝ)).PosSemidef) : G.PosDef := by
   have hbase : (c • (1 : Matrix (Fin p) (Fin p) ℝ)).PosDef :=
@@ -240,7 +274,9 @@ theorem loewnerSet_posDef (hc : 0 < c) {G : Matrix (Fin p) (Fin p) ℝ}
   convert hbase.add_posSemidef hG using 1; ext i j; simp
 
 /-- Given [a matrix dimension](hyp:p) and [two real endpoints](hyp:c,C), [the coordinate image of
-the corresponding Loewner interval is closed](goal). -/
+the corresponding Loewner interval is closed](goal).
+@isnad1 id=isclosed.0h3v.s9.f9b0b54334d7 from=translated src=- shape=12d52870 vocab=d97c4358
+-/
 theorem mtx_image_isClosed (p : ℕ) (c C : ℝ) :
     IsClosed (mtx p '' loewnerSet p c C) := by
   have he : (mtx p : Matrix (Fin p) (Fin p) ℝ → EuclideanSpace ℝ (Fin p × Fin p)) =
@@ -264,7 +300,9 @@ noncomputable def loewnerProj (p : ℕ) (c C : ℝ) :
   if h : c ≤ C then loewnerProjAux p c C h else id
 
 /-- When its endpoints are ordered, Loewner projection sends every finite real matrix into the
-corresponding Loewner interval. -/
+corresponding Loewner interval.
+@isnad1 id=mem.1h4v.s5.2a74da37c927 from=translated src=- shape=05b5c4f2 vocab=bb61568e
+-/
 theorem loewnerProj_mem (hcC : c ≤ C) (G : Matrix (Fin p) (Fin p) ℝ) :
     loewnerProj p c C G ∈ loewnerSet p c C := by
   rw [loewnerProj, dite_eq_left hcC, loewnerProjAux]
@@ -278,7 +316,9 @@ theorem loewnerProj_mem (hcC : c ≤ C) (G : Matrix (Fin p) (Fin p) ℝ) :
 /-- **Loewner projection decreases distance to each feasible target.** For [ordered interval
 endpoints `c ≤ C`](hyp:hcC), if [a target matrix already lies in the Loewner interval
 `[cI, CI]`](hyp:hS), then [projecting an arbitrary matrix onto that interval, in Frobenius
-geometry, does not increase its Frobenius distance to the in-interval target matrix](goal). -/
+geometry, does not increase its Frobenius distance to the in-interval target matrix](goal).
+@isnad1 id=le.2h5v.s6.0b976b9e105c from=translated src=- shape=a0bdbbda vocab=3f1e7b1c
+-/
 theorem loewnerProj_frobDist_le (hcC : c ≤ C)
     (G S : Matrix (Fin p) (Fin p) ℝ) (hS : S ∈ loewnerSet p c C) :
     frobDist (loewnerProj p c C G) S ≤ frobDist G S := by
@@ -290,7 +330,9 @@ theorem loewnerProj_frobDist_le (hcC : c ≤ C)
     ((loewnerSet_convex p c C).linear_image (mtx p).toLinearMap) (mtx p G) (mtx p S) ⟨S, hS, rfl⟩
 
 /-- Loewner projection is measurable under the coordinatewise Borel sigma-algebra on finite real
-matrix spaces. -/
+matrix spaces.
+@isnad1 id=measurab.0h3v.s5.a45a4c12f5d5 from=translated src=- shape=c8f7de79 vocab=30ef8df9
+-/
 @[fun_prop]
 theorem measurable_loewnerProj (p : ℕ) [MeasurableSpace (Matrix (Fin p) (Fin p) ℝ)]
     [BorelSpace (Matrix (Fin p) (Fin p) ℝ)] (c C : ℝ) :
@@ -315,7 +357,9 @@ theorem measurable_loewnerProj (p : ℕ) [MeasurableSpace (Matrix (Fin p) (Fin p
     exact measurable_id
 
 /-- Multiplying a vector by the difference of two finite real matrices has Euclidean norm at most
-their Frobenius distance times the vector's Euclidean norm. -/
+their Frobenius distance times the vector's Euclidean norm.
+@isnad1 id=le.0h4v.s7.6bd940fa959a from=translated src=- shape=138fb182 vocab=9d760810
+-/
 theorem mulVec_sub_norm_le (A B : Matrix (Fin p) (Fin p) ℝ) (v : Fin p → ℝ) :
     Real.sqrt (∑ k, ((A - B).mulVec v k) ^ 2) ≤
       frobDist A B * Real.sqrt (∑ k, (v k) ^ 2) := by
@@ -329,7 +373,9 @@ theorem mulVec_sub_norm_le (A B : Matrix (Fin p) (Fin p) ℝ) (v : Fin p → ℝ
     (Finset.sum_mul_sq_le_sq_mul_sq Finset.univ (fun l : Fin p => A k l - B k l) v)
 
 /-- The inverse of a matrix in a Loewner interval with a positive lower endpoint expands Euclidean
-norm by at most the reciprocal of that endpoint. -/
+norm by at most the reciprocal of that endpoint.
+@isnad1 id=le.2h4v.s7.a7f2140e4395 from=translated src=- shape=be0ed9cc vocab=e3446048
+-/
 theorem loewnerSet_inv_mulVec_norm_le (hc : 0 < c)
     {G : Matrix (Fin p) (Fin p) ℝ}
     (hG : (G - c • (1 : Matrix (Fin p) (Fin p) ℝ)).PosSemidef) (v : Fin p → ℝ) :
@@ -385,7 +431,9 @@ instance matrixMeasurableSpace (p : ℕ) :
   MeasurableSpace.pi
 
 /-- Every matrix already in a nonempty Loewner interval is unchanged by metric projection onto that
-interval. -/
+interval.
+@isnad1 id=eq.2h4v.s5.d5ba5a62a532 from=translated src=- shape=9c8b3079 vocab=bb61568e
+-/
 theorem loewnerProj_eq_self {p : ℕ} {c C : ℝ} (hcC : c ≤ C)
     (G : Matrix (Fin p) (Fin p) ℝ) (hG : G ∈ loewnerSet p c C) :
     loewnerProj p c C G = G := by

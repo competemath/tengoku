@@ -22,7 +22,9 @@ def windowValues (stream : Stream α) (window : Window stream.length) : Finset �
   window.indexFinset.image stream.value
 
 /-- [A stream](hyp:stream), [a bounded window](hyp:window), and [strictly ordered window
-endpoints](hyp:hne) ensure [that the window's finite value set is nonempty](goal). -/
+endpoints](hyp:hne) ensure [that the window's finite value set is nonempty](goal).
+@isnad1 id=nonempty.1h3v.s5.b64b9a62a17c from=translated src=- shape=f4424980 vocab=5d5dbab8
+-/
 theorem windowValues_nonempty (stream : Stream α) (window : Window stream.length)
     (hne : window.left < window.right) : (windowValues stream window).Nonempty := by
   refine ⟨stream.value window.left, ?_⟩
@@ -37,7 +39,9 @@ def windowMax (stream : Stream α) (window : Window stream.length)
 
 /-- [A valid raw-window deque](hyp:hq), [a nonempty raw interval](hyp:hne), and [a right endpoint
 within the stream](hyp:hbound) ensure [that the deque head is active and maximizes the stream
-value over that interval](goal). -/
+value over that interval](goal).
+@isnad1 id=ex.3h5v.s6.16ce4271e34d from=translated src=- shape=f1e87e37 vocab=14d4d5fd
+-/
 theorem ValidAt.head_argmax {stream : Stream α} {left right : ℕ} {q : Deque}
     (hq : ValidAt stream left right q) (hne : left < right) (hbound : right ≤ stream.length) :
     ∃ head tail, q = head :: tail ∧ ActiveAt left right head ∧ head < stream.length ∧
@@ -63,7 +67,9 @@ theorem ValidAt.head_argmax {stream : Stream α} {left right : ℕ} {q : Deque}
     exact le_trans hij (hmember_le j hjq)
 
 /-- [A valid bounded-window deque](hyp:hq) and [a nonempty window](hyp:hne) ensure [that its head
-is an active argmax](goal). -/
+is an active argmax](goal).
+@isnad1 id=ex.2h4v.s6.6b51b69a66ca from=translated src=- shape=7ce4aa5c vocab=4d2f3587
+-/
 theorem Valid.head_argmax {stream : Stream α} {window : Window stream.length} {q : Deque}
     (hq : Valid stream window q) (hne : window.left < window.right) :
     ∃ head tail, q = head :: tail ∧ Active window head ∧
@@ -75,7 +81,9 @@ theorem Valid.head_argmax {stream : Stream α} {window : Window stream.length} {
   exact hmax i hi (lt_of_lt_of_le hi.2 window.right_le_length)
 
 /-- [A valid bounded-window deque](hyp:hq) and [a nonempty window](hyp:hne) ensure [that its head
-is an active argmax whose value equals the finite-window maximum](goal). -/
+is an active argmax whose value equals the finite-window maximum](goal).
+@isnad1 id=ex.2h4v.s6.15653c9e2431 from=translated src=- shape=04461999 vocab=c5059c90
+-/
 theorem Valid.head_value_eq_windowMax {stream : Stream α}
     {window : Window stream.length} {q : Deque}
     (hq : Valid stream window q) (hne : window.left < window.right) :

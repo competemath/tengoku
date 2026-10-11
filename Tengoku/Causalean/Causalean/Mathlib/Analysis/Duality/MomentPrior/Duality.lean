@@ -134,63 +134,81 @@ noncomputable def AbsExtremalDecomposition.toMomentMatchedPriors
 
 /-- For [a packaged prior pair](hyp:K,P), [its first prior is a probability measure](goal).
 
- The first prior in a packaged pair is a probability measure. -/
+ The first prior in a packaged pair is a probability measure.
+@isnad1 id=isprobab.0h2v.s3.cfdf729bc14d from=translated src=- shape=aae9536c vocab=06222e0f
+-/
 theorem priorZero_isProbabilityMeasure {K : ℕ} (P : AbsMomentMatchedPriors K) :
     IsProbabilityMeasure P.ν₀ :=
   P.probability₀
 
 /-- For [a packaged prior pair](hyp:K,P), [its second prior is a probability measure](goal).
 
- The second prior in a packaged pair is a probability measure. -/
+ The second prior in a packaged pair is a probability measure.
+@isnad1 id=isprobab.0h2v.s3.5aeefd13adb5 from=translated src=- shape=aae9536c vocab=45579388
+-/
 theorem priorOne_isProbabilityMeasure {K : ℕ} (P : AbsMomentMatchedPriors K) :
     IsProbabilityMeasure P.ν₁ :=
   P.probability₁
 
 /-- For [a packaged prior pair](hyp:K,P), [its first prior has total mass one](goal).
 
- The first prior has total mass one. -/
+ The first prior has total mass one.
+@isnad1 id=eq.0h2v.s4.1015f471ce91 from=translated src=- shape=7ae99825 vocab=63461989
+-/
 theorem priorZero_mass {K : ℕ} (P : AbsMomentMatchedPriors K) :
     P.ν₀ Set.univ = 1 := by
   exact P.probability₀.measure_univ
 
 /-- For [a packaged prior pair](hyp:K,P), [its second prior has total mass one](goal).
 
- The second prior has total mass one. -/
+ The second prior has total mass one.
+@isnad1 id=eq.0h2v.s4.47faa5869aa9 from=translated src=- shape=7ae99825 vocab=f90fd457
+-/
 theorem priorOne_mass {K : ℕ} (P : AbsMomentMatchedPriors K) :
     P.ν₁ Set.univ = 1 := by
   exact P.probability₁.measure_univ
 
 /-- For [a packaged prior pair](hyp:K,P), [its first prior is supported on the unit interval](goal).
 
- The first prior is supported on `[-1,1]`. -/
+ The first prior is supported on `[-1,1]`.
+@isnad1 id=issuppor.0h2v.s3.032e5483d54f from=translated src=- shape=1f8e965c vocab=f0db9f14
+-/
 theorem priorZero_supported {K : ℕ} (P : AbsMomentMatchedPriors K) :
     IsSupportedOnUnitInterval P.ν₀ :=
   P.supported₀
 
 /-- For [a packaged prior pair](hyp:K,P), [its second prior is supported on the unit interval](goal).
 
- The second prior is supported on `[-1,1]`. -/
+ The second prior is supported on `[-1,1]`.
+@isnad1 id=issuppor.0h2v.s3.c7c52482fae9 from=translated src=- shape=1f8e965c vocab=c78ee63c
+-/
 theorem priorOne_supported {K : ℕ} (P : AbsMomentMatchedPriors K) :
     IsSupportedOnUnitInterval P.ν₁ :=
   P.supported₁
 
 /-- For [a packaged prior pair](hyp:K,P), [its first prior is symmetric about zero](goal).
 
- The first prior is symmetric about zero. -/
+ The first prior is symmetric about zero.
+@isnad1 id=issymmet.0h2v.s3.4eab22bcf981 from=translated src=- shape=1f8e965c vocab=c080b56c
+-/
 theorem priorZero_symmetric {K : ℕ} (P : AbsMomentMatchedPriors K) :
     IsSymmetric P.ν₀ :=
   P.symmetric₀
 
 /-- For [a packaged prior pair](hyp:K,P), [its second prior is symmetric about zero](goal).
 
- The second prior is symmetric about zero. -/
+ The second prior is symmetric about zero.
+@isnad1 id=issymmet.0h2v.s3.625a98ddec85 from=translated src=- shape=1f8e965c vocab=3c1ae46f
+-/
 theorem priorOne_symmetric {K : ℕ} (P : AbsMomentMatchedPriors K) :
     IsSymmetric P.ν₁ :=
   P.symmetric₁
 
 /-- For [a packaged prior pair](hyp:K,P) and [a moment order no larger than the degree limit](hyp:j,hj), [the two priors have equal moments of that order](goal).
 
- The two priors have equal `j`-th moments for every `j ≤ K`. -/
+ The two priors have equal `j`-th moments for every `j ≤ K`.
+@isnad1 id=eq.1h3v.s6.197d3b41cf3a from=translated src=- shape=0c1c8fdf vocab=60c6b28c
+-/
 theorem prior_moments_eq {K : ℕ} (P : AbsMomentMatchedPriors K)
     {j : ℕ} (hj : j ≤ K) :
     ∫ x : ℝ, x ^ j ∂P.ν₀ = ∫ x : ℝ, x ^ j ∂P.ν₁ :=
@@ -199,7 +217,9 @@ theorem prior_moments_eq {K : ℕ} (P : AbsMomentMatchedPriors K)
 /-- For [a packaged prior pair](hyp:K,P), [the oriented difference in absolute first moments is twice the best approximation error](goal).
 
  The oriented difference of the priors' absolute first moments is exactly
-`2 E_K`. -/
+`2 E_K`.
+@isnad1 id=eq.0h2v.s6.cae8d4f1d8a2 from=translated src=- shape=04aff97e vocab=c0ab820f
+-/
 theorem prior_absMoment_gap {K : ℕ} (P : AbsMomentMatchedPriors K) :
     (∫ x : ℝ, |x| ∂P.ν₁) - (∫ x : ℝ, |x| ∂P.ν₀) =
       2 * bestUniformApproxErrorAbs K :=

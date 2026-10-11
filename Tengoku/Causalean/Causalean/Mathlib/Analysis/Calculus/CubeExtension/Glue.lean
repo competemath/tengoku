@@ -20,7 +20,9 @@ noncomputable def joinAt (a : ℝ) (f g : ℝ → ℝ) (x : ℝ) : ℝ :=
   if x ≤ a then f x else g x
 
 /-- [Continuous branches](hyp:hf,hg) with [matching junction values](hyp:hv)
-have [a continuous join](goal) at [the junction](hyp:a). -/
+have [a continuous join](goal) at [the junction](hyp:a).
+@isnad1 id=continuo.3h3v.s6.dd2f22f7a5da from=translated src=- shape=3ecb96d0 vocab=b2da4316
+-/
 theorem joinAt_continuous (a : ℝ) {f g : ℝ → ℝ}
     (hf : Continuous f) (hg : Continuous g) (hv : f a = g a) :
     Continuous (joinAt a f g) := by
@@ -37,7 +39,9 @@ and [matching value and derivative](hyp:hv,hd) at [a junction](hyp:a) have
 
 At the junction, use the left/right slope criterion, or combine within-half-line
 derivatives; away from it use eventual equality. No neighborhood equality of the
-two branches is available or needed. -/
+two branches is available or needed.
+@isnad1 id=hasderiv.4h6v.s7.6c51875990c7 from=translated src=- shape=6b52acef vocab=8a458975
+-/
 theorem joinAt_hasDerivAt (a : ℝ) {f g df dg : ℝ → ℝ}
     (hf : ∀ x, HasDerivAt f (df x) x)
     (hg : ∀ x, HasDerivAt g (dg x) x)
@@ -70,7 +74,9 @@ theorem joinAt_hasDerivAt (a : ℝ) {f g df dg : ℝ → ℝ}
 [the junction](hyp:a) have [a globally twice continuously differentiable join](goal).
 
 Apply `joinAt_hasDerivAt` twice and `joinAt_continuous` to the second
-derivative, then use `contDiff_succ_iff_deriv` twice. -/
+derivative, then use `contDiff_succ_iff_deriv` twice.
+@isnad1 id=contdiff.5h3v.s8.38a6ad8a1294 from=translated src=- shape=ed3a7a74 vocab=948423e6
+-/
 theorem joinAt_contDiff_two (a : ℝ) {f g : ℝ → ℝ}
     (hf : ContDiff ℝ 2 f) (hg : ContDiff ℝ 2 g)
     (hv : f a = g a) (hd : deriv f a = deriv g a)

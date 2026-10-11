@@ -23,7 +23,9 @@ Kullback--Leibler divergence is the sum of each `μ`-mass times the logarithm of
 ratio to the corresponding `ν`-mass](goal).
 
 The zero-mass summands vanish, so the displayed formula uses ordinary real division
-without a separate support convention. -/
+without a separate support convention.
+@isnad1 id=eq.1h3v.s6.7971036a7ead from=translated src=- shape=34a2e74b vocab=f4597c4c
+-/
 theorem klDiv_toReal_eq_sum_measureReal
     {α : Type*} [Fintype α] [MeasurableSpace α] [MeasurableSingletonClass α]
     (μ ν : Measure α) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]

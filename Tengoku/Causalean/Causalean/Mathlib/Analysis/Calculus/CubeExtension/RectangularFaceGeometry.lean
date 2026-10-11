@@ -34,7 +34,9 @@ def rectLeftCollar {d : ℕ} (lo hi : Fin d → ℝ) (m : ℕ)
 /-- If [the box with corners lo, hi has positive side lengths](hyp:hbox), then
 [at every point x, the affine map sending the left collar of the box in
 coordinate i onto the left collar of the normalized cube coincides with the
-affine map sending the original box onto the normalized cube](goal). -/
+affine map sending the original box onto the normalized cube](goal).
+@isnad1 id=eq.1h6v.s7.87f81f98336f from=translated src=- shape=0d7434b6 vocab=97c69f46
+-/
 theorem rectAffine_leftCollar_eq_normalize {d : ℕ}
     (lo hi : Fin d → ℝ) (m : ℕ) (i : Fin d)
     (hbox : ∀ j, lo j < hi j) (x : Fin d → ℝ) :
@@ -68,7 +70,9 @@ theorem rectAffine_leftCollar_eq_normalize {d : ℕ}
 [the affine normalization of the box onto the normalized cube maps the box's
 left collar in coordinate i exactly onto the normalized cube's left collar in
 coordinate i](goal), in the sense that the collar is the preimage of the cube's
-collar. -/
+collar.
+@isnad1 id=eq.1h5v.s6.bb56580c8ad0 from=translated src=- shape=fcc29160 vocab=6fabd419
+-/
 theorem rectAffine_preimage_leftCubeCollar {d : ℕ}
     (lo hi : Fin d → ℝ) (m : ℕ) (i : Fin d)
     (hbox : ∀ j, lo j < hi j) :
@@ -125,7 +129,9 @@ theorem rectAffine_preimage_leftCubeCollar {d : ℕ}
 /-- If [the box with corners lo, hi has positive side lengths](hyp:hbox), then
 [mapping a point from the normalized cube's coordinates to the box's
 coordinates and back returns the original point](goal), for every point of the
-ambient space. -/
+ambient space.
+@isnad1 id=eq.1h4v.s6.a9dd201c5e57 from=translated src=- shape=ed1b3d6b vocab=46c04312
+-/
 theorem rectAffine_normalize_denormalize {d : ℕ}
     (lo hi : Fin d → ℝ) (hbox : ∀ j, lo j < hi j)
     (x : Fin d → ℝ) :

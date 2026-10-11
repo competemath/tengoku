@@ -83,7 +83,9 @@ def dualValSet (p : Fin (k + 1) → ℝ) (β : ℕ) : Set ℝ :=
         r.natDegree ≤ β ∧ (∀ j, |r.eval (p j)| ≤ 1) ∧ t = |r.eval 1 - r.eval 0|}
 
 /-- The dual set is nonempty: the zero polynomial contributes the value `0`
-(degree `0 ≤ β`, trivially node-bounded, contrast `0`). -/
+(degree `0 ≤ β`, trivially node-bounded, contrast `0`).
+@isnad1 id=nonempty.0h3v.s4.35c8c45f6d91 from=translated src=- shape=47dea66f vocab=7478a450
+-/
 theorem dualValSet_nonempty : (dualValSet p β).Nonempty := by
   refine ⟨0, ?_⟩
   refine ⟨(0 : Polynomial ℝ), ?_, ?_, ?_⟩
@@ -93,13 +95,17 @@ theorem dualValSet_nonempty : (dualValSet p β).Nonempty := by
   · simp
 
 /-- Every element of the primal set is `≥ 0` (a sum of absolute values), so the
-set is bounded below by `0`. -/
+set is bounded below by `0`.
+@isnad1 id=bddbelow.0h3v.s4.3f4759c2aaf7 from=translated src=- shape=47dea66f vocab=0d1f7357
+-/
 theorem primalNormSet_bddBelow : BddBelow (primalNormSet p β) := by
   refine ⟨0, fun s hs => ?_⟩
   rcases hs with ⟨w, _hw, rfl⟩
   exact Finset.sum_nonneg (fun j _ => abs_nonneg (w j))
 
-/-- `0` is a lower bound for the primal set. -/
+/-- `0` is a lower bound for the primal set.
+@isnad1 id=le.1h4v.s5.c147063c0c2e from=translated src=- shape=2841e7f6 vocab=80804e2c
+-/
 theorem primalNormSet_nonneg {s : ℝ} (hs : s ∈ primalNormSet p β) : 0 ≤ s := by
   rcases hs with ⟨w, _hw, rfl⟩
   exact Finset.sum_nonneg (fun j _ => abs_nonneg (w j))
@@ -111,7 +117,9 @@ through the node values — has a solution](goal).
 
 Equivalently, the moment map `w ↦ (∑ j, w j * (p j)^ℓ)_{ℓ ≤ β}` is surjective, since its
 transpose — node-evaluation of degree-`≤ β` polynomials — is injective (a nonzero polynomial of
-degree `≤ β ≤ k` has at most `β < k + 1` roots). -/
+degree `≤ β ≤ k` has at most `β < k + 1` roots).
+@isnad1 id=nonempty.2h3v.s6.098fef600258 from=translated src=- shape=d5512631 vocab=695354c8
+-/
 theorem momentSol_nonempty (hp : Function.Injective p) (hβ : β ≤ k) :
     (MomentSol p β).Nonempty := by
   classical
@@ -149,7 +157,9 @@ theorem momentSol_nonempty (hp : Function.Injective p) (hβ : β ≤ k) :
     _ = if ℓ = 0 then (0 : ℝ) else 1 := by
           simpa [y, ℓ']
 
-/-- The primal set is nonempty whenever the moment system is solvable. -/
+/-- The primal set is nonempty whenever the moment system is solvable.
+@isnad1 id=nonempty.2h3v.s5.2949a9ca74f2 from=translated src=- shape=78b97927 vocab=5f86ac88
+-/
 theorem primalNormSet_nonempty (hp : Function.Injective p) (hβ : β ≤ k) :
     (primalNormSet p β).Nonempty := by
   rcases momentSol_nonempty (p := p) hp hβ with ⟨w, hw⟩

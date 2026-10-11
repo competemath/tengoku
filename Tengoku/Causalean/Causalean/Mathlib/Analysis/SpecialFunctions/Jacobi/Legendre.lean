@@ -19,7 +19,9 @@ open scoped BigOperators
 
 namespace Causalean.Mathlib.Analysis.SpecialFunctions.Jacobi
 
-/-- The [degree](hyp:n) and [evaluation point](hyp:x) give [equality between the normalized zero-parameter shifted Jacobi polynomial and Mathlib's shifted Legendre polynomial](goal). -/
+/-- The [degree](hyp:n) and [evaluation point](hyp:x) give [equality between the normalized zero-parameter shifted Jacobi polynomial and Mathlib's shifted Legendre polynomial](goal).
+@isnad1 id=eq.0h2v.s6.2d51af6eee0a from=translated src=- shape=345297d1 vocab=5e60cbc0
+-/
 lemma jacobiShifted_zero_zero_eq_shiftedLegendre (n : ℕ) (x : ℝ) :
     jacobiShifted n 0 0 x =
       Polynomial.aeval x (Polynomial.shiftedLegendre n) := by
@@ -39,7 +41,9 @@ lemma jacobiShifted_zero_zero_eq_shiftedLegendre (n : ℕ) (x : ℝ) :
   push_cast
   ring
 
-/-- For an [integer polynomial](hyp:p) and [derivative order](hyp:n), [iterating the real derivative after evaluation agrees with evaluating the iterated polynomial derivative](goal). -/
+/-- For an [integer polynomial](hyp:p) and [derivative order](hyp:n), [iterating the real derivative after evaluation agrees with evaluating the iterated polynomial derivative](goal).
+@isnad1 id=eq.0h2v.s8.c8272ce4622a from=translated src=- shape=ad5d6187 vocab=6d5bed53
+-/
 lemma iter_deriv_aeval_int (p : Polynomial ℤ) (n : ℕ) :
     deriv^[n] (fun x : ℝ => Polynomial.aeval x p) =
       fun x : ℝ => Polynomial.aeval x (Polynomial.derivative^[n] p) := by
@@ -50,7 +54,9 @@ lemma iter_deriv_aeval_int (p : Polynomial ℤ) (n : ℕ) :
       funext x
       exact Polynomial.deriv_aeval _
 
-/-- The [degree](hyp:n) and [evaluation point](hyp:x) satisfy [the shifted-Legendre Rodrigues identity](goal). -/
+/-- The [degree](hyp:n) and [evaluation point](hyp:x) satisfy [the shifted-Legendre Rodrigues identity](goal).
+@isnad1 id=eq.0h2v.s7.00224f0211bb from=translated src=- shape=96c4b44a vocab=908fb225
+-/
 lemma shiftedLegendre_rodrigues_eval (n : ℕ) (x : ℝ) :
     (n.factorial : ℝ) * Polynomial.aeval x (Polynomial.shiftedLegendre n) =
       (deriv^[n] (fun y : ℝ => y^n * (1-y)^n)) x := by
@@ -68,7 +74,9 @@ lemma shiftedLegendre_rodrigues_eval (n : ℕ) (x : ℝ) :
   rw [hfun] at hi
   exact h.trans hi.symm
 
-/-- For a [power](hyp:k) and [derivative order](hyp:i), if [the derivative order is below the power](hyp:hi), then [the corresponding derivative of the symmetric power bump vanishes at zero](goal). -/
+/-- For a [power](hyp:k) and [derivative order](hyp:i), if [the derivative order is below the power](hyp:hi), then [the corresponding derivative of the symmetric power bump vanishes at zero](goal).
+@isnad1 id=eq.1h2v.s6.e179e4058c80 from=translated src=- shape=f26eeb53 vocab=915fab02
+-/
 lemma rod_boundary_zero (k i : ℕ) (hi : i < k) :
     (deriv^[i] (fun x : ℝ => x^k * (1-x)^k)) 0 = 0 := by
   rw [← iteratedDeriv_eq_iterate]
@@ -85,7 +93,9 @@ lemma rod_boundary_zero (k i : ℕ) (hi : i < k) :
   rw [hpow]
   ring
 
-/-- If the [first degree](hyp:j) is [strictly below the second degree](hyp:k,hjk), then [the two shifted Legendre polynomials are orthogonal on the unit interval](goal). -/
+/-- If the [first degree](hyp:j) is [strictly below the second degree](hyp:k,hjk), then [the two shifted Legendre polynomials are orthogonal on the unit interval](goal).
+@isnad1 id=eq.1h2v.s7.0f3c41de127f from=translated src=- shape=1d4b910b vocab=9f32f7ac
+-/
 lemma shiftedLegendre_orthogonal_unit_of_lt {j k : ℕ} (hjk : j < k) :
     (∫ x in (0 : ℝ)..1, Polynomial.aeval x (Polynomial.shiftedLegendre j) *
       Polynomial.aeval x (Polynomial.shiftedLegendre k)) = 0 := by
@@ -132,7 +142,9 @@ lemma shiftedLegendre_orthogonal_unit_of_lt {j k : ℕ} (hjk : j < k) :
   rw [hibp] at hscale
   exact (mul_eq_zero.mp hscale).resolve_left (by positivity)
 
-/-- For a [degree](hyp:k), [the derivative of that order of the shifted Legendre polynomial is the stated constant polynomial](goal). -/
+/-- For a [degree](hyp:k), [the derivative of that order of the shifted Legendre polynomial is the stated constant polynomial](goal).
+@isnad1 id=eq.0h1v.s7.126c9892e6e4 from=translated src=- shape=134ef6cf vocab=c9994d10
+-/
 lemma iterate_derivative_shiftedLegendre (k : ℕ) :
     Polynomial.derivative^[k] (Polynomial.shiftedLegendre k) =
       Polynomial.C ((k.factorial : ℤ) * ((-1 : ℤ)^k * ((2*k).choose k : ℤ))) := by
@@ -148,7 +160,9 @@ lemma iterate_derivative_shiftedLegendre (k : ℕ) :
       all_goals ring
       all_goals simp
 
-/-- For a [degree](hyp:k), [the squared integral of the shifted Legendre polynomial on the unit interval is the reciprocal of twice the degree plus one](goal). -/
+/-- For a [degree](hyp:k), [the squared integral of the shifted Legendre polynomial on the unit interval is the reciprocal of twice the degree plus one](goal).
+@isnad1 id=eq.0h1v.s7.9102678bb488 from=translated src=- shape=8f848242 vocab=b33328eb
+-/
 lemma shiftedLegendre_sq_integral_unit (k : ℕ) :
     (∫ x in (0 : ℝ)..1, (Polynomial.aeval x (Polynomial.shiftedLegendre k) : ℝ) ^ 2) =
       1 / (2 * (k : ℝ) + 1) := by
@@ -265,7 +279,9 @@ lemma shiftedLegendre_sq_integral_unit (k : ℕ) :
     nlinarith only [hsign]
   rw [hcancel, hratio]
 
-/-- For [two degrees](hyp:j,k), [the shifted Legendre inner product on the unit interval is diagonal with value one over twice the degree plus one](goal). -/
+/-- For [two degrees](hyp:j,k), [the shifted Legendre inner product on the unit interval is diagonal with value one over twice the degree plus one](goal).
+@isnad1 id=eq.0h2v.s8.04cc529fb9e4 from=translated src=- shape=b9d0e37b vocab=af926d6d
+-/
 lemma shiftedLegendre_orthogonal_unit (j k : ℕ) :
     (∫ x in (0 : ℝ)..1, Polynomial.aeval x (Polynomial.shiftedLegendre j) *
       Polynomial.aeval x (Polynomial.shiftedLegendre k)) =

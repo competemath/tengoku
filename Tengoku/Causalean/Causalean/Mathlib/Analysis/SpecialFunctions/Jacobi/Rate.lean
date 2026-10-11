@@ -17,7 +17,9 @@ open MeasureTheory intervalIntegral
 /-- A [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα), gives [positive uniform lower and upper power bounds for the factorial-to-rising-factorial ratio](goal).
 
 At fixed positive `α`, the ratio `k!/(α+1)ₖ` is bounded above and below
-by positive multiples of `(k+1)^(-α)`, uniformly in natural `k`. -/
+by positive multiples of `(k+1)^(-α)`, uniformly in natural `k`.
+@isnad1 id=ex.1h1v.s7.b50f7b406822 from=translated src=- shape=413da727 vocab=0ffc79ae
+-/
 theorem factorial_div_rising_power_bounds (α : ℝ) (hα : 0 < α) :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧
       ∀ k : ℕ,
@@ -118,7 +120,9 @@ theorem factorial_div_rising_power_bounds (α : ℝ) (hα : 0 < α) :
 /-- A [positive shape parameter](hyp:α), with [parameter positivity](hyp:hα), gives [positive uniform lower and upper power bounds for the exact zeroth shifted-Jacobi moment](goal).
 
 The exact zeroth weighted moment has positive two-sided bounds of order
-`(k+1)^(-2α)`, with constants depending only on `α`. -/
+`(k+1)^(-2α)`, with constants depending only on `α`.
+@isnad1 id=ex.1h1v.s8.387753dc08fd from=translated src=- shape=ca98e15f vocab=9b193c7e
+-/
 theorem h_zeroth_moment_power_bounds (α : ℝ) (hα : 0 < α) :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧
       ∀ k : ℕ, 1 ≤ k →

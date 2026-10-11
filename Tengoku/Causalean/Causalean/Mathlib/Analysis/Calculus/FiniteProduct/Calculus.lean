@@ -22,7 +22,9 @@ variable {ι : Type*} [DecidableEq ι]
 /-- For [factor jets J of a finite index set I](hyp:I,J), [hit lists xs and ys](hyp:xs,ys) and
 [a point (a, u)](hyp:a,u), if [an index k](hyp:k) [belongs to I](hyp:hk), then [prepending k to
 the first-coordinate hit list turns the Leibniz summand into the factor jet of k with its
-first-coordinate order raised by one, times the unchanged jets of the other factors](goal). -/
+first-coordinate order raised by one, times the unchanged jets of the other factors](goal).
+@isnad1 id=eq.1h8v.s6.dd834c1726fa from=translated src=- shape=68c79963 vocab=34c0696d
+-/
 theorem leibnizTerm_cons_a (I : Finset ι) (J : FactorJets ι) (xs ys : List ι)
     (k : ι) (a u : ℝ) (hk : k ∈ I) :
     leibnizTerm I J (k :: xs) ys a u =
@@ -40,7 +42,9 @@ theorem leibnizTerm_cons_a (I : Finset ι) (J : FactorJets ι) (xs ys : List ι)
 /-- For [factor jets J of a finite index set I](hyp:I,J), [hit lists xs and ys](hyp:xs,ys) and
 [a point (a, u)](hyp:a,u), if [an index k](hyp:k) [belongs to I](hyp:hk), then [prepending k to
 the second-coordinate hit list turns the Leibniz summand into the factor jet of k with its
-second-coordinate order raised by one, times the unchanged jets of the other factors](goal). -/
+second-coordinate order raised by one, times the unchanged jets of the other factors](goal).
+@isnad1 id=eq.1h8v.s6.70ca96f1e747 from=translated src=- shape=861f646b vocab=34c0696d
+-/
 theorem leibnizTerm_cons_u (I : Finset ι) (J : FactorJets ι) (xs ys : List ι)
     (k : ι) (a u : ℝ) (hk : k ∈ I) :
     leibnizTerm I J xs (k :: ys) a u =
@@ -59,7 +63,9 @@ omit [DecidableEq ι] in
 /-- If [the factor jets J of a finite index set I have the first-coordinate derivative chains at a
 point (a, u)](hyp:I,J,a,u,h), then for [every index i of I](hyp:i,hi) and [every first-coordinate
 order p](hyp:p) [at most one](hyp:hp), [the factor jet of i at orders (p, 0), as a function of
-the first coordinate, has derivative at a equal to its jet at orders (p + 1, 0)](goal). -/
+the first coordinate, has derivative at a equal to its jet at orders (p + 1, 0)](goal).
+@isnad1 id=hasderiv.3h7v.s6.1d4f5167b653 from=translated src=- shape=3c69f4e6 vocab=54699b77
+-/
 theorem hasDerivAt_factorJet_a (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : AChainsAt I J a u) (i : ι) (hi : i ∈ I) (p : ℕ) (hp : p ≤ 1) :
     HasDerivAt (fun b => factorJet J i p 0 b u)
@@ -73,7 +79,9 @@ omit [DecidableEq ι] in
 point (a, u)](hyp:I,J,a,u,h), then for [every index i of I](hyp:i,hi) and orders
 [p and q](hyp:p,q) with [p at most two](hyp:hp) and [q at most one](hyp:hq), [the factor jet of i
 at orders (p, q), as a function of the second coordinate, has derivative at u equal to its jet at
-orders (p, q + 1)](goal). -/
+orders (p, q + 1)](goal).
+@isnad1 id=hasderiv.4h8v.s6.5fadf7b6770c from=translated src=- shape=f685eacb vocab=159f9b82
+-/
 theorem hasDerivAt_factorJet_u (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : UChainsAt I J a u) (i : ι) (hi : i ∈ I)
     (p q : ℕ) (hp : p ≤ 2) (hq : q ≤ 1) :
@@ -94,7 +102,9 @@ theorem hasDerivAt_factorJet_u (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
 point (a, u)](hyp:I,J,a,u,h) and [a first-coordinate hit list xs](hyp:xs) has [at most one
 entry](hyp:hlen), then [the Leibniz summand with hits xs and no second-coordinate hits, as a
 function of the first coordinate, has derivative at a equal to the sum over k in I of the summand
-with k prepended to xs](goal). -/
+with k prepended to xs](goal).
+@isnad1 id=hasderiv.2h6v.s6.9c7af75cee67 from=translated src=- shape=c8c10136 vocab=ee4214fa
+-/
 theorem hasDerivAt_leibnizTerm_a (I : Finset ι) (J : FactorJets ι)
     (xs : List ι) (a u : ℝ) (h : AChainsAt I J a u) (hlen : xs.length ≤ 1) :
     HasDerivAt (fun b => leibnizTerm I J xs [] b u)
@@ -116,7 +126,9 @@ theorem hasDerivAt_leibnizTerm_a (I : Finset ι) (J : FactorJets ι)
 point (a, u)](hyp:I,J,a,u,h), and [a first-coordinate hit list](hyp:xs) has [at most two
 entries](hyp:hxs) and [a second-coordinate hit list](hyp:ys) has [at most one entry](hyp:hys),
 then [the Leibniz summand, as a function of the second coordinate, has derivative at u equal to
-the sum over k in I of the summand with k prepended to the second-coordinate list](goal). -/
+the sum over k in I of the summand with k prepended to the second-coordinate list](goal).
+@isnad1 id=hasderiv.3h7v.s6.168793f7b28a from=translated src=- shape=78a6fb3f vocab=b62cd4a8
+-/
 theorem hasDerivAt_leibnizTerm_u (I : Finset ι) (J : FactorJets ι)
     (xs ys : List ι) (a u : ℝ) (h : UChainsAt I J a u)
     (hxs : xs.length ≤ 2) (hys : ys.length ≤ 1) :
@@ -137,7 +149,9 @@ theorem hasDerivAt_leibnizTerm_u (I : Finset ι) (J : FactorJets ι)
 
 /-- If [the factor jets J of a finite index set I have the first-coordinate derivative chains at a
 point (a, u)](hyp:I,J,a,u,h), then [the finite product of the base factors, as a function of the
-first coordinate, has derivative at a equal to the explicit first first-coordinate jet](goal). -/
+first coordinate, has derivative at a equal to the explicit first first-coordinate jet](goal).
+@isnad1 id=hasderiv.1h5v.s6.56743d39e99c from=translated src=- shape=130c6fde vocab=c3dff587
+-/
 theorem hasDerivAt_product_a (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : AChainsAt I J a u) :
     HasDerivAt (fun b => product I J b u) (productJet10 I J a u) a := by
@@ -147,7 +161,9 @@ theorem hasDerivAt_product_a (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
 /-- If [the factor jets J of a finite index set I have the first-coordinate derivative chains at a
 point (a, u)](hyp:I,J,a,u,h), then [the first first-coordinate jet of the finite product, as a
 function of the first coordinate, has derivative at a equal to the explicit second
-first-coordinate jet](goal). -/
+first-coordinate jet](goal).
+@isnad1 id=hasderiv.1h5v.s6.278bf7290c38 from=translated src=- shape=130c6fde vocab=1937daa0
+-/
 theorem hasDerivAt_productJet10_a (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : AChainsAt I J a u) :
     HasDerivAt (fun b => productJet10 I J b u) (productJet20 I J a u) a := by
@@ -159,7 +175,9 @@ theorem hasDerivAt_productJet10_a (I : Finset ι) (J : FactorJets ι) (a u : ℝ
 /-- If [the factor jets J of a finite index set I have the second-coordinate derivative chains at a
 point (a, u)](hyp:I,J,a,u,h), then [the second first-coordinate jet of the finite product, as a
 function of the second coordinate, has derivative at u equal to the explicit mixed (2,1)
-jet](goal). -/
+jet](goal).
+@isnad1 id=hasderiv.1h5v.s6.631dd4d0affd from=translated src=- shape=04ba7110 vocab=fc5ca198
+-/
 theorem hasDerivAt_productJet20_u (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : UChainsAt I J a u) :
     HasDerivAt (fun v => productJet20 I J a v) (productJet21 I J a u) u := by
@@ -169,7 +187,9 @@ theorem hasDerivAt_productJet20_u (I : Finset ι) (J : FactorJets ι) (a u : ℝ
 
 /-- If [the factor jets J of a finite index set I have the second-coordinate derivative chains at a
 point (a, u)](hyp:I,J,a,u,h), then [the mixed (2,1) jet of the finite product, as a function of
-the second coordinate, has derivative at u equal to the explicit mixed (2,2) jet](goal). -/
+the second coordinate, has derivative at u equal to the explicit mixed (2,2) jet](goal).
+@isnad1 id=hasderiv.1h5v.s6.1ab2b5eabc77 from=translated src=- shape=04ba7110 vocab=80aca79e
+-/
 theorem hasDerivAt_productJet21_u (I : Finset ι) (J : FactorJets ι) (a u : ℝ)
     (h : UChainsAt I J a u) :
     HasDerivAt (fun v => productJet21 I J a v) (productJet22 I J a u) u := by

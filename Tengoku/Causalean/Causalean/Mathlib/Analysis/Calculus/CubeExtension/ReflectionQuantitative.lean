@@ -19,7 +19,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 
 /-- [The inward reflection sample with dilation index q is Lipschitz for the
 supremum norm with constant q + 1](goal): it moves two points apart by at most
-q + 1 times their distance. -/
+q + 1 times their distance.
+@isnad1 id=le.0h5v.s7.a68793a2c44b from=translated src=- shape=c7f3bbe3 vocab=3cf8c6d6
+-/
 theorem leftFaceSample_lipschitz (d : ℕ) (i : Fin d) (q : ℕ)
     (x y : Fin d → ℝ) :
     ‖leftFaceSample d i q x - leftFaceSample d i q y‖ ≤
@@ -49,7 +51,9 @@ theorem leftFaceSample_lipschitz (d : ℕ) (i : Fin d) (q : ℕ)
 /-- If [L ≥ 0](hyp:hL) and [a response u lies in the intrinsic Hölder ball of
 order m, exponent s and radius L on the normalized cube](hyp:hu), then at
 [every point x of the open exterior collar](hyp:hx) [the one-face reflection of u
-has absolute value at most (Σ_q |a_q|)·L](goal). -/
+has absolute value at most (Σ_q |a_q|)·L](goal).
+@isnad1 id=le.3h8v.s7.b2369f36fbbc from=translated src=- shape=abc31def vocab=96a22ad7
+-/
 theorem leftFaceReflection_abs_le_openCollar (d m : ℕ) (s : ℝ)
     (i : Fin d) (a : Fin (m + 1) → ℝ)
     (u : (Fin d → ℝ) → ℝ) (L : ℝ)

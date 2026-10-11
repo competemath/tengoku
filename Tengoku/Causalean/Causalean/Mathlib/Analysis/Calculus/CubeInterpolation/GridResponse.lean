@@ -24,7 +24,9 @@ nonnegative M and L: if a function is m times continuously differentiable on the
 cube, bounded there by M in absolute value, and satisfies the top-order Hölder condition with
 exponent s and constant L, then any polynomial that equals its order-m Taylor polynomial at a
 centre in the open cube is at most C times (M + L) in absolute value at every node of the fixed
-tensor grid](goal). -/
+tensor grid](goal).
+@isnad1 id=ex.2h3v.s10.1b7864e9bc03 from=translated src=- shape=e246d5e8 vocab=f32e3da2
+-/
 theorem taylor_polynomial_grid_bound (d m : ℕ) (s : ℝ)
     (hs : 0 < s) (hs1 : s ≤ 1) :
     ∃ C : ℝ, 0 < C ∧

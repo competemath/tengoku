@@ -181,7 +181,9 @@ private theorem exists_polynomial_eval_ne_zero [Finite S]
 
 /-- Given a [rational scalar](hyp:r), [source assignment](hyp:x), and [nonzero denominator at that
 assignment](hyp:hden), the [full Fréchet derivative vanishes exactly when its certificate
-polynomial vanishes](goal). -/
+polynomial vanishes](goal).
+@isnad1 id=iff.1h3v.s9.b177a9141693 from=translated src=- shape=d03ba82e vocab=46f96192
+-/
 theorem fderiv_eq_zero_iff_derivativePolynomial_eq_zero [Fintype S] [DecidableEq S]
     (r : RationalScalar S) (x : S → ℝ)
     (hden : MvPolynomial.eval x r.den ≠ 0) :
@@ -204,7 +206,9 @@ theorem fderiv_eq_zero_iff_derivativePolynomial_eq_zero [Fintype S] [DecidableEq
 
 /-- Given a rational scalar coordinate [r](hyp:r) on a [domain](hyp:D) where [its denominator does
 not vanish](hyp:hD), the [points where its full Fréchet derivative vanishes are exactly one real
-polynomial zero locus within that domain](goal). -/
+polynomial zero locus within that domain](goal).
+@isnad1 id=eq.1h3v.s9.e6b3d8d583c3 from=translated src=- shape=7f992161 vocab=bf8a4e08
+-/
 theorem derivative_zero_locus [Fintype S] [DecidableEq S]
     (r : RationalScalar S) (D : Set (S → ℝ)) (hD : r.DefinedOn D) :
     {x | x ∈ D ∧ fderiv ℝ r.eval x = 0} =
@@ -218,7 +222,9 @@ theorem derivative_zero_locus [Fintype S] [DecidableEq S]
   exact fderiv_eq_zero_iff_derivativePolynomial_eq_zero r x (hD x hx)
 
 /-- Given a [rational scalar](hyp:r) satisfying [formal nonconstancy](hyp:h), the [full derivative
-certificate polynomial is nonzero](goal). -/
+certificate polynomial is nonzero](goal).
+@isnad1 id=ne.1h2v.s5.a42c133fb885 from=translated src=- shape=e1b6ce44 vocab=d30cd890
+-/
 theorem derivativePolynomial_ne_zero_of_formallyNonconstant [Fintype S]
     (r : RationalScalar S) (h : r.IsFormallyNonconstant) :
     r.derivativePolynomial ≠ 0 := by
@@ -228,7 +234,9 @@ theorem derivativePolynomial_ne_zero_of_formallyNonconstant [Fintype S]
 
 /-- Given a [rational scalar](hyp:r), [source assignment](hyp:x), [coordinate](hyp:i), and [a
 nonzero cleared derivative numerator there](hyp:h), the [full derivative certificate polynomial is
-nonzero](goal). -/
+nonzero](goal).
+@isnad1 id=ne.1h4v.s7.93d833744b50 from=translated src=- shape=c35e12ef vocab=5ebfe962
+-/
 theorem derivativePolynomial_ne_zero_of_witness [Fintype S]
     (r : RationalScalar S) (x : S → ℝ) (i : S)
     (h : MvPolynomial.eval x (r.derivativeNumerator i) ≠ 0) :
@@ -237,7 +245,9 @@ theorem derivativePolynomial_ne_zero_of_witness [Fintype S]
 
 /-- Given a [rational scalar](hyp:r) on a [convex domain](hyp:D,hconvex), [a nowhere-vanishing
 denominator](hyp:hD), [two domain points](hyp:x,y,hx,hy), and [distinct rational values](hyp:hne),
-the [full derivative certificate polynomial is nonzero](goal). -/
+the [full derivative certificate polynomial is nonzero](goal).
+@isnad1 id=ne.5h5v.s7.d609d4c03380 from=translated src=- shape=6deab0c5 vocab=93a869e1
+-/
 theorem derivativePolynomial_ne_zero_of_nonconstantOn_convex
     [Fintype S] [DecidableEq S]
     (r : RationalScalar S) (D : Set (S → ℝ)) (hconvex : Convex ℝ D)

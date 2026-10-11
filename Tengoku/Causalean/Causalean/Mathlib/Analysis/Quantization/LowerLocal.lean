@@ -14,7 +14,9 @@ namespace Causalean.Mathlib.Analysis.Quantization
 
 /-- A continuous weighted absolute-distance integrand is integrable on every
 measurable subset of the compact source interval when its reproduction point
-also lies in that interval. -/
+also lies in that interval.
+@isnad1 id=integrab.5h5v.s7.8febbb6026f0 from=translated src=- shape=8b48c6bf vocab=3a70327f
+-/
 theorem weighted_cell_integrable (a b : ℝ) (hab : a ≤ b)
     (β : ℝ → ℝ → ℝ)
     (hcont : ContinuousOn (fun p : ℝ × ℝ => β p.1 p.2)
@@ -32,7 +34,9 @@ theorem weighted_cell_integrable (a b : ℝ) (hab : a ≤ b)
 
 /-- If all points in a measurable region are at least `δ` from one of the
 reproduction points, its paired cost is at least its volume times `c*δ`,
-provided every coefficient there is at least `c`. -/
+provided every coefficient there is at least `c`.
+@isnad1 id=le.11h9v.s8.1509da465c51 from=translated src=- shape=f00e9fd0 vocab=d8fa4657
+-/
 theorem far_region_measure_cost (a b : ℝ) (hab : a ≤ b)
     (S : ℕ) (β : Fin S → ℝ → ℝ → ℝ) (z : Fin S → ℝ)
     (B G : Set ℝ) (hB : MeasurableSet B) (hG : MeasurableSet G)
@@ -78,7 +82,9 @@ theorem far_region_measure_cost (a b : ℝ) (hab : a ≤ b)
 family and its weights](hyp:S,β), [reproductions](hyp:z), [measurable source
 and target regions](hyp:B,G,hB,hG,hsub,hGB), and [nonnegative lower
 weights](hyp:γ,hγ) with [comparison and integrability bounds](hyp:hβ,hβnonneg,hInt),
-[the exact quarter-square lower bound holds for the paired cell cost](goal). -/
+[the exact quarter-square lower bound holds for the paired cell cost](goal).
+@isnad1 id=le.9h8v.s8.8a564b5e694f from=translated src=- shape=83754baf vocab=825a37a8
+-/
 theorem near_region_moment_lower (a b : ℝ) (hab : a ≤ b)
     (S : ℕ) (β : Fin S → ℝ → ℝ → ℝ) (z : Fin S → ℝ)
     (B G : Set ℝ) (hB : MeasurableSet B) (hG : MeasurableSet G)

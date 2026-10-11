@@ -24,7 +24,9 @@ open Causalean.Mathlib.Analysis.Calculus.CubeInterpolation
 constant C such that, for every response u in the intrinsic Hölder ball of order
 m, exponent s and radius L ≥ 0 on the normalized cube, every intrinsic
 coordinate jet of order at most m of the one-face reflection of u is bounded in
-absolute value by C·L throughout the closed left collar](goal). -/
+absolute value by C·L throughout the closed left collar](goal).
+@isnad1 id=ex.1h5v.s7.a09b88331457 from=translated src=- shape=49578864 vocab=311be067
+-/
 theorem exists_leftFaceReflection_collar_derivBound_constant
     (d m : ℕ) (s : ℝ) (i : Fin d) (a : Fin (m + 1) → ℝ)
     (ha : ∀ k : Fin (m + 1),

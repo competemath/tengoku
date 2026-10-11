@@ -25,7 +25,9 @@ the estimate does not depend on the ambient representative.
 The proof uses the box and distance-power lemmas from
 `RectangularAffineGeometry`, the within-jet affine chain rule in
 `RectangularAffineJets`, and a finite maximum of the coordinate scaling
-factors. -/
+factors.
+@isnad1 id=ex.2h7v.s7.7ab0eea6093d from=translated src=- shape=d3bcac64 vocab=4afaaafd
+-/
 theorem exists_rectAffine_holder_constant {d : ℕ}
     (lo hi lo' hi' : Fin d → ℝ) (m : ℕ) (s : ℝ)
     (hsource : ∀ i, lo i < hi i)

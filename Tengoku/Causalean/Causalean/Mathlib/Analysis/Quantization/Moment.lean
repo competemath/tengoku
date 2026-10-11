@@ -14,7 +14,9 @@ namespace Causalean.Mathlib.Analysis.Quantization
 
 /-- For a bounded measurable cell, the mass at distance at least `r` from a
 point is at least the cell's mass minus the length `2*r` of the central band.
-The cell may be disconnected, and the point may lie outside it. -/
+The cell may be disconnected, and the point may lie outside it.
+@isnad1 id=le.4h5v.s6.2211a4b5453a from=translated src=- shape=8b73cb9e vocab=fff52a4b
+-/
 theorem measurable_cell_tail_lower (a b z r : ℝ) (hab : a ≤ b)
     (hr : 0 ≤ r) (E : Set ℝ) (hE : MeasurableSet E)
     (hsub : E ⊆ Set.Icc a b) :
@@ -51,7 +53,9 @@ theorem measurable_cell_tail_lower (a b z r : ℝ) (hab : a ≤ b)
     _ ≤ 2 * r + volume.real (E ∩ {x : ℝ | r ≤ |x - z|}) := by linarith
 
 /-- Integrating the distance tails up to half the cell's mass gives a lower
-bound for the absolute-deviation integral over any bounded measurable cell. -/
+bound for the absolute-deviation integral over any bounded measurable cell.
+@isnad1 id=le.3h4v.s7.974987f9b35d from=translated src=- shape=209c5309 vocab=0d6cf14d
+-/
 theorem measurable_cell_truncated_layer_cake (a b z : ℝ) (hab : a ≤ b)
     (E : Set ℝ) (hE : MeasurableSet E) (hsub : E ⊆ Set.Icc a b) :
     (∫ r in (0 : ℝ)..volume.real E / 2, (volume.real E - 2 * r)) ≤
@@ -143,7 +147,9 @@ theorem measurable_cell_truncated_layer_cake (a b z : ℝ) (hab : a ≤ b)
 
 /-- For [ordered interval endpoints](hyp:a,b,hab), [a reproduction
 point](hyp:z), and [a measurable subset of that interval](hyp:E,hE,hsub),
-[absolute-deviation loss is at least one quarter of squared Lebesgue mass](goal). -/
+[absolute-deviation loss is at least one quarter of squared Lebesgue mass](goal).
+@isnad1 id=le.3h4v.s6.810b993dfb17 from=translated src=- shape=29eb49f7 vocab=d72eed0f
+-/
 theorem measurable_cell_moment (a b z : ℝ) (hab : a ≤ b)
     (E : Set ℝ) (hE : MeasurableSet E) (hsub : E ⊆ Set.Icc a b) :
     volume.real E ^ 2 / 4 ≤ ∫ x in E, |x - z| := by
@@ -164,7 +170,9 @@ theorem measurable_cell_moment (a b z : ℝ) (hab : a ≤ b)
   exact measurable_cell_truncated_layer_cake a b z hab E hE hsub
 
 /-- For a finite family of nonnegative constant weights, separate reproduction
-points cannot improve the common measurable cell's quarter-square bound. -/
+points cannot improve the common measurable cell's quarter-square bound.
+@isnad1 id=le.4h6v.s7.f855ac653074 from=translated src=- shape=68fe5659 vocab=d77cf8c1
+-/
 theorem weighted_measurable_cell_moment (a b : ℝ) (hab : a ≤ b)
     (E : Set ℝ) (hE : MeasurableSet E) (hsub : E ⊆ Set.Icc a b)
     (S : ℕ) (γ : Fin S → ℝ) (hγ : ∀ s, 0 ≤ γ s)
@@ -184,7 +192,9 @@ theorem weighted_measurable_cell_moment (a b : ℝ) (hab : a ≤ b)
         (measurable_cell_moment a b (z s) hab E hE hsub) (hγ s)
 
 /-- The midpoint realizes the exact quarter-square absolute-deviation
-integral on a nondegenerate or degenerate closed interval. -/
+integral on a nondegenerate or degenerate closed interval.
+@isnad1 id=eq.1h2v.s6.a8b74300a064 from=translated src=- shape=77e5507d vocab=2b87b995
+-/
 theorem interval_midpoint_moment (a b : ℝ) (hab : a ≤ b) :
     (∫ x in a..b, |x - (a + b) / 2|) = (b - a) ^ 2 / 4 := by
   -- Split the interval at its midpoint and integrate the two affine branches.

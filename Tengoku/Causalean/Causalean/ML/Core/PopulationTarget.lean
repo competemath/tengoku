@@ -29,7 +29,9 @@ open MeasureTheory
 
 variable {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
 
-/-- Any two population-risk minimizers over the same class attain the same risk. -/
+/-- Any two population-risk minimizers over the same class attain the same risk.
+@isnad1 id=eq.2h7v.s6.bb29d9556f6b from=translated src=- shape=e5e55327 vocab=0e14a742
+-/
 theorem populationRisk_eq_of_both_minimizers
     {H : HypothesisClass X Y} {loss : Loss Y} {P : Measure (X × Y)} {h₁ h₂ : X → Y}
     (H1 : IsPopulationRiskMinimizer H loss P h₁)
@@ -38,7 +40,9 @@ theorem populationRisk_eq_of_both_minimizers
   le_antisymm ((isMinOn_iff.mp H1.isMin) h₂ H2.mem) ((isMinOn_iff.mp H2.isMin) h₁ H1.mem)
 
 /-- If a target is known to be the unique population-risk minimizer, every
-population-risk minimizer equals it. -/
+population-risk minimizer equals it.
+@isnad1 id=eq.3h7v.s6.bd91be157654 from=translated src=- shape=a753553c vocab=5915b451
+-/
 theorem populationRisk_minimizer_eq_target
     {H : HypothesisClass X Y} {loss : Loss Y} {P : Measure (X × Y)} {target hstar : X → Y}
     (hStar : IsPopulationRiskMinimizer H loss P hstar)
@@ -68,7 +72,9 @@ and [an integrable cross term](hyp:hcross).
 
 Proof: complete the square
 `(y − h x)² = (y − m x)² + 2 (y − m x)(m x − h x) + (m x − h x)²`; the cross term
-integrates to zero by `IsResidualOrthogonal`, and the quadratic term is nonnegative. -/
+integrates to zero by `IsResidualOrthogonal`, and the quadratic term is nonnegative.
+@isnad1 id=le.6h4v.s7.e22c2ce89205 from=translated src=- shape=adc37482 vocab=d562d329
+-/
 theorem square_loss_population_target_of_isResidualOrthogonal
     {P : Measure (X × ℝ)} {m : X → ℝ} (hm : IsResidualOrthogonal P m)
     (h : X → ℝ) (hm_meas : Measurable m) (hh_meas : Measurable h)

@@ -38,7 +38,9 @@ def BlockHeader.hash (h : BlockHeader) : Hash256 :=
   ⟨Sha256.sha256d (Codec.encode h), Sha256.sha256d_length _⟩
 
 /-- Equal block hashes mean equal headers — or two concrete byte strings
-witnessing a double-SHA-256 collision. -/
+witnessing a double-SHA-256 collision.
+@isnad1 id=or.1h2v.s4.64744080735d from=translated src=- shape=10ff300d vocab=d53e3384
+-/
 theorem BlockHeader.hash_binding {h₁ h₂ : BlockHeader} (h : h₁.hash = h₂.hash) :
     h₁ = h₂ ∨ Sha256.Collision := by
   by_cases he : h₁ = h₂

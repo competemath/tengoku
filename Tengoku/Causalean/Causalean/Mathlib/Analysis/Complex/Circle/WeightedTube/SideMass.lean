@@ -127,7 +127,9 @@ private theorem comparisonBall_volume_real (side : CircleSide) {h : ℝ} (hh : 0
   cases side <;> simp [comparisonBall, Measure.real, ENNReal.toReal_ofReal, hq]
 
 /-- When [the exponent κ exceeds two](hyp:hκ), [the weighted mass of the one-sided ball determined
-by the chosen side, center, and radius](hyp:side,x,h) [is nonnegative](goal). -/
+by the chosen side, center, and radius](hyp:side,x,h) [is nonnegative](goal).
+@isnad1 id=le.1h4v.s5.51bdb33a5747 from=translated src=- shape=24b04f93 vocab=c20606f8
+-/
 theorem sideBallMass_nonneg {κ : ℝ} (hκ : 2 < κ)
     (side : CircleSide) (x : Plane) (h : ℝ) :
     0 ≤ sideBallMass κ side x h := by
@@ -135,7 +137,9 @@ theorem sideBallMass_nonneg {κ : ℝ} (hκ : 2 < κ)
     (fun z _ => powerWeight_nonneg κ z)
 
 /-- For [a chosen radial side](hyp:side) and [a center on the unit circle](hyp:hx), [rotating that
-center to the reference point one leaves its weighted side-ball mass unchanged](goal). -/
+center to the reference point one leaves its weighted side-ball mass unchanged](goal).
+@isnad1 id=eq.1h4v.s5.d84aea4f3ef7 from=translated src=- shape=08877682 vocab=b10dff40
+-/
 theorem sideBallMass_eq_reference {κ h : ℝ} (side : CircleSide)
     {x : Plane} (hx : x ∈ unitCircle) :
     sideBallMass κ side x h = sideBallMass κ side 1 h := by
@@ -172,7 +176,9 @@ theorem sideBallMass_eq_reference {κ h : ℝ} (side : CircleSide)
 and below one](hyp:hh0pos,hh0lt), [there are positive constants, uniform over both radial sides,
 all exponents between two and that ceiling, and all positive scales up to that maximum, which
 bound the reference one-sided weighted mass above and below by constant multiples of the scale to
-the exponent](goal). -/
+the exponent](goal).
+@isnad1 id=ex.3h2v.s7.405a5dadf27d from=translated src=- shape=485bc211 vocab=de56dcb6
+-/
 theorem reference_powerWeighted_sideBall_bounds
     {κMax h0 : ℝ} (hκMax : 2 < κMax) (hh0pos : 0 < h0) (hh0lt : h0 < 1) :
     ∃ c C : ℝ, 0 < c ∧ c ≤ C ∧
@@ -272,7 +278,9 @@ theorem reference_powerWeighted_sideBall_bounds
 and below one](hyp:hh0pos,hh0lt), [there are positive constants, uniform over every unit-circle
 center, either radial side, all exponents strictly greater than two and at most that ceiling, and all positive scales up
 to that maximum, which bound one-sided weighted mass above and below by constant multiples of the
-scale to the exponent](goal). -/
+scale to the exponent](goal).
+@isnad1 id=ex.3h2v.s7.1548854284c7 from=translated src=- shape=01de944a vocab=c846c935
+-/
 theorem unitCircle_powerWeighted_sideBall_bounds
     {κMax h0 : ℝ} (hκMax : 2 < κMax) (hh0pos : 0 < h0) (hh0lt : h0 < 1) :
     ∃ c C : ℝ, 0 < c ∧ c ≤ C ∧
@@ -290,12 +298,16 @@ theorem unitCircle_powerWeighted_sideBall_bounds
 /-- For [a real tube width](hyp:δ), the [annular tube](goal) is the set of planar points whose absolute radial distance from the unit circle is strictly less than $\delta$. -/
 def annularTube (δ : ℝ) : Set Plane := {z | |radialOffset z| < δ}
 
-/-- For [a tube width](hyp:δ), [the corresponding annular tube](goal) is Lebesgue measurable. -/
+/-- For [a tube width](hyp:δ), [the corresponding annular tube](goal) is Lebesgue measurable.
+@isnad1 id=measurab.0h1v.s2.51f495722a33 from=translated src=- shape=1a6c1393 vocab=39d34fdd
+-/
 theorem measurableSet_annularTube (δ : ℝ) : MeasurableSet (annularTube δ) := by
   exact measurableSet_lt ((continuous_norm.sub continuous_const).abs.measurable) measurable_const
 
 /-- When [the exponent κ exceeds two](hyp:hκ) and [the tube width is below one](hyp:hδ), [the
-radial power weight is integrable over that annular tube](goal). -/
+radial power weight is integrable over that annular tube](goal).
+@isnad1 id=integrab.2h2v.s6.852f75e8f23d from=translated src=- shape=45f91f59 vocab=2a6284df
+-/
 theorem integrableOn_powerWeight_annularTube {κ δ : ℝ} (hκ : 2 < κ) (hδ : δ < 1) :
     IntegrableOn (powerWeight κ) (annularTube δ) := by
   have hsub : annularTube δ ⊆ closedBall (0 : Plane) 2 := by
@@ -316,7 +328,9 @@ def annularNormalizer (κ δ : ℝ) : ℝ :=
   ∫ z in annularTube δ, powerWeight κ z ∂volume
 
 /-- When [the exponent κ exceeds two](hyp:hκ) and [the tube width is positive and below one](hyp:hδpos,hδlt), [the radial power weight is integrable on that annular tube and its weighted
-normalizer is strictly positive](goal). -/
+normalizer is strictly positive](goal).
+@isnad1 id=and.3h2v.s6.ee629f15c3cc from=translated src=- shape=545bbf0a vocab=1f93891d
+-/
 theorem annularNormalizer_finite_pos {κ δ : ℝ}
     (hκ : 2 < κ) (hδpos : 0 < δ) (hδlt : δ < 1) :
     IntegrableOn (powerWeight κ) (annularTube δ) ∧ 0 < annularNormalizer κ δ := by

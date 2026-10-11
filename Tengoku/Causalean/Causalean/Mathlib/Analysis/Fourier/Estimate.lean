@@ -17,7 +17,9 @@ open MeasureTheory
 open scoped FourierTransform
 namespace Causalean.Mathlib.Analysis.Fourier
 
-/-- [A complex frequency multiplier](hyp:G) with [admissible compact inverse-Fourier data](hyp:hG) and [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2) have [a finite weighted physical-space energy bounded by the geometric interpolation of frequency and derivative energies](goal). -/
+/-- [A complex frequency multiplier](hyp:G) with [admissible compact inverse-Fourier data](hyp:hG) and [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2) have [a finite weighted physical-space energy bounded by the geometric interpolation of frequency and derivative energies](goal).
+@isnad1 id=and.3h2v.s8.f8c300c0ca23 from=translated src=- shape=03b5a05f vocab=cbbb7ec1
+-/
 theorem inverse_weightedEnergy_le (G : ℝ → ℂ) (hG : CompactInverseData G)
     (κ : ℝ) (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) :
     Integrable (fun v => |v| ^ κ * ‖𝓕⁻ G v‖ ^ 2) ∧
@@ -30,7 +32,9 @@ theorem inverse_weightedEnergy_le (G : ℝ → ℂ) (hG : CompactInverseData G)
   simpa only [e0, e2] using weightedEnergy_le_interpolation (𝓕⁻ G) κ
     hG.integrable_inverse.aestronglyMeasurable hκ0 hκ2 h0 h2
 
-/-- [A complex frequency multiplier](hyp:G) with [admissible compact inverse-Fourier data](hyp:hG), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), and [a positive reference scale](hyp:h,hh) satisfy [the scale-dependent additive inverse-Fourier weighted-energy bound](goal). -/
+/-- [A complex frequency multiplier](hyp:G) with [admissible compact inverse-Fourier data](hyp:hG), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), and [a positive reference scale](hyp:h,hh) satisfy [the scale-dependent additive inverse-Fourier weighted-energy bound](goal).
+@isnad1 id=le.4h3v.s7.94abab037da2 from=translated src=- shape=87ce3396 vocab=cf461997
+-/
 theorem inverse_weightedEnergy_le_scaled (G : ℝ → ℂ) (hG : CompactInverseData G)
     (κ h : ℝ) (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) (hh : 0 < h) :
     weightedEnergy κ (𝓕⁻ G) ≤

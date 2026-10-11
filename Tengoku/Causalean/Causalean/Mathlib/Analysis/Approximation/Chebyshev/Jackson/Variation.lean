@@ -25,7 +25,9 @@ def delta2 (a : ℤ → ℝ) (j : ℤ) : ℝ := delta (delta a) j
 
 /-- For [any order N](hyp:N) and [any integer frequency j](hyp:j), [the first difference of the raw
 Jackson Fourier coefficients at j equals the sum, over integers k between −N − 1 and N, of the
-first difference of the triangular sequence at k times the triangular sequence at j − k](goal). -/
+first difference of the triangular sequence at k times the triangular sequence at j − k](goal).
+@isnad1 id=eq.0h2v.s6.7279fbece8cc from=translated src=- shape=b666a1ca vocab=b02d7b99
+-/
 theorem delta_convolution (N : ℕ) (j : ℤ) :
     delta (convolution N) j =
       ∑ k ∈ Finset.Icc (-(N : ℤ) - 1) (N : ℤ),
@@ -86,7 +88,9 @@ theorem delta_convolution (N : ℕ) (j : ℤ) :
 
 /-- For [any order N](hyp:N) and [any integer frequency j](hyp:j), [the second difference of the
 raw Jackson Fourier coefficients at j equals the sum, over integers k between −N − 1 and N, of the
-first difference of the triangular sequence at k times its first difference at j − k](goal). -/
+first difference of the triangular sequence at k times its first difference at j − k](goal).
+@isnad1 id=eq.0h2v.s6.9b6b96a06cbd from=translated src=- shape=825e90f1 vocab=5ccb7206
+-/
 theorem delta2_convolution (N : ℕ) (j : ℤ) :
     delta2 (convolution N) j =
       ∑ k ∈ Finset.Icc (-(N : ℤ) - 1) (N : ℤ),
@@ -100,7 +104,9 @@ theorem delta2_convolution (N : ℕ) (j : ℤ) :
   ring
 
 /-- For [any order N](hyp:N), [the sum over all integers of the absolute values of the triangular
-sequence equals N²](goal). -/
+sequence equals N²](goal).
+@isnad1 id=eq.0h1v.s5.13ee96e1f354 from=translated src=- shape=fdd2418d vocab=c949b070
+-/
 theorem triangle_l1 (N : ℕ) :
     (∑' j : ℤ, |triangle N j|) = (N : ℝ) ^ 2 := by
   have hsupport : ∀ j : ℤ, j ∉ Finset.Icc (-(N : ℤ)) (N : ℤ) →
@@ -141,7 +147,9 @@ theorem triangle_l1 (N : ℕ) :
   nlinarith
 
 /-- For [any order N](hyp:N), [the sum over all integers of the absolute first differences of the
-triangular sequence equals 2N](goal). -/
+triangular sequence equals 2N](goal).
+@isnad1 id=eq.0h1v.s5.444da3d119ad from=translated src=- shape=464075c8 vocab=30fdaa67
+-/
 theorem triangle_delta_l1 (N : ℕ) :
     (∑' j : ℤ, |delta (triangle N) j|) = 2 * (N : ℝ) := by
   have hneg (j : ℤ) (hlo : -(N : ℤ) ≤ j) (hhi : j ≤ 0) :
@@ -216,7 +224,9 @@ theorem triangle_delta_l1 (N : ℕ) :
 
 /-- For [two real sequences a and b indexed by the integers](hyp:a,b) and [a finite set of
 integers](hyp:s) [outside which a vanishes](hyp:ha), [the convolution sum of a and b at any
-index](hyp:j) [equals the same sum restricted to that finite set](goal). -/
+index](hyp:j) [equals the same sum restricted to that finite set](goal).
+@isnad1 id=eq.1h4v.s6.0ce3fe21383c from=translated src=- shape=38fd30b8 vocab=c04589c6
+-/
 theorem finite_convolution_tsum_eq_sum (a b : ℤ → ℝ) (s : Finset ℤ)
     (ha : ∀ k ∉ s, a k = 0) (j : ℤ) :
     (∑' k : ℤ, a k * b (j - k)) = ∑ k ∈ s, a k * b (j - k) := by
@@ -226,7 +236,9 @@ theorem finite_convolution_tsum_eq_sum (a b : ℤ → ℝ) (s : Finset ℤ)
 
 /-- For [two real sequences indexed by the integers](hyp:a,b) [each with finite
 support](hyp:ha,hb), [the sum over all integers of the absolute value of their discrete convolution
-is at most the product of the sums of their absolute values](goal). -/
+is at most the product of the sums of their absolute values](goal).
+@isnad1 id=le.2h2v.s6.ab8a68c3f705 from=translated src=- shape=ae091427 vocab=1cf65aa0
+-/
 theorem finite_convolution_l1 (a b : ℤ → ℝ)
     (ha : Function.HasFiniteSupport a) (hb : Function.HasFiniteSupport b) :
     (∑' j : ℤ, |∑' k : ℤ, a k * b (j - k)|) ≤
@@ -324,7 +336,9 @@ private theorem triangle_outside (N : ℕ) (k : ℤ)
   · rw [abs_of_nonneg (by omega : 0 ≤ k)]; omega
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN), [the sum over all integers of the absolute
-values of the normalized Jackson coefficients is at most 2N](goal). -/
+values of the normalized Jackson coefficients is at most 2N](goal).
+@isnad1 id=le.1h1v.s5.0cd110d0d9fa from=translated src=- shape=c0747c3a vocab=c353e955
+-/
 theorem normalizedCoeff_l1 (N : ℕ) (hN : 0 < N) :
     (∑' j : ℤ, |normalizedCoeff N j|) ≤ 2 * (N : ℝ) := by
   have htri := triangle_finite N
@@ -371,7 +385,9 @@ private theorem delta_triangle_finite (N : ℕ) :
   exact (Function.mem_support.mp hj) (delta_triangle_outside N j (by simpa using h))
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN), [the sum over all integers of the absolute
-first differences of the normalized Jackson coefficients is at most four](goal). -/
+first differences of the normalized Jackson coefficients is at most four](goal).
+@isnad1 id=le.1h1v.s5.d97aa7a4b46c from=translated src=- shape=3d9f59dc vocab=7126dcff
+-/
 theorem normalizedCoeff_delta_l1 (N : ℕ) (hN : 0 < N) :
     (∑' j : ℤ, |delta (normalizedCoeff N) j|) ≤ 4 := by
   have hraw (j : ℤ) : delta (convolution N) j =
@@ -401,7 +417,9 @@ theorem normalizedCoeff_delta_l1 (N : ℕ) (hN : 0 < N) :
   nlinarith [sq_nonneg (N : ℝ)]
 
 /-- For [an order N](hyp:N) that is [positive](hyp:hN), [the sum over all integers of the absolute
-second differences of the normalized Jackson coefficients is at most 6 / N](goal). -/
+second differences of the normalized Jackson coefficients is at most 6 / N](goal).
+@isnad1 id=le.1h1v.s5.bf8df4b63902 from=translated src=- shape=fe44dd61 vocab=334b1510
+-/
 theorem normalizedCoeff_delta2_l1 (N : ℕ) (hN : 0 < N) :
     (∑' j : ℤ, |delta2 (normalizedCoeff N) j|) ≤ 6 / (N : ℝ) := by
   have hraw (j : ℤ) : delta2 (convolution N) j =

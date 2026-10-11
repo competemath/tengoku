@@ -29,7 +29,9 @@ of net points is at most `(1 + 2 / v)` raised to the dimension of the space.
 
 The net is obtained by taking a maximal `v`-separated subset; the cardinality bound comes from
 comparing the total volume of the disjoint balls of radius `v / 2` around the net points with
-the volume of the ball of radius `1 + v / 2` containing them. -/
+the volume of the ball of radius `1 + v / 2` containing them.
+@isnad1 id=ex.2h3v.s7.11574d23ec98 from=translated src=- shape=7c08b268 vocab=a71a66b3
+-/
 lemma exists_internal_net_card_le (E : Type*)
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     (A : Set E) (hA : ∀ x ∈ A, ‖x‖ ≤ 1) {v : ℝ} (hv : 0 < v) :
@@ -142,7 +144,9 @@ lemma exists_internal_net_card_le (E : Type*)
       ring
 
 /-- The closed unit ball of a finite-dimensional real normed space has, at every accuracy `v`,
-a finite net of at most `(1 + 2 / v)` raised to the dimension of the space many points. -/
+a finite net of at most `(1 + 2 / v)` raised to the dimension of the space many points.
+@isnad1 id=ex.1h2v.s7.6b61504fbe24 from=translated src=- shape=ec317750 vocab=876eb2c7
+-/
 lemma exists_unit_ball_net_card_le (E : Type*)
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {v : ℝ} (hv : 0 < v) :
@@ -156,7 +160,9 @@ lemma exists_unit_ball_net_card_le (E : Type*)
 /-- For [a finite-dimensional real normed space `E`](hyp:E), [there exists a finite
 set of unit vectors, of size at most `5` raised to the dimension of `E`, that
 forms a half-net of the unit sphere: every unit vector lies within distance
-`1/2` of some point in the set](goal). -/
+`1/2` of some point in the set](goal).
+@isnad1 id=ex.0h1v.s7.faacc46a27a6 from=translated src=- shape=b05e0c50 vocab=23d039d8
+-/
 lemma exists_half_net_card_le_five_pow_finrank (E : Type*)
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] :
     ∃ N : Finset E,
