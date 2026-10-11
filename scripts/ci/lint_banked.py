@@ -120,8 +120,8 @@ def lint_module(
 ) -> list[str]:
     """The lines a PR adds to a module. `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one.
     A module the PR adds is read whole and without its comments and string literals (lean_lex.code_only): the words this list refuses are
-    refused where they run, not where a docstring mentions them (`#print axioms` in a doc comment is prose). A module the PR changes is read
-    by the lines it adds, comments included: a line alone cannot tell code from the middle of a comment."""
+    refused where they run, not where a docstring mentions them (`#print axioms` in a doc comment is prose). A module the PR changes is read whole
+    the same way, and only the lines it adds are judged: a line alone cannot tell code from the middle of a comment, the whole file can."""
     raw = blob(head, p) if added else None
     if added and raw is None:  # fail closed: the line-by-line path below cannot see a block comment that an `import X -/` line closes
         return [f"{p}: could not read the module at {head}"]
@@ -136,7 +136,18 @@ def lint_module(
             notation_ok=notation_ok,
             macro_ok=macro_ok,
         )
-    text = "\n".join(t for _, t in added_lines(base, head, p) if not re.match(IMPORT_START, t))
+    added_here = added_lines(base, head, p)
+    raw_head = blob(head, p)
+    if raw_head is not None:
+        # The module is read whole and lexed like an added one, and only the lines the PR adds are judged, as code: an isnad tag moves the `-/` of a docstring to its own line, which makes the
+        # docstring's last line an added line, and prose that starts with `prefix` or `notation` was refused as a notation command (isnad tag PR #438, 2026-10-11: "prefix length](hyp:Z,p,k) …").
+        code = code_only(raw_head.decode("utf-8", "replace")).split("\n")
+        if len(code) == len(
+            raw_head.decode("utf-8", "replace").split("\n")
+        ):  # the lexer keeps every line break; if it ever did not, the lines would not line up and the old reading stands
+            text = "\n".join(code[no - 1] for no, _ in added_here if no - 1 < len(code) and not re.match(IMPORT_START, code[no - 1]))
+            return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+    text = "\n".join(t for _, t in added_here if not re.match(IMPORT_START, t))
     return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
 
 
