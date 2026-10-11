@@ -22,7 +22,9 @@ namespace Causalean.Stat.Minimax.FiniteSideInformation
 
 /-- Given a [number of centers](hyp:k) with [positive count](hyp:hk), [centers](hyp:center),
 [radii](hyp:radius) that are [positive](hyp:hr), there is a [measurable selector](goal) choosing
-a center within its radius at every point covered by the corresponding open balls. -/
+a center within its radius at every point covered by the corresponding open balls.
+@isnad1 id=ex.2h4v.s6.264e4b2981b1 from=translated src=- shape=6b67bd6d vocab=6da28ff1
+-/
 theorem exists_measurable_finiteCoverSelector
     {E : Type*} [PseudoMetricSpace E] [MeasurableSpace E] [BorelSpace E]
     (k : ℕ) (hk : 0 < k) (center : Fin k → E) (radius : Fin k → ℝ)

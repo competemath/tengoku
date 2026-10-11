@@ -20,7 +20,9 @@ noncomputable section
 
 /-- For a [bounded marked iid law](hyp:μ,hmark), a [continuous coordinate CDF](hyp:hcont),
  a [tagged coordinate and rank](hyp:i,j), and a [conditional mean function and version](hyp:m,hm), [one tagged mark restricted to one rank](goal)
- has the same expectation after replacing the mark by its conditional mean. -/
+ has the same expectation after replacing the mark by its conditional mean.
+@isnad1 id=eq.3h5v.s9.0e3144b03cf9 from=translated src=- shape=f2297ad6 vocab=fe21cddd
+-/
 theorem integral_tagged_rank_mark_eq_conditionalMean {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))

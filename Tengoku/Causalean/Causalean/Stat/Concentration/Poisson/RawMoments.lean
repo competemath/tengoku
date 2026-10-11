@@ -16,7 +16,9 @@ open MeasureTheory ProbabilityTheory
 open scoped BigOperators
 
 /-- For a [count](hyp:k) and [factorial order](hyp:v), multiplying a descending
-factorial by the count raises its order plus the stated lower-order correction, including when the factorial vanishes. The result is [the count-times-descending-factorial recurrence](goal). -/
+factorial by the count raises its order plus the stated lower-order correction, including when the factorial vanishes. The result is [the count-times-descending-factorial recurrence](goal).
+@isnad1 id=eq.0h2v.s5.d8a048a79d92 from=translated src=- shape=d15a346b vocab=c2990f8f
+-/
 lemma count_mul_descFactorial (k v : ℕ) :
     k * k.descFactorial v = k.descFactorial (v + 1) + v * k.descFactorial v := by
   by_cases h : v ≤ k
@@ -31,7 +33,9 @@ lemma count_mul_descFactorial (k v : ℕ) :
     simp
 
 /-- For a [count](hyp:k) and [power](hyp:r), the ordinary power is the finite
-Stirling-weighted sum of descending factorials. The result is [the Stirling expansion of an ordinary count power](goal). -/
+Stirling-weighted sum of descending factorials. The result is [the Stirling expansion of an ordinary count power](goal).
+@isnad1 id=eq.0h2v.s5.70cbb5df63df from=translated src=- shape=79b2c18a vocab=1cf1b051
+-/
 lemma count_power_factorial_expansion (k r : ℕ) :
     k ^ r = ∑ v ∈ Finset.range (r + 1),
       Nat.stirlingSecond r v * k.descFactorial v := by
@@ -63,7 +67,9 @@ lemma count_power_factorial_expansion (k r : ℕ) :
 
 /-- For [orders](hyp:r,R,v) with [the smaller order bounded by the ambient
 order](hyp:hr) and [the block count bounded by the smaller order](hyp:hv), the
-second-kind Stirling number is bounded by the stated binomial-power expression. The result is [the stated binomial-power upper bound on the Stirling number](goal). -/
+second-kind Stirling number is bounded by the stated binomial-power expression. The result is [the stated binomial-power upper bound on the Stirling number](goal).
+@isnad1 id=le.2h3v.s5.f252dd5429c8 from=translated src=- shape=7671a4e1 vocab=1aef402f
+-/
 lemma stirlingSecond_le_choose_mul_pow {r R v : ℕ}
     (hr : r ≤ R) (hv : v ≤ r) :
     Nat.stirlingSecond r v ≤ r.choose v * R ^ (r - v) := by
@@ -97,14 +103,18 @@ lemma stirlingSecond_le_choose_mul_pow {r R v : ℕ}
         nlinarith only [hterm, h0]
 
 /-- For a [count](hyp:k) and [power](hyp:r), casting the count power to the
-reals preserves its finite Stirling expansion in descending factorials. The result is [the real-valued Stirling expansion of a count power](goal). -/
+reals preserves its finite Stirling expansion in descending factorials. The result is [the real-valued Stirling expansion of a count power](goal).
+@isnad1 id=eq.0h2v.s5.8a62540c8fdf from=translated src=- shape=a5a587ee vocab=fa4a52b0
+-/
 lemma count_power_factorial_expansion_real (k r : ℕ) :
     (k : ℝ) ^ r = ∑ v ∈ Finset.range (r + 1),
       (Nat.stirlingSecond r v : ℝ) * (k.descFactorial v : ℝ) := by
   exact_mod_cast count_power_factorial_expansion k r
 
 /-- For a [Poisson rate](hyp:rate) and [natural power](hyp:r), the corresponding
-raw power of the count is integrable under the Poisson law. The result is [integrability of the raw Poisson count power](goal). -/
+raw power of the count is integrable under the Poisson law. The result is [integrability of the raw Poisson count power](goal).
+@isnad1 id=integrab.0h2v.s5.6960ce044948 from=translated src=- shape=fc9a80de vocab=26b3935f
+-/
 lemma poisson_power_integrable (rate : NNReal) (r : ℕ) :
     Integrable (fun k : ℕ => (k : ℝ) ^ r) (poissonMeasure rate) := by
   simp_rw [count_power_factorial_expansion_real]
@@ -112,7 +122,9 @@ lemma poisson_power_integrable (rate : NNReal) (r : ℕ) :
     (Causalean.Stat.Concentration.Poisson.poisson_descFactorial_integrable rate v).const_mul _)
 
 /-- For a [Poisson rate](hyp:rate) and [natural power](hyp:r), the raw moment equals
-the finite Stirling-weighted sum of powers of the rate. The result is [the Stirling-weighted formula for the raw Poisson moment](goal). -/
+the finite Stirling-weighted sum of powers of the rate. The result is [the Stirling-weighted formula for the raw Poisson moment](goal).
+@isnad1 id=eq.0h2v.s6.251752b72ee0 from=translated src=- shape=0fc4de24 vocab=e53e0b7e
+-/
 lemma poisson_power_moment_eq (rate : NNReal) (r : ℕ) :
     (∫ k : ℕ, (k : ℝ) ^ r ∂poissonMeasure rate) =
       ∑ v ∈ Finset.range (r + 1),
@@ -124,7 +136,9 @@ lemma poisson_power_moment_eq (rate : NNReal) (r : ℕ) :
     Causalean.Stat.Concentration.Poisson.poisson_descFactorial_moment]
 
 /-- For a [Poisson rate](hyp:rate) and [natural power](hyp:r), the raw moment is
-bounded by the sum of the rate and the order raised to that order. The result is [the rate-plus-order upper bound on the raw Poisson moment](goal). -/
+bounded by the sum of the rate and the order raised to that order. The result is [the rate-plus-order upper bound on the raw Poisson moment](goal).
+@isnad1 id=le.0h2v.s6.063bd92d0c0a from=translated src=- shape=418aae81 vocab=057119ff
+-/
 lemma poisson_power_moment_le (rate : NNReal) (r : ℕ) :
     (∫ k : ℕ, (k : ℝ) ^ r ∂poissonMeasure rate) ≤
       ((rate : ℝ) + (r : ℝ)) ^ r := by

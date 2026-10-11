@@ -136,14 +136,18 @@ noncomputable def smoothPriorDeriv (c a θ : ℝ) : ℝ :=
   else 0
 
 /-- A [positive bandwidth](hyp:ha) makes [the smooth quartic prior nonnegative at every
-parameter value](goal). -/
+parameter value](goal).
+@isnad1 id=le.1h3v.s4.79431d39a3d9 from=translated src=- shape=e0c7d5e6 vocab=b927c26f
+-/
 theorem smoothPrior_nonneg {c a : ℝ} (ha : 0 < a) (θ : ℝ) :
     0 ≤ smoothPrior c a θ := by
   unfold smoothPrior
   split_ifs <;> positivity
 
 /-- Under a [positive bandwidth](hyp:ha), [the smooth quartic prior is positive exactly
-inside the open interval defined by its center and bandwidth](goal). -/
+inside the open interval defined by its center and bandwidth](goal).
+@isnad1 id=iff.1h3v.s5.eaa331a44078 from=translated src=- shape=ccdec74b vocab=263acb89
+-/
 theorem smoothPrior_pos_iff {c a θ : ℝ} (ha : 0 < a) :
     0 < smoothPrior c a θ ↔ |θ - c| < a := by
   unfold smoothPrior
@@ -159,7 +163,9 @@ theorem smoothPrior_pos_iff {c a θ : ℝ} (ha : 0 < a) :
   · simp [h]
 
 /-- Under a [positive bandwidth](hyp:ha), [the nonzero set of the smooth quartic prior
-is exactly its open support interval](goal). -/
+is exactly its open support interval](goal).
+@isnad1 id=eq.1h2v.s5.27dfa9a9edbb from=translated src=- shape=3fa251de vocab=450a21bf
+-/
 theorem support_smoothPrior {c a : ℝ} (ha : 0 < a) :
     Function.support (smoothPrior c a) = Ioo (c - a) (c + a) := by
   ext θ
@@ -177,7 +183,9 @@ theorem support_smoothPrior {c a : ℝ} (ha : 0 < a) :
     constructor <;> linarith
 
 /-- Under a [positive bandwidth](hyp:ha), [the topological support of the smooth
-quartic prior is exactly the corresponding closed interval](goal). -/
+quartic prior is exactly the corresponding closed interval](goal).
+@isnad1 id=eq.1h2v.s5.e560a731443b from=translated src=- shape=3fa251de vocab=704aaba5
+-/
 theorem tsupport_smoothPrior {c a : ℝ} (ha : 0 < a) :
     tsupport (smoothPrior c a) = Icc (c - a) (c + a) := by
   rw [tsupport, support_smoothPrior ha, closure_Ioo]
@@ -185,7 +193,9 @@ theorem tsupport_smoothPrior {c a : ℝ} (ha : 0 < a) :
 
 /-- If [the bandwidth is positive](hyp:ha) and [the prior's left](hyp:hleft) and
 [right](hyp:hright) support endpoints lie strictly inside an ambient interval, then
-[every point where the prior is nonzero lies in the ambient closed interval](goal). -/
+[every point where the prior is nonzero lies in the ambient closed interval](goal).
+@isnad1 id=le.3h4v.s6.e0cadab945c8 from=translated src=- shape=98d1fa61 vocab=a3d94ce7
+-/
 theorem support_smoothPrior_subset_Icc {ell u c a : ℝ} (ha : 0 < a)
     (hleft : ell < c - a) (hright : c + a < u) :
     Function.support (smoothPrior c a) ⊆ Icc ell u := by
@@ -195,7 +205,9 @@ theorem support_smoothPrior_subset_Icc {ell u c a : ℝ} (ha : 0 < a)
 
 /-- If [the bandwidth is positive](hyp:ha) and [the prior's left](hyp:hleft) and
 [right](hyp:hright) support endpoints lie strictly inside an ambient interval, then
-[the prior's topological support lies in the ambient open interval](goal). -/
+[the prior's topological support lies in the ambient open interval](goal).
+@isnad1 id=le.3h4v.s6.0415301abbfd from=translated src=- shape=98d1fa61 vocab=fc650e65
+-/
 theorem tsupport_smoothPrior_subset_Ioo {ell u c a : ℝ} (ha : 0 < a)
     (hleft : ell < c - a) (hright : c + a < u) :
     tsupport (smoothPrior c a) ⊆ Ioo ell u := by
@@ -205,7 +217,9 @@ theorem tsupport_smoothPrior_subset_Ioo {ell u c a : ℝ} (ha : 0 < a)
 
 /-- If [the bandwidth is positive](hyp:ha) and [the prior's left](hyp:hleft) and
 [right](hyp:hright) support endpoints lie strictly inside an ambient interval, then
-[the prior vanishes at both ambient endpoints](goal). -/
+[the prior vanishes at both ambient endpoints](goal).
+@isnad1 id=and.3h4v.s6.35ac49c5647b from=translated src=- shape=8c6a88e9 vocab=c3e94ad8
+-/
 theorem smoothPrior_ambient_endpoints {ell u c a : ℝ} (ha : 0 < a)
     (hleft : ell < c - a) (hright : c + a < u) :
     smoothPrior c a ell = 0 ∧ smoothPrior c a u = 0 := by
@@ -309,7 +323,9 @@ private theorem continuous_smoothPriorDeriv {c a : ℝ} (ha : 0 < a) :
   · fun_prop
 
 /-- A [positive bandwidth](hyp:ha) makes [the smooth quartic prior continuously
-differentiable](goal). -/
+differentiable](goal).
+@isnad1 id=contdiff.1h2v.s5.c6349c543275 from=translated src=- shape=8cf05cb9 vocab=91bd950d
+-/
 theorem smoothPrior_contDiff {c a : ℝ} (ha : 0 < a) :
     ContDiff ℝ 1 (smoothPrior c a) := by
   rw [contDiff_one_iff_deriv]
@@ -323,20 +339,26 @@ theorem smoothPrior_contDiff {c a : ℝ} (ha : 0 < a) :
     exact continuous_smoothPriorDeriv ha
 
 /-- Under a [positive bandwidth](hyp:ha), [the explicit derivative representative is
-the derivative of the smooth quartic prior at every parameter value](goal). -/
+the derivative of the smooth quartic prior at every parameter value](goal).
+@isnad1 id=hasderiv.1h3v.s5.0ad2661ec7b2 from=translated src=- shape=2deab964 vocab=f7ec4763
+-/
 theorem hasDerivAt_smoothPrior {c a : ℝ} (ha : 0 < a) (θ : ℝ) :
     HasDerivAt (smoothPrior c a) (smoothPriorDeriv c a θ) θ := by
   exact hasDerivAt_smoothPrior_aux ha θ
 
 /-- A [positive bandwidth](hyp:ha) and [ordered endpoints](hyp:hellu) ensure that [the
-smooth quartic prior is absolutely continuous on the interval](goal). -/
+smooth quartic prior is absolutely continuous on the interval](goal).
+@isnad1 id=absolute.2h4v.s5.b2422abf0e88 from=translated src=- shape=56404b8b vocab=99637ac5
+-/
 theorem smoothPrior_absolutelyContinuousOnInterval {ell u c a : ℝ} (ha : 0 < a)
     (hellu : ell ≤ u) :
     AbsolutelyContinuousOnInterval (smoothPrior c a) ell u := by
   exact (smoothPrior_contDiff ha).contDiffOn.absolutelyContinuousOnInterval
 
 /-- Under a [positive bandwidth](hyp:ha), [the smooth quartic density has total
-Lebesgue integral one](goal). -/
+Lebesgue integral one](goal).
+@isnad1 id=eq.1h2v.s5.638cc8413c3c from=translated src=- shape=855333e4 vocab=86933a38
+-/
 theorem integral_smoothPrior_volume {c a : ℝ} (ha : 0 < a) :
     ∫ θ, smoothPrior c a θ = 1 := by
   let p : ℝ → ℝ := fun t =>
@@ -398,7 +420,9 @@ theorem integral_smoothPrior_volume {c a : ℝ} (ha : 0 < a) :
 
 /-- If [the bandwidth is positive](hyp:ha) and [the prior's left](hyp:hleft) and
 [right](hyp:hright) support endpoints lie in an ambient interval, then [the prior has
-mass one under Lebesgue measure restricted to that interval](goal). -/
+mass one under Lebesgue measure restricted to that interval](goal).
+@isnad1 id=eq.3h4v.s6.e84efde038aa from=translated src=- shape=6f9f38be vocab=31d532bc
+-/
 theorem integral_smoothPrior_parameterMeasure {ell u c a : ℝ} (ha : 0 < a)
     (hleft : ell ≤ c - a) (hright : c + a ≤ u) :
     ∫ θ, smoothPrior c a θ ∂parameterMeasure ell u = 1 := by
@@ -419,7 +443,9 @@ theorem integral_smoothPrior_parameterMeasure {ell u c a : ℝ} (ha : 0 < a)
   rw [hfun, integral_smoothPrior_volume ha]
 
 /-- A [positive bandwidth](hyp:ha) makes [the smooth quartic prior integrable on every
-restricted parameter interval](goal). -/
+restricted parameter interval](goal).
+@isnad1 id=integrab.1h4v.s5.95720b871305 from=translated src=- shape=3b27b03d vocab=9739dbcc
+-/
 theorem smoothPrior_integrable_parameterMeasure {ell u c a : ℝ} (ha : 0 < a) :
     Integrable (smoothPrior c a) (parameterMeasure ell u) := by
   unfold parameterMeasure
@@ -488,7 +514,9 @@ private theorem smoothPrior_scoreSq_integrable_aux {ell u c a : ℝ} (ha : 0 < a
   exact Ioo_subset_Icc_self
 
 /-- A [positive bandwidth](hyp:ha) makes [the prior-weighted squared guarded score
-strongly measurable on every restricted parameter interval](goal). -/
+strongly measurable on every restricted parameter interval](goal).
+@isnad1 id=aestrong.1h4v.s6.b657b44b6306 from=translated src=- shape=a2d62026 vocab=15bc6064
+-/
 theorem smoothPrior_scoreSq_aestronglyMeasurable {ell u c a : ℝ} (ha : 0 < a) :
     AEStronglyMeasurable
       (fun θ => smoothPrior c a θ *
@@ -497,7 +525,9 @@ theorem smoothPrior_scoreSq_aestronglyMeasurable {ell u c a : ℝ} (ha : 0 < a) 
   exact (smoothPrior_scoreSq_integrable_aux ha).aestronglyMeasurable
 
 /-- A [positive bandwidth](hyp:ha) makes [the prior-weighted squared guarded score
-integrable on every restricted parameter interval](goal). -/
+integrable on every restricted parameter interval](goal).
+@isnad1 id=integrab.1h4v.s6.f6c51fd408e4 from=translated src=- shape=a2d62026 vocab=079a7da8
+-/
 theorem smoothPrior_scoreSq_integrable {ell u c a : ℝ} (ha : 0 < a) :
     Integrable
       (fun θ => smoothPrior c a θ *
@@ -507,7 +537,9 @@ theorem smoothPrior_scoreSq_integrable {ell u c a : ℝ} (ha : 0 < a) :
 
 /-- If [the bandwidth is positive](hyp:ha) and [the prior's left](hyp:hleft) and
 [right](hyp:hright) support endpoints lie in an ambient interval, then [the prior
-Fisher information equals ten divided by the squared bandwidth](goal). -/
+Fisher information equals ten divided by the squared bandwidth](goal).
+@isnad1 id=eq.3h4v.s6.ec94861554b6 from=translated src=- shape=c3c002e6 vocab=11b270cc
+-/
 theorem priorInformation_smoothPrior {ell u c a : ℝ} (ha : 0 < a)
     (hleft : ell ≤ c - a) (hright : c + a ≤ u) :
     priorInformation ell u (smoothPrior c a) (smoothPriorDeriv c a) = 10 / a ^ 2 := by
@@ -552,7 +584,9 @@ theorem priorInformation_smoothPrior {ell u c a : ℝ} (ha : 0 < a)
 
 /-- If [the bandwidth is positive](hyp:ha) and [the prior's left](hyp:hleft) and
 [right](hyp:hright) support endpoints lie in an ambient interval, then [the prior
-Fisher information is at most forty divided by the squared bandwidth](goal). -/
+Fisher information is at most forty divided by the squared bandwidth](goal).
+@isnad1 id=le.3h4v.s6.20de125ab55d from=translated src=- shape=ea36393e vocab=11b270cc
+-/
 theorem priorInformation_smoothPrior_le {ell u c a : ℝ} (ha : 0 < a)
     (hleft : ell ≤ c - a) (hright : c + a ≤ u) :
     priorInformation ell u (smoothPrior c a) (smoothPriorDeriv c a) ≤ 40 / a ^ 2 := by

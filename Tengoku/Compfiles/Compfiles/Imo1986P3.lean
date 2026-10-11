@@ -62,7 +62,9 @@ We show that:
 def potential (s : State) : ℤ :=
   ∑ i : Fin 5, (s i - s (i + 2))^2
 
-/-- The sum of the integers is invariant under the move operation. -/
+/-- The sum of the integers is invariant under the move operation.
+@isnad1 id=eq.0h2v.s4.98f3c6c8bedd from=translated src=- shape=1cb8a460 vocab=7852bde0
+-/
 lemma sum_invariant (s : State) (i : Fin 5) : (move s i).sum = s.sum := by
   simp only [State.sum]
   rw [Fin.sum_univ_five (f := fun j => move s i j), Fin.sum_univ_five (f := fun j => s j)]
@@ -74,7 +76,9 @@ lemma sum_invariant (s : State) (i : Fin 5) : (move s i).sum = s.sum := by
   )
 
 /-- The change in potential after a move operation.
-    $V(s') - V(s) = 2 \cdot s_i \cdot S$ where $S$ is the total sum. -/
+    $V(s') - V(s) = 2 \cdot s_i \cdot S$ where $S$ is the total sum.
+@isnad1 id=eq.0h2v.s5.6913d09d58f5 from=translated src=- shape=6494169e vocab=7158a189
+-/
 lemma potential_diff (s : State) (i : Fin 5) :
     potential (move s i) - potential s = 2 * (s i) * s.sum := by
   simp only [potential, State.sum]
@@ -88,7 +92,9 @@ lemma potential_diff (s : State) (i : Fin 5) :
     ring
   )
 
-/-- If $s_i < 0$ and the total sum is positive, the potential strictly decreases. -/
+/-- If $s_i < 0$ and the total sum is positive, the potential strictly decreases.
+@isnad1 id=lt.2h2v.s5.5b32d833e742 from=translated src=- shape=2b4d676a vocab=c818935e
+-/
 lemma potential_decreasing (s : State) (i : Fin 5) (h_neg : s i < 0) (h_sum_pos : 0 < s.sum) :
     potential (move s i) < potential s := by
   have h_diff := potential_diff s i
@@ -96,13 +102,17 @@ lemma potential_decreasing (s : State) (i : Fin 5) (h_neg : s i < 0) (h_sum_pos 
     nlinarith [h_neg, h_sum_pos]
   linarith [h_diff, h_rhs_neg]
 
-/-- The potential is always non-negative. -/
+/-- The potential is always non-negative.
+@isnad1 id=le.0h1v.s3.be746b4fa3d9 from=translated src=- shape=b9369acb vocab=2780cb12
+-/
 lemma potential_nonneg (s : State) : 0 ≤ potential s := by
   rw [potential]
   exact Finset.sum_nonneg (fun i _ => sq_nonneg (s i - s (i + 2)))
 
 /-- Since the potential is non-negative and decreasing,
-    its value as a natural number also decreases. -/
+    its value as a natural number also decreases.
+@isnad1 id=lt.2h2v.s5.c8bb521765b0 from=translated src=- shape=7d930189 vocab=244c5509
+-/
 lemma potential_measure_decreases (s : State) (i : Fin 5)
     (h_neg : s i < 0) (h_sum : 0 < s.sum) :
     (potential (move s i)).toNat < (potential s).toNat := by

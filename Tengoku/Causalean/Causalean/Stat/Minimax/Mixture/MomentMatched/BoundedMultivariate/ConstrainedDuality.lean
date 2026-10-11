@@ -23,7 +23,9 @@ namespace Causalean.Stat.Minimax.Mixture.MomentMatched.BoundedMultivariate
   coordinates separated by δ, separation of two disjoint translates gives
   an affine constraint approximant with uniform error below δ. -/
 
-/-- A [nondegenerate interval](hyp:hrs), [positive gap](hyp:hδ), [target function and finite constraint family](hyp:f,g), [their interval continuity](hyp:hf,hg), and [a uniform affine approximation gap](hyp:hgap) yield [two joint feature-hull points that match every constraint while separating the target by the gap](goal). -/
+/-- A [nondegenerate interval](hyp:hrs), [positive gap](hyp:hδ), [target function and finite constraint family](hyp:f,g), [their interval continuity](hyp:hf,hg), and [a uniform affine approximation gap](hyp:hgap) yield [two joint feature-hull points that match every constraint while separating the target by the gap](goal).
+@isnad1 id=ex.5h6v.s9.f7b4d2d686e7 from=translated src=- shape=21a77b9f vocab=a8000a0c
+-/
 theorem exists_matching_convexHull_features_of_gap
     {m : ℕ} {r s δ : ℝ} (hrs : r < s) (hδ : 0 < δ)
     (f : ℝ → ℝ) (g : Fin m → ℝ → ℝ)
@@ -50,7 +52,9 @@ theorem exists_matching_convexHull_features_of_gap
   Use the same weights on Dirac measures at the corresponding points. The
   integral of each coordinate is the indicated finite weighted sum. -/
 
-/-- A [target function and finite constraint family](hyp:f,g), [a joint feature point](hyp:y), and [its membership in the interval feature hull](hyp:hy) yield [a finitely supported probability prior with the prescribed target and constraint expectations](goal). -/
+/-- A [target function and finite constraint family](hyp:f,g), [a joint feature point](hyp:y), and [its membership in the interval feature hull](hyp:hy) yield [a finitely supported probability prior with the prescribed target and constraint expectations](goal).
+@isnad1 id=ex.1h6v.s8.dc3dd6b43657 from=translated src=- shape=dff9862c vocab=b8e0cabe
+-/
 theorem finitePrior_of_convexHull_features
     {m : ℕ} {r s : ℝ} (f : ℝ → ℝ) (g : Fin m → ℝ → ℝ)
     (y : ℝ × (Fin m → ℝ))
@@ -119,7 +123,9 @@ theorem finitePrior_of_convexHull_features
   split its Jordan parts, then apply finite-dimensional convex-hull reduction
   to preserve the gᵢ and f integrals with finite support. -/
 
-/-- A [nondegenerate interval](hyp:hrs), [positive approximation gap](hyp:hδ), [target function](hyp:f), and [finite constraint family](hyp:g) whose [target is continuous](hyp:hf), [constraints are continuous](hyp:hg), and [affine constrained approximants miss the target by the stated gap](hyp:hgap) produce [finitely supported probability priors that match every constraint and retain that target separation](goal). -/
+/-- A [nondegenerate interval](hyp:hrs), [positive approximation gap](hyp:hδ), [target function](hyp:f), and [finite constraint family](hyp:g) whose [target is continuous](hyp:hf), [constraints are continuous](hyp:hg), and [affine constrained approximants miss the target by the stated gap](hyp:hgap) produce [finitely supported probability priors that match every constraint and retain that target separation](goal).
+@isnad1 id=ex.5h6v.s8.1a11e33dd6b9 from=translated src=- shape=284a1f9e vocab=7fcff665
+-/
 theorem exists_finitePriors_of_constrainedApproxGap
     {m : ℕ} {r s δ : ℝ} (hrs : r < s) (hδ : 0 < δ)
     (f : ℝ → ℝ) (g : Fin m → ℝ → ℝ)

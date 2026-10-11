@@ -66,7 +66,9 @@ orthogonal to all of `H`) reduces to
 `⟨X - h, X - h⟩_ω = ⟨X - p, X - p⟩_ω + ⟨p - h, p - h⟩_ω ≥ ⟨X - p, X - p⟩_ω`. -/
 
 /-- If `p ∈ H` and the residual `X - p` is `c.ip`-orthogonal to all of `H`,
-then `p` minimizes the WLS objective over `H`. -/
+then `p` minimizes the WLS objective over `H`.
+@isnad1 id=le.3h6v.s8.e0db390ed993 from=translated src=- shape=3cb5821f vocab=8849e744
+-/
 lemma ip_self_sub_le_of_orth (c : WeightedSupport R) (H : Submodule ℝ (R → ℝ))
     (X p : R → ℝ) (hp : p ∈ H)
     (horth : ∀ h ∈ H, c.ip (X - p) h = 0)
@@ -105,7 +107,9 @@ If `⟨h, h⟩_ω > 0`, plug `t = ⟨X-p, h⟩_ω / ⟨h, h⟩_ω` to get
 If `⟨h, h⟩_ω = 0`, then `h` vanishes on observed indices, so every summand
 of `⟨X - p, h⟩_ω` is zero, hence `⟨X - p, h⟩_ω = 0`. -/
 
-/-- If `h` vanishes on every observed index, then `c.ip A h = 0` for any `A`. -/
+/-- If `h` vanishes on every observed index, then `c.ip A h = 0` for any `A`.
+@isnad1 id=eq.1h4v.s6.faa81ae31a18 from=translated src=- shape=9fecead5 vocab=2a20e3f9
+-/
 lemma ip_eq_zero_of_zero_on_observed (c : WeightedSupport R) (A h : R → ℝ)
     (hh : ∀ r ∈ c.observed, h r = 0) :
     c.ip A h = 0 := by
@@ -116,7 +120,9 @@ lemma ip_eq_zero_of_zero_on_observed (c : WeightedSupport R) (A h : R → ℝ)
 
 /-- Quadratic-in-`t` expansion used in the perturbation argument:
 `⟨X - p - t • h, X - p - t • h⟩_ω
-  = ⟨X-p, X-p⟩_ω - 2 t · ⟨X-p, h⟩_ω + t² · ⟨h, h⟩_ω`. -/
+  = ⟨X-p, X-p⟩_ω - 2 t · ⟨X-p, h⟩_ω + t² · ⟨h, h⟩_ω`.
+@isnad1 id=eq.0h6v.s8.2403158ec83c from=translated src=- shape=0cf11683 vocab=8234b3e2
+-/
 lemma ip_sub_smul_expand (c : WeightedSupport R) (X p h : R → ℝ) (t : ℝ) :
     c.ip (X - p - t • h) (X - p - t • h)
       = c.ip (X - p) (X - p) - 2 * t * c.ip (X - p) h
@@ -136,7 +142,9 @@ lemma ip_sub_smul_expand (c : WeightedSupport R) (X p h : R → ℝ) (t : ℝ) :
 
 /-- **First-order WLS optimality.** For a weighted support and a submodule `H`
 of candidate functions, fix [a candidate function `p` belonging to `H`](hyp:hp);
-then [weighted residual orthogonality is equivalent to WLS optimality](goal). -/
+then [weighted residual orthogonality is equivalent to WLS optimality](goal).
+@isnad1 id=iff.1h5v.s8.4c49130c3a24 from=translated src=- shape=137e6e9c vocab=8849e744
+-/
 theorem residualize_orth_iff_argmin
     (c : WeightedSupport R) (H : Submodule ℝ (R → ℝ))
     (X p : R → ℝ) (hp : p ∈ H) :

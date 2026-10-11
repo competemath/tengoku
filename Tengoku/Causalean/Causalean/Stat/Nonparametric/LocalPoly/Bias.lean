@@ -55,7 +55,9 @@ then [the fitted intercept `c 0` estimates `f t` with bias
 weights](goal).
 
 Bounding the leverage `∑ᵢ|Sᵢ|` by a design-density constant gives the textbook `O(h^β)`
-interior bias. -/
+interior bias.
+@isnad1 id=le.10h11v.s9.a6928e97d955 from=translated src=- shape=2e6fe402 vocab=e268f2b4
+-/
 theorem localPoly_intercept_bias {N : ℕ} {β M lo hi t h : ℝ} {a w : Fin N → ℝ}
     {f : ℝ → ℝ} {c : Fin ((holderDerivOrder β) + 1) → ℝ}
     (hβ : 0 < β) (hM : 0 ≤ M)

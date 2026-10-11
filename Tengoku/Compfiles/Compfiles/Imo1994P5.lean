@@ -26,6 +26,9 @@ def S := { x : ℝ // -1 < x }
 abbrev op (f : S → S) (a b : S) : S :=
   ⟨a.val + (f b).val + a.val * (f b).val, by nlinarith [a.property, (f b).property]⟩
 
+/--
+@isnad1 id=lt.1h1v.s5.cf7022c64397 from=translated src=- shape=181cee6f vocab=360293d6
+-/
 lemma sol_prop {a : ℝ} (ha : -1 < a) : -1 < -a / (1 + a) :=
    (lt_div_iff₀ (show 0 < 1 + a by linarith)).mpr (by simp)
 

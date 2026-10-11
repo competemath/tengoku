@@ -23,14 +23,18 @@ def cellOverlap {m : ℕ} (τ γ z : ℝ) (c : Cell m) : ℝ :=
   1 + ∑ d ∈ Finset.range m, γ ^ (2 * (d + 1)) *
     subsetEnergy τ c (d + 1) * z ^ (d + 1)
 
-/-- Subset energy vanishes at orders exceeding the number of records. -/
+/-- Subset energy vanishes at orders exceeding the number of records.
+@isnad1 id=eq.1h4v.s4.45a412dad334 from=translated src=- shape=94d7d184 vocab=cf9b510d
+-/
 theorem subsetEnergy_eq_zero_of_lt {m d : ℕ} (τ : ℝ) (c : Cell m)
     (hd : m < d) : subsetEnergy τ c d = 0 := by
   have hc : (selected c).card ≤ m := by
     simpa using Finset.card_le_card (Finset.subset_univ (selected c))
   simp [subsetEnergy, Finset.powersetCard_eq_empty.mpr (lt_of_le_of_lt hc hd)]
 
-/-- The finite overlap polynomial is integrable under each valid conditional cell law. -/
+/-- The finite overlap polynomial is integrable under each valid conditional cell law.
+@isnad1 id=integrab.2h5v.s8.17daa3433a49 from=translated src=- shape=77f93cba vocab=17ed699c
+-/
 theorem integrable_cellOverlap (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] {τ : ℝ} (hτ : |τ| ≤ 1 / 4)
     (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (γ z : ℝ) (m : ℕ) :
@@ -111,7 +115,9 @@ private theorem norm_cellOverlap_le {m : ℕ} {τ : ℝ} (hτ : |τ| ≤ 1 / 4)
       rw [Finset.sum_range_succ'] at hb
       simpa [add_comm] using hb.symm
 
-/-- The conditional mean finite overlap polynomial is integrable under the Poisson count law. -/
+/-- The conditional mean finite overlap polynomial is integrable under the Poisson count law.
+@isnad1 id=integrab.2h5v.s8.573ad86dd13c from=translated src=- shape=46e1d0ce vocab=26c5770c
+-/
 theorem integrable_conditional_cellOverlap (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal) {τ : ℝ} (hτ : |τ| ≤ 1 / 4)
     (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (γ z : ℝ) :
@@ -131,7 +137,9 @@ theorem integrable_conditional_cellOverlap (ν : ∀ m, Measure (Cell m))
     _ = _ := by simp
 
 /-- Poisson averaging of the finite overlap polynomial equals the absolutely convergent
-  coefficient series. -/
+  coefficient series.
+@isnad1 id=eq.2h5v.s8.cd0db344dd5d from=translated src=- shape=2e413b6d vocab=30047736
+-/
 theorem integral_cellOverlap_eq_series (ν : ∀ m, Measure (Cell m))
     [∀ m, IsProbabilityMeasure (ν m)] (ξ : NNReal) {τ : ℝ} (hτ : |τ| ≤ 1 / 4)
     (hν : ∀ m, ∀ᵐ c ∂ν m, Valid c) (γ z : ℝ) :
@@ -181,7 +189,9 @@ def conditionalCrossMoment {Ω : Type*} [MeasurableSpace Ω]
     outcomeLikelihood τ γ c (fun i => w m c i ω) ∂ρ m c
 
 /-- At bounded cell data, independent centered outcome pairs identify the actual
-conditional likelihood cross moment with the finite overlap polynomial. -/
+conditional likelihood cross moment with the finite overlap polynomial.
+@isnad1 id=eq.3h9v.s7.f5b40bbe38eb from=translated src=- shape=ea856c32 vocab=7502ef8e
+-/
 theorem conditionalCrossMoment_eq_cellOverlap {Ω : Type*} [MeasurableSpace Ω]
     (ρ : ∀ m, Cell m → Measure Ω) [∀ m c, IsProbabilityMeasure (ρ m c)]
     (v w : ∀ m, Cell m → Fin m → Ω → ℝ) {τ z : ℝ} (hτ : |τ| ≤ 1 / 4)
@@ -191,7 +201,9 @@ theorem conditionalCrossMoment_eq_cellOverlap {Ω : Type*} [MeasurableSpace Ω]
   exact integral_outcomeLikelihood_pair_by_card hout hτ hu γ
 
 /-- Conditional cross moments are integrable over cell data when the conditional outcome
-pairs are centered and independent with common overlap. -/
+pairs are centered and independent with common overlap.
+@isnad1 id=integrab.3h9v.s9.cd524e78f301 from=translated src=- shape=2845c15e vocab=17170938
+-/
 theorem integrable_conditionalCrossMoment {Ω : Type*} [MeasurableSpace Ω]
     (ν : ∀ m, Measure (Cell m)) [∀ m, IsProbabilityMeasure (ν m)]
     (ρ : ∀ m, Cell m → Measure Ω) [∀ m c, IsProbabilityMeasure (ρ m c)]
@@ -206,7 +218,9 @@ theorem integrable_conditionalCrossMoment {Ω : Type*} [MeasurableSpace Ω]
   filter_upwards [hν m, hout m] with c hc ho
   exact (conditionalCrossMoment_eq_cellOverlap ρ v w hτ hc.1 ho γ).symm
 
-/-- Averaged conditional cross moments are Poisson-integrable under the same outcome assumptions. -/
+/-- Averaged conditional cross moments are Poisson-integrable under the same outcome assumptions.
+@isnad1 id=integrab.3h9v.s9.e2f9165dd9fd from=translated src=- shape=844e6bbb vocab=03773db2
+-/
 theorem integrable_poisson_crossMoment {Ω : Type*} [MeasurableSpace Ω]
     (ν : ∀ m, Measure (Cell m)) [∀ m, IsProbabilityMeasure (ν m)]
     (ρ : ∀ m, Cell m → Measure Ω) [∀ m c, IsProbabilityMeasure (ρ m c)]
@@ -228,7 +242,9 @@ laws for outcome scores](hyp:ρ), [two outcome-score families](hyp:v,w), [a Pois
 mean](hyp:ξ), [a bounded tilt](hyp:hτ), [almost-surely valid cells](hyp:hν),
 [almost-surely centered independent outcome pairs](hyp:hout), and [an outcome
 amplitude](hyp:γ), [the Poisson-integrated posterior likelihood cross moment equals
-the coefficient overlap series](goal). -/
+the coefficient overlap series](goal).
+@isnad1 id=eq.3h9v.s9.231b58e8b31a from=translated src=- shape=f0a57757 vocab=c6e15132
+-/
 theorem poisson_crossMoment_eq_series {Ω : Type*} [MeasurableSpace Ω]
     (ν : ∀ m, Measure (Cell m)) [∀ m, IsProbabilityMeasure (ν m)]
     (ρ : ∀ m, Cell m → Measure Ω) [∀ m c, IsProbabilityMeasure (ρ m c)]

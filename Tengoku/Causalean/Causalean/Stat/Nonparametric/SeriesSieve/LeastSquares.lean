@@ -46,7 +46,9 @@ noncomputable def seriesHatMatrix (Φ : Matrix (Fin N) ι ℝ) : Matrix (Fin N) 
 
 /-- **Normal equations for the closed-form series fit.** If [the series Gram matrix is
 invertible](hyp:hGram), then [the residual from the closed-form coefficient vector is orthogonal
-to every design column](goal). -/
+to every design column](goal).
+@isnad1 id=eq.1h5v.s6.84444cddceaa from=translated src=- shape=8aa7e257 vocab=3186267d
+-/
 theorem seriesLSCoeff_normal_equations (Φ : Matrix (Fin N) ι ℝ) (y : Fin N → ℝ)
     (hGram : IsUnit (seriesGram Φ).det) :
     ∀ k : ι, ∑ i, lstsqResidual Φ y (seriesLSCoeff Φ y) i * Φ i k = 0 := by
@@ -71,7 +73,9 @@ theorem seriesLSCoeff_normal_equations (Φ : Matrix (Fin N) ι ℝ) (y : Fin N �
 /-- **Least-squares fitted-value linearity.** For [a design matrix `Φ`](hyp:Φ), [a baseline
 response vector `f`](hyp:f), and [an additive error vector `ε`](hyp:ε), [the fitted-value
 difference between the baseline fit and the fit to `f+ε` is `-Hε`, where `H` is the series hat
-matrix](goal). -/
+matrix](goal).
+@isnad1 id=eq.0h5v.s7.d4972ffdce98 from=translated src=- shape=84898c58 vocab=d71ec3a4
+-/
 theorem seriesLS_fitted_sub_eq_neg_hat (Φ : Matrix (Fin N) ι ℝ)
     (f ε : Fin N → ℝ) :
     Φ *ᵥ (seriesLSCoeff Φ f - seriesLSCoeff Φ (f + ε))
@@ -82,7 +86,9 @@ theorem seriesLS_fitted_sub_eq_neg_hat (Φ : Matrix (Fin N) ι ℝ)
 
 /-- **Hat-matrix Frobenius identity.** If [the series Gram matrix is invertible](hyp:hGram), then
 [the sum of squares of all entries of the least-squares hat matrix equals the number of series
-columns](goal). -/
+columns](goal).
+@isnad1 id=eq.1h3v.s6.2de34d94c8a5 from=translated src=- shape=1a7ab997 vocab=ef338492
+-/
 theorem seriesHatMatrix_frobenius_sq (Φ : Matrix (Fin N) ι ℝ)
     (hGram : IsUnit (seriesGram Φ).det) :
     (∑ i, ∑ k, seriesHatMatrix Φ i k ^ 2) = (Fintype.card ι : ℝ) := by

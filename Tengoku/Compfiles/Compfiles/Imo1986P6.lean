@@ -35,12 +35,17 @@ def Balanced (S : Finset (ℤ × ℤ)) (ε : ℤ × ℤ → ℤ) : Prop :=
   (∀ x : ℤ, |∑ p ∈ S.filter (fun p => p.1 = x), ε p| ≤ 1) ∧
   (∀ y : ℤ, |∑ p ∈ S.filter (fun p => p.2 = y), ε p| ≤ 1)
 
+/--
+@isnad1 id=balanced.0h0v.s4.4439068f3bcb from=translated src=- shape=f0a9a88a vocab=8bb7758a
+-/
 lemma balanced_empty : Balanced ∅ (fun _ => 1) := by
   refine ⟨fun p hp => by simp at hp, fun x => ?_, fun y => ?_⟩ <;>
   · rw [Finset.filter_empty, Finset.sum_empty]
     simp
 
-/-- The problem is symmetric under swapping the two coordinates. -/
+/-- The problem is symmetric under swapping the two coordinates.
+@isnad1 id=balanced.1h2v.s5.a50fc077995f from=translated src=- shape=addb5562 vocab=d27677f3
+-/
 lemma balanced_image_swap {S : Finset (ℤ × ℤ)} {ε : ℤ × ℤ → ℤ} (h : Balanced S ε) :
     Balanced (S.image Prod.swap) (ε ∘ Prod.swap) := by
   obtain ⟨hε, hx, hy⟩ := h
@@ -61,7 +66,9 @@ lemma balanced_image_swap {S : Finset (ℤ × ℤ)} {ε : ℤ × ℤ → ℤ} (h
 
 /-- Case A: some point `P` is the only point of `S` in its column.  Then any
 balanced signing of `S.erase P` can be extended to a balanced signing of `S`
-by choosing the sign of `P` so as to balance the row of `P`. -/
+by choosing the sign of `P` so as to balance the row of `P`.
+@isnad1 id=ex.3h3v.s6.d3c7f83dfccf from=translated src=- shape=e9049121 vocab=4820efa5
+-/
 lemma balanced_of_alone_col {S : Finset (ℤ × ℤ)} {P : ℤ × ℤ} (hP : P ∈ S)
     (hcol : ∀ Q ∈ S, Q.1 = P.1 → Q = P)
     {ε' : ℤ × ℤ → ℤ} (hε' : Balanced (S.erase P) ε') :
@@ -132,7 +139,9 @@ lemma balanced_of_alone_col {S : Finset (ℤ × ℤ)} {P : ℤ × ℤ} (hP : P �
       exact Function.update_of_ne (Finset.mem_erase.mp hp.1).1 _ _
 
 /-- Case A, symmetric version: some point `P` is the only point of `S` in its
-row.  Handled by swapping the coordinates and applying `balanced_of_alone_col`. -/
+row.  Handled by swapping the coordinates and applying `balanced_of_alone_col`.
+@isnad1 id=ex.4h3v.s7.b515f8a40170 from=translated src=- shape=02ce0ee1 vocab=ab5491f4
+-/
 lemma balanced_of_alone_row {S : Finset (ℤ × ℤ)} {P : ℤ × ℤ} (hP : P ∈ S)
     (hrow : ∀ Q ∈ S, Q.2 = P.2 → Q = P)
     (n : ℕ) (IH : ∀ T : Finset (ℤ × ℤ), T.card ≤ n → ∃ ε, Balanced T ε)
@@ -176,7 +185,9 @@ structure AltPath (S : Finset (ℤ × ℤ)) (L : List (ℤ × ℤ)) : Prop where
     (Odd i → (L[i]'(by lia)).1 = (L[i + 1]'h).1)
 
 /-- An alternating path can be extended by appending a fresh point, provided the
-new last step has the required direction. -/
+new last step has the required direction.
+@isnad1 id=altpath.4h3v.s8.597e51b33fab from=translated src=- shape=e9767951 vocab=dcde41d9
+-/
 lemma AltPath.snoc {S : Finset (ℤ × ℤ)} {L : List (ℤ × ℤ)} (hL : AltPath S L)
     {Q : ℤ × ℤ} (hQ : Q ∈ S) (hQn : Q ∉ L)
     (hlast : (Even (L.length - 1) → ∀ h : L.length - 1 < L.length, (L[L.length - 1]'h).2 = Q.2) ∧
@@ -224,7 +235,9 @@ lemma AltPath.snoc {S : Finset (ℤ × ℤ)} {L : List (ℤ × ℤ)} (hL : AltPa
         exact hlast.2 hodd _
 
 /-- The step condition of an alternating path, with the second index given
-separately (useful when it is not literally `i + 1`). -/
+separately (useful when it is not literally `i + 1`).
+@isnad1 id=and.3h4v.s7.01ac9589653a from=translated src=- shape=e78a6ae8 vocab=4bbbbdd1
+-/
 lemma AltPath.step_at {S : Finset (ℤ × ℤ)} {L : List (ℤ × ℤ)} (hL : AltPath S L)
     (i j : ℕ) (hij : j = i + 1) (h : i + 1 < L.length) :
     (Even i → (L[i]'(by lia)).2 = (L[j]'(by lia)).2) ∧
@@ -233,7 +246,9 @@ lemma AltPath.step_at {S : Finset (ℤ × ℤ)} {L : List (ℤ × ℤ)} (hL : Al
   exact hL.step i h
 
 /-- The step condition of an alternating path is inherited by a tail of the
-path, provided the tail starts at an even index. -/
+path, provided the tail starts at an even index.
+@isnad1 id=and.3h4v.s7.fc3f8a4d487e from=translated src=- shape=bdd985b5 vocab=d9cf4776
+-/
 lemma AltPath.drop_step {S : Finset (ℤ × ℤ)} {L : List (ℤ × ℤ)} (hL : AltPath S L)
     {j : ℕ} (hj : Even j) :
     ∀ t : ℕ, (h : t + 1 < (L.drop j).length) →
@@ -248,7 +263,9 @@ lemma AltPath.drop_step {S : Finset (ℤ × ℤ)} {L : List (ℤ × ℤ)} (hL : 
   · intro hodd
     exact h1.2 (hj.add_odd hodd)
 
-/-- Among the alternating paths in `S` there is one of maximal length. -/
+/-- Among the alternating paths in `S` there is one of maximal length.
+@isnad1 id=ex.1h1v.s5.27bf8da81ce8 from=translated src=- shape=eeded93b vocab=a1910826
+-/
 lemma AltPath.exists_max {S : Finset (ℤ × ℤ)} (hbase : ∃ L₀, AltPath S L₀) :
     ∃ L, AltPath S L ∧ ∀ L', AltPath S L' → L'.length ≤ L.length := by
   classical
@@ -269,7 +286,9 @@ lemma AltPath.exists_max {S : Finset (ℤ × ℤ)} (hbase : ∃ L₀, AltPath S 
   have hle := Nat.le_findGreatest (hb L' hL') hP'
   lia
 
-/-- Helper: two elements of the same list at equal indices are equal. -/
+/-- Helper: two elements of the same list at equal indices are equal.
+@isnad1 id=eq.3h4v.s6.646f3db96e84 from=translated src=- shape=f70fe86c vocab=aa97bf7b
+-/
 lemma getElem_congr {α : Type*} (l : List α) {i j : ℕ} (hi : i < l.length) (hj : j < l.length)
     (h : i = j) : l[i]'hi = l[j]'hj :=
   congrArg l.get (Fin.ext h)
@@ -279,7 +298,9 @@ alternates on each pair of consecutive elements while a "coordinate" function
 is constant on each pair, then the sum of the signs over the points of the list
 lying on any fixed level of the coordinate is zero.  This is the computation
 showing that a correctly colored cycle contributes equally many white and red
-points to every row and every column. -/
+points to every row and every column.
+@isnad1 id=eq.3h4v.s8.522c0a26625e from=translated src=- shape=8bc01f7c vocab=af9c650d
+-/
 lemma pair_sum_zero : ∀ (C : List (ℤ × ℤ)) (f g : ℤ × ℤ → ℤ),
     C.Nodup → Even C.length →
     (∀ t : ℕ, 2 * t + 1 < C.length →
@@ -361,6 +382,9 @@ lemma pair_sum_zero : ∀ (C : List (ℤ × ℤ)) (f g : ℤ × ℤ → ℤ),
 noncomputable def cycSign (C : List (ℤ × ℤ)) : ℤ × ℤ → ℤ :=
   fun p => if ∃ i : Fin C.length, C.get i = p ∧ Even i.val then 1 else -1
 
+/--
+@isnad1 id=eq.1h2v.s5.cf14f25201cf from=translated src=- shape=36e17dae vocab=89830ac6
+-/
 lemma cycSign_apply (C : List (ℤ × ℤ)) (hn : C.Nodup) (i : Fin C.length) :
     cycSign C (C.get i) = if Even i.val then (1 : ℤ) else -1 := by
   unfold cycSign
@@ -368,13 +392,18 @@ lemma cycSign_apply (C : List (ℤ × ℤ)) (hn : C.Nodup) (i : Fin C.length) :
   · rw [ite_eq_left h, ite_eq_left ⟨i, rfl, h⟩]
   · rw [ite_eq_right h, ite_eq_right (fun ⟨j, hji, hj⟩ => h (hn.get_inj_iff.mp hji ▸ hj))]
 
+/--
+@isnad1 id=eq.2h2v.s6.fa55d7ad87f8 from=translated src=- shape=700e7b9c vocab=acdd0c13
+-/
 lemma cycSign_apply' (C : List (ℤ × ℤ)) (hn : C.Nodup) (i : ℕ) (h : i < C.length) :
     cycSign C (C[i]'h) = if Even i then (1 : ℤ) else -1 :=
   (congrArg (cycSign C) (List.get_eq_getElem (l := C) (i := ⟨i, h⟩)).symm).trans
     (cycSign_apply C hn ⟨i, h⟩)
 
 /-- A cycle of even length, alternating horizontal and vertical steps and closed
-by a vertical step, admits a signing that is balanced on every row and column. -/
+by a vertical step, admits a signing that is balanced on every row and column.
+@isnad1 id=ex.4h1v.s9.c310466d40fe from=translated src=- shape=691205ea vocab=57835872
+-/
 lemma cycle_balanced (C : List (ℤ × ℤ)) (hnodup : C.Nodup) (hlen : Even C.length)
     (hstep : ∀ i : ℕ, (h : i + 1 < C.length) →
       (Even i → (C[i]'(by lia)).2 = (C[i + 1]'h).2) ∧
@@ -470,7 +499,9 @@ lemma cycle_balanced (C : List (ℤ × ℤ)) (hnodup : C.Nodup) (hlen : Even C.l
 
 /-- Case B: every point of the nonempty set `S` has another point of `S` in its
 row and another one in its column.  Then `S` contains an alternating cycle of
-even length at least four, closed by a vertical step. -/
+even length at least four, closed by a vertical step.
+@isnad1 id=ex.3h1v.s9.87f1e0537360 from=translated src=- shape=d37ebf4c vocab=3dc94fc9
+-/
 lemma exists_cycle (S : Finset (ℤ × ℤ)) (hne : S.Nonempty)
     (hrow : ∀ P ∈ S, ∃ Q ∈ S, Q ≠ P ∧ Q.2 = P.2)
     (hcol : ∀ P ∈ S, ∃ Q ∈ S, Q ≠ P ∧ Q.1 = P.1) :
@@ -792,7 +823,9 @@ lemma exists_cycle (S : Finset (ℤ × ℤ)) (hne : S.Nonempty)
       lia
 
 /-- Main induction: every finite set of points with integer coordinates admits a
-balanced signing. -/
+balanced signing.
+@isnad1 id=ex.1h2v.s5.1c916967f7c7 from=translated src=- shape=b18ffb18 vocab=2f1d9195
+-/
 lemma main_lemma : ∀ n : ℕ, ∀ S : Finset (ℤ × ℤ), S.card ≤ n → ∃ ε, Balanced S ε := by
   intro n
   induction n with

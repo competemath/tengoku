@@ -33,6 +33,9 @@ The fact that d is odd follows from the fact that p is odd.
 The fact that d is even follows from examining the difference 13 * d - 5 * d.
 -/
 
+/--
+@isnad1 id=not.0h1v.s6.997ea84ff5e0 from=translated src=- shape=bf2d61e7 vocab=a0b648a1
+-/
 theorem imo1986_p1' (d : ℤ):
     ¬ ((IsSquare (2 * d - 1)) ∧ (IsSquare (5 * d - 1)) ∧ (IsSquare (d * 13 - 1))) := by
   rintro ⟨⟨p, hp⟩, ⟨q, hq⟩, ⟨r, hr⟩⟩

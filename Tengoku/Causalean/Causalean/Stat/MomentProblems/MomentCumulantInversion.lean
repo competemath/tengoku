@@ -42,7 +42,9 @@ noncomputable def cumFromMom (r : ℕ) (m : ℕ → ℝ) : ℝ :=
       (-1 : ℝ) ^ (π.parts.card - 1) * (Nat.factorial (π.parts.card - 1) : ℝ) *
         ∏ B ∈ π.parts, m B.card
 
-/-- For [a real moment sequence](hyp:m), [its order-zero combinatorial cumulant is zero](goal). -/
+/-- For [a real moment sequence](hyp:m), [its order-zero combinatorial cumulant is zero](goal).
+@isnad1 id=eq.0h1v.s4.61f28b1d6ac3 from=translated src=- shape=21b157ee vocab=110f8578
+-/
 @[simp]
 theorem cumFromMom_zero (m : ℕ → ℝ) : cumFromMom 0 m = 0 := by
   simp [cumFromMom]
@@ -90,7 +92,9 @@ private lemma block_card_lt_of_card_ne_one {r : ℕ}
 /-- [For a real random variable with law `ν`](hyp:ν) [and any order `r`](hyp:r), [the
 order-`r` cumulant of `ν` equals the abstract combinatorial cumulant formula evaluated at
 `ν`'s own raw-moment sequence](goal): the measure-theoretic and combinatorial definitions
-agree. -/
+agree.
+@isnad1 id=eq.0h2v.s5.3246b97ec4b0 from=translated src=- shape=d22435dc vocab=07585c57
+-/
 theorem sourceCumulant_eq_cumFromMom (ν : Measure ℝ) (r : ℕ) :
     sourceCumulant ν (id : ℝ → ℝ) r = cumFromMom r (fun k => ∫ t, t ^ k ∂ν) := by
   by_cases hr : r = 0
@@ -112,7 +116,9 @@ theorem sourceCumulant_eq_cumFromMom (ν : Measure ℝ) (r : ℕ) :
 
 /-- **Triangularity.** At any positive order the cumulant equals the moment of that same order plus
 a remainder assembled only from strictly lower moments.  This is what makes the moment-to-cumulant
-map invertible by recursion. -/
+map invertible by recursion.
+@isnad1 id=eq.1h2v.s5.9283ce4adbde from=translated src=- shape=5336b9eb vocab=bce2da58
+-/
 theorem cumFromMom_eq (r : ℕ) (hr : 1 ≤ r) (m : ℕ → ℝ) :
     cumFromMom r m = m r + restFromMom r m := by
   let P₀ : Finpartition (Finset.univ : Finset (Fin r)) :=
@@ -143,7 +149,9 @@ theorem cumFromMom_eq (r : ℕ) (hr : 1 ≤ r) (m : ℕ → ℝ) :
   simp [P₀, restFromMom]
 
 /-- The order-`r` cumulant depends only on the moments up to order `r`: changing higher moments
-leaves it unchanged. -/
+leaves it unchanged.
+@isnad1 id=eq.1h3v.s5.428f9093c6f1 from=translated src=- shape=fbd919e0 vocab=8b4839c7
+-/
 theorem cumFromMom_congr (r : ℕ) {m m' : ℕ → ℝ}
     (h : ∀ k, 1 ≤ k → k ≤ r → m k = m' k) :
     cumFromMom r m = cumFromMom r m' := by
@@ -158,7 +166,9 @@ theorem cumFromMom_congr (r : ℕ) {m m' : ℕ → ℝ}
   exact h B.card (block_card_pos π hB) (block_card_le π hB)
 
 /-- The lower-order remainder at order `r` depends only on the moments **strictly below** `r`:
-changing the order-`r` moment, or any higher one, leaves it unchanged. -/
+changing the order-`r` moment, or any higher one, leaves it unchanged.
+@isnad1 id=eq.1h3v.s5.36fed38ad3ba from=translated src=- shape=4d74bf8f vocab=a4dfd248
+-/
 theorem restFromMom_congr (r : ℕ) {m m' : ℕ → ℝ}
     (h : ∀ k, 1 ≤ k → k < r → m k = m' k) :
     restFromMom r m = restFromMom r m' := by
@@ -187,16 +197,22 @@ noncomputable def momFromCum (c : ℕ → ℝ) : ℕ → ℝ
 termination_by n => n
 decreasing_by omega
 
-/-- The reconstructed moment sequence has total mass one. -/
+/-- The reconstructed moment sequence has total mass one.
+@isnad1 id=eq.0h1v.s4.a0fe285583f8 from=translated src=- shape=777ad2f6 vocab=7fe48e51
+-/
 @[simp] theorem momFromCum_zero (c : ℕ → ℝ) : momFromCum c 0 = 1 := by
   rw [momFromCum]
 
-/-- The reconstructed moment sequence is centered: its mean is zero. -/
+/-- The reconstructed moment sequence is centered: its mean is zero.
+@isnad1 id=eq.0h1v.s4.d31df2d069a2 from=translated src=- shape=777ad2f6 vocab=7fe48e51
+-/
 @[simp] theorem momFromCum_one (c : ℕ → ℝ) : momFromCum c 1 = 0 := by
   rw [momFromCum]
 
 /-- The defining recursion: at every order at least two, the reconstructed moment is the target
-cumulant of that order minus the remainder built from the lower reconstructed moments. -/
+cumulant of that order minus the remainder built from the lower reconstructed moments.
+@isnad1 id=eq.1h2v.s5.b61a07a45a3a from=translated src=- shape=dedd9597 vocab=7aa91c5c
+-/
 theorem momFromCum_succ (c : ℕ → ℝ) (r : ℕ) (hr : 2 ≤ r) :
     momFromCum c r = c r - restFromMom r (momFromCum c) := by
   cases r with
@@ -212,7 +228,9 @@ theorem momFromCum_succ (c : ℕ → ℝ) (r : ℕ) (hr : 2 ≤ r) :
       simp [hk]
 
 /-- **Correctness of the inversion.** [Reading the cumulants back off the reconstructed moment
-sequence returns the prescribed cumulants](goal), at [every order `r` at least two](hyp:hr). -/
+sequence returns the prescribed cumulants](goal), at [every order `r` at least two](hyp:hr).
+@isnad1 id=eq.1h2v.s4.c0d5d037eddc from=translated src=- shape=f170d838 vocab=cfc8fe5e
+-/
 theorem cumFromMom_momFromCum (c : ℕ → ℝ) (r : ℕ) (hr : 2 ≤ r) :
     cumFromMom r (momFromCum c) = c r := by
   rw [cumFromMom_eq r (by omega), momFromCum_succ c r hr]
@@ -220,7 +238,9 @@ theorem cumFromMom_momFromCum (c : ℕ → ℝ) (r : ℕ) (hr : 2 ≤ r) :
 
 /-- **Locality of the inversion.** The reconstructed moment of order `r` depends only on the
 prescribed cumulants of orders two through `r`, so truncating the cumulant target beyond `r` is
-harmless. -/
+harmless.
+@isnad1 id=eq.1h3v.s5.6169398c84ed from=translated src=- shape=fc6d310f vocab=0a06cd8c
+-/
 theorem momFromCum_congr {c c' : ℕ → ℝ} (r : ℕ)
     (h : ∀ k, 2 ≤ k → k ≤ r → c k = c' k) :
     momFromCum c r = momFromCum c' r := by
@@ -237,7 +257,9 @@ theorem momFromCum_congr {c c' : ℕ → ℝ} (r : ℕ)
 /-- **Continuity of the inversion.** [At any fixed order `r`](hyp:r), [the reconstructed
 moment of that order is a continuous function of the prescribed cumulant
 sequence](goal), so small perturbations of the target cumulants move the moments only
-slightly — the key to the openness arguments that use this inversion. -/
+slightly — the key to the openness arguments that use this inversion.
+@isnad1 id=continuo.0h1v.s4.72a0e754f641 from=translated src=- shape=7b7226de vocab=96fee669
+-/
 @[fun_prop]
 theorem continuous_momFromCum (r : ℕ) :
     Continuous (fun c : ℕ → ℝ => momFromCum c r) := by
@@ -261,7 +283,9 @@ theorem continuous_momFromCum (r : ℕ) :
           (continuous_const : Continuous (fun _ : ℕ → ℝ => (0 : ℝ)))
 
 /-- **Uniqueness of the inversion.** Any moment sequence with total mass one and mean zero whose
-cumulants are the prescribed ones is exactly the sequence produced by the recursion. -/
+cumulants are the prescribed ones is exactly the sequence produced by the recursion.
+@isnad1 id=eq.3h3v.s6.c5a3148e9af9 from=translated src=- shape=2b035b57 vocab=cfc8fe5e
+-/
 theorem momFromCum_eq_of_cum (m : ℕ → ℝ) (hm0 : m 0 = 1) (hm1 : m 1 = 0)
     (c : ℕ → ℝ) (hc : ∀ r, 2 ≤ r → c r = cumFromMom r m) (r : ℕ) :
     momFromCum c r = m r := by

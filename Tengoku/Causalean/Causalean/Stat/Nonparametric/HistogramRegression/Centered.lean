@@ -24,7 +24,9 @@ variable {Ω A κ : Type*} [MeasurableSpace Ω] [MeasurableSpace A]
 
 /-- [Measurable inputs](hyp:hlabel,hX,hY), [unit-interval responses and
 default](hyp:hbound,ha), and [positive cell mass](hyp:hp) imply
-[mass-weighted cell-estimation MSE at most three over the sample-size successor](goal). -/
+[mass-weighted cell-estimation MSE at most three over the sample-size successor](goal).
+@isnad1 id=le.6h10v.s8.a6cc1977d25f from=translated src=- shape=1016e749 vocab=75bbfede
+-/
 theorem cell_estimation_mse_le {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (a : ℝ) (k : κ) (hlabel : Measurable label)

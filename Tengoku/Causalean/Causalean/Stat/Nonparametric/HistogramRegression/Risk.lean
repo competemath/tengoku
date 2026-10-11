@@ -31,7 +31,9 @@ variable {Ω A κ : Type*} [MeasurableSpace Ω] [MeasurableSpace A]
 mean identity](hyp:hmean), and [within-cell oscillation bounds](hyp:hδ,hosc)
 imply [expected integrated squared histogram error is bounded by twice the
 mass-weighted squared oscillation plus six times the positive-cell count
-divided by the sample-size successor](goal). -/
+divided by the sample-size successor](goal).
+@isnad1 id=le.9h11v.s8.e4dfdc8a4532 from=translated src=- shape=a305782a vocab=7fc53e0a
+-/
 theorem histogram_risk_le {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (g : A → ℝ) (a : ℝ) (δ : κ → ℝ)
@@ -166,7 +168,9 @@ theorem histogram_risk_le {m : ℕ}
 [measurable regression inputs](hyp:hlabel,hX,hY,hg), [bounded responses and
 default](hyp:hbound,ha), [the conditional-mean identity](hyp:hmean), and
 [cellwise oscillation bounds](hyp:hδ,hosc) give [the same integrated histogram
-risk bound on the original sample probability space](goal). -/
+risk bound on the original sample probability space](goal).
+@isnad1 id=le.12h14v.s8.ddb4b2c7b400 from=translated src=- shape=0e59936f vocab=971b17f1
+-/
 theorem histogram_risk_le_iid {m : ℕ} {S : Type*} [MeasurableSpace S]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (ν : Measure S) [IsProbabilityMeasure ν]
     (Z : Fin m → S → Ω) (label : A → κ) (X : Ω → A)

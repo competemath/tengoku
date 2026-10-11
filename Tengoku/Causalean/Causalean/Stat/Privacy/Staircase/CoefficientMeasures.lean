@@ -31,7 +31,9 @@ structure CoefficientField (Q : Kernel (Fin 4) Z) (r : ℝ) where
     ∀ i, rowDensity Q i z = ∑ S, c z S * ray r S i
 
 /-- Every private Markov kernel has a measurable nonnegative coefficient field
-representing all four row densities simultaneously. -/
+representing all four row densities simultaneously.
+@isnad1 id=nonempty.2h3v.s5.9b208772a4e8 from=translated src=- shape=fbfc06ea vocab=a9185312
+-/
 theorem exists_coefficientField (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (hpriv : SetwisePrivate Q r) :
     Nonempty (CoefficientField Q r) := by
@@ -43,7 +45,9 @@ measure, including coefficients that vanish identically.
 
 Proof plan: every ray coordinate is at least one for `r > 1`. At input zero,
 the reconstruction therefore bounds each nonnegative coefficient by the
-integrable row density. Use `Integrable.mono'` and RN reconstruction. -/
+integrable row density. Use `Integrable.mono'` and RN reconstruction.
+@isnad1 id=integrab.1h5v.s6.d06172a531cd from=translated src=- shape=f8ecdd4f vocab=10da0f34
+-/
 theorem coefficient_integrable (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (D : CoefficientField Q r) (S : RayIndex) :
     Integrable (fun z => D.c z S) (rowSum Q) := by
@@ -88,7 +92,9 @@ and convert the real finite sum with `ENNReal.ofReal_sum_of_nonneg` and
 `ENNReal.ofReal_mul`. Distribute the density with `withDensity_add_left`
 and `withDensity_smul`; the latter needs measurability of `D.c` and the
 nonnegative ray value. Alternatively prove equality on each measurable set
-using `withDensity_apply`, `lintegral_finset_sum`, and `lintegral_const_mul`. -/
+using `withDensity_apply`, `lintegral_finset_sum`, and `lintegral_const_mul`.
+@isnad1 id=eq.1h5v.s8.44d775265fb3 from=translated src=- shape=50f81f06 vocab=fdf06007
+-/
 theorem coefficient_row_measure (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (D : CoefficientField Q r) (i : Fin 4) :
     Q i = ∑ S : RayIndex,
@@ -135,7 +141,9 @@ row sums are all one.
 Proof plan: integrate `D.reconstruct`, exchange the finite sum with the real
 integral using `coefficient_integrable`, and apply the Markov mass of `Q i`.
 `Measure.integral_toReal_rnDeriv` or `row_eq_withDensity` with
-`integral_eq_lintegral_of_nonneg_ae` identifies the density integral with one. -/
+`integral_eq_lintegral_of_nonneg_ae` identifies the density integral with one.
+@isnad1 id=eq.1h5v.s8.ff38660b1a50 from=translated src=- shape=235dfce8 vocab=2e6ec322
+-/
 theorem coefficient_normalized (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (D : CoefficientField Q r) (i : Fin 4) :
     (∑ S : RayIndex, (∫ z, D.c z S ∂rowSum Q) * ray r S i) = 1 := by

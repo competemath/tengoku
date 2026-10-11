@@ -73,7 +73,9 @@ def IsExtremePoint (C : Set (Measure ℝ)) (μ : Measure ℝ) : Prop :=
 /-- **Three-moment perturbation.** On any finite set `T ⊆ ℝ` of more than three points there
 is a nonzero real weighting `δ` whose total mass, first moment and second moment all vanish.
 This is rank–nullity: three linear functionals (`∑ δ`, `∑ δ·x`, `∑ δ·x²`) on a space of
-dimension `> 3` have a nonzero common kernel. -/
+dimension `> 3` have a nonzero common kernel.
+@isnad1 id=ex.1h1v.s7.7b2b40851d38 from=translated src=- shape=a96596ef vocab=97908900
+-/
 theorem exists_moment_perturbation {T : Finset ℝ} (hT : 3 < T.card) :
     ∃ δ : ℝ → ℝ, (∑ x ∈ T, δ x = 0) ∧ (∑ x ∈ T, δ x * x = 0) ∧
       (∑ x ∈ T, δ x * x ^ 2 = 0) ∧ (∃ x ∈ T, δ x ≠ 0) := by
@@ -98,7 +100,9 @@ theorem exists_moment_perturbation {T : Finset ℝ} (hT : 3 < T.card) :
 /-! ### Measure-level computations -/
 
 /-- A discrete measure whose atoms all lie in a set gives zero mass to that set's
-complement. -/
+complement.
+@isnad1 id=eq.1h4v.s6.c91c8c8e8924 from=translated src=- shape=89c581a4 vocab=17847246
+-/
 theorem discreteMeasure_apply_compl_of_subset {α : Type*} [MeasurableSpace α]
     [MeasurableSingletonClass α] {T : Finset α} {w : α → ℝ} {K : Set α}
     (hTK : ∀ x ∈ T, x ∈ K) :
@@ -111,7 +115,9 @@ theorem discreteMeasure_apply_compl_of_subset {α : Type*} [MeasurableSpace α]
   simp [this]
 
 /-- A finite discrete measure is a probability measure when all atom weights
-are nonnegative and their sum is one. -/
+are nonnegative and their sum is one.
+@isnad1 id=isprobab.2h3v.s6.dcd83dd81798 from=translated src=- shape=7a9367d3 vocab=b8178bb7
+-/
 theorem isProbabilityMeasure_discreteMeasure {α : Type*} [MeasurableSpace α]
     {T : Finset α} {w : α → ℝ}
     (hw : ∀ x ∈ T, 0 ≤ w x) (hsum : ∑ x ∈ T, w x = 1) :
@@ -124,7 +130,9 @@ theorem isProbabilityMeasure_discreteMeasure {α : Type*} [MeasurableSpace α]
 
 /-- Integral against a discrete measure is the weighted sum of the integrand over the atoms.
 Every function into a real normed vector space is integrable because the measure
-has finite support. -/
+has finite support.
+@isnad1 id=eq.1h5v.s7.66546c774f5b from=translated src=- shape=af21603c vocab=19eed67a
+-/
 theorem integral_discreteMeasure {α E : Type*} [MeasurableSpace α] [MeasurableSingletonClass α]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     {T : Finset α} {w : α → ℝ} (hw : ∀ x ∈ T, 0 ≤ w x)
@@ -138,7 +146,9 @@ theorem integral_discreteMeasure {α E : Type*} [MeasurableSpace α] [Measurable
     exact (integrable_dirac enorm_lt_top).smul_measure (by simp)
 
 /-- The mass assigned by a finite discrete measure to an atom in its support is
-the corresponding atom weight, coerced to `ℝ≥0∞`. -/
+the corresponding atom weight, coerced to `ℝ≥0∞`.
+@isnad1 id=eq.1h4v.s5.b042e28b8f89 from=translated src=- shape=79121473 vocab=b966114d
+-/
 theorem discreteMeasure_singleton {α : Type*} [MeasurableSpace α] [MeasurableSingletonClass α]
     {T : Finset α} {w : α → ℝ} {x₀ : α} (hx₀ : x₀ ∈ T) :
     discreteMeasure T w {x₀} = ENNReal.ofReal (w x₀) := by
@@ -160,7 +170,9 @@ theorem discreteMeasure_singleton {α : Type*} [MeasurableSpace α] [MeasurableS
 set of probability measures pinned by two bounded-continuous moment constraints
 `∫ g₁ = c₁`, `∫ g₂ = c₂` is weak-* compact, so any bounded-continuous objective `∫ f` attains
 its minimum over that (nonempty) slice. The number of constraints is immaterial; the two-moment
-case is stated to match the mean/second-moment slice. -/
+case is stated to match the mean/second-moment slice.
+@isnad1 id=ex.1h6v.s8.34284a923475 from=translated src=- shape=70a9d8e2 vocab=8f6bd29e
+-/
 theorem exists_isMinOn_momentSlice {Ω : Type*} [MeasurableSpace Ω] [TopologicalSpace Ω]
     [T2Space Ω] [BorelSpace Ω] [CompactSpace Ω] (g₁ g₂ f : Ω →ᵇ ℝ) (c₁ c₂ : ℝ)
     (hne : {μ : ProbabilityMeasure Ω | ∫ x, g₁ x ∂μ = c₁ ∧ ∫ x, g₂ x ∂μ = c₂}.Nonempty) :

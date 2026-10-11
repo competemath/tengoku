@@ -54,7 +54,9 @@ event `{U < λ}`](hyp:hg_bd), then [the integrated bias `|∫ wλ · g dP|` is a
     `| ∫ wλ · g ∂P | ≤ Cβ · cp · λ^{κ+β}`.
 
 The proof bounds `|wλ · g|` a.e. by `Cβ·λ^β · 𝟙{U<λ}` (using `wλ ∈ [0,1]` and `wλ = 0`
-off `{U < λ}`) and integrates, picking up the tail mass `P{U < λ} ≤ cp·λᵏ`. -/
+off `{U < λ}`) and integrates, picking up the tail mass `P{U < λ} ≤ cp·λᵏ`.
+@isnad1 id=le.7h11v.s7.6eaf1b430633 from=translated src=- shape=0963d9c5 vocab=ff29b1bb
+-/
 theorem trimWeight_bias_bound [IsProbabilityMeasure P]
     (h : PolyTail P U κ t₀ cm cp) (hsetup : TailSetup P U)
     (hlam_pos : 0 < lam) (hlam_le : lam ≤ t₀)

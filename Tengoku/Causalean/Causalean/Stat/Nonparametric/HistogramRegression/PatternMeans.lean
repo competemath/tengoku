@@ -32,7 +32,9 @@ def centeredCellMean {m : ℕ} (label : A → κ) (X : Ω → A)
 
 /-- [Measurable partition inputs and responses](hyp:hlabel,hX,hY) with
 [integrable first and second response moments](hyp:hint,hsq) give
-[an integrable squared totalized centered cell mean under iid sampling](goal). -/
+[an integrable squared totalized centered cell mean under iid sampling](goal).
+@isnad1 id=integrab.5h10v.s7.4f7f99d3851b from=translated src=- shape=567e64e8 vocab=a47a7782
+-/
 theorem integrable_centeredCellMean_sq {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (c : ℝ) (k : κ)
@@ -100,7 +102,9 @@ theorem integrable_centeredCellMean_sq {m : ℕ}
 /-- [Measurable inputs and integrable response moments](hyp:hlabel,hX,hY,hint,hsq),
 [zero cell residual mean](hyp:hcenter), and [positive cell mass](hyp:hp) give
 [a patternwise squared centered-mean integral equal to the within-cell second
-moment times the patternwise totalized reciprocal-count integral](goal). -/
+moment times the patternwise totalized reciprocal-count integral](goal).
+@isnad1 id=eq.7h11v.s9.80b3988f3d13 from=translated src=- shape=d67df686 vocab=40ed0c43
+-/
 theorem integral_centeredCellMean_sq_on_pattern {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (c : ℝ) (k : κ) (T : Finset (Fin m))

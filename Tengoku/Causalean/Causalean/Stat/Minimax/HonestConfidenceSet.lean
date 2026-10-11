@@ -35,7 +35,9 @@ noncomputable def restrictedSetVolume (region set : Set ℝ) : ℝ :=
 
 /-- The expected restricted volume of a jointly measurable random set equals
 the integral, over the parameter region, of its pointwise inclusion
-probabilities. -/
+probabilities.
+@isnad1 id=eq.3h4v.s7.9790a2f0e202 from=translated src=- shape=2f936951 vocab=7f9e6b51
+-/
 theorem expected_restrictedSetVolume_eq_integral_inclusion
     {Ω : Type*} [MeasurableSpace Ω]
     (Q : Measure Ω) [IsFiniteMeasure Q] (C : Ω → Set ℝ)
@@ -104,7 +106,9 @@ variation `tv` of the reference law `Q reference`, for every `u` in `I`](hyp:htv
 `{(ω, u) | u ∈ C ω}` is measurable](hyp:hgraph), [`region` is measurable](hyp:hregion), [`region`
 has finite Lebesgue volume](hyp:hregionFinite), [`I` is measurable](hyp:hI), and [`I` is
 contained in `region`](hyp:hI_sub). Then [the expected restricted volume of `C` under the
-reference law `Q reference` is at least `(volume I) · (coverage − tv)`](goal). -/
+reference law `Q reference` is at least `(volume I) · (coverage − tv)`](goal).
+@isnad1 id=le.8h8v.s7.9921fd05d316 from=translated src=- shape=ae9af98c vocab=f7bc9627
+-/
 theorem coverage_tv_expectedRestrictedVolume_lower
     {Ω : Type*} [MeasurableSpace Ω]
     (Q : ℝ → Measure Ω) (C : Ω → Set ℝ) (region I : Set ℝ)
@@ -172,7 +176,9 @@ theorem coverage_tv_expectedRestrictedVolume_lower
         (Filter.Eventually.of_forall hI_sub)
 
 /-- Pointwise coverage rows with a vanishing uniform error imply asymptotic
-uniform coverage over any eventually inhabited sequence of model classes. -/
+uniform coverage over any eventually inhabited sequence of model classes.
+@isnad1 id=le.4h5v.s7.43d4eecf1d9d from=translated src=- shape=c5d94e51 vocab=31a28253
+-/
 theorem classCoverage_liminf
     {Model : Type*} (cls : ℕ → Model → Prop)
     (coverage : ℕ → Model → ℝ) (alpha : ℝ) (delta : ℕ → ℝ)
@@ -219,7 +225,9 @@ theorem classCoverage_liminf
   rw [← hlowerTendsto.liminf_eq]
   exact Filter.liminf_le_liminf hrows hlowerBounded hrowCobounded
 
-/-- The capped inverse-square-root rate is antitone on positive strengths. -/
+/-- The capped inverse-square-root rate is antitone on positive strengths.
+@isnad1 id=le.2h2v.s6.3921f0d173ff from=translated src=- shape=13590577 vocab=8d074c76
+-/
 theorem inverseSqrtCap_anti {t0 t : ℝ} (ht0 : 0 < t0) (htt : t0 ≤ t) :
     min 1 (t ^ (-1 / 2 : ℝ)) ≤ min 1 (t0 ^ (-1 / 2 : ℝ)) := by
   apply min_le_min_left
@@ -238,7 +246,9 @@ noncomputable def classFrontierRisk
       expectedLength n P) atTop
 
 /-- A pointwise capped inverse-square-root expected-length bound passes through
-both the class supremum and asymptotic limsup at the threshold value. -/
+both the class supremum and asymptotic limsup at the threshold value.
+@isnad1 id=le.4h6v.s7.0b25729c9c33 from=translated src=- shape=b425f4ea vocab=20a04dff
+-/
 theorem classFrontierRisk_le
     {Model : Type*} (cls : ℕ → Model → Prop)
     (strength expectedLength : ℕ → Model → ℝ)
@@ -306,14 +316,18 @@ noncomputable def coverageInfOrOne {ι : Sort*} (f : ι → ℝ) : ℝ := by
   exact if Nonempty ι then ⨅ i, f i else 1
 
 /-- On a nonempty model class, worst-case coverage with the empty-class convention is the
-ordinary infimum of coverage across the class. -/
+ordinary infimum of coverage across the class.
+@isnad1 id=eq.0h2v.s4.cea8a6a9e5ec from=translated src=- shape=9bbfdf78 vocab=cac0f2e6
+-/
 theorem coverageInfOrOne_of_nonempty {ι : Sort*} [Nonempty ι] (f : ι → ℝ) :
     coverageInfOrOne f = ⨅ i, f i := by
   have hne : Nonempty ι := inferInstance
   simp [coverageInfOrOne, hne]
 
 /-- On an empty model class, worst-case coverage with the empty-class convention is one,
-expressing that the coverage requirement is vacuously satisfied. -/
+expressing that the coverage requirement is vacuously satisfied.
+@isnad1 id=eq.0h2v.s4.647e32908a5f from=translated src=- shape=6e2690b7 vocab=8d3a8e54
+-/
 theorem coverageInfOrOne_of_isEmpty {ι : Sort*} [IsEmpty ι] (f : ι → ℝ) :
     coverageInfOrOne f = 1 := by
   simp [coverageInfOrOne, not_nonempty_iff.mpr inferInstance]
@@ -340,20 +354,26 @@ def coverageEvent {Ω : Type*} (L U : Ω → ℝ) (θ : ℝ) : Set Ω :=
 /-- The [nonnegative interval length](goal) associated with [a lower endpoint](hyp:l) and [an upper endpoint](hyp:u) is zero when the endpoints are reversed. -/
 def intervalLength (l u : ℝ) : ℝ := max 0 (u - l)
 
-/-- [Measurable random lower and upper endpoints](hyp:hL,hU) make [each fixed-target coverage event measurable](goal). -/
+/-- [Measurable random lower and upper endpoints](hyp:hL,hU) make [each fixed-target coverage event measurable](goal).
+@isnad1 id=measurab.2h4v.s5.f92558aa2582 from=translated src=- shape=588c3f35 vocab=632cc3f3
+-/
 theorem measurableSet_coverageEvent {Ω : Type*} [MeasurableSpace Ω]
     {L U : Ω → ℝ} {θ : ℝ} (hL : Measurable L) (hU : Measurable U) :
     MeasurableSet (coverageEvent L U θ) := by
   exact (measurableSet_le hL measurable_const).inter
     (measurableSet_le measurable_const hU)
 
-/-- [Measurable random lower and upper endpoints](hyp:hL,hU) give [a measurable nonnegative interval length](goal). -/
+/-- [Measurable random lower and upper endpoints](hyp:hL,hU) give [a measurable nonnegative interval length](goal).
+@isnad1 id=measurab.2h3v.s5.a88327280bd4 from=translated src=- shape=72b11ccd vocab=4012c6ee
+-/
 @[fun_prop] theorem measurable_intervalLength {Ω : Type*} [MeasurableSpace Ω]
     {L U : Ω → ℝ} (hL : Measurable L) (hU : Measurable U) :
     Measurable (fun x => intervalLength (L x) (U x)) := by
   exact measurable_const.max (hU.sub hL)
 
-/-- The [covered grid count](hyp:M,t,δ,L,U) is [the finite sum of the corresponding coverage-event indicators, viewed as a real-valued statistic](goal). -/
+/-- The [covered grid count](hyp:M,t,δ,L,U) is [the finite sum of the corresponding coverage-event indicators, viewed as a real-valued statistic](goal).
+@isnad1 id=eq.0h6v.s6.713f6cc63a07 from=translated src=- shape=50265804 vocab=1b99020d
+-/
 theorem gridCount_eq_sum_indicator {Ω : Type*} (M : ℕ) (t δ : ℝ)
     (L U : Ω → ℝ) :
     (fun x => (gridCount M t δ (L x) (U x) : ℝ)) =
@@ -364,7 +384,9 @@ theorem gridCount_eq_sum_indicator {Ω : Type*} (M : ℕ) (t δ : ℝ)
   simp only [gridCount, Set.indicator_apply, coverageEvent, Set.mem_ofPred_eq]
   exact (Finset.sum_boole _ _).symm
 
-/-- Under [a finite sample law](hyp:μ), [measurable random endpoints](hyp:hL,hU) make [the covered grid count an integrable statistic](goal). -/
+/-- Under [a finite sample law](hyp:μ), [measurable random endpoints](hyp:hL,hU) make [the covered grid count an integrable statistic](goal).
+@isnad1 id=integrab.2h7v.s6.acc87953bfbb from=translated src=- shape=01f0182c vocab=5bbb9d8c
+-/
 @[fun_prop] theorem integrable_gridCount {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (M : ℕ) (t δ : ℝ)
     {L U : Ω → ℝ} (hL : Measurable L) (hU : Measurable U) :
@@ -374,7 +396,9 @@ theorem gridCount_eq_sum_indicator {Ω : Type*} (M : ℕ) (t δ : ℝ)
   exact integrable_finsetSum _ (fun j _ =>
     (integrable_const (1 : ℝ)).indicator (measurableSet_coverageEvent hL hU))
 
-/-- Under [a finite sample law](hyp:μ), [a grid with M gaps, origin t, and spacing δ](hyp:M,t,δ), and [measurable random endpoints](hyp:hL,hU), [the expected covered grid count equals the sum of its coverage probabilities](goal). -/
+/-- Under [a finite sample law](hyp:μ), [a grid with M gaps, origin t, and spacing δ](hyp:M,t,δ), and [measurable random endpoints](hyp:hL,hU), [the expected covered grid count equals the sum of its coverage probabilities](goal).
+@isnad1 id=eq.2h7v.s7.6a8f17612234 from=translated src=- shape=72a601c8 vocab=da1f4f71
+-/
 theorem integral_gridCount {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (M : ℕ) (t δ : ℝ)
     {L U : Ω → ℝ} (hL : Measurable L) (hU : Measurable U) :
@@ -387,7 +411,9 @@ theorem integral_gridCount {Ω : Type*} [MeasurableSpace Ω]
   · intro j _
     exact (integrable_const (1 : ℝ)).indicator (measurableSet_coverageEvent hL hU)
 
-/-- If [an integrable real-valued statistic](hyp:hf) is [pointwise no larger than a second statistic](hyp:hle), then [the positive part of its expectation is no larger than the nonnegative integral of the second statistic](goal). -/
+/-- If [an integrable real-valued statistic](hyp:hf) is [pointwise no larger than a second statistic](hyp:hle), then [the positive part of its expectation is no larger than the nonnegative integral of the second statistic](goal).
+@isnad1 id=le.2h4v.s6.76bf6b1eedf5 from=translated src=- shape=9a024eda vocab=048e655f
+-/
 theorem ofReal_integral_le_lintegral_ofReal_of_le {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} {f g : Ω → ℝ} (hf : Integrable f μ) (hle : ∀ x, f x ≤ g x) :
     ENNReal.ofReal (∫ x, f x ∂μ) ≤ ∫⁻ x, ENNReal.ofReal (g x) ∂μ := by
@@ -404,7 +430,9 @@ theorem ofReal_integral_le_lintegral_ofReal_of_le {Ω : Type*} [MeasurableSpace 
       simpa only [ENNReal.ofReal_max, ENNReal.ofReal_zero,
         max_eq_left (zero_le : (0 : ℝ≥0∞) ≤ _)] using ENNReal.ofReal_le_ofReal (hle x)
 
-/-- For [a grid with M gaps, origin t, and strictly positive spacing δ](hyp:M,t,δ,hδ), the [nonnegative length of any closed interval with endpoints l and u](hyp:l,u) is [at least δ times one less than its number of covered grid points](goal). -/
+/-- For [a grid with M gaps, origin t, and strictly positive spacing δ](hyp:M,t,δ,hδ), the [nonnegative length of any closed interval with endpoints l and u](hyp:l,u) is [at least δ times one less than its number of covered grid points](goal).
+@isnad1 id=le.1h5v.s5.9e295cd8e90f from=translated src=- shape=201e6b1e vocab=ffcbff3d
+-/
 theorem intervalLength_ge_gridCount (M : ℕ) (t δ l u : ℝ) (hδ : 0 < δ) :
     δ * ((gridCount M t δ l u : ℝ) - 1) ≤ intervalLength l u := by
   classical
@@ -442,7 +470,9 @@ theorem intervalLength_ge_gridCount (M : ℕ) (t δ l u : ℝ) (hδ : 0 < δ) :
     simp only [Finset.card_empty, Nat.cast_zero, zero_sub, mul_neg, mul_one]
     exact (neg_nonpos.mpr hδ.le).trans (le_max_left _ _)
 
-/-- Under [a reference probability law](hyp:μ₀), [a grid with M gaps, origin t, and positive spacing δ](hyp:M,t,δ,hδ), [a coverage floor p at every grid target](hyp:p,hcoverage), and [measurable random interval endpoints](hyp:hL,hU), [the expected nonnegative interval length is at least δ times ((M + 1) times p minus one)](goal). -/
+/-- Under [a reference probability law](hyp:μ₀), [a grid with M gaps, origin t, and positive spacing δ](hyp:M,t,δ,hδ), [a coverage floor p at every grid target](hyp:p,hcoverage), and [measurable random interval endpoints](hyp:hL,hU), [the expected nonnegative interval length is at least δ times ((M + 1) times p minus one)](goal).
+@isnad1 id=le.4h8v.s7.c8524ec8f804 from=translated src=- shape=92173aad vocab=9a1442c5
+-/
 theorem expected_interval_length_lower_of_grid {Ω : Type*} [MeasurableSpace Ω]
     (μ₀ : Measure Ω) [IsProbabilityMeasure μ₀] (M : ℕ) (t δ p : ℝ)
     {L U : Ω → ℝ} (hL : Measurable L) (hU : Measurable U) (hδ : 0 < δ)
@@ -470,7 +500,9 @@ theorem expected_interval_length_lower_of_grid {Ω : Type*} [MeasurableSpace Ω]
     _ ≤ _ := ofReal_integral_le_lintegral_ofReal_of_le hf
       (fun x => intervalLength_ge_gridCount M t δ (L x) (U x) hδ)
 
-/-- [Honest coverage under each experiment law](hyp:μ,α,hhonest), [an event-wise gap of at most η from each experiment law to the reference law](hyp:μ₀,η,hclose), [a grid with M gaps, origin t, and positive spacing δ](hyp:M,t,δ,hδ), and [measurable random endpoints](hyp:hL,hU) give [the finite-grid expected-length lower bound with transferred coverage 1 minus α minus η](goal). -/
+/-- [Honest coverage under each experiment law](hyp:μ,α,hhonest), [an event-wise gap of at most η from each experiment law to the reference law](hyp:μ₀,η,hclose), [a grid with M gaps, origin t, and positive spacing δ](hyp:M,t,δ,hδ), and [measurable random endpoints](hyp:hL,hU) give [the finite-grid expected-length lower bound with transferred coverage 1 minus α minus η](goal).
+@isnad1 id=le.5h10v.s8.64e8e022d2b0 from=translated src=- shape=6d8882d8 vocab=9a1442c5
+-/
 theorem honest_interval_length_lower_of_grid_eventwise {Ω : Type*} [MeasurableSpace Ω]
     (μ₀ : Measure Ω) [IsProbabilityMeasure μ₀] (M : ℕ)
     (μ : Fin (M + 1) → Measure Ω) [∀ j, IsProbabilityMeasure (μ j)]
@@ -485,7 +517,9 @@ theorem honest_interval_length_lower_of_grid_eventwise {Ω : Type*} [MeasurableS
   intro j
   linarith [hhonest j, hclose j]
 
-/-- [Honest coverage under each experiment law](hyp:μ,α,hhonest), [total variation at most η from each experiment law to a reference law](hyp:μ₀,η,htv), [a grid with M gaps, origin t, and positive spacing δ](hyp:M,t,δ,hδ), and [measurable random endpoints](hyp:hL,hU) imply [the finite-grid expected-length lower bound with transferred coverage 1 minus α minus η](goal). -/
+/-- [Honest coverage under each experiment law](hyp:μ,α,hhonest), [total variation at most η from each experiment law to a reference law](hyp:μ₀,η,htv), [a grid with M gaps, origin t, and positive spacing δ](hyp:M,t,δ,hδ), and [measurable random endpoints](hyp:hL,hU) imply [the finite-grid expected-length lower bound with transferred coverage 1 minus α minus η](goal).
+@isnad1 id=le.5h10v.s8.d9a0e970c5d5 from=translated src=- shape=2a62e26d vocab=3ce3a54d
+-/
 theorem honest_interval_length_lower_of_grid_tv {Ω : Type*} [MeasurableSpace Ω]
     (μ₀ : Measure Ω) [IsProbabilityMeasure μ₀] (M : ℕ)
     (μ : Fin (M + 1) → Measure Ω) [∀ j, IsProbabilityMeasure (μ j)]
@@ -500,7 +534,9 @@ theorem honest_interval_length_lower_of_grid_tv {Ω : Type*} [MeasurableSpace Ω
   exact (measureReal_sub_le_tvDist (μ := μ₀) (ν := μ j)
     (measurableSet_coverageEvent hL hU)).trans (htv j)
 
-/-- For [a reference law and experiment laws](hyp:μ₀,μ), [a miscoverage level strictly between zero and one](hyp:α,hα0,hα1), [a grid with at least 8 divided by one minus α gaps and positive spacing δ](hyp:M,t,hM,δ,hδ), [a TV error at most one eighth of one minus α](hyp:η,hη,htv), [honest coverage under each experiment law](hyp:hhonest), and [measurable random endpoints](hyp:hL,hU), [the expected length is at least three quarters of one minus α times the grid width and is strictly positive](goal). -/
+/-- For [a reference law and experiment laws](hyp:μ₀,μ), [a miscoverage level strictly between zero and one](hyp:α,hα0,hα1), [a grid with at least 8 divided by one minus α gaps and positive spacing δ](hyp:M,t,hM,δ,hδ), [a TV error at most one eighth of one minus α](hyp:η,hη,htv), [honest coverage under each experiment law](hyp:hhonest), and [measurable random endpoints](hyp:hL,hU), [the expected length is at least three quarters of one minus α times the grid width and is strictly positive](goal).
+@isnad1 id=and.9h10v.s8.7eaefe1aaf76 from=translated src=- shape=e1544999 vocab=3192fa92
+-/
 theorem honest_interval_length_lower_of_grid_tv_positive {Ω : Type*} [MeasurableSpace Ω]
     (μ₀ : Measure Ω) [IsProbabilityMeasure μ₀] (M : ℕ)
     (μ : Fin (M + 1) → Measure Ω) [∀ j, IsProbabilityMeasure (μ j)]

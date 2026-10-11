@@ -22,7 +22,9 @@ open MeasureTheory intervalIntegral Set
 
 namespace Causalean.Stat.Minimax.ObservationDependentVanTrees
 
-/-- Two functions on an ordered interval with [absolute continuity, almost-everywhere derivative representatives, and an integrable product-rule field](hyp:hab,hf,hg,hdf,hdg,hint) satisfy [the product-rule integral equals the endpoint change in their product](goal). -/
+/-- Two functions on an ordered interval with [absolute continuity, almost-everywhere derivative representatives, and an integrable product-rule field](hyp:hab,hf,hg,hdf,hdg,hint) satisfy [the product-rule integral equals the endpoint change in their product](goal).
+@isnad1 id=eq.6h6v.s8.2c723081f93f from=translated src=- shape=51ba8644 vocab=a42f8a5c
+-/
 theorem ac_product_integral_eq_boundary {a b : ℝ} {f g df dg : ℝ → ℝ}
     (hab : a ≤ b)
     (hf : AbsolutelyContinuousOnInterval f a b)
@@ -52,7 +54,9 @@ theorem ac_product_integral_eq_boundary {a b : ℝ} {f g df dg : ℝ → ℝ}
     _ = q b - q a := hq.integral_deriv_eq_sub
     _ = f b * g b - f a * g a := rfl
 
-/-- A prior weight, likelihood section, and observation-dependent target with [absolute continuity, almost-everywhere derivative representatives, and an integrable weighted-error derivative field](hyp:hab,hw,hp,hg,hdw,hdp,hdg,hint) satisfy [the weighted-error derivative integral equals the weighted endpoint difference](goal). -/
+/-- A prior weight, likelihood section, and observation-dependent target with [absolute continuity, almost-everywhere derivative representatives, and an integrable weighted-error derivative field](hyp:hab,hw,hp,hg,hdw,hdp,hdg,hint) satisfy [the weighted-error derivative integral equals the weighted endpoint difference](goal).
+@isnad1 id=eq.8h9v.s8.5db08255072b from=translated src=- shape=ae61e189 vocab=a42f8a5c
+-/
 theorem ac_weighted_error_integral_eq_boundary {a b c : ℝ}
     {w p g dw dp dg : ℝ → ℝ}
     (hab : a ≤ b)
@@ -104,7 +108,9 @@ theorem ac_weighted_error_integral_eq_boundary {a b c : ℝ}
     _ = q b - q a := hq.integral_deriv_eq_sub
     _ = w b * p b * (c - g b) - w a * p a * (c - g a) := rfl
 
-/-- In a σ-finite observation model, if the [prior weight and almost every likelihood and target section are absolutely continuous with the stated derivative representatives, endpoint error products vanish, and the derivative-balance field is measurable and integrable](hyp:hab,hw,hp,hg,hdw,hdp,hdg,hboundary,hsm,hint), [the joint integral of the derivative-balance field is zero](goal). -/
+/-- In a σ-finite observation model, if the [prior weight and almost every likelihood and target section are absolutely continuous with the stated derivative representatives, endpoint error products vanish, and the derivative-balance field is measurable and integrable](hyp:hab,hw,hp,hg,hdw,hdp,hdg,hboundary,hsm,hint), [the joint integral of the derivative-balance field is zero](goal).
+@isnad1 id=eq.10h11v.s9.de0b3db9cd53 from=translated src=- shape=80020fe5 vocab=f3fef9dd
+-/
 theorem product_integral_derivativeBalance_eq_zero
     {X : Type*} [MeasurableSpace X] {μ : Measure X} [SigmaFinite μ]
     {a b : ℝ} (hab : a ≤ b) {w dw : ℝ → ℝ} {p dp g dg : ℝ → X → ℝ} {T : X → ℝ}

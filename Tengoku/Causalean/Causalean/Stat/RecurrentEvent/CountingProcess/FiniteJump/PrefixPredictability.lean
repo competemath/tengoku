@@ -230,7 +230,9 @@ private theorem Model.predictable_measurable_pastJump (M : Model Ω μ) (k : ℕ
 /-- The sum of a bounded predictable payoff over events strictly before
 the current time is a predictable process. [The model and payoff](hyp:M,H),
 [predictability](hyp:hH), and [boundedness](hyp:hbound) give [predictability
-of the strict-past event sum](goal). -/
+of the strict-past event sum](goal).
+@isnad1 id=predicta.2h4v.s6.67ef5f363c36 from=translated src=- shape=3f2b2e6a vocab=fe8013e8
+-/
 theorem Model.predictable_strictJumpIntegral (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) :
@@ -281,7 +283,9 @@ theorem Model.predictable_strictJumpIntegral (M : Model Ω μ)
   simp [F, hk]
 
 /-- Integrating a bounded predictable payoff against predictable intensity
-from zero through the current time gives a predictable process. -/
+from zero through the current time gives a predictable process.
+@isnad1 id=predicta.2h4v.s5.2496fe6141d9 from=translated src=- shape=288167e2 vocab=39f7d437
+-/
 theorem Model.predictable_energyIntegral (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) :

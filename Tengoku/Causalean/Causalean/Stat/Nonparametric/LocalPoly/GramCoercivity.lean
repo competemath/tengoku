@@ -28,13 +28,17 @@ noncomputable def localPolynomial (p : ℕ) (v : Fin (p + 1) → ℝ) : ℝ[X] :
   ∑ i, Polynomial.C (v i) * Polynomial.X ^ (i : ℕ)
 
 /-- Evaluation of the coefficient polynomial is the dot product with the
-monomial basis. -/
+monomial basis.
+@isnad1 id=eq.0h3v.s7.ec75cdb4af69 from=translated src=- shape=037340a4 vocab=e17a6dfb
+-/
 lemma localPolynomial_eval (p : ℕ) (v : Fin (p + 1) → ℝ) (u : ℝ) :
     (localPolynomial p v).eval u = ∑ i, v i * u ^ (i : ℕ) := by
   simp only [localPolynomial, Polynomial.eval_finsetSum, Polynomial.eval_mul,
     Polynomial.eval_C, Polynomial.eval_pow, Polynomial.eval_X]
 
-/-- The coefficient polynomial vanishes only when every coefficient does. -/
+/-- The coefficient polynomial vanishes only when every coefficient does.
+@isnad1 id=iff.0h2v.s7.5ac8dd23e688 from=translated src=- shape=c162cceb vocab=a74436e5
+-/
 lemma localPolynomial_eq_zero_iff (p : ℕ) (v : Fin (p + 1) → ℝ) :
     localPolynomial p v = 0 ↔ v = 0 := by
   constructor
@@ -63,7 +67,9 @@ noncomputable def radialPolynomialEnergy (p : ℕ)
     v i * v j / ((i : ℕ) + (j : ℕ) + 2 : ℕ)
 
 /-- The explicit moment matrix is exactly the weighted squared-polynomial
-integral on the unit interval. -/
+integral on the unit interval.
+@isnad1 id=eq.0h2v.s7.9bf7237fdfac from=translated src=- shape=baa710d3 vocab=5aed7b0d
+-/
 lemma radialPolynomialEnergy_eq_integral (p : ℕ)
     (v : Fin (p + 1) → ℝ) :
     radialPolynomialEnergy p v =
@@ -88,7 +94,9 @@ lemma radialPolynomialEnergy_eq_integral (p : ℕ)
     apply Continuous.intervalIntegrable
     fun_prop
 
-/-- A nonzero coefficient vector has strictly positive radial energy. -/
+/-- A nonzero coefficient vector has strictly positive radial energy.
+@isnad1 id=lt.1h2v.s7.9652be6e1d00 from=translated src=- shape=edc0168e vocab=28bb5bd0
+-/
 lemma radialPolynomialEnergy_pos (p : ℕ) {v : Fin (p + 1) → ℝ}
     (hv : v ≠ 0) : 0 < radialPolynomialEnergy p v := by
   let f : ℝ → ℝ := fun u => (∑ i, v i * u ^ (i : ℕ)) ^ 2 * u
@@ -126,14 +134,18 @@ lemma radialPolynomialEnergy_pos (p : ℕ) {v : Fin (p + 1) → ℝ}
     exact ⟨hx.1, hx.2.1, hx.2.2.le⟩))
 
 /-- The radial energy is a continuous quadratic function of its coefficient
-vector. -/
+vector.
+@isnad1 id=continuo.0h1v.s6.a3e081d5f1c3 from=translated src=- shape=750fec02 vocab=c903a0cc
+-/
 @[fun_prop]
 lemma radialPolynomialEnergy_continuous (p : ℕ) :
     Continuous (radialPolynomialEnergy p) := by
   unfold radialPolynomialEnergy
   fun_prop
 
-/-- Radial energy is homogeneous of degree two in the coefficient vector. -/
+/-- Radial energy is homogeneous of degree two in the coefficient vector.
+@isnad1 id=eq.0h3v.s6.2490047f75f4 from=translated src=- shape=56e939c9 vocab=7db22553
+-/
 lemma radialPolynomialEnergy_smul (p : ℕ) (a : ℝ)
     (v : Fin (p + 1) → ℝ) :
     radialPolynomialEnergy p (a • v) = a ^ 2 * radialPolynomialEnergy p v := by
@@ -152,7 +164,9 @@ radial polynomial energy of any coefficient vector is bounded below by that cons
 the sum of the squared coefficients](goal): on the unit sphere of the sup norm on coefficient
 vectors, radial polynomial
 energy has a positive minimum, and homogeneity packages this as a coercive lower bound for
-all coefficient vectors. -/
+all coefficient vectors.
+@isnad1 id=ex.0h1v.s7.698b23dd02ac from=translated src=- shape=9df725b2 vocab=1106660f
+-/
 lemma radialPolynomialEnergy_coercive (p : ℕ) :
     ∃ c : ℝ, 0 < c ∧ ∀ v : Fin (p + 1) → ℝ,
       c * ∑ i, (v i) ^ 2 ≤ radialPolynomialEnergy p v := by
@@ -213,7 +227,9 @@ lemma radialPolynomialEnergy_coercive (p : ℕ) :
 
 /-- The same coercivity constant works in both signed-distance orientations.
 The negative orientation merely changes coefficient `i` by the sign
-`(-1)^i`, which preserves the sum of coefficient squares. -/
+`(-1)^i`, which preserves the sum of coefficient squares.
+@isnad1 id=ex.0h1v.s8.fcb80bb6d74a from=translated src=- shape=de49143b vocab=68b1aa0d
+-/
 lemma signedRadialPolynomialEnergy_coercive (p : ℕ) :
     ∃ c : ℝ, 0 < c ∧ ∀ t : Bool, ∀ v : Fin (p + 1) → ℝ,
       c * ∑ i, (v i) ^ 2 ≤

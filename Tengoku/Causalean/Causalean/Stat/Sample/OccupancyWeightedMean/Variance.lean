@@ -42,7 +42,9 @@ private noncomputable def occupancyResidualWeight {n : Nat}
 /-- If [group labels, arm labels, and outcomes are measurable](hyp:hgroup,harm,hY)
 and [every arm/group-supported residual has a finite second moment](hyp:hmem),
 [the zero-safe occupancy-weighted residual has a finite second moment under
-every finite independent product sample](goal). -/
+every finite independent product sample](goal).
+@isnad1 id=memlp.4h8v.s7.368c53585b59 from=translated src=- shape=43e06588 vocab=5ba7cf26
+-/
 theorem occupancyWeightedResidual_memLp_two
     {n : Nat} (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega -> kappa) (arm : Omega -> Bool) (Y : Omega -> Real)

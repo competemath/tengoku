@@ -34,7 +34,9 @@ def rankPosition {N : ℕ} (x : Fin N → ℝ × ℝ) (i : Fin N) : Fin N :=
   (Tuple.sort (fun j => (x j).1)).symm i
 
 /-- For [distinct sorting coordinates](hyp:hinj), [the zero-based rank of a tagged
- observation](goal) is the number of observations with a smaller coordinate. -/
+ observation](goal) is the number of observations with a smaller coordinate.
+@isnad1 id=eq.1h3v.s6.d09ca4106cb6 from=translated src=- shape=93a9b863 vocab=c0675eb9
+-/
 theorem rankPosition_val_eq_card_lt {N : ℕ} (x : Fin N → ℝ × ℝ) (i : Fin N)
     (hinj : Function.Injective (fun j => (x j).1)) :
     (rankPosition x i).val =
@@ -137,7 +139,9 @@ private theorem weighted_replacement_bound {N : ℕ}
 /-- For [rank weights](hyp:a) that are [nonnegative](hyp:ha) and [decrease with rank](hyp:hmono),
  [an original sample, selected coordinate, and replacement](hyp:x,i,y) with [unit-bounded marks](hyp:hx,hy), [distinct original coordinates](hyp:hinj), and
  [distinct coordinates after replacement](hyp:hinj'),
- [the statistic changes by at most the removal and insertion weights](goal). -/
+ [the statistic changes by at most the removal and insertion weights](goal).
+@isnad1 id=le.6h5v.s7.a6bbbdef2dd2 from=translated src=- shape=6fa0f4f8 vocab=3372aeb5
+-/
 theorem rankConcomitant_replacement_sensitivity {N : ℕ}
     (a : Fin N → ℝ) (ha : ∀ j, 0 ≤ a j) (hmono : Antitone a)
     (x : Fin N → ℝ × ℝ) (i : Fin N) (y : ℝ × ℝ)
@@ -220,7 +224,9 @@ theorem rankConcomitant_replacement_sensitivity {N : ℕ}
       _ ≤ _ := by simpa only [add_comm] using hb
 
 /-- For an [iid marked observation law](hyp:μ) with [unit-bounded marks](hyp:hmark),
- [a rank-weighted concomitant has a square-integrable law](goal). -/
+ [a rank-weighted concomitant has a square-integrable law](goal).
+@isnad1 id=memlp.1h3v.s7.c2bd1e56b803 from=translated src=- shape=d35b3123 vocab=941362b4
+-/
 theorem rankConcomitant_memLp_two {N : ℕ} (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ]
     (hmark : ∀ᵐ p ∂μ, p.2 ∈ Set.Icc (0 : ℝ) 1)
@@ -322,7 +328,9 @@ theorem rankConcomitant_memLp_two {N : ℕ} (μ : Measure (ℝ × ℝ))
 
 /-- For a [positive iid sample size](hyp:hN) and [continuous sorting-coordinate
  CDF](hyp:hcont), [each tagged observation has uniform rank, so its squared
- rank weight averages to the mean squared cell weight](goal). -/
+ rank weight averages to the mean squared cell weight](goal).
+@isnad1 id=eq.2h4v.s7.64968cbb3876 from=translated src=- shape=659c929a vocab=91ade31b
+-/
 theorem integral_rankPosition_weight_sq {N : ℕ} (hN : 0 < N)
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))

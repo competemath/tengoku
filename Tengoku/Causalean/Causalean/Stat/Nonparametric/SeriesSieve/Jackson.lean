@@ -68,7 +68,9 @@ uniform-partition cell containing the evaluation point and evaluated at that poi
 noncomputable def piecewiseTaylorApprox (p : ℕ) (f : ℝ → ℝ) (lo hi : ℝ) (J : ℕ) (x : ℝ) : ℝ :=
   taylorPoly p f (cellBase lo hi J x) x
 
-/-- The cell width is positive on a nondegenerate window. -/
+/-- The cell width is positive on a nondegenerate window.
+@isnad1 id=lt.2h3v.s5.0b9f4d9685b2 from=translated src=- shape=ef43c4d1 vocab=ab0ca1be
+-/
 lemma cellWidth_pos {lo hi : ℝ} {J : ℕ} (hlohi : lo < hi) (hJ : 0 < J) :
     0 < cellWidth lo hi J := by
   unfold cellWidth
@@ -76,7 +78,9 @@ lemma cellWidth_pos {lo hi : ℝ} {J : ℕ} (hlohi : lo < hi) (hJ : 0 < J) :
   have h2 : (0 : ℝ) < (J : ℝ) := by exact_mod_cast hJ
   exact div_pos h1 h2
 
-/-- The cell base point lies inside the window `[lo, hi]`. -/
+/-- The cell base point lies inside the window `[lo, hi]`.
+@isnad1 id=mem.2h4v.s5.6e3304869e8e from=translated src=- shape=167b4fd6 vocab=75318759
+-/
 lemma cellBase_mem {lo hi : ℝ} {J : ℕ} (hlohi : lo < hi) (hJ : 0 < J)
     {x : ℝ} :
     cellBase lo hi J x ∈ Set.Icc lo hi := by
@@ -109,7 +113,9 @@ lemma cellBase_mem {lo hi : ℝ} {J : ℕ} (hlohi : lo < hi) (hJ : 0 < J)
       field_simp [hJnz]
     nlinarith [hmul, hδ]
 
-/-- `x` is within one cell width to the right of its base point: `0 ≤ x − base ≤ δ`. -/
+/-- `x` is within one cell width to the right of its base point: `0 ≤ x − base ≤ δ`.
+@isnad1 id=and.3h4v.s6.3e0502c0131b from=translated src=- shape=03c9fa14 vocab=2b941796
+-/
 lemma cellBase_dist {lo hi : ℝ} {J : ℕ} (hlohi : lo < hi) (hJ : 0 < J)
     {x : ℝ} (hx : x ∈ Set.Icc lo hi) :
     0 ≤ x - cellBase lo hi J x ∧ x - cellBase lo hi J x ≤ cellWidth lo hi J := by
@@ -182,7 +188,9 @@ If `f` has `p = holderDerivOrder β` continuous derivatives and its `p`-th
 derivative obeys a Hölder bound with exponent `β - p` on the window, then the
 corresponding piecewise-Taylor approximant on a uniform `J`-cell partition has
 pointwise error at most `(M / p!)·((hi − lo)/J)^β`. For positive integer
-`β = m`, this uses derivative order `m - 1` and Hölder exponent `1`. -/
+`β = m`, this uses derivative order `m - 1` and Hölder exponent `1`.
+@isnad1 id=le.7h7v.s8.e7c7ad46052b from=translated src=- shape=cbaf4df8 vocab=29bfde3d
+-/
 theorem piecewiseTaylor_sup_approx {f : ℝ → ℝ} {M β lo hi : ℝ} {J : ℕ}
     (hβ : 0 < β) (hM : 0 ≤ M) (hlohi : lo < hi) (hJ : 0 < J)
     (hf : ContDiff ℝ ((holderDerivOrder β)) f)
@@ -220,7 +228,9 @@ subdivided into [a positive number `J` of uniform cells](hyp:hJ). If [`f` has
 obeys the Hölder bound `|f^(p) x − f^(p) y| ≤ M · |x − y|^(β − p)` for all `x, y` in the
 window](hyp:hb), then at [any evaluation point `x` in the window](hyp:hx), [the piecewise-Taylor
 approximant on the uniform `J`-cell partition has pointwise error `|f x − g x| ≤ C · J^{−β}`,
-with constant `C = (M / p!) · (hi − lo)^β` independent of `J`](goal). -/
+with constant `C = (M / p!) · (hi − lo)^β` independent of `J`](goal).
+@isnad1 id=le.7h7v.s8.0491b6a57642 from=translated src=- shape=ff1f371e vocab=85558fe1
+-/
 theorem piecewiseTaylor_sup_approx_rate {f : ℝ → ℝ} {M β lo hi : ℝ} {J : ℕ}
     (hβ : 0 < β) (hM : 0 ≤ M) (hlohi : lo < hi) (hJ : 0 < J)
     (hf : ContDiff ℝ ((holderDerivOrder β)) f)

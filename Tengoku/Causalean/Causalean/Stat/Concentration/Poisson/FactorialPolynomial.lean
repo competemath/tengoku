@@ -62,6 +62,7 @@ def factorialLift (m z : ℝ) (N h : ℕ) : ℝ :=
 
 /-- The falling factorial of a Poisson count has mean equal to the corresponding power of its
 rate. A direct proof shifts the Poisson series by `h` and cancels factorials.
+@isnad1 id=eq.0h2v.s5.31f0653c911c from=translated src=- shape=63b0710f vocab=648624f0
 -/
 theorem poisson_descFactorial_moment (rate : NNReal) (h : ℕ) :
     (∫ N : ℕ, (N.descFactorial h : ℝ) ∂poissonMeasure rate) =
@@ -196,6 +197,7 @@ private lemma descPochhammer_mul_linearization (h t : ℕ) :
 
 /-- The product of two falling factorials expands by their overlap count. This identity is
 purely combinatorial and also supplies the Poisson mixed second moment after integration.
+@isnad1 id=eq.0h3v.s6.a9b29a4e2a83 from=translated src=- shape=5bbaa07a vocab=6fd38020
 -/
 theorem descFactorial_mul (N h t : ℕ) :
     (N.descFactorial h : ℝ) * (N.descFactorial t : ℝ) =
@@ -215,6 +217,7 @@ theorem descFactorial_mul (N h t : ℕ) :
 
 /-- Every falling factorial of a Poisson count is integrable. This is the integrability
 prerequisite for passing finite falling-factorial expansions through the integral.
+@isnad1 id=integrab.0h2v.s5.163d76ce3fa7 from=translated src=- shape=e4da0d2f vocab=d4b344e6
 -/
 theorem poisson_descFactorial_integrable (rate : NNReal) (h : ℕ) :
     Integrable (fun N : ℕ => (N.descFactorial h : ℝ)) (poissonMeasure rate) := by
@@ -225,6 +228,7 @@ theorem poisson_descFactorial_integrable (rate : NNReal) (h : ℕ) :
 
 /-- The mixed raw falling-factorial moment is the overlap sum of powers of the Poisson rate.
 It follows by integrating `descFactorial_mul` term by term.
+@isnad1 id=eq.0h3v.s7.08a5237ab26d from=translated src=- shape=0885fbc6 vocab=ade28007
 -/
 theorem poisson_descFactorial_mixed (rate : NNReal) (h t : ℕ) :
     (∫ N : ℕ, (N.descFactorial h : ℝ) * (N.descFactorial t : ℝ)
@@ -253,6 +257,7 @@ theorem poisson_descFactorial_mixed (rate : NNReal) (h t : ℕ) :
 
 /-- A normalized centered factorial lift under a Poisson law has expectation `(rate/m-z)^h`.
 This is the exact unbiasedness identity for one coordinate.
+@isnad1 id=eq.1h4v.s6.b42fd308c3fd from=translated src=- shape=b7ba023c vocab=c22defe2
 -/
 theorem poisson_factorialLift_mean (rate : NNReal) (m z : ℝ) (hm : m ≠ 0)
     (h : ℕ) :
@@ -325,6 +330,7 @@ private lemma factorialLift_shift_sum (x z : ℝ) (h r : ℕ) (hr : r ≤ h) :
 One proof is to fix the overlap index first, apply
 `choose_mul` twice to extract `choose h r * choose t r`, and then apply the binomial theorem
 to the remaining indices. No probability or convergence argument is needed here.
+@isnad1 id=eq.0h5v.s8.a5e29fb085c8 from=translated src=- shape=d61d5b26 vocab=52b3415a
 -/
 theorem factorialLift_mixed_finite_identity (x v z : ℝ) (h t : ℕ) :
     (∑ j ∈ Finset.range (h + 1),
@@ -447,6 +453,7 @@ binomial sum of raw falling-factorial overlap moments. The factors `x=rate/m` an
 
 Expand both lifts, distribute the product, integrate the finite sums using
 `poisson_descFactorial_mixed`, then rewrite each power of the rate and `m`.
+@isnad1 id=eq.1h5v.s8.2c9957d6d050 from=translated src=- shape=c184ab28 vocab=58621126
 -/
 theorem poisson_factorialLift_mixed_expansion (rate : NNReal) (m z : ℝ)
     (hm : m ≠ 0) (h t : ℕ) :
@@ -565,6 +572,7 @@ Two centered factorial lifts under one Poisson law have a mixed moment given by 
 overlap sum. It specializes to the exact square moment when `h=t`.
 
 Combine `poisson_factorialLift_mixed_expansion` and `factorialLift_mixed_finite_identity`.
+@isnad1 id=eq.1h5v.s7.9b122db264ee from=translated src=- shape=41ccdbff vocab=fc679f0c
 -/
 theorem poisson_factorialLift_mixed (rate : NNReal) (m z : ℝ) (hm : m ≠ 0)
     (h t : ℕ) :

@@ -26,7 +26,9 @@ variable {Ω A κ : Type*} [MeasurableSpace Ω] [MeasurableSpace A]
 
 /-- [A unit-interval default and center](hyp:ha,hc) give
 [a pointwise bound on squared cell-estimation error by the squared totalized
-centered empirical mean plus the empty-cell indicator](goal). -/
+centered empirical mean plus the empty-cell indicator](goal).
+@isnad1 id=le.2h11v.s7.78d434b93d9d from=translated src=- shape=54d6d02c vocab=d2936db3
+-/
 theorem cellEstimate_sq_error_le {m : ℕ}
     (label : A → κ) (X : Ω → A) (Y : Ω → ℝ) (a c : ℝ) (k : κ)
     (z : Fin m → Ω) (ha : a ∈ Set.Icc (0 : ℝ) 1)
@@ -70,7 +72,9 @@ theorem cellEstimate_sq_error_le {m : ℕ}
 
 /-- [Measurable partition inputs and responses](hyp:hlabel,hX,hY) and
 [a unit-interval default and center](hyp:ha,hc) imply
-[the clipped cell-estimation squared error is integrable under iid sampling](goal). -/
+[the clipped cell-estimation squared error is integrable under iid sampling](goal).
+@isnad1 id=integrab.5h11v.s7.eff8bd306e63 from=translated src=- shape=a6942fc4 vocab=36744aed
+-/
 theorem integrable_cellEstimate_sq_error {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (a c : ℝ) (k : κ)

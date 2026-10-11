@@ -66,7 +66,9 @@ private theorem minimaxValueENNRealOfReal_ne_top_of_le {D S : Type*} [Nonempty D
 /-- On a [compact parameter space](hyp:Theta), if [label and side coordinates and the target
 are continuous](hyp:hpcont,hqcont,htau), [probabilities are simplex-valid](hyp:hp,hq), and
 [the action interval contains the target](hyp:hlu,htau_mem), then [local minimax values over
-radii `1/(n+1)` converge to the exact-fiber minimax value](goal). -/
+radii `1/(n+1)` converge to the exact-fiber minimax value](goal).
+@isnad1 id=tendsto.7h9v.s7.0b4c9d7ecaf8 from=translated src=- shape=e1eab9bb vocab=2c601836
+-/
 theorem localMinimaxValue_tendsto_fiber (p : Theta → X → ℝ)
     (q : Theta → C → ℝ) (tau : Theta → ℝ)
     (hp : ∀ theta, p theta ∈ stdSimplex ℝ X)

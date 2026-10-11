@@ -24,7 +24,9 @@ open scoped Pointwise
 noncomputable section
 
 /-- For a [simplex dimension](hyp:n) and [coordinate](hyp:i),
- [the factorial-scaled mean of that spacing coordinate is `1/(n+1)`](goal). -/
+ [the factorial-scaled mean of that spacing coordinate is `1/(n+1)`](goal).
+@isnad1 id=eq.0h2v.s7.610a02792fd0 from=translated src=- shape=3c55202d vocab=0cd6656b
+-/
 theorem simplex_coordinate_first_moment (n : ℕ) (i : Fin n) :
     (n.factorial : ℝ) *
       (∫ z in spacingSimplex n, z i ∂volume) =
@@ -237,7 +239,9 @@ theorem simplex_coordinate_first_moment (n : ℕ) (i : Fin n) :
 
 /-- For a [simplex dimension](hyp:n), [nonnegative scale](hyp:hr), and
  [coordinate](hyp:i), [the factorial-scaled coordinate integral over the scaled
- simplex is `r^(n+1)/(n+1)`](goal). -/
+ simplex is `r^(n+1)/(n+1)`](goal).
+@isnad1 id=eq.1h3v.s7.c33b04606900 from=translated src=- shape=a1208e3b vocab=06ff9fc3
+-/
 theorem scaled_simplex_coordinate_first_moment (n : ℕ) (r : ℝ)
     (hr : 0 ≤ r) (i : Fin n) :
     (n.factorial : ℝ) *
@@ -298,7 +302,9 @@ theorem scaled_simplex_coordinate_first_moment (n : ℕ) (r : ℝ)
 
 /-- For a [remaining simplex dimension](hyp:n),
  [the first two coordinate product integral is the first-coordinate slice
- weighted by the scaled tail's coordinate integral](goal). -/
+ weighted by the scaled tail's coordinate integral](goal).
+@isnad1 id=eq.0h1v.s9.48312f6bf7c5 from=translated src=- shape=9ca851c5 vocab=74d70384
+-/
 theorem simplex_first_second_cross_fubini (n : ℕ) :
     (∫ z in spacingSimplex (n + 2),
       z (0 : Fin (n + 2)) * z (1 : Fin (n + 2)) ∂volume) =
@@ -423,7 +429,9 @@ theorem simplex_first_second_cross_fubini (n : ℕ) :
           simp [Set.indicator, dite_eq_ite]
 
 /-- For a [natural exponent](hyp:n), [the first-moment beta integral over the unit
- interval equals the factorial ratio `n!/(n+2)!`](goal). -/
+ interval equals the factorial ratio `n!/(n+2)!`](goal).
+@isnad1 id=eq.0h1v.s6.6fa87eb7d036 from=translated src=- shape=fbda7186 vocab=d69a5c34
+-/
 theorem unit_beta_linear_integral (n : ℕ) :
     (∫ t in Set.Icc (0 : ℝ) 1, t * (1 - t) ^ n ∂volume) =
       (n.factorial : ℝ) / ((n + 2).factorial : ℝ) := by
@@ -459,7 +467,9 @@ theorem unit_beta_linear_integral (n : ℕ) :
   exact hbeta
 
 /-- For [distinct coordinates](hyp:hij) in a spacing simplex,
- [their product integral equals the product integral of coordinates zero and one](goal). -/
+ [their product integral equals the product integral of coordinates zero and one](goal).
+@isnad1 id=eq.1h3v.s9.a7164a299f86 from=translated src=- shape=ad7a095c vocab=48f22c2f
+-/
 theorem simplex_cross_coordinate_eq_first_two (n : ℕ)
     (i j : Fin (n + 2)) (hij : i ≠ j) :
     (∫ z in spacingSimplex (n + 2), z i * z j ∂volume) =
@@ -511,7 +521,9 @@ theorem simplex_cross_coordinate_eq_first_two (n : ℕ)
   simpa [hσ0, hσ1] using hint
 
 /-- For a [simplex dimension](hyp:n), [two coordinates](hyp:i,j) that are [distinct](hyp:hij),
- [their factorial-scaled product integral is `1/((n+1)(n+2))`](goal). -/
+ [their factorial-scaled product integral is `1/((n+1)(n+2))`](goal).
+@isnad1 id=eq.1h3v.s7.1b319cc1e702 from=translated src=- shape=c43cffb3 vocab=0cd6656b
+-/
 theorem simplex_coordinate_cross_moment (n : ℕ) (i j : Fin n)
     (hij : i ≠ j) :
     (n.factorial : ℝ) *

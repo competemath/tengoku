@@ -35,7 +35,9 @@ open Filter Topology
 
 /-- **A product of `m+1` factors each in `[0, δ]` is at most `δ^{m+1}`.**
 Each factor of a remainder term is nonnegative and bounded by the largest factor `δ`;
-multiplying `m+1` of them keeps the product below `δ^{m+1}`. -/
+multiplying `m+1` of them keeps the product below `δ^{m+1}`.
+@isnad1 id=le.3h6v.s7.0da36364db0a from=translated src=- shape=5707e760 vocab=982f30b7
+-/
 theorem prod_le_pow_of_factors_le {ι : Type*} (e : ι → ℝ) (m : ℕ) (δ : ℝ)
     (s : Finset ℕ) (idx : ℕ → ι)
     (hcard : s.card = m + 1)
@@ -50,7 +52,9 @@ The order-`m` remainder `R` is dominated by a sum, over a finite index
 set `T` of terms, of products of `m+1` nuisance-error factors `e t k`; every factor lies in
 `[0, δ]`, where `δ` is the largest nuisance `L²`-error.  Then the remainder's squared
 contribution obeys `R² ≤ |T|²·δ^{2(m+1)}`.  This is the order-`m` doubly-robust bound: the
-higher the order, the higher the power of `δ`. -/
+higher the order, the higher the power of `δ`.
+@isnad1 id=le.3h6v.s7.5c5b62d24c3c from=translated src=- shape=a6651284 vocab=83946f39
+-/
 theorem productRemainder_sq_le {ι : Type*} (T : Finset ι) (e : ι → ℕ → ℝ)
     (m : ℕ) (δ : ℝ) (R : ℝ)
     (hnn : ∀ t ∈ T, ∀ k ∈ Finset.range (m + 1), 0 ≤ e t k)
@@ -85,7 +89,9 @@ theorem productRemainder_sq_le {ι : Type*} (T : Finset ι) (e : ι → ℕ → 
 /-- **A negative power vanishes asymptotically.** For [a real constant `K`](hyp:K) and
 [real exponents `a` and `κ`](hyp:a,κ), if [`κ < a`](hyp:haκ), then [`K n^{κ-a}` tends to zero
 as `n` tends to infinity](goal). The statement does not choose a remainder order or connect `a`
-to the product-remainder bound above. -/
+to the product-remainder bound above.
+@isnad1 id=tendsto.1h3v.s5.f9a264886aa1 from=translated src=- shape=c592f0b1 vocab=58d0213c
+-/
 theorem const_mul_natCast_rpow_sub_tendsto_zero {K a κ : ℝ} (haκ : κ < a) :
     Tendsto (fun n : ℕ => K * (n : ℝ) ^ (κ - a)) atTop (𝓝 0) := by
   have hpos : 0 < a - κ := by linarith

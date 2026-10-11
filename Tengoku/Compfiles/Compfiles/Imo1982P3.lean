@@ -35,7 +35,9 @@ show the sequence $x_n = 2^{-n}$ satisfies the desired inequality.
 -/
 
 /-- `x n` is at most the average of all previous terms in the sequence.
-This is expressed here with `∑ k ∈ range n, x k` added to both sides. -/
+This is expressed here with `∑ k ∈ range n, x k` added to both sides.
+@isnad1 id=le.2h2v.s6.db4de7ae47e5 from=translated src=- shape=ae523e5e vocab=148f61b8
+-/
 lemma le_avg {x : ℕ → ℝ} {n : ℕ} (hn : n ≠ 0) (hx : Antitone x) :
     ∑ k ∈ Finset.range (n + 1), x k ≤ (∑ k ∈ Finset.range n, x k) * (1 + 1 / n) := by
   rw [Finset.sum_range_succ, mul_one_add, add_le_add_iff_left, mul_one_div,
@@ -44,7 +46,9 @@ lemma le_avg {x : ℕ → ℝ} {n : ℕ} (hn : n ≠ 0) (hx : Antitone x) :
   refine Finset.sum_le_sum fun k hk ↦ hx (le_of_lt ?_)
   simpa using hk
 
-/-- The main inequality used for part a. -/
+/-- The main inequality used for part a.
+@isnad1 id=le.4h2v.s7.55094e730bc5 from=translated src=- shape=1d621ee0 vocab=eb61426e
+-/
 lemma ineq {x : ℕ → ℝ} {n : ℕ} (hn : n ≠ 0) (hx : Antitone x)
     (h0 : x 0 = 1) (hp : ∀ k, 0 < x k) :
     4 * n / (n + 1) ≤ ∑ k ∈ Finset.range (n + 1), x k ^ 2 / x (k + 1) := by

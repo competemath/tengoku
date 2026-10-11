@@ -19,7 +19,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Pointwise convergent predictable payoffs dominated by an integrable
-absolute event payoff have convergent expected finite jump sums. -/
+absolute event payoff have convergent expected finite jump sums.
+@isnad1 id=tendsto.5h5v.s7.46f17a8dfc4c from=translated src=- shape=1a78abab vocab=3ea8f247
+-/
 theorem Model.tendsto_expected_jumpIntegral_of_dominated (M : Model Ω μ)
     [IsProbabilityMeasure μ] (G : ℕ → ℝ → Ω → ℝ) (H : ℝ → Ω → ℝ)
     (hG : ∀ k, M.Predictable (G k)) (hH : M.Predictable H)
@@ -57,7 +59,9 @@ integrable time-sample intensity payoff have convergent expected compensator
 integrals. [The model and payoffs](hyp:M,G,H), [their predictability](hyp:hG,hH),
 [domination](hyp:hdom), [integrability of the dominating intensity payoff](hyp:hproduct),
 and [pointwise convergence](hyp:hlim) give [convergence of expected compensator
-integrals](goal). -/
+integrals](goal).
+@isnad1 id=tendsto.5h5v.s8.4ed002d638e0 from=translated src=- shape=47bfa802 vocab=8624de67
+-/
 theorem Model.tendsto_expected_energyIntegral_of_dominated (M : Model Ω μ)
     [IsProbabilityMeasure μ] (G : ℕ → ℝ → Ω → ℝ) (H : ℝ → Ω → ℝ)
     (hG : ∀ k, M.Predictable (G k)) (hH : M.Predictable H)

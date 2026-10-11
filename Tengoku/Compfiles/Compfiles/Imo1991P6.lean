@@ -32,6 +32,9 @@ abbrev Bounded (x : ℕ → ℝ) : Prop := ∃ C, ∀ i, |x i| ≤ C
 We take the sequence construction from https://artofproblemsolving.com/wiki/index.php/1991_IMO_Problems/Problem_6, Solution 2.
 -/
 
+/--
+@isnad1 id=lt.1h1v.s6.537858abf1aa from=translated src=- shape=43db85ac vocab=451a5d77
+-/
 theorem fract_sqrt_two_mul_gt (k : ℕ) (pk : 0 < k) : 1 / (2 * (√2 * k + 1)) < Int.fract (√2 * k) := by
   rw [div_lt_iff₀ (by positivity)]
 
@@ -64,6 +67,9 @@ section Int.fract
 open Int
 variable {R : Type} [Ring R] [LinearOrder R] [FloorRing R] [IsStrictOrderedRing R] [AddLeftMono R]
 
+/--
+@isnad1 id=ex.0h3v.s7.054c7bf79ffd from=translated src=- shape=fbcb860a vocab=11b21c0f
+-/
 theorem Int.fract_sub_eq (a b : R) : ∃ z : Fin 2, fract (a - b) = fract a - fract b + z := by
   by_cases h1 : fract b ≤ fract a
   · use 0
@@ -91,6 +97,9 @@ theorem Int.fract_sub_eq (a b : R) : ∃ z : Fin 2, fract (a - b) = fract a - fr
 
 end Int.fract
 
+/--
+@isnad1 id=lt.1h1v.s6.b986dfa0c3d9 from=translated src=- shape=15047e4e vocab=ea240b3e
+-/
 theorem one_sub_fract_sqrt_two_mul_gt (k : ℕ) (kpos : 0 < k) : 1 / (2*(√2*k + 1)) < 1 - Int.fract (√2 * k) := by
   rw [div_lt_iff₀ (by positivity)]
   set x : ℝ := √2 * k
@@ -113,6 +122,9 @@ theorem one_sub_fract_sqrt_two_mul_gt (k : ℕ) (kpos : 0 < k) : 1 / (2*(√2*k 
   rw [fract_eq]
   nlinarith [Int.floor_le x]
 
+/--
+@isnad1 id=lt.1h2v.s7.854193bd60bc from=translated src=- shape=9985f60a vocab=c971fea0
+-/
 theorem abs_fract_sqrt_two_mul_sub_fract_sqrt_two_mul (i j : ℕ) (hji : j < i) : 1 / (2*(√2*(i-j) + 1)) < |Int.fract (√2 * i) - Int.fract (√2 * j)| := by
   apply (Int.fract_sub_eq (√2 * i) (√2 * j)).elim
   rw [Fin.forall_fin_two]

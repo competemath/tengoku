@@ -18,7 +18,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- The square of a finite event sum is the sum of squared event payoffs plus
 twice every event payoff times the sum over strictly earlier events. [The
-model, payoff, and path](hyp:M,H,ω) give [the finite-jump square expansion](goal). -/
+model, payoff, and path](hyp:M,H,ω) give [the finite-jump square expansion](goal).
+@isnad1 id=eq.0h5v.s7.8a5f40b7e83a from=translated src=- shape=c548186a vocab=f8e1f091
+-/
 theorem Model.jumpIntegral_square (M : Model Ω μ) (H : ℝ → Ω → ℝ) (ω : Ω) :
     (M.jumpIntegral H M.horizon ω) ^ 2 =
       M.jumpIntegral (fun t ω => (H t ω) ^ 2) M.horizon ω +
@@ -58,7 +60,9 @@ theorem Model.jumpIntegral_square (M : Model Ω μ) (H : ℝ → Ω → ℝ) (ω
   simpa [Model.jumpIntegral, hfin] using hs (M.eventTimes ω) (fun t => H t ω)
 
 /-- Twice the product of the event sum and the compensator integral splits
-at each event into a past-compensator jump term and a past-event rate term. -/
+at each event into a past-compensator jump term and a past-event rate term.
+@isnad1 id=eq.2h5v.s7.e1dde8e525e6 from=translated src=- shape=5a8e8385 vocab=058ff8f5
+-/
 theorem Model.jump_energy_cross (M : Model Ω μ) (H : ℝ → Ω → ℝ)
     (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) (ω : Ω) :

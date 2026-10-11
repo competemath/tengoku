@@ -20,7 +20,9 @@ variable {κ : Type*} [Fintype κ]
 uniform law on n cells, (1 − 1/n)ⁿ, is at least one quarter](goal).
 
 This is the scalar bottleneck of the occupancy lower bound; it follows from
-monotonicity of (1-1/n)^n for n≥2. -/
+monotonicity of (1-1/n)^n for n≥2.
+@isnad1 id=le.1h1v.s6.109044b992c9 from=translated src=- shape=f5631724 vocab=4c6de5b5
+-/
 lemma uniform_empty_probability_lower (n : ℕ) (hn : 2 ≤ n) :
     (1 / 4 : ℝ) ≤ (1 - 1 / (n : ℝ)) ^ n := by
   -- Induct from the exact value at two. The ratio of consecutive bases is
@@ -72,7 +74,9 @@ expected repeat-count polynomial at least n/4 when n is at least two.
 Apply Jensen for the convex function t↦(1-t)^n. Alternatively pad to n cells
 with zeros, apply convexOn_pow to their complements, then use the preceding
 uniform_empty_probability_lower. Empty cell types are ruled out by sum q=1,
-not by an extra nonemptiness assumption. -/
+not by an extra nonemptiness assumption.
+@isnad1 id=le.4h3v.s7.dbd68b741d37 from=translated src=- shape=8d5ccf16 vocab=292aea97
+-/
 lemma occupancy_polynomial_lower (n : ℕ) (q : κ → ℝ)
     (hn : 2 ≤ n) (hcard : Fintype.card κ ≤ n)
     (hq : ∀ k, 0 ≤ q k) (hsum : ∑ k, q k = 1) :

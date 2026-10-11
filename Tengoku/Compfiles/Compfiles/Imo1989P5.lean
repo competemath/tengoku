@@ -23,6 +23,9 @@ structure ChinesePair where
   modulus : ℕ
   remainder : ℕ
 
+/--
+@isnad1 id=ex.1h1v.s5.f1473db79223 from=translated src=- shape=a3494142 vocab=005ac263
+-/
 lemma general_chinese_remainder (xs : List ChinesePair)
     (x_coprime : xs.Pairwise (fun x y ↦ Nat.Coprime x.modulus y.modulus)) :
     ∃ m : ℕ, ∀ x ∈ xs, m ≡ x.remainder [MOD x.modulus] := by
@@ -47,11 +50,17 @@ lemma general_chinese_remainder (xs : List ChinesePair)
       have h4 := Nat.ModEq.of_dvd (List.dvd_prod (List.mem_map_of_mem hw)) hk2
       exact h4.trans h2
 
+/--
+@isnad1 id=ex.0h1v.s4.0ada8785df3b from=translated src=- shape=c3e1d217 vocab=d26db01b
+-/
 lemma list_upper_bound (l : List ℕ) : ∃ m : ℕ, ∀ x ∈ l, x ≤ m := by
   use List.foldr max ⊥ l
   intro a ha
   exact List.le_max_of_le ha (le_refl _)
 
+/--
+@isnad1 id=ex.0h2v.s5.1d2f777027ec from=translated src=- shape=be7132d3 vocab=b850c320
+-/
 theorem get_primes (n m : ℕ) :
     ∃ lst : List ℕ, lst.length = n ∧ lst.Nodup ∧
                ∀ x ∈ lst, x.Prime ∧ m ≤ x := by
@@ -72,6 +81,9 @@ theorem get_primes (n m : ℕ) :
         · exact hlnd
       · aesop
 
+/--
+@isnad1 id=not.5h3v.s5.b323d5db9cc5 from=translated src=- shape=ebe905da vocab=045bf4a9
+-/
 lemma not_prime_power_of_two_factors
      {n p q : ℕ}
      (hp : Nat.Prime p) (hq : Nat.Prime q)
@@ -91,6 +103,9 @@ lemma not_prime_power_of_two_factors
    rw [h3, h4] at hpq
    exact hpq rfl
 
+/--
+@isnad1 id=coprime.5h3v.s5.35d024e1fd2e from=translated src=- shape=e4b65f62 vocab=b82a57dd
+-/
 lemma lemma1 {p1 p2 q : ℕ}
     (hp1 : Nat.Prime p1)
     (hp2 : Nat.Prime p2)
@@ -102,6 +117,9 @@ lemma lemma1 {p1 p2 q : ℕ}
   have h2 : Nat.Coprime p2 q := Iff.mpr (Nat.coprime_primes hp2 hq) hp2q
   exact Nat.Coprime.mul_left h1 h2
 
+/--
+@isnad1 id=coprime.8h4v.s5.e22cebcdce25 from=translated src=- shape=676e19c9 vocab=b82a57dd
+-/
 lemma lemma2 {p1 q1 p2 q2 : ℕ}
     (hp1 : Nat.Prime p1)
     (hq1 : Nat.Prime q1)
@@ -116,6 +134,9 @@ lemma lemma2 {p1 q1 p2 q2 : ℕ}
   have h2 := lemma1 hp1 hp2 hq2 hp1q2 hp2q2
   exact Nat.Coprime.mul_right h1 h2
 
+/--
+@isnad1 id=ne.2h4v.s5.d795ffafed75 from=translated src=- shape=52906c7a vocab=b9f2f32f
+-/
 lemma lemma3 {α : Type} (l : List α)
     (hl : List.Nodup l)
     {i j : Fin l.length}

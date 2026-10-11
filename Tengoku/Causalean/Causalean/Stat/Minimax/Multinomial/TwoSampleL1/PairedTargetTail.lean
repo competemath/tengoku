@@ -14,7 +14,9 @@ namespace Causalean.Stat.Minimax.Multinomial.TwoSampleL1
 
 open scoped BigOperators ENNReal
 
-/-- Given [a scalar moment prior](hyp:P), [a positive balanced pair count](hyp:b,hb), [a bounded nonnegative tilt](hyp:t,ht,ht1), [a positive target radius with its scale budget](hyp:δ,hδ,hscale), and [a prior side](hyp:side), [the target's bad-tail mass is at most one eighth](goal). -/
+/-- Given [a scalar moment prior](hyp:P), [a positive balanced pair count](hyp:b,hb), [a bounded nonnegative tilt](hyp:t,ht,ht1), [a positive target radius with its scale budget](hyp:δ,hδ,hscale), and [a prior side](hyp:side), [the target's bad-tail mass is at most one eighth](goal).
+@isnad1 id=le.5h6v.s8.88802e2b4b22 from=translated src=- shape=2f462563 vocab=17205d66
+-/
 theorem pairedProductTarget_bad_mass_le {L : ℕ} (P : ScalarMomentPriors L)
     (b : ℕ) (hb : 0 < b) (t : ℝ) (ht : 0 ≤ t) (ht1 : t ≤ 1)
     (δ : ℝ) (hδ : 0 < δ) (hscale : 128 * t ^ 2 ≤ (b : ℝ) * δ ^ 2)

@@ -45,28 +45,45 @@ open Real
 /-- The lower Wythoff sequence `⌊n·φ⌋`, which is the function `f` in the problem. -/
 noncomputable def a (n : ℕ) : ℕ := (⌊(n : ℝ) * φ⌋).toNat
 
+/--
+@isnad1 id=eq.0h1v.s4.308574c75262 from=translated src=- shape=31618a60 vocab=af9e3328
+-/
 lemma a_eq (n : ℕ) : (a n : ℤ) = ⌊(n : ℝ) * φ⌋ := by
   unfold a
   rw [Int.toNat_of_nonneg]
   exact Int.floor_nonneg.mpr (by positivity)
 
-/-- `a n + n = ⌊n·φ²⌋`, using `φ² = φ + 1`. -/
+/-- `a n + n = ⌊n·φ²⌋`, using `φ² = φ + 1`.
+@isnad1 id=eq.0h1v.s5.e3f5a128ff32 from=translated src=- shape=ff34f90d vocab=5e352824
+-/
 lemma a_add_eq (n : ℕ) : ((a n : ℤ) + n) = ⌊(n : ℝ) * φ ^ 2⌋ := by
   rw [a_eq]
   rw [show (n : ℝ) * φ ^ 2 = (n : ℝ) * φ + n by rw [goldenRatio_sq]; ring]
   rw [Int.floor_add_natCast]
 
+/--
+@isnad1 id=eq.0h1v.s3.4745b2d9ea0c from=translated src=- shape=0e581080 vocab=e3d461c0
+-/
 lemma beattySeq_a (n : ℕ) : beattySeq φ (n : ℤ) = (a n : ℤ) := by
   rw [a_eq, beattySeq]; push_cast; rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.7e7209a17697 from=translated src=- shape=ec18a578 vocab=b2cd3048
+-/
 lemma beattySeq_a_add (n : ℕ) : beattySeq (φ ^ 2) (n : ℤ) = ((a n : ℤ) + n) := by
   rw [a_add_eq, beattySeq]; push_cast; rfl
 
+/--
+@isnad1 id=holderco.0h0v.s4.630058df444b from=translated src=- shape=08f5c2c6 vocab=08a306e3
+-/
 lemma holderConj : (φ).HolderConjugate (φ ^ 2) := by
   refine ⟨?_, goldenRatio_pos, by positivity⟩
   rw [inv_one, ← inv_pow, inv_goldenRatio, neg_sq, goldenConj_sq]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s4.c2214c31a88d from=translated src=- shape=35bd48ee vocab=c66ab1a8
+-/
 lemma a_pos {k : ℕ} (hk : 0 < k) : 0 < a k := by
   have h1 : (1 : ℝ) ≤ (k : ℝ) := by exact_mod_cast hk
   have : (1 : ℝ) < (k : ℝ) * φ := by
@@ -78,6 +95,9 @@ lemma a_pos {k : ℕ} (hk : 0 < k) : 0 < a k := by
   have := a_eq k
   lia
 
+/--
+@isnad1 id=strictmo.0h0v.s2.aabce507513a from=translated src=- shape=e3d48bcb vocab=f3ce5f64
+-/
 lemma a_strictMono : StrictMono a := by
   apply strictMono_nat_of_lt_succ
   intro n
@@ -93,9 +113,14 @@ lemma a_strictMono : StrictMono a := by
     exact hmono
   lia
 
+/--
+@isnad1 id=le.1h2v.s4.bd277b2fdafd from=translated src=- shape=6bee9d27 vocab=19831d4d
+-/
 lemma a_mono {i j : ℕ} (hij : i ≤ j) : a i ≤ a j := a_strictMono.monotone hij
 
-/-- Every positive integer is `a k` or `a k + k` for some `k ≥ 1`. -/
+/-- Every positive integer is `a k` or `a k + k` for some `k ≥ 1`.
+@isnad1 id=or.1h1v.s5.f35c97f00f97 from=translated src=- shape=a7b5c147 vocab=e612912f
+-/
 lemma ha_cover (m : ℕ) (hm : 0 < m) :
     (∃ k, 0 < k ∧ a k = m) ∨ (∃ k, 0 < k ∧ a k + k = m) := by
   have hj : (0 : ℤ) < (m : ℤ) := by exact_mod_cast hm
@@ -119,7 +144,9 @@ lemma ha_cover (m : ℕ) (hm : 0 < m) :
     rw [beattySeq_a_add] at h2
     exact_mod_cast h2
 
-/-- The two sequences `a k` and `a k + k` are disjoint. -/
+/-- The two sequences `a k` and `a k + k` are disjoint.
+@isnad1 id=ne.2h2v.s5.9946fe4cf3c1 from=translated src=- shape=1984b111 vocab=e612912f
+-/
 lemma ha_disj (j k : ℕ) (hj : 0 < j) (hk : 0 < k) : a j ≠ a k + k := by
   intro heq
   have hvpos : (0 : ℤ) < (a j : ℤ) := by have := a_pos hj; exact_mod_cast this
@@ -131,6 +158,9 @@ lemma ha_disj (j k : ℕ) (hj : 0 < j) (hk : 0 < k) : a j ≠ a k + k := by
   · exact hnotB ⟨(k : ℤ), by exact_mod_cast hk, by rw [beattySeq_a_add, heqz]⟩
   · exact hnotA ⟨(j : ℤ), by exact_mod_cast hj, by rw [beattySeq_a]⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.fc9b9b226864 from=translated src=- shape=3c26ae4f vocab=c877ed55
+-/
 lemma a_240 : a 240 = 388 := by
   have hs2 : (Real.sqrt 5) ^ 2 = 5 := Real.sq_sqrt (by norm_num)
   have hsn : (0 : ℝ) ≤ Real.sqrt 5 := Real.sqrt_nonneg 5
@@ -148,7 +178,9 @@ lemma a_240 : a 240 = 388 := by
 /-- A strictly increasing positive sequence `F` is uniquely determined by the property
 that `{F k}` and `{F k + k}` partition the positive integers. We state this as: any two
 such sequences `F` and `A` agree. The key fact is that `F n` is the least positive integer
-not among `{F k, F k + k : k < n}`. -/
+not among `{F k, F k + k : k < n}`.
+@isnad1 id=eq.9h3v.s8.709179c1f3e1 from=translated src=- shape=4cb62ff9 vocab=13a96747
+-/
 lemma wythoff_unique (F A : ℕ → ℕ)
     (hFmono : ∀ p q, 0 < p → p < q → F p < F q)
     (hAmono : ∀ p q, 0 < p → p < q → A p < A q)

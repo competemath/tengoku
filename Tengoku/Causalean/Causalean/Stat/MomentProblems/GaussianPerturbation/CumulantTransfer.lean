@@ -23,7 +23,9 @@ open MeasureTheory
 
 /-- When [two abstract moment sequences agree through a cutoff](hyp:hm) and [the requested
 cumulant order lies below that cutoff](hyp:hk), [their combinatorial cumulants at that order
-agree](goal). -/
+agree](goal).
+@isnad1 id=eq.2h4v.s5.c38c4ecc3ea3 from=translated src=- shape=4bb79bb4 vocab=8b4839c7
+-/
 theorem cumFromMom_congr_up_to {m₁ m₂ : ℕ → ℝ} {K k : ℕ}
     (hm : ∀ j, j ≤ K → m₁ j = m₂ j) (hk : k ≤ K) :
     cumFromMom k m₁ = cumFromMom k m₂ := by
@@ -40,7 +42,9 @@ theorem cumFromMom_congr_up_to {m₁ m₂ : ℕ → ℝ} {K k : ℕ}
 
 /-- Given [two real measures](hyp:μ,ν), [a finite cutoff](hyp:K), and [equality of their raw
 moments through that cutoff](hyp:hm), [the source cumulants of the identity statistic agree at
-every order through the cutoff](goal). -/
+every order through the cutoff](goal).
+@isnad1 id=eq.2h4v.s5.6b7f5cf0a1ba from=translated src=- shape=455f1b48 vocab=cc8e548d
+-/
 theorem sourceCumulant_eq_of_rawMoment_eq_up_to
     (μ ν : Measure ℝ) (K : ℕ)
     (hm : ∀ j, j ≤ K → rawMoment μ j = rawMoment ν j) :

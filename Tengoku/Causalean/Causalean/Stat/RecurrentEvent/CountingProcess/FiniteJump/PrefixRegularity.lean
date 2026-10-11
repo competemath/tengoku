@@ -18,7 +18,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- A jointly measurable payoff has a jointly measurable strict-past
-compensated prefix, including the totalized time-integral definition. -/
+compensated prefix, including the totalized time-integral definition.
+@isnad1 id=measurab.1h4v.s6.42de2358d36d from=translated src=- shape=07a57e94 vocab=2c331d0b
+-/
 theorem Model.measurable_prefixIntegral (M : Model Ω μ)
     (H : ℝ → Ω → ℝ)
     (hH : Measurable (fun p : ℝ × Ω => H p.1 p.2)) :
@@ -87,7 +89,9 @@ theorem Model.measurable_prefixIntegral (M : Model Ω μ)
   exact hj.sub he
 
 /-- The mixed strict-past jump payoff is integrable because it grows at most
-quadratically in the finite event count. -/
+quadratically in the finite event count.
+@isnad1 id=integrab.2h4v.s6.462e567a47bb from=translated src=- shape=2b7bd160 vocab=bad5c5c4
+-/
 theorem Model.integrable_prefix_jump (M : Model Ω μ) [IsProbabilityMeasure μ]
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) :
@@ -128,7 +132,9 @@ theorem Model.integrable_prefix_jump (M : Model Ω μ) [IsProbabilityMeasure μ]
   exact M.integrable_jump_of_envelope _ hpay B hi hpaybound
 
 /-- The sum of absolute mixed strict-past jump payoffs is integrable; this
-controls truncation in the predictable-compensator theorem. -/
+controls truncation in the predictable-compensator theorem.
+@isnad1 id=integrab.2h4v.s6.6d28547a329f from=translated src=- shape=d604c45a vocab=bad5c5c4
+-/
 theorem Model.integrable_prefix_jump_abs (M : Model Ω μ)
     [IsProbabilityMeasure μ]
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
@@ -172,7 +178,9 @@ theorem Model.integrable_prefix_jump_abs (M : Model Ω μ)
     (fun t ω ht hT => by simpa only [abs_abs] using hpaybound t ω ht hT)
 
 /-- The mixed strict-past compensator payoff is integrable because it grows
-at most linearly in the finite event count. -/
+at most linearly in the finite event count.
+@isnad1 id=integrab.2h4v.s6.b76286bba01a from=translated src=- shape=2b7bd160 vocab=642cb337
+-/
 theorem Model.integrable_prefix_energy (M : Model Ω μ) [IsProbabilityMeasure μ]
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) :
@@ -211,7 +219,9 @@ theorem Model.integrable_prefix_energy (M : Model Ω μ) [IsProbabilityMeasure �
 
 /-- The integral of the absolute mixed strict-past payoff against the
 compensator is integrable; this controls truncation in predictable
-compensation. -/
+compensation.
+@isnad1 id=integrab.2h4v.s6.784fee6a9117 from=translated src=- shape=d604c45a vocab=642cb337
+-/
 theorem Model.integrable_prefix_energy_abs (M : Model Ω μ)
     [IsProbabilityMeasure μ]
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
@@ -254,7 +264,9 @@ theorem Model.integrable_prefix_energy_abs (M : Model Ω μ)
 /-- A bounded predictable compensated integral is square integrable under a
 second moment for the finite event count and a bounded intensity. [The model
 and payoff](hyp:M,H), [predictability](hyp:hH), and [boundedness](hyp:hbound)
-give [square integrability of the compensated integral](goal). -/
+give [square integrability of the compensated integral](goal).
+@isnad1 id=integrab.2h4v.s6.2bfef672a103 from=translated src=- shape=d6199de7 vocab=c8673b13
+-/
 theorem Model.integrable_stochastic_square (M : Model Ω μ) [IsProbabilityMeasure μ]
     (H : ℝ → Ω → ℝ) (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) :

@@ -233,7 +233,9 @@ censor-jump payoff times the other subject's strict-past integral at that jump, 
 two cross-compensator integrals of one subject's strict-past integral against the other's hazard
 payoff](goal).
 
-The formula is a pathwise integration by parts for the two compensated censor integrals. -/
+The formula is a pathwise integration by parts for the two compensated censor integrals.
+@isnad1 id=eq.6h7v.s9.87fce76b6305 from=translated src=- shape=5dba8adb vocab=09ff64b5
+-/
 theorem distinct_subject_integral_product_pathwise {n : ℕ}
     (hazard : ℝ → ℝ) (H : ℝ → Sample n → ℝ)
     (i j : Fin n) (u : ℝ) (hu : 0 ≤ u) (x : Sample n)

@@ -49,7 +49,9 @@ inequality `o p ≤ o (p + q) + o q`.
 /-- `o P` is the number of nonzero coefficients of a polynomial `P` over `ZMod 2`. -/
 noncomputable def o (P : (ZMod 2)[X]) : ℕ := P.support.card
 
-/-- The support of `X ^ m * p` is the support of `p` shifted by `m`. -/
+/-- The support of `X ^ m * p` is the support of `p` shifted by `m`.
+@isnad1 id=eq.0h2v.s9.aea215eec2bf from=translated src=- shape=8728b05a vocab=34037e2a
+-/
 lemma support_X_pow_mul (m : ℕ) (p : (ZMod 2)[X]) :
     (X ^ m * p).support = p.support.image (· + m) := by
   ext j
@@ -70,7 +72,9 @@ lemma support_X_pow_mul (m : ℕ) (p : (ZMod 2)[X]) :
       exact absurd (Nat.le_add_left m a) hjm
 
 /-- If `p` has degree less than `m`, the supports of `p` and `X ^ m * q` are
-disjoint, hence `o (p + X ^ m * q) = o p + o q`. -/
+disjoint, hence `o (p + X ^ m * q) = o p + o q`.
+@isnad1 id=eq.1h3v.s9.7bcaa39667f3 from=translated src=- shape=7879cdc6 vocab=11a32c34
+-/
 lemma o_add_X_pow_mul {m : ℕ} {p q : (ZMod 2)[X]} (hp : p.natDegree < m) :
     o (p + X ^ m * q) = o p + o q := by
   have hsupp : (p + X ^ m * q).support = p.support ∪ (X ^ m * q).support := by
@@ -99,29 +103,39 @@ lemma o_add_X_pow_mul {m : ℕ} {p q : (ZMod 2)[X]} (hp : p.natDegree < m) :
   rw [hsupp, Finset.card_union_of_disjoint hdisj, support_X_pow_mul,
     Finset.card_image_of_injective _ (fun _ _ h ↦ Nat.add_right_cancel h)]
 
-/-- Subadditivity of `o`. -/
+/-- Subadditivity of `o`.
+@isnad1 id=le.0h2v.s8.702ae3d7c28b from=translated src=- shape=aced1138 vocab=f036f855
+-/
 lemma o_add_le (p q : (ZMod 2)[X]) : o (p + q) ≤ o p + o q :=
   le_trans (Finset.card_le_card support_add) (Finset.card_union_le _ _)
 
-/-- A convenient rearrangement of subadditivity. -/
+/-- A convenient rearrangement of subadditivity.
+@isnad1 id=le.0h2v.s8.5addfdaf93af from=translated src=- shape=d0b8f6ff vocab=f036f855
+-/
 lemma o_le_o_add_add (p q : (ZMod 2)[X]) : o p ≤ o (p + q) + o q := by
   have hn : o (-q) = o q := congrArg Finset.card support_neg
   calc o p = o ((p + q) + (-q)) := by rw [add_neg_cancel_right]
     _ ≤ o (p + q) + o (-q) := o_add_le _ _
     _ = o (p + q) + o q := by rw [hn]
 
-/-- The degree of `(1 + X) ^ i` over `ZMod 2`. -/
+/-- The degree of `(1 + X) ^ i` over `ZMod 2`.
+@isnad1 id=eq.0h1v.s9.24d83265794f from=translated src=- shape=e0054e3b vocab=e896065b
+-/
 lemma natDegree_one_add_X_pow (i : ℕ) : ((1 + X : (ZMod 2)[X]) ^ i).natDegree = i := by
   have h : (1 + X : (ZMod 2)[X]) = X + C 1 := by rw [C_1]; exact add_comm _ _
   rw [h, Monic.natDegree_pow (monic_X_add_C (1 : ZMod 2)) i, natDegree_X_add_C, mul_one]
 
-/-- The freshman's dream in characteristic $2$: `(1 + X) ^ (2 ^ k) = 1 + X ^ (2 ^ k)`. -/
+/-- The freshman's dream in characteristic $2$: `(1 + X) ^ (2 ^ k) = 1 + X ^ (2 ^ k)`.
+@isnad1 id=eq.0h1v.s10.fbb3ba9c8eb2 from=translated src=- shape=57790e20 vocab=f42bfb72
+-/
 lemma one_add_X_pow_two_pow (k : ℕ) :
     (1 + X : (ZMod 2)[X]) ^ 2 ^ k = 1 + X ^ 2 ^ k := by
   rw [add_pow_expChar_pow, one_pow]
 
 /-- The number of odd coefficients of `P : ℤ[X]` equals `o` of its image in
-`(ZMod 2)[X]`. -/
+`(ZMod 2)[X]`.
+@isnad1 id=eq.0h1v.s6.ae1af10a1a13 from=translated src=- shape=481f24c8 vocab=0250d8d6
+-/
 lemma oddCount_eq_o (P : ℤ[X]) :
     oddCount P = o (P.map (Int.castRingHom (ZMod 2))) := by
   unfold oddCount o
@@ -143,12 +157,16 @@ lemma oddCount_eq_o (P : ℤ[X]) :
     obtain ⟨k, hk⟩ := hodd
     lia
 
-/-- The image of a single power of `1 + X` in `(ZMod 2)[X]`. -/
+/-- The image of a single power of `1 + X` in `(ZMod 2)[X]`.
+@isnad1 id=eq.0h1v.s9.88fea32553a8 from=translated src=- shape=7999e320 vocab=a484e352
+-/
 lemma map_one_add_X_pow (i : ℕ) :
     ((1 + X : ℤ[X]) ^ i).map (Int.castRingHom (ZMod 2)) = (1 + X : (ZMod 2)[X]) ^ i := by
   rw [Polynomial.map_pow, Polynomial.map_add, Polynomial.map_one, Polynomial.map_X]
 
-/-- The image of a sum of powers of `1 + X` in `(ZMod 2)[X]`. -/
+/-- The image of a sum of powers of `1 + X` in `(ZMod 2)[X]`.
+@isnad1 id=eq.0h1v.s9.cc2578350411 from=translated src=- shape=63d9dea9 vocab=7275ba97
+-/
 lemma map_sum_one_add_X_pow (S : Finset ℕ) :
     (∑ i ∈ S, (1 + X : ℤ[X]) ^ i).map (Int.castRingHom (ZMod 2)) =
       ∑ i ∈ S, (1 + X : (ZMod 2)[X]) ^ i := by
@@ -157,7 +175,9 @@ lemma map_sum_one_add_X_pow (S : Finset ℕ) :
     rw [Polynomial.map_pow, Polynomial.map_add, Polynomial.map_one, Polynomial.map_X]
 
 /-- The main inequality over `ZMod 2`, proved by strong induction on the largest
-index `N`. -/
+index `N`.
+@isnad1 id=le.2h2v.s10.309a12c7f526 from=translated src=- shape=39c7e6ad vocab=0dd31c1e
+-/
 lemma key : ∀ N : ℕ, ∀ (S : Finset ℕ) (hS : S.Nonempty), S.max' hS = N →
     o ((1 + X : (ZMod 2)[X]) ^ S.min' hS) ≤
       o (∑ i ∈ S, (1 + X : (ZMod 2)[X]) ^ i) :=

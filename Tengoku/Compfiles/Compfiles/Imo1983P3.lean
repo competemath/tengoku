@@ -22,7 +22,9 @@ are non-negative integers.
 namespace Imo1983P3
 
 /-- Two-variable Chicken McNugget over `ℤ`: for coprime positive `b c`, every
-integer `M > b*c - b - c` is a nonnegative combination of `c` and `b`. -/
+integer `M > b*c - b - c` is a nonnegative combination of `c` and `b`.
+@isnad1 id=ex.4h3v.s6.66bb1ac685f3 from=translated src=- shape=af091df6 vocab=a88a6fdf
+-/
 lemma two_var {b c : ℕ} (hb : 0 < b) (hc : 0 < c) (hbc : Nat.Coprime b c)
     (M : ℤ) (hM : M > (b : ℤ) * c - b - c) :
     ∃ y z : ℕ, M = y * (c : ℤ) + z * (b : ℤ) := by
@@ -65,7 +67,9 @@ lemma two_var {b c : ℕ} (hb : 0 < b) (hc : 0 < c) (hbc : Nat.Coprime b c)
   exact hMz
 
 /-- Every integer `n > 2*a*b*c - a*b - b*c - c*a` is expressible as
-`x * (b*c) + y * (c*a) + z * (a*b)` with nonnegative `x y z`. -/
+`x * (b*c) + y * (c*a) + z * (a*b)` with nonnegative `x y z`.
+@isnad1 id=ex.7h4v.s8.8ffc1905ba0c from=translated src=- shape=aa6f8fa5 vocab=a88a6fdf
+-/
 lemma rep {a b c : ℕ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hab : Nat.Coprime a b) (hbc : Nat.Coprime b c) (hca : Nat.Coprime c a)
     (n : ℤ) (hn : n > 2 * (a : ℤ) * b * c - a * b - b * c - c * a) :

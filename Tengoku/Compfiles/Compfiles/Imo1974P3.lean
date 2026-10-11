@@ -26,6 +26,9 @@ open Finset
 (1 + √8)^(2n+1), so taking norms gives A² - 8·B² = (-7)^(2n+1) where B is
 the sum.  If 5 ∣ B, then A² ≡ ±2 (mod 5), which is impossible. -/
 
+/--
+@isnad1 id=eq.0h3v.s6.e2660c36cea4 from=translated src=- shape=03820ef1 vocab=d361aece
+-/
 lemma sum_range_two_mul {M : Type*} [AddCommMonoid M] (n : ℕ) (f : ℕ → M) :
     ∑ i ∈ range (2 * n), f i = ∑ i ∈ range n, (f (2 * i) + f (2 * i + 1)) := by
   induction n with
@@ -34,12 +37,18 @@ lemma sum_range_two_mul {M : Type*} [AddCommMonoid M] (n : ℕ) (f : ℕ → M) 
     rw [show 2 * (n + 1) = 2 * n + 1 + 1 by ring, sum_range_succ, sum_range_succ,
         sum_range_succ, ih, add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s6.808e6df3b24d from=translated src=- shape=de9ef8d3 vocab=3a5d0dce
+-/
 lemma im_sum {ι : Type*} (s : Finset ι) (f : ι → ℤ√8) :
     (∑ i ∈ s, f i).im = ∑ i ∈ s, (f i).im := by
   induction s using Finset.cons_induction with
   | empty => rfl
   | cons a s ha ih => rw [sum_cons, sum_cons, Zsqrtd.im_add, ih]
 
+/--
+@isnad1 id=eq.0h1v.s6.ea3bee3a78fd from=translated src=- shape=ff4b2dd9 vocab=ff1fdfe9
+-/
 lemma sqrtd_pow_two_mul (k : ℕ) :
     (Zsqrtd.sqrtd : ℤ√8) ^ (2 * k) = ((8 ^ k : ℤ) : ℤ√8) := by
   induction k with
@@ -50,7 +59,9 @@ lemma sqrtd_pow_two_mul (k : ℕ) :
     push_cast
     ring
 
-/-- The binomial sum is the coefficient of √8 in (√8 + 1)^(2n+1). -/
+/-- The binomial sum is the coefficient of √8 in (√8 + 1)^(2n+1).
+@isnad1 id=eq.0h1v.s7.cc7a16b85f5f from=translated src=- shape=5d4bc531 vocab=2f6703e1
+-/
 lemma im_pow (n : ℕ) :
     ((Zsqrtd.sqrtd + 1 : ℤ√8) ^ (2 * n + 1)).im =
       ∑ k ∈ range (n + 1), ((2 * n + 1).choose (2 * k + 1) : ℤ) * 8 ^ k := by
@@ -63,6 +74,9 @@ lemma im_pow (n : ℕ) :
     Zsqrtd.im_sqrtd, mul_zero, zero_mul, add_zero, zero_add]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.376817cef5c8 from=translated src=- shape=f26a2226 vocab=1531c3b5
+-/
 lemma norm_pow (m : ℕ) :
     ((Zsqrtd.sqrtd + 1 : ℤ√8) ^ m).norm = (-7) ^ m := by
   have h1 : (Zsqrtd.sqrtd + 1 : ℤ√8).norm = -7 := by

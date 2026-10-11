@@ -19,6 +19,9 @@ Show that $0 \leq xy+yz+zx-2xyz \leq \frac{7}{27}$
 
 namespace Imo1984P1
 
+/--
+@isnad1 id=le.3h3v.s6.6b040c419328 from=translated src=- shape=12d52d21 vocab=e624faf6
+-/
 lemma geom_mean_le_arith_mean_3 {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
     a * b * c ≤ ((a + b + c) / 3) ^ (3 : ℝ) := by
   have abc_pos : 0 ≤ a * b * c := by positivity

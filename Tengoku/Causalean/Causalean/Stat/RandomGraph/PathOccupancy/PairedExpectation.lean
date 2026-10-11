@@ -53,6 +53,7 @@ Mathlib primary sources fetched at pinned revision
 Data/Nat/Choose/Sum.lean (sum_powerset_apply_card),
 MeasureTheory/Integral/Bochner/Set.lean (integral_indicator_const), and
 Algebra/BigOperators/Ring/Finset.lean (sum_mul_sum).
+@isnad1 id=le.8h9v.s8.b1766fa45ad0 from=translated src=- shape=d2fef912 vocab=f6890e63
 -/
 theorem paired_expectation_labelled_le {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}

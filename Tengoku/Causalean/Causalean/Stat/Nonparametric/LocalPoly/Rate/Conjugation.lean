@@ -39,7 +39,9 @@ variable {p : ℕ}
 /-- **Diagonal-conjugation inverse formula.** If `S = κ • (D · T · D)` with `κ ≠ 0` and
 `D = diagonal d` an invertible diagonal matrix (`d i ≠ 0`), `T` invertible, then `S` is invertible
 with
-`S⁻¹ = κ⁻¹ • (D⁻¹ · T⁻¹ · D⁻¹)` where `D⁻¹ = diagonal (fun i => (d i)⁻¹)`. -/
+`S⁻¹ = κ⁻¹ • (D⁻¹ · T⁻¹ · D⁻¹)` where `D⁻¹ = diagonal (fun i => (d i)⁻¹)`.
+@isnad1 id=and.4h5v.s10.6100fdfc20f4 from=translated src=- shape=43a6f850 vocab=b4d7875b
+-/
 theorem inv_diag_conj {κ : ℝ} (hκ : κ ≠ 0)
     {d : Fin (p + 1) → ℝ} (hd : ∀ i, d i ≠ 0)
     {T S : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ} (hT : IsUnit T.det)
@@ -84,7 +86,9 @@ theorem inv_diag_conj {κ : ℝ} (hκ : κ ≠ 0)
 a nonzero scalar `κ`](hyp:hκ,hS) with [`D = diagonal d` an invertible diagonal matrix (every
 `d i` nonzero)](hyp:hd) [whose first entry is `1`](hyp:hd0), and [`T` invertible](hyp:hT), then
 [`S` is invertible and its `(0,0)` inverse entry collapses to `(S⁻¹)₀₀ = κ⁻¹ · (T⁻¹)₀₀`: the
-diagonal bandwidth powers cancel at the intercept because `D₀₀ = 1`](goal). -/
+diagonal bandwidth powers cancel at the intercept because `D₀₀ = 1`](goal).
+@isnad1 id=and.5h5v.s10.10a2b3d314a0 from=translated src=- shape=a591ee3e vocab=b4d7875b
+-/
 theorem inv00_diag_conj {κ : ℝ} (hκ : κ ≠ 0)
     {d : Fin (p + 1) → ℝ} (hd : ∀ i, d i ≠ 0) (hd0 : d 0 = 1)
     {T S : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ} (hT : IsUnit T.det)
@@ -96,7 +100,9 @@ theorem inv00_diag_conj {κ : ℝ} (hκ : κ ≠ 0)
   simp [Matrix.smul_apply, Matrix.diagonal_mul, Matrix.mul_diagonal, hd0]
 
 /-- **Top entry under diagonal-conjugation scaling.** Under the same factorization
-`S = κ • (D · T · D)` with `d 0 = 1`, the `(0,0)` entry of `S` itself is `S₀₀ = κ · T₀₀`. -/
+`S = κ • (D · T · D)` with `d 0 = 1`, the `(0,0)` entry of `S` itself is `S₀₀ = κ · T₀₀`.
+@isnad1 id=eq.2h5v.s9.512e7b647e1c from=translated src=- shape=bfd8ddc5 vocab=c3a24704
+-/
 theorem top00_diag_conj {κ : ℝ}
     {d : Fin (p + 1) → ℝ} (hd0 : d 0 = 1)
     {T S : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ}

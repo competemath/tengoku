@@ -14,7 +14,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 /-- If [a process is left predictable](hyp:hH) and, at time s, [one subject's current censor
 time](hyp:hOld) and [a replacement censor time](hyp:hNew) are both at or after s, then [the
 process at s is unchanged when that subject's censor time is replaced](goal), with the subject's
-failure time and every other subject's record held fixed. -/
+failure time and every other subject's record held fixed.
+@isnad1 id=eq.3h6v.s6.38038f222fba from=translated src=- shape=299729e5 vocab=028bb708
+-/
 theorem leftPredictable_censor_tail_invariant {n : ℕ}
     (H : ℝ → Sample n → ℝ) (hH : LeftPredictable H)
     (s : ℝ) (x : Sample n) (i : Fin n) (c : ℝ)
@@ -44,7 +46,9 @@ theorem leftPredictable_censor_tail_invariant {n : ℕ}
 /-- If [a process is left predictable](hyp:hH) and, at time s, [one subject's current failure
 time](hyp:hOld) and [a replacement failure time](hyp:hNew) are both at or after s, then [the
 process at s is unchanged when that subject's failure time is replaced](goal), with the subject's
-censor time and every other subject's record held fixed. -/
+censor time and every other subject's record held fixed.
+@isnad1 id=eq.3h6v.s6.79cbb827d12f from=translated src=- shape=e0211f02 vocab=028bb708
+-/
 theorem leftPredictable_failure_tail_invariant {n : ℕ}
     (H : ℝ → Sample n → ℝ) (hH : LeftPredictable H)
     (s : ℝ) (x : Sample n) (i : Fin n) (f : ℝ)

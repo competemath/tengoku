@@ -48,7 +48,9 @@ moment matrix factors as `S = (Nh)·D·T·D` with `D = diagonal (fun j => h^j)` 
 bandwidth-free shape matrix `T` that is invertible with `(T⁻¹)₀₀ ≤ cInv` and `T₀₀ ≤ cTop`, then `S`
 is invertible and its intercept leverage scales as `(S⁻¹)₀₀ ≤ cInv/(Nh)` while its top weight
 scales as `S₀₀ ≤ cTop·(Nh)`. This discharges the leverage-scaling hypotheses of the rate
-capstones from the bandwidth-free shape matrix `T`. -/
+capstones from the bandwidth-free shape matrix `T`.
+@isnad1 id=and.6h7v.s10.fadbba5f00fd from=translated src=- shape=1a3c2909 vocab=c1048af1
+-/
 theorem population_scaling_of_conj {N : ℕ} {h cInv cTop : ℝ}
     (hh : 0 < h) (hN : 0 < (N : ℝ))
     {T S : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ} (hT : IsUnit T.det)

@@ -262,7 +262,9 @@ inside the outer event](hyp:hRC), [a positive overlap margin](hyp:hepsilon), and
 [inner-event mass at least that margin times outer-event mass](hyp:hoverlap)
 imply that [the expected squared outer count times the zero-safe inverse inner
 count is at most twice sample size times outer-event mass divided by the
-margin](goal). -/
+margin](goal).
+@isnad1 id=le.5h6v.s8.7a1c9ad02b80 from=translated src=- shape=ad12159f vocab=36fcd924
+-/
 lemma integral_nested_count_sq_mul_totalized_inverse_le {m : Nat}
     {Omega : Type*} [MeasurableSpace Omega]
     (mu : Measure Omega) [IsProbabilityMeasure mu]

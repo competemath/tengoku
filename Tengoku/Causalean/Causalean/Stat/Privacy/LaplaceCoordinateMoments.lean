@@ -33,6 +33,7 @@ using `measurePreserving_eval (fun _ : ι => laplaceMeasure b) i`. Its
 `map_eq` field identifies the evaluation pushforward. `Measure.map_map`
 reduces the release pushforward to that evaluation map; pointwise cancellation
 is `Pi.add_apply` followed by `add_sub_cancel_right`.
+@isnad1 id=eq.1h6v.s6.7edea38b8810 from=translated src=- shape=be7b90f0 vocab=3f206408
 -/
 theorem laplaceMechPi_map_centered_coord (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) :
@@ -54,6 +55,7 @@ error is integrable](goal).
 Rewrite the scalar integrability theorem through
 `laplaceMechPi_map_centered_coord`, then apply `integrable_map_measure`
 with the measurable centered evaluation map and the scalar identity function.
+@isnad1 id=integrab.1h6v.s6.d5a3bfb01e93 from=translated src=- shape=8bcfc872 vocab=f3c02b4d
 -/
 theorem laplaceMechPi_integrable_centered_coord (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) :
@@ -71,6 +73,7 @@ error has mean zero](goal).
 
 Use `integral_map` with the centered evaluation map, rewrite its pushforward
 using `laplaceMechPi_map_centered_coord`, and reuse the scalar zero mean.
+@isnad1 id=eq.1h6v.s6.60b6bccd0888 from=translated src=- shape=48735a34 vocab=6bde09dc
 -/
 theorem laplaceMechPi_integral_centered_coord (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) :
@@ -88,6 +91,7 @@ error is integrable](goal).
 
 Use the same `integrable_map_measure` transfer as for the first moment,
 now with the scalar square and `laplaceMeasure_integrable_sq`.
+@isnad1 id=integrab.1h6v.s6.53d4e27c8721 from=translated src=- shape=0c3b011e vocab=3cccadb2
 -/
 theorem laplaceMechPi_integrable_centered_coord_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) :
@@ -105,6 +109,7 @@ error has expectation exactly twice the squared scale](goal).
 
 Transfer `laplaceMeasure_integral_sq` using `integral_map`; this evaluates
 the actual marginal law rather than introducing a moment assumption.
+@isnad1 id=eq.1h6v.s7.dd3232878fa8 from=translated src=- shape=4fc3321c vocab=e777ca22
 -/
 theorem laplaceMechPi_integral_centered_coord_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) :
@@ -118,7 +123,9 @@ theorem laplaceMechPi_integral_centered_coord_sq (b : ℝ) (hb : 0 < b)
 
 /-- At [a real scale](hyp:b) with [a positive-scale certificate](hyp:hb), [a
 query](hyp:q), [an input](hyp:d), and [a coordinate](hyp:i), [the squared released-coordinate
-error has nonnegative extended expectation exactly twice the squared scale](goal). -/
+error has nonnegative extended expectation exactly twice the squared scale](goal).
+@isnad1 id=eq.1h6v.s6.86e5361aceaa from=translated src=- shape=38e14833 vocab=3867f264
+-/
 theorem laplaceMechPi_lintegral_centered_coord_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) :
     ∫⁻ y, ENNReal.ofReal ((y i - q d i) ^ 2) ∂laplaceMechPi b q d =
@@ -138,6 +145,7 @@ integrable under the normalized release law.
 Install `laplaceMechPi_isProbabilityMeasure b hb q d` locally. Combine the
 two centered integrability lemmas with `Integrable.const_mul`,
 `integrable_const`, and `Integrable.add`, then identify the expansion by `ring`.
+@isnad1 id=integrab.1h7v.s6.b4d72d139d0e from=translated src=- shape=4bb78b99 vocab=3cccadb2
 -/
 theorem laplaceMechPi_integrable_coord_sub_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) (c : ℝ) :
@@ -163,6 +171,7 @@ displacement squared. The exact centered mean cancels the cross term.
 Use `integral_add` with the established integrability obligations before
 `integral_const_mul` and `integral_const`. Probability normalization makes
 the constant term its own integral; `ring` orders the final two terms.
+@isnad1 id=eq.1h7v.s7.f4a04adcebd0 from=translated src=- shape=910584cd vocab=0cfb3ac6
 -/
 theorem laplaceMechPi_integral_coord_sub_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) (c : ℝ) :
@@ -190,7 +199,9 @@ theorem laplaceMechPi_integral_coord_sub_sq (b : ℝ) (hb : 0 < b)
 /-- At [a real scale](hyp:b) with [a positive-scale certificate](hyp:hb), [a
 query](hyp:q), [an input](hyp:d), [a coordinate](hyp:i), and [a real center](hyp:c),
 [the released coordinate's squared displacement has the corresponding exact nonnegative
-extended moment](goal). -/
+extended moment](goal).
+@isnad1 id=eq.1h7v.s7.85c18a88fd3d from=translated src=- shape=b59c1ac9 vocab=fa207c9b
+-/
 theorem laplaceMechPi_lintegral_coord_sub_sq (b : ℝ) (hb : 0 < b)
     (q : D → ι → ℝ) (d : D) (i : ι) (c : ℝ) :
     ∫⁻ y, ENNReal.ofReal ((y i - c) ^ 2) ∂laplaceMechPi b q d =

@@ -178,7 +178,9 @@ private lemma fixedStratumArmMissingRemainder_memLp_two {m : Nat}
 /-- [Measurable group and arm labels and a measurable mark](hyp:hgroup,harm,hY)
 together with [finite second moments for every supported residual
 cell](hyp:hmem) imply [finite second moments for the treated-minus-control
-fixed-set score](goal). -/
+fixed-set score](goal).
+@isnad1 id=memlp.4h9v.s7.5a8449d6c953 from=translated src=- shape=ce5b7c4e vocab=ae0bd683
+-/
 theorem fixedStratumMarkedRatio_memLp_two {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool) (Y : Omega → Real)
@@ -243,7 +245,9 @@ theorem fixedStratumMarkedRatio_memLp_two {m : Nat}
 /-- [Measurable group and arm labels](hyp:hgroup,harm) and [cell centers bounded
 in absolute value by the envelope](hyp:hcenterBound) imply that [the empirical
 category-mass fluctuation has second moment at most the squared envelope divided
-by the safe sample size, including for an empty sample](goal). -/
+by the safe sample size, including for an empty sample](goal).
+@isnad1 id=le.3h10v.s7.339367f0300b from=translated src=- shape=b18bcdf1 vocab=01f44d12
+-/
 theorem integral_fixedStratumArmMassFluctuation_sq_le {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool)
@@ -407,7 +411,9 @@ absolute value by the envelope](hyp:hcenterBound), [a positive overlap
 margin](hyp:hepsilon), and [arm mass at least that margin times category
 mass](hyp:hoverlap) imply that [the normalized aggregate empty-arm remainder has
 second moment bounded by a parametric diagonal term plus the squared
-exponentially damped missing-arm envelope](goal). -/
+exponentially damped missing-arm envelope](goal).
+@isnad1 id=le.5h11v.s8.019bd7a67c00 from=translated src=- shape=081e3842 vocab=1cbb37a5
+-/
 theorem integral_fixedStratumArmMissingRemainder_sq_le {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool)
@@ -430,7 +436,9 @@ centering](hyp:hcenter), [the stated residual second-moment envelope](hyp:hsq),
 [bounded cell centers](hyp:hcenterBound), [a positive overlap
 margin](hyp:hepsilon), and [arm mass at least that margin times category
 mass](hyp:hoverlap) imply [a uniform one-arm fixed-set mean-squared-error bound
-with an explicit exponentially damped missing-arm remainder](goal). -/
+with an explicit exponentially damped missing-arm remainder](goal).
+@isnad1 id=le.9h12v.s9.a694ed9f2d17 from=translated src=- shape=e8e73ea5 vocab=243d2c8e
+-/
 theorem integral_fixedStratumArm_error_sq_le_exponential {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool) (Y : Omega → Real)
@@ -594,7 +602,9 @@ centering](hyp:hcenter), [the stated residual second-moment envelope](hyp:hsq),
 margin](hyp:hepsilon), [arm mass at least that margin times category
 mass](hyp:hoverlap), and [a deterministic lower bound on every selected
 category mass](hyp:hp) imply [the boundary-safe one-arm mean-squared-error bound
-with an inverse-polynomial missing-arm envelope](goal). -/
+with an inverse-polynomial missing-arm envelope](goal).
+@isnad1 id=le.10h13v.s9.59995e1c67fa from=translated src=- shape=8f43bbd7 vocab=deba990c
+-/
 theorem integral_fixedStratumArm_error_sq_le {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool) (Y : Omega → Real)
@@ -669,7 +679,9 @@ overlap margin](hyp:hepsilon), [both arm masses at least that margin times
 category mass](hyp:hoverlap), and [a deterministic lower bound on every
 selected category mass](hyp:hp) imply that [the treated-minus-control fixed-set
 score obeys the boundary-safe mean-squared-error bound at the same parametric
-and missing-arm scale, up to the universal two-arm factor](goal). -/
+and missing-arm scale, up to the universal two-arm factor](goal).
+@isnad1 id=le.10h12v.s9.8a9ccc3d35e6 from=translated src=- shape=5d8b7fb3 vocab=20eb7342
+-/
 theorem integral_fixedStratumMarkedRatio_error_sq_le {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool) (Y : Omega → Real)

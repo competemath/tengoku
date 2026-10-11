@@ -19,7 +19,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 /-- The square of the integrated predictable intensity is twice the integral
 of its running integral times the current intensity-weighted payoff. [The
 model, payoff, and path](hyp:M,H,ω), [predictability](hyp:hH), and
-[boundedness](hyp:hbound) give [the pathwise square identity](goal). -/
+[boundedness](hyp:hbound) give [the pathwise square identity](goal).
+@isnad1 id=eq.2h5v.s7.dc9469703c3c from=translated src=- shape=d3b199e3 vocab=bd95ae7e
+-/
 theorem Model.energyIntegral_square (M : Model Ω μ) (H : ℝ → Ω → ℝ)
     (hH : M.Predictable H)
     (hbound : ∃ C : ℝ, ∀ t ω, |H t ω| ≤ C) (ω : Ω) :

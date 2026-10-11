@@ -372,7 +372,9 @@ private theorem variance_pi_fin
           rw [Fin.sum_univ_succ]
           rfl
 
-/-- For [a finite family of probability laws](hyp:mu), a [real-valued statistic of their product observation](hyp:F) that [is square-integrable](hyp:hF) has [variance bounded by the sum of expected conditional variances from resampling one coordinate at a time](goal). -/
+/-- For [a finite family of probability laws](hyp:mu), a [real-valued statistic of their product observation](hyp:F) that [is square-integrable](hyp:hF) has [variance bounded by the sum of expected conditional variances from resampling one coordinate at a time](goal).
+@isnad1 id=le.1h4v.s7.89da9984f485 from=translated src=- shape=739db7ee vocab=c4c62858
+-/
 theorem variance_pi_le_sum_integral_coordinateVariance
     {iota : Type*} [Fintype iota] [DecidableEq iota]
     {X : iota → Type*} [(i : iota) → MeasurableSpace (X i)]
@@ -558,7 +560,9 @@ private lemma piCongrLeft_update_const
     simp [MeasurableEquiv.piCongrLeft_apply_apply]
   · simp [MeasurableEquiv.piCongrLeft_apply_apply, hj]
 
-/-- For [a finite collection of nonnegative Poisson rates](hyp:lambda), a [real-valued statistic of the count vector](hyp:F) that [is square-integrable](hyp:hF) and whose [coordinate add-one increments are square-integrable](hyp:hD) has [variance bounded by the sum of rate-weighted expected squared coordinate increments](goal). -/
+/-- For [a finite collection of nonnegative Poisson rates](hyp:lambda), a [real-valued statistic of the count vector](hyp:F) that [is square-integrable](hyp:hF) and whose [coordinate add-one increments are square-integrable](hyp:hD) has [variance bounded by the sum of rate-weighted expected squared coordinate increments](goal).
+@isnad1 id=le.2h3v.s7.02014794a972 from=translated src=- shape=3613d0ed vocab=e0551128
+-/
 theorem poissonPi_addOne_poincare
     {iota : Type*} [Fintype iota] [DecidableEq iota]
     (lambda : iota → NNReal) (F : (iota → Nat) → Real)
@@ -662,7 +666,9 @@ private lemma measurePreserving_piCongrRight_probability
   funext i
   exact (he i).map_eq
 
-/-- For two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂), a [real-valued nested-array statistic](hyp:F) that [is square-integrable](hyp:hF), with [first-count add-one increments square-integrable](hyp:hD₁) and [second-count add-one increments square-integrable](hyp:hD₂), has [variance bounded by the sum of the two rate-weighted expected squared increments in every cell](goal). -/
+/-- For two [arrays of nonnegative Poisson rates](hyp:lambda₁,lambda₂), a [real-valued nested-array statistic](hyp:F) that [is square-integrable](hyp:hF), with [first-count add-one increments square-integrable](hyp:hD₁) and [second-count add-one increments square-integrable](hyp:hD₂), has [variance bounded by the sum of the two rate-weighted expected squared increments in every cell](goal).
+@isnad1 id=le.3h5v.s9.f182fa0c25cf from=translated src=- shape=2d5cf597 vocab=b493a87f
+-/
 theorem nestedPairedPoisson_addOne_poincare
     {iota kappa : Type*}
     [Fintype iota] [DecidableEq iota] [Fintype kappa] [DecidableEq kappa]

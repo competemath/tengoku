@@ -30,20 +30,26 @@ product of two members of `Vₙ`. -/
 def Indecomposable (n : ℕ) (m : ℕ) : Prop :=
   m ∈ Vn n ∧ ¬ ∃ p q : ℕ, p ∈ Vn n ∧ q ∈ Vn n ∧ m = p * q
 
-/-- Every member of `Vₙ` is at least `n + 1`. -/
+/-- Every member of `Vₙ` is at least `n + 1`.
+@isnad1 id=le.1h2v.s4.b23dab8656df from=translated src=- shape=1cc66fb0 vocab=713db193
+-/
 lemma vn_ge {n m : ℕ} (hm : m ∈ Vn n) : n + 1 ≤ m := by
   obtain ⟨k, hk, rfl⟩ := hm
   have h := Nat.mul_le_mul hk (le_refl n)
   lia
 
-/-- `Vₙ` is closed under multiplication. -/
+/-- `Vₙ` is closed under multiplication.
+@isnad1 id=mem.2h3v.s5.f1c60fac1c24 from=translated src=- shape=262d9704 vocab=6c00029e
+-/
 lemma mul_mem_vn {n p q : ℕ} (hp : p ∈ Vn n) (hq : q ∈ Vn n) : p * q ∈ Vn n := by
   obtain ⟨a, ha, rfl⟩ := hp
   obtain ⟨b, hb, rfl⟩ := hq
   exact ⟨a + b + a * b * n, by lia, by ring⟩
 
 /-- `(n - 1)^2` (written with `n = c + 3`) is indecomposable in `Vₙ`: it is smaller
-than the square of the smallest member of `Vₙ`. -/
+than the square of the smallest member of `Vₙ`.
+@isnad1 id=indecomp.0h1v.s5.f6a353e57345 from=translated src=- shape=d23a6296 vocab=f963e37e
+-/
 lemma indecomposable_sq (c : ℕ) : Indecomposable (c + 3) ((c + 2) ^ 2) := by
   refine ⟨⟨c + 1, by lia, by ring⟩, ?_⟩
   rintro ⟨p, q, hp, hq, h⟩
@@ -56,7 +62,9 @@ lemma indecomposable_sq (c : ℕ) : Indecomposable (c + 3) ((c + 2) ^ 2) := by
   lia
 
 /-- `(n - 1)^2` does not divide `(n - 1) * (2 * n - 1)` (written with `n = c + 3`),
-since `n - 1` does not divide `2 * n - 1 = 2 * (n - 1) + 1`. -/
+since `n - 1` does not divide `2 * n - 1 = 2 * (n - 1) + 1`.
+@isnad1 id=not.0h1v.s6.6ec4d0c6196d from=translated src=- shape=2d18560d vocab=0eadfadb
+-/
 lemma not_dvd (c : ℕ) : ¬ (c + 2) ^ 2 ∣ (c + 2) * (2 * c + 5) := by
   intro h
   have h2 : c + 2 ∣ 2 * c + 5 := by
@@ -69,7 +77,9 @@ lemma not_dvd (c : ℕ) : ¬ (c + 2) ^ 2 ∣ (c + 2) * (2 * c + 5) := by
   have := Nat.le_of_dvd one_pos h3
   lia
 
-/-- Every member of `Vₙ` is a product of indecomposable members of `Vₙ`. -/
+/-- Every member of `Vₙ` is a product of indecomposable members of `Vₙ`.
+@isnad1 id=ex.2h2v.s5.b7e51849f674 from=translated src=- shape=ba09fbdb vocab=092513bf
+-/
 lemma exists_factorization (n : ℕ) (hn : 2 < n) :
     ∀ m : ℕ, m ∈ Vn n →
       ∃ F : Multiset ℕ, (∀ d ∈ F, Indecomposable n d) ∧ F.prod = m := by

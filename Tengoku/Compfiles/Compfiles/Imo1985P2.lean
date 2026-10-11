@@ -41,7 +41,9 @@ In this range of $k$, $kj\bmod n ≠ j$, so
 using rule 2 then rule 1.
 -/
 
-/-- For `1 ≤ k < n`, `k * j % n` has the same color as `j`. -/
+/-- For `1 ≤ k < n`, `k * j % n` has the same color as `j`.
+@isnad1 id=eq.5h4v.s6.e9d97e38a9c6 from=translated src=- shape=6eb3b7b3 vocab=80e92aff
+-/
 lemma C_mul_mod {n j : ℕ} (hn : 3 ≤ n) (hj : j ∈ Set.Ico 1 n) (cpj : Nat.Coprime n j)
     {C : ℕ → Fin 2} (hC : Condition n j C) {k : ℕ} (hk : k ∈ Set.Ico 1 n) :
     C (k * j % n) = C j := by

@@ -23,6 +23,9 @@ abbrev S := Finset.Icc 1 1989
 
 def n : ℕ := 117
 
+/--
+@isnad1 id=eq.0h0v.s3.f41b7cd95524 from=translated src=- shape=35225b15 vocab=8baa651c
+-/
 lemma fin_n_card : Fintype.card (Fin n) = 117 := by
   unfold n
   simp
@@ -37,9 +40,15 @@ def row (j : ℕ) (i : Fin n) : ℕ :=
 
 def A (i : Fin n) : Finset ℕ := (Finset.range 17).image (λ j ↦ row j i)
 
+/--
+@isnad1 id=eq.1h2v.s5.3ea589c2acd2 from=translated src=- shape=a336aa62 vocab=ac615dd8
+-/
 lemma row_quot (j : ℕ) (hj : j < 17) (i : Fin n) : (row j i - 1) / n = j := by
   unfold row; split_ifs <;> (simp [n] at *; lia)
 
+/--
+@isnad1 id=iff.2h4v.s5.6c1d5816954d from=translated src=- shape=051926b7 vocab=f386dcb2
+-/
 lemma row_inj {j₁ j₂ : ℕ} {i₁ i₂ : Fin n} (hj₁ : j₁ < 17) (hj₂ : j₂ < 17) :
     row j₁ i₁ = row j₂ i₂ ↔ j₁ = j₂ ∧ i₁ = i₂ := by
   refine ⟨fun h => ?_, fun ⟨rfl, rfl⟩ => rfl⟩
@@ -57,9 +66,15 @@ private lemma row_image_inj {j₁ j₂ : ℕ} (hj₁ : j₁ ∈ Finset.range 17)
     (hj₂ : j₂ ∈ Finset.range 17) {i : Fin n} (h : row j₁ i = row j₂ i) : j₁ = j₂ :=
   ((row_inj (Finset.mem_range.mp hj₁) (Finset.mem_range.mp hj₂)).1 h).1
 
+/--
+@isnad1 id=eq.0h1v.s3.5a4b1e3b7083 from=translated src=- shape=408df0e3 vocab=4e81535f
+-/
 lemma A_card (i : Fin n) : (A i).card = 17 := by
   simp [A, Finset.card_image_of_injOn (row_injOn i)]
 
+/--
+@isnad1 id=eq.0h1v.s4.8e56b4d61224 from=translated src=- shape=67a130e9 vocab=0838a38f
+-/
 lemma A_sum (i : Fin n) : (A i).sum id = 16915 := by
   simp only [A]
   rw [Finset.sum_image fun _ h₁ _ h₂ h => row_image_inj h₁ h₂ h]
@@ -68,16 +83,25 @@ lemma A_sum (i : Fin n) : (A i).sum id = 16915 := by
   have hi := i.isLt; simp only [n] at hi
   lia
 
+/--
+@isnad1 id=injectiv.0h0v.s2.333a6c208997 from=translated src=- shape=4eb27e00 vocab=aa6305c3
+-/
 lemma A_injective : Function.Injective A := by
   intro i₁ i₂ h
   have : row 0 i₁ ∈ A i₂ := h ▸ Finset.mem_image.mpr ⟨0, by simp, rfl⟩
   obtain ⟨j, hj, h_eq⟩ := Finset.mem_image.mp this
   exact ((row_inj (by lia) (Finset.mem_range.mp hj)).1 h_eq.symm).2
 
+/--
+@isnad1 id=le.0h1v.s4.b956da6e0c81 from=translated src=- shape=ddd79967 vocab=3a861f54
+-/
 lemma A_le_S (i : Fin n) : A i ≤ S := by
   intro x hx; obtain ⟨j, _, rfl⟩ := Finset.mem_image.mp hx
   unfold row; rw [S]; split_ifs <;> (simp [n] at *; lia)
 
+/--
+@isnad1 id=disjoint.1h2v.s4.8eadf483e4ec from=translated src=- shape=0ec0d7a6 vocab=719037d4
+-/
 lemma A_disjoint {i₁ i₂ : Fin n} (h : i₁ ≠ i₂) : Disjoint (A i₁) (A i₂) := by
   rw [Finset.disjoint_left]
   rintro _ hx hy

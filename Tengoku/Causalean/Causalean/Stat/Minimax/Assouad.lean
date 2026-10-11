@@ -29,11 +29,15 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {d : ℕ}
 def flipBit (j : Fin d) (τ : Fin d → Bool) : Fin d → Bool :=
   Function.update τ j (!τ j)
 
-/-- Flipping a coordinate changes that coordinate to the opposite Boolean value. -/
+/-- Flipping a coordinate changes that coordinate to the opposite Boolean value.
+@isnad1 id=eq.0h3v.s4.3bfbb04cc22b from=translated src=- shape=970cc171 vocab=1221e0b5
+-/
 @[simp] theorem flipBit_self (j : Fin d) (τ : Fin d → Bool) : flipBit j τ j = !τ j :=
   Function.update_self _ _ _
 
-/-- Flipping the same coordinate twice is the identity. -/
+/-- Flipping the same coordinate twice is the identity.
+@isnad1 id=involuti.0h2v.s3.69a99aebaba1 from=translated src=- shape=3c2f92b9 vocab=4db87226
+-/
 theorem flipBit_involutive (j : Fin d) : Function.Involutive (flipBit j) := by
   intro τ
   funext k
@@ -45,7 +49,9 @@ theorem flipBit_involutive (j : Fin d) : Function.Involutive (flipBit j) := by
 def flipPerm (j : Fin d) : Equiv.Perm (Fin d → Bool) :=
   ⟨flipBit j, flipBit j, flipBit_involutive j, flipBit_involutive j⟩
 
-/-- The coordinate-flip permutation acts by flipping that coordinate. -/
+/-- The coordinate-flip permutation acts by flipping that coordinate.
+@isnad1 id=eq.0h3v.s6.9926120fa62d from=translated src=- shape=b0a68855 vocab=fd4a14fe
+-/
 @[simp] theorem flipPerm_apply (j : Fin d) (τ : Fin d → Bool) :
     flipPerm j τ = flipBit j τ := rfl
 
@@ -58,14 +64,18 @@ variable (P : (Fin d → Bool) → Measure Ω) [∀ τ, IsProbabilityMeasure (P 
   (est : Ω → Fin d → Bool)
 
 /-- Coordinate-decoding error sets are measurable, being complements of the
-measurable level sets `{ω | est ω j = b}`. -/
+measurable level sets `{ω | est ω j = b}`.
+@isnad1 id=measurab.1h6v.s5.063219c07bf1 from=translated src=- shape=68f3ca7e vocab=fa4ad008
+-/
 theorem measurableSet_decode_ne (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est ω j = b})
     (j : Fin d) (b : Bool) : MeasurableSet {ω | est ω j ≠ b} := by
   have h : {ω | est ω j ≠ b} = {ω | est ω j = b}ᶜ := by ext ω; simp
   rw [h]; exact (hmeas j b).compl
 
 /-- The `j`-th decoding-error set at the flipped vertex is the complement of the
-one at `τ`: the estimator's `j`-th bit either matches `τ j` or its flip, never both. -/
+one at `τ`: the estimator's `j`-th bit either matches `τ j` or its flip, never both.
+@isnad1 id=eq.0h5v.s5.69cdf0854c16 from=translated src=- shape=0175bb73 vocab=fabc4b7c
+-/
 theorem decode_ne_flip_compl (j : Fin d) (τ : Fin d → Bool) :
     {ω | est ω j ≠ (flipBit j τ) j} = {ω | est ω j ≠ τ j}ᶜ := by
   have boollem : ∀ a b : Bool, (a ≠ !b) ↔ (a = b) := by decide
@@ -75,7 +85,9 @@ theorem decode_ne_flip_compl (j : Fin d) (τ : Fin d → Bool) :
 
 /-- **Per-coordinate pair bound.** For each vertex `τ`, the coordinate-`j` error mass
 at `τ` plus the one at its `j`-flip is at least `1 − tvDist (P τ) (P (flip j τ))`.
-This is the two-point testing bound applied to the `j`-th decoded bit. -/
+This is the two-point testing bound applied to the `j`-th decoded bit.
+@isnad1 id=le.1h7v.s7.4b45393dfe5e from=translated src=- shape=169e0096 vocab=e03293e5
+-/
 theorem hammingRisk_pair_ge (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est ω j = b})
     (j : Fin d) (τ : Fin d → Bool) :
     1 - tvDist (P τ) (P (flipBit j τ))
@@ -87,7 +99,9 @@ theorem hammingRisk_pair_ge (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est �
 
 /-- **Per-coordinate lower bound.** Summed over the cube, the coordinate-`j` error mass
 is at least half the cube-sum of `1 − tvDist (P τ) (P (flip j τ))`, via pairing each
-vertex with its `j`-flip (an involution that preserves the sum). -/
+vertex with its `j`-flip (an involution that preserves the sum).
+@isnad1 id=le.1h6v.s7.396d8b781ef4 from=translated src=- shape=9b8f009d vocab=02a53118
+-/
 theorem sum_decode_ge (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est ω j = b})
     (j : Fin d) :
     ∑ τ, (1 - tvDist (P τ) (P (flipBit j τ)))
@@ -110,7 +124,9 @@ theorem sum_decode_ge (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est ω j = 
 measurable](hyp:hmeas). If [every hypercube vertex's law is within total variation `β` of each of
 its `d` neighbouring vertices' laws](hyp:hβ), then [the average Hamming risk over the cube is at
 least `(d / 2)(1 − β)`](goal). Choosing the dimension `d` large and the per-coordinate divergence
-`β` small forces a large number of mis-decoded coordinates. -/
+`β` small forces a large number of mis-decoded coordinates.
+@isnad1 id=le.2h6v.s7.86344e4b6ce8 from=translated src=- shape=a575d408 vocab=068297d3
+-/
 theorem assouad_average (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est ω j = b})
     {β : ℝ} (hβ : ∀ j τ, tvDist (P τ) (P (flipBit j τ)) ≤ β) :
     (d / 2 : ℝ) * (1 - β)
@@ -149,7 +165,9 @@ theorem assouad_average (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est ω j 
 decoded-bit event is measurable](hyp:hmeas) and [every vertex's law is within total variation
 `β` of each of its `d` neighbours](hyp:hβ) — [some vertex `τ` forces Hamming risk at least
 `(d / 2)(1 − β)`](goal): no cube estimator can decode every vertex's coordinates reliably when
-neighbouring laws are statistically close. -/
+neighbouring laws are statistically close.
+@isnad1 id=ex.2h6v.s7.0db0d2097c7b from=translated src=- shape=f3f2464e vocab=e4f73385
+-/
 theorem assouad_exists (hmeas : ∀ j (b : Bool), MeasurableSet {ω | est ω j = b})
     {β : ℝ} (hβ : ∀ j τ, tvDist (P τ) (P (flipBit j τ)) ≤ β) :
     ∃ τ, (d / 2 : ℝ) * (1 - β) ≤ hammingRisk P est τ := by
@@ -178,7 +196,9 @@ open Causalean.Mathlib.Analysis.IntervalArithmetic.FiniteSearch
 /-- Given [a finite family of parameter vertices](hyp:θ), [a measurable parameter-valued
 estimator](hyp:θhat,hθhat), [there exists a measurable, deterministically tie-broken nearest-vertex
 decoder](goal): at every observation its chosen vertex is no farther from the estimator than any
-competing vertex. -/
+competing vertex.
+@isnad1 id=ex.1h6v.s6.144a286044f6 from=translated src=- shape=c5c9c2a1 vocab=ad82407d
+-/
 theorem exists_measurable_nearestVertex
     {Θ : Type*} [PseudoMetricSpace Θ] [MeasurableSpace Θ] [BorelSpace Θ]
     (θ : (Fin d → Bool) → Θ) (θhat : Ω → Θ) (hθhat : Measurable θhat) :
@@ -226,7 +246,9 @@ total variation at most `β`](hyp:hβ), then [some vertex has expected metric lo
 
 This is Tsybakov (2009), Theorem 2.12.  The factor-two separation is the theorem's
 standard convention; it is what converts a decoding error into loss at least `s`.
-The extended-valued risk requires no integrability assumption. -/
+The extended-valued risk requires no integrability assumption.
+@isnad1 id=ex.5h10v.s8.53443603f50b from=translated src=- shape=00622a57 vocab=165e0a0b
+-/
 theorem assouad_parameter_risk
     {Θ : Type*} [PseudoMetricSpace Θ] [MeasurableSpace Θ] [BorelSpace Θ]
     (P : (Fin d → Bool) → Measure Ω) [∀ τ, IsProbabilityMeasure (P τ)]
@@ -326,7 +348,9 @@ theorem assouad_parameter_risk
 scale](hyp:hs), and [a measurable parameter estimator](hyp:θhat,hθhat), if [vertices are
 separated by twice the scale times Hamming distance](hyp:hsep) and [neighboring laws have total
 variation at most `β`](hyp:hβ), then [some vertex has expected metric loss at least
-`(d*s/2)(1-β)`](goal). -/
+`(d*s/2)(1-β)`](goal).
+@isnad1 id=ex.4h9v.s8.d249428fec10 from=translated src=- shape=d990c15c vocab=7471cc1f
+-/
 theorem assouad_parameter_risk_of_measurable
     {Θ : Type*} [PseudoMetricSpace Θ] [MeasurableSpace Θ] [BorelSpace Θ]
     (P : (Fin d → Bool) → Measure Ω) [∀ τ, IsProbabilityMeasure (P τ)]

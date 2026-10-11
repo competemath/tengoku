@@ -46,25 +46,35 @@ abbrev initial (n : ℕ) [NeZero n] : State n := (fun _ => true, 0)
 abbrev lampsAfter (n : ℕ) [NeZero n] (t : ℕ) : Fin n → Bool :=
   (step^[t] (initial n)).1
 
-/-- For a fixed condition `c`, the map `v ↦ (if c then !v else v)` is injective. -/
+/-- For a fixed condition `c`, the map `v ↦ (if c then !v else v)` is injective.
+@isnad1 id=injectiv.0h1v.s4.ccfa95129f1d from=translated src=- shape=9ce91575 vocab=0a35df26
+-/
 lemma toggle_inj (c : Bool) :
     Function.Injective (fun v : Bool => if c then !v else v) := by
   intro a b h
   cases c <;> cases a <;> cases b <;> simp_all
 
-/-- Toggling a lamp according to condition `c` is xor with `c`. -/
+/-- Toggling a lamp according to condition `c` is xor with `c`.
+@isnad1 id=eq.0h2v.s4.55a37429478f from=translated src=- shape=e1e0b82d vocab=13b4f05e
+-/
 lemma bool_toggle (c v : Bool) : (if c then !v else v) = (c ^^ v) := by
   cases c <;> simp
 
-/-- The lamp component of one step. -/
+/-- The lamp component of one step.
+@isnad1 id=eq.0h2v.s7.1e3c5ef4ef27 from=translated src=- shape=04b01947 vocab=db5149d9
+-/
 lemma step_lamps {n : ℕ} [NeZero n] (s : State n) :
     (step s).1 = Function.update s.1 s.2 (if s.1 (s.2 - 1) then !s.1 s.2 else s.1 s.2) :=
   rfl
 
-/-- The position component of one step. -/
+/-- The position component of one step.
+@isnad1 id=eq.0h2v.s5.a6fd2cbb3723 from=translated src=- shape=9c232761 vocab=4f261a89
+-/
 lemma step_pos {n : ℕ} [NeZero n] (s : State n) : (step s).2 = s.2 + 1 := rfl
 
-/-- After `t` steps the position is `t` (modulo `n`). -/
+/-- After `t` steps the position is `t` (modulo `n`).
+@isnad1 id=eq.0h2v.s5.329520d3ebc0 from=translated src=- shape=4ac79846 vocab=69a429b2
+-/
 lemma pos_after (n : ℕ) [NeZero n] (t : ℕ) :
     (step^[t] (initial n)).2 = ((t : ℕ) : Fin n) := by
   induction t with
@@ -77,7 +87,9 @@ lemma pos_after (n : ℕ) [NeZero n] (t : ℕ) :
 
 /-- The step map is injective: a state has exactly one precursor. Indeed, the new
 position tells us which lamp was just considered, and whether it was toggled is
-recorded in the (unchanged) previous lamp. -/
+recorded in the (unchanged) previous lamp.
+@isnad1 id=injectiv.1h1v.s4.9d0ece490133 from=translated src=- shape=80268188 vocab=0219d5aa
+-/
 lemma step_injective {n : ℕ} [NeZero n] (hn : 1 < n) :
     Function.Injective (step : State n → State n) := by
   rintro ⟨L, p⟩ ⟨M, q⟩ h
@@ -119,7 +131,9 @@ lemma step_injective {n : ℕ} [NeZero n] (hn : 1 < n) :
 
 /-- The process is periodic: some positive iterate of `step` fixes the initial state.
 This is because `step` is an injective (hence bijective) self-map of a finite set, so
-it has finite order as a permutation. -/
+it has finite order as a permutation.
+@isnad1 id=ex.1h1v.s5.2c3ad66acd04 from=translated src=- shape=870327e4 vocab=25e80fe3
+-/
 lemma step_periodic (n : ℕ) [NeZero n] (hn : 1 < n) :
     ∃ M : ℕ, 0 < M ∧ step^[M] (initial n) = initial n := by
   have hinj : Function.Injective (step : State n → State n) := step_injective hn
@@ -134,7 +148,9 @@ lemma step_periodic (n : ℕ) [NeZero n] (hn : 1 < n) :
 
 /-- Generic final phase: if after `n * (n - 1)` steps only the last lamp `L_{n-1}`
 is on, then the lamps are turned on one by one and after `n² - 1` steps they are all
-on again. -/
+on again.
+@isnad1 id=eq.2h2v.s6.dcfc818d82cc from=translated src=- shape=1ae0715f vocab=7579eb33
+-/
 lemma all_on_of_last_only {n : ℕ} [NeZero n] (hn : 1 < n)
     (h : ∀ i : Fin n, lampsAfter n (n * (n - 1)) i = decide (i.val = n - 1)) :
     ∀ i : Fin n, lampsAfter n (n ^ 2 - 1) i = true := by
@@ -219,7 +235,9 @@ lemma all_on_of_last_only {n : ℕ} [NeZero n] (hn : 1 < n)
   have := i.isLt
   lia
 
-/-- If the lamp checked at a step is off, the step leaves all lamps unchanged. -/
+/-- If the lamp checked at a step is off, the step leaves all lamps unchanged.
+@isnad1 id=eq.1h2v.s6.527e2c20b4c6 from=translated src=- shape=9bfebe54 vocab=6da54250
+-/
 lemma step_lamps_eq_of_pred_off {n : ℕ} [NeZero n] {s : State n}
     (h : s.1 (s.2 - 1) = false) : (step s).1 = s.1 := by
   rw [step_lamps]
@@ -230,7 +248,9 @@ lemma step_lamps_eq_of_pred_off {n : ℕ} [NeZero n] {s : State n}
     simp
   · rw [Function.update_of_ne hi]
 
-/-- If the lamp checked at a step is on, the step flips the current lamp. -/
+/-- If the lamp checked at a step is on, the step flips the current lamp.
+@isnad1 id=eq.1h3v.s6.3479fe168a80 from=translated src=- shape=1ed961f1 vocab=41d38b5b
+-/
 lemma step_lamps_toggle {n : ℕ} [NeZero n] {s : State n}
     (h : s.1 (s.2 - 1) = true) (i : Fin n) :
     (step s).1 i = (if i = s.2 then !s.1 i else s.1 i) := by
@@ -243,7 +263,9 @@ lemma step_lamps_toggle {n : ℕ} [NeZero n] {s : State n}
 
 /-- Generic final phase for the `n = 2ᵏ + 1` case: if after `n * (n - 2)` steps only
 lamp `L₁` is on, then after two idle steps the lamps `L₂, L₃, …, L_{n-1}, L₀` are
-turned on one by one, and after `n² - n + 1` steps they are all on again. -/
+turned on one by one, and after `n² - n + 1` steps they are all on again.
+@isnad1 id=eq.2h2v.s6.9140875ff7ac from=translated src=- shape=d0c57a84 vocab=315b824b
+-/
 lemma all_on_of_lamp1_only {n : ℕ} [NeZero n] (hn : 2 < n)
     (h : ∀ i : Fin n, lampsAfter n (n * (n - 2)) i = decide (i.val = 1)) :
     ∀ i : Fin n, lampsAfter n (n ^ 2 - n + 1) i = true := by
@@ -375,20 +397,40 @@ def zinit (n : ℕ) [NeZero n] : (Fin n → ZMod 2) × Fin n := (fun _ => 1, 0)
 
 def z2b (a : ZMod 2) : Bool := decide (a = 1)
 
+/--
+@isnad1 id=eq.0h0v.s5.e585d8ed5c9f from=translated src=- shape=fdee698a vocab=26fee378
+-/
 lemma z2b_one : z2b 1 = true := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.543bc37b0ff8 from=translated src=- shape=fdee698a vocab=326c3201
+-/
 lemma z2b_zero : z2b 0 = false := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.fbc75dc47ff0 from=translated src=- shape=37eadb49 vocab=f0436a93
+-/
 lemma z2b_add : ∀ a b : ZMod 2, (if z2b b then !z2b a else z2b a) = z2b (a + b) := by decide
 
+/--
+@isnad1 id=eq.0h1v.s7.dd8a2a9e100c from=translated src=- shape=3d23854a vocab=014cf724
+-/
 lemma zadd_self : ∀ a : ZMod 2, a + a = 0 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s7.6ce499010dad from=translated src=- shape=21086a1f vocab=014cf724
+-/
 lemma one_add_one_zmod : (1 : ZMod 2) + 1 = 0 := by decide
 
+/--
+@isnad1 id=eq.0h1v.s8.8742ea002ca8 from=translated src=- shape=f7bb0a39 vocab=014cf724
+-/
 lemma one_add_one_cancel (a : ZMod 2) : (1 + a) + 1 = a := by
   rw [add_assoc, ← add_left_comm a 1 1, one_add_one_zmod, add_zero]
 
-/-- The position after `t` steps. -/
+/-- The position after `t` steps.
+@isnad1 id=eq.0h4v.s6.c4f33882ec15 from=translated src=- shape=f09604a2 vocab=5b89063b
+-/
 lemma pos_lemma {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) (p : Fin n) (t : ℕ) :
     (zstep^[t] (x, p)).2 = p + (t : Fin n) := by
   have hn : 0 < n := NeZero.pos n
@@ -401,7 +443,9 @@ lemma pos_lemma {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) (p : Fin n) (t : ℕ
     show (zstep^[t] (x, p)).2 + 1 = p + ((t + 1 : ℕ) : Fin n)
     rw [ih, Nat.cast_succ, ← add_assoc]
 
-/-- Correspondence between the Bool process and the ZMod 2 process. -/
+/-- Correspondence between the Bool process and the ZMod 2 process.
+@isnad1 id=eq.0h2v.s6.a123045e0063 from=translated src=- shape=88d60edf vocab=2f07170d
+-/
 lemma glue {n : ℕ} [NeZero n] (t : ℕ) :
     (step^[t] (initial n)) =
       (fun i => z2b ((zstep^[t] (zinit n)).1 i), (zstep^[t] (zinit n)).2) := by
@@ -439,8 +483,14 @@ lemma glue {n : ℕ} [NeZero n] (t : ℕ) :
 /-- The last index of `Fin n`. -/
 def lasti (n : ℕ) [NeZero n] : Fin n := ⟨n - 1, by have := NeZero.pos n; lia⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.743a5fedaa2c from=translated src=- shape=ec3c1442 vocab=9a22d04b
+-/
 lemma lasti_val (n : ℕ) [NeZero n] : (lasti n).val = n - 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.45f0936f3b0a from=translated src=- shape=25431c0e vocab=3c1cd2be
+-/
 lemma zero_sub_one_eq_lasti (n : ℕ) [NeZero n] : ((0 : Fin n) - 1) = lasti n := by
   have hn := NeZero.pos n
   have hc : lasti n = ((n - 1 : ℕ) : Fin n) := by
@@ -463,19 +513,31 @@ def tot {n : ℕ} (x : Fin n → ZMod 2) : ZMod 2 := ∑ i, x i
 /-- The vector with only the last lamp on. -/
 def eFn (n : ℕ) [NeZero n] : Fin n → ZMod 2 := fun j => if j = lasti n then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s7.d4ae6b6586b1 from=translated src=- shape=04365328 vocab=9731264d
+-/
 lemma L_apply {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) (p : Fin n) :
     L x p = x (lasti n) + ∑ i ∈ Finset.range (p.val + 1), x ⟨i % n, Nat.mod_lt i (NeZero.pos n)⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.7b405fa012bd from=translated src=- shape=9b4324b7 vocab=2c0575fd
+-/
 lemma L_add {n : ℕ} [NeZero n] (a b : Fin n → ZMod 2) :
     L (a + b) = fun j => L a j + L b j := by
   funext j
   simp only [L_apply, Pi.add_apply, Finset.sum_add_distrib]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.d864d9026fd6 from=translated src=- shape=16f84e55 vocab=57477998
+-/
 lemma tot_add {n : ℕ} (a b : Fin n → ZMod 2) : tot (a + b) = tot a + tot b := by
   simp only [tot, Pi.add_apply, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h2v.s6.4da5b69b341c from=translated src=- shape=abf19c1d vocab=407d48cb
+-/
 lemma tot_eq {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) :
     tot x = ∑ i ∈ Finset.range n, x ⟨i % n, Nat.mod_lt i (NeZero.pos n)⟩ := by
   have h := Fin.sum_univ_eq_sum_range (fun i => x ⟨i % n, Nat.mod_lt i (NeZero.pos n)⟩) n
@@ -485,14 +547,23 @@ lemma tot_eq {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) :
   congr 1
   exact Fin.ext (Nat.mod_eq_of_lt i.isLt).symm
 
+/--
+@isnad1 id=eq.0h1v.s6.31bb8487715d from=translated src=- shape=e0c9c0ca vocab=0c7451ba
+-/
 lemma eFn_lasti {n : ℕ} [NeZero n] : eFn n (lasti n) = 1 := by
   simp [eFn]
 
+/--
+@isnad1 id=eq.0h1v.s6.8d079a1d45aa from=translated src=- shape=e0c9c0ca vocab=f40a7e1b
+-/
 lemma tot_eFn {n : ℕ} [NeZero n] : tot (eFn n) = 1 := by
   show (∑ i, (if i = lasti n then (1 : ZMod 2) else 0)) = 1
   rw [Finset.sum_ite_eq']
   simp
 
+/--
+@isnad1 id=eq.0h1v.s7.8109c0c4686c from=translated src=- shape=93c62c12 vocab=2c3789a4
+-/
 lemma L_eFn {n : ℕ} [NeZero n] : L (eFn n) = (fun _ => 1) + eFn n := by
   funext p
   rw [L_apply, eFn_lasti]
@@ -526,6 +597,9 @@ lemma L_eFn {n : ℕ} [NeZero n] : L (eFn n) = (fun _ => 1) + eFn n := by
 
 /-! ### The round lemma -/
 
+/--
+@isnad1 id=eq.1h3v.s6.beaf5f9150c7 from=translated src=- shape=348002ff vocab=96f6c32f
+-/
 lemma roundInv {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) (m : ℕ) (hm : m ≤ n) :
     (zstep^[m] (x, 0)).1 = fun j => if j.val < m then L x j else x j := by
   induction m with
@@ -593,7 +667,9 @@ lemma roundInv {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) (m : ℕ) (hm : m ≤
       · rw [ite_eq_left h2, ite_eq_left (by lia : j.val < m + 1)]
       · rw [ite_eq_right h2, ite_eq_right (by lia : ¬ j.val < m + 1)]
 
-/-- One full round of the process applies `L` and returns to position `0`. -/
+/-- One full round of the process applies `L` and returns to position `0`.
+@isnad1 id=eq.0h2v.s6.ae9f9e86f9ff from=translated src=- shape=c7aac6b0 vocab=3d22e2ee
+-/
 lemma round {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) :
     zstep^[n] (x, 0) = (L x, (0 : Fin n)) := by
   apply Prod.ext
@@ -603,6 +679,9 @@ lemma round {n : ℕ} [NeZero n] (x : Fin n → ZMod 2) :
     rw [ite_eq_left j.isLt]
   · rw [pos_lemma, Fin.natCast_self, add_zero]
 
+/--
+@isnad1 id=eq.0h2v.s7.d856c349fc01 from=translated src=- shape=63b1184c vocab=e0042f2e
+-/
 lemma aux {n : ℕ} [NeZero n] (m : ℕ) :
     (zstep^[n])^[m] (zinit n) = (L^[m] (fun _ => 1), (0 : Fin n)) := by
   induction m with
@@ -616,6 +695,9 @@ lemma aux {n : ℕ} [NeZero n] (m : ℕ) :
 def cat {n : ℕ} (y z : Fin n → ZMod 2) : Fin (n + n) → ZMod 2 :=
   fun i => if h : i.val < n then y ⟨i.val, h⟩ else z ⟨i.val - n, by have h2 := i.isLt; lia⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.43af45a56059 from=translated src=- shape=07bd25f5 vocab=3dc7cc49
+-/
 lemma tot_cat {n : ℕ} [NeZero n] (y z : Fin n → ZMod 2) :
     tot (cat y z) = tot y + tot z := by
   have : NeZero (n + n) := ⟨by have := NeZero.ne n; lia⟩
@@ -662,6 +744,9 @@ lemma tot_cat {n : ℕ} [NeZero n] (y z : Fin n → ZMod 2) :
     lia
   rw [hleft, hright]
 
+/--
+@isnad1 id=eq.0h3v.s8.84c8c04ffe48 from=translated src=- shape=5e2f8e22 vocab=c2a9e1cf
+-/
 lemma catL {n : ℕ} [NeZero n] (y z : Fin n → ZMod 2) :
     L (cat y z) = cat (fun j => L y j + (y (lasti n) + z (lasti n)))
       (fun j => L z j + tot y) := by
@@ -778,6 +863,9 @@ def C (n : ℕ) [NeZero n] : Prop :=
 def D (n : ℕ) [NeZero n] : Prop :=
   ∀ m, 1 ≤ m → m ≤ n - 1 → (L^[m] ((fun _ => 1) : Fin n → ZMod 2)) ⟨n - 2, by have := NeZero.pos n; lia⟩ = 0
 
+/--
+@isnad1 id=and.0h0v.s4.b0dbcabe5314 from=translated src=- shape=1475d519 vocab=c15f7d8a
+-/
 lemma base_case : A 2 ∧ B 2 ∧ C 2 ∧ D 2 := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · show L^[2 - 1] (fun _ => 1) = eFn 2
@@ -796,6 +884,9 @@ lemma base_case : A 2 ∧ B 2 ∧ C 2 ∧ D 2 := by
     intro m h1 hm
     interval_cases m; decide
 
+/--
+@isnad1 id=and.5h1v.s6.911651d0f7a0 from=translated src=- shape=504e5ad8 vocab=6410cba6
+-/
 lemma stepLemma (n : ℕ) [NeZero n] (h2 : 2 ≤ n) (hA : A n) (hB : B n) (hC : C n)
     (hD : D n) :
     A (n + n) ∧ B (n + n) ∧ C (n + n) ∧ D (n + n) := by
@@ -993,6 +1084,9 @@ lemma stepLemma (n : ℕ) [NeZero n] (h2 : 2 ≤ n) (hA : A n) (hB : B n) (hC : 
         have hc' : n - 2 = n - 1 := Fin.ext_iff.mp hc
         lia)]
 
+/--
+@isnad1 id=and.2h2v.s5.0b813f7e92eb from=translated src=- shape=698d4547 vocab=3699b2bd
+-/
 theorem core (k : ℕ) (hk : 1 ≤ k) : ∀ (n : ℕ) [NeZero n], n = 2 ^ k → A n ∧ B n ∧ C n ∧ D n := by
   induction k with
   | zero => exact absurd hk (by decide)
@@ -1012,6 +1106,9 @@ theorem core (k : ℕ) (hk : 1 ≤ k) : ∀ (n : ℕ) [NeZero n], n = 2 ^ k → 
         have h22 : (2 : ℕ) ^ 1 ≤ 2 ^ (k' + 1) := Nat.pow_le_pow_right (by decide) (by lia)
         rwa [pow_one] at h22) ih2.1 ih2.2.1 ih2.2.2.1 ih2.2.2.2
 
+/--
+@isnad1 id=eq.2h3v.s6.d86c93726f91 from=translated src=- shape=051ba3ff vocab=62bce30e
+-/
 theorem last_lamp_only_of_two_pow (n k : ℕ) [NeZero n] (hk : 0 < k) (hn : n = 2 ^ k) :
     ∀ i : Fin n, lampsAfter n (n * (n - 1)) i = decide (i.val = n - 1) := by
   subst hn
@@ -1045,7 +1142,9 @@ def cStateVec {n' : ℕ} [NeZero n'] (x : Fin n' → ZMod 2) : Fin (n' + 1) → 
 
 /-- One round of the `n'+1`-process maps a shifted state to the shifted state of `L x`,
 provided `x`'s last-but-one lamp is off (so lamp 0 stays off) and `x`'s last lamp is on
-(so lamp 2's wrap-around toggle matches lamp 0 of the `n'`-process). -/
+(so lamp 2's wrap-around toggle matches lamp 0 of the `n'`-process).
+@isnad1 id=eq.3h2v.s7.2fb94ddd164e from=translated src=- shape=8f5d8c01 vocab=54172006
+-/
 lemma LcState {n' : ℕ} [NeZero n'] [NeZero (n' + 1)] (h2 : 2 ≤ n') (x : Fin n' → ZMod 2)
     (hα : x ⟨n' - 2, by have := NeZero.pos n'; lia⟩ = 0) (hβ : x (lasti n') = 1) :
     L (cStateVec x) = cStateVec (L x) := by
@@ -1126,7 +1225,9 @@ lemma LcState {n' : ℕ} [NeZero n'] [NeZero (n' + 1)] (h2 : 2 ≤ n') (x : Fin 
           lia
         rw [Finset.sum_congr rfl hconv]
       rw [hsplit, hf0, hf1, zero_add]
-/-- One round from the all-on state gives the alternating vector. -/
+/-- One round from the all-on state gives the alternating vector.
+@isnad1 id=eq.0h1v.s7.6c552497b89d from=translated src=- shape=d79826ea vocab=89c8630c
+-/
 lemma L_one {n : ℕ} [NeZero n] :
     L ((fun _ => (1 : ZMod 2)) : Fin n → ZMod 2) = fun p => (p.val : ZMod 2) := by
   funext p
@@ -1139,7 +1240,9 @@ lemma L_one {n : ℕ} [NeZero n] :
   rw [Nat.cast_succ, ← add_assoc, one_add_one_cancel]
 
 /-- The round-level invariant of part (c): after `m` rounds (`1 ≤ m ≤ 2^k - 1`), the
-`(2^k+1)`-process is in shifted form. -/
+`(2^k+1)`-process is in shifted form.
+@isnad1 id=eq.3h2v.s8.42ed9c4f30c9 from=translated src=- shape=7759c93e vocab=335aa679
+-/
 lemma invC (k : ℕ) (hk : 1 ≤ k) :
     ∀ m, 1 ≤ m → m ≤ 2 ^ k - 1 →
       L^[m] ((fun _ => (1 : ZMod 2)) : Fin (2 ^ k + 1) → ZMod 2)
@@ -1190,7 +1293,9 @@ lemma invC (k : ℕ) (hk : 1 ≤ k) :
         hcore.2.2.1 (m' + 1) (by lia)
       rw [LcState h22 _ hα hβ]
 
-/-- The shifted state of `eFn (2^k)` is exactly "only lamp 1 on". -/
+/-- The shifted state of `eFn (2^k)` is exactly "only lamp 1 on".
+@isnad1 id=eq.1h1v.s8.9ad557f6a4f5 from=translated src=- shape=94433887 vocab=e56495f1
+-/
 lemma cState_eFn (k : ℕ) (hk : 1 ≤ k) :
     cStateVec (eFn (2 ^ k)) = fun i => if i.val = 1 then (1 : ZMod 2) else 0 := by
   have : NeZero (2 ^ k) := ⟨pow_ne_zero _ (by decide)⟩
@@ -1215,6 +1320,9 @@ lemma cState_eFn (k : ℕ) (hk : 1 ≤ k) :
       lia
     · rw [dite_eq_right h2]
 
+/--
+@isnad1 id=eq.2h3v.s6.015642d15d73 from=translated src=- shape=a1b1bb66 vocab=404b47ed
+-/
 theorem lamp1_only_of_two_pow_add_one (n k : ℕ) [NeZero n] (hk : 0 < k) (hn : n = 2 ^ k + 1) :
     ∀ i : Fin n, lampsAfter n (n * (n - 2)) i = decide (i.val = 1) := by
   subst hn

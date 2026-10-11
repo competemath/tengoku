@@ -19,7 +19,9 @@ namespace Causalean.Stat.Minimax.Mixture.MomentMatched.BoundedMultivariate
   continuous. Mathlib's `Set.Finite.isCompact_convexHull` handles finite
   sets only; it does not apply directly to the feature range. -/
 
-/-- The [compact set](hyp:hS) in a finite-dimensional real normed space has [a compact convex hull](goal). -/
+/-- The [compact set](hyp:hS) in a finite-dimensional real normed space has [a compact convex hull](goal).
+@isnad1 id=iscompac.1h2v.s6.c772245a22d2 from=translated src=- shape=a750a729 vocab=c01d8496
+-/
 theorem isCompact_convexHull_finiteDimensional
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {S : Set E} (hS : IsCompact S) :

@@ -21,7 +21,9 @@ variable {n : ℕ} {X : Type*} {Z : Fin n → Type*}
 
 /-- Given [a sequential kernel family](hyp:Q), [a fixed input vector](hyp:x), [a prefix
 length](hyp:k), and [a successor bound](hyp:hk), [the next prefix law is the composition-product
-of the preceding prefix and current kernel, pushed forward by appending](goal). -/
+of the preceding prefix and current kernel, pushed forward by appending](goal).
+@isnad1 id=eq.1h6v.s8.3b8ef7864e91 from=translated src=- shape=6f70030c vocab=88b0a35f
+-/
 theorem prefixLaw_succ (Q : KernelFamily X Z) (x : Fin n → X) (k : ℕ)
     (hk : k + 1 ≤ n) :
     prefixLaw Q x (k + 1) hk =
@@ -33,7 +35,9 @@ theorem prefixLaw_succ (Q : KernelFamily X Z) (x : Fin n → X) (k : ℕ)
 
 /-- Given [a sequential kernel family](hyp:Q), [a fixed input vector](hyp:x), [a prefix
 length](hyp:k), and [a successor bound](hyp:hk), [splitting the next prefix into its preceding
-history and final output yields the composition-product law](goal). -/
+history and final output yields the composition-product law](goal).
+@isnad1 id=eq.1h6v.s8.54435b77594c from=translated src=- shape=3b6c741f vocab=be55b023
+-/
 theorem prefixLaw_succ_map_init_last (Q : KernelFamily X Z) (x : Fin n → X)
     (k : ℕ) (hk : k + 1 ≤ n) :
     (prefixLaw Q x (k + 1) hk).map (fun u => (init hk u, last hk u)) =
@@ -57,7 +61,9 @@ theorem prefixLaw_succ_map_init_last (Q : KernelFamily X Z) (x : Fin n → X)
 
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), [a fixed input vector](hyp:x), [a prefix length](hyp:k), and [a successor
-bound](hyp:hk), [forgetting the final output recovers the preceding prefix law](goal). -/
+bound](hyp:hk), [forgetting the final output recovers the preceding prefix law](goal).
+@isnad1 id=eq.2h6v.s7.0886f6a0a42f from=translated src=- shape=69e9e891 vocab=675a9885
+-/
 theorem prefixLaw_succ_map_init (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X)
     (k : ℕ) (hk : k + 1 ≤ n) :
@@ -85,7 +91,9 @@ noncomputable abbrev transcriptLaw (Q : KernelFamily X Z) (x : Fin n → X) :
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), [a fixed input vector](hyp:x), [a target prefix bound](hyp:hk), [a source prefix
 bound](hyp:hl), and [an ordering of their lengths](hyp:hkl), [restricting the longer prefix law
-recovers the shorter prefix law](goal). -/
+recovers the shorter prefix law](goal).
+@isnad1 id=eq.4h7v.s7.c86d86ba7512 from=translated src=- shape=1a150f9a vocab=a0445cb5
+-/
 theorem prefixLaw_map_restrictHistory (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X)
     {k l : ℕ} (hk : k ≤ n) (hl : l ≤ n) (hkl : k ≤ l) :
@@ -132,7 +140,9 @@ theorem prefixLaw_map_restrictHistory (Q : KernelFamily X Z)
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), [a fixed input vector](hyp:x), [a prefix length](hyp:k), and [evidence that the
 prefix lies within the horizon](hyp:hk), [the complete transcript law has the recursively
-constructed prefix law as its prefix marginal](goal). -/
+constructed prefix law as its prefix marginal](goal).
+@isnad1 id=eq.2h6v.s7.272fe31a5b72 from=translated src=- shape=2535ffe3 vocab=910558f8
+-/
 theorem transcriptLaw_map_prefix (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X)
     (k : ℕ) (hk : k ≤ n) :
@@ -147,7 +157,9 @@ theorem transcriptLaw_map_prefix (Q : KernelFamily X Z)
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), [a fixed input vector](hyp:x), [a prefix length](hyp:k), and [a successor
 bound](hyp:hk), [the prefix jointly with its next output has the stated composition-product
-law](goal). -/
+law](goal).
+@isnad1 id=eq.2h6v.s8.43f9ecfd2c7b from=translated src=- shape=b6401344 vocab=c7c36189
+-/
 theorem transcriptLaw_map_take_next (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X)
     (k : ℕ) (hk : k + 1 ≤ n) :
@@ -176,7 +188,9 @@ theorem transcriptLaw_map_take_next (Q : KernelFamily X Z)
 
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), and [a fixed input vector](hyp:x), [the complete transcript law has total mass
-one](goal). -/
+one](goal).
+@isnad1 id=isprobab.1h5v.s6.c1786597b3c5 from=translated src=- shape=24920a4f vocab=328eab12
+-/
 theorem isProbabilityMeasure_transcriptLaw (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X) :
     IsProbabilityMeasure (transcriptLaw Q x) := by

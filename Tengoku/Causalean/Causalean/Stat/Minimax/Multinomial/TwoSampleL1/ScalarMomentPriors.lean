@@ -36,7 +36,9 @@ structure ScalarMomentPriors (L : ℕ) where
   abs_gap : (1 / 50 : ℝ) / (L : ℝ) ≤
     (∑ i, w₁ i * |node i|) - (∑ i, w₀ i * |node i|)
 
-/-- Given [a positive moment degree](hyp:L,hL), [a pair of finite probability priors on the unit interval that match all moments through that degree but separate absolute moments](goal) exists. -/
+/-- Given [a positive moment degree](hyp:L,hL), [a pair of finite probability priors on the unit interval that match all moments through that degree but separate absolute moments](goal) exists.
+@isnad1 id=nonempty.1h1v.s3.18594640804f from=translated src=- shape=c1538fc1 vocab=2cdc5b96
+-/
 theorem exists_scalarMomentPriors (L : ℕ) (hL : 0 < L) :
     Nonempty (ScalarMomentPriors L) := by
   classical

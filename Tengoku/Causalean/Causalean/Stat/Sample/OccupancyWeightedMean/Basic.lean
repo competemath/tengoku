@@ -173,14 +173,18 @@ noncomputable def occupancyDesignVarianceFactor {n : Nat} (group : Omega -> kapp
         else 0
     else 0
 
-/-- A [measurable group label](hyp:hgroup) has [measurable group fibers](goal). -/
+/-- A [measurable group label](hyp:hgroup) has [measurable group fibers](goal).
+@isnad1 id=measurab.1h4v.s5.c72d524924ad from=translated src=- shape=d0226f2a vocab=d2b6939e
+-/
 lemma measurableSet_groupEvent (group : Omega -> kappa) (hgroup : Measurable group)
     (k : kappa) : MeasurableSet (groupEvent group k) := by
   change MeasurableSet (group ⁻¹' {k})
   exact (measurableSet_singleton k).preimage hgroup
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) have [measurable joint
-arm/group fibers](goal). -/
+arm/group fibers](goal).
+@isnad1 id=measurab.2h6v.s5.a22e5b7dcf72 from=translated src=- shape=392d7aa7 vocab=38df6dfb
+-/
 lemma measurableSet_armGroupEvent (group : Omega -> kappa) (arm : Omega -> Bool)
     (hgroup : Measurable group) (harm : Measurable arm) (a : Bool) (k : kappa) :
     MeasurableSet (armGroupEvent group arm a k) := by
@@ -195,7 +199,9 @@ are measurable.
 
 This is the side-condition-free form of `Measurable.indicator` for these cells: it discharges
 the cell's own measurability, so the function-property tactics can apply it with nothing left
-over to prove. -/
+over to prove.
+@isnad1 id=measurab.3h8v.s6.6b9f8f738eb4 from=translated src=- shape=b479442e vocab=3d804761
+-/
 @[fun_prop]
 lemma measurable_armGroupEvent_indicator {beta : Type*} [MeasurableSpace beta] [Zero beta]
     (group : Omega -> kappa) (arm : Omega -> Bool)
@@ -205,7 +211,9 @@ lemma measurable_armGroupEvent_indicator {beta : Type*} [MeasurableSpace beta] [
   hf.indicator (measurableSet_armGroupEvent group arm hgroup harm a k)
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [the coordinatewise
-finite design measurable](goal). -/
+finite design measurable](goal).
+@isnad1 id=measurab.2h5v.s6.86e5bfa8c7db from=translated src=- shape=a28903e2 vocab=69ab9b68
+-/
 @[fun_prop]
 lemma measurable_sampleDesign {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (hgroup : Measurable group) (harm : Measurable arm) :
@@ -218,7 +226,9 @@ lemma measurable_sampleDesign {n : Nat} (group : Omega -> kappa)
       Measurable fun z : Fin n -> Omega => z i))
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [each fixed
-arm/group count measurable on a finite product sample](goal). -/
+arm/group count measurable on a finite product sample](goal).
+@isnad1 id=measurab.2h7v.s6.30e32a67db05 from=translated src=- shape=8d5d2fdf vocab=20d5ae02
+-/
 @[fun_prop]
 lemma measurable_groupArmCount {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (hgroup : Measurable group) (harm : Measurable arm)
@@ -231,7 +241,9 @@ lemma measurable_groupArmCount {n : Nat} (group : Omega -> kappa)
   exact hcount.comp (measurable_sampleDesign group arm hgroup harm)
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [each fixed group
-count measurable on the finite product sample space](goal). -/
+count measurable on the finite product sample space](goal).
+@isnad1 id=measurab.2h6v.s6.5f8d85e81d86 from=translated src=- shape=1e299a48 vocab=f5bfe058
+-/
 @[fun_prop]
 lemma measurable_groupCount {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (hgroup : Measurable group) (harm : Measurable arm)
@@ -244,7 +256,9 @@ lemma measurable_groupCount {n : Nat} (group : Omega -> kappa)
     (measurable_groupArmCount group arm hgroup harm true k)
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [the event that a
-fixed empirical group has both arms represented measurable](goal). -/
+fixed empirical group has both arms represented measurable](goal).
+@isnad1 id=measurab.2h6v.s6.fab10c5e7889 from=translated src=- shape=7abffdff vocab=a66c1e5c
+-/
 lemma measurableSet_usableGroup {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (hgroup : Measurable group) (harm : Measurable arm)
     (k : kappa) :
@@ -258,7 +272,9 @@ lemma measurableSet_usableGroup {n : Nat} (group : Omega -> kappa)
 has both arms represented, is measurable whenever both branches are and the group and arm
 labels are measurable.
 
-This is the side-condition-free form of `Measurable.ite` for the usable-group test. -/
+This is the side-condition-free form of `Measurable.ite` for the usable-group test.
+@isnad1 id=measurab.4h9v.s7.132b85985c71 from=translated src=- shape=0d819610 vocab=0f94c552
+-/
 @[fun_prop]
 lemma measurable_usableGroup_ite {n : Nat} {beta : Type*} [MeasurableSpace beta]
     (group : Omega -> kappa) (arm : Omega -> Bool)
@@ -270,7 +286,9 @@ lemma measurable_usableGroup_ite {n : Nat} {beta : Type*} [MeasurableSpace beta]
   Measurable.ite (measurableSet_usableGroup group arm hgroup harm k) hf hg
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [the total occupancy
-in empirically usable groups measurable](goal). -/
+in empirically usable groups measurable](goal).
+@isnad1 id=measurab.2h5v.s6.8f74dc640578 from=translated src=- shape=c429532c vocab=7a00382a
+-/
 @[fun_prop]
 lemma measurable_usableGroupTotal {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (hgroup : Measurable group) (harm : Measurable arm) :
@@ -283,7 +301,9 @@ lemma measurable_usableGroupTotal {n : Nat} (group : Omega -> kappa)
     (measurable_groupCount group arm hgroup harm k) measurable_const
 
 /-- A [measurable outcome](hyp:hY) makes [each arm/group-centered residual
-measurable](goal). -/
+measurable](goal).
+@isnad1 id=measurab.1h6v.s5.76a395ea7ace from=translated src=- shape=a95548a6 vocab=d84f85b0
+-/
 @[fun_prop]
 lemma measurable_armGroupResidual (Y : Omega -> Real)
     (center : Bool -> kappa -> Real) (hY : Measurable Y) (a : Bool) (k : kappa) :
@@ -293,7 +313,9 @@ lemma measurable_armGroupResidual (Y : Omega -> Real)
   exact hY.sub measurable_const
 
 /-- [Measurable group labels, arm labels, and outcomes](hyp:hgroup,harm,hY) make
-[each residual restricted to its own arm/group cell measurable](goal). -/
+[each residual restricted to its own arm/group cell measurable](goal).
+@isnad1 id=measurab.3h8v.s6.b0f9657051f2 from=translated src=- shape=c35da768 vocab=18858ce1
+-/
 @[fun_prop]
 lemma measurable_supportedArmGroupResidual (group : Omega -> kappa)
     (arm : Omega -> Bool) (Y : Omega -> Real)
@@ -306,7 +328,9 @@ lemma measurable_supportedArmGroupResidual (group : Omega -> kappa)
 
 /-- [Measurable group labels, arm labels, and outcomes](hyp:hgroup,harm,hY) make
 [each arm/group residual sum measurable on the finite product sample
-space](goal). -/
+space](goal).
+@isnad1 id=measurab.3h9v.s6.d4c092888a78 from=translated src=- shape=e8e02e6d vocab=8b641b25
+-/
 @[fun_prop]
 lemma measurable_armResidualSum {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (Y : Omega -> Real)
@@ -323,7 +347,9 @@ lemma measurable_armResidualSum {n : Nat} (group : Omega -> kappa)
 
 /-- [Measurable group labels, arm labels, and outcomes](hyp:hgroup,harm,hY) make
 [each zero-safe arm/group residual mean measurable on the finite product sample
-space](goal). -/
+space](goal).
+@isnad1 id=measurab.3h9v.s6.f95081dafeca from=translated src=- shape=e8e02e6d vocab=11264a2d
+-/
 @[fun_prop]
 lemma measurable_armResidualMean {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (Y : Omega -> Real)
@@ -345,7 +371,9 @@ lemma measurable_armResidualMean {n : Nat} (group : Omega -> kappa)
 
 /-- [Measurable group labels, arm labels, and outcomes](hyp:hgroup,harm,hY) make
 [the zero-safe occupancy-weighted residual measurable on the finite product
-sample space](goal). -/
+sample space](goal).
+@isnad1 id=measurab.3h8v.s6.d5225be4f5e4 from=translated src=- shape=254f9e46 vocab=00233aef
+-/
 @[fun_prop]
 lemma measurable_occupancyWeightedResidual {n : Nat} (mu : Measure Omega)
     (group : Omega -> kappa) (arm : Omega -> Bool) (Y : Omega -> Real)
@@ -383,7 +411,9 @@ lemma measurable_occupancyWeightedResidual {n : Nat} (mu : Measure Omega)
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [the zero-safe
 reciprocal usable occupancy measurable on the finite product sample
-space](goal). -/
+space](goal).
+@isnad1 id=measurab.2h5v.s6.85a762a90672 from=translated src=- shape=4391736a vocab=993cd994
+-/
 @[fun_prop]
 lemma measurable_inverseUsableGroupTotal {n : Nat} (group : Omega -> kappa)
     (arm : Omega -> Bool) (hgroup : Measurable group) (harm : Measurable arm) :
@@ -401,7 +431,9 @@ lemma measurable_inverseUsableGroupTotal {n : Nat} (group : Omega -> kappa)
 
 /-- [Measurable group and arm labels](hyp:hgroup,harm) make [the zero-safe
 occupancy design variance factor measurable on the finite product sample
-space](goal). -/
+space](goal).
+@isnad1 id=measurab.2h5v.s6.e34889aea429 from=translated src=- shape=4391736a vocab=374b624f
+-/
 @[fun_prop]
 lemma measurable_occupancyDesignVarianceFactor {n : Nat}
     (group : Omega -> kappa) (arm : Omega -> Bool)

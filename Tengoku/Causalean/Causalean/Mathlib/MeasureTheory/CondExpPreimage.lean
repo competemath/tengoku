@@ -28,7 +28,9 @@ integrals agree on every measurable preimage](hyp:hintegral).
 
 Global integrability of the second function supplies integrability on the finite
 conditioning events, while finiteness of the measure supplies the sigma-finiteness
-required by Mathlib's conditional-expectation uniqueness theorem. -/
+required by Mathlib's conditional-expectation uniqueness theorem.
+@isnad1 id=eventual.5h6v.s7.827662402955 from=translated src=- shape=fb8b054e vocab=281cc14c
+-/
 theorem condExp_eq_of_integral_preimage_eq
     {Omega D : Type*} [MeasurableSpace Omega] [MeasurableSpace D]
     (mu : Measure Omega) [IsFiniteMeasure mu]

@@ -80,7 +80,9 @@ noncomputable def optSlope (m1 m2 m3 : ℝ) : ℝ := (m1 * m2 - m3) / (m1 ^ 2 - 
 [first moment squared strictly below the second moment (positive variance)](hyp:h), [the
 regression objective, evaluated at the optimal intercept and slope
 `(optIntercept m1 m2 m3, optSlope m1 m2 m3)`, equals the closed-form residual
-`momentResidual m1 m2 m3 m4`](goal). -/
+`momentResidual m1 m2 m3 m4`](goal).
+@isnad1 id=eq.1h4v.s5.eb3054559f63 from=translated src=- shape=68328643 vocab=81f4fcaf
+-/
 theorem residualQuad_optimalCoeff (m1 m2 m3 m4 : ℝ) (h : m1 ^ 2 < m2) :
     residualQuad m1 m2 m3 m4 (optIntercept m1 m2 m3) (optSlope m1 m2 m3)
       = momentResidual m1 m2 m3 m4 := by
@@ -95,7 +97,9 @@ with `residualQuad_optimalCoeff` this shows `momentResidual` is the minimum
 `min_{b₀,b₁} ∫ (y² − b₀ − b₁ y)² dμ`.
 
 Certificate (CAS-verified): with `D = m₂ − m₁² > 0`,
-`residualQuad − momentResidual = (b₀ − b₀* + m₁ (b₁ − b₁*))² + D (b₁ − b₁*)² ≥ 0`. -/
+`residualQuad − momentResidual = (b₀ − b₀* + m₁ (b₁ − b₁*))² + D (b₁ − b₁*)² ≥ 0`.
+@isnad1 id=le.1h6v.s5.534f60629341 from=translated src=- shape=0c7f36a7 vocab=6b17622e
+-/
 theorem residualQuad_ge_momentResidual (m1 m2 m3 m4 b0 b1 : ℝ) (h : m1 ^ 2 < m2) :
     momentResidual m1 m2 m3 m4 ≤ residualQuad m1 m2 m3 m4 b0 b1 := by
   have hd : m1 ^ 2 - m2 ≠ 0 := by nlinarith
@@ -147,7 +151,9 @@ three-point law with moments `(t, q, M₃, M₄)` equals the closed form `moment
 particular `ρ(v)` is attained by an admissible law at second moment `q = v²`.
 
 This is a pure rational-function identity in `(t, q)` — the quartic is *not* needed here; it enters
-only through `momentEnvelope_hasDerivAt` as the stationarity condition selecting the maximizer. -/
+only through `momentEnvelope_hasDerivAt` as the stationarity condition selecting the maximizer.
+@isnad1 id=eq.3h2v.s5.3dc73a4dd508 from=translated src=- shape=2563a457 vocab=2120b8a8
+-/
 theorem extremalResidual_eq_envelope (t q : ℝ)
     (ht0 : t ≠ 0) (ht1 : t ≠ 1) (htq : t ^ 2 ≠ q) :
     momentResidual (extremalM1 t) q (extremalM3 t q) (extremalM4 t q) = momentEnvelope t q := by
@@ -167,7 +173,9 @@ theorem extremalResidual_eq_envelope (t q : ℝ)
 
 /-- **Stationarity / envelope FOC.** As a function of the support parameter `t`, the family residual
 `momentEnvelope t q` has derivative `envelopeQuartic t q / (4 t² (t − 1)²)`. Hence the quartic is
-exactly the numerator of `dρ/dt`, and the envelope's stationary points are its roots. -/
+exactly the numerator of `dρ/dt`, and the envelope's stationary points are its roots.
+@isnad1 id=hasderiv.2h2v.s7.5b6bb9b4bcde from=translated src=- shape=89b983ed vocab=24a67618
+-/
 theorem momentEnvelope_hasDerivAt (t q : ℝ) (ht0 : t ≠ 0) (ht1 : t ≠ 1) :
     HasDerivAt (fun s => momentEnvelope s q)
       (envelopeQuartic t q / (4 * t ^ 2 * (t - 1) ^ 2)) t := by
@@ -204,7 +212,9 @@ theorem momentEnvelope_hasDerivAt (t q : ℝ) (ht0 : t ≠ 0) (ht1 : t ≠ 1) :
   exact hderiv
 
 /-- At a root `t` of the quartic, the family residual `momentEnvelope · q` is stationary. The
-maximizing root `t = μᵥ ∈ (q, √q)` therefore realizes the envelope value `ρ(v)`. -/
+maximizing root `t = μᵥ ∈ (q, √q)` therefore realizes the envelope value `ρ(v)`.
+@isnad1 id=eq.3h2v.s6.4e3c33cf39bc from=translated src=- shape=2a20f34c vocab=facd3d10
+-/
 theorem momentEnvelope_stationary_of_quartic (t q : ℝ) (ht0 : t ≠ 0) (ht1 : t ≠ 1)
     (hquar : envelopeQuartic t q = 0) :
     deriv (fun s => momentEnvelope s q) t = 0 := by
@@ -254,7 +264,9 @@ noncomputable def crossMoment (m q m3 m4 : ℝ) : ℝ :=
 regression objective equals the envelope value minus the cross moment:
 `residualQuad m q m₃ m₄ b₀ b₁ = momentEnvelope m q − crossMoment m q m₃ m₄`. This is the
 moment-level form of the pointwise SOS certificate, a pure algebraic identity (`ring`) valid for
-`m ≠ 0`, `m ≠ 1`, `m² ≠ q`. -/
+`m ≠ 0`, `m ≠ 1`, `m² ≠ q`.
+@isnad1 id=eq.3h4v.s6.e2591ef80b36 from=translated src=- shape=6ad8c183 vocab=82c296f6
+-/
 theorem residualQuad_extremalCoeff_eq (m q m3 m4 : ℝ)
     (hm0 : m ≠ 0) (hm1 : m ≠ 1) (hmq : m ^ 2 ≠ q) :
     residualQuad m q m3 m4 (extremalCoeff0 m q) (extremalCoeff1 m q)
@@ -274,7 +286,9 @@ theorem residualQuad_extremalCoeff_eq (m q m3 m4 : ℝ)
 `[0,1]` with positive variance (`m² < q`) and nonnegative cross moment
 (`0 ≤ crossMoment m q m₃ m₄`, automatic for any law on `[0,1]`), the residual variance of regressing
 `y²` on `{1, y}` is at most the envelope value at the law's own first moment:
-`momentResidual m q m₃ m₄ ≤ momentEnvelope m q`. -/
+`momentResidual m q m₃ m₄ ≤ momentEnvelope m q`.
+@isnad1 id=le.4h4v.s6.e694107363b1 from=translated src=- shape=fbcbb757 vocab=838a009d
+-/
 theorem momentResidual_le_momentEnvelope (m q m3 m4 : ℝ)
     (hm0 : 0 < m) (hm1 : m < 1) (hmq : m ^ 2 < q)
     (hcross : 0 ≤ crossMoment m q m3 m4) :
@@ -294,7 +308,9 @@ Certificate (CAS-verified): with `D = 4 m u (m − 1)(u − 1) > 0` and
 `L = m u² − m u − q² + 2 q u + u³ − 2 u²`,
 `momentEnvelope u q − momentEnvelope m q = (u − m)² (−L) / D + ((u − m)/D) · envelopeQuartic u q`,
 where `L < 0` on the admissible region, so the right side is `≥ 0` once the quartic term
-vanishes. -/
+vanishes.
+@isnad1 id=le.7h3v.s6.2a5740430c18 from=translated src=- shape=d5e91735 vocab=d3280d64
+-/
 theorem momentEnvelope_le_root (m q u : ℝ)
     (hq0 : 0 < q) (hq1 : q < 1) (hqm : q ≤ m) (hmq : m ^ 2 < q)
     (hqu : q < u) (huq : u ^ 2 < q) (hroot : envelopeQuartic u q = 0) :
@@ -353,7 +369,9 @@ regressing `y²` on `{1, y}` under moments `(m, q, m3, m4)` is at most the envel
 
 This theorem combines the per-instance moment bound with envelope maximality. It does not by itself
 derive the cross-moment condition from a probability law on `[0,1]`, prove existence or uniqueness
-of the root, or state an attainment result. -/
+of the root, or state an attainment result.
+@isnad1 id=le.8h5v.s7.c6621ae922dc from=translated src=- shape=e5099448 vocab=83a1d03d
+-/
 theorem momentResidual_le_envelope (m q m3 m4 u : ℝ)
     (hq0 : 0 < q) (hq1 : q < 1) (hqm : q ≤ m) (hmq : m ^ 2 < q)
     (hcross : 0 ≤ crossMoment m q m3 m4)

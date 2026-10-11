@@ -19,7 +19,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 law](hyp:hFailure) and [censor times following a nonnegative time law](hyp:hCensor), [the
 expectation of a nonnegative measurable function of the sample](hyp:hF) [is unchanged when one
 subject's censor time is redrawn independently from the censor law](goal), as an extended
-nonnegative integral. -/
+nonnegative integral.
+@isnad1 id=eq.3h5v.s7.8f006ff7a43c from=translated src=- shape=f77f062f vocab=ac794acf
+-/
 theorem lintegral_resample_censor {n : ℕ}
     (failureLaw censorLaw : Measure ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -57,7 +59,9 @@ subject's censor time afresh from the censor law, holding the rest of the sample
 evaluating the payoff at the fresh time in the updated sample](goal), as extended nonnegative
 integrals.
 
-The payoff may depend on every subject's observed history. -/
+The payoff may depend on every subject's observed history.
+@isnad1 id=eq.3h6v.s8.7e64f3f2d5a0 from=translated src=- shape=d54978a9 vocab=27fde22f
+-/
 theorem lintegral_censor_event_resample {n : ℕ}
     (failureLaw censorLaw : Measure ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -98,7 +102,9 @@ theorem lintegral_censor_event_resample {n : ℕ}
 /-- Under independent sampling with [failure times following a nonnegative time
 law](hyp:hFailure) and independent [censor times whose law has the given (absolutely continuous)
 censor hazard](hyp:hazard,hHazard), [the event that two different subjects](hyp:hij) [share the same
-censor time has probability zero](goal). -/
+censor time has probability zero](goal).
+@isnad1 id=eq.3h6v.s6.2f0e4f0c1d00 from=translated src=- shape=a6f3cea7 vocab=9abbe810
+-/
 theorem distinct_censor_times_null {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)

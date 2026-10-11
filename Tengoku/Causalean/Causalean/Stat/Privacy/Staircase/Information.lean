@@ -62,7 +62,9 @@ postprocessing row, is the directional Fisher information of the release.
 
 At a zero-mass release atom, nonnegativity of the Markov masses forces its
 score numerator to vanish. At positive mass, cancel the denominator in the
-definition of `releaseScore`, then use that `R.K S` is a probability measure. -/
+definition of `releaseScore`, then use that `R.K S` is a probability measure.
+@isnad1 id=eq.1h6v.s8.3d9b459c6340 from=translated src=- shape=4a44b022 vocab=70a6f750
+-/
 theorem finite_score_second_moment (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (R : Refinement Q r) (p u : Fin 4 → ℝ)
     (hp : ∀ i, 0 < p i) :
@@ -251,7 +253,9 @@ directional Fisher information of the postprocessed output.
 
 Use `R.factorizes` to identify the signed score measure on `Z` from both
 sides. The score is bounded by the largest absolute input score because all
-four row densities and input probabilities are nonnegative. -/
+four row densities and input probabilities are nonnegative.
+@isnad1 id=eq.2h6v.s8.592d211b0034 from=translated src=- shape=a09d0283 vocab=2fdec6ce
+-/
 theorem score_cross_moment (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (R : Refinement Q r) (p u : Fin 4 → ℝ)
     (hp : ∀ i, 0 < p i) (hpsum : ∑ i, p i = 1) :
@@ -297,7 +301,9 @@ equals the directional Fisher information of the output.
 
 The release mixture and the output mixture are equal measures by
 `R.factorizes`; their common density against `rowSum Q` is the positive
-input-weighted sum of the four row densities. -/
+input-weighted sum of the four row densities.
+@isnad1 id=eq.2h6v.s8.fe662a894339 from=translated src=- shape=221a123f vocab=2c302489
+-/
 theorem output_score_second_moment (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (R : Refinement Q r) (p u : Fin 4 → ℝ)
     (hp : ∀ i, 0 < p i) (hpsum : ∑ i, p i = 1) :
@@ -335,7 +341,9 @@ the release score given the postprocessed output.
 
 Proof plan: expand the square, use the release-to-output factorization to identify
 the output first and second score moments, and use the Markov normalization of each
-postprocessing row. Handle zero release masses using the zero numerator convention. -/
+postprocessing row. Handle zero release masses using the zero numerator convention.
+@isnad1 id=eq.2h6v.s7.156b01befd17 from=translated src=- shape=935b0004 vocab=3c205333
+-/
 theorem fisher_gap_eq_variance (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (R : Refinement Q r) (p u : Fin 4 → ℝ)
     (hp : ∀ i, 0 < p i) (hpsum : ∑ i, p i = 1) :
@@ -404,7 +412,9 @@ dimensional input score; the directional difference is positive semidefinite.
 Proof plan: use `R.factorizes` to identify the output mixture and signed score measure.
 The finite score is constant on each release atom. Its conditional expectation given
 the output is the output score; the difference is the integral of conditional variance.
-Equivalently, prove pointwise weighted Cauchy–Schwarz using the coefficient measures. -/
+Equivalently, prove pointwise weighted Cauchy–Schwarz using the coefficient measures.
+@isnad1 id=le.2h8v.s7.b4183d182699 from=translated src=- shape=50ba903e vocab=11e8b9e0
+-/
 theorem fisher_gap_nonneg {d : ℕ} (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (R : Refinement Q r) (p : Fin 4 → ℝ)
     (hp : ∀ i, 0 < p i) (hpsum : ∑ i, p i = 1)
@@ -434,7 +444,9 @@ singularity is the form used to count stationary output atoms.
 
 Proof plan: zero integrated conditional variance gives equality of the release score
 and output score almost everywhere under every positive ray contribution. Distinct
-release scores therefore live on disjoint measurable level sets. -/
+release scores therefore live on disjoint measurable level sets.
+@isnad1 id=mutually.6h10v.s8.e3a425906cda from=translated src=- shape=23cd2ba2 vocab=c06f6443
+-/
 theorem equality_rigidity {d : ℕ} (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (R : Refinement Q r) (p : Fin 4 → ℝ)
     (hp : ∀ i, 0 < p i) (hpsum : ∑ i, p i = 1)

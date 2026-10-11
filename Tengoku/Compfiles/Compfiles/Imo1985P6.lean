@@ -22,6 +22,9 @@ Prove that there exists exactly one value of x_1 for which
 
 namespace Imo1985P6
 
+/--
+@isnad1 id=lt.3h3v.s7.541a7d0d5684 from=translated src=- shape=0d65839f vocab=1128fa03
+-/
 lemma aux_1
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ x, f 1 x = x)
@@ -36,6 +39,9 @@ lemma aux_1
       rw [h₁ m x (Nat.zero_lt_of_lt hm)]
       positivity
 
+/--
+@isnad1 id=lt.5h4v.s7.a8aac6172a14 from=translated src=- shape=1e6f713f vocab=de7f2416
+-/
 lemma aux_2
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ x, f 1 x = x)
@@ -59,6 +65,9 @@ lemma aux_2
         · exact add_pos_of_nonneg_of_pos (h₃ _ _ pos_n) (by positivity)
         · exact h₃ _ _ pos_n
 
+/--
+@isnad1 id=lt.4h3v.s7.ceca7f4b788a from=translated src=- shape=b5bd3106 vocab=de7f2416
+-/
 lemma aux_3
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ (x : NNReal), f 1 x = ↑x)
@@ -86,6 +95,9 @@ lemma aux_3
   refine lt_of_lt_of_le ?_ g₂₀
   exact (lt_iff_lt_of_cmp_eq_cmp (congrFun (congrArg cmp (h₀ 1)) (f n 1))).mp g₂₁
 
+/--
+@isnad1 id=strictmo.4h3v.s6.9f8741aa400a from=translated src=- shape=4ed3a452 vocab=6f77cdc3
+-/
 lemma aux_4
     (f : ℕ → NNReal → ℝ)
     (h₃ : ∀ (n : ℕ) (x : NNReal), 0 < n → 0 ≤ f n x)
@@ -97,6 +109,9 @@ lemma aux_4
   rw [hf₀]
   exact (Real.toNNReal_lt_toNNReal_iff_of_nonneg (h₃ n x hn)).mpr (h₄ n x y hn hxy)
 
+/--
+@isnad1 id=eq.5h6v.s6.0ba280960acb from=translated src=- shape=cdde6657 vocab=781a9130
+-/
 lemma aux_5
     (f : ℕ → NNReal → ℝ)
     (hmo₁ : ∀ (n : ℕ), 0 < n → Function.Injective (f n))
@@ -117,6 +132,9 @@ lemma aux_5
     (NNReal.eq (congrArg NNReal.toReal (congrFun hn₂.symm x))).symm
   exact hmo₁ n hn₀ (congrArg (f n) hn₃)
 
+/--
+@isnad1 id=continuo.4h3v.s7.b4152610fe06 from=translated src=- shape=c9eff02c vocab=5a60525a
+-/
 lemma aux_6
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ (x : NNReal), f 1 x = ↑x)
@@ -137,6 +155,9 @@ lemma aux_6
       rw [this]
       fun_prop
 
+/--
+@isnad1 id=surjecti.8h3v.s8.95708edc456e from=translated src=- shape=c458002b vocab=bdc225e7
+-/
 lemma aux_7
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ (x : NNReal), f 1 x = ↑x)
@@ -196,6 +217,9 @@ lemma aux_7
     rw [ha₁, ha₂]
     exact zero_le
 
+/--
+@isnad1 id=lt.7h5v.s8.2b1cd18024f0 from=translated src=- shape=2da7d712 vocab=2651d16e
+-/
 lemma aux_8
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ (x : NNReal), f 1 x = ↑x)
@@ -252,6 +276,9 @@ lemma aux_8
     exact Nat.cast_pos'.mpr hn₀
   linarith
 
+/--
+@isnad1 id=strictmo.10h5v.s8.e6e142960f20 from=translated src=- shape=feb8daa9 vocab=180b9040
+-/
 lemma aux_9
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ (x : NNReal), f 1 x = ↑x)
@@ -324,6 +351,9 @@ lemma aux_9
     refine (StrictMono.lt_iff_lt ?_).mp hn₂
     exact hmo₂ (n + 1) (by lia)
 
+/--
+@isnad1 id=lt.10h9v.s8.4210c561be01 from=translated src=- shape=f824b6cc vocab=38b059ff
+-/
 lemma aux_10
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ (x : NNReal), f 1 x = ↑x)
@@ -390,6 +420,9 @@ lemma aux_10
     exact Preorder.le_refl br
   exact lt_of_le_of_lt' (hx₂ hx₁) hx₀
 
+/--
+@isnad1 id=le.10h10v.s7.3038ff083bb4 from=translated src=- shape=4de1775f vocab=6e59f5aa
+-/
 lemma aux_11
   (sn : Set ℕ)
   (fb fc : ↑sn → NNReal)
@@ -453,6 +486,9 @@ lemma aux_11
   refine (lt_self_iff_false x).mp ?_
   exact lt_trans hc₃ hy₂
 
+/--
+@isnad1 id=ex.18h12v.s9.9eba839f050b from=translated src=- shape=d2835ebc vocab=2d52c96b
+-/
 lemma aux_exists
   (f : ℕ → NNReal → ℝ)
   (h₂ : ∀ (n : ℕ) (x : NNReal), 0 < n ∧ 0 < x → 0 < f n x)
@@ -627,6 +663,9 @@ lemma aux_exists
       refine (lt_self_iff_false (fc ns)).mp ?_
       exact lt_of_lt_of_le hn₅ hc₂
 
+/--
+@isnad1 id=le.8h7v.s8.41ff1304b623 from=translated src=- shape=2dbd060d vocab=365f9c8c
+-/
 lemma aux_unique_top_ind
   (f : ℕ → NNReal → ℝ)
   (sd : Set ℕ)
@@ -680,6 +719,9 @@ lemma aux_unique_top_ind
         exact Nat.ofNat_le_cast.mpr hn₀
     · exact le_of_lt (hd₁ nn a b ha₀)
 
+/--
+@isnad1 id=tendsto.7h5v.s8.7ab2e41e1dc5 from=translated src=- shape=13408737 vocab=ab66a76a
+-/
 lemma aux_unique_top
   (f : ℕ → NNReal → ℝ)
   (h₁ : ∀ (n : ℕ) (x : NNReal), 0 < n → f (n + 1) x = f n x * (f n x + 1 / ↑n))
@@ -780,6 +822,9 @@ lemma aux_unique_top
           exact Nat.le_of_ceil_le hk₀
         · exact Nat.le_of_succ_le hk₂
 
+/--
+@isnad1 id=tendsto.5h5v.s8.0253e13bc3e5 from=translated src=- shape=28b547dc vocab=63802b30
+-/
 lemma aux_unique_nhds
   (f : ℕ → NNReal → ℝ)
   (sd : Set ℕ)
@@ -844,6 +889,9 @@ lemma aux_unique_nhds
       rw [sub_self 1]
       exact mul_pos hl₂ two_pos
 
+/--
+@isnad1 id=eq.5h3v.s8.7436e029bfcc from=translated src=- shape=1964ceaa vocab=4dc87bfa
+-/
 lemma aux_unique
   (f : ℕ → NNReal → ℝ)
   (h₁ : ∀ (n : ℕ) (x : NNReal), 0 < n → f (n + 1) x = f n x * (f n x + 1 / ↑n))
@@ -994,6 +1042,9 @@ lemma aux_unique
         norm_cast
         exact Nat.le_add_left 1 (↑N + 2)
 
+/--
+@isnad1 id=existsun.2h1v.s7.2b085f7bac5e from=translated src=- shape=713370da vocab=7e644ae9
+-/
 lemma imo_1985_p6_nnreal
   (f : ℕ → NNReal → ℝ)
   (h₀ : ∀ x, f 1 x = x)

@@ -38,7 +38,9 @@ $\sum_i a_i x_i$. -/
 noncomputable def S {n : ℕ} (x : Fin n → ℝ) {k : ℕ} (b : Fin n → Fin k) : ℝ :=
   ∑ i, ((b i : ℕ) : ℝ) * |x i|
 
-/-- Cauchy-Schwarz: `∑ i, |x i| ≤ √n` whenever `∑ i, x i ^ 2 = 1`. -/
+/-- Cauchy-Schwarz: `∑ i, |x i| ≤ √n` whenever `∑ i, x i ^ 2 = 1`.
+@isnad1 id=le.1h2v.s6.07abb2558da9 from=translated src=- shape=aac54d52 vocab=c5bb2000
+-/
 lemma sum_abs_le_sqrt {n : ℕ} {x : Fin n → ℝ} (hx : ∑ i, x i ^ 2 = 1) :
     ∑ i, |x i| ≤ Real.sqrt n := by
   have h := Finset.sum_mul_sq_le_sq_mul_sq (Finset.univ : Finset (Fin n))
@@ -51,21 +53,31 @@ lemma sum_abs_le_sqrt {n : ℕ} {x : Fin n → ℝ} (hx : ∑ i, x i ^ 2 = 1) :
   apply Real.le_sqrt_of_sq_le
   linarith [h]
 
-/-- Every coefficient of `b : Fin k` is at most `k - 1`, as a real number. -/
+/-- Every coefficient of `b : Fin k` is at most `k - 1`, as a real number.
+@isnad1 id=le.1h2v.s5.f180c75eb74a from=translated src=- shape=1ff9ce35 vocab=f868e2ad
+-/
 lemma fin_coe_le {k : ℕ} (hk : 2 ≤ k) (b : Fin k) : ((b : ℕ) : ℝ) ≤ (k : ℝ) - 1 := by
   have h : (b : ℕ) ≤ k - 1 := Nat.le_pred_of_lt b.isLt
   calc ((b : ℕ) : ℝ) ≤ ((k - 1 : ℕ) : ℝ) := by exact_mod_cast h
   _ = (k : ℝ) - 1 := by rw [Nat.cast_sub (by lia : 1 ≤ k), Nat.cast_one]
 
-/-- Every coefficient of `b : Fin k` is at most `k - 1`, as an integer. -/
+/-- Every coefficient of `b : Fin k` is at most `k - 1`, as an integer.
+@isnad1 id=le.1h2v.s5.2ba56ca02164 from=translated src=- shape=1ff9ce35 vocab=39d62eb3
+-/
 lemma fin_coe_le_int {k : ℕ} (hk : 2 ≤ k) (b : Fin k) : ((b : ℕ) : ℤ) ≤ (k : ℤ) - 1 := by
   have h : (b : ℕ) ≤ k - 1 := Nat.le_pred_of_lt b.isLt
   calc ((b : ℕ) : ℤ) ≤ ((k - 1 : ℕ) : ℤ) := by exact_mod_cast h
   _ = (k : ℤ) - 1 := by rw [Nat.cast_sub (by lia : 1 ≤ k), Nat.cast_one]
 
+/--
+@isnad1 id=le.0h4v.s4.d72b644c299f from=translated src=- shape=38e828e4 vocab=e1bd6770
+-/
 lemma S_nonneg {n : ℕ} (x : Fin n → ℝ) {k : ℕ} (b : Fin n → Fin k) : 0 ≤ S x b :=
   Finset.sum_nonneg fun i _ => by positivity
 
+/--
+@isnad1 id=le.2h4v.s6.2dd13b454ea4 from=translated src=- shape=674cc4c0 vocab=68b371c5
+-/
 lemma S_le {n : ℕ} {x : Fin n → ℝ} (hx : ∑ i, x i ^ 2 = 1)
     {k : ℕ} (hk : 2 ≤ k) (b : Fin n → Fin k) :
     S x b ≤ ((k : ℝ) - 1) * Real.sqrt n := by
@@ -78,7 +90,9 @@ lemma S_le {n : ℕ} {x : Fin n → ℝ} (hx : ∑ i, x i ^ 2 = 1)
   _ ≤ ((k : ℝ) - 1) * Real.sqrt n :=
       mul_le_mul_of_nonneg_left (sum_abs_le_sqrt hx) (by linarith)
 
-/-- Pure floor lemma: if `u, v ≤ m` have the same clamped floor, then `|u - v| ≤ 1`. -/
+/-- Pure floor lemma: if `u, v ≤ m` have the same clamped floor, then `|u - v| ≤ 1`.
+@isnad1 id=le.3h3v.s6.07bc9e6490bb from=translated src=- shape=ff8279fa vocab=82828bac
+-/
 lemma floor_min_sub_le {u v : ℝ} {m : ℤ} (hum : u ≤ (m : ℝ)) (hvm : v ≤ (m : ℝ))
     (h : min ⌊u⌋ (m - 1) = min ⌊v⌋ (m - 1)) : |u - v| ≤ 1 := by
   wlog huv : u ≤ v generalizing u v with H
@@ -106,6 +120,9 @@ flipping the sign wherever `x i < 0`. -/
 noncomputable def coef {n : ℕ} (x : Fin n → ℝ) {k : ℕ} (b b' : Fin n → Fin k) (i : Fin n) : ℤ :=
   (if 0 ≤ x i then (1 : ℤ) else -1) * (((b i : ℕ) : ℤ) - ((b' i : ℕ) : ℤ))
 
+/--
+@isnad1 id=eq.0h6v.s6.36f99eece19d from=translated src=- shape=8581e403 vocab=39df909f
+-/
 lemma coef_cast_mul {n : ℕ} {x : Fin n → ℝ} {k : ℕ} (b b' : Fin n → Fin k) (i : Fin n) :
     (coef x b b' i : ℝ) * x i = (((b i : ℕ) : ℝ) - ((b' i : ℕ) : ℝ)) * |x i| := by
   unfold coef

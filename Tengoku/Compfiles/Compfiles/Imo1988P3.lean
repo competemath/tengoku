@@ -31,7 +31,9 @@ abbrev solution : ℕ := 92
 def binaryReverse (n : ℕ) : ℕ :=
   Nat.ofDigits 2 (Nat.digits 2 n).reverse
 
-/-- Positive inputs have positive binary reversals. -/
+/-- Positive inputs have positive binary reversals.
+@isnad1 id=lt.0h1v.s3.929274db0b69 from=translated src=- shape=25e12683 vocab=3e680cc9
+-/
 lemma binaryReverse_pos (n : ℕ+) : 0 < binaryReverse (n : ℕ) := by
   unfold binaryReverse
   have hn : (n : ℕ) ≠ 0 := Nat.ne_of_gt n.2
@@ -55,6 +57,9 @@ instance instDecidablePredBinaryPalindrome : DecidablePred BinaryPalindrome := b
   unfold BinaryPalindrome
   infer_instance
 
+/--
+@isnad1 id=iff.0h1v.s3.aa5e62b9a439 from=translated src=- shape=63a083f4 vocab=5c44c009
+-/
 lemma binaryReverse_fixed_iff_binaryPalindrome (n : ℕ) :
     binaryReverse n = n ↔ BinaryPalindrome n := by
   unfold BinaryPalindrome
@@ -82,34 +87,50 @@ structure SatisfiesRecurrence (f : ℕ+ → ℕ+) : Prop where
   four_one : ∀ n, f (4 * n + 1) + f n = 2 * f (2 * n + 1)
   four_three : ∀ n, f (4 * n + 3) + 2 * f n = 3 * f (2 * n + 1)
 
-/-- Append a binary zero. -/
+/-- Append a binary zero.
+@isnad1 id=eq.1h1v.s5.78dd592844d1 from=translated src=- shape=af2d5107 vocab=56325b1b
+-/
 lemma digits_two_mul (n : ℕ) (hn : n ≠ 0) :
     Nat.digits 2 (2 * n) = 0 :: Nat.digits 2 n := by
   simpa using
     (Nat.digits_base_mul (b := 2) (m := n) (by decide) (Nat.pos_of_ne_zero hn))
 
-/-- Append a binary one. -/
+/-- Append a binary one.
+@isnad1 id=eq.0h1v.s5.5e53dc290979 from=translated src=- shape=97c148c3 vocab=405945b2
+-/
 lemma digits_two_mul_add_one (n : ℕ) :
     Nat.digits 2 (2 * n + 1) = 1 :: Nat.digits 2 n := by
   simpa [Nat.add_comm] using
     (Nat.digits_add 2 (by decide : 1 < 2) 1 n (by decide : 1 < 2)
       (Or.inl one_ne_zero))
 
+/--
+@isnad1 id=eq.1h1v.s4.475825ce950c from=translated src=- shape=0e977110 vocab=fffe48e4
+-/
 lemma binaryReverse_two_mul (n : ℕ) (hn : n ≠ 0) :
     binaryReverse (2 * n) = binaryReverse n := by
   unfold binaryReverse
   rw [digits_two_mul n hn, Nat.ofDigits_reverse_zero_cons]
 
+/--
+@isnad1 id=eq.1h1v.s6.abafb878d0e6 from=translated src=- shape=cbe9b4b5 vocab=405945b2
+-/
 lemma digits_four_mul_add_one (n : ℕ) (hn : n ≠ 0) :
     Nat.digits 2 (4 * n + 1) = 1 :: 0 :: Nat.digits 2 n := by
   rw [show 4 * n + 1 = 2 * (2 * n) + 1 by ring,
     digits_two_mul_add_one, digits_two_mul n hn]
 
+/--
+@isnad1 id=eq.0h1v.s5.cb6f0ff19161 from=translated src=- shape=5f2698b1 vocab=405945b2
+-/
 lemma digits_four_mul_add_three (n : ℕ) :
     Nat.digits 2 (4 * n + 3) = 1 :: 1 :: Nat.digits 2 n := by
   rw [show 4 * n + 3 = 2 * (2 * n + 1) + 1 by ring,
     digits_two_mul_add_one, digits_two_mul_add_one]
 
+/--
+@isnad1 id=eq.1h1v.s6.0da6b698af28 from=translated src=- shape=493ae6b8 vocab=4e2a4bb8
+-/
 lemma binaryReverse_four_mul_add_one_recurrence (n : ℕ) (hn : n ≠ 0) :
     binaryReverse (4 * n + 1) + binaryReverse n =
       2 * binaryReverse (2 * n + 1) := by
@@ -120,6 +141,9 @@ lemma binaryReverse_four_mul_add_one_recurrence (n : ℕ) (hn : n ≠ 0) :
   simp [Nat.pow_succ]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.364cc4bdfd6a from=translated src=- shape=0cb0a1da vocab=4e2a4bb8
+-/
 lemma binaryReverse_four_mul_add_three_recurrence (n : ℕ) :
     binaryReverse (4 * n + 3) + 2 * binaryReverse n =
       3 * binaryReverse (2 * n + 1) := by
@@ -129,7 +153,9 @@ lemma binaryReverse_four_mul_add_three_recurrence (n : ℕ) :
   simp [Nat.pow_succ, Nat.add_assoc]
   ring
 
-/-- Binary reversal satisfies the recurrence. -/
+/-- Binary reversal satisfies the recurrence.
+@isnad1 id=satisfie.0h0v.s1.92b5b87d652c from=translated src=- shape=49959d42 vocab=e1b250d3
+-/
 lemma pnatBinaryReverse_satisfiesRecurrence :
     SatisfiesRecurrence pnatBinaryReverse := by
   refine
@@ -150,7 +176,9 @@ lemma pnatBinaryReverse_satisfiesRecurrence :
     simp only [PNat.add_coe, PNat.mul_coe]
     exact binaryReverse_four_mul_add_three_recurrence (n : ℕ)
 
-/-- One binary-recursion step of uniqueness. -/
+/-- One binary-recursion step of uniqueness.
+@isnad1 id=and.4h3v.s7.67ab1616a6b6 from=translated src=- shape=1e44efde vocab=df34b03c
+-/
 lemma recurrence_step {f g : ℕ+ → ℕ+}
     (hf : SatisfiesRecurrence f) (hg : SatisfiesRecurrence g) (p : ℕ+)
     (hp : f p = g p) (hodd : f (2 * p + 1) = g (2 * p + 1)) :
@@ -174,7 +202,9 @@ lemma recurrence_step {f g : ℕ+ → ℕ+}
         rw [← hp, hf.four_three p, hodd]
       _ = g (4 * p + 3) + 2 * g p := (hg.four_three p).symm
 
-/-- The recurrence determines the function uniquely. -/
+/-- The recurrence determines the function uniquely.
+@isnad1 id=eq.2h3v.s4.316c07b6fefe from=translated src=- shape=19cf87ab vocab=858e0202
+-/
 lemma recurrence_unique {f g : ℕ+ → ℕ+}
     (hf : SatisfiesRecurrence f) (hg : SatisfiesRecurrence g) :
     ∀ n : ℕ+, f n = g n := by
@@ -221,23 +251,31 @@ lemma recurrence_unique {f g : ℕ+ → ℕ+}
   intro n
   exact (hGood (n : ℕ) (Nat.ne_of_gt n.2)).1
 
-/-- The recurrence solution is binary reversal. -/
+/-- The recurrence solution is binary reversal.
+@isnad1 id=eq.1h2v.s4.536e578798d0 from=translated src=- shape=c20590d9 vocab=f5b4b577
+-/
 lemma recurrence_unique_binaryReverse (f : ℕ+ → ℕ+) (hf : SatisfiesRecurrence f) :
     ∀ n : ℕ+, f n = pnatBinaryReverse n :=
   recurrence_unique hf pnatBinaryReverse_satisfiesRecurrence
 
-/-- Fixed points are binary palindromes. -/
+/-- Fixed points are binary palindromes.
+@isnad1 id=iff.0h1v.s3.d2d6be8fbb55 from=translated src=- shape=f9efb33e vocab=6269c2de
+-/
 lemma pnatBinaryReverse_fixed_iff_palindrome (n : ℕ+) :
     pnatBinaryReverse n = n ↔ BinaryPalindrome (n : ℕ) := by
   rw [← binaryReverse_fixed_iff_binaryPalindrome (n : ℕ)]
   exact ⟨fun h => congrArg Subtype.val h, fun h => Subtype.ext h⟩
 
-/-- Count binary palindromes up to `1988`. -/
+/-- Count binary palindromes up to `1988`.
+@isnad1 id=eq.0h0v.s4.0d4c164072d7 from=translated src=- shape=d7a135e9 vocab=e5e53900
+-/
 lemma binaryPalindrome_count_le_1988 :
     ((Finset.Icc 1 1988).filter BinaryPalindrome).card = solution := by
   rfl
 
-/-- Convert the finite count back to the problem statement. -/
+/-- Convert the finite count back to the problem statement.
+@isnad1 id=eq.1h1v.s5.deb189fa81c5 from=translated src=- shape=4783475c vocab=37f71462
+-/
 lemma fixedPoint_count_from_recurrence (f : ℕ+ → ℕ+) (hf : SatisfiesRecurrence f) :
     Set.ncard {n | n ≤ 1988 ∧ f n = n} = solution := by
   rw [← binaryPalindrome_count_le_1988]

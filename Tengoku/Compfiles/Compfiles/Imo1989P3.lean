@@ -28,7 +28,9 @@ abbrev Pt := EuclideanSpace ℝ (Fin 2)
 open scoped InnerProductSpace
 
 /-- If `P` and `Q` are both equidistant from `A` and `B`, then `P - Q` is
-orthogonal to `B - A`. -/
+orthogonal to `B - A`.
+@isnad1 id=eq.2h4v.s8.8041f6f0d163 from=translated src=- shape=941998dd vocab=83521e14
+-/
 lemma inner_sub_eq_zero_of_dist_eq {A B P Q : Pt} (hP : dist P A = dist P B)
     (hQ : dist Q A = dist Q B) : ⟪P - Q, B - A⟫_ℝ = 0 := by
   have hsq : ∀ X : Pt, dist X A = dist X B →
@@ -44,7 +46,9 @@ lemma inner_sub_eq_zero_of_dist_eq {A B P Q : Pt} (hP : dist P A = dist P B)
 
 /-- Three points that are all equidistant from two distinct points `A`, `B`
 are collinear (they lie on the perpendicular bisector of `A` and `B`,
-which is a line). -/
+which is a line).
+@isnad1 id=collinea.5h5v.s9.3e23a0472002 from=translated src=- shape=3c9b662a vocab=22678943
+-/
 lemma collinear_of_dist_eq {A B : Pt} (hAB : A ≠ B) {p₁ p₂ p₃ : Pt} (h₁₂ : p₁ ≠ p₂)
     (h1 : dist p₁ A = dist p₁ B) (h2 : dist p₂ A = dist p₂ B)
     (h3 : dist p₃ A = dist p₃ B) :

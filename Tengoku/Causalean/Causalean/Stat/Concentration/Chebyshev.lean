@@ -26,7 +26,9 @@ open scoped ENNReal
 
 /-- For [a real-valued error under a finite measure](hyp:Q,e), [a positive threshold](hyp:hr),
 and [an integrable squared error](hyp:hi), [the measure of the strict absolute-error tail is at
-most the second moment divided by the squared threshold](goal). -/
+most the second moment divided by the squared threshold](goal).
+@isnad1 id=le.2h4v.s7.00800faa9055 from=translated src=- shape=b82a33c7 vocab=e0ac7fd3
+-/
 lemma absolute_error_tail_le_second_moment
     {Ω : Type*} [MeasurableSpace Ω] (Q : Measure Ω) [IsFiniteMeasure Q]
     (e : Ω → ℝ) (r : ℝ) (hr : 0 < r)
@@ -52,7 +54,9 @@ lemma absolute_error_tail_le_second_moment
 square-integrable under `Q`](hyp:hF), [the deviation threshold `a` is positive](hyp:ha), [`F`
 has mean equal to `mean` under `Q`](hyp:hmean), and [the variance of `F` under `Q` is at most
 the envelope `v`](hyp:hvar), then [the probability that `F` deviates from `mean` by more than
-`a` in absolute value is at most `v/a²`](goal). -/
+`a` in absolute value is at most `v/a²`](goal).
+@isnad1 id=le.4h6v.s7.dc1664f3ae62 from=translated src=- shape=c76f325b vocab=13c6c572
+-/
 lemma probability_abs_sub_mean_gt_le
     {Ω : Type*} [MeasurableSpace Ω] (Q : Measure Ω)
     [IsFiniteMeasure Q] (F : Ω → ℝ) (mean v a : ℝ)

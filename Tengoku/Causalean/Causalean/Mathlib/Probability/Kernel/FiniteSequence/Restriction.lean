@@ -23,7 +23,9 @@ def restrictHistory {k l : ℕ} (hk : k ≤ n) (hl : l ≤ n) (hkl : k ≤ l)
   fun i => u (Fin.castLE hkl i)
 
 /-- Given [a target prefix bound](hyp:hk), [a source prefix bound](hyp:hl), and [an ordering of
-the two lengths](hyp:hkl), [the restriction map is measurable](goal). -/
+the two lengths](hyp:hkl), [the restriction map is measurable](goal).
+@isnad1 id=measurab.3h4v.s6.4ed8d9b3197f from=translated src=- shape=0988b7aa vocab=7fdb76ba
+-/
 theorem measurable_restrictHistory {k l : ℕ} (hk : k ≤ n) (hl : l ≤ n)
     (hkl : k ≤ l) : Measurable (restrictHistory (Z := Z) hk hl hkl) := by
   apply measurable_pi_iff.mpr
@@ -31,7 +33,9 @@ theorem measurable_restrictHistory {k l : ℕ} (hk : k ≤ n) (hl : l ≤ n)
   exact measurable_pi_apply (Fin.castLE hkl i)
 
 /-- Given [a prefix bound](hyp:hk) and [a history of that exact length](hyp:u), [restricting it
-to the same length returns the original history](goal). -/
+to the same length returns the original history](goal).
+@isnad1 id=eq.1h4v.s5.02f3c883768f from=translated src=- shape=d509a381 vocab=9235e38b
+-/
 theorem restrictHistory_self {k : ℕ} (hk : k ≤ n)
     (u : History Z k hk) : restrictHistory hk hk le_rfl u = u := by
   funext i
@@ -39,7 +43,9 @@ theorem restrictHistory_self {k : ℕ} (hk : k ≤ n)
 
 /-- Given [a target prefix bound](hyp:hk), [a successor source bound](hyp:hs), [an ordering of
 the target and preceding source lengths](hyp:hkl), and [a successor history](hyp:u), [restricting
-it factors through removal of the final coordinate](goal). -/
+it factors through removal of the final coordinate](goal).
+@isnad1 id=eq.3h5v.s6.5fa432088d14 from=translated src=- shape=37139a00 vocab=01cfa0ee
+-/
 theorem restrictHistory_succ {k l : ℕ} (hk : k ≤ n) (hs : l + 1 ≤ n)
     (hkl : k ≤ l) (u : History Z (l + 1) hs) :
     restrictHistory hk hs (Nat.le_trans hkl (Nat.le_succ l)) u =
@@ -48,7 +54,9 @@ theorem restrictHistory_succ {k l : ℕ} (hk : k ≤ n) (hs : l + 1 ≤ n)
   rfl
 
 /-- Given [a prefix bound](hyp:hk) and [a complete transcript](hyp:u), [restricting the
-transcript agrees with taking its prefix](goal). -/
+transcript agrees with taking its prefix](goal).
+@isnad1 id=eq.1h4v.s5.1cd1ad8d579c from=translated src=- shape=0955e5a2 vocab=e745085e
+-/
 theorem restrictHistory_transcript {k : ℕ} (hk : k ≤ n)
     (u : Transcript Z) : restrictHistory hk le_rfl hk u = take hk u := by
   funext i

@@ -36,7 +36,9 @@ def rankConcomitant {N : ℕ} (a : Fin N → ℝ) (x : Fin N → ℝ × ℝ) : �
 
 /-- For a [probability law of marked observations](hyp:μ) whose
  [sorting-coordinate CDF is continuous](hyp:hcont),
- [the coordinatewise CDF pushforward of the iid sample is iid unit-uniform](goal). -/
+ [the coordinatewise CDF pushforward of the iid sample is iid unit-uniform](goal).
+@isnad1 id=eq.1h2v.s7.e172acfc7bf8 from=translated src=- shape=6e6f616e vocab=dddfbf12
+-/
 theorem cdf_transport_iid {N : ℕ} (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t)) :
@@ -66,7 +68,9 @@ theorem cdf_transport_iid {N : ℕ} (μ : Measure (ℝ × ℝ))
       (hcont.measurable.comp hfst).aemeasurable))
 
 /-- For a [marked observation law](hyp:μ) with [continuous sorting-coordinate CDF](hyp:hcont),
- [original and CDF coordinates sort in the same order almost surely](goal). -/
+ [original and CDF coordinates sort in the same order almost surely](goal).
+@isnad1 id=eventual.1h2v.s7.6014ca44e878 from=translated src=- shape=ee718e3e vocab=11176668
+-/
 theorem sort_cdf_eq_ae {N : ℕ} (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t)) :
@@ -137,7 +141,9 @@ theorem sort_cdf_eq_ae {N : ℕ} (μ : Measure (ℝ × ℝ))
 
 /-- For a [marked observation law](hyp:μ) and an [almost-everywhere conditional
  mean version](hyp:hm), [that version has a measurable representative on the CDF
- coordinate](goal). -/
+ coordinate](goal).
+@isnad1 id=ex.1h2v.s8.9187d96f9a4e from=translated src=- shape=fa5220d8 vocab=697b2964
+-/
 theorem conditionalMean_exists_measurable_version (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ] (m : ℝ → ℝ)
     (hm : (fun p : ℝ × ℝ => m (ProbabilityTheory.cdf (μ.map Prod.fst) p.1))
@@ -159,7 +165,9 @@ theorem conditionalMean_exists_measurable_version (μ : Measure (ℝ × ℝ))
     simpa only [Function.comp_apply] using congrFun hgc p)
 
 /-- A conditional-mean version that factors measurably through a continuous
- CDF equals that measurable factor almost everywhere under the uniform law. -/
+ CDF equals that measurable factor almost everywhere under the uniform law.
+@isnad1 id=ex.2h2v.s7.8450c3fe339e from=translated src=- shape=b595e5cf vocab=4ca83118
+-/
 theorem conditionalMean_ae_eq_uniform_version (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -184,7 +192,9 @@ theorem conditionalMean_ae_eq_uniform_version (μ : Measure (ℝ × ℝ))
   exact ae_eq_of_comp_continuous_cdf ν hcont m g hfst
 
 /-- A conditional mean of a mark in `[0,1]` stays in `[0,1]` almost surely
- under the original marked observation law. -/
+ under the original marked observation law.
+@isnad1 id=eventual.2h2v.s8.80ab82a86a27 from=translated src=- shape=cb672027 vocab=51128928
+-/
 theorem conditionalMean_comp_mem_Icc_ae (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ]
     (hmark : ∀ᵐ p ∂μ, p.2 ∈ Set.Icc (0 : ℝ) 1)
@@ -215,7 +225,9 @@ theorem conditionalMean_comp_mem_Icc_ae (μ : Measure (ℝ × ℝ))
 
 /-- For a [marked observation law](hyp:μ), [continuous sorting-coordinate CDF](hyp:hcont),
  and [conditional mean version](hyp:hm),
- [the version is almost-everywhere measurable under the unit-uniform law](goal). -/
+ [the version is almost-everywhere measurable under the unit-uniform law](goal).
+@isnad1 id=aemeasur.2h2v.s7.d66c235051b7 from=translated src=- shape=839fe52f vocab=cf63781f
+-/
 theorem aemeasurable_conditionalMean_uniform (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -233,7 +245,9 @@ theorem aemeasurable_conditionalMean_uniform (μ : Measure (ℝ × ℝ))
 /-- For a [marked observation law](hyp:μ), [continuous sorting-coordinate CDF](hyp:hcont),
  [marks in the unit interval almost surely](hyp:hmark), and a
  [conditional mean version](hyp:hm),
- [that version lies in the unit interval almost everywhere under the uniform law](goal). -/
+ [that version lies in the unit interval almost everywhere under the uniform law](goal).
+@isnad1 id=eventual.3h2v.s8.eb605fc94180 from=translated src=- shape=64b1b103 vocab=ebada9fa
+-/
 theorem conditionalMean_mem_Icc_ae (μ : Measure (ℝ × ℝ))
     [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))
@@ -271,7 +285,9 @@ theorem conditionalMean_mem_Icc_ae (μ : Measure (ℝ × ℝ))
 
 /-- For a [positive sample size](hyp:hN), a [tagged coordinate](hyp:i), a
  [rank](hyp:j), and an [almost-everywhere measurable bounded test function](hyp:f,hf,hbound),
- [the tagged uniform coordinate at that rank has the binomial cell density](goal). -/
+ [the tagged uniform coordinate at that rank has the binomial cell density](goal).
+@isnad1 id=eq.3h4v.s8.eebf9cdfbcbd from=translated src=- shape=5f9e8da3 vocab=67f6db95
+-/
 theorem uniform_tagged_rank_cell_integral {N : ℕ} (hN : 0 < N)
     (i j : Fin N) (f : ℝ → ℝ)
     (hf : AEMeasurable f uniform01)

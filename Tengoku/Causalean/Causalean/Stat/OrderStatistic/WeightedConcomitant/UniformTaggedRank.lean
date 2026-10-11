@@ -19,7 +19,9 @@ open Causalean.Stat.OrderStatistic
 
 noncomputable section
 
-/-- For an iid unit-uniform tuple, its coordinates are pairwise distinct almost surely. -/
+/-- For an iid unit-uniform tuple, its coordinates are pairwise distinct almost surely.
+@isnad1 id=eventual.0h1v.s5.61f635530722 from=translated src=- shape=e3bed913 vocab=d426a344
+-/
 theorem iid_uniform_coordinates_injective_ae {N : ℕ} :
     ∀ᵐ u ∂iidSample uniform01 N, Function.Injective u := by
   rw [iid_uniform_cube_law]
@@ -54,7 +56,9 @@ theorem iid_uniform_coordinates_injective_ae {N : ℕ} :
   exact hu i j hne hij
 
 /-- For an iid unit-uniform tuple with [no ties](hyp:hu), [the zero-based rank of a
- tagged coordinate equals the number of other coordinates below it](goal). -/
+ tagged coordinate equals the number of other coordinates below it](goal).
+@isnad1 id=eq.1h3v.s6.c0adb49b0734 from=translated src=- shape=d1ba9b82 vocab=a8dd15f0
+-/
 theorem uniform_tagged_rank_eq_count {N : ℕ} (u : Fin N → ℝ) (i : Fin N)
     (hu : Function.Injective u) :
     ((Tuple.sort u).symm i).val =
@@ -82,7 +86,9 @@ theorem uniform_tagged_rank_eq_count {N : ℕ} (u : Fin N → ℝ) (i : Fin N)
 
 /-- For any finite set of coordinates in an iid unit-uniform tuple, the number
  strictly below a threshold in the unit interval has the binomial mass with
- one trial per selected coordinate. -/
+ one trial per selected coordinate.
+@isnad1 id=eq.1h4v.s7.ca792b189b65 from=translated src=- shape=52bb0f88 vocab=49feaff0
+-/
 theorem uniform_subset_lt_count_mass {N : ℕ} (S : Finset (Fin N))
     (r : ℕ) {v : ℝ} (hv : v ∈ Set.Icc (0 : ℝ) 1) :
     iidSample uniform01 N
@@ -193,7 +199,9 @@ theorem uniform_subset_lt_count_mass {N : ℕ} (S : Finset (Fin N))
           simp [p]
 
 /-- Relabeling the coordinates of an iid unit-uniform tuple by a permutation
-preserves its finite-product probability law. -/
+preserves its finite-product probability law.
+@isnad1 id=eq.0h2v.s6.dcec5eb1f280 from=translated src=- shape=303f4076 vocab=6e0d7e3f
+-/
 theorem iid_uniform_relabel_law {N : ℕ} (σ : Equiv.Perm (Fin N)) :
     (iidSample uniform01 N).map (fun u i => u (σ i)) =
       iidSample uniform01 N := by
@@ -208,7 +216,9 @@ theorem iid_uniform_relabel_law {N : ℕ} (σ : Equiv.Perm (Fin N)) :
     Measure.pi_map_piCongrLeft σ.symm (fun _ : Fin N => uniform01)
 
 /-- For an iid uniform tuple, two tagged coordinates have the same probability
-of occupying any specified rank. -/
+of occupying any specified rank.
+@isnad1 id=eq.1h4v.s7.d5104f36f03d from=translated src=- shape=35d2ea8a vocab=613bda88
+-/
 theorem uniform_tagged_rank_mass_eq_of_tag {N : ℕ} (hN : 0 < N)
     (i k j : Fin N) :
     iidSample uniform01 N {u | (Tuple.sort u).symm i = j} =
@@ -279,7 +289,9 @@ theorem uniform_tagged_rank_mass_eq_of_tag {N : ℕ} (hN : 0 < N)
       simp [σ]
 
 /-- For one rank of a positive iid uniform tuple, the masses of the events
-that each possible tag occupies that rank sum to one. -/
+that each possible tag occupies that rank sum to one.
+@isnad1 id=eq.1h2v.s7.e41676dfd8da from=translated src=- shape=65275ef3 vocab=8dfa6f30
+-/
 theorem sum_uniform_tagged_rank_mass {N : ℕ} (hN : 0 < N)
     (j : Fin N) :
     (∑ i : Fin N,
@@ -334,7 +346,9 @@ theorem sum_uniform_tagged_rank_mass {N : ℕ} (hN : 0 < N)
     _ = 1 := by rw [hcover]; exact measure_univ
 
 /-- A [positive sample size](hyp:hN), [tagged coordinate](hyp:i), and [rank](hyp:j)
-have [uniform rank mass under the iid unit-uniform law](goal). -/
+have [uniform rank mass under the iid unit-uniform law](goal).
+@isnad1 id=eq.1h3v.s7.3ffa65405815 from=translated src=- shape=463aa96f vocab=1f4ab982
+-/
 theorem uniform_tagged_rank_mass {N : ℕ} (hN : 0 < N)
     (i j : Fin N) :
     iidSample uniform01 N {u | (Tuple.sort u).symm i = j} =
@@ -361,7 +375,9 @@ theorem uniform_tagged_rank_mass {N : ℕ} (hN : 0 < N)
 /-- For a tagged coordinate of an iid unit-uniform tuple with a
 [positive sample size](hyp:hN) and a point [inside the unit interval](hyp:hv),
 [the number of other coordinates below that point has the binomial mass with
-`N-1` trials](goal). -/
+`N-1` trials](goal).
+@isnad1 id=eq.2h4v.s7.7e8f3564a62d from=translated src=- shape=1d500eca vocab=6d64d49e
+-/
 theorem uniform_other_lt_count_mass {N : ℕ} (hN : 0 < N)
     (i j : Fin N) {v : ℝ} (hv : v ∈ Set.Icc (0 : ℝ) 1) :
     iidSample uniform01 N

@@ -20,7 +20,9 @@ noncomputable section
 
 /-- For a [bounded marked iid law](hyp:μ,hmark), [continuous coordinate CDF](hyp:hcont),
  [cell weights](hyp:a), and a [conditional mean function and version](hyp:m,hm), [conditioning replaces each sorted mark
- by that mean in the expected rank concomitant](goal). -/
+ by that mean in the expected rank concomitant](goal).
+@isnad1 id=eq.3h4v.s8.7c97d2d5d407 from=translated src=- shape=a37633cd vocab=69dd5687
+-/
 theorem integral_rankConcomitant_eq_conditionalMean {N : ℕ}
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (hcont : Continuous (fun t => ProbabilityTheory.cdf (μ.map Prod.fst) t))

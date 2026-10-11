@@ -28,7 +28,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 least 16 M](hyp:hKM), [density n / K at most 2 to the power −40](hyp:hdensity), [iid uniform
 fine-cell draws and independent Bernoulli marks](hyp:h), and [any measurable local
 subrelation](hyp:R,hR,hlocal), [the expected two-mark component weight is at most ε² K times the
-order-eleven finite occupancy series](goal). -/
+order-eleven finite occupancy series](goal).
+@isnad1 id=le.9h9v.s8.3bd9d02648bf from=translated src=- shape=d123b04f vocab=da38c5b1
+-/
 theorem single_component_occupancy {n M K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}
     (h : UniformMarkedSample μ X B ε) (hn : 2 ≤ n) (hM : 2 ≤ M)
@@ -54,6 +56,7 @@ independent Bernoulli marks](hyp:h), and [any measurable local subrelation](hyp:
 [the expected unordered score of distinct components of size at least two,
 marked in each and sharing a coarse pair, obeys the requested squared
 order-six finite-series bound](goal).
+@isnad1 id=le.9h9v.s8.d30675c88310 from=translated src=- shape=fe40c064 vocab=580b68e4
 -/
 theorem paired_component_occupancy {n M K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}

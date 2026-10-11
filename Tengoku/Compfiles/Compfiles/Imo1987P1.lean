@@ -62,12 +62,18 @@ def fixedPointsEquiv : { σx : α × Perm α // σx.2 σx.1 = σx.1 } ≃ Σ x :
       (sigmaCongrRight fun x => Equiv.setCongr <| by ext σ; simp)
     _ ≃ Σ x : α, Perm ({x}ᶜ : Set α) := sigmaCongrRight fun x => by apply Equiv.Set.compl
 
+/--
+@isnad1 id=eq.0h1v.s7.9faddc08eea5 from=translated src=- shape=866f9739 vocab=8cf910dc
+-/
 theorem card_fixed_points :
     card { σx : α × Perm α // σx.2 σx.1 = σx.1 } = card α * (card α - 1)! := by
   simp only [card_congr (fixedPointsEquiv α), card_sigma, card_perm]
   simp only [Fintype.card_compl_set, Set.card_singleton, Finset.sum_const,
     Finset.card_univ, Nat.nsmul_eq_mul]
 
+/--
+@isnad1 id=iff.0h3v.s6.37d623eb5d3a from=translated src=- shape=36af9dbc vocab=a4b2bc83
+-/
 @[simp]
 theorem mem_fiber {σ : Perm α} {k : ℕ} : σ ∈ fiber α k ↔ card (fixedPoints σ) = k :=
   Iff.rfl
@@ -90,14 +96,18 @@ def fixedPointsEquiv' :
     subst k; rfl
   right_inv := fun ⟨⟨x, σ⟩, h⟩ => rfl
 
-/-- Main statement for any `(α : Type*) [Fintype α]`. -/
+/-- Main statement for any `(α : Type*) [Fintype α]`.
+@isnad1 id=eq.0h1v.s6.06a9bfe2ba8c from=translated src=- shape=b746ae63 vocab=9c91da70
+-/
 theorem main_fintype :
     ∑ k ∈ Finset.range (card α + 1), k * p α k = card α * (card α - 1)! := by
   have A : ∀ (k) (σ : fiber α k), card (fixedPoints (↑σ : Perm α)) = k := fun k σ => σ.2
   simpa [A, p, ← Fin.sum_univ_eq_sum_range, -card_ofFinset, Finset.card_univ, card_fixed_points,
     mul_comm] using card_congr (fixedPointsEquiv' α)
 
-/-- Main statement for permutations of `Fin n`, a version that works for `n = 0`. -/
+/-- Main statement for permutations of `Fin n`, a version that works for `n = 0`.
+@isnad1 id=eq.0h1v.s5.002167635f3d from=translated src=- shape=782078d9 vocab=91a89a51
+-/
 theorem main₀ (n : ℕ) : ∑ k ∈ Finset.range (n + 1), k * p (Fin n) k = n * (n - 1)! := by
   simpa using main_fintype (Fin n)
 

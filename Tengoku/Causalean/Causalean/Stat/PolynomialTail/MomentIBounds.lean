@@ -45,7 +45,9 @@ open MeasureTheory Set Topology Filter Asymptotics
 variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} {U : Ω → ℝ}
   {κ t₀ cm cp lam : ℝ}
 
-/-- **`I ≤ J`.**  Pointwise `U/(max U λ)² ≤ (max U λ)⁻¹` (since `U ≤ max U λ`). -/
+/-- **`I ≤ J`.**  Pointwise `U/(max U λ)² ≤ (max U λ)⁻¹` (since `U ≤ max U λ`).
+@isnad1 id=le.2h4v.s5.451f0d695122 from=translated src=- shape=4f2660c4 vocab=fece7e6f
+-/
 theorem invMomentI_le_invMomentJ [IsProbabilityMeasure P] (hsetup : TailSetup P U)
     (hlam_pos : 0 < lam) : invMomentI P U lam ≤ invMomentJ P U lam := by
   rw [invMomentI, invMomentJ]
@@ -62,7 +64,9 @@ theorem invMomentI_le_invMomentJ [IsProbabilityMeasure P] (hsetup : TailSetup P 
     _ = (max (U ω) lam)⁻¹ := one_mul _
 
 /-- **`J − I` is controlled by the tail mass.**  `J P U λ − I P U λ ≤ cp·λ^{κ-1}`.
-Pointwise the gap equals `wλ/(max U λ) ≤ λ⁻¹·wλ`, and `∫ wλ ≤ P{U<λ} ≤ cp·λᵏ`. -/
+Pointwise the gap equals `wλ/(max U λ) ≤ λ⁻¹·wλ`, and `∫ wλ ≤ P{U<λ} ≤ cp·λᵏ`.
+@isnad1 id=le.4h8v.s6.172d501f209e from=translated src=- shape=83d9b3d4 vocab=b5a1bd45
+-/
 theorem invMomentJ_sub_invMomentI_le [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hsetup : TailSetup P U) (hlam_pos : 0 < lam) (hlam_le : lam ≤ t₀) :
     invMomentJ P U lam - invMomentI P U lam ≤ cp * lam ^ (κ - 1) := by
@@ -104,7 +108,9 @@ theorem invMomentJ_sub_invMomentI_le [IsProbabilityMeasure P] (h : PolyTail P U 
     _ = cp * lam ^ (κ - 1) := by rw [Real.rpow_sub hlam_pos, Real.rpow_one]; field_simp
 
 /-- **`I` is antitone in `λ`.**  As `λ` decreases, `max U λ` decreases, so the
-integrand `U/(max U λ)²` increases.  Hence `I P U λ₂ ≤ I P U λ₁` when `λ₁ ≤ λ₂`. -/
+integrand `U/(max U λ)²` increases.  Hence `I P U λ₂ ≤ I P U λ₁` when `λ₁ ≤ λ₂`.
+@isnad1 id=le.3h5v.s5.3501f3050541 from=translated src=- shape=46461366 vocab=312969bf
+-/
 theorem invMomentI_antitone [IsProbabilityMeasure P] (hsetup : TailSetup P U)
     {l1 l2 : ℝ} (hl1 : 0 < l1) (hl12 : l1 ≤ l2) :
     invMomentI P U l2 ≤ invMomentI P U l1 := by
@@ -126,7 +132,9 @@ theorem invMomentI_antitone [IsProbabilityMeasure P] (hsetup : TailSetup P U)
 
 /-! ## IsTheta corollaries as `λ → 0⁺` -/
 
-/-- Generic two-sided-bound ⟹ `IsTheta` packager on `𝓝[>] 0`. -/
+/-- Generic two-sided-bound ⟹ `IsTheta` packager on `𝓝[>] 0`.
+@isnad1 id=istheta.5h5v.s7.ada38586e272 from=translated src=- shape=cbebb4fe vocab=2f1802d3
+-/
 theorem isTheta_of_two_sided {f g : ℝ → ℝ} {t₀ a A : ℝ} (ht0 : 0 < t₀) (ha : 0 < a)
     (hgpos : ∀ lam : ℝ, 0 < lam → lam ≤ t₀ → 0 < g lam)
     (hfnn : ∀ lam : ℝ, 0 < lam → lam ≤ t₀ → 0 ≤ f lam)
@@ -150,7 +158,9 @@ theorem isTheta_of_two_sided {f g : ℝ → ℝ} {t₀ a A : ℝ} (ht0 : 0 < t�
 /-- **IsTheta for `J` (κ < 1).** Under [the polynomial lower-tail hypothesis](hyp:h) with [`U`
 measurable and almost surely in `(0,1]`](hyp:hsetup) and [tail exponent strictly between `0` and
 `1`](hyp:hκ1), [the truncated inverse first moment `J P U λ` is `Θ(λ^{κ-1})` as `λ →
-0⁺`](goal). -/
+0⁺`](goal).
+@isnad1 id=istheta.3h7v.s6.3e1493dfdb5b from=translated src=- shape=21adab76 vocab=ff67cbc0
+-/
 theorem invMomentJ_isTheta_lt [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hsetup : TailSetup P U) (hκ1 : κ < 1) :
     (fun lam => invMomentJ P U lam) =Θ[𝓝[>] (0 : ℝ)] fun lam => lam ^ (κ - 1) := by
@@ -162,7 +172,9 @@ theorem invMomentJ_isTheta_lt [IsProbabilityMeasure P] (h : PolyTail P U κ t₀
 /-- **IsTheta for `J` (κ > 1).** Under [the polynomial lower-tail hypothesis](hyp:h) with [`U`
 measurable and almost surely in `(0,1]`](hyp:hsetup) and [tail exponent strictly above
 `1`](hyp:hκ1), [the truncated inverse first moment `J P U λ` is `Θ(1)` — bounded — as `λ →
-0⁺`](goal). -/
+0⁺`](goal).
+@isnad1 id=istheta.3h7v.s6.9f75045433df from=translated src=- shape=10ffdaed vocab=c8a751c8
+-/
 theorem invMomentJ_isTheta_gt [IsProbabilityMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hsetup : TailSetup P U) (hκ1 : 1 < κ) :
     (fun lam => invMomentJ P U lam) =Θ[𝓝[>] (0 : ℝ)] fun _ => (1 : ℝ) := by

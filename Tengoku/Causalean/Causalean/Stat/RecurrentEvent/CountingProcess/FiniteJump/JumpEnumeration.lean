@@ -24,7 +24,9 @@ noncomputable def Model.jumpTime (M : Model Ω μ) (k : ℕ) (ω : Ω) : ℝ :=
   sInf {t : ℝ | k + 1 ≤ M.count t ω}
 
 /-- The number of events by the horizon is measurable under the ambient
-sample σ-algebra, as a consequence of adaptedness of the count process. -/
+sample σ-algebra, as a consequence of adaptedness of the count process.
+@isnad1 id=measurab.0h3v.s4.f67e429f2e83 from=translated src=- shape=9ee8e53e vocab=7ab83dfe
+-/
 theorem Model.measurable_eventCard (M : Model Ω μ) :
     Measurable (fun ω => (M.eventTimes ω).card) := by
   have hEq : (fun ω => (M.eventTimes ω).card) = M.count M.horizon := by
@@ -91,7 +93,9 @@ private theorem Model.jumpTime_event (M : Model Ω μ) (k : ℕ) (ω : Ω)
   · simpa [Model.jumpTime, Model.count, c, s] using hInf.symm ▸ hx
   · simpa [Model.jumpTime, Model.count, c, s] using hInf.symm ▸ hxc
 
-/-- Every in-range jump-time threshold is an event time in the finite path. -/
+/-- Every in-range jump-time threshold is an event time in the finite path.
+@isnad1 id=mem.1h5v.s5.eb7275616753 from=translated src=- shape=4eefdcff vocab=3b3312e5
+-/
 theorem Model.jumpTime_mem (M : Model Ω μ) (k : ℕ) (ω : Ω)
     (hk : k < (M.eventTimes ω).card) :
     M.jumpTime k ω ∈ M.eventTimes ω :=
@@ -153,7 +157,9 @@ private theorem Model.count_jumpTime (M : Model Ω μ) (k : ℕ) (ω : Ω)
     exact csInf_le hbelow hcy
   exact (not_le_of_gt hy) hxy
 
-/-- Distinct in-range threshold indices identify distinct event times. -/
+/-- Distinct in-range threshold indices identify distinct event times.
+@isnad1 id=eq.3h6v.s6.746875644296 from=translated src=- shape=a8590199 vocab=9b305677
+-/
 theorem Model.jumpTime_injective (M : Model Ω μ) (ω : Ω)
     (i j : ℕ) (hi : i < (M.eventTimes ω).card)
     (hj : j < (M.eventTimes ω).card)
@@ -165,7 +171,9 @@ theorem Model.jumpTime_injective (M : Model Ω μ) (ω : Ω)
 
 /-- A finite jump sum is the sum over the ordered threshold times below the
 event count. This is the pathwise enumeration used for measurability. [The
-model, payoff, and path](hyp:M,H,ω) give [the ordered-jump representation](goal). -/
+model, payoff, and path](hyp:M,H,ω) give [the ordered-jump representation](goal).
+@isnad1 id=eq.0h5v.s5.b6d4d966e790 from=translated src=- shape=9db4ff08 vocab=e6d05962
+-/
 theorem Model.jumpIntegral_eq_sum_jumpTime (M : Model Ω μ)
     (H : ℝ → Ω → ℝ) (ω : Ω) :
     M.jumpIntegral H M.horizon ω =
@@ -217,7 +225,9 @@ private theorem Model.jumpTime_le_of_count (M : Model Ω μ) (k : ℕ)
   exact csInf_le hbelow ht
 
 /-- Each ordered event time is measurable because all count thresholds at
-fixed times are measurable with respect to the ambient sample σ-algebra. -/
+fixed times are measurable with respect to the ambient sample σ-algebra.
+@isnad1 id=measurab.0h4v.s4.7f7a3d99b5a1 from=translated src=- shape=de58baae vocab=e9a58466
+-/
 theorem Model.measurable_jumpTime (M : Model Ω μ) (k : ℕ) :
     Measurable (M.jumpTime k) := by
   apply measurable_of_Iio
@@ -266,7 +276,9 @@ theorem Model.measurable_jumpTime (M : Model Ω μ) (k : ℕ) :
     exact ha.inter (hc measurableSet_Ici)
 
 /-- Joint measurability of a payoff makes its sum over a random finite event
-set measurable when the count process is adapted. -/
+set measurable when the count process is adapted.
+@isnad1 id=measurab.1h4v.s5.e16141997cc2 from=translated src=- shape=cda0f8d7 vocab=83bfea10
+-/
 theorem Model.measurable_jumpIntegral (M : Model Ω μ) (H : ℝ → Ω → ℝ)
     (hH : Measurable (fun p : ℝ × Ω => H p.1 p.2)) :
     Measurable (M.jumpIntegral H M.horizon) := by
@@ -301,7 +313,9 @@ theorem Model.measurable_jumpIntegral (M : Model Ω μ) (H : ℝ → Ω → ℝ)
   exact (hcard (measurableSet_singleton n)).inter (hsum n measurableSet_Iio)
 
 /-- Joint measurability of the payoff makes its pathwise integral against the
-jointly measurable at-risk intensity measurable in the sample. -/
+jointly measurable at-risk intensity measurable in the sample.
+@isnad1 id=measurab.1h4v.s5.1bdae2a406ff from=translated src=- shape=cda0f8d7 vocab=24d8e384
+-/
 theorem Model.measurable_energyIntegral (M : Model Ω μ) (H : ℝ → Ω → ℝ)
     (hH : Measurable (fun p : ℝ × Ω => H p.1 p.2)) :
     Measurable (M.energyIntegral H M.horizon) := by

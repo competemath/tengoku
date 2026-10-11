@@ -25,7 +25,9 @@ open MeasureTheory Set
 
 namespace Causalean.Stat.Minimax.ObservationDependentVanTrees
 
-/-- A nondegenerate parameter interval with a [continuously differentiable, compactly supported, normalized nonnegative prior; a normalized nonnegative dominated likelihood; the stated differentiation-under-the-integral, sectionwise absolute-continuity, derivative, boundary, product-measurability, and integrability conditions; and strictly positive finite total information](hyp:hellu,hwC1,hwsupport,hwderiv,hwnonneg,hwnorm,hpnonneg,hpnorm,hpint,hdpint,hdiffUnder,hpAC,hgAC,hdp,hdg,hboundary,hbalanceSm,hbalanceInt,herrorScoreSm,herrorScoreInt,hsensitivitySm,hsensitivityInt,herrorSqSm,herrorSqInt,hscoreSqSm,hscoreSqInt,hpriorSqSm,hpriorSqInt,hpriorJointSqSm,hpriorJointSqInt,hfisherSqSm,hfisherSqInt,hcrossSm,hcrossInt,hinfoPos) ensures that [Bayes mean-squared error for an estimator of an observation-dependent target is at least the squared joint mean of the target's parameter derivative divided by prior information plus average Fisher information](goal). -/
+/-- A nondegenerate parameter interval with a [continuously differentiable, compactly supported, normalized nonnegative prior; a normalized nonnegative dominated likelihood; the stated differentiation-under-the-integral, sectionwise absolute-continuity, derivative, boundary, product-measurability, and integrability conditions; and strictly positive finite total information](hyp:hellu,hwC1,hwsupport,hwderiv,hwnonneg,hwnorm,hpnonneg,hpnorm,hpint,hdpint,hdiffUnder,hpAC,hgAC,hdp,hdg,hboundary,hbalanceSm,hbalanceInt,herrorScoreSm,herrorScoreInt,hsensitivitySm,hsensitivityInt,herrorSqSm,herrorSqInt,hscoreSqSm,hscoreSqInt,hpriorSqSm,hpriorSqInt,hpriorJointSqSm,hpriorJointSqInt,hfisherSqSm,hfisherSqInt,hcrossSm,hcrossInt,hinfoPos) ensures that [Bayes mean-squared error for an estimator of an observation-dependent target is at least the squared joint mean of the target's parameter derivative divided by prior information plus average Fisher information](goal).
+@isnad1 id=le.35h11v.s11.e479c39c7775 from=translated src=- shape=697f4224 vocab=78588438
+-/
 theorem observation_dependent_van_trees
     {X : Type*} [MeasurableSpace X] (μ : Measure X) [SigmaFinite μ]
     {ell u : ℝ} (hellu : ell < u)
@@ -341,7 +343,9 @@ sensitivity bound](hyp:hs_nonneg) that [lies below average
 sensitivity](hyp:hsensitivity), [upper bounds on average likelihood
 information](hyp:hlike) and [prior information](hyp:hprior), and [positive total
 information](hyp:hinfoPos) imply [a Bayes squared-risk lower bound equal to
-squared sensitivity divided by the sum of the two information bounds](goal). -/
+squared sensitivity divided by the sum of the two information bounds](goal).
+@isnad1 id=le.15h13v.s9.4bfb73f54aae from=translated src=- shape=f305f913 vocab=ef7f7d8d
+-/
 theorem finite_vanTrees_lower_bound
     {X : Type*} [Fintype X] [MeasurableSpace X] [MeasurableSingletonClass X]
     {ell u s I P : ℝ} {w dw : ℝ → ℝ} {p dp g dg : ℝ → X → ℝ} {T : X → ℝ}
@@ -390,7 +394,9 @@ theorem finite_vanTrees_lower_bound
 sensitivity](hyp:hsensitivity), a [pointwise likelihood-information bound](hyp:hpointwise), and
 [positive total information](hyp:hinfoPos) imply [a native-real Bayes squared-risk
 lower bound equal to squared sensitivity divided by likelihood information plus forty
-over the squared bandwidth](goal). -/
+over the squared bandwidth](goal).
+@isnad1 id=le.8h12v.s8.c9149fc58d10 from=translated src=- shape=d6606fac vocab=3fcc775f
+-/
 theorem smoothPrior_finite_vanTrees_lower_bound
     {X : Type*} [Fintype X] [MeasurableSpace X] [MeasurableSingletonClass X]
     {ell u c a s I : ℝ} {p dp g dg : ℝ → X → ℝ} {T : X → ℝ}

@@ -61,7 +61,9 @@ private lemma real_half_evenPow_rpow_le
 scale](hyp:hmoment), then [its explicit Hamburger--Carleman series diverges](goal). The hypothesis
 bounds the real-valued raw moments, which are zero for non-integrable powers, so the result carries
 Carleman content only for a measure whose even moments exist, as in its use for Gaussian
-perturbations. -/
+perturbations.
+@isnad1 id=eq.1h1v.s6.e412eddbe2e9 from=translated src=- shape=b03ab6d4 vocab=0e27b510
+-/
 theorem hamburgerCarlemanSeries_eq_top_of_evenMoment_le
     (ν : Measure ℝ)
     (hmoment : ∀ n : ℕ, 0 < n →

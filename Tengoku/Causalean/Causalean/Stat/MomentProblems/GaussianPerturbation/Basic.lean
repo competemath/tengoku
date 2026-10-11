@@ -35,7 +35,9 @@ noncomputable def hamburgerCarlemanSeries (ν : Measure ℝ) : ℝ≥0∞ :=
       (-(1 : ℝ) / (2 * (s + 1)))
 
 /-- For [a real measure](hyp:ν), [the Hamburger--Carleman notation equals its explicit
-integral-series formula](goal). -/
+integral-series formula](goal).
+@isnad1 id=eq.0h1v.s7.71d2ce699b1f from=translated src=- shape=f669de66 vocab=0b7d9aad
+-/
 theorem hamburgerCarlemanSeries_eq (ν : Measure ℝ) :
     hamburgerCarlemanSeries ν =
       ∑' s : ℕ,

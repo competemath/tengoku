@@ -68,7 +68,9 @@ inductive BWins : ℕ → Prop
 from `m`. -/
 def BWinsStart (n : ℕ) : Prop := ∀ m, AMove n m → m ≠ 1990 ∧ BWins m
 
-/-- B can win from the move `m` (by choosing 1) iff `m` is a prime power. -/
+/-- B can win from the move `m` (by choosing 1) iff `m` is a prime power.
+@isnad1 id=iff.0h1v.s3.ab0a3167c8ea from=translated src=- shape=1d45d7fe vocab=45e87ff6
+-/
 theorem bmove_one_iff_isPrimePow {m : ℕ} : BMove m 1 ↔ IsPrimePow m := by
   constructor
   · rintro ⟨p, r, hp, hr, h⟩
@@ -78,7 +80,9 @@ theorem bmove_one_iff_isPrimePow {m : ℕ} : BMove m 1 ↔ IsPrimePow m := by
     obtain ⟨p, r, hp, hr, hpr⟩ := h
     exact ⟨p, r, hp, hr, by rw [one_mul, hpr]⟩
 
-/-- A number divisible by two distinct primes is not a prime power. -/
+/-- A number divisible by two distinct primes is not a prime power.
+@isnad1 id=not.5h3v.s5.b323d5db9cc5 from=translated src=- shape=ebe905da vocab=045bf4a9
+-/
 theorem not_isPrimePow_of_dvd_of_dvd {m a b : ℕ} (ha : a.Prime) (hb : b.Prime)
     (hab : a ≠ b) (ham : a ∣ m) (hbm : b ∣ m) : ¬ IsPrimePow m := by
   rw [isPrimePow_nat_iff]
@@ -95,6 +99,9 @@ whose complementary factor is a prime power avoids reasoning about impossible mo
 def bResponses (m : ℕ) : Finset ℕ :=
   m.divisors.filter fun m' => IsPrimePow (m / m')
 
+/--
+@isnad1 id=iff.1h2v.s4.e6cfbc6b44ee from=translated src=- shape=3c599e2d vocab=a90ae9b9
+-/
 theorem bmove_iff_mem_bResponses {m m' : ℕ} (hm : m ≠ 0) :
     BMove m m' ↔ m' ∈ bResponses m := by
   rw [bResponses, Finset.mem_filter, Nat.mem_divisors]
@@ -111,31 +118,60 @@ theorem bmove_iff_mem_bResponses {m m' : ℕ} (hm : m ≠ 0) :
     obtain ⟨p, r, hp, hr, hpr⟩ := (isPrimePow_nat_iff _).mp hpp
     exact ⟨p, r, hp, hr, (Nat.mul_div_cancel' hd).symm.trans (by rw [← hpr])⟩
 
+/--
+@isnad1 id=not.2h1v.s5.10e55c1cb7a9 from=translated src=- shape=01d459ab vocab=a90ae9b9
+-/
 theorem not_bmove_one_of_not_mem {m : ℕ} (hm : m ≠ 0) (h1 : 1 ∉ bResponses m) :
     ¬ BMove m 1 := fun h => h1 ((bmove_iff_mem_bResponses hm).mp h)
 
+/--
+@isnad1 id=eq.0h0v.s5.3f98cb36fe36 from=translated src=- shape=36093055 vocab=6b4a667e
+-/
 theorem bResponses_30 : bResponses 30 = {6, 10, 15} := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s5.16ed287f160d from=translated src=- shape=a54acebe vocab=6b4a667e
+-/
 theorem bResponses_60 : bResponses 60 = {12, 15, 20, 30} := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s5.3abe7e7dc52b from=translated src=- shape=a54acebe vocab=6b4a667e
+-/
 theorem bResponses_140 : bResponses 140 = {20, 28, 35, 70} := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s6.23ca6eb47c92 from=translated src=- shape=3712f816 vocab=6b4a667e
+-/
 theorem bResponses_280 : bResponses 280 = {35, 40, 56, 70, 140} := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s6.7809d418ac40 from=translated src=- shape=5d456631 vocab=6b4a667e
+-/
 theorem bResponses_504 : bResponses 504 = {56, 63, 72, 126, 168, 252} := by
   decide +kernel
+/--
+@isnad1 id=eq.0h0v.s5.3129241d37e9 from=translated src=- shape=524c475b vocab=6b4a667e
+-/
 theorem bResponses_1991 : bResponses 1991 = {11, 181} := by decide +kernel
 
 /-- The finite trap used for the drawn starting positions. -/
 def trap : Finset ℕ := {30, 60, 140, 280, 504}
 
+/--
+@isnad1 id=ne.1h1v.s4.b25398e17bc4 from=translated src=- shape=39b6adc1 vocab=10993743
+-/
 lemma ne_zero_of_mem_trap {m : ℕ} (hm : m ∈ trap) : m ≠ 0 := by
   rw [trap] at hm
   fin_cases hm <;> decide
 
+/--
+@isnad1 id=not.1h1v.s5.0cac39022a6f from=translated src=- shape=cf9f9af0 vocab=4f1a1a91
+-/
 lemma one_not_mem_bResponses_of_mem_trap {m : ℕ} (hm : m ∈ trap) :
     1 ∉ bResponses m := by
   rw [trap] at hm
   fin_cases hm <;>
     simp [bResponses_30, bResponses_60, bResponses_140, bResponses_280, bResponses_504]
 
-/-- Whatever B plays from a trap number, A can legally return to that same number. -/
+/-- Whatever B plays from a trap number, A can legally return to that same number.
+@isnad1 id=amove.2h2v.s5.9e5e7bc1ed8a from=translated src=- shape=32af4b70 vocab=1b7b5a6b
+-/
 lemma return_to_trap {m m' : ℕ} (hm : m ∈ trap) (hm' : m' ∈ bResponses m) :
     AMove m' m := by
   rw [trap] at hm
@@ -154,10 +190,16 @@ A's winning strategy, following kalva: the moves 60, 140, 280, 504, 1990 cover
 `[8, 1990]`, 1991 covers `n = 1991`, and `11 ^ (r + 1) * 181` covers `n ≥ 1992` by
 strong induction. -/
 
+/--
+@isnad1 id=awins.2h1v.s4.57819209078e from=translated src=- shape=c00ef7ca vocab=c93ede61
+-/
 theorem aw_45_1990 {n : ℕ} (h₁ : 45 ≤ n) (h₂ : n ≤ 1990) : AWins n := by
   apply AWins.win
   exact ⟨h₂, by nlinarith [h₁]⟩
 
+/--
+@isnad1 id=awins.2h1v.s4.1997a5c2bf79 from=translated src=- shape=c00ef7ca vocab=c93ede61
+-/
 theorem aw_23_44 {n : ℕ} (h₁ : 23 ≤ n) (h₂ : n ≤ 44) : AWins n := by
   apply AWins.move (m := 504)
   · exact ⟨by lia, by nlinarith [h₁]⟩
@@ -167,6 +209,9 @@ theorem aw_23_44 {n : ℕ} (h₁ : 23 ≤ n) (h₂ : n ≤ 44) : AWins n := by
     rw [bResponses_504] at hm'
     fin_cases hm' <;> exact aw_45_1990 (by decide) (by decide)
 
+/--
+@isnad1 id=awins.2h1v.s4.29541dd8c8d6 from=translated src=- shape=c00ef7ca vocab=c93ede61
+-/
 theorem aw_17_22 {n : ℕ} (h₁ : 17 ≤ n) (h₂ : n ≤ 22) : AWins n := by
   apply AWins.move (m := 280)
   · exact ⟨by lia, by nlinarith [h₁]⟩
@@ -178,6 +223,9 @@ theorem aw_17_22 {n : ℕ} (h₁ : 17 ≤ n) (h₂ : n ≤ 22) : AWins n := by
       | exact aw_23_44 (by decide) (by decide)
       | exact aw_45_1990 (by decide) (by decide)
 
+/--
+@isnad1 id=awins.2h1v.s4.bb6d19c299ed from=translated src=- shape=c00ef7ca vocab=c93ede61
+-/
 theorem aw_12_16 {n : ℕ} (h₁ : 12 ≤ n) (h₂ : n ≤ 16) : AWins n := by
   apply AWins.move (m := 140)
   · exact ⟨by lia, by nlinarith [h₁]⟩
@@ -190,6 +238,9 @@ theorem aw_12_16 {n : ℕ} (h₁ : 12 ≤ n) (h₂ : n ≤ 16) : AWins n := by
       | exact aw_23_44 (by decide) (by decide)
       | exact aw_45_1990 (by decide) (by decide)
 
+/--
+@isnad1 id=awins.2h1v.s4.3fbb5a96bf28 from=translated src=- shape=c00ef7ca vocab=c93ede61
+-/
 theorem aw_8_11 {n : ℕ} (h₁ : 8 ≤ n) (h₂ : n ≤ 11) : AWins n := by
   apply AWins.move (m := 60)
   · exact ⟨by lia, by nlinarith [h₁]⟩
@@ -202,6 +253,9 @@ theorem aw_8_11 {n : ℕ} (h₁ : 8 ≤ n) (h₂ : n ≤ 11) : AWins n := by
       | exact aw_17_22 (by decide) (by decide)
       | exact aw_23_44 (by decide) (by decide)
 
+/--
+@isnad1 id=awins.0h0v.s2.634e04aa73fa from=translated src=- shape=e590c3e1 vocab=4deeb829
+-/
 theorem aw_1991 : AWins 1991 := by
   apply AWins.move (m := 1991)
   · exact ⟨by decide, by decide⟩
@@ -214,7 +268,9 @@ theorem aw_1991 : AWins 1991 := by
       | exact aw_45_1990 (by decide) (by decide)
 
 /-- For `n ≥ 1992` there is an exponent `r ≥ 1` with `11 ^ r * 181 < n ≤
-11 ^ (r + 1) * 181`, i.e. the intervals `(11^r·181, 11^(r+1)·181]` cover `[1992, ∞)`. -/
+11 ^ (r + 1) * 181`, i.e. the intervals `(11^r·181, 11^(r+1)·181]` cover `[1992, ∞)`.
+@isnad1 id=ex.1h1v.s6.a273230bce63 from=translated src=- shape=a604e6d2 vocab=3f16b8dd
+-/
 theorem exists_interval {n : ℕ} (h : 1992 ≤ n) :
     ∃ r, 1 ≤ r ∧ 11 ^ r * 181 < n ∧ n ≤ 11 ^ (r + 1) * 181 := by
   have hne : ∃ r, n ≤ 11 ^ (r + 1) * 181 := by
@@ -236,6 +292,9 @@ theorem exists_interval {n : ℕ} (h : 1992 ≤ n) :
     exact hmin (by lia)
   exact ⟨Nat.find hne, hr1, hr2, Nat.find_spec hne⟩
 
+/--
+@isnad1 id=awins.2h1v.s5.3287804e419c from=translated src=- shape=20e7287f vocab=9e5999ba
+-/
 theorem aw_big {n : ℕ} (h : 1992 ≤ n) (IH : ∀ m', m' < n → 8 ≤ m' → AWins m') :
     AWins n := by
   obtain ⟨r, hr1, hlt, hle⟩ := exists_interval h
@@ -339,7 +398,9 @@ theorem aw_big {n : ℕ} (h : 1992 ≤ n) (IH : ∀ m', m' < n → 8 ≤ m' → 
       · calc 8 ≤ 11 := by decide
           _ ≤ 11 * c := Nat.le_mul_of_pos_right _ hc
 
-/-- A wins from every `n ≥ 8`. -/
+/-- A wins from every `n ≥ 8`.
+@isnad1 id=awins.1h1v.s3.063d36b5bd17 from=translated src=- shape=2d2cffd0 vocab=c93ede61
+-/
 theorem awins_of_ge_8 (n : ℕ) : 8 ≤ n → AWins n := by
   induction n using Nat.strong_induction_on with
   | _ n IH =>
@@ -358,7 +419,9 @@ theorem awins_of_ge_8 (n : ℕ) : 8 ≤ n → AWins n := by
 
 /-! ### A does not win below 8 -/
 
-/-- From any non-prime-power `m ∈ [2, 49]`, B has a legal move into `[2, 7]`. -/
+/-- From any non-prime-power `m ∈ [2, 49]`, B has a legal move into `[2, 7]`.
+@isnad1 id=ex.3h1v.s5.5a113862175a from=translated src=- shape=e36b4adb vocab=7efd47ed
+-/
 theorem escape_le49 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 49) (h₃ : ¬ IsPrimePow m) :
     ∃ m', BMove m m' ∧ 2 ≤ m' ∧ m' ≤ 7 := by
   interval_cases m
@@ -411,6 +474,9 @@ theorem escape_le49 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 49) (h₃ : ¬ IsPr
   · exact ⟨6, ⟨2, 3, by norm_num, by decide, by decide⟩, by decide, by decide⟩
   · exact absurd ((isPrimePow_nat_iff _).mpr ⟨7, 2, by norm_num, by decide, by decide⟩) h₃
 
+/--
+@isnad1 id=or.1h1v.s4.4b06180a1d48 from=translated src=- shape=79383ac4 vocab=c93ede61
+-/
 theorem awins_ge {n : ℕ} (h : AWins n) : n = 1 ∨ 8 ≤ n := by
   induction h with
   | win n h =>
@@ -443,6 +509,9 @@ theorem awins_ge {n : ℕ} (h : AWins n) : n = 1 ∨ 8 ≤ n := by
 
 /-! ### Determinism: A and B cannot both have a winning strategy -/
 
+/--
+@isnad1 id=false.2h1v.s3.ea7641df23a8 from=translated src=- shape=0fd25248 vocab=0d41ad95
+-/
 theorem awins_not_bwinsstart {n : ℕ} (hA : AWins n) : BWinsStart n → False := by
   induction hA with
   | win n h =>
@@ -458,12 +527,18 @@ theorem awins_not_bwinsstart {n : ℕ} (hA : AWins n) : BWinsStart n → False :
 
 /-! ### B wins from `n₀ ∈ {2, 3, 4, 5}` -/
 
+/--
+@isnad1 id=bwins.1h1v.s3.7896cf6622ca from=translated src=- shape=38d5d459 vocab=85fbb617
+-/
 theorem bw_pp {m : ℕ} (h : IsPrimePow m) : BWins m := by
   rw [isPrimePow_nat_iff] at h
   obtain ⟨p, r, hp, hr, hpr⟩ := h
   apply BWins.one
   exact ⟨p, r, hp, hr, by rw [one_mul, hpr]⟩
 
+/--
+@isnad1 id=bwins.2h1v.s4.5101ec7955c4 from=translated src=- shape=c00ef7ca vocab=f519e11d
+-/
 theorem bw_le_11 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 11) : BWins m := by
   interval_cases m
   · exact bw_pp ((isPrimePow_nat_iff _).mpr ⟨2, 1, by norm_num, by decide, by decide⟩)
@@ -495,6 +570,9 @@ theorem bw_le_11 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 11) : BWins m := by
       · exact bw_pp ((isPrimePow_nat_iff _).mpr ⟨2, 2, by norm_num, by decide, by decide⟩)
   · exact bw_pp ((isPrimePow_nat_iff _).mpr ⟨11, 1, by norm_num, by decide, by decide⟩)
 
+/--
+@isnad1 id=bwins.2h1v.s4.33e5b7e9e478 from=translated src=- shape=c00ef7ca vocab=f519e11d
+-/
 theorem bw_le_19 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 19) : BWins m := by
   interval_cases m
   · exact bw_pp ((isPrimePow_nat_iff _).mpr ⟨2, 1, by norm_num, by decide, by decide⟩)
@@ -552,6 +630,9 @@ theorem bw_le_19 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 19) : BWins m := by
       interval_cases m'' <;> exact bw_le_11 (by decide) (by decide)
   · exact bw_pp ((isPrimePow_nat_iff _).mpr ⟨19, 1, by norm_num, by decide, by decide⟩)
 
+/--
+@isnad1 id=bwins.2h1v.s4.d3488007e3ae from=translated src=- shape=c00ef7ca vocab=f519e11d
+-/
 theorem bw_le_29 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 29) : BWins m := by
   interval_cases m
   · exact bw_pp ((isPrimePow_nat_iff _).mpr ⟨2, 1, by norm_num, by decide, by decide⟩)
@@ -655,21 +736,33 @@ theorem bw_le_29 {m : ℕ} (h₁ : 2 ≤ m) (h₂ : m ≤ 29) : BWins m := by
       interval_cases m'' <;> exact bw_le_19 (by decide) (by decide)
   · exact bw_pp ((isPrimePow_nat_iff _).mpr ⟨29, 1, by norm_num, by decide, by decide⟩)
 
+/--
+@isnad1 id=bwinssta.0h0v.s2.a032ad8d5e68 from=translated src=- shape=e590c3e1 vocab=ccdbc14a
+-/
 theorem bwinsstart_2 : BWinsStart 2 := by
   intro m ⟨h₁, h₂⟩
   have h4 : m ≤ 4 := le_trans h₂ (by decide)
   exact ⟨by lia, bw_le_11 (by lia) (by lia)⟩
 
+/--
+@isnad1 id=bwinssta.0h0v.s2.7ef5112be554 from=translated src=- shape=e590c3e1 vocab=ccdbc14a
+-/
 theorem bwinsstart_3 : BWinsStart 3 := by
   intro m ⟨h₁, h₂⟩
   have h9 : m ≤ 9 := le_trans h₂ (by decide)
   exact ⟨by lia, bw_le_11 (by lia) (by lia)⟩
 
+/--
+@isnad1 id=bwinssta.0h0v.s2.6115d23063c7 from=translated src=- shape=e590c3e1 vocab=ccdbc14a
+-/
 theorem bwinsstart_4 : BWinsStart 4 := by
   intro m ⟨h₁, h₂⟩
   have h16 : m ≤ 16 := le_trans h₂ (by decide)
   exact ⟨by lia, bw_le_19 (by lia) (by lia)⟩
 
+/--
+@isnad1 id=bwinssta.0h0v.s2.8395dbc57572 from=translated src=- shape=e590c3e1 vocab=ccdbc14a
+-/
 theorem bwinsstart_5 : BWinsStart 5 := by
   intro m ⟨h₁, h₂⟩
   have h25 : m ≤ 25 := le_trans h₂ (by decide)
@@ -677,7 +770,9 @@ theorem bwinsstart_5 : BWinsStart 5 := by
 
 /-! ### B does not win from 30, hence not from `n₀ ∈ {6, 7}` -/
 
-/-- B has no winning strategy from a trap number: A can always restore it. -/
+/-- B has no winning strategy from a trap number: A can always restore it.
+@isnad1 id=not.1h1v.s4.cc343d76d594 from=translated src=- shape=7b190d38 vocab=27aaeca0
+-/
 theorem not_bwins_trap {m : ℕ} (h : BWins m) : m ∉ trap := by
   induction h with
   | one m h =>
@@ -689,11 +784,17 @@ theorem not_bwins_trap {m : ℕ} (h : BWins m) : m ∉ trap := by
       have hm' := (bmove_iff_mem_bResponses (ne_zero_of_mem_trap hm)).mp hl
       exact IH m (return_to_trap hm hm') hm
 
+/--
+@isnad1 id=not.0h0v.s2.2066bf155b37 from=translated src=- shape=8d7dbbf6 vocab=ccdbc14a
+-/
 theorem not_bwinsstart_6 : ¬ BWinsStart 6 := by
   intro h
   obtain ⟨h1, h2⟩ := h 30 ⟨by decide, by decide⟩
   exact not_bwins_trap h2 (by decide)
 
+/--
+@isnad1 id=not.0h0v.s2.63730278f7c9 from=translated src=- shape=8d7dbbf6 vocab=ccdbc14a
+-/
 theorem not_bwinsstart_7 : ¬ BWinsStart 7 := by
   intro h
   obtain ⟨h1, h2⟩ := h 30 ⟨by decide, by decide⟩

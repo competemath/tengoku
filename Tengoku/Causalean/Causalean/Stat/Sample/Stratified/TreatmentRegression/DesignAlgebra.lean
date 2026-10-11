@@ -24,7 +24,9 @@ increases the cell Gram contribution by an amount between zero and one](goal), e
 was empty.
 
 For positive m the increment equals (m-t)^2 / (m(m+1)); isolate m=0 first.
-Use t≤m to rewrite natural subtraction before field arithmetic. -/
+Use t≤m to rewrite natural subtraction before field arithmetic.
+@isnad1 id=and.1h2v.s6.011b676c794e from=translated src=- shape=af0a37dc vocab=8220918a
+-/
 lemma cellGram_add_treated (m t : ℕ) (ht : t ≤ m) :
     0 ≤ cellGram (m + 1) (t + 1) - cellGram m t ∧
       cellGram (m + 1) (t + 1) - cellGram m t ≤ 1 := by
@@ -55,7 +57,9 @@ increases the cell Gram contribution by an amount between zero and one](goal), e
 was empty.
 
 For positive m the increment equals t^2 / (m(m+1)); use symmetry with the
-treated increment or clear the positive denominators directly. -/
+treated increment or clear the positive denominators directly.
+@isnad1 id=and.1h2v.s6.11cdf714f456 from=translated src=- shape=81ebaa72 vocab=8220918a
+-/
 lemma cellGram_add_control (m t : ℕ) (ht : t ≤ m) :
     0 ≤ cellGram (m + 1) t - cellGram m t ∧
       cellGram (m + 1) t - cellGram m t ≤ 1 := by
@@ -83,7 +87,9 @@ lemma cellGram_add_control (m t : ℕ) (ht : t ≤ m) :
 
 omit [Fintype κ] in
 /-- In [a design d of n cell-treatment pairs](hyp:n,d), [summing a real constant c](hyp:c) over
-the observations in [a cell k](hyp:k) [gives the cell count of k times c](goal). -/
+the observations in [a cell k](hyp:k) [gives the cell count of k times c](goal).
+@isnad1 id=eq.0h5v.s6.e434647c883e from=translated src=- shape=2a74701e vocab=0466bc41
+-/
 lemma sum_cell_constant {n : ℕ} (d : Fin n → κ × Bool) (k : κ) (c : ℝ) :
     (∑ i, if (d i).1 = k then c else 0) =
       (cellCount (fun i => (d i).1) k : ℝ) * c := by
@@ -94,7 +100,9 @@ lemma sum_cell_constant {n : ℕ} (d : Fin n → κ × Bool) (k : κ) (c : ℝ) 
 
 omit [Fintype κ] in
 /-- In [a design d of n cell-treatment pairs](hyp:n,d), [summing the treatment indicators over the
-observations in a cell k](hyp:k) [gives the treated count of k](goal). -/
+observations in a cell k](hyp:k) [gives the treated count of k](goal).
+@isnad1 id=eq.0h4v.s6.c85af8671733 from=translated src=- shape=faf66eb2 vocab=1b8dd0fc
+-/
 lemma sum_cell_treatment {n : ℕ} (d : Fin n → κ × Bool) (k : κ) :
     (∑ i, if (d i).1 = k then (if (d i).2 then (1 : ℝ) else 0) else 0) =
       (treatedCount d k : ℝ) := by
@@ -105,7 +113,9 @@ lemma sum_cell_treatment {n : ℕ} (d : Fin n → κ × Bool) (k : κ) :
 
 omit [Fintype κ] in
 /-- In [a design d of n cell-treatment pairs](hyp:n,d), [the residualized treatment weights of the
-observations in any cell k](hyp:k) [sum to zero](goal), including in empty cells. -/
+observations in any cell k](hyp:k) [sum to zero](goal), including in empty cells.
+@isnad1 id=eq.0h4v.s6.d60439bdac57 from=translated src=- shape=f8c42936 vocab=142c20b2
+-/
 lemma sum_residualWeight_cell {n : ℕ} (d : Fin n → κ × Bool) (k : κ) :
     (∑ i, if (d i).1 = k then residualWeight d i else 0) = 0 := by
   have heq :
@@ -129,7 +139,9 @@ lemma sum_residualWeight_cell {n : ℕ} (d : Fin n → κ × Bool) (k : κ) :
 omit [Fintype κ] in
 /-- In [a design d of n cell-treatment pairs](hyp:n,d), [summing the residualized treatment weight
 times the treatment indicator over the observations in a cell k](hyp:k) [gives that cell's Gram
-contribution](goal). -/
+contribution](goal).
+@isnad1 id=eq.0h4v.s6.5ef683696e3c from=translated src=- shape=9214f95d vocab=071a6e4e
+-/
 lemma sum_cell_residual_treatment {n : ℕ} (d : Fin n → κ × Bool) (k : κ) :
     (∑ i, if (d i).1 = k then
       residualWeight d i * (if (d i).2 then (1 : ℝ) else 0) else 0) =
@@ -154,7 +166,9 @@ lemma sum_cell_residual_treatment {n : ℕ} (d : Fin n → κ × Bool) (k : κ) 
     field_simp
 
 /-- For [every design d of n cell-treatment pairs](hyp:n,d), [the sum of the squared residualized
-treatment weights equals the Gram denominator](goal). -/
+treatment weights equals the Gram denominator](goal).
+@isnad1 id=eq.0h3v.s5.2ee8d1614f1a from=translated src=- shape=9c8c1814 vocab=eba952ba
+-/
 lemma sum_residualWeight_sq {n : ℕ} (d : Fin n → κ × Bool) :
     (∑ i, residualWeight d i ^ 2) = gram d := by
   have hcell (k : κ) :
@@ -180,7 +194,9 @@ lemma sum_residualWeight_sq {n : ℕ} (d : Fin n → κ × Bool) :
   simp
 
 /-- For [every design d of n cell-treatment pairs](hyp:n,d), [the sum of the treatment indicators
-weighted by their residualized treatment weights equals the Gram denominator](goal). -/
+weighted by their residualized treatment weights equals the Gram denominator](goal).
+@isnad1 id=eq.0h3v.s6.5bae39374621 from=translated src=- shape=2e1d3ca5 vocab=8a414aa2
+-/
 lemma sum_residualWeight_treatment {n : ℕ} (d : Fin n → κ × Bool) :
     (∑ i, residualWeight d i * (if (d i).2 then (1 : ℝ) else 0)) = gram d := by
   unfold gram
@@ -189,7 +205,9 @@ lemma sum_residualWeight_treatment {n : ℕ} (d : Fin n → κ × Bool) :
   simp
 
 /-- For [every design d of n cell-treatment pairs](hyp:n,d), [the Gram denominator is at most
-n/4](goal). -/
+n/4](goal).
+@isnad1 id=le.0h3v.s5.0cf3b3c0fbbc from=translated src=- shape=177a3c21 vocab=fe4aac1d
+-/
 lemma gram_le_sample_quarter {n : ℕ} (d : Fin n → κ × Bool) :
     gram d ≤ (n : ℝ) / 4 := by
   have hcell (k : κ) :
@@ -213,7 +231,9 @@ lemma gram_le_sample_quarter {n : ℕ} (d : Fin n → κ × Bool) :
 
 /-- If [cell total counts m and treated counts t](hyp:m,t) satisfy [treated count at most total
 count in every cell](hyp:ht), then [adding one observation v](hyp:v) [increases the summed cell
-Gram contributions by an amount between zero and one](goal). -/
+Gram contributions by an amount between zero and one](goal).
+@isnad1 id=and.1h4v.s8.bd89a8b23c83 from=translated src=- shape=8973b9b4 vocab=97a94f4a
+-/
 lemma sum_cellGram_add (m t : κ → ℕ) (ht : ∀ k, t k ≤ m k) (v : κ × Bool) :
     0 ≤ (∑ k, cellGram (m k + if v.1 = k then 1 else 0)
       (t k + if v.1 = k ∧ v.2 = true then 1 else 0)) -
@@ -254,7 +274,9 @@ Remove coordinate i, forming counts over univ.erase i. Both old and new
 designs add one observation to these common counts. If their cells differ,
 the change is the difference of two increments in [0,1]. If the cells agree,
 it is still the difference of two such increments. This sharper bound, not
-the triangle-inequality bound two, is needed for the numerical risk corollary. -/
+the triangle-inequality bound two, is needed for the numerical risk corollary.
+@isnad1 id=le.0h5v.s6.a22bd155ceea from=translated src=- shape=e9e4df16 vocab=f0a63e9d
+-/
 theorem gram_update_oscillation {n : ℕ} (d : Fin n → κ × Bool)
     (i : Fin n) (v : κ × Bool) :
     |gram d - gram (Function.update d i v)| ≤ 1 := by

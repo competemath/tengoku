@@ -25,7 +25,9 @@ variable {Ω A κ : Type*} [MeasurableSpace Ω] [MeasurableSpace A]
 
 /-- [Measurable partition inputs, responses, and target](hyp:hlabel,hX,hY,hg)
 give [measurable integrated squared histogram loss as a function of the
-training tuple](goal) under a probability observation law. -/
+training tuple](goal) under a probability observation law.
+@isnad1 id=measurab.4h10v.s7.8160fa96b67b from=translated src=- shape=09c2ff0c vocab=89607b63
+-/
 theorem measurable_integrated_sq_loss {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (g : A → ℝ) (a : ℝ)
@@ -50,7 +52,9 @@ theorem measurable_integrated_sq_loss {m : ℕ}
 /-- [Measurable iid observation maps with a common law](hyp:hZ,hind,hident)
 and [measurable partition inputs, responses, and target](hyp:hlabel,hX,hY,hg)
 give [equality of expected integrated squared histogram loss on the original
-sample space and the canonical product sample space](goal). -/
+sample space and the canonical product sample space](goal).
+@isnad1 id=eq.7h13v.s8.a3faf69bed32 from=translated src=- shape=dba672ef vocab=6b76a49e
+-/
 theorem integral_histogram_loss_eq_risk_iid {m : ℕ} {S : Type*} [MeasurableSpace S]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (ν : Measure S) [IsProbabilityMeasure ν]
     (Z : Fin m → S → Ω) (label : A → κ) (X : Ω → A)

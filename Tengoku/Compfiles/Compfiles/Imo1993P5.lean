@@ -25,6 +25,9 @@ abbrev DoesExist : Bool := True
 
 abbrev Good (f : ℕ → ℕ) : Prop := f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ ∀ n, f n < f (n + 1)
 
+/--
+@isnad1 id=ex.0h0v.s6.502bb7b29531 from=translated src=- shape=c1976fe1 vocab=13a96747
+-/
 lemma imo_1993_p5_N:
   ∃ f : ℕ → ℕ, f 1 = 2 ∧ (∀ n, f (f n) = f n + n) ∧ (∀ n, f n < f (n + 1)) := by
   let G : ℝ := Real.goldenRatio

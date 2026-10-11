@@ -39,7 +39,9 @@ variable {p : ℕ}
 
 /-- **Change of variables for a single moment entry.** For `h > 0`,
 `∫ a, K((a−t)/h) · (a−t)^m · p(a) da = h^{m+1} · ∫ u, K(u) · u^m · p(t+h·u) du`: the substitution
-`a = t + h·u` contributes the Jacobian `h` and turns `(a−t)^m` into `(h·u)^m = h^m u^m`. -/
+`a = t + h·u` contributes the Jacobian `h` and turns `(a−t)^m` into `(h·u)^m = h^m u^m`.
+@isnad1 id=eq.1h5v.s7.41c9fb3c746c from=translated src=- shape=6dfa57b9 vocab=5cea321a
+-/
 theorem popMomentEntry_changeOfVar (K pdens : ℝ → ℝ) (t h : ℝ) (hh : 0 < h) (m : ℕ) :
     (∫ a, K ((a - t) / h) * (a - t) ^ m * pdens a)
       = h ^ (m + 1) * ∫ u, K u * u ^ m * pdens (t + h * u) := by
@@ -93,7 +95,9 @@ bandwidth `h > 0`](hyp:hh), writing `T` for the kernel shape matrix
 `diagonal (fun j => h^j)`, [the population design moment matrix factors as
 `popDesignMatrix p N K pdens t h = (N·h) • (D · T · D)`](goal). This is the literal
 `S = (Nh)·(D T D)` hypothesis of `population_scaling_of_conj`, proved by the single-entry change of
-variables `popMomentEntry_changeOfVar`. -/
+variables `popMomentEntry_changeOfVar`.
+@isnad1 id=eq.1h6v.s9.3efdb4dda890 from=translated src=- shape=48bba04d vocab=b8883d22
+-/
 theorem popDesignMatrix_factor (N : ℕ) (K pdens : ℝ → ℝ) (t h : ℝ) (hh : 0 < h) :
     popDesignMatrix p N K pdens t h
       = ((N : ℝ) * h) •

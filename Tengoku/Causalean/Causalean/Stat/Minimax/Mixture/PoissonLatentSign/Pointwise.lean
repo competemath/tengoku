@@ -50,7 +50,9 @@ def posterior {m : ℕ} (τ : ℝ) (c : Cell m) (S : Finset (Fin m)) : ℝ :=
     denominator τ c
 
 /-- Every record likelihood factor lies between three quarters and five quarters
-when the score and sign bounds hold. -/
+when the score and sign bounds hold.
+@isnad1 id=and.4h4v.s7.5731cd9c2ef0 from=translated src=- shape=8d8ae0ec vocab=17eddd81
+-/
 theorem factor_bounds {τ u ell σ : ℝ} (hτ : |τ| ≤ 1 / 4)
     (hu : |u| ≤ 1) (hell : |ell| = 1) (hσ : |σ| = 1) :
     3 / 4 ≤ 1 + τ * ell * u * σ ∧ 1 + τ * ell * u * σ ≤ 5 / 4 := by
@@ -60,7 +62,9 @@ theorem factor_bounds {τ u ell σ : ℝ} (hτ : |τ| ≤ 1 / 4)
   have hb := abs_le.mp hmul
   constructor <;> linarith
 
-/-- A bounded cell has a denominator at least twice three quarters to its size. -/
+/-- A bounded cell has a denominator at least twice three quarters to its size.
+@isnad1 id=le.2h3v.s7.89eb610d5e72 from=translated src=- shape=fc77ac78 vocab=9304775c
+-/
 theorem denominator_lower {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1) :
     2 * (3 / 4 : ℝ) ^ m ≤ denominator τ c := by
@@ -77,7 +81,9 @@ theorem denominator_lower {m : ℕ} {τ : ℝ} {c : Cell m}
   unfold denominator
   linarith
 
-/-- The posterior denominator is strictly positive for bounded scores and tilt. -/
+/-- The posterior denominator is strictly positive for bounded scores and tilt.
+@isnad1 id=lt.2h3v.s6.aaad02d4e09e from=translated src=- shape=367cfe4c vocab=da3eaf47
+-/
 theorem denominator_pos {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1) :
     0 < denominator τ c := by
@@ -85,7 +91,9 @@ theorem denominator_pos {m : ℕ} {τ : ℝ} {c : Cell m}
   have hp : 0 < 2 * (3 / 4 : ℝ) ^ m := by positivity
   linarith
 
-/-- The empty posterior coefficient equals one for bounded scores and tilt. -/
+/-- The empty posterior coefficient equals one for bounded scores and tilt.
+@isnad1 id=eq.2h3v.s6.ad8cea2eca93 from=translated src=- shape=840ac68f vocab=3bee63f9
+-/
 theorem posterior_empty {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1) :
     posterior τ c ∅ = 1 := by
@@ -96,7 +104,9 @@ theorem posterior_empty {m : ℕ} {τ : ℝ} {c : Cell m}
   exact div_self hn
 
 /-- For a positive assignment, the singleton posterior cancels its own likelihood
-factor, leaving the difference of the products over the other records. -/
+factor, leaving the difference of the products over the other records.
+@isnad1 id=eq.3h4v.s8.60e6d72b0ec8 from=translated src=- shape=f493451f vocab=50c7c5e5
+-/
 theorem posterior_singleton_cancel {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1)
     {i : Fin m} (hi : i ∈ active c) :
@@ -134,7 +144,9 @@ theorem posterior_singleton_cancel {m : ℕ} {τ : ℝ} {c : Cell m}
   ring
 
 /-- Opposite-sign products differ by at most a linear tilt times the number of factors
-and a five-quarters exponential envelope. -/
+and a five-quarters exponential envelope.
+@isnad1 id=le.2h4v.s7.491d4882b21f from=translated src=- shape=c143f9e8 vocab=145cbb64
+-/
 theorem opposite_products_bound {ι : Type*} (s : Finset ι) (v : ι → ℝ)
     {τ : ℝ} (hτ : |τ| ≤ 1 / 4) (hv : ∀ i ∈ s, |v i| ≤ 1) :
     |(∏ i ∈ s, (1 + τ * v i)) - (∏ i ∈ s, (1 - τ * v i))| ≤
@@ -192,7 +204,9 @@ theorem opposite_products_bound {ι : Type*} (s : Finset ι) (v : ι → ℝ)
         nlinarith
 
 /-- A singleton active coefficient is bounded by the tilt times the number of other
-records and five thirds to the cell size. -/
+records and five thirds to the cell size.
+@isnad1 id=le.3h4v.s7.de668c36fb20 from=translated src=- shape=53699246 vocab=74c3471c
+-/
 theorem posterior_singleton_bound {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1)
     {i : Fin m} (hi : i ∈ active c) :
@@ -228,7 +242,9 @@ theorem posterior_singleton_bound {m : ℕ} {τ : ℝ} {c : Cell m}
     _ ≤ (|τ| * ((m - 1 : ℕ) : ℝ) * (5 / 3 : ℝ) ^ m) * denominator τ c :=
       mul_le_mul_of_nonneg_left (denominator_lower hτ hu) (by positivity)
 
-/-- A one-record cell has zero active singleton coefficient. -/
+/-- A one-record cell has zero active singleton coefficient.
+@isnad1 id=eq.3h3v.s7.bcc1f0b6b492 from=translated src=- shape=10bc3add vocab=c8debaa7
+-/
 theorem posterior_singleton_one {τ : ℝ} {c : Cell 1}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1)
     {i : Fin 1} (hi : i ∈ active c) : posterior τ c {i} = 0 := by
@@ -236,7 +252,9 @@ theorem posterior_singleton_one {τ : ℝ} {c : Cell 1}
   simpa using abs_nonpos_iff.mp (by simpa using h)
 
 /-- Every posterior subset coefficient is bounded by two to its cardinality.
-The bound holds even without the active-subset restriction. -/
+The bound holds even without the active-subset restriction.
+@isnad1 id=le.2h4v.s6.1cfe8fe00ce5 from=translated src=- shape=8018d1a4 vocab=0f9dce48
+-/
 theorem posterior_subset_bound {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1) (S : Finset (Fin m)) :
     |posterior τ c S| ≤ (2 : ℝ) ^ S.card := by
@@ -291,12 +309,16 @@ theorem posterior_subset_bound {m : ℕ} {τ : ℝ} {c : Cell m}
 def subsetEnergy {m : ℕ} (τ : ℝ) (c : Cell m) (d : ℕ) : ℝ :=
   ∑ S ∈ (selected c).powersetCard d, (posterior τ c S) ^ 2
 
-/-- All subset energies are nonnegative. -/
+/-- All subset energies are nonnegative.
+@isnad1 id=le.0h4v.s4.919c45f1484a from=translated src=- shape=d41e84a4 vocab=d91a4533
+-/
 theorem subsetEnergy_nonneg {m : ℕ} (τ : ℝ) (c : Cell m) (d : ℕ) :
     0 ≤ subsetEnergy τ c d := by
   exact Finset.sum_nonneg (fun _ _ => sq_nonneg _)
 
-/-- The order-d energy is bounded by four to d times the cell-size binomial coefficient. -/
+/-- The order-d energy is bounded by four to d times the cell-size binomial coefficient.
+@isnad1 id=le.2h4v.s6.30349ac9984e from=translated src=- shape=c49cc952 vocab=8a6ccaf2
+-/
 theorem subsetEnergy_le_choose {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hu : ∀ i, |c.1 i| ≤ 1) (d : ℕ) :
     subsetEnergy τ c d ≤ (4 : ℝ) ^ d * (m.choose d : ℝ) := by
@@ -322,7 +344,9 @@ theorem subsetEnergy_le_choose {m : ℕ} {τ : ℝ} {c : Cell m}
 
 /-- Given [a bounded tilt](hyp:hτ) and [valid cell data](hyp:hc), [the singleton
 posterior subset energy is bounded by the tilt squared times the cell's double-collision
-polynomial](goal). -/
+polynomial](goal).
+@isnad1 id=le.2h3v.s7.3ec8ead816e3 from=translated src=- shape=79ca10de vocab=261556d1
+-/
 theorem subsetEnergy_one_bound {m : ℕ} {τ : ℝ} {c : Cell m}
     (hτ : |τ| ≤ 1 / 4) (hc : Valid c) :
     subsetEnergy τ c 1 ≤ τ ^ 2 * (m : ℝ) * ((m - 1 : ℕ) : ℝ) ^ 2 *
@@ -351,7 +375,9 @@ theorem subsetEnergy_one_bound {m : ℕ} {τ : ℝ} {c : Cell m}
       mul_le_mul_of_nonneg_right (by exact_mod_cast hcount) (by positivity)
     _ = τ ^ 2 * (m : ℝ) * ((m - 1 : ℕ) : ℝ) ^ 2 * ((5 / 3 : ℝ) ^ 2) ^ m := by ring
 
-/-- Each fixed-order subset energy is measurable as a function of the cell data. -/
+/-- Each fixed-order subset energy is measurable as a function of the cell data.
+@isnad1 id=measurab.0h3v.s6.36e943e04bfe from=translated src=- shape=d1442e24 vocab=302597f8
+-/
 @[fun_prop] theorem measurable_subsetEnergy (m d : ℕ) (τ : ℝ) :
     Measurable (fun c : Cell m => subsetEnergy τ c d) := by
   classical

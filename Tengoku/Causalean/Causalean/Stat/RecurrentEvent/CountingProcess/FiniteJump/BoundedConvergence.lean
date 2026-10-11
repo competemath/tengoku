@@ -22,7 +22,9 @@ expected finite event sums under a probability law with a count second moment.
 [The model](hyp:M), [the approximating and limiting payoffs](hyp:G,H), [their
 predictability](hyp:hG,hH), [the common nonnegative bound](hyp:C,hC,hbound),
 and [pointwise convergence](hyp:hlim) give [convergence of expected event
-sums](goal). -/
+sums](goal).
+@isnad1 id=tendsto.5h6v.s7.2bf2780987f9 from=translated src=- shape=04dc3a70 vocab=5ea37010
+-/
 theorem Model.tendsto_expected_jumpIntegral (M : Model Ω μ)
     [IsProbabilityMeasure μ] (G : ℕ → ℝ → Ω → ℝ) (H : ℝ → Ω → ℝ)
     (hG : ∀ k, M.Predictable (G k)) (hH : M.Predictable H)
@@ -51,7 +53,9 @@ theorem Model.tendsto_expected_jumpIntegral (M : Model Ω μ)
     exact tendsto_finsetSum _ (fun t _ => hlim t ω)
 
 /-- Uniformly bounded predictable payoffs converging pointwise have convergent
-expected intensity integrals on the finite horizon. -/
+expected intensity integrals on the finite horizon.
+@isnad1 id=tendsto.5h6v.s7.3bc34efa4ef9 from=translated src=- shape=04dc3a70 vocab=c5a90da0
+-/
 theorem Model.tendsto_expected_energyIntegral (M : Model Ω μ)
     [IsProbabilityMeasure μ] (G : ℕ → ℝ → Ω → ℝ) (H : ℝ → Ω → ℝ)
     (hG : ∀ k, M.Predictable (G k)) (hH : M.Predictable H)

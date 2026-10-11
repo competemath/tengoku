@@ -21,7 +21,9 @@ open Causalean.Stat.OrderStatistic
 noncomputable section
 
 /-- At an adjacent threshold `(k+δ)/N`, multiplying a hinge-cell mass by
-`N` gives zero before cell `k`, `1-δ` in cell `k`, and one after it. -/
+`N` gives zero before cell `k`, `1-δ` in cell `k`, and one after it.
+@isnad1 id=eq.3h4v.s7.ccf0c2069934 from=translated src=- shape=6bc97d3f vocab=99438b49
+-/
 theorem hingeCell_at_adjacent {N k : ℕ} (hN : 0 < N) (hk : k < N)
     {δ : ℝ} (hδ : δ ∈ Set.Icc (0 : ℝ) 1) (j : Fin N) :
     (N : ℝ) * hingeCell N ((k + δ) / N) j =
@@ -65,7 +67,9 @@ theorem hingeCell_at_adjacent {N k : ℕ} (hN : 0 < N) (hk : k < N)
     simp [not_lt.mpr (Nat.le_of_lt hkj), ne_of_gt hkj, hleft, hNne]
 
 /-- The Bernstein kernel of an adjacent hinge is the convex combination of
-the two binomial upper tails with cutoffs `k` and `k+1`. -/
+the two binomial upper tails with cutoffs `k` and `k+1`.
+@isnad1 id=eq.3h4v.s8.a7d474a542fe from=translated src=- shape=271c3e54 vocab=26b65cba
+-/
 theorem bernsteinCell_hinge_eq_binomial_tails {N k : ℕ}
     (hN : 0 < N) (hk : k < N) {δ : ℝ}
     (hδ : δ ∈ Set.Icc (0 : ℝ) 1) (u : ℝ) :
@@ -136,7 +140,9 @@ theorem bernsteinCell_hinge_eq_binomial_tails {N k : ℕ}
 /-- For a [positive sample size](hyp:hN), [adjacent cell](hyp:hk), and
  [interpolation fraction](hyp:hδ), at an [interior point](hyp:hu), the Bernstein density of the corresponding
  hinge increments is [the CDF of the adjacent order-statistic mixture](goal)
- at each interior point of the unit interval. -/
+ at each interior point of the unit interval.
+@isnad1 id=eq.4h4v.s6.7581ded29ffe from=translated src=- shape=9ea89b20 vocab=5ee3e3a1
+-/
 theorem bernsteinCell_hinge_eq_adjacent_cdf {N k : ℕ}
     (hN : 0 < N) (hk : k < N) {δ : ℝ}
     (hδ : δ ∈ Set.Icc (0 : ℝ) 1) {u : ℝ}
@@ -239,7 +245,9 @@ theorem bernsteinCell_hinge_eq_adjacent_cdf {N k : ℕ}
 
 /-- Every [threshold](hyp:ht) in the unit interval [lies in an adjacent cell](goal) of
 a [positive sample size](hyp:hN), including the right endpoint by taking the
-last cell and interpolation fraction one. -/
+last cell and interpolation fraction one.
+@isnad1 id=ex.2h2v.s6.a2c4daab5ca9 from=translated src=- shape=4645f108 vocab=a248aca6
+-/
 theorem unit_threshold_eq_adjacent {N : ℕ} (hN : 0 < N) {t : ℝ}
     (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     ∃ k : ℕ, ∃ δ : ℝ,
@@ -269,7 +277,9 @@ theorem unit_threshold_eq_adjacent {N : ℕ} (hN : 0 < N) {t : ℝ}
 
 /-- For a [unit-interval threshold](hyp:ht), [the Bernstein kernel of its hinge
 cells approximates the threshold step function in L1 with error at most
-`sqrt (2*t/N)`](goal) for a [positive sample size](hyp:hN). -/
+`sqrt (2*t/N)`](goal) for a [positive sample size](hyp:hN).
+@isnad1 id=le.2h2v.s7.e1982e9f2dd1 from=translated src=- shape=172af8c2 vocab=50618370
+-/
 theorem bernsteinCell_hinge_indicator_L1 {N : ℕ} (hN : 0 < N)
     {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     (∫ u in Set.Icc (0 : ℝ) 1,
@@ -295,7 +305,9 @@ theorem bernsteinCell_hinge_indicator_L1 {N : ℕ} (hN : 0 < N)
       hN hk hδ
 
 /-- For a [power strictly greater than one](hyp:hs) and [unit-interval point](hyp:hu),
- [the power density is a constant minus its integrated curvature thresholds](goal). -/
+ [the power density is a constant minus its integrated curvature thresholds](goal).
+@isnad1 id=eq.2h2v.s6.fa7adec291ed from=translated src=- shape=fc1fad23 vocab=cb0ec787
+-/
 theorem powerDensity_eq_sub_curvature_integral {s u : ℝ}
     (hs : 1 < s) (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     powerDensity s u = s -
@@ -318,7 +330,9 @@ theorem powerDensity_eq_sub_curvature_integral {s u : ℝ}
   ring
 
 /-- For a positive sample size and a real power above one, each power cell
-mass is its constant-density mass minus the curvature-weighted hinge cell. -/
+mass is its constant-density mass minus the curvature-weighted hinge cell.
+@isnad1 id=eq.2h3v.s6.ab2faad05277 from=translated src=- shape=352c2a10 vocab=bd47adf8
+-/
 theorem powerCell_eq_sub_curvature_hinge_integral {N : ℕ}
     (hN : 0 < N) {s : ℝ} (hs : 1 < s) (j : Fin N) :
     powerCell N s j = s / N -
@@ -431,7 +445,9 @@ theorem powerCell_eq_sub_curvature_hinge_integral {N : ℕ}
 
 /-- For a [positive sample size](hyp:hN), [power strictly above one](hyp:hs), and [evaluation point](hyp:u),
  [the Bernstein power kernel is a constant minus the curvature-weighted
- Bernstein hinge kernel](goal). -/
+ Bernstein hinge kernel](goal).
+@isnad1 id=eq.2h3v.s6.65068828b4d9 from=translated src=- shape=7f3104e4 vocab=764cbbdc
+-/
 theorem bernsteinCell_power_eq_sub_curvature_hinge_integral {N : ℕ}
     (hN : 0 < N) {s : ℝ} (hs : 1 < s) (u : ℝ) :
     bernsteinCell N (powerCell N s) u = s -

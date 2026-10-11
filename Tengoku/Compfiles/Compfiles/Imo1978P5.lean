@@ -32,7 +32,9 @@ Abel summation against the decreasing weights 1/k² gives
 -/
 
 /-- A finset of `m` distinct positive integers sums to at least
-`1 + 2 + ⋯ + m`. -/
+`1 + 2 + ⋯ + m`.
+@isnad1 id=le.2h2v.s6.fc1b9c285d9f from=translated src=- shape=ea32736a vocab=ec86eb77
+-/
 lemma triangular_le_sum :
     ∀ (m : ℕ) (T : Finset ℕ), T.card = m → (∀ x ∈ T, 1 ≤ x) →
     ∑ k ∈ Icc 1 m, k ≤ ∑ x ∈ T, x := by
@@ -56,7 +58,9 @@ lemma triangular_le_sum :
       (ih _ herase (fun x hx => hT x (Finset.mem_of_mem_erase hx))) hM
 
 /-- The partial sums of a sequence of distinct positive integers dominate
-the partial sums of the identity. -/
+the partial sums of the identity.
+@isnad1 id=le.2h2v.s6.37a82bb88364 from=translated src=- shape=e63ac20f vocab=e1efb516
+-/
 lemma triangular_le_partial_sum (f : ℕ → ℕ)
     (h₀ : ∀ m : ℕ, 0 < m → 0 < f m)
     (h₁ : ∀ p q : ℕ, 0 < p → 0 < q → p ≠ q → f p ≠ f q)
@@ -80,7 +84,9 @@ lemma triangular_le_partial_sum (f : ℕ → ℕ)
 
 /-- Abel summation comparison: if the partial sums of `h` are dominated by
 the partial sums of `g`, then the same holds for sums weighted by any
-nonnegative decreasing sequence `w`. -/
+nonnegative decreasing sequence `w`.
+@isnad1 id=le.3h4v.s7.4fe39b8df895 from=translated src=- shape=f29867fb vocab=765bc85c
+-/
 lemma abel_compare (n : ℕ) (w g h : ℕ → ℝ)
     (hw : ∀ k ∈ Icc 1 n, 0 ≤ w k)
     (hanti : ∀ j k : ℕ, 1 ≤ j → j ≤ k → k ≤ n → w k ≤ w j)

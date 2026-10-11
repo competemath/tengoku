@@ -18,7 +18,9 @@ open Causalean.Mathlib.Probability.Poisson
 open Causalean.Stat.Concentration.Poisson
 namespace Causalean.Stat.Minimax.Mixture.PoissonLatentSign
 
-/-- Every binomial coefficient in a Poisson count is integrable. -/
+/-- Every binomial coefficient in a Poisson count is integrable.
+@isnad1 id=integrab.0h2v.s5.c4979ce877fc from=translated src=- shape=e4da0d2f vocab=3aac5e0e
+-/
 theorem integrable_poisson_choose (ξ : NNReal) (d : ℕ) :
     Integrable (fun m : ℕ => (m.choose d : ℝ)) (poissonMeasure ξ) := by
   have h := (poisson_descFactorial_integrable ξ d).div_const (d.factorial : ℝ)
@@ -28,7 +30,9 @@ theorem integrable_poisson_choose (ξ : NNReal) (d : ℕ) :
   simp [Nat.factorial_ne_zero]
 
 /-- The expected order-d binomial coefficient of a Poisson count is the mean to d divided by d
-  factorial. -/
+  factorial.
+@isnad1 id=eq.0h2v.s5.2c58126afa9a from=translated src=- shape=49770048 vocab=8a1b1899
+-/
 theorem integral_poisson_choose (ξ : NNReal) (d : ℕ) :
     (∫ m : ℕ, (m.choose d : ℝ) ∂poissonMeasure ξ) =
       (ξ : ℝ) ^ d / (d.factorial : ℝ) := by
@@ -59,7 +63,9 @@ private lemma poisson_weight_tilt (ξ b : NNReal) (m : ℕ) :
         (m.factorial : ℝ) := by ring
     _ = _ := by rw [← he]; simp only [NNReal.coe_mul]; ring
 
-/-- A descending factorial times a nonnegative exponential tilt is Poisson-integrable. -/
+/-- A descending factorial times a nonnegative exponential tilt is Poisson-integrable.
+@isnad1 id=integrab.1h3v.s6.7fd7b4a27426 from=translated src=- shape=0737af6d vocab=47a9e8d4
+-/
 theorem integrable_poisson_tilted_factorial (ξ : NNReal) {a : ℝ}
     (ha : 0 ≤ a) (d : ℕ) :
     Integrable (fun m : ℕ => (m.descFactorial d : ℝ) * a ^ m)
@@ -84,7 +90,9 @@ theorem integrable_poisson_tilted_factorial (ξ : NNReal) {a : ℝ}
     _ = _ := by rw [← hw]; ring
 
 /-- The tilted factorial moment equals the tilted mean to its order times the Poisson exponential
-  factor. -/
+  factor.
+@isnad1 id=eq.1h3v.s6.16a63e3a164e from=translated src=- shape=d3326f60 vocab=f0e9e42a
+-/
 theorem integral_poisson_tilted_factorial (ξ : NNReal) {a : ℝ}
     (ha : 0 ≤ a) (d : ℕ) :
     (∫ m : ℕ, (m.descFactorial d : ℝ) * a ^ m ∂poissonMeasure ξ) =
@@ -131,7 +139,9 @@ private lemma collision_factorial_identity (m : ℕ) :
     simp only [h1, h2, Nat.cast_add, Nat.cast_one]
     ring
 
-/-- The singleton collision polynomial times a nonnegative exponential tilt is integrable. -/
+/-- The singleton collision polynomial times a nonnegative exponential tilt is integrable.
+@isnad1 id=integrab.1h2v.s6.8b1b1106af74 from=translated src=- shape=c9353272 vocab=d673a1b4
+-/
 theorem integrable_poisson_collision_tilt (ξ : NNReal) {a : ℝ} (ha : 0 ≤ a) :
     Integrable (fun m : ℕ => (m : ℝ) * ((m - 1 : ℕ) : ℝ) ^ 2 * a ^ m)
       (poissonMeasure ξ) := by
@@ -139,7 +149,9 @@ theorem integrable_poisson_collision_tilt (ξ : NNReal) {a : ℝ} (ha : 0 ≤ a)
   exact (integrable_poisson_tilted_factorial ξ ha 3).add
     (integrable_poisson_tilted_factorial ξ ha 2)
 
-/-- The tilted singleton collision moment is the sum of its second and third factorial moments. -/
+/-- The tilted singleton collision moment is the sum of its second and third factorial moments.
+@isnad1 id=eq.1h2v.s7.d668c602c8bb from=translated src=- shape=f1831c00 vocab=ce71d130
+-/
 theorem integral_poisson_collision_tilt (ξ : NNReal) {a : ℝ} (ha : 0 ≤ a) :
     (∫ m : ℕ, (m : ℝ) * ((m - 1 : ℕ) : ℝ) ^ 2 * a ^ m ∂poissonMeasure ξ) =
       (((ξ : ℝ) * a) ^ 3 + ((ξ : ℝ) * a) ^ 2) *
@@ -151,7 +163,9 @@ theorem integral_poisson_collision_tilt (ξ : NNReal) {a : ℝ} (ha : 0 ≤ a) :
     integral_poisson_tilted_factorial ξ ha 2]
 
 /-- When [the Poisson mean is at most one](hyp:hξ), [the tilted double-collision
-moment is bounded by an explicit universal constant times the squared mean](goal). -/
+moment is bounded by an explicit universal constant times the squared mean](goal).
+@isnad1 id=le.1h1v.s8.4e72ffadd95c from=translated src=- shape=d37cae7a vocab=aabc29af
+-/
 theorem integral_poisson_collision_le {ξ : NNReal} (hξ : (ξ : ℝ) ≤ 1) :
     (∫ m : ℕ, (m : ℝ) * ((m - 1 : ℕ) : ℝ) ^ 2 *
       ((5 / 3 : ℝ) ^ 2) ^ m ∂poissonMeasure ξ) ≤

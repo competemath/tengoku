@@ -38,7 +38,9 @@ variable {G : Type*} [CommGroup G] {M : Type*} [CommRing M] [IsDomain M]
 /-- **Character-column orthogonality** for a finite commutative group `G` valued in a domain `M`
 with enough roots of unity: for `g ≠ 1`, the sum of `χ g` over all characters `χ : G →* Mˣ`
 vanishes. A specialisation of `sum_hom_units_eq_zero` on the dual group `G →* Mˣ` along the
-evaluation hom `χ ↦ χ g`. -/
+evaluation hom `χ ↦ χ g`.
+@isnad1 id=eq.1h3v.s8.96f9a3f9956e from=translated src=- shape=e0ac27cd vocab=9d54ee8c
+-/
 theorem sum_char_apply_eq_zero_of_ne_one [Finite G] [HasEnoughRootsOfUnity M (Monoid.exponent G)]
     [Fintype (G →* Mˣ)] {g : G} (hg : g ≠ 1) :
     ∑ χ : G →* Mˣ, ((χ g : Mˣ) : M) = 0 := by
@@ -51,7 +53,9 @@ variable [Fintype G]
 
 /-- **Character-row orthogonality** for a finite commutative group `G` valued in a domain `M`:
 for a nontrivial character `χ : G →* Mˣ`, the sum of `χ g` over all `g : G` vanishes. A
-specialisation of `sum_hom_units_eq_zero` to `(Units.coeHom M).comp χ`. -/
+specialisation of `sum_hom_units_eq_zero` to `(Units.coeHom M).comp χ`.
+@isnad1 id=eq.1h3v.s8.46b029b7a699 from=translated src=- shape=4cf96952 vocab=dd6bbec4
+-/
 theorem sum_char_self_eq_zero_of_ne_one {χ : G →* Mˣ} (hχ : χ ≠ 1) :
     ∑ g : G, ((χ g : Mˣ) : M) = 0 := by
   obtain ⟨g₀, hg₀⟩ := DFunLike.ne_iff.mp hχ
@@ -67,7 +71,9 @@ variable [HasEnoughRootsOfUnity M (Monoid.exponent G)]
 vanishes — `∑ s, χ s · f s = 0` for each `χ ≠ 1` — then `f` is recovered from its average: for
 every `u`, `∑ s, f s = (#(G →* Mˣ)) · f u`. The proof expands `(#(G →* Mˣ)) · f u` by column
 orthogonality (`sum_char_apply_eq_zero_of_ne_one`) and collapses the character sum to its
-principal term using the hypothesis. -/
+principal term using the hypothesis.
+@isnad1 id=eq.1h4v.s8.f6174c0bd9c1 from=translated src=- shape=5293029b vocab=afc41e48
+-/
 theorem sum_eq_card_mul_of_sum_char_mul_eq_zero (f : G → M)
     (hf : ∀ χ : G →* Mˣ, χ ≠ 1 → ∑ s : G, ((χ s : Mˣ) : M) * f s = 0) (u : G) :
     ∑ s : G, f s = (Nat.card (G →* Mˣ) : M) * f u := by
@@ -102,7 +108,9 @@ theorem sum_eq_card_mul_of_sum_char_mul_eq_zero (f : G → M)
 /-- **Vanishing nontrivial Fourier coefficients force a constant.** Over a characteristic-zero
 domain, if every nontrivial character moment of `f : G → M` vanishes (`∑ s, χ s · f s = 0` for
 `χ ≠ 1`), then `f` is constant. Immediate from `sum_eq_card_mul_of_sum_char_mul_eq_zero`
-(every value equals the common average) after cancelling the nonzero dual cardinality. -/
+(every value equals the common average) after cancelling the nonzero dual cardinality.
+@isnad1 id=ex.1h3v.s8.db86f2f36fce from=translated src=- shape=f3cc062f vocab=488f5439
+-/
 theorem exists_const_of_sum_char_mul_eq_zero [CharZero M] (f : G → M)
     (hf : ∀ χ : G →* Mˣ, χ ≠ 1 → ∑ s : G, ((χ s : Mˣ) : M) * f s = 0) :
     ∃ c, f = Function.const G c := by

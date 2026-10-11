@@ -30,7 +30,9 @@ mass is exactly its weight times the corresponding ray coordinate.
 Proof plan: use `coefficient_integrable` and `D.nonneg` to package each integral as
 `ℝ≥0`, then `coefficient_normalized` for total mass one. Define each release row as
 the finite sum of weighted Dirac measures and use `Kernel.ofFunOfCountable`.
-`Measure.sum_fintype` and `Measure.dirac_apply_of_mem` identify singleton masses. -/
+`Measure.sum_fintype` and `Measure.dirac_apply_of_mem` identify singleton masses.
+@isnad1 id=ex.1h4v.s8.8e4da3e992c6 from=translated src=- shape=bfa360b9 vocab=6d891cf5
+-/
 theorem exists_coefficientRelease (Q : Kernel (Fin 4) Z) [IsMarkovKernel Q]
     (r : ℝ) (hr : 1 < r) (D : CoefficientField Q r) :
     ∃ (α : RayIndex → ℝ≥0) (T : Kernel (Fin 4) RayIndex),

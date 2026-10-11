@@ -19,7 +19,9 @@ noncomputable section
 
 /-- For a positive sample size and power above one, the curvature times the
 absolute error of the Bernstein hinge approximation is integrable on the
-unit square. This is the Fubini prerequisite for the power-density bound. -/
+unit square. This is the Fubini prerequisite for the power-density bound.
+@isnad1 id=integrab.2h2v.s7.eb248583a9bb from=translated src=- shape=e43a2786 vocab=77ffc7ec
+-/
 theorem power_curvature_hinge_error_integrable {N : ℕ}
     (hN : 0 < N) {s : ℝ} (hs : 1 < s) :
     Integrable
@@ -80,7 +82,9 @@ theorem power_curvature_hinge_error_integrable {N : ℕ}
   simpa only [μ, I] using hint
 
 /-- The L1 norm of the integrated, curvature-weighted hinge error is at
-most the curvature-weighted integral of its pointwise L1 norms. -/
+most the curvature-weighted integral of its pointwise L1 norms.
+@isnad1 id=le.2h2v.s8.d50fc836ef04 from=translated src=- shape=6c558503 vocab=a257f8b0
+-/
 theorem power_curvature_hinge_error_integral_le {N : ℕ}
     (hN : 0 < N) {s : ℝ} (hs : 1 < s) :
     (∫ u in Set.Icc (0 : ℝ) 1,
@@ -155,7 +159,9 @@ theorem power_curvature_hinge_error_integral_le {N : ℕ}
       rw [integral_const_mul]
 
 /-- For a real power above one, the L1 error of its finite Bernstein cell
-density is bounded by the curvature-weighted adjacent-threshold error. -/
+density is bounded by the curvature-weighted adjacent-threshold error.
+@isnad1 id=le.2h2v.s7.cc558234ef50 from=translated src=- shape=e19e7bb0 vocab=c79f7d4c
+-/
 theorem power_bernstein_L1_le_curvature_error {N : ℕ}
     (hN : 0 < N) {s : ℝ} (hs : 1 < s) :
     (∫ u in Set.Icc (0 : ℝ) 1,
@@ -258,7 +264,9 @@ theorem power_bernstein_L1_le_curvature_error {N : ℕ}
             (Real.rpow_nonneg (by linarith [ht.2]) _))
 
 /-- For a [positive sample size](hyp:hN),
- [the Bernstein kernel of first-power cells agrees with the constant unit density in L1](goal). -/
+ [the Bernstein kernel of first-power cells agrees with the constant unit density in L1](goal).
+@isnad1 id=eq.1h1v.s6.b99494dcb965 from=translated src=- shape=2737768b vocab=ff1433fe
+-/
 theorem power_bernstein_L1_one {N : ℕ} (hN : 0 < N) :
     (∫ u in Set.Icc (0 : ℝ) 1,
       |bernsteinCell N (powerCell N 1) u - powerDensity 1 u| ∂volume) = 0 := by
@@ -305,7 +313,9 @@ theorem power_bernstein_L1_one {N : ℕ} (hN : 0 < N) :
   simp
 
 /-- For a [positive sample size](hyp:hN) and [power](hyp:hs) greater than the sample size,
- [the unit-density bound gives the claimed L1 estimate](goal). -/
+ [the unit-density bound gives the claimed L1 estimate](goal).
+@isnad1 id=le.2h2v.s6.fa46c3d48041 from=translated src=- shape=5b6ecaf6 vocab=8c90ad5f
+-/
 theorem power_bernstein_L1_large {N : ℕ} (hN : 0 < N) {s : ℝ}
     (hs : (N : ℝ) < s) :
     (∫ u in Set.Icc (0 : ℝ) 1,
@@ -362,7 +372,9 @@ theorem power_bernstein_L1_large {N : ℕ} (hN : 0 < N) {s : ℝ}
   nlinarith
 
 /-- For a [positive sample size](hyp:hN) and [power](hyp:hs,hsmall) between one and the sample
- size, [the adjacent-order-statistic coupling gives the claimed L1 estimate](goal). -/
+ size, [the adjacent-order-statistic coupling gives the claimed L1 estimate](goal).
+@isnad1 id=le.3h2v.s7.dfbf5cb63de0 from=translated src=- shape=5afed743 vocab=8c90ad5f
+-/
 theorem power_bernstein_L1_small {N : ℕ} (hN : 0 < N) {s : ℝ}
     (hs : 1 ≤ s) (hsmall : s ≤ N) :
     (∫ u in Set.Icc (0 : ℝ) 1,
@@ -405,7 +417,9 @@ theorem power_bernstein_L1_small {N : ℕ} (hN : 0 < N) {s : ℝ}
             norm_num
 
 /-- For a [positive sample size](hyp:hN) and [real power](hyp:hs) at least one,
- [the Bernstein power kernel has L1 error at most `2 sqrt(s/N)`](goal). -/
+ [the Bernstein power kernel has L1 error at most `2 sqrt(s/N)`](goal).
+@isnad1 id=le.2h2v.s6.77ec2acb41dc from=translated src=- shape=55f0c145 vocab=8c90ad5f
+-/
 theorem power_bernstein_L1 {N : ℕ} (hN : 0 < N) {s : ℝ} (hs : 1 ≤ s) :
     (∫ u in Set.Icc (0 : ℝ) 1,
       |bernsteinCell N (powerCell N s) u - powerDensity s u| ∂volume) ≤

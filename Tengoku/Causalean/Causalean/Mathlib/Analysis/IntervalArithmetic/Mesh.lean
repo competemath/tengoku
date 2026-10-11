@@ -52,19 +52,25 @@ def expand (I : ComplexRatInterval) (e : ℚ) (he : 0 ≤ e) : ComplexRatInterva
 /-- [The zero rectangle](goal) is the rational rectangle whose real and imaginary coordinate intervals are both the singleton interval containing zero. -/
 def zero : ComplexRatInterval := ⟨RatInterval.point 0, RatInterval.point 0⟩
 
-/-- Complex rectangle addition encloses sums of enclosed complex numbers. -/
+/-- Complex rectangle addition encloses sums of enclosed complex numbers.
+@isnad1 id=contains.2h4v.s4.48f629897deb from=translated src=- shape=39a5c0e2 vocab=45b09eff
+-/
 theorem add_sound {I J : ComplexRatInterval} {z w : ℂ}
     (hz : I.Contains z) (hw : J.Contains w) : (I.add J).Contains (z + w) := by
   exact ⟨RatInterval.add_sound hz.1 hw.1, RatInterval.add_sound hz.2 hw.2⟩
 
-/-- Rational scalar multiplication encloses the corresponding complex scalar multiple. -/
+/-- Rational scalar multiplication encloses the corresponding complex scalar multiple.
+@isnad1 id=contains.1h3v.s4.a24e49ca972e from=translated src=- shape=b5721032 vocab=6b90ea80
+-/
 theorem smulRat_sound {I : ComplexRatInterval} {z : ℂ} (q : ℚ)
     (hz : I.Contains z) : (smulRat q I).Contains ((q : ℂ) * z) := by
   constructor
   · simpa [smulRat] using RatInterval.mul_sound (RatInterval.point_sound q) hz.1
   · simpa [smulRat] using RatInterval.mul_sound (RatInterval.point_sound q) hz.2
 
-/-- Coordinatewise widening preserves containment. -/
+/-- Coordinatewise widening preserves containment.
+@isnad1 id=contains.2h3v.s4.ea8557efdf71 from=translated src=- shape=992ff863 vocab=faf2aa6a
+-/
 theorem expand_contains {I : ComplexRatInterval} {z : ℂ} {e : ℚ}
     (he : 0 ≤ e) (hz : I.Contains z) : (I.expand e he).Contains z := by
   have he' : (0 : ℝ) ≤ e := by exact_mod_cast he
@@ -224,7 +230,9 @@ private theorem exists_maxHiUpTo (nodes : ℕ → RatInterval) (n : ℕ) :
         exact ⟨k, hk.trans n.le_succ, by rw [max_eq_left h, heq]⟩
       · exact ⟨n + 1, le_rfl, max_eq_right (le_of_not_ge h)⟩
 
-/-- A node of a nonempty uniform mesh lies in the unit parameter interval. -/
+/-- A node of a nonempty uniform mesh lies in the unit parameter interval.
+@isnad1 id=mem.2h2v.s5.c1dd39075107 from=translated src=- shape=117dc9c5 vocab=fff68656
+-/
 theorem meshPoint_mem {n k : ℕ} (hn : 0 < n) (hk : k ≤ n) :
     meshPoint n k ∈ Icc (0 : ℝ) 1 := by
   constructor
@@ -249,7 +257,9 @@ private theorem exists_near_meshPoint {n : ℕ} (hn : 0 < n) {x : ℝ}
   rw [meshPoint, heq, abs_of_nonneg (div_nonneg (by linarith) hn'.le)]
   exact div_le_div_of_nonneg_right (by linarith) hn'.le
 
-/-- A function satisfying a finite Lipschitz bound on the unit interval is continuous there. -/
+/-- A function satisfying a finite Lipschitz bound on the unit interval is continuous there.
+@isnad1 id=continuo.2h3v.s7.18bcd976a7be from=translated src=- shape=65fdda6b vocab=7a27d5c1
+-/
 theorem continuousOn_of_lipschitz_bound {E : Type*} [NormedAddCommGroup E]
     {g : ℝ → E} {C : ℝ} (hC : 0 ≤ C)
     (h : ∀ s ∈ Icc (0 : ℝ) 1, ∀ t ∈ Icc (0 : ℝ) 1,
@@ -292,7 +302,9 @@ constant](hyp:hL) and [a positive number of mesh cells](hyp:hn), and suppose [th
 Lipschitz on `[0, 1]` with that constant](hyp:hLip) and [each of the `n + 1` rational node
 intervals contains the function's value at its mesh point](hyp:hnodes). Then [the infimum
 enclosure built from those node intervals contains the true infimum of the function over
-`[0, 1]`](goal). -/
+`[0, 1]`](goal).
+@isnad1 id=contains.4h4v.s7.346dedf73d06 from=translated src=- shape=4546c0d7 vocab=71ec95a2
+-/
 theorem infEnclosure_sound {f : ℝ → ℝ} {nodes : ℕ → RatInterval}
     {L : ℚ} (hL : 0 ≤ L) {n : ℕ} (hn : 0 < n)
     (hLip : ∀ s ∈ Icc (0 : ℝ) 1, ∀ t ∈ Icc (0 : ℝ) 1,
@@ -333,7 +345,9 @@ theorem infEnclosure_sound {f : ℝ → ℝ} {nodes : ℕ → RatInterval}
     exact hs.trans hhi
 
 /-- Rational node enclosures and a Lipschitz bound enclose the supremum of a
-real function on the unit mesh interval. -/
+real function on the unit mesh interval.
+@isnad1 id=contains.4h4v.s7.6724068c927e from=translated src=- shape=4546c0d7 vocab=c69378f1
+-/
 theorem supEnclosure_sound {f : ℝ → ℝ} {nodes : ℕ → RatInterval}
     {L : ℚ} (hL : 0 ≤ L) {n : ℕ} (hn : 0 < n)
     (hLip : ∀ s ∈ Icc (0 : ℝ) 1, ∀ t ∈ Icc (0 : ℝ) 1,
@@ -369,7 +383,9 @@ theorem supEnclosure_sound {f : ℝ → ℝ} {nodes : ℕ → RatInterval}
       simpa [div_eq_mul_inv] using hlip.trans (mul_le_mul_of_nonneg_left hdist' hL')
     linarith [hm.2, le_abs_self (f x - f (meshPoint n k))]
 
-/-- The infimum enclosure width is at most one mesh error plus the uniform node-enclosure width. -/
+/-- The infimum enclosure width is at most one mesh error plus the uniform node-enclosure width.
+@isnad1 id=le.4h4v.s6.4b38777e561e from=translated src=- shape=70855b93 vocab=efb47995
+-/
 theorem width_infEnclosure {nodes : ℕ → RatInterval} {w L : ℚ}
     (hw : 0 ≤ w) (hL : 0 ≤ L) {n : ℕ} (hn : 0 < n)
     (hnodes : ∀ k ≤ n, (nodes k).width ≤ w) :
@@ -382,7 +398,9 @@ theorem width_infEnclosure {nodes : ℕ → RatInterval} {w L : ℚ}
   unfold RatInterval.width at hwk
   linarith
 
-/-- The supremum enclosure width is at most one mesh error plus the uniform node-enclosure width. -/
+/-- The supremum enclosure width is at most one mesh error plus the uniform node-enclosure width.
+@isnad1 id=le.4h4v.s6.48b0fef4301f from=translated src=- shape=70855b93 vocab=e4a41dcb
+-/
 theorem width_supEnclosure {nodes : ℕ → RatInterval} {w L : ℚ}
     (hw : 0 ≤ w) (hL : 0 ≤ L) {n : ℕ} (hn : 0 < n)
     (hnodes : ∀ k ≤ n, (nodes k).width ≤ w) :

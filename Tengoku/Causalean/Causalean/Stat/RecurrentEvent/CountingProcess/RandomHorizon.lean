@@ -16,7 +16,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 /-- For a random horizon drawn from [a nonnegative time law](hyp:hEvaluation) and [a nonnegative
 extended-valued measurable function of time](hyp:hf), [the expected integral of the function from
 0 to the random horizon equals the integral over nonnegative times s of the function times the
-probability that the horizon is at least s](goal). -/
+probability that the horizon is at least s](goal).
+@isnad1 id=eq.2h2v.s6.a1338868ad71 from=translated src=- shape=3721c7a2 vocab=cc51bf7d
+-/
 theorem lintegral_random_horizon (evaluationLaw : Measure ℝ)
     (hEvaluation : NonnegativeTimeLaw evaluationLaw)
     (f : ℝ → ENNReal) (hf : Measurable f) :

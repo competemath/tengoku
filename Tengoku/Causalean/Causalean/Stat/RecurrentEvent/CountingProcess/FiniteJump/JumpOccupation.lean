@@ -75,7 +75,9 @@ private theorem Model.jumpOccupation_apply (M : Model Ω μ)
     _ = _ := by simp_rw [hpoint]
 
 /-- Under a probability law and an integrable event count, the total mass of
-the event occupation measure is finite. -/
+the event occupation measure is finite.
+@isnad1 id=lt.0h3v.s6.de3c524f08d3 from=translated src=- shape=952b3125 vocab=6ae2b651
+-/
 theorem Model.jumpOccupation_finite (M : Model Ω μ) [IsProbabilityMeasure μ] :
     M.jumpOccupation univ < ⊤ := by
   have hmeas : Measurable (fun ω => ((M.eventTimes ω).card : ℝ)) :=
@@ -100,7 +102,9 @@ theorem Model.jumpOccupation_finite (M : Model Ω μ) [IsProbabilityMeasure μ] 
 /-- The mass of a measurable time-sample set under the event occupation
 measure is the expected finite sum of its indicator over event times. [The
 model and measurable set](hyp:M,S,hS), together with [integrability of its
-event indicator](hyp:hjump), give [the occupation-mass identity](goal). -/
+event indicator](hyp:hjump), give [the occupation-mass identity](goal).
+@isnad1 id=eq.2h4v.s7.ef025e149e72 from=translated src=- shape=39df0f8f vocab=e570ebf3
+-/
 theorem Model.jumpOccupation_indicator (M : Model Ω μ)
     [IsProbabilityMeasure μ] (S : Set (ℝ × Ω)) (hS : MeasurableSet S)
     (hjump : Integrable

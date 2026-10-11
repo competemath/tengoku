@@ -37,7 +37,9 @@ drawn from the product law `Measure.pi`, and for [any positive deviation thresho
 `N·Var[g a]/η²`](goal).
 
 Specialising `ι` to the `(p+1)²` matrix-entry indices and `g` to the design statistics `h_{jk}`
-controls every entry of the design moment matrix simultaneously on the complementary good event. -/
+controls every entry of the design moment matrix simultaneously on the complementary good event.
+@isnad1 id=le.2h6v.s8.42842de65eb0 from=translated src=- shape=15a2e3ce vocab=d5e74aa5
+-/
 theorem iid_sum_union_bound {N : ℕ} {ι : Type*} [Fintype ι] {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (g : ι → Ω → ℝ) (hg : ∀ a, MemLp (g a) 2 μ)
     {η : ℝ} (hη : 0 < η) :

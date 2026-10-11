@@ -17,7 +17,9 @@ namespace Causalean.Stat.RecurrentEvent
 
 /-- [A finite exit-time law](hyp:ν) has [equal strict and weak retention
 probabilities at Lebesgue-almost every time](goal), including when the law
-has atoms. -/
+has atoms.
+@isnad1 id=eventual.0h1v.s6.1c897ed6932f from=translated src=- shape=438d9288 vocab=cf6c2c67
+-/
 theorem ae_measure_Ioi_eq_Ici (ν : Measure ℝ) [IsFiniteMeasure ν] :
     ∀ᵐ t ∂(volume : Measure ℝ), ν (Ioi t) = ν (Ici t) := by
   have hcount : {t : ℝ | 0 < ν {t}}.Countable := by

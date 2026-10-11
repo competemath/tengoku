@@ -35,7 +35,9 @@ def firstNSpacings (n : ℕ) (x : Fin n → ℝ) (i : Fin n) : ℝ :=
 def spacingSimplex (n : ℕ) : Set (Fin n → ℝ) :=
   {z | (∀ i, 0 ≤ z i) ∧ (∑ i, z i) ≤ 1}
 
-/-- Given [a finite dimension](hyp:n) and [a spacing vector](hyp:z), [successive differences of its prefix coordinates recover that vector](goal). -/
+/-- Given [a finite dimension](hyp:n) and [a spacing vector](hyp:z), [successive differences of its prefix coordinates recover that vector](goal).
+@isnad1 id=eq.0h2v.s4.2aaad782c2a9 from=translated src=- shape=fdec4105 vocab=789b0363
+-/
 theorem orderedSpacings_prefixCoordinates (n : ℕ) (z : Fin n → ℝ) :
     orderedSpacings n (prefixCoordinates n z) = z := by
   funext i
@@ -59,7 +61,9 @@ theorem orderedSpacings_prefixCoordinates (n : ℕ) (z : Fin n → ℝ) :
     simp only [orderedSpacings, prefixCoordinates, hi, ↓reduceIte]
     linarith
 
-/-- Given [a finite dimension](hyp:n) and [a real tuple](hyp:y), [prefix sums of its successive differences recover that tuple](goal). -/
+/-- Given [a finite dimension](hyp:n) and [a real tuple](hyp:y), [prefix sums of its successive differences recover that tuple](goal).
+@isnad1 id=eq.0h2v.s4.beaa7d3b06c4 from=translated src=- shape=fdec4105 vocab=789b0363
+-/
 theorem prefixCoordinates_orderedSpacings (n : ℕ) (y : Fin n → ℝ) :
     prefixCoordinates n (orderedSpacings n y) = y := by
   cases n with
@@ -91,7 +95,9 @@ theorem prefixCoordinates_orderedSpacings (n : ℕ) (y : Fin n → ℝ) :
           rw [← hsum, ← prefixCoordinates, ih]
           simp [orderedSpacings, hpred]
 
-/-- Given [a finite dimension](hyp:n), [the preimage of the spacing simplex under successive differences is exactly the ordered unit region](goal). -/
+/-- Given [a finite dimension](hyp:n), [the preimage of the spacing simplex under successive differences is exactly the ordered unit region](goal).
+@isnad1 id=eq.0h1v.s4.8a39369092ac from=translated src=- shape=c7a0338f vocab=a1476ba3
+-/
 theorem orderedSpacings_preimage_simplex (n : ℕ) :
     (orderedSpacings n) ⁻¹' spacingSimplex n = orderedUnitRegion n := by
   ext y
@@ -139,7 +145,9 @@ def orderedSpacingsLinear (n : ℕ) : (Fin n → ℝ) →ₗ[ℝ] (Fin n → ℝ
     else (LinearMap.proj i : (Fin n → ℝ) →ₗ[ℝ] ℝ) -
       LinearMap.proj (⟨i.val - 1, by omega⟩ : Fin n)
 
-/-- Given [a finite dimension](hyp:n) and [a real tuple](hyp:y), [the linear spacing transformation agrees with the spacing definition](goal). -/
+/-- Given [a finite dimension](hyp:n) and [a real tuple](hyp:y), [the linear spacing transformation agrees with the spacing definition](goal).
+@isnad1 id=eq.0h2v.s7.1d298bd4014b from=translated src=- shape=7e684e56 vocab=c3beaeaf
+-/
 theorem orderedSpacingsLinear_apply (n : ℕ) (y : Fin n → ℝ) :
     orderedSpacingsLinear n y = orderedSpacings n y := by
   funext i
@@ -147,7 +155,9 @@ theorem orderedSpacingsLinear_apply (n : ℕ) (y : Fin n → ℝ) :
   · simp [orderedSpacingsLinear, orderedSpacings, hi]
   · simp [orderedSpacingsLinear, orderedSpacings, hi]
 
-/-- Given [a finite dimension](hyp:n), [the linear spacing transformation has determinant one](goal). -/
+/-- Given [a finite dimension](hyp:n), [the linear spacing transformation has determinant one](goal).
+@isnad1 id=eq.0h1v.s9.34fbad2a4775 from=translated src=- shape=422e5ce4 vocab=7c8da72c
+-/
 theorem orderedSpacingsLinear_det (n : ℕ) :
     LinearMap.det (orderedSpacingsLinear n) = 1 := by
   classical
@@ -182,7 +192,9 @@ theorem orderedSpacingsLinear_det (n : ℕ) :
   rw [Matrix.det_of_isLowerTriangular M htri]
   simp [hdiag]
 
-/-- Given [a finite dimension](hyp:n), [the linear spacing transformation preserves Lebesgue measure](goal). -/
+/-- Given [a finite dimension](hyp:n), [the linear spacing transformation preserves Lebesgue measure](goal).
+@isnad1 id=measurep.0h1v.s6.9a7a92913306 from=translated src=- shape=5bc6a952 vocab=6a586a0f
+-/
 theorem orderedSpacings_measurePreserving (n : ℕ) :
     MeasurePreserving (orderedSpacings n) volume volume := by
   have hfun : orderedSpacings n = orderedSpacingsLinear n := by
@@ -197,7 +209,9 @@ theorem orderedSpacings_measurePreserving (n : ℕ) :
     (Real.map_linearMap_volume_pi_eq_smul_volume_pi
       (f := orderedSpacingsLinear n) (by simp [orderedSpacingsLinear_det n]))
 
-/-- Given [a finite dimension](hyp:n), [successive differences transport restricted Lebesgue measure from the ordered unit region to the spacing simplex](goal). -/
+/-- Given [a finite dimension](hyp:n), [successive differences transport restricted Lebesgue measure from the ordered unit region to the spacing simplex](goal).
+@isnad1 id=eq.0h1v.s7.ca59c319e8d5 from=translated src=- shape=c0bcb6c3 vocab=c05fd0b3
+-/
 theorem orderedSpacings_restrict_law (n : ℕ) :
     (volume.restrict (orderedUnitRegion n)).map (orderedSpacings n) =
       volume.restrict (spacingSimplex n) := by
@@ -223,12 +237,16 @@ theorem orderedSpacings_restrict_law (n : ℕ) :
   rw [← orderedSpacings_preimage_simplex n,
     ← Measure.restrict_map hmp.measurable hsimplex, hmp.map_eq]
 
-/-- Given [a finite sample size](hyp:n) and [a real sample](hyp:x), [the first spacing vector equals the successive differences of the sorted sample](goal). -/
+/-- Given [a finite sample size](hyp:n) and [a real sample](hyp:x), [the first spacing vector equals the successive differences of the sorted sample](goal).
+@isnad1 id=eq.0h2v.s4.bcdd7e5b4d43 from=translated src=- shape=42902190 vocab=aa0eb143
+-/
 theorem firstNSpacings_eq_orderedSpacings (n : ℕ) (x : Fin n → ℝ) :
     firstNSpacings n x = orderedSpacings n (sortedSample n x) := by
   rfl
 
-/-- Given [a finite sample size](hyp:n), [the first spacing vector of an iid unit-uniform sample has factorial density on the spacing simplex](goal). -/
+/-- Given [a finite sample size](hyp:n), [the first spacing vector of an iid unit-uniform sample has factorial density on the spacing simplex](goal).
+@isnad1 id=eq.0h1v.s7.256248267e13 from=translated src=- shape=1e2a8c5c vocab=3f7acf95
+-/
 theorem uniform_firstN_spacings_law (n : ℕ) :
     (iidSample uniform01 n).map (firstNSpacings n) =
       (n.factorial : ENNReal) • (volume.restrict (spacingSimplex n)) := by

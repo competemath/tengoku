@@ -55,7 +55,9 @@ def kishEffectiveSampleSize {n : ℕ} (w : Fin n → ℝ) : ℝ :=
   else (∑ i, w i) ^ 2 / ∑ i, w i ^ 2
 
 /-- Given [realized weights](hyp:w), [a positive sample size](hyp:hn), and
-[realized mean-one normalization](hyp:hsum), [the two quantities agree](goal). -/
+[realized mean-one normalization](hyp:hsum), [the two quantities agree](goal).
+@isnad1 id=eq.2h2v.s5.faa8801795eb from=translated src=- shape=d60328c3 vocab=954cc462
+-/
 lemma kishDesignEffect_eq_empiricalWeightSecondMoment_of_sum_eq
     {n : ℕ} (w : Fin n → ℝ) (hn : 0 < n)
     (hsum : ∑ i, w i = (n : ℝ)) :
@@ -73,7 +75,9 @@ lemma kishDesignEffect_eq_empiricalWeightSecondMoment_of_sum_eq
 
 /-- For [a probability measure](hyp:μ), [a real-valued weight](hyp:w),
 [square-integrability of the weight](hyp:hw), and [population mean one](hyp:hmean),
-[the weight's population second moment is at least one](goal). -/
+[the weight's population second moment is at least one](goal).
+@isnad1 id=le.2h3v.s7.9c9b4f0dbe57 from=translated src=- shape=8e4059d1 vocab=a15f50b7
+-/
 lemma one_le_secondMoment_of_mean_one
     {𝒳 : Type*} [MeasurableSpace 𝒳]
     (μ : Measure 𝒳) [IsProbabilityMeasure μ] (w : 𝒳 → ℝ)
@@ -87,7 +91,9 @@ lemma one_le_secondMoment_of_mean_one
 /-- For [a probability measure](hyp:μ), [a weight function](hyp:g),
 [a sample size](hyp:n), [positivity of that size](hyp:hn), and
 [integrability of the squared weight](hyp:hF),
-[the expected empirical weight second moment equals its population counterpart](goal). -/
+[the expected empirical weight second moment equals its population counterpart](goal).
+@isnad1 id=eq.2h4v.s7.0cd2cc0c5381 from=translated src=- shape=2c86a87d vocab=5271521b
+-/
 lemma empiricalWeightSecondMoment_mean
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -103,7 +109,9 @@ lemma empiricalWeightSecondMoment_mean
 /-- For [a probability measure](hyp:μ), [a weight function](hyp:g),
 [a sample size](hyp:n), [positivity of that size](hyp:hn), and
 [integrability of the squared weight](hyp:hF), [this legacy compatibility theorem](goal) gives the
-mean of the empirical weight second moment. -/
+mean of the empirical weight second moment.
+@isnad1 id=eq.2h4v.s7.114e57e3422b from=translated src=- shape=2c86a87d vocab=8e007bba
+-/
 lemma empiricalKishDispersion_mean
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -119,7 +127,9 @@ lemma empiricalKishDispersion_mean
 [a population second-moment value](hyp:kappa), [positivity of the sample size](hyp:hn),
 [square-integrability of the squared weight](hyp:hF),
 [the population second-moment identity](hyp:hkappa), and
-[the fourth-moment envelope](hyp:hfourth), [the stated variance bound holds](goal). -/
+[the fourth-moment envelope](hyp:hfourth), [the stated variance bound holds](goal).
+@isnad1 id=le.4h6v.s8.aab6f0a48f61 from=translated src=- shape=406d6b21 vocab=47996355
+-/
 lemma empiricalWeightSecondMoment_variance_le
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -171,7 +181,9 @@ lemma empiricalWeightSecondMoment_variance_le
 [square-integrability of the squared weight](hyp:hF),
 [the population second-moment identity](hyp:hkappa), and
 [the fourth-moment envelope](hyp:hfourth), [this legacy compatibility theorem](goal) gives the
-variance bound for the empirical weight second moment. -/
+variance bound for the empirical weight second moment.
+@isnad1 id=le.4h6v.s8.c6b463670e63 from=translated src=- shape=406d6b21 vocab=0cd3a4ae
+-/
 lemma empiricalKishDispersion_variance_le
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -191,7 +203,9 @@ lemma empiricalKishDispersion_variance_le
 [positivity of the reference mean](hyp:hkappa),
 [square-integrability of the empirical second moment](hyp:hF),
 [its assumed exact mean](hyp:hmean), and [its assumed variance bound](hyp:hvar),
-[Chebyshev's inequality bounds the probability of falling below half the reference mean](goal). -/
+[Chebyshev's inequality bounds the probability of falling below half the reference mean](goal).
+@isnad1 id=le.5h6v.s8.42080397ae0e from=translated src=- shape=5f5843ed vocab=dae36b16
+-/
 lemma empiricalWeightSecondMoment_lower_tail_le_of_mean_variance
     {Ω : Type*} [MeasurableSpace Ω]
     (n : ℕ) (Q : Measure (Fin n → Ω)) [IsProbabilityMeasure Q]
@@ -232,7 +246,9 @@ lemma empiricalWeightSecondMoment_lower_tail_le_of_mean_variance
 [square-integrability of the empirical second moment](hyp:hF),
 [its assumed exact mean](hyp:hmean), and [its assumed variance bound](hyp:hvar),
 [this legacy compatibility theorem](goal) is the Chebyshev specialization now named
-`empiricalWeightSecondMoment_lower_tail_le_of_mean_variance`. -/
+`empiricalWeightSecondMoment_lower_tail_le_of_mean_variance`.
+@isnad1 id=le.5h6v.s8.50b38e6c4b3e from=translated src=- shape=5f5843ed vocab=bce5cef7
+-/
 lemma empiricalKishDispersion_lower_tail_le
     {Ω : Type*} [MeasurableSpace Ω]
     (n : ℕ) (Q : Measure (Fin n → Ω)) [IsProbabilityMeasure Q]
@@ -253,7 +269,9 @@ lemma empiricalKishDispersion_lower_tail_le
 [positivity of the sample size](hyp:hn), [positivity of that moment](hyp:hkappa),
 [square-integrability of the squared weight](hyp:hF),
 [the population second-moment identity](hyp:hmoment), and
-[the fourth-moment envelope](hyp:hfourth), [the stated product-law lower-tail bound holds](goal). -/
+[the fourth-moment envelope](hyp:hfourth), [the stated product-law lower-tail bound holds](goal).
+@isnad1 id=le.5h6v.s8.775e6f3ad9fa from=translated src=- shape=1f533e6e vocab=90f0a1dc
+-/
 lemma empiricalWeightSecondMoment_lower_tail_le
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]

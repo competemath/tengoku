@@ -203,7 +203,9 @@ ball of exponent `γ`, constant `M`, and domain `S` satisfies
 `c_H · |g(x0)|^{1 + d/γ} ≤ ∫_{supBall x0 r} |g|`](goal).
 
 This estimate is useful in two-point and Assouad lower-bound arguments and is not tied to any
-particular estimand. -/
+particular estimand.
+@isnad1 id=ex.4h6v.s7.fb022fbce554 from=translated src=- shape=13048944 vocab=8d1c4c71
+-/
 theorem holder_point_l1_interpolation {d : ℕ} {γ M r : ℝ} {x0 : Fin d → ℝ}
     {S : Set (Fin d → ℝ)}
     (hγ : 0 < γ) (hM : 0 < M) (hr : 0 < r) (hS : supBall x0 r ⊆ S) :

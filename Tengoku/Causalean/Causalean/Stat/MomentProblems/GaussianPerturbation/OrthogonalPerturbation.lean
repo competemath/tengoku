@@ -76,7 +76,9 @@ private lemma gaussianBlock_indicator_sum_eq {n : ℕ} (a : Fin n → ℝ)
 
 /-- For [a finite degree cutoff](hyp:K), [there is a measurable profile bounded by one,
 nonzero under the standard Gaussian law, and orthogonal to every monomial through that
-cutoff](goal). -/
+cutoff](goal).
+@isnad1 id=ex.0h1v.s7.430caeb88611 from=translated src=- shape=3fcf3000 vocab=52e1c2d7
+-/
 theorem exists_bounded_gaussian_orthogonal_perturbation (K : ℕ) :
     ∃ h : ℝ → ℝ,
       Measurable h ∧

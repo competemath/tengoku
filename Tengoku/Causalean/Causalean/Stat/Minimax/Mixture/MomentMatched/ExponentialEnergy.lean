@@ -125,7 +125,9 @@ private theorem exponentialPriorEnergy_eq_tsum
 
 /-- The absolute [raw moment of order `n`](hyp:n) of [a probability prior](hyp:π) is
 [at most the support radius raised to that order](goal) when [the radius is nonnegative](hyp:a,ha)
-and [the prior is supported within that radius](hyp:hsupp). -/
+and [the prior is supported within that radius](hyp:hsupp).
+@isnad1 id=le.2h3v.s6.f1e9d792fdab from=translated src=- shape=ebe1d809 vocab=3291a661
+-/
 theorem abs_priorMoment_le_pow_of_supported
     (π : Measure ℝ) [IsProbabilityMeasure π] (a : ℝ) (n : ℕ) (ha : 0 ≤ a)
     (hsupp : π {θ | |θ| ≤ a} = 1) :
@@ -164,7 +166,9 @@ private theorem summable_priorMoment_product
 /-- Given [two probability priors](hyp:π0,π1), [a nonnegative interaction scale](hyp:lambda,hlambda),
 and [a nonnegative common support radius](hyp:a,ha), if [both priors are supported within that
 radius](hyp:hsupp0,hsupp1), then [the alternating sum of their four exponential energies equals
-the convergent exponential series of squared moment differences](goal). -/
+the convergent exponential series of squared moment differences](goal).
+@isnad1 id=eq.4h4v.s7.be5cc043d857 from=translated src=- shape=84efa141 vocab=7cd9c69c
+-/
 theorem exponentialPriorEnergy_quadratic_eq_tsum
     (π0 π1 : Measure ℝ) [IsProbabilityMeasure π0] [IsProbabilityMeasure π1]
     (lambda a : ℝ) (hlambda : 0 ≤ lambda) (ha : 0 ≤ a)
@@ -191,7 +195,9 @@ theorem exponentialPriorEnergy_quadratic_eq_tsum
 [a nonnegative common support radius](hyp:a,ha), and [a matching degree](hyp:degree), if
 [both priors are supported within that radius](hyp:hsupp0,hsupp1) and [their moments agree through
 the matching degree](hyp:hmom), then [their alternating exponential energy is at most four times
-the unmatched exponential-series tail](goal). -/
+the unmatched exponential-series tail](goal).
+@isnad1 id=le.5h5v.s7.3e37249950bb from=translated src=- shape=cce09974 vocab=79b59a4c
+-/
 theorem exponentialPriorEnergy_quadratic_le_tail
     (π0 π1 : Measure ℝ) [IsProbabilityMeasure π0] [IsProbabilityMeasure π1]
     (lambda a : ℝ) (degree : ℕ) (hlambda : 0 ≤ lambda) (ha : 0 ≤ a)

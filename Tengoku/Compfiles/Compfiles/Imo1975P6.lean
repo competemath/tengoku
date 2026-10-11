@@ -32,6 +32,9 @@ open Polynomial.Bivariate
 
 abbrev solution_set : Set (ℝ[X][Y]) := {P | ∃ n : ℕ, P = (C X - 2 * Y)*(C X + Y)^n}
 
+/--
+@isnad1 id=eq.1h2v.s6.840069522de3 from=translated src=- shape=4940505a vocab=51b12a76
+-/
 lemma mul_pow_eq_pow_succ {n : ℕ} (hn : 0 < n) (t : ℝ) : t * t^(n - 1) = t^n := by
   rw [←(pow_mul_comm' t (n - 1)), ← pow_succ, Nat.sub_add_cancel hn]
 
@@ -56,6 +59,9 @@ lemma eq_if_evalEval_eq {P Q : ℝ[X][Y]} (h : ∀ x y, P.evalEval x y = Q.evalE
   rcases hz with ⟨y, rfl⟩
   exact Polynomial.funext (fun x ↦ h x y)
 
+/--
+@isnad1 id=ne.1h1v.s6.d9c6b3ad6d25 from=translated src=- shape=7c9fad74 vocab=5b6eea88
+-/
 lemma aux₁ {n : ℕ} (h : 1 < n) : (2 : ℝ) ^ n + 2 * (-1)^n ≠ 0 := by
   rcases Nat.even_or_odd n with ⟨k, rfl⟩ | ⟨k, rfl⟩
   · simpa using ne_of_gt (by positivity)
@@ -65,11 +71,17 @@ lemma aux₁ {n : ℕ} (h : 1 < n) : (2 : ℝ) ^ n + 2 * (-1)^n ≠ 0 := by
     nth_rw 1 [← pow_one 2]
     exact pow_lt_pow_right₀ one_lt_two h
 
+/--
+@isnad1 id=eq.2h4v.s6.851604985a29 from=translated src=- shape=bcd8ef82 vocab=23bdb8b0
+-/
 lemma aux₂ {a b c : ℝ} {n : ℕ} (h : b ≠ 0): a = b⁻¹^n * c → a * b^n = c := by
   intro h1
   rw [h1, mul_assoc, mul_comm, mul_assoc]
   aesop
 
+/--
+@isnad1 id=eq.1h3v.s6.c2352d9fa23a from=translated src=- shape=589aa1a3 vocab=244d5d77
+-/
 lemma linear_int {f : ℝ → ℝ} (h : ∀ x y, f (x + y) = f x + f y) :
     ∀ (n : ℤ) {x : ℝ}, f (n * x) = n * f x := by
   intro n
@@ -80,11 +92,17 @@ lemma linear_int {f : ℝ → ℝ} (h : ∀ x y, f (x + y) = f x + f y) :
     simp_all
     grind [h (n * x) x, h (-(n * x)) (-x), h x (-x), h 0 0]
 
+/--
+@isnad1 id=eq.1h2v.s6.080a87f9ead0 from=translated src=- shape=0726575f vocab=f6fa6d35
+-/
 lemma linear_inv {f : ℝ → ℝ} (h : ∀ (n : ℤ) {x : ℝ}, f (n * x) = n * f x) :
     ∀ (n : ℤ), f (1 / n) = (1 / n) * f 1 := by
   intro n
   by_cases hn : n = 0 <;> grind only
 
+/--
+@isnad1 id=eq.1h2v.s6.dc29340328a8 from=translated src=- shape=a351d968 vocab=844e69df
+-/
 lemma linear_rat {f : ℝ → ℝ} (h : ∀ (n : ℤ) {x : ℝ}, f (n * x) = n * f x) :
     ∀ (x : ℚ), f x = f 1 * x := by
   intro x

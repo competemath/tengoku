@@ -51,13 +51,17 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {p : ℕ}
 
 /-- Completeness of finite matrices under the `ℓ∞`-operator norm follows from the coordinatewise
-function-space uniformity. Needed to invoke the Neumann/geometric-series unit API. -/
+function-space uniformity. Needed to invoke the Neumann/geometric-series unit API.
+@isnad1 id=complete.0h3v.s5.e50f08b7e8eb from=translated src=- shape=e32d98e3 vocab=195a4e62
+-/
 theorem completeSpace_matrix_linftyOp {α β R : Type*}
     [Fintype α] [Fintype β] [NormedAddCommGroup R] [CompleteSpace R] :
     CompleteSpace (Matrix α β R) :=
   inferInstanceAs (CompleteSpace (α → β → R))
 
-/-- Each coefficient norm is dominated by the `ℓ∞`-operator (max-row-sum) norm. -/
+/-- Each coefficient norm is dominated by the `ℓ∞`-operator (max-row-sum) norm.
+@isnad1 id=le.0h6v.s5.751ecf6e4ce1 from=translated src=- shape=aef737b8 vocab=e6b937d5
+-/
 theorem linftyOp_abs_entry_le {α β R : Type*}
     [Fintype α] [Fintype β] [NormedAddCommGroup R]
     (A : Matrix α β R) (i : α) (j : β) : ‖A i j‖ ≤ ‖A‖ := by
@@ -72,7 +76,9 @@ theorem linftyOp_abs_entry_le {α β R : Type*}
   exact_mod_cast le_trans hrow hsup
 
 /-- A row-sum upper bound for the `ℓ∞`-operator norm: if every row's coefficient-norm sum is
-`≤ c`, then `‖A‖ ≤ c`. -/
+`≤ c`, then `‖A‖ ≤ c`.
+@isnad1 id=le.2h5v.s6.804cc506315f from=translated src=- shape=55ba3284 vocab=6792e05b
+-/
 theorem linftyOp_norm_le_of_rowsum {α β R : Type*}
     [Fintype α] [Fintype β] [NormedAddCommGroup R]
     {A : Matrix α β R} {c : ℝ}
@@ -90,7 +96,9 @@ theorem linftyOp_norm_le_of_rowsum {α β R : Type*}
     _ = c := Real.coe_toNNReal c hc
 
 /-- The `ℓ∞`-operator norm of an entrywise-`η`-bounded rectangular matrix is at most its
-number of columns times `η`. -/
+number of columns times `η`.
+@isnad1 id=le.1h4v.s7.46b21ea6dc9b from=translated src=- shape=6b5c664a vocab=8e458434
+-/
 theorem linftyOp_norm_le_of_entry {q : ℕ}
     {A : Matrix (Fin (p + 1)) (Fin (q + 1)) ℝ} {η : ℝ}
     (h : ∀ i j, |A i j| ≤ η) : ‖A‖ ≤ (q + 1 : ℕ) * η := by

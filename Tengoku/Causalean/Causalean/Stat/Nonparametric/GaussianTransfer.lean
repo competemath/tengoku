@@ -29,7 +29,9 @@ def shiftedVariance (κ σ : ℝ) (g : ℝ → ℂ) : ℝ :=
   16 * ∫ t in Icc (-1 / 2 : ℝ) (1 / 2),
     |t| ^ κ * (∫ z, ‖g (t + σ * z)‖ ^ 2 ∂gaussianReal 0 1)
 
-/-- [A complex physical-space kernel](hyp:g), [a moment exponent and Gaussian noise scale](hyp:κ,σ), [kernel measurability](hyp:hg), and [integrability of its weighted joint squared norm](hyp:hjoint) imply [that taking the real part cannot increase the Gaussian-shifted design variance](goal). -/
+/-- [A complex physical-space kernel](hyp:g), [a moment exponent and Gaussian noise scale](hyp:κ,σ), [kernel measurability](hyp:hg), and [integrability of its weighted joint squared norm](hyp:hjoint) imply [that taking the real part cannot increase the Gaussian-shifted design variance](goal).
+@isnad1 id=le.2h3v.s7.9a1259b90af9 from=translated src=- shape=079022d3 vocab=bbcbf0a8
+-/
 theorem shiftedVariance_realPart_le (g : ℝ → ℂ) (κ σ : ℝ) (hg : Measurable g)
     (hjoint : Integrable
       (fun p : ℝ × ℝ => |p.1| ^ κ * ‖g (p.1 + σ * p.2)‖ ^ 2)
@@ -66,7 +68,9 @@ theorem shiftedVariance_realPart_le (g : ℝ → ℂ) (κ σ : ℝ) (hg : Measur
     simpa only [integral_const_mul] using integral_mono ht htc (hw t)
   exact ae_restrict_of_ae hs
 
-/-- [A moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2) has [a finite standard-Gaussian absolute moment bounded by two](goal). -/
+/-- [A moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2) has [a finite standard-Gaussian absolute moment bounded by two](goal).
+@isnad1 id=and.2h1v.s7.3760fc140570 from=translated src=- shape=2db81d42 vocab=3941d730
+-/
 theorem gaussian_abs_moment_le_two (κ : ℝ) (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) :
     Integrable (fun z : ℝ => |z| ^ κ) (gaussianReal 0 1) ∧
     (∫ z : ℝ, |z| ^ κ ∂gaussianReal 0 1) ≤ 2 := by
@@ -157,7 +161,9 @@ private theorem shifted_energy_le (g : ℝ → ℂ) (κ c : ℝ)
       rw [integral_const_mul, integral_add hκ (h0.const_mul _), integral_const_mul]
       rfl
 
-/-- [A complex physical-space kernel](hyp:g), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a nonnegative Gaussian noise scale](hyp:σ,hσ), [finite ordinary and weighted squared energies](hyp:h0,hκ), and [integrability of the weighted joint squared norm](hyp:hjoint) imply [the stated Gaussian-shifted design variance bound](goal). -/
+/-- [A complex physical-space kernel](hyp:g), [a moment exponent in the interval from zero to two](hyp:κ,hκ0,hκ2), [a nonnegative Gaussian noise scale](hyp:σ,hσ), [finite ordinary and weighted squared energies](hyp:h0,hκ), and [integrability of the weighted joint squared norm](hyp:hjoint) imply [the stated Gaussian-shifted design variance bound](goal).
+@isnad1 id=le.6h3v.s8.33900f695686 from=translated src=- shape=57d2ac71 vocab=5efa0e39
+-/
 theorem shiftedVariance_le (g : ℝ → ℂ) (κ σ : ℝ)
     (hκ0 : 0 ≤ κ) (hκ2 : κ ≤ 2) (hσ : 0 ≤ σ)
     (h0 : Integrable (fun v => ‖g v‖ ^ 2))

@@ -33,12 +33,17 @@ def IsGood (n : ℕ) (B : Finset (ZMod (2 * n - 1))) : Prop :=
   ∃ x ∈ B, ∃ y ∈ B, y - x = ((n + 1 : ℕ) : ZMod (2 * n - 1)) ∨
     x - y = ((n + 1 : ℕ) : ZMod (2 * n - 1))
 
+/--
+@isnad1 id=isgood.2h3v.s7.d64ded1ee164 from=translated src=- shape=3e9c32f8 vocab=4f71b112
+-/
 theorem IsGood.mono {n : ℕ} {B B' : Finset (ZMod (2 * n - 1))} (hsub : B' ⊆ B)
     (h : IsGood n B') : IsGood n B := by
   obtain ⟨x, hx, y, hy, hxy⟩ := h
   exact ⟨x, hsub hx, y, hsub hy, hxy⟩
 
-/-- A bad (i.e. not good) coloring and its translate by `n + 1` are disjoint. -/
+/-- A bad (i.e. not good) coloring and its translate by `n + 1` are disjoint.
+@isnad1 id=disjoint.1h2v.s9.fd3d000f33fe from=translated src=- shape=85b7f33e vocab=d309c469
+-/
 theorem bad_disjoint_translate {n : ℕ} {B : Finset (ZMod (2 * n - 1))}
     (hbad : ¬ IsGood n B) :
     Disjoint B (B.image (· + ((n + 1 : ℕ) : ZMod (2 * n - 1)))) := by
@@ -50,7 +55,9 @@ theorem bad_disjoint_translate {n : ℕ} {B : Finset (ZMod (2 * n - 1))}
   refine ⟨y, hyB, x, hxB, Or.inl ?_⟩
   rw [← hxy, add_sub_cancel_left]
 
-/-- Exactly `t` of the numbers `0, ..., 3 * t - 1` are congruent to `j` mod 3. -/
+/-- Exactly `t` of the numbers `0, ..., 3 * t - 1` are congruent to `j` mod 3.
+@isnad1 id=eq.1h2v.s6.4efcc00c3c5e from=translated src=- shape=405a2c6a vocab=b6b91416
+-/
 theorem card_range_filter_mod_eq (t j : ℕ) (hj : j < 3) :
     ((Finset.range (3 * t)).filter (· % 3 = j)).card = t := by
   have h : ((Finset.range (3 * t)).filter (· % 3 = j)).card = (Finset.range t).card := by
@@ -70,7 +77,9 @@ theorem card_range_filter_mod_eq (t j : ℕ) (hj : j < 3) :
   rwa [Finset.card_range] at h
 
 /-- When `3 ∣ N`, exactly `N / 3` elements of `ZMod N` have a given
-`val` residue mod 3. -/
+`val` residue mod 3.
+@isnad1 id=eq.2h2v.s6.0ba5ce0c4967 from=translated src=- shape=8e9f4085 vocab=73cc658d
+-/
 theorem card_univ_filter_val_mod_eq {N : ℕ} [NeZero N] (hN : 3 ∣ N) (j : ℕ)
     (hj : j < 3) :
     ((Finset.univ : Finset (ZMod N)).filter (fun x => x.val % 3 = j)).card = N / 3 := by
@@ -95,7 +104,9 @@ theorem card_univ_filter_val_mod_eq {N : ℕ} [NeZero N] (hN : 3 ∣ N) (j : ℕ
     rwa [Nat.mod_eq_of_lt ha.1, Nat.mod_eq_of_lt hb.1] at hmod'
 
 /-- Translation by `n + 1` preserves `val % 3` when `3 ∣ n + 1`
-and `3 ∣ 2 * n - 1`. -/
+and `3 ∣ 2 * n - 1`.
+@isnad1 id=eq.2h2v.s9.8060061c2f04 from=translated src=- shape=d3472f1a vocab=f73b911f
+-/
 theorem val_mod_translate {n : ℕ} [NeZero (2 * n - 1)] (h3n : 3 ∣ n + 1)
     (h3N : 3 ∣ 2 * n - 1) (x : ZMod (2 * n - 1)) :
     (x + ((n + 1 : ℕ) : ZMod (2 * n - 1))).val % 3 = x.val % 3 := by
@@ -113,7 +124,9 @@ theorem val_mod_translate {n : ℕ} [NeZero (2 * n - 1)] (h3n : 3 ∣ n + 1)
     exact h1.trans h2
   exact hmod3
 
-/-- If `n % 3 ≠ 2` then `2 * n - 1` and `n + 1` are coprime. -/
+/-- If `n % 3 ≠ 2` then `2 * n - 1` and `n + 1` are coprime.
+@isnad1 id=coprime.2h1v.s6.24693f0a3628 from=translated src=- shape=3a56ef08 vocab=5e4ebb58
+-/
 theorem coprime_aux {n : ℕ} (hn : 3 ≤ n) (h3 : n % 3 ≠ 2) :
     Nat.Coprime (2 * n - 1) (n + 1) := by
   rw [Nat.coprime_iff_gcd_eq_one]
@@ -130,7 +143,9 @@ theorem coprime_aux {n : ℕ} (hn : 3 ≤ n) (h3 : n % 3 ≠ 2) :
     have h4 : (n + 1) % 3 = 0 := Nat.mod_eq_zero_of_dvd h31
     lia
 
-/-- Upper bound: a bad coloring has at most `solution n - 1` black points. -/
+/-- Upper bound: a bad coloring has at most `solution n - 1` black points.
+@isnad1 id=le.2h2v.s6.93db607ff833 from=translated src=- shape=1088a877 vocab=0dca1104
+-/
 theorem card_le_of_bad {n : ℕ} (hn : 3 ≤ n) {B : Finset (ZMod (2 * n - 1))}
     (hbad : ¬ IsGood n B) : B.card ≤ solution n - 1 := by
   have : NeZero (2 * n - 1) := ⟨by lia⟩
@@ -196,7 +211,9 @@ theorem card_le_of_bad {n : ℕ} (hn : 3 ≤ n) {B : Finset (ZMod (2 * n - 1))}
       lia
     lia
 
-/-- Lower bound: there is a bad coloring with `solution n - 1` black points. -/
+/-- Lower bound: there is a bad coloring with `solution n - 1` black points.
+@isnad1 id=ex.1h1v.s6.3bb82f4a5a47 from=translated src=- shape=d9f13b8d vocab=0dca1104
+-/
 theorem exists_bad {n : ℕ} (hn : 3 ≤ n) :
     ∃ B : Finset (ZMod (2 * n - 1)), B.card = solution n - 1 ∧ ¬ IsGood n B := by
   have : NeZero (2 * n - 1) := ⟨by lia⟩

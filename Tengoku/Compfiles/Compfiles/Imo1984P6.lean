@@ -22,7 +22,9 @@ namespace Imo1984P6
 
 /-- If `2^m` divides `(y - x) * (y + x)` for odd `x < y`, then almost all of
 the factors of 2 land in one of the two factors, since
-`gcd (y - x) (y + x) = 2`. -/
+`gcd (y - x) (y + x) = 2`.
+@isnad1 id=or.4h3v.s7.ea86e012fe20 from=translated src=- shape=c225df09 vocab=05bff94c
+-/
 lemma two_pow_dvd_or {x y m : ℕ} (hx : Odd x) (hy : Odd y) (hxy : x < y)
     (hdvd : 2 ^ m ∣ (y - x) * (y + x)) :
     2 ^ (m - 1) ∣ y - x ∨ 2 ^ (m - 1) ∣ y + x := by

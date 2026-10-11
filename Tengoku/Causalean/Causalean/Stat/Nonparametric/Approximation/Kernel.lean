@@ -60,7 +60,9 @@ noncomputable def kernelSmoothingBias (f K : ℝ → ℝ) (t h : ℝ) : ℝ :=
 /-- If a function `F` is dominated in absolute value by a constant multiple `C·|K|`
 of an integrable kernel `K`, then `F` is itself integrable. This is the integrability
 workhorse for kernel-smoothing arguments: every factor multiplying `K` (a monomial, a
-Taylor remainder) is bounded by `|K|` on the kernel's support and vanishes off it. -/
+Taylor remainder) is bounded by `|K|` on the kernel's support and vanishes off it.
+@isnad1 id=integrab.3h3v.s6.0956e81fb7ec from=translated src=- shape=89df338e vocab=d119d53f
+-/
 theorem integrable_of_abs_le_const_mul_kernel {K F : ℝ → ℝ} {C : ℝ}
     (hKi : Integrable K) (hF : AEStronglyMeasurable F)
     (hbd : ∀ v, |F v| ≤ C * |K v|) : Integrable F := by
@@ -70,7 +72,9 @@ theorem integrable_of_abs_le_const_mul_kernel {K F : ℝ → ℝ} {C : ℝ}
 
 /-- **Change of variables for the kernel smoothing bias.** Substituting `u = t + h v`
 (`h > 0`) turns the bias integral into `∫ K(v) (f(t+hv) − f t) dv`: the `h⁻¹` prefactor
-cancels the Jacobian `h`, and `(u−t)/h = v`. -/
+cancels the Jacobian `h`, and `(u−t)/h = v`.
+@isnad1 id=eq.1h4v.s6.f7ba71f12e2a from=translated src=- shape=f9a935bc vocab=0a343079
+-/
 theorem kernelSmoothingBias_changeOfVar (f K : ℝ → ℝ) (t h : ℝ) (hh : 0 < h) :
     kernelSmoothingBias f K t h = ∫ v, K v * (f (t + h * v) - f t) := by
   unfold kernelSmoothingBias
@@ -100,7 +104,9 @@ constant `M` is nonnegative](hyp:hM), [the bandwidth `h` is positive](hyp:hh), [
 differentiable](hyp:hf), and [its `p`-th derivative is `(β−p)`-Hölder with constant `M` on
 the window `[t−h, t+h]`](hyp:hb), then [the absolute unnormalised convolution difference
 at `t` is bounded by `(M/p! · ∫|K|)·h^β`](goal). For positive integer `β = m`,
-`p = m - 1` and the Hölder exponent is `1`. -/
+`p = m - 1` and the Hölder exponent is `1`.
+@isnad1 id=le.6h6v.s8.dbbc757ec6a9 from=translated src=- shape=7fb28a0a vocab=a50a80fa
+-/
 theorem kernelSmoothingBias_bound {f K : ℝ → ℝ} {β M t h : ℝ}
     (hβ : 0 < β) (hM : 0 ≤ M) (hh : 0 < h)
     (hK : KernelOrder K (holderDerivOrder β))

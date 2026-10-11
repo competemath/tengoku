@@ -57,7 +57,9 @@ noncomputable def normalizedWeight {K : Type*} [Field K] (a : ι → K) (i : ι)
   a i / ∑ k, a k
 
 /-- Nonnegativity of normalized weights from nonnegative raw weights and a
-positive normalizing sum. -/
+positive normalizing sum.
+@isnad1 id=le.2h4v.s7.636b954e7c40 from=translated src=- shape=95d96331 vocab=d98f41e3
+-/
 lemma normalizedWeight_nonneg {K : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
     (a : ι → K)
     (ha : ∀ i, 0 ≤ a i) (hsum : 0 < ∑ i, a i) (i : ι) :
@@ -65,7 +67,9 @@ lemma normalizedWeight_nonneg {K : Type*} [Field K] [LinearOrder K] [IsStrictOrd
   unfold normalizedWeight
   exact div_nonneg (ha i) (le_of_lt hsum)
 
-/-- Normalized finite weights sum to one when the normalizing sum is nonzero. -/
+/-- Normalized finite weights sum to one when the normalizing sum is nonzero.
+@isnad1 id=eq.1h3v.s6.a33f8b8f3f25 from=translated src=- shape=c4327318 vocab=160767d5
+-/
 lemma sum_normalizedWeight_eq_one {K : Type*} [Field K]
     (a : ι → K) (hsum : ∑ i, a i ≠ 0) :
     ∑ i, normalizedWeight a i = 1 := by
@@ -75,7 +79,9 @@ lemma sum_normalizedWeight_eq_one {K : Type*} [Field K]
 
 /-- When finite weights sum to one, the weighted covariance of two centered
 variables equals their weighted cross-moment minus the product of their
-weighted means. -/
+weighted means.
+@isnad1 id=eq.1h5v.s8.0615d1e147e2 from=translated src=- shape=6b3ce550 vocab=55f9ce3a
+-/
 lemma weighted_center_cov_left {K : Type*} [CommRing K]
     (p x y : ι → K) (hp : ∑ i, p i = 1) :
     ∑ i, p i * (x i - ∑ j, p j * x j) * (y i - ∑ j, p j * y j) =
@@ -120,7 +126,9 @@ lemma weighted_center_cov_left {K : Type*} [CommRing K]
 
 /-- When finite weights sum to one, the weighted sum of pairwise products of
 differences equals twice the weighted cross-moment minus twice the product of
-the weighted means. -/
+the weighted means.
+@isnad1 id=eq.1h5v.s8.08cb5942e0a0 from=translated src=- shape=55b83d62 vocab=afeed0e1
+-/
 lemma pairwise_cov_right {K : Type*} [CommRing K]
     (p x y : ι → K) (hp : ∑ i, p i = 1) :
     (∑ i, ∑ j, p i * p j * (x i - x j) * (y i - y j)) =
@@ -155,6 +163,7 @@ lemma pairwise_cov_right {K : Type*} [CommRing K]
 [2 is nonzero](hyp:h2),
 [the centered covariance equals half the pairwise-difference average](goal):
 `Σᵢ pᵢ (xᵢ − x̄)(yᵢ − ȳ) = 1/2 Σᵢ Σⱼ pᵢpⱼ (xᵢ − xⱼ)(yᵢ − yⱼ)`.
+@isnad1 id=eq.2h5v.s8.023e368b05ce from=translated src=- shape=2b063a0d vocab=c3bd574d
 -/
 lemma weighted_center_cov {K : Type*} [Field K]
     (p x y : ι → K) (hp : ∑ i, p i = 1) (h2 : (2 : K) ≠ 0) :
@@ -163,7 +172,9 @@ lemma weighted_center_cov {K : Type*} [Field K]
   rw [weighted_center_cov_left p x y hp, pairwise_cov_right p x y hp]
   simp [h2]
 
-/-- Weighted centered variance as half the average pairwise squared gap. -/
+/-- Weighted centered variance as half the average pairwise squared gap.
+@isnad1 id=eq.2h4v.s8.61f7c097d6da from=translated src=- shape=78ffbf8e vocab=98523866
+-/
 lemma weighted_center_var {K : Type*} [Field K]
     (p x : ι → K) (hp : ∑ i, p i = 1) (h2 : (2 : K) ≠ 0) :
     ∑ i, p i * (x i - ∑ j, p j * x j)^2 =

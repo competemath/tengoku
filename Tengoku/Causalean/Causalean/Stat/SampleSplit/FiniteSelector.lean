@@ -47,7 +47,9 @@ def selectorCell (select : Alpha -> Iota) (good : Set Alpha) (i : Iota) : Set Al
 
 /-- When [the selection rule is measurable](hyp:hselect), [the designated pilot
 event is measurable](hyp:hgood), and [a branch is fixed](hyp:i), [its selector
-cell is measurable](goal). -/
+cell is measurable](goal).
+@isnad1 id=measurab.2h5v.s5.ebac5f31c3d0 from=translated src=- shape=6c2656b4 vocab=05ed79d3
+-/
 lemma measurableSet_selectorCell [MeasurableSingletonClass Iota]
     {select : Alpha -> Iota} (hselect : Measurable select)
     {good : Set Alpha} (hgood : MeasurableSet good) (i : Iota) :
@@ -56,7 +58,9 @@ lemma measurableSet_selectorCell [MeasurableSingletonClass Iota]
 
 /-- When [finite branch selection is measurable](hyp:hselect) and [each
 branch-specific error is measurable](hyp:herr), [evaluating the selected error
-on a pilot-tail pair is measurable](goal). -/
+on a pilot-tail pair is measurable](goal).
+@isnad1 id=measurab.2h5v.s6.fbe5572b8f33 from=translated src=- shape=04942cf1 vocab=9ad6c9a3
+-/
 lemma measurable_finiteSelector_apply [Fintype Iota] [MeasurableSingletonClass Iota]
     {select : Alpha -> Iota} (hselect : Measurable select)
     {err : Iota -> Beta -> Real} (herr : ∀ i, Measurable (err i)) :
@@ -78,7 +82,9 @@ lemma measurable_finiteSelector_apply [Fintype Iota] [MeasurableSingletonClass I
 /-- If [the pilot coordinate is measurable](hyp:hpilot), [the tail coordinate is
 measurable](hyp:htail), [the finite selection rule is measurable](hyp:hselect),
 and [every branch error is measurable](hyp:herr), [the selected squared error is
-measurable](goal). -/
+measurable](goal).
+@isnad1 id=measurab.4h8v.s6.b7a56622ab29 from=translated src=- shape=c2354ce1 vocab=242a31ec
+-/
 @[fun_prop]
 lemma measurable_finiteSelector_sq [Fintype Iota] [MeasurableSingletonClass Iota]
     {pilot : Omega -> Alpha} {tail : Omega -> Beta}
@@ -94,7 +100,9 @@ coordinate is measurable](hyp:hpilot), [the tail coordinate is
 measurable](hyp:htail), [the finite selection rule is measurable](hyp:hselect),
 and [every fixed branch has integrable squared error under the tail
 law](hyp:herr), [the pilot-selected squared error is integrable under the
-ambient probability law](goal). -/
+ambient probability law](goal).
+@isnad1 id=integrab.5h9v.s7.0f0b26c92ed9 from=translated src=- shape=c4737a4e vocab=dd23b4e6
+-/
 theorem IndepFun.integrable_finiteSelector_sq
     [Fintype Iota] [MeasurableSingletonClass Iota]
     {mu : Measure Omega} [IsProbabilityMeasure mu]
@@ -130,7 +138,9 @@ measurable](hyp:htail), [the finite selection rule is measurable](hyp:hselect),
 [the designated pilot event is measurable](hyp:hgood), and [every fixed branch
 has integrable squared error under the tail law](hyp:herr), [the selected risk
 on that event equals the sum of each selector-cell probability times its
-fixed-branch tail risk](goal). -/
+fixed-branch tail risk](goal).
+@isnad1 id=eq.6h10v.s8.6e294627e5ca from=translated src=- shape=baff5b6c vocab=396810c2
+-/
 theorem IndepFun.integral_finiteSelector_sq_eq_sum
     [Fintype Iota] [MeasurableSingletonClass Iota]
     {mu : Measure Omega} [IsProbabilityMeasure mu]
@@ -206,7 +216,9 @@ measurable](hyp:htail), [the finite selection rule is measurable](hyp:hselect),
 [the designated pilot event is measurable](hyp:hgood), [every branch selected
 there is eligible](hyp:hEligible), and [eligible branches have integrable
 squared error under the tail law](hyp:hbranchInt), [the selected squared error
-is integrable on that pilot event](goal). -/
+is integrable on that pilot event](goal).
+@isnad1 id=integrab.5h12v.s7.5c608edc1ab1 from=translated src=- shape=46055280 vocab=247406fd
+-/
 theorem integrableOn_finiteSelector_sq_of_eligible
     [Fintype Iota] [MeasurableSingletonClass Iota]
     {mu : Measure Omega}
@@ -260,7 +272,9 @@ is nonnegative](hyp:hV), [every branch selected on that event is
 eligible](hyp:hEligible), [eligible branches have integrable squared tail
 error](hyp:hbranchInt), and [their fixed-branch risks obey the common
 bound](hyp:hbranch), [the pilot-selected risk on the event obeys that same
-bound](goal). -/
+bound](goal).
+@isnad1 id=le.8h13v.s8.8f3d0d1c3c28 from=translated src=- shape=1c726bfc vocab=23e48035
+-/
 theorem IndepFun.integral_finiteSelector_sq_le
     [Fintype Iota] [MeasurableSingletonClass Iota]
     {mu : Measure Omega} [IsProbabilityMeasure mu]
@@ -365,7 +379,9 @@ integrable squared tail error](hyp:hbranchInt), [their fixed-branch risks obey
 the good-event bound](hyp:hbranch), [the selected squared error obeys the global
 envelope](hyp:hbounded), and [the bad pilot event has probability at most the
 given tolerance](hyp:hbad), [the full risk is at most the good-event bound plus
-the envelope times that tolerance](goal). -/
+the envelope times that tolerance](goal).
+@isnad1 id=le.12h15v.s8.e759a2ae5ad1 from=translated src=- shape=e2185584 vocab=da2e99bf
+-/
 theorem IndepFun.integral_finiteSelector_sq_le_add_bad
     [Fintype Iota] [MeasurableSingletonClass Iota]
     {mu : Measure Omega} [IsProbabilityMeasure mu]
@@ -430,7 +446,9 @@ common risk bound](hyp:hV), [eligibility of every branch selected on the good
 event](hyp:hEligible), [integrability of every eligible branch's squared error
 under the tail-fold law](hyp:hbranchInt), and [the common fixed-branch risk
 bound](hyp:hbranch), [the selected squared risk on the good event is at most
-that common bound](goal). -/
+that common bound](goal).
+@isnad1 id=le.5h14v.s10.fe43bca4a64b from=translated src=- shape=2c9ef098 vocab=49caa25c
+-/
 theorem OneShotSplit.integral_finiteSelector_sq_le
     {mu : Measure Omega} {P : Measure X}
     [Fintype Iota] [MeasurableSingletonClass Iota]

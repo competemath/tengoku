@@ -28,6 +28,7 @@ Finiteness of the categorical cell type is essential here: without it an
 atomless label law would have zero mass at every sampled singleton. Show the
 finite union of null label events has measure zero, then lift this almost-sure
 statement to every coordinate using measurePreserving_eval and ae_all_iff.
+@isnad1 id=eventual.2h6v.s7.ac96f9f526f0 from=translated src=- shape=d28c340f vocab=323c460d
 -/
 lemma ae_sample_cell_positive (n : ℕ) (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (hX : Measurable X) (hA : Measurable A) :

@@ -26,7 +26,9 @@ noncomputable def guardedScore (q qdot : α → ℝ) (x : α) : ℝ :=
   if q x = 0 then 0 else qdot x / q x
 
 /-- [Measurable density and derivative functions](hyp:q,qdot,hq,hqdot) give [a measurable
-guarded likelihood score](goal). -/
+guarded likelihood score](goal).
+@isnad1 id=measurab.2h3v.s5.fc461c3d34fa from=translated src=- shape=7151f668 vocab=b802df3c
+-/
 @[fun_prop] theorem measurable_guardedScore {q qdot : α → ℝ}
     (hq : Measurable q) (hqdot : Measurable qdot) :
     Measurable (guardedScore q qdot) := by
@@ -35,7 +37,9 @@ guarded likelihood score](goal). -/
 
 /-- A [reference measure, density, and derivative density](hyp:ν,q,qdot) whose [derivative
 vanishes wherever the density vanishes](hyp:hzero) satisfy [the almost-everywhere identity
-between the derivative density and density times its guarded score](goal). -/
+between the derivative density and density times its guarded score](goal).
+@isnad1 id=eventual.1h4v.s6.50c22569ac30 from=translated src=- shape=81746bbe vocab=3ba34bff
+-/
 theorem derivative_eq_density_mul_guardedScore
     {ν : Measure α} {q qdot : α → ℝ}
     (hzero : ∀ᵐ x ∂ν, q x = 0 → qdot x = 0) :
@@ -48,7 +52,9 @@ theorem derivative_eq_density_mul_guardedScore
 /-- A [reference measure and law](hyp:ν,μ), [measurable density and derivative density](hyp:q,qdot,hq),
 [nonnegative density](hyp:hqnonneg), [zero-set derivative control](hyp:hzero), [density
 representation of the law](hyp:hμ), and [integrable derivative density](hyp:hderivInt) give
-[an integrable guarded likelihood score under the law](goal). -/
+[an integrable guarded likelihood score under the law](goal).
+@isnad1 id=integrab.5h5v.s7.489a2896d192 from=translated src=- shape=ee011a37 vocab=fa19003f
+-/
 theorem integrable_guardedScore_of_derivative_integrable
     (ν μ : Measure α) (q qdot : α → ℝ)
     (hq : Measurable q)
@@ -67,7 +73,9 @@ theorem integrable_guardedScore_of_derivative_integrable
 density](hyp:q,qdot,hq,hqdot), [nonnegative density](hyp:hqnonneg), [zero-set derivative
 control](hyp:hzero), [density representation](hyp:hμ), [integrable guarded score and
 derivative](hyp:hscoreInt,hderivInt), and [measurable event](hyp:A,hA) make [the guarded-score
-integral on that event equal the derivative-density integral](goal). -/
+integral on that event equal the derivative-density integral](goal).
+@isnad1 id=eq.8h6v.s7.bd13e6ed8d95 from=translated src=- shape=1ef17256 vocab=73f02e8f
+-/
 theorem setIntegral_guardedScore_eq_derivative
     (ν μ : Measure α) [IsFiniteMeasure ν]
     (q qdot : α → ℝ)
@@ -94,7 +102,9 @@ variable {Ω Y : Type*} [MeasurableSpace Ω] [MeasurableSpace Y]
 /-- A [measurable statistic](hyp:T,hT) with [its pushed-forward law](hyp:μΩ,μY,hμYmap),
 [integrable source and statistic functions](hyp:f,g,hf,hg), and [a measurable statistic
 function](hyp:hgmeas) has [its conditional expectation equal to the pulled-back statistic
-function exactly when their integrals agree on every measurable statistic event](goal). -/
+function exactly when their integrals agree on every measurable statistic event](goal).
+@isnad1 id=iff.5h7v.s7.f243c0583f39 from=translated src=- shape=d8d03333 vocab=13d6b765
+-/
 theorem condExp_eq_statistic_iff_integral_preimage_eq
     (hT : Measurable T) (hμYmap : μY = μΩ.map T)
     (f : Ω → ℝ) (g : Y → ℝ)
@@ -136,7 +146,9 @@ densities](hyp:qΩ,qdotΩ,qY,qdotY,hqΩ,hqdotΩ,hqY,hqdotY), [nonnegative densit
 [zero-set derivative controls](hyp:hzeroΩ,hzeroY), [the source and statistic density laws](hyp:hμΩ,hμYmap,hμYdensity),
 [integrable scores and derivatives](hyp:hscoreΩInt,hscoreYInt,hderivΩInt,hderivYInt), [an exact
 derivative pushforward identity](hyp:hderivMap), and [a measurable statistic event](hyp:A,hA)
-give [equal source-score and pulled-back statistic-score integrals on that event](goal). -/
+give [equal source-score and pulled-back statistic-score integrals on that event](goal).
+@isnad1 id=eq.18h12v.s9.cad5886b86ea from=translated src=- shape=ad2eb613 vocab=1f159277
+-/
 theorem score_integral_preimage_eq
     (hT : Measurable T)
     (hqΩ : Measurable qΩ) (hqdotΩ : Measurable qdotΩ)
@@ -181,7 +193,9 @@ densities](hyp:qΩ,qdotΩ,qY,qdotY,hqΩ,hqdotΩ,hqY,hqdotY), [nonnegative densit
 [zero-set derivative controls](hyp:hzeroΩ,hzeroY), [the source and statistic density laws](hyp:hμΩ,hμYmap,hμYdensity),
 [integrable scores and derivatives](hyp:hscoreΩInt,hscoreYInt,hderivΩInt,hderivYInt), and [an
 exact derivative pushforward identity](hyp:hderivMap) imply [that the conditional expectation
-of the source score given the statistic equals the pulled-back statistic score almost everywhere](goal). -/
+of the source score given the statistic equals the pulled-back statistic score almost everywhere](goal).
+@isnad1 id=eventual.17h11v.s8.90c92177687b from=translated src=- shape=86608c63 vocab=66e7e37c
+-/
 theorem condExp_guardedScore_eq_statistic_score
     (hT : Measurable T)
     (hqΩ : Measurable qΩ) (hqdotΩ : Measurable qdotΩ)
@@ -224,7 +238,9 @@ densities](hyp:qΩ,qdotΩ,qY,qdotY,hqΩ,hqdotΩ,hqY,hqdotY), [nonnegative densit
 [zero-set derivative controls](hyp:hzeroΩ,hzeroY), [the source and statistic density laws](hyp:hμΩ,hμYmap,hμYdensity),
 [integrable scores and derivatives](hyp:hderivΩInt,hderivYInt), [an exact derivative pushforward
 identity](hyp:hderivMap), and [a square-integrable source score](hyp:hscoreΩL2) give [a
-square-integrable statistic score whose second moment is no larger than the source score's](goal). -/
+square-integrable statistic score whose second moment is no larger than the source score's](goal).
+@isnad1 id=and.16h11v.s9.0fba172555d3 from=translated src=- shape=7881fbda vocab=5e73b0a8
+-/
 theorem statistic_score_memLp_and_secondMoment_le
     (hT : Measurable T)
     (hqΩ : Measurable qΩ) (hqdotΩ : Measurable qdotΩ)

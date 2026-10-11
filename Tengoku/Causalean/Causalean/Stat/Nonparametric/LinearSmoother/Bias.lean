@@ -42,7 +42,9 @@ open scoped BigOperators
 /-- A linear smoother whose weights reproduce polynomials up to degree `p`
 (`∑ᵢ Sᵢ (aᵢ − t)ᵏ = [k = 0]` for `k ≤ p`) reproduces the degree-`p` Taylor polynomial
 of `f` at `t` exactly: `∑ᵢ Sᵢ · T_p(aᵢ; t) = f t`. Only the constant term of the Taylor
-polynomial survives the reproduction identities. -/
+polynomial survives the reproduction identities.
+@isnad1 id=eq.1h6v.s7.943de4a9896a from=translated src=- shape=3303662d vocab=87725b67
+-/
 theorem linearSmoother_reproduces_taylorPoly {f : ℝ → ℝ} {t : ℝ} {N : ℕ}
     {a S : Fin N → ℝ} (p : ℕ)
     (hrep : ∀ k : ℕ, k ≤ p → (∑ i, S i * (a i - t) ^ k) = if k = 0 then 1 else 0) :
@@ -73,7 +75,9 @@ polynomials up to degree `p = holderDerivOrder β` at `t`
 window `[lo, hi]`, and `f` is `β`-Hölder there (`p`-times continuously
 differentiable with `(β−p)`-Hölder top derivative, constant `M`), then the
 smoother's bias is controlled by the weighted spread of the design:
-`|∑ᵢ Sᵢ f(aᵢ) − f t| ≤ (M/p!) · ∑ᵢ |Sᵢ| · |aᵢ − t|^β`. (Tsybakov 2009, Ch. 1.) -/
+`|∑ᵢ Sᵢ f(aᵢ) − f t| ≤ (M/p!) · ∑ᵢ |Sᵢ| · |aᵢ − t|^β`. (Tsybakov 2009, Ch. 1.)
+@isnad1 id=le.7h9v.s8.49cf0a0850bb from=translated src=- shape=a445b4e9 vocab=fbd05be8
+-/
 theorem linearSmoother_bias_of_reproduces {f : ℝ → ℝ} {β M lo hi t : ℝ} {N : ℕ}
     {a S : Fin N → ℝ}
     (hβ : 0 < β) (hM : 0 ≤ M)
@@ -118,7 +122,9 @@ polynomials of degree up to `p` at `t`](hyp:hrep), then [the smoother's bias col
 the standard rate `|∑ᵢ Sᵢ f(aᵢ) − f t| ≤ (M/p!) · (∑ᵢ |Sᵢ|) · h^β`](goal).
 
 Bounding the leverage `∑ᵢ |Sᵢ|` by a constant (from the design density) then yields the
-textbook `O(h^β)` local-polynomial bias. -/
+textbook `O(h^β)` local-polynomial bias.
+@isnad1 id=le.8h10v.s8.d68214484434 from=translated src=- shape=33d606c8 vocab=fbd05be8
+-/
 theorem linearSmoother_bias_window {f : ℝ → ℝ} {β M lo hi t h : ℝ} {N : ℕ}
     {a S : Fin N → ℝ}
     (hβ : 0 < β) (hM : 0 ≤ M)

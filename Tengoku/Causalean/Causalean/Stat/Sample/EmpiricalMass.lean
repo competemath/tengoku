@@ -33,7 +33,9 @@ def empiricalMass {N : ℕ} (sample : Fin N → 𝒳) (x : 𝒳) : ℝ :=
     classical
     exact (N : ℝ)⁻¹ * ∑ j, if sample j = x then 1 else 0
 
-/-- The absolute empirical mass of any point is at most one, including for the empty sample. -/
+/-- The absolute empirical mass of any point is at most one, including for the empty sample.
+@isnad1 id=le.0h4v.s4.a905353683dc from=translated src=- shape=880c1206 vocab=7d28d6b8
+-/
 lemma abs_empiricalMass_le_one
     {N : ℕ} (sample : Fin N → 𝒳) (x : 𝒳) :
     |empiricalMass sample x| ≤ 1 := by
@@ -64,7 +66,9 @@ lemma abs_empiricalMass_le_one
 /-- **Expected empirical mass.** Given [a positive sample size $m$](hyp:hm) and [a measurable
 singleton `{a}`](hyp:ha), [the expectation, under the $m$-fold product sampling measure, of the
 empirical mass of the point `a` — the fraction of sample observations equal to `a` — equals the
-population probability of `{a}`](goal). -/
+population probability of `{a}`](goal).
+@isnad1 id=eq.2h4v.s6.2aceb88125c5 from=translated src=- shape=8e5beffa vocab=68c05fdb
+-/
 lemma integral_empiricalMass
     [MeasurableSpace 𝒳] (μ : Measure 𝒳) [IsProbabilityMeasure μ]
     {m : ℕ} (hm : 0 < m)
@@ -100,7 +104,9 @@ lemma integral_empiricalMass
 /-- **Second moment of the empirical mass.** Given [a positive sample size $m$](hyp:hm) and [a
 measurable singleton `{a}`](hyp:ha), [the second moment, under the $m$-fold product sampling
 measure, of the empirical mass of the point `a` equals the squared population probability of `{a}`
-plus the usual binomial sampling correction $(1/m)(\mu(\{a\})-\mu(\{a\})^2)$](goal). -/
+plus the usual binomial sampling correction $(1/m)(\mu(\{a\})-\mu(\{a\})^2)$](goal).
+@isnad1 id=eq.2h4v.s7.bec9350b8471 from=translated src=- shape=7e8f9437 vocab=12d76f45
+-/
 lemma integral_empiricalMass_sq
     [MeasurableSpace 𝒳] (μ : Measure 𝒳) [IsProbabilityMeasure μ]
     {m : ℕ} (hm : 0 < m)

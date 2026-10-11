@@ -49,7 +49,9 @@ def QuadraticEnergyFinite {n : ℕ}
 
 /-- For [a nonnegative horizon u](hyp:hu) and [a sample path on which subject i's at-risk payoff,
 weighted by the censor hazard, is integrable from 0 to u](hyp:hazard,hPath), [the square of the cumulative payoff up to
-u equals the integral of twice the accumulated payoff times its current rate](goal). -/
+u equals the integral of twice the accumulated payoff times its current rate](goal).
+@isnad1 id=eq.2h6v.s8.20eff281bf71 from=translated src=- shape=23e43749 vocab=11aae2db
+-/
 theorem cumulative_hazard_square {n : ℕ}
     (hazard : ℝ → ℝ) (H : ℝ → Sample n → ℝ)
     (i : Fin n) (u : ℝ) (hu : 0 ≤ u) (x : Sample n)
@@ -71,7 +73,9 @@ hazard](hyp:hazard,hHazard), and let the payoff process be [left predictable](hy
 u](hyp:hu), [finite expected quadratic energy](hyp:hQuadratic), and [an integrable
 hazard-weighted squared payoff while subject i is at risk](hyp:hEnergy), [the expected squared
 payoff at subject i's observed censor event by u equals the expected integral from 0 to u of the
-squared payoff times the hazard times the subject's at-risk indicator](goal). -/
+squared payoff times the hazard times the subject's at-risk indicator](goal).
+@isnad1 id=eq.7h7v.s8.fad8a6568f9a from=translated src=- shape=d03ec5a6 vocab=9639ff4d
+-/
 theorem subject_event_square_expectation {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -147,7 +151,9 @@ law](hyp:hFailure) and independent [censor times whose law has the given censor
 hazard](hyp:hazard,hHazard), and let the payoff process be [jointly measurable in time and
 sample](hyp:hMeasurable). For [a nonnegative horizon u](hyp:hu) and [finite expected quadratic
 energy](hyp:hQuadratic), [almost every sample path has a hazard-weighted at-risk payoff for
-subject i that is integrable from 0 to u](goal). -/
+subject i that is integrable from 0 to u](goal).
+@isnad1 id=eventual.5h7v.s7.f8ad66f30816 from=translated src=- shape=1f417253 vocab=a9d1421a
+-/
 theorem subject_hazard_path_integrable_ae {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -244,7 +250,9 @@ theorem subject_hazard_path_integrable_ae {n : ℕ}
 u](hyp:hHazardInt), and on a sample path both [subject i's hazard-weighted at-risk
 payoff](hyp:hPath) and [its squared-payoff analogue](hyp:hEnergyPath) are integrable from 0 to
 u, then [the square of the integral of the absolute hazard-weighted payoff is at most the total
-hazard mass from 0 to u times the subject's quadratic hazard energy](goal). -/
+hazard mass from 0 to u times the subject's quadratic hazard energy](goal).
+@isnad1 id=le.4h6v.s8.087d381eba56 from=translated src=- shape=71e67ed5 vocab=3a6b3611
+-/
 theorem subject_absolute_payoff_square_le_energy {n : ℕ}
     (hazard : ℝ → ℝ) (hHazardNonneg : ∀ s, 0 ≤ hazard s)
     (H : ℝ → Sample n → ℝ) (i : Fin n) (u : ℝ) (x : Sample n)
@@ -345,7 +353,9 @@ nonnegative](hyp:hu), [the hazard is integrable from 0 to u](hyp:hHazardInt), an
 path both [subject i's hazard-weighted at-risk payoff](hyp:hPath) and [its squared-payoff
 analogue](hyp:hEnergyPath) are integrable from 0 to u, then [the integral of the absolute value
 of the accumulated payoff times the current payoff is at most the total hazard mass from 0 to u
-times the subject's quadratic hazard energy](goal). -/
+times the subject's quadratic hazard energy](goal).
+@isnad1 id=le.5h6v.s9.535deb9a89f0 from=translated src=- shape=7aabb7d5 vocab=3a6b3611
+-/
 theorem subject_prefix_mixed_abs_integral_le_energy {n : ℕ}
     (hazard : ℝ → ℝ) (hHazardNonneg : ∀ s, 0 ≤ hazard s)
     (H : ℝ → Sample n → ℝ) (i : Fin n) (u : ℝ) (hu : 0 ≤ u)

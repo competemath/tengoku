@@ -36,7 +36,9 @@ def finiteSquaredRisk (p : Theta → X → ℝ) (tau : Theta → ℝ)
   ∑ x, p theta x * (((d x : Set.Icc l u) : ℝ) - tau theta) ^ 2
 
 /-- If the [label coordinates are nonnegative](hyp:hp), every [finite squared risk](goal)
-is nonnegative. -/
+is nonnegative.
+@isnad1 id=le.1h8v.s6.6f6e757d0ee7 from=translated src=- shape=0f5d28da vocab=5a9f4c92
+-/
 theorem finiteSquaredRisk_nonneg (p : Theta → X → ℝ) (tau : Theta → ℝ)
     (hp : ∀ theta x, 0 ≤ p theta x) (d : BoundedDecision X l u) (theta : Theta) :
     0 ≤ finiteSquaredRisk p tau d theta := by
@@ -44,7 +46,9 @@ theorem finiteSquaredRisk_nonneg (p : Theta → X → ℝ) (tau : Theta → ℝ)
 
 /-- If [label probabilities are nonnegative and sum to one](hyp:hp,hsum), and [actions and
 targets lie in the same ordered interval](hyp:hlu,htau), then the [finite squared risk is
-bounded](goal) between zero and the squared interval width. -/
+bounded](goal) between zero and the squared interval width.
+@isnad1 id=and.4h8v.s7.d012968defd0 from=translated src=- shape=9fedf010 vocab=67c421f0
+-/
 theorem finiteSquaredRisk_bounds (p : Theta → X → ℝ) (tau : Theta → ℝ)
     (hp : ∀ theta x, 0 ≤ p theta x) (hsum : ∀ theta, ∑ x, p theta x = 1)
     (hlu : l ≤ u) (htau : ∀ theta, tau theta ∈ Set.Icc l u)
@@ -67,7 +71,9 @@ theorem finiteSquaredRisk_bounds (p : Theta → X → ℝ) (tau : Theta → ℝ)
       rw [← Finset.sum_mul, hsum theta, one_mul]
 
 /-- When every [label coordinate](hyp:hp) and the [target](hyp:htau) are continuous, the
-[finite squared risk of a fixed decision is continuous](goal) in the parameter. -/
+[finite squared risk of a fixed decision is continuous](goal) in the parameter.
+@isnad1 id=continuo.2h7v.s6.19a619a12c98 from=translated src=- shape=e0c91e45 vocab=9cf78623
+-/
 theorem continuous_finiteSquaredRisk (p : Theta → X → ℝ) (tau : Theta → ℝ)
     (hp : ∀ x, Continuous (fun theta ↦ p theta x)) (htau : Continuous tau)
     (d : BoundedDecision X l u) :
@@ -76,7 +82,9 @@ theorem continuous_finiteSquaredRisk (p : Theta → X → ℝ) (tau : Theta → 
   fun_prop
 
 /-- When every [label coordinate](hyp:hp) and the [target](hyp:htau) are continuous, the
-[finite squared risk is jointly continuous](goal) in the bounded decision and parameter. -/
+[finite squared risk is jointly continuous](goal) in the bounded decision and parameter.
+@isnad1 id=continuo.2h6v.s7.2c6ca0345cae from=translated src=- shape=51c2862d vocab=0655b006
+-/
 theorem continuous_finiteSquaredRisk_joint (p : Theta → X → ℝ) (tau : Theta → ℝ)
     (hp : ∀ x, Continuous (fun theta ↦ p theta x)) (htau : Continuous tau) :
     Continuous (fun z : BoundedDecision X l u × Theta ↦
@@ -85,7 +93,9 @@ theorem continuous_finiteSquaredRisk_joint (p : Theta → X → ℝ) (tau : Thet
   fun_prop
 
 /-- A [finite labeled alphabet](hyp:X) and [ordered action bounds](hyp:hlu) make the
-[space of bounded decisions compact](goal). -/
+[space of bounded decisions compact](goal).
+@isnad1 id=iscompac.1h3v.s5.b762f3f1a6a0 from=translated src=- shape=4cb8fc3a vocab=4e4f4707
+-/
 theorem isCompact_boundedDecision (hlu : l ≤ u) :
     IsCompact (Set.univ : Set (BoundedDecision X l u)) := by
   exact isCompact_univ

@@ -27,7 +27,9 @@ def outcomeLikelihood {m : ℕ} (τ γ : ℝ) (c : Cell m) (v : Fin m → ℝ) :
       (∏ i ∈ selected c, (1 + γ * ((-c.1 i) / (1 - τ * c.1 i)) * v i))) /
     denominator τ c
 
-/-- The outcome likelihood expands over all selected subsets with their posterior coefficients. -/
+/-- The outcome likelihood expands over all selected subsets with their posterior coefficients.
+@isnad1 id=eq.0h5v.s6.baa44c934816 from=translated src=- shape=d03b80fa vocab=9df63f4e
+-/
 theorem outcomeLikelihood_expansion {m : ℕ} (τ γ : ℝ) (c : Cell m)
     (v : Fin m → ℝ) :
     outcomeLikelihood τ γ c v = ∑ S ∈ (selected c).powerset,
@@ -117,7 +119,9 @@ private theorem integrable_union_factor {ι Ω : Type*} [DecidableEq ι]
   · simpa [hs, hr] using h.integrable_right i
   · simp [hs, hr]
 
-/-- Products over two finite subsets are integrable for independent centered outcome pairs. -/
+/-- Products over two finite subsets are integrable for independent centered outcome pairs.
+@isnad1 id=integrab.1h8v.s6.e54227c636d7 from=translated src=- shape=0641ce2f vocab=d991500a
+-/
 theorem integrable_subset_pair {ι Ω : Type*} [MeasurableSpace Ω]
     {ρ : Measure Ω} [IsProbabilityMeasure ρ] {v w : ι → Ω → ℝ} {z : ℝ}
     (h : CenteredOutcomePair ρ v w z) (S R : Finset ι) :
@@ -131,7 +135,9 @@ theorem integrable_subset_pair {ι Ω : Type*} [MeasurableSpace Ω]
   exact integrable_independent_finset (independent_union_factors h S R)
     (integrable_union_factor h S R) (S ∪ R)
 
-/-- Distinct subset products are orthogonal; equal subsets have cross moment z to their size. -/
+/-- Distinct subset products are orthogonal; equal subsets have cross moment z to their size.
+@isnad1 id=eq.1h8v.s7.b7f8bd47577b from=translated src=- shape=48253217 vocab=e63fce36
+-/
 theorem integral_subset_pair {ι Ω : Type*} [DecidableEq ι] [MeasurableSpace Ω]
     {ρ : Measure Ω} [IsProbabilityMeasure ρ] {v w : ι → Ω → ℝ} {z : ℝ}
     (h : CenteredOutcomePair ρ v w z) (S R : Finset ι) :
@@ -181,7 +187,9 @@ theorem integral_subset_pair {ι Ω : Type*} [DecidableEq ι] [MeasurableSpace �
       · simpa [f, hi.1, hi.2] using h.centered_right i
 
 /-- The two posterior outcome likelihoods have an integrable product under centered
-independent outcome pairs, without requiring bounded outcome scores. -/
+independent outcome pairs, without requiring bounded outcome scores.
+@isnad1 id=integrab.1h9v.s6.79fd74610cba from=translated src=- shape=78a369b4 vocab=484abb9d
+-/
 theorem integrable_outcomeLikelihood_pair {m : ℕ} {Ω : Type*} [MeasurableSpace Ω]
     {ρ : Measure Ω} [IsProbabilityMeasure ρ] {v w : Fin m → Ω → ℝ} {z : ℝ}
     (h : CenteredOutcomePair ρ v w z) (τ γ : ℝ) (c : Cell m) :
@@ -200,7 +208,9 @@ theorem integrable_outcomeLikelihood_pair {m : ℕ} {Ω : Type*} [MeasurableSpac
     first | rfl | (funext ω; ring)
 
 /-- The finite-cell cross moment is the sum of squared posterior subset coefficients
-times the outcome amplitude and overlap powers. -/
+times the outcome amplitude and overlap powers.
+@isnad1 id=eq.1h9v.s7.038743c27a32 from=translated src=- shape=6674cdb2 vocab=181120c0
+-/
 theorem integral_outcomeLikelihood_pair {m : ℕ} {Ω : Type*} [MeasurableSpace Ω]
     {ρ : Measure Ω} [IsProbabilityMeasure ρ] {v w : Fin m → Ω → ℝ} {z : ℝ}
     (h : CenteredOutcomePair ρ v w z) (τ γ : ℝ) (c : Cell m) :
@@ -245,7 +255,9 @@ theorem integral_outcomeLikelihood_pair {m : ℕ} {Ω : Type*} [MeasurableSpace 
 /-- Given [independent centered paired outcome scores with overlap](hyp:h), [a bounded
 tilt](hyp:hτ), [bounded cell scores](hyp:hu), and [an outcome amplitude](hyp:γ),
 [the paired posterior outcome likelihood has the finite subset-energy overlap
-polynomial](goal). -/
+polynomial](goal).
+@isnad1 id=eq.3h9v.s8.4d0871b1044b from=translated src=- shape=689d8a5a vocab=73de934a
+-/
 theorem integral_outcomeLikelihood_pair_by_card {m : ℕ} {Ω : Type*}
     [MeasurableSpace Ω] {ρ : Measure Ω} [IsProbabilityMeasure ρ]
     {v w : Fin m → Ω → ℝ} {z : ℝ} (h : CenteredOutcomePair ρ v w z)

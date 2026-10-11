@@ -19,7 +19,9 @@ namespace Causalean.Stat.Quantile.AtomicApproximation
 /-- [Two finite real measures](hyp:μ,ν), [an interval and error level](hyp:a,b,c),
 [the interval endpoints ordered](hyp:hab), [equal total real masses](hyp:hmass), and [a uniform CDF-error
 bound on the interval](hyp:hpoint) give [an integrated-CDF discrepancy bound by
-interval length times that error level](goal). -/
+interval length times that error level](goal).
+@isnad1 id=le.3h5v.s6.be7d7463df64 from=translated src=- shape=bccf03de vocab=18b0ec94
+-/
 theorem cdfDistance_le_of_pointwise_cdf_le
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (a b c : ℝ) (hab : a ≤ b)

@@ -49,7 +49,9 @@ omit [Fintype κ] [DecidableEq κ] in
 /-- Under [a joint probability law ν of a cell and a Boolean treatment](hyp:ν),
 [the mass of each pair of a cell k and a treatment value a](hyp:k,a) [equals the cell probability
 of k times the guarded propensity of k when a is true, or times one minus it when a is
-false](goal); both sides vanish in null cells. -/
+false](goal); both sides vanish in null cells.
+@isnad1 id=eq.0h4v.s7.934893832121 from=translated src=- shape=f01bdf44 vocab=eb455614
+-/
 lemma singleton_probability_factor (ν : Measure (κ × Bool)) [IsProbabilityMeasure ν]
     (k : κ) (a : Bool) :
     (ν {(k, a)}).toReal = cellProbability ν k *
@@ -79,7 +81,9 @@ lemma singleton_probability_factor (ν : Measure (κ × Bool)) [IsProbabilityMea
 omit [Fintype κ] [DecidableEq κ] in
 /-- Under [a joint probability law ν of a cell and a Boolean treatment](hyp:ν),
 [the guarded propensity of every cell k](hyp:k) [lies between zero and one](goal), including at
-null cells. -/
+null cells.
+@isnad1 id=mem.0h3v.s5.7fa1d26b3d9e from=translated src=- shape=5e2bc5e8 vocab=f9137cb5
+-/
 lemma propensity_mem_Icc (ν : Measure (κ × Bool)) [IsProbabilityMeasure ν] (k : κ) :
     propensity ν k ∈ Icc (0 : ℝ) 1 := by
   have hle : (ν {(k, true)}).toReal ≤ cellProbability ν k := by
@@ -104,7 +108,9 @@ propensities of ν times F evaluated at the design pairing x with that assignmen
 The cell type is not required to be finite in this bridge. Express the fiber
 as the finite image of Boolean vectors, use setIntegral_finset and
 Measure.pi_singleton, then apply singleton_probability_factor. No overlap
-assumption and no positive fiber mass are needed for this unnormalized identity. -/
+assumption and no positive fiber mass are needed for this unnormalized identity.
+@isnad1 id=eq.0h5v.s7.ff45c0e21e57 from=translated src=- shape=9e735720 vocab=5d0160a8
+-/
 theorem integral_labelFiber (n : ℕ) (ν : Measure (κ × Bool)) [IsProbabilityMeasure ν]
     (x : Fin n → κ) (F : (Fin n → κ × Bool) → ℝ) :
     (∫ d in labelFiber x, F d ∂Measure.pi (fun _ : Fin n => ν)) =
@@ -139,7 +145,9 @@ theorem integral_labelFiber (n : ℕ) (ν : Measure (κ × Bool)) [IsProbability
 omit [Fintype κ] [DecidableEq κ] in
 /-- Under [the n-fold product of a joint probability law ν of a cell and a Boolean
 treatment](hyp:n,ν), [the mass of the label fiber of a fixed label vector x](hyp:x)
-[equals the product weight of x, the product of its cell probabilities](goal). -/
+[equals the product weight of x, the product of its cell probabilities](goal).
+@isnad1 id=eq.0h4v.s7.9f040857f156 from=translated src=- shape=0d96b319 vocab=e15471be
+-/
 lemma probability_labelFiber (n : ℕ) (ν : Measure (κ × Bool)) [IsProbabilityMeasure ν]
     (x : Fin n → κ) :
     ((Measure.pi (fun _ : Fin n => ν)) (labelFiber x)).toReal = labelWeight ν x := by
@@ -150,7 +158,9 @@ lemma probability_labelFiber (n : ℕ) (ν : Measure (κ × Bool)) [IsProbabilit
 treatment](hyp:n,ν), [the integral of the Gram denominator over the label fiber of a fixed label
 vector x](hyp:x) [equals the product weight of x times the sum over cells of (N − 1)₊·π(1 − π),
 where N is the cell count in x and π the propensity of the cell](goal); this holds also for null
-label fibers. -/
+label fibers.
+@isnad1 id=eq.0h4v.s7.72b4995da877 from=translated src=- shape=45afbc69 vocab=3619787f
+-/
 theorem integral_gram_labelFiber (n : ℕ) (ν : Measure (κ × Bool))
     [IsProbabilityMeasure ν] (x : Fin n → κ) :
     (∫ d in labelFiber x, gram d ∂Measure.pi (fun _ : Fin n => ν)) =
@@ -162,7 +172,9 @@ theorem integral_gram_labelFiber (n : ℕ) (ν : Measure (κ × Bool))
 treatment](hyp:n,ν), if [a fixed label vector x has positive product weight](hyp:x,hx), then
 [the conditional mean of the Gram denominator given the labels x — its integral over the label
 fiber divided by the fiber's weight — equals the sum over cells of (N − 1)₊·π(1 − π), where N is
-the cell count in x and π the propensity of the cell](goal). -/
+the cell count in x and π the propensity of the cell](goal).
+@isnad1 id=eq.1h4v.s7.b716ff62490f from=translated src=- shape=74ab2568 vocab=e5f88ae6
+-/
 theorem conditional_gram_mean (n : ℕ) (ν : Measure (κ × Bool))
     [IsProbabilityMeasure ν] (x : Fin n → κ) (hx : 0 < labelWeight ν x) :
     (∫ d in labelFiber x, gram d ∂Measure.pi (fun _ : Fin n => ν)) /
@@ -179,7 +191,9 @@ treatment](hyp:n,ν), if [a fixed label vector x has positive product weight](hy
 repeat count of x](goal).
 
 Occupied-cell overlap lower bounds the conditional Gram mean on every
-positive-mass label fiber by epsilon(1-epsilon) times its repeat count. -/
+positive-mass label fiber by epsilon(1-epsilon) times its repeat count.
+@isnad1 id=le.4h5v.s8.ccf65bb0a290 from=translated src=- shape=4766c77d vocab=ef1b1091
+-/
 theorem conditional_gram_mean_lower (n : ℕ) (ν : Measure (κ × Bool))
     [IsProbabilityMeasure ν] (x : Fin n → κ) (hx : 0 < labelWeight ν x)
     (epsilon : ℝ) (hepsilon : 0 < epsilon) (hhalf : epsilon ≤ 1 / 2)

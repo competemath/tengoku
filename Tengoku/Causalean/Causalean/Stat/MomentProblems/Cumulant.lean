@@ -76,7 +76,9 @@ noncomputable def jointCumulant (μ : Measure Ω) (X Y : Ω → ℝ) (p q : ℕ)
 
 /-- Given [a sample space equipped with a σ-algebra](hyp:Ω), [a measure on that space](hyp:μ),
 and [two real-valued random variables](hyp:X,Y), [their joint cumulant at bidegree `(0, 0)` is
-zero](goal). -/
+zero](goal).
+@isnad1 id=eq.0h4v.s5.9d363656f71c from=translated src=- shape=4906d7f6 vocab=62426382
+-/
 @[simp]
 theorem jointCumulant_zero_zero (μ : Measure Ω) (X Y : Ω → ℝ) :
     jointCumulant μ X Y 0 0 = 0 := by
@@ -95,7 +97,9 @@ noncomputable def sourceCumulant (μ : Measure Ω) (S : Ω → ℝ) (r : ℕ) : 
   jointCumulant μ S S r 0
 
 /-- Given [a sample space equipped with a σ-algebra](hyp:Ω), [a measure on that space](hyp:μ),
-and [a real-valued random variable](hyp:S), [its order-zero cumulant is zero](goal). -/
+and [a real-valued random variable](hyp:S), [its order-zero cumulant is zero](goal).
+@isnad1 id=eq.0h3v.s4.c5474b6980ba from=translated src=- shape=0a71d33e vocab=872d80b0
+-/
 @[simp]
 theorem sourceCumulant_zero (μ : Measure Ω) (S : Ω → ℝ) :
     sourceCumulant μ S 0 = 0 := by

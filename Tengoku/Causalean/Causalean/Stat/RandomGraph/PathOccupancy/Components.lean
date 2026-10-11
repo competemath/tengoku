@@ -82,7 +82,9 @@ noncomputable def pairedScore {n K : ℕ} (M : ℕ) (R : Fin n → Fin n → Pro
     ∑ D ∈ (components R).erase C, pairWeight M C D x b
 
 /-- [The equivalence classes of any relation](hyp:R) [are nonempty, cover
-all sample labels, and are disjoint when distinct](goal). -/
+all sample labels, and are disjoint when distinct](goal).
+@isnad1 id=and.0h2v.s7.00e8e865081e from=translated src=- shape=174b6d30 vocab=1b87491a
+-/
 theorem components_partition {n : ℕ} (R : Fin n → Fin n → Prop) :
     (∀ C ∈ components R, C.Nonempty) ∧
     (∀ i : Fin n, ∃ C ∈ components R, i ∈ C) ∧
@@ -113,7 +115,9 @@ theorem components_partition {n : ℕ} (R : Fin n → Fin n → Prop) :
 
 /-- For [an admissible local relation](hyp:hR), [each component](hyp:hC)
 has [connected occupied cells and lies in one coarse cell](goal), for
-[the coarse count, cells, relation, and component](hyp:M,x,R,C). -/
+[the coarse count, cells, relation, and component](hyp:M,x,R,C).
+@isnad1 id=and.2h6v.s6.e3fdb2721725 from=translated src=- shape=cf352213 vocab=739d574b
+-/
 theorem component_geometry {n K : ℕ} (M : ℕ) (x : Fin n → Fin K)
     (R : Fin n → Fin n → Prop) (hR : Admissible M x R)
     (C : Finset (Fin n)) (hC : C ∈ components R) :
@@ -172,6 +176,7 @@ score is bounded by the sum over all connected labelled subsets](goal), for
 [the given coarse count, cells, relation, and marks](hyp:M,x,R,b).
 
 This is pointwise, so the relation may depend arbitrarily on cells and marks.
+@isnad1 id=le.1h6v.s6.6d07adc550e6 from=translated src=- shape=807351ae vocab=7c217bd0
 -/
 theorem singleScore_le_subsets {n K : ℕ} (M : ℕ) (x : Fin n → Fin K)
     (R : Fin n → Fin n → Prop) (b : Fin n → Bool) (hR : Admissible M x R) :
@@ -200,6 +205,7 @@ for [the coarse count, cells, relation, and marks](hyp:M,x,R,b).
 
 Keep disjointness of labels, not occupied cells. Sizes at least two are retained
 inside pairWeight, which makes the empty relation contribute zero.
+@isnad1 id=le.1h6v.s7.f10955e9c067 from=translated src=- shape=3c50cc98 vocab=0b2e1b5e
 -/
 theorem pairedScore_le_subsets {n K : ℕ} (M : ℕ) (x : Fin n → Fin K)
     (R : Fin n → Fin n → Prop) (b : Fin n → Bool) (hR : Admissible M x R) :

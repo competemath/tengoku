@@ -25,6 +25,7 @@ Let q = K/M and w = 2q. Evenness and divisibility give K = (M/2)*w,
 with w positive. Euclidean quotient and remainder encode a same-class ordered
 pair as Fin (M/2) × Fin w × Fin w; decode via p*w+r and p*w+s.
 Use cardinality of a product and arithmetic, retaining the diagonal.
+@isnad1 id=eq.4h2v.s6.7e9e1b4e0bc6 from=translated src=- shape=6a25f8cc vocab=63134f57
 -/
 theorem ordered_same_pair_count (K M : ℕ) (hM : 0 < M) (hK : 0 < K)
     (heven : 2 ∣ M) (hdiv : M ∣ K) :
@@ -95,6 +96,7 @@ Swap the two coordinates to biject
 the increasing and decreasing orientations. Partition ordered pairs into these
 two orientations and the diagonal; hence twice the increasing count is bounded
 by the ordered count. Multiplication and cancellation give the stated bound.
+@isnad1 id=le.4h2v.s6.aa655ed79c8c from=translated src=- shape=35621c3b vocab=bf568f97
 -/
 theorem unordered_same_pair_count (K M : ℕ) (hM : 0 < M) (hK : 0 < K)
     (heven : 2 ∣ M) (hdiv : M ∣ K) :

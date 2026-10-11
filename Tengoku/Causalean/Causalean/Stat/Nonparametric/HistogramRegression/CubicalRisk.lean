@@ -33,7 +33,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 [bounded responses and default](hyp:hbound,ha), [the conditional mean identity](hyp:hmean),
 [positive smoothness and a nonnegative Hölder constant](hyp:hβ,hC),
 [a Hölder bound](hyp:hholder), and [a bandwidth in `(0,1]`](hyp:hb,hb1)
-imply [the explicit bias-plus-cell-count histogram risk bound](goal). -/
+imply [the explicit bias-plus-cell-count histogram risk bound](goal).
+@isnad1 id=le.11h11v.s9.8bddd01a864d from=translated src=- shape=b0b7c677 vocab=b9d04efd
+-/
 theorem cubical_histogram_risk_le {d m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → Cube d)
     (Y : Ω → ℝ) (g : Cube d → ℝ) (a β C b : ℝ)
@@ -93,7 +95,9 @@ default](hyp:hbound,ha), [the conditional mean identity](hyp:hmean),
 [positive Hölder smoothness and a nonnegative constant](hyp:hβ,hC),
 [a Hölder bound](hyp:hholder), [a bandwidth in `(0,1]`](hyp:hb,hb1), and
 [at least one observation](hyp:hm) imply [the bias-plus-inverse-effective-sample-size
-risk bound](goal). -/
+risk bound](goal).
+@isnad1 id=le.12h11v.s9.7e96fccaa8ab from=translated src=- shape=bcf0b277 vocab=b9d04efd
+-/
 theorem cubical_histogram_bandwidth_risk_le {d m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → Cube d)
     (Y : Ω → ℝ) (g : Cube d → ℝ) (a β C b : ℝ)
@@ -125,7 +129,9 @@ theorem cubical_histogram_bandwidth_risk_le {d m : ℕ}
 default](hyp:hbound,ha), [the conditional mean identity](hyp:hmean),
 [positive Hölder smoothness and nonnegative constant](hyp:hβ,hC),
 [a Hölder bound](hyp:hholder), and [at least one observation](hyp:hm)
-give [the exact optimized exponent for the ceiling-mesh histogram](goal). -/
+give [the exact optimized exponent for the ceiling-mesh histogram](goal).
+@isnad1 id=le.10h10v.s9.2b0f7df68d03 from=translated src=- shape=556bb85d vocab=a6753171
+-/
 theorem optimized_cubical_histogram_risk_le {d m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → Cube d)
     (Y : Ω → ℝ) (g : Cube d → ℝ) (a β C : ℝ)

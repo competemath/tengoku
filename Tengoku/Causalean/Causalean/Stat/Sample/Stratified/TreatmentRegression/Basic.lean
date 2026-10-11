@@ -102,7 +102,9 @@ def residualRegression {n : ℕ} (X : Ω → κ) (A : Ω → Bool) (Y : Ω → �
     (fun i => Y (z i) - center (A (z i)) (X (z i)))
 
 /-- For [a sample of n cell labels x](hyp:n,x), [the cell counts summed over all cells equal the
-sample size n](goal). -/
+sample size n](goal).
+@isnad1 id=eq.0h3v.s5.032d6f49fa07 from=translated src=- shape=02a1fdb1 vocab=d0f80c17
+-/
 lemma sum_cellCount {n : ℕ} (x : Fin n → κ) : ∑ k, cellCount x k = n := by
   classical
   unfold cellCount
@@ -111,7 +113,9 @@ lemma sum_cellCount {n : ℕ} (x : Fin n → κ) : ∑ k, cellCount x k = n := b
 
 omit [Fintype κ] in
 /-- In [a design d of n cell-treatment pairs](hyp:n,d), [the treated count of a cell k](hyp:k)
-[never exceeds that cell's total count](goal). -/
+[never exceeds that cell's total count](goal).
+@isnad1 id=le.0h4v.s5.4237c7feaf02 from=translated src=- shape=b8cb9d0e vocab=3dc8f708
+-/
 lemma treatedCount_le {n : ℕ} (d : Fin n → κ × Bool) (k : κ) :
     treatedCount d k ≤ cellCount (fun i => (d i).1) k := by
   classical
@@ -121,18 +125,24 @@ lemma treatedCount_le {n : ℕ} (d : Fin n → κ × Bool) (k : κ) :
   by_cases hx : (d i).1 = k <;> by_cases ha : (d i).2 = true <;> simp [hx, ha]
 
 /-- For [any total count m and treated count t](hyp:m,t), [the cell Gram contribution is
-nonnegative](goal), including the empty-cell value zero. -/
+nonnegative](goal), including the empty-cell value zero.
+@isnad1 id=le.0h2v.s4.b4475acedf88 from=translated src=- shape=5ffe46ab vocab=a07ad979
+-/
 lemma cellGram_nonneg (m t : ℕ) : 0 ≤ cellGram m t := by
   unfold cellGram
   split_ifs <;> positivity
 
 /-- For [every design d of n cell-treatment pairs](hyp:n,d), [the Gram denominator is
-nonnegative](goal). -/
+nonnegative](goal).
+@isnad1 id=le.0h3v.s5.bb0431ac49d4 from=translated src=- shape=36ae5ce3 vocab=731e5768
+-/
 lemma gram_nonneg {n : ℕ} (d : Fin n → κ × Bool) : 0 ≤ gram d :=
   Finset.sum_nonneg fun _ _ => cellGram_nonneg _ _
 
 /-- If [the Gram denominator of the design d is zero](hyp:d,h), then [both the guarded regression
-of any outcomes y on d and the guarded inverse Gram of d are zero](goal). -/
+of any outcomes y on d and the guarded inverse Gram of d are zero](goal).
+@isnad1 id=and.1h4v.s6.32e13029143b from=translated src=- shape=dda25429 vocab=c2f329ad
+-/
 lemma regression_zero {n : ℕ} (d : Fin n → κ × Bool) (y : Fin n → ℝ)
     (h : gram d = 0) : regression d y = 0 ∧ inverseGram d = 0 := by
   simp [regression, inverseGram, h]
@@ -142,13 +152,17 @@ variable [MeasurableSpace κ] [MeasurableSingletonClass κ] [MeasurableSpace Ω]
 omit [Fintype κ] [DecidableEq κ] in
 /-- With finitely many cells whose singletons are measurable,
 [every real-valued statistic f of a design of n cell-treatment pairs](hyp:n,f)
-[is measurable](goal). -/
+[is measurable](goal).
+@isnad1 id=measurab.0h3v.s5.c0627d825129 from=translated src=- shape=d65ad11a vocab=6b954f1b
+-/
 lemma measurable_designStatistic [Finite κ] {n : ℕ} (f : (Fin n → κ × Bool) → ℝ) :
     Measurable f := measurable_of_countable f
 
 omit [Fintype κ] in
 /-- With finitely many cells, for [every sample size n](hyp:n)
-[the regression numerator is jointly measurable in the design and the real outcomes](goal). -/
+[the regression numerator is jointly measurable in the design and the real outcomes](goal).
+@isnad1 id=measurab.0h2v.s6.00a94476a185 from=translated src=- shape=a720e485 vocab=dea3aa8e
+-/
 @[fun_prop] lemma measurable_numerator [Finite κ] {n : ℕ} :
     Measurable (fun v : (Fin n → κ × Bool) × (Fin n → ℝ) => numerator v.1 v.2) := by
   unfold numerator
@@ -158,7 +172,9 @@ omit [Fintype κ] in
     measurable_fst).mul ((measurable_pi_apply i).comp measurable_snd)
 
 /-- For [every sample size n](hyp:n), [the un-clipped guarded regression coefficient is jointly
-measurable in the design and the real outcomes](goal). -/
+measurable in the design and the real outcomes](goal).
+@isnad1 id=measurab.0h2v.s6.c1765cf495f5 from=translated src=- shape=a720e485 vocab=de104511
+-/
 @[fun_prop] lemma measurable_regression {n : ℕ} :
     Measurable (fun v : (Fin n → κ × Bool) × (Fin n → ℝ) => regression v.1 v.2) := by
   unfold regression
@@ -170,7 +186,9 @@ measurable in the design and the real outcomes](goal). -/
 /-- If [the cell label X is measurable](hyp:X,hX), [the treatment A is measurable](hyp:A,hA) and
 [the outcome Y is measurable](hyp:Y,hY), then for [every sample size n](hyp:n) and
 [clipping radius R](hyp:R), [the clipped regression estimator is a measurable function of the
-sample](goal). -/
+sample](goal).
+@isnad1 id=measurab.3h7v.s6.c9bfbfd8c8f1 from=translated src=- shape=9aff9904 vocab=93680473
+-/
 @[fun_prop] lemma measurable_clippedEstimator {n : ℕ} (X : Ω → κ) (A : Ω → Bool)
     (Y : Ω → ℝ) (R : ℝ) (hX : Measurable X) (hA : Measurable A)
     (hY : Measurable Y) :
@@ -200,7 +218,9 @@ omit [Fintype κ] [DecidableEq κ] [MeasurableSingletonClass κ] in
 /-- [A sample size and probability law](hyp:n,μ), together with [measurable cell and Boolean-treatment labels](hyp:X,A,hX,hA), give [the finite product law of the observed categorical design](goal).
 
 Applying the cell and treatment coordinates to each iid observation gives
-the finite product of the observed cell-treatment marginal law. -/
+the finite product of the observed cell-treatment marginal law.
+@isnad1 id=eq.2h6v.s7.5689c3445cb9 from=translated src=- shape=2ea6a122 vocab=48264779
+-/
 theorem observed_design_pushforward (n : ℕ) (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (hX : Measurable X) (hA : Measurable A) :
     (Measure.pi (fun _ : Fin n => μ)).map (Causalean.Stat.sampleDesign X A) =

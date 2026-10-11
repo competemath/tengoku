@@ -19,7 +19,9 @@ namespace Causalean.Stat.Quantile.FiniteMassTransport
 
 /-- [Positive total masses](hyp:hp,hq) and [their nonnegative bounded cumulative
 mass values](hyp:hx,hxp,hy,hyq) give [a normalized discrepancy times the smaller
-mass bounded by the raw discrepancy plus the mass mismatch](goal). -/
+mass bounded by the raw discrepancy plus the mass mismatch](goal).
+@isnad1 id=le.6h4v.s7.e2f4d4304e39 from=translated src=- shape=c9e7e7a7 vocab=a66f56ec
+-/
 lemma min_mul_abs_div_sub_div_le
     {p q x y : ℝ} (hp : 0 < p) (hq : 0 < q)
     (hx : 0 ≤ x) (hxp : x ≤ p) (hy : 0 ≤ y) (hyq : y ≤ q) :
@@ -67,7 +69,9 @@ lemma min_mul_abs_div_sub_div_le
 
 /-- [An ordered interval](hyp:hab), [positive masses](hyp:hp,hq), [bounded
 cumulative functions](hyp:hF,hG), and [integrability of both discrepancies](hyp:hnorm,hraw)
-give [the integrated normalized discrepancy bound with a mass-mismatch penalty](goal). -/
+give [the integrated normalized discrepancy bound with a mass-mismatch penalty](goal).
+@isnad1 id=le.7h6v.s8.8241de33fc07 from=translated src=- shape=b7c6f4fa vocab=ac73174f
+-/
 lemma min_mul_integral_abs_div_sub_div_le
     {a b p q : ℝ} {F G : ℝ → ℝ}
     (hab : a ≤ b) (hp : 0 < p) (hq : 0 < q)
@@ -95,7 +99,9 @@ lemma min_mul_integral_abs_div_sub_div_le
   simpa only [smul_eq_mul] using hmono
 
 /-- A [finite measure](hyp:μ) with [positive total mass](hyp:hp) has [a
-normalized CDF equal to raw cumulative mass divided by total mass](goal). -/
+normalized CDF equal to raw cumulative mass divided by total mass](goal).
+@isnad1 id=eq.1h2v.s6.556c06934fd3 from=translated src=- shape=05fe8249 vocab=fc51e3de
+-/
 lemma cdf_normalize_eq_div (μ : FiniteMeasure ℝ)
     (hp : 0 < (μ.mass : ℝ)) (t : ℝ) :
     cdf (μ.normalize : Measure ℝ) t =
@@ -113,7 +119,9 @@ lemma cdf_normalize_eq_div (μ : FiniteMeasure ℝ)
 
 /-- A [finite measure](hyp:μ) with [positive total mass](hyp:hp) [concentrated
 on a closed interval](hyp:hμ) has [a normalized probability law concentrated
-on the same interval](goal). -/
+on the same interval](goal).
+@isnad1 id=eq.2h3v.s6.ef55aea2bee2 from=translated src=- shape=949b8625 vocab=925bee03
+-/
 lemma normalize_support_Icc (μ : FiniteMeasure ℝ)
     {a b : ℝ} (hp : 0 < (μ.mass : ℝ))
     (hμ : (μ : Measure ℝ) (Icc a b)ᶜ = 0) :
@@ -126,7 +134,9 @@ lemma normalize_support_Icc (μ : FiniteMeasure ℝ)
   simp [hμ]
 
 /-- [Two finite measures](hyp:μ,ν) have [an integrable raw cumulative-mass
-difference on the given finite interval](goal). -/
+difference on the given finite interval](goal).
+@isnad1 id=interval.0h4v.s6.4c7ecd2d137a from=translated src=- shape=590a205a vocab=6bd201cb
+-/
 lemma intervalIntegrable_abs_raw_cdf_sub (μ ν : FiniteMeasure ℝ)
     (a b : ℝ) :
     IntervalIntegrable
@@ -145,7 +155,9 @@ lemma intervalIntegrable_abs_raw_cdf_sub (μ ν : FiniteMeasure ℝ)
 /-- [Two finite measures](hyp:μ,ν) with [an ordered common compact interval](hyp:hab),
 [positive masses](hyp:hp,hq), and [concentration on that interval](hyp:hμ,hν)
 have [smaller-mass-scaled normalized quantile cost bounded by raw CDF distance
-plus interval length times their mass difference](goal). -/
+plus interval length times their mass difference](goal).
+@isnad1 id=le.5h4v.s8.a51a49c54573 from=translated src=- shape=c3bc8000 vocab=c9cb860d
+-/
 theorem finite_mass_quantile_transport_le (μ ν : FiniteMeasure ℝ)
     {a b : ℝ} (hab : a ≤ b)
     (hp : 0 < (μ.mass : ℝ)) (hq : 0 < (ν.mass : ℝ))
@@ -207,7 +219,9 @@ theorem finite_mass_quantile_transport_le (μ ν : FiniteMeasure ℝ)
 
 /-- [Two finite measures](hyp:μ,ν) with [an ordered common compact interval](hyp:hab),
 [equal positive mass](hyp:hm,hp), and [concentration on that interval](hyp:hμ,hν)
-have [a mass-scaled normalized quantile cost equal to their raw CDF distance](goal). -/
+have [a mass-scaled normalized quantile cost equal to their raw CDF distance](goal).
+@isnad1 id=eq.5h4v.s8.e84ef477eaa2 from=translated src=- shape=3de976f8 vocab=e7bf7301
+-/
 theorem finite_mass_quantile_transport_eq_of_mass_eq (μ ν : FiniteMeasure ℝ)
     {a b : ℝ} (hab : a ≤ b)
     (hm : μ.mass = ν.mass) (hp : 0 < (μ.mass : ℝ))

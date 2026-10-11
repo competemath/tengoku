@@ -71,7 +71,9 @@ The headline theorem of the substrate.  Joint minimization in `(β, α)` over
 `β = thetaHat`. -/
 
 /-- For a weighted inner product, the inner product of a finite sum of functions with another
-function equals the corresponding finite sum of inner products. -/
+function equals the corresponding finite sum of inner products.
+@isnad1 id=eq.0h6v.s6.b497a73d2840 from=translated src=- shape=edf02692 vocab=2e0fc6d0
+-/
 lemma ip_sum_left_finset (c : WeightedSupport R) {ι : Type*}
     (s : Finset ι) (f : ι → R → ℝ) (B : R → ℝ) :
     c.ip (∑ i ∈ s, f i) B = ∑ i ∈ s, c.ip (f i) B := by
@@ -87,7 +89,9 @@ private lemma ip_sum_left (c : WeightedSupport R)
   c.ip_sum_left_finset Finset.univ f B
 
 /-- The weighted inner product of a function with a finite sum of functions
-    equals the sum of its weighted inner products with the summands. -/
+    equals the sum of its weighted inner products with the summands.
+@isnad1 id=eq.0h5v.s6.d425cae83a61 from=translated src=- shape=dbd75a4a vocab=b16ab3d4
+-/
 lemma ip_sum_right (c : WeightedSupport R)
     (A : R → ℝ) (f : Fin K → R → ℝ) :
     c.ip A (∑ k, f k) = ∑ k, c.ip A (f k) := by

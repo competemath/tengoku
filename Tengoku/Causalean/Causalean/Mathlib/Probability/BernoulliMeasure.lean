@@ -34,7 +34,9 @@ noncomputable def bernoulliLaw (p : ℝ) : Measure ℝ :=
 `bernoulliLaw p = ENNReal.ofReal p • dirac 1 + ENNReal.ofReal (1-p) • dirac 0`,
 its integral splits via `integral_add_measure` / `integral_smul_measure` /
 `integral_dirac` into the two-point weighted sum, with `0 ≤ p ≤ 1` collapsing
-the `ENNReal → ℝ` coercions to `p` and `1 - p`. -/
+the `ENNReal → ℝ` coercions to `p` and `1 - p`.
+@isnad1 id=eq.2h2v.s6.933804975b6a from=translated src=- shape=ee7ef3dd vocab=e223b0f4
+-/
 lemma bernoulliLaw_integral {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (f : ℝ → ℝ) :
     ∫ y, f y ∂(bernoulliLaw p) = p * f 1 + (1 - p) * f 0 := by
@@ -50,7 +52,9 @@ lemma bernoulliLaw_integral {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
       (integrable_dirac (f := f) (a := (0 : ℝ)) (by simp [enorm])) (by simp)
 
 /-- The custom `bernoulliLaw` is a probability measure for `0 ≤ p ≤ 1`:
-its total mass is `p + (1 - p) = 1`. -/
+its total mass is `p + (1 - p) = 1`.
+@isnad1 id=isprobab.2h1v.s4.e3e9f1a68cf9 from=translated src=- shape=ff1b645f vocab=65b9e3b3
+-/
 lemma bernoulliLaw_isProbabilityMeasure {p : ℝ}
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     IsProbabilityMeasure (bernoulliLaw p) := by
@@ -63,7 +67,9 @@ lemma bernoulliLaw_isProbabilityMeasure {p : ℝ}
   norm_num
 
 /-- A Bernoulli law is absolutely continuous with respect to any Bernoulli law
-whose success probability is strictly between zero and one. -/
+whose success probability is strictly between zero and one.
+@isnad1 id=absolute.2h2v.s5.714d62f4813c from=translated src=- shape=a4033988 vocab=6e9f8726
+-/
 lemma bernoulliLaw_ac_of_reference_interior {p q : ℝ}
     (hq0 : 0 < q) (hq1 : q < 1) :
     bernoulliLaw p ≪ bernoulliLaw q := by
@@ -90,7 +96,9 @@ lemma bernoulliLaw_ac_of_reference_interior {p q : ℝ}
     · simp [h1, h0]
 
 /-- The log-likelihood ratio between any two real-parameter Bernoulli laws is
-integrable under the first law. -/
+integrable under the first law.
+@isnad1 id=integrab.0h2v.s5.ed5884e51163 from=translated src=- shape=6578ed1f vocab=86eccd4c
+-/
 @[fun_prop]
 lemma bernoulliLaw_llr_integrable {p q : ℝ} :
     Integrable (llr (bernoulliLaw p) (bernoulliLaw q)) (bernoulliLaw p) := by
@@ -114,7 +122,9 @@ lemma bernoulliLaw_llr_integrable {p q : ℝ} :
 be a reference success probability with [$0 < q < 1$](hyp:hq0,hq1). Then [the
 Kullback–Leibler divergence from the Bernoulli($p$) law to the Bernoulli($q$) law equals
 $p \log(p/q) + (1-p)\log((1-p)/(1-q))$](goal), the usual two-point KL formula: a success
-contribution plus a failure contribution. -/
+contribution plus a failure contribution.
+@isnad1 id=eq.4h2v.s7.6ff188b43512 from=translated src=- shape=ca64f141 vocab=e80d0754
+-/
 lemma bernoulliLaw_klDiv_toReal {p q : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hq0 : 0 < q) (hq1 : q < 1) :
     (InformationTheory.klDiv (bernoulliLaw p) (bernoulliLaw q)).toReal
@@ -195,7 +205,9 @@ lemma bernoulliLaw_klDiv_toReal {p q : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
 /-- If both success probabilities $p$ and $q$ lie in the middle half of the unit interval,
 [$1/4 \le p \le 3/4$](hyp:hp_lo,hp_hi) and [$1/4 \le q \le 3/4$](hyp:hq_lo,hq_hi), then
 [the Kullback–Leibler divergence from the Bernoulli($p$) law to the Bernoulli($q$) law is
-at most four times the squared difference of the probabilities, $4(p-q)^2$](goal). -/
+at most four times the squared difference of the probabilities, $4(p-q)^2$](goal).
+@isnad1 id=le.4h2v.s7.1dd1c9488398 from=translated src=- shape=b0e751a6 vocab=b1d2e325
+-/
 lemma bernoulliLaw_klDiv_le_four_sq_sub {p q : ℝ}
     (hp_lo : (1 : ℝ) / 4 ≤ p) (hp_hi : p ≤ 3 / 4)
     (hq_lo : (1 : ℝ) / 4 ≤ q) (hq_hi : q ≤ 3 / 4) :
@@ -228,7 +240,9 @@ noncomputable def bernoulliBool (p : ℝ) : Measure Bool :=
     ENNReal.ofReal (1 - p) • Measure.dirac false
 
 /-- A Bool-valued Bernoulli distribution is a probability distribution whenever its
-success probability lies between zero and one. -/
+success probability lies between zero and one.
+@isnad1 id=isprobab.2h1v.s4.af97eaa298eb from=translated src=- shape=a0756b3a vocab=55f337b5
+-/
 lemma bernoulliBool_isProbabilityMeasure {p : ℝ}
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     IsProbabilityMeasure (bernoulliBool p) := by
@@ -296,7 +310,9 @@ private lemma prod_bernoulli_eq_card {ι : Type*} [Fintype ι]
     _ = _ := by rw [hcard]
 
 /-- [A Bernoulli-weighted sum of any function of the success count equals the
-corresponding sum against the binomial mass function](goal). -/
+corresponding sum against the binomial mass function](goal).
+@isnad1 id=eq.0h3v.s7.c1e9a43219a3 from=translated src=- shape=0ef97d23 vocab=573d9fd4
+-/
 lemma sum_bernoulli_eq_binomial {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p : Real) (F : Nat → Real) :
     (∑ b : ι → Bool, (∏ i, if b i then p else 1 - p) *
@@ -321,7 +337,9 @@ lemma sum_bernoulli_eq_binomial {ι : Type*} [Fintype ι] [DecidableEq ι]
   ring
 
 /-- [The reciprocal of a positive integer, totalized to zero at the
-origin, is at most twice the reciprocal of its successor](goal). -/
+origin, is at most twice the reciprocal of its successor](goal).
+@isnad1 id=le.0h1v.s6.eba1afc41057 from=translated src=- shape=bc692d2b vocab=0f6fb011
+-/
 lemma totalized_inverse_count_le (j : Nat) :
     (if 0 < j then (j : Real)⁻¹ else 0) ≤ 2 * ((j : Real) + 1)⁻¹ := by
   by_cases hj : 0 < j
@@ -342,7 +360,9 @@ lemma totalized_inverse_count_le (j : Nat) :
 
 /-- When [the success probability is positive and at most one](hyp:hp,hp1),
 [the binomial expectation of the zero-safe inverse success count is at most
-twice the reciprocal of the trial count plus one times that probability](goal). -/
+twice the reciprocal of the trial count plus one times that probability](goal).
+@isnad1 id=le.2h2v.s7.2451e9670aed from=translated src=- shape=9b694994 vocab=b665d315
+-/
 lemma binomial_totalized_inverse_count_le (m : Nat) (p : Real)
     (hp : 0 < p) (hp1 : p ≤ 1) :
     (∑ j ∈ Finset.range (m + 1), binomialWeight m p j *
@@ -428,7 +448,9 @@ lemma binomial_totalized_inverse_count_le (m : Nat) (p : Real)
 [the probability is at least the margin](hyp:hlo) and
 [at most one minus the margin](hyp:hhi), [the binomial expectation of the inverse success and
 complementary counts on the interior event is at most four divided by the trial count plus one
-times the margin](goal). -/
+times the margin](goal).
+@isnad1 id=le.3h3v.s7.95bb219d5cb4 from=translated src=- shape=86f0296a vocab=61e01171
+-/
 lemma binomial_inverse_complementary_counts_interior_le
     (m : Nat) (p epsilon : Real)
     (hepsilon : 0 < epsilon) (hlo : epsilon ≤ p)

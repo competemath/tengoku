@@ -47,7 +47,9 @@ noncomputable def finiteSampleLaw {Ω : Type*} [MeasurableSpace Ω]
     (n : ℕ) (μ : Measure Ω) : Measure (Fin n → Ω) :=
   Measure.pi (fun _ : Fin n => μ)
 
-/-- The iid product of a probability subject law is a probability law. -/
+/-- The iid product of a probability subject law is a probability law.
+@isnad1 id=isprobab.0h3v.s5.cdbb4d643f7d from=translated src=- shape=d0d2a372 vocab=ecd78dc1
+-/
 instance finiteSampleLaw_isProbability {Ω : Type*} [MeasurableSpace Ω]
     (n : ℕ) (μ : Measure Ω) [IsProbabilityMeasure μ] :
     IsProbabilityMeasure (finiteSampleLaw n μ) := by
@@ -85,7 +87,9 @@ def SampleModel.LeftPredictable (S : SampleModel n Ω μ)
   Measurable[predictableSpace S.filtration] (fun p : ℝ × (Fin n → Ω) => H p.1 p.2)
 
 /-- Common-filtration predictability is predictability for every subject's
-conditional-intensity process on the full sample space. -/
+conditional-intensity process on the full sample space.
+@isnad1 id=predicta.1h6v.s6.45ee19d3508c from=translated src=- shape=378603e9 vocab=f35aa6b7
+-/
 theorem SampleModel.process_predictable (S : SampleModel n Ω μ)
     (H : ℝ → (Fin n → Ω) → ℝ) (hH : S.LeftPredictable H) (i : Fin n) :
     (S.process i).Predictable H := by
@@ -100,7 +104,9 @@ noncomputable def SampleModel.subjectIntegral (S : SampleModel n Ω μ)
   (S.process i).stochasticIntegral H (S.process i).horizon x
 
 /-- The subject integral is exactly the payoff sum over observed stopped
-recurrent events minus the absolutely continuous `Y_i * lambda_i` integral. -/
+recurrent events minus the absolutely continuous `Y_i * lambda_i` integral.
+@isnad1 id=eq.0h7v.s7.96024b26b0a7 from=translated src=- shape=0549667f vocab=410db41e
+-/
 theorem SampleModel.subjectIntegral_eq_stopped (S : SampleModel n Ω μ)
     (H : ℝ → (Fin n → Ω) → ℝ) (i : Fin n) (x : Fin n → Ω) :
     S.subjectIntegral H i x =
@@ -145,7 +151,9 @@ def SampleModel.QuadraticEnergyFinite (S : SampleModel n Ω μ)
 
 /-- A bounded left-predictable payoff on the full sample has equal expected
 subject jump sum and subject compensator integral, derived from the component
-conditional intensity/increment premise. -/
+conditional intensity/increment premise.
+@isnad1 id=eq.2h6v.s8.26f79369b868 from=translated src=- shape=387a4653 vocab=1d70c5f5
+-/
 theorem SampleModel.predictable_compensation (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ] (H : ℝ → (Fin n → Ω) → ℝ)
     (hH : S.LeftPredictable H)
@@ -160,7 +168,9 @@ theorem SampleModel.predictable_compensation (S : SampleModel n Ω μ)
     ((S.process i).integrable_energy H hp hbound)
 
 /-- Subject integrals are centered for a bounded full-sample predictable
-payoff, by conditional-intensity compensation. -/
+payoff, by conditional-intensity compensation.
+@isnad1 id=eq.2h6v.s6.18d4b7b99939 from=translated src=- shape=5109366f vocab=3978a64f
+-/
 theorem SampleModel.subject_integral_centered (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ] (H : ℝ → (Fin n → Ω) → ℝ)
     (hH : S.LeftPredictable H)
@@ -171,7 +181,9 @@ theorem SampleModel.subject_integral_centered (S : SampleModel n Ω μ)
 /-- A subject's second moment equals its expected quadratic energy for a
 bounded predictable payoff depending on the entire finite sample. [The sample
 model and payoff](hyp:S,H), [left predictability](hyp:hH), [boundedness](hyp:hbound),
-and [the subject index](hyp:i) give [the subjectwise isometry](goal). -/
+and [the subject index](hyp:i) give [the subjectwise isometry](goal).
+@isnad1 id=eq.2h6v.s7.4cb995cb3691 from=translated src=- shape=75799b4f vocab=9acdfcd4
+-/
 theorem SampleModel.subject_integral_isometry (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ] (H : ℝ → (Fin n → Ω) → ℝ)
     (hH : S.LeftPredictable H)
@@ -181,7 +193,9 @@ theorem SampleModel.subject_integral_isometry (S : SampleModel n Ω μ)
   exact (S.process i).stochasticIntegral_isometry H (S.process_predictable H hH i) hbound
 
 /-- Bounded full-sample predictable subject integrals have integrable squares;
-this supplies actual Bochner integrability independently of a moment equality. -/
+this supplies actual Bochner integrability independently of a moment equality.
+@isnad1 id=integrab.2h6v.s7.3d34f442e1a6 from=translated src=- shape=054f8f78 vocab=e71862c9
+-/
 theorem SampleModel.subject_square_integrable (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ] (H : ℝ → (Fin n → Ω) → ℝ)
     (hH : S.LeftPredictable H)

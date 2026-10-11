@@ -32,8 +32,14 @@ abbrev answer : Set ℕ := {m | ∃ n : ℕ, 2 ≤ n ∧ m = Nat.choose n 2 + 1}
 
 /-! ## Basic properties of `ones` -/
 
+/--
+@isnad1 id=eq.0h0v.s3.b16f8d282c15 from=translated src=- shape=3c26ae4f vocab=9f40a9a2
+-/
 lemma ones_zero : ones 0 = 0 := by rw [ones, Nat.digits_zero, List.sum_nil]
 
+/--
+@isnad1 id=eq.0h1v.s4.7f9923f7e165 from=translated src=- shape=0d0922af vocab=197ccb01
+-/
 lemma ones_two_mul (n : ℕ) : ones (2 * n) = ones n := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · rfl
@@ -42,72 +48,119 @@ lemma ones_two_mul (n : ℕ) : ones (2 * n) = ones n := by
     simp only [ones]
     rw [h, List.sum_cons, zero_add]
 
+/--
+@isnad1 id=eq.0h1v.s5.5516175e3de4 from=translated src=- shape=af44a7ef vocab=654891a2
+-/
 lemma ones_two_mul_add_one (n : ℕ) : ones (2 * n + 1) = ones n + 1 := by
   have h := Nat.digits_add 2 (by norm_num) 1 n (by norm_num) (Or.inl one_ne_zero)
   simp only [ones]
   rw [show 2 * n + 1 = 1 + 2 * n by lia, h, List.sum_cons]
   lia
 
+/--
+@isnad1 id=eq.0h0v.s3.64d6695a0cfc from=translated src=- shape=3c26ae4f vocab=9f40a9a2
+-/
 lemma ones_one : ones 1 = 1 := by
   show ones (2 * 0 + 1) = 1
   rw [ones_two_mul_add_one, ones_zero]
 
+/--
+@isnad1 id=eq.0h0v.s3.305f14e3e370 from=translated src=- shape=3c26ae4f vocab=9f40a9a2
+-/
 lemma ones_two : ones 2 = 1 := by
   show ones (2 * 1) = 1
   rw [ones_two_mul, ones_one]
 
+/--
+@isnad1 id=eq.0h2v.s5.70c8b069bf79 from=translated src=- shape=712a526f vocab=158f4972
+-/
 lemma ones_two_mul_pow (i : ℕ) (x : ℕ) : ones (2 ^ i * x) = ones x := by
   induction i with
   | zero => rw [pow_zero, one_mul]
   | succ i ih =>
     rw [pow_succ', mul_assoc, ones_two_mul, ih]
 
+/--
+@isnad1 id=eq.0h1v.s4.03a2c55d5389 from=translated src=- shape=346446c8 vocab=eb364ba2
+-/
 lemma ones_two_pow (i : ℕ) : ones (2 ^ i) = 1 := by
   induction i with
   | zero => exact ones_one
   | succ i ih =>
     rw [pow_succ', ones_two_mul, ih]
 
+/--
+@isnad1 id=eq.0h1v.s5.764a28a60a7b from=translated src=- shape=1626e2e3 vocab=e2f17ee3
+-/
 lemma ones_two_pow_add_one (i : ℕ) : ones (2 ^ (i + 1) + 1) = 2 := by
   rw [pow_succ', ones_two_mul_add_one, ones_two_pow]
 
+/--
+@isnad1 id=eq.0h1v.s5.8bf56ea1036d from=translated src=- shape=1626e2e3 vocab=e2f17ee3
+-/
 lemma ones_two_pow_add_two (i : ℕ) : ones (2 ^ (i + 2) + 2) = 2 := by
   have h : 2 ^ (i + 2) + 2 = 2 * (2 ^ (i + 1) + 1) := by rw [pow_succ']; ring
   rw [h, ones_two_mul, ones_two_pow_add_one]
 
+/--
+@isnad1 id=eq.0h1v.s5.a08b11457256 from=translated src=- shape=1626e2e3 vocab=e2f17ee3
+-/
 lemma ones_two_pow_add_three (i : ℕ) : ones (2 ^ (i + 2) + 3) = 3 := by
   have h : 2 ^ (i + 2) + 3 = 2 * (2 ^ (i + 1) + 1) + 1 := by rw [pow_succ']; ring
   rw [h, ones_two_mul_add_one, ones_two_pow_add_one]
 
+/--
+@isnad1 id=eq.0h1v.s5.d5a360d20c00 from=translated src=- shape=1626e2e3 vocab=e2f17ee3
+-/
 lemma ones_two_pow_add_four (i : ℕ) : ones (2 ^ (i + 3) + 4) = 2 := by
   have h : 2 ^ (i + 3) + 4 = 2 * (2 ^ (i + 2) + 2) := by rw [pow_succ']; ring
   rw [h, ones_two_mul, ones_two_pow_add_two]
 
+/--
+@isnad1 id=eq.0h1v.s5.ac2c00002083 from=translated src=- shape=1626e2e3 vocab=e2f17ee3
+-/
 lemma ones_two_pow_add_five (i : ℕ) : ones (2 ^ (i + 3) + 5) = 3 := by
   have h : 2 ^ (i + 3) + 5 = 2 * (2 ^ (i + 2) + 2) + 1 := by rw [pow_succ']; ring
   rw [h, ones_two_mul_add_one, ones_two_pow_add_two]
 
-/-- Versions of the above with a hypothesis on the exponent. -/
+/-- Versions of the above with a hypothesis on the exponent.
+@isnad1 id=eq.1h1v.s5.81784e1a8022 from=translated src=- shape=6ccab218 vocab=efb51f2f
+-/
 lemma ones_two_pow_add_one' {n : ℕ} (hn : 1 ≤ n) : ones (2 ^ n + 1) = 2 := by
   obtain ⟨i, rfl⟩ : ∃ i, n = i + 1 := ⟨n - 1, by lia⟩
   exact ones_two_pow_add_one i
 
+/--
+@isnad1 id=eq.1h1v.s5.df283f0b7c9d from=translated src=- shape=6ccab218 vocab=efb51f2f
+-/
 lemma ones_two_pow_add_two' {n : ℕ} (hn : 2 ≤ n) : ones (2 ^ n + 2) = 2 := by
   obtain ⟨i, rfl⟩ : ∃ i, n = i + 2 := ⟨n - 2, by lia⟩
   exact ones_two_pow_add_two i
 
+/--
+@isnad1 id=eq.1h1v.s5.8c3c95eea7aa from=translated src=- shape=6ccab218 vocab=efb51f2f
+-/
 lemma ones_two_pow_add_three' {n : ℕ} (hn : 2 ≤ n) : ones (2 ^ n + 3) = 3 := by
   obtain ⟨i, rfl⟩ : ∃ i, n = i + 2 := ⟨n - 2, by lia⟩
   exact ones_two_pow_add_three i
 
+/--
+@isnad1 id=eq.1h1v.s5.1cb8515bc998 from=translated src=- shape=6ccab218 vocab=efb51f2f
+-/
 lemma ones_two_pow_add_four' {n : ℕ} (hn : 3 ≤ n) : ones (2 ^ n + 4) = 2 := by
   obtain ⟨i, rfl⟩ : ∃ i, n = i + 3 := ⟨n - 3, by lia⟩
   exact ones_two_pow_add_four i
 
+/--
+@isnad1 id=eq.1h1v.s5.6fa0c3ba1bf0 from=translated src=- shape=6ccab218 vocab=efb51f2f
+-/
 lemma ones_two_pow_add_five' {n : ℕ} (hn : 3 ≤ n) : ones (2 ^ n + 5) = 3 := by
   obtain ⟨i, rfl⟩ : ∃ i, n = i + 3 := ⟨n - 3, by lia⟩
   exact ones_two_pow_add_five i
 
+/--
+@isnad1 id=eq.1h1v.s4.ff0a57116650 from=translated src=- shape=98b3f27b vocab=9f40a9a2
+-/
 lemma ones_eq_zero {m : ℕ} (h : ones m = 0) : m = 0 := by
   induction m using Nat.strong_induction_on with
   | _ m ih =>
@@ -123,6 +176,9 @@ lemma ones_eq_zero {m : ℕ} (h : ones m = 0) : m = 0 := by
       rw [← h2m, ones_two_mul_add_one] at h
       lia
 
+/--
+@isnad1 id=ex.1h1v.s5.1e71a8485443 from=translated src=- shape=12f43280 vocab=eb364ba2
+-/
 lemma ones_eq_one {m : ℕ} (h : ones m = 1) : ∃ a, m = 2 ^ a := by
   induction m using Nat.strong_induction_on with
   | _ m ih =>
@@ -140,6 +196,9 @@ lemma ones_eq_one {m : ℕ} (h : ones m = 1) : ∃ a, m = 2 ^ a := by
       have hm2 : m / 2 = 0 := ones_eq_zero h0
       exact ⟨0, by rw [pow_zero]; lia⟩
 
+/--
+@isnad1 id=ex.1h1v.s6.d52add745b57 from=translated src=- shape=6c0232ba vocab=6606cbca
+-/
 lemma ones_eq_two {m : ℕ} (h : ones m = 2) : ∃ a b, b < a ∧ m = 2 ^ a + 2 ^ b := by
   induction m using Nat.strong_induction_on with
   | _ m ih =>
@@ -157,6 +216,9 @@ lemma ones_eq_two {m : ℕ} (h : ones m = 2) : ∃ a b, b < a ∧ m = 2 ^ a + 2 
       obtain ⟨a, ha⟩ := ones_eq_one h1
       exact ⟨a + 1, 0, by lia, by rw [pow_zero, ← h2m, ha, pow_succ']⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s5.1c7c3edaf362 from=translated src=- shape=906115bf vocab=94f8544b
+-/
 lemma add_two_pow_injective (n : ℕ) : Function.Injective fun j => 2 ^ n + 2 ^ j := by
   intro a b hab
   dsimp only at hab
@@ -168,6 +230,9 @@ lemma add_two_pow_injective (n : ℕ) : Function.Injective fun j => 2 ^ n + 2 ^ 
 /-- Cumulative count: the number of elements of `{1, ..., n}` with exactly three `1`s. -/
 def g (n : ℕ) : ℕ := ((Finset.Icc 1 n).filter fun m => ones m = 3).card
 
+/--
+@isnad1 id=eq.0h1v.s6.f802217fff48 from=translated src=- shape=22a3f319 vocab=5d1e53a4
+-/
 lemma g_succ (n : ℕ) : g (n + 1) = g n + (if ones (n + 1) = 3 then 1 else 0) := by
   have hIcc : Finset.Icc 1 (n + 1) = insert (n + 1) (Finset.Icc 1 n) := by
     ext x
@@ -179,9 +244,15 @@ lemma g_succ (n : ℕ) : g (n + 1) = g n + (if ones (n + 1) = 3 then 1 else 0) :
   · rw [Finset.card_insert_of_notMem (by simp only [Finset.mem_filter, Finset.mem_Icc]; lia)]
   · rw [add_zero]
 
+/--
+@isnad1 id=monotone.0h0v.s2.9680c20381f5 from=translated src=- shape=e3d48bcb vocab=dfba92ea
+-/
 lemma g_mono : Monotone g :=
   monotone_nat_of_le_succ fun n => by rw [g_succ]; exact Nat.le_add_right _ _
 
+/--
+@isnad1 id=eq.0h1v.s4.3459609c989e from=translated src=- shape=e3a968fc vocab=31c98c97
+-/
 lemma f_eq (k : ℕ) : f k = g (2 * k) - g k := by
   have hIcc : Finset.Icc 1 (2 * k) = Finset.Icc 1 k ∪ Finset.Icc (k + 1) (2 * k) := by
     ext x
@@ -199,6 +270,9 @@ lemma f_eq (k : ℕ) : f k = g (2 * k) - g k := by
         (hdisj.mono (Finset.filter_subset _ _) (Finset.filter_subset _ _))]
   lia
 
+/--
+@isnad1 id=eq.0h1v.s6.50aad8c39316 from=translated src=- shape=a4c6a997 vocab=1ef3fd30
+-/
 lemma step (k : ℕ) : f (k + 1) = f k + (if ones (2 * k + 1) = 3 then 1 else 0) := by
   have e1 := g_succ (2 * k + 1)
   have e2 := g_succ (2 * k)
@@ -214,13 +288,22 @@ lemma step (k : ℕ) : f (k + 1) = f k + (if ones (2 * k + 1) = 3 then 1 else 0)
   by_cases h1 : ones (2 * k + 1) = 3 <;> by_cases h2 : ones (k + 1) = 3 <;>
     simp only [h1, h2, ite_true, ite_false] at e1 e2 e3 ⊢ <;> lia
 
+/--
+@isnad1 id=monotone.0h0v.s2.bc19ecec352b from=translated src=- shape=e3d48bcb vocab=37bdc66f
+-/
 lemma f_mono : Monotone f :=
   monotone_nat_of_le_succ fun k => by rw [step]; exact Nat.le_add_right _ _
 
+/--
+@isnad1 id=eq.0h0v.s3.115773922e01 from=translated src=- shape=3c26ae4f vocab=0b7aa33c
+-/
 lemma f_zero : f 0 = 0 := by decide
 
 /-! ## Part (a): `f` is surjective -/
 
+/--
+@isnad1 id=le.1h1v.s5.45bfca8a170f from=translated src=- shape=7caa2e1e vocab=422ad38d
+-/
 lemma f_ge (m : ℕ) (hm : 0 < m) : m ≤ f (2 ^ (m + 1) + 2) := by
   have hsub : (Finset.range m).image (fun i => 2 ^ (m + 1) + 3 * 2 ^ i)
       ⊆ (Finset.Icc (2 ^ (m + 1) + 2 + 1) (2 * (2 ^ (m + 1) + 2))).filter (ones · = 3) := by
@@ -251,6 +334,9 @@ where
 
 /-! ## The counting lemmas -/
 
+/--
+@isnad1 id=eq.0h1v.s6.af9ccc4751b4 from=translated src=- shape=9bba38d0 vocab=bfd69b3d
+-/
 lemma card_two_Ico (n : ℕ) :
     ((Finset.Ico (2 ^ n) (2 ^ (n + 1))).filter (ones · = 2)).card = n := by
   have hset : (Finset.Ico (2 ^ n) (2 ^ (n + 1))).filter (ones · = 2)
@@ -296,6 +382,9 @@ lemma card_two_Ico (n : ℕ) :
         exact ones_two_pow_add_one' (by lia)
   rw [hset, Finset.card_image_of_injective _ (add_two_pow_injective n), Finset.card_range]
 
+/--
+@isnad1 id=eq.0h1v.s7.c893dcff1608 from=translated src=- shape=994d266f vocab=34e3f45e
+-/
 lemma card_three_Ioc_succ (n : ℕ) :
     ((Finset.Ioc (2 ^ (n + 1)) (2 ^ (n + 2))).filter (ones · = 3)).card
       = ((Finset.Ioc (2 ^ n) (2 ^ (n + 1))).filter (ones · = 3)).card
@@ -338,6 +427,9 @@ lemma card_three_Ioc_succ (n : ℕ) :
   rw [hset, Finset.card_union_of_disjoint hdisj, Finset.card_image_of_injective _ hinj1,
     Finset.card_image_of_injective _ hinj2]
 
+/--
+@isnad1 id=eq.0h1v.s5.782b9f21d2d6 from=translated src=- shape=1dc9affc vocab=04865d53
+-/
 lemma choose_two_succ (n : ℕ) : (n + 1).choose 2 = n.choose 2 + n := by
   rw [Nat.choose_two_right, Nat.choose_two_right, Nat.add_sub_cancel,
     show (n + 1) * n = n * (n - 1) + 2 * n by
@@ -346,6 +438,9 @@ lemma choose_two_succ (n : ℕ) : (n + 1).choose 2 = n.choose 2 + n := by
       | succ n => rw [Nat.add_sub_cancel]; ring]
   lia
 
+/--
+@isnad1 id=eq.0h1v.s6.f94c2a89f497 from=translated src=- shape=978f00e9 vocab=e5472349
+-/
 lemma card_three (n : ℕ) :
     ((Finset.Ioc (2 ^ n) (2 ^ (n + 1))).filter (ones · = 3)).card = n.choose 2 := by
   induction n with
@@ -355,6 +450,9 @@ lemma card_three (n : ℕ) :
   | succ n ih =>
     rw [card_three_Ioc_succ n, ih, card_two_Ico, choose_two_succ]
 
+/--
+@isnad1 id=eq.1h1v.s6.ecec63ccd5a2 from=translated src=- shape=d4fb4eaa vocab=2bb9a35e
+-/
 lemma f_two_pow_add_two (n : ℕ) (hn : 2 ≤ n) : f (2 ^ n + 2) = n.choose 2 + 1 := by
   have hpow : (2 : ℕ) ^ (n + 1) = 2 * 2 ^ n := pow_succ' _ _
   have h21 : ones (2 ^ n + 1) = 2 := ones_two_pow_add_one' (by lia)

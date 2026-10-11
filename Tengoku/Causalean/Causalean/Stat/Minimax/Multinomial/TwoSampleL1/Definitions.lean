@@ -23,7 +23,9 @@ def ProbabilitySimplex (k : ℕ) :=
   {r : Fin k → ℝ // (∀ i, 0 ≤ r i) ∧ ∑ i, r i = 1}
 
 /-- The nonnegative extended-real coordinates of a probability vector sum to
-one. -/
+one.
+@isnad1 id=eq.0h2v.s6.7aead0d15dca from=translated src=- shape=6b52389a vocab=a49c494c
+-/
 lemma simplexMass_sum {k : ℕ} (R : ProbabilitySimplex k) :
     ∑ i : Fin k, ENNReal.ofReal (R.1 i) = 1 := by
   rw [← ENNReal.ofReal_sum_of_nonneg (fun i _ => R.2.1 i), R.2.2]
@@ -40,7 +42,9 @@ noncomputable def simplexSampleLaw {k : ℕ} (R : ProbabilitySimplex k) (n : ℕ
   Measure.pi (fun _ : Fin n => (simplexPMF R).toMeasure)
 
 /-- A fixed-size iid sample law from a finite probability vector is a
-probability measure. -/
+probability measure.
+@isnad1 id=isprobab.0h3v.s4.503df5992aea from=translated src=- shape=2d989b9f vocab=38249b1e
+-/
 noncomputable instance simplexSampleLaw_isProbability {k : ℕ}
     (R : ProbabilitySimplex k) (n : ℕ) :
     IsProbabilityMeasure (simplexSampleLaw R n) := by
@@ -52,7 +56,9 @@ noncomputable def simplexL1 {k : ℕ} (R S : ProbabilitySimplex k) : ℝ :=
   ∑ i, |R.1 i - S.1 i|
 
 /-- The L1 distance between two finite probability vectors lies between zero
-and two. -/
+and two.
+@isnad1 id=and.0h3v.s5.0b5570bc1c68 from=translated src=- shape=29a5abf0 vocab=ee1d516d
+-/
 lemma simplexL1_nonneg_le_two {k : ℕ} (R S : ProbabilitySimplex k) :
     0 ≤ simplexL1 R S ∧ simplexL1 R S ≤ 2 := by
   constructor
@@ -65,12 +71,16 @@ lemma simplexL1_nonneg_le_two {k : ℕ} (R S : ProbabilitySimplex k) :
         Finset.sum_le_sum (fun i _ => hterm i)
       _ = 2 := by rw [Finset.sum_add_distrib, R.2.2, S.2.2]; ring
 
-/-- The L1 distance from a finite probability vector to itself is zero. -/
+/-- The L1 distance from a finite probability vector to itself is zero.
+@isnad1 id=eq.0h2v.s4.b5836ad85a97 from=translated src=- shape=48892474 vocab=676a0af6
+-/
 lemma simplexL1_self {k : ℕ} (R : ProbabilitySimplex k) :
     simplexL1 R R = 0 := by
   simp [simplexL1]
 
-/-- The L1 distance between finite probability vectors is symmetric. -/
+/-- The L1 distance between finite probability vectors is symmetric.
+@isnad1 id=eq.0h3v.s4.559bf2101470 from=translated src=- shape=7a5478ec vocab=676a0af6
+-/
 lemma simplexL1_symm {k : ℕ} (R S : ProbabilitySimplex k) :
     simplexL1 R S = simplexL1 S R := by
   simp only [simplexL1, abs_sub_comm]
@@ -82,7 +92,9 @@ noncomputable def twoSampleLaw {k : ℕ} (n : ℕ)
   (simplexSampleLaw RS.1 n).prod (simplexSampleLaw RS.2 n)
 
 /-- The product law of two independent fixed-size samples is a probability
-measure. -/
+measure.
+@isnad1 id=isprobab.0h3v.s5.c22a222008ab from=translated src=- shape=ef2c7fb3 vocab=485ad460
+-/
 noncomputable instance twoSampleLaw_isProbability {k : ℕ} (n : ℕ)
     (RS : ProbabilitySimplex k × ProbabilitySimplex k) :
     IsProbabilityMeasure (twoSampleLaw n RS) := by
@@ -105,7 +117,9 @@ fixed-size samples. -/
 noncomputable def twoSampleL1MinimaxRisk (n k : ℕ) : ℝ :=
   Causalean.Stat.minimaxValueReal (twoSampleL1Risk (k := k) n)
 
-/-- Given [an alphabet size](hyp:k), [a sample size](hyp:n), [two probability vectors](hyp:R,S), and [an ordered pair of samples](hyp:x), [the singleton mass of the paired iid law factors into its coordinate probabilities](goal). -/
+/-- Given [an alphabet size](hyp:k), [a sample size](hyp:n), [two probability vectors](hyp:R,S), and [an ordered pair of samples](hyp:x), [the singleton mass of the paired iid law factors into its coordinate probabilities](goal).
+@isnad1 id=eq.0h5v.s8.9a42bf265e63 from=translated src=- shape=755ce98c vocab=d1524f5f
+-/
 lemma twoSampleLaw_singleton {k : ℕ} (n : ℕ)
     (R S : ProbabilitySimplex k)
     (x : (Fin n → Fin k) × (Fin n → Fin k)) :

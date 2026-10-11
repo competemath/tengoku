@@ -38,6 +38,7 @@ positive M. The resulting constant sum is the cardinality times the uniform
 Bernoulli bound; pow_add and ring give the displayed expression. SamePair on
 the subtype is exactly SameCoarsePair after moving subtype quantifiers to
 membership quantifiers. Do not require distinct occupied anchors.
+@isnad1 id=le.8h10v.s8.510e95f4c9ad from=translated src=- shape=26c3ca93 vocab=9272486e
 -/
 theorem subsets_connected_pair_marks_le {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}

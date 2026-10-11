@@ -34,7 +34,9 @@ centering](hyp:hcenter), [the stated cellwise second-moment envelope](hyp:hsq),
 [a positive overlap margin](hyp:hepsilon), and [arm mass at least that margin
 times category mass](hyp:hoverlap) imply that [the occupancy-weighted centered
 ratio noise has second moment at most twice the squared envelope times selected
-mass, divided by safe sample size and overlap](goal). -/
+mass, divided by safe sample size and overlap](goal).
+@isnad1 id=le.8h12v.s8.bdd248327467 from=translated src=- shape=0d832ab5 vocab=0b335d08
+-/
 theorem integral_fixedStratumArmCenteredNoise_sq_le {m : Nat}
     (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega → kappa) (arm : Omega → Bool) (Y : Omega → Real)

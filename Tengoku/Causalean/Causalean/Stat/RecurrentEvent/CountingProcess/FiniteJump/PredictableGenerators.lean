@@ -18,7 +18,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Left-endpoint predictable cylinders are closed under finite
-intersections when the filtration increases with time. -/
+intersections when the filtration increases with time.
+@isnad1 id=ispisyst.1h2v.s4.1a4ef107d1e2 from=translated src=- shape=8fa118f8 vocab=b468f495
+-/
 theorem predictableCylinders_isPiSystem (ℱ : ℝ → MeasurableSpace Ω)
     (hℱ : Monotone ℱ) : IsPiSystem (predictableCylinders ℱ) := by
   intro S hS T hT _
@@ -33,7 +35,9 @@ theorem predictableCylinders_isPiSystem (ℱ : ℝ → MeasurableSpace Ω)
 cylinder, including cylinders extending outside the counting horizon. [The
 model and cylinder data](hyp:M,a,b,B), [left-endpoint measurability](hyp:hB),
 and [integrability of both indicator integrals](hyp:hjump,henergy) give [the
-cylinder compensation identity](goal). -/
+cylinder compensation identity](goal).
+@isnad1 id=eq.3h6v.s8.e0469738c640 from=translated src=- shape=9e5711d3 vocab=317da951
+-/
 theorem Model.predictable_cylinder_compensator (M : Model Ω μ)
     [IsProbabilityMeasure μ] (a b : ℝ) (B : Set Ω)
     (hB : MeasurableSet[M.filtration a] B)

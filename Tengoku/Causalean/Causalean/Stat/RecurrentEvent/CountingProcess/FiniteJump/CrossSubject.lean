@@ -24,7 +24,9 @@ compensated integrals equals two oriented cross jump sums minus their two
 oriented compensator integrals. [The sample model and payoff](hyp:S,H), [left
 predictability](hyp:hH), [boundedness](hyp:hbound), [the two indices and
 path](hyp:i,j,x), and [their disjoint jumps](hyp:hdisjoint) give [the
-pathwise product expansion](goal). -/
+pathwise product expansion](goal).
+@isnad1 id=eq.3h8v.s8.7b8cb4f89d21 from=translated src=- shape=40511b8e vocab=95581c70
+-/
 theorem SampleModel.subject_product_pathwise (S : SampleModel n Ω μ)
     (H : ℝ → (Fin n → Ω) → ℝ) (hH : S.LeftPredictable H)
     (hbound : ∃ C : ℝ, ∀ t x, |H t x| ≤ C) (i j : Fin n)

@@ -32,7 +32,9 @@ open scoped BigOperators
 open Matrix
 
 /-- **Gram quadratic form of the design moment matrix.** `vᵀ M v = ∑ᵢ wᵢ (∑ⱼ vⱼ xᵢʲ)²` —
-the design moment matrix is the weighted Gram matrix of the monomial feature vectors. -/
+the design moment matrix is the weighted Gram matrix of the monomial feature vectors.
+@isnad1 id=eq.0h5v.s8.2e8e33eb7cfb from=translated src=- shape=34d339d9 vocab=640860cc
+-/
 theorem designMatrix_quadForm {N p : ℕ} (x w : Fin N → ℝ) (v : Fin (p + 1) → ℝ) :
     v ⬝ᵥ (designMatrix p x w *ᵥ v)
       = ∑ i, w i * (∑ j, v j * x i ^ (j : ℕ)) ^ 2 := by
@@ -62,7 +64,9 @@ theorem designMatrix_quadForm {N p : ℕ} (x w : Fin N → ℝ) (v : Fin (p + 1)
       rw [Finset.mul_sum]
       exact Finset.sum_congr rfl (fun k _ => by ring)
 
-/-- The design moment matrix is symmetric. -/
+/-- The design moment matrix is symmetric.
+@isnad1 id=ishermit.0h4v.s6.7137a66ec736 from=translated src=- shape=2d311dd4 vocab=32b59844
+-/
 theorem designMatrix_isHermitian {N p : ℕ} (x w : Fin N → ℝ) :
     (designMatrix p x w).IsHermitian := by
   ext j k
@@ -70,7 +74,9 @@ theorem designMatrix_isHermitian {N p : ℕ} (x w : Fin N → ℝ) :
   exact Finset.sum_congr rfl (fun i _ => by ring)
 
 /-- **The design moment matrix is positive semidefinite** when the weights are nonnegative
-(a sum of weighted rank-one squares). -/
+(a sum of weighted rank-one squares).
+@isnad1 id=possemid.1h4v.s5.1a5a188b51bd from=translated src=- shape=7249b2dc vocab=c05be2d5
+-/
 theorem designMatrix_posSemidef {N p : ℕ} {x w : Fin N → ℝ} (hw : ∀ i, 0 ≤ w i) :
     (designMatrix p x w).PosSemidef := by
   refine Matrix.PosSemidef.of_dotProduct_mulVec_nonneg (designMatrix_isHermitian x w) ?_
@@ -86,7 +92,9 @@ the design. If [the design weights `w` are nonnegative](hyp:hw) and [no nonzero
 coefficient vector `v` yields a degree-`p` polynomial `∑ⱼ vⱼ xᵢʲ` that vanishes at every
 positively weighted design point](hyp:hnd), then [the design moment matrix is positive
 definite](goal). (Implied by the existence of `p+1` distinct design points with positive
-weight, via Vandermonde.) -/
+weight, via Vandermonde.)
+@isnad1 id=posdef.2h4v.s8.8f04f76408b8 from=translated src=- shape=1dae5522 vocab=40de3725
+-/
 theorem designMatrix_posDef {N p : ℕ} {x w : Fin N → ℝ} (hw : ∀ i, 0 ≤ w i)
     (hnd : ∀ v : Fin (p + 1) → ℝ, v ≠ 0 →
         ∃ i, 0 < w i ∧ (∑ j, v j * x i ^ (j : ℕ)) ≠ 0) :
@@ -108,7 +116,9 @@ coefficient vector `v` yields a degree-`p` polynomial `∑ⱼ vⱼ xᵢʲ` vanis
 positively weighted design point](hyp:hnd), then [the design moment matrix's determinant
 is a unit, i.e. the matrix is invertible](goal): a positive definite matrix has a unit
 determinant, discharging the `IsUnit (designMatrix p x w).det` hypothesis used throughout
-the local-polynomial analysis. -/
+the local-polynomial analysis.
+@isnad1 id=isunit.2h4v.s8.033ae6b99f40 from=translated src=- shape=c3a521d8 vocab=a21a1189
+-/
 theorem designMatrix_isUnit_det {N p : ℕ} {x w : Fin N → ℝ} (hw : ∀ i, 0 ≤ w i)
     (hnd : ∀ v : Fin (p + 1) → ℝ, v ≠ 0 →
         ∃ i, 0 < w i ∧ (∑ j, v j * x i ^ (j : ℕ)) ≠ 0) :
@@ -123,7 +133,9 @@ degree-`p` polynomial `∑ⱼ vⱼ xᵢʲ` that vanishes at every positively wei
 point](goal).
 
 (A nonzero polynomial of degree `≤ p` has at most `p` roots, but it would vanish at the
-`≥ p+1` distinct points of `S`.) Hence the design moment matrix is invertible. -/
+`≥ p+1` distinct points of `S`.) Hence the design moment matrix is invertible.
+@isnad1 id=ex.3h6v.s8.749feeb10e82 from=translated src=- shape=ce5f1d8e vocab=7a99770b
+-/
 theorem nondegenerate_of_distinct_points {N p : ℕ} {x w : Fin N → ℝ}
     (S : Finset (Fin N)) (hpos : ∀ i ∈ S, 0 < w i)
     (hdistinct : p + 1 ≤ (S.image x).card) :

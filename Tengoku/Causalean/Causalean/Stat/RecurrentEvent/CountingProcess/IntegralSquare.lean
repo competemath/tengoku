@@ -15,7 +15,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 
 /-- For [a nonnegative horizon u](hyp:hu) and [a real rate integrable on the interval from 0 to
 u](hyp:hf), [the square of the rate's integral over that interval equals the integral of twice
-its running integral times the rate](goal). -/
+its running integral times the rate](goal).
+@isnad1 id=eq.2h2v.s7.95232f68a91c from=translated src=- shape=9ec7046c vocab=975e7f0a
+-/
 theorem integral_prefix_square (f : ℝ → ℝ) (u : ℝ) (hu : 0 ≤ u)
     (hf : Integrable f (volume.restrict (Set.Icc 0 u))) :
     (∫ s in Set.Icc 0 u, f s ∂volume) ^ 2 =
@@ -52,7 +54,9 @@ theorem integral_prefix_square (f : ℝ → ℝ) (u : ℝ) (hu : 0 ≤ u)
 
 /-- For [a nonnegative horizon u](hyp:hu) and [a real rate integrable on the interval from 0 to
 u](hyp:hf), [the integral of the absolute value of the running integral times the rate is at most
-the square of the integral of the rate's absolute value](goal). -/
+the square of the integral of the rate's absolute value](goal).
+@isnad1 id=le.2h2v.s7.044499f8e380 from=translated src=- shape=1c2e97d8 vocab=81ad483f
+-/
 theorem integral_prefix_mul_abs_le_square (f : ℝ → ℝ) (u : ℝ) (hu : 0 ≤ u)
     (hf : Integrable f (volume.restrict (Set.Icc 0 u))) :
     (∫ s in Set.Icc 0 u,

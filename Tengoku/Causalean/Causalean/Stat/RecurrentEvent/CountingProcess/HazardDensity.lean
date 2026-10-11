@@ -18,7 +18,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess
 nonnegative](hyp:hu), then for a fixed failure time f, [the expected payoff over censor times
 that fall by u and strictly before f equals the Lebesgue integral, over times s from 0 to u with
 s before f, of the payoff times the hazard times the probability of censoring at or after
-s](goal). -/
+s](goal).
+@isnad1 id=eq.4h5v.s7.632762245c97 from=translated src=- shape=7d0c6341 vocab=817ffdbb
+-/
 theorem censor_event_hazard_lintegral
     (censorLaw : Measure ℝ) (hazard g : ℝ → ℝ)
     (hHazard : HasCensorHazard censorLaw hazard)

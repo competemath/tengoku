@@ -48,7 +48,9 @@ denominator is at least twice the good-design threshold times n, that is
 
 Sum integral_gram_labelFiber over label vectors, discarding zero-weight
 fibers before applying overlap; transport repeatCount to the cell marginal
-and apply integral_repeatCount_lower. -/
+and apply integral_repeatCount_lower.
+@isnad1 id=le.5h4v.s7.8325d202a45f from=translated src=- shape=5c1d65b4 vocab=6be8858e
+-/
 theorem integral_gram_lower (n : ℕ) (ν : Measure (κ × Bool)) [IsProbabilityMeasure ν]
     (hn : 2 ≤ n) (hcard : Fintype.card κ ≤ n)
     (epsilon : ℝ) (hepsilon : 0 < epsilon) (hhalf : epsilon ≤ 1 / 2)

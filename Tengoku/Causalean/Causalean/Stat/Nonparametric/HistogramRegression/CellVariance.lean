@@ -32,7 +32,9 @@ variable {Ω A κ : Type*} [MeasurableSpace Ω] [MeasurableSpace A]
 
 /-- [Measurable inputs and integrable response moments](hyp:hlabel,hX,hY,hint,hsq),
 [zero cell residual mean](hyp:hcenter), and [positive cell mass](hyp:hp)
-give [the exact reciprocal-binomial-count variance formula](goal). -/
+give [the exact reciprocal-binomial-count variance formula](goal).
+@isnad1 id=eq.7h10v.s8.a6983f7f2d28 from=translated src=- shape=ee843bec vocab=25402d6c
+-/
 theorem integral_centeredCellMean_sq_eq {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (c : ℝ) (k : κ)
@@ -101,7 +103,9 @@ theorem integral_centeredCellMean_sq_eq {m : ℕ}
 
 /-- [A measurable partition and responses](hyp:hlabel,hX,hY), [unit-interval
 responses](hyp:hbound), and [positive cell mass](hyp:hp) imply
-[the mass-weighted nonempty-sample centered MSE bound](goal). -/
+[the mass-weighted nonempty-sample centered MSE bound](goal).
+@isnad1 id=le.5h9v.s8.01031cf6ff10 from=translated src=- shape=e837c33b vocab=badb4de5
+-/
 theorem nonempty_cell_mse_le {m : ℕ}
     (μ : Measure Ω) [IsProbabilityMeasure μ] (label : A → κ) (X : Ω → A)
     (Y : Ω → ℝ) (k : κ) (hlabel : Measurable label)

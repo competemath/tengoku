@@ -16,7 +16,9 @@ open MeasureTheory
 namespace Causalean.Stat.RecurrentEvent.CountingProcess
 
 /-- [The zero-safe inverse risk-set size is a left-predictable process](goal): its value at each
-time depends only on the observed censor and failure counts at strictly earlier times. -/
+time depends only on the observed censor and failure counts at strictly earlier times.
+@isnad1 id=leftpred.0h1v.s2.531f136cc887 from=translated src=- shape=9d44d080 vocab=4eec0346
+-/
 theorem inverseRisk_leftPredictable {n : ℕ} :
     LeftPredictable (inverseRisk (n := n)) := by
   intro s x y hhistory
@@ -65,7 +67,9 @@ theorem inverseRisk_leftPredictable {n : ℕ} :
   simp only [inverseRisk, hrisk]
 
 /-- [The zero-safe inverse risk-set size is jointly measurable in time and in the sample of
-failure and censor times](goal). -/
+failure and censor times](goal).
+@isnad1 id=measurab.0h1v.s5.c5d5c24161b6 from=translated src=- shape=1811fb5b vocab=e4dbf14c
+-/
 theorem inverseRisk_jointMeasurable {n : ℕ} :
     Measurable (fun p : ℝ × Sample n => inverseRisk p.1 p.2) := by
   classical
@@ -91,7 +95,9 @@ theorem inverseRisk_jointMeasurable {n : ℕ} :
 
 /-- At [any time s](hyp:s) and in [any sample](hyp:x), [the square of the zero-safe inverse
 risk-set size times the number of subjects at risk equals the zero-safe inverse risk-set size
-itself](goal), including when the risk set is empty. -/
+itself](goal), including when the risk set is empty.
+@isnad1 id=eq.0h3v.s5.d4727c4a9b5c from=translated src=- shape=658c921c vocab=8f9891d6
+-/
 theorem inverseRisk_square_risk {n : ℕ} (s : ℝ) (x : Sample n) :
     (inverseRisk s x) ^ 2 * (∑ i : Fin n, riskIndicator i s x) =
       inverseRisk s x := by
@@ -148,7 +154,9 @@ hazard](hyp:hazard,hHazard), at [a nonnegative horizon u](hyp:hu) [the zero-safe
 has finite expected quadratic energy](goal).
 
 Its square weighted by the risk-set size is at most one, so the energy is bounded by the
-integrated hazard. -/
+integrated hazard.
+@isnad1 id=quadrati.3h5v.s5.0b5365f8d919 from=translated src=- shape=71e5c66d vocab=171e8cb0
+-/
 theorem inverseRisk_quadratic_energy_finite {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -187,7 +195,9 @@ theorem inverseRisk_quadratic_energy_finite {n : ℕ}
 law](hyp:hFailure) and independent [censor times whose law has the given censor
 hazard](hyp:hazard,hHazard), at [a nonnegative horizon u](hyp:hu) [the predictable quadratic energy of
 the zero-safe inverse risk-set size, the Nelson–Aalen integrand, is integrable over
-samples](goal). -/
+samples](goal).
+@isnad1 id=integrab.3h5v.s6.2d3bd65d8a2b from=translated src=- shape=3301d8cc vocab=4a21cc22
+-/
 theorem inverseRisk_energy_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -211,7 +221,9 @@ theorem inverseRisk_energy_integrable {n : ℕ}
 law](hyp:hFailure) and independent [censor times whose law has the given censor
 hazard](hyp:hazard,hHazard), at [a nonnegative horizon u](hyp:hu) [the expected squared compensated
 Nelson–Aalen error equals the integral over times from 0 to u of the censor hazard times the
-expected zero-safe inverse risk-set size](goal). -/
+expected zero-safe inverse risk-set size](goal).
+@isnad1 id=eq.3h5v.s7.e83cb45308f0 from=translated src=- shape=32ca84aa vocab=122a004c
+-/
 theorem nelsonAalen_squared_risk {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -259,7 +271,9 @@ theorem nelsonAalen_squared_risk {n : ℕ}
     _ = _ := rfl
 
 /-- If [the censor hazard is measurable](hyp:hazard,hHazard), then [the compensated Nelson–Aalen error
-is jointly measurable in the evaluation horizon and the sample](goal). -/
+is jointly measurable in the evaluation horizon and the sample](goal).
+@isnad1 id=measurab.1h2v.s5.8360b4830831 from=translated src=- shape=e1b67c41 vocab=2225ffd6
+-/
 @[fun_prop] theorem nelsonAalenError_jointMeasurable {n : ℕ}
     (hazard : ℝ → ℝ) (hHazard : Measurable hazard) :
     Measurable (fun p : ℝ × Sample n => nelsonAalenError hazard p.1 p.2) := by
@@ -325,7 +339,9 @@ the probability that evaluation occurs at or after s, times the expected zero-sa
 risk-set size at s](goal).
 
 Both sides are extended nonnegative integrals, so the identity also covers infinite risk without
-a global integrability assumption. -/
+a global integrability assumption.
+@isnad1 id=eq.3h5v.s7.5b69b88e9641 from=translated src=- shape=c5dc2b38 vocab=b908422c
+-/
 theorem nelsonAalen_random_time_tonelli {n : ℕ}
     (failureLaw censorLaw evaluationLaw : Measure ℝ)
     (hazard : ℝ → ℝ)

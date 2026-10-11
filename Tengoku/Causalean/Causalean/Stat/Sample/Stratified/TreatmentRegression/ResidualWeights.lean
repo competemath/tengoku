@@ -79,6 +79,7 @@ Expand the coordinate residual into its finite sum of supported arm-cell
 residuals. Each supported residual pulls back along measurePreserving_eval;
 the coefficients are bounded by the finite sum of their absolute values over
 designs. Use MemLp.of_le_mul and memLp_finsetSum.
+@isnad1 id=memlp.4h9v.s7.6b3a50834fdb from=translated src=- shape=43af0a03 vocab=95804d99
 -/
 lemma designWeightedResidual_memLp (n : ℕ) (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ) (center : Bool → κ → ℝ)
@@ -119,6 +120,7 @@ integral_designWeight_residual_sq_le_indicator with weight W d * (b d i)^2
 to the surviving terms; sum the cell indicators to one. The preceding L2
 lemma, also with coordinate-isolating coefficients, supplies integrability
 for the finite integral expansions. No homogeneity or overlap is used here.
+@isnad1 id=le.7h11v.s9.8700c11f109c from=translated src=- shape=1e2b4a49 vocab=99f8bc7f
 -/
 theorem integral_designWeightedResidual_sq_le (n : ℕ) (μ : Measure Ω)
     [IsProbabilityMeasure μ] (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
@@ -238,7 +240,9 @@ theorem integral_designWeightedResidual_sq_le (n : ℕ) (μ : Measure Ω)
 /-- For [a sample z of n observations](hyp:n,z) with any [cell label X](hyp:X),
 [treatment A](hyp:A), [outcome Y](hyp:Y) and [arm-and-cell centres](hyp:center), [the guarded
 residual regression coefficient equals the design-weighted residual sum whose coefficients are the
-guarded inverse Gram times the residualized treatment weights](goal), also at a zero Gram. -/
+guarded inverse Gram times the residualized treatment weights](goal), also at a zero Gram.
+@isnad1 id=eq.0h8v.s6.7d6bb0c7cdee from=translated src=- shape=c8c5c6f0 vocab=47c6fd1d
+-/
 lemma residualRegression_eq_designWeightedResidual {n : ℕ}
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ) (center : Bool → κ → ℝ)
     (z : Fin n → Ω) :

@@ -30,20 +30,26 @@ lemma eq_of_ne_of_ne : ∀ x y z : Bool, x ≠ z → y ≠ z → x = y := by dec
 /-- In a two-element palette, any element equals one of two distinct elements. -/
 lemma eq_or_eq_of_ne : ∀ x y z : Bool, x ≠ y → z = x ∨ z = y := by decide
 
-/-- Among five booleans, some three (at pairwise distinct positions) coincide. -/
+/-- Among five booleans, some three (at pairwise distinct positions) coincide.
+@isnad1 id=ex.0h1v.s6.d41189613e83 from=translated src=- shape=5e0c311d vocab=8e0608e8
+-/
 lemma three_eq_of_five :
     ∀ f : Fin 5 → Bool, ∃ i j k : Fin 5,
       i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ f i = f j ∧ f j = f k := by
   decide
 
 /-- Any three pairwise distinct elements of `Fin 5` contain two that are
-cyclically adjacent, i.e. of the form `m, m + 1`. -/
+cyclically adjacent, i.e. of the form `m, m + 1`.
+@isnad1 id=ex.3h3v.s8.165d35d5f2c8 from=translated src=- shape=fb3f3cee vocab=87d30e84
+-/
 lemma adjacent_of_three :
     ∀ i j k : Fin 5, i ≠ j → i ≠ k → j ≠ k →
       ∃ m : Fin 5, (m = i ∨ m = j ∨ m = k) ∧ (m + 1 = i ∨ m + 1 = j ∨ m + 1 = k) := by
   decide
 
-/-- Two three-element subsets of the five-element set intersect. -/
+/-- Two three-element subsets of the five-element set intersect.
+@isnad1 id=ex.1h6v.s7.6cae407a61af from=translated src=- shape=5b30d82a vocab=00dd0f92
+-/
 lemma inter_of_three :
     ∀ i j k i' j' k' : Fin 5,
       (i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ i' ≠ j' ∧ i' ≠ k' ∧ j' ≠ k') →
@@ -51,7 +57,9 @@ lemma inter_of_three :
   decide
 
 /-- If all cyclically adjacent values of a `Fin 5 → Bool` are equal,
-then all its values are equal. -/
+then all its values are equal.
+@isnad1 id=eq.1h2v.s6.1837e29c8d7d from=translated src=- shape=3abe2637 vocab=4b38c378
+-/
 lemma all_eq_of_cycle :
     ∀ f : Fin 5 → Bool, (∀ i, f i = f (i + 1)) → ∀ i, f i = f 0 := by
   decide
@@ -60,7 +68,9 @@ lemma all_eq_of_cycle :
 (`e p` being the color of the side `P_pP_{p+1}`, indices taken modulo 5) and
 cross edges `d` (`d p q` the color of the segment `P_pQ_q`), such that no
 triangle with all sides colored is monochromatic. Then all sides of `P` have
-the same color. -/
+the same color.
+@isnad1 id=eq.2h4v.s7.b917e3bc896e from=translated src=- shape=c96f39cb vocab=4b38c378
+-/
 lemma one_color (e g : Fin 5 → Bool) (d : Fin 5 → Fin 5 → Bool)
     (he : ∀ p q : Fin 5, ¬ (e p = d p q ∧ d p q = d (p + 1) q))
     (hg : ∀ q p : Fin 5, ¬ (g q = d p q ∧ d p q = d p (q + 1))) :

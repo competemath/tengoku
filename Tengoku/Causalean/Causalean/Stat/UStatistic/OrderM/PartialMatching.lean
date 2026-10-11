@@ -40,7 +40,9 @@ coordinates, equivalently the number of paired coordinates. -/
 def size (M : PartialMatching r s) : ℕ := M.left.card
 
 /-- Given [a partial matching](hyp:M), [its selected right subset has the same
-number of coordinates as the matching](goal). -/
+number of coordinates as the matching](goal).
+@isnad1 id=eq.0h3v.s4.707699ed0ac4 from=translated src=- shape=5232d319 vocab=ae255646
+-/
 theorem right_card (M : PartialMatching r s) : M.right.card = M.size := by
   simpa [size] using (Fintype.card_congr M.equiv).symm
 
@@ -56,7 +58,9 @@ def empty (r s : ℕ) : PartialMatching r s where
       right_inv := fun x => False.elim (by simpa using x.property) }
 
 /-- For [coordinate-set sizes `r` and `s`](hyp:r,s), [the empty partial matching
-has no pairs](goal). -/
+has no pairs](goal).
+@isnad1 id=eq.0h2v.s4.93d9ebe6fcb1 from=translated src=- shape=515d1a8c vocab=323d5568
+-/
 @[simp] theorem empty_size (r s : ℕ) : (empty r s).size = 0 := by
   simp [size, empty]
 
@@ -97,7 +101,9 @@ noncomputable def rightInjection (M : PartialMatching r s) (j : Fin s) : M.Merge
   · exact Sum.inr ⟨j, hj⟩
 
 /-- For [a partial matching between coordinate sets of sizes `r` and `s`](hyp:M),
-[the merged coordinate set contains `r + s` minus the matching size coordinates](goal). -/
+[the merged coordinate set contains `r + s` minus the matching size coordinates](goal).
+@isnad1 id=eq.0h3v.s7.b3f4db5dbd39 from=translated src=- shape=c8f81777 vocab=a5347d8a
+-/
 theorem mergedIndex_card (M : PartialMatching r s) :
     Fintype.card M.MergedIndex = r + s - M.size := by
   rw [Fintype.card_sum]
@@ -155,14 +161,18 @@ noncomputable def partialMatchingsOfSize (r s h : ℕ) : Finset (PartialMatching
   exact Finset.univ.filter (fun M => M.size = h)
 
 /-- [A partial matching](hyp:M) [belongs to the family with `h` pairs exactly
-when its matching size is `h`](goal). -/
+when its matching size is `h`](goal).
+@isnad1 id=iff.0h4v.s5.3fdb6a99f932 from=translated src=- shape=9f545c6d vocab=f3955533
+-/
 @[simp] theorem mem_partialMatchingsOfSize {r s h : ℕ} (M : PartialMatching r s) :
     M ∈ partialMatchingsOfSize r s h ↔ M.size = h := by
   simp [partialMatchingsOfSize]
 
 /-- For [coordinate-set sizes `r` and `s` and matching size `h`](hyp:r,s,h),
 [the number of partial matchings is the product of the two subset counts and
-the number of permutations of `h` objects](goal). -/
+the number of permutations of `h` objects](goal).
+@isnad1 id=eq.0h3v.s5.20f34538623a from=translated src=- shape=25b41ffb vocab=3729fa32
+-/
 theorem card_partialMatchingsOfSize (r s h : ℕ) :
     (partialMatchingsOfSize r s h).card =
       Nat.choose r h * Nat.choose s h * h.factorial := by
@@ -205,7 +215,9 @@ theorem card_partialMatchingsOfSize (r s h : ℕ) :
   simp [Fintype.card_finset_len, Nat.mul_assoc]
 
 /-- [A partial matching](hyp:M) [has at most the smaller coordinate-set size
-many pairs](goal). -/
+many pairs](goal).
+@isnad1 id=le.0h3v.s4.edf8605d23be from=translated src=- shape=74b4259a vocab=17b84e3a
+-/
 theorem PartialMatching.size_le_min (M : PartialMatching r s) :
     M.size ≤ min r s := by
   apply le_min
@@ -214,7 +226,9 @@ theorem PartialMatching.size_le_min (M : PartialMatching r s) :
 
 /-- Given [a quantity assigned to each partial matching](hyp:F), [summing it over
 all matchings equals summing first by matching size through the smaller
-coordinate-set size](goal). -/
+coordinate-set size](goal).
+@isnad1 id=eq.0h4v.s6.7b30b74afff5 from=translated src=- shape=ced728fa vocab=27dbce35
+-/
 theorem sum_partialMatchingsOfSize {α : Type*} [AddCommMonoid α]
     (F : PartialMatching r s → α) :
     (∑ M : PartialMatching r s, F M) =

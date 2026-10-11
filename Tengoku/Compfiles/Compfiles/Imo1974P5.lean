@@ -24,6 +24,9 @@ namespace Imo1974P5
 
 abbrev solution_set : Set ℝ := Set.Ioo 1 2
 
+/--
+@isnad1 id=mem.1h1v.s7.6473115afb1b from=translated src=- shape=52fb3860 vocab=c5d70bc2
+-/
 lemma condition_implies_solution_set (s : ℝ)
     (h : ∃ a b c d : ℝ,
             0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d ∧
@@ -66,11 +69,20 @@ noncomputable def S (a b c d : ℝ) : ℝ :=
 
 noncomputable def T (t : ℝ) : ℝ := S 1 (1 - t) t (t * (1 - t))
 
+/--
+@isnad1 id=continuo.0h0v.s4.4776459f3b01 from=translated src=- shape=6c3888e7 vocab=0ba8601d
+-/
 theorem T_continuous : ContinuousOn T (Set.Icc 0 1) := by
   unfold T S
   fun_prop (disch := (rintro x ⟨a,b⟩; nlinarith))
 
+/--
+@isnad1 id=eq.0h0v.s3.e7085dadf528 from=translated src=- shape=3c26ae4f vocab=af91cce8
+-/
 lemma T0 : T 0 = 1 := by norm_num [T, S]
+/--
+@isnad1 id=eq.0h0v.s4.55317b1e7b40 from=translated src=- shape=3c26ae4f vocab=31ba5a5d
+-/
 lemma T1 : T 1 = 2 := by norm_num [T, S]
 
 end Imo1974P5

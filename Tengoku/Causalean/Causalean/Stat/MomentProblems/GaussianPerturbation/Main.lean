@@ -29,7 +29,9 @@ open scoped ENNReal BigOperators
 /-- Given [a finite moment cutoff](hyp:K) of [at least three](hyp:hK) and [a strictly positive
 testing-distance radius](hyp:rho,hrho), [there is a non-Gaussian probability law within that
 radius of the standard Gaussian, with matching raw moments and source cumulants through the
-cutoff, all absolute moments, and a divergent Hamburger--Carleman series](goal). -/
+cutoff, all absolute moments, and a divergent Hamburger--Carleman series](goal).
+@isnad1 id=ex.2h2v.s8.c7384f54bdb4 from=translated src=- shape=319f91aa vocab=2bf80220
+-/
 theorem exists_finiteMoment_near_gaussian_perturbation
     (K : ℕ) (rho : ℝ) (hK : 3 ≤ K) (hrho : 0 < rho) :
     ∃ F : Measure ℝ,

@@ -21,7 +21,9 @@ hazard](hyp:hazard,hHazard), and let the integrand be [left predictable](hyp:hPr
 measurable in time and sample](hyp:hMeasurable). For [two different subjects](hyp:hij), [a
 nonnegative horizon u](hyp:hu), [finite expected quadratic energy](hyp:hQuadratic), and [an
 integrable predictable quadratic energy](hyp:hEnergy), [the expected product of the two
-subjects' integrals against their compensated censor counts up to u is zero](goal). -/
+subjects' integrals against their compensated censor counts up to u is zero](goal).
+@isnad1 id=eq.8h8v.s7.5c589c63b19d from=translated src=- shape=151dd4f9 vocab=393a6f49
+-/
 theorem distinct_subject_integrals_orthogonal {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -212,7 +214,9 @@ hazard](hyp:hazard,hHazard), and let the integrand be [left predictable](hyp:hPr
 measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](hyp:hu), [finite
 expected quadratic energy](hyp:hQuadratic), and [an integrable predictable quadratic
 energy](hyp:hEnergy), [the expected square of the integral against the sum of all compensated
-censor counts up to u equals the expected predictable quadratic energy](goal). -/
+censor counts up to u equals the expected predictable quadratic energy](goal).
+@isnad1 id=eq.7h6v.s8.376deac730d2 from=translated src=- shape=c7d9c4b1 vocab=becf0d2d
+-/
 theorem aggregate_integral_isometry {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)

@@ -35,7 +35,9 @@ open scoped BigOperators ENNReal
 noncomputable section
 
 /-- The Euclidean length of a finite real-valued vector is no greater than the sum of the
-absolute values of its components. -/
+absolute values of its components.
+@isnad1 id=le.0h2v.s5.cd7a60f9797c from=translated src=- shape=0541a780 vocab=a2a53a55
+-/
 lemma sqrt_sum_sq_le_sum_abs {ι : Type*} [Fintype ι] (v : ι → ℝ) :
     Real.sqrt (∑ i, (v i) ^ 2) ≤ ∑ i, |v i| := by
   rw [Real.sqrt_le_iff]
@@ -48,7 +50,9 @@ lemma sqrt_sum_sq_le_sum_abs {ι : Type*} [Fintype ι] (v : ι → ℝ) :
 /-- The Euclidean length of a finite family of integrable real functions is itself integrable.
 
 This is the explicit `√(Σ vᵢ²)` counterpart of Mathlib's `integrable_pi_iff`, which instead
-governs the supremum norm on a finite product of normed spaces. -/
+governs the supremum norm on a finite product of normed spaces.
+@isnad1 id=integrab.1h4v.s6.5e84edd66d48 from=translated src=- shape=ff52c2e8 vocab=2b0b813f
+-/
 @[fun_prop]
 theorem integrable_euclidean_of_integrable
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] {μ : Measure Ω}
@@ -62,7 +66,9 @@ theorem integrable_euclidean_of_integrable
   exact sqrt_sum_sq_le_sum_abs (v ω)
 
 /-- The Euclidean length of a finite family of square-integrable real functions is itself
-square-integrable. -/
+square-integrable.
+@isnad1 id=memlp.1h4v.s7.a91d207df5d7 from=translated src=- shape=c980795d vocab=e7dd09ee
+-/
 theorem memLp_two_sqrt_sum_sq
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] {μ : Measure Ω}
     {Y : ι → Ω → ℝ} (hY : ∀ k, MemLp (Y k) 2 μ) :
@@ -83,7 +89,9 @@ identically distributed observations is at most the population second moment div
 sample size.
 
 The sample is indexed by an arbitrary finite type, whose cardinality plays the role of
-the sample size. -/
+the sample size.
+@isnad1 id=le.1h4v.s7.d7f06a33f1e4 from=translated src=- shape=3f61e7f0 vocab=c97a25b6
+-/
 theorem iid_mean_sq_le_fintype {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [Nonempty ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (ξ : Ω → ℝ) (hξ : MemLp ξ 2 μ) :
@@ -146,7 +154,9 @@ identically distributed observations is at most the square root of the populatio
 divided by the sample size.
 
 The sample is indexed by an arbitrary nonempty finite type, whose cardinality plays the role of
-the sample size. -/
+the sample size.
+@isnad1 id=le.1h4v.s7.25a7cca067ab from=translated src=- shape=8a2a5a08 vocab=61b279b2
+-/
 theorem iid_mean_abs_le_fintype {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [Nonempty ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (ξ : Ω → ℝ) (hξ : MemLp ξ 2 μ) :
@@ -169,7 +179,9 @@ theorem iid_mean_abs_le_fintype {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι
 square-integrable Euclidean length on the product sample space.
 
 This is the `L²` side condition of the Euclidean deviation bound; it is stated separately so it
-can be reused whenever that bound is combined with another integral estimate. -/
+can be reused whenever that bound is combined with another integral estimate.
+@isnad1 id=memlp.1h5v.s7.776b853bf85f from=translated src=- shape=18d08133 vocab=00c4d866
+-/
 theorem memLp_two_iid_mean_euclidean_fintype
     {Ω ι κ : Type*} [MeasurableSpace Ω] [Fintype ι] [Fintype κ]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -188,7 +200,9 @@ independent, identically distributed sample is controlled by their summed popula
 moments and the sample size.
 
 The sample is indexed by an arbitrary nonempty finite type, whose cardinality plays the role of
-the sample size. -/
+the sample size.
+@isnad1 id=le.1h5v.s8.d99cc8704146 from=translated src=- shape=13bd6994 vocab=94a1bd69
+-/
 theorem iid_mean_euclidean_abs_le_fintype
     {Ω ι κ : Type*} [MeasurableSpace Ω] [Fintype ι] [Nonempty ι] [Fintype κ]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -232,7 +246,9 @@ theorem iid_mean_euclidean_abs_le_fintype
 the population statistic being averaged.
 
 The sample is indexed by an arbitrary nonempty finite type, whose cardinality plays the role of
-the sample size. -/
+the sample size.
+@isnad1 id=eq.1h4v.s7.f48f19dbef32 from=translated src=- shape=d85c91bf vocab=21e509dd
+-/
 lemma iid_average_integral_fintype
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [Nonempty ι] (μ : Measure Ω)
     [IsProbabilityMeasure μ]
@@ -255,7 +271,9 @@ lemma iid_average_integral_fintype
 population variance divided by the sample size.
 
 The sample is indexed by an arbitrary nonempty finite type, whose cardinality plays the role of
-the sample size. -/
+the sample size.
+@isnad1 id=eq.1h4v.s7.0f90bdacfd92 from=translated src=- shape=d0597ee7 vocab=4fd480b6
+-/
 lemma iid_average_variance_fintype
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] (μ : Measure Ω)
     [IsProbabilityMeasure μ]
@@ -292,7 +310,9 @@ These are the classical statements with the sample size given as a natural numbe
 immediate consequences of the versions above via `Fintype.card_fin`. -/
 
 /-- The mean squared error of a square-integrable scalar sample average of `n` independent,
-identically distributed observations is at most the population second moment divided by `n`. -/
+identically distributed observations is at most the population second moment divided by `n`.
+@isnad1 id=le.2h4v.s8.8823ec428465 from=translated src=- shape=70c31412 vocab=26b438ae
+-/
 theorem iid_mean_sq_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {n : ℕ} (hn : 0 < n)
     (ξ : Ω → ℝ) (hξ : MemLp ξ 2 μ) :
@@ -304,7 +324,9 @@ theorem iid_mean_sq_le {Ω : Type*} [MeasurableSpace Ω]
 
 /-- The mean absolute error of a square-integrable scalar sample average of `n` independent,
 identically distributed observations is at most the square root of the population second moment
-divided by `n`. -/
+divided by `n`.
+@isnad1 id=le.2h4v.s7.4c5fee356410 from=translated src=- shape=b3584ac4 vocab=b1e02a28
+-/
 theorem iid_mean_abs_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {n : ℕ} (hn : 0 < n)
     (ξ : Ω → ℝ) (hξ : MemLp ξ 2 μ) :
@@ -318,7 +340,9 @@ theorem iid_mean_abs_le {Ω : Type*} [MeasurableSpace Ω]
 real-valued statistics indexed by `k`](hyp:hξ), each observed on the same `n`-point independent,
 identically distributed sample, [the expected Euclidean norm of the vector of centered sample
 averages — one coordinate per statistic — is at most the square root of the sum of the population
-second moments divided by `n`](goal). -/
+second moments divided by `n`](goal).
+@isnad1 id=le.2h5v.s8.3350cd3f9ba7 from=translated src=- shape=366100c2 vocab=5b9f6fab
+-/
 theorem iid_mean_euclidean_abs_le {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {n : ℕ} (hn : 0 < n)
     (ξ : ι → Ω → ℝ) (hξ : ∀ k, MemLp (ξ k) 2 μ) :
@@ -332,7 +356,9 @@ theorem iid_mean_euclidean_abs_le {Ω ι : Type*} [MeasurableSpace Ω] [Fintype 
 
 /-- The centred coordinatewise sample averages of finitely many square-integrable statistics over an
 `n`-point independent, identically distributed sample form a square-integrable Euclidean
-length. -/
+length.
+@isnad1 id=memlp.1h5v.s8.44fae446bac9 from=translated src=- shape=e5ae24e0 vocab=b56404ee
+-/
 theorem memLp_two_iid_mean_euclidean {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {n : ℕ}
     (ξ : ι → Ω → ℝ) (hξ : ∀ k, MemLp (ξ k) 2 μ) :
@@ -345,7 +371,9 @@ theorem memLp_two_iid_mean_euclidean {Ω ι : Type*} [MeasurableSpace Ω] [Finty
 set_option maxHeartbeats 800000 in
 -- Elaborating the nested product-space integrability proof requires a larger deterministic budget.
 /-- The centred coordinatewise sample averages of finitely many integrable statistics over an
-`n`-point independent, identically distributed sample have integrable Euclidean length. -/
+`n`-point independent, identically distributed sample have integrable Euclidean length.
+@isnad1 id=integrab.1h5v.s7.237ab90665d4 from=translated src=- shape=c8190e19 vocab=518ded1b
+-/
 theorem integrable_iid_mean_euclidean {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {n : ℕ}
     (ξ : ι → Ω → ℝ) (hξ : ∀ k, Integrable (ξ k) μ) :
@@ -364,7 +392,9 @@ theorem integrable_iid_mean_euclidean {Ω ι : Type*} [MeasurableSpace Ω] [Fint
   simpa only [v] using integrable_euclidean_of_integrable v hv
 
 /-- An average of `n` independent, identically distributed observations has the same expectation
-as the population statistic being averaged. -/
+as the population statistic being averaged.
+@isnad1 id=eq.2h4v.s7.f41d7c5c41a4 from=translated src=- shape=bd5048f6 vocab=62871202
+-/
 lemma iid_average_integral
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] (m : ℕ) (hm : 0 < m)
@@ -377,7 +407,9 @@ lemma iid_average_integral
   simpa using iid_average_integral_fintype (ι := Fin m) μ F hF
 
 /-- The variance of an average of independent, identically distributed observations is the
-population variance divided by the sample size (including the zero-length case). -/
+population variance divided by the sample size (including the zero-length case).
+@isnad1 id=eq.1h4v.s7.a7bca75b1500 from=translated src=- shape=047d18d3 vocab=dd6d2db7
+-/
 lemma iid_average_variance
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] (m : ℕ)

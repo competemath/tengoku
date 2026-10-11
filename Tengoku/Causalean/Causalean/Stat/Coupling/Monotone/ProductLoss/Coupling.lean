@@ -55,7 +55,9 @@ noncomputable def countermonotoneCoupling (μ ν : Measure ℝ) : Measure (ℝ �
   unifOI.map (fun u => (quantile μ u, quantile ν (1 - u)))
 
 /-- The reflection `u ↦ 1 - u` preserves the uniform measure on `(0,1)`:
-`unifOI.map (fun u => 1 - u) = unifOI`. -/
+`unifOI.map (fun u => 1 - u) = unifOI`.
+@isnad1 id=eq.0h0v.s4.320d4e253af7 from=translated src=- shape=bd8c8093 vocab=6f6909bf
+-/
 lemma map_one_sub_unifOI : unifOI.map (fun u : ℝ => 1 - u) = unifOI := by
   let f : ℝ → ℝ := fun u => 1 - u
   have hf : Measurable f := measurable_const.sub measurable_id
@@ -90,7 +92,9 @@ recover `μ` and `ν`](goal).
 Its marginals are computed by `Measure.map_map` composing with `Prod.fst`/
 `Prod.snd`, which reduces each to `unifOI.map (quantile ·)`, equal to the
 corresponding measure by the probability integral transform
-`quantile_map_uniform`. -/
+`quantile_map_uniform`.
+@isnad1 id=iscoupli.0h2v.s4.04f27b3aad3e from=translated src=- shape=53231727 vocab=0f27f3c0
+-/
 theorem isCoupling_comonotoneCoupling (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] :
     IsCoupling (comonotoneCoupling μ ν) μ ν := by
@@ -122,7 +126,9 @@ its two marginals recover `μ` and `ν`](goal).
 
 The first marginal is `μ` by the PIT; the second marginal is `unifOI.map
 (quantile ν ∘ (1 - ·))`, which equals `ν` because `u ↦ 1 - u` preserves
-`unifOI` (`map_one_sub_unifOI`) followed by the PIT for `ν`. -/
+`unifOI` (`map_one_sub_unifOI`) followed by the PIT for `ν`.
+@isnad1 id=iscoupli.0h2v.s4.5f456c77e117 from=translated src=- shape=53231727 vocab=3911a76e
+-/
 theorem isCoupling_countermonotoneCoupling (μ ν : Measure ℝ)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] :
     IsCoupling (countermonotoneCoupling μ ν) μ ν := by

@@ -30,7 +30,9 @@ namespace Imo1988P2
 abbrev SolutionSet : Set ℕ := {n | 0 < n ∧ Even n}
 
 /-- Counting the pairs `(a, b)` with `a ∈ s`, `b ∈ t` and `r a b`,
-fiberwise in either order. -/
+fiberwise in either order.
+@isnad1 id=eq.0h5v.s6.9dc17517778d from=translated src=- shape=1dd7c46c vocab=9155ba54
+-/
 lemma double_count {α β : Type*} (s : Finset α) (t : Finset β) (r : α → β → Prop)
     [∀ a b, Decidable (r a b)] :
     ∑ a ∈ s, (t.filter (fun b ↦ r a b)).card =
@@ -39,7 +41,9 @@ lemma double_count {α β : Type*} (s : Finset α) (t : Finset β) (r : α → �
   exact Finset.sum_comm
 
 /-- If finitely many terms, each at least `1`, sum to the number of terms,
-then every term equals `1`. -/
+then every term equals `1`.
+@isnad1 id=eq.3h4v.s6.600ec317d120 from=translated src=- shape=7cf91f3d vocab=65a5cc11
+-/
 lemma all_eq_one {α : Type*} {s : Finset α} {g : α → ℕ}
     (h1 : ∀ a ∈ s, 1 ≤ g a) (h2 : ∑ a ∈ s, g a = s.card) :
     ∀ a ∈ s, g a = 1 := by
@@ -53,7 +57,9 @@ section Structure
 variable {n : ℕ} {B : Type} [DecidableEq B] {A : Fin (2 * n + 1) → Finset B}
 
 /-- Under the problem's hypotheses, every element of `A i` lies in exactly one
-set `A j` with `j ≠ i`. -/
+set `A j` with `j ≠ i`.
+@isnad1 id=eq.4h5v.s9.f07a93af6761 from=translated src=- shape=9f91a734 vocab=81e1bf97
+-/
 lemma other_unique
     (hcard : ∀ i, (A i).card = 2 * n)
     (hint : ∀ i j, i ≠ j → (A i ∩ A j).card = 1)
@@ -81,7 +87,9 @@ lemma other_unique
   exact key b hb
 
 /-- The pair of indices of the sets containing a common element `b` of
-`A i` and `A j`. -/
+`A i` and `A j`.
+@isnad1 id=eq.6h6v.s9.fcd7958b3646 from=translated src=- shape=79cc711a vocab=240b5af9
+-/
 lemma pair_eq
     (hcard : ∀ i, (A i).card = 2 * n)
     (hint : ∀ i j, i ≠ j → (A i ∩ A j).card = 1)
@@ -115,6 +123,9 @@ lies in `[1, m]`. -/
 def colour {K : ℕ} (m : ℕ) (e : Finset (Fin (K + 1))) : Fin 2 :=
   if ∃ p ∈ e, ∃ q ∈ e, (q - p).val ∈ Finset.Icc 1 m then 0 else 1
 
+/--
+@isnad1 id=iff.0h3v.s8.265b29f73021 from=translated src=- shape=2e70d136 vocab=2160318c
+-/
 lemma colour_eq_zero_iff {K m : ℕ} {e : Finset (Fin (K + 1))} :
     colour m e = 0 ↔ ∃ p ∈ e, ∃ q ∈ e, (q - p).val ∈ Finset.Icc 1 m := by
   unfold colour
@@ -122,6 +133,9 @@ lemma colour_eq_zero_iff {K m : ℕ} {e : Finset (Fin (K + 1))} :
   · next h => exact iff_of_true rfl h
   · next h => exact iff_of_false (by decide) h
 
+/--
+@isnad1 id=iff.0h4v.s8.826e6bb6420b from=translated src=- shape=e7d9dc47 vocab=c49e86b4
+-/
 lemma colour_pair_eq_zero_iff {K m : ℕ} {i j : Fin (K + 1)} :
     colour m {i, j} = 0 ↔
       ((j - i).val ∈ Finset.Icc 1 m ∨ (i - j).val ∈ Finset.Icc 1 m) := by
@@ -147,7 +161,9 @@ lemma colour_pair_eq_zero_iff {K m : ℕ} {i j : Fin (K + 1)} :
 /-- At each vertex `i` of the complete graph on `Fin (2 * n + 1)` with
 `n = 2 * m`, exactly `n` of the `2 * n` incident edges have a circular
 difference in `[1, m]`: measuring each neighbour `j` by `(j - i).val`
-identifies the good neighbours with `[1, m] ∪ [2 * n + 1 - m, 2 * n]`. -/
+identifies the good neighbours with `[1, m] ∪ [2 * n + 1 - m, 2 * n]`.
+@isnad1 id=eq.1h3v.s10.11de03eb61af from=translated src=- shape=232a1131 vocab=45b66cbc
+-/
 lemma count_good {n m : ℕ} (hm : n = 2 * m) (i : Fin (2 * n + 1)) :
     ((Finset.univ.erase i).filter
       (fun j ↦ (j - i).val ∈ Finset.Icc 1 m ∨ (i - j).val ∈ Finset.Icc 1 m)).card
@@ -218,7 +234,9 @@ section VertexCount
 variable {n : ℕ} {B : Type} [DecidableEq B] {A : Fin (2 * n + 1) → Finset B}
 
 /-- With `n = 2 * m`, colouring each element by `colour m` of its index pair
-gives exactly `n` elements of colour `0` in each `A i`. -/
+gives exactly `n` elements of colour `0` in each `A i`.
+@isnad1 id=eq.4h5v.s9.55418c665b6a from=translated src=- shape=788c92b1 vocab=f5b39f86
+-/
 lemma vertex_count {m : ℕ} (hm : n = 2 * m)
     (hcard : ∀ i, (A i).card = 2 * n)
     (hint : ∀ i j, i ≠ j → (A i ∩ A j).card = 1)
@@ -270,11 +288,17 @@ abbrev Edges (N : ℕ) : Type := {e : Finset (Fin N) // e.card = 2}
 def edgeSets (N : ℕ) (i : Fin N) : Finset (Edges N) :=
   Finset.univ.filter (fun e ↦ i ∈ e.val)
 
+/--
+@isnad1 id=iff.0h3v.s6.30be8d58d9b6 from=translated src=- shape=8a921952 vocab=aeacfba8
+-/
 lemma mem_edgeSets {N : ℕ} {i : Fin N} {e : Edges N} :
     e ∈ edgeSets N i ↔ i ∈ e.val := by
   rw [edgeSets, Finset.mem_filter]
   exact and_iff_right (Finset.mem_univ e)
 
+/--
+@isnad1 id=eq.0h2v.s4.6c1cb4f81089 from=translated src=- shape=4795aa4e vocab=fd5f7d74
+-/
 lemma edgeSets_card {N : ℕ} (i : Fin N) : (edgeSets N i).card = N - 1 := by
   have h : (Finset.univ.erase i).card = (edgeSets N i).card := by
     refine Finset.card_bij
@@ -303,6 +327,9 @@ lemma edgeSets_card {N : ℕ} (i : Fin N) : (edgeSets N i).card = N - 1 := by
   rw [← h, Finset.card_erase_of_mem (Finset.mem_univ i), Finset.card_univ,
     Fintype.card_fin]
 
+/--
+@isnad1 id=eq.1h3v.s6.de92793f5260 from=translated src=- shape=f8315db5 vocab=7c87db77
+-/
 lemma edgeSets_inter {N : ℕ} {i j : Fin N} (hij : i ≠ j) :
     edgeSets N i ∩ edgeSets N j =
       {⟨{i, j}, Finset.card_pair_eq_two_iff.mpr hij⟩} := by
@@ -320,6 +347,9 @@ lemma edgeSets_inter {N : ℕ} {i j : Fin N} (hij : i ≠ j) :
     exact ⟨Finset.mem_insert_self i _,
       Finset.mem_insert_of_mem (Finset.mem_singleton_self j)⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.ee4a4c143ebe from=translated src=- shape=dfc868bd vocab=c81ef1bf
+-/
 lemma edgeSets_cov {N : ℕ} (e : Edges N) :
     (Finset.univ.filter (fun i ↦ e ∈ edgeSets N i)).card = 2 := by
   have h : Finset.univ.filter (fun i ↦ e ∈ edgeSets N i) = e.val := by

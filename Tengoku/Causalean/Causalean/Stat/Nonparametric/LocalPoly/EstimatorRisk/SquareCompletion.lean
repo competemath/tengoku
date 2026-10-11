@@ -42,7 +42,9 @@ variable {p : ℕ}
 /-- **Completing-the-square inequality for a positive definite quadratic form.** For [a positive
 definite matrix `A`](hyp:hA) and any vectors `e, w`, [the affine functional `2 eᵀw − wᵀ A w` is
 bounded above by the inverse quadratic form `eᵀ A⁻¹ e`, with equality at `w = A⁻¹ e`](goal). This
-is the elementary identity `eᵀ A⁻¹ e − (2 eᵀw − wᵀ A w) = (w − A⁻¹ e)ᵀ A (w − A⁻¹ e) ≥ 0`. -/
+is the elementary identity `eᵀ A⁻¹ e − (2 eᵀw − wᵀ A w) = (w − A⁻¹ e)ᵀ A (w − A⁻¹ e) ≥ 0`.
+@isnad1 id=le.1h4v.s8.447d9536e6c2 from=translated src=- shape=60185aeb vocab=a88cd6dd
+-/
 theorem two_dotProduct_sub_quadForm_le_inv {A : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ}
     (hA : A.PosDef) (e w : Fin (p + 1) → ℝ) :
     2 * (e ⬝ᵥ w) - w ⬝ᵥ (A *ᵥ w) ≤ e ⬝ᵥ (A⁻¹ *ᵥ e) := by
@@ -78,13 +80,17 @@ theorem two_dotProduct_sub_quadForm_le_inv {A : Matrix (Fin (p + 1)) (Fin (p + 1
   linarith
 
 /-- The `(0,0)` entry of an inverse as an inverse quadratic form at the first basis vector:
-`(A⁻¹)₀₀ = e₀ᵀ A⁻¹ e₀` with `e₀ = Pi.single 0 1`. -/
+`(A⁻¹)₀₀ = e₀ᵀ A⁻¹ e₀` with `e₀ = Pi.single 0 1`.
+@isnad1 id=eq.0h2v.s9.543ac9bea425 from=translated src=- shape=cf8caa3b vocab=db970289
+-/
 theorem inv00_eq_quadForm (A : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ) :
     A⁻¹ 0 0 = (Pi.single (0 : Fin (p + 1)) (1 : ℝ)) ⬝ᵥ (A⁻¹ *ᵥ Pi.single 0 1) := by
   simp [dotProduct, mulVec, Pi.single_apply]
 
 /-- The `(0,0)` entry of a matrix as a quadratic form at the first basis vector:
-`A₀₀ = e₀ᵀ A e₀` with `e₀ = Pi.single 0 1`. -/
+`A₀₀ = e₀ᵀ A e₀` with `e₀ = Pi.single 0 1`.
+@isnad1 id=eq.0h2v.s8.5b9c4ebdcc6f from=translated src=- shape=4ee02998 vocab=105810ac
+-/
 theorem entry00_eq_quadForm (A : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ) :
     A 0 0 = (Pi.single (0 : Fin (p + 1)) (1 : ℝ)) ⬝ᵥ (A *ᵥ Pi.single 0 1) := by
   simp [dotProduct, mulVec, Pi.single_apply]
@@ -97,7 +103,9 @@ with `c > 0`, then the intercept leverage entries satisfy
 
 The proof evaluates the completing-the-square identity for `A` at the optimum `w⋆ = A⁻¹ e₀`
 (giving `(A⁻¹)₀₀ = 2 e₀ᵀw⋆ − w⋆ᵀ A w⋆`), bounds `w⋆ᵀ A w⋆ ≥ c·w⋆ᵀ B w⋆` by the sandwich, and
-re-applies completing-the-square for `B` at the scaled vector `c·w⋆` to land at `(B⁻¹)₀₀ / c`. -/
+re-applies completing-the-square for `B` at the scaled vector `c·w⋆` to land at `(B⁻¹)₀₀ / c`.
+@isnad1 id=le.4h4v.s9.4a6c6fa1f87a from=translated src=- shape=7608b1ed vocab=381b2090
+-/
 theorem inv00_le_of_quadForm_sandwich {A B : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ}
     (hA : A.PosDef) (hB : B.PosDef) {c : ℝ} (hc : 0 < c)
     (hsand : ∀ w : Fin (p + 1) → ℝ, c * (w ⬝ᵥ (B *ᵥ w)) ≤ w ⬝ᵥ (A *ᵥ w)) :
@@ -140,7 +148,9 @@ theorem inv00_le_of_quadForm_sandwich {A B : Matrix (Fin (p + 1)) (Fin (p + 1)) 
 
 /-- **Loewner sandwich bound on the `(0,0)` entry.** If `A ⪯ C·B` in the Loewner order on
 quadratic forms (`wᵀ A w ≤ C·wᵀ B w` for all `w`), then the top weight entries satisfy
-`A₀₀ ≤ C·B₀₀`. (Just evaluate the quadratic forms at the first basis vector.) -/
+`A₀₀ ≤ C·B₀₀`. (Just evaluate the quadratic forms at the first basis vector.)
+@isnad1 id=le.1h4v.s8.6dba0428664a from=translated src=- shape=f29838e5 vocab=4efaceda
+-/
 theorem entry00_le_of_quadForm_sandwich {A B : Matrix (Fin (p + 1)) (Fin (p + 1)) ℝ} {C : ℝ}
     (hsand : ∀ w : Fin (p + 1) → ℝ, w ⬝ᵥ (A *ᵥ w) ≤ C * (w ⬝ᵥ (B *ᵥ w))) :
     A 0 0 ≤ C * B 0 0 := by

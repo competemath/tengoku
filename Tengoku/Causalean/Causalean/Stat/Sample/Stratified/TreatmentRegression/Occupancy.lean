@@ -25,7 +25,9 @@ variable [MeasurableSpace κ] [MeasurableSingletonClass κ]
 omit [Fintype κ] in
 /-- In [an iid sample of size n from a probability law Q on cells](hyp:n,Q),
 [the probability that a cell k is empty](hyp:k) [equals (1 − q)ⁿ, where q is the mass Q gives to
-k](goal). -/
+k](goal).
+@isnad1 id=eq.0h4v.s7.1dbc95b57198 from=translated src=- shape=64ff9424 vocab=c02baeac
+-/
 lemma probability_empty_cell (n : ℕ) (Q : Measure κ) [IsProbabilityMeasure Q] (k : κ) :
     ((Measure.pi (fun _ : Fin n => Q)) {x | cellCount x k = 0}).toReal =
       (1 - (Q {k}).toReal) ^ n := by
@@ -44,7 +46,9 @@ lemma probability_empty_cell (n : ℕ) (Q : Measure κ) [IsProbabilityMeasure Q]
 
 /-- In [an iid sample of size n from any probability law Q on cells](hyp:n,Q), [the expected
 repeat count equals n minus the sum over cells of the occupancy probabilities 1 − (1 − q)ⁿ, where
-q is the cell's mass](goal); zero-mass cells are included. -/
+q is the cell's mass](goal); zero-mass cells are included.
+@isnad1 id=eq.0h3v.s7.bd42e7b3e100 from=translated src=- shape=81b7a253 vocab=e3f38b6e
+-/
 theorem integral_repeatCount (n : ℕ) (Q : Measure κ) [IsProbabilityMeasure Q] :
     (∫ x : Fin n → κ, (repeatCount x : ℝ) ∂Measure.pi (fun _ : Fin n => Q)) =
       (n : ℝ) - ∑ k, (1 - (1 - (Q {k}).toReal) ^ n) := by
@@ -86,7 +90,9 @@ least two observations](hyp:hn) and [the number of cells is at most n](hyp:hcard
 [the expected repeat count is at least n/4](goal).
 
 When at most n cells are available and n is at least two, the expected
-repeat count is at least n/4, uniformly over arbitrary categorical masses. -/
+repeat count is at least n/4, uniformly over arbitrary categorical masses.
+@isnad1 id=le.2h3v.s6.cdeb56305d5f from=translated src=- shape=97bf650e vocab=89f72af8
+-/
 theorem integral_repeatCount_lower (n : ℕ) (Q : Measure κ) [IsProbabilityMeasure Q]
     (hn : 2 ≤ n) (hcard : Fintype.card κ ≤ n) :
     (n : ℝ) / 4 ≤ ∫ x : Fin n → κ, (repeatCount x : ℝ)

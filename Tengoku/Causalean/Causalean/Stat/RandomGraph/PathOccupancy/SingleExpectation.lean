@@ -43,6 +43,7 @@ makes the integrand zero. Group the cardinality-only bound with
 sum_powerset_apply_card (or sum_powerset followed by sum_powersetCard), dropping
 sizes zero and one and identifying range with Icc 2 n. Do not introduce
 independence of the random relation or any extra measurable-event assumption.
+@isnad1 id=le.5h9v.s8.9b669aaf158f from=translated src=- shape=a49ba766 vocab=f83af4f4
 -/
 theorem single_expectation_labelled_le {n K : ℕ} {μ : Measure Ω}
     {X : Fin n → Ω → Fin K} {B : Fin n → Ω → Bool} {ε : ℝ}

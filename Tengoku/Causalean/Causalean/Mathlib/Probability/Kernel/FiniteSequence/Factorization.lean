@@ -23,7 +23,9 @@ variable {n : ℕ} {X : Type*} {Z : Fin n → Type*}
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), [a fixed input vector](hyp:x), [a preceding-prefix length](hyp:k), [a successor
 bound](hyp:hk), [a preceding history](hyp:u), and [a next output](hyp:z), [the atom of the
-extended history is the preceding atom mass times the conditional next-output mass](goal). -/
+extended history is the preceding atom mass times the conditional next-output mass](goal).
+@isnad1 id=eq.2h8v.s9.c97832ef7a95 from=translated src=- shape=636d8ba9 vocab=cc6bfb7f
+-/
 theorem prefixLaw_succ_singleton (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X)
     (k : ℕ) (hk : k + 1 ≤ n)
@@ -61,7 +63,9 @@ theorem prefixLaw_succ_singleton (Q : KernelFamily X Z)
 /-- Given [a sequential kernel family](hyp:Q), [the condition that every stage kernel is
 Markov](hyp:hQ), [a fixed input vector](hyp:x), and [a complete transcript](hyp:t), [the
 transcript atom probability is the finite product of its stagewise conditional singleton
-probabilities](goal). -/
+probabilities](goal).
+@isnad1 id=eq.1h6v.s8.64ae5783e8f6 from=translated src=- shape=d4621e9c vocab=56389af9
+-/
 theorem transcriptLaw_singleton (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin n → X)
     (t : Transcript Z) :
@@ -107,7 +111,9 @@ theorem transcriptLaw_singleton (Q : KernelFamily X Z)
 /-- Given [a zero-horizon output family](hyp:Z), [a sequential kernel family](hyp:Q), [the
 condition that every stage kernel is Markov](hyp:hQ), [a zero-horizon input vector](hyp:x), and
 [the sole empty transcript](hyp:t),
-[that transcript has probability one](goal). -/
+[that transcript has probability one](goal).
+@isnad1 id=eq.1h5v.s7.ba09589472ce from=translated src=- shape=6c137732 vocab=d16be329
+-/
 theorem transcriptLaw_zero (Z : Fin 0 → Type*) [∀ i, MeasurableSpace (Z i)]
     [∀ i, MeasurableSingletonClass (Z i)] (Q : KernelFamily X Z)
     (hQ : ∀ i, IsMarkovKernel (Q i)) (x : Fin 0 → X)

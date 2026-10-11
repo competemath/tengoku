@@ -83,10 +83,14 @@ namespace PolyTail
 
 variable {U : Ω → ℝ} {κ t₀ cm cp : ℝ}
 
-/-- The upper constant is positive. -/
+/-- The upper constant is positive.
+@isnad1 id=lt.1h7v.s5.5c744e440435 from=translated src=- shape=60b37477 vocab=54dd1bbb
+-/
 theorem cp_pos (h : PolyTail P U κ t₀ cm cp) : 0 < cp := lt_trans h.cm_pos h.cm_lt_cp
 
-/-- The window endpoint is positive and `< 1` packaged together. -/
+/-- The window endpoint is positive and `< 1` packaged together.
+@isnad1 id=and.1h7v.s5.892988b88e57 from=translated src=- shape=1b87be96 vocab=54dd1bbb
+-/
 theorem t0_mem : PolyTail P U κ t₀ cm cp → 0 < t₀ ∧ t₀ < 1 :=
   fun h => ⟨h.t0_pos, h.t0_lt_one⟩
 
@@ -144,25 +148,33 @@ noncomputable def trimWeight (U : Ω → ℝ) (lam : ℝ) (ω : Ω) : ℝ :=
 
 variable {U : Ω → ℝ} {lam : ℝ}
 
-/-- The truncated denominator is measurable when `U` is measurable. -/
+/-- The truncated denominator is measurable when `U` is measurable.
+@isnad1 id=measurab.1h3v.s4.bce4c31042ea from=translated src=- shape=f90732d9 vocab=2f670375
+-/
 @[fun_prop]
 theorem measurable_truncDen (hU : Measurable U) :
     Measurable (truncDen U lam) :=
   hU.max measurable_const
 
-/-- The inverse second-moment integrand is measurable when `U` is measurable. -/
+/-- The inverse second-moment integrand is measurable when `U` is measurable.
+@isnad1 id=measurab.1h3v.s5.85524894504a from=translated src=- shape=64d788f0 vocab=06dea53a
+-/
 @[fun_prop]
 theorem measurable_invMomentI_integrand (hU : Measurable U) :
     Measurable (fun ω => U ω / (max (U ω) lam) ^ 2) :=
   hU.div ((hU.max measurable_const).pow_const 2)
 
-/-- The inverse first-moment integrand is measurable when `U` is measurable. -/
+/-- The inverse first-moment integrand is measurable when `U` is measurable.
+@isnad1 id=measurab.1h3v.s5.bb4d43a81589 from=translated src=- shape=efb49341 vocab=7f68a7bf
+-/
 @[fun_prop]
 theorem measurable_invMomentJ_integrand (hU : Measurable U) :
     Measurable (fun ω => (max (U ω) lam)⁻¹) :=
   (hU.max measurable_const).inv
 
-/-- The leftover trimming weight is measurable when `U` is measurable. -/
+/-- The leftover trimming weight is measurable when `U` is measurable.
+@isnad1 id=measurab.1h3v.s4.09868795123c from=translated src=- shape=f90732d9 vocab=f36bec5d
+-/
 @[fun_prop]
 theorem measurable_trimWeight (hU : Measurable U) :
     Measurable (trimWeight U lam) :=
@@ -171,11 +183,15 @@ theorem measurable_trimWeight (hU : Measurable U) :
 /-! ## Positivity and pointwise bounds on the denominator -/
 
 omit [MeasurableSpace Ω] in
-/-- `max U λ ≥ λ` (pointwise, no hypotheses). -/
+/-- `max U λ ≥ λ` (pointwise, no hypotheses).
+@isnad1 id=le.0h4v.s4.9c0be5af38fa from=translated src=- shape=4056932c vocab=23411695
+-/
 theorem le_truncDen (ω : Ω) : lam ≤ truncDen U lam ω := le_max_right _ _
 
 omit [MeasurableSpace Ω] in
-/-- For `0 < λ`, the denominator is positive. -/
+/-- For `0 < λ`, the denominator is positive.
+@isnad1 id=lt.1h4v.s5.2ead84edd06a from=translated src=- shape=a8f7f2d8 vocab=a089bd69
+-/
 theorem truncDen_pos (hlam : 0 < lam) (ω : Ω) : 0 < truncDen U lam ω :=
   lt_of_lt_of_le hlam (le_max_right _ _)
 
@@ -186,7 +202,9 @@ variable {κ t₀ cm cp : ℝ}
 /-- **Mass below `λ`.** Under the polynomial lower-tail hypothesis packaged in `h`, for
 [a threshold `λ` that is positive](hyp:hlam_pos) and [at most the window endpoint
 `t₀`](hyp:hlam_le), [the open lower level set `{U < λ}` has `P`-mass at most `cp · λᵏ`](goal).
-Immediate from monotonicity and the upper tail bound at `t = λ`. -/
+Immediate from monotonicity and the upper tail bound at `t = λ`.
+@isnad1 id=le.3h8v.s6.24fd8c3852d3 from=translated src=- shape=67b33670 vocab=4a7dab7a
+-/
 theorem measureReal_lt_le [IsFiniteMeasure P] (h : PolyTail P U κ t₀ cm cp)
     (hlam_pos : 0 < lam) (hlam_le : lam ≤ t₀) :
     P.real {ω | U ω < lam} ≤ cp * lam ^ κ := by
@@ -196,7 +214,9 @@ theorem measureReal_lt_le [IsFiniteMeasure P] (h : PolyTail P U κ t₀ cm cp)
 
 /-! ## Pointwise bounds and integrability of the integrands -/
 
-/-- On `{0 < U ≤ 1}` the `I`-integrand is squeezed in `[0, 1/λ²]`. -/
+/-- On `{0 < U ≤ 1}` the `I`-integrand is squeezed in `[0, 1/λ²]`.
+@isnad1 id=and.3h2v.s7.05cb1f557815 from=translated src=- shape=614c911d vocab=10c51aa3
+-/
 theorem invMomentI_integrand_mem (hlam : 0 < lam) {x : ℝ} (hx0 : 0 < x) (hx1 : x ≤ 1) :
     0 ≤ x / (max x lam) ^ 2 ∧ x / (max x lam) ^ 2 ≤ (lam ^ 2)⁻¹ := by
   have hden : 0 < max x lam := lt_of_lt_of_le hlam (le_max_right _ _)
@@ -206,7 +226,9 @@ theorem invMomentI_integrand_mem (hlam : 0 < lam) {x : ℝ} (hx0 : 0 < x) (hx1 :
   have hlx : lam ≤ max x lam := le_max_right _ _
   nlinarith [hx1, hlx, hlam, sq_nonneg lam, mul_le_mul hlx hlx hlam.le hden.le]
 
-/-- The `J`-integrand is squeezed in `[0, 1/λ]`. -/
+/-- The `J`-integrand is squeezed in `[0, 1/λ]`.
+@isnad1 id=and.1h2v.s5.5eba8699052c from=translated src=- shape=653a531c vocab=06ae8413
+-/
 theorem invMomentJ_integrand_mem (hlam : 0 < lam) (x : ℝ) :
     0 ≤ (max x lam)⁻¹ ∧ (max x lam)⁻¹ ≤ lam⁻¹ := by
   have hden : 0 < max x lam := lt_of_lt_of_le hlam (le_max_right _ _)
@@ -214,7 +236,9 @@ theorem invMomentJ_integrand_mem (hlam : 0 < lam) (x : ℝ) :
     rw [inv_le_inv₀ hden hlam]; exact le_max_right _ _⟩
 
 omit [MeasurableSpace Ω] in
-/-- The leftover weight lies in `[0,1]` whenever `U > 0`. -/
+/-- The leftover weight lies in `[0,1]` whenever `U > 0`.
+@isnad1 id=and.2h2v.s6.d2d26bd17e1a from=translated src=- shape=0a95e0a2 vocab=9e9c0386
+-/
 theorem trimWeight_mem (hlam : 0 < lam) {x : ℝ} (hx0 : 0 < x) :
     0 ≤ 1 - x / (max x lam) ∧ 1 - x / (max x lam) ≤ 1 := by
   have hden : 0 < max x lam := lt_of_lt_of_le hlam (le_max_right _ _)
@@ -223,7 +247,9 @@ theorem trimWeight_mem (hlam : 0 < lam) {x : ℝ} (hx0 : 0 < x) :
   have : 0 ≤ x / max x lam := div_nonneg hx0.le hden.le
   linarith
 
-/-- The `I`-integrand is integrable (bounded a.e. on a probability space). -/
+/-- The `I`-integrand is integrable (bounded a.e. on a probability space).
+@isnad1 id=integrab.2h4v.s6.640282719a8e from=translated src=- shape=630f463f vocab=1386b91c
+-/
 theorem integrable_invMomentI_integrand [IsProbabilityMeasure P]
     (hsetup : TailSetup P U) (hlam : 0 < lam) :
     Integrable (fun ω => U ω / (max (U ω) lam) ^ 2) P := by
@@ -233,7 +259,9 @@ theorem integrable_invMomentI_integrand [IsProbabilityMeasure P]
   rw [Real.norm_eq_abs, abs_of_nonneg (invMomentI_integrand_mem hlam hpos hle).1]
   exact (invMomentI_integrand_mem hlam hpos hle).2
 
-/-- The `J`-integrand is integrable. -/
+/-- The `J`-integrand is integrable.
+@isnad1 id=integrab.2h4v.s6.3c50411a1c33 from=translated src=- shape=c1e2e155 vocab=21fe8cf3
+-/
 theorem integrable_invMomentJ_integrand [IsProbabilityMeasure P]
     (hsetup : TailSetup P U) (hlam : 0 < lam) :
     Integrable (fun ω => (max (U ω) lam)⁻¹) P := by
@@ -243,7 +271,9 @@ theorem integrable_invMomentJ_integrand [IsProbabilityMeasure P]
   rw [Real.norm_eq_abs, abs_of_nonneg (invMomentJ_integrand_mem hlam (U ω)).1]
   exact (invMomentJ_integrand_mem hlam (U ω)).2
 
-/-- The leftover weight is integrable. -/
+/-- The leftover weight is integrable.
+@isnad1 id=integrab.2h4v.s6.ef558a0a094a from=translated src=- shape=77575930 vocab=19432e45
+-/
 theorem integrable_trimWeight [IsProbabilityMeasure P]
     (hsetup : TailSetup P U) (hlam : 0 < lam) :
     Integrable (trimWeight U lam) P := by

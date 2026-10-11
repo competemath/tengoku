@@ -30,7 +30,9 @@ open MeasureTheory
 
     The proof rewrites the set integral as an indicator-weighted integral,
     factors it via `IndepFun.integral_fun_comp_mul_comp`, and evaluates
-    `∫ indicator_{f ⁻¹' E} 1` via `integral_indicator_one`. -/
+    `∫ indicator_{f ⁻¹' E} 1` via `integral_indicator_one`.
+@isnad1 id=eq.6h8v.s7.c66461cb65ed from=translated src=- shape=cc3a4b3d vocab=b496c6c9
+-/
 theorem IndepFun.integral_restrict_preimage_eq_mul
     {Ω α β : Type*} [MeasurableSpace Ω] [MeasurableSpace α] [MeasurableSpace β]
     {μ : Measure Ω}

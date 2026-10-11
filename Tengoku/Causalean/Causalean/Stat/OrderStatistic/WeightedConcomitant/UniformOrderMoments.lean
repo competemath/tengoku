@@ -93,7 +93,9 @@ private theorem simplex_coordinate_product_integrable_local (n : ℕ) (i k : Fin
     (simplex_coordinate_bound_local n i)
 
 /-- For a [positive sample size](hyp:hn) and [zero-based sorted index](hyp:j),
- [the corresponding uniform order statistic has mean `(j+1)/(n+1)`](goal). -/
+ [the corresponding uniform order statistic has mean `(j+1)/(n+1)`](goal).
+@isnad1 id=eq.1h2v.s6.f323c7d95395 from=translated src=- shape=158e3fa9 vocab=8510fbcb
+-/
 theorem uniform_order_mean {n : ℕ} (hn : 0 < n) (j : Fin n) :
     (∫ x, sortedSample n x j ∂iidSample uniform01 n) =
       ((j : ℕ) + 1 : ℝ) / (n + 1) := by
@@ -124,7 +126,9 @@ theorem uniform_order_mean {n : ℕ} (hn : 0 < n) (j : Fin n) :
           simp [s, Fin.card_Iic, div_eq_mul_inv]
 
 /-- For a [positive sample size](hyp:hn) and [zero-based sorted index](hyp:j),
- [the corresponding uniform order statistic has second moment `(j+1)(j+2)/((n+1)(n+2))`](goal). -/
+ [the corresponding uniform order statistic has second moment `(j+1)(j+2)/((n+1)(n+2))`](goal).
+@isnad1 id=eq.1h2v.s7.0613f4f02625 from=translated src=- shape=4ebeac5a vocab=7fc4bb55
+-/
 theorem uniform_order_second_moment {n : ℕ} (hn : 0 < n) (j : Fin n) :
     (∫ x, (sortedSample n x j) ^ 2 ∂iidSample uniform01 n) =
       (((j : ℕ) + 1 : ℝ) * ((j : ℕ) + 2)) / ((n + 1) * (n + 2)) := by

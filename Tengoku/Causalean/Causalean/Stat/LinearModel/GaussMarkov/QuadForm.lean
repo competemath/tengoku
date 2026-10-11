@@ -38,12 +38,16 @@ This is the deterministic algebraic object; the bridge to
 `variance_linearCombination` in `Variance.lean`. -/
 def quadVar (S : Matrix Obs Obs ℝ) (w : Obs → ℝ) : ℝ := w ⬝ᵥ S *ᵥ w
 
-/-- The quadratic variance form unfolds to the weight-covariance-weight product. -/
+/-- The quadratic variance form unfolds to the weight-covariance-weight product.
+@isnad1 id=eq.0h3v.s5.2f657af3bc40 from=translated src=- shape=46dc41c9 vocab=e946fe3c
+-/
 lemma quadVar_def (S : Matrix Obs Obs ℝ) (w : Obs → ℝ) :
     quadVar S w = w ⬝ᵥ S *ᵥ w := rfl
 
 /-- A positive-semidefinite covariance matrix gives a nonnegative variance for
-every linear weight. -/
+every linear weight.
+@isnad1 id=le.1h3v.s5.52f817c6c80a from=translated src=- shape=2de425f8 vocab=d08224d9
+-/
 lemma quadVar_nonneg {S : Matrix Obs Obs ℝ} (hS : S.PosSemidef) (w : Obs → ℝ) :
     0 ≤ quadVar S w := by
   have h := hS.dotProduct_mulVec_nonneg w
@@ -60,7 +64,9 @@ def SphericalErrors (S : Matrix Obs Obs ℝ) (σ : ℝ) : Prop :=
 
 /-- [Under spherical errors, i.e. when the error covariance matrix `S` equals `σ²` times
 the identity](hyp:h), [the linear-estimator variance functional at weight vector `w` reduces
-to the common variance `σ²` times the squared Euclidean length of `w`](goal). -/
+to the common variance `σ²` times the squared Euclidean length of `w`](goal).
+@isnad1 id=eq.1h4v.s6.1b61052f1402 from=translated src=- shape=91483787 vocab=4ec33ed0
+-/
 lemma quadVar_spherical {S : Matrix Obs Obs ℝ} {σ : ℝ} (h : SphericalErrors S σ)
     (w : Obs → ℝ) : quadVar S w = σ ^ 2 * (w ⬝ᵥ w) := by
   subst h

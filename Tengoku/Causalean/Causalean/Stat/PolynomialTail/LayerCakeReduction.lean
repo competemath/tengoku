@@ -58,29 +58,39 @@ $t^{-1}$. -/
 noncomputable def tailIntegral (P : Measure Ω) (U : Ω → ℝ) (lam : ℝ) : ℝ :=
   ∫ t in Ioc 1 lam⁻¹, P.real {ω | U ω ≤ t⁻¹}
 
-/-- The lower CDF `s ↦ P{U ≤ s}` is monotone. -/
+/-- The lower CDF `s ↦ P{U ≤ s}` is monotone.
+@isnad1 id=monotone.0h3v.s5.e0e89801835d from=translated src=- shape=df60f21c vocab=e296798a
+-/
 theorem monotone_cdf [IsFiniteMeasure P] :
     Monotone (fun s : ℝ => P.real {ω | U ω ≤ s}) :=
   fun _ _ hs => measureReal_mono (fun ω (hω : U ω ≤ _) => le_trans hω hs) (measure_ne_top P _)
 
-/-- The integrand `t ↦ P{U ≤ t⁻¹}` is measurable (monotone CDF ∘ inversion). -/
+/-- The integrand `t ↦ P{U ≤ t⁻¹}` is measurable (monotone CDF ∘ inversion).
+@isnad1 id=measurab.0h3v.s5.f447eed01b60 from=translated src=- shape=62cc8114 vocab=bb219471
+-/
 @[fun_prop]
 theorem measurable_tailIntegrand [IsFiniteMeasure P] :
     Measurable (fun t : ℝ => P.real {ω | U ω ≤ t⁻¹}) :=
   (monotone_cdf.measurable).comp measurable_inv
 
-/-- The integrand is nonnegative. -/
+/-- The integrand is nonnegative.
+@isnad1 id=le.0h4v.s5.dedf86246dd0 from=translated src=- shape=7154d53b vocab=e404af12
+-/
 theorem tailIntegrand_nonneg (t : ℝ) : 0 ≤ P.real {ω | U ω ≤ t⁻¹} :=
   measureReal_nonneg
 
-/-- The integrand is bounded by `1`. -/
+/-- The integrand is bounded by `1`.
+@isnad1 id=le.0h4v.s5.64bf6571ef4a from=translated src=- shape=6a4c9f5c vocab=b722a883
+-/
 theorem tailIntegrand_le_one [IsProbabilityMeasure P] (t : ℝ) :
     P.real {ω | U ω ≤ t⁻¹} ≤ 1 := by
   calc P.real {ω | U ω ≤ t⁻¹}
       ≤ P.real (univ : Set Ω) := measureReal_mono (subset_univ _) (measure_ne_top P _)
     _ = 1 := by rw [measureReal_def, measure_univ, ENNReal.toReal_one]
 
-/-- The tail integrand is integrable on `Ioc a b`. -/
+/-- The tail integrand is integrable on `Ioc a b`.
+@isnad1 id=integrab.0h5v.s6.6f13f04be984 from=translated src=- shape=0fce98fd vocab=e742e919
+-/
 theorem integrableOn_tailIntegrand [IsProbabilityMeasure P] (a b : ℝ) :
     IntegrableOn (fun t : ℝ => P.real {ω | U ω ≤ t⁻¹}) (Ioc a b) volume := by
   haveI : IsFiniteMeasure (volume.restrict (Ioc a b)) :=
@@ -100,7 +110,9 @@ plus the threshold tail integral `tailIntegral P U λ`](goal):
 
 The level `t ≤ 1` part of the layer-cake integral contributes exactly `1` (since the
 integrand `(max U λ)⁻¹ ≥ 1` a.s.), and the levels `t ∈ (1, λ⁻¹]` reproduce
-`P{U ≤ t⁻¹}`. -/
+`P{U ≤ t⁻¹}`.
+@isnad1 id=eq.3h4v.s6.c79e641e13a2 from=translated src=- shape=245e14e5 vocab=3b848c33
+-/
 theorem invMomentJ_eq_one_add_tailIntegral [IsProbabilityMeasure P]
     (hsetup : TailSetup P U) (hlam_pos : 0 < lam) (hlam_lt : lam < 1) :
     invMomentJ P U lam = 1 + tailIntegral P U lam := by
@@ -150,7 +162,9 @@ theorem invMomentJ_eq_one_add_tailIntegral [IsProbabilityMeasure P]
   rw [setIntegral_congr_fun measurableSet_Ioc hone]
   simp
 
-/-- `tailIntegral` is nonnegative. -/
+/-- `tailIntegral` is nonnegative.
+@isnad1 id=le.0h4v.s5.a487d4458b48 from=translated src=- shape=4d03b67c vocab=50135995
+-/
 theorem tailIntegral_nonneg [IsProbabilityMeasure P] :
     0 ≤ tailIntegral P U lam :=
   setIntegral_nonneg measurableSet_Ioc (fun t _ => tailIntegrand_nonneg t)

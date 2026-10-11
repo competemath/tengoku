@@ -29,7 +29,9 @@ variable {Omega kappa : Type*} [MeasurableSpace Omega]
   [MeasurableSpace kappa] [MeasurableSingletonClass kappa]
 
 /-- When [two arm/group labels differ](hyp:hne), [their supported residuals have
-zero pointwise product because their supports are disjoint](goal). -/
+zero pointwise product because their supports are disjoint](goal).
+@isnad1 id=eq.1h11v.s6.641d8826cb39 from=translated src=- shape=352f0c27 vocab=550a3417
+-/
 lemma supportedArmGroupResidual_mul_eq_zero_of_ne
     (group : Omega -> kappa) (arm : Omega -> Bool) (Y : Omega -> Real)
     (center : Bool -> kappa -> Real) (a b : Bool) (k l : kappa)
@@ -229,7 +231,9 @@ private lemma setIntegral_supported_sq_le_indicator
 [every supported residual has a finite second moment](hyp:hmem), [each residual
 is centered within its arm/group cell](hyp:hcenter), and [the two sample
 coordinates differ](hyp:hij), [any finite-design weight times their two
-supported residuals has product-law integral zero](goal). -/
+supported residuals has product-law integral zero](goal).
+@isnad1 id=eq.6h15v.s8.f9a8a9e2418a from=translated src=- shape=74066a83 vocab=26630658
+-/
 lemma integral_designWeight_residual_cross_coordinates_eq_zero
     {n : Nat} (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega -> kappa) (arm : Omega -> Bool) (Y : Omega -> Real)
@@ -322,7 +326,9 @@ lemma integral_designWeight_residual_cross_coordinates_eq_zero
 residual second moment obeys the stated envelope](hyp:hsq), and [the design
 weight is nonnegative](hyp:hW), [the weighted residual square at one sample
 coordinate is bounded in expectation by the corresponding weighted cell
-indicator envelope](goal). -/
+indicator envelope](goal).
+@isnad1 id=le.6h13v.s8.dd127622964b from=translated src=- shape=7424d35a vocab=06f95d0f
+-/
 lemma integral_designWeight_residual_sq_le_indicator
     {n : Nat} (mu : Measure Omega) [IsProbabilityMeasure mu]
     (group : Omega -> kappa) (arm : Omega -> Bool) (Y : Omega -> Real)

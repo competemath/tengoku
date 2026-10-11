@@ -84,7 +84,9 @@ abbrev solutions : Finset (Finset ℕ) :=
 abbrev maxCount : ℕ := 7
 
 /-- The number of unit squares of a rectangle is the product of its two
-side lengths. -/
+side lengths.
+@isnad1 id=eq.2h1v.s5.0a0e5ae06192 from=translated src=- shape=ccdb1a65 vocab=a5d4c095
+-/
 lemma Rect.card_cells (R : Rect) (hh : 1 ≤ R.h) (hw : 1 ≤ R.w) :
     R.cells.card = R.h * R.w := by
   have hcells : R.cells =
@@ -95,14 +97,18 @@ lemma Rect.card_cells (R : Rect) (hh : 1 ≤ R.h) (hw : 1 ≤ R.w) :
   have e2 : R.c + (R.w - 1) + 1 - R.c = R.w := by lia
   rw [e1, e2]
 
-/-- White and black squares together make up all squares of a rectangle. -/
+/-- White and black squares together make up all squares of a rectangle.
+@isnad1 id=eq.0h1v.s4.a1cb2ebdff5a from=translated src=- shape=151a3dc2 vocab=416b495d
+-/
 lemma Rect.whiteCount_add_blackCount (R : Rect) :
     R.whiteCount + R.blackCount = R.cells.card := by
   show (R.cells.filter isWhite).card +
     (R.cells.filter fun x ↦ ¬ isWhite x).card = R.cells.card
   exact Finset.card_filter_add_card_filter_not isWhite
 
-/-- A rectangle satisfying condition (i) has at least one white square. -/
+/-- A rectangle satisfying condition (i) has at least one white square.
+@isnad1 id=le.3h1v.s5.395d422307b9 from=translated src=- shape=fa2b653c vocab=5e8ec861
+-/
 lemma Rect.one_le_whiteCount (R : Rect) (hh : 1 ≤ R.h) (hw : 1 ≤ R.w)
     (hbal : R.whiteCount = R.blackCount) : 1 ≤ R.whiteCount := by
   have hcard := R.card_cells hh hw
@@ -111,7 +117,9 @@ lemma Rect.one_le_whiteCount (R : Rect) (hh : 1 ≤ R.h) (hw : 1 ≤ R.w)
   lia
 
 /-- A finite set of `k` distinct positive integers has sum at least
-`1 + 2 + ... + k`, here phrased as `k * (k + 1) ≤ 2 * ∑ x ∈ S, x`. -/
+`1 + 2 + ... + k`, here phrased as `k * (k + 1) ≤ 2 * ∑ x ∈ S, x`.
+@isnad1 id=le.1h1v.s6.d60f7506623f from=translated src=- shape=8aa586bd vocab=dfafdacf
+-/
 lemma card_mul_succ_le_two_mul_sum (S : Finset ℕ) :
     (∀ x ∈ S, 1 ≤ x) → S.card * (S.card + 1) ≤ 2 * ∑ x ∈ S, x := by
   refine Finset.strongInduction (p := fun S ↦ (∀ x ∈ S, 1 ≤ x) →
@@ -139,7 +147,9 @@ lemma card_mul_succ_le_two_mul_sum (S : Finset ℕ) :
     _ ≤ 2 * s + 2 * m := Nat.add_le_add ih' (by lia)
     _ = 2 * (m + s) := by ring
 
-/-- The total number of white squares in a valid decomposition is 32. -/
+/-- The total number of white squares in a valid decomposition is 32.
+@isnad1 id=eq.1h1v.s4.08d9772972a4 from=translated src=- shape=5f2b03a7 vocab=f802aa98
+-/
 lemma sum_whiteCount (T : Finset Rect) (hT : ValidDecomp T) :
     ∑ R ∈ T, R.whiteCount = 32 := by
   obtain ⟨hfit, hdisj, hcover, hbal, hdist⟩ := hT
@@ -162,7 +172,9 @@ lemma sum_whiteCount (T : Finset Rect) (hT : ValidDecomp T) :
   exact rfl
 
 /-- The five sets of seven distinct positive integers summing to 32.
-(Enumerated by `decide` over the 7-subsets of `[1, 11]`.) -/
+(Enumerated by `decide` over the 7-subsets of `[1, 11]`.)
+@isnad1 id=mem.4h1v.s9.7a8dbe1f241e from=translated src=- shape=aa294d11 vocab=d78667df
+-/
 lemma seven_distinct_sum_32 (S : Finset ℕ) (hcard : S.card = 7)
     (hpos : ∀ x ∈ S, 1 ≤ x) (hmax : ∀ x ∈ S, x ≤ 11) (hsum : ∑ x ∈ S, x = 32) :
     S ∈ ({{1, 2, 3, 4, 5, 6, 11}, {1, 2, 3, 4, 5, 7, 10},

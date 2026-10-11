@@ -19,7 +19,9 @@ hazard](hyp:hazard,hHazard), and let the integrand be [jointly measurable in tim
 sample](hyp:hMeasurable). For [a nonnegative horizon u](hyp:hu), [finite expected quadratic
 energy](hyp:hQuadratic), and [an integrable predictable quadratic energy summed over all
 subjects](hyp:hEnergy), [each single subject's quadratic hazard energy up to u is integrable over
-samples](goal). -/
+samples](goal).
+@isnad1 id=integrab.6h7v.s8.dc70844573bb from=translated src=- shape=f02cf3ea vocab=0c4d4ba9
+-/
 theorem subject_energy_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -115,7 +117,9 @@ hazard](hyp:hazard,hHazard), and let the integrand be [left predictable](hyp:hPr
 measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](hyp:hu), [finite
 expected quadratic energy](hyp:hQuadratic), and [an integrable predictable quadratic
 energy](hyp:hEnergy), [the squared payoff at subject i's observed censor event by u, taken as
-zero when no such event occurs, is integrable over samples](goal). -/
+zero when no such event occurs, is integrable over samples](goal).
+@isnad1 id=integrab.7h7v.s8.06c806477ba5 from=translated src=- shape=dac8f321 vocab=13eb8bb9
+-/
 theorem subject_event_payoff_square_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -190,7 +194,9 @@ measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](h
 expected quadratic energy](hyp:hQuadratic), and [an integrable predictable quadratic
 energy](hyp:hEnergy), [the square of subject j's strict-past compensated integral evaluated at
 subject i's observed censor event by u, taken as zero when no such event occurs, is integrable
-over samples](goal). -/
+over samples](goal).
+@isnad1 id=integrab.7h8v.s8.2f5a100e554e from=translated src=- shape=7faafbce vocab=b47c08fc
+-/
 theorem cross_prefix_at_event_square_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -332,7 +338,9 @@ measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](h
 expected quadratic energy](hyp:hQuadratic), and [an integrable predictable quadratic
 energy](hyp:hEnergy), [the payoff at subject i's observed censor event by u times subject j's
 strict-past compensated integral at that event, taken as zero when no such event occurs, is
-integrable over samples](goal). -/
+integrable over samples](goal).
+@isnad1 id=integrab.7h8v.s8.4c32f07cf049 from=translated src=- shape=56c400fc vocab=96d2c0a6
+-/
 theorem cross_prefix_event_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)
@@ -395,7 +403,9 @@ measurable in time and sample](hyp:hMeasurable). For [a nonnegative horizon u](h
 expected quadratic energy](hyp:hQuadratic), and [an integrable predictable quadratic
 energy](hyp:hEnergy), [the integral from 0 to u of subject j's strict-past compensated integral
 times the integrand times the hazard times subject i's at-risk indicator is integrable over
-samples](goal). -/
+samples](goal).
+@isnad1 id=integrab.7h8v.s8.93e6e17ea237 from=translated src=- shape=9aae9cf2 vocab=9b9f596c
+-/
 theorem cross_prefix_compensator_integrable {n : ℕ}
     (failureLaw censorLaw : Measure ℝ) (hazard : ℝ → ℝ)
     (hFailure : NonnegativeTimeLaw failureLaw)

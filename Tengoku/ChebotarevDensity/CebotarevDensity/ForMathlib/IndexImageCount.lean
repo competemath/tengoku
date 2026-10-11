@@ -32,7 +32,9 @@ section Sublemmas
 variable {ι : Type*}
 
 /-- The `index n`-image of a bounded set is finite: only finitely many cells of the `n⁻¹ℤ^ι`
-grid meet a bounded set. -/
+grid meet a bounded set.
+@isnad1 id=finite.1h3v.s5.0d97e5c2e015 from=translated src=- shape=2f49b9eb vocab=e7a221de
+-/
 theorem setFinite_index_image_of_isBounded [Finite ι] (n : ℕ) {T : Set (ι → ℝ)}
     (hbdd : Bornology.IsBounded T) : (index n '' T).Finite := by
   classical

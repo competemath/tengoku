@@ -27,7 +27,9 @@ Each coordinate is measurable by measurable_to_bool and hR; apply
 measurable_pi_lambda twice. Any map from this finite discrete vector space to
 the finite space of partitions is measurable. Decode each bit as equality to
 true, then use propext to identify the decoded relation with R. No path-length
-bound or extra measurable reachability hypothesis is necessary. -/
+bound or extra measurable reachability hypothesis is necessary.
+@isnad1 id=measurab.1h3v.s5.197e5614fca3 from=translated src=- shape=c90a93b3 vocab=945f7963
+-/
 theorem measurable_components {n : ℕ} (R : Ω → Fin n → Fin n → Prop)
     (hR : ∀ i j, MeasurableSet {ω | R ω i j}) :
     Measurable (fun ω => components (R ω)) := by
@@ -61,6 +63,7 @@ mark vector. The resulting real score has finite range. It is bounded by the
 maximum of the norms over that finite range; use Integrable.mono' with an
 integrable constant, or SimpleFunc.integrable_of_isFiniteMeasure. There is no
 locality or independence assumption in this analytic fact.
+@isnad1 id=integrab.2h5v.s6.745165a0110f from=translated src=- shape=a4544aa8 vocab=13d93a54
 -/
 theorem integrable_singleScore {n : ℕ} (μ : Measure Ω) [IsFiniteMeasure μ]
     (R : Ω → Fin n → Fin n → Prop) (B : Fin n → Ω → Bool)
@@ -83,6 +86,7 @@ mark vector. Any real statistic of that finite discrete tuple is measurable and
 bounded. This includes the shared-envelope indicator even when the random
 relation depends on the marks. Reuse the finite-range argument of
 integrable_singleScore rather than deriving any distributional formula.
+@isnad1 id=integrab.3h8v.s7.66d45cd6ff95 from=translated src=- shape=03a299eb vocab=d41767ef
 -/
 theorem integrable_pairedScore {n K : ℕ} (μ : Measure Ω) [IsFiniteMeasure μ]
     (M : ℕ) (R : Ω → Fin n → Fin n → Prop)

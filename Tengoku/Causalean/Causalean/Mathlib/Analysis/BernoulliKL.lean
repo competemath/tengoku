@@ -37,7 +37,9 @@ namespace Causalean.Mathlib.Analysis
 open Set
 
 /-- Away from zero and one, the negative Bernoulli entropy has derivative equal to the log odds
-of its argument. -/
+of its argument.
+@isnad1 id=hasderiv.2h1v.s7.8c8450b1f625 from=translated src=- shape=ace1f492 vocab=429f0a9b
+-/
 lemma hasDerivAt_bernEntropy (x : ℝ) (hx0 : x ≠ 0) (hx1 : 1 - x ≠ 0) :
     HasDerivAt (fun t : ℝ => t * Real.log t + (1 - t) * Real.log (1 - t))
       (Real.log x - Real.log (1 - x)) x := by
@@ -183,7 +185,9 @@ private lemma bernH_nonneg_of_mem_quarter_band {p q : ℝ}
       linarith
 
 /-- Bernoulli Kullback–Leibler divergence equals the Bregman remainder of the negative entropy
-function at the second probability. -/
+function at the second probability.
+@isnad1 id=eq.4h2v.s7.6e06c9f5bd97 from=translated src=- shape=18795095 vocab=1ca8daa6
+-/
 lemma bernoulliKL_eq_bregman {p q : ℝ}
     (hp0 : p ≠ 0) (hp1 : 1 - p ≠ 0) (hq0 : q ≠ 0) (hq1 : 1 - q ≠ 0) :
     p * Real.log (p / q) + (1 - p) * Real.log ((1 - p) / (1 - q)) =
@@ -195,7 +199,9 @@ lemma bernoulliKL_eq_bregman {p q : ℝ}
 /-- For probabilities `p` and `q` [both restricted to the band
 `[1/4, 3/4]`](hyp:hp_lo,hp_hi,hq_lo,hq_hi), [the Bernoulli Kullback–Leibler
 divergence `p · log(p / q) + (1 - p) · log((1 - p) / (1 - q))` is bounded above
-by `4 · (p - q) ^ 2`](goal). -/
+by `4 · (p - q) ^ 2`](goal).
+@isnad1 id=le.4h2v.s7.b840131edf53 from=translated src=- shape=e971a6cb vocab=60e75a81
+-/
 theorem bernoulli_kl_le_four_sq_sub_of_mem_quarter_band
     {p q : ℝ} (hp_lo : (1 : ℝ) / 4 ≤ p) (hp_hi : p ≤ 3 / 4)
     (hq_lo : (1 : ℝ) / 4 ≤ q) (hq_hi : q ≤ 3 / 4) :

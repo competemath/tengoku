@@ -55,7 +55,9 @@ law](goal).
 
 All design-dependent coefficients take finitely many real values, even the
 guarded reciprocal Gram. Expand into supported residuals, use finite maxima
-to bound each design coefficient, and lift each residual L2 bound to the product. -/
+to bound each design coefficient, and lift each residual L2 bound to the product.
+@isnad1 id=memlp.1h9v.s7.a25292bf47f1 from=translated src=- shape=40f70520 vocab=308400c2
+-/
 lemma residualRegression_memLp (n : ℕ) (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ) (center : Bool → κ → ℝ) (M : ℝ)
     (h : ResidualAssumptions μ X A Y center M) :
@@ -79,7 +81,9 @@ integral_designWeight_residual_cross_coordinates_eq_zero off the coordinate
 diagonal; disjoint supports remove unequal arm-cell labels on that diagonal.
 Apply integral_designWeight_residual_sq_le_indicator to the remaining terms
 and sum_residualWeight_sq to collapse their coefficients. At D=0 all
-coefficients are zero, so no division by zero occurs in the proof. -/
+coefficients are zero, so no division by zero occurs in the proof.
+@isnad1 id=le.2h10v.s8.c43b158aa27b from=translated src=- shape=47951404 vocab=03c03d70
+-/
 theorem integral_weighted_residualRegression_sq_le (n : ℕ) (μ : Measure Ω)
     [IsProbabilityMeasure μ] (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (M : ℝ) (h : ResidualAssumptions μ X A Y center M)
@@ -112,7 +116,9 @@ Apply integral_weighted_residualRegression_sq_le with the finite-design
 weight W e = if e = d then 1 else 0. Rewrite both integrals as fiber integrals;
 inverseGram is constant on the fiber. Divide by its positive mass, then use
 hD to unfold inverseGram. The preceding residualRegression_memLp supplies
-integrability of the square without a bounded-outcome hypothesis. -/
+integrability of the square without a bounded-outcome hypothesis.
+@isnad1 id=le.3h10v.s8.d98e4d15a384 from=translated src=- shape=b2322532 vocab=179afbd8
+-/
 theorem conditional_residualRegression_sq_le (n : ℕ) (μ : Measure Ω)
     [IsProbabilityMeasure μ] (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (M : ℝ) (h : ResidualAssumptions μ X A Y center M)
@@ -156,7 +162,9 @@ un-clipped regression coefficient minus θ equals the residual regression coeffi
 Write each sampled center as center false (X (z i)) plus its Boolean treatment
 indicator times theta. Partition the baseline weighted sum by cells and use
 sum_residualWeight_cell to kill it. sum_residualWeight_treatment gives theta
- times the Gram for the contrast part; divide using hD. -/
+ times the Gram for the contrast part; divide using hD.
+@isnad1 id=eq.2h9v.s7.6490d9ad9979 from=translated src=- shape=a774acf6 vocab=a6b60069
+-/
 lemma regression_sub_eq_residualRegression {n : ℕ} (X : Ω → κ) (A : Ω → Bool)
     (Y : Ω → ℝ) (center : Bool → κ → ℝ) (theta : ℝ) (z : Fin n → Ω)
     (hD : 0 < gram (sampleDesign X A z))
@@ -205,7 +213,9 @@ positive-probability design fiber with D>0. Null cells need no center constraint
 Use ae_sample_cell_positive from ObservedSupport to apply hcontrast almost
 surely at every coordinate. Restrict this AE fact to the design fiber, rewrite
 the squared error using regression_sub_eq_residualRegression and hD, and
-invoke conditional_residualRegression_sq_le. -/
+invoke conditional_residualRegression_sq_le.
+@isnad1 id=le.4h11v.s9.950b43aeafd0 from=translated src=- shape=6b9436f0 vocab=138554a6
+-/
 theorem conditional_regression_error_sq_le (n : ℕ) (μ : Measure Ω)
     [IsProbabilityMeasure μ] (X : Ω → κ) (A : Ω → Bool) (Y : Ω → ℝ)
     (center : Bool → κ → ℝ) (M theta : ℝ) (h : ResidualAssumptions μ X A Y center M)

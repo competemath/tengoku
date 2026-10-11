@@ -50,7 +50,9 @@ variable (K L : Type*) [Field K] [Field L] [Algebra K L]
 
 variable [NumberField K] [NumberField L]
 
-/-- Only finitely many nonzero primes of `K` ramify in `L`. -/
+/-- Only finitely many nonzero primes of `K` ramify in `L`.
+@isnad1 id=finite.0h2v.s7.e5974c7529d5 from=translated src=- shape=b72b0473 vocab=7797c28c
+-/
 theorem finite_ramifiedIn [IsGalois K L] :
     {𝔭 : Ideal (𝓞 K) | 𝔭.IsPrime ∧ 𝔭 ≠ ⊥ ∧ ¬ IsUnramifiedIn (𝓞 L) 𝔭}.Finite := by
   have hbot : differentIdeal (𝓞 K) (𝓞 L) ≠ 0 := by

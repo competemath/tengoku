@@ -65,7 +65,9 @@ noncomputable def projKernel (c : X → Fin J → ℝ) (M : Matrix (Fin J) (Fin 
   fun x y => ∑ k, ∑ l, c x k * M k l * c y l
 
 omit [IsProbabilityMeasure P] in
-/-- The Gram matrix is symmetric. -/
+/-- The Gram matrix is symmetric.
+@isnad1 id=eq.0h4v.s5.5017f93e9d88 from=translated src=- shape=67e804a9 vocab=79d00e6b
+-/
 theorem gram_symm (c : X → Fin J → ℝ) : (gram c P)ᵀ = gram c P := by
   funext k l
   simp only [Matrix.transpose_apply, gram, Matrix.of_apply]
@@ -76,7 +78,9 @@ omit [IsProbabilityMeasure P] in
 centered (`∫ c_l dP = 0` for every `l`), then `∫ g(x, ·) dP = 0` for every `x`.
 This records the zero-integral field only; measurability, symmetry, and
 square-integrability are separate requirements for packaging the kernel as a
-degenerate U-statistic kernel. -/
+degenerate U-statistic kernel.
+@isnad1 id=eq.2h6v.s6.df67c7807c45 from=translated src=- shape=958cbe66 vocab=206edcf6
+-/
 theorem projKernel_degen (c : X → Fin J → ℝ) (M : Matrix (Fin J) (Fin J) ℝ)
     (hint : ∀ l, Integrable (fun x => c x l) P)
     (hzero : ∀ l, ∫ x, c x l ∂P = 0) (x : X) :
@@ -100,7 +104,9 @@ theorem projKernel_degen (c : X → Fin J → ℝ) (M : Matrix (Fin J) (Fin J) �
 By independence of the two sample points, the double integral of the squared projected kernel
 factors into Gram entries:
 
-  `∬ g² dP dP = ∑_{k,l,k',l'} M_{kl} M_{k'l'} Σ_{kk'} Σ_{ll'}`,  `Σ = gram c P`. -/
+  `∬ g² dP dP = ∑_{k,l,k',l'} M_{kl} M_{k'l'} Σ_{kk'} Σ_{ll'}`,  `Σ = gram c P`.
+@isnad1 id=eq.1h5v.s7.1828a4057ffe from=translated src=- shape=f9e15338 vocab=7317c4cf
+-/
 theorem projKernel_L2_eq_sum (c : X → Fin J → ℝ) (M : Matrix (Fin J) (Fin J) ℝ)
     (hc : ∀ k, MemLp (fun x => c x k) 2 P) :
     ∫ p, (projKernel c M p.1 p.2) ^ 2 ∂(P.prod P)
@@ -192,7 +198,9 @@ theorem projKernel_L2_eq_sum (c : X → Fin J → ℝ) (M : Matrix (Fin J) (Fin 
 
 /-- **The 4-fold Gram sum collapses to the projection dimension.**
 With the inverse-Gram weighting `M = Σ⁻¹` (`Σ = gram c P` invertible), the expanded L²-energy equals the
-projection dimension `J`, because `Σ Σ⁻¹ = Σ⁻¹ Σ = 1`. -/
+projection dimension `J`, because `Σ Σ⁻¹ = Σ⁻¹ Σ = 1`.
+@isnad1 id=eq.2h3v.s7.4456931b1042 from=translated src=- shape=953100f0 vocab=ec938e02
+-/
 theorem sum_collapse_dim (M S : Matrix (Fin J) (Fin J) ℝ)
     (hu : IsUnit S.det) (hM : M = S⁻¹) :
     ∑ k, ∑ l, ∑ k', ∑ l', M k l * M k' l' * S k k' * S l l' = (J : ℝ) := by
@@ -229,7 +237,9 @@ projection kernel `g(x,y) = ⟨c(x), M·c(y)⟩` equals the projection dimension
 
 This is the trace identity `tr(Σ Σ⁻¹ Σ Σ⁻¹) = tr(1) = J` (with `Σ = 𝔼[c cᵀ]` the
 second-moment matrix). When degeneracy and the other kernel conditions are established
-separately, it supplies the L²-energy input to a degenerate U-statistic variance bound. -/
+separately, it supplies the L²-energy input to a degenerate U-statistic variance bound.
+@isnad1 id=eq.3h5v.s7.e2f7426e1ab0 from=translated src=- shape=0ddce920 vocab=7d0e8ec5
+-/
 theorem projKernel_L2_eq_dim (c : X → Fin J → ℝ) (M : Matrix (Fin J) (Fin J) ℝ)
     (hc : ∀ k, MemLp (fun x => c x k) 2 P)
     (hu : IsUnit (gram c P).det) (hM : M = (gram c P)⁻¹) :

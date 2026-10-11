@@ -22,7 +22,9 @@ namespace Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump
 variable {n : ℕ} {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Compensated integrals from distinct subjects are orthogonal in expectation
-for a bounded predictable payoff depending on every subject history. -/
+for a bounded predictable payoff depending on every subject history.
+@isnad1 id=eq.4h7v.s7.f9c67f90f6dc from=translated src=- shape=0fc41558 vocab=4f2946a7
+-/
 theorem SampleModel.distinct_subject_integrals_orthogonal (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ]
     (H : ℝ → (Fin n → Ω) → ℝ) (hPredictable : S.LeftPredictable H)
@@ -99,7 +101,9 @@ than supplied as a bracket or isometry premise. [The sample model and
 full-sample payoff](hyp:S,H), [left predictability and joint measurability](hyp:hPredictable,hMeasurable),
 [boundedness](hyp:hbound), [quadratic-energy finiteness](hyp:hQuadratic), and
 [Bochner integrability of the energy](hyp:hEnergy) give [the aggregate
-second-moment isometry and integrability](goal). -/
+second-moment isometry and integrability](goal).
+@isnad1 id=and.5h5v.s8.8fb1667c4ebc from=translated src=- shape=b9a05ac6 vocab=fbc9b5aa
+-/
 theorem SampleModel.aggregate_integral_isometry (S : SampleModel n Ω μ)
     [IsProbabilityMeasure μ]
     (H : ℝ → (Fin n → Ω) → ℝ) (hPredictable : S.LeftPredictable H)

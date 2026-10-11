@@ -17,7 +17,9 @@ open MeasureTheory
 
 noncomputable section
 
-/-- Given [a real probability law](hyp:μ), [interval endpoints](hyp:a,b), [positive lower and upper density constants](hyp:cg,Cg,hcg,hCg), [a density](hyp:p), [its density representation](hyp:hμ), [an almost-everywhere density envelope on the interval](hyp:hbound), and [a subinterval specified by its endpoint bounds](hyp:hax,hxy,hyb), [that subinterval's mass lies between the two density constants times its length](goal). -/
+/-- Given [a real probability law](hyp:μ), [interval endpoints](hyp:a,b), [positive lower and upper density constants](hyp:cg,Cg,hcg,hCg), [a density](hyp:p), [its density representation](hyp:hμ), [an almost-everywhere density envelope on the interval](hyp:hbound), and [a subinterval specified by its endpoint bounds](hyp:hax,hxy,hyb), [that subinterval's mass lies between the two density constants times its length](goal).
+@isnad1 id=and.7h8v.s7.4a43a1d5d5c5 from=translated src=- shape=1055b9e8 vocab=a64301fd
+-/
 theorem withDensity_interval_mass_bounds (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (a b cg Cg : ℝ) (p : ℝ → ℝ)
     (hcg : 0 < cg) (hCg : cg ≤ Cg)

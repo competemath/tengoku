@@ -49,7 +49,9 @@ noncomputable def conditionalAverageProcedure (l u : ℝ) (m : ℕ)
 
 /-- Under [simplex-valid label and side coordinates](hyp:hp,hq) and [ordered action
 bounds](hyp:hlu), conditional averaging of an [empirical procedure](hyp:d)
-[cannot increase squared risk](goal) at any parameter. -/
+[cannot increase squared risk](goal) at any parameter.
+@isnad1 id=le.3h11v.s7.359b4fb13003 from=translated src=- shape=56f0e4a2 vocab=328f1e6a
+-/
 theorem exactSideRisk_conditionalAverage_le (p : Theta → X → ℝ)
     (q : Theta → C → ℝ) (tau : Theta → ℝ)
     (hp : ∀ theta, p theta ∈ stdSimplex ℝ X)
@@ -84,7 +86,9 @@ theorem exactSideRisk_conditionalAverage_le (p : Theta → X → ℝ)
 
 /-- Under [simplex-valid probabilities](hyp:hp,hq), [ordered action bounds](hyp:hlu), and a
 [bounded target](hyp:htau), the [exact-side minimax value is no larger than every empirical-side
-minimax value](goal). -/
+minimax value](goal).
+@isnad1 id=le.4h9v.s7.43193520e52c from=translated src=- shape=1d8b7664 vocab=dae7b1ea
+-/
 theorem exactSideMinimaxValue_le_empiricalSideMinimaxValue [Nonempty Theta]
     (p : Theta → X → ℝ) (q : Theta → C → ℝ) (tau : Theta → ℝ)
     (hp : ∀ theta, p theta ∈ stdSimplex ℝ X)
@@ -148,7 +152,9 @@ theorem exactSideMinimaxValue_le_empiricalSideMinimaxValue [Nonempty Theta]
 
 /-- On a [compact parameter space](hyp:Theta), under [continuous simplex-valid label and side
 coordinates and a continuous bounded target](hyp:hp,hq,hpcont,hqcont,htau,hlu,htau_mem), the
-[exact-side minimax value equals the supremum of its fiberwise minimax values](goal). -/
+[exact-side minimax value equals the supremum of its fiberwise minimax values](goal).
+@isnad1 id=eq.7h8v.s7.85cc11724104 from=translated src=- shape=1cb12de9 vocab=5a8c3dc9
+-/
 theorem exactSideMinimaxValue_eq_iSup_fiber
     [TopologicalSpace Theta] [CompactSpace Theta] [Nonempty Theta]
     (p : Theta → X → ℝ) (q : Theta → C → ℝ) (tau : Theta → ℝ)

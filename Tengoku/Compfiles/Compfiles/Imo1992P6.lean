@@ -38,6 +38,9 @@ def S_set (n : ℕ+) := { z : ℕ+ | ∀ k, k ≤ z → is_sum_of_pos_squares (n
 The definition of $S(n)$ in the problem statement hides a lot of complexity. The following lemmas are needed to write down $S(n)$ in a well-defined way.
 -/
 
+/--
+@isnad1 id=nonempty.0h1v.s2.d4d82cf9d674 from=translated src=- shape=6da4ece3 vocab=208e0c37
+-/
 lemma S_set_Nonempty (n : ℕ+) : Set.Nonempty (S_set n) := by
   apply Set.nonempty_of_mem (x:=1)
   simp_rw [S_set, is_sum_of_pos_squares]
@@ -45,6 +48,9 @@ lemma S_set_Nonempty (n : ℕ+) : Set.Nonempty (S_set n) := by
   use λi => n
   simp_all
 
+/--
+@isnad1 id=le.1h2v.s5.3404f494138a from=translated src=- shape=24149bc0 vocab=9f8144ae
+-/
 lemma S_set_bounded (n) : ∀ k ∈ S_set n, k ≤ n^2 := by
   simp_rw [S_set, is_sum_of_pos_squares, Set.mem_ofPred_eq]
   intro k kh
@@ -61,6 +67,9 @@ lemma S_set_bounded (n) : ∀ k ∈ S_set n, k ≤ n^2 := by
       intro i _
       exact Nat.one_le_pow 2 (s i) (sh2 i)
 
+/--
+@isnad1 id=finite.0h1v.s2.a44d65f15eb0 from=translated src=- shape=6da4ece3 vocab=4db6facf
+-/
 lemma S_set_Finite (n) : Set.Finite (S_set n) := by
   apply Set.Finite.of_finite_image (f:=Subtype.val)
   · refine Set.finite_iff_bddAbove.mpr ?_
@@ -80,6 +89,9 @@ But first some general theorems that I wish were in Mathlib.
 
 namespace Multiset
 
+/--
+@isnad1 id=eq.1h5v.s6.385d086a0af9 from=translated src=- shape=c48dea75 vocab=de401a5b
+-/
 theorem map_sub_of_injective {α β : Type} [DecidableEq α] [DecidableEq β] (f : α → β) (inj : Function.Injective f) (s t) : Multiset.map f (s - t) = Multiset.map f s - Multiset.map f t := by
   revert s
   revert t
@@ -91,6 +103,9 @@ theorem map_sub_of_injective {α β : Type} [DecidableEq α] [DecidableEq β] (f
     congr
     rw [Multiset.map_erase _ inj]
 
+/--
+@isnad1 id=eq.1h3v.s6.2251b2fe1910 from=translated src=- shape=96d2e736 vocab=af1c0bd7
+-/
 theorem sum_sub {α : Type} [DecidableEq α] [AddCommMonoid α] (s t : Multiset α) (h : t ≤ s) : (s - t).sum + t.sum = s.sum := by
   revert s
   revert t
@@ -111,6 +126,9 @@ end Multiset
 
 namespace Nat
 
+/--
+@isnad1 id=eq.1h3v.s5.c2587f9dfd25 from=translated src=- shape=871c60a9 vocab=9873567e
+-/
 theorem sub_mod {a b c : Nat} (h : b ≤ a) : (a - b) % c = (a - b % c) % c := by
   nth_rw 3 [Nat.mod_eq_sub_div_mul]
   rw [Nat.sub_sub_right, Nat.sub_add_comm]
@@ -118,6 +136,9 @@ theorem sub_mod {a b c : Nat} (h : b ≤ a) : (a - b) % c = (a - b % c) % c := b
   · exact h
   · exact Nat.div_mul_le_self b c
 
+/--
+@isnad1 id=eq.2h3v.s6.a18b49164b09 from=translated src=- shape=3ce4cf4c vocab=41e5767e
+-/
 theorem sub_mod_eq_add_mod {a b c : Nat} (h : b ≤ a) (cnz : c ≠ 0) : (a - b) % c = (a + (c - b % c)) % c := by
   rw [← Nat.add_sub_assoc, Nat.sub_add_comm, Nat.add_mod_right]
   · exact sub_mod h
@@ -130,9 +151,15 @@ theorem sub_mod_eq_add_mod {a b c : Nat} (h : b ≤ a) (cnz : c ≠ 0) : (a - b)
 
 end Nat
 
+/--
+@isnad1 id=maximal.0h1v.s5.0a5dfebd49df from=translated src=- shape=486b4987 vocab=f3fa8610
+-/
 lemma S_spec (n : ℕ+) : Maximal (fun z : ℕ+ => ∀ k, k ≤ z → is_sum_of_pos_squares (n^2) k) (S n) := by
   exact Exists.choose_spec _
 
+/--
+@isnad1 id=le.1h1v.s6.4a8b6f5be8e7 from=translated src=- shape=2808b4cd vocab=9af58a6d
+-/
 theorem imo1992_p6_a : ∀ n ≥ 4, S n ≤ n^2-14 := by
   by_contra! c
   obtain ⟨n, nge, h⟩ := c
@@ -277,6 +304,9 @@ theorem imo1992_p6_a : ∀ n ≥ 4, S n ≤ n^2-14 := by
 
 def complete (n : ℕ+) : Prop := S n = n^2 - 14
 
+/--
+@isnad1 id=iff.1h1v.s6.e044b3a3f0bb from=translated src=- shape=25dcb2e5 vocab=d1c3378c
+-/
 theorem complete_iff_sos (n : ℕ+) (nge : 4 ≤ n) : complete n ↔ ∀ k, k ≤ n^2 - 14 → is_sum_of_pos_squares (n^2) k := by
   constructor
   · intro Sdef
@@ -294,6 +324,9 @@ def msos.sq_sum (C : Multiset ℕ+) : ℕ := (C.map (fun x => x.val^2)).sum
 
 def msos.mk (L : List (ℕ × ℕ+)) : Multiset ℕ+ := (L.map (fun ⟨c,x⟩ => Multiset.replicate c x)).foldr (· + ·) ∅
 
+/--
+@isnad1 id=issumofp.0h1v.s3.ac4a4bff9d38 from=translated src=- shape=c2745040 vocab=78ca23a1
+-/
 theorem msos.is_sum_of_pos_squares (C : Multiset ℕ+) : is_sum_of_pos_squares (msos.sq_sum C) C.card := by
   revert C
   apply Multiset.induction
@@ -348,6 +381,9 @@ theorem msos.is_sum_of_pos_squares (C : Multiset ℕ+) : is_sum_of_pos_squares (
 def msos.shift (C: Multiset ℕ+) (i : ℕ+) (a : ℕ) :=
   C - Multiset.replicate (4*a) i + Multiset.replicate a (2*i)
 
+/--
+@isnad1 id=eq.1h3v.s5.45bcc5a74a8d from=translated src=- shape=99ea4e36 vocab=8453f63c
+-/
 theorem msos.card_shift (C:Multiset ℕ+) (i : ℕ+) (a : ℕ) (h4 : 4*a ≤ C.count i) : (msos.shift C i a).card + 3*a = C.card := by
   unfold msos.shift
   simp only [Multiset.card_add, Multiset.card_replicate]
@@ -360,6 +396,9 @@ theorem msos.card_shift (C:Multiset ℕ+) (i : ℕ+) (a : ℕ) (h4 : 4*a ≤ C.c
       · exact Multiset.count_le_card i C
   · exact Multiset.le_count_iff_replicate_le.mp h4
 
+/--
+@isnad1 id=eq.1h3v.s5.0e8bc38eabcc from=translated src=- shape=606c9e76 vocab=6180f6ea
+-/
 theorem msos.sq_sum_shift (C:Multiset ℕ+) (i : ℕ+) (a : ℕ) (h4 : 4*a ≤ C.count i) : msos.sq_sum (msos.shift C i a) = msos.sq_sum C := by
   unfold sq_sum msos.shift
   rw [Multiset.map_add, Multiset.map_replicate, Multiset.map_sub_of_injective, Multiset.sum_add]
@@ -400,6 +439,9 @@ def msos.repeat_shift (C:Multiset ℕ+) : Multiset ℕ+ :=
     · rw [Nat.mul_comm]
       apply Nat.div_mul_le_self
 
+/--
+@isnad1 id=ex.1h2v.s6.c83035c90b7e from=translated src=- shape=312b9513 vocab=f09c10ea
+-/
 theorem msos.repeat_shift.forall (C:Multiset ℕ+) :
     ∀ b ≤ (C.card - (msos.repeat_shift C).card)/3, ∃ C', msos.sq_sum C' = msos.sq_sum C ∧ C'.card + 3*b = C.card := by
   fun_induction msos.repeat_shift
@@ -427,6 +469,9 @@ theorem msos.repeat_shift.forall (C:Multiset ℕ+) :
         rw [yh1, sq_sum_shift] <;> and_intros <;> grind
       · grind
 
+/--
+@isnad1 id=le.0h1v.s3.4b992093c35f from=translated src=- shape=db650953 vocab=d6b68688
+-/
 theorem msos.card_repeat_shift_le_card (C:Multiset ℕ+) : (msos.repeat_shift C).card ≤ C.card := by
   fun_induction msos.repeat_shift
   · trivial
@@ -435,6 +480,9 @@ theorem msos.card_repeat_shift_le_card (C:Multiset ℕ+) : (msos.repeat_shift C)
     · exact Nat.le_add_right_of_le ih1
     · apply Nat.mul_div_le
 
+/--
+@isnad1 id=le.0h1v.s5.34365864892f from=translated src=- shape=c3bc4b7f vocab=289689fd
+-/
 theorem msos.card_repeat_shift_le (C:Multiset ℕ+) : (msos.repeat_shift C).card ≤ C.card - (C.count 1)/4*3 := by
   fun_cases msos.repeat_shift
   · expose_names
@@ -477,6 +525,9 @@ theorem msos.card_repeat_shift_le (C:Multiset ℕ+) : (msos.repeat_shift C).card
         rw [card_shift]
         exact Nat.mul_div_le _ _
 
+/--
+@isnad1 id=issumofp.2h2v.s5.ebf529c6922b from=translated src=- shape=a29ea01d vocab=f6ed0961
+-/
 theorem is_sum_of_pos_squares_by_repeat_shift (C:Multiset ℕ+) :
     ∀ k ∈ Finset.Icc (msos.repeat_shift C).card C.card, k%3 = C.card%3 → is_sum_of_pos_squares (msos.sq_sum C) k := by
   intro k kbs kmod
@@ -498,6 +549,9 @@ theorem is_sum_of_pos_squares_by_repeat_shift (C:Multiset ℕ+) :
   rw [this, ← h1]
   apply msos.is_sum_of_pos_squares
 
+/--
+@isnad1 id=eq.0h1v.s4.e5b1046ddc75 from=translated src=- shape=204d57b9 vocab=415f5ede
+-/
 @[simp]
 theorem msos.card_mk (L : List (ℕ × ℕ+)) : (msos.mk L).card = (L.map (·.1)).sum := by
   induction L with
@@ -511,6 +565,9 @@ theorem msos.card_mk (L : List (ℕ × ℕ+)) : (msos.mk L).card = (L.map (·.1)
     rw [ih]
     simp
 
+/--
+@isnad1 id=eq.0h1v.s6.d400072a74d8 from=translated src=- shape=1c58c156 vocab=979b73ac
+-/
 @[simp]
 theorem msos.sq_sum_mk (L : List (ℕ × ℕ+)) : msos.sq_sum (msos.mk L) = (L.map (fun ⟨c,i⟩ => c * i.val^2)).sum := by
   induction L with
@@ -524,6 +581,9 @@ theorem msos.sq_sum_mk (L : List (ℕ × ℕ+)) : msos.sq_sum (msos.mk L) = (L.m
       Nat.add_left_cancel_iff]
     rw [ih]
 
+/--
+@isnad1 id=eq.0h2v.s5.c8f5c575b848 from=translated src=- shape=ae612a97 vocab=a77c80ff
+-/
 @[simp]
 theorem msos.count_mk (L : List (ℕ × ℕ+)) (a : ℕ+) : Multiset.count a (msos.mk L) = ((L.filter (·.2 == a)).map (·.1)).sum := by
   induction L with
@@ -547,6 +607,9 @@ theorem msos.count_mk (L : List (ℕ × ℕ+)) (a : ℕ+) : Multiset.count a (ms
       contrapose! c
       exact Eq.symm c.2
 
+/--
+@isnad1 id=issumofp.3h1v.s6.24b666f6aad8 from=translated src=- shape=e09f6a91 vocab=d1dac9b9
+-/
 theorem sos_13_0mod3 : ∀ k:ℕ, k≠0 → k ≤ 13^2-14 → k%3=0 → is_sum_of_pos_squares (13^2) k := by
   intro k knz kle kmod
   by_cases lb : 9 ≤ k
@@ -582,6 +645,9 @@ theorem sos_13_0mod3 : ∀ k:ℕ, k≠0 → k ≤ 13^2-14 → k%3=0 → is_sum_o
       rw [← this]
       apply msos.is_sum_of_pos_squares
 
+/--
+@isnad1 id=issumofp.2h1v.s6.6bd7192fe37e from=translated src=- shape=bac424ee vocab=d1dac9b9
+-/
 theorem sos_13_1mod3 : ∀ k:ℕ, k ≤ 13^2-14 → k%3=1 → is_sum_of_pos_squares (13^2) k := by
   intro k kle kmod
   by_cases lb : 7 ≤ k
@@ -617,6 +683,9 @@ theorem sos_13_1mod3 : ∀ k:ℕ, k ≤ 13^2-14 → k%3=1 → is_sum_of_pos_squa
       rw [← this]
       apply msos.is_sum_of_pos_squares
 
+/--
+@isnad1 id=issumofp.2h1v.s6.fa7e1b60a854 from=translated src=- shape=bac424ee vocab=d1dac9b9
+-/
 theorem sos_13_2mod3 : ∀ k:ℕ, k ≤ 13^2-14 → k%3=2 → is_sum_of_pos_squares (13^2) k := by
   intro k kle kmod
   by_cases lb : 5 ≤ k
@@ -643,6 +712,9 @@ theorem sos_13_2mod3 : ∀ k:ℕ, k ≤ 13^2-14 → k%3=2 → is_sum_of_pos_squa
     rw [← this]
     apply msos.is_sum_of_pos_squares
 
+/--
+@isnad1 id=complete.0h0v.s2.25314b9f08c6 from=translated src=- shape=e590c3e1 vocab=9f6806d0
+-/
 theorem complete_13 : complete 13 := by
   rw [complete_iff_sos _ (by simp)]
   intro k kb
@@ -652,6 +724,9 @@ theorem complete_13 : complete 13 := by
   · apply sos_13_1mod3 _ kb
   · apply sos_13_2mod3 _ kb
 
+/--
+@isnad1 id=issumofp.2h3v.s5.9968aa063507 from=translated src=- shape=aa3e932e vocab=8a451384
+-/
 theorem sos_mul_const (z k m : ℕ) (mpos : 0 < m) (h : is_sum_of_pos_squares z k) : is_sum_of_pos_squares (z*m^2) k := by
   let ⟨s, sh1, sb⟩ := h
   use fun i => m * s i
@@ -661,6 +736,9 @@ theorem sos_mul_const (z k m : ℕ) (mpos : 0 < m) (h : is_sum_of_pos_squares z 
   · intro i
     simp [sb i, mpos]
 
+/--
+@isnad1 id=issumofp.2h4v.s5.82927a06d3f3 from=translated src=- shape=a4a34872 vocab=91ef243b
+-/
 theorem sos_add (z1 z2 k1 k2: ℕ) (h1 : is_sum_of_pos_squares z1 k1) (h2 : is_sum_of_pos_squares z2 k2) : is_sum_of_pos_squares (z1+z2) (k1+k2) := by
   let ⟨s1, s1h, s1b⟩ := h1
   let ⟨s2, s2h, s2b⟩ := h2
@@ -682,6 +760,9 @@ theorem sos_add (z1 z2 k1 k2: ℕ) (h1 : is_sum_of_pos_squares z1 k1) (h2 : is_s
     · exact s1b _
     · exact s2b _
 
+/--
+@isnad1 id=issumofp.2h4v.s5.114a4a031d80 from=translated src=- shape=a4a34872 vocab=95dc8223
+-/
 theorem sos_mul (z1 z2 k1 k2: ℕ) (h1 : is_sum_of_pos_squares z1 k1) (h2 : is_sum_of_pos_squares z2 k2) : is_sum_of_pos_squares (z1*z2) (k1*k2) := by
   let ⟨s1, s1h, s1b⟩ := h1
   let ⟨s2, s2h, s2b⟩ := h2
@@ -718,6 +799,9 @@ theorem sos_mul (z1 z2 k1 k2: ℕ) (h1 : is_sum_of_pos_squares z1 k1) (h2 : is_s
     · apply s1b
     · apply s2b
 
+/--
+@isnad1 id=ex.2h2v.s6.61637972b12d from=translated src=- shape=d76d3d9c vocab=83c8e6f5
+-/
 theorem sos_split (z k: ℕ) (kb : 1 ≤ k) (h : is_sum_of_pos_squares z k) : ∃ d, 0 < d ∧ d^2 ≤ z ∧ is_sum_of_pos_squares (z-d^2) (k-1) ∧ is_sum_of_pos_squares (d^2) 1 := by
   let ⟨s, sh, sb⟩ := h
   use s ⟨k-1, by grind⟩
@@ -746,6 +830,9 @@ theorem sos_split (z k: ℕ) (kb : 1 ≤ k) (h : is_sum_of_pos_squares z k) : �
     · simp
     · apply fun _ => sb _
 
+/--
+@isnad1 id=complete.4h2v.s6.957de50ee5f7 from=translated src=- shape=31ad6784 vocab=e08be4e0
+-/
 theorem complete_mul (n1 n2) (lb1 : 13 ≤ n1) (lb2 : 13 ≤ n2) (n1h : complete n1) (n2h : complete n2) : complete (n1*n2) := by
   let k1 : ℕ+ := n1 ^ 2 - 14
   let k2 : ℕ+ := n2 ^ 2 - 14
@@ -1002,6 +1089,9 @@ theorem complete_mul (n1 n2) (lb1 : 13 ≤ n1) (lb2 : 13 ≤ n2) (n1h : complete
     · trans 13 <;> simp [lb2]
     · trans 13 <;> simp [lb1]
 
+/--
+@isnad1 id=infinite.0h0v.s5.f7eb05177ba5 from=translated src=- shape=b450f799 vocab=3242aa24
+-/
 theorem imo1992_p6_c : {n | S n = n^2 - 14}.Infinite := by
   suffices ∀ e > 0, complete (13^e) by
     unfold complete at this
