@@ -50,7 +50,9 @@ class TopupSize(unittest.TestCase):
         step = self.step()
         limit = re.search(r"limit=\$\(\((\d+) \* 1024 \* 1024 \* 1024 - (\d+) \* 1024 \* 1024\)\)", step)
         self.assertIsNotNone(limit, "the size limit was not found after the pack")
-        self.assertLess(int(limit.group(1)) * 1024**3 - int(limit.group(2)) * 1024**2, 2 * 1024**3, "the limit must be under GitHub's 2 GiB asset cap")
+        self.assertLess(
+            int(limit.group(1)) * 1024**3 - int(limit.group(2)) * 1024**2, 2 * 1024**3, "the limit must be under GitHub's 2 GiB asset cap"
+        )
         self.assertIn('[ "$size" -ge "$limit" ]', step)
         over = step[step.index('[ "$size" -ge "$limit" ]') : step.index('echo "state=complete"')]
         self.assertIn("state=incomplete", over)
