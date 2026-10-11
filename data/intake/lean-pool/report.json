@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "6f89638337651b9ec4c36bd93bc9a5bb3e7c80428232597c5f78a9c73006d123",
+ "library": "lean-pool",
+ "lint_mode": "proposed",
+ "modules": 293,
+ "part": 1,
+ "theorems": 3592
+}
