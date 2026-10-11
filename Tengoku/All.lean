@@ -1,4 +1,5 @@
 -- Everything in the tree: the seeded root plus every library of verified additions.
+import Tengoku.LeanPool
 import Tengoku.MerelyTrue
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
