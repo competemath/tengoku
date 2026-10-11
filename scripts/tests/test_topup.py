@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+import io
 import json
 import os
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import time
 import unittest
@@ -203,6 +205,60 @@ class Topups(unittest.TestCase):
         self.assertIn("does not decompress", msg)
         self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L0")  # the base again
         self.assertFalse((c / ".lake/build/lib/lean/Tengoku/New.olean").exists())
+        self.assertFalse((c / ".lake/.topup-applied.json").exists())
+
+    def test_an_unexpected_member_after_files_were_replaced_puts_the_base_back(self):
+        """CodeRabbit on #442: the stream is unpacked as it arrives, so the member the manifest does not list can come after real files were replaced (rollback() reads the PREVIOUS
+        top-up's state and would leave a mix of base and top-up files with no backup)."""
+        p = self.producer()
+        out = p / "out"
+        run(p, "make", "--tip", "t1", "--out", str(out))
+        m = json.loads((out / "topup-t1.json").read_text())
+        buf = io.BytesIO()
+        with tarfile.open(fileobj=buf, mode="w") as t:  # in this order: the real files first, the member the manifest does not list last
+            for rel, data in [(rel, (p / ".lake" / rel).read_bytes()) for rel in m["files"]] + [("build/lib/lean/Tengoku/Zextra.olean", b"not in the manifest")]:
+                info = tarfile.TarInfo(rel)
+                info.size = len(data)
+                t.addfile(info, io.BytesIO(data))
+        tar = out / "forged.tar.zst"
+        subprocess.run(["zstd", "-q", "-o", str(tar)], input=buf.getvalue(), check=True)
+        m["sha256"] = subprocess.run(["shasum", "-a", "256", str(tar)], capture_output=True, text=True).stdout.split()[0]
+        (out / "forged.json").write_text(json.dumps(m))
+        c = tree(BASE_FILES)
+        mark(c)
+        rc, msg = run(c, "apply", "--file", str(tar), "--manifest", str(out / "forged.json"))
+        self.assertEqual(rc, 1, msg)
+        self.assertIn("unexpected member", msg)
+        self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L0")  # replaced before the bad member arrived, put back
+        self.assertFalse((c / ".lake/build/lib/lean/Tengoku/New.olean").exists())  # created before it, gone
+        self.assertFalse((c / ".lake/.topup-applied.json").exists())
+
+    def test_a_write_that_fails_halfway_puts_the_base_back_and_leaves_no_scratch_file(self):
+        """CodeRabbit on #442: a full disk (the archive unpacks to gigabytes) is an OSError, not a TarError: it must undo as well."""
+        p = self.producer()
+        out = p / "out"
+        run(p, "make", "--tip", "t1", "--out", str(out))
+        c = tree(BASE_FILES)
+        mark(c)
+        driver = (
+            "import sys, shutil; from pathlib import Path; sys.path.insert(0, sys.argv[1]); import topup\n"
+            "real, n = shutil.copyfileobj, [0]\n"
+            "def failing(src, dst, *a):\n"
+            "    n[0] += 1\n"
+            "    if n[0] == 3: raise OSError(28, 'No space left on device')\n"
+            "    return real(src, dst, *a)\n"
+            "topup.shutil.copyfileobj = failing\n"
+            "print(topup.apply(Path(sys.argv[2]), Path(sys.argv[3])))"
+        )
+        r = subprocess.run(
+            [sys.executable, "-c", driver, str(ROOT / "scripts"), str(out / "topup-t1.tar.zst"), str(out / "topup-t1.json")],
+            capture_output=True, text=True, env={**os.environ, "TENGOKU_TOPUP_ROOT": str(c)},
+        )
+        self.assertEqual((r.returncode, r.stdout.strip()), (0, "1"), r.stderr)
+        self.assertIn("No space left on device", r.stderr)
+        self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L0")
+        self.assertFalse((c / ".lake/build/lib/lean/Tengoku/New.olean").exists())
+        self.assertEqual([str(f) for f in (c / ".lake").rglob("*.topup-new")], [])
         self.assertFalse((c / ".lake/.topup-applied.json").exists())
 
     def test_manifest_naming_a_path_outside_the_module_trees_is_refused(self):

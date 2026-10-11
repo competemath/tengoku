@@ -187,15 +187,14 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
     # openai-math parts) and holding it as bytes (twice, with the copy `capture_output` joins) killed the queue's runner 'with a shutdown signal' in every Lean build.
     zstd = subprocess.Popen(["zstd", "-d", "-q", "-c", str(tar_path)], stdout=subprocess.PIPE)
     assert zstd.stdout is not None
-    broken = False
+    problem = ""
+    fresh: Path | None = None
     try:
         with tarfile.open(fileobj=zstd.stdout, mode="r|") as tar:
             for member in tar:
                 if not member.isfile() or member.name not in listed:
-                    print(f"REFUSED: unexpected member {member.name!r}", file=sys.stderr)
-                    zstd.kill()
-                    rollback(quiet=True)
-                    return 1
+                    problem = f"names an unexpected member {member.name!r}"
+                    break
                 target = LAKE / member.name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 # Never write into a file in place: the services keep serving from a Lean process that has the
@@ -205,17 +204,25 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
                     shutil.copyfileobj(src, dst)
                 os.utime(fresh, (member.mtime, member.mtime))
                 os.replace(fresh, target)
-        while zstd.stdout.read(1 << 20):  # the padding after the end-of-archive blocks: read it, or zstd dies of SIGPIPE and a good archive looks broken
-            pass
+                fresh = None
+        if not problem:
+            while zstd.stdout.read(1 << 20):  # the padding after the end-of-archive blocks: read it, or zstd dies of SIGPIPE and a good archive looks broken
+                pass
     except tarfile.TarError:
-        broken = True  # a stream that stops short or is not a tar
+        problem = "does not decompress"  # a stream that stops short or is not a tar
+    except Exception as e:  # noqa: BLE001  a full disk, anything: files are replaced as the stream arrives, so every failure must put the base back
+        problem = f"could not be unpacked ({type(e).__name__}: {e})"
     finally:
-        if zstd.poll() is None and broken:
+        if problem and zstd.poll() is None:
             zstd.kill()
         zstd.stdout.close()
-    if zstd.wait() != 0 or broken:
+        if fresh is not None:
+            fresh.unlink(missing_ok=True)
+    if zstd.wait() != 0 and not problem:
+        problem = "does not decompress"
+    if problem:
         undo(created, overwritten)
-        print("REFUSED: the top-up does not decompress", file=sys.stderr)
+        print(f"REFUSED: the top-up {problem}", file=sys.stderr)
         return 1
     APPLIED.write_text(
         json.dumps(
