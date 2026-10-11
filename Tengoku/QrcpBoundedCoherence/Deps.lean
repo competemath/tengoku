@@ -1,0 +1,1 @@
+-- QrcpBoundedCoherence: a factory bundle (data/intake/qrcp-bounded-coherence). This file only marks the library for Tengoku/All.lean.

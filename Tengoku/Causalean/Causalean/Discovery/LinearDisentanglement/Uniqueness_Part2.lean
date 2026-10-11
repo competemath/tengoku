@@ -34,7 +34,9 @@ variable {d p K : ℕ}
 
 /-! ### The summed diagonal-conjugation identity -/
 /-- **(S1+R1) The SUM TRICK after transport.**  The summed transport identity cancels the
-observational Gram term and leaves a diagonal conjugation. -/
+observational Gram term and leaves a diagonal conjugation.
+@isnad1 id=eq.5h8v.s8.1e351e019baa from=translated src=- shape=0885a0c4 vocab=b4e3fc3a
+-/
 theorem diagonal_conj_from_sum_trick (S S' : Solution d p K)
     {M : Matrix (Fin d) (Fin d) ℝ} (hM : S'.H = M * S.H)
     (hΘ0 : S.Theta0 = S'.Theta0) (hΘ : ∀ k, S.Theta k = S'.Theta k)
@@ -77,7 +79,9 @@ into an orthogonality statement on a *rescaled* `M`. -/
 
 /-- **(S2) Diagonal conjugation ⟹ orthogonal rescaling.**  From `Mᵀ diag(d') M = diag(d)` with
 `d, d'` strictly positive, the matrix `O = diag(fun i => √(d' i)) * M * diag(fun i => (√(d i))⁻¹)`
-is orthogonal: `Oᵀ O = 1`. -/
+is orthogonal: `Oᵀ O = 1`.
+@isnad1 id=eq.3h4v.s8.a7a96c8d7387 from=translated src=- shape=4e7a7417 vocab=0b6a0557
+-/
 theorem orthogonal_of_diag_conj {q : ℕ} {M : Matrix (Fin q) (Fin q) ℝ} {dv dv' : Fin q → ℝ}
     (hd : ∀ i, 0 < dv i) (hd' : ∀ i, 0 < dv' i)
     (hconj : M.transpose * Matrix.diagonal dv' * M = Matrix.diagonal dv) :
@@ -147,7 +151,9 @@ private theorem diagPerm_mul_inv (σ : Equiv.Perm (Fin d)) {μ : Fin d → ℝ}
 
 /-- **Signed conjugation read-off.**  Given `M = diagonal μ permMat σ` and
 `B' M = diagonal ν permMat σ B`, recover
-`B' = diagonal ν permMat σ B (permMat σ)ᵀ diagonal μ⁻¹`. -/
+`B' = diagonal ν permMat σ B (permMat σ)ᵀ diagonal μ⁻¹`.
+@isnad1 id=eq.3h7v.s8.971662f202bc from=translated src=- shape=4538384c vocab=11aa3620
+-/
 theorem conj_readoff {σ : Equiv.Perm (Fin d)} {μ ν : Fin d → ℝ} (hμ : ∀ i, μ i ≠ 0)
     {M B B' : Matrix (Fin d) (Fin d) ℝ}
     (hMeq : M = Matrix.diagonal μ * permMat σ)
@@ -165,7 +171,9 @@ theorem conj_readoff {σ : Equiv.Perm (Fin d)} {μ ν : Fin d → ℝ} (hμ : �
   rw [hsplit, hrel, hMU]
   simp only [Matrix.mul_assoc]
 
-/-- `(permMat σ) a c = 1` iff `c = σ.symm a`, else `0` (column read-off of `permMat`). -/
+/-- `(permMat σ) a c = 1` iff `c = σ.symm a`, else `0` (column read-off of `permMat`).
+@isnad1 id=eq.0h4v.s6.9df133a0d326 from=translated src=- shape=af28d60b vocab=156545bf
+-/
 theorem permMat_apply_symm (σ : Equiv.Perm (Fin d)) (a c : Fin d) :
     permMat σ a c = if c = σ.symm a then (1 : ℝ) else 0 := by
   simp only [permMat, Matrix.of_apply]
@@ -176,7 +184,9 @@ theorem permMat_apply_symm (σ : Equiv.Perm (Fin d)) (a c : Fin d) :
 
 /-- **Permutation conjugation entry.**
 `(permMat σ * X * (permMat σ)ᵀ) a b = X (σ.symm a) (σ.symm b)`:
-conjugating `X` by `permMat σ` relabels rows and columns by `σ.symm`. -/
+conjugating `X` by `permMat σ` relabels rows and columns by `σ.symm`.
+@isnad1 id=eq.0h5v.s7.3e92f081ed4c from=translated src=- shape=12d540b9 vocab=5b1d76a1
+-/
 theorem permMat_conj_apply (σ : Equiv.Perm (Fin d)) (X : Matrix (Fin d) (Fin d) ℝ) (a b : Fin d) :
     (permMat σ * X * (permMat σ).transpose) a b = X (σ.symm a) (σ.symm b) := by
   rw [Matrix.mul_apply]
@@ -205,7 +215,9 @@ private theorem permMat_transpose_eq (σ : Equiv.Perm (Fin d)) :
 
 /-- **Inverse-permutation conjugation entry.**
 `((permMat σ)ᵀ * X * permMat σ) a b = X (σ a) (σ b)`: conjugating `X` by `(permMat σ)ᵀ`
-relabels rows and columns by `σ`. -/
+relabels rows and columns by `σ`.
+@isnad1 id=eq.0h5v.s7.d7d341f1c9bd from=translated src=- shape=4a24bc45 vocab=c70c2714
+-/
 theorem permMat_conj_apply' (σ : Equiv.Perm (Fin d)) (X : Matrix (Fin d) (Fin d) ℝ)
     (a b : Fin d) :
     ((permMat σ).transpose * X * permMat σ) a b = X (σ a) (σ b) := by
@@ -216,7 +228,9 @@ theorem permMat_conj_apply' (σ : Equiv.Perm (Fin d)) (X : Matrix (Fin d) (Fin d
   rfl
 
 /-- **Diagonal-through-permutation.**  `permMat σ * diagonal s = diagonal (s ∘ σ.symm) * permMat σ`:
-moving a diagonal rescaling across a permutation matrix relabels its entries by `σ.symm`. -/
+moving a diagonal rescaling across a permutation matrix relabels its entries by `σ.symm`.
+@isnad1 id=eq.0h3v.s7.1a5ae1101e2a from=translated src=- shape=3f045aff vocab=24bd0a47
+-/
 theorem permMat_mul_diagonal (σ : Equiv.Perm (Fin d)) (s : Fin d → ℝ) :
     permMat σ * Matrix.diagonal s = Matrix.diagonal (fun i => s (σ.symm i)) * permMat σ := by
   ext a b
@@ -228,7 +242,9 @@ theorem permMat_mul_diagonal (σ : Equiv.Perm (Fin d)) (s : Fin d → ℝ) :
 /-- **Orthogonal upper-triangular ⟹ signed diagonal.**  An orthogonal (`Wᵀ W = 1`)
 upper-triangular matrix is diagonal with `±1` entries.  This is the signed analogue of
 `orthogonal_upperTri_pos_diag_eq_one` (which assumed a positive diagonal and concluded `W = 1`):
-without the sign condition the diagonal entries are pinned only up to sign. -/
+without the sign condition the diagonal entries are pinned only up to sign.
+@isnad1 id=and.2h2v.s7.7a75dfc4fd97 from=translated src=- shape=32d01119 vocab=c62f1ba3
+-/
 theorem orthogonal_upperTri_signed_diag {q : ℕ} {W : Matrix (Fin q) (Fin q) ℝ}
     (hortho : Wᵀ * W = 1) (hupp : ∀ i j, j < i → W i j = 0) :
     (∀ i j, i ≠ j → W i j = 0) ∧ (∀ i, W i i = 1 ∨ W i i = -1) := by
@@ -271,7 +287,9 @@ and [equality of their Gram matrices](hyp:hgram).
 **Signed Cholesky read-off.**  If `Pᵀ P = Bᵀ B` with `P` upper-triangular and `B`
 upper-triangular with strictly positive diagonal, then `P = diagonal s · B` for a unique
 `±1`-valued sign vector `s`, with `s i · B i i = P i i`.  This generalizes `cholesky_unique`
-(both factors positive-diagonal) to the case where only one factor's diagonal sign is fixed. -/
+(both factors positive-diagonal) to the case where only one factor's diagonal sign is fixed.
+@isnad1 id=ex.4h3v.s8.2857a00bd244 from=translated src=- shape=69509665 vocab=a4e1fa9e
+-/
 theorem signed_cholesky {q : ℕ} {P B : Matrix (Fin q) (Fin q) ℝ}
     (hPu : ∀ i j, j < i → P i j = 0) (hBu : ∀ i j, j < i → B i j = 0)
     (hBp : ∀ i, 0 < B i i) (hgram : Pᵀ * P = Bᵀ * B) :

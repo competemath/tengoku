@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "00803d4520a095811a1bab9826676a419a105f6fca1498a426e59d6f5c02e623",
+ "library": "erdos-unit-distance-1",
+ "lint_mode": "proposed",
+ "modules": 4,
+ "part": 1,
+ "theorems": 12
+}

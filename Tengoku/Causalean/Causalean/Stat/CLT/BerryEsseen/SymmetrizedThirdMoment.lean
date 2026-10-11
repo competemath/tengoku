@@ -42,7 +42,9 @@ private theorem nonneg_cube_bound (a b : ℝ) (_ha : 0 ≤ a) (hb : 0 ≤ b)
   linarith
 
 /-- The [absolute cube of a difference of two real numbers](hyp:x,y) is
-[bounded by a polynomial whose mixed linear terms cancel under centering](goal). -/
+[bounded by a polynomial whose mixed linear terms cancel under centering](goal).
+@isnad1 id=le.0h2v.s8.74dd39e72c49 from=translated src=- shape=c4928182 vocab=eddcb0d2
+-/
 theorem abs_sub_cube_le_moment_polynomial (x y : ℝ) :
     |x - y| ^ 3 ≤ |x| ^ 3 + |y| ^ 3 - 2 * x * y * (|x| + |y|) +
       x ^ 2 * y ^ 2 + (x ^ 2 + y ^ 2) / 2 := by
@@ -79,7 +81,9 @@ theorem abs_sub_cube_le_moment_polynomial (x y : ℝ) :
 [unit second moment](hyp:hvar_int,hvar) and
 [integrable third absolute moment](hyp:hthird_int), [the difference of two
 independent draws has an integrable absolute cube whose expectation is at
-most twice the marginal third absolute moment plus two](goal). -/
+most twice the marginal third absolute moment plus two](goal).
+@isnad1 id=and.5h1v.s8.b3a65154e5be from=translated src=- shape=02523b03 vocab=3807a573
+-/
 theorem symmetrized_unit_third_moment_le
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hmean_int : Integrable (fun x : ℝ => x) μ)

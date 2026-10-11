@@ -14,8 +14,14 @@ variable {G : Type*} [AddCommGroup G] {B : BohrSet G} {ψ : AddChar G ℂ} {x : 
 
 def arcSet : Set G := {x | ∀ ψ, ‖angle (ψ x) 1‖₊ ≤ B.ewidth ψ}
 
+/--
+@isnad1 id=iff.0h3v.s6.141a1cfa5321 from=translated src=- shape=33dce6bf vocab=94ee0d28
+-/
 lemma mem_arcSet_iff_nnnorm_ewidth : x ∈ B.arcSet ↔ ∀ ψ, ‖angle (ψ x) 1‖₊ ≤ B.ewidth ψ := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s7.8cfbb2497611 from=translated src=- shape=c8a575df vocab=fb11e3e8
+-/
 lemma mem_arcSet_iff_nnnorm_width :
     x ∈ B.arcSet ↔ ∀ ⦃ψ⦄, ψ ∈ B.frequencies → ‖angle (ψ x) 1‖₊ ≤ B.width ψ := by
   refine forall_congr' fun ψ => ?_
@@ -32,10 +38,16 @@ lemma mem_arcSet_iff_nnnorm_width :
     intro h₁ h₂
     rwa [←ENNReal.coe_le_coe, coe_width h₂]
 
+/--
+@isnad1 id=iff.0h3v.s7.3048189d46c4 from=translated src=- shape=c05ca20f vocab=93faf21a
+-/
 lemma mem_arcSet_iff_norm_width :
     x ∈ B.arcSet ↔ ∀ ⦃ψ⦄, ψ ∈ B.frequencies → ‖angle (ψ x) 1‖ ≤ B.width ψ :=
   mem_arcSet_iff_nnnorm_width
 
+/--
+@isnad1 id=le.0h2v.s4.aaf1542caa9a from=translated src=- shape=df3c2922 vocab=0056b7b9
+-/
 lemma arcSet_subset_chordSet [Finite G] :
     B.arcSet ⊆ B.chordSet := fun x hx ψ => by
   refine (hx ψ).trans' ?_
@@ -43,6 +55,9 @@ lemma arcSet_subset_chordSet [Finite G] :
     Real.norm_of_nonneg (angle_nonneg _ _), angle_comm]
   exact Complex.norm_sub_le_angle (by simp) (by simp)
 
+/--
+@isnad1 id=le.0h2v.s5.0d2a8a336222 from=translated src=- shape=462ce596 vocab=cff77c4c
+-/
 lemma chordSet_subset_smul_arcSet [Finite G] :
     B.chordSet ⊆ ((π / 2) • B).arcSet := fun x hx ψ => by
   rw [ewidth_smul]

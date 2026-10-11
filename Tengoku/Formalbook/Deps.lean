@@ -1,0 +1,1 @@
+-- Formalbook: a factory bundle (data/intake/formalbook). This file only marks the library for Tengoku/All.lean.

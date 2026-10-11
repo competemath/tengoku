@@ -96,11 +96,15 @@ noncomputable def nbhd (i : V) : Finset V := F.toDepGraph.nbhd i
 
 omit [IsProbabilityMeasure μ] in
 /-- [Unit `j` lies in unit `i`'s network neighborhood if and only if `i` and `j` are adjacent in
-the underlying interference network](goal). -/
+the underlying interference network](goal).
+@isnad1 id=iff.0h6v.s5.a9d96f4da05e from=translated src=- shape=9e25c959 vocab=a32ac691
+-/
 theorem mem_nbhd_iff {i j : V} : j ∈ F.nbhd i ↔ F.adj i j := F.toDepGraph.mem_nbhd_iff
 
 omit [IsProbabilityMeasure μ] in
-/-- [Every unit lies in its own network neighborhood](goal). -/
+/-- [Every unit lies in its own network neighborhood](goal).
+@isnad1 id=mem.0h5v.s5.80f03431ad22 from=translated src=- shape=4bd76dfe vocab=596fde89
+-/
 theorem self_mem_nbhd (i : V) : i ∈ F.nbhd i := F.toDepGraph.self_mem_nbhd i
 
 end NetworkDependence

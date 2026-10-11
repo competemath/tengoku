@@ -113,14 +113,18 @@ def cComponentSet : Finset (Finset (SWIGNode N)) :=
 
 /-- The directly-confounded relation is symmetric: if `v₁` and `v₂` share an
     unobserved parent, then so do `v₂` and `v₁` (the shared parent and the
-    observed-ness conditions are symmetric in the two arguments). -/
+    observed-ness conditions are symmetric in the two arguments).
+@isnad1 id=directly.1h4v.s5.43187f87f1a4 from=translated src=- shape=f55a0adf vocab=c3517a18
+-/
 theorem directlyConfounded_symm {v₁ v₂ : SWIGNode N}
     (h : G.directlyConfounded v₁ v₂) : G.directlyConfounded v₂ v₁ := by
   obtain ⟨hne, u, hu, e1, e2⟩ := h
   exact ⟨hne.symm, u, hu, e2, e1⟩
 
 /-- Both endpoints of a bidirected-reachability derivation are observed
-    (left endpoint). -/
+    (left endpoint).
+@isnad1 id=mem.1h4v.s5.f8fe555a895f from=translated src=- shape=8eee227b vocab=da3560b1
+-/
 theorem bidirectedReachable_observed_left {u v : SWIGNode N}
     (h : G.bidirectedReachable u v) : u ∈ G.observed := by
   induction h with
@@ -128,7 +132,9 @@ theorem bidirectedReachable_observed_left {u v : SWIGNode N}
   | step _ _ ih => exact ih
 
 /-- Both endpoints of a bidirected-reachability derivation are observed
-    (right endpoint). -/
+    (right endpoint).
+@isnad1 id=mem.1h4v.s5.3b6b301efb71 from=translated src=- shape=6ced5907 vocab=da3560b1
+-/
 theorem bidirectedReachable_observed_right {u v : SWIGNode N}
     (h : G.bidirectedReachable u v) : v ∈ G.observed := by
   induction h with
@@ -141,7 +147,9 @@ theorem bidirectedReachable_observed_right {u v : SWIGNode N}
 
 /-- Prepend a directly-confounded step at the head of a reachability chain:
     if `u` and `v` are directly confounded and `v` reaches `w`, then `u`
-    reaches `w`. Proved by induction on the `v`-to-`w` derivation. -/
+    reaches `w`. Proved by induction on the `v`-to-`w` derivation.
+@isnad1 id=bidirect.2h5v.s5.87d72bfbba30 from=translated src=- shape=ab73b7a3 vocab=5c049f05
+-/
 theorem bidirectedReachable_head {u v w : SWIGNode N}
     (huv : G.directlyConfounded u v) (hvw : G.bidirectedReachable v w) :
     G.bidirectedReachable u w := by
@@ -157,7 +165,9 @@ theorem bidirectedReachable_head {u v w : SWIGNode N}
   | step _ hconf ih =>
     exact bidirectedReachable.step ih hconf
 
-/-- Bidirected reachability is symmetric. -/
+/-- Bidirected reachability is symmetric.
+@isnad1 id=bidirect.1h4v.s5.17c5f06e583d from=translated src=- shape=f55a0adf vocab=2b883b44
+-/
 theorem bidirectedReachable_symm {u v : SWIGNode N}
     (h : G.bidirectedReachable u v) : G.bidirectedReachable v u := by
   induction h with
@@ -165,7 +175,9 @@ theorem bidirectedReachable_symm {u v : SWIGNode N}
   | step _ hconf ih =>
     exact bidirectedReachable_head G (G.directlyConfounded_symm hconf) ih
 
-/-- Bidirected reachability is transitive. -/
+/-- Bidirected reachability is transitive.
+@isnad1 id=bidirect.2h5v.s5.b7ea6e018d2a from=translated src=- shape=d1c2c38f vocab=2b883b44
+-/
 theorem bidirectedReachable_trans {u v w : SWIGNode N}
     (huv : G.bidirectedReachable u v) (hvw : G.bidirectedReachable v w) :
     G.bidirectedReachable u w := by
@@ -175,13 +187,17 @@ theorem bidirectedReachable_trans {u v w : SWIGNode N}
 
 /-! ## Structural invariants of the BFS routine -/
 
-/-- The bidirected neighbors of a node are observed. -/
+/-- The bidirected neighbors of a node are observed.
+@isnad1 id=le.0h3v.s5.1d4479a2c091 from=translated src=- shape=154b6303 vocab=cbc5c1cd
+-/
 theorem bidirectedNeighbors_subset_observed (v : SWIGNode N) :
     G.bidirectedNeighbors v ⊆ G.observed := by
   intro w hw
   exact (Finset.mem_filter.mp hw).1
 
-/-- The visited set only grows: it is contained in the result of `go`. -/
+/-- The visited set only grows: it is contained in the result of `go`.
+@isnad1 id=le.0h5v.s5.f1db271ed4db from=translated src=- shape=9bc415ff vocab=0ab6e04b
+-/
 theorem subset_bidirectedBFS_go (frontier visited : Finset (SWIGNode N))
     (fuel : ℕ) : visited ⊆ bidirectedBFS.go G frontier visited fuel := by
   induction fuel generalizing frontier visited with
@@ -194,7 +210,9 @@ theorem subset_bidirectedBFS_go (frontier visited : Finset (SWIGNode N))
       exact (Finset.subset_union_left).trans (ih _ _)
 
 /-- If the visited set and frontier are within `observed`, so is the result of
-    `go`. -/
+    `go`.
+@isnad1 id=le.1h5v.s6.09f8efe5c1b7 from=translated src=- shape=97f0487d vocab=506149e3
+-/
 theorem bidirectedBFS_go_subset_observed (frontier visited : Finset (SWIGNode N))
     (fuel : ℕ) (hvis : visited ⊆ G.observed) :
     bidirectedBFS.go G frontier visited fuel ⊆ G.observed := by
@@ -212,7 +230,9 @@ theorem bidirectedBFS_go_subset_observed (frontier visited : Finset (SWIGNode N)
       obtain ⟨x, _, hx⟩ := Finset.mem_biUnion.mp hw'
       exact G.bidirectedNeighbors_subset_observed x hx
 
-/-- The bidirected BFS from `start` is contained in `observed`. -/
+/-- The bidirected BFS from `start` is contained in `observed`.
+@isnad1 id=le.0h3v.s5.fd6108330907 from=translated src=- shape=154b6303 vocab=fedbaa8e
+-/
 theorem bidirectedBFS_subset_observed (start : SWIGNode N) :
     G.bidirectedBFS start ⊆ G.observed := by
   rw [bidirectedBFS]
@@ -221,7 +241,9 @@ theorem bidirectedBFS_subset_observed (start : SWIGNode N) :
     exact G.bidirectedBFS_go_subset_observed _ _ _ (by simpa using h)
   · simp [h]
 
-/-- The start node belongs to its own BFS result (when observed). -/
+/-- The start node belongs to its own BFS result (when observed).
+@isnad1 id=mem.1h3v.s5.d7cbbd780e60 from=translated src=- shape=b22ee046 vocab=0b42c1ed
+-/
 theorem mem_bidirectedBFS_self {start : SWIGNode N} (h : start ∈ G.observed) :
     start ∈ G.bidirectedBFS start := by
   rw [bidirectedBFS]
@@ -233,7 +255,9 @@ theorem mem_bidirectedBFS_self {start : SWIGNode N} (h : start ∈ G.observed) :
 /-- **Soundness of BFS.** Every node produced by `bidirectedBFS.go` from a
     frontier and visited set all of whose elements are bidirected-reachable from
     `start` is itself bidirected-reachable from `start`. Fully proved by
-    induction on the fuel. -/
+    induction on the fuel.
+@isnad1 id=bidirect.3h7v.s6.f8895cc433d1 from=translated src=- shape=9e2d104e vocab=a56e90d0
+-/
 theorem bidirectedBFS_go_reachable {start : SWIGNode N} :
     ∀ (fuel : ℕ) (frontier visited : Finset (SWIGNode N)),
       (∀ y ∈ visited, G.bidirectedReachable start y) →
@@ -274,7 +298,9 @@ theorem bidirectedBFS_go_reachable {start : SWIGNode N} :
     This is the fuel-saturation core of BFS completeness: each non-terminating
     step strictly grows `visited` (bounded by `card observed`), so the loop must
     hit `newNeighbors = ∅` within budget, and at that fixed point the visited
-    set is confounding-closed. -/
+    set is confounding-closed.
+@isnad1 id=mem.5h7v.s7.afe66e4a8816 from=translated src=- shape=6f4821ee vocab=d82d9194
+-/
 theorem bidirectedBFS_go_closed :
     ∀ (fuel : ℕ) (frontier visited : Finset (SWIGNode N)),
       visited ⊆ G.observed →
@@ -382,7 +408,9 @@ connected to it by a chain of directly-confounded (shared-unobserved-parent) pai
     The proof combines soundness of every BFS expansion step with the closure
     invariant of the saturated visited set. The reverse direction inducts on the
     bidirected-reachability derivation after showing that the bounded BFS loop
-    has reached a set closed under directly-confounded neighbors. -/
+    has reached a set closed under directly-confounded neighbors.
+@isnad1 id=iff.1h4v.s6.77840729422d from=translated src=- shape=a8d7bb0d vocab=1ce0b8e3
+-/
 theorem mem_bidirectedBFS_iff_reachable {start w : SWIGNode N}
     (hstart : start ∈ G.observed) :
     w ∈ G.bidirectedBFS start ↔ G.bidirectedReachable start w := by
@@ -420,18 +448,24 @@ theorem mem_bidirectedBFS_iff_reachable {start w : SWIGNode N}
 
 /-! ## The c-component partition -/
 
-/-- The c-component of `v` is contained in the observed nodes. -/
+/-- The c-component of `v` is contained in the observed nodes.
+@isnad1 id=le.0h3v.s5.b228641c6462 from=translated src=- shape=154b6303 vocab=e1dc428a
+-/
 theorem cComponentOf_subset_observed (v : SWIGNode N) :
     G.cComponentOf v ⊆ G.observed :=
   G.bidirectedBFS_subset_observed v
 
-/-- An observed node belongs to its own c-component. -/
+/-- An observed node belongs to its own c-component.
+@isnad1 id=mem.1h3v.s5.2ab432a55789 from=translated src=- shape=b22ee046 vocab=3fed056c
+-/
 theorem mem_cComponentOf_self {v : SWIGNode N} (hv : v ∈ G.observed) :
     v ∈ G.cComponentOf v :=
   G.mem_bidirectedBFS_self hv
 
 /-- Every c-component (in the canonical set) is contained in the observed
-    nodes. -/
+    nodes.
+@isnad1 id=le.1h3v.s6.9f41ef17c8bb from=translated src=- shape=45639298 vocab=768ce856
+-/
 theorem cComponentSet_subset_observed :
     ∀ C ∈ G.cComponentSet, C ⊆ G.observed := by
   intro C hC
@@ -440,7 +474,9 @@ theorem cComponentSet_subset_observed :
   exact G.cComponentOf_subset_observed v
 
 /-- [The c-components cover exactly the observed nodes: their union recovers the set of
-observed nodes exactly](goal). -/
+observed nodes exactly](goal).
+@isnad1 id=eq.0h2v.s5.5d71189bae7b from=translated src=- shape=b1b4d321 vocab=c999e251
+-/
 theorem cComponentSet_biUnion :
     G.cComponentSet.biUnion id = G.observed := by
   apply Finset.Subset.antisymm
@@ -457,12 +493,16 @@ theorem cComponentSet_biUnion :
 
 /-- Membership in a c-component is exactly bidirected reachability from its seed. For
 [a node `v` that is observed in `G`](hyp:hv), [a node `w` belongs to the c-component seeded
-at `v` exactly when `w` is bidirected-reachable from `v`](goal). -/
+at `v` exactly when `w` is bidirected-reachable from `v`](goal).
+@isnad1 id=iff.1h4v.s6.bdad49f15477 from=translated src=- shape=a8d7bb0d vocab=116cb378
+-/
 theorem mem_cComponentOf_iff_reachable {v w : SWIGNode N} (hv : v ∈ G.observed) :
     w ∈ G.cComponentOf v ↔ G.bidirectedReachable v w :=
   G.mem_bidirectedBFS_iff_reachable hv
 
-/-- Two c-components seeded by reachable observed nodes are equal. -/
+/-- Two c-components seeded by reachable observed nodes are equal.
+@isnad1 id=eq.1h4v.s5.26848f163051 from=translated src=- shape=a50536c6 vocab=078c06d9
+-/
 theorem cComponentOf_eq_of_reachable {v w : SWIGNode N}
     (h : G.bidirectedReachable v w) :
     G.cComponentOf v = G.cComponentOf w := by
@@ -479,7 +519,9 @@ theorem cComponentOf_eq_of_reachable {v w : SWIGNode N}
     exact G.bidirectedReachable_trans h hx
 
 /-- A node in a listed c-component has that component as its computed
-c-component. -/
+c-component.
+@isnad1 id=eq.2h4v.s6.3528b1253be5 from=translated src=- shape=414d07dd vocab=24de6497
+-/
 theorem cComponentOf_eq_of_mem_cComponentSet
     {C : Finset (SWIGNode N)} (hC : C ∈ G.cComponentSet)
     {v : SWIGNode N} (hvC : v ∈ C) :
@@ -495,7 +537,9 @@ theorem cComponentOf_eq_of_mem_cComponentSet
 This is the boundary property of c-components: adding a shared-latent-parent
 edge from an inside observed node to an outside observed node would make the
 outside node bidirected-reachable from the component seed, hence a member of
-the same c-component. -/
+the same c-component.
+@isnad1 id=not.3h5v.s6.c4280b0dd589 from=translated src=- shape=3b9312b2 vocab=86da1b4c
+-/
 theorem not_directlyConfounded_of_mem_cComponentSet_of_not_mem
     {C : Finset (SWIGNode N)} (hC : C ∈ G.cComponentSet)
     {v w : SWIGNode N} (hvC : v ∈ C) (hwNotC : w ∉ C) :
@@ -513,7 +557,9 @@ theorem not_directlyConfounded_of_mem_cComponentSet_of_not_mem
 outside that c-component.
 
 This is the concrete shared-parent form of
-`not_directlyConfounded_of_mem_cComponentSet_of_not_mem`. -/
+`not_directlyConfounded_of_mem_cComponentSet_of_not_mem`.
+@isnad1 id=false.6h6v.s7.5dfa9079f20f from=translated src=- shape=69487995 vocab=d77d77f1
+-/
 theorem no_shared_unobserved_parent_of_mem_cComponentSet_of_not_mem
     {C : Finset (SWIGNode N)} (hC : C ∈ G.cComponentSet)
     {v w u : SWIGNode N} (hvC : v ∈ C) (hwNotC : w ∉ C) (hu : u ∈ G.unobserved)
@@ -526,7 +572,9 @@ theorem no_shared_unobserved_parent_of_mem_cComponentSet_of_not_mem
     ⟨hvw, u, hu, huv, huw⟩
 
 /-- If a latent node has edges into two observed nodes retained by an induced
-graph, those observed nodes seed the same induced c-component. -/
+graph, those observed nodes seed the same induced c-component.
+@isnad1 id=eq.5h6v.s7.98f8b42d5a85 from=translated src=- shape=859881cf vocab=34573b35
+-/
 theorem induce_cComponentOf_eq_of_shared_unobserved_parent
     (R : Finset (SWIGNode N)) {u v w : SWIGNode N}
     (hu : u ∈ G.unobserved)
@@ -567,7 +615,9 @@ theorem induce_cComponentOf_eq_of_shared_unobserved_parent
       (SWIGGraph.bidirectedReachable.refl hvInd) hconf)
 
 /-- [Distinct c-components are pairwise disjoint: no observed node belongs to two different
-c-components](goal). -/
+c-components](goal).
+@isnad1 id=pairwise.0h2v.s5.fcf13baf4ae0 from=translated src=- shape=4c24e841 vocab=0c976fa1
+-/
 theorem cComponentSet_pairwise_disjoint :
     (G.cComponentSet : Set (Finset (SWIGNode N))).PairwiseDisjoint id := by
   intro C hC D hD hCD

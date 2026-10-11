@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "9a464f1ea0185be3e456dfe518217c480bf236d2aca94908d37159efc61998ae",
+ "library": "btc-verified",
+ "lint_mode": "proposed",
+ "modules": 26,
+ "part": 1,
+ "theorems": 103
+}

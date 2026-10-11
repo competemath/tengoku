@@ -8,6 +8,9 @@ open Bornology Filter
 
 open scoped NNReal ENNReal Topology
 
+/--
+@isnad1 id=eventual.1h5v.s6.b8650812f9a5 from=translated src=- shape=b96586ab vocab=1cb84429
+-/
 lemma eventually_nhdsGT {α : Type*} [TopologicalSpace α] [LinearOrder α] [ClosedIciTopology α]
     {a b : α} (hab : a < b) {p : α → Prop} (h : ∀ x ∈ Set.Ioc a b, p x) :
     ∀ᶠ x in 𝓝[>] a, p x :=
@@ -16,9 +19,15 @@ lemma eventually_nhdsGT {α : Type*} [TopologicalSpace α] [LinearOrder α] [Clo
 variable {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetricSpace Y] [CompleteSpace Y]
     {C r : ℝ≥0} {s : Set X} {f : s → Y}
 
+/--
+@isnad1 id=nebot.1h3v.s6.de603f563a1f from=translated src=- shape=38fdd053 vocab=ff4d34a9
+-/
 lemma neBot_comap_nhds (hs : Dense s) (x : X) : ((𝓝 x).comap ((↑) : s → X)).NeBot :=
   hs.isDenseInducing_val.comap_nhds_neBot _
 
+/--
+@isnad1 id=holderwi.3h6v.s6.e6b820f8ffc3 from=translated src=- shape=fe679876 vocab=b852b2f7
+-/
 lemma Dense.holderWith_extend (hs : Dense s) (hf : HolderWith C r f) (hr : 0 < r) :
     HolderWith C r (hs.extend f) := by
   intro x y
@@ -38,6 +47,9 @@ lemma Dense.holderWith_extend (hs : Dense s) (hf : HolderWith C r f) (hr : 0 < r
     · fun_prop (disch := exact ENNReal.coe_ne_top)
     exact Tendsto.prodMk_nhds (tendsto_comap.comp tendsto_fst) (tendsto_comap.comp tendsto_snd)
 
+/--
+@isnad1 id=boundeds.1h2v.s5.75601f7be7c7 from=translated src=- shape=f9b1a1ea vocab=f0df55b0
+-/
 lemma PseudoEMetricSpace.boundedSpace_toPseudoMetricSpace {C : ℝ≥0}
     (hX : ∀ x y : X, edist x y ≤ C) :
     letI := PseudoEMetricSpace.toPseudoMetricSpace
@@ -50,6 +62,9 @@ lemma PseudoEMetricSpace.boundedSpace_toPseudoMetricSpace {C : ℝ≥0}
   grw [dist_edist, hX, ENNReal.coe_toReal]
   exact ENNReal.coe_ne_top
 
+/--
+@isnad1 id=memholde.2h5v.s5.a435a92f787c from=translated src=- shape=425bc1e0 vocab=be691778
+-/
 lemma MemHolder.mono {X Y : Type*} [PseudoMetricSpace X] [hX : BoundedSpace X]
     [PseudoEMetricSpace Y] {f : X → Y} {r s : ℝ≥0} (hf : MemHolder r f) (hs : s ≤ r) :
     MemHolder s f := by
@@ -67,6 +82,9 @@ lemma MemHolder.mono {X Y : Type*} [PseudoMetricSpace X] [hX : BoundedSpace X]
     ENNReal.coe_rpow_of_nonneg]
   all_goals simpa
 
+/--
+@isnad1 id=memholde.3h6v.s6.dca90ca707e6 from=translated src=- shape=3a8ea70d vocab=e4ac8a3b
+-/
 lemma MemHolder.mono' {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetricSpace Y]
     {f : X → Y} {r s : ℝ≥0} (hf : MemHolder r f) (hs : s ≤ r) {C' : ℝ≥0}
     (hX : ∀ x y : X, edist x y ≤ C') :
@@ -76,6 +94,9 @@ lemma MemHolder.mono' {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetricSpace Y
   have := PseudoEMetricSpace.boundedSpace_toPseudoMetricSpace hX
   exact hf.mono hs
 
+/--
+@isnad1 id=ex.3h7v.s6.ffc6a43bc2bb from=translated src=- shape=1333a194 vocab=c8fffd4d
+-/
 lemma HolderOnWith.mono_right {X Y : Type*} [PseudoMetricSpace X] [PseudoEMetricSpace Y]
     {f : X → Y} {C r s : ℝ≥0} {t : Set X} (hf : HolderOnWith C r f t) (hs : s ≤ r)
     (ht : IsBounded t) : ∃ C', HolderOnWith C' s f t := by
@@ -83,6 +104,9 @@ lemma HolderOnWith.mono_right {X Y : Type*} [PseudoMetricSpace X] [PseudoEMetric
   have : BoundedSpace t := boundedSpace_val_set_iff.2 ht
   exact MemHolder.mono ⟨C, hf⟩ hs
 
+/--
+@isnad1 id=ex.3h8v.s6.4ac9106555a7 from=translated src=- shape=e3c16f92 vocab=71e451e3
+-/
 lemma HolderOnWith.mono_right' {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetricSpace Y]
     {f : X → Y} {C r s : ℝ≥0} {t : Set X} (hf : HolderOnWith C r f t) (hs : s ≤ r)
     {C' : ℝ≥0} (ht : ∀ ⦃x⦄, x ∈ t → ∀ ⦃y⦄, y ∈ t → edist x y ≤ C') :
@@ -94,6 +118,9 @@ lemma HolderOnWith.mono_right' {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetr
     PseudoEMetricSpace.boundedSpace_toPseudoMetricSpace fun x y : t ↦ ht x.2 y.2
   exact MemHolder.mono ⟨C, hf⟩ hs
 
+/--
+@isnad1 id=holderwi.4h8v.s6.2c7624876491 from=translated src=- shape=a4c3974b vocab=28414481
+-/
 lemma HolderWith.HolderWith_of_le_of_le {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetricSpace Y]
     {f : X → Y} {C₁ C₂ r s t : ℝ≥0} (hf₁ : HolderWith C₁ r f) (hf₂ : HolderWith C₂ t f)
     (hrs : r ≤ s) (hst : s ≤ t) : HolderWith (max C₁ C₂) s f := by
@@ -112,6 +139,9 @@ lemma HolderWith.HolderWith_of_le_of_le {X Y : Type*} [PseudoEMetricSpace X] [Ps
     · exact ENNReal.rpow_le_rpow_of_exponent_le h (by norm_cast)
     all_goals simp
 
+/--
+@isnad1 id=holderon.4h9v.s6.566c42fe7e68 from=translated src=- shape=fee3e008 vocab=6a681a51
+-/
 lemma HolderOnWith.holderOnWith_of_le_of_le {X Y : Type*} [PseudoEMetricSpace X]
     [PseudoEMetricSpace Y] {f : X → Y} {C₁ C₂ r s t : ℝ≥0} {u : Set X}
     (hf₁ : HolderOnWith C₁ r f u) (hf₂ : HolderOnWith C₂ t f u)

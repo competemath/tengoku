@@ -55,7 +55,9 @@ noncomputable def nbhdSum (X : ι → Ω → ℝ) (N : ι → Finset ι) (i : ι
   fun ω => ∑ j ∈ N i, X j ω
 
 /-- For square-integrable real-valued functions, the absolute value of their product integral
-is at most the product of the square roots of their two squared integrals. -/
+is at most the product of the square roots of their two squared integrals.
+@isnad1 id=le.2h4v.s7.7a59bb324bc8 from=translated src=- shape=1a0e30a7 vocab=5048a632
+-/
 theorem abs_integral_mul_le_sqrt {μ : Measure Ω} (f g : Ω → ℝ)
     (hf : MemLp f 2 μ) (hg : MemLp g 2 μ) :
     |∫ ω, f ω * g ω ∂μ| ≤ Real.sqrt (∫ ω, f ω ^ 2 ∂μ) * Real.sqrt (∫ ω, g ω ^ 2 ∂μ) := by
@@ -81,7 +83,9 @@ theorem abs_integral_mul_le_sqrt {μ : Measure Ω} (f g : Ω → ℝ)
         rw [hsqrt, hsqrt]; simp_rw [hnormsq, hnormsqg]
 
 /-- A continuous differentiable test function with bounded values and bounded derivative has a
-Stein solution whose derivative is continuous. -/
+Stein solution whose derivative is continuous.
+@isnad1 id=continuo.5h3v.s7.4ca0f11e0fcb from=translated src=- shape=8c315cf0 vocab=2bdb93cd
+-/
 theorem steinSol_deriv_continuous (h : ℝ → ℝ) (hh : Continuous h) {C L : ℝ}
     (hL : 0 ≤ L) (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L)
     (hdiff : Differentiable ℝ h) : Continuous (deriv (steinSol h)) := by
@@ -92,7 +96,9 @@ theorem steinSol_deriv_continuous (h : ℝ → ℝ) (hh : Continuous h) {C L : �
   exact hlip.continuous
 
 /-- The standard-normal Stein solution has a first-order Taylor error that grows no faster than
-the test function's derivative bound times the squared step size. -/
+the test function's derivative bound times the squared step size.
+@isnad1 id=le.3h5v.s7.d2434c49f8aa from=translated src=- shape=f000d179 vocab=fc2f19a1
+-/
 theorem steinSol_taylor_right (h : ℝ → ℝ) {C L : ℝ}
     (hb : ∀ x, |h x| ≤ C) (hd : ∀ x, |deriv h x| ≤ L)
     (hdiff : Differentiable ℝ h) (a t : ℝ) :
@@ -162,7 +168,9 @@ zero](hyp:hmean) and [independent of the sum of the summands outside its neighbo
 function `h` that is [bounded in absolute value by `C`](hyp:hb), [has derivative bounded in
 absolute value by `L`](hyp:hd), and [is differentiable](hyp:hdiff), [the deviation of the expected
 test-function value of the local-dependence sum from its standard-normal expectation is at most
-`2L·√(Var(∑ᵢ Xᵢ·nbhdSumᵢ)) + L·∑ᵢ E[|Xᵢ|·nbhdSumᵢ²]`](goal). -/
+`2L·√(Var(∑ᵢ Xᵢ·nbhdSumᵢ)) + L·∑ᵢ E[|Xᵢ|·nbhdSumᵢ²]`](goal).
+@isnad1 id=le.9h9v.s8.4fda6fc3e2ae from=translated src=- shape=567bf9cc vocab=822a57cd
+-/
 theorem stein_local_dependence_bound
     (X : ι → Ω → ℝ) (N : ι → Finset ι)
     (hmeas : ∀ i, Measurable (X i))

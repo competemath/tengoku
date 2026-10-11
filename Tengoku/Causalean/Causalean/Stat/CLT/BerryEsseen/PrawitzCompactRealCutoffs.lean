@@ -16,7 +16,9 @@ public section
 namespace Causalean.Stat.CLT.BerryEsseen
 
 /-- [Every real ratio in the closed compact range](hyp:ρ,hρ0,hρ1)
-[belongs to one of the 270 adjacent rational parameter cells](goal). -/
+[belongs to one of the 270 adjacent rational parameter cells](goal).
+@isnad1 id=ex.2h1v.s6.6ea776ed1aa9 from=translated src=- shape=9d855b4b vocab=f9b2c41d
+-/
 theorem prawitz_compact_parameter_cell_exists
     (ρ : ℝ) (hρ0 : 1 / 100 ≤ ρ) (hρ1 : ρ ≤ 1) :
     ∃ j : Fin 270, (prawitzCompactLeft j.val : ℝ) ≤ ρ ∧
@@ -43,7 +45,9 @@ cell's left and right endpoints](hyp:j,ρ,hrρ,hρs), with B the cell's low grid
 endpoint (its low cutoff index over 200), A its high grid endpoint (its high
 cutoff index over 1000), inner cutoff U0 = max(3/2, √(4 log(1/ρ))) and outer
 cutoff U = 12/(5ρ), [the inner cutoff U0 is at most B, B is at most the outer
-cutoff U, and the rescaled high endpoint U·A is at most U0](goal). -/
+cutoff U, and the rescaled high endpoint U·A is at most U0](goal).
+@isnad1 id=other.2h2v.s7.93940150d706 from=translated src=- shape=d63f02c6 vocab=2e546d5b
+-/
 theorem prawitz_compact_real_cutoff_enclosures
     (j : Fin 270) (ρ : ℝ)
     (hrρ : (prawitzCompactLeft j.val : ℝ) ≤ ρ)

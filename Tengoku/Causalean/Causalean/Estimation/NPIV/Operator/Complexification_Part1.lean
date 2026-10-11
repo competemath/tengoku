@@ -80,7 +80,9 @@ The Lp version follows by combining
 `ιLp`) and the pointwise identity, then rewriting back with
 `Lp.ext`-style reasoning.  A clean one-liner is:
 `simp [reLp, ιLp, ContinuousLinearMap.compLp_compLp, RCLike.reCLM_apply,
-RCLike.ofRealCLM_apply, RCLike.re_ofReal]`. -/
+RCLike.ofRealCLM_apply, RCLike.re_ofReal]`.
+@isnad1 id=eq.0h3v.s13.88511c799b0e from=translated src=- shape=0b422408 vocab=dfbe86f5
+-/
 lemma reLp_comp_ιLp (f : Lp ℝ 2 μ) : reLp (ιLp f) = f := by
   apply Lp.ext
   filter_upwards [ContinuousLinearMap.coeFn_compLpL (RCLike.reCLM (K := ℂ)) (ιLp f),
@@ -90,7 +92,9 @@ lemma reLp_comp_ιLp (f : Lp ℝ 2 μ) : reLp (ιLp f) = f := by
     RCLike.ofReal_re] using h₁
 
 /-- The imaginary part vanishes on the image of `ιLp` (pointwise
-`RCLike.im_ofReal : RCLike.im (r : ℂ) = 0`). -/
+`RCLike.im_ofReal : RCLike.im (r : ℂ) = 0`).
+@isnad1 id=eq.0h3v.s13.3412dcef692f from=translated src=- shape=2f81480c vocab=4b491967
+-/
 lemma imLp_comp_ιLp (f : Lp ℝ 2 μ) : imLp (ιLp f) = 0 := by
   apply Lp.ext
   filter_upwards [ContinuousLinearMap.coeFn_compLpL (RCLike.imCLM (K := ℂ)) (ιLp f),
@@ -116,7 +120,9 @@ lemma imLp_comp_ιLp (f : Lp ℝ 2 μ) : imLp (ιLp f) = 0 := by
 `RCLike.ofRealLI` being a `LinearIsometry` and the fact that
 `compLpL` of a norm-one CLM preserves norms on `L²`; concretely,
 `‖ιLp f‖ = ‖f‖` reduces pointwise to `‖(r : ℂ)‖ = ‖r‖`
-(`RCLike.norm_ofReal`). -/
+(`RCLike.norm_ofReal`).
+@isnad1 id=eq.0h3v.s12.9394b80c1161 from=translated src=- shape=526f6c91 vocab=08d4af46
+-/
 lemma ιLp_isometry (f : Lp ℝ 2 μ) : ‖ιLp f‖ = ‖f‖ := by
   rw [Lp.norm_def, Lp.norm_def]
   apply congrArg ENNReal.toReal
@@ -139,7 +145,9 @@ complex combination of its real and imaginary parts re-embedded via
 `ιLp`.  Pointwise this is `RCLike.re_add_im : (r.re : ℂ) + I * r.im = r`.
 
 The displayed form uses the ℂ-action on `Lp ℂ 2 μ` (which is the
-standard `Lp` module structure when the value space is ℂ). -/
+standard `Lp` module structure when the value space is ℂ).
+@isnad1 id=eq.0h3v.s14.57bc63f75923 from=translated src=- shape=231f8d35 vocab=dba088ac
+-/
 lemma reLp_add_smul_imLp (f : Lp ℂ 2 μ) :
     ιLp (reLp f) + (Complex.I : ℂ) • ιLp (imLp f) = f := by
   apply Lp.ext
@@ -341,7 +349,9 @@ noncomputable def complexLift
 
 This is the contract that downstream proofs will rewrite by — together
 with `reLp_comp_ιLp` and `imLp_comp_ιLp`, it is enough to compute
-`complexLift A` on explicit elements of `Lp ℂ 2 μ`. -/
+`complexLift A` on explicit elements of `Lp ℂ 2 μ`.
+@isnad1 id=eq.0h4v.s15.57f04cbfd361 from=translated src=- shape=23fb1f0f vocab=aba59671
+-/
 theorem complexLift_apply (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (f : Lp ℂ 2 μ) :
     complexLift A f
       = ιLp (A (reLp f)) + (Complex.I : ℂ) • ιLp (A (imLp f)) := by
@@ -350,7 +360,9 @@ theorem complexLift_apply (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (f : Lp ℂ 2 
 /-- Restriction of the complex lift to the real subspace recovers `A`.
 `reLp_comp_ιLp` gives `reLp (ιLp g) = g` and `imLp_comp_ιLp` gives
 `imLp (ιLp g) = 0`, so `complexLift_apply` collapses to
-`ιLp (A g) + I • ιLp (A 0) = ιLp (A g)`. -/
+`ιLp (A g) + I • ιLp (A 0) = ιLp (A g)`.
+@isnad1 id=eq.0h4v.s14.b86339254f94 from=translated src=- shape=1c204a02 vocab=eca97fe1
+-/
 theorem complexLift_real
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (g : Lp ℝ 2 μ) :
     complexLift A (ιLp g) = ιLp (A g) := by
@@ -358,7 +370,9 @@ theorem complexLift_real
   simp
 
 /-- Corollary of `complexLift_real`: projecting back via `reLp` gives
-exactly `A g`.  Direct from `reLp_comp_ιLp`. -/
+exactly `A g`.  Direct from `reLp_comp_ιLp`.
+@isnad1 id=eq.0h4v.s14.e9299ad0b906 from=translated src=- shape=ca50ec06 vocab=a8c22cb9
+-/
 theorem reLp_complexLift_real
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (g : Lp ℝ 2 μ) :
     reLp (complexLift A (ιLp g)) = A g := by
@@ -403,7 +417,9 @@ private lemma inner_ιLp (u v : Lp ℝ 2 μ) :
 
 /-- Given [a real continuous linear operator on a square-integrable space and a complex-valued
 square-integrable function](hyp:Ω,μ,A,f), [the real part of the operator's complexification equals
-the original operator applied to the function's real part](goal). -/
+the original operator applied to the function's real part](goal).
+@isnad1 id=eq.0h4v.s14.0cc64e61e975 from=translated src=- shape=55b0439a vocab=fe0d22f9
+-/
 lemma reLp_complexLift
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (f : Lp ℂ 2 μ) :
     reLp (complexLift A f) = A (reLp f) := by
@@ -412,7 +428,9 @@ lemma reLp_complexLift
 
 /-- Given [a real continuous linear operator on a square-integrable space and a complex-valued
 square-integrable function](hyp:Ω,μ,A,f), [the imaginary part of the operator's complexification
-equals the original operator applied to the function's imaginary part](goal). -/
+equals the original operator applied to the function's imaginary part](goal).
+@isnad1 id=eq.0h4v.s14.a133d5a73f98 from=translated src=- shape=55b0439a vocab=2fb51d36
+-/
 lemma imLp_complexLift
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (f : Lp ℂ 2 μ) :
     imLp (complexLift A f) = A (imLp f) := by
@@ -449,7 +467,9 @@ identity `⟪(complexLift A).adjoint x, y⟫ = ⟪x, complexLift A y⟫`,
 and `⟪ιLp u, ιLp v⟫_ℂ = (⟪u, v⟫_ℝ : ℂ)` (the inner product on
 `Lp ℂ 2 μ` restricts on the real subspace to that of `Lp ℝ 2 μ`).  The
 key Mathlib lemma is `ContinuousLinearMap.adjoint_inner_left` /
-`adjoint_inner_right`. -/
+`adjoint_inner_right`.
+@isnad1 id=eq.0h3v.s17.e57be9260925 from=translated src=- shape=d50a0367 vocab=9466c66c
+-/
 theorem complexLift_adjoint (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) :
     (complexLift A).adjoint = complexLift A.adjoint := by
   ext f
@@ -461,7 +481,9 @@ theorem complexLift_adjoint (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) :
 
 /-- Self-adjointness is preserved by the complex lift.  Direct
 corollary of `complexLift_adjoint` (rewrite `A.adjoint = A` inside the
-RHS). -/
+RHS).
+@isnad1 id=isselfad.1h3v.s12.b39b0f887ef3 from=translated src=- shape=681a7058 vocab=ddb79d2a
+-/
 theorem complexLift_isSelfAdjoint
     {A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ} (hA : IsSelfAdjoint A) :
     IsSelfAdjoint (complexLift A) := by
@@ -471,7 +493,9 @@ theorem complexLift_isSelfAdjoint
 /-! ## Section 4.  Real CFC via complexification -/
 
 /-- Given [a real scalar and a complex-valued square-integrable function](hyp:Ω,μ,r,f), [the
-real part of their scalar product is the scalar times the function's real part](goal). -/
+real part of their scalar product is the scalar times the function's real part](goal).
+@isnad1 id=eq.0h4v.s14.96d0542de9cf from=translated src=- shape=93225b06 vocab=4046a2f0
+-/
 lemma reLp_ofReal_smul (r : ℝ) (f : Lp ℂ 2 μ) :
     reLp ((r : ℂ) • f) = r • reLp f := by
   apply Lp.ext
@@ -496,7 +520,9 @@ lemma reLp_ofReal_smul (r : ℝ) (f : Lp ℂ 2 μ) :
 
 /-- Given [a complex-valued and a real-valued square-integrable function](hyp:Ω,μ,u,v), [the
 real inner product of the first function's real part with the second equals the real part of the
-complex inner product with the complex embedding of the second](goal). -/
+complex inner product with the complex embedding of the second](goal).
+@isnad1 id=eq.0h4v.s13.e779783f7e59 from=translated src=- shape=13d6234e vocab=1a85e62a
+-/
 lemma inner_reLp_left (u : Lp ℂ 2 μ) (v : Lp ℝ 2 μ) :
     inner ℝ (reLp u) v = (inner ℂ u (ιLp v)).re := by
   have h := inner_ιLp_right (μ := μ) v u
@@ -564,7 +590,9 @@ spectral proofs.
 
 Given a self-adjoint real CLM `A` and a continuous real symbol `f`,
 `realCFC A f g` equals the real part of
-`cfc (f ∘ Complex.re) (complexLift A) (ιLp g)`. -/
+`cfc (f ∘ Complex.re) (complexLift A) (ιLp g)`.
+@isnad1 id=eq.2h5v.s16.68ee9f8eda7a from=translated src=- shape=fdf27769 vocab=d948ddf9
+-/
 theorem realCFC_apply
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (hA : IsSelfAdjoint A)
     (f : ℝ → ℝ) (hf : Continuous f) (g : Lp ℝ 2 μ) :
@@ -584,7 +612,9 @@ Note: the symbol here is `(id : ℝ → ℝ)`; the lifted symbol
 `fun z : ℂ => ((id z.re : ℝ) : ℂ) = (z.re : ℂ)` is *not* `cfc_id`
 directly but rather agrees with the identity on the spectrum of
 `complexLift A` because `complexLift` of a self-adjoint real CLM has
-real spectrum (`IsSelfAdjoint.spectrumRestricts`). -/
+real spectrum (`IsSelfAdjoint.spectrumRestricts`).
+@isnad1 id=eq.1h4v.s13.ea97584dcfef from=translated src=- shape=f7a0c0c1 vocab=1d55dce3
+-/
 theorem realCFC_id
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (hA : IsSelfAdjoint A)
     (g : Lp ℝ 2 μ) :

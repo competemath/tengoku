@@ -83,7 +83,9 @@ noncomputable def Tlin (S : OperatorSystem Ω μ) :
 /-- Coherence: applying the bundled CLM `Tlin` to `f` agrees with the
 function-level operator `T` from `Causalean/Estimation/NPIV/Operator.lean`.
 The proof unfolds both sides and uses
-`Submodule.starProjection_apply = orthogonalProjectionFn`. -/
+`Submodule.starProjection_apply = orthogonalProjectionFn`.
+@isnad1 id=eq.0h4v.s15.36906e5bdb8e from=translated src=- shape=ff141c95 vocab=24b44e93
+-/
 lemma Tlin_apply (S : OperatorSystem Ω μ) (f : S.PrimalL2) :
     S.Tlin f = S.T f := by
   rfl
@@ -117,7 +119,9 @@ composing the second-stage conditional-expectation operator with its adjoint, is
 self-adjoint](goal).
 
 Follows from `IsSelfAdjoint.star_mul_self` in the C⋆-algebra `Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ`, after
-identifying `Tadjoint` with `star Tlin` and `comp` with `*` (`ContinuousLinearMap.mul_def`). -/
+identifying `Tadjoint` with `star Tlin` and `comp` with `*` (`ContinuousLinearMap.mul_def`).
+@isnad1 id=isselfad.0h3v.s14.c8f5c8d196c8 from=translated src=- shape=f8b603fe vocab=66c7d9f1
+-/
 lemma Tstar_T_isSelfAdjoint (S : OperatorSystem Ω μ) :
     IsSelfAdjoint S.Tstar_T := by
   letI : Fact (S.m_X ≤ m₀) := ⟨S.m_X_le⟩
@@ -156,7 +160,9 @@ noncomputable def Tstar_T_trim (S : OperatorSystem Ω μ) :
   S.TadjointTrim.comp S.TlinTrim
 
 /-- For [an NPIV operator system](hyp:S), [the transported normal operator is
-self-adjoint](goal). -/
+self-adjoint](goal).
+@isnad1 id=isselfad.0h3v.s12.9cf14306b0c3 from=translated src=- shape=83ebfe72 vocab=8e633e62
+-/
 lemma Tstar_T_trim_isSelfAdjoint (S : OperatorSystem Ω μ) :
     IsSelfAdjoint S.Tstar_T_trim := by
   have h :=

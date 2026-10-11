@@ -1,0 +1,1 @@
+-- FrontiermathHypergraphs: a factory bundle (data/intake/frontiermath-hypergraphs). This file only marks the library for Tengoku/All.lean.

@@ -21,7 +21,9 @@ open MeasureTheory
 /-- On [positive parameter and frequency cells inside the original kernel
 band](hyp:ρ,r,s,a,b,hr,hrρ,hρs,ha,hab,hbU), [the normalized low-frequency
 integral is enclosed by the better branch using the sharp endpoint
-cubic exponent](goal). -/
+cubic exponent](goal).
+@isnad1 id=other.6h5v.s9.43010dbbb32d from=translated src=- shape=1d596671 vocab=2cf6797b
+-/
 theorem prawitz_low_compact_endpoint_cell_integral_bound
     (ρ r s a b : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 < a) (hab : a ≤ b) (hbU : b ≤ 12 / (5 * ρ)) :
@@ -126,7 +128,9 @@ theorem prawitz_low_compact_endpoint_cell_integral_bound
 /-- On [positive parameter and frequency cells](hyp:ρ,r,s,a,b,hr,hrρ,hρs,ha,hab)
 [inside the lower half of every kernel band](hyp:hbU,hhalf), [the
 high-frequency cell integral is bounded by the quartic kernel enclosure
-times the cubic moment envelope](goal). -/
+times the cubic moment envelope](goal).
+@isnad1 id=other.7h5v.s9.4efd5cebba92 from=translated src=- shape=be3853dc vocab=bbf08d4b
+-/
 theorem prawitz_high_compact_lower_cell_integral_bound
     (ρ r s a b : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 < a) (hab : a ≤ b) (hbU : b ≤ 12 / (5 * ρ))
@@ -192,7 +196,9 @@ of the Prawitz filter magnitude at t/(12/(5ρ)) times the moment envelope is
 at most (b − a)·√Q·min(1, exp E)](goal), where
 Q = (1 − α)²/4 + π²(1 − α)⁴/16 is a reflected quartic bound on the filter and
 E is the larger endpoint value of −t²/2 + s·t³/5, so the bound decays at the
-outer endpoint. -/
+outer endpoint.
+@isnad1 id=other.7h5v.s9.e14addf85cf1 from=translated src=- shape=89c27b48 vocab=bbf08d4b
+-/
 theorem prawitz_high_compact_upper_cell_integral_bound
     (ρ r s a b : ℝ) (hr : 0 < r) (hrρ : r ≤ ρ) (hρs : ρ ≤ s)
     (ha : 0 < a) (hab : a ≤ b) (hbU : b ≤ 12 / (5 * ρ))

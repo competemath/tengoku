@@ -32,6 +32,9 @@ abbrev coloring_is_good {m : ℕ} (color : Set.Icc 1 m → Fin 2) : Prop :=
 abbrev all_colorings_are_good (m : ℕ) : Prop :=
   3 ≤ m ∧ ∀ color : Set.Icc 1 m → Fin 2, coloring_is_good color
 
+/--
+@isnad1 id=allcolor.2h2v.s3.c392fbdf291e from=translated src=- shape=8567d0ba vocab=d5f6b9f4
+-/
 lemma lemma1 {m n : ℕ} (hmn : m ≤ n) (hm : all_colorings_are_good m) :
     all_colorings_are_good n := by
   constructor
@@ -65,6 +68,9 @@ def coloring_of_eight {n : ℕ} : Set.Icc 1 n → Fin 2
 | ⟨8, _⟩ => 0
 | _ => 0 -- unreachable
 
+/--
+@isnad1 id=ex.0h0v.s5.149bb4b50679 from=translated src=- shape=6baf27b2 vocab=0c10458b
+-/
 lemma lemma2 :
     ∃ f : Set.Icc 1 8 → Fin 2, ¬coloring_is_good f := by
   use coloring_of_eight

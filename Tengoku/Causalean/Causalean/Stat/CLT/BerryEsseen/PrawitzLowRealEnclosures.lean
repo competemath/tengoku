@@ -19,7 +19,9 @@ open Finset
 
 /-- On [each certified parameter cell](hyp:j), [the analytic polynomial
 enclosure of the singular initial low interval is bounded by its rational
-table entry](goal). -/
+table entry](goal).
+@isnad1 id=other.0h1v.s7.7d8550c335cc from=translated src=- shape=5ce7b38e vocab=67cc3b51
+-/
 theorem prawitz_low_real_initial_enclosure (j : Fin 270) :
     let s := (prawitzCompactRight j.val : ℝ)
     let a := (1 / 200 : ℝ)
@@ -46,7 +48,9 @@ theorem prawitz_low_real_initial_enclosure (j : Fin 270) :
 [i/200, (i+1)/200] below the cell's low cutoff index](hyp:j,i,hi),
 [the sharp endpoint analytic majorant for the normalized low-frequency cell
 integral is at most the cell's unchanged rational reciprocal-Taylor table
-entry](goal). -/
+entry](goal).
+@isnad1 id=other.1h2v.s9.721df0e3a1d1 from=translated src=- shape=e6a312ff vocab=eef81b0d
+-/
 theorem prawitz_low_real_cell_enclosure
     (j : Fin 270) (i : ℕ)
     (hi : i ∈ Ico 1 (prawitzLowCutoffIndex j.val)) :

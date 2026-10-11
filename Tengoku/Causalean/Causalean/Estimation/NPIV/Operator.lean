@@ -149,13 +149,17 @@ the instrument `Z`. -/
 noncomputable abbrev InstrumentL2 (S : OperatorSystem Ω μ) :=
   @lpMeas Ω ℝ ℝ _ _ _ S.m_Z inferInstance 2 μ
 
-/-- For [an NPIV operator system](hyp:S), [its primal Hilbert space is complete](goal). -/
+/-- For [an NPIV operator system](hyp:S), [its primal Hilbert space is complete](goal).
+@isnad1 id=complete.0h3v.s12.fdbbeeec6480 from=translated src=- shape=50ad2fa2 vocab=1280dd34
+-/
 noncomputable instance instCompleteSpacePrimalL2 (S : OperatorSystem Ω μ) :
     CompleteSpace S.PrimalL2 := by
   letI : Fact (S.m_X ≤ m₀) := ⟨S.m_X_le⟩
   infer_instance
 
-/-- For [an NPIV operator system](hyp:S), [its instrument Hilbert space is complete](goal). -/
+/-- For [an NPIV operator system](hyp:S), [its instrument Hilbert space is complete](goal).
+@isnad1 id=complete.0h3v.s12.c62b9d94e829 from=translated src=- shape=50ad2fa2 vocab=84c326dc
+-/
 noncomputable instance instCompleteSpaceInstrumentL2 (S : OperatorSystem Ω μ) :
     CompleteSpace S.InstrumentL2 := by
   letI : Fact (S.m_Z ≤ m₀) := ⟨S.m_Z_le⟩
@@ -243,14 +247,18 @@ We expose the two basic linearity lemmas the rate proof consumes
 (`T_add`, `T_sub`); a `LinearMap` form is not needed at this stage. -/
 
 /-- `condExpStep` distributes over subtraction (linearity of
-`condExpL2`). -/
+`condExpL2`).
+@isnad1 id=eq.0h5v.s14.357d6d05c0b4 from=translated src=- shape=cade7323 vocab=42cc1527
+-/
 lemma condExpStep_sub (S : OperatorSystem Ω μ) (f g : S.PrimalL2) :
     S.condExpStep (f - g) = S.condExpStep f - S.condExpStep g := by
   haveI := S.isFiniteMeasure
   unfold condExpStep
   simp [map_sub]
 
-/-- `T` distributes over subtraction. -/
+/-- `T` distributes over subtraction.
+@isnad1 id=eq.0h5v.s14.038d266ff2de from=translated src=- shape=cade7323 vocab=b516cea1
+-/
 lemma T_sub (S : OperatorSystem Ω μ) (f g : S.PrimalL2) :
     S.T (f - g) = S.T f - S.T g := by
   haveI := S.Qbar_L2_hasProj
@@ -266,7 +274,9 @@ lemma T_sub (S : OperatorSystem Ω μ) (f g : S.PrimalL2) :
   rw [map_sub]
   rfl
 
-/-- `T` distributes over addition (companion to `T_sub`). -/
+/-- `T` distributes over addition (companion to `T_sub`).
+@isnad1 id=eq.0h5v.s14.1f4f0d43417f from=translated src=- shape=cade7323 vocab=bd5dad5d
+-/
 lemma T_add (S : OperatorSystem Ω μ) (f g : S.PrimalL2) :
     S.T (f + g) = S.T f + S.T g := by
   haveI := S.Qbar_L2_hasProj
@@ -322,7 +332,9 @@ Direct consequence of `m_Z_eq : m_Z = comap (zOf ∘ W) inst𝒵` and
 `meas_of_Qbar`: the canonical map `(zOf ∘ W) : Ω → 𝒵` is measurable from
 `comap (zOf ∘ W) inst𝒵` to `inst𝒵` (`comap_measurable`), so its
 composition with the `inst𝒵`-measurable `q : 𝒵 → ℝ` is
-`m_Z`-measurable, hence `m_Z`-strongly measurable into ℝ. -/
+`m_Z`-measurable, hence `m_Z`-strongly measurable into ℝ.
+@isnad1 id=qbaraeme.0h3v.s4.5ca6660f80d2 from=translated src=- shape=e4514752 vocab=431ce9e5
+-/
 lemma qbar_aestrongly_measurable_mZ (S : OperatorSystem Ω μ) :
     S.QbarAEMeasurableMZ := by
   intro q hq
@@ -356,6 +368,7 @@ The proof composes:
 * self-adjointness of `condExpL2` and idempotence on σ(Z)-measurable
   L² classes (uses `qbar_meas_mZ`);
 * unwinding `Lp` inner products to Bochner integrals.
+@isnad1 id=eq.3h6v.s14.39771035ab8e from=translated src=- shape=631c38a0 vocab=7bceeb22
 -/
 theorem T_inner_eq_integral
     (S : OperatorSystem Ω μ)
@@ -462,7 +475,9 @@ noncomputable def weakNorm (S : OperatorSystem Ω μ) (f : S.PrimalL2) : ℝ :=
   ‖S.T f‖
 
 /-- The projected conditional-expectation norm is bounded by the ambient
-`L²` norm. -/
+`L²` norm.
+@isnad1 id=le.0h4v.s11.4568191ddcd4 from=translated src=- shape=436d4967 vocab=1e79635b
+-/
 lemma weakNorm_le_strongNorm (S : OperatorSystem Ω μ) (f : S.PrimalL2) :
     S.weakNorm f ≤ S.strongNorm f := by
   haveI := S.isFiniteMeasure
@@ -479,7 +494,9 @@ lemma weakNorm_le_strongNorm (S : OperatorSystem Ω μ) (f : S.PrimalL2) :
       rw [strongNorm]
 
 /-- Squared strong norm of a lifted `Hbar` member, unfolded as the integral
-of the squared representative. -/
+of the squared representative.
+@isnad1 id=eq.1h4v.s7.dc5d7b13092e from=translated src=- shape=a86ed580 vocab=68361ea7
+-/
 lemma strongNorm_sq_hL2_eq_integral
     (S : OperatorSystem Ω μ) {h : S.𝒳 → ℝ} (hh : h ∈ S.Hbar) :
     (S.strongNorm (S.hL2 hh)) ^ 2 = ∫ ω, (h (S.xOf (S.W ω))) ^ 2 ∂μ := by
@@ -500,7 +517,9 @@ lemma strongNorm_sq_hL2_eq_integral
 /-- For [an NPIV operator system](hyp:S), [two primal candidate
 functions](hyp:h,h'), and [their membership proofs](hyp:hh,hh'), [the strong
 norm of the lifted difference equals the real extended $L^2$ norm of the
-pointwise difference](goal). -/
+pointwise difference](goal).
+@isnad1 id=eq.2h5v.s13.40263481017a from=translated src=- shape=7713b73d vocab=7176f897
+-/
 lemma strongNorm_hL2_sub_eq_eLpNorm_toReal
     (S : OperatorSystem Ω μ)
     {h h' : S.𝒳 → ℝ} (hh : h ∈ S.Hbar) (hh' : h' ∈ S.Hbar) :

@@ -17,7 +17,9 @@ namespace Causalean.Stat.CLT.BerryEsseen
 
 /-- On [the upper half of the open kernel band](hyp:s,hs,hs1),
 [reflection about π gives a polynomial bound for the squared filter norm](goal).
-The assigned endpoint value is excluded. -/
+The assigned endpoint value is excluded.
+@isnad1 id=le.2h1v.s7.db2a43787b22 from=translated src=- shape=c1615e88 vocab=b9ba6aa0
+-/
 theorem prawitz_high_compact_kernel_sq_upper
     (s : ℝ) (hs : 1 / 2 ≤ s) (hs1 : s < 1) :
     ‖prawitzKernel s‖ ^ 2 ≤
@@ -90,7 +92,9 @@ theorem prawitz_high_compact_kernel_sq_upper
 
 /-- On [the positive lower half of the kernel band](hyp:s,hs,hsHalf),
 [Jordan's inequality and reflection about π/2 give a squared filter bound
-without a trigonometric denominator](goal). -/
+without a trigonometric denominator](goal).
+@isnad1 id=le.2h1v.s8.a612704f4b77 from=translated src=- shape=4f7197c1 vocab=b9ba6aa0
+-/
 theorem prawitz_high_compact_kernel_sq_lower
     (s : ℝ) (hs : 0 < s) (hsHalf : s ≤ 1 / 2) :
     ‖prawitzKernel s‖ ^ 2 ≤ (1 - s) ^ 2 / 4 +
@@ -150,7 +154,9 @@ theorem prawitz_high_compact_kernel_sq_lower
 /-- On [a frequency u in a positive cell [a, b] of the lower half-band
 b ≤ 1/2](hyp:u,a,b,ha,hat,htb,hb), [the squared Prawitz filter norm at u is
 at most an explicit rational polynomial expression in the cell endpoints a, b
-and π](goal). -/
+and π](goal).
+@isnad1 id=le.4h3v.s8.da496c8825f4 from=translated src=- shape=db7ce105 vocab=b9ba6aa0
+-/
 theorem prawitzKernel_lower_cell_taylor_sq_bound
     (u a b : ℝ) (ha : 0 < a) (hat : a ≤ u) (htb : u ≤ b) (hb : b ≤ 1 / 2) :
     ‖prawitzKernel u‖ ^ 2 ≤ (1 - a) ^ 2 / 4 +

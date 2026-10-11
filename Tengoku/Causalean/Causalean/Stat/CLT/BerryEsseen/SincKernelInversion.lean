@@ -17,7 +17,9 @@ open MeasureTheory
 
 /-- At [positive bandwidth T](hyp:hT), [the fourth-power sinc density at every
 point y equals 1/(2π) times the inverse Fourier integral, over the support
-interval [−T, T], of its Fourier transform](goal). -/
+interval [−T, T], of its Fourier transform](goal).
+@isnad1 id=eq.1h2v.s7.523429568641 from=translated src=- shape=78a17d96 vocab=ac08d61f
+-/
 theorem sinc4Kernel_fourier_inversion
     (T : ℝ) (hT : 0 < T) (y : ℝ) :
     (sinc4Kernel T y : ℂ) =

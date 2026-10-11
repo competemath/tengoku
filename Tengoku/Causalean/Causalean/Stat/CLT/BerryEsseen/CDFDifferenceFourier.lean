@@ -20,7 +20,9 @@ open MeasureTheory ProbabilityTheory
 [a nonzero frequency t](hyp:ht), [t times the Fourier integral of the
 difference of their CDFs equals i times the difference of their
 characteristic functions at t](goal); that is, the Fourier integral is
-(i/t)(φ_μ(t) − φ_ν(t)), written so as to avoid division at zero. -/
+(i/t)(φ_μ(t) − φ_ν(t)), written so as to avoid division at zero.
+@isnad1 id=eq.3h3v.s8.61a47d3509ae from=translated src=- shape=c5111cbc vocab=bbf39c99
+-/
 theorem cdf_difference_fourier_identity
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : Integrable (fun y : ℝ => y) μ)

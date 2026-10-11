@@ -37,7 +37,9 @@ self-adjoint.  Proof strategy: `cfc (fun z : ℂ => (f z.re : ℂ))
 lifted symbol takes real values on the spectrum, which follows from
 `f z.re` being real for real `z`); then `complexLift_adjoint`
 combined with `reLp` ∘ `_` ∘ `ιLp` being a real adjunction transports
-self-adjointness back to `realCFC A f`. -/
+self-adjointness back to `realCFC A f`.
+@isnad1 id=isselfad.2h4v.s12.76343ee3cf47 from=translated src=- shape=a2a28474 vocab=3881dd54
+-/
 theorem realCFC_isSelfAdjoint
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (hA : IsSelfAdjoint A)
     (f : ℝ → ℝ) (hf : Continuous f) :
@@ -235,7 +237,9 @@ projects back through `reLp` because the complex CFC is multiplicative.
 NOTE: this is the *symbol-multiplication* law `realCFC A (f·g)`, not
 the *symbol-composition* law `realCFC A (f∘g)` discussed in the
 comment block above — those are mathematically distinct, and only the
-former is exposed here. -/
+former is exposed here.
+@isnad1 id=eq.3h5v.s13.74afd8834c7f from=translated src=- shape=5ba72587 vocab=0e6f917f
+-/
 theorem realCFC_mul
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (hA : IsSelfAdjoint A)
     (f g : ℝ → ℝ) (hf : Continuous f) (hg : Continuous g) :
@@ -284,7 +288,9 @@ in the operator algebra `Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ`.
 
 Concretely: composition of these two `realCFC` operators equals the
 identity `ContinuousLinearMap.id ℝ (Lp ℝ 2 μ)`. This is the
-`realCFC`-level resolvent law that the Tikhonov bias proof needs. -/
+`realCFC`-level resolvent law that the Tikhonov bias proof needs.
+@isnad1 id=eq.3h4v.s14.508d33940b40 from=translated src=- shape=52999b2f vocab=ab1ec493
+-/
 theorem realCFC_resolvent_mul_self
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (hA : IsSelfAdjoint A)
     (hA_spec : ∀ x ∈ spectrum ℝ A, 0 ≤ x)
@@ -442,7 +448,9 @@ Proof strategy:
    `z.re ∈ spectrum ℝ A` via the spectrum-preservation fact for the
    complex lift (this may require a small auxiliary lemma; if mathlib
    doesn't expose it directly, prove it by inverting
-   `λ - complexLift A = complexLift (λ - A)` for real `λ`). -/
+   `λ - complexLift A = complexLift (λ - A)` for real `λ`).
+@isnad1 id=le.4h6v.s13.efa175fb585c from=translated src=- shape=d71e3e42 vocab=2af2d86b
+-/
 theorem realCFC_norm_le
     (A : Lp ℝ 2 μ →L[ℝ] Lp ℝ 2 μ) (hA : IsSelfAdjoint A)
     (f : ℝ → ℝ) (hf : Continuous f)

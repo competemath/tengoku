@@ -26,31 +26,49 @@ include hf
 -- TODO: Rename `liftIco_coe_apply_of_periodic` and `liftIoc_coe_apply_of_periodic` along with
 -- `liftIco_coe_apply` and `liftIoc_coe_apply` which are already in Mathlib
 
+/--
+@isnad1 id=eq.1h6v.s7.d097bdbbed39 from=translated src=- shape=bb74fa7e vocab=4c964c4c
+-/
 theorem liftIco_coe_apply_of_periodic (x : 𝕜) : liftIco p a f ↑x = f x := by
   rw [liftIco, equivIco, comp_apply, domRestrict_apply, QuotientAddGroup.equivIcoMod_coe]
   simp_rw [← self_sub_toIcoDiv_zsmul, hf.sub_zsmul_eq]
 
+/--
+@isnad1 id=eq.1h6v.s7.032b68e17561 from=translated src=- shape=bb74fa7e vocab=cbf0ac23
+-/
 theorem liftIoc_coe_apply_of_periodic (x : 𝕜) : liftIoc p a f ↑x = f x := by
   rw [liftIoc, equivIoc, comp_apply, domRestrict_apply, QuotientAddGroup.equivIocMod_coe]
   simp_rw [← self_sub_toIocDiv_zsmul, hf.sub_zsmul_eq]
 
+/--
+@isnad1 id=eq.1h5v.s7.03f1b35583dd from=translated src=- shape=a408c3b6 vocab=f9ff7c2f
+-/
 theorem liftIco_comp_mk_eq_of_periodic : liftIco p a f ∘ QuotientAddGroup.mk = f := by
   ext; apply liftIco_coe_apply_of_periodic a hf
 
+/--
+@isnad1 id=eq.1h5v.s7.2dc0198c17b1 from=translated src=- shape=a408c3b6 vocab=9067a158
+-/
 theorem liftIoc_comp_mk_eq_of_periodic : liftIoc p a f ∘ QuotientAddGroup.mk = f := by
   ext; apply liftIoc_coe_apply_of_periodic a hf
 
-/-- If `f` has period `p`, then every lift of `f` to `AddCircle p` is the same. -/
+/-- If `f` has period `p`, then every lift of `f` to `AddCircle p` is the same.
+@isnad1 id=eq.1h6v.s7.d35a6dfaba7c from=translated src=- shape=d1f7a4af vocab=dc87e6c9
+-/
 theorem liftIco_eq_liftIco : liftIco p a f = liftIco p a' f :=
   funext fun q ↦ QuotientAddGroup.induction_on q fun _ ↦ by
     simp_rw [liftIco_coe_apply_of_periodic _ hf]
 
-/-- If `f` has period `p`, then every lift of `f` to `AddCircle p` is the same. -/
+/-- If `f` has period `p`, then every lift of `f` to `AddCircle p` is the same.
+@isnad1 id=eq.1h6v.s7.95cab3045bed from=translated src=- shape=d1f7a4af vocab=69a4b849
+-/
 theorem liftIoc_eq_liftIoc : liftIoc p a f = liftIoc p a' f :=
   funext fun q ↦ QuotientAddGroup.induction_on q fun _ ↦ by
     simp_rw [liftIoc_coe_apply_of_periodic _ hf]
 
-/-- If `f` has period `p`, then every lift of `f` to `AddCircle p` is the same. -/
+/-- If `f` has period `p`, then every lift of `f` to `AddCircle p` is the same.
+@isnad1 id=eq.1h6v.s7.8707a35f57c5 from=translated src=- shape=d1f7a4af vocab=eaa46506
+-/
 theorem liftIco_eq_liftIoc : liftIco p a f = liftIoc p a' f :=
   funext fun q ↦ QuotientAddGroup.induction_on q fun _ ↦ by
     rw [liftIco_coe_apply_of_periodic _ hf, liftIoc_coe_apply_of_periodic _ hf]
@@ -63,6 +81,9 @@ variable {𝕜 : Type*} [Field 𝕜] {p q : 𝕜}
 
 variable [LinearOrder 𝕜] [IsStrictOrderedRing 𝕜]
 
+/--
+@isnad1 id=eq.0h3v.s10.6449266da589 from=translated src=- shape=21368b66 vocab=95442f1f
+-/
 lemma equivAddCircle_eq [Archimedean 𝕜] [hp : Fact (0 < p)] [hq : Fact (0 < q)] :
     (equivAddCircle p q hp.out.ne' hq.out.ne' : AddCircle p → AddCircle q)
       = fun x ↦ ((equivIco p 0 x).val * (p⁻¹ * q) : AddCircle q) := by
@@ -72,11 +93,17 @@ lemma equivAddCircle_eq [Archimedean 𝕜] [hp : Fact (0 < p)] [hq : Fact (0 < q
 
 variable [TopologicalSpace 𝕜] [OrderTopology 𝕜]
 
+/--
+@isnad1 id=continuo.0h3v.s9.9bc3efbc80e5 from=translated src=- shape=b0d62e08 vocab=e1d47b2a
+-/
 lemma continuous_equivAddCircle [hp : Fact (0 < p)]
   [hq : Fact (0 < q)] :
     Continuous (⇑(AddCircle.equivAddCircle p q hp.out.ne' hq.out.ne')) :=
   (homeomorphAddCircle _ _ _ _).2
 
+/--
+@isnad1 id=measurep.0h2v.s9.5d98e7071842 from=translated src=- shape=0796b192 vocab=201b0515
+-/
 lemma measurePreserving_equivAddCircle {p q : ℝ} [hp : Fact (0 < p)] [hq : Fact (0 < q)] :
     MeasureTheory.MeasurePreserving (⇑(AddCircle.equivAddCircle p q hp.out.ne' hq.out.ne'))
       AddCircle.haarAddCircle AddCircle.haarAddCircle :=

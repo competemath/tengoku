@@ -145,7 +145,9 @@ private theorem offDiagonal_difference_mulVec {d : ℕ} (M : SqMatrix d)
 
 /-- [Every matrix entry is bounded by the Euclidean operator norm](goal), allowing a global
 residual bound to control [entry `i,j`](hyp:i,j) of [matrix `M`](hyp:M) in [dimension
-`d`](hyp:d). -/
+`d`](hyp:d).
+@isnad1 id=le.0h4v.s5.cdaa630b1aa4 from=translated src=- shape=a9bee148 vocab=39de7c2d
+-/
 theorem abs_entry_le_opNorm {d : ℕ} (M : SqMatrix d) (i j : Fin d) :
     |M i j| ≤ ‖M‖ := by
   classical
@@ -164,7 +166,9 @@ theorem abs_entry_le_opNorm {d : ℕ} (M : SqMatrix d) (i j : Fin d) :
 
 /-- [Uniform entrywise control implies an operator-norm bound scaled by dimension](goal): [matrix
 `M`](hyp:M) in [dimension `d`](hyp:d) needs [a nonnegative entry cap `c`](hyp:c,hc) that [every
-entry obeys](hyp:hM). -/
+entry obeys](hyp:hM).
+@isnad1 id=le.2h3v.s6.269cd2479fe6 from=translated src=- shape=9504f6bf vocab=3281e28f
+-/
 theorem opNorm_le_dimension_mul_of_entry_bound {d : ℕ} (M : SqMatrix d) {c : ℝ}
     (hc : 0 ≤ c) (hM : ∀ i j, |M i j| ≤ c) :
     ‖M‖ ≤ (d : ℝ) * c := by
@@ -192,7 +196,9 @@ theorem opNorm_le_dimension_mul_of_entry_bound {d : ℕ} (M : SqMatrix d) {c : �
 Cramer's-rule coordinate bound](goal). For [coefficient matrix `V` and solution `x`](hyp:V,x) in
 [dimension `d`](hyp:d), this uses [scale `L`, determinant margin `δ`, and residual cap
 `η`](hyp:L,δ,η), with [positive margin](hyp:hδ), [nonnegative scale](hyp:hL), [bounded
-coefficients](hyp:hV), [determinant separation](hyp:hdet), and [bounded residual](hyp:hres). -/
+coefficients](hyp:hV), [determinant separation](hyp:hdet), and [bounded residual](hyp:hres).
+@isnad1 id=le.5h7v.s7.f7323324e69d from=translated src=- shape=89c7175d vocab=b6df70c7
+-/
 -- Proof route: use `V⁻¹ *ᵥ (V *ᵥ x) = x`, expand `V⁻¹` through the adjugate (or use
 -- `Matrix.det_smul_inv_mulVec_eq_cramer`), expand each `(d-1)`-minor determinant, and
 -- bound its `factorial (d-1)` Leibniz terms by `(2L)^(d-1)`.
@@ -245,7 +251,9 @@ theorem coordinate_le_affineSolveFactor {d : ℕ} (V : SqMatrix d) (x : Fin d �
 congruence](goal), linking observable and latent representations for [matrix family `A`](hyp:A),
 [shifts `s`](hyp:s), [reference and candidate matrices](hyp:B₀,B), and [environment
 `e`](hyp:e) over [environment type `E`](hyp:E) in [dimension `d`](hyp:d), provided [the reference
-is invertible](hyp:hunit) and [exactly diagonalizes the family](hyp:hexact). -/
+is invertible](hyp:hunit) and [exactly diagonalizes the family](hyp:hexact).
+@isnad1 id=eq.2h7v.s7.0ffa180027e4 from=translated src=- shape=654a931e vocab=d03331ec
+-/
 theorem transition_diagonal_congruence {d : ℕ} {E : Type*} [Fintype E]
     (A : E → SqMatrix d) (s : E → Fin d → ℝ) (B₀ B : SqMatrix d)
     (hunit : IsUnit B₀.det) (hexact : ExactCongruence A s B₀) (e : E) :
@@ -270,7 +278,9 @@ cross-row product](goal), the coordinate estimates needed for stable recovery. F
 in [dimension `d`](hyp:d), the constants are [shift scale `L`, separation `δ`, and residual
 `ε`](hyp:L,δ,ε); assumptions require [nonnegative scale](hyp:hL), [positive
 separation](hyp:hδ), [bounded shifts](hyp:hscale), [an affine minor](hyp:hsep), [an invertible
-exact reference](hyp:hunit,hexact), and [an approximately congruent candidate](hyp:happrox). -/
+exact reference](hyp:hunit,hexact), and [an approximately congruent candidate](hyp:happrox).
+@isnad1 id=and.7h9v.s7.f986b0ec5f1c from=translated src=- shape=f6278d58 vocab=ec480bdd
+-/
 -- Proof route: choose `base,pick` from `hsep`, subtract each picked congruence equation
 -- from the base equation, and apply `coordinate_le_affineSolveFactor`.  On diagonal
 -- matrix entries solve for `M i a ^ 2 - 1_{i=a}`; off the diagonal solve for
@@ -367,7 +377,9 @@ and candidate](hyp:A,s,B₀,B) over [environments `E`](hyp:E) in [dimension `d`]
 [bounded and separated shifts](hyp:hscale,hsep), [unit-diagonal matrices](hyp:hnorm₀,hnorm),
 [scale control](hyp:hmatrixScale), [an invertible reference](hyp:hB₀unit), [exact reference
 congruences](hyp:hexact), [an admissibly small tolerance](hyp:hsmall), and [a candidate
-achieving that tolerance](hyp:happrox). -/
+achieving that tolerance](hyp:happrox).
+@isnad1 id=le.13h11v.s7.c57c1a295b8e from=translated src=- shape=4c7baa51 vocab=df521d71
+-/
 -- Proof route: square control first gives `|M i a| ≤ sqrt(qε)` for `a ≠ i`.  From
 -- `B = M B₀` and both unit diagonals, bound `|M i i - 1|` by the off-diagonal terms
 -- times entries of `B₀`, hence by `d R sqrt(qε)`.  The second threshold makes this ≤ 1/2.
@@ -468,7 +480,9 @@ bound](hyp:hmatrixScale),
 exactly](hyp:hexact), [the residual tolerance is nonnegative](hyp:hε), [the tolerance is
 admissibly small](hyp:hsmall), and [the candidate realizes the congruences up to that
 tolerance](hyp:happrox), then [the candidate is within the explicit linear modulus times the
-tolerance of the reference in Euclidean operator norm](goal). -/
+tolerance of the reference in Euclidean operator norm](goal).
+@isnad1 id=le.14h10v.s7.53f55214905a from=translated src=- shape=6e35504c vocab=829bc15e
+-/
 -- Proof route: the preceding half-bound and cross-product control give
 -- `|M i a| ≤ 2qε` for `i ≠ a`; square control bounds `|M i i - 1|`.  Convert this to
 -- `‖M-I‖ ≤ 2d qε`, write `B-B₀ = (M-I)B₀`, and use `‖B₀‖ ≤ R`.

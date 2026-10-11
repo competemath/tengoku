@@ -17,7 +17,9 @@ open scoped Pointwise
 
 /-- For [a positive bandwidth T](hyp:hT), [at most one quarter of the
 fourth-power sinc kernel's mass lies at distance at least 6/T from
-zero](goal). -/
+zero](goal).
+@isnad1 id=le.1h1v.s6.84cc7d55c986 from=translated src=- shape=0954e331 vocab=dd338a44
+-/
 theorem sinc4Kernel_tail_le_quarter (T : ℝ) (hT : 0 < T) :
     ∫ x in {x : ℝ | 6 / T ≤ |x|}, sinc4Kernel T x ≤ 1 / 4 := by
   let a : ℝ := T / 4

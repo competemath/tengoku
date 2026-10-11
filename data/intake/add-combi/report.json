@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "54f9677f3ec31eb2028755393cdaab1ea2dc85477d2188c5cbcc6130e6cf1de6",
+ "library": "add-combi",
+ "lint_mode": "proposed",
+ "modules": 9,
+ "part": 1,
+ "theorems": 24
+}

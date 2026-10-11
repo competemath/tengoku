@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "092c0819269a75a759349c325905bd59a886f324c297b513391c3f6a5db26f51",
+ "library": "mean-fourier",
+ "lint_mode": "proposed",
+ "modules": 26,
+ "part": 1,
+ "theorems": 79
+}

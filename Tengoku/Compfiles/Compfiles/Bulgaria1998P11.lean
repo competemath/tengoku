@@ -22,7 +22,9 @@ is an integer. Prove that A is odd.
 
 namespace Bulgaria1998P11
 
-/-- A natural number that is 2 mod 3 has a prime factor that is 2 mod 3. -/
+/-- A natural number that is 2 mod 3 has a prime factor that is 2 mod 3.
+@isnad1 id=ex.1h1v.s5.76bc1d36982d from=translated src=- shape=967e2020 vocab=ffddf53d
+-/
 lemma exists_prime_fac_mod_three_eq_two (m : ℕ) (hm : m % 3 = 2) :
     ∃ p, p.Prime ∧ p ∣ m ∧ p % 3 = 2 := by
   induction m using Nat.strong_induction_on with
@@ -40,7 +42,9 @@ lemma exists_prime_fac_mod_three_eq_two (m : ℕ) (hm : m % 3 = 2) :
 
 /-- If `-3` is a square mod an odd prime `p`, then `p` is not 2 mod 3:
 the element `ω` with `2 * ω = a - 1` satisfies `ω² + ω + 1 = 0`, hence has
-order three, so that `3 ∣ p - 1` by Fermat's little theorem. -/
+order three, so that `3 ∣ p - 1` by Fermat's little theorem.
+@isnad1 id=ne.3h2v.s6.ab0fcbdb2c3d from=translated src=- shape=5fd66559 vocab=0dd80895
+-/
 lemma mod_three_ne_two_of_sq_eq_neg_three {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2)
     {a : ZMod p} (ha : a ^ 2 = -3) : p % 3 ≠ 2 := by
   intro hp3
@@ -71,6 +75,9 @@ lemma mod_three_ne_two_of_sq_eq_neg_three {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 
   have := hp.two_le
   lia
 
+/--
+@isnad1 id=and.1h3v.s6.53f4677a4f00 from=translated src=- shape=8e7dc820 vocab=4d30c382
+-/
 lemma n_odd_and_m_mod_three {m n A : ℕ} (h : 3 * m * A = (m + 3) ^ n + 1) :
     Odd n ∧ m % 3 = 2 := by
   have hn0 : n ≠ 0 := by

@@ -21,6 +21,9 @@ Suppose that a,b,c are the side lengths of a triangle. Prove that
 namespace Imo1964P2
 
 -- TODO: get this into mathlib in some form
+/--
+@isnad1 id=le.3h3v.s7.89ad19977c22 from=translated src=- shape=e9277d78 vocab=6bfb30e3
+-/
 lemma schur {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
     0 ≤ a * (a - b) * (a - c) + b * (b - a) * (b - c) + c * (c - a) * (c - b) := by
   -- from https://artofproblemsolving.com/wiki/index.php/Schur%27s_Inequality

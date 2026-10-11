@@ -20,6 +20,9 @@ open scoped ENNReal NNReal Topology
 
 section aux
 
+/--
+@isnad1 id=measurab.2h6v.s6.7b56973ab689 from=translated src=- shape=82875738 vocab=ac3a2ceb
+-/
 lemma measurable_limUnder_of_exists_tendsto {ι X E : Type*}
     {mX : MeasurableSpace X} [TopologicalSpace E] [TopologicalSpace.PseudoMetrizableSpace E]
     [MeasurableSpace E] [BorelSpace E] {l : Filter ι}
@@ -31,6 +34,9 @@ lemma measurable_limUnder_of_exists_tendsto {ι X E : Type*}
   refine measurable_of_tendsto_metrizable' l hf (tendsto_pi_nhds.mpr fun x ↦ ?_)
   exact tendsto_nhds_limUnder (h_conv x)
 
+/--
+@isnad1 id=measurab.1h5v.s6.6282c8ad3dba from=translated src=- shape=2ddb2652 vocab=a5a46046
+-/
 lemma measurable_limUnder {ι X E : Type*} [MeasurableSpace X] [TopologicalSpace E] [PolishSpace E]
     [MeasurableSpace E] [BorelSpace E] [Countable ι] {l : Filter ι}
     [l.IsCountablyGenerated] {f : ι → X → E} [hE : Nonempty E] (hf : ∀ i, Measurable (f i)) :
@@ -48,6 +54,9 @@ lemma measurable_limUnder {ι X E : Type*} [MeasurableSpace X] [TopologicalSpace
   exact measurable_limUnder_of_exists_tendsto (fun x ↦ x.2)
     (fun i ↦ (hf i).comp measurable_subtype_coe)
 
+/--
+@isnad1 id=eq.2h8v.s7.664abe10e1e4 from=translated src=- shape=a14f48a7 vocab=0f37af3e
+-/
 lemma limUnder_prod {α β X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [Nonempty X] [Nonempty Y] [T2Space X] [T2Space Y] {f : Filter α} {f' : Filter β}
     [NeBot f] [NeBot f'] {g : α → X} {g' : β → Y}
@@ -74,6 +83,9 @@ lemma _root_.Measurable.of_edist_eq_zero {Ω E : Type*} {mΩ : MeasurableSpace �
   rw [EMetric.inseparable_iff]
   exact h_eq_zero ω
 
+/--
+@isnad1 id=eq.0h4v.s5.9bc618c87a8e from=translated src=- shape=59cbe53d vocab=22b448d2
+-/
 lemma edist_limUnder_const {T E : Type*} [PseudoEMetricSpace E] [Nonempty E]
     {c : E} {l : Filter T} [l.NeBot] :
     edist (limUnder l fun _ ↦ c) c = 0 := by
@@ -82,6 +94,9 @@ lemma edist_limUnder_const {T E : Type*} [PseudoEMetricSpace E] [Nonempty E]
   · exact tendsto_nhds_limUnder (⟨c, tendsto_const_nhds⟩ : ∃ c, Tendsto _ _ _)
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=eq.2h7v.s7.f102a216f26b from=translated src=- shape=183fc2dc vocab=045c405c
+-/
 lemma edist_limUnder_prod_eq_zero {α β E : Type*} [PseudoEMetricSpace E] [Nonempty E]
     {l₁ : Filter α} {l₂ : Filter β}
     [l₁.NeBot] [l₂.NeBot]
@@ -121,17 +136,26 @@ def indicatorProcess (X : T → Ω → E) (A : Set Ω) : T → Ω → E :=
   haveI := Classical.decPred (· ∈ A)
   fun t ω ↦ if ω ∈ A then X t ω else hE.some
 
+/--
+@isnad1 id=eq.0h7v.s5.19ea3be107ff from=translated src=- shape=2748bb03 vocab=0281f274
+-/
 @[simp]
 lemma indicatorProcess_apply (X : T → Ω → E) (A : Set Ω) (t : T) (ω : Ω)
     [Decidable (ω ∈ A)] :
     indicatorProcess X A t ω = if ω ∈ A then X t ω else hE.some := by
   simp [indicatorProcess]
 
+/--
+@isnad1 id=measurab.2h7v.s5.03e8650feb4f from=translated src=- shape=193b3a6a vocab=a705a5e2
+-/
 lemma measurable_indicatorProcess [MeasurableSpace E] {A : Set Ω}
     (hA : MeasurableSet A) (hX : ∀ t, Measurable (X t)) (t : T) :
     Measurable (indicatorProcess X A t) :=
   Measurable.ite (hA) (hX t) measurable_const
 
+/--
+@isnad1 id=measurab.5h11v.s7.8e38d4488d2c from=translated src=- shape=4fa18fae vocab=4fd3cbb5
+-/
 lemma measurable_pair_indicatorProcess {T₁ T₂ : Type*}
     [TopologicalSpace E] [MeasurableSpace E] [BorelSpace E] {X₁ : T₁ → Ω → E} {X₂ : T₂ → Ω → E}
     (hX₁ : ∀ t, Measurable (X₁ t)) (hX₂ : ∀ t, Measurable (X₂ t))
@@ -157,6 +181,9 @@ lemma measurable_pair_indicatorProcess {T₁ T₂ : Type*}
     clear hX₁₂
     fun_prop
 
+/--
+@isnad1 id=measurab.5h11v.s7.186a30bb49ad from=translated src=- shape=c64f1769 vocab=f946b0cb
+-/
 lemma measurable_edist_indicatorProcess {T₁ T₂ : Type*}
     [PseudoEMetricSpace E] [MeasurableSpace E] [BorelSpace E]
     {X₁ : T₁ → Ω → E} {X₂ : T₂ → Ω → E}
@@ -185,6 +212,9 @@ def IsLimitOfIndicator (Y X : T → Ω → E) (P : Measure Ω) (U : Set T) : Pro
       (fun t' : denseCountable T ↦ indicatorProcess X A t' ω) t) = 0) ∧
     ∀ t ∉ U, ∀ ω, edist (Y t ω) hE.some = 0
 
+/--
+@isnad1 id=measurab.2h9v.s6.c56f9511ba51 from=translated src=- shape=f33d1c0e vocab=80180b64
+-/
 lemma IsLimitOfIndicator.measurable [MeasurableSpace E] [BorelSpace E] {Y X : T → Ω → E}
     (hX : ∀ t, Measurable (X t)) (hY : IsLimitOfIndicator Y X P U) (t : T) :
     Measurable (Y t) := by
@@ -202,6 +232,9 @@ lemma IsLimitOfIndicator.measurable [MeasurableSpace E] [BorelSpace E] {Y X : T 
     · exact Measurable.ite hA (hX t') measurable_const
   · exact Measurable.of_edist_eq_zero (X := fun _ ↦ hE.some) measurable_const (hYUc t htU)
 
+/--
+@isnad1 id=measurab.4h9v.s8.85c591db92c4 from=translated src=- shape=60a5b593 vocab=88a0ace8
+-/
 lemma measurable_pair_limUnder_comap {T : Type*} [PseudoEMetricSpace T]
     {X₁ X₂ : T → Ω → E} {T' : Set T} (hT'_dense : Dense T')
     (hX₁₂ : ∀ i j, Measurable[_, borel (E × E)] fun ω ↦ (X₁ i ω, X₂ j ω))
@@ -235,6 +268,9 @@ lemma measurable_pair_limUnder_comap {T : Type*} [PseudoEMetricSpace T]
   refine Measurable.of_edist_eq_zero ?_ h_edist_zero
   exact measurable_limUnder_of_exists_tendsto hf_tendsto (fun i ↦ hX₁₂ i.1 i.2)
 
+/--
+@isnad1 id=measurab.7h10v.s9.b0e4198a7154 from=translated src=- shape=2c1f8f2a vocab=67e5654a
+-/
 lemma measurable_pair_limUnder_indicatorProcess
     {T : Type*} [PseudoEMetricSpace T] [SecondCountableTopology T]
     [MeasurableSpace E] [BorelSpace E]
@@ -265,6 +301,9 @@ lemma measurable_pair_limUnder_indicatorProcess
     · simp only [indicatorProcess, hω, ↓reduceIte]
       exact ⟨hE.some, tendsto_const_nhds⟩
 
+/--
+@isnad1 id=measurab.5h13v.s7.03a2fd8e7e3c from=translated src=- shape=fdbe5127 vocab=fee46aa1
+-/
 lemma IsLimitOfIndicator.measurable_pair
     {T : Type*} [PseudoEMetricSpace T] [SecondCountableTopology T]
     [MeasurableSpace E] [BorelSpace E]
@@ -341,6 +380,9 @@ lemma IsLimitOfIndicator.measurable_pair
     intro ω
     simpa [Prod.edist_eq] using ⟨hYUc s hsU₁ ω, hZUc t htU₂ ω⟩
 
+/--
+@isnad1 id=measurab.5h13v.s7.033e129ec2ae from=translated src=- shape=d3f9c0f4 vocab=523a1987
+-/
 lemma IsLimitOfIndicator.measurable_edist
     {T : Type*} [PseudoEMetricSpace T] [SecondCountableTopology T]
     [MeasurableSpace E] [BorelSpace E]
@@ -355,6 +397,9 @@ lemma IsLimitOfIndicator.measurable_edist
   exact continuous_edist.stronglyMeasurable.comp_measurable
     (hY.measurable_pair hX hX' hX_pair hZ s t)
 
+/--
+@isnad1 id=islimito.3h9v.s6.f9230d1ffc9e from=translated src=- shape=7f6ba91d vocab=7873c952
+-/
 lemma IsLimitOfIndicator.indicatorProcess {Y X : T → Ω → E}
     (hY : IsLimitOfIndicator Y X P U) (A : Set Ω) (hA_meas : MeasurableSet A)
     (hA_ae : ∀ᵐ ω ∂P, ω ∈ A) :

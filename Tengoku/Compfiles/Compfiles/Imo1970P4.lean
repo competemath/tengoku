@@ -32,6 +32,9 @@ are six distinct nonzero values, forcing n ≡ 1 (mod 7). But then
 P * P ≡ 6! ≡ -1 (mod 7), and -1 is not a square modulo 7.
 -/
 
+/--
+@isnad1 id=false.3h3v.s6.ac3458cc5ea3 from=translated src=- shape=4b9e0c44 vocab=ee6289ed
+-/
 lemma no_partition {n : ℕ} {s1 s2 : Finset ℕ}
     (partition : s1 ∪ s2 = Finset.Icc n (n + 5))
     (no_dups : s1 ∩ s2 = ∅)

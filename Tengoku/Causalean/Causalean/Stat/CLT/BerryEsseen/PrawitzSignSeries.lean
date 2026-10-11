@@ -23,7 +23,9 @@ open MeasureTheory Filter Topology
 /-- For [a positive spatial coordinate x](hyp:x,hx), [the Prawitz sign
 approximation error, one minus the approximation at 2πx, equals
 (sin(πx)/π)² times the reciprocal-square series correction
-1/x² + 2·Σ_{n≥0} 1/(x+n+1)² − 2/x](goal). -/
+1/x² + 2·Σ_{n≥0} 1/(x+n+1)² − 2/x](goal).
+@isnad1 id=eq.1h1v.s7.d594e6982c6a from=translated src=- shape=e411f388 vocab=be31938d
+-/
 theorem prawitzSignApprox_reciprocal_sq_identity (x : ℝ) (hx : 0 < x) :
     1 - prawitzSignApprox (2 * Real.pi * x) =
       (Real.sin (Real.pi * x) / Real.pi) ^ 2 *

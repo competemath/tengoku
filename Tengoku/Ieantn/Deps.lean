@@ -1,0 +1,1 @@
+-- Ieantn: a factory bundle (data/intake/ieantn). This file only marks the library for Tengoku/All.lean.

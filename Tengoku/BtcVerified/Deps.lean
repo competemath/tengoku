@@ -1,0 +1,1 @@
+-- BtcVerified: a factory bundle (data/intake/btc-verified). This file only marks the library for Tengoku/All.lean.

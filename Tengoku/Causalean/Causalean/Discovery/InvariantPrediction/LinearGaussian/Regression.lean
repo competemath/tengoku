@@ -156,7 +156,9 @@ noncomputable def identifiedSet : Finset (Fin (p + 1)) :=
 
 /-- [A predictor lies in the ICP identified set exactly when every invariant model includes
 it](goal), for [environment family `F`](hyp:F) with [predictor dimension `p`](hyp:p) and [candidate
-coordinate `k`](hyp:k). -/
+coordinate `k`](hyp:k).
+@isnad1 id=iff.0h3v.s8.ef7241e453bd from=translated src=- shape=922c3bad vocab=1b942d95
+-/
 theorem mem_identifiedSet {k : Fin (p + 1)} :
     k ∈ F.identifiedSet ↔ ∀ S ∈ F.invariantSets, k ∈ S := by
   classical
@@ -164,7 +166,9 @@ theorem mem_identifiedSet {k : Fin (p + 1)} :
 
 /-- [A predictor set belongs to the invariant collection exactly when it uses only predictor
 coordinates and satisfies the regression-invariance null](goal), for [environment family
-`F`](hyp:F) with [predictor dimension `p`](hyp:p) and [candidate set `S`](hyp:S). -/
+`F`](hyp:F) with [predictor dimension `p`](hyp:p) and [candidate set `S`](hyp:S).
+@isnad1 id=iff.0h3v.s7.97df4447a80e from=translated src=- shape=8116a26e vocab=fe211239
+-/
 theorem mem_invariantSets {S : Finset (Fin (p + 1))} :
     S ∈ F.invariantSets ↔ S ⊆ predictors p ∧ F.InvarianceNull S := by
   classical

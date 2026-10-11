@@ -137,7 +137,9 @@ DD bundle `M`.
 The bridge between the integrated centred difference quotient and
 `∫ z, M.dℓ_θg θ g z ∂P_Z` (DCT swap) is captured by
 `MixedScoreDCTBridge S M`; under that hypothesis the iff is a routine
-limit-uniqueness argument. -/
+limit-uniqueness argument.
+@isnad1 id=iff.1h8v.s9.5c2f8963c8ef from=translated src=- shape=ee0f7591 vocab=4b5a125b
+-/
 theorem neymanOrthog_iff_score_deriv_zero
     (S : LearningSystem Ω μ Z P_Z Θ G) (M : HasMixedDirDeriv S)
     (hBridge : MixedScoreDCTBridge S M) :

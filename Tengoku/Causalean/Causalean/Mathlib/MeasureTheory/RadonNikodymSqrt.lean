@@ -28,7 +28,9 @@ namespace Causalean.Mathlib.MeasureTheory
 variable {Z : Type*} [MeasurableSpace Z]
 
 /-- For [a real L² element `f`](hyp:f), [its squared Hilbert norm is the integral
-of the square of any canonical representative](goal). -/
+of the square of any canonical representative](goal).
+@isnad1 id=eq.0h3v.s9.56065a3e080a from=translated src=- shape=89f70214 vocab=a3f32626
+-/
 theorem lpNorm_sq_eq_integral_sq {P : Measure Z} (f : Lp ℝ 2 P) :
     ‖f‖ ^ 2 = ∫ z, f z ^ 2 ∂P := by
   rw [← real_inner_self_eq_norm_sq, L2.inner_def]
@@ -43,7 +45,9 @@ noncomputable def rnSqrtDensity (P Q : Measure Z) [IsFiniteMeasure Q] : Z → �
   fun z => Real.sqrt ((Q.rnDeriv P z).toReal)
 
 /-- For [a finite measure `Q`](hyp:Q) and [a reference measure `P`](hyp:P), its
-[square-root Radon--Nikodym density is square-integrable under `P`](goal). -/
+[square-root Radon--Nikodym density is square-integrable under `P`](goal).
+@isnad1 id=memlp.0h3v.s6.7651a58a306d from=translated src=- shape=dcc7f209 vocab=e9abd80e
+-/
 theorem rnSqrtDensity_memLp (P Q : Measure Z) [IsFiniteMeasure Q] :
     MemLp (rnSqrtDensity P Q) 2 P := by
   have hmeas : Measurable (rnSqrtDensity P Q) :=
@@ -62,7 +66,9 @@ noncomputable def rnSqrtDensityLp (P Q : Measure Z) [IsFiniteMeasure Q] : Lp ℝ
   (rnSqrtDensity_memLp P Q).toLp (rnSqrtDensity P Q)
 
 /-- For [a probability measure `P`](hyp:P), [its square-root density relative to
-itself is the constant-one L² vector](goal). -/
+itself is the constant-one L² vector](goal).
+@isnad1 id=eq.0h2v.s7.876ec8e69776 from=translated src=- shape=bfa1b50c vocab=ec24f932
+-/
 @[simp] theorem rnSqrtDensityLp_self (P : Measure Z) [IsProbabilityMeasure P] :
     rnSqrtDensityLp P P = lpOne P := by
   apply Lp.ext

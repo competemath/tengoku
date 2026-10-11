@@ -34,7 +34,9 @@ type `E`, reference diagonalizer `B₀`, invariant `Ω₀`, shifts `s`, and sele
 `i,j`](hyp:d,E,B₀,Ω₀,s,i,j), this uses [distinct coordinates](hyp:hij), [unit diagonal and
 invertibility](hyp:hdiag,hunit), [pair-cycle admissibility](hyp:hcycle), [positive-definite
 invariant](hyp:hΩ), [nonnegative shifts](hyp:hs), [an affine-line certificate](hyp:cert), and
-[positive radius `r`](hyp:r,hr). -/
+[positive radius `r`](hyp:r,hr).
+@isnad1 id=ex.7h9v.s8.82c8469a1915 from=translated src=- shape=9f7120dd vocab=6363dbc1
+-/
 theorem exists_collinear_simultaneous_congruence_ambiguity
     {d : ℕ} {E : Type*}
     (B₀ Ω₀ : SqMatrix d) (s : E → Fin d → ℝ) {i j : Fin d}
@@ -78,7 +80,9 @@ theorem exists_collinear_simultaneous_congruence_ambiguity
 with two distinct normalized diagonalizers](goal), providing a concrete interior
 nonidentification example. It applies to [dimension `d`, environment type `E`, shift family `s`,
 and coordinates `i,j`](hyp:d,E,s,i,j), assuming [the coordinates are distinct](hyp:hij), [the
-shifts are nonnegative](hyp:hs), and [their pair lies on a certified affine line](hyp:cert). -/
+shifts are nonnegative](hyp:hs), and [their pair lies on a certified affine line](hyp:cert).
+@isnad1 id=ex.2h6v.s8.7f724b80313d from=translated src=- shape=2bd95b3e vocab=07b8f493
+-/
 theorem exists_interior_collinear_ambiguity_example
     {d : ℕ} {E : Type*}
     (s : E → Fin d → ℝ) {i j : Fin d} (hij : i ≠ j)

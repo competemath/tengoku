@@ -6,6 +6,9 @@ public import Tengoku
 
 namespace NNReal
 
+/--
+@isnad1 id=eq.0h2v.s6.f78a56b7ef87 from=translated src=- shape=0f38d0c8 vocab=aea6d313
+-/
 lemma add_sub_two_mul_min_eq_max (s t : ℝ≥0) : s + t - 2 * min s t = max (s - t) (t - s) := by
   wlog hst : s ≤ t
   · convert this t s (le_of_not_ge hst) using 1
