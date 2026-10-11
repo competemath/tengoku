@@ -271,6 +271,24 @@ class Topups(unittest.TestCase):
         self.assertEqual([str(f) for f in (c / ".lake").rglob("*.topup-new")], [])
         self.assertFalse((c / ".lake/.topup-applied.json").exists())
 
+    def test_an_archive_whose_name_begins_with_a_dash_is_a_file_not_an_option(self):
+        """SonarCloud S8705 (command argument injection) on #442: the path from the command line went to zstd as an argument. It goes as an absolute path after `--` now."""
+        p = self.producer()
+        out = p / "out"
+        run(p, "make", "--tip", "t1", "--out", str(out))
+        (out / "topup-t1.tar.zst").rename(out / "-n.tar.zst")
+        c = tree(BASE_FILES)
+        mark(c)
+        r = subprocess.run(
+            [sys.executable, str(TOOL), "apply", "--file=-n.tar.zst", "--manifest", str(out / "topup-t1.json")],
+            cwd=out,
+            capture_output=True,
+            text=True,
+            env={**os.environ, "TENGOKU_TOPUP_ROOT": str(c)},
+        )
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual((c / ".lake/build/lib/lean/Tengoku/Lib.olean").read_text(), "L1")
+
     def test_manifest_naming_a_path_outside_the_module_trees_is_refused(self):
         p = self.producer()
         out = p / "out"

@@ -185,7 +185,8 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
             created.add(rel)
     # A stream, never the whole archive in memory: a top-up grows with every merge since the nightly base (772 MB packed, 10.6 GB unpacked on 2026-10-11, after the
     # openai-math parts) and holding it as bytes (twice, with the copy `capture_output` joins) killed the queue's runner 'with a shutdown signal' in every Lean build.
-    zstd = subprocess.Popen(["zstd", "-d", "-q", "-c", str(tar_path)], stdout=subprocess.PIPE)
+    # the archive's absolute path after `--`: a name that begins with a dash is a file here, never an option of zstd (SonarCloud S8705 on the argument that came from the command line)
+    zstd = subprocess.Popen(["zstd", "-d", "-q", "-c", "--", str(tar_path.resolve(strict=True))], stdout=subprocess.PIPE)
     assert zstd.stdout is not None
     problem = ""
     fresh: Path | None = None
