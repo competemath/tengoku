@@ -212,7 +212,7 @@ def failed_section(j: dict) -> list[str]:
 
 
 def render(all_jobs: list[dict], extra: str = "") -> tuple[str, bool]:
-    failed = [j for j in all_jobs if j.get("conclusion") == "failure" and j.get("name") not in ("pr-gate", "sorry-advisory")]
+    failed = [j for j in all_jobs if j.get("conclusion") == "failure" and j.get("name") not in ("pr-gate", "sorry-advisory", "fossa")]
     tail = f"\n\n{extra}" if extra else ""
     if not failed:
         return (

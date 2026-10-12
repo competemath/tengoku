@@ -180,12 +180,16 @@ class Main(unittest.TestCase):
 
 
 class Wiring(unittest.TestCase):
-    """The check is only as good as the job that runs it and the required `pr-gate` that depends on it."""
+    """FOSSA is ADVISORY (2026-10-12): it stalled on some commits for hours and could be neither retried nor repaired from here. The job still runs and prints what FOSSA said, but
+    the required `pr-gate` neither waits for it nor judges it, and the job cannot fail the run."""
 
     jobs = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))["jobs"]
 
-    def test_pr_gate_depends_on_the_fossa_job(self):
-        self.assertIn("fossa", self.jobs["pr-gate"]["needs"])
+    def test_pr_gate_does_not_wait_for_the_fossa_job(self):
+        self.assertNotIn("fossa", self.jobs["pr-gate"]["needs"])
+
+    def test_the_fossa_job_cannot_fail_the_run(self):
+        self.assertIs(self.jobs["fossa"]["continue-on-error"], True)
 
     def test_the_job_runs_the_script_on_the_head_commit_of_this_repository_with_read_only_rights(self):
         job = self.jobs["fossa"]
@@ -196,15 +200,18 @@ class Wiring(unittest.TestCase):
         self.assertFalse([s for s in job["steps"] if "actions/checkout" in s.get("uses", "")])  # the base comes by plain git (Sonar S7631)
         self.assertIn("git checkout -q --detach origin/scripts", runs[0])  # main's tip, not the recorded base (test_gate_scripts_from_main)
 
-    def aggregate(self, fossa: str) -> int:
+    def aggregate(self, results: dict) -> int:
         step = next(s for s in self.jobs["pr-gate"]["steps"] if s.get("name") == "Every job of this PR's class passed")
         code = step["run"].split("python3 -c '", 1)[1].rsplit("'", 1)[0]
-        needs = {"classify": {"result": "success"}, "credits": {"result": "success"}, "fossa": {"result": fossa}}
+        needs = {"classify": {"result": "success"}, **{k: {"result": v} for k, v in results.items()}}
         return subprocess.run([sys.executable, "-c", code], input=json.dumps(needs), text=True, capture_output=True).returncode
 
-    def test_a_failed_or_cancelled_fossa_job_fails_pr_gate_and_a_passed_or_skipped_one_does_not(self):
-        self.assertEqual([self.aggregate(r) for r in ("failure", "cancelled")], [1, 1])
-        self.assertEqual([self.aggregate(r) for r in ("success", "skipped")], [0, 0])
+    def test_the_jobs_pr_gate_judges_still_fail_it(self):
+        self.assertEqual(self.aggregate({"credits": "failure"}), 1)
+        self.assertEqual(self.aggregate({"credits": "success"}), 0)
+
+    def test_fossa_is_not_among_the_jobs_pr_gate_judges(self):
+        self.assertNotIn("fossa", self.jobs["pr-gate"]["needs"])
 
 
 if __name__ == "__main__":
