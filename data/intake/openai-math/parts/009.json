@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "fbc47464ff57761bcb0b09e423c844ac5eb847d784ace1f0dcabf0b363980723",
+ "library": "openai-math",
+ "lint_mode": "proposed",
+ "modules": 262,
+ "part": 9,
+ "theorems": 2485
+}
