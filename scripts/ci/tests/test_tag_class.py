@@ -397,6 +397,21 @@ class CheckTags(unittest.TestCase):
         self.assertEqual(isnad.module_tag_lines(self.MODULE, root), 0)
         self.assertEqual(isnad.modules_with_odd_tag_counts([self.MODULE], {}, root), [])
 
+    def test_records_of_a_module_the_pr_does_not_carry_are_not_checked(self):
+        """The sweep of 2026-10-12 failed after two hours: 4,880 tag lines against 4,881 right tags and no module odd. The tags were counted in the PR's modules, the right ones also in a
+        module the PR does not carry."""
+        text = self.right()
+        recs, lines = self.inputs(text)
+        recs.append(fake_record("elsewhere", "Tengoku.Seed.Outside"))
+        lines.append(range_line("elsewhere", {"range": (3, 0, 5, 3), "sel": (3, 8, 3, 17)}, "Tengoku.Seed.Outside"))
+        root = Path(tempfile.mkdtemp())
+        path = isnad.module_file(self.MODULE, root)
+        path.parent.mkdir(parents=True)
+        path.write_text(text, encoding="utf-8")
+        problems, summary = isnad.check_tags(recs, lines, [self.MODULE], root)
+        self.assertEqual(problems, [])  # (the outside module has no file here: it used to be 'does not exist')
+        self.assertIn("1 theorem(s) of 1 module(s) outside the PR not checked", summary)
+
     def test_a_theorem_without_a_tag_is_reported(self):
         text = self.right()
         recs, lines = self.inputs(text)

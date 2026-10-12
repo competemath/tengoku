@@ -502,6 +502,10 @@ def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: 
     """A tag PR's modules, as built: tagging them again must change nothing (every taggable theorem has exactly the tag the build computes: none missing, none
     stale, no docstring to create) and no tag may be there that belongs to no theorem. Returns (problems, a summary line)."""
     plan, skipped = plan_tags(recs, ranges)
+    # only the modules this PR carries are checked: the tag lines are counted in them, so the theorems that carry the right tag are counted in them too. The records can name a module
+    # the PR does not carry; counting those made the sweep of 2026-10-12 fail after two hours with 4,880 tag lines against 4,881 right tags and no module odd
+    outside = {m: v for m, v in plan.items() if m not in set(modules)}
+    plan = {m: v for m, v in plan.items() if m in set(modules)}
     counts, more = tag_files(plan, root, write=False)
     present = sum(module_tag_lines(m, root) for m in modules)
     problems = [
@@ -523,7 +527,13 @@ def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: 
             + where_clause(modules_with_odd_tag_counts(modules, plan, root))
         )
     by_rule = len(skipped) + len(more) - len(refused)
-    return problems, f"{counts['same']} tags right, {by_rule} theorems skipped by rule, {len(recs)} theorems in {len(modules)} modules"
+    ignored = (
+        f", {sum(len(v) for v in outside.values())} theorem(s) of {len(outside)} module(s) outside the PR not checked" if outside else ""
+    )
+    return (
+        problems,
+        f"{counts['same']} tags right, {by_rule} theorems skipped by rule, {len(recs)} theorems in {len(modules)} modules{ignored}",
+    )
 
 
 def cmd_check_tags(a: argparse.Namespace) -> int:
