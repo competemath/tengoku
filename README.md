@@ -3,7 +3,7 @@
 <p align="center"><em>An AI-first formal mathematics library for Lean 4 agentic theorem provers.</em></p>
 <p align="center">
 <a href="lean-toolchain"><img src="https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcompetemath%2Ftengoku%2Fmain%2Flean-toolchain&search=v%5B0-9.%5D%2B%28-rc%5B0-9%5D%2B%29%3F&label=Lean%204&color=blue" alt="Lean 4 toolchain"></a>
-<a href="https://competemath.com/tengoku"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcompetemath%2Ftengoku%2Fmain%2Fdata%2Fstats.json&query=%24.totals.trusted&label=trusted%20theorems&color=2e7d32" alt="Trusted theorems"></a>
+<a href="https://competemath.com/tengoku"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcompetemath.com%2Fapi%2Ftengoku%2Fstats&query=%24.trusted&label=trusted%20theorems&color=2e7d32" alt="Trusted theorems"></a>
 </p>
 
 ## About
