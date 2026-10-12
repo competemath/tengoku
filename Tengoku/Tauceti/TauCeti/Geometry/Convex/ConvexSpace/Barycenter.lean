@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2026 The Tau Ceti contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: The Tau Ceti contributors
+-/
+module
+
+public import Tengoku
+
+/-!
+# Barycenters of faces under maps of vertices
+
+Mathlib's `Convexity.StdSimplex.subBarycenter S hS` is the barycenter of the face of a standard
+simplex spanned by a nonempty finite set `S` of vertices. This file records that an injective map
+of vertices, acting on the standard simplex by `Convexity.StdSimplex.map`, sends the barycenter of
+the face spanned by `S` to the barycenter of the face spanned by the image of `S`. For instance,
+the inclusion of a facet of the standard simplex sends barycenters of faces of the facet to
+barycenters of the corresponding faces of the simplex, which is how barycentric subdivision
+restricts to faces.
+-/
+
+public section
+
+namespace Convexity.StdSimplex
+
+variable {K M N : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
+
+end Convexity.StdSimplex
