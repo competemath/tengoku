@@ -455,10 +455,13 @@ jobs:
         env: { GH_TOKEN: "${{ github.token }}", BODY: "${{ github.event.pull_request.body }}" }
         run: printf '%s' "$BODY" > body.txt && python3 scripts/ci/depends.py body.txt
 
-  # FOSSA's three verdicts (licences, dependency quality, known vulnerabilities) on the PR's head commit. FOSSA reports on PR commits only,
-  # never on a queue entry, so it cannot be a check of the ruleset itself: this job waits for its statuses and `pr-gate` depends on it.
+  # FOSSA's three verdicts (licences, dependency quality, known vulnerabilities) on the PR's head commit. ADVISORY since 2026-10-12: FOSSA stalled on some
+  # commits for hours ("is analyzing this commit", the same commit analysed in minutes on another attempt), held back a queue's worth of translation PRs and
+  # could be neither retried nor repaired from here. `pr-gate` does not wait for this job and does not judge it, the job cannot fail the run, and FOSSA's own
+  # three statuses stay on the PR for a reviewer to read. FOSSA reports on PR commits only, never on a queue entry, so it was never a ruleset check.
   fossa:
     if: github.event_name == 'pull_request_target'
+    continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions: { contents: read, statuses: read }
@@ -527,7 +530,7 @@ jobs:
           python3 scripts/ci/lint_banked.py "$BASE" "$HEAD"
 
   pr-gate:
-    needs: [classify, data-rules, credits, dco, secrets, workflows, depends, vacuity, goals, intake, scope-fix, tag, raze, restructure, imports, sorry-advisory, fossa, queue-recheck]
+    needs: [classify, data-rules, credits, dco, secrets, workflows, depends, vacuity, goals, intake, scope-fix, tag, raze, restructure, imports, sorry-advisory, queue-recheck]
     # `!cancelled()`, not `always()`: a run that a newer run has cancelled (the PR was pushed to or edited again: CodeRabbit rewrites the description after its review, which is an
     # `edited` event) would still run this job, and its failure stays on the commit as the latest `pr-gate` after the newer run has passed: the PR is blocked for nothing
     if: ${{ !cancelled() }}

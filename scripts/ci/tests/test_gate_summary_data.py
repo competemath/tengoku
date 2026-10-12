@@ -56,6 +56,12 @@ class Advisory(unittest.TestCase):
             bad, _ = gs.render(FAILED, "### advisory text")
         self.assertTrue(bad.endswith("### advisory text"))
 
+    def test_a_failed_fossa_job_is_not_a_failed_check(self):
+        """FOSSA is advisory since 2026-10-12: a stalled or failing FOSSA job never makes the comment say a check failed."""
+        body, failed = gs.render([{"name": "fossa", "conclusion": "failure", "databaseId": 4, "steps": []}])
+        self.assertFalse(failed)
+        self.assertIn("all checks passed", body)
+
     def test_a_failing_advisory_job_is_not_a_failed_check(self):
         body, failed = gs.render([{"name": "sorry-advisory", "conclusion": "failure", "databaseId": 2, "steps": []}])
         self.assertFalse(failed)
