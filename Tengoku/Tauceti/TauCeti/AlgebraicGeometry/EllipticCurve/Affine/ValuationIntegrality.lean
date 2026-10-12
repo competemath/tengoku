@@ -1,0 +1,288 @@
+/-
+Copyright (c) 2026 The Tau Ceti contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: The Tau Ceti contributors
+-/
+module
+
+public import Tengoku
+import Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Integrality
+import Tengoku.Tauceti.TauCeti.RingTheory.Valuation.RootMonic
+
+/-!
+# Integral points of a Weierstrass curve over a valued field
+
+Let `F` be a field, let `v` be a valuation on `F`, let `O` be the valuation subring of `v`, and
+let `W` be a Weierstrass curve over `F` admitting a model over `O`. This file records the
+valuation estimates that such a model forces, and the dichotomy they produce for the coordinates
+of an affine point.
+
+The dichotomy is the sharp one: `v(x)` is never `exp 1`. Either the point is integral,
+`v(x) ≤ 1` and `v(y) ≤ 1`, or it is a pole of order at least two in `x`, `exp 2 ≤ v(x)`. There is
+nothing in between: at a pole `v(y)² = v(x)³`, and `exp 3` is not a square, which rules out the
+one intermediate value. Only pole order one is excluded here — the general statement that every
+pole order is even is not proved.
+
+The two halves need different hypotheses, and are stated that way. The coefficient bounds — and
+the estimates on the two sides of the Weierstrass equation — never look at the value group, so
+they are stated for an arbitrary `Γ₀`. Only the dichotomy needs `Γ₀ = ℤᵐ⁰`, because the parity
+argument that rules out `v(x) = exp 1` is about the exponent being an integer.
+
+The valuation is taken as an explicit argument rather than through `Valued F Γ₀`. Nothing here
+uses a topology, and a fixed field carries many valuations at once — the intended consumers are
+the `IsDedekindDomain.HeightOneSpectrum.valuation` of a varying prime, which cannot all be
+`Valued` instances on `F` simultaneously.
+
+## Main results
+
+* `WeierstrassCurve.Affine.valuation_a₁_le_one` and its `a₂`, `a₃`, `a₄`, `a₆` companions: the
+  coefficients of a curve with an integral model are integral, over any value group.
+* `WeierstrassCurve.Affine.valuation_x_lt_valuation_y`: at a pole of `x`, the `y`-coordinate
+  strictly dominates.
+* `WeierstrassCurve.Affine.valuation_y_sq_eq_valuation_x_cube`: at a pole of `x`, the two
+  coordinates have poles in ratio two to three, over any value group.
+* `WeierstrassCurve.Affine.valuation_y_le_one_of_valuation_x_le_one`: an integral `x`-coordinate
+  forces an integral `y`-coordinate, over any value group.
+* `WeierstrassCurve.Affine.valuation_x_le_one_and_valuation_y_le_one_of_valuation_x_lt_exp_two`:
+  an affine point whose `x`-coordinate has a pole of order less than two has both coordinates
+  integral.
+
+## Implementation notes
+
+The hypothesis "`W` has a model over `O`" is Mathlib's `WeierstrassCurve.IsIntegral O W`, and the
+model itself is `WeierstrassCurve.integralModel O W`; the coefficient bounds are then Mathlib's
+`WeierstrassCurve.integralModel_aᵢ_eq` composed with membership in `O`.
+
+The `y`-half of the dichotomy is not reproved by a valuation computation. Once `x` is known to be
+integral, `WeierstrassCurve.isIntegral_y_of_equation_of_isIntegral_x` gives that `y` is
+integral over `O` from the curve equation alone, over any algebra and with no valuation in sight;
+`O` is a valuation subring, hence integrally closed in `F`, so integrality over it is membership.
+That is how the main theorem discharges its `y`-half. Only the `x`-half — the parity argument that
+rules out `v(x) = exp 1` — is genuinely about the valuation, and it is the only half that needs
+the estimates below.
+
+## Placement
+
+Every declaration here lives in `WeierstrassCurve.Affine`, and the file's content is the
+integrality of an affine point; `exp_one_pow` is a local `WithZero.exp` helper with no curve
+content. The file sits in `EllipticCurve/Affine/` with the rest of the affine-point API.
+
+It is not under `FormalGroup/`, although the formal group is what makes these estimates wanted:
+they are what identifies the kernel of reduction, on which the formal group converges, as the
+locus `exp 2 ≤ v(x)`. But nothing here mentions a power series. No `FormalGroup/` file imports
+this module today — the milestones below are the future consumers.
+
+This supplies the valuation substrate for the formal-group milestones of
+`TauCetiRoadmap/EllipticCurves/README.md`, Layer 1, item "The formal group — four milestones
+with four different hypothesis sets, not one" (README:572): milestone (iii), convergence over a
+complete valued field, and milestone (iv), the identification with the kernel of reduction for an
+integral model.
+
+## References
+
+* [J. Silverman, *The Arithmetic of Elliptic Curves*][silverman2009], VII.2 — the characterisation
+  of `E₁(K)` that this dichotomy underlies.
+
+## Provenance
+
+Adapted from the Stoll `EllipticCurves` development
+(`github.com/MichaelStollBayreuth/EllipticCurves`, Apache-2.0, pinned by
+`TauCetiRoadmap/EllipticCurves/README.md` at `66889eada51a`),
+`EllipticCurves/WeierstrassFormalGroup/Foundations.lean`: `valued_a₁`–`valued_a₄` (:125–:128),
+`valued_a₆` (:129), `valued_lhs_eq_rhs` (:72), `valued_rhs_eq` (:132), `valued_lhs_eq` (:164),
+`valued_lhs_le` (:185), `valued_ne_exp_one` (:202) and `integral_of_not_mem` (:264), which is
+`valuation_x_le_one_and_valuation_y_le_one_of_valuation_x_lt_exp_two` here.
+
+Five departures. The source's private `coe_a₁`–`coe_a₆` (:110–:122) are not ported: they restate
+the structure map for a model carried in the signature, whereas the model here is Mathlib's
+`integralModel`, so the five coefficient bounds are `integralModel_aᵢ_eq` plus membership in `O`.
+The setting is more general: the source works over `v.adicCompletion K` and
+`v.adicCompletionIntegers K`, whereas no step uses completeness, the Dedekind hypothesis, or a
+topology, so the results are stated for a bare `(v : Valuation F Γ₀)` and its valuation subring —
+a weaker hypothesis set that still covers the source's case, `adicCompletionIntegers` being by
+definition the valuation subring of `Valued.v`. `valuation_a₆_le_one` is public here although the
+source's `valued_a₆` (:129) is private: the five coefficient bounds are one API, and a consumer
+holding an integral model needs all five. The hypothesis is stated positively as `v x < exp 2`
+rather than the source's `¬ exp 2 ≤ v x`. And the `y`-half is proved by reuse rather than by the
+source's valuation computation: the source derives it from a `valued_rhs_le` bound (:151), whereas
+here `isIntegral_y_of_equation_of_isIntegral_x` plus integral closedness of `O` gives it directly,
+so that bound has no consumer and is not ported.
+-/
+
+public section
+
+open WithZero
+
+namespace WeierstrassCurve.Affine
+
+variable {F : Type*} [Field F]
+
+/-! ### The coefficient bounds, over an arbitrary value group
+
+Nothing in this section looks at the value group: an integral model bounds the coefficients, and
+the two sides of the Weierstrass equation are estimated, for any `Γ₀`. Only the dichotomy below
+needs `Γ₀ = ℤᵐ⁰`.
+
+`Field F` cannot be weakened here: `Valuation.valuationSubring` is defined only for a field
+(`Mathlib/RingTheory/Valuation/ValuationSubring.lean:33`). -/
+
+section TrivialBase
+
+variable {K Γ₀ : Type*} [Field K] [LinearOrderedCommGroupWithZero Γ₀] [Algebra F K]
+  (v : Valuation K Γ₀) [v.IsTrivialOn F]
+
+/-- **A curve over a trivially valued base has an integral model.** Every coefficient of `W⁄K` is
+the image of one of `W`'s, and a valuation trivial on `F` puts all of those in its valuation
+subring. -/
+instance isIntegral_baseChange (W : _root_.WeierstrassCurve F) :
+    _root_.WeierstrassCurve.IsIntegral v.valuationSubring (W⁄K) where
+  integral :=
+    ⟨{ a₁ := ⟨algebraMap F K W.a₁,
+         Valuation.IsTrivialOn.valuation_algebraMap_le_one (A := F) v W.a₁⟩
+       a₂ := ⟨algebraMap F K W.a₂,
+         Valuation.IsTrivialOn.valuation_algebraMap_le_one (A := F) v W.a₂⟩
+       a₃ := ⟨algebraMap F K W.a₃,
+         Valuation.IsTrivialOn.valuation_algebraMap_le_one (A := F) v W.a₃⟩
+       a₄ := ⟨algebraMap F K W.a₄,
+         Valuation.IsTrivialOn.valuation_algebraMap_le_one (A := F) v W.a₄⟩
+       a₆ := ⟨algebraMap F K W.a₆,
+         Valuation.IsTrivialOn.valuation_algebraMap_le_one (A := F) v W.a₆⟩ }, rfl⟩
+
+end TrivialBase
+
+section Coefficients
+
+variable {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] (v : Valuation F Γ₀) {W : Affine F}
+
+/-- The two sides of the Weierstrass equation have the same valuation, for any point on the
+curve. -/
+private lemma valuation_lhs_eq_rhs {x y : F} (hxy : W.Equation x y) :
+    v (y ^ 2 + (W.a₁ * x * y + W.a₃ * y)) = v (x ^ 3 + (W.a₂ * x ^ 2 + (W.a₄ * x + W.a₆))) :=
+  congrArg v (by linear_combination (W.equation_iff x y).mp hxy)
+
+section Integral
+
+variable [WeierstrassCurve.IsIntegral v.valuationSubring W]
+
+/-- The `a₁`-coefficient of a curve with an integral model is integral. -/
+theorem valuation_a₁_le_one : v W.a₁ ≤ 1 := by
+  rw [← integralModel_a₁_eq v.valuationSubring W]; exact (integralModel v.valuationSubring W).a₁.2
+
+/-- The `a₂`-coefficient of a curve with an integral model is integral. -/
+theorem valuation_a₂_le_one : v W.a₂ ≤ 1 := by
+  rw [← integralModel_a₂_eq v.valuationSubring W]; exact (integralModel v.valuationSubring W).a₂.2
+
+/-- The `a₃`-coefficient of a curve with an integral model is integral. -/
+theorem valuation_a₃_le_one : v W.a₃ ≤ 1 := by
+  rw [← integralModel_a₃_eq v.valuationSubring W]; exact (integralModel v.valuationSubring W).a₃.2
+
+/-- The `a₄`-coefficient of a curve with an integral model is integral. -/
+theorem valuation_a₄_le_one : v W.a₄ ≤ 1 := by
+  rw [← integralModel_a₄_eq v.valuationSubring W]; exact (integralModel v.valuationSubring W).a₄.2
+
+/-- The `a₆`-coefficient of a curve with an integral model is integral. -/
+theorem valuation_a₆_le_one : v W.a₆ ≤ 1 := by
+  rw [← integralModel_a₆_eq v.valuationSubring W]; exact (integralModel v.valuationSubring W).a₆.2
+
+/-- For `v(x) > 1`, the right-hand side of the Weierstrass equation has valuation `v(x)³`: the
+`x³` term strictly dominates the rest. This is `Valuation.map_cubic_eq_of_one_lt` at the
+coefficients `a₂`, `a₄`, `a₆`, whose integrality the model supplies. -/
+private lemma valuation_rhs_eq {x : F} (hA1 : 1 < v x) :
+    v (x ^ 3 + (W.a₂ * x ^ 2 + (W.a₄ * x + W.a₆))) = v x ^ 3 := by
+  convert v.map_cubic_eq_of_one_lt (valuation_a₂_le_one (W := W) v)
+    (valuation_a₄_le_one (W := W) v) (valuation_a₆_le_one (W := W) v) hA1 using 2
+  ring
+
+/-- When `v(y)` dominates `v(x)` and exceeds `1`, the left-hand side of the Weierstrass equation
+has valuation `v(y)²`: the `y²` term strictly dominates the rest. -/
+private lemma valuation_lhs_eq {x y : F} (hAB : v x < v y) (hB1 : 1 < v y) :
+    v (y ^ 2 + (W.a₁ * x * y + W.a₃ * y)) = v y ^ 2 := by
+  set B := v y
+  have h2 : v (W.a₁ * x * y) < B ^ 2 := by
+    rw [map_mul, map_mul]
+    calc v W.a₁ * v x * B ≤ 1 * v x * B :=
+        mul_le_mul' (mul_le_mul' (valuation_a₁_le_one v) le_rfl) le_rfl
+      _ = v x * B := by rw [one_mul]
+      _ < B * B := mul_lt_mul_of_pos_right hAB (zero_lt_one.trans hB1)
+      _ = B ^ 2 := (sq B).symm
+  have h3 : v (W.a₃ * y) < B ^ 2 := by
+    rw [map_mul]
+    calc v W.a₃ * B ≤ 1 * B := mul_le_mul' (valuation_a₃_le_one v) le_rfl
+      _ = B ^ 1 := by rw [one_mul, pow_one]
+      _ < B ^ 2 := pow_lt_pow_right₀ hB1 (by lia)
+  rw [Valuation.map_add_eq_of_lt_left _ (by rw [map_pow]; exact v.map_add_lt h2 h3), map_pow]
+
+/-- A common bound `C ≥ 1` on `v(x)` and `v(y)` bounds the left-hand side of the Weierstrass
+equation by `C²`. -/
+private lemma valuation_lhs_le {x y : F} {C : Γ₀} (hxC : v x ≤ C) (hyC : v y ≤ C) (h1C : 1 ≤ C) :
+    v (y ^ 2 + (W.a₁ * x * y + W.a₃ * y)) ≤ C ^ 2 := by
+  refine v.map_add_le ?_ (v.map_add_le ?_ ?_)
+  · rw [map_pow]
+    exact pow_le_pow_left' hyC 2
+  · rw [map_mul, map_mul]
+    calc v W.a₁ * v x * v y ≤ 1 * C * C :=
+        mul_le_mul' (mul_le_mul' (valuation_a₁_le_one v) hxC) hyC
+      _ = C ^ 2 := by rw [one_mul, sq]
+  · rw [map_mul]
+    calc v W.a₃ * v y ≤ 1 * C := mul_le_mul' (valuation_a₃_le_one v) hyC
+      _ = C := one_mul C
+      _ ≤ C ^ 2 := le_self_pow h1C (by lia)
+
+/-- **At a pole of `x`, the `y`-coordinate strictly dominates.** -/
+theorem valuation_x_lt_valuation_y {x y : F} (hxy : W.Equation x y) (hx : 1 < v x) :
+    v x < v y := by
+  by_contra hle
+  rw [not_lt] at hle
+  -- `v x` then bounds both coordinates, so the left-hand side is at most `v x ^ 2` while the
+  -- right-hand side is exactly `v x ^ 3`.
+  have hbound := valuation_lhs_le (W := W) v le_rfl hle hx.le
+  rw [valuation_lhs_eq_rhs v hxy, valuation_rhs_eq (W := W) v hx] at hbound
+  exact absurd hbound (not_le.2 (pow_lt_pow_right₀ hx (by lia)))
+
+/-- **A pole of `x` forces one of `y`, of three halves the order.** On a point of the curve whose
+`x`-coordinate is not integral, `v(y)² = v(x)³`: writing the valuations additively, `x` has a pole
+of order `2e` and `y` one of order `3e`. Neither coordinate can dominate the other by any other
+ratio, because the two sides of the Weierstrass equation must agree. -/
+theorem valuation_y_sq_eq_valuation_x_cube {x y : F} (hxy : W.Equation x y) (hx : 1 < v x) :
+    v y ^ 2 = v x ^ 3 := by
+  have hlt := valuation_x_lt_valuation_y v hxy hx
+  rw [← valuation_lhs_eq (W := W) v hlt (hx.trans hlt), valuation_lhs_eq_rhs v hxy,
+    valuation_rhs_eq (W := W) v hx]
+
+/-- **An integral `x`-coordinate forces an integral `y`-coordinate**, over any value group. -/
+theorem valuation_y_le_one_of_valuation_x_le_one {x y : F} (hxy : W.Equation x y)
+    (hx : v x ≤ 1) : v y ≤ 1 := by
+  have hxy' : ((integralModel v.valuationSubring W).baseChange F).toAffine.Equation x y := by
+    rw [baseChange_integralModel_eq]; exact hxy
+  have hy : _root_.IsIntegral v.valuationSubring y :=
+    _root_.WeierstrassCurve.isIntegral_y_of_equation_of_isIntegral_x _ hxy'
+      (isIntegral_algebraMap
+        (x := (⟨x, (Valuation.mem_valuationSubring_iff v x).mpr hx⟩ : v.valuationSubring)))
+  exact (Valuation.valuationSubring.integers v).isIntegral_iff_v_le_one.mp hy
+
+end Integral
+
+end Coefficients
+
+/-! ### The dichotomy, over a discretely valued field
+
+This is where `Γ₀ = ℤᵐ⁰` is used: the parity argument that rules out `v(x) = exp 1` needs the
+value group to be `ℤ`. The bounds above are applied at `Γ₀ := ℤᵐ⁰`. -/
+
+section Discrete
+
+variable (v : Valuation F ℤᵐ⁰) {W : Affine F}
+
+-- Named rather than inlined because `exp` is not a `simp`-normal form here: the bounds produced
+-- by `valuation_lhs_le` and `valuation_rhs_eq` are powers of `exp 1`, while the right-hand sides
+-- are compared as `exp _`, and no ordinary rewrite bridges the two.
+
+section Integral
+
+variable [WeierstrassCurve.IsIntegral v.valuationSubring W]
+
+end Integral
+
+end Discrete
+
+end WeierstrassCurve.Affine
