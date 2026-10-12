@@ -35,6 +35,36 @@ class TimeBudget(unittest.TestCase):
         )
 
 
+class TopupSize(unittest.TestCase):
+    """2026-10-11: the top-up (the difference from the nightly cache) reached 2.15 GiB, the release upload answered HTTP 422, and a group whose build had passed left
+    the queue. The step that packs it must turn one over the limit into an incomplete merge (the cache build that follows resets the difference)."""
+
+    WORKFLOW = TimeBudget.WORKFLOW
+
+    def step(self):
+        text = self.WORKFLOW.read_text(encoding="utf-8")
+        start = text.index('scripts/cache.sh topup-make "$GITHUB_SHA" topup-out')
+        return text[start : text.index("\n      - ", start)]
+
+    def test_a_top_up_over_the_asset_limit_is_marked_incomplete(self):
+        step = self.step()
+        limit = re.search(r"limit=\$\(\((\d+) \* 1024 \* 1024 \* 1024 - (\d+) \* 1024 \* 1024\)\)", step)
+        self.assertIsNotNone(limit, "the size limit was not found after the pack")
+        self.assertLess(
+            int(limit.group(1)) * 1024**3 - int(limit.group(2)) * 1024**2, 2 * 1024**3, "the limit must be under GitHub's 2 GiB asset cap"
+        )
+        self.assertIn('[ "$size" -ge "$limit" ]', step)
+        over = step[step.index('[ "$size" -ge "$limit" ]') : step.index('echo "state=complete"')]
+        self.assertIn("state=incomplete", over)
+        self.assertIn("rm -f topup-out/topup-*", over)  # nothing is left to be uploaded
+        self.assertIn(".incomplete", over)
+
+    def test_a_small_top_up_is_still_complete(self):
+        step = self.step()
+        self.assertEqual(step.count('echo "state=complete"'), 1)
+        self.assertGreater(step.index('echo "state=complete"'), step.index('[ "$size" -ge "$limit" ]'))
+
+
 class CommitIds(unittest.TestCase):
     """2026-10-08 (Sonar S6350): the cache pointer is read from the network, and a commit from it was passed to `git fetch` and `git cat-file` as it came."""
 
