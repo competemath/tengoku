@@ -37,7 +37,9 @@ are pairwise distinct. -/
 def AllCutsDistinct {m n : ℕ} (c : Necklace m n) : Prop :=
   ∀ s : ZMod (m * n), Function.Injective (fun i : Fin m ↦ blockCount c s i.val)
 
-/-- Each block contains `n` beads, so its red bead count is at most `n`. -/
+/-- Each block contains `n` beads, so its red bead count is at most `n`.
+@isnad1 id=le.0h5v.s4.fd1047f88f1e from=translated src=- shape=1bb96e60 vocab=cedff79f
+-/
 lemma blockCount_le {m n : ℕ} (c : Necklace m n) (s : ZMod (m * n)) (i : ℕ) :
     blockCount c s i ≤ n := by
   unfold blockCount
@@ -49,7 +51,9 @@ lemma blockCount_le {m n : ℕ} (c : Necklace m n) (s : ZMod (m * n)) (i : ℕ) 
     _ = n := by simp
 
 /-- Necessity: the `m` distinct block counts all lie in `{0, 1, ..., n}`,
-which has only `n + 1` elements. -/
+which has only `n + 1` elements.
+@isnad1 id=le.1h3v.s4.d11c9eb49b3c from=translated src=- shape=050bac32 vocab=2ca10909
+-/
 lemma le_of_allCutsDistinct {m n : ℕ} {c : Necklace m n} (hc : AllCutsDistinct c) :
     m ≤ n + 1 := by
   have hinj := hc 0
@@ -71,7 +75,9 @@ red iff `n + 1 - m ≤ j < n - q`. -/
 def rowRed (m n : ℕ) (p : ℕ) : ℕ :=
   if n + 1 - m ≤ p % n ∧ p % n + p / n < n then 1 else 0
 
-/-- Evaluating `rowRed` on the bead `t * n + a` in row `t`, column `a`. -/
+/-- Evaluating `rowRed` on the bead `t * n + a` in row `t`, column `a`.
+@isnad1 id=eq.2h4v.s7.c99016fa87dc from=translated src=- shape=1e387d47 vocab=045dd49c
+-/
 lemma rowRed_eq {m n : ℕ} (hn : 0 < n) (t a : ℕ) (ha : a < n) :
     rowRed m n (t * n + a) = if n + 1 - m ≤ a ∧ a + t < n then 1 else 0 := by
   unfold rowRed
@@ -83,7 +89,9 @@ lemma rowRed_eq {m n : ℕ} (hn : 0 < n) (t a : ℕ) (ha : a < n) :
       Nat.div_eq_of_lt ha, Nat.zero_add]
   rw [h1, h2]
 
-/-- Evaluating `rowRed` on a bead in row `0`. -/
+/-- Evaluating `rowRed` on a bead in row `0`.
+@isnad1 id=eq.1h3v.s6.f2dde2f51da8 from=translated src=- shape=a6140f6c vocab=5c7f92ea
+-/
 lemma rowRed_self {m n j : ℕ} (hj : j < n) :
     rowRed m n j = if n + 1 - m ≤ j then 1 else 0 := by
   unfold rowRed
@@ -97,7 +105,9 @@ def constr (m n : ℕ) : Necklace m n :=
 
 /-- Bridging lemma: the block count of the constructed necklace can be computed
 with natural number arithmetic; the modulo `m * n` on the indices keeps track
-of the wrap-around of the circle. -/
+of the wrap-around of the circle.
+@isnad1 id=eq.0h4v.s7.a080e3230891 from=translated src=- shape=6145c292 vocab=71062259
+-/
 lemma blockCount_constr_eq {m n : ℕ} (s' t : ℕ) :
     blockCount (constr m n) ((s' : ℕ) : ZMod (m * n)) t =
       ∑ j ∈ Finset.range n, rowRed m n ((s' + t * n + j) % (m * n)) := by
@@ -110,7 +120,9 @@ lemma blockCount_constr_eq {m n : ℕ} (s' t : ℕ) :
 
 /-- The key counting lemma: for a cut starting at `s' < n`, the number of red
 beads in block `t` (interpreted without wrap-around) is
-`m - 1 - t` if `s' + t < n` and `m - 2 - t` otherwise. -/
+`m - 1 - t` if `s' + t < n` and `m - 2 - t` otherwise.
+@isnad1 id=eq.3h4v.s7.fecda93bbaf3 from=translated src=- shape=d9d054a4 vocab=ad9dc8b0
+-/
 lemma sum_rowRed {m n : ℕ} (hn : 0 < n) (hmn : m ≤ n + 1) {s' t : ℕ}
     (hs : s' < n) :
     (∑ j ∈ Finset.range n, rowRed m n (s' + t * n + j)) =
@@ -162,7 +174,9 @@ lemma sum_rowRed {m n : ℕ} (hn : 0 < n) (hmn : m ≤ n + 1) {s' t : ℕ}
 
 /-- The last block (which wraps around the end of the necklace) contains
 exactly `s' - (n + 1 - m)` red beads: its first `n - s'` beads lie in row
-`m - 1` (which is entirely blue) and its last `s'` beads lie in row `0`. -/
+`m - 1` (which is entirely blue) and its last `s'` beads lie in row `0`.
+@isnad1 id=eq.4h3v.s7.03810ac11ec9 from=translated src=- shape=070d9d44 vocab=13d6ecb2
+-/
 lemma sum_rowRed_last {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hmn : m ≤ n + 1) {s' : ℕ}
     (hs : s' < n) :
     (∑ j ∈ Finset.range n, rowRed m n ((s' + (m - 1) * n + j) % (m * n))) =
@@ -213,7 +227,9 @@ lemma sum_rowRed_last {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hmn : m ≤ n + 1) 
   rw [h1, h2, Nat.zero_add]
 
 /-- The complete formula for the block counts of the constructed necklace
-when the cut starts at `s' < n`. -/
+when the cut starts at `s' < n`.
+@isnad1 id=eq.5h4v.s8.282b211d0092 from=translated src=- shape=f363b6e8 vocab=9dbc5687
+-/
 lemma blockCount_constr {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hmn : m ≤ n + 1) {s' t : ℕ}
     (hs : s' < n) (ht : t < m) :
     blockCount (constr m n) ((s' : ℕ) : ZMod (m * n)) t =
@@ -242,7 +258,9 @@ lemma blockCount_constr {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hmn : m ≤ n + 1
     rw [step]
     exact sum_rowRed hn hmn hs
 
-/-- The block count is periodic in the block index with period `m`. -/
+/-- The block count is periodic in the block index with period `m`.
+@isnad1 id=eq.0h5v.s5.0bbacb68012b from=translated src=- shape=11c2c081 vocab=b5c38a13
+-/
 lemma blockCount_add_period {m n : ℕ} (c : Necklace m n) (s : ZMod (m * n)) (i : ℕ) :
     blockCount c s (i + m) = blockCount c s i := by
   unfold blockCount
@@ -253,7 +271,9 @@ lemma blockCount_add_period {m n : ℕ} (c : Necklace m n) (s : ZMod (m * n)) (i
     rw [h, Nat.cast_add, ZMod.natCast_self, add_zero]
   rw [e]
 
-/-- Iterated version of `blockCount_add_period`. -/
+/-- Iterated version of `blockCount_add_period`.
+@isnad1 id=eq.0h6v.s5.a48e80f233d9 from=translated src=- shape=2a4d47e6 vocab=b5c38a13
+-/
 lemma blockCount_add_mul {m n : ℕ} (c : Necklace m n) (s : ZMod (m * n)) (i q : ℕ) :
     blockCount c s (i + m * q) = blockCount c s i := by
   induction q with
@@ -262,14 +282,18 @@ lemma blockCount_add_mul {m n : ℕ} (c : Necklace m n) (s : ZMod (m * n)) (i q 
     have h : i + m * (q + 1) = (i + m * q) + m := by ring
     rw [h, blockCount_add_period c s (i + m * q), ih]
 
-/-- The block count only depends on the block index modulo `m`. -/
+/-- The block count only depends on the block index modulo `m`.
+@isnad1 id=eq.0h5v.s5.9ba82625c2ff from=translated src=- shape=8a77d5d9 vocab=55dd96ad
+-/
 lemma blockCount_mod {m n : ℕ} (c : Necklace m n) (s : ZMod (m * n)) (x : ℕ) :
     blockCount c s x = blockCount c s (x % m) := by
   conv_lhs => rw [← Nat.mod_add_div x m]
   exact blockCount_add_mul c s (x % m) (x / m)
 
 /-- Shifting the starting position of the cut by `n` beads shifts the blocks
-by one. This reduces a general cut `s` to a cut starting at `s.val % n < n`. -/
+by one. This reduces a general cut `s` to a cut starting at `s.val % n < n`.
+@isnad1 id=eq.0h5v.s7.8199fc049447 from=translated src=- shape=632dfdb6 vocab=f3c2b767
+-/
 lemma blockCount_shift {m n : ℕ} [NeZero (m * n)] (c : Necklace m n)
     (s : ZMod (m * n)) (i : ℕ) :
     blockCount c s i =
@@ -286,7 +310,9 @@ lemma blockCount_shift {m n : ℕ} [NeZero (m * n)] (c : Necklace m n)
     ring
   rw [e]
 
-/-- The constructed necklace satisfies the property of the problem. -/
+/-- The constructed necklace satisfies the property of the problem.
+@isnad1 id=allcutsd.3h2v.s5.bb45362ed422 from=translated src=- shape=f3a5ed11 vocab=dde440bc
+-/
 lemma allCutsDistinct_constr {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hmn : m ≤ n + 1) :
     AllCutsDistinct (constr m n) := by
   have : NeZero (m * n) := ⟨(Nat.mul_pos hm hn).ne'⟩

@@ -32,7 +32,9 @@ def altSum (s : Finset ℕ) (k m : ℕ) : ℤ :=
   ∑ U ∈ s.powerset, (-1 : ℤ) ^ U.card * ((m - ∑ i ∈ U, i).choose k : ℤ)
 
 /-- Splitting off the element `x`: summing over subsets of `insert x s`
-separates the subsets not containing `x` from those containing it. -/
+separates the subsets not containing `x` from those containing it.
+@isnad1 id=eq.1h4v.s5.2f09ea00d6b8 from=translated src=- shape=14400836 vocab=36cba0e7
+-/
 theorem altSum_insert {s : Finset ℕ} {x : ℕ} (hx : x ∉ s) (k m : ℕ) :
     altSum (insert x s) k m = altSum s k m - altSum s k (m - x) := by
   have hdisj : Disjoint s.powerset ((s.powerset).image (insert x)) := by
@@ -63,7 +65,9 @@ theorem altSum_insert {s : Finset ℕ} {x : ℕ} (hx : x ∉ s) (k m : ℕ) :
   ring
 
 /-- Pascal's rule applied termwise: the forward difference of `altSum s (k+1)`
-at `m` equals `altSum s k (m-1)`. -/
+at `m` equals `altSum s k (m-1)`.
+@isnad1 id=eq.1h3v.s6.61e9db377989 from=translated src=- shape=606d3fe6 vocab=531c14de
+-/
 theorem altSum_sub_one (s : Finset ℕ) (k m : ℕ) (h : ∑ i ∈ s, i < m) :
     altSum s (k + 1) m - altSum s (k + 1) (m - 1) = altSum s k (m - 1) := by
   simp only [altSum]
@@ -83,7 +87,9 @@ theorem altSum_sub_one (s : Finset ℕ) (k m : ℕ) (h : ∑ i ∈ s, i < m) :
     exact_mod_cast Nat.choose_succ_succ x k
   linarith
 
-/-- Telescoping the forward differences over `j ∈ range x`. -/
+/-- Telescoping the forward differences over `j ∈ range x`.
+@isnad1 id=eq.0h4v.s6.fbfd5adaee92 from=translated src=- shape=a34992e5 vocab=b58d8a3e
+-/
 theorem telescope (s : Finset ℕ) (k m x : ℕ) :
     altSum s k m - altSum s k (m - x)
       = ∑ j ∈ Finset.range x, (altSum s k (m - j) - altSum s k (m - j - 1)) := by
@@ -94,7 +100,9 @@ theorem telescope (s : Finset ℕ) (k m x : ℕ) :
   intro j _
   rw [Nat.sub_sub]
 
-/-- The main identity, by induction on the finite set `s`. -/
+/-- The main identity, by induction on the finite set `s`.
+@isnad1 id=eq.1h2v.s5.d9b9ca8e8ce0 from=translated src=- shape=3c9d20af vocab=1915e7d9
+-/
 theorem altSum_card (s : Finset ℕ) :
     ∀ m : ℕ, ∑ i ∈ s, i ≤ m → altSum s s.card m = ∏ i ∈ s, (i : ℤ) := by
   induction s using Finset.induction_on with

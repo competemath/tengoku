@@ -73,6 +73,9 @@ universe u
 noncomputable instance instFintypeEdgeSetOfFinite {V : Type*} [Finite V] (G : SimpleGraph V) :
     Fintype G.edgeSet := Fintype.ofFinite _
 
+/--
+@isnad1 id=ex.0h2v.s4.c87545339f92 from=translated src=- shape=55a7df0b vocab=5c8c580b
+-/
 lemma Sym2.exists_mk {α : Type u} (z : Sym2 α) : ∃ x y : α, z = s(x, y) := by
   have h := Sym2.out_fst_mem z
   rw [Sym2.mem_iff_exists] at h
@@ -80,6 +83,9 @@ lemma Sym2.exists_mk {α : Type u} (z : Sym2 α) : ∃ x y : α, z = s(x, y) := 
   use (Quot.out z).1
   use y
 
+/--
+@isnad1 id=eq.0h2v.s5.85514a97dc0b from=translated src=- shape=351483f9 vocab=8c2d8c9b
+-/
 lemma SimpleGraph.sum_card_connectedComponent_eq_card
   {V : Type u} [Fintype V] {G : SimpleGraph V}
   : ∑ (c : G.ConnectedComponent), Nat.card c = Fintype.card V := by
@@ -100,6 +106,9 @@ lemma SimpleGraph.sum_card_connectedComponent_eq_card
     rw [SimpleGraph.iUnion_connectedComponentSupp G]
     rw [Set.ncard_univ, Fintype.card_eq_nat_card]
 
+/--
+@isnad1 id=eq.0h2v.s6.f5f2e75d4f6c from=translated src=- shape=bde400d4 vocab=e48506cb
+-/
 lemma SimpleGraph.sum_card_edgeFinset_toSimpleGraph_connectedComponent_eq_edgeFinset_card
   {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
   : ∑ (c : G.ConnectedComponent), c.toSimpleGraph.edgeFinset.card = G.edgeFinset.card := by
@@ -176,6 +185,9 @@ lemma SimpleGraph.sum_card_edgeFinset_toSimpleGraph_connectedComponent_eq_edgeFi
         exact he
       · dsimp
 
+/--
+@isnad1 id=eq.1h2v.s5.c85876c8356a from=translated src=- shape=2e33041d vocab=402e6d64
+-/
 lemma SimpleGraph.card_connectedComponent_add_card_edge_eq_card_vertex_of_acyclic
   {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V} (h : G.IsAcyclic)
   : Fintype.card G.ConnectedComponent + G.edgeFinset.card = Fintype.card V := by
@@ -207,6 +219,9 @@ def Company.graph {n k : ℕ} (c : Company n k) : SimpleGraph (Fin (n ^ 2)) wher
     have h := (c.cars i).start_lt_finish
     constructor <;> contrapose! h <;> rw [h.left, h.right]
 
+/--
+@isnad1 id=eq.0h3v.s6.134a48f3045b from=translated src=- shape=cc2769e7 vocab=ab5c63f8
+-/
 lemma Company.graph_edgeFinset_card {n k : ℕ} (c : Company n k)
   : c.graph.edgeFinset.card = k := by
     set f := fun i : Fin k ↦ s((c.cars i).start, (c.cars i).finish) with hf
@@ -240,6 +255,9 @@ lemma Company.graph_edgeFinset_card {n k : ℕ} (c : Company n k)
         exact (c.cars j).start_lt_finish
     rw [h, Finset.card_image_of_injective _ h', Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=isacycli.0h3v.s5.b5d1a2fe2308 from=translated src=- shape=575bb733 vocab=ad666726
+-/
 lemma Company.graph_isAcyclic {n k : ℕ} {c : Company n k}
   : c.graph.IsAcyclic := by
     intro v w hw
@@ -287,6 +305,9 @@ lemma Company.graph_isAcyclic {n k : ℕ} {c : Company n k}
     dsimp
     rw [hi.left, hj.left]
 
+/--
+@isnad1 id=le.3h7v.s8.03d4e90b72a6 from=translated src=- shape=80702f31 vocab=ef443367
+-/
 lemma Company.low_le_of_mem_path {n k : ℕ} {c : Company n k} {l h : Fin (n ^ 2)} (hlh : l < h)
   {p : c.graph.Walk l h} (hp : p.IsPath) {x : Fin (n ^ 2)} (hx : x ∈ p.support)
   : l ≤ x := by
@@ -347,6 +368,9 @@ lemma Company.low_le_of_mem_path {n k : ℕ} {c : Company n k} {l h : Fin (n ^ 2
       dsimp
       rw [hi.left, hj.left]
 
+/--
+@isnad1 id=le.3h7v.s8.1301c3ce2f3e from=translated src=- shape=b1820aa7 vocab=ef443367
+-/
 lemma Company.le_high_of_mem_path {n k : ℕ} {c : Company n k} {l h : Fin (n ^ 2)} (hlh : l < h)
   {p : c.graph.Walk l h} (hp : p.IsPath) {x : Fin (n ^ 2)} (hx : x ∈ p.support)
   : x ≤ h := by
@@ -408,6 +432,9 @@ lemma Company.le_high_of_mem_path {n k : ℕ} {c : Company n k} {l h : Fin (n ^ 
       dsimp
       rw [hi.right, hj.right]
 
+/--
+@isnad1 id=linked.2h5v.s6.922a9ff02174 from=translated src=- shape=38b05522 vocab=e2075e67
+-/
 lemma Company.linked_of_graph_reachable {n k : ℕ} {c : Company n k} {l h : Fin (n ^ 2)}
   (h₁ : c.graph.Reachable l h) (h₂ : l < h)
   : c.linked l h := by
@@ -475,6 +502,9 @@ lemma Company.linked_of_graph_reachable {n k : ℕ} {c : Company n k} {l h : Fin
           rw [List.getLast_cons h_cars']
           apply h_link'_h
 
+/--
+@isnad1 id=lt.1h5v.s6.15c7d02f5ac4 from=translated src=- shape=12735906 vocab=9b13757d
+-/
 lemma Company.lt_of_linked {n k : ℕ} {c : Company n k} {l h : Fin (n ^ 2)} (hlh : c.linked l h)
   : l < h := by
     rw [Company.linked] at hlh
@@ -508,18 +538,30 @@ lemma Company.lt_of_linked {n k : ℕ} {c : Company n k} {l h : Fin (n ^ 2)} (hl
         rw [← h_link_l]
         apply (c.cars head).start_lt_finish
 
+/--
+@isnad1 id=eq.0h1v.s6.e53fcb99dcc4 from=translated src=- shape=09cb238f vocab=72d2e505
+-/
 lemma aux_succ (n : Set.Ioi 1) : ((↑n - 1 + 1) : ℕ) = ↑n := by
   have hn := Subtype.property n
   rw [Set.mem_Ioi] at hn
   apply Nat.sub_add_cancel
   apply le_of_lt hn
 
+/--
+@isnad1 id=eq.0h1v.s6.20c37ee28632 from=translated src=- shape=4feaa66b vocab=29aed82f
+-/
 lemma aux_pow (n : Set.Ioi 1) : ((↑n * ↑n) : ℕ) = ↑n ^ 2 := by
   rw [pow_two]
 
+/--
+@isnad1 id=eq.0h1v.s7.30b193fc109f from=translated src=- shape=15308d30 vocab=ab7b26e4
+-/
 lemma aux_A (n : Set.Ioi 1) : ((↑n * ↑n - ↑n) : ℕ) = (↑n - 1) * ↑n := by
   rw [Nat.sub_mul, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.2cd46b8bc00d from=translated src=- shape=042036d3 vocab=ab7b26e4
+-/
 lemma aux_B (n : Set.Ioi 1) : ((↑n * ↑n - ↑n) : ℕ) = ↑n * (↑n - 1) := by
   rw [Nat.mul_sub, mul_one]
 
@@ -633,6 +675,9 @@ def constructCompanyB (n : Set.Ioi 1) : Company ↑n (↑n * ↑n - ↑n) where
     rw [add_lt_add_iff_right] at hxy
     apply le_of_lt hxy
 
+/--
+@isnad1 id=eq.1h3v.s8.16e28b8ab791 from=translated src=- shape=c3f8376d vocab=dfb939d7
+-/
 lemma cast_modNat_eq_of_linked_constructCompanyA {n : Set.Ioi 1}
   {l h : Fin (↑n ^ 2)} (hlh : (constructCompanyA n).linked l h)
   : (Fin.cast (aux_pow n).symm l).modNat = (Fin.cast (aux_pow n).symm h).modNat := by
@@ -670,6 +715,9 @@ lemma cast_modNat_eq_of_linked_constructCompanyA {n : Set.Ioi 1}
         dsimp
         rw [Fin.modNat_mkDivMod, Fin.modNat_mkDivMod]
 
+/--
+@isnad1 id=eq.1h3v.s8.64784f7e1b82 from=translated src=- shape=c3f8376d vocab=2efb0c38
+-/
 lemma cast_divNat_eq_of_linked_constructCompanyB {n : Set.Ioi 1}
   {l h : Fin (↑n ^ 2)} (hlh : (constructCompanyB n).linked l h)
   : (Fin.cast (aux_pow n).symm l).divNat = (Fin.cast (aux_pow n).symm h).divNat := by
@@ -728,6 +776,9 @@ def Company.subCompany {n k : ℕ} (c : Company n k) {k' : ℕ} (hk' : k' ≤ k)
     dsimp
     exact hxy
 
+/--
+@isnad1 id=linked.2h6v.s6.6319e28fb8e3 from=translated src=- shape=3825ae6b vocab=15b77daf
+-/
 lemma Company.linked_of_subCompany_linked {n k : ℕ} (c : Company n k) {k' : ℕ} (hk' : k' ≤ k)
   (l h : Fin (n ^ 2)) (hlh : (c.subCompany hk').linked l h)
   : c.linked l h := by

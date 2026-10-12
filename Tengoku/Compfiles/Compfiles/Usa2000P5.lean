@@ -55,6 +55,9 @@ noncomputable abbrev sideAngle (A : ZMod 3 → Point) (ω : Fin 7 → Circle) (i
 noncomputable abbrev turnAngle (A : ZMod 3 → Point) (i : Fin 7) : Real.Angle :=
   EuclideanGeometry.oangle (leftVertex A i) (rightVertex A i) (rightVertex A (i + 1))
 
+/--
+@isnad1 id=isexttan.3h3v.s8.fbac645d3ebd from=translated src=- shape=271d9290 vocab=5e627db2
+-/
 lemma external_tangent_at_shared_point
     {s₁ s₂ : Circle} {p : Point}
     (hp₁ : p ∈ s₁) (hp₂ : p ∈ s₂)
@@ -65,6 +68,9 @@ lemma external_tangent_at_shared_point
   rw [EuclideanGeometry.mem_sphere'.mp hp₁, EuclideanGeometry.mem_sphere.mp hp₂]
   exact h.symm
 
+/--
+@isnad1 id=mem.1h3v.s10.df3179815282 from=translated src=- shape=e068c981 vocab=24fa8492
+-/
 lemma center_mem_perpBisector
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hA : ∀ i : Fin 7, (A i ∈ ω i ∧ A (i + 1) ∈ ω i)) (i : Fin 7) :
@@ -72,6 +78,9 @@ lemma center_mem_perpBisector
   refine AffineSubspace.mem_perpBisector_iff_dist_eq'.2 ?_
   exact EuclideanGeometry.dist_center_eq_dist_center_of_mem_sphere (hA i).1 (hA i).2
 
+/--
+@isnad1 id=eq.1h3v.s10.1eb8e88a4506 from=translated src=- shape=e3c54f3e vocab=de7547af
+-/
 lemma side_oangle_add_eq_zero {p q C : Point}
     (hC : C ∈ AffineSubspace.perpBisector p q) :
     EuclideanGeometry.oangle q p C + EuclideanGeometry.oangle p q C = 0 := by
@@ -82,28 +91,43 @@ lemma side_oangle_add_eq_zero {p q C : Point}
   rw [← hbase]
   exact EuclideanGeometry.oangle_add_oangle_rev q p C
 
+/--
+@isnad1 id=eq.1h1v.s8.ce5754f11ffd from=translated src=- shape=080af8e6 vocab=30ecf20a
+-/
 lemma fin_succ_cast_zmod3 (i : Fin 7) (hi : i < 6) :
     ((i : ZMod 3) + 1) = (((i + 1 : Fin 7) : ZMod 3)) := by
   rw [← Nat.cast_one, ← Nat.cast_add, ZMod.natCast_eq_natCast_iff']
   lia
 
+/--
+@isnad1 id=eq.1h2v.s6.d4eca45ce7ac from=translated src=- shape=fae9c1c2 vocab=7192e4c2
+-/
 lemma rightVertex_eq_leftVertex_succ
     (A : ZMod 3 → Point) (i : Fin 7) (hi : i < 6) :
     rightVertex A i = leftVertex A (i + 1) := by
   simp [leftVertex, rightVertex, fin_succ_cast_zmod3 i hi]
 
+/--
+@isnad1 id=mem.1h3v.s8.99afc7dacb4b from=translated src=- shape=a4040eaa vocab=e747772c
+-/
 lemma leftVertex_mem_circle
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hA : ∀ i : Fin 7, (A i ∈ ω i ∧ A (i + 1) ∈ ω i)) (i : Fin 7) :
     leftVertex A i ∈ ω i := by
   simpa [leftVertex] using (hA i).1
 
+/--
+@isnad1 id=mem.1h3v.s8.a8f34d7a1da7 from=translated src=- shape=a4040eaa vocab=49de889c
+-/
 lemma rightVertex_mem_circle
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hA : ∀ i : Fin 7, (A i ∈ ω i ∧ A (i + 1) ∈ ω i)) (i : Fin 7) :
     rightVertex A i ∈ ω i := by
   simpa [rightVertex] using (hA i).2
 
+/--
+@isnad1 id=mem.2h3v.s9.8fb5829c67ae from=translated src=- shape=be54d61c vocab=3905d3eb
+-/
 lemma rightVertex_mem_next_circle
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hA : ∀ i : Fin 7, (A i ∈ ω i ∧ A (i + 1) ∈ ω i))
@@ -112,6 +136,9 @@ lemma rightVertex_mem_next_circle
   rw [rightVertex_eq_leftVertex_succ A i hi]
   exact leftVertex_mem_circle hA (i + 1)
 
+/--
+@isnad1 id=isexttan.3h3v.s9.5603c08d8f98 from=translated src=- shape=64c29662 vocab=dbd31e21
+-/
 lemma tangent_at_shared_vertex
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hTangent : ∀ i, i < 6 → ExternallyTangent (ω i) (ω (i + 1)))
@@ -121,18 +148,30 @@ lemma tangent_at_shared_vertex
   exact external_tangent_at_shared_point
     (rightVertex_mem_circle hA i) (rightVertex_mem_next_circle hA i hi) (hTangent i hi)
 
+/--
+@isnad1 id=ne.1h1v.s9.52eab84fe972 from=translated src=- shape=99839597 vocab=38ee2aad
+-/
 lemma vertex_ne_01 {A : ZMod 3 → Point}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2]) : A 0 ≠ A 1 := by
   simpa using hABC.injective.ne (by decide : (0 : Fin 3) ≠ 1)
 
+/--
+@isnad1 id=ne.1h1v.s9.58d041b01310 from=translated src=- shape=99839597 vocab=38ee2aad
+-/
 lemma vertex_ne_12 {A : ZMod 3 → Point}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2]) : A 1 ≠ A 2 := by
   simpa using hABC.injective.ne (by decide : (1 : Fin 3) ≠ 2)
 
+/--
+@isnad1 id=ne.1h1v.s9.76cda89f10a5 from=translated src=- shape=99839597 vocab=38ee2aad
+-/
 lemma vertex_ne_20 {A : ZMod 3 → Point}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2]) : A 2 ≠ A 0 := by
   simpa using hABC.injective.ne (by decide : (2 : Fin 3) ≠ 0)
 
+/--
+@isnad1 id=ne.1h2v.s9.49810b377480 from=translated src=- shape=592c1b00 vocab=6de7fca4
+-/
 lemma adjacent_vertices_ne {A : ZMod 3 → Point}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2]) (i : Fin 7) :
     leftVertex A i ≠ rightVertex A i := by
@@ -142,6 +181,9 @@ lemma adjacent_vertices_ne {A : ZMod 3 → Point}
     | exact vertex_ne_20 hABC
 
 -- A line intersects a nondegenerate perpendicular bisector at most once.
+/--
+@isnad1 id=eq.4h4v.s11.9d9936826762 from=translated src=- shape=92d89a7d vocab=0b77e0cf
+-/
 lemma collinear_perpBisector_eq {a b p q : Point}
     (hab : a ≠ b)
     (hp : p ∈ AffineSubspace.perpBisector a b)
@@ -157,6 +199,9 @@ lemma collinear_perpBisector_eq {a b p q : Point}
   exact hab (AffineSubspace.left_mem_perpBisector.mp ha_perp)
 
 -- Equal side angles force equal centers.
+/--
+@isnad1 id=eq.3h2v.s10.d93ae1790a57 from=translated src=- shape=6844bd3e vocab=6148e9ee
+-/
 lemma centers_eq_of_oangle_eq
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2])
@@ -189,6 +234,9 @@ lemma centers_eq_of_oangle_eq
   exact collinear_perpBisector_eq (vertex_ne_01 hABC) hp hq hcol
 
 -- The shared vertex lies strictly between tangent centers.
+/--
+@isnad1 id=sbtw.4h3v.s10.8d31354fdb3c from=translated src=- shape=bd967c98 vocab=03a7849f
+-/
 lemma shared_vertex_sbtw
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2])
@@ -207,6 +255,9 @@ lemma shared_vertex_sbtw
       (rightVertex_mem_next_circle hA i hi) (rightVertex_mem_circle hA (i + 1)) hpq
 
 -- One straight-center step for directed angles.
+/--
+@isnad1 id=eq.4h5v.s11.71a3e696f387 from=translated src=- shape=5a0e1edf vocab=a0adbdc8
+-/
 lemma directed_angle_step {a b c u v : Point}
     (hab : a ≠ b) (hcb : c ≠ b)
     (hu : u ∈ AffineSubspace.perpBisector a b)
@@ -246,6 +297,9 @@ lemma directed_angle_step {a b c u v : Point}
     _ = (Real.pi : Real.Angle) := zero_add _
 
 -- One tangency advances the side angle.
+/--
+@isnad1 id=eq.4h3v.s10.7405700ac3c8 from=translated src=- shape=0bc2c186 vocab=cdbe9da9
+-/
 lemma directed_angle_recurrence
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2])
@@ -263,6 +317,9 @@ lemma directed_angle_recurrence
     directed_angle_step (adjacent_vertices_ne hABC i) hcb
       (center_mem_perpBisector hA i) (shared_vertex_sbtw hABC hTangent hA i hi)
 
+/--
+@isnad1 id=eq.3h2v.s10.661b3f929156 from=translated src=- shape=5be2e89d vocab=f0aff70a
+-/
 lemma side_oangle_eq_after_six
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hABC : AffineIndependent ℝ ![A 0, A 1, A 2])
@@ -315,6 +372,9 @@ lemma side_oangle_eq_after_six
   change θ 0 = θ 6
   exact add_right_cancel hbig
 
+/--
+@isnad1 id=eq.2h2v.s9.8eeb27b2abf0 from=translated src=- shape=57e5837e vocab=0450b336
+-/
 lemma circle_eq_of_center_eq
     {A : ZMod 3 → Point} {ω : Fin 7 → Circle}
     (hA : ∀ i : Fin 7, (A i ∈ ω i ∧ A (i + 1) ∈ ω i))

@@ -114,11 +114,15 @@ as desired.
 /-- Define `d(n)`, the function counting the number of positive divisors of `n`. -/
 def d (n : ℕ) : ℕ := (Nat.divisors n).card
 
-/-- Proof that `d` is multiplicative. -/
+/-- Proof that `d` is multiplicative.
+@isnad1 id=eq.1h2v.s4.6428d93e57ff from=translated src=- shape=20e9f6dc vocab=70ef844e
+-/
 lemma d_multiplicative (m n : ℕ) (h : Nat.Coprime m n) : d (m * n) = d m * d n :=
   Nat.Coprime.card_divisors_mul h
 
-/-- Proof that `d(pᵏ) = k + 1` for `p` prime. -/
+/-- Proof that `d(pᵏ) = k + 1` for `p` prime.
+@isnad1 id=eq.1h2v.s5.1a5e07efc2bc from=translated src=- shape=eada6a88 vocab=aaa34a44
+-/
 lemma prime_power_divisors {p k : ℕ} (hp : p.Prime) : d (p ^ k) = k + 1 := by
   simp [d]
   rw [Nat.divisors_prime_pow hp]
@@ -128,6 +132,7 @@ lemma prime_power_divisors {p k : ℕ} (hp : p.Prime) : d (p ^ k) = k + 1 := by
 /--
 Proof that `d n = ∏ᵢ(kᵢ + 1)` where `n = ∏ᵢpᵢᵏᵢ` (prime factorization),
 using the fact that `d` is multiplicative and `d(pᵏ) = k + 1` for `p` prime.
+@isnad1 id=eq.1h1v.s5.7b32bb3d7975 from=translated src=- shape=a727ca1e vocab=3839ce2a
 -/
 lemma d_eq_dComputed (n : ℕ) (hn : n ≠ 0) : d n = n.factorization.prod (fun _ k ↦ k + 1) := by
   rcases eq_or_ne n 0 with rfl | hn
@@ -137,7 +142,9 @@ lemma d_eq_dComputed (n : ℕ) (hn : n ≠ 0) : d n = n.factorization.prod (fun 
     · rfl
     · intro p hp; exact prime_power_divisors (Nat.prime_of_mem_primeFactors hp)
 
-/-- Proof that `d(n²) = ∏ᵢ(2kᵢ + 1)` for `n = ∏ᵢpᵢᵏᵢ` (prime factorization). -/
+/-- Proof that `d(n²) = ∏ᵢ(2kᵢ + 1)` for `n = ∏ᵢpᵢᵏᵢ` (prime factorization).
+@isnad1 id=eq.1h1v.s6.108b14f9d461 from=translated src=- shape=55913a60 vocab=095e24aa
+-/
 lemma d_n2 (n : ℕ) (hn : n ≠ 0) : d (n ^ 2) = n.factorization.prod (fun _ k ↦ 2 * k + 1) := by
   rw [d_eq_dComputed]
   · rw [Nat.factorization_pow]
@@ -145,13 +152,17 @@ lemma d_n2 (n : ℕ) (hn : n ≠ 0) : d (n ^ 2) = n.factorization.prod (fun _ k 
     simp
   · exact pow_ne_zero 2 hn
 
-/-- Proof that if every number in a list is odd, the product of the list is odd. -/
+/-- Proof that if every number in a list is odd, the product of the list is odd.
+@isnad1 id=odd.1h1v.s4.d54ffb3f857e from=translated src=- shape=0a12b1af vocab=242f8196
+-/
 lemma list_prod_odd (l : List ℕ) : (∀ x ∈ l, Odd x) → Odd l.prod := by
   induction l with
   | nil => simp
   | cons head tail ih => intro h; simp [Odd.mul (h _ (.head _)) (ih fun x hx => h x (.tail _ hx))]
 
-/-- We begin by first proving that every value of `k` must be an odd number. -/
+/-- We begin by first proving that every value of `k` must be an odd number.
+@isnad1 id=eq.1h1v.s6.dfbcdafd9a3d from=translated src=- shape=51353701 vocab=3936af6a
+-/
 theorem k_is_odd (k : ℕ)
     (h : ∃ n : ℕ, n ≠ 0 ∧ d (n ^ 2) = k * d n) :
     (k % 2 = 1) := by
@@ -163,7 +174,9 @@ theorem k_is_odd (k : ℕ)
   rw [hd] at this
   exact Nat.odd_iff.mp (Nat.odd_mul.mp this).1
 
-/-- Proof that we can pick `t` new and distinct primes given a list of `t` primes. -/
+/-- Proof that we can pick `t` new and distinct primes given a list of `t` primes.
+@isnad1 id=ex.1h3v.s5.b3bf122df0a6 from=translated src=- shape=760d3fc8 vocab=327b062b
+-/
 lemma exists_distinct_primes (t n : ℕ) (hnneq0 : n ≠ 0) (primes : List ℕ) :
     (∃ l : List ℕ, (∀ i ∈ l, Nat.Prime i ∧ i ∉ primes ∧ Nat.Coprime i n)
         ∧ List.length l = t ∧ List.Nodup l) := by
@@ -221,7 +234,9 @@ lemma exists_distinct_primes (t n : ℕ) (hnneq0 : n ≠ 0) (primes : List ℕ) 
           rw [List.singleton_append.symm] at hconsnodup
           exact List.nodup_append_comm.mp hconsnodup
 
-/-- Proof that `d(∏ᵢxᵢ) = ∏ᵢd(xᵢ)` for coprime `xᵢ`'s (repeated mulitiplicity). -/
+/-- Proof that `d(∏ᵢxᵢ) = ∏ᵢd(xᵢ)` for coprime `xᵢ`'s (repeated mulitiplicity).
+@isnad1 id=eq.1h1v.s4.ac4f49b27353 from=translated src=- shape=bb7cc00d vocab=29b5cf55
+-/
 lemma repeated_multiplicity_of_d (l : List ℕ) (hcoprime : l.Pairwise Nat.Coprime) :
     d (l.prod) = (List.map (fun i ↦ d i) l).prod := by
   induction l with
@@ -238,6 +253,7 @@ lemma repeated_multiplicity_of_d (l : List ℕ) (hcoprime : l.Pairwise Nat.Copri
 Proof that `d(∏ᵢpᵢᵏᵢ) = ∏ᵢ(kᵢ + 1)`. Intuitively, we know `ps` and `exps` form
 a factorization of `x`, but Lean doesn't know this, so we have to give this lemma
 all the properties of `x`'s factorization without explicitly saying so.
+@isnad1 id=eq.5h3v.s7.2076b1c552ae from=translated src=- shape=eda6ac84 vocab=48ae6bcb
 -/
 lemma d_of_factorization (t : ℕ) (ps exps : List ℕ)
     (hlen : ps.length = exps.length)
@@ -350,7 +366,9 @@ lemma d_of_factorization (t : ℕ) (ps exps : List ℕ)
           rfl
         contradiction
 
-/-- We now prove that every odd number satisifies the equation. -/
+/-- We now prove that every odd number satisifies the equation.
+@isnad1 id=ex.1h1v.s6.eb13aefda3ca from=translated src=- shape=131f4f36 vocab=3936af6a
+-/
 theorem odd_k_satisfies (k : ℕ)
     (hkodd : k % 2 = 1) :
     (∃ n : ℕ, n ≠ 0 ∧ d (n ^ 2) = k * d n) := by

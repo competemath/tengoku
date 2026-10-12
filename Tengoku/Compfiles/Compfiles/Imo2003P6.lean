@@ -20,6 +20,9 @@ by q.
 
 namespace Imo2003P6
 
+/--
+@isnad1 id=ex.3h2v.s6.9449bd107f1a from=translated src=- shape=fa44f809 vocab=ffddf53d
+-/
 lemma exists_prime_mod_m_ne_1_and_dvd
     {n m : Nat} (npos : n ≠ 0) (hn : n % m ≠ 1) (hm : m ≠ 1)
     : ∃ p : Nat, p.Prime ∧ p ∣ n ∧ p % m ≠ 1 := by

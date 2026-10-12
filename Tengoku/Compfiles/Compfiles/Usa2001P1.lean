@@ -36,6 +36,7 @@ abbrev min_colors : ℕ := 23
     a₁, ... a₆ is positive, ∑ (i=1 to 6), aᵢ ≤ 13
   then
     ∑ (i=1 to 6) (1 / aᵢ) ≥ 36/13
+@isnad1 id=le.3h3v.s6.9df96bd3981a from=translated src=- shape=3b12891c vocab=50e998ce
 -/
 lemma usa2001_p1_lemma {α} (s : Finset α) (sz : s.card = 6) (gen : α -> ℕ)
     (gt : ∀ i ∈ s, gen i > 0) (sum : (∑ i ∈ s, gen i) ≤ 13) :

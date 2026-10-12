@@ -49,15 +49,24 @@ open Finset Filter
 
 /-! ### Tightness -/
 
+/--
+@isnad1 id=eq.0h5v.s8.0b60af59fcf6 from=translated src=- shape=5c4b6225 vocab=cdb19b8c
+-/
 theorem lmTensor_apply (k : ℕ) (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ)
     (a j l : Fin (2 * k + 1)) :
     lmTensor k γ a j l = if (l : ℤ) = j + ((a : ℤ) - k) then γ a j else 0 :=
   rfl
 
+/--
+@isnad1 id=ne.0h3v.s6.11b045fed1d9 from=translated src=- shape=c3a6ced5 vocab=22b85028
+-/
 theorem lmWeight_ne_zero (k : ℕ) (a j : Fin (2 * k + 1)) : lmWeight k a j ≠ 0 := by
   unfold lmWeight
   exact_mod_cast (pow_pos two_pos _).ne'
 
+/--
+@isnad1 id=tight.0h2v.s7.41b8f932af34 from=translated src=- shape=dd66d4f0 vocab=d2aa4fd1
+-/
 theorem tight_lmTensor (k : ℕ) (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) :
     (lmTensor k γ).Tight := by
   refine ⟨fun a => (a : ℤ) - k, fun j => j, fun l => -(l : ℤ), fun a b h => ?_,
@@ -69,6 +78,9 @@ theorem tight_lmTensor (k : ℕ) (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → �
       omega
     · exact absurd rfl h
 
+/--
+@isnad1 id=ne.1h3v.s9.a15d8a33e908 from=translated src=- shape=d17c95f4 vocab=c2008511
+-/
 theorem lmTensor_ne_zero (k : ℕ) {γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ}
     (hγ : ∀ a j, γ a j ≠ 0) (a : Fin (2 * k + 1)) : lmTensor k γ a ≠ 0 := by
   intro h
@@ -76,9 +88,15 @@ theorem lmTensor_ne_zero (k : ℕ) {γ : Fin (2 * k + 1) → Fin (2 * k + 1) →
   rw [lmTensor_apply, ite_eq_left (by push_cast; omega)] at this
   exact hγ a _ this
 
+/--
+@isnad1 id=tight.0h1v.s6.1e3c33965b4f from=translated src=- shape=c0d7de63 vocab=3c9d59e2
+-/
 theorem tight_weightedLMTensor (k : ℕ) : (weightedLMTensor k).Tight :=
   tight_lmTensor k _
 
+/--
+@isnad1 id=ne.0h2v.s8.50d927aed8e7 from=translated src=- shape=e739ad86 vocab=d0677486
+-/
 theorem weightedLMTensor_ne_zero (k : ℕ) (a : Fin (2 * k + 1)) : weightedLMTensor k a ≠ 0 :=
   lmTensor_ne_zero k (lmWeight_ne_zero k) a
 
@@ -92,16 +110,25 @@ def NoSignedRelation {n : ℕ} (x : Fin n → ℤ) : Prop :=
 def signedSums {n : ℕ} (x : Fin n → ℤ) : Finset ℤ :=
   (Fintype.piFinset fun _ : Fin n => ({-1, 0, 1} : Finset ℤ)).image fun ε => ∑ t, ε t * x t
 
+/--
+@isnad1 id=le.0h2v.s5.0f5f2c9acb1c from=translated src=- shape=fae2388c vocab=278e4d4e
+-/
 theorem card_signedSums_le {n : ℕ} (x : Fin n → ℤ) : (signedSums x).card ≤ 3 ^ n := by
   refine card_image_le.trans ?_
   rw [Fintype.card_piFinset]
   simp
 
+/--
+@isnad1 id=mem.1h1v.s6.1bcfc5ff2728 from=translated src=- shape=043b1a10 vocab=ebd15967
+-/
 theorem neg_mem_signedCoeffs {e : ℤ} (he : e ∈ ({-1, 0, 1} : Finset ℤ)) :
     -e ∈ ({-1, 0, 1} : Finset ℤ) := by
   simp only [mem_insert, mem_singleton] at he ⊢
   omega
 
+/--
+@isnad1 id=nosigned.2h3v.s5.d7784a21ec37 from=translated src=- shape=c0f2d017 vocab=ff104684
+-/
 theorem noSignedRelation_cons {n : ℕ} {x : Fin n → ℤ} (hx : NoSignedRelation x) {a : ℤ}
     (ha : a ∉ signedSums x) : NoSignedRelation (Fin.cons a x : Fin (n + 1) → ℤ) := by
   intro ε hε hsum
@@ -128,6 +155,9 @@ theorem noSignedRelation_cons {n : ℕ} {x : Fin n → ℤ} (hx : NoSignedRelati
   | zero => exact h0
   | succ t => exact hrest t
 
+/--
+@isnad1 id=ex.2h3v.s6.5e3d901d11f7 from=translated src=- shape=4bf332e9 vocab=e75d7fc8
+-/
 theorem exists_noSignedRelation (A : Finset ℤ) {m : ℕ} (hA : 3 ^ m < A.card) :
     ∀ i ≤ m + 1, ∃ x : Fin i → ℤ, (∀ t, x t ∈ A) ∧ NoSignedRelation x
   | 0, _ => ⟨Fin.elim0, fun t => t.elim0, fun _ _ _ t => t.elim0⟩
@@ -142,6 +172,9 @@ theorem exists_noSignedRelation (A : Finset ℤ) {m : ℕ} (hA : 3 ^ m < A.card)
     | zero => exact haA
     | succ t => exact hxA t
 
+/--
+@isnad1 id=injectiv.1h2v.s5.56c13bc5193d from=translated src=- shape=6e0e617e vocab=f0e42e44
+-/
 theorem sum_injective_of_noSignedRelation {n : ℕ} {x : Fin n → ℤ} (hx : NoSignedRelation x) :
     Function.Injective fun I : Finset (Fin n) => ∑ t ∈ I, x t := by
   intro I J hIJ
@@ -154,6 +187,9 @@ theorem sum_injective_of_noSignedRelation {n : ℕ} {x : Fin n → ℤ} (hx : No
   have := h t
   split_ifs at this with h1 h2 h2 <;> simp_all
 
+/--
+@isnad1 id=ex.1h2v.s7.40d2652d1816 from=translated src=- shape=be3ef7cf vocab=2ac8750b
+-/
 theorem exists_strictMono_injective_sum (A : Finset ℤ) {n : ℕ} (hA : 3 ^ n < A.card) :
     ∃ x : Fin (n + 1) → ℤ, StrictMono x ∧ (∀ t, x t ∈ A) ∧
       Function.Injective fun I : Finset (Fin (n + 1)) => ∑ t ∈ I, x t := by
@@ -185,6 +221,9 @@ theorem exists_strictMono_injective_sum (A : Finset ℤ) {n : ℕ} (hA : 3 ^ n <
 
 variable {k p : ℕ}
 
+/--
+@isnad1 id=ex.1h3v.s9.ff200227cdde from=translated src=- shape=4dd1beaf vocab=ca65a68e
+-/
 theorem exists_cluster (B : Finset (Fin (2 * k + 1))) (hB : 3 ^ (2 * p) + 1 ≤ B.card) :
     ∃ c : Fin (2 * p + 1) → Fin (2 * k + 1), StrictMono c ∧ (∀ t, c t ∈ B) ∧
       Function.Injective fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t := by
@@ -202,16 +241,25 @@ theorem exists_cluster (B : Finset (Fin (2 * k + 1))) (hB : 3 ^ (2 * p) + 1 ≤ 
   rw [Fin.lt_def]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s7.bf2cd1ca3713 from=translated src=- shape=52067c33 vocab=c234716c
+-/
 theorem mem_posBlock {L i : ℕ} {a : Fin (2 * k + 1)} :
     a ∈ DeletionGame.posBlock k L i ↔
       (i * L + 1 : ℤ) ≤ DeletionGame.offset k a ∧ DeletionGame.offset k a ≤ (i + 1) * L := by
   simp [DeletionGame.posBlock, DeletionGame.sideBlock]
 
+/--
+@isnad1 id=iff.0h4v.s7.d69f4f00b495 from=translated src=- shape=1c8a43bb vocab=e6005d48
+-/
 theorem mem_negBlock {L i : ℕ} {a : Fin (2 * k + 1)} :
     a ∈ DeletionGame.negBlock k L i ↔
       (i * L + 1 : ℤ) ≤ -DeletionGame.offset k a ∧ -DeletionGame.offset k a ≤ (i + 1) * L := by
   simp [DeletionGame.negBlock, DeletionGame.sideBlock]
 
+/--
+@isnad1 id=ex.1h5v.s10.1b093145b286 from=translated src=- shape=965ee299 vocab=c4cb94e3
+-/
 theorem exists_cluster_posBlock (S : Finset (Fin (2 * k + 1))) {L i : ℕ}
     (hS : 3 ^ (2 * p) + 1 ≤ (S ∩ DeletionGame.posBlock k L i).card) :
     ∃ c : Fin (2 * p + 1) → Fin (2 * k + 1), StrictMono c ∧
@@ -231,6 +279,9 @@ theorem exists_cluster_posBlock (S : Finset (Fin (2 * k + 1))) {L i : ℕ}
     unfold clusterOffsets
     omega
 
+/--
+@isnad1 id=ex.1h5v.s10.018e6aa3bf52 from=translated src=- shape=183c60a1 vocab=54c11c01
+-/
 theorem exists_cluster_negBlock (S : Finset (Fin (2 * k + 1))) {L i : ℕ}
     (hS : 3 ^ (2 * p) + 1 ≤ (S ∩ DeletionGame.negBlock k L i).card) :
     ∃ c : Fin (2 * p + 1) → Fin (2 * k + 1), StrictMono c ∧
@@ -255,6 +306,9 @@ section General
 
 variable {β γ : Type*}
 
+/--
+@isnad1 id=pairedcl.2h8v.s8.f6b474f6b95c from=translated src=- shape=451607ed vocab=a2d9be72
+-/
 theorem pairedClusterBound_on {T : Tensor3 (Fin (2 * k + 1)) β γ} {L R : ℕ} {E : ℝ}
     (h : PairedKoszulBoundOn T p L E) (hR : 3 ^ (2 * p) + 1 ≤ R) :
     DeletionGame.PairedClusterBound k L R ((2 * p + 1 : ℝ) / (p + 1)) E
@@ -269,6 +323,9 @@ theorem pairedClusterBound_on {T : Tensor3 (Fin (2 * k + 1)) β γ} {L R : ℕ} 
 
 end General
 
+/--
+@isnad1 id=pairedcl.2h5v.s8.ac42fa81e0eb from=translated src=- shape=fd5bdb73 vocab=8a0195f9
+-/
 theorem pairedClusterBound {L R : ℕ} {E : ℝ} (h : PairedKoszulBound k p L E)
     (hR : 3 ^ (2 * p) + 1 ≤ R) :
     DeletionGame.PairedClusterBound k L R ((2 * p + 1 : ℝ) / (p + 1)) E
@@ -277,18 +334,26 @@ theorem pairedClusterBound {L R : ℕ} {E : ℝ} (h : PairedKoszulBound k p L E)
 
 /-! ### Arithmetic -/
 
+/--
+@isnad1 id=le.1h1v.s6.ab4c389d1d3b from=translated src=- shape=e65331d8 vocab=a3b58bfa
+-/
 theorem three_div_two_le {p : ℕ} (hp : 1 ≤ p) : (3 / 2 : ℝ) ≤ (2 * p + 1) / (p + 1) := by
   rw [le_div_iff₀ (by positivity)]
   have : (1 : ℝ) ≤ p := by exact_mod_cast hp
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s7.0c9c0940e7c0 from=translated src=- shape=955d69d0 vocab=e17985ab
+-/
 theorem one_add_two_mul_div_three (p : ℕ) :
     1 + 2 * ((2 * p + 1 : ℝ) / (p + 1)) / 3 = 7 / 3 - 2 / (3 * (p + 1)) := by
   field_simp
   ring
 
 /-- For `L ≥ 2 R / δ`, a lower bound `c m - C - R m / L` with a constant `C` gives `(c - δ) m`
-for all large `k`, where `m = 2k + 1`. -/
+for all large `k`, where `m = 2k + 1`.
+@isnad1 id=eventual.4h6v.s8.cce4c900cdee from=translated src=- shape=a9198047 vocab=45142f93
+-/
 theorem eventually_sub_mul_le_of_le {f : ℕ → ℝ} {c C δ : ℝ} {R L : ℕ} (hδ : 0 < δ)
     (hL0 : 0 < L) (hLR : 2 * (R : ℝ) / δ ≤ L)
     (h : ∀ᶠ k : ℕ in atTop, c * (2 * k + 1 : ℝ) - C - R * (2 * k + 1) / L ≤ f k) :
@@ -309,7 +374,9 @@ theorem eventually_sub_mul_le_of_le {f : ℕ → ℝ} {c C δ : ℝ} {R L : ℕ}
     linarith
   linarith
 
-/-- A block length `L ≥ 3^{2p} + 1` with `2 (3^{2p} + 1) / δ ≤ L`. -/
+/-- A block length `L ≥ 3^{2p} + 1` with `2 (3^{2p} + 1) / δ ≤ L`.
+@isnad1 id=ex.0h2v.s7.c95db00d4023 from=translated src=- shape=6bc86fce vocab=ad3e4bb6
+-/
 theorem exists_blockLength (p : ℕ) (δ : ℝ) :
     ∃ L : ℕ, 3 ^ (2 * p) + 1 ≤ L ∧ 2 * (3 ^ (2 * p) + 1 : ℝ) / δ ≤ L := by
   refine ⟨max (3 ^ (2 * p) + 1) ⌈2 * (3 ^ (2 * p) + 1 : ℝ) / δ⌉₊, le_max_left _ _, ?_⟩
@@ -323,11 +390,16 @@ end General
 
 /-! ### The unconditional bounds -/
 
+/--
+@isnad1 id=pairedko.0h3v.s5.b4ff100c2797 from=translated src=- shape=3c9ceaf8 vocab=95ee2919
+-/
 theorem pairedKoszulBound (k p L : ℕ) : PairedKoszulBound k p L (8 * (p + 1) * L) :=
   fun S cp cn hcp hcn hSP hSN hoP hoN hLP hLN hP hN =>
     div_mul_phi_sub_le_borderRank_restrictSlices S cp cn hcp hcn hSP hSN hoP hoN hLP hLN hP hN
 
-/-- For `ε > 0`, some `p ≥ 1` has `2 / (3 (p + 1)) < ε`. -/
+/-- For `ε > 0`, some `p ≥ 1` has `2 / (3 (p + 1)) < ε`.
+@isnad1 id=ex.1h1v.s6.164b61014212 from=translated src=- shape=c9f68993 vocab=3a4e774d
+-/
 theorem exists_two_div_lt {ε : ℝ} (hε : 0 < ε) :
     ∃ p : ℕ, 1 ≤ p ∧ 2 / (3 * ((p : ℝ) + 1)) < ε := by
   obtain ⟨p, hp⟩ := exists_nat_gt (1 / ε)

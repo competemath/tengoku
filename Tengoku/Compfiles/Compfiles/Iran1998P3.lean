@@ -24,6 +24,9 @@ Prove that
 
 namespace Iran1998P3
 
+/--
+@isnad1 id=eq.1h1v.s6.dc6383b84ec2 from=translated src=- shape=9b53d749 vocab=57a6a273
+-/
 lemma cube_root_cube (x : ℝ) (h : 0 ≤ x) : (x^(3:ℝ)) ^ ((1:ℝ)/3) = x := by
   rw [← Real.rpow_mul h, mul_div_cancel₀ (1 : ℝ) three_ne_zero]
   exact Real.rpow_one x

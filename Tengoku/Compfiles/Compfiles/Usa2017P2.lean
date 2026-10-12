@@ -81,11 +81,16 @@ def skipEmb {n : ℕ} (p : Fin (n + 1)) : Fin n ↪ Fin (n + 1) where
   inj' := fun _ _ h => Fin.succ_injective _ ((Equiv.swap 0 p).injective h)
 
 /-- Compact characterization of `invPair`: the pair is an inversion iff the truth values
-"`c` lies in the half-open interval between the entries" and "`x > y`" differ. -/
+"`c` lies in the half-open interval between the entries" and "`x > y`" differ.
+@isnad1 id=iff.0h3v.s5.1b1cf91545e6 from=translated src=- shape=735abc8b vocab=63429ac9
+-/
 lemma invPair_iff (c x y : ℤ) :
     invPair c x y ↔ (y < x ∧ (x ≤ c ∨ c < y)) ∨ (x ≤ y ∧ x ≤ c ∧ c < y) := by
   unfold invPair; lia
 
+/--
+@isnad1 id=eq.1h4v.s6.85839fa68887 from=translated src=- shape=8acea3e9 vocab=ca851505
+-/
 lemma frontContrib_le {t : ℕ} (c x : ℤ) (w : Fin t → ℤ) (h : x ≤ c) :
     frontContrib c x w =
       (∑ ℓ : Fin t, if w ℓ < x then 1 else 0) + ∑ ℓ : Fin t, if c < w ℓ then 1 else 0 := by
@@ -102,6 +107,9 @@ lemma frontContrib_le {t : ℕ} (c x : ℤ) (w : Fin t → ℤ) (h : x ≤ c) :
     · rw [ite_eq_left (hiff.mpr (Or.inr h2)), ite_eq_right h1, ite_eq_left h2]
     · rw [ite_eq_right (fun hp => (hiff.mp hp).elim h1 h2), ite_eq_right h1, ite_eq_right h2]
 
+/--
+@isnad1 id=eq.1h4v.s6.0072d609d097 from=translated src=- shape=113f2e12 vocab=7e8af491
+-/
 lemma frontContrib_gt {t : ℕ} (c x : ℤ) (w : Fin t → ℤ) (h : c < x) :
     frontContrib c x w = ∑ ℓ : Fin t, if c < w ℓ ∧ w ℓ < x then 1 else 0 := by
   unfold frontContrib
@@ -112,12 +120,17 @@ lemma frontContrib_gt {t : ℕ} (c x : ℤ) (w : Fin t → ℤ) (h : c < x) :
   · rw [ite_eq_left (hiff.mpr h1), ite_eq_left h1]
   · rw [ite_eq_right (fun hp => h1 (hiff.mp hp)), ite_eq_right h1]
 
+/--
+@isnad1 id=ne.0h3v.s6.3bf015acc11a from=translated src=- shape=5fbe1d50 vocab=006d0b39
+-/
 lemma skipEmb_ne {n : ℕ} (p : Fin (n + 1)) (i : Fin n) : skipEmb p i ≠ p := by
   have h : Equiv.swap 0 p i.succ ≠ Equiv.swap 0 p 0 :=
     fun hh => Fin.succ_ne_zero i ((Equiv.swap 0 p).injective hh)
   rwa [Equiv.swap_apply_left] at h
 
-/-- Splitting a sum over `Fin (n+1)` into the term at `p` and the rest. -/
+/-- Splitting a sum over `Fin (n+1)` into the term at `p` and the rest.
+@isnad1 id=eq.0h4v.s7.6628a0db3433 from=translated src=- shape=515b13a9 vocab=d615595b
+-/
 lemma sum_univ_add_skipEmb {n : ℕ} {M : Type*} [AddCommMonoid M] (p : Fin (n + 1))
     (g : Fin (n + 1) → M) : ∑ i, g i = g p + ∑ i : Fin n, g (skipEmb p i) := by
   have himg : univ.image (skipEmb p) = univ.erase p := by
@@ -140,10 +153,15 @@ lemma sum_univ_add_skipEmb {n : ℕ} {M : Type*} [AddCommMonoid M] (p : Fin (n +
   exact (skipEmb p).injective h
 
 /-- Relabeling the entries by a permutation does not change the number of `A`-inversions
-(thresholds are positional). -/
+(thresholds are positional).
+@isnad1 id=eq.0h5v.s6.0f8aed9ba3bd from=translated src=- shape=51a9bfd9 vocab=632c6b57
+-/
 lemma ainvCount_comp {n : ℕ} (e : Perm (Fin n)) (m : Fin n → ℤ) (A : Fin n → ℤ)
     (σ : Perm (Fin n)) : ainvCount (m ∘ e) A σ = ainvCount m A (e * σ) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.82caf59ad85b from=translated src=- shape=cfa3c768 vocab=4253f9db
+-/
 lemma genFun_comp {n : ℕ} (e : Perm (Fin n)) (m : Fin n → ℤ) (A : Fin n → ℤ) :
     genFun (m ∘ e) A = genFun m A := by
   unfold genFun
@@ -152,7 +170,9 @@ lemma genFun_comp {n : ℕ} (e : Perm (Fin n)) (m : Fin n → ℤ) (A : Fin n �
 
 /-- The first-position decomposition of the inversion count: under
 `Equiv.Perm.decomposeFin`, the `A`-inversions split into the pairs involving the first
-position (`frontContrib`) and the inversions of the remaining permutation. -/
+position (`frontContrib`) and the inversions of the remaining permutation.
+@isnad1 id=eq.0h5v.s8.8fde036f8978 from=translated src=- shape=3fc92bd4 vocab=362f827f
+-/
 lemma ainvCount_decompose {n : ℕ} (m : Fin (n + 1) → ℤ) (A : Fin (n + 1) → ℤ)
     (p : Fin (n + 1)) (π : Perm (Fin n)) :
     ainvCount m A (Equiv.Perm.decomposeFin.symm (p, π)) =
@@ -196,7 +216,9 @@ lemma ainvCount_decompose {n : ℕ} (m : Fin (n + 1) → ℤ) (A : Fin (n + 1) �
     · intro h
       exact ⟨Fin.strictMono_succ.lt_iff_lt.mpr h.1, h.2⟩
 
-/-- The first-position recurrence for the generating function. -/
+/-- The first-position recurrence for the generating function.
+@isnad1 id=eq.0h3v.s8.eda80236765e from=translated src=- shape=3a9d0c28 vocab=1f833ba1
+-/
 lemma genFun_rec {n : ℕ} (m : Fin (n + 1) → ℤ) (A : Fin (n + 1) → ℤ) :
     genFun m A = ∑ p : Fin (n + 1),
       X ^ frontContrib (A 0) (m p) (m ∘ skipEmb p) * genFun (m ∘ skipEmb p) (A ∘ Fin.succ) := by
@@ -209,6 +231,9 @@ lemma genFun_rec {n : ℕ} (m : Fin (n + 1) → ℤ) (A : Fin (n + 1) → ℤ) :
 
 /-! ## Multiset-of-values bookkeeping -/
 
+/--
+@isnad1 id=eq.0h3v.s5.2de9aa34c8a6 from=translated src=- shape=20324225 vocab=c37c9bb5
+-/
 lemma sum_if_eq_count {n : ℕ} (m : Fin n → ℤ) (y : ℤ) :
     (∑ i : Fin n, if m i = y then (1 : ℕ) else 0) = (valMul m).count y := by
   rw [← Finset.card_filter]
@@ -219,6 +244,9 @@ lemma sum_if_eq_count {n : ℕ} (m : Fin n → ℤ) (y : ℤ) :
   rw [Multiset.countP_map]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a2c51ed9cd39 from=translated src=- shape=67d237aa vocab=51f7d0ae
+-/
 lemma sum_if_eq_cntP {n : ℕ} (m : Fin n → ℤ) (q : ℤ → Prop) [DecidablePred q] :
     (∑ i : Fin n, if q (m i) then (1 : ℕ) else 0) = cntP m q := by
   rw [← Finset.card_filter]
@@ -226,12 +254,17 @@ lemma sum_if_eq_cntP {n : ℕ} (m : Fin n → ℤ) (q : ℤ → Prop) [Decidable
   rw [Multiset.countP_map]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.0099d400ed6b from=translated src=- shape=cf40689b vocab=1bb3e9b1
+-/
 lemma eCnt_eq_card_filter {n : ℕ} (m : Fin n → ℤ) (v : ℤ) :
     eCnt m v = (univ.filter (fun i => m i = v)).card := by
   rw [Finset.card_filter]
   exact (sum_if_eq_count m v).symm
 
-/-- Deleting one occurrence of a value from the entry multiset. -/
+/-- Deleting one occurrence of a value from the entry multiset.
+@isnad1 id=eq.0h3v.s7.104ddce0f53b from=translated src=- shape=530ac9cf vocab=f9ae77d1
+-/
 lemma valMul_comp_skipEmb {n : ℕ} (m : Fin (n + 1) → ℤ) (p : Fin (n + 1)) :
     valMul (m ∘ skipEmb p) = (valMul m).erase (m p) := by
   have key : ∀ y : ℤ, (valMul m).count y =
@@ -255,7 +288,9 @@ lemma valMul_comp_skipEmb {n : ℕ} (m : Fin (n + 1) → ℤ) (p : Fin (n + 1)) 
     lia
 
 /-- Two entry functions with the same multiset of values differ by a permutation of the
-indices. -/
+indices.
+@isnad1 id=ex.1h3v.s6.67c8c830d88d from=translated src=- shape=0f971624 vocab=4db24508
+-/
 lemma exists_perm_of_valMul_eq {n : ℕ} :
     ∀ {m₁ m₂ : Fin n → ℤ}, valMul m₁ = valMul m₂ → ∃ e : Perm (Fin n), m₂ = m₁ ∘ e := by
   induction n with
@@ -285,13 +320,17 @@ lemma exists_perm_of_valMul_eq {n : ℕ} :
       rw [Function.comp_apply, Equiv.Perm.decomposeFin_symm_apply_succ]
       exact h2i
 
-/-- The generating function only depends on the multiset of values. -/
+/-- The generating function only depends on the multiset of values.
+@isnad1 id=eq.1h4v.s5.61a4f5f675d6 from=translated src=- shape=61bf99c8 vocab=c7908739
+-/
 lemma genFun_eq_of_valMul_eq {n : ℕ} {m₁ m₂ : Fin n → ℤ} (h : valMul m₁ = valMul m₂)
     (A : Fin n → ℤ) : genFun m₁ A = genFun m₂ A := by
   obtain ⟨e, rfl⟩ := exists_perm_of_valMul_eq h
   exact (genFun_comp e m₁ A).symm
 
-/-- Explicit evaluation of `frontContrib` in terms of the full entry multiset. -/
+/-- Explicit evaluation of `frontContrib` in terms of the full entry multiset.
+@isnad1 id=eq.0h4v.s7.43bbf9200bb7 from=translated src=- shape=9c1afb74 vocab=8ac793de
+-/
 lemma frontContrib_eval {n : ℕ} (m : Fin (n + 1) → ℤ) (c : ℤ) (p : Fin (n + 1)) :
     frontContrib c (m p) (m ∘ skipEmb p) =
       if m p ≤ c then cntP m (· < m p) + cntP m (c < ·)
@@ -328,6 +367,9 @@ def gc {n : ℕ} (m : Fin n → ℤ) (c v : ℤ) : ℕ :=
 
 /-! ## The pure polynomial identity -/
 
+/--
+@isnad1 id=eq.0h2v.s6.950f27c055e9 from=translated src=- shape=5e657032 vocab=02fff86a
+-/
 lemma qq_add (a b : ℕ) : qq (a + b) = qq a + X ^ a * qq b := by
   unfold qq
   rw [Finset.sum_range_add, Finset.mul_sum]
@@ -336,6 +378,9 @@ lemma qq_add (a b : ℕ) : qq (a + b) = qq a + X ^ a * qq b := by
   intro s _
   rw [pow_add]
 
+/--
+@isnad1 id=eq.0h1v.s6.790e25cc80ff from=translated src=- shape=dbc8818b vocab=32871247
+-/
 lemma block_tele (es : List ℕ) :
     ∑ t ∈ range es.length, X ^ (es.take t).sum * qq es[t]! = qq es.sum := by
   induction es with
@@ -351,6 +396,9 @@ lemma block_tele (es : List ℕ) :
     intro s _
     rw [List.take_succ_cons, List.sum_cons, List.getElem!_cons_succ, pow_add, mul_assoc]
 
+/--
+@isnad1 id=eq.1h2v.s8.e1d7c74ff747 from=translated src=- shape=c0d17daa vocab=21015e81
+-/
 lemma pureId (es : List ℕ) (k : ℕ) (hk : k ≤ es.length) :
     X ^ (es.sum - (es.take k).sum) *
         (∑ t ∈ range k, X ^ (es.take t).sum * qq es[t]!) +
@@ -415,7 +463,9 @@ lemma pureId (es : List ℕ) (k : ℕ) (hk : k ≤ es.length) :
 
 -- ==== helpers ====
 
-/-- The cardinality of a filter of a finite sum of multisets. -/
+/-- The cardinality of a filter of a finite sum of multisets.
+@isnad1 id=eq.0h4v.s5.dbe485d96363 from=translated src=- shape=d14c56b8 vocab=af78e108
+-/
 lemma multiset_card_filter_finset_sum {ι : Type*} [DecidableEq ι] (s : Finset ι)
     (f : ι → Multiset ℤ) (p : ℤ → Prop) [DecidablePred p] :
     Multiset.card (Multiset.filter p (∑ v ∈ s, f v)) =
@@ -426,7 +476,9 @@ lemma multiset_card_filter_finset_sum {ι : Type*} [DecidableEq ι] (s : Finset 
     rw [Finset.sum_insert ha, Multiset.filter_add, Multiset.card_add, ih,
       Finset.sum_insert ha]
 
-/-- Filtering a replicated multiset. -/
+/-- Filtering a replicated multiset.
+@isnad1 id=eq.0h3v.s5.b5b2e69d56e1 from=translated src=- shape=1d513287 vocab=c1aa7914
+-/
 lemma multiset_filter_replicate (p : ℤ → Prop) [DecidablePred p] (k : ℕ) (v : ℤ) :
     Multiset.filter p (Multiset.replicate k v) = if p v then Multiset.replicate k v else 0 := by
   induction k with
@@ -439,7 +491,9 @@ lemma multiset_filter_replicate (p : ℤ → Prop) [DecidablePred p] (k : ℕ) (
     · simp only [ite_eq_right hv]
       rw [Multiset.zero_add]
 
-/-- Reindexing the sum of a mapped list as a sum over `range`. -/
+/-- Reindexing the sum of a mapped list as a sum over `range`.
+@isnad1 id=eq.0h4v.s6.25699bc4395a from=translated src=- shape=61bdba6b vocab=7689cca2
+-/
 lemma list_map_sum_eq_sum_range {α : Type*} {β : Type*} [Inhabited α] [AddCommMonoid β]
     (l : List α) (f : α → β) :
     (l.map f).sum = ∑ t ∈ Finset.range l.length, f l[t]! := by
@@ -456,14 +510,18 @@ lemma list_map_sum_eq_sum_range {α : Type*} {β : Type*} [Inhabited α] [AddCom
     rw [hs]
     exact add_comm _ _
 
-/-- The sum of a list of naturals as a sum over `range`. -/
+/-- The sum of a list of naturals as a sum over `range`.
+@isnad1 id=eq.0h1v.s5.35905652aed6 from=translated src=- shape=3b13ad92 vocab=ab29c673
+-/
 lemma list_sum_eq_sum_range (l : List ℕ) :
     l.sum = ∑ t ∈ Finset.range l.length, l[t]! := by
   have h := list_map_sum_eq_sum_range l id
   rw [List.map_id] at h
   exact h
 
-/-- The sum of an initial segment of a list of naturals. -/
+/-- The sum of an initial segment of a list of naturals.
+@isnad1 id=eq.1h2v.s5.0ae63ff615e9 from=translated src=- shape=62f378dd vocab=885d226a
+-/
 lemma list_sum_take_eq_sum_range (l : List ℕ) {j : ℕ} (hj : j ≤ l.length) :
     (l.take j).sum = ∑ t ∈ Finset.range j, l[t]! := by
   rw [list_sum_eq_sum_range (l.take j), List.length_take, Nat.min_eq_left hj]
@@ -480,7 +538,9 @@ lemma list_sum_take_eq_sum_range (l : List ℕ) {j : ℕ} (hj : j ≤ l.length) 
     rw [List.getElem!_eq_getElem?_getD, List.getElem?_eq_getElem h2, Option.getD_some]
   rw [g1, g2, List.getElem_take]
 
-/-- In a sorted list of integers, the elements `≤ c` form an initial segment. -/
+/-- In a sorted list of integers, the elements `≤ c` form an initial segment.
+@isnad1 id=eq.1h2v.s5.ddc0a97f5db4 from=translated src=- shape=21da67ae vocab=9fe01573
+-/
 lemma sorted_filter_eq_take (l : List ℤ) (c : ℤ) (hp : l.Pairwise (· ≤ ·)) :
     l.filter (· ≤ c) = l.take (l.filter (· ≤ c)).length := by
   induction l with
@@ -503,7 +563,9 @@ lemma sorted_filter_eq_take (l : List ℤ) (c : ℤ) (hp : l.Pairwise (· ≤ ·
         exact not_le.mpr hcy
       rw [hempty, List.length_nil, List.take_zero]
 
-/-- A sorted list of distinct integers is strictly increasing. -/
+/-- A sorted list of distinct integers is strictly increasing.
+@isnad1 id=iff.2h3v.s5.42c5c525069e from=translated src=- shape=89c52b00 vocab=e27d20ec
+-/
 lemma sorted_get_lt_iff {l : List ℤ} (hp : l.Pairwise (· ≤ ·)) (hn : l.Nodup)
     (s t : Fin l.length) : l.get s < l.get t ↔ s < t := by
   constructor
@@ -519,7 +581,9 @@ lemma sorted_get_lt_iff {l : List ℤ} (hp : l.Pairwise (· ≤ ·)) (hn : l.Nod
       absurd ((hn.get_inj_iff).mp heq) (ne_of_lt h)
     exact lt_of_le_of_ne hle hne
 
-/-- `getElem!` version of `sorted_get_lt_iff`. -/
+/-- `getElem!` version of `sorted_get_lt_iff`.
+@isnad1 id=iff.4h3v.s6.bd9c12018d17 from=translated src=- shape=ea31fa8f vocab=d415d490
+-/
 lemma sorted_getElem!_lt_iff {l : List ℤ} (hp : l.Pairwise (· ≤ ·)) (hn : l.Nodup)
     {s t : ℕ} (hs : s < l.length) (ht : t < l.length) :
     l[s]! < l[t]! ↔ s < t := by
@@ -530,7 +594,9 @@ lemma sorted_getElem!_lt_iff {l : List ℤ} (hp : l.Pairwise (· ≤ ·)) (hn : 
   exact Fin.mk_lt_mk
 
 /-- In a sorted list of distinct integers, the elements at positions `< k` are exactly
-those `≤ c`, where `k` is the number of elements `≤ c`. -/
+those `≤ c`, where `k` is the number of elements `≤ c`.
+@isnad1 id=iff.3h3v.s6.355266317d3c from=translated src=- shape=0e21d579 vocab=07e5761e
+-/
 lemma sorted_getElem!_le_iff {l : List ℤ} (hp : l.Pairwise (· ≤ ·)) (hn : l.Nodup)
     (c : ℤ) {t : ℕ} (ht : t < l.length) :
     l[t]! ≤ c ↔ t < (l.filter (· ≤ c)).length := by
@@ -565,7 +631,9 @@ lemma sorted_getElem!_le_iff {l : List ℤ} (hp : l.Pairwise (· ≤ ·)) (hn : 
     rw [← hB1, List.mem_filter] at hmem1
     exact of_decide_eq_true hmem1.2
 
-/-- A sum over the image finset reindexed as a list sum over the sorted distinct values. -/
+/-- A sum over the image finset reindexed as a list sum over the sorted distinct values.
+@isnad1 id=eq.0h4v.s6.29426ff5af24 from=translated src=- shape=f9881fe3 vocab=e5edc75e
+-/
 lemma sum_image_eq_sort_map_sum {n : ℕ} {β : Type*} [AddCommMonoid β]
     (m : Fin n → ℤ) (G : ℤ → β) :
     ∑ v ∈ univ.image m, G v = (((univ.image m).sort (· ≤ ·)).map G).sum := by
@@ -576,6 +644,9 @@ lemma sum_image_eq_sort_map_sum {n : ℕ} {β : Type*} [AddCommMonoid β]
 
 -- ==== main lemmas ====
 
+/--
+@isnad1 id=eq.0h2v.s6.4d8b779dcf76 from=translated src=- shape=38f9b6b5 vocab=3769c0fd
+-/
 lemma valMul_eq_sum_eCnt {n : ℕ} (m : Fin n → ℤ) :
     valMul m = ∑ v ∈ univ.image m, eCnt m v • {v} := by
   have hmem : ∀ w : ℤ, w ∈ valMul m ↔ w ∈ univ.image m := by
@@ -600,6 +671,9 @@ lemma valMul_eq_sum_eCnt {n : ℕ} (m : Fin n → ℤ) :
   · rw [ite_eq_right hw]
     exact Multiset.count_eq_zero_of_notMem (mt (hmem w).mp hw)
 
+/--
+@isnad1 id=eq.0h3v.s5.d3a3dd2fd3aa from=translated src=- shape=c9bad9ba vocab=167ea6f9
+-/
 lemma cntP_eq_sum_eCnt {n : ℕ} (m : Fin n → ℤ) (q : ℤ → Prop) [DecidablePred q] :
     cntP m q = ∑ v ∈ univ.image m, if q v then eCnt m v else 0 := by
   unfold cntP
@@ -615,7 +689,9 @@ lemma cntP_eq_sum_eCnt {n : ℕ} (m : Fin n → ℤ) (q : ℤ → Prop) [Decidab
 the ratio identity and the main induction. Proven by writing the value multiset as a
 sorted list of distinct values `vs` with multiplicity list `es` and split point
 `k = #(values ≤ c)`, evaluating the counts via `cntP_eq_sum_eCnt`, and telescoping with
-`pureId`. -/
+`pureId`.
+@isnad1 id=eq.0h3v.s7.196a965be6d0 from=translated src=- shape=b41b71bf vocab=006eff33
+-/
 lemma pureId_value {n : ℕ} (m : Fin (n + 1) → ℤ) (c : ℤ) :
     ∑ v ∈ univ.image m, X ^ gc m c v * qq (eCnt m v) = qq (n + 1) := by
   set vs := (univ.image m).sort (· ≤ ·) with hvs
@@ -781,7 +857,9 @@ lemma pureId_value {n : ℕ} (m : Fin (n + 1) → ℤ) (c : ℤ) :
   rw [← Finset.sum_range_add_sum_Ico (fun t => X ^ gc m c (vs[t]!) * qq es[t]!) hkvs]
   rw [hA, hB, pureId es k hkes, hesum]
 
-/-- Grouping a sum over positions by the value of the entry. -/
+/-- Grouping a sum over positions by the value of the entry.
+@isnad1 id=eq.1h4v.s7.4f21b7cacb4d from=translated src=- shape=16d69ea3 vocab=8e3fe038
+-/
 lemma sum_eq_sum_image_card {n : ℕ} (m : Fin (n + 1) → ℤ) (H : Fin (n + 1) → ℤ[X])
     (K : ℤ → ℤ[X]) (hHK : ∀ q, H q = K (m q)) :
     ∑ q, H q = ∑ v ∈ univ.image m, (eCnt m v : ℤ[X]) * K v := by
@@ -792,6 +870,9 @@ lemma sum_eq_sum_image_card {n : ℕ} (m : Fin (n + 1) → ℤ) (H : Fin (n + 1)
   rw [Finset.sum_congr rfl (fun q hq => by rw [(Finset.mem_filter.mp hq).2])]
   rw [Finset.sum_const, ← eCnt_eq_card_filter, nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.0h2v.s5.727ddf4c7818 from=translated src=- shape=17c722e2 vocab=83426ba0
+-/
 lemma genFun_zero (m : Fin 0 → ℤ) (A : Fin 0 → ℤ) : genFun m A = 1 := by
   unfold genFun
   have h0 : ∀ σ : Perm (Fin 0), ainvCount m A σ = 0 := by
@@ -800,6 +881,9 @@ lemma genFun_zero (m : Fin 0 → ℤ) (A : Fin 0 → ℤ) : genFun m A = 1 := by
   rw [Finset.sum_congr rfl (fun σ _ => by rw [h0 σ, pow_zero])]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.e076c82ef0b9 from=translated src=- shape=17c722e2 vocab=83426ba0
+-/
 lemma genFun_one (m : Fin 1 → ℤ) (A : Fin 1 → ℤ) : genFun m A = 1 := by
   unfold genFun
   have h0 : ∀ σ : Perm (Fin 1), ainvCount m A σ = 0 := by
@@ -811,7 +895,9 @@ lemma genFun_one (m : Fin 1 → ℤ) (A : Fin 1 → ℤ) : genFun m A = 1 := by
   rw [Finset.sum_congr rfl (fun σ _ => by rw [h0 σ, pow_zero])]
   simp
 
-/-- The image of `skipEmb p` is everything except `p`. -/
+/-- The image of `skipEmb p` is everything except `p`.
+@isnad1 id=eq.0h2v.s7.40faf67146a9 from=translated src=- shape=410ac9eb vocab=1f80395f
+-/
 lemma image_skipEmb {n : ℕ} (p : Fin (n + 1)) : univ.image (skipEmb p) = univ.erase p := by
   ext x
   constructor
@@ -828,6 +914,9 @@ lemma image_skipEmb {n : ℕ} (p : Fin (n + 1)) : univ.image (skipEmb p) = univ.
     show Equiv.swap 0 p i.succ = x
     rw [← hi]; exact swap_apply_self 0 p x
 
+/--
+@isnad1 id=ex.1h3v.s7.9c155a8862c7 from=translated src=- shape=0361a6f4 vocab=006d0b39
+-/
 lemma exists_skipEmb_eq {n : ℕ} {p q : Fin (n + 1)} (h : p ≠ q) :
     ∃ i : Fin n, skipEmb q i = p := by
   have hp : p ∈ univ.image (skipEmb q) := by
@@ -840,13 +929,18 @@ lemma exists_skipEmb_eq {n : ℕ} {p q : Fin (n + 1)} (h : p ≠ q) :
 noncomputable def repr {n : ℕ} (m : Fin (n + 1) → ℤ) (v : ℤ) : Fin (n + 1) :=
   if h : ∃ i, m i = v then Classical.choose h else 0
 
+/--
+@isnad1 id=eq.1h3v.s6.1ff5500f3c09 from=translated src=- shape=64869f6c vocab=4ba2128a
+-/
 lemma repr_spec {n : ℕ} (m : Fin (n + 1) → ℤ) {v : ℤ} (h : ∃ i, m i = v) :
     m (repr m v) = v := by
   unfold repr
   rw [dite_eq_left h]
   exact Classical.choose_spec h
 
-/-- Deleting an index whose value `w` does not match does not change the count of `w`. -/
+/-- Deleting an index whose value `w` does not match does not change the count of `w`.
+@isnad1 id=eq.1h4v.s7.04305a0663b1 from=translated src=- shape=5eab7f96 vocab=b88637ee
+-/
 lemma eCnt_comp_skipEmb_of_ne {n : ℕ} (m : Fin (n + 1) → ℤ) (q : Fin (n + 1)) {w : ℤ}
     (h : m q ≠ w) : eCnt (m ∘ skipEmb q) w = eCnt m w := by
   have h2 := sum_univ_add_skipEmb q (fun i => if m i = w then (1 : ℕ) else 0)
@@ -858,7 +952,9 @@ lemma eCnt_comp_skipEmb_of_ne {n : ℕ} (m : Fin (n + 1) → ℤ) (q : Fin (n + 
   exact h2.symm
 
 /-- Deleting two different indices with the same value gives the same generating
-function. -/
+function.
+@isnad1 id=eq.1h5v.s7.0c195618be00 from=translated src=- shape=ff256b3e vocab=66a9c8d4
+-/
 lemma genFun_skipEmb_congr {n : ℕ} (m : Fin (n + 1) → ℤ) {q r : Fin (n + 1)}
     (h : m q = m r) (A : Fin n → ℤ) :
     genFun (m ∘ skipEmb q) A = genFun (m ∘ skipEmb r) A := by
@@ -884,7 +980,9 @@ Proof plan (algebra verified on paper): induction on `n`.
   `eCnt (m ∘ skipEmb q) w = eCnt m w` when `m q ≠ w` (prove via `sum_univ_add_skipEmb` +
   `sum_if_eq_count`) and `Multiset.erase_comm` + `genFun_eq_of_valMul_eq` to identify the
   double deletions. Everything becomes `e * genFun (m ∘ skipEmb p) 0` times
-  `∑ v, X ^ gc m 0 v * qq (eCnt m v) = qq (n+2)` (`pureId_value`). -/
+  `∑ v, X ^ gc m 0 v * qq (eCnt m v) = qq (n+2)` (`pureId_value`).
+@isnad1 id=eq.0h3v.s8.e7fbf889397f from=translated src=- shape=ba54bc09 vocab=1ddedd5f
+-/
 lemma QL {n : ℕ} : ∀ (m : Fin (n + 1) → ℤ) (p : Fin (n + 1)),
     qq (eCnt m (m p)) * genFun m 0 =
       qq (n + 1) * (eCnt m (m p) : ℤ[X]) * genFun (m ∘ skipEmb p) 0 := by
@@ -1017,7 +1115,9 @@ multiply by `qq (n+1)`; use `QL` at each representative to rewrite
 `qq (n+1) * eCnt m v * genFun (m ∘ skipEmb (repr v)) 0 = qq (eCnt m v) * genFun m 0`;
 the sum becomes `genFun m 0 * ∑ v, X ^ gc m (A 0) v * qq (eCnt m v) = genFun m 0 * qq (n+1)`
 by `pureId_value`; cancel `qq (n+1) ≠ 0` (`mul_left_cancel₀`; `qq (n+1) ≠ 0` since its
-constant coefficient is `1`). -/
+constant coefficient is `1`).
+@isnad1 id=eq.0h3v.s5.4120fab98284 from=translated src=- shape=c827dc24 vocab=83426ba0
+-/
 lemma PL {n : ℕ} : ∀ (m : Fin n → ℤ) (A : Fin n → ℤ), genFun m A = genFun m 0 := by
   induction n with
   | zero => intro m A; rw [genFun_zero m A, genFun_zero m 0]
@@ -1078,7 +1178,9 @@ lemma PL {n : ℕ} : ∀ (m : Fin n → ℤ) (A : Fin n → ℤ), genFun m A = g
       _ = qq (n + 1) * genFun m 0 := by ring
 
 /-- The coefficient of `X^k` in the generating function counts permutations with
-exactly `k` `A`-inversions. -/
+exactly `k` `A`-inversions.
+@isnad1 id=eq.0h4v.s6.0f4ac340a940 from=translated src=- shape=8f02ad6a vocab=193c0a3b
+-/
 lemma coeff_genFun {n : ℕ} (m : Fin n → ℤ) (A : Fin n → ℤ) (k : ℕ) :
     (genFun m A).coeff k =
       ((univ.filter (fun σ : Perm (Fin n) => ainvCount m A σ = k)).card : ℤ) := by

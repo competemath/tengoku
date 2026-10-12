@@ -46,16 +46,28 @@ def t (a : ℕ → ℕ) : ℕ → ℕ :=
 --   gives stability of the terms `i ≥ k` after `n-k+1 ≤ n-1` steps, while the terms
 --   `i < k` are identically zero after one step.
 
+/--
+@isnad1 id=eq.0h2v.s5.1b4a20bd1168 from=translated src=- shape=a115f5ce vocab=0d2917c3
+-/
 lemma t_def (a : ℕ → ℕ) (i : ℕ) :
     t a i = ((Finset.range i).filter (fun j => a j ≠ a i)).card := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.ad02b9a7997e from=translated src=- shape=b298c1f9 vocab=7c49b446
+-/
 lemma t_zero (a : ℕ → ℕ) : t a 0 = 0 := by
   rw [t_def, Finset.range_zero, Finset.filter_empty, Finset.card_empty]
 
+/--
+@isnad1 id=le.0h2v.s3.7697394409f2 from=translated src=- shape=db361c6b vocab=4a374738
+-/
 lemma t_le (a : ℕ → ℕ) (i : ℕ) : t a i ≤ i := by
   rw [t_def]
   exact le_trans (Finset.card_filter_le _ _) (Finset.card_range i).le
 
+/--
+@isnad1 id=eq.1h2v.s5.ae8341b5efbb from=translated src=- shape=cbcef29b vocab=7eeb1255
+-/
 lemma t_eq_zero_of {b : ℕ → ℕ} {i : ℕ} (h : ∀ j < i, b j = b i) : t b i = 0 := by
   have he : (Finset.range i).filter (fun j => b j ≠ b i) = ∅ := by
     rw [Finset.filter_eq_empty_iff]
@@ -64,13 +76,18 @@ lemma t_eq_zero_of {b : ℕ → ℕ} {i : ℕ} (h : ∀ j < i, b j = b i) : t b 
     simp [h j hj]
   rw [t_def, he, Finset.card_empty]
 
+/--
+@isnad1 id=le.2h3v.s5.6705c5de7aac from=translated src=- shape=4cb272df vocab=b49ae7be
+-/
 lemma one_le_t_of {b : ℕ → ℕ} {i j : ℕ} (hji : j < i) (h : b j ≠ b i) : 1 ≤ t b i := by
   rw [t_def]
   apply Finset.card_pos.mpr
   rw [Finset.filter_nonempty_iff]
   exact ⟨j, Finset.mem_range.mpr hji, h⟩
 
-/-- If `a` is admissible at position `i`, then `a i ≤ t a i`. -/
+/-- If `a` is admissible at position `i`, then `a i ≤ t a i`.
+@isnad1 id=le.1h2v.s4.25bb93fd1e5b from=translated src=- shape=b680f231 vocab=4a374738
+-/
 lemma le_t (a : ℕ → ℕ) (i : ℕ) (h : ∀ j ≤ i, a j ≤ j) : a i ≤ t a i := by
   rw [t_def]
   by_cases hi : a i = 0
@@ -86,32 +103,52 @@ lemma le_t (a : ℕ → ℕ) (i : ℕ) (h : ∀ j ≤ i, a j ≤ j) : a i ≤ t 
     calc a i = (Finset.range (a i)).card := (Finset.card_range _).symm
       _ ≤ ((Finset.range i).filter (fun j => a j ≠ a i)).card := Finset.card_le_card sub
 
+/--
+@isnad1 id=eq.0h2v.s5.18a9a704b595 from=translated src=- shape=f58df79b vocab=91bb1d87
+-/
 lemma iter_succ (m : ℕ) (b : ℕ → ℕ) : t^[m+1] b = t (t^[m] b) :=
   Function.iterate_succ_apply' t m b
 
+/--
+@isnad1 id=eq.0h2v.s5.73de4eb19de9 from=translated src=- shape=ff8c2abc vocab=91bb1d87
+-/
 lemma iter_t_zero (a : ℕ → ℕ) (m : ℕ) : t^[m+1] a 0 = 0 := by
   rw [iter_succ m a]
   exact t_zero _
 
+/--
+@isnad1 id=le.0h3v.s5.bd57880496bb from=translated src=- shape=9baa10bf vocab=e39c3ff8
+-/
 lemma iter_t_le (a : ℕ → ℕ) (m : ℕ) (i : ℕ) : t^[m+1] a i ≤ i := by
   rw [iter_succ m a]
   exact t_le _ _
 
+/--
+@isnad1 id=le.1h3v.s5.73bad4850f95 from=translated src=- shape=7b6e5769 vocab=e39c3ff8
+-/
 lemma iter_mono_succ (a : ℕ → ℕ) (i : ℕ) (m : ℕ) (hm : 1 ≤ m) :
     t^[m] a i ≤ t^[m+1] a i := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by lia : m ≠ 0)
   rw [iter_succ (m+1) a]
   exact le_t (t^[m+1] a) i (fun j _ => iter_t_le _ _ _)
 
+/--
+@isnad1 id=le.2h4v.s5.4e897a8e4ac5 from=translated src=- shape=4b2093ee vocab=c25150df
+-/
 lemma iter_ge_of_le {a : ℕ → ℕ} {i p : ℕ} (h : p ≤ t^[1] a i) (m : ℕ) (hm : 1 ≤ m) :
     p ≤ t^[m] a i :=
   Nat.le_induction h (fun k hk IH => le_trans IH (iter_mono_succ a i k hk)) m hm
 
+/--
+@isnad1 id=le.2h4v.s5.15d87065b67c from=translated src=- shape=4b2093ee vocab=c25150df
+-/
 lemma iter_ge_two_of_le {a : ℕ → ℕ} {i p : ℕ} (h : p ≤ t^[2] a i) (m : ℕ) (hm : 2 ≤ m) :
     p ≤ t^[m] a i :=
   Nat.le_induction h (fun k hk IH => le_trans IH (iter_mono_succ a i k (by lia))) m hm
 
-/-- The values `t^[m] a j` for `j ≤ i` only depend on the values `a j` for `j ≤ i`. -/
+/-- The values `t^[m] a j` for `j ≤ i` only depend on the values `a j` for `j ≤ i`.
+@isnad1 id=eq.2h5v.s5.b55350997e85 from=translated src=- shape=c2a3bd0c vocab=c25150df
+-/
 lemma iter_congr {a b : ℕ → ℕ} {i : ℕ} (h : ∀ j ≤ i, a j = b j) :
     ∀ m, ∀ j ≤ i, t^[m] a j = t^[m] b j := by
   intro m
@@ -128,7 +165,9 @@ lemma iter_congr {a b : ℕ → ℕ} {i : ℕ} (h : ∀ j ≤ i, a j = b j) :
     have h2 := IH j hj
     rw [h1, h2]
 
-/-- Once a whole initial segment is stable, it stays stable. -/
+/-- Once a whole initial segment is stable, it stays stable.
+@isnad1 id=eq.2h5v.s6.4ae2e1b882fd from=translated src=- shape=b2ba6e22 vocab=e39c3ff8
+-/
 lemma iter_stable_add (a : ℕ → ℕ) {N p : ℕ}
     (h : ∀ i ≤ N, t^[p] a i = t^[p+1] a i) :
     ∀ q, ∀ i ≤ N, t^[p+q] a i = t^[p+q+1] a i := by
@@ -147,7 +186,9 @@ lemma iter_stable_add (a : ℕ → ℕ) {N p : ℕ}
     have h2 := IH i hi
     rw [h1, h2]
 
-/-- If the first `k` terms of `a` are all zero, they stay zero forever. -/
+/-- If the first `k` terms of `a` are all zero, they stay zero forever.
+@isnad1 id=eq.2h4v.s5.886512d7c1cf from=translated src=- shape=c7a2168f vocab=cdcd40fe
+-/
 lemma iter_eq_zero {a : ℕ → ℕ} {k : ℕ} (hz : ∀ i < k, a i = 0) :
     ∀ m, ∀ i < k, t^[m+1] a i = 0 := by
   intro m
@@ -165,7 +206,9 @@ lemma iter_eq_zero {a : ℕ → ℕ} {k : ℕ} (hz : ∀ i < k, a i = 0) :
     intro j hj
     rw [IH j (lt_trans hj hi), IH i hi]
 
-/-- Counting elements `m < j + k` with `p m`, when `p` holds on all of `[0, k)`. -/
+/-- Counting elements `m < j + k` with `p m`, when `p` holds on all of `[0, k)`.
+@isnad1 id=eq.0h4v.s6.fcf9d2e09742 from=translated src=- shape=fcf9b383 vocab=f714aa52
+-/
 lemma range_add_filter_card (p : ℕ → Prop) [DecidablePred p] (j k : ℕ)
     (hk : ∀ m < k, p m) :
     ((Finset.range (j+k)).filter p).card
@@ -204,7 +247,9 @@ lemma range_add_filter_card (p : ℕ → Prop) [DecidablePred p] (j k : ℕ)
   rw [hset, Finset.card_union_of_disjoint hdis, Finset.card_map, Finset.card_range]
 
 /-- The key commutation relation for the case `a₁ = 1`: with `bⱼ = t a (j+1) - 1`,
-iterating `t` on `b` simulates iterating `t` on `a`, shifted by one index. -/
+iterating `t` on `b` simulates iterating `t` on `a`, shifted by one index.
+@isnad1 id=eq.2h4v.s7.26fdbbb9a897 from=translated src=- shape=706e80e5 vocab=dc2f3b39
+-/
 lemma comm1 {a : ℕ → ℕ} {n : ℕ}
     (hP1 : ∀ i, 1 ≤ i → i ≤ n → ∀ m, 1 ≤ m → 1 ≤ t^[m] a i) :
     ∀ m, ∀ j, j + 1 ≤ n →
@@ -244,7 +289,9 @@ lemma comm1 {a : ℕ → ℕ} {n : ℕ}
 
 /-- The key commutation relation for the case `a₀ = a₁ = ⋯ = aₖ₋₁ = 0 < aₖ`:
 with `cⱼ = t^[2] a (j+k) - k`, iterating `t` on `c` simulates iterating `t` on `a`,
-shifted by `k` indices. -/
+shifted by `k` indices.
+@isnad1 id=eq.4h5v.s7.35fdac85e148 from=translated src=- shape=abeeba23 vocab=0b4332d1
+-/
 lemma comm2 {a : ℕ → ℕ} {n k : ℕ} (hk1 : 1 ≤ k)
     (hz : ∀ m, ∀ i < k, t^[m+1] a i = 0)
     (hge : ∀ i, k ≤ i → i ≤ n → ∀ m, k ≤ t^[m+2] a i) :
@@ -282,7 +329,9 @@ lemma comm2 {a : ℕ → ℕ} {n k : ℕ} (hk1 : 1 ≤ k)
       range_add_filter_card _ j k h0
     lia
 
-/-- The main induction: after `n-1` applications of `t`, the sequence is stable. -/
+/-- The main induction: after `n-1` applications of `t`, the sequence is stable.
+@isnad1 id=eq.3h3v.s6.716b447cdf30 from=translated src=- shape=cef8b1ff vocab=e5e53445
+-/
 theorem main_aux (n : ℕ) : 1 ≤ n → ∀ a : ℕ → ℕ, (∀ i ≤ n, a i ≤ i) →
     ∀ i ≤ n, t^[n-1] a i = t^[n] a i := by
   induction n using Nat.strongRecOn with

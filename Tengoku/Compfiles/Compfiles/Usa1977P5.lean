@@ -26,7 +26,9 @@ namespace Usa1977P5
 /-- If `r ≥ 0` and `0 < a ≤ x ≤ b`, then `(r + x) * (s + 1 / x)` is bounded above by the
 maximum of its values at the endpoints `x = a` and `x = b` (as a function of `x` it is a
 sum of `rs + 1`, the linear function `s * x` and the convex function `r / x`, hence it
-attains its maximum on `[a, b]` at an endpoint). -/
+attains its maximum on `[a, b]` at an endpoint).
+@isnad1 id=le.5h5v.s7.dd2b4bc52860 from=translated src=- shape=3d16cdff vocab=6dd77b0b
+-/
 lemma le_max_endpoint {r s a b x : ℝ} (hr : 0 ≤ r) (ha : 0 < a) (hb : 0 < b)
     (hax : a ≤ x) (hxb : x ≤ b) :
     (r + x) * (s + 1 / x) ≤ max ((r + a) * (s + 1 / a)) ((r + b) * (s + 1 / b)) := by
@@ -82,7 +84,9 @@ noncomputable def cornerMax (h k r s : ℝ) : ℕ → ℝ
 
 /-- The product `(r + Σ f i) * (s + Σ 1 / f i)`, where each `f i ∈ [h, k]`, is bounded
 above by the corresponding corner maximum. Proved by induction on `n`, applying
-`le_max_endpoint` to one variable at a time. -/
+`le_max_endpoint` to one variable at a time.
+@isnad1 id=le.4h6v.s7.a256adc425c7 from=translated src=- shape=99d84c3f vocab=ebadb637
+-/
 lemma le_cornerMax (h k : ℝ) (hh : 0 < h) (hk : 0 < k) {n : ℕ} :
     ∀ (f : Fin n → ℝ) (_ : ∀ i, h ≤ f i ∧ f i ≤ k) (r s : ℝ) (_ : 0 ≤ r),
       (r + ∑ i, f i) * (s + ∑ i, 1 / f i) ≤ cornerMax h k r s n := by

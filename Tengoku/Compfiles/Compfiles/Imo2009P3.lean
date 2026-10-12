@@ -29,12 +29,18 @@ def IsArithProg (f : ℕ → ℕ) : Prop := ∃ d : ℕ, ∀ n, f (n + 1) = f n 
 -- Note the writeup uses A as the upper bound, when the correct upper bound is D.
 -- The requirement that $s_i$ is positive can be removed.
 
+/--
+@isnad1 id=iff.0h1v.s5.f609d5c7a00e from=translated src=- shape=df691a6a vocab=2ac9084f
+-/
 lemma IsArithProg_iff {f: ℕ → ℕ} : IsArithProg f ↔ ∃ d r : ℕ, ∀ n, f n = d * n + r := by
   refine ⟨fun ⟨d, h⟩ => ⟨d, f 0, fun n => ?_⟩, fun ⟨d, r, h⟩ => ⟨d, fun n => by simp [h]; ring_nf⟩⟩
   induction n with
   | zero => simp
   | succ n ih => rw [h n, ih]; ring_nf
 
+/--
+@isnad1 id=le.1h3v.s5.c1c3474bb21e from=translated src=- shape=e6648db7 vocab=0e5760bd
+-/
 lemma strictMono_add_right_le {s : ℕ → ℕ} (hs: StrictMono s) {a b : ℕ} : s a + b ≤ s (a + b) := by
   induction b with
   | zero => simp

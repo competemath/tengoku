@@ -37,14 +37,18 @@ open Finset
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- Every vertex of positive degree is incident to at least one edge. -/
+/-- Every vertex of positive degree is incident to at least one edge.
+@isnad1 id=nonempty.1h3v.s6.7acca68cf105 from=translated src=- shape=d23e4e3c vocab=13e98b34
+-/
 lemma incidenceFinset_nonempty_of_degree_pos (G : SimpleGraph V) [DecidableRel G.Adj]
     {v : V} (hv : 1 ≤ G.degree v) : (G.incidenceFinset v).Nonempty := by
   rw [← Finset.card_pos, SimpleGraph.card_incidenceFinset_eq_degree]
   exact hv
 
 /-- In a finite simple graph with minimum degree at least one, there is a set
-of pairwise vertex-disjoint edges of size at least `|V| - |E|`. -/
+of pairwise vertex-disjoint edges of size at least `|V| - |E|`.
+@isnad1 id=ex.1h2v.s7.b17ab61dac0d from=translated src=- shape=559d4897 vocab=f001c191
+-/
 theorem exists_pairwise_disjoint_edges (G : SimpleGraph V) [DecidableRel G.Adj]
     (hdeg : ∀ v : V, 1 ≤ G.degree v) :
     ∃ s : Finset (Sym2 V), s ⊆ G.edgeFinset ∧

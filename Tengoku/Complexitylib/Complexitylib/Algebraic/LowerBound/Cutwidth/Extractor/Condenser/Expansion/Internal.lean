@@ -35,6 +35,9 @@ private theorem polynomialNeighbor_mem {F : Type*} [CommRing F] [Fintype F]
   apply Finset.mem_biUnion.mpr
   exact ⟨f, member, Finset.mem_image.mpr ⟨y, Finset.mem_univ _, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s6.26718c46ba58 from=translated src=- shape=02896854 vocab=cd48bf29
+-/
 theorem polynomialNeighbor_pow_two {F : Type*} [CommRing F]
     (E : Polynomial F) (r m : Nat) (f : Polynomial F) (y : F) :
     polynomialNeighbor E (2 ^ r) m f y = (y, polynomialCondenser E r m f y) := by
@@ -42,6 +45,9 @@ theorem polynomialNeighbor_pow_two {F : Type*} [CommRing F]
   funext i
   exact (polynomialCondenser_apply E f r m y i).symm
 
+/--
+@isnad1 id=eq.3h5v.s7.b98782897394 from=translated src=- shape=a5c0bcce vocab=1b65c6fc
+-/
 theorem card_polynomialNeighborSet_of_degree_one {F : Type*} [Field F] [Fintype F]
     (E : Polynomial F) (monic : E.Monic) (degree : E.natDegree = 1)
     (h m : Nat) (P : Finset (Polynomial F))
@@ -86,6 +92,9 @@ theorem card_polynomialNeighborSet_of_degree_one {F : Type*} [Field F] [Fintype 
   rw [representation, Finset.card_image_of_injOn injective]
   simp only [Finset.card_product, Finset.card_univ, mul_comm]
 
+/--
+@isnad1 id=le.7h6v.s8.ea6713073f17 from=translated src=- shape=f50d60d3 vocab=f5d7928b
+-/
 theorem le_card_polynomialNeighborSet {F : Type*} [Field F] [Fintype F]
     {A h m : Nat} (E : Polynomial F) (monic : E.Monic)
     (irreducible : Irreducible E) (degree : 1 < E.natDegree) (base : 0 < h)
@@ -129,6 +138,9 @@ theorem le_card_polynomialNeighborSet {F : Type*} [Field F] [Fintype F]
       rw [substitutedSum_quotient_eval E monic size, substitutedZero f member, map_zero])
   exact (lt_irrefl P.card) impossible
 
+/--
+@isnad1 id=le.6h5v.s8.a0d4b449bb46 from=translated src=- shape=1c2b87f1 vocab=865b3c91
+-/
 theorem polynomialNeighborSet_expansion {F : Type*} [Field F] [Fintype F]
     {h m : Nat} (E : Polynomial F) (monic : E.Monic)
     (irreducible : Irreducible E) (degree : 1 < E.natDegree) (base : 0 < h)

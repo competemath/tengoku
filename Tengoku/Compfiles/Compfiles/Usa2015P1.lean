@@ -18,9 +18,15 @@ Solve in integers the equation x² + xy + y² = ((x + y) / 3 + 1)³.
 
 namespace Usa2015P1
 
+/--
+@isnad1 id=iff.1h5v.s4.835ffc40e538 from=translated src=- shape=31f52f94 vocab=e3b0c442
+-/
 lemma iff_comm {a b c : Prop} : (a → c) → (b → c) → (c → (a ↔ b)) → (a ↔ b) := by
   grind
 
+/--
+@isnad1 id=ex.2h3v.s6.32a57b715e78 from=translated src=- shape=f65f6a99 vocab=36c32c22
+-/
 lemma abc { a b c : ℤ } (hb : b ≠ 0) : a ^ 2 = b ^ 2 * c → ∃ d, c = d ^ 2 := by
   intro h
   have h1 : b ^ 2 ∣ a ^ 2 := by simp_all only [ne_eq, dvd_mul_right]

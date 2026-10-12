@@ -77,6 +77,9 @@ def Row.operationOneBased {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) (c : R
 def Row.leftmostNSame {n : ℕ} (c : Row n) := ∀ j₁ j₂ : Fin (2 * n),
   (j₁ : ℕ) < n → (j₂ : ℕ) < n → c j₁ = c j₂
 
+/--
+@isnad1 id=eq.0h1v.s5.ff9286898502 from=translated src=- shape=4c4af791 vocab=be627f67
+-/
 lemma Nat.ceilDiv_two_add_floorDiv_two (n : Nat) : n ⌈/⌉ 2 + n ⌊/⌋ 2 = n := by
   rw [Nat.ceilDiv_eq_add_pred_div, Nat.floorDiv_eq_div]
   lia
@@ -85,9 +88,15 @@ def Coin.flip : Coin → Coin
   | A => B
   | B => A
 
+/--
+@isnad1 id=iff.0h2v.s3.5a2c159c32fb from=translated src=- shape=9052163f vocab=6f8a6a37
+-/
 lemma Coin.flip_eq_iff (c c' : Coin) : c.flip = c' ↔ c ≠ c' := by
   cases c <;> cases c' <;> decide
 
+/--
+@isnad1 id=iff.0h2v.s3.57045949beac from=translated src=- shape=14f1a254 vocab=6f8a6a37
+-/
 lemma Coin.flip_eq_iff' (c c' : Coin) : c = c'.flip ↔ c ≠ c' := by
   rw [ne_comm, ← Coin.flip_eq_iff, eq_comm]
 
@@ -95,6 +104,9 @@ def isValidRow (l : List Coin) := 2 * (l.count Coin.A) = l.length
 
 universe u
 
+/--
+@isnad1 id=eq.0h4v.s5.9e350f0b7f16 from=translated src=- shape=91ee4a49 vocab=054e92da
+-/
 lemma List.count_ofFn {α : Type u} [DecidableEq α] {n : ℕ} (f : Fin n → α) (a : α)
   : #{i | f i = a} = List.count a (List.ofFn f) := by
     induction' n with n h
@@ -135,10 +147,16 @@ lemma List.count_ofFn {α : Type u} [DecidableEq α] {n : ℕ} (f : Fin n → α
           rw [h'] at hi
           exact hi
 
+/--
+@isnad1 id=eq.0h3v.s5.028e6436b580 from=translated src=- shape=2aac8543 vocab=06550998
+-/
 lemma List.sum_rotate {α : Type u} [AddCommMonoid α] (l : List α) {n : ℕ} : (l.rotate n).sum = l.sum := by
   apply List.Perm.sum_eq
   apply List.rotate_perm
 
+/--
+@isnad1 id=eq.1h4v.s7.485726446c72 from=translated src=- shape=22338226 vocab=daffad81
+-/
 lemma List.splitBy_append' {α : Type u} {r : α → α → Bool} {a b : List α} (hab : ∃ x ∈ a.getLast?, ∃ y ∈ b.head?, r x y = true)
   : List.splitBy r (a ++ b) = (List.splitBy r a).dropLast ++ [(List.splitBy r a).getLast?.getD [] ++ (List.splitBy r b).head?.getD []] ++ (List.splitBy r b).tail := by
     rcases hab with ⟨p, hp, q, hq, hpq⟩
@@ -257,6 +275,9 @@ lemma List.splitBy_append' {α : Type u} {r : α → α → Bool} {a b : List α
         rw [h_eq] at h'x'y
         exact h'x'y
 
+/--
+@isnad1 id=iff.0h2v.s4.4693fdf53152 from=translated src=- shape=62334686 vocab=5334465d
+-/
 lemma Row.valid_iff_isValidRow_ofFn {n : ℕ}  (c : Row n)
   : c.valid ↔ isValidRow (List.ofFn c) := by
     rw [Row.valid, isValidRow, List.length_ofFn, mul_eq_mul_left_iff, or_iff_left (by norm_num)]
@@ -268,6 +289,9 @@ def List.chainLeft {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.lengt
     rintro i hki hik
     rw [le_antisymm hki hik]⟩)
 
+/--
+@isnad1 id=eq.0h3v.s6.36e5ccc23ef2 from=translated src=- shape=ac4a8c88 vocab=337c2208
+-/
 lemma Row.chainLeft_eq_chainLeft_ofFn {n : ℕ} (c : Row n) (k : Fin (2 * n))
   : c.chainLeft k = (Fin.cast (by rw [List.length_ofFn]) (List.chainLeft (List.ofFn c) (Fin.cast (by rw [List.length_ofFn]) k))) := by
     have h_cast : (List.ofFn c).length = 2 * n := by rw [List.length_ofFn]
@@ -310,6 +334,9 @@ lemma Row.chainLeft_eq_chainLeft_ofFn {n : ℕ} (c : Row n) (k : Fin (2 * n))
         rw [← hi'']
         rfl
 
+/--
+@isnad1 id=le.0h3v.s4.c4cd9831cb10 from=translated src=- shape=b0997f6b vocab=1c0a55a4
+-/
 lemma List.chainLeft_le {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : List.chainLeft l k ≤ k := by
     rw [List.chainLeft]
@@ -324,6 +351,9 @@ def List.chainRight {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.leng
     rintro i hki hik
     rw [le_antisymm hki hik]⟩)
 
+/--
+@isnad1 id=eq.0h3v.s6.a632d5d855ad from=translated src=- shape=ac4a8c88 vocab=64ab8c03
+-/
 lemma Row.chainRight_eq_chainRight_ofFn {n : ℕ} (c : Row n) (k : Fin (2 * n))
   : c.chainRight k = (Fin.cast (by rw [List.length_ofFn]) (List.chainRight (List.ofFn c) (Fin.cast (by rw [List.length_ofFn]) k))) := by
     have h_cast : (List.ofFn c).length = 2 * n := by rw [List.length_ofFn]
@@ -366,6 +396,9 @@ lemma Row.chainRight_eq_chainRight_ofFn {n : ℕ} (c : Row n) (k : Fin (2 * n))
         rw [← hi'']
         rfl
 
+/--
+@isnad1 id=le.0h3v.s4.36b307e13f2c from=translated src=- shape=1dc51b18 vocab=027df235
+-/
 lemma List.le_chainRight {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : k ≤ List.chainRight l k := by
     rw [List.chainRight]
@@ -374,6 +407,9 @@ lemma List.le_chainRight {α : Type u} [DecidableEq α] (l : List α) (k : Fin l
     rintro i hki hik
     rw [le_antisymm hki hik]
 
+/--
+@isnad1 id=le.0h3v.s5.3a83840dc3c3 from=translated src=- shape=f2ab74f7 vocab=fd017f8e
+-/
 lemma List.chainLeft_le_chainRight {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : List.chainLeft l k ≤ List.chainRight l k := by
     apply le_trans (List.chainLeft_le l k) (List.le_chainRight l k)
@@ -381,6 +417,9 @@ lemma List.chainLeft_le_chainRight {α : Type u} [DecidableEq α] (l : List α) 
 def List.move {α : Type u} (a b : ℕ): List α → List α
   := fun l ↦ (l.drop a).take (b + 1 - a) ++ l.take a ++ l.drop (b + 1)
 
+/--
+@isnad1 id=eq.1h4v.s4.5e791c03e58b from=translated src=- shape=e7287bfb vocab=27d3e515
+-/
 lemma List.length_move {α : Type u} {a b : ℕ} (hab : a ≤ b) (l : List α)
   : (List.move a b l).length = l.length := by
   rw [List.move, List.length_append, List.length_append]
@@ -394,6 +433,9 @@ lemma List.length_move {α : Type u} {a b : ℕ} (hab : a ≤ b) (l : List α)
   rw [h]
   abel
 
+/--
+@isnad1 id=eq.1h5v.s5.2824acd21376 from=translated src=- shape=d6856068 vocab=f0596292
+-/
 lemma List.count_move {α : Type u} [DecidableEq α] {a b : ℕ} (hab : a ≤ b) (l : List α) (x : α)
   : (List.move a b l).count x = l.count x := by
   rw [List.move, List.count_append, List.count_append]
@@ -407,6 +449,9 @@ lemma List.count_move {α : Type u} [DecidableEq α] {a b : ℕ} (hab : a ≤ b)
   rw [h]
   abel
 
+/--
+@isnad1 id=eq.1h4v.s7.be0e05bf2441 from=translated src=- shape=2a836ebf vocab=1dfbe3eb
+-/
 lemma Row.ofFn_move_eq_move_ofFn {n : ℕ} (c : Row n) {a b : Fin (2 * n)} (hab : a ≤ b)
   : List.ofFn (c.move a b) = List.move a b (List.ofFn c) := by
     rw [← List.ofFn_get (List.move a b (List.ofFn c))]
@@ -461,6 +506,9 @@ lemma Row.ofFn_move_eq_move_ofFn {n : ℕ} (c : Row n) {a b : Fin (2 * n)} (hab 
 def List.operation {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length) : List α :=
   List.move (List.chainLeft l k) (List.chainRight l k) l
 
+/--
+@isnad1 id=eq.0h3v.s6.556b083b8510 from=translated src=- shape=86c43a42 vocab=4964acf2
+-/
 lemma Row.ofFn_operation_eq_operation_ofFn {n : ℕ} (k : Fin (2 * n)) (c : Row n)
   : List.ofFn (c.operation k) = List.operation (List.ofFn c) (Fin.cast (by rw [List.length_ofFn]) k) := by
     have h : c.chainLeft k ≤ c.chainRight k := by
@@ -475,6 +523,9 @@ def List.operationOneBased {α : Type u} [DecidableEq α] (l : List α) {k : ℕ
     List α :=
   List.operation l ⟨k - 1, by lia⟩
 
+/--
+@isnad1 id=eq.2h3v.s6.c0e8417dcfd7 from=translated src=- shape=650eec8c vocab=ba033360
+-/
 lemma Row.ofFn_operationOneBased_eq_operationOneBased_ofFn {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) (c : Row n)
   : List.ofFn (c.operationOneBased hk1 hkn) = List.operationOneBased (List.ofFn c) hk1 (by
     rw [List.length_ofFn]
@@ -483,6 +534,9 @@ lemma Row.ofFn_operationOneBased_eq_operationOneBased_ofFn {n k : ℕ} (hk1 : 1 
     rw [List.operationOneBased, Row.operationOneBased, Row.ofFn_operation_eq_operation_ofFn]
     rfl
 
+/--
+@isnad1 id=valid.3h3v.s5.25652105008c from=translated src=- shape=fae67697 vocab=1cc44848
+-/
 lemma Row.operationOneBased_valid  {n k: ℕ} {c : Row n} (hc : c.valid) (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n)
   : (Row.operationOneBased hk1 hkn c).valid := by
     rw [Row.valid_iff_isValidRow_ofFn, Row.ofFn_operationOneBased_eq_operationOneBased_ofFn]
@@ -491,6 +545,9 @@ lemma Row.operationOneBased_valid  {n k: ℕ} {c : Row n} (hc : c.valid) (hk1 : 
     rw [Row.valid_iff_isValidRow_ofFn, isValidRow] at hc
     exact hc
 
+/--
+@isnad1 id=valid.3h4v.s5.c92484ab07a0 from=translated src=- shape=ed854d7b vocab=6c9d5ba5
+-/
 lemma Row.operationOneBased_iterate_valid  {n k: ℕ} {c : Row n} (hc : c.valid) (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) (i : ℕ)
   : ((Row.operationOneBased hk1 hkn)^[i] c).valid := by
     apply Function.Iterate.rec
@@ -498,6 +555,9 @@ lemma Row.operationOneBased_iterate_valid  {n k: ℕ} {c : Row n} (hc : c.valid)
     · intro a ha
       apply Row.operationOneBased_valid ha
 
+/--
+@isnad1 id=iff.1h2v.s5.f6c1004aa952 from=translated src=- shape=ba1fea95 vocab=b1b44677
+-/
 lemma Row.leftmostNSame_iff_of_valid {n : ℕ} {c : Row n} (hc : c.valid):
   c.leftmostNSame ↔ ∃ coin : Coin , ∀ i, c i = coin ↔ i < n := by
     rw [Row.leftmostNSame]
@@ -545,6 +605,9 @@ lemma Row.leftmostNSame_iff_of_valid {n : ℕ} {c : Row n} (hc : c.valid):
 def List.segments {α : Type u} [DecidableEq α] : List α → List (List α)
   := fun l ↦ (l.splitBy (· == ·))
 
+/--
+@isnad1 id=ex.2h2v.s5.e765392f3d78 from=translated src=- shape=faa9c2a6 vocab=5cc02170
+-/
 lemma List.exists_replicate_of_isChain_beq {α : Type u} [DecidableEq α] {l : List α}
   (hl : List.IsChain (fun x y ↦ (x == y) = true) l) (hl' : l ≠ [])
   : ∃ n : ℕ, ∃ i : α, l = List.replicate n i := by
@@ -572,6 +635,9 @@ lemma List.exists_replicate_of_isChain_beq {α : Type u} [DecidableEq α] {l : L
         rw [← has'] at hni
         rw [List.replicate_succ, hni]
 
+/--
+@isnad1 id=eq.1h2v.s6.0b96d68f3b52 from=translated src=- shape=a7daaf7e vocab=143e3185
+-/
 lemma segments_getElem?_map_eq (l : List Coin) (i : ℕ) (hi : i < (List.segments l).length)
   : ((List.segments l)[i]?.bind fun x ↦ x.head?) = Option.map (fun x ↦ if Even i then x else x.flip) l.head? := by
     by_cases! hl : l = []
@@ -636,15 +702,24 @@ lemma segments_getElem?_map_eq (l : List Coin) (i : ℕ) (hi : i < (List.segment
 def List.blocks {α : Type u} [DecidableEq α] : List α → List ℕ
   := fun l ↦ (List.segments l).map List.length
 
+/--
+@isnad1 id=ischain.0h3v.s4.48645f364d5c from=translated src=- shape=542d3f10 vocab=5c17f674
+-/
 lemma List.isChain_beq_replicate {α : Type u} [DecidableEq α] (n : ℕ) (i : α)
   : List.IsChain (fun x y ↦ (x == y) = true) (List.replicate n i) := by
     apply List.isChain_replicate_of_rel
     apply beq_self_eq_true
 
+/--
+@isnad1 id=eq.0h2v.s4.a7a3aaa8b0ea from=translated src=- shape=85695794 vocab=28153330
+-/
 lemma List.sum_blocks {α : Type u} [DecidableEq α] (l : List α)
   : List.sum (List.blocks l) = l.length := by
     rw [List.blocks, List.segments, ← List.length_flatten, List.flatten_splitBy]
 
+/--
+@isnad1 id=lt.1h3v.s4.cd6dbf06c470 from=translated src=- shape=b2f28a89 vocab=b73b70a5
+-/
 lemma List.zero_lt_of_mem_blocks {α : Type u} [DecidableEq α] (l : List α) (x : ℕ) (h : x ∈ List.blocks l)
   : 0 < x := by
   rw [List.blocks, List.mem_map] at h
@@ -655,6 +730,9 @@ lemma List.zero_lt_of_mem_blocks {α : Type u} [DecidableEq α] (l : List α) (x
   rw [hl', List.length_eq_zero_iff] at hl'x
   exact hl'x
 
+/--
+@isnad1 id=eq.8h2v.s8.d5efaf0c146b from=translated src=- shape=86baf70e vocab=475770d0
+-/
 lemma blocks_semi_inj_helper {a b: List (List Coin)}
   (hab : a.map List.length = b.map List.length)
   (hab' : (a.head?.bind fun l' ↦ l'.head?) = (b.head?.bind fun l' ↦ l'.head?))
@@ -734,6 +812,9 @@ lemma blocks_semi_inj_helper {a b: List (List Coin)}
       have h₄ := h hab.right hmsns ha₁.right hb₁.right hms hns ha₃.right hb₃.right
       rw [h₃, h₄]
 
+/--
+@isnad1 id=eq.1h2v.s5.8e33797d6259 from=translated src=- shape=b2a4bd8d vocab=de04dcd1
+-/
 lemma List.head?_flatten_of_nil_not_mem {α : Type u} {l : List (List α)} (hl : [] ∉ l)
   : l.flatten.head? = l.head?.bind (fun l' ↦ l'.head?) := by
     by_cases! hl' : l = []
@@ -746,6 +827,9 @@ lemma List.head?_flatten_of_nil_not_mem {α : Type u} {l : List (List α)} (hl :
       rw [← hl, has]
       apply List.mem_cons_self
 
+/--
+@isnad1 id=eq.2h2v.s5.ba33878bad27 from=translated src=- shape=2cd16122 vocab=87a18b5a
+-/
 lemma blocks_semi_inj {a b : List Coin} (hab : List.blocks a = List.blocks b)
   (hab' : a.head? = b.head?) : a = b := by
   rw [List.blocks, List.blocks, List.segments, List.segments] at hab
@@ -760,6 +844,9 @@ lemma blocks_semi_inj {a b : List Coin} (hab : List.blocks a = List.blocks b)
 
 def Row.blocks {n : ℕ} (c : Row n) : List ℕ := List.blocks (List.ofFn c)
 
+/--
+@isnad1 id=eq.0h2v.s4.3976c486fab3 from=translated src=- shape=cb91f60d vocab=306f3221
+-/
 lemma Row.sum_blocks {n : ℕ} (c : Row n)
   : List.sum (Row.blocks c) = 2 * n := by
     rw [Row.blocks, List.sum_blocks, List.length_ofFn]
@@ -769,6 +856,9 @@ def listOfBlocks (l : List ℕ) (head : Coin) : List Coin
     | [] => []
     | a::as => List.replicate a head ++ listOfBlocks as (Coin.flip head)
 
+/--
+@isnad1 id=eq.2h2v.s5.c4f3260c83ca from=translated src=- shape=38e3282c vocab=4403c183
+-/
 lemma List.head?_listOfBlocks (l : List ℕ) (head : Coin) (hl : l ≠ []) (hl' : 0 < l.head hl)
   : (listOfBlocks l head).head? = some head := by
     rw [List.ne_nil_iff_exists_cons] at hl
@@ -780,6 +870,9 @@ lemma List.head?_listOfBlocks (l : List ℕ) (head : Coin) (hl : l ≠ []) (hl' 
     rw [has, listOfBlocks, List.head?_append_of_ne_nil _ h]
     rw [List.head?_replicate, ite_eq_right (by lia)]
 
+/--
+@isnad1 id=eq.1h2v.s5.35e3cf62c2ff from=translated src=- shape=98be5e51 vocab=854d0455
+-/
 lemma List.blocks_listOfBlock (l : List ℕ) (head : Coin) (hl : ∀ x ∈ l, 0 < x)
   : List.blocks (listOfBlocks l head) = l := by
     induction' l with a as h generalizing head
@@ -821,6 +914,9 @@ lemma List.blocks_listOfBlock (l : List ℕ) (head : Coin) (hl : ∀ x ∈ l, 0 
       rw [List.singleton_append, List.length_replicate]
       congr
 
+/--
+@isnad1 id=ex.0h1v.s4.66a1ee377d4b from=translated src=- shape=84293861 vocab=d6de23bd
+-/
 lemma List.listOfBlocks_blocks (l : List Coin)
   : ∃ coin : Coin, listOfBlocks (List.blocks l) (coin) = l := by
     by_cases! hl : l = []
@@ -845,6 +941,9 @@ lemma List.listOfBlocks_blocks (l : List Coin)
       rw [List.head?_listOfBlocks _ _ h' h'']
       rw [List.head?_eq_some_head hl]
 
+/--
+@isnad1 id=eq.0h2v.s4.7bc30621147a from=translated src=- shape=1cf48d66 vocab=6932d752
+-/
 lemma listOfBlocks_length (l : List ℕ) (head : Coin)
   : (listOfBlocks l head).length = l.sum := by
     induction' l with a as h generalizing head
@@ -858,6 +957,9 @@ def Row.ofBlocks {n : ℕ} (l : List ℕ) (head : Coin) (hl : l.sum = 2 * n)
       rw [← hl, ← listOfBlocks_length l head]
     use fun i ↦ (listOfBlocks l head).get (Fin.cast h i)
 
+/--
+@isnad1 id=eq.2h3v.s5.efd6c8cdf0a4 from=translated src=- shape=53e0b34c vocab=cce88b2d
+-/
 lemma Row.blocks_ofBlocks {n : ℕ} (l : List ℕ) (head : Coin) (hl : l.sum = 2 * n) (hl' : ∀ x ∈ l, 0 < x)
   : (Row.ofBlocks l head hl).blocks = l := by
     nth_rw 2 [← List.blocks_listOfBlock l head hl']
@@ -866,6 +968,9 @@ lemma Row.blocks_ofBlocks {n : ℕ} (l : List ℕ) (head : Coin) (hl : l.sum = 2
     apply List.ofFn_congr
     rw [listOfBlocks_length, hl]
 
+/--
+@isnad1 id=ex.0h2v.s4.cb64612e4855 from=translated src=- shape=97d73fb3 vocab=78901e70
+-/
 lemma Row.ofBlocks_blocks {n : ℕ} (c : Row n)
   : ∃ coin : Coin, Row.ofBlocks c.blocks (coin) c.sum_blocks = c := by
   rcases List.listOfBlocks_blocks (List.ofFn c) with ⟨coin, h⟩
@@ -874,6 +979,9 @@ lemma Row.ofBlocks_blocks {n : ℕ} (c : Row n)
   funext i
   congr 1
 
+/--
+@isnad1 id=eq.1h3v.s5.9492b8d0c7d4 from=translated src=- shape=cb494833 vocab=449be826
+-/
 lemma ofFn_ofBlocks {n : ℕ} (l : List ℕ) (head : Coin) (hl : l.sum = 2 * n)
   : List.ofFn (Row.ofBlocks l head hl) = listOfBlocks l head := by
     have h' : 2 * n = (listOfBlocks l head).length := by
@@ -889,6 +997,9 @@ def List.alternateSum {α : Type u} [Add α] [Zero α] (l : List α) (head : Boo
     | [] => 0
     | a::as => (if head then a else 0) + List.alternateSum as !head
 
+/--
+@isnad1 id=lt.2h2v.s5.b59c233441e2 from=translated src=- shape=312968e8 vocab=16c6124b
+-/
 lemma List.alternateSum_pos_of_nat (l : List ℕ) (head : Bool)
   (hl : ∀ x ∈ l, 0 < x) (hl': 2 ≤ l.length)
   : 0 < List.alternateSum l head := by
@@ -902,6 +1013,9 @@ lemma List.alternateSum_pos_of_nat (l : List ℕ) (head : Bool)
     rw [List.alternateSum, List.alternateSum]
     rcases head <;> simp <;> left <;> apply hl <;> simp
 
+/--
+@isnad1 id=lt.3h2v.s6.f99708eb1950 from=translated src=- shape=44fd106c vocab=691c873b
+-/
 lemma List.lt_alternateSum_of_nat_mem (l : List ℕ) (x : ℕ) (h : x ∈ l)
   (hl : ∀ x ∈ l, 0 < x) (hl': 4 ≤ l.length)
   : x < max (List.alternateSum l true) (List.alternateSum l false) := by
@@ -940,6 +1054,9 @@ lemma List.lt_alternateSum_of_nat_mem (l : List ℕ) (x : ℕ) (h : x ∈ l)
           · rw [List.alternateSum, Bool.not_false]
             apply Nat.le_add_left
 
+/--
+@isnad1 id=eq.0h3v.s6.b4ce1cce14b3 from=translated src=- shape=395ea554 vocab=f00565f0
+-/
 lemma List.sum_eq_alternateSum_add_alternateSum {α : Type u} [AddCommMonoid α]
   (l : List α) (head : Bool)
   : List.sum l = List.alternateSum l head + List.alternateSum l !head := by
@@ -954,6 +1071,9 @@ lemma List.sum_eq_alternateSum_add_alternateSum {α : Type u} [AddCommMonoid α]
         rw [h', ite_eq_right (by decide), ite_eq_left (by decide)]
         abel
 
+/--
+@isnad1 id=eq.0h2v.s4.e4644a5e9af3 from=translated src=- shape=240f4f92 vocab=a73bae7a
+-/
 lemma count_ListOfBlocks_eq_alternateSum (l : List ℕ) (head : Coin)
   : List.count Coin.A (listOfBlocks l head) = List.alternateSum l (head = Coin.A) := by
     induction' l with a as h generalizing head
@@ -963,6 +1083,9 @@ lemma count_ListOfBlocks_eq_alternateSum (l : List ℕ) (head : Coin)
       simp only [← ne_eq, Coin.flip_eq_iff]
       rw [add_left_inj, List.count_replicate, beq_eq_decide]
 
+/--
+@isnad1 id=iff.1h4v.s5.27ec38229288 from=translated src=- shape=d3b5b612 vocab=f120b58c
+-/
 lemma Row.ofBlocks_valid_iff_alternateSum_eq {n : ℕ} (l : List ℕ) (head : Coin) (hl : l.sum = 2 *n) (head' : Bool)
   : (Row.ofBlocks l head hl).valid ↔ List.alternateSum l head' = n := by
     rw [Row.valid_iff_isValidRow_ofFn, ofFn_ofBlocks, isValidRow, listOfBlocks_length, hl]
@@ -976,6 +1099,9 @@ lemma Row.ofBlocks_valid_iff_alternateSum_eq {n : ℕ} (l : List ℕ) (head : Co
       · exact add_right_cancel hl
       · exact add_left_cancel hl
 
+/--
+@isnad1 id=iff.0h2v.s6.1b3b58d83063 from=translated src=- shape=f1af4253 vocab=bd0f18cb
+-/
 lemma Row.blocks_eq_iff {n : ℕ} [inst : NeZero n] (c : Row n) :
   c.blocks = [n, n] ↔ (∃ coin, ∀ (i : Fin (2 * n)), c i = coin ↔ ↑i < n) := by
   constructor
@@ -1021,6 +1147,9 @@ lemma Row.blocks_eq_iff {n : ℕ} [inst : NeZero n] (c : Row n) :
     rw [List.splitBy_of_isChain ((List.replicate_eq_nil_iff _).ne.mpr inst.ne) (List.isChain_beq_replicate _ _)]
     rw [List.map_append, List.map_singleton, List.map_singleton, List.length_replicate, List.length_replicate, List.singleton_append]
 
+/--
+@isnad1 id=iff.1h2v.s5.c39c3123ce7e from=translated src=- shape=512f7c75 vocab=108f8c50
+-/
 lemma Row.leftmostNSame_iff_length_blocks_ofFn_of_valid {n : ℕ} [NeZero n] {c : Row n} (hc : c.valid)
   : c.leftmostNSame ↔ (c.blocks).length = 2 := by
     rw [Row.leftmostNSame_iff_of_valid hc, ← Row.blocks_eq_iff c]
@@ -1039,6 +1168,9 @@ lemma Row.leftmostNSame_iff_length_blocks_ofFn_of_valid {n : ℕ} [NeZero n] {c 
       rw [hp, hq] at hpq
       exact hpq
 
+/--
+@isnad1 id=eq.0h3v.s5.980b42a1ac55 from=translated src=- shape=0870411a vocab=abb67d33
+-/
 lemma List.blocks_take {α : Type u} [DecidableEq α] (l : List α) (k : ℕ)
   : List.blocks (l.take ((List.blocks l).take k).sum) = (List.blocks l).take k := by
     rw [List.blocks, List.blocks, List.segments, List.segments, ← List.map_take]
@@ -1056,6 +1188,9 @@ lemma List.blocks_take {α : Type u} [DecidableEq α] (l : List α) (k : ℕ)
     · apply List.IsChain.take
       apply List.isChain_getLast_head_splitBy
 
+/--
+@isnad1 id=eq.0h3v.s5.2b96bc5aa35a from=translated src=- shape=0b72804d vocab=ad0a13dd
+-/
 lemma List.blocks_drop {α : Type u} [DecidableEq α] (l : List α) (k : ℕ)
   : List.blocks (l.drop ((List.blocks l).take k).sum) = (List.blocks l).drop k := by
     rw [List.blocks, List.blocks, List.segments, List.segments, ← List.map_drop]
@@ -1073,16 +1208,25 @@ lemma List.blocks_drop {α : Type u} [DecidableEq α] (l : List α) (k : ℕ)
     · apply List.IsChain.drop
       apply List.isChain_getLast_head_splitBy
 
+/--
+@isnad1 id=eq.0h4v.s5.b18e8f626dcf from=translated src=- shape=33990e46 vocab=ad0a13dd
+-/
 lemma List.blocks_drop_take {α : Type u} [DecidableEq α] (l : List α) (p q : ℕ)
   : List.blocks ((l.drop ((List.blocks l).take p).sum).take (((List.blocks l).drop p).take q).sum) = ((List.blocks l).drop p).take q := by
     rw [← List.blocks_drop, ← List.blocks_take]
     congr
     rw [List.blocks_take]
 
+/--
+@isnad1 id=eq.1h3v.s6.65966ed777fd from=translated src=- shape=690f8607 vocab=64178f07
+-/
 lemma List.blocks_append {α : Type u} [DecidableEq α] {a b : List α} (hab : ∀ x ∈ a.getLast?, ∀ y ∈ b.head?, (x == y) = false)
   : List.blocks (a ++ b) = List.blocks a ++ List.blocks b := by
     simp only [List.blocks, List.segments, List.splitBy_append hab, List.map_append]
 
+/--
+@isnad1 id=lt.1h3v.s6.8190f11ed385 from=translated src=- shape=d2c25d11 vocab=bd167831
+-/
 lemma List.length_blocks_append_lt_of {α : Type u} [DecidableEq α] {a b : List α} (hab : ∃ x ∈ a.getLast?, ∃ y ∈ b.head?, (x == y) = true)
   : (List.blocks (a ++ b)).length < (List.blocks a).length + (List.blocks b).length := by
     simp only [blocks, segments, List.splitBy_append' hab, List.length_map, List.length_append,
@@ -1106,6 +1250,9 @@ lemma List.length_blocks_append_lt_of {α : Type u} [DecidableEq α] {a b : List
     simp only [BEq.beq]
     lia
 
+/--
+@isnad1 id=le.0h3v.s5.195b1682d320 from=translated src=- shape=52521983 vocab=a0bfb20c
+-/
 lemma List.length_blocks_append_le {α : Type u} [DecidableEq α] {a b : List α}
   : (List.blocks (a ++ b)).length ≤ (List.blocks a).length + (List.blocks b).length := by
     by_cases! h : ∃ x ∈ a.getLast?, ∃ y ∈ b.head?, (x == y) = true
@@ -1121,6 +1268,9 @@ lemma List.length_blocks_append_le {α : Type u} [DecidableEq α] {a b : List α
 def indexInBlock (l : List ℕ) (k : ℕ) :=
   {i ∈ Finset.Iic l.length | (l.take i).sum ≤ k }.max' (show Finset.Nonempty _ from ⟨0, by simp⟩)
 
+/--
+@isnad1 id=eq.3h2v.s6.476f5d7248ab from=translated src=- shape=283d7889 vocab=45a24d27
+-/
 lemma indexInBlock_eq_length_sub_one_of (l : List ℕ) (hl :l ≠ [])
   (k : ℕ) (hk : l.sum ≤ k + l.getLast hl) (hk' : k < l.sum)
   : indexInBlock l k = l.length - 1 := by
@@ -1143,6 +1293,9 @@ lemma indexInBlock_eq_length_sub_one_of (l : List ℕ) (hl :l ≠ [])
 def List.blockIndex {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length) :=
   indexInBlock (List.blocks l) k
 
+/--
+@isnad1 id=lt.0h3v.s4.ba90120338eb from=translated src=- shape=6cece3ba vocab=a2eb26b0
+-/
 lemma List.blockIndex_lt {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : blockIndex l k < (blocks l).length := by
     rw [List.blockIndex, indexInBlock, Finset.max'_lt_iff]
@@ -1154,6 +1307,9 @@ lemma List.blockIndex_lt {α : Type u} [DecidableEq α] (l : List α) (k : Fin l
     rw [hx, List.take_length, List.sum_blocks]
     lia
 
+/--
+@isnad1 id=le.0h3v.s5.fa3f47076c23 from=translated src=- shape=da9745d3 vocab=c335813e
+-/
 lemma List.sum_take_blockIndex_blocks_le {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : (List.take (blockIndex l k) (blocks l)).sum ≤ k := by
     set i := (blockIndex l k) with hi
@@ -1163,6 +1319,9 @@ lemma List.sum_take_blockIndex_blocks_le {α : Type u} [DecidableEq α] (l : Lis
     simp at hi
     exact hi.left.right
 
+/--
+@isnad1 id=lt.0h3v.s5.ca702cf98379 from=translated src=- shape=0e215bb3 vocab=b8263f6f
+-/
 lemma List.lt_sum_take_succ_blockIndex_blocks {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : k < (List.take (blockIndex l k + 1) (blocks l)).sum := by
     set i := (blockIndex l k) with hi
@@ -1180,6 +1339,9 @@ lemma List.lt_sum_take_succ_blockIndex_blocks {α : Type u} [DecidableEq α] (l 
     · exact hi
     · lia
 
+/--
+@isnad1 id=eq.0h3v.s6.23811a522d30 from=translated src=- shape=7f4cf3dc vocab=56294dca
+-/
 lemma List.some_get_eq_head?_get?_segments_blockIndex {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : some (l.get k) = (List.segments l)[List.blockIndex l k]?.bind (fun x ↦ x.head?) := by
     have h_lt := List.blockIndex_lt l k
@@ -1242,6 +1404,9 @@ lemma List.some_get_eq_head?_get?_segments_blockIndex {α : Type u} [DecidableEq
       Nat.ne_zero_of_lt h_if₁
     rw [ite_eq_left h_if₁, ite_eq_right h_if₂]
 
+/--
+@isnad1 id=eq.0h2v.s5.6630c77b5817 from=translated src=- shape=73d49972 vocab=1193802a
+-/
 lemma some_get_eq_head?_bind_get?_segments_blockIndex (l : List Coin) (k : Fin l.length)
   : some (l.get k) = l.head?.map (fun x ↦ if Even (List.blockIndex l k) then x else x.flip) := by
     rw [List.some_get_eq_head?_get?_segments_blockIndex]
@@ -1249,6 +1414,9 @@ lemma some_get_eq_head?_bind_get?_segments_blockIndex (l : List Coin) (k : Fin l
     rw [List.blocks, List.length_map] at h
     rw [segments_getElem?_map_eq _ _ h]
 
+/--
+@isnad1 id=ne.2h4v.s6.f87b26307dba from=translated src=- shape=a6057eef vocab=e3b6823f
+-/
 lemma List.head?_get?_segments_blockIndex_ne_of {α : Type u} [DecidableEq α] (l : List α) (a b : ℕ)
   (hab : b = a + 1) (hb : b < (List.segments l).length)
   : (List.segments l)[a]?.bind (fun x ↦ x.head?) ≠ (List.segments l)[b]?.bind (fun x ↦ x.head?) := by
@@ -1299,6 +1467,9 @@ lemma List.head?_get?_segments_blockIndex_ne_of {α : Type u} [DecidableEq α] (
     simp [hab] at hnib
     simpa [hnia, hnib] using h'
 
+/--
+@isnad1 id=eq.0h3v.s5.e2c2a97824d4 from=translated src=- shape=b6009354 vocab=3cf3ce32
+-/
 lemma List.chainLeft_eq {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : List.chainLeft l k = (List.take (List.blockIndex l k) (List.blocks l)).sum := by
     rw [chainLeft]
@@ -1376,6 +1547,9 @@ lemma List.chainLeft_eq {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.
           rw [List.blocks, List.length_map] at h
           exact h
 
+/--
+@isnad1 id=eq.0h3v.s6.8d339d5d218b from=translated src=- shape=51c7165e vocab=f03e8a4e
+-/
 lemma List.chainRight_succ_eq {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : List.chainRight l k + 1 = (List.take (List.blockIndex l k + 1) (List.blocks l)).sum := by
     symm
@@ -1454,18 +1628,27 @@ lemma List.chainRight_succ_eq {α : Type u} [DecidableEq α] (l : List α) (k : 
           contrapose! h''
           rw [h'', List.take_length, List.sum_blocks]
 
+/--
+@isnad1 id=eq.0h3v.s5.606d5366a9eb from=translated src=- shape=39105d8a vocab=7f9ea7fb
+-/
 lemma List.blocks_operation_left_segment {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : List.blocks (l.take (List.chainLeft l k)) = (List.blocks l).take (List.blockIndex l k) := by
     rw [← List.blocks_take]
     congr
     apply List.chainLeft_eq
 
+/--
+@isnad1 id=eq.0h3v.s6.54b171c56147 from=translated src=- shape=5c81256b vocab=db8337cc
+-/
 lemma List.blocks_operation_right_segment {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : List.blocks (l.drop (List.chainRight l k + 1)) = (List.blocks l).drop (List.blockIndex l k + 1) := by
     rw [← List.blocks_drop]
     congr
     apply List.chainRight_succ_eq
 
+/--
+@isnad1 id=eq.0h3v.s6.3ec484cba94b from=translated src=- shape=3152f233 vocab=f2e0a1d9
+-/
 lemma List.blocks_operation_middle_segment {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length)
   : List.blocks ((l.drop (List.chainLeft l k)).take (List.chainRight l k + 1 - List.chainLeft l k)) = ((List.blocks l).drop (List.blockIndex l k)).take 1 := by
     rw [← List.blocks_drop_take]
@@ -1480,10 +1663,16 @@ lemma List.blocks_operation_middle_segment {α : Type u} [DecidableEq α] (l : L
         rw [Nat.add_sub_cancel_left]
     · apply List.chainLeft_eq
 
+/--
+@isnad1 id=eq.1h3v.s5.aeb1a0d11223 from=translated src=- shape=ee9deb73 vocab=196cd975
+-/
 lemma List.blocks_operation_left_head? {α : Type u} [DecidableEq α] (l : List α) (k : Fin l.length) (h : (List.chainLeft l k).val ≠ 0)
   : (l.take (List.chainLeft l k)).head? = l.head? := by
     rw [List.head?_take, ite_eq_right h]
 
+/--
+@isnad1 id=eq.1h2v.s6.6fcf4e2fbdf2 from=translated src=- shape=d5b7de0a vocab=fd12fd1a
+-/
 lemma List.blocks_operation_left_getLast? (l : List Coin) (k : Fin l.length) (h : (List.chainLeft l k).val ≠ 0)
   : (l.take (List.chainLeft l k)).getLast? = l.head?.map (fun x ↦ if Even (blockIndex l k) then x.flip else x) := by
     rw [List.getLast?_take, ite_eq_right h]
@@ -1537,6 +1726,9 @@ lemma List.blocks_operation_left_getLast? (l : List Coin) (k : Fin l.length) (h 
     rw [h_eq, Nat.even_sub h_block]
     norm_num
 
+/--
+@isnad1 id=eq.1h2v.s6.55ec141a47d5 from=translated src=- shape=733ad2ab vocab=f75f2ed4
+-/
 lemma List.blocks_operation_right_head? (l : List Coin) (k : Fin l.length) (h : (List.chainRight l k).val ≠ l.length - 1)
   : (l.drop (List.chainRight l k + 1)).head? = l.head?.map (fun x ↦ if Even (blockIndex l k) then x.flip else x) := by
     rw [List.head?_drop]
@@ -1570,6 +1762,9 @@ lemma List.blocks_operation_right_head? (l : List Coin) (k : Fin l.length) (h : 
           lia
     rw [h_eq, Nat.even_add_one, not_not]
 
+/--
+@isnad1 id=eq.0h2v.s6.5d31013f3d3f from=translated src=- shape=b560db48 vocab=42913a2c
+-/
 lemma List.blocks_operation_middle_getLast? (l : List Coin) (k : Fin l.length)
   : ((l.drop (List.chainLeft l k)).take (List.chainRight l k + 1 - List.chainLeft l k)).getLast? = l.head?.map (fun x ↦ if Even (blockIndex l k) then x else x.flip) := by
     have h_lr := List.chainLeft_le_chainRight l k
@@ -1611,6 +1806,9 @@ lemma List.blocks_operation_middle_getLast? (l : List Coin) (k : Fin l.length)
       rw [List.take_take, min_eq_left hj₂]
       apply Nat.le_add_right
 
+/--
+@isnad1 id=eq.4h4v.s6.a318fac25a6c from=translated src=- shape=3cbe8b7f vocab=f48abd80
+-/
 lemma Row.blocks_operationOneBased_eq_blocks_of
   {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) {c : Row n}
   {blocks : List ℕ} (hc : c.blocks = blocks) (hk : indexInBlock blocks (k - 1) = 0)
@@ -1633,6 +1831,9 @@ lemma Row.blocks_operationOneBased_eq_blocks_of
     rw [← List.take_take, List.take_append_drop, List.take_append_drop]
     exact hc
 
+/--
+@isnad1 id=eq.4h5v.s6.3b0c363052cf from=translated src=- shape=41d501d1 vocab=8de2ea6c
+-/
 lemma Row.blocks_operationOneBased_iterate_eq_blocks_of
   {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) {i : ℕ} {c : Row n}
   {blocks : List ℕ}(hc : c.blocks = blocks) (hk : indexInBlock blocks (k - 1) = 0)
@@ -1643,6 +1844,9 @@ lemma Row.blocks_operationOneBased_iterate_eq_blocks_of
     · rw [Function.iterate_succ_apply']
       apply Row.blocks_operationOneBased_eq_blocks_of hk1 hkn hi hk
 
+/--
+@isnad1 id=eq.5h4v.s6.2d5681cdc916 from=translated src=- shape=f607964e vocab=fb18e287
+-/
 lemma Row.blocks_operationOneBased_eq_rotate_one_blocks_of
   {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) {c : Row n}
   {blocks : List ℕ} (h_blocks : Even blocks.length) (hc : c.blocks = blocks) (hk : indexInBlock blocks (k - 1) = blocks.length - 1)
@@ -1703,6 +1907,9 @@ lemma Row.blocks_operationOneBased_eq_rotate_one_blocks_of
     nth_rw 1 [← h_length]
     rw [List.take_length]
 
+/--
+@isnad1 id=eq.5h5v.s6.cbeac10bf031 from=translated src=- shape=fd6d609e vocab=3dd4d149
+-/
 lemma Row.blocks_operationOneBased_iterate_eq_rotate_blocks_of
   {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) {i : ℕ} {c : Row n}
   {blocks : List ℕ} (h_blocks : Even blocks.length) (hc : c.blocks = blocks) (hk : ∀ x ∈ blocks, 2 * n < x + k)
@@ -1737,6 +1944,9 @@ lemma Row.blocks_operationOneBased_iterate_eq_rotate_blocks_of
       rw [Row.blocks_operationOneBased_eq_rotate_one_blocks_of hk1 hkn h' hi h ]
       rw [List.reverse_reverse, List.rotate_rotate]
 
+/--
+@isnad1 id=lt.6h4v.s6.6bcf128270d3 from=translated src=- shape=0759dee3 vocab=80cbaf8d
+-/
 lemma Row.length_blocks_operationOneBased_lt_of_odd_last
   {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) {c : Row n}
   {blocks : List ℕ} (h_blocks : Odd blocks.length) (h_blocks' : 2 ≤ blocks.length) (hc : c.blocks = blocks) (hk : indexInBlock blocks (k - 1) = blocks.length - 1)
@@ -1786,6 +1996,9 @@ lemma Row.length_blocks_operationOneBased_lt_of_odd_last
     apply le_trans (add_le_add_right (min_le_left _ _) _)
     lia
 
+/--
+@isnad1 id=lt.5h4v.s6.b3f93a91cefc from=translated src=- shape=866e1493 vocab=ce00ebdd
+-/
 lemma Row.length_blocks_operationOneBased_lt_of_middle
   {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) {c : Row n}
   {blocks : List ℕ} (hc : c.blocks = blocks) (hk₁ : indexInBlock blocks (k - 1) ≠ 0) (hk₂ : indexInBlock blocks (k - 1) ≠ blocks.length - 1)
@@ -1846,6 +2059,9 @@ lemma Row.length_blocks_operationOneBased_lt_of_middle
     rw [hc, List.blockIndex] at h
     lia
 
+/--
+@isnad1 id=ex.6h5v.s7.254e9ca2a693 from=translated src=- shape=d7dbfb2c vocab=4848ba35
+-/
 lemma Row.exists_length_blocks_operationOneBased_iterate_lt_of
   {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k ≤ 2 * n) {c : Row n}
   {blocks : List ℕ} (h_blocks : Even blocks.length)
@@ -1929,6 +2145,9 @@ lemma Row.exists_length_blocks_operationOneBased_iterate_lt_of
     apply lt_of_lt_of_le hi
     rw [h', List.length_reverse, List.length_rotate, List.length_reverse, hc]
 
+/--
+@isnad1 id=ex.5h3v.s6.bd9f71039323 from=translated src=- shape=b5e3abaf vocab=102ada76
+-/
 lemma Row.exists_length_blocks_operationOneBased_iterate_lt
   {n k : ℕ} (hn : 0 < n) (hk₁ : n ≤ k) (hk₂ : k ≤ 3 * n ⌈/⌉ 2)
   {c : Row n} (hc : c.valid) (hc' : 2 < c.blocks.length)
@@ -2006,6 +2225,9 @@ lemma Row.exists_length_blocks_operationOneBased_iterate_lt
       rw [Function.iterate_one]
       apply Row.length_blocks_operationOneBased_lt_of_middle _ _ rfl h₁ h₂
 
+/--
+@isnad1 id=ex.5h4v.s6.77ff08263c3b from=translated src=- shape=12bf61b7 vocab=102ada76
+-/
 lemma Row.exists_length_blocks_operationOneBased_iterate_eq_two
   {n k : ℕ} (hn : 0 < n) (hk₁ : n ≤ k) (hk₂ : k ≤ 3 * n ⌈/⌉ 2)
   {c : Row n} (hc : c.valid) {l : ℕ} (hl : l = c.blocks.length)

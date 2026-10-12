@@ -55,6 +55,9 @@ instance adjacentDecidableRel (n : ℕ) : DecidableRel (@adjacent n) := by
 def gridGraph (n : ℕ) : SimpleGraph (checkerboard n) :=
   SimpleGraph.pathGraph n □ SimpleGraph.pathGraph n
 
+/--
+@isnad1 id=iff.0h3v.s4.944b68557eda from=translated src=- shape=2c67a4d3 vocab=e76315c2
+-/
 lemma gridGraph_adj {n : ℕ} {x y : checkerboard n} :
     (gridGraph n).Adj x y ↔ adjacent x y := by
   rcases x with ⟨x1, x2⟩
@@ -83,6 +86,9 @@ instance checkerGraphDecidableRel {n : ℕ} (c : Finset (checkerboard n)) :
   infer_instance
 
 -- A path vertex has at most one neighbor on each side.
+/--
+@isnad1 id=le.0h2v.s5.5d810eb9e0c3 from=translated src=- shape=e936a591 vocab=0198a39c
+-/
 lemma pathGraph_degree_le_two {n : ℕ} (x : Fin n) :
     (SimpleGraph.pathGraph n).degree x ≤ 2 := by
   let side : (SimpleGraph.pathGraph n).neighborSet x → Bool :=
@@ -102,6 +108,9 @@ lemma pathGraph_degree_le_two {n : ℕ} (x : Fin n) :
   · exact (hy.resolve_right hy').symm.trans (hz.resolve_right hz')
 
 -- A square has at most four side-neighbors.
+/--
+@isnad1 id=le.0h2v.s4.3a516ba2760f from=translated src=- shape=e936a591 vocab=7c73d1ae
+-/
 lemma gridGraph_degree_le_four {n : ℕ} (x : checkerboard n) :
     (gridGraph n).degree x ≤ 4 := by
   have key : ∀ y : Fin n × Fin n,
@@ -112,6 +121,9 @@ lemma gridGraph_degree_le_four {n : ℕ} (x : checkerboard n) :
   exact key x
 
 -- The path hypothesis makes the checker graph preconnected.
+/--
+@isnad1 id=preconne.1h2v.s7.be9fca5fb582 from=translated src=- shape=f42c08fe vocab=ece30199
+-/
 lemma checkerGraph_preconnected {n : ℕ} {c : Finset (checkerboard n)}
     (hb : ∀ x ∈ c, ∀ y ∈ c,
       ∃ p : List (checkerboard n),
@@ -142,6 +154,9 @@ lemma checkerGraph_preconnected {n : ℕ} {c : Finset (checkerboard n)}
   convert hreach using 1 <;> apply Subtype.ext <;> simp [q, hphead, hplast]
 
 -- A preconnected finite graph has internal degree sum at least twice its vertex count minus two.
+/--
+@isnad1 id=le.1h2v.s6.18f1c093fac4 from=translated src=- shape=b813d20a vocab=631007b5
+-/
 lemma preconnected_twice_card_le_sum_degrees_add_two
     {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (hG : G.Preconnected) :
@@ -164,6 +179,9 @@ def boundaryNeighbors {n : ℕ} (c : Finset (checkerboard n)) (x : c) :
   (gridGraph n).neighborFinset x.1 \ c
 
 -- Count checker-neighbors inside the full grid neighborhood.
+/--
+@isnad1 id=eq.0h3v.s8.a7094cd25fef from=translated src=- shape=dcab3821 vocab=b1cd39f1
+-/
 lemma checkerGraph_degree_eq_inter {n : ℕ} (c : Finset (checkerboard n)) (x : c) :
     (checkerGraph c).degree x =
       ((gridGraph n).neighborFinset x.1 ∩ c).card := by
@@ -178,6 +196,9 @@ lemma checkerGraph_degree_eq_inter {n : ℕ} (c : Finset (checkerboard n)) (x : 
   rw [← hmap, Finset.card_map]
 
 -- Split each checker degree into internal and boundary neighbors.
+/--
+@isnad1 id=eq.0h3v.s8.0a16c60e3c8e from=translated src=- shape=c39b72ef vocab=daa0c013
+-/
 lemma gridGraph_degree_eq_checkerGraph_degree_add_boundary {n : ℕ}
     (c : Finset (checkerboard n)) (x : c) :
     (gridGraph n).degree x.1 = (checkerGraph c).degree x +
@@ -187,6 +208,9 @@ lemma gridGraph_degree_eq_checkerGraph_degree_add_boundary {n : ℕ}
   exact (Finset.card_inter_add_card_sdiff _ _).symm
 
 -- Every empty square is covered by a boundary-neighbor set of some checker.
+/--
+@isnad1 id=le.1h2v.s7.84635e29a853 from=translated src=- shape=eda9ddfd vocab=a008845a
+-/
 lemma emptySquares_card_le_boundary_sum {n : ℕ} (c : Finset (checkerboard n))
     (ha : ∀ x : checkerboard n, x ∈ c ∨ (∃ y ∈ c, adjacent x y)) :
     (emptySquares c).card ≤ ∑ x : c, (boundaryNeighbors c x).card := by
@@ -210,6 +234,9 @@ lemma emptySquares_card_le_boundary_sum {n : ℕ} (c : Finset (checkerboard n))
           (s := (Finset.univ : Finset c)) (t := boundaryNeighbors c))
 
 -- Empty squares and checker squares partition the board.
+/--
+@isnad1 id=eq.0h2v.s5.5773d39f37b2 from=translated src=- shape=dbc24125 vocab=df469e79
+-/
 lemma emptySquares_card_add_checker_card {n : ℕ} (c : Finset (checkerboard n)) :
     (emptySquares c).card + c.card = n^2 := by
   rw [emptySquares]

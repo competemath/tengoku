@@ -35,7 +35,9 @@ the parities of $i$ and $j$; each case reduces, after squaring, to an elementary
 polynomial inequality (`key₁`, `key₂`, `key₃`, `key₄` below).
 -/
 
-/-- Split a product over `Finset.range (2 * n)` into a product of consecutive pairs. -/
+/-- Split a product over `Finset.range (2 * n)` into a product of consecutive pairs.
+@isnad1 id=eq.0h2v.s6.90d8084c820d from=translated src=- shape=634ebe76 vocab=143c17f6
+-/
 lemma prod_range_pair (f : ℕ → ℝ) (n : ℕ) :
     ∏ i ∈ Finset.range (2 * n), f i = ∏ k ∈ Finset.range n, f (2 * k) * f (2 * k + 1) := by
   induction n with
@@ -45,7 +47,9 @@ lemma prod_range_pair (f : ℕ → ℝ) (n : ℕ) :
     rw [e, Finset.prod_range_succ, Finset.prod_range_succ, ih, Finset.prod_range_succ,
       mul_assoc]
 
-/-- For `0 ≤ C` and `0 ≤ Z`: `C * √Z = √(C² * Z)`. -/
+/-- For `0 ≤ C` and `0 ≤ Z`: `C * √Z = √(C² * Z)`.
+@isnad1 id=eq.2h2v.s6.6d15cdedf053 from=translated src=- shape=084a354d vocab=469900d1
+-/
 lemma mul_sqrt_eq_sqrt_mul {C Z : ℝ} (hC : 0 ≤ C) (_hZ : 0 ≤ Z) :
     C * Real.sqrt Z = Real.sqrt (C ^ 2 * Z) := by
   conv_lhs => rw [← Real.sqrt_sq hC]
@@ -53,7 +57,9 @@ lemma mul_sqrt_eq_sqrt_mul {C Z : ℝ} (hC : 0 ≤ C) (_hZ : 0 ≤ Z) :
 
 /-- Key inequality for the "even index, odd index" case: the difference factors as
 `(q - p) * (4 * (p + 1) * (q + 1) - (2 * p + 1) ^ 2)`, which is nonnegative for
-`0 ≤ p ≤ q`. -/
+`0 ≤ p ≤ q`.
+@isnad1 id=le.2h2v.s7.b1f4263a71e3 from=translated src=- shape=02d41d64 vocab=cef4cf1d
+-/
 lemma key₁ {p q : ℝ} (hp : 0 ≤ p) (hpq : p ≤ q) :
     (4 * p + 3) ^ 2 * (q + 1) ≤ (2 * p + 2 * q + 3) ^ 2 * (p + 1) := by
   have h1 : (2 * p + 2 * q + 3) ^ 2 * (p + 1) - (4 * p + 3) ^ 2 * (q + 1)
@@ -66,7 +72,9 @@ lemma key₁ {p q : ℝ} (hp : 0 ≤ p) (hpq : p ≤ q) :
 
 /-- Key inequality for the "odd index, even index" case: the difference factors as
 `(p - q) * (4 * (p + 1) * (q + 1) - (2 * q + 1) ^ 2)`, a product of two nonpositive
-factors for `0 ≤ p` and `p + 1 ≤ q`. -/
+factors for `0 ≤ p` and `p + 1 ≤ q`.
+@isnad1 id=le.2h2v.s7.559e9def2256 from=translated src=- shape=3db672d2 vocab=cef4cf1d
+-/
 lemma key₂ {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
     (4 * q + 3) ^ 2 * (p + 1) ≤ (2 * p + 2 * q + 3) ^ 2 * (q + 1) := by
   have h1 : (2 * p + 2 * q + 3) ^ 2 * (q + 1) - (4 * q + 3) ^ 2 * (p + 1)
@@ -79,7 +87,9 @@ lemma key₂ {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
 
 /-- Key inequality for the "even index, even index" case. Writing `q = p + 1 + t`
 with `0 ≤ t`, the difference expands to a polynomial in `p` and `t` all of whose
-coefficients are positive. -/
+coefficients are positive.
+@isnad1 id=le.2h2v.s7.b22011208c3d from=translated src=- shape=01283d19 vocab=cef4cf1d
+-/
 lemma key₃ {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
     (4 * p + 3) ^ 2 * (4 * q + 3) ^ 2
       ≤ 64 * (p + q + 1) ^ 2 * (p + 1) * (q + 1) := by
@@ -93,7 +103,9 @@ lemma key₃ {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
     rw [key]; positivity
   linarith [h]
 
-/-- Key inequality for the "odd index, odd index" case (AM–GM). -/
+/-- Key inequality for the "odd index, odd index" case (AM–GM).
+@isnad1 id=le.2h2v.s6.f58acce6129f from=translated src=- shape=e63fdb6d vocab=101a96c3
+-/
 lemma key₄ {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
     (2 * Real.sqrt x) * (2 * Real.sqrt y) ≤ 2 * x + 2 * y := by
   nlinarith [sq_nonneg (Real.sqrt x - Real.sqrt y), Real.sq_sqrt hx, Real.sq_sqrt hy,
@@ -105,18 +117,27 @@ noncomputable def constr (i : ℕ) : ℝ :=
   if Even i then (4 * ((i / 2 : ℕ) : ℝ) + 3) / (2 * Real.sqrt (((i / 2 : ℕ) : ℝ) + 1))
   else 2 * Real.sqrt (((i / 2 : ℕ) : ℝ) + 1)
 
+/--
+@isnad1 id=eq.0h1v.s6.2043e7de44b5 from=translated src=- shape=30bbdf75 vocab=55d9dfe0
+-/
 lemma constr_even (k : ℕ) :
     constr (2 * k) = (4 * (k : ℝ) + 3) / (2 * Real.sqrt ((k : ℝ) + 1)) := by
   have h1 : Even (2 * k) := ⟨k, two_mul k⟩
   have h2 : (2 * k) / 2 = k := by lia
   simp only [constr, ite_eq_left h1, h2]
 
+/--
+@isnad1 id=eq.0h1v.s5.eb5a087a0a3c from=translated src=- shape=e597abee vocab=2a74cbd4
+-/
 lemma constr_odd (k : ℕ) :
     constr (2 * k + 1) = 2 * Real.sqrt ((k : ℝ) + 1) := by
   have h1 : ¬ Even (2 * k + 1) := Nat.not_even_iff_odd.mpr ⟨k, rfl⟩
   have h2 : (2 * k + 1) / 2 = k := by lia
   simp only [constr, ite_eq_right h1, h2]
 
+/--
+@isnad1 id=lt.0h1v.s3.4f9cfd2c09d9 from=translated src=- shape=b9369acb vocab=c615af5a
+-/
 lemma constr_pos (i : ℕ) : 0 < constr i := by
   by_cases h : Even i
   · simp only [constr, ite_eq_left h]
@@ -124,12 +145,16 @@ lemma constr_pos (i : ℕ) : 0 < constr i := by
   · simp only [constr, ite_eq_right h]
     positivity
 
-/-- The product of two consecutive terms is exactly `4k + 3`. -/
+/-- The product of two consecutive terms is exactly `4k + 3`.
+@isnad1 id=eq.0h1v.s6.9d7cc4310fe8 from=translated src=- shape=7bd9a48b vocab=83785ecb
+-/
 lemma constr_pair (k : ℕ) : constr (2 * k) * constr (2 * k + 1) = 4 * (k : ℝ) + 3 := by
   rw [constr_even, constr_odd,
     div_mul_cancel₀ _ (ne_of_gt (by positivity : (0:ℝ) < 2 * Real.sqrt ((k : ℝ) + 1)))]
 
-/-- Validity of the construction: case both indices even. -/
+/-- Validity of the construction: case both indices even.
+@isnad1 id=le.2h2v.s7.925a972e25aa from=translated src=- shape=bb51ef3d vocab=23d532ce
+-/
 lemma ineq_ee {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
     (4 * p + 3) / (2 * Real.sqrt (p + 1)) * ((4 * q + 3) / (2 * Real.sqrt (q + 1)))
       ≤ (2 * p + 1) + (2 * q + 1) := by
@@ -144,7 +169,9 @@ lemma ineq_ee {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
   refine (Real.le_sqrt (by positivity) (by positivity)).mpr ?_
   nlinarith [key₃ hp hpq]
 
-/-- Validity of the construction: case even index, odd index. -/
+/-- Validity of the construction: case even index, odd index.
+@isnad1 id=le.2h2v.s7.68279dd2a3ff from=translated src=- shape=ecfe231e vocab=23d532ce
+-/
 lemma ineq_eo {p q : ℝ} (hp : 0 ≤ p) (hpq : p ≤ q) :
     (4 * p + 3) / (2 * Real.sqrt (p + 1)) * (2 * Real.sqrt (q + 1))
       ≤ (2 * p + 1) + (2 * q + 2) := by
@@ -162,7 +189,9 @@ lemma ineq_eo {p q : ℝ} (hp : 0 ≤ p) (hpq : p ≤ q) :
   refine (Real.sqrt_le_sqrt_iff (by positivity)).mpr ?_
   nlinarith [key₁ hp hpq]
 
-/-- Validity of the construction: case odd index, even index. -/
+/-- Validity of the construction: case odd index, even index.
+@isnad1 id=le.2h2v.s7.77b802302d59 from=translated src=- shape=d06a4573 vocab=23d532ce
+-/
 lemma ineq_oe {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
     (2 * Real.sqrt (p + 1)) * ((4 * q + 3) / (2 * Real.sqrt (q + 1)))
       ≤ (2 * p + 2) + (2 * q + 1) := by
@@ -180,13 +209,17 @@ lemma ineq_oe {p q : ℝ} (hp : 0 ≤ p) (hpq : p + 1 ≤ q) :
   refine (Real.sqrt_le_sqrt_iff (by positivity)).mpr ?_
   nlinarith [key₂ hp hpq]
 
-/-- Validity of the construction: case both indices odd. -/
+/-- Validity of the construction: case both indices odd.
+@isnad1 id=le.2h2v.s7.db3069146e2e from=translated src=- shape=a3a4ac41 vocab=101a96c3
+-/
 lemma ineq_oo {p q : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q) :
     (2 * Real.sqrt (p + 1)) * (2 * Real.sqrt (q + 1)) ≤ (2 * p + 2) + (2 * q + 2) := by
   have h := key₄ (show (0:ℝ) ≤ p + 1 by positivity) (show (0:ℝ) ≤ q + 1 by positivity)
   linarith [h]
 
-/-- The construction satisfies `aᵢaⱼ ≤ (i+1) + (j+1)` for all `i < j`. -/
+/-- The construction satisfies `aᵢaⱼ ≤ (i+1) + (j+1)` for all `i < j`.
+@isnad1 id=le.1h2v.s6.c0897045abd6 from=translated src=- shape=7bbefd57 vocab=267a81d2
+-/
 lemma constr_ineq {i j : ℕ} (hij : i < j) :
     constr i * constr j ≤ (i : ℝ) + 1 + ((j : ℝ) + 1) := by
   obtain ⟨p, rfl | rfl⟩ : ∃ p, i = 2 * p ∨ i = 2 * p + 1 := ⟨i / 2, by lia⟩

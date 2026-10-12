@@ -22,7 +22,9 @@ is at most $\frac{n(n+1)}{2}\lambda$.
 
 namespace Usa2015P6
 
-/-- Rewrite a sum over `Finset.Icc 1 n` as a sum over `Finset.range n`. -/
+/-- Rewrite a sum over `Finset.Icc 1 n` as a sum over `Finset.range n`.
+@isnad1 id=eq.0h3v.s5.0e808937be56 from=translated src=- shape=6f1a96a6 vocab=ba34bedc
+-/
 lemma sum_Icc_one_eq_sum_range_add {M : Type*} [AddCommMonoid M] (f : ℕ → M) (n : ℕ) :
     ∑ k ∈ Finset.Icc 1 n, f k = ∑ k ∈ Finset.range n, f (k + 1) := by
   induction n with
@@ -31,7 +33,9 @@ lemma sum_Icc_one_eq_sum_range_add {M : Type*} [AddCommMonoid M] (f : ℕ → M)
     rw [Finset.sum_Icc_succ_top (by lia), ih, Finset.sum_range_succ]
 
 /-- Abel summation identity: the sum of the elements of the multiset `A` not
-exceeding `n` equals `n + 1` times their number minus the sum of the counts. -/
+exceeding `n` equals `n + 1` times their number minus the sum of the counts.
+@isnad1 id=eq.0h2v.s7.27a854fe86bb from=translated src=- shape=36932f44 vocab=64631dc3
+-/
 lemma sum_elements_sub_card (A : ℕ → ℕ) (n : ℕ) :
     ∑ m ∈ Finset.Icc 1 n, (m : ℝ) * (A m : ℝ)
       = (n + 1) * (∑ k ∈ Finset.Icc 1 n, (A k : ℝ))
@@ -46,14 +50,18 @@ lemma sum_elements_sub_card (A : ℕ → ℕ) (n : ℕ) :
     push_cast
     ring
 
-/-- The partial sums of the harmonic series grow past any bound. -/
+/-- The partial sums of the harmonic series grow past any bound.
+@isnad1 id=ex.0h1v.s5.ca3f8854e249 from=translated src=- shape=e4e6425a vocab=cef7818c
+-/
 lemma harmonic_large (B : ℝ) : ∃ k : ℕ, B < ∑ i ∈ Finset.range k, (1 : ℝ) / (i + 1) :=
   (Real.tendsto_sum_range_one_div_nat_succ_atTop.eventually_gt_atTop B).exists
 
 /-- Core analytic lemma. A nonnegative real sequence for which, from some point
 on, every term is smaller than the average of the previous terms, while
 consecutive terms always differ by at least some fixed `ε > 0`, cannot exist:
-its running average would eventually become negative. -/
+its running average would eventually become negative.
+@isnad1 id=false.5h3v.s6.a2e441cf8454 from=translated src=- shape=f039bd69 vocab=0e27891b
+-/
 lemma recurrent_averages_absurd
     (x : ℕ → ℝ) (ε : ℝ) (hε : 0 < ε) (N : ℕ) (hN : 1 ≤ N)
     (hx_nonneg : ∀ n, 0 ≤ x n)

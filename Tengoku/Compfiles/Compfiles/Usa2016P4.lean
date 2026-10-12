@@ -24,6 +24,9 @@ def f_good (f : ℝ → ℝ) : Prop :=  ∀ x y, (f x + x*y) * f (x - 3*y) + (f 
 the hard part is proving no other solutions work
 -/
 
+/--
+@isnad1 id=eq.1h1v.s4.fbb982998373 from=translated src=- shape=18892e30 vocab=9ec37819
+-/
 theorem f_zero (f: ℝ→ℝ) (hf : f_good f) : f 0 = 0 := by
     specialize hf 0 0
     simp at hf
@@ -32,6 +35,9 @@ theorem f_zero (f: ℝ→ℝ) (hf : f_good f) : f 0 = 0 := by
     rw [sq_eq_zero_iff] at hf
     assumption
 
+/--
+@isnad1 id=eq.2h2v.s5.2ea4ef1d53c1 from=translated src=- shape=0d366aa1 vocab=e7ff7a4f
+-/
 theorem f_t_even (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t ≠ 0 → f t = f (-t) := by
     intro t y_ne_zero
     have hf_c := hf
@@ -46,6 +52,9 @@ theorem f_t_even (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t ≠ 0 → f t = f (-
       assumption
     contradiction
 
+/--
+@isnad1 id=eq.2h2v.s5.dd87693d6470 from=translated src=- shape=aa1f6984 vocab=e7ff7a4f
+-/
 lemma f_even_zero (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = 0 → f (-t) = 0 := by
     intro t
     have hf_c := hf
@@ -61,6 +70,9 @@ lemma f_even_zero (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = 0 → f (-t) = 0 
       assumption
     assumption
 
+/--
+@isnad1 id=eq.1h2v.s4.7025ed28a821 from=translated src=- shape=e060f179 vocab=e7ff7a4f
+-/
 theorem f_even (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = f (-t) := by
   intro t
   by_cases hfz : f t = 0
@@ -71,6 +83,9 @@ theorem f_even (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = f (-t) := by
   · assumption
   assumption
 
+/--
+@isnad1 id=eq.2h2v.s5.62508bd2e60c from=translated src=- shape=97736e08 vocab=d092f40b
+-/
 theorem f_half_zero (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = 0 → f (t/2) = 0 := by
   intro t ftz
   have hf_c := hf
@@ -105,6 +120,9 @@ lemma eq_2 (f: ℝ→ℝ) (hf : f_good f) (t:ℝ) : f t + f (-t) - 2 * t ^ 2 = 0
   rw [factor, mul_eq_zero] at hf
   assumption
 
+/--
+@isnad1 id=or.1h2v.s5.36fc478d6af4 from=translated src=- shape=53552d6a vocab=2c2a893b
+-/
 theorem hf_opts (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = t^2 ∨ f t = 0 := by
     intro t
     have eq_2 := eq_2 f hf t
@@ -142,6 +160,9 @@ lemma eq_3 (f: ℝ→ℝ) (hf : f_good f) : ∀t, (f t + 3*t^2) * f (t*8) = f (t
   rw [← mul_rotate, ← add_mul, add_comm] at hf
   assumption
 
+/--
+@isnad1 id=eq.2h2v.s5.bc6624510a46 from=translated src=- shape=c66dcc40 vocab=597934df
+-/
 theorem f_two_zero (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = 0 → f (2 * t) = 0 := by
   have l2 : ∀t, f (t * 4) = 0 → f (t * 8) = 0 := by
     intro t ftz
@@ -172,6 +193,9 @@ theorem f_two_zero (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t = 0 → f (2 * t) 
   rw [mul_comm]
   exact l2
 
+/--
+@isnad1 id=le.1h2v.s4.a49860f2ef7e from=translated src=- shape=a9c3f481 vocab=54e6d2ce
+-/
 theorem f_ge_zero (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t ≥ 0 := by
   intro t
   have hf_opts := hf_opts f hf t
@@ -181,6 +205,9 @@ theorem f_ge_zero (f: ℝ→ℝ) (hf : f_good f) : ∀t, f t ≥ 0 := by
   rw [hr]
 
 /-if a ≠ 0 and f a = 0 then wlog a > 0-/
+/--
+@isnad1 id=iff.1h2v.s5.3abdff9cf8d0 from=translated src=- shape=858f0bf3 vocab=022ac443
+-/
 theorem ha_zero (f: ℝ→ℝ) (hf : f_good f) :
     ∀(_:ℝ), ((∃a, a ≠ 0 ∧ f a = 0)↔ ∃ a > 0, f a = 0) := by
   intro t
@@ -212,6 +239,9 @@ theorem ha_zero (f: ℝ→ℝ) (hf : f_good f) :
   assumption
 
 /-The main part, proving that if there is some nonzero a such that f a = 0 then we must have f b = 0 for all b-/
+/--
+@isnad1 id=eq.2h2v.s5.fc18a52e9f31 from=translated src=- shape=39826777 vocab=9ec37819
+-/
 theorem f_eq_zero_if_not_sq (f: ℝ→ℝ) (hf : f_good f) :
     ∀(b:ℝ),(∃a, a≠0 ∧ f a = 0) → f b = 0 := by
   intro b

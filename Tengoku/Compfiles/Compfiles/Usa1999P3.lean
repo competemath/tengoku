@@ -58,13 +58,22 @@ def chi (p : ℕ) (j : ZMod p) : ℂ := rt p ^ j.val
 /-- The weighted character sum `∑ k, k.val * χ (j * k)`. -/
 def Sw (p : ℕ) [NeZero p] (j : ZMod p) : ℂ := ∑ k : ZMod p, (k.val : ℂ) * chi p (j * k)
 
+/--
+@isnad1 id=isprimit.1h1v.s3.ceedc93bd833 from=translated src=- shape=26fcc486 vocab=828b2f2e
+-/
 lemma isPrimitiveRoot_rt {p : ℕ} (hp : p.Prime) : IsPrimitiveRoot (rt p) p := by
   unfold rt
   exact Complex.isPrimitiveRoot_exp p hp.pos.ne'
 
+/--
+@isnad1 id=eq.0h1v.s5.385dc806fd6b from=translated src=- shape=c1d40c16 vocab=5963d552
+-/
 lemma chi_zero (p : ℕ) : chi p (0 : ZMod p) = 1 := by
   simp [chi, ZMod.val_zero]
 
+/--
+@isnad1 id=eq.1h3v.s5.b3a80296a7e1 from=translated src=- shape=fb45dfdf vocab=df7a3031
+-/
 lemma chi_add {p : ℕ} (hp : p.Prime) (j k : ZMod p) :
     chi p (j + k) = chi p j * chi p k := by
   have : NeZero p := ⟨hp.pos.ne'⟩
@@ -87,6 +96,9 @@ lemma chi_add {p : ℕ} (hp : p.Prime) (j k : ZMod p) :
     rw [hpow, mul_one] at h2
     exact h2
 
+/--
+@isnad1 id=iff.1h2v.s5.0669f9760f27 from=translated src=- shape=28ea23a6 vocab=9ffadae6
+-/
 lemma chi_eq_one_iff {p : ℕ} (hp : p.Prime) (j : ZMod p) : chi p j = 1 ↔ j = 0 := by
   have : NeZero p := ⟨hp.pos.ne'⟩
   have hζ := isPrimitiveRoot_rt hp
@@ -100,7 +112,9 @@ lemma chi_eq_one_iff {p : ℕ} (hp : p.Prime) (j : ZMod p) : chi p j = 1 ↔ j =
     exact chi_zero p
 
 /-- Sums over `ZMod p` of a function of the residue can be written as sums over
-`Finset.range p`. -/
+`Finset.range p`.
+@isnad1 id=eq.0h2v.s5.e8167b2c1c55 from=translated src=- shape=de32b0c5 vocab=d8a68e19
+-/
 lemma sum_zmod_val {p : ℕ} [NeZero p] (f : ℕ → ℂ) :
     ∑ j : ZMod p, f (j.val) = ∑ i ∈ Finset.range p, f i := by
   apply Finset.sum_bij (i := fun j _ => j.val)
@@ -116,6 +130,9 @@ lemma sum_zmod_val {p : ℕ} [NeZero p] (f : ℕ → ℂ) :
   · intro j _
     rfl
 
+/--
+@isnad1 id=eq.2h1v.s5.c5aa26a85385 from=translated src=- shape=5b068b35 vocab=8699ef8e
+-/
 lemma sum_chi_self {p : ℕ} [NeZero p] (hp : p.Prime) (hp2 : 2 < p) :
     ∑ j : ZMod p, chi p j = 0 := by
   have hζ := isPrimitiveRoot_rt hp
@@ -123,6 +140,9 @@ lemma sum_chi_self {p : ℕ} [NeZero p] (hp : p.Prime) (hp2 : 2 < p) :
   rw [sum_zmod_val]
   exact hζ.geom_sum_eq_zero (by lia)
 
+/--
+@isnad1 id=eq.2h2v.s7.50de9cde0309 from=translated src=- shape=52090752 vocab=c49ed6af
+-/
 lemma sum_chi {p : ℕ} [NeZero p] (hp : p.Prime) (hp2 : 2 < p) (c : ZMod p) :
     ∑ m : ZMod p, chi p (c * m) = if c = 0 then (p : ℂ) else 0 := by
   have : Fact p.Prime := ⟨hp⟩
@@ -146,7 +166,9 @@ lemma sum_chi {p : ℕ} [NeZero p] (hp : p.Prime) (hp2 : 2 < p) (c : ZMod p) :
     exact sum_chi_self hp hp2
 
 /-- The key identity `(χ j - 1) * Sw j = p` for nonzero `j`, obtained by
-reindexing the sum defining `Sw` along `k ↦ k + 1`. -/
+reindexing the sum defining `Sw` along `k ↦ k + 1`.
+@isnad1 id=eq.3h2v.s6.57a45e2ed4b4 from=translated src=- shape=42cf5dbe vocab=fabcdf2b
+-/
 lemma Sw_mul_sub_one {p : ℕ} [NeZero p] (hp : p.Prime) (hp2 : 2 < p) {j : ZMod p} (hj : j ≠ 0) :
     (chi p j - 1) * Sw p j = (p : ℂ) := by
   have h1 : chi p j * Sw p j = ∑ k : ZMod p, ((k - 1).val : ℂ) * chi p (j * k) := by
@@ -237,7 +259,9 @@ lemma Sw_mul_sub_one {p : ℕ} [NeZero p] (hp : p.Prime) (hp2 : 2 < p) {j : ZMod
   exact h9
 
 /-- The symmetric-polynomial identity obtained by clearing denominators in
-`∑ 1 / (xᵢ - 1) = -2`. -/
+`∑ 1 / (xᵢ - 1) = -2`.
+@isnad1 id=eq.5h4v.s8.9ef4df95ead7 from=translated src=- shape=0f9da0ef vocab=a047c0ea
+-/
 lemma alg_symm {x₁ x₂ x₃ x₄ : ℂ} (h₁ : x₁ ≠ 1) (h₂ : x₂ ≠ 1) (h₃ : x₃ ≠ 1) (h₄ : x₄ ≠ 1)
     (h : 1 / (x₁ - 1) + 1 / (x₂ - 1) + 1 / (x₃ - 1) + 1 / (x₄ - 1) = -2) :
     2 + (x₁ * x₂ * x₃ + x₁ * x₂ * x₄ + x₁ * x₃ * x₄ + x₂ * x₃ * x₄)

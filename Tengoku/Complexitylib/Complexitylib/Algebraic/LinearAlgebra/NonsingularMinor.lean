@@ -35,7 +35,9 @@ Two certificates that a square matrix is nonsingular, or that a matrix has large
 namespace Algebraic
 
 /-- **Dominance.** A nonempty sum `∑ ε x * 2 ^ E x` with unit coefficients `ε x = ±1` and pairwise
-distinct exponents `E x` is nonzero. -/
+distinct exponents `E x` is nonzero.
+@isnad1 id=ne.3h4v.s6.0978aa78d69f from=translated src=- shape=77c9e692 vocab=3ee2d3e3
+-/
 theorem sum_mul_two_pow_ne_zero {κ : Type*} {s : Finset κ} (hs : s.Nonempty) {ε : κ → ℤ}
     (hε : ∀ x ∈ s, IsUnit (ε x)) {E : κ → ℕ} (hE : Set.InjOn E s) :
     ∑ x ∈ s, ε x * 2 ^ E x ≠ 0 :=
@@ -48,7 +50,9 @@ namespace Matrix
 /-- **Nonsingularity from doubly exponential weights.** Let `M` be a square matrix over a
 commutative ring of characteristic zero whose nonzero entries are `±2^{2^{L i j}}`, with labels
 `L i j` that are pairwise distinct on the nonzero entries. If some permutation `σ` has
-`M (σ j) j ≠ 0` for every `j`, then `det M ≠ 0`. -/
+`M (σ j) j ≠ 0` for every `j`, then `det M ≠ 0`.
+@isnad1 id=ne.3h5v.s8.d58ed70d8d9a from=translated src=- shape=c1b418c7 vocab=42967482
+-/
 theorem det_ne_zero_of_two_pow_two_pow {R : Type*} [CommRing R] [CharZero R] {ι : Type*}
     [Fintype ι] [DecidableEq ι] (M : Matrix ι ι R) (L : ι → ι → ℕ)
     (hM : ∀ i j, M i j ≠ 0 → M i j = 2 ^ 2 ^ L i j ∨ M i j = -2 ^ 2 ^ L i j)
@@ -58,7 +62,9 @@ theorem det_ne_zero_of_two_pow_two_pow {R : Type*} [CommRing R] [CharZero R] {ι
 
 /-- **Block-diagonal minors.** Choose, for each block `b : β`, rows `f i b` and columns `g i b` of
 `A` indexed by `i : ι`. If every entry between different blocks vanishes and every block
-`A.submatrix (f · b) (g · b)` is nonsingular, then `card ι * card β ≤ rank A`. -/
+`A.submatrix (f · b) (g · b)` is nonsingular, then `card ι * card β ≤ rank A`.
+@isnad1 id=le.2h8v.s7.8dab86d751e9 from=translated src=- shape=944519f4 vocab=a5420bbd
+-/
 theorem card_mul_card_le_rank_of_det_blocks_ne_zero {K : Type*} [Field K] {m n : Type*}
     [Fintype n] {ι β : Type*} [Fintype ι] [DecidableEq ι] [Fintype β] [DecidableEq β]
     (A : Matrix m n K) (f : ι → β → m) (g : ι → β → n)

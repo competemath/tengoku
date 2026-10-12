@@ -29,7 +29,9 @@ set_option maxHeartbeats 1000000 in
 /-- The arithmetic heart of the problem: fifteen pair counts, each at least `(2 * n + 1) / 5`,
 with sum `6 * n + 4` and satisfying ten congruences modulo 3, cannot exist. The congruence for
 the pair `{a, b} ⊆ {0, 1, 2, 3, 4}` involves the counts for the pairs contained in the
-complementary triple together with the pairs joining the triple to problem `5`. -/
+complementary triple together with the pairs joining the triple to problem `5`.
+@isnad1 id=false.26h16v.s10.597196679fd0 from=translated src=- shape=d3641d55 vocab=6886eaf2
+-/
 theorem arith_core (n : ℕ)
     (t01 t02 t03 t04 t05 t12 t13 t14 t15 t23 t24 t25 t34 t35 t45 : ℕ)
     (hsum : t01 + t02 + t03 + t04 + t05 + t12 + t13 + t14 + t15 + t23 + t24 + t25 + t34 + t35 + t45
@@ -219,7 +221,9 @@ set_option maxRecDepth 4096 in
 all six problems, the per-contestant contribution to the mod-3 congruences (the indicator of
 solving `P`, minus the indicators of solving `{u, 5}` for `u` in the complementary triple,
 minus the indicators of solving the pairs inside the triple) is divisible by `3`. This finite
-check is the content of Evan Chen's second claim. -/
+check is the content of Evan Chen's second claim.
+@isnad1 id=modeq.3h2v.s9.72751c51490c from=translated src=- shape=fa41f167 vocab=df56c301
+-/
 theorem cong_aux : ∀ (P st : Finset (Fin 6)), P ⊆ Finset.univ.erase 5 → P.card = 2 →
     st.card = 4 →
     ((if P ⊆ st then (1 : ℤ) else 0)
@@ -228,13 +232,17 @@ theorem cong_aux : ∀ (P st : Finset (Fin 6)), P ⊆ Finset.univ.erase 5 → P.
           (if Q ⊆ st then (1 : ℤ) else 0)) ≡ 0 [ZMOD 3] := by
   decide
 
-/-- The fifteen 2-subsets of `Fin 6`, as a literal finset. -/
+/-- The fifteen 2-subsets of `Fin 6`, as a literal finset.
+@isnad1 id=eq.0h0v.s10.666e6c3c24c0 from=translated src=- shape=4057d3b6 vocab=6047ec58
+-/
 theorem pc2_univ : (Finset.univ : Finset (Fin 6)).powersetCard 2 =
     {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {1, 2}, {1, 3}, {1, 4}, {1, 5}, {2, 3}, {2, 4},
       {2, 5}, {3, 4}, {3, 5}, {4, 5}} := by
   decide
 
-/-- Any set of at most `k ≤ 6` problems can be extended to a set of exactly `k` problems. -/
+/-- Any set of at most `k ≤ 6` problems can be extended to a set of exactly `k` problems.
+@isnad1 id=ex.2h2v.s6.683a37a01b92 from=translated src=- shape=275f17eb vocab=c788f210
+-/
 theorem exists_superset_card {s : Finset (Fin 6)} {k : ℕ} (h1 : s.card ≤ k) (h2 : k ≤ 6) :
     ∃ t : Finset (Fin 6), s ⊆ t ∧ t.card = k := by
   obtain ⟨u, hus, huc⟩ := Finset.exists_subset_card_eq (s := sᶜ) (n := k - s.card) (by
@@ -251,6 +259,9 @@ theorem exists_superset_card {s : Finset (Fin 6)} {k : ℕ} (h1 : s.card ≤ k) 
 def pairCount {n : ℕ} (s : Fin n → Finset (Fin 6)) (P : Finset (Fin 6)) : ℕ :=
   (Finset.univ.filter fun i => P ⊆ s i).card
 
+/--
+@isnad1 id=eq.0h4v.s8.130f93416806 from=translated src=- shape=074526b3 vocab=7296eec5
+-/
 theorem pairCount_two {n : ℕ} (s : Fin n → Finset (Fin 6)) (p q : Fin 6) :
     pairCount s {p, q} = (Finset.univ.filter fun i => p ∈ s i ∧ q ∈ s i).card := by
   unfold pairCount
@@ -259,7 +270,9 @@ theorem pairCount_two {n : ℕ} (s : Fin n → Finset (Fin 6)) (p q : Fin 6) :
   simp [Finset.insert_subset_iff, Finset.singleton_subset_iff]
 
 /-- Double counting: the sum of the pair counts over all fifteen pairs equals the sum over
-contestants of the number of pairs of problems they solved. -/
+contestants of the number of pairs of problems they solved.
+@isnad1 id=eq.0h2v.s6.ff08dc9d3573 from=translated src=- shape=a4f2bd9a vocab=6245a4d1
+-/
 theorem sum_pairCount {n : ℕ} (s : Fin n → Finset (Fin 6)) :
     ∑ P ∈ (Finset.univ : Finset (Fin 6)).powersetCard 2, pairCount s P
       = ∑ i, ((s i).powersetCard 2).card := by
@@ -288,7 +301,9 @@ complementary triple, the number of contestants solving `P` is congruent modulo 
 `1 + ∑_{u ∈ T} (contestants solving {u, 5}) + ∑_{Q ∈ T choose 2} (contestants solving Q)`.
 This holds per contestant: the distinguished contestant `c0` (who solved exactly
 `{0, 1, 2, 3, 4}`) contributes `-2 ≡ 1`, and every other contestant, who solved exactly
-four problems, contributes a multiple of `3` (see `cong_aux`). -/
+four problems, contributes a multiple of `3` (see `cong_aux`).
+@isnad1 id=modeq.3h4v.s8.b8d2b55dfa5a from=translated src=- shape=07402cf2 vocab=fe7d6760
+-/
 theorem pairCount_modEq {n : ℕ} {s : Fin n → Finset (Fin 6)} {c0 : Fin n}
     (hc0 : s c0 = Finset.univ.erase 5) (h4 : ∀ i : Fin n, i ≠ c0 → (s i).card = 4)
     {P : Finset (Fin 6)} (hP : P ∈ (Finset.univ.erase 5 : Finset (Fin 6)).powersetCard 2) :

@@ -34,9 +34,15 @@ def mod4_cycle : Set (ℤ → ℤ) := fun f =>
 def square_set : Set (ℤ → ℤ) := fun f =>
   ∃ c : ℤ, ∀ x : ℤ, f x = x ^ 2 * c
 
+/--
+@isnad1 id=iff.0h2v.s6.acd50d08c9c9 from=translated src=- shape=451b57c2 vocab=85af4b90
+-/
 theorem sub_sq'' {x y : Int} : x ^ 2 + y ^ 2 = (2 * x * y) ↔ x = y := by
   rw [← sub_eq_zero, ← sub_sq', sq_eq_zero_iff, sub_eq_zero]
 
+/--
+@isnad1 id=var.1h6v.s6.c06bdade6ddf from=translated src=- shape=0eb25812 vocab=92f6bef1
+-/
 theorem myInduction
   {motive : ℤ → Prop}
   (P0 : motive 0) (P1 : motive 1) (P2 : motive 2) (P3 : motive 3)

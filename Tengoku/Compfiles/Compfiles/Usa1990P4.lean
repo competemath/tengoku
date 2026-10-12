@@ -41,15 +41,24 @@ inductive IV : ℕ → ℕ → List ℕ → Prop
 
 namespace IV
 
+/--
+@isnad1 id=ne.1h3v.s4.31a82f0d40f1 from=translated src=- shape=1bf27e98 vocab=9a40de27
+-/
 theorem ne_nil {a b : ℕ} {l : List ℕ} (h : IV a b l) : l ≠ [] := by
   cases h <;> exact List.cons_ne_nil _ _
 
+/--
+@isnad1 id=le.1h3v.s4.50c16bc955fa from=translated src=- shape=89b055a6 vocab=d7a10fb0
+-/
 theorem lo_le_hi {a b : ℕ} {l : List ℕ} (h : IV a b l) : a ≤ b := by
   induction h with
   | single d => exact Nat.le_refl d
   | consLo h ih => lia
   | consHi h hhi ih => lia
 
+/--
+@isnad1 id=iff.1h4v.s5.9d946a90916d from=translated src=- shape=87fd5f37 vocab=17c10934
+-/
 theorem mem_iff {a b : ℕ} {l : List ℕ} (h : IV a b l) (d : ℕ) :
     d ∈ l ↔ a ≤ d ∧ d ≤ b := by
   induction h with
@@ -65,12 +74,21 @@ theorem mem_iff {a b : ℕ} {l : List ℕ} (h : IV a b l) (d : ℕ) :
       have h1 := lo_le_hi h
       rw [List.mem_cons, ih]; lia
 
+/--
+@isnad1 id=mem.1h3v.s4.d756b22026d6 from=translated src=- shape=69b6bf70 vocab=8b79af6c
+-/
 theorem mem_lo {a b : ℕ} {l : List ℕ} (h : IV a b l) : a ∈ l :=
   (mem_iff h a).mpr ⟨Nat.le_refl a, lo_le_hi h⟩
 
+/--
+@isnad1 id=mem.1h3v.s4.26e6a2654dc7 from=translated src=- shape=7f07cc8d vocab=8b79af6c
+-/
 theorem mem_hi {a b : ℕ} {l : List ℕ} (h : IV a b l) : b ∈ l :=
   (mem_iff h b).mpr ⟨lo_le_hi h, Nat.le_refl b⟩
 
+/--
+@isnad1 id=nodup.1h3v.s3.ba8f5e1be238 from=translated src=- shape=df73c12d vocab=58d91c63
+-/
 theorem nodup {a b : ℕ} {l : List ℕ} (h : IV a b l) : l.Nodup := by
   induction h with
   | single d => simp
@@ -85,6 +103,9 @@ theorem nodup {a b : ℕ} {l : List ℕ} (h : IV a b l) : l.Nodup := by
       have h1 := (mem_iff h _).mp hmem
       lia
 
+/--
+@isnad1 id=eq.1h3v.s5.a231c01d8434 from=translated src=- shape=ee9a7ed0 vocab=9d1f899d
+-/
 theorem length_eq {a b : ℕ} {l : List ℕ} (h : IV a b l) :
     l.length = b + 1 - a := by
   induction h with
@@ -96,7 +117,9 @@ theorem length_eq {a b : ℕ} {l : List ℕ} (h : IV a b l) :
       have h1 := lo_le_hi h
       rw [List.length_cons, ih]; lia
 
-/-- Inversion principle for `IV` on a cons list. -/
+/-- Inversion principle for `IV` on a cons list.
+@isnad1 id=iff.0h4v.s6.308d874f0751 from=translated src=- shape=33b5cc56 vocab=2c69b3f3
+-/
 theorem cons_iff {a b d : ℕ} {l : List ℕ} :
     IV a b (d :: l) ↔
       (d = a ∧ IV (a + 1) b l) ∨ (d = b ∧ 0 < b ∧ IV a (b - 1) l) ∨
@@ -113,7 +136,9 @@ theorem cons_iff {a b d : ℕ} {l : List ℕ} :
     · exact consHi h hhi
     · exact single _
 
-/-- `IV` lists satisfy condition (2) of the problem. -/
+/-- `IV` lists satisfy condition (2) of the problem.
+@isnad1 id=diffbyon.1h3v.s3.7e502eae3bcc from=translated src=- shape=4bdb5eb9 vocab=36f7cda5
+-/
 theorem diffByOne {a b : ℕ} {l : List ℕ} (h : IV a b l) : DiffByOne l := by
   induction h with
   | single d =>
@@ -152,7 +177,9 @@ theorem diffByOne {a b : ℕ} {l : List ℕ} (h : IV a b l) : DiffByOne l := by
         exact hclose hj'b
 
 /-- Lists with distinct entries satisfying condition (2) are exactly the
-`IV` lists. -/
+`IV` lists.
+@isnad1 id=ex.3h1v.s4.fdc883dcbc83 from=translated src=- shape=95787b46 vocab=7c770e16
+-/
 theorem of_diffByOne {l : List ℕ} (hne : l ≠ []) (hn : l.Nodup) (hd : DiffByOne l) :
     ∃ a b, IV a b l := by
   induction l with
@@ -191,7 +218,9 @@ theorem of_diffByOne {l : List ℕ} (hne : l ≠ []) (hn : l.Nodup) (hd : DiffBy
           have h3 : 0 < d := by lia
           exact consHi (h2.symm ▸ hIV) h3
 
-/-- The interval endpoints of an `IV` list are uniquely determined. -/
+/-- The interval endpoints of an `IV` list are uniquely determined.
+@isnad1 id=and.2h5v.s4.b3fa80d0c051 from=translated src=- shape=a29498ec vocab=632e3660
+-/
 theorem unique_indices {a b a' b' : ℕ} {l : List ℕ} (h : IV a b l)
     (h' : IV a' b' l) : a = a' ∧ b = b' := by
   have a1 := (mem_iff h' a).mp (mem_lo h)
@@ -221,23 +250,35 @@ def descend : ℕ → List ℕ
   | 0 => [0]
   | b + 1 => (b + 1) :: descend b
 
+/--
+@isnad1 id=ne.0h1v.s3.b75a6f8d01af from=translated src=- shape=8a4d43d8 vocab=567c4db7
+-/
 theorem descend_ne_nil : ∀ b, descend b ≠ [] := by
   intro b
   rcases b with _ | k
   · exact List.cons_ne_nil 0 []
   · exact List.cons_ne_nil (k + 1) (descend k)
 
+/--
+@isnad1 id=eq.1h1v.s5.6f3abb2649a7 from=translated src=- shape=ce303db2 vocab=36b1ba55
+-/
 theorem descend_eq (b : ℕ) (h : 0 < b) : descend b = b :: descend (b - 1) := by
   rcases b with _ | k
   · lia
   · rfl
 
+/--
+@isnad1 id=iv.0h1v.s3.076054ce2f6d from=translated src=- shape=44e282c1 vocab=0b337a05
+-/
 theorem IV_descend : ∀ b, IV 0 b (descend b) := by
   intro b
   induction b with
   | zero => exact IV.single 0
   | succ k ih => exact IV.consHi ih (Nat.zero_lt_succ k)
 
+/--
+@isnad1 id=eq.0h1v.s4.e77b0458c9f6 from=translated src=- shape=9c8c04a8 vocab=33587144
+-/
 theorem getLast?_descend : ∀ b, (descend b).getLast? = some 0 := by
   intro b
   induction b with
@@ -247,6 +288,9 @@ theorem getLast?_descend : ∀ b, (descend b).getLast? = some 0 := by
       rw [List.getLast?_cons_of_ne_nil (descend_ne_nil k)]
       exact ih
 
+/--
+@isnad1 id=eq.1h1v.s4.7e90138cb9c3 from=translated src=- shape=aa6cc1fd vocab=476c7d9b
+-/
 theorem getLast_descend (b : ℕ) (h : descend b ≠ []) : (descend b).getLast h = 0 := by
   have h2 := getLast?_descend b
   rw [List.getLast?_eq_some_getLast h] at h2
@@ -278,7 +322,9 @@ theorem eq_descend {a b : ℕ} {l : List ℕ} (h : IV a b l)
       refine ⟨h1, ?_⟩
       rw [h2, descend_eq b' hhi]
 
-/-- The number of `IV` lists over the interval `[a, a + k]` is `2 ^ k`. -/
+/-- The number of `IV` lists over the interval `[a, a + k]` is `2 ^ k`.
+@isnad1 id=and.0h2v.s5.2a63b6821f2a from=translated src=- shape=c77651d0 vocab=a4d598e7
+-/
 theorem finite_and_ncard_IVSet : ∀ (k a : ℕ),
     (IVSet a (a + k)).Finite ∧ (IVSet a (a + k)).ncard = 2 ^ k := by
   intro k
@@ -338,7 +384,9 @@ theorem finite_and_ncard_IVSet : ∀ (k a : ℕ),
         have h3 : a + (k + 1) = a := (List.cons.inj h₂).1
         lia
 
-/-- Geometric series with ratio `2`. -/
+/-- Geometric series with ratio `2`.
+@isnad1 id=eq.0h1v.s5.0e0f7970810c from=translated src=- shape=893a5eca vocab=76120d38
+-/
 theorem geom2 : ∀ m, ∑ k ∈ Finset.range m, 2 ^ k = 2 ^ m - 1 := by
   intro m
   induction m with
@@ -348,6 +396,9 @@ theorem geom2 : ∀ m, ∑ k ∈ Finset.range m, 2 ^ k = 2 ^ m - 1 := by
       have h4 : 0 < 2 ^ m := by positivity
       lia
 
+/--
+@isnad1 id=le.0h1v.s5.d2a67ae3999a from=translated src=- shape=a4197567 vocab=f96c6fce
+-/
 theorem two_pow_ge : ∀ n, 2 * n + 2 ≤ 2 ^ (n + 1) := by
   intro n
   induction n with
@@ -356,6 +407,9 @@ theorem two_pow_ge : ∀ n, 2 * n + 2 ≤ 2 ^ (n + 1) := by
       rw [pow_succ]
       lia
 
+/--
+@isnad1 id=eq.0h1v.s6.ac965ea5fe8a from=translated src=- shape=6559fa95 vocab=25c51245
+-/
 theorem outer_sum : ∀ n, ∑ b ∈ Finset.range n, (2 ^ (b + 1) - 2) =
     2 ^ (n + 1) - 2 * n - 2 := by
   intro n
@@ -367,7 +421,9 @@ theorem outer_sum : ∀ n, ∑ b ∈ Finset.range n, (2 ^ (b + 1) - 2) =
       rw [show 2 ^ (n + 1 + 1) = 2 * 2 ^ (n + 1) by rw [pow_succ]; ring]
       lia
 
-/-- Finite disjoint unions of sets of lists have the sum of the cardinalities. -/
+/-- Finite disjoint unions of sets of lists have the sum of the cardinalities.
+@isnad1 id=eq.2h3v.s7.b8e1d9a9cafe from=translated src=- shape=0fd5864e vocab=1bcdcaca
+-/
 theorem ncard_biUnion {α : Type*} (s : Finset ℕ) (f : ℕ → Set α)
     (hd : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → Disjoint (f i) (f j))
     (hf : ∀ i ∈ s, (f i).Finite) :
@@ -398,6 +454,9 @@ theorem ncard_biUnion {α : Type*} (s : Finset ℕ) (f : ℕ → Set α)
         exact Set.disjoint_left.mp
           (hd i hmem j (Finset.mem_insert_of_mem hj) (fun h ↦ his (h.symm ▸ hj))) hxi hxj
 
+/--
+@isnad1 id=finite.0h2v.s3.15c262e77a76 from=translated src=- shape=f03c7444 vocab=502658f6
+-/
 theorem W_finite (a b : ℕ) : (W a b).Finite := by
   by_cases h : a ≤ b
   · obtain ⟨fin, -⟩ := finite_and_ncard_IVSet (b - a) a
@@ -412,6 +471,9 @@ theorem W_finite (a b : ℕ) : (W a b).Finite := by
     rw [hset]
     exact Set.finite_empty
 
+/--
+@isnad1 id=disjoint.1h4v.s6.d33e8dcdf10e from=translated src=- shape=e397a3f4 vocab=5a61c0fb
+-/
 theorem disjoint_W {a b a' b' : ℕ} (hne : (a, b) ≠ (a', b')) :
     Disjoint (W a b) (W a' b') := by
   rw [Set.disjoint_left]
@@ -419,7 +481,9 @@ theorem disjoint_W {a b a' b' : ℕ} (hne : (a, b) ≠ (a', b')) :
   obtain ⟨rfl, rfl⟩ := IV.unique_indices h1 h2
   exact hne rfl
 
-/-- The number of valid digit lists with digit interval `[a, b]`. -/
+/-- The number of valid digit lists with digit interval `[a, b]`.
+@isnad1 id=eq.1h2v.s6.2c41417f4c51 from=translated src=- shape=feaa1719 vocab=b86e0928
+-/
 theorem ncard_W {a b : ℕ} (hle : a ≤ b) :
     (W a b).ncard = 2 ^ (b - a) - (if a = 0 then 1 else 0) := by
   obtain ⟨fin, card⟩ := finite_and_ncard_IVSet (b - a) a
@@ -452,7 +516,9 @@ theorem ncard_W {a b : ℕ} (hle : a ≤ b) :
     simp [h0]
 
 /-- The valid digit lists are the disjoint union of the `W a b` over
-`0 ≤ a ≤ b < n`. -/
+`0 ≤ a ≤ b < n`.
+@isnad1 id=eq.0h1v.s6.8cac2290b706 from=translated src=- shape=65cf0818 vocab=e0b49b6e
+-/
 theorem validLists_eq_biUnion (n : ℕ) :
     ValidLists n = ⋃ b ∈ Finset.range n, ⋃ a ∈ Finset.range (b + 1), W a b := by
   ext l
@@ -473,6 +539,9 @@ theorem validLists_eq_biUnion (n : ℕ) :
     have hd' := (IV.mem_iff hIV d).mp hd
     lia
 
+/--
+@isnad1 id=disjoint.1h2v.s7.205fdd470c7b from=translated src=- shape=2c56394b vocab=a8bbe53b
+-/
 theorem disjoint_inner {i j : ℕ} (hij : i ≠ j) :
     Disjoint (⋃ a ∈ Finset.range (i + 1), W a i)
       (⋃ a ∈ Finset.range (j + 1), W a j) := by
@@ -484,11 +553,16 @@ theorem disjoint_inner {i j : ℕ} (hij : i ≠ j) :
   obtain ⟨-, hii⟩ := IV.unique_indices h1.1 h2.1
   exact hij hii
 
+/--
+@isnad1 id=finite.0h1v.s6.5a59bf513d76 from=translated src=- shape=feda108d vocab=78b5b294
+-/
 theorem inner_finite (b : ℕ) : (⋃ a ∈ Finset.range (b + 1), W a b).Finite :=
   Set.Finite.biUnion (Finset.finite_toSet (Finset.range (b + 1)))
     (fun a _ ↦ W_finite a b)
 
-/-- The number of valid digit lists whose largest digit is exactly `b`. -/
+/-- The number of valid digit lists whose largest digit is exactly `b`.
+@isnad1 id=eq.0h1v.s6.c5e819cb3d93 from=translated src=- shape=513e2349 vocab=89e8b910
+-/
 theorem ncard_inner (b : ℕ) :
     (⋃ a ∈ Finset.range (b + 1), W a b).ncard = 2 ^ (b + 1) - 2 := by
   rw [ncard_biUnion (Finset.range (b + 1)) (fun a ↦ W a b)
@@ -512,7 +586,9 @@ theorem ncard_inner (b : ℕ) :
   rw [pow_succ]
   lia
 
-/-- The total number of valid digit lists in base `n`. -/
+/-- The total number of valid digit lists in base `n`.
+@isnad1 id=eq.0h1v.s6.e74e924f873c from=translated src=- shape=c6db9d48 vocab=06b96827
+-/
 theorem ncard_validLists (n : ℕ) :
     (ValidLists n).ncard = 2 ^ (n + 1) - 2 * n - 2 := by
   rw [validLists_eq_biUnion n,
@@ -521,7 +597,9 @@ theorem ncard_validLists (n : ℕ) :
   exact (Finset.sum_congr rfl (fun b _ ↦ ncard_inner b)).trans (outer_sum n)
 
 /-- Positive integers satisfying the conditions of the problem correspond to
-valid digit lists via `Nat.digits`. -/
+valid digit lists via `Nat.digits`.
+@isnad1 id=eq.1h1v.s5.efbbf267c1b3 from=translated src=- shape=b71b2d04 vocab=345e1062
+-/
 theorem ncard_numbers_eq (n : ℕ) (hn : 1 < n) :
     Set.ncard {m : ℕ | 0 < m ∧ (Nat.digits n m).Nodup ∧ DiffByOne (Nat.digits n m)} =
       (ValidLists n).ncard := by

@@ -27,7 +27,9 @@ open EuclideanGeometry RealInnerProductSpace
 noncomputable def Mc (A H C : EuclideanSpace ℝ (Fin 2)) : EuclideanSpace ℝ (Fin 2) :=
   (2⁻¹ : ℝ) • (A - H + (2 : ℝ) • C)
 
-/-- A point on line `RS` differs from `R` by a multiple of `S -ᵥ R`. -/
+/-- A point on line `RS` differs from `R` by a multiple of `S -ᵥ R`.
+@isnad1 id=ex.1h3v.s11.a4c4c0389b92 from=translated src=- shape=51f9d206 vocab=0d7aea28
+-/
 lemma vsub_smul_of_mem_pair {R S Q : EuclideanSpace ℝ (Fin 2)}
     (hQ : Q ∈ affineSpan ℝ ({R, S} : Set (EuclideanSpace ℝ (Fin 2)))) :
     ∃ k : ℝ, Q -ᵥ R = k • (S -ᵥ R) := by
@@ -38,6 +40,9 @@ lemma vsub_smul_of_mem_pair {R S Q : EuclideanSpace ℝ (Fin 2)}
   obtain ⟨k, hk⟩ := Submodule.mem_span_singleton.mp hmem
   exact ⟨-k, by rw [← hk, neg_smul, ← smul_neg, neg_vsub_eq_vsub_rev]⟩
 
+/--
+@isnad1 id=eq.4h5v.s11.4e0a80b127fe from=translated src=- shape=fa933617 vocab=bf13e312
+-/
 lemma p4_reduction (B C O X Y : EuclideanSpace ℝ (Fin 2))
     (hperp : ⟪O -ᵥ C, B -ᵥ C⟫ = 0)
     (hX : X ∈ affineSpan ℝ ({B, C} : Set (EuclideanSpace ℝ (Fin 2))))
@@ -67,6 +72,9 @@ lemma p4_reduction (B C O X Y : EuclideanSpace ℝ (Fin 2))
     linarith
   exact (sq_eq_sq₀ dist_nonneg dist_nonneg).mp hsq
 
+/--
+@isnad1 id=and.6h6v.s12.933c87d0b752 from=translated src=- shape=648e16c0 vocab=7a8c2e11
+-/
 lemma p4_circumcenter (A B C H F P : EuclideanSpace ℝ (Fin 2))
     (hH1 : ⟪H -ᵥ A, C -ᵥ B⟫ = 0)
     (hH2 : ⟪H -ᵥ B, C -ᵥ A⟫ = 0)
@@ -103,12 +111,18 @@ lemma p4_circumcenter (A B C H F P : EuclideanSpace ℝ (Fin 2))
         inner_add_left, hPperp, hH1, add_zero]
     rw [hmidP, hCm, real_inner_smul_right, hPACB, mul_zero]
 
+/--
+@isnad1 id=eq.1h4v.s10.1c21a72b258c from=translated src=- shape=cafe7c70 vocab=68f7b24b
+-/
 lemma p4_perp (A B C H : EuclideanSpace ℝ (Fin 2))
     (hH1 : ⟪H -ᵥ A, C -ᵥ B⟫ = 0) :
     ⟪Mc A H C -ᵥ C, B -ᵥ C⟫ = 0 := by
   unfold Mc;
   norm_num [ Fin.sum_univ_two, inner ] at * ; linarith
 
+/--
+@isnad1 id=lt.3h3v.s9.f69527aba486 from=translated src=- shape=50ba1f57 vocab=088b87d8
+-/
 lemma angle_lt_pi_div_two_inner_pos (p q r : EuclideanSpace ℝ (Fin 2))
     (hq1 : p ≠ q) (hq2 : r ≠ q) (h : ∠ p q r < Real.pi / 2) :
     0 < ⟪p -ᵥ q, r -ᵥ q⟫ := by
@@ -121,6 +135,9 @@ lemma angle_lt_pi_div_two_inner_pos (p q r : EuclideanSpace ℝ (Fin 2))
     apply mul_pos <;> rw [norm_pos_iff] <;> [exact sub_ne_zero.mpr hq1; exact sub_ne_zero.mpr hq2]
   nlinarith [mul_pos hpos hden, div_mul_cancel₀ (⟪p -ᵥ q, r -ᵥ q⟫) (ne_of_gt hden)]
 
+/--
+@isnad1 id=not.13h8v.s12.ea229e43e7f8 from=translated src=- shape=9c95ffdd vocab=27459291
+-/
 lemma p4_not_collinear (A B C H F P O : EuclideanSpace ℝ (Fin 2)) (r : ℝ)
     (htri : AffineIndependent ℝ ![A, B, C])
     (hacuteA : ∠ B A C < Real.pi / 2)
@@ -221,6 +238,9 @@ lemma p4_not_collinear (A B C H F P O : EuclideanSpace ℝ (Fin 2)) (r : ℝ)
     hAF hAP hFP
   rwa [affineIndependent_iff_not_collinear_set] at hai
 
+/--
+@isnad1 id=linearin.1h3v.s10.3aebedad5c9b from=translated src=- shape=efa1c573 vocab=129fc22e
+-/
 lemma p4_lin_indep (A F P : EuclideanSpace ℝ (Fin 2))
     (h : ¬ Collinear ℝ ({A, F, P} : Set (EuclideanSpace ℝ (Fin 2)))) :
     LinearIndependent ℝ ![A -ᵥ F, A -ᵥ P] := by

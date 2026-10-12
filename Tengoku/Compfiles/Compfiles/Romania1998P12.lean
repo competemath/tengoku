@@ -27,6 +27,9 @@ namespace Romania1998P12
 f(x) = eᵏˣ for some k : ℝ.
 -/
 
+/--
+@isnad1 id=eq.3h3v.s5.87e9383be815 from=translated src=- shape=9e2728cf vocab=ed392dc2
+-/
 lemma extend_function_mono
    (u : ℝ → ℝ)
    (f : ℝ → ℝ)
@@ -99,6 +102,9 @@ lemma extend_function_mono
     have := u_mono h_y_le_z
     linarith
 
+/--
+@isnad1 id=eq.3h3v.s5.d70232454394 from=translated src=- shape=9e2728cf vocab=b93eb4e7
+-/
 lemma extend_function_anti
    (u : ℝ → ℝ)
    (f : ℝ → ℝ)
@@ -171,11 +177,17 @@ lemma extend_function_anti
     linarith
   -- in either case, we end up contradicting u_anti.
 
+/--
+@isnad1 id=ex.0h1v.s4.c7a7e4c3c5a5 from=translated src=- shape=f1995e30 vocab=1183101f
+-/
 lemma int_dichotomy (z : ℤ) : ∃ n : ℕ, (n:ℤ) = z ∨ -(n:ℤ) = z := by
   cases z with
   | ofNat z => use z; left; simp only [Int.ofNat_eq_natCast]
   | negSucc z =>  use z + 1; right; rfl
 
+/--
+@isnad1 id=ex.3h1v.s6.e18df83d447d from=translated src=- shape=735ea7f3 vocab=9ddac133
+-/
 lemma exp_characterization
     (u : ℝ → ℝ)
     (hu : ∀ x y : ℝ, u (x + y) = u x * u y)
@@ -300,14 +312,23 @@ lemma exp_characterization
   · have hau : Antitone u := StrictAnti.antitone hm
     exact extend_function_anti u f hau hfm hf
 
+/--
+@isnad1 id=lt.2h3v.s5.84fca9b9d4c1 from=translated src=- shape=d2d9f0c3 vocab=c1b094fa
+-/
 lemma exp_strict_mono' (k x y : ℝ) (hkp : 0 < k) (h : x < y) :
     Real.exp (k * x) < Real.exp (k * y) :=
   Real.exp_lt_exp.mpr ((mul_lt_mul_iff_right₀ hkp).mpr h)
 
+/--
+@isnad1 id=lt.2h3v.s5.33d71504aa17 from=translated src=- shape=4dd0f114 vocab=c1b094fa
+-/
 lemma exp_strict_anti' (k x y : ℝ) (hkp : k < 0) (h : x < y) :
     Real.exp (k * y) < Real.exp (k * x) :=
   Real.exp_lt_exp.mpr (mul_lt_mul_of_neg_left h hkp)
 
+/--
+@isnad1 id=ex.1h1v.s6.8b2db88ec96e from=translated src=- shape=05607d06 vocab=9ddac133
+-/
 lemma romania1998_p12_mp (u : ℝ → ℝ) :
     (∃ f : ℝ → ℝ, (StrictMono f ∨ StrictAnti f)
         ∧ ∀ x y : ℝ, f (x + y) = f x * u y + f y) →
@@ -443,6 +464,9 @@ lemma romania1998_p12_mp (u : ℝ → ℝ) :
 
   exact exp_characterization u h7 h00 hum
 
+/--
+@isnad1 id=ex.1h1v.s6.52a940d4b436 from=translated src=- shape=92d2c6e4 vocab=9ddac133
+-/
 lemma romania1998_p12_mpr (u : ℝ → ℝ) :
  (∃ k : ℝ, ∀ x : ℝ, u x = Real.exp (k * x)) →
     (∃ f : ℝ → ℝ, (StrictMono f ∨ StrictAnti f)

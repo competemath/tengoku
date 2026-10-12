@@ -31,7 +31,9 @@ noncomputable def tableWeight {X Z : Type*} [Fintype X] [DecidableEq Z]
   if tableCount parent z = 0 then 1 / 2 else
     (tableCount (fun x => (parent x, key x)) (z, b) : ℝ) / tableCount parent z
 
-/-- Every observed outcome occurs at least once. -/
+/-- Every observed outcome occurs at least once.
+@isnad1 id=lt.0h4v.s5.add69c89fab0 from=translated src=- shape=7d234bc5 vocab=ed54637e
+-/
 theorem tableCount_pos {X Y : Type*} [Fintype X] [DecidableEq Y]
     (key : X → Y) (x : X) : 0 < tableCount key (key x) := by
   exact Finset.card_pos.mpr ⟨x, by simp⟩
@@ -44,14 +46,18 @@ private theorem tableCount_pair_sum {X Z : Type*} [Fintype X] [DecidableEq Z]
     (s := Finset.univ.filter fun x => parent x = z) (p := fun x => key x = true)
   simpa only [tableCount, Finset.filter_filter, Prod.mk.injEq, Bool.not_eq_true] using h
 
-/-- Every conditional weight is nonnegative. -/
+/-- Every conditional weight is nonnegative.
+@isnad1 id=le.0h6v.s5.cb896c98a97e from=translated src=- shape=44e3554a vocab=2957dd95
+-/
 theorem tableWeight_nonneg {X Z : Type*} [Fintype X] [DecidableEq Z]
     (key : X → Bool) (parent : X → Z) (z : Z) (b : Bool) :
     0 ≤ tableWeight key parent z b := by
   unfold tableWeight
   split_ifs <;> positivity
 
-/-- The empirical bit kernel is normalized, including at impossible parent values. -/
+/-- The empirical bit kernel is normalized, including at impossible parent values.
+@isnad1 id=eq.0h5v.s5.b3456934fecf from=translated src=- shape=4d0cebcc vocab=f729524b
+-/
 theorem sum_tableWeight {X Z : Type*} [Fintype X] [DecidableEq Z]
     (key : X → Bool) (parent : X → Z) (z : Z) :
     ∑ b, tableWeight key parent z b = 1 := by
@@ -62,7 +68,9 @@ theorem sum_tableWeight {X Z : Type*} [Fintype X] [DecidableEq Z]
     rw [← add_div, ← Nat.cast_add, tableCount_pair_sum]
     exact div_self (by exact_mod_cast hz)
 
-/-- Empirical weights are positive on all actual source points. -/
+/-- Empirical weights are positive on all actual source points.
+@isnad1 id=lt.0h5v.s5.b47823db9cb6 from=translated src=- shape=210e7a42 vocab=63f0c06c
+-/
 theorem tableWeight_pos {X Z : Type*} [Fintype X] [DecidableEq Z]
     (key : X → Bool) (parent : X → Z) (x : X) :
     0 < tableWeight key parent (parent x) (key x) := by

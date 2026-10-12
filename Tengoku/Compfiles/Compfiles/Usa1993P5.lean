@@ -38,13 +38,17 @@ ratios `x (j + 1) / x j` are nonincreasing in `j`. It follows that
 `x 0 + x n ≥ 2 * √(x 0 * x n)`, the claim follows by pure algebra.
 -/
 
-/-- Two-variable AM–GM. -/
+/-- Two-variable AM–GM.
+@isnad1 id=le.2h2v.s5.ccc3c14cd806 from=translated src=- shape=4b1a4a3d vocab=101a96c3
+-/
 theorem two_mul_sqrt_le_add {u v : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v) :
     2 * Real.sqrt (u * v) ≤ u + v := by
   rw [Real.sqrt_mul hu]
   nlinarith [Real.sq_sqrt hu, Real.sq_sqrt hv, sq_nonneg (Real.sqrt u - Real.sqrt v)]
 
-/-- The consecutive ratios are nonincreasing. -/
+/-- The consecutive ratios are nonincreasing.
+@isnad1 id=antitone.2h1v.s6.e497d7a33110 from=translated src=- shape=64bee2c2 vocab=8ebb5a6f
+-/
 theorem ratio_antitone (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     (h : ∀ n, x n * x (n + 2) ≤ x (n + 1) ^ 2) :
     Antitone (fun j ↦ x (j + 1) / x j) := by
@@ -57,7 +61,9 @@ theorem ratio_antitone (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
   rw [mul_comm (x (j + 2)) (x j)]
   exact h2
 
-/-- Moving two indices apart weakly decreases the product. -/
+/-- Moving two indices apart weakly decreases the product.
+@isnad1 id=le.4h3v.s7.ea4a93ad212e from=translated src=- shape=c319af3d vocab=d8e6b3e9
+-/
 theorem prod_le_of_le (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     (h : ∀ n, x n * x (n + 2) ≤ x (n + 1) ^ 2)
     {a b : ℕ} (ha : 1 ≤ a) (hab : a ≤ b) :
@@ -69,7 +75,9 @@ theorem prod_le_of_le (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
   rw [mul_comm (x (b + 1)) (x (a - 1))] at hr
   exact hr
 
-/-- Symmetric products: `x 0 * x n ≤ x i * x (n - i)`. -/
+/-- Symmetric products: `x 0 * x n ≤ x i * x (n - i)`.
+@isnad1 id=le.3h3v.s7.bf0c8e2a93ed from=translated src=- shape=2e80f07b vocab=d8e6b3e9
+-/
 theorem x0_mul_xn_le (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     (h : ∀ n, x n * x (n + 2) ≤ x (n + 1) ^ 2) :
     ∀ {i n : ℕ}, 2 * i ≤ n → x 0 * x n ≤ x i * x (n - i) := by
@@ -84,7 +92,9 @@ theorem x0_mul_xn_le (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     rw [show n - (i + 1) = n - i - 1 by lia]
     exact le_trans IH step
 
-/-- Each paired sum `x i + x (n - i)` is at least `2 * √(x 0 * x n)`. -/
+/-- Each paired sum `x i + x (n - i)` is at least `2 * √(x 0 * x n)`.
+@isnad1 id=le.3h3v.s7.feed902ed569 from=translated src=- shape=77aaabe8 vocab=f3eb3156
+-/
 theorem pair_ge (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     (h : ∀ n, x n * x (n + 2) ≤ x (n + 1) ^ 2)
     {i n : ℕ} (hi : i ≤ n) :
@@ -101,7 +111,9 @@ theorem pair_ge (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     two_mul_sqrt_le_add (hx i).le (hx (n - i)).le
   linarith
 
-/-- The key estimate: `k ≥ (n - 1) * √(x 0 * x n)`, in doubled form. -/
+/-- The key estimate: `k ≥ (n - 1) * √(x 0 * x n)`, in doubled form.
+@isnad1 id=le.3h2v.s7.d6b79aa5f31a from=translated src=- shape=3d80fe8a vocab=9ed4a7ef
+-/
 theorem sum_pair_ge (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     (h : ∀ n, x n * x (n + 2) ≤ x (n + 1) ^ 2)
     {n : ℕ} (hn : 2 ≤ n) :
@@ -128,14 +140,18 @@ theorem sum_pair_ge (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
         rw [Finset.sum_add_distrib, h2sum]
         ring
 
-/-- Peeling off the first and last terms of a range sum. -/
+/-- Peeling off the first and last terms of a range sum.
+@isnad1 id=eq.0h2v.s6.43f7074194d1 from=translated src=- shape=ae66d92f vocab=7d054bb8
+-/
 theorem sum_decomp (x : ℕ → ℝ) (m : ℕ) :
     ∑ i ∈ Finset.range (m + 2), x i =
       x 0 + (∑ i ∈ Finset.range m, x (i + 1)) + x (m + 1) := by
   rw [(rfl : m + 2 = m + 1 + 1), Finset.sum_range_succ', Finset.sum_range_succ]
   ring
 
-/-- The algebraic heart of the proof. -/
+/-- The algebraic heart of the proof.
+@isnad1 id=le.3h4v.s7.8cecc9349e92 from=translated src=- shape=678291ab vocab=762a6581
+-/
 theorem final_algebra {N k x0 xn : ℝ} (hN : 2 ≤ N) (hN1 : 0 < N - 1)
     (hkey : (N ^ 2 - 1) * (x0 * xn) ≤ k * (k + x0 + xn)) :
     (x0 + k) / N * ((k + xn) / N) ≤ (x0 + k + xn) / (N + 1) * (k / (N - 1)) := by
@@ -145,7 +161,9 @@ theorem final_algebra {N k x0 xn : ℝ} (hN : 2 ≤ N) (hN1 : 0 < N - 1)
     div_le_div_iff₀ (mul_pos hN0 hN0) (mul_pos hN10 hN1)]
   nlinarith [hkey]
 
-/-- The inequality `k * (k + x 0 + x n) ≥ (n ^ 2 - 1) * x 0 * x n`. -/
+/-- The inequality `k * (k + x 0 + x n) ≥ (n ^ 2 - 1) * x 0 * x n`.
+@isnad1 id=le.3h2v.s8.6435bbc13e64 from=translated src=- shape=178626e0 vocab=12d102ed
+-/
 theorem key_ineq (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
     (h : ∀ n, x n * x (n + 2) ≤ x (n + 1) ^ 2)
     {n : ℕ} (hn : 2 ≤ n) :

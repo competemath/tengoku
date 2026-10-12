@@ -19,8 +19,14 @@ number divisible by 5ⁿ, all of whose digits are odd.
 
 namespace Usa2003P1
 
+/--
+@isnad1 id=ex.0h1v.s5.98431b5cfebd from=translated src=- shape=19ecf527 vocab=8c0d3764
+-/
 lemma nat_mod_inv (a : ℕ) : ∃ b, (a + b) % 5 = 0 := ⟨5 - (a % 5), by lia⟩
 
+/--
+@isnad1 id=ex.2h3v.s5.bdfcfb338b33 from=translated src=- shape=f7cd36ab vocab=355452f3
+-/
 lemma lemma2 (a b c : ℕ) (hb : 0 < b) (h : Nat.Coprime a b) : ∃ k, k < b ∧ a * k ≡ c [MOD b] := by
   let ⟨N, HN1, HN2⟩ := Nat.chineseRemainder h 0 c
   have ⟨x, hx⟩ : a ∣ N := Nat.modEq_zero_iff_dvd.mp HN1

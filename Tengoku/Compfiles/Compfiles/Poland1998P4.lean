@@ -30,6 +30,9 @@ def a : ℕ → ℕ
     have _ : (n.succ / 2) < n.succ := Nat.div_lt_self' n 0
     a n + a (n.succ / 2)
 
+/--
+@isnad1 id=eq.1h1v.s5.6b940252a740 from=translated src=- shape=c1a587fd vocab=8fb2eeca
+-/
 lemma a_recurrence (n : ℕ) (hn : 2 ≤ n) : a n = a (n - 1) + a (n / 2) := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 2 := ⟨n - 2, by lia⟩
   simp only [a]
@@ -37,9 +40,15 @@ lemma a_recurrence (n : ℕ) (hn : 2 ≤ n) : a n = a (n - 1) + a (n / 2) := by
 
 def a' (n : ℕ) : ZMod 7 := (a n : ZMod 7)
 
+/--
+@isnad1 id=eq.1h1v.s6.b66683fc2272 from=translated src=- shape=c8e5f71f vocab=522fde81
+-/
 lemma a'_recurrence (n : ℕ) (hn : 2 ≤ n) : a' n = a' (n - 1) + a' (n / 2) := by
   simp [a', a_recurrence n hn]
 
+/--
+@isnad1 id=ex.2h2v.s8.09057034d417 from=translated src=- shape=713b231c vocab=2abc8ebb
+-/
 lemma lemma3
     (N0 : ℕ)
     (k : ZMod 7)
@@ -52,6 +61,9 @@ lemma lemma3
   field_simp
   ring
 
+/--
+@isnad1 id=ex.1h1v.s7.db8959d1b874 from=translated src=- shape=af32989e vocab=48d155db
+-/
 lemma can_get_a_later_one_zmod :
     (∀ N : ℕ, a' N = 0 → (∃ M : ℕ, N < M ∧ a' M = 0)) := by
   intro n hn
@@ -98,12 +110,18 @@ lemma can_get_a_later_one_zmod :
   · obtain ⟨i, _, hia'⟩ := lemma3 (4 * m + 1) (a' (2 * m + 1)) hanez hik
     exact ⟨4 * m + 1 + i, by lia, hia'⟩
 
+/--
+@isnad1 id=ex.1h1v.s5.135c0cec5dca from=translated src=- shape=4533a87f vocab=340c093e
+-/
 lemma can_get_a_later_one : (∀ N : ℕ, 7 ∣ a N → (∃ M : ℕ, N < M ∧ 7 ∣ a M)) := by
   intro n hn
   obtain ⟨m, hmgt, hm7⟩ :=
     can_get_a_later_one_zmod n ((ZMod.natCast_eq_zero_iff _ _).mpr hn)
   exact ⟨m, hmgt, (ZMod.natCast_eq_zero_iff _ _).mp hm7⟩
 
+/--
+@isnad1 id=ex.2h2v.s5.4988b023d5ed from=translated src=- shape=c5e442a0 vocab=7f9bb019
+-/
 lemma strengthen
     {P : ℕ → Prop}
     (h : ∀ N : ℕ, P N → (∃ M : ℕ, N < M ∧ P M))
@@ -118,6 +136,9 @@ lemma strengthen
     obtain ⟨M, left, right⟩ := h m hmp
     exact ⟨M, by lia, right⟩
 
+/--
+@isnad1 id=ex.0h1v.s4.3f7509443580 from=translated src=- shape=37b97594 vocab=340c093e
+-/
 theorem poland1998_p4' : (∀ N : ℕ, ∃ M : ℕ, N < M ∧ 7 ∣ a M) := by
   have he : 7 ∣ a 5 := by simp [a]
   exact strengthen can_get_a_later_one ⟨5, he⟩

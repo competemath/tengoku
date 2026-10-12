@@ -27,9 +27,15 @@ def UniqueRepresentationSet (X : Set ℤ) : Prop :=
 def negFourValue {b : ℕ} (digits : List (Fin b)) : ℤ :=
   Nat.ofDigits (-4 : ℤ) (digits.map fun d ↦ d.val)
 
+/--
+@isnad1 id=eq.0h1v.s3.017806f68ac7 from=translated src=- shape=4e9d1ce2 vocab=1537a09c
+-/
 @[simp]
 lemma negFourValue_nil {b : ℕ} : negFourValue ([] : List (Fin b)) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.976cb13e1579 from=translated src=- shape=69b21ac2 vocab=eab0e6f1
+-/
 @[simp]
 lemma negFourValue_cons {b : ℕ} (d : Fin b) (digits : List (Fin b)) :
     negFourValue (d :: digits) = d.val + (-4) * negFourValue digits := rfl
@@ -47,12 +53,18 @@ def highBit (d : Fin 4) : Fin 2 :=
   | 1 => 0
   | _ => 1
 
+/--
+@isnad1 id=eq.0h1v.s5.24f55ab82579 from=translated src=- shape=a2ff9d1c vocab=5115204c
+-/
 lemma lowBit_add_two_mul_highBit (d : Fin 4) :
     (d.val : ℤ) = (lowBit d).val + 2 * (highBit d).val := by
   obtain ⟨d, hd⟩ := d
   have : d = 0 ∨ d = 1 ∨ d = 2 ∨ d = 3 := by lia
   rcases this with rfl | rfl | rfl | rfl <;> rfl
 
+/--
+@isnad1 id=lt.2h1v.s5.24e0685870ed from=translated src=- shape=04cf2cf6 vocab=5e72ac41
+-/
 lemma negFourQuotient_natAbs_lt (n : ℤ) (hn₀ : n ≠ 0) (hn₁ : n ≠ -1) :
     (n / (-4)).natAbs < n.natAbs := by
   have hrem0 : 0 ≤ n % (-4) := Int.emod_nonneg n (by decide)
@@ -77,6 +89,9 @@ lemma negFourQuotient_natAbs_lt (n : ℤ) (hn₀ : n ≠ 0) (hn₁ : n ≠ -1) :
     have hcast : ((n / (-4)).natAbs : ℤ) < (n.natAbs : ℤ) := by lia
     exact Int.ofNat_lt.mp hcast
 
+/--
+@isnad1 id=ex.0h1v.s4.cb9e701478eb from=translated src=- shape=8da42772 vocab=e6135529
+-/
 lemma exists_negFourExpansion (n : ℤ) :
     ∃ digits : List (Fin 4), negFourValue digits = n := by
   refine (measure Int.natAbs).wf.induction
@@ -99,6 +114,9 @@ lemma exists_negFourExpansion (n : ℤ) :
       change ((x % (-4)).toNat : ℤ) + (-4) * negFourValue digits = x
       rw [hdigits, Int.toNat_of_nonneg hrem0, Int.emod_add_mul_ediv]
 
+/--
+@isnad1 id=eq.0h1v.s6.c4a35ab57734 from=translated src=- shape=4bc2dd67 vocab=dcd41068
+-/
 lemma negFourValue_split (digits : List (Fin 4)) :
     negFourValue digits =
       negFourValue (digits.map lowBit) + 2 * negFourValue (digits.map highBit) := by
@@ -113,10 +131,16 @@ def headBit : List (Fin 2) → Fin 2
   | [] => 0
   | d :: _ => d
 
+/--
+@isnad1 id=eq.0h1v.s6.4de4a97e5f23 from=translated src=- shape=f43732ca vocab=3dd350a3
+-/
 lemma negFourValue_eq_headBit_add_tail (digits : List (Fin 2)) :
     negFourValue digits = headBit digits + (-4) * negFourValue digits.tail := by
   cases digits <;> rfl
 
+/--
+@isnad1 id=and.2h5v.s7.564ba3fa97bb from=translated src=- shape=5c992cec vocab=c347111c
+-/
 lemma binary_pair_unique_aux (n : ℕ) (as bs cs ds : List (Fin 2))
     (hlen : as.length + bs.length + cs.length + ds.length ≤ n)
     (h : negFourValue as + 2 * negFourValue bs =
@@ -156,6 +180,9 @@ lemma binary_pair_unique_aux (n : ℕ) (as bs cs ds : List (Fin 2))
     · rw [negFourValue_eq_headBit_add_tail bs, negFourValue_eq_headBit_add_tail ds,
         hbd, hbdTail]
 
+/--
+@isnad1 id=and.1h4v.s7.23f7bb6a47ca from=translated src=- shape=e672ada2 vocab=316e0030
+-/
 lemma binary_pair_unique (as bs cs ds : List (Fin 2))
     (h : negFourValue as + 2 * negFourValue bs =
       negFourValue cs + 2 * negFourValue ds) :

@@ -33,6 +33,9 @@ namespace Algebraic.Tensor3.Internal
 
 open Finset Matrix
 
+/--
+@isnad1 id=eq.1h2v.s5.1d50287ba02a from=translated src=- shape=bd18e4eb vocab=3f01e386
+-/
 theorem sum_sum_eq_zero_of_antisymm {ι : Type*} [Fintype ι] (g : ι → ι → ℂ)
     (h : ∀ i i', g i i' = -g i' i) : ∑ i, ∑ i', g i i' = 0 := by
   have hS : ∑ i, ∑ i', g i i' = -∑ i, ∑ i', g i i' := by
@@ -45,6 +48,9 @@ variable {α β γ : Type*} [LinearOrder α]
 
 section Wedge
 
+/--
+@isnad1 id=eq.1h4v.s7.ac6b7c5b0932 from=translated src=- shape=5eef1057 vocab=b10ae2ce
+-/
 theorem card_filter_insert_lt {i i' : α} {K : Finset α} (hi' : i' ∉ K) :
     ((insert i' K).filter (· < i)).card = (K.filter (· < i)).card + if i' < i then 1 else 0 := by
   rw [Finset.filter_insert]
@@ -52,7 +58,9 @@ theorem card_filter_insert_lt {i i' : α} {K : Finset α} (hi' : i' ∉ K) :
   · rw [card_insert_of_notMem (by simp [hi'])]
   · simp
 
-/-- The contributions of `(i, i')` and `(i', i)` to `u ∧ u ∧ e_K` cancel. -/
+/-- The contributions of `(i, i')` and `(i', i)` to `u ∧ u ∧ e_K` cancel.
+@isnad1 id=eq.0h5v.s6.5a2883be38f4 from=translated src=- shape=66a0ffee vocab=954594ef
+-/
 theorem wedgeCoeff_pair_antisymm (J K : Finset α) (i i' : α) :
     wedgeCoeff J (insert i' K) i * wedgeCoeff (insert i' K) K i' =
       -(wedgeCoeff J (insert i K) i' * wedgeCoeff (insert i K) K i) := by
@@ -72,6 +80,9 @@ theorem wedgeCoeff_pair_antisymm (J K : Finset α) (i i' : α) :
     rcases lt_or_gt_of_ne hii with h | h <;> simp [h, not_lt_of_gt h, pow_succ] <;> ring
   · simp
 
+/--
+@isnad1 id=eq.1h6v.s8.4b1b49f48106 from=translated src=- shape=60065d76 vocab=842b44e3
+-/
 theorem sum_wedgeCoeff_mul [Fintype α] {p : ℕ} (J : Finset α) {K : Finset α} (hK : K.card = p)
     (i i' : α) :
     ∑ I : {I : Finset α // I.card = p + 1}, wedgeCoeff J I.1 i * wedgeCoeff I.1 K i' =
@@ -83,6 +94,9 @@ theorem sum_wedgeCoeff_mul [Fintype α] {p : ℕ} (J : Finset α) {K : Finset α
     have : insert i' K ≠ I.1 := fun e => hI (Subtype.ext e.symm)
     simp [wedgeCoeff, this]
 
+/--
+@isnad1 id=eq.1h4v.s5.5af9d09119b8 from=translated src=- shape=75b8c338 vocab=a308f10f
+-/
 theorem wedgeCoeff_insert_ne {i₀ i : α} {I : Finset α} (hne : i ≠ i₀) :
     wedgeCoeff (insert i₀ I) I i = 0 := by
   unfold wedgeCoeff
@@ -94,6 +108,9 @@ theorem wedgeCoeff_insert_ne {i₀ i : α} {I : Finset α} (hne : i ≠ i₀) :
     · exact absurd h hi
   · rfl
 
+/--
+@isnad1 id=eq.3h5v.s6.e2551ac5a9c6 from=translated src=- shape=0f2dd854 vocab=6ede8451
+-/
 theorem wedgeCoeff_insert_of_ne {i₀ i : α} {I I' : Finset α} (hi₀ : i₀ ∉ I) (hi₀' : i₀ ∉ I')
     (hne : I ≠ I') : wedgeCoeff (insert i₀ I) I' i = 0 := by
   unfold wedgeCoeff
@@ -108,7 +125,9 @@ theorem wedgeCoeff_insert_of_ne {i₀ i : α} {I I' : Finset α} (hi₀ : i₀ �
 
 variable [Fintype α]
 
-/-- `u ∧ u ∧ X = 0`. -/
+/-- `u ∧ u ∧ X = 0`.
+@isnad1 id=eq.0h3v.s9.3c7f24122876 from=translated src=- shape=7ae92f6d vocab=dd1f3ba1
+-/
 theorem wedgeMatrix_mul_wedgeMatrix (p : ℕ) (u : α → ℂ) :
     wedgeMatrix (p + 1) u * wedgeMatrix p u = 0 := by
   ext J K
@@ -132,7 +151,9 @@ theorem wedgeMatrix_mul_wedgeMatrix (p : ℕ) (u : α → ℂ) :
         rw [wedgeCoeff_pair_antisymm]
         ring
 
-/-- If `u i₀ ≠ 0`, then `u ∧ ·` has rank at least `(n - 1).choose p` on `Λ^p`. -/
+/-- If `u i₀ ≠ 0`, then `u ∧ ·` has rank at least `(n - 1).choose p` on `Λ^p`.
+@isnad1 id=le.1h4v.s6.c4b8481495f7 from=translated src=- shape=090266ef vocab=44ae2d22
+-/
 theorem le_rank_wedgeMatrix (p : ℕ) {u : α → ℂ} {i₀ : α} (h : u i₀ ≠ 0) :
     (Fintype.card α - 1).choose p ≤ (wedgeMatrix p u).rank := by
   classical
@@ -164,7 +185,9 @@ theorem le_rank_wedgeMatrix (p : ℕ) {u : α → ℂ} {i₀ : α} (h : u i₀ �
   rwa [Fintype.card_coe, hSdef, card_powersetCard, card_erase_of_mem (mem_univ _), card_univ]
     at this
 
-/-- `u ∧ ·` has rank at most `(n - 1).choose p` on `Λ^p`. -/
+/-- `u ∧ ·` has rank at most `(n - 1).choose p` on `Λ^p`.
+@isnad1 id=le.0h3v.s6.1768882c639f from=translated src=- shape=cb183fc9 vocab=44ae2d22
+-/
 theorem rank_wedgeMatrix_le (p : ℕ) (u : α → ℂ) :
     (wedgeMatrix p u).rank ≤ (Fintype.card α - 1).choose p := by
   by_cases hu : ∃ i, u i ≠ 0
@@ -197,21 +220,33 @@ section Flattening
 
 variable [Fintype α]
 
+/--
+@isnad1 id=eq.0h7v.s7.2caa9e8a3151 from=translated src=- shape=9533c215 vocab=51dbdd6a
+-/
 theorem koszulFlattening_degree_zero_apply (T : Tensor3 α β γ) (i : α) (j : β) (k : γ) :
     koszulFlattening 0 T (⟨{i}, Finset.card_singleton i⟩, k) (⟨∅, Finset.card_empty⟩, j) =
       T i j k := by
   simp [koszulFlattening, wedgeMatrix, wedgeCoeff]
 
+/--
+@isnad1 id=eq.0h6v.s8.9f0cb4691585 from=translated src=- shape=ca3dbb79 vocab=3c6b01fb
+-/
 theorem koszulFlattening_add (p : ℕ) (S T : Tensor3 α β γ) :
     koszulFlattening p (S + T) = koszulFlattening p S + koszulFlattening p T := by
   ext Jk Ij
   simp [koszulFlattening, wedgeMatrix, mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s7.9a9f3ebb79cb from=translated src=- shape=18888701 vocab=3c6b01fb
+-/
 theorem koszulFlattening_zero (p : ℕ) :
     koszulFlattening p (0 : Tensor3 α β γ) = 0 := by
   ext Jk Ij
   simp [koszulFlattening, wedgeMatrix]
 
+/--
+@isnad1 id=eq.0h6v.s8.14d6a8ba9fed from=translated src=- shape=e86fad27 vocab=365034d4
+-/
 theorem koszulFlattening_smul (p : ℕ) (c : ℂ) (T : Tensor3 α β γ) :
     koszulFlattening p (c • T) = c • koszulFlattening p T := by
   ext Jk Ij
@@ -219,6 +254,9 @@ theorem koszulFlattening_smul (p : ℕ) (c : ℂ) (T : Tensor3 α β γ) :
     smul_eq_mul, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => by ring
 
+/--
+@isnad1 id=eq.0h7v.s7.b6fb83b02f19 from=translated src=- shape=79b7dada vocab=a4c83c43
+-/
 theorem koszulFlattening_finset_sum (p : ℕ) {ι : Type*} (s : Finset ι)
     (T : ι → Tensor3 α β γ) :
     koszulFlattening p (∑ x ∈ s, T x) = ∑ x ∈ s, koszulFlattening p (T x) := by
@@ -227,6 +265,9 @@ theorem koszulFlattening_finset_sum (p : ℕ) {ι : Type*} (s : Finset ι)
   | empty => simpa using koszulFlattening_zero (β := β) (γ := γ) p
   | insert a s ha ih => rw [sum_insert ha, sum_insert ha, koszulFlattening_add, ih]
 
+/--
+@isnad1 id=continuo.0h4v.s7.9dd478dc0af9 from=translated src=- shape=211ce032 vocab=afca146e
+-/
 theorem continuous_koszulFlattening (p : ℕ) :
     Continuous (koszulFlattening p : Tensor3 α β γ → Matrix _ _ ℂ) := by
   apply continuous_matrix
@@ -235,7 +276,9 @@ theorem continuous_koszulFlattening (p : ℕ) :
   fun_prop
 
 /-- The Koszul flattening of `u ⊗ v ⊗ w` is `(u ∧ ·) ⊗ w vᵀ`, factored through
-`wedgeMatrix p u`. -/
+`wedgeMatrix p u`.
+@isnad1 id=eq.0h7v.s10.106811f3e624 from=translated src=- shape=9e615063 vocab=4c4d7422
+-/
 theorem koszulFlattening_outer (p : ℕ) (u : α → ℂ) (v : β → ℂ) (w : γ → ℂ) :
     koszulFlattening p (outer u v w) =
       (of fun (Jk : {J : Finset α // J.card = p + 1} × γ) J => if Jk.1 = J then w Jk.2 else 0) *
@@ -248,13 +291,18 @@ theorem koszulFlattening_outer (p : ℕ) (u : α → ℂ) (v : β → ℂ) (w : 
   rw [Finset.mul_sum, Finset.sum_mul]
   exact Finset.sum_congr rfl fun i _ => by ring
 
-/-- The Koszul flattening of an outer product has rank at most `(card α - 1).choose p`. -/
+/-- The Koszul flattening of an outer product has rank at most `(card α - 1).choose p`.
+@isnad1 id=le.0h7v.s7.7fc06800ecb1 from=translated src=- shape=7761a11d vocab=0c7accfb
+-/
 theorem rank_koszulFlattening_outer_le [Fintype β] (p : ℕ) (u : α → ℂ) (v : β → ℂ)
     (w : γ → ℂ) :
     (koszulFlattening p (outer u v w)).rank ≤ (Fintype.card α - 1).choose p := by
   rw [koszulFlattening_outer]
   exact (rank_mul_le_left _ _).trans ((rank_mul_le_right _ _).trans (rank_wedgeMatrix_le p u))
 
+/--
+@isnad1 id=le.1h6v.s7.87bda7e39d15 from=translated src=- shape=0b6cb847 vocab=2958ba87
+-/
 theorem rank_koszulFlattening_le_of_rankLE [Fintype β] (p : ℕ) {T : Tensor3 α β γ} {r : ℕ}
     (h : T.RankLE r) :
     (koszulFlattening p T).rank ≤ r * (Fintype.card α - 1).choose p := by
@@ -266,6 +314,9 @@ theorem rank_koszulFlattening_le_of_rankLE [Fintype β] (p : ℕ) {T : Tensor3 �
         Finset.sum_le_sum fun s _ => rank_koszulFlattening_outer_le p _ _ _
     _ = r * (Fintype.card α - 1).choose p := by simp
 
+/--
+@isnad1 id=le.1h6v.s7.4bcb6f960384 from=translated src=- shape=957682d1 vocab=fa4b0536
+-/
 theorem rank_koszulFlattening_le_of_borderRankLE [Fintype β] [Fintype γ] (p : ℕ)
     {T : Tensor3 α β γ} {r : ℕ} (h : T.BorderRankLE r) :
     (koszulFlattening p T).rank ≤ r * (Fintype.card α - 1).choose p := by

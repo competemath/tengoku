@@ -46,16 +46,23 @@ def arcDist (x y : ZMod 432) : ℕ := min (x - y).val (y - x).val
 -- red-green, red-blue and red-yellow incidences over all non-identity
 -- rotations and apply the pigeonhole principle three times.
 
-/-- Arc distance is invariant under rotations. -/
+/-- Arc distance is invariant under rotations.
+@isnad1 id=eq.0h3v.s7.699a035015bf from=translated src=- shape=276dc1c9 vocab=267ef8e3
+-/
 lemma arcDist_add (x y t : ZMod 432) : arcDist (x + t) (y + t) = arcDist x y := by
   unfold arcDist
   rw [show (x + t) - (y + t) = x - y by abel, show (y + t) - (x + t) = y - x by abel]
 
+/--
+@isnad1 id=iff.0h3v.s7.829ac8cdddd1 from=translated src=- shape=7846756d vocab=ab3b5204
+-/
 lemma mem_filter_color {color : ZMod 432 → Fin 4} {i : Fin 4} {x : ZMod 432} :
     x ∈ Finset.univ.filter (fun y => color y = i) ↔ color x = i := by
   simp
 
-/-- Different color classes are disjoint. -/
+/-- Different color classes are disjoint.
+@isnad1 id=disjoint.1h3v.s7.9adc7773221c from=translated src=- shape=729052d0 vocab=012beb03
+-/
 lemma disjoint_color {color : ZMod 432 → Fin 4} {i j : Fin 4} (hij : i ≠ j) :
     Disjoint (Finset.univ.filter fun x => color x = i)
       (Finset.univ.filter fun x => color x = j) := by
@@ -69,7 +76,9 @@ point of `S` onto a point of `C`, and that `(432 - #avoid) * k < #S * #C`.
 Each of the `#S * #C` pairs `(x, c) ∈ S × C` determines a unique rotation
 sending `x` to `c`, and this rotation lies outside `avoid`; averaging over the
 `432 - #avoid` allowed rotations, some rotation moves more than `k` points of
-`S` onto `C`. -/
+`S` onto `C`.
+@isnad1 id=ex.2h4v.s9.bec811bb1497 from=translated src=- shape=4567102a vocab=b0772fc9
+-/
 lemma exists_rotation {S C avoid : Finset (ZMod 432)} {k : ℕ}
     (havoid : ∀ x ∈ S, ∀ t ∈ avoid, x + t ∉ C)
     (hcard : (432 - avoid.card) * k < S.card * C.card) :

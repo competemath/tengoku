@@ -47,32 +47,71 @@ def mate (c : Cell) : Cell :=
   else if c.1 = 1 then (0, colMate c.2)
   else c
 
+/--
+@isnad1 id=eq.0h1v.s4.34fa45c86a54 from=translated src=- shape=848cd2ae vocab=c0da0968
+-/
 lemma colMate_colMate : ∀ j : Fin 6, colMate (colMate j) = j := by decide
 
+/--
+@isnad1 id=eq.0h1v.s4.5ab7f8b28b51 from=translated src=- shape=f5c4faff vocab=d818f529
+-/
 lemma colMate_dist : ∀ j : Fin 6, Nat.dist (colMate j).1 j.1 = 3 := by decide
 
+/--
+@isnad1 id=eq.0h1v.s3.d9d6aa02e564 from=translated src=- shape=47dcad53 vocab=0346143d
+-/
 lemma mate_mate : ∀ c : Cell, mate (mate c) = c := by decide
 
+/--
+@isnad1 id=ne.1h1v.s5.34a5a7ec3208 from=translated src=- shape=47c07763 vocab=d5717afa
+-/
 lemma mate_ne : ∀ c : Cell, c.1.1 ≤ 1 → mate c ≠ c := by decide
 
+/--
+@isnad1 id=le.1h1v.s5.fd870f818a37 from=translated src=- shape=413f13ea vocab=d5717afa
+-/
 lemma mate_val_le : ∀ c : Cell, c.1.1 ≤ 1 → (mate c).1.1 ≤ 1 := by decide
 
+/--
+@isnad1 id=eq.1h1v.s5.bbc79f75cd51 from=translated src=- shape=413f13ea vocab=c90935ae
+-/
 lemma mate_val_eq_of0 : ∀ c : Cell, c.1.1 = 0 → (mate c).1.1 = 1 := by decide
 
+/--
+@isnad1 id=eq.1h1v.s5.40934a48ee63 from=translated src=- shape=413f13ea vocab=c90935ae
+-/
 lemma mate_val_eq_of1 : ∀ c : Cell, c.1.1 = 1 → (mate c).1.1 = 0 := by decide
 
+/--
+@isnad1 id=eq.1h1v.s5.9dead82f6cc5 from=translated src=- shape=211ff0cd vocab=d5717afa
+-/
 lemma mate_of_ge2 : ∀ c : Cell, 2 ≤ c.1.1 → mate c = c := by decide
 
+/--
+@isnad1 id=eq.1h1v.s6.520d455179d3 from=translated src=- shape=11a235a9 vocab=fd5aeb76
+-/
 lemma mate_snd_dist : ∀ c : Cell, c.1.1 ≤ 1 → Nat.dist c.2.1 (mate c).2.1 = 3 := by decide
 
+/--
+@isnad1 id=iff.2h2v.s7.09123724c7b4 from=translated src=- shape=c9bb7c99 vocab=d5717afa
+-/
 lemma mate_fst_ne_iff : ∀ c x : Cell, c.1.1 ≤ 1 → x.1.1 ≤ 1 →
     (c.1 ≠ x.1 ↔ c.1 = (mate x).1) := by decide
 
+/--
+@isnad1 id=iff.2h2v.s7.64affac039b7 from=translated src=- shape=1bf56697 vocab=d5717afa
+-/
 lemma mate_fst_eq_iff : ∀ c x : Cell, c.1.1 ≤ 1 → x.1.1 ≤ 1 →
     ((mate c).1 = x.1 ↔ c.1 = (mate x).1) := by decide
 
+/--
+@isnad1 id=ne.1h1v.s6.822f8222e1d8 from=translated src=- shape=653ad162 vocab=d5717afa
+-/
 lemma mate_fst_ne_self : ∀ c : Cell, c.1.1 ≤ 1 → (mate c).1 ≠ c.1 := by decide
 
+/--
+@isnad1 id=injectiv.0h0v.s2.17fb81e081b4 from=translated src=- shape=e3d48bcb vocab=1b654227
+-/
 lemma mate_inj : Function.Injective mate := fun c d h => by
   have h1 := congrArg mate h
   rw [mate_mate, mate_mate] at h1
@@ -90,14 +129,18 @@ def AliceWins (f : Cell → ℚ) : Prop :=
   ∃ c d : Cell, c.1.1 = 0 ∧ d.1.1 = 5 ∧ IsBlack f c ∧ IsBlack f d ∧
     Relation.ReflTransGen (fun x y => Adj x y ∧ IsBlack f x ∧ IsBlack f y) c d
 
-/-- The black cell of a row is unique (for an injective filling). -/
+/-- The black cell of a row is unique (for an injective filling).
+@isnad1 id=eq.4h3v.s5.a8329d483e03 from=translated src=- shape=be0e4701 vocab=134c0480
+-/
 lemma IsBlack.unique {f : Cell → ℚ} (hinj : Function.Injective f) {x y : Cell}
     (hx : IsBlack f x) (hy : IsBlack f y) (h : x.1 = y.1) : x = y := by
   have h1 : f y ≤ f x := hx y h.symm
   have h2 : f x ≤ f y := hy x h
   exact hinj (le_antisymm h2 h1)
 
-/-- Every row has a black cell. -/
+/-- Every row has a black cell.
+@isnad1 id=ex.0h2v.s5.dfb4621da10b from=translated src=- shape=c0e97374 vocab=f09bb189
+-/
 lemma exists_isBlack (f : Cell → ℚ) (r : Fin 6) : ∃ c : Cell, c.1 = r ∧ IsBlack f c := by
   have hne : (Finset.univ.filter fun c : Cell => c.1 = r).Nonempty :=
     ⟨(r, 0), by simp⟩
@@ -107,7 +150,9 @@ lemma exists_isBlack (f : Cell → ℚ) (r : Fin 6) : ∃ c : Cell, c.1 = r ∧ 
 
 /-- The key endgame lemma: if the black cell of row 1 is the mate of the black cell
 of row 0, then the two black cells are three columns apart, so no black chain can
-leave row 0, and Alice cannot win. -/
+leave row 0, and Alice cannot win.
+@isnad1 id=not.4h2v.s5.b0b95684e01a from=translated src=- shape=417e7898 vocab=9d54c65f
+-/
 lemma not_aliceWins (f : Cell → ℚ) (hinj : Function.Injective f)
     (c : Cell) (hc0 : c.1.1 = 0) (hc : IsBlack f c) (hm : IsBlack f (mate c)) :
     ¬ AliceWins f := by
@@ -143,13 +188,17 @@ lemma not_aliceWins (f : Cell → ℚ) (hinj : Function.Injective f)
 
 /-! ### Rational numbers: fresh choices avoiding a finite set -/
 
-/-- There is always a rational number outside any finite set. -/
+/-- There is always a rational number outside any finite set.
+@isnad1 id=ex.0h1v.s4.d1be1192a76b from=translated src=- shape=495ad12e vocab=33ac9927
+-/
 lemma exists_fresh_rat_avoiding (F : Finset ℚ) : ∃ w : ℚ, w ∉ F :=
   Finset.exists_notMem F
 
 /-- Given finite sets `L`, `U` of rationals with everything in `L` smaller than
 everything in `U`, there is a rational number strictly between the two sets that
-moreover avoids a third finite set `F`. -/
+moreover avoids a third finite set `F`.
+@isnad1 id=ex.1h3v.s6.e73e9ecff771 from=translated src=- shape=e88c2b52 vocab=96f37abc
+-/
 lemma exists_rat_between_avoiding (L U F : Finset ℚ)
     (h : ∀ a ∈ L, ∀ b ∈ U, a < b) :
     ∃ w : ℚ, (∀ a ∈ L, a < w) ∧ (∀ b ∈ U, w < b) ∧ w ∉ F := by
@@ -208,9 +257,15 @@ moves) is the move prescribed by `σ` on the current board. -/
 def FollowsStrategy (σ : (Cell → Option ℚ) → Cell × ℚ) (p : Play) : Prop :=
   ∀ k : Fin 36, Odd (k : ℕ) → p.moves k = σ (prefBoard p k)
 
+/--
+@isnad1 id=eq.0h2v.s4.05efb682dc09 from=translated src=- shape=ce1acfd3 vocab=230fd979
+-/
 lemma prefBoard_zero (p : Play) (c : Cell) : prefBoard p 0 c = none := by
   simp [prefBoard]
 
+/--
+@isnad1 id=iff.0h4v.s5.b8b0f509da2d from=translated src=- shape=a63c6a86 vocab=fd701cf5
+-/
 lemma prefBoard_eq_some {p : Play} {n : ℕ} {c : Cell} {v : ℚ} :
     prefBoard p n c = some v ↔ ∃ i : Fin 36, (i : ℕ) < n ∧ p.moves i = (c, v) := by
   unfold prefBoard
@@ -229,6 +284,9 @@ lemma prefBoard_eq_some {p : Play} {n : ℕ} {c : Cell} {v : ℚ} :
     · rintro ⟨i, hin, hi⟩
       exact absurd ⟨i, hin, congrArg Prod.fst hi⟩ h
 
+/--
+@isnad1 id=iff.0h3v.s5.964198a9ace4 from=translated src=- shape=7975dbbb vocab=5f47bfbf
+-/
 lemma prefBoard_eq_none {p : Play} {n : ℕ} {c : Cell} :
     prefBoard p n c = none ↔ ∀ i : Fin 36, (i : ℕ) < n → (p.moves i).1 ≠ c := by
   constructor
@@ -244,6 +302,9 @@ lemma prefBoard_eq_none {p : Play} {n : ℕ} {c : Cell} :
       obtain ⟨i, hin, hi⟩ := prefBoard_eq_some.mp hbo
       exact absurd (congrArg Prod.fst hi) (h i hin)
 
+/--
+@isnad1 id=eq.1h2v.s6.10527f7d37d1 from=translated src=- shape=2e117f17 vocab=c7b616b5
+-/
 lemma prefBoard_succ (p : Play) {n : ℕ} (hn : n < 36) :
     prefBoard p (n + 1) = Function.update (prefBoard p n) (p.moves ⟨n, hn⟩).1
       (some (p.moves ⟨n, hn⟩).2) := by
@@ -275,6 +336,9 @@ lemma prefBoard_succ (p : Play) {n : ℕ} (hn : n < 36) :
         exact prefBoard_eq_some.mpr ⟨i, Nat.lt_succ_of_lt hi, hiv⟩
       rw [hs]
 
+/--
+@isnad1 id=eq.1h2v.s5.c065f03209ab from=translated src=- shape=88d192a9 vocab=d3ee0728
+-/
 lemma prefBoard_apply_self (p : Play) {n : ℕ} (hn : n < 36) :
     prefBoard p n (p.moves ⟨n, hn⟩).1 = none := by
   rw [prefBoard_eq_none]
@@ -283,6 +347,9 @@ lemma prefBoard_apply_self (p : Play) {n : ℕ} (hn : n < 36) :
   have hiv : (i : ℕ) = n := Fin.ext_iff.mp hie
   lia
 
+/--
+@isnad1 id=eq.2h6v.s5.0c08fbca01eb from=translated src=- shape=0e553773 vocab=d606eef2
+-/
 lemma prefBoard_inj {p : Play} {n m : ℕ} {c d : Cell} {v : ℚ} :
     prefBoard p n c = some v → prefBoard p m d = some v → c = d := by
   intro h1 h2
@@ -298,16 +365,25 @@ lemma prefBoard_inj {p : Play} {n m : ℕ} {c d : Cell} {v : ℚ} :
 def filled (p : Play) (n : ℕ) (hn : n ≤ 36) : Finset Cell :=
   Finset.univ.image fun i : Fin n => (p.moves (Fin.castLE hn i)).1
 
+/--
+@isnad1 id=injectiv.1h2v.s5.8226a009503d from=translated src=- shape=ed7ad540 vocab=60013668
+-/
 lemma filled_cell_inj (p : Play) {n : ℕ} {hn : n ≤ 36} :
     Function.Injective fun i : Fin n => (p.moves (Fin.castLE hn i)).1 := by
   intro i j h
   have h1 := p.cell_inj h
   rwa [Fin.castLE_inj] at h1
 
+/--
+@isnad1 id=eq.1h2v.s4.0c588fcfa8c1 from=translated src=- shape=adf6497b vocab=6e51aaa8
+-/
 lemma card_filled (p : Play) (n : ℕ) (hn : n ≤ 36) : (filled p n hn).card = n := by
   rw [filled, Finset.card_image_of_injOn (filled_cell_inj p).injOn, Finset.card_univ,
     Fintype.card_fin]
 
+/--
+@isnad1 id=iff.1h3v.s5.08ea1ac73614 from=translated src=- shape=3529ad2e vocab=483dac7b
+-/
 lemma mem_filled {p : Play} {n : ℕ} {hn : n ≤ 36} {c : Cell} :
     c ∈ filled p n hn ↔ prefBoard p n c ≠ none := by
   constructor
@@ -327,6 +403,9 @@ lemma mem_filled {p : Play} {n : ℕ} {hn : n ≤ 36} {c : Cell} :
       rw [hie]
       exact congrArg Prod.fst hi
 
+/--
+@isnad1 id=eq.0h2v.s4.ea4fba956683 from=translated src=- shape=892e3a5a vocab=7e0de5db
+-/
 lemma prefBoard_36_isSome (p : Play) (c : Cell) : (prefBoard p 36 c).isSome := by
   have hbij : Function.Bijective fun i => (p.moves i).1 := by
     rw [Fintype.bijective_iff_injective_and_card]
@@ -335,11 +414,17 @@ lemma prefBoard_36_isSome (p : Play) (c : Cell) : (prefBoard p 36 c).isSome := b
   rw [Option.isSome_iff_exists]
   exact ⟨(p.moves i).2, prefBoard_eq_some.mpr ⟨i, i.2, Prod.ext hi rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.c8fc22fee739 from=translated src=- shape=5ec88084 vocab=d7239ef0
+-/
 lemma prefBoard_finalBoard (p : Play) (c : Cell) :
     prefBoard p 36 c = some (finalBoard p c) := by
   obtain ⟨v, hv⟩ := Option.isSome_iff_exists.mp (prefBoard_36_isSome p c)
   simp [finalBoard, hv]
 
+/--
+@isnad1 id=injectiv.0h1v.s2.987d505579fb from=translated src=- shape=7000f90d vocab=251a3b06
+-/
 lemma finalBoard_inj (p : Play) : Function.Injective (finalBoard p) := by
   intro c d hcd
   have h2 : prefBoard p 36 d = some (finalBoard p c) := hcd ▸ prefBoard_finalBoard p d
@@ -348,7 +433,9 @@ lemma finalBoard_inj (p : Play) : Function.Injective (finalBoard p) := by
 /-! ### Two general-purpose lemmas -/
 
 /-- A set of cells of the first two rows closed under the pairing has even cardinality:
-it is a union of pairs `{c, mate c}`. -/
+it is a union of pairs `{c, mate c}`.
+@isnad1 id=even.2h1v.s6.cacc45f04501 from=translated src=- shape=82ceae3f vocab=7b8608bf
+-/
 lemma even_card_of_mate_closed (S : Finset Cell)
     (hsub : ∀ c ∈ S, c.1.1 ≤ 1)
     (hclosed : ∀ c ∈ S, mate c ∈ S) : Even S.card := by
@@ -381,7 +468,9 @@ lemma even_card_of_mate_closed (S : Finset Cell)
   exact ⟨T.card, rfl⟩
 
 /-- Updating two order-isomorphic functions at a fresh point with values occupying
-the same relative position preserves the order-isomorphism. -/
+the same relative position preserves the order-isomorphism.
+@isnad1 id=iff.6h9v.s7.3a12b67de09f from=translated src=- shape=b65aaa1e vocab=2028152a
+-/
 lemma orderIso_update {ι : Type*} [DecidableEq ι] (A B : ι → ℚ) (S : Set ι) (x : ι)
     (vx w : ℚ) (hx : x ∉ S)
     (hiso : ∀ c ∈ S, ∀ d ∈ S, (A c < A d ↔ B c < B d))
@@ -446,7 +535,9 @@ def GoodMateValue (b : Cell → Option ℚ) (x : Cell) (vx w : ℚ) : Prop :=
 
 /-- A good value for Bob's answer exists: the constraints coming from entries below
 `vx` and those coming from entries above `vx` are consistent (by the
-order-isomorphism of the board before Alice's move), and `ℚ` is dense. -/
+order-isomorphism of the board before Alice's move), and `ℚ` is dense.
+@isnad1 id=ex.4h4v.s6.2048cd0b4e18 from=translated src=- shape=7f19650c vocab=fcdbd000
+-/
 lemma exists_GoodMateValue {b₀ b₁ : Cell → Option ℚ} (hinv : Inv b₀)
     {x : Cell} (hx01 : x.1.1 ≤ 1) (hx : b₀ x = none) {vx : ℚ}
     (hb₁ : b₁ = Function.update b₀ x (some vx)) :
@@ -556,6 +647,9 @@ noncomputable def bobCell2 (b : Cell → Option ℚ) : Cell :=
 noncomputable def bobFreshValue (b : Cell → Option ℚ) : ℚ :=
   (exists_fresh_rat_avoiding (Finset.univ.image fun c => (b c).getD 0)).choose
 
+/--
+@isnad1 id=ne.0h2v.s4.1d68b7729fd1 from=translated src=- shape=a2cd4370 vocab=ab6dbb7b
+-/
 lemma bobFreshValue_fresh (b : Cell → Option ℚ) (c : Cell) :
     b c ≠ some (bobFreshValue b) := by
   intro hc
@@ -573,6 +667,9 @@ noncomputable def bobMove (b : Cell → Option ℚ) : Cell × ℚ :=
   then (mate h.choose, bobMateValue b h.choose)
   else (bobCell2 b, bobFreshValue b)
 
+/--
+@isnad1 id=eq.4h2v.s6.01b6bb6797a0 from=translated src=- shape=f77d1c77 vocab=66942a0b
+-/
 lemma bobMove_eq_mate {b : Cell → Option ℚ} {x : Cell} (hx01 : x.1.1 ≤ 1)
     (hxs : b x ≠ none) (hxm : b (mate x) = none)
     (huniq : ∀ y : Cell, y.1.1 ≤ 1 → b y ≠ none → b (mate y) = none → y = x) :
@@ -585,12 +682,18 @@ lemma bobMove_eq_mate {b : Cell → Option ℚ} {x : Cell} (hx01 : x.1.1 ≤ 1)
     huniq _ hP.choose_spec.1 hP.choose_spec.2.1 hP.choose_spec.2.2
   rw [hce]
 
+/--
+@isnad1 id=eq.1h1v.s6.01f671dc3a04 from=translated src=- shape=31f65eb5 vocab=16fd6954
+-/
 lemma bobMove_eq_rows2 {b : Cell → Option ℚ}
     (h : ¬ ∃ y : Cell, y.1.1 ≤ 1 ∧ b y ≠ none ∧ b (mate y) = none) :
     bobMove b = (bobCell2 b, bobFreshValue b) := by
   unfold bobMove
   rw [dite_eq_right h]
 
+/--
+@isnad1 id=and.1h1v.s6.3bbddf619cf5 from=translated src=- shape=5c1d0389 vocab=3ede431d
+-/
 lemma bobCell2_spec {b : Cell → Option ℚ}
     (h : ∃ c : Cell, 2 ≤ c.1.1 ∧ b c = none) :
     2 ≤ (bobCell2 b).1.1 ∧ b (bobCell2 b) = none := by
@@ -598,6 +701,9 @@ lemma bobCell2_spec {b : Cell → Option ℚ}
   rw [dite_eq_left h]
   exact h.choose_spec
 
+/--
+@isnad1 id=goodmate.2h3v.s5.46f25ae4a070 from=translated src=- shape=afbf71e1 vocab=da5494cc
+-/
 lemma goodMateValue_bobMateValue {b : Cell → Option ℚ} {x : Cell} {vx : ℚ}
     (hx : b x = some vx) (h : ∃ w, GoodMateValue b x vx w) :
     GoodMateValue b x vx (bobMateValue b x) := by
@@ -607,7 +713,9 @@ lemma goodMateValue_bobMateValue {b : Cell → Option ℚ} {x : Cell} {vx : ℚ}
   exact h.choose_spec
 
 /-- The invariant is preserved when Alice plays in rows 3 to 6 and Bob answers in
-rows 3 to 6 (the first two rows are untouched). -/
+rows 3 to 6 (the first two rows are untouched).
+@isnad1 id=inv.5h7v.s7.8cce94a345d1 from=translated src=- shape=9b5ed94b vocab=0bd73a2e
+-/
 lemma inv_update_rows2 {b₀ b₁ b₂ : Cell → Option ℚ} (hinv : Inv b₀)
     {x c₂ : Cell} (hx2 : 2 ≤ x.1.1) (hc₂2 : 2 ≤ c₂.1.1) {vx w₂ : ℚ}
     (hb₁ : b₁ = Function.update b₀ x (some vx))
@@ -637,7 +745,9 @@ lemma inv_update_rows2 {b₀ b₁ b₂ : Cell → Option ℚ} (hinv : Inv b₀)
     exact hinv.2 c d vc vd vmc vmd hcd hc01 hvC hvD hvMC hvMD
 
 /-- The invariant is preserved when Alice plays in the first two rows and Bob
-answers in the mate of her cell with a good value. -/
+answers in the mate of her cell with a good value.
+@isnad1 id=inv.7h6v.s7.ef0084d15948 from=translated src=- shape=8097128f vocab=162d2c4f
+-/
 lemma inv_update_mate {b₀ b₁ b₂ : Cell → Option ℚ} (hinv : Inv b₀)
     {x : Cell} (hx01 : x.1.1 ≤ 1) (hx : b₀ x = none) {vx w : ℚ}
     (hb₁ : b₁ = Function.update b₀ x (some vx))
@@ -942,7 +1052,9 @@ lemma inv_update_mate {b₀ b₁ b₂ : Cell → Option ℚ} (hinv : Inv b₀)
       exact hstep.symm
 
 /-- Bob's invariant holds after each of his moves in every play that follows his
-strategy. -/
+strategy.
+@isnad1 id=inv.2h2v.s5.939538da8aad from=translated src=- shape=6f410d52 vocab=8a73f1f9
+-/
 lemma inv_prefBoard (p : Play) (hp : FollowsStrategy bobMove p) :
     ∀ m : ℕ, m ≤ 18 → Inv (prefBoard p (2 * m)) := by
   intro m

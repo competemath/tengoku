@@ -26,7 +26,9 @@ open Finset
 
 /-- Summation of three consecutive terms in blocks of three:
 the sum of `f (3i+2) + f (3i+3) + f (3i+4)` over `i ∈ range t`
-equals the sum of `f j` over `j ∈ Icc 2 (3t+1)`. -/
+equals the sum of `f j` over `j ∈ Icc 2 (3t+1)`.
+@isnad1 id=eq.0h2v.s7.2ca0a07b231e from=translated src=- shape=8a0d2660 vocab=f4d955ce
+-/
 lemma sum_range_triple (f : ℕ → ℚ) (t : ℕ) :
     ∑ i ∈ Finset.range t, (f (3*i+2) + f (3*i+3) + f (3*i+4)) =
     ∑ j ∈ Finset.Icc 2 (3*t+1), f j := by
@@ -40,7 +42,9 @@ lemma sum_range_triple (f : ℕ → ℚ) (t : ℕ) :
     all_goals lia
 
 /-- A sum of reciprocals as a single fraction with the product
-of all denominators as denominator. -/
+of all denominators as denominator.
+@isnad1 id=eq.1h2v.s6.adac32e74073 from=translated src=- shape=3dd061fb vocab=03ed4365
+-/
 lemma sum_one_div_eq_div_prod {s : Finset ℕ} {c : ℕ → ℚ} (hc : ∀ i ∈ s, c i ≠ 0) :
     ∑ i ∈ s, 1 / c i = (∑ i ∈ s, ∏ j ∈ s.erase i, c j) / ∏ i ∈ s, c i := by
   have h : (∏ j ∈ s, c j) * ∑ i ∈ s, 1 / c i = ∑ i ∈ s, ∏ j ∈ s.erase i, c j := by

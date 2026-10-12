@@ -22,7 +22,9 @@ divide $a_k(a_1 - 1)$.
 namespace Imo2009P1
 
 /-- Telescoping: if `c j * c (j+1) = c j` for all `j`, then the product of any
-window `c i, c (i+1), …, c (i+m)` collapses to its first term `c i`. -/
+window `c i, c (i+1), …, c (i+m)` collapses to its first term `c i`.
+@isnad1 id=eq.1h4v.s6.0f7371484857 from=translated src=- shape=15e36825 vocab=d1b216da
+-/
 lemma telescope {R : Type*} [CommMonoid R] (c : ℕ → R)
     (hc : ∀ j, c j * c (j + 1) = c j) :
     ∀ m i, ∏ x ∈ Finset.range (m + 1), c (i + x) = c i := by
@@ -34,7 +36,9 @@ lemma telescope {R : Type*} [CommMonoid R] (c : ℕ → R)
         ← add_assoc, hc (i + m), ← Finset.prod_range_succ]
 
 /-- If the relation `c j * c (j+1) = c j` holds and `c` is periodic with period
-`k ≥ 1`, then `c` is constant: `c i = c (i+1)` for all `i`. -/
+`k ≥ 1`, then `c` is constant: `c i = c (i+1)` for all `i`.
+@isnad1 id=eq.3h4v.s6.619dc198d2a1 from=translated src=- shape=1b310b08 vocab=11ec6949
+-/
 lemma const_of_cyclic {R : Type*} [CommMonoid R] (c : ℕ → R) (k : ℕ) (hk : 1 ≤ k)
     (hc : ∀ j, c j * c (j + 1) = c j) (hper : ∀ i, c i = c (i + k)) :
     ∀ i, c i = c (i + 1) := by

@@ -35,7 +35,9 @@ noncomputable abbrev SharedWith {L : Type*} (speaks : Fin 9 → Finset L) (d : F
 share a language with at most three other delegates: among any four delegates
 sharing a language with `d`, two of them would share the *same* language with `d`
 by the pigeonhole principle, since `d` speaks at most three languages, and those
-two together with `d` would be three delegates with a common language. -/
+two together with `d` would be three delegates with a common language.
+@isnad1 id=le.2h3v.s7.25246da5bbeb from=translated src=- shape=3b1b81ea vocab=8099f73f
+-/
 theorem card_sharedWith_le {L : Type*} (speaks : Fin 9 → Finset L)
     (hthree : ∀ d : Fin 9, (speaks d).card ≤ 3)
     (hnothree : ¬∃ a b c : Fin 9, a ≠ b ∧ a ≠ c ∧ b ≠ c ∧

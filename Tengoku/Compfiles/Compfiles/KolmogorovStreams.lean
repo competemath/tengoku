@@ -39,6 +39,7 @@ def break_into_words :
 
 /--
 Dropping the first word is equivalent to dropping `first_length` symbols of the original stream.
+@isnad1 id=eq.0h4v.s4.0ad4681131e2 from=translated src=- shape=95224918 vocab=369c2298
 -/
 lemma break_into_words_cons
     (lengths : Stream' ℕ)
@@ -48,6 +49,9 @@ lemma break_into_words_cons
            break_into_words lengths (a.drop first_length) := by
   simp [break_into_words, Stream'.corec, Stream'.tail_map, Stream'.tail_iterate]
 
+/--
+@isnad1 id=eq.0h3v.s5.8a9f86c1f2a9 from=translated src=- shape=cf9e892b vocab=0a99474b
+-/
 lemma break_into_words_closed_form
     (lengths : Stream' ℕ)
     (a : Stream' α)
@@ -70,6 +74,9 @@ lemma break_into_words_closed_form
 
 def all_prefixes (p : List α → Prop) (a : Stream' α) : Prop := a.inits.All p
 
+/--
+@isnad1 id=var.2h4v.s5.b2318356c921 from=translated src=- shape=3a27d2d1 vocab=ef26135b
+-/
 lemma take_prefix
     (is_decent : List α → Prop)
     (a : Stream' α)
@@ -80,6 +87,9 @@ lemma take_prefix
   | zero => exact absurd hn (lt_irrefl 0)
   | succ n => simpa [Stream'.get_inits] using ha n
 
+/--
+@isnad1 id=ex.1h3v.s4.c7cb8503bc22 from=translated src=- shape=114a4fbb vocab=6eb7472f
+-/
 lemma not_all_prefixes
     (is_decent : List α → Prop)
     (a : Stream' α)
@@ -91,6 +101,7 @@ lemma not_all_prefixes
 If from every "good" position of the stream we can carve off a nonempty word
 satisfying `q`, landing at another good position, then the stream can be broken
 into words that all satisfy `q`.
+@isnad1 id=ex.1h5v.s6.d6c13c6a9eeb from=translated src=- shape=31437375 vocab=5d8452fa
 -/
 lemma exists_break_into_words
     (q : List α → Prop)

@@ -37,23 +37,41 @@ def smallDivisors (n : ℕ) : List ℕ := (n.divisors.erase 1).sort (· ≤ ·)
 
 def threeSmallestDivisors (n : ℕ) : List ℕ := (smallDivisors n).take 3
 
+/--
+@isnad1 id=eq.0h1v.s4.149376c9497f from=translated src=- shape=87d641ae vocab=b43d5dd7
+-/
 @[simp] lemma take_smallDivisors_eq_threeSmallestDivisors {n : ℕ} :
     List.take 3 (smallDivisors n) = threeSmallestDivisors n := rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.dbc898b3fc7d from=translated src=- shape=c3669d95 vocab=f906ec50
+-/
 @[simp] lemma mem_divisors_erase_one {d n : ℕ} :
     d ∈ n.divisors.erase 1 ↔ d ≠ 1 ∧ d ∣ n ∧ n ≠ 0 := by
   rw [mem_erase, Nat.mem_divisors]
 
+/--
+@isnad1 id=dvd.1h2v.s4.2cc3c60875aa from=translated src=- shape=f14f50e9 vocab=f906ec50
+-/
 lemma dvd_of_mem_divisors_erase_one {d n : ℕ} (h : d ∈ n.divisors.erase 1) : d ∣ n :=
   (mem_divisors_erase_one.mp h).2.1
 
+/--
+@isnad1 id=lt.1h2v.s5.8a0ee17081ef from=translated src=- shape=7a2b0d43 vocab=194b429b
+-/
 lemma pos_of_mem_divisors_erase_one {d n : ℕ} (h : d ∈ n.divisors.erase 1) : 0 < d :=
   Nat.pos_of_mem_divisors (Nat.mem_divisors.mpr (mem_divisors_erase_one.mp h).2)
 
+/--
+@isnad1 id=mem.3h2v.s5.5e7bd9b92d51 from=translated src=- shape=1d452a4d vocab=f906ec50
+-/
 lemma mem_divisors_erase_one_of_dvd_ne_one {d n : ℕ}
     (hd : d ∣ n) (hn : n ≠ 0) (hd1 : d ≠ 1) : d ∈ n.divisors.erase 1 :=
   mem_divisors_erase_one.mpr ⟨hd1, hd, hn⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.5d52636b4ea4 from=translated src=- shape=acd097f6 vocab=198ae5b5
+-/
 lemma reverse_properDivisors_eq_div_divisors_erase_one {n : ℕ} (hn : n ≠ 0) :
     ((Nat.properDivisors n).sort (· ≤ ·)).reverse =
     (smallDivisors n).map (fun d => n / d) := by
@@ -82,12 +100,18 @@ lemma reverse_properDivisors_eq_div_divisors_erase_one {n : ℕ} (hn : n ≠ 0) 
       have hdpos : 0 < d := Nat.pos_of_mem_divisors (Nat.mem_divisors.mpr hd.2)
       lia
 
+/--
+@isnad1 id=eq.2h4v.s6.f6b1d68f51b5 from=translated src=- shape=20445643 vocab=008b3273
+-/
 lemma psi_eq_of_threeSmallestDivisors_eq (hx0 : x ≠ 0)
     (hdiv : threeSmallestDivisors x = [d₁, d₂, d₃]) : ψ x = x / d₁ + x / d₂ + x / d₃ := by
   rw [ψ, reverse_properDivisors_eq_div_divisors_erase_one hx0, ← List.map_take,
     take_smallDivisors_eq_threeSmallestDivisors, hdiv]
   simp [add_assoc]
 
+/--
+@isnad1 id=mem.1h1v.s4.55918bdb1620 from=translated src=- shape=92d89710 vocab=58e17d98
+-/
 lemma answer_mem_S : a₁ ∈ answer → a₁ ∈ S := by
   intro ha₁
   obtain ⟨e, l, rfl, hl⟩ := ha₁
@@ -103,6 +127,9 @@ lemma answer_mem_S : a₁ ∈ answer → a₁ ∈ S := by
     grind only
   exact card_le_card hsubset
 
+/--
+@isnad1 id=lt.1h1v.s4.727b3cecc694 from=translated src=- shape=931ea0f4 vocab=49a9bb26
+-/
 lemma pos_of_mem_S {x : ℕ}: x ∈ S → 0 < x := by
   intro hx
   by_contra hzero
@@ -111,14 +138,23 @@ lemma pos_of_mem_S {x : ℕ}: x ∈ S → 0 < x := by
   have hcard' : 3 ≤ #x.properDivisors := hx
   lia
 
+/--
+@isnad1 id=lt.1h1v.s4.de3f4c4aa3f4 from=translated src=- shape=931ea0f4 vocab=ea55a8c3
+-/
 lemma answer_pos : a₁ ∈ answer → 0 < a₁ := fun ha ↦ pos_of_mem_S (answer_mem_S ha)
 
+/--
+@isnad1 id=eq.6h4v.s7.ff75e1fb8ba9 from=translated src=- shape=b1cd9032 vocab=a1e2f64c
+-/
 lemma sort_take_three_eq_of_first_three {s : Finset ℕ} {a b c : ℕ}
     (ha : a ∈ s) (hb : b ∈ s.erase a) (hc : c ∈ (s.erase a).erase b)
     (ha_le : ∀ x ∈ s, a ≤ x) (hb_le : ∀ x ∈ s.erase a, b ≤ x) (hc_le : ∀ x ∈ (s.erase a).erase b, c ≤ x) :
     (s.sort (· ≤ ·)).take 3 = [a, b, c] := by
   grind [insert_erase ha, insert_erase hb, insert_erase hc, sort_insert]
 
+/--
+@isnad1 id=eq.5h1v.s6.a0e2dd400628 from=translated src=- shape=f84950eb vocab=97ed7cfc
+-/
 lemma divisors_erase_one_sort_take_three_eq_two_three_six {n : ℕ}
     (hn : n ≠ 0) (h2 : 2 ∣ n) (h3 : 3 ∣ n) (h4 : ¬ 4 ∣ n) (h5 : ¬ 5 ∣ n) :
     threeSmallestDivisors n = [2, 3, 6] := by
@@ -131,6 +167,9 @@ lemma divisors_erase_one_sort_take_three_eq_two_three_six {n : ℕ}
   by_contra hlt
   interval_cases x <;> simp_all
 
+/--
+@isnad1 id=eq.4h1v.s6.7963a43aa4ef from=translated src=- shape=d3bd26ed vocab=97ed7cfc
+-/
 lemma divisors_erase_one_sort_take_three_eq_two_three_four {n : ℕ}
     (hn : n ≠ 0) (h2 : 2 ∣ n) (h3 : 3 ∣ n) (h4 : 4 ∣ n) : threeSmallestDivisors n = [2, 3, 4] := by
   apply sort_take_three_eq_of_first_three (by grind) (by grind) (by grind)
@@ -140,6 +179,9 @@ lemma divisors_erase_one_sort_take_three_eq_two_three_four {n : ℕ}
   have hxpos : 0 < x := Nat.pos_of_mem_divisors (Nat.mem_divisors.mpr (by aesop))
   lia
 
+/--
+@isnad1 id=eq.5h1v.s6.0209ccdaf1ff from=translated src=- shape=1329d457 vocab=97ed7cfc
+-/
 lemma divisors_erase_one_sort_take_three_eq_two_three_five {n : ℕ}
     (hn : n ≠ 0) (h2 : 2 ∣ n) (h3 : 3 ∣ n) (h4 : ¬ 4 ∣ n) (h5 : 5 ∣ n) :
     threeSmallestDivisors n = [2, 3, 5] := by
@@ -152,6 +194,9 @@ lemma divisors_erase_one_sort_take_three_eq_two_three_five {n : ℕ}
   by_contra hlt
   interval_cases x <;> simp_all
 
+/--
+@isnad1 id=mem.1h1v.s4.0c873a19e27e from=translated src=- shape=93b7e764 vocab=cc77562b
+-/
 lemma psi_answer_mem_S' {aᵢ : ℕ} : aᵢ ∈ answer → ψ aᵢ ∈ answer := by
   intro haᵢ
   have haᵢ0 : aᵢ ≠ 0 := by grind only [answer_pos haᵢ]
@@ -183,12 +228,18 @@ lemma psi_answer_mem_S' {aᵢ : ℕ} : aᵢ ∈ answer → ψ aᵢ ∈ answer :=
       grind
     · grind [Nat.coprime_mul_iff_left]
 
+/--
+@isnad1 id=mem.1h2v.s4.92f9edbafd44 from=translated src=- shape=62eb807f vocab=fe70ee45
+-/
 lemma psi_answer_mem_S {i : ℕ} : a₁ ∈ answer → ψ^[i] a₁ ∈ answer := by
   intro h
   induction i with
   | zero => rwa [Function.iterate_zero ψ, id_eq]
   | succ j hj => simpa [Function.iterate_succ_apply' ψ j a₁] using psi_answer_mem_S' hj
 
+/--
+@isnad1 id=ex.1h1v.s5.53cee69dd556 from=translated src=- shape=16910c0d vocab=aab13f7d
+-/
 lemma answer_sufficient : a₁ ∈ answer → ∃ a : ℕ → ℕ, a 0 = a₁ ∧ ValidSequence a := by
   intro ha₁
   let a : ℕ → ℕ := fun i ↦ Nat.iterate ψ i a₁
@@ -197,6 +248,9 @@ lemma answer_sufficient : a₁ ∈ answer → ∃ a : ℕ → ℕ, a 0 = a₁ �
     have : a i ∈ answer := psi_answer_mem_S ha₁
     exact ⟨answer_pos this, answer_mem_S this, Function.iterate_succ_apply' ψ i a₁⟩
 
+/--
+@isnad1 id=iff.1h1v.s5.4035c52a772d from=translated src=- shape=dd55b27b vocab=7b279025
+-/
 lemma odd_sum_iff_length_of_forall_odd {S : List ℕ} (hodd : ∀ x ∈ S, Odd x) : Odd S.sum ↔ Odd S.length := by
   induction S with
   | nil => simp
@@ -205,11 +259,17 @@ lemma odd_sum_iff_length_of_forall_odd {S : List ℕ} (hodd : ∀ x ∈ S, Odd x
       rw [List.sum_cons, List.length_cons, Nat.odd_add, Nat.odd_add, ← Nat.not_odd_iff_even, ih hS]
       simp [hodd a (by simp)]
 
+/--
+@isnad1 id=odd.3h2v.s5.973d23ba4ceb from=translated src=- shape=10510459 vocab=74604fbe
+-/
 lemma odd_of_sum_odd {S : List ℕ} {n : ℕ} (hn : Odd n) (hlen : n ≤ S.length)
     (hodd : ∀ x ∈ S, Odd x) : Odd (S.take n).sum := by
   have hlen' : Odd (S.take n).length := by simpa [List.length_take, min_eq_left hlen] using hn
   exact (odd_sum_iff_length_of_forall_odd (fun x hx ↦ hodd x (List.mem_of_mem_take hx))).mpr hlen'
 
+/--
+@isnad1 id=dvd.2h1v.s4.2edd5eb2b803 from=translated src=- shape=cab61145 vocab=b05ace2b
+-/
 lemma two_dvd_of_two_dvd_psi {x : ℕ} : x ∈ S → 2 ∣ ψ x → 2 ∣ x := by
   intro hx h2psi
   by_contra hodd
@@ -225,6 +285,9 @@ lemma two_dvd_of_two_dvd_psi {x : ℕ} : x ∈ S → 2 ∣ ψ x → 2 ∣ x := b
   set s := (List.take 3 (x.properDivisors.sort (· ≤ ·)).reverse).sum
   grind only [= Nat.odd_iff]
 
+/--
+@isnad1 id=le.5h4v.s7.8ec41c8b63aa from=translated src=- shape=064c7a61 vocab=4f659ef3
+-/
 lemma psi_le_of_three_smallest_ge {b₁ b₂ b₃ : ℕ} (hx : x ≠ 0)
     (hb₁0 : b₁ ≠ 0) (hb₂0 : b₂ ≠ 0) (hb₃0 : b₃ ≠ 0)
     (hge : ∃ d₁ d₂ d₃, threeSmallestDivisors x = [d₁, d₂, d₃] ∧
@@ -236,6 +299,9 @@ lemma psi_le_of_three_smallest_ge {b₁ b₂ b₃ : ℕ} (hx : x ≠ 0)
   have h₃ : x / d₃ ≤ x / b₃ := by gcongr
   lia
 
+/--
+@isnad1 id=and.1h1v.s7.59d65673ac35 from=translated src=- shape=aae56d88 vocab=aa94eabc
+-/
 lemma min_divisors_of_mem_S {x : ℕ} : x ∈ S → (x ≠ 0) ∧ ∃ d₁ d₂ d₃, threeSmallestDivisors x = [d₁, d₂, d₃] ∧
     (d₁ ∈ (x.divisors.erase 1)) ∧ (d₂ ∈ (x.divisors.erase 1)) ∧ (d₃ ∈ (x.divisors.erase 1)) ∧
     (2 ≤ d₁) ∧ (d₁ < d₂) ∧ (d₂ < d₃) := by
@@ -265,6 +331,9 @@ lemma min_divisors_of_mem_S {x : ℕ} : x ∈ S → (x ≠ 0) ∧ ∃ d₁ d₂ 
     lia
   exact ⟨hx0, d₁, d₂, d₃, htake, hd₁mem, hdmem d₂ (by simp), hdmem d₃ (by simp), hd₁ge, hpair.1.1, hpair.2⟩
 
+/--
+@isnad1 id=and.1h4v.s6.ae7f5bb3ef4c from=translated src=- shape=6f5c2a4f vocab=49c84345
+-/
 lemma mem_of_threeSmallestDivisors_eq (hdiv : threeSmallestDivisors x = [d₁, d₂, d₃]) :
     d₁ ∈ x.divisors.erase 1 ∧ d₂ ∈ x.divisors.erase 1 ∧ d₃ ∈ x.divisors.erase 1 := by
   have hmem {d : ℕ} (hd : d ∈ [d₁, d₂, d₃]) : d ∈ x.divisors.erase 1 := by
@@ -272,6 +341,9 @@ lemma mem_of_threeSmallestDivisors_eq (hdiv : threeSmallestDivisors x = [d₁, d
     exact (mem_sort (r := (· ≤ ·))).mp (by simpa [smallDivisors] using List.mem_of_mem_take hd_take)
   exact ⟨hmem (by simp), hmem (by simp), hmem (by simp)⟩
 
+/--
+@isnad1 id=and.1h4v.s5.1618effaa18c from=translated src=- shape=01cfa989 vocab=97ed7cfc
+-/
 lemma dvd_of_threeSmallestDivisors_eq (hdiv : threeSmallestDivisors x = [d₁, d₂, d₃]) :
     d₁ ∣ x ∧ d₂ ∣ x ∧ d₃ ∣ x := by
   obtain ⟨hd₁mem, hd₂mem, hd₃mem⟩ := mem_of_threeSmallestDivisors_eq hdiv
@@ -286,22 +358,37 @@ structure ThreeMinDivisors (x d₁ d₂ d₃ : ℕ) : Prop where
 
 namespace ThreeMinDivisors
 
+/--
+@isnad1 id=and.1h4v.s6.ebf6472be430 from=translated src=- shape=6a58dcd4 vocab=4c88200d
+-/
 lemma mems (h : ThreeMinDivisors x d₁ d₂ d₃) :
     d₁ ∈ x.divisors.erase 1 ∧ d₂ ∈ x.divisors.erase 1 ∧ d₃ ∈ x.divisors.erase 1 :=
   mem_of_threeSmallestDivisors_eq h.hdiv
 
+/--
+@isnad1 id=and.1h4v.s4.b7b7da7928e2 from=translated src=- shape=5c0a0ea4 vocab=27f3480d
+-/
 lemma dvds (h : ThreeMinDivisors x d₁ d₂ d₃) : d₁ ∣ x ∧ d₂ ∣ x ∧ d₃ ∣ x := dvd_of_threeSmallestDivisors_eq h.hdiv
 
+/--
+@isnad1 id=eq.2h4v.s6.7e5569c07107 from=translated src=- shape=9be7f1e2 vocab=2b911952
+-/
 lemma psi_eq (h : ThreeMinDivisors x d₁ d₂ d₃) (hx0 : x ≠ 0) : ψ x = x / d₁ + x / d₂ + x / d₃ :=
   psi_eq_of_threeSmallestDivisors_eq hx0 h.hdiv
 
 end ThreeMinDivisors
 
+/--
+@isnad1 id=and.1h1v.s5.455f5b910e6b from=translated src=- shape=df45028b vocab=31b58b8a
+-/
 lemma threeMinDivisors_of_mem_S {x : ℕ} (hx : x ∈ S) :
     x ≠ 0 ∧ ∃ d₁ d₂ d₃, ThreeMinDivisors x d₁ d₂ d₃ := by
   obtain ⟨hx0, d₁, d₂, d₃, hdiv, _, _, _, hd₁ge, hd₁₂, hd₂₃⟩ := min_divisors_of_mem_S hx
   exact ⟨hx0, d₁, d₂, d₃, ⟨hdiv, hd₁ge, hd₁₂, hd₂₃⟩⟩
 
+/--
+@isnad1 id=or.3h5v.s6.a300494fa0b6 from=translated src=- shape=4fa73ad6 vocab=36ded8f7
+-/
 lemma mem_take_or_gt_of_divisor : x ∈ S → d ∈ x.divisors.erase 1 →
     threeSmallestDivisors x = [d₁, d₂, d₃] → d ∈ [d₁, d₂, d₃] ∨ d₃ < d := by
   intro hx hd hdiv
@@ -321,6 +408,9 @@ lemma mem_take_or_gt_of_divisor : x ∈ S → d ∈ x.divisors.erase 1 →
     simp at hpairT
     exact h2 (hpairT.2.2.1 d hdTail)
 
+/--
+@isnad1 id=mem.6h6v.s6.a7d58656f81a from=translated src=- shape=3c69a44d vocab=98fcdf4a
+-/
 lemma mem_of_dvd_mem_threeSmallest (hmin : ThreeMinDivisors x d₁ d₂ d₃) (hx : x ∈ S) (hx0 : x ≠ 0)
     {k d : ℕ} (hk_dvd : k ∣ d) (hd_mem : d ∈ [d₁, d₂, d₃]) (htwo_le : 2 ≤ k) :
     k ∈ [d₁, d₂, d₃] := by
@@ -333,6 +423,9 @@ lemma mem_of_dvd_mem_threeSmallest (hmin : ThreeMinDivisors x d₁ d₂ d₃) (h
     have hmem := mem_divisors_erase_one_of_dvd_ne_one (dvd_trans hk_dvd hd_dvd_x) hx0 (by lia)
     exact (mem_take_or_gt_of_divisor hx hmem hmin.hdiv).resolve_right hcase
 
+/--
+@isnad1 id=eq.3h4v.s5.09e6afbd8a03 from=translated src=- shape=90d16479 vocab=3571a84a
+-/
 lemma first_min_divisor_eq_two_of_two_dvd (hx : x ∈ S) (h2x : 2 ∣ x)
     (hmin : ThreeMinDivisors x d₁ d₂ d₃) : d₁ = 2 := by
   have hx0 : x ≠ 0 := Nat.ne_zero_of_lt (pos_of_mem_S hx)
@@ -341,6 +434,9 @@ lemma first_min_divisor_eq_two_of_two_dvd (hx : x ∈ S) (h2x : 2 ∣ x)
   rcases hmin.hd₁ge, hmin.hd₁₂, hmin.hd₂₃ with ⟨hd₁ge, hd₁₂, hd₂₃⟩
   grind only [List.mem_cons, List.not_mem_nil]
 
+/--
+@isnad1 id=eq.6h4v.s6.4241ea819322 from=translated src=- shape=15771e3f vocab=3571a84a
+-/
 lemma second_min_divisor_eq_four_of_four_dvd (hx : x ∈ S) (hx0 : x ≠ 0)
     (h3x : ¬ 3 ∣ x) (h4 : 4 ∣ x)
     (hmin : ThreeMinDivisors x d₁ d₂ d₃) (hd₁ : d₁ = 2) : d₂ = 4 := by
@@ -349,6 +445,9 @@ lemma second_min_divisor_eq_four_of_four_dvd (hx : x ∈ S) (hx0 : x ≠ 0)
   rcases hmin.hd₁₂, hmin.hd₂₃, hmin.dvds with ⟨hd₁₂, hd₂₃, ⟨_, hd₂dvd, _⟩⟩
   grind only [List.mem_cons, List.not_mem_nil]
 
+/--
+@isnad1 id=not.6h4v.s6.e229c86d34fe from=translated src=- shape=820a1eb4 vocab=9ac9be8d
+-/
 lemma not_three_dvd_psi_of_second_min_divisor_four (hx0 : x ≠ 0) (h3x : ¬ 3 ∣ x) (h4 : 4 ∣ x)
     (hmin : ThreeMinDivisors x d₁ d₂ d₃) (hd₁ : d₁ = 2) (hd₂ : d₂ = 4) : ¬ 3 ∣ ψ x := by
   have hpsi : ψ x = 3 * x / 4 + x / d₃ := by
@@ -360,6 +459,9 @@ lemma not_three_dvd_psi_of_second_min_divisor_four (hx0 : x ≠ 0) (h3x : ¬ 3 �
       exact (Nat.mul_div_cancel' hmin.dvds.2.2).symm)
   grind
 
+/--
+@isnad1 id=prime.5h4v.s5.8b80dbce1385 from=translated src=- shape=e588c7f1 vocab=ac9034ef
+-/
 lemma second_min_divisor_prime_of_not_four_dvd (hx : x ∈ S) (hx0 : x ≠ 0)
     (hmin : ThreeMinDivisors x d₁ d₂ d₃) (hd₁ : d₁ = 2) (h4 : ¬ 4 ∣ x) : Nat.Prime d₂ := by
   rcases hmin.dvds, hmin.hd₁₂, hmin.hd₂₃ with ⟨⟨_, hd₂_dvd_x, _⟩, hd₁₂, hd₂₃⟩
@@ -383,6 +485,9 @@ lemma second_min_divisor_prime_of_not_four_dvd (hx : x ∈ S) (hx0 : x ≠ 0)
   have : d₂ = 4 := by simpa [h₁, h₂] using hmn
   exact h4 (dvd_trans (dvd_of_eq this.symm) hd₂_dvd_x)
 
+/--
+@isnad1 id=prime.8h4v.s6.c9dd3c3ccda2 from=translated src=- shape=e92dafd4 vocab=10357d71
+-/
 lemma third_min_divisor_prime_of_not_double_second (hx : x ∈ S) (hx0 : x ≠ 0)
     (h2x : 2 ∣ x) (h4 : ¬ 4 ∣ x) (hmin : ThreeMinDivisors x d₁ d₂ d₃)
     (hd₁ : d₁ = 2)
@@ -412,6 +517,9 @@ lemma third_min_divisor_prime_of_not_double_second (hx : x ∈ S) (hx0 : x ≠ 0
       rcases htwo_d₂_mem with h | h | h <;> lia
   · grind only [List.mem_cons, List.not_mem_nil]
 
+/--
+@isnad1 id=eq.7h4v.s6.c64dcc5dfa48 from=translated src=- shape=2150953c vocab=263a8efb
+-/
 lemma psi_mod_two_eq_one_of_min_divisors_prime (hx0 : x ≠ 0) (h2x : 2 ∣ x) (h4 : ¬ 4 ∣ x)
     (hmin : ThreeMinDivisors x d₁ d₂ d₃) (hd₁ : d₁ = 2)
     (hd₂prime : Nat.Prime d₂) (hd₃prime : Nat.Prime d₃) : ψ x % 2 = 1 := by
@@ -425,6 +533,9 @@ lemma psi_mod_two_eq_one_of_min_divisors_prime (hx0 : x ≠ 0) (h2x : 2 ∣ x) (
   simp [hmin.psi_eq hx0, hd₁]
   grind only [hmin.hd₁₂, hmin.hd₂₃]
 
+/--
+@isnad1 id=not.7h4v.s6.245bfb3220cd from=translated src=- shape=ab6d89e9 vocab=05a89095
+-/
 lemma not_six_dvd_psi_of_not_four_dvd (hx : x ∈ S) (hx0 : x ≠ 0)
     (h2x : 2 ∣ x) (h3x : ¬ 3 ∣ x) (hmin : ThreeMinDivisors x d₁ d₂ d₃)
     (hd₁ : d₁ = 2) (h4 : ¬ 4 ∣ x) : ¬ 6 ∣ ψ x := by
@@ -444,6 +555,9 @@ lemma not_six_dvd_psi_of_not_four_dvd (hx : x ∈ S) (hx0 : x ≠ 0)
     have hmod2 := psi_mod_two_eq_one_of_min_divisors_prime hx0 h2x h4 hmin hd₁ hd₂prime hd₃prime
     grind only
 
+/--
+@isnad1 id=dvd.2h1v.s4.e33600488114 from=translated src=- shape=cab61145 vocab=b05ace2b
+-/
 lemma six_dvd_of_six_dvd_psi {x : ℕ} : x ∈ S → 6 ∣ ψ x → 6 ∣ x := by
   intro hx h6
   by_contra h6x
@@ -457,6 +571,9 @@ lemma six_dvd_of_six_dvd_psi {x : ℕ} : x ∈ S → 6 ∣ ψ x → 6 ∣ x := b
       (dvd_trans (by norm_num : 3 ∣ 6) h6)
   · exact not_six_dvd_psi_of_not_four_dvd hx hx0 h2x h3x hmin hd₁ h4 h6
 
+/--
+@isnad1 id=lt.2h1v.s4.b2c198a0c9ed from=translated src=- shape=1e7fca7b vocab=644f5898
+-/
 lemma psi_lt_of_not_two_dvd {x : ℕ} : x ∈ S → ¬ 2 ∣ x → ψ x < x := by
   intro hx h2
   obtain ⟨hx0, d₁, d₂, d₃, hdiv, _, _, _, hd₁ge, hd₁₂, hd₂₃⟩ := min_divisors_of_mem_S hx
@@ -467,6 +584,9 @@ lemma psi_lt_of_not_two_dvd {x : ℕ} : x ∈ S → ¬ 2 ∣ x → ψ x < x := b
   have hlt : x / 3 + x / 5 + x / 7 < x := by lia
   exact lt_of_le_of_lt hle hlt
 
+/--
+@isnad1 id=lt.3h1v.s5.1e3156bad86e from=translated src=- shape=9d7fcc54 vocab=644f5898
+-/
 lemma psi_lt_of_two_dvd_not_three_dvd {x : ℕ} : x ∈ S → 2 ∣ x → ¬ 3 ∣ x → ψ x < x := by
   intro hx h2 h3
   obtain ⟨hx0, d₁, d₂, d₃, hdiv, _, _, _, hd₁ge, hd₁₂, hd₂₃⟩ := min_divisors_of_mem_S hx
@@ -477,6 +597,9 @@ lemma psi_lt_of_two_dvd_not_three_dvd {x : ℕ} : x ∈ S → 2 ∣ x → ¬ 3 �
     exact ⟨d₁, d₂, d₃, hdiv, hd₁ge, hd₂ge, hd₃ge⟩
   lia
 
+/--
+@isnad1 id=false.1h4v.s6.efc678d4e41e from=translated src=- shape=b1f8df0c vocab=13a96747
+-/
 lemma descending_contra (P : ℕ → Prop) (f : ℕ → ℕ) (h₀ : P 0) (h₁ : ∀ i, P i → P (i + 1))
     (h₂ : ∀ i, P i → f (i + 1) < f i) : False := by
   have h_bound : ∀ k, f k + k ≤ f 0 ∧ P k := by
@@ -487,6 +610,9 @@ lemma descending_contra (P : ℕ → Prop) (f : ℕ → ℕ) (h₀ : P 0) (h₁ 
   have := h_bound (f 0 + 1)
   lia
 
+/--
+@isnad1 id=dvd.3h3v.s6.bae2560d203f from=translated src=- shape=890d43e8 vocab=c455e6c6
+-/
 lemma dvd_of_ValidSequence {m : ℕ} : ValidSequence a → (∀ i, a i ∈ S → ¬ m ∣ a i → ψ (a i) < a i) →
     (∀ i, a i ∈ S → m ∣ ψ (a i) → m ∣ a i) → ∀ i, m ∣ a i := by
   intro hvalid h_dec h_step
@@ -505,9 +631,15 @@ lemma dvd_of_ValidSequence {m : ℕ} : ValidSequence a → (∀ i, a i ∈ S →
     exact hm (by lia)
   exact descending_contra (fun k ↦ ¬ m ∣ a (i + k)) (fun k ↦ a (i + k)) hi h_step h_dec
 
+/--
+@isnad1 id=dvd.1h2v.s4.524173519530 from=translated src=- shape=b0c166db vocab=0bf84b7a
+-/
 lemma two_dvd_of_ValidSequence : ValidSequence a → ∀ i, 2 ∣ a i :=
   fun hvalid ↦ dvd_of_ValidSequence hvalid (fun _ ↦ psi_lt_of_not_two_dvd) (fun _ ↦ two_dvd_of_two_dvd_psi)
 
+/--
+@isnad1 id=dvd.1h2v.s4.860abaf2e8c2 from=translated src=- shape=b0c166db vocab=0bf84b7a
+-/
 lemma three_dvd_of_ValidSequence : ValidSequence a → ∀ i, 3 ∣ a i := by
   intro hvalid
   have h_dec := fun i hS h3 ↦ psi_lt_of_two_dvd_not_three_dvd hS (two_dvd_of_ValidSequence hvalid i) h3
@@ -519,10 +651,16 @@ lemma three_dvd_of_ValidSequence : ValidSequence a → ∀ i, 3 ∣ a i := by
     lia
   exact dvd_of_ValidSequence hvalid h_dec h_step
 
+/--
+@isnad1 id=dvd.1h2v.s4.63dfa5a10a44 from=translated src=- shape=b0c166db vocab=0bf84b7a
+-/
 lemma six_dvd_of_ValidSequence : ValidSequence a → ∀ i, 6 ∣ a i := by
   intro hvalid i
   grind [two_dvd_of_ValidSequence hvalid i, three_dvd_of_ValidSequence hvalid i]
 
+/--
+@isnad1 id=eq.2h1v.s6.953b947f2141 from=translated src=- shape=eddec1a7 vocab=de95b9d4
+-/
 lemma psi_of_six_dvd {x : ℕ} : x ∈ S → 6 ∣ x →
     ψ x = if 4 ∣ x then x * 13 / 12 else if 5 ∣ x then x * 31 / 30 else x := by
   intro hx h6
@@ -536,8 +674,14 @@ lemma psi_of_six_dvd {x : ℕ} : x ∈ S → 6 ∣ x →
     · grind only [psi_eq_of_threeSmallestDivisors_eq h_ne_zero
         (divisors_erase_one_sort_take_three_eq_two_three_six h_ne_zero (by lia) (by lia) h4 h5)]
 
+/--
+@isnad1 id=not.3h1v.s6.232473ba3fa5 from=translated src=- shape=1666c076 vocab=a2e7c113
+-/
 lemma odd_of_five_branch {x : ℕ} (h6 : 6 ∣ x) (h5 : 5 ∣ x) (h4 : ¬ 4 ∣ x) : ¬ 2 ∣ x * 31 / 30 := by grind
 
+/--
+@isnad1 id=not.1h2v.s5.3c49647bc4ab from=translated src=- shape=cf75bc8b vocab=0bf84b7a
+-/
 lemma not_five_branch_of_ValidSequence : ValidSequence a → ∀ i, ¬ (¬ 4 ∣ a i ∧ 5 ∣ a i) := by
   intro hvalid i
   simp
@@ -550,6 +694,9 @@ lemma not_five_branch_of_ValidSequence : ValidSequence a → ∀ i, ¬ (¬ 4 ∣
     exact odd_of_five_branch (six_dvd_of_ValidSequence hvalid i) h5 h4
   exact hodd (two_dvd_of_ValidSequence hvalid (i + 1))
 
+/--
+@isnad1 id=eq.2h2v.s6.302cc066aab3 from=translated src=- shape=739c2f7b vocab=2da79b1b
+-/
 lemma padicValNat_step_thirteen_twelfths {x y : ℕ} (hx : x ≠ 0) (hy : 12 * y = 13 * x) :
     padicValNat 2 y + 2 = padicValNat 2 x := by
   have hy0 : y ≠ 0 := by lia
@@ -558,6 +705,9 @@ lemma padicValNat_step_thirteen_twelfths {x y : ℕ} (hx : x ≠ 0) (hy : 12 * y
   norm_num [padicValNat.mul, hx, hy0, padicValNat.eq_zero_of_not_dvd, h12] at hval
   lia
 
+/--
+@isnad1 id=eq.2h2v.s6.b2791cc4fb57 from=translated src=- shape=6134d0ba vocab=2003ac2c
+-/
 lemma padicValNat_descends_thirteen_twelfths (hpos : ∀ j, 0 < a j) (hstep : ∀ j, 12 * a (j + 1) = 13 * a j) :
     ∀ j, padicValNat 2 (a j) + 2 * j = padicValNat 2 (a 0) := by
   intro j
@@ -565,11 +715,17 @@ lemma padicValNat_descends_thirteen_twelfths (hpos : ∀ j, 0 < a j) (hstep : �
   | zero => simp
   | succ j ih => grind only [padicValNat_step_thirteen_twelfths (ne_zero_of_lt (hpos j)) (hstep j)]
 
+/--
+@isnad1 id=false.2h1v.s6.80e37ff290cf from=translated src=- shape=1d9cc597 vocab=304a85f3
+-/
 lemma not_forever_thirteen_twelfths (hpos : ∀ j, 0 < a j) (hstep : ∀ j, 12 * a (j + 1) = 13 * a j) : False := by
   have := padicValNat_descends_thirteen_twelfths hpos hstep
   set x := padicValNat 2 (a 1) + 2
   grind [this 1, this x]
 
+/--
+@isnad1 id=ex.1h1v.s5.61e000c28601 from=translated src=- shape=46ee6caf vocab=0bf84b7a
+-/
 lemma exists_fixed_branch_of_ValidSequence : ValidSequence a → ∃ j, ¬ 4 ∣ a j ∧ ¬ 5 ∣ a j := by
   intro hvalid
   by_contra
@@ -586,6 +742,9 @@ lemma exists_fixed_branch_of_ValidSequence : ValidSequence a → ∃ j, ¬ 4 ∣
       grind only
     exact not_forever_thirteen_twelfths (fun j ↦ (hvalid j).1) hstep
 
+/--
+@isnad1 id=ex.1h1v.s5.23f40d9bd4ea from=translated src=- shape=07981253 vocab=f851939f
+-/
 lemma exists_first_fixed_branch_of_ValidSequence : ValidSequence a →
     ∃ j, (∀ i < j, 4 ∣ a i) ∧ ¬ 4 ∣ a j ∧ ¬ 5 ∣ a j := by
   intro hvalid
@@ -601,12 +760,18 @@ lemma exists_first_fixed_branch_of_ValidSequence : ValidSequence a →
   have h5₀ : ¬ 5 ∣ a j₀ := fun h5 ↦ not_five_branch_of_ValidSequence hvalid j₀ ⟨hj₀, h5⟩
   exact ⟨j₀, hmin, hj₀, h5₀⟩
 
+/--
+@isnad1 id=eq.2h2v.s6.372b5f64a45a from=translated src=- shape=77fe3532 vocab=e0d46af9
+-/
 lemma step_of_first_fixed_branch {i : ℕ} : ValidSequence a → 4 ∣ a i → 12 * a (i + 1) = 13 * a i := by
   intro hvalid h4
   have h6 := six_dvd_of_ValidSequence hvalid i
   have := psi_of_six_dvd (hvalid i).2.1 h6
   grind [(hvalid i).2.2]
 
+/--
+@isnad1 id=eq.2h2v.s6.e78ee8f697a2 from=translated src=- shape=2d87c66f vocab=82c14d79
+-/
 lemma twelve_pow_mul_of_first_fixed_branch : ValidSequence a → ∀ j, (∀ i < j, 4 ∣ a i) →
     12 ^ j * a j = 13 ^ j * a 0 := by
   intro hvalid j hmin
@@ -620,6 +785,9 @@ lemma twelve_pow_mul_of_first_fixed_branch : ValidSequence a → ∀ j, (∀ i <
       grind
   exact this j (Nat.le_refl j)
 
+/--
+@isnad1 id=ex.2h2v.s6.0ce4ab4e89fa from=translated src=- shape=1ca3349b vocab=82c14d79
+-/
 lemma start_eq_pow_mul_of_first_fixed_branch : ValidSequence a → ∀ j, (∀ i < j, 4 ∣ a i) →
     ∃ m, a 0 = 12 ^ j * m ∧ a j = 13 ^ j * m := by
   intro hvalid j hmin
@@ -633,6 +801,9 @@ lemma start_eq_pow_mul_of_first_fixed_branch : ValidSequence a → ∀ j, (∀ i
   have ha0 : a 0 = 12 ^ j * m := by simp [m, ← Nat.mul_div_assoc (12 ^ j) h13, hrel]
   exact ⟨m, ha0, this.symm⟩
 
+/--
+@isnad1 id=coprime.3h2v.s5.d6130bb8de6b from=translated src=- shape=f161c0c0 vocab=77beb901
+-/
 lemma coprime_ten {m l : ℕ} (hm : m = 6 * l) (h4 : ¬ 4 ∣ m) (h5 : ¬ 5 ∣ m) : l.Coprime 10 := by
   have h2l : ¬ 2 ∣ l := by grind
   have h5l : ¬ 5 ∣ l := by grind
@@ -641,6 +812,9 @@ lemma coprime_ten {m l : ℕ} (hm : m = 6 * l) (h4 : ¬ 4 ∣ m) (h5 : ¬ 5 ∣ 
   rw [show 10 = 2 * 5 by norm_num, Nat.coprime_mul_iff_right]
   exact ⟨hcop2, hcop5⟩
 
+/--
+@isnad1 id=ex.4h2v.s6.2839efe88f9a from=translated src=- shape=90a4b46b vocab=bb94a5b0
+-/
 lemma start_eq_pow_of_first_fixed_branch : ValidSequence a →  ∀ j, (∀ i < j, 4 ∣ a i) →
     ¬ 4 ∣ a j → ¬ 5 ∣ a j → ∃ l, a 0 = 12 ^ j * 6 * l ∧ l.Coprime 10 := by
   intro hvalid j hmin h4 h5
@@ -658,6 +832,9 @@ lemma start_eq_pow_of_first_fixed_branch : ValidSequence a →  ∀ j, (∀ i < 
   have h5m : ¬ 5 ∣ m := by grind only [Nat.dvd_mul_left_of_dvd]
   exact ⟨ha0, coprime_ten hl h4m h5m⟩
 
+/--
+@isnad1 id=mem.1h1v.s5.12819f5e6728 from=translated src=- shape=c336ac1b vocab=9a7fc887
+-/
 lemma answer_necessary : a₁ ∈ {a₁ | ∃ a : ℕ → ℕ, a 0 = a₁ ∧ ValidSequence a} → a₁ ∈ answer := by
   intro hseq
   obtain ⟨a, ha0, hvalid⟩ := hseq

@@ -51,6 +51,9 @@ abbrev SqB : ℤ × ℤ := (20, 1)
 
 /-! ### Small arithmetic facts -/
 
+/--
+@isnad1 id=eq.0h1v.s5.cd3d37fe04f2 from=translated src=- shape=65834015 vocab=875f24ae
+-/
 lemma sq_mod_two (n : ℤ) : n ^ 2 % 2 = n % 2 := by
   rcases Int.even_or_odd n with ⟨k, rfl⟩ | ⟨k, rfl⟩
   · have h : (k + k) ^ 2 = 2 * (2 * k ^ 2) := by ring
@@ -58,6 +61,9 @@ lemma sq_mod_two (n : ℤ) : n ^ 2 % 2 = n % 2 := by
   · have h : (2 * k + 1) ^ 2 = 2 * (2 * k ^ 2 + 2 * k) + 1 := by ring
     lia
 
+/--
+@isnad1 id=or.0h1v.s6.2bc4668a5ca2 from=translated src=- shape=f6d931a1 vocab=875f24ae
+-/
 lemma sq_mod_three (n : ℤ) : n ^ 2 % 3 = 0 ∨ n ^ 2 % 3 = 1 := by
   have hr : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by lia
   obtain ⟨k, hk⟩ : ∃ k : ℤ, n = 3 * k + n % 3 := ⟨n / 3, by lia⟩
@@ -72,6 +78,9 @@ lemma sq_mod_three (n : ℤ) : n ^ 2 % 3 = 0 ∨ n ^ 2 % 3 = 1 := by
     have e : n ^ 2 = 3 * (3 * k ^ 2 + 4 * k + 1) + 1 := by rw [hk, h]; ring
     lia
 
+/--
+@isnad1 id=eq.1h1v.s5.8605cf5640ed from=translated src=- shape=54bf3db9 vocab=875f24ae
+-/
 lemma sq_mod_three_eq_zero {n : ℤ} (h : n ^ 2 % 3 = 0) : n % 3 = 0 := by
   have hr : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by lia
   obtain ⟨k, hk⟩ : ∃ k : ℤ, n = 3 * k + n % 3 := ⟨n / 3, by lia⟩
@@ -85,7 +94,9 @@ lemma sq_mod_three_eq_zero {n : ℤ} (h : n ^ 2 % 3 = 0) : n % 3 = 0 := by
 /-! ### Invariants for part (a) -/
 
 /-- If `r` is even and `a² + b² = r`, then `a ≡ b (mod 2)`, so a move
-preserves the parity of `p.1 + p.2`. -/
+preserves the parity of `p.1 + p.2`.
+@isnad1 id=eq.3h3v.s6.e0d48017b8d6 from=translated src=- shape=10ea74e1 vocab=e5d7218d
+-/
 lemma step_two {r : ℤ} (hr : 2 ∣ r) {p q : ℤ × ℤ} (h : Move r p q) :
     (p.1 + p.2) % 2 = 0 → (q.1 + q.2) % 2 = 0 := by
   obtain ⟨-, -, hdist⟩ := h
@@ -95,7 +106,9 @@ lemma step_two {r : ℤ} (hr : 2 ∣ r) {p q : ℤ × ℤ} (h : Move r p q) :
   lia
 
 /-- If `3 ∣ r` and `a² + b² = r`, then `3 ∣ a` and `3 ∣ b`, so a move
-preserves `p.1 mod 3`. -/
+preserves `p.1 mod 3`.
+@isnad1 id=eq.3h3v.s6.da43cc5aabd9 from=translated src=- shape=12494607 vocab=35cb6e53
+-/
 lemma step_three {r : ℤ} (hr : 3 ∣ r) {p q : ℤ × ℤ} (h : Move r p q) :
     p.1 % 3 = 1 → q.1 % 3 = 1 := by
   obtain ⟨-, -, hdist⟩ := h
@@ -107,6 +120,9 @@ lemma step_three {r : ℤ} (hr : 3 ∣ r) {p q : ℤ × ℤ} (h : Move r p q) :
   have ha' := sq_mod_three_eq_zero ha
   lia
 
+/--
+@isnad1 id=eq.3h3v.s6.8351f986b791 from=translated src=- shape=d6cc5ca9 vocab=410a4877
+-/
 lemma reach_two {r : ℤ} (hr : 2 ∣ r) {p q : ℤ × ℤ}
     (h : Relation.ReflTransGen (Move r) p q) :
     (p.1 + p.2) % 2 = 0 → (q.1 + q.2) % 2 = 0 := by
@@ -114,6 +130,9 @@ lemma reach_two {r : ℤ} (hr : 2 ∣ r) {p q : ℤ × ℤ}
   | refl => exact id
   | tail _ hbc ih => exact fun hp => step_two hr hbc (ih hp)
 
+/--
+@isnad1 id=eq.3h3v.s6.a094f7425946 from=translated src=- shape=cc03fd15 vocab=f331f76f
+-/
 lemma reach_three {r : ℤ} (hr : 3 ∣ r) {p q : ℤ × ℤ}
     (h : Relation.ReflTransGen (Move r) p q) :
     p.1 % 3 = 1 → q.1 % 3 = 1 := by
@@ -123,6 +142,9 @@ lemma reach_three {r : ℤ} (hr : 3 ∣ r) {p q : ℤ × ℤ}
 
 /-! ### The move classification for `r = 97` -/
 
+/--
+@isnad1 id=le.1h2v.s6.66e8c76e742e from=translated src=- shape=6a6a64dc vocab=1d542e99
+-/
 lemma abs_le_nine {a b : ℤ} (h : a ^ 2 + b ^ 2 = 97) : |a| ≤ 9 := by
   by_contra hcon
   push Not at hcon
@@ -134,13 +156,18 @@ lemma abs_le_nine {a b : ℤ} (h : a ^ 2 + b ^ 2 = 97) : |a| ≤ 9 := by
     rw [abs_of_neg hs] at hcon
     nlinarith [sq_nonneg (a + 10)]
 
+/--
+@isnad1 id=or.5h2v.s7.63e1ccfe5154 from=translated src=- shape=631a136b vocab=25dc866f
+-/
 lemma sq97_aux (A B : ℤ) (hA0 : 0 ≤ A) (hA9 : A ≤ 9) (hB0 : 0 ≤ B) (hB9 : B ≤ 9)
     (h : A ^ 2 + B ^ 2 = 97) : (A = 9 ∧ B = 4) ∨ (A = 4 ∧ B = 9) := by
   interval_cases A <;> interval_cases B <;> lia
 
 /-- The only ways to write `97` as a sum of two squares are `81 + 16` and
 `16 + 81`, so each permitted move for `r = 97` is of the form `(±9, ±4)` or
-`(±4, ±9)`. -/
+`(±4, ±9)`.
+@isnad1 id=or.1h2v.s6.688e7d496324 from=translated src=- shape=d847d516 vocab=5e5f1db5
+-/
 lemma move97 {a b : ℤ} (h : a ^ 2 + b ^ 2 = 97) :
     (|a| = 9 ∧ |b| = 4) ∨ (|a| = 4 ∧ |b| = 9) := by
   have ha := abs_le_nine h
@@ -152,7 +179,9 @@ lemma move97 {a b : ℤ} (h : a ^ 2 + b ^ 2 = 97) :
 `{5, 6, 7, 8}` agrees with evenness of the column. A "toggle" move `(±9, ±4)`
 flips both sides of the equivalence; a move `(±4, ±9)` flips neither (such a
 move cannot start or end inside the strip, and it preserves the parity of the
-column). -/
+column).
+@isnad1 id=iff.2h2v.s6.4e0cbaf34598 from=translated src=- shape=e8d875c2 vocab=f258086d
+-/
 lemma step97 {p q : ℤ × ℤ} (h : Move 97 p q) :
     (p.1 % 2 = 0 ↔ 5 ≤ p.2 ∧ p.2 ≤ 8) → (q.1 % 2 = 0 ↔ 5 ≤ q.2 ∧ q.2 ≤ 8) := by
   obtain ⟨hp, hq, hdist⟩ := h
@@ -164,6 +193,9 @@ lemma step97 {p q : ℤ × ℤ} (h : Move 97 p q) :
     rcases eq_or_eq_neg_of_abs_eq hb with hdy | hdy <;>
     lia
 
+/--
+@isnad1 id=iff.2h2v.s6.b7df51305d12 from=translated src=- shape=754df50a vocab=c7990423
+-/
 lemma reach97 {p q : ℤ × ℤ} (h : Relation.ReflTransGen (Move 97) p q) :
     (p.1 % 2 = 0 ↔ 5 ≤ p.2 ∧ p.2 ≤ 8) → (q.1 % 2 = 0 ↔ 5 ≤ q.2 ∧ q.2 ≤ 8) := by
   induction h with

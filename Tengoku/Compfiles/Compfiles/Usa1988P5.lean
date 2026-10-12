@@ -37,6 +37,9 @@ def nextA (a : ℕ → ℕ) (j : ℕ) : ℕ := (if Odd j then a j else 0) + 2 * 
 def Good (p : ℚ[X]) (c : ℚ) (m : ℕ) : Prop :=
   p.coeff 0 = 1 ∧ p.coeff 1 = c ∧ ∀ k, 2 ≤ k → k ≤ m → p.coeff k = 0
 
+/--
+@isnad1 id=eq.0h2v.s5.305988ceaf4b from=translated src=- shape=a5a85688 vocab=48b580b2
+-/
 lemma coeff_comp_neg_X (p : ℚ[X]) (n : ℕ) :
     (p.comp (-X)).coeff n = (-1) ^ n * p.coeff n := by
   induction p using Polynomial.induction_on' with
@@ -53,6 +56,9 @@ lemma coeff_comp_neg_X (p : ℚ[X]) (n : ℕ) :
         rw [ite_eq_left rfl, ite_eq_left rfl, mul_comm]
       · rw [ite_eq_right (fun e => h e.symm), ite_eq_right (fun e => h e.symm), mul_zero]
 
+/--
+@isnad1 id=eq.0h2v.s6.444e3075f7f1 from=translated src=- shape=11775a84 vocab=305a1f0b
+-/
 lemma coeff_comp_X_sq (q : ℚ[X]) (j : ℕ) :
     (q.comp (X ^ 2)).coeff (2 * j) = q.coeff j := by
   induction q using Polynomial.induction_on' with
@@ -66,7 +72,9 @@ lemma coeff_comp_X_sq (q : ℚ[X]) (j : ℕ) :
       · have h2 : ¬ 2 * k = 2 * j := by lia
         rw [ite_eq_right (fun e => h2 e.symm), ite_eq_right (fun e => h e.symm)]
 
-/-- Binomial expansion of the coefficients of `(1 - X^n)^a`. -/
+/-- Binomial expansion of the coefficients of `(1 - X^n)^a`.
+@isnad1 id=eq.0h3v.s7.07be1214e1ce from=translated src=- shape=595dca37 vocab=5abd9701
+-/
 lemma coeff_one_sub_pow (n a k : ℕ) :
     ((1 - X ^ n) ^ a : ℚ[X]).coeff k =
       ∑ j ∈ Finset.range (a + 1),
@@ -86,12 +94,18 @@ lemma coeff_one_sub_pow (n a k : ℕ) :
   · rw [ite_eq_left h, ite_eq_left h.symm, mul_comm]
   · rw [ite_eq_right h, ite_eq_right (fun e => h e.symm)]
 
+/--
+@isnad1 id=eq.1h2v.s6.676c8cce204d from=translated src=- shape=879b86ba vocab=2adc4f27
+-/
 lemma coeff_zero_factor {n a : ℕ} (hn : 1 ≤ n) :
     ((1 - X ^ n) ^ a : ℚ[X]).coeff 0 = 1 := by
   rw [coeff_zero_eq_eval_zero, eval_pow, eval_sub, eval_one, eval_pow, eval_X,
     zero_pow (by lia : n ≠ 0)]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s6.f9bbf9921b61 from=translated src=- shape=879b86ba vocab=2adc4f27
+-/
 lemma coeff_one_factor {n a : ℕ} (hn : 2 ≤ n) :
     ((1 - X ^ n) ^ a : ℚ[X]).coeff 1 = 0 := by
   rw [coeff_one_sub_pow]
@@ -105,6 +119,9 @@ lemma coeff_one_factor {n a : ℕ} (hn : 2 ≤ n) :
       lia
   · rw [ite_eq_right h]
 
+/--
+@isnad1 id=eq.1h2v.s6.34861c5319dd from=translated src=- shape=879b86ba vocab=2adc4f27
+-/
 lemma coeff_two_factor {n a : ℕ} (hn : 3 ≤ n) :
     ((1 - X ^ n) ^ a : ℚ[X]).coeff 2 = 0 := by
   rw [coeff_one_sub_pow]
@@ -118,10 +135,16 @@ lemma coeff_two_factor {n a : ℕ} (hn : 3 ≤ n) :
       lia
   · rw [ite_eq_right h]
 
+/--
+@isnad1 id=eq.0h1v.s6.46e98ea5052e from=translated src=- shape=bb57ada9 vocab=f164887d
+-/
 lemma coeff_zero_one_sub_X (a : ℕ) : ((1 - X) ^ a : ℚ[X]).coeff 0 = 1 := by
   rw [show (1 - X : ℚ[X]) = 1 - X ^ (1:ℕ) by simp]
   exact coeff_zero_factor (le_refl 1)
 
+/--
+@isnad1 id=eq.0h1v.s6.b0f69ecc6c79 from=translated src=- shape=7a41676b vocab=d3548107
+-/
 lemma coeff_one_one_sub_X (a : ℕ) : ((1 - X) ^ a : ℚ[X]).coeff 1 = -(a : ℚ) := by
   rw [show (1 - X : ℚ[X]) = 1 - X ^ (1:ℕ) by simp, coeff_one_sub_pow 1 a 1]
   rcases Nat.eq_zero_or_pos a with rfl | ha
@@ -134,6 +157,9 @@ lemma coeff_one_one_sub_X (a : ℕ) : ((1 - X) ^ a : ℚ[X]).coeff 1 = -(a : ℚ
       rw [Finset.mem_range] at h
       lia
 
+/--
+@isnad1 id=eq.0h1v.s6.b68b859048dd from=translated src=- shape=228a6876 vocab=a8196c71
+-/
 lemma coeff_two_one_sub_X (a : ℕ) :
     ((1 - X) ^ a : ℚ[X]).coeff 2 = (a.choose 2 : ℚ) := by
   rw [show (1 - X : ℚ[X]) = 1 - X ^ (1:ℕ) by simp, coeff_one_sub_pow 1 a 2]
@@ -151,6 +177,9 @@ lemma coeff_two_one_sub_X (a : ℕ) :
     rw [Finset.mem_range] at hj
     rw [ite_eq_right (by rw [mul_one]; lia)]
 
+/--
+@isnad1 id=eq.0h1v.s6.6fbd8bb24c7a from=translated src=- shape=3d9b3401 vocab=d3548107
+-/
 lemma coeff_two_one_sub_X_sq (a : ℕ) :
     ((1 - X ^ 2) ^ a : ℚ[X]).coeff 2 = -(a : ℚ) := by
   rw [coeff_one_sub_pow 2 a 2]
@@ -164,6 +193,9 @@ lemma coeff_two_one_sub_X_sq (a : ℕ) :
       rw [Finset.mem_range] at h
       lia
 
+/--
+@isnad1 id=eq.0h2v.s6.60077bc6f608 from=translated src=- shape=a931f367 vocab=eaab522b
+-/
 lemma coeff_mul_two (f g : ℚ[X]) :
     (f * g).coeff 2 =
       f.coeff 0 * g.coeff 2 + f.coeff 1 * g.coeff 1 + f.coeff 2 * g.coeff 0 := by
@@ -173,6 +205,9 @@ lemma coeff_mul_two (f g : ℚ[X]) :
     Finset.sum_singleton]
   rw [add_assoc]
 
+/--
+@isnad1 id=eq.1h2v.s6.777f9482d842 from=translated src=- shape=879824b0 vocab=dd3f93b8
+-/
 lemma coeff_zero_prod (s : Finset ℕ) (f : ℕ → ℚ[X])
     (h : ∀ i ∈ s, (f i).coeff 0 = 1) :
     (∏ i ∈ s, f i).coeff 0 = 1 := by
@@ -182,6 +217,9 @@ lemma coeff_zero_prod (s : Finset ℕ) (f : ℕ → ℚ[X])
   rw [← coeff_zero_eq_eval_zero]
   exact h i hi
 
+/--
+@isnad1 id=eq.2h2v.s6.6cd5d20eb901 from=translated src=- shape=27172ed4 vocab=dd3f93b8
+-/
 lemma coeff_one_prod (s : Finset ℕ) (f : ℕ → ℚ[X])
     (h0 : ∀ i ∈ s, (f i).coeff 0 = 1) (h1 : ∀ i ∈ s, (f i).coeff 1 = 0) :
     (∏ i ∈ s, f i).coeff 1 = 0 := by
@@ -200,6 +238,9 @@ lemma coeff_one_prod (s : Finset ℕ) (f : ℕ → ℚ[X])
         h0 a (Finset.mem_insert_self a s), h1 a (Finset.mem_insert_self a s)]
       simp
 
+/--
+@isnad1 id=eq.3h2v.s7.85d345042b2d from=translated src=- shape=1895fe75 vocab=dd3f93b8
+-/
 lemma coeff_two_prod (s : Finset ℕ) (f : ℕ → ℚ[X])
     (h0 : ∀ i ∈ s, (f i).coeff 0 = 1) (h1 : ∀ i ∈ s, (f i).coeff 1 = 0)
     (h2 : ∀ i ∈ s, (f i).coeff 2 = 0) :
@@ -223,19 +264,27 @@ lemma coeff_two_prod (s : Finset ℕ) (f : ℕ → ℚ[X])
         h2 a (Finset.mem_insert_self a s)]
       simp
 
+/--
+@isnad1 id=eq.2h2v.s5.3d94a15c8ad7 from=translated src=- shape=86ceb40f vocab=da2d333c
+-/
 lemma nextA_support {a : ℕ → ℕ} (ha : ∀ i, 32 < i → a i = 0) {i : ℕ}
     (hi : 32 < i) : nextA a i = 0 := by
   have h1 : a i = 0 := ha i hi
   have h2 : a (2 * i) = 0 := ha (2 * i) (by lia)
   simp [nextA, h1, h2]
 
+/--
+@isnad1 id=eq.1h2v.s5.a6d054241c09 from=translated src=- shape=edee860b vocab=058429e8
+-/
 lemma nextA_even (a : ℕ → ℕ) {j : ℕ} (hj : ¬ Odd j) :
     nextA a j = 2 * a (2 * j) := by
   simp [nextA, hj]
 
 /-- The doubling step, at the level of the product representation:
 `(∏ (1 - X^i)^(a i)) · (∏ (1 - X^i)^(a i)).comp (-X)`
-equals `(∏ (1 - X^i)^(nextA a i)).comp (X^2)`. -/
+equals `(∏ (1 - X^i)^(nextA a i)).comp (X^2)`.
+@isnad1 id=eq.1h1v.s6.afcc76b7d8d1 from=translated src=- shape=d6a66746 vocab=565fcf7c
+-/
 lemma prod_double {a : ℕ → ℕ} (ha : ∀ i, 32 < i → a i = 0) :
     prodForm a * (prodForm a).comp (-X) = (prodForm (nextA a)).comp (X ^ 2) := by
   have hL : prodForm a * (prodForm a).comp (-X)
@@ -328,7 +377,9 @@ lemma prod_double {a : ℕ → ℕ} (ha : ∀ i, 32 < i → a i = 0) :
       (fun j => (1 - ((X : ℚ[X]) ^ 2) ^ j) ^ (2 * a (2 * j))), mul_assoc]
 
 /-- The doubling step preserves the `1 + c * X + O(X^(m+1))` shape,
-squaring the linear coefficient and halving the range of vanishing. -/
+squaring the linear coefficient and halving the range of vanishing.
+@isnad1 id=good.3h4v.s7.bf59ffd69d17 from=translated src=- shape=ce8213a5 vocab=e04b3935
+-/
 lemma good_transport {p q : ℚ[X]} {c : ℚ} {m : ℕ} (hm : 2 ≤ m)
     (hp : Good p c m) (h : p * p.comp (-X) = q.comp (X ^ 2)) :
     Good q (-c ^ 2) (m / 2) := by
@@ -367,7 +418,9 @@ lemma good_transport {p q : ℚ[X]} {c : ℚ} {m : ℕ} (hm : 2 ≤ m)
 
 /-- Reading off the two lowest coefficients of a product `∏ (1 - X^i)^(b i)`:
 the exponent of `1 - X` is `65536` and the exponent of `1 - X^2` is its
-binomial coefficient. -/
+binomial coefficient.
+@isnad1 id=and.2h1v.s6.b626d0f1748c from=translated src=- shape=c50edffc vocab=581bcd68
+-/
 lemma extract {b : ℕ → ℕ} (h1 : (prodForm b).coeff 1 = -65536)
     (h2 : (prodForm b).coeff 2 = 0) :
     b 1 = 65536 ∧ b 2 = (65536).choose 2 := by

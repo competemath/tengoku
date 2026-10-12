@@ -33,7 +33,9 @@ namespace Algebraic.NonsingularMinor.Internal
 open Finset Matrix
 
 /-- **Dominance.** A nonempty sum `∑ ε x * 2 ^ E x` with unit coefficients `ε x = ±1` and
-pairwise distinct exponents `E x` is nonzero. -/
+pairwise distinct exponents `E x` is nonzero.
+@isnad1 id=ne.3h4v.s6.0978aa78d69f from=translated src=- shape=77c9e692 vocab=3ee2d3e3
+-/
 theorem sum_mul_two_pow_ne_zero {κ : Type*} {s : Finset κ} (hs : s.Nonempty) {ε : κ → ℤ}
     (hε : ∀ x ∈ s, IsUnit (ε x)) {E : κ → ℕ} (hE : Set.InjOn E s) :
     ∑ x ∈ s, ε x * 2 ^ E x ≠ 0 := by
@@ -56,7 +58,9 @@ theorem sum_mul_two_pow_ne_zero {κ : Type*} {s : Finset κ} (hs : s.Nonempty) {
   have : (0 : ℤ) < 2 ^ E x₀ := by positivity
   linarith
 
-/-- The Leibniz-expansion argument over `ℤ`. -/
+/-- The Leibniz-expansion argument over `ℤ`.
+@isnad1 id=ne.3h4v.s7.8a75abded97c from=translated src=- shape=05d35764 vocab=3f2af685
+-/
 theorem det_ne_zero_of_two_pow_two_pow_int {ι : Type*} [Fintype ι] [DecidableEq ι]
     (M : Matrix ι ι ℤ) (L : ι → ι → ℕ)
     (hM : ∀ i j, M i j ≠ 0 → M i j = 2 ^ 2 ^ L i j ∨ M i j = -2 ^ 2 ^ L i j)
@@ -111,7 +115,9 @@ theorem det_ne_zero_of_two_pow_two_pow_int {ι : Type*} [Fintype ι] [DecidableE
   rw [h1]
 
 /-- The Leibniz-expansion argument over a commutative ring of characteristic zero: the matrix is
-the image of an integer matrix with the same zero pattern. -/
+the image of an integer matrix with the same zero pattern.
+@isnad1 id=ne.3h5v.s8.d58ed70d8d9a from=translated src=- shape=c1b418c7 vocab=42967482
+-/
 theorem det_ne_zero_of_two_pow_two_pow {R : Type*} [CommRing R] [CharZero R] {ι : Type*}
     [Fintype ι] [DecidableEq ι] (M : Matrix ι ι R) (L : ι → ι → ℕ)
     (hM : ∀ i j, M i j ≠ 0 → M i j = 2 ^ 2 ^ L i j ∨ M i j = -2 ^ 2 ^ L i j)
@@ -152,7 +158,9 @@ theorem det_ne_zero_of_two_pow_two_pow {R : Type*} [CommRing R] [CharZero R] {ι
 variable {K : Type*} [Field K] {m n : Type*} [Fintype n]
 
 /-- A minor that is block diagonal with nonsingular square blocks has nonzero determinant, so
-its size is at most the rank. -/
+its size is at most the rank.
+@isnad1 id=le.2h8v.s7.8dab86d751e9 from=translated src=- shape=944519f4 vocab=a5420bbd
+-/
 theorem card_mul_card_le_rank_of_det_blocks_ne_zero {ι β : Type*} [Fintype ι] [DecidableEq ι]
     [Fintype β] [DecidableEq β] (A : Matrix m n K) (f : ι → β → m) (g : ι → β → n)
     (hoff : ∀ i i' b b', b ≠ b' → A (f i b) (g i' b') = 0)

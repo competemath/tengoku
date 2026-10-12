@@ -46,7 +46,9 @@ def ContainsSunflower
   ∃ petals ⊆ family, petals.card = p ∧
     ∃ core, IsSunflowerWithCore petals core
 
-/-- Pairwise disjoint sets form a sunflower with empty core. -/
+/-- Pairwise disjoint sets form a sunflower with empty core.
+@isnad1 id=issunflo.1h2v.s5.7c09c27ed8c4 from=translated src=- shape=ea1cc5c1 vocab=afe6f3a3
+-/
 theorem isSunflowerWithCore_empty_of_pairwiseDisjoint
     [DecidableEq α]
     {petals : Finset (Finset α)}
@@ -57,7 +59,9 @@ theorem isSunflowerWithCore_empty_of_pairwiseDisjoint
   exact Finset.disjoint_iff_inter_eq_empty.mp
     (disjoint leftPresent rightPresent different)
 
-/-- A subfamily inherits pairwise disjointness. -/
+/-- A subfamily inherits pairwise disjointness.
+@isnad1 id=pairwise.2h3v.s6.dd631f30dc8c from=translated src=- shape=fe91a22a vocab=603be176
+-/
 theorem pairwiseDisjoint_mono
     {small large : Finset (Finset α)}
     (subset : small ⊆ large)
@@ -68,7 +72,9 @@ theorem pairwiseDisjoint_mono
   intro left leftPresent right rightPresent different
   exact disjoint (subset leftPresent) (subset rightPresent) different
 
-/-- The classical uniform Erdős--Rado sunflower bound. -/
+/-- The classical uniform Erdős--Rado sunflower bound.
+@isnad1 id=contains.3h4v.s6.60ebaff8f104 from=translated src=- shape=81c5b4ed vocab=44759985
+-/
 theorem containsSunflower_of_uniform
     [DecidableEq α]
     (petals : Nat)
@@ -294,7 +300,9 @@ extra `width + 1` partitions the family into uniform layers. -/
 def bound (petals width : Nat) : Nat :=
   (width + 1) * ((petals - 1) ^ width * width.factorial)
 
-/-- The elementary sunflower lemma for bounded-size set families. -/
+/-- The elementary sunflower lemma for bounded-size set families.
+@isnad1 id=contains.3h4v.s6.a5e0bb7aeba7 from=translated src=- shape=0574ac55 vocab=27559737
+-/
 theorem containsSunflower_of_bounded
     [DecidableEq α]
     (petals : Nat)

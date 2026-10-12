@@ -31,7 +31,9 @@ def IsValid (S : Finset ℕ) : Prop :=
 abbrev solution_set : Set ℕ := {n | ∃ k : ℕ, n = 2 ^ k}
 
 /-- For `s ∈ S`, the map `t ↦ Nat.gcd s t` is a bijection from `S` onto the divisors
-of `s`; in particular `#S = τ(s)`. -/
+of `s`; in particular `#S = τ(s)`.
+@isnad1 id=eq.2h2v.s4.a26e34d6acf8 from=translated src=- shape=86295655 vocab=93790315
+-/
 theorem card_eq_card_divisors {S : Finset ℕ} (hS : IsValid S) {s : ℕ} (hs : s ∈ S) :
     S.card = s.divisors.card := by
   obtain ⟨hpos, huniq⟩ := hS
@@ -49,7 +51,9 @@ theorem card_eq_card_divisors {S : Finset ℕ} (hS : IsValid S) {s : ℕ} (hs : 
     exact ⟨t, htS, htg⟩
 
 /-- The same bijection identifies the elements of `S` divisible by `p` with the
-divisors of `s` divisible by `p` (for `p ∣ s`). -/
+divisors of `s` divisible by `p` (for `p ∣ s`).
+@isnad1 id=eq.3h3v.s5.e8ebddb896fe from=translated src=- shape=91bae3b3 vocab=3dcb86c0
+-/
 theorem card_filter_dvd {S : Finset ℕ} (hS : IsValid S) {s : ℕ} (hs : s ∈ S) {p : ℕ}
     (hps : p ∣ s) :
     (S.filter (fun t => p ∣ t)).card = (s.divisors.filter (fun d => p ∣ d)).card := by
@@ -76,7 +80,9 @@ theorem card_filter_dvd {S : Finset ℕ} (hS : IsValid S) {s : ℕ} (hs : s ∈ 
     exact ⟨t, Finset.mem_filter.mpr ⟨htS, hpt⟩, htg⟩
 
 /-- The divisors of `s` divisible by a prime `p ∣ s` are in bijection (via `d ↦ d / p`)
-with the divisors of `s / p`. -/
+with the divisors of `s / p`.
+@isnad1 id=eq.3h2v.s5.542d8daa361b from=translated src=- shape=cb47e07e vocab=cccf0ed9
+-/
 theorem card_divisors_filter_dvd {s p : ℕ} (hp : p.Prime) (hs0 : s ≠ 0) (hps : p ∣ s) :
     (s.divisors.filter (fun d => p ∣ d)).card = (s / p).divisors.card := by
   have hsp0 : s / p ≠ 0 :=
@@ -107,7 +113,9 @@ theorem card_divisors_filter_dvd {s p : ℕ} (hp : p.Prime) (hs0 : s ≠ 0) (hps
     exact Nat.mul_dvd_mul_left p hedvd
 
 /-- The ratio identity for the divisor counting function: if `p ∣ s` is prime and
-`e = νₚ(s)`, then `(e + 1) * τ(s / p) = e * τ(s)`. -/
+`e = νₚ(s)`, then `(e + 1) * τ(s / p) = e * τ(s)`.
+@isnad1 id=eq.3h2v.s6.7445e70695d6 from=translated src=- shape=92e34a3f vocab=d0715676
+-/
 theorem card_divisors_div_mul {s p : ℕ} (hp : p.Prime) (hs0 : s ≠ 0) (hps : p ∣ s) :
     (s.factorization p + 1) * (s / p).divisors.card = s.factorization p * s.divisors.card := by
   set e := s.factorization p with he
@@ -136,7 +144,9 @@ theorem card_divisors_div_mul {s p : ℕ} (hp : p.Prime) (hs0 : s ≠ 0) (hps : 
 
 /-- The key claim: in a valid set every element is squarefree, i.e. every prime appears
 with exponent at most one. Otherwise the density of multiples of `p` in `S` would have
-to equal both `e / (e + 1)` and `1 / 2`. -/
+to equal both `e / (e + 1)` and `1 / 2`.
+@isnad1 id=le.3h3v.s5.642fc70c8862 from=translated src=- shape=b26c53b9 vocab=59278c03
+-/
 theorem factorization_le_one {S : Finset ℕ} (hS : IsValid S) {x : ℕ} (hx : x ∈ S) {p : ℕ}
     (hp : p.Prime) :
     x.factorization p ≤ 1 := by
@@ -197,7 +207,9 @@ theorem factorization_le_one {S : Finset ℕ} (hS : IsValid S) {x : ℕ} (hx : x
   lia
 
 /-- Any valid nonempty set has cardinality a power of two: `#S = τ(x) = 2^{ω(x)}`
-for any `x ∈ S`. -/
+for any `x ∈ S`.
+@isnad1 id=ex.2h1v.s5.12aea3e58cee from=translated src=- shape=683d1948 vocab=5d5cefc9
+-/
 theorem card_eq_two_pow {S : Finset ℕ} (hS : IsValid S) (hne : S.Nonempty) :
     ∃ k : ℕ, S.card = 2 ^ k := by
   obtain ⟨x, hx⟩ := hne
@@ -223,13 +235,17 @@ noncomputable def constr_r (k : ℕ) (b : Fin k → Bool) (i : Fin k) : ℕ :=
 noncomputable def constr_b' (k : ℕ) (b : Fin k → Bool) (d : ℕ) : Fin k → Bool :=
   fun i => if constr_r k b i ∣ d then b i else !(b i)
 
-/-- Every value of `constr_r` is prime. -/
+/-- Every value of `constr_r` is prime.
+@isnad1 id=prime.0h3v.s3.8f9b65225150 from=translated src=- shape=c3c1014e vocab=cf3a29e3
+-/
 theorem constr_r_prime {k : ℕ} (b : Fin k → Bool) (i : Fin k) : Nat.Prime (constr_r k b i) := by
   unfold constr_r
   split <;> exact Nat.nth_mem_of_infinite Nat.infinite_setOfPred_prime _
 
 /-- The primes in different slots are distinct: `constr_r k b₁ i = constr_r k b₂ j`
-forces `i = j`. -/
+forces `i = j`.
+@isnad1 id=eq.1h5v.s5.e80c278c5e5e from=translated src=- shape=2adc0575 vocab=1ab8d4f9
+-/
 theorem constr_r_inj {k : ℕ} {b₁ b₂ : Fin k → Bool} {i j : Fin k}
     (h : constr_r k b₁ i = constr_r k b₂ j) : i = j := by
   have hinj := Nat.nth_injective Nat.infinite_setOfPred_prime
@@ -240,7 +256,9 @@ theorem constr_r_inj {k : ℕ} {b₁ b₂ : Fin k → Bool} {i j : Fin k}
   · exact absurd (hinj h) (by lia)
   · exact Fin.ext (by have h3 := hinj h; lia)
 
-/-- Equal primes in the same slot force equal Booleans. -/
+/-- Equal primes in the same slot force equal Booleans.
+@isnad1 id=eq.1h4v.s5.420ba77132d7 from=translated src=- shape=265eadcb vocab=1ab8d4f9
+-/
 theorem constr_r_inj_bool {k : ℕ} {b₁ b₂ : Fin k → Bool} {i : Fin k}
     (h : constr_r k b₁ i = constr_r k b₂ i) : b₁ i = b₂ i := by
   have hinj := Nat.nth_injective Nat.infinite_setOfPred_prime
@@ -254,11 +272,15 @@ theorem constr_r_inj_bool {k : ℕ} {b₁ b₂ : Fin k → Bool} {i : Fin k}
     rw [Bool.not_eq_true _] at hb1 hb2
     rw [hb1, hb2]
 
-/-- No Boolean equals its own negation. -/
+/-- No Boolean equals its own negation.
+@isnad1 id=ne.0h1v.s2.2db40cba742c from=translated src=- shape=a365602c vocab=4544e50a
+-/
 theorem constr_bool_not_ne (c : Bool) : (!c) ≠ c := by
   cases c <;> simp
 
-/-- The product map `b ↦ ∏ i, constr_r k b i` is injective. -/
+/-- The product map `b ↦ ∏ i, constr_r k b i` is injective.
+@isnad1 id=eq.1h3v.s5.a31d857a9c36 from=translated src=- shape=90f14561 vocab=261675a6
+-/
 theorem constr_prod_inj {k : ℕ} {b₁ b₂ : Fin k → Bool}
     (h : (∏ i : Fin k, constr_r k b₁ i) = ∏ i : Fin k, constr_r k b₂ i) : b₁ = b₂ := by
   funext i₀
@@ -272,7 +294,9 @@ theorem constr_prod_inj {k : ℕ} {b₁ b₂ : Fin k → Bool}
   obtain rfl : j = i₀ := (constr_r_inj heq).symm
   exact heq
 
-/-- The flipped prime equals the original one exactly when the original divides `d`. -/
+/-- The flipped prime equals the original one exactly when the original divides `d`.
+@isnad1 id=iff.0h4v.s5.e9d1887dc17d from=translated src=- shape=87353eee vocab=a1b15cbf
+-/
 theorem constr_r_flip {k : ℕ} {b : Fin k → Bool} {d : ℕ} {i : Fin k} :
     constr_r k (constr_b' k b d) i = constr_r k b i ↔ constr_r k b i ∣ d := by
   constructor
@@ -287,7 +311,9 @@ theorem constr_r_flip {k : ℕ} {b : Fin k → Bool} {d : ℕ} {i : Fin k} :
     unfold constr_r
     rw [hb]
 
-/-- If every slot prime in `J` divides `d`, then so does their product. -/
+/-- If every slot prime in `J` divides `d`, then so does their product.
+@isnad1 id=dvd.1h4v.s5.aedc38444c7b from=translated src=- shape=d634c589 vocab=5839b6c8
+-/
 theorem constr_prod_dvd_of_forall {k : ℕ} {b : Fin k → Bool} {d : ℕ}
     {J : Finset (Fin k)} (hJ : ∀ i ∈ J, constr_r k b i ∣ d) :
     (∏ i ∈ J, constr_r k b i) ∣ d := by
@@ -305,7 +331,9 @@ theorem constr_prod_dvd_of_forall {k : ℕ} {b : Fin k → Bool} {d : ℕ}
     · exact fun i hi => hJ i (Finset.mem_insert_of_mem hi)
 
 /-- Support representation: a divisor of the full product is the product over the slots
-whose primes divide it. -/
+whose primes divide it.
+@isnad1 id=eq.1h3v.s6.7643aa97574e from=translated src=- shape=75faf9c0 vocab=9700b3ad
+-/
 theorem constr_dvd_eq_prod_filter {k : ℕ} {b : Fin k → Bool} {d : ℕ}
     (hd : d ∣ ∏ i : Fin k, constr_r k b i) :
     d = ∏ i ∈ Finset.univ.filter (fun i => constr_r k b i ∣ d), constr_r k b i := by
@@ -322,7 +350,9 @@ theorem constr_dvd_eq_prod_filter {k : ℕ} {b : Fin k → Bool} {d : ℕ}
     exact hcop.dvd_of_dvd_mul_left hd2
   · exact constr_prod_dvd_of_forall fun i hi => (Finset.mem_filter.mp hi).2
 
-/-- The gcd of the full product with the flipped product is exactly `d`. -/
+/-- The gcd of the full product with the flipped product is exactly `d`.
+@isnad1 id=eq.1h3v.s6.cdd901ff3837 from=translated src=- shape=516bc629 vocab=a7fce634
+-/
 theorem constr_gcd {k : ℕ} {b : Fin k → Bool} {d : ℕ}
     (hds : d ∣ ∏ i : Fin k, constr_r k b i) :
     Nat.gcd (∏ i : Fin k, constr_r k b i) (∏ i : Fin k, constr_r k (constr_b' k b d) i) = d := by
@@ -352,7 +382,9 @@ theorem constr_gcd {k : ℕ} {b : Fin k → Bool} {d : ℕ}
       (Finset.prod_dvd_prod_of_subset _ _ _ (Finset.filter_subset _ _))
 
 /-- Uniqueness: any product of slot primes having gcd `d` with the full product must be
-the flipped product. -/
+the flipped product.
+@isnad1 id=eq.1h4v.s6.99681af69e73 from=translated src=- shape=4062750c vocab=7dfeb570
+-/
 theorem constr_gcd_unique {k : ℕ} {b b'' : Fin k → Bool} {d : ℕ}
     (h : Nat.gcd (∏ i : Fin k, constr_r k b i) (∏ i : Fin k, constr_r k b'' i) = d) :
     (∏ i : Fin k, constr_r k b'' i) = ∏ i : Fin k, constr_r k (constr_b' k b d) i := by
@@ -389,7 +421,9 @@ theorem constr_gcd_unique {k : ℕ} {b b'' : Fin k → Bool} {d : ℕ}
   rw [funext hkey]
 
 /-- Construction: for `2k` distinct primes `p₁, q₁, …, pₖ, qₖ`, the set of all products
-`r₁ * … * rₖ` with `rᵢ ∈ {pᵢ, qᵢ}` is valid and has cardinality `2ᵏ`. -/
+`r₁ * … * rₖ` with `rᵢ ∈ {pᵢ, qᵢ}` is valid and has cardinality `2ᵏ`.
+@isnad1 id=ex.0h1v.s5.940ca1034af6 from=translated src=- shape=df142ef4 vocab=5d5cefc9
+-/
 theorem exists_isValid (k : ℕ) : ∃ S : Finset ℕ, IsValid S ∧ S.Nonempty ∧ S.card = 2 ^ k := by
   refine ⟨Finset.univ.image (fun b : Fin k → Bool => ∏ i : Fin k, constr_r k b i),
     ⟨?_, ?_⟩, ?_, ?_⟩

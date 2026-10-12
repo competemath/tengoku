@@ -47,21 +47,33 @@ section OrthProj
 
 variable [Fintype α] [DecidableEq α]
 
+/--
+@isnad1 id=eq.0h3v.s7.14026b15dfe8 from=translated src=- shape=02755ba4 vocab=3a3e6476
+-/
 theorem orthProj_mulVec (u v : α → ℂ) :
     orthProj u *ᵥ v = v - ((star u ⬝ᵥ u)⁻¹ * (star u ⬝ᵥ v)) • u := by
   rw [orthProj, sub_mulVec, one_mulVec, smul_mulVec, vecMulVec_mulVec, op_smul_eq_smul,
     smul_smul]
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=ne.1h2v.s6.f984c730ea6b from=translated src=- shape=2bacc6ef vocab=86e6f8fc
+-/
 theorem star_dotProduct_self_ne_zero {u : α → ℂ} (hu : u ≠ 0) : star u ⬝ᵥ u ≠ 0 := by
   open ComplexOrder in exact fun h => hu (dotProduct_star_self_eq_zero.mp h)
 
+/--
+@isnad1 id=eq.0h2v.s5.0bef63d291ab from=translated src=- shape=2bfd947a vocab=b2e23652
+-/
 theorem orthProj_mulVec_self (u : α → ℂ) : orthProj u *ᵥ u = 0 := by
   by_cases hu : u = 0
   · subst hu
     simp
   · rw [orthProj_mulVec, inv_mul_cancel₀ (star_dotProduct_self_ne_zero hu), one_smul, sub_self]
 
+/--
+@isnad1 id=iff.0h3v.s6.29d14f764137 from=translated src=- shape=554ee29b vocab=e9ea27af
+-/
 theorem orthProj_mulVec_eq_zero_iff {u v : α → ℂ} :
     orthProj u *ᵥ v = 0 ↔ ∃ c : ℂ, v = c • u := by
   constructor
@@ -70,6 +82,9 @@ theorem orthProj_mulVec_eq_zero_iff {u v : α → ℂ} :
   · rintro ⟨c, rfl⟩
     rw [mulVec_smul, orthProj_mulVec_self, smul_zero]
 
+/--
+@isnad1 id=continuo.1h2v.s6.178d0d921a8c from=translated src=- shape=69a121d8 vocab=570128df
+-/
 theorem continuousAt_orthProj {u : α → ℂ} (hu : u ≠ 0) :
     ContinuousAt (orthProj : (α → ℂ) → Matrix α α ℂ) u := by
   have hd : Continuous fun u : α → ℂ => star u ⬝ᵥ u :=
@@ -81,7 +96,9 @@ theorem continuousAt_orthProj {u : α → ℂ} (hu : u ≠ 0) :
   exact continuousAt_const.sub ((hd.continuousAt.inv₀ (star_dotProduct_self_ne_zero hu)).smul
     hv.continuousAt)
 
-/-- Some unit vector `u` (for the sup norm) has `orthProj u` vanishing at `x`. -/
+/-- Some unit vector `u` (for the sup norm) has `orthProj u` vanishing at `x`.
+@isnad1 id=ex.0h2v.s6.fbfe363092e0 from=translated src=- shape=b3d36f8f vocab=0b9f7639
+-/
 theorem exists_mem_sphere_orthProj_mulVec_eq_zero [Nonempty α] (x : α → ℂ) :
     ∃ u ∈ Metric.sphere (0 : α → ℂ) 1, orthProj u *ᵥ x = 0 := by
   obtain ⟨y, hy, hxy⟩ : ∃ y : α → ℂ, y ≠ 0 ∧ ∃ c : ℂ, x = c • y := by
@@ -99,7 +116,9 @@ end OrthProj
 
 section Kernel
 
-/-- Over a field, `ker P ⊆ ker P'` lets `P'` factor as `G * P`. -/
+/-- Over a field, `ker P ⊆ ker P'` lets `P'` factor as `G * P`.
+@isnad1 id=ex.1h5v.s7.3c98fb794a94 from=translated src=- shape=dff8c9de vocab=bdeda443
+-/
 theorem exists_mul_eq_of_ker [Fintype α] [Fintype α'] {P : Matrix α' α ℂ}
     {P' : Matrix α'' α ℂ} (h : ∀ v, P *ᵥ v = 0 → P' *ᵥ v = 0) :
     ∃ G : Matrix α'' α' ℂ, G * P = P' := by
@@ -120,6 +139,9 @@ theorem exists_mul_eq_of_ker [Fintype α] [Fintype α'] {P : Matrix α' α ℂ}
 
 variable [Fintype α] [Fintype β] [Fintype γ]
 
+/--
+@isnad1 id=borderra.2h13v.s7.b8e06a1e5645 from=translated src=- shape=a5551048 vocab=29e2d955
+-/
 theorem borderRankLE_map_of_ker [Fintype α'] [Fintype β'] [Fintype γ']
     {P : Matrix α' α ℂ} {P' : Matrix α'' α ℂ} (Y : Matrix β' β ℂ) (Z : Matrix γ' γ ℂ)
     {T : Tensor3 α β γ} {ρ : ℕ} (h : (map P Y Z T).BorderRankLE ρ)
@@ -131,12 +153,18 @@ theorem borderRankLE_map_of_ker [Fintype α'] [Fintype β'] [Fintype γ']
 
 variable [DecidableEq β] [DecidableEq γ]
 
+/--
+@isnad1 id=continuo.0h4v.s7.fef995e13582 from=translated src=- shape=e7a61470 vocab=ac80dc8c
+-/
 theorem continuous_map_left :
     Continuous fun p : Matrix α' α ℂ × Tensor3 α β γ =>
       map p.1 (1 : Matrix β β ℂ) (1 : Matrix γ γ ℂ) p.2 := by
   unfold map
   fun_prop
 
+/--
+@isnad1 id=continuo.0h5v.s7.45d9f961acad from=translated src=- shape=9fcb2084 vocab=be21ef46
+-/
 theorem continuous_map_left_const (T : Tensor3 α β γ) :
     Continuous fun X : Matrix α' α ℂ => map X (1 : Matrix β β ℂ) (1 : Matrix γ γ ℂ) T := by
   unfold map
@@ -148,24 +176,39 @@ section Restrict
 
 variable [DecidableEq α]
 
+/--
+@isnad1 id=eq.0h6v.s5.467122a6bd4f from=translated src=- shape=405b1e33 vocab=e787be8e
+-/
 theorem restrictSlices_restrictSlices (T : Tensor3 α β γ) (S S' : Finset α) :
     (T.restrictSlices S).restrictSlices S' = T.restrictSlices (S' ∩ S) := by
   funext i j k
   simp only [restrictSlices, Finset.mem_inter]
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=eq.0h4v.s5.cab893b6dc07 from=translated src=- shape=34bceb52 vocab=ac31215a
+-/
 theorem restrictSlices_univ [Fintype α] (T : Tensor3 α β γ) : T.restrictSlices univ = T := by
   funext i j k
   simp [restrictSlices]
 
+/--
+@isnad1 id=eq.0h4v.s6.30c11489ee9a from=translated src=- shape=4254a296 vocab=d63f3467
+-/
 theorem restrictSlices_empty (T : Tensor3 α β γ) : T.restrictSlices ∅ = 0 := by
   funext i j k
   simp [restrictSlices]
 
+/--
+@isnad1 id=eq.0h4v.s6.981d5fff8289 from=translated src=- shape=76e4674c vocab=60d826f8
+-/
 theorem zero_restrictSlices (S : Finset α) : (0 : Tensor3 α β γ).restrictSlices S = 0 := by
   funext i j k
   simp [restrictSlices]
 
+/--
+@isnad1 id=eq.0h5v.s6.b2cad20278ca from=translated src=- shape=5f94226d vocab=fa5a80ec
+-/
 theorem restrictSlices_eq_map [Fintype α] [Fintype β] [Fintype γ] [DecidableEq β]
     [DecidableEq γ] (T : Tensor3 α β γ) (S : Finset α) :
     T.restrictSlices S =
@@ -174,6 +217,9 @@ theorem restrictSlices_eq_map [Fintype α] [Fintype β] [Fintype γ] [DecidableE
   funext i j k
   simp [restrictSlices]
 
+/--
+@isnad1 id=tight.1h5v.s5.5ff40d88846f from=translated src=- shape=3f298822 vocab=d0094061
+-/
 theorem tight_restrictSlices {T : Tensor3 α β γ} (hT : T.Tight) (S : Finset α) :
     (T.restrictSlices S).Tight := by
   obtain ⟨τA, τB, τC, hinj, h⟩ := hT
@@ -183,6 +229,9 @@ theorem tight_restrictSlices {T : Tensor3 α β γ} (hT : T.Tight) (S : Finset �
   · exact hijk
   · exact absurd rfl hijk
 
+/--
+@isnad1 id=borderra.2h7v.s6.e8dbf25fbc8d from=translated src=- shape=7098d5f6 vocab=7b8b2835
+-/
 theorem borderRankLE_restrictSlices_of_subset [Fintype α] [Fintype β] [Fintype γ]
     [DecidableEq β] [DecidableEq γ] {T : Tensor3 α β γ} {S S' : Finset α} {ρ : ℕ}
     (h : (T.restrictSlices S).BorderRankLE ρ) (hS : S' ⊆ S) :
@@ -192,6 +241,9 @@ theorem borderRankLE_restrictSlices_of_subset [Fintype α] [Fintype β] [Fintype
   rwa [← restrictSlices_eq_map, restrictSlices_restrictSlices,
     Finset.inter_eq_left.mpr hS] at this
 
+/--
+@isnad1 id=borderra.1h6v.s5.b9fcb7fcc3f1 from=translated src=- shape=e5790a4d vocab=bc9b7327
+-/
 theorem borderRankLE_restrictSlices [Fintype α] [Fintype β] [Fintype γ] [DecidableEq β]
     [DecidableEq γ] {T : Tensor3 α β γ} {ρ : ℕ} (h : T.BorderRankLE ρ) (S : Finset α) :
     (T.restrictSlices S).BorderRankLE ρ := by
@@ -200,6 +252,9 @@ theorem borderRankLE_restrictSlices [Fintype α] [Fintype β] [Fintype γ] [Deci
 
 end Restrict
 
+/--
+@isnad1 id=borderra.0h4v.s5.2d198238c99d from=translated src=- shape=5645c55b vocab=a5cd1bfb
+-/
 theorem borderRankLE_zero_tensor (r : ℕ) : (0 : Tensor3 α β γ).BorderRankLE r :=
   (borderRankLE_zero_iff.mpr rfl).mono (Nat.zero_le r)
 
@@ -208,7 +263,9 @@ section Substitution
 variable [Fintype α] [DecidableEq α] [Fintype β] [Fintype γ] [DecidableEq β] [DecidableEq γ]
 
 /-- A tensor of rank at most `r + 1` has rank at most `r` after projecting the first factor
-along a suitable unit vector. -/
+along a suitable unit vector.
+@isnad1 id=ex.1h5v.s7.a951241144a2 from=translated src=- shape=45703bf6 vocab=5c337e55
+-/
 theorem exists_mem_sphere_rankLE_map_orthProj [Nonempty α] {S : Tensor3 α β γ} {r : ℕ}
     (h : S.RankLE (r + 1)) :
     ∃ u ∈ Metric.sphere (0 : α → ℂ) 1,
@@ -223,6 +280,9 @@ theorem exists_mem_sphere_rankLE_map_orthProj [Nonempty α] {S : Tensor3 α β �
   rw [Tensor3.map_sum, Fin.sum_univ_succAbove _ 0]
   simp only [Tensor3.map_outer, one_mulVec, h0, hz, zero_add]
 
+/--
+@isnad1 id=ex.1h5v.s7.d97fdc9162f0 from=translated src=- shape=046fc6e7 vocab=38ed8399
+-/
 theorem exists_borderRankLE_map_orthProj [Nonempty α] {T : Tensor3 α β γ} {r : ℕ}
     (h : T.BorderRankLE (r + 1)) :
     ∃ u : α → ℂ, u ≠ 0 ∧
@@ -249,6 +309,9 @@ theorem exists_borderRankLE_map_orthProj [Nonempty α] {T : Tensor3 α β γ} {r
 noncomputable def torus {ι : Type*} [DecidableEq ι] (τ : ι → ℤ) (t : ℂ) : Matrix ι ι ℂ :=
   diagonal fun i => t ^ τ i
 
+/--
+@isnad1 id=eq.2h8v.s7.1a103ed8b5c2 from=translated src=- shape=e1a7c3c8 vocab=a283c7da
+-/
 theorem map_torus {T : Tensor3 α β γ} {τA : α → ℤ} {τB : β → ℤ} {τC : γ → ℤ}
     (hT : ∀ i j k, T i j k ≠ 0 → τA i + τB j + τC k = 0) {t : ℂ} (ht : t ≠ 0) :
     map (torus τA t) (torus τB t) (torus τC t) T = T := by

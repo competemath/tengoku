@@ -23,18 +23,33 @@ Show that there exist indices i < j with (i, j) ≠ (0, n), such that xᵢ = x�
 
 namespace Imo1996P6
 
+/--
+@isnad1 id=lt.2h2v.s4.b4016418ead6 from=translated src=- shape=66342627 vocab=a5150267
+-/
 lemma one_lt_gcd_of_not_coprime {p q : ℕ} (h₁ : 0 < p) (h₂ : ¬Nat.Coprime p q) : 1 < p.gcd q :=
   Nat.one_lt_iff_ne_zero_and_ne_one.mpr ⟨(Nat.gcd_pos_of_pos_left q h₁).ne', by simp_all⟩
 
+/--
+@isnad1 id=lt.3h2v.s5.8d75583816ef from=translated src=- shape=bd33a14c vocab=19f4df30
+-/
 lemma dist_gt_one_of_ne_sign {p q : ℤ} (h₁ : p.sign ≠ q.sign) (h₂ : p ≠ 0) (h₃ : q ≠ 0) : 1 < |p - q| := by
   grind
 
+/--
+@isnad1 id=and.1h2v.s5.f8586fb3cd65 from=translated src=- shape=f2b004a2 vocab=0f374885
+-/
 lemma diff_ne_pm_one_of_dist_gt_one {p q : ℤ} (h : 1 < |p - q|) : p - q ≠ 1 ∧ p - q ≠ -1 := by
   grind
 
+/--
+@isnad1 id=and.2h3v.s5.168c5c596085 from=translated src=- shape=5418afeb vocab=ea85cceb
+-/
 lemma ne_zero_of_eq_mul {a b c : ℤ} (h₁ : a ≠ 0) (h₂ : a = b * c) : b ≠ 0 ∧ c ≠ 0 := by
   grind
 
+/--
+@isnad1 id=ex.1h4v.s6.fdb5ded6da80 from=translated src=- shape=7e5c92db vocab=eb663e7b
+-/
 lemma sum_bivalued {p q : ℤ} (s : Finset (ℕ)) (f : ℕ → ℤ) (h : ∀ i ∈ s, f i = p ∨ f i = q) :
   ∃ r : ℕ, ∑ i ∈ s, f i = r * p + (s.card - r) * q ∧ r ≤ s.card := by
   let s₂ := s.filter (fun i ↦ f i = p)

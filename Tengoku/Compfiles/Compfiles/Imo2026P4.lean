@@ -74,27 +74,37 @@ triangle she wins in finitely many steps regardless of Shan-Yu's play. -/
 def MulanCanGuarantee (θ : ℝ) : Prop :=
   ∀ s : Multiset ℝ, IsTriangle s → MulanWins θ s
 
-/-- Membership in a triple, as a disjunction. -/
+/-- Membership in a triple, as a disjunction.
+@isnad1 id=iff.0h4v.s5.a1f7cdcf32d4 from=translated src=- shape=0af221ba vocab=5ad0043c
+-/
 lemma mem3 (x a b c : ℝ) : x ∈ ({a, b, c} : Multiset ℝ) ↔ x = a ∨ x = b ∨ x = c := by
   simp only [Multiset.insert_eq_cons, Multiset.mem_cons, Multiset.mem_singleton]
 
-/-- Rotation of a triple. -/
+/-- Rotation of a triple.
+@isnad1 id=eq.0h3v.s5.6d37b1376de9 from=translated src=- shape=732c98ab vocab=616658de
+-/
 lemma rot3 (a b c : ℝ) : ({a, b, c} : Multiset ℝ) = {b, c, a} := by
   simp only [Multiset.insert_eq_cons]
   rw [Multiset.cons_swap a b, ← Multiset.insert_eq_cons a {c}, Multiset.pair_comm a c,
     Multiset.insert_eq_cons c {a}]
 
-/-- Sum of a triple. -/
+/-- Sum of a triple.
+@isnad1 id=eq.0h3v.s5.23588710a788 from=translated src=- shape=f40596d5 vocab=791bab28
+-/
 lemma triple_sum (a b c : ℝ) : ({a, b, c} : Multiset ℝ).sum = a + b + c := by
   simp only [Multiset.insert_eq_cons, Multiset.sum_cons, Multiset.sum_singleton]
   ring
 
-/-- Card of a triple. -/
+/-- Card of a triple.
+@isnad1 id=eq.0h3v.s5.831ee367e885 from=translated src=- shape=f1416b73 vocab=e0d7e7ae
+-/
 lemma triple_card (a b c : ℝ) : ({a, b, c} : Multiset ℝ).card = 3 :=
   Multiset.card_eq_three.mpr ⟨a, b, c, rfl⟩
 
 /-- An open interval of length exceeding `θ`, with positive left endpoint,
-contains a positive integer multiple of `θ`. -/
+contains a positive integer multiple of `θ`.
+@isnad1 id=ex.3h3v.s6.1cbd000d7518 from=translated src=- shape=a1ad7438 vocab=3e81b846
+-/
 lemma exists_nat_mul_in (θ : ℝ) (hθ0 : 0 < θ) (u v : ℝ) (hu : 0 < u)
     (huv : u + θ < v) :
     ∃ m : ℕ, 1 ≤ m ∧ u < (m : ℝ) * θ ∧ (m : ℝ) * θ < v := by
@@ -136,7 +146,9 @@ lemma exists_nat_mul_in (θ : ℝ) (hθ0 : 0 < θ) (u v : ℝ) (hu : 0 < u)
 multiple `k * θ` of `θ` is winning for Mulan, by induction on `k`:
 if `k ≥ 2`, transfer one `θ` from the apex `k * θ` to the angle `C`; the child
 `{C, 180 - C - θ, θ}` already contains `θ`, and the other child contains
-`(k - 1) * θ`. -/
+`(k - 1) * θ`.
+@isnad1 id=mulanwin.6h3v.s6.174d12687c52 from=translated src=- shape=0e271b10 vocab=6fe613d9
+-/
 lemma good_wins (θ : ℝ) (hθ0 : 0 < θ) : ∀ k : ℕ, 1 ≤ k → ∀ s : Multiset ℝ,
     (k : ℝ) * θ ∈ s → s.card = 3 → (∀ y ∈ s, 0 < y) → s.sum = 180 →
     MulanWins θ s := by
@@ -194,7 +206,9 @@ lemma good_wins (θ : ℝ) (hθ0 : 0 < θ) : ∀ k : ℕ, 1 ≤ k → ∀ s : Mu
 
 /-- If `n * θ = 180` with `2 ≤ n` and the triangle `{a, b, c}` has no angle equal
 to a positive integer multiple of `θ`, then some relabeling `{A, B, C}` of it
-and some `1 ≤ m` satisfy `C < m * θ < 180 - B`. -/
+and some `1 ≤ m` satisfy `C < m * θ < 180 - B`.
+@isnad1 id=ex.8h5v.s8.b65309fdf848 from=translated src=- shape=05b306b1 vocab=cc3d7559
+-/
 lemma find_cut (θ : ℝ) (hθ0 : 0 < θ) : ∀ n : ℕ, 2 ≤ n → (n : ℝ) * θ = 180 →
     ∀ a b c : ℝ, 0 < a → 0 < b → 0 < c → a + b + c = 180 →
     (¬∃ k : ℕ, 1 ≤ k ∧ (a = (k : ℝ) * θ ∨ b = (k : ℝ) * θ ∨ c = (k : ℝ) * θ)) →
@@ -245,7 +259,9 @@ lemma find_cut (θ : ℝ) (hθ0 : 0 < θ) : ∀ n : ℕ, 2 ≤ n → (n : ℝ) *
 
 /-- Shan-Yu's invariant: assuming `180` is not an integer multiple of `θ`, for any
 cut of a sum-`180` multiset with no angle an integer multiple of `θ`, at least
-one child keeps the same property. -/
+one child keeps the same property.
+@isnad1 id=or.4h4v.s7.63c766548643 from=translated src=- shape=1b3e9da9 vocab=a1c4b183
+-/
 lemma invariant (θ : ℝ) : (∀ m : ℤ, (180 : ℝ) ≠ (m : ℝ) * θ) →
     ∀ {s L R : Multiset ℝ}, s.sum = 180 →
     (∀ y ∈ s, ∀ k : ℤ, y ≠ (k : ℝ) * θ) → IsCut s L R →
@@ -292,7 +308,9 @@ lemma invariant (θ : ℝ) : (∀ m : ℤ, (180 : ℝ) ≠ (m : ℝ) * θ) →
     · exact hβ (kR - kL) (by rw [hcast3]; linarith)
     · exact hα (kL + kR) (by rw [hcast2]; linarith)
 
-/-- Hence no sum-`180` multiset without integer multiples of `θ` is winning. -/
+/-- Hence no sum-`180` multiset without integer multiples of `θ` is winning.
+@isnad1 id=false.4h2v.s6.3ff24784157c from=translated src=- shape=74a172e0 vocab=f2dea9a8
+-/
 lemma not_wins (θ : ℝ) : (∀ m : ℤ, (180 : ℝ) ≠ (m : ℝ) * θ) → ∀ s : Multiset ℝ,
     MulanWins θ s → s.sum = 180 → (∀ y ∈ s, ∀ k : ℤ, y ≠ (k : ℝ) * θ) → False := by
   intro h180 s h

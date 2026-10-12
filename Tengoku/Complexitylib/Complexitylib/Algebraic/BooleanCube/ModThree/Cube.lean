@@ -25,7 +25,9 @@ namespace Algebraic.BooleanCube.ModThree
 variable {ι κ J : Type*} [Fintype ι] [Fintype κ] [Fintype J]
 
 /-- Hamming residue on a disjoint cube is the affine sum of the single-direction
- residue changes, with each cube parameter interpreted as zero or one. -/
+ residue changes, with each cube parameter interpreted as zero or one.
+@isnad1 id=eq.1h5v.s8.1938d5558544 from=translated src=- shape=2f1235d5 vocab=1ff50030
+-/
 theorem residue_affineCube (a : ι → ZMod 2) (v : J → ι → ZMod 2)
     (disjoint : DisjointDirections v) (z : J → ZMod 2) :
     residue (affineCube a v z) =
@@ -33,7 +35,9 @@ theorem residue_affineCube (a : ι → ZMod 2) (v : J → ι → ZMod 2)
   Internal.residue_affineCube a v disjoint z
 
 /-- Each sufficiently large disjoint coordinate block supplies one independent
- MOD3 direction inside the original affine solution coset. -/
+ MOD3 direction inside the original affine solution coset.
+@isnad1 id=ex.2h6v.s11.a3493fa1eb4a from=translated src=- shape=f50765da vocab=c80789c8
+-/
 theorem exists_affineCube_of_disjoint_blocks
     (R : (ι → ZMod 2) →ₗ[ZMod 2] (κ → ZMod 2)) (a : ι → ZMod 2)
     (B : J → Finset ι) (disjoint : Pairwise fun j k => Disjoint (B j) (B k))
@@ -66,7 +70,9 @@ theorem exists_affineCube_of_disjoint_blocks
   · exact residue_affineCube a v directions
 
 /-- Any `q` binary linear equations on `n` coordinates retain a signed MOD3 cube
- of dimension `n / (2*q+1)` in every affine solution coset. -/
+ of dimension `n / (2*q+1)` in every affine solution coset.
+@isnad1 id=ex.0h4v.s12.52dc14702430 from=translated src=- shape=d9b153ca vocab=f2e03107
+-/
 theorem exists_signed_cube {n q : ℕ}
     (R : (Fin n → ZMod 2) →ₗ[ZMod 2] (Fin q → ZMod 2)) (a : Fin n → ZMod 2) :
     ∃ (L : (Fin (n / (2 * q + 1)) → ZMod 2) →ₗ[ZMod 2] (Fin n → ZMod 2))

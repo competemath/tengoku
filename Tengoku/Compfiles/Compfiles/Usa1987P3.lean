@@ -33,7 +33,9 @@ inductive InX : Polynomial ℝ → Prop
   | mul {r : Polynomial ℝ} (hr : InX r) : InX (X * r)
   | comb {r : Polynomial ℝ} (hr : InX r) : InX (X + (1 - X) * r)
 
-/-- Every polynomial of `X` maps the open interval `(0, 1)` into itself. -/
+/-- Every polynomial of `X` maps the open interval `(0, 1)` into itself.
+@isnad1 id=and.3h2v.s5.8dc99a3b3b03 from=translated src=- shape=17c2b4fa vocab=daac7477
+-/
 lemma InX.eval_mem_Ioo {r : Polynomial ℝ} (hr : InX r)
     {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1) :
     0 < r.eval x ∧ r.eval x < 1 := by
@@ -57,7 +59,9 @@ interval `(0, 1)`. The proof goes by induction on the construction of `r`
 and case analysis on the construction of `s`; it is a form of lexicographic
 comparison of the operation sequences (cf. the informal solution, where
 `+` counts as larger than "no further operation", which in turn counts as
-larger than `-`). -/
+larger than `-`).
+@isnad1 id=or.2h2v.s6.73a966762ce6 from=translated src=- shape=9e95e9d3 vocab=daac7477
+-/
 lemma InX.trichotomy {r : Polynomial ℝ} (hr : InX r) :
     ∀ {s : Polynomial ℝ}, InX s →
       r = s ∨ (∀ x : ℝ, 0 < x → x < 1 → r.eval x < s.eval x) ∨

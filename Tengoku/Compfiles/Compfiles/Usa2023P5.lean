@@ -37,6 +37,9 @@ def row_valid {n : ℕ} (hn : 0 < n) (a : Fin n → Fin n → Fin (n ^ 2)) (ha :
 def col_valid {n : ℕ} (hn : 0 < n) (a : Fin n → Fin n → Fin (n ^ 2)) (ha : a.Injective2) : Prop :=
     ∀ c : Fin n, PermutedArithSeq hn ⟨(a · c), Function.Injective2.left ha c⟩
 
+/--
+@isnad1 id=injectiv.2h5v.s5.d3415c7cb7a3 from=translated src=- shape=746ff1de vocab=58f2d908
+-/
 theorem injective_of_permuted_rows {α β γ : Type}
     {f : α → β → γ} (hf : f.Injective2) {p : α → β → β} (hp : ∀ a, (p a).Injective) :
     Function.Injective2 (fun r c ↦ f r (p r c)) := by
@@ -55,8 +58,14 @@ contain the leftover numbers in reading order. -/
 def trygub (n q r c : ℕ) : ℕ :=
   if r = 0 then c else if r ≤ q then n + (r - 1) + q * c else n * q + n + (r - q - 1) * n + c
 
+/--
+@isnad1 id=eq.0h3v.s4.e33521fa0507 from=translated src=- shape=db9119ad vocab=c7afcb5a
+-/
 lemma trygub_row_zero (n q c : ℕ) : trygub n q 0 c = c := rfl
 
+/--
+@isnad1 id=lt.4h4v.s6.24dc592a8be7 from=translated src=- shape=9cd8a1e8 vocab=a64dc4cf
+-/
 lemma trygub_lt {n q r c : ℕ} (hr : r < n) (hc : c < n) (hq : 2 ≤ q) (hqn : q + 1 ≤ n) :
     trygub n q r c < n ^ 2 := by
   unfold trygub
@@ -88,6 +97,9 @@ lemma trygub_lt {n q r c : ℕ} (hr : r < n) (hc : c < n) (hq : 2 ≤ q) (hqn : 
     rw [pow_two]
     lia
 
+/--
+@isnad1 id=and.2h4v.s5.384dab7e5ff2 from=translated src=- shape=8f5585e5 vocab=8f09df8e
+-/
 lemma trygub_eq_zero {n q r c : ℕ} (hn : 2 ≤ n) :
     trygub n q r c = 0 → r = 0 ∧ c = 0 := by
   unfold trygub
@@ -96,7 +108,9 @@ lemma trygub_eq_zero {n q r c : ℕ} (hn : 2 ≤ n) :
   · lia
   · lia
 
-/-- Rows `1 ≤ r ≤ q` contain values in `[n, n*q+n)`. -/
+/-- Rows `1 ≤ r ≤ q` contain values in `[n, n*q+n)`.
+@isnad1 id=and.3h4v.s6.2881a484658a from=translated src=- shape=0d8f367f vocab=e01b816a
+-/
 lemma trygub_mid_bounds {n q r c : ℕ} (h0 : r ≠ 0) (hle : r ≤ q) (hc : c < n) :
     n ≤ trygub n q r c ∧ trygub n q r c < n * q + n := by
   unfold trygub
@@ -107,13 +121,18 @@ lemma trygub_mid_bounds {n q r c : ℕ} (h0 : r ≠ 0) (hle : r ≤ q) (hc : c <
       _ = n * q := Nat.mul_comm q n
   lia
 
-/-- Rows `r > q` contain values in `[n*q+n, n^2)`. -/
+/-- Rows `r > q` contain values in `[n*q+n, n^2)`.
+@isnad1 id=le.1h4v.s5.82aab8abcae6 from=translated src=- shape=ce2a107b vocab=ae04ab5d
+-/
 lemma trygub_top_bound (n q : ℕ) {r : ℕ} (c : ℕ) (hle : ¬ r ≤ q) :
     n * q + n ≤ trygub n q r c := by
   unfold trygub
   rw [ite_eq_right (by lia : r ≠ 0), ite_eq_right hle]
   lia
 
+/--
+@isnad1 id=le.2h3v.s6.e0fb51c30e6f from=translated src=- shape=11e3298c vocab=18af5575
+-/
 lemma trygub_last_ge {n q c : ℕ} (hq : 2 ≤ q) (hqn : q + 2 ≤ n) :
     n ^ 2 - n ≤ trygub n q (n - 1) c := by
   unfold trygub
@@ -128,6 +147,9 @@ lemma trygub_last_ge {n q c : ℕ} (hq : 2 ≤ q) (hqn : q + 2 ≤ n) :
     rw [pow_two]
     lia
 
+/--
+@isnad1 id=and.8h6v.s6.dea2397d957c from=translated src=- shape=a4660f79 vocab=08becc13
+-/
 lemma trygub_inj {n q r₁ r₂ c₁ c₂ : ℕ} (hn : 4 ≤ n) (hq : 2 ≤ q) (_hqn : q + 1 ≤ n)
     (hr₁ : r₁ < n) (hr₂ : r₂ < n) (hc₁ : c₁ < n) (hc₂ : c₂ < n)
     (h : trygub n q r₁ c₁ = trygub n q r₂ c₂) : r₁ = r₂ ∧ c₁ = c₂ := by
@@ -201,6 +223,9 @@ lemma trygub_inj {n q r₁ r₂ c₁ c₂ : ℕ} (hn : 4 ≤ n) (hq : 2 ≤ q) (
           have : r₁ = r₂ := by lia
           exact ⟨this, rfl⟩
 
+/--
+@isnad1 id=eq.5h4v.s6.cd75bf1e2cb1 from=translated src=- shape=617a6626 vocab=08becc13
+-/
 lemma trygub_eq_add_one {n q r c : ℕ} (_hn : 4 ≤ n) (hq : 2 ≤ q)
     (_hr : r < n) (hc : c < n) (h : trygub n q r c = n + 1) : r = 2 := by
   unfold trygub at h
@@ -215,6 +240,9 @@ lemma trygub_eq_add_one {n q r c : ℕ} (_hn : 4 ≤ n) (hq : 2 ≤ q)
   · have hnq : n * 2 ≤ n * q := Nat.mul_le_mul_left n hq
     lia
 
+/--
+@isnad1 id=eq.6h4v.s6.d883902a4a51 from=translated src=- shape=48831db9 vocab=25f1f36b
+-/
 lemma trygub_eq_two_mul_add_one {n q r c : ℕ} (hn : 4 ≤ n) (hq : 2 ≤ q) (hdvd : q ∣ n)
     (_hr : r < n) (hc : c < n) (h : trygub n q r c = 2 * n + 1) : r = 2 := by
   unfold trygub at h
@@ -234,11 +262,17 @@ lemma trygub_eq_two_mul_add_one {n q r c : ℕ} (hn : 4 ≤ n) (hq : 2 ≤ q) (h
   · have hnq : n * 2 ≤ n * q := Nat.mul_le_mul_left n hq
     lia
 
+/--
+@isnad1 id=eq.2h4v.s6.54eeec429981 from=translated src=- shape=238bc8d4 vocab=4c94f9d1
+-/
 lemma trygub_mid (n q r c : ℕ) (h0 : r ≠ 0) (hle : r ≤ q) :
     trygub n q r c = n + (r - 1) + q * c := by
   unfold trygub
   rw [ite_eq_right h0, ite_eq_left hle]
 
+/--
+@isnad1 id=eq.1h4v.s6.737c397173bc from=translated src=- shape=15970dd2 vocab=4c94f9d1
+-/
 lemma trygub_top (n q r c : ℕ) (hle : ¬ r ≤ q) :
     trygub n q r c = n * q + n + (r - q - 1) * n + c := by
   unfold trygub
@@ -249,12 +283,16 @@ lemma eq_of_div_mod_eq {v₁ v₂ m : ℕ} (hdiv : v₁ / m = v₂ / m) (hmod : 
     v₁ = v₂ := by
   rw [← Nat.div_add_mod v₁ m, ← Nat.div_add_mod v₂ m, hdiv, hmod]
 
-/-- The quotient of an element of `Fin (n^2)` by `n` is again in `Fin n`. -/
+/-- The quotient of an element of `Fin (n^2)` by `n` is again in `Fin n`.
+@isnad1 id=lt.0h2v.s5.c1d41f9e65b7 from=translated src=- shape=097f8018 vocab=614be615
+-/
 lemma div_lt_of_mem {n : ℕ} (v : Fin (n ^ 2)) : v.val / n < n :=
   Nat.div_lt_of_lt_mul (by rw [← pow_two]; exact v.isLt)
 
 /-- The common difference of a permuted arithmetic progression of length at least 2
-of elements of `Fin (n^2)` is positive. -/
+of elements of `Fin (n^2)` is positive.
+@isnad1 id=le.5h4v.s7.68e4c58c192b from=translated src=- shape=ed3fc216 vocab=2426d7e8
+-/
 lemma ap_k_pos {n : ℕ} (hn : 0 < n) (h2 : 2 ≤ n) {f : Fin n → Fin (n ^ 2)} (hf : f.Injective)
     {p : Fin n → Fin n} (hp : p.Injective) {k : ℕ}
     (hk : ∀ m : Fin n, (f (p m)).val = (f (p ⟨0, hn⟩)).val + m.val * k) : 1 ≤ k := by
@@ -269,7 +307,9 @@ lemma ap_k_pos {n : ℕ} (hn : 0 < n) (h2 : 2 ≤ n) {f : Fin n → Fin (n ^ 2)}
   lia
 
 /-- For prime `n`, an arithmetic progression of length `n` whose common difference is not
-divisible by `n` hits every residue class mod `n` at most once. -/
+divisible by `n` hits every residue class mod `n` at most once.
+@isnad1 id=eq.3h5v.s6.5e5b472f2cb5 from=translated src=- shape=677bf98f vocab=0203e4fa
+-/
 lemma ap_res_inj {n : ℕ} (hp : n.Prime) {k : ℕ} (hk : ¬ n ∣ k) (b : ℕ) {m₁ m₂ : Fin n}
     (h : (b + m₁.val * k) % n = (b + m₂.val * k) % n) : m₁ = m₂ := by
   have : Fact n.Prime := ⟨hp⟩
@@ -295,6 +335,9 @@ def trygubArr (n q : ℕ) (hbound : ∀ r c : Fin n, trygub n q r.val c.val < n 
     Fin n → Fin n → Fin (n ^ 2) :=
   fun r c ↦ ⟨trygub n q r.val c.val, hbound r c⟩
 
+/--
+@isnad1 id=injectiv.4h2v.s6.bbd2797a1143 from=translated src=- shape=f2ce5725 vocab=18135bfb
+-/
 lemma trygubArr_injective2 {n q : ℕ} (hn : 4 ≤ n) (hq : 2 ≤ q) (hqn : q + 1 ≤ n)
     (hbound : ∀ r c : Fin n, trygub n q r.val c.val < n ^ 2) :
     (trygubArr n q hbound).Injective2 := by
@@ -303,6 +346,9 @@ lemma trygubArr_injective2 {n q : ℕ} (hn : 4 ≤ n) (hq : 2 ≤ q) (hqn : q + 
   obtain ⟨hr, hc⟩ := trygub_inj hn hq hqn r₁.isLt r₂.isLt c₁.isLt c₂.isLt hv
   exact ⟨Fin.ext hr, Fin.ext hc⟩
 
+/--
+@isnad1 id=rowvalid.4h2v.s6.82947c50de34 from=translated src=- shape=4e287389 vocab=cb5ba6cf
+-/
 lemma trygubArr_row_valid {n q : ℕ} (hn0 : 0 < n) (_hq : 2 ≤ q)
     (hbound : ∀ r c : Fin n, trygub n q r.val c.val < n ^ 2)
     (ha : (trygubArr n q hbound).Injective2) :

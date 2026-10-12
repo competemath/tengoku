@@ -44,7 +44,9 @@ variable {V E : Type} {G : Multigraph V E} {n m : ℕ} {input : Fin n → V} {ou
 /-! ### The cut lemma -/
 
 /-- **The cut lemma.** Every linear order of the vertices of an `(n, m)`-concentrator has a
-lower set whose cut has at least `min(m, n - m)` edges. -/
+lower set whose cut has at least `min(m, n - m)` edges.
+@isnad1 id=ex.1h7v.s6.cb94a599a9f9 from=translated src=- shape=7aa6a811 vocab=f63bea44
+-/
 theorem exists_le_card_cut [Fintype V] [Fintype E] [LinearOrder V]
     (h : G.Concentrator input output) :
     ∃ L : Finset V, IsLowerSet (L : Set V) ∧ min m (n - m) ≤ (G.cut L).card := by
@@ -78,7 +80,9 @@ theorem exists_le_card_cut [Fintype V] [Fintype E] [LinearOrder V]
 
 /-! ### The terminals lie in one component -/
 
-/-- A predicate constant along edges is constant along undirected walks. -/
+/-- A predicate constant along edges is constant along undirected walks.
+@isnad1 id=iff.2h6v.s5.6289eda2da3a from=translated src=- shape=95491751 vocab=7c7e8519
+-/
 theorem iff_of_reflTransGen {P : V → Prop} (hP : ∀ u v, G.Adj u v → (P u ↔ P v)) {u v : V}
     (huv : ReflTransGen G.Adj u v) : P u ↔ P v := by
   induction huv with
@@ -87,7 +91,9 @@ theorem iff_of_reflTransGen {P : V → Prop} (hP : ∀ u v, G.Adj u v → (P u �
 
 /-- **Walks stay in closed sets.** If `P` is constant along edges and holds at the inputs of a
 set `X` of at most `m` inputs, then at least `|X|` outputs satisfy `P`: every set `Y` containing
-the outputs that satisfy `P` has at least `|X|` elements. -/
+the outputs that satisfy `P` has at least `|X|` elements.
+@isnad1 id=le.4h11v.s7.438f4a6bc963 from=translated src=- shape=01849e9b vocab=9f15b642
+-/
 theorem card_le_card_of_closed (h : G.Concentrator input output) {P : V → Prop}
     (hP : ∀ u v, G.Adj u v → (P u ↔ P v)) {X : Finset (Fin n)} (hXm : X.card ≤ m)
     (hX : ∀ i ∈ X, P (input i)) {Y : Finset (Fin m)} (hY : ∀ j, P (output j) → j ∈ Y) :
@@ -98,7 +104,9 @@ theorem card_le_card_of_closed (h : G.Concentrator input output) {P : V → Prop
   exact Finset.mem_coe.2
     (hY _ ((iff_of_reflTransGen hP (reflTransGen_of_isDirWalk (hwalk i hi))).1 (hX i hi)))
 
-/-- A closed set holding the inputs of `S` holds at least `min(|S|, m)` outputs. -/
+/-- A closed set holding the inputs of `S` holds at least `min(|S|, m)` outputs.
+@isnad1 id=le.3h11v.s7.8f90b2fe4850 from=translated src=- shape=da40456e vocab=516aea76
+-/
 theorem min_card_le_card_of_closed (h : G.Concentrator input output) {P : V → Prop}
     (hP : ∀ u v, G.Adj u v → (P u ↔ P v)) {S : Finset (Fin n)} (hS : ∀ i ∈ S, P (input i))
     {Y : Finset (Fin m)} (hY : ∀ j, P (output j) → j ∈ Y) : min S.card m ≤ Y.card := by
@@ -107,7 +115,9 @@ theorem min_card_le_card_of_closed (h : G.Concentrator input output) {P : V → 
   exact card_le_card_of_closed h hP (hXcard ▸ min_le_right _ _) (fun i hi => hS i (hXsub hi)) hY
 
 /-- **All terminals lie in one component.** If `1 ≤ m < n`, every input and every output of an
-`(n, m)`-concentrator is joined to the first input by an undirected walk. -/
+`(n, m)`-concentrator is joined to the first input by an undirected walk.
+@isnad1 id=and.3h7v.s6.24550bd1b634 from=translated src=- shape=dd111bf2 vocab=81a33e66
+-/
 theorem reflTransGen_root (h : G.Concentrator input output) (hm : 1 ≤ m) (hmn : m < n) :
     (∀ i, ReflTransGen G.Adj (input i) (input ⟨0, by omega⟩)) ∧
       ∀ j, ReflTransGen G.Adj (output j) (input ⟨0, by omega⟩) := by
@@ -140,14 +150,18 @@ theorem reflTransGen_root (h : G.Concentrator input output) (hm : 1 ≤ m) (hmn 
 
 variable [Fintype E]
 
-/-- Every input has a kept edge leaving it. -/
+/-- Every input has a kept edge leaving it.
+@isnad1 id=lt.3h8v.s6.bb1f62ae7b8c from=translated src=- shape=754c205c vocab=660bac7b
+-/
 theorem slots_input_pos (h : G.Concentrator input output) (hm : 1 ≤ m) (hmn : m < n)
     (i : Fin n) : 0 < slots G (compEdges G (input ⟨0, by omega⟩)) (input i) := by
   obtain ⟨target, walk, hwalk, -⟩ := h.exists_walks {i} (by simpa using hm)
   exact slots_pos_of_isDirWalk_left (hwalk i (Finset.mem_singleton_self i))
     (h.input_ne_output _ _) ((reflTransGen_root h hm hmn).1 i)
 
-/-- Every output has a kept edge entering it. -/
+/-- Every output has a kept edge entering it.
+@isnad1 id=lt.3h8v.s6.a8dffc2b346e from=translated src=- shape=cda17802 vocab=660bac7b
+-/
 theorem slots_output_pos (h : G.Concentrator input output) (hm : 1 ≤ m) (hmn : m < n)
     (j : Fin m) : 0 < slots G (compEdges G (input ⟨0, by omega⟩)) (output j) := by
   obtain ⟨X, -, hXcard⟩ := Finset.exists_subset_card_eq (s := (Finset.univ : Finset (Fin n)))
@@ -160,7 +174,9 @@ theorem slots_output_pos (h : G.Concentrator input output) (hm : 1 ≤ m) (hmn :
 
 /-- **The split graph of a concentrator.** If all inputs lie in the component of `r`, every
 input has a slot, and every output has a slot, then the split graph of the component is a
-concentrator with inputs at first slots and outputs at last slots. -/
+concentrator with inputs at first slots and outputs at last slots.
+@isnad1 id=concentr.4h8v.s7.56ffffecd4b6 from=translated src=- shape=f9582144 vocab=2a5838af
+-/
 theorem split_concentrator (h : G.Concentrator input output) {r : V}
     (hr : ∀ i, ReflTransGen G.Adj (input i) r)
     (hin : ∀ i, 0 < slots G (compEdges G r) (input i))
@@ -178,7 +194,9 @@ theorem split_concentrator (h : G.Concentrator input output) {r : V}
 
 variable [Fintype V]
 
-/-- The `n + m` terminals have a slot. -/
+/-- The `n + m` terminals have a slot.
+@isnad1 id=le.3h7v.s7.732421735fb5 from=translated src=- shape=6a257d57 vocab=fb0c448b
+-/
 theorem add_le_card_slotted (h : G.Concentrator input output) (hm : 1 ≤ m) (hmn : m < n) :
     n + m ≤
       (Finset.univ.filter fun w => slots G (compEdges G (input ⟨0, by omega⟩)) w ≠ 0).card := by
@@ -200,7 +218,9 @@ theorem add_le_card_slotted (h : G.Concentrator input output) (hm : 1 ≤ m) (hm
   · exact (slots_output_pos h hm hmn j).ne'
 
 /-- **The edge baseline.** An `(n, m)`-concentrator with `1 ≤ m < n` has at least `n + m - 1`
-edges. -/
+edges.
+@isnad1 id=le.3h7v.s6.c0496028a7a9 from=translated src=- shape=8048cedd vocab=1422dbfb
+-/
 theorem add_le_card_add_one (h : G.Concentrator input output) (hm : 1 ≤ m) (hmn : m < n) :
     n + m ≤ Fintype.card E + 1 :=
   le_card_add_one_of_le_slotted (slots_input_pos h hm hmn _) (add_le_card_slotted h hm hmn)

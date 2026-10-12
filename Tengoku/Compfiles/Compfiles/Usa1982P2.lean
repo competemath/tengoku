@@ -27,17 +27,25 @@ open Polynomial
 `x = 1`, `y = t`, `z = -1 - t` into `x^k + y^k + z^k` (note `1 + t + (-1 - t) = 0`). -/
 noncomputable def auxPoly (k : ℕ) : ℝ[X] := 1 + X ^ k + (C (-1) - X) ^ k
 
+/--
+@isnad1 id=eq.0h2v.s6.d65663c94a0f from=translated src=- shape=62ce8cc6 vocab=8ca825e0
+-/
 lemma auxPoly_eval (k : ℕ) (t : ℝ) :
     (auxPoly k).eval t = 1 + t ^ k + (-1 - t) ^ k := by
   simp [auxPoly]
 
+/--
+@isnad1 id=eq.0h0v.s4.0c25f2d8f1c3 from=translated src=- shape=249d2cad vocab=9f0cf79f
+-/
 lemma auxPoly_one : auxPoly 1 = 0 := by
   have hC : (C (-1) : ℝ[X]) = -1 := by simp
   show 1 + X ^ 1 + (C (-1) - X) ^ 1 = 0
   rw [pow_one, pow_one, hC]
   ring
 
-/-- Rewrite `(-1 - X)^k` as `(-1)^k (1 + X)^k`. -/
+/-- Rewrite `(-1 - X)^k` as `(-1)^k (1 + X)^k`.
+@isnad1 id=eq.0h1v.s7.9d2bf255d836 from=translated src=- shape=ccfa79a9 vocab=90ba52b9
+-/
 lemma auxPoly_eq (k : ℕ) :
     auxPoly k = 1 + X ^ k + C ((-1 : ℝ) ^ k) * (1 + X) ^ k := by
   have h1 : (C (-1) - X : ℝ[X]) = -(1 + X) := by
@@ -49,6 +57,9 @@ lemma auxPoly_eq (k : ℕ) :
   show 1 + X ^ k + (C (-1) - X) ^ k = 1 + X ^ k + C ((-1 : ℝ) ^ k) * (1 + X) ^ k
   rw [h1, neg_pow, h2]
 
+/--
+@isnad1 id=eq.1h1v.s5.92bb49b829df from=translated src=- shape=c817a5bf vocab=707de6dc
+-/
 lemma auxPoly_coeff_self {k : ℕ} (hk : 1 ≤ k) :
     (auxPoly k).coeff k = 1 + (-1 : ℝ) ^ k := by
   rw [auxPoly_eq, coeff_add, coeff_add, coeff_one, coeff_X_pow, coeff_C_mul,
@@ -56,6 +67,9 @@ lemma auxPoly_coeff_self {k : ℕ} (hk : 1 ≤ k) :
   have h1 : k ≠ 0 := by lia
   simp [h1, Nat.choose_self]
 
+/--
+@isnad1 id=eq.1h1v.s6.61574d6ca5bf from=translated src=- shape=72e87eba vocab=c89d53ef
+-/
 lemma auxPoly_coeff_pred {k : ℕ} (hk : 2 ≤ k) :
     (auxPoly k).coeff (k - 1) = (-1 : ℝ) ^ k * k := by
   rw [auxPoly_eq, coeff_add, coeff_add, coeff_one, coeff_X_pow, coeff_C_mul,
@@ -68,6 +82,9 @@ lemma auxPoly_coeff_pred {k : ℕ} (hk : 2 ≤ k) :
     rw [h4]
   simp [h1, h2, h3]
 
+/--
+@isnad1 id=le.0h1v.s3.e6faa5354754 from=translated src=- shape=c3f7ecf6 vocab=06c24c43
+-/
 lemma natDegree_auxPoly_le (k : ℕ) : (auxPoly k).natDegree ≤ k := by
   have hC : (C (-1) - X : ℝ[X]).natDegree ≤ 1 :=
     le_trans (natDegree_sub_le _ _)
@@ -83,7 +100,9 @@ lemma natDegree_auxPoly_le (k : ℕ) : (auxPoly k).natDegree ≤ k := by
   rwa [max_self] at h3
 
 /-- The polynomial identity obtained from the functional equation by substituting
-`x = 1, y = t, z = -1 - t` and clearing denominators. -/
+`x = 1, y = t, z = -1 - t` and clearing denominators.
+@isnad1 id=eq.3h2v.s8.115c8554fc33 from=translated src=- shape=5bea57f3 vocab=98967bd5
+-/
 lemma auxPoly_mul_eq (m n : ℕ) (hm : 0 < m) (hn : 0 < n)
     (h : ∀ x y z : ℝ, x + y + z = 0 →
       (x ^ (m + n) + y ^ (m + n) + z ^ (m + n)) / (m + n) =
@@ -100,7 +119,9 @@ lemma auxPoly_mul_eq (m n : ℕ) (hm : 0 < m) (hn : 0 < n)
   field_simp at hh
   linear_combination hh
 
-/-- Comparison of the coefficients of `X ^ (m + n - 1)` in `auxPoly_mul_eq`. -/
+/-- Comparison of the coefficients of `X ^ (m + n - 1)` in `auxPoly_mul_eq`.
+@isnad1 id=eq.3h2v.s8.d9ece34436f5 from=translated src=- shape=6be3223c vocab=6d9b9b1b
+-/
 lemma coeff_eq (m n : ℕ) (hm : 0 < m) (hn : 0 < n)
     (hid : auxPoly (m + n) * C ((m : ℝ) * n) = auxPoly m * auxPoly n * C ((m : ℝ) + n)) :
     (-1 : ℝ) ^ (m + n) * ((m : ℝ) + n) * ((m : ℝ) * n) =
@@ -148,7 +169,9 @@ lemma coeff_eq (m n : ℕ) (hm : 0 < m) (hn : 0 < n)
   linear_combination hc
 
 /-- With `n = 2` and `m` odd, evaluating the equation at `(x, y, z) = (1, 1, -2)`
-forces `m ∈ {3, 5}`. -/
+forces `m ∈ {3, 5}`.
+@isnad1 id=or.4h2v.s8.cb8eacff5bd3 from=translated src=- shape=bb6ee6cf vocab=71472ed6
+-/
 lemma final_odd (m n : ℕ) (hm : 0 < m) (hn : n = 2) (hmo : Odd m)
     (h : ∀ x y z : ℝ, x + y + z = 0 →
       (x ^ (m + n) + y ^ (m + n) + z ^ (m + n)) / (m + n) =

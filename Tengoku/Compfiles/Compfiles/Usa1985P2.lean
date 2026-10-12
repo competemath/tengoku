@@ -21,7 +21,9 @@ namespace Usa1985P2
 
 /-- The quartic of the problem rewrites as `(x² - N - 1/2)² - x - 5/4`;
 this is the key observation of the solution
-(see https://prase.cz/kalva/usa/usoln/usol852.html). -/
+(see https://prase.cz/kalva/usa/usoln/usol852.html).
+@isnad1 id=eq.0h2v.s7.586855eb23ad from=translated src=- shape=88047ab5 vocab=4d09f77c
+-/
 lemma quartic_eq (N x : ℝ) :
     x ^ 4 - (2 * N + 1) * x ^ 2 - x + N ^ 2 + N - 1 =
       (x ^ 2 - N - 1 / 2) ^ 2 - x - 5 / 4 := by
@@ -30,13 +32,21 @@ lemma quartic_eq (N x : ℝ) :
 /-- The function whose zeros are the real roots of the quartic. -/
 noncomputable def f (N : ℝ) (x : ℝ) : ℝ := (x ^ 2 - N - 1 / 2) ^ 2 - x - 5 / 4
 
+/--
+@isnad1 id=eq.0h2v.s6.a629e69b12ee from=translated src=- shape=921e9cf2 vocab=dc3e3725
+-/
 lemma f_def (N : ℝ) (x : ℝ) : f N x = (x ^ 2 - N - 1 / 2) ^ 2 - x - 5 / 4 := rfl
 
+/--
+@isnad1 id=continuo.0h1v.s4.1d74f6385d2b from=translated src=- shape=f736e2c1 vocab=2f907c5a
+-/
 lemma f_continuous (N : ℝ) : Continuous (f N) := by
   unfold f
   continuity
 
-/-- A sign change of `f N` on an interval locates a root in its interior. -/
+/-- A sign change of `f N` on an interval locates a root in its interior.
+@isnad1 id=ex.2h3v.s5.180116912740 from=translated src=- shape=fc424c6b vocab=72f42ea7
+-/
 lemma exists_root_of_sign_change {N : ℝ} {a b : ℝ} (hab : a ≤ b)
     (h : f N a * f N b < 0) : ∃ x ∈ Set.Ioo a b, f N x = 0 := by
   have hc : ContinuousOn (f N) (Set.Icc a b) := (f_continuous N).continuousOn
@@ -50,7 +60,9 @@ lemma exists_root_of_sign_change {N : ℝ} {a b : ℝ} (hab : a ≤ b)
 
 /-- The quartic has no nonpositive real roots when `N = 10^10`:
 for `x ≤ -5/4` the right side `x + 5/4` of `(x² - N - 1/2)² = x + 5/4` is too small,
-and for `-5/4 < x ≤ 0` the left side is huge while the right side stays below `5/4`. -/
+and for `-5/4 < x ≤ 0` the left side is huge while the right side stays below `5/4`.
+@isnad1 id=lt.2h2v.s5.b976fb31492e from=translated src=- shape=5fa9e418 vocab=a8c3101b
+-/
 lemma f_pos_of_nonpos {N : ℝ} (hN : N = 10 ^ 10) {x : ℝ} (hx : x ≤ 0) :
     0 < f N x := by
   subst hN
@@ -72,7 +84,9 @@ lemma f_pos_of_nonpos {N : ℝ} (hN : N = 10 ^ 10) {x : ℝ} (hx : x ≤ 0) :
     rw [hflip]
     nlinarith [hsq, hx]
 
-/-- `f N` is strictly antitone on `{x ≥ 0 | x² ≤ N + 1/2}`. -/
+/-- `f N` is strictly antitone on `{x ≥ 0 | x² ≤ N + 1/2}`.
+@isnad1 id=lt.3h3v.s6.ea759bf20712 from=translated src=- shape=926d6506 vocab=548fa962
+-/
 lemma f_lt_f_of_lt {N : ℝ} {x y : ℝ} (hx : 0 ≤ x) (hxy : x < y)
     (hy : y ^ 2 ≤ N + 1 / 2) : f N y < f N x := by
   have h1 : (0:ℝ) < y - x := sub_pos.mpr hxy
@@ -95,7 +109,9 @@ lemma eq_of_region1 {N : ℝ} {x y : ℝ}
   · exact absurd (f_lt_f_of_lt hy0 h hx2) (by linarith)
 
 /-- Two roots `x < y` lying in `{x² ≥ C}` would force
-`(y + x) * ((y² - C) + (x² - C)) = 1`. -/
+`(y + x) * ((y² - C) + (x² - C)) = 1`.
+@isnad1 id=eq.3h3v.s7.16535efd27af from=translated src=- shape=78932067 vocab=9a248496
+-/
 lemma region2_key {x y : ℝ} (hxy : x < y) (C : ℝ)
     (e1 : (x ^ 2 - C) ^ 2 = x + 5 / 4) (e2 : (y ^ 2 - C) ^ 2 = y + 5 / 4) :
     (y + x) * ((y ^ 2 - C) + (x ^ 2 - C)) = 1 := by
@@ -108,7 +124,9 @@ lemma region2_key {x y : ℝ} (hxy : x < y) (C : ℝ)
   exact mul_left_cancel₀ (ne_of_gt hyx) e3
 
 /-- But for `N = 10^10` two roots in `{x² ≥ N + 1/2}` are impossible:
-the left side of the identity above exceeds `2 * 10^5 * 316`. -/
+the left side of the identity above exceeds `2 * 10^5 * 316`.
+@isnad1 id=false.7h3v.s7.b0629279a9e2 from=translated src=- shape=429c48c1 vocab=548fa962
+-/
 lemma region2_aux {N : ℝ} (hN : N = 10 ^ 10) {x y : ℝ}
     (hx0 : 0 ≤ x) (hx2 : N + 1 / 2 ≤ x ^ 2) (hfx : f N x = 0)
     (hxy : x < y) (hy2 : N + 1 / 2 ≤ y ^ 2) (hfy : f N y = 0) : False := by

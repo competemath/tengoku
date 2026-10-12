@@ -23,7 +23,9 @@ namespace Usa2002P3
 open Polynomial Filter Asymptotics
 
 /-- If `ξ` is strictly increasing at consecutive arguments below `n`,
-then it is injective on `Finset.range n`. -/
+then it is injective on `Finset.range n`.
+@isnad1 id=injon.1h2v.s5.d53ef712f3ff from=translated src=- shape=3edf2fd7 vocab=a0d083e1
+-/
 theorem injOn_range_of_step {n : ℕ} {ξ : ℕ → ℝ}
     (h : ∀ i, i + 1 < n → ξ i < ξ (i + 1)) :
     Set.InjOn ξ (Finset.range n) := by
@@ -51,7 +53,9 @@ theorem injOn_range_of_step {n : ℕ} {ξ : ℕ → ℝ}
     exact absurd hij (ne_of_gt hlt')
 
 /-- A nonzero real polynomial of degree `n` that has `n` distinct real roots
-has exactly `n` roots (counted with multiplicity), and in particular it splits. -/
+has exactly `n` roots (counted with multiplicity), and in particular it splits.
+@isnad1 id=and.4h3v.s6.dd0563686ad8 from=translated src=- shape=cc318a09 vocab=9a4a372f
+-/
 theorem card_roots_eq_n {p : ℝ[X]} {n : ℕ} (hp0 : p ≠ 0) (hn : p.natDegree = n)
     {ξ : ℕ → ℝ} (hinj : Set.InjOn ξ (Finset.range n))
     (hroot : ∀ i ∈ Finset.range n, p.eval (ξ i) = 0) :
@@ -72,7 +76,9 @@ theorem card_roots_eq_n {p : ℝ[X]} {n : ℕ} (hp0 : p ≠ 0) (hn : p.natDegree
 
 /-- A nonzero real polynomial of degree `n` that has a root in each of `n`
 open intervals `(L i, R i)` arranged in increasing order (`R i ≤ L (i+1)`)
-has exactly `n` real roots and splits. -/
+has exactly `n` real roots and splits.
+@isnad1 id=and.4h4v.s7.4fc9f4bc3baf from=translated src=- shape=aef6c0c4 vocab=a50bf0d6
+-/
 theorem card_roots_eq_n_of_intervals {p : ℝ[X]} {n : ℕ} (hp0 : p ≠ 0) (hn : p.natDegree = n)
     {L R : ℕ → ℝ} (hstep : ∀ i, i + 1 < n → R i ≤ L (i + 1))
     (hex : ∀ i, i < n → ∃ x ∈ Set.Ioo (L i) (R i), p.eval x = 0) :
@@ -91,7 +97,9 @@ theorem card_roots_eq_n_of_intervals {p : ℝ[X]} {n : ℕ} (hp0 : p ≠ 0) (hn 
     (fun i hi => (hξ i (Finset.mem_range.mp hi)).2)
 
 /-- Intermediate value theorem for polynomials: if `p` changes sign between
-`a` and `b`, then `p` has a root in the open interval `(a, b)`. -/
+`a` and `b`, then `p` has a root in the open interval `(a, b)`.
+@isnad1 id=ex.2h3v.s6.dfd4b6850e78 from=translated src=- shape=6aae5ad7 vocab=8bf5352d
+-/
 theorem exists_root_of_eval_mul_neg {p : ℝ[X]} {a b : ℝ} (hab : a < b)
     (h : p.eval a * p.eval b < 0) : ∃ c ∈ Set.Ioo a b, p.eval c = 0 := by
   rcases mul_neg_iff.mp h with ⟨ha, hb⟩ | ⟨ha, hb⟩
@@ -103,7 +111,9 @@ theorem exists_root_of_eval_mul_neg {p : ℝ[X]} {a b : ℝ} (hab : a < b)
 /-- Let `p` be a nonzero real polynomial of degree `n` whose values at the
 integers `1, ..., n` alternate in sign, so that `p` has a root in each of the
 `n - 1` intervals `(i, i+1)`. If moreover `p` changes sign on one of the two
-"tails" `(-∞, 1)` or `(n, ∞)`, then `p` has exactly `n` real roots and splits. -/
+"tails" `(-∞, 1)` or `(n, ∞)`, then `p` has exactly `n` real roots and splits.
+@isnad1 id=and.4h2v.s7.9fd07b47d200 from=translated src=- shape=61392353 vocab=aa7f9f9c
+-/
 theorem card_roots_and_splits {p : ℝ[X]} {n : ℕ} (hp0 : p ≠ 0) (hn : p.natDegree = n)
     (hmul : ∀ i : ℕ, 1 ≤ i → i + 1 ≤ n →
       p.eval (i : ℝ) * p.eval ((i + 1 : ℕ) : ℝ) < 0)
@@ -147,7 +157,9 @@ theorem card_roots_and_splits {p : ℝ[X]} {n : ℕ} (hp0 : p ≠ 0) (hn : p.nat
         exact hc
 
 /-- A monic real polynomial of positive degree takes arbitrarily large
-positive values. -/
+positive values.
+@isnad1 id=ex.2h2v.s5.b415e95acdb9 from=translated src=- shape=119446e7 vocab=8aca1f5a
+-/
 theorem exists_eval_pos {p : ℝ[X]} (hm : p.Monic) (hd : 1 ≤ p.natDegree) (B : ℝ) :
     ∃ c : ℝ, B < c ∧ 0 < p.eval c := by
   have hdeg : 0 < p.degree := natDegree_pos_iff_degree_pos.mp (by lia)
@@ -161,7 +173,9 @@ theorem exists_eval_pos {p : ℝ[X]} (hm : p.Monic) (hd : 1 ≤ p.natDegree) (B 
   exact ⟨c, hcB, by linarith⟩
 
 /-- A monic real polynomial `p` of degree `n`, multiplied by `(-1)^n`, takes
-arbitrarily large positive values at large negative arguments. -/
+arbitrarily large positive values at large negative arguments.
+@isnad1 id=ex.2h2v.s6.1c3a086b3279 from=translated src=- shape=e25e4fb0 vocab=dcc46464
+-/
 theorem exists_eval_neg_one_pow_pos {p : ℝ[X]} (hm : p.Monic) (hd : 1 ≤ p.natDegree) (B : ℝ) :
     ∃ a : ℝ, a < B ∧ 0 < (-1 : ℝ) ^ p.natDegree * p.eval a := by
   have hn0 : p.natDegree ≠ 0 := by lia

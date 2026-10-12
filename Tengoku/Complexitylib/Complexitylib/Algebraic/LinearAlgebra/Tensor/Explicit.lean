@@ -83,22 +83,30 @@ variable {k p : ℕ}
 /-! ### Tightness -/
 
 /-- The Landsberg–Michałek tensor `T_k(γ)` is tight, for any coefficients `γ`, with weights
-`τA a = a - k`, `τB j = j`, and `τC ℓ = -ℓ`: its support lies on `ℓ = j + (a - k)`. -/
+`τA a = a - k`, `τB j = j`, and `τC ℓ = -ℓ`: its support lies on `ℓ = j + (a - k)`.
+@isnad1 id=tight.0h2v.s7.41b8f932af34 from=translated src=- shape=dd66d4f0 vocab=d2aa4fd1
+-/
 theorem tight_lmTensor (k : ℕ) (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) :
     (lmTensor k γ).Tight :=
   Internal.Explicit.tight_lmTensor k γ
 
-/-- If every coefficient of `T_k(γ)` is nonzero, every slice of `T_k(γ)` is nonzero. -/
+/-- If every coefficient of `T_k(γ)` is nonzero, every slice of `T_k(γ)` is nonzero.
+@isnad1 id=ne.1h3v.s9.a15d8a33e908 from=translated src=- shape=d17c95f4 vocab=c2008511
+-/
 theorem lmTensor_ne_zero (k : ℕ) {γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ}
     (hγ : ∀ a j, γ a j ≠ 0) (a : Fin (2 * k + 1)) : lmTensor k γ a ≠ 0 :=
   Internal.Explicit.lmTensor_ne_zero k hγ a
 
 /-- The weighted Landsberg–Michałek tensor is tight, with weights `τA a = a - k`, `τB j = j`,
-and `τC ℓ = -ℓ`: its support lies on `ℓ = j + (a - k)`. -/
+and `τC ℓ = -ℓ`: its support lies on `ℓ = j + (a - k)`.
+@isnad1 id=tight.0h1v.s6.1e3c33965b4f from=translated src=- shape=c0d7de63 vocab=3c9d59e2
+-/
 theorem tight_weightedLMTensor (k : ℕ) : (weightedLMTensor k).Tight :=
   Internal.Explicit.tight_weightedLMTensor k
 
-/-- Every slice of the weighted Landsberg–Michałek tensor is nonzero. -/
+/-- Every slice of the weighted Landsberg–Michałek tensor is nonzero.
+@isnad1 id=ne.0h2v.s8.50d927aed8e7 from=translated src=- shape=e739ad86 vocab=d0677486
+-/
 theorem weightedLMTensor_ne_zero (k : ℕ) (a : Fin (2 * k + 1)) : weightedLMTensor k a ≠ 0 :=
   Internal.Explicit.weightedLMTensor_ne_zero k a
 
@@ -106,7 +114,9 @@ theorem weightedLMTensor_ne_zero (k : ℕ) (a : Fin (2 * k + 1)) : weightedLMTen
 
 /-- **A greedy cluster.** A set `B` of at least `3^{2p} + 1` slices contains a strictly
 increasing cluster `c : Fin (2p+1) → Fin (2k+1)` whose offsets `c t - k` have pairwise distinct
-subset sums. -/
+subset sums.
+@isnad1 id=ex.1h3v.s9.ff200227cdde from=translated src=- shape=4dd1beaf vocab=ca65a68e
+-/
 theorem exists_strictMono_cluster (B : Finset (Fin (2 * k + 1)))
     (hB : 3 ^ (2 * p) + 1 ≤ B.card) :
     ∃ c : Fin (2 * p + 1) → Fin (2 * k + 1), StrictMono c ∧ (∀ t, c t ∈ B) ∧
@@ -115,7 +125,9 @@ theorem exists_strictMono_cluster (B : Finset (Fin (2 * k + 1)))
 
 /-- **A greedy cluster in a positive block.** If at least `3^{2p} + 1` slices of `S` lie in the
 positive block `posBlock k L i`, then some strictly increasing cluster of `2p + 1` of them has
-pairwise distinct subset sums of offsets, diameter at most `L - 1`, and offsets in `[1, k]`. -/
+pairwise distinct subset sums of offsets, diameter at most `L - 1`, and offsets in `[1, k]`.
+@isnad1 id=ex.1h5v.s10.1b093145b286 from=translated src=- shape=965ee299 vocab=c4cb94e3
+-/
 theorem exists_strictMono_cluster_posBlock (S : Finset (Fin (2 * k + 1))) {L i : ℕ}
     (hS : 3 ^ (2 * p) + 1 ≤ (S ∩ DeletionGame.posBlock k L i).card) :
     ∃ c : Fin (2 * p + 1) → Fin (2 * k + 1), StrictMono c ∧
@@ -128,7 +140,9 @@ theorem exists_strictMono_cluster_posBlock (S : Finset (Fin (2 * k + 1))) {L i :
 /-- **A greedy cluster in a negative block.** If at least `3^{2p} + 1` slices of `S` lie in the
 negative block `negBlock k L i`, then some strictly increasing cluster of `2p + 1` of them has
 pairwise distinct subset sums of offsets, diameter at most `L - 1`, and offsets in
-`[-k, -1]`. -/
+`[-k, -1]`.
+@isnad1 id=ex.1h5v.s10.018e6aa3bf52 from=translated src=- shape=183c60a1 vocab=54c11c01
+-/
 theorem exists_strictMono_cluster_negBlock (S : Finset (Fin (2 * k + 1))) {L i : ℕ}
     (hS : 3 ^ (2 * p) + 1 ≤ (S ∩ DeletionGame.negBlock k L i).card) :
     ∃ c : Fin (2 * p + 1) → Fin (2 * k + 1), StrictMono c ∧
@@ -144,7 +158,9 @@ theorem exists_strictMono_cluster_negBlock (S : Finset (Fin (2 * k + 1))) {L i :
 tensor `T` with `2k + 1` slices. If `PairedKoszulBoundOn T p L E` holds and
 `R ≥ 3^{2p} + 1`, then the border ranks of the slice restrictions of `T` satisfy
 `DeletionGame.PairedClusterBound` with `D = (2p + 1) / (p + 1)`: the median slices of greedy
-clusters in two good blocks are the witnesses. -/
+clusters in two good blocks are the witnesses.
+@isnad1 id=pairedcl.2h8v.s8.f6b474f6b95c from=translated src=- shape=451607ed vocab=a2d9be72
+-/
 theorem PairedKoszulBoundOn.pairedClusterBound {β γ : Type*}
     {T : Tensor3 (Fin (2 * k + 1)) β γ} {L R : ℕ} {E : ℝ} (h : PairedKoszulBoundOn T p L E)
     (hR : 3 ^ (2 * p) + 1 ≤ R) :
@@ -156,7 +172,9 @@ theorem PairedKoszulBoundOn.pairedClusterBound {β γ : Type*}
 `PairedKoszulBound k p L E` holds and `R ≥ 3^{2p} + 1`, then the border ranks of the slice
 restrictions of `weightedLMTensor k` satisfy `DeletionGame.PairedClusterBound` with
 `D = (2p + 1) / (p + 1)`: the median slices of greedy clusters in two good blocks are the
-witnesses. -/
+witnesses.
+@isnad1 id=pairedcl.2h5v.s8.ac42fa81e0eb from=translated src=- shape=fd5bdb73 vocab=8a0195f9
+-/
 theorem PairedKoszulBound.pairedClusterBound {L R : ℕ} {E : ℝ} (h : PairedKoszulBound k p L E)
     (hR : 3 ^ (2 * p) + 1 ≤ R) :
     DeletionGame.PairedClusterBound k L R ((2 * p + 1 : ℝ) / (p + 1)) E
@@ -165,7 +183,9 @@ theorem PairedKoszulBound.pairedClusterBound {L R : ℕ} {E : ℝ} (h : PairedKo
 
 /-- **The paired-cluster Koszul bound holds with `E = 8 (p + 1) L`**, for all `k`, `p`, and
 `L`: this is the paired-cluster certificate
-`div_mul_phi_sub_le_borderRank_restrictSlices`. -/
+`div_mul_phi_sub_le_borderRank_restrictSlices`.
+@isnad1 id=pairedko.0h3v.s5.b4ff100c2797 from=translated src=- shape=3c9ceaf8 vocab=95ee2919
+-/
 theorem pairedKoszulBound (k p L : ℕ) : PairedKoszulBound k p L (8 * (p + 1) * L) :=
   Internal.Explicit.pairedKoszulBound k p L
 

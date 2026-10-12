@@ -34,6 +34,9 @@ noncomputable def pseq : List ℂ → ℂ[X]
 -- of S; after at most |S| - 1 steps one reaches a set with a single element,
 -- and choosing the next z to be that element makes p vanish on all of S.
 
+/--
+@isnad1 id=eq.1h2v.s7.5c75bf47ebe0 from=translated src=- shape=65ef939a vocab=1e33c2ca
+-/
 lemma pseq_concat {zs : List ℂ} (hzs : zs ≠ []) (w : ℂ) :
     pseq (zs ++ [w]) = (pseq zs) ^ 2 - C w := by
   cases zs with
@@ -41,6 +44,9 @@ lemma pseq_concat {zs : List ℂ} (hzs : zs ≠ []) (w : ℂ) :
   | cons z zs =>
     simp only [List.cons_append, pseq, List.foldl_append, List.foldl_cons, List.foldl_nil]
 
+/--
+@isnad1 id=eq.0h3v.s7.c185b7272013 from=translated src=- shape=75bbca93 vocab=244cac90
+-/
 lemma pseq_foldl_comp (R init : ℂ[X]) (zs : List ℂ) :
     (zs.foldl (fun P w => P ^ 2 - C w) init).comp R =
       zs.foldl (fun P w => P ^ 2 - C w) (init.comp R) := by
@@ -51,6 +57,9 @@ lemma pseq_foldl_comp (R init : ℂ[X]) (zs : List ℂ) :
     congr 1
     simp [sub_comp, pow_comp, C_comp]
 
+/--
+@isnad1 id=eq.0h3v.s6.9a07f332163d from=translated src=- shape=eeeeb6ca vocab=c11519dd
+-/
 lemma pseq_cons_comp (z w : ℂ) (zs : List ℂ) :
     pseq (z :: w :: zs) = (pseq (w :: zs)).comp ((X - C z) ^ 2) := by
   simp only [pseq, List.foldl_cons]
@@ -58,6 +67,9 @@ lemma pseq_cons_comp (z w : ℂ) (zs : List ℂ) :
   congr 1
   simp [sub_comp, X_comp, C_comp]
 
+/--
+@isnad1 id=eq.1h3v.s5.e0e8b3e5f833 from=translated src=- shape=9177b4b2 vocab=601aea06
+-/
 lemma pseq_cons_eval (z : ℂ) {zs : List ℂ} (hzs : zs ≠ []) (x : ℂ) :
     (pseq (z :: zs)).eval x = (pseq zs).eval ((x - z) ^ 2) := by
   cases zs with
@@ -68,7 +80,9 @@ lemma pseq_cons_eval (z : ℂ) {zs : List ℂ} (hzs : zs ≠ []) (x : ℂ) :
 
 /-- The combinatorial heart of the solution: for any nonempty set `S` of at
 most `n` complex numbers one can choose `z₁, …, zₙ` so that `pₙ` vanishes on
-all of `S`. -/
+all of `S`.
+@isnad1 id=ex.2h2v.s5.8a6ce7f387cf from=translated src=- shape=0ceb080a vocab=d72843a6
+-/
 lemma exists_pseq_eval_eq_zero :
     ∀ n : ℕ, ∀ S : Finset ℂ, S.Nonempty → S.card ≤ n →
       ∃ zs : List ℂ, zs.length = n ∧ ∀ w ∈ S, (pseq zs).eval w = 0 := by

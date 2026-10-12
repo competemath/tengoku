@@ -21,7 +21,9 @@ namespace Algebraic.Cutwidth.Aggregate.Geometry.Fiber
 
 open scoped Classical
 
-/-- On a restricted event, a key determining the original key preserves its fiber bound. -/
+/-- On a restricted event, a key determining the original key preserves its fiber bound.
+@isnad1 id=le.2h8v.s7.3c211c48ee9a from=translated src=- shape=21283505 vocab=30ba3322
+-/
 theorem card_fiber_le_of_refines_on {X Y Z : Type*} [Fintype X]
     (event : Finset X) (key : X → Y) (residual : X → Z)
     (refines : ∀ x ∈ event, ∀ y ∈ event, residual x = residual y → key x = key y)
@@ -39,7 +41,9 @@ theorem card_fiber_le_of_refines_on {X Y Z : Type*} [Fintype X]
   · have empty := Finset.not_nonempty_iff_eq_empty.mp nonempty
     simp [empty]
 
-/-- A rare selected message implies its chosen two-coordinate conjunction. -/
+/-- A rare selected message implies its chosen two-coordinate conjunction.
+@isnad1 id=eq.2h7v.s7.e62d67706ad5 from=translated src=- shape=4b670332 vocab=ffd0f2c9
+-/
 theorem key_eq_false_of_majority {I V : Type*} [Fintype V]
     (key : (V → Bool) → I → Bool) (S : Finset I) (edge : S → Entropy.SignedEdge V)
     (forced : ∀ x i, key x i.val = true → (edge i).eval x = true)
@@ -49,7 +53,9 @@ theorem key_eq_false_of_majority {I V : Type*} [Fintype V]
   have majority := (Finset.mem_filter.mp hx).2 i
   exact Bool.noConfusion ((forced x i h).symm.trans majority)
 
-/-- Deleting the frozen coordinates preserves the fiber bound on the majority event. -/
+/-- Deleting the frozen coordinates preserves the fiber bound on the majority event.
+@isnad1 id=le.2h7v.s8.600471ed438c from=translated src=- shape=9f9d96eb vocab=245aa845
+-/
 theorem card_residual_fiber_le {I V : Type*} [Fintype V]
     (key : (V → Bool) → I → Bool) (S : Finset I) (edge : S → Entropy.SignedEdge V)
     (forced : ∀ x i, key x i.val = true → (edge i).eval x = true)

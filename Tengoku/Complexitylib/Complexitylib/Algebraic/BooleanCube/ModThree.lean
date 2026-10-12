@@ -24,7 +24,9 @@ namespace Algebraic.BooleanCube.ModThree
 variable {V ι : Type*} [AddCommGroup V] [Module (ZMod 2) V] [Fintype ι]
 
 /-- An injective affine parametrization with constant full residue uses at least
- two coordinates per parameter dimension. -/
+ two coordinates per parameter dimension.
+@isnad1 id=le.2h4v.s10.85af13e071fd from=translated src=- shape=9b439742 vocab=620e892f
+-/
 theorem two_mul_finrank_le_of_constant
     (a : ι → ZMod 2) (L : V →ₗ[ZMod 2] (ι → ZMod 2))
     (injective : Function.Injective fun u => a + L u)
@@ -36,7 +38,9 @@ theorem two_mul_finrank_le_of_constant
     exact congrArg (a + ·) equal
   · exact constant
 
-/-- A coset with constant full Hamming residue has at most half the ambient dimension. -/
+/-- A coset with constant full Hamming residue has at most half the ambient dimension.
+@isnad1 id=le.1h3v.s11.e0a3b9453a3c from=translated src=- shape=5530b4b8 vocab=e2ffacb1
+-/
 theorem two_mul_finrank_submodule_le
     (W : Submodule (ZMod 2) (ι → ZMod 2)) (a : ι → ZMod 2)
     (constant : ∀ u ∈ W, residue (a + u) = residue a) :
@@ -46,7 +50,9 @@ theorem two_mul_finrank_submodule_le
     (fun u => constant u u.property)
 
 /-- A coset of dimension above half the ambient dimension contains a point whose
- full Hamming residue differs from the residue of its base point. -/
+ full Hamming residue differs from the residue of its base point.
+@isnad1 id=ex.1h3v.s11.6580019871df from=translated src=- shape=f94e1be8 vocab=286c5940
+-/
 theorem exists_residue_ne_of_lt_two_mul_finrank
     (W : Submodule (ZMod 2) (ι → ZMod 2)) (a : ι → ZMod 2)
     (large : Fintype.card ι < 2 * Module.finrank (ZMod 2) W) :

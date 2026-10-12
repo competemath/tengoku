@@ -56,7 +56,9 @@ def monoTriples (c : Fin 4 → Fin 7 → Bool) (j : Fin 7) :
 /-- In any column of 4 squares colored with 2 colors, if `k` squares are red
 then `4 - k` are blue, so the number of monochromatic pairs of squares is
 `k.choose 2 + (4 - k).choose 2 ≥ 1 + 1 = 2`. There are only 16 possible
-columns, so we check them all. -/
+columns, so we check them all.
+@isnad1 id=le.0h2v.s5.5f2e557e479f from=translated src=- shape=cbd5b160 vocab=aa4c4f38
+-/
 lemma two_le_card_monoTriples (c : Fin 4 → Fin 7 → Bool) (j : Fin 7) :
     2 ≤ (monoTriples c j).card := by
   have h : ∀ d : Fin 4 → Bool,
@@ -66,7 +68,9 @@ lemma two_le_card_monoTriples (c : Fin 4 → Fin 7 → Bool) (j : Fin 7) :
   exact h (fun r ↦ c r j)
 
 /-- There are `6` pairs of distinct rows and `2` colors, hence `12` colored
-pairs of rows. -/
+pairs of rows.
+@isnad1 id=eq.0h0v.s7.ee9fc0a671ad from=translated src=- shape=7f77a2ba vocab=6f98dd90
+-/
 lemma card_colored_rowPairs :
     (Finset.univ.filter fun t : Fin 4 × Fin 4 × Bool ↦ t.1 < t.2.1).card = 12 := by
   decide

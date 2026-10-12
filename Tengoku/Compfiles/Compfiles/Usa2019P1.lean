@@ -24,6 +24,9 @@ Given this information, determine all possible values of f(1000).
 
 namespace Usa2019P1
 
+/--
+@isnad1 id=injectiv.1h1v.s5.df20bd7809b8 from=translated src=- shape=c0fce4b2 vocab=67bd0a18
+-/
 lemma f_injective
     (f : ℕ+ → ℕ+)
     (hf : ∀ n, f^[f n] n * f (f n) = n ^ 2) :
@@ -57,6 +60,9 @@ lemma f_injective
   rw [pow_left_inj₀ (le_of_lt hp) (le_of_lt hq) two_ne_zero] at h4
   exact h4
 
+/--
+@isnad1 id=eq.3h4v.s6.1bb88f7374ba from=translated src=- shape=741b4933 vocab=3567dca7
+-/
 lemma lemma_1
     (f : ℕ+ → ℕ+)
     (hf : ∀ n, f^[f n] n * f (f n) = n ^ 2)
@@ -74,6 +80,9 @@ lemma lemma_1
   -- which implies b=a by injectivity of f^r.
   exact Function.Injective.iterate (f_injective f hf) r h2
 
+/--
+@isnad1 id=eq.4h2v.s6.8957c5fad8e5 from=translated src=- shape=d7fc4796 vocab=229abb10
+-/
 lemma lemma_2
     (f : ℕ+ → ℕ+)
     (hf : ∀ n, f^[f n] n * f (f n) = n ^ 2)
@@ -120,6 +129,9 @@ lemma lemma_2
   rw [h1] at h4
   exact h4.symm
 
+/--
+@isnad1 id=and.2h3v.s5.87102794b1ce from=translated src=- shape=cae8cfc2 vocab=cff7322a
+-/
 lemma pnat_odd_mul {a b c : ℕ+} (h : a * b = c * c) (hc : Odd c.val) :
     Odd a.val ∧ Odd b.val := by
   obtain ⟨a, ha⟩ := a
@@ -133,6 +145,9 @@ lemma pnat_odd_mul {a b c : ℕ+} (h : a * b = c * c) (hc : Odd c.val) :
   rw [← h] at h1
   exact Nat.odd_mul.mp h1
 
+/--
+@isnad1 id=eq.2h2v.s5.11cc916b1210 from=translated src=- shape=823b6d17 vocab=229abb10
+-/
 lemma lemma_3
     (f : ℕ+ → ℕ+)
     (hf : ∀ n, f^[f n] n * f (f n) = n ^ 2)

@@ -23,6 +23,9 @@ where p is prime.
 
 namespace Imo2022P5
 
+/--
+@isnad1 id=le.2h2v.s6.e644ae436707 from=translated src=- shape=44a4ae47 vocab=3f16b8dd
+-/
 lemma mylemma_1
     (b p : ℕ)
     (h₀ : 0 < b)
@@ -38,6 +41,9 @@ lemma mylemma_1
       _ ≤ (1 + b) ^ n + (1 + b ^ n) * b := Nat.add_le_add_right h₂ _
       _ ≤ _ := Nat.add_le_add_left (Nat.mul_le_mul_right b (by lia)) _
 
+/--
+@isnad1 id=dvd.3h3v.s5.c574bd9fbe61 from=translated src=- shape=24b53abb vocab=3b44976b
+-/
 lemma mylemma_3
   (a b p : ℕ)
   (hp : Nat.Prime p)
@@ -51,6 +57,9 @@ lemma mylemma_3
     exact h₃
   exact Nat.Prime.dvd_of_dvd_pow hp h₄
 
+/--
+@isnad1 id=lt.2h2v.s5.9b94fc040911 from=translated src=- shape=c5e3213b vocab=923b6325
+-/
 lemma mylemma_42
     (a b : ℕ)
     (h₀ : 2 ≤ a)
@@ -62,6 +71,9 @@ lemma mylemma_42
     exact mul_le_mul_left h₀ b
   exact lt_of_le_of_lt' h₃ h₂
 
+/--
+@isnad1 id=eq.0h1v.s6.fb4f25853966 from=translated src=- shape=5b245c2a vocab=a46233f9
+-/
 lemma mylemma_43 (p : ℕ) :
     ∏ x ∈ Finset.Ico p (2 * p - 1), (x + 1)
       = ∏ x ∈ Finset.range (p - 1), (p + (x + 1)) := by
@@ -70,6 +82,9 @@ lemma mylemma_43 (p : ℕ) :
   rw [h₀]
   exact rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.bb493da5de22 from=translated src=- shape=cef3096d vocab=aec8d05d
+-/
 lemma mylemma_44
     (p : ℕ)
     (hp : 2 ≤ p) :
@@ -90,6 +105,9 @@ lemma mylemma_44
     rw [Finset.prod_Ico_eq_prod_range]
     ring_nf
 
+/--
+@isnad1 id=lt.2h2v.s6.e954658dbeb8 from=translated src=- shape=e458f52e vocab=30c70192
+-/
 lemma mylemma_41
   (b p : ℕ)
   (hp : Nat.Prime p)
@@ -163,6 +181,9 @@ lemma mylemma_41
   rw [Nat.pow_mul]
   exact h₅
 
+/--
+@isnad1 id=eq.6h3v.s6.f7adf482d511 from=translated src=- shape=350d4f78 vocab=7e3cf301
+-/
 lemma mylemma_4
     (a b p : ℕ)
     (h₀ : 0 < a ∧ 0 < b)
@@ -205,6 +226,9 @@ lemma mylemma_4
       lia
   exact h₃.symm
 
+/--
+@isnad1 id=modeq.1h1v.s7.7c8f63a84ca4 from=translated src=- shape=cb3aa4f0 vocab=6bde2ba1
+-/
 lemma mylemma_53
     (p : ℕ)
     (hp5 : 5 ≤ p) :
@@ -243,6 +267,9 @@ lemma mylemma_53
   rw [← add_zero ((↑p:ℤ) ^ p)] at h₁
   exact Int.ModEq.add_right_cancel h₃ h₁
 
+/--
+@isnad1 id=false.3h1v.s6.5aed014e51aa from=translated src=- shape=f7321c74 vocab=a6c7d67d
+-/
 lemma mylemma_52
   (p : ℕ)
   (hp : Nat.Prime p)
@@ -312,6 +339,9 @@ lemma mylemma_52
     exact Nat.sub_lt_succ p 1
   lia
 
+/--
+@isnad1 id=lt.1h1v.s5.80b85b50e04b from=translated src=- shape=40ebb112 vocab=e62f4de8
+-/
 lemma mylemma_51
     (p : ℕ)
     (hpl : 5 ≤ p) :
@@ -330,6 +360,9 @@ lemma mylemma_51
       Nat.pow_lt_pow_left (lt_add_one n) (by lia)
     lia
 
+/--
+@isnad1 id=false.4h2v.s5.147d2a0d036a from=translated src=- shape=3b4c94b2 vocab=2d729f97
+-/
 lemma mylemma_5
     (b p : ℕ)
     (hp : Nat.Prime p)
@@ -385,6 +418,9 @@ lemma mylemma_5
     rw [h₃] at h₂
     exact mylemma_52 p hp hp5 h₂
 
+/--
+@isnad1 id=dvd.3h3v.s6.54976142c16f from=translated src=- shape=0ed3bf96 vocab=b2049c48
+-/
 lemma mylemma_6
     (a b p : ℕ)
     (hp : Nat.Prime p)

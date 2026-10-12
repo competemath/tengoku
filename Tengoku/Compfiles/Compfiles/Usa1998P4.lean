@@ -80,6 +80,9 @@ def rectColor (r : Rectangle) : coloring :=
              s.1.val < r.x + r.width ∧ s.2.val < r.y + r.height
           then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s6.d99e8781ac52 from=translated src=- shape=03d8977e vocab=d9a53904
+-/
 lemma recolor_rect_apply (f : coloring) (r : Rectangle) (s : chessboard) :
     recolor_rect f r s = f s + rectColor r s := by
   obtain ⟨x, y⟩ := s
@@ -87,6 +90,9 @@ lemma recolor_rect_apply (f : coloring) (r : Rectangle) (s : chessboard) :
   dsimp only
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s7.c0a0b305fa19 from=translated src=- shape=c2b1c20e vocab=2485a61b
+-/
 lemma foldl_recolor_apply (rs : List Rectangle) (f : coloring) (s : chessboard) :
     rs.foldl recolor_rect f s = f s + (rs.map (fun r ↦ rectColor r s)).sum := by
   induction rs generalizing f with
@@ -110,6 +116,9 @@ def cellValue (f : coloring) (x y : ℕ) : ZMod 2 :=
 def addColoring (f g : coloring) : coloring :=
   fun s ↦ f s + g s
 
+/--
+@isnad1 id=eq.0h4v.s6.30e42ea62d18 from=translated src=- shape=05bdf4a8 vocab=4f044707
+-/
 lemma cellValue_add (f g : coloring) (x y : ℕ) :
     cellValue (addColoring f g) x y = cellValue f x y + cellValue g x y := by
   unfold cellValue addColoring
@@ -118,6 +127,9 @@ lemma cellValue_add (f g : coloring) (x y : ℕ) :
 def maskedCell (p : Prop) [Decidable p] (f : coloring) (x y : ℕ) : ZMod 2 :=
   if p then cellValue f x y else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.ad55a1f5cc9a from=translated src=- shape=398ab350 vocab=a31809df
+-/
 lemma maskedCell_add (p : Prop) [Decidable p] (f g : coloring) (x y : ℕ) :
     maskedCell p (addColoring f g) x y = maskedCell p f x y + maskedCell p g x y := by
   unfold maskedCell
@@ -130,6 +142,9 @@ def cornerDelta (f : coloring) (c : Corner) : ZMod 2 :=
   maskedCell (0 < c.1.val ∧ c.2.val < 98) f (c.1.val - 1) c.2.val +
   maskedCell (c.1.val < 98 ∧ c.2.val < 98) f c.1.val c.2.val
 
+/--
+@isnad1 id=eq.0h3v.s6.016addb732c7 from=translated src=- shape=6152cb54 vocab=e349d6f7
+-/
 lemma cornerDelta_add (f g : coloring) (c : Corner) :
     cornerDelta (addColoring f g) c = cornerDelta f c + cornerDelta g c := by
   unfold cornerDelta
@@ -139,15 +154,24 @@ lemma cornerDelta_add (f g : coloring) (c : Corner) :
 def cornerSupport (f : coloring) : Finset Corner :=
   Finset.univ.filter fun c ↦ cornerDelta f c ≠ 0
 
+/--
+@isnad1 id=iff.0h2v.s6.b4fcde099064 from=translated src=- shape=06d1d001 vocab=540d8caf
+-/
 lemma mem_cornerSupport (f : coloring) (c : Corner) :
     c ∈ cornerSupport f ↔ cornerDelta f c ≠ 0 := by
   simp [cornerSupport]
 
+/--
+@isnad1 id=or.1h2v.s8.61dbaf69c998 from=translated src=- shape=5f2ab268 vocab=014cf724
+-/
 lemma ne_zero_or_ne_zero_of_add_ne_zero {a b : ZMod 2}
     (h : a + b ≠ 0) : a ≠ 0 ∨ b ≠ 0 := by
   contrapose! h
   simp [h.1, h.2]
 
+/--
+@isnad1 id=le.0h2v.s5.8683b5f973bd from=translated src=- shape=d8770b03 vocab=f3b2ddb4
+-/
 lemma cornerSupport_add_subset (f g : coloring) :
     cornerSupport (addColoring f g) ⊆ cornerSupport f ∪ cornerSupport g := by
   intro c
@@ -159,6 +183,9 @@ lemma cornerSupport_add_subset (f g : coloring) :
 
 def clip (n : ℕ) : Fin 99 := ⟨min n 98, Nat.lt_succ_of_le (Nat.min_le_right n 98)⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.1ebc4257a393 from=translated src=- shape=abe2f409 vocab=4947ab7b
+-/
 lemma maskedCell_rectColor (m : Prop) [Decidable m] (r : Rectangle) (x y : ℕ) :
     maskedCell m (rectColor r) x y =
       if m ∧ x < 98 ∧ y < 98 ∧
@@ -167,6 +194,9 @@ lemma maskedCell_rectColor (m : Prop) [Decidable m] (r : Rectangle) (x y : ℕ) 
   unfold maskedCell cellValue rectColor
   split_ifs <;> tauto
 
+/--
+@isnad1 id=eq.2h2v.s7.bb6db5ff1ad8 from=translated src=- shape=4d780ce7 vocab=82ede919
+-/
 lemma cornerDelta_rectColor_eq_zero_x (r : Rectangle) (p : Corner)
     (h1 : p.1.val ≠ min r.x 98) (h2 : p.1.val ≠ min (r.x + r.width) 98) :
     cornerDelta (rectColor r) p = 0 := by
@@ -195,6 +225,9 @@ lemma cornerDelta_rectColor_eq_zero_x (r : Rectangle) (p : Corner)
   rw [if_congr hAB rfl rfl, if_congr hCD rfl rfl]
   exact (by decide : ∀ a b : ZMod 2, a + a + b + b = 0) _ _
 
+/--
+@isnad1 id=eq.2h2v.s7.3972ac42dbe5 from=translated src=- shape=4d780ce7 vocab=4465f4b3
+-/
 lemma cornerDelta_rectColor_eq_zero_y (r : Rectangle) (p : Corner)
     (h1 : p.2.val ≠ min r.y 98) (h2 : p.2.val ≠ min (r.y + r.height) 98) :
     cornerDelta (rectColor r) p = 0 := by
@@ -222,6 +255,9 @@ lemma cornerDelta_rectColor_eq_zero_y (r : Rectangle) (p : Corner)
   rw [if_congr hAC rfl rfl, if_congr hBD rfl rfl]
   exact (by decide : ∀ a b : ZMod 2, a + b + a + b = 0) _ _
 
+/--
+@isnad1 id=le.0h1v.s3.925c8bf53f6d from=translated src=- shape=cdc4a520 vocab=dfce927b
+-/
 lemma cornerSupport_rectColor_card_le (r : Rectangle) :
     (cornerSupport (rectColor r)).card ≤ 4 := by
   have hsub : cornerSupport (rectColor r) ⊆
@@ -250,11 +286,17 @@ lemma cornerSupport_rectColor_card_le (r : Rectangle) :
           ((Finset.card_insert_le _ _).trans
             (le_of_eq (by rw [Finset.card_singleton])))
 
+/--
+@isnad1 id=eq.0h0v.s6.1e926fdb1010 from=translated src=- shape=f4406e42 vocab=eaf3a6c0
+-/
 lemma cornerSupport_zero : cornerSupport (fun _ ↦ 0) = ∅ := by
   ext c
   rw [mem_cornerSupport (fun _ ↦ 0) c]
   simp [cornerDelta, maskedCell, cellValue]
 
+/--
+@isnad1 id=le.0h1v.s7.7c69c5b1c378 from=translated src=- shape=a9262444 vocab=7f0a5e94
+-/
 lemma cornerSupport_listSum_card_le (rs : List Rectangle) :
     (cornerSupport (fun s ↦ (rs.map (fun r ↦ rectColor r s)).sum)).card
       ≤ 4 * rs.length := by
@@ -280,6 +322,9 @@ lemma cornerSupport_listSum_card_le (rs : List Rectangle) :
 
 def constAddStart (c : ZMod 2) : coloring := fun s ↦ c + start_coloring s
 
+/--
+@isnad1 id=eq.0h4v.s8.2991d022d24a from=translated src=- shape=0850b816 vocab=d9588fda
+-/
 lemma maskedCell_constAddStart (c : ZMod 2) (m : Prop) [Decidable m] (x y : ℕ) :
     maskedCell m (constAddStart c) x y =
       if m ∧ x < 98 ∧ y < 98 then c + (x : ZMod 2) + (y : ZMod 2) else 0 := by
@@ -291,10 +336,16 @@ lemma maskedCell_constAddStart (c : ZMod 2) (m : Prop) [Decidable m] (x y : ℕ)
 
 def inner : Finset (Fin 99) := Finset.Icc ⟨1, by norm_num⟩ ⟨97, by norm_num⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.f8d0819e26fd from=translated src=- shape=415057c6 vocab=f3efc613
+-/
 lemma inner_card : inner.card = 97 := by
   rw [inner, Fin.card_Icc]
   rfl
 
+/--
+@isnad1 id=iff.0h1v.s6.7707b0286b43 from=translated src=- shape=a60f7777 vocab=312c68a1
+-/
 lemma mem_inner (i : Fin 99) : i ∈ inner ↔ 0 < i.val ∧ i.val < 98 := by
   rw [inner, Finset.mem_Icc, Fin.le_def, Fin.le_def]
   exact ⟨fun h ↦ by lia, fun h ↦ by lia⟩
@@ -305,11 +356,17 @@ def quietCorners (c : ZMod 2) : Finset Corner :=
   if c = 0 then {(⟨0, by norm_num⟩, ⟨0, by norm_num⟩), (⟨98, by norm_num⟩, ⟨98, by norm_num⟩)}
   else {(⟨0, by norm_num⟩, ⟨98, by norm_num⟩), (⟨98, by norm_num⟩, ⟨0, by norm_num⟩)}
 
+/--
+@isnad1 id=le.0h1v.s4.7b323fa87d40 from=translated src=- shape=ae9651fe vocab=75f3104a
+-/
 lemma quietCorners_card (c : ZMod 2) : (quietCorners c).card ≤ 2 := by
   unfold quietCorners
   split_ifs <;>
     exact (Finset.card_insert_le _ _).trans (le_of_eq (by rw [Finset.card_singleton]))
 
+/--
+@isnad1 id=le.0h1v.s8.43a12bc59765 from=translated src=- shape=e65dc2b5 vocab=79098f35
+-/
 lemma quiet_subset (c : ZMod 2) :
     Finset.univ.filter (fun p ↦ ¬ (cornerDelta (constAddStart c) p ≠ 0)) ⊆
       (inner ×ˢ inner) ∪ quietCorners c := by
@@ -409,6 +466,9 @@ lemma quiet_subset (c : ZMod 2) :
       exact Finset.mem_insert_self _ _
     · exact absurd hp (by decide)
 
+/--
+@isnad1 id=le.0h1v.s4.ef7d687402f4 from=translated src=- shape=59a809d9 vocab=b4140550
+-/
 lemma target_support_card (c : ZMod 2) :
     390 ≤ (cornerSupport (constAddStart c)).card := by
   have hsplit := Finset.card_filter_add_card_filter_not
@@ -438,6 +498,9 @@ def colRect (k : ℕ) : Rectangle := ⟨2 * k, 0, 1, 98⟩
 
 def rowRect (k : ℕ) : Rectangle := ⟨0, 2 * k, 98, 1⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.72c85759ad29 from=translated src=- shape=c29137d9 vocab=c6ff44a6
+-/
 lemma rectColor_colRect (k : ℕ) (x y : Fin 98) :
     rectColor (colRect k) (x, y) = if x.val = 2 * k then 1 else 0 := by
   have hy := y.isLt
@@ -445,6 +508,9 @@ lemma rectColor_colRect (k : ℕ) (x y : Fin 98) :
   dsimp only
   exact if_congr (by lia) rfl rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.1465ece14687 from=translated src=- shape=32d3c980 vocab=5cd124bf
+-/
 lemma rectColor_rowRect (k : ℕ) (x y : Fin 98) :
     rectColor (rowRect k) (x, y) = if y.val = 2 * k then 1 else 0 := by
   have hx := x.isLt
@@ -452,6 +518,9 @@ lemma rectColor_rowRect (k : ℕ) (x y : Fin 98) :
   dsimp only
   exact if_congr (by lia) rfl rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.4ac03a6b0c80 from=translated src=- shape=c4e106be vocab=8ddc9a6d
+-/
 lemma list_range_map_sum (n : ℕ) (f : ℕ → ZMod 2) :
     ((List.range n).map f).sum = ∑ k ∈ Finset.range n, f k := by
   induction n with
@@ -460,6 +529,9 @@ lemma list_range_map_sum (n : ℕ) (f : ℕ → ZMod 2) :
     rw [List.range_succ, List.map_append, List.sum_append, Finset.sum_range_succ, ih]
     simp
 
+/--
+@isnad1 id=eq.1h2v.s8.6fd054c23ef8 from=translated src=- shape=21773d59 vocab=a6fbfb09
+-/
 lemma sum_ite_eq_double (x n : ℕ) (hx : x < 2 * n) :
     ∑ k ∈ Finset.range n, (if x = 2 * k then (1 : ZMod 2) else 0)
       = if Even x then 1 else 0 := by
@@ -475,12 +547,18 @@ lemma sum_ite_eq_double (x n : ℕ) (hx : x < 2 * n) :
     intro k _
     rw [ite_eq_right (fun h ↦ hev ⟨k, by lia⟩)]
 
+/--
+@isnad1 id=eq.0h1v.s8.e9efe6601cb4 from=translated src=- shape=5d3a217d vocab=9f4ead57
+-/
 lemma natCast_add_ite_even (m : ℕ) :
     ((m : ZMod 2) + if Even m then 1 else 0) = 1 := by
   by_cases h : Even m
   · rw [ite_eq_left h, ZMod.natCast_eq_zero_iff_even.mpr h, zero_add]
   · rw [ite_eq_right h, ZMod.natCast_eq_one_iff_odd.mpr (Nat.not_even_iff_odd.mp h), add_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.e7dfa710a7fd from=translated src=- shape=62764066 vocab=8ca0db1f
+-/
 lemma construction_makes_zero (s : chessboard) :
     (((List.range 49).map colRect ++ (List.range 49).map rowRect).foldl
       recolor_rect start_coloring) s = 0 := by

@@ -23,6 +23,9 @@ where each factor has twice as many digits as the last one.
 namespace Usa1992P1
 
 -- TODO add a generalization of this mathlib?
+/--
+@isnad1 id=eq.0h1v.s5.bcbca4dac34c from=translated src=- shape=7aca2c25 vocab=04d9949a
+-/
 lemma digits_pow (m : ℕ) : (Nat.digits 10 (10^m)).length = m + 1 := by
   induction' m with m ih
   · simp
@@ -30,6 +33,9 @@ lemma digits_pow (m : ℕ) : (Nat.digits 10 (10^m)).length = m + 1 := by
   rw [mul_div_cancel_right₀ _ (by norm_num), List.length_cons]
   rw [ih]
 
+/--
+@isnad1 id=lt.1h2v.s5.3965ee0b3282 from=translated src=- shape=ffe3e797 vocab=cdae25f0
+-/
 lemma lemma2 {m y: ℕ} (hy : y < 10^m) : (Nat.digits 10 y).length < m + 1 := by
   induction m generalizing y with
   | zero => simp [show y = 0 by lia]
@@ -41,6 +47,9 @@ lemma lemma2 {m y: ℕ} (hy : y < 10^m) : (Nat.digits 10 y).length < m + 1 := by
     have h2 : y / 10 < 10 ^ m := by lia
     exact ih h2
 
+/--
+@isnad1 id=eq.0h2v.s5.6cf22693f808 from=translated src=- shape=24e43e55 vocab=2bcf63f3
+-/
 lemma digits_sum_mul_pow {m x : ℕ} :
     (Nat.digits 10 (x * 10 ^ m)).sum = (Nat.digits 10 x).sum := by
   cases x with
@@ -49,6 +58,9 @@ lemma digits_sum_mul_pow {m x : ℕ} :
     rw [mul_comm, Nat.digits_base_pow_mul (by lia) (by lia)]
     simp
 
+/--
+@isnad1 id=eq.1h3v.s7.2966ca4b0ee9 from=translated src=- shape=e1062539 vocab=8c248bee
+-/
 lemma digits_sum (m x y : ℕ)
     (h1 : y < 10^m) :
     (Nat.digits 10 (x * 10^m + y)).sum =
@@ -67,6 +79,9 @@ lemma digits_sum (m x y : ℕ)
   rw [digits_sum_mul_pow]
   ring
 
+/--
+@isnad1 id=odd.1h3v.s5.3444d0cc0a51 from=translated src=- shape=3998135e vocab=9931e543
+-/
 lemma Finset.prod_odd {α : Type} [DecidableEq α] {f : α → ℕ} {s : Finset α}
     (hs : ∀ i ∈ s, Odd (f i)) : Odd (∏ i ∈ s, f i) := by
   revert hs
@@ -82,6 +97,9 @@ lemma Finset.prod_odd {α : Type} [DecidableEq α] {f : α → ℕ} {s : Finset 
 example (m : ℕ) (h : ¬m = 0) : (m % 10 :: Nat.digits 10 (m / 10)).sum = (Nat.digits 10 m).sum := by
   rw [Nat.digits_eq_cons_digits_div (by norm_num) (h)]
 
+/--
+@isnad1 id=eq.1h1v.s6.110032a18102 from=translated src=- shape=d44f9d97 vocab=8be99540
+-/
 lemma lemma3 {m : ℕ} (hm : (m % 10) + 1 < 10) :
     (Nat.digits 10 (m + 1)).sum = (Nat.digits 10 m).sum + 1 := by
   rw [Nat.digits_eq_cons_digits_div (by norm_num) (by lia)]
@@ -93,6 +111,9 @@ lemma lemma3 {m : ℕ} (hm : (m % 10) + 1 < 10) :
   rw [Nat.add_div_eq_of_add_mod_lt hm, Nat.add_mod_of_add_mod_lt hm]
   lia
 
+/--
+@isnad1 id=le.1h3v.s5.cf9feffc4d06 from=translated src=- shape=044354b9 vocab=b70780f5
+-/
 theorem lemma6 {b : ℕ} {l1 l2 : List ℕ} (hg : List.Forall₂ (· ≤ ·) l1 l2) :
     Nat.ofDigits b l1 ≤ Nat.ofDigits b l2 := by
   induction l1 generalizing l2 with
@@ -108,7 +129,9 @@ theorem lemma6 {b : ℕ} {l1 l2 : List ℕ} (hg : List.Forall₂ (· ≤ ·) l1 
       have h1 : hd₁ ≤ hd₂ := by simp_all only [List.forall₂_cons, and_true]
       gcongr
 
-/-- The subtraction of ofDigits of two lists is equal to ofDigits of digit-wise subtraction of them -/
+/-- The subtraction of ofDigits of two lists is equal to ofDigits of digit-wise subtraction of them
+@isnad1 id=eq.1h3v.s6.03d189ac0e43 from=translated src=- shape=e877e1e0 vocab=74baa489
+-/
 theorem ofDigits_sub_ofDigits_eq_ofDigits_zipWith {b : ℕ} {l1 l2 : List ℕ}
     (hg : List.Forall₂ (· ≤ ·) l1 l2) :
     Nat.ofDigits b l2 - Nat.ofDigits b l1 =
@@ -130,6 +153,9 @@ theorem ofDigits_sub_ofDigits_eq_ofDigits_zipWith {b : ℕ} {l1 l2 : List ℕ}
         gcongr
       lia
 
+/--
+@isnad1 id=eq.0h1v.s5.38e171f6c048 from=translated src=- shape=9cb6fc7e vocab=c5b2bddf
+-/
 lemma lemma8 {n : ℕ} : 10 ^ n - 1 = Nat.ofDigits 10 (List.replicate n 9) := by
   induction n with
   | zero => simp
@@ -141,16 +167,25 @@ lemma lemma8 {n : ℕ} : 10 ^ n - 1 = Nat.ofDigits 10 (List.replicate n 9) := by
     rw [pow_succ, ih]
     lia
 
+/--
+@isnad1 id=le.1h2v.s5.7c13d32593f4 from=translated src=- shape=c5498384 vocab=c9a17aec
+-/
 lemma lemma9 {m n : ℕ} (hm : m < 10^n) : (Nat.digits 10 m).length ≤ n := by
   exact (Nat.digits_length_le_iff (by norm_num) m).mpr hm
 
 def padList (l : List ℕ) (n : ℕ) : List ℕ := l ++ List.replicate (n - l.length) 0
 
+/--
+@isnad1 id=eq.0h3v.s5.d5fe02f02724 from=translated src=- shape=824d4e7f vocab=08fd670b
+-/
 lemma padList_cons {hd n : ℕ} {tl : List ℕ} : padList (hd::tl) (n + 1) = hd :: padList tl n := by
   simp [padList]
 
 def digitsPadded (b m n : ℕ) : List ℕ := padList (Nat.digits b m) n
 
+/--
+@isnad1 id=lt.2h4v.s5.ac660ac737e6 from=translated src=- shape=6302efaf vocab=962427de
+-/
 theorem digitsPadded_lt_base {b m n d : ℕ} (hb : 1 < b)
     (hd : d ∈ digitsPadded b m n) :
     d < b := by
@@ -160,12 +195,18 @@ theorem digitsPadded_lt_base {b m n d : ℕ} (hb : 1 < b)
   · exact Nat.digits_lt_base hb hd
   · lia
 
+/--
+@isnad1 id=eq.1h3v.s4.300d93b70543 from=translated src=- shape=fe555be6 vocab=2cae20bc
+-/
 theorem digitsPaddedLength (b m n : ℕ) (hm : (Nat.digits b m).length ≤ n) :
      (digitsPadded b m n).length = n := by
   unfold digitsPadded padList
   simp only [List.length_append, List.length_replicate]
   exact Nat.add_sub_of_le hm
 
+/--
+@isnad1 id=ex.0h1v.s5.4f20f1880afe from=translated src=- shape=11dd75ec vocab=f4fc5cf0
+-/
 theorem exists_prefix (L : List ℕ) :
     ∃ l1 : List ℕ, (∀ hl1 : l1 ≠ [], l1.getLast hl1 ≠ 0) ∧
       ∃ m : ℕ, L = l1 ++ List.replicate m 0 := by
@@ -198,6 +239,9 @@ theorem exists_prefix (L : List ℕ) :
         · use m
           simp
 
+/--
+@isnad1 id=eq.3h3v.s5.42bb324feb86 from=translated src=- shape=5905e86b vocab=3d9d715c
+-/
 theorem digitsPadded_ofDigits (b n : ℕ) (h : 1 < b) (L : List ℕ) (w₁ : ∀ l ∈ L, l < b)
     (hn : L.length ≤ n) :
     digitsPadded b (Nat.ofDigits b L) n = padList L n := by
@@ -214,10 +258,16 @@ theorem digitsPadded_ofDigits (b n : ℕ) (h : 1 < b) (L : List ℕ) (w₁ : ∀
   simp only [List.length_append, List.length_replicate] at hn
   lia
 
+/--
+@isnad1 id=eq.0h3v.s4.b5b2c16fea04 from=translated src=- shape=49f783a7 vocab=ce4d08c6
+-/
 theorem digitsPadded_sum (b m n : ℕ) :
     (digitsPadded b m n).sum = (Nat.digits b m).sum := by
   simp [digitsPadded, padList]
 
+/--
+@isnad1 id=eq.0h3v.s5.228f36ea9f5e from=translated src=- shape=70eb3150 vocab=bcc2d6a7
+-/
 lemma List.map_eq_zip (x : ℕ) (l : List ℕ) (f : ℕ → ℕ → ℕ)
     : (List.map (f x) l) = List.zipWith f (List.replicate l.length x) l := by
   induction l with
@@ -226,6 +276,9 @@ lemma List.map_eq_zip (x : ℕ) (l : List ℕ) (f : ℕ → ℕ → ℕ)
     simp only [List.map_cons, List.length_cons, ih]
     rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.33bfa93c14d2 from=translated src=- shape=23142bfe vocab=aaa3b523
+-/
 lemma lemma5 {m n : ℕ} (hm : m < 10^n) :
     digitsPadded 10 (10^n - 1 - m) n =
     (digitsPadded 10 m n).map (fun d ↦ 9 - d) := by
@@ -290,6 +343,9 @@ lemma lemma5 {m n : ℕ} (hm : m < 10^n) :
   simp [digitsPadded, padList, List.map_append, List.map_replicate, tsub_zero, complement_digits,
         m_digits_padded, padding, m_digits, h16]
 
+/--
+@isnad1 id=and.1h2v.s6.33abbace7b0f from=translated src=- shape=10a059dc vocab=ab2be6b0
+-/
 lemma List.sum_map_sub_aux (l1 l2 : List ℕ) (h2 : List.Forall₂ (· ≤ ·) l1 l2) :
     (List.zipWith (fun x1 x2 ↦ x1 - x2) l2 l1).sum = l2.sum - l1.sum ∧ l1.sum ≤ l2.sum := by
   match l1, l2 with
@@ -304,10 +360,16 @@ lemma List.sum_map_sub_aux (l1 l2 : List ℕ) (h2 : List.Forall₂ (· ≤ ·) l
     have h3 : hd1 ≤ hd2 := (List.forall₂_cons.mp h2).1
     lia
 
+/--
+@isnad1 id=eq.1h2v.s6.3633f1ef40d5 from=translated src=- shape=6d8ef2e9 vocab=ab2be6b0
+-/
 lemma List.sum_map_sub (l1 l2 : List ℕ) (h2 : List.Forall₂ (· ≤ ·) l1 l2) :
     (List.zipWith (fun x1 x2 ↦ x1 - x2) l2 l1).sum = l2.sum - l1.sum :=
   (List.sum_map_sub_aux l1 l2 h2).1
 
+/--
+@isnad1 id=eq.1h2v.s6.e38aa58f57c2 from=translated src=- shape=b0ce992e vocab=ac524842
+-/
 lemma lemma4 {m n : ℕ} (hm : m < 10^n) :
     (Nat.digits 10 (10^n - 1 - m)).sum = 9 * n - (Nat.digits 10 m).sum := by
   rw [← digitsPadded_sum, lemma5 hm]

@@ -22,6 +22,9 @@ namespace Imo2012P2
 
 universe u v
 
+/--
+@isnad1 id=iff.2h5v.s7.d93bb4ec2321 from=translated src=- shape=00a286f9 vocab=c5b64149
+-/
 lemma Finset.prod_eq_prod_iff_of_pos_of_le {ι : Type u} {R : Type v}
     [CommMonoidWithZero R] [PartialOrder R] [ZeroLEOneClass R]
     [PosMulStrictMono R] [MulPosStrictMono R] [Nontrivial R]
@@ -48,6 +51,9 @@ lemma Finset.prod_eq_prod_iff_of_pos_of_le {ι : Type u} {R : Type v}
   · intro h
     exact Finset.prod_congr (by rfl) h
 
+/--
+@isnad1 id=iff.5h4v.s7.facf28f8796c from=translated src=- shape=357c2325 vocab=09810dd6
+-/
 lemma Real.geom_mean_eq_arith_mean2_weighted_iff
     {w₁ w₂ p₁ p₂ : ℝ} (hw₁ : 0 < w₁) (hw₂ : 0 < w₂)
     (hp₁ : 0 < p₁) (hp₂ : 0 < p₂) (hw : w₁ + w₂ = 1) :
@@ -64,6 +70,9 @@ lemma Real.geom_mean_eq_arith_mean2_weighted_iff
     rw [h, ← add_mul, hw, one_mul]
     constructor <;> rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.42ef40350b8e from=translated src=- shape=63203bdc vocab=55b7ad2f
+-/
 lemma aux₁ {n : ℕ} (hn : 2 ≤ n) : (n : ℝ) ^ n = ∏ i ∈ Finset.Icc 2 n, (i : ℝ) ^ i / ((i : ℝ) - 1) ^ (i - 1) := by
   induction' n, hn using Nat.le_induction with n' hn' h'
   · norm_num
@@ -72,6 +81,9 @@ lemma aux₁ {n : ℕ} (hn : 2 ≤ n) : (n : ℝ) ^ n = ∏ i ∈ Finset.Icc 2 n
     rw [Finset.prod_insert (by simp), Nat.succ_eq_succ, Nat.succ_eq_add_one, ← h']
     simp
 
+/--
+@isnad1 id=eq.2h2v.s7.25b60a686ad0 from=translated src=- shape=e1373fd2 vocab=dd3297cd
+-/
 lemma aux₂ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) :
     (i : ℝ) ^ i / ((i : ℝ) - 1) ^ (i - 1) * x =
     (i : ℝ) ^ i * (x ^ (1 / (i : ℝ)) * (1 / ((i : ℝ) - 1)) ^ (((i : ℝ) - 1) / (i : ℝ))) ^ i := by
@@ -89,6 +101,9 @@ lemma aux₂ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) :
   field_simp
   rw [Real.rpow_one, mul_comm, Nat.cast_sub (by lia), Nat.cast_one]
 
+/--
+@isnad1 id=eq.2h2v.s7.5eae77396b4d from=translated src=- shape=71072368 vocab=630537c9
+-/
 lemma aux₃ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) : (1 + x) ^ i =
     (i : ℝ) ^ i * ((1 / (i : ℝ)) * x + (((i : ℝ) - 1) / (i : ℝ)) * (1 / ((i : ℝ) - 1))) ^ i := by
   have hpos₁ : 0 < (i : ℝ) := by
@@ -102,6 +117,9 @@ lemma aux₃ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) : (1 + x) ^ i =
   field_simp
   ring_nf
 
+/--
+@isnad1 id=le.2h2v.s7.f6c14c9639db from=translated src=- shape=6f32cc21 vocab=630537c9
+-/
 lemma aux₄ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) :
     (i : ℝ) ^ i / ((i : ℝ) - 1) ^ (i - 1) * x ≤ (1 + x) ^ i := by
   have hpos₁ : 0 < (i : ℝ) := by
@@ -115,6 +133,9 @@ lemma aux₄ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) :
   apply Real.geom_mean_le_arith_mean2_weighted (by positivity) (by positivity) (by positivity) (by positivity)
   field
 
+/--
+@isnad1 id=iff.2h2v.s7.adcbfb052092 from=translated src=- shape=e8bbfff9 vocab=630537c9
+-/
 lemma aux₅ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) :
     (i : ℝ) ^ i / ((i : ℝ) - 1) ^ (i - 1) * x = (1 + x) ^ i ↔ x = 1 / ((i : ℝ) - 1) := by
   have hpos₁ : 0 < (i : ℝ) := by
@@ -129,6 +150,9 @@ lemma aux₅ {i : ℕ} {x : ℝ} (hi : 2 ≤ i) (hx : 0 < x) :
   apply Real.geom_mean_eq_arith_mean2_weighted_iff (by positivity) (by positivity) (by positivity) (by positivity)
   field
 
+/--
+@isnad1 id=eq.1h1v.s6.d8f48ac8ee54 from=translated src=- shape=ed0e8d08 vocab=837dc505
+-/
 lemma aux₆ {n : ℕ} (hn : 2 ≤ n) : ∏ x ∈ Finset.Icc 2 n, ((x : ℝ) - 1) = Nat.factorial (n - 1) := by
   induction' n, hn using Nat.le_induction with n' hn' h'
   · norm_num

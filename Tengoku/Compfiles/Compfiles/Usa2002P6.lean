@@ -74,14 +74,23 @@ def cov (n i j : ℕ) : Prop :=
     (phase i ≤ j ∧ (j - phase i) % 5 ≤ 2 ∧ j - (j - phase i) % 5 + 2 < n) ∨
       (3 ≤ (n + 2 - phase i) % 5 ∧ n - 3 ≤ j)
 
+/--
+@isnad1 id=iff.0h4v.s6.bba42a6fa2a3 from=translated src=- shape=e5359ded vocab=a274ec8d
+-/
 theorem mem_hblock {i j a b : ℕ} :
     (a, b) ∈ hblock i j ↔ a = i ∧ j ≤ b ∧ b ≤ j + 2 := by
   simp [hblock]; lia
 
+/--
+@isnad1 id=iff.0h4v.s6.b7d8023fa501 from=translated src=- shape=e31e4abd vocab=61c75cb5
+-/
 theorem mem_vblock {i j a b : ℕ} :
     (a, b) ∈ vblock i j ↔ i ≤ a ∧ a ≤ i + 2 ∧ b = j := by
   simp [vblock]; lia
 
+/--
+@isnad1 id=ismaxima.0h1v.s2.2e091f05204f from=translated src=- shape=9d44d080 vocab=7e690b56
+-/
 theorem trivialTearing_isMaximalTearing (n : ℕ) :
     IsMaximalTearing n (trivialTearing n) := by
   refine ⟨?_, ?_, ?_⟩
@@ -149,11 +158,17 @@ theorem trivialTearing_isMaximalTearing (n : ℕ) :
       · exact Finset.not_disjoint_iff.mpr
           ⟨(i, j), by simp [vblock], by rw [mem_vblock]; lia⟩
 
+/--
+@isnad1 id=le.0h1v.s6.39004a5bba51 from=translated src=- shape=d5446c27 vocab=1501ce09
+-/
 theorem trivialTearing_card_le (n : ℕ) :
     (trivialTearing n).card ≤ (n / 3) * n + (n % 3) * (n / 3) := by
   refine (Finset.card_union_le _ _).trans ?_
   gcongr <;> exact Finset.card_image_le.trans (by simp)
 
+/--
+@isnad1 id=ex.0h1v.s4.00e2d35cdbeb from=translated src=- shape=a4629457 vocab=2065630f
+-/
 theorem exists_maximalTearing (n : ℕ) :
     ∃ k, ∃ T, IsMaximalTearing n T ∧ T.card = k :=
   ⟨(trivialTearing n).card, trivialTearing n, trivialTearing_isMaximalTearing n, rfl⟩
@@ -164,11 +179,17 @@ column) making it impossible to tear out any more blocks. -/
 noncomputable def b (n : ℕ) : ℕ :=
   open Classical in Nat.find (exists_maximalTearing n)
 
+/--
+@isnad1 id=le.1h2v.s4.d587aa085eb9 from=translated src=- shape=171e728e vocab=4fa7e6c4
+-/
 theorem b_le {n : ℕ} {T : Finset (Finset (ℕ × ℕ))} (h : IsMaximalTearing n T) :
     b n ≤ T.card := by
   classical
   exact Nat.find_le ⟨T, h, rfl⟩
 
+/--
+@isnad1 id=ex.0h1v.s4.57aa1bc2b43a from=translated src=- shape=72e920fd vocab=e3982e6f
+-/
 theorem b_spec (n : ℕ) : ∃ T, IsMaximalTearing n T ∧ T.card = b n := by
   classical
   exact Nat.find_spec (exists_maximalTearing n)
@@ -181,6 +202,9 @@ def segsH (n : ℕ) : Finset (Finset (ℕ × ℕ)) :=
 def segsV (n : ℕ) : Finset (Finset (ℕ × ℕ)) :=
   (Finset.range (n - 2) ×ˢ Finset.range n).image fun p => vblock p.1 p.2
 
+/--
+@isnad1 id=and.1h4v.s4.3dde5fc35905 from=translated src=- shape=d40396b2 vocab=6ebcfc3c
+-/
 theorem lower_hblock_inj {i j i' j' : ℕ} (h : hblock i j = hblock i' j') :
     i = i' ∧ j = j' := by
   have key1 : (i, j) ∈ hblock i j := mem_hblock.mpr ⟨rfl, le_rfl, by lia⟩
@@ -190,6 +214,9 @@ theorem lower_hblock_inj {i j i' j' : ℕ} (h : hblock i j = hblock i' j') :
   rw [mem_hblock] at key1 key2
   lia
 
+/--
+@isnad1 id=and.1h4v.s4.ac5980d12eef from=translated src=- shape=d40396b2 vocab=91f9999b
+-/
 theorem lower_vblock_inj {i j i' j' : ℕ} (h : vblock i j = vblock i' j') :
     i = i' ∧ j = j' := by
   have key1 : (i, j) ∈ vblock i j := mem_vblock.mpr ⟨le_rfl, by lia, rfl⟩
@@ -199,6 +226,9 @@ theorem lower_vblock_inj {i j i' j' : ℕ} (h : vblock i j = vblock i' j') :
   rw [mem_vblock] at key1 key2
   lia
 
+/--
+@isnad1 id=ne.0h4v.s4.640a3bde6cfc from=translated src=- shape=0bbd0bbd vocab=2d35d187
+-/
 theorem lower_hblock_ne_vblock {i j i' j' : ℕ} : hblock i j ≠ vblock i' j' := by
   intro h
   have key1 : (i', j') ∈ vblock i' j' := mem_vblock.mpr ⟨le_rfl, by lia, rfl⟩
@@ -207,6 +237,9 @@ theorem lower_hblock_ne_vblock {i j i' j' : ℕ} : hblock i j ≠ vblock i' j' :
   rw [mem_hblock] at key1 key2
   lia
 
+/--
+@isnad1 id=eq.0h1v.s5.eb4d64f280aa from=translated src=- shape=6e0d85b7 vocab=c65c82ac
+-/
 theorem lower_card_segsH (n : ℕ) : (segsH n).card = n * (n - 2) := by
   rw [segsH, Finset.card_image_of_injOn, Finset.card_product, Finset.card_range,
     Finset.card_range]
@@ -214,6 +247,9 @@ theorem lower_card_segsH (n : ℕ) : (segsH n).card = n * (n - 2) := by
   obtain ⟨h1, h2⟩ := lower_hblock_inj h
   exact Prod.ext_iff.mpr ⟨h1, h2⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.6b4c1ae17be6 from=translated src=- shape=6e0d85b7 vocab=20290bb8
+-/
 theorem lower_card_segsV (n : ℕ) : (segsV n).card = n * (n - 2) := by
   rw [segsV, Finset.card_image_of_injOn, Finset.card_product, Finset.card_range,
     Finset.card_range, Nat.mul_comm]
@@ -221,6 +257,9 @@ theorem lower_card_segsV (n : ℕ) : (segsV n).card = n * (n - 2) := by
   obtain ⟨h1, h2⟩ := lower_vblock_inj h
   exact Prod.ext_iff.mpr ⟨h1, h2⟩
 
+/--
+@isnad1 id=disjoint.0h1v.s4.65f0b4b9bfdc from=translated src=- shape=015f8a60 vocab=f7df101f
+-/
 theorem lower_disjoint_segs (n : ℕ) : Disjoint (segsH n) (segsV n) := by
   rw [Finset.disjoint_left]
   intro s hs hv
@@ -230,10 +269,16 @@ theorem lower_disjoint_segs (n : ℕ) : Disjoint (segsH n) (segsV n) := by
   obtain ⟨q, -, h⟩ := hv
   exact lower_hblock_ne_vblock h.symm
 
+/--
+@isnad1 id=eq.0h1v.s6.d752a1465ed6 from=translated src=- shape=22e58b4c vocab=a01ecb70
+-/
 theorem lower_card_segs (n : ℕ) : (segsH n ∪ segsV n).card = 2 * (n * (n - 2)) := by
   rw [Finset.card_union_of_disjoint (lower_disjoint_segs n), lower_card_segsH,
     lower_card_segsV, two_mul]
 
+/--
+@isnad1 id=isblock.1h2v.s6.c23f87d92c20 from=translated src=- shape=8e04e197 vocab=51272f1c
+-/
 theorem lower_isBlock_of_mem_segs {n : ℕ} {s : Finset (ℕ × ℕ)}
     (h : s ∈ segsH n ∪ segsV n) : IsBlock n s := by
   rw [Finset.mem_union] at h
@@ -247,7 +292,9 @@ theorem lower_isBlock_of_mem_segs {n : ℕ} {s : Finset (ℕ × ℕ)}
     rw [Finset.mem_product, Finset.mem_range, Finset.mem_range] at hp
     exact Or.inr ⟨p.1, p.2, by lia, hp.2, rfl⟩
 
-/-- Every block meets at most `14` of the possible block positions. -/
+/-- Every block meets at most `14` of the possible block positions.
+@isnad1 id=le.1h2v.s7.bb674bfe770f from=translated src=- shape=de548684 vocab=061dfd29
+-/
 theorem lower_card_filter_le_fourteen {n : ℕ} {s : Finset (ℕ × ℕ)} (hs : IsBlock n s) :
     ((segsH n ∪ segsV n).filter fun u => ¬ Disjoint u s).card ≤ 14 := by
   obtain (⟨i, j, -, -, rfl⟩ | ⟨i, j, -, -, rfl⟩) := hs
@@ -358,7 +405,9 @@ theorem lower_card_filter_le_fourteen {n : ℕ} {s : Finset (ℕ × ℕ)} (hs : 
 /-- The lower bound `b(n) ≥ n(n - 2)/7`: double-counting pairs of a possible
 block position and a torn-out block meeting it. Every one of the `2n(n - 2)`
 positions must be met by the tearing, and every torn-out block meets at most
-`14` positions. -/
+`14` positions.
+@isnad1 id=le.1h2v.s6.5fba1db7ddb1 from=translated src=- shape=66c659ec vocab=024b0e4d
+-/
 theorem counting_lower_bound {n : ℕ} {T : Finset (Finset (ℕ × ℕ))}
     (hT : IsMaximalTearing n T) : 2 * (n * (n - 2)) ≤ 14 * T.card := by
   obtain ⟨hT1, -, hT3⟩ := hT
@@ -406,7 +455,9 @@ theorem counting_lower_bound {n : ℕ} {T : Finset (Finset (ℕ × ℕ))}
     _ ≤ T.card * 14 := h2
     _ = 14 * T.card := mul_comm _ _
 
-/-- Membership in a row of the efficient tearing pattern, in a usable form. -/
+/-- Membership in a row of the efficient tearing pattern, in a usable form.
+@isnad1 id=or.1h3v.s7.91b4d1b98f67 from=translated src=- shape=dd2d42e7 vocab=b8af1a83
+-/
 theorem mem_patRowTearing {n i : ℕ} {s : Finset (ℕ × ℕ)} (hs : s ∈ patRowTearing n i) :
     (∃ k, k < n / 5 + 1 ∧ phase i + 5 * k + 2 < n ∧ s = hblock i (phase i + 5 * k)) ∨
       (3 ≤ phase i ∧ s = hblock i 0) ∨
@@ -426,12 +477,17 @@ theorem mem_patRowTearing {n i : ℕ} {s : Finset (ℕ × ℕ)} (hs : s ∈ patR
     · rw [ite_eq_right h3] at hs
       exact absurd hs (Finset.notMem_empty _)
 
-/-- Every block of row `i` of the pattern lies entirely within row `i`. -/
+/-- Every block of row `i` of the pattern lies entirely within row `i`.
+@isnad1 id=eq.2h5v.s6.1f83c7cd2409 from=translated src=- shape=86664c4d vocab=d8321ed8
+-/
 theorem fst_eq_of_mem_patRowTearing {n i a b : ℕ} {s : Finset (ℕ × ℕ)}
     (hs : s ∈ patRowTearing n i) (hx : (a, b) ∈ s) : a = i := by
   rcases mem_patRowTearing hs with ⟨k, _, _, rfl⟩ | ⟨_, rfl⟩ | ⟨_, rfl⟩ <;>
     rw [mem_hblock] at hx <;> lia
 
+/--
+@isnad1 id=isblock.2h2v.s5.f6d7708e4b87 from=translated src=- shape=f605e3d8 vocab=8b435083
+-/
 theorem patTearing_isBlock {n : ℕ} (hn : 6 ≤ n) {s : Finset (ℕ × ℕ)}
     (hs : s ∈ patTearing n) : IsBlock n s := by
   rw [patTearing, Finset.mem_biUnion] at hs
@@ -442,6 +498,9 @@ theorem patTearing_isBlock {n : ℕ} (hn : 6 ≤ n) {s : Finset (ℕ × ℕ)}
   · exact Or.inl ⟨i, 0, hi, by lia, rfl⟩
   · exact Or.inl ⟨i, n - 3, hi, by lia, rfl⟩
 
+/--
+@isnad1 id=disjoint.4h3v.s6.e80798ec1d81 from=translated src=- shape=1e985959 vocab=ae968503
+-/
 theorem patTearing_disjoint {n : ℕ} (hn : 6 ≤ n) {s t : Finset (ℕ × ℕ)}
     (hs : s ∈ patTearing n) (ht : t ∈ patTearing n) (hst : s ≠ t) : Disjoint s t := by
   rw [patTearing, Finset.mem_biUnion] at hs ht
@@ -477,7 +536,9 @@ theorem patTearing_disjoint {n : ℕ} (hn : 6 ≤ n) {s t : Finset (ℕ × ℕ)}
   · -- same block
     exact hst rfl
 
-/-- Every cell satisfying `cov` is torn out by the pattern. -/
+/-- Every cell satisfying `cov` is torn out by the pattern.
+@isnad1 id=ex.4h3v.s6.4336fbdedd56 from=translated src=- shape=062730a0 vocab=0a377394
+-/
 theorem cov_covered {n i j : ℕ} (hn : 6 ≤ n) (hi : i < n) (hj : j < n) (h : cov n i j) :
     ∃ s ∈ patRowTearing n i, (i, j) ∈ s := by
   rcases h with ⟨h3, hj2⟩ | ⟨h1, h2, h3⟩ | ⟨h3, hj3⟩
@@ -498,19 +559,26 @@ theorem cov_covered {n i j : ℕ} (hn : 6 ≤ n) (hi : i < n) (hj : j < n) (h : 
     rw [ite_eq_left h3]
     exact Finset.mem_singleton_self _
 
-/-- Every three consecutive cells of a row of the sheet contain a torn-out cell. -/
+/-- Every three consecutive cells of a row of the sheet contain a torn-out cell.
+@isnad1 id=or.3h3v.s6.2dd5ee7702d9 from=translated src=- shape=a583af8b vocab=24fe039e
+-/
 theorem row_cov {n i j : ℕ} (hn : 6 ≤ n) (hi : i < n) (hj : j + 2 < n) :
     cov n i j ∨ cov n i (j + 1) ∨ cov n i (j + 2) := by
   simp only [cov, phase]
   lia
 
 /-- Every three consecutive cells of a column of the sheet contain a torn-out
-cell. -/
+cell.
+@isnad1 id=or.3h3v.s6.5ddebf9e013a from=translated src=- shape=48fe4166 vocab=24fe039e
+-/
 theorem col_cov {n i j : ℕ} (hn : 6 ≤ n) (hi : i + 2 < n) (hj : j < n) :
     cov n i j ∨ cov n (i + 1) j ∨ cov n (i + 2) j := by
   simp only [cov, phase]
   lia
 
+/--
+@isnad1 id=ex.2h2v.s6.294045aa7d29 from=translated src=- shape=7aab8081 vocab=1ead4dc8
+-/
 theorem patTearing_maximal {n : ℕ} (hn : 6 ≤ n) {s : Finset (ℕ × ℕ)} (hs : IsBlock n s) :
     ∃ t ∈ patTearing n, ¬ Disjoint s t := by
   rcases hs with ⟨i, j, hi, hj, rfl⟩ | ⟨i, j, hi, hj, rfl⟩
@@ -537,6 +605,9 @@ theorem patTearing_maximal {n : ℕ} (hn : 6 ≤ n) {s : Finset (ℕ × ℕ)} (h
       exact ⟨t, Finset.mem_biUnion.mpr ⟨i + 2, Finset.mem_range.mpr (by lia), ht⟩,
         Finset.not_disjoint_iff.mpr ⟨(i + 2, j), by simp [vblock], hcell⟩⟩
 
+/--
+@isnad1 id=le.0h2v.s5.f37305be0f2a from=translated src=- shape=1d689923 vocab=b7cf1d80
+-/
 theorem patRowTearing_card_le (n i : ℕ) : (patRowTearing n i).card ≤ n / 5 + 3 := by
   have h1 : (((Finset.range (n / 5 + 1)).filter fun k => phase i + 5 * k + 2 < n).image
       fun k => hblock i (phase i + 5 * k)).card ≤ n / 5 + 1 :=
@@ -554,6 +625,9 @@ theorem patRowTearing_card_le (n i : ℕ) : (patRowTearing n i).card ≤ n / 5 +
     _ ≤ (n / 5 + 1) + 1 + 1 := by gcongr
     _ = n / 5 + 3 := rfl
 
+/--
+@isnad1 id=le.0h1v.s5.68c96801c322 from=translated src=- shape=99dbce51 vocab=1cac3197
+-/
 theorem patTearing_card_le (n : ℕ) : (patTearing n).card ≤ n * (n / 5 + 3) := by
   refine Finset.card_biUnion_le.trans ?_
   calc (∑ i ∈ Finset.range n, (patRowTearing n i).card)
@@ -562,6 +636,9 @@ theorem patTearing_card_le (n : ℕ) : (patTearing n).card ≤ n * (n / 5 + 3) :
     _ = n * (n / 5 + 3) := by
         rw [Finset.sum_const, Finset.card_range, smul_eq_mul]
 
+/--
+@isnad1 id=ismaxima.1h1v.s4.33021878a889 from=translated src=- shape=c807ce13 vocab=c3650af2
+-/
 theorem patTearing_isMaximalTearing {n : ℕ} (hn : 6 ≤ n) :
     IsMaximalTearing n (patTearing n) :=
   ⟨fun _s hs => patTearing_isBlock hn hs,

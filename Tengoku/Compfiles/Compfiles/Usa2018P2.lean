@@ -22,7 +22,9 @@ for all $x, y, z > 0$ with $xyz = 1$.
 namespace Usa2018P2
 
 /-- If `h` satisfies Jensen's functional equation on `[0, 1]`, vanishes at the
-endpoints and is bounded there, then `h` is identically zero on `[0, 1]`. -/
+endpoints and is bounded there, then `h` is identically zero on `[0, 1]`.
+@isnad1 id=eq.6h2v.s7.7b1a9d3ee4fc from=translated src=- shape=9fb29314 vocab=c3bffe5b
+-/
 theorem jensen_bounded_eq_zero {h : ℝ → ℝ}
     (hJ : ∀ s t : ℝ, 0 ≤ s → s ≤ 1 → 0 ≤ t → t ≤ 1 → h ((s + t) / 2) = (h s + h t) / 2)
     (h0 : h 0 = 0) (h1 : h 1 = 0)
@@ -195,7 +197,9 @@ variable (fe : ∀ x y z : ℝ, 0 < x → 0 < y → 0 < z → x * y * z = 1 →
 
 include fpos fe in
 /-- Every value `f t` with `t > 0` is less than `1`
-(plug `(x, y, z) = (t / 2, 2 / t, 1)` into the equation). -/
+(plug `(x, y, z) = (t / 2, 2 / t, 1)` into the equation).
+@isnad1 id=lt.3h2v.s7.f6f29d858ac2 from=translated src=- shape=b9d71479 vocab=7e801e87
+-/
 theorem f_lt_one {t : ℝ} (ht : 0 < t) : f t < 1 := by
   have ht0 : t ≠ 0 := ne_of_gt ht
   have hxyz : t / 2 * (2 / t) * 1 = 1 := by field_simp
@@ -205,22 +209,32 @@ theorem f_lt_one {t : ℝ} (ht : 0 < t) : f t < 1 := by
   have e2 := fpos (1 + 1 / (t / 2)) (by positivity)
   linarith
 
-/-- For `s ∈ (0, 1)` the argument `1 / s - 1` of `f` in `g` is positive. -/
+/-- For `s ∈ (0, 1)` the argument `1 / s - 1` of `f` in `g` is positive.
+@isnad1 id=lt.2h1v.s5.09027069a8b1 from=translated src=- shape=78ee2159 vocab=cc5d5953
+-/
 theorem arg_pos {s : ℝ} (hs0 : 0 < s) (hs1 : s < 1) : 0 < 1 / s - 1 := by
   have h : (1:ℝ) < 1 / s := by rwa [one_lt_div hs0]
   linarith
 
 include fpos in
+/--
+@isnad1 id=lt.3h2v.s6.37dfa2422167 from=translated src=- shape=c5c7ed14 vocab=c27b794b
+-/
 theorem g_pos {s : ℝ} (hs0 : 0 < s) (hs1 : s < 1) : 0 < g f s := by
   exact fpos _ (arg_pos hs0 hs1)
 
 include fpos fe in
+/--
+@isnad1 id=lt.4h2v.s7.72200ea68e9c from=translated src=- shape=cabd1090 vocab=ff6fad38
+-/
 theorem g_lt_one {s : ℝ} (hs0 : 0 < s) (hs1 : s < 1) : g f s < 1 := by
   exact f_lt_one fpos fe (arg_pos hs0 hs1)
 
 include fe in
 /-- The functional equation rewritten in terms of `g` via the substitution
-`(x, y, z) = (b / c, c / a, a / b)`. -/
+`(x, y, z) = (b / c, c / a, a / b)`.
+@isnad1 id=eq.4h4v.s8.374a7731bb76 from=translated src=- shape=ee0af85a vocab=ff6fad38
+-/
 theorem g_eq {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     g f (a / (a + b + c)) + g f (b / (a + b + c)) + g f (c / (a + b + c)) = 1 := by
   have ha0 : a ≠ 0 := ne_of_gt ha
@@ -248,14 +262,18 @@ theorem g_eq {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
   linarith [h]
 
 include fe in
-/-- For `a + b + c = 1` this reads `g a + g b + g c = 1`. -/
+/-- For `a + b + c = 1` this reads `g a + g b + g c = 1`.
+@isnad1 id=eq.5h4v.s8.29ce1d9d9b4b from=translated src=- shape=5d568597 vocab=ff6fad38
+-/
 theorem g_eq_one {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hsum : a + b + c = 1) : g f a + g f b + g f c = 1 := by
   have h := g_eq fe ha hb hc
   rwa [hsum, div_one, div_one, div_one] at h
 
 include fe in
-/-- Jensen's functional equation for `g` on pairs summing to less than `1`. -/
+/-- Jensen's functional equation for `g` on pairs summing to less than `1`.
+@isnad1 id=eq.4h3v.s8.9e588e73d7c2 from=translated src=- shape=ac4d933d vocab=c94864ee
+-/
 theorem g_jensen {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a + b < 1) :
     g f a + g f b = 2 * g f ((a + b) / 2) := by
   have hc : (0:ℝ) < 1 - a - b := by linarith
@@ -263,12 +281,18 @@ theorem g_jensen {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a + b < 1) :
   have h2 := g_eq_one fe (by positivity : (0:ℝ) < (a + b) / 2) (by positivity : (0:ℝ) < (a + b) / 2) hc (by ring)
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s4.8d61eaf83a9e from=translated src=- shape=b298c1f9 vocab=24211fd2
+-/
 theorem hfn_zero : hfn f 0 = 0 := by
   have e : (2 * (0:ℝ) + 1) / 8 = 1 / 8 := by norm_num
   show g f ((2 * (0:ℝ) + 1) / 8) - (1 - 0) * g f (1 / 8) - 0 * g f (3 / 8) = 0
   rw [e]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.ebc1c20ea98b from=translated src=- shape=b298c1f9 vocab=24211fd2
+-/
 theorem hfn_one : hfn f 1 = 0 := by
   have e : (2 * (1:ℝ) + 1) / 8 = 3 / 8 := by norm_num
   show g f ((2 * (1:ℝ) + 1) / 8) - (1 - 1) * g f (1 / 8) - 1 * g f (3 / 8) = 0
@@ -276,6 +300,9 @@ theorem hfn_one : hfn f 1 = 0 := by
   ring
 
 include fe in
+/--
+@isnad1 id=eq.5h3v.s8.3049767527de from=translated src=- shape=f4e78790 vocab=0925defb
+-/
 theorem hfn_jensen {s t : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     hfn f ((s + t) / 2) = (hfn f s + hfn f t) / 2 := by
   have hs : (0:ℝ) < (2 * s + 1) / 8 := by
@@ -292,6 +319,9 @@ theorem hfn_jensen {s t : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (ht0 : 0 ≤ t) (
   linarith [key]
 
 include fpos fe in
+/--
+@isnad1 id=le.4h2v.s7.e24df0937293 from=translated src=- shape=1ae5a950 vocab=63fe21c2
+-/
 theorem hfn_bdd {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : |hfn f t| ≤ 1 := by
   have hu0 : (0:ℝ) < (2 * t + 1) / 8 := by
     have h2t : (0:ℝ) < 2 * t + 1 := by linarith
@@ -316,12 +346,17 @@ theorem hfn_bdd {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : |hfn f t| ≤ 1 := b
   refine ⟨?_, ?_⟩ <;> linarith
 
 include fpos fe in
+/--
+@isnad1 id=eq.4h2v.s7.d1859b8c82e0 from=translated src=- shape=2b1911a7 vocab=f90563b3
+-/
 theorem hfn_eq_zero {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : hfn f t = 0 :=
   jensen_bounded_eq_zero (fun _ _ hs0 hs1 ht0 ht1 ↦ hfn_jensen fe hs0 hs1 ht0 ht1)
     hfn_zero hfn_one (fun _ ht0 ht1 ↦ hfn_bdd fpos fe ht0 ht1) t ht0 ht1
 
 include fpos fe in
-/-- `g` agrees with a linear function on `[1/8, 3/8]`. -/
+/-- `g` agrees with a linear function on `[1/8, 3/8]`.
+@isnad1 id=eq.4h2v.s8.e5cd0f4ebed3 from=translated src=- shape=39582ef9 vocab=2b581426
+-/
 theorem g_linear_mid_exp {x : ℝ} (hx0 : 1 / 8 ≤ x) (hx1 : x ≤ 3 / 8) :
     g f x = 4 * (g f (3 / 8) - g f (1 / 8)) * x + (3 * g f (1 / 8) - g f (3 / 8)) / 2 := by
   have ht0 : (0:ℝ) ≤ 4 * x - 1 / 2 := by linarith
@@ -334,7 +369,9 @@ theorem g_linear_mid_exp {x : ℝ} (hx0 : 1 / 8 ≤ x) (hx1 : x ≤ 3 / 8) :
 
 include fe in
 /-- With `3 g (1/3) = 1` and `1/3 ∈ [1/8, 3/8]`, the coefficients satisfy
-`k + 3 l = 1`. -/
+`k + 3 l = 1`.
+@isnad1 id=eq.2h3v.s8.16b82b649009 from=translated src=- shape=9bce36dd vocab=329c3fe7
+-/
 theorem kl_sum {k l : ℝ}
     (hmid : ∀ x : ℝ, 1 / 8 ≤ x → x ≤ 3 / 8 → g f x = k * x + l) : k + 3 * l = 1 := by
   have h1 := g_eq_one fe (by norm_num : (0:ℝ) < 1 / 3) (by norm_num : (0:ℝ) < 1 / 3)
@@ -343,7 +380,9 @@ theorem kl_sum {k l : ℝ}
   linarith
 
 include fe in
-/-- Linearity extends from `[1/8, 3/8]` down to `(0, 1/8)` using Jensen. -/
+/-- Linearity extends from `[1/8, 3/8]` down to `(0, 1/8)` using Jensen.
+@isnad1 id=eq.4h4v.s8.4d7c65281aeb from=translated src=- shape=a4a9aafb vocab=329c3fe7
+-/
 theorem g_linear_ext_low {k l : ℝ}
     (hmid : ∀ x : ℝ, 1 / 8 ≤ x → x ≤ 3 / 8 → g f x = k * x + l)
     {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1 / 8) : g f x = k * x + l := by
@@ -356,7 +395,9 @@ theorem g_linear_ext_low {k l : ℝ}
   linarith
 
 include fe in
-/-- `g` is linear on all of `(0, 3/8]`. -/
+/-- `g` is linear on all of `(0, 3/8]`.
+@isnad1 id=eq.4h4v.s8.71c904d5e066 from=translated src=- shape=90922ad5 vocab=329c3fe7
+-/
 theorem g_linear_low {k l : ℝ}
     (hmid : ∀ x : ℝ, 1 / 8 ≤ x → x ≤ 3 / 8 → g f x = k * x + l)
     {x : ℝ} (hx0 : 0 < x) (hx1 : x ≤ 3 / 8) : g f x = k * x + l := by
@@ -366,7 +407,9 @@ theorem g_linear_low {k l : ℝ}
 
 include fe in
 /-- Linearity extends from `(0, 3/8]` up to `(0, 1)` using the equation with
-`(x, (1 - x) / 2, (1 - x) / 2)`. -/
+`(x, (1 - x) / 2, (1 - x) / 2)`.
+@isnad1 id=eq.5h4v.s8.be336775a0eb from=translated src=- shape=e2893ef5 vocab=329c3fe7
+-/
 theorem g_linear_ext_high {k l : ℝ} (hsum : k + 3 * l = 1)
     (hmid : ∀ x : ℝ, 1 / 8 ≤ x → x ≤ 3 / 8 → g f x = k * x + l)
     {x : ℝ} (hx0 : 3 / 8 ≤ x) (hx1 : x < 1) : g f x = k * x + l := by
@@ -376,7 +419,9 @@ theorem g_linear_ext_high {k l : ℝ} (hsum : k + 3 * l = 1)
   linarith
 
 include fe in
-/-- `g` is linear on all of `(0, 1)`. -/
+/-- `g` is linear on all of `(0, 1)`.
+@isnad1 id=eq.5h4v.s8.70afee3f0933 from=translated src=- shape=96e6f457 vocab=329c3fe7
+-/
 theorem g_linear {k l : ℝ} (hsum : k + 3 * l = 1)
     (hmid : ∀ x : ℝ, 1 / 8 ≤ x → x ≤ 3 / 8 → g f x = k * x + l)
     {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1) : g f x = k * x + l := by
@@ -388,7 +433,9 @@ theorem g_linear {k l : ℝ} (hsum : k + 3 * l = 1)
 
 include fpos in
 /-- Since `g` is positive, the constant term of the linear function is
-nonnegative. -/
+nonnegative.
+@isnad1 id=le.2h3v.s6.20c927317285 from=translated src=- shape=17e9bf62 vocab=d0cae9a7
+-/
 theorem l_nonneg {k l : ℝ}
     (hg : ∀ x : ℝ, 0 < x → x < 1 → g f x = k * x + l) : 0 ≤ l := by
   by_contra hl
@@ -420,7 +467,9 @@ theorem l_nonneg {k l : ℝ}
 
 include fpos in
 /-- Since `g` is positive, the value of the linear function at `1` is
-nonnegative. -/
+nonnegative.
+@isnad1 id=le.2h3v.s6.5530e5c3e1a8 from=translated src=- shape=a26cf17a vocab=d0cae9a7
+-/
 theorem kl_nonneg {k l : ℝ}
     (hg : ∀ x : ℝ, 0 < x → x < 1 → g f x = k * x + l) : 0 ≤ k + l := by
   by_contra hkl
@@ -457,7 +506,9 @@ theorem kl_nonneg {k l : ℝ}
     linarith [h3]
 
 include fpos in
-/-- The slope of the linear function lies in `[-1/2, 1]`. -/
+/-- The slope of the linear function lies in `[-1/2, 1]`.
+@isnad1 id=mem.3h3v.s7.6d5556667d19 from=translated src=- shape=8cd267b7 vocab=ba19aba3
+-/
 theorem k_mem {k l : ℝ} (hsum : k + 3 * l = 1)
     (hg : ∀ x : ℝ, 0 < x → x < 1 → g f x = k * x + l) : k ∈ Set.Icc (-1 / 2) 1 := by
   have hl := l_nonneg fpos hg
@@ -465,7 +516,9 @@ theorem k_mem {k l : ℝ} (hsum : k + 3 * l = 1)
   rw [Set.mem_Icc]
   constructor <;> linarith
 
-/-- Transfer the linear formula for `g` back to `f`. -/
+/-- Transfer the linear formula for `g` back to `f`.
+@isnad1 id=eq.3h4v.s7.3703cebd0891 from=translated src=- shape=2d0ce9fa vocab=949ab109
+-/
 theorem f_formula {k l : ℝ} (hsum : k + 3 * l = 1)
     (hg : ∀ x : ℝ, 0 < x → x < 1 → g f x = k * x + l)
     {t : ℝ} (ht : 0 < t) : f t = k / (t + 1) + (1 - k) / 3 := by
@@ -483,7 +536,9 @@ theorem f_formula {k l : ℝ} (hsum : k + 3 * l = 1)
   exact h1
 
 include fpos fe in
-/-- Forward direction: every solution belongs to the one-parameter family. -/
+/-- Forward direction: every solution belongs to the one-parameter family.
+@isnad1 id=ex.2h1v.s8.440b01f70af3 from=translated src=- shape=73e9a4db vocab=d079ec95
+-/
 theorem forward :
     ∃ k : ℝ, k ∈ Set.Icc (-1 / 2) 1 ∧ ∀ t : ℝ, 0 < t → f t = k / (t + 1) + (1 - k) / 3 := by
   have hmid : ∀ x : ℝ, 1 / 8 ≤ x → x ≤ 3 / 8 →
@@ -496,7 +551,9 @@ theorem forward :
   exact ⟨_, k_mem fpos hsum hg, fun t ht ↦ f_formula hsum hg ht⟩
 
 /-- Backward direction: every function of the one-parameter family solves the
-problem. -/
+problem.
+@isnad1 id=and.2h2v.s8.12e0ff3e1e57 from=translated src=- shape=603ab701 vocab=d079ec95
+-/
 theorem backward {f : ℝ → ℝ} {k : ℝ} (hk : k ∈ Set.Icc (-1 / 2) 1)
     (hf : ∀ t : ℝ, 0 < t → f t = k / (t + 1) + (1 - k) / 3) :
     (∀ x : ℝ, 0 < x → 0 < f x) ∧

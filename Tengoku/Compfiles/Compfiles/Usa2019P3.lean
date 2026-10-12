@@ -26,6 +26,9 @@ open Polynomial
 contain the digit 7. -/
 def K : Set ℕ := {n | 0 < n ∧ 7 ∉ Nat.digits 10 n}
 
+/--
+@isnad1 id=iff.0h1v.s5.076ae7f0ea15 from=translated src=- shape=a04169ea vocab=6e81a331
+-/
 theorem mem_K {n : ℕ} : n ∈ K ↔ 0 < n ∧ 7 ∉ Nat.digits 10 n := Iff.rfl
 
 /-- The polynomials that map `K` into `K`: the constants with value in `K`,
@@ -54,20 +57,27 @@ Call a polynomial *stable* if it maps `K` into `K`.
    argument with `x = 7 * 10^s - 1` shows `k < 10^e`.
 -/
 
+/--
+@isnad1 id=mem.0h0v.s3.fcb8f76f9855 from=translated src=- shape=d52416c9 vocab=90a62573
+-/
 theorem one_mem_K : (1 : ℕ) ∈ K := by
   refine ⟨by norm_num, ?_⟩
   have h : Nat.digits 10 1 = [1] := Nat.digits_of_lt 10 1 (by norm_num) (by norm_num)
   rw [h]
   simp
 
-/-- The decimal digits of `a` have length at most `k` when `a < 10 ^ k`. -/
+/-- The decimal digits of `a` have length at most `k` when `a < 10 ^ k`.
+@isnad1 id=le.1h2v.s5.7c13d32593f4 from=translated src=- shape=c5498384 vocab=c9a17aec
+-/
 theorem digits_len_le_of_lt_pow {a k : ℕ} (h : a < 10 ^ k) :
     (Nat.digits 10 a).length ≤ k :=
   (Nat.digits_length_le_iff (by norm_num : 1 < 10) a).mpr h
 
 /-- Core concatenation lemma: if `a < 10 ^ k` and `0 < m`, then the decimal
 digits of `m * 10 ^ k + a` are the digits of `a`, padded with zeros up to
-length `k`, followed by the digits of `m`. -/
+length `k`, followed by the digits of `m`.
+@isnad1 id=eq.2h3v.s7.bf07af76021a from=translated src=- shape=34dfb065 vocab=dbac3e53
+-/
 theorem digits_mul_pow_add {m a k : ℕ} (hm : 0 < m) (ha : a < 10 ^ k) :
     Nat.digits 10 (m * 10 ^ k + a)
       = Nat.digits 10 a ++ List.replicate (k - (Nat.digits 10 a).length) 0
@@ -81,7 +91,9 @@ theorem digits_mul_pow_add {m a k : ℕ} (hm : 0 < m) (ha : a < 10 ^ k) :
   exact (Nat.digits_append_zeroes_append_digits (by norm_num : 1 < 10) hm).symm
 
 /-- Any natural number in `[7 * 10 ^ E, 8 * 10 ^ E)` contains the digit 7
-(in fact, as its leading digit). -/
+(in fact, as its leading digit).
+@isnad1 id=mem.2h2v.s6.44333ea8048b from=translated src=- shape=dea1105f vocab=b83631b9
+-/
 theorem seven_mem_digits_of_le_lt {y E : ℕ} (h1 : 7 * 10 ^ E ≤ y)
     (h2 : y < 8 * 10 ^ E) : 7 ∈ Nat.digits 10 y := by
   have h3 : y - 7 * 10 ^ E < 10 ^ E := by lia
@@ -91,7 +103,9 @@ theorem seven_mem_digits_of_le_lt {y E : ℕ} (h1 : 7 * 10 ^ E ≤ y)
   rw [h7]
   exact List.mem_append_right _ (List.mem_singleton_self 7)
 
-/-- The decimal digits of `10 ^ s - 1` are exactly `s` nines. -/
+/-- The decimal digits of `10 ^ s - 1` are exactly `s` nines.
+@isnad1 id=eq.0h1v.s5.c458ff97ce8f from=translated src=- shape=573cf3f7 vocab=4313ef40
+-/
 theorem digits_ten_pow_sub_one (s : ℕ) :
     Nat.digits 10 (10 ^ s - 1) = List.replicate s 9 := by
   induction s with
@@ -108,7 +122,9 @@ theorem digits_ten_pow_sub_one (s : ℕ) :
     rw [h9]
     simp [List.replicate_add]
 
-/-- The number `7 * 10 ^ s - 1` (i.e. a six followed by `s` nines) lies in `K`. -/
+/-- The number `7 * 10 ^ s - 1` (i.e. a six followed by `s` nines) lies in `K`.
+@isnad1 id=mem.0h1v.s5.af5c9e76bade from=translated src=- shape=658a8c45 vocab=dcc361bf
+-/
 theorem seven_pow_sub_one_mem_K (s : ℕ) : 7 * 10 ^ s - 1 ∈ K := by
   have hpos : 0 < 10 ^ s := pow_pos (by norm_num) s
   constructor
@@ -124,6 +140,9 @@ theorem seven_pow_sub_one_mem_K (s : ℕ) : 7 * 10 ^ s - 1 ∈ K := by
 /-- Remove the trailing (i.e. most significant) zeros of a digit list. -/
 def dropTrailingZeros (L : List ℕ) : List ℕ := (L.reverse.dropWhile (· = 0)).reverse
 
+/--
+@isnad1 id=eq.1h1v.s5.afd9bae028ae from=translated src=- shape=2396b410 vocab=4fa7dd1b
+-/
 theorem ofDigits_eq_zero_of_forall_eq_zero {L : List ℕ} (h : ∀ l ∈ L, l = 0) :
     Nat.ofDigits 10 L = 0 := by
   induction L with
@@ -132,6 +151,9 @@ theorem ofDigits_eq_zero_of_forall_eq_zero {L : List ℕ} (h : ∀ l ∈ L, l = 
     rw [Nat.ofDigits_cons, h d List.mem_cons_self,
       ih (fun l hl => h l (List.mem_cons_of_mem d hl)), mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h1v.s4.d26aecca2bea from=translated src=- shape=d329e6b9 vocab=96445d4b
+-/
 theorem ofDigits_dropTrailingZeros (L : List ℕ) :
     Nat.ofDigits 10 (dropTrailingZeros L) = Nat.ofDigits 10 L := by
   have h1 : L = dropTrailingZeros L ++ (L.reverse.takeWhile (· = 0)).reverse := by
@@ -149,6 +171,9 @@ theorem ofDigits_dropTrailingZeros (L : List ℕ) :
         exact of_decide_eq_true (List.mem_takeWhile_imp (p := fun x ↦ decide (x = 0)) hl)),
     mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h1v.s5.5bf75ee9d325 from=translated src=- shape=1b67d74e vocab=99ed5623
+-/
 theorem digits_ofDigits_eq_dropTrailingZeros (L : List ℕ) (hL : ∀ l ∈ L, l < 10) :
     Nat.digits 10 (Nat.ofDigits 10 L) = dropTrailingZeros L := by
   induction L using List.reverseRecOn with
@@ -173,6 +198,9 @@ theorem digits_ofDigits_eq_dropTrailingZeros (L : List ℕ) (hL : ∀ l ∈ L, l
           exact ha
       rw [h1, h2]
 
+/--
+@isnad1 id=mem.2h2v.s5.3b9de73a455a from=translated src=- shape=f30225a5 vocab=68150d90
+-/
 theorem mem_dropTrailingZeros_of_mem {x : ℕ} (hx : x ≠ 0) {L : List ℕ} (h : x ∈ L) :
     x ∈ dropTrailingZeros L := by
   unfold dropTrailingZeros
@@ -185,7 +213,9 @@ theorem mem_dropTrailingZeros_of_mem {x : ℕ} (hx : x ≠ 0) {L : List ℕ} (h 
   · exact h
 
 /-- If all entries of `L` are digits and `7` does not occur in the digits of
-`Nat.ofDigits 10 L`, then `7` does not occur in `L` either. -/
+`Nat.ofDigits 10 L`, then `7` does not occur in `L` either.
+@isnad1 id=not.2h1v.s6.2663bf5a943f from=translated src=- shape=d9bc602d vocab=7d9379ae
+-/
 theorem not_mem_ofDigits_of_not_mem {L : List ℕ} (hL : ∀ l ∈ L, l < 10)
     (h : 7 ∉ Nat.digits 10 (Nat.ofDigits 10 L)) : 7 ∉ L := by
   intro h7
@@ -195,7 +225,9 @@ theorem not_mem_ofDigits_of_not_mem {L : List ℕ} (hL : ∀ l ∈ L, l < 10)
 
 /-- The base-10 value of the digit list obtained by concatenating the padded
 blocks of `b 0, b 1, …, b (n - 1)` (each block padded to width `E`) equals
-`∑ i, b i * 10 ^ (E * i)`. -/
+`∑ i, b i * 10 ^ (E * i)`.
+@isnad1 id=eq.1h3v.s7.b3d9988acb0d from=translated src=- shape=a571fc27 vocab=126709b1
+-/
 theorem ofDigits_flatMap_digits_pad {E : ℕ} (b : ℕ → ℕ) (hb : ∀ i, b i < 10 ^ E) (n : ℕ) :
     Nat.ofDigits 10 ((List.range n).flatMap fun i =>
         Nat.digits 10 (b i) ++ List.replicate (E - (Nat.digits 10 (b i)).length) 0)
@@ -222,7 +254,9 @@ theorem ofDigits_flatMap_digits_pad {E : ℕ} (b : ℕ → ℕ) (hb : ∀ i, b i
 /-- Reduction to monomials: if `f` maps `K` into `K` and its `i`-th
 coefficient is nonzero, then `f.coeff i * m ^ i ∈ K` for every `m ∈ K`.
 The idea: evaluate at `10 ^ E * m` for a huge `E`; the decimal digits of the
-result are the padded blocks of the digits of `f.coeff i * m ^ i`. -/
+result are the padded blocks of the digits of `f.coeff i * m ^ i`.
+@isnad1 id=mem.3h3v.s6.19bede9de7d6 from=translated src=- shape=17f3916a vocab=f79daa5a
+-/
 theorem coeff_stable {f : Polynomial ℕ} (hf : ∀ n ∈ K, f.eval n ∈ K)
     {m : ℕ} (hm : m ∈ K) {i : ℕ} (hi : f.coeff i ≠ 0) : f.coeff i * m ^ i ∈ K := by
   obtain ⟨hmpos, hm7⟩ := hm
@@ -451,7 +485,9 @@ theorem eq_ten_pow_of_stable {c : ℕ} (hc : c ≠ 0) (hstab : ∀ m ∈ K, c * 
     exact (hstab 8 hxK).2 (seven_mem_digits_of_le_lt (E := e + 1)
       (by rw [hE1]; lia) (by rw [hE1]; lia))
 
-/-- The constant coefficient of `(a * x + b) ^ d` is `b ^ d`. -/
+/-- The constant coefficient of `(a * x + b) ^ d` is `b ^ d`.
+@isnad1 id=eq.0h3v.s7.2924f61b35fe from=translated src=- shape=9a9b14be vocab=63c6f45a
+-/
 theorem coeff_zero_pow_linear (d a b : ℕ) : ((C a * X + C b) ^ d).coeff 0 = b ^ d := by
   induction d with
   | zero => simp
@@ -459,7 +495,9 @@ theorem coeff_zero_pow_linear (d a b : ℕ) : ((C a * X + C b) ^ d).coeff 0 = b 
     rw [pow_succ, Polynomial.mul_coeff_zero, ih]
     simp [pow_succ]
 
-/-- The coefficient of `x` in `(a * x + b) ^ d` is `d * a * b ^ (d - 1)`. -/
+/-- The coefficient of `x` in `(a * x + b) ^ d` is `d * a * b ^ (d - 1)`.
+@isnad1 id=eq.0h3v.s7.d4d69188fe2a from=translated src=- shape=89c93b5b vocab=342e2d8d
+-/
 theorem coeff_one_pow_linear (d a b : ℕ) :
     ((C a * X + C b) ^ d).coeff 1 = d * a * b ^ (d - 1) := by
   induction d with
@@ -481,7 +519,9 @@ theorem coeff_one_pow_linear (d a b : ℕ) :
 /-- Higher-degree classification: no monomial `c * x ^ d` with `d ≥ 2` maps
 `K` into `K`. Otherwise `c * (10x + 3) ^ d` would be stable too, and reducing
 to monomials forces `c * d * 3 ^ (d - 1) * 10` to be a power of ten, which is
-impossible since it is divisible by `3`. -/
+impossible since it is divisible by `3`.
+@isnad1 id=false.3h2v.s6.a7c58931b207 from=translated src=- shape=605a261b vocab=898e9eeb
+-/
 theorem not_stable_of_degree_two_le {c d : ℕ} (hc : c ≠ 0) (hd : 2 ≤ d)
     (hstab : ∀ m ∈ K, c * m ^ d ∈ K) : False := by
   have h10m3 : ∀ m ∈ K, 10 * m + 3 ∈ K := by
@@ -528,7 +568,9 @@ theorem not_stable_of_degree_two_le {c d : ℕ} (hc : c ≠ 0) (hd : 2 ≤ d)
 
 /-- If `x ↦ 10 ^ e * x + k` maps `K` into `K` and `k ≠ 0`, then `k < 10 ^ e`.
 Otherwise, writing `k = q * 10 ^ e + r` with `q ≥ 1`, the input
-`x = 7 * 10 ^ q - 1 ∈ K` makes `x + q` start with the digit `7`. -/
+`x = 7 * 10 ^ q - 1 ∈ K` makes `x + q` start with the digit `7`.
+@isnad1 id=lt.1h2v.s6.b6563545c40e from=translated src=- shape=615008ad vocab=89140914
+-/
 theorem const_lt_of_linear_stable {e k : ℕ}
     (hstab : ∀ n ∈ K, 10 ^ e * n + k ∈ K) : k < 10 ^ e := by
   by_contra hlt
@@ -564,7 +606,9 @@ theorem const_lt_of_linear_stable {e k : ℕ}
 
 /-- The polynomials `10 ^ e * x + k` with `k < 10 ^ e` and `k ∈ K ∪ {0}` do
 map `K` into `K`: the decimal digits of `10 ^ e * n + k` are the digits of
-`k` padded to width `e`, followed by the digits of `n`. -/
+`k` padded to width `e`, followed by the digits of `n`.
+@isnad1 id=mem.3h3v.s7.d52f8ab82ba2 from=translated src=- shape=d88a1340 vocab=8a82224f
+-/
 theorem stable_of_form {e k : ℕ} (hlt : k < 10 ^ e) (hk : k = 0 ∨ k ∈ K) :
     ∀ n ∈ K, (C (10 ^ e) * X + C k).eval n ∈ K := by
   intro n hn

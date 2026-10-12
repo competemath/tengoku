@@ -34,12 +34,21 @@ def is_solitary (n : ℕ) : Prop :=
 
 open Nat List
 
+/--
+@isnad1 id=eq.1h1v.s5.38fb8c6d4fe2 from=translated src=- shape=980c31bd vocab=e1fa8ace
+-/
 lemma digits_def' : ∀ {n : ℕ} (_ : 0 < n), digits 10 n = (n % 10) :: digits 10 (n / 10) :=
   Nat.digits_def' (by decide)
 
+/--
+@isnad1 id=eq.2h1v.s5.9b0132769f66 from=translated src=- shape=d9a48580 vocab=de7d6ea9
+-/
 lemma digits_ofDigits (L : List ℕ) (w₁ : ∀ l ∈ L, l < 10) (w₂ : ∀ h : L ≠ [], L.getLast h ≠ 0) : digits 10 (ofDigits 10 L) = L :=
   Nat.digits_ofDigits _ (by decide) L w₁ w₂
 
+/--
+@isnad1 id=eq.1h1v.s5.41819d0ff594 from=translated src=- shape=2a91ada5 vocab=b3563358
+-/
 lemma digits_ofDigits' (L : List ℕ) (w₁ : ∀ l ∈ L, l < 10)
     : digits 10 (ofDigits 10 L) = rdropWhile (· = 0) L := by
   induction L using reverseRec with
@@ -53,6 +62,9 @@ lemma digits_ofDigits' (L : List ℕ) (w₁ : ∀ l ∈ L, l < 10)
       rw [getLast_concat]
       exact hx
 
+/--
+@isnad1 id=not.0h1v.s5.fba846588e17 from=translated src=- shape=64484f56 vocab=c211a342
+-/
 lemma not_solitary_two_zeros {k : ℕ} : ¬ is_solitary (2 * 10 ^ k) := by
   rw [is_solitary]
   push Not
@@ -69,6 +81,9 @@ lemma not_solitary_two_zeros {k : ℕ} : ¬ is_solitary (2 * 10 ^ k) := by
       rwa [has_digit_one] at ih
   · simp [has_digit_one]
 
+/--
+@isnad1 id=mem.1h2v.s6.4cda0886dafc from=translated src=- shape=646822f8 vocab=12e5b8d1
+-/
 lemma digit_squeeze {m k : ℕ} (hm : m ∈ Set.Ico (10 ^ k) (2 * 10 ^ k)) : 1 ∈ digits 10 m := by
   induction k generalizing m with
   | zero =>
@@ -80,6 +95,9 @@ lemma digit_squeeze {m k : ℕ} (hm : m ∈ Set.Ico (10 ^ k) (2 * 10 ^ k)) : 1 �
     rw [digits_def' (by omega)]
     exact mem_cons_of_mem _ <| @ih (m/10) (by grind)
 
+/--
+@isnad1 id=mem.2h2v.s6.3e4504668e2a from=translated src=- shape=4ade434e vocab=c46d7486
+-/
 lemma digits_last_mem {m k : ℕ} (h2 : 10 ^ k ≤ m) (h3 : m / 10 ^ k < 10) : m / (10 ^ k) ∈ digits 10 m := by
   induction k generalizing m with
   | zero =>
@@ -98,11 +116,17 @@ lemma digits_last_mem {m k : ℕ} (h2 : 10 ^ k ≤ m) (h3 : m / 10 ^ k < 10) : m
     rw [pow_succ', ← Nat.div_div_eq_div_mul]
     exact @ih (m / 10) (by omega) (by rwa [Nat.div_div_eq_div_mul, ← pow_succ'])
 
+/--
+@isnad1 id=lt.1h2v.s4.2de7f37c416b from=translated src=- shape=a99d3600 vocab=d1fa3928
+-/
 lemma zero_lt_mod_ne_zero {a k : ℕ} (ha: a % k ≠ 0) : 0 < a := by
   rw [pos_iff_ne_zero]
   apply_fun (· % k)
   exact ha
 
+/--
+@isnad1 id=subset.0h2v.s5.1f08f0c905c3 from=translated src=- shape=33e9da81 vocab=70d81fda
+-/
 lemma digits_div_subset (a k : ℕ) : digits 10 (a % 10 ^ (k + 1)) ⊆ digits 10 a := by
   induction k generalizing a with
   | zero =>
@@ -124,6 +148,9 @@ lemma digits_div_subset (a k : ℕ) : digits 10 (a % 10 ^ (k + 1)) ⊆ digits 10
     · rw [pow_succ, mod_mul_left_div_self, digits_def' (zero_lt_mod_ne_zero h)]
       exact subset_cons_of_subset _ <| ih (a / 10)
 
+/--
+@isnad1 id=eq.1h2v.s7.338b6fad326a from=translated src=- shape=f90a06d5 vocab=12081825
+-/
 lemma chop_off_leading {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1)))
     : m = ofDigits 10 ((digits 10 m).take k ++ [m / 10 ^ k]) := by
   rw [Finset.mem_Ico] at hm
@@ -138,6 +165,9 @@ lemma chop_off_leading {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1)
     rw [← ih]
     omega
 
+/--
+@isnad1 id=issolita.0h1v.s5.abecae2df24e from=translated src=- shape=245632a2 vocab=5bc6bdd5
+-/
 lemma solitary_form (k : ℕ) : is_solitary (2 * 10 ^ k - 1) := by
   refine ⟨by grind, fun a b h => ?_⟩
   wlog! w : b ≤ a
@@ -145,6 +175,9 @@ lemma solitary_form (k : ℕ) : is_solitary (2 * 10 ^ k - 1) := by
   have : a ≤ 2 * 10 ^ k - 1 := le.intro h
   exact Or.inl <| digit_squeeze ⟨by omega, (Nat.le_sub_one_iff_lt <| pos_of_neZero _).mp this⟩
 
+/--
+@isnad1 id=iff.2h2v.s6.577e4dcd04c1 from=translated src=- shape=a922b7aa vocab=df3ab6e9
+-/
 lemma solitary_extend {n : ℕ} (hn1 : 0 < n) {k : ℕ} (hn2 : n < 10 ^ k) : is_solitary n ↔ is_solitary (2 * 10 ^ k + n) := by
   contrapose!
   constructor
@@ -219,6 +252,9 @@ lemma solitary_extend {n : ℕ} (hn1 : 0 < n) {k : ℕ} (hn2 : n < 10 ^ k) : is_
       omega
     · omega
 
+/--
+@isnad1 id=eq.0h1v.s5.38e171f6c048 from=translated src=- shape=9cb6fc7e vocab=c5b2bddf
+-/
 lemma nines (k : ℕ) : 10 ^ k - 1 = ofDigits 10 (replicate k 9) := by
   induction k with
   | zero => rfl
@@ -230,6 +266,9 @@ lemma nines (k : ℕ) : 10 ^ k - 1 = ofDigits 10 (replicate k 9) := by
 abbrev correction (m k : ℕ) :=
   digits 10 (m - (10 ^ k - 1)) |>.map (if · = 1 then 1 else 0) |>.take k |> ofDigits 10
 
+/--
+@isnad1 id=le.1h2v.s6.995d81532177 from=translated src=- shape=c453ce9f vocab=6b70e07e
+-/
 lemma correction_le {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1))) : correction m k ≤ ofDigits 10 (replicate k 9) := by
   cases k with
   | zero => rfl
@@ -242,6 +281,9 @@ lemma correction_le {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1))) 
         rw [Nat.pow_le_pow_iff_right (by decide)]
         apply length_take_le
 
+/--
+@isnad1 id=eq.1h2v.s8.bc8a67f828bd from=translated src=- shape=85cd1b90 vocab=5e1f73fb
+-/
 lemma nines_sub_correction {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1))) : ofDigits 10 (replicate k 9) - correction m k =
     ((take k (digits 10 (m - (10 ^ k - 1))) |>.map (if · = 1 then 8 else 9)) ++ replicate (k - (digits 10 (m - (10 ^ k - 1))).length) 9 |> ofDigits 10) := by
   rw [Nat.sub_eq_iff_eq_add (correction_le hm), correction]
@@ -251,6 +293,9 @@ lemma nines_sub_correction {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k 
   congr
   omega
 
+/--
+@isnad1 id=not.1h2v.s6.69257cb7bf85 from=translated src=- shape=fe20617d vocab=03bc9eec
+-/
 lemma nines_sub_correction_not_has_digit_one {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1))) : ¬has_digit_one (10 ^ k - 1 - correction m k) := by
   cases k with
   | zero => simp [has_digit_one]
@@ -269,6 +314,9 @@ lemma nines_sub_correction_not_has_digit_one {m k : ℕ} (hm : m ∈ Finset.Ico 
     · simp [h2, getLast_take, ite_eq_iff]
     · simp [h2]
 
+/--
+@isnad1 id=iff.2h3v.s7.9ec765d9f4d6 from=translated src=- shape=27e13d35 vocab=b2c82877
+-/
 lemma mem_digits_split {a k : ℕ} (h : a < 10 ^ k) {b : ℕ} (hb₂ : 0 < b)
     : 1 ∉ digits 10 a ∧ 1 ∉ digits 10 b ↔ 1 ∉ digits 10 (a + 10 ^ k * b) := by
   have := @digits_append_zeroes_append_digits 10 (k - (digits 10 a).length) b a (by decide) hb₂
@@ -276,6 +324,9 @@ lemma mem_digits_split {a k : ℕ} (h : a < 10 ^ k) {b : ℕ} (hb₂ : 0 < b)
   rw [← this]
   simp
 
+/--
+@isnad1 id=not.0h2v.s6.97066f97cf77 from=translated src=- shape=66281e6b vocab=99c06061
+-/
 lemma one_not_mem_bumped (m k : ℕ) : 1 ∉
     digits 10 (ofDigits 10 (take k (map (fun a ↦ a + if a = 1 then 1 else 0) (digits 10 (m - (10 ^ k - 1)))))) := by
   rw [digits_ofDigits']
@@ -292,6 +343,9 @@ lemma one_not_mem_bumped (m k : ℕ) : 1 ∉
     have := digits_lt_base (by decide) mem
     split_ifs <;> omega
 
+/--
+@isnad1 id=not.2h2v.s7.2255023ec2bd from=translated src=- shape=75b99646 vocab=b3c25f2c
+-/
 lemma add_correction_not_has_digit_one {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1)))
     (h : ((m - (10 ^ k - 1)) / 10 ^ k) ≠ 1) : ¬has_digit_one (m - (10 ^ k - 1) + correction m k) := by
   rw [has_digit_one, correction]
@@ -335,6 +389,9 @@ lemma add_correction_not_has_digit_one {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ 
     exact one_not_mem_bumped m k
 
 -- by lemma 2, we know that 2 is not the leading digit of m
+/--
+@isnad1 id=ne.4h2v.s8.c44c206e460d from=translated src=- shape=37ef836c vocab=7f99f6be
+-/
 lemma leading_ne_one {m k : ℕ} (solitary : is_solitary m)
   (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1))) (hm1 : m ≠ 2 * 10 ^ k - 1)
   (hm2 : ∀ n ∈ Finset.Ico 1 (10 ^ k), is_solitary n → m ≠ 2 * 10 ^ k + n)
@@ -358,6 +415,9 @@ lemma leading_ne_one {m k : ℕ} (solitary : is_solitary m)
     rw [Nat.le_div_iff_mul_le (pos_of_neZero _)]
     exact this.le
 
+/--
+@isnad1 id=iff.1h2v.s7.2fa10b9cd885 from=translated src=- shape=ccf8598c vocab=9fb89ff1
+-/
 lemma solitary_iff {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1))) :
     is_solitary m ↔ m = 2 * 10 ^ k - 1 ∨ (∃ n ∈ Finset.Ico 1 (10 ^ k), is_solitary n ∧ m = 2 * 10 ^ k + n) := by
   constructor
@@ -384,6 +444,9 @@ lemma solitary_iff {m k : ℕ} (hm : m ∈ Finset.Ico (10 ^ k) (10 ^ (k + 1))) :
     · exact solitary_form k
     · exact solitary_extend npos hnk |>.mp hn
 
+/--
+@isnad1 id=eq.0h1v.s6.c23db6d43245 from=translated src=- shape=1aecfc14 vocab=bb24fbc9
+-/
 lemma solitary_count (k : ℕ) : Finset.card { x ∈ Finset.Ico 1 (10^k) | is_solitary x } = 2 ^ k - 1 := by
   induction k with
   | zero => simp

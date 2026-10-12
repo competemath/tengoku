@@ -30,15 +30,24 @@ noncomputable def nthDiv (n i : ℕ) : ℕ :=
 noncomputable def pairSum (n : ℕ) : ℕ :=
   ∑ i ∈ Finset.range (n.divisors.card - 1), nthDiv n i * nthDiv n (i + 1)
 
+/--
+@isnad1 id=eq.1h2v.s6.3d48fb4f7cc5 from=translated src=- shape=8d3a48de vocab=351636fb
+-/
 lemma nthDiv_eq (n i : ℕ) (h : i < n.divisors.card) :
     nthDiv n i = n.divisors.orderEmbOfFin rfl ⟨i, h⟩ := by
   unfold nthDiv
   rw [dite_eq_left h]
 
+/--
+@isnad1 id=eq.0h1v.s5.fc0cd1dcad5b from=translated src=- shape=97e4c3a5 vocab=8dc4a70c
+-/
 lemma pairSum_eq (n : ℕ) :
     pairSum n = ∑ i ∈ Finset.range (n.divisors.card - 1), nthDiv n i * nthDiv n (i + 1) :=
   rfl
 
+/--
+@isnad1 id=le.1h1v.s4.c6765c631627 from=translated src=- shape=f7221246 vocab=75554317
+-/
 lemma card_divisors_ge_two (n : ℕ) (hn : 1 < n) : 2 ≤ n.divisors.card := by
   have hsub : ({1, n} : Finset ℕ) ⊆ n.divisors := by
     intro x hx
@@ -50,6 +59,9 @@ lemma card_divisors_ge_two (n : ℕ) (hn : 1 < n) : 2 ≤ n.divisors.card := by
   rw [Finset.card_pair (show (1 : ℕ) ≠ n by lia)] at hle
   exact hle
 
+/--
+@isnad1 id=eq.1h1v.s4.17839f3f8e91 from=translated src=- shape=cb752352 vocab=6a05ae3a
+-/
 lemma nthDiv_zero (n : ℕ) (hn : 1 < n) : nthDiv n 0 = 1 := by
   have hk : 0 < n.divisors.card := by have h2 := card_divisors_ge_two n hn; lia
   rw [nthDiv_eq n 0 hk, Finset.orderEmbOfFin_zero rfl hk]
@@ -57,6 +69,9 @@ lemma nthDiv_zero (n : ℕ) (hn : 1 < n) : nthDiv n 0 = 1 := by
   · exact Finset.min'_le _ 1 (Nat.mem_divisors.mpr ⟨one_dvd n, by lia⟩)
   · exact Finset.le_min' _ _ 1 (fun y hy ↦ Nat.pos_of_mem_divisors hy)
 
+/--
+@isnad1 id=eq.2h1v.s5.f63a058f0a79 from=translated src=- shape=e923be44 vocab=767623c7
+-/
 lemma nthDiv_last (n : ℕ) (hn : 1 < n) (h : n.divisors.card - 1 < n.divisors.card) :
     nthDiv n (n.divisors.card - 1) = n := by
   have hk : 0 < n.divisors.card := by lia
@@ -65,6 +80,9 @@ lemma nthDiv_last (n : ℕ) (hn : 1 < n) (h : n.divisors.card - 1 < n.divisors.c
   · exact Finset.max'_le _ _ _ (fun y hy ↦ Nat.le_of_dvd (by lia) (Nat.mem_divisors.mp hy).1)
   · exact Finset.le_max' _ n (Nat.mem_divisors.mpr ⟨dvd_refl n, by lia⟩)
 
+/--
+@isnad1 id=le.2h2v.s5.0dc04abb8164 from=translated src=- shape=299a28ad vocab=d40eed40
+-/
 lemma nthDiv_ge (n : ℕ) (_hn : 1 < n) : ∀ i, i < n.divisors.card → i + 1 ≤ nthDiv n i := by
   intro i
   induction i with
@@ -82,7 +100,9 @@ lemma nthDiv_ge (n : ℕ) (_hn : 1 < n) : ∀ i, i < n.divisors.card → i + 1 �
     rw [nthDiv_eq n m hm] at h1
     exact Nat.succ_le_of_lt (lt_of_le_of_lt h1 h2)
 
-/-- Division is strictly antitone on the divisors of a positive integer. -/
+/-- Division is strictly antitone on the divisors of a positive integer.
+@isnad1 id=lt.5h3v.s6.ea566ea5a761 from=translated src=- shape=fbf0d1c7 vocab=a998d035
+-/
 lemma div_lt_div_of_dvd_of_lt {a b n : ℕ} (hn0 : 0 < n) (ha : a ∣ n) (hb : b ∣ n)
     (ha0 : 0 < a) (hab : a < b) : n / b < n / a := by
   have hb0 : 0 < b := ha0.trans hab
@@ -95,7 +115,9 @@ lemma div_lt_div_of_dvd_of_lt {a b n : ℕ} (hn0 : 0 < n) (ha : a ∣ n) (hb : b
   have h4 : a * (n / b) < b * (n / b) := mul_lt_mul_of_pos_right hab hpos
   lia
 
-/-- Pairing of divisors: the `i`-th smallest times the `i`-th largest equals `n`. -/
+/-- Pairing of divisors: the `i`-th smallest times the `i`-th largest equals `n`.
+@isnad1 id=eq.2h2v.s5.1bb5d5dee129 from=translated src=- shape=309e70a7 vocab=854c3606
+-/
 lemma nthDiv_pair (n : ℕ) (hn : 1 < n) (i : ℕ) (hi : i < n.divisors.card) :
     nthDiv n i * nthDiv n (n.divisors.card - 1 - i) = n := by
   have hn0 : 0 < n := by lia
@@ -143,7 +165,9 @@ lemma nthDiv_pair (n : ℕ) (hn : 1 < n) (i : ℕ) (hi : i < n.divisors.card) :
   rw [nthDiv_eq n i hi, nthDiv_eq n (n.divisors.card - 1 - i) hi2, ← happ]
   exact Nat.mul_div_cancel' (Nat.mem_divisors.mp (Finset.orderEmbOfFin_mem n.divisors rfl ⟨i, hi⟩)).1
 
-/-- The second smallest divisor of `n > 1` is its least prime factor. -/
+/-- The second smallest divisor of `n > 1` is its least prime factor.
+@isnad1 id=eq.1h1v.s4.310e4589b7a6 from=translated src=- shape=1006ef56 vocab=985d7a22
+-/
 lemma nthDiv_one (n : ℕ) (hn : 1 < n) : nthDiv n 1 = n.minFac := by
   have hn0 : 0 < n := by lia
   have hk2 := card_divisors_ge_two n hn
@@ -186,7 +210,9 @@ lemma nthDiv_one (n : ℕ) (hn : 1 < n) : nthDiv n 1 = n.minFac := by
       exact h
     exact Nat.minFac_le_of_dvd hge hdvd
 
-/-- Telescoping sum used in part (a). -/
+/-- Telescoping sum used in part (a).
+@isnad1 id=eq.0h1v.s6.405e959f5306 from=translated src=- shape=012162a9 vocab=fa0bf133
+-/
 lemma tele (m : ℕ) :
     ∑ j ∈ Finset.range m, (1 / ((j : ℚ) + 1) - 1 / ((j : ℚ) + 1 + 1)) =
       1 - 1 / ((m : ℚ) + 1) := by
@@ -195,7 +221,9 @@ lemma tele (m : ℕ) :
   rw [ht]
   norm_num
 
-/-- Part (a): the sum is less than `n ^ 2`. -/
+/-- Part (a): the sum is less than `n ^ 2`.
+@isnad1 id=lt.1h1v.s5.31f6e757b02f from=translated src=- shape=95757b40 vocab=a10b63dd
+-/
 lemma pairSum_lt (n : ℕ) (hn : 1 < n) : pairSum n < n ^ 2 := by
   have hn0 : 0 < n := by lia
   have hk2 := card_divisors_ge_two n hn
@@ -304,6 +332,9 @@ lemma pairSum_lt (n : ℕ) (hn : 1 < n) : pairSum n < n ^ 2 := by
       _ < (n : ℚ) ^ 2 := hsum5
   exact_mod_cast hQ
 
+/--
+@isnad1 id=eq.2h1v.s4.b6d50c7561f0 from=translated src=- shape=7cb9473b vocab=b06ed7df
+-/
 lemma pairSum_eq_of_prime (n : ℕ) (hn : 1 < n) (hp : n.Prime) : pairSum n = n := by
   have hdiv : n.divisors = {1, n} := hp.divisors
   rw [pairSum_eq, hdiv, Finset.card_pair (show (1 : ℕ) ≠ n by lia),
@@ -318,7 +349,9 @@ lemma pairSum_eq_of_prime (n : ℕ) (hn : 1 < n) (hp : n.Prime) : pairSum n = n 
     exact hlast
   rw [h1, one_mul]
 
-/-- Composite `n` does not work: `n ^ 2 / n.minFac < d ≤ n ^ 2 / n.minFac`. -/
+/-- Composite `n` does not work: `n ^ 2 / n.minFac < d ≤ n ^ 2 / n.minFac`.
+@isnad1 id=false.4h1v.s6.5f168ce509cc from=translated src=- shape=1c645245 vocab=8c7be8e2
+-/
 lemma pairSum_not_dvd_of_not_prime (n : ℕ) (hn : 1 < n) (hnp : ¬ n.Prime)
     (ha : pairSum n < n ^ 2) (hdvd : pairSum n ∣ n ^ 2) : False := by
   have hn0 : 0 < n := by lia

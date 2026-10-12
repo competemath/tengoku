@@ -47,19 +47,34 @@ def linear (α β : ℤ) : HForm := ⟨1, fun i => if i = 0 then β else α⟩
 /-- Coefficient function truncated above the degree. -/
 def trunc (f : HForm) : ℕ → ℤ := fun i => if i ≤ f.deg then f.coeff i else 0
 
+/--
+@isnad1 id=eq.1h2v.s4.4d025c22379e from=translated src=- shape=0fea990d vocab=b070d348
+-/
 lemma trunc_of_le (f : HForm) {i : ℕ} (h : i ≤ f.deg) : f.trunc i = f.coeff i :=
   ite_eq_left h
 
+/--
+@isnad1 id=eq.1h2v.s4.d38078b7898a from=translated src=- shape=5b2c4896 vocab=6d27a687
+-/
 lemma trunc_of_lt (f : HForm) {i : ℕ} (h : f.deg < i) : f.trunc i = 0 :=
   ite_eq_right (not_le.mpr h)
 
+/--
+@isnad1 id=eq.0h3v.s3.2376d2eaf189 from=translated src=- shape=4a07ee53 vocab=c0acb4ba
+-/
 lemma eval_const (c : ℤ) (x y : ℤ) : (const c).eval x y = c := by
   simp [eval, const]
 
+/--
+@isnad1 id=eq.0h4v.s5.ce0d62d20af3 from=translated src=- shape=75bbfa57 vocab=492198dc
+-/
 lemma eval_linear (α β : ℤ) (x y : ℤ) : (linear α β).eval x y = α * x + β * y := by
   simp [eval, linear, Finset.sum_range_succ]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.9f608df3c4fc from=translated src=- shape=272c584d vocab=e17baade
+-/
 lemma eval_eq_trunc (f : HForm) (x y : ℤ) :
     f.eval x y = ∑ i ∈ Finset.range (f.deg + 1), f.trunc i * x ^ i * y ^ (f.deg - i) := by
   apply Finset.sum_congr rfl
@@ -77,6 +92,9 @@ def pow (f : HForm) : ℕ → HForm
   | 0 => const 1
   | n + 1 => mul (pow f n) f
 
+/--
+@isnad1 id=eq.0h2v.s4.3f386ac21e68 from=translated src=- shape=9d3df91b vocab=413647de
+-/
 lemma pow_deg (f : HForm) : ∀ n : ℕ, (f.pow n).deg = n * f.deg
   | 0 => (Nat.zero_mul _).symm
   | n + 1 => by
@@ -88,6 +106,9 @@ lemma pow_deg (f : HForm) : ∀ n : ℕ, (f.pow n).deg = n * f.deg
 def add (f g : HForm) (_h : f.deg = g.deg) : HForm :=
   ⟨f.deg, fun i => f.coeff i + g.coeff i⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.2dcc908ece6b from=translated src=- shape=26940842 vocab=1531680f
+-/
 lemma eval_add (f g : HForm) (h : f.deg = g.deg) (x y : ℤ) :
     (f.add g h).eval x y = f.eval x y + g.eval x y := by
   have hg : g.eval x y =
@@ -105,6 +126,9 @@ lemma eval_add (f g : HForm) (h : f.deg = g.deg) (x y : ℤ) :
 /-- Negation of a form. -/
 def neg (f : HForm) : HForm := ⟨f.deg, fun i => -f.coeff i⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.015a3ec0639d from=translated src=- shape=a86c3349 vocab=b6f357e0
+-/
 lemma eval_neg (f : HForm) (x y : ℤ) : (f.neg).eval x y = -f.eval x y := by
   have h : ∀ i : ℕ, (-f.coeff i) * x ^ i * y ^ (f.deg - i) =
       -(f.coeff i * x ^ i * y ^ (f.deg - i)) := fun i => by ring
@@ -113,8 +137,14 @@ lemma eval_neg (f : HForm) (x y : ℤ) : (f.neg).eval x y = -f.eval x y := by
 /-- Subtraction of two forms of the same degree. -/
 def sub (f g : HForm) (h : f.deg = g.deg) : HForm := f.add g.neg (by simp [neg, h])
 
+/--
+@isnad1 id=eq.1h2v.s4.848788b976b5 from=translated src=- shape=bc910412 vocab=6b95a52b
+-/
 lemma sub_deg (f g : HForm) (h : f.deg = g.deg) : (f.sub g h).deg = f.deg := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.525df5562600 from=translated src=- shape=26940842 vocab=153ef5dc
+-/
 lemma eval_sub (f g : HForm) (h : f.deg = g.deg) (x y : ℤ) :
     (f.sub g h).eval x y = f.eval x y - g.eval x y := by
   simp [sub, eval_add, eval_neg, sub_eq_add_neg]
@@ -122,6 +152,9 @@ lemma eval_sub (f g : HForm) (h : f.deg = g.deg) (x y : ℤ) :
 /-- Scalar multiplication of a form by an integer. -/
 def cmul (c : ℤ) (f : HForm) : HForm := mul (const c) f
 
+/--
+@isnad1 id=eq.0h2v.s3.f7a06195b8d0 from=translated src=- shape=fb0c9ecd vocab=e77b5529
+-/
 lemma cmul_deg (c : ℤ) (f : HForm) : (cmul c f).deg = f.deg := zero_add _
 
 /-- Sum of a family of forms of the same degree. -/
@@ -129,9 +162,15 @@ def sum {ι : Type*} (s : Finset ι) (F : ι → HForm) (n : ℕ)
     (_h : ∀ i ∈ s, (F i).deg = n) : HForm :=
   ⟨n, fun k => ∑ i ∈ s, (F i).coeff k⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.d8b2d0881ba6 from=translated src=- shape=d94e2396 vocab=e390635c
+-/
 lemma sum_deg {ι : Type*} (s : Finset ι) (F : ι → HForm) (n : ℕ)
     (h : ∀ i ∈ s, (F i).deg = n) : (sum s F n h).deg = n := rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.7865d9df0780 from=translated src=- shape=2359b9eb vocab=3d2b97a5
+-/
 lemma eval_sum {ι : Type*} (s : Finset ι) (F : ι → HForm) (n : ℕ)
     (h : ∀ i ∈ s, (F i).deg = n) (x y : ℤ) :
     (sum s F n h).eval x y = ∑ i ∈ s, (F i).eval x y := by
@@ -141,7 +180,9 @@ lemma eval_sum {ι : Type*} (s : Finset ι) (F : ι → HForm) (n : ℕ)
   intro i hi
   rw [h i hi]
 
-/-- Evaluation at the antipode of a form of even degree. -/
+/-- Evaluation at the antipode of a form of even degree.
+@isnad1 id=eq.1h3v.s4.6edabb49e520 from=translated src=- shape=8e7cf942 vocab=1962fd1f
+-/
 lemma eval_neg_of_even (f : HForm) (hfe : Even f.deg) (x y : ℤ) :
     f.eval (-x) (-y) = f.eval x y := by
   apply Finset.sum_congr rfl
@@ -165,6 +206,9 @@ instance (s : ℤ × ℤ) : Decidable (canon s) := by
   unfold canon
   infer_instance
 
+/--
+@isnad1 id=iff.1h1v.s5.4d037b5a3c45 from=translated src=- shape=3a5284b1 vocab=043ab0fe
+-/
 lemma canon_iff_not_neg {s : ℤ × ℤ} (hs : s ≠ (0, 0)) : canon s ↔ ¬ canon (-s) := by
   have hf : (-s).1 = -s.1 := rfl
   have hd : (-s).2 = -s.2 := rfl
@@ -194,6 +238,9 @@ whenever possible. -/
 def rep (S : Finset (ℤ × ℤ)) (s : ℤ × ℤ) : ℤ × ℤ :=
   if canon s ∧ s ∈ S then s else if canon (-s) ∧ (-s) ∈ S then -s else s
 
+/--
+@isnad1 id=mem.1h2v.s5.01ff32209042 from=translated src=- shape=1b0f1995 vocab=5006fb87
+-/
 lemma rep_mem {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (hs : s ∈ S) : rep S s ∈ S := by
   unfold rep
   by_cases h1 : canon s ∧ s ∈ S
@@ -203,6 +250,9 @@ lemma rep_mem {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (hs : s ∈ S) : rep S 
     · rw [ite_eq_left h2]; exact h2.2
     · rw [ite_eq_right h2]; exact hs
 
+/--
+@isnad1 id=or.0h2v.s5.d127607f021f from=translated src=- shape=4081d100 vocab=4ad5952c
+-/
 lemma rep_eq_self_or_neg {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} :
     rep S s = s ∨ rep S s = -s := by
   unfold rep
@@ -213,6 +263,9 @@ lemma rep_eq_self_or_neg {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} :
     · rw [ite_eq_left h2]; exact Or.inr rfl
     · rw [ite_eq_right h2]; exact Or.inl rfl
 
+/--
+@isnad1 id=eq.3h2v.s6.dc3c3cc03574 from=translated src=- shape=a7607aea vocab=36e878e9
+-/
 lemma rep_neg {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (hs : s ∈ S) (hns : -s ∈ S)
     (hs0 : s ≠ (0, 0)) : rep S (-s) = rep S s := by
   have hcan := canon_iff_not_neg hs0
@@ -236,6 +289,9 @@ lemma rep_neg {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (hs : s ∈ S) (hns : -
       rw [ite_eq_left ⟨hB, hns⟩]
     rw [hrep_s, hrep_ns]
 
+/--
+@isnad1 id=eq.2h2v.s5.29878240884c from=translated src=- shape=feb72585 vocab=a530d574
+-/
 lemma rep_idem {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (hs : s ∈ S) (hs0 : s ≠ (0, 0)) :
     rep S (rep S s) = rep S s := by
   rcases rep_eq_self_or_neg (S := S) (s := s) with h | h
@@ -250,21 +306,33 @@ lemma rep_idem {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (hs : s ∈ S) (hs0 : 
 /-- The set of antipodal class representatives of `S`. -/
 def T (S : Finset (ℤ × ℤ)) : Finset (ℤ × ℤ) := S.image (rep S)
 
+/--
+@isnad1 id=le.0h1v.s4.398e08e07022 from=translated src=- shape=e3406987 vocab=7f62525a
+-/
 lemma T_subset {S : Finset (ℤ × ℤ)} : T S ⊆ S := by
   intro t ht
   rw [T, Finset.mem_image] at ht
   obtain ⟨s, hs, rfl⟩ := ht
   exact rep_mem hs
 
+/--
+@isnad1 id=mem.1h2v.s5.21882b6acdd2 from=translated src=- shape=fb3cb333 vocab=bca5e38f
+-/
 lemma rep_mem_T {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (hs : s ∈ S) : rep S s ∈ T S :=
   Finset.mem_image_of_mem _ hs
 
+/--
+@isnad1 id=or.1h2v.s5.8ae7dd2cd719 from=translated src=- shape=48387e7b vocab=0e15eb8b
+-/
 lemma rep_spec {S : Finset (ℤ × ℤ)} {s : ℤ × ℤ} (_hs : s ∈ S) :
     s = rep S s ∨ s = -rep S s := by
   rcases rep_eq_self_or_neg (S := S) (s := s) with h | h
   · exact Or.inl h.symm
   · exact Or.inr (by rw [h, neg_neg])
 
+/--
+@isnad1 id=ne.1h1v.s5.9d7ae810cb54 from=translated src=- shape=a0b13135 vocab=f6ce7665
+-/
 lemma ne_zero_of_isCoprime {s : ℤ × ℤ} (h : IsCoprime s.1 s.2) : s ≠ (0, 0) := by
   intro hz
   subst hz
@@ -272,6 +340,9 @@ lemma ne_zero_of_isCoprime {s : ℤ × ℤ} (h : IsCoprime s.1 s.2) : s ≠ (0, 
   rw [Int.isCoprime_iff_gcd_eq_one] at h
   simp at h
 
+/--
+@isnad1 id=ne.4h3v.s6.3a5aa4cf9e4e from=translated src=- shape=a6b38911 vocab=e4527b60
+-/
 lemma T_ne_neg {S : Finset (ℤ × ℤ)} (hS : ∀ s ∈ S, IsCoprime s.1 s.2) {t₁ t₂ : ℤ × ℤ}
     (ht₁ : t₁ ∈ T S) (ht₂ : t₂ ∈ T S) (hne : t₁ ≠ t₂) : t₁ ≠ -t₂ := by
   intro h
@@ -334,7 +405,9 @@ lemma eq_or_neg_of_mul_eq {x₁ y₁ x₂ y₂ : ℤ} (h₁ : IsCoprime x₁ y�
       exact Or.inr ⟨hx, by rw [hy10, hy0, neg_zero]⟩
   · exact Or.inr ⟨hx, hy⟩
 
-/-- Points of distinct classes in `T` have nonzero determinant. -/
+/-- Points of distinct classes in `T` have nonzero determinant.
+@isnad1 id=ne.4h3v.s7.115c543f1a76 from=translated src=- shape=4d4b69dd vocab=f5a56339
+-/
 lemma det_ne_zero {S : Finset (ℤ × ℤ)} (hS : ∀ s ∈ S, IsCoprime s.1 s.2) {t t' : ℤ × ℤ}
     (ht : t ∈ T S) (ht' : t' ∈ T S) (hne : t' ≠ t) :
     t'.2 * t.1 - t'.1 * t.2 ≠ 0 := by
@@ -358,29 +431,49 @@ def Xf : HForm := HForm.linear 1 0
 /-- The coordinate form `y`. -/
 def Yf : HForm := HForm.linear 0 1
 
+/--
+@isnad1 id=eq.0h2v.s3.d440ef32b989 from=translated src=- shape=4dbd73f7 vocab=d9061b58
+-/
 lemma Xf_eval (x y : ℤ) : Xf.eval x y = x := by
   rw [Xf, HForm.eval_linear]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s3.34b6ba12e40a from=translated src=- shape=dc7f6b8a vocab=1b89eb93
+-/
 lemma Yf_eval (x y : ℤ) : Yf.eval x y = y := by
   rw [Yf, HForm.eval_linear]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.d23fae6ae685 from=translated src=- shape=b0ae1d2b vocab=ae73cff6
+-/
 lemma Xf_deg : Xf.deg = 1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.b873abdf4a68 from=translated src=- shape=b0ae1d2b vocab=5bf4101b
+-/
 lemma Yf_deg : Yf.deg = 1 := rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.db145b13bf4b from=translated src=- shape=808e0dce vocab=43c3149a
+-/
 lemma zmod_natCast_eq_zero_iff_dvd (a n : ℕ) : ((a : ZMod n)) = 0 ↔ n ∣ a := by
   rw [show ((a : ZMod n)) = ((a : ℤ) : ZMod n) by norm_cast,
     ZMod.intCast_zmod_eq_zero_iff_dvd, Int.natCast_dvd_natCast]
 
+/--
+@isnad1 id=dvd.3h3v.s5.408687540925 from=translated src=- shape=8386c054 vocab=b72baae1
+-/
 lemma not_coprime_of_both_dvd {x y : ℤ} (h : IsCoprime x y) {c : ℤ}
     (hx : c ∣ x) (hy : c ∣ y) : c ∣ 1 := by
   obtain ⟨u, v, huv⟩ := h
   rw [← huv]
   exact dvd_add (hx.mul_left u) (hy.mul_left v)
 
-/-- In `ZMod 2`, the form `x² + xy + y²` does not vanish at a primitive point. -/
+/-- In `ZMod 2`, the form `x² + xy + y²` does not vanish at a primitive point.
+@isnad1 id=ne.1h2v.s7.d224fc7a8048 from=translated src=- shape=3b507ac1 vocab=71665be5
+-/
 lemma two_not_dvd_quad_zmod {x y : ℤ} (h : IsCoprime x y) :
     ((x ^ 2 + x * y + y ^ 2 : ℤ) : ZMod 2) ≠ 0 := by
   intro hcast
@@ -395,7 +488,9 @@ lemma two_not_dvd_quad_zmod {x y : ℤ} (h : IsCoprime x y) :
   exact h2d _ _ hab hcast
 
 /-- In `ZMod p` for an odd prime `p`, the form `x^(p-1) + y^(p-1)` does not
-vanish at a primitive point. -/
+vanish at a primitive point.
+@isnad1 id=ne.3h3v.s6.f9168eebe9fc from=translated src=- shape=a47cb8cb vocab=6795f4bd
+-/
 lemma odd_not_dvd_powsum_zmod {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) {x y : ℤ}
     (h : IsCoprime x y) : ((x ^ (p - 1) + y ^ (p - 1) : ℤ) : ZMod p) ≠ 0 := by
   have hp3 : 3 ≤ p := by
@@ -448,6 +543,9 @@ def Gform (p : ℕ) : HForm :=
     (by show (Xf.pow (p - 1)).deg = (Yf.pow (p - 1)).deg
         rw [HForm.pow_deg, HForm.pow_deg, Xf_deg, Yf_deg])
 
+/--
+@isnad1 id=eq.0h1v.s5.cb6136e2ca50 from=translated src=- shape=b30f96ca vocab=75325799
+-/
 lemma Gform_deg (p : ℕ) : (Gform p).deg = if p = 2 then 2 else p - 1 := by
   rw [Gform]
   split_ifs with hp2

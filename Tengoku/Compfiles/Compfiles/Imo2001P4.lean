@@ -41,7 +41,9 @@ is not divisible by $n!$, since the quotient is $\frac{n!-1}2$ and $n!$ is even 
 -/
 
 /-- Assuming the opposite of what is to be proved, the sum of `S` over all permutations is
-congruent to the sum of all residues modulo `n!`, i.e. `n! * (n! - 1) / 2`. -/
+congruent to the sum of all residues modulo `n!`, i.e. `n! * (n! - 1) / 2`.
+@isnad1 id=modeq.1h2v.s7.dafd246becf5 from=translated src=- shape=98b2f62f vocab=a2ca60f2
+-/
 lemma sum_range_modEq_sum_of_contra (hS : ¬∃ a b, a ≠ b ∧ (n ! : ℤ) ∣ S c a - S c b) :
     n ! * ((n ! : ℤ) - 1) / 2 ≡ ∑ a, S c a [ZMOD n !] := by
   have mir : ∀ a, S c a % n ! ∈ Ico (0 : ℤ) n ! := fun a ↦ by
@@ -69,7 +71,9 @@ lemma sum_range_modEq_sum_of_contra (hS : ¬∃ a b, a ≠ b ∧ (n ! : ℤ) ∣
   rw [Nat.cast_mul, Nat.cast_ofNat, Nat.cast_pred (Nat.factorial_pos n)]
 
 /-- The sum over all permutations of `Icc 1 n` of the entry at any fixed position is
-`(n - 1)! * (n * (n + 1) / 2)`. -/
+`(n - 1)! * (n * (n + 1) / 2)`.
+@isnad1 id=eq.1h2v.s7.9e41eb8ab2f3 from=translated src=- shape=3df6ebb3 vocab=a543c2ac
+-/
 lemma sum_perm_add_one {i : Fin n} (hn : 1 ≤ n) :
     ∑ a : Perm (Fin n), ((a i).1 + 1) = (n - 1)! * (n * (n + 1) / 2) := by
   rw [le_iff_exists_add'] at hn; obtain ⟨n, rfl⟩ := hn
@@ -83,7 +87,9 @@ lemma sum_perm_add_one {i : Fin n} (hn : 1 ≤ n) :
   simp_rw [id_eq, sum_range_one, zero_add, add_comm 1] at es
   rw [Fin.sum_univ_eq_sum_range (· + 1), ← es, sum_range_id, add_tsub_cancel_right, mul_comm]
 
-/-- For odd `n`, the sum of `S` over all permutations is divisible by `n!`. -/
+/-- For odd `n`, the sum of `S` over all permutations is divisible by `n!`.
+@isnad1 id=modeq.1h2v.s5.333fd8d593f1 from=translated src=- shape=785bc5e5 vocab=4f7b7bdf
+-/
 lemma sum_modEq_zero_of_odd (hn : Odd n) : ∑ a, S c a ≡ 0 [ZMOD n !] := by
   unfold S; rw [sum_comm]
   conv_lhs => enter [2, i, 2, a]; rw [← Nat.cast_one, ← Nat.cast_add]

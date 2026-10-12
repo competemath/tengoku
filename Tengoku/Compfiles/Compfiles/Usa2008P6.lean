@@ -58,6 +58,9 @@ def lap : (Fin n → ZMod 2) →ₗ[ZMod 2] (Fin n → ZMod 2) where
     simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply]
     rw [mul_add, Finset.mul_sum, mul_left_comm (G.degree v : ZMod 2) c (x v)]
 
+/--
+@isnad1 id=eq.0h4v.s10.103d4120d9e1 from=translated src=- shape=ddb8108b vocab=728195b1
+-/
 lemma lap_apply (x : Fin n → ZMod 2) (v : Fin n) :
     lap G x v = (G.degree v : ZMod 2) * x v + ∑ u ∈ G.neighborFinset v, x u := rfl
 
@@ -71,7 +74,9 @@ private lemma ite_eq_one_add :
 private lemma mul_self_eq : ∀ a : ZMod 2, a * a = a := by decide
 
 /-- The combinatorial condition "an even number of friends share the room of `v`"
-is the linear equation `(lap G x) v = deg(v)` in `ZMod 2`. -/
+is the linear equation `(lap G x) v = deg(v)` in `ZMod 2`.
+@isnad1 id=iff.0h4v.s10.020f132f2859 from=translated src=- shape=a45bf6f9 vocab=f6dafc5c
+-/
 lemma even_card_filter_iff (x : Fin n → ZMod 2) (v : Fin n) :
     Even ((G.neighborFinset v).filter fun u => x u = x v).card ↔
       lap G x v = (G.degree v : ZMod 2) := by
@@ -93,7 +98,9 @@ lemma even_card_filter_iff (x : Fin n → ZMod 2) (v : Fin n) :
     CharTwo.add_eq_zero]
   exact eq_comm
 
-/-- Swapping the order of summation over ordered pairs of adjacent vertices. -/
+/-- Swapping the order of summation over ordered pairs of adjacent vertices.
+@isnad1 id=eq.0h4v.s8.8a220efa3a08 from=translated src=- shape=eb8fd1ea vocab=0b52c1e9
+-/
 lemma sum_neighbor_mul_comm (x y : Fin n → ZMod 2) :
     ∑ v, ∑ u ∈ G.neighborFinset v, x u * y v
       = ∑ v, ∑ u ∈ G.neighborFinset v, x v * y u := by
@@ -114,7 +121,9 @@ lemma sum_neighbor_mul_comm (x y : Fin n → ZMod 2) :
       · rw [ite_eq_right h, ite_eq_right fun h' => h h'.symm]
   · exact Finset.sum_congr rfl fun v _ => (e v (fun u => x v * y u)).symm
 
-/-- The Laplacian is symmetric with respect to the dot product. -/
+/-- The Laplacian is symmetric with respect to the dot product.
+@isnad1 id=eq.0h4v.s11.3a5c88000066 from=translated src=- shape=0b3b9acb vocab=46e7260c
+-/
 lemma lap_inner (x y : Fin n → ZMod 2) :
     ∑ v, lap G x v * y v = ∑ v, x v * lap G y v := by
   have h1 : ∀ v : Fin n, lap G x v * y v
@@ -131,7 +140,9 @@ lemma lap_inner (x y : Fin n → ZMod 2) :
   exact Finset.sum_congr rfl fun v _ => by ring
 
 /-- The key identity: `xᵀ (L x) = ∑ v, deg(v) * x v` over `ZMod 2`. The cross
-terms cancel because each edge is counted twice. -/
+terms cancel because each edge is counted twice.
+@isnad1 id=eq.0h3v.s10.a38f579beb59 from=translated src=- shape=806c536e vocab=3c4a756a
+-/
 lemma inner_self_lap (x : Fin n → ZMod 2) :
     ∑ v, x v * lap G x v = ∑ v, (G.degree v : ZMod 2) * x v := by
   have h1 : ∀ v : Fin n, x v * lap G x v
@@ -181,15 +192,23 @@ def Tmap : (Fin n → ZMod 2) →ₗ[ZMod 2] Module.Dual (ZMod 2) ↥(LinearMap.
       rw [Finset.mul_sum]
       exact Finset.sum_congr rfl fun v _ => mul_left_comm ..)
 
+/--
+@isnad1 id=eq.0h4v.s14.ac8ee11937b5 from=translated src=- shape=63671b07 vocab=76f455ce
+-/
 lemma Tmap_apply (d : Fin n → ZMod 2) (x : ↥(LinearMap.ker (lap G))) :
     Tmap G d x = ∑ v, d v * x.1 v := rfl
 
+/--
+@isnad1 id=iff.0h3v.s15.aafe9b409400 from=translated src=- shape=662669a6 vocab=eef28bb4
+-/
 lemma mem_ker_Tmap {d : Fin n → ZMod 2} :
     d ∈ LinearMap.ker (Tmap G) ↔ ∀ x : ↥(LinearMap.ker (lap G)), Tmap G d x = 0 := by
   rw [LinearMap.mem_ker, LinearMap.ext_iff]
   exact forall_congr' fun x => by rw [LinearMap.zero_apply]
 
-/-- The range of `lap G` is contained in the "orthogonal complement" of its kernel. -/
+/-- The range of `lap G` is contained in the "orthogonal complement" of its kernel.
+@isnad1 id=le.0h2v.s13.ea8e647ee871 from=translated src=- shape=1a8aca0d vocab=ec964abd
+-/
 lemma range_lap_le_ker_Tmap : LinearMap.range (lap G) ≤ LinearMap.ker (Tmap G) := by
   rintro z ⟨x, -, rfl⟩
   rw [mem_ker_Tmap]
@@ -199,7 +218,9 @@ lemma range_lap_le_ker_Tmap : LinearMap.range (lap G) ≤ LinearMap.ker (Tmap G)
   rw [lap_inner G x y, LinearMap.mem_ker.mp hy]
   simp
 
-/-- The degree vector is orthogonal to the kernel of `lap G`. -/
+/-- The degree vector is orthogonal to the kernel of `lap G`.
+@isnad1 id=mem.0h2v.s13.ed6413026404 from=translated src=- shape=6666f9df vocab=5221c3e7
+-/
 lemma degVec_mem_ker_Tmap : degVec G ∈ LinearMap.ker (Tmap G) := by
   rw [mem_ker_Tmap]
   intro ⟨y, hy⟩
@@ -209,7 +230,9 @@ lemma degVec_mem_ker_Tmap : degVec G ∈ LinearMap.ker (Tmap G) := by
   simp
 
 /-- Every functional on the kernel of `lap G` is realized by a dot product:
-extend it by zero on a complement and read off the coordinates. -/
+extend it by zero on a complement and read off the coordinates.
+@isnad1 id=surjecti.0h2v.s14.34229c6b5ac4 from=translated src=- shape=3a0ab6bb vocab=943da03d
+-/
 lemma Tmap_surjective : Function.Surjective (Tmap G) := by
   intro φ
   obtain ⟨C, hC⟩ := Submodule.exists_isCompl (LinearMap.ker (lap G))
@@ -233,7 +256,9 @@ lemma Tmap_surjective : Function.Surjective (Tmap G) := by
   rw [Submodule.projectionOnto_apply_left hC ⟨x, hx⟩]
 
 /-- A symmetric matrix over `ZMod 2` has range equal to the orthogonal
-complement of its kernel; here this is phrased via `Tmap`. -/
+complement of its kernel; here this is phrased via `Tmap`.
+@isnad1 id=eq.0h2v.s13.4e02de81ec96 from=translated src=- shape=1a8aca0d vocab=a2ae3fc2
+-/
 lemma range_lap_eq_ker_Tmap : LinearMap.range (lap G) = LinearMap.ker (Tmap G) := by
   apply Submodule.eq_of_le_of_finrank_eq (range_lap_le_ker_Tmap G)
   have hTL := LinearMap.finrank_range_add_finrank_ker (Tmap G)
@@ -245,7 +270,9 @@ lemma range_lap_eq_ker_Tmap : LinearMap.range (lap G) = LinearMap.ker (Tmap G) :
     exact Subspace.dual_finrank_eq
   lia
 
-/-- There is at least one valid room assignment. -/
+/-- There is at least one valid room assignment.
+@isnad1 id=ex.0h2v.s9.2eff84c4f72e from=translated src=- shape=d39a507f vocab=87018d26
+-/
 lemma exists_solution : ∃ x0, lap G x0 = degVec G := by
   have h : degVec G ∈ LinearMap.range (lap G) := by
     rw [range_lap_eq_ker_Tmap G]
@@ -263,6 +290,9 @@ def solutionEquiv (x0 : Fin n → ZMod 2) (hx0 : lap G x0 = degVec G) :
     exact add_sub_cancel_left ..
   right_inv x := Subtype.ext (add_sub_cancel ..)
 
+/--
+@isnad1 id=eq.1h3v.s12.097249b5cb33 from=translated src=- shape=f3eb396d vocab=24a065ec
+-/
 lemma card_solutions (x0 : Fin n → ZMod 2) (hx0 : lap G x0 = degVec G) :
     Fintype.card {x : Fin n → ZMod 2 // lap G x = degVec G}
       = 2 ^ Module.finrank (ZMod 2) ↥(LinearMap.ker (lap G)) := by

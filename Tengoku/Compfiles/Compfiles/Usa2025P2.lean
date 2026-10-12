@@ -24,7 +24,9 @@ namespace Usa2025P2
 open Polynomial Finset
 
 /-- The coefficients of an iterated formal derivative are the shifted coefficients of
-the original polynomial, up to a natural-number factor. -/
+the original polynomial, up to a natural-number factor.
+@isnad1 id=ex.0h3v.s7.7ce6d6d2145d from=translated src=- shape=b698b60e vocab=462b8364
+-/
 lemma coeff_iterate_derivative_factor (F : ℝ[X]) (j m : ℕ) :
     ∃ N : ℕ, (derivative^[j] F).coeff m = F.coeff (m + j) * N := by
   induction j generalizing m with
@@ -37,7 +39,9 @@ lemma coeff_iterate_derivative_factor (F : ℝ[X]) (j m : ℕ) :
     push_cast
     ring
 
-/-- The degree of an iterated formal derivative, as long as it is nonzero. -/
+/-- The degree of an iterated formal derivative, as long as it is nonzero.
+@isnad1 id=eq.1h2v.s7.b8bc16f7eaa7 from=translated src=- shape=6cf9fa57 vocab=1a9f292e
+-/
 lemma natDegree_iterate_derivative_eq (F : ℝ[X]) (j : ℕ) (hj : j ≤ F.natDegree) :
     (derivative^[j] F).natDegree = F.natDegree - j := by
   induction j with
@@ -48,7 +52,9 @@ lemma natDegree_iterate_derivative_eq (F : ℝ[X]) (j : ℕ) (hj : j ≤ F.natDe
     lia
 
 /-- **Rolle's theorem**: if a real polynomial has all of its roots real and distinct,
-then so does its derivative. -/
+then so does its derivative.
+@isnad1 id=and.1h1v.s8.9b791540835d from=translated src=- shape=51ab5689 vocab=414a8c9c
+-/
 lemma good_derivative {F : ℝ[X]}
     (h : F.roots.Nodup ∧ Multiset.card F.roots = F.natDegree) :
     F.derivative.roots.Nodup ∧ Multiset.card F.derivative.roots = F.derivative.natDegree := by
@@ -132,7 +138,9 @@ lemma good_derivative {F : ℝ[X]}
     exact Multiset.dedup_eq_self.mp h2
 
 /-- Iterated derivatives of a polynomial with distinct real roots still have distinct
-real roots. -/
+real roots.
+@isnad1 id=and.1h2v.s8.05a345b650f1 from=translated src=- shape=6ba18ac4 vocab=fb68acf8
+-/
 lemma good_iterate (F : ℝ[X]) (j : ℕ)
     (h : F.roots.Nodup ∧ Multiset.card F.roots = F.natDegree) :
     (derivative^[j] F).roots.Nodup ∧
@@ -142,7 +150,9 @@ lemma good_iterate (F : ℝ[X]) (j : ℕ)
   | succ j ih => rw [Function.iterate_succ_apply']; exact good_derivative ih
 
 /-- If the coefficients of `x^(t-1)` and `x^t` of `R` both vanish, then `X^2` divides
-the `(t-1)`-st derivative of `R`. -/
+the `(t-1)`-st derivative of `R`.
+@isnad1 id=dvd.3h2v.s7.99f29a267832 from=translated src=- shape=cbdc04da vocab=12ab7af7
+-/
 lemma dvd_X_pow_two_iterate_derivative (R : ℝ[X]) {t : ℕ} (ht : 1 ≤ t)
     (h0 : R.coeff (t - 1) = 0) (h1 : R.coeff t = 0) :
     (X : ℝ[X]) ^ 2 ∣ derivative^[t - 1] R := by
@@ -154,7 +164,9 @@ lemma dvd_X_pow_two_iterate_derivative (R : ℝ[X]) {t : ℕ} (ht : 1 ≤ t)
   · rw [hN, show 1 + (t - 1) = t by lia, h1, zero_mul]
 
 /-- A nonzero polynomial divisible by `X^2` has `0` as a multiple root, so its root
-multiset is duplicate-free nowhere. -/
+multiset is duplicate-free nowhere.
+@isnad1 id=not.2h1v.s6.9969a0206d4c from=translated src=- shape=342c9fe4 vocab=9a71ca82
+-/
 lemma not_nodup_roots_of_X_pow_two_dvd {F : ℝ[X]} (hF : F ≠ 0)
     (h : (X : ℝ[X]) ^ 2 ∣ F) : ¬ F.roots.Nodup := by
   intro hnd
@@ -171,7 +183,9 @@ lemma not_nodup_roots_of_X_pow_two_dvd {F : ℝ[X]} (hF : F ≠ 0)
 `∏_{r ∈ s \ {i}} (X - r)` has a zero coefficient among the positions `1, ..., k - 1`.
 Indeed, two such polynomials would share the position `t` of a zero coefficient
 (pigeonhole), forcing the common sub-product `∏_{r ∈ s \ {i₁, i₂}} (X - r)` to have two
-consecutive zero coefficients, contradicting Rolle's theorem. -/
+consecutive zero coefficients, contradicting Rolle's theorem.
+@isnad1 id=false.3h2v.s7.e1a2aa366a45 from=translated src=- shape=7389e10d vocab=2dd1f202
+-/
 lemma core_pigeonhole {k : ℕ} (hk : 1 ≤ k) {s : Finset ℝ} (hscard : s.card = k + 1)
     (H : ∀ i ∈ s, ∃ t ∈ Finset.Icc 1 (k - 1),
       (∏ r ∈ s.erase i, (X - C r)).coeff t = 0) :
@@ -266,7 +280,9 @@ lemma core_pigeonhole {k : ℕ} (hk : 1 ≤ k) {s : Finset ℝ} (hscard : s.card
 
 /-- If every complex root of a squarefree real polynomial `P` is real, then the real
 roots of `P` are distinct and there are `deg P` many of them (i.e. `P` splits over
-`ℝ`). -/
+`ℝ`).
+@isnad1 id=and.3h1v.s7.4d8497b64ccf from=translated src=- shape=0d4fd5d2 vocab=95be0385
+-/
 lemma roots_real_aux {P : ℝ[X]} (hP : P ≠ 0) (hsq : Squarefree P)
     (h : ∀ z : ℂ, aeval z P = 0 → z.im = 0) :
     P.roots.Nodup ∧ Multiset.card P.roots = P.natDegree := by

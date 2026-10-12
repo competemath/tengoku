@@ -24,7 +24,9 @@ namespace Usa1993P4
 /-- The constant value that the sequence eventually takes. -/
 abbrev constant_value (r s : ℕ) : ℕ := Nat.gcd r s
 
-/-- Dividing out all factors of two from `2 * m` yields `m` when `m` is odd. -/
+/-- Dividing out all factors of two from `2 * m` yields `m` when `m` is odd.
+@isnad1 id=eq.1h1v.s6.b6e6334d9fa1 from=translated src=- shape=d7a05ff4 vocab=f0f7cfae
+-/
 theorem ordCompl_two_mul {m : ℕ} (hm : Odd m) : ordCompl[2] (2 * m) = m := by
   have h2m : m ≠ 0 := by obtain ⟨k, hk⟩ := hm; lia
   have hfac2 : (2 : ℕ).factorization 2 = 1 := Nat.Prime.factorization_self Nat.prime_two
@@ -43,7 +45,9 @@ variable {r s : ℕ} (hr : Odd r) (hs : Odd s) {a : ℕ → ℕ}
 
 include hr hs ha0 ha1 han
 
-/-- Every term of the sequence is odd and positive. -/
+/-- Every term of the sequence is odd and positive.
+@isnad1 id=and.5h4v.s7.a9afa94fea93 from=translated src=- shape=b9defb11 vocab=5ef45753
+-/
 theorem odd_and_pos (n : ℕ) : Odd (a n) ∧ 0 < a n := by
   induction n using Nat.twoStepInduction with
   | zero =>
@@ -61,7 +65,9 @@ theorem odd_and_pos (n : ℕ) : Odd (a n) ∧ 0 < a n := by
     rw [han n]
     exact ⟨hodd, Nat.ordCompl_pos 2 hsum⟩
 
-/-- Each term is at most half the sum of the two previous terms. -/
+/-- Each term is at most half the sum of the two previous terms.
+@isnad1 id=le.5h4v.s7.9f783cd701e2 from=translated src=- shape=3bd3de52 vocab=87e80a2f
+-/
 theorem le_half (n : ℕ) : a (n + 2) ≤ (a (n + 1) + a n) / 2 := by
   obtain ⟨hoddn, hposn⟩ := odd_and_pos hr hs ha0 ha1 han n
   obtain ⟨hoddn1, hposn1⟩ := odd_and_pos hr hs ha0 ha1 han (n + 1)
@@ -81,14 +87,18 @@ theorem le_half (n : ℕ) : a (n + 2) ≤ (a (n + 1) + a n) / 2 := by
   lia
 
 /-- If two consecutive terms differ, the maximum of the pair strictly
-decreases two steps later. -/
+decreases two steps later.
+@isnad1 id=lt.6h4v.s7.5d96922a0675 from=translated src=- shape=69a0570e vocab=9cbce0fb
+-/
 theorem descent (n : ℕ) (hne : a n ≠ a (n + 1)) :
     max (a (n + 2)) (a (n + 3)) < max (a n) (a (n + 1)) := by
   have h2 := le_half hr hs ha0 ha1 han n
   have h3 : a (n + 3) ≤ (a (n + 2) + a (n + 1)) / 2 := le_half hr hs ha0 ha1 han (n + 1)
   lia
 
-/-- Some two consecutive terms are eventually equal. -/
+/-- Some two consecutive terms are eventually equal.
+@isnad1 id=ex.5h3v.s7.341a9f245fe8 from=translated src=- shape=d3e27d5f vocab=c0544c3f
+-/
 theorem eventual_eq : ∃ n, a n = a (n + 1) := by
   by_contra hcon
   push Not at hcon
@@ -106,7 +116,9 @@ theorem eventual_eq : ∃ n, a n = a (n + 1) := by
   have hle := Nat.le_max_right (a (2 * max (a 0) (a 1))) (a (2 * max (a 0) (a 1) + 1))
   lia
 
-/-- Once two consecutive terms agree, the sequence is constant from then on. -/
+/-- Once two consecutive terms agree, the sequence is constant from then on.
+@isnad1 id=eq.6h5v.s7.19e14c5454ce from=translated src=- shape=2b7d85c1 vocab=c0544c3f
+-/
 theorem stable (n : ℕ) (h : a n = a (n + 1)) (k : ℕ) : a (n + k) = a n := by
   induction k using Nat.twoStepInduction with
   | zero => simp
@@ -120,7 +132,9 @@ theorem stable (n : ℕ) (h : a n = a (n + 1)) (k : ℕ) : a (n + k) = a n := by
     rw [han (n + k), ih1, ih2, ← two_mul]
     exact ordCompl_two_mul hodd
 
-/-- The gcd of two consecutive terms is preserved by the recurrence. -/
+/-- The gcd of two consecutive terms is preserved by the recurrence.
+@isnad1 id=eq.5h4v.s7.d17ec2a77e32 from=translated src=- shape=bdb8db90 vocab=e9f87735
+-/
 theorem gcd_invariant (n : ℕ) :
     Nat.gcd (a (n + 1)) (a (n + 2)) = Nat.gcd (a n) (a (n + 1)) := by
   obtain ⟨hodd1, hpos1⟩ := odd_and_pos hr hs ha0 ha1 han (n + 1)
@@ -134,7 +148,9 @@ theorem gcd_invariant (n : ℕ) :
     rw [Nat.gcd_comm (a (n + 1)) _, Nat.Coprime.gcd_mul_left_cancel _ hcop, Nat.gcd_comm]
   rw [han n, ← h1, hdecomp, Nat.gcd_self_add_right, Nat.gcd_comm]
 
-/-- The gcd of any two consecutive terms equals `gcd r s`. -/
+/-- The gcd of any two consecutive terms equals `gcd r s`.
+@isnad1 id=eq.5h4v.s7.2798a13ec27c from=translated src=- shape=40b3be2f vocab=e9f87735
+-/
 theorem gcd_eq (n : ℕ) : Nat.gcd (a n) (a (n + 1)) = Nat.gcd r s := by
   induction n with
   | zero =>

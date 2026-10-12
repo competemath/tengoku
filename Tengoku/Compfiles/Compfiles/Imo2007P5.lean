@@ -19,6 +19,9 @@ then a = b.
 
 namespace Imo2007P5
 
+/--
+@isnad1 id=dvd.1h3v.s7.51f21fea6f95 from=translated src=- shape=19798c93 vocab=8b35dcdd
+-/
 lemma bad_symm {n : ℤ} {a b : ℕ} (h : n * a * b - 1 ∣ (n * a ^ 2 - 1) ^ 2) :
   n * b * a - 1 ∣ (n * b ^ 2 - 1) ^ 2 := by
   rw [mul_right_comm, sub_sq', add_comm, mul_right_comm _ _ (1 : ℤ), ← sub_sq']
@@ -30,6 +33,9 @@ lemma bad_symm {n : ℤ} {a b : ℕ} (h : n * a * b - 1 ∣ (n * a ^ 2 - 1) ^ 2)
   nth_rewrite 1 [← one_pow 2]
   exact ((n * a * b).modEq_sub 1).symm.pow 2
 
+/--
+@isnad1 id=ex.2h2v.s7.b01d43d561c9 from=translated src=- shape=35b26bcd vocab=4849da73
+-/
 lemma bad_exists_descent {n : ℤ} (hn : 1 < n) {a : ℕ}
   (h : 0 < a ∧ ∃ b : ℕ, a < b ∧ n * a * b - 1 ∣ (n * a ^ 2 - 1) ^ 2) :
   ∃ c : ℕ, 0 < c ∧ c < a ∧ n * c * a - 1 ∣ (n * c ^ 2 - 1) ^ 2 := by
@@ -82,11 +88,17 @@ lemma bad_exists_descent {n : ℤ} (hn : 1 < n) {a : ℕ}
   · rw [← mul_lt_mul_iff_right₀ (lt_trans h h0), mul_zero, ← h1]
     exact pow_pos h 2
 
+/--
+@isnad1 id=not.1h2v.s5.e5f1ef83a633 from=translated src=- shape=ffe3f8e1 vocab=d9904e62
+-/
 lemma nat_pred_descent {P : ℕ → Prop} [DecidablePred P]
   (h : ∀ k : ℕ, P k → ∃ m : ℕ, m < k ∧ P m) : ∀ k : ℕ, ¬P k :=
   forall_not_of_not_exists λ h0 ↦ Exists.elim (h (Nat.find h0) (Nat.find_spec h0))
     λ _ h1 ↦ Nat.find_min h0 h1.1 h1.2
 
+/--
+@isnad1 id=eq.4h3v.s7.c166be5706a7 from=translated src=- shape=81d11420 vocab=4849da73
+-/
 theorem generalized_imo2007_p5 {n : ℤ} (hn : 1 < n) :
     ∀ a b : ℕ, 0 < a → 0 < b → n * a * b - 1 ∣ (n * a ^ 2 - 1) ^ 2 → a = b := by
   let P : ℕ → Prop := λ k ↦ (0 < k ∧ ∃ m : ℕ, k < m ∧ n * k * m - 1 ∣ (n * k ^ 2 - 1) ^ 2)

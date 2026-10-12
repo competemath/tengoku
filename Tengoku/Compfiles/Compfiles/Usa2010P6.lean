@@ -53,7 +53,9 @@ noncomputable def w (n : ℕ) (q : ℚ) (t : Finset (Fin n)) : ℚ :=
   q ^ t.card * (1 - q) ^ (n - t.card)
 
 /-- Conditional marginal: total weight of strategies containing all of `S₀` and
-disjoint from `S₁`, when `S₀ ∩ S₁ = ∅`. -/
+disjoint from `S₁`, when `S₀ ∩ S₁ = ∅`.
+@isnad1 id=eq.1h4v.s7.935d4090b6b2 from=translated src=- shape=cd438334 vocab=83421404
+-/
 lemma cond_weight (n : ℕ) (q : ℚ) (S₀ S₁ : Finset (Fin n)) (hd : Disjoint S₀ S₁) :
     ∑ t : Finset (Fin n), (if S₀ ⊆ t ∧ Disjoint t S₁ then w n q t else 0)
       = q ^ S₀.card * (1 - q) ^ S₁.card := by
@@ -117,11 +119,16 @@ lemma cond_weight (n : ℕ) (q : ℚ) (S₀ S₁ : Finset (Fin n)) (hd : Disjoin
   rw [key]
   exact Finset.sum_congr rfl (fun t _ => (hterm t).symm)
 
-/-- total weight = 1 -/
+/-- total weight = 1
+@isnad1 id=eq.0h2v.s5.c674582d8100 from=translated src=- shape=39064c20 vocab=d718f9d5
+-/
 lemma total_weight (n : ℕ) (q : ℚ) : ∑ t : Finset (Fin n), w n q t = 1 := by
   have h := cond_weight n q ∅ ∅ (by simp)
   simpa using h
 
+/--
+@isnad1 id=lt.2h3v.s5.bf714a337a1f from=translated src=- shape=18551f81 vocab=ff33cad1
+-/
 lemma w_pos (n : ℕ) (q : ℚ) (hq0 : 0 < q) (hq1 : q < 1) (t : Finset (Fin n)) :
     0 < w n q t := by
   apply mul_pos (pow_pos hq0 _)
@@ -133,6 +140,9 @@ lemma w_pos (n : ℕ) (q : ℚ) (hq0 : 0 < q) (hq1 : q < 1) (t : Finset (Fin n))
 def V (L : List (ℤ × ℤ)) : Finset ℕ :=
   (L.flatMap (fun p => [p.1.natAbs, p.2.natAbs])).toFinset
 
+/--
+@isnad1 id=and.1h2v.s5.0fd9588c1442 from=translated src=- shape=0fae2c40 vocab=d4a43160
+-/
 lemma natAbs_mem_V {L : List (ℤ × ℤ)} {p : ℤ × ℤ} (hp : p ∈ L) :
     p.1.natAbs ∈ V L ∧ p.2.natAbs ∈ V L := by
   constructor <;>
@@ -140,6 +150,9 @@ lemma natAbs_mem_V {L : List (ℤ × ℤ)} {p : ℤ × ℤ} (hp : p ∈ L) :
       apply List.mem_flatMap.mpr
       exact ⟨p, hp, by simp⟩
 
+/--
+@isnad1 id=ne.2h2v.s5.346fb09c535f from=translated src=- shape=e5efb059 vocab=c4537b23
+-/
 lemma V_ne_zero {L : List (ℤ × ℤ)} (hL : ValidBoard L) : ∀ v ∈ V L, v ≠ 0 := by
   intro v hv
   rw [V, List.mem_toFinset, List.mem_flatMap] at hv
@@ -157,15 +170,24 @@ noncomputable def nV (L : List (ℤ × ℤ)) : ℕ := (V L).card
 noncomputable def kE (L : List (ℤ × ℤ)) : Fin (nV L) → ℕ :=
   fun i => ((V L).orderIsoOfFin rfl i).val
 
+/--
+@isnad1 id=injectiv.0h1v.s3.40d34a5254d4 from=translated src=- shape=32d0771d vocab=a09461ef
+-/
 lemma kE_inj (L : List (ℤ × ℤ)) : Function.Injective (kE L) := by
   intro a b hab
   apply ((V L).orderIsoOfFin rfl).injective
   exact Subtype.ext hab
 
+/--
+@isnad1 id=ne.1h2v.s4.b90c1df37a7c from=translated src=- shape=cf75e7d7 vocab=f8039fb9
+-/
 lemma kE_ne_zero {L : List (ℤ × ℤ)} (hL : ValidBoard L) (i : Fin (nV L)) : kE L i ≠ 0 := by
   have h : ((V L).orderIsoOfFin rfl i).val ∈ V L := ((V L).orderIsoOfFin rfl i).property
   exact V_ne_zero hL _ h
 
+/--
+@isnad1 id=ex.1h2v.s5.3ba305842b7e from=translated src=- shape=7e814604 vocab=7747fab6
+-/
 lemma kE_cov (L : List (ℤ × ℤ)) (v : ℕ) (hv : v ∈ V L) : ∃ i : Fin (nV L), kE L i = v := by
   refine ⟨((V L).orderIsoOfFin rfl).symm ⟨v, hv⟩, ?_⟩
   simp only [kE, OrderIso.apply_symm_apply]
@@ -175,10 +197,16 @@ lemma kE_cov (L : List (ℤ × ℤ)) (v : ℕ) (hv : v ∈ V L) : ∃ i : Fin (n
 noncomputable def aE (L : List (ℤ × ℤ)) : Fin (nV L) → ℤ :=
   fun i => if (-(kE L i : ℤ), -(kE L i : ℤ)) ∈ L then -(kE L i : ℤ) else (kE L i : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s4.d04190163fff from=translated src=- shape=59b5585d vocab=d392815b
+-/
 lemma aE_natAbs (L : List (ℤ × ℤ)) (i : Fin (nV L)) : (aE L i).natAbs = kE L i := by
   by_cases h : (-(kE L i : ℤ), -(kE L i : ℤ)) ∈ L <;>
     simp [aE, h, Int.natAbs_neg, Int.natAbs_natCast]
 
+/--
+@isnad1 id=ne.1h2v.s4.ab7bc95da61a from=translated src=- shape=297350e7 vocab=dbaa8e28
+-/
 lemma aE_ne_zero {L : List (ℤ × ℤ)} (hL : ValidBoard L) (i : Fin (nV L)) : aE L i ≠ 0 := by
   have h1 := aE_natAbs L i
   have h2 := kE_ne_zero hL i
@@ -186,6 +214,9 @@ lemma aE_ne_zero {L : List (ℤ × ℤ)} (hL : ValidBoard L) (i : Fin (nV L)) : 
   rw [hzero, Int.natAbs_zero] at h1
   exact h2 h1.symm
 
+/--
+@isnad1 id=not.1h2v.s5.267b806a98fd from=translated src=- shape=8dbf204d vocab=979fb52c
+-/
 lemma loop_excl {L : List (ℤ × ℤ)} (hL : ValidBoard L) (i : Fin (nV L)) :
     (-aE L i, -aE L i) ∉ L := by
   by_cases h : (-(kE L i : ℤ), -(kE L i : ℤ)) ∈ L
@@ -202,10 +233,16 @@ lemma loop_excl {L : List (ℤ × ℤ)} (hL : ValidBoard L) (i : Fin (nV L)) :
 noncomputable def Tof (L : List (ℤ × ℤ)) (t : Finset (Fin (nV L))) : Finset ℤ :=
   t.biUnion (fun i => {aE L i}) ∪ ((Finset.univ \ t).biUnion (fun i => {-aE L i}))
 
+/--
+@isnad1 id=iff.0h3v.s6.2eea36f24d8a from=translated src=- shape=a79527d7 vocab=8fb35ed9
+-/
 lemma mem_Tof {L : List (ℤ × ℤ)} {t : Finset (Fin (nV L))} {x : ℤ} :
     x ∈ Tof L t ↔ (∃ i ∈ t, x = aE L i) ∨ (∃ i ∈ (Finset.univ \ t), x = -aE L i) := by
   simp only [Tof, Finset.mem_union, Finset.mem_biUnion, Finset.mem_singleton]
 
+/--
+@isnad1 id=validera.1h2v.s4.a42676d67f96 from=translated src=- shape=4ddf837a vocab=ea20fdc0
+-/
 lemma validErase_Tof {L : List (ℤ × ℤ)} (hL : ValidBoard L) (t : Finset (Fin (nV L))) :
     ValidErase (Tof L t) := by
   intro x hx hnx
@@ -242,6 +279,9 @@ lemma validErase_Tof {L : List (ℤ × ℤ)} (hL : ValidBoard L) (t : Finset (Fi
 
 /-! ### List sum helpers -/
 
+/--
+@isnad1 id=eq.0h3v.s5.d16e4125fc4c from=translated src=- shape=493d7b9d vocab=da47c33b
+-/
 lemma list_filter_length {α : Type*} (l : List α) (p : α → Bool) :
     (l.filter p).length = (l.map (fun a => if p a then (1:ℕ) else 0)).sum := by
   induction l with
@@ -254,12 +294,18 @@ lemma list_filter_length {α : Type*} (l : List α) (p : α → Bool) :
     · rw [List.filter_cons_of_neg h, List.map_cons, List.sum_cons, ih]
       simp [h]
 
+/--
+@isnad1 id=eq.0h4v.s5.425498c6bf4c from=translated src=- shape=a1eac3f6 vocab=42365fe8
+-/
 lemma list_const_mul_sum {α : Type*} (c : ℚ) (l : List α) (f : α → ℚ) :
     c * (l.map f).sum = (l.map (fun a => c * f a)).sum := by
   induction l with
   | nil => simp
   | cons x xs ih => simp [List.map_cons, List.sum_cons, mul_add, ih]
 
+/--
+@isnad1 id=eq.0h5v.s6.73e8dd6b303f from=translated src=- shape=f95fc85b vocab=0f3a2a66
+-/
 lemma sum_finset_list_map {α β : Type*} (s : Finset α) (l : List β) (F : α → β → ℚ) :
     ∑ a ∈ s, (l.map (F a)).sum = (l.map (fun b => ∑ a ∈ s, F a b)).sum := by
   induction l with
@@ -270,6 +316,9 @@ lemma sum_finset_list_map {α β : Type*} (s : Finset α) (l : List β) (F : α 
 
 /-! ### Expectation identity -/
 
+/--
+@isnad1 id=eq.0h2v.s6.006c3558a9ac from=translated src=- shape=e7b2aaa6 vocab=c2eb8dd2
+-/
 lemma score_cast (L : List (ℤ × ℤ)) (T : Finset ℤ) :
     (score L T : ℚ) = (L.map (fun p => (if p.1 ∈ T ∨ p.2 ∈ T then (1:ℚ) else 0))).sum := by
   have key : ∀ l : List (ℤ × ℤ),
@@ -284,6 +333,9 @@ lemma score_cast (L : List (ℤ × ℤ)) (T : Finset ℤ) :
   rw [score, list_filter_length]
   exact key L
 
+/--
+@isnad1 id=eq.0h1v.s7.ea65441b4000 from=translated src=- shape=74106cc1 vocab=c4a8fe5f
+-/
 lemma expected_score (L : List (ℤ × ℤ)) :
     ∑ t : Finset (Fin (nV L)), w (nV L) qProb t * (score L (Tof L t) : ℚ)
       = (L.map (fun p => ∑ t : Finset (Fin (nV L)),
@@ -310,6 +362,9 @@ lemma expected_score (L : List (ℤ × ℤ)) :
 
 /-! ### Edge case analysis -/
 
+/--
+@isnad1 id=le.2h2v.s7.694f25919b88 from=translated src=- shape=4ee89460 vocab=bf0f7bed
+-/
 lemma W_ge {L : List (ℤ × ℤ)} (hL : ValidBoard L) {p : ℤ × ℤ} (hp : p ∈ L) :
     qProb ≤ ∑ t : Finset (Fin (nV L)),
       (if p.1 ∈ Tof L t ∨ p.2 ∈ Tof L t then w (nV L) qProb t else 0) := by
@@ -514,6 +569,9 @@ lemma W_ge {L : List (ℤ × ℤ)} (hL : ValidBoard L) {p : ℤ × ℤ} (hp : p 
 
 /-! ### Assembling the lower bound -/
 
+/--
+@isnad1 id=ex.1h1v.s4.805a26dccd0b from=translated src=- shape=95e94ee8 vocab=6b6b31f4
+-/
 lemma lower_bound (L : List (ℤ × ℤ)) (hL : ValidBoard L) :
     ∃ T : Finset ℤ, ValidErase T ∧ 43 ≤ score L T := by
   have hsum : (L.map (fun _ => qProb)).sum ≤ (L.map (fun p => ∑ t : Finset (Fin (nV L)),
@@ -555,19 +613,30 @@ def upperNegList : List (ℤ × ℤ) :=
   (List.range 8).flatMap (fun (i : ℕ) =>
     (List.range i).map (fun (j : ℕ) => (-((i : ℤ) + 1), -((j : ℤ) + 1))))
 
+/--
+@isnad1 id=eq.0h0v.s5.901534b0db0c from=translated src=- shape=3d96694f vocab=2e8f32c2
+-/
 lemma upperLoopList_def :
     upperLoopList
       = (List.range 8).flatMap (fun (i : ℕ) => List.replicate 5 ((i : ℤ) + 1, (i : ℤ) + 1)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.a1642c79e380 from=translated src=- shape=8914da06 vocab=621268f9
+-/
 lemma upperNegList_def :
     upperNegList = (List.range 8).flatMap (fun (i : ℕ) =>
       (List.range i).map (fun (j : ℕ) => (-((i : ℤ) + 1), -((j : ℤ) + 1)))) :=
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.c24427043616 from=translated src=- shape=e3bf05d6 vocab=74f2f6ed
+-/
 lemma upper_L0_eq : L0 = upperLoopList ++ upperNegList := rfl
 
-/-- Bridge between `List.sum` over `List.range` and `Finset.sum` over `Finset.range`. -/
+/-- Bridge between `List.sum` over `List.range` and `Finset.sum` over `Finset.range`.
+@isnad1 id=eq.0h2v.s4.b173d04352c1 from=translated src=- shape=a0638cc1 vocab=049204a6
+-/
 lemma upper_sum_map_range (g : ℕ → ℕ) (n : ℕ) :
     ((List.range n).map g).sum = ∑ i ∈ Finset.range n, g i := by
   induction n with
@@ -576,12 +645,16 @@ lemma upper_sum_map_range (g : ℕ → ℕ) (n : ℕ) :
       simp [List.range_succ, List.map_append, List.sum_append, Finset.sum_range_succ, ih]
 
 /-- For a list without duplicates, the length of a filtered list equals the
-cardinality of the corresponding filtered finset. -/
+cardinality of the corresponding filtered finset.
+@isnad1 id=eq.1h2v.s5.d2a166204c97 from=translated src=- shape=24566621 vocab=bc24d378
+-/
 lemma upper_filter_length_eq_card (l : List ℕ) (hl : l.Nodup) (p : ℕ → Bool) :
     (l.filter p).length = (l.toFinset.filter (fun a => p a = true)).card := by
   rw [← List.toFinset_filter, List.toFinset_card_of_nodup (hl.filter p)]
 
-/-- Elements of the loop part of `L0` are diagonal pairs (i+1, i+1) with i < 8. -/
+/-- Elements of the loop part of `L0` are diagonal pairs (i+1, i+1) with i < 8.
+@isnad1 id=ex.1h1v.s6.f573d0397e46 from=translated src=- shape=962faf93 vocab=18452100
+-/
 lemma upper_mem_loopList {p : ℤ × ℤ} (h : p ∈ upperLoopList) :
     ∃ i : ℕ, i < 8 ∧ p = ((i : ℤ) + 1, (i : ℤ) + 1) := by
   simp only [upperLoopList_def, List.mem_flatMap, List.mem_range, List.mem_replicate] at h
@@ -589,7 +662,9 @@ lemma upper_mem_loopList {p : ℤ × ℤ} (h : p ∈ upperLoopList) :
   exact ⟨i, hi, hp⟩
 
 /-- No diagonal pair (k,k) occurs in the negative part of `L0`:
-its entries (-(i+1), -(j+1)) always have j < i, hence distinct components. -/
+its entries (-(i+1), -(j+1)) always have j < i, hence distinct components.
+@isnad1 id=not.0h1v.s4.194334714df5 from=translated src=- shape=3c46a31b vocab=1693695b
+-/
 lemma upper_not_mem_negList_diag (k : ℤ) : (k, k) ∉ upperNegList := by
   intro h
   simp only [upperNegList_def, List.mem_flatMap, List.mem_range, List.mem_map] at h
@@ -600,7 +675,9 @@ lemma upper_not_mem_negList_diag (k : ℤ) : (k, k) ∉ upperNegList := by
 
 /-- The combinatorial heart of the upper bound: for any `A : Finset ℕ`,
 `a choose 2 ≤ ∑ i ∈ A, #(A ∩ range i)`, proved by enumerating `A` in
-increasing order via `Finset.orderEmbOfFin`. -/
+increasing order via `Finset.orderEmbOfFin`.
+@isnad1 id=le.0h1v.s5.58b8c846cbb5 from=translated src=- shape=757b01f3 vocab=4b31ca91
+-/
 lemma upper_card_choose_le (A : Finset ℕ) :
     A.card * (A.card - 1) / 2 ≤ ∑ i ∈ A, (A ∩ Finset.range i).card := by
   have hre : ∑ i ∈ A, (A ∩ Finset.range i).card
@@ -641,6 +718,9 @@ lemma upper_card_choose_le (A : Finset ℕ) :
         Finset.sum_le_sum fun t _ => hkey t
     _ = ∑ i ∈ A, (A ∩ Finset.range i).card := hre.symm
 
+/--
+@isnad1 id=validboa.0h0v.s1.cdff48e0a849 from=translated src=- shape=49959d42 vocab=6ad3e1b7
+-/
 lemma validBoard_L0 : ValidBoard L0 := by
   refine ⟨?_, ?_, ?_⟩
   · decide
@@ -660,7 +740,9 @@ lemma validBoard_L0 : ValidBoard L0 := by
     · exact upper_not_mem_negList_diag (-k) h
 
 /-- The loop part contributes exactly `5 * a`, where `a` counts the indices
-i ∈ {1,…,8} with i ∈ T. -/
+i ∈ {1,…,8} with i ∈ T.
+@isnad1 id=eq.0h1v.s7.4feb28e092e3 from=translated src=- shape=1930c157 vocab=23e950f9
+-/
 lemma upper_loopScore (T : Finset ℤ) :
     (upperLoopList.filter (fun p => decide (p.1 ∈ T ∨ p.2 ∈ T))).length
       = 5 * ((Finset.range 8).filter (fun (i : ℕ) => (i : ℤ) + 1 ∈ T)).card := by
@@ -678,7 +760,9 @@ lemma upper_loopScore (T : Finset ℤ) :
   by_cases h : (i : ℤ) + 1 ∈ T <;> simp [h]
 
 /-- The number of unscored negative edges is at least `a choose 2`:
-for each i ∈ A, all edges (-(i+1), -(j+1)) with j ∈ A, j < i are unscored. -/
+for each i ∈ A, all edges (-(i+1), -(j+1)) with j ∈ A, j < i are unscored.
+@isnad1 id=le.1h1v.s8.2489535b10bd from=translated src=- shape=cd958cd3 vocab=7571070d
+-/
 lemma upper_negUnscored (T : Finset ℤ) (hT : ValidErase T) :
     ((Finset.range 8).filter (fun (i : ℕ) => (i : ℤ) + 1 ∈ T)).card
         * (((Finset.range 8).filter (fun (i : ℕ) => (i : ℤ) + 1 ∈ T)).card - 1) / 2
@@ -725,10 +809,15 @@ lemma upper_negUnscored (T : Finset ℤ) (hT : ValidErase T) :
   · rw [ite_eq_right hiA]
     exact Nat.zero_le _
 
-/-- Case check: for a ≤ 8, `5a + 28 - a(a-1)/2 ≤ 43`. -/
+/-- Case check: for a ≤ 8, `5a + 28 - a(a-1)/2 ≤ 43`.
+@isnad1 id=le.1h1v.s6.479f3b5f9c5b from=translated src=- shape=c01a2263 vocab=e32ddfcd
+-/
 lemma upper_arith (a : ℕ) (ha : a ≤ 8) : 5 * a + (28 - a * (a - 1) / 2) ≤ 43 := by
   interval_cases a <;> decide
 
+/--
+@isnad1 id=le.1h1v.s4.3c866a0c3e21 from=translated src=- shape=fb736c88 vocab=cbcdd71b
+-/
 lemma upper_score (T : Finset ℤ) (hT : ValidErase T) : score L0 T ≤ 43 := by
   have hlen : upperNegList.length = 28 := by decide
   have hloop : (upperLoopList.filter (fun p => decide (p.1 ∈ T ∨ p.2 ∈ T))).length

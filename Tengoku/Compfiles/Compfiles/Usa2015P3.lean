@@ -52,19 +52,31 @@ def X {n : ℕ} (c : Coloring n) : Finset (Fin n) :=
 def B {n : ℕ} (c : Coloring n) : Finset (Fin n) :=
   Finset.univ.filter fun i => i ∉ X c ∧ c (X c ∪ {i}) = true
 
+/--
+@isnad1 id=iff.0h3v.s5.142c86cd98fa from=translated src=- shape=805b59e2 vocab=e677ad4a
+-/
 lemma mem_X {n : ℕ} {c : Coloring n} {i : Fin n} :
     i ∈ X c ↔ ∀ T, c T = true → i ∈ T := by
   simp [X]
 
+/--
+@isnad1 id=iff.0h3v.s6.1eb39016c595 from=translated src=- shape=7e31379b vocab=25dd97be
+-/
 lemma mem_B {n : ℕ} {c : Coloring n} {i : Fin n} :
     i ∈ B c ↔ i ∉ X c ∧ c (X c ∪ {i}) = true := by
   simp [B]
 
+/--
+@isnad1 id=iff.0h3v.s5.e028a81b764f from=translated src=- shape=5935683f vocab=a1523853
+-/
 lemma blueCard_ne_zero_iff {n : ℕ} {c : Coloring n} {T : Finset (Fin n)} :
     blueCard c T ≠ 0 ↔ ∃ W ⊆ T, c W = true := by
   rw [blueCard, ← pos_iff_ne_zero, Finset.card_pos, Finset.filter_nonempty_iff]
   simp only [Finset.mem_powerset]
 
+/--
+@isnad1 id=ne.1h3v.s4.6f04d1d29d2a from=translated src=- shape=2fca7573 vocab=a562c5dd
+-/
 lemma blueCard_ne_zero_of_mem {n : ℕ} {c : Coloring n} {T : Finset (Fin n)}
     (h : c T = true) : blueCard c T ≠ 0 :=
   blueCard_ne_zero_iff.mpr ⟨T, Finset.Subset.refl _, h⟩
@@ -75,7 +87,9 @@ variable {n : ℕ} {c : Coloring n} (hv : IsValid c)
 
 include hv
 
-/-- If two sets contain a blue subset each, so does their intersection. -/
+/-- If two sets contain a blue subset each, so does their intersection.
+@isnad1 id=ne.3h4v.s5.732b2f2d5d9c from=translated src=- shape=9e2fdedb vocab=e394dae0
+-/
 lemma blueCard_ne_zero_inter {T₁ T₂ : Finset (Fin n)}
     (h₁ : blueCard c T₁ ≠ 0) (h₂ : blueCard c T₂ ≠ 0) : blueCard c (T₁ ∩ T₂) ≠ 0 := by
   intro h
@@ -84,7 +98,9 @@ lemma blueCard_ne_zero_inter {T₁ T₂ : Finset (Fin n)}
   exact mul_ne_zero h₁ h₂ h3
 
 /-- The intersection of a nonempty family of sets each containing a blue subset
-itself contains a blue subset. -/
+itself contains a blue subset.
+@isnad1 id=ne.3h3v.s8.302e99e8833e from=translated src=- shape=ae845c4e vocab=f0612fc0
+-/
 lemma blueCard_ne_zero_inter_all (F : Finset (Finset (Fin n))) :
     F.Nonempty → (∀ T ∈ F, blueCard c T ≠ 0) →
     blueCard c (Finset.univ.filter fun i => ∀ T ∈ F, i ∈ T) ≠ 0 := by
@@ -111,7 +127,9 @@ lemma blueCard_ne_zero_inter_all (F : Finset (Finset (Fin n))) :
       rw [h3]
       exact blueCard_ne_zero_inter hv h1 h2
 
-/-- The intersection `X c` of all blue sets contains a blue subset. -/
+/-- The intersection `X c` of all blue sets contains a blue subset.
+@isnad1 id=ne.2h2v.s5.8cc3ad23f5d5 from=translated src=- shape=3bad9e8c vocab=b3102c75
+-/
 lemma blueCard_ne_zero_X (hne : ∃ T, c T = true) : blueCard c (X c) ≠ 0 := by
   obtain ⟨T₀, hT₀⟩ := hne
   have hXF : X c = Finset.univ.filter
@@ -124,14 +142,18 @@ lemma blueCard_ne_zero_X (hne : ∃ T, c T = true) : blueCard c (X c) ≠ 0 := b
   intro T hT
   exact blueCard_ne_zero_of_mem ((Finset.mem_filter.mp hT).2)
 
-/-- The intersection `X c` of all blue sets is itself blue. -/
+/-- The intersection `X c` of all blue sets is itself blue.
+@isnad1 id=eq.2h2v.s5.ef2098bdbe2a from=translated src=- shape=068a7792 vocab=22c5035c
+-/
 lemma X_blue (hne : ∃ T, c T = true) : c (X c) = true := by
   obtain ⟨W, hWX, hW⟩ := blueCard_ne_zero_iff.mp (blueCard_ne_zero_X hv hne)
   have hXW : X c ⊆ W := fun i hi => mem_X.mp hi W hW
   have hWeq : W = X c := Finset.Subset.antisymm hWX hXW
   rwa [hWeq] at hW
 
-/-- `X c` is the only blue subset of itself. -/
+/-- `X c` is the only blue subset of itself.
+@isnad1 id=eq.2h2v.s5.4d4b09fdb191 from=translated src=- shape=cac5a9ab vocab=b3102c75
+-/
 lemma blueCard_X (hne : ∃ T, c T = true) : blueCard c (X c) = 1 := by
   have h1 : (X c).powerset.filter (fun W => c W = true) = {X c} := by
     ext W
@@ -144,7 +166,9 @@ lemma blueCard_X (hne : ∃ T, c T = true) : blueCard c (X c) = 1 := by
       exact ⟨Finset.Subset.refl _, X_blue hv hne⟩
   rw [blueCard, h1, Finset.card_singleton]
 
-/-- Multiplicativity of `blueCard` over pairs of sets whose intersection is `X c`. -/
+/-- Multiplicativity of `blueCard` over pairs of sets whose intersection is `X c`.
+@isnad1 id=eq.5h4v.s7.fdb8b0f3c954 from=translated src=- shape=23e2e86e vocab=17997427
+-/
 lemma blueCard_union {T₁ T₂ : Finset (Fin n)} (h1 : X c ⊆ T₁) (h2 : X c ⊆ T₂)
     (h3 : T₁ ∩ T₂ ⊆ X c) (hne : ∃ T, c T = true) :
     blueCard c (T₁ ∪ T₂) = blueCard c T₁ * blueCard c T₂ := by
@@ -153,7 +177,9 @@ lemma blueCard_union {T₁ T₂ : Finset (Fin n)} (h1 : X c ⊆ T₁) (h2 : X c 
   rw [h4, blueCard_X hv hne, mul_one] at h5
   exact h5.symm
 
-/-- `X c ∪ {i}` has one blue subset if it is red (`X c` itself) and two if it is blue. -/
+/-- `X c ∪ {i}` has one blue subset if it is red (`X c` itself) and two if it is blue.
+@isnad1 id=eq.3h3v.s7.40d1f9f3bf8a from=translated src=- shape=01c12612 vocab=4fe4bf7c
+-/
 lemma blueCard_singleton (i : Fin n) (hi : i ∉ X c) (hne : ∃ T, c T = true) :
     blueCard c (X c ∪ {i}) = if c (X c ∪ {i}) then 2 else 1 := by
   have hfilter : ∀ W : Finset (Fin n), W ⊆ X c ∪ {i} → c W = true →
@@ -208,7 +234,9 @@ lemma blueCard_singleton (i : Fin n) (hi : i ∉ X c) (hne : ∃ T, c T = true) 
         exact ⟨Finset.subset_union_left, X_blue hv hne⟩
     rw [ite_eq_right hb, blueCard, h1, Finset.card_singleton]
 
-/-- `blueCard` is multiplicative over the elements of a set disjoint from `X c`. -/
+/-- `blueCard` is multiplicative over the elements of a set disjoint from `X c`.
+@isnad1 id=eq.3h3v.s6.7a78ce35c46c from=translated src=- shape=b5f22c3b vocab=583a6a41
+-/
 lemma blueCard_prod (U : Finset (Fin n)) (hne : ∃ T, c T = true) :
     Disjoint (X c) U → blueCard c (X c ∪ U) = ∏ i ∈ U, blueCard c (X c ∪ {i}) := by
   induction U using Finset.induction with
@@ -238,7 +266,9 @@ lemma blueCard_prod (U : Finset (Fin n)) (hne : ∃ T, c T = true) :
       exact blueCard_union hv Finset.subset_union_left Finset.subset_union_left hcap hne
 
 /-- For `U` disjoint from `X c`, the number of blue subsets of `X c ∪ U` is a power of two
-determined by which of the `X c ∪ {i}` are blue. -/
+determined by which of the `X c ∪ {i}` are blue.
+@isnad1 id=eq.3h3v.s7.1087ee40475e from=translated src=- shape=e68c6d50 vocab=b8c172e1
+-/
 lemma blueCard_pow (U : Finset (Fin n)) (hU : Disjoint (X c) U) (hne : ∃ T, c T = true) :
     blueCard c (X c ∪ U) = 2 ^ (U.filter fun i => c (X c ∪ {i})).card := by
   have h1 : ∀ i ∈ U, blueCard c (X c ∪ {i}) = if c (X c ∪ {i}) then 2 else 1 := by
@@ -247,7 +277,9 @@ lemma blueCard_pow (U : Finset (Fin n)) (hU : Disjoint (X c) U) (hne : ∃ T, c 
   rw [blueCard_prod hv U hne hU, Finset.prod_congr rfl h1, Finset.prod_ite]
   simp [Finset.prod_const]
 
-/-- Every set in the interval `[X c, X c ∪ B c]` is blue. -/
+/-- Every set in the interval `[X c, X c ∪ B c]` is blue.
+@isnad1 id=eq.4h3v.s6.dce04be03a2a from=translated src=- shape=fa339132 vocab=df3ef896
+-/
 lemma blue_of_mem_interval (hne : ∃ T, c T = true) {T : Finset (Fin n)}
     (hXT : X c ⊆ T) (hTB : T ⊆ X c ∪ B c) : c T = true := by
   have hT : T = X c ∪ (T \ X c) := (Finset.union_sdiff_of_subset hXT).symm
@@ -301,7 +333,9 @@ lemma blue_of_mem_interval (hne : ∃ T, c T = true) {T : Finset (Fin n)}
   rw [hWeq] at hW
   exact hW.2
 
-/-- Every blue set lies in the interval `[X c, X c ∪ B c]`. -/
+/-- Every blue set lies in the interval `[X c, X c ∪ B c]`.
+@isnad1 id=and.3h3v.s6.34800b2f417a from=translated src=- shape=c1a8b840 vocab=df3ef896
+-/
 lemma interval_of_blue (hne : ∃ T, c T = true) {T : Finset (Fin n)} (hcT : c T = true) :
     X c ⊆ T ∧ T ⊆ X c ∪ B c := by
   have hXT : X c ⊆ T := fun i hi => mem_X.mp hi T hcT
@@ -374,7 +408,9 @@ lemma interval_of_blue (hne : ∃ T, c T = true) {T : Finset (Fin n)} (hcT : c T
   rw [hfT] at hle
   exact Nat.not_succ_le_self _ hle
 
-/-- A nontrivial valid coloring is exactly the interval `[X c, X c ∪ B c]`. -/
+/-- A nontrivial valid coloring is exactly the interval `[X c, X c ∪ B c]`.
+@isnad1 id=iff.2h3v.s6.df585b9c38c5 from=translated src=- shape=5dea1867 vocab=df3ef896
+-/
 lemma blue_iff (hne : ∃ T, c T = true) (T : Finset (Fin n)) :
     c T = true ↔ X c ⊆ T ∧ T ⊆ X c ∪ B c := by
   exact ⟨interval_of_blue hv hne, fun ⟨h1, h2⟩ => blue_of_mem_interval hv hne h1 h2⟩
@@ -388,6 +424,9 @@ variable {n : ℕ}
 /-- The coloring whose blue sets are exactly the sets `T` with `X₀ ⊆ T ⊆ X₀ ∪ B₀`. -/
 def colorOf (X₀ B₀ : Finset (Fin n)) : Coloring n := fun T => decide (X₀ ⊆ T ∧ T ⊆ X₀ ∪ B₀)
 
+/--
+@isnad1 id=eq.1h4v.s6.a318ed6c38fb from=translated src=- shape=f890d92a vocab=bf5e7f8b
+-/
 lemma blueCard_colorOf {X₀ B₀ : Finset (Fin n)} (h : Disjoint X₀ B₀) (T : Finset (Fin n)) :
     blueCard (colorOf X₀ B₀) T = if X₀ ⊆ T then 2 ^ (T ∩ B₀).card else 0 := by
   by_cases hT : X₀ ⊆ T
@@ -446,6 +485,9 @@ lemma blueCard_colorOf {X₀ B₀ : Finset (Fin n)} (h : Disjoint X₀ B₀) (T 
       exact hT (Finset.Subset.trans hXW hW)
     rw [blueCard, h1, Finset.card_empty]
 
+/--
+@isnad1 id=isvalid.1h3v.s4.54e3e3d03193 from=translated src=- shape=bc982158 vocab=cacd6913
+-/
 lemma isValid_colorOf {X₀ B₀ : Finset (Fin n)} (h : Disjoint X₀ B₀) :
     IsValid (colorOf X₀ B₀) := by
   intro T₁ T₂
@@ -467,6 +509,9 @@ lemma isValid_colorOf {X₀ B₀ : Finset (Fin n)} (h : Disjoint X₀ B₀) :
   · rw [ite_eq_right h1, ite_eq_right h2, ite_eq_right
       (fun h => h1 (Finset.Subset.trans h Finset.inter_subset_left)), zero_mul, mul_zero]
 
+/--
+@isnad1 id=isvalid.0h1v.s3.ecd86e8c8311 from=translated src=- shape=ea1218f8 vocab=87ac7c92
+-/
 lemma isValid_all_red {n : ℕ} : IsValid (fun _ => false : Coloring n) := by
   intro T₁ T₂
   have h0 : ∀ T : Finset (Fin n), blueCard (fun _ => false : Coloring n) T = 0 := by
@@ -485,7 +530,9 @@ def DisjointPairs (n : ℕ) : Type :=
 instance (n : ℕ) : Fintype (DisjointPairs n) := Subtype.fintype _
 
 /-- The blue interval `[X₀, X₀ ∪ B₀]` of a disjoint pair determines a valid coloring,
-and conversely every nontrivial valid coloring arises this way. -/
+and conversely every nontrivial valid coloring arises this way.
+@isnad1 id=eq.0h3v.s4.4f7e06efffaf from=translated src=- shape=da43e372 vocab=f762ae8b
+-/
 lemma X_colorOf {n : ℕ} {X₀ B₀ : Finset (Fin n)} :
     X (colorOf X₀ B₀) = X₀ := by
   ext i
@@ -496,6 +543,9 @@ lemma X_colorOf {n : ℕ} {X₀ B₀ : Finset (Fin n)} :
   · intro hi T hT'
     exact hT'.1 hi
 
+/--
+@isnad1 id=eq.1h3v.s5.81889e53a0a3 from=translated src=- shape=a973c9d7 vocab=396359b5
+-/
 lemma B_colorOf {n : ℕ} {X₀ B₀ : Finset (Fin n)} (h : Disjoint X₀ B₀) :
     B (colorOf X₀ B₀) = B₀ := by
   ext i
@@ -635,10 +685,16 @@ def disjointPairEquiv (n : ℕ) : DisjointPairs n ≃ (Fin n → Fin 3) where
       rw [ite_eq_right (by rw [e]; decide), ite_eq_right (by rw [e]; decide)]
       exact e.symm
 
+/--
+@isnad1 id=eq.0h1v.s4.55852b4bca9a from=translated src=- shape=5b09d1d5 vocab=44f8a4a3
+-/
 lemma card_disjointPairs (n : ℕ) : Fintype.card (DisjointPairs n) = 3 ^ n := by
   rw [Fintype.card_congr (disjointPairEquiv n), Fintype.card_fun]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s5.0f01a288336f from=translated src=- shape=de3fa9a7 vocab=e11902b1
+-/
 lemma card_validColorings (n : ℕ) : Fintype.card (ValidColorings n) = 3 ^ n + 1 := by
   rw [Fintype.card_congr (mainEquiv n), Fintype.card_option, card_disjointPairs]
 

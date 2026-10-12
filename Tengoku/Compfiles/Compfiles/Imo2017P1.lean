@@ -34,23 +34,34 @@ abbrev Rule (a : ℕ → ℕ → ℕ) : Prop :=
 
 variable {a : ℕ → ℕ → ℕ} {x : ℕ}
 
+/--
+@isnad1 id=eq.3h3v.s5.77c95db441d9 from=translated src=- shape=fbadd065 vocab=9fbe6ea0
+-/
 lemma step_sq (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (h : IsSquare (a x i)) :
     a x (i + 1) = (a x i).sqrt := by
   have := ha₁ x i hx
   rwa [ite_eq_left h] at this
 
+/--
+@isnad1 id=eq.3h3v.s6.117f04894787 from=translated src=- shape=375b499f vocab=767eb716
+-/
 lemma step_nonsq (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (h : ¬IsSquare (a x i)) :
     a x (i + 1) = a x i + 3 := by
   have := ha₁ x i hx
   rwa [ite_eq_right h] at this
 
+/--
+@isnad1 id=not.1h1v.s4.a63fea918afb from=translated src=- shape=b7b91a35 vocab=a5ec7d5b
+-/
 lemma not_isSquare_of_mod_three {y : ℕ} (hy : y % 3 = 2) : ¬IsSquare y := by
   rintro ⟨r, rfl⟩
   rw [Nat.mul_mod] at hy
   obtain h | h | h : r % 3 = 0 ∨ r % 3 = 1 ∨ r % 3 = 2 := by lia
   all_goals rw [h] at hy; norm_num at hy
 
-/-- Every term of the sequence is greater than 1. -/
+/-- Every term of the sequence is greater than 1.
+@isnad1 id=lt.3h3v.s5.522c039532dd from=translated src=- shape=a0d680aa vocab=4ecb796d
+-/
 lemma one_lt (ha₀ : ∀ x, a x 0 = x) (ha₁ : Rule a) (hx : 1 < x) :
     ∀ i, 1 < a x i := by
   intro i
@@ -67,7 +78,9 @@ lemma one_lt (ha₀ : ∀ x, a x 0 = x) (ha₁ : Rule a) (hx : 1 < x) :
     · rw [step_nonsq ha₁ hx h]
       lia
 
-/-- Divisibility by 3 is invariant along the sequence. -/
+/-- Divisibility by 3 is invariant along the sequence.
+@isnad1 id=iff.3h3v.s5.60ec2fdac1f0 from=translated src=- shape=3f00a478 vocab=362672b3
+-/
 lemma three_dvd_iff (ha₀ : ∀ x, a x 0 = x) (ha₁ : Rule a) (hx : 1 < x) :
     ∀ i, (3 ∣ a x i ↔ 3 ∣ x) := by
   intro i
@@ -83,7 +96,9 @@ lemma three_dvd_iff (ha₀ : ∀ x, a x 0 = x) (ha₁ : Rule a) (hx : 1 < x) :
       lia
 
 /-- Once the sequence is 2 mod 3, it never again hits a perfect square, so
-it just increases by 3 forever. -/
+it just increases by 3 forever.
+@isnad1 id=eq.3h4v.s6.55bff656da49 from=translated src=- shape=5d35a81e vocab=150c42ba
+-/
 lemma run_linear (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (hi : a x i % 3 = 2) :
     ∀ j, a x (i + j) = a x i + 3 * j := by
   intro j
@@ -98,7 +113,9 @@ lemma run_linear (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (hi : a x i % 3 = 2) :
     ring
 
 /-- If the sequence is ever 2 mod 3, then it takes each value only
-finitely often. -/
+finitely often.
+@isnad1 id=finite.3h4v.s5.48f3d464df10 from=translated src=- shape=a4f1856f vocab=4f72c136
+-/
 lemma finite_visits (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (hi : a x i % 3 = 2)
     (A : ℕ) : {n | a x n = A}.Finite := by
   apply Set.Finite.subset (Set.finite_Icc 0 (i + A))
@@ -114,7 +131,9 @@ lemma finite_visits (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (hi : a x i % 3 = 2)
 perfect square in the progression c, c+3, c+6, ..., and the next step takes
 it down to a value at most √c + 3.  (By minimality, no intermediate value of
 the climb is a square; and the progression does contain a square r² with
-√c < r ≤ √c + 3, where r is chosen with r² ≡ c (mod 3).) -/
+√c < r ≤ √c + 3, where r is chosen with r² ≡ c (mod 3).)
+@isnad1 id=ex.4h4v.s6.7aad3704bee0 from=translated src=- shape=2cafd636 vocab=76956f59
+-/
 lemma climb (ha₁ : Rule a) (hx : 1 < x) {i c : ℕ} (hi : a x i = c)
     (hc : c % 3 ≠ 2) : ∃ j, a x j ≤ c.sqrt + 3 := by
   obtain ⟨r, hr1, hr2, hr3⟩ : ∃ r, c.sqrt < r ∧ r ≤ c.sqrt + 3 ∧
@@ -169,7 +188,9 @@ lemma climb (ha₁ : Rule a) (hx : 1 < x) {i c : ℕ} (hi : a x i = c)
   lia
 
 /-- If the sequence never hits the class 2 mod 3, then its minimum value
-is 3 (so that 3 divides every term, and in particular x). -/
+is 3 (so that 3 divides every term, and in particular x).
+@isnad1 id=and.4h2v.s6.db69b9458783 from=translated src=- shape=c7554411 vocab=0299f972
+-/
 lemma orbit_min_three (ha₀ : ∀ x, a x 0 = x) (ha₁ : Rule a) (hx : 1 < x)
     (hno2 : ∀ i, a x i % 3 ≠ 2) : 3 ∣ x ∧ ∃ i, a x i = 3 := by
   obtain ⟨c, ⟨i, hi⟩, hmin⟩ :
@@ -206,7 +227,9 @@ lemma orbit_min_three (ha₀ : ∀ x, a x 0 = x) (ha₁ : Rule a) (hx : 1 < x)
   rw [hc3] at hi
   exact ⟨(three_dvd_iff ha₀ ha₁ hx i).mp (by rw [hi]), i, hi⟩
 
-/-- Once the sequence hits 3, it cycles 3 → 6 → 9 → 3 forever. -/
+/-- Once the sequence hits 3, it cycles 3 → 6 → 9 → 3 forever.
+@isnad1 id=eq.3h4v.s6.a822af6c9e8a from=translated src=- shape=0ec9fa47 vocab=f0356fa4
+-/
 lemma cycle (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (h : a x i = 3) :
     ∀ j, a x (i + 3 * j) = 3 := by
   intro j

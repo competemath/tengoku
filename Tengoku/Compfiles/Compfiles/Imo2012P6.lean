@@ -26,23 +26,35 @@ def IsSolution (n : ℕ) : Prop := ∃ a : ℕ → ℕ, 0 < n ∧
   (∑ i ∈ Finset.Icc 1 n, (1 : ℚ) / (2 ^ a i)) = 1 ∧
   (∑ i ∈ Finset.Icc 1 n, (i : ℚ) / (3 ^ a i)) = 1
 
+/--
+@isnad1 id=eq.0h1v.s5.92378c536640 from=translated src=- shape=5372cea7 vocab=c935029f
+-/
 lemma sum_id {n : ℕ} : ∑ i ∈ Finset.Icc 1 n, i = n * (n + 1) / 2 := by
   have hIcc : Finset.Icc 1 n = (Finset.range (n + 1)).erase 0 := by
     ext i
     simp [Finset.mem_Icc, Nat.succ_le_iff, Nat.pos_iff_ne_zero]
   rw [hIcc, Finset.sum_erase] <;> simp [Finset.sum_range_id, Nat.mul_comm]
 
+/--
+@isnad1 id=issoluti.0h0v.s2.8085b131758e from=translated src=- shape=e590c3e1 vocab=234fcc16
+-/
 lemma solution_5 : IsSolution 5 := by
   use fun i ↦ if i ∈ Finset.Ico 1 4 then 2 else if i ∈ Finset.Icc 4 5 then 3 else 0
   constructor
   · decide
   · constructor <;> rw [show Finset.Icc 1 5 = {1, 2, 3, 4, 5} by decide] <;> norm_num
 
+/--
+@isnad1 id=issoluti.0h0v.s2.d772c7e76d31 from=translated src=- shape=e590c3e1 vocab=234fcc16
+-/
 lemma solution_9 : IsSolution 9 := by
   use fun i ↦ if i ∈ Finset.Ico 1 2 then 2 else if i ∈ Finset.Ico 2 6 then 3 else if i ∈ Finset.Icc 6 9 then 4 else 0
   decide_cbv
 
 -- If n=4k+1 is a solution then n=4k+2 is also a solution.
+/--
+@isnad1 id=issoluti.1h1v.s5.6b4043dd6be7 from=translated src=- shape=338ff034 vocab=093ce248
+-/
 lemma ind_4k1_to_4k2 : ∀ k, IsSolution (4 * k + 1) → IsSolution (4 * k + 2) := by
   intro k hk
   obtain ⟨a, hpos, ha₁, ha₂⟩ := hk
@@ -63,6 +75,9 @@ lemma ind_4k1_to_4k2 : ∀ k, IsSolution (4 * k + 1) → IsSolution (4 * k + 2) 
     grind only [Finset.add_sum_erase]
 
 -- If n=4k+1 is a solution then n=4k+13 is also a solution.
+/--
+@isnad1 id=issoluti.1h1v.s5.01d059d8890e from=translated src=- shape=338ff034 vocab=093ce248
+-/
 lemma ind_4k1_to_4k13 : ∀ k, IsSolution (4 * k + 1) → IsSolution (4 * k + 13) := by
   intro k hk
   obtain ⟨a, hpos, ha₁, ha₂⟩ := hk

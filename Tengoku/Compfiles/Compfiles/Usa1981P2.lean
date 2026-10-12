@@ -49,7 +49,9 @@ abbrev Valid {n : ℕ} (f : Fin n → Fin n → Link) : Prop :=
 abbrev answer : ℕ := 4
 
 /-- If a town `u` is linked to three other towns by three pairwise distinct
-link types, then `u` has at least three link types. -/
+link types, then `u` has at least three link types.
+@isnad1 id=le.9h9v.s6.8097fbb0b34e from=translated src=- shape=12134c35 vocab=1ab68223
+-/
 theorem three_le_card_colorsAt {n : ℕ} {f : Fin n → Fin n → Link} {u : Fin n}
     {p q r : Fin n} (hp : p ≠ u) (hq : q ≠ u) (hr : r ≠ u)
     {c₁ c₂ c₃ : Link} (h1 : f u p = c₁) (h2 : f u q = c₂) (h3 : f u r = c₃)
@@ -70,7 +72,9 @@ theorem three_le_card_colorsAt {n : ℕ} {f : Fin n → Fin n → Link} {u : Fin
 /-- Key local fact: no town is linked to three other towns by the same link
 type. (Among any three such towns, the links would have to avoid that type,
 and then either one of the three towns has all three link types, or the
-remaining links form a monochromatic triangle.) -/
+remaining links form a monochromatic triangle.)
+@isnad1 id=le.1h4v.s6.1db06b6ded29 from=translated src=- shape=7ab21dd0 vocab=7eaf8c19
+-/
 theorem fiber_card_le_two {n : ℕ} {f : Fin n → Fin n → Link} (hf : Valid f)
     (v : Fin n) (c : Link) :
     (Finset.univ.filter fun w ↦ w ≠ v ∧ f v w = c).card ≤ 2 := by
@@ -107,7 +111,9 @@ theorem fiber_card_le_two {n : ℕ} {f : Fin n → Fin n → Link} (hf : Valid f
     lia
 
 /-- Every town is directly linked to at most four other towns:
-at most two link types, at most two links of each type. -/
+at most two link types, at most two links of each type.
+@isnad1 id=le.1h3v.s5.5dd5acffdd3a from=translated src=- shape=3239bbfd vocab=7eaf8c19
+-/
 theorem card_neighbors_le_four {n : ℕ} {f : Fin n → Fin n → Link} (hf : Valid f)
     (v : Fin n) :
     (Finset.univ.filter (· ≠ v)).card ≤ 4 := by
@@ -129,6 +135,9 @@ theorem card_neighbors_le_four {n : ℕ} {f : Fin n → Fin n → Link} (hf : Va
         exact hf.2.2.2.2.1 v
     _ = 4 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.41fc9dccab4f from=translated src=- shape=26f32147 vocab=e0208be0
+-/
 theorem card_filter_ne {n : ℕ} (v : Fin n) :
     (Finset.univ.filter (· ≠ v)).card = n - 1 := by
   rw [Finset.filter_ne', Finset.card_erase_of_mem (Finset.mem_univ v),
@@ -169,10 +178,16 @@ restriction to the ten unordered pairs. -/
 def mkColor (u : Fin 10 → Link) : Fin 5 → Fin 5 → Link :=
   fun i j ↦ if i = j then .air else u (edgeIdx i j)
 
+/--
+@isnad1 id=or.1h2v.s6.9a92b729b45d from=translated src=- shape=dee25230 vocab=686639fa
+-/
 theorem pair_edgeIdx :
     ∀ i j : Fin 5, i ≠ j → pair (edgeIdx i j) = (i, j) ∨ pair (edgeIdx i j) = (j, i) := by
   decide
 
+/--
+@isnad1 id=eq.2h3v.s6.bbbe382e5e8b from=translated src=- shape=4c62494e vocab=9d2976fe
+-/
 theorem mkColor_eq {f : Fin 5 → Fin 5 → Link} (hsymm : ∀ i j, f i j = f j i)
     {i j : Fin 5} (hij : i ≠ j) :
     mkColor (fun k ↦ f (pair k).1 (pair k).2) i j = f i j := by
@@ -183,7 +198,9 @@ theorem mkColor_eq {f : Fin 5 → Fin 5 → Link} (hsymm : ∀ i j, f i j = f j 
     exact hsymm j i
 
 /-- Any valid assignment on five towns restricts to a valid assignment
-reconstructed from the ten unordered pairs. -/
+reconstructed from the ten unordered pairs.
+@isnad1 id=valid.1h1v.s6.ad9384c75715 from=translated src=- shape=074e698b vocab=12f041fd
+-/
 theorem valid_mkColor {f : Fin 5 → Fin 5 → Link} (hf : Valid f) :
     Valid (mkColor fun k ↦ f (pair k).1 (pair k).2) := by
   obtain ⟨hsymm, hair, hbus, htrain, hmax, hmono⟩ := hf
@@ -259,20 +276,31 @@ def mkU (c₀ c₁ c₂ c₃ c₄ c₅ c₆ c₇ c₈ c₉ : Link) : Fin 10 → 
   | 9 => c₉
   | _ => c₀
 
+/--
+@isnad1 id=eq.0h2v.s4.be711b9cceee from=translated src=- shape=b0c2e14f vocab=0d915db9
+-/
 theorem edgeIdx_symm : ∀ i j : Fin 5, edgeIdx i j = edgeIdx j i := by
   decide
 
+/--
+@isnad1 id=eq.1h3v.s5.5e2960e875c2 from=translated src=- shape=bf3fd96f vocab=3c326145
+-/
 theorem mkColor_apply (u : Fin 10 → Link) {i j : Fin 5} (hij : i ≠ j) :
     mkColor u i j = u (edgeIdx i j) :=
   ite_eq_right hij
 
+/--
+@isnad1 id=eq.0h3v.s5.cf26eec5a1b5 from=translated src=- shape=02c35986 vocab=4739e39f
+-/
 theorem mkColor_symm (u : Fin 10 → Link) (i j : Fin 5) :
     mkColor u i j = mkColor u j i := by
   by_cases hij : i = j
   · rw [hij]
   · rw [mkColor_apply u hij, mkColor_apply u (Ne.symm hij), edgeIdx_symm i j]
 
-/-- A town has at most two link types unless it has all three of them. -/
+/-- A town has at most two link types unless it has all three of them.
+@isnad1 id=iff.0h3v.s6.8f29ce8bc6e6 from=translated src=- shape=2c024747 vocab=e90b49b0
+-/
 theorem card_le_two_iff {n : ℕ} {f : Fin n → Fin n → Link} {v : Fin n} :
     (colorsAt f v).card ≤ 2 ↔
       ¬((∃ w, w ≠ v ∧ f v w = .air) ∧ (∃ w, w ≠ v ∧ f v w = .bus) ∧
@@ -313,7 +341,9 @@ theorem card_le_two_iff {n : ℕ} {f : Fin n → Fin n → Link} {v : Fin n} :
       (mem_iff .train).mp (hmem .train)⟩
 
 /-- The six orderings of the monochromatic-triangle condition on three link
-types, derived from the canonical one. -/
+types, derived from the canonical one.
+@isnad1 id=and.1h3v.s6.823ef6bff68c from=translated src=- shape=77486623 vocab=089490ae
+-/
 theorem tri6 {x y z : Link} (h : ¬(x = y ∧ x = z)) :
     ¬(x = y ∧ x = z) ∧ ¬(x = z ∧ x = y) ∧ ¬(y = x ∧ y = z) ∧
       ¬(y = z ∧ y = x) ∧ ¬(z = x ∧ z = y) ∧ ¬(z = y ∧ z = x) :=
@@ -324,7 +354,9 @@ theorem tri6 {x y z : Link} (h : ¬(x = y ∧ x = z)) :
     fun ⟨e1, e2⟩ ↦ h ⟨e2.symm.trans e1, e2.symm⟩⟩
 
 /-- The Boolean check `validB` decides validity of the reconstructed
-assignment. -/
+assignment.
+@isnad1 id=iff.0h1v.s4.f8d5d71681cf from=translated src=- shape=d06558f5 vocab=43a145c8
+-/
 theorem validB_iff (u : Fin 10 → Link) : validB u = true ↔ Valid (mkColor u) := by
   -- For each town, express "sees link type `c`" through the ten pairs.
   have ex0 : ∀ c : Link, (∃ w, w ≠ 0 ∧ mkColor u 0 w = c) ↔
@@ -539,7 +571,9 @@ reduction. The enumeration is stated as ten nested quantifiers over `Link` —
 three choices each — so that the reduction stays shallow. The first four
 variables are case-split before the kernel reduction, so that the kernel only
 ever enumerates `3^6 = 729` assignments at a time; this keeps the peak
-elaboration memory low. -/
+elaboration memory low.
+@isnad1 id=eq.0h10v.s5.dee70831d02e from=translated src=- shape=a43ab084 vocab=f4033889
+-/
 theorem check5B : ∀ c₀ c₁ c₂ c₃ c₄ c₅ c₆ c₇ c₈ c₉ : Link,
     validB (mkU c₀ c₁ c₂ c₃ c₄ c₅ c₆ c₇ c₈ c₉) = false := by
   intro c₀ c₁ c₂ c₃
@@ -547,7 +581,9 @@ theorem check5B : ∀ c₀ c₁ c₂ c₃ c₄ c₅ c₆ c₇ c₈ c₉ : Link,
 
 /-- A brute-force check: no link assignment on five towns satisfies all the
 criteria. (The conditions only involve the ten unordered pairs, so there are
-only `3^10` symmetric assignments to check, see `check5B`.) -/
+only `3^10` symmetric assignments to check, see `check5B`.)
+@isnad1 id=not.0h1v.s4.bbbd3808060d from=translated src=- shape=6470c16f vocab=12967a58
+-/
 theorem check5 : ∀ u : Fin 10 → Link, ¬ Valid (mkColor u) := by
   intro u hu
   rw [← validB_iff u] at hu
@@ -558,6 +594,9 @@ theorem check5 : ∀ u : Fin 10 → Link, ¬ Valid (mkColor u) := by
   rw [check5B (u 0) (u 1) (u 2) (u 3) (u 4) (u 5) (u 6) (u 7) (u 8) (u 9)] at hu
   exact Bool.noConfusion hu
 
+/--
+@isnad1 id=false.1h1v.s4.74ea79d2fcb3 from=translated src=- shape=d6f107d5 vocab=f99a6b46
+-/
 theorem not_valid_five {f : Fin 5 → Fin 5 → Link} (hf : Valid f) : False :=
   check5 _ (valid_mkColor hf)
 

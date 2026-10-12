@@ -22,6 +22,9 @@ and all positive integers n.
 -/
 open Int
 
+/--
+@isnad1 id=modeq.1h2v.s4.de87d9e15efe from=translated src=- shape=f779ce8c vocab=f3ab6d96
+-/
 lemma fermat_little_theorem: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, (a^(p:ℕ)≡a [MOD p])) := by
   intro p hp a
   by_cases h1:(p:ℕ)∣a
@@ -40,6 +43,9 @@ lemma fermat_little_theorem: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, (a^(p
     simp at h5
     exact h5
 
+/--
+@isnad1 id=modeq.1h3v.s5.5443c42a6d06 from=translated src=- shape=3e746c9c vocab=f3ab6d96
+-/
 lemma fermat_little_theorem2: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, ∀k:ℕ, (a^((p:ℕ)^k)≡a [MOD p])) := by
   intro p hp a k
   induction k with
@@ -53,6 +59,9 @@ lemma fermat_little_theorem2: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, ∀k
     have g2 := Nat.ModEq.pow ((p:ℕ) ^ d) g1
     exact Nat.ModEq.trans g2 hd
 
+/--
+@isnad1 id=dvd.1h2v.s4.37d526e6de8f from=translated src=- shape=50a06dfb vocab=978e1ada
+-/
 lemma int_dvd_to_nat_dvd : ∀a:ℕ+, ∀ b:ℕ , (a:ℤ)∣(b:ℤ) → (a:ℕ)∣b := by
   intro a b h1
   exact ofNat_dvd.mp h1

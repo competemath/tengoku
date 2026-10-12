@@ -44,23 +44,33 @@ variable {V E : Type} [Fintype E] (G : Multigraph V E)
 noncomputable def between (S T : Finset V) : Finset E :=
   Finset.univ.filter fun e => (G.fst e ∈ S ∧ G.snd e ∈ T) ∨ (G.fst e ∈ T ∧ G.snd e ∈ S)
 
+/--
+@isnad1 id=iff.0h6v.s6.7a20eb89cacf from=translated src=- shape=383a0290 vocab=4eca027d
+-/
 theorem mem_between {S T : Finset V} {e : E} :
     e ∈ G.between S T ↔ (G.fst e ∈ S ∧ G.snd e ∈ T) ∨ (G.fst e ∈ T ∧ G.snd e ∈ S) := by
   simp [between]
 
+/--
+@isnad1 id=eq.0h5v.s5.62ddbbb745ce from=translated src=- shape=c2d38e36 vocab=e5e756ab
+-/
 theorem between_comm (S T : Finset V) : G.between S T = G.between T S := by
   ext e
   rw [mem_between, mem_between]
   tauto
 
-/-- Cuts are subadditive. -/
+/-- Cuts are subadditive.
+@isnad1 id=le.0h5v.s6.560184c7b58e from=translated src=- shape=9a7a6223 vocab=d0414edd
+-/
 theorem cut_union_subset (S T : Finset V) : G.cut (S ∪ T) ⊆ G.cut S ∪ G.cut T := by
   intro e he
   rw [mem_cut, Finset.mem_union, Finset.mem_union] at he
   rw [Finset.mem_union, mem_cut, mem_cut]
   tauto
 
-/-- The cut of a disjoint union, accounting for the edges between the parts. -/
+/-- The cut of a disjoint union, accounting for the edges between the parts.
+@isnad1 id=eq.1h5v.s6.1fbfe074b894 from=translated src=- shape=45d726c2 vocab=e8ca4b6e
+-/
 theorem card_cut_union_add (S T : Finset V) (h : Disjoint S T) :
     (G.cut (S ∪ T)).card + 2 * (G.between S T).card = (G.cut S).card + (G.cut T).card := by
   have hd : ∀ v, v ∈ S → v ∉ T := fun v hv => Finset.disjoint_left.mp h hv
@@ -87,7 +97,9 @@ theorem card_cut_union_add (S T : Finset V) (h : Disjoint S T) :
   rw [eq₁]
   omega
 
-/-- A walk starting inside a set with empty cut stays inside it. -/
+/-- A walk starting inside a set with empty cut stays inside it.
+@isnad1 id=mem.3h6v.s6.68883769ac8b from=translated src=- shape=3e169094 vocab=5bb154e2
+-/
 theorem mem_of_reflTransGen {S : Finset V} (hcut : G.cut S = ∅) {u v : V}
     (h : Relation.ReflTransGen G.Adj u v) (hu : u ∈ S) : v ∈ S := by
   induction h with
@@ -101,7 +113,9 @@ theorem mem_of_reflTransGen {S : Finset V} (hcut : G.cut S = ∅) {u v : V}
     rw [hcut] at this
     exact Finset.notMem_empty e this
 
-/-- In a connected graph, every proper nonempty vertex set has a crossing edge. -/
+/-- In a connected graph, every proper nonempty vertex set has a crossing edge.
+@isnad1 id=nonempty.3h5v.s5.555586dd3e29 from=translated src=- shape=8933a678 vocab=a5a2e124
+-/
 theorem cut_nonempty_of_connected (connected : G.Connected) {S : Finset V}
     (hne : S.Nonempty) {v : V} (hv : v ∉ S) : (G.cut S).Nonempty := by
   obtain ⟨u, hu⟩ := hne
@@ -122,11 +136,16 @@ noncomputable def insideBlocks (blocks : Finset (List V)) : Finset E :=
   Finset.univ.filter fun e => ∃ B ∈ blocks, G.fst e ∈ B ∧ G.snd e ∈ B
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h5v.s6.28e6c8536653 from=translated src=- shape=78f2a748 vocab=62040e61
+-/
 theorem mem_insideBlocks {blocks : Finset (List V)} {e : E} :
     e ∈ G.insideBlocks blocks ↔ ∃ B ∈ blocks, G.fst e ∈ B ∧ G.snd e ∈ B := by
   simp [insideBlocks]
 
-/-- `Nat.clog 2` increases by one when the argument at least doubles. -/
+/-- `Nat.clog 2` increases by one when the argument at least doubles.
+@isnad1 id=le.2h2v.s5.7c14a3584206 from=translated src=- shape=d32675e3 vocab=189f2df2
+-/
 theorem clog_add_one_le {a b : Nat} (ha : 0 < a) (h : 2 * a ≤ b) :
     Nat.clog 2 a + 1 ≤ Nat.clog 2 b := by
   have hpow : 2 ^ Nat.clog 2 a < 2 * a := by
@@ -182,6 +201,9 @@ def Mergeable : Prop :=
       ((G.cut B.toFinset).card ≤ 2 ∨ (G.cut B'.toFinset).card ≤ 2 ∨
         2 ≤ (G.between B.toFinset B'.toFinset).card)
 
+/--
+@isnad1 id=disjoint.3h6v.s6.ef14b6455ea9 from=translated src=- shape=4fae51c7 vocab=fea4f982
+-/
 theorem toFinset_disjoint {B B' : List V} (hB : B ∈ c.blocks) (hB' : B' ∈ c.blocks)
     (hne : B ≠ B') : Disjoint B.toFinset B'.toFinset := by
   rw [Finset.disjoint_left]
@@ -197,6 +219,9 @@ variable {B B' : List V} (hB : B ∈ c.blocks) (hB' : B' ∈ c.blocks) (hne : B 
     2 ≤ (G.between B.toFinset B'.toFinset).card)
 
 include hB hB' hne in
+/--
+@isnad1 id=not.3h6v.s7.d556a2d0bd2b from=translated src=- shape=a3b63ba9 vocab=01725b64
+-/
 theorem merged_notMem : B ++ B' ∉ (c.blocks.erase B).erase B' := by
   intro h
   have hmem : B ++ B' ∈ c.blocks := Finset.mem_of_mem_erase (Finset.mem_of_mem_erase h)
@@ -346,6 +371,9 @@ noncomputable def merge : Compression G where
     have := c.count
     omega
 
+/--
+@isnad1 id=eq.6h6v.s8.7724d72314e7 from=translated src=- shape=09052295 vocab=9b197d31
+-/
 theorem merge_card_add_one :
     (c.merge hB hB' hne hlen hr hdeg).blocks.card + 1 = c.blocks.card := by
   have hB'e : B' ∈ c.blocks.erase B := Finset.mem_erase.mpr ⟨hne.symm, hB'⟩
@@ -396,7 +424,9 @@ noncomputable def initial (degree : G.MaxDegreeLE 3) : Compression G where
     rw [Finset.card_image_of_injective _ (fun u v h => List.singleton_inj.mp h), Finset.card_univ]
     exact Nat.le_add_right _ _
 
-/-- The compression process terminates in a state where no merge applies. -/
+/-- The compression process terminates in a state where no merge applies.
+@isnad1 id=ex.1h3v.s5.5321849ee6be from=translated src=- shape=fddc95b1 vocab=0e0d9200
+-/
 theorem exists_not_mergeable (degree : G.MaxDegreeLE 3) :
     ∃ c : Compression G, ¬ c.Mergeable := by
   suffices key : ∀ n, ∀ c : Compression G, c.blocks.card = n → ∃ c' : Compression G, ¬ c'.Mergeable
@@ -417,14 +447,23 @@ theorem exists_not_mergeable (degree : G.MaxDegreeLE 3) :
 noncomputable def blockOf (v : V) : ↥c.blocks :=
   ⟨Classical.choose (c.cover v), (Classical.choose_spec (c.cover v)).1⟩
 
+/--
+@isnad1 id=mem.0h5v.s6.9091b881bd2c from=translated src=- shape=1bd603a9 vocab=1b8935c1
+-/
 theorem mem_blockOf (v : V) : v ∈ (c.blockOf v).1 :=
   (Classical.choose_spec (c.cover v)).2
 
+/--
+@isnad1 id=eq.1h6v.s7.3bf14ecc104c from=translated src=- shape=1e3c382d vocab=057b5d3e
+-/
 theorem blockOf_eq_of_mem {v : V} {B : ↥c.blocks} (h : v ∈ B.1) : c.blockOf v = B := by
   apply Subtype.ext
   by_contra hne
   exact c.disjoint _ (c.blockOf v).2 _ B.2 hne v (c.mem_blockOf v) h
 
+/--
+@isnad1 id=ne.1h6v.s7.beb9cf615732 from=translated src=- shape=a3517eeb vocab=057b5d3e
+-/
 theorem blockOf_ne_of_notMem {v : V} {B : ↥c.blocks} (h : v ∉ B.1) : c.blockOf v ≠ B :=
   fun heq => h (heq ▸ c.mem_blockOf v)
 
@@ -434,6 +473,9 @@ noncomputable def quotient : SimpleGraph ↥c.blocks where
   symm := ⟨fun _ _ ⟨hne, h⟩ => ⟨hne.symm, by rwa [G.between_comm]⟩⟩
   loopless := ⟨fun _ ⟨hne, _⟩ => hne rfl⟩
 
+/--
+@isnad1 id=iff.0h6v.s7.e93c6f5b8a32 from=translated src=- shape=d632fad6 vocab=c64667f9
+-/
 theorem quotient_adj {B B' : ↥c.blocks} :
     c.quotient.Adj B B' ↔ B ≠ B' ∧ (G.between B.1.toFinset B'.1.toFinset).Nonempty :=
   Iff.rfl
@@ -443,7 +485,9 @@ section Final
 variable (final : ¬ c.Mergeable)
 
 include final in
-/-- With no merge available, distinct blocks are joined by at most one edge. -/
+/-- With no merge available, distinct blocks are joined by at most one edge.
+@isnad1 id=le.2h6v.s7.2bdc888de507 from=translated src=- shape=038374db vocab=0f962faf
+-/
 theorem card_between_le_one {B B' : ↥c.blocks} (hne : B ≠ B') :
     (G.between B.1.toFinset B'.1.toFinset).card ≤ 1 := by
   by_contra h
@@ -459,12 +503,18 @@ theorem card_between_le_one {B B' : ↥c.blocks} (hne : B ≠ B') :
 noncomputable def other (B : ↥c.blocks) (e : E) : V :=
   if G.fst e ∈ B.1 then G.snd e else G.fst e
 
+/--
+@isnad1 id=not.1h6v.s7.7c4d88722909 from=translated src=- shape=45a2a4e5 vocab=19c24da1
+-/
 theorem other_notMem {B : ↥c.blocks} {e : E} (he : e ∈ G.cut B.1.toFinset) :
     c.other B e ∉ B.1 := by
   rw [Multigraph.mem_cut, List.mem_toFinset, List.mem_toFinset] at he
   unfold other
   split_ifs with h <;> tauto
 
+/--
+@isnad1 id=mem.1h6v.s7.dd38f0c1f113 from=translated src=- shape=78757e7d vocab=bd4e7d85
+-/
 theorem mem_between_other {B : ↥c.blocks} {e : E} (he : e ∈ G.cut B.1.toFinset) :
     e ∈ G.between B.1.toFinset (c.blockOf (c.other B e)).1.toFinset := by
   have hmem := c.mem_blockOf (c.other B e)
@@ -473,7 +523,9 @@ theorem mem_between_other {B : ↥c.blocks} {e : E} (he : e ∈ G.cut B.1.toFins
   by_cases h : G.fst e ∈ B.1 <;> simp only [other, h, ↓reduceIte] at hmem ⊢ <;> tauto
 
 include final in
-/-- With no merge available and at least two blocks, every block has degree three. -/
+/-- With no merge available and at least two blocks, every block has degree three.
+@isnad1 id=eq.3h5v.s7.8d1b2f2612cd from=translated src=- shape=492577e7 vocab=fe213da6
+-/
 theorem card_cut_eq_three (connected : G.Connected) (two : 2 ≤ c.blocks.card) (B : ↥c.blocks) :
     (G.cut B.1.toFinset).card = 3 := by
   obtain ⟨B', hB', hne⟩ : ∃ B' ∈ c.blocks, B' ≠ B.1 := by
@@ -503,7 +555,9 @@ theorem card_cut_eq_three (connected : G.Connected) (two : 2 ≤ c.blocks.card) 
     rwa [G.between_comm]
 
 include final in
-/-- The quotient of a final compression with at least two blocks is 3-regular. -/
+/-- The quotient of a final compression with at least two blocks is 3-regular.
+@isnad1 id=isregula.3h4v.s8.10a280dab29a from=translated src=- shape=7a088b38 vocab=ca0ea982
+-/
 theorem quotient_isRegularOfDegree (connected : G.Connected) (two : 2 ≤ c.blocks.card) :
     c.quotient.IsRegularOfDegree 3 := by
   intro B
@@ -544,7 +598,9 @@ theorem quotient_isRegularOfDegree (connected : G.Connected) (two : 2 ≤ c.bloc
       · exact h₁
 
 include final in
-/-- The quotient's edges are the edges between distinct blocks. -/
+/-- The quotient's edges are the edges between distinct blocks.
+@isnad1 id=eq.1h4v.s8.dddf5ef48df4 from=translated src=- shape=bde3a804 vocab=8c47a23e
+-/
 theorem card_quotient_edgeFinset_add :
     c.quotient.edgeFinset.card + (G.insideBlocks c.blocks).card = Fintype.card E := by
   have key : (Finset.univ \ G.insideBlocks c.blocks).card = c.quotient.edgeFinset.card := by
@@ -606,7 +662,9 @@ theorem card_quotient_edgeFinset_add :
 
 include final in
 /-- With `h` blocks, `N` vertices, and `M` edges, a final compression with at
-least two blocks satisfies `h + 2 N ≤ 2 M`. -/
+least two blocks satisfies `h + 2 N ≤ 2 M`.
+@isnad1 id=le.3h4v.s6.1ceed3ba1f5c from=translated src=- shape=4ee16c86 vocab=88e1eba1
+-/
 theorem card_blocks_add_le (connected : G.Connected) (two : 2 ≤ c.blocks.card) :
     c.blocks.card + 2 * Fintype.card V ≤ 2 * Fintype.card E := by
   have regular := c.quotient_isRegularOfDegree final connected two

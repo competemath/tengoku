@@ -33,9 +33,14 @@ that `f n` is eventually constant mod `m`. If `m` is odd, then `2 ^ φ m ≡ 1 [
 by Euler's theorem and `φ m < m`, so by the induction hypothesis `f n` is eventually
 constant mod `φ m`, and hence `f (n + 1) = 2 ^ f n` is eventually constant mod `m`. -/
 
+/--
+@isnad1 id=eq.0h1v.s5.d51391b18ee8 from=translated src=- shape=50ebcc8c vocab=d98a32d3
+-/
 lemma f_succ (n : ℕ) : f (n + 1) = 2 ^ f n := rfl
 
-/-- The tower grows at least linearly. -/
+/-- The tower grows at least linearly.
+@isnad1 id=le.0h1v.s4.4a0810097263 from=translated src=- shape=9a470a5e vocab=c28e5e24
+-/
 lemma le_f (n : ℕ) : n + 2 ≤ f n := by
   induction n with
   | zero => exact Nat.le.refl
@@ -49,6 +54,9 @@ lemma le_f (n : ℕ) : n + 2 ≤ f n := by
     _ ≤ 2 ^ f k := h1
     _ = f (k + 1) := rfl
 
+/--
+@isnad1 id=monotone.0h0v.s2.8e16d2cbefdc from=translated src=- shape=e3d48bcb vocab=c43fbe58
+-/
 lemma f_monotone : Monotone f := by
   apply monotone_nat_of_le_succ
   intro n
@@ -56,13 +64,17 @@ lemma f_monotone : Monotone f := by
   calc f n ≤ 2 ^ f n := h.le
   _ = f (n + 1) := rfl
 
-/-- Eventually `f n` is divisible by any prescribed power of two. -/
+/-- Eventually `f n` is divisible by any prescribed power of two.
+@isnad1 id=dvd.2h2v.s5.9bf8220d35ba from=translated src=- shape=eb5b7059 vocab=b5c95ba2
+-/
 lemma two_pow_dvd_f (a n : ℕ) (ha : 1 ≤ a) (hn : a ≤ n) : 2 ^ a ∣ f n := by
   obtain ⟨k, rfl⟩ : ∃ k, n = k + 1 := ⟨n - 1, by lia⟩
   have h : a ≤ f k := by have := le_f k; lia
   exact Nat.pow_dvd_pow 2 h
 
-/-- Main step: strong induction on the modulus. -/
+/-- Main step: strong induction on the modulus.
+@isnad1 id=ex.1h1v.s4.7e0cebd22329 from=translated src=- shape=90213383 vocab=2c58a696
+-/
 lemma eventually_constant_mod (m : ℕ) (hm : 1 ≤ m) :
     ∃ N : ℕ, ∀ n : ℕ, N ≤ n → f n ≡ f N [MOD m] := by
   induction m using Nat.strong_induction_on with

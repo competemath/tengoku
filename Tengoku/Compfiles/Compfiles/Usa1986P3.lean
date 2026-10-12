@@ -21,7 +21,9 @@ namespace Usa1986P3
 
 abbrev solution : ℕ := 337
 
-/-- Six times the sum of the first `n` non-zero squares. -/
+/-- Six times the sum of the first `n` non-zero squares.
+@isnad1 id=eq.0h1v.s6.92208419c6fb from=translated src=- shape=87d49d15 vocab=fa4996af
+-/
 lemma six_mul_sum_sq (n : ℕ) :
     6 * ∑ i ∈ Finset.range n, (i + 1)^2 = n * (n + 1) * (2 * n + 1) := by
   induction n with
@@ -30,7 +32,9 @@ lemma six_mul_sum_sq (n : ℕ) :
     rw [Finset.sum_range_succ, Nat.mul_add, ih]
     ring
 
-/-- The `GCDMonoid` gcd of coprime naturals is a unit. -/
+/-- The `GCDMonoid` gcd of coprime naturals is a unit.
+@isnad1 id=isunit.1h2v.s4.28134f9d72fe from=translated src=- shape=4a0fad72 vocab=d2d493b2
+-/
 lemma isUnit_gcd_of_coprime {a b : ℕ} (h : Nat.Coprime a b) : IsUnit (gcd a b) := by
   have h1 : gcd a b = 1 := by
     rw [gcd_eq_nat_gcd]
@@ -44,12 +48,16 @@ lemma eq_sq_of_coprime_mul_eq_sq {a b k : ℕ} (hcop : Nat.Coprime a b)
   exists_eq_pow_of_mul_eq_pow (isUnit_gcd_of_coprime hcop) h
 
 /-- Finite check: the Pell-type equation `4u² = 3w² + 1` has no solution
-with `2 ≤ u ≤ 12` and `w ≤ 13`. -/
+with `2 ≤ u ≤ 12` and `w ≤ 13`.
+@isnad1 id=ne.3h2v.s6.21185f33582e from=translated src=- shape=e996d999 vocab=3f16b8dd
+-/
 lemma no_small_solution :
     ∀ u < 13, ∀ w < 14, 2 ≤ u → 4 * u^2 ≠ 3 * w^2 + 1 := by
   decide
 
-/-- Minimality: if `n > 1` and `(n+1)(2n+1) = 6m²`, then `337 ≤ n`. -/
+/-- Minimality: if `n > 1` and `(n+1)(2n+1) = 6m²`, then `337 ≤ n`.
+@isnad1 id=le.2h2v.s6.b7e42d73edeb from=translated src=- shape=5d49a612 vocab=3f16b8dd
+-/
 lemma ge_337 {n m : ℕ} (hn : 1 < n) (h : (n+1) * (2*n+1) = 6 * m^2) :
     337 ≤ n := by
   by_contra hlt

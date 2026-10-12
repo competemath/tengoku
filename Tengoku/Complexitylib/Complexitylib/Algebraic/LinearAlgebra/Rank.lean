@@ -23,7 +23,9 @@ namespace LinearMap
 variable {K : Type u} {A : Type v} {B : Type w}
 variable [Field K] [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
 
-/-- Rank of a scalar multiple of a linear map is at most its rank. -/
+/-- Rank of a scalar multiple of a linear map is at most its rank.
+@isnad1 id=le.0h5v.s8.7cf669345c0d from=translated src=- shape=aeb267ee vocab=3710fec5
+-/
 theorem rank_smul_le
     (scalar : K)
     (map : A →ₗ[K] B) :
@@ -31,7 +33,9 @@ theorem rank_smul_le
   Submodule.rank_mono (LinearMap.range_smul_le_range map scalar)
 
 /-- The rank of a linear map in the span of a finite family is at most the
-sum of any pointwise rank budgets for that family. -/
+sum of any pointwise rank budgets for that family.
+@isnad1 id=le.2h7v.s9.991f0fb4324f from=translated src=- shape=12f4ebce vocab=d8521646
+-/
 theorem rank_le_sum_of_mem_span
     {ι : Type z}
     [Fintype ι]

@@ -34,6 +34,9 @@ noncomputable abbrev solution_value : ℕ → ℝ := fun n ↦
 Mathematical solution sketch by Evan Chen: https://web.evanchen.cc/twitch/Ep177-USAMO-2026-1-Solution.pdf
 -/
 
+/--
+@isnad1 id=eq.0h2v.s4.3b063f52a881 from=translated src=- shape=1102ea60 vocab=ae1d0ec3
+-/
 lemma f_periodic (n : ℕ) (x : ℝ) : f n (x + 1) = f n x := by
   unfold f
   simp_rw [mul_add, mul_one]
@@ -64,6 +67,9 @@ lemma f_periodic (n : ℕ) (x : ℝ) : f n (x + 1) = f n x := by
 noncomputable def T (n : ℕ) (y : ℝ) : ℝ :=
   ((⌈(n : ℝ) * y⌉ : ℤ) - 1 : ℝ) - ∑ k ∈ Icc 1 n, (((⌈(k : ℝ) * y⌉ : ℤ) - 1 : ℤ) : ℝ) / (k : ℝ)
 
+/--
+@isnad1 id=eq.1h2v.s5.8a79bbe55d1c from=translated src=- shape=1c3c5ad3 vocab=10c0448a
+-/
 lemma f_rewrite (n : ℕ) (hn : 1 ≤ n) (y : ℝ) : f n (1 - y) = solution_value n - T n y := by
   unfold f solution_value T
   simp_rw [mul_sub, mul_one]
@@ -113,6 +119,9 @@ lemma f_rewrite (n : ℕ) (hn : 1 ≤ n) (y : ℝ) : f n (1 - y) = solution_valu
   push_cast
   ring
 
+/--
+@isnad1 id=eq.3h2v.s5.116b9aa9112b from=translated src=- shape=6555e8c7 vocab=a84def76
+-/
 lemma T_eq_zero_of_small_y (n : ℕ) (y : ℝ) (hn : 2 ≤ n) (hy1 : 0 < y) (hy2 : y ≤ 1 / (n : ℝ)) :
   T n y = 0 := by
   unfold T
@@ -146,6 +155,9 @@ lemma T_eq_zero_of_small_y (n : ℕ) (y : ℝ) (hn : 2 ≤ n) (hy1 : 0 < y) (hy2
   rw [h_sum_zero]
   norm_num
 
+/--
+@isnad1 id=le.2h2v.s6.b6b159be9f74 from=translated src=- shape=990f8fa0 vocab=368f0cb1
+-/
 lemma core_sum_bound (n p : ℕ) (hp1 : 1 ≤ p) (hpn : p < n) :
   ∑ k ∈ Icc 1 n, (((⌈(k : ℝ) * ((p + 1 : ℝ) / (n : ℝ))⌉ : ℤ) - 1 : ℤ) : ℝ) / (k : ℝ) ≤ (p : ℝ) := by
 
@@ -305,6 +317,9 @@ lemma core_sum_bound (n p : ℕ) (hp1 : 1 ≤ p) (hpn : p < n) :
     _ ≤ (⌊(n : ℝ) * x⌋ : ℝ) := h_1981
     _ = (p : ℝ) := h_right
 
+/--
+@isnad1 id=le.3h2v.s5.5ec4e36714bd from=translated src=- shape=db1b2641 vocab=f08b1339
+-/
 lemma T_nonneg (n : ℕ) (y : ℝ) (hn : 2 ≤ n) (hy1 : 0 < y) (hy2 : y ≤ 1) :
   0 ≤ T n y := by
   have hn_pos : (0 : ℝ) < (n : ℝ) := Nat.cast_pos.mpr (by lia)

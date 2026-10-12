@@ -59,19 +59,30 @@ def filt (e : ℕ) (c : ℤ) : ℤ → List ℕ → List ℕ
     if (2 : ℤ) ^ (e + 1) ∣ (s : ℤ) ∧ c < y + (s : ℤ) then filt e c y ss
     else s :: filt e c (y + (s : ℤ)) ss
 
+/--
+@isnad1 id=eq.0h1v.s5.c8f1a116a7d7 from=translated src=- shape=1e46985a vocab=1b55a9c9
+-/
 @[simp] lemma natAbs_two_pow (n : ℕ) : ((2 : ℤ) ^ n).natAbs = 2 ^ n := by
   rw [Int.natAbs_pow]
   norm_num
 
+/--
+@isnad1 id=dvd.0h1v.s4.b40594f3c9cd from=translated src=- shape=dc2f8971 vocab=92117145
+-/
 lemma two_pow_nu_dvd (x : ℤ) : (2 : ℤ) ^ nu x ∣ x := by
   rw [← Int.natAbs_dvd_natAbs, natAbs_two_pow]
   exact Nat.ordProj_dvd _ _
 
+/--
+@isnad1 id=not.1h1v.s5.e5dc3a9af03f from=translated src=- shape=75b45af5 vocab=21e8f2fc
+-/
 lemma not_two_pow_succ_nu_dvd {x : ℤ} (hx : x ≠ 0) : ¬ (2 : ℤ) ^ (nu x + 1) ∣ x := by
   rw [← Int.natAbs_dvd_natAbs, natAbs_two_pow]
   exact Nat.pow_succ_factorization_not_dvd (Int.natAbs_ne_zero.mpr hx) Nat.prime_two
 
-/-- The 2-adic valuation is characterized by divisibility. -/
+/-- The 2-adic valuation is characterized by divisibility.
+@isnad1 id=eq.3h2v.s6.eb42324a752a from=translated src=- shape=d7c6954a vocab=21e8f2fc
+-/
 lemma nu_eq_of {x : ℤ} {a : ℕ} (hx : x ≠ 0) (h1 : (2 : ℤ) ^ a ∣ x)
     (h2 : ¬ (2 : ℤ) ^ (a + 1) ∣ x) : nu x = a := by
   rcases lt_trichotomy a (nu x) with h | h | h
@@ -83,7 +94,9 @@ lemma nu_eq_of {x : ℤ} {a : ℕ} (hx : x ≠ 0) (h1 : (2 : ℤ) ^ a ∣ x)
       (dvd_trans (pow_dvd_pow (2 : ℤ) (by lia : nu x + 1 ≤ a)) h1)
 
 /-- Shifting by a multiple of `2 ^ e` does not change the 2-adic valuation,
-as long as the valuation is smaller than `e`. -/
+as long as the valuation is smaller than `e`.
+@isnad1 id=eq.4h3v.s6.43b3c6ea4cb2 from=translated src=- shape=e53e8237 vocab=e06a0b32
+-/
 lemma nu_congr {y y' : ℤ} {e : ℕ} (hy : y ≠ 0) (hy' : y' ≠ 0)
     (hd : (2 : ℤ) ^ e ∣ y - y') (hlt : nu y < e) : nu y' = nu y := by
   refine nu_eq_of hy' ?_ ?_
@@ -101,10 +114,16 @@ lemma nu_congr {y y' : ℤ} {e : ℕ} (hy : y ≠ 0) (hy' : y' ≠ 0)
       rwa [← h3] at h4
     exact not_two_pow_succ_nu_dvd hy h2
 
+/--
+@isnad1 id=iff.0h3v.s6.e66a38292e37 from=translated src=- shape=1e4d5079 vocab=17df7874
+-/
 lemma validPath_cons {x : ℤ} {s : ℕ} {ss : List ℕ} :
     ValidPath x (s :: ss) ↔ (s = 1 ∨ s = 2 ^ (nu x + 1)) ∧ ValidPath (x + (s : ℤ)) ss :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.72eecdeec86f from=translated src=- shape=e531129b vocab=092c33d2
+-/
 lemma ValidPath.append {x : ℤ} {l₁ l₂ : List ℕ} :
     ValidPath x (l₁ ++ l₂) ↔ ValidPath x l₁ ∧ ValidPath (x + (l₁.sum : ℤ)) l₂ := by
   induction l₁ generalizing x with
@@ -121,7 +140,9 @@ lemma ValidPath.append {x : ℤ} {l₁ l₂ : List ℕ} :
       obtain ⟨h1a, h1b⟩ := validPath_cons.mp h1
       exact ⟨h1a, h1b, h4 ▸ h2⟩
 
-/-- Every jump of a valid path is a power of two. -/
+/-- Every jump of a valid path is a power of two.
+@isnad1 id=ex.2h3v.s5.d4ef4f7bf430 from=translated src=- shape=9071185c vocab=df653381
+-/
 lemma ValidPath.pow_two {x : ℤ} {ss : List ℕ} (h : ValidPath x ss) :
     ∀ s ∈ ss, ∃ t, s = 2 ^ t := by
   induction ss generalizing x with
@@ -135,15 +156,24 @@ lemma ValidPath.pow_two {x : ℤ} {ss : List ℕ} (h : ValidPath x ss) :
       · exact ⟨nu x + 1, h1⟩
     · exact ih h2 t ht
 
+/--
+@isnad1 id=le.2h3v.s4.b7ac7248db82 from=translated src=- shape=d19d34e8 vocab=3479a546
+-/
 lemma ValidPath.one_le_of_mem {x : ℤ} {ss : List ℕ} (h : ValidPath x ss) {s : ℕ}
     (hs : s ∈ ss) : 1 ≤ s := by
   obtain ⟨t, rfl⟩ := h.pow_two s hs
   exact Nat.one_le_two_pow
 
+/--
+@isnad1 id=iff.0h5v.s6.ce85dfe48d6b from=translated src=- shape=25511b80 vocab=cd029232
+-/
 lemma bigBound_cons {m : ℕ} {c x : ℤ} {s : ℕ} {ss : List ℕ} :
     BigBound m c x (s :: ss) ↔ (c < x + (s : ℤ) → s ≤ 2 ^ m) ∧ BigBound m c (x + (s : ℤ)) ss :=
   Iff.rfl
 
+/--
+@isnad1 id=bigbound.1h4v.s5.0a403f96a481 from=translated src=- shape=b9eb0fab vocab=ec1c11a6
+-/
 lemma bigBound_of_forall {m : ℕ} {c x : ℤ} {ss : List ℕ} (h : ∀ s ∈ ss, s ≤ 2 ^ m) :
     BigBound m c x ss := by
   induction ss generalizing x with
@@ -167,11 +197,17 @@ lemma eq_two_pow_of {e : ℕ} {c y y' : ℤ} {s : ℕ}
   have h3 : 2 ^ (e + 1) ≤ s := Nat.le_of_dvd (by lia) h2
   exact le_antisymm h1 h3
 
+/--
+@isnad1 id=eq.2h5v.s6.6c96346ccdf6 from=translated src=- shape=831f850e vocab=988d9ff2
+-/
 lemma filt_cons_delete {e : ℕ} {c y : ℤ} {s : ℕ} {ss : List ℕ}
     (h1 : (2 : ℤ) ^ (e + 1) ∣ (s : ℤ)) (h2 : c < y + (s : ℤ)) :
     filt e c y (s :: ss) = filt e c y ss := by
   simp [filt, h1, h2]
 
+/--
+@isnad1 id=eq.1h5v.s6.464d1b4bf06c from=translated src=- shape=cfce28ba vocab=988d9ff2
+-/
 lemma filt_cons_keep {e : ℕ} {c y : ℤ} {s : ℕ} {ss : List ℕ}
     (h : ¬ ((2 : ℤ) ^ (e + 1) ∣ (s : ℤ) ∧ c < y + (s : ℤ))) :
     filt e c y (s :: ss) = s :: filt e c (y + (s : ℤ)) ss := by
@@ -181,7 +217,9 @@ lemma filt_cons_keep {e : ℕ} {c y : ℤ} {s : ℕ} {ss : List ℕ}
 that land beyond `c`, the remaining path is still valid.  The hypothesis
 `hor` says that either no jump has been deleted so far (so the two positions
 coincide), or the current filtered position is within `2 ^ (e + 1)` beyond
-which no deletion can have occurred yet. -/
+which no deletion can have occurred yet.
+@isnad1 id=validpat.7h5v.s7.650df4bb9cc9 from=translated src=- shape=70a4131a vocab=61a28471
+-/
 lemma filt_valid {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
     (hv : ValidPath y ss) (hy : 1 ≤ y) (hy' : 1 ≤ y') (hyy' : y' ≤ y)
     (hdvd : (2 : ℤ) ^ (e + 1) ∣ y - y')
@@ -243,7 +281,9 @@ lemma filt_valid {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
           · exact Or.inr (by linarith)
 
 /-- Counting lemma: the total length deleted by `filt` is a multiple of
-`2 ^ (e + 1)`, and the number of deleted jumps equals that multiple. -/
+`2 ^ (e + 1)`, and the number of deleted jumps equals that multiple.
+@isnad1 id=ex.3h5v.s7.b69114e9200a from=translated src=- shape=c4dd367a vocab=96cf482b
+-/
 lemma filt_count {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
     (hp2 : ∀ s ∈ ss, ∃ t, s = 2 ^ t) (hyy' : y' ≤ y) (hbb : BigBound (e + 1) c y ss) :
     ∃ r : ℕ, ((ss.sum : ℤ) - ((filt e c y' ss).sum : ℤ)) = (r : ℤ) * 2 ^ (e + 1) ∧
@@ -277,7 +317,9 @@ lemma filt_count {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
 
 /-- Lower bound lemma: if `filt` deletes at least one jump, then the last
 deleted jump starts at a position `p'` whose 2-adic valuation is exactly `e`,
-which lands beyond `c`, and which is at most the final endpoint. -/
+which lands beyond `c`, and which is at most the final endpoint.
+@isnad1 id=ex.7h5v.s7.51026e92de8c from=translated src=- shape=944d030a vocab=e24ba23f
+-/
 lemma filt_lower {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
     (hv : ValidPath y ss) (hy : 1 ≤ y) (hy' : 1 ≤ y') (hyy' : y' ≤ y)
     (hdvd : (2 : ℤ) ^ (e + 1) ∣ y - y') (hbb : BigBound (e + 1) c y ss)
@@ -335,7 +377,9 @@ lemma filt_lower {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
         linarith [hpT]⟩
 
 /-- Transfer lemma: after `filt` has removed the jumps of length `2 ^ (e + 1)`,
-every remaining jump landing beyond `c` has length at most `2 ^ e`. -/
+every remaining jump landing beyond `c` has length at most `2 ^ e`.
+@isnad1 id=bigbound.3h5v.s6.bb8132220353 from=translated src=- shape=bf8006f5 vocab=8a757cab
+-/
 lemma filt_bigbound {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
     (hp2 : ∀ s ∈ ss, ∃ t, s = 2 ^ t) (hyy' : y' ≤ y) (hbb : BigBound (e + 1) c y ss) :
     BigBound e c y' (filt e c y' ss) := by
@@ -364,7 +408,9 @@ lemma filt_bigbound {e : ℕ} {c y y' : ℤ} {ss : List ℕ}
           (by linarith [((Nat.cast_nonneg s) : (0 : ℤ) ≤ (s : ℤ))] : y' + (s : ℤ) ≤ y + (s : ℤ)) hbb2
 
 /-- Base case of the main induction: if every jump landing beyond `2 ^ i` has
-length `1`, then some prefix of the path ends exactly at `2 ^ i`. -/
+length `1`, then some prefix of the path ends exactly at `2 ^ i`.
+@isnad1 id=ex.5h3v.s7.fb8cef6a5509 from=translated src=- shape=4dcec55c vocab=e8bbcb8f
+-/
 lemma base_prefix {x : ℤ} {i : ℕ} {ss : List ℕ} (hx1 : 1 ≤ x) (hx2 : x ≤ (2 : ℤ) ^ i)
     (hv : ValidPath x ss) (hbb : BigBound 0 ((2 : ℤ) ^ i) x ss)
     (hge : (2 : ℤ) ^ i ≤ x + (ss.sum : ℤ)) :
@@ -404,7 +450,9 @@ lemma base_prefix {x : ℤ} {i : ℕ} {ss : List ℕ} (hx1 : 1 ≤ x) (hx2 : x �
 /-- The main induction.  From a valid path whose endpoint is at least `2 ^ i`
 and divisible by `2 ^ min i e`, where every jump landing beyond `2 ^ i` has
 length at most `2 ^ e`, we can extract a valid path to `2 ^ i` of at most the
-same length, and strictly shorter if the original endpoint exceeds `2 ^ i`. -/
+same length, and strictly shorter if the original endpoint exceeds `2 ^ i`.
+@isnad1 id=ex.4h3v.s7.d4b76eeafe8a from=translated src=- shape=d3e3342e vocab=2c727219
+-/
 lemma key_lemma (i : ℕ) (e : ℕ) (ss : List ℕ)
     (hv : ValidPath 1 ss) (hbb : BigBound e ((2 : ℤ) ^ i) 1 ss)
     (hdiv : (2 : ℤ) ^ min i e ∣ (1 : ℤ) + (ss.sum : ℤ))
@@ -539,6 +587,9 @@ lemma key_lemma (i : ℕ) (e : ℕ) (ss : List ℕ)
     · have h4 : (filt e ((2 : ℤ) ^ i) 1 ss).length < ss.length := by lia
       exact lt_of_le_of_lt hlen' h4
 
+/--
+@isnad1 id=validpat.0h2v.s3.87b65ba2db8d from=translated src=- shape=a7d14c4f vocab=5834cbf9
+-/
 lemma validPath_replicate_one (x : ℤ) (n : ℕ) : ValidPath x (List.replicate n 1) := by
   induction n generalizing x with
   | zero => trivial
@@ -546,7 +597,9 @@ lemma validPath_replicate_one (x : ℤ) (n : ℕ) : ValidPath x (List.replicate 
     rw [List.replicate_succ, validPath_cons]
     exact ⟨Or.inl rfl, ih (x + 1)⟩
 
-/-- Every position `m ≥ 1` is reachable, by jumping `+1` every time. -/
+/-- Every position `m ≥ 1` is reachable, by jumping `+1` every time.
+@isnad1 id=reachabl.1h1v.s4.cf13436bee71 from=translated src=- shape=fbaf46a9 vocab=7171e909
+-/
 lemma reachable_all_ones {m : ℤ} (hm : 1 ≤ m) : Reachable m (m - 1).toNat := by
   refine ⟨List.replicate (m - 1).toNat 1, validPath_replicate_one _ _, ?_, ?_⟩
   · rw [List.sum_replicate, smul_eq_mul, mul_one,
@@ -554,5 +607,8 @@ lemma reachable_all_ones {m : ℤ} (hm : 1 ≤ m) : Reachable m (m - 1).toNat :=
     ring
   · rw [List.length_replicate]
 
+/--
+@isnad1 id=mem.1h1v.s4.227d32ebb158 from=translated src=- shape=8fee7c3d vocab=7f4eadb5
+-/
 lemma minJumps_mem {m : ℤ} (hm : 1 ≤ m) : minJumps m ∈ { j | Reachable m j } :=
   Nat.sInf_mem ⟨(m - 1).toNat, reachable_all_ones hm⟩

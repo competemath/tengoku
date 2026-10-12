@@ -111,6 +111,9 @@ def Cell.reflect (c : Cell N) : Cell N := (c.1, c.2.rev)
     simp
     lia⟩⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.a018be6e3a6f from=translated src=- shape=3c36e23a vocab=e07f1414
+-/
 lemma coe_coe_row1 (hN : 2 ≤ N) : (((row1 hN) : Fin (N + 2)) : ℕ) = 1 :=
   rfl
 
@@ -125,24 +128,39 @@ def MonsterData.reflect (m : MonsterData N) : MonsterData N where
   toFun := Fin.rev ∘ m
   inj' := fun i j hij ↦ by simpa using hij
 
+/--
+@isnad1 id=eq.0h2v.s3.d7744ee5e74e from=translated src=- shape=6ddf6d3e vocab=9437d986
+-/
 lemma MonsterData.reflect_reflect (m : MonsterData N) : m.reflect.reflect = m :=
   Function.Embedding.ext fun i ↦ Fin.rev_rev (m i)
 
+/--
+@isnad1 id=ne.2h2v.s7.65a69c845755 from=translated src=- shape=9c2df5b2 vocab=0ffbcb8e
+-/
 lemma MonsterData.apply_row1_ne_zero_of_apply_row1_eq_N (hN : 2 ≤ N) {m : MonsterData N}
     (h : (m (row1 hN) : ℕ) = N) : m (row1 hN) ≠ 0 := by
   rw [← Fin.val_ne_iff, h, Fin.val_zero]
   lia
 
+/--
+@isnad1 id=eq.2h2v.s7.7333afa82585 from=translated src=- shape=8bd638d0 vocab=2886d60d
+-/
 lemma MonsterData.reflect_apply_row1_eq_zero_of_apply_row1_eq_N (hN : 2 ≤ N)
     {m : MonsterData N} (h : (m (row1 hN) : ℕ) = N) : m.reflect (row1 hN) = 0 := by
   have hr : m.reflect (row1 hN) = (m (row1 hN)).rev := rfl
   rw [hr, ← Fin.rev_last, Fin.rev_inj, Fin.ext_iff, Fin.val_last]
   exact h
 
+/--
+@isnad1 id=not.1h3v.s6.1aa0307be07b from=translated src=- shape=c6f77c22 vocab=184d4ed2
+-/
 lemma MonsterData.not_mem_monsterCells_of_fst_eq_zero (m : MonsterData N)
     {c : Cell N} (hc : c.1 = 0) : c ∉ m.monsterCells := by
   simp [monsterCells, Prod.ext_iff, hc]
 
+/--
+@isnad1 id=le.1h3v.s6.8b8cefb1a7c0 from=translated src=- shape=d86bfb97 vocab=edb4a328
+-/
 lemma MonsterData.le_N_of_mem_monsterCells {m : MonsterData N} {c : Cell N}
     (hc : c ∈ m.monsterCells) : (c.1 : ℕ) ≤ N := by
   simp only [monsterCells, Set.mem_range, Subtype.exists, Set.mem_Icc] at hc
@@ -150,6 +168,9 @@ lemma MonsterData.le_N_of_mem_monsterCells {m : MonsterData N} {c : Cell N}
   rw [Fin.le_def] at hN
   exact hN
 
+/--
+@isnad1 id=iff.2h4v.s9.40f45aeb59c9 from=translated src=- shape=cad3071d vocab=7c0da845
+-/
 lemma MonsterData.mk_mem_monsterCells_iff_of_le {m : MonsterData N} {r : Fin (N + 2)}
     (hr1 : 1 ≤ r) (hrN : r ≤ ⟨N, by lia⟩) {c : Fin (N + 1)} :
     (r, c) ∈ m.monsterCells ↔ m ⟨r, hr1, hrN⟩ = c := by
@@ -160,11 +181,17 @@ lemma MonsterData.mk_mem_monsterCells_iff_of_le {m : MonsterData N} {r : Fin (N 
   · rintro rfl
     exact ⟨⟨r, hr1, hrN⟩, rfl, rfl⟩
 
+/--
+@isnad1 id=iff.2h3v.s9.720c92c1f784 from=translated src=- shape=0754fd8f vocab=dcf541a9
+-/
 lemma MonsterData.mem_monsterCells_iff_of_le {m : MonsterData N} {x : Cell N}
     (hr1 : 1 ≤ x.1) (hrN : x.1 ≤ ⟨N, by lia⟩) :
     x ∈ m.monsterCells ↔ m ⟨x.1, hr1, hrN⟩ = x.2 :=
   MonsterData.mk_mem_monsterCells_iff_of_le hr1 hrN
 
+/--
+@isnad1 id=iff.0h4v.s9.1ddfcafe468c from=translated src=- shape=8404bea6 vocab=7c0da845
+-/
 lemma MonsterData.mk_mem_monsterCells_iff {m : MonsterData N} {r : Fin (N + 2)}
     {c : Fin (N + 1)} :
     (r, c) ∈ m.monsterCells ↔ ∃ (hr1 : 1 ≤ r) (hrN : r ≤ ⟨N, by lia⟩), m ⟨r, hr1, hrN⟩ = c := by
@@ -176,6 +203,9 @@ lemma MonsterData.mk_mem_monsterCells_iff {m : MonsterData N} {r : Fin (N + 2)}
 
 /-! ### API definitions and lemmas about `Path` -/
 
+/--
+@isnad1 id=ex.0h3v.s6.31e185a0bf07 from=translated src=- shape=07874147 vocab=4d9a4154
+-/
 lemma Path.exists_mem_le_fst (p : Path N) (r : Fin (N + 2)) : ∃ c ∈ p.cells, r ≤ c.1 :=
   ⟨p.cells.getLast p.nonempty, List.getLast_mem p.nonempty, by
     rw [p.last_last_row]; exact Fin.le_last r⟩
@@ -186,17 +216,25 @@ def Path.findFstEq (p : Path N) (r : Fin (N + 2)) : Cell N :=
   (p.cells.find? (fun c ↦ r ≤ c.1)).get
     (List.find?_isSome.2 (by simpa using p.exists_mem_le_fst r))
 
+/--
+@isnad1 id=eq.0h3v.s7.6de603d08a7b from=translated src=- shape=7c292c92 vocab=063f2775
+-/
 lemma Path.find_eq_some_findFstEq (p : Path N) (r : Fin (N + 2)) :
     p.cells.find? (fun c ↦ r ≤ c.1) = some (p.findFstEq r) := by
   rw [Option.eq_some_iff_get_eq]
   exact ⟨_, rfl⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.6e15cd5a7f36 from=translated src=- shape=0b89319e vocab=1abf9009
+-/
 lemma Path.findFstEq_mem_cells (p : Path N) (r : Fin (N + 2)) : p.findFstEq r ∈ p.cells :=
   List.mem_of_find?_eq_some (p.find_eq_some_findFstEq r)
 
 /-- `findFstEq r` lies on row `r` exactly, and the cell just before it on the path lies on row
 `r - 1` in the same column: the cell before the first row-`≥ r` cell has row `< r`, and
-adjacency forces both rows. -/
+adjacency forces both rows.
+@isnad1 id=and.1h3v.s8.e0c1539229e8 from=translated src=- shape=29793f31 vocab=26db0176
+-/
 lemma Path.findFstEq_fst_and_sub_one_mem (p : Path N) {r : Fin (N + 2)} (hr : r ≠ 0) :
     (p.findFstEq r).1 = r ∧ (⟨(r : ℕ) - 1, by lia⟩, (p.findFstEq r).2) ∈ p.cells := by
   simp only [findFstEq]
@@ -229,6 +267,9 @@ lemma Path.findFstEq_fst_and_sub_one_mem (p : Path N) {r : Fin (N + 2)} (hr : r 
   simp only [Prod.ext_iff, Fin.ext_iff]
   lia
 
+/--
+@isnad1 id=eq.0h3v.s6.d0c31201ed9e from=translated src=- shape=f5e4f151 vocab=0a464ab1
+-/
 lemma Path.findFstEq_fst (p : Path N) (r : Fin (N + 2)) : (p.findFstEq r).1 = r := by
   rcases eq_or_ne r 0 with rfl | hr
   · obtain ⟨c, l, hc⟩ := List.exists_cons_of_ne_nil p.nonempty
@@ -240,15 +281,24 @@ lemma Path.findFstEq_fst (p : Path N) (r : Fin (N + 2)) : (p.findFstEq r).1 = r 
     simpa [hc] using h0
   · exact (p.findFstEq_fst_and_sub_one_mem hr).1
 
+/--
+@isnad1 id=mem.1h3v.s7.8fc4257fce04 from=translated src=- shape=8d2283a9 vocab=9f43a6de
+-/
 lemma Path.findFstEq_fst_sub_one_mem (p : Path N) {r : Fin (N + 2)} (hr : r ≠ 0) :
     (⟨(r : ℕ) - 1, by lia⟩, (p.findFstEq r).2) ∈ p.cells :=
   (p.findFstEq_fst_and_sub_one_mem hr).2
 
+/--
+@isnad1 id=iff.0h3v.s5.1ed244b904b0 from=translated src=- shape=897da5ae vocab=ed89452b
+-/
 lemma Path.firstMonster_isSome {p : Path N} {m : MonsterData N} :
     (p.firstMonster m).isSome = true ↔ ∃ x, x ∈ p.cells ∧ x ∈ m.monsterCells := by
   convert! List.find?_isSome
   simp
 
+/--
+@isnad1 id=or.1h4v.s6.c36415a98547 from=translated src=- shape=b4abada9 vocab=4ed2d2eb
+-/
 lemma Path.firstMonster_none_or_some {p : Path N} {m : MonsterData N} {target : Cell N}
     (h : ∀ c ∈ p.cells, c ∉ m.monsterCells ∨ c = target) :
     p.firstMonster m = none ∨ p.firstMonster m = some target := by
@@ -264,6 +314,9 @@ lemma Path.firstMonster_none_or_some {p : Path N} {m : MonsterData N} {target : 
     rw [hxt] at hx
     exact .inr (by unfold firstMonster; exact hx)
 
+/--
+@isnad1 id=and.1h4v.s5.b13f5cfa1f19 from=translated src=- shape=a8e5f2fb vocab=a0701106
+-/
 lemma Path.mem_of_firstMonster_eq_some {p : Path N} {m : MonsterData N} {c : Cell N}
     (h : p.firstMonster m = some c) : c ∈ p.cells ∧ c ∈ m.monsterCells := by
   simp_rw [firstMonster] at h
@@ -287,6 +340,9 @@ lemma Path.mem_of_firstMonster_eq_some {p : Path N} {m : MonsterData N} {c : Cel
   valid_move_seq := by
     rwa [List.isChain_ofFn]
 
+/--
+@isnad1 id=eq.4h3v.s8.bc484b33dbf3 from=translated src=- shape=67ff1493 vocab=54984781
+-/
 lemma Path.ofFn_cells {m : ℕ} (f : Fin m → Cell N) (hm : m ≠ 0)
     (hf : (f ⟨0, Nat.pos_of_ne_zero hm⟩).1 = 0)
     (hl : (f ⟨m - 1, Nat.sub_one_lt hm⟩).1 = ⟨N + 1, Nat.lt_add_one _⟩)
@@ -294,6 +350,9 @@ lemma Path.ofFn_cells {m : ℕ} (f : Fin m → Cell N) (hm : m ≠ 0)
     (Path.ofFn f hm hf hl ha).cells = List.ofFn f :=
   rfl
 
+/--
+@isnad1 id=iff.4h4v.s8.02a0800fb974 from=translated src=- shape=e68c7cf2 vocab=c531b4a4
+-/
 lemma Path.ofFn_firstMonster_eq_none {m : ℕ} (f : Fin m → Cell N) (hm hf hl ha)
     (m : MonsterData N) :
     ((Path.ofFn f hm hf hl ha).firstMonster m) = none ↔ ∀ i, f i ∉ m.monsterCells := by
@@ -315,6 +374,9 @@ def Path.reflect (p : Path N) : Path N where
     simp_rw [Adjacent, Nat.dist, Cell.reflect, Fin.rev] at h ⊢
     lia
 
+/--
+@isnad1 id=eq.0h3v.s4.31f33ea741fa from=translated src=- shape=3856047e vocab=670e6455
+-/
 lemma Path.firstMonster_reflect (p : Path N) (m : MonsterData N) :
     p.reflect.firstMonster m.reflect = (p.firstMonster m).map Cell.reflect := by
   have hra : ∀ i, m.reflect i = (m i).rev := fun _ ↦ rfl
@@ -332,6 +394,9 @@ lemma Path.firstMonster_reflect (p : Path N) (m : MonsterData N) :
 
 /-! ### API definitions and lemmas about `Strategy` -/
 
+/--
+@isnad1 id=eq.1h5v.s5.11c5af32c6a9 from=translated src=- shape=6546d0ec vocab=d9dad6b4
+-/
 lemma Strategy.play_comp_castLE (s : Strategy N) (m : MonsterData N) {k₁ k₂ : ℕ} (hk : k₁ ≤ k₂) :
     s.play m k₂ ∘ Fin.castLE hk = s.play m k₁ := by
   induction hk
@@ -341,28 +406,43 @@ lemma Strategy.play_comp_castLE (s : Strategy N) (m : MonsterData N) {k₁ k₂ 
     convert rfl
     exact Fin.snoc_comp_castSucc.symm
 
+/--
+@isnad1 id=eq.2h6v.s5.548f5660d637 from=translated src=- shape=44b6dd11 vocab=68c2e6ac
+-/
 lemma Strategy.play_apply_of_le (s : Strategy N) (m : MonsterData N) {i k₁ k₂ : ℕ} (hi : i < k₁)
     (hk : k₁ ≤ k₂) : s.play m k₂ ⟨i, hi.trans_le hk⟩ = s.play m k₁ ⟨i, hi⟩ := by
   rw [← s.play_comp_castLE m hk]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.693aab926518 from=translated src=- shape=9cc880a2 vocab=1766d902
+-/
 lemma Strategy.play_zero (s : Strategy N) (m : MonsterData N) {k : ℕ} (hk : 0 < k) :
     s.play m k ⟨0, hk⟩ = (s Fin.elim0).firstMonster m := by
   have hk' : 1 ≤ k := by lia
   rw [s.play_apply_of_le m zero_lt_one hk']
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.b48c3b743977 from=translated src=- shape=43d268e0 vocab=9714b39b
+-/
 lemma Strategy.play_one_eq (s : Strategy N) (m : MonsterData N) :
     s.play m 1 = ![(s Fin.elim0).firstMonster m] := by
   funext i
   fin_cases i
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.b7f339baa439 from=translated src=- shape=aadd6ff9 vocab=98370542
+-/
 lemma Strategy.play_one (s : Strategy N) (m : MonsterData N) {k : ℕ} (hk : 1 < k) :
     s.play m k ⟨1, hk⟩ = (s ![(s Fin.elim0).firstMonster m]).firstMonster m := by
   rw [s.play_apply_of_le m one_lt_two hk, ← s.play_one_eq m]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.e27e5cacc730 from=translated src=- shape=5dc5698b vocab=48949c6c
+-/
 lemma Strategy.play_two_eq (s : Strategy N) (m : MonsterData N) :
     s.play m 2 = ![(s Fin.elim0).firstMonster m,
       (s ![(s Fin.elim0).firstMonster m]).firstMonster m] := by
@@ -373,18 +453,27 @@ lemma Strategy.play_two_eq (s : Strategy N) (m : MonsterData N) :
     rw [s.play_one_eq m]
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.be8879d4cc33 from=translated src=- shape=4767e37c vocab=98370542
+-/
 lemma Strategy.play_two (s : Strategy N) (m : MonsterData N) {k : ℕ} (hk : 2 < k) :
     s.play m k ⟨2, hk⟩ = (s ![(s Fin.elim0).firstMonster m,
       (s ![(s Fin.elim0).firstMonster m]).firstMonster m]).firstMonster m := by
   rw [s.play_apply_of_le m (by norm_num : 2 < 3) hk, ← s.play_two_eq m]
   rfl
 
+/--
+@isnad1 id=winsin.2h5v.s4.825f5bed136c from=translated src=- shape=1b1066a7 vocab=dcee0f29
+-/
 lemma Strategy.WinsIn.mono (s : Strategy N) (m : MonsterData N) {k₁ k₂ : ℕ} (h : s.WinsIn m k₁)
     (hk : k₁ ≤ k₂) : s.WinsIn m k₂ := by
   refine Set.mem_of_mem_of_subset h ?_
   rw [Set.range_subset_range_iff_exists_comp]
   exact ⟨Fin.castLE hk, (s.play_comp_castLE m hk).symm⟩
 
+/--
+@isnad1 id=forceswi.2h4v.s4.141bccd5c37a from=translated src=- shape=ba5fde02 vocab=9a63556b
+-/
 lemma Strategy.ForcesWinIn.mono (s : Strategy N) {k₁ k₂ : ℕ} (h : s.ForcesWinIn k₁)
     (hk : k₁ ≤ k₂) : s.ForcesWinIn k₂ :=
   fun _ ↦ ((h _).mono) hk
@@ -405,6 +494,9 @@ def baseMonsterData (N : ℕ) : MonsterData N where
 def monsterData12 (hN : 2 ≤ N) (c₁ c₂ : Fin (N + 1)) : MonsterData N :=
   ((baseMonsterData N).setValue (row2 hN) c₂).setValue (row1 hN) c₁
 
+/--
+@isnad1 id=eq.2h3v.s6.b2ce55aed09d from=translated src=- shape=fd594e81 vocab=88e1356a
+-/
 lemma monsterData12_apply_row2 (hN : 2 ≤ N) {c₁ c₂ : Fin (N + 1)} (h : c₁ ≠ c₂) :
     monsterData12 hN c₁ c₂ (row2 hN) = c₂ := by
   rw [monsterData12, Function.Embedding.setValue_eq_of_ne]
@@ -416,10 +508,16 @@ lemma monsterData12_apply_row2 (hN : 2 ≤ N) {c₁ c₂ : Fin (N + 1)} (h : c�
   · rw [Function.Embedding.setValue_eq]
     exact h.symm
 
+/--
+@isnad1 id=mem.1h3v.s7.9b148359fdd0 from=translated src=- shape=be81ad13 vocab=dc5af906
+-/
 lemma row1_mem_monsterCells_monsterData12 (hN : 2 ≤ N) (c₁ c₂ : Fin (N + 1)) :
     (1, c₁) ∈ (monsterData12 hN c₁ c₂).monsterCells := by
   exact Set.mem_range_self (row1 hN)
 
+/--
+@isnad1 id=mem.2h3v.s7.eb6057c37d1b from=translated src=- shape=9bc5b1f9 vocab=8e694d47
+-/
 lemma row2_mem_monsterCells_monsterData12 (hN : 2 ≤ N) {c₁ c₂ : Fin (N + 1)} (h : c₁ ≠ c₂) :
     (⟨2, by lia⟩, c₂) ∈ (monsterData12 hN c₁ c₂).monsterCells := by
   convert! Set.mem_range_self (row2 hN)
@@ -434,6 +532,9 @@ def fn0 (N : ℕ) : Fin (2 * N + 2) → Cell N :=
     if h : (i : ℕ) < N + 2 then (1, ⟨(i : ℕ) - 1, by lia⟩) else
     (⟨i - N, by lia⟩, ⟨N, by lia⟩)
 
+/--
+@isnad1 id=injectiv.0h1v.s5.ca4e74f5e563 from=translated src=- shape=2580ae6a vocab=d5538a07
+-/
 lemma injective_fn0 (N : ℕ) : Function.Injective (fn0 N) := by
   intro ⟨a₁,_⟩ ⟨a₂, _⟩
   simp_rw [fn0]
@@ -512,6 +613,9 @@ def fn2OfEdge0 {r : Fin (N + 2)} (hr : (r : ℕ) ≤ N) : Fin (N + 2 * r - 1) �
     if h₂ : (i : ℕ) + 2 < 3 * (r : ℕ) then (r, ⟨3 * (r : ℕ) - 3 - (i : ℕ), by lia⟩) else
     (⟨i + 3 - 2 * r, by lia⟩, 0)
 
+/--
+@isnad1 id=eq.2h3v.s7.90ca50bab3f7 from=translated src=- shape=7d9b9b0f vocab=32d22ad4
+-/
 lemma fn2OfEdge0_apply_eq_fn1OfEdge0_apply_of_lt {r : Fin (N + 2)} (hr : (r : ℕ) ≤ N) {i : ℕ}
     (h : i + 2 < 2 * (r : ℕ)) : fn2OfEdge0 hr ⟨i, by lia⟩ = fn1OfEdge0 N ⟨i, by lia⟩ := by
   rw [fn1OfEdge0, fn2OfEdge0]
@@ -561,6 +665,9 @@ def winningStrategy (hN : 2 ≤ N) : Strategy N
   | 1 => fun r => path1 hN ((r 0).getD 0).2
   | _ + 2 => fun r => path2 hN ((r 0).getD 0).2 ((r 1).getD 0).1
 
+/--
+@isnad1 id=or.3h2v.s8.0b55dce461ea from=translated src=- shape=29be369e vocab=a114d5a3
+-/
 lemma path1_firstMonster_of_not_edge (hN : 2 ≤ N) {m : MonsterData N} (hc₁0 : m (row1 hN) ≠ 0)
     (hc₁N : (m (row1 hN) : ℕ) ≠ N) :
     (path1 hN (m (row1 hN))).firstMonster m = none ∨
@@ -588,6 +695,9 @@ lemma path1_firstMonster_of_not_edge (hN : 2 ≤ N) {m : MonsterData N} (hc₁0 
       EmbeddingLike.apply_eq_iff_eq, exists_eq_right, coe_coe_row1]
     lia
 
+/--
+@isnad1 id=or.3h3v.s8.0b1b936257f3 from=translated src=- shape=e503eb57 vocab=71133511
+-/
 lemma path2_firstMonster_of_not_edge (hN : 2 ≤ N) {m : MonsterData N} (hc₁0 : m (row1 hN) ≠ 0)
     (hc₁N : (m (row1 hN) : ℕ) ≠ N) (r : Fin (N + 2)) :
     (path2 hN (m (row1 hN)) r).firstMonster m = none ∨
@@ -614,6 +724,9 @@ lemma path2_firstMonster_of_not_edge (hN : 2 ≤ N) {m : MonsterData N} (hc₁0 
       EmbeddingLike.apply_eq_iff_eq, exists_eq_right, coe_coe_row1]
     lia
 
+/--
+@isnad1 id=eq.5h3v.s8.05afbdf0bfe3 from=translated src=- shape=737eb1e2 vocab=29299ee8
+-/
 lemma path2OfEdge0_firstMonster_eq_none_of_path1OfEdge0_firstMonster_eq_some (hN : 2 ≤ N)
     {x : Cell N} (hx2 : 2 ≤ (x.1 : ℕ)) (hxN : (x.1 : ℕ) ≤ N) {m : MonsterData N}
     (hc₁0 : m (row1 hN) = 0) (hx : (path1OfEdge0 hN).firstMonster m = some x) :

@@ -45,7 +45,9 @@ strictly between `0` and `1`. Multiplying by `|x − k| > 0` (note that `x ≠ k
 because `∛2` is irrational) yields the claim.
 -/
 
-/-- There is no rational number whose cube equals `2`. -/
+/-- There is no rational number whose cube equals `2`.
+@isnad1 id=ne.0h1v.s4.e6ff4bddba88 from=translated src=- shape=97ed45fc vocab=f613af4e
+-/
 lemma rat_cube_ne_two (q : ℚ) : q ^ 3 ≠ 2 := by
   intro hq
   have hdq : (q.den : ℚ) ≠ 0 := by exact_mod_cast q.den_nz
@@ -88,7 +90,9 @@ lemma rat_cube_ne_two (q : ℚ) : q ^ 3 ≠ 2 := by
   rw [q.reduced.gcd_eq_one] at hdvd
   norm_num at hdvd
 
-/-- A rational number is never equal to the real cube root of `2`. -/
+/-- A rational number is never equal to the real cube root of `2`.
+@isnad1 id=ne.1h2v.s5.555287a1d66a from=translated src=- shape=ed73e2db vocab=29437985
+-/
 lemma ratCast_ne_of_cube_eq_two {k : ℝ} (hk : k ^ 3 = 2) (q : ℚ) : (q : ℝ) ≠ k := by
   rintro rfl
   have h1 : ((q ^ 3 : ℚ) : ℝ) = 2 := by
@@ -97,22 +101,33 @@ lemma ratCast_ne_of_cube_eq_two {k : ℝ} (hk : k ^ 3 = 2) (q : ℚ) : (q : ℝ)
   exact rat_cube_ne_two q (by exact_mod_cast h1)
 
 /-- The key factorization, using `k³ = 2`:
-`(2x² + 2x + 2) − (x² + 2x + 2)k = (x − k)((2 − k)x + 2 − k²)`. -/
+`(2x² + 2x + 2) − (x² + 2x + 2)k = (x − k)((2 − k)x + 2 − k²)`.
+@isnad1 id=eq.1h2v.s8.0522f01b2246 from=translated src=- shape=7084bf06 vocab=3f072e55
+-/
 lemma cube_eq_two_factor {k x : ℝ} (hk : k ^ 3 = 2) :
     2 * x ^ 2 + 2 * x + 2 - (x ^ 2 + 2 * x + 2) * k =
       (x - k) * ((2 - k) * x + 2 - k ^ 2) := by
   linear_combination -hk
 
+/--
+@isnad1 id=lt.1h1v.s5.726c91cf0e94 from=translated src=- shape=f341dbf9 vocab=2b11fe84
+-/
 lemma one_lt_of_cube_eq_two {k : ℝ} (hk : k ^ 3 = 2) : 1 < k := by
   have h3 : Odd 3 := ⟨1, rfl⟩
   rw [← h3.pow_lt_pow, one_pow, hk]
   norm_num
 
+/--
+@isnad1 id=lt.1h1v.s5.7872dd5179c3 from=translated src=- shape=3f3ef9ab vocab=2b11fe84
+-/
 lemma lt_two_of_cube_eq_two {k : ℝ} (hk : k ^ 3 = 2) : k < 2 := by
   have h3 : Odd 3 := ⟨1, rfl⟩
   rw [← h3.pow_lt_pow, hk]
   norm_num
 
+/--
+@isnad1 id=lt.1h1v.s5.fe8e592d77e1 from=translated src=- shape=deee737b vocab=2b11fe84
+-/
 lemma sq_lt_two_of_cube_eq_two {k : ℝ} (hk : k ^ 3 = 2) : k ^ 2 < 2 := by
   have hk1 : 1 < k := one_lt_of_cube_eq_two hk
   have hkpos : 0 < k := zero_lt_one.trans hk1
@@ -124,7 +139,9 @@ lemma sq_lt_two_of_cube_eq_two {k : ℝ} (hk : k ^ 3 = 2) : k ^ 2 < 2 := by
   exact div_lt_self (by norm_num) hk1
 
 /-- With `(A, B, C, a, b, c) = (2, 2, 2, 1, 2, 2)`, the required inequality
-holds for every non-negative rational number `x`. -/
+holds for every non-negative rational number `x`.
+@isnad1 id=lt.2h2v.s7.81746b7f3f95 from=translated src=- shape=ef623a79 vocab=e521251a
+-/
 lemma main_inequality {k : ℝ} (hk : k ^ 3 = 2) (x : ℚ) (hx : 0 ≤ x) :
     |(2 * (x : ℝ) ^ 2 + 2 * (x : ℝ) + 2) / ((x : ℝ) ^ 2 + 2 * (x : ℝ) + 2) - k| <
       |(x : ℝ) - k| := by

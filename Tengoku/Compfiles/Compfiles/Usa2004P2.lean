@@ -35,7 +35,9 @@ namespace Usa2004P2
 variable {n : ℕ} {a : Fin n → ℤ} {S : Set ℤ}
 
 /-- Bézout's identity for finitely many integers: the gcd of the values of `a`
-on a finset `T` is an integer linear combination of them. -/
+on a finset `T` is an integer linear combination of them.
+@isnad1 id=ex.0h3v.s5.4a457192218a from=translated src=- shape=7d9a6cbf vocab=b785b78e
+-/
 lemma bezout (T : Finset (Fin n)) :
     ∃ c : Fin n → ℤ, ∑ i ∈ T, c i * a i = T.gcd a := by
   induction T using Finset.induction_on with
@@ -59,7 +61,9 @@ lemma bezout (T : Finset (Fin n)) :
     ring
 
 /-- From (b) with `i = j` we get `0 ∈ S`, and then (c) with `x = 0` shows that
-`S` is closed under negation. -/
+`S` is closed under negation.
+@isnad1 id=mem.3h2v.s6.5afed5ba6895 from=translated src=- shape=3fb43df7 vocab=a3d98923
+-/
 lemma neg_mem (h0 : (0 : ℤ) ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
     {s : ℤ} (hs : s ∈ S) : -s ∈ S := by
@@ -67,7 +71,9 @@ lemma neg_mem (h0 : (0 : ℤ) ∈ S)
   simpa using h
 
 /-- The key reformulation of condition (c): for `x, y ∈ S`, the membership of
-`x + y` and of `x - y` in `S` are equivalent. -/
+`x + y` and of `x - y` in `S` are equivalent.
+@isnad1 id=iff.4h3v.s6.2c4fc346a2b6 from=translated src=- shape=855ebf87 vocab=22bea690
+-/
 lemma add_mem_iff_sub_mem (h0 : (0 : ℤ) ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
     {x y : ℤ} (hx : x ∈ S) (hy : y ∈ S) : x + y ∈ S ↔ x - y ∈ S := by
@@ -76,7 +82,9 @@ lemma add_mem_iff_sub_mem (h0 : (0 : ℤ) ∈ S)
   have h2 := hcond x (-y) hx (neg_mem h0 hcond hy) h1
   rwa [sub_neg_eq_add] at h2
 
-/-- Any natural multiple of a generator lies in `S`. -/
+/-- Any natural multiple of a generator lies in `S`.
+@isnad1 id=mem.3h5v.s6.63e43cccde1a from=translated src=- shape=63842dad vocab=61429d4f
+-/
 lemma nat_mul_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
     (k : Fin n) (c : ℕ) : (c : ℤ) * a k ∈ S := by
@@ -95,7 +103,9 @@ lemma nat_mul_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
       exact ih.1
   exact (aux c).1
 
-/-- Any number of the form `c * a i - a j` with `c : ℕ` lies in `S`. -/
+/-- Any number of the form `c * a i - a j` with `c : ℕ` lies in `S`.
+@isnad1 id=mem.4h6v.s7.68a8a245f891 from=translated src=- shape=9a5794d9 vocab=61429d4f
+-/
 lemma sub_one_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
     (hdiff : ∀ i j, a i - a j ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
@@ -116,7 +126,9 @@ lemma sub_one_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
       exact ih.1
   exact (aux c).1
 
-/-- Any combination `c * a i + d * a j` with `c d : ℕ` lies in `S`. -/
+/-- Any combination `c * a i + d * a j` with `c d : ℕ` lies in `S`.
+@isnad1 id=mem.4h7v.s7.e298071dbcec from=translated src=- shape=ec9e1e3d vocab=61429d4f
+-/
 lemma nat_add_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
     (hdiff : ∀ i j, a i - a j ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
@@ -143,7 +155,9 @@ lemma nat_add_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
       exact ih.1
   exact (aux d).1
 
-/-- Any combination `c * a i - d * a j` with `c d : ℕ` lies in `S`. -/
+/-- Any combination `c * a i - d * a j` with `c d : ℕ` lies in `S`.
+@isnad1 id=mem.4h7v.s7.ba6599091780 from=translated src=- shape=4215ac08 vocab=61429d4f
+-/
 lemma nat_sub_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
     (hdiff : ∀ i j, a i - a j ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
@@ -170,7 +184,9 @@ lemma nat_sub_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
   exact (aux d).1
 
 /-- First lemma of the informal proof: any two-term integer linear combination
-`c * a i + d * a j` lies in `S`. -/
+`c * a i + d * a j` lies in `S`.
+@isnad1 id=mem.4h7v.s7.69790e9654da from=translated src=- shape=7f96c319 vocab=42f40437
+-/
 lemma two_term_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
     (hdiff : ∀ i j, a i - a j ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
@@ -199,7 +215,9 @@ lemma two_term_mem (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
 /-- Splitting step of the second lemma of the informal proof: if some
 coefficient `c p` is even, then `∑ i ∈ T, c i * a i` can be written as
 `x - y` with `x, y, x + y ∈ S`, where membership of `x` and `x + y` comes
-from the induction hypothesis on strictly smaller finsets. -/
+from the induction hypothesis on strictly smaller finsets.
+@isnad1 id=mem.9h7v.s8.9c60e041349d from=translated src=- shape=0e7b2725 vocab=acddfa8e
+-/
 lemma even_split (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
     (hdiff : ∀ i j, a i - a j ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)
@@ -253,7 +271,9 @@ the generators lies in `S`. Proved by strong induction on the finset `T`:
 vanishing coefficients are simply removed, an even coefficient allows the
 `even_split` step, and if all coefficients are odd one first perturbs two of
 them using `u * a q = v * a p` (where `u = a p / gcd a p a q`,
-`v = a q / gcd a p a q`) to manufacture an even coefficient. -/
+`v = a q / gcd a p a q`) to manufacture an even coefficient.
+@isnad1 id=mem.4h5v.s7.7d20c32a5335 from=translated src=- shape=7b28a496 vocab=2aeda071
+-/
 lemma all_linear_comb (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
     (hdiff : ∀ i j, a i - a j ∈ S)
     (hcond : ∀ x y : ℤ, x ∈ S → y ∈ S → x + y ∈ S → x - y ∈ S)

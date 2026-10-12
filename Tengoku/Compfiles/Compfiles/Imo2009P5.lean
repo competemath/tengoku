@@ -25,6 +25,9 @@ namespace Imo2009P5
 
 section extra_lemmas
 
+/--
+@isnad1 id=ex.0h2v.s4.2cc57e0891c2 from=translated src=- shape=83a76f8c vocab=6ff3cf84
+-/
 lemma exists_sup_fn_fin (f : ℕ → ℕ) (c : ℕ) : ∃ K : ℕ, ∀ n : ℕ, n < c → f n ≤ K := by
   use Finset.sup (Finset.range c) f
   intro n hn
@@ -46,7 +49,9 @@ private lemma succ_pnat_add_succ_pnat (m n : ℕ) :
 
 end extra_lemmas
 
-/-- Final solution, `nat` version -/
+/-- Final solution, `nat` version
+@isnad1 id=iff.0h1v.s6.e854f4262608 from=translated src=- shape=4a200245 vocab=086a35fc
+-/
 theorem final_solution_nat (f : ℕ → ℕ) :
   ((∀ x y : ℕ, f (y + f x) ≤ f y + x)
     ∧ (∀ x y : ℕ, x ≤ f y + f (y + f x))
@@ -106,7 +111,9 @@ theorem final_solution_nat (f : ℕ → ℕ) :
   replace x_ih := congr_arg f (x_ih _ (lt_of_le_of_lt h x.lt_succ_self))
   rwa [h0, h0] at x_ih
 
-/-- Final solution, `pnat` version -/
+/-- Final solution, `pnat` version
+@isnad1 id=iff.0h1v.s7.1212e9b711ca from=translated src=- shape=670f80f7 vocab=ce27a0ef
+-/
 theorem final_solution_pnat (f : ℕ+ → ℕ+) :
     ((∀ x y : ℕ+, f (y + f x - 1) < f y + x)
       ∧ (∀ x y : ℕ+, x < f y + f (y + f x - 1))

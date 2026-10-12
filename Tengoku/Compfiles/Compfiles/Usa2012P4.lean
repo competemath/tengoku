@@ -47,7 +47,9 @@ lemma eq_one_or_two_of_factorial_eq_self {x : ℕ} (hx : 0 < x) (h : x ! = x) :
   · exact Or.inr rfl
 
 /-- If `d ≥ 2` divides `(t ! : ℤ) - c` but does not divide `c`, then `t < d`,
-because `d ∣ t !` as soon as `t ≥ d`. -/
+because `d ∣ t !` as soon as `t ≥ d`.
+@isnad1 id=lt.3h3v.s5.1e0bd77f776e from=translated src=- shape=00c0b4c8 vocab=88a239e2
+-/
 lemma lt_of_dvd_factorial_sub {d t : ℕ} {c : ℤ} (h : (d : ℤ) ∣ (t ! : ℤ) - c)
     (hd : 2 ≤ d) (hdc : ¬(d : ℤ) ∣ c) : t < d := by
   by_contra htd
@@ -66,6 +68,9 @@ def iterFac : ℕ → ℕ
   | 0 => 3
   | r + 1 => (iterFac r)!
 
+/--
+@isnad1 id=le.0h1v.s4.be18035125d3 from=translated src=- shape=9a470a5e vocab=5e16611d
+-/
 lemma iterFac_ge (r : ℕ) : r + 3 ≤ iterFac r := by
   induction r with
   | zero => exact le_refl _
@@ -74,7 +79,9 @@ lemma iterFac_ge (r : ℕ) : r + 3 ≤ iterFac r := by
     show (r + 1) + 3 ≤ (iterFac r)!
     lia
 
-/-- Every iterated factorial of `3` is a fixed point of `f`, once `f 3 = 3`. -/
+/-- Every iterated factorial of `3` is a fixed point of `f`, once `f 3 = 3`.
+@isnad1 id=eq.2h2v.s5.df715ce42da6 from=translated src=- shape=8e1562c7 vocab=5e2fdcf6
+-/
 lemma f_iterFac {f : ℕ → ℕ} (hfact : ∀ n, 0 < n → f (n !) = (f n)!) (hf3 : f 3 = 3)
     (r : ℕ) : f (iterFac r) = iterFac r := by
   induction r with

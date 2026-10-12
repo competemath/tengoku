@@ -72,6 +72,9 @@ abbrev flip (n : ℕ) {c : ℝ} (l : labelling c) : labelling c := by
     apply_fun f at ne using (by intro _ _; grind : Function.Injective f)
     simpa [dist, f, sub_sq_comm] using hdist ne lbl
 
+/--
+@isnad1 id=lt.2h4v.s10.3f82c2722e23 from=translated src=- shape=be29f2d2 vocab=aec209f0
+-/
 lemma dist_lt {p : ℤ × ℤ} {l : ℤ × ℤ → ℕ} {n : ℕ} (hp : 2 * n + 1 ≤ l p) (a : (Finset.Icc (-2 ^ n : ℤ) (2 ^ n : ℤ) × Finset.Icc (-2 ^ n : ℤ) (2 ^ n : ℤ)))
   (ha : |a.1.val| < 2 ^ n ∨ |a.2.val| < 2 ^ n)
   : dist p (p + ((a.1 : ℤ), (a.2 : ℤ))) < √2 ^ l p := by
@@ -91,6 +94,9 @@ lemma dist_lt {p : ℤ × ℤ} {l : ℤ × ℤ → ℕ} {n : ℕ} (hp : 2 * n + 
     _ = √2 ^ (2 * n + 1) := by simp [← mul_two, ← pow_mul', ← pow_succ, Real.sqrt_eq_rpow, ← Real.rpow_pow_comm]
     _ ≤ √2 ^ l p := (pow_le_pow_iff_right₀ one_lt_sqrt_two).mpr hp
 
+/--
+@isnad1 id=lt.1h4v.s9.900b2afe5ab9 from=translated src=- shape=f61bc60b vocab=467384e6
+-/
 lemma dist_lt' {p : ℤ × ℤ} {l : ℤ × ℤ → ℕ} {n : ℕ} (hp : l p = 2 * (n + 1)) (a : (Finset.Icc (-2 ^ n : ℤ) (2 ^ n : ℤ) × Finset.Icc (-2 ^ n : ℤ) (2 ^ n : ℤ)))
   : dist p (p + ((a.1 : ℤ), (a.2 : ℤ))) < √2 ^ l p := by
   rw [dist]
@@ -105,6 +111,9 @@ lemma dist_lt' {p : ℤ × ℤ} {l : ℤ × ℤ → ℕ} {n : ℕ} (hp : l p = 2
     _ = √2 ^ (2 * n + 1) := by simp [← mul_two, ← pow_mul', ← pow_succ, Real.sqrt_eq_rpow, ← Real.rpow_pow_comm]
     _ < √2 ^ l p := pow_lt_pow_right₀ one_lt_sqrt_two (by linarith)
 
+/--
+@isnad1 id=le.1h2v.s4.7e2558446c7c from=translated src=- shape=bf193716 vocab=d6aca7f6
+-/
 lemma dist_ne {p₁ p₂ : ℤ × ℤ} (h : p₁ ≠ p₂) : 1 ≤ dist p₁ p₂ := by
   obtain ⟨x₁, y₁⟩ := p₁
   obtain ⟨x₂, y₂⟩ := p₂
@@ -119,6 +128,9 @@ lemma dist_ne {p₁ p₂ : ℤ × ℤ} (h : p₁ ≠ p₂) : 1 ≤ dist p₁ p�
     have : 1 ≤ |x₂ - x₁| ^ 2 := by refine one_le_pow₀ (by grind)
     nlinarith
 
+/--
+@isnad1 id=eq.0h4v.s6.1cc8b0c2e99e from=translated src=- shape=ed94de9e vocab=76c759e0
+-/
 lemma dist_scale {a b c d : ℤ} : dist (a * 2, b * 2) (c * 2, d * 2) = dist (a, b) (c, d) * 2 := by
   simp_rw [dist]
   norm_cast
@@ -127,6 +139,9 @@ lemma dist_scale {a b c d : ℤ} : dist (a * 2, b * 2) (c * 2, d * 2) = dist (a,
   rw [sqrt_mul (by nlinarith)]
   ring
 
+/--
+@isnad1 id=ne.3h4v.s10.95c79674fd92 from=translated src=- shape=4bf83410 vocab=d640edb0
+-/
 lemma exclusion {l : ℤ × ℤ → ℕ} (l_dist : ∀ {p1 p2}, p1 ≠ p2 → (l p1 = l p2) → √2 ^ (l p1) ≤ dist p1 p2)
   {n : ℕ} {a : (Finset.Icc (-2 ^ n : ℤ) (2 ^ n : ℤ) × Finset.Icc (-2 ^ n : ℤ) (2 ^ n : ℤ))} {p : ℤ × ℤ}
   (ha₂ : dist p (p + ((a.1 : ℤ), (a.2 : ℤ))) < √2 ^ l p) (ha₁ : a ≠ (⟨0, by simp⟩, ⟨0, by simp⟩))
@@ -141,6 +156,9 @@ lemma exclusion {l : ℤ × ℤ → ℕ} (l_dist : ∀ {p1 p2}, p1 ≠ p2 → (l
   · exact ha₁.1
   · exact ha₁.2
 
+/--
+@isnad1 id=ex.0h2v.s8.33081ae603bd from=translated src=- shape=bdef75a8 vocab=cba24461
+-/
 lemma square_squeeze' (n : ℕ) (l : labelling √2)
   : ∃ p : Finset.range (2 ^ n) × Finset.range (2 ^ n), 2 * n < l p := by
   induction n generalizing l with
@@ -293,6 +311,9 @@ def label : ℕ → ℤ × ℤ → ℕ
   else if Odd a ∧ Odd b then 2
   else 2 + label limit (a / 2, b / 2)
 
+/--
+@isnad1 id=le.0h2v.s5.a216ffc404b7 from=translated src=- shape=378f5566 vocab=92499520
+-/
 lemma label_max : label limit p ≤ 2 * limit + 1 := by
   induction limit generalizing p with
   | zero => simp [label]
@@ -300,33 +321,54 @@ lemma label_max : label limit p ≤ 2 * limit + 1 := by
     rw [label]
     grind
 
+/--
+@isnad1 id=finite.0h1v.s3.e049ad8dafcb from=translated src=- shape=cf1916d1 vocab=9fc0a44a
+-/
 lemma label_finite : (Set.range <| label limit).Finite := by
   simp_rw [Set.finite_iff_bddAbove, bddAbove_def, Set.mem_range]
   use 2 * limit + 1
   rintro _ ⟨p, rfl⟩
   exact label_max _ _
 
+/--
+@isnad1 id=lt.0h2v.s4.4be76f99fff0 from=translated src=- shape=5c861c0a vocab=aa5430dd
+-/
 lemma label_pos : 0 < label limit p := by
   induction limit
   · simp [label]
   · rw [label]
     lia
 
+/--
+@isnad1 id=or.0h2v.s6.11c7414a09c9 from=translated src=- shape=43b0c9de vocab=50cbcbce
+-/
 lemma label_cases : label (limit + 1) p = 1 ∨ label (limit + 1) p = 2 ∨ label (limit + 1) p = 2 + label limit (p.1 / 2, p.2 / 2) := by
   obtain ⟨a, b⟩ := p
   if h : Odd (a + b) then simp [h, label]
   else if h' : Odd a ∧ Odd b then grind [label]
   else simp [h, h', label]
 
+/--
+@isnad1 id=iff.0h2v.s5.bb57b72d8237 from=translated src=- shape=096cb6b6 vocab=6b7a4fd8
+-/
 lemma label_one_iff : label (limit + 1) p = 1 ↔ Odd (p.1 + p.2) := by
   grind [label]
 
+/--
+@isnad1 id=iff.0h2v.s5.1112d2f9783e from=translated src=- shape=567508e7 vocab=6b7a4fd8
+-/
 lemma label_two_iff : label (limit + 1) p = 2 ↔ Odd p.1 ∧ Odd p.2 := by
   grind [label, label_pos]
 
+/--
+@isnad1 id=iff.0h2v.s6.cbf19be4e169 from=translated src=- shape=01f710b2 vocab=1533db9e
+-/
 lemma label_more_iff : label (limit + 1) p = 2 + label limit (p.1 / 2, p.2 / 2) ↔ Even p.1 ∧ Even p.2 := by
   grind [label, label_pos]
 
+/--
+@isnad1 id=ex.1h2v.s6.e427853e5f93 from=translated src=- shape=8b0c1082 vocab=9b4ef065
+-/
 lemma label_max_exists_eq (h : label limit p = 2 * limit + 1) : ∃ a b : ℤ, p = (a * 2 ^ limit, b * 2 ^ limit) := by
   induction limit generalizing p with
   | zero => exact ⟨p.1, p.2, by simp⟩
@@ -334,6 +376,9 @@ lemma label_max_exists_eq (h : label limit p = 2 * limit + 1) : ∃ a b : ℤ, p
     have ⟨a, b, hab⟩ := ih (p.1 / 2, p.2 / 2) (by simp [label] at h; lia)
     refine ⟨a, b, by grind [label]⟩
 
+/--
+@isnad1 id=or.1h3v.s7.ae8b5bf2e5ce from=translated src=- shape=53bb629b vocab=82bb3a80
+-/
 lemma label_congr {limit : ℕ} {p₁ p₂ : ℤ × ℤ} (h : label (limit + 1) p₁ = label (limit + 1) p₂)
   : (Odd (p₁.1 + p₁.2) ∧ Odd (p₂.1 + p₂.2))
     ∨ (Odd p₁.1 ∧ Odd p₁.2 ∧ Odd p₂.1 ∧ Odd p₂.2)
@@ -341,6 +386,9 @@ lemma label_congr {limit : ℕ} {p₁ p₂ : ℤ × ℤ} (h : label (limit + 1) 
   grind [label, label_pos]
 
 -- For the normal case, following the bound of √2 ^ i < dist p₁ p₂
+/--
+@isnad1 id=le.3h3v.s6.d52375d2922f from=translated src=- shape=774a5e4a vocab=d73599e9
+-/
 lemma label_dist {p₁ p₂ : ℤ × ℤ} (h_ne : p₁ ≠ p₂) {limit : ℕ}
   (hp : label limit p₁ = label limit p₂)
   (hv : label limit p₁ ≠ 2 * limit + 1) : √2 ^ (label limit p₁) ≤ dist p₁ p₂ := by
@@ -401,6 +449,9 @@ lemma label_dist {p₁ p₂ : ℤ × ℤ} (h_ne : p₁ ≠ p₂) {limit : ℕ}
       grind [dist]
 
 -- For the last case, where all of the rest of the unfilled squares are marked with the same label
+/--
+@isnad1 id=le.3h3v.s6.a3e8e5798fd1 from=translated src=- shape=02143c92 vocab=d73599e9
+-/
 lemma label_dist_max {p₁ p₂ : ℤ × ℤ} (h : p₁ ≠ p₂) {limit : ℕ}
   (hp₁ : label limit p₁ = 2 * limit + 1) (hp₂ : label limit p₂ = 2 * limit + 1)
   : √2 ^ (2 * limit) ≤ dist p₁ p₂ := by

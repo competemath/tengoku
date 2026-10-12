@@ -24,6 +24,9 @@ namespace Algebraic.Cutwidth.Aggregate.Geometry.Entropy
 def SignedEdge.reverse {V : Type*} (e : SignedEdge V) : SignedEdge V :=
   ⟨e.right, e.left, e.distinct.symm, e.rightSign, e.leftSign⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.733180ed10f4 from=translated src=- shape=b5febc85 vocab=283bb2c1
+-/
 @[simp] theorem SignedEdge.eval_reverse {V : Type*} (e : SignedEdge V) :
     e.reverse.eval = e.eval := by
   funext x

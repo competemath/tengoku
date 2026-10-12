@@ -43,6 +43,9 @@ noncomputable def signatureOf (S : Fin 100 → Set ℤ) (z : ℤ) : Signature :=
   classical
   exact Finset.univ.filter (fun i ↦ z ∈ S i)
 
+/--
+@isnad1 id=eq.1h4v.s6.9cb507fdc43d from=translated src=- shape=5abc20f0 vocab=b92f0e99
+-/
 lemma ncard_preimage_eq_sum_fibers
     {α β : Type} [Fintype β]
     (g : α → β) (p : β → Prop) [DecidablePred p]
@@ -128,7 +131,9 @@ noncomputable def SignatureObjective (f : Signature → ℕ) : ℕ :=
 def canonicalHighCount (v : Signature) : ℕ :=
   if 50 ≤ v.card then 2 * v.card - 100 else 0
 
-/-- Count supersignatures of `u` with exactly `j` new indices. -/
+/-- Count supersignatures of `u` with exactly `j` new indices.
+@isnad1 id=eq.0h2v.s7.3d6b1c353d4a from=translated src=- shape=fa9db60f vocab=f8610317
+-/
 lemma superset_layer_card (u : Signature) (j : ℕ) :
     ((Finset.univ : Finset Signature).filter
         (fun v : Signature => u ⊆ v ∧ v.card = u.card + j)).card =
@@ -161,25 +166,40 @@ def supersetLayer (u : Signature) (j : ℕ) : Finset Signature :=
   (Finset.univ : Finset Signature).filter
     (fun v : Signature => u ⊆ v ∧ v.card = u.card + j)
 
+/--
+@isnad1 id=iff.0h3v.s5.67a32bea385e from=translated src=- shape=243a61c9 vocab=6ce2f174
+-/
 lemma mem_supersetLayer {u v : Signature} {j : ℕ} :
     v ∈ supersetLayer u j ↔ u ⊆ v ∧ v.card = u.card + j := by
   simp [supersetLayer]
 
+/--
+@isnad1 id=eq.0h2v.s5.0597ba8f7698 from=translated src=- shape=12d88da2 vocab=a3105387
+-/
 lemma supersetLayer_card (u : Signature) (j : ℕ) :
     (supersetLayer u j).card = (100 - u.card).choose j := by
   simpa [supersetLayer] using superset_layer_card u j
 
+/--
+@isnad1 id=eq.2h2v.s6.d2e63542c8d2 from=translated src=- shape=4c6cd9a2 vocab=10270ba1
+-/
 lemma canonicalHighCount_of_superset_high
     {u v : Signature} (hu : 50 ≤ u.card) (huv : u ⊆ v) :
     canonicalHighCount v = 2 * v.card - 100 := by
   have huv_card : u.card ≤ v.card := Finset.card_le_card huv
   simp [canonicalHighCount, le_trans hu huv_card]
 
+/--
+@isnad1 id=eq.3h3v.s6.f514231c1225 from=translated src=- shape=460e3740 vocab=e3ba5ca3
+-/
 lemma canonicalHighCount_grouped_summand
     {a m j : ℕ} (ham : a + m = 100) (_ha : 50 ≤ a) (_hj : j ≤ m) :
     2 * (a + j) - 100 = (a - m) + 2 * j := by
   lia
 
+/--
+@isnad1 id=eq.0h2v.s7.02c94438dc2f from=translated src=- shape=ec049bc5 vocab=cb47dfe0
+-/
 lemma sum_supersets_by_rank
     (u : Signature) (F : ℕ → ℕ) :
     (∑ v : Signature, if u ⊆ v then F v.card else 0) =
@@ -254,7 +274,9 @@ lemma sum_supersets_by_rank
             _ = F (u.card + j) * (100 - u.card).choose j := by
                 simp [Finset.sum_const, supersetLayer_card, Nat.mul_comm]
 
-/-- Group the high-count intersection sum by rank difference. -/
+/-- Group the high-count intersection sum by rank difference.
+@isnad1 id=eq.1h1v.s7.f375c2cc0c17 from=translated src=- shape=9baebd7d vocab=ab3e228f
+-/
 lemma SignatureIntersectionCount_canonicalHighCount_grouped
     (u : Signature) (hu : 50 ≤ u.card) :
     SignatureIntersectionCount canonicalHighCount u =
@@ -273,7 +295,9 @@ lemma SignatureIntersectionCount_canonicalHighCount_grouped
           (2 * (u.card + j) - 100) * (100 - u.card).choose j := by
           exact sum_supersets_by_rank u (fun r => 2 * r - 100)
 
-/-- The binomial identity after grouping by rank. -/
+/-- The binomial identity after grouping by rank.
+@isnad1 id=eq.2h2v.s6.e75d5b2a527a from=translated src=- shape=b57fd4a8 vocab=430e939f
+-/
 lemma canonicalHighCount_grouped_sum_eq {a m : ℕ}
     (ham : a + m = 100) (ha : 50 ≤ a) :
     (∑ j ∈ Finset.range (m + 1),
@@ -320,7 +344,9 @@ lemma canonicalHighCount_grouped_sum_eq {a m : ℕ}
                   = ((a - m) + m) * (2 * 2 ^ (m - 1)) := by ring
               _ = a * (2 * 2 ^ (m - 1)) := by rw [hsubadd]
 
-/-- Closed form for canonical high-rank intersections. -/
+/-- Closed form for canonical high-rank intersections.
+@isnad1 id=eq.1h1v.s6.3b1635eeb1e6 from=translated src=- shape=72a5e6ba vocab=64ae96eb
+-/
 lemma SignatureIntersectionCount_canonicalHighCount_closed_form
     (u : Signature) (hu : 50 ≤ u.card) :
     SignatureIntersectionCount canonicalHighCount u =
@@ -338,6 +364,9 @@ def pushDown (f : Signature → ℕ) (v : Signature) : Signature → ℕ :=
     else if w ⊆ v ∧ w.card + 1 = v.card then f w + 1
     else f w
 
+/--
+@isnad1 id=eq.1h2v.s8.64496e5a34aa from=translated src=- shape=2d09ed4b vocab=9216b0f5
+-/
 lemma immediate_supersets_count {u v : Signature} (huv : u ⊆ v) :
     (∑ w ∈ (Finset.univ : Finset Signature).erase v,
         if u ⊆ w ∧ w ⊆ v ∧ w.card + 1 = v.card then 1 else 0) =
@@ -388,6 +417,9 @@ lemma immediate_supersets_count {u v : Signature} (huv : u ⊆ v) :
     | zero => lia
     | succ n => simp [Nat.choose_succ_self_right]
 
+/--
+@isnad1 id=dvd.1h1v.s5.b2a85f2ac703 from=translated src=- shape=fd3c19e2 vocab=601caa62
+-/
 lemma canonicalHighCount_valid_on_high :
     ∀ u : Signature, 50 ≤ u.card →
       u.card ∣ SignatureIntersectionCount canonicalHighCount u := by
@@ -395,11 +427,17 @@ lemma canonicalHighCount_valid_on_high :
   rw [SignatureIntersectionCount_canonicalHighCount_closed_form u hu]
   exact dvd_mul_right u.card (2 ^ (100 - u.card))
 
+/--
+@isnad1 id=eq.0h1v.s6.fe0dfe5caa22 from=translated src=- shape=c60c246e vocab=1be204ed
+-/
 lemma sum_signatures_by_card (F : ℕ → ℕ) :
     (∑ v : Signature, F v.card) =
       ∑ r ∈ Finset.range 101, F r * Nat.choose 100 r := by
   simpa using (sum_supersets_by_rank (∅ : Signature) F)
 
+/--
+@isnad1 id=eq.0h0v.s7.de1d92e3bfd0 from=translated src=- shape=fc64e42e vocab=707b1c08
+-/
 lemma high_rank_objective_sum_eq_tail :
     (∑ r ∈ Finset.range 101,
         (if 50 ≤ r then 2 * r - 100 else 0) * Nat.choose 100 r) =
@@ -420,6 +458,9 @@ lemma high_rank_objective_sum_eq_tail :
   intro j _hj
   simp [F]
 
+/--
+@isnad1 id=eq.2h1v.s6.66d2fcc5b431 from=translated src=- shape=719c0a0d vocab=7109de4b
+-/
 lemma high_rank_objective_summand_int {r : ℕ}
     (hr50 : 50 ≤ r) (hr100 : r ≤ 100) :
     (((2 * r - 100) * Nat.choose 100 r : ℕ) : ℤ) =
@@ -450,6 +491,9 @@ lemma high_rank_objective_summand_int {r : ℕ}
           rw [← hmul_left, ← hmul_right]
           ring
 
+/--
+@isnad1 id=eq.0h1v.s7.bff7f3784bb1 from=translated src=- shape=0c6d18f1 vocab=b4b97c93
+-/
 lemma high_rank_choose_telescope_int (n : ℕ) :
     (∑ j ∈ Finset.range (n + 1),
         (100 : ℤ) * ((Nat.choose 99 (49 + j) : ℤ) - Nat.choose 99 (50 + j))) =
@@ -462,6 +506,9 @@ lemma high_rank_choose_telescope_int (n : ℕ) :
       rw [ih]
       ring_nf
 
+/--
+@isnad1 id=eq.0h0v.s6.3668d9af490b from=translated src=- shape=ed766821 vocab=9b44d8e3
+-/
 lemma high_rank_weighted_choose_sum :
     (∑ j ∈ Finset.range 51,
         (2 * (50 + j) - 100) * Nat.choose 100 (50 + j)) =
@@ -496,6 +543,9 @@ lemma high_rank_weighted_choose_sum :
               exact_mod_cast hboundary.trans (Nat.mul_comm (Nat.choose 100 50) 50)
   exact Nat.cast_inj.mp hcast
 
+/--
+@isnad1 id=eq.0h0v.s6.cdaad09efd2b from=translated src=- shape=3fa059f9 vocab=c96a93be
+-/
 lemma canonicalHighCount_objective_rank_sum :
     (∑ r ∈ Finset.range 101,
         (if 50 ≤ r then 2 * r - 100 else 0) * Nat.choose 100 r) =
@@ -503,6 +553,9 @@ lemma canonicalHighCount_objective_rank_sum :
   rw [high_rank_objective_sum_eq_tail, solution]
   exact high_rank_weighted_choose_sum
 
+/--
+@isnad1 id=eq.0h0v.s2.57ee07d6753e from=translated src=- shape=4b736592 vocab=a7a7c2fa
+-/
 lemma canonicalHighCount_objective :
     SignatureObjective canonicalHighCount = solution := by
   rw [SignatureObjective]
@@ -519,6 +572,9 @@ lemma canonicalHighCount_objective :
           exact sum_signatures_by_card (fun r => if 50 ≤ r then 2 * r - 100 else 0)
     _ = solution := canonicalHighCount_objective_rank_sum
 
+/--
+@isnad1 id=signatur.2h2v.s4.690eed8de6e5 from=translated src=- shape=fab39b20 vocab=3d3fd5fd
+-/
 lemma pushDown_preserves_condition {f : Signature → ℕ} {v : Signature}
     (hfv : v.card ≤ f v) (hf : SignatureCountCondition f) :
     SignatureCountCondition (pushDown f v) := by
@@ -591,6 +647,9 @@ lemma pushDown_preserves_condition {f : Signature → ℕ} {v : Signature}
     rw [hchange]
     exact hf u hu
 
+/--
+@isnad1 id=eq.2h2v.s5.4ac0eb2dd9fa from=translated src=- shape=ef4cff87 vocab=ff9353e2
+-/
 lemma pushDown_preserves_objective_of_large {f : Signature → ℕ} {v : Signature}
     (hv : 50 < v.card) (hfv : v.card ≤ f v) :
     SignatureObjective (pushDown f v) = SignatureObjective f := by
@@ -690,6 +749,9 @@ lemma pushDown_preserves_objective_of_large {f : Signature → ℕ} {v : Signatu
             (fun w ↦ if 50 ≤ w.card then f w else 0)
             (Finset.mem_univ v)
 
+/--
+@isnad1 id=eq.2h2v.s5.53850c07273f from=translated src=- shape=9079293f vocab=3aeb3c7a
+-/
 lemma pushDown_decreases_objective_at_middle {f : Signature → ℕ} {v : Signature}
     (hv : v.card = 50) (hfv : v.card ≤ f v) :
     SignatureObjective (pushDown f v) + 50 = SignatureObjective f := by
@@ -755,7 +817,9 @@ noncomputable def fillRank (k : ℕ) (f : Signature → ℕ) : Signature → ℕ
       (v.card - s % v.card) % v.card
     else f v
 
-/-- The chosen residue makes `residue + s` divisible by `d`. -/
+/-- The chosen residue makes `residue + s` divisible by `d`.
+@isnad1 id=dvd.1h2v.s5.143973a4e37a from=translated src=- shape=cb215fe9 vocab=55edff43
+-/
 lemma dvd_complement_mod_add {d s : ℕ} (hd : 0 < d) :
     d ∣ ((d - s % d) % d) + s := by
   let r := s % d
@@ -775,6 +839,9 @@ lemma dvd_complement_mod_add {d s : ℕ} (hd : 0 < d) :
         rw [Nat.sub_add_cancel (le_of_lt hrlt)]
         ring
 
+/--
+@isnad1 id=eq.1h3v.s6.d2b72d31ea4b from=translated src=- shape=16bcc16f vocab=f4af06d0
+-/
 lemma fillRank_eq_of_card {k : ℕ} {f : Signature → ℕ} {v : Signature}
     (hv : v.card = k) :
     fillRank k f v =
@@ -782,28 +849,46 @@ lemma fillRank_eq_of_card {k : ℕ} {f : Signature → ℕ} {v : Signature}
       (v.card - s % v.card) % v.card := by
   simp [fillRank, hv]
 
+/--
+@isnad1 id=eq.1h3v.s4.0f1f68796c32 from=translated src=- shape=756d186e vocab=950f65b4
+-/
 lemma fillRank_eq_self_of_card_ne {k : ℕ} {f : Signature → ℕ} {v : Signature}
     (hv : v.card ≠ k) : fillRank k f v = f v := by
   simp [fillRank, hv]
 
+/--
+@isnad1 id=eq.1h3v.s4.ca61057b7758 from=translated src=- shape=2ead2059 vocab=91fc01f1
+-/
 lemma fillRank_eq_self_of_card_gt {k : ℕ} {f : Signature → ℕ} {v : Signature}
     (hv : k < v.card) : fillRank k f v = f v := by
   exact fillRank_eq_self_of_card_ne (by lia)
 
+/--
+@isnad1 id=eq.1h3v.s4.aa3020f6e6a8 from=translated src=- shape=756d186e vocab=91fc01f1
+-/
 lemma fillRank_eq_self_of_card_lt {k : ℕ} {f : Signature → ℕ} {v : Signature}
     (hv : v.card < k) : fillRank k f v = f v := by
   exact fillRank_eq_self_of_card_ne (by lia)
 
+/--
+@isnad1 id=eq.2h3v.s5.56aa1d5ad7a0 from=translated src=- shape=aab26eb2 vocab=1c5b4d23
+-/
 lemma fillRank_eq_self_of_high {k : ℕ} {f : Signature → ℕ} {v : Signature}
     (hk : k < 50) (hv : 50 ≤ v.card) : fillRank k f v = f v := by
   exact fillRank_eq_self_of_card_gt (by lia)
 
+/--
+@isnad1 id=eq.2h4v.s5.577f2b064c4c from=translated src=- shape=faacb213 vocab=1c5b4d23
+-/
 lemma fillRank_eq_self_on_supersets_of_card_lt {k : ℕ} {f : Signature → ℕ}
     {u w : Signature} (hu : k < u.card) (huw : u ⊆ w) :
     fillRank k f w = f w := by
   apply fillRank_eq_self_of_card_gt
   exact lt_of_lt_of_le hu (Finset.card_le_card huw)
 
+/--
+@isnad1 id=eq.1h3v.s5.149ee4c8404b from=translated src=- shape=a94c6416 vocab=0910c20c
+-/
 lemma strictSupersetContribution_congr {f g : Signature → ℕ} {u : Signature}
     (h : ∀ w : Signature, u ⊂ w → f w = g w) :
     strictSupersetContribution f u = strictSupersetContribution g u := by
@@ -814,7 +899,9 @@ lemma strictSupersetContribution_congr {f g : Signature → ℕ} {u : Signature}
   · simp [huw, h w huw]
   · simp [huw]
 
-/-- Canonical strict supersets give the canonical strict contribution. -/
+/-- Canonical strict supersets give the canonical strict contribution.
+@isnad1 id=eq.1h2v.s5.c25d1499d251 from=translated src=- shape=63b9292f vocab=3df02db8
+-/
 lemma strictSupersetContribution_eq_canonical_of_strict
     {f : Signature → ℕ} {u : Signature}
     (hstrict : ∀ w : Signature, u ⊂ w → f w = canonicalHighCount w) :
@@ -822,7 +909,9 @@ lemma strictSupersetContribution_eq_canonical_of_strict
       strictSupersetContribution canonicalHighCount u := by
   exact strictSupersetContribution_congr hstrict
 
-/-- Split an intersection count into exact and strict-superset terms. -/
+/-- Split an intersection count into exact and strict-superset terms.
+@isnad1 id=eq.0h2v.s4.684b0de8ee2e from=translated src=- shape=5a336bed vocab=c0b69d12
+-/
 lemma SignatureIntersectionCount_eq_self_add_strict
     (f : Signature → ℕ) (u : Signature) :
     SignatureIntersectionCount f u = f u + strictSupersetContribution f u := by
@@ -859,7 +948,9 @@ lemma SignatureIntersectionCount_eq_self_add_strict
     _ = f u + strictSupersetContribution f u := by
           rw [hstrict_erase]
 
-/-- Divisibility after adding the same tail gives a congruence. -/
+/-- Divisibility after adding the same tail gives a congruence.
+@isnad1 id=modeq.2h4v.s5.bf1e0a760a0c from=translated src=- shape=1c783230 vocab=bfa7efda
+-/
 lemma modEq_self_of_split_divisibilities {d a b T : ℕ}
     (ha : d ∣ a + T) (hb : d ∣ b + T) :
     a ≡ b [MOD d] := by
@@ -867,7 +958,9 @@ lemma modEq_self_of_split_divisibilities {d a b T : ℕ}
   have hb0 : b + T ≡ 0 [MOD d] := Nat.modEq_zero_iff_dvd.mpr hb
   exact Nat.ModEq.add_right_cancel' T (ha0.trans hb0.symm)
 
-/-- A small representative is a lower bound for congruent naturals. -/
+/-- A small representative is a lower bound for congruent naturals.
+@isnad1 id=le.2h3v.s4.2148afbbfa4a from=translated src=- shape=985c137b vocab=b6e0e5a7
+-/
 lemma le_of_modEq_of_lt_modulus {d a b : ℕ}
     (hb : b < d) (hmod : a ≡ b [MOD d]) :
     b ≤ a := by
@@ -878,6 +971,9 @@ lemma le_of_modEq_of_lt_modulus {d a b : ℕ}
     b = a % d := hamod.symm
     _ ≤ a := Nat.mod_le a d
 
+/--
+@isnad1 id=eq.1h3v.s4.678de7c48b6f from=translated src=- shape=5dccea8d vocab=5f05e717
+-/
 lemma SignatureIntersectionCount_fillRank_of_card_gt {k : ℕ} {f : Signature → ℕ}
     {u : Signature} (hu : k < u.card) :
     SignatureIntersectionCount (fillRank k f) u = SignatureIntersectionCount f u := by
@@ -888,13 +984,18 @@ lemma SignatureIntersectionCount_fillRank_of_card_gt {k : ℕ} {f : Signature �
   · rw [ite_eq_left huw, ite_eq_left huw, fillRank_eq_self_on_supersets_of_card_lt hu huw]
   · simp [huw]
 
+/--
+@isnad1 id=dvd.2h3v.s5.aa1e9fe12b37 from=translated src=- shape=56e58e9d vocab=a8c3b3e7
+-/
 lemma fillRank_self_add_strictSupersetContribution_dvd {k : ℕ} {f : Signature → ℕ}
     {u : Signature} (hu : u.card = k) (hupos : 0 < u.card) :
     u.card ∣ fillRank k f u + strictSupersetContribution f u := by
   rw [fillRank_eq_of_card hu]
   exact dvd_complement_mod_add hupos
 
-/-- Filling rank `k` makes rank `k` valid. -/
+/-- Filling rank `k` makes rank `k` valid.
+@isnad1 id=dvd.2h3v.s5.a066ed5baaca from=translated src=- shape=030f7cc7 vocab=e482f20d
+-/
 lemma fillRank_satisfies_rank {k : ℕ} {f : Signature → ℕ} {u : Signature}
     (hu : u.card = k) (hupos : 0 < u.card) :
     u.card ∣ SignatureIntersectionCount (fillRank k f) u := by
@@ -910,7 +1011,9 @@ lemma fillRank_satisfies_rank {k : ℕ} {f : Signature → ℕ} {u : Signature}
   rw [hcongr]
   exact fillRank_self_add_strictSupersetContribution_dvd hu hupos
 
-/-- Filling rank `k` preserves completed higher ranks. -/
+/-- Filling rank `k` preserves completed higher ranks.
+@isnad1 id=dvd.3h3v.s6.263de4e7f088 from=translated src=- shape=a137e153 vocab=0cde9f09
+-/
 lemma fillRank_preserves_completed_ranks {k : ℕ} {f : Signature → ℕ}
     (hf : ∀ u : Signature, u.Nonempty → k < u.card →
       u.card ∣ SignatureIntersectionCount f u) :
@@ -920,7 +1023,9 @@ lemma fillRank_preserves_completed_ranks {k : ℕ} {f : Signature → ℕ}
   rw [SignatureIntersectionCount_fillRank_of_card_gt hku]
   exact hf u hu hku
 
-/-- After filling rank `k`, all ranks at least `k` are valid. -/
+/-- After filling rank `k`, all ranks at least `k` are valid.
+@isnad1 id=dvd.3h3v.s6.805478450fa4 from=translated src=- shape=f0e96a2f vocab=b9a94623
+-/
 lemma fillRank_extends_completed_ranks {k : ℕ} {f : Signature → ℕ}
     (hf : ∀ u : Signature, u.Nonempty → k < u.card →
       u.card ∣ SignatureIntersectionCount f u) :
@@ -933,7 +1038,9 @@ lemma fillRank_extends_completed_ranks {k : ℕ} {f : Signature → ℕ}
     · exact hu
     · lia
 
-/-- Low-rank filling does not change the high-rank objective. -/
+/-- Low-rank filling does not change the high-rank objective.
+@isnad1 id=eq.1h2v.s4.e0445699efd4 from=translated src=- shape=ae1f713d vocab=cfd9cb26
+-/
 lemma SignatureObjective_fillRank_of_low {k : ℕ} {f : Signature → ℕ}
     (hk : k < 50) :
     SignatureObjective (fillRank k f) = SignatureObjective f := by
@@ -948,6 +1055,9 @@ noncomputable def lowerFill : ℕ → Signature → ℕ
   | 0 => canonicalHighCount
   | n + 1 => fillRank (49 - n) (lowerFill n)
 
+/--
+@isnad1 id=dvd.3h2v.s5.333d71f8422d from=translated src=- shape=8f78792a vocab=fa5b1a0d
+-/
 lemma lowerFill_valid
     (n : ℕ) (hn : n ≤ 49) :
     ∀ u : Signature, u.Nonempty → 50 - n ≤ u.card →
@@ -969,6 +1079,9 @@ lemma lowerFill_valid
       · exact hu
       · lia
 
+/--
+@isnad1 id=eq.1h2v.s4.e9df1e32010f from=translated src=- shape=021f0474 vocab=be357081
+-/
 lemma lowerFill_preserves_high
     (n : ℕ) :
     ∀ v : Signature, 50 ≤ v.card →
@@ -982,6 +1095,9 @@ lemma lowerFill_preserves_high
       change fillRank (49 - n) (lowerFill n) v = canonicalHighCount v
       rw [fillRank_eq_self_of_high (by lia) hv, ih v hv]
 
+/--
+@isnad1 id=eq.0h1v.s3.5fbbf6bffc71 from=translated src=- shape=e931ec26 vocab=388fb94d
+-/
 lemma lowerFill_objective
     (n : ℕ) :
     SignatureObjective (lowerFill n) =
@@ -994,7 +1110,9 @@ lemma lowerFill_objective
         SignatureObjective canonicalHighCount
       rw [SignatureObjective_fillRank_of_low (by lia), ih]
 
-/-- Fill ranks `49, ..., 1`. -/
+/-- Fill ranks `49, ..., 1`.
+@isnad1 id=ex.0h0v.s6.d520df9f2673 from=translated src=- shape=007c854a vocab=6ba030fd
+-/
 lemma lower_rank_filling_exists :
     ∃ f : Signature → ℕ,
       (∀ u : Signature, u.Nonempty →
@@ -1009,7 +1127,9 @@ lemma lower_rank_filling_exists :
   · exact lowerFill_preserves_high 49
   · exact lowerFill_objective 49
 
-/-- Construct a valid signature count model extending the canonical high ranks. -/
+/-- Construct a valid signature count model extending the canonical high ranks.
+@isnad1 id=ex.0h0v.s5.df6907366118 from=translated src=- shape=79c4341f vocab=8ab26940
+-/
 lemma extend_canonical_high_counts :
     ∃ f : Signature → ℕ,
       SignatureCountCondition f ∧
@@ -1041,11 +1161,17 @@ noncomputable def realizedFamily (f : Signature → ℕ)
   Set.range fun x : {x : RealizedPoint f // i ∈ x.fst} =>
     encodePoint f x.1
 
+/--
+@isnad1 id=finite.0h2v.s4.ed9a2ad3fa0d from=translated src=- shape=186d4b22 vocab=8ca432fb
+-/
 lemma realizedFamily_finite (f : Signature → ℕ) (i : Fin 100) :
     (realizedFamily f i).Finite := by
   exact Set.finite_range fun x : {x : RealizedPoint f // i ∈ x.fst} =>
     encodePoint f x.1
 
+/--
+@isnad1 id=iff.0h3v.s6.5446498cd5e8 from=translated src=- shape=e3172829 vocab=7a22933c
+-/
 lemma mem_realizedFamily_iff
     {f : Signature → ℕ} {i : Fin 100} {x : RealizedPoint f} :
     encodePoint f x ∈ realizedFamily f i ↔ i ∈ x.fst := by
@@ -1057,6 +1183,9 @@ lemma mem_realizedFamily_iff
   · intro hi
     exact ⟨⟨x, hi⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.f73ce76b3b87 from=translated src=- shape=2b29ff12 vocab=3c5e9489
+-/
 lemma realizedPoint_subtype_card
     (f : Signature → ℕ) (p : Signature → Prop) [DecidablePred p] :
     Nat.card {x : RealizedPoint f // p x.fst} =
@@ -1080,6 +1209,9 @@ lemma realizedPoint_subtype_card
           intro v
           simp
 
+/--
+@isnad1 id=eq.1h2v.s7.8162f8c3aa29 from=translated src=- shape=78e97f50 vocab=5781a733
+-/
 lemma realized_intersection_eq
     {f : Signature → ℕ} (u : Signature) (hu : u.Nonempty) :
     (⋂ i ∈ u, realizedFamily f i) =
@@ -1104,6 +1236,9 @@ lemma realized_intersection_eq
     exact Set.mem_iInter₂.mpr fun i hi =>
       (mem_realizedFamily_iff (x := x.1)).mpr (x.2 hi)
 
+/--
+@isnad1 id=eq.1h2v.s6.abc75b34f690 from=translated src=- shape=feeb920b vocab=9b7ca278
+-/
 lemma realized_intersection_ncard
     {f : Signature → ℕ} (u : Signature) (hu : u.Nonempty) :
     (⋂ i ∈ u, realizedFamily f i).ncard =
@@ -1114,6 +1249,9 @@ lemma realized_intersection_ncard
   · intro x y hxy
     exact Subtype.ext ((encodePoint f).injective hxy)
 
+/--
+@isnad1 id=eq.0h2v.s6.d9ed82337b8c from=translated src=- shape=02a0c5c8 vocab=e7b58b7b
+-/
 lemma realized_membership_ncard
     {f : Signature → ℕ} (x : RealizedPoint f) :
     {i : Fin 100 | encodePoint f x ∈ realizedFamily f i}.ncard = x.fst.card := by
@@ -1127,6 +1265,9 @@ lemma realized_membership_ncard
     exact mem_realizedFamily_iff
   rw [htoFinset]
 
+/--
+@isnad1 id=eq.0h1v.s4.ec8c7483399f from=translated src=- shape=5f0715d7 vocab=2543342d
+-/
 lemma realized_objective_ncard
     {f : Signature → ℕ} :
     {z : ℤ | InAtLeastKSubsets (realizedFamily f) 50 z}.ncard =
@@ -1163,7 +1304,9 @@ lemma realized_objective_ncard
   · intro x y hxy
     exact Subtype.ext ((encodePoint f).injective hxy)
 
-/-- Realize finite signature counts by finite integer sets. -/
+/-- Realize finite signature counts by finite integer sets.
+@isnad1 id=ex.2h1v.s5.be52ac8d281f from=translated src=- shape=3bd95149 vocab=95a83c49
+-/
 lemma realize_signature_counts
     {f : Signature → ℕ}
     (hf : SignatureCountCondition f) (htop : 0 < f topSignature) :
@@ -1188,6 +1331,9 @@ lemma realize_signature_counts
 noncomputable def signatureCount (S : Fin 100 → Set ℤ) (v : Signature) : ℕ := by
   exact if v.Nonempty then {z : ℤ | signatureOf S z = v}.ncard else 0
 
+/--
+@isnad1 id=signatur.1h1v.s4.8bee5a7f1540 from=translated src=- shape=0051039e vocab=37c18212
+-/
 lemma signatureCount_condition_of_good (S : Fin 100 → Set ℤ) (hS : Good S) :
     SignatureCountCondition (signatureCount S) := by
   -- Partition the intersection by exact signatures.
@@ -1230,6 +1376,9 @@ lemma signatureCount_condition_of_good (S : Fin 100 → Set ℤ) (hS : Good S) :
             simp [huv, signatureCount, hvnonempty]
           · simp [huv]
 
+/--
+@isnad1 id=lt.1h1v.s4.55251aa94346 from=translated src=- shape=34276250 vocab=5ee418a5
+-/
 lemma signatureCount_top_pos_of_good (S : Fin 100 → Set ℤ) (hS : Good S) :
     0 < signatureCount S topSignature := by
   have htop : topSignature.Nonempty := by
@@ -1256,6 +1405,9 @@ lemma signatureCount_top_pos_of_good (S : Fin 100 → Set ℤ) (hS : Good S) :
     exact (Set.ncard_pos hfiber_finite).mpr hfiber_nonempty
   simpa [signatureCount, htop] using hpos
 
+/--
+@isnad1 id=eq.1h1v.s5.a5363c531564 from=translated src=- shape=07f82d18 vocab=87921c4d
+-/
 lemma signatureObjective_eq_original_objective
     (S : Fin 100 → Set ℤ) (hS : Good S) :
     SignatureObjective (signatureCount S) =
@@ -1306,9 +1458,15 @@ lemma signatureObjective_eq_original_objective
             (fun v : Signature => 50 ≤ v.card) hobj_finite).symm
     _ = {z : ℤ | InAtLeastKSubsets S 50 z}.ncard := by rw [hobj_set]
 
+/--
+@isnad1 id=eq.0h0v.s3.c39953bd5bf2 from=translated src=- shape=415057c6 vocab=2f194785
+-/
 lemma topSignature_card : topSignature.card = 100 := by
   simp [topSignature]
 
+/--
+@isnad1 id=nonempty.0h0v.s3.1ff237c31900 from=translated src=- shape=06f63001 vocab=08cc456d
+-/
 lemma topSignature_nonempty : topSignature.Nonempty := by
   exact ⟨0, by simp [topSignature]⟩
 
@@ -1317,6 +1475,9 @@ lemma eq_topSignature_of_card_eq_100 {v : Signature} (hv : v.card = 100) :
   apply Finset.eq_univ_of_card
   simp [hv]
 
+/--
+@isnad1 id=lt.1h1v.s4.8cafb0df0d48 from=translated src=- shape=e21d831b vocab=b9b66983
+-/
 lemma card_lt_100_of_ne_topSignature {v : Signature} (hvt : v ≠ topSignature) :
     v.card < 100 := by
   have hle : v.card ≤ 100 := by
@@ -1326,9 +1487,15 @@ lemma card_lt_100_of_ne_topSignature {v : Signature} (hvt : v ≠ topSignature) 
   have hv : v.card = 100 := by lia
   exact hvt (eq_topSignature_of_card_eq_100 hv)
 
+/--
+@isnad1 id=eq.0h0v.s3.3405414c19da from=translated src=- shape=b0ae1d2b vocab=ecab71da
+-/
 lemma canonicalHighCount_top : canonicalHighCount topSignature = 100 := by
   simp [canonicalHighCount, topSignature]
 
+/--
+@isnad1 id=lt.2h1v.s5.1e07854a9d3c from=translated src=- shape=c6f38718 vocab=a8b3db12
+-/
 lemma canonicalHighCount_lt_card_of_high_ne_top {v : Signature}
     (hv : 50 ≤ v.card) (hvt : v ≠ topSignature) :
     canonicalHighCount v < v.card := by
@@ -1336,6 +1503,9 @@ lemma canonicalHighCount_lt_card_of_high_ne_top {v : Signature}
   simp [canonicalHighCount, hv]
   lia
 
+/--
+@isnad1 id=le.1h1v.s5.da9c2b20d6c9 from=translated src=- shape=0fbec12f vocab=3ca05500
+-/
 lemma canonicalHighCount_le_card_of_high {v : Signature} (hv : 50 ≤ v.card) :
     canonicalHighCount v ≤ v.card := by
   by_cases htop : v = topSignature
@@ -1343,6 +1513,9 @@ lemma canonicalHighCount_le_card_of_high {v : Signature} (hv : 50 ≤ v.card) :
     simp [canonicalHighCount, topSignature]
   · exact le_of_lt (canonicalHighCount_lt_card_of_high_ne_top hv htop)
 
+/--
+@isnad1 id=eq.0h3v.s5.8c8c47132a1c from=translated src=- shape=90de5545 vocab=435397f5
+-/
 lemma iterate_pushDown_self (f : Signature → ℕ) (v : Signature) (n : ℕ) :
     (Nat.iterate (fun g : Signature → ℕ => pushDown g v) n f) v =
       f v - n * v.card := by
@@ -1357,6 +1530,9 @@ lemma iterate_pushDown_self (f : Signature → ℕ) (v : Signature) (n : ℕ) :
       congr 1
       ring
 
+/--
+@isnad1 id=signatur.2h3v.s5.2fe2026dfa19 from=translated src=- shape=8d601add vocab=d2675271
+-/
 lemma iterate_pushDown_condition {f : Signature → ℕ} {v : Signature} (n : ℕ)
     (hsteps : n * v.card ≤ f v) (hf : SignatureCountCondition f) :
     SignatureCountCondition
@@ -1376,6 +1552,9 @@ lemma iterate_pushDown_condition {f : Signature → ℕ} {v : Signature} (n : �
           Nat.mul_le_mul_right v.card (Nat.le_succ n)
         lia
 
+/--
+@isnad1 id=le.2h3v.s6.838eead4f9fb from=translated src=- shape=c6321176 vocab=c4fc1a08
+-/
 lemma iterate_pushDown_objective_le {f : Signature → ℕ} {v : Signature} (n : ℕ)
     (hv : 50 ≤ v.card) (hsteps : n * v.card ≤ f v) :
     SignatureObjective
@@ -1409,6 +1588,9 @@ lemma iterate_pushDown_objective_le {f : Signature → ℕ} {v : Signature} (n :
           lia
         exact le_trans hle_step (ih hprev)
 
+/--
+@isnad1 id=other.4h2v.s6.d9decd39e602 from=translated src=- shape=fae7bd48 vocab=46754fef
+-/
 lemma pushDown_to_canonical_count {f : Signature → ℕ} {v : Signature}
     (hf : SignatureCountCondition f) (hv : 50 ≤ v.card)
     (hcan_le : canonicalHighCount v ≤ f v)
@@ -1431,16 +1613,25 @@ lemma pushDown_to_canonical_count {f : Signature → ℕ} {v : Signature}
 def rankSignatures (k : ℕ) : Finset Signature :=
   (Finset.univ : Finset Signature).filter fun v : Signature => v.card = k
 
+/--
+@isnad1 id=iff.0h2v.s4.a132c62d68dc from=translated src=- shape=da9b9e0a vocab=2c98c810
+-/
 lemma mem_rankSignatures {k : ℕ} {v : Signature} :
     v ∈ rankSignatures k ↔ v.card = k := by
   simp [rankSignatures]
 
+/--
+@isnad1 id=eq.2h3v.s6.0217015f1b3b from=translated src=- shape=c8e118cb vocab=ed022358
+-/
 lemma pushDown_eq_self_of_not_affected {f : Signature → ℕ} {v w : Signature}
     (hneq : w ≠ v)
     (hnot : ¬ (w ⊆ v ∧ w.card + 1 = v.card)) :
     pushDown f v w = f w := by
   simp [pushDown, hneq, hnot]
 
+/--
+@isnad1 id=eq.2h3v.s5.6858bf544f25 from=translated src=- shape=cc740ddc vocab=4f0655f7
+-/
 lemma pushDown_eq_self_of_card_ge_ne {f : Signature → ℕ} {v w : Signature}
     (hcard : v.card ≤ w.card) (hneq : w ≠ v) :
     pushDown f v w = f w := by
@@ -1448,6 +1639,9 @@ lemma pushDown_eq_self_of_card_ge_ne {f : Signature → ℕ} {v w : Signature}
   intro h
   lia
 
+/--
+@isnad1 id=eq.1h3v.s5.168bbc8687fd from=translated src=- shape=c5621f02 vocab=7754c814
+-/
 lemma pushDown_eq_self_of_card_gt {f : Signature → ℕ} {v w : Signature}
     (hcard : v.card < w.card) :
     pushDown f v w = f w := by
@@ -1456,6 +1650,9 @@ lemma pushDown_eq_self_of_card_gt {f : Signature → ℕ} {v w : Signature}
   subst h
   lia
 
+/--
+@isnad1 id=eq.2h4v.s6.3234d060e769 from=translated src=- shape=c9eb8147 vocab=bbb7edbf
+-/
 lemma iterate_pushDown_eq_self_of_not_affected
     (f : Signature → ℕ) (v w : Signature) (n : ℕ)
     (hneq : w ≠ v)
@@ -1469,6 +1666,9 @@ lemma iterate_pushDown_eq_self_of_not_affected
       change pushDown (Nat.iterate (fun g : Signature → ℕ => pushDown g v) n f) v w = f w
       rw [pushDown_eq_self_of_not_affected hneq hnot, ih]
 
+/--
+@isnad1 id=eq.2h4v.s5.7e16d2313717 from=translated src=- shape=c9d2e6b1 vocab=e903928a
+-/
 lemma iterate_pushDown_eq_self_of_card_ge_ne
     (f : Signature → ℕ) (v w : Signature) (n : ℕ)
     (hcard : v.card ≤ w.card) (hneq : w ≠ v) :
@@ -1477,6 +1677,9 @@ lemma iterate_pushDown_eq_self_of_card_ge_ne
   intro h
   lia
 
+/--
+@isnad1 id=eq.1h4v.s5.32b62f142504 from=translated src=- shape=ad84282d vocab=1b6062ea
+-/
 lemma iterate_pushDown_eq_self_of_card_gt
     (f : Signature → ℕ) (v w : Signature) (n : ℕ)
     (hcard : v.card < w.card) :
@@ -1486,6 +1689,9 @@ lemma iterate_pushDown_eq_self_of_card_gt
   subst h
   lia
 
+/--
+@isnad1 id=eq.2h4v.s5.c9f371de3517 from=translated src=- shape=da5371f6 vocab=6ff5c2d3
+-/
 lemma iterate_pushDown_preserves_canonical_of_card_gt
     {f : Signature → ℕ} {v w : Signature} {n : ℕ}
     (hcard : v.card < w.card)
@@ -1494,6 +1700,9 @@ lemma iterate_pushDown_preserves_canonical_of_card_gt
       canonicalHighCount w := by
   rw [iterate_pushDown_eq_self_of_card_gt f v w n hcard, hw]
 
+/--
+@isnad1 id=eq.3h4v.s5.6a60dbbd4a68 from=translated src=- shape=f4249ec5 vocab=43d2f118
+-/
 lemma iterate_pushDown_preserves_canonical_of_same_rank_ne
     {f : Signature → ℕ} {v w : Signature} {n : ℕ}
     (hcard : v.card = w.card) (hneq : w ≠ v)
@@ -1507,6 +1716,9 @@ def normalizeSignature (f : Signature → ℕ) (v : Signature) : Signature → �
   let n := (f v - canonicalHighCount v) / v.card
   Nat.iterate (fun g : Signature → ℕ => pushDown g v) n f
 
+/--
+@isnad1 id=eq.1h3v.s5.9c5b4748ad9a from=translated src=- shape=c5621f02 vocab=62d263ba
+-/
 lemma normalizeSignature_eq_self_of_card_gt
     (f : Signature → ℕ) {v w : Signature} (hcard : v.card < w.card) :
     normalizeSignature f v w = f w := by
@@ -1514,6 +1726,9 @@ lemma normalizeSignature_eq_self_of_card_gt
   exact iterate_pushDown_eq_self_of_card_gt f v w
     ((f v - canonicalHighCount v) / v.card) hcard
 
+/--
+@isnad1 id=eq.2h3v.s5.4629d67e5633 from=translated src=- shape=6083dc0d vocab=4cc6285e
+-/
 lemma normalizeSignature_preserves_canonical_of_card_gt
     {f : Signature → ℕ} {v w : Signature}
     (hcard : v.card < w.card)
@@ -1521,6 +1736,9 @@ lemma normalizeSignature_preserves_canonical_of_card_gt
     normalizeSignature f v w = canonicalHighCount w := by
   rw [normalizeSignature_eq_self_of_card_gt f hcard, hw]
 
+/--
+@isnad1 id=eq.3h3v.s5.ff40ba53eae6 from=translated src=- shape=edf9894d vocab=6953db1f
+-/
 lemma normalizeSignature_preserves_canonical_of_same_rank_ne
     {f : Signature → ℕ} {v w : Signature}
     (hcard : v.card = w.card) (hneq : w ≠ v)
@@ -1529,6 +1747,9 @@ lemma normalizeSignature_preserves_canonical_of_same_rank_ne
   unfold normalizeSignature
   exact iterate_pushDown_preserves_canonical_of_same_rank_ne hcard hneq hw
 
+/--
+@isnad1 id=and.4h2v.s6.c65b91110848 from=translated src=- shape=a1c56533 vocab=8743a3a4
+-/
 lemma high_signature_count_forced_after_supersets_normalized
     {f : Signature → ℕ} {v : Signature}
     (hf : SignatureCountCondition f) (htop : 0 < f topSignature)
@@ -1582,6 +1803,9 @@ lemma high_signature_count_forced_after_supersets_normalized
   refine ⟨hcan_le, ?_⟩
   exact (Nat.modEq_iff_dvd' hcan_le).mp hmod.symm
 
+/--
+@isnad1 id=and.4h2v.s6.394c150011ed from=translated src=- shape=1ad13e6b vocab=31941551
+-/
 lemma normalizeSignature_spec
     {f : Signature → ℕ} {v : Signature}
     (hf : SignatureCountCondition f) (htop : 0 < f topSignature)
@@ -1594,6 +1818,9 @@ lemma normalizeSignature_spec
     ⟨hcan_le, hdiv⟩
   simpa [normalizeSignature] using pushDown_to_canonical_count hf hv hcan_le hdiv
 
+/--
+@isnad1 id=lt.2h2v.s5.ef5bb4e9d4f2 from=translated src=- shape=2a45c2b2 vocab=b39d6a6d
+-/
 lemma normalizeSignature_top_pos
     {f : Signature → ℕ} {v : Signature}
     (htop : 0 < f topSignature)
@@ -1607,7 +1834,9 @@ lemma normalizeSignature_top_pos
     rw [normalizeSignature_eq_self_of_card_gt f hcard]
     exact htop
 
-/-- Normalize a finite subset of one rank. -/
+/-- Normalize a finite subset of one rank.
+@isnad1 id=ex.5h3v.s7.ff90196652ce from=translated src=- shape=f7b37432 vocab=515bb7de
+-/
 lemma normalize_rank_subset
     (k : ℕ) (A : Finset Signature) (f : Signature → ℕ)
     (hk : 50 ≤ k)
@@ -1660,7 +1889,9 @@ lemma normalize_rank_subset
           exact hv_not_mem hwA
         · exact hA0canon w hwA
 
-/-- Normalize all signatures of one rank. -/
+/-- Normalize all signatures of one rank.
+@isnad1 id=ex.4h2v.s6.2ccbf1ad558f from=translated src=- shape=09a659db vocab=4a75f331
+-/
 lemma normalize_rank
     (k : ℕ) (f : Signature → ℕ)
     (hk : 50 ≤ k)
@@ -1682,6 +1913,9 @@ lemma normalize_rank
   · have hw : w.card = k := by lia
     exact hrank w (mem_rankSignatures.mpr hw)
 
+/--
+@isnad1 id=ex.5h2v.s6.6bad56b2deb7 from=translated src=- shape=a6f3af07 vocab=4a75f331
+-/
 lemma smooth_high_signatures_from_rank
     (k : ℕ) (hk49 : 49 ≤ k) (hk100 : k ≤ 100)
     (f : Signature → ℕ)
@@ -1708,7 +1942,9 @@ lemma smooth_high_signatures_from_rank
       ⟨g, hg, hobj, htopg, hcanon⟩
     exact ⟨g, hg, le_trans hobj hobj1, htopg, hcanon⟩
 
-/-- Normalize high ranks from `100` down to `50`. -/
+/-- Normalize high ranks from `100` down to `50`.
+@isnad1 id=ex.2h1v.s6.fa45d7fe8254 from=translated src=- shape=a6d9f017 vocab=4a75f331
+-/
 lemma smooth_high_signatures_by_ranks
     (f : Signature → ℕ)
     (hf : SignatureCountCondition f) (htop : 0 < f topSignature) :
@@ -1725,6 +1961,9 @@ lemma smooth_high_signatures_by_ranks
     lia
   exact smooth_high_signatures_from_rank 100 (by norm_num) (by norm_num) f hf htop hgt0
 
+/--
+@isnad1 id=ex.2h1v.s6.86d1f2457202 from=translated src=- shape=8fae47e6 vocab=4a75f331
+-/
 lemma smooth_high_signatures_to_canonical
     (f : Signature → ℕ)
     (hf : SignatureCountCondition f) (htop : 0 < f topSignature) :
@@ -1736,7 +1975,9 @@ lemma smooth_high_signatures_to_canonical
     ⟨g, hg, hobj, _htopg, hcanonical⟩
   exact ⟨g, hg, hobj, hcanonical⟩
 
-/-- Smoothing gives the signature-model lower bound. -/
+/-- Smoothing gives the signature-model lower bound.
+@isnad1 id=le.2h1v.s4.139e0124d3dd from=translated src=- shape=72bc29d8 vocab=58c03b8f
+-/
 lemma signature_model_lower_bound
     (f : Signature → ℕ)
     (hf : SignatureCountCondition f) (htop : 0 < f topSignature) :
@@ -1755,7 +1996,9 @@ lemma signature_model_lower_bound
     _ = SignatureObjective g := hgobj.symm
     _ ≤ SignatureObjective f := hobj_le
 
-/-- The signature construction realizes the claimed value. -/
+/-- The signature construction realizes the claimed value.
+@isnad1 id=ex.0h0v.s5.f1ab51311829 from=translated src=- shape=a97b252f vocab=0d1e3b1d
+-/
 lemma construction_attains_solution :
     ∃ S, Good S ∧
       solution = {z : ℤ | InAtLeastKSubsets S 50 z }.ncard := by
@@ -1764,7 +2007,9 @@ lemma construction_attains_solution :
   refine ⟨S, hS, ?_⟩
   rw [hSobj, hobj]
 
-/-- Lower bound for any good family. -/
+/-- Lower bound for any good family.
+@isnad1 id=le.1h1v.s4.fe7c3995387d from=translated src=- shape=8553a369 vocab=624b3359
+-/
 lemma at_least_solution_elements (S : Fin 100 → Set ℤ) (hS : Good S) :
     solution ≤ {z : ℤ | InAtLeastKSubsets S 50 z }.ncard := by
   rw [← signatureObjective_eq_original_objective S hS]

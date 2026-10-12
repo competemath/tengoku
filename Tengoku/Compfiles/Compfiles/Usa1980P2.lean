@@ -43,6 +43,9 @@ counted by their middle index. -/
 noncomputable def apCount (n : ℕ) (a : ℕ → ℝ) : ℕ :=
   ∑ j ∈ range n, (apPairs n a j).card
 
+/--
+@isnad1 id=iff.0h4v.s6.d5f12f2aeaf1 from=translated src=- shape=efceeb90 vocab=09fefaac
+-/
 theorem mem_apPairs {n : ℕ} {a : ℕ → ℝ} {j : ℕ} {p : ℕ × ℕ} :
     p ∈ apPairs n a j ↔ p.1 < j ∧ j < p.2 ∧ p.2 < n ∧ a p.1 + a p.2 = 2 * a j := by
   simp only [apPairs, mem_filter, mem_product, mem_range, mem_Ioo]
@@ -50,7 +53,9 @@ theorem mem_apPairs {n : ℕ} {a : ℕ → ℝ} {j : ℕ} {p : ℕ × ℕ} :
 
 /-- A three-term progression is determined by its middle term together with any one of
 its other two terms, so the number of progressions with middle index `j` is at most
-`min j (n - 1 - j)`. -/
+`min j (n - 1 - j)`.
+@isnad1 id=le.1h3v.s5.9d82071e4385 from=translated src=- shape=6f8eaf78 vocab=6c227924
+-/
 theorem card_apPairs_le (n : ℕ) (a : ℕ → ℝ) (ha : StrictMonoOn a (Set.Iio n)) (j : ℕ) :
     (apPairs n a j).card ≤ min j (n - 1 - j) := by
   refine le_min ?_ ?_
@@ -85,7 +90,9 @@ theorem card_apPairs_le (n : ℕ) (a : ℕ → ℝ) (ha : StrictMonoOn a (Set.Ii
     rwa [Nat.card_Ioo, show n - j - 1 = n - 1 - j by lia] at h2
 
 /-- The per-index bounds telescope in steps of two:
-`∑ j < n + 2, min j (n + 1 - j) = ∑ j < n, min j (n - 1 - j) + n`. -/
+`∑ j < n + 2, min j (n + 1 - j) = ∑ j < n, min j (n - 1 - j) + n`.
+@isnad1 id=eq.0h1v.s6.0558d932317a from=translated src=- shape=9df7a16c vocab=9ecfcb4b
+-/
 theorem sum_min_step (n : ℕ) :
     (∑ j ∈ range (n + 2), min j (n + 1 - j)) = (∑ j ∈ range n, min j (n - 1 - j)) + n := by
   rw [Finset.sum_range_succ', Finset.sum_range_succ]
@@ -98,7 +105,9 @@ theorem sum_min_step (n : ℕ) :
   rw [sum_congr rfl term, sum_add_distrib]
   simp
 
-/-- Closed form of the total bound: `∑ j < n, min j (n - 1 - j) = (n - 1)² / 4`. -/
+/-- Closed form of the total bound: `∑ j < n, min j (n - 1 - j) = (n - 1)² / 4`.
+@isnad1 id=eq.0h1v.s6.f55c14d8fef7 from=translated src=- shape=927a0dbd vocab=e34b8f43
+-/
 theorem sum_min_closed (n : ℕ) : (∑ j ∈ range n, min j (n - 1 - j)) = (n - 1)^2 / 4 := by
   suffices key : ∀ m : ℕ, (∑ j ∈ range m, min j (m - 1 - j)) = (m - 1)^2 / 4 ∧
       (∑ j ∈ range (m + 1), min j (m + 1 - 1 - j)) = (m + 1 - 1)^2 / 4 from (key n).1
@@ -116,13 +125,17 @@ theorem sum_min_closed (n : ℕ) : (∑ j ∈ range n, min j (n - 1 - j)) = (n -
       rw [e]
       lia
 
-/-- The sequence `a i = i` is strictly increasing on `Set.Iio n`. -/
+/-- The sequence `a i = i` is strictly increasing on `Set.Iio n`.
+@isnad1 id=strictmo.0h1v.s4.f2015d21d8fd from=translated src=- shape=a432d266 vocab=11f7a5b0
+-/
 theorem strictMonoOn_cast (n : ℕ) : StrictMonoOn (fun i : ℕ => (i : ℝ)) (Set.Iio n) :=
   (strictMono_nat_of_lt_succ fun i => by exact_mod_cast Nat.lt_succ_self i).strictMonoOn _
 
 /-- Equality holds in `card_apPairs_le` for the sequence `a i = i`: the pairs
 `(j - 1 - d, j + 1 + d)` for `d < min j (n - 1 - j)` are distinct elements of
-`apPairs n (fun i => (i : ℝ)) j`. -/
+`apPairs n (fun i => (i : ℝ)) j`.
+@isnad1 id=eq.0h2v.s5.c5e6486f2d2e from=translated src=- shape=8c578f0b vocab=ec6a156b
+-/
 theorem card_apPairs_cast (n : ℕ) (j : ℕ) :
     (apPairs n (fun i => (i : ℝ)) j).card = min j (n - 1 - j) := by
   apply le_antisymm
@@ -146,13 +159,17 @@ theorem card_apPairs_cast (n : ℕ) (j : ℕ) :
         lia
     rwa [card_range] at hinj
 
-/-- The bound is achieved by the sequence `a i = i`. -/
+/-- The bound is achieved by the sequence `a i = i`.
+@isnad1 id=eq.0h1v.s5.840d4f2f5664 from=translated src=- shape=2d0ea6ae vocab=d5352abf
+-/
 theorem apCount_cast (n : ℕ) : apCount n (fun i : ℕ => (i : ℝ)) = (n - 1)^2 / 4 := by
   unfold apCount
   rw [← sum_min_closed n]
   exact sum_congr rfl fun j _ => card_apPairs_cast n j
 
-/-- The bound holds for every strictly increasing sequence. -/
+/-- The bound holds for every strictly increasing sequence.
+@isnad1 id=le.1h2v.s6.a0d7f58db9e2 from=translated src=- shape=a712e9d5 vocab=503ee550
+-/
 theorem apCount_le (n : ℕ) (a : ℕ → ℝ) (ha : StrictMonoOn a (Set.Iio n)) :
     apCount n a ≤ (n - 1)^2 / 4 := by
   unfold apCount

@@ -21,7 +21,9 @@ namespace Algebraic.Cutwidth.Aggregate
 
 open Filter
 
-/-- Taking logarithms of the finite aggregate-count bound costs seven constant bits. -/
+/-- Taking logarithms of the finite aggregate-count bound costs seven constant bits.
+@isnad1 id=le.5h8v.s8.6cd910bfbd85 from=translated src=- shape=4a996d0c vocab=4638985f
+-/
 theorem log_bound_of_count {A η C N : ℝ} (hAη : 0 ≤ A + η) (hC : 0 ≤ C)
     (hN : 1 ≤ N) {m g D K : Nat} (hK : 0 < K)
     (hcount : (2 : ℝ) ^ ((m : ℝ) - 2) ≤
@@ -68,7 +70,9 @@ def SliceBound (A η C : ℝ) (n g D K : Nat) : Prop :=
         3 * Real.logb 2 ((n : ℝ) + 3 * g) + C + 3) + 1) *
           (2 : ℝ) ^ ((D : ℝ) + 1) * K ^ 2
 
-/-- Increasing the allowed aggregate budget preserves the finite slice bound. -/
+/-- Increasing the allowed aggregate budget preserves the finite slice bound.
+@isnad1 id=slicebou.2h8v.s5.6d158d9eb3d8 from=translated src=- shape=3247da86 vocab=7aa0aea4
+-/
 theorem SliceBound.mono_budget {A η C : ℝ} {n g D D' K : Nat}
     (h : SliceBound A η C n g D K) (hD : D ≤ D') :
     SliceBound A η C n g D' K := by
@@ -79,7 +83,9 @@ theorem SliceBound.mono_budget {A η C : ℝ} {n g D D' K : Nat}
   apply Real.rpow_le_rpow_of_exponent_le one_le_two
   exact_mod_cast Nat.add_le_add_right hD 1
 
-/-- A positive linear slack absorbs the explicit logarithmic and aggregate remainders. -/
+/-- A positive linear slack absorbs the explicit logarithmic and aggregate remainders.
+@isnad1 id=lt.9h8v.s8.f51b7371c12c from=translated src=- shape=f2257ea0 vocab=f0791519
+-/
 theorem lt_size_of_sliceBound {A η θ C : ℝ} (hA : 0 < A) (hη : 0 ≤ η)
     (hηθ : η ≤ A ^ 2 * θ / 2) (hθ : 0 ≤ θ) (hθA : θ ≤ 1 / A) (hC : 0 ≤ C)
     {n g D K : Nat} (hK : 1 < K) (hslice : SliceBound A η C n g D K)
@@ -136,7 +142,9 @@ theorem lt_size_of_sliceBound {A η θ C : ℝ} (hA : 0 < A) (hη : 0 ≤ η)
 
 /-- Any family of circuit sizes admitting the finite slice estimate at every positive
 ordering slack has leading coefficient `1 + 1/A` when its aggregate budget and logarithmic
-rectangle threshold are sublinear. -/
+rectangle threshold are sublinear.
+@isnad1 id=eventual.6h5v.s7.b7317298b2c2 from=translated src=- shape=52f044bc vocab=a0b914ab
+-/
 theorem eventually_lt_size_of_sliceBound {A : ℝ} (hA : 0 < A)
     (Good : Nat → Nat → Prop) (D K : Nat → Nat)
     (hD : (fun n => (D n : ℝ)) =o[atTop] (fun n => (n : ℝ)))

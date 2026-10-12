@@ -20,6 +20,9 @@ for all integers a and b,￼
 namespace Imo2019P1
 
 -- proof of the following lemma suggested on Zulip by Riccardo Brasca
+/--
+@isnad1 id=ex.1h1v.s5.92c7326258b4 from=translated src=- shape=0038257c vocab=04e5438e
+-/
 lemma additive_to_int_linear (f : ℤ → ℤ) (h: ∀ (x y : ℤ), f (x + y) = f x + f y):
    ∃ c, ∀ a, f a = c * a := by
   let g := AddMonoidHom.toIntLinearMap <| AddMonoidHom.mk' f h

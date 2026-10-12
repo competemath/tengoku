@@ -30,7 +30,9 @@ def pairSelected (mask : Bool → Bool) : ℕ :=
 abbrev PairAllowed (a b : Bool) (mask bits : Bool → Bool) (x : Bool → Bool) : Prop :=
   ((x false == a) && (x true == b)) = false ∧ ∀ i, mask i = true → x i = bits i
 
-/-- The three-state pair obeys the two-thirds cylinder bound. -/
+/-- The three-state pair obeys the two-thirds cylinder bound.
+@isnad1 id=le.0h4v.s7.af83141674ed from=translated src=- shape=44f9fe0e vocab=0264f4cc
+-/
 theorem pair_count (a b : Bool) (mask bits : Bool → Bool) :
     3 ^ pairSelected mask * Fintype.card {x // PairAllowed a b mask bits x} ≤
       2 ^ pairSelected mask * 3 := by
@@ -47,14 +49,18 @@ theorem pair_count (a b : Bool) (mask bits : Bool → Bool) :
   generalize bits false = bf
   cases a <;> cases b <;> cases mt <;> cases mf <;> cases bt <;> cases bf <;> decide
 
-/-- A free Boolean coordinate also obeys the two-thirds cylinder bound. -/
+/-- A free Boolean coordinate also obeys the two-thirds cylinder bound.
+@isnad1 id=le.0h2v.s7.2d95e6d3529f from=translated src=- shape=562396a3 vocab=1551d9ab
+-/
 theorem free_count (mask bit : Bool) :
     3 ^ (if mask then 1 else 0) *
         Fintype.card {x : Bool // mask = true → x = bit} ≤
       2 ^ (if mask then 1 else 0) * 2 := by
   cases mask <;> cases bit <;> decide
 
-/-- Cardinalities factor when all constraints are local to one product coordinate. -/
+/-- Cardinalities factor when all constraints are local to one product coordinate.
+@isnad1 id=eq.0h3v.s7.b96d24699cc0 from=translated src=- shape=55325f0b vocab=17d46df9
+-/
 theorem card_pi_constraints {I : Type*} [Fintype I] {X : I → Type*}
     [∀ i, Fintype (X i)] (P : ∀ i, X i → Prop) [∀ i, DecidablePred (P i)] :
     Fintype.card {x : ∀ i, X i // ∀ i, P i (x i)} =
@@ -68,7 +74,9 @@ noncomputable def indexSplit {E V : Type*} (edge : E → SignedEdge V)
   (Equiv.sumCongr (Equiv.ofInjective (endpoint edge) disjoint) (Equiv.refl _)).trans
     (Equiv.sumCompl (fun v => v ∈ Set.range (endpoint edge)))
 
-/-- Selection counts add across all independent blocks. -/
+/-- Selection counts add across all independent blocks.
+@isnad1 id=eq.1h4v.s8.2eba0cdad607 from=translated src=- shape=f6096384 vocab=80a3e2b9
+-/
 theorem selected_count {E V : Type*} [Fintype E] [Fintype V]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge))
     (mask : V → Bool) :
@@ -82,7 +90,9 @@ theorem selected_count {E V : Type*} [Fintype E] [Fintype V]
     ∑ v, if mask v then 1 else 0 at total
   simpa only [Fintype.sum_bool, pairSelected, Nat.add_comm] using total
 
-/-- Majority assignments with extra fixed literals factor into independent local counts. -/
+/-- Majority assignments with extra fixed literals factor into independent local counts.
+@isnad1 id=eq.1h5v.s10.65cbaddf60e5 from=translated src=- shape=f40ef7fa vocab=f2c6949b
+-/
 theorem constrained_card {E V : Type*} [Fintype E] [Fintype V]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge))
     (mask bits : V → Bool) :

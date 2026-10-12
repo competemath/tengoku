@@ -30,7 +30,9 @@ open scoped BigOperators Classical
 noncomputable def collisionCount {X T : Type*} [Fintype X] (key : X → T) : ℕ :=
   ∑ x, (Finset.univ.filter fun y => key y = key x).card
 
-/-- Refining equality of keys cannot increase their number of collisions. -/
+/-- Refining equality of keys cannot increase their number of collisions.
+@isnad1 id=le.1h5v.s5.66c7ca15c098 from=translated src=- shape=755623b9 vocab=3cf65756
+-/
 theorem collisionCount_le_of_refines {X T U : Type*} [Fintype X]
     (key : X → T) (coarse : X → U)
     (refines : ∀ x y, key x = key y → coarse x = coarse y) :
@@ -41,7 +43,9 @@ theorem collisionCount_le_of_refines {X T U : Type*} [Fintype X]
   intro y hy
   exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, refines y x (Finset.mem_filter.mp hy).2⟩
 
-/-- Reindex ordered collisions by their input displacement. -/
+/-- Reindex ordered collisions by their input displacement.
+@isnad1 id=eq.0h3v.s6.48fa413ae205 from=translated src=- shape=3330796d vocab=f661308a
+-/
 theorem collisionCount_eq_sum_differences {X T : Type*} [Fintype X] [AddGroup X]
     (key : X → T) :
     collisionCount key =
@@ -56,7 +60,9 @@ theorem collisionCount_eq_sum_differences {X T : Type*} [Fintype X] [AddGroup X]
       exact (Equiv.sum_comp (Equiv.addLeft x) (fun y => if key y = key x then 1 else 0)).symm
     _ = _ := Finset.sum_comm
 
-/-- A bound on every nonzero difference gives the classical ordered-collision budget. -/
+/-- A bound on every nonzero difference gives the classical ordered-collision budget.
+@isnad1 id=le.1h4v.s7.1873b842d264 from=translated src=- shape=617ca53a vocab=ee6317f2
+-/
 theorem collisionCount_le_of_differences {X T : Type*} [Fintype X] [AddGroup X]
     (key : X → T) {δ : ℕ}
     (differences : ∀ d : X, d ≠ 0 →
@@ -79,7 +85,9 @@ theorem collisionCount_le_of_differences {X T : Type*} [Fintype X] [AddGroup X]
         simp
       rw [eq, Finset.card_singleton]
 
-/-- Dividing pulled-back weights by their fibre sizes leaves mass at most one. -/
+/-- Dividing pulled-back weights by their fibre sizes leaves mass at most one.
+@isnad1 id=le.2h4v.s6.052a50e8a76c from=translated src=- shape=054ac22d vocab=10d607a6
+-/
 theorem sum_weight_div_fibre_le {X T : Type*} [Fintype X] [Fintype T]
     (key : X → T) (weight : T → ℝ) (nonneg : ∀ t, 0 ≤ weight t)
     (mass : ∑ t, weight t = 1) :

@@ -22,6 +22,9 @@ namespace Usa2004P5
 -- This is the solution at https://web.evanchen.cc/exams/USAMO-2004-notes.pdf
 
 -- Main estimate that lets us convert into Holder
+/--
+@isnad1 id=le.1h1v.s6.e00f1a4c13d9 from=translated src=- shape=d44fec96 vocab=4998ecb9
+-/
 lemma poly_bound {x : ℝ} (hx : 0 < x) : x^3 + 2 ≤ x^5 - x^2 + 3 := by
   have h1 : (x-1)^2 ≥ 0 := by positivity
   have h2 : (x+1) * (x^2+x+1) ≥ 0 := by positivity
@@ -30,10 +33,16 @@ lemma poly_bound {x : ℝ} (hx : 0 < x) : x^3 + 2 ≤ x^5 - x^2 + 3 := by
 -- It's not obvious a priori that x⁵ - x² + 3 is even positive
 -- and this will make life annoying later when we try to multiply ineq's together
 -- Thus, define a corollary that follows from the above
+/--
+@isnad1 id=le.1h1v.s6.af5e2c727136 from=translated src=- shape=b4df5377 vocab=4998ecb9
+-/
 lemma poly_nonneg {x : ℝ} (hx : 0 < x) : 0 ≤ x^5 - x^2 + 3 := by
   exact (show 0 ≤ x^3 + 2 by positivity).trans (poly_bound hx)
 
 -- Multiply these all together to get to the intermediate (a³+2)(b³+2)(c³+2)
+/--
+@isnad1 id=le.3h3v.s8.42d6ed498161 from=translated src=- shape=11b8695f vocab=d8e6b3e9
+-/
 lemma multiplied_bound {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     (a^3 + 2) * (b^3 + 2) * (c^3 + 2) ≤ (a^5 - a^2 + 3) * (b^5 - b^2 + 3) * (c^5 - c^2 + 3) := by
   -- multiply first two ineq's together
@@ -43,9 +52,15 @@ lemma multiplied_bound {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
   exact mul_nonneg (poly_nonneg ha) (poly_nonneg hb)
 
 -- 3-variable Holder inequality (the painful part...)
+/--
+@isnad1 id=holderco.0h0v.s5.10cc362ee584 from=translated src=- shape=d607002e vocab=4286d4fb
+-/
 lemma holder_conjugate_3 : Real.HolderConjugate (3/2 : ℝ) 3 := by
   rw [@Real.holderConjugate_iff (3/2 : ℝ) 3]
   norm_num
+/--
+@isnad1 id=le.0h4v.s7.575d99fa676f from=translated src=- shape=af4fa1bd vocab=84e735f7
+-/
 theorem triple_holder (S : Finset ℕ) (f1 f2 f3 : ℕ → NNReal) :
     (∑ i ∈ S, (f1 i) * (f2 i) * (f3 i)) ^ 3
     ≤ (∑ i ∈ S, (f1 i) ^ 3) * (∑ i ∈ S, (f2 i) ^ 3) * (∑ i ∈ S, (f3 i) ^ 3) := by
@@ -63,6 +78,9 @@ theorem triple_holder (S : Finset ℕ) (f1 f2 f3 : ℕ → NNReal) :
   norm_num at h1 h2 ⊢
   apply h1.trans (mul_le_mul_left h2 _)
 
+/--
+@isnad1 id=le.0h3v.s7.20ef92b0557b from=translated src=- shape=b9335fe5 vocab=4f1d2fbc
+-/
 lemma key_holder (a b c : NNReal) : (a+b+c)^3 ≤ (a^3 + 2) * (b^3 + 2) * (c^3 + 2) := by
   -- only need values at 0 1 2 for these, the rest are junk values
   -- (the mathlib holder seems to demand you define the function on all of ℕ)
@@ -74,6 +92,9 @@ lemma key_holder (a b c : NNReal) : (a+b+c)^3 ≤ (a^3 + 2) * (b^3 + 2) * (c^3 +
     Fin.val_two] at h
   convert h using 1 <;> ring
 
+/--
+@isnad1 id=le.3h3v.s7.4e9df66a9782 from=translated src=- shape=668a7f46 vocab=2e594065
+-/
 lemma key_holder_real {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     (a + b + c)^3 ≤ (a^3 + 2) * (b^3 + 2) * (c^3 + 2) := by
   rw [← Real.coe_toNNReal a ha.le, ← Real.coe_toNNReal b hb.le, ← Real.coe_toNNReal c hc.le]

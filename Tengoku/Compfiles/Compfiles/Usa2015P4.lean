@@ -52,20 +52,26 @@ inductive EquivPilings {n : ℕ} : Piling n → Piling n → Prop where
   | symm {S T : Piling n} : EquivPilings S T → EquivPilings T S
   | trans {S T U : Piling n} : EquivPilings S T → EquivPilings T U → EquivPilings S U
 
-/-- The multiset of rows is invariant under a single stone move. -/
+/-- The multiset of rows is invariant under a single stone move.
+@isnad1 id=eq.1h3v.s5.1c3b5a904799 from=translated src=- shape=edb0d5f6 vocab=64ad4db9
+-/
 theorem StoneMove.fst {n : ℕ} {S T : Piling n} (h : StoneMove S T) :
     S.map Prod.fst = T.map Prod.fst := by
   obtain ⟨x₁, x₂, y₁, y₂, U, -, -, rfl, rfl⟩ := h
   simp [Multiset.map_cons]
 
-/-- The multiset of columns is invariant under a single stone move. -/
+/-- The multiset of columns is invariant under a single stone move.
+@isnad1 id=eq.1h3v.s5.dc93f30fa79a from=translated src=- shape=edb0d5f6 vocab=8048f969
+-/
 theorem StoneMove.snd {n : ℕ} {S T : Piling n} (h : StoneMove S T) :
     S.map Prod.snd = T.map Prod.snd := by
   obtain ⟨x₁, x₂, y₁, y₂, U, -, -, rfl, rfl⟩ := h
   rw [Multiset.map_cons, Multiset.map_cons, Multiset.map_cons, Multiset.map_cons]
   exact Multiset.cons_swap y₁ y₂ _
 
-/-- A stone move can be performed in the presence of an extra fixed stone. -/
+/-- A stone move can be performed in the presence of an extra fixed stone.
+@isnad1 id=stonemov.1h4v.s5.e26a579bb582 from=translated src=- shape=f1fede1e vocab=2f1c7aa9
+-/
 theorem StoneMove.cons {n : ℕ} {S T : Piling n} (h : StoneMove S T) (p : Fin n × Fin n) :
     StoneMove (p ::ₘ S) (p ::ₘ T) := by
   obtain ⟨x₁, x₂, y₁, y₂, U, hx, hy, rfl, rfl⟩ := h
@@ -73,7 +79,9 @@ theorem StoneMove.cons {n : ℕ} {S T : Piling n} (h : StoneMove S T) (p : Fin n
   · rw [Multiset.cons_swap p (x₁, y₁) _, Multiset.cons_swap p (x₂, y₂) _]
   · rw [Multiset.cons_swap p (x₁, y₂) _, Multiset.cons_swap p (x₂, y₁) _]
 
-/-- The multiset of rows is invariant under equivalence of pilings. -/
+/-- The multiset of rows is invariant under equivalence of pilings.
+@isnad1 id=eq.1h3v.s5.f9dd436e3c8e from=translated src=- shape=edb0d5f6 vocab=824eb3ac
+-/
 theorem EquivPilings.fst {n : ℕ} {S T : Piling n} (h : EquivPilings S T) :
     S.map Prod.fst = T.map Prod.fst := by
   induction h with
@@ -82,7 +90,9 @@ theorem EquivPilings.fst {n : ℕ} {S T : Piling n} (h : EquivPilings S T) :
   | symm _ ih => exact ih.symm
   | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
-/-- The multiset of columns is invariant under equivalence of pilings. -/
+/-- The multiset of columns is invariant under equivalence of pilings.
+@isnad1 id=eq.1h3v.s5.c56843745cbe from=translated src=- shape=edb0d5f6 vocab=fcf75289
+-/
 theorem EquivPilings.snd {n : ℕ} {S T : Piling n} (h : EquivPilings S T) :
     S.map Prod.snd = T.map Prod.snd := by
   induction h with
@@ -91,7 +101,9 @@ theorem EquivPilings.snd {n : ℕ} {S T : Piling n} (h : EquivPilings S T) :
   | symm _ ih => exact ih.symm
   | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
-/-- Equivalent pilings remain equivalent after adding an extra fixed stone. -/
+/-- Equivalent pilings remain equivalent after adding an extra fixed stone.
+@isnad1 id=equivpil.1h4v.s5.330ca85cbc03 from=translated src=- shape=f1fede1e vocab=d095cec3
+-/
 theorem EquivPilings.cons {n : ℕ} {S T : Piling n} (h : EquivPilings S T)
     (p : Fin n × Fin n) : EquivPilings (p ::ₘ S) (p ::ₘ T) := by
   induction h with
@@ -104,7 +116,9 @@ theorem EquivPilings.cons {n : ℕ} {S T : Piling n} (h : EquivPilings S T)
 rows and the same multiset of columns) are equivalent. Proved by strong induction
 on the number of stones: pick a stone `s` of the first piling, find a stone `t` of
 the second piling in the same row, and use one or two stone moves to put `t`'s
-column right, then apply the induction hypothesis to the remaining stones. -/
+column right, then apply the induction hypothesis to the remaining stones.
+@isnad1 id=equivpil.3h4v.s6.169f35201179 from=translated src=- shape=7c9ffebe vocab=22843e1f
+-/
 theorem equivPilings_of_signature {n : ℕ} :
     ∀ k : ℕ, ∀ S T : Piling n,
       S.card = k → S.map Prod.fst = T.map Prod.fst → S.map Prod.snd = T.map Prod.snd →
@@ -271,18 +285,27 @@ columns and pair them up. -/
 def pilingOf {n : ℕ} (X Y : Multiset (Fin n)) : Piling n :=
   (X.sort (· ≤ ·)).zip (Y.sort (· ≤ ·))
 
+/--
+@isnad1 id=eq.1h3v.s5.e8aec597ed0d from=translated src=- shape=514794e8 vocab=26d010be
+-/
 theorem pilingOf_fst {n : ℕ} {X Y : Multiset (Fin n)} (h : X.card = Y.card) :
     (pilingOf X Y).map Prod.fst = X := by
   have hl : (X.sort (· ≤ ·)).length ≤ (Y.sort (· ≤ ·)).length := by
     rw [Multiset.length_sort, Multiset.length_sort, h]
   rw [pilingOf, Multiset.map_coe, List.map_fst_zip hl, Multiset.sort_eq]
 
+/--
+@isnad1 id=eq.1h3v.s5.199c25893728 from=translated src=- shape=ec75f7ea vocab=6c0e5e4e
+-/
 theorem pilingOf_snd {n : ℕ} {X Y : Multiset (Fin n)} (h : Y.card = X.card) :
     (pilingOf X Y).map Prod.snd = Y := by
   have hl : (Y.sort (· ≤ ·)).length ≤ (X.sort (· ≤ ·)).length := by
     rw [Multiset.length_sort, Multiset.length_sort, h]
   rw [pilingOf, Multiset.map_coe, List.map_snd_zip hl, Multiset.sort_eq]
 
+/--
+@isnad1 id=eq.1h3v.s5.d78d9bc7e889 from=translated src=- shape=4384ae40 vocab=6f2aa18e
+-/
 theorem pilingOf_card {n : ℕ} {X Y : Multiset (Fin n)} (h : X.card = Y.card) :
     (pilingOf X Y).card = X.card := by
   rw [pilingOf, Multiset.coe_card, List.length_zip, Multiset.length_sort,

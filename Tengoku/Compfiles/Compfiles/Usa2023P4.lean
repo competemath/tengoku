@@ -38,6 +38,9 @@ structure State (n : ℕ) where
   board : Blackboard n
   turn : Player
 
+/--
+@isnad1 id=lt.1h1v.s4.d3155298e2bb from=translated src=- shape=b9b9b8ee vocab=23cf4117
+-/
 theorem halve_even (x : ℕ+) (he : Even x.val) : 0 < x.val / 2 := by
    obtain ⟨x, hx⟩ := x
    obtain ⟨t, ht⟩ := he
@@ -68,7 +71,9 @@ inductive EndInevitable (a : ℕ+) (n : ℕ) : State n → Prop where
        (h : ∀ m ∈ valid_moves a n s, EndInevitable a n m) :
        EndInevitable a n s
 
-/-- The N=1 case is degenerate. -/
+/-- The N=1 case is degenerate.
+@isnad1 id=endinevi.1h2v.s4.30e375bfdb38 from=translated src=- shape=48d6b29f vocab=5a4e1a3d
+-/
 lemma lemma1 (a : ℕ+) (s : State 1) (he : BobCanForceEnd a 1 s) :
     EndInevitable a 1 s := by
   induction he with
@@ -99,6 +104,9 @@ inductive EndInevitableIn (a : ℕ+) (n : ℕ) : ℕ → State n → Prop where
           (∀ s ∈ valid_moves a n ⟨b, .Alice⟩, EndInevitableIn a n m s) →
           EndInevitableIn a n m ⟨b, .Alice⟩
 
+/--
+@isnad1 id=endinevi.1h4v.s4.dbc68fd6d1c7 from=translated src=- shape=bf42bcc0 vocab=817d1b08
+-/
 lemma end_inevitable_n {a : ℕ+} {n : ℕ} {m : ℕ} {s : State n}
     (h : EndInevitableIn a n m s) : EndInevitable a n s := by
   induction h with
@@ -106,6 +114,9 @@ lemma end_inevitable_n {a : ℕ+} {n : ℕ} {m : ℕ} {s : State n}
   | BobTurn b _ _ _ ih => exact .Step _ ih
   | AliceTurn _ _ _ _ ih => exact .Step _ ih
 
+/--
+@isnad1 id=not.1h3v.s5.9cc9b3850f94 from=translated src=- shape=7f94384b vocab=b023a1af
+-/
 lemma lemma3 (N : ℕ) (b : Blackboard N)
     (hd : ∑ i : Fin N, padicValNat 2 (b i) = 0) :
     ∀ i : Fin N, ¬ Even (b i).val := by
@@ -118,6 +129,9 @@ lemma lemma3 (N : ℕ) (b : Blackboard N)
   have h2 := hd i (Finset.mem_univ i)
   lia
 
+/--
+@isnad1 id=lt.2h2v.s5.107a5d5404c1 from=translated src=- shape=3cea8949 vocab=57461844
+-/
 lemma lemma5 {a x : ℕ} (hx : 0 < x)
     (hax : padicValNat 2 x < padicValNat 2 a) :
     padicValNat 2 (x + a) < padicValNat 2 a := by
@@ -130,6 +144,9 @@ lemma lemma5 {a x : ℕ} (hx : 0 < x)
   have h6 := (Nat.pow_dvd_iff_le_padicValNat (by lia) (Nat.ne_zero_of_lt hx)).mp h5
   lia
 
+/--
+@isnad1 id=eq.2h2v.s5.fe151575d110 from=translated src=- shape=1bfa4a27 vocab=57461844
+-/
 lemma lemma5' {a x : ℕ} (hx : 0 < x)
     (hax : padicValNat 2 x < padicValNat 2 a) :
     padicValNat 2 (x + a) = padicValNat 2 x := by
@@ -185,6 +202,9 @@ lemma lemma5' {a x : ℕ} (hx : 0 < x)
   rw [h15, zero_add] at H
   lia
 
+/--
+@isnad1 id=lt.2h5v.s6.05fb84baed8f from=translated src=- shape=96cac8be vocab=6dfd533d
+-/
 lemma alice_move_preserves_nu
      (a : ℕ+) (N : ℕ) (b0 : Blackboard N)
      (hd : ∀ i : Fin N, padicValNat 2 (b0 i) < padicValNat 2 a)
@@ -209,6 +229,9 @@ lemma alice_move_preserves_nu
     rw [h2]
     exact hd i
 
+/--
+@isnad1 id=eq.2h5v.s6.e301045ee9c7 from=translated src=- shape=195b0e94 vocab=6dfd533d
+-/
 lemma alice_move_preserves_nu'
      (a : ℕ+) (N : ℕ) (b0 : Blackboard N)
      (hd : ∀ i : Fin N, padicValNat 2 (b0 i) < padicValNat 2 a)
@@ -232,6 +255,9 @@ lemma alice_move_preserves_nu'
       exact hji
     rw [h2]
 
+/--
+@isnad1 id=ex.1h4v.s5.e01716905b1b from=translated src=- shape=b6bf272c vocab=3c23816e
+-/
 lemma bob_moves_after_alice {a : ℕ+} {N : Nat} (b0 : Blackboard N)
     (s1 : State N)
     (hs : s1 ∈ valid_moves a N ⟨b0, .Alice⟩) :
@@ -240,6 +266,9 @@ lemma bob_moves_after_alice {a : ℕ+} {N : Nat} (b0 : Blackboard N)
   obtain ⟨i, rfl⟩ := hs
   simp
 
+/--
+@isnad1 id=eq.2h1v.s5.3dbcbbd76740 from=translated src=- shape=4509557e vocab=0c2f20e7
+-/
 lemma lemma6 {x : ℕ} (hp : 0 < x) (hx : Even x)
     : padicValNat 2 (x / 2) + 1 = padicValNat 2 x := by
   have h2 : (2 : ℕ) ∣ x := even_iff_two_dvd.mp hx
@@ -250,6 +279,9 @@ lemma lemma6 {x : ℕ} (hp : 0 < x) (hx : Even x)
 
 -- When N ≥ 2, if ν2(x) < ν2(a) for all x ∈ S, the game must terminate
 -- in ∑_{x∈S} ν2(x) moves, no matter what either player does.
+/--
+@isnad1 id=endinevi.2h3v.s6.af3cf72a866c from=translated src=- shape=d820a763 vocab=d10a1072
+-/
 lemma lemma2' (a : ℕ+) (N : ℕ) (hN : 1 < N) (s0 : State N)
     (hd : ∀ i : Fin N, padicValNat 2 (s0.board i) < padicValNat 2 a) :
     EndInevitableIn a N (∑ i : Fin N, padicValNat 2 (s0.board i)) s0 := by
@@ -391,12 +423,18 @@ lemma lemma2' (a : ℕ+) (N : ℕ) (hN : 1 < N) (s0 : State N)
 
 -- When N ≥ 2, if ν2(x) < ν2(a) for all x ∈ S, the game must terminate no
 -- matter what either player does.
+/--
+@isnad1 id=endinevi.2h3v.s5.5cdd6ab36994 from=translated src=- shape=fabd45f4 vocab=5387a8fa
+-/
 lemma lemma2 (a : ℕ+) (N : ℕ) (hN : 1 < N) (s0 : State N)
     (hd : ∀ i : Fin N, padicValNat 2 (s0.board i) < padicValNat 2 a) :
     EndInevitable a N s0 := by
   exact end_inevitable_n (lemma2' a N hN s0 hd)
 
 -- Key fact: when ν₂(x) = ν₂(a), ν₂(x+a) ≥ ν₂(a) + 1
+/--
+@isnad1 id=le.3h2v.s6.92e831464963 from=translated src=- shape=bfaf490c vocab=b722f694
+-/
 lemma lemma7 {x a : ℕ} (hx : 0 < x) (ha : 0 < a)
     (heq : padicValNat 2 x = padicValNat 2 a) :
     padicValNat 2 a + 1 ≤ padicValNat 2 (x + a) := by
@@ -428,6 +466,9 @@ lemma lemma7 {x a : ℕ} (hx : 0 < x) (ha : 0 < a)
   exact mul_dvd_mul_left _ hse
 
 -- When N ≥ 2, if ∃ i with ν₂(b i) ≥ ν₂(a) (+ offset by turn), then ¬BobCanForceEnd.
+/--
+@isnad1 id=false.3h3v.s6.e5041f094f8d from=translated src=- shape=1d123b89 vocab=b86f54d7
+-/
 lemma alice_prevents_end (a : ℕ+) (N : ℕ) (hN : 1 < N)
     (s : State N) (he : BobCanForceEnd a N s)
     (hinv : ∃ i : Fin N,

@@ -49,16 +49,23 @@ def altSeq (n : ℕ) : Fin n → Bool := fun i ↦ (i : ℕ) % 2 == 1
 
 abbrev minT : ℕ → ℕ := fun n ↦ n * (n - 1) * (n - 3) / 8
 
+/--
+@isnad1 id=eq.0h3v.s5.9e8b85ce6252 from=translated src=- shape=69b1c915 vocab=f6f4fe22
+-/
 lemma f_apply (a : Fin n → Bool) (i : Fin n) :
     f a i = (eqBefore a i).card + (neqAfter a i).card := rfl
 
-/-- A triple of bits is good (not alternating) iff two adjacent values agree. -/
+/-- A triple of bits is good (not alternating) iff two adjacent values agree.
+@isnad1 id=iff.0h3v.s5.f03173eec6ad from=translated src=- shape=2f9acfba vocab=b3b6d51b
+-/
 lemma good_iff (x y z : Bool) :
     ¬ ((x = false ∧ y = true ∧ z = false) ∨ (x = true ∧ y = false ∧ z = true)) ↔
       x = y ∨ y = z := by
   cases x <;> cases y <;> cases z <;> decide
 
-/-- Vandermonde's identity at `k = 2`. -/
+/-- Vandermonde's identity at `k = 2`.
+@isnad1 id=eq.0h2v.s5.5936d42b4298 from=translated src=- shape=f042fd82 vocab=14a23cc3
+-/
 lemma choose_add_two (x y : ℕ) : (x + y).choose 2 = x.choose 2 + y.choose 2 + x * y := by
   have key : (((x + y).choose 2 : ℕ) : ℚ) = ((x.choose 2 + y.choose 2 + x * y : ℕ) : ℚ) := by
     push_cast [Nat.cast_choose_two]
@@ -77,6 +84,9 @@ def tripsB (a : Fin n → Bool) : Finset (Fin n × Fin n × Fin n) :=
 def tripsC (a : Fin n → Bool) : Finset (Fin n × Fin n × Fin n) :=
   Finset.univ.filter fun t ↦ t.1 < t.2.1 ∧ t.2.1 < t.2.2 ∧ a t.1 ≠ a t.2.1 ∧ a t.2.1 = a t.2.2
 
+/--
+@isnad1 id=eq.0h2v.s5.5b40f6a071cd from=translated src=- shape=deb97e63 vocab=7df920f9
+-/
 lemma numGoodTriples_eq (a : Fin n → Bool) :
     numGoodTriples a = (tripsA a).card + (tripsB a).card + (tripsC a).card := by
   have hset : (Finset.univ.filter fun t : Fin n × Fin n × Fin n ↦
@@ -117,6 +127,9 @@ lemma numGoodTriples_eq (a : Fin n → Bool) :
   unfold numGoodTriples
   rw [hset, Finset.card_union_of_disjoint hdis1, Finset.card_union_of_disjoint hdis2]
 
+/--
+@isnad1 id=eq.0h2v.s5.59810d56c965 from=translated src=- shape=9340886a vocab=73d91d06
+-/
 lemma card_tripsA (a : Fin n → Bool) :
     (tripsA a).card = ∑ k : Fin n, ((eqBefore a k).card).choose 2 := by
   rw [Finset.card_eq_sum_card_fiberwise
@@ -145,6 +158,9 @@ lemma card_tripsA (a : Fin n → Bool) :
     simp only [Finset.mem_filter, tripsA, Finset.mem_univ, true_and]
     exact ⟨⟨h5, h3, h2.trans h4.symm, h4⟩, trivial⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.e53bf6aa1f65 from=translated src=- shape=f75ea3ff vocab=a0765e71
+-/
 lemma card_tripsB (a : Fin n → Bool) :
     (tripsB a).card = ∑ j : Fin n, (eqBefore a j).card * (neqAfter a j).card := by
   rw [Finset.card_eq_sum_card_fiberwise
@@ -172,6 +188,9 @@ lemma card_tripsB (a : Fin n → Bool) :
     simp only [Finset.mem_filter, tripsB, Finset.mem_univ, true_and]
     exact ⟨⟨h1, h3, h2, h4.symm⟩, trivial⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.8299df98ed21 from=translated src=- shape=9340886a vocab=80db03b0
+-/
 lemma card_tripsC (a : Fin n → Bool) :
     (tripsC a).card = ∑ i : Fin n, ((neqAfter a i).card).choose 2 := by
   have hbool : ∀ x y b : Bool, x ≠ b → y ≠ b → x = y := by decide
@@ -199,6 +218,9 @@ lemma card_tripsC (a : Fin n → Bool) :
     simp only [Finset.mem_filter, tripsC, Finset.mem_univ, true_and]
     exact ⟨⟨h1, h5, h2.symm, hbool _ _ _ h2 h4⟩, trivial⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.7b5993de40fe from=translated src=- shape=bf74da44 vocab=9fe0d0cb
+-/
 lemma sum_eqBefore (a : Fin n → Bool) :
     ∑ i : Fin n, (eqBefore a i).card =
       ((Finset.univ ×ˢ Finset.univ).filter fun p : Fin n × Fin n ↦
@@ -219,6 +241,9 @@ lemma sum_eqBefore (a : Fin n → Bool) :
     simp only [eqBefore, Finset.mem_filter, Finset.mem_univ, true_and]
     exact ⟨hp.2 ▸ hp.1.1, hp.2 ▸ hp.1.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.c669462d6349 from=translated src=- shape=bdf79d62 vocab=c0d44e82
+-/
 lemma sum_neqAfter (a : Fin n → Bool) :
     ∑ i : Fin n, (neqAfter a i).card =
       ((Finset.univ ×ˢ Finset.univ).filter fun p : Fin n × Fin n ↦
@@ -239,7 +264,9 @@ lemma sum_neqAfter (a : Fin n → Bool) :
     simp only [neqAfter, Finset.mem_filter, Finset.mem_univ, true_and]
     exact ⟨hp.2 ▸ hp.1.1, (hp.2 ▸ hp.1.2).symm⟩
 
-/-- The sum of the `f` values depends only on `n`. -/
+/-- The sum of the `f` values depends only on `n`.
+@isnad1 id=eq.0h2v.s5.e161287442aa from=translated src=- shape=e0011acb vocab=57ef6db6
+-/
 lemma sum_f (a : Fin n → Bool) :
     ∑ i : Fin n, f a i = (Finset.univ : Finset (Fin n)).card.choose 2 := by
   have hsplit : ∑ i : Fin n, f a i =
@@ -267,6 +294,9 @@ lemma sum_f (a : Fin n → Bool) :
     · exact Or.inl ⟨h, he⟩
     · exact Or.inr ⟨h, he⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.ddf166dca2b0 from=translated src=- shape=554c3a48 vocab=f8619165
+-/
 theorem usa1987_p5_part1 (a : Fin n → Bool) :
     numGoodTriples a = ∑ i : Fin n, (f a i).choose 2 := by
   rw [numGoodTriples_eq, card_tripsA, card_tripsB, card_tripsC]
@@ -275,7 +305,9 @@ theorem usa1987_p5_part1 (a : Fin n → Bool) :
   rw [f_apply, choose_add_two]
   ring
 
-/-- Divisibility: `n * (n - 1) * (n - 3) = 8 * (n * C((n-1)/2, 2))` for `n = 2k + 1`. -/
+/-- Divisibility: `n * (n - 1) * (n - 3) = 8 * (n * C((n-1)/2, 2))` for `n = 2k + 1`.
+@isnad1 id=eq.0h1v.s7.f9deb71997f3 from=translated src=- shape=c3b08bce vocab=97fa7e43
+-/
 lemma key_div (k : ℕ) :
     (2 * k + 1) * ((2 * k + 1) - 1) * ((2 * k + 1) - 3) = 8 * ((2 * k + 1) * k.choose 2) := by
   have hk2 : 2 * k.choose 2 = k * (k - 1) := by
@@ -296,7 +328,9 @@ lemma key_div (k : ℕ) :
     _ = (2 * k + 1) * (8 * k.choose 2) := by rw [h3]
     _ = 8 * ((2 * k + 1) * k.choose 2) := by ring
 
-/-- Cast of the product `n * (n - 1) * (n - 3)` to the integers, for odd `n`. -/
+/-- Cast of the product `n * (n - 1) * (n - 3)` to the integers, for odd `n`.
+@isnad1 id=eq.0h1v.s7.6255ac1f9bce from=translated src=- shape=fb458de4 vocab=974d9dbb
+-/
 lemma cast_key (k : ℕ) :
     (((2 * k + 1) * ((2 * k + 1) - 1) * ((2 * k + 1) - 3) : ℕ) : ℤ) =
       ((2 * k + 1 : ℕ) : ℤ) * (((2 * k + 1 : ℕ) : ℤ) - 1) * (((2 * k + 1 : ℕ) : ℤ) - 3) := by
@@ -309,7 +343,9 @@ lemma cast_key (k : ℕ) :
     ring
 
 /-- The lower bound: every sequence on `2k + 1` positions has at least
-`(2k + 1) * C(k, 2)` good triples. -/
+`(2k + 1) * C(k, 2)` good triples.
+@isnad1 id=le.0h2v.s6.cfd61b38c637 from=translated src=- shape=dd6e22bf vocab=785ccf3c
+-/
 lemma lower_bound (k : ℕ) (a : Fin (2 * k + 1) → Bool) :
     (2 * k + 1) * k.choose 2 ≤ numGoodTriples a := by
   have h2T : 2 * (numGoodTriples a : ℤ) =
@@ -372,6 +408,9 @@ lemma lower_bound (k : ℕ) (a : Fin (2 * k + 1) → Bool) :
     le_of_mul_le_mul_left h8 (by norm_num)
   exact_mod_cast h9
 
+/--
+@isnad1 id=iff.0h3v.s5.3b50a97f0f06 from=translated src=- shape=2bee05f7 vocab=e9b62967
+-/
 lemma altSeq_eq_iff {i j : Fin n} : altSeq n i = altSeq n j ↔ (i : ℕ) % 2 = (j : ℕ) % 2 := by
   have hi := Nat.mod_lt (i : ℕ) (show 0 < 2 by norm_num)
   have hj := Nat.mod_lt (j : ℕ) (show 0 < 2 by norm_num)
@@ -379,6 +418,9 @@ lemma altSeq_eq_iff {i j : Fin n} : altSeq n i = altSeq n j ↔ (i : ℕ) % 2 = 
   rw [Bool.eq_iff_iff, beq_iff_eq, beq_iff_eq]
   constructor <;> lia
 
+/--
+@isnad1 id=eq.0h2v.s7.6c706f32c088 from=translated src=- shape=4f66ae00 vocab=585f1f4d
+-/
 lemma card_eqBefore_alt (k : ℕ) (i : Fin (2 * k + 1)) :
     (eqBefore (altSeq (2 * k + 1)) i).card = (i : ℕ) / 2 := by
   have h2 : (i : ℕ) % 2 < 2 := Nat.mod_lt _ (by norm_num)
@@ -408,6 +450,9 @@ lemma card_eqBefore_alt (k : ℕ) (i : Fin (2 * k + 1)) :
     · show (2 * m + (i : ℕ) % 2) / 2 = m
       lia
 
+/--
+@isnad1 id=eq.0h2v.s7.c2a78848def3 from=translated src=- shape=015c871a vocab=c0ee6bd3
+-/
 lemma card_neqAfter_alt (k : ℕ) (i : Fin (2 * k + 1)) :
     (neqAfter (altSeq (2 * k + 1)) i).card = k - (i : ℕ) / 2 := by
   have h2 : (i : ℕ) % 2 < 2 := Nat.mod_lt _ (by norm_num)
@@ -441,12 +486,17 @@ lemma card_neqAfter_alt (k : ℕ) (i : Fin (2 * k + 1)) :
     · show ((i : ℕ) + 1 + 2 * m - (i : ℕ) - 1) / 2 = m
       lia
 
+/--
+@isnad1 id=eq.0h2v.s6.0124d7cbb419 from=translated src=- shape=9f277c18 vocab=8b4bbc00
+-/
 lemma f_alt (k : ℕ) (i : Fin (2 * k + 1)) : f (altSeq (2 * k + 1)) i = k := by
   rw [f_apply, card_eqBefore_alt, card_neqAfter_alt]
   have hilt := i.isLt
   lia
 
-/-- The alternating sequence attains the bound. -/
+/-- The alternating sequence attains the bound.
+@isnad1 id=eq.0h1v.s6.936677dc1cfd from=translated src=- shape=1ae7da25 vocab=3652ae80
+-/
 lemma T_alt (k : ℕ) : numGoodTriples (altSeq (2 * k + 1)) = (2 * k + 1) * k.choose 2 := by
   rw [usa1987_p5_part1]
   rw [show (∑ i : Fin (2 * k + 1), (f (altSeq (2 * k + 1)) i).choose 2) =

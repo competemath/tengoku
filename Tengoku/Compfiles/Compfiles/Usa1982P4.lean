@@ -19,6 +19,9 @@ k⬝2ⁿ + 1 is composite for every integer n.
 
 namespace Usa1982P4
 
+/--
+@isnad1 id=not.2h1v.s5.26d7c9feed53 from=translated src=- shape=f828d593 vocab=488c216f
+-/
 lemma not_prime_of_dvd : ∀ n : ℕ, n ≥ 2 → (∃ m, m ≥ 2 ∧ m ≠ n ∧ m ∣ n) → ¬ Prime n := by
   intro n hn h p
   have ngt0 : 0 < n := by lia
@@ -29,6 +32,9 @@ lemma not_prime_of_dvd : ∀ n : ℕ, n ≥ 2 → (∃ m, m ≥ 2 ∧ m ≠ n �
   have h5 : Nat.minFac n ≤ m := Nat.minFac_le_of_dvd h1 h3
   apply lt_of_le_of_lt h5 h4
 
+/--
+@isnad1 id=modeq.2h5v.s6.6bf363521721 from=translated src=- shape=25007c94 vocab=40d5d354
+-/
 lemma some_useful_mod_lemma : ∀ (n a b c d : ℕ),
   n ≡ a [MOD b] → d ^ b ≡ 1 [MOD c] → d ^ n ≡ d ^ a [MOD c] := by
   intro n a b c d h1 h2
@@ -50,6 +56,9 @@ lemma some_useful_mod_lemma : ∀ (n a b c d : ℕ),
     simp only [Nat.zero_mod, add_zero]
     rw [mul_comm, pow_mul, Nat.pow_mod, h2, ← Nat.pow_mod, one_pow]
 
+/--
+@isnad1 id=not.2h4v.s8.e8f7fbb3c48b from=translated src=- shape=779120af vocab=be73dba8
+-/
 lemma usa1982_p4_lemma (e a b)
     (he :
       (⟨e, ⟨a, b⟩⟩ : ℕ × ℕ × ℕ) = ⟨3, ⟨1, 2⟩⟩ ∨
@@ -86,6 +95,9 @@ lemma usa1982_p4_lemma (e a b)
       rw [hb, he]; rfl
   }
 
+/--
+@isnad1 id=modeq.3h5v.s5.79f7aa0de0fb from=translated src=- shape=0d5942d0 vocab=b5342887
+-/
 lemma usa1982_mod_lemma {n r r' q : ℕ}
     (hm : n % 64 = r') (p : ℕ) (hpq : p * q = 64) (hrr : r' ≡ r [MOD q]) : n ≡ r [MOD q] := by
   trans r'; swap

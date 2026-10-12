@@ -28,17 +28,26 @@ variable {a b c : ℝ}
 -- Get rid of the 1's on LHS by homogenizing the given condition away,
 -- then simplify and use AM-GM on cyclic sum (c+a)(c+b)/(a+b)^2.
 
+/--
+@isnad1 id=le.3h3v.s8.6467591d7486 from=translated src=- shape=077f9376 vocab=5c9d27ef
+-/
 lemma bound (ha : 0 < a) (hb : 0 < b)
     (h : a ^ 2 + b ^ 2 + c ^ 2 + (a + b + c) ^ 2 ≤ 4) :
     1 / 2 * (1 + (c + a) * (c + b) / (a + b)^2) ≤ (a * b + 1) / (a + b)^2 := by
   field_simp
   linarith
 
+/--
+@isnad1 id=eq.2h2v.s6.5a0c4b74cb07 from=translated src=- shape=bed1fd5c vocab=f3a5b989
+-/
 lemma cube_root {p q : ℝ} (hp : 0 < p) (hq : 0 < q) : (p^3 * q^3)^(1 / 3 : ℝ) = p * q := by
   rw [show p^3 * q^3 = (p * q)^3 by ring, ← rpow_natCast, ← rpow_mul (by positivity)]
   norm_num
 
 -- AM-GM: yz/x² + xz/y² + xy/z² ≥ 3 when x,y,z > 0
+/--
+@isnad1 id=le.3h3v.s7.38fabb619fda from=translated src=- shape=a6ce215e vocab=5c9d27ef
+-/
 lemma AMGM {x y z : ℝ} (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     3 ≤ y * z / x^2 + x * z / y^2 + x * y / z^2 := by
   field_simp

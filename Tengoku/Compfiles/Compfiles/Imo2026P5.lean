@@ -38,12 +38,20 @@ def IsAdmissible (f : PositiveReal → PositiveReal) : Prop :=
 /-- The defect `f x - x` of a function on the positive reals. -/
 def fdef (f : PositiveReal → PositiveReal) (x : PositiveReal) : ℝ := (f x : ℝ) - (x : ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s5.1441f1fc1231 from=translated src=- shape=bb9cb23a vocab=2c297b13
+-/
 lemma fdef_eq (f : PositiveReal → PositiveReal) (x : PositiveReal) :
     fdef f x = (f x : ℝ) - (x : ℝ) := rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.48986e9292ab from=translated src=- shape=cb6fbbc4 vocab=85d08682
+-/
 lemma pval (v : ℝ) (hv : 0 < v) : ((⟨v, hv⟩ : PositiveReal) : ℝ) = v := rfl
 
-/-- Squared form of the right inequality: `4 x f(y) ≤ (f(x) + y)^2`. -/
+/-- Squared form of the right inequality: `4 x f(y) ≤ (f(x) + y)^2`.
+@isnad1 id=le.1h3v.s6.9858fbdde4e7 from=translated src=- shape=e3bb33cc vocab=0ce0d90a
+-/
 lemma hB (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (x y : PositiveReal) :
     4 * (x : ℝ) * (f y : ℝ) ≤ ((f x : ℝ) + (y : ℝ)) ^ 2 := by
   have hx : (0 : ℝ) ≤ (x : ℝ) := le_of_lt x.2
@@ -53,7 +61,9 @@ lemma hB (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (x y : Positiv
   rw [Real.sq_sqrt (mul_nonneg hx hfy)] at h2
   nlinarith [h2]
 
-/-- Squared form of the left inequality: `(f(x) + y)^2 ≤ 2 (x^2 + f(y)^2)`. -/
+/-- Squared form of the left inequality: `(f(x) + y)^2 ≤ 2 (x^2 + f(y)^2)`.
+@isnad1 id=le.1h3v.s7.68d9d991b86c from=translated src=- shape=bf74bcdb vocab=0ce0d90a
+-/
 lemma hA (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (x y : PositiveReal) :
     ((f x : ℝ) + (y : ℝ)) ^ 2 ≤ 2 * ((x : ℝ) ^ 2 + (f y : ℝ) ^ 2) := by
   have hfx : (0 : ℝ) ≤ (f x : ℝ) := le_of_lt (f x).2
@@ -66,7 +76,9 @@ lemma hA (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (x y : Positiv
   rw [Real.sq_sqrt hnn] at h2
   nlinarith [h2]
 
-/-- Iterating `f` twice shifts by the defect: `f(f(y)) = 2 f(y) - y`. -/
+/-- Iterating `f` twice shifts by the defect: `f(f(y)) = 2 f(y) - y`.
+@isnad1 id=eq.1h2v.s6.ca8dff767f1e from=translated src=- shape=85f94563 vocab=08255c41
+-/
 lemma fcomp (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (y : PositiveReal) :
     (f (f y) : ℝ) = 2 * (f y : ℝ) - (y : ℝ) := by
   have hv := (f y).2
@@ -80,7 +92,9 @@ lemma fcomp (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (y : Positi
   · linarith [h4]
   · nlinarith [h4, hw, ht, hv]
 
-/-- The orbit of `f` is an arithmetic progression with difference `fdef f y`. -/
+/-- The orbit of `f` is an arithmetic progression with difference `fdef f y`.
+@isnad1 id=eq.1h3v.s6.e2c018a8b9b5 from=translated src=- shape=22b551b0 vocab=80ace622
+-/
 lemma orbit (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (y : PositiveReal)
     (n : ℕ) :
     (f^[n] y : ℝ) = (y : ℝ) + (n : ℝ) * ((f y : ℝ) - (y : ℝ)) := by
@@ -108,7 +122,9 @@ lemma orbit (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (y : Positi
       ring
   exact (key n).1
 
-/-- The defect is nonnegative: `f y ≥ y`. -/
+/-- The defect is nonnegative: `f y ≥ y`.
+@isnad1 id=le.1h2v.s5.92d96db889c5 from=translated src=- shape=7344079b vocab=b9ec964b
+-/
 lemma g_nonneg (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (y : PositiveReal) :
     (0 : ℝ) ≤ (f y : ℝ) - (y : ℝ) := by
   by_contra hlt
@@ -122,7 +138,9 @@ lemma g_nonneg (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (y : Pos
   have h3 := (f^[n] y).2
   nlinarith [h2, h3, hng]
 
-/-- Cross inequality on orbit points, with `p = fdef f b`, `q = fdef f a`. -/
+/-- Cross inequality on orbit points, with `p = fdef f b`, `q = fdef f a`.
+@isnad1 id=le.1h5v.s7.301b060d8261 from=translated src=- shape=35205124 vocab=5a59e258
+-/
 lemma cross (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a b : PositiveReal)
     (m n : ℕ) :
     4 * (f^[m] b : ℝ) * (((f a : ℝ) - (a : ℝ)) - ((f b : ℝ) - (b : ℝ))) ≤
@@ -149,7 +167,9 @@ lemma cross (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a b : Posi
     ring
   linarith [h1, hid]
 
-/-- Two positive defect values cannot be strictly ordered. -/
+/-- Two positive defect values cannot be strictly ordered.
+@isnad1 id=false.4h3v.s7.df96d5c5f328 from=translated src=- shape=dd0a22d2 vocab=a10fc6c1
+-/
 lemma absurd_lt (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a b : PositiveReal)
     (ha : (0 : ℝ) < (f a : ℝ) - (a : ℝ)) (hb : (0 : ℝ) < (f b : ℝ) - (b : ℝ))
     (hlt : (f b : ℝ) - (b : ℝ) < (f a : ℝ) - (a : ℝ)) : False := by
@@ -211,7 +231,9 @@ lemma eq_of_pos (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a b : 
   · exact h1
   · exact (absurd_lt f h a b ha hb h1).elim
 
-/-- Near a zero of the defect, the defect vanishes. -/
+/-- Near a zero of the defect, the defect vanishes.
+@isnad1 id=eq.5h4v.s7.20dec9186014 from=translated src=- shape=cb3dc0e5 vocab=6a7167de
+-/
 lemma ball (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a : PositiveReal)
     (ha : (0 : ℝ) < fdef f a)
     (hdval : ∀ x : PositiveReal, fdef f x = 0 ∨ fdef f x = fdef f a)
@@ -251,7 +273,9 @@ lemma ball (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a : Positiv
   · exact h0
   · linarith [h6, hd']
 
-/-- Everything strictly above a zero of the defect is a zero. -/
+/-- Everything strictly above a zero of the defect is a zero.
+@isnad1 id=eq.5h4v.s6.01d128aa6d31 from=translated src=- shape=a159fa51 vocab=382eb1d1
+-/
 lemma ascend (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a : PositiveReal)
     (ha : (0 : ℝ) < fdef f a)
     (hdval : ∀ x : PositiveReal, fdef f x = 0 ∨ fdef f x = fdef f a)
@@ -330,7 +354,9 @@ lemma ascend (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a : Posit
     linarith [hx2, h2, hsqrt]
   exact ball f h a ha hdval ti x hgti hclose2
 
-/-- A zero of the defect cannot coexist with a positive value. -/
+/-- A zero of the defect cannot coexist with a positive value.
+@isnad1 id=false.4h3v.s5.53ccf48e9c77 from=translated src=- shape=10807ddc vocab=a81cc0fe
+-/
 lemma zero_contra (f : PositiveReal → PositiveReal) (h : IsAdmissible f) (a : PositiveReal)
     (ha : (0 : ℝ) < fdef f a)
     (hdval : ∀ x : PositiveReal, fdef f x = 0 ∨ fdef f x = fdef f a)

@@ -34,8 +34,14 @@ def step (f : Conf) (j : ZMod 6) : Conf := Function.update f j |f (j - 1) - f (j
 sequence of moves. -/
 def Moves (f g : Conf) : Prop := ∃ l : List (ZMod 6), l.foldl step f = g
 
+/--
+@isnad1 id=moves.0h1v.s2.75c132beb0ab from=translated src=- shape=b3bac8d8 vocab=c937d50b
+-/
 lemma Moves.refl (f : Conf) : Moves f f := ⟨[], rfl⟩
 
+/--
+@isnad1 id=moves.2h3v.s4.da569735c577 from=translated src=- shape=0bc0c4a6 vocab=c937d50b
+-/
 lemma Moves.trans {f g h : Conf} (h1 : Moves f g) (h2 : Moves g h) : Moves f h := by
   obtain ⟨l1, rfl⟩ := h1
   obtain ⟨l2, rfl⟩ := h2
@@ -45,15 +51,24 @@ lemma Moves.trans {f g h : Conf} (h1 : Moves f g) (h2 : Moves g h) : Moves f h :
 noncomputable def cmax (f : Conf) : ℤ :=
   (Finset.univ.image f).max' (Finset.univ_nonempty.image f)
 
+/--
+@isnad1 id=le.0h2v.s4.0ca74502ba28 from=translated src=- shape=4a569036 vocab=6ad84b90
+-/
 lemma le_cmax (f : Conf) (i : ZMod 6) : f i ≤ cmax f :=
   Finset.le_max' _ _ (Finset.mem_image_of_mem f (Finset.mem_univ i))
 
+/--
+@isnad1 id=le.1h2v.s4.34e559f791f6 from=translated src=- shape=3f9c9a4b vocab=6ad84b90
+-/
 lemma cmax_le (f : Conf) (C : ℤ) (h : ∀ i, f i ≤ C) : cmax f ≤ C := by
   apply Finset.max'_le
   intro x hx
   obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hx
   exact h i
 
+/--
+@isnad1 id=ex.0h1v.s4.39538f354037 from=translated src=- shape=6d09346c vocab=75452f83
+-/
 lemma cmax_attained (f : Conf) : ∃ i, f i = cmax f := by
   have h := Finset.max'_mem _ (Finset.univ_nonempty.image (f := f))
   obtain ⟨i, -, hi⟩ := Finset.mem_image.mp h
@@ -61,6 +76,9 @@ lemma cmax_attained (f : Conf) : ∃ i, f i = cmax f := by
 
 /-! ### Parity machinery -/
 
+/--
+@isnad1 id=eq.0h1v.s6.52a75a74d29b from=translated src=- shape=9756102a vocab=838d13d2
+-/
 lemma cast_abs2 (n : ℤ) : ((|n| : ℤ) : ZMod 2) = (n : ZMod 2) := by
   rcases abs_choice n with h | h
   · rw [h]
@@ -68,20 +86,35 @@ lemma cast_abs2 (n : ℤ) : ((|n| : ℤ) : ZMod 2) = (n : ZMod 2) := by
     have h2 : ∀ x : ZMod 2, -x = x := by decide
     rw [h2]
 
+/--
+@isnad1 id=iff.0h1v.s6.5eeb57791390 from=translated src=- shape=a9a0f315 vocab=0073793c
+-/
 lemma odd_iff_cast (n : ℤ) : Odd n ↔ (n : ZMod 2) = 1 :=
   ZMod.intCast_eq_one_iff_odd.symm
 
+/--
+@isnad1 id=iff.0h1v.s6.28e1e237a7ac from=translated src=- shape=a9a0f315 vocab=a95f9879
+-/
 lemma even_iff_cast (n : ℤ) : Even n ↔ (n : ZMod 2) = 0 :=
   ZMod.intCast_eq_zero_iff_even.symm
 
+/--
+@isnad1 id=iff.0h1v.s7.2ab5919bfffd from=translated src=- shape=b5715757 vocab=66a40ceb
+-/
 lemma odd_sum_iff (f : Conf) : Odd (∑ i, f i) ↔ (∑ i, (f i : ZMod 2)) = 1 := by
   rw [← Int.cast_sum]
   exact odd_iff_cast _
 
+/--
+@isnad1 id=le.2h1v.s4.a2457b6abaf9 from=translated src=- shape=cf00900b vocab=aef9336e
+-/
 lemma one_le_of_odd {n : ℤ} (h0 : 0 ≤ n) (ho : Odd n) : 1 ≤ n := by
   rcases ho with ⟨k, rfl⟩
   lia
 
+/--
+@isnad1 id=le.2h1v.s4.d83f6c99908a from=translated src=- shape=464f3393 vocab=cdbb800e
+-/
 lemma two_le_of_even_pos {n : ℤ} (h0 : 0 < n) (he : Even n) : 2 ≤ n := by
   rcases he with ⟨k, rfl⟩
   lia
@@ -90,6 +123,9 @@ lemma two_le_of_even_pos {n : ℤ} (h0 : 0 < n) (he : Even n) : 2 ≤ n := by
 def step2 (v : ZMod 6 → ZMod 2) (j : ZMod 6) : ZMod 6 → ZMod 2 :=
   Function.update v j (v (j - 1) + v (j + 1))
 
+/--
+@isnad1 id=eq.0h2v.s7.b5750431030d from=translated src=- shape=5f6e7211 vocab=f312e50c
+-/
 lemma par_step (f : Conf) (j : ZMod 6) :
     (fun i => ((step f j) i : ZMod 2)) = step2 (fun i => (f i : ZMod 2)) j := by
   funext i
@@ -101,6 +137,9 @@ lemma par_step (f : Conf) (j : ZMod 6) :
     rw [h2]
   · simp only [step, step2, Function.update_of_ne hij]
 
+/--
+@isnad1 id=eq.0h2v.s7.e3844c98ba52 from=translated src=- shape=c506f027 vocab=6644e65d
+-/
 lemma par_foldl (f : Conf) (l : List (ZMod 6)) :
     (fun i => ((l.foldl step f) i : ZMod 2)) = l.foldl step2 (fun i => (f i : ZMod 2)) := by
   induction l generalizing f with
@@ -112,6 +151,9 @@ lemma par_foldl (f : Conf) (l : List (ZMod 6)) :
 
 /-! ### Nonnegativity and the maximum under moves -/
 
+/--
+@isnad1 id=le.1h3v.s5.30f027100436 from=translated src=- shape=8a607229 vocab=1ccf398b
+-/
 lemma step_nonneg (f : Conf) (hnn : ∀ i, 0 ≤ f i) (j : ZMod 6) : ∀ i, 0 ≤ step f j i := by
   intro i
   by_cases hij : i = j
@@ -121,6 +163,9 @@ lemma step_nonneg (f : Conf) (hnn : ∀ i, 0 ≤ f i) (j : ZMod 6) : ∀ i, 0 �
   · rw [step, Function.update_of_ne hij]
     exact hnn i
 
+/--
+@isnad1 id=le.1h3v.s5.4d7ddecae685 from=translated src=- shape=e958f7cc vocab=afbd1f64
+-/
 lemma foldl_nonneg (f : Conf) (hnn : ∀ i, 0 ≤ f i) : ∀ l : List (ZMod 6), ∀ i, 0 ≤ (l.foldl step f) i := by
   intro l
   induction l generalizing f hnn with
@@ -130,10 +175,16 @@ lemma foldl_nonneg (f : Conf) (hnn : ∀ i, 0 ≤ f i) : ∀ l : List (ZMod 6), 
     simp only [List.foldl_cons]
     exact ih (step f a) (step_nonneg f hnn a) i
 
+/--
+@isnad1 id=le.4h3v.s5.7f1c85cf6fd0 from=translated src=- shape=f0c7bc3b vocab=ca93861a
+-/
 lemma abs_sub_le_of {x y B : ℤ} (hx0 : 0 ≤ x) (hy0 : 0 ≤ y) (hxB : x ≤ B) (hyB : y ≤ B) :
     |x - y| ≤ B :=
   abs_le.mpr ⟨by lia, by lia⟩
 
+/--
+@isnad1 id=le.1h2v.s5.2951f532a6d5 from=translated src=- shape=a8215a91 vocab=a624f87a
+-/
 lemma cmax_step_le (f : Conf) (hnn : ∀ i, 0 ≤ f i) (j : ZMod 6) : cmax (step f j) ≤ cmax f := by
   apply cmax_le
   intro i
@@ -144,6 +195,9 @@ lemma cmax_step_le (f : Conf) (hnn : ∀ i, 0 ≤ f i) (j : ZMod 6) : cmax (step
   · rw [step, Function.update_of_ne hij]
     exact le_cmax f i
 
+/--
+@isnad1 id=le.1h2v.s5.0f257dd9483e from=translated src=- shape=4dca9d59 vocab=def55e1d
+-/
 lemma cmax_foldl_le (f : Conf) (hnn : ∀ i, 0 ≤ f i) : ∀ l : List (ZMod 6), cmax (l.foldl step f) ≤ cmax f := by
   intro l
   induction l generalizing f hnn with
@@ -163,11 +217,16 @@ def cands : List (List (ZMod 6)) :=
 
 /-- Machine-checked parity verification: from every parity vector with odd
 sum, one of the candidate sequences leads to a parity vector with exactly
-one odd entry. -/
+one odd entry.
+@isnad1 id=ex.1h1v.s8.bcdfaccfdca0 from=translated src=- shape=0e92bd25 vocab=5ee82b2a
+-/
 lemma phase1_decide : ∀ v : ZMod 6 → ZMod 2, (∑ i, v i) = 1 →
     ∃ l ∈ cands, ∃ p, ∀ i, (l.foldl step2 v) i = (if i = p then 1 else 0) := by
   decide
 
+/--
+@isnad1 id=ex.2h1v.s8.060e4c40fed0 from=translated src=- shape=9df20799 vocab=7a1fb976
+-/
 lemma phase1 (f : Conf) (hnn : ∀ i, 0 ≤ f i) (hodd : Odd (∑ i, f i)) :
     ∃ l : List (ZMod 6), ∃ g : Conf, l.foldl step f = g ∧ (∀ i, 0 ≤ g i) ∧
       cmax g ≤ cmax f ∧ ∃ p : ZMod 6, (g p : ZMod 2) = 1 ∧ ∀ i, i ≠ p → (g i : ZMod 2) = 0 := by
@@ -190,6 +249,9 @@ lemma phase1 (f : Conf) (hnn : ∀ i, 0 ≤ f i) (hodd : Odd (∑ i, f i)) :
 
 /-! ### Rotation symmetry -/
 
+/--
+@isnad1 id=eq.0h3v.s7.68845b2a64d9 from=translated src=- shape=4b6605b5 vocab=835ef58c
+-/
 lemma step_comp_add (f : Conf) (c j : ZMod 6) :
     step (f ∘ (· + c)) j = (step f (j + c)) ∘ (· + c) := by
   funext i
@@ -206,6 +268,9 @@ lemma step_comp_add (f : Conf) (c j : ZMod 6) :
     rw [Function.update_of_ne hij, Function.update_of_ne hij2]
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.f833801b480d from=translated src=- shape=6c2a7486 vocab=0b300c4a
+-/
 lemma foldl_comp_add (f : Conf) (c : ZMod 6) (l : List (ZMod 6)) :
     l.foldl step (f ∘ (· + c)) = ((l.map (· + c)).foldl step f) ∘ (· + c) := by
   induction l generalizing f with
@@ -215,6 +280,9 @@ lemma foldl_comp_add (f : Conf) (c : ZMod 6) (l : List (ZMod 6)) :
     rw [step_comp_add]
     exact ih _
 
+/--
+@isnad1 id=moves.1h3v.s7.fb2ff2e4ef3f from=translated src=- shape=2501c42e vocab=53518162
+-/
 lemma moves_comp_add (f g : Conf) (c : ZMod 6) (h : Moves f g) :
     Moves (f ∘ (· + c)) (g ∘ (· + c)) := by
   obtain ⟨l, hl⟩ := h
@@ -228,16 +296,25 @@ lemma moves_comp_add (f g : Conf) (c : ZMod 6) (h : Moves f g) :
 
 /-! ### Concrete move computations -/
 
+/--
+@isnad1 id=le.4h3v.s6.1cd55400b3cd from=translated src=- shape=6b969a22 vocab=ca93861a
+-/
 lemma abs_sub_le_mk1 {x y M : ℤ} (hx1 : 1 ≤ x) (hxM : x ≤ M - 1) (hy0 : 0 ≤ y) (hyM : y ≤ M) :
     |x - y| ≤ M - 1 :=
   abs_le.mpr ⟨by lia, by lia⟩
 
+/--
+@isnad1 id=le.4h3v.s6.3c12ea72bead from=translated src=- shape=6aae12f9 vocab=ca93861a
+-/
 lemma abs_sub_le_mk2 {x y M : ℤ} (hx0 : 0 ≤ x) (hxM : x ≤ M - 1) (hy0 : 0 ≤ y) (hyM : y ≤ M - 1) :
     |x - y| ≤ M - 1 :=
   abs_le.mpr ⟨by lia, by lia⟩
 
 /-! ### Phase 2: reducing the maximum from a single odd entry -/
 
+/--
+@isnad1 id=ex.3h1v.s8.9e2698bb89ab from=translated src=- shape=210a5525 vocab=aa9c8b95
+-/
 lemma phase2 (g : Conf) (hnn : ∀ i, 0 ≤ g i) (h0 : (g 0 : ZMod 2) = 1)
     (hk : ∀ i, i ≠ 0 → (g i : ZMod 2) = 0) :
     ∃ h : Conf, Moves g h ∧ (h = 0 ∨ (Odd (∑ i, h i) ∧ cmax h < cmax g)) := by
@@ -459,6 +536,9 @@ lemma phase2 (g : Conf) (hnn : ∀ i, 0 ≤ g i) (h0 : (g 0 : ZMod 2) = 1)
 
 /-! ### The main induction -/
 
+/--
+@isnad1 id=moves.2h1v.s6.3c1d52c430f6 from=translated src=- shape=2a93ddf3 vocab=f057cca6
+-/
 lemma winnable_aux (f : Conf) (hnn : ∀ i, 0 ≤ f i) (hodd : Odd (∑ i, f i)) : Moves f 0 := by
   suffices H : ∀ m : ℕ, ∀ f : Conf, (∀ i, 0 ≤ f i) → Odd (∑ i, f i) →
       (cmax f).toNat = m → Moves f 0 from H _ f hnn hodd rfl
@@ -530,6 +610,9 @@ lemma winnable_aux (f : Conf) (hnn : ∀ i, 0 ≤ f i) (hodd : Odd (∑ i, f i))
 def stepN (f : ZMod 6 → ℕ) (j : ZMod 6) : ZMod 6 → ℕ :=
   Function.update f j (Nat.dist (f (j - 1)) (f (j + 1)))
 
+/--
+@isnad1 id=eq.0h2v.s4.a45ce1756e61 from=translated src=- shape=584aa4ea vocab=bb2a0502
+-/
 lemma dist_cast (x y : ℕ) : ((Nat.dist x y : ℤ)) = |(x : ℤ) - (y : ℤ)| := by
   unfold Nat.dist
   rcases le_total x y with h | h
@@ -539,6 +622,9 @@ lemma dist_cast (x y : ℕ) : ((Nat.dist x y : ℤ)) = |(x : ℤ) - (y : ℤ)| :
   · rw [Nat.sub_eq_zero_of_le h, add_zero, Nat.cast_sub h,
       abs_of_nonneg (by lia : (0 : ℤ) ≤ (x : ℤ) - (y : ℤ))]
 
+/--
+@isnad1 id=eq.0h2v.s5.c7a0b32fd990 from=translated src=- shape=36cf1de4 vocab=8350bd13
+-/
 lemma stepN_cast (f : ZMod 6 → ℕ) (j : ZMod 6) :
     (fun i => ((stepN f j) i : ℤ)) = step (fun i => (f i : ℤ)) j := by
   funext i
@@ -548,6 +634,9 @@ lemma stepN_cast (f : ZMod 6 → ℕ) (j : ZMod 6) :
     exact dist_cast _ _
   · rw [stepN, Function.update_of_ne hij, step, Function.update_of_ne hij]
 
+/--
+@isnad1 id=eq.0h2v.s6.7ecb722e9623 from=translated src=- shape=c73d5180 vocab=a21bd352
+-/
 lemma foldl_bridge (f : ZMod 6 → ℕ) (l : List (ZMod 6)) :
     (fun i => ((l.foldl stepN f) i : ℤ)) = l.foldl step (fun i => ((f i : ℤ))) := by
   induction l generalizing f with

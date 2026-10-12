@@ -51,7 +51,9 @@ private theorem character_zero : character (0 : V →ₗ[ZMod 2] ZMod 2) = 1 := 
   simp [character, sign]
 
 open Classical in
-/-- Constancy of the full residue cancels each nonzero character coefficient. -/
+/-- Constancy of the full residue cancels each nonzero character coefficient.
+@isnad1 id=eq.2h5v.s11.02496b839aeb from=translated src=- shape=e568b256 vocab=ae56e543
+-/
 theorem signedMultiplicity_eq_zero {ι : Type*} [Fintype ι]
     (a : ι → ZMod 2) (L : ι → V →ₗ[ZMod 2] ZMod 2)
     (constant : ∀ u, residue (fun i => a i + L i u) = residue a)
@@ -75,7 +77,9 @@ theorem signedMultiplicity_eq_zero {ι : Type*} [Fintype ι]
   simpa [Finsupp.sum_apply, Finsupp.single_apply, character_injective.eq_iff,
     nontrivial, Ne.symm nontrivial] using evaluated
 
-/-- Every nonzero form appearing in a constant-residue parametrization repeats. -/
+/-- Every nonzero form appearing in a constant-residue parametrization repeats.
+@isnad1 id=ex.2h5v.s10.15356a261820 from=translated src=- shape=81320c87 vocab=4a2b7c96
+-/
 theorem exists_duplicate {ι : Type*} [Fintype ι]
     (a : ι → ZMod 2) (L : ι → V →ₗ[ZMod 2] ZMod 2)
     (constant : ∀ u, residue (fun i => a i + L i u) = residue a)
@@ -95,7 +99,9 @@ theorem exists_duplicate {ι : Type*} [Fintype ι]
   rw [single] at cancelled
   exact sign_ne_zero (a i) cancelled
 
-/-- Constant full residue forces at least two coordinates per parameter dimension. -/
+/-- Constant full residue forces at least two coordinates per parameter dimension.
+@isnad1 id=le.2h4v.s10.0163e8424e98 from=translated src=- shape=e8b5f3d0 vocab=620e892f
+-/
 theorem two_mul_finrank_le {ι : Type*} [Fintype ι]
     (a : ι → ZMod 2) (L : ι → V →ₗ[ZMod 2] ZMod 2)
     (injective : Function.Injective fun u => fun i => L i u)

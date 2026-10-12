@@ -39,7 +39,9 @@ repeating part could have been started one digit earlier.
 
 /-- The numerator `a * (10 ^ s - 1) + b` of the unreduced fraction is
 congruent to `b - a` modulo 10, so it is not divisible by 10 when the
-last digits of `a` and `b` differ. -/
+last digits of `a` and `b` differ.
+@isnad1 id=not.2h3v.s6.7f0018eaa0fb from=translated src=- shape=df946b97 vocab=991b10c4
+-/
 lemma not_ten_dvd_num {a b s : ℕ} (hs : 1 ≤ s) (hab : a % 10 ≠ b % 10) :
     ¬ 10 ∣ a * (10 ^ s - 1) + b := by
   intro h

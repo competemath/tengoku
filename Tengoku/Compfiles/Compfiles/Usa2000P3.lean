@@ -67,14 +67,29 @@ abbrev fewestWays (A B C : ℕ) : ℕ :=
   else if A = 2 * B ∧ C < 3 * B then C + 1
   else 1
 
+/--
+@isnad1 id=eq.0h0v.s3.0010640f3e7a from=translated src=- shape=35225b15 vocab=2330a4e5
+-/
 @[simp] lemma score_nil : score [] = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.42621677bc99 from=translated src=- shape=ac1f3ad7 vocab=e4c0d23f
+-/
 @[simp] lemma score_cons_blue (t : List Card) :
     score (.blue :: t) = t.count .white + score t := rfl
+/--
+@isnad1 id=eq.0h1v.s5.1ed98790dc10 from=translated src=- shape=4a60c5a5 vocab=962d519c
+-/
 @[simp] lemma score_cons_red (t : List Card) :
     score (.red :: t) = 3 * t.count .blue + score t := rfl
+/--
+@isnad1 id=eq.0h1v.s5.8cb931c921d6 from=translated src=- shape=4a60c5a5 vocab=4960f3a7
+-/
 @[simp] lemma score_cons_white (t : List Card) :
     score (.white :: t) = 2 * t.count .red + score t := rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.9edb04c4bdca from=translated src=- shape=90ae40b2 vocab=2ed9783a
+-/
 lemma mem_plays {A B C : ℕ} {l : List Card} :
     l ∈ plays A B C ↔ l.count .blue = A ∧ l.count .red = B ∧ l.count .white = C := by
   rw [plays, List.mem_toFinset, List.mem_permutations, List.perm_iff_count]
@@ -94,6 +109,9 @@ lemma mem_plays {A B C : ℕ} {l : List Card} :
 
 -- Purely arithmetic facts about `lowestScore` and `fewestWays`.
 
+/--
+@isnad1 id=or.0h3v.s6.72bdd6c29b36 from=translated src=- shape=738a1af7 vocab=6084273b
+-/
 lemma lowestScore_cases (A B C : ℕ) :
     lowestScore A B C = A * C ∨ lowestScore A B C = 3 * A * B ∨
       lowestScore A B C = 2 * B * C := by
@@ -112,27 +130,51 @@ lemma lowestScore_cases (A B C : ℕ) :
 
 variable (A B C : ℕ)
 
+/--
+@isnad1 id=le.0h3v.s4.e9710869d0da from=translated src=- shape=2b75a4ac vocab=a3886a04
+-/
 lemma lowestScore_le_ac : lowestScore A B C ≤ A * C :=
   le_trans (min_le_left _ _) (min_le_left _ _)
 
+/--
+@isnad1 id=le.0h3v.s5.9633731fe6c7 from=translated src=- shape=c3b9f6f9 vocab=a3886a04
+-/
 lemma lowestScore_le_ab : lowestScore A B C ≤ 3 * A * B :=
   le_trans (min_le_left _ _) (min_le_right _ _)
 
+/--
+@isnad1 id=le.0h3v.s5.00066663a8ea from=translated src=- shape=6be508a5 vocab=a3886a04
+-/
 lemma lowestScore_le_bc : lowestScore A B C ≤ 2 * B * C :=
   min_le_right _ _
 
+/--
+@isnad1 id=ne.3h3v.s6.010d49fccf11 from=translated src=- shape=7c86b018 vocab=eabce198
+-/
 lemma lowestScore_eq_ac (hA : 0 < A) (hC : 0 < C) (h : ¬(C ≤ 3 * B ∧ A ≤ 2 * B)) : lowestScore A B C ≠ A * C := by
   simp [lowestScore, -not_and]
   rw [mul_le_mul_iff_left₀ hC]
   move_mul [A]
   rwa [mul_le_mul_iff_left₀ hA]
 
+/--
+@isnad1 id=eq.0h2v.s4.287d6a09fa98 from=translated src=- shape=3b4d411b vocab=bdb16b7d
+-/
 lemma lowestScore_zero_b_c : lowestScore 0 B C = 0 := by simp [lowestScore]
 
+/--
+@isnad1 id=eq.0h2v.s4.c7af8d11bd9b from=translated src=- shape=34e5cb8a vocab=bdb16b7d
+-/
 lemma lowestScore_a_zero_c : lowestScore A 0 C = 0 := by simp [lowestScore]
 
+/--
+@isnad1 id=eq.0h2v.s4.54533d813ea7 from=translated src=- shape=9bf57cd7 vocab=bdb16b7d
+-/
 lemma lowestScore_a_b_zero : lowestScore A B 0 = 0 := by simp [lowestScore]
 
+/--
+@isnad1 id=le.0h3v.s5.3d167cdd2bc6 from=translated src=- shape=69e3d4c7 vocab=49bd87f8
+-/
 lemma lowestScore_le_add_blue :
     lowestScore (A + 1) B C ≤ C + lowestScore A B C := by
   rcases lowestScore_cases A B C with h | h | h
@@ -165,6 +207,9 @@ lemma lowestScore_le_add_blue :
       _ ≤ C + 2 * B * C := by lia
       _ = C + lowestScore A B C := by rw [h]
 
+/--
+@isnad1 id=le.0h3v.s5.8c5285b3aa06 from=translated src=- shape=ae098621 vocab=d10cc341
+-/
 lemma lowestScore_le_add_red (A B C : ℕ) :
     lowestScore A (B + 1) C ≤ 3 * A + lowestScore A B C := by
   rcases lowestScore_cases A B C with h | h | h
@@ -201,6 +246,9 @@ lemma lowestScore_le_add_red (A B C : ℕ) :
         _ = 3 * A := by ring
         _ ≤ 3 * A + 0 := by lia
 
+/--
+@isnad1 id=le.0h3v.s5.320c107cc2d5 from=translated src=- shape=dc4246b1 vocab=d10cc341
+-/
 lemma lowestScore_le_add_white (A B C : ℕ) :
     lowestScore A B (C + 1) ≤ 2 * B + lowestScore A B C := by
   rcases lowestScore_cases A B C with h | h | h
@@ -235,6 +283,9 @@ lemma lowestScore_le_add_white (A B C : ℕ) :
       _ = 2 * B + 2 * B * C := by ring
       _ = 2 * B + lowestScore A B C := by rw [h]
 
+/--
+@isnad1 id=iff.0h3v.s6.1dc4901b21a9 from=translated src=- shape=55ffe6a1 vocab=f0b42c38
+-/
 lemma tight_blue (A B C : ℕ) :
     C + lowestScore A B C = lowestScore (A + 1) B C ↔
       lowestScore (A + 1) B C = (A + 1) * C := by
@@ -288,6 +339,9 @@ lemma tight_blue (A B C : ℕ) :
       · exact le_min (le_min (le_refl _) g1) g2
     rw [hL, hmin]; ring
 
+/--
+@isnad1 id=iff.0h3v.s6.d311e76c04d1 from=translated src=- shape=4ab29e8a vocab=f0b42c38
+-/
 lemma tight_red (A B C : ℕ) :
     3 * A + lowestScore A B C = lowestScore A (B + 1) C ↔
       lowestScore A (B + 1) C = 3 * A * (B + 1) := by
@@ -349,6 +403,9 @@ lemma tight_red (A B C : ℕ) :
       · exact le_min (le_min g1 (le_refl _)) g2
     rw [hL, hmin]; ring
 
+/--
+@isnad1 id=iff.0h3v.s6.247ba215f2bd from=translated src=- shape=403aba03 vocab=f0b42c38
+-/
 lemma tight_white (A B C : ℕ) :
     2 * B + lowestScore A B C = lowestScore A B (C + 1) ↔
       lowestScore A B (C + 1) = 2 * B * (C + 1) := by
@@ -408,13 +465,25 @@ lemma tight_white (A B C : ℕ) :
       · exact le_min (le_min g1 g2) (le_refl _)
     rw [hL, hmin]; ring
 
+/--
+@isnad1 id=eq.0h2v.s4.bd8a0e8d96a2 from=translated src=- shape=3b4d411b vocab=2aaf8b6b
+-/
 lemma fewestWays_zero_b_c : fewestWays 0 B C = 1 := by lia
 
+/--
+@isnad1 id=eq.0h2v.s4.6cf0b9ecf98b from=translated src=- shape=34e5cb8a vocab=2aaf8b6b
+-/
 lemma fewestWays_a_zero_c : fewestWays A 0 C = 1 := by lia
 
+/--
+@isnad1 id=eq.0h2v.s4.22dba84807ed from=translated src=- shape=9bf57cd7 vocab=2aaf8b6b
+-/
 lemma fewestWays_a_b_zero : fewestWays A B 0 = 1 := by lia
 
 set_option maxHeartbeats 0 in
+/--
+@isnad1 id=eq.1h3v.s8.839c3b598966 from=translated src=- shape=c64b9b34 vocab=a50ae056
+-/
 lemma fewestWays_rec (A B C : ℕ) (h : 0 < A + B + C) :
     fewestWays A B C =
       (if 0 < A ∧ lowestScore A B C = A * C then fewestWays (A - 1) B C else 0) +
@@ -671,6 +740,9 @@ lemma fewestWays_rec (A B C : ℕ) (h : 0 < A + B + C) :
 
 -- Score computations.
 
+/--
+@isnad1 id=le.0h1v.s4.972a9e413e32 from=translated src=- shape=4bf122cf vocab=5f81bc14
+-/
 lemma score_ge (l : List Card) :
     lowestScore (l.count .blue) (l.count .red) (l.count .white) ≤ score l := by
   induction l with
@@ -693,6 +765,9 @@ lemma score_ge (l : List Card) :
         List.count_cons_of_ne (by decide : Card.white ≠ Card.red)]
       exact (lowestScore_le_add_white _ _ _).trans (Nat.add_le_add_left IH _)
 
+/--
+@isnad1 id=eq.0h2v.s5.12d04805de9a from=translated src=- shape=f29a7589 vocab=4aaca001
+-/
 lemma score_replicate_blue_append (n : ℕ) (l : List Card) :
     score (List.replicate n .blue ++ l) = n * l.count .white + score l := by
   induction n with
@@ -702,6 +777,9 @@ lemma score_replicate_blue_append (n : ℕ) (l : List Card) :
     simp [List.count_replicate]
     ring
 
+/--
+@isnad1 id=eq.0h2v.s5.aa150aa78258 from=translated src=- shape=4780273c vocab=8302b10a
+-/
 lemma score_replicate_red_append (n : ℕ) (l : List Card) :
     score (List.replicate n .red ++ l) = 3 * n * l.count .blue + score l := by
   induction n with
@@ -711,6 +789,9 @@ lemma score_replicate_red_append (n : ℕ) (l : List Card) :
     simp [List.count_replicate]
     ring
 
+/--
+@isnad1 id=eq.0h2v.s5.fa9bdd0efa0d from=translated src=- shape=4780273c vocab=7a206f3f
+-/
 lemma score_replicate_white_append (n : ℕ) (l : List Card) :
     score (List.replicate n .white ++ l) = 2 * n * l.count .red + score l := by
   induction n with
@@ -720,26 +801,41 @@ lemma score_replicate_white_append (n : ℕ) (l : List Card) :
     simp [List.count_replicate]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s3.9e4fc82d1bfa from=translated src=- shape=43b70bd7 vocab=3636ef8b
+-/
 lemma score_replicate_blue (n : ℕ) : score (List.replicate n .blue) = 0 := by
   have h := score_replicate_blue_append n []
   simp [score_nil] at h
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s3.ae877a3989d7 from=translated src=- shape=43b70bd7 vocab=39691fe0
+-/
 lemma score_replicate_red (n : ℕ) : score (List.replicate n .red) = 0 := by
   have h := score_replicate_red_append n []
   simp [score_nil] at h
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s3.b7478dc0c5a1 from=translated src=- shape=43b70bd7 vocab=735b1e91
+-/
 lemma score_replicate_white (n : ℕ) : score (List.replicate n .white) = 0 := by
   have h := score_replicate_white_append n []
   simp [score_nil] at h
   exact h
 
+/--
+@isnad1 id=eq.0h3v.s4.503790d8e278 from=translated src=- shape=de56089f vocab=a8e2f87c
+-/
 lemma score_canonicalPlay (A B C : ℕ) : score (canonicalPlay A B C) = A * C := by
   rw [canonicalPlay, score_replicate_blue_append, List.count_append,
     score_replicate_red_append, score_replicate_white]
   simp [List.count_replicate]
 
+/--
+@isnad1 id=eq.0h3v.s6.59078e58ae7a from=translated src=- shape=2c6c7064 vocab=aeab9f13
+-/
 lemma score_rwb (A B C : ℕ) :
     score (List.replicate B .red ++ (List.replicate C .white ++ List.replicate A .blue)) =
       3 * A * B := by
@@ -748,6 +844,9 @@ lemma score_rwb (A B C : ℕ) :
   simp [List.count_replicate]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.c701fdd73143 from=translated src=- shape=24faf266 vocab=aeab9f13
+-/
 lemma score_wbr (A B C : ℕ) :
     score (List.replicate C .white ++ (List.replicate A .blue ++ List.replicate B .red)) =
       2 * B * C := by
@@ -770,6 +869,9 @@ lemma eq_cons_of_head?_eq_some {l : List Card} {c : Card} (h : l.head? = some c)
     rw [List.head?_cons] at h
     exact ⟨t, by rw [Option.some.inj h]⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.b944e184f2eb from=translated src=- shape=e5f50e0c vocab=ca7af4c7
+-/
 lemma card_optPlays_head_blue (A B C : ℕ) :
     ((optPlays A B C).filter (fun l ↦ l.head? = some .blue)).card =
       if 0 < A ∧ lowestScore A B C = A * C then (optPlays (A - 1) B C).card else 0 := by
@@ -839,6 +941,9 @@ lemma card_optPlays_head_blue (A B C : ℕ) :
       rintro ⟨-, h2⟩
       exact htight ((tight_blue A' B C).mpr h2)
 
+/--
+@isnad1 id=eq.0h3v.s7.2dd8164b9fc8 from=translated src=- shape=9365a676 vocab=38443657
+-/
 lemma card_optPlays_head_red (A B C : ℕ) :
     ((optPlays A B C).filter (fun l ↦ l.head? = some .red)).card =
       if 0 < B ∧ lowestScore A B C = 3 * A * B then (optPlays A (B - 1) C).card else 0 := by
@@ -908,6 +1013,9 @@ lemma card_optPlays_head_red (A B C : ℕ) :
       rintro ⟨-, h2⟩
       exact htight ((tight_red A B' C).mpr h2)
 
+/--
+@isnad1 id=eq.0h3v.s7.0ad2d22685bf from=translated src=- shape=9975edc7 vocab=1d27da68
+-/
 lemma card_optPlays_head_white (A B C : ℕ) :
     ((optPlays A B C).filter (fun l ↦ l.head? = some .white)).card =
       if 0 < C ∧ lowestScore A B C = 2 * B * C then (optPlays A B (C - 1)).card else 0 := by
@@ -977,6 +1085,9 @@ lemma card_optPlays_head_white (A B C : ℕ) :
       rintro ⟨-, h2⟩
       exact htight ((tight_white A B C').mpr h2)
 
+/--
+@isnad1 id=eq.1h3v.s8.988d13e78429 from=translated src=- shape=6848eb47 vocab=599266ff
+-/
 lemma optPlays_card_rec (A B C : ℕ) (h : 0 < A + B + C) :
     (optPlays A B C).card =
       (if 0 < A ∧ lowestScore A B C = A * C then (optPlays (A - 1) B C).card else 0) +
@@ -1036,6 +1147,9 @@ lemma optPlays_card_rec (A B C : ℕ) (h : 0 < A + B + C) :
     card_optPlays_head_blue, card_optPlays_head_red, card_optPlays_head_white,
     Nat.add_assoc]
 
+/--
+@isnad1 id=eq.0h0v.s4.64e03bc96763 from=translated src=- shape=3a269bed vocab=4a6990e2
+-/
 lemma optPlays_zero : (optPlays 0 0 0).card = 1 := by
   have h0 : optPlays 0 0 0 = {[]} := by
     ext l
@@ -1059,6 +1173,9 @@ lemma optPlays_zero : (optPlays 0 0 0).card = 1 := by
       rfl
   rw [h0, Finset.card_singleton]
 
+/--
+@isnad1 id=eq.0h3v.s4.597adc287d73 from=translated src=- shape=c0f4e7c2 vocab=fde26b21
+-/
 lemma optPlays_card (A B C : ℕ) : (optPlays A B C).card = fewestWays A B C := by
   suffices H : ∀ n : ℕ, ∀ a b c : ℕ, a + b + c < n →
       (optPlays a b c).card = fewestWays a b c by
@@ -1099,23 +1216,35 @@ lemma optPlays_card (A B C : ℕ) : (optPlays A B C).card = fewestWays A B C := 
         · rw [ite_eq_right h, ite_eq_right h]
       rw [e1, e2, e3]
 
+/--
+@isnad1 id=mem.0h3v.s4.973701883bc9 from=translated src=- shape=dc753c8d vocab=103031fb
+-/
 lemma canonicalPlay_mem_plays (A B C : ℕ) : canonicalPlay A B C ∈ plays A B C :=
   mem_plays.mpr ⟨by simp [canonicalPlay, List.count_replicate],
     by simp [canonicalPlay, List.count_replicate],
     by simp [canonicalPlay, List.count_replicate]⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.32900e2f920e from=translated src=- shape=e6f6ac8e vocab=9ccb809a
+-/
 lemma mem_plays_rwb (A B C : ℕ) :
     List.replicate B .red ++ (List.replicate C .white ++ List.replicate A .blue) ∈
       plays A B C :=
   mem_plays.mpr ⟨by simp [List.count_replicate], by simp [List.count_replicate],
     by simp [List.count_replicate]⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.2e5d6479785b from=translated src=- shape=c0a8b54f vocab=9ccb809a
+-/
 lemma mem_plays_wbr (A B C : ℕ) :
     List.replicate C .white ++ (List.replicate A .blue ++ List.replicate B .red) ∈
       plays A B C :=
   mem_plays.mpr ⟨by simp [List.count_replicate], by simp [List.count_replicate],
     by simp [List.count_replicate]⟩
 
+/--
+@isnad1 id=isleast.0h3v.s5.29d5dae70e1a from=translated src=- shape=74367914 vocab=6e36c042
+-/
 lemma isLeast_lowestScore (A B C : ℕ) :
     IsLeast {s : ℕ | ∃ l ∈ plays A B C, score l = s} (lowestScore A B C) := by
   constructor

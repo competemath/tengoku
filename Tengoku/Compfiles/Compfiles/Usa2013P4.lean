@@ -47,7 +47,9 @@ solution set is as described.
 -/
 
 /-- The key algebraic identity: the difference between `(1+u)(1+(1+v)(1+w))`
-and `(√u + √v + √w)²` is a sum of two squares. -/
+and `(√u + √v + √w)²` is a sum of two squares.
+@isnad1 id=eq.3h3v.s8.bf5ccb1185ed from=translated src=- shape=7467325b vocab=3bfce676
+-/
 lemma key_identity (u v w : ℝ) (hu : 0 ≤ u) (hv : 0 ≤ v) (hw : 0 ≤ w) :
     (1 + u) * (1 + (1 + v) * (1 + w)) - (√u + √v + √w) ^ 2 =
       (√u * (√v + √w) - 1) ^ 2 + (1 + u) * (√v * √w - 1) ^ 2 := by
@@ -95,7 +97,9 @@ lemma eq_conds {u v w : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v) (hw : 0 ≤ w)
   exact ⟨hvw1, hus1⟩
 
 /-- The conditions `v * w = 1` and `u * (√v + √w)² = 1` imply the equation,
-with the minimum attained at the term corresponding to `u`. -/
+with the minimum attained at the term corresponding to `u`.
+@isnad1 id=eq.5h3v.s8.84c4a4be00e5 from=translated src=- shape=4491ab41 vocab=16161c05
+-/
 lemma min_eq_of_conds {u v w : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v) (hw : 0 ≤ w)
     (h1 : v * w = 1) (h2 : u * (√v + √w) ^ 2 = 1) :
     min (min (√((1 + u) * (1 + (1 + v) * (1 + w))))
@@ -165,7 +169,9 @@ lemma min_eq_of_conds {u v w : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v) (hw : 0 ≤ w)
   rw [min_eq_left hle_gv, min_eq_left hle_gw, hg_u]
 
 /-- Backward direction for one distinguished coordinate: the conditions
-`v * w = 1` and `u * (√v + √w)² = 1` imply `u, v, w > 0` and the equation. -/
+`v * w = 1` and `u * (√v + √w)² = 1` imply `u, v, w > 0` and the equation.
+@isnad1 id=and.2h3v.s8.35989f671eda from=translated src=- shape=77e335e5 vocab=85681084
+-/
 lemma solution_of_conds {u v w : ℝ} (h1 : v * w = 1)
     (h2 : u * (√v + √w) ^ 2 = 1) :
     1 < 1 + u ∧ 1 < 1 + v ∧ 1 < 1 + w ∧
@@ -207,9 +213,15 @@ lemma solution_of_conds {u v w : ℝ} (h1 : v * w = 1)
   exact ⟨by linarith, by linarith, by linarith,
     min_eq_of_conds (le_of_lt hu_pos) (le_of_lt hv_pos) (le_of_lt hw_pos) h1 h2⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.b5c176189f03 from=translated src=- shape=b6555b30 vocab=c478b9b3
+-/
 lemma min_swap12 (a b c : ℝ) : min (min a b) c = min (min b a) c := by
   rw [min_comm a b]
 
+/--
+@isnad1 id=eq.0h3v.s4.4d38dbc4166b from=translated src=- shape=68e73e21 vocab=c478b9b3
+-/
 lemma min_rotate (a b c : ℝ) : min (min a b) c = min (min b c) a := by
   rw [min_comm (min b c) a, ← min_assoc]
 

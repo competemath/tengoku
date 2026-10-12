@@ -57,14 +57,22 @@ def invariant (a : Config) : ZMod 5 := ∑ i, i * (a i : ZMod 5)
 -- which gives uniqueness; for existence one reduces by rotation to winning
 -- at vertex 0 and then solves the resulting linear system explicitly.
 
+/--
+@isnad1 id=eq.0h2v.s8.b8b05f091398 from=translated src=- shape=d039725d vocab=5fdbac68
+-/
 lemma zmod5_sum {M : Type*} [AddCommMonoid M] (f : ZMod 5 → M) :
     ∑ i, f i = f 0 + f 1 + f 2 + f 3 + f 4 := Fin.sum_univ_five f
 
+/--
+@isnad1 id=or.0h1v.s8.8346372673b3 from=translated src=- shape=59e03647 vocab=c87b9854
+-/
 lemma zmod5_cases (i : ZMod 5) : i = 0 ∨ i = 1 ∨ i = 2 ∨ i = 3 ∨ i = 4 := by
   decide +revert
 
 /-- The key identity behind the invariance of `invariant`: the weight of a
-turn at edge `i, i + 1` is `i + (i + 1) = 2 * (i + 3) - 5`. -/
+turn at edge `i, i + 1` is `i + (i + 1) = 2 * (i + 3) - 5`.
+@isnad1 id=eq.0h1v.s9.9b65e873d4ee from=translated src=- shape=3c1b9200 vocab=7c281ad7
+-/
 lemma key_identity (X : ZMod 5 → ZMod 5) :
     (∑ i, i * (2 * X i - X (i + 2) - X (i + 3))) = 0 := by
   have h2 : (∑ i : ZMod 5, i * X (i + 2)) = ∑ j, (j - 2 : ZMod 5) * X j := by
@@ -90,7 +98,9 @@ lemma key_identity (X : ZMod 5 → ZMod 5) :
     _ = 0 := by
         rw [← Finset.mul_sum, show (5 : ZMod 5) = 0 by decide, zero_mul]
 
-/-- The invariant is preserved by any sequence of turns. -/
+/-- The invariant is preserved by any sequence of turns.
+@isnad1 id=eq.1h2v.s4.3890987886e3 from=translated src=- shape=4383546d vocab=6e018826
+-/
 lemma invariant_eq_of_reachable {a b : Config} (h : Reachable a b) :
     invariant b = invariant a := by
   obtain ⟨x, hx⟩ := h
@@ -108,7 +118,9 @@ lemma invariant_eq_of_reachable {a b : Config} (h : Reachable a b) :
   rw [e, key_identity, add_zero]
 
 /-- The invariant of the configuration won at vertex `v`; since
-`2011 ≡ 1 (mod 5)`, it equals `v`. -/
+`2011 ≡ 1 (mod 5)`, it equals `v`.
+@isnad1 id=eq.0h1v.s5.816e9c9a9135 from=translated src=- shape=cec5701f vocab=b89dad73
+-/
 lemma invariant_single (v : ZMod 5) : invariant (Pi.single v 2011) = v := by
   unfold invariant
   rw [Finset.sum_eq_single v]
@@ -122,7 +134,9 @@ lemma invariant_single (v : ZMod 5) : invariant (Pi.single v 2011) = v := by
 invariant can be won at vertex 0. With `k` given by
 `a 1 + 2 * a 2 + 3 * a 3 + 4 * a 4 = 5 * k`, the explicit solution is
 `x 0 = 0`, `x 1 = -k - a 1`, `x 2 = -2 * k + a 3 + a 4`,
-`x 3 = -3 * k + a 2 + a 3 + 2 * a 4`, `x 4 = -4 * k + a 2 + 2 * a 3 + 2 * a 4`. -/
+`x 3 = -3 * k + a 2 + a 3 + 2 * a 4`, `x 4 = -4 * k + a 2 + 2 * a 3 + 2 * a 4`.
+@isnad1 id=winat.2h1v.s7.94802a66b6f0 from=translated src=- shape=72224a73 vocab=3ebd6770
+-/
 lemma win_at_zero (a : Config) (hsum : ∑ i, a i = 2011) (hinv : invariant a = 0) :
     WinAt a 0 := by
   rw [zmod5_sum] at hsum

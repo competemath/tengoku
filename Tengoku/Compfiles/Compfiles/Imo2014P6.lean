@@ -94,6 +94,9 @@ analyzed through the standard one-dimensional parametrization of each line.
 
 namespace Line
 
+/--
+@isnad1 id=eq.1h2v.s4.57d53833db6a from=translated src=- shape=3c106943 vocab=ac494778
+-/
 lemma val_interPt_left {ℓ m : Line} (h : ℓ.det m ≠ 0) : ℓ.val (ℓ.interPt m) = 0 := by
   have key : ℓ.a * (ℓ.b * m.c - m.b * ℓ.c) + ℓ.b * (m.a * ℓ.c - ℓ.a * m.c) +
       ℓ.c * ℓ.det m = 0 := by
@@ -105,6 +108,9 @@ lemma val_interPt_left {ℓ m : Line} (h : ℓ.det m ≠ 0) : ℓ.val (ℓ.inter
     exact key
   exact (mul_eq_zero.mp e2).resolve_right h
 
+/--
+@isnad1 id=eq.1h2v.s4.1d9454076c85 from=translated src=- shape=161b3cc0 vocab=ac494778
+-/
 lemma val_interPt_right {ℓ m : Line} (h : ℓ.det m ≠ 0) : m.val (ℓ.interPt m) = 0 := by
   have key : m.a * (ℓ.b * m.c - m.b * ℓ.c) + m.b * (m.a * ℓ.c - ℓ.a * m.c) +
       m.c * ℓ.det m = 0 := by
@@ -146,6 +152,9 @@ def dir (ℓ : Line) : ℝ × ℝ := (-ℓ.b, ℓ.a)
 noncomputable def param (ℓ : Line) (t : ℝ) : ℝ × ℝ :=
   (ℓ.base.1 + t * ℓ.dir.1, ℓ.base.2 + t * ℓ.dir.2)
 
+/--
+@isnad1 id=lt.0h1v.s5.78ffdaadbf9e from=translated src=- shape=11c992c9 vocab=afd2768c
+-/
 lemma sq_add_sq_pos (ℓ : Line) : 0 < ℓ.a ^ 2 + ℓ.b ^ 2 := by
   rcases ℓ.hab with h | h
   · have h1 : 0 < ℓ.a ^ 2 := sq_pos_of_ne_zero h
@@ -153,22 +162,34 @@ lemma sq_add_sq_pos (ℓ : Line) : 0 < ℓ.a ^ 2 + ℓ.b ^ 2 := by
   · have h1 : 0 < ℓ.b ^ 2 := sq_pos_of_ne_zero h
     linarith [sq_nonneg ℓ.a]
 
+/--
+@isnad1 id=eq.0h1v.s3.6f771298628e from=translated src=- shape=6ae13bdd vocab=aa0e942a
+-/
 lemma val_base (ℓ : Line) : ℓ.val ℓ.base = 0 := by
   have hQ : (ℓ.a ^ 2 + ℓ.b ^ 2) ≠ 0 := ne_of_gt ℓ.sq_add_sq_pos
   simp only [val, base]
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.c262eddef822 from=translated src=- shape=418a28e2 vocab=c634a647
+-/
 lemma val_param (ℓ : Line) (t : ℝ) : ℓ.val (ℓ.param t) = 0 := by
   have h0 := ℓ.val_base
   simp only [val, param, dir] at h0 ⊢
   linear_combination h0
 
+/--
+@isnad1 id=eq.0h3v.s5.16665dada12e from=translated src=- shape=72322798 vocab=3a560a0b
+-/
 lemma val_param_eq (ℓ m : Line) (t : ℝ) :
     m.val (ℓ.param t) = ℓ.det m * t + m.val ℓ.base := by
   simp only [val, param, dir, det]
   ring
 
+/--
+@isnad1 id=injectiv.0h1v.s3.c33484fa665c from=translated src=- shape=8330db3a vocab=1a80b993
+-/
 lemma param_injective (ℓ : Line) : Function.Injective ℓ.param := by
   intro t s h
   simp only [param, dir, Prod.mk.injEq] at h
@@ -179,8 +200,14 @@ lemma param_injective (ℓ : Line) : Function.Injective ℓ.param := by
   · have h3 : t * (-ℓ.b) = s * (-ℓ.b) := by linarith
     exact mul_right_cancel₀ (neg_ne_zero.mpr hb) h3
 
+/--
+@isnad1 id=mem.0h2v.s4.707637ccca7f from=translated src=- shape=4483e36e vocab=66e0cb64
+-/
 lemma mem_set_of_param (ℓ : Line) (t : ℝ) : ℓ.param t ∈ ℓ.set := ℓ.val_param t
 
+/--
+@isnad1 id=ex.1h2v.s5.726d21758d87 from=translated src=- shape=8cf72277 vocab=66e0cb64
+-/
 lemma exists_param_of_mem_set (ℓ : Line) {p : ℝ × ℝ} (hp : p ∈ ℓ.set) :
     ∃ t, ℓ.param t = p := by
   have hp' : ℓ.a * p.1 + ℓ.b * p.2 = -ℓ.c := by
@@ -215,9 +242,15 @@ variable {L : Finset Line} (hGP : GeneralPosition L)
 
 include hGP
 
+/--
+@isnad1 id=ne.4h3v.s5.4550e2a91f80 from=translated src=- shape=714daae2 vocab=00627ede
+-/
 lemma det_ne {ℓ m : Line} (hℓ : ℓ ∈ L) (hm : m ∈ L) (h : ℓ ≠ m) : ℓ.det m ≠ 0 :=
   hGP.1 ℓ hℓ m hm h
 
+/--
+@isnad1 id=false.10h5v.s6.776bc38a78d6 from=translated src=- shape=d59ae819 vocab=a721045c
+-/
 lemma not_concurrent {ℓ m n : Line} (hℓ : ℓ ∈ L) (hm : m ∈ L) (hn : n ∈ L)
     (h₁ : ℓ ≠ m) (h₂ : ℓ ≠ n) (h₃ : m ≠ n) {p : ℝ × ℝ}
     (hp₁ : ℓ.val p = 0) (hp₂ : m.val p = 0) (hp₃ : n.val p = 0) : False := by
@@ -238,16 +271,31 @@ lemma eq_of_val_eq_zero {ℓ m n : Line} (hℓ : ℓ ∈ L) (hm : m ∈ L) (hn :
 
 end GP
 
+/--
+@isnad1 id=ne.0h1v.s3.e34af126c95a from=translated src=- shape=a311c14d vocab=9bfdaaf4
+-/
 lemma sgn_ne_zero (b : Bool) : sgn b ≠ 0 := by cases b <;> norm_num [sgn]
 
+/--
+@isnad1 id=or.0h1v.s4.a2756d1e9083 from=translated src=- shape=af53c325 vocab=9ba55d01
+-/
 lemma sgn_cases (b : Bool) : sgn b = 1 ∨ sgn b = -1 := by cases b <;> simp [sgn]
 
+/--
+@isnad1 id=eq.0h1v.s4.80aae22fb35a from=translated src=- shape=7bab346c vocab=135a6c8f
+-/
 lemma sgn_mul_self (b : Bool) : sgn b * sgn b = 1 := by cases b <;> norm_num [sgn]
 
+/--
+@isnad1 id=continuo.0h1v.s4.6d04b61b3582 from=translated src=- shape=84c43f71 vocab=d4ed0954
+-/
 lemma Line.continuous_val (ℓ : Line) : Continuous ℓ.val := by
   unfold Line.val
   continuity
 
+/--
+@isnad1 id=isopen.0h2v.s4.05c006324af7 from=translated src=- shape=55ea37b5 vocab=f64ebe4c
+-/
 lemma isOpen_cell (L : Finset Line) (σ : Line → Bool) : IsOpen (Cell L σ) := by
   have h : Cell L σ = ⋂ ℓ ∈ L, {p : ℝ × ℝ | sgn (σ ℓ) * ℓ.val p > 0} := by
     ext p
@@ -257,6 +305,9 @@ lemma isOpen_cell (L : Finset Line) (σ : Line → Bool) : IsOpen (Cell L σ) :=
   intro ℓ _
   exact isOpen_lt continuous_const ((Line.continuous_val ℓ).const_mul _)
 
+/--
+@isnad1 id=isclosed.0h2v.s6.7758baa3d518 from=translated src=- shape=c0b6319f vocab=47e12337
+-/
 lemma isClosed_cellCl (L : Finset Line) (σ : Line → Bool) :
     IsClosed {p : ℝ × ℝ | ∀ ℓ ∈ L, sgn (σ ℓ) * ℓ.val p ≥ 0} := by
   have h : {p : ℝ × ℝ | ∀ ℓ ∈ L, sgn (σ ℓ) * ℓ.val p ≥ 0} =
@@ -268,7 +319,9 @@ lemma isClosed_cellCl (L : Finset Line) (σ : Line → Bool) :
   intro ℓ _
   exact isClosed_le continuous_const ((Line.continuous_val ℓ).const_mul _)
 
-/-- The closure of a nonempty cell is given by the corresponding weak inequalities. -/
+/-- The closure of a nonempty cell is given by the corresponding weak inequalities.
+@isnad1 id=eq.1h2v.s6.5e23c2aa424f from=translated src=- shape=c2315fab vocab=621088f7
+-/
 lemma closure_cell {L : Finset Line} {σ : Line → Bool} (hne : (Cell L σ).Nonempty) :
     closure (Cell L σ) = {p | ∀ ℓ ∈ L, sgn (σ ℓ) * ℓ.val p ≥ 0} := by
   obtain ⟨q, hq⟩ := hne
@@ -307,13 +360,17 @@ lemma closure_cell {L : Finset Line} {σ : Line → Bool} (hne : (Cell L σ).Non
         nlinarith [ht0, ht1, hp', hq']
       · rwa [dist_eq_norm, sub_add_cancel_left, norm_neg, norm_smul, Real.norm_eq_abs, abs_of_pos ht0, ← dist_eq_norm]
 
-/-- The frontier of a cell: its closure minus itself. -/
+/-- The frontier of a cell: its closure minus itself.
+@isnad1 id=eq.0h2v.s6.aa97843454e1 from=translated src=- shape=638b8aac vocab=f12d4977
+-/
 lemma frontier_cell (L : Finset Line) (σ : Line → Bool) :
     frontier (Cell L σ) = closure (Cell L σ) \ Cell L σ :=
   (isOpen_cell L σ).frontier_eq
 
 /-- A point lies in the frontier of a nonempty cell iff all weak sign conditions
-hold and it lies on at least one line. -/
+hold and it lies on at least one line.
+@isnad1 id=iff.1h3v.s6.d50e9791e9e6 from=translated src=- shape=5867da55 vocab=89509842
+-/
 lemma mem_frontier_iff {L : Finset Line} {σ : Line → Bool} (hne : (Cell L σ).Nonempty)
     {p : ℝ × ℝ} :
     p ∈ frontier (Cell L σ) ↔
@@ -363,10 +420,16 @@ namespace Line
 /-- The parameter value where the standard parametrization of `ℓ` crosses `m`. -/
 noncomputable def crossT (ℓ m : Line) : ℝ := - m.val ℓ.base / ℓ.det m
 
+/--
+@isnad1 id=eq.1h2v.s4.658812169a71 from=translated src=- shape=a8a088e0 vocab=5f4266a9
+-/
 lemma val_param_crossT {ℓ m : Line} (h : ℓ.det m ≠ 0) :
     m.val (ℓ.param (ℓ.crossT m)) = 0 := by
   rw [val_param_eq, crossT, ← mul_div_assoc, mul_div_cancel_left₀ _ h, neg_add_cancel]
 
+/--
+@isnad1 id=eq.2h3v.s5.7592a9fe8022 from=translated src=- shape=d68923b6 vocab=5f4266a9
+-/
 lemma crossT_eq_of_val_param_eq_zero {ℓ m : Line} (h : ℓ.det m ≠ 0) {t : ℝ}
     (ht : m.val (ℓ.param t) = 0) : t = ℓ.crossT m := by
   rw [val_param_eq] at ht
@@ -375,7 +438,9 @@ lemma crossT_eq_of_val_param_eq_zero {ℓ m : Line} (h : ℓ.det m ≠ 0) {t : �
   field_simp
   linarith
 
-/-- The sign constraint on `m` along the parametrization of `ℓ`, as a bound on `t`. -/
+/-- The sign constraint on `m` along the parametrization of `ℓ`, as a bound on `t`.
+@isnad1 id=iff.1h4v.s6.a9ce2858b32a from=translated src=- shape=2a1221d9 vocab=70d12250
+-/
 lemma constraint_iff {σ : Line → Bool} {ℓ m : Line} (hdet : ℓ.det m ≠ 0) (t : ℝ) :
     0 ≤ sgn (σ m) * m.val (ℓ.param t) ↔
       (if 0 < sgn (σ m) * ℓ.det m then ℓ.crossT m ≤ t else t ≤ ℓ.crossT m) := by
@@ -406,14 +471,23 @@ noncomputable def lows (L : Finset Line) (σ : Line → Bool) (ℓ : Line) : Fin
 noncomputable def upps (L : Finset Line) (σ : Line → Bool) (ℓ : Line) : Finset Line :=
   L.filter fun m => m ≠ ℓ ∧ sgn (σ m) * ℓ.det m < 0
 
+/--
+@isnad1 id=iff.0h4v.s6.60b06c248bb2 from=translated src=- shape=b91f9087 vocab=6e5971d0
+-/
 lemma mem_lows {L : Finset Line} {σ : Line → Bool} {ℓ m : Line} :
     m ∈ lows L σ ℓ ↔ m ∈ L ∧ m ≠ ℓ ∧ 0 < sgn (σ m) * ℓ.det m := by
   simp [lows]
 
+/--
+@isnad1 id=iff.0h4v.s6.e4c9c8a56e0a from=translated src=- shape=ff211e1c vocab=e3df6810
+-/
 lemma mem_upps {L : Finset Line} {σ : Line → Bool} {ℓ m : Line} :
     m ∈ upps L σ ℓ ↔ m ∈ L ∧ m ≠ ℓ ∧ sgn (σ m) * ℓ.det m < 0 := by
   simp [upps]
 
+/--
+@isnad1 id=or.4h4v.s6.3a94718ea156 from=translated src=- shape=10b8e538 vocab=580b9f4b
+-/
 lemma lows_or_upps {L : Finset Line} {σ : Line → Bool} {ℓ m : Line}
     (hGP : GeneralPosition L) (hℓ : ℓ ∈ L) (hm : m ∈ L) (h : m ≠ ℓ) :
     m ∈ lows L σ ℓ ∨ m ∈ upps L σ ℓ := by
@@ -423,6 +497,9 @@ lemma lows_or_upps {L : Finset Line} {σ : Line → Bool} {ℓ m : Line}
   · exact Or.inr (mem_upps.mpr ⟨hm, h, h3⟩)
   · exact Or.inl (mem_lows.mpr ⟨hm, h, h3⟩)
 
+/--
+@isnad1 id=iff.2h4v.s6.b5d759aab139 from=translated src=- shape=77aee791 vocab=e369d401
+-/
 lemma param_constraint_iff {L : Finset Line} {ℓ : Line} (hGP : GeneralPosition L) (hℓ : ℓ ∈ L)
     (σ : Line → Bool) (t : ℝ) :
     (∀ m ∈ L, 0 ≤ sgn (σ m) * m.val (ℓ.param t)) ↔
@@ -453,11 +530,17 @@ lemma param_constraint_iff {L : Finset Line} {ℓ : Line} (hGP : GeneralPosition
           ite_eq_right (not_lt.mpr (mem_upps.mp hu).2.2.le)]
         exact h1
 
+/--
+@isnad1 id=le.0h2v.s5.2c8568523a1a from=translated src=- shape=879561b2 vocab=974fc8e6
+-/
 lemma abs_fst_sub_le_dist (p q : ℝ × ℝ) : |p.1 - q.1| ≤ dist p q := by
   rw [dist_eq_norm]
   calc |p.1 - q.1| = ‖(p - q).1‖ := by simp [Real.norm_eq_abs]
     _ ≤ ‖p - q‖ := by rw [Prod.norm_def]; exact le_max_left _ _
 
+/--
+@isnad1 id=le.0h2v.s5.a973afbeb858 from=translated src=- shape=879561b2 vocab=7ac5459c
+-/
 lemma abs_snd_sub_le_dist (p q : ℝ × ℝ) : |p.2 - q.2| ≤ dist p q := by
   rw [dist_eq_norm]
   calc |p.2 - q.2| = ‖(p - q).2‖ := by simp [Real.norm_eq_abs]
@@ -477,7 +560,9 @@ structure EdgeCtx (L : Finset Line) where
 namespace EdgeCtx
 
 /-- The parameters of points of the closure of the cell on the line `ℓ`
-form a bounded set. -/
+form a bounded set.
+@isnad1 id=ex.0h2v.s6.295c05061b7d from=translated src=- shape=7a25f8c0 vocab=6edc1a4a
+-/
 lemma exists_abs_le {L : Finset Line} (E : EdgeCtx L) : ∃ B : ℝ, ∀ t : ℝ,
     (∀ m ∈ L, 0 ≤ sgn (E.σ m) * m.val (E.ℓ.param t)) → |t| ≤ B := by
   obtain ⟨r, hr⟩ := Bornology.IsBounded.subset_closedBall E.hbdd.closure E.ℓ.base
@@ -508,7 +593,9 @@ lemma exists_abs_le {L : Finset Line} (E : EdgeCtx L) : ∃ B : ℝ, ∀ t : ℝ
     have h4 : |t| * |E.ℓ.b| ≤ r := le_trans h2 h1
     exact (le_div_iff₀ (abs_pos.mpr hb)).mpr h4
 
-/-- Some parameter realizes a point of the closure on `ℓ`. -/
+/-- Some parameter realizes a point of the closure on `ℓ`.
+@isnad1 id=ex.0h2v.s5.f3dc4e5db056 from=translated src=- shape=c7ec0f13 vocab=838e9517
+-/
 lemma exists_param_mem {L : Finset Line} (E : EdgeCtx L) :
     ∃ t : ℝ, (∀ m ∈ L, 0 ≤ sgn (E.σ m) * m.val (E.ℓ.param t)) := by
   obtain ⟨p, hp1, hp2⟩ := E.hedge
@@ -517,6 +604,9 @@ lemma exists_param_mem {L : Finset Line} (E : EdgeCtx L) :
   rw [closure_cell E.hne] at hp1
   exact hp1
 
+/--
+@isnad1 id=nonempty.0h2v.s4.45f939abc43a from=translated src=- shape=9c053572 vocab=37c2afe7
+-/
 lemma upps_nonempty {L : Finset Line} (E : EdgeCtx L) : (upps L E.σ E.ℓ).Nonempty := by
   obtain ⟨B, hB⟩ := E.exists_abs_le
   obtain ⟨t₀, ht₀⟩ := E.exists_param_mem
@@ -544,6 +634,9 @@ lemma upps_nonempty {L : Finset Line} (E : EdgeCtx L) : (upps L E.σ E.ℓ).None
   have h1 : 0 ≤ ∑ m ∈ lows L E.σ E.ℓ, |E.ℓ.crossT m| := Finset.sum_nonneg (fun m _ => abs_nonneg _)
   linarith
 
+/--
+@isnad1 id=nonempty.0h2v.s4.ec7c22c070f9 from=translated src=- shape=9c053572 vocab=ed2bd3d9
+-/
 lemma lows_nonempty {L : Finset Line} (E : EdgeCtx L) : (lows L E.σ E.ℓ).Nonempty := by
   obtain ⟨B, hB⟩ := E.exists_abs_le
   obtain ⟨t₀, ht₀⟩ := E.exists_param_mem
@@ -579,6 +672,9 @@ noncomputable def Tmin {L : Finset Line} (E : EdgeCtx L) : ℝ :=
 noncomputable def Tmax {L : Finset Line} (E : EdgeCtx L) : ℝ :=
   ((upps L E.σ E.ℓ).image (Line.crossT E.ℓ)).min' (Finset.image_nonempty.mpr E.upps_nonempty)
 
+/--
+@isnad1 id=eq.0h2v.s6.ea23b0650262 from=translated src=- shape=ed3922d8 vocab=42812f4c
+-/
 lemma E_eq_Icc {L : Finset Line} (E : EdgeCtx L) :
     {t : ℝ | ∀ m ∈ L, 0 ≤ sgn (E.σ m) * m.val (E.ℓ.param t)} = Set.Icc E.Tmin E.Tmax := by
   ext t
@@ -609,6 +705,9 @@ lemma E_eq_Icc {L : Finset Line} (E : EdgeCtx L) :
         Finset.min'_le _ _ (Finset.mem_image_of_mem _ hm)
       exact le_trans h2 h3
 
+/--
+@isnad1 id=le.0h2v.s3.eda5c62a90e8 from=translated src=- shape=8b7cba42 vocab=62145c10
+-/
 lemma Tmin_le_Tmax {L : Finset Line} (E : EdgeCtx L) : E.Tmin ≤ E.Tmax := by
   obtain ⟨t₀, ht₀⟩ := E.exists_param_mem
   have ht : t₀ ∈ Set.Icc E.Tmin E.Tmax := by
@@ -616,6 +715,9 @@ lemma Tmin_le_Tmax {L : Finset Line} (E : EdgeCtx L) : E.Tmin ≤ E.Tmax := by
     exact ht₀
   exact ht.1.trans ht.2
 
+/--
+@isnad1 id=ex.0h2v.s5.8b28f8d1ff88 from=translated src=- shape=78da7294 vocab=0954119b
+-/
 lemma exists_low_cross {L : Finset Line} (E : EdgeCtx L) :
     ∃ m ∈ lows L E.σ E.ℓ, E.ℓ.crossT m = E.Tmin := by
   have h := ((lows L E.σ E.ℓ).image (Line.crossT E.ℓ)).max'_mem
@@ -624,6 +726,9 @@ lemma exists_low_cross {L : Finset Line} (E : EdgeCtx L) :
   obtain ⟨m, hm, hmt⟩ := h
   exact ⟨m, hm, hmt⟩
 
+/--
+@isnad1 id=ex.0h2v.s5.a1168d177269 from=translated src=- shape=78da7294 vocab=a7fa8dcd
+-/
 lemma exists_upp_cross {L : Finset Line} (E : EdgeCtx L) :
     ∃ m ∈ upps L E.σ E.ℓ, E.ℓ.crossT m = E.Tmax := by
   have h := ((upps L E.σ E.ℓ).image (Line.crossT E.ℓ)).min'_mem
@@ -632,7 +737,9 @@ lemma exists_upp_cross {L : Finset Line} (E : EdgeCtx L) :
   obtain ⟨m, hm, hmt⟩ := h
   exact ⟨m, hm, hmt⟩
 
-/-- The two endpoints are distinct: they would otherwise give three concurrent lines. -/
+/-- The two endpoints are distinct: they would otherwise give three concurrent lines.
+@isnad1 id=lt.0h2v.s3.1245e723698c from=translated src=- shape=8b7cba42 vocab=4c8384eb
+-/
 lemma Tmin_lt_Tmax {L : Finset Line} (E : EdgeCtx L) : E.Tmin < E.Tmax := by
   obtain ⟨m₁, hm₁, hmt₁⟩ := E.exists_low_cross
   obtain ⟨m₂, hm₂, hmt₂⟩ := E.exists_upp_cross
@@ -657,7 +764,9 @@ lemma Tmin_lt_Tmax {L : Finset Line} (E : EdgeCtx L) : E.Tmin < E.Tmax := by
   · exact hlt
 
 /-- The pullback of the edge along the parametrization contains no crossing
-in its interior. -/
+in its interior.
+@isnad1 id=ne.3h4v.s5.89513bb962e3 from=translated src=- shape=a4bd85a4 vocab=437ce5dd
+-/
 lemma val_ne_zero_of_mem_Ioo {L : Finset Line} (E : EdgeCtx L) {m : Line} (hm : m ∈ L)
     (hmℓ : m ≠ E.ℓ) {t : ℝ}
     (ht : t ∈ Set.Ioo E.Tmin E.Tmax) : m.val (E.ℓ.param t) ≠ 0 := by
@@ -675,7 +784,9 @@ lemma val_ne_zero_of_mem_Ioo {L : Finset Line} (E : EdgeCtx L) {m : Line} (hm : 
     linarith [ht.2]
 
 /-- The parametrized points of the edge segment lie in the closure of the cell
-and on the line. -/
+and on the line.
+@isnad1 id=mem.1h3v.s6.499fbe8e117b from=translated src=- shape=d28f96a1 vocab=bcefefb0
+-/
 lemma param_mem_closure_inter {L : Finset Line} (E : EdgeCtx L) {t : ℝ}
     (ht : t ∈ Set.Icc E.Tmin E.Tmax) :
     E.ℓ.param t ∈ closure (Cell L E.σ) ∩ E.ℓ.set := by
@@ -688,7 +799,9 @@ lemma param_mem_closure_inter {L : Finset Line} (E : EdgeCtx L) {t : ℝ}
   · exact Line.val_param _ _
 
 /-- At the upper endpoint, some other line of the arrangement passes:
-the line realizing the upper bound. -/
+the line realizing the upper bound.
+@isnad1 id=ex.0h2v.s5.b2e869ddfd12 from=translated src=- shape=f3155ad0 vocab=72f9ce00
+-/
 lemma exists_line_at_Tmax {L : Finset Line} (E : EdgeCtx L) :
     ∃ m ∈ L, m ≠ E.ℓ ∧ m.val (E.ℓ.param E.Tmax) = 0 := by
   obtain ⟨m, hm, hmt⟩ := E.exists_upp_cross
@@ -697,7 +810,9 @@ lemma exists_line_at_Tmax {L : Finset Line} (E : EdgeCtx L) :
   rw [← hmt]
   exact Line.val_param_crossT (GP.det_ne E.hGP E.hℓ h1.1 (Ne.symm h1.2.1))
 
-/-- At the lower endpoint, some other line of the arrangement passes. -/
+/-- At the lower endpoint, some other line of the arrangement passes.
+@isnad1 id=ex.0h2v.s5.6d292e11d25d from=translated src=- shape=f3155ad0 vocab=8addd49c
+-/
 lemma exists_line_at_Tmin {L : Finset Line} (E : EdgeCtx L) :
     ∃ m ∈ L, m ≠ E.ℓ ∧ m.val (E.ℓ.param E.Tmin) = 0 := by
   obtain ⟨m, hm, hmt⟩ := E.exists_low_cross
@@ -718,6 +833,9 @@ lemma eq_of_val_at_param {L : Finset Line} (E : EdgeCtx L) {m n : Line} (hm : m 
 
 end EdgeCtx
 
+/--
+@isnad1 id=eq.0h2v.s3.dcdb3e3838fd from=translated src=- shape=d0606565 vocab=bcab9802
+-/
 lemma Line.det_comm (ℓ m : Line) : ℓ.det m = - m.det ℓ := by
   simp only [det]
   ring
@@ -756,6 +874,9 @@ noncomputable def rT (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : ℝ :=
 noncomputable def r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : ℝ × ℝ :=
   ℓ.param (W.rT hGP hℓL)
 
+/--
+@isnad1 id=mem.2h4v.s5.a0d19e5c91bb from=translated src=- shape=25a9f75f vocab=39460d27
+-/
 lemma rT_mem_Icc (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.rT hGP hℓL ∈ Set.Icc (W.ectx hGP hℓL).Tmin (W.ectx hGP hℓL).Tmax := by
   rw [rT]
@@ -763,10 +884,16 @@ lemma rT_mem_Icc (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
   · exact Set.right_mem_Icc.mpr (W.ectx hGP hℓL).Tmin_le_Tmax
   · exact Set.left_mem_Icc.mpr (W.ectx hGP hℓL).Tmin_le_Tmax
 
+/--
+@isnad1 id=mem.2h4v.s6.ef74f761965b from=translated src=- shape=16ad00ee vocab=56d59760
+-/
 lemma r_mem_closure (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.r hGP hℓL ∈ closure (Cell L W.σ) ∩ ℓ.set :=
   (W.ectx hGP hℓL).param_mem_closure_inter (W.rT_mem_Icc hGP hℓL)
 
+/--
+@isnad1 id=false.3h4v.s6.f2e1c58fa008 from=translated src=- shape=b57fdfcc vocab=ea63cd71
+-/
 lemma rT_ne (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.rT hGP hℓL ≠ (W.ectx hGP hℓL).Tmin ∧ W.rT hGP hℓL ≠ (W.ectx hGP hℓL).Tmax →
       False := by
@@ -776,7 +903,9 @@ lemma rT_ne (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
   · exact h.2 rfl
   · exact h.1 rfl
 
-/-- The other line through `r` exists. -/
+/-- The other line through `r` exists.
+@isnad1 id=ex.2h4v.s6.88bad7391745 from=translated src=- shape=14281016 vocab=3ca4083b
+-/
 lemma exists_g1 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     ∃ g ∈ L, g ≠ ℓ ∧ g.val (W.r hGP hℓL) = 0 := by
   rw [r, rT]
@@ -784,7 +913,9 @@ lemma exists_g1 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
   · exact (W.ectx hGP hℓL).exists_line_at_Tmax
   · exact (W.ectx hGP hℓL).exists_line_at_Tmin
 
-/-- The other line through `r` is unique. -/
+/-- The other line through `r` is unique.
+@isnad1 id=eq.8h6v.s6.35cc43365140 from=translated src=- shape=052c5526 vocab=3ca4083b
+-/
 lemma g1_unique (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) {g g' : Line}
     (hg : g ∈ L) (hg' : g' ∈ L) (hgℓ : g ≠ ℓ) (hg'ℓ : g' ≠ ℓ)
     (hgr : g.val (W.r hGP hℓL) = 0) (hg'r : g'.val (W.r hGP hℓL) = 0) : g = g' :=
@@ -794,16 +925,28 @@ lemma g1_unique (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) {g g' : Line}
 noncomputable def g1 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : Line :=
   Classical.choose (W.exists_g1 hGP hℓL)
 
+/--
+@isnad1 id=mem.2h4v.s5.12e6d2d984a1 from=translated src=- shape=e76e8955 vocab=2f829748
+-/
 lemma g1_mem (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g1 hGP hℓL ∈ L :=
   (Classical.choose_spec (W.exists_g1 hGP hℓL)).1
 
+/--
+@isnad1 id=ne.2h4v.s5.a4bc2ddfd801 from=translated src=- shape=3fa4fa81 vocab=2f829748
+-/
 lemma g1_ne (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g1 hGP hℓL ≠ ℓ :=
   (Classical.choose_spec (W.exists_g1 hGP hℓL)).2.1
 
+/--
+@isnad1 id=eq.2h4v.s5.306949240dfa from=translated src=- shape=a7e61228 vocab=0a848e36
+-/
 lemma g1_val_r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.g1 hGP hℓL).val (W.r hGP hℓL) = 0 :=
   (Classical.choose_spec (W.exists_g1 hGP hℓL)).2.2
 
+/--
+@isnad1 id=mem.2h4v.s6.8393e4bd3e60 from=translated src=- shape=244e5e89 vocab=e2c7bbde
+-/
 lemma r_mem_g1 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.r hGP hℓL ∈ closure (Cell L W.σ) ∩ (W.g1 hGP hℓL).set :=
   ⟨(W.r_mem_closure hGP hℓL).1, W.g1_val_r hGP hℓL⟩
@@ -813,25 +956,42 @@ noncomputable def g1ctx (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : EdgeCtx 
   ⟨W.σ, W.g1 hGP hℓL, hGP, W.hne, W.hbdd, W.g1_mem hGP hℓL,
     ⟨W.r hGP hℓL, W.r_mem_g1 hGP hℓL⟩⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.df2a09cf2c6c from=translated src=- shape=0efbb915 vocab=b9e7be8a
+-/
 @[simp] lemma ectx_σ (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.ectx hGP hℓL).σ = W.σ := rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.91e02860c26b from=translated src=- shape=84c1dbe5 vocab=fdd24212
+-/
 @[simp] lemma ectx_ℓ (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.ectx hGP hℓL).ℓ = ℓ := rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.255f70239e92 from=translated src=- shape=0efbb915 vocab=43255090
+-/
 @[simp] lemma g1ctx_σ (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.g1ctx hGP hℓL).σ = W.σ := rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.db39928d6c16 from=translated src=- shape=6bf7a748 vocab=ad23abd2
+-/
 @[simp] lemma g1ctx_ℓ (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.g1ctx hGP hℓL).ℓ = W.g1 hGP hℓL := rfl
 
+/--
+@isnad1 id=mem.2h4v.s5.fe46abb7e09b from=translated src=- shape=23a36f02 vocab=2f829748
+-/
 lemma g1_blue (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g1 hGP hℓL ∈ B := by
   have h := W.hbd (W.g1 hGP hℓL) (W.g1_mem hGP hℓL) ⟨W.r hGP hℓL, W.r_mem_g1 hGP hℓL⟩
   rcases Finset.mem_insert.mp h with h1 | h2
   · exact absurd h1 (W.g1_ne hGP hℓL)
   · exact h2
 
-/-- The parameter of `r` in the parametrization of `g₁`. -/
+/-- The parameter of `r` in the parametrization of `g₁`.
+@isnad1 id=ex.2h4v.s6.bdf082b8345a from=translated src=- shape=b4112bb9 vocab=723b5865
+-/
 lemma exists_s_r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     ∃ s : ℝ, (W.g1 hGP hℓL).param s = W.r hGP hℓL ∧
       s ∈ Set.Icc (W.g1ctx hGP hℓL).Tmin (W.g1ctx hGP hℓL).Tmax := by
@@ -844,7 +1004,9 @@ lemma exists_s_r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
   exact hcl
 
 /-- The consistency lemma: `r` is the clockwise-first endpoint of the `g₁`-edge,
-i.e. `b` and `r` are two clockwise-consecutive vertices of the region. -/
+i.e. `b` and `r` are two clockwise-consecutive vertices of the region.
+@isnad1 id=eq.2h4v.s6.763773a780e3 from=translated src=- shape=34bba15d vocab=f0b899cb
+-/
 lemma r_eq_g1_param (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.r hGP hℓL = (W.g1 hGP hℓL).param
       (if W.σ (W.g1 hGP hℓL) then (W.g1ctx hGP hℓL).Tmin else (W.g1ctx hGP hℓL).Tmax) := by
@@ -992,6 +1154,9 @@ in clockwise order. -/
 noncomputable def b (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : ℝ × ℝ :=
   (W.g1 hGP hℓL).param (W.bT hGP hℓL)
 
+/--
+@isnad1 id=mem.2h4v.s5.e661a2f8e913 from=translated src=- shape=25a9f75f vocab=edaa3237
+-/
 lemma bT_mem_Icc (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.bT hGP hℓL ∈ Set.Icc (W.g1ctx hGP hℓL).Tmin (W.g1ctx hGP hℓL).Tmax := by
   rw [bT]
@@ -999,10 +1164,16 @@ lemma bT_mem_Icc (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
   · exact Set.right_mem_Icc.mpr (W.g1ctx hGP hℓL).Tmin_le_Tmax
   · exact Set.left_mem_Icc.mpr (W.g1ctx hGP hℓL).Tmin_le_Tmax
 
+/--
+@isnad1 id=mem.2h4v.s6.d60d798b1bec from=translated src=- shape=244e5e89 vocab=42162a11
+-/
 lemma b_mem_closure (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.b hGP hℓL ∈ closure (Cell L W.σ) ∩ (W.g1 hGP hℓL).set :=
   (W.g1ctx hGP hℓL).param_mem_closure_inter (W.bT_mem_Icc hGP hℓL)
 
+/--
+@isnad1 id=ne.2h4v.s5.4c53966b0f08 from=translated src=- shape=9528627d vocab=5973b514
+-/
 lemma b_ne_r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.b hGP hℓL ≠ W.r hGP hℓL := by
   rw [b, W.r_eq_g1_param hGP hℓL]
   intro h
@@ -1021,7 +1192,9 @@ lemma b_ne_r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.b hGP hℓL ≠ W
     simp at h1
     linarith
 
-/-- The other line through `b` exists. -/
+/-- The other line through `b` exists.
+@isnad1 id=ex.2h4v.s6.01ef557f8079 from=translated src=- shape=547b15d7 vocab=2042e0ae
+-/
 lemma exists_g2 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     ∃ g ∈ L, g ≠ W.g1 hGP hℓL ∧ g.val (W.b hGP hℓL) = 0 := by
   rw [b, bT]
@@ -1033,16 +1206,28 @@ lemma exists_g2 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
 noncomputable def g2 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : Line :=
   Classical.choose (W.exists_g2 hGP hℓL)
 
+/--
+@isnad1 id=mem.2h4v.s5.a25eb25ec04a from=translated src=- shape=e76e8955 vocab=ca606002
+-/
 lemma g2_mem (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g2 hGP hℓL ∈ L :=
   (Classical.choose_spec (W.exists_g2 hGP hℓL)).1
 
+/--
+@isnad1 id=ne.2h4v.s5.ea75f15b6ee0 from=translated src=- shape=03a524d0 vocab=c5e09aa7
+-/
 lemma g2_ne_g1 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g2 hGP hℓL ≠ W.g1 hGP hℓL :=
   (Classical.choose_spec (W.exists_g2 hGP hℓL)).2.1
 
+/--
+@isnad1 id=eq.2h4v.s5.32b4cd32bc2c from=translated src=- shape=a7e61228 vocab=06bc29aa
+-/
 lemma g2_val_b (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.g2 hGP hℓL).val (W.b hGP hℓL) = 0 :=
   (Classical.choose_spec (W.exists_g2 hGP hℓL)).2.2
 
+/--
+@isnad1 id=ne.2h4v.s5.10ef04dd399c from=translated src=- shape=3fa4fa81 vocab=ca606002
+-/
 lemma g2_ne_red (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g2 hGP hℓL ≠ ℓ := by
   intro h
   have hdet : ℓ.det (W.g1 hGP hℓL) ≠ 0 :=
@@ -1058,10 +1243,16 @@ lemma g2_ne_red (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g2 hGP hℓL �
   have h2 := Line.eq_interPt hdet hbℓ hbg
   exact (W.b_ne_r hGP hℓL) (h2 ▸ h1 ▸ rfl)
 
+/--
+@isnad1 id=mem.2h4v.s6.7196c363442b from=translated src=- shape=244e5e89 vocab=1d93e846
+-/
 lemma b_mem_g2 (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.b hGP hℓL ∈ closure (Cell L W.σ) ∩ (W.g2 hGP hℓL).set :=
   ⟨(W.b_mem_closure hGP hℓL).1, W.g2_val_b hGP hℓL⟩
 
+/--
+@isnad1 id=mem.2h4v.s5.bfabc586ce25 from=translated src=- shape=23a36f02 vocab=ca606002
+-/
 lemma g2_blue (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : W.g2 hGP hℓL ∈ B := by
   have h := W.hbd (W.g2 hGP hℓL) (W.g2_mem hGP hℓL) ⟨W.b hGP hℓL, W.b_mem_g2 hGP hℓL⟩
   rcases Finset.mem_insert.mp h with h1 | h2
@@ -1080,9 +1271,15 @@ noncomputable def g2ctx (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : EdgeCtx 
   ⟨W.σ, W.g2 hGP hℓL, hGP, W.hne, W.hbdd, W.g2_mem hGP hℓL,
     ⟨W.b hGP hℓL, W.b_mem_g2 hGP hℓL⟩⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.f53827c27a1d from=translated src=- shape=0efbb915 vocab=91a7eb93
+-/
 @[simp] lemma g2ctx_σ (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.g2ctx hGP hℓL).σ = W.σ := rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.0bef6d0d4443 from=translated src=- shape=6bf7a748 vocab=54d7097d
+-/
 @[simp] lemma g2ctx_ℓ (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     (W.g2ctx hGP hℓL).ℓ = W.g2 hGP hℓL := rfl
 
@@ -1094,23 +1291,37 @@ noncomputable def s_r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : ℝ :=
 noncomputable def s_b (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) : ℝ :=
   if W.σ (W.g1 hGP hℓL) then (W.g1ctx hGP hℓL).Tmax else (W.g1ctx hGP hℓL).Tmin
 
+/--
+@isnad1 id=eq.2h4v.s5.ac76e4ee19e2 from=translated src=- shape=5392768d vocab=af75320f
+-/
 lemma r_eq_param_s_r (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.r hGP hℓL = (W.g1 hGP hℓL).param (W.s_r hGP hℓL) :=
   W.r_eq_g1_param hGP hℓL
 
+/--
+@isnad1 id=eq.2h4v.s5.ff06a1d77d25 from=translated src=- shape=5392768d vocab=af5f295c
+-/
 lemma b_eq_param_s_b (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.b hGP hℓL = (W.g1 hGP hℓL).param (W.s_b hGP hℓL) := rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.0c579aac26f4 from=translated src=- shape=bf41a561 vocab=5a1ffbcd
+-/
 lemma s_bT (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.s_b hGP hℓL = W.bT hGP hℓL := rfl
 
+/--
+@isnad1 id=ne.2h4v.s5.62db5d28212a from=translated src=- shape=bf41a561 vocab=463aeac0
+-/
 lemma s_r_ne_s_b (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) :
     W.s_r hGP hℓL ≠ W.s_b hGP hℓL := by
   have hlt : (W.g1ctx hGP hℓL).Tmin < (W.g1ctx hGP hℓL).Tmax := (W.g1ctx hGP hℓL).Tmin_lt_Tmax
   cases hσg : W.σ (W.g1 hGP hℓL) <;> rw [s_r, s_b, hσg] <;> simp <;> linarith
 
 /-- A parameter strictly between `s_r` and `s_b` lies in the interior of the
-`g₁`-edge. -/
+`g₁`-edge.
+@isnad1 id=mem.3h5v.s6.fee8c78f1ba4 from=translated src=- shape=0391bf14 vocab=7d95ae35
+-/
 lemma mem_Ioo_of_between (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) {t : ℝ}
     (ht : (t - W.s_r hGP hℓL) * (t - W.s_b hGP hℓL) < 0) :
     t ∈ Set.Ioo (W.g1ctx hGP hℓL).Tmin (W.g1ctx hGP hℓL).Tmax := by
@@ -1122,14 +1333,18 @@ lemma mem_Ioo_of_between (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) {t : ℝ}
       linarith [(W.g1ctx hGP hℓL).Tmin_lt_Tmax]
   )
 
-/-- The `g₁`-edge contains no crossing of another line in its interior. -/
+/-- The `g₁`-edge contains no crossing of another line in its interior.
+@isnad1 id=ne.5h6v.s6.3c2ac57aa30c from=translated src=- shape=a0097146 vocab=74cec72c
+-/
 lemma g1_edge_uncut (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) {m : Line} (hm : m ∈ L)
     (hm1 : m ≠ W.g1 hGP hℓL) {t : ℝ}
     (ht : t ∈ Set.Ioo (W.g1ctx hGP hℓL).Tmin (W.g1ctx hGP hℓL).Tmax) :
     m.val ((W.g1 hGP hℓL).param t) ≠ 0 :=
   (W.g1ctx hGP hℓL).val_ne_zero_of_mem_Ioo hm hm1 ht
 
-/-- The `g₂`-edge contains no crossing of another line in its interior. -/
+/-- The `g₂`-edge contains no crossing of another line in its interior.
+@isnad1 id=ne.5h6v.s6.2df0a7e3e6e9 from=translated src=- shape=a0097146 vocab=cdcef1e5
+-/
 lemma g2_edge_uncut (hGP : GeneralPosition L) (hℓL : ℓ ∈ L) {m : Line} (hm : m ∈ L)
     (hm2 : m ≠ W.g2 hGP hℓL) {t : ℝ}
     (ht : t ∈ Set.Ioo (W.g2ctx hGP hℓL).Tmin (W.g2ctx hGP hℓL).Tmax) :
@@ -1140,7 +1355,9 @@ end Witness
 
 /-- Two distinct red points associated to the same blue point along the same blue
 line must lie on opposite sides of the blue point: on the same side, the nearer
-region's side would be crossed by the farther region's red line. -/
+region's side would be crossed by the farther region's red line.
+@isnad1 id=lt.8h6v.s7.21d8a1371a08 from=translated src=- shape=d90fcc53 vocab=8eac4a12
+-/
 lemma opp_sides {L B : Finset Line} (hGP : GeneralPosition L)
     {ℓi ℓj : Line} (Wi : Witness L B ℓi) (Wj : Witness L B ℓj)
     (hiL : ℓi ∈ L) (hjL : ℓj ∈ L) (hiB : ℓi ∉ B) (hjB : ℓj ∉ B)
@@ -1227,7 +1444,9 @@ lemma opp_sides {L B : Finset Line} (hGP : GeneralPosition L)
       exact (Wj.g1_edge_uncut hGP hjL hiL hLi (Wj.mem_Ioo_of_between hGP hjL hbet)) hvi
 
 /-- The key turning argument: the region of the third red line must turn at `q`
-towards one of the two red points, forcing three concurrent lines. -/
+towards one of the two red points, forcing three concurrent lines.
+@isnad1 id=false.14h8v.s7.1cc014978cf2 from=translated src=- shape=04436b54 vocab=6fd569c1
+-/
 lemma turn_at_blue_pt {L B : Finset Line} (hGP : GeneralPosition L)
     {ℓₖ ℓi ℓj : Line} (W : Witness L B ℓₖ) (Wi : Witness L B ℓi) (Wj : Witness L B ℓj)
     (hkL : ℓₖ ∈ L) (hiL : ℓi ∈ L) (hjL : ℓj ∈ L)
@@ -1504,6 +1723,9 @@ lemma Line.eq_of_two_mem {L : Finset Line} (hGP : GeneralPosition L) {g g' : Lin
   have h2 := Line.eq_interPt hd hgq hg'q
   exact hpq (h1.trans h2.symm)
 
+/--
+@isnad1 id=eq.1h2v.s4.8a8832f43671 from=translated src=- shape=12fc916a vocab=5d33fd98
+-/
 lemma Line.interPt_comm {ℓ m : Line} (h : ℓ.det m ≠ 0) : ℓ.interPt m = m.interPt ℓ := by
   have h' : m.det ℓ ≠ 0 := by
     rw [Line.det_comm]
@@ -1518,7 +1740,9 @@ noncomputable def assocB (L B : Finset Line) (W : ∀ m ∈ L \ B, Witness L B m
 namespace Witness
 
 /-- On the same blue line through the same blue point, the parameter of `b`
-is the same for two witnesses. -/
+is the same for two witnesses.
+@isnad1 id=eq.5h6v.s6.d6701d866d29 from=translated src=- shape=e8890bdc vocab=c5039c69
+-/
 lemma s_b_eq_s_b {L B : Finset Line} (hGP : GeneralPosition L)
     {ℓi ℓj : Line} (Wi : Witness L B ℓi) (Wj : Witness L B ℓj)
     (hiL : ℓi ∈ L) (hjL : ℓj ∈ L)
@@ -1540,7 +1764,9 @@ lemma s_b_eq_s_b {L B : Finset Line} (hGP : GeneralPosition L)
 end Witness
 
 /-- The key counting lemma: at most two red lines are associated to the same
-blue point. -/
+blue point.
+@isnad1 id=le.1h4v.s6.c16569576e8b from=translated src=- shape=69944dc3 vocab=03e52d3b
+-/
 lemma fiber_card_le_two (L B : Finset Line) (W : ∀ m ∈ L \ B, Witness L B m)
     (hGP : GeneralPosition L) (q : ℝ × ℝ) :
     ((L \ B).filter fun ℓ => assocB L B W hGP ℓ = q).card ≤ 2 := by
@@ -1698,7 +1924,9 @@ lemma fiber_card_le_two (L B : Finset Line) (W : ∀ m ∈ L \ B, Witness L B m)
 /-! ### Maximal valid blue sets and the final count -/
 
 /-- Every bounded nonempty cell has a boundary line: follow a ray from an
-interior point; since the cell is bounded, some constraint must stop the ray. -/
+interior point; since the cell is bounded, some constraint must stop the ray.
+@isnad1 id=ex.2h2v.s6.dc93510b0834 from=translated src=- shape=8bf417d4 vocab=00f4534c
+-/
 lemma exists_boundary_line {L : Finset Line} {σ : Line → Bool} (hne : (Cell L σ).Nonempty)
     (hbdd : Bornology.IsBounded (Cell L σ)) :
     ∃ m ∈ L, (closure (Cell L σ) ∩ m.set).Nonempty := by
@@ -1780,13 +2008,17 @@ lemma exists_boundary_line {L : Finset Line} {σ : Line → Bool} (hne : (Cell L
       rw [h5, mul_one]
     linarith [h2, h3, le_abs_self r]
 
-/-- The empty blue set is valid. -/
+/-- The empty blue set is valid.
+@isnad1 id=validblu.0h1v.s3.80a864b208c5 from=translated src=- shape=ae285e7a vocab=d52ce968
+-/
 lemma validBlue_empty (L : Finset Line) : ValidBlue L ∅ := by
   intro σ hne hbdd
   obtain ⟨m, hmL, hmb⟩ := exists_boundary_line hne hbdd
   exact ⟨m, hmL, hmb, by simp⟩
 
-/-- A maximal valid blue set exists. -/
+/-- A maximal valid blue set exists.
+@isnad1 id=ex.0h1v.s6.3c713e3606b1 from=translated src=- shape=1864972b vocab=048385e6
+-/
 lemma exists_maximal_valid (L : Finset Line) :
     ∃ B ⊆ L, ValidBlue L B ∧ ∀ m ∈ L, m ∉ B → ¬ ValidBlue L (insert m B) := by
   classical
@@ -1808,7 +2040,9 @@ lemma exists_maximal_valid (L : Finset Line) :
   have hgt : B.card < (insert m B).card := Finset.card_lt_card (Finset.ssubset_insert hmB)
   lia
 
-/-- Every red line has a witness region. -/
+/-- Every red line has a witness region.
+@isnad1 id=nonempty.4h3v.s6.a8ac5e904820 from=translated src=- shape=c40a6df0 vocab=b44f3ef6
+-/
 lemma exists_witness (L : Finset Line) {B : Finset Line} (hBV : ValidBlue L B)
     (hmax : ∀ m ∈ L, m ∉ B → ¬ ValidBlue L (insert m B))
     {ℓ : Line} (hℓL : ℓ ∈ L) (hℓB : ℓ ∉ B) : Nonempty (Witness L B ℓ) := by
@@ -1844,7 +2078,9 @@ noncomputable def redWitness (L : Finset Line) {B : Finset Line} (hBV : ValidBlu
 noncomputable def bluePts (B : Finset Line) : Finset (ℝ × ℝ) :=
   B.offDiag.image fun gg => gg.1.interPt gg.2
 
-/-- Each blue point has at least two preimages among the ordered pairs of blue lines. -/
+/-- Each blue point has at least two preimages among the ordered pairs of blue lines.
+@isnad1 id=le.2h2v.s6.7931169ff4dd from=translated src=- shape=126a03d0 vocab=4d44f60b
+-/
 lemma two_mul_card_bluePts {L : Finset Line} {B : Finset Line}
     (hGP : GeneralPosition L) (hBL : B ⊆ L) :
     2 * (bluePts B).card ≤ B.card * B.card - B.card := by
@@ -1878,7 +2114,9 @@ lemma two_mul_card_bluePts {L : Finset Line} {B : Finset Line}
   rw [← hcard]
   exact Finset.card_le_card hsub
 
-/-- The association map sends red lines into the blue points. -/
+/-- The association map sends red lines into the blue points.
+@isnad1 id=mem.3h4v.s6.627143bb4cff from=translated src=- shape=222e4658 vocab=d1022e72
+-/
 lemma assocB_mem_bluePts (L : Finset Line) {B : Finset Line} (hBL : B ⊆ L)
     (W : ∀ m ∈ L \ B, Witness L B m)
     (hGP : GeneralPosition L) {ℓ : Line} (hℓ : ℓ ∈ L \ B) :
@@ -1898,7 +2136,9 @@ lemma assocB_mem_bluePts (L : Finset Line) {B : Finset Line} (hBL : B ⊆ L)
     rw [Finset.mem_offDiag]
     exact ⟨W'.g1_blue hGP hℓL, W'.g2_blue hGP hℓL, Ne.symm (W'.g2_ne_g1 hGP hℓL)⟩, rfl⟩
 
-/-- The number of red lines is at most twice the number of blue points. -/
+/-- The number of red lines is at most twice the number of blue points.
+@isnad1 id=le.1h3v.s6.91e1d336974a from=translated src=- shape=c7834586 vocab=5ddc32f4
+-/
 lemma card_red_le (L B : Finset Line) (W : ∀ m ∈ L \ B, Witness L B m)
     (hGP : GeneralPosition L) :
     (L \ B).card ≤ 2 * ((L \ B).image (assocB L B W hGP)).card := by
@@ -1906,7 +2146,9 @@ lemma card_red_le (L B : Finset Line) (W : ∀ m ∈ L \ B, Witness L B m)
   intro p hp
   exact fiber_card_le_two L B W hGP p
 
-/-- The grand count: `n ≤ k²`. -/
+/-- The grand count: `n ≤ k²`.
+@isnad1 id=le.2h3v.s6.9dc0d59fb270 from=translated src=- shape=e066aff2 vocab=fde637c0
+-/
 lemma main_counting {L : Finset Line} {B : Finset Line} (hGP : GeneralPosition L) (hBL : B ⊆ L)
     (W : ∀ m ∈ L \ B, Witness L B m) : L.card ≤ B.card ^ 2 := by
   have h1 := card_red_le L B W hGP
@@ -1924,7 +2166,9 @@ lemma main_counting {L : Finset Line} {B : Finset Line} (hGP : GeneralPosition L
   lia
 
 /-- If no finite region has a completely blue boundary in the working sense,
-then no finite region has a completely blue boundary in the geometric sense. -/
+then no finite region has a completely blue boundary in the geometric sense.
+@isnad1 id=not.5h3v.s6.d9120d25d085 from=translated src=- shape=73edf3d1 vocab=4fb20bd6
+-/
 lemma not_frontier_subset_of_validBlue {L : Finset Line} {B : Finset Line}
     (hGP : GeneralPosition L) (hBL : B ⊆ L)
     (hBV : ValidBlue L B) {σ : Line → Bool} (hne : (Cell L σ).Nonempty)
@@ -1976,7 +2220,9 @@ lemma not_frontier_subset_of_validBlue {L : Finset Line} {B : Finset Line}
   rw [hline]
   exact hmB1
 
-/-- The main result: one can colour at least `√n` lines. -/
+/-- The main result: one can colour at least `√n` lines.
+@isnad1 id=ex.1h1v.s5.7598d864350f from=translated src=- shape=b5768ba7 vocab=5194c3dd
+-/
 lemma main_result (L : Finset Line) (hGP : GeneralPosition L) :
     ∃ B : Finset Line, B ⊆ L ∧ Real.sqrt L.card ≤ B.card ∧ ValidBlue L B := by
   obtain ⟨B, hBL, hBV, hmax⟩ := exists_maximal_valid L

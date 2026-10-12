@@ -25,26 +25,39 @@ namespace Usa2009P6
 /-- The predicate that a rational number is an integer. -/
 def IsInt (x : ℚ) : Prop := ∃ k : ℤ, x = k
 
+/--
+@isnad1 id=isint.0h1v.s2.baa89bd988f5 from=translated src=- shape=4c19b7a8 vocab=aa3881a1
+-/
 lemma IsInt.of_int (k : ℤ) : IsInt (k : ℚ) := ⟨k, rfl⟩
 
+/--
+@isnad1 id=isint.2h2v.s4.95b7fc8467c6 from=translated src=- shape=255dce7b vocab=84250258
+-/
 lemma IsInt.add {x y : ℚ} (hx : IsInt x) (hy : IsInt y) : IsInt (x + y) := by
   obtain ⟨a, ha⟩ := hx
   obtain ⟨b, hb⟩ := hy
   exact ⟨a + b, by rw [ha, hb, Int.cast_add]⟩
 
+/--
+@isnad1 id=isint.2h2v.s4.90441deeaa95 from=translated src=- shape=255dce7b vocab=4ef583a8
+-/
 lemma IsInt.sub {x y : ℚ} (hx : IsInt x) (hy : IsInt y) : IsInt (x - y) := by
   obtain ⟨a, ha⟩ := hx
   obtain ⟨b, hb⟩ := hy
   exact ⟨a - b, by rw [ha, hb, Int.cast_sub]⟩
 
-/-- An integer has nonnegative `p`-adic valuation. -/
+/-- An integer has nonnegative `p`-adic valuation.
+@isnad1 id=le.1h2v.s4.7f815fcfc87e from=translated src=- shape=53c29d41 vocab=cf0fe193
+-/
 lemma IsInt.val_nonneg {x : ℚ} (hx : IsInt x) (p : ℕ) : 0 ≤ padicValRat p x := by
   obtain ⟨k, rfl⟩ := hx
   rw [padicValRat.of_int]
   exact Nat.cast_nonneg _
 
 /-- A rational number whose `p`-adic valuation is nonnegative for every prime `p`
-is an integer. -/
+is an integer.
+@isnad1 id=isint.1h1v.s4.1b4551985aac from=translated src=- shape=24101d7c vocab=529e34b7
+-/
 lemma isInt_of_val_nonneg {q : ℚ} (h : ∀ p : ℕ, p.Prime → 0 ≤ padicValRat p q) : IsInt q := by
   suffices hden : q.den = 1 by
     exact ⟨q.num, ((Rat.den_eq_one_iff q).mp hden).symm⟩
@@ -73,7 +86,9 @@ lemma isInt_of_val_nonneg {q : ℚ} (h : ∀ p : ℕ, p.Prime → 0 ≤ padicVal
 
 /-- Key integrality step: if `a * b` and `n * a + b` are integers (with `n` a nonzero
 integer), then `b` (and hence `n * a`) is an integer. This is the `p`-adic heart of the
-proof that every `tᵢ` is an integer. -/
+proof that every `tᵢ` is an integer.
+@isnad1 id=and.3h3v.s6.e4687c0cc638 from=translated src=- shape=7805cd44 vocab=ba0c6438
+-/
 lemma isInt_of_mul_add_int {n : ℤ} (hn : n ≠ 0) {a b : ℚ}
     (h1 : IsInt (a * b)) (h2 : IsInt ((n : ℚ) * a + b)) :
     IsInt b ∧ IsInt ((n : ℚ) * a) := by
@@ -130,13 +145,22 @@ lemma isInt_of_mul_add_int {n : ℤ} (hn : n ≠ 0) {a b : ℚ}
 /-- The gcd of `|T 0|, |T 1|, ..., |T k|`. -/
 def seqGcd (T : ℕ → ℤ) (k : ℕ) : ℕ := (Finset.range (k + 1)).gcd fun i => (T i).natAbs
 
+/--
+@isnad1 id=dvd.1h3v.s4.dd193f54a415 from=translated src=- shape=b36ab3a0 vocab=54b2d97c
+-/
 lemma seqGcd_dvd (T : ℕ → ℤ) {i k : ℕ} (hi : i ≤ k) : seqGcd T k ∣ (T i).natAbs :=
   Finset.gcd_dvd (Finset.mem_range.mpr (Nat.lt_succ_of_le hi))
 
+/--
+@isnad1 id=ne.2h3v.s5.09c74278c2dd from=translated src=- shape=9c77dfaa vocab=6b293713
+-/
 lemma seqGcd_ne_zero (T : ℕ → ℤ) {b k : ℕ} (hb : b ≤ k) (hT : T b ≠ 0) : seqGcd T k ≠ 0 := by
   intro h0
   exact hT (Int.natAbs_eq_zero.mp (Nat.eq_zero_of_zero_dvd (h0 ▸ seqGcd_dvd T hb)))
 
+/--
+@isnad1 id=le.2h3v.s5.458f5ce70f7d from=translated src=- shape=85426656 vocab=54acf568
+-/
 lemma seqGcd_succ_le (T : ℕ → ℤ) {b k : ℕ} (hb : b ≤ k) (hT : T b ≠ 0) :
     seqGcd T (k + 1) ≤ seqGcd T k := by
   apply Nat.le_of_dvd (Nat.pos_of_ne_zero (seqGcd_ne_zero T hb hT))
@@ -146,7 +170,9 @@ lemma seqGcd_succ_le (T : ℕ → ℤ) {b k : ℕ} (hb : b ≤ k) (hT : T b ≠ 
 
 /-- Any sequence of integers containing a nonzero term has a greatest common divisor: a
 positive natural `d` dividing every term, and such that for every prime `p` the `p`-adic
-valuation of `d` is attained at some nonzero term of the sequence. -/
+valuation of `d` is attained at some nonzero term of the sequence.
+@isnad1 id=ex.1h2v.s6.356342dc0c99 from=translated src=- shape=353ebb05 vocab=7af16ec3
+-/
 lemma gcd_seq (T : ℕ → ℤ) {b : ℕ} (hb : T b ≠ 0) :
     ∃ d : ℕ, d ≠ 0 ∧ (∀ i, (d : ℤ) ∣ T i) ∧
       ∀ p : ℕ, p.Prime → ∃ j, T j ≠ 0 ∧ padicValInt p (T j) = padicValNat p d := by
@@ -204,7 +230,9 @@ lemma gcd_seq (T : ℕ → ℤ) {b : ℕ} (hb : T b ≠ 0) :
     lia
 
 /-- The key valuation bound: if `tⱼ` is a nonzero integer of `p`-adic valuation `e` (the
-minimum among the `t`'s), then every `sᵢ` has `p`-adic valuation at least `-e`. -/
+minimum among the `t`'s), then every `sᵢ` has `p`-adic valuation at least `-e`.
+@isnad1 id=le.7h6v.s6.8232d78b4b05 from=translated src=- shape=f318e735 vocab=2511c244
+-/
 lemma s_val_ge {p : ℕ} (hp : p.Prime) {e : ℤ} (he : 0 ≤ e) {sj tj si ti : ℚ}
     (hstj : IsInt (sj * tj)) (hsti : IsInt (si * ti))
     (hcross : IsInt (si * tj + sj * ti)) (htj : tj ≠ 0) (htjv : padicValRat p tj = e) :
@@ -265,7 +293,9 @@ lemma s_val_ge {p : ℕ} (hp : p.Prime) {e : ℤ} (he : 0 ≤ e) {sj tj si ti : 
 
 /-- The heart of the problem, for normalized sequences: `s a = t a = 0`, `s b = 1` and
 `t b = n` for a nonzero integer `n`. Then `r = d`, the gcd of all the `tᵢ` (which are
-integers), works. -/
+integers), works.
+@isnad1 id=ex.6h5v.s7.60c264de9c0d from=translated src=- shape=3ec718c6 vocab=b1d2cbaf
+-/
 lemma normalized {s t : ℕ → ℚ} {a b : ℕ} {n : ℤ} (hn : n ≠ 0)
     (hsa : s a = 0) (hta : t a = 0) (hsb : s b = 1) (htb : t b = n)
     (h : ∀ i j, IsInt ((s i - s j) * (t i - t j))) :

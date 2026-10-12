@@ -26,6 +26,9 @@ namespace Imo2003P1
 abbrev S := Finset.Icc 1 1000000
 
 /- Proof by induction on the number of tᵢ's -/
+/--
+@isnad1 id=ex.3h2v.s7.79e6dd6ac4a5 from=translated src=- shape=4862e28a vocab=a5319edf
+-/
 theorem induction_lemma (A : Finset ℕ) (_AS : A ⊆ S) (Acard : A.card = 101)
     {k : ℕ} (hk : k ≤ 100) :
     ∃ t ⊆ S, t.card = k ∧ ∀ x ∈ t, ∀ y ∈ t, x ≠ y → Disjoint {x + a | a ∈ A} {y + a | a ∈ A} := by

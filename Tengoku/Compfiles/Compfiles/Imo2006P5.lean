@@ -48,18 +48,25 @@ $P(t)+t-a-b$, and we're again done.
 -/
 
 /-- If every entry in a cyclic list of integers divides the next, then they all have the same
-absolute value. -/
+absolute value.
+@isnad1 id=eq.3h3v.s5.92dfd926e3ec from=translated src=- shape=5da80791 vocab=ffcf4ae9
+-/
 theorem Int.natAbs_eq_of_chain_dvd {l : Cycle ℤ} {x y : ℤ} (hl : l.Chain (· ∣ ·)) (hx : x ∈ l)
     (hy : y ∈ l) : x.natAbs = y.natAbs := by
   rw [Cycle.chain_iff_pairwise] at hl
   exact Int.natAbs_eq_of_dvd_dvd (hl x hx y hy) (hl y hy x hx)
 
+/--
+@isnad1 id=eq.3h4v.s6.13908ba45330 from=translated src=- shape=2c1a7850 vocab=1cd1572a
+-/
 theorem Int.add_eq_add_of_natAbs_eq_of_natAbs_eq {a b c d : ℤ} (hne : a ≠ b)
     (h₁ : (c - a).natAbs = (d - b).natAbs) (h₂ : (c - b).natAbs = (d - a).natAbs) :
     a + b = c + d := by
   lia
 
-/-- The main lemma in the proof: if $P^k(t)=t$, then $P(P(t))=t$. -/
+/-- The main lemma in the proof: if $P^k(t)=t$, then $P(P(t))=t$.
+@isnad1 id=isperiod.1h2v.s5.7c9f062f0514 from=translated src=- shape=f3440a7d vocab=6aa4393d
+-/
 theorem Polynomial.isPeriodicPt_eval_two {P : Polynomial ℤ} {t : ℤ}
     (ht : t ∈ periodicPts fun x => P.eval x) : IsPeriodicPt (fun x => P.eval x) 2 t := by
   -- The cycle [P(t) - t, P(P(t)) - P(t), ...]
@@ -119,13 +126,18 @@ theorem Polynomial.isPeriodicPt_eval_two {P : Polynomial ℤ} {t : ℤ}
       simp only [Function.iterate_succ_apply'] at hn'
       exact isPeriodicPt_of_mem_periodicPts_of_isPeriodicPt_iterate ht hn'.symm
 
+/--
+@isnad1 id=ne.2h2v.s6.40630d99401d from=translated src=- shape=162fc61d vocab=d7263a9d
+-/
 theorem Polynomial.iterate_comp_sub_X_ne {P : Polynomial ℤ} (hP : 1 < P.natDegree) {k : ℕ}
     (hk : 0 < k) : P.comp^[k] X - X ≠ 0 := by
   rw [sub_ne_zero]
   apply_fun natDegree
   simpa using (one_lt_pow₀ hP hk.ne').ne'
 
-/-- We solve the problem for the specific case k = 2 first. -/
+/-- We solve the problem for the specific case k = 2 first.
+@isnad1 id=le.1h1v.s5.e4aa2e3791b3 from=translated src=- shape=8f5cc5f3 vocab=58a46974
+-/
 theorem imo2006_p5' {P : Polynomial ℤ} (hP : 1 < P.natDegree) :
     (P.comp P - X).roots.toFinset.card ≤ P.natDegree := by
   -- Auxiliary lemmas on degrees.

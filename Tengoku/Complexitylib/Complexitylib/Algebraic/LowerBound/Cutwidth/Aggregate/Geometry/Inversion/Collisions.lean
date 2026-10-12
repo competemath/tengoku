@@ -29,7 +29,9 @@ open Cutwidth.Aggregate.Geometry.Entropy
 
 variable {K : Type*} [Field K] [CharP K 2]
 
-/-- Every nonzero derivative of binary-field inversion has fibres of size at most four. -/
+/-- Every nonzero derivative of binary-field inversion has fibres of size at most four.
+@isnad1 id=le.2h4v.s7.169814afe083 from=translated src=- shape=decb4637 vocab=d236748c
+-/
 theorem card_le_four_of_inverse_derivative (S : Finset K) {d b : K} (hd : d ≠ 0)
     (derivative : ∀ x ∈ S, (x + d)⁻¹ + x⁻¹ = b) : S.card ≤ 4 := by
   by_cases exceptional : ∀ x ∈ S, x = 0 ∨ x = d
@@ -66,7 +68,9 @@ theorem card_le_four_of_inverse_derivative (S : Finset K) {d b : K} (hd : d ≠ 
     · simp [h.symm]
   exact (Finset.card_le_card sub).trans Finset.card_le_four
 
-/-- Affine input terms do not evade inversion's ordered-collision bound. -/
+/-- Affine input terms do not evade inversion's ordered-collision bound.
+@isnad1 id=le.0h3v.s7.fb7c7b5b625b from=translated src=- shape=678410dd vocab=0e529a27
+-/
 theorem collisionCount_inverse_add_affine_le [Fintype K] (A : K →+ K) (a : K) :
     collisionCount (fun x => x⁻¹ + A x + a) ≤
       Fintype.card K + 4 * (Fintype.card K - 1) := by
@@ -85,7 +89,9 @@ theorem collisionCount_inverse_add_affine_le [Fintype K] (A : K →+ K) (a : K) 
   apply CharTwo.add_eq_iff_eq_add.mpr
   exact (CharTwo.add_eq_iff_eq_add.mp cancel).trans (add_comm _ _)
 
-/-- The coarser average collision budget of five is independent of the field size. -/
+/-- The coarser average collision budget of five is independent of the field size.
+@isnad1 id=le.0h3v.s7.28ac55b5b783 from=translated src=- shape=dbd8ee0a vocab=8313b3a3
+-/
 theorem collisionCount_inverse_add_affine_le_five_mul [Fintype K] (A : K →+ K) (a : K) :
     collisionCount (fun x => x⁻¹ + A x + a) ≤ 5 * Fintype.card K := by
   have bound := collisionCount_inverse_add_affine_le A a

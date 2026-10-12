@@ -83,7 +83,9 @@ instance {n : ℕ} : Fintype (WPairs n) := by
 
 /-! ### Cardinality of involutions modulo two -/
 
-/-- A fixed-point-free involution on a fintype forces the cardinality to be even. -/
+/-- A fixed-point-free involution on a fintype forces the cardinality to be even.
+@isnad1 id=even.2h2v.s4.9ec33fa7c9ad from=translated src=- shape=a3390697 vocab=39bc1426
+-/
 theorem even_card_of_involutive_ne {α : Type*} [Fintype α] {f : α → α}
     (hf : Function.Involutive f) (hfree : ∀ x, f x ≠ x) : Even (Fintype.card α) := by
   classical
@@ -115,7 +117,9 @@ theorem even_card_of_involutive_ne {α : Type*} [Fintype α] {f : α → α}
   rw [← hunion, hcard]
 
 /-- For an involution `f` on a fintype, the cardinality of the whole type is congruent
-modulo two to the cardinality of the fixed-point subtype. -/
+modulo two to the cardinality of the fixed-point subtype.
+@isnad1 id=modeq.1h2v.s5.fea30c1c4a4d from=translated src=- shape=7d1ab166 vocab=e1f3baef
+-/
 theorem card_modEq_of_involutive {α : Type*} [Fintype α] [DecidableEq α] (f : α → α)
     (hf : Function.Involutive f) :
     Fintype.card α ≡ Fintype.card {x // f x = x} [MOD 2] := by
@@ -141,9 +145,14 @@ theorem card_modEq_of_involutive {α : Type*} [Fintype α] [DecidableEq α] (f :
 
 /-! ### Small arithmetic helpers -/
 
+/--
+@isnad1 id=lt.0h2v.s4.5e9a10798830 from=translated src=- shape=19fb1054 vocab=14d09f1f
+-/
 lemma val_add_one_pos {n : ℕ} (k : Fin n) : (0 : ℚ) < k.val + 1 := by positivity
 
-/-- Cross-multiplied form of an equality of labels. -/
+/-- Cross-multiplied form of an equality of labels.
+@isnad1 id=eq.1h4v.s7.8fbd7e8496df from=translated src=- shape=83caf5fc vocab=07613222
+-/
 lemma nat_mul_eq_of_label_eq {n : ℕ} {σ : Equiv.Perm (Fin n)} {x y : Fin n}
     (h : label σ x = label σ y) :
     (x.val + 1) * ((σ y).val + 1) = (y.val + 1) * ((σ x).val + 1) := by
@@ -152,7 +161,9 @@ lemma nat_mul_eq_of_label_eq {n : ℕ} {σ : Equiv.Perm (Fin n)} {x y : Fin n}
     exact h
   exact_mod_cast h1
 
-/-- If `A * D = C * B` with `A < C` then `B < D` (natural numbers). -/
+/-- If `A * D = C * B` with `A < C` then `B < D` (natural numbers).
+@isnad1 id=lt.3h4v.s5.cd41994ce43a from=translated src=- shape=29fb9149 vocab=315d0e5a
+-/
 lemma lt_of_mul_eq_mul_lt {A B C D : ℕ} (h : A * D = C * B) (hAC : A < C) (hD : 0 < D) :
     B < D := by
   have h1 : B * C < D * C := by
@@ -166,7 +177,9 @@ lemma eq_of_mul_eq_mul_eq {A B C D : ℕ} (h : A * D = C * B) (hAC : A = C) (hA 
   subst hAC
   exact (Nat.mul_left_cancel hA h).symm
 
-/-- Label equality transfers the order of numerators to the order of denominators. -/
+/-- Label equality transfers the order of numerators to the order of denominators.
+@isnad1 id=lt.2h4v.s6.2f06d57e16de from=translated src=- shape=0b4fe7ea vocab=6d13cfb7
+-/
 lemma label_order_transfer {n : ℕ} {σ : Equiv.Perm (Fin n)} {x y : Fin n}
     (h : label σ x = label σ y) :
     x.val < y.val → (σ x).val < (σ y).val := by
@@ -177,11 +190,16 @@ lemma label_order_transfer {n : ℕ} {σ : Equiv.Perm (Fin n)} {x y : Fin n}
 
 /-! ### Validity and inversion -/
 
+/--
+@isnad1 id=lt.0h3v.s4.aad2bc3e0e78 from=translated src=- shape=f4c99a36 vocab=7575af04
+-/
 lemma ratio_pos {n : ℕ} (σ : Equiv.Perm (Fin n)) (k : Fin n) : 0 < ratio σ k := by
   unfold ratio
   positivity
 
-/-- A permutation is valid iff its inverse is (one direction). -/
+/-- A permutation is valid iff its inverse is (one direction).
+@isnad1 id=valid.1h2v.s4.52caf235a1e7 from=translated src=- shape=d9d161f7 vocab=3619d599
+-/
 theorem valid_inv {n : ℕ} {σ : Equiv.Perm (Fin n)} (h : Valid σ) : Valid σ⁻¹ := by
   intro a b hab
   have hri : ∀ x : Fin n, ratio σ⁻¹ x = (ratio σ (σ⁻¹ x))⁻¹ := by
@@ -196,6 +214,9 @@ theorem valid_inv {n : ℕ} {σ : Equiv.Perm (Fin n)} (h : Valid σ) : Valid σ�
 
 /-! ### Valid involutions are exactly the fantastic vertices -/
 
+/--
+@isnad1 id=iff.0h3v.s5.5a1469dc2e3a from=translated src=- shape=56401841 vocab=1b5dc3c2
+-/
 lemma ratio_eq_one_iff {n : ℕ} {σ : Equiv.Perm (Fin n)} {k : Fin n} :
     ratio σ k = 1 ↔ σ k = k := by
   unfold ratio
@@ -207,6 +228,9 @@ lemma ratio_eq_one_iff {n : ℕ} {σ : Equiv.Perm (Fin n)} {k : Fin n} :
   · intro h
     rw [h]
 
+/--
+@isnad1 id=iff.0h3v.s5.b44821a260eb from=translated src=- shape=632ce2e5 vocab=bf4018ad
+-/
 lemma one_lt_ratio_iff {n : ℕ} {σ : Equiv.Perm (Fin n)} {k : Fin n} :
     1 < ratio σ k ↔ k.val < (σ k).val := by
   unfold ratio
@@ -219,6 +243,9 @@ lemma one_lt_ratio_iff {n : ℕ} {σ : Equiv.Perm (Fin n)} {k : Fin n} :
     have : k.val + 1 < (σ k).val + 1 := by lia
     exact_mod_cast this
 
+/--
+@isnad1 id=iff.0h3v.s5.48ffacd6188b from=translated src=- shape=ee3ba213 vocab=bf4018ad
+-/
 lemma ratio_lt_one_iff {n : ℕ} {σ : Equiv.Perm (Fin n)} {k : Fin n} :
     ratio σ k < 1 ↔ (σ k).val < k.val := by
   unfold ratio
@@ -231,16 +258,24 @@ lemma ratio_lt_one_iff {n : ℕ} {σ : Equiv.Perm (Fin n)} {k : Fin n} :
     have : (σ k).val + 1 < k.val + 1 := by lia
     exact_mod_cast this
 
+/--
+@isnad1 id=eq.1h3v.s6.6ea3b33ec5ba from=translated src=- shape=70e62ee1 vocab=4f16931b
+-/
 lemma label_eq_ratio {n : ℕ} {σ : Equiv.Perm (Fin n)} (hinv : Function.Involutive σ)
     (k : Fin n) : label σ k = ratio σ (σ k) := by
   unfold label ratio
   rw [hinv k]
 
+/--
+@isnad1 id=iff.0h3v.s5.86f532aa21fd from=translated src=- shape=590a980f vocab=8af8c679
+-/
 lemma mem_nums_iff {n : ℕ} {σ : Equiv.Perm (Fin n)} {k : Fin n} :
     k ∈ nums σ ↔ k.val < (σ k).val := by
   simp [nums]
 
-/-- For an involution, every element is fixed, a numerator, or a denominator. -/
+/-- For an involution, every element is fixed, a numerator, or a denominator.
+@isnad1 id=or.1h3v.s7.cffba8b5331d from=translated src=- shape=09ba1477 vocab=a9bce217
+-/
 lemma fixed_or_num_or_denom {n : ℕ} {σ : Equiv.Perm (Fin n)}
     (hinv : Function.Involutive σ) (k : Fin n) :
     σ k = k ∨ k ∈ nums σ ∨ σ k ∈ nums σ := by
@@ -250,7 +285,9 @@ lemma fixed_or_num_or_denom {n : ℕ} {σ : Equiv.Perm (Fin n)}
   · exact Or.inr (Or.inr (mem_nums_iff.2 (by rw [hinv k]; exact h)))
 
 /-- A valid involution has at most one fixed point and distinct edge labels;
-the converse also holds. -/
+the converse also holds.
+@isnad1 id=iff.1h2v.s6.d2dc43c8288e from=translated src=- shape=978d7e7a vocab=91ce81b2
+-/
 theorem valid_iff_of_involutive {n : ℕ} {σ : Equiv.Perm (Fin n)}
     (hinv : Function.Involutive σ) :
     Valid σ ↔ (Finset.univ.filter fun x => σ x = x).card ≤ 1 ∧ Fantastic σ := by
@@ -333,6 +370,9 @@ section ProdSwap
 variable {ι α : Type*} [DecidableEq α]
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=eq.1h5v.s6.2f665de6671d from=translated src=- shape=ee5be09a vocab=82ec9e0e
+-/
 lemma list_prod_perms_apply_of_forall_fix [DecidableEq ι] (l : List ι) (F : ι → Equiv.Perm α)
     (z : α) (h : ∀ i ∈ l, F i z = z) :
     (l.map F).prod z = z := by
@@ -342,7 +382,9 @@ lemma list_prod_perms_apply_of_forall_fix [DecidableEq ι] (l : List ι) (F : ι
     rw [List.map_cons, List.prod_cons, Equiv.Perm.mul_apply,
       ih (fun b hb => h b (List.mem_cons_of_mem a hb)), h a List.mem_cons_self]
 
-/-- A product of swaps of pairwise disjoint pairs sends `u i` to `v i`. -/
+/-- A product of swaps of pairwise disjoint pairs sends `u i` to `v i`.
+@isnad1 id=eq.3h6v.s7.15a62be9dad4 from=translated src=- shape=b99b18aa vocab=6e847771
+-/
 lemma list_prod_swap_apply_left [DecidableEq ι] (l : List ι) (u v : ι → α) (hnd : l.Nodup)
     (hd : ∀ i ∈ l, ∀ j ∈ l, i ≠ j → u i ≠ u j ∧ u i ≠ v j ∧ v i ≠ u j ∧ v i ≠ v j)
     (i : ι) (hi : i ∈ l) :
@@ -373,7 +415,9 @@ lemma list_prod_swap_apply_left [DecidableEq ι] (l : List ι) (u v : ι → α)
         hd i (List.mem_cons_of_mem a hi') a List.mem_cons_self (Ne.symm hai)
       exact Equiv.swap_apply_of_ne_of_ne h3 h4
 
-/-- A product of swaps of pairwise disjoint pairs sends `v i` to `u i`. -/
+/-- A product of swaps of pairwise disjoint pairs sends `v i` to `u i`.
+@isnad1 id=eq.3h6v.s7.fb7547d26eb3 from=translated src=- shape=901e3d16 vocab=6e847771
+-/
 lemma list_prod_swap_apply_right [DecidableEq ι] (l : List ι) (u v : ι → α) (hnd : l.Nodup)
     (hd : ∀ i ∈ l, ∀ j ∈ l, i ≠ j → u i ≠ u j ∧ u i ≠ v j ∧ v i ≠ u j ∧ v i ≠ v j)
     (i : ι) (hi : i ∈ l) :
@@ -404,7 +448,9 @@ lemma list_prod_swap_apply_right [DecidableEq ι] (l : List ι) (u v : ι → α
         hd i (List.mem_cons_of_mem a hi') a List.mem_cons_self (Ne.symm hai)
       exact Equiv.swap_apply_of_ne_of_ne h1 h2
 
-/-- A product of swaps fixes any point avoided by all the swaps. -/
+/-- A product of swaps fixes any point avoided by all the swaps.
+@isnad1 id=eq.1h6v.s6.02b6a27c64e1 from=translated src=- shape=683eebe2 vocab=a2413c08
+-/
 lemma list_prod_swap_apply_of_not_mem [DecidableEq ι] (l : List ι) (u v : ι → α) (z : α)
     (hz : ∀ i ∈ l, z ≠ u i ∧ z ≠ v i) :
     ((l.map fun j => Equiv.swap (u j) (v j)).prod) z = z :=
@@ -430,11 +476,16 @@ representatives. -/
 def newSwitch {n : ℕ} (σ φ : Equiv.Perm (Fin n)) : Equiv.Perm (Fin n) :=
   (((reps σ φ).sort (· ≤ ·)).map fun x => Equiv.swap x (σ x)).prod
 
+/--
+@isnad1 id=iff.0h4v.s6.312adc996a21 from=translated src=- shape=03ca4517 vocab=54e2156b
+-/
 lemma mem_reps {n : ℕ} {σ φ : Equiv.Perm (Fin n)} {x : Fin n} :
     x ∈ reps σ φ ↔ x ∈ nums σ ∧ φ x ≠ x ∧ x.val < (φ x).val := by
   simp [reps]
 
-/-- A switching involution maps numerators to numerators. -/
+/-- A switching involution maps numerators to numerators.
+@isnad1 id=mem.2h4v.s6.9e3f7decd6c2 from=translated src=- shape=7fed60d5 vocab=c26e6472
+-/
 lemma switch_mapsTo_nums {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hφ : IsSwitch σ φ) {x : Fin n} (hx : x ∈ nums σ) : φ x ∈ nums σ := by
   by_contra hcon
@@ -448,14 +499,18 @@ lemma switch_mapsTo_nums {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     exact hx
   exact hcon h4
 
-/-- The image of a numerator is not a numerator. -/
+/-- The image of a numerator is not a numerator.
+@isnad1 id=not.2h3v.s6.e6337c5d2f8c from=translated src=- shape=aaf49d99 vocab=a9bce217
+-/
 lemma denom_not_mem_nums {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {x : Fin n} (hx : x ∈ nums σ) : σ x ∉ nums σ := by
   simp only [nums, Finset.mem_filter, Finset.mem_univ, true_and, not_lt]
   rw [hσ x]
   exact le_of_lt (mem_nums_iff.1 hx)
 
-/-- The pairs `(σ x, φ x)` for distinct representatives are pairwise disjoint. -/
+/-- The pairs `(σ x, φ x)` for distinct representatives are pairwise disjoint.
+@isnad1 id=and.5h5v.s8.c67ef956e890 from=translated src=- shape=8e8f4a22 vocab=6107049e
+-/
 lemma reps_four_distinct {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     {x y : Fin n} (hx : x ∈ reps σ φ) (hy : y ∈ reps σ φ) (hxy : x ≠ y) :
@@ -468,7 +523,9 @@ lemma reps_four_distinct {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
   · intro h
     exact denom_not_mem_nums hσ hyn (h.symm ▸ switch_mapsTo_nums hφ hxn)
 
-/-- The pairs `(x, σ x)` for distinct representatives are pairwise disjoint. -/
+/-- The pairs `(x, σ x)` for distinct representatives are pairwise disjoint.
+@isnad1 id=and.5h5v.s7.424494f69038 from=translated src=- shape=7da91050 vocab=6107049e
+-/
 lemma reps_four_distinct' {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (_hφ : IsSwitch σ φ)
     {x y : Fin n} (hx : x ∈ reps σ φ) (hy : y ∈ reps σ φ) (hxy : x ≠ y) :
@@ -481,7 +538,9 @@ lemma reps_four_distinct' {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
   · intro h
     exact denom_not_mem_nums hσ hxn (h.symm ▸ hyn)
 
-/-- The pairs `(x, φ x)` for distinct representatives are pairwise disjoint. -/
+/-- The pairs `(x, φ x)` for distinct representatives are pairwise disjoint.
+@isnad1 id=and.4h5v.s7.eba462e538cd from=translated src=- shape=d41ddbd7 vocab=21c917aa
+-/
 lemma reps_four_distinct'' {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hφ : IsSwitch σ φ)
     {x y : Fin n} (hx : x ∈ reps σ φ) (hy : y ∈ reps σ φ) (hxy : x ≠ y) :
@@ -500,6 +559,9 @@ lemma reps_four_distinct'' {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     rw [h1] at hlty
     exact absurd hlty (not_lt_of_gt hltx)
 
+/--
+@isnad1 id=eq.3h4v.s7.1699931e3fa9 from=translated src=- shape=ecab6c33 vocab=9d66d50d
+-/
 lemma conjPerm_apply_left {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     {x : Fin n} (hx : x ∈ reps σ φ) :
@@ -510,6 +572,9 @@ lemma conjPerm_apply_left {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
       ((Finset.mem_sort _).1 hi) ((Finset.mem_sort _).1 hj) hij)
     x ((Finset.mem_sort _).2 hx)
 
+/--
+@isnad1 id=eq.3h4v.s7.d6407cda4864 from=translated src=- shape=1aaa6295 vocab=9d66d50d
+-/
 lemma conjPerm_apply_right {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     {x : Fin n} (hx : x ∈ reps σ φ) :
@@ -520,6 +585,9 @@ lemma conjPerm_apply_right {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
       ((Finset.mem_sort _).1 hi) ((Finset.mem_sort _).1 hj) hij)
     x ((Finset.mem_sort _).2 hx)
 
+/--
+@isnad1 id=eq.1h4v.s7.dbc9039a58e6 from=translated src=- shape=8516549b vocab=3b56ecdf
+-/
 lemma conjPerm_apply_of_not_mem {n : ℕ} {σ φ : Equiv.Perm (Fin n)} {z : Fin n}
     (hz : ∀ x ∈ reps σ φ, z ≠ σ x ∧ z ≠ φ x) :
     conjPerm σ φ z = z := by
@@ -527,6 +595,9 @@ lemma conjPerm_apply_of_not_mem {n : ℕ} {σ φ : Equiv.Perm (Fin n)} {z : Fin 
   exact list_prod_swap_apply_of_not_mem _ _ _ z fun i hi =>
     hz i ((Finset.mem_sort _).1 hi)
 
+/--
+@isnad1 id=eq.3h4v.s6.3f7da4bd962c from=translated src=- shape=29737c1b vocab=84d04ea0
+-/
 lemma newSwitch_apply_left {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     {x : Fin n} (hx : x ∈ reps σ φ) :
@@ -537,6 +608,9 @@ lemma newSwitch_apply_left {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
       ((Finset.mem_sort _).1 hi) ((Finset.mem_sort _).1 hj) hij)
     x ((Finset.mem_sort _).2 hx)
 
+/--
+@isnad1 id=eq.3h4v.s6.1c6fa7deafcc from=translated src=- shape=5f84719a vocab=84d04ea0
+-/
 lemma newSwitch_apply_right {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     {x : Fin n} (hx : x ∈ reps σ φ) :
@@ -547,6 +621,9 @@ lemma newSwitch_apply_right {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
       ((Finset.mem_sort _).1 hi) ((Finset.mem_sort _).1 hj) hij)
     x ((Finset.mem_sort _).2 hx)
 
+/--
+@isnad1 id=eq.1h4v.s6.30588e887db6 from=translated src=- shape=8f53c5a4 vocab=7e82759a
+-/
 lemma newSwitch_apply_of_not_mem {n : ℕ} {σ φ : Equiv.Perm (Fin n)} {z : Fin n}
     (hz : ∀ x ∈ reps σ φ, z ≠ x ∧ z ≠ σ x) :
     newSwitch σ φ z = z := by
@@ -554,6 +631,9 @@ lemma newSwitch_apply_of_not_mem {n : ℕ} {σ φ : Equiv.Perm (Fin n)} {z : Fin
   exact list_prod_swap_apply_of_not_mem _ _ _ z fun i hi =>
     hz i ((Finset.mem_sort _).1 hi)
 
+/--
+@isnad1 id=involuti.2h3v.s6.080d3edbb092 from=translated src=- shape=0490a558 vocab=4ae8adb3
+-/
 lemma conjPerm_involutive {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     Function.Involutive (conjPerm σ φ) := by
@@ -572,6 +652,9 @@ lemma conjPerm_involutive {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
         exact ⟨fun h => h1 h.symm, fun h => h2 h.symm⟩
     rw [h1, h1]
 
+/--
+@isnad1 id=involuti.2h3v.s6.72f092f008f8 from=translated src=- shape=0490a558 vocab=8ef24cb3
+-/
 lemma newSwitch_involutive {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     Function.Involutive (newSwitch σ φ) := by
@@ -590,7 +673,9 @@ lemma newSwitch_involutive {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
         exact ⟨fun h => h1 h.symm, fun h => h2 h.symm⟩
     rw [h1, h1]
 
-/-- The flipped involution `π σ π` is involutive. -/
+/-- The flipped involution `π σ π` is involutive.
+@isnad1 id=involuti.2h3v.s6.97f45b46b44a from=translated src=- shape=970c194c vocab=b02f3052
+-/
 lemma flip1_involutive {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     Function.Involutive (conjPerm σ φ * σ * conjPerm σ φ) := by
@@ -599,7 +684,9 @@ lemma flip1_involutive {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
   simp only [Equiv.Perm.mul_apply]
   rw [hπ, hσ, hπ]
 
-/-- Fixed points of the flipped involution are the `π`-images of fixed points of `σ`. -/
+/-- Fixed points of the flipped involution are the `π`-images of fixed points of `σ`.
+@isnad1 id=iff.2h4v.s7.138f2f8b0a30 from=translated src=- shape=4aa3d721 vocab=b02f3052
+-/
 lemma flip1_fixed_iff {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) (z : Fin n) :
     (conjPerm σ φ * σ * conjPerm σ φ) z = z ↔ σ (conjPerm σ φ z) = conjPerm σ φ z := by
@@ -613,7 +700,9 @@ lemma flip1_fixed_iff {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
   · intro h
     rw [h, hπ]
 
-/-- The flipped involution has the same number of fixed points as `σ`. -/
+/-- The flipped involution has the same number of fixed points as `σ`.
+@isnad1 id=eq.2h3v.s8.2aa7debfbb24 from=translated src=- shape=8a6e8e83 vocab=c90b4481
+-/
 lemma flip1_fixed_card {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     (Finset.univ.filter fun x => (conjPerm σ φ * σ * conjPerm σ φ) x = x).card =
@@ -632,7 +721,9 @@ lemma flip1_fixed_card {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     rw [flip1_fixed_iff hσ hφ, hπ]
     exact hy
 
-/-- On a representative `x`, the flipped involution acts as `φ`. -/
+/-- On a representative `x`, the flipped involution acts as `φ`.
+@isnad1 id=eq.3h4v.s7.a7b3a65ab0b9 from=translated src=- shape=e1e01318 vocab=5a9e08a8
+-/
 lemma flip1_apply_of_mem_reps {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     {x : Fin n} (hx : x ∈ reps σ φ) :
@@ -656,7 +747,9 @@ lemma flip1_apply_of_mem_reps {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
   rw [hx1, conjPerm_apply_left hσ hφ hx]
 
 /-- On the denominator `σ x` of a representative, the flipped involution acts as
-`σ ∘ φ`. -/
+`σ ∘ φ`.
+@isnad1 id=eq.3h4v.s7.1e4143ace50c from=translated src=- shape=33bea76a vocab=5a9e08a8
+-/
 lemma flip1_apply_denom_of_mem_reps {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     {x : Fin n} (hx : x ∈ reps σ φ) :
@@ -681,7 +774,9 @@ lemma flip1_apply_denom_of_mem_reps {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
   rw [conjPerm_apply_left hσ hφ hx, hx1]
 
 /-- Points moved by the new switching involution are numerators of the flipped
-involution. -/
+involution.
+@isnad1 id=mem.3h4v.s7.4c7968676599 from=translated src=- shape=8e6c6d77 vocab=396506b4
+-/
 lemma newSwitch_mem_nums_flip {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) {z : Fin n}
     (hz : newSwitch σ φ z ≠ z) :
@@ -698,7 +793,9 @@ lemma newSwitch_mem_nums_flip {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     have hlabel : label σ x = label σ (φ x) := (hφ.2.2 x (mem_reps.1 hx).1).symm
     exact label_order_transfer hlabel hlt
 
-/-- The new switching involution preserves labels of the flipped involution. -/
+/-- The new switching involution preserves labels of the flipped involution.
+@isnad1 id=eq.3h4v.s7.05f4296121d9 from=translated src=- shape=4e1db958 vocab=8951da41
+-/
 lemma flip2_label {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) {z : Fin n}
     (_hz : z ∈ nums (conjPerm σ φ * σ * conjPerm σ φ)) :
@@ -726,7 +823,9 @@ lemma flip2_label {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     have h1 : newSwitch σ φ z = z := newSwitch_apply_of_not_mem hmove
     rw [h1]
 
-/-- The representatives of the flipped pair are the original representatives. -/
+/-- The representatives of the flipped pair are the original representatives.
+@isnad1 id=eq.2h3v.s6.40229218b585 from=translated src=- shape=1afa8584 vocab=37afc1c2
+-/
 lemma reps_flip {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     reps (conjPerm σ φ * σ * conjPerm σ φ) (newSwitch σ φ) = reps σ φ := by
@@ -757,7 +856,9 @@ lemma reps_flip {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     · rw [newSwitch_apply_left hσ hφ hzr]
       exact mem_nums_iff.1 hzn
 
-/-- The conjugating permutation of the flipped pair is the original one. -/
+/-- The conjugating permutation of the flipped pair is the original one.
+@isnad1 id=eq.2h3v.s6.76e3e342f3b9 from=translated src=- shape=93250514 vocab=17ca5c9c
+-/
 lemma conjPerm_flip {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     conjPerm (conjPerm σ φ * σ * conjPerm σ φ) (newSwitch σ φ) = conjPerm σ φ := by
@@ -812,7 +913,9 @@ lemma eq_prod_swap_self {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     rw [h2, h3]
 
 /-- The new switching involution of the flipped pair is the original switching
-involution. -/
+involution.
+@isnad1 id=eq.2h3v.s6.b7091d02f83c from=translated src=- shape=35c4139f vocab=17ca5c9c
+-/
 lemma newSwitch_flip {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     newSwitch (conjPerm σ φ * σ * conjPerm σ φ) (newSwitch σ φ) = φ := by
@@ -830,7 +933,9 @@ def flipPair {n : ℕ} (p : Equiv.Perm (Fin n) × Equiv.Perm (Fin n)) :
     Equiv.Perm (Fin n) × Equiv.Perm (Fin n) :=
   (conjPerm p.1 p.2 * p.1 * conjPerm p.1 p.2, newSwitch p.1 p.2)
 
-/-- The flip is an involution on valid pairs. -/
+/-- The flip is an involution on valid pairs.
+@isnad1 id=eq.2h3v.s6.c769ab03ec29 from=translated src=- shape=bff006d8 vocab=9d7b8a1a
+-/
 lemma flipPair_involutive_on {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ) :
     flipPair (flipPair (σ, φ)) = (σ, φ) := by
@@ -851,7 +956,9 @@ lemma flipPair_involutive_on {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
       = (conjPerm σ φ * conjPerm σ φ) * σ * (conjPerm σ φ * conjPerm σ φ) := by group
     _ = σ := by rw [hπ2, one_mul, mul_one]
 
-/-- The flip preserves membership in the vertex-switching set. -/
+/-- The flip preserves membership in the vertex-switching set.
+@isnad1 id=and.2h3v.s6.b0b43100fa33 from=translated src=- shape=daa7651c vocab=20a93642
+-/
 lemma flipPair_mem {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : IsVertex σ) (hφ : IsSwitch σ φ) :
     IsVertex (conjPerm σ φ * σ * conjPerm σ φ) ∧
@@ -864,7 +971,9 @@ lemma flipPair_mem {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     by_contra hcon
     exact hz (newSwitch_mem_nums_flip hσv hφ hcon)
 
-/-- A fixed point of the flip has trivial switching involution. -/
+/-- A fixed point of the flip has trivial switching involution.
+@isnad1 id=eq.3h3v.s6.9e8d8b705430 from=translated src=- shape=2909734e vocab=9d7b8a1a
+-/
 lemma flipPair_eq_self_iff {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hφ : IsSwitch σ φ)
     (h : flipPair (σ, φ) = (σ, φ)) : φ = 1 := by
@@ -882,7 +991,9 @@ lemma flipPair_eq_self_iff {n : ℕ} {σ φ : Equiv.Perm (Fin n)}
   unfold newSwitch
   simp [hreps]
 
-/-- Any pair with trivial switching involution is a fixed point of the flip. -/
+/-- Any pair with trivial switching involution is a fixed point of the flip.
+@isnad1 id=eq.1h3v.s5.b777eb75946b from=translated src=- shape=0dac6cb6 vocab=871abf3f
+-/
 lemma flipPair_eq_self_of_eq_one {n : ℕ} {σ φ : Equiv.Perm (Fin n)} (h : φ = 1) :
     flipPair (σ, φ) = (σ, φ) := by
   subst h
@@ -900,7 +1011,9 @@ lemma flipPair_eq_self_of_eq_one {n : ℕ} {σ φ : Equiv.Perm (Fin n)} (h : φ 
 
 /-! ### Counting switching involutions modulo two -/
 
-/-- The identity is a switching involution. -/
+/-- The identity is a switching involution.
+@isnad1 id=isswitch.0h2v.s4.9cbd225e8a12 from=translated src=- shape=a31677e1 vocab=e42d6c8e
+-/
 lemma isSwitch_id {n : ℕ} {σ : Equiv.Perm (Fin n)} : IsSwitch σ (1 : Equiv.Perm (Fin n)) := by
   refine ⟨fun x => ?_, fun x _ => ?_, fun x _ => ?_⟩
   · show (1 : Equiv.Perm (Fin n)) ((1 : Equiv.Perm (Fin n)) x) = x
@@ -908,14 +1021,18 @@ lemma isSwitch_id {n : ℕ} {σ : Equiv.Perm (Fin n)} : IsSwitch σ (1 : Equiv.P
   · simp
   · simp
 
-/-- An involution squares to one. -/
+/-- An involution squares to one.
+@isnad1 id=eq.1h2v.s6.d2a15ddeec4e from=translated src=- shape=72358269 vocab=6a7d2599
+-/
 lemma Perm_mul_self_eq_one_of_involutive {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (h : Function.Involutive ψ) : ψ * ψ = 1 := by
   ext x
   simp only [Equiv.Perm.mul_apply, Equiv.Perm.one_apply]
   exact congrArg Fin.val (h x)
 
-/-- A fantastic vertex admits only the trivial switching involution. -/
+/-- A fantastic vertex admits only the trivial switching involution.
+@isnad1 id=eq.1h2v.s5.1aff58998c7d from=translated src=- shape=ff7e1ceb vocab=f29c10d1
+-/
 theorem card_switch_eq_one_of_fantastic {n : ℕ} {σ : Equiv.Perm (Fin n)}
     (hf : Fantastic σ) : Fintype.card {φ : Equiv.Perm (Fin n) // IsSwitch σ φ} = 1 := by
   have hall : ∀ φ : Equiv.Perm (Fin n), IsSwitch σ φ → φ = 1 := by
@@ -939,7 +1056,9 @@ theorem card_switch_eq_one_of_fantastic {n : ℕ} {σ : Equiv.Perm (Fin n)}
   lia
 
 /-- Conjugating a switching involution by the swap of two equal-labelled numerators
-yields a switching involution. -/
+yields a switching involution.
+@isnad1 id=isswitch.4h5v.s6.e557b9c19c31 from=translated src=- shape=6e48b744 vocab=eb744f75
+-/
 lemma conj_isSwitch {n : ℕ} {σ : Equiv.Perm (Fin n)}
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hab : label σ a = label σ b)
     {φ : Equiv.Perm (Fin n)} (hφ : IsSwitch σ φ) :
@@ -994,6 +1113,9 @@ lemma conj_isSwitch {n : ℕ} {σ : Equiv.Perm (Fin n)}
 def rho {n : ℕ} (σ : Equiv.Perm (Fin n)) (a b : Fin n) : Equiv.Perm (Fin n) :=
   Equiv.swap a (σ a) * Equiv.swap b (σ b) * σ
 
+/--
+@isnad1 id=eq.4h4v.s6.c47429c140d0 from=translated src=- shape=35c17e0c vocab=f4e523ed
+-/
 lemma rho_apply_a {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b) :
     rho σ a b a = a := by
@@ -1002,6 +1124,9 @@ lemma rho_apply_a {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive
   simp only [rho, Equiv.Perm.mul_apply]
   rw [Equiv.swap_apply_of_ne_of_ne h1 h2, Equiv.swap_apply_right]
 
+/--
+@isnad1 id=eq.4h4v.s7.ba15f6644f04 from=translated src=- shape=a574e412 vocab=f4e523ed
+-/
 lemma rho_apply_σa {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b) :
     rho σ a b (σ a) = σ a := by
@@ -1009,6 +1134,9 @@ lemma rho_apply_σa {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involuti
   simp only [rho, Equiv.Perm.mul_apply]
   rw [hσ a, Equiv.swap_apply_of_ne_of_ne hne h2, Equiv.swap_apply_left]
 
+/--
+@isnad1 id=eq.4h4v.s6.3fb5b054546c from=translated src=- shape=a772ba28 vocab=f4e523ed
+-/
 lemma rho_apply_b {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b) :
     rho σ a b b = b := by
@@ -1016,6 +1144,9 @@ lemma rho_apply_b {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive
   simp only [rho, Equiv.Perm.mul_apply]
   rw [Equiv.swap_apply_right, Equiv.swap_apply_of_ne_of_ne hne.symm h2]
 
+/--
+@isnad1 id=eq.4h4v.s7.8ebf93f5c7ad from=translated src=- shape=f1757f2a vocab=f4e523ed
+-/
 lemma rho_apply_σb {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b) :
     rho σ a b (σ b) = σ b := by
@@ -1024,6 +1155,9 @@ lemma rho_apply_σb {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involuti
   simp only [rho, Equiv.Perm.mul_apply]
   rw [hσ b, Equiv.swap_apply_left, Equiv.swap_apply_of_ne_of_ne h1 h2]
 
+/--
+@isnad1 id=eq.2h5v.s7.72fd23e5d3b7 from=translated src=- shape=7c0da6f8 vocab=d6608b85
+-/
 lemma rho_apply_of_not_mem {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b x : Fin n} (hx : x ≠ a ∧ x ≠ σ a ∧ x ≠ b ∧ x ≠ σ b) :
     rho σ a b x = σ x := by
@@ -1034,6 +1168,9 @@ lemma rho_apply_of_not_mem {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.I
   simp only [rho, Equiv.Perm.mul_apply]
   rw [Equiv.swap_apply_of_ne_of_ne h1 h2, Equiv.swap_apply_of_ne_of_ne h3 h4]
 
+/--
+@isnad1 id=involuti.4h4v.s6.f6c6b4c9a386 from=translated src=- shape=d3fffe78 vocab=f4e523ed
+-/
 lemma rho_involutive {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b) :
     Function.Involutive (rho σ a b) := by
@@ -1058,6 +1195,9 @@ lemma rho_involutive {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involut
         exact hz.2.2.1 (σ.injective h)
     rw [h1, rho_apply_of_not_mem hσ h2, hσ z]
 
+/--
+@isnad1 id=and.5h5v.s7.e7eb99b7023f from=translated src=- shape=a0fd7cba vocab=f4e523ed
+-/
 lemma not_mem_four_of_mem_nums_rho {n : ℕ} {σ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) {a b x : Fin n}
     (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b)
@@ -1074,6 +1214,9 @@ lemma not_mem_four_of_mem_nums_rho {n : ℕ} {σ : Equiv.Perm (Fin n)}
   · rw [rho_apply_σb hσ ha hb hne] at h
     exact absurd h (lt_irrefl _)
 
+/--
+@isnad1 id=eq.4h4v.s7.0b62276a3dc1 from=translated src=- shape=13d11c66 vocab=23ebc985
+-/
 lemma nums_rho {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b) :
     nums (rho σ a b) = (nums σ).filter fun x => x ≠ a ∧ x ≠ b := by
@@ -1094,6 +1237,9 @@ lemma nums_rho {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ
     rw [rho_apply_of_not_mem hσ hx1]
     exact hx
 
+/--
+@isnad1 id=eq.5h5v.s7.5864b84f9088 from=translated src=- shape=63847461 vocab=5fdaef35
+-/
 lemma label_rho {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b x : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b)
     (hx : x ∈ nums (rho σ a b)) :
@@ -1111,11 +1257,16 @@ def permOfInvolutive {α : Type*} (f : α → α) (hf : Function.Involutive f) :
   left_inv := hf
   right_inv := hf
 
+/--
+@isnad1 id=eq.1h3v.s5.604bf98183ca from=translated src=- shape=84d3999b vocab=f6d62beb
+-/
 @[simp]
 lemma permOfInvolutive_apply {α : Type*} (f : α → α) (hf : Function.Involutive f) (x : α) :
     permOfInvolutive f hf x = f x := rfl
 
-/-- If `c * ψ = ψ * c` for `c = swap a b`, then `ψ` preserves the pair `{a, b}`. -/
+/-- If `c * ψ = ψ * c` for `c = swap a b`, then `ψ` preserves the pair `{a, b}`.
+@isnad1 id=and.6h5v.s8.aa7b12653d31 from=translated src=- shape=07beeddf vocab=c371027a
+-/
 lemma fixed_perm_ab {n : ℕ} {σ ψ : Equiv.Perm (Fin n)}
     {a b : Fin n} (_ha : a ∈ nums σ) (_hb : b ∈ nums σ) (_hab : label σ a = label σ b)
     (hne : a ≠ b)
@@ -1143,7 +1294,9 @@ lemma fixed_perm_ab {n : ℕ} {σ ψ : Equiv.Perm (Fin n)}
       rw [e1, e2, Equiv.swap_apply_of_ne_of_ne hcon.1 hcon.2]
     exact hne (ψ.injective h1)
 
-/-- A permutation preserving a two-element set also preserves its complement. -/
+/-- A permutation preserving a two-element set also preserves its complement.
+@isnad1 id=not.2h5v.s7.ebf874f55c13 from=translated src=- shape=c94d1f77 vocab=9dc9af98
+-/
 lemma perm_compl_of_perm_ab {n : ℕ} {ψ : Equiv.Perm (Fin n)} {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n)))
     (y : Fin n) (hy : y ∉ ({a, b} : Finset (Fin n))) :
@@ -1175,6 +1328,9 @@ def restrictAb {n : ℕ} {ψ : Equiv.Perm (Fin n)} (hψ : Function.Involutive ψ
     · rw [ite_eq_left hx, ite_eq_left (h x hx), hψ x]
     · rw [ite_eq_right hx, ite_eq_right hx])
 
+/--
+@isnad1 id=eq.3h5v.s7.0b8999e6fc67 from=translated src=- shape=e7344e7e vocab=c217b390
+-/
 lemma restrictAb_apply_of_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (hψ : Function.Involutive ψ) {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n)))
@@ -1183,6 +1339,9 @@ lemma restrictAb_apply_of_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
   unfold restrictAb
   rw [permOfInvolutive_apply, ite_eq_left hx]
 
+/--
+@isnad1 id=eq.3h5v.s7.8c0312c5883a from=translated src=- shape=512af476 vocab=c217b390
+-/
 lemma restrictAb_apply_of_not_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (hψ : Function.Involutive ψ) {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n)))
@@ -1191,6 +1350,9 @@ lemma restrictAb_apply_of_not_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
   unfold restrictAb
   rw [permOfInvolutive_apply, ite_eq_right hx]
 
+/--
+@isnad1 id=involuti.2h4v.s7.3bdab584f148 from=translated src=- shape=fdfda429 vocab=c217b390
+-/
 lemma restrictAb_involutive {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (hψ : Function.Involutive ψ) {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n))) :
@@ -1213,6 +1375,9 @@ def restrictCompl {n : ℕ} {ψ : Equiv.Perm (Fin n)} (hψ : Function.Involutive
     · rw [ite_eq_left hx, ite_eq_left hx]
     · rw [ite_eq_right hx, ite_eq_right (perm_compl_of_perm_ab h x hx), hψ x])
 
+/--
+@isnad1 id=eq.3h5v.s7.b8f22cf89b55 from=translated src=- shape=1c1cddde vocab=790f5906
+-/
 lemma restrictCompl_apply_of_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (hψ : Function.Involutive ψ) {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n)))
@@ -1221,6 +1386,9 @@ lemma restrictCompl_apply_of_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
   unfold restrictCompl
   rw [permOfInvolutive_apply, ite_eq_left hx]
 
+/--
+@isnad1 id=eq.3h5v.s7.6b3796b1748d from=translated src=- shape=f305c740 vocab=790f5906
+-/
 lemma restrictCompl_apply_of_not_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (hψ : Function.Involutive ψ) {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n)))
@@ -1229,6 +1397,9 @@ lemma restrictCompl_apply_of_not_mem {n : ℕ} {ψ : Equiv.Perm (Fin n)}
   unfold restrictCompl
   rw [permOfInvolutive_apply, ite_eq_right hx]
 
+/--
+@isnad1 id=involuti.2h4v.s7.120c839107ab from=translated src=- shape=fdfda429 vocab=790f5906
+-/
 lemma restrictCompl_involutive {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (hψ : Function.Involutive ψ) {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n))) :
@@ -1239,7 +1410,9 @@ lemma restrictCompl_involutive {n : ℕ} {ψ : Equiv.Perm (Fin n)}
   · rw [restrictCompl_apply_of_not_mem hψ h hx,
       restrictCompl_apply_of_not_mem hψ h (perm_compl_of_perm_ab h x hx), hψ x]
 
-/-- An involution decomposes as the product of its two restrictions. -/
+/-- An involution decomposes as the product of its two restrictions.
+@isnad1 id=eq.2h4v.s7.4aa508e492a4 from=translated src=- shape=bacc23e7 vocab=6d00e967
+-/
 lemma mul_restrictAb_restrictCompl {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     (hψ : Function.Involutive ψ) {a b : Fin n}
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n))) :
@@ -1252,7 +1425,9 @@ lemma mul_restrictAb_restrictCompl {n : ℕ} {ψ : Equiv.Perm (Fin n)}
   · rw [restrictCompl_apply_of_not_mem hψ h hx,
       restrictAb_apply_of_not_mem hψ h (perm_compl_of_perm_ab h x hx)]
 
-/-- On a preserved pair `{a, b}`, an involution is either the identity or the swap. -/
+/-- On a preserved pair `{a, b}`, an involution is either the identity or the swap.
+@isnad1 id=or.3h4v.s7.5c7d63961baa from=translated src=- shape=6adf8a18 vocab=5122f809
+-/
 lemma restrictAb_eq_one_or_c {n : ℕ} {ψ : Equiv.Perm (Fin n)}
     {a b : Fin n} (hne : a ≠ b) (hψ : Function.Involutive ψ)
     (h : ∀ y ∈ ({a, b} : Finset (Fin n)), ψ y ∈ ({a, b} : Finset (Fin n))) :
@@ -1306,7 +1481,9 @@ lemma restrictAb_eq_one_or_c {n : ℕ} {ψ : Equiv.Perm (Fin n)}
       exact (Equiv.swap_apply_of_ne_of_ne hx.1 hx.2).symm
 
 /-- The complement restriction of a fixed switching involution is a switching
-involution of the reduced vertex `ρ`. -/
+involution of the reduced vertex `ρ`.
+@isnad1 id=isswitch.7h5v.s7.e6efa363c17c from=translated src=- shape=89bf04ec vocab=19eb45ac
+-/
 lemma isSwitch_rho_of_restrictCompl {n : ℕ} {σ ψ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (_hab : label σ a = label σ b)
@@ -1348,7 +1525,9 @@ lemma isSwitch_rho_of_restrictCompl {n : ℕ} {σ ψ : Equiv.Perm (Fin n)}
     rw [label_rho hσ ha hb hne h3, hψ.2.2 x hxn, label_rho hσ ha hb hne hx]
 
 /-- The product of a permutation of `{a, b}` (identity or swap) with a switching
-involution of the reduced vertex `ρ` is a switching involution of `σ`. -/
+involution of the reduced vertex `ρ` is a switching involution of `σ`.
+@isnad1 id=isswitch.7h6v.s7.e2a7e0b073e0 from=translated src=- shape=30774ad3 vocab=99f49032
+-/
 lemma isSwitch_mul {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hab : label σ a = label σ b)
     (hne : a ≠ b)
@@ -1449,7 +1628,9 @@ lemma isSwitch_mul {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutiv
       rw [Equiv.Perm.mul_apply, hψ₀_apply _ h2, ← label_rho hσ ha hb hne h1, hψ₁.2.2 x hx1,
         label_rho hσ ha hb hne hx1]
 
-/-- A switching involution of the reduced vertex fixes both `a` and `b`. -/
+/-- A switching involution of the reduced vertex fixes both `a` and `b`.
+@isnad1 id=eq.6h6v.s7.265791afe344 from=translated src=- shape=57236868 vocab=6964d068
+-/
 lemma switch_rho_fix_of_mem_ab {n : ℕ} {σ ψ₁ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b)
     (hψ₁ : IsSwitch (rho σ a b) ψ₁) {x : Fin n} (hx : x ∈ ({a, b} : Finset (Fin n))) :
@@ -1463,7 +1644,9 @@ lemma switch_rho_fix_of_mem_ab {n : ℕ} {σ ψ₁ : Equiv.Perm (Fin n)} (hσ : 
   | inl h3 => exact h2.1 h3
   | inr h3 => exact h2.2 h3
 
-/-- A fixed switching involution preserves the pair `{a, b}` (bundled form). -/
+/-- A fixed switching involution preserves the pair `{a, b}` (bundled form).
+@isnad1 id=mem.7h6v.s7.334e3e730373 from=translated src=- shape=44f1ddba vocab=c371027a
+-/
 lemma perm_ab_of_fixed {n : ℕ} {σ ψ : Equiv.Perm (Fin n)}
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hab : label σ a = label σ b)
     (hne : a ≠ b) (hψ : IsSwitch σ ψ) (hcomm : Equiv.swap a b * ψ = ψ * Equiv.swap a b) :
@@ -1476,7 +1659,9 @@ lemma perm_ab_of_fixed {n : ℕ} {σ ψ : Equiv.Perm (Fin n)}
   | inr h1 => subst h1; exact h.2
 
 /-- The product `ψ₀ * ψ₁` commutes with `swap a b` when `ψ₀ ∈ {1, swap a b}` and `ψ₁`
-is a switching involution of the reduced vertex. -/
+is a switching involution of the reduced vertex.
+@isnad1 id=eq.6h6v.s7.5ea70c31101d from=translated src=- shape=b05ede9f vocab=1778f79b
+-/
 lemma commute_c_of_mem {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involutive σ)
     {a b : Fin n} (ha : a ∈ nums σ) (hb : b ∈ nums σ) (hne : a ≠ b)
     {ψ₀ ψ₁ : Equiv.Perm (Fin n)} (hψ₀ : ψ₀ = 1 ∨ ψ₀ = Equiv.swap a b)
@@ -1576,7 +1761,9 @@ def fixedDecompEquiv {n : ℕ} {σ : Equiv.Perm (Fin n)} (hσ : Function.Involut
       · rw [restrictCompl_apply_of_mem _ _ hx, hψ₁_fix x hx]
       · rw [restrictCompl_apply_of_not_mem _ _ hx, Equiv.Perm.mul_apply, hψ₀_fix _ (hψ₁_compl x hx)]
 
-/-- A non-fantastic vertex admits an even number of switching involutions. -/
+/-- A non-fantastic vertex admits an even number of switching involutions.
+@isnad1 id=even.2h2v.s6.90b12c40f3c3 from=translated src=- shape=e8b2eae7 vocab=59070b72
+-/
 theorem even_card_switch_of_not_fantastic {n : ℕ} {σ : Equiv.Perm (Fin n)}
     (hσ : Function.Involutive σ) (hf : ¬ Fantastic σ) :
     Even (Fintype.card {φ : Equiv.Perm (Fin n) // IsSwitch σ φ}) := by
@@ -1669,6 +1856,9 @@ noncomputable def vcard (n : ℕ) : ℕ := Fintype.card (vtxSubtype n)
 
 /-! ### Basic facts about `Equiv.Perm.decomposeFin` -/
 
+/--
+@isnad1 id=eq.0h2v.s8.3556677f0b98 from=translated src=- shape=2c86463f vocab=81f5a6c3
+-/
 theorem decomposeFin_fst {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) :
     (Equiv.Perm.decomposeFin σ).1 = σ 0 := by
   rw [← Equiv.Perm.decomposeFin_symm_apply_zero (Equiv.Perm.decomposeFin σ).1
@@ -1682,16 +1872,25 @@ noncomputable def partner {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (_h0 : σ 0 
     rw [decomposeFin_fst]
     exact _h0)
 
+/--
+@isnad1 id=eq.1h2v.s8.c2cad5f874f1 from=translated src=- shape=8685e70a vocab=395f1e64
+-/
 theorem partner_succ {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 ≠ 0) :
     (partner σ h0).succ = σ 0 := by
   unfold partner
   rw [Fin.succ_pred, decomposeFin_fst]
 
+/--
+@isnad1 id=eq.1h2v.s9.c48b3f467493 from=translated src=- shape=2fde360d vocab=dbc37993
+-/
 theorem decomposeFin_eq_symm_partner {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 ≠ 0) :
     σ = Equiv.Perm.decomposeFin.symm ((partner σ h0).succ, (Equiv.Perm.decomposeFin σ).2) := by
   rw [partner_succ, ← decomposeFin_fst, Prod.mk.eta]
   exact (Equiv.Perm.decomposeFin.symm_apply_apply σ).symm
 
+/--
+@isnad1 id=eq.1h2v.s9.330eafdfc19e from=translated src=- shape=25418eb7 vocab=3425cd4e
+-/
 theorem decomposeFin_eq_symm_zero {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 = 0) :
     σ = Equiv.Perm.decomposeFin.symm (0, (Equiv.Perm.decomposeFin σ).2) := by
   have h1 : (Equiv.Perm.decomposeFin σ).1 = 0 := by
@@ -1700,7 +1899,9 @@ theorem decomposeFin_eq_symm_zero {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 
   rw [← h1, Prod.mk.eta]
   exact (Equiv.Perm.decomposeFin.symm_apply_apply σ).symm
 
-/-- The partner of `0` under `decomposeFin.symm (j.succ, e)` is `j` itself. -/
+/-- The partner of `0` under `decomposeFin.symm (j.succ, e)` is `j` itself.
+@isnad1 id=eq.1h3v.s10.e65d1a5cac78 from=translated src=- shape=acdde7a0 vocab=2a4634f3
+-/
 theorem partner_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n + 1)))
     (h0 : (Equiv.Perm.decomposeFin.symm (j.succ, e)) 0 ≠ 0) :
     partner (Equiv.Perm.decomposeFin.symm (j.succ, e)) h0 = j := by
@@ -1711,7 +1912,9 @@ theorem partner_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n + 
 /-! ### The core analysis: involutivity and fixed points of `decomposeFin.symm` -/
 
 /-- Involutivity of `decomposeFin.symm (j.succ, e)` corresponds to involutivity of `e`
-together with `e j = j`. -/
+together with `e j = j`.
+@isnad1 id=iff.0h3v.s9.cf9d8924090b from=translated src=- shape=35b02177 vocab=6398818e
+-/
 theorem involutive_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n + 1))) :
     Function.Involutive (Equiv.Perm.decomposeFin.symm (j.succ, e)) ↔
       Function.Involutive e ∧ e j = j := by
@@ -1777,7 +1980,9 @@ theorem involutive_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n
         exact Equiv.swap_apply_of_ne_of_ne (Fin.succ_ne_zero _) (fun h => hxj (Fin.succ_inj.mp h))
 
 /-- `decomposeFin.symm (j.succ, e)` is fixed-point-free iff `e` has no fixed point
-other than `j`. -/
+other than `j`.
+@isnad1 id=iff.2h3v.s10.0dc881c6a798 from=translated src=- shape=cd886e43 vocab=6398818e
+-/
 theorem fpf_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n + 1)))
     (he : Function.Involutive e) (hej : e j = j) :
     (∀ y : Fin (n + 2), Equiv.Perm.decomposeFin.symm (j.succ, e) y ≠ y) ↔
@@ -1811,7 +2016,9 @@ theorem fpf_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n + 1)))
         exact fun h' => h x hxj (Fin.succ_inj.mp h')
 
 /-- The fixed points of `decomposeFin.symm (j.succ, e)` are in bijection with the fixed
-points of `e` different from `j`. -/
+points of `e` different from `j`.
+@isnad1 id=eq.2h3v.s11.5ea8df3322aa from=translated src=- shape=98f55b91 vocab=1ce3a73b
+-/
 theorem card_fp_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n + 1)))
     (he : Function.Involutive e) (hej : e j = j) :
     (Finset.univ.filter fun y : Fin (n + 2) =>
@@ -1849,7 +2056,9 @@ theorem card_fp_symm_succ {n : ℕ} (j : Fin (n + 1)) (e : Equiv.Perm (Fin (n + 
           rw [Finset.mem_filter]
           exact ⟨Finset.mem_univ _, hxj, Fin.succ_inj.mp hy⟩, rfl⟩
 
-/-- Involutivity of `decomposeFin.symm (0, e)` corresponds to involutivity of `e`. -/
+/-- Involutivity of `decomposeFin.symm (0, e)` corresponds to involutivity of `e`.
+@isnad1 id=iff.0h2v.s9.e3da52c307b2 from=translated src=- shape=8117886b vocab=7da2b8fa
+-/
 theorem involutive_symm_zero {n : ℕ} (e : Equiv.Perm (Fin (n + 1))) :
     Function.Involutive (Equiv.Perm.decomposeFin.symm (0, e)) ↔ Function.Involutive e := by
   constructor
@@ -1867,7 +2076,9 @@ theorem involutive_symm_zero {n : ℕ} (e : Equiv.Perm (Fin (n + 1))) :
         Equiv.Perm.decomposeFin_symm_apply_succ, Equiv.swap_self, Equiv.refl_apply, h x]
 
 /-- The fixed points of `decomposeFin.symm (0, e)` are `0` together with the successors
-of fixed points of `e`. -/
+of fixed points of `e`.
+@isnad1 id=iff.0h3v.s9.a39c51297e7e from=translated src=- shape=d33cca86 vocab=dc1dbcb5
+-/
 theorem fp_symm_zero {n : ℕ} (e : Equiv.Perm (Fin (n + 1))) (y : Fin (n + 2)) :
     Equiv.Perm.decomposeFin.symm (0, e) y = y ↔
       y = 0 ∨ ∃ x : Fin (n + 1), y = x.succ ∧ e x = x := by
@@ -1884,7 +2095,9 @@ theorem fp_symm_zero {n : ℕ} (e : Equiv.Perm (Fin (n + 1))) (y : Fin (n + 2)) 
         subst h
         rw [hex]
 
-/-- `decomposeFin.symm (0, e)` has at most one fixed point iff `e` is fixed-point-free. -/
+/-- `decomposeFin.symm (0, e)` has at most one fixed point iff `e` is fixed-point-free.
+@isnad1 id=iff.0h2v.s10.6a686744f482 from=translated src=- shape=ac33cbad vocab=5eb2f119
+-/
 theorem card_le_one_symm_zero_iff {n : ℕ} (e : Equiv.Perm (Fin (n + 1))) :
     (Finset.univ.filter fun y : Fin (n + 2) =>
         Equiv.Perm.decomposeFin.symm (0, e) y = y).card ≤ 1 ↔
@@ -1939,11 +2152,17 @@ noncomputable def restrictPerm {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin 
     (Equiv.Perm.subtypePerm e fun _x =>
       ⟨fun h1 h2 => h1 ((congrArg e h2).trans hej), fun h1 h2 => h1 (e.injective (h2.trans hej.symm))⟩)
 
+/--
+@isnad1 id=eq.1h4v.s9.f613d282fd4f from=translated src=- shape=5c869ac5 vocab=33058e9e
+-/
 theorem restrictPerm_apply {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin (n + 1)))
     (hej : e j = j) (y : Fin n) :
     ((finSuccAboveEquiv j) (restrictPerm e hej y)).1 = e ((finSuccAboveEquiv j) y).1 := by
   simp [restrictPerm]
 
+/--
+@isnad1 id=involuti.2h3v.s8.efc445618a6f from=translated src=- shape=e72fb80a vocab=a97178d4
+-/
 theorem restrictPerm_involutive {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin (n + 1)))
     (he : Function.Involutive e) (hej : e j = j) :
     Function.Involutive (restrictPerm e hej) := by
@@ -1952,6 +2171,9 @@ theorem restrictPerm_involutive {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin
   apply Subtype.ext
   rw [restrictPerm_apply, restrictPerm_apply, he]
 
+/--
+@isnad1 id=iff.1h4v.s9.cc21be4452a9 from=translated src=- shape=5f506a53 vocab=33058e9e
+-/
 theorem restrictPerm_fix_iff {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin (n + 1)))
     (hej : e j = j) (y : Fin n) :
     restrictPerm e hej y = y ↔ e ((finSuccAboveEquiv j) y).1 = ((finSuccAboveEquiv j) y).1 := by
@@ -1969,7 +2191,9 @@ theorem restrictPerm_fix_iff {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin (n
     exact h
 
 /-- The fixed points of `restrictPerm e hej` are in bijection with the fixed points of
-`e` different from `j`. -/
+`e` different from `j`.
+@isnad1 id=eq.1h3v.s9.1f86411994d8 from=translated src=- shape=48471073 vocab=e37ba5f4
+-/
 theorem card_fp_restrictPerm {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin (n + 1)))
     (hej : e j = j) :
     (Finset.univ.filter fun y : Fin n => restrictPerm e hej y = y).card =
@@ -1991,6 +2215,9 @@ theorem card_fp_restrictPerm {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin (n
         exact hex⟩
     · exact congrArg Subtype.val (Equiv.apply_symm_apply _ _)
 
+/--
+@isnad1 id=ne.2h4v.s8.5944bdc418ca from=translated src=- shape=b83d1cbb vocab=aaf06dd9
+-/
 theorem fpf_restrictPerm {n : ℕ} {j : Fin (n + 1)} {e : Equiv.Perm (Fin (n + 1))}
     (hej : e j = j) (h : ∀ x : Fin (n + 1), x ≠ j → e x ≠ x) :
     ∀ y : Fin n, restrictPerm e hej y ≠ y := by
@@ -2007,12 +2234,18 @@ noncomputable def extendPerm {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n
     (((Equiv.refl _).sumCongr (Equiv.permCongr (finSuccAboveEquiv j) τ)).trans
       (Equiv.sumCompl (· = j)))
 
+/--
+@isnad1 id=eq.0h3v.s7.eab568c2adb7 from=translated src=- shape=13694077 vocab=cf6a28b1
+-/
 theorem extendPerm_apply_self {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n)) :
     extendPerm j τ j = j := by
   have h1 : (Equiv.sumCompl (· = j)).symm j = Sum.inl ⟨j, rfl⟩ :=
     Equiv.sumCompl_symm_apply_of_pos (p := (· = j)) (a := j) rfl
   simp [extendPerm, h1]
 
+/--
+@isnad1 id=eq.1h4v.s9.a9ac9dcfd28f from=translated src=- shape=5a2130fc vocab=cb02c134
+-/
 theorem extendPerm_apply_ne {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n))
     {x : Fin (n + 1)} (hx : x ≠ j) :
     extendPerm j τ x =
@@ -2021,6 +2254,9 @@ theorem extendPerm_apply_ne {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n)
     Equiv.sumCompl_symm_apply_of_neg (p := (· = j)) (a := x) hx
   simp [extendPerm, h1]
 
+/--
+@isnad1 id=involuti.1h3v.s7.f4437203239e from=translated src=- shape=c34e9047 vocab=2c65b1fc
+-/
 theorem extendPerm_involutive {n : ℕ} (j : Fin (n + 1)) {τ : Equiv.Perm (Fin n)}
     (hτ : Function.Involutive τ) : Function.Involutive (extendPerm j τ) := by
   intro x
@@ -2035,6 +2271,9 @@ theorem extendPerm_involutive {n : ℕ} (j : Fin (n + 1)) {τ : Equiv.Perm (Fin 
           (finSuccAboveEquiv j) (τ ((finSuccAboveEquiv j).symm ⟨x, hx⟩)) from Subtype.ext rfl]
     rw [Equiv.symm_apply_apply, hτ, Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=iff.1h4v.s10.1155c54d1c87 from=translated src=- shape=4689aca8 vocab=11bbef8a
+-/
 theorem extendPerm_fix_iff {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n))
     {x : Fin (n + 1)} (hx : x ≠ j) :
     extendPerm j τ x = x ↔
@@ -2049,6 +2288,9 @@ theorem extendPerm_fix_iff {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n))
     rw [h]
     exact congrArg Subtype.val (Equiv.apply_symm_apply _ _)
 
+/--
+@isnad1 id=eq.1h3v.s7.9a19b416ba2f from=translated src=- shape=6f90bbad vocab=09297313
+-/
 theorem extendPerm_restrictPerm {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin (n + 1)))
     (hej : e j = j) : extendPerm j (restrictPerm e hej) = e := by
   apply Equiv.ext
@@ -2057,6 +2299,9 @@ theorem extendPerm_restrictPerm {n : ℕ} {j : Fin (n + 1)} (e : Equiv.Perm (Fin
   · rw [hx, extendPerm_apply_self, hej]
   · rw [extendPerm_apply_ne j _ hx, restrictPerm_apply, Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h3v.s5.e18c69699214 from=translated src=- shape=e3422b69 vocab=27f096b1
+-/
 theorem restrictPerm_extendPerm {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n)) :
     restrictPerm (extendPerm j τ) (extendPerm_apply_self j τ) = τ := by
   apply Equiv.ext
@@ -2068,6 +2313,9 @@ theorem restrictPerm_extendPerm {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fi
       {x : Fin (n + 1) // x ≠ j}) = (finSuccAboveEquiv j) y from Subtype.ext rfl]
   rw [Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=ne.2h4v.s7.fbec362f9b67 from=translated src=- shape=c655053e vocab=cf6a28b1
+-/
 theorem fpf_extendPerm {n : ℕ} (j : Fin (n + 1)) {τ : Equiv.Perm (Fin n)}
     (hτ : ∀ y, τ y ≠ y) : ∀ x : Fin (n + 1), x ≠ j → extendPerm j τ x ≠ x := by
   intro x hx hfix
@@ -2075,6 +2323,9 @@ theorem fpf_extendPerm {n : ℕ} (j : Fin (n + 1)) {τ : Equiv.Perm (Fin n)}
 
 /-! ### Wrapper lemmas combining the pieces -/
 
+/--
+@isnad1 id=and.2h2v.s10.a24a1934cd5b from=translated src=- shape=8a23102b vocab=9d435acf
+-/
 theorem invol_decomposeFin_symm {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 ≠ 0)
     (hinv : Function.Involutive σ) :
     Function.Involutive (Equiv.Perm.decomposeFin σ).2 ∧
@@ -2083,6 +2334,9 @@ theorem invol_decomposeFin_symm {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : 
   rw [decomposeFin_eq_symm_partner σ h0] at h
   exact (involutive_symm_succ _ _).mp h
 
+/--
+@isnad1 id=ne.4h3v.s10.8cdd6e8f20c6 from=translated src=- shape=7f89fb35 vocab=9d435acf
+-/
 theorem fpf_e {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 ≠ 0)
     (hinv : Function.Involutive σ) (hfpf : ∀ x, σ x ≠ x) :
     ∀ x : Fin (n + 1), x ≠ partner σ h0 → (Equiv.Perm.decomposeFin σ).2 x ≠ x := by
@@ -2091,6 +2345,9 @@ theorem fpf_e {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 ≠ 0)
   exact (fpf_symm_succ _ _ (invol_decomposeFin_symm σ h0 hinv).1
     (invol_decomposeFin_symm σ h0 hinv).2).mp h
 
+/--
+@isnad1 id=le.3h2v.s10.7a53d7948644 from=translated src=- shape=25a033b3 vocab=f062dd9c
+-/
 theorem card_e_le_one {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 ≠ 0)
     (hinv : Function.Involutive σ)
     (hcard : (Finset.univ.filter fun y => σ y = y).card ≤ 1) :
@@ -2104,6 +2361,9 @@ theorem card_e_le_one {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 ≠ 0
     ← card_fp_restrictPerm _ (invol_decomposeFin_symm σ h0 hinv).2] at h
   exact h
 
+/--
+@isnad1 id=le.2h3v.s10.bdd354d26ea8 from=translated src=- shape=a5b4881a vocab=4a5a4f13
+-/
 theorem card_extend_le_one {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n))
     (hτ : Function.Involutive τ)
     (hcard : (Finset.univ.filter fun y => τ y = y).card ≤ 1) :
@@ -2115,12 +2375,18 @@ theorem card_extend_le_one {n : ℕ} (j : Fin (n + 1)) (τ : Equiv.Perm (Fin n))
   rw [card_fp_symm_succ _ _ (extendPerm_involutive j hτ) (extendPerm_apply_self j τ), h2]
   exact hcard
 
+/--
+@isnad1 id=involuti.2h2v.s9.738249f46ffe from=translated src=- shape=80d3b243 vocab=98675170
+-/
 theorem invol_e0 {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 = 0)
     (hinv : Function.Involutive σ) : Function.Involutive (Equiv.Perm.decomposeFin σ).2 := by
   have h := hinv
   rw [decomposeFin_eq_symm_zero σ h0] at h
   exact (involutive_symm_zero _).mp h
 
+/--
+@isnad1 id=ne.2h3v.s10.747ca5cc50f4 from=translated src=- shape=473f42bf vocab=a95f8dd8
+-/
 theorem fpf_e0 {n : ℕ} (σ : Equiv.Perm (Fin (n + 2))) (h0 : σ 0 = 0)
     (hcard : (Finset.univ.filter fun y => σ y = y).card ≤ 1) :
     ∀ x : Fin (n + 1), (Equiv.Perm.decomposeFin σ).2 x ≠ x := by
@@ -2260,26 +2526,41 @@ noncomputable def vtxDecomposeEquiv (n : ℕ) :
 
 /-! ### Cardinality recurrences -/
 
+/--
+@isnad1 id=eq.0h1v.s5.0979309b87b9 from=translated src=- shape=48355f7a vocab=e51ec2cb
+-/
 theorem fcard_succ_succ (n : ℕ) : fcard (n + 2) = (n + 1) * fcard n := by
   unfold fcard
   rw [Fintype.card_congr (fpfDecomposeEquiv n), Fintype.card_prod, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h1v.s5.e7ab514e6d11 from=translated src=- shape=7753f860 vocab=c706d4be
+-/
 theorem vcard_succ_succ (n : ℕ) : vcard (n + 2) = fcard (n + 1) + (n + 1) * vcard n := by
   unfold vcard fcard
   rw [Fintype.card_congr (vtxDecomposeEquiv n), Fintype.card_sum, Fintype.card_prod,
     Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h0v.s3.352786dc322d from=translated src=- shape=3c26ae4f vocab=4ca815b6
+-/
 theorem fcard_zero : fcard 0 = 1 := by
   have e : fpfSubtype 0 ≃ Equiv.Perm (Fin 0) :=
     Equiv.subtypeUnivEquiv fun σ => ⟨fun x => x.elim0, fun x => x.elim0⟩
   unfold fcard
   rw [Fintype.card_congr e, Fintype.card_perm, Fintype.card_fin, Nat.factorial_zero]
 
+/--
+@isnad1 id=eq.0h0v.s3.7b3b49396de5 from=translated src=- shape=3c26ae4f vocab=4ca815b6
+-/
 theorem fcard_one : fcard 1 = 0 := by
   unfold fcard
   have : IsEmpty (fpfSubtype 1) := ⟨fun σ => σ.2.2 0 (Fin.eq_zero _)⟩
   exact Fintype.card_of_isEmpty
 
+/--
+@isnad1 id=eq.0h0v.s3.60911ad49db3 from=translated src=- shape=3c26ae4f vocab=cb0317c2
+-/
 theorem vcard_zero : vcard 0 = 1 := by
   have e : vtxSubtype 0 ≃ Equiv.Perm (Fin 0) :=
     Equiv.subtypeUnivEquiv fun σ =>
@@ -2287,6 +2568,9 @@ theorem vcard_zero : vcard 0 = 1 := by
   unfold vcard
   rw [Fintype.card_congr e, Fintype.card_perm, Fintype.card_fin, Nat.factorial_zero]
 
+/--
+@isnad1 id=eq.0h0v.s3.4374da80ba40 from=translated src=- shape=3c26ae4f vocab=cb0317c2
+-/
 theorem vcard_one : vcard 1 = 1 := by
   have key : ∀ σ : Equiv.Perm (Fin 1),
       Function.Involutive σ ∧ (Finset.univ.filter fun x => σ x = x).card ≤ 1 := by
@@ -2300,6 +2584,9 @@ theorem vcard_one : vcard 1 = 1 := by
 
 /-! ### Parity -/
 
+/--
+@isnad1 id=and.0h1v.s4.364fadc63239 from=translated src=- shape=da93725b vocab=ea695e38
+-/
 theorem fcard_parity (n : ℕ) : (Even n → Odd (fcard n)) ∧ (Odd n → fcard n = 0) := by
   induction n using Nat.twoStepInduction with
   | zero =>
@@ -2327,6 +2614,9 @@ theorem fcard_parity (n : ℕ) : (Even n → Odd (fcard n)) ∧ (Odd n → fcard
         rw [Nat.odd_iff] at hn ⊢
         lia), Nat.mul_zero]
 
+/--
+@isnad1 id=odd.0h1v.s2.1a60abedfcc7 from=translated src=- shape=6da4ece3 vocab=77be9269
+-/
 theorem vcard_odd (n : ℕ) : Odd (vcard n) := by
   induction n using Nat.twoStepInduction with
   | zero => rw [vcard_zero]; exact odd_one
@@ -2350,13 +2640,17 @@ theorem vcard_odd (n : ℕ) : Odd (vcard n) := by
 
 end usa2018p6_aux
 
-/-- The number of involutions of `Fin n` with at most one fixed point is odd. -/
+/-- The number of involutions of `Fin n` with at most one fixed point is odd.
+@isnad1 id=odd.0h1v.s8.48e4cbd04186 from=translated src=- shape=5c32da72 vocab=27c030f1
+-/
 theorem odd_card_vertex (n : ℕ) :
     Odd (Fintype.card {σ : Equiv.Perm (Fin n) //
       Function.Involutive σ ∧ (Finset.univ.filter fun x => σ x = x).card ≤ 1}) :=
   usa2018p6_aux.vcard_odd n
 
-/-- Summed `Nat.ModEq` over a finset. -/
+/-- Summed `Nat.ModEq` over a finset.
+@isnad1 id=modeq.1h4v.s6.d2db289bbe65 from=translated src=- shape=e7b047be vocab=4fbe3100
+-/
 lemma sum_modEq_of_forall {ι : Type*} [DecidableEq ι] (s : Finset ι) (f g : ι → ℕ)
     (h : ∀ i ∈ s, f i ≡ g i [MOD 2]) : (∑ i ∈ s, f i) ≡ (∑ i ∈ s, g i) [MOD 2] := by
   induction s using Finset.induction with

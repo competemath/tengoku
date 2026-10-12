@@ -33,6 +33,9 @@ We provide a direct translation of the solution found in
 https://www.imo-official.org/problems/IMO2013SL.pdf
 -/
 
+/--
+@isnad1 id=le.3h2v.s6.00edfa8e8f01 from=translated src=- shape=12612018 vocab=615c82fd
+-/
 lemma le_of_all_pow_lt_succ {x y : ℝ} (hx : 1 < x) (hy : 0 < y)
     (h : ∀ n : ℕ, 0 < n → x^n - 1 < y^n) :
     x ≤ y := by
@@ -49,6 +52,9 @@ lemma le_of_all_pow_lt_succ {x y : ℝ} (hx : 1 < x) (hy : 0 < y)
   have h1z : 1 ≤ max y 1 ^ n := one_le_pow₀ (le_max_right y 1)
   linarith [h n hn0]
 
+/--
+@isnad1 id=lt.3h2v.s6.7f74baf788a2 from=translated src=- shape=3bd16186 vocab=6ecd1210
+-/
 lemma f_pos_of_pos {f : ℚ → ℝ} {q : ℚ} (hq : 0 < q)
     (H1 : ∀ x y, 0 < x → 0 < y → f (x * y) ≤ f x * f y)
     (H4 : ∀ n : ℕ, 0 < n → (n : ℝ) ≤ f n) :
@@ -68,6 +74,9 @@ lemma f_pos_of_pos {f : ℚ → ℝ} {q : ℚ} (hq : 0 < q)
     lt_of_lt_of_le (mod_cast q.pos) (H4 q.den q.pos)
   exact pos_of_mul_pos_left (f_num_pos.trans_le hfqn) f_den_pos.le
 
+/--
+@isnad1 id=lt.4h2v.s7.84848f87e6c1 from=translated src=- shape=0c1025b1 vocab=0c4e0cd0
+-/
 lemma fx_gt_xm1 {f : ℚ → ℝ} {x : ℚ} (hx : 1 ≤ x)
     (H1 : ∀ x y, 0 < x → 0 < y → f (x * y) ≤ f x * f y)
     (H2 : ∀ x y, 0 < x → 0 < y → f x + f y ≤ f (x + y))
@@ -85,6 +94,9 @@ lemma fx_gt_xm1 {f : ℚ → ℝ} {x : ℚ} (hx : 1 ≤ x)
     _ ≤ f (x - ⌊x⌋₊ + ⌊x⌋₊)   := H2 _ _ (sub_pos.mpr h_lt) (Nat.cast_pos.2 (Nat.floor_pos.2 hx))
     _ = f x                   := by rw [sub_add_cancel]
 
+/--
+@isnad1 id=le.4h3v.s7.f416cc0d1781 from=translated src=- shape=a428866f vocab=7b185158
+-/
 lemma pow_f_le_f_pow {f : ℚ → ℝ} {n : ℕ} (hn : 0 < n) {x : ℚ} (hx : 1 < x)
     (H1 : ∀ x y, 0 < x → 0 < y → f (x * y) ≤ f x * f y)
     (H4 : ∀ n : ℕ, 0 < n → (n : ℝ) ≤ f n) :
@@ -98,6 +110,9 @@ lemma pow_f_le_f_pow {f : ℚ → ℝ} {n : ℕ} (hn : 0 < n) {x : ℚ} (hx : 1 
         ≤ f (x ^ n) * f x := H1 (x ^ n) x (pow_pos hxp n) hxp
       _ ≤ (f x) ^ n * f x := mul_le_mul_of_nonneg_right ih (f_pos_of_pos hxp H1 H4).le
 
+/--
+@isnad1 id=eq.6h3v.s7.0a90c571f6be from=translated src=- shape=a5163201 vocab=a1895e02
+-/
 lemma fixed_point_of_pos_nat_pow {f : ℚ → ℝ} {n : ℕ} (hn : 0 < n)
     (H1 : ∀ x y, 0 < x → 0 < y → f (x * y) ≤ f x * f y)
     (H4 : ∀ n : ℕ, 0 < n → (n : ℝ) ≤ f n)
@@ -111,6 +126,9 @@ lemma fixed_point_of_pos_nat_pow {f : ℚ → ℝ} {n : ℕ} (hn : 0 < n)
                    _ = (a : ℝ)^n     := by rw [← hae]
   exact mod_cast hh1.antisymm hh0
 
+/--
+@isnad1 id=eq.7h3v.s7.96b5b233d5f7 from=translated src=- shape=a870e0bf vocab=f1ce7a28
+-/
 lemma fixed_point_of_gt_1 {f : ℚ → ℝ} {x : ℚ} (hx : 1 < x)
     (H1 : ∀ x y, 0 < x → 0 < y → f (x * y) ≤ f x * f y)
     (H2 : ∀ x y, 0 < x → 0 < y → f x + f y ≤ f (x + y))

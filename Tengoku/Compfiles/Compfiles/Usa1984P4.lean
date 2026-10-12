@@ -39,7 +39,9 @@ pupil in two ways.
 -/
 
 /-- Number of ordered pairs `(q₁, q₂)` with `q₂ ∈ s` and `q₁ ≠ q₂`, for a
-fixed question `q₁`, expressed as a sum of indicators over all questions. -/
+fixed question `q₁`, expressed as a sum of indicators over all questions.
+@isnad1 id=eq.0h2v.s8.767b35d397e6 from=translated src=- shape=e7811d9a vocab=9a6ea3c9
+-/
 lemma sum_ite_erase (s : Finset (Fin 28)) (q1 : Fin 28) :
     ∑ q2 : Fin 28, (if q1 ∈ s ∧ q2 ∈ s ∧ q1 ≠ q2 then (1 : ℕ) else 0)
       = if q1 ∈ s then s.card - 1 else 0 := by
@@ -60,7 +62,9 @@ lemma sum_ite_erase (s : Finset (Fin 28)) (q1 : Fin 28) :
     exact fun h ↦ h1 h.1
 
 /-- The number of ordered pairs of distinct questions in `s`, written as a
-double sum of indicators over all questions. -/
+double sum of indicators over all questions.
+@isnad1 id=eq.0h1v.s8.87dea6f85df8 from=translated src=- shape=8a3e8af3 vocab=36e7d5d3
+-/
 lemma card_ordered_pairs (s : Finset (Fin 28)) :
     ∑ q1 : Fin 28, ∑ q2 : Fin 28, (if q1 ∈ s ∧ q2 ∈ s ∧ q1 ≠ q2 then (1 : ℕ) else 0)
       = s.card * (s.card - 1) := by
@@ -68,7 +72,9 @@ lemma card_ordered_pairs (s : Finset (Fin 28)) :
   rw [Finset.sum_ite_mem, Finset.univ_inter, Finset.sum_const, smul_eq_mul]
 
 /-- For fixed questions `q₁ ≠ q₂`, the number of pupils that attempted both
-is `2`, expressed as a sum of indicators over all pupils. -/
+is `2`, expressed as a sum of indicators over all pupils.
+@isnad1 id=eq.1h4v.s9.d4d7e3f880f3 from=translated src=- shape=a8765f2d vocab=7d90527c
+-/
 lemma sum_pupils_pair {Pupil : Type} [Fintype Pupil] (attempt : Pupil → Finset (Fin 28))
     (hpair : ∀ q1 q2 : Fin 28, q1 ≠ q2 →
       (Finset.univ.filter fun p ↦ q1 ∈ attempt p ∧ q2 ∈ attempt p).card = 2)
@@ -94,7 +100,9 @@ lemma sum_pupils_pair {Pupil : Type} [Fintype Pupil] (attempt : Pupil → Finset
     rw [ite_eq_right (fun hh ↦ hh.2.2 rfl)]
 
 /-- For a fixed question `q₁`, the number of questions `q₂ ≠ q₁` is `27`,
-so summing the constant `2` over them gives `54`. -/
+so summing the constant `2` over them gives `54`.
+@isnad1 id=eq.0h1v.s6.4daf210cb824 from=translated src=- shape=ef0a6f0b vocab=f5075e02
+-/
 lemma sum_two_distinct (q1 : Fin 28) :
     ∑ q2 : Fin 28, (if q1 ≠ q2 then (2 : ℕ) else 0) = 54 := by
   have hset : (Finset.univ.filter fun q2 : Fin 28 ↦ q1 ≠ q2) = Finset.univ.erase q1 := by
@@ -106,7 +114,9 @@ lemma sum_two_distinct (q1 : Fin 28) :
     smul_eq_mul]
 
 /-- Double counting ordered pairs of distinct questions attempted by the same
-pupil shows there are `36` pupils. -/
+pupil shows there are `36` pupils.
+@isnad1 id=eq.2h2v.s8.2aa7f591a8e4 from=translated src=- shape=d6f1cf09 vocab=74f24312
+-/
 lemma card_pupils {Pupil : Type} [Fintype Pupil] (attempt : Pupil → Finset (Fin 28))
     (hattempt : ∀ p, (attempt p).card = 7)
     (hpair : ∀ q1 q2 : Fin 28, q1 ≠ q2 →
@@ -136,7 +146,9 @@ lemma card_pupils {Pupil : Type} [Fintype Pupil] (attempt : Pupil → Finset (Fi
   lia
 
 /-- Double counting the pairs `(p, q₂)` with `q` and `q₂` both attempted by
-`p` shows every question was attempted by exactly `9` pupils. -/
+`p` shows every question was attempted by exactly `9` pupils.
+@isnad1 id=eq.2h3v.s8.8ae97207f25e from=translated src=- shape=750eedd7 vocab=b6307912
+-/
 lemma card_attempters {Pupil : Type} [Fintype Pupil] (attempt : Pupil → Finset (Fin 28))
     (hattempt : ∀ p, (attempt p).card = 7)
     (hpair : ∀ q1 q2 : Fin 28, q1 ≠ q2 →

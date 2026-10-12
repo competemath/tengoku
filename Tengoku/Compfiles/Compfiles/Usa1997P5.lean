@@ -28,6 +28,9 @@ variable {a b c : ℝ}
 -- One just cyclically sums 1 / (a³ + b³ + abc) ≤ 1 / (ab(a+b) + abc)
 
 -- Bounding the individual fraction
+/--
+@isnad1 id=le.3h3v.s7.d593fe68e12e from=translated src=- shape=9902bf22 vocab=5c9d27ef
+-/
 lemma bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     1 / (a^3 + b^3 + a*b*c) ≤ 1 / (a^2*b + a*b^2 + a*b*c) := by
   field_simp -- clear denominators
@@ -35,6 +38,9 @@ lemma bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
   linarith
 
 -- Add the three bounds together
+/--
+@isnad1 id=le.3h3v.s9.70db93692f13 from=translated src=- shape=23e081ac vocab=5c9d27ef
+-/
 theorem main_sum (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     1 / (a ^ 3 + b ^ 3 + a * b * c) +
       (1 / (b ^ 3 + c ^ 3 + b * c * a) + 1 / (c ^ 3 + a ^ 3 + c * a * b)) ≤

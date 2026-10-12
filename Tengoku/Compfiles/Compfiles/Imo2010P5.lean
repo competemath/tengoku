@@ -67,15 +67,26 @@ to swap the empty boxes 5 and 6 until we have `(T/4, 0, 0)`. Then we can repeate
 to get `(0, T/2, 0)` and finally `(0, 0, T)`.
 -/
 
+/--
+@isnad1 id=eq.0h2v.s6.0b4d42fc9bf1 from=translated src=- shape=3c56c605 vocab=760ee7c2
+-/
 lemma single_succ {k : ℕ} {i : Fin 6} : (single (i + 1) k : Fin 6 → ℕ) i = 0 := by simp
 
+/--
+@isnad1 id=eq.0h2v.s6.1ae77df38a03 from=translated src=- shape=5008c2e7 vocab=760ee7c2
+-/
 lemma single_succ' {k : ℕ} {i : Fin 6} : (single i k : Fin 6 → ℕ) (i + 1) = 0 := by simp
 
+/--
+@isnad1 id=eq.0h2v.s6.8ec66d0af489 from=translated src=- shape=3c56c605 vocab=760ee7c2
+-/
 lemma single_add_two {k : ℕ} {i : Fin 6} : (single (i + 2) k : Fin 6 → ℕ) i = 0 := by simp
 
 namespace Reachable
 
-/-- The key power tower inequality in the solution. -/
+/-- The key power tower inequality in the solution.
+@isnad1 id=le.2h2v.s7.ad15c5b11f52 from=translated src=- shape=e6486e0c vocab=74f5fafa
+-/
 lemma tower_inequality {m n : ℕ} (hm : m = 2010) (hn : n = 11) :
     2010 ^ 2010 ^ m ≤ 2 ^ 2 ^ 2 ^ 2 ^ 2 ^ n := by
   calc

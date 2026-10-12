@@ -46,11 +46,16 @@ noncomputable def vvv {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin
     (p q : Fin n) : ℝ :=
   ∑ i : Fin k, if p ∈ A i ∧ q ∈ A i then x i / (A i).card else 0
 
+/--
+@isnad1 id=eq.0h6v.s7.e6532672ce8d from=translated src=- shape=6e2d5831 vocab=917f4758
+-/
 lemma vvv_def {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n)) (p q : Fin n) :
     vvv x A p q = ∑ i : Fin k, if p ∈ A i ∧ q ∈ A i then x i / (A i).card else 0 :=
   rfl
 
-/-- Intersection cardinality as a sum of indicators. -/
+/-- Intersection cardinality as a sum of indicators.
+@isnad1 id=eq.0h3v.s7.86b37d542e40 from=translated src=- shape=1db49c89 vocab=0ba25302
+-/
 lemma card_inter_cast {n : ℕ} (A B : Finset (Fin n)) :
     ((A ∩ B).card : ℝ) = ∑ p : Fin n, (if p ∈ A ∧ p ∈ B then (1 : ℝ) else 0) := by
   have h1 : A ∩ B = Finset.univ.filter (fun p => p ∈ A ∧ p ∈ B) := by
@@ -58,7 +63,9 @@ lemma card_inter_cast {n : ℕ} (A B : Finset (Fin n)) :
     simp [Finset.mem_inter]
   rw [h1, Finset.natCast_card_filter]
 
-/-- Swapping the order of a quadruple sum. -/
+/-- Swapping the order of a quadruple sum.
+@isnad1 id=eq.0h3v.s7.1c8e59a42ad6 from=translated src=- shape=125975e1 vocab=c7018777
+-/
 lemma sum_swap4 {n k : ℕ} (F : Fin k → Fin k → Fin n → Fin n → ℝ) :
     (∑ i : Fin k, ∑ j : Fin k, ∑ p : Fin n, ∑ q : Fin n, F i j p q) =
       ∑ p : Fin n, ∑ q : Fin n, ∑ i : Fin k, ∑ j : Fin k, F i j p q := by
@@ -68,7 +75,9 @@ lemma sum_swap4 {n k : ℕ} (F : Fin k → Fin k → Fin n → Fin n → ℝ) :
   exact Eq.symm Finset.sum_comm_cycle
 
 /-- The key rewriting step: the left-hand side of the inequality equals the
-sum of the squares of the `v_{p,q}`. -/
+sum of the squares of the `v_{p,q}`.
+@isnad1 id=eq.0h4v.s7.194f68cc67a4 from=translated src=- shape=fbf29ece vocab=409a814b
+-/
 lemma lhs_eq_sum_v_sq {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n)) :
     ∑ i : Fin k, ∑ j : Fin k, x i * x j *
         (((A i ∩ A j).card : ℝ) ^ 2 / ((A i).card : ℝ) / ((A j).card : ℝ)) =
@@ -132,7 +141,9 @@ lemma lhs_eq_sum_v_sq {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin
         rw [vvv_def, sq]
         exact (Finset.sum_mul_sum _ _ _ _).symm
 
-/-- The "diagonal" sum: `∑ p, v_{p,p} = ∑ i, x i`. -/
+/-- The "diagonal" sum: `∑ p, v_{p,p} = ∑ i, x i`.
+@isnad1 id=eq.1h4v.s6.cd87c240209d from=translated src=- shape=20ad29dc vocab=a10d9a1a
+-/
 lemma sum_diag {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n))
     (hA : ∀ i, (A i).card ≠ 0) :
     ∑ p : Fin n, vvv x A p p = ∑ i : Fin k, x i := by
@@ -142,13 +153,17 @@ lemma sum_diag {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n))
   rw [Fintype.sum_ite_mem, Finset.sum_const, nsmul_eq_mul, ← mul_div_assoc, mul_div_cancel_left₀ _]
   exact Nat.cast_ne_zero.mpr (hA i)
 
-/-- Sums over the off-diagonal pairs as double sums. -/
+/-- Sums over the off-diagonal pairs as double sums.
+@isnad1 id=eq.0h2v.s6.f509253bd3aa from=translated src=- shape=55a7ef64 vocab=916394c0
+-/
 lemma sum_sigma_erase {n : ℕ} (f : Fin n → Fin n → ℝ) :
     ∑ t ∈ Finset.univ.sigma (fun p : Fin n => Finset.univ.erase p), f t.1 t.2 =
       ∑ p : Fin n, ∑ q ∈ Finset.univ.erase p, f p q :=
   (Finset.sum_sigma' _ _ _).symm
 
-/-- The "off-diagonal" sum: `∑ p ≠ q, v_{p,q} = ∑ i, (|Aᵢ| - 1)·xᵢ`. -/
+/-- The "off-diagonal" sum: `∑ p ≠ q, v_{p,q} = ∑ i, (|Aᵢ| - 1)·xᵢ`.
+@isnad1 id=eq.1h4v.s7.2c4b3b25cfe0 from=translated src=- shape=ee43c3cf vocab=3a995f2e
+-/
 lemma sum_offdiag {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n))
     (hA : ∀ i, (A i).card ≠ 0) :
     ∑ t ∈ Finset.univ.sigma (fun p : Fin n => Finset.univ.erase p), vvv x A t.1 t.2 =
@@ -177,7 +192,9 @@ lemma sum_offdiag {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n))
   have hAi : ((A i).card : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (hA i)
   field_simp [hAi]
 
-/-- Splitting `∑ p, ∑ q, (v_{p,q})²` into diagonal and off-diagonal parts. -/
+/-- Splitting `∑ p, ∑ q, (v_{p,q})²` into diagonal and off-diagonal parts.
+@isnad1 id=eq.0h4v.s7.ebc3d0653bcb from=translated src=- shape=b1bb97a8 vocab=c1b7e353
+-/
 lemma sum_sq_split {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n)) :
     ∑ p : Fin n, ∑ q : Fin n, (vvv x A p q) ^ 2 =
       (∑ p : Fin n, (vvv x A p p) ^ 2) +
@@ -185,7 +202,9 @@ lemma sum_sq_split {n k : ℕ} (x : Fin k → ℝ) (A : Fin k → Finset (Fin n)
   rw [← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun p _ => (Finset.add_sum_erase _ _ (Finset.mem_univ p)).symm
 
-/-- The answer in split form: `c·S² = S²/n + (ℓ-1)²·S²/(n(n-1))`. -/
+/-- The answer in split form: `c·S² = S²/n + (ℓ-1)²·S²/(n(n-1))`.
+@isnad1 id=eq.1h3v.s7.d45762e3e3af from=translated src=- shape=acb02d3d vocab=63e32d91
+-/
 lemma solution_eq {n ℓ : ℕ} (hn : 2 < n) (S : ℝ) :
     solution n ℓ * S ^ 2 =
       S ^ 2 / (n : ℝ) + ((ℓ : ℝ) - 1) ^ 2 * S ^ 2 / ((n : ℝ) * ((n : ℝ) - 1)) := by
@@ -197,7 +216,9 @@ lemma solution_eq {n ℓ : ℕ} (hn : 2 < n) (S : ℝ) :
   field_simp
   ring
 
-/-- The claimed constant works (first part of `IsGreatest`). -/
+/-- The claimed constant works (first part of `IsGreatest`).
+@isnad1 id=works.2h2v.s4.e0e65909367f from=translated src=- shape=983dd98b vocab=c61ce3f1
+-/
 lemma solution_works {n ℓ : ℕ} (hn : 2 < n) (hℓ1 : 1 ≤ ℓ) :
     Works n ℓ (solution n ℓ) := by
   intro k _hk x hx A hA
@@ -256,12 +277,16 @@ lemma solution_works {n ℓ : ℕ} (hn : 2 < n) (hℓ1 : 1 ≤ ℓ) :
       _ = (∑ t ∈ Finset.univ.sigma (fun p : Fin n => Finset.univ.erase p),
             (vvv x A t.1 t.2) ^ 2) * ((n : ℝ) * ((n : ℝ) - 1)) := mul_comm _ _
 
-/-- Counting the elements of a finset with a weight of `1` each. -/
+/-- Counting the elements of a finset with a weight of `1` each.
+@isnad1 id=eq.0h2v.s6.7b01a656c2c2 from=translated src=- shape=1024f8ac vocab=273a4fc4
+-/
 lemma diag_count {n : ℕ} (B : Finset (Fin n)) :
     ∑ p : Fin n, (if p ∈ B then (1 : ℝ) else 0) = (B.card : ℝ) := by
   rw [← Finset.natCast_card_filter, Finset.filter_univ_mem]
 
-/-- The pairs `(p, q)` with `p ≠ q` inside `B × B`, as a sigma finset. -/
+/-- The pairs `(p, q)` with `p ≠ q` inside `B × B`, as a sigma finset.
+@isnad1 id=eq.0h2v.s7.e8518338d6df from=translated src=- shape=be58c4ce vocab=847661c9
+-/
 lemma pair_filter_eq {n : ℕ} (B : Finset (Fin n)) :
     (Finset.univ.sigma (fun p : Fin n => Finset.univ.erase p)).filter
         (fun t => t.1 ∈ B ∧ t.2 ∈ B) = B.sigma (fun p => B.erase p) := by
@@ -270,7 +295,9 @@ lemma pair_filter_eq {n : ℕ} (B : Finset (Fin n)) :
     true_and]
   tauto
 
-/-- Counting ordered pairs of distinct elements of `B`. -/
+/-- Counting ordered pairs of distinct elements of `B`.
+@isnad1 id=eq.0h2v.s7.143060aa9168 from=translated src=- shape=85372703 vocab=4fd205b8
+-/
 lemma card_pairs {n : ℕ} (B : Finset (Fin n)) :
     ∑ p : Fin n, ∑ q ∈ Finset.univ.erase p, (if p ∈ B ∧ q ∈ B then (1 : ℝ) else 0) =
       (B.card : ℝ) * ((B.card : ℝ) - 1) := by
@@ -288,7 +315,9 @@ lemma card_pairs {n : ℕ} (B : Finset (Fin n)) :
       rw [Finset.card_erase_of_mem hp, Nat.cast_sub hpos, Nat.cast_one]
     rw [Finset.sum_congr rfl h1, Finset.sum_const, nsmul_eq_mul]
 
-/-- A permutation of `[n]` mapping `p ↦ p'` and `q ↦ q'` simultaneously. -/
+/-- A permutation of `[n]` mapping `p ↦ p'` and `q ↦ q'` simultaneously.
+@isnad1 id=ex.2h5v.s6.390765f66a7f from=translated src=- shape=7f449a69 vocab=6f921ac2
+-/
 lemma exists_perm_eq {n : ℕ} (p q p' q' : Fin n) (hpq : p ≠ q) (hpq' : p' ≠ q') :
     ∃ π : Equiv.Perm (Fin n), π p = p' ∧ π q = q' := by
   refine ⟨Equiv.swap ((Equiv.swap p p') q) q' * Equiv.swap p p', ?_, ?_⟩
@@ -304,7 +333,9 @@ lemma exists_perm_eq {n : ℕ} (p q p' q' : Fin n) (hpq : p ≠ q) (hpq' : p' �
   · show Equiv.swap ((Equiv.swap p p') q) q' ((Equiv.swap p p') q) = q'
     exact Equiv.swap_apply_left _ _
 
-/-- The image of an `ℓ`-subset under a permutation is still an `ℓ`-subset. -/
+/-- The image of an `ℓ`-subset under a permutation is still an `ℓ`-subset.
+@isnad1 id=mem.1h4v.s6.e5f8bbe70ef0 from=translated src=- shape=f3a6ad57 vocab=68cf46c6
+-/
 lemma finsetCongr_mem_powersetCard {n ℓ : ℕ} (π : Equiv.Perm (Fin n)) (B : Finset (Fin n))
     (hB : B ∈ Finset.powersetCard ℓ (Finset.univ : Finset (Fin n))) :
     (Equiv.Finset.congr π) B ∈ Finset.powersetCard ℓ (Finset.univ : Finset (Fin n)) := by
@@ -312,7 +343,9 @@ lemma finsetCongr_mem_powersetCard {n ℓ : ℕ} (π : Equiv.Perm (Fin n)) (B : 
   exact ⟨Finset.subset_univ _, by rw [Equiv.Finset.congr_apply, Finset.card_map, hB.2]⟩
 
 /-- The number of `ℓ`-subsets containing a given point does not depend on the
-point. -/
+point.
+@isnad1 id=eq.0h4v.s6.08c2e937f496 from=translated src=- shape=2d85c9e1 vocab=212270ee
+-/
 lemma cntS_single {n ℓ : ℕ} (p q : Fin n) :
     ((Finset.powersetCard ℓ (Finset.univ : Finset (Fin n))).filter
         (fun B => p ∈ B)).card =
@@ -344,7 +377,9 @@ lemma cntS_single {n ℓ : ℕ} (p q : Fin n) :
     rfl
 
 /-- The number of `ℓ`-subsets containing two given distinct points does not
-depend on the pair of points. -/
+depend on the pair of points.
+@isnad1 id=eq.2h6v.s7.606f9ae68e05 from=translated src=- shape=68a1ad9f vocab=212270ee
+-/
 lemma cntS_pair {n ℓ : ℕ} (p q p' q' : Fin n) (hpq : p ≠ q) (hpq' : p' ≠ q') :
     ((Finset.powersetCard ℓ (Finset.univ : Finset (Fin n))).filter
         (fun B => p ∈ B ∧ q ∈ B)).card =
@@ -381,7 +416,9 @@ lemma cntS_pair {n ℓ : ℕ} (p q p' q' : Fin n) (hpq : p ≠ q) (hpq' : p' ≠
     rfl
 
 /-- Reindexing: counting indices `i` with `p, q ∈ A i` equals counting sets of
-the family containing `p, q`, when `A` enumerates the family. -/
+the family containing `p, q`, when `A` enumerates the family.
+@isnad1 id=eq.3h6v.s8.e4e49d891c36 from=translated src=- shape=46d154a3 vocab=d442ae29
+-/
 lemma cnt_bridge {n k : ℕ} (s : Finset (Finset (Fin n))) (A : Fin k → Finset (Fin n))
     (hAmem : ∀ i, A i ∈ s) (hAinj : Function.Injective A)
     (hAsurj : ∀ B ∈ s, ∃ i, A i = B) (p q : Fin n) :
@@ -398,7 +435,9 @@ lemma cnt_bridge {n k : ℕ} (s : Finset (Finset (Fin n))) (A : Fin k → Finset
     obtain ⟨i, rfl⟩ := hAsurj B hB.1
     exact ⟨i, Finset.mem_filter.mpr ⟨Finset.mem_univ i, hB.2⟩, rfl⟩
 
-/-- Reindexing, single-point version. -/
+/-- Reindexing, single-point version.
+@isnad1 id=eq.3h5v.s7.de69093890b8 from=translated src=- shape=d83793c0 vocab=d442ae29
+-/
 lemma cnt_bridge1 {n k : ℕ} (s : Finset (Finset (Fin n))) (A : Fin k → Finset (Fin n))
     (hAmem : ∀ i, A i ∈ s) (hAinj : Function.Injective A)
     (hAsurj : ∀ B ∈ s, ∃ i, A i = B) (p : Fin n) :
@@ -417,7 +456,9 @@ lemma cnt_bridge1 {n k : ℕ} (s : Finset (Finset (Fin n))) (A : Fin k → Finse
 
 /-- No constant larger than `solution n ℓ` works: equality is attained (in the
 limit sense of the inequality) by taking all `ℓ`-subsets once with weight `1`
-(second part of `IsGreatest`). -/
+(second part of `IsGreatest`).
+@isnad1 id=le.4h3v.s5.dcf5a598a39a from=translated src=- shape=354c0645 vocab=9b06068c
+-/
 lemma solution_le_of_works {n ℓ : ℕ} (hn : 2 < n) (hℓ1 : 1 ≤ ℓ) (hℓn : ℓ ≤ n) (c : ℝ)
     (hc : Works n ℓ c) : c ≤ solution n ℓ := by
   -- The extremal family: all `ℓ`-subsets of `[n]`, each used once, weights `1`.

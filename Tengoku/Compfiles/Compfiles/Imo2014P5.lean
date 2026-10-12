@@ -26,21 +26,39 @@ namespace Imo2014P5
 is worth `(n : ℚ)⁻¹`. -/
 def value (c : Multiset ℕ) : ℚ := (c.map fun n : ℕ ↦ (n : ℚ)⁻¹).sum
 
+/--
+@isnad1 id=eq.0h0v.s4.b03755e421fa from=translated src=- shape=479f814a vocab=f070342d
+-/
 lemma value_zero : value 0 = 0 := by simp [value]
 
+/--
+@isnad1 id=eq.0h2v.s5.dba20d99c068 from=translated src=- shape=31b9e54f vocab=9284653d
+-/
 lemma value_add (c d : Multiset ℕ) : value (c + d) = value c + value d := by
   simp [value]
 
+/--
+@isnad1 id=eq.0h2v.s4.1d607ed43480 from=translated src=- shape=8c7c2d63 vocab=9c3df678
+-/
 lemma value_cons (n : ℕ) (c : Multiset ℕ) :
     value (n ::ₘ c) = (n : ℚ)⁻¹ + value c := by
   simp [value]
 
+/--
+@isnad1 id=eq.0h1v.s4.db7fe458d6b8 from=translated src=- shape=00e862d9 vocab=97e15c9c
+-/
 lemma value_singleton (n : ℕ) : value {n} = (n : ℚ)⁻¹ := by simp [value]
 
+/--
+@isnad1 id=eq.0h2v.s4.f3dd866ae57e from=translated src=- shape=0144eb55 vocab=bd42dd35
+-/
 lemma value_replicate (t n : ℕ) :
     value (Multiset.replicate t n) = (t : ℚ) * (n : ℚ)⁻¹ := by
   rw [value, Multiset.map_replicate, Multiset.sum_replicate, nsmul_eq_mul]
 
+/--
+@isnad1 id=le.0h1v.s3.00664ccbae62 from=translated src=- shape=942babd5 vocab=60d88f8b
+-/
 lemma value_nonneg (c : Multiset ℕ) : 0 ≤ value c := by
   apply Multiset.sum_nonneg
   intro x hx
@@ -48,6 +66,9 @@ lemma value_nonneg (c : Multiset ℕ) : 0 ≤ value c := by
   obtain ⟨n, -, rfl⟩ := hx
   exact inv_nonneg.mpr (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=eq.0h3v.s5.21b7196bd9da from=translated src=- shape=9091ac03 vocab=19ae1abe
+-/
 lemma value_sum {ι : Type*} (s : Finset ι) (f : ι → Multiset ℕ) :
     value (∑ m ∈ s, f m) = ∑ m ∈ s, value (f m) := by
   classical
@@ -59,9 +80,15 @@ lemma value_sum {ι : Type*} (s : Finset ι) (f : ι → Multiset ℕ) :
 split into `k` or fewer groups each of value at most `1`. -/
 def cap (k : ℕ) : ℚ := k - k / (2 * k + 1)
 
+/--
+@isnad1 id=eq.0h1v.s5.4e24e5d04dae from=translated src=- shape=71eaa30e vocab=eb699c67
+-/
 lemma cap_eq' (k : ℕ) : cap k = (k : ℚ) * (1 - (2 * (k : ℚ) + 1)⁻¹) := by
   rw [cap, div_eq_mul_inv]; ring
 
+/--
+@isnad1 id=le.0h1v.s5.ae2fecf60802 from=translated src=- shape=eee1721b vocab=3e7332bd
+-/
 lemma cap_sub_one_le (k : ℕ) : cap k - 1 ≤ cap (k - 1) := by
   rcases Nat.eq_zero_or_pos k with hk | hk
   · subst hk; norm_num [cap]
@@ -75,6 +102,9 @@ lemma cap_sub_one_le (k : ℕ) : cap k - 1 ≤ cap (k - 1) := by
       nlinarith
     linarith
 
+/--
+@isnad1 id=ex.1h2v.s5.573778a9b713 from=translated src=- shape=9684c619 vocab=0858da4b
+-/
 lemma exists_mem_of_mem_sum {s : Multiset (Multiset ℕ)} {a : ℕ} (h : a ∈ s.sum) :
     ∃ t ∈ s, a ∈ t := by
   induction s using Multiset.induction_on with
@@ -86,6 +116,9 @@ lemma exists_mem_of_mem_sum {s : Multiset (Multiset ℕ)} {a : ℕ} (h : a ∈ s
     · obtain ⟨t, ht, ha⟩ := IH h
       exact ⟨t, Multiset.mem_cons_of_mem ht, ha⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.aaedd00985b2 from=translated src=- shape=29a58546 vocab=f9a86d3b
+-/
 lemma count_sum_filter_boxes (k : ℕ) (c : Multiset ℕ) (n : ℕ) :
     Multiset.count n (∑ m ∈ Finset.range k, c.filter (fun p ↦ p = 2 * m + 1 ∨ p = 2 * m + 2))
       = ∑ m ∈ Finset.range k,
@@ -97,6 +130,9 @@ lemma count_sum_filter_boxes (k : ℕ) (c : Multiset ℕ) (n : ℕ) :
   simp only [Multiset.count_filter]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.7d8f31ba8e08 from=translated src=- shape=e92efcda vocab=368d599e
+-/
 lemma filter_boxes_add_pile (k : ℕ) (c : Multiset ℕ) (hpos : ∀ n ∈ c, 0 < n) :
     (∑ m ∈ Finset.range k, c.filter (fun p ↦ p = 2 * m + 1 ∨ p = 2 * m + 2))
       + c.filter (fun p ↦ 2 * k + 1 ≤ p) = c := by
@@ -122,6 +158,9 @@ lemma filter_boxes_add_pile (k : ℕ) (c : Multiset ℕ) (hpos : ∀ n ∈ c, 0 
           have hm' := Finset.mem_range.mp hm
           rintro (h | h) <;> lia)), ite_eq_left hn2k', zero_add]
 
+/--
+@isnad1 id=le.2h2v.s8.a002cedca43c from=translated src=- shape=cc855522 vocab=6825049c
+-/
 lemma value_filter_box_le (c : Multiset ℕ)
     (heven : ∀ m, 1 ≤ m → c.count (2 * m) ≤ 1)
     (hodd : ∀ m, c.count (2 * m + 1) ≤ 2 * m) (m : ℕ) :
@@ -145,6 +184,9 @@ lemma value_filter_box_le (c : Multiset ℕ)
   have h := add_le_add (mul_le_mul_of_nonneg_right h1 h3) (mul_le_mul_of_nonneg_right h2 h4)
   rwa [one_mul] at h
 
+/--
+@isnad1 id=lt.0h1v.s6.809b4a16bdc3 from=translated src=- shape=9f2f2317 vocab=230b7b7a
+-/
 lemma box_capacity_lt_one (m : ℕ) :
     (2 * m : ℚ) * ((2 * m + 1 : ℕ) : ℚ)⁻¹ + ((2 * m + 2 : ℕ) : ℚ)⁻¹ < 1 := by
   have h1 : (2 * m : ℚ) * ((2 * m + 1 : ℕ) : ℚ)⁻¹ = 1 - ((2 * m + 1 : ℕ) : ℚ)⁻¹ := by
@@ -163,7 +205,9 @@ lemma box_capacity_lt_one (m : ℕ) :
 
 /-- Greedy distribution of the "light" coins (of denomination at least `2k+1`)
 into the `k` boxes: as long as a coin remains, some box still has room for it,
-for otherwise the total value would exceed `cap k`. -/
+for otherwise the total value would exceed `cap k`.
+@isnad1 id=ex.3h3v.s7.841e4cfbad44 from=translated src=- shape=7189dff5 vocab=00a7c0e5
+-/
 lemma greedy (k : ℕ) (pile : Multiset ℕ) :
     (∀ n ∈ pile, 2 * k + 1 ≤ n) → ∀ w : Fin k → ℚ, (∀ m, w m ≤ 1) →
     value pile + ∑ m, w m ≤ cap k →
@@ -249,7 +293,9 @@ lemma greedy (k : ℕ) (pile : Multiset ℕ) :
 
 /-- The main claim, proved by strong induction on the number of coins:
 a collection of total value at most `cap k` admits a partition into at most
-`k` groups each of value at most `1`. -/
+`k` groups each of value at most `1`.
+@isnad1 id=ex.3h3v.s6.ccdfbeeecf68 from=translated src=- shape=45bd02de vocab=b9e1e38c
+-/
 theorem exists_partition_aux : ∀ (N k : ℕ) (c : Multiset ℕ), c.card = N →
     (∀ n ∈ c, 0 < n) → value c ≤ cap k →
     ∃ gs : Multiset (Multiset ℕ), gs.sum = c ∧ gs.card ≤ k ∧ ∀ g ∈ gs, value g ≤ 1 := by
@@ -404,6 +450,9 @@ theorem exists_partition_aux : ∀ (N k : ℕ) (c : Multiset ℕ), c.card = N �
           rw [value_add]
           exact hparts_val m
 
+/--
+@isnad1 id=ex.2h2v.s6.4b24f077e743 from=translated src=- shape=b49f3831 vocab=b9e1e38c
+-/
 theorem exists_partition (k : ℕ) (c : Multiset ℕ) (hpos : ∀ n ∈ c, 0 < n)
     (hcap : value c ≤ cap k) :
     ∃ gs : Multiset (Multiset ℕ), gs.sum = c ∧ gs.card ≤ k ∧ ∀ g ∈ gs, value g ≤ 1 :=

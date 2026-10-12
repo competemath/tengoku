@@ -22,7 +22,9 @@ namespace Algebraic.Cutwidth.Aggregate.Geometry.Entropy
 
 open scoped BigOperators Classical
 
-/-- An input subset retains at least the average number of designated distinct pairs. -/
+/-- An input subset retains at least the average number of designated distinct pairs.
+@isnad1 id=ex.3h5v.s7.4fe071dbe06d from=translated src=- shape=6264ed5f vocab=38f8e8f6
+-/
 theorem exists_subset_many_pairs {n a : Nat} (ha : 2 ≤ a) (han : a ≤ n)
     {J : Type*} [Fintype J] (left right : J → Fin n) (distinct : ∀ j, left j ≠ right j) :
     ∃ U : Finset (Fin n), U.card = a ∧
@@ -60,7 +62,9 @@ theorem exists_subset_many_pairs {n a : Nat} (ha : 2 ≤ a) (han : a ≤ n)
   simpa only [sets, Finset.card_powersetCard, Finset.card_univ,
     Fintype.card_fin, score] using bound
 
-/-- The real-valued form of pair averaging has the exact two-coordinate survival factor. -/
+/-- The real-valued form of pair averaging has the exact two-coordinate survival factor.
+@isnad1 id=ex.3h5v.s7.d1bd004dd5b9 from=translated src=- shape=4254b3cd vocab=d167290e
+-/
 theorem exists_subset_pair_ratio {n a : Nat} (ha : 2 ≤ a) (han : a ≤ n)
     {J : Type*} [Fintype J] (left right : J → Fin n) (distinct : ∀ j, left j ≠ right j) :
     ∃ U : Finset (Fin n), U.card = a ∧

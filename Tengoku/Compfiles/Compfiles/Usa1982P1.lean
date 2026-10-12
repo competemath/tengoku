@@ -33,7 +33,9 @@ def IsUniversal (G : SimpleGraph (Fin 1982)) (v : Fin 1982) : Prop :=
 
 abbrev solution : ℕ := 1979
 
-/-- A finset of four distinct vertices has cardinality four. -/
+/-- A finset of four distinct vertices has cardinality four.
+@isnad1 id=eq.6h4v.s7.a9df90c0bc35 from=translated src=- shape=370adfa1 vocab=c136b773
+-/
 lemma card_four_of_distinct {a b c d : Fin 1982} (hab : a ≠ b) (hac : a ≠ c)
     (had : a ≠ d) (hbc : b ≠ c) (hbd : b ≠ d) (hcd : c ≠ d) :
     ({a, b, c, d} : Finset (Fin 1982)).card = 4 := by
@@ -52,7 +54,9 @@ Then any two other vertices `X, Y` must be joined (else no vertex of
 non-universal vertices `C, D ∉ {A, B}`. Each of `C, D` is joined to every
 vertex except possibly `A` and `B`, and being non-universal it must miss one
 of those. But then no vertex of `{A, B, C, D}` is joined to the other three,
-a contradiction. -/
+a contradiction.
+@isnad1 id=le.1h1v.s5.aa54b7376ff5 from=translated src=- shape=c1d7396b vocab=c511d14d
+-/
 lemma card_universal_ge (G : SimpleGraph (Fin 1982)) (hG : FourPointProperty G) :
     1979 ≤ (Finset.univ.filter (IsUniversal G)).card := by
   set NU := Finset.univ.filter (fun v => ¬ IsUniversal G v) with hNU
@@ -141,7 +145,9 @@ lemma card_universal_ge (G : SimpleGraph (Fin 1982)) (hG : FourPointProperty G) 
     · exact h1 (hadj A (by simp) hDA.symm)
     · exact h1 (hadj B (by simp) hDB.symm)
 
-/-- The finset `{0, 1, 2}` of vertices has three elements. -/
+/-- The finset `{0, 1, 2}` of vertices has three elements.
+@isnad1 id=eq.0h0v.s7.d4ec9dec12df from=translated src=- shape=bab5a315 vocab=c136b773
+-/
 lemma card_three : ({0, 1, 2} : Finset (Fin 1982)).card = 3 := by decide
 
 /-- Adjacency in the extremal graph: all pairs of distinct vertices except
@@ -157,7 +163,9 @@ def extremalGraph : SimpleGraph (Fin 1982) where
   loopless := ⟨fun i h => h.1 rfl⟩
 
 /-- In the extremal graph, the universal vertices are exactly those outside
-`{0, 1, 2}`. -/
+`{0, 1, 2}`.
+@isnad1 id=iff.0h1v.s6.a09d4f22d51d from=translated src=- shape=2d9340ff vocab=adc50bb5
+-/
 lemma extremal_universal_iff (v : Fin 1982) :
     IsUniversal extremalGraph v ↔ v ≠ 0 ∧ v ≠ 1 ∧ v ≠ 2 := by
   constructor
@@ -183,7 +191,9 @@ lemma extremal_universal_iff (v : Fin 1982) :
     · exact h2 hv2
 
 /-- The extremal graph satisfies the four-point condition: any four vertices
-contain one outside `{0, 1, 2}`, and that vertex is joined to all others. -/
+contain one outside `{0, 1, 2}`, and that vertex is joined to all others.
+@isnad1 id=fourpoin.0h0v.s1.e90c1d888108 from=translated src=- shape=49959d42 vocab=c4903e17
+-/
 lemma extremal_fourPoint : FourPointProperty extremalGraph := by
   intro s hs
   obtain ⟨v, hv, hvnot⟩ : ∃ v ∈ s, v ∉ ({0, 1, 2} : Finset (Fin 1982)) := by
@@ -199,7 +209,9 @@ lemma extremal_fourPoint : FourPointProperty extremalGraph := by
   obtain ⟨h0, h1, h2⟩ := hvnot
   exact ⟨v, hv, fun w _ hwv => (extremal_universal_iff v).mpr ⟨h0, h1, h2⟩ w hwv⟩
 
-/-- The extremal graph has exactly 1979 universal vertices. -/
+/-- The extremal graph has exactly 1979 universal vertices.
+@isnad1 id=eq.0h0v.s5.e28b4394ba03 from=translated src=- shape=04668641 vocab=ae0edd26
+-/
 lemma extremal_count :
     (Finset.univ.filter (IsUniversal extremalGraph)).card = 1979 := by
   have h1 : Finset.univ.filter (IsUniversal extremalGraph) =

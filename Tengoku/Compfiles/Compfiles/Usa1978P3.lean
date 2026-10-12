@@ -25,11 +25,17 @@ positive integers whose reciprocals sum to `1`. -/
 def Expressible (n : ℕ) : Prop :=
   ∃ l : List ℕ, (∀ a ∈ l, 0 < a) ∧ l.sum = n ∧ (l.map fun a : ℕ => (a : ℚ)⁻¹).sum = 1
 
+/--
+@isnad1 id=eq.0h1v.s5.ddf97256cf46 from=translated src=- shape=ebc6a0b8 vocab=3a8da64c
+-/
 lemma sum_map_two_mul (l : List ℕ) : (l.map (2 * ·)).sum = 2 * l.sum := by
   induction l with
   | nil => simp
   | cons x xs ih => simp only [List.map_cons, List.sum_cons, ih]; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.c44051ab73bd from=translated src=- shape=2d420fe2 vocab=be9b8bc2
+-/
 lemma recip_sum_map_two_mul (l : List ℕ) :
     ((l.map (2 * ·)).map fun a : ℕ => (a : ℚ)⁻¹).sum
       = (2 : ℚ)⁻¹ * (l.map fun a : ℕ => (a : ℚ)⁻¹).sum := by
@@ -42,7 +48,9 @@ lemma recip_sum_map_two_mul (l : List ℕ) :
 /-- The key construction: given a representation of `n`, doubling every summand
 halves the sum of the reciprocals, so adjoining two more positive summands
 `c, d` whose reciprocals sum to `1 / 2` yields a representation of
-`2 * n + (c + d)`. -/
+`2 * n + (c + d)`.
+@isnad1 id=expressi.4h3v.s6.46903399fc6a from=translated src=- shape=beeade34 vocab=a82d31db
+-/
 lemma expressible_two_mul_add {n : ℕ} (h : Expressible n) {c d : ℕ}
     (hc : 0 < c) (hd : 0 < d) (hcd : (c : ℚ)⁻¹ + (d : ℚ)⁻¹ = 1 / 2) :
     Expressible (2 * n + (c + d)) := by
@@ -67,12 +75,16 @@ lemma expressible_two_mul_add {n : ℕ} (h : Expressible n) {c d : ℕ}
     rw [hcd', hcd]
     norm_num
 
-/-- Adjoining two `4`s: if `n` is expressible, so is `2 * n + 8`. -/
+/-- Adjoining two `4`s: if `n` is expressible, so is `2 * n + 8`.
+@isnad1 id=expressi.1h1v.s4.0a334ac9b634 from=translated src=- shape=c2e0b24d vocab=96ff2f22
+-/
 lemma expressible_two_mul_add_eight {n : ℕ} (h : Expressible n) :
     Expressible (2 * n + 8) :=
   expressible_two_mul_add (c := 4) (d := 4) h (by norm_num) (by norm_num) (by norm_num)
 
-/-- Adjoining `3` and `6`: if `n` is expressible, so is `2 * n + 9`. -/
+/-- Adjoining `3` and `6`: if `n` is expressible, so is `2 * n + 9`.
+@isnad1 id=expressi.1h1v.s4.8212989c2503 from=translated src=- shape=c2e0b24d vocab=96ff2f22
+-/
 lemma expressible_two_mul_add_nine {n : ℕ} (h : Expressible n) :
     Expressible (2 * n + 9) :=
   expressible_two_mul_add (c := 3) (d := 6) h (by norm_num) (by norm_num) (by norm_num)

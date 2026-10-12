@@ -60,7 +60,9 @@ def meas {n : ℕ} (c : Fin n → Bool) : ℤ :=
 configuration `c`. -/
 def L {n : ℕ} (c : Fin n → Bool) : ℕ := (meas c).toNat
 
-/-- The `j`-th smallest element of a finset `S` of `Fin n` is at least `j`. -/
+/-- The `j`-th smallest element of a finset `S` of `Fin n` is at least `j`.
+@isnad1 id=le.0h3v.s6.3231a97c62d9 from=translated src=- shape=dae5a96e vocab=8b3c43e5
+-/
 theorem le_orderEmbOfFin {n : ℕ} (S : Finset (Fin n)) (j : Fin S.card) :
     (j : ℕ) ≤ (S.orderEmbOfFin rfl j).val := by
   have hsub : (Iio j).map (S.orderEmbOfFin rfl).toEmbedding ⊆
@@ -76,7 +78,9 @@ theorem le_orderEmbOfFin {n : ℕ} (S : Finset (Fin n)) (j : Fin S.card) :
     _ = (S.orderEmbOfFin rfl j).val := Fin.card_Iio _
 
 /-- For a finset `S` of `Fin n`, the sum of the values of its elements is at
-least `card S * (card S - 1) / 2` (twice that sum, to stay in `ℕ`). -/
+least `card S * (card S - 1) / 2` (twice that sum, to stay in `ℕ`).
+@isnad1 id=le.0h2v.s5.fa40c75d54eb from=translated src=- shape=2e242206 vocab=fdd465c8
+-/
 theorem sum_range_card_le {n : ℕ} (S : Finset (Fin n)) :
     S.card * (S.card - 1) ≤ 2 * ∑ i ∈ S, (i : ℕ) := by
   have hpoint : ∀ j : Fin S.card, (j : ℕ) ≤ (S.orderEmbOfFin rfl j).val :=
@@ -94,7 +98,9 @@ theorem sum_range_card_le {n : ℕ} (S : Finset (Fin n)) :
   linarith [h2, h3]
 
 /-- The key combinatorial estimate: if a configuration has `k` heads, then the
-sum of the 1-based positions of the heads is at least `k * (k + 1) / 2`. -/
+sum of the 1-based positions of the heads is at least `k * (k + 1) / 2`.
+@isnad1 id=le.0h2v.s5.dfe2eb8c2c5e from=translated src=- shape=f041efb3 vocab=9d5d3932
+-/
 theorem numHeads_mul_succ_le {n : ℕ} (c : Fin n → Bool) :
     numHeads c * (numHeads c + 1) ≤ 2 * weightedSum c := by
   have h1 := sum_range_card_le (univ.filter fun i ↦ c i)
@@ -116,9 +122,15 @@ theorem numHeads_mul_succ_le {n : ℕ} (c : Fin n → Bool) :
   unfold numHeads
   linarith [h1]
 
+/--
+@isnad1 id=eq.0h2v.s5.db2502ca0c31 from=translated src=- shape=3c0c9006 vocab=9784d35e
+-/
 theorem meas_def {n : ℕ} (c : Fin n → Bool) :
     meas c = 2 * (weightedSum c : ℤ) - (numHeads c : ℤ) ^ 2 := rfl
 
+/--
+@isnad1 id=le.0h2v.s4.7805d751acdd from=translated src=- shape=f12e8c04 vocab=dd80dbd0
+-/
 theorem meas_nonneg {n : ℕ} (c : Fin n → Bool) : 0 ≤ meas c := by
   have h := numHeads_mul_succ_le c
   have h' : (numHeads c : ℤ) * ((numHeads c : ℤ) + 1) ≤ 2 * (weightedSum c : ℤ) := by
@@ -127,6 +139,9 @@ theorem meas_nonneg {n : ℕ} (c : Fin n → Bool) : 0 ≤ meas c := by
   unfold meas
   linarith [h']
 
+/--
+@isnad1 id=le.0h2v.s4.7d253d158ecf from=translated src=- shape=827de8b9 vocab=7a5148d2
+-/
 theorem meas_ge_numHeads {n : ℕ} (c : Fin n → Bool) : (numHeads c : ℤ) ≤ meas c := by
   have h := numHeads_mul_succ_le c
   have h' : (numHeads c : ℤ) * ((numHeads c : ℤ) + 1) ≤ 2 * (weightedSum c : ℤ) := by
@@ -134,6 +149,9 @@ theorem meas_ge_numHeads {n : ℕ} (c : Fin n → Bool) : (numHeads c : ℤ) ≤
   unfold meas
   linarith [h']
 
+/--
+@isnad1 id=iff.0h2v.s4.5fa62f7d8eb7 from=translated src=- shape=7bfa9c51 vocab=a2a64729
+-/
 theorem meas_eq_zero_iff {n : ℕ} (c : Fin n → Bool) : meas c = 0 ↔ numHeads c = 0 := by
   constructor
   · intro h
@@ -157,14 +175,18 @@ theorem meas_eq_zero_iff {n : ℕ} (c : Fin n → Bool) : meas c = 0 ↔ numHead
       simp [hf i]
     simp [meas, h, hw]
 
-/-- The number of heads as a sum of indicators, in `ℤ`. -/
+/-- The number of heads as a sum of indicators, in `ℤ`.
+@isnad1 id=eq.0h2v.s5.4da01b40eee9 from=translated src=- shape=df063b29 vocab=b6c17298
+-/
 theorem numHeads_cast {n : ℕ} (c : Fin n → Bool) :
     (numHeads c : ℤ) = ∑ i : Fin n, (if c i then (1 : ℤ) else 0) := by
   have h2 : numHeads c = ∑ i : Fin n, (if c i = true then (1 : ℕ) else 0) :=
     card_filter _ _
   exact_mod_cast h2
 
-/-- The weighted sum as a sum over all positions, in `ℤ`. -/
+/-- The weighted sum as a sum over all positions, in `ℤ`.
+@isnad1 id=eq.0h2v.s6.5f2bdfcf82f8 from=translated src=- shape=1aae7761 vocab=b86f7295
+-/
 theorem weightedSum_cast {n : ℕ} (c : Fin n → Bool) :
     (weightedSum c : ℤ) = ∑ i : Fin n, ((i : ℕ) + 1 : ℤ) * (if c i then (1 : ℤ) else 0) := by
   rw [weightedSum, Nat.cast_sum]
@@ -172,7 +194,9 @@ theorem weightedSum_cast {n : ℕ} (c : Fin n → Bool) :
   intro i _
   by_cases hi : c i = true <;> simp [hi]
 
-/-- How the head-count sum changes when coin `p` is flipped. -/
+/-- How the head-count sum changes when coin `p` is flipped.
+@isnad1 id=eq.0h3v.s7.fd1bec7b98f9 from=translated src=- shape=6830a98e vocab=ab35807d
+-/
 theorem headsZ_update {n : ℕ} (c : Fin n → Bool) (p : Fin n) :
     ∑ i : Fin n, (if Function.update c p (!c p) i then (1 : ℤ) else 0)
       = (∑ i : Fin n, (if c i then (1 : ℤ) else 0)) + (if c p then (-1 : ℤ) else 1) := by
@@ -190,7 +214,9 @@ theorem headsZ_update {n : ℕ} (c : Fin n → Bool) (p : Fin n) :
   · simp only [ite_eq_left hc]; ring
   · simp only [ite_eq_right hc]; ring
 
-/-- How the weighted sum changes when coin `p` is flipped. -/
+/-- How the weighted sum changes when coin `p` is flipped.
+@isnad1 id=eq.0h3v.s7.9bb098210fdc from=translated src=- shape=0fd44e9e vocab=188cee99
+-/
 theorem weightedZ_update {n : ℕ} (c : Fin n → Bool) (p : Fin n) :
     ∑ i : Fin n, ((i : ℕ) + 1 : ℤ) * (if Function.update c p (!c p) i then (1 : ℤ) else 0)
       = (∑ i : Fin n, ((i : ℕ) + 1 : ℤ) * (if c i then (1 : ℤ) else 0))
@@ -210,7 +236,9 @@ theorem weightedZ_update {n : ℕ} (c : Fin n → Bool) (p : Fin n) :
   · simp only [ite_eq_left hc]; ring
   · simp only [ite_eq_right hc]; ring
 
-/-- The measure drops by exactly one at each step. -/
+/-- The measure drops by exactly one at each step.
+@isnad1 id=eq.1h2v.s5.7023a500e9e7 from=translated src=- shape=b2ca3842 vocab=057cbdc1
+-/
 theorem step_meas {n : ℕ} (c : Fin n → Bool) (h : numHeads c ≠ 0) :
     meas (step c) = meas c - 1 := by
   have hstep : step c = Function.update c (flipIx c h) (!c (flipIx c h)) := by
@@ -232,7 +260,9 @@ theorem step_meas {n : ℕ} (c : Fin n → Bool) (h : numHeads c ≠ 0) :
   rw [meas_def, meas_def, e1, e2, e3, e4, headsZ_update, weightedZ_update, hpv]
   by_cases hc : c p <;> simp [hc] <;> ring
 
-/-- After `m` steps with `m ≤ meas c`, the measure has dropped by exactly `m`. -/
+/-- After `m` steps with `m ≤ meas c`, the measure has dropped by exactly `m`.
+@isnad1 id=eq.1h3v.s5.7367af0202e0 from=translated src=- shape=7db33c50 vocab=69685384
+-/
 theorem iter_meas {n : ℕ} (c : Fin n → Bool) (m : ℕ) (hm : (m : ℤ) ≤ meas c) :
     meas (step^[m] c) = meas c - (m : ℤ) := by
   induction m with
@@ -251,7 +281,9 @@ theorem iter_meas {n : ℕ} (c : Fin n → Bool) (m : ℕ) (hm : (m : ℤ) ≤ m
     ring
 
 /-- The process from `c` stops after exactly `L c` steps in the all-tails
-configuration. -/
+configuration.
+@isnad1 id=eq.0h2v.s4.ed498d1ae3b3 from=translated src=- shape=936cd247 vocab=064f1e69
+-/
 theorem iterate_L {n : ℕ} (c : Fin n → Bool) : step^[L c] c = fun _ ↦ false := by
   have h1 : (L c : ℤ) = meas c := Int.toNat_of_nonneg (meas_nonneg c)
   have h2 := iter_meas c (L c) (le_of_eq h1)
@@ -270,7 +302,9 @@ theorem iterate_L {n : ℕ} (c : Fin n → Bool) : step^[L c] c = fun _ ↦ fals
     · rfl
     · exact absurd hv hi
 
-/-- Before step `L c`, the process has not stopped yet. -/
+/-- Before step `L c`, the process has not stopped yet.
+@isnad1 id=ne.1h3v.s5.b96b3997bfae from=translated src=- shape=76781252 vocab=88dde8b6
+-/
 theorem not_iterate_lt_L {n : ℕ} (c : Fin n → Bool) {m : ℕ} (hm : m < L c) :
     step^[m] c ≠ fun _ ↦ false := by
   have h1 : (L c : ℤ) = meas c := Int.toNat_of_nonneg (meas_nonneg c)
@@ -296,7 +330,9 @@ theorem not_iterate_lt_L {n : ℕ} (c : Fin n → Bool) {m : ℕ} (hm : m < L c)
   linarith
 
 /-- Configurations with a head at position `i` are in bijection with those
-with a tail at position `i`, by flipping coin `i`. -/
+with a tail at position `i`, by flipping coin `i`.
+@isnad1 id=eq.0h2v.s6.91ead4777094 from=translated src=- shape=bc86e782 vocab=ac0effe0
+-/
 theorem card_filter_true_eq_card_filter_false {n : ℕ} (i : Fin n) :
     (univ.filter fun c : Fin n → Bool ↦ c i = true).card
       = (univ.filter fun c : Fin n → Bool ↦ c i = false).card := by
@@ -320,7 +356,9 @@ theorem card_filter_true_eq_card_filter_false {n : ℕ} (i : Fin n) :
       _ = Function.update c i (c i) := Function.update_idem _ _ _
       _ = c := Function.update_eq_self i c
 
-/-- Exactly half of all `2 ^ n` configurations have a head at position `i`. -/
+/-- Exactly half of all `2 ^ n` configurations have a head at position `i`.
+@isnad1 id=eq.1h2v.s6.d19d4eba32b5 from=translated src=- shape=89c1bfa9 vocab=3d046f65
+-/
 theorem card_filter_true {n : ℕ} (hn : 0 < n) (i : Fin n) :
     (univ.filter fun c : Fin n → Bool ↦ c i = true).card = 2 ^ (n - 1) := by
   have hbij := card_filter_true_eq_card_filter_false i
@@ -348,7 +386,9 @@ theorem card_filter_true {n : ℕ} (hn : 0 < n) (i : Fin n) :
   exact Nat.mul_left_cancel (by norm_num) (hkey.trans h2n)
 
 /-- Twice the number of configurations with heads at both `i` and `j`
-equals `2 ^ (n - 1)`. -/
+equals `2 ^ (n - 1)`.
+@isnad1 id=eq.2h3v.s7.b6ab5bd9218d from=translated src=- shape=762ca1e8 vocab=97abb282
+-/
 theorem two_mul_card_filter_pair {n : ℕ} (hn : 0 < n) {i j : Fin n} (hij : i ≠ j) :
     2 * (univ.filter fun c : Fin n → Bool ↦ c i = true ∧ c j = true).card = 2 ^ (n - 1) := by
   have hbij : (univ.filter fun c : Fin n → Bool ↦ c i = true ∧ c j = true).card
@@ -395,7 +435,9 @@ theorem two_mul_card_filter_pair {n : ℕ} (hn : 0 < n) {i j : Fin n} (hij : i �
   exact two_mul _
 
 /-- The number of configurations with heads at both `i` and `j` is
-`2 ^ (n - 2)`. -/
+`2 ^ (n - 2)`.
+@isnad1 id=eq.2h3v.s7.1d30faa8b229 from=translated src=- shape=63849b53 vocab=3d046f65
+-/
 theorem card_filter_pair {n : ℕ} (hn : 0 < n) {i j : Fin n} (hij : i ≠ j) :
     (univ.filter fun c : Fin n → Bool ↦ c i = true ∧ c j = true).card = 2 ^ (n - 2) := by
   have h2 := two_mul_card_filter_pair hn hij
@@ -410,7 +452,9 @@ theorem card_filter_pair {n : ℕ} (hn : 0 < n) {i j : Fin n} (hij : i ≠ j) :
   rw [h3] at h2
   exact Nat.mul_left_cancel (by norm_num) h2
 
-/-- The sum of the indicator of heads at position `i` over all configurations. -/
+/-- The sum of the indicator of heads at position `i` over all configurations.
+@isnad1 id=eq.1h2v.s6.ed674fa80951 from=translated src=- shape=ec61e1ff vocab=8323d9d2
+-/
 theorem sum_indicator {n : ℕ} (hn : 0 < n) (i : Fin n) :
     ∑ c : Fin n → Bool, (if c i then (1 : ℤ) else 0) = 2 ^ (n - 1) := by
   have h := card_filter_true hn i
@@ -419,7 +463,9 @@ theorem sum_indicator {n : ℕ} (hn : 0 < n) (i : Fin n) :
   exact_mod_cast h2.symm
 
 /-- The total of `L` over all configurations is `2 ^ n * n * (n + 1) / 4`;
-we prove four times that value to stay in `ℤ`. -/
+we prove four times that value to stay in `ℤ`.
+@isnad1 id=eq.1h1v.s6.7a8d5b7024b8 from=translated src=- shape=29b16cb2 vocab=046a7e2e
+-/
 theorem sum_four_L {n : ℕ} (hn : 0 < n) :
     4 * ∑ c : Fin n → Bool, (L c : ℤ) = 2 ^ n * n * (n + 1) := by
   have hcount := sum_indicator hn

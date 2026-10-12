@@ -34,6 +34,9 @@ def Conditions (x : Fin 4 → ℝ) : Prop := ∃ a b c d : ℝ, (5 ≤ b - d) �
 -- which makes the problem obvious.
 
 -- For construction, set all roots to 1 and check it gives 16
+/--
+@isnad1 id=ex.0h0v.s5.3f0d52f7106e from=translated src=- shape=2c02eb78 vocab=eb9265c7
+-/
 lemma construction_for_16 : exists x, Conditions x ∧ Objective x = 16 := by
   use fun _ => 1 -- Set every x_i to 1
   constructor
@@ -53,6 +56,9 @@ lemma construction_for_16 : exists x, Conditions x ∧ Objective x = 16 := by
     norm_num -- (1+1)^4 = 16
 
 -- Vieta formulas for b and d (we don't actually need them for a and c)
+/--
+@isnad1 id=and.1h5v.s10.8327aa0c4d8a from=translated src=- shape=41b85195 vocab=84a5a79d
+-/
 lemma vieta (x: Fin 4 → ℝ) (a : ℝ) (b : ℝ) (c : ℝ) (d : ℝ)
     (hpoly : (X - C (x 0)) * (X - C (x 1)) * (X - C (x 2)) * (X - C (x 3))
     = X^4 + C a * X^3 + C b * X^2 + C c * X + C d) :
@@ -66,6 +72,9 @@ lemma vieta (x: Fin 4 → ℝ) (a : ℝ) (b : ℝ) (c : ℝ) (d : ℝ)
     linarith
 
 -- Now use Vieta relation to prove the key bound
+/--
+@isnad1 id=le.1h1v.s4.16c12b829371 from=translated src=- shape=ead15d64 vocab=d46984bf
+-/
 lemma main_bound {x} (hx : Conditions x) : 16 ≤ Objective x := by
   rcases hx with ⟨a, b, c, d, hbd, hpoly⟩
   -- we need the actual b and d from the condition, so we have b-d ≥ 5

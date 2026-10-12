@@ -23,7 +23,9 @@ namespace Algebraic.BooleanCube.ModThree
 variable {ι κ : Type*} [Fintype ι] [Fintype κ]
 
 /-- A system with more than twice as many coordinates as equations admits a
- homogeneous direction that changes the full Hamming residue at any base point. -/
+ homogeneous direction that changes the full Hamming residue at any base point.
+@isnad1 id=ex.1h4v.s10.68334c9336e4 from=translated src=- shape=34679f8f vocab=c25b8640
+-/
 theorem exists_kernel_residue_ne
     (R : (ι → ZMod 2) →ₗ[ZMod 2] (κ → ZMod 2)) (a : ι → ZMod 2)
     (large : 2 * Fintype.card κ < Fintype.card ι) :

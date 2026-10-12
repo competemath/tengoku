@@ -25,10 +25,16 @@ equation has no real solutions?
 
 namespace Imo2016P5
 
+/--
+@isnad1 id=eq.0h3v.s5.015979b19110 from=translated src=- shape=91cc6fd8 vocab=8a7d55bc
+-/
 lemma lemma1 {α : Type*} [DecidableEq α] (s : Finset α) (p : α → Prop) [DecidablePred p] :
     Finset.card (s \ s.filter p) + Finset.card (s.filter p) = Finset.card s :=
   Finset.card_sdiff_add_card_eq_card (Finset.filter_subset p s)
 
+/--
+@isnad1 id=iff.0h2v.s7.108a9d1b417b from=translated src=- shape=936eac24 vocab=65920cf3
+-/
 lemma u_neg_iff {x : ℝ} (j : ℕ) :
     (x - (4 * (j : ℝ) + 1)) * (x - (4 * (j : ℝ) + 4)) < 0 ↔
       4 * (j : ℝ) + 1 < x ∧ x < 4 * (j : ℝ) + 4 := by
@@ -40,6 +46,9 @@ lemma u_neg_iff {x : ℝ} (j : ℕ) :
   · rintro ⟨h1, h2⟩
     exact Or.inl ⟨by linarith, by linarith⟩
 
+/--
+@isnad1 id=iff.0h2v.s7.67f99cfeb4b3 from=translated src=- shape=936eac24 vocab=65920cf3
+-/
 lemma v_neg_iff {x : ℝ} (j : ℕ) :
     (x - (4 * (j : ℝ) + 2)) * (x - (4 * (j : ℝ) + 3)) < 0 ↔
       4 * (j : ℝ) + 2 < x ∧ x < 4 * (j : ℝ) + 3 := by
@@ -51,6 +60,9 @@ lemma v_neg_iff {x : ℝ} (j : ℕ) :
   · rintro ⟨h1, h2⟩
     exact Or.inl ⟨by linarith, by linarith⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.8a1ba45a59d5 from=translated src=- shape=e8e0c023 vocab=3a3e2c49
+-/
 lemma prod_P_fst (x : ℝ) :
     ∏ k ∈ Finset.range 504, (x - (4 * (k : ℝ) + 1))
       = (x - 1) * ∏ k ∈ Finset.range 503, (x - (4 * (k : ℝ) + 5)) := by
@@ -62,6 +74,9 @@ lemma prod_P_fst (x : ℝ) :
     Finset.prod_congr rfl (fun k _ ↦ by push_cast; ring)
   rw [e1, e2, mul_comm]
 
+/--
+@isnad1 id=eq.0h1v.s7.e82c4afdf6ba from=translated src=- shape=88f258cc vocab=3a3e2c49
+-/
 lemma prod_P_snd (x : ℝ) :
     ∏ k ∈ Finset.range 504, (x - (4 * (k : ℝ) + 4))
       = (∏ k ∈ Finset.range 503, (x - (4 * (k : ℝ) + 4))) * (x - 2016) := by
@@ -70,6 +85,9 @@ lemma prod_P_snd (x : ℝ) :
   congr 1
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s7.ea394dba7552 from=translated src=- shape=e8e0c023 vocab=3a3e2c49
+-/
 lemma prod_Q_fst (x : ℝ) :
     ∏ k ∈ Finset.range 504, (x - (4 * (k : ℝ) + 2))
       = (x - 2) * ∏ k ∈ Finset.range 503, (x - (4 * (k : ℝ) + 6)) := by
@@ -81,6 +99,9 @@ lemma prod_Q_fst (x : ℝ) :
     Finset.prod_congr rfl (fun k _ ↦ by push_cast; ring)
   rw [e1, e2, mul_comm]
 
+/--
+@isnad1 id=eq.0h1v.s7.91416615ec23 from=translated src=- shape=88f258cc vocab=3a3e2c49
+-/
 lemma prod_Q_snd (x : ℝ) :
     ∏ k ∈ Finset.range 504, (x - (4 * (k : ℝ) + 3))
       = (∏ k ∈ Finset.range 503, (x - (4 * (k : ℝ) + 3))) * (x - 2015) := by
@@ -90,7 +111,9 @@ lemma prod_Q_snd (x : ℝ) :
   norm_num
 
 /-- Re-pairing of the left-hand product: isolate `1` and `2016`, and group the
-remaining factors into pairs `(4j+4, 4j+5)`. -/
+remaining factors into pairs `(4j+4, 4j+5)`.
+@isnad1 id=eq.0h1v.s7.f63f12ebcd09 from=translated src=- shape=52202fdc vocab=3a3e2c49
+-/
 lemma prod_repair_P (x : ℝ) :
     (∏ k ∈ Finset.range 504, ((x - (4 * (k : ℝ) + 1)) * (x - (4 * (k : ℝ) + 4))))
       = (x - 1) * (x - 2016)
@@ -103,7 +126,9 @@ lemma prod_repair_P (x : ℝ) :
   ring
 
 /-- Re-pairing of the right-hand product: isolate `2` and `2015`, and group the
-remaining factors into pairs `(4j+3, 4j+6)`. -/
+remaining factors into pairs `(4j+3, 4j+6)`.
+@isnad1 id=eq.0h1v.s8.f88db761e5ac from=translated src=- shape=52202fdc vocab=3a3e2c49
+-/
 lemma prod_repair_Q (x : ℝ) :
     (∏ k ∈ Finset.range 504, ((x - (4 * (k : ℝ) + 2)) * (x - (4 * (k : ℝ) + 3))))
       = (x - 2) * (x - 2015)
@@ -116,7 +141,9 @@ lemma prod_repair_Q (x : ℝ) :
   ring
 
 /-- The two products remaining on the board never take the same real value:
-the left one is always strictly smaller than the right one. -/
+the left one is always strictly smaller than the right one.
+@isnad1 id=ne.0h1v.s7.651d141e17dc from=translated src=- shape=da0aff27 vocab=3a3e2c49
+-/
 lemma key (x : ℝ) :
     (∏ k ∈ Finset.range 504, ((x - (4 * (k : ℝ) + 1)) * (x - (4 * (k : ℝ) + 4)))) ≠
     (∏ k ∈ Finset.range 504, ((x - (4 * (k : ℝ) + 2)) * (x - (4 * (k : ℝ) + 3)))) := by
@@ -334,6 +361,9 @@ lemma key (x : ℝ) :
         · exact ⟨0, Finset.mem_range.mpr (by norm_num), by rw [huv 0]; linarith⟩
       exact ne_of_lt hlt
 
+/--
+@isnad1 id=eq.0h0v.s7.ec20066f81ce from=translated src=- shape=99b12f2b vocab=91b8dea9
+-/
 lemma setL : Finset.Icc 1 2016 \ ((Finset.Icc 1 2016).filter (fun n ↦ n % 4 = 2 ∨ n % 4 = 3))
     = ((Finset.range 504).image (fun k ↦ 4 * k + 1))
       ∪ ((Finset.range 504).image (fun k ↦ 4 * k + 4)) := by
@@ -352,6 +382,9 @@ lemma setL : Finset.Icc 1 2016 \ ((Finset.Icc 1 2016).filter (fun n ↦ n % 4 = 
     · exact ⟨⟨by lia, by lia⟩, by lia⟩
     · exact ⟨⟨by lia, by lia⟩, by lia⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.33d599a7e880 from=translated src=- shape=99b12f2b vocab=91b8dea9
+-/
 lemma setR : Finset.Icc 1 2016 \ ((Finset.Icc 1 2016).filter (fun n ↦ n % 4 = 0 ∨ n % 4 = 1))
     = ((Finset.range 504).image (fun k ↦ 4 * k + 2))
       ∪ ((Finset.range 504).image (fun k ↦ 4 * k + 3)) := by
@@ -370,6 +403,9 @@ lemma setR : Finset.Icc 1 2016 \ ((Finset.Icc 1 2016).filter (fun n ↦ n % 4 = 
     · exact ⟨⟨by lia, by lia⟩, by lia⟩
     · exact ⟨⟨by lia, by lia⟩, by lia⟩
 
+/--
+@isnad1 id=disjoint.0h0v.s6.c05826222ec7 from=translated src=- shape=dddb51db vocab=465f5aa9
+-/
 lemma disjL : Disjoint ((Finset.range 504).image (fun k ↦ 4 * k + 1))
     ((Finset.range 504).image (fun k ↦ 4 * k + 4)) := by
   rw [Finset.disjoint_left]
@@ -379,6 +415,9 @@ lemma disjL : Disjoint ((Finset.range 504).image (fun k ↦ 4 * k + 1))
   obtain ⟨b, -, hb⟩ := hm2
   lia
 
+/--
+@isnad1 id=disjoint.0h0v.s6.f214cd04b6c5 from=translated src=- shape=dddb51db vocab=465f5aa9
+-/
 lemma disjR : Disjoint ((Finset.range 504).image (fun k ↦ 4 * k + 2))
     ((Finset.range 504).image (fun k ↦ 4 * k + 3)) := by
   rw [Finset.disjoint_left]
@@ -389,7 +428,9 @@ lemma disjR : Disjoint ((Finset.range 504).image (fun k ↦ 4 * k + 2))
   lia
 
 /-- After erasing the factors indexed by `n % 4 = 2, 3` on the left and by
-`n % 4 = 0, 1` on the right, the resulting equation has no real solution. -/
+`n % 4 = 0, 1` on the right, the resulting equation has no real solution.
+@isnad1 id=ne.0h1v.s8.9b465ac248a9 from=translated src=- shape=6ac08e43 vocab=3d2e9056
+-/
 lemma prod_erase_aux (x : ℝ) :
     (∏ i ∈ Finset.Icc (1 : ℕ) 2016 \ ((Finset.Icc (1 : ℕ) 2016).filter (fun n ↦ n % 4 = 2 ∨ n % 4 = 3)),
         (x - (i : ℝ))) ≠

@@ -27,7 +27,9 @@ private theorem pair_card (a b : Bool) :
     Fintype.card {x : Bool → Bool // ((x false == a) && (x true == b)) = false} = 3 := by
   cases a <;> cases b <;> decide
 
-/-- Independent signed pairs have exactly three majority assignments each. -/
+/-- Independent signed pairs have exactly three majority assignments each.
+@isnad1 id=eq.0h3v.s7.6d9e127a4acf from=translated src=- shape=c282a9b2 vocab=a151ba03
+-/
 theorem local_card {E : Type*} [Fintype E] (left right : E → Bool) :
     Fintype.card {x : E × Bool → Bool //
       ∀ e, ((x (e, false) == left e) && (x (e, true) == right e)) = false} =
@@ -49,7 +51,9 @@ theorem local_card {E : Type*} [Fintype E] (left right : E → Bool) :
   rw [Fintype.card_congr reindex, Fintype.card_congr independent]
   simp only [Fintype.card_pi, pair_card, Finset.prod_const, Finset.card_univ]
 
-/-- The majority set of disjoint signed conjunctions has its exact product cardinality. -/
+/-- The majority set of disjoint signed conjunctions has its exact product cardinality.
+@isnad1 id=eq.1h3v.s6.c474e1265551 from=translated src=- shape=21f18447 vocab=cb9c243d
+-/
 theorem card_majorityInputs {E V : Type*} [Fintype E] [Fintype V]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge)) :
     (majorityInputs edge).card =

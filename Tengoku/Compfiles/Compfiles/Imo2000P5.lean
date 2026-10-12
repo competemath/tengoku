@@ -22,6 +22,9 @@ namespace Imo2000P5
 
 open Nat Finset
 
+/--
+@isnad1 id=dvd.4h2v.s7.d93571e21755 from=translated src=- shape=df0de0e2 vocab=2643bb4c
+-/
 lemma extend_divisibility {n : ℕ} (hn : n ∣ 2 ^ n + 1) (p : ℕ) (hp : Nat.Prime p)
     (hpodd : p ≠ 2) (hpdvd : p ∣ 2 ^ n + 1) :
     n * p ∣ 2 ^ (n * p) + 1 := by
@@ -53,6 +56,9 @@ lemma extend_divisibility {n : ℕ} (hn : n ∣ 2 ^ n + 1) (p : ℕ) (hp : Nat.P
     h_factor ▸ mul_dvd_mul (mod_cast hn) h_div
   exact_mod_cast h_mul_dvd
 
+/--
+@isnad1 id=not.5h3v.s7.686e912d09cc from=translated src=- shape=40ab6178 vocab=69d53f13
+-/
 lemma quotient_not_dvd_of_ne {n q : ℕ} {p : ℕ} (hp : Nat.Prime p)
     (hq_prime : Nat.Prime q) (hq_odd : q ≠ 2)
     (hpq : p ≠ q) (hpdvd : p ∣ 2 ^ n + 1) :
@@ -95,6 +101,9 @@ lemma quotient_not_dvd_of_ne {n q : ℕ} {p : ℕ} (hp : Nat.Prime p)
     Int.modEq_zero_iff_dvd.mp (hψ_mod.symm.trans (Int.modEq_zero_iff_dvd.mpr hp_dvd_ψ))
   exact (Nat.prime_dvd_prime_iff_eq hp hq_prime).mp (by exact_mod_cast h_q_dvd)
 
+/--
+@isnad1 id=eq.4h2v.s7.15c05195f110 from=translated src=- shape=30714c91 vocab=0f32504a
+-/
 lemma quotient_val_q {n q : ℕ} (hq_prime : Nat.Prime q) (hq_odd : q ≠ 2)
     (hqdvd : q ∣ 2 ^ n + 1)
     (hdvd : (2 ^ n + 1) ∣ (2 ^ (n * q) + 1)) :
@@ -117,6 +126,9 @@ lemma quotient_val_q {n q : ℕ} (hq_prime : Nat.Prime q) (hq_odd : q ≠ 2)
       add_comm _ (emultiplicity q ((2 ^ (n * q) + 1) / (2 ^ n + 1)))] at h_mul
   exact (WithTop.add_right_cancel hden_fin h_mul).symm
 
+/--
+@isnad1 id=ex.4h2v.s7.50d3b630b2d6 from=translated src=- shape=14b1bba4 vocab=05643e79
+-/
 lemma exists_new_prime_factor {n q : ℕ} (hn : 3 ≤ n)
     (hq_prime : Nat.Prime q) (hq_odd : q ≠ 2)
     (hqdvd : q ∣ 2 ^ n + 1) :
@@ -164,6 +176,9 @@ lemma exists_new_prime_factor {n q : ℕ} (hn : 3 ≤ n)
   have h_r_dvd_Φ : r ∣ Φ := hm_eq ▸ dvd_mul_of_dvd_right hr_dvd_m _
   exact h_r_dvd_Φ.trans (hΦ_dvd ▸ dvd_mul_left _ _)
 
+/--
+@isnad1 id=ex.2h1v.s6.cb1a23065706 from=translated src=- shape=006b60e4 vocab=8470c1ce
+-/
 lemma increase_prime_factors (n : ℕ) (hn : 0 < n) (hd : n ∣ 2 ^ n + 1) :
     ∃ m, 0 < m ∧ m ∣ 2 ^ m + 1 ∧ m.primeFactors.card = n.primeFactors.card + 1 := by
   by_cases hn3 : 3 ≤ n
@@ -211,6 +226,9 @@ lemma increase_prime_factors (n : ℕ) (hn : 0 < n) (hd : n ∣ 2 ^ n + 1) :
         rw [Nat.Prime.primeFactors (by decide : Nat.Prime 3)]; simp⟩
     · lia
 
+/--
+@isnad1 id=ex.0h1v.s5.687f2678966e from=translated src=- shape=0baed080 vocab=8470c1ce
+-/
 theorem exists_dvd_two_pow_add_one (k : ℕ) :
     ∃ n : ℕ, 0 < n ∧ n.primeFactors.card = k ∧ n ∣ 2 ^ n + 1 := by
   induction k with

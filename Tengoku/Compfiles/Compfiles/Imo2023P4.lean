@@ -33,6 +33,9 @@ noncomputable def aa (m : ℕ)
   √((∑ i ∈ Finset.univ.filter (· ≤ n), x i) *
     (∑ i ∈ Finset.univ.filter (· ≤ n), (1 / x i)))
 
+/--
+@isnad1 id=le.6h6v.s7.0638605e5c68 from=translated src=- shape=afdc7b62 vocab=1c908215
+-/
 lemma cauchy_schwarz {x1 x2 x3 y1 y2 y3 : ℝ}
     (hx1 : 0 ≤ x1) (hx2 : 0 ≤ x2) (hx3 : 0 ≤ x3)
     (hy1 : 0 ≤ y1) (hy2 : 0 ≤ y2) (hy3 : 0 ≤ y3) :
@@ -67,6 +70,9 @@ lemma cauchy_schwarz {x1 x2 x3 y1 y2 y3 : ℝ}
   rw [← h4]
   exact pow_le_pow_left₀ h2 h1 2
 
+/--
+@isnad1 id=lt.2h1v.s5.0bd64b44ffa4 from=translated src=- shape=f74c72a8 vocab=8261c0ed
+-/
 lemma lemma1 (u : ℝ) (hu : u ≠ 1) (hp : 0 < u) : 2 < u + 1/u := by
   suffices H : 2 * u < (u + 1 / u) * u from
     (mul_lt_mul_iff_of_pos_right hp).mp H
@@ -75,6 +81,9 @@ lemma lemma1 (u : ℝ) (hu : u ≠ 1) (hp : 0 < u) : 2 < u + 1/u := by
   have h2 : 0 < (u - 1)^2 := pow_two_pos_of_ne_zero h1
   linear_combination h2
 
+/--
+@isnad1 id=le.3h2v.s8.c415cb016485 from=translated src=- shape=209a70e8 vocab=68dd3269
+-/
 theorem imo2023_p4_generalized
     (m : ℕ)
     (x : Finset.Icc 1 (2 * m + 1) → ℝ)

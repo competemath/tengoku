@@ -60,7 +60,9 @@ The answer is `n ∈ {3, 4}`, following Evan Chen's write-up
 
 /-- If `a` and `b` are distinct positive integers with `a, b ≤ n`, then
 `a * b ∣ Nat.factorial n`: both occur as distinct factors in
-`n ! = ∏ i ∈ Finset.range n, (i + 1)`. -/
+`n ! = ∏ i ∈ Finset.range n, (i + 1)`.
+@isnad1 id=dvd.5h3v.s5.25c6f50152a1 from=translated src=- shape=de8c7ce1 vocab=c9eb6a26
+-/
 lemma mul_dvd_factorial_of_ne {a b n : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b)
     (han : a ≤ n) (hbn : b ≤ n) : a * b ∣ Nat.factorial n := by
   have ha' : a - 1 ∈ Finset.range n := Finset.mem_range.mpr (by lia)
@@ -73,19 +75,25 @@ lemma mul_dvd_factorial_of_ne {a b n : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a �
   rw [← Finset.prod_range_add_one_eq_factorial, ← e1, ← e2]
   exact ⟨∏ x ∈ ((Finset.range n).erase (a - 1)).erase (b - 1), (x + 1), by ring⟩
 
-/-- The divisors of `3 ! = 6` are `1, 2, 3, 6`, with gaps `1, 1, 3`. -/
+/-- The divisors of `3 ! = 6` are `1, 2, 3, 6`, with gaps `1, 1, 3`.
+@isnad1 id=good.0h0v.s2.2c8d686f3b43 from=translated src=- shape=e590c3e1 vocab=4755d296
+-/
 lemma good_three : Good 3 := by
   unfold Good
   decide
 
 /-- The divisors of `4 ! = 24` are `1, 2, 3, 4, 6, 8, 12, 24`,
-with gaps `1, 1, 1, 2, 2, 4, 12`. -/
+with gaps `1, 1, 1, 2, 2, 4, 12`.
+@isnad1 id=good.0h0v.s2.541ac5d10249 from=translated src=- shape=e590c3e1 vocab=4755d296
+-/
 lemma good_four : Good 4 := by
   unfold Good
   decide
 
 /-- `n = 5` fails: `15, 20, 24` are consecutive divisors of `5 ! = 120`,
-but `20 - 15 = 5 > 4 = 24 - 20`. -/
+but `20 - 15 = 5 > 4 = 24 - 20`.
+@isnad1 id=not.0h0v.s2.5622c6d74f35 from=translated src=- shape=8d7dbbf6 vocab=4755d296
+-/
 lemma not_good_five : ¬ Good 5 := by
   intro h
   unfold Good at h
@@ -95,7 +103,9 @@ lemma not_good_five : ¬ Good 5 := by
 
 set_option maxRecDepth 10000 in
 /-- `n = 6` fails: `90, 120, 144` are consecutive divisors of `6 ! = 720`,
-but `120 - 90 = 30 > 24 = 144 - 120`. -/
+but `120 - 90 = 30 > 24 = 144 - 120`.
+@isnad1 id=not.0h0v.s2.b9ff280c3b39 from=translated src=- shape=8d7dbbf6 vocab=4755d296
+-/
 lemma not_good_six : ¬ Good 6 := by
   intro h
   unfold Good at h
@@ -105,7 +115,9 @@ lemma not_good_six : ¬ Good 6 := by
 
 /-- Every `n` with `7 ≤ n ≤ 12` fails: `12, 14, 15` are consecutive divisors
 of `n !` (there is no divisor strictly between `12` and `14` since `13 ∤ n !`),
-but `14 - 12 = 2 > 1 = 15 - 14`. -/
+but `14 - 12 = 2 > 1 = 15 - 14`.
+@isnad1 id=not.2h1v.s4.5ad93a072563 from=translated src=- shape=8d2519ec vocab=34d7fd35
+-/
 lemma not_good_of_seven_le {n : ℕ} (h7 : 7 ≤ n) (hn12 : n ≤ 12) : ¬ Good n := by
   intro h
   unfold Good at h
@@ -135,7 +147,9 @@ lemma not_good_of_seven_le {n : ℕ} (h7 : 7 ≤ n) (hn12 : n ≤ 12) : ¬ Good 
 /-- Every `n ≥ 13` fails. With `m = ⌊n / 2⌋ ≥ 6`, both `m² - 1` and `m²` divide
 `n !`, hence are consecutive divisors of `n !` with gap `1`. A downward induction
 using `Good n` then shows that every integer in `[1, m²]` divides `n !`, which
-contradicts Bertrand's postulate: there is a prime `p` with `n < p ≤ 2n ≤ m²`. -/
+contradicts Bertrand's postulate: there is a prime `p` with `n < p ≤ 2n ≤ m²`.
+@isnad1 id=not.1h1v.s3.17f814a40b99 from=translated src=- shape=c1538fc1 vocab=34d7fd35
+-/
 lemma not_good_of_thirteen_le {n : ℕ} (hn : 13 ≤ n) : ¬ Good n := by
   intro hGood
   unfold Good at hGood

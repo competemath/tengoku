@@ -33,16 +33,22 @@ def cnt {n : ℕ} (a : Fin n → ℕ) (x : ZMod 3) : ℕ :=
 /-- The "good" residue patterns: triples of residues that sum to `0`. -/
 def patterns : Finset (Fin 3 → ZMod 3) := univ.filter fun u ↦ u 0 + u 1 + u 2 = 0
 
-/-- Divisibility by `3` in terms of residues in `ZMod 3`. -/
+/-- Divisibility by `3` in terms of residues in `ZMod 3`.
+@isnad1 id=iff.0h3v.s8.85c406f2690c from=translated src=- shape=9fb43d86 vocab=effcc033
+-/
 lemma dvd_iff_res {x y z : ℕ} :
     3 ∣ x + y + z ↔ (x : ZMod 3) + (y : ZMod 3) + (z : ZMod 3) = 0 := by
   rw [← ZMod.natCast_eq_zero_iff, Nat.cast_add, Nat.cast_add]
 
-/-- Summing over `ZMod 3` gives three terms. -/
+/-- Summing over `ZMod 3` gives three terms.
+@isnad1 id=eq.0h1v.s7.db65bba2c80e from=translated src=- shape=cea20870 vocab=e3c55c56
+-/
 lemma sum_univ_zmod3 (f : ZMod 3 → ℕ) : ∑ x : ZMod 3, f x = f 0 + f 1 + f 2 :=
   Fin.sum_univ_three f
 
-/-- The residues split `Fin n` into the three fibers of `res a`. -/
+/-- The residues split `Fin n` into the three fibers of `res a`.
+@isnad1 id=eq.0h2v.s7.5defd4485464 from=translated src=- shape=5d2b5c2f vocab=2e80886b
+-/
 lemma cnt_sum {n : ℕ} (a : Fin n → ℕ) :
     cnt a 0 + cnt a 1 + cnt a 2 = n := by
   have h := card_eq_sum_card_fiberwise (s := (univ : Finset (Fin n)))
@@ -51,7 +57,9 @@ lemma cnt_sum {n : ℕ} (a : Fin n → ℕ) :
   rw [card_univ, Fintype.card_fin] at h
   exact h.symm
 
-/-- The fiber of triples with prescribed residues is a product of fibers. -/
+/-- The fiber of triples with prescribed residues is a product of fibers.
+@isnad1 id=eq.0h3v.s7.b0f4f7c86d67 from=translated src=- shape=29ac4982 vocab=8d34b053
+-/
 lemma fiber_card {n : ℕ} (a : Fin n → ℕ) (u : Fin 3 → ZMod 3) :
     (univ.filter fun t : Fin 3 → Fin n ↦ ∀ j, res a (t j) = u j).card
       = ∏ j, cnt a (u j) := by
@@ -62,7 +70,9 @@ lemma fiber_card {n : ℕ} (a : Fin n → ℕ) (u : Fin 3 → ZMod 3) :
   rw [h, Fintype.card_piFinset]
   rfl
 
-/-- The number of good triples, grouped by their residue pattern. -/
+/-- The number of good triples, grouped by their residue pattern.
+@isnad1 id=eq.0h2v.s8.5a095adfb680 from=translated src=- shape=7405b818 vocab=c9a690b0
+-/
 lemma good_card {n : ℕ} (a : Fin n → ℕ) :
     Fintype.card {t : Fin 3 → Fin n // 3 ∣ a (t 0) + a (t 1) + a (t 2)}
       = ∑ u ∈ patterns, ∏ j, cnt a (u j) := by
@@ -95,7 +105,9 @@ lemma good_card {n : ℕ} (a : Fin n → ℕ) :
       exact hu0
   rw [hf, fiber_card]
 
-/-- Summing over the good patterns by reindexing with the first two entries. -/
+/-- Summing over the good patterns by reindexing with the first two entries.
+@isnad1 id=eq.0h1v.s8.9bc62ee0be05 from=translated src=- shape=68df9403 vocab=5cb5cc50
+-/
 lemma sum_over_patterns (F : (Fin 3 → ZMod 3) → ℕ) :
     ∑ u ∈ patterns, F u
       = ∑ p : ZMod 3 × ZMod 3, F ![p.1, p.2, -(p.1 + p.2)] := by
@@ -134,7 +146,9 @@ lemma sum_over_patterns (F : (Fin 3 → ZMod 3) → ℕ) :
         linear_combination e
     exact congrArg F hu'
 
-/-- The good triple count in terms of the residue counts. -/
+/-- The good triple count in terms of the residue counts.
+@isnad1 id=eq.0h1v.s9.d26dba7dfc8c from=translated src=- shape=f69eb5f0 vocab=b5f85d98
+-/
 lemma pattern_sum (c : ZMod 3 → ℕ) :
     ∑ u ∈ patterns, ∏ j, c (u j)
       = c 0 ^ 3 + c 1 ^ 3 + c 2 ^ 3 + 6 * (c 0 * c 1 * c 2) := by
@@ -155,7 +169,9 @@ lemma pattern_sum (c : ZMod 3 → ℕ) :
   rw [h00, h01, h02, h10, h11, h12, h20, h21, h22]
   ring
 
-/-- The key inequality in the case where `x` is a maximum of `x, y, z`. -/
+/-- The key inequality in the case where `x` is a maximum of `x, y, z`.
+@isnad1 id=le.5h3v.s7.6edba24f620d from=translated src=- shape=aa7f468b vocab=cef4cf1d
+-/
 lemma ineq_max {x y z : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z)
     (hyx : y ≤ x) (hzx : z ≤ x) :
     (x + y + z) ^ 3 ≤ 4 * (x ^ 3 + y ^ 3 + z ^ 3 + 6 * (x * y * z)) := by
@@ -164,7 +180,9 @@ lemma ineq_max {x y z : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z)
   nlinarith [mul_nonneg hs (sq_nonneg (x - (x + y + z) / 2)),
     mul_nonneg (mul_nonneg hy hz) h3]
 
-/-- The key inequality: `4 * (p³ + q³ + r³ + 6pqr) ≥ (p + q + r)³` for `p q r ≥ 0`. -/
+/-- The key inequality: `4 * (p³ + q³ + r³ + 6pqr) ≥ (p + q + r)³` for `p q r ≥ 0`.
+@isnad1 id=le.3h3v.s7.d68d1b667886 from=translated src=- shape=b97f268c vocab=cef4cf1d
+-/
 lemma ineq3 {x y z : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) :
     (x + y + z) ^ 3 ≤ 4 * (x ^ 3 + y ^ 3 + z ^ 3 + 6 * (x * y * z)) := by
   rcases le_total y x with hyx | hxy

@@ -44,25 +44,35 @@ Cauchy-Schwarz gives
 and the claim follows.
 -/
 
+/--
+@isnad1 id=eq.0h1v.s5.f2b8247eafa4 from=translated src=- shape=6f65f337 vocab=2be0ebc6
+-/
 theorem sum_range_id_real (n : ℕ) :
     ∑ i ∈ range n, (i : ℝ) = (n : ℝ) * ((n : ℝ) - 1) / 2 := by
   induction n with
   | zero => simp
   | succ k ih => rw [sum_range_succ, ih]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.c85508ea56c2 from=translated src=- shape=0f10df8e vocab=c42fa33a
+-/
 theorem sum_sq_range (n : ℕ) :
     ∑ i ∈ range n, (i : ℝ) ^ 2 = (n : ℝ) * ((n : ℝ) - 1) * (2 * (n : ℝ) - 1) / 6 := by
   induction n with
   | zero => simp
   | succ k ih => rw [sum_range_succ, ih]; push_cast; ring
 
-/-- The coefficients `2i + 1 - n` are centered: their sum vanishes. -/
+/-- The coefficients `2i + 1 - n` are centered: their sum vanishes.
+@isnad1 id=eq.0h1v.s5.b7a9e91e1586 from=translated src=- shape=4d44f2da vocab=a9fc3bcc
+-/
 theorem sum_coeff (n : ℕ) : ∑ i ∈ range n, (2 * (i : ℝ) + 1 - (n : ℝ)) = 0 := by
   simp only [sum_sub_distrib, sum_add_distrib, ← mul_sum, sum_const, card_range, nsmul_eq_mul,
     sum_range_id_real]
   ring
 
-/-- The sum of the coefficients times the index. -/
+/-- The sum of the coefficients times the index.
+@isnad1 id=eq.0h1v.s7.1d436aa85cd8 from=translated src=- shape=04b7743a vocab=113fc2fa
+-/
 theorem sum_coeff_mul (n : ℕ) :
     ∑ i ∈ range n, (2 * (i : ℝ) + 1 - (n : ℝ)) * (i : ℝ) = (n : ℝ) * ((n : ℝ) ^ 2 - 1) / 6 := by
   have exp : ∀ i : ℕ, (2 * (i : ℝ) + 1 - (n : ℝ)) * (i : ℝ)
@@ -71,7 +81,9 @@ theorem sum_coeff_mul (n : ℕ) :
   simp only [sum_add_distrib, ← mul_sum, sum_sq_range, sum_range_id_real]
   ring
 
-/-- The sum of the squared coefficients. -/
+/-- The sum of the squared coefficients.
+@isnad1 id=eq.0h1v.s7.7cc8325ba78b from=translated src=- shape=2fb65775 vocab=113fc2fa
+-/
 theorem sum_sq_coeff (n : ℕ) :
     ∑ i ∈ range n, (2 * (i : ℝ) + 1 - (n : ℝ)) ^ 2 = (n : ℝ) * ((n : ℝ) ^ 2 - 1) / 3 := by
   have exp : ∀ i : ℕ, (2 * (i : ℝ) + 1 - (n : ℝ)) ^ 2
@@ -81,7 +93,9 @@ theorem sum_sq_coeff (n : ℕ) :
     sum_sq_range, sum_range_id_real]
   ring
 
-/-- The key identity for the sum of absolute differences of a nondecreasing sequence. -/
+/-- The key identity for the sum of absolute differences of a nondecreasing sequence.
+@isnad1 id=eq.1h2v.s7.f10717194824 from=translated src=- shape=15da57e1 vocab=6a0c2c7f
+-/
 theorem sum_abs_diff : ∀ (n : ℕ) {x : ℕ → ℝ}, MonotoneOn x (range n) →
     ∑ i ∈ range n, ∑ j ∈ range n, |x i - x j| =
       2 * ∑ i ∈ range n, (2 * (i : ℝ) + 1 - (n : ℝ)) * x i := by
@@ -130,7 +144,9 @@ theorem sum_abs_diff : ∀ (n : ℕ) {x : ℕ → ℝ}, MonotoneOn x (range n) �
     rw [split, rsplit, esum, ih hxk]
     ring
 
-/-- Expansion of the sum of squared differences. -/
+/-- Expansion of the sum of squared differences.
+@isnad1 id=eq.0h2v.s7.f9b68716fc55 from=translated src=- shape=9a847dcb vocab=01efd949
+-/
 theorem sum_sq_diff (n : ℕ) (x : ℕ → ℝ) :
     ∑ i ∈ range n, ∑ j ∈ range n, (x i - x j) ^ 2
       = 2 * (n : ℝ) * ∑ i ∈ range n, x i ^ 2 - 2 * (∑ i ∈ range n, x i) ^ 2 := by

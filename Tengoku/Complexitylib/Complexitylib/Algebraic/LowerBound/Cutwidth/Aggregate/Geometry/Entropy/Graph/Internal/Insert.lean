@@ -44,7 +44,9 @@ noncomputable def tupleInsertEquiv (selected : Finset E) (e : E) (fresh : e ∉ 
     · simp only [h, ↓reduceDIte]
 
 omit [DecidableEq V] in
-/-- The insertion equivalence combines the actual edge value and actual previous tuple. -/
+/-- The insertion equivalence combines the actual edge value and actual previous tuple.
+@isnad1 id=eq.1h6v.s8.55482651f139 from=translated src=- shape=0e65aeeb vocab=39e49f5a
+-/
 @[simp] theorem tupleInsertEquiv_apply (edge : E → SignedEdge V) (selected : Finset E)
     (e : E) (fresh : e ∉ selected) (x : V → Bool) :
     tupleInsertEquiv selected e fresh ((edge e).eval x, tuple edge selected x) =

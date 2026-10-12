@@ -29,7 +29,9 @@ noncomputable def extendByZero (B : Finset ι) : (B → ZMod 2) →ₗ[ZMod 2] (
       map_add' := by intro v w; ext i; by_cases hi : i ∈ B <;> simp [hi]
       map_smul' := by intro c v; ext i; by_cases hi : i ∈ B <;> simp [hi] }
 
-/-- The change in residue after a supported update is entirely within its block. -/
+/-- The change in residue after a supported update is entirely within its block.
+@isnad1 id=eq.0h4v.s10.f7ffcc11339c from=translated src=- shape=2251ad4f vocab=80df60de
+-/
 theorem residue_extendByZero_sub (B : Finset ι) (a : ι → ZMod 2) (v : B → ZMod 2) :
     residue (a + extendByZero B v) - residue a =
       residue ((fun i : B => a i) + v) - residue (fun i : B => a i) := by
@@ -49,7 +51,9 @@ theorem residue_extendByZero_sub (B : Finset ι) (a : ι → ZMod 2) (v : B → 
       simp [change, extendByZero]
 
 /-- Every sufficiently large coordinate block contains a residue-changing
- direction satisfying the original homogeneous equations. -/
+ direction satisfying the original homogeneous equations.
+@isnad1 id=ex.1h5v.s10.2c8b5303d2d3 from=translated src=- shape=90d4abcf vocab=50a3d4b3
+-/
 theorem exists_supported_kernel_residue_ne
     (R : (ι → ZMod 2) →ₗ[ZMod 2] (κ → ZMod 2)) (a : ι → ZMod 2)
     (B : Finset ι) (large : 2 * Fintype.card κ < B.card) :

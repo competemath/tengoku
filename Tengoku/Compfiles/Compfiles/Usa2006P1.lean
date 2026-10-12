@@ -47,7 +47,9 @@ iff `g` has an "inversion" `g l < g k` with `1 ≤ k < l ≤ s - 1`.
   `0 < 1 + s * t < 2 * p`, we get `1 + s * t = p`, i.e. `s ∣ p - 1`.
 -/
 
-/-- If `p` is prime and `0 < s, k < p`, then `s * k ≢ 0 (mod p)`. -/
+/-- If `p` is prime and `0 < s, k < p`, then `s * k ≢ 0 (mod p)`.
+@isnad1 id=ne.5h3v.s6.63205d4e15b8 from=translated src=- shape=41843580 vocab=91890d0b
+-/
 lemma residue_ne_zero {p s : ℕ} (hp : p.Prime) (hs0 : 0 < s) (hs1 : s < p)
     {k : ℕ} (hk0 : 0 < k) (hk1 : k < p) : (s * k) % p ≠ 0 := by
   intro h
@@ -59,7 +61,9 @@ lemma residue_ne_zero {p s : ℕ} (hp : p.Prime) (hs0 : 0 < s) (hs1 : s < p)
 /-- The residue of `1 + k * t` modulo `p`. -/
 def g (p t k : ℕ) : ℕ := (1 + k * t) % p
 
-/-- The fractional part inequalities are equivalent to inequalities of residues. -/
+/-- The fractional part inequalities are equivalent to inequalities of residues.
+@isnad1 id=iff.1h2v.s7.d4586a151ca1 from=translated src=- shape=6b9f297e vocab=2448e4ef
+-/
 lemma fract_iff_mod (p s : ℕ) (hp : p.Prime) :
     (∃ m n : ℕ, 0 < m ∧ m < n ∧ n < p ∧
       Int.fract ((s : ℚ) * m / p) < Int.fract ((s : ℚ) * n / p) ∧
@@ -80,7 +84,9 @@ lemma fract_iff_mod (p s : ℕ) (hp : p.Prime) :
   · rintro ⟨m, n, hm, hmn, hn, h1, h2⟩
     exact ⟨m, n, hm, hmn, hn, (key m n).mpr ⟨h1, h2⟩⟩
 
-/-- Core statement: suitable residues exist iff `s` does not divide `p - 1`. -/
+/-- Core statement: suitable residues exist iff `s` does not divide `p - 1`.
+@isnad1 id=iff.3h2v.s7.c4670b9b67e3 from=translated src=- shape=37ed3332 vocab=71c27174
+-/
 lemma mod_iff_not_dvd {p s : ℕ} (hp : p.Prime) (hs0 : 0 < s) (hs1 : s < p) :
     (∃ m n : ℕ, 0 < m ∧ m < n ∧ n < p ∧ (s * m) % p < (s * n) % p ∧ (s * n) % p < s) ↔
     ¬ s ∣ p - 1 := by

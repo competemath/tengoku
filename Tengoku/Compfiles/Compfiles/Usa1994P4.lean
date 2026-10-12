@@ -33,23 +33,38 @@ so `∑ i, (y i)^2 > ∑ i, 1 / (4 (i+1))`.
 /-- The telescoping comparison sequence `y i = √(i+1) - √i`. -/
 noncomputable def y (i : ℕ) : ℝ := Real.sqrt (i + 1) - Real.sqrt i
 
+/--
+@isnad1 id=lt.0h1v.s5.fee85f208214 from=translated src=- shape=0aace135 vocab=bb055a99
+-/
 lemma hden_pos (i : ℕ) : 0 < Real.sqrt ((i : ℝ) + 1) + Real.sqrt (i : ℝ) := by
   positivity
 
+/--
+@isnad1 id=lt.0h1v.s3.8c552751a1d5 from=translated src=- shape=b9369acb vocab=f6f6b3bd
+-/
 lemma hy_pos (i : ℕ) : 0 < y i := by
   have h : Real.sqrt (i : ℝ) < Real.sqrt ((i : ℝ) + 1) :=
     Real.sqrt_lt_sqrt (Nat.cast_nonneg _) (lt_add_one _)
   exact sub_pos.mpr h
 
+/--
+@isnad1 id=eq.0h1v.s5.397fe0198ddc from=translated src=- shape=19facb99 vocab=87e89b4a
+-/
 lemma hy_mul (i : ℕ) : y i * (Real.sqrt ((i : ℝ) + 1) + Real.sqrt (i : ℝ)) = 1 := by
   have h1 : (Real.sqrt ((i : ℝ) + 1)) ^ 2 = (i : ℝ) + 1 := Real.sq_sqrt (by positivity)
   have h2 : (Real.sqrt (i : ℝ)) ^ 2 = (i : ℝ) := Real.sq_sqrt (Nat.cast_nonneg _)
   show (Real.sqrt ((i : ℝ) + 1) - Real.sqrt (i : ℝ)) * _ = 1
   nlinarith [h1, h2]
 
+/--
+@isnad1 id=eq.0h1v.s5.fb8e6595a8f4 from=translated src=- shape=1cef92b0 vocab=afa484ef
+-/
 lemma hy_inv (i : ℕ) : y i = 1 / (Real.sqrt ((i : ℝ) + 1) + Real.sqrt (i : ℝ)) :=
   (eq_div_iff_mul_eq (hden_pos i).ne').mpr (hy_mul i)
 
+/--
+@isnad1 id=le.0h1v.s4.782f7c8ac5d8 from=translated src=- shape=490b3ecf vocab=dc5c100e
+-/
 lemma hy_succ_le (i : ℕ) : y (i + 1) ≤ y i := by
   rw [hy_inv (i + 1), hy_inv i]
   have hcast : ((i + 1 : ℕ) : ℝ) = (i : ℝ) + 1 := by push_cast; ring
@@ -61,6 +76,9 @@ lemma hy_succ_le (i : ℕ) : y (i + 1) ≤ y i := by
     linarith
   exact one_div_le_one_div_of_le (hden_pos i) hmono
 
+/--
+@isnad1 id=eq.0h1v.s4.787a2afe2c13 from=translated src=- shape=7d68c25f vocab=cbf8d30e
+-/
 lemma sum_y (n : ℕ) : ∑ i ∈ Finset.range n, y i = Real.sqrt (n : ℝ) := by
   induction n with
   | zero => simp
@@ -71,6 +89,9 @@ lemma sum_y (n : ℕ) : ∑ i ∈ Finset.range n, y i = Real.sqrt (n : ℝ) := b
     rw [hcast]
     ring
 
+/--
+@isnad1 id=lt.0h1v.s6.85fc55a7f24f from=translated src=- shape=1b480ef6 vocab=d91dd7ef
+-/
 lemma one_div_four_lt (i : ℕ) : (1 : ℝ) / (i + 1) / 4 < (y i) ^ 2 := by
   have hlt : Real.sqrt ((i : ℝ) + 1) + Real.sqrt (i : ℝ)
       < 2 * Real.sqrt ((i : ℝ) + 1) := by
@@ -91,7 +112,9 @@ lemma one_div_four_lt (i : ℕ) : (1 : ℝ) / (i + 1) / 4 < (y i) ^ 2 := by
   exact h4
 
 /-- Abel-summation comparison: the partial sums of `x` dominate those of `y` and `y`
-is decreasing, so `∑ i, (y i)^2 ≤ ∑ i, x i * y i`. -/
+is decreasing, so `∑ i, (y i)^2 ≤ ∑ i, x i * y i`.
+@isnad1 id=le.1h2v.s6.19c151a05aa3 from=translated src=- shape=d931b645 vocab=594b21d0
+-/
 lemma sum_sq_y_le (x : ℕ → ℝ) (h : ∀ n : ℕ, Real.sqrt (n : ℝ) ≤ ∑ i ∈ Finset.range n, x i)
     (n : ℕ) :
     ∑ i ∈ Finset.range n, (y i) ^ 2 ≤ ∑ i ∈ Finset.range n, x i * y i := by

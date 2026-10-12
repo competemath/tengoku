@@ -28,7 +28,9 @@ abbrev IsGood (A : Finset ℤ) : Prop :=
 abbrev answer (n : ℕ) : ℕ := if Even n then n else n + 1
 
 /-- The pairing map `x ↦ min x (c - x)` is injective on any set containing no two
-elements summing to `c`: equality of the images forces `x = y` or `x + y = c`. -/
+elements summing to `c`: equality of the images forces `x = y` or `x + y = c`.
+@isnad1 id=injon.1h2v.s6.1056b45cbe74 from=translated src=- shape=280f5606 vocab=d0a955b6
+-/
 lemma injOn_min_sub {B : Finset ℤ} {c : ℤ} (hB : ∀ x ∈ B, ∀ y ∈ B, x + y ≠ c) :
     Set.InjOn (fun x ↦ min x (c - x)) B := by
   intro x hx y hy hxy
@@ -43,7 +45,9 @@ lemma injOn_min_sub {B : Finset ℤ} {c : ℤ} (hB : ∀ x ∈ B, ∀ y ∈ B, x
 
 /-- Pairing counting lemma. If `B ⊆ [lo, hi]` contains no two elements (not necessarily
 distinct) summing to `c = lo + hi`, then pairing `x` with `c - x` shows that `B` has at
-most as many elements as the interval `[lo, (c-1)/2]`. -/
+most as many elements as the interval `[lo, (c-1)/2]`.
+@isnad1 id=le.3h4v.s7.8882f63a29a5 from=translated src=- shape=67477ebd vocab=302356d9
+-/
 lemma card_le_of_pair {B : Finset ℤ} {lo hi c : ℤ} (hsub : B ⊆ Finset.Icc lo hi)
     (hc : c = lo + hi) (hB : ∀ x ∈ B, ∀ y ∈ B, x + y ≠ c) :
     B.card ≤ ((c - 1) / 2 + 1 - lo).toNat := by
@@ -64,7 +68,9 @@ lemma card_le_of_pair {B : Finset ℤ} {lo hi c : ℤ} (hsub : B ⊆ Finset.Icc 
     _ = ((c - 1) / 2 + 1 - lo).toNat := Int.card_Icc _ _
 
 /-- Case (ii) of the induction step: if both `2m` and `-(2m)` lie in `A` (with `m ≥ 1`),
-then `A` has at most `2m` elements. -/
+then `A` has at most `2m` elements.
+@isnad1 id=le.5h2v.s7.d3fb532aeaee from=translated src=- shape=43fa24ae vocab=90df0600
+-/
 lemma card_le_case2 {m : ℕ} (hm : 1 ≤ m) {A : Finset ℤ}
     (hsub : A ⊆ Finset.Icc (-(2 * (m : ℤ))) (2 * (m : ℤ))) (hgood : IsGood A)
     (hN : (2 * (m : ℤ)) ∈ A) (hnegN : -(2 * (m : ℤ)) ∈ A) :
@@ -132,7 +138,9 @@ lemma card_le_case2 {m : ℕ} (hm : 1 ≤ m) {A : Finset ℤ}
   lia
 
 /-- Case (iii) of the induction step: if `2m`, `2m-1` and `-(2m-1)` lie in `A` but
-`-(2m)` does not (with `m ≥ 1`), then `A` has at most `2m` elements. -/
+`-(2m)` does not (with `m ≥ 1`), then `A` has at most `2m` elements.
+@isnad1 id=le.7h2v.s7.b3c7baa90003 from=translated src=- shape=cf4386aa vocab=77132e2a
+-/
 lemma card_le_case3 {m : ℕ} (hm : 1 ≤ m) {A : Finset ℤ}
     (hsub : A ⊆ Finset.Icc (-(2 * (m : ℤ))) (2 * (m : ℤ))) (hgood : IsGood A)
     (hN : (2 * (m : ℤ)) ∈ A) (hN1 : (2 * (m : ℤ)) - 1 ∈ A)
@@ -216,7 +224,9 @@ lemma card_le_case3 {m : ℕ} (hm : 1 ≤ m) {A : Finset ℤ}
     lia
 
 /-- The upper bound for even `n`: any good subset of `[-2m, 2m]` has at most `2m`
-elements, by strong induction on `m`. -/
+elements, by strong induction on `m`.
+@isnad1 id=le.2h2v.s6.82430aaaecd9 from=translated src=- shape=a55adc33 vocab=b760d38b
+-/
 lemma card_le_even (m : ℕ) (A : Finset ℤ) :
     A ⊆ Finset.Icc (-(2 * (m : ℤ))) (2 * (m : ℤ)) → IsGood A → A.card ≤ 2 * m := by
   induction m using Nat.strong_induction_on generalizing A with
