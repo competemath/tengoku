@@ -1,0 +1,47 @@
+/-
+Copyright (c) 2026 Egor Lyfar. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Egor Lyfar
+-/
+module
+
+public import Tengoku.LeanPool.LeanPool.Erdos97ConvexOctagon.CoverageCertificateData13
+public import Tengoku
+
+/-! # Bounded coverage-certificate computation facts -/
+
+@[expose] public section
+
+namespace Erdos97Octagon.RawIncidence.StaticDirectCoverage
+
+/-- Root audit for fixed branch (4, 8). -/
+theorem coverageBranchRoot_4_08 :
+    branchClaimRootValidB 4 8 (.patternTwo 0) = true := by
+  decide +kernel
+
+/-- Root audit for fixed branch (6, 23). -/
+theorem coverageBranchRoot_6_23 :
+    branchClaimRootValidB 6 23 (.search branchClaims6Row23) = true := by
+  decide +kernel
+
+/-- Node audit for fixed branch (6, 23), starting at 0. -/
+theorem coverageBranchNodes_6_23_00000 :
+    nodeClaimChunkValidB branchClaims6Row23 0 64 = true := by
+  decide +kernel
+
+/-- Node audit for fixed branch (6, 23), starting at 64. -/
+theorem coverageBranchNodes_6_23_00064 :
+    nodeClaimChunkValidB branchClaims6Row23 64 64 = true := by
+  decide +kernel
+
+/-- Node audit for fixed branch (6, 23), starting at 128. -/
+theorem coverageBranchNodes_6_23_00128 :
+    nodeClaimChunkValidB branchClaims6Row23 128 64 = true := by
+  decide +kernel
+
+/-- Node audit for fixed branch (6, 23), starting at 192. -/
+theorem coverageBranchNodes_6_23_00192 :
+    nodeClaimChunkValidB branchClaims6Row23 192 56 = true := by
+  decide +kernel
+
+end Erdos97Octagon.RawIncidence.StaticDirectCoverage
