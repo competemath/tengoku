@@ -377,6 +377,26 @@ class CheckTags(unittest.TestCase):
             problems, _ = isnad.check_tags(recs, lines, [self.MODULE], root)
         self.assertTrue(any("tagging would change more than tags" in p for p in problems), problems)
 
+    def test_a_tag_that_belongs_to_no_theorem_names_its_module(self):
+        """The count mismatch used to say only 'a tag belongs to no theorem, or is on a theorem twice' (a 365-module part, two hours to find out which)."""
+        text = self.right()
+        recs, lines = self.inputs(text)
+        stray = isnad.format_tag(recs[0], "seed")
+        problems, _ = self.run_check(text + f"\n/-- stray\n{stray}\n-/\ndef stray : Nat := 1\n")
+        msg = next((p for p in problems if "tag belongs to no theorem" in p), "")
+        self.assertIn("— in Tengoku.Seed.Fx (3 tag line(s), 2 theorem(s) right)", msg)
+
+    def test_the_where_clause_lists_eight_modules_and_counts_the_rest(self):
+        self.assertEqual(isnad.where_clause([]), "")
+        self.assertEqual(isnad.where_clause(["A (1 tag line(s), 0 theorem(s) right)"]), " — in A (1 tag line(s), 0 theorem(s) right)")
+        many = [f"M{i}" for i in range(11)]
+        self.assertEqual(isnad.where_clause(many), " — in " + ", ".join(many[:8]) + " and 3 more")
+
+    def test_a_missing_module_has_no_tag_lines_and_no_odd_count(self):
+        root = Path(tempfile.mkdtemp())
+        self.assertEqual(isnad.module_tag_lines(self.MODULE, root), 0)
+        self.assertEqual(isnad.modules_with_odd_tag_counts([self.MODULE], {}, root), [])
+
     def test_a_theorem_without_a_tag_is_reported(self):
         text = self.right()
         recs, lines = self.inputs(text)

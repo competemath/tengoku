@@ -473,15 +473,37 @@ def tag_lines_of(text: str) -> int:
     return sum(1 for kind, a, b in tg.scan(text) if kind == "doc" for ln in text[a + 3 : b - 2].split("\n") if tg.TAG_LINE.match(ln))
 
 
+def module_tag_lines(module: str, root: Path) -> int:
+    """The tag lines in one module's docstrings (0 when the file is missing)."""
+    path = module_file(module, root)
+    return tag_lines_of(read_source(path)) if path.is_file() else 0
+
+
+def modules_with_odd_tag_counts(modules: list[str], plan: dict, root: Path) -> list[str]:
+    """The modules whose tag lines differ from the theorems that carry the right tag, each as 'Module (N tag line(s), M theorem(s) right)'. A part is hundreds of
+    modules and the run that finds a mismatch takes two hours (2026-10-11: 4880 tag lines, 4881 right, in 365 modules, no module named), so say WHERE."""
+    odd = []
+    for m in modules:
+        here = module_tag_lines(m, root)
+        right = tag_files({m: plan[m]}, root, write=False)[0]["same"] if m in plan else 0
+        if here != right:
+            odd.append(f"{m} ({here} tag line(s), {right} theorem(s) right)")
+    return odd
+
+
+def where_clause(odd: list[str], shown: int = 8) -> str:
+    """' — in A, B, … and N more' for the modules `modules_with_odd_tag_counts` found, or nothing when it found none."""
+    if not odd:
+        return ""
+    return f" — in {', '.join(odd[:shown])}" + (f" and {len(odd) - shown} more" if len(odd) > shown else "")
+
+
 def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: Path) -> tuple[list[str], str]:
     """A tag PR's modules, as built: tagging them again must change nothing (every taggable theorem has exactly the tag the build computes: none missing, none
     stale, no docstring to create) and no tag may be there that belongs to no theorem. Returns (problems, a summary line)."""
     plan, skipped = plan_tags(recs, ranges)
     counts, more = tag_files(plan, root, write=False)
-    present = 0
-    for m in modules:
-        path = module_file(m, root)
-        present += tag_lines_of(read_source(path)) if path.is_file() else 0
+    present = sum(module_tag_lines(m, root) for m in modules)
     problems = [
         f"{counts[k]} theorem(s) {why}"
         for k, why in (
@@ -498,6 +520,7 @@ def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: 
     if present != counts["same"]:
         problems.append(
             f"{present} tag line(s) in the docstrings but {counts['same']} theorem(s) carry the right one: a tag belongs to no theorem, or is on a theorem twice"
+            + where_clause(modules_with_odd_tag_counts(modules, plan, root))
         )
     by_rule = len(skipped) + len(more) - len(refused)
     return problems, f"{counts['same']} tags right, {by_rule} theorems skipped by rule, {len(recs)} theorems in {len(modules)} modules"
