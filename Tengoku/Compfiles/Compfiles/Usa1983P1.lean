@@ -44,13 +44,17 @@ noncomputable abbrev solution : ENNReal := 3 / 10
 /-- The number of cyclic orders in which the first three points occupy three
 consecutive positions: `6` choices for the starting position of the block,
 times `3!` orders of the first three points within the block, times `3!`
-orders of the remaining three points. Verified by exhaustive enumeration. -/
+orders of the remaining three points. Verified by exhaustive enumeration.
+@isnad1 id=eq.0h0v.s5.f0a665031894 from=translated src=- shape=67829f4b vocab=e01f4c32
+-/
 lemma card_favorable :
     (Finset.univ.filter Favorable).card = 216 := by
   set_option maxRecDepth 10000 in
   decide
 
-/-- The total number of cyclic orders of the six points. -/
+/-- The total number of cyclic orders of the six points.
+@isnad1 id=eq.0h0v.s5.67f7a4497eb4 from=translated src=- shape=b0ae1d2b vocab=ed108ff3
+-/
 lemma card_orderings : Fintype.card Ordering = 720 := by
   rw [Fintype.card_perm, Fintype.card_fin]
   decide

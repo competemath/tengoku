@@ -121,6 +121,9 @@ The answer is K = 100.
 /-- The black squares of the checkerboard coloring. -/
 def blacks : Finset Site := Finset.univ.filter fun c => (c.1.val + c.2.val) % 2 = 0
 
+/--
+@isnad1 id=eq.0h0v.s3.c889ff7fcffa from=translated src=- shape=b3c4969c vocab=1c914edb
+-/
 lemma blacks_card : blacks.card = 200 := by
   have h400 : (Finset.univ : Finset Site).card = 400 := by
     rw [Finset.card_univ, Fintype.card_prod, Fintype.card_fin]
@@ -162,7 +165,9 @@ lemma blacks_card : blacks.card = 200 := by
   unfold blacks
   lia
 
-/-- No two black squares are at knight's move distance. -/
+/-- No two black squares are at knight's move distance.
+@isnad1 id=not.2h2v.s5.35b02e38491a from=translated src=- shape=fdc8ee65 vocab=4d256da6
+-/
 lemma not_knightAdj_of_black {a b : Site} (ha : a ∈ blacks) (hb : b ∈ blacks) :
     ¬ KnightAdj a b := by
   simp only [blacks, Finset.mem_filter, Finset.mem_univ, true_and] at ha hb
@@ -170,7 +175,9 @@ lemma not_knightAdj_of_black {a b : Site} (ha : a ∈ blacks) (hb : b ∈ blacks
   rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ |
     ⟨h1, h2⟩ | ⟨h1, h2⟩ <;> lia
 
-/-- Every unoccupied black square is a legal move for Amy. -/
+/-- Every unoccupied black square is a legal move for Amy.
+@isnad1 id=le.1h2v.s6.de71798ca3a1 from=translated src=- shape=f083d998 vocab=84cf24d0
+-/
 lemma black_sdiff_subset_amyMoves {red blue : Finset Site} (hsub : red ⊆ blacks) :
     blacks \ (red ∪ blue) ⊆ amyMoves red blue := by
   intro a ha
@@ -195,15 +202,21 @@ def lab : ℕ → ℕ → ℕ
   | 3, 0 => 3 | 3, 1 => 2 | 3, 2 => 1 | 3, 3 => 0
   | _, _ => 0
 
-/-- Each label is at most `3`. -/
+/-- Each label is at most `3`.
+@isnad1 id=le.0h2v.s5.3e7c43210cb2 from=translated src=- shape=c1319ad9 vocab=fa3b19ac
+-/
 lemma lab_le : ∀ i j : Fin 4, lab i.val j.val ≤ 3 := by decide
 
-/-- Opposite cells of a `4×4` block carry the same label. -/
+/-- Opposite cells of a `4×4` block carry the same label.
+@isnad1 id=eq.0h2v.s6.5119870a8544 from=translated src=- shape=62d2344c vocab=1ab8102d
+-/
 lemma lab_opp : ∀ i j : Fin 4, lab (3 - i.val) (3 - j.val) = lab i.val j.val := by
   decide
 
 /-- Two cells of a `4×4` block with the same label are either equal,
-opposite, or a knight's move apart within the block. -/
+opposite, or a knight's move apart within the block.
+@isnad1 id=or.1h4v.s9.0643043b9bf3 from=translated src=- shape=105e418e vocab=b5ef5223
+-/
 lemma lab_eq_cases : ∀ i j i' j' : Fin 4,
     lab i.val j.val = lab i'.val j'.val →
     (i = i' ∧ j = j') ∨ (i.val = 3 - i'.val ∧ j.val = 3 - j'.val) ∨
@@ -222,6 +235,9 @@ together with its label within the block. -/
 def cyc (c : Site) : ℕ :=
   (c.1.val / 4 * 5 + c.2.val / 4) * 4 + lab (c.1.val % 4) (c.2.val % 4)
 
+/--
+@isnad1 id=lt.0h1v.s3.aad5c3fd551f from=translated src=- shape=a311c14d vocab=d6f815a4
+-/
 lemma cyc_lt_100 : ∀ c : Site, cyc c < 100 := by
   intro c
   have := c.1.isLt
@@ -236,6 +252,9 @@ lemma cyc_lt_100 : ∀ c : Site, cyc c < 100 := by
 the block. -/
 def oppCoord (x : ℕ) : ℕ := 4 * (x / 4) + (3 - x % 4)
 
+/--
+@isnad1 id=lt.1h1v.s4.c3aab61248b6 from=translated src=- shape=5aedd577 vocab=14cf6317
+-/
 lemma oppCoord_lt {x : ℕ} (hx : x < 20) : oppCoord x < 20 := by
   unfold oppCoord; lia
 
@@ -244,12 +263,18 @@ cycle that are *not* a knight's move apart. -/
 def opp (c : Site) : Site :=
   (⟨oppCoord c.1.val, oppCoord_lt c.1.isLt⟩, ⟨oppCoord c.2.val, oppCoord_lt c.2.isLt⟩)
 
+/--
+@isnad1 id=ne.0h1v.s2.1f6b7bed55c1 from=translated src=- shape=a365602c vocab=0602e054
+-/
 lemma opp_ne : ∀ c : Site, opp c ≠ c := by
   intro c h
   have h1 : c.1.val = (opp c).1.val := by rw [h]
   have h2 : c.1.val = 4 * (c.1.val / 4) + (3 - c.1.val % 4) := h1
   lia
 
+/--
+@isnad1 id=eq.0h1v.s3.b5e1d410a892 from=translated src=- shape=47dcad53 vocab=0602e054
+-/
 lemma opp_opp : ∀ c : Site, opp (opp c) = c := by
   intro c
   have key : ∀ x : ℕ, x < 20 → oppCoord (oppCoord x) = x := by
@@ -258,6 +283,9 @@ lemma opp_opp : ∀ c : Site, opp (opp c) = c := by
     omega
   exact Prod.ext (Fin.ext (key c.1.val c.1.isLt)) (Fin.ext (key c.2.val c.2.isLt))
 
+/--
+@isnad1 id=eq.0h1v.s3.e2f8289c84a7 from=translated src=- shape=8d4cac31 vocab=2804d2a1
+-/
 lemma cyc_opp : ∀ c : Site, cyc (opp c) = cyc c := by
   intro c
   have := c.1.isLt
@@ -348,13 +376,18 @@ def BenInv (red blue : Finset Site) : Prop :=
   (∀ a ∈ red, opp a ∈ blue) ∧ (∀ b ∈ blue, opp b ∈ red) ∧
     ∀ a ∈ red, ∀ b ∈ red, cyc a = cyc b → a = b
 
+/--
+@isnad1 id=beninv.0h0v.s3.ff482e3739d5 from=translated src=- shape=5c197cb8 vocab=8a213c22
+-/
 lemma benInv_empty : BenInv ∅ ∅ :=
   ⟨fun a ha => absurd ha (Finset.notMem_empty a),
    fun b hb => absurd hb (Finset.notMem_empty b),
    fun a ha _ _ _ => absurd ha (Finset.notMem_empty a)⟩
 
 /-- Under Ben's invariant there is at most one red stone per 4-cycle,
-hence at most 100 red stones. -/
+hence at most 100 red stones.
+@isnad1 id=le.1h2v.s4.5ef1c6f61f39 from=translated src=- shape=9857e6ba vocab=27e0ff33
+-/
 lemma card_le_100_of_benInv {red blue : Finset Site} (h : BenInv red blue) :
     red.card ≤ 100 := by
   have hinj : Set.InjOn cyc red := fun a ha b hb hab => h.2.2 a ha b hb hab
@@ -367,12 +400,17 @@ lemma card_le_100_of_benInv {red blue : Finset Site} (h : BenInv red blue) :
 
 /-! ### Game lemmas -/
 
+/--
+@isnad1 id=eq.0h4v.s7.a6e12682a06a from=translated src=- shape=fe56b3e1 vocab=5d60706c
+-/
 lemma insert_union_insert (a b : Site) (s t : Finset Site) :
     insert a s ∪ insert b t = insert a (insert b (s ∪ t)) := by
   rw [Finset.insert_union, Finset.union_insert]
 
 /-- Once Amy has `K` stones she keeps them: the game can only add red
-stones. -/
+stones.
+@isnad1 id=canensur.1h4v.s4.64084ab29cd6 from=translated src=- shape=e0250aeb vocab=8b639638
+-/
 lemma canEnsure_of_card_le {K : ℕ} :
     ∀ {fuel : ℕ} {red blue : Finset Site}, K ≤ red.card → CanEnsure K fuel red blue := by
   intro fuel; induction fuel with
@@ -386,7 +424,9 @@ lemma canEnsure_of_card_le {K : ℕ} :
           Finset.card_le_card (Finset.subset_insert _ _)
         exact .of_move ha (fun _ => h.trans hle) (fun _ _ => ih (h.trans hle))
 
-/-- Ensuring more stones is harder. -/
+/-- Ensuring more stones is harder.
+@isnad1 id=canensur.2h5v.s4.71a327c9dbaa from=translated src=- shape=bcd28f91 vocab=7623c06f
+-/
 lemma canEnsure_mono {fuel : ℕ} {red blue : Finset Site} {K K' : ℕ}
     (h : CanEnsure K fuel red blue) (hle : K' ≤ K) : CanEnsure K' fuel red blue := by
   induction h with
@@ -397,7 +437,9 @@ lemma canEnsure_mono {fuel : ℕ} {red blue : Finset Site} {K K' : ℕ}
 
 /-- Amy's strategy: always play on a black square. With the potential
 `2 * red.card + (blacks \ (red ∪ blue)).card` Amy ensures half of what
-remains of the 200 black squares. -/
+remains of the 200 black squares.
+@isnad1 id=canensur.3h4v.s7.8f465917cdc6 from=translated src=- shape=fecc8385 vocab=e882a5cf
+-/
 lemma canEnsure_of_black {K : ℕ} :
     ∀ {fuel : ℕ} {red blue : Finset Site},
       red ⊆ blacks → (benMoves red blue).card ≤ fuel →
@@ -483,7 +525,9 @@ lemma canEnsure_of_black {K : ℕ} :
 
 /-- Ben's strategy: always reply with the opposite site of the 4-cycle in
 which Amy just played. Then every 4-cycle contains at most one red
-stone, so Amy places at most 100 stones. -/
+stone, so Amy places at most 100 stones.
+@isnad1 id=not.1h3v.s4.de9f24902d5e from=translated src=- shape=35b09b2d vocab=e36cfd68
+-/
 lemma not_canEnsure_101_of_benInv :
     ∀ {fuel : ℕ} {red blue : Finset Site},
       BenInv red blue → ¬ CanEnsure 101 fuel red blue := by

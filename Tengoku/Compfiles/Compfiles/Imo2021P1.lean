@@ -47,6 +47,9 @@ which finishes the proof.
 
 -- We will later make use of the fact that there exists (l : ℕ) such that
 -- n ≤ 2 * l ^ 2 - 4 * l and 2 * l ^ 2 + 4 * l ≤ 2 * n for n ≥ 100.
+/--
+@isnad1 id=ex.1h1v.s7.55476f45495a from=translated src=- shape=425103a0 vocab=f96c6fce
+-/
 theorem exists_numbers_in_interval (n : ℕ) (hn : 100 ≤ n) :
     ∃ l : ℕ, n + 4 * l ≤ 2 * l ^ 2 ∧ 2 * l ^ 2 + 4 * l ≤ 2 * n := by
   have hn' : 1 ≤ Nat.sqrt (n + 1) := by
@@ -64,6 +67,9 @@ theorem exists_numbers_in_interval (n : ℕ) (hn : 100 ≤ n) :
       _ ≤ 2 * l ^ 2 := by nlinarith only [h₃]
   · linarith only [h₁]
 
+/--
+@isnad1 id=ex.1h1v.s7.2b3f3781689d from=translated src=- shape=38637346 vocab=3f16b8dd
+-/
 theorem exists_triplet_summing_to_squares (n : ℕ) (hn : 100 ≤ n) :
     ∃ a b c : ℕ, n ≤ a ∧ a < b ∧ b < c ∧ c ≤ 2 * n ∧
       (∃ k : ℕ, a + b = k ^ 2) ∧ (∃ l : ℕ, c + a = l ^ 2) ∧ ∃ m : ℕ, b + c = m ^ 2 := by
@@ -78,6 +84,9 @@ theorem exists_triplet_summing_to_squares (n : ℕ) (hn : 100 ≤ n) :
 -- Since it will be more convenient to work with sets later on, we will translate the above claim
 -- to state that there always exists a set B ⊆ [n, 2n] of cardinality at least 3, such that each
 -- pair of pairwise unequal elements of B sums to a perfect square.
+/--
+@isnad1 id=ex.1h1v.s7.21e23525ebc6 from=translated src=- shape=fd2a47a4 vocab=00c6983d
+-/
 theorem exists_finset_3_le_card_with_pairs_summing_to_squares (n : ℕ) (hn : 100 ≤ n) :
     ∃ B : Finset ℕ,
       2 * 1 + 1 ≤ B.card ∧

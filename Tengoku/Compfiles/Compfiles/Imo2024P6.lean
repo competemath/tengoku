@@ -48,6 +48,9 @@ def Aquaesulian (f : G → G) : Prop := ∀ x y, f (f y + x) = f x + y ∨ f (f 
 variable {f : G → G} (h : Aquaesulian f)
 include h
 
+/--
+@isnad1 id=eq.1h3v.s5.9df02327b051 from=translated src=- shape=e644a33a vocab=7b2642c6
+-/
 lemma Aquaesulian.apply_apply_add (x : G) : f (f x + x) = f x + x := by
   rcases h x x with hx | hx <;> exact hx
 
@@ -56,16 +59,25 @@ lemma Aquaesulian.eq_of_apply_eq_inl {x₁ x₂ : G} (he : f x₁ = f x₂)
   rw [he, h.apply_apply_add, add_right_inj] at hc
   exact hc.symm
 
+/--
+@isnad1 id=injectiv.1h2v.s4.520661ac037b from=translated src=- shape=429fbcfb vocab=c9a12c8c
+-/
 lemma Aquaesulian.injective : Function.Injective f := by
   intro x₁ x₂ he
   rcases h x₁ x₂ with hc | hc
   · exact (h.eq_of_apply_eq_inl he.symm hc).symm
   · exact h.eq_of_apply_eq_inl he hc
 
+/--
+@isnad1 id=eq.1h2v.s5.563790c4b0b6 from=translated src=- shape=061c6a34 vocab=ea54dabc
+-/
 lemma Aquaesulian.apply_zero : f 0 = 0 := by
   refine h.injective ?_
   convert h.apply_apply_add 0 using 1 <;> simp
 
+/--
+@isnad1 id=eq.1h3v.s6.f37d7a3a1dcb from=translated src=- shape=88218659 vocab=77aa751c
+-/
 lemma Aquaesulian.apply_neg_apply_add (x : G) : f (-(f x)) + x = 0 := by
   rcases h x (-(f x)) with hc | hc
   · rw [add_neg_cancel, ← h.apply_zero] at hc
@@ -73,21 +85,36 @@ lemma Aquaesulian.apply_neg_apply_add (x : G) : f (-(f x)) + x = 0 := by
   · rw [add_neg_cancel, h.apply_zero] at hc
     exact hc.symm
 
+/--
+@isnad1 id=eq.1h3v.s5.358e82f5d75f from=translated src=- shape=1c044b68 vocab=e9268d68
+-/
 lemma Aquaesulian.apply_neg_apply (x : G) : f (-(f x)) = -x := by
   rw [← add_eq_zero_iff_eq_neg]
   exact h.apply_neg_apply_add x
 
+/--
+@isnad1 id=eq.1h3v.s5.f3bc7370bca4 from=translated src=- shape=6f71bbd7 vocab=e9268d68
+-/
 lemma Aquaesulian.apply_neg_apply_neg (x : G) : f (-(f (-x))) = x := by
   simp [h, Aquaesulian.apply_neg_apply]
 
+/--
+@isnad1 id=eq.2h4v.s5.a6407e8f337c from=translated src=- shape=49534710 vocab=e9268d68
+-/
 lemma Aquaesulian.apply_neg_of_apply_eq {x₁ x₂ : G} (hx : f x₁ = x₂) : f (-x₂) = -x₁ := by
   rw [← hx]
   exact h.apply_neg_apply _
 
+/--
+@isnad1 id=iff.1h4v.s5.eb119bb36787 from=translated src=- shape=17b1a149 vocab=e9268d68
+-/
 lemma Aquaesulian.apply_neg_eq_neg_iff {x₁ x₂ : G} : f (-x₂) = -x₁ ↔ f x₁ = x₂ := by
   refine ⟨fun hn ↦ ?_, h.apply_neg_of_apply_eq⟩
   convert h.apply_neg_of_apply_eq hn <;> rw [neg_neg]
 
+/--
+@isnad1 id=or.4h5v.s6.95d39c952701 from=translated src=- shape=b2754ea5 vocab=ea54dabc
+-/
 lemma Aquaesulian.pair_lemma {x u v : G} (huv : u ≠ v) (hx : f x = u ∨ f u = x)
     (hy : f x = v ∨ f v = x) : f x = v ∨ f x = u := by
   rcases hx with hx | hx <;> rcases hy with hy | hy
@@ -96,6 +123,9 @@ lemma Aquaesulian.pair_lemma {x u v : G} (huv : u ≠ v) (hx : f x = u ∨ f u =
   · exact .inl hy
   · exact ((h.injective.ne huv) (hx.trans hy.symm)).elim
 
+/--
+@isnad1 id=or.4h6v.s8.6d59c398f78e from=translated src=- shape=a54e2a3e vocab=77aa751c
+-/
 lemma Aquaesulian.g_two {x y u v : G} (huv : u ≠ v) (hx : f x + f (-x) = u)
     (hy : f y + f (-y) = v) :
     f (x + y) = -(f (-x)) + -(f (-y)) + v ∨ f (x + y) = -(f (-x)) + -(f (-y)) + u := by
@@ -116,6 +146,9 @@ lemma Aquaesulian.g_two {x y u v : G} (huv : u ≠ v) (hx : f x + f (-x) = u)
       abel_nf
     · rw [h.apply_neg_apply_neg]
 
+/--
+@isnad1 id=eq.5h6v.s7.fa4094533b41 from=translated src=- shape=a6d590f1 vocab=77aa751c
+-/
 lemma Aquaesulian.u_eq_zero {x y u v : G} (huv : u ≠ v) (hx : f x + f (-x) = u)
     (hy : f y + f (-y) = v) (hxyv : f (x + y) = -(f (-x)) + -(f (-y)) + v) : u = 0 := by
   rw [← eq_sub_iff_add_eq, ← h.apply_neg_eq_neg_iff, neg_sub] at hx
@@ -130,6 +163,9 @@ lemma Aquaesulian.u_eq_zero {x y u v : G} (huv : u ≠ v) (hx : f x + f (-x) = u
     abel_nf at hc
     simp [add_comm, huv] at hc
 
+/--
+@isnad1 id=or.4h6v.s7.973148a26235 from=translated src=- shape=72f0fa71 vocab=77aa751c
+-/
 lemma Aquaesulian.u_eq_zero_or_v_eq_zero {x y u v : G} (huv : u ≠ v) (hx : f x + f (-x) = u)
     (hy : f y + f (-y) = v) : u = 0 ∨ v = 0 := by
   rcases h.g_two huv hx hy with hxy' | hxy'
@@ -137,6 +173,9 @@ lemma Aquaesulian.u_eq_zero_or_v_eq_zero {x y u v : G} (huv : u ≠ v) (hx : f x
   · rw [add_comm x y, add_comm (-(f (-x))) (-(f (-y)))] at hxy'
     exact .inr (h.u_eq_zero huv.symm hy hx hxy')
 
+/--
+@isnad1 id=le.1h2v.s6.a90c2da65945 from=translated src=- shape=28c3dc47 vocab=e85a98f5
+-/
 lemma Aquaesulian.card_le_two : #(Set.range (fun x ↦ f x + f (-x))) ≤ 2 := by
   by_cases hf : ∀ x, f x + f (-x) = 0
   · simp [hf]
@@ -163,11 +202,17 @@ lemma Aquaesulian.card_le_two : #(Set.range (fun x ↦ f x + f (-x))) ≤ 2 := b
 
 end General
 
+/--
+@isnad1 id=iff.0h1v.s3.748858ed293b from=translated src=- shape=732d8a22 vocab=7d626150
+-/
 lemma aquaesulian_iff_general {f : ℚ → ℚ} : Aquaesulian f ↔ General.Aquaesulian f := by
   rw [Aquaesulian, General.Aquaesulian]
   refine forall_congr' (fun x ↦ forall_congr' (fun y ↦ ?_))
   rw [add_comm x]
 
+/--
+@isnad1 id=le.1h1v.s5.896a1ea3e8eb from=translated src=- shape=649b6f41 vocab=78877053
+-/
 lemma Aquaesulian.card_le_two {f : ℚ → ℚ} (h : Aquaesulian f) :
     #(Set.range (fun x ↦ f x + f (-x))) ≤ 2 := by
   rw [aquaesulian_iff_general] at h
@@ -176,23 +221,38 @@ lemma Aquaesulian.card_le_two {f : ℚ → ℚ} (h : Aquaesulian f) :
 /-- An example of a function achieving the maximum number of values of `f(r)+f(-r)`. -/
 def fExample (x : ℚ) : ℚ := ⌊x⌋ - Int.fract x
 
+/--
+@isnad1 id=eq.0h2v.s6.0f7f09875c29 from=translated src=- shape=a7fcbab0 vocab=be790d4f
+-/
 lemma fExample_add (x y : ℚ) : fExample x + y = ⌊x⌋ + ⌊y⌋ + (Int.fract y - Int.fract x) := by
   rw [fExample]
   nth_rw 1 [← Int.floor_add_fract y]
   abel
 
+/--
+@isnad1 id=eq.0h2v.s6.fbe38f19acb2 from=translated src=- shape=a322de98 vocab=be790d4f
+-/
 lemma add_fExample (x y : ℚ) : x + fExample y = ⌊x⌋ + ⌊y⌋ + (Int.fract x - Int.fract y) := by
   rw [add_comm, fExample_add]
   abel
 
+/--
+@isnad1 id=eq.0h2v.s5.60ef768b064c from=translated src=- shape=1c3b52c2 vocab=e7d1e62c
+-/
 lemma fExample_int_add (x : ℤ) (y : ℚ) : fExample (x + y) = x + fExample y := by
   simp_rw [fExample, Int.floor_intCast_add, Int.fract_intCast_add, ← add_sub_assoc]
   exact_mod_cast rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.8d6c5fc77019 from=translated src=- shape=1105dcf1 vocab=900d2cb4
+-/
 lemma fExample_of_mem_Ico {x : ℚ} (h : x ∈ Set.Ico 0 1) : fExample x = -x := by
   rw [fExample, Int.fract_eq_self.2 h, Int.floor_eq_zero_iff.2 h]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s5.2842d225f353 from=translated src=- shape=1e085e93 vocab=30f4c8be
+-/
 lemma apply_fExample_add_apply_of_fract_le {x y : ℚ} (h : Int.fract y ≤ Int.fract x) :
     fExample (x + fExample y) = fExample x + y := by
   rw [← sub_nonneg] at h
@@ -202,6 +262,9 @@ lemma apply_fExample_add_apply_of_fract_le {x y : ℚ} (h : Int.fract y ≤ Int.
       fExample_of_mem_Ico ⟨h, h₁⟩]
   abel
 
+/--
+@isnad1 id=aquaesul.0h0v.s1.cbdbbe2a9c50 from=translated src=- shape=49959d42 vocab=f38d2bf8
+-/
 lemma aquaesulian_fExample : Aquaesulian fExample := by
   intro x y
   rcases lt_or_ge (Int.fract x) (Int.fract y) with h | h
@@ -209,12 +272,18 @@ lemma aquaesulian_fExample : Aquaesulian fExample := by
     exact .inr (apply_fExample_add_apply_of_fract_le h.le)
   · exact .inl (apply_fExample_add_apply_of_fract_le h)
 
+/--
+@isnad1 id=eq.0h1v.s6.84d661ca6f36 from=translated src=- shape=345f7f0f vocab=a533c5a5
+-/
 lemma fract_fExample (x : ℚ) :
     Int.fract (fExample x) = if Int.fract x = 0 then 0 else 1 - Int.fract x := by
   by_cases h : Int.fract x = 0
   · simp [fExample, h]
   · simp [fExample, h, sub_eq_add_neg, Int.fract_neg]
 
+/--
+@isnad1 id=eq.0h1v.s6.beb61c157470 from=translated src=- shape=14a37f20 vocab=f6f24c01
+-/
 lemma floor_fExample (x : ℚ) :
     ⌊fExample x⌋ = if Int.fract x = 0 then x else ⌊x⌋ - 1 := by
   by_cases h : Int.fract x = 0
@@ -227,6 +296,9 @@ lemma floor_fExample (x : ℚ) :
     rw [Int.floor_eq_iff]
     simp [(Int.fract_nonneg x).lt_of_ne' h, (Int.fract_lt_one x).le]
 
+/--
+@isnad1 id=eq.0h0v.s5.410b59dcd539 from=translated src=- shape=6c2640c7 vocab=cef0d499
+-/
 lemma card_range_fExample : #(Set.range (fun x ↦ fExample x + fExample (-x))) = 2 := by
   have h : Set.range (fun x ↦ fExample x + fExample (-x)) = {0, -2} := by
     ext x

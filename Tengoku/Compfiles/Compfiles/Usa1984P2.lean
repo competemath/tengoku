@@ -25,7 +25,9 @@ open scoped Nat
 /-- The key divisibility fact for the second part: if `y * C` and `z * C`
 (with `y`, `z`, `C` positive) are both `k`-th powers, then `k` divides the
 difference of the multiplicities of any number `p` in the prime
-factorizations of `y` and `z`. -/
+factorizations of `y` and `z`.
+@isnad1 id=dvd.6h7v.s7.4270d40e5db3 from=translated src=- shape=64475048 vocab=b50101e6
+-/
 theorem factorization_eq_of_pow (k : ℕ) (hk : 0 < k) (y z C : ℕ)
     (hy : y ≠ 0) (hz : z ≠ 0) (hC : C ≠ 0)
     (u : ℕ) (hu : u ^ k = y * C) (v : ℕ) (hv : v ^ k = z * C) (p : ℕ) :

@@ -24,11 +24,17 @@ grasshopper never lands on any point in M.
 
 namespace Imo2009P6
 
+/--
+@isnad1 id=ex.0h2v.s6.f90058d8bc83 from=translated src=- shape=ca3138ff vocab=0816761f
+-/
 lemma lemma1 (n : ℕ) (a : Fin n → ℤ) :
     ∃ p : Equiv.Perm (Fin n),
         ∀ i j, i ≤ j → a (p i) ≤ a (p j) :=
   ⟨Tuple.sort a, fun _ _ hij ↦ Tuple.monotone_sort a hij⟩
 
+/--
+@isnad1 id=ex.1h2v.s6.780867528860 from=translated src=- shape=349d88c2 vocab=99d216f3
+-/
 lemma lemma2 (n : ℕ) (a : Fin n → ℤ)
     (ainj : a.Injective) :
     ∃ p : Equiv.Perm (Fin n),
@@ -67,16 +73,25 @@ noncomputable abbrev extendPerm {m n : ℕ} (f : Equiv.Perm (Fin m)) (h : m ≤ 
     · aesop
   Equiv.ofBijective f' (Finite.injective_iff_bijective.mp hf')
 
+/--
+@isnad1 id=eq.2h4v.s6.60bb2c25947e from=translated src=- shape=d41a1b3f vocab=308b42ae
+-/
 lemma extendPerm_apply_of_lt {m n : ℕ} (f : Equiv.Perm (Fin m)) (h : m ≤ n)
     (x : Fin n) (hx : (x : ℕ) < m) :
     extendPerm f h x = ⟨f ⟨x, hx⟩, by omega⟩ := by
   simp [extendPerm, hx]
 
+/--
+@isnad1 id=eq.2h4v.s5.ec1aa2ce3df7 from=translated src=- shape=95101176 vocab=556c446c
+-/
 lemma extendPerm_apply_of_not_lt {m n : ℕ} (f : Equiv.Perm (Fin m)) (h : m ≤ n)
     (x : Fin n) (hx : ¬ (x : ℕ) < m) :
     extendPerm f h x = x := by
   simp [extendPerm, hx]
 
+/--
+@isnad1 id=eq.1h2v.s5.859903d8aa04 from=translated src=- shape=d4768550 vocab=12ffbd60
+-/
 lemma filter_le_last {n : ℕ} (last : Fin n) (hlast : last.val = n - 1) :
     Finset.filter (fun i : Fin n => i ≤ last) Finset.univ = Finset.univ := by
   ext i
@@ -88,12 +103,18 @@ lemma filter_le_last {n : ℕ} (last : Fin n) (hlast : last.val = n - 1) :
     change i.val ≤ last.val
     omega
 
+/--
+@isnad1 id=eq.1h5v.s6.520f9befe6ce from=translated src=- shape=71ac1fbf vocab=a5a43652
+-/
 lemma prefix_last_perm {β : Type*} [AddCommMonoid β] {n : ℕ}
     (f : Fin n → β) (p : Equiv.Perm (Fin n)) (last : Fin n) (hlast : last.val = n - 1) :
     (∑ j ∈ Finset.filter (fun j : Fin n => j ≤ last) Finset.univ, f (p j)) = ∑ j, f j := by
   rw [filter_le_last last hlast]
   exact Equiv.sum_comp p f
 
+/--
+@isnad1 id=eq.0h3v.s7.b9ea26f3c81b from=translated src=- shape=bec13e16 vocab=4df6daa6
+-/
 lemma sum_init {β : Type*} [AddCommMonoid β] {n : ℕ} (f : Fin n → β) :
     (∑ i : Fin (n - 1), f ⟨i, by omega⟩) =
       ∑ i ∈ Finset.filter (fun i : Fin n => (i : ℕ) < n - 1) Finset.univ, f i := by
@@ -113,6 +134,9 @@ lemma sum_init {β : Type*} [AddCommMonoid β] {n : ℕ} (f : Fin n → β) :
   rw [← hmap, Finset.sum_map]
   congr
 
+/--
+@isnad1 id=eq.1h4v.s6.c99d1346a665 from=translated src=- shape=c60d3dac vocab=cfecc1d4
+-/
 lemma sum_init_of_eq {β : Type*} [AddCommMonoid β] {n k : ℕ} (hk : k = n - 1)
     (f : Fin n → β) :
     (∑ i : Fin k, f ⟨i, by omega⟩) =
@@ -120,6 +144,9 @@ lemma sum_init_of_eq {β : Type*} [AddCommMonoid β] {n k : ℕ} (hk : k = n - 1
   subst k
   exact sum_init f
 
+/--
+@isnad1 id=eq.1h4v.s7.f438d6803d26 from=translated src=- shape=40792149 vocab=c65f88a9
+-/
 lemma sum_init_add_last {β : Type*} [AddCommMonoid β] {n : ℕ}
     (f : Fin n → β) (last : Fin n) (hlast : last.val = n - 1) :
     (∑ i : Fin n, f i) = (∑ i : Fin (n - 1), f ⟨i, by omega⟩) + f last := by
@@ -149,17 +176,26 @@ lemma sum_init_add_last {β : Type*} [AddCommMonoid β] {n : ℕ}
   rw [← sum_init f] at hsplit
   exact hsplit.symm
 
+/--
+@isnad1 id=injectiv.1h2v.s6.d6ea030e6eba from=translated src=- shape=9c32ab21 vocab=86b2b2e2
+-/
 lemma init_injective {n : ℕ} {a : Fin n → ℤ} (ainj : a.Injective) :
     (fun i : Fin (n - 1) => a ⟨i, by omega⟩).Injective := by
   intro i j hij
   have h := congrArg Fin.val (@ainj ⟨i, by omega⟩ ⟨j, by omega⟩ hij)
   exact Fin.eq_of_val_eq (by simpa using h)
 
+/--
+@isnad1 id=lt.1h3v.s6.a0499642a554 from=translated src=- shape=be5011dd vocab=d1ba3c4b
+-/
 lemma init_pos {n : ℕ} {a : Fin n → ℤ} (apos : ∀ i, 0 < a i) :
     ∀ i : Fin (n - 1), 0 < a ⟨i, by omega⟩ := by
   intro i
   exact apos ⟨i.val, by omega⟩
 
+/--
+@isnad1 id=lt.2h4v.s7.81dc92fbfbba from=translated src=- shape=e808a891 vocab=d1ba3c4b
+-/
 lemma init_sorted {n : ℕ} {a : Fin n → ℤ}
     (asorted : ∀ i j, i < j → a i < a j) :
     ∀ i j : Fin (n - 1), i < j → a ⟨i, by omega⟩ < a ⟨j, by omega⟩ := by
@@ -168,6 +204,9 @@ lemma init_sorted {n : ℕ} {a : Fin n → ℤ}
 
 -- The image of the prefix `{j ≤ i'}` of `Fin m` under `embedFinLE` is the
 -- prefix `{j ≤ i}` of `Fin n`, provided `i` lies in the small range.
+/--
+@isnad1 id=eq.2h3v.s6.c265057b7769 from=translated src=- shape=0f4cc71d vocab=57bbc77d
+-/
 lemma embedFinLE_map_Iic {m n : ℕ} (hmn : m ≤ n) (i : Fin n) (hi : i.val < m) :
     (Finset.univ.filter (· ≤ (⟨i.val, hi⟩ : Fin m))).map (embedFinLE hmn) =
       Finset.univ.filter (· ≤ i) := by
@@ -188,6 +227,9 @@ lemma embedFinLE_map_Iic {m n : ℕ} (hmn : m ≤ n) (i : Fin n) (hi : i.val < m
 
 -- The image of `{j : Fin m | j.val < c}` under `embedFinLE` is the prefix
 -- `{j ≤ ⟨c⟩}` of `Fin n` with the point `⟨c⟩` removed.
+/--
+@isnad1 id=eq.3h3v.s6.8fbfdbcf4881 from=translated src=- shape=67d9765f vocab=6ed18b15
+-/
 lemma embedFinLE_map_Iio {m n : ℕ} (hmn : m ≤ n) (c : ℕ) (hcm : c ≤ m) (hcn : c < n) :
     (Finset.univ.filter (fun j : Fin m => j.val < c)).map (embedFinLE hmn) =
       (Finset.univ.filter (fun j : Fin n => j ≤ ⟨c, hcn⟩)).erase ⟨c, hcn⟩ := by
@@ -217,6 +259,9 @@ lemma embedFinLE_map_Iio {m n : ℕ} (hmn : m ≤ n) (c : ℕ) (hcm : c ≤ m) (
     simp only [eq_self, and_true, Finset.mem_univ, true_and]
     omega
 
+/--
+@isnad1 id=eq.2h6v.s7.a3222f3d6ce2 from=translated src=- shape=d56c59fd vocab=1ddb4681
+-/
 lemma prefix_extendPerm {β : Type*} [AddCommMonoid β] {m n : ℕ}
     (f : Fin n → β) (p : Equiv.Perm (Fin m)) (hmn : m ≤ n)
     (i : Fin n) (hi : i.val < m) :
@@ -236,6 +281,9 @@ lemma prefix_extendPerm {β : Type*} [AddCommMonoid β] {m n : ℕ}
   rw [extendPerm_apply_of_lt p hmn (emb j) hjlt]
   simp [emb, embedFinLE]
 
+/--
+@isnad1 id=ex.7h3v.s7.f5a4034d9b55 from=translated src=- shape=59cccca7 vocab=5d76fe81
+-/
 theorem imo2009_p6_aux1 (n : ℕ) (hn : 0 < n)
     (a : Fin n → ℤ)
     (ainj : a.Injective)
@@ -945,6 +993,9 @@ theorem imo2009_p6_aux1 (n : ℕ) (hn : 0 < n)
           exact hM
 
 -- The problem with an additional assumption that a is sorted.
+/--
+@isnad1 id=ex.7h3v.s7.a57c4dd76687 from=translated src=- shape=03cad753 vocab=5d76fe81
+-/
 theorem imo2009_p6_aux2 (n : ℕ) (hn : 0 < n)
     (a : Fin n → ℤ)
     (ainj : a.Injective)

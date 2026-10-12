@@ -31,10 +31,16 @@ variable (S : Finset ℕ)
 def prefixSum (m : ℕ) : ℕ :=
   ∑ i ∈ Finset.univ.filter (fun i : Fin S.card ↦ i.val < m), S.orderEmbOfFin rfl i
 
+/--
+@isnad1 id=eq.0h1v.s4.0b503e797270 from=translated src=- shape=6279936e vocab=47853c45
+-/
 lemma prefixSum_zero : prefixSum S 0 = 0 := by
   rw [prefixSum, Finset.filter_false_of_mem (fun i _ ↦ Nat.not_lt_zero i.val),
     Finset.sum_empty]
 
+/--
+@isnad1 id=eq.1h2v.s6.8aeec8223617 from=translated src=- shape=a090b8b4 vocab=76a63c81
+-/
 lemma prefixSum_succ (m : ℕ) (hm : m < S.card) :
     prefixSum S (m + 1) = prefixSum S m + S.orderEmbOfFin rfl ⟨m, hm⟩ := by
   have hinsert : Finset.univ.filter (fun i : Fin S.card ↦ i.val < m + 1) =
@@ -58,17 +64,25 @@ lemma prefixSum_succ (m : ℕ) (hm : m < S.card) :
       S.orderEmbOfFin rfl ⟨m, hm⟩
   rw [hinsert, Finset.sum_insert hnotmem, add_comm]
 
+/--
+@isnad1 id=eq.0h1v.s6.cfe00ac03f17 from=translated src=- shape=706dd88f vocab=60cca0ed
+-/
 lemma sum_eq_sum_univ : S.sum id = ∑ i : Fin S.card, S.orderEmbOfFin rfl i := by
   conv_lhs => rw [← Finset.map_orderEmbOfFin_univ S rfl]
   rw [Finset.sum_map]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.724e4f761297 from=translated src=- shape=e779ca20 vocab=86ff039b
+-/
 lemma prefixSum_card : prefixSum S S.card = S.sum id := by
   have h1 : Finset.univ.filter (fun i : Fin S.card ↦ i.val < S.card) = Finset.univ :=
     Finset.filter_true_of_mem fun i _ ↦ i.isLt
   rw [prefixSum, h1, sum_eq_sum_univ]
 
-/-- The sum over a subset `A` of `S` reindexed by the increasing enumeration of `S`. -/
+/-- The sum over a subset `A` of `S` reindexed by the increasing enumeration of `S`.
+@isnad1 id=eq.1h2v.s8.3ea32f66150e from=translated src=- shape=6fab926a vocab=90e56c9e
+-/
 lemma sum_eq_sum_filter (A : Finset ℕ) (hA : A ⊆ S) :
     A.sum id =
       ∑ i ∈ Finset.univ.filter (fun i : Fin S.card ↦ S.orderEmbOfFin rfl i ∈ A),
@@ -93,7 +107,9 @@ lemma sum_eq_sum_filter (A : Finset ℕ) (hA : A ⊆ S) :
 
 /-- The key estimate: a subset sum strictly larger than the sum of the `m` smallest
 elements must use some element with index at least `m`, hence is at least the `m`-th
-smallest element, and twice the sum exceeds the `m + 1` prefix sum. -/
+smallest element, and twice the sum exceeds the `m + 1` prefix sum.
+@isnad1 id=lt.3h3v.s6.4a9891c9e1f1 from=translated src=- shape=0facfa56 vocab=0bc1cda7
+-/
 lemma prefixSum_succ_lt_two_mul_sum (A : Finset ℕ) (hAS : A ⊆ S)
     (m : ℕ) (hm : m < S.card) (hx : prefixSum S m < A.sum id) :
     prefixSum S (m + 1) < 2 * A.sum id := by

@@ -30,6 +30,9 @@ abbrev SolutionSet : Set (ℤ × ℤ × ℤ) := {
 
 def is_power_of_two (n : ℤ) : Prop := ∃ m : ℕ, n = 2 ^ m
 
+/--
+@isnad1 id=iscoprim.1h2v.s5.bc67deaf0261 from=translated src=- shape=4592c9ef vocab=8ddeded0
+-/
 lemma pow_of_two_coprime_odd (m : ℕ) {a : ℤ} (ha : ¬2 ∣ a) :
     IsCoprime ((2 : ℤ) ^ m) a := by
   rw [Int.isCoprime_iff_nat_coprime, Int.natAbs_pow, ← Int.ofNat_two]
@@ -38,6 +41,9 @@ lemma pow_of_two_coprime_odd (m : ℕ) {a : ℤ} (ha : ¬2 ∣ a) :
   rw [← Int.ofNat_dvd, Int.ofNat_two, Int.dvd_natAbs]
   exact ha
 
+/--
+@isnad1 id=le.3h2v.s6.e9468f625f7e from=translated src=- shape=97f9ae09 vocab=239ca0fb
+-/
 lemma pow_of_two_dvd_odd_mul_self_sub_1 {m : ℕ} {a : ℤ}
     (ha : ¬2 ∣ a) (ha' : 1 < a) (h : (2 : ℤ) ^ m ∣ a ^ 2 - 1) :
     (2 : ℤ) ^ m ≤ 2 * a + 2 := by
@@ -63,6 +69,9 @@ lemma pow_of_two_dvd_odd_mul_self_sub_1 {m : ℕ} {a : ℤ}
         ≤ 4 * k + 4 := Int.le_of_dvd (by lia) h'
       _ ≤ 2 * (2 * k + 1) + 2 := by lia
 
+/--
+@isnad1 id=ex.2h2v.s5.d48d360f7e8e from=translated src=- shape=9b0d4a33 vocab=0a8622a4
+-/
 lemma dvd_pow_of_two {m : ℕ} {a : ℤ}
     (ha' : 0 ≤ a) (h : a ∣ 2 ^ m) : ∃ k : ℕ, a = 2 ^ k := by
   lift a to ℕ using ha'
@@ -70,6 +79,9 @@ lemma dvd_pow_of_two {m : ℕ} {a : ℤ}
   obtain ⟨k, -, hk⟩ := (Nat.dvd_prime_pow Nat.prime_two).mp h
   exact ⟨k, by exact_mod_cast hk⟩
 
+/--
+@isnad1 id=eq.3h2v.s5.c231f1b3328f from=translated src=- shape=8028342b vocab=0a8622a4
+-/
 lemma odd_dvd_pow_of_two {m : ℕ} {a : ℤ}
     (ha : ¬2 ∣ a) (ha' : 0 ≤ a) (h : a ∣ 2 ^ m) : a = 1 := by
   rcases dvd_pow_of_two ha' h with ⟨k,  hk⟩
@@ -80,6 +92,9 @@ lemma odd_dvd_pow_of_two {m : ℕ} {a : ℤ}
   rw [ha]
   norm_num
 
+/--
+@isnad1 id=eq.3h3v.s6.36a9979c5f87 from=translated src=- shape=df7d9146 vocab=7c998cec
+-/
 lemma sq_pow_of_two_sub_two {m₁ m₂ : ℕ} {a : ℤ} (ha : 2 ≤ a)
     (h₁ : a ∣ 2 ^ m₁) (h₂ : a ^ 2 - 2 ∣ 2 ^ m₂)
     : a = 2 := by
@@ -125,11 +140,17 @@ lemma sq_pow_of_two_sub_two {m₁ m₂ : ℕ} {a : ℤ} (ha : 2 ≤ a)
   rw [hk']
   norm_num
 
+/--
+@isnad1 id=iff.0h3v.s6.46f1435e9b7d from=translated src=- shape=ee33a4f1 vocab=159e2c00
+-/
 lemma swap_ab_solution (a b c : ℤ) : (a,b,c) ∈ SolutionSet ↔ (b,a,c) ∈ SolutionSet := by
   simp
   constructor <;> intro h <;> casesm* _ ∨ _
     <;> rcases h with ⟨ha, hb, hc⟩ <;> rw [ha, hb, hc] <;> norm_num
 
+/--
+@isnad1 id=iff.0h3v.s6.7c8ba8e5788d from=translated src=- shape=43a8588c vocab=159e2c00
+-/
 lemma swap_bc_solution (a b c : ℤ) : (a,b,c) ∈ SolutionSet ↔ (a,c,b) ∈ SolutionSet := by
   simp
   constructor <;> intro h <;> casesm* _ ∨ _

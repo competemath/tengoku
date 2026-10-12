@@ -58,6 +58,9 @@ noncomputable def coordinateSplit {I V : Type*} (e : I ↪ V) :
     (Equiv.prodCongr (Equiv.arrowCongr (Equiv.ofInjective e e.injective).symm
       (Equiv.refl Bool)) (Equiv.refl _))
 
+/--
+@isnad1 id=eq.0h4v.s8.a202dc74d5d4 from=translated src=- shape=14d2fc36 vocab=e3b7bf40
+-/
 @[simp] theorem coordinateSplit_fst {I V : Type*} (e : I ↪ V) (x : V → Bool) :
     (coordinateSplit e x).1 = x ∘ e := rfl
 

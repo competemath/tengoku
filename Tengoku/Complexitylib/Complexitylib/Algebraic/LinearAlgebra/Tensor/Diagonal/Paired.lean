@@ -104,7 +104,9 @@ namespace Matrix
 /-- **Block-triangular minors.** Choose, for each block `b : β`, rows `f i b` and columns
 `g i b` of `A` indexed by `i : ι`. If every entry from a block `b` to a block `b'` with
 `v b' < v b` vanishes, for an injective `v` into a linear order, and every block
-`A.submatrix (f · b) (g · b)` is nonsingular, then `card ι * card β ≤ rank A`. -/
+`A.submatrix (f · b) (g · b)` is nonsingular, then `card ι * card β ≤ rank A`.
+@isnad1 id=le.3h10v.s7.198195cb252b from=translated src=- shape=724b10ef vocab=4d1148f0
+-/
 theorem card_mul_card_le_rank_of_det_blocks_ne_zero_of_lt {K : Type*} [Field K] {m n : Type*}
     [Fintype n] {ι β γ : Type*} [Fintype ι] [DecidableEq ι] [Fintype β] [DecidableEq β]
     [LinearOrder γ] (A : Matrix m n K) (f : ι → β → m) (g : ι → β → n) (v : β → γ)
@@ -124,13 +126,17 @@ section Maps
 
 variable {α α' β β' γ γ' : Type*} [Fintype α] [Fintype β] [Fintype γ]
 
-/-- `X ⊗ Y ⊗ Z` is additive in `X`. -/
+/-- `X ⊗ Y ⊗ Z` is additive in `X`.
+@isnad1 id=eq.0h11v.s7.625e49fb7bb7 from=translated src=- shape=30cca5a9 vocab=e5fe8d95
+-/
 theorem map_add_left (X X' : Matrix α' α ℂ) (Y : Matrix β' β ℂ) (Z : Matrix γ' γ ℂ)
     (T : Tensor3 α β γ) : map (X + X') Y Z T = map X Y Z T + map X' Y Z T :=
   Internal.Paired.map_add_left X X' Y Z T
 
 /-- **Koszul linearity.** The Koszul flattening of `(X + X') ⊗ Y ⊗ Z` applied to `T` is the sum
-of those of `X ⊗ Y ⊗ Z` and `X' ⊗ Y ⊗ Z`. -/
+of those of `X ⊗ Y ⊗ Z` and `X' ⊗ Y ⊗ Z`.
+@isnad1 id=eq.0h12v.s8.e354ba1380c9 from=translated src=- shape=12e5d27f vocab=a382039e
+-/
 theorem koszulFlattening_map_add_left [LinearOrder α'] [Fintype α'] (p : ℕ)
     (X X' : Matrix α' α ℂ) (Y : Matrix β' β ℂ) (Z : Matrix γ' γ ℂ) (T : Tensor3 α β γ) :
     koszulFlattening p (map (X + X') Y Z T) =
@@ -141,7 +147,9 @@ variable [DecidableEq α] [DecidableEq β] [DecidableEq γ]
 
 /-- **The paired projection ignores the other slices.** Scaling slices by `d` and then summing
 the slices `cP t` and `cN t` gives the same tensor as summing them directly, when `d = 1` on
-both clusters. -/
+both clusters.
+@isnad1 id=eq.2h8v.s8.0a2a4da56d50 from=translated src=- shape=baf15ffb vocab=b8339190
+-/
 theorem map_add_selectSlices_map_diagonal (cP cN : α' → α) (d : α → ℂ)
     (hdP : ∀ t, d (cP t) = 1) (hdN : ∀ t, d (cN t) = 1) (T : Tensor3 α β γ) :
     map (selectSlices cP + selectSlices cN) 1 1
@@ -162,7 +170,9 @@ pairwise
 distinct shifts `w q` whose positions `w q + ∑_{t ∈ K} o t` lie in `[0, m)` for all subsets `K`
 of size `p` or `p + 1`, the Koszul flattening of `weightedShifts o g` has rank at least
 `(2p+1).choose p * card Q`: the columns `(I, w q + ∑_I o)` and rows `(σ I, w q + ∑_{σ I} o)`
-form a block-diagonal minor. -/
+form a block-diagonal minor.
+@isnad1 id=le.5h7v.s10.d7dd0aadc9fa from=translated src=- shape=9058a80e vocab=5d4e826f
+-/
 theorem choose_mul_card_le_rank_koszulFlattening_weightedShifts_of_shifts
     (o : Fin (2 * p + 1) → ℤ) (g : Fin (2 * p + 1) → Fin m → ℂ) (e : Fin (2 * p + 1) → Fin m → ℕ)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, o t) {I | I.card = p})
@@ -184,7 +194,9 @@ with pairwise distinct `p`-subset sums and weights `g b t j = 2^{2^{e b t j}}` a
 `(insert t I, w q + ∑_{insert t I} o (c q))` of a block `q` to the columns
 `(I, w q' + ∑_I o (c q'))` of an earlier block `q'` (`v q' < v q`) through the slice `t` of any
 cluster `b`, then the Koszul flattening of `∑ b, weightedShifts (o b) (g b)` has rank at least
-`(2p+1).choose p * card Q`. -/
+`(2p+1).choose p * card Q`.
+@isnad1 id=le.7h10v.s11.4f7f8cdacf71 from=translated src=- shape=3af8feb8 vocab=5650e265
+-/
 theorem choose_mul_card_le_rank_koszulFlattening_sum_weightedShifts {κ : Type*} [Fintype κ]
     (o : κ → Fin (2 * p + 1) → ℤ) (g : κ → Fin (2 * p + 1) → Fin m → ℂ)
     (e : κ → Fin (2 * p + 1) → Fin m → ℕ)
@@ -215,7 +227,9 @@ variable {k p : ℕ}
 local notation "𝟙" => (1 : Matrix (Fin (2 * k + 1)) (Fin (2 * k + 1)) ℂ)
 
 /-- **The paired projection.** Summing the slices `cP t` and `cN t` of the weighted
-Landsberg–Michałek tensor gives the sum of the two cluster tensors. -/
+Landsberg–Michałek tensor gives the sum of the two cluster tensors.
+@isnad1 id=eq.0h4v.s11.40930a074bd6 from=translated src=- shape=04416693 vocab=b576e26e
+-/
 theorem map_add_selectSlices_weightedLMTensor (cP cN : Fin (2 * p + 1) → Fin (2 * k + 1)) :
     map (selectSlices cP + selectSlices cN) 𝟙 𝟙 (weightedLMTensor k) =
       weightedShifts (clusterOffsets k cP) (fun t j => lmWeight k (cP t) j) +
@@ -223,7 +237,9 @@ theorem map_add_selectSlices_weightedLMTensor (cP cN : Fin (2 * p + 1) → Fin (
   Internal.Paired.map_add_selectSlices_weightedLMTensor cP cN
 
 /-- **The paired projection of `T_k(γ)`.** Summing the slices `cP t` and `cN t` of `T_k(γ)`
-gives the sum of the two cluster tensors. -/
+gives the sum of the two cluster tensors.
+@isnad1 id=eq.0h5v.s11.a8d71fac823f from=translated src=- shape=62328f8b vocab=922c3ded
+-/
 theorem map_add_selectSlices_lmTensor (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ)
     (cP cN : Fin (2 * p + 1) → Fin (2 * k + 1)) :
     map (selectSlices cP + selectSlices cN) 𝟙 𝟙 (lmTensor k γ) =
@@ -236,7 +252,9 @@ theorem map_add_selectSlices_lmTensor (γ : Fin (2 * k + 1) → Fin (2 * k + 1) 
 `|a - a'| ≤ L` and `|j - j'| ≤ p L`. Under the hypotheses of
 `choose_mul_le_rank_koszulFlattening_pairedClusters`, the Koszul flattening of the paired
 projection of `T_k(γ)` has rank at least `(2p+1).choose p * (W - 8 (p + 1) L)`, where
-`W = r + s + min s (2k + 1 - r - (r + s)) + min r (2k + 1 - s - (r + s))`. -/
+`W = r + s + min s (2k + 1 - r - (r + s)) + min r (2k + 1 - s - (r + s))`.
+@isnad1 id=le.12h9v.s11.e72079260289 from=translated src=- shape=2e57bc02 vocab=46adfdb0
+-/
 theorem choose_mul_le_rank_koszulFlattening_pairedClusters_lmTensor
     (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ)
     (hγ : ∀ a j, γ a j = 2 ^ 2 ^ e a j) {L : ℕ}
@@ -263,7 +281,9 @@ theorem choose_mul_le_rank_koszulFlattening_pairedClusters_lmTensor
 (`cN (2p) < k`) with median offset `cN p - k = -s`, both of diameter at most `L` and with
 pairwise distinct `p`-subset sums of offsets. Then the Koszul flattening of the paired
 projection of `weightedLMTensor k` has rank at least `(2p+1).choose p * (W - 8 (p + 1) L)`,
-where `W = r + s + min s (2k + 1 - r - (r + s)) + min r (2k + 1 - s - (r + s))`. -/
+where `W = r + s + min s (2k + 1 - r - (r + s)) + min r (2k + 1 - s - (r + s))`.
+@isnad1 id=le.10h7v.s11.c09980442181 from=translated src=- shape=180950c1 vocab=1385e003
+-/
 theorem choose_mul_le_rank_koszulFlattening_pairedClusters
     (cP cN : Fin (2 * p + 1) → Fin (2 * k + 1)) (hcP : StrictMono cP) (hcN : StrictMono cN)
     (hP : k < (cP 0 : ℕ)) (hN : (cN (Fin.last (2 * p)) : ℕ) < k) {r s L : ℕ}
@@ -285,7 +305,9 @@ theorem choose_mul_le_rank_koszulFlattening_pairedClusters
 `choose_mul_le_rank_koszulFlattening_pairedClusters`, if `d = 1` on both clusters (for instance
 the indicator of a set of slices containing them), then
 `(2p+1).choose p * (W - 8 (p + 1) L) ≤ borderRank ((diagonal d ⊗ 1 ⊗ 1) T) * (2p).choose p`
-for `T = weightedLMTensor k`. -/
+for `T = weightedLMTensor k`.
+@isnad1 id=le.12h8v.s11.7269b76293f9 from=translated src=- shape=1870534d vocab=8f93a54f
+-/
 theorem choose_mul_le_borderRank_mul_map_diagonal_pairedClusters
     (cP cN : Fin (2 * p + 1) → Fin (2 * k + 1)) (hcP : StrictMono cP) (hcN : StrictMono cN)
     (hP : k < (cP 0 : ℕ)) (hN : (cN (Fin.last (2 * p)) : ℕ) < k) {r s L : ℕ}
@@ -306,7 +328,9 @@ theorem choose_mul_le_borderRank_mul_map_diagonal_pairedClusters
 /-- **Border rank from paired clusters, for a restriction to a set of slices.** Under the
 hypotheses of `choose_mul_le_rank_koszulFlattening_pairedClusters`, for every set `S` of slices
 containing both clusters,
-`(2p+1).choose p * (W - 8 (p + 1) L) ≤ borderRank (T restricted to S) * (2p).choose p`. -/
+`(2p+1).choose p * (W - 8 (p + 1) L) ≤ borderRank (T restricted to S) * (2p).choose p`.
+@isnad1 id=le.12h8v.s11.715f59268294 from=translated src=- shape=6bdc96d4 vocab=cd32f29c
+-/
 theorem choose_mul_le_borderRank_mul_restrictSlices_pairedClusters
     (cP cN : Fin (2 * p + 1) → Fin (2 * k + 1)) (hcP : StrictMono cP) (hcN : StrictMono cN)
     (hP : k < (cP 0 : ℕ)) (hN : (cN (Fin.last (2 * p)) : ℕ) < k) {r s L : ℕ}
@@ -326,7 +350,9 @@ theorem choose_mul_le_borderRank_mul_restrictSlices_pairedClusters
 
 /-- **The paired width dominates the two-tile terms.** With `z = r + s`,
 `max z (2 min z (n - z)) ≤ W = z + min s (n - r - z) + min r (n - s - z)`: when `2z ≤ n` both
-tiles fit and `W = 2z`; otherwise `W ≥ 2 (n - z)`. -/
+tiles fit and `W = 2z`; otherwise `W ≥ 2 (n - z)`.
+@isnad1 id=le.0h3v.s7.73df47251784 from=translated src=- shape=07009fbc vocab=eaaad6f0
+-/
 theorem max_le_pairedWidth (n r s : ℕ) :
     max (r + s) (2 * min (r + s) (n - (r + s))) ≤
       r + s + min s (n - r - (r + s)) + min r (n - s - (r + s)) := by
@@ -337,7 +363,9 @@ strictly monotone clusters `cP`, `cN` contained in `S`, with pairwise distinct `
 of offsets, diameters at most `L`, offsets of `cP` in `[1, k]` and of `cN` in `[-k, -1]`, and
 medians `r = clusterOffsets k cP p` and `-s = clusterOffsets k cN p`,
 `(2p+1).choose p * (Φ_{2k+1}(r, s) - 8 (p + 1) L) ≤ borderRank (T restricted to S) *
-(2p).choose p`. -/
+(2p).choose p`.
+@isnad1 id=le.10h6v.s11.b47cde12fed2 from=translated src=- shape=10ab130c vocab=8c269e93
+-/
 theorem choose_mul_phi_sub_le_borderRank_mul_restrictSlices (S : Finset (Fin (2 * k + 1)))
     (cP cN : Fin (2 * p + 1) → Fin (2 * k + 1)) (hcP : StrictMono cP) (hcN : StrictMono cN)
     (hSP : ∀ t, cP t ∈ S) (hSN : ∀ t, cN t ∈ S) {L : ℕ}
@@ -363,7 +391,9 @@ offsets of `cP` in `[1, k]` and of `cN` in `[-k, -1]`, and medians
 `r = clusterOffsets k cP p` and `-s = clusterOffsets k cN p`,
 `(2p+1)/(p+1) * (Φ_{2k+1}(r, s) - 8 (p + 1) L) ≤ borderRank (T restricted to S)`, where
 `Φ_n(r, s) = max {n - r, n - s, r + s, 2 min (r + s, n - r - s)}` (`DeletionGame.phi`). There is
-no condition on `k`, `p`, or `L`. -/
+no condition on `k`, `p`, or `L`.
+@isnad1 id=le.10h6v.s11.cc6a1262dde3 from=translated src=- shape=9fbe53c4 vocab=4231bc1f
+-/
 theorem div_mul_phi_sub_le_borderRank_restrictSlices (S : Finset (Fin (2 * k + 1)))
     (cP cN : Fin (2 * p + 1) → Fin (2 * k + 1)) (hcP : StrictMono cP) (hcN : StrictMono cN)
     (hSP : ∀ t, cP t ∈ S) (hSN : ∀ t, cN t ∈ S) {L : ℕ}
@@ -386,7 +416,9 @@ cleared.** Let `γ a j = 2^{2^{e a j}}` with labels `e` that separate positions 
 `(a', j')` with `|a - a'| ≤ L` and `|j - j'| ≤ p L`. Under the hypotheses of
 `choose_mul_phi_sub_le_borderRank_mul_restrictSlices`,
 `(2p+1).choose p * (Φ_{2k+1}(r, s) - 8 (p + 1) L) ≤ borderRank (T_k(γ) restricted to S) *
-(2p).choose p`. -/
+(2p).choose p`.
+@isnad1 id=le.12h8v.s11.eb90b749f72a from=translated src=- shape=037815ea vocab=73decfe0
+-/
 theorem choose_mul_phi_sub_le_borderRank_mul_restrictSlices_lmTensor
     (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ)
     (hγ : ∀ a j, γ a j = 2 ^ 2 ^ e a j) (S : Finset (Fin (2 * k + 1)))
@@ -415,7 +447,9 @@ theorem choose_mul_phi_sub_le_borderRank_mul_restrictSlices_lmTensor
 `div_mul_phi_sub_le_borderRank_restrictSlices`,
 `(2p+1)/(p+1) * (Φ_{2k+1}(r, s) - 8 (p + 1) L) ≤ borderRank (T_k(γ) restricted to S)`. The
 labels need not be distinct outside the window, so they can be periodic
-(`Tensor3.periodicLMTensor`). -/
+(`Tensor3.periodicLMTensor`).
+@isnad1 id=le.12h8v.s11.fd60d05db187 from=translated src=- shape=8e912bc2 vocab=7a8092ef
+-/
 theorem div_mul_phi_sub_le_borderRank_restrictSlices_lmTensor
     (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ)
     (hγ : ∀ a j, γ a j = 2 ^ 2 ^ e a j) (S : Finset (Fin (2 * k + 1)))

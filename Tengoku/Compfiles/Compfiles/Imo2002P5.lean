@@ -22,6 +22,9 @@ for all real numbers x,y,z,t.
 
 namespace Imo2002P5
 
+/--
+@isnad1 id=eq.4h3v.s6.f9410e8e21cb from=translated src=- shape=0280e469 vocab=6414adb3
+-/
 lemma extend_function_mono
     {u f : ℝ → ℝ}
     (u_mono : ∀ x y, 0 ≤ x → x ≤ y → u x ≤ u y)

@@ -35,6 +35,9 @@ Iterating this procedure extracts the coefficients one at a time.
 modulo 5 (which exist and are unique by the Chinese remainder theorem). -/
 def digit (u v : ℤ) : ℤ := (6 * v - 5 * u) % 10
 
+/--
+@isnad1 id=and.0h2v.s6.b0570d5b9396 from=translated src=- shape=0f9273f0 vocab=847a93e8
+-/
 lemma digit_props (u v : ℤ) :
     0 ≤ digit u v ∧ digit u v ≤ 9 ∧ digit u v % 2 = u % 2 ∧ digit u v % 5 = v % 5 := by
   unfold digit
@@ -43,7 +46,9 @@ lemma digit_props (u v : ℤ) :
 /-- One step of the extraction: the successor pair
 `((digit u v - u)/2, (digit u v - v)/5)` keeps the invariant `u ≡ v (mod 3)`,
 and its components are strictly smaller than those of `(u, v)` as soon as
-`|v| > 2` (for the second component) or `|u| > 9` (for the first one). -/
+`|v| > 2` (for the second component) or `|u| > 9` (for the first one).
+@isnad1 id=and.1h2v.s8.236448d68eb6 from=translated src=- shape=5ea8cd4d vocab=9dded477
+-/
 lemma step_props (u v : ℤ) (h3 : (u - v) % 3 = 0) :
     0 ≤ digit u v ∧ digit u v ≤ 9 ∧
     2 * ((digit u v - u) / 2) = digit u v - u ∧
@@ -69,10 +74,16 @@ noncomputable def polyOfDigits : List ℤ → ℤ[X]
   | [] => 0
   | d :: ds => C d + X * polyOfDigits ds
 
+/--
+@isnad1 id=eq.0h3v.s5.3259a590b8e6 from=translated src=- shape=1190c6d4 vocab=f856df94
+-/
 lemma eval_polyOfDigits_cons (d : ℤ) (ds : List ℤ) (x : ℤ) :
     (polyOfDigits (d :: ds)).eval x = d + x * (polyOfDigits ds).eval x := by
   simp [polyOfDigits]
 
+/--
+@isnad1 id=eq.0h3v.s5.92dbfe91f439 from=translated src=- shape=b5835a5b vocab=4ce208ae
+-/
 lemma coeff_polyOfDigits_cons (d : ℤ) (ds : List ℤ) (i : ℕ) :
     (polyOfDigits (d :: ds)).coeff i = if i = 0 then d else (polyOfDigits ds).coeff (i - 1) := by
   cases i with
@@ -85,6 +96,9 @@ lemma coeff_polyOfDigits_cons (d : ℤ) (ds : List ℤ) (i : ℕ) :
     rw [ite_eq_right hj, Nat.add_sub_cancel]
     simp only [polyOfDigits, coeff_add, coeff_C_succ, coeff_X_mul, zero_add]
 
+/--
+@isnad1 id=and.1h2v.s6.09f595b44823 from=translated src=- shape=bcd200f1 vocab=d4137b9b
+-/
 lemma coeff_polyOfDigits (ds : List ℤ) (h : ∀ d ∈ ds, 0 ≤ d ∧ d ≤ 9) (i : ℕ) :
     0 ≤ (polyOfDigits ds).coeff i ∧ (polyOfDigits ds).coeff i ≤ 9 := by
   induction ds generalizing i with
@@ -109,7 +123,9 @@ def build : ℕ → ℤ → ℤ → Option (List ℤ)
       | none => none
 
 /-- Any digit list produced by `build` from a pair `(u, v)` with
-`u ≡ v (mod 3)` indeed represents `(u, v)`. -/
+`u ≡ v (mod 3)` indeed represents `(u, v)`.
+@isnad1 id=and.2h4v.s6.4fd071eb6af6 from=translated src=- shape=67898f17 vocab=e6d0debf
+-/
 lemma build_correct (fuel : ℕ) (u v : ℤ) (ds : List ℤ) (h : build fuel u v = some ds)
     (h3 : (u - v) % 3 = 0) :
     (polyOfDigits ds).eval (-2) = u ∧ (polyOfDigits ds).eval (-5) = v ∧
@@ -148,13 +164,18 @@ lemma build_correct (fuel : ℕ) (u v : ℤ) (ds : List ℤ) (h : build fuel u v
 
 /-- On the finite region `|u| ≤ 9`, `|v| ≤ 2` the algorithm always terminates
 in at most 8 steps (checked here by exhaustive computation over the 95 pairs
-with `u ≡ v (mod 3)`). -/
+with `u ≡ v (mod 3)`).
+@isnad1 id=eq.3h2v.s7.f9cde04b24f7 from=translated src=- shape=f06fdb8d vocab=ec066e78
+-/
 lemma build_region_all :
     ∀ a ∈ Finset.range 19, ∀ b ∈ Finset.range 5,
       ((a : ℤ) - 9 - ((b : ℤ) - 2)) % 3 = 0 →
       (build 8 ((a : ℤ) - 9) ((b : ℤ) - 2)).isSome := by
   decide
 
+/--
+@isnad1 id=ex.3h2v.s6.f2220e69ef48 from=translated src=- shape=1e9172f4 vocab=d8469a80
+-/
 lemma build_region_some (u v : ℤ) (hu : -9 ≤ u ∧ u ≤ 9) (hv : -2 ≤ v ∧ v ≤ 2)
     (h3 : (u - v) % 3 = 0) : ∃ ds, build 8 u v = some ds := by
   have ha : ∃ a ∈ Finset.range 19, (a : ℤ) - 9 = u := by
@@ -174,7 +195,9 @@ def Good (u v : ℤ) (Q : ℤ[X]) : Prop :=
   (∀ i, 0 ≤ Q.coeff i ∧ Q.coeff i ≤ 9) ∧ Q.eval (-2) = u ∧ Q.eval (-5) = v
 
 /-- If the successor pair of `(u, v)` is representable, so is `(u, v)`:
-prepend the extracted digit as the new constant coefficient. -/
+prepend the extracted digit as the new constant coefficient.
+@isnad1 id=ex.2h2v.s6.89faa6ab6b89 from=translated src=- shape=7ae6cc5f vocab=314a20ee
+-/
 lemma good_of_good_step (u v : ℤ) (h3 : (u - v) % 3 = 0)
     (h : ∃ Q, Good ((digit u v - u) / 2) ((digit u v - v) / 5) Q) :
     ∃ Q, Good u v Q := by
@@ -198,7 +221,9 @@ lemma good_of_good_step (u v : ℤ) (h3 : (u - v) % 3 = 0)
 
 /-- Existence for all pairs in the region `|v| ≤ 2`, by strong descent on
 `|u|`: either `|u| ≤ 9` and we are in the finite region checked by
-`build_region_all`, or one extraction step strictly decreases `|u|`. -/
+`build_region_all`, or one extraction step strictly decreases `|u|`.
+@isnad1 id=ex.2h2v.s5.00efd282e247 from=translated src=- shape=cf07cb8c vocab=fc31eb16
+-/
 theorem exists_good_region (u v : ℤ) (hv2 : v.natAbs ≤ 2) (h3 : (u - v) % 3 = 0) :
     ∃ Q, Good u v Q := by
   induction hM : u.natAbs using Nat.strong_induction_on generalizing u v with | _ M ih
@@ -213,7 +238,9 @@ theorem exists_good_region (u v : ℤ) (hv2 : v.natAbs ≤ 2) (h3 : (u - v) % 3 
 
 /-- Existence for all pairs `(u, v)` with `u ≡ v (mod 3)`, by strong descent
 on `|v|`: either `|v| ≤ 2` and `exists_good_region` applies, or one
-extraction step strictly decreases `|v|`. -/
+extraction step strictly decreases `|v|`.
+@isnad1 id=ex.1h2v.s5.e23a4ae823a5 from=translated src=- shape=25ec60f2 vocab=6b0b8f7a
+-/
 theorem exists_good (u v : ℤ) (h3 : (u - v) % 3 = 0) : ∃ Q, Good u v Q := by
   induction hM : v.natAbs using Nat.strong_induction_on generalizing u v with | _ M ih
   by_cases hsmall : v.natAbs ≤ 2
@@ -226,7 +253,9 @@ theorem exists_good (u v : ℤ) (h3 : (u - v) % 3 = 0) : ∃ Q, Good u v Q := by
 /-- Uniqueness: the difference `D` of two good polynomials has coefficients in
 `{-9, …, 9}` and vanishes at `-2` and `-5`. Its trailing coefficient is then
 divisible by both 2 and 5, hence by 10, hence it is zero — a contradiction
-unless `D = 0`. -/
+unless `D = 0`.
+@isnad1 id=eq.2h3v.s4.6b558418116c from=translated src=- shape=38e9fa98 vocab=0e57aff3
+-/
 theorem good_unique (Q₁ Q₂ : ℤ[X]) (n : ℤ) (h₁ : Good n n Q₁) (h₂ : Good n n Q₂) :
     Q₁ = Q₂ := by
   by_contra hne

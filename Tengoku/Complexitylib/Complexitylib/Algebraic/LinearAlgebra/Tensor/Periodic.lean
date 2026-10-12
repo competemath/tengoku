@@ -61,13 +61,17 @@ variable {k p A M : ℕ}
 /-! ### Entries -/
 
 /-- The periodic coefficients are doubly exponential:
-`periodicWeight k A M a j = 2^{2^{(a mod A) M + (j mod M)}}`. -/
+`periodicWeight k A M a j = 2^{2^{(a mod A) M + (j mod M)}}`.
+@isnad1 id=eq.0h5v.s7.8a091cfcf764 from=translated src=- shape=1f0e8bde vocab=39758cdc
+-/
 theorem periodicWeight_eq (a j : Fin (2 * k + 1)) :
     periodicWeight k A M a j = 2 ^ 2 ^ ((a : ℕ) % A * M + (j : ℕ) % M) :=
   Internal.Periodic.periodicWeight_eq k A M a j
 
 /-- **The entries come from a fixed finite set.** For `A, M > 0`, every entry of
-`periodicLMTensor k A M` is `0` or `2^{2^e}` with `e < A M`. The set does not depend on `k`. -/
+`periodicLMTensor k A M` is `0` or `2^{2^e}` with `e < A M`. The set does not depend on `k`.
+@isnad1 id=mem.2h6v.s7.2e7ae70af2c7 from=translated src=- shape=290c612d vocab=ad4c4a69
+-/
 theorem periodicLMTensor_apply_mem (hA : 0 < A) (hM : 0 < M) (k : ℕ)
     (a j l : Fin (2 * k + 1)) :
     periodicLMTensor k A M a j l ∈
@@ -77,11 +81,15 @@ theorem periodicLMTensor_apply_mem (hA : 0 < A) (hM : 0 < M) (k : ℕ)
 /-! ### Tightness -/
 
 /-- The periodic Landsberg–Michałek tensor is tight, with weights `τA a = a - k`, `τB j = j`,
-and `τC ℓ = -ℓ`. -/
+and `τC ℓ = -ℓ`.
+@isnad1 id=tight.0h3v.s6.7a804a31e6e1 from=translated src=- shape=954a9b44 vocab=dfd35a70
+-/
 theorem tight_periodicLMTensor (k A M : ℕ) : (periodicLMTensor k A M).Tight :=
   Internal.Periodic.tight_periodicLMTensor k A M
 
-/-- Every slice of the periodic Landsberg–Michałek tensor is nonzero. -/
+/-- Every slice of the periodic Landsberg–Michałek tensor is nonzero.
+@isnad1 id=ne.0h4v.s8.257c608208d9 from=translated src=- shape=e32addca vocab=b2a6d4d5
+-/
 theorem periodicLMTensor_ne_zero (k A M : ℕ) (a : Fin (2 * k + 1)) :
     periodicLMTensor k A M a ≠ 0 :=
   Internal.Periodic.periodicLMTensor_ne_zero k A M a
@@ -91,7 +99,9 @@ theorem periodicLMTensor_ne_zero (k A M : ℕ) (a : Fin (2 * k + 1)) :
 /-- **The paired-cluster Koszul bound for the periodic tensors.** If `L < A` and `p L < M`, then
 `PairedKoszulBoundOn (periodicLMTensor k A M) p L (8 (p + 1) L)` holds, for every `k`: the
 periodic labels separate any two positions whose slices differ by at most `L` and whose columns
-differ by at most `p L`, which is all that the paired-cluster certificate compares. -/
+differ by at most `p L`, which is all that the paired-cluster certificate compares.
+@isnad1 id=pairedko.2h5v.s7.10e4898ef03c from=translated src=- shape=8d02ff8d vocab=fe29c1ad
+-/
 theorem pairedKoszulBoundOn_periodicLMTensor {L : ℕ} (hA : L < A) (hM : p * L < M) :
     PairedKoszulBoundOn (periodicLMTensor k A M) p L (8 * (p + 1) * L) :=
   Internal.Periodic.pairedKoszulBoundOn_periodicLMTensor hA hM

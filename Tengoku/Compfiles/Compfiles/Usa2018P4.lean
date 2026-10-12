@@ -41,7 +41,9 @@ then grouping by fibers shows `C + 2 * N ≥ 2 * p` (a fiber of size `n` contrib
 
 variable {p : ℕ}
 
-/-- The number of ordered pairs of distinct elements of a finset, in additive form. -/
+/-- The number of ordered pairs of distinct elements of a finset, in additive form.
+@isnad1 id=eq.0h2v.s6.c34e5f778236 from=translated src=- shape=214ab26c vocab=d3f17e56
+-/
 lemma card_filter_ne_product {α : Type*} [DecidableEq α] (s : Finset α) :
     ((s ×ˢ s).filter (fun ij : α × α ↦ ij.1 ≠ ij.2)).card + s.card = s.card * s.card := by
   have hsd : (s ×ˢ s).filter (fun ij : α × α ↦ ij.1 ≠ ij.2) = (s ×ˢ s) \ s.diag := by
@@ -85,13 +87,18 @@ def im (k : ZMod p) : Finset (ZMod p) := Finset.univ.image (f a k)
 def fib (k : ZMod p) (v : ZMod p) : Finset (Fin p) :=
   Finset.univ.filter (fun i ↦ f a k i = v)
 
+/--
+@isnad1 id=ne.1h3v.s5.f5f8d9d12a45 from=translated src=- shape=65489fe7 vocab=61d6ffc8
+-/
 lemma cast_ne_of_ne {i j : Fin p} (hij : i ≠ j) :
     ((i : ℕ) : ZMod p) ≠ ((j : ℕ) : ZMod p) := by
   intro h
   rw [ZMod.natCast_eq_natCast_iff] at h
   exact hij (Fin.ext (Nat.ModEq.eq_of_lt_of_lt h i.is_lt j.is_lt))
 
-/-- The pair `(i, j)` collides for the shift `k` iff `k = phi a (i, j)`. -/
+/-- The pair `(i, j)` collides for the shift `k` iff `k = phi a (i, j)`.
+@isnad1 id=iff.2h5v.s5.c98ef4a668dd from=translated src=- shape=72e970a6 vocab=738ce553
+-/
 lemma f_eq_iff_phi_eq (hp : p.Prime) (k : ZMod p) {i j : Fin p} (hij : i ≠ j) :
     f a k i = f a k j ↔ phi a (i, j) = k := by
   have : Fact p.Prime := ⟨hp⟩
@@ -112,14 +119,18 @@ lemma f_eq_iff_phi_eq (hp : p.Prime) (k : ZMod p) {i j : Fin p} (hij : i ≠ j) 
     rw [h] at h3
     linear_combination -h3
 
-/-- There are `p * (p - 1)` ordered pairs of distinct indices (additive form). -/
+/-- There are `p * (p - 1)` ordered pairs of distinct indices (additive form).
+@isnad1 id=eq.0h1v.s4.9ddab036a35e from=translated src=- shape=3a83ab6d vocab=35fb5f7b
+-/
 lemma card_S_add : (S : Finset (Fin p × Fin p)).card + p = p * p := by
   have h := card_filter_ne_product (Finset.univ : Finset (Fin p))
   rw [univ_product_univ, card_univ, Fintype.card_fin] at h
   exact h
 
 /-- Every ordered pair collides for exactly one shift `k`, hence the collision counts
-over all shifts sum to the number of ordered pairs. -/
+over all shifts sum to the number of ordered pairs.
+@isnad1 id=eq.1h2v.s5.1f0f2dd25c0b from=translated src=- shape=bbb01236 vocab=01d64862
+-/
 lemma sum_card_F_add [NeZero p] (hp : p.Prime) :
     (∑ k : ZMod p, (F a k).card) + p = p * p := by
   have hF : ∀ k : ZMod p,
@@ -143,7 +154,9 @@ lemma sum_card_F_add [NeZero p] (hp : p.Prime) :
   rw [hsum]
   exact card_S_add
 
-/-- Pigeonhole: some shift `k` has fewer than `p` colliding ordered pairs. -/
+/-- Pigeonhole: some shift `k` has fewer than `p` colliding ordered pairs.
+@isnad1 id=ex.1h2v.s4.5592ccf0b08a from=translated src=- shape=2da3ef20 vocab=491d9211
+-/
 lemma exists_F_card_lt (hp : p.Prime) : ∃ k : ZMod p, (F a k).card < p := by
   have : NeZero p := ⟨hp.pos.ne'⟩
   by_contra h
@@ -159,7 +172,9 @@ lemma exists_F_card_lt (hp : p.Prime) : ∃ k : ZMod p, (F a k).card < p := by
 
 /-- If `N` distinct values are attained and `C` ordered pairs collide, then
 `2 * p ≤ C + 2 * N`: writing `nᵥ ≥ 1` for the fiber sizes we have `p = Σ nᵥ`,
-`N = Σ 1` and `C = Σ nᵥ (nᵥ - 1)`, and `n * (n - 1) + 2 ≥ 2 * n` for `n ≥ 1`. -/
+`N = Σ 1` and `C = Σ nᵥ (nᵥ - 1)`, and `n * (n - 1) + 2 ≥ 2 * n` for `n ≥ 1`.
+@isnad1 id=le.0h3v.s5.cd5dddac2ffd from=translated src=- shape=dd81acc1 vocab=2b334a97
+-/
 lemma two_mul_le_card_F_add (k : ZMod p) :
     2 * p ≤ (F a k).card + 2 * (im a k).card := by
   have hpsum : p = ∑ v ∈ im a k, (fib a k v).card := by

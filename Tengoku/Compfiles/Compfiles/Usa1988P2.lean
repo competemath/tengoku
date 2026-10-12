@@ -28,6 +28,9 @@ open Polynomial
 
 -- Vieta's formulas for a and b, obtained by differentiating the
 -- polynomial identity once resp. twice and evaluating at 0.
+/--
+@isnad1 id=and.1h6v.s9.9f774dcdd81e from=translated src=- shape=8ec4b98d vocab=117d3892
+-/
 lemma vieta (a b c r s t : ℝ)
     (h : (X - C r) * (X - C s) * (X - C t) = X ^ 3 + C a * X ^ 2 + C b * X + C c) :
     a = -(r + s + t) ∧ b = r * s + s * t + t * r := by

@@ -24,6 +24,9 @@ with distinct integers x₁, x₂, ⋯, x₁₉₈₅.
 
 namespace Usa1985P1
 
+/--
+@isnad1 id=eq.0h1v.s5.5cd236cc1c39 from=translated src=- shape=d24a73a7 vocab=0d8b8063
+-/
 lemma nicomachus (n : ℕ) :
     ∑ i ∈ Finset.range n, i^3 = (∑ i ∈ Finset.range n, i)^2 := by
   induction' n with n ih
@@ -45,6 +48,9 @@ lemma nicomachus (n : ℕ) :
       ring
   lia
 
+/--
+@isnad1 id=eq.0h1v.s6.98cd9e490b41 from=translated src=- shape=7405f0af vocab=49556e09
+-/
 lemma nicomachus' (n : ℕ) :
     ∑ i ∈ Finset.range n, ((i:ℤ) + 1)^3 =
     (∑ i ∈ Finset.range n, ((i:ℤ) + 1))^2 := by

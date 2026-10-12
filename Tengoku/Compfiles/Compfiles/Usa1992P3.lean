@@ -23,6 +23,7 @@ namespace Usa1992P3
 /--
 If the values `a 0, …, a 10` are strictly increasing, then `a` is monotone
 on the interval `[0, 10]`.
+@isnad1 id=le.3h3v.s6.a9e5dd3b72ca from=translated src=- shape=181872b8 vocab=110a7538
 -/
 lemma monotone_of_consec_lt (a : ℕ → ℕ) (h : ∀ i, i < 10 → a i < a (i + 1))
     {i j : ℕ} (hij : i ≤ j) (hj : j ≤ 10) : a i ≤ a j := by
@@ -45,6 +46,7 @@ The key gap lemma: writing `s j` for the sum of the `j` smallest elements,
 if `s j < 1500` then the next element satisfies `a j ≤ s j + 1`.
 Indeed, `s j + 1 ≤ 1500` must occur as a subset sum, and any subset with
 that sum must contain some `a i` with `i ≥ j`, so `a j ≤ a i ≤ s j + 1`.
+@isnad1 id=le.4h2v.s7.f8f7faffe80b from=translated src=- shape=86657d57 vocab=9e15153b
 -/
 lemma gap (a : ℕ → ℕ)
     (hsub : ∀ n : ℕ, 1 ≤ n → n ≤ 1500 →
@@ -76,6 +78,7 @@ lemma gap (a : ℕ → ℕ)
 /--
 Induction using the gap lemma: the sum of the `k` smallest elements is at
 most `2 ^ k - 1`, for every `k ≤ 10`.
+@isnad1 id=le.3h2v.s7.3d9cb40983bd from=translated src=- shape=fb3cde2e vocab=63ed28af
 -/
 lemma pow_bound (a : ℕ → ℕ)
     (hsub : ∀ n : ℕ, 1 ≤ n → n ≤ 1500 →

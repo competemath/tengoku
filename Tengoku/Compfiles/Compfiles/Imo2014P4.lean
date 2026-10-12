@@ -26,6 +26,9 @@ open scoped EuclideanGeometry
 
 open EuclideanGeometry Affine
 
+/--
+@isnad1 id=fact.0h0v.s7.c37f42c39efd from=translated src=- shape=2a1846ce vocab=78c039ea
+-/
 local instance planeFiniteDim :
     Fact (Module.finrank ℝ (EuclideanSpace ℝ (Fin 2)) = 2) :=
   ⟨finrank_euclideanSpace_fin⟩
@@ -34,12 +37,18 @@ noncomputable local instance someOrientation :
     Module.Oriented ℝ (EuclideanSpace ℝ (Fin 2)) (Fin 2) :=
   ⟨Module.Basis.orientation (Module.finBasisOfFinrankEq _ _ planeFiniteDim.out)⟩
 
+/--
+@isnad1 id=eq.5h6v.s9.36d4dfde332e from=translated src=- shape=10e38277 vocab=75ef1020
+-/
 lemma angle_eq_of_oangle_eq {A₁ A₂ A₃ B₁ B₂ B₃ : EuclideanSpace ℝ (Fin 2)}
   (h: ∡ A₁ A₂ A₃ = ∡ B₁ B₂ B₃)
   (hA₁: A₁ ≠ A₂) (hA₂: A₃ ≠ A₂) (hB₁: B₁ ≠ B₂) (hB₂: B₃ ≠ B₂)
   : ∠ A₁ A₂ A₃ = ∠ B₁ B₂ B₃ := by
   rw [angle_eq_abs_oangle_toReal hA₁ hA₂, angle_eq_abs_oangle_toReal hB₁ hB₂, h]
 
+/--
+@isnad1 id=eq.1h6v.s9.00cc7c989f22 from=translated src=- shape=4453a899 vocab=c55955a6
+-/
 lemma angle_eq_of_cos_angle_eq {A₁ A₂ A₃ B₁ B₂ B₃ : EuclideanSpace ℝ (Fin 2)}
   (h : Real.cos (∠ A₁ A₂ A₃) = Real.cos (∠ B₁ B₂ B₃)) : ∠ A₁ A₂ A₃ = ∠ B₁ B₂ B₃ := by
   unfold EuclideanGeometry.angle at *
@@ -64,6 +73,9 @@ lemma eq_max_of_max_ne_top
     rw [planeFiniteDim.out, h]
   interval_cases Module.finrank ℝ ↥(A ⊔ B) <;> lia
 
+/--
+@isnad1 id=eq.1h2v.s11.695973cbb765 from=translated src=- shape=de8741cf vocab=11ee7f24
+-/
 lemma affineSpan_pair_finrank {A B : EuclideanSpace ℝ (Fin 2)}
   (hAB : A ≠ B): Module.finrank ℝ (affineSpan ℝ {A, B}).direction = 1 := by
   rw [direction_affineSpan]
@@ -75,6 +87,9 @@ lemma affineSpan_pair_finrank {A B : EuclideanSpace ℝ (Fin 2)}
   apply AffineIndependent.finrank_vectorSpan h
   simp
 
+/--
+@isnad1 id=nonempty.3h4v.s11.3b46d64b1b9e from=translated src=- shape=60fdf753 vocab=d710806b
+-/
 lemma inter_nonempty_of_not_parallel
   {A₁ A₂ B₁ B₂ : EuclideanSpace ℝ (Fin 2)}
   (hA : A₁ ≠ A₂) (hB : B₁ ≠ B₂)
@@ -102,11 +117,17 @@ lemma inter_nonempty_of_not_parallel
   · rw [affineSpan_eq_bot, affineSpan_eq_bot]
     constructor <;> intro h' <;> contrapose! h' <;> simp
 
+/--
+@isnad1 id=mem.2h3v.s10.8b4304f179b4 from=translated src=- shape=d5bfd027 vocab=239584ca
+-/
 lemma mem_affineSpan_pair_of_collinear {A B C : EuclideanSpace ℝ (Fin 2)}
   (hBC : B ≠ C) (h : Collinear ℝ {A, B, C}) :
   A ∈ affineSpan ℝ {B, C} := by
   apply Collinear.mem_affineSpan_of_mem_of_ne h (by simp) (by simp) (by simp) hBC
 
+/--
+@isnad1 id=mem.1h2v.s11.fb98c1c9ff59 from=translated src=- shape=f3f9408e vocab=87632abe
+-/
 lemma mem_circumsphere_of_concyclic
   (ABC : Affine.Triangle ℝ (EuclideanSpace ℝ (Fin 2))) (D : EuclideanSpace ℝ (Fin 2))
   (hABCD : Concyclic {D, ABC.points 0, ABC.points 1, ABC.points 2}) :
@@ -188,23 +209,41 @@ def ABC : Affine.Triangle ℝ (EuclideanSpace ℝ (Fin 2)) :=
 
 def D_set := ((line[ℝ, cfg.B, cfg.M] : Set _) ∩ (line[ℝ, cfg.C, cfg.N] : Set (EuclideanSpace ℝ (Fin 2))))
 
+/--
+@isnad1 id=eq.0h1v.s4.cbbe53002668 from=translated src=- shape=7723a871 vocab=f7415037
+-/
 lemma L_symm : cfg.L = cfg.symm.L := by
   simp [L, symm]
   exact midpoint_comm cfg.B cfg.C
 
+/--
+@isnad1 id=eq.0h1v.s4.2a87b5132c3b from=translated src=- shape=b78a1097 vocab=76c5da57
+-/
 lemma D_symm : cfg.D_set = cfg.symm.D_set := by
   simp [D_set, symm]
   rw [Set.inter_comm]
 
+/--
+@isnad1 id=ne.0h1v.s3.fa2babf751c0 from=translated src=- shape=94695d2c vocab=5b06e6a2
+-/
 lemma B_ne_A : cfg.B ≠ cfg.A := by
     exact cfg.hABC.injective.ne (by decide : (1 : Fin 3) ≠ 0)
 
+/--
+@isnad1 id=ne.0h1v.s3.31314012f757 from=translated src=- shape=94695d2c vocab=e13bca2e
+-/
 lemma C_ne_A : cfg.C ≠ cfg.A := by
     exact cfg.hABC.injective.ne (by decide : (2 : Fin 3) ≠ 0)
 
+/--
+@isnad1 id=ne.0h1v.s3.75c9c3bbdb42 from=translated src=- shape=94695d2c vocab=20588d8b
+-/
 lemma C_ne_B : cfg.C ≠ cfg.B := by
     exact cfg.hABC.injective.ne (by decide : (2 : Fin 3) ≠ 1)
 
+/--
+@isnad1 id=ne.1h4v.s10.dba0aabbb240 from=translated src=- shape=0d799271 vocab=85386fc7
+-/
 lemma sin_angle_in_ABC_pos (i j k : Fin 3) (h : Function.Injective ![i, j, k])
   : Real.sin (∠ (cfg.ABC.points i) (cfg.ABC.points j) (cfg.ABC.points k)) ≠ 0 := by
   apply EuclideanGeometry.sin_ne_zero_of_not_collinear
@@ -216,6 +255,9 @@ lemma sin_angle_in_ABC_pos (i j k : Fin 3) (h : Function.Injective ![i, j, k])
   apply AffineIndependent.comp_embedding ⟨_, h⟩
   exact cfg.ABC.independent
 
+/--
+@isnad1 id=ne.1h4v.s10.d9876cc64290 from=translated src=- shape=ec09eee5 vocab=5640d58e
+-/
 lemma angle_in_ABC_pos (i j k : Fin 3) (h : Function.Injective ![i, j, k])
   : ∠ (cfg.ABC.points i) (cfg.ABC.points j) (cfg.ABC.points k) ≠ 0 := by
   have h':= sin_angle_in_ABC_pos cfg i j k h
@@ -223,6 +265,9 @@ lemma angle_in_ABC_pos (i j k : Fin 3) (h : Function.Injective ![i, j, k])
   rw [h']
   exact Real.sin_zero
 
+/--
+@isnad1 id=ne.0h1v.s3.9d25e51eb586 from=translated src=- shape=94695d2c vocab=3eac9413
+-/
 lemma P_ne_B : cfg.P ≠ cfg.B := by
   have h' := angle_self_of_ne cfg.B_ne_A
   contrapose! h'
@@ -230,13 +275,22 @@ lemma P_ne_B : cfg.P ≠ cfg.B := by
   rw [cfg.hPAB]
   exact angle_in_ABC_pos cfg (1 : Fin 3) 2 0 (by decide)
 
+/--
+@isnad1 id=eq.0h1v.s8.a22aceee24bc from=translated src=- shape=f783bd11 vocab=b62a6f9d
+-/
 lemma oangle_PBA_eq_CBA : ∡ cfg.P cfg.B cfg.A = ∡ cfg.C cfg.B cfg.A := by
   apply Wbtw.oangle_eq_left cfg.hP
   exact cfg.P_ne_B
 
+/--
+@isnad1 id=eq.0h1v.s8.0a75cee552f7 from=translated src=- shape=662e991e vocab=ec49f3c5
+-/
 lemma PBA_eq_CBA : ∠ cfg.P cfg.B cfg.A = ∠ cfg.C cfg.B cfg.A := by
   exact angle_eq_of_oangle_eq cfg.oangle_PBA_eq_CBA cfg.P_ne_B cfg.B_ne_A.symm cfg.C_ne_B cfg.B_ne_A.symm
 
+/--
+@isnad1 id=ne.0h1v.s3.ac844aed3bfb from=translated src=- shape=94695d2c vocab=d3c69638
+-/
 lemma P_ne_A : cfg.P ≠ cfg.A := by
   have h' := angle_self_of_ne cfg.B_ne_A.symm
   contrapose! h'
@@ -244,12 +298,18 @@ lemma P_ne_A : cfg.P ≠ cfg.A := by
   rw [PBA_eq_CBA]
   exact angle_in_ABC_pos cfg (2 : Fin 3) 1 0 (by decide)
 
+/--
+@isnad1 id=eq.0h1v.s8.4009f4d101ce from=translated src=- shape=3621dccd vocab=b62a6f9d
+-/
 lemma oangle_PAB_eq_BCA : ∡ cfg.P cfg.A cfg.B = ∡ cfg.B cfg.C cfg.A := by
   apply oangle_eq_of_angle_eq_of_sign_eq (cfg.hPAB)
   rw [← oangle_swap₂₃_sign cfg.P cfg.B cfg.A]
   rw [← oangle_swap₁₂_sign cfg.C cfg.B cfg.A]
   rw [cfg.oangle_PBA_eq_CBA]
 
+/--
+@isnad1 id=eq.0h1v.s8.4e69daed5954 from=translated src=- shape=64bb1498 vocab=ec49f3c5
+-/
 lemma APB_eq_CBA : ∠ cfg.B cfg.P cfg.A = ∠ cfg.B cfg.A cfg.C := by
   have h₁ := angle_add_angle_add_angle_eq_pi cfg.P cfg.B_ne_A
   have h₂ := angle_add_angle_add_angle_eq_pi cfg.C cfg.B_ne_A
@@ -258,6 +318,9 @@ lemma APB_eq_CBA : ∠ cfg.B cfg.P cfg.A = ∠ cfg.B cfg.A cfg.C := by
   rw [angle_comm cfg.C cfg.B cfg.A, add_right_comm, add_left_cancel_iff] at h₁
   rw [h₁, angle_comm]
 
+/--
+@isnad1 id=eq.0h1v.s7.494aab0e6a37 from=translated src=- shape=2bb9cd08 vocab=646298e2
+-/
 lemma AB_to_AP_eq_CB_to_CA : dist cfg.A cfg.B / dist cfg.A cfg.P = dist cfg.C cfg.B / dist cfg.C cfg.A := by
   have h₁ := law_sin cfg.B cfg.P cfg.A
   have h₂ := law_sin cfg.A cfg.B cfg.C
@@ -275,30 +338,48 @@ lemma AB_to_AP_eq_CB_to_CA : dist cfg.A cfg.B / dist cfg.A cfg.P = dist cfg.C cf
   rw [← h₂, dist_comm cfg.A cfg.P, dist_comm cfg.B cfg.C]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.fb267029fbc9 from=translated src=- shape=84cec591 vocab=f0fa4ac4
+-/
 lemma AB_to_AM_eq_CL_to_CA : dist cfg.A cfg.B / dist cfg.A cfg.M = dist cfg.C cfg.L / dist cfg.C cfg.A := by
   rw [L, dist_right_midpoint, dist_comm cfg.B cfg.C, mul_div_assoc]
   rw [← AB_to_AP_eq_CB_to_CA, cfg.hPAM, dist_left_midpoint, Real.norm_ofNat]
   ring
 
+/--
+@isnad1 id=wbtw.0h1v.s8.3b0994180023 from=translated src=- shape=bb815dcd vocab=e3c63c7a
+-/
 lemma wbtw_APM : Wbtw ℝ cfg.A cfg.P cfg.M := by
   rw [cfg.hPAM]
   exact wbtw_midpoint _ _ _
 
+/--
+@isnad1 id=wbtw.0h1v.s8.2eddabdeb25c from=translated src=- shape=bb815dcd vocab=eb40344d
+-/
 lemma wbtw_CLB : Wbtw ℝ cfg.C cfg.L cfg.B := by
   rw [L, wbtw_comm]
   exact wbtw_midpoint _ _ _
 
+/--
+@isnad1 id=ne.0h1v.s3.a62690b7780a from=translated src=- shape=94695d2c vocab=3188b4d9
+-/
 lemma C_ne_L : cfg.C ≠ cfg.L := by
   rw [← dist_pos, L, dist_right_midpoint, Real.norm_ofNat]
   apply mul_pos (by norm_num)
   rw [dist_pos]
   exact cfg.C_ne_B.symm
 
+/--
+@isnad1 id=eq.0h1v.s8.9b62506038a8 from=translated src=- shape=3ba48f79 vocab=e9256b6f
+-/
 lemma oangle_BAM_eq_LCA : ∡ cfg.M cfg.A cfg.B = ∡ cfg.L cfg.C cfg.A := by
   rw [← Wbtw.oangle_eq_left cfg.wbtw_APM cfg.P_ne_A]
   rw [Wbtw.oangle_eq_left cfg.wbtw_CLB cfg.C_ne_L.symm]
   exact cfg.oangle_PAB_eq_BCA
 
+/--
+@isnad1 id=ne.0h1v.s3.270e80c7bb8b from=translated src=- shape=94695d2c vocab=0febdbc0
+-/
 lemma M_ne_A : cfg.M ≠ cfg.A := by
   have h' := cfg.P_ne_A
   contrapose! h'
@@ -307,9 +388,15 @@ lemma M_ne_A : cfg.M ≠ cfg.A := by
   rw [dist_eq_zero]
   exact h'.symm
 
+/--
+@isnad1 id=eq.0h1v.s8.0eb329009aba from=translated src=- shape=b2579444 vocab=78a5fe66
+-/
 lemma BAM_eq_LCA : ∠ cfg.M cfg.A cfg.B = ∠ cfg.L cfg.C cfg.A := by
   exact angle_eq_of_oangle_eq cfg.oangle_BAM_eq_LCA cfg.M_ne_A cfg.B_ne_A cfg.C_ne_L.symm cfg.C_ne_A.symm
 
+/--
+@isnad1 id=eq.0h1v.s7.32b18bafd1b2 from=translated src=- shape=7fc8c0ce vocab=f0fa4ac4
+-/
 lemma BM_to_AM_eq_LA_to_CA: dist cfg.B cfg.M / dist cfg.A cfg.M = dist cfg.L cfg.A / dist cfg.C cfg.A := by
   rw [← mul_self_inj (by positivity) (by positivity)]
   rw [← pow_two, ← pow_two, div_pow, div_pow]
@@ -331,6 +418,9 @@ lemma BM_to_AM_eq_LA_to_CA: dist cfg.B cfg.M / dist cfg.A cfg.M = dist cfg.L cfg
   rw [dist_comm cfg.B cfg.A, dist_comm cfg.L cfg.C]
   rw [AB_to_AM_eq_CL_to_CA]
 
+/--
+@isnad1 id=ne.0h1v.s3.69ee09c4ca11 from=translated src=- shape=94695d2c vocab=47379b19
+-/
 lemma L_ne_A : cfg.L ≠ cfg.A := by
   have h' := wbtw_midpoint ℝ cfg.B cfg.C
   rw [← L] at h'
@@ -339,6 +429,9 @@ lemma L_ne_A : cfg.L ≠ cfg.A := by
   have h := AffineIndependent.not_wbtw_of_injective (1 : Fin 3) 0 2 (by decide) cfg.ABC.independent
   exact h
 
+/--
+@isnad1 id=ne.0h1v.s3.a367d40d87d1 from=translated src=- shape=94695d2c vocab=a86d5d24
+-/
 lemma B_ne_M : cfg.B ≠ cfg.M := by
   intro h'
   rw [← dist_eq_zero] at *
@@ -350,6 +443,9 @@ lemma B_ne_M : cfg.B ≠ cfg.M := by
   rw [dist_ne_zero, dist_ne_zero]
   exact ⟨cfg.L_ne_A, cfg.C_ne_A⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.7b61ca809628 from=translated src=- shape=7c146249 vocab=78a5fe66
+-/
 lemma MBA_eq_CLA : ∠ cfg.M cfg.B cfg.A = ∠ cfg.C cfg.L cfg.A := by
   apply angle_eq_of_cos_angle_eq
   have h₁ := (law_cos cfg.M cfg.B cfg.A).symm
@@ -386,18 +482,27 @@ lemma MBA_eq_CLA : ∠ cfg.M cfg.B cfg.A = ∠ cfg.C cfg.L cfg.A := by
     · exact dist_ne_zero.mpr cfg.C_ne_L
     · exact dist_ne_zero.mpr cfg.C_ne_A
 
+/--
+@isnad1 id=eq.0h1v.s8.238451b5b973 from=translated src=- shape=cf3cd1c6 vocab=e9256b6f
+-/
 lemma oangle_MBA_eq_CLA : ∡ cfg.M cfg.B cfg.A = ∡ cfg.C cfg.L cfg.A := by
   apply oangle_eq_of_angle_eq_of_sign_eq (cfg.MBA_eq_CLA)
   rw [← oangle_swap₂₃_sign cfg.M cfg.A cfg.B]
   rw [← oangle_swap₁₂_sign cfg.L cfg.C cfg.A]
   rw [cfg.oangle_BAM_eq_LCA]
 
+/--
+@isnad1 id=eq.0h1v.s8.004bbee92ba8 from=translated src=- shape=cf3cd1c6 vocab=38e758ae
+-/
 lemma oangle_NCA_eq_BLA: ∡ cfg.N cfg.C cfg.A = ∡ cfg.B cfg.L cfg.A := by
   have h := cfg.symm.oangle_MBA_eq_CLA
   rw [← L_symm] at h
   simp [symm] at h
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s8.3039d7d53c52 from=translated src=- shape=11b9cade vocab=217489f1
+-/
 lemma oangle_NCA_MBA: (2 : ℤ) • ∡ cfg.N cfg.C cfg.A = (2 : ℤ) • ∡ cfg.M cfg.B cfg.A := by
   rw [oangle_MBA_eq_CLA, oangle_NCA_eq_BLA]
   have hL := sbtw_midpoint_of_ne ℝ cfg.C_ne_B.symm
@@ -405,12 +510,18 @@ lemma oangle_NCA_MBA: (2 : ℤ) • ∡ cfg.N cfg.C cfg.A = (2 : ℤ) • ∡ cf
   rw [Sbtw.oangle_eq_add_pi_left hL cfg.L_ne_A.symm]
   rw [smul_add, two_zsmul (Real.pi : Real.Angle), Real.Angle.coe_pi_add_coe_pi, add_zero]
 
+/--
+@isnad1 id=ne.0h1v.s3.87ae6e4ad109 from=translated src=- shape=94695d2c vocab=14429542
+-/
 lemma N_ne_Q : cfg.M ≠ cfg.P := by
   rw [cfg.hPAM, ← dist_ne_zero, dist_right_midpoint]
   apply mul_ne_zero (by norm_num)
   rw [dist_ne_zero]
   exact cfg.M_ne_A.symm
 
+/--
+@isnad1 id=ne.1h2v.s5.3b1716d1c4c4 from=translated src=- shape=d1c478f1 vocab=4c5820d3
+-/
 lemma D_ne_C {D : EuclideanSpace ℝ (Fin 2)} (hD : D ∈ cfg.D_set) : D ≠ cfg.C := by
   rw [D_set, Set.mem_inter_iff] at hD
   intro h'
@@ -439,18 +550,27 @@ lemma D_ne_C {D : EuclideanSpace ℝ (Fin 2)} (hD : D ∈ cfg.D_set) : D ≠ cfg
   rw [← affineIndependent_iff_not_collinear_set]
   exact cfg.hABC
 
+/--
+@isnad1 id=ne.1h2v.s5.2acb05c71887 from=translated src=- shape=d1c478f1 vocab=60d64d65
+-/
 lemma D_ne_B {D : EuclideanSpace ℝ (Fin 2)} (hD : D ∈ cfg.D_set) : D ≠ cfg.B := by
   rw [cfg.D_symm] at hD
   have h := cfg.symm.D_ne_C hD
   simp [symm] at h
   exact h
 
+/--
+@isnad1 id=eq.1h2v.s8.8d4b09923b47 from=translated src=- shape=bc90fc7b vocab=4f54bc17
+-/
 lemma oangle_DBA_MBA {D : EuclideanSpace ℝ (Fin 2)} (hD : D ∈ cfg.D_set) :
   (2 : ℤ) • ∡ D cfg.B cfg.A = (2 : ℤ) • ∡ cfg.M cfg.B cfg.A := by
   rw [D_set, Set.mem_inter_iff] at hD
   have hDBM := collinear_insert_of_mem_affineSpan_pair hD.left
   exact Collinear.two_zsmul_oangle_eq_left hDBM (cfg.D_ne_B hD) cfg.B_ne_M.symm
 
+/--
+@isnad1 id=eq.1h2v.s8.7b284017c688 from=translated src=- shape=bc90fc7b vocab=cac7c8f8
+-/
 lemma oangle_DCA_NCA {D : EuclideanSpace ℝ (Fin 2)} (hD : D ∈ cfg.D_set) :
   (2 : ℤ) • ∡ D cfg.C cfg.A = (2 : ℤ) • ∡ cfg.N cfg.C cfg.A := by
   rw [cfg.D_symm] at hD
@@ -458,6 +578,9 @@ lemma oangle_DCA_NCA {D : EuclideanSpace ℝ (Fin 2)} (hD : D ∈ cfg.D_set) :
   simp [symm] at h
   exact h
 
+/--
+@isnad1 id=nonempty.0h1v.s3.6faaad0ee0de from=translated src=- shape=a1685d9d vocab=f3f35176
+-/
 theorem result₁ : Set.Nonempty cfg.D_set := by
   apply inter_nonempty_of_not_parallel cfg.B_ne_M cfg.symm.B_ne_M
   simp [symm]
@@ -482,6 +605,9 @@ theorem result₁ : Set.Nonempty cfg.D_set := by
   contrapose! h_CBM_BCM
   exact cfg.hABC
 
+/--
+@isnad1 id=le.0h1v.s9.01b298f7ba9a from=translated src=- shape=af081f68 vocab=093b6de5
+-/
 theorem result₂ : cfg.D_set ⊆ Affine.Simplex.circumsphere cfg.ABC := by
   rintro D hD
   have h : (2 : ℤ) • ∡ D cfg.C cfg.A = (2 : ℤ) • ∡ D cfg.B cfg.A := by

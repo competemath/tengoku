@@ -49,7 +49,9 @@ noncomputable def PhiPoly {R : Type*} [CommRing R] (P : Polynomial R) :
            (C (C 2 * X) + X - C (C 2 * X ^ 2) * X) ^ k) *
             (C (C 2 * X) * X - 1) ^ (P.natDegree - k)))
 
-/-- `Qfun` expanded as a sum over the coefficients of `P`. -/
+/-- `Qfun` expanded as a sum over the coefficients of `P`.
+@isnad1 id=eq.0h5v.s8.ab1aafd17aa3 from=translated src=- shape=b2ed1e68 vocab=55347aee
+-/
 lemma qfun_eq_sum {K : Type*} [Field K] (P : Polynomial K) (x y z : K) :
     Qfun P x y z = ∑ k ∈ Finset.range (P.natDegree + 1), P.coeff k *
       (x * x ^ k + y * y ^ k + z * z ^ k -
@@ -62,7 +64,9 @@ lemma qfun_eq_sum {K : Type*} [Field K] (P : Polynomial K) (x y z : K) :
   ring
 
 /-- Evaluating `PhiPoly` at a pair `(x, y)` with `2xy ≠ 1` gives the cleared
-value of `Qfun` at the surface point `(x, y, (x+y)/(2xy−1))`. -/
+value of `Qfun` at the surface point `(x, y, (x+y)/(2xy−1))`.
+@isnad1 id=eq.1h4v.s8.a61e1b9cca72 from=translated src=- shape=be745d01 vocab=34ce0eea
+-/
 lemma phiPoly_eval {K : Type*} [Field K] (P : Polynomial K) (x y : K)
     (hxy : 2 * x * y ≠ 1) :
     ((PhiPoly P).map (evalRingHom x)).eval y =
@@ -112,7 +116,9 @@ lemma phiPoly_eval {K : Type*} [Field K] (P : Polynomial K) (x y : K)
 
 /-- If `Qfun P` vanishes at every nonzero real triple on the surface `2xyz = x+y+z`,
 then `PhiPoly P` is the zero polynomial. This is the "real dimension two" argument:
-a bivariate polynomial vanishing on a cofinite union of points is zero. -/
+a bivariate polynomial vanishing on a cofinite union of points is zero.
+@isnad1 id=eq.1h1v.s7.0b893474fb18 from=translated src=- shape=bba888a7 vocab=2bd45b1c
+-/
 lemma phiPoly_eq_zero (P : Polynomial ℝ)
     (hQ : ∀ x y z : ℝ, x ≠ 0 → y ≠ 0 → z ≠ 0 → 2 * x * y * z = x + y + z →
       Qfun P x y z = 0) :
@@ -168,7 +174,9 @@ lemma phiPoly_eq_zero (P : Polynomial ℝ)
   simp
 
 /-- `P` is even: from `PhiPoly P = 0` we get `Qfun P t 0 (-t) = 0` for all real `t`,
-hence `t * (P(t) − P(−t)) = 0` for all `t`, so `P.comp (-X) = P`. -/
+hence `t * (P(t) − P(−t)) = 0` for all `t`, so `P.comp (-X) = P`.
+@isnad1 id=eq.1h1v.s6.9202fa7c8f08 from=translated src=- shape=5b8b2d0f vocab=93155d7a
+-/
 lemma comp_neg_X_of_phiPoly_eq_zero (P : Polynomial ℝ) (hPhi : PhiPoly P = 0) :
     P.comp (-X) = P := by
   have hG : ∀ t : ℝ, (X * (P.comp (-X) - P)).eval t = 0 := by
@@ -195,7 +203,9 @@ lemma comp_neg_X_of_phiPoly_eq_zero (P : Polynomial ℝ) (hPhi : PhiPoly P = 0) 
   · exact eq_of_sub_eq_zero hP
 
 /-- The second finite difference `(X+h)^k + (X−h)^k − 2X^k` has degree at most `k−2`
-(in natural subtraction). Expanded via the binomial theorem: the top two terms cancel. -/
+(in natural subtraction). Expanded via the binomial theorem: the top two terms cancel.
+@isnad1 id=le.0h2v.s8.2c67af758240 from=translated src=- shape=76d7e081 vocab=09eeaeea
+-/
 lemma Fk_natDegree_le (h : ℂ) (k : ℕ) :
     ((X + C h) ^ k + (X - C h) ^ k - 2 * X ^ k : Polynomial ℂ).natDegree ≤ k - 2 := by
   rcases k with _ | m
@@ -239,7 +249,9 @@ lemma Fk_natDegree_le (h : ℂ) (k : ℕ) :
     exact le_trans (Polynomial.natDegree_C_mul_X_pow_le _ _) (by lia)
 
 /-- The leading coefficient of the second finite difference `(X+h)^k + (X−h)^k − 2X^k`
-at degree `k−2` is `k * (k−1) * h²`. -/
+at degree `k−2` is `k * (k−1) * h²`.
+@isnad1 id=eq.0h2v.s8.436b0b6d8732 from=translated src=- shape=0512743b vocab=5e128ace
+-/
 lemma Fk_coeff (h : ℂ) (k : ℕ) :
     ((X + C h) ^ k + (X - C h) ^ k - 2 * X ^ k : Polynomial ℂ).coeff (k - 2) =
       (k : ℂ) * ((k : ℂ) - 1) * h ^ 2 := by
@@ -300,7 +312,9 @@ lemma Fk_coeff (h : ℂ) (k : ℕ) :
       simp only [Nat.cast_add, Nat.cast_one]
       ring
 
-/-- `PhiPoly` commutes with mapping the reals into the complexes. -/
+/-- `PhiPoly` commutes with mapping the reals into the complexes.
+@isnad1 id=eq.0h1v.s5.d5a90015aa07 from=translated src=- shape=142c75e5 vocab=dd5f6f0f
+-/
 lemma phiPoly_map_ofReal (P : Polynomial ℝ) :
     (PhiPoly P).map (mapRingHom Complex.ofRealHom) =
       PhiPoly (P.map Complex.ofRealHom) := by
@@ -315,7 +329,9 @@ lemma phiPoly_map_ofReal (P : Polynomial ℝ) :
 /-- The degree bound: if `PhiPoly P = 0` and `P` is even, then `P.natDegree ≤ 2`.
 The proof passes to complex polynomials and evaluates `Qfun` at the surface point
 `(x, h, -h)` with `h² = −1/2`, obtaining that the second finite difference of `P` at
-`h` is constant; comparing leading coefficients then forces `deg P ≤ 2`. -/
+`h` is constant; comparing leading coefficients then forces `deg P ≤ 2`.
+@isnad1 id=le.3h1v.s6.b41ffe9094e8 from=translated src=- shape=98577779 vocab=badfbe9b
+-/
 lemma natDegree_le_two (P : Polynomial ℝ) (hP0 : P ≠ 0) (hPhi : PhiPoly P = 0)
     (hEven : P.comp (-X) = P) :
     P.natDegree ≤ 2 := by

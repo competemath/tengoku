@@ -34,8 +34,17 @@ namespace Usa2013P3
 `a + b + c = n - 1`, so that `c = n - 1 - a - b` is determined. -/
 def Token (n : ℕ) := { p : ℕ × ℕ // p.1 + p.2 < n }
 
+/--
+@isnad1 id=lt.1h3v.s4.d03421b80054 from=translated src=- shape=518f7e10 vocab=13a96747
+-/
 lemma lt_left {n a b : ℕ} (h : a + b < n) : a < n := by lia
+/--
+@isnad1 id=lt.1h3v.s4.36c1cb09b5f9 from=translated src=- shape=de40025c vocab=13a96747
+-/
 lemma lt_right {n a b : ℕ} (h : a + b < n) : b < n := by lia
+/--
+@isnad1 id=lt.1h3v.s5.5f9d23481f76 from=translated src=- shape=033a5a08 vocab=2c881234
+-/
 lemma lt_third {n a b : ℕ} (h : a + b < n) : n - 1 - a - b < n := by lia
 
 /-- A choice of lines to flip: for each of the three directions and each
@@ -89,9 +98,15 @@ def sp (n : ℕ) (ε : Bool × Bool × Bool) : Moves n :=
    fun i => (ε.1 ^^ ε.2.1) ^^ (ε.2.2 && e n i),
    fun i => ε.2.1 ^^ (ε.2.2 && e n i)⟩
 
+/--
+@isnad1 id=iff.0h2v.s3.c7c0af5d45c9 from=translated src=- shape=f632448f vocab=44357019
+-/
 lemma xor_eq_false_iff {a b : Bool} : ((a ^^ b) = false) ↔ a = b := by
   cases a <;> cases b <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s4.12e4141ce6ad from=translated src=- shape=8cb67cc2 vocab=c638d38c
+-/
 lemma applyMoves_vxor {n : ℕ} (v w : Moves n) (t : Token n) :
     applyMoves (Moves.vxor v w) t = (applyMoves v t ^^ applyMoves w t) := by
   obtain ⟨⟨a, b⟩, h⟩ := t
@@ -105,7 +120,9 @@ lemma applyMoves_vxor {n : ℕ} (v w : Moves n) (t : Token n) :
 /-- The key property of `θ = (e,e,e)`: every token lies on an even number of
 even-length lines. Indeed, with `c = n - 1 - a - b` we have
 `a + b + c = n - 1`, so among `a % 2`, `b % 2`, `c % 2` the number of values
-equal to `n % 2` is even. -/
+equal to `n % 2` is even.
+@isnad1 id=eq.1h3v.s7.564dc2a0f839 from=translated src=- shape=34deeecd vocab=68e22ee5
+-/
 lemma theta_aux (n a b : ℕ) (h : a + b < n) :
     (decide (a % 2 = n % 2) ^^ decide (b % 2 = n % 2) ^^
       decide ((n - 1 - a - b) % 2 = n % 2)) = false := by
@@ -121,7 +138,9 @@ lemma theta_aux (n a b : ℕ) (h : a + b < n) :
     | decide
     | (exfalso; norm_num at key)
 
-/-- Every element of the span acts trivially on configurations. -/
+/-- Every element of the span acts trivially on configurations.
+@isnad1 id=eq.0h3v.s4.9e5ddf54ff41 from=translated src=- shape=afb21f94 vocab=fd3fed39
+-/
 lemma applyMoves_sp {n : ℕ} (ε : Bool × Bool × Bool) (t : Token n) :
     applyMoves (sp n ε) t = false := by
   obtain ⟨ε1, ε2, ε3⟩ := ε
@@ -135,7 +154,9 @@ lemma applyMoves_sp {n : ℕ} (ε : Bool × Bool × Bool) (t : Token n) :
   cases ε1 <;> cases ε2 <;> cases ε3 <;> cases d1 <;> cases d2 <;> cases d3 <;>
     simp_all
 
-/-- The span elements are closed under xor, componentwise on the bits. -/
+/-- The span elements are closed under xor, componentwise on the bits.
+@isnad1 id=eq.0h3v.s6.5f2f1808d812 from=translated src=- shape=e1c24a2a vocab=e0787556
+-/
 lemma sp_vxor {n : ℕ} (ε ε' : Bool × Bool × Bool) :
     Moves.vxor (sp n ε) (sp n ε') =
       sp n (ε.1 ^^ ε'.1, ε.2.1 ^^ ε'.2.1, ε.2.2 ^^ ε'.2.2) := by
@@ -165,18 +186,30 @@ lemma sp_vxor {n : ℕ} (ε ε' : Bool × Bool × Bool) :
 /-- The zero move. -/
 def zeroMove (n : ℕ) : Moves n := ⟨fun _ => false, fun _ => false, fun _ => false⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.e70844b127ba from=translated src=- shape=cb64880f vocab=855c042a
+-/
 lemma vxor_self {n : ℕ} (v : Moves n) : Moves.vxor v v = zeroMove n := by
   apply Moves.ext <;> funext i <;> simp [Moves.vxor, zeroMove]
 
+/--
+@isnad1 id=eq.0h2v.s3.702eab722657 from=translated src=- shape=ce413fbc vocab=855c042a
+-/
 lemma vxor_zero {n : ℕ} (v : Moves n) : Moves.vxor v (zeroMove n) = v := by
   apply Moves.ext <;> funext i <;> simp [Moves.vxor, zeroMove]
 
+/--
+@isnad1 id=eq.0h3v.s4.c17dd099d96d from=translated src=- shape=e4973958 vocab=c0f57cf5
+-/
 lemma vxor_comm {n : ℕ} (v w : Moves n) : Moves.vxor v w = Moves.vxor w v := by
   apply Moves.ext
   · funext i; dsimp only [Moves.vxor]; exact Bool.xor_comm _ _
   · funext i; dsimp only [Moves.vxor]; exact Bool.xor_comm _ _
   · funext i; dsimp only [Moves.vxor]; exact Bool.xor_comm _ _
 
+/--
+@isnad1 id=eq.0h4v.s4.305434fd06b8 from=translated src=- shape=d4b6ca91 vocab=c0f57cf5
+-/
 lemma vxor_assoc {n : ℕ} (u v w : Moves n) :
     Moves.vxor (Moves.vxor u v) w = Moves.vxor u (Moves.vxor v w) := by
   apply Moves.ext
@@ -184,6 +217,9 @@ lemma vxor_assoc {n : ℕ} (u v w : Moves n) :
   · funext i; dsimp only [Moves.vxor]; exact Bool.xor_assoc _ _ _
   · funext i; dsimp only [Moves.vxor]; exact Bool.xor_assoc _ _ _
 
+/--
+@isnad1 id=eq.1h3v.s4.e12273274a48 from=translated src=- shape=57998dbf vocab=855c042a
+-/
 lemma vxor_eq_zero {n : ℕ} {v w : Moves n} (h : Moves.vxor v w = zeroMove n) :
     v = w := by
   apply Moves.ext
@@ -234,7 +270,9 @@ private lemma card_filter_range_four_mul (q : ℕ → Bool) (hq : ∀ i, q (i + 
     rw [mul_add, mul_one, Finset.range_add, Finset.filter_union,
       Finset.card_union_of_disjoint hdisj, ih, hmap, Nat.succ_mul]
 
-/-- Count of a periodic (period 4) predicate over `Finset.range (4 * k + r)`. -/
+/-- Count of a periodic (period 4) predicate over `Finset.range (4 * k + r)`.
+@isnad1 id=eq.1h3v.s7.a97f39df577a from=translated src=- shape=98318f25 vocab=2c9c1e4d
+-/
 lemma card_filter_range_periodic (q : ℕ → Bool) (hq : ∀ i, q (i + 4) = q i) (k r : ℕ) :
     ((Finset.range (4 * k + r)).filter fun i => q i = true).card =
       k * ((Finset.range 4).filter fun i => q i = true).card +
@@ -258,14 +296,18 @@ lemma card_filter_range_periodic (q : ℕ → Bool) (hq : ∀ i, q (i + 4) = q i
   rw [Finset.range_add, Finset.filter_union, Finset.card_union_of_disjoint hdisj,
     card_filter_range_four_mul q hq k, hmap]
 
-/-- Bridge: counting a `ℕ`-predicate on `Fin n` vs on `Finset.range n`. -/
+/-- Bridge: counting a `ℕ`-predicate on `Fin n` vs on `Finset.range n`.
+@isnad1 id=eq.0h2v.s5.401e007a5545 from=translated src=- shape=43b4a564 vocab=f2a344bf
+-/
 lemma card_fin_filter (q : ℕ → Bool) (n : ℕ) :
     (Finset.univ.filter fun i : Fin n => q i.val = true).card =
       ((Finset.range n).filter fun i => q i = true).card := by
   rw [Finset.card_filter, Finset.card_filter]
   exact Fin.sum_univ_eq_sum_range (fun i => if q i = true then 1 else 0) n
 
-/-- Combined: count of a 4-periodic predicate over `Fin (4 * k + r)`. -/
+/-- Combined: count of a 4-periodic predicate over `Fin (4 * k + r)`.
+@isnad1 id=eq.2h4v.s7.96159faaaf20 from=translated src=- shape=e7fe84e2 vocab=580e2b0f
+-/
 lemma count_eval (P : ℕ → Bool) (hP : ∀ i, P (i + 4) = P i) {n k r : ℕ} (hn : n = 4 * k + r) :
     (Finset.univ.filter fun i : Fin n => P i.val = true).card =
       k * ((Finset.range 4).filter fun i => P i = true).card +
@@ -273,7 +315,9 @@ lemma count_eval (P : ℕ → Bool) (hP : ∀ i, P (i + 4) = P i) {n k r : ℕ} 
   rw [card_fin_filter P n, hn]
   exact card_filter_range_periodic P hP k r
 
-/-- Number of `i < n` with `i % 2 = n % 2`. -/
+/-- Number of `i < n` with `i % 2 = n % 2`.
+@isnad1 id=eq.0h1v.s6.1d25a7dace90 from=translated src=- shape=53c9a528 vocab=156fc583
+-/
 lemma card_range_modeq (n : ℕ) :
     ((Finset.range n).filter fun i => i % 2 = n % 2).card = n / 2 := by
   induction n using Nat.twoStepInduction with
@@ -308,6 +352,9 @@ def Ocard (n : ℕ) : ℕ := (Finset.univ.filter fun i => e n i = false).card
 /-- Number of even-length lines in one direction. -/
 def Ecard (n : ℕ) : ℕ := (Finset.univ.filter fun i => e n i = true).card
 
+/--
+@isnad1 id=eq.0h1v.s4.70fb83ec9ebf from=translated src=- shape=31421b16 vocab=51bbf68e
+-/
 lemma Ecard_eq (n : ℕ) : Ecard n = n / 2 := by
   have h1 : (Finset.univ.filter fun i : Fin n => decide (i.val % 2 = n % 2) = true).card =
       ((Finset.range n).filter fun i => decide (i % 2 = n % 2) = true).card :=
@@ -321,6 +368,9 @@ lemma Ecard_eq (n : ℕ) : Ecard n = n / 2 := by
     Finset.filter_congr (fun i _ => by simp)]
   exact Count.card_range_modeq n
 
+/--
+@isnad1 id=eq.0h1v.s4.819f37edc0b6 from=translated src=- shape=b690c24f vocab=0d5ca270
+-/
 lemma OE_sum (n : ℕ) : Ocard n + Ecard n = n := by
   rw [Ocard, Ecard]
   rw [show (Finset.univ.filter fun i : Fin n => e n i = false) =
@@ -328,19 +378,27 @@ lemma OE_sum (n : ℕ) : Ocard n + Ecard n = n := by
     Finset.filter_congr (fun i _ => by cases (e n i) <;> simp)]
   rw [Nat.add_comm, Finset.card_filter_add_card_filter_not, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=le.0h2v.s3.1482e48fa37a from=translated src=- shape=cd407ba2 vocab=f218bb66
+-/
 lemma pon_le {n : ℕ} (α : Fin n → Bool) : pon α ≤ Ocard n := by
   apply Finset.card_le_card
   intro i hi
   simp only [Finset.mem_filter] at hi ⊢
   exact ⟨Finset.mem_univ i, hi.2.2⟩
 
+/--
+@isnad1 id=le.0h2v.s3.a89839029afe from=translated src=- shape=cd407ba2 vocab=77411bad
+-/
 lemma qon_le {n : ℕ} (α : Fin n → Bool) : qon α ≤ Ecard n := by
   apply Finset.card_le_card
   intro i hi
   simp only [Finset.mem_filter] at hi ⊢
   exact ⟨Finset.mem_univ i, hi.2.2⟩
 
-/-- Counting ones of `α ^^ c` on the even-length lines. -/
+/-- Counting ones of `α ^^ c` on the even-length lines.
+@isnad1 id=eq.0h3v.s6.2d32f25395c5 from=translated src=- shape=1fe87855 vocab=eeff8769
+-/
 lemma card_e_true {n : ℕ} (α : Fin n → Bool) (c : Bool) :
     ((Finset.univ.filter fun i => e n i = true).filter fun i => (α i ^^ c) = true).card =
       cond c (Ecard n - qon α) (qon α) := by
@@ -372,7 +430,9 @@ lemma card_e_true {n : ℕ} (α : Fin n → Bool) (c : Bool) :
     have hE : (Finset.univ.filter fun i => e n i = true).card = Ecard n := rfl
     lia
 
-/-- Counting ones of `α ^^ c` on the odd-length lines. -/
+/-- Counting ones of `α ^^ c` on the odd-length lines.
+@isnad1 id=eq.0h3v.s6.55b0cd74d6e4 from=translated src=- shape=b934e8db vocab=03c901b7
+-/
 lemma card_e_false {n : ℕ} (α : Fin n → Bool) (c : Bool) :
     ((Finset.univ.filter fun i => e n i = false).filter fun i => (α i ^^ c) = true).card =
       cond c (Ocard n - pon α) (pon α) := by
@@ -404,7 +464,9 @@ lemma card_e_false {n : ℕ} (α : Fin n → Bool) (c : Bool) :
     have hO : (Finset.univ.filter fun i => e n i = false).card = Ocard n := rfl
     lia
 
-/-- Master formula for the block values. -/
+/-- Master formula for the block values.
+@isnad1 id=eq.0h4v.s5.39c22cbed6aa from=translated src=- shape=87a70e90 vocab=0af8a897
+-/
 lemma bv_eq {n : ℕ} (α : Fin n → Bool) (δ τ : Bool) :
     bv α δ τ = cond (δ ^^ τ) (Ecard n - qon α) (qon α) +
       cond δ (Ocard n - pon α) (pon α) := by
@@ -448,24 +510,35 @@ lemma bv_eq {n : ℕ} (α : Fin n → Bool) (δ τ : Bool) :
     rw [Finset.filter_filter]
   rw [e1, e2, card_e_true, card_e_false]
 
-/-- The four block values. -/
+/-- The four block values.
+@isnad1 id=eq.0h2v.s4.f3dc8c96c3c3 from=translated src=- shape=1446edac vocab=410831cb
+-/
 lemma bv_ff {n : ℕ} (α : Fin n → Bool) : bv α false false = pon α + qon α := by
   rw [bv_eq]
   simp
   lia
 
+/--
+@isnad1 id=eq.0h2v.s5.c011cb490f45 from=translated src=- shape=ded589ad vocab=104f8c87
+-/
 lemma bv_tf {n : ℕ} (α : Fin n → Bool) :
     bv α true false = (Ocard n - pon α) + (Ecard n - qon α) := by
   rw [bv_eq]
   simp
   lia
 
+/--
+@isnad1 id=eq.0h2v.s5.488145f74831 from=translated src=- shape=982d287b vocab=56a13ba5
+-/
 lemma bv_ft {n : ℕ} (α : Fin n → Bool) :
     bv α false true = pon α + (Ecard n - qon α) := by
   rw [bv_eq]
   simp
   lia
 
+/--
+@isnad1 id=eq.0h2v.s5.13753d84ea08 from=translated src=- shape=4a1aae42 vocab=68b94212
+-/
 lemma bv_tt {n : ℕ} (α : Fin n → Bool) :
     bv α true true = (Ocard n - pon α) + qon α := by
   rw [bv_eq]
@@ -473,7 +546,9 @@ lemma bv_tt {n : ℕ} (α : Fin n → Bool) :
   lia
 
 /-- Pair identity: the two values obtained by flipping a whole direction
-sum to `n`. -/
+sum to `n`.
+@isnad1 id=eq.0h3v.s4.6c2b34de494e from=translated src=- shape=f63a985e vocab=8fbf9e90
+-/
 lemma pair_id {n : ℕ} (α : Fin n → Bool) (τ : Bool) :
     bv α false τ + bv α true τ = n := by
   rw [bv_eq, bv_eq]
@@ -481,13 +556,17 @@ lemma pair_id {n : ℕ} (α : Fin n → Bool) (τ : Bool) :
   have hq := qon_le α
   have hO := OE_sum n
   cases τ <;> simp <;> lia
-/-- The weight of a coset element splits into the three block values. -/
+/-- The weight of a coset element splits into the three block values.
+@isnad1 id=eq.0h5v.s6.0dae273a65e0 from=translated src=- shape=32e9aadf vocab=52058ce7
+-/
 lemma weight_vxor_sp {n : ℕ} (v : Moves n) (ε1 ε2 ε3 : Bool) :
     weight (Moves.vxor v (sp n (ε1, ε2, ε3))) =
       bv v.x ε1 ε3 + bv v.y (ε1 ^^ ε2) ε3 + bv v.z ε2 ε3 := by
   simp only [weight, bv, Moves.vxor, sp, Bool.xor_assoc]
 
-/-- The weights of the eight coset elements sum to `12n`. -/
+/-- The weights of the eight coset elements sum to `12n`.
+@isnad1 id=eq.0h2v.s7.c839d4bfb48f from=translated src=- shape=5318f64b vocab=12ed3201
+-/
 lemma sum_weights {n : ℕ} (v : Moves n) :
     weight (Moves.vxor v (sp n (false, false, false))) +
     weight (Moves.vxor v (sp n (false, false, true))) +
@@ -506,6 +585,9 @@ lemma sum_weights {n : ℕ} (v : Moves n) :
   have pzt := pair_id v.z true
   simp only [Bool.xor_false, Bool.xor_true, Bool.not_true, Bool.not_false]
   lia
+/--
+@isnad1 id=eq.0h4v.s6.078605bf7081 from=translated src=- shape=15a62373 vocab=fae67124
+-/
 lemma pair_weight {n : ℕ} (v : Moves n) (ε1 τ : Bool) :
     weight (Moves.vxor v (sp n (ε1, false, τ))) +
       weight (Moves.vxor v (sp n (ε1, true, τ))) = 2 * bv v.x ε1 τ + 2 * n := by
@@ -518,7 +600,9 @@ lemma pair_weight {n : ℕ} (v : Moves n) (ε1 τ : Bool) :
   · simp only [Bool.xor_false, Bool.xor_true, Bool.not_true]
     lia
 
-/-- Pairing to isolate the `y`-block. -/
+/-- Pairing to isolate the `y`-block.
+@isnad1 id=eq.0h4v.s6.0dac5cc5c1c0 from=translated src=- shape=486de98b vocab=3214df46
+-/
 lemma pair_weight_y {n : ℕ} (v : Moves n) (ε2 τ : Bool) :
     weight (Moves.vxor v (sp n (false, ε2, τ))) +
       weight (Moves.vxor v (sp n (true, !ε2, τ))) = 2 * bv v.y ε2 τ + 2 * n := by
@@ -527,7 +611,9 @@ lemma pair_weight_y {n : ℕ} (v : Moves n) (ε2 τ : Bool) :
   rw [weight_vxor_sp, weight_vxor_sp]
   cases ε2 <;> simp <;> lia
 
-/-- Pairing to isolate the `z`-block. -/
+/-- Pairing to isolate the `z`-block.
+@isnad1 id=eq.0h4v.s6.08dc095a0017 from=translated src=- shape=2e8c6b07 vocab=4fc4450d
+-/
 lemma pair_weight_z {n : ℕ} (v : Moves n) (ε2 τ : Bool) :
     weight (Moves.vxor v (sp n (false, ε2, τ))) +
       weight (Moves.vxor v (sp n (true, ε2, τ))) = 2 * bv v.z ε2 τ + 2 * n := by
@@ -538,7 +624,9 @@ lemma pair_weight_z {n : ℕ} (v : Moves n) (ε2 τ : Bool) :
 
 /-- In the case `n = 4k + 3`, if all eight coset weights are at least `6k+4`,
 then for each block the two values where the block contributes `2k+1` form the
-graph of `δ ↦ τ ⊕ c` for some bit `c`. -/
+graph of `δ ↦ τ ⊕ c` for some bit `c`.
+@isnad1 id=ex.3h3v.s7.68ab9fae5cfd from=translated src=- shape=495bda00 vocab=f0305d60
+-/
 lemma graph_of {n : ℕ} (α : Fin n → Bool) (k : ℕ)
     (hO : Ocard n = 2 * k + 2) (hE : Ecard n = 2 * k + 1)
     (hb : ∀ δ τ : Bool, 2 * k + 1 ≤ bv α δ τ ∧ bv α δ τ ≤ 2 * k + 2) :
@@ -578,7 +666,9 @@ lemma graph_of {n : ℕ} (α : Fin n → Bool) (k : ℕ)
 
 /-- The upper bound: every coset contains an element of weight at most
 `6 * (n / 4) + n % 4`. The proof averages the eight coset weights (their sum
-is always `12n`), with a parity refinement when `n % 4 ∈ {2, 3}`. -/
+is always `12n`), with a parity refinement when `n % 4 ∈ {2, 3}`.
+@isnad1 id=ex.0h2v.s4.8f94e03a0a89 from=translated src=- shape=557a3ab2 vocab=cc22ab4b
+-/
 lemma upper_bound {n : ℕ} (v : Moves n) :
     ∃ ε : Bool × Bool × Bool, weight (Moves.vxor v (sp n ε)) ≤ answer n := by
   by_contra hnc
@@ -682,17 +772,42 @@ lemma upper_bound {n : ℕ} (v : Moves n) :
       lia
 
 /-- Proof-producing helpers for token indices (kept as term-mode applications
-so that indices are syntactically reproducible). -/
+so that indices are syntactically reproducible).
+@isnad1 id=lt.1h1v.s4.ac4de6c18b60 from=translated src=- shape=6ec3cbe7 vocab=6e13db02
+-/
 lemma lt_n2 {n : ℕ} (hn : 2 ≤ n) : n - 2 < n := by lia
+/--
+@isnad1 id=lt.1h1v.s4.32a6126efdd0 from=translated src=- shape=6ec3cbe7 vocab=6e13db02
+-/
 lemma lt_n1 {n : ℕ} (hn : 2 ≤ n) : n - 1 < n := by lia
+/--
+@isnad1 id=lt.1h2v.s5.9290f6e1dc4a from=translated src=- shape=ea78bb45 vocab=c1ef7fdd
+-/
 lemma lt_n1j {n j : ℕ} (hj : j < n) : n - 1 - j < n := by lia
+/--
+@isnad1 id=lt.1h2v.s5.197ad73357c1 from=translated src=- shape=c2ec7adf vocab=2c881234
+-/
 lemma lt_n2m {n m : ℕ} (hm : m + 1 < n) : n - 2 - m < n := by lia
+/--
+@isnad1 id=lt.1h2v.s5.c48f59df229d from=translated src=- shape=14a8b591 vocab=2c881234
+-/
 lemma tp_y {n j : ℕ} (hj : j < n) : (n - 1 - j) + j < n := by lia
+/--
+@isnad1 id=lt.1h2v.s5.368ccf119e1e from=translated src=- shape=9e72c2fd vocab=2c881234
+-/
 lemma tp_z {n j : ℕ} (hj : j < n) : (n - 1 - j) + 0 < n := by lia
+/--
+@isnad1 id=lt.1h1v.s5.2fab25fa92d5 from=translated src=- shape=54b8ab92 vocab=327f97a7
+-/
 lemma tp_y1 {n : ℕ} (hn : 2 ≤ n) : (n - 2) + 1 < n := by lia
+/--
+@isnad1 id=lt.1h1v.s5.dfd26c43b0bb from=translated src=- shape=902c3587 vocab=2c881234
+-/
 lemma tp_last {n : ℕ} (hn : 0 < n) : (n - 1) + 0 < n := by lia
 
-/-- Converting between `Fin n` indices with equal values. -/
+/-- Converting between `Fin n` indices with equal values.
+@isnad1 id=eq.3h4v.s5.ca972039c6b3 from=translated src=- shape=36ef2083 vocab=71f24c0e
+-/
 lemma convFin {n : ℕ} (f : Fin n → Bool) (a b : ℕ) (ha : a < n) (hb : b < n)
     (hab : a = b) : f ⟨a, ha⟩ = f ⟨b, hb⟩ := by
   subst hab
@@ -701,7 +816,9 @@ lemma convFin {n : ℕ} (f : Fin n → Bool) (a b : ℕ) (ha : a < n) (hb : b < 
 /-- The main reduction: if `v` acts trivially on all tokens and `S` is a span
 element that agrees with `v` on the three "boundary" lines (the length-`n`
 `y`-line, the length-`n` `z`-line and the length-`2` `x`-line), then `v = S`.
-This is the propagation step of the kernel classification. -/
+This is the propagation step of the kernel classification.
+@isnad1 id=eq.7h3v.s7.a06b3f8f2305 from=translated src=- shape=78f4d213 vocab=1a87b8ab
+-/
 lemma kernel_of_reduction {n : ℕ} (hn : 0 < n) (hn2 : 2 ≤ n) (v S : Moves n)
     (hv : applyMoves v = fun _ => false)
     (hS : applyMoves S = fun _ => false)
@@ -814,7 +931,9 @@ lemma kernel_of_reduction {n : ℕ} (hn : 0 < n) (hn2 : 2 ≤ n) (v S : Moves n)
   exact vxor_eq_zero hA
 
 /-- The kernel classification: a move that flips every token an even number of
-times is one of the eight span elements. -/
+times is one of the eight span elements.
+@isnad1 id=ex.2h2v.s5.974884b272c0 from=translated src=- shape=addcfaad vocab=5df75325
+-/
 lemma kernel_eq_span {n : ℕ} (hn : 0 < n) {v : Moves n}
     (hv : applyMoves v = fun _ => false) : ∃ ε : Bool × Bool × Bool, v = sp n ε := by
   rcases (show n = 1 ∨ 2 ≤ n by lia) with rfl | hn2
@@ -913,15 +1032,30 @@ def P23 : ℕ → Bool := fun i => decide (i % 4 = 2 ∨ i % 4 = 3)
 /-- Indices `0` or `1` modulo `4`. -/
 def P01 : ℕ → Bool := fun i => decide (i % 4 = 0 ∨ i % 4 = 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.7fbe2ef3fdfa from=translated src=- shape=490b3ecf vocab=505739e8
+-/
 lemma P12_per : ∀ i, P12 (i + 4) = P12 i := by intro i; simp [P12]
+/--
+@isnad1 id=eq.0h1v.s4.466ef60b582a from=translated src=- shape=490b3ecf vocab=94b5eaff
+-/
 lemma P03_per : ∀ i, P03 (i + 4) = P03 i := by intro i; simp [P03]
+/--
+@isnad1 id=eq.0h1v.s4.493d195a3a65 from=translated src=- shape=490b3ecf vocab=c0d42f7d
+-/
 lemma P23_per : ∀ i, P23 (i + 4) = P23 i := by intro i; simp [P23]
+/--
+@isnad1 id=eq.0h1v.s4.6ccbcb9e81ae from=translated src=- shape=490b3ecf vocab=34ba30c8
+-/
 lemma P01_per : ∀ i, P01 (i + 4) = P01 i := by intro i; simp [P01]
 
 /-- Moves built from three periodic patterns. -/
 def v0of (n : ℕ) (Px Py Pz : ℕ → Bool) : Moves n :=
   ⟨fun i => Px i.val, fun i => Py i.val, fun i => Pz i.val⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.f0f15249e9d7 from=translated src=- shape=9da43cf8 vocab=7e7b9e31
+-/
 lemma card_range4 (P : ℕ → Prop) [DecidablePred P] :
     ((Finset.range 4).filter P).card =
       (if P 0 then 1 else 0) + (if P 1 then 1 else 0) +
@@ -930,21 +1064,33 @@ lemma card_range4 (P : ℕ → Prop) [DecidablePred P] :
   repeat rw [Finset.sum_range_succ]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s4.d445e50a57e7 from=translated src=- shape=f3a5a76d vocab=7e9e4820
+-/
 lemma card_range0 (P : ℕ → Prop) [DecidablePred P] :
     ((Finset.range 0).filter P).card = 0 := by simp
 
+/--
+@isnad1 id=eq.0h1v.s5.16f027e31657 from=translated src=- shape=8e88d8e2 vocab=994e7e15
+-/
 lemma card_range1 (P : ℕ → Prop) [DecidablePred P] :
     ((Finset.range 1).filter P).card = (if P 0 then 1 else 0) := by
   rw [Finset.card_filter]
   repeat rw [Finset.sum_range_succ]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.4b01d972741f from=translated src=- shape=56b6155d vocab=7e7b9e31
+-/
 lemma card_range2 (P : ℕ → Prop) [DecidablePred P] :
     ((Finset.range 2).filter P).card = (if P 0 then 1 else 0) + (if P 1 then 1 else 0) := by
   rw [Finset.card_filter]
   repeat rw [Finset.sum_range_succ]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.405e8c1c94fb from=translated src=- shape=c39909f8 vocab=7e7b9e31
+-/
 lemma card_range3 (P : ℕ → Prop) [DecidablePred P] :
     ((Finset.range 3).filter P).card =
       (if P 0 then 1 else 0) + (if P 1 then 1 else 0) + (if P 2 then 1 else 0) := by
@@ -952,7 +1098,9 @@ lemma card_range3 (P : ℕ → Prop) [DecidablePred P] :
   repeat rw [Finset.sum_range_succ]
   simp
 
-/-- Evaluating `pon` of a pattern move. -/
+/-- Evaluating `pon` of a pattern move.
+@isnad1 id=eq.4h6v.s8.59c768da0777 from=translated src=- shape=a8f25810 vocab=47370524
+-/
 lemma pon_eval {n : ℕ} (F : Fin n → Bool) (P : ℕ → Bool) (hF : ∀ i, F i = P i.val)
     (hP : ∀ i, P (i + 4) = P i) {k r s : ℕ} (hk : n = 4 * k + r) (hn2 : n % 2 = s) :
     pon F = k * (((Finset.range 4).filter fun i => ((P i && !decide (i % 2 = s))) = true).card) +
@@ -971,7 +1119,9 @@ lemma pon_eval {n : ℕ} (F : Fin n → Bool) (P : ℕ → Bool) (hF : ∀ i, F 
   rw [hk]
   rw [Count.card_filter_range_periodic _ (by intro i; simp [hP i, Nat.add_mod]) k r]
 
-/-- Evaluating `qon` of a pattern move. -/
+/-- Evaluating `qon` of a pattern move.
+@isnad1 id=eq.4h6v.s8.3012eef42694 from=translated src=- shape=8e768532 vocab=1c5c94a1
+-/
 lemma qon_eval {n : ℕ} (F : Fin n → Bool) (P : ℕ → Bool) (hF : ∀ i, F i = P i.val)
     (hP : ∀ i, P (i + 4) = P i) {k r s : ℕ} (hk : n = 4 * k + r) (hn2 : n % 2 = s) :
     qon F = k * (((Finset.range 4).filter fun i => ((P i && decide (i % 2 = s))) = true).card) +
@@ -991,7 +1141,9 @@ lemma qon_eval {n : ℕ} (F : Fin n → Bool) (P : ℕ → Bool) (hF : ∀ i, F 
   rw [Count.card_filter_range_periodic _ (by intro i; simp [hP i, Nat.add_mod]) k r]
 
 /-- The lower bound: an explicit move all of whose coset elements have weight
-at least `6 * (n / 4) + n % 4`. -/
+at least `6 * (n / 4) + n % 4`.
+@isnad1 id=ex.0h1v.s4.4a513ddc3efe from=translated src=- shape=f32cc1de vocab=cc22ab4b
+-/
 lemma lower_bound {n : ℕ} :
     ∃ v : Moves n, ∀ ε : Bool × Bool × Bool, answer n ≤ weight (Moves.vxor v (sp n ε)) := by
   obtain ⟨k, r, hk, hr⟩ : ∃ k r, n = 4 * k + r ∧ r < 4 :=
@@ -1078,12 +1230,16 @@ lemma lower_bound {n : ℕ} :
     obtain ⟨ε1, ε2, ε3⟩ := ε
     cases ε1 <;> cases ε2 <;> cases ε3 <;> rw [weight_vxor_sp] <;> simp [bv_eq] <;> lia
 
-/-- `f C` is at most the weight of any move producing `C`. -/
+/-- `f C` is at most the weight of any move producing `C`.
+@isnad1 id=le.1h3v.s4.524d3bcb5f10 from=translated src=- shape=f7aa489e vocab=da5df1af
+-/
 lemma f_le {n : ℕ} {C : Token n → Bool} {v : Moves n} (h : applyMoves v = C) :
     f C ≤ weight v :=
   Nat.sInf_le ⟨v, h, rfl⟩
 
-/-- The minimum is attained: some move produces `C` with weight `f C`. -/
+/-- The minimum is attained: some move produces `C` with weight `f C`.
+@isnad1 id=ex.1h2v.s5.ba435daa8d4d from=translated src=- shape=ca4348bc vocab=c5179479
+-/
 lemma f_spec {n : ℕ} {C : Token n → Bool} (hC : Admissible C) :
     ∃ w : Moves n, applyMoves w = C ∧ weight w = f C := by
   obtain ⟨v, hv⟩ := hC
@@ -1093,7 +1249,9 @@ lemma f_spec {n : ℕ} {C : Token n → Bool} (hC : Admissible C) :
   obtain ⟨w, hw1, hw2⟩ := hmem
   exact ⟨w, hw1, hw2⟩
 
-/-- The upper bound for `f`. -/
+/-- The upper bound for `f`.
+@isnad1 id=le.1h2v.s4.e2b5376e1f1e from=translated src=- shape=616939f9 vocab=d75aa350
+-/
 lemma f_le_answer {n : ℕ} (C : Token n → Bool) (hC : Admissible C) :
     f C ≤ answer n := by
   obtain ⟨v, hv⟩ := hC
@@ -1105,7 +1263,9 @@ lemma f_le_answer {n : ℕ} (C : Token n → Bool) (hC : Admissible C) :
   simp
 
 /-- The lower bound for `f`: some admissible configuration needs at least
-`answer n` operations. -/
+`answer n` operations.
+@isnad1 id=ex.1h1v.s5.8d08eb50a352 from=translated src=- shape=af8ee50f vocab=45250f8e
+-/
 lemma answer_le_f {n : ℕ} (hn : 0 < n) :
     ∃ C : Token n → Bool, Admissible C ∧ answer n ≤ f C := by
   obtain ⟨v, hv⟩ := lower_bound (n := n)

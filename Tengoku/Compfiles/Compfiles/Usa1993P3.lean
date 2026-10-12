@@ -29,6 +29,9 @@ for every function satisfying (i) - (iii) and every x ∈ [0,1].
 namespace Usa1993P3
 
 -- This lemma was proved automatically by Kimina-Prover 72B
+/--
+@isnad1 id=other.0h1v.s9.0abf7d09bc03 from=translated src=- shape=a5f9d7c4 vocab=36dffa30
+-/
 theorem lemma1 (c1 : ℝ) :
   let f := fun x : (Set.Icc (0:ℝ) 1) ↦ if (x:ℝ) ≤ 1 / 2 then 0 else 1;
   (∀ (a : ℝ) (ha : 0 ≤ a ∧ a ≤ 1), f ⟨a, ha⟩ ≤ c1 * a) →
@@ -79,6 +82,9 @@ private lemma dyadicBracket
 /-
 This lemma was proved by GPT5, with some help from dwrensha to fix
 up some errors.
+-/
+/--
+@isnad1 id=le.8h2v.s9.f1aea2f997d7 from=translated src=- shape=349cb6f6 vocab=301fa60e
 -/
 theorem lemma2 (f : ↑(Set.Icc 0 1) → ℝ) (x : ℝ) (hx : 0 ≤ x ∧ x ≤ 1)
     (h1 : ∀ (x : ↑(Set.Icc 0 1)), 0 ≤ f x) (h2 : f 1 = 1)

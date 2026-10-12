@@ -22,6 +22,9 @@ prove that 2(ab + bc + ca) + 4min(a²,b²,c²) ≥ a² + b² + c²
 
 namespace Usa2018P1
 
+/--
+@isnad1 id=le.2h2v.s6.5620e05a9d47 from=translated src=- shape=67c0d711 vocab=e624faf6
+-/
 lemma am_gm (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
     2 * (a * b) ^ ((1 : ℝ) / 2) ≤ a + b := by
   have hw : (0 : ℝ) ≤ 1/2 := by norm_num

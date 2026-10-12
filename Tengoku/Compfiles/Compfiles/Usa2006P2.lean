@@ -29,7 +29,9 @@ abbrev solution : ℕ → ℕ := fun k ↦ 2 * k ^ 3 + 3 * k ^ 2 + 3 * k
 if every element of `J` is at least `a`, then the sum of `J` is at least the
 sum of the `J.card` smallest allowed values `a, a+1, ...`.
 Equivalently `2 * ∑ j ∈ J, j ≥ J.card * (2 * a + (J.card - 1))`; we use this
-formulation to avoid truncated subtraction. -/
+formulation to avoid truncated subtraction.
+@isnad1 id=le.1h2v.s6.a1f6a086b0df from=translated src=- shape=7adfc3f0 vocab=89523b3a
+-/
 lemma two_mul_sum_ge (J : Finset ℕ) (a : ℕ) (hJ : ∀ j ∈ J, a ≤ j) :
     J.card * (2 * a) + J.card ^ 2 ≤ 2 * ∑ j ∈ J, j + J.card := by
   induction J using Finset.strongInductionOn with
@@ -61,7 +63,9 @@ lemma two_mul_sum_ge (J : Finset ℕ) (a : ℕ) (hJ : ∀ j ∈ J, a ≤ j) :
 if every element of `J` is at most `b`, then the sum of `J` is at most the
 sum of the `J.card` largest allowed values `b, b-1, ...`.
 Equivalently `2 * ∑ j ∈ J, j ≤ J.card * (2 * b + 1 - J.card)`; we use this
-formulation to avoid truncated subtraction. -/
+formulation to avoid truncated subtraction.
+@isnad1 id=le.1h2v.s6.9a7f1bb09522 from=translated src=- shape=46dd419b vocab=89523b3a
+-/
 lemma two_mul_sum_le (J : Finset ℕ) (b : ℕ) (hJ : ∀ j ∈ J, j ≤ b) :
     2 * ∑ j ∈ J, j + J.card ^ 2 ≤ 2 * (J.card * b) + J.card := by
   induction J using Finset.strongInductionOn with
@@ -89,7 +93,9 @@ lemma two_mul_sum_le (J : Finset ℕ) (b : ℕ) (hJ : ∀ j ∈ J, j ≤ b) :
     · rw [Finset.not_nonempty_iff_eq_empty.mp hne]
       simp
 
-/-- Twice the sum `1 + 2 + ... + n`. -/
+/-- Twice the sum `1 + 2 + ... + n`.
+@isnad1 id=eq.0h1v.s5.3866f0ba9aa2 from=translated src=- shape=a4fb1929 vocab=c2c11d79
+-/
 lemma two_mul_sum_Icc_one (n : ℕ) :
     2 * ∑ i ∈ Finset.Icc 1 n, i = n * (n + 1) := by
   induction n with

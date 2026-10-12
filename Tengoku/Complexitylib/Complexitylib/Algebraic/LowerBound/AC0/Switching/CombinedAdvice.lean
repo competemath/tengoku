@@ -79,7 +79,9 @@ noncomputable instance blockAdviceFintype :
   exact Fintype.ofEquiv _ equiv.symm
 
 /-- Proof-irrelevant finiteness obtained by strong induction on total path
-length. -/
+length.
+@isnad1 id=finite.0h2v.s3.c19a3186e028 from=translated src=- shape=b794339c vocab=f8fad2ee
+-/
 noncomputable instance combinedAdviceFinite (width pathLength : Nat) :
     Finite (CombinedAdvice width pathLength) := by
   induction pathLength using Nat.strong_induction_on with
@@ -114,7 +116,9 @@ noncomputable instance continuingBlockAdviceFintype (width length : Nat) :
     Fintype (ContinuingBlockAdvice width length) := Fintype.ofFinite _
 
 /-- A length-`length` block chooses that many of the `width` positions and one
-Boolean difference bit per position. -/
+Boolean difference bit per position.
+@isnad1 id=eq.0h2v.s5.5bc07a4999ec from=translated src=- shape=ff0b8a2c vocab=43d1d09a
+-/
 theorem card_blockAdvice (width length : Nat) :
     Fintype.card (BlockAdvice width length) =
       width.choose length * 2 ^ length := by
@@ -128,7 +132,9 @@ theorem card_blockAdvice (width length : Nat) :
   rw [Fintype.card_congr equiv]
   simp
 
-/-- Requiring a mismatch removes exactly the all-zero difference string. -/
+/-- Requiring a mismatch removes exactly the all-zero difference string.
+@isnad1 id=eq.0h2v.s5.640a8377a696 from=translated src=- shape=26be56dc vocab=5e781b35
+-/
 theorem card_continuingBlockAdvice (width length : Nat) :
     Fintype.card (ContinuingBlockAdvice width length) =
       width.choose length * (2 ^ length - 1) := by
@@ -145,7 +151,9 @@ theorem card_continuingBlockAdvice (width length : Nat) :
   rw [Fintype.card_congr equiv]
   simp
 
-/-- Exact first-block recurrence for the combined advice cardinality. -/
+/-- Exact first-block recurrence for the combined advice cardinality.
+@isnad1 id=eq.0h2v.s8.db1258eb9ba2 from=translated src=- shape=f76e1684 vocab=fec313a2
+-/
 theorem card_combinedAdvice_succ (width pathLength : Nat) :
     Nat.card (CombinedAdvice width (pathLength + 1)) =
       ∑ index : Fin (Nat.min width (pathLength + 1)),
@@ -519,7 +527,9 @@ private theorem normalizedContribution_sum_le_one
 
 /-- Combined block advice has at most `((5 * width - 1) / 2)^pathLength`
 elements. The subtraction occurs in `Real`, and positive width makes the base
-positive. -/
+positive.
+@isnad1 id=le.1h2v.s6.3a1989efa1e3 from=translated src=- shape=7333d858 vocab=b7683c53
+-/
 theorem natCard_combinedAdvice_cast_le
     (width pathLength : Nat)
     (widthPositive : 0 < width) :
@@ -637,7 +647,9 @@ theorem natCard_combinedAdvice_cast_le
                   widthPositive totalPositive) (by positivity)
             _ = combinedAdviceBase width ^ total := by ring
 
-/-- `Fintype.card` form of the combined-advice cardinality bound. -/
+/-- `Fintype.card` form of the combined-advice cardinality bound.
+@isnad1 id=le.1h2v.s6.a1780d08fa5c from=translated src=- shape=7333d858 vocab=4d40591f
+-/
 theorem card_combinedAdvice_cast_le
     (width pathLength : Nat)
     (widthPositive : 0 < width) :

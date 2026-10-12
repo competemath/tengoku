@@ -19,6 +19,9 @@ a^a * b^b * c^c ≥ (abc)^((a+b+c)/3)
 
 namespace Usa1974P2
 
+/--
+@isnad1 id=le.5h3v.s7.8a55b23f3af3 from=translated src=- shape=de7fb359 vocab=1d128d1f
+-/
 lemma usa1974_p2_wlog :
     ∀ (a b c : ℝ), a > 0 → b > 0 → c > 0 →
       a ≥ b → b ≥ c → a^a * b^b * c^c ≥ (a*b*c)^((a+b+c)/3) := by

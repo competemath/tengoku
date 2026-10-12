@@ -84,7 +84,9 @@ def transform (n k : ℕ) (h_n : n = 2 * k) (p : Square n) : Fin k × Fin k :=
     let u : Fin k := ⟨k - 1 - x / 2, by lia⟩; let v : Fin k := ⟨k - 1 - y / 2, by lia⟩
     (u, v)
 
-/-- Helper lemma for triangular number summation. -/
+/-- Helper lemma for triangular number summation.
+@isnad1 id=eq.0h1v.s5.7c54a3832c64 from=translated src=- shape=f2a8331c vocab=46666eef
+-/
 lemma sum_range_sub_eq_triangular (k : ℕ) : ∑ i ∈ range k, (k - i) = k * (k + 1) / 2 := by
   induction k with
   | zero => simp
@@ -99,6 +101,7 @@ lemma sum_range_sub_eq_triangular (k : ℕ) : ∑ i ∈ range k, (k - i) = k * (
 
 /--
 Lemma: The transformation is injective on the set sw.
+@isnad1 id=eq.4h4v.s6.cb872ca823f4 from=translated src=- shape=0bc92b2b vocab=4439f825
 -/
 lemma transform_inj_on_sw (n k : ℕ) (h_n : n = 2 * k) :
   ∀ a ∈ sw n, ∀ b ∈ sw n, transform n k h_n a = transform n k h_n b → a = b := by
@@ -137,6 +140,7 @@ lemma transform_inj_on_sw (n k : ℕ) (h_n : n = 2 * k) :
 /--
 Lemma: The transformation maps sw onto t (Surjectivity).
 For every point p in the triangular set t, there exists a pre-image in sw.
+@isnad1 id=other.1h2v.s7.26bd877222d5 from=translated src=- shape=43f15f3b vocab=65b2ee23
 -/
 lemma transform_surjective_on_t (n k : ℕ) (h_n : n = 2 * k) :
   let t : Finset (Fin k × Fin k) := univ.filter (λ p => p.1.val + p.2.val < k)
@@ -175,7 +179,9 @@ lemma transform_surjective_on_t (n k : ℕ) (h_n : n = 2 * k) :
       · ext <;> dsimp <;> lia
 
 /-- Calculate the cardinality of the 'sw' set (White squares in the construction).
-    It corresponds to a triangular number. -/
+    It corresponds to a triangular number.
+@isnad1 id=eq.1h2v.s5.a16e090459f1 from=translated src=- shape=63c8883b vocab=d8db16b7
+-/
 lemma card_sw_eq_triangular (n k : ℕ) (h_n : n = 2 * k) :
   (sw n).card = k * (k + 1) / 2 := by
   -- 1. Define a simple triangular target set t
@@ -242,7 +248,9 @@ lemma card_sw_eq_triangular (n k : ℕ) (h_n : n = 2 * k) :
     -- 3. Use p
     use p
 
-/-- Lemma: Adjacent squares always have different parity of the sum of their coordinates. -/
+/-- Lemma: Adjacent squares always have different parity of the sum of their coordinates.
+@isnad1 id=ne.1h3v.s6.1665c380570b from=translated src=- shape=4a51db50 vocab=d5e830e7
+-/
 lemma adjacent_parity_ne {n : ℕ} {p m : Square n} (h : Adjacent p m) :
     (p.1.val + p.2.val) % 2 ≠ (m.1.val + m.2.val) % 2 := by
   unfold Adjacent at h
@@ -260,7 +268,9 @@ lemma adjacent_parity_ne {n : ℕ} {p m : Square n} (h : Adjacent p m) :
 def IsIndependentPoint (n : ℕ) (p : Square n) : Prop := isSw n p.1 p.2
 
 /-- Lemma: Independent points cannot share a common neighbor.
-    If p1, p2 ∈ sw and they both are adjacent to m, then p1 = p2. -/
+    If p1, p2 ∈ sw and they both are adjacent to m, then p1 = p2.
+@isnad1 id=eq.4h4v.s5.4f809ca166a8 from=translated src=- shape=daaa04c6 vocab=7e4c996a
+-/
 lemma independent_points_cant_share_neighbor (n : ℕ) (p1 p2 m : Square n)
   (h1 : IsIndependentPoint n p1) (h2 : IsIndependentPoint n p2)
   (h_adj1 : Adjacent p1 m) (h_adj2 : Adjacent p2 m) : p1 = p2 := by
@@ -297,6 +307,7 @@ def parityTransform (n : ℕ) (target_parity : ℕ) (p : Square n) : Square n :=
 
 /--
 Lemma: parityTransform is injective.
+@isnad1 id=injectiv.0h2v.s3.0cfc33aa0290 from=translated src=- shape=b38ede30 vocab=b10d2add
 -/
 lemma parity_transform_injective (n target_parity : ℕ) :
     Function.Injective (parityTransform n target_parity) := by
@@ -307,6 +318,7 @@ lemma parity_transform_injective (n target_parity : ℕ) :
   **Lower Bound Lemma (Revised):**
   If s covers all squares with a specific target parity (0 or 1),
   then |s| ≥ n(n+2)/8.
+@isnad1 id=le.3h4v.s7.5e38a6bfbf8b from=translated src=- shape=7e0bba69 vocab=3e789fbd
 -/
 lemma card_lower_bound_of_cover (n k : ℕ) (h_n : n = 2 * k)
   (s : Finset (Square n)) (target_parity : ℕ)
@@ -417,6 +429,7 @@ lemma card_lower_bound_of_cover (n k : ℕ) (h_n : n = 2 * k)
 Lemma: For any square `q` whose coordinate sum is odd,
 there exists a marked square in `sw` adjacent to `q`.
 This handles the detailed case analysis for the valid marking construction.
+@isnad1 id=ex.3h2v.s6.4a5f0b786744 from=translated src=- shape=9ffb4205 vocab=e54af2a4
 -/
 lemma exists_adjacent_in_sw_of_odd_sum (n : ℕ) (h_pos : 0 < n) (h_even : Even n)
     (q : Square n) (h_sum_odd : (q.1.val + q.2.val) % 2 = 1) :
@@ -475,6 +488,7 @@ lemma exists_adjacent_in_sw_of_odd_sum (n : ℕ) (h_pos : 0 < n) (h_even : Even 
 /--
 Lemma: The sets sw and sb are disjoint.
 (Points in sw have even sum, points in sb have odd sum relative to the transform).
+@isnad1 id=disjoint.2h1v.s4.9653c1a0c08f from=translated src=- shape=16109e7f vocab=3027766b
 -/
 lemma disjoint_sw_sb (n : ℕ) (h_pos : 0 < n) (h_even : Even n) :
   Disjoint (sw n) (sb n) := by
@@ -498,6 +512,7 @@ lemma disjoint_sw_sb (n : ℕ) (h_pos : 0 < n) (h_even : Even n) :
 /--
 Lemma: Symmetry implies |sw| = |sb|.
 The map x ↦ n - 1 - x is a bijection swapping the two sets.
+@isnad1 id=eq.0h1v.s3.98c55875ac9f from=translated src=- shape=be9cf32b vocab=6648fc7d
 -/
 lemma card_sw_eq_card_sb (n : ℕ) :
   (sw n).card = (sb n).card := by
@@ -520,6 +535,9 @@ lemma card_sw_eq_card_sb (n : ℕ) :
 
 -- 5. Sufficiency Proof (Size and Validity)
 
+/--
+@isnad1 id=other.2h1v.s6.693bf5502042 from=translated src=- shape=e5722a2c vocab=6b372ce9
+-/
 theorem imo1999_p3_sufficiency (n : ℕ) (h_pos : 0 < n) (h_even : Even n) :
   let min_k := n * (n + 2) / 4; let s := solutionSet n
   s.card = min_k ∧ IsValidMarking s := by
@@ -600,6 +618,9 @@ theorem imo1999_p3_sufficiency (n : ℕ) (h_pos : 0 < n) (h_even : Even n) :
 
 -- 6. Necessity Proof (|S| ≧ N)
 
+/--
+@isnad1 id=le.2h2v.s5.430d1a0f7a94 from=translated src=- shape=cf379b45 vocab=149bff18
+-/
 theorem imo1999_p3_necessity (n : ℕ) (h_even : Even n) (s : Finset (Square n)) :
   IsValidMarking s → s.card ≥ n * (n + 2) / 4 := by
   intro h_valid

@@ -43,7 +43,9 @@ def FibPair (a b : ℕ) : Prop :=
         (a = Nat.fib (2 * k + 1) ∧ b = Nat.fib (2 * k - 1)))
 
 /-- Vieta jumping step: if `a * b ∣ a^2 + b^2 + 1` with `0 < a ≤ b`, then the quotient
-equals `3`. Strong induction on the sum (the induction hypothesis is passed explicitly). -/
+equals `3`. Strong induction on the sum (the induction hypothesis is passed explicitly).
+@isnad1 id=eq.6h3v.s8.f9f43b4781bd from=translated src=- shape=2846e392 vocab=332c25d5
+-/
 lemma quotient_eq_three_aux {s : ℕ}
     (IH : ∀ t : ℕ, t < s → ∀ a b : ℕ, a + b = t → 0 < a → 0 < b →
       a * b ∣ a ^ 2 + b ^ 2 + 1 → (a ^ 2 + b ^ 2 + 1) / (a * b) = 3)
@@ -112,7 +114,9 @@ lemma quotient_eq_three_aux {s : ℕ}
       rw [hveq, Nat.mul_div_right _ (mul_pos ha hb'pos)]
     lia
 
-/-- If `a * b ∣ a^2 + b^2 + 1` for positive naturals `a, b`, then the quotient is `3`. -/
+/-- If `a * b ∣ a^2 + b^2 + 1` for positive naturals `a, b`, then the quotient is `3`.
+@isnad1 id=eq.3h2v.s7.5becf0053863 from=translated src=- shape=41b59e0f vocab=12fc2efb
+-/
 lemma quotient_eq_three {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
     (hdvd : a * b ∣ a ^ 2 + b ^ 2 + 1) : (a ^ 2 + b ^ 2 + 1) / (a * b) = 3 := by
   have key : ∀ s : ℕ, ∀ a b : ℕ, a + b = s → 0 < a → 0 < b →
@@ -130,7 +134,9 @@ lemma quotient_eq_three {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
         rwa [mul_comm b a, add_comm (b ^ 2) (a ^ 2)] at h
   exact key (a + b) a b rfl ha hb hdvd
 
-/-- The Fibonacci recurrence over four steps: `F_{n+4} + F_n = 3 * F_{n+2}`. -/
+/-- The Fibonacci recurrence over four steps: `F_{n+4} + F_n = 3 * F_{n+2}`.
+@isnad1 id=eq.0h1v.s5.3ce70a8aded7 from=translated src=- shape=007e951f vocab=24dd8483
+-/
 lemma fib_add_four (n : ℕ) : Nat.fib (n + 4) + Nat.fib n = 3 * Nat.fib (n + 2) := by
   have h1 : Nat.fib (n + 4) = Nat.fib (n + 2) + Nat.fib (n + 3) := by
     have h := @Nat.fib_add_two (n + 2)
@@ -142,7 +148,9 @@ lemma fib_add_four (n : ℕ) : Nat.fib (n + 4) + Nat.fib n = 3 * Nat.fib (n + 2)
   lia
 
 /-- Vieta jumping for the equation `a^2 + b^2 + 1 = 3 * a * b` with `0 < a ≤ b`:
-the pair is a `FibPair`. -/
+the pair is a `FibPair`.
+@isnad1 id=fibpair.6h3v.s7.53852e565c10 from=translated src=- shape=36c62fe8 vocab=e4db5209
+-/
 lemma fib_pair_aux {s : ℕ}
     (IH : ∀ t : ℕ, t < s → ∀ a b : ℕ, a + b = t → 0 < a → 0 < b →
       a ^ 2 + b ^ 2 + 1 = 3 * a * b → FibPair a b)
@@ -228,7 +236,9 @@ lemma fib_pair_aux {s : ℕ}
         lia
 
 /-- The solutions of `a^2 + b^2 + 1 = 3 * a * b` in positive integers are exactly
-the pairs `{F_{2k-1}, F_{2k+1}}` (and `(1, 1)`). -/
+the pairs `{F_{2k-1}, F_{2k+1}}` (and `(1, 1)`).
+@isnad1 id=fibpair.3h2v.s6.d05802271df6 from=translated src=- shape=60e70722 vocab=0b2363e7
+-/
 lemma fib_pair {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
     (h : a ^ 2 + b ^ 2 + 1 = 3 * a * b) : FibPair a b := by
   have key : ∀ s : ℕ, ∀ a b : ℕ, a + b = s → 0 < a → 0 < b →
@@ -252,7 +262,9 @@ lemma fib_pair {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
           · exact Or.inl ⟨h2, h1⟩
   exact key (a + b) a b rfl ha hb h
 
-/-- Every entry of a `FibPair` is a Fibonacci number. -/
+/-- Every entry of a `FibPair` is a Fibonacci number.
+@isnad1 id=and.1h2v.s4.19726e19f0e3 from=translated src=- shape=1393cd4a vocab=14a64f1f
+-/
 lemma fibPair_fib {a b : ℕ} (h : FibPair a b) :
     (∃ m, a = Nat.fib m) ∧ (∃ n, b = Nat.fib n) := by
   rcases h with ⟨rfl, rfl⟩ | ⟨k, _, hcase⟩
@@ -261,13 +273,17 @@ lemma fibPair_fib {a b : ℕ} (h : FibPair a b) :
     · exact ⟨⟨2 * k - 1, h1⟩, ⟨2 * k + 1, h2⟩⟩
     · exact ⟨⟨2 * k + 1, h1⟩, ⟨2 * k - 1, h2⟩⟩
 
-/-- Parity helper: a square has the same parity as its root. -/
+/-- Parity helper: a square has the same parity as its root.
+@isnad1 id=eq.0h1v.s5.95e1af781c2e from=translated src=- shape=8e6eb5c1 vocab=df461349
+-/
 lemma sq_mod_two (x : ℕ) : x ^ 2 % 2 = x % 2 := by
   rw [pow_two, Nat.mul_mod]
   have hx : x % 2 < 2 := Nat.mod_lt x two_pos
   interval_cases h : x % 2 <;> rfl
 
-/-- Odd squares are `1 mod 4`. -/
+/-- Odd squares are `1 mod 4`.
+@isnad1 id=eq.1h1v.s5.5b33427ffa5e from=translated src=- shape=0080028f vocab=df461349
+-/
 lemma sq_mod_four_of_odd {x : ℕ} (hx : x % 2 = 1) : x ^ 2 % 4 = 1 := by
   have hx4 : x % 4 % 2 = 1 := by
     rw [Nat.mod_mod_of_dvd _ (by decide : 2 ∣ 4)]
@@ -280,7 +296,9 @@ lemma sq_mod_four_of_odd {x : ℕ} (hx : x % 2 = 1) : x ^ 2 % 4 = 1 := by
   · simp at hx4
   · rfl
 
-/-- Even squares are `0 mod 4`. -/
+/-- Even squares are `0 mod 4`.
+@isnad1 id=eq.1h1v.s5.c6a469332323 from=translated src=- shape=0080028f vocab=df461349
+-/
 lemma sq_mod_four_of_even {x : ℕ} (hx : x % 2 = 0) : x ^ 2 % 4 = 0 := by
   have hx4 : x % 4 % 2 = 0 := by
     rw [Nat.mod_mod_of_dvd _ (by decide : 2 ∣ 4)]

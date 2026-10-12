@@ -21,7 +21,9 @@ namespace Algebraic.Cutwidth.Aggregate.Geometry.Joint
 
 open scoped BigOperators Classical
 
-/-- Some fixed-size subset retains at least the mean weight of fixed-size witnesses. -/
+/-- Some fixed-size subset retains at least the mean weight of fixed-size witnesses.
+@isnad1 id=ex.3h6v.s7.5cf855f81cd7 from=translated src=- shape=c30d393a vocab=ed3026b8
+-/
 theorem exists_subset_weighted_witnesses {n a d : ℕ} (hda : d ≤ a) (han : a ≤ n)
     {J : Type*} [Fintype J] (witness : J → Finset (Fin n))
     (card : ∀ j, (witness j).card = d) (weight : J → ℝ) :
@@ -59,7 +61,9 @@ theorem exists_subset_weighted_witnesses {n a d : ℕ} (hda : d ≤ a) (han : a 
 noncomputable def tripleRetention (n a : ℕ) : ℝ :=
   (a : ℝ) * (a - 1) * (a - 2) / ((n : ℝ) * (n - 1) * (n - 2))
 
-/-- Three-coordinate retention follows directly from weighted witness averaging. -/
+/-- Three-coordinate retention follows directly from weighted witness averaging.
+@isnad1 id=ex.3h5v.s7.44dc5554f0e5 from=translated src=- shape=26f1ce41 vocab=82be11a2
+-/
 theorem exists_subset_weighted_triples {n a : ℕ} (ha : 3 ≤ a) (han : a ≤ n)
     {J : Type*} [Fintype J] (witness : J → Finset (Fin n))
     (card : ∀ j, (witness j).card = 3) (weight : J → ℝ) :

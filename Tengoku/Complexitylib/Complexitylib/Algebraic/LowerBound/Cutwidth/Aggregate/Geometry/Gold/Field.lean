@@ -33,13 +33,17 @@ section CharTwo
 variable {K : Type*} [Field K] [CharP K 2]
 
 /-- The cube of a ternary sum differs from the sum of cubes by the product of the three
-pairwise sums. -/
+pairwise sums.
+@isnad1 id=eq.0h4v.s8.9226fd1d22a6 from=translated src=- shape=6ecd7b26 vocab=cd3a2b43
+-/
 theorem cube_add_add (a b c : K) :
     (a + b + c) ^ 3 = a ^ 3 + b ^ 3 + c ^ 3 + (a + b) * (b + c) * (c + a) := by
   have two : (2 : K) = 0 := CharTwo.two_eq_zero
   linear_combination (a + b) * (b + c) * (c + a) * two
 
-/-- Cubing preserves ternary addition on at most two points of a binary field. -/
+/-- Cubing preserves ternary addition on at most two points of a binary field.
+@isnad1 id=le.1h2v.s8.98e5a0dd7430 from=translated src=- shape=4f645015 vocab=1671d97e
+-/
 theorem card_le_two_of_cube_affine (S : Finset K)
     (affine : ∀ a ∈ S, ∀ b ∈ S, ∀ c ∈ S, (a + b + c) ^ 3 = a ^ 3 + b ^ 3 + c ^ 3) :
     S.card ≤ 2 := by
@@ -57,7 +61,9 @@ theorem card_le_two_of_cube_affine (S : Finset K)
   · exact ac (CharTwo.add_eq_zero.mp h).symm
 
 /-- A linear component of cubing is affine on three points exactly when it vanishes on
-the product of their pairwise sums. -/
+the product of their pairwise sums.
+@isnad1 id=eq.1h5v.s10.a8a3ecd134ce from=translated src=- shape=45cfc8a7 vocab=cb80a1ce
+-/
 theorem map_product_eq_zero_of_cube_affine (ℓ : K →+ ZMod 2) {a b c : K}
     (affine : ℓ ((a + b + c) ^ 3) = ℓ (a ^ 3) + ℓ (b ^ 3) + ℓ (c ^ 3)) :
     ℓ ((a + b) * (b + c) * (c + a)) = 0 := by
@@ -65,7 +71,9 @@ theorem map_product_eq_zero_of_cube_affine (ℓ : K →+ ZMod 2) {a b c : K}
   exact add_eq_left.mp affine
 
 omit [CharP K 2] in
-/-- Cubing is injective when three is coprime to the multiplicative group order. -/
+/-- Cubing is injective when three is coprime to the multiplicative group order.
+@isnad1 id=injectiv.1h1v.s5.a5ef1add2142 from=translated src=- shape=723b445e vocab=6d7a36fa
+-/
 theorem cube_injective [Fintype K] (coprime : Nat.Coprime 3 (Fintype.card K - 1)) :
     Function.Injective fun x : K => x ^ 3 := by
   intro x y same
@@ -86,7 +94,9 @@ theorem cube_injective [Fintype K] (coprime : Nat.Coprime 3 (Fintype.card K - 1)
     exact (div_eq_one_iff_eq hy).mp one
 
 omit [CharP K 2] in
-/-- A nonzero radical vector `u` of the polar form identifies `ℓ r` with `ℓ (r² / u³)`. -/
+/-- A nonzero radical vector `u` of the polar form identifies `ℓ r` with `ℓ (r² / u³)`.
+@isnad1 id=eq.2h4v.s9.5a5ab5503374 from=translated src=- shape=37dff7c2 vocab=383d35bf
+-/
 theorem map_eq_map_sq_div_of_radical (ℓ : K →+ ZMod 2) {u : K} (hu : u ≠ 0)
     (radical : ∀ w, ℓ (u ^ 2 * w + u * w ^ 2) = 0) (r : K) :
     ℓ r = ℓ (r ^ 2 / u ^ 3) := by
@@ -120,7 +130,9 @@ theorem eq_of_radical [Finite K] (ℓ : K →+ ZMod 2) (nonzero : ℓ ≠ 0)
 
 end CharTwo
 
-/-- In odd dimension, three is coprime to the order `2^n - 1` of the multiplicative group. -/
+/-- In odd dimension, three is coprime to the order `2^n - 1` of the multiplicative group.
+@isnad1 id=coprime.1h1v.s5.c87099b8f039 from=translated src=- shape=8e2268d5 vocab=e5562fb6
+-/
 theorem coprime_three_two_pow_sub_one {n : ℕ} (odd : Odd n) : Nat.Coprime 3 (2 ^ n - 1) := by
   obtain ⟨k, rfl⟩ := odd
   have residue : ∀ k : ℕ, 2 ^ (2 * k + 1) % 3 = 2 := by
@@ -169,11 +181,16 @@ noncomputable def polarForm (ℓ : K →ₗ[ZMod 2] ZMod 2) : LinearMap.BilinFor
         ring
       rw [same, map_smul])
 
+/--
+@isnad1 id=eq.0h4v.s11.16b933a73d8a from=translated src=- shape=380cefd4 vocab=6e50fbc9
+-/
 @[simp] theorem polarForm_apply (ℓ : K →ₗ[ZMod 2] ZMod 2) (u w : K) :
     polarForm ℓ u w = ℓ (u ^ 2 * w + u * w ^ 2) := rfl
 
 /-- If cubing is injective, every subspace on which the polar form of a nonzero
-component vanishes has at most half of one more than the field dimension. -/
+component vanishes has at most half of one more than the field dimension.
+@isnad1 id=le.3h3v.s11.0b216b11d630 from=translated src=- shape=b0435c69 vocab=8847b7ec
+-/
 theorem two_mul_finrank_le_of_isotropic [Finite K] (ℓ : K →ₗ[ZMod 2] ZMod 2) (nonzero : ℓ ≠ 0)
     (cube : Function.Injective fun x : K => x ^ 3) (U : Submodule (ZMod 2) K)
     (isotropic : ∀ u ∈ U, ∀ w ∈ U, ℓ (u ^ 2 * w + u * w ^ 2) = 0) :

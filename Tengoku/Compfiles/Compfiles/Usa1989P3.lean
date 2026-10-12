@@ -23,7 +23,9 @@ namespace Usa1989P3
 open Polynomial
 
 /-- Evaluating a polynomial whose coefficients are all real at the conjugate
-of `z` is the same as conjugating its value at `z`. -/
+of `z` is the same as conjugating its value at `z`.
+@isnad1 id=eq.1h2v.s6.a46575b18a61 from=translated src=- shape=6565829f vocab=e1ae2b0a
+-/
 theorem star_eval {P : ℂ[X]} (hreal : ∀ n : ℕ, (P.coeff n).im = 0) (z : ℂ) :
     star (P.eval z) = P.eval (star z) := by
   have h : (starRingEnd ℂ) (P.eval z) = P.eval ((starRingEnd ℂ) z) := by
@@ -36,7 +38,9 @@ theorem star_eval {P : ℂ[X]} (hreal : ∀ n : ℕ, (P.coeff n).im = 0) (z : �
   exact h
 
 /-- For a complex number `r`, the product of the squared distances from `r`
-to `i` and to `-i` equals `(r.re² + r.im² + 1)² - 4 r.im²`. -/
+to `i` and to `-i` equals `(r.re² + r.im² + 1)² - 4 r.im²`.
+@isnad1 id=eq.0h1v.s7.73e06a34c237 from=translated src=- shape=d57bc413 vocab=4019d661
+-/
 theorem normSq_I_sub_mul_normSq_I_add (r : ℂ) :
     Complex.normSq (Complex.I - r) * Complex.normSq (Complex.I + r) =
       (r.re ^ 2 + r.im ^ 2 + 1) ^ 2 - 4 * r.im ^ 2 := by
@@ -45,7 +49,9 @@ theorem normSq_I_sub_mul_normSq_I_add (r : ℂ) :
   ring
 
 /-- The squared distances from the roots of a monic polynomial to a point `z`
-multiply to the squared norm of the value of the polynomial at `z`. -/
+multiply to the squared norm of the value of the polynomial at `z`.
+@isnad1 id=eq.2h2v.s6.dfffe2260ef5 from=translated src=- shape=6820e499 vocab=1e93731c
+-/
 theorem prod_normSq_sub_roots {P : ℂ[X]} (hsplit : P.Splits) (hmonic : P.Monic) (z : ℂ) :
     (P.roots.map fun r ↦ Complex.normSq (z - r)).prod =
       Complex.normSq (P.eval z) := by
@@ -54,7 +60,9 @@ theorem prod_normSq_sub_roots {P : ℂ[X]} (hsplit : P.Splits) (hmonic : P.Monic
 
 /-- The squared distances from the roots of a monic polynomial to a point `z`,
 with signs flipped, again multiply to the squared norm of the value of the
-polynomial at `-z`. -/
+polynomial at `-z`.
+@isnad1 id=eq.2h2v.s6.3ddcccb7a11c from=translated src=- shape=6713698c vocab=672fa86b
+-/
 theorem prod_normSq_add_roots {P : ℂ[X]} (hsplit : P.Splits) (hmonic : P.Monic) (z : ℂ) :
     (P.roots.map fun r ↦ Complex.normSq (z + r)).prod =
       Complex.normSq (P.eval (-z)) := by

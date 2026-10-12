@@ -34,7 +34,9 @@ We follow the solution from Evan Chen's notes
   `n = 7`: `(4/3, 7/6, 9/2)`; odd `n ≥ 9`: `(n/2, 1/2, 4, 1, …, 1)`.
 -/
 
-/-- `5` is not the square of a natural number. -/
+/-- `5` is not the square of a natural number.
+@isnad1 id=not.0h0v.s3.0dabe1e5a2cd from=translated src=- shape=6ea877c3 vocab=d16f5ff7
+-/
 lemma not_isSquare_five_nat : ¬ IsSquare (5 : ℕ) := by
   rintro ⟨m, hm⟩
   have hm2 : m ≤ 2 := by
@@ -44,7 +46,9 @@ lemma not_isSquare_five_nat : ¬ IsSquare (5 : ℕ) := by
     lia
   interval_cases m <;> norm_num at hm
 
-/-- `5` is not the square of a rational number. -/
+/-- `5` is not the square of a rational number.
+@isnad1 id=ne.0h1v.s4.219a937835ff from=translated src=- shape=1347b6cc vocab=06ea2b78
+-/
 lemma rat_mul_self_ne_five (q : ℚ) : q * q ≠ 5 := by
   intro hq
   have hI : Irrational (Real.sqrt (5 : ℝ)) := by
@@ -57,16 +61,22 @@ lemma rat_mul_self_ne_five (q : ℚ) : q * q ≠ 5 := by
     rw [← h]; ring
   rw [Rat.cast_abs, ← hq2, Real.sqrt_sq_eq_abs]
 
-/-- Summing the entries of a list of rationals via `Fin`-indexed access. -/
+/-- Summing the entries of a list of rationals via `Fin`-indexed access.
+@isnad1 id=eq.0h1v.s5.326fb5d1aec6 from=translated src=- shape=bdb8ef40 vocab=044c9b59
+-/
 lemma sum_eq_sum_get (l : List ℚ) : ∑ i : Fin l.length, l.get i = l.sum := by
   rw [← Fin.sum_ofFn, List.ofFn_get]
 
-/-- Multiplying the entries of a list of rationals via `Fin`-indexed access. -/
+/-- Multiplying the entries of a list of rationals via `Fin`-indexed access.
+@isnad1 id=eq.0h1v.s5.56d16a8fa827 from=translated src=- shape=bdb8ef40 vocab=8053b0bb
+-/
 lemma prod_eq_prod_get (l : List ℚ) : ∏ i : Fin l.length, l.get i = l.prod := by
   rw [← Fin.prod_ofFn, List.ofFn_get]
 
 /-- AM–GM, raised to the `k`-th power, for positive rationals indexed by `Fin k`:
-the product is at most the `k`-th power of the arithmetic mean. -/
+the product is at most the `k`-th power of the arithmetic mean.
+@isnad1 id=le.2h2v.s6.15ea59b0a9fb from=translated src=- shape=5a8ac676 vocab=ca0868b7
+-/
 lemma prod_le_sum_div_pow {k : ℕ} (hk : 0 < k) (z : Fin k → ℚ) (hz : ∀ i, 0 < z i) :
     ((∏ i, z i : ℚ) : ℝ) ≤ (((∑ i, z i : ℚ) : ℝ) / k) ^ k := by
   have hkR : (k : ℝ) ≠ 0 := by exact_mod_cast hk.ne'

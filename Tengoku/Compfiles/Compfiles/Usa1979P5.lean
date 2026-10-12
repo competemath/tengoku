@@ -23,7 +23,9 @@ open Finset
 
 /-- If two distinct members `s`, `t` of a "good" family (no two sets share exactly
 one element) each have three elements and intersect nontrivially, then they share
-exactly two elements. -/
+exactly two elements.
+@isnad1 id=eq.7h4v.s7.120089b1d03c from=translated src=- shape=cf157d32 vocab=63e0ff0d
+-/
 theorem card_inter_eq_two_of_good {α : Type*} [DecidableEq α] {S : Finset (Finset α)}
     (hgood : ∀ s ∈ S, ∀ t ∈ S, s ≠ t → (s ∩ t).card ≠ 1)
     {s t : Finset α} (hs : s ∈ S) (ht : t ∈ S) (hne : s ≠ t)
@@ -42,7 +44,9 @@ theorem card_inter_eq_two_of_good {α : Type*} [DecidableEq α] {S : Finset (Fin
   lia
 
 /-- If `u`, `v = {w, x, y}` are members of a "good" family, `w ∈ u ∩ v` and `x ∉ u`,
-then `y ∈ u`: otherwise `u ∩ v = {w}` would be a singleton intersection. -/
+then `y ∈ u`: otherwise `u ∩ v = {w}` would be a singleton intersection.
+@isnad1 id=mem.6h7v.s7.7280cd3fbb8f from=translated src=- shape=aa0067b4 vocab=f2a6d71c
+-/
 theorem mem_third_of_inter {α : Type*} [DecidableEq α] {S : Finset (Finset α)}
     (hgood : ∀ s ∈ S, ∀ t ∈ S, s ≠ t → (s ∩ t).card ≠ 1)
     {u v : Finset α} {w x y : α}
@@ -68,7 +72,9 @@ theorem mem_third_of_inter {α : Type*} [DecidableEq α] {S : Finset (Finset α)
   exact hgood u hu v hv hne (by simp [heq])
 
 /-- Double counting of the incidences between `X` and a family of 3-element
-subsets of `X`. -/
+subsets of `X`.
+@isnad1 id=eq.2h3v.s7.10f4d5e51f4d from=translated src=- shape=d06d92c6 vocab=a6a52ff7
+-/
 theorem sum_card_filter_eq_three_mul {α : Type*} [DecidableEq α]
     {X : Finset α} {S : Finset (Finset α)}
     (hsub : ∀ s ∈ S, s ⊆ X) (hcard : ∀ s ∈ S, s.card = 3) :
@@ -85,7 +91,9 @@ theorem sum_card_filter_eq_three_mul {α : Type*} [DecidableEq α]
 
 /-- Main step: a "good" family of 3-element subsets of an `n`-element set has at
 most `n` members. Proved by strong induction on `n`, following the informal
-argument for USAMO 1979 problem 5. -/
+argument for USAMO 1979 problem 5.
+@isnad1 id=le.4h4v.s7.ceba625ff7b6 from=translated src=- shape=212be53b vocab=54c30b14
+-/
 theorem card_le_of_good {α : Type*} [DecidableEq α] :
     ∀ n : ℕ, ∀ (X : Finset α) (S : Finset (Finset α)),
     X.card = n → (∀ s ∈ S, s ⊆ X) → (∀ s ∈ S, s.card = 3) →

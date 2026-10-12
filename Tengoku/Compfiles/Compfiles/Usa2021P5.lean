@@ -31,7 +31,9 @@ namespace Usa2021P5
 
 /-- Eliminating the odd-indexed variables from the system yields a relation
 among the even-indexed variables alone:
-`a k = 1 / a (k - 1) + 2 / a k + 1 / a (k + 1)`. -/
+`a k = 1 / a (k - 1) + 2 / a k + 1 / a (k + 1)`.
+@isnad1 id=eq.2h4v.s8.5c5b428d3eb6 from=translated src=- shape=fb1d0aca vocab=894afc76
+-/
 lemma even_relation {n : ℕ} {a b : ZMod n → ℝ}
     (h1 : ∀ k, a k = b k + b (k + 1))
     (h2 : ∀ k, b k = 1 / a (k - 1) + 1 / a k) (k : ZMod n) :

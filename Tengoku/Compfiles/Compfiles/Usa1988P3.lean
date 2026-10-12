@@ -28,6 +28,7 @@ For any finite set `X`, the number of pairs `(Y, k)` where `Y` is a
 number of 9-element subsets of `X`: the map `(Y, k) ↦ Y.erase k` is
 injective on such pairs, because `k = f (Y.erase k)` is determined by the
 image, and then `Y = insert k (Y.erase k)` is determined as well.
+@isnad1 id=le.0h2v.s6.adc0eb7d3468 from=translated src=- shape=b6f31799 vocab=13c4f889
 -/
 lemma card_bad_pairs_le (X : Finset ℕ) (f : Finset ℕ → ℕ) :
     ((X.powersetCard 10).sigma

@@ -56,17 +56,24 @@ Combining the two bounds and estimating the natural logarithms gives
 
 /-! ### Basic facts about the digit sum -/
 
+/--
+@isnad1 id=eq.0h0v.s3.327a645821c4 from=translated src=- shape=3c26ae4f vocab=663e1f7d
+-/
 @[simp]
 lemma s_zero : s 0 = 0 := rfl
 
-/-- The defining recurrence of the digit sum, valid for all `m`. -/
+/-- The defining recurrence of the digit sum, valid for all `m`.
+@isnad1 id=eq.0h1v.s5.26df56c025e1 from=translated src=- shape=ee87b7ac vocab=be1586ca
+-/
 lemma s_eq (m : ℕ) : s m = m % 10 + s (m / 10) := by
   rcases eq_or_ne m 0 with rfl | hm
   · simp [s]
   · rw [s, Nat.digits_of_two_le_of_pos (by norm_num) (Nat.pos_of_ne_zero hm), List.sum_cons, ← s]
 
 /-- The digits of a concatenation are the concatenation of the digits:
-if `c < 10 ^ e` then `s (10 ^ e * a + c) = s a + s c`. -/
+if `c < 10 ^ e` then `s (10 ^ e * a + c) = s a + s c`.
+@isnad1 id=eq.1h3v.s6.6922042a3513 from=translated src=- shape=45c7b80d vocab=f8b41748
+-/
 lemma s_concat (e a c : ℕ) (hc : c < 10 ^ e) : s (10 ^ e * a + c) = s a + s c := by
   induction e generalizing a c with
   | zero =>
@@ -91,7 +98,9 @@ lemma s_concat (e a c : ℕ) (hc : c < 10 ^ e) : s (10 ^ e * a + c) = s a + s c 
       lia
 
 /-- If `a + b = 10 ^ e - 1` then the digits of `a` and `b` are complementary,
-so `s a + s b = 9 * e`. -/
+so `s a + s b = 9 * e`.
+@isnad1 id=eq.1h3v.s6.c676b20dada7 from=translated src=- shape=451fed52 vocab=9168b189
+-/
 lemma s_complement (e a b : ℕ) (h : a + b = 10 ^ e - 1) : s a + s b = 9 * e := by
   induction e generalizing a b with
   | zero =>
@@ -108,11 +117,16 @@ lemma s_complement (e a b : ℕ) (h : a + b = 10 ^ e - 1) : s a + s b = 9 * e :=
     rw [s_eq a, s_eq b]
     lia
 
+/--
+@isnad1 id=eq.0h1v.s5.bd50b307d65a from=translated src=- shape=ea1379a0 vocab=5e252312
+-/
 lemma s_pow_ten_sub_one (e : ℕ) : s (10 ^ e - 1) = 9 * e := by
   have h := s_complement e (10 ^ e - 1) 0 (by rw [add_zero])
   simpa [s_zero] using h
 
-/-- Subadditivity of the digit sum. -/
+/-- Subadditivity of the digit sum.
+@isnad1 id=le.0h2v.s4.ab7baf73f48a from=translated src=- shape=a13ca989 vocab=8f9c5eed
+-/
 lemma s_add_le (a b : ℕ) : s (a + b) ≤ s a + s b := by
   suffices h : ∀ N a b, a + b ≤ N → s (a + b) ≤ s a + s b from h _ a b le_rfl
   intro N
@@ -145,7 +159,9 @@ lemma s_add_le (a b : ℕ) : s (a + b) ≤ s a + s b := by
       rw [h1, h2, s_eq a, s_eq b]
       lia
 
-/-- The digit sum of a positive integer is positive. -/
+/-- The digit sum of a positive integer is positive.
+@isnad1 id=le.1h1v.s4.5d10b0cb5309 from=translated src=- shape=a8dc2df9 vocab=3e0faa0c
+-/
 lemma s_pos_of_pos (m : ℕ) (hm : 0 < m) : 1 ≤ s m := by
   have h1 : Nat.digits 10 m ≠ [] := Nat.digits_ne_nil_iff_ne_zero.mpr (ne_of_gt hm)
   have h2 : (Nat.digits 10 m).getLast h1 ≠ 0 := Nat.getLast_digit_ne_zero 10 (ne_of_gt hm)
@@ -156,7 +172,9 @@ lemma s_pos_of_pos (m : ℕ) (hm : 0 < m) : 1 ≤ s m := by
 
 /-- Every positive multiple of `10 ^ e - 1` has digit sum at least `9 * e`.
 The proof repeatedly replaces `m` by `m % 10 ^ e + m / 10 ^ e`, which preserves
-divisibility by `10 ^ e - 1` and does not increase the digit sum. -/
+divisibility by `10 ^ e - 1` and does not increase the digit sum.
+@isnad1 id=le.3h2v.s6.383c3e3ee2cb from=translated src=- shape=e033dd6d vocab=92a6e8b6
+-/
 lemma nine_le_s_of_dvd (e : ℕ) (he : 1 ≤ e) :
     ∀ m : ℕ, 0 < m → (10 ^ e - 1) ∣ m → 9 * e ≤ s m := by
   intro m
@@ -203,7 +221,9 @@ lemma nine_le_s_of_dvd (e : ℕ) (he : 1 ≤ e) :
         lia
       lia
 
-/-- The Gauss sum `1 + 2 + ... + n`. -/
+/-- The Gauss sum `1 + 2 + ... + n`.
+@isnad1 id=eq.0h1v.s5.92378c536640 from=translated src=- shape=5372cea7 vocab=c935029f
+-/
 lemma sum_Icc_id (n : ℕ) : ∑ i ∈ Finset.Icc 1 n, i = n * (n + 1) / 2 := by
   have key : (∑ i ∈ Finset.Icc 1 n, i) * 2 = n * (n + 1) := by
     induction n with
@@ -219,7 +239,9 @@ lemma sum_Icc_id (n : ℕ) : ∑ i ∈ Finset.Icc 1 n, i = n * (n + 1) / 2 := by
 
 /-- *Upper bound (construction).* If `n * (n + 1) / 2 < 10 ^ e` then
 `{10^e - 1, 2 * (10^e - 1), ..., n * (10^e - 1)}` is a `9 * e`-stable set of
-`n` positive integers. -/
+`n` positive integers.
+@isnad1 id=and.2h2v.s7.6f12819dbb7d from=translated src=- shape=e2fd8b1f vocab=2852ea0a
+-/
 lemma construction (n e : ℕ) (he : 1 ≤ e) (h : n * (n + 1) / 2 < 10 ^ e) :
     IsStable (9 * e) ((Finset.Icc 1 n).image (· * (10 ^ e - 1))) ∧
     ((Finset.Icc 1 n).image (· * (10 ^ e - 1))).card = n := by
@@ -277,7 +299,9 @@ lemma construction (n e : ℕ) (he : 1 ≤ e) (h : n * (n + 1) / 2 < 10 ^ e) :
 /-- *Lower bound.* If `S` is `k`-stable and `10 ^ e ≤ S.card + 1`, then
 `9 * e ≤ k`: among the `S.card + 1 ≥ 10 ^ e` prefix sums of an arbitrary
 ordering of `S`, two agree modulo `10 ^ e - 1`, and their difference is a
-nonempty subset sum that is a positive multiple of `10 ^ e - 1`. -/
+nonempty subset sum that is a positive multiple of `10 ^ e - 1`.
+@isnad1 id=le.3h3v.s6.27725caac756 from=translated src=- shape=3b90f88d vocab=3238b54f
+-/
 lemma stable_lower (k e : ℕ) (he : 1 ≤ e) (S : Finset ℕ) (hS : IsStable k S)
     (hn : 10 ^ e ≤ S.card + 1) : 9 * e ≤ k := by
   obtain ⟨hpos, hstab⟩ := hS
@@ -359,23 +383,33 @@ lemma stable_lower (k e : ℕ) (he : 1 ≤ e) (S : Finset ℕ) (hS : IsStable k 
   · exact key j i (by lia) (by lia) hgt hpij.symm
 
 /-- The set defining `f n` is nonempty: the construction with
-`e = Nat.log 10 (n * (n + 1) / 2) + 1` works. -/
+`e = Nat.log 10 (n * (n + 1) / 2) + 1` works.
+@isnad1 id=ex.0h1v.s6.7efceaeb4c63 from=translated src=- shape=87a5c0a1 vocab=f6d56dd7
+-/
 lemma stable_exists (n : ℕ) :
     ∃ S : Finset ℕ, IsStable (9 * (Nat.log 10 (n * (n + 1) / 2) + 1)) S ∧ S.card = n := by
   refine ⟨_, construction n _ (by lia) ?_⟩
   have h := Nat.lt_pow_succ_log_self (by norm_num : 1 < 10) (n * (n + 1) / 2)
   rwa [Nat.succ_eq_add_one] at h
 
+/--
+@isnad1 id=ex.0h1v.s4.af7952f300da from=translated src=- shape=453d1264 vocab=94f7d904
+-/
 lemma f_spec (n : ℕ) : ∃ S : Finset ℕ, IsStable (f n) S ∧ S.card = n := by
   have h : sInf {k | ∃ S : Finset ℕ, IsStable k S ∧ S.card = n}
       ∈ {k | ∃ S : Finset ℕ, IsStable k S ∧ S.card = n} :=
     Nat.sInf_mem ⟨9 * (Nat.log 10 (n * (n + 1) / 2) + 1), stable_exists n⟩
   exact h
 
+/--
+@isnad1 id=le.1h2v.s4.cfef7b1db4ac from=translated src=- shape=66a30edf vocab=03a3ea25
+-/
 lemma f_le {n k : ℕ} (h : ∃ S : Finset ℕ, IsStable k S ∧ S.card = n) : f n ≤ k :=
   Nat.sInf_le (s := {k | ∃ S : Finset ℕ, IsStable k S ∧ S.card = n}) h
 
-/-- Every stable set has stability constant at least `1`, hence `1 ≤ f n`. -/
+/-- Every stable set has stability constant at least `1`, hence `1 ≤ f n`.
+@isnad1 id=le.1h1v.s4.7b828ff38921 from=translated src=- shape=35bd48ee vocab=017adcc1
+-/
 lemma one_le_f (n : ℕ) (hn : 1 ≤ n) : 1 ≤ f n := by
   obtain ⟨S, ⟨hpos, hstab⟩, hcard⟩ := f_spec n
   have hne : S.Nonempty := by
@@ -386,11 +420,15 @@ lemma one_le_f (n : ℕ) (hn : 1 ≤ n) : 1 ≤ f n := by
   have h2 : 1 ≤ s (∑ x ∈ S, x) := s_pos_of_pos _ hsum
   lia
 
-/-- The lower bound for `f n` coming from the pigeonhole argument. -/
+/-- The lower bound for `f n` coming from the pigeonhole argument.
+@isnad1 id=le.2h2v.s6.edf91e6aa98e from=translated src=- shape=14698313 vocab=536492cf
+-/
 lemma f_lower (n e : ℕ) (he : 1 ≤ e) (hn : 10 ^ e ≤ n + 1) : 9 * e ≤ f n := by
   obtain ⟨S, hS, hcard⟩ := f_spec n
   exact stable_lower (f n) e he S hS (by rw [hcard]; exact hn)
 
-/-- The upper bound for `f n` coming from the explicit construction. -/
+/-- The upper bound for `f n` coming from the explicit construction.
+@isnad1 id=le.0h1v.s6.4ebf51b0b57f from=translated src=- shape=29cddaf7 vocab=6226b497
+-/
 lemma f_upper (n : ℕ) : f n ≤ 9 * (Nat.log 10 (n * (n + 1) / 2) + 1) :=
   Nat.sInf_le (s := {k | ∃ S : Finset ℕ, IsStable k S ∧ S.card = n}) (stable_exists n)

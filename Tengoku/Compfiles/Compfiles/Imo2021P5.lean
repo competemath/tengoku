@@ -50,32 +50,49 @@ def coloring (p : Position) (j : ℕ) (x : Fin 2021) : Bool :=
 def blackPairs (c : Fin 2021 → Bool) : ZMod 2 :=
   ∑ x : Fin 2021, cond (c x) 0 1 * cond (c (x + 1)) 0 1
 
+/--
+@isnad1 id=eq.0h0v.s4.59d7028c5d73 from=translated src=- shape=2d482900 vocab=73f21e14
+-/
 theorem fin_val_one : (1 : Fin 2021).val = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.9922e5111342 from=translated src=- shape=b1725130 vocab=71c46038
+-/
 theorem fin_sub_one_add_one (h : Fin 2021) : h - 1 + 1 = h := by
   apply Fin.ext
   rw [Fin.val_add, Fin.val_sub, fin_val_one]
   lia
 
+/--
+@isnad1 id=ne.0h1v.s6.b549c53d82e2 from=translated src=- shape=411374f6 vocab=dcfa4cf8
+-/
 theorem fin_sub_one_ne_self (h : Fin 2021) : h - 1 ≠ h := by
   intro hc
   have hv := congrArg Fin.val hc
   rw [Fin.val_sub, fin_val_one] at hv
   lia
 
+/--
+@isnad1 id=ne.0h1v.s6.14591786c4e5 from=translated src=- shape=411374f6 vocab=87d30e84
+-/
 theorem fin_add_one_ne_self (h : Fin 2021) : h + 1 ≠ h := by
   intro hc
   have hv := congrArg Fin.val hc
   rw [Fin.val_add, fin_val_one] at hv
   lia
 
+/--
+@isnad1 id=ne.0h1v.s6.9185db71739e from=translated src=- shape=07c12e05 vocab=71c46038
+-/
 theorem fin_sub_one_ne_add_one (h : Fin 2021) : h - 1 ≠ h + 1 := by
   intro hc
   have hv := congrArg Fin.val hc
   rw [Fin.val_sub, Fin.val_add, fin_val_one] at hv
   lia
 
-/-- The second component of the iterated move state is the move number. -/
+/-- The second component of the iterated move state is the move number.
+@isnad1 id=eq.0h2v.s6.768cc193ffed from=translated src=- shape=a8d11edc vocab=7ee66368
+-/
 theorem iterate_snd (p : Position) (j : ℕ) : ((move^[j] (p, 0)).2).val = j % 2021 := by
   induction' j with j ih
   · rfl
@@ -84,7 +101,9 @@ theorem iterate_snd (p : Position) (j : ℕ) : ((move^[j] (p, 0)).2).val = j % 2
     rw [Fin.val_add, ih, fin_val_one]
     lia
 
-/-- One step of the move process on the position component. -/
+/-- One step of the move process on the position component.
+@isnad1 id=eq.1h2v.s9.bc7af7d71b7e from=translated src=- shape=c3b2fb96 vocab=79af1bad
+-/
 theorem iterate_fst_succ (p : Position) (j : ℕ) (hj : j < 2021) :
     (move^[j + 1] (p, 0)).1 = (move^[j] (p, 0)).1.trans
       (Equiv.swap
@@ -97,7 +116,9 @@ theorem iterate_fst_succ (p : Position) (j : ℕ) (hj : j < 2021) :
   rfl
 
 /-- Flipping one black hole to red, where the two neighbors have the same color,
-    does not change the number of black-black adjacent pairs, mod 2. -/
+    does not change the number of black-black adjacent pairs, mod 2.
+@isnad1 id=eq.4h2v.s8.93e28414c495 from=translated src=- shape=2500a365 vocab=328511f1
+-/
 theorem blackPairs_update (c : Fin 2021 → Bool) (h : Fin 2021)
     (hh : c h = false) (hn : c (h - 1) = c (h + 1))
     (h1 : h - 1 ≠ h) (h2 : h + 1 ≠ h) :
@@ -132,7 +153,9 @@ theorem blackPairs_update (c : Fin 2021 → Bool) (h : Fin 2021)
 
 /-- If there is no good move, then after move `j` the coloring is the previous
     coloring with the hole of walnut `j` flipped from black to red, and the two
-    neighbors of that hole have the same color. -/
+    neighbors of that hole have the same color.
+@isnad1 id=and.2h2v.s9.9552d8fda703 from=translated src=- shape=83688382 vocab=d4d0b7e4
+-/
 theorem coloring_succ (p : Position) (j : ℕ) (hj : j < 2021)
     (H : ∀ k : Fin 2021,
       ¬((((p.nth k).swapped k).1 < k ∧ k < ((p.nth k).swapped k).2) ∨

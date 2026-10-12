@@ -46,7 +46,9 @@ flooded `(m+1)`-sets then shows that an `n`-element flooded set has at least
 `2^(n-1) - n` of its subsets are overdetermined. This bound is attained by the set
 `{(1, 1), (2, 2), (3, 2), ..., (n, 2)}`. -/
 
-/-- `k + 1 ≤ 2 ^ k` for every natural number `k`. -/
+/-- `k + 1 ≤ 2 ^ k` for every natural number `k`.
+@isnad1 id=le.0h1v.s5.410df46afbf6 from=translated src=- shape=0c72263b vocab=94889561
+-/
 lemma two_pow_ge_succ (k : ℕ) : k + 1 ≤ 2 ^ k := by
   induction k with
   | zero => decide
@@ -55,7 +57,9 @@ lemma two_pow_ge_succ (k : ℕ) : k + 1 ≤ 2 ^ k := by
     lia
 
 /-- A nonzero polynomial that vanishes on every element of a finite set of reals has
-degree at least the cardinality of that set. -/
+degree at least the cardinality of that set.
+@isnad1 id=le.2h2v.s6.f292343c88be from=translated src=- shape=1c326bf3 vocab=3d262ce3
+-/
 lemma roots_card_bound {P : ℝ[X]} (hP : P ≠ 0) {X : Finset ℝ}
     (hX : ∀ x ∈ X, P.eval x = 0) : X.card ≤ P.natDegree := by
   have hsub : X ⊆ P.roots.toFinset := by
@@ -67,7 +71,9 @@ lemma roots_card_bound {P : ℝ[X]} (hP : P ≠ 0) {X : Finset ℝ}
 
 /-- Uniqueness of low-degree interpolating polynomials: two real polynomials of degree
 at most `|T| - 1` that both pass through every point of a nonempty finite set `T` of
-points in the plane are equal. -/
+points in the plane are equal.
+@isnad1 id=eq.5h3v.s7.727fc8cb8f0b from=translated src=- shape=dd4bf093 vocab=7c1fc17a
+-/
 lemma poly_unique {T : Finset (ℝ × ℝ)} (hT : T.Nonempty) {f g : ℝ[X]}
     (hf : f.natDegree ≤ T.card - 1) (hg : g.natDegree ≤ T.card - 1)
     (hfT : ∀ p ∈ T, f.eval p.1 = p.2) (hgT : ∀ p ∈ T, g.eval p.1 = p.2) :
@@ -167,7 +173,9 @@ lemma eq_of_overdetermined_of_flooded {S : Finset (ℝ × ℝ)} (hS : ¬ Overdet
     exact hS ⟨by lia, f, hf0, by lia, hfS⟩
 
 /-- A flooded set of `t ≥ 3` points has at least `t - 1` flooded subsets of size
-`t - 1`. -/
+`t - 1`.
+@isnad1 id=le.3h2v.s6.4d02c28bdfd7 from=translated src=- shape=e04a4d2f vocab=c65b593d
+-/
 lemma card_flooded_subsets {S : Finset (ℝ × ℝ)} {t : ℕ} (ht : 3 ≤ t)
     (hScard : S.card = t) (hS : ¬ Overdetermined S) :
     t - 1 ≤ ((S.powersetCard (t - 1)).filter (fun a => ¬ Overdetermined a)).card := by
@@ -187,7 +195,9 @@ lemma card_flooded_subsets {S : Finset (ℝ × ℝ)} {t : ℕ} (ht : 3 ≤ t)
   lia
 
 /-- A set `U` of `m` points of `A` is contained in at most `A.card - m` subsets of `A`
-of size `m + 1`. -/
+of size `m + 1`.
+@isnad1 id=le.2h3v.s7.79d63632fa19 from=translated src=- shape=78c2a518 vocab=0e8d709a
+-/
 lemma card_supersets {A U : Finset (ℝ × ℝ)} (hU : U ⊆ A) {m : ℕ} (hUm : U.card = m) :
     ((A.powersetCard (m + 1)).filter (fun T => U ⊆ T)).card ≤ A.card - m := by
   have hinj : Set.InjOn (· \ U) (((A.powersetCard (m + 1)).filter (fun T => U ⊆ T)) : Set _) := by
@@ -214,7 +224,9 @@ lemma card_supersets {A U : Finset (ℝ × ℝ)} (hU : U ⊆ A) {m : ℕ} (hUm :
     _ = A.card - m := by rw [Finset.card_sdiff_of_subset hU, hUm]
 
 /-- Double counting of the incidence relation between flooded `m`-subsets and flooded
-`(m+1)`-subsets of `A`. -/
+`(m+1)`-subsets of `A`.
+@isnad1 id=le.2h2v.s7.6e20c82a442f from=translated src=- shape=fa8fabb9 vocab=ebc99fa8
+-/
 lemma double_count {A : Finset (ℝ × ℝ)} {m : ℕ} (hm : 2 ≤ m) (_hmn : m < A.card) :
     m * ((A.powersetCard (m + 1)).filter (fun a => ¬ Overdetermined a)).card ≤
     (A.card - m) * ((A.powersetCard m).filter (fun a => ¬ Overdetermined a)).card := by
@@ -260,7 +272,9 @@ lemma double_count {A : Finset (ℝ × ℝ)} {m : ℕ} (hm : 2 ≤ m) (_hmn : m 
     _ = (A.card - m) * Fm.card := by simp [Finset.sum_const, Nat.mul_comm]
 
 /-- A flooded set `A` has at least `(A.card - 1).choose (m - 1)` flooded subsets of
-size `m`, for every `2 ≤ m ≤ A.card`. -/
+size `m`, for every `2 ≤ m ≤ A.card`.
+@isnad1 id=le.3h2v.s6.2de628898f9d from=translated src=- shape=e57db519 vocab=0372c6a4
+-/
 lemma flooded_count {A : Finset (ℝ × ℝ)} (hA : ¬ Overdetermined A) :
     ∀ m, 2 ≤ m → m ≤ A.card → Nat.choose (A.card - 1) (m - 1) ≤
       ((A.powersetCard m).filter (fun a => ¬ Overdetermined a)).card := by
@@ -303,7 +317,9 @@ lemma flooded_count {A : Finset (ℝ × ℝ)} (hA : ¬ Overdetermined A) :
             hdc
     exact Nat.le_of_mul_le_mul_left hle hpos
 
-/-- The sum of `(n - 1).choose m` over `m ∈ Icc 2 n` equals `2 ^ (n - 1) - n`. -/
+/-- The sum of `(n - 1).choose m` over `m ∈ Icc 2 n` equals `2 ^ (n - 1) - n`.
+@isnad1 id=eq.1h1v.s6.dc96267a0d2c from=translated src=- shape=5eec9409 vocab=36805aac
+-/
 lemma sum_choose_Icc {n : ℕ} (hn : 2 ≤ n) :
     ∑ m ∈ Finset.Icc 2 n, Nat.choose (n - 1) m = 2 ^ (n - 1) - n := by
   have hge : n ≤ 2 ^ (n - 1) := by
@@ -351,7 +367,9 @@ lemma sum_choose_Icc {n : ℕ} (hn : 2 ≤ n) :
   exact h3
 
 /-- An `n`-element flooded set of points has at most `2 ^ (n - 1) - n` overdetermined
-subsets. -/
+subsets.
+@isnad1 id=le.2h1v.s6.de559a201215 from=translated src=- shape=bd8d97eb vocab=2a8631a0
+-/
 lemma overdetermined_bound {A : Finset (ℝ × ℝ)} (h2 : 2 ≤ A.card) (hA : ¬ Overdetermined A) :
     (A.powerset.filter Overdetermined).card ≤ 2 ^ (A.card - 1) - A.card := by
   have heq : A.powerset.filter Overdetermined =
@@ -391,7 +409,9 @@ lemma overdetermined_bound {A : Finset (ℝ × ℝ)} (h2 : 2 ≤ A.card) (hA : �
     _ = 2 ^ (A.card - 1) - A.card := sum_choose_Icc h2
 
 /-- A finite set `s` has exactly `2 ^ s.card - s.card - 1` subsets of cardinality at
-least two. -/
+least two.
+@isnad1 id=eq.0h2v.s6.ebfbe17ddc0a from=translated src=- shape=4a6073d0 vocab=1e3bfffa
+-/
 lemma card_powerset_filter_two_le {α : Type*} [DecidableEq α] (s : Finset α) :
     (s.powerset.filter (fun T => 2 ≤ T.card)).card = 2 ^ s.card - s.card - 1 := by
   have hge : s.card + 1 ≤ 2 ^ s.card := two_pow_ge_succ s.card
@@ -430,6 +450,9 @@ noncomputable def tail (n : ℕ) : Finset (ℝ × ℝ) :=
 noncomputable def constrSet (n : ℕ) : Finset (ℝ × ℝ) :=
   insert ((1 : ℝ), (1 : ℝ)) (tail n)
 
+/--
+@isnad1 id=eq.0h1v.s4.ee90004a9b09 from=translated src=- shape=7eda756f vocab=31619c39
+-/
 lemma card_tail (n : ℕ) : (tail n).card = n - 1 := by
   have hinj : Set.InjOn (fun i : ℕ => ((i : ℝ), (2 : ℝ))) (Finset.Icc 2 n) := by
     intro i _ j _ h
@@ -438,16 +461,25 @@ lemma card_tail (n : ℕ) : (tail n).card = n - 1 := by
   rw [tail, Finset.card_image_of_injOn hinj, Nat.card_Icc]
   lia
 
+/--
+@isnad1 id=not.0h1v.s5.431ed3e3e484 from=translated src=- shape=7bf54572 vocab=0327e763
+-/
 lemma one_one_not_mem_tail {n : ℕ} : ((1 : ℝ), (1 : ℝ)) ∉ tail n := by
   simp only [tail, Finset.mem_image, Finset.mem_Icc]
   rintro ⟨i, -, h⟩
   have h1 : (2 : ℝ) = 1 := congrArg Prod.snd h
   norm_num at h1
 
+/--
+@isnad1 id=eq.1h1v.s4.4aa663b3d67f from=translated src=- shape=69ebace2 vocab=e9794c56
+-/
 lemma card_constrSet {n : ℕ} (hn : 2 ≤ n) : (constrSet n).card = n := by
   rw [constrSet, Finset.card_insert_of_notMem one_one_not_mem_tail, card_tail]
   lia
 
+/--
+@isnad1 id=not.1h1v.s4.39cf4f380331 from=translated src=- shape=74fbb319 vocab=ed5ac82e
+-/
 lemma not_overdetermined_constrSet {n : ℕ} (hn : 2 ≤ n) : ¬ Overdetermined (constrSet n) := by
   rintro ⟨-, P, hP0, hPd, hPS⟩
   rw [card_constrSet hn] at hPd
@@ -478,7 +510,9 @@ lemma not_overdetermined_constrSet {n : ℕ} (hn : 2 ≤ n) : ¬ Overdetermined 
     lia
 
 /-- The overdetermined subsets of the extremal construction are exactly the subsets of
-its tail with at least two elements. -/
+its tail with at least two elements.
+@isnad1 id=iff.1h2v.s6.c9c8ae89a4d1 from=translated src=- shape=76065b18 vocab=4040304a
+-/
 lemma overdetermined_subset_constrSet_iff {n : ℕ} {T : Finset (ℝ × ℝ)}
     (hT : T ⊆ constrSet n) : Overdetermined T ↔ T ⊆ tail n ∧ 2 ≤ T.card := by
   constructor
@@ -548,7 +582,9 @@ lemma overdetermined_subset_constrSet_iff {n : ℕ} {T : Finset (ℝ × ℝ)}
     rcases hpmem with ⟨i, -, rfl⟩
     rw [Polynomial.eval_C]
 
-/-- The extremal construction has exactly `2 ^ (n - 1) - n` overdetermined subsets. -/
+/-- The extremal construction has exactly `2 ^ (n - 1) - n` overdetermined subsets.
+@isnad1 id=eq.1h1v.s6.ede70ef84094 from=translated src=- shape=fbb0d93a vocab=7adb551c
+-/
 lemma count_constrSet {n : ℕ} (hn : 2 ≤ n) :
     ((constrSet n).powerset.filter Overdetermined).card = 2 ^ (n - 1) - n := by
   have heq : (constrSet n).powerset.filter Overdetermined =

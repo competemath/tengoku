@@ -20,7 +20,9 @@ namespace Algebraic.Cutwidth.Aggregate.Geometry.Entropy
 
 open scoped Classical
 
-/-- An event fixing every selected coordinate occupies at most one corresponding cube fibre. -/
+/-- An event fixing every selected coordinate occupies at most one corresponding cube fibre.
+@isnad1 id=le.1h5v.s7.8673c4df81c3 from=translated src=- shape=01bcfdaf vocab=e959b4ff
+-/
 theorem pow_card_mul_card_le_of_forces_coordinates {I V : Type*}
     [Fintype I] [Fintype V] [DecidableEq I] [DecidableEq V]
     (e : I ↪ V) (bits : I → Bool) (P : (V → Bool) → Prop) [DecidablePred P]

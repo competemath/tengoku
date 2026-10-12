@@ -25,6 +25,9 @@ namespace Imo2024P1
 
 def Condition (α : ℝ) : Prop := ∀ n : ℕ, 0 < n → (n : ℤ) ∣ ∑ i ∈ Finset.Icc 1 n, ⌊i * α⌋
 
+/--
+@isnad1 id=conditio.0h1v.s4.7faf244c9fb0 from=translated src=- shape=bb9c0fb3 vocab=b8e40385
+-/
 lemma condition_two_mul_int (m : ℤ) : Condition (2 * m) := by
   rintro n -
   suffices (n : ℤ) ∣ ∑ i ∈ Finset.Icc 0 n, ⌊((i * (2 * m) : ℤ) : ℝ)⌋ by
@@ -36,6 +39,9 @@ lemma condition_two_mul_int (m : ℤ) : Condition (2 * m) := by
   rw [← Nat.cast_sum, ← Nat.cast_ofNat (n := 2), ← Nat.cast_mul, Finset.sum_range_id_mul_two]
   simp
 
+/--
+@isnad1 id=iff.0h2v.s5.daba29f33911 from=translated src=- shape=bb7723c6 vocab=13192ee8
+-/
 lemma condition_sub_two_mul_int_iff {α : ℝ} (m : ℤ) : Condition (α - 2 * m) ↔ Condition α := by
   unfold Condition
   peel with n hn
@@ -48,6 +54,9 @@ lemma condition_sub_two_mul_int_iff {α : ℝ} (m : ℤ) : Condition (α - 2 * m
   rw [Int.floor_intCast]
   simp
 
+/--
+@isnad1 id=iff.0h1v.s4.e2d8033fc067 from=translated src=- shape=3790662c vocab=4f7c0a49
+-/
 lemma condition_toIcoMod_iff {α : ℝ} :
     Condition (toIcoMod (by norm_num : (0 : ℝ) < 2) 0 α) ↔ Condition α := by
   rw [toIcoMod, zsmul_eq_mul, mul_comm, condition_sub_two_mul_int_iff]
@@ -57,6 +66,9 @@ namespace Condition
 variable {α : ℝ} (hc : Condition α)
 
 include hc in
+/--
+@isnad1 id=mem.2h1v.s5.c10cd35c3982 from=translated src=- shape=f7fbcf13 vocab=ad6664bd
+-/
 lemma mem_Ico_one_of_mem_Ioo (h : α ∈ Set.Ioo 0 2) : α ∈ Set.Ico 1 2 := by
   rcases h with ⟨h0, h2⟩
   refine ⟨?_, h2⟩
@@ -88,6 +100,9 @@ lemma mem_Ico_one_of_mem_Ioo (h : α ∈ Set.Ioo 0 2) : α ∈ Set.Ico 1 2 := by
       _ ≤ 1 := by simp [h0.ne']
 
 include hc in
+/--
+@isnad1 id=mem.3h2v.s6.0c9175952220 from=translated src=- shape=6416f2b6 vocab=326946ed
+-/
 lemma mem_Ico_n_of_mem_Ioo (h : α ∈ Set.Ioo 0 2)
     {n : ℕ} (hn : 0 < n) : α ∈ Set.Ico ((2 * n - 1) / n : ℝ) 2 := by
   suffices ∑ i ∈ Finset.Icc 1 n, ⌊i * α⌋ = n ^ 2 ∧ α ∈ Set.Ico ((2 * n - 1) / n : ℝ) 2 from this.2
@@ -141,6 +156,9 @@ lemma mem_Ico_n_of_mem_Ioo (h : α ∈ Set.Ioo 0 2)
 
 end Condition
 
+/--
+@isnad1 id=not.1h1v.s4.836b02445790 from=translated src=- shape=d6578247 vocab=30068759
+-/
 lemma not_condition_of_mem_Ioo {α : ℝ} (h : α ∈ Set.Ioo 0 2) : ¬Condition α := by
   intro hc
   let n : ℕ := ⌊(2 - α)⁻¹⌋₊ + 1
@@ -155,6 +173,9 @@ lemma not_condition_of_mem_Ioo {α : ℝ} (h : α ∈ Set.Ioo 0 2) : ¬Condition
   apply hna'
   exact_mod_cast Nat.lt_floor_add_one (_ : ℝ)
 
+/--
+@isnad1 id=iff.1h1v.s5.47c55cd47c86 from=translated src=- shape=ee04f266 vocab=63f76c29
+-/
 lemma condition_iff_of_mem_Ico {α : ℝ} (h : α ∈ Set.Ico 0 2) : Condition α ↔ α = 0 := by
   refine ⟨?_, ?_⟩
   · intro hc

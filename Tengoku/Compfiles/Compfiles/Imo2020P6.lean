@@ -29,6 +29,9 @@ open scoped RealInnerProductSpace
 variable {V P : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [MetricSpace P]
 variable [NormedAddTorsor V P] (dim : Nat) [Fact (finrank ℝ V = dim + 1)]
 
+/--
+@isnad1 id=ex.2h6v.s7.b03f9a6b50dc from=translated src=- shape=243efcd3 vocab=5eb21544
+-/
 theorem exists_between_and_separated {ι : Type*} (S : Finset ι) (f : ι → ℝ) (n : Nat)
     (a b : ℝ) (hab : a < b) (hS : #{p ∈ S | f p ∈ Set.Ioo a b} < n) :
     ∃ x ∈ Set.Ioo a b, ∀ p ∈ S, (b - a) / (2 * n) ≤ |x - f p| := by
@@ -108,12 +111,21 @@ theorem exists_between_and_separated {ι : Type*} (S : Finset ι) (f : ι → �
 /-- Computes "how far along" the segment from `a` to `b` the point `p` lies. -/
 noncomputable def project (a b p : P) : ℝ := innerSL ℝ (a -ᵥ b) (a -ᵥ p) / ‖a -ᵥ b‖
 
+/--
+@isnad1 id=eq.0h4v.s5.8205872de2d0 from=translated src=- shape=45d4336b vocab=181de768
+-/
 @[simp] theorem project_self_left {a b : P} : project a b a = 0 := by simp [project]
+/--
+@isnad1 id=eq.1h4v.s6.d5406701e5cc from=translated src=- shape=e879e57e vocab=887e1b49
+-/
 @[simp] theorem project_self_right {a b : P} (h : a ≠ b) : project a b b = ‖a -ᵥ b‖ := by
   simp only [project, innerSL_apply_apply]
   rw [real_inner_self_eq_norm_sq, div_eq_iff, pow_two]
   · rwa [norm_ne_zero_iff, vsub_ne_zero]
 
+/--
+@isnad1 id=ex.5h11v.s9.eaf484af35c0 from=translated src=- shape=398484cd vocab=4dd3f345
+-/
 theorem exists_affine_between_and_separated {ι : Type*} (S : Finset ι) (f : ι → P) (n : ℝ)
     (a b : P) (i j : ℝ) (hi : 0 ≤ i) (hij : i < j) (hj : j ≤ dist a b)
     (hS : #{p ∈ S | project a b (f p) ∈ Set.Ioo i j} ≤ n - 1)
@@ -178,6 +190,9 @@ theorem exists_affine_between_and_separated {ι : Type*} (S : Finset ι) (f : ι
     _ = |⟪a -ᵥ b, f p -ᵥ y⟫| := by congr 1; rw [← sub_eq_zero, ← inner_sub_right]; simp; exact hy
     _ ≤ ‖a -ᵥ b‖ * ‖f p -ᵥ y‖ := abs_real_inner_le_norm ..
 
+/--
+@isnad1 id=le.4h6v.s7.50755e25eb7f from=translated src=- shape=c0b6dd06 vocab=1f5732cf
+-/
 theorem card_le_of_separated {ι : Type*} (S : Finset ι) (f : ι → ℝ) {ε a b : ℝ} (hε : 0 < ε)
     (hab : a ≤ b) (h_sep : (S : Set ι).Pairwise fun x y => ε ≤ dist (f x) (f y))
     (hbound : ∀ x ∈ S, f x ∈ Set.Icc a b) : #S ≤ ⌊(b - a) / ε + 1⌋ := by
@@ -206,6 +221,7 @@ theorem card_le_of_separated {ι : Type*} (S : Finset ι) (f : ι → ℝ) {ε a
 /--
 In a strip of width `1/2`, if the points have pairwise distance at least `1`,
 then we can bound the number of points.
+@isnad1 id=le.3h5v.s13.2c2df3b98380 from=translated src=- shape=4bcc91f1 vocab=25c81dbb
 -/
 theorem card_le_of_separated_in_strip (eqv : P ≃ᵃⁱ[ℝ] EuclideanSpace ℝ (Fin 2)) (S : Finset P)
     (h_sep : (S.filter (eqv · 0 ∈ Set.Ioo 0 (1 / 2)) : Set P).Pairwise fun x y => 1 ≤ dist x y)

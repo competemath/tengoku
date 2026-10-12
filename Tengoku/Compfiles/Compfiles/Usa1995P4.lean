@@ -23,7 +23,9 @@ namespace Usa1995P4
 
 open Polynomial
 
-/-- `gcd (lcm over s) x` divides the product of the individual gcds. -/
+/-- `gcd (lcm over s) x` divides the product of the individual gcds.
+@isnad1 id=dvd.1h3v.s6.397d2ae1b629 from=translated src=- shape=0b8ef976 vocab=d29767a7
+-/
 lemma gcd_lcm_dvd_prod_gcd (t : ℕ → ℕ) (x : ℕ) (s : Finset ℕ) :
     (∀ i ∈ s, 0 < t i) → Nat.gcd (s.lcm t) x ∣ ∏ i ∈ s, Nat.gcd (t i) x := by
   induction s using Finset.induction_on with
@@ -42,7 +44,9 @@ lemma gcd_lcm_dvd_prod_gcd (t : ℕ → ℕ) (x : ℕ) (s : Finset ℕ) :
     exact h1.trans (h2.trans (Nat.mul_dvd_mul_left _ h3))
 
 /-- Exact factorization: a product of naturals equals their lcm times the product of
-the gcds of the successive partial lcms with the next factor. -/
+the gcds of the successive partial lcms with the next factor.
+@isnad1 id=eq.0h2v.s6.3b4f9acb7526 from=translated src=- shape=a4744204 vocab=0c9918ea
+-/
 lemma prod_eq_lcm_mul_gcd_prod (t : ℕ → ℕ) (k : ℕ) :
     ∏ i ∈ Finset.range (k + 1), t i =
       (Finset.range (k + 1)).lcm t *
@@ -75,7 +79,9 @@ lemma prod_eq_lcm_mul_gcd_prod (t : ℕ → ℕ) (k : ℕ) :
     ring
 
 /-- Each step gcd is at most `N ^ (j + 1)`, since `gcd (m - i) (m - (j+1))` divides
-`(j + 1) - i ≤ N` for every `i < j + 1`. -/
+`(j + 1) - i ≤ N` for every `i < j + 1`.
+@isnad1 id=le.2h3v.s6.9a93e8606cf3 from=translated src=- shape=ce204382 vocab=fc9beabe
+-/
 lemma gcd_lcm_le_pow (m N j : ℕ) (hm : N < m) (hj : j ∈ Finset.range N) :
     Nat.gcd ((Finset.range (j + 1)).lcm (fun i => m - i)) (m - (j + 1)) ≤ N ^ (j + 1) := by
   have _hjN : j + 1 ≤ N := Finset.mem_range.mp hj
@@ -102,7 +108,9 @@ lemma gcd_lcm_le_pow (m N j : ℕ) (hm : N < m) (hj : j ∈ Finset.range N) :
 
 /-- A lower bound for the lcm of the `N + 1` consecutive integers
 `m, m - 1, ..., m - N`: their product is at most `N ^ (N * (N + 1))` times
-their lcm. -/
+their lcm.
+@isnad1 id=le.1h2v.s6.b0fa67390630 from=translated src=- shape=974d335c vocab=7448a77d
+-/
 lemma prod_le_lcm_mul_pow (N m : ℕ) (hm : N < m) :
     ∏ i ∈ Finset.range (N + 1), (m - i) ≤
       ((Finset.range (N + 1)).lcm fun i => m - i) * N ^ (N * (N + 1)) := by
@@ -131,7 +139,9 @@ lemma prod_le_lcm_mul_pow (N m : ℕ) (hm : N < m) :
             Nat.mul_le_mul_left _ (hG.trans (pow_le_pow_right' (by lia) hexp))
 
 /-- Lagrange interpolation (over ℚ): the first `N + 1` values of an integer
-sequence are interpolated by a rational polynomial of degree at most `N`. -/
+sequence are interpolated by a rational polynomial of degree at most `N`.
+@isnad1 id=ex.0h2v.s5.07969ddd6766 from=translated src=- shape=3352d6ef vocab=48264fc4
+-/
 lemma interpolate_exists (a : ℕ → ℤ) (N : ℕ) :
     ∃ q : ℚ[X], q.natDegree ≤ N ∧ ∀ i : ℕ, i ≤ N → q.eval (i : ℚ) = (a i : ℚ) := by
   have hinj : Set.InjOn (fun i : ℕ => (i : ℚ)) (↑(Finset.range (N + 1))) :=
@@ -165,11 +175,16 @@ on all evaluations. -/
 noncomputable def clearPoly (q : ℚ[X]) (N : ℕ) : ℤ[X] :=
   ∑ i ∈ Finset.range (N + 1), Polynomial.monomial i (clearCoeff q N i)
 
+/--
+@isnad1 id=lt.0h2v.s4.5f98c59a4ad4 from=translated src=- shape=81e36898 vocab=02d88215
+-/
 lemma denomProd_pos (q : ℚ[X]) (N : ℕ) : 0 < denomProd q N :=
   Finset.prod_pos fun _ _ => Rat.den_pos _
 
 /-- The defining property of `clearCoeff`: as rationals, `clearCoeff q N i`
-equals `denomProd q N * q.coeff i` (for `i ≤ N`). -/
+equals `denomProd q N * q.coeff i` (for `i ≤ N`).
+@isnad1 id=eq.1h3v.s5.62a74c79e313 from=translated src=- shape=695dd44a vocab=27eabb9d
+-/
 lemma clearCoeff_spec (q : ℚ[X]) (N : ℕ) {i : ℕ} (hi : i ∈ Finset.range (N + 1)) :
     ((clearCoeff q N i : ℤ) : ℚ) = (denomProd q N : ℚ) * q.coeff i := by
   obtain ⟨k, hk⟩ := Finset.dvd_prod_of_mem (fun j => (q.coeff j).den) hi
@@ -187,13 +202,18 @@ lemma clearCoeff_spec (q : ℚ[X]) (N : ℕ) {i : ℕ} (hi : i ∈ Finset.range 
   rw [h4]
   exact h1.symm
 
+/--
+@isnad1 id=eq.0h3v.s5.9ceca9e8fa19 from=translated src=- shape=0ca1c98b vocab=8d7b7702
+-/
 lemma clearPoly_eval (q : ℚ[X]) (N : ℕ) (x : ℤ) :
     (clearPoly q N).eval x = ∑ i ∈ Finset.range (N + 1), clearCoeff q N i * x ^ i := by
   rw [clearPoly, Polynomial.eval_finsetSum]
   exact Finset.sum_congr rfl fun i _ => by rw [Polynomial.eval_monomial]
 
 /-- Evaluating the cleared polynomial gives `denomProd q N` times the
-evaluation of `q` (as rational numbers). -/
+evaluation of `q` (as rational numbers).
+@isnad1 id=eq.1h3v.s5.23160c06edf0 from=translated src=- shape=1b4f6293 vocab=ad638e9f
+-/
 lemma clearPoly_eval_cast (q : ℚ[X]) {N : ℕ} (hqN : q.natDegree ≤ N) (m : ℕ) :
     (((clearPoly q N).eval (m : ℤ) : ℤ) : ℚ) = (denomProd q N : ℚ) * q.eval (m : ℚ) := by
   rw [clearPoly_eval, Int.cast_sum]
@@ -203,7 +223,9 @@ lemma clearPoly_eval_cast (q : ℚ[X]) {N : ℕ} (hqN : q.natDegree ≤ N) (m : 
     ← Polynomial.eval_eq_sum_range' (Nat.lt_succ_iff.mpr hqN) (m : ℚ)]
 
 /-- At the interpolation nodes `i ≤ N`, the cleared polynomial takes the value
-`denomProd q N * a i`. -/
+`denomProd q N * a i`.
+@isnad1 id=eq.3h4v.s6.dd3f0c271844 from=translated src=- shape=32862644 vocab=ad638e9f
+-/
 lemma clearPoly_node (a : ℕ → ℤ) {q : ℚ[X]} {N : ℕ} (hqN : q.natDegree ≤ N)
     (hqval : ∀ i : ℕ, i ≤ N → q.eval (i : ℚ) = (a i : ℚ)) {i : ℕ} (hi : i ≤ N) :
     (clearPoly q N).eval (i : ℤ) = (denomProd q N : ℤ) * a i := by
@@ -215,7 +237,9 @@ lemma clearPoly_node (a : ℕ → ℤ) {q : ℚ[X]} {N : ℕ} (hqN : q.natDegree
   exact_mod_cast h
 
 /-- The difference `clearPoly q N ⬝ m - denomProd q N * a m` is divisible by
-`m - i` for every `i ≤ N`. -/
+`m - i` for every `i ≤ N`.
+@isnad1 id=dvd.4h5v.s7.b8a5f7be2665 from=translated src=- shape=5652d2c0 vocab=0d3df95f
+-/
 lemma clearPoly_dvd (a : ℕ → ℤ) (hdiv : ∀ n m : ℕ, ((n : ℤ) - (m : ℤ)) ∣ a n - a m)
     {q : ℚ[X]} {N : ℕ} (hqN : q.natDegree ≤ N)
     (hqval : ∀ i : ℕ, i ≤ N → q.eval (i : ℚ) = (a i : ℚ)) (m : ℕ) {i : ℕ}
@@ -238,7 +262,9 @@ lemma clearPoly_dvd (a : ℕ → ℤ) (hdiv : ∀ n m : ℕ, ((n : ℤ) - (m : �
   rwa [h5]
 
 /-- A sum of the form `∑ c i * m ^ i` with `m ≥ 1` grows at most like
-`m ^ N`. -/
+`m ^ N`.
+@isnad1 id=le.1h3v.s6.e1fbfa8a54a7 from=translated src=- shape=96981520 vocab=eaf88eee
+-/
 lemma sum_pow_abs_le (c : ℕ → ℤ) (N : ℕ) (m : ℕ) (hm : 1 ≤ m) :
     |∑ i ∈ Finset.range (N + 1), c i * (m : ℤ) ^ i| ≤
       ((∑ i ∈ Finset.range (N + 1), (c i).natAbs : ℕ) : ℤ) * (m : ℤ) ^ N := by
@@ -258,7 +284,9 @@ lemma sum_pow_abs_le (c : ℕ → ℤ) (N : ℕ) (m : ℕ) (hm : 1 ≤ m) :
         rw [← Finset.sum_mul, ← Nat.cast_sum]
 
 /-- The evaluation of an integer polynomial at `m ≥ 1` is bounded by a
-constant times `m ^ natDegree`. -/
+constant times `m ^ natDegree`.
+@isnad1 id=le.1h2v.s6.92d2cd12ccc3 from=translated src=- shape=7767d80c vocab=0a0bfda2
+-/
 lemma abs_eval_le (p : ℤ[X]) (m : ℕ) (hm : 1 ≤ m) :
     |p.eval (m : ℤ)| ≤
       ((∑ i ∈ Finset.range (p.natDegree + 1), (p.coeff i).natAbs : ℕ) : ℤ) *
@@ -269,7 +297,9 @@ lemma abs_eval_le (p : ℤ[X]) (m : ℕ) (hm : 1 ≤ m) :
 /-- Key step: for large `m`, the cleared polynomial agrees with
 `denomProd q N * a m`. The difference is divisible by the lcm of
 `m, m - 1, ..., m - N`, which (being larger than the product of the growth
-bounds) forces the difference to vanish. -/
+bounds) forces the difference to vanish.
+@isnad1 id=eq.7h6v.s8.d67ae3ff922c from=translated src=- shape=93cb97bc vocab=e08b3288
+-/
 lemma clearPoly_eq_of_large (a : ℕ → ℤ)
     (hdiv : ∀ n m : ℕ, ((n : ℤ) - (m : ℤ)) ∣ a n - a m)
     {q : ℚ[X]} {N : ℕ} (hqN : q.natDegree ≤ N)
@@ -373,7 +403,9 @@ lemma clearPoly_eq_of_large (a : ℕ → ℤ)
 
 /-- Tail argument: the cleared polynomial agrees with `denomProd q N * a n`
 for every `n` (for large arguments use `clearPoly_eq_of_large`; divisibility
-by `M - n` for a large `M` then forces equality at `n`). -/
+by `M - n` for a large `M` then forces equality at `n`).
+@isnad1 id=eq.5h6v.s7.fb0bb29e3f89 from=translated src=- shape=3fdc5006 vocab=432713cc
+-/
 lemma clearPoly_eq_all (a : ℕ → ℤ)
     (hdiv : ∀ n m : ℕ, ((n : ℤ) - (m : ℤ)) ∣ a n - a m)
     {q : ℚ[X]} {N : ℕ} (hqN : q.natDegree ≤ N)

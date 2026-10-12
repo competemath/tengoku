@@ -40,6 +40,9 @@ noncomputable def geometric_mean {n : ℕ} (f : Fin n → ℕ+) (s : Finset (Fin
    P ∣ M + b and therefore P ∣ b, a contradiction. Thus M = 1 and all
    numbers coincide. -/
 
+/--
+@isnad1 id=iff.3h3v.s6.13c056663754 from=translated src=- shape=a1e96712 vocab=d8db5576
+-/
 lemma rpow_inv_eq_iff {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) {k : ℕ} (hk : k ≠ 0) :
     x ^ ((1:ℝ)/k) = y ↔ x = y ^ k := by
   rw [one_div]
@@ -53,6 +56,9 @@ lemma rpow_inv_eq_iff {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) {k : ℕ} (hk : 
     rw [h, ← Real.rpow_natCast, ← Real.rpow_mul hy, mul_inv_cancel₀ (by exact_mod_cast hk),
       Real.rpow_one]
 
+/--
+@isnad1 id=ex.2h2v.s6.2b08f3b3c94e from=translated src=- shape=340d8981 vocab=ce17bb6c
+-/
 lemma all_equal {n : ℕ} (hn : 1 < n) (f : Fin n → ℕ+)
     (h : Pairwise fun a b ↦ ∃ s : Finset (Fin n), s.Nonempty ∧
       geometric_mean f s = ((f a : ℝ) + f b) / 2) :

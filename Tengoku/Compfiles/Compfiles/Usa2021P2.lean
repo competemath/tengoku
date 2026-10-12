@@ -71,30 +71,43 @@ variable (P : Park)
 def turn (v u : P.V) (p : Bool) : P.V :=
   cond p (P.rot v u) (P.rot v (P.rot v u))
 
+/--
+@isnad1 id=adj.1h4v.s4.6acf9a848973 from=translated src=- shape=14e771f3 vocab=c5e0482a
+-/
 lemma turn_adj {u v : P.V} (h : P.G.Adj v u) (p : Bool) :
     P.G.Adj v (P.turn v u p) := by
   cases p
   · exact P.rot_adj _ _ (P.rot_adj _ _ h)
   · exact P.rot_adj _ _ h
 
+/--
+@isnad1 id=ne.1h3v.s4.970f12f04612 from=translated src=- shape=3c733fac vocab=c4f32ea1
+-/
 lemma rot_inv_ne {u v : P.V} (h : P.G.Adj v u) : P.rot v (P.rot v u) ≠ u := by
   intro h2
   have h3 := P.rot_inv _ _ h
   rw [h2] at h3
   exact P.rot_ne _ _ h h3
 
-/-- The visitor never leaves a junction by the trail she arrived on. -/
+/-- The visitor never leaves a junction by the trail she arrived on.
+@isnad1 id=ne.1h4v.s4.3fc95ce097b0 from=translated src=- shape=6d4d2a14 vocab=c5e0482a
+-/
 lemma turn_ne {u v : P.V} (h : P.G.Adj v u) (p : Bool) : P.turn v u p ≠ u := by
   cases p
   · exact P.rot_inv_ne h
   · exact P.rot_ne _ _ h
 
 /-- Turning one way and then, from the same junction, the other way undoes the
-turn: `rot` and `rot ∘ rot` are inverse 3-cycles on the neighbours. -/
+turn: `rot` and `rot ∘ rot` are inverse 3-cycles on the neighbours.
+@isnad1 id=eq.1h4v.s5.752ff311f980 from=translated src=- shape=b24ff5be vocab=d5e9d463
+-/
 lemma turn_inv_turn {u v : P.V} (h : P.G.Adj v u) (p : Bool) :
     P.turn v (P.turn v u p) (!p) = u := by
   cases p <;> exact P.rot_inv _ _ h
 
+/--
+@isnad1 id=eq.3h5v.s5.37f421bae46a from=translated src=- shape=647b5b7d vocab=c5e0482a
+-/
 lemma turn_inj {u₁ u₂ v : P.V} (h₁ : P.G.Adj v u₁) (h₂ : P.G.Adj v u₂) (p : Bool)
     (h : P.turn v u₁ p = P.turn v u₂ p) : u₁ = u₂ := by
   have h' := congrArg (fun w ↦ P.turn v w (!p)) h
@@ -102,7 +115,9 @@ lemma turn_inj {u₁ u₂ v : P.V} (h₁ : P.G.Adj v u₁) (h₂ : P.G.Adj v u�
   exact h'
 
 /-- A turn and its mirror image cannot both be turns in the same direction:
-the 3-cycle `turn v · p` has no 2-cycle. -/
+the 3-cycle `turn v · p` has no 2-cycle.
+@isnad1 id=false.3h5v.s5.a3ce053a6566 from=translated src=- shape=99a168e9 vocab=c5e0482a
+-/
 lemma turn_not_two_cycle {a c v : P.V} (ha : P.G.Adj v a) (p : Bool)
     (hac : P.turn v a p = c) (hca : P.turn v c p = a) : False := by
   cases p
@@ -140,33 +155,53 @@ def step (σ : P.V × P.V × Bool) : P.V × P.V × Bool :=
 def stepInv (σ : P.V × P.V × Bool) : P.V × P.V × Bool :=
   (P.turn σ.1 σ.2.1 σ.2.2, σ.1, !σ.2.2)
 
+/--
+@isnad1 id=valid.1h2v.s4.ad6acaa15c08 from=translated src=- shape=0599fa02 vocab=425fc664
+-/
 lemma valid_step {σ : P.V × P.V × Bool} (h : P.Valid σ) : P.Valid (P.step σ) :=
   (P.turn_adj h σ.2.2).symm
 
+/--
+@isnad1 id=valid.1h2v.s4.09092495b9ef from=translated src=- shape=0599fa02 vocab=0e9db6b1
+-/
 lemma valid_stepInv {σ : P.V × P.V × Bool} (h : P.Valid σ) : P.Valid (P.stepInv σ) :=
   P.turn_adj h.symm σ.2.2
 
+/--
+@isnad1 id=eq.1h2v.s4.87ef6103d73d from=translated src=- shape=c76b1724 vocab=2854560e
+-/
 lemma stepInv_step {σ : P.V × P.V × Bool} (h : P.Valid σ) :
     P.stepInv (P.step σ) = σ := by
   obtain ⟨u, v, p⟩ := σ
   exact Prod.ext (P.turn_inv_turn h p) (Prod.ext rfl (Bool.not_not p))
 
+/--
+@isnad1 id=eq.1h2v.s4.e367ee96b2b6 from=translated src=- shape=c76b1724 vocab=2854560e
+-/
 lemma step_stepInv {σ : P.V × P.V × Bool} (h : P.Valid σ) :
     P.step (P.stepInv σ) = σ := by
   obtain ⟨u, v, p⟩ := σ
   exact Prod.ext rfl (Prod.ext (P.turn_inv_turn h.symm p) (Bool.not_not p))
 
+/--
+@isnad1 id=eq.3h3v.s5.0f9e1fbb5a25 from=translated src=- shape=1bd09532 vocab=425fc664
+-/
 lemma step_injective {σ τ : P.V × P.V × Bool} (hσ : P.Valid σ) (hτ : P.Valid τ)
     (h : P.step σ = P.step τ) : σ = τ := by
   rw [← P.stepInv_step hσ, ← P.stepInv_step hτ, h]
 
+/--
+@isnad1 id=valid.1h3v.s4.b0fbcec0d51b from=translated src=- shape=770660dc vocab=113753af
+-/
 lemma valid_walk {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) (k : ℕ) :
     P.Valid (P.step^[k] σ₀) := by
   induction k with
   | zero => exact h₀
   | succ k ih => rw [Function.iterate_succ_apply']; exact P.valid_step ih
 
-/-- The direction of the turns alternates between left and right. -/
+/-- The direction of the turns alternates between left and right.
+@isnad1 id=eq.0h3v.s6.e57026ebe574 from=translated src=- shape=db68efd0 vocab=4fd224dd
+-/
 lemma parity_walk (σ₀ : P.V × P.V × Bool) (k : ℕ) :
     (P.step^[k] σ₀).2.2 = if Even k then σ₀.2.2 else !σ₀.2.2 := by
   induction k with
@@ -179,6 +214,9 @@ lemma parity_walk (σ₀ : P.V × P.V × Bool) (k : ℕ) :
     · rw [ite_eq_left hk, ite_eq_right (by simp [Nat.even_add_one, hk])]
     · rw [ite_eq_right hk, Bool.not_not, ite_eq_left (by simp [Nat.even_add_one, hk])]
 
+/--
+@isnad1 id=eq.2h4v.s6.c96ed61802c0 from=translated src=- shape=8e469641 vocab=9e2fb5eb
+-/
 lemma stepInv_iterate {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     ∀ {i j : ℕ}, i ≤ j → P.stepInv^[i] (P.step^[j] σ₀) = P.step^[j - i] σ₀ := by
   intro i
@@ -205,7 +243,9 @@ lemma eq_of_walk_eq {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) {i j : �
   rw [h, P.stepInv_iterate h₀ hij] at key
   exact key
 
-/-- The walk is periodic: some positive iterate returns to the initial state. -/
+/-- The walk is periodic: some positive iterate returns to the initial state.
+@isnad1 id=ex.1h2v.s5.b14c14138285 from=translated src=- shape=54fb8016 vocab=0224507d
+-/
 lemma exists_period {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     ∃ T > 0, P.step^[T] σ₀ = σ₀ := by
   obtain ⟨i, hi, j, hj, hne, heq⟩ :=
@@ -225,20 +265,31 @@ lemma exists_period {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
 noncomputable def period {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) : ℕ :=
   Nat.find (P.exists_period h₀)
 
+/--
+@isnad1 id=lt.1h2v.s4.26c17679894c from=translated src=- shape=a7ea67dd vocab=2a550f2c
+-/
 lemma period_pos {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) : 0 < P.period h₀ :=
   (Nat.find_spec (P.exists_period h₀)).1
 
+/--
+@isnad1 id=eq.1h2v.s5.36255d383f76 from=translated src=- shape=b6057b6b vocab=19b1278f
+-/
 lemma period_eq {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     P.step^[P.period h₀] σ₀ = σ₀ :=
   (Nat.find_spec (P.exists_period h₀)).2
 
+/--
+@isnad1 id=ne.3h3v.s5.4fb79511af22 from=translated src=- shape=3d75bdac vocab=7bc14e83
+-/
 lemma period_ne_of_lt {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) {k : ℕ} (hk0 : 0 < k)
     (hk : k < P.period h₀) : P.step^[k] σ₀ ≠ σ₀ := by
   intro h'
   have hle : P.period h₀ ≤ k := Nat.find_min' (P.exists_period h₀) ⟨hk0, h'⟩
   lia
 
-/-- The iterates of the walk within one period are pairwise distinct. -/
+/-- The iterates of the walk within one period are pairwise distinct.
+@isnad1 id=eq.4h4v.s6.8599920ac584 from=translated src=- shape=d21ed1a9 vocab=7bc14e83
+-/
 lemma walk_inj_of_lt_period {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) {i j : ℕ}
     (hi : i < P.period h₀) (hj : j < P.period h₀)
     (h : P.step^[i] σ₀ = P.step^[j] σ₀) : i = j := by
@@ -250,7 +301,9 @@ lemma walk_inj_of_lt_period {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) 
     · rfl
     · exact absurd (P.eq_of_walk_eq h₀ hji h.symm) (P.period_ne_of_lt h₀ (by lia) (by lia))
 
-/-- The period is at least two: one step never returns to the initial state. -/
+/-- The period is at least two: one step never returns to the initial state.
+@isnad1 id=lt.1h2v.s4.19c0f6cb62b3 from=translated src=- shape=a7ea67dd vocab=2a550f2c
+-/
 lemma one_lt_period {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) : 1 < P.period h₀ := by
   have hpos := P.period_pos h₀
   by_contra h
@@ -262,7 +315,9 @@ lemma one_lt_period {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) : 1 < P.
   have hfst : v = u := congrArg Prod.fst heq
   exact h₀.ne hfst
 
-/-- The walk enters the starting junction again one step before the period. -/
+/-- The walk enters the starting junction again one step before the period.
+@isnad1 id=and.1h2v.s6.e99e09bbe8a8 from=translated src=- shape=a7684ccb vocab=5f9ef898
+-/
 lemma return_at_period_sub_one {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     0 < P.period h₀ - 1 ∧ (P.step^[P.period h₀ - 1] σ₀).2.1 = σ₀.1 := by
   have h2 := P.one_lt_period h₀
@@ -278,7 +333,9 @@ lemma return_at_period_sub_one {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ�
   rw [hInv]
   rfl
 
-/-- The visitor always gets back to the junction where she started. -/
+/-- The visitor always gets back to the junction where she started.
+@isnad1 id=ex.1h2v.s5.8f592dcbdfbc from=translated src=- shape=1d69d646 vocab=9d560223
+-/
 lemma exists_return {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     ∃ k > 0, (P.step^[k] σ₀).2.1 = σ₀.1 :=
   ⟨P.period h₀ - 1, (P.return_at_period_sub_one h₀).1, (P.return_at_period_sub_one h₀).2⟩
@@ -287,19 +344,31 @@ lemma exists_return {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
 noncomputable def retTime {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) : ℕ :=
   Nat.find (P.exists_return h₀)
 
+/--
+@isnad1 id=lt.1h2v.s4.44df1ee0843a from=translated src=- shape=a7ea67dd vocab=15865c90
+-/
 lemma retTime_pos {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) : 0 < P.retTime h₀ :=
   (Nat.find_spec (P.exists_return h₀)).1
 
+/--
+@isnad1 id=eq.1h2v.s5.6776d6189be4 from=translated src=- shape=35473a9b vocab=27f4cfc4
+-/
 lemma retTime_eq {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     (P.step^[P.retTime h₀] σ₀).2.1 = σ₀.1 :=
   (Nat.find_spec (P.exists_return h₀)).2
 
+/--
+@isnad1 id=ne.3h3v.s6.8d3ee77c2dba from=translated src=- shape=3ab58dcd vocab=a53ef396
+-/
 lemma retTime_min {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) {k : ℕ} (hk0 : 0 < k)
     (hk : k < P.retTime h₀) : (P.step^[k] σ₀).2.1 ≠ σ₀.1 := by
   intro h
   have hle : P.retTime h₀ ≤ k := Nat.find_min' (P.exists_return h₀) ⟨hk0, h⟩
   lia
 
+/--
+@isnad1 id=le.1h2v.s5.22f78bf2999c from=translated src=- shape=ffa6b855 vocab=d636e5a1
+-/
 lemma retTime_le_period_sub_one {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     P.retTime h₀ ≤ P.period h₀ - 1 :=
   Nat.find_min' _ (P.return_at_period_sub_one h₀)
@@ -314,7 +383,9 @@ noncomputable def entries (σ₀ : P.V × P.V × Bool) (h₀ : P.Valid σ₀) (v
 /-- The key lemma: a trajectory never contains a turn and its mirror image,
 i.e. turns `a → b → c` and `c → b → a` through the same junction. Otherwise the
 turns adjacent to them at `c` would again be mirror images of each other, with a
-strictly smaller gap — an infinite descent. -/
+strictly smaller gap — an infinite descent.
+@isnad1 id=false.6h9v.s7.c0227548f416 from=translated src=- shape=ad26c27f vocab=e20d838d
+-/
 theorem no_mirror {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
     ∀ n : ℕ, ∀ (i : ℕ) (a b c : P.V) (p q : Bool),
       1 ≤ n → P.step^[i] σ₀ = (a, (b, p)) → P.step^[i + n] σ₀ = (c, (b, q)) →
@@ -379,7 +450,9 @@ theorem no_mirror {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) :
 
 /-- In one period of the walk, any junction is entered at most three times: the
 (at most six) turns at `v` pair up into three mirror pairs, of which at most one
-turn each can occur by `no_mirror`. -/
+turn each can occur by `no_mirror`.
+@isnad1 id=le.1h3v.s6.5735ec68bc1e from=translated src=- shape=35559609 vocab=da593556
+-/
 theorem arrivals_le_three {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) (v : P.V) :
     ((Finset.range (P.period h₀)).filter
       fun k ↦ (P.step^[k] σ₀).2.1 = v).card ≤ 3 := by
@@ -513,7 +586,9 @@ theorem arrivals_le_three {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) (v
   have hFM : F.card ≤ 3 := by lia
   exact hFM
 
-/-- The visitor enters any junction at most three times during her walk. -/
+/-- The visitor enters any junction at most three times during her walk.
+@isnad1 id=le.1h3v.s4.2ef9aa1e7a69 from=translated src=- shape=94e6253e vocab=a10b3c7c
+-/
 theorem entries_le_three {σ₀ : P.V × P.V × Bool} (h₀ : P.Valid σ₀) (v : P.V) :
     P.entries σ₀ h₀ v ≤ 3 := by
   unfold Park.entries
@@ -591,13 +666,18 @@ def wangPark : Park where
   rot_ne := by decide
   rot_inv := by decide
 
+/--
+@isnad1 id=valid.0h0v.s5.0377ab4eccc7 from=translated src=- shape=b7425eda vocab=32d3bfde
+-/
 lemma wang_valid : wangPark.Valid ((2, 0, true) : Fin 10 × Fin 10 × Bool) := by
   show wangAdj 0 2
   decide
 
 /-- Starting from junction `C = 2` along the trail to `A = 0`, the visitor's walk
 is `C A H I F G D B A H E F G J B A C`: she gets back to `C` after 16 trails,
-having entered junction `A` three times. -/
+having entered junction `A` three times.
+@isnad1 id=eq.0h0v.s6.eb11d15f2cf9 from=translated src=- shape=5c073eae vocab=a01444c3
+-/
 theorem wang_entries :
     wangPark.entries ((2, 0, true) : Fin 10 × Fin 10 × Bool) wang_valid (0 : Fin 10) = 3 := by
   have hT : wangPark.retTime (σ₀ := ((2, 0, true) : Fin 10 × Fin 10 × Bool)) wang_valid = 15 :=

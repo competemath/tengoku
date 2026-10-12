@@ -27,33 +27,52 @@ def coprimeSet (n : ℕ) : Finset ℕ := (Finset.range n).filter (Nat.Coprime n)
 /-- The sum of the `k`-th powers of the elements of `coprimeSet n`. -/
 def powSum (n k : ℕ) : ℕ := ∑ a ∈ coprimeSet n, a ^ k
 
+/--
+@isnad1 id=iff.0h2v.s4.e76d70f44ba2 from=translated src=- shape=a3ff51cf vocab=67567f63
+-/
 lemma mem_coprimeSet {n a : ℕ} : a ∈ coprimeSet n ↔ a < n ∧ Nat.Coprime n a := by
   simp [coprimeSet]
 
+/--
+@isnad1 id=eq.0h1v.s3.9314f25378e5 from=translated src=- shape=f5f172d0 vocab=2e5ba45c
+-/
 lemma coprimeSet_card (n : ℕ) : (coprimeSet n).card = n.totient :=
   (Nat.totient_eq_card_coprime n).symm
 
+/--
+@isnad1 id=mem.1h1v.s4.840060eb2d23 from=translated src=- shape=6ee6e082 vocab=5a36b9b6
+-/
 lemma one_mem_coprimeSet (n : ℕ) (hn : 2 ≤ n) : 1 ∈ coprimeSet n := by
   rw [mem_coprimeSet]
   exact ⟨by lia, Nat.coprime_one_right n⟩
 
+/--
+@isnad1 id=lt.1h2v.s4.ed4b71978314 from=translated src=- shape=1852429d vocab=622c2b09
+-/
 lemma powSum_pos (n : ℕ) (hn : 2 ≤ n) (k : ℕ) : 0 < powSum n k := by
   have h1 : 1 ∈ coprimeSet n := one_mem_coprimeSet n hn
   calc (0 : ℕ) < 1 ^ k := by simp
     _ ≤ powSum n k := Finset.single_le_sum (fun a _ => Nat.zero_le (a ^ k)) h1
 
+/--
+@isnad1 id=eq.0h1v.s3.dfcd2e63af18 from=translated src=- shape=53eb01b5 vocab=297726d9
+-/
 lemma powSum_zero (n : ℕ) : powSum n 0 = n.totient := by
   have h : ∑ a ∈ coprimeSet n, a ^ 0 = ∑ _a ∈ coprimeSet n, 1 :=
     Finset.sum_congr rfl (fun a _ => pow_zero a)
   rw [powSum, h, Finset.sum_const, smul_eq_mul, mul_one, coprimeSet_card]
 
-/-- Coprimality is preserved when taking a value modulo the left argument. -/
+/-- Coprimality is preserved when taking a value modulo the left argument.
+@isnad1 id=coprime.1h2v.s4.1649bbd146d0 from=translated src=- shape=582e6cbb vocab=368387ec
+-/
 lemma coprime_mod_left' {m x : ℕ} (h : Nat.Coprime m x) : Nat.Coprime m (x % m) := by
   have hmod : x % m + m * (x / m) = x := Nat.mod_add_div x m
   rw [← hmod] at h
   exact (Nat.coprime_add_mul_left_right m (x % m) (x / m)).mp h
 
-/-- The map `(a, h) ↦ a + n * h` is injective when `a, a' < n`. -/
+/-- The map `(a, h) ↦ a + n * h` is injective when `a, a' < n`.
+@isnad1 id=and.3h5v.s6.8571ed372676 from=translated src=- shape=6a09d244 vocab=304a85f3
+-/
 lemma add_mul_inj {n a h a' h' : ℕ} (ha : a < n) (ha' : a' < n)
     (heq : a + n * h = a' + n * h') : a = a' ∧ h = h' := by
   have hmod : (a + n * h) % n = (a' + n * h') % n := congrArg (· % n) heq
@@ -64,7 +83,9 @@ lemma add_mul_inj {n a h a' h' : ℕ} (ha : a < n) (ha' : a' < n)
   exact ⟨hmod, Nat.eq_of_mul_eq_mul_left hnpos hnmul⟩
 
 /-- Key identity, case `q ∣ n`: the reduced residues mod `n*q` are exactly
-`{a + n*h | a ∈ coprimeSet n, h < q}`. -/
+`{a + n*h | a ∈ coprimeSet n, h < q}`.
+@isnad1 id=eq.3h3v.s6.f544976004cd from=translated src=- shape=ff48e4ce vocab=b966516b
+-/
 lemma powSum_mul_prime_of_dvd {n q : ℕ} (hn : 2 ≤ n) (hq : q.Prime) (hqd : q ∣ n) (k : ℕ) :
     powSum (n * q) k = ∑ a ∈ coprimeSet n, ∑ h ∈ Finset.range q, (a + n * h) ^ k := by
   -- Note: primality of `q` is not needed in this case, only `q ∣ n`.
@@ -117,7 +138,9 @@ lemma powSum_mul_prime_of_dvd {n q : ℕ} (hn : 2 ≤ n) (hq : q.Prime) (hqd : q
         Finset.sum_product _ _ _
 
 /-- Key identity, case `q ∤ n`: the reduced residues mod `n*q` are
-`{a + n*h | a ∈ coprimeSet n, h < q}` with the multiples `q * a` removed. -/
+`{a + n*h | a ∈ coprimeSet n, h < q}` with the multiples `q * a` removed.
+@isnad1 id=eq.3h3v.s6.11d0290a6e1c from=translated src=- shape=26705448 vocab=b966516b
+-/
 lemma powSum_mul_prime_of_not_dvd {n q : ℕ} (hn : 2 ≤ n) (hq : q.Prime) (hqd : ¬ q ∣ n) (k : ℕ) :
     powSum (n * q) k + q ^ k * powSum n k =
       ∑ a ∈ coprimeSet n, ∑ h ∈ Finset.range q, (a + n * h) ^ k := by
@@ -217,7 +240,9 @@ lemma powSum_mul_prime_of_not_dvd {n q : ℕ} (hn : 2 ≤ n) (hq : q.Prime) (hqd
     _ = ∑ a ∈ coprimeSet n, ∑ h ∈ Finset.range q, (a + n * h) ^ k :=
         Finset.sum_product _ _ _
 
-/-- Binomial expansion of the double sum. -/
+/-- Binomial expansion of the double sum.
+@isnad1 id=eq.0h3v.s7.240d244724c8 from=translated src=- shape=943c0f77 vocab=f35feb5d
+-/
 lemma sum_add_pow_eq (n q k : ℕ) :
     ∑ a ∈ coprimeSet n, ∑ h ∈ Finset.range q, (a + n * h) ^ k =
       q * powSum n k + ∑ j ∈ Finset.range k,
@@ -280,7 +305,9 @@ lemma sum_add_pow_eq (n q k : ℕ) :
         rw [Nat.choose_zero_right, hsum0, pow_zero, Nat.sub_zero]
         ring
 
-/-- The prime power case: `p^(e-1) ∣ powSum (p^e) k`. -/
+/-- The prime power case: `p^(e-1) ∣ powSum (p^e) k`.
+@isnad1 id=dvd.2h3v.s6.f42b89b1705c from=translated src=- shape=e52858ec vocab=9d79ea14
+-/
 lemma pow_pred_dvd_powSum_prime_pow {p : ℕ} (hp : p.Prime) :
     ∀ e : ℕ, 1 ≤ e → ∀ k : ℕ, p ^ (e - 1) ∣ powSum (p ^ e) k := by
   intro e he
@@ -313,7 +340,9 @@ lemma pow_pred_dvd_powSum_prime_pow {p : ℕ} (hp : p.Prime) :
         dvd_mul_of_dvd_left (dvd_mul_of_dvd_left (dvd_refl _) _) _
       exact dvd_trans h2 (dvd_mul_of_dvd_right h3 _)
 
-/-- Helper: `∑ h ∈ range q, h^(j+1) = ∑ h ∈ Icc 1 (q-1), h^(j+1)`. -/
+/-- Helper: `∑ h ∈ range q, h^(j+1) = ∑ h ∈ Icc 1 (q-1), h^(j+1)`.
+@isnad1 id=eq.0h2v.s6.e0033446af42 from=translated src=- shape=eda2c099 vocab=f1576538
+-/
 lemma sum_range_pow_eq_sum_Icc (q j : ℕ) :
     ∑ h ∈ Finset.range q, h ^ (j + 1) = ∑ h ∈ Finset.Icc 1 (q - 1), h ^ (j + 1) := by
   rcases Nat.eq_zero_or_pos q with rfl | hq
@@ -328,7 +357,9 @@ lemma sum_range_pow_eq_sum_Icc (q j : ℕ) :
     rw [hIcc, Finset.sum_Ico_eq_sum_range]
     exact Finset.sum_congr rfl fun x _ => by rw [add_comm]
 
-/-- Corollary: `p^(c-1) ∣ 1^j + ⋯ + t^j` when `p^c ∣ t`, `c ≥ 1`, `j ≥ 1`. -/
+/-- Corollary: `p^(c-1) ∣ 1^j + ⋯ + t^j` when `p^c ∣ t`, `c ≥ 1`, `j ≥ 1`.
+@isnad1 id=dvd.4h4v.s6.088ce46877cd from=translated src=- shape=a9f8f0a6 vocab=cf3cb4fa
+-/
 lemma pow_pred_dvd_sum_pow_Icc {p : ℕ} (hp : p.Prime) :
     ∀ c : ℕ, 1 ≤ c → ∀ t : ℕ, p ^ c ∣ t → ∀ j : ℕ, 1 ≤ j →
       p ^ (c - 1) ∣ ∑ h ∈ Finset.Icc 1 t, h ^ j := by
@@ -508,11 +539,16 @@ lemma pow_pred_dvd_sum_pow_Icc {p : ℕ} (hp : p.Prime) :
             (pow_dvd_pow p (le_trans (Nat.le_succ c) (Nat.le_mul_of_pos_right (c + 1) hi0))) _
         exact dvd_trans h5 (dvd_mul_of_dvd_left (dvd_mul_of_dvd_left (dvd_refl _) _) _)
 
-/-- `p ^ padicValNat p m ∣ m` for nonzero `m`. -/
+/-- `p ^ padicValNat p m ∣ m` for nonzero `m`.
+@isnad1 id=dvd.2h2v.s5.3a72a19ad234 from=translated src=- shape=5d60ffd1 vocab=46edbb5d
+-/
 lemma pow_padicValNat_dvd' {p m : ℕ} (hp : p.Prime) (hm : m ≠ 0) : p ^ padicValNat p m ∣ m := by
   have := Fact.mk hp
   exact (padicValNat_dvd_iff_le hm).2 le_rfl
 
+/--
+@isnad1 id=eq.5h3v.s5.6cf67deaf38d from=translated src=- shape=79d0ed3e vocab=55b18155
+-/
 lemma padicValNat_totient_mul_prime_of_dvd {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpq : p ≠ q) {n : ℕ} (hn : n ≠ 0) (hqd : q ∣ n) :
     padicValNat p (Nat.totient (n * q)) = padicValNat p (Nat.totient n) := by
@@ -560,6 +596,9 @@ lemma padicValNat_totient_mul_prime_of_dvd {p q : ℕ} (hp : p.Prime) (hq : q.Pr
     padicValNat.mul (pow_ne_zero _ hqnz) hq1,
     hvpow f, hvpow (f - 1)]
 
+/--
+@isnad1 id=eq.4h3v.s6.b3860fd3bcb5 from=translated src=- shape=88a5c09f vocab=2e912af7
+-/
 lemma padicValNat_totient_mul_prime_of_not_dvd {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     {n : ℕ} (hn : n ≠ 0) (hqd : ¬ q ∣ n) :
     padicValNat p (Nat.totient (n * q)) =
@@ -572,7 +611,9 @@ lemma padicValNat_totient_mul_prime_of_not_dvd {p q : ℕ} (hp : p.Prime) (hq : 
   rw [Nat.totient_mul hcop, Nat.totient_prime hq,
     padicValNat.mul (Nat.totient_pos.2 (Nat.pos_of_ne_zero hn)).ne' hq1]
 
-/-- The main claim: for `p` prime with `p ∣ n`, `p ^ ν_p (φ n) ∣ powSum n k`. -/
+/-- The main claim: for `p` prime with `p ∣ n`, `p ^ ν_p (φ n) ∣ powSum n k`.
+@isnad1 id=dvd.3h3v.s5.0d3b777ee8b4 from=translated src=- shape=7fced486 vocab=1e98b110
+-/
 lemma pow_padicValNat_totient_dvd_powSum {p : ℕ} (hp : p.Prime) :
     ∀ n : ℕ, 2 ≤ n → p ∣ n → ∀ k : ℕ, p ^ padicValNat p (Nat.totient n) ∣ powSum n k := by
   have := Fact.mk hp

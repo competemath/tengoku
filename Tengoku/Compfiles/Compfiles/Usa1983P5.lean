@@ -32,6 +32,9 @@ noncomputable def denoms (x : ℝ) (n : ℕ) : Finset ℕ := by
   exact (Finset.Icc 1 n).filter fun d => OccursDen x n d
 
 -- Openness of the interval gives strict spacing.
+/--
+@isnad1 id=lt.3h4v.s6.30312184ae26 from=translated src=- shape=d5bbca62 vocab=dde22b4b
+-/
 lemma dist_lt_interval_length
     {x : ℝ} {n : ℕ} (_hn : 0 < n) {r s : ℚ}
     (hr : r ∈ fracs x n) (hs : s ∈ fracs x n) :
@@ -41,6 +44,9 @@ lemma dist_lt_interval_length
   rw [abs_sub_lt_iff]
   constructor <;> linarith
 
+/--
+@isnad1 id=le.1h1v.s5.cdbfacdb9471 from=translated src=- shape=7f86f6a2 vocab=fce08b0c
+-/
 lemma one_div_den_le_abs_rat {q : ℚ} (hq : q ≠ 0) :
     1 / (q.den : ℝ) ≤ |(q : ℝ)| := by
   have hnum_real : (1 : ℝ) ≤ |(q.num : ℝ)| := by
@@ -51,6 +57,9 @@ lemma one_div_den_le_abs_rat {q : ℚ} (hq : q ≠ 0) :
   exact (div_le_div_iff_of_pos_right hden_pos).2 hnum_real
 
 -- Spacing for denominators related by divisibility.
+/--
+@isnad1 id=le.4h4v.s6.de4f313d789c from=translated src=- shape=70e7052c vocab=3271211e
+-/
 lemma one_div_den_le_dist_of_dvd_den
     {r s : ℚ} {d e : ℕ}
     (hrd : r.den = d) (hse : s.den = e)
@@ -74,6 +83,9 @@ lemma one_div_den_le_dist_of_dvd_den
       (by exact_mod_cast hden_le_e : ((r - s).den : ℝ) ≤ e)
   exact hmono.trans (by simpa [Rat.cast_sub] using hlower)
 
+/--
+@isnad1 id=eq.4h4v.s5.62da0ef2c941 from=translated src=- shape=a05df770 vocab=ba4ec3b7
+-/
 lemma same_den_unique
     {x : ℝ} {n : ℕ} (hn : 0 < n) {r s : ℚ}
     (hr : r ∈ fracs x n) (hs : s ∈ fracs x n)
@@ -93,6 +105,9 @@ lemma same_den_unique
       (by exact_mod_cast hs.1 : (s.den : ℝ) ≤ n)
   linarith
 
+/--
+@isnad1 id=mem.1h3v.s5.4fce5542906b from=translated src=- shape=f58457ea vocab=093736aa
+-/
 lemma den_mem_denoms {x : ℝ} {n : ℕ} {q : ℚ} (hq : q ∈ fracs x n) :
     q.den ∈ denoms x n := by
   rw [denoms]
@@ -100,6 +115,9 @@ lemma den_mem_denoms {x : ℝ} {n : ℕ} {q : ℚ} (hq : q ∈ fracs x n) :
   exact ⟨⟨Rat.den_pos q, hq.1⟩, q, hq, rfl⟩
 
 -- Occurring denominators form a divisibility antichain.
+/--
+@isnad1 id=not.4h4v.s5.3e548a987bff from=translated src=- shape=1f60a98b vocab=75e1a372
+-/
 lemma no_dvd_between_occurring_denoms
     {x : ℝ} {n d e : ℕ} (hn : 0 < n)
     (hd : d ∈ denoms x n) (he : e ∈ denoms x n) (hne : d ≠ e) :
@@ -126,6 +144,9 @@ lemma no_dvd_between_occurring_denoms
       (by exact_mod_cast he.1.2 : (e : ℝ) ≤ n)
   linarith
 
+/--
+@isnad1 id=bijon.1h2v.s5.1572b57a03a7 from=translated src=- shape=054d27c4 vocab=e79a7266
+-/
 lemma den_bijOn (x : ℝ) (n : ℕ) (hn : 0 < n) :
     Set.BijOn (fun q : ℚ => q.den) (fracs x n) (denoms x n : Set ℕ) := by
   refine ⟨?maps, ?inj, ?surj⟩
@@ -140,10 +161,16 @@ lemma den_bijOn (x : ℝ) (n : ℕ) (hn : 0 < n) :
     rcases hd.2 with ⟨q, hq, hqd⟩
     exact ⟨q, hq, hqd⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.7cdeb67ff239 from=translated src=- shape=bbe2747a vocab=059f73d8
+-/
 lemma fracs_ncard_eq_denoms_card (x : ℝ) (n : ℕ) (hn : 0 < n) :
     (fracs x n).ncard = (denoms x n).card := by
   simpa using (den_bijOn x n hn).ncard_eq
 
+/--
+@isnad1 id=finite.1h2v.s4.d4e0da9d9e49 from=translated src=- shape=fb808813 vocab=f7bc70f8
+-/
 lemma fracs_finite (x : ℝ) (n : ℕ) (hn : 0 < n) :
     (fracs x n).Finite := by
   exact ((den_bijOn x n hn).finite_iff_finite).2 (denoms x n).finite_toSet
@@ -156,23 +183,38 @@ def twoPart (a : ℕ) : ℕ :=
 def oddPart (a : ℕ) : ℕ :=
   ordCompl[2] a
 
+/--
+@isnad1 id=eq.0h1v.s4.eec9b5537a04 from=translated src=- shape=b690c24f vocab=4a5c3a9a
+-/
 lemma twoPart_mul_oddPart (a : ℕ) : twoPart a * oddPart a = a := by
   simpa [twoPart, oddPart] using Nat.ordProj_mul_ordCompl_eq_self a 2
 
+/--
+@isnad1 id=odd.1h1v.s4.5ccd2b58cd37 from=translated src=- shape=06a20e7c vocab=6f32d112
+-/
 lemma oddPart_odd {a : ℕ} (ha : a ≠ 0) :
     Odd (oddPart a) := by
   exact Nat.not_even_iff_odd.mp (by
     rw [even_iff_two_dvd]
     simpa [oddPart] using Nat.not_dvd_ordCompl Nat.prime_two ha)
 
+/--
+@isnad1 id=le.0h1v.s3.19f78751fa1e from=translated src=- shape=a365602c vocab=93d82d06
+-/
 lemma oddPart_le_self (a : ℕ) :
     oddPart a ≤ a := by
   simpa [oddPart] using Nat.ordCompl_le a 2
 
+/--
+@isnad1 id=lt.1h2v.s5.1a337ae2c39c from=translated src=- shape=d35550f9 vocab=e74782fa
+-/
 lemma pos_of_mem_Icc_one {a n : ℕ} (ha : a ∈ Finset.Icc 1 n) :
     0 < a := by
   exact Nat.succ_le_iff.mp (Finset.mem_Icc.mp ha).1
 
+/--
+@isnad1 id=eq.3h2v.s5.42c2511315b6 from=translated src=- shape=a9ae5541 vocab=b0c90dd3
+-/
 lemma odd_eq_of_half_eq {a b : ℕ} (ha : Odd a) (hb : Odd b) (h : a / 2 = b / 2) :
     a = b := by
   calc
@@ -180,6 +222,9 @@ lemma odd_eq_of_half_eq {a b : ℕ} (ha : Odd a) (hb : Odd b) (h : a / 2 = b / 2
     _ = 2 * (b / 2) + 1 := by rw [h]
     _ = b := Nat.two_mul_div_two_add_one_of_odd hb
 
+/--
+@isnad1 id=lt.1h2v.s6.985aa03519e0 from=translated src=- shape=4b52d0a0 vocab=50033f59
+-/
 lemma oddPart_index_lt_half {a n : ℕ} (ha : a ∈ Finset.Icc 1 n) :
     oddPart a / 2 < (n + 1) / 2 := by
   have han : a ≤ n := (Finset.mem_Icc.mp ha).2
@@ -190,6 +235,9 @@ lemma oddPart_index_lt_half {a n : ℕ} (ha : a ∈ Finset.Icc 1 n) :
     Nat.two_mul_div_two_add_one_of_odd hodd
   lia
 
+/--
+@isnad1 id=or.1h2v.s4.92b47e901e6a from=translated src=- shape=c8ecc21b vocab=e6f4b279
+-/
 lemma dvd_or_dvd_of_oddPart_eq {a b : ℕ} (h : oddPart a = oddPart b) :
     a ∣ b ∨ b ∣ a := by
   by_cases hle : a.factorization 2 ≤ b.factorization 2
@@ -207,6 +255,9 @@ lemma dvd_or_dvd_of_oddPart_eq {a b : ℕ} (h : oddPart a = oddPart b) :
     rw [← twoPart_mul_oddPart a, ← twoPart_mul_oddPart b, twoPart, h, hc]
     ac_rfl
 
+/--
+@isnad1 id=injectiv.2h2v.s7.2feba99fcfe7 from=translated src=- shape=85172d21 vocab=efa08e01
+-/
 lemma oddIndex_injective_of_no_dvd
     {s : Finset ℕ} {n : ℕ}
     (hs : s ⊆ Finset.Icc 1 n)
@@ -230,6 +281,9 @@ lemma oddIndex_injective_of_no_dvd
   · exact hantichain b.1 b.2 a.1 a.2 (Ne.symm hab) hdvd
 
 -- Largest-odd-divisor pigeonhole step.
+/--
+@isnad1 id=le.2h2v.s6.6a467fa42194 from=translated src=- shape=446a0afc vocab=b91b4bba
+-/
 lemma card_le_half_of_no_dvd
     {s : Finset ℕ} {n : ℕ}
     (hs : s ⊆ Finset.Icc 1 n)
@@ -241,6 +295,9 @@ lemma card_le_half_of_no_dvd
     simpa [oddIndex] using oddIndex_injective_of_no_dvd hs hantichain
   simpa [oddIndex] using Fintype.card_le_of_injective oddIndex oddIndex_injective
 
+/--
+@isnad1 id=le.0h2v.s4.8f8730eab050 from=translated src=- shape=6ca07929 vocab=c357afba
+-/
 lemma denoms_subset_Icc (x : ℝ) (n : ℕ) :
     denoms x n ⊆ Finset.Icc 1 n := by
   intro d hd

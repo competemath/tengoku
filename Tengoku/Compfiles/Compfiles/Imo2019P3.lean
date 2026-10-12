@@ -45,7 +45,9 @@ def Toggle {V : Type*} (G G' : SimpleGraph V) : Prop :=
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 omit [Fintype V] [DecidableEq V] in
-/-- Adjacency in a toggled graph. -/
+/-- Adjacency in a toggled graph.
+@isnad1 id=iff.0h7v.s6.851cd41c2606 from=translated src=- shape=94cfcef5 vocab=9d0c946c
+-/
 lemma toggle_adj {G : SimpleGraph V} {a b c x y : V} :
     ((G.deleteEdges {s(a, b), s(a, c)}) ⊔ fromEdgeSet {s(b, c)}).Adj x y ↔
       (G.Adj x y ∧ s(x, y) ≠ s(a, b) ∧ s(x, y) ≠ s(a, c)) ∨ (s(x, y) = s(b, c) ∧ x ≠ y) := by
@@ -54,7 +56,9 @@ lemma toggle_adj {G : SimpleGraph V} {a b c x y : V} :
 
 omit [Fintype V] [DecidableEq V] in
 /-- A helper for `Sym2` inequality: to show `s(x, y) ≠ s(z, w)` it suffices to
-discharge both pairings. -/
+discharge both pairings.
+@isnad1 id=ne.2h5v.s5.d02d99705ed5 from=translated src=- shape=7d0b0e39 vocab=5c8c580b
+-/
 lemma sym2_ne {x y z w : V} (h1 : x ≠ z ∨ y ≠ w) (h2 : x ≠ w ∨ y ≠ z) :
     s(x, y) ≠ s(z, w) := by
   intro heq
@@ -65,7 +69,9 @@ lemma sym2_ne {x y z w : V} (h1 : x ≠ z ∨ y ≠ w) (h2 : x ≠ w ∨ y ≠ z
 
 omit [Fintype V] [DecidableEq V] in
 /-- Adjacency with `a` in a toggled graph: `a` keeps exactly its neighbors
-different from `b` and `c`. -/
+different from `b` and `c`.
+@isnad1 id=iff.2h6v.s6.dad6b65e9fec from=translated src=- shape=92aad0c9 vocab=9d0c946c
+-/
 lemma toggle_adj_a {G : SimpleGraph V} {a b c : V}
     (hab : G.Adj a b) (hac : G.Adj a c) (w : V) :
     ((G.deleteEdges {s(a, b), s(a, c)}) ⊔ fromEdgeSet {s(b, c)}).Adj a w ↔
@@ -89,7 +95,9 @@ lemma toggle_adj_a {G : SimpleGraph V} {a b c : V}
       sym2_ne (Or.inr hwc) (Or.inl hac')⟩
 
 omit [Fintype V] [DecidableEq V] in
-/-- Adjacency with `b` in a toggled graph: `b` loses `a` and gains `c`. -/
+/-- Adjacency with `b` in a toggled graph: `b` loses `a` and gains `c`.
+@isnad1 id=iff.2h6v.s6.d3de9fed5059 from=translated src=- shape=ed482485 vocab=9d0c946c
+-/
 lemma toggle_adj_b {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c)
     (hab : G.Adj a b) (w : V) :
     ((G.deleteEdges {s(a, b), s(a, c)}) ⊔ fromEdgeSet {s(b, c)}).Adj b w ↔
@@ -114,7 +122,9 @@ lemma toggle_adj_b {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c)
         sym2_ne (Or.inl hab'.symm) (Or.inl hbc)⟩
 
 omit [Fintype V] [DecidableEq V] in
-/-- Adjacency with `c` in a toggled graph: `c` loses `a` and gains `b`. -/
+/-- Adjacency with `c` in a toggled graph: `c` loses `a` and gains `b`.
+@isnad1 id=iff.2h6v.s6.4b27908a5990 from=translated src=- shape=62324432 vocab=9d0c946c
+-/
 lemma toggle_adj_c {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c)
     (hac : G.Adj a c) (w : V) :
     ((G.deleteEdges {s(a, b), s(a, c)}) ⊔ fromEdgeSet {s(b, c)}).Adj c w ↔
@@ -139,7 +149,9 @@ lemma toggle_adj_c {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c)
         sym2_ne (Or.inl hac'.symm) (Or.inr hwa)⟩
 
 omit [Fintype V] [DecidableEq V] in
-/-- Adjacency with a vertex different from `a`, `b`, `c` is unchanged by a toggle. -/
+/-- Adjacency with a vertex different from `a`, `b`, `c` is unchanged by a toggle.
+@isnad1 id=iff.3h7v.s6.99e908cc4fa0 from=translated src=- shape=20dca77c vocab=9d0c946c
+-/
 lemma toggle_adj_of_ne {G : SimpleGraph V} {a b c v : V}
     (hva : v ≠ a) (hvb : v ≠ b) (hvc : v ≠ c) (w : V) :
     ((G.deleteEdges {s(a, b), s(a, c)}) ⊔ fromEdgeSet {s(b, c)}).Adj v w ↔ G.Adj v w := by
@@ -160,12 +172,16 @@ lemma toggle_adj_of_ne {G : SimpleGraph V} {a b c v : V}
 
 omit [DecidableEq V] in
 /-- Degree as the cardinality of a filter.  Stated with an explicit decidability
-instance so that all synthesized instances agree. -/
+instance so that all synthesized instances agree.
+@isnad1 id=eq.0h3v.s5.4cc023597bb3 from=translated src=- shape=6b54b253 vocab=18cd3c31
+-/
 lemma degree_eq_card_filter (H : SimpleGraph V) [DecidableRel H.Adj] (v : V) :
     H.degree v = #(Finset.univ.filter (H.Adj v)) := by
   rw [← SimpleGraph.card_neighborFinset_eq_degree H v, SimpleGraph.neighborFinset_eq_filter H]
 
-/-- A toggle preserves the parity of every degree. -/
+/-- A toggle preserves the parity of every degree.
+@isnad1 id=eq.1h4v.s6.69b1f39a721f from=translated src=- shape=90b71f38 vocab=d4320315
+-/
 lemma Toggle.degree_parity {G G' : SimpleGraph V} (hT : Toggle G G') (v : V) :
     G'.degree v % 2 = G.degree v % 2 := by
   obtain ⟨a, b, c, hbc, hab, hac, hnbc, rfl⟩ := hT
@@ -236,14 +252,18 @@ lemma Toggle.degree_parity {G G' : SimpleGraph V} (hT : Toggle G G') (v : V) :
   rw [degree_eq_card_filter, degree_eq_card_filter]
   exact key v
 
-/-- A toggle preserves the existence of a vertex of odd degree. -/
+/-- A toggle preserves the existence of a vertex of odd degree.
+@isnad1 id=ex.2h3v.s6.cf411e227f91 from=translated src=- shape=b2efdd4a vocab=49a47208
+-/
 lemma Toggle.exists_odd_degree {G G' : SimpleGraph V} (hT : Toggle G G') :
     (∃ v, Odd (G.degree v)) → ∃ v, Odd (G'.degree v) := by
   rintro ⟨v, hv⟩
   exact ⟨v, by rwa [Nat.odd_iff, hT.degree_parity v, ← Nat.odd_iff]⟩
 
 omit [Fintype V] [DecidableEq V] in
-/-- The edge set of a toggled graph. -/
+/-- The edge set of a toggled graph.
+@isnad1 id=eq.1h5v.s6.b1ef8dd8e23d from=translated src=- shape=64a1f567 vocab=1cd4c0a7
+-/
 lemma edgeSet_toggle {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c) :
     ((G.deleteEdges {s(a, b), s(a, c)}) ⊔ fromEdgeSet {s(b, c)}).edgeSet
       = (G.edgeSet \ {s(a, b), s(a, c)}) ∪ {s(b, c)} := by
@@ -260,7 +280,9 @@ lemma edgeSet_toggle {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c) :
       exact Or.inr ⟨rfl, by simp [Sym2.diagSet, Sym2.mk_isDiag_iff, hbc]⟩
 
 omit [DecidableEq V] in
-/-- A toggle removes exactly one edge. -/
+/-- A toggle removes exactly one edge.
+@isnad1 id=eq.1h3v.s6.41113e0c8869 from=translated src=- shape=d8e7e42b vocab=8b46cfae
+-/
 lemma Toggle.edgeFinset_card {G G' : SimpleGraph V} (hT : Toggle G G') :
     G'.edgeFinset.card + 1 = G.edgeFinset.card := by
   obtain ⟨a, b, c, hbc, hab, hac, hnbc, rfl⟩ := hT
@@ -287,7 +309,9 @@ lemma Toggle.edgeFinset_card {G G' : SimpleGraph V} (hT : Toggle G G') :
   lia
 
 omit [Fintype V] [DecidableEq V] in
-/-- A graph obtained by a toggle is never complete: `a` and `b` are no longer friends. -/
+/-- A graph obtained by a toggle is never complete: `a` and `b` are no longer friends.
+@isnad1 id=ne.1h3v.s4.c854b69b9292 from=translated src=- shape=aeb6ec5e vocab=54e1ca4b
+-/
 lemma Toggle.ne_top {G G' : SimpleGraph V} (hT : Toggle G G') : G' ≠ ⊤ := by
   obtain ⟨a, b, c, hbc, hab, hac, hnbc, rfl⟩ := hT
   intro hG'
@@ -298,7 +322,9 @@ lemma Toggle.ne_top {G G' : SimpleGraph V} (hT : Toggle G G') : G' ≠ ⊤ := by
   exact hadj.2.1 rfl
 
 omit [Fintype V] [DecidableEq V] in
-/-- Lifting reachability along adjacencies that remain reachable. -/
+/-- Lifting reachability along adjacencies that remain reachable.
+@isnad1 id=reachabl.2h5v.s5.a8b32cb2194d from=translated src=- shape=4e3cce4f vocab=28c7ad7c
+-/
 lemma reachable_of_forall_adj_reachable {G H : SimpleGraph V} (a : V)
     (hlift : ∀ x y : V, G.Adj x y → H.Reachable x y) :
     ∀ x : V, G.Reachable x a → H.Reachable x a := by
@@ -310,7 +336,9 @@ lemma reachable_of_forall_adj_reachable {G H : SimpleGraph V} (a : V)
 
 omit [Fintype V] in
 /-- If the endpoints `a, c` of the deleted edges of a toggle remain reachable in the
-twice-deleted graph, then the toggle preserves connectedness. -/
+twice-deleted graph, then the toggle preserves connectedness.
+@isnad1 id=connecte.3h5v.s6.70067cae7d23 from=translated src=- shape=d180ae1d vocab=79e7bc0f
+-/
 lemma connected_toggle {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c)
     (hconn : G.Connected)
     (hr : (G.deleteEdges {s(a, b), s(a, c)}).Reachable a c) :
@@ -342,7 +370,9 @@ lemma connected_toggle {G : SimpleGraph V} {a b c : V} (hbc : b ≠ c)
   exact (connected_iff_exists_forall_reachable _).mpr ⟨a, fun w => (base w).symm⟩
 
 omit [Fintype V] [DecidableEq V] in
-/-- A walk from outside a set `S` to inside `S` crosses the boundary of `S`. -/
+/-- A walk from outside a set `S` to inside `S` crosses the boundary of `S`.
+@isnad1 id=ex.2h6v.s6.43a6364cd3b0 from=translated src=- shape=dc2c58ea vocab=5f27b66c
+-/
 lemma exists_adj_crossing {G : SimpleGraph V} (S : Set V) {u v : V} (p : G.Walk u v) :
     u ∉ S → v ∈ S → ∃ b a : V, b ∉ S ∧ a ∈ S ∧ G.Adj b a := by
   induction p with
@@ -354,14 +384,18 @@ lemma exists_adj_crossing {G : SimpleGraph V} (S : Set V) {u v : V} (p : G.Walk 
     · exact ih hw hv
 
 omit [Fintype V] [DecidableEq V] in
-/-- IsPath is preserved by `Walk.transfer`. -/
+/-- IsPath is preserved by `Walk.transfer`.
+@isnad1 id=iff.1h6v.s6.8cad822be53b from=translated src=- shape=a46911ca vocab=a0ec7b85
+-/
 lemma isPath_transfer {G H : SimpleGraph V} {u v : V} {p : G.Walk u v}
     (hp : ∀ e, e ∈ p.edges → e ∈ H.edgeSet) :
     (p.transfer H hp).IsPath ↔ p.IsPath := by
   rw [Walk.isPath_def, Walk.isPath_def, Walk.support_transfer]
 
 omit [Fintype V] [DecidableEq V] in
-/-- IsCycle is preserved by `Walk.transfer`. -/
+/-- IsCycle is preserved by `Walk.transfer`.
+@isnad1 id=iff.1h5v.s6.fa8e1780f4b9 from=translated src=- shape=9ecbff06 vocab=0defb2ab
+-/
 lemma isCycle_transfer {G H : SimpleGraph V} {u : V} {p : G.Walk u u}
     (hp : ∀ e, e ∈ p.edges → e ∈ H.edgeSet) :
     (p.transfer H hp).IsCycle ↔ p.IsCycle := by
@@ -373,7 +407,9 @@ lemma isCycle_transfer {G H : SimpleGraph V} {u : V} {p : G.Walk u u}
 
 omit [Fintype V] [DecidableEq V] in
 /-- If the second vertex of a cycle `C` at `x` is `y`, then deleting the first edge
-leaves a path from `x` to `y` avoiding it. -/
+leaves a path from `x` to `y` avoiding it.
+@isnad1 id=ex.2h5v.s6.e59aee28b066 from=translated src=- shape=5da75633 vocab=c3e9f251
+-/
 lemma exists_isPath_of_snd_eq {G : SimpleGraph V} {x y : V} {C : G.Walk x x}
     (hC : C.IsCycle) (hy : C.snd = y) :
     ∃ q : G.Walk x y, q.IsPath ∧ s(x, y) ∉ q.edges ∧ ∀ e ∈ q.edges, e ∈ C.edges := by
@@ -391,7 +427,9 @@ lemma exists_isPath_of_snd_eq {G : SimpleGraph V} {x y : V} {C : G.Walk x x}
 
 omit [Fintype V] in
 /-- Removing an edge from a cycle leaves a path between its endpoints,
-avoiding that edge. -/
+avoiding that edge.
+@isnad1 id=ex.3h6v.s6.ddecac8975c2 from=translated src=- shape=18e5fd41 vocab=fde75853
+-/
 lemma exists_isPath_of_mem_edges_of_isCycle {G : SimpleGraph V} {v : V} {C : G.Walk v v}
     (hC : C.IsCycle) {x y : V} (he : s(x, y) ∈ C.edges) (_hxy : x ≠ y) :
     ∃ q : G.Walk x y, q.IsPath ∧ s(x, y) ∉ q.edges ∧ ∀ e ∈ q.edges, e ∈ C.edges := by
@@ -432,7 +470,9 @@ lemma exists_isPath_of_mem_edges_of_isCycle {G : SimpleGraph V} {v : V} {C : G.W
     exact h1
 
 omit [Fintype V] [DecidableEq V] in
-/-- A length-1 walk from `x` to `y` contains the edge `s(x, y)`. -/
+/-- A length-1 walk from `x` to `y` contains the edge `s(x, y)`.
+@isnad1 id=mem.2h5v.s5.0ac0c580909b from=translated src=- shape=2a612652 vocab=b3ae3173
+-/
 lemma mem_edges_of_length_eq_one {G : SimpleGraph V} {x y : V} {q : G.Walk x y}
     (hxy : x ≠ y) (hl : q.length = 1) : s(x, y) ∈ q.edges := by
   have hnnil : ¬ q.Nil := Walk.not_nil_of_ne hxy
@@ -445,7 +485,9 @@ lemma mem_edges_of_length_eq_one {G : SimpleGraph V} {x y : V} {q : G.Walk x y}
 
 omit [Fintype V] in
 /-- A cycle of length equal to the girth is chordless: every edge of `G` between two
-vertices of the cycle is already an edge of the cycle. -/
+vertices of the cycle is already an edge of the cycle.
+@isnad1 id=mem.5h6v.s6.8b081db306ad from=translated src=- shape=bbbd9084 vocab=1db82001
+-/
 lemma IsCycle.mem_edges_of_adj {G : SimpleGraph V} {v : V} {C : G.Walk v v}
     (hC : C.IsCycle) (hg : G.girth = C.length) {x y : V}
     (hx : x ∈ C.support) (hy : y ∈ C.support) (hxy : G.Adj x y) :
@@ -503,7 +545,9 @@ lemma IsCycle.mem_edges_of_adj {G : SimpleGraph V} {v : V} {C : G.Walk v v}
   rw [Walk.length_cons] at hle
   lia
 
-/-- On a chordless cycle that spans all vertices, every vertex has degree `2`. -/
+/-- On a chordless cycle that spans all vertices, every vertex has degree `2`.
+@isnad1 id=eq.3h5v.s7.1888ef27aaec from=translated src=- shape=0b878713 vocab=7bd8a2bb
+-/
 lemma degree_eq_two_of_forall_mem_support {G : SimpleGraph V} {v : V} {C : G.Walk v v}
     (hC : C.IsCycle)
     (hchord : ∀ x y : V, x ∈ C.support → y ∈ C.support → G.Adj x y → s(x, y) ∈ C.edges)
@@ -550,7 +594,9 @@ lemma degree_eq_two_of_forall_mem_support {G : SimpleGraph V} {v : V} {C : G.Wal
     Finset.card_pair hγ.snd_ne_penultimate]
 
 omit [Fintype V] [DecidableEq V] in
-/-- Three pairwise adjacent vertices form a cycle of length `3`. -/
+/-- Three pairwise adjacent vertices form a cycle of length `3`.
+@isnad1 id=and.3h5v.s6.08c3ea7f56f0 from=translated src=- shape=1434e27e vocab=a488bd91
+-/
 lemma isCycle_triangle {G : SimpleGraph V} {a b c : V} (hab : G.Adj a b) (hbc : G.Adj b c)
     (hca : G.Adj c a) :
     (Walk.cons hab (Walk.cons hbc (Walk.cons hca Walk.nil))).IsCycle
@@ -572,7 +618,9 @@ lemma isCycle_triangle {G : SimpleGraph V} {a b c : V} (hab : G.Adj a b) (hbc : 
       · exact hne2 h1
   · simp [Walk.length_cons, Walk.length_nil]
 
-/-- If `G` has a vertex of odd degree, a girth-realizing cycle cannot span all vertices. -/
+/-- If `G` has a vertex of odd degree, a girth-realizing cycle cannot span all vertices.
+@isnad1 id=ex.3h4v.s6.e90ae0d4d3d5 from=translated src=- shape=d3ccb80e vocab=810c08ca
+-/
 lemma exists_notMem_support_of_isCycle {G : SimpleGraph V} {v : V} {C : G.Walk v v}
     (hC : C.IsCycle) (hg : G.girth = C.length) (hodd : ∃ z, Odd (G.degree z)) :
     ∃ z, z ∉ C.support := by
@@ -585,7 +633,9 @@ lemma exists_notMem_support_of_isCycle {G : SimpleGraph V} {v : V} {C : G.Walk v
   exact (by decide : ¬ Odd 2) hz
 
 /-- **Key claim**: a connected graph that is not a tree, has a vertex of odd degree,
-and is not complete admits a toggle after which it is still connected. -/
+and is not complete admits a toggle after which it is still connected.
+@isnad1 id=ex.4h2v.s6.921070fa0267 from=translated src=- shape=fe43c262 vocab=6207fc35
+-/
 lemma exists_toggle_connected (G : SimpleGraph V) (hconn : G.Connected) (htree : ¬ G.IsTree)
     (hodd : ∃ v, Odd (G.degree v)) (hne : G ≠ ⊤) :
     ∃ G', Toggle G G' ∧ G'.Connected := by
@@ -740,7 +790,9 @@ lemma exists_toggle_connected (G : SimpleGraph V) (hconn : G.Connected) (htree :
     exact ⟨q.toDeleteEdges {s(a, b), s(a, c)} hq_avoid⟩
 
 /-- **Phase 1**: any connected graph with a vertex of odd degree that is not complete
-can be toggled to a tree. -/
+can be toggled to a tree.
+@isnad1 id=ex.3h2v.s6.cbc402ac5001 from=translated src=- shape=da0f4859 vocab=1fa7e092
+-/
 lemma exists_isTree_of_connected (G : SimpleGraph V) (hconn : G.Connected)
     (hodd : ∃ v, Odd (G.degree v)) (hne : G ≠ ⊤) :
     ∃ G', Relation.ReflTransGen Toggle G G' ∧ G'.IsTree := by
@@ -771,7 +823,9 @@ lemma exists_isTree_of_connected (G : SimpleGraph V) (hconn : G.Connected)
   exact aux _ G (Nat.le_refl _) hconn hodd hne
 
 omit [Fintype V] in
-/-- A toggle preserves acyclicity. -/
+/-- A toggle preserves acyclicity.
+@isnad1 id=isacycli.2h3v.s4.0613410f5932 from=translated src=- shape=f05762fa vocab=f5a3b6bd
+-/
 lemma isAcyclic_toggle {G G' : SimpleGraph V} (hT : Toggle G G') (hacyc : G.IsAcyclic) :
     G'.IsAcyclic := by
   obtain ⟨a, b, c, hbc, hab, hac, hnbc, rfl⟩ := hT
@@ -838,7 +892,9 @@ lemma isAcyclic_toggle {G G' : SimpleGraph V} (hT : Toggle G G') (hacyc : G.IsAc
     exact hacyc _ ((isCycle_transfer hsub).mpr hγ)
 
 /-- **Phase 2**: any forest can be toggled to a graph in which every vertex has degree
-at most `1`. -/
+at most `1`.
+@isnad1 id=ex.1h2v.s6.7021f8e250ca from=translated src=- shape=83510a9a vocab=4904a26b
+-/
 lemma exists_matching_of_isAcyclic (G : SimpleGraph V) (hacyc : G.IsAcyclic) :
     ∃ G', Relation.ReflTransGen Toggle G G' ∧ ∀ v, G'.degree v ≤ 1 := by
   have aux : ∀ n : ℕ, ∀ G : SimpleGraph V, G.edgeFinset.card ≤ n → G.IsAcyclic →

@@ -62,15 +62,26 @@ def IsPrimitive (d : Finset (ℤ × ℤ)) : Prop :=
 
 /-! ### Basic facts about the grid graph -/
 
+/--
+@isnad1 id=iff.0h2v.s5.6f6e074f2c93 from=translated src=- shape=636111fb vocab=5606efea
+-/
 lemma gridAdj_iff (a b : ℤ × ℤ) :
     gridAdj a b ↔ (a.1 - b.1).natAbs + (a.2 - b.2).natAbs = 1 := Iff.rfl
 
+/--
+@isnad1 id=gridadj.1h2v.s3.b722b001705d from=translated src=- shape=7f363362 vocab=8b90df29
+-/
 lemma gridAdj_of_gridAdj {a b : ℤ × ℤ} (h : gridAdj a b) : gridAdj b a :=
   gridGraph.adj_symm h
 
+/--
+@isnad1 id=ne.1h2v.s4.6b39ad62db5e from=translated src=- shape=84568fda vocab=8b90df29
+-/
 lemma ne_of_gridAdj {a b : ℤ × ℤ} (h : gridAdj a b) : a ≠ b := gridGraph.ne_of_adj h
 
-/-- A cell adjacent to `a` is one of its four neighbours. -/
+/-- A cell adjacent to `a` is one of its four neighbours.
+@isnad1 id=or.1h2v.s7.bc17e85db6cd from=translated src=- shape=005ef909 vocab=a31101cf
+-/
 lemma gridAdj_cases {a b : ℤ × ℤ} (h : gridAdj a b) :
     (b.1 = a.1 + 1 ∧ b.2 = a.2) ∨ (b.1 = a.1 - 1 ∧ b.2 = a.2) ∨
     (b.1 = a.1 ∧ b.2 = a.2 + 1) ∨ (b.1 = a.1 ∧ b.2 = a.2 - 1) := by
@@ -81,10 +92,16 @@ lemma gridAdj_cases {a b : ℤ × ℤ} (h : gridAdj a b) :
 def neighbors4 (a : ℤ × ℤ) : Finset (ℤ × ℤ) :=
   {(a.1 + 1, a.2), (a.1 - 1, a.2), (a.1, a.2 + 1), (a.1, a.2 - 1)}
 
+/--
+@isnad1 id=mem.1h2v.s5.01e404213a0e from=translated src=- shape=3f853be2 vocab=3379adaf
+-/
 lemma mem_neighbors4_of_gridAdj {a b : ℤ × ℤ} (h : gridAdj a b) : b ∈ neighbors4 a := by
   rcases gridAdj_cases h with ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ <;>
     simp [neighbors4, Prod.ext_iff, h1, h2]
 
+/--
+@isnad1 id=le.0h1v.s4.38e352bcfdd9 from=translated src=- shape=465d3cbf vocab=e485ceca
+-/
 lemma card_neighbors4_le (a : ℤ × ℤ) : (neighbors4 a).card ≤ 4 := by
   have h1 := Finset.card_insert_le (a.1 + 1, a.2)
     ({(a.1 - 1, a.2), (a.1, a.2 + 1), (a.1, a.2 - 1)} : Finset (ℤ × ℤ))
@@ -96,6 +113,9 @@ lemma card_neighbors4_le (a : ℤ × ℤ) : (neighbors4 a).card ≤ 4 := by
   unfold neighbors4
   lia
 
+/--
+@isnad1 id=le.1h2v.s6.fd00c728eb63 from=translated src=- shape=6bf1afa0 vocab=783098fb
+-/
 lemma card_erase_neighbors4_le {a x : ℤ × ℤ} (hx : x ∈ neighbors4 a) :
     ((neighbors4 a).erase x).card ≤ 3 := by
   rw [Finset.card_erase_of_mem hx]
@@ -103,7 +123,9 @@ lemma card_erase_neighbors4_le {a x : ℤ × ℤ} (hx : x ∈ neighbors4 a) :
   lia
 
 /-- If every cell of `T` reaches a fixed cell `v ∈ T` in the induced subgraph
-on `T`, then that subgraph is preconnected. -/
+on `T`, then that subgraph is preconnected.
+@isnad1 id=preconne.2h2v.s7.ac209b0961e4 from=translated src=- shape=547059dc vocab=999137c4
+-/
 lemma preconnected_of_forall_reachable (T : Finset (ℤ × ℤ)) {v : ℤ × ℤ} (hv : v ∈ T)
     (h : ∀ c : ℤ × ℤ, ∀ hc : c ∈ T,
       (gridGraph.induce (T : Set (ℤ × ℤ))).Reachable ⟨c, hc⟩ ⟨v, hv⟩) :
@@ -128,6 +150,9 @@ include hpre r hr
 
 open Classical
 
+/--
+@isnad1 id=ex.3h3v.s8.1444af6afd20 from=translated src=- shape=606cb8a1 vocab=19081b47
+-/
 lemma exists_walk_length (c : ℤ × ℤ) (hc : c ∈ D) :
     ∃ n : ℕ, ∃ w : (gridGraph.induce (D : Set (ℤ × ℤ))).Walk ⟨r, hr⟩ ⟨c, hc⟩,
       w.length = n := by
@@ -139,18 +164,27 @@ lemma exists_walk_length (c : ℤ × ℤ) (hc : c ∈ D) :
 noncomputable def dw (c : ℤ × ℤ) : ℕ :=
   if hc : c ∈ D then Nat.find (exists_walk_length D r hr hpre c hc) else 0
 
+/--
+@isnad1 id=ex.3h3v.s8.314b4495d8af from=translated src=- shape=268dedf8 vocab=c83fcc59
+-/
 lemma dw_spec {c : ℤ × ℤ} (hc : c ∈ D) :
     ∃ w : (gridGraph.induce (D : Set (ℤ × ℤ))).Walk ⟨r, hr⟩ ⟨c, hc⟩,
       w.length = dw D r hr hpre c := by
   simp only [dw, dite_eq_left hc]
   exact Nat.find_spec (exists_walk_length D r hr hpre c hc)
 
+/--
+@isnad1 id=le.3h4v.s8.a08baedc6ed9 from=translated src=- shape=9eaa7c64 vocab=3b20f90e
+-/
 lemma dw_le {c : ℤ × ℤ} (hc : c ∈ D)
     (w : (gridGraph.induce (D : Set (ℤ × ℤ))).Walk ⟨r, hr⟩ ⟨c, hc⟩) :
     dw D r hr hpre c ≤ w.length := by
   simp only [dw, dite_eq_left hc]
   exact Nat.find_le ⟨w, rfl⟩
 
+/--
+@isnad1 id=eq.2h2v.s6.5f7ba5be1edb from=translated src=- shape=56e82099 vocab=c45e3c15
+-/
 lemma dw_root : dw D r hr hpre r = 0 := by
   simp only [dw, dite_eq_left hr]
   exact Nat.eq_zero_of_le_zero (Nat.find_le ⟨.nil, rfl⟩)
@@ -164,7 +198,9 @@ lemma eq_of_dw_eq_zero {c : ℤ × ℤ} (hc : c ∈ D) (h : dw D r hr hpre c = 0
   exact (congrArg Subtype.val he).symm
 
 /-- Any cell `c ≠ r` of `D` has a neighbour of strictly smaller depth:
-the penultimate cell of a shortest walk from `r` to `c`. -/
+the penultimate cell of a shortest walk from `r` to `c`.
+@isnad1 id=ex.4h3v.s7.844da20dee4b from=translated src=- shape=6bd9e54a vocab=8dfb74de
+-/
 lemma parent_exists {c : ℤ × ℤ} (hc : c ∈ D) (hcr : c ≠ r) :
     ∃ u ∈ D, gridAdj c u ∧ dw D r hr hpre u < dw D r hr hpre c := by
   obtain ⟨w, hw⟩ := dw_spec D r hr hpre hc
@@ -189,6 +225,9 @@ depth; anything else is mapped to itself. -/
 noncomputable def parent (c : ℤ × ℤ) : ℤ × ℤ :=
   if h : c ∈ D ∧ c ≠ r then (parent_exists D r hr hpre h.1 h.2).choose else c
 
+/--
+@isnad1 id=mem.3h3v.s6.c8e1d375d2de from=translated src=- shape=114ca3de vocab=a9ce7d60
+-/
 lemma parent_mem {c : ℤ × ℤ} (hc : c ∈ D) : parent D r hr hpre c ∈ D := by
   simp only [parent]
   by_cases h : c ∈ D ∧ c ≠ r
@@ -197,26 +236,41 @@ lemma parent_mem {c : ℤ × ℤ} (hc : c ∈ D) : parent D r hr hpre c ∈ D :=
   · rw [dite_eq_right h]
     exact hc
 
+/--
+@isnad1 id=gridadj.4h3v.s6.72f7078099ac from=translated src=- shape=d9937bc8 vocab=a8615dca
+-/
 lemma gridAdj_parent {c : ℤ × ℤ} (hc : c ∈ D) (hcr : c ≠ r) :
     gridAdj c (parent D r hr hpre c) := by
   simp only [parent]
   rw [dite_eq_left ⟨hc, hcr⟩]
   exact (parent_exists D r hr hpre hc hcr).choose_spec.2.1
 
+/--
+@isnad1 id=lt.4h3v.s6.72efaf7be215 from=translated src=- shape=e487ae19 vocab=1945631e
+-/
 lemma dw_parent_lt {c : ℤ × ℤ} (hc : c ∈ D) (hcr : c ≠ r) :
     dw D r hr hpre (parent D r hr hpre c) < dw D r hr hpre c := by
   simp only [parent]
   rw [dite_eq_left ⟨hc, hcr⟩]
   exact (parent_exists D r hr hpre hc hcr).choose_spec.2.2
 
+/--
+@isnad1 id=eq.2h2v.s6.86c0b973f8f2 from=translated src=- shape=8619c964 vocab=a9ce7d60
+-/
 lemma parent_root : parent D r hr hpre r = r := by
   simp only [parent]
   rw [dite_eq_right (fun h => h.2 rfl)]
 
+/--
+@isnad1 id=ne.4h3v.s6.e53a3c55fdfa from=translated src=- shape=95daf79b vocab=a9ce7d60
+-/
 lemma parent_ne_self {c : ℤ × ℤ} (hc : c ∈ D) (hcr : c ≠ r) :
     parent D r hr hpre c ≠ c :=
   (ne_of_gridAdj (gridAdj_parent D r hr hpre hc hcr)).symm
 
+/--
+@isnad1 id=mem.3h4v.s7.71fa9eeda69f from=translated src=- shape=897199cd vocab=c8c66d13
+-/
 lemma iterate_parent_mem {c : ℤ × ℤ} (hc : c ∈ D) (i : ℕ) :
     (parent D r hr hpre)^[i] c ∈ D := by
   induction i generalizing c with
@@ -225,11 +279,17 @@ lemma iterate_parent_mem {c : ℤ × ℤ} (hc : c ∈ D) (i : ℕ) :
     rw [Function.iterate_succ_apply']
     exact parent_mem D r hr hpre (ih hc)
 
+/--
+@isnad1 id=eq.2h3v.s6.d7af6508db63 from=translated src=- shape=08d22ee3 vocab=c8c66d13
+-/
 lemma iterate_parent_root (i : ℕ) : (parent D r hr hpre)^[i] r = r := by
   induction i with
   | zero => rfl
   | succ i ih => rw [Function.iterate_succ_apply', ih, parent_root]
 
+/--
+@isnad1 id=lt.5h4v.s7.7a288df52511 from=translated src=- shape=01c1898a vocab=4f25a432
+-/
 lemma dw_iterate_parent_lt {c : ℤ × ℤ} (hc : c ∈ D) (hcr : c ≠ r) {i : ℕ}
     (hi : 1 ≤ i) :
     dw D r hr hpre ((parent D r hr hpre)^[i] c) < dw D r hr hpre c := by
@@ -249,7 +309,9 @@ lemma dw_iterate_parent_lt {c : ℤ × ℤ} (hc : c ∈ D) (hcr : c ≠ r) {i : 
       · have hmem : (parent D r hr hpre)^[i] c ∈ D := iterate_parent_mem D r hr hpre hc i
         exact lt_trans (dw_parent_lt D r hr hpre hmem hcr2) (ih hc hcr hi1)
 
-/-- Following parents from any cell of `D` eventually reaches the root. -/
+/-- Following parents from any cell of `D` eventually reaches the root.
+@isnad1 id=ex.3h3v.s6.730c42dd6ce4 from=translated src=- shape=16288907 vocab=c8c66d13
+-/
 lemma exists_iterate_parent_eq_root {c : ℤ × ℤ} (hc : c ∈ D) :
     ∃ i, (parent D r hr hpre)^[i] c = r := by
   have key : ∀ n : ℕ, ∀ c : ℤ × ℤ, c ∈ D → dw D r hr hpre c ≤ n →
@@ -279,14 +341,23 @@ lemma exists_iterate_parent_eq_root {c : ℤ × ℤ} (hc : c ∈ D) :
 noncomputable def subtree (v : ℤ × ℤ) : Finset (ℤ × ℤ) :=
   D.filter (fun c => ∃ i, (parent D r hr hpre)^[i] c = v)
 
+/--
+@isnad1 id=iff.2h4v.s7.2b1c1035a23b from=translated src=- shape=ac4fe8b5 vocab=50662cdc
+-/
 lemma mem_subtree {v c : ℤ × ℤ} :
     c ∈ subtree D r hr hpre v ↔ c ∈ D ∧ ∃ i, (parent D r hr hpre)^[i] c = v :=
   Finset.mem_filter
 
+/--
+@isnad1 id=mem.3h3v.s6.2534502e95ca from=translated src=- shape=6f2a5cf8 vocab=601d4201
+-/
 lemma mem_subtree_self {v : ℤ × ℤ} (hv : v ∈ D) : v ∈ subtree D r hr hpre v := by
   rw [mem_subtree]
   exact ⟨hv, 0, rfl⟩
 
+/--
+@isnad1 id=mem.5h6v.s7.05d8939b0e62 from=translated src=- shape=518b8818 vocab=8b7ef4eb
+-/
 lemma iterate_parent_mem_subtree_of_le {v c : ℤ × ℤ} (hc : c ∈ subtree D r hr hpre v)
     {i : ℕ} (hi : (parent D r hr hpre)^[i] c = v) {j : ℕ} (hj : j ≤ i) :
     (parent D r hr hpre)^[j] c ∈ subtree D r hr hpre v := by
@@ -296,6 +367,9 @@ lemma iterate_parent_mem_subtree_of_le {v c : ℤ × ℤ} (hc : c ∈ subtree D 
   rw [← Function.iterate_add_apply, Nat.sub_add_cancel hj]
   exact hi
 
+/--
+@isnad1 id=not.4h5v.s7.ac64ef5f09d9 from=translated src=- shape=46affaeb vocab=50662cdc
+-/
 lemma not_mem_subtree_iterate {v c : ℤ × ℤ} (hcD : c ∈ D)
     (hc : c ∉ subtree D r hr hpre v) (j : ℕ) :
     (parent D r hr hpre)^[j] c ∉ subtree D r hr hpre v := by
@@ -306,6 +380,9 @@ lemma not_mem_subtree_iterate {v c : ℤ × ℤ} (hcD : c ∈ D)
   rw [mem_subtree]
   exact ⟨hcD, m + j, by rw [Function.iterate_add_apply]; exact hm⟩
 
+/--
+@isnad1 id=eq.2h2v.s6.478ced0d2044 from=translated src=- shape=d0e4956e vocab=601d4201
+-/
 lemma subtree_root : subtree D r hr hpre r = D := by
   ext c
   rw [mem_subtree]
@@ -318,10 +395,16 @@ lemma subtree_root : subtree D r hr hpre r = D := by
 noncomputable def children (v : ℤ × ℤ) : Finset (ℤ × ℤ) :=
   D.filter (fun c => parent D r hr hpre c = v ∧ c ≠ v)
 
+/--
+@isnad1 id=iff.2h4v.s7.6062f06fb202 from=translated src=- shape=fcd350f8 vocab=359eda79
+-/
 lemma mem_children {v c : ℤ × ℤ} :
     c ∈ children D r hr hpre v ↔ c ∈ D ∧ parent D r hr hpre c = v ∧ c ≠ v :=
   Finset.mem_filter
 
+/--
+@isnad1 id=ne.3h4v.s6.1a16776df082 from=translated src=- shape=e0978b4b vocab=ab72fd81
+-/
 lemma children_ne_root {v c : ℤ × ℤ} (h : c ∈ children D r hr hpre v) : c ≠ r := by
   rw [mem_children] at h
   intro hcr
@@ -329,12 +412,18 @@ lemma children_ne_root {v c : ℤ × ℤ} (h : c ∈ children D r hr hpre v) : c
   rw [parent_root] at h
   exact h.2.2 h.2.1
 
+/--
+@isnad1 id=lt.3h4v.s6.4c3b3891384b from=translated src=- shape=342ae952 vocab=3e2298db
+-/
 lemma dw_child {v c : ℤ × ℤ} (h : c ∈ children D r hr hpre v) :
     dw D r hr hpre v < dw D r hr hpre c := by
   have hcr := children_ne_root D r hr hpre h
   have h2 := dw_parent_lt D r hr hpre ((mem_children D r hr hpre).mp h).1 hcr
   rwa [((mem_children D r hr hpre).mp h).2.1] at h2
 
+/--
+@isnad1 id=mem.3h4v.s7.e52857d67bff from=translated src=- shape=15cb900f vocab=1632646d
+-/
 lemma children_subset_neighbors {v c : ℤ × ℤ} (h : c ∈ children D r hr hpre v) :
     c ∈ neighbors4 v := by
   have hcr := children_ne_root D r hr hpre h
@@ -342,6 +431,9 @@ lemma children_subset_neighbors {v c : ℤ × ℤ} (h : c ∈ children D r hr hp
   rw [((mem_children D r hr hpre).mp h).2.1] at hadj
   exact mem_neighbors4_of_gridAdj (gridAdj_of_gridAdj hadj)
 
+/--
+@isnad1 id=ne.5h4v.s7.6d7b60af9072 from=translated src=- shape=d673d249 vocab=359eda79
+-/
 lemma child_ne_parent {v c : ℤ × ℤ} (hv : v ∈ D) (hvr : v ≠ r)
     (h : c ∈ children D r hr hpre v) : c ≠ parent D r hr hpre v := by
   obtain ⟨hcD, hpc, -⟩ := (mem_children D r hr hpre).mp h
@@ -352,6 +444,9 @@ lemma child_ne_parent {v c : ℤ × ℤ} (hv : v ∈ D) (hvr : v ≠ r)
   rw [hcp] at h1
   exact absurd (lt_trans h3 h1) (lt_irrefl _)
 
+/--
+@isnad1 id=le.4h3v.s6.c46b69410054 from=translated src=- shape=a03df925 vocab=b23dfc04
+-/
 lemma card_children_le_three {v : ℤ × ℤ} (hv : v ∈ D) (hvr : v ≠ r) :
     (children D r hr hpre v).card ≤ 3 := by
   have hsub : children D r hr hpre v ⊆ (neighbors4 v).erase (parent D r hr hpre v) := by
@@ -362,12 +457,17 @@ lemma card_children_le_three {v : ℤ × ℤ} (hv : v ∈ D) (hvr : v ≠ r) :
   exact le_trans (Finset.card_le_card hsub) (card_erase_neighbors4_le
     (mem_neighbors4_of_gridAdj (gridAdj_parent D r hr hpre hv hvr)))
 
+/--
+@isnad1 id=le.2h3v.s6.2fdedc8b35de from=translated src=- shape=082d0b7d vocab=b23dfc04
+-/
 lemma card_children_le_four {v : ℤ × ℤ} : (children D r hr hpre v).card ≤ 4 :=
   le_trans (Finset.card_le_card (fun _ hc => children_subset_neighbors D r hr hpre hc))
     (card_neighbors4_le v)
 
 /-- The subtree of `v` decomposes as `v` together with the subtrees of its
-children. -/
+children.
+@isnad1 id=eq.3h3v.s7.c565e4892619 from=translated src=- shape=39335c02 vocab=ae24fedc
+-/
 lemma subtree_eq {v : ℤ × ℤ} (hv : v ∈ D) :
     subtree D r hr hpre v =
       insert v ((children D r hr hpre v).biUnion (subtree D r hr hpre)) := by
@@ -395,7 +495,9 @@ lemma subtree_eq {v : ℤ × ℤ} (hv : v ∈ D) :
     · exact ⟨hv, 0, rfl⟩
     · exact ⟨hcD, j + 1, by rw [Function.iterate_succ_apply', hj, hpu]⟩
 
-/-- The subtrees of distinct children of `v` are disjoint. -/
+/-- The subtrees of distinct children of `v` are disjoint.
+@isnad1 id=pairwise.3h3v.s7.fb791cc68218 from=translated src=- shape=c32e3369 vocab=47ff361d
+-/
 lemma disjoint_subtree_children {v : ℤ × ℤ} (hv : v ∈ D) :
     ((children D r hr hpre v) : Set (ℤ × ℤ)).PairwiseDisjoint (subtree D r hr hpre) := by
   intro u₁ hu₁ u₂ hu₂ hne
@@ -438,7 +540,9 @@ lemma disjoint_subtree_children {v : ℤ × ℤ} (hv : v ∈ D) :
   · exact key hu₂ hu₁ hi₂ hi₁ h
 
 /-- The size of a subtree is one more than the sum of the sizes of the
-subtrees of its children. -/
+subtrees of its children.
+@isnad1 id=eq.3h3v.s7.892c2ac9cdd7 from=translated src=- shape=e65add39 vocab=d01a925c
+-/
 lemma card_subtree {v : ℤ × ℤ} (hv : v ∈ D) :
     (subtree D r hr hpre v).card =
       1 + ∑ u ∈ children D r hr hpre v, (subtree D r hr hpre u).card := by
@@ -465,7 +569,9 @@ lemma card_subtree {v : ℤ × ℤ} (hv : v ∈ D) :
   lia
 
 /-- If the parent chain from `c` stays inside `T` and reaches `v`, then `c`
-reaches `v` in the induced subgraph on `T`. -/
+reaches `v` in the induced subgraph on `T`.
+@isnad1 id=reachabl.7h6v.s8.0935dde4c8fe from=translated src=- shape=9eabe7f1 vocab=5d11d515
+-/
 lemma reachable_of_chain (T : Finset (ℤ × ℤ)) (hTD : T ⊆ D) {c v : ℤ × ℤ}
     (hc : c ∈ T) (hv : v ∈ T) (i : ℕ)
     (hchain : ∀ j ≤ i, (parent D r hr hpre)^[j] c ∈ T)
@@ -500,7 +606,9 @@ lemma reachable_of_chain (T : Finset (ℤ × ℤ)) (hTD : T ⊆ D) {c v : ℤ ×
         SimpleGraph.induce_adj.mpr hadj
       exact Nonempty.map (SimpleGraph.Walk.cons hadjT) hreach
 
-/-- The subtree rooted at any cell of `D` is an animal. -/
+/-- The subtree rooted at any cell of `D` is an animal.
+@isnad1 id=isanimal.3h3v.s6.d794c434a36d from=translated src=- shape=ac9057a4 vocab=97e8206a
+-/
 lemma isAnimal_subtree {v : ℤ × ℤ} (hv : v ∈ D) : IsAnimal (subtree D r hr hpre v) := by
   refine ⟨⟨v, mem_subtree_self D r hr hpre hv⟩,
     preconnected_of_forall_reachable (subtree D r hr hpre v)
@@ -511,7 +619,9 @@ lemma isAnimal_subtree {v : ℤ × ℤ} (hv : v ∈ D) : IsAnimal (subtree D r h
     (mem_subtree_self D r hr hpre hv) i
     (fun j hj => iterate_parent_mem_subtree_of_le D r hr hpre hc hi hj) hi
 
-/-- Removing a rooted subtree (with `v ≠ r`) from `D` leaves an animal. -/
+/-- Removing a rooted subtree (with `v ≠ r`) from `D` leaves an animal.
+@isnad1 id=isanimal.4h3v.s7.5a09197b06ac from=translated src=- shape=5df1f46d vocab=f2ae20ae
+-/
 lemma isAnimal_sdiff_subtree {v : ℤ × ℤ} (_hv : v ∈ D) (hvr : v ≠ r) :
     IsAnimal (D \ subtree D r hr hpre v) := by
   have hrmem : r ∈ D \ subtree D r hr hpre v := by
@@ -533,7 +643,9 @@ lemma isAnimal_sdiff_subtree {v : ℤ × ℤ} (_hv : v ∈ D) (hvr : v ≠ r) :
           (Finset.mem_sdiff.mp hc).2 j⟩) hi
 
 /-- **Splitting lemma.** Any animal with at least `4 * 2007 - 2` cells can be
-partitioned into two dinosaurs; in particular it is not primitive. -/
+partitioned into two dinosaurs; in particular it is not primitive.
+@isnad1 id=ex.3h2v.s7.6ea99300d962 from=translated src=- shape=207a1c18 vocab=83d28085
+-/
 lemma exists_split (hcard : 4 * 2007 - 2 ≤ D.card) :
     ∃ A B : Finset (ℤ × ℤ), IsDinosaur A ∧ IsDinosaur B ∧ Disjoint A B ∧ A ∪ B = D := by
   set S := D.filter (fun v => 2007 ≤ (subtree D r hr hpre v).card) with hS
@@ -609,11 +721,15 @@ noncomputable def cross : Finset (ℤ × ℤ) := crossAux
 
 /-- Unfolding lemma for `cross`. Do not use `simp only [cross]` or
 `cross.eq_unfold`: re-elaborating the auto-generated equation lemma hits the
-recursion depth limit. -/
+recursion depth limit.
+@isnad1 id=eq.0h0v.s2.56e80bd8410a from=translated src=- shape=aac0a4d8 vocab=4b5f1060
+-/
 lemma cross_def : cross = crossAux := by
   with_unfolding_all rfl
 
-/-- Coordinate characterization of membership in `crossAux`. -/
+/-- Coordinate characterization of membership in `crossAux`.
+@isnad1 id=iff.0h1v.s6.209e1e39e687 from=translated src=- shape=df2c1280 vocab=172daaef
+-/
 lemma mem_aux {c : ℤ × ℤ} :
     c ∈ crossAux ↔ (c.2 = 0 ∧ -2006 ≤ c.1 ∧ c.1 ≤ 2006) ∨
       (c.1 = 0 ∧ -2006 ≤ c.2 ∧ c.2 ≤ 2006) := by
@@ -627,19 +743,26 @@ lemma mem_aux {c : ℤ × ℤ} :
     · exact Or.inl ⟨⟨h1, h2⟩, h3⟩
     · exact Or.inr ⟨h4, h5, h6⟩
 
-/-- Coordinate characterization of membership in `cross`. -/
+/-- Coordinate characterization of membership in `cross`.
+@isnad1 id=iff.0h1v.s6.c562bdb87634 from=translated src=- shape=df2c1280 vocab=63e8111f
+-/
 lemma mem_cross_iff {c : ℤ × ℤ} :
     c ∈ cross ↔ (c.2 = 0 ∧ -2006 ≤ c.1 ∧ c.1 ≤ 2006) ∨
       (c.1 = 0 ∧ -2006 ≤ c.2 ∧ c.2 ≤ 2006) := by
   rw [cross_def]
   exact mem_aux
 
+/--
+@isnad1 id=mem.0h0v.s5.3c1bdffef517 from=translated src=- shape=1b751901 vocab=3f8d2b46
+-/
 lemma mem_center_cross : ((0, 0) : ℤ × ℤ) ∈ cross := by
   rw [mem_cross_iff]
   exact Or.inl ⟨rfl, by decide, by decide⟩
 
 /-- The four arm points at distance `n` from the center lie in `cross`
-when `n ≤ 2006`. -/
+when `n ≤ 2006`.
+@isnad1 id=and.1h1v.s7.ef46ba054b3d from=translated src=- shape=392d2211 vocab=7a0ff976
+-/
 lemma mem_cross_of_nat {n : ℕ} (hn : n ≤ 2006) :
     (((n : ℤ), 0) ∈ cross) ∧ ((-((n : ℤ)), 0) ∈ cross) ∧
       (((0 : ℤ), (n : ℤ)) ∈ cross) ∧ (((0 : ℤ), -((n : ℤ))) ∈ cross) := by
@@ -647,6 +770,9 @@ lemma mem_cross_of_nat {n : ℕ} (hn : n ≤ 2006) :
   have hn' : (n : ℤ) ≤ 2006 := by exact_mod_cast hn
   refine ⟨?_, ?_, ?_, ?_⟩ <;> rw [mem_cross_iff] <;> dsimp only <;> lia
 
+/--
+@isnad1 id=eq.0h0v.s3.f54aa9da8618 from=translated src=- shape=da533311 vocab=80b4b516
+-/
 lemma card_aux : crossAux.card = 8025 := by
   have cardprod : ∀ (s t : Finset ℤ), (Finset.product s t).card = s.card * t.card :=
     fun s t => Finset.card_product s t
@@ -674,11 +800,16 @@ lemma card_aux : crossAux.card = 8025 := by
   rw [hcross]
   lia
 
+/--
+@isnad1 id=eq.0h0v.s3.4d109fef0e64 from=translated src=- shape=da533311 vocab=8d812e3c
+-/
 lemma card_cross : cross.card = 8025 := by
   rw [cross_def]
   exact card_aux
 
-/-- Walking down the positive x-arm: `((n,0))` reaches the center. -/
+/-- Walking down the positive x-arm: `((n,0))` reaches the center.
+@isnad1 id=reachabl.2h1v.s7.c5a70ea0021b from=translated src=- shape=3a070c3e vocab=7be1e4fb
+-/
 lemma reach_right :
     ∀ n : ℕ, n ≤ 2006 → ∀ h : (((n : ℤ), 0) ∈ cross),
       (gridGraph.induce (cross : Set (ℤ × ℤ))).Reachable ⟨((n : ℤ), 0), h⟩
@@ -703,7 +834,9 @@ lemma reach_right :
         ⟨(((n + 1 : ℕ) : ℤ), 0), h⟩ ⟨((n : ℤ), 0), hmem⟩ := hadj
     exact ⟨SimpleGraph.Walk.cons hadj2 (ih hn' hmem).some⟩
 
-/-- Walking down the negative x-arm: `((-n,0))` reaches the center. -/
+/-- Walking down the negative x-arm: `((-n,0))` reaches the center.
+@isnad1 id=reachabl.2h1v.s7.9f427721bd4c from=translated src=- shape=79f38e61 vocab=4d9f491e
+-/
 lemma reach_left :
     ∀ n : ℕ, n ≤ 2006 → ∀ h : ((-((n : ℤ)), 0) ∈ cross),
       (gridGraph.induce (cross : Set (ℤ × ℤ))).Reachable ⟨(-((n : ℤ)), 0), h⟩
@@ -728,7 +861,9 @@ lemma reach_left :
         ⟨(-(((n + 1 : ℕ)) : ℤ), 0), h⟩ ⟨(-((n : ℤ)), 0), hmem⟩ := hadj
     exact ⟨SimpleGraph.Walk.cons hadj2 (ih hn' hmem).some⟩
 
-/-- Walking down the positive y-arm: `((0,n))` reaches the center. -/
+/-- Walking down the positive y-arm: `((0,n))` reaches the center.
+@isnad1 id=reachabl.2h1v.s7.7ceb04c6f9a1 from=translated src=- shape=41e6cd24 vocab=7be1e4fb
+-/
 lemma reach_up :
     ∀ n : ℕ, n ≤ 2006 → ∀ h : (((0 : ℤ), (n : ℤ)) ∈ cross),
       (gridGraph.induce (cross : Set (ℤ × ℤ))).Reachable ⟨((0 : ℤ), (n : ℤ)), h⟩
@@ -753,7 +888,9 @@ lemma reach_up :
         ⟨((0 : ℤ), (((n + 1 : ℕ)) : ℤ)), h⟩ ⟨((0 : ℤ), (n : ℤ)), hmem⟩ := hadj
     exact ⟨SimpleGraph.Walk.cons hadj2 (ih hn' hmem).some⟩
 
-/-- Walking down the negative y-arm: `((0,-n))` reaches the center. -/
+/-- Walking down the negative y-arm: `((0,-n))` reaches the center.
+@isnad1 id=reachabl.2h1v.s7.c3ed191c97ce from=translated src=- shape=ab9c0441 vocab=4d9f491e
+-/
 lemma reach_down :
     ∀ n : ℕ, n ≤ 2006 → ∀ h : (((0 : ℤ), -((n : ℤ))) ∈ cross),
       (gridGraph.induce (cross : Set (ℤ × ℤ))).Reachable ⟨((0 : ℤ), -((n : ℤ))), h⟩
@@ -778,6 +915,9 @@ lemma reach_down :
         ⟨((0 : ℤ), -(((n + 1 : ℕ)) : ℤ)), h⟩ ⟨((0 : ℤ), -((n : ℤ))), hmem⟩ := hadj
     exact ⟨SimpleGraph.Walk.cons hadj2 (ih hn' hmem).some⟩
 
+/--
+@isnad1 id=isanimal.0h0v.s1.93998544b2ae from=translated src=- shape=49959d42 vocab=e454fc72
+-/
 lemma isAnimal_cross : IsAnimal cross := by
   refine ⟨⟨(0, 0), mem_center_cross⟩, ?_⟩
   intro u v
@@ -819,11 +959,17 @@ def InSameArm (a b : ℤ × ℤ) : Prop :=
   (0 < a.2 → b.1 = 0 ∧ 0 < b.2) ∧ (a.2 < 0 → b.1 = 0 ∧ b.2 < 0) ∧
     (0 < a.1 → b.2 = 0 ∧ 0 < b.1) ∧ (a.1 < 0 → b.2 = 0 ∧ b.1 < 0)
 
+/--
+@isnad1 id=insamear.1h1v.s4.7aedd9c2916b from=translated src=- shape=337b972f vocab=e615ceca
+-/
 lemma inSameArm_refl {a : ℤ × ℤ} (ha : a ∈ cross) : InSameArm a a := by
   have ha' := mem_cross_iff.mp ha
   rcases ha' with ⟨h1, h2, h3⟩ | ⟨h1, h2, h3⟩ <;>
     exact ⟨fun hx => by lia, fun hx => by lia, fun hx => by lia, fun hx => by lia⟩
 
+/--
+@isnad1 id=insamear.2h3v.s4.f7873bcb02a4 from=translated src=- shape=8c749642 vocab=a0bb804b
+-/
 lemma inSameArm_trans {a b c : ℤ × ℤ} (hab : InSameArm a b) (hbc : InSameArm b c) :
     InSameArm a c := by
   obtain ⟨h1, h2, h3, h4⟩ := hab
@@ -832,7 +978,9 @@ lemma inSameArm_trans {a b c : ℤ × ℤ} (hab : InSameArm a b) (hbc : InSameAr
     fun h => g4 (h4 h).2⟩
 
 /-- A step along the cross between two cells, the target not being the center,
-stays in the same arm. -/
+stays in the same arm.
+@isnad1 id=insamear.4h2v.s6.62a8383a4889 from=translated src=- shape=e9876b83 vocab=ff472edd
+-/
 lemma inSameArm_of_gridAdj {a b : ℤ × ℤ} (ha : a ∈ cross) (hb : b ∈ cross)
     (hb0 : b ≠ (0, 0)) (h : gridAdj a b) : InSameArm a b := by
   have ha' := mem_cross_iff.mp ha
@@ -843,7 +991,9 @@ lemma inSameArm_of_gridAdj {a b : ℤ × ℤ} (ha : a ∈ cross) (hb : b ∈ cro
     rcases hb' with ⟨g1, g2, g3⟩ | ⟨g1, g2, g3⟩ <;>
     exact ⟨fun hx => by lia, fun hx => by lia, fun hx => by lia, fun hx => by lia⟩
 
-/-- Any walk inside a center-free subset of the cross stays in one arm. -/
+/-- Any walk inside a center-free subset of the cross stays in one arm.
+@isnad1 id=insamear.2h4v.s7.b7d455f00fc3 from=translated src=- shape=88521cae vocab=fcbf7f35
+-/
 lemma inSameArm_walk {T : Finset (ℤ × ℤ)} (hsub : T ⊆ cross) (h0 : ((0, 0) : ℤ × ℤ) ∉ T)
     {u v : (T : Set (ℤ × ℤ))}
     (w : (gridGraph.induce (T : Set (ℤ × ℤ))).Walk u v) :
@@ -858,6 +1008,9 @@ lemma inSameArm_walk {T : Finset (ℤ × ℤ)} (hsub : T ⊆ cross) (h0 : ((0, 0
       (inSameArm_of_gridAdj (hsub (Finset.mem_coe.mp u.2)) (hsub (Finset.mem_coe.mp v.2))
         (fun e => h0 (Finset.mem_coe.mp (e ▸ v.2))) (SimpleGraph.induce_adj.mp h)) ih
 
+/--
+@isnad1 id=mem.2h1v.s6.b70f1fe9e231 from=translated src=- shape=17b3c26f vocab=7fd4fb9b
+-/
 lemma mem_center_of_dinosaur_subset {T : Finset (ℤ × ℤ)} (hT : IsDinosaur T)
     (hsub : T ⊆ cross) : ((0, 0) : ℤ × ℤ) ∈ T := by
   by_contra h0
@@ -932,6 +1085,9 @@ lemma mem_center_of_dinosaur_subset {T : Finset (ℤ × ℤ)} (hT : IsDinosaur T
       rw [hc] at e
       exact absurd (le_trans hcard e) (by decide)
 
+/--
+@isnad1 id=isprimit.0h0v.s1.9e24c48f512c from=translated src=- shape=49959d42 vocab=3a9fae3b
+-/
 lemma isPrimitive_cross : IsPrimitive cross := by
   refine ⟨⟨isAnimal_cross, by rw [card_cross]; norm_num⟩, ?_⟩
   rintro ⟨parts, h2, hall, hdisj, hunion⟩

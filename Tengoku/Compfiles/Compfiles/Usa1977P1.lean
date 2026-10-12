@@ -32,11 +32,17 @@ noncomputable def geomSumStep (m n : ℕ+) : ℤ[X] :=
 noncomputable def geomSum (m : ℕ+) : ℤ[X] :=
   ∑ k ∈ Finset.range (m + 1), X ^ k
 
+/--
+@isnad1 id=eq.0h2v.s5.2f730cd0849c from=translated src=- shape=f6944bce vocab=d096a99d
+-/
 lemma coeff_geomSum (m : ℕ+) (j : ℕ) :
     (geomSum m).coeff j = if j ≤ (m : ℕ) then (1 : ℤ) else 0 := by
   simp only [geomSum, finsetSum_coeff, coeff_X_pow, Finset.sum_ite_eq,
     Finset.mem_range, Nat.lt_add_one_iff]
 
+/--
+@isnad1 id=eq.0h1v.s3.9b2d5b0c5f10 from=translated src=- shape=981f0160 vocab=f7cd76e9
+-/
 lemma geomSum_natDegree (m : ℕ+) : (geomSum m).natDegree = (m : ℕ) := by
   apply le_antisymm
   · rw [natDegree_le_iff_coeff_eq_zero]
@@ -44,11 +50,17 @@ lemma geomSum_natDegree (m : ℕ+) : (geomSum m).natDegree = (m : ℕ) := by
     rw [coeff_geomSum, ite_eq_right (by lia)]
   · exact le_natDegree_of_ne_zero (by simp [coeff_geomSum])
 
+/--
+@isnad1 id=monic.0h1v.s2.5cb0e529f562 from=translated src=- shape=1a6c1393 vocab=fe5197fc
+-/
 lemma geomSum_monic (m : ℕ+) : (geomSum m).Monic := by
   show (geomSum m).coeff (geomSum m).natDegree = 1
   rw [geomSum_natDegree]
   simp [coeff_geomSum]
 
+/--
+@isnad1 id=eq.0h1v.s6.dcd00e369def from=translated src=- shape=ffb1e36e vocab=0e8e9ce4
+-/
 lemma map_geomSum (m : ℕ+) :
     (geomSum m).map (Int.castRingHom ℂ) =
       ∑ k ∈ Finset.range ((m : ℕ) + 1), (X : ℂ[X]) ^ k := by
@@ -56,6 +68,9 @@ lemma map_geomSum (m : ℕ+) :
   rw [Polynomial.map_sum]
   simp only [Polynomial.map_pow, Polynomial.map_X]
 
+/--
+@isnad1 id=eq.0h2v.s6.0a5233c5250d from=translated src=- shape=cc0d7b96 vocab=024a6e5a
+-/
 lemma map_geomSumStep (m n : ℕ+) :
     (geomSumStep m n).map (Int.castRingHom ℂ) =
       ∑ k ∈ Finset.range ((m : ℕ) + 1), ((X : ℂ[X]) ^ (n : ℕ)) ^ k := by
@@ -66,12 +81,18 @@ lemma map_geomSumStep (m n : ℕ+) :
   intro k _
   rw [mul_comm k (n : ℕ), pow_mul]
 
+/--
+@isnad1 id=eq.1h2v.s6.0cdc6e1ce22c from=translated src=- shape=de5828ce vocab=e18fa3d3
+-/
 lemma eval_map_geomSum (m : ℕ+) {z : ℂ} (hz : z ≠ 1) :
     ((geomSum m).map (Int.castRingHom ℂ)).eval z = (z ^ ((m : ℕ) + 1) - 1) / (z - 1) := by
   rw [map_geomSum]
   simp only [eval_finsetSum, eval_pow, eval_X]
   exact geom_sum_eq hz _
 
+/--
+@isnad1 id=eq.1h3v.s7.e5c0831d96df from=translated src=- shape=4f3b2498 vocab=94cd55ab
+-/
 lemma eval_map_geomSumStep (m n : ℕ+) {z : ℂ} (hz : z ^ (n : ℕ) ≠ 1) :
     ((geomSumStep m n).map (Int.castRingHom ℂ)).eval z =
       ((z ^ (n : ℕ)) ^ ((m : ℕ) + 1) - 1) / (z ^ (n : ℕ) - 1) := by
@@ -79,6 +100,9 @@ lemma eval_map_geomSumStep (m n : ℕ+) {z : ℂ} (hz : z ^ (n : ℕ) ≠ 1) :
   simp only [eval_finsetSum, eval_pow, eval_X]
   exact geom_sum_eq hz _
 
+/--
+@isnad1 id=eq.1h3v.s6.de311d167375 from=translated src=- shape=564b1d7c vocab=1ef76b2b
+-/
 lemma eval_map_geomSumStep_of_pow_eq_one (m n : ℕ+) {z : ℂ} (hz : z ^ (n : ℕ) = 1) :
     ((geomSumStep m n).map (Int.castRingHom ℂ)).eval z = (((m : ℕ) + 1 : ℕ) : ℂ) := by
   rw [map_geomSumStep]
@@ -88,14 +112,18 @@ lemma eval_map_geomSumStep_of_pow_eq_one (m n : ℕ+) {z : ℂ} (hz : z ^ (n : �
     Finset.sum_congr rfl (fun k _ => by rw [hz, one_pow])]
   rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul, mul_one]
 
-/-- Divisibility over `ℤ` transfers to divisibility over `ℂ`, since the divisor is monic. -/
+/-- Divisibility over `ℤ` transfers to divisibility over `ℂ`, since the divisor is monic.
+@isnad1 id=iff.0h2v.s6.abb578be8855 from=translated src=- shape=4fd082ef vocab=5d2ca317
+-/
 lemma dvd_iff_map_dvd (m n : ℕ+) :
     geomSum m ∣ geomSumStep m n ↔
       (geomSum m).map (Int.castRingHom ℂ) ∣ (geomSumStep m n).map (Int.castRingHom ℂ) :=
   (Polynomial.map_dvd_map _ Int.cast_injective (geomSum_monic m)).symm
 
 /-- If `gcd (m+1) n ≠ 1`, divisibility fails: the `(m+1)/gcd`-th power of a primitive
-`(m+1)`-th root of unity is a root of the divisor but not of the dividend. -/
+`(m+1)`-th root of unity is a root of the divisor but not of the dividend.
+@isnad1 id=not.1h2v.s6.21a8022ef175 from=translated src=- shape=ed7d0912 vocab=b31f314f
+-/
 lemma not_dvd_of_gcd_ne_one {m n : ℕ+} (hgcd : Nat.gcd ((m : ℕ) + 1) (n : ℕ) ≠ 1) :
     ¬ (geomSum m ∣ geomSumStep m n) := by
   intro hdvd
@@ -146,7 +174,9 @@ lemma not_dvd_of_gcd_ne_one {m n : ℕ+} (hgcd : Nat.gcd ((m : ℕ) + 1) (n : �
   exact hne e0
 
 /-- If `gcd (m+1) n = 1`, divisibility holds: the remainder of the division vanishes at all
-`m` nontrivial `(m+1)`-th roots of unity, and has degree `< m`, hence is zero. -/
+`m` nontrivial `(m+1)`-th roots of unity, and has degree `< m`, hence is zero.
+@isnad1 id=dvd.1h2v.s6.9d5dbe6dec37 from=translated src=- shape=cb269caf vocab=b31f314f
+-/
 lemma dvd_of_gcd_eq_one {m n : ℕ+} (hgcd : Nat.gcd ((m : ℕ) + 1) (n : ℕ) = 1) :
     geomSum m ∣ geomSumStep m n := by
   rw [dvd_iff_map_dvd m n]

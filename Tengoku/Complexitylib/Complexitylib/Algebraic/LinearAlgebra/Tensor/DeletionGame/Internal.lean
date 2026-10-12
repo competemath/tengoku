@@ -45,14 +45,23 @@ open Finset
 
 /-! ### The width function -/
 
+/--
+@isnad1 id=eq.0h3v.s4.0cbd6451b0cb from=translated src=- shape=7eed5a8a vocab=37773d2e
+-/
 theorem phi_comm (n r s : ℤ) : phi n r s = phi n s r := by
   unfold phi
   omega
 
+/--
+@isnad1 id=le.0h3v.s5.4051dd87b85c from=translated src=- shape=591182d0 vocab=b2a4c9f4
+-/
 theorem two_mul_le_three_mul_phi (n r s : ℤ) : 2 * n ≤ 3 * phi n r s := by
   unfold phi
   omega
 
+/--
+@isnad1 id=le.2h7v.s6.9e08e0f5253e from=translated src=- shape=27e74d96 vocab=118cd356
+-/
 theorem phi_le_add {n r s r' s' d e : ℤ} (hr : |r - r'| ≤ d) (hs : |s - s'| ≤ e) :
     phi n r s ≤ phi n r' s' + 2 * d + 2 * e := by
   rw [abs_le] at hr hs
@@ -61,6 +70,9 @@ theorem phi_le_add {n r s r' s' d e : ℤ} (hr : |r - r'| ≤ d) (hs : |s - s'| 
 
 /-! ### The two-interval lemma -/
 
+/--
+@isnad1 id=le.0h3v.s8.88dbb028750b from=translated src=- shape=8419f7c6 vocab=4a02a66f
+-/
 theorem filter_phi_le_subset (k : ℕ) (s T : ℤ) :
     (Icc (1 : ℤ) k).filter (fun r => phi (2 * k + 1) r s ≤ T) ⊆
       Icc (2 * k + 1 - T) (T / 2 - s) ∪
@@ -70,6 +82,9 @@ theorem filter_phi_le_subset (k : ℕ) (s T : ℤ) :
   unfold phi at hr
   omega
 
+/--
+@isnad1 id=le.2h3v.s8.ae499bfa6eee from=translated src=- shape=84af5978 vocab=ca9653b7
+-/
 theorem two_mul_card_filter_phi_le {k : ℕ} {s T : ℤ} (hs : 0 ≤ s)
     (hT : 2 * (2 * k + 1) ≤ 3 * T + 3) :
     2 * (((Icc (1 : ℤ) k).filter fun r => phi (2 * k + 1) r s ≤ T).card : ℤ) ≤
@@ -87,24 +102,34 @@ section Sides
 
 variable {α : Type*} [Fintype α]
 
+/--
+@isnad1 id=iff.0h5v.s6.1483c6e64cf2 from=translated src=- shape=e05bb079 vocab=8728953a
+-/
 theorem mem_sideBlock {f : α → ℤ} {L i : ℕ} {a : α} :
     a ∈ sideBlock f L i ↔ (i * L + 1 : ℤ) ≤ f a ∧ f a ≤ (i + 1) * L := by
   simp [sideBlock]
 
+/--
+@isnad1 id=le.1h5v.s5.52966aefae07 from=translated src=- shape=45821ddb vocab=7ddbe07b
+-/
 theorem one_le_of_mem_sideBlock {f : α → ℤ} {L i : ℕ} {a : α} (ha : a ∈ sideBlock f L i) :
     1 ≤ f a := by
   rw [mem_sideBlock] at ha
   have : (0 : ℤ) ≤ i * L := by positivity
   omega
 
-/-- Two elements of one block are at distance at most `L` (indeed `L - 1`). -/
+/-- Two elements of one block are at distance at most `L` (indeed `L - 1`).
+@isnad1 id=le.2h6v.s6.133d24ead554 from=translated src=- shape=70fbe208 vocab=1f36e2b9
+-/
 theorem abs_sub_le_of_mem_sideBlock {f : α → ℤ} {L i : ℕ} {a b : α} (ha : a ∈ sideBlock f L i)
     (hb : b ∈ sideBlock f L i) : |f a - f b| ≤ L := by
   rw [mem_sideBlock, add_one_mul] at ha hb
   rw [abs_le]
   omega
 
-/-- A value `f a ∈ [1, k]` lies in the block of index `(f a - 1) / L < k / L + 1`. -/
+/-- A value `f a ∈ [1, k]` lies in the block of index `(f a - 1) / L < k / L + 1`.
+@isnad1 id=ex.3h5v.s6.2080e5f3a169 from=translated src=- shape=29d8c8d3 vocab=69267c80
+-/
 theorem exists_mem_sideBlock {f : α → ℤ} {k L : ℕ} {a : α} (hL : 0 < L) (h1 : 1 ≤ f a)
     (hk : f a ≤ k) : ∃ i < k / L + 1, a ∈ sideBlock f L i := by
   obtain ⟨p, hp⟩ : ∃ p : ℕ, f a = p + 1 := ⟨(f a - 1).toNat, by omega⟩
@@ -116,7 +141,9 @@ theorem exists_mem_sideBlock {f : α → ℤ} {k L : ℕ} {a : α} (hL : 0 < L) 
     rw [mem_sideBlock, hp, add_one_mul]
     omega
 
-/-- A side whose values include `1, …, L` has a first block of at least `L` elements. -/
+/-- A side whose values include `1, …, L` has a first block of at least `L` elements.
+@isnad1 id=le.1h3v.s5.de89ad532aca from=translated src=- shape=92f08fcb vocab=fe72372b
+-/
 theorem le_card_sideBlock_zero {f : α → ℤ} {L : ℕ}
     (hf : ∀ p : ℤ, 1 ≤ p → p ≤ L → ∃ a, f a = p) : L ≤ (sideBlock f L 0).card := by
   classical
@@ -131,7 +158,9 @@ theorem le_card_sideBlock_zero {f : α → ℤ} {L : ℕ}
 
 /-! ### Counting survivors -/
 
-/-- The elements of `U` with `f a ∈ [1, k]` lie in the blocks of index `< k / L + 1`. -/
+/-- The elements of `U` with `f a ∈ [1, k]` lie in the blocks of index `< k / L + 1`.
+@isnad1 id=le.2h5v.s6.fca544b8242c from=translated src=- shape=406d9f93 vocab=e466e436
+-/
 theorem card_filter_le_sum (f : α → ℤ) {k L : ℕ} (hL : 0 < L) (hf : ∀ a, f a ≤ k)
     [DecidableEq α] (U : Finset α) :
     (U.filter fun a => 1 ≤ f a).card ≤ ∑ i ∈ range (k / L + 1), (U ∩ sideBlock f L i).card := by
@@ -143,7 +172,9 @@ theorem card_filter_le_sum (f : α → ℤ) {k L : ℕ} (hL : 0 < L) (hf : ∀ a
         exact mem_biUnion.2 ⟨i, mem_range.2 hi, mem_inter.2 ⟨ha.1, hai⟩⟩
     _ ≤ _ := card_biUnion_le
 
-/-- A side with no good block holds at most `R - 1` elements per block. -/
+/-- A side with no good block holds at most `R - 1` elements per block.
+@isnad1 id=le.3h6v.s7.156ee0734e10 from=translated src=- shape=210e17ed vocab=ac09cfec
+-/
 theorem card_filter_le_of_forall_lt (f : α → ℤ) {k L R : ℕ} (hL : 0 < L) (hf : ∀ a, f a ≤ k)
     [DecidableEq α] {U : Finset α} (hU : ∀ i, (U ∩ sideBlock f L i).card < R) :
     (U.filter fun a => 1 ≤ f a).card ≤ (k / L + 1) * (R - 1) := by
@@ -152,7 +183,9 @@ theorem card_filter_le_of_forall_lt (f : α → ℤ) {k L R : ℕ} (hL : 0 < L) 
     _ = _ := by simp
 
 /-- The elements of `S` on the side `f` lie in its good blocks, or in one of the at most
-`k / L + 1` other blocks, each holding at most `R - 1` of them. -/
+`k / L + 1` other blocks, each holding at most `R - 1` of them.
+@isnad1 id=le.2h6v.s7.19ed60d5c38e from=translated src=- shape=2f24314a vocab=6a96ad38
+-/
 theorem card_filter_le_add_of_good [DecidableEq α] {f : α → ℤ} {k L R : ℕ} (hL : 0 < L)
     (hf : ∀ a, f a ≤ k) (S : Finset α) :
     (S.filter fun a => 1 ≤ f a).card ≤
@@ -180,7 +213,9 @@ theorem card_filter_le_add_of_good [DecidableEq α] {f : α → ℤ} {k L R : �
     _ ≤ _ := Nat.add_le_add_left hbad _
 
 /-- If deleting at most one element of `S` leaves no good block on the side `-f`, then `S` has
-at most `(k / L + 1) (R - 1) + 1` elements on that side. -/
+at most `(k / L + 1) (R - 1) + 1` elements on that side.
+@isnad1 id=le.4h7v.s7.1d9526a5b574 from=translated src=- shape=1d4035de vocab=2f69a41d
+-/
 theorem card_le_of_lost [DecidableEq α] {f : α → ℤ} {k L R : ℕ} (hL : 0 < L)
     (hf : ∀ a, -(k : ℤ) ≤ f a) {S S' : Finset α} (hSS' : (S \ S').card ≤ 1)
     (hlost : ∀ j, (S' ∩ sideBlock (fun a => -f a) L j).card < R) :
@@ -198,6 +233,9 @@ theorem card_le_of_lost [DecidableEq α] {f : α → ℤ} {k L R : ℕ} (hL : 0 
     _ ≤ _ := add_le_add h1 hSS'
 
 omit [Fintype α] in
+/--
+@isnad1 id=le.0h3v.s6.6cd4c9f9f4e5 from=translated src=- shape=0687484b vocab=471a0df1
+-/
 theorem card_le_card_filter_add [DecidableEq α] (f : α → ℤ) (S : Finset α) :
     S.card ≤ (S.filter fun a => 1 ≤ f a).card + (S.filter fun a => 1 ≤ -f a).card +
       (S.filter fun a => f a = 0).card := by
@@ -211,6 +249,9 @@ theorem card_le_card_filter_add [DecidableEq α] (f : α → ℤ) (S : Finset α
 
 /-! ### The count at the stopping time -/
 
+/--
+@isnad1 id=le.9h12v.s9.12da7c3712bd from=translated src=- shape=33b2b01d vocab=cd60ebdd
+-/
 theorem le_sub_card_add_of_lost [DecidableEq α] {k L R : ℕ} {D E V : ℝ} {f : α → ℤ}
     (hf : Function.Injective f) (hfk : ∀ a, -(k : ℤ) ≤ f a ∧ f a ≤ k) (hR : 1 ≤ R)
     (hRL : R ≤ L) (hD : 3 / 2 ≤ D) {S S' : Finset α} (hSS' : (S \ S').card ≤ 1)
@@ -311,24 +352,35 @@ end Sides
 
 /-! ### Offsets -/
 
+/--
+@isnad1 id=injectiv.0h1v.s5.6d1d2b0ebb16 from=translated src=- shape=79bffc85 vocab=47a82c32
+-/
 theorem offset_injective (k : ℕ) : Function.Injective (offset k) := by
   intro a b h
   unfold offset at h
   exact Fin.ext (by omega)
 
+/--
+@isnad1 id=and.0h2v.s5.1e46aabbf9d2 from=translated src=- shape=91b718d4 vocab=b6b96fd5
+-/
 theorem neg_le_offset_le (k : ℕ) (a : Fin (2 * k + 1)) :
     -(k : ℤ) ≤ offset k a ∧ offset k a ≤ k := by
   unfold offset
   have := a.isLt
   omega
 
+/--
+@isnad1 id=ex.2h2v.s6.710a8874e031 from=translated src=- shape=50b7c7c2 vocab=b6b96fd5
+-/
 theorem exists_offset_eq {k : ℕ} {p : ℤ} (h1 : -(k : ℤ) ≤ p) (h2 : p ≤ k) :
     ∃ a, offset k a = p :=
   ⟨⟨(p + k).toNat, by omega⟩, by unfold offset; simp only; omega⟩
 
 /-! ### The stopping time -/
 
-/-- Deleting one more element of a list removes at most one element from the survivors. -/
+/-- Deleting one more element of a list removes at most one element from the survivors.
+@isnad1 id=le.0h3v.s6.d13117154924 from=translated src=- shape=fa3c26f8 vocab=7e2963e6
+-/
 theorem card_sdiff_take_succ_le_one {α : Type*} [Fintype α] [DecidableEq α] (l : List α)
     (q : ℕ) : ((univ \ (l.take q).toFinset) \ (univ \ (l.take (q + 1)).toFinset)).card ≤ 1 := by
   have key : ∀ x ∈ (univ \ (l.take q).toFinset) \ (univ \ (l.take (q + 1)).toFinset),
@@ -343,6 +395,9 @@ theorem card_sdiff_take_succ_le_one {α : Type*} [Fintype α] [DecidableEq α] (
   intro a ha b hb
   exact Option.some_injective _ ((key a ha).symm.trans (key b hb))
 
+/--
+@isnad1 id=pairedcl.2h7v.s6.8880bb68089c from=translated src=- shape=9d8d5873 vocab=74e6bc66
+-/
 theorem pairedClusterBound_mono {k L R : ℕ} {D E : ℝ} {LB LB' : Finset (Fin (2 * k + 1)) → ℕ}
     (h : PairedClusterBound k L R D E LB) (hle : ∀ S, LB S ≤ LB' S) :
     PairedClusterBound k L R D E LB' := by
@@ -350,6 +405,9 @@ theorem pairedClusterBound_mono {k L R : ℕ} {D E : ℝ} {LB LB' : Finset (Fin 
   obtain ⟨a, ha, b, hb, hab⟩ := h S i j hi hj
   exact ⟨a, ha, b, hb, hab.trans (by exact_mod_cast hle S)⟩
 
+/--
+@isnad1 id=ex.7h7v.s9.f2be8b812612 from=translated src=- shape=0c22290a vocab=2c6a685b
+-/
 theorem exists_stage {k L R : ℕ} {D E : ℝ} {LB : Finset (Fin (2 * k + 1)) → ℕ}
     (hLB : PairedClusterBound k L R D E LB) (hR : 1 ≤ R) (hRL : R ≤ L) (hLk : L ≤ k)
     (hD : 3 / 2 ≤ D) {l : List (Fin (2 * k + 1))} (hl : l.Nodup) (hlu : l.toFinset = univ) :

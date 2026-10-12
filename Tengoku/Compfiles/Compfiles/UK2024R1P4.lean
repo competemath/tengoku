@@ -23,7 +23,9 @@ namespace UK2024R1P4
 
 abbrev SolutionSet : Set ℕ := {2, 3}
 
-/-- For n ≥ 5, n + 1 < 2^(n-2). -/
+/-- For n ≥ 5, n + 1 < 2^(n-2).
+@isnad1 id=lt.1h1v.s5.1a1efcc92f85 from=translated src=- shape=f3b0eecb vocab=b7cb5b61
+-/
 lemma two_pow_sub_two_gt (n : ℕ) (hn : 5 ≤ n) : n + 1 < 2 ^ (n - 2) := by
   induction n, hn using Nat.le_induction with
   | base => decide
@@ -38,7 +40,9 @@ lemma two_pow_sub_two_gt (n : ℕ) (hn : 5 ≤ n) : n + 1 < 2 ^ (n - 2) := by
     Strategy: factor n·2ⁿ = (k-1)(k+1). Since n·2ⁿ is even, k² = n·2ⁿ+1
     is odd, so k is odd — write k = 2a+1. Then (k-1)(k+1) = 4a(a+1), so
     a(a+1) = n·2^(n-2). The integers a and a+1 are coprime with exactly
-    one even, so the full factor 2^(n-2) lands on that even one. -/
+    one even, so the full factor 2^(n-2) lands on that even one.
+@isnad1 id=le.2h1v.s6.11944ca648ad from=translated src=- shape=b4694931 vocab=c99a6403
+-/
 lemma sq_bound (n : ℕ) (hn : 2 ≤ n) (h : IsSquare (n * 2 ^ n + 1)) :
     2 ^ (n - 1) ≤ 2 * n + 2 := by
   obtain ⟨k, hk⟩ := h
@@ -88,7 +92,9 @@ lemma sq_bound (n : ℕ) (hn : 2 ≤ n) (h : IsSquare (n * 2 ^ n + 1)) :
     nlinarith
 
 /-- For n ≥ 5, n·2ⁿ + 1 is not a perfect square: the bound (*) combined
-    with `two_pow_sub_two_gt` is immediately contradictory. -/
+    with `two_pow_sub_two_gt` is immediately contradictory.
+@isnad1 id=not.1h1v.s5.d4a961f0092a from=translated src=- shape=11e8fef1 vocab=ffa27347
+-/
 lemma not_square_ge_five (n : ℕ) (hn : 5 ≤ n) : ¬ IsSquare (n * 2 ^ n + 1) := by
   intro h
   have h1 := sq_bound n (by lia) h

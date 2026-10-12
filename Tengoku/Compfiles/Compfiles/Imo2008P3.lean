@@ -31,6 +31,9 @@ and we can take this `n` such that `n ≤ p/2`. Let `k = p - 2n ≥ 0`. Then we 
 Then `p = 2n + k ≥ 2n + √(p - 4) = 2n + √(2n + k - 4) > √(2n)` and we are done.
 -/
 
+/--
+@isnad1 id=ex.3h1v.s6.2c7b5ee73cd4 from=translated src=- shape=035b291d vocab=17f0e5e8
+-/
 theorem p_lemma (p : ℕ) (hpp : Nat.Prime p) (hp_mod_4_eq_1 : p ≡ 1 [MOD 4]) (hp_gt_20 : p > 20) :
     ∃ n : ℕ, p ∣ n ^ 2 + 1 ∧ (p : ℝ) > 2 * n + sqrt (2 * n) := by
   have := Fact.mk hpp

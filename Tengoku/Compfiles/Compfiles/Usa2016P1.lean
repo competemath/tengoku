@@ -140,12 +140,16 @@ def witness : Fin 100 → Finset (Fin 8) := ![
   {2, 3, 4, 5, 7},
   {0, 6}]
 
-/-- The explicit witness verifies that `HasChain 8` holds. -/
+/-- The explicit witness verifies that `HasChain 8` holds.
+@isnad1 id=haschain.0h0v.s2.81839b80a721 from=translated src=- shape=e590c3e1 vocab=50b39b5a
+-/
 lemma hasChain_eight : HasChain 8 :=
   ⟨witness, by decide +kernel, by decide +kernel, by decide +kernel⟩
 
 /-- Any chain on an `n`-element set uses at most `2 ^ n - 1` nonempty subsets,
-so `n ≤ 6` is impossible since `2 ^ 6 - 1 < 100`. -/
+so `n ≤ 6` is impossible since `2 ^ 6 - 1 < 100`.
+@isnad1 id=not.1h1v.s3.f9b7a8e7120b from=translated src=- shape=01e184dd vocab=ca78463f
+-/
 lemma not_hasChain_of_le_six {n : ℕ} (hn : n ≤ 6) : ¬ HasChain n := by
   rintro ⟨X, hne, hinj, -⟩
   have himg : (univ : Finset (Fin 100)).image X ⊆ univ.erase (∅ : Finset (Fin n)) := by
@@ -166,7 +170,9 @@ lemma not_hasChain_of_le_six {n : ℕ} (hn : n ≤ 6) : ¬ HasChain n := by
 /-- The main combinatorial estimate: no chain exists on a 7-element set.
 Sets of size at least 4 must be preceded by sets of size at most 2, and there
 are only 28 nonempty subsets of size at most 2 and 35 subsets of size 3, so a
-chain on 7 elements has length at most `28 + 35 + (28 + 1) = 92 < 100`. -/
+chain on 7 elements has length at most `28 + 35 + (28 + 1) = 92 < 100`.
+@isnad1 id=not.0h0v.s2.3a011919159c from=translated src=- shape=8d7dbbf6 vocab=50b39b5a
+-/
 lemma not_hasChain_seven : ¬ HasChain 7 := by
   rintro ⟨X, hne, hinj, hchain⟩
   -- Consecutive sets have total size at most 6.

@@ -24,7 +24,9 @@ namespace Usa1983P3
 `Icc (a i) (b i) ∪ Icc (c i) (d i)`, every set contains either `a h`, where `h`
 maximizes the left endpoint `a`, or `d k`, where `k` minimizes the right
 endpoint `d`. Otherwise a common point of `S i`, `S h` and `S k` would have to
-lie left of `a h` inside `S h`, or right of `d k` inside `S k`. -/
+lie left of `a h` inside `S h`, or right of `d k` inside `S k`.
+@isnad1 id=or.7h9v.s7.c66c34c2b02a from=translated src=- shape=edf53b96 vocab=a8c9471e
+-/
 lemma mem_leftMax_or_rightMin {n : ℕ} {S : Fin n → Set ℝ}
     {a b c d : Fin n → ℝ} (hab : ∀ i, a i ≤ b i) (hbc : ∀ i, b i ≤ c i)
     (hcd : ∀ i, c i ≤ d i)

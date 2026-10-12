@@ -33,6 +33,9 @@ $$
 $$
 -/
 
+/--
+@isnad1 id=le.3h3v.s8.eef1085c582a from=translated src=- shape=5564372d vocab=d44e7500
+-/
 theorem bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / sqrt ((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) := by
   rw [div_le_div_iff₀ (by positivity) (by positivity)]
@@ -48,6 +51,9 @@ theorem bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
         (2 * (a ^ 2 * b * c - b ^ 2 * c ^ 2)) ^ 2 := by ring
     _ ≥ 0 := by positivity
 
+/--
+@isnad1 id=le.3h3v.s8.a9f887d2920c from=translated src=- shape=52572f4f vocab=d44e7500
+-/
 theorem imo2001_p2' (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     1 ≤ a ^ 3 / sqrt ((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) +
       b ^ 3 / sqrt ((b ^ 3) ^ 2 + 8 * c ^ 3 * a ^ 3) +

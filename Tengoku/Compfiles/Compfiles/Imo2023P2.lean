@@ -39,6 +39,9 @@ variable [Module.Oriented ℝ V (Fin 2)]
 namespace Imo2023P2
 
 -- alternate version of Real.Angle.abs_toReal_add_abs_toReal_eq_pi_of_two_nsmul_add_eq_zero_of_sign_eq
+/--
+@isnad1 id=eq.3h2v.s6.b66a7447022f from=translated src=- shape=42886353 vocab=120946b0
+-/
 lemma aux₁ {a b : Real.Angle} (h₁ : a.sign = b.sign) (h₂ : a.sign ≠ 0)
   (h : 2 • (a + b) = 0) : a + b = Real.pi := by
   rw [Real.Angle.two_nsmul_eq_zero_iff] at h
@@ -50,11 +53,17 @@ lemma aux₁ {a b : Real.Angle} (h₁ : a.sign = b.sign) (h₂ : a.sign ≠ 0)
   · exact h
 
 -- alternate version of Real.Angle.sign_pi_sub
+/--
+@isnad1 id=eq.1h2v.s5.988a6c986b78 from=translated src=- shape=e795688c vocab=44ac9ce6
+-/
 lemma aux₂ {a b : Real.Angle} (h : a + b = Real.pi) : a.sign = b.sign := by
   rw [← eq_sub_iff_add_eq] at h
   rw [h]
   apply Real.Angle.sign_pi_sub
 
+/--
+@isnad1 id=eq.2h2v.s5.e0886be2cbba from=translated src=- shape=9a7edd41 vocab=0362b1ed
+-/
 lemma aux₃ {a b : Real.Angle} (h : a + b = Real.pi) (h' : a.sign ≠ 0)
   : |a.toReal| + |b.toReal| = Real.pi := by
   have h₁ : 2 • (a + b) = 0 := by
@@ -64,6 +73,9 @@ lemma aux₃ {a b : Real.Angle} (h : a + b = Real.pi) (h' : a.sign ≠ 0)
   exact Real.Angle.abs_toReal_add_abs_toReal_eq_pi_of_two_zsmul_add_eq_zero_of_sign_eq
     h₁ h₂ h'
 
+/--
+@isnad1 id=eq.4h3v.s6.8bc7f3fb4bdd from=translated src=- shape=046c4cc3 vocab=beb07a26
+-/
 lemma aux₄ {a b c : Real.Angle}
   (ha : a.sign ≠ 0)
   (hc : c.sign ≠ 0)
@@ -142,6 +154,9 @@ lemma aux₄ {a b c : Real.Angle}
             rw [← h']
             ring
 
+/--
+@isnad1 id=eq.3h3v.s5.4e662fcf6cc9 from=translated src=- shape=0b9dbd2a vocab=687ca9b7
+-/
 lemma aux₅ {a b c : Real.Angle}
   (h : a + b = c)
   (hac : a.sign = c.sign)
@@ -210,6 +225,9 @@ lemma aux₅ {a b c : Real.Angle}
               apply Real.Angle.toReal_le_pi
       _ = c' - (a' + b') := by abel
 
+/--
+@isnad1 id=eq.3h2v.s6.5ba03031de6b from=translated src=- shape=f3d826ff vocab=63605009
+-/
 lemma aux₆ {a b : Real.Angle} (h₁ : a.sign = b.sign) (h₂ : a.sign ≠ 0)
   (h : 2 • a = 2 • b) : a = b := by
   rw [Real.Angle.two_nsmul_eq_iff] at h
@@ -220,6 +238,9 @@ lemma aux₆ {a b : Real.Angle} (h₁ : a.sign = b.sign) (h₂ : a.sign ≠ 0)
     rw [← h, Real.Angle.sign_sub_pi, SignType.self_eq_neg_iff] at h₁
     exact h₁
 
+/--
+@isnad1 id=eq.2h2v.s5.caeb4ca150f1 from=translated src=- shape=20314242 vocab=4bc6076d
+-/
 lemma aux₇ {x y : ℝ} (h : ∃ k : ℤ, x = y * k)
   (hx : |x| < y)
   : x = 0 := by
@@ -237,6 +258,9 @@ lemma aux₇ {x y : ℝ} (h : ∃ k : ℤ, x = y * k)
       _ = |y| * 1 := (mul_one |y|).symm
       _ ≤ |y| * |↑k| := mul_le_mul_of_nonneg_left h₁ (abs_nonneg y)
 
+/--
+@isnad1 id=lt.4h3v.s6.cfe2c785d89e from=translated src=- shape=4f4fe155 vocab=892788b3
+-/
 lemma aux₈ {x y z : ℝ}
   (hx' : 0 ≤ x) (hy' : y ≤ 0)
   (hx : |x| < z) (hy : |y| < z)
@@ -252,6 +276,9 @@ lemma aux₈ {x y z : ℝ}
         _ = x := add_zero x
         _ < z := (abs_lt.mp hx).right
 
+/--
+@isnad1 id=eq.3h3v.s5.8ca6e329ad89 from=translated src=- shape=3d803a56 vocab=162b2105
+-/
 lemma aux₉ {x y z : ℝ} (h : |x + y| = z)
   (hx : |x| < z) (hy : |y| < z)
   : |x| + |y| = z := by
@@ -267,6 +294,9 @@ lemma aux₉ {x y z : ℝ} (h : |x + y| = z)
       rw [add_comm]
       exact aux₈ (le_of_lt hy') (le_of_lt hx') hy hx
 
+/--
+@isnad1 id=eq.3h2v.s7.4ace854cceab from=translated src=- shape=3f66e79b vocab=c7d3e3f2
+-/
 lemma aux₁₀ {a b : Real.Angle} (h : 2 • a + 2 • b = Real.pi)
   (ha : |a.toReal| < Real.pi / 2) (hb : |b.toReal| < Real.pi / 2)
   : |a.toReal| + |b.toReal| = Real.pi / 2 := by
@@ -309,6 +339,9 @@ lemma aux₁₀ {a b : Real.Angle} (h : 2 • a + 2 • b = Real.pi)
           _ < 2 * Real.pi := h₃
     exact aux₉ h₄ ha hb
 
+/--
+@isnad1 id=eq.5h8v.s7.ae73c84b5846 from=translated src=- shape=b019eb41 vocab=060127ca
+-/
 lemma angle_eq_of_oangle_eq {A₁ A₂ A₃ B₁ B₂ B₃ : Pt}
   (h : ∡ A₁ A₂ A₃ = ∡ B₁ B₂ B₃)
   (hA₁ : A₁ ≠ A₂) (hA₂ : A₃ ≠ A₂) (hB₁ : B₁ ≠ B₂) (hB₂ : B₃ ≠ B₂)
@@ -316,6 +349,9 @@ lemma angle_eq_of_oangle_eq {A₁ A₂ A₃ B₁ B₂ B₃ : Pt}
   rw [angle_eq_abs_oangle_toReal hA₁ hA₂, angle_eq_abs_oangle_toReal hB₁ hB₂, h]
 
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=eq.1h8v.s6.eb3431ab1591 from=translated src=- shape=9684bcfa vocab=c52fdcf1
+-/
 lemma angle_eq_of_cos_angle_eq {A₁ A₂ A₃ B₁ B₂ B₃ : Pt}
   (h : Real.cos (∠ A₁ A₂ A₃) = Real.cos (∠ B₁ B₂ B₃)) : ∠ A₁ A₂ A₃ = ∠ B₁ B₂ B₃ := by
   unfold EuclideanGeometry.angle at *
@@ -367,6 +403,9 @@ lemma eq_max_of_max_ne_top
   lia
 
 omit [Oriented ℝ V (Fin 2)] hd2 in
+/--
+@isnad1 id=eq.1h4v.s8.8b531bf11092 from=translated src=- shape=9959a3e8 vocab=8c9d4a5a
+-/
 lemma affineSpan_pair_finrank {A B : Pt}
   (hAB : A ≠ B): Module.finrank ℝ (affineSpan ℝ {A, B}).direction = 1 := by
   rw [direction_affineSpan]
@@ -376,6 +415,9 @@ lemma affineSpan_pair_finrank {A B : Pt}
   simp
 
 omit [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=nonempty.3h6v.s8.d2b00be6f3b6 from=translated src=- shape=95d6c105 vocab=bc4c1e46
+-/
 lemma inter_nonempty_of_not_parallel
   {A₁ A₂ B₁ B₂ : Pt}
   (hA : A₁ ≠ A₂) (hB : B₁ ≠ B₂)
@@ -403,6 +445,9 @@ lemma inter_nonempty_of_not_parallel
   · rw [affineSpan_eq_bot, affineSpan_eq_bot]
     constructor <;> intro h' <;> contrapose! h' <;> simp
 
+/--
+@isnad1 id=or.1h5v.s7.4ba841a4535d from=translated src=- shape=d482bb41 vocab=9d2b0b62
+-/
 lemma oangle_eq_zero_of_collinear {P₁ P₂ P₃ : Pt} (h : Collinear ℝ {P₁, P₂, P₃})
   : ∡ P₂ P₁ P₃ = 0 ∨ ∡ P₂ P₃ P₁ = 0 := by
   have h' := h.wbtw_or_wbtw_or_wbtw
@@ -414,6 +459,9 @@ lemma oangle_eq_zero_of_collinear {P₁ P₂ P₃ : Pt} (h : Collinear ℝ {P₁
   · right
     exact h'.oangle₃₁₂_eq_zero
 
+/--
+@isnad1 id=istangen.8h7v.s8.e5cd805c8171 from=translated src=- shape=77e9e2c6 vocab=362a7024
+-/
 lemma Sphere.IsTangentAt_of_two_zsmul_oangle_eq {s : Sphere Pt} {P P₁ P₂ Q : Pt}
   (hP : P ∈ s) (hP₁ : P₁ ∈ s) (hP₂ : P₂ ∈ s)
   (hPP₁ : P ≠ P₁) (hPP₂ : P ≠ P₂) (hP₁P₂ : P₁ ≠ P₂) (hPQ : P ≠ Q)
@@ -432,6 +480,9 @@ lemma Sphere.IsTangentAt_of_two_zsmul_oangle_eq {s : Sphere Pt} {P P₁ P₂ Q :
 
 -- reverse of EuclideanGeometry.sbtw_of_collinear_of_dist_center_lt_radius
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=lt.3h6v.s6.3fb0d8ef52a5 from=translated src=- shape=1fdf3d5b vocab=0ddb1b43
+-/
 lemma Sphere.dist_le_radius_of_sbtw {P₁ P₂ P₃ : Pt} {s : Sphere Pt}
   (h : Sbtw ℝ P₁ P₂ P₃)
   (hP₁ : P₁ ∈ s) (hP₃ : P₃ ∈ s)
@@ -443,6 +494,9 @@ lemma Sphere.dist_le_radius_of_sbtw {P₁ P₂ P₃ : Pt} {s : Sphere Pt}
 
 -- stronger version of Collinear.wbtw_or_wbtw_or_wbtw
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=or.1h5v.s7.eac24b867e82 from=translated src=- shape=6969461f vocab=baabefec
+-/
 lemma Collinear.sbtw_or_wbtw_or_wbtw {P₁ P₂ P₃ : Pt}
   (h : Collinear ℝ {P₁, P₂, P₃})
   : Sbtw ℝ P₁ P₂ P₃ ∨ Wbtw ℝ P₂ P₃ P₁ ∨ Wbtw ℝ P₃ P₁ P₂ := by
@@ -462,6 +516,9 @@ lemma Collinear.sbtw_or_wbtw_or_wbtw {P₁ P₂ P₃ : Pt}
 
 -- eveb stronger version of Collinear.wbtw_or_wbtw_or_wbtw when P₂ ≠ P₃
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=or.2h5v.s7.c29387ad3693 from=translated src=- shape=3bb75031 vocab=baabefec
+-/
 lemma Collinear.sbtw_or_sbtw_or_wbtw_of_ne {P₁ P₂ P₃ : Pt}
   (h : Collinear ℝ {P₁, P₂, P₃}) (h₂₃ : P₂ ≠ P₃)
   : Sbtw ℝ P₁ P₂ P₃ ∨ Sbtw ℝ P₂ P₃ P₁ ∨ Wbtw ℝ P₃ P₁ P₂ := by
@@ -481,6 +538,9 @@ lemma Collinear.sbtw_or_sbtw_or_wbtw_of_ne {P₁ P₂ P₃ : Pt}
   tauto
 
 -- reverse of EuclideanGeometry.two_zsmul_oangle_of_parallel
+/--
+@isnad1 id=parallel.4h6v.s8.b2ed3dcbf7d3 from=translated src=- shape=9a03f2fa vocab=0a4079f4
+-/
 lemma parallel_of_two_zsmul_oangle_eq {P₁ P₂ P₃ P₄ : Pt}
   (h₁₂ : P₁ ≠ P₂) (h₂₃ : P₂ ≠ P₃) (h₃₄ : P₃ ≠ P₄)
   (h : (2 : ℤ) • ∡ P₁ P₂ P₃ = (2 : ℤ) • ∡ P₄ P₃ P₂)
@@ -522,6 +582,9 @@ structure SphereOrder (P₁ P₂ P₃ P₄ : Pt) where
 def diag_inter_set (P₁ P₂ P₃ P₄ : Pt) := (line[ℝ, P₁, P₃] : Set Pt) ∩ line[ℝ, P₂, P₄]
 
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=mem.1h7v.s6.d2bc02489076 from=translated src=- shape=2f85325b vocab=dcb6df41
+-/
 lemma mem_diag_inter_set_comm  {X P₁ P₂ P₃ P₄ : Pt}
   (h : X ∈ diag_inter_set V Pt P₁ P₂ P₃ P₄) : X ∈ diag_inter_set V Pt P₁ P₄ P₃ P₂ := by
   rw [diag_inter_set] at h
@@ -531,12 +594,18 @@ lemma mem_diag_inter_set_comm  {X P₁ P₂ P₃ P₄ : Pt}
     exact h.right
 
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=eq.0h6v.s5.a464ad1b7c38 from=translated src=- shape=9444f48a vocab=854c37dc
+-/
 lemma diag_inter_set_comm (P₁ P₂ P₃ P₄ : Pt)
   : diag_inter_set V Pt P₁ P₂ P₃ P₄ = diag_inter_set V Pt P₁ P₄ P₃ P₂ := by
   ext X
   constructor <;> intro h <;> exact mem_diag_inter_set_comm V Pt h
 
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=mem.1h7v.s6.90f8346a3738 from=translated src=- shape=4b39e90a vocab=dcb6df41
+-/
 lemma mem_diag_inter_set_rotate  {X P₁ P₂ P₃ P₄ : Pt}
   (h : X ∈ diag_inter_set V Pt P₁ P₂ P₃ P₄) : X ∈ diag_inter_set V Pt P₂ P₃ P₄ P₁ := by
   rw [diag_inter_set] at h
@@ -546,6 +615,9 @@ lemma mem_diag_inter_set_rotate  {X P₁ P₂ P₃ P₄ : Pt}
     exact h.left
 
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=eq.0h6v.s5.3cea7b48e389 from=translated src=- shape=a1aaa082 vocab=854c37dc
+-/
 lemma diag_inter_set_rotate (P₁ P₂ P₃ P₄ : Pt)
   : diag_inter_set V Pt P₁ P₂ P₃ P₄ = diag_inter_set V Pt P₂ P₃ P₄ P₁ := by
   ext X
@@ -560,6 +632,9 @@ namespace SphereOrder
 
 variable {P₁ P₂ P₃ P₄ : Pt}
 
+/--
+@isnad1 id=sphereor.1h6v.s7.f1f5d1c0591a from=translated src=- shape=6dd749fd vocab=7decf2f1
+-/
 lemma comm (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : SphereOrder V Pt P₁ P₄ P₃ P₂ := by
   constructor
   · rw [Set.pair_comm]
@@ -573,25 +648,46 @@ lemma comm (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : SphereOrder V Pt P₁ P�
     rw [← h.sign_oangle₁₂₃_eq_sign_oangle₃₄₁]
     exact oangle_swap₁₃_sign P₁ P₂ P₃
 
+/--
+@isnad1 id=ne.1h6v.s6.f9dc5756de4d from=translated src=- shape=2b552977 vocab=7decf2f1
+-/
 lemma P₁_ne_P₂ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : P₁ ≠ P₂ := by
   exact EuclideanGeometry.left_ne_of_oangle_sign_ne_zero h.sign_oangle₁₂₃_ne_zero
 
+/--
+@isnad1 id=ne.1h6v.s6.ba9ea07361db from=translated src=- shape=d3f88c12 vocab=7decf2f1
+-/
 lemma P₁_ne_P₃ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : P₁ ≠ P₃ := by
   exact EuclideanGeometry.left_ne_right_of_oangle_sign_ne_zero h.sign_oangle₁₂₃_ne_zero
 
+/--
+@isnad1 id=ne.1h6v.s6.ac996c126631 from=translated src=- shape=182aeeff vocab=7decf2f1
+-/
 lemma P₂_ne_P₃ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : P₂ ≠ P₃ := by
   exact (EuclideanGeometry.right_ne_of_oangle_sign_ne_zero h.sign_oangle₁₂₃_ne_zero).symm
 
+/--
+@isnad1 id=ne.1h6v.s7.66d430c8db25 from=translated src=- shape=8f131232 vocab=a2691988
+-/
 lemma sign_oangle₃₄₁_ne_zero (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : (∡ P₃ P₄ P₁).sign ≠ 0 := by
   rw [← h.sign_oangle₁₂₃_eq_sign_oangle₃₄₁]
   exact h.sign_oangle₁₂₃_ne_zero
 
+/--
+@isnad1 id=ne.1h6v.s6.1e8b62c53853 from=translated src=- shape=7bf2b0e1 vocab=7decf2f1
+-/
 lemma P₁_ne_P₄ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : P₁ ≠ P₄ := by
   exact EuclideanGeometry.right_ne_of_oangle_sign_ne_zero h.sign_oangle₃₄₁_ne_zero
 
+/--
+@isnad1 id=ne.1h6v.s6.50d772d2cffb from=translated src=- shape=4b0e1bcf vocab=7decf2f1
+-/
 lemma P₃_ne_P₄ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : P₃ ≠ P₄ := by
   exact EuclideanGeometry.left_ne_of_oangle_sign_ne_zero h.sign_oangle₃₄₁_ne_zero
 
+/--
+@isnad1 id=ne.1h6v.s6.077249880bd0 from=translated src=- shape=30dfae46 vocab=7decf2f1
+-/
 lemma P₂_ne_P₄ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : P₂ ≠ P₄ := by
   have h' := h.sign_oangle₁₂₃_ne_zero
   contrapose! h'
@@ -599,6 +695,9 @@ lemma P₂_ne_P₄ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : P₂ ≠ P₄ :=
   rw [← h', EuclideanGeometry.oangle_rev P₁ P₂ P₃, Real.Angle.sign_neg, SignType.self_eq_neg_iff] at h''
   exact h''
 
+/--
+@isnad1 id=eq.1h6v.s7.69c9a5b8bee3 from=translated src=- shape=a1407d75 vocab=de4ae37b
+-/
 lemma oangle₁₂₃_add_oangle₃₄₁_eq_pi (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : ∡ P₁ P₂ P₃ + ∡ P₃ P₄ P₁ = Real.pi := by
   have h' := h.cospherical
   rw [Set.pair_comm] at h'
@@ -607,6 +706,9 @@ lemma oangle₁₂₃_add_oangle₃₄₁_eq_pi (h : SphereOrder V Pt P₁ P₂ 
   rw [← sub_eq_zero, ← smul_sub, sub_eq_add_neg, ← EuclideanGeometry.oangle_rev] at h''
   exact aux₁ h.sign_oangle₁₂₃_eq_sign_oangle₃₄₁ h.sign_oangle₁₂₃_ne_zero h''
 
+/--
+@isnad1 id=eq.1h6v.s7.b44faafee820 from=translated src=- shape=27fc80f3 vocab=de4ae37b
+-/
 lemma oangle₂₃₄_add_oangle₄₁₂_eq_pi (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : ∡ P₂ P₃ P₄ + ∡ P₄ P₁ P₂ = Real.pi := by
   have h' := (EuclideanGeometry.oangle_add_oangle_add_oangle_eq_pi
     h.P₂_ne_P₃.symm h.P₁_ne_P₃ h.P₁_ne_P₂.symm).symm
@@ -621,6 +723,9 @@ lemma oangle₂₃₄_add_oangle₄₁₂_eq_pi (h : SphereOrder V Pt P₁ P₂ 
   rw [← EuclideanGeometry.oangle_add h.P₁_ne_P₄.symm h.P₁_ne_P₃.symm h.P₁_ne_P₂.symm]
   abel
 
+/--
+@isnad1 id=sphereor.1h6v.s7.d34eedf2f706 from=translated src=- shape=88762048 vocab=7decf2f1
+-/
 lemma rotate (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : SphereOrder V Pt P₂ P₃ P₄ P₁ := by
   constructor
   · rw [Set.pair_comm]
@@ -655,15 +760,27 @@ lemma rotate (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : SphereOrder V Pt P₂ 
     · exact h.P₂_ne_P₄.symm
   · exact aux₂ h.oangle₂₃₄_add_oangle₄₁₂_eq_pi
 
+/--
+@isnad1 id=sphereor.1h6v.s7.b1dedaedef42 from=translated src=- shape=3b789262 vocab=7decf2f1
+-/
 lemma symm (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : SphereOrder V Pt P₃ P₄ P₁ P₂ := by
   exact h.rotate.rotate
 
+/--
+@isnad1 id=sphereor.1h6v.s7.58da214dca3d from=translated src=- shape=0d758968 vocab=7decf2f1
+-/
 lemma rotate' (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : SphereOrder V Pt P₄ P₁ P₂ P₃ := by
   exact h.rotate.rotate.rotate
 
+/--
+@isnad1 id=ne.1h6v.s7.2db6df8ac716 from=translated src=- shape=f3c9b2fa vocab=a2691988
+-/
 lemma sign_oangle₂₃₄_ne_zero (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : (∡ P₂ P₃ P₄).sign ≠ 0 := by
   exact h.rotate.sign_oangle₁₂₃_ne_zero
 
+/--
+@isnad1 id=eq.1h6v.s7.4e213b8aa99c from=translated src=- shape=8bd89e0b vocab=4df4ff1d
+-/
 lemma angle₁₂₄_add_angle₄₂₃_eq_angle₁₂₃ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : ∠ P₁ P₂ P₄ + ∠ P₄ P₂ P₃ = ∠ P₁ P₂ P₃ := by
   have h₁ := aux₃ h.oangle₁₂₃_add_oangle₃₄₁_eq_pi h.sign_oangle₁₂₃_ne_zero
   have h₂ := aux₃ h.oangle₂₃₄_add_oangle₄₁₂_eq_pi h.sign_oangle₂₃₄_ne_zero
@@ -692,6 +809,9 @@ lemma angle₁₂₄_add_angle₄₂₃_eq_angle₁₂₃ (h : SphereOrder V Pt 
   rw [add_comm]
   exact h₁.left
 
+/--
+@isnad1 id=eq.1h6v.s7.a70db8e9d58a from=translated src=- shape=52a93467 vocab=a2691988
+-/
 lemma sign_oangle₁₂₃_eq_sign_oangle₂₃₄ (h : SphereOrder V Pt P₁ P₂ P₃ P₄) : (∡ P₁ P₂ P₃).sign = (∡ P₂ P₃ P₄).sign := by
   have h₁ := EuclideanGeometry.oangle_add h.P₁_ne_P₂ h.P₂_ne_P₄.symm h.P₂_ne_P₃.symm
   have h₂ := h.angle₁₂₄_add_angle₄₂₃_eq_angle₁₂₃
@@ -705,6 +825,9 @@ lemma sign_oangle₁₂₃_eq_sign_oangle₂₃₄ (h : SphereOrder V Pt P₁ P�
   have h' := aux₄ h'' h.sign_oangle₁₂₃_ne_zero h₁ h₂
   rw [← h', ← EuclideanGeometry.oangle_rotate_sign]
 
+/--
+@isnad1 id=sphereor.2h7v.s7.c0349de29695 from=translated src=- shape=f09158d1 vocab=7decf2f1
+-/
 lemma trans {P₅ : Pt} (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   (h' : SphereOrder V Pt P₃ P₄ P₅ P₁) : SphereOrder V Pt P₅ P₁ P₂ P₃ := by
   apply rotate
@@ -746,17 +869,26 @@ lemma trans {P₅ : Pt} (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
     rw [← EuclideanGeometry.oangle_rotate_sign]
     rw [h.sign_oangle₁₂₃_eq_sign_oangle₃₄₁]
 
+/--
+@isnad1 id=sphereor.2h7v.s7.94fb0e7c148f from=translated src=- shape=92b1566e vocab=7decf2f1
+-/
 lemma trans' {P₅ : Pt} (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   (h' : SphereOrder V Pt P₃ P₄ P₅ P₁) : SphereOrder V Pt P₂ P₃ P₄ P₅ := by
   have h'' := h.trans V Pt h'
   exact h'.trans V Pt h''
 
+/--
+@isnad1 id=sphereor.2h7v.s7.779550a7436c from=translated src=- shape=9c3b29d3 vocab=7decf2f1
+-/
 lemma trans'' {P₅ : Pt} (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   (h' : SphereOrder V Pt P₃ P₄ P₅ P₁) : SphereOrder V Pt P₄ P₅ P₁ P₂ := by
   have h'' := h.trans V Pt h'
   have h''' := h.trans' V Pt h'
   exact h''.trans V Pt h'''
 
+/--
+@isnad1 id=ex.1h6v.s7.2d4111ca48f5 from=translated src=- shape=8d0a849e vocab=227c9da4
+-/
 lemma exists_diag_inter (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   : ∃ X : Pt, X ∈ diag_inter_set V Pt P₁ P₂ P₃ P₄ := by
   apply inter_nonempty_of_not_parallel V Pt h.P₁_ne_P₃ h.P₂_ne_P₄
@@ -798,6 +930,9 @@ lemma exists_diag_inter (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   rw [← EuclideanGeometry.oangle_rotate_sign]
   exact h.sign_oangle₂₃₄_ne_zero
 
+/--
+@isnad1 id=ne.2h7v.s7.0365a3645ea5 from=translated src=- shape=dab856c3 vocab=227c9da4
+-/
 lemma diag_inter_ne_P₁ (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   {X : Pt} (hX : X ∈ diag_inter_set V Pt P₁ P₂ P₃ P₄)
   : X ≠ P₁ := by
@@ -828,6 +963,9 @@ lemma diag_inter_ne_P₁ (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   · exact h.P₂_ne_P₄
   · exact h.P₁_ne_P₄.symm
 
+/--
+@isnad1 id=sbtw.2h7v.s7.f1eb62b0f8db from=translated src=- shape=50d465b7 vocab=bc73df65
+-/
 lemma diag_inter_sbtw (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   {X : Pt} (hX : X ∈ diag_inter_set V Pt P₁ P₂ P₃ P₄)
   : Sbtw ℝ P₁ X P₃ := by
@@ -884,6 +1022,9 @@ lemma diag_inter_sbtw (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   contrapose! h_sign
   exact h.sign_oangle₂₃₄_ne_zero
 
+/--
+@isnad1 id=sbtw.2h7v.s7.d92fd9939b7c from=translated src=- shape=a443dcf5 vocab=bc73df65
+-/
 lemma diag_inter_sbtw' (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
   {X : Pt} (hX : X ∈ diag_inter_set V Pt P₁ P₂ P₃ P₄)
   : Sbtw ℝ P₂ X P₄ := by
@@ -892,6 +1033,9 @@ lemma diag_inter_sbtw' (h : SphereOrder V Pt P₁ P₂ P₃ P₄)
 
 end SphereOrder
 
+/--
+@isnad1 id=sphereor.5h7v.s7.1f62b6cd6f4f from=translated src=- shape=f9ea8569 vocab=d8a93d43
+-/
 lemma sphereOrder_of_sbtw_diag_inter
   {P₁ P₂ P₃ P₄ X : Pt}
   (h : Cospherical {P₁, P₂, P₃, P₄}) (h₁₂ : P₁ ≠ P₂) (h₂₃ : P₂ ≠ P₃)
@@ -930,12 +1074,18 @@ noncomputable def Sphere.antipode
   s.secondInter p (s.center -ᵥ p)
 
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=mem.1h4v.s5.ec37fb02aa06 from=translated src=- shape=3771769b vocab=0157327b
+-/
 lemma Sphere.antipode_mem_sphere {s : Sphere Pt} {p : Pt} (h : p ∈ s)
   : Sphere.antipode V Pt s p ∈ s := by
   rw [Sphere.antipode, EuclideanGeometry.Sphere.secondInter_mem]
   exact h
 
 omit hd2 [Oriented ℝ V (Fin 2)] in
+/--
+@isnad1 id=isdiamet.1h4v.s6.ec1bf12bfc5f from=translated src=- shape=7eef016b vocab=d813a899
+-/
 lemma Sphere.antipode_isDiameter {s : Sphere Pt} {p : Pt} (h : p ∈ s)
   : Sphere.IsDiameter s p (Sphere.antipode V Pt s p) := by
   rw [Sphere.antipode, EuclideanGeometry.Sphere.isDiameter_iff_mem_and_mem_and_wbtw]
@@ -976,15 +1126,27 @@ variable (cfg : Imo2023q2Cfg V Pt)
 def ABC : Affine.Triangle ℝ Pt :=
   ⟨![cfg.A, cfg.B, cfg.C], cfg.h_ABC⟩
 
+/--
+@isnad1 id=ne.0h3v.s6.1b99504d98e5 from=translated src=- shape=847f2eba vocab=9ae1dd47
+-/
 lemma B_ne_A : cfg.B ≠ cfg.A := by
   exact cfg.h_ABC.injective.ne (by decide : (1 : Fin 3) ≠ 0)
 
+/--
+@isnad1 id=ne.0h3v.s6.912832d60547 from=translated src=- shape=847f2eba vocab=2514bff8
+-/
 lemma C_ne_A : cfg.C ≠ cfg.A := by
   exact cfg.h_ABC.injective.ne (by decide : (2 : Fin 3) ≠ 0)
 
+/--
+@isnad1 id=ne.0h3v.s6.d02b6b3dfa5c from=translated src=- shape=847f2eba vocab=c37aa178
+-/
 lemma B_ne_C : cfg.B ≠ cfg.C := by
   exact cfg.h_ABC.injective.ne (by decide : (1 : Fin 3) ≠ 2)
 
+/--
+@isnad1 id=ne.0h3v.s6.de18f9537f92 from=translated src=- shape=847f2eba vocab=ba3f1c2b
+-/
 lemma S_ne_B : cfg.S ≠ cfg.B := by
   have h := cfg.B_ne_C
   contrapose! h
@@ -993,6 +1155,9 @@ lemma S_ne_B : cfg.S ≠ cfg.B := by
   rw [cfg.h_S_Ω.left]
   exact h
 
+/--
+@isnad1 id=ne.0h3v.s6.f78c04d7252e from=translated src=- shape=847f2eba vocab=8ead9462
+-/
 lemma S_ne_C : cfg.S ≠ cfg.C := by
   have h := cfg.B_ne_C
   contrapose! h
@@ -1001,6 +1166,9 @@ lemma S_ne_C : cfg.S ≠ cfg.C := by
   rw [cfg.h_S_Ω.left, dist_comm] at h
   exact h
 
+/--
+@isnad1 id=ne.0h3v.s6.8661f374828d from=translated src=- shape=847f2eba vocab=e28c9b41
+-/
 lemma S_ne_A : cfg.S ≠ cfg.A := by
   have h' := cfg.h_S_Ω.left
   have h := cfg.h_AB_lt_BC
@@ -1009,21 +1177,33 @@ lemma S_ne_A : cfg.S ≠ cfg.A := by
   rw [← h]
   exact h'
 
+/--
+@isnad1 id=mem.0h3v.s7.8bc4a89a3eca from=translated src=- shape=44fc90f9 vocab=e0691da9
+-/
 lemma A_in_Ω : cfg.A ∈ cfg.Ω := by
   have h := cfg.h_Ω
   rw [Set.insert_subset_iff] at h
   exact h.left
 
+/--
+@isnad1 id=mem.0h3v.s7.caeabd22f95c from=translated src=- shape=44fc90f9 vocab=aec00d2b
+-/
 lemma B_in_Ω : cfg.B ∈ cfg.Ω := by
   have h := cfg.h_Ω
   rw [Set.insert_subset_iff, Set.insert_subset_iff] at h
   exact h.right.left
 
+/--
+@isnad1 id=mem.0h3v.s7.054156e9f5b2 from=translated src=- shape=44fc90f9 vocab=d8f6d345
+-/
 lemma C_in_Ω : cfg.C ∈ cfg.Ω := by
   have h := cfg.h_Ω
   rw [Set.insert_subset_iff, Set.insert_subset_iff, Set.singleton_subset_iff] at h
   exact h.right.right
 
+/--
+@isnad1 id=eq.0h3v.s8.8020d652f51e from=translated src=- shape=78d99a28 vocab=db38aa6f
+-/
 lemma A_opposite_BC : {cfg.B, cfg.C} = Set.range (cfg.ABC.faceOpposite 0).points := by
   ext X
   rw [Set.mem_insert_iff, Set.mem_singleton_iff, Set.mem_range]
@@ -1045,6 +1225,9 @@ lemma A_opposite_BC : {cfg.B, cfg.C} = Set.range (cfg.ABC.faceOpposite 0).points
     · right
       rfl
 
+/--
+@isnad1 id=lt.0h3v.s7.125f3ecd3b3a from=translated src=- shape=c08e6c37 vocab=dd2de93e
+-/
 lemma angle_BAC_acute : ∠ cfg.B cfg.A cfg.C < π / 2 := by
   have h := cfg.h_acute_ABC
   rw [Affine.Triangle.acuteAngled_iff_angle_lt] at h
@@ -1052,6 +1235,9 @@ lemma angle_BAC_acute : ∠ cfg.B cfg.A cfg.C < π / 2 := by
   rw [angle_comm]
   exact h.right.right
 
+/--
+@isnad1 id=lt.0h3v.s7.ca06deffeb58 from=translated src=- shape=c08e6c37 vocab=dd2de93e
+-/
 lemma angle_ACB_acute : ∠ cfg.A cfg.C cfg.B < π / 2 := by
   have h := cfg.h_acute_ABC
   rw [Affine.Triangle.acuteAngled_iff_angle_lt] at h
@@ -1059,6 +1245,9 @@ lemma angle_ACB_acute : ∠ cfg.A cfg.C cfg.B < π / 2 := by
   rw [angle_comm]
   exact h.right.left
 
+/--
+@isnad1 id=lt.0h3v.s7.75dd14353e52 from=translated src=- shape=c08e6c37 vocab=dd2de93e
+-/
 lemma angle_CBA_acute : ∠ cfg.C cfg.B cfg.A < π / 2 := by
   have h := cfg.h_acute_ABC
   rw [Affine.Triangle.acuteAngled_iff_angle_lt] at h
@@ -1066,6 +1255,9 @@ lemma angle_CBA_acute : ∠ cfg.C cfg.B cfg.A < π / 2 := by
   rw [angle_comm]
   exact h.left
 
+/--
+@isnad1 id=lt.0h3v.s7.46e3251ecdaa from=translated src=- shape=1080335c vocab=c6aabb36
+-/
 lemma angle_ACB_lt_angle_CBA : ∠ cfg.A cfg.C cfg.B < ∠ cfg.C cfg.B cfg.A := by
   have h := cfg.h_ABC
   rw [affineIndependent_iff_not_collinear_set] at h
@@ -1073,11 +1265,17 @@ lemma angle_ACB_lt_angle_CBA : ∠ cfg.A cfg.C cfg.B < ∠ cfg.C cfg.B cfg.A := 
   rw [EuclideanGeometry.angle_lt_iff_dist_lt h]
   exact cfg.h_AB_lt_BC
 
+/--
+@isnad1 id=eq.0h3v.s7.cf086bd636c7 from=translated src=- shape=d29b42a3 vocab=9f843d08
+-/
 lemma angle_CBS_eq_angle_SBC : ∠ cfg.C cfg.B cfg.S = ∠ cfg.S cfg.C cfg.B := by
   have h := EuclideanGeometry.angle_eq_angle_of_dist_eq cfg.h_S_Ω.left.symm
   rw [EuclideanGeometry.angle_comm]
   exact h
 
+/--
+@isnad1 id=eq.0h3v.s7.5daa4f18ae20 from=translated src=- shape=2361ad9e vocab=a226f9b1
+-/
 lemma oangle_BSC_eq_oangle_BAC :  ∡ cfg.B cfg.S cfg.C = ∡ cfg.B cfg.A cfg.C := by
   symm
   have h := EuclideanGeometry.Sphere.two_zsmul_oangle_eq cfg.B_in_Ω cfg.A_in_Ω cfg.h_S_Ω.right cfg.C_in_Ω
@@ -1091,10 +1289,16 @@ lemma oangle_BSC_eq_oangle_BAC :  ∡ cfg.B cfg.S cfg.C = ∡ cfg.B cfg.A cfg.C 
   rw [EuclideanGeometry.oangle_rotate_sign cfg.C cfg.B cfg.S]
   exact cfg.h_S_A.symm
 
+/--
+@isnad1 id=eq.0h3v.s7.3e138b9bcaaf from=translated src=- shape=daf9a9ea vocab=453c3ad1
+-/
 lemma angle_BSC_eq_angle_BAC :  ∠ cfg.B cfg.S cfg.C = ∠ cfg.B cfg.A cfg.C := by
   apply angle_eq_of_oangle_eq V Pt _ cfg.S_ne_B.symm cfg.S_ne_C.symm cfg.B_ne_A cfg.C_ne_A
   exact cfg.oangle_BSC_eq_oangle_BAC
 
+/--
+@isnad1 id=eq.0h3v.s7.161922fec25e from=translated src=- shape=3e15a76a vocab=593201af
+-/
 lemma angle_CBS_eq : ∠ cfg.C cfg.B cfg.S = (∠ cfg.C cfg.B cfg.A + ∠ cfg.A cfg.C cfg.B) / 2 := by
   rw [eq_div_iff_mul_eq (by norm_num), mul_two]
   nth_rw 2 [angle_CBS_eq_angle_SBC]
@@ -1105,10 +1309,16 @@ lemma angle_CBS_eq : ∠ cfg.C cfg.B cfg.S = (∠ cfg.C cfg.B cfg.A + ∠ cfg.A 
   rw [h₁, h₂, sub_right_inj]
   exact cfg.angle_BSC_eq_angle_BAC
 
+/--
+@isnad1 id=lt.0h3v.s7.242a65b11f94 from=translated src=- shape=0d0d584f vocab=2a83971c
+-/
 lemma angle_CBS_lt_angle_CBA : ∠ cfg.C cfg.B cfg.S < ∠ cfg.C cfg.B cfg.A := by
   rw [cfg.angle_CBS_eq, div_lt_iff₀ (by norm_num), mul_two, add_lt_add_iff_left]
   exact cfg.angle_ACB_lt_angle_CBA
 
+/--
+@isnad1 id=eq.0h3v.s7.6fecc261e635 from=translated src=- shape=a72b5f8d vocab=c88e9a94
+-/
 lemma sign_oangle_SBA_eq_sign_oangle_CBS
   : (∡ cfg.S cfg.B cfg.A).sign = (∡ cfg.C cfg.B cfg.S).sign := by
   have h := EuclideanGeometry.oangle_add cfg.B_ne_C.symm cfg.S_ne_B cfg.B_ne_A.symm
@@ -1119,6 +1329,9 @@ lemma sign_oangle_SBA_eq_sign_oangle_CBS
   symm
   exact aux₅ h h'' h'
 
+/--
+@isnad1 id=sphereor.0h3v.s7.095e4032db91 from=translated src=- shape=302241f3 vocab=883b4425
+-/
 lemma sphereOrder_BASC : SphereOrder V Pt cfg.B cfg.A cfg.S cfg.C := by
   constructor
   · rw [EuclideanGeometry.cospherical_iff_exists_sphere]
@@ -1144,14 +1357,23 @@ lemma sphereOrder_BASC : SphereOrder V Pt cfg.B cfg.A cfg.S cfg.C := by
 
 noncomputable def M := Sphere.antipode V Pt cfg.Ω cfg.S
 
+/--
+@isnad1 id=mem.0h3v.s7.f94615bad283 from=translated src=- shape=44fc90f9 vocab=2c7b13af
+-/
 lemma M_in_Ω : cfg.M ∈ cfg.Ω := by
   apply Sphere.antipode_mem_sphere
   exact cfg.h_S_Ω.right
 
+/--
+@isnad1 id=isdiamet.0h3v.s7.b34095c3a3db from=translated src=- shape=d23841e8 vocab=8d714078
+-/
 lemma isDiameter_SM : cfg.Ω.IsDiameter cfg.S cfg.M := by
   apply Sphere.antipode_isDiameter
   exact cfg.h_S_Ω.right
 
+/--
+@isnad1 id=ne.0h3v.s6.ac566637a5f8 from=translated src=- shape=cef24797 vocab=347071de
+-/
 lemma Ω_radius_ne_zero : cfg.Ω.radius ≠ 0 := by
   have h := cfg.B_ne_A
   contrapose! h
@@ -1160,27 +1382,45 @@ lemma Ω_radius_ne_zero : cfg.Ω.radius ≠ 0 := by
   rw [EuclideanGeometry.mem_sphere, h, dist_eq_zero] at h₁ h₂
   rw [h₁, h₂]
 
+/--
+@isnad1 id=sbtw.0h3v.s7.6420a22cb645 from=translated src=- shape=f11c336b vocab=cae216b5
+-/
 lemma sbtw_SOM : Sbtw ℝ cfg.S cfg.Ω.center cfg.M := by
   exact cfg.isDiameter_SM.sbtw cfg.Ω_radius_ne_zero
 
+/--
+@isnad1 id=ne.0h3v.s7.86581af2bac6 from=translated src=- shape=92f21292 vocab=1eca6f35
+-/
 lemma O_ne_A : cfg.Ω.center ≠ cfg.A := by
   have h := cfg.Ω_radius_ne_zero
   contrapose! h
   rw [← dist_eq_zero, dist_comm, EuclideanGeometry.mem_sphere.mp cfg.A_in_Ω] at h
   exact h
 
+/--
+@isnad1 id=ne.0h3v.s6.993d10ab6ccb from=translated src=- shape=847f2eba vocab=0c0b9cb1
+-/
 lemma S_ne_M : cfg.S ≠ cfg.M := by
   rw [EuclideanGeometry.Sphere.IsDiameter.left_ne_right_iff_radius_ne_zero cfg.isDiameter_SM]
   exact cfg.Ω_radius_ne_zero
 
+/--
+@isnad1 id=eq.0h3v.s7.aa4749d25831 from=translated src=- shape=478d987d vocab=68612ae3
+-/
 lemma angle_SBM_eq : ∠ cfg.S cfg.B cfg.M = Real.pi / 2 := by
   rw [EuclideanGeometry.Sphere.thales_theorem cfg.isDiameter_SM]
   exact cfg.B_in_Ω
 
+/--
+@isnad1 id=eq.0h3v.s7.67c5bdc55025 from=translated src=- shape=478d987d vocab=5d60fd30
+-/
 lemma angle_SCM_eq : ∠ cfg.S cfg.C cfg.M = Real.pi / 2 := by
   rw [EuclideanGeometry.Sphere.thales_theorem cfg.isDiameter_SM]
   exact cfg.C_in_Ω
 
+/--
+@isnad1 id=eq.0h3v.s7.3df5a771869e from=translated src=- shape=c77891fb vocab=fcc0435e
+-/
 lemma BM_eq_CM : dist cfg.B cfg.M = dist cfg.C cfg.M := by
   nth_rw 1 [dist_comm]
   nth_rw 2 [dist_comm]
@@ -1191,6 +1431,9 @@ lemma BM_eq_CM : dist cfg.B cfg.M = dist cfg.C cfg.M := by
   rw [← sub_eq_iff_eq_add'] at h₁ h₂
   rw [← h₁, ← h₂, cfg.h_S_Ω.left]
 
+/--
+@isnad1 id=ne.0h3v.s6.b9b3d76cfc0c from=translated src=- shape=847f2eba vocab=f3fa83ec
+-/
 lemma M_ne_B : cfg.M ≠ cfg.B := by
   have h := cfg.B_ne_C
   contrapose! h
@@ -1199,6 +1442,9 @@ lemma M_ne_B : cfg.M ≠ cfg.B := by
   rw [dist_comm, cfg.BM_eq_CM, dist_comm] at h
   exact h
 
+/--
+@isnad1 id=ne.0h3v.s6.12ecf8d02f0b from=translated src=- shape=847f2eba vocab=ebbfdbd9
+-/
 lemma M_ne_C : cfg.M ≠ cfg.C := by
   have h := cfg.B_ne_C
   contrapose! h
@@ -1207,15 +1453,24 @@ lemma M_ne_C : cfg.M ≠ cfg.C := by
   rw [dist_comm, ← cfg.BM_eq_CM] at h
   exact h
 
+/--
+@isnad1 id=lt.0h3v.s7.57bcd95d9280 from=translated src=- shape=c08e6c37 vocab=44ebf8e0
+-/
 lemma angle_CMS_lt : ∠ cfg.C cfg.M cfg.S < Real.pi / 2 := by
   apply EuclideanGeometry.angle_lt_pi_div_two_of_angle_eq_pi_div_two cfg.angle_SCM_eq
   exact cfg.M_ne_C
 
+/--
+@isnad1 id=lt.0h3v.s7.789fc26fdbd0 from=translated src=- shape=c08e6c37 vocab=10bf63cb
+-/
 lemma angle_SMB_lt : ∠ cfg.S cfg.M cfg.B < Real.pi / 2 := by
   rw [angle_comm]
   apply EuclideanGeometry.angle_lt_pi_div_two_of_angle_eq_pi_div_two cfg.angle_SBM_eq
   exact cfg.M_ne_B
 
+/--
+@isnad1 id=eq.0h3v.s7.0e5955d9ceee from=translated src=- shape=d68aba02 vocab=4fe8efde
+-/
 lemma oangle_CMS_eq_oangle_SMB :
     ∡ cfg.C cfg.M cfg.S = ∡ cfg.S cfg.M cfg.B := by
   have h₁ := EuclideanGeometry.Sphere.two_zsmul_oangle_eq cfg.C_in_Ω cfg.M_in_Ω cfg.B_in_Ω cfg.h_S_Ω.right
@@ -1232,6 +1487,9 @@ lemma oangle_CMS_eq_oangle_SMB :
   rw [Real.Angle.two_zsmul_eq_iff_eq_of_abs_toReal_lt_pi_div_two h' h''] at h
   exact h
 
+/--
+@isnad1 id=sphereor.0h3v.s7.5f8eb2a06896 from=translated src=- shape=302241f3 vocab=2dee5774
+-/
 lemma sphereOrder_BSCM : SphereOrder V Pt cfg.B cfg.S cfg.C cfg.M := by
   apply SphereOrder.rotate'
   constructor
@@ -1256,46 +1514,76 @@ lemma sphereOrder_BSCM : SphereOrder V Pt cfg.B cfg.S cfg.C cfg.M := by
     rw [EuclideanGeometry.oangle_rotate_sign cfg.S cfg.M cfg.B]
     rw [cfg.oangle_CMS_eq_oangle_SMB]
 
+/--
+@isnad1 id=sphereor.0h3v.s7.1c326aa70ec2 from=translated src=- shape=302241f3 vocab=f34a6cad
+-/
 lemma sphereOrder_BASM : SphereOrder V Pt cfg.B cfg.A cfg.S cfg.M := by
   exact (cfg.sphereOrder_BASC.trans V Pt cfg.sphereOrder_BSCM.rotate).rotate
 
+/--
+@isnad1 id=sphereor.0h3v.s7.c110e5c0fb18 from=translated src=- shape=302241f3 vocab=e58e29a0
+-/
 lemma sphereOrder_BACM : SphereOrder V Pt cfg.B cfg.A cfg.C cfg.M := by
   exact (cfg.sphereOrder_BASC.trans'' V Pt cfg.sphereOrder_BSCM.rotate).symm
 
+/--
+@isnad1 id=ne.0h3v.s6.18d0e2980792 from=translated src=- shape=847f2eba vocab=0f9dbeaa
+-/
 lemma M_ne_A : cfg.M ≠ cfg.A := by
   exact cfg.sphereOrder_BASM.P₂_ne_P₄.symm
 
 def X_set := diag_inter_set V Pt cfg.B cfg.A cfg.S cfg.M
 
+/--
+@isnad1 id=ex.0h3v.s6.de890ddd4642 from=translated src=- shape=1f961c30 vocab=f390b54e
+-/
 lemma exists_X : ∃ X : Pt, X ∈ cfg.X_set := by
   exact cfg.sphereOrder_BASM.exists_diag_inter
 
+/--
+@isnad1 id=ne.1h4v.s7.5aa945877861 from=translated src=- shape=1e7f9235 vocab=a1438920
+-/
 lemma X_ne_A
     {X : Pt} (hX : X ∈ cfg.X_set) :
     X ≠ cfg.A := by
   rw [X_set, diag_inter_set_rotate] at hX
   exact cfg.sphereOrder_BASM.rotate.diag_inter_ne_P₁ V Pt hX
 
+/--
+@isnad1 id=ne.1h4v.s7.9e4f93e03c88 from=translated src=- shape=1e7f9235 vocab=b1089ce0
+-/
 lemma X_ne_S
     {X : Pt} (hX : X ∈ cfg.X_set) :
     X ≠ cfg.S := by
   rw [X_set, diag_inter_set_rotate, diag_inter_set_rotate] at hX
   exact cfg.sphereOrder_BASM.symm.diag_inter_ne_P₁ V Pt hX
 
+/--
+@isnad1 id=ne.1h4v.s7.601d72a55a7a from=translated src=- shape=1e7f9235 vocab=25aa1f25
+-/
 lemma X_ne_M
     {X : Pt} (hX : X ∈ cfg.X_set) :
     X ≠ cfg.M := by
   rw [X_set, ← diag_inter_set_rotate] at hX
   exact cfg.sphereOrder_BASM.rotate'.diag_inter_ne_P₁ V Pt hX
 
+/--
+@isnad1 id=sbtw.1h4v.s7.96d0b0a5da35 from=translated src=- shape=cd27c5f2 vocab=72b0e6b9
+-/
 lemma sbtw_AXM
     {X : Pt} (hX : X ∈ cfg.X_set) : Sbtw ℝ cfg.A X cfg.M := by
   exact cfg.sphereOrder_BASM.diag_inter_sbtw' V Pt hX
 
+/--
+@isnad1 id=sbtw.1h4v.s7.62ffc377ef96 from=translated src=- shape=cd27c5f2 vocab=b616036f
+-/
 lemma sbtw_BXS
     {X : Pt} (hX : X ∈ cfg.X_set) : Sbtw ℝ cfg.B X cfg.S := by
   exact cfg.sphereOrder_BASM.diag_inter_sbtw V Pt hX
 
+/--
+@isnad1 id=ne.1h4v.s7.c733de184322 from=translated src=- shape=25f9a4f8 vocab=e9ed2e06
+-/
 lemma X_ne_O
     {X : Pt} (hX : X ∈ cfg.X_set) :
     X ≠ cfg.Ω.center := by
@@ -1306,6 +1594,9 @@ lemma X_ne_O
   contrapose! h
   rw [h, oangle_self_left_right, Real.Angle.sign_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.7b79ab75e9b1 from=translated src=- shape=d68aba02 vocab=5fb92ab6
+-/
 lemma oangle_BAM_eq_oangle_MAC :
     ∡ cfg.B cfg.A cfg.M = ∡ cfg.M cfg.A cfg.C := by
   have h₁ := EuclideanGeometry.Sphere.two_zsmul_oangle_eq cfg.B_in_Ω cfg.A_in_Ω cfg.C_in_Ω cfg.M_in_Ω
@@ -1326,11 +1617,17 @@ lemma oangle_BAM_eq_oangle_MAC :
     exact cfg.sphereOrder_BACM.rotate'.sign_oangle₁₂₃_ne_zero
   apply aux₆ h' h'' h
 
+/--
+@isnad1 id=eq.0h3v.s7.3a29304af10c from=translated src=- shape=4479074c vocab=903f2167
+-/
 lemma angle_BAM_eq_angle_MAC :
   ∠ cfg.B cfg.A cfg.M = ∠ cfg.M cfg.A cfg.C := by
   exact angle_eq_of_oangle_eq V Pt cfg.oangle_BAM_eq_oangle_MAC
     cfg.B_ne_A cfg.M_ne_A cfg.M_ne_A cfg.C_ne_A
 
+/--
+@isnad1 id=eq.1h4v.s7.34928d1fb3ce from=translated src=- shape=26608042 vocab=f4aa6b69
+-/
 lemma oangle_BAX_eq_oangle_XAC
     {X : Pt} (hX : X ∈ cfg.X_set) :
     ∡ cfg.B cfg.A X = ∡ X cfg.A cfg.C := by
@@ -1341,12 +1638,18 @@ lemma oangle_BAX_eq_oangle_XAC
   rw [Wbtw.oangle₂₁₃_eq_zero (cfg.sbtw_AXM V Pt hX).wbtw]
   norm_num
 
+/--
+@isnad1 id=eq.1h4v.s7.790571cfa608 from=translated src=- shape=51a62135 vocab=6e1d38a4
+-/
 lemma angle_BAX_eq_angle_XAC
     {X : Pt} (hX : X ∈ cfg.X_set) :
     ∠ cfg.B cfg.A X = ∠ X cfg.A cfg.C := by
   exact angle_eq_of_oangle_eq V Pt (cfg.oangle_BAX_eq_oangle_XAC V Pt hX)
     cfg.B_ne_A (cfg.X_ne_A V Pt hX) (cfg.X_ne_A V Pt hX) cfg.C_ne_A
 
+/--
+@isnad1 id=lt.0h3v.s7.b8568451c70a from=translated src=- shape=c08e6c37 vocab=c65bcf68
+-/
 lemma angle_BAM_acute : ∠ cfg.B cfg.A cfg.M < π / 2 := by
   have h := cfg.angle_BAC_acute
   apply lt_of_lt_of_le' h
@@ -1354,6 +1657,9 @@ lemma angle_BAM_acute : ∠ cfg.B cfg.A cfg.M < π / 2 := by
   rw [← h', le_add_iff_nonneg_right]
   apply angle_nonneg
 
+/--
+@isnad1 id=eq.1h4v.s7.a66ec06b91a9 from=translated src=- shape=cd32ad18 vocab=eb8c443c
+-/
 lemma angle_BAM_eq_angle_BAX
   {X : Pt} (hX : X ∈ cfg.X_set) :
   ∠ cfg.B cfg.A cfg.M = ∠ cfg.B cfg.A X := by
@@ -1362,6 +1668,9 @@ lemma angle_BAM_eq_angle_BAX
   right
   exact (cfg.sbtw_AXM V Pt hX).wbtw
 
+/--
+@isnad1 id=eq.0h3v.s7.c152134056b1 from=translated src=- shape=34a40ccc vocab=28d0567a
+-/
 lemma angle_BAM_eq : ∠ cfg.B cfg.A cfg.M = (π - ∠ cfg.C cfg.B cfg.A - ∠ cfg.A cfg.C cfg.B) / 2 := by
   have h := cfg.sphereOrder_BACM.angle₁₂₄_add_angle₄₂₃_eq_angle₁₂₃
   rw [← cfg.angle_BAM_eq_angle_MAC, ← mul_two, ← eq_div_iff_mul_eq (by norm_num)] at h
@@ -1371,35 +1680,56 @@ lemma angle_BAM_eq : ∠ cfg.B cfg.A cfg.M = (π - ∠ cfg.C cfg.B cfg.A - ∠ c
   rw [h']
   ring
 
+/--
+@isnad1 id=lt.1h4v.s7.d5b8980f2344 from=translated src=- shape=b507a3b3 vocab=3521d9ee
+-/
 lemma XO_lt_Ω_radius {X : Pt} (hX : X ∈ cfg.X_set)
   : dist X cfg.Ω.center < cfg.Ω.radius := by
   apply Sphere.dist_le_radius_of_sbtw V Pt (cfg.sbtw_AXM V Pt hX) cfg.A_in_Ω cfg.M_in_Ω
 
+/--
+@isnad1 id=mem.0h3v.s7.995170dbe92b from=translated src=- shape=44fc90f9 vocab=301a42a2
+-/
 lemma P_in_Ω : cfg.P ∈ cfg.Ω := by
   have h := cfg.h_P
   rw [Set.mem_inter_iff] at h
   exact h.right
 
+/--
+@isnad1 id=mem.0h3v.s7.12911873b991 from=translated src=- shape=44fc90f9 vocab=8f2fa960
+-/
 lemma B_in_ω : cfg.B ∈ cfg.ω := by
   have h := cfg.h_ω
   rw [Set.insert_subset_iff] at h
   exact h.left
 
+/--
+@isnad1 id=mem.0h3v.s7.ce4e12bb69e8 from=translated src=- shape=44fc90f9 vocab=52f22252
+-/
 lemma D_in_ω : cfg.D ∈ cfg.ω := by
   have h := cfg.h_ω
   rw [Set.insert_subset_iff, Set.insert_subset_iff] at h
   exact h.right.left
 
+/--
+@isnad1 id=mem.0h3v.s7.09a9845c888f from=translated src=- shape=44fc90f9 vocab=bc1c3796
+-/
 lemma L_in_ω : cfg.L ∈ cfg.ω := by
   have h := cfg.h_ω
   rw [Set.insert_subset_iff, Set.insert_subset_iff, Set.singleton_subset_iff] at h
   exact h.right.right
 
+/--
+@isnad1 id=mem.0h3v.s7.6039767779ad from=translated src=- shape=44fc90f9 vocab=95bad7d9
+-/
 lemma P_in_ω : cfg.P ∈ cfg.ω := by
   have h := cfg.h_P
   rw [Set.mem_inter_iff] at h
   exact h.left
 
+/--
+@isnad1 id=ne.0h3v.s6.7b53b9e4294d from=translated src=- shape=cef24797 vocab=8c88357c
+-/
 lemma ω_radius_ne_zero : cfg.ω.radius ≠ 0 := by
   have h := cfg.h_P_ne_B
   contrapose! h
@@ -1408,6 +1738,9 @@ lemma ω_radius_ne_zero : cfg.ω.radius ≠ 0 := by
   rw [EuclideanGeometry.mem_sphere, h, dist_eq_zero] at h₁ h₂
   rw [h₁, h₂]
 
+/--
+@isnad1 id=ne.1h4v.s7.4bc5a2ca1b48 from=translated src=- shape=41d3edc0 vocab=fa82d186
+-/
 lemma P_ne_X {X : Pt} (hX : X ∈ cfg.X_set)
   : cfg.P ≠ X := by
   have h := cfg.XO_lt_Ω_radius V Pt hX
@@ -1417,6 +1750,9 @@ lemma P_ne_X {X : Pt} (hX : X ∈ cfg.X_set)
   rw [EuclideanGeometry.mem_sphere] at h'
   rw [← h, h']
 
+/--
+@isnad1 id=eq.0h3v.s7.ff0ec68d446a from=translated src=- shape=30df6152 vocab=b2888936
+-/
 lemma perp_A_BC_eq_AE : cfg.perp_A_BC = line[ℝ, cfg.A, cfg.E] := by
   symm
   have h_E := cfg.h_E
@@ -1443,6 +1779,9 @@ lemma perp_A_BC_eq_AE : cfg.perp_A_BC = line[ℝ, cfg.A, cfg.E] := by
     apply Set.insert_nonempty
   · exact h
 
+/--
+@isnad1 id=mem.0h3v.s7.04b835b68dfe from=translated src=- shape=44fc90f9 vocab=75f6cebb
+-/
 lemma E_in_Ω : cfg.E ∈ cfg.Ω := by
   have h := cfg.h_E
   rw [Set.mem_inter_iff] at h
@@ -1450,11 +1789,17 @@ lemma E_in_Ω : cfg.E ∈ cfg.Ω := by
 
 noncomputable def H : Pt := cfg.ABC.altitudeFoot 0
 
+/--
+@isnad1 id=collinea.0h3v.s7.1a98e3b9d890 from=translated src=- shape=154f386b vocab=f01e983c
+-/
 lemma collinear_HBC : Collinear ℝ {cfg.H, cfg.B, cfg.C} := by
   apply collinear_insert_of_mem_affineSpan_pair
   rw [cfg.A_opposite_BC]
   apply altitudeFoot_mem_affineSpan_faceOpposite
 
+/--
+@isnad1 id=eq.1h4v.s7.3c58506fea1a from=translated src=- shape=6b04ff9c vocab=72cea82f
+-/
 lemma angle_AHx_eq : ∀ x ∈ ({cfg.B, cfg.C} : Set _), ∠ cfg.A cfg.H x = Real.pi / 2 := by
   intro x hx
   rw [EuclideanGeometry.angle, ← InnerProductGeometry.inner_eq_zero_iff_angle_eq_pi_div_two]
@@ -1469,14 +1814,23 @@ lemma angle_AHx_eq : ∀ x ∈ ({cfg.B, cfg.C} : Set _), ∠ cfg.A cfg.H x = Rea
       exact Collinear.mem_affineSpan_of_mem_of_ne cfg.collinear_HBC (by simp:_) (by simp:_) (by simp:_) cfg.B_ne_C
   · apply vsub_mem_vectorSpan _ (mem_altitude cfg.ABC 0) (altitudeFoot_mem_altitude cfg.ABC 0)
 
+/--
+@isnad1 id=eq.0h3v.s7.621bf5f5222f from=translated src=- shape=478d987d vocab=42e5b814
+-/
 lemma angle_AHC_eq : ∠ cfg.A cfg.H cfg.C = Real.pi / 2 := by
   apply angle_AHx_eq
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.e60c97fee571 from=translated src=- shape=478d987d vocab=c1293627
+-/
 lemma angle_AHB_eq : ∠ cfg.A cfg.H cfg.B = Real.pi / 2 := by
   apply angle_AHx_eq
   simp
 
+/--
+@isnad1 id=not.0h3v.s7.85ead4792f82 from=translated src=- shape=b7e229d6 vocab=2a0ce823
+-/
 lemma not_sbtw_BCH : ¬Sbtw ℝ cfg.B cfg.C cfg.H := by
   intro h
   have h₁ := h.angle₁₂₃_eq_pi
@@ -1493,6 +1847,9 @@ lemma not_sbtw_BCH : ¬Sbtw ℝ cfg.B cfg.C cfg.H := by
       apply add_lt_add_of_lt_of_le cfg.angle_ACB_acute h₃
     _ = Real.pi := by ring
 
+/--
+@isnad1 id=not.0h3v.s7.1bb419e81a9e from=translated src=- shape=b7e229d6 vocab=2a0ce823
+-/
 lemma not_sbtw_CBH : ¬Sbtw ℝ cfg.C cfg.B cfg.H := by
   intro h
   have h₁ := h.angle₁₂₃_eq_pi
@@ -1508,6 +1865,9 @@ lemma not_sbtw_CBH : ¬Sbtw ℝ cfg.C cfg.B cfg.H := by
       apply add_lt_add_of_lt_of_le cfg.angle_CBA_acute h₃
     _ = Real.pi := by ring
 
+/--
+@isnad1 id=wbtw.0h3v.s7.f557e4951684 from=translated src=- shape=3584815b vocab=8f5c03ea
+-/
 lemma wbtw_BHC : Wbtw ℝ cfg.B cfg.H cfg.C := by
   have h₁ := cfg.not_sbtw_BCH
   have h₂ := cfg.not_sbtw_CBH
@@ -1516,18 +1876,27 @@ lemma wbtw_BHC : Wbtw ℝ cfg.B cfg.H cfg.C := by
   rw [wbtw_comm]
   tauto
 
+/--
+@isnad1 id=ne.0h3v.s6.920eb7ce4d96 from=translated src=- shape=847f2eba vocab=1c587dfa
+-/
 lemma H_ne_B : cfg.H ≠ cfg.B := by
   have h := cfg.angle_CBA_acute
   contrapose! h
   apply le_of_eq
   rw [← h, angle_comm, cfg.angle_AHC_eq]
 
+/--
+@isnad1 id=ne.0h3v.s6.763e9abe04cb from=translated src=- shape=847f2eba vocab=d90268c7
+-/
 lemma H_ne_C : cfg.H ≠ cfg.C := by
   have h := cfg.angle_ACB_acute
   contrapose! h
   apply le_of_eq
   rw [← h, cfg.angle_AHB_eq]
 
+/--
+@isnad1 id=sbtw.0h3v.s7.e19f9d669c36 from=translated src=- shape=3584815b vocab=2a0ce823
+-/
 lemma sbtw_BHC : Sbtw ℝ cfg.B cfg.H cfg.C := by
   rw [Sbtw]
   constructorm* _ ∧ _
@@ -1535,6 +1904,9 @@ lemma sbtw_BHC : Sbtw ℝ cfg.B cfg.H cfg.C := by
   · exact cfg.H_ne_B
   · exact cfg.H_ne_C
 
+/--
+@isnad1 id=eq.0h3v.s8.26d8a6c01e10 from=translated src=- shape=88060907 vocab=dc6ecda3
+-/
 lemma AE_eq_altitude : line[ℝ, cfg.A, cfg.E] = cfg.ABC.altitude 0 := by
   apply AffineSubspace.ext_of_direction_eq
   · rw [Affine.Simplex.direction_altitude]
@@ -1561,23 +1933,38 @@ lemma AE_eq_altitude : line[ℝ, cfg.A, cfg.E] = cfg.ABC.altitude 0 := by
       simp at h
       exact h
 
+/--
+@isnad1 id=collinea.0h3v.s7.68dae49260ce from=translated src=- shape=154f386b vocab=ca08da79
+-/
 lemma collinear_AHE : Collinear ℝ {cfg.A, cfg.H, cfg.E} := by
   rw [Set.insert_comm]
   apply collinear_insert_of_mem_affineSpan_pair
   rw [AE_eq_altitude]
   apply Affine.Simplex.altitudeFoot_mem_altitude
 
+/--
+@isnad1 id=lt.0h3v.s7.cd6d21e5db12 from=translated src=- shape=50bfe9ee vocab=9204d87c
+-/
 lemma HO_lt_Ω_radius
   : dist cfg.H cfg.Ω.center < cfg.Ω.radius := by
   apply Sphere.dist_le_radius_of_sbtw V Pt cfg.sbtw_BHC cfg.B_in_Ω cfg.C_in_Ω
 
+/--
+@isnad1 id=sbtw.0h3v.s7.a8a04beb13f7 from=translated src=- shape=3584815b vocab=1ef376e1
+-/
 lemma sbtw_AHE : Sbtw ℝ cfg.A cfg.H cfg.E := by
   apply EuclideanGeometry.sbtw_of_collinear_of_dist_center_lt_radius
     cfg.collinear_AHE cfg.A_in_Ω cfg.HO_lt_Ω_radius cfg.E_in_Ω cfg.h_E_ne_A.symm
 
+/--
+@isnad1 id=ne.0h3v.s6.45cc1b5e574d from=translated src=- shape=847f2eba vocab=9902497b
+-/
 lemma H_ne_A : cfg.H ≠ cfg.A := by
   exact cfg.sbtw_AHE.ne_left
 
+/--
+@isnad1 id=sphereor.0h3v.s7.55161a5c5c32 from=translated src=- shape=302241f3 vocab=8de90474
+-/
 lemma sphereOrder_BACE : SphereOrder V Pt cfg.B cfg.A cfg.C cfg.E := by
   apply sphereOrder_of_sbtw_diag_inter V Pt _ cfg.B_ne_A cfg.C_ne_A.symm
     cfg.sbtw_BHC cfg.sbtw_AHE
@@ -1591,6 +1978,9 @@ lemma sphereOrder_BACE : SphereOrder V Pt cfg.B cfg.A cfg.C cfg.E := by
   · exact cfg.C_in_Ω
   · exact cfg.E_in_Ω
 
+/--
+@isnad1 id=eq.0h3v.s7.5b4ef8f2c96f from=translated src=- shape=f8698b5d vocab=120d74c9
+-/
 lemma sign_oangle_BAE_eq_sign_oangle_BAM
   : (∡ cfg.B cfg.A cfg.E).sign = (∡ cfg.B cfg.A cfg.M).sign := by
   rw [EuclideanGeometry.oangle_rotate_sign]
@@ -1598,6 +1988,9 @@ lemma sign_oangle_BAE_eq_sign_oangle_BAM
   rw [← cfg.sphereOrder_BACM.rotate'.sign_oangle₁₂₃_eq_sign_oangle₂₃₄]
   rw [← EuclideanGeometry.oangle_rotate_sign]
 
+/--
+@isnad1 id=eq.0h3v.s7.f1e30cf8cfd2 from=translated src=- shape=4a67f309 vocab=59a15692
+-/
 lemma angle_BAE_eq_BAH :
   ∠ cfg.B cfg.A cfg.E = ∠ cfg.B cfg.A cfg.H := by
   rw [angle_comm, EuclideanGeometry.angle_eq_iff_oangle_eq_or_wbtw cfg.h_E_ne_A cfg.sbtw_AHE.ne_left]
@@ -1605,6 +1998,9 @@ lemma angle_BAE_eq_BAH :
   right
   exact (cfg.sbtw_AHE).wbtw
 
+/--
+@isnad1 id=eq.0h3v.s7.e0b11629b03f from=translated src=- shape=4479074c vocab=4ddd692d
+-/
 lemma angle_HBA_eq_CBA :
   ∠ cfg.H cfg.B cfg.A = ∠ cfg.C cfg.B cfg.A := by
   rw [angle_comm]
@@ -1614,6 +2010,9 @@ lemma angle_HBA_eq_CBA :
   right
   exact (cfg.sbtw_BHC).wbtw
 
+/--
+@isnad1 id=eq.0h3v.s7.21a82d815df6 from=translated src=- shape=d73c4b64 vocab=d9553b48
+-/
 lemma angle_BAE_eq : ∠ cfg.B cfg.A cfg.E = π / 2 - ∠ cfg.C cfg.B cfg.A := by
   rw [angle_BAE_eq_BAH, ← angle_HBA_eq_CBA, eq_sub_iff_add_eq, add_comm]
   have h := EuclideanGeometry.angle_add_angle_add_angle_eq_pi cfg.A cfg.sbtw_BHC.ne_left.symm
@@ -1621,12 +2020,18 @@ lemma angle_BAE_eq : ∠ cfg.B cfg.A cfg.E = π / 2 - ∠ cfg.C cfg.B cfg.A := b
   rw [h, cfg.angle_AHB_eq]
   ring
 
+/--
+@isnad1 id=lt.0h3v.s7.aab0c9e53a2b from=translated src=- shape=0d0d584f vocab=3720cf23
+-/
 lemma angle_BAE_lt_angle_BAM : ∠ cfg.B cfg.A cfg.E < ∠ cfg.B cfg.A cfg.M := by
   rw [cfg.angle_BAM_eq, cfg.angle_BAE_eq, ← sub_pos]
   ring_nf
   rw [neg_div, mul_neg, ← sub_eq_add_neg, sub_pos, mul_lt_mul_iff_left₀ (by norm_num)]
   exact cfg.angle_ACB_lt_angle_CBA
 
+/--
+@isnad1 id=eq.0h3v.s7.7922871dc6df from=translated src=- shape=a72b5f8d vocab=120d74c9
+-/
 lemma sign_oangle_EAM_eq_sign_oangle_BAE
   : (∡ cfg.E cfg.A cfg.M).sign = (∡ cfg.B cfg.A cfg.E).sign := by
   have h := EuclideanGeometry.oangle_add cfg.B_ne_A cfg.h_E_ne_A cfg.M_ne_A
@@ -1637,6 +2042,9 @@ lemma sign_oangle_EAM_eq_sign_oangle_BAE
   symm
   exact aux₅ h h'' h'
 
+/--
+@isnad1 id=sphereor.0h3v.s7.4af9df705fcc from=translated src=- shape=302241f3 vocab=703265f9
+-/
 lemma sphereOrder_BAME : SphereOrder V Pt cfg.B cfg.A cfg.M cfg.E := by
   apply SphereOrder.rotate
   constructor
@@ -1654,24 +2062,45 @@ lemma sphereOrder_BAME : SphereOrder V Pt cfg.B cfg.A cfg.M cfg.E := by
     rw [← sign_oangle_EAM_eq_sign_oangle_BAE]
     rw [← EuclideanGeometry.oangle_rotate_sign]
 
+/--
+@isnad1 id=sphereor.0h3v.s7.c3bc191357fc from=translated src=- shape=302241f3 vocab=a4fe269b
+-/
 lemma sphereOrder_BASE : SphereOrder V Pt cfg.B cfg.A cfg.S cfg.E := by
   exact (cfg.sphereOrder_BACE.symm.trans' V Pt cfg.sphereOrder_BASC).rotate
 
+/--
+@isnad1 id=sphereor.0h3v.s7.a5729b546ce0 from=translated src=- shape=302241f3 vocab=68615ec3
+-/
 lemma sphereOrder_ASME : SphereOrder V Pt cfg.A cfg.S cfg.M cfg.E := by
   exact cfg.sphereOrder_BAME.symm.trans'' V Pt cfg.sphereOrder_BASM
 
+/--
+@isnad1 id=ne.0h3v.s6.af7aff7c6e15 from=translated src=- shape=847f2eba vocab=d8064269
+-/
 lemma E_ne_S : cfg.E ≠ cfg.S := by
   exact cfg.sphereOrder_BASE.P₃_ne_P₄.symm
 
+/--
+@isnad1 id=ne.0h3v.s6.66900eca44e8 from=translated src=- shape=847f2eba vocab=659a4b0c
+-/
 lemma E_ne_B : cfg.E ≠ cfg.B := by
   exact cfg.sphereOrder_BASE.P₁_ne_P₄.symm
 
+/--
+@isnad1 id=ne.0h3v.s6.a41728b0a3e9 from=translated src=- shape=847f2eba vocab=853659e2
+-/
 lemma E_ne_C : cfg.E ≠ cfg.C := by
   exact cfg.sphereOrder_BACE.P₃_ne_P₄.symm
 
+/--
+@isnad1 id=ne.0h3v.s6.72519d4c2a58 from=translated src=- shape=847f2eba vocab=e972b26b
+-/
 lemma E_ne_H : cfg.E ≠ cfg.H := by
   exact cfg.sbtw_AHE.ne_right.symm
 
+/--
+@isnad1 id=mem.0h3v.s7.cc357036eb5f from=translated src=- shape=2fdf064c vocab=3d4e49fd
+-/
 lemma D_in_diag_inter_BASE : cfg.D ∈ diag_inter_set V Pt cfg.B cfg.A cfg.S cfg.E:= by
   have h := cfg.h_D
   constructor
@@ -1679,28 +2108,52 @@ lemma D_in_diag_inter_BASE : cfg.D ∈ diag_inter_set V Pt cfg.B cfg.A cfg.S cfg
   · rw [← cfg.perp_A_BC_eq_AE]
     exact h.left
 
+/--
+@isnad1 id=ne.0h3v.s6.cf619f609163 from=translated src=- shape=847f2eba vocab=68d46524
+-/
 lemma D_ne_B : cfg.D ≠ cfg.B := by
   exact cfg.sphereOrder_BASE.diag_inter_ne_P₁ V Pt cfg.D_in_diag_inter_BASE
 
+/--
+@isnad1 id=sbtw.0h3v.s7.47494c5345a3 from=translated src=- shape=3584815b vocab=8c265071
+-/
 lemma sbtw_BDS : Sbtw ℝ cfg.B cfg.D cfg.S := by
   exact cfg.sphereOrder_BASE.diag_inter_sbtw V Pt cfg.D_in_diag_inter_BASE
 
+/--
+@isnad1 id=sbtw.0h3v.s7.a4bba3fa8216 from=translated src=- shape=3584815b vocab=3185f466
+-/
 lemma sbtw_ADE : Sbtw ℝ cfg.A cfg.D cfg.E := by
   exact cfg.sphereOrder_BASE.diag_inter_sbtw' V Pt cfg.D_in_diag_inter_BASE
 
+/--
+@isnad1 id=ne.0h3v.s6.2ec812e130a1 from=translated src=- shape=847f2eba vocab=90cf99b1
+-/
 lemma D_ne_A : cfg.D ≠ cfg.A := by
   exact cfg.sbtw_ADE.ne_left
 
+/--
+@isnad1 id=ne.0h3v.s6.70211abbf6ac from=translated src=- shape=847f2eba vocab=13779197
+-/
 lemma D_ne_S : cfg.D ≠ cfg.S := by
   exact cfg.sbtw_BDS.ne_right
 
+/--
+@isnad1 id=ne.0h3v.s6.723fb2d10248 from=translated src=- shape=847f2eba vocab=e4c012ec
+-/
 lemma E_ne_D : cfg.E ≠ cfg.D := by
   exact cfg.sbtw_ADE.ne_right.symm
 
+/--
+@isnad1 id=lt.0h3v.s7.bf710fc6c730 from=translated src=- shape=50bfe9ee vocab=8158d9e3
+-/
 lemma DO_lt_Ω_radius
   : dist cfg.D cfg.Ω.center < cfg.Ω.radius := by
   apply Sphere.dist_le_radius_of_sbtw V Pt cfg.sbtw_BDS cfg.B_in_Ω cfg.h_S_Ω.right
 
+/--
+@isnad1 id=ne.0h3v.s6.4c828e7222d9 from=translated src=- shape=847f2eba vocab=191e49dc
+-/
 lemma P_ne_D : cfg.P ≠ cfg.D := by
   have h := cfg.DO_lt_Ω_radius
   contrapose! h
@@ -1709,6 +2162,9 @@ lemma P_ne_D : cfg.P ≠ cfg.D := by
   rw [EuclideanGeometry.mem_sphere] at h'
   rw [← h, h']
 
+/--
+@isnad1 id=ne.0h3v.s6.ed7beb1ee6d5 from=translated src=- shape=847f2eba vocab=926bf489
+-/
 lemma L_ne_D : cfg.L ≠ cfg.D := by
   intro h
   have h_DBE := cfg.h_L
@@ -1736,6 +2192,9 @@ lemma L_ne_D : cfg.L ≠ cfg.D := by
   · exact cfg.S_ne_B
   · exact cfg.E_ne_B.symm
 
+/--
+@isnad1 id=eq.0h3v.s7.0be4550ef079 from=translated src=- shape=30df6152 vocab=571760a9
+-/
 lemma prll_D_BC_eq_LD : cfg.prll_D_BC = line[ℝ, cfg.L, cfg.D] := by
   have h_L := cfg.h_L
   symm
@@ -1757,6 +2216,9 @@ lemma prll_D_BC_eq_LD : cfg.prll_D_BC = line[ℝ, cfg.L, cfg.D] := by
     apply Set.insert_nonempty
   · exact h
 
+/--
+@isnad1 id=ne.0h3v.s6.7645ddce6e75 from=translated src=- shape=847f2eba vocab=c5703b5b
+-/
 lemma P_ne_S : cfg.P ≠ cfg.S := by
   intro h
   have h' := cfg.sbtw_BDS.wbtw.collinear
@@ -1768,6 +2230,9 @@ lemma P_ne_S : cfg.P ≠ cfg.S := by
   · exact cfg.P_ne_D.symm
   · exact cfg.h_P_ne_B
 
+/--
+@isnad1 id=collinea.0h3v.s7.0f0ba44e11ad from=translated src=- shape=154f386b vocab=748228d0
+-/
 lemma collinear_BLE : Collinear ℝ {cfg.B, cfg.L, cfg.E} := by
   have h_L := cfg.h_L
   rw [Set.mem_inter_iff] at h_L
@@ -1776,6 +2241,9 @@ lemma collinear_BLE : Collinear ℝ {cfg.B, cfg.L, cfg.E} := by
   rw [Set.insert_comm] at h_L
   exact h_L
 
+/--
+@isnad1 id=ne.0h3v.s6.488d5d1d75b4 from=translated src=- shape=847f2eba vocab=d97895a7
+-/
 lemma L_ne_E : cfg.L ≠ cfg.E := by
   have h₁ := cfg.h_perp_A_BC.left
   have h₂ := cfg.h_prll_D_BC.right
@@ -1792,6 +2260,9 @@ lemma L_ne_E : cfg.L ≠ cfg.E := by
   rw [affineSpan_pair_finrank V Pt cfg.B_ne_C]
   norm_num
 
+/--
+@isnad1 id=ne.0h3v.s6.fb2590f5e8a8 from=translated src=- shape=847f2eba vocab=5681111b
+-/
 lemma H_ne_D : cfg.H ≠ cfg.D := by
   have h := cfg.sphereOrder_BASC.sign_oangle₃₄₁_ne_zero
   contrapose! h
@@ -1799,6 +2270,9 @@ lemma H_ne_D : cfg.H ≠ cfg.D := by
   rw [← Sbtw.oangle_eq_left cfg.sbtw_BHC, ← Sbtw.oangle_eq_right cfg.sbtw_BDS]
   rw [h, oangle_self_left_right, Real.Angle.sign_zero]
 
+/--
+@isnad1 id=collinea.0h3v.s7.6685713f8bd9 from=translated src=- shape=154f386b vocab=7312937f
+-/
 lemma collinear_EHD :Collinear ℝ {cfg.E, cfg.H, cfg.D} := by
   have hH := Collinear.mem_affineSpan_of_mem_of_ne cfg.sbtw_AHE.wbtw.collinear
     (by simp) (by simp) (by simp : cfg.H ∈ _) cfg.h_E_ne_A
@@ -1807,6 +2281,9 @@ lemma collinear_EHD :Collinear ℝ {cfg.E, cfg.H, cfg.D} := by
   have hE := mem_affineSpan ℝ (by simp : cfg.E ∈ {cfg.E, cfg.A})
   exact collinear_triple_of_mem_affineSpan_pair hE hH hD
 
+/--
+@isnad1 id=sbtw.0h3v.s7.78f060131cb8 from=translated src=- shape=3584815b vocab=ccfaf44b
+-/
 lemma sbtw_EHD : Sbtw ℝ cfg.E cfg.H cfg.D := by
   rcases Collinear.sbtw_or_wbtw_or_wbtw V Pt cfg.collinear_EHD with (h'|(h'|h'))
   · exact h'
@@ -1838,6 +2315,9 @@ lemma sbtw_EHD : Sbtw ℝ cfg.E cfg.H cfg.D := by
     rw [SignType.neg_eq_self_iff.ne]
     exact cfg.sphereOrder_BASC.comm.rotate'.sign_oangle₁₂₃_ne_zero
 
+/--
+@isnad1 id=not.0h3v.s7.1a07abd696ab from=translated src=- shape=d378f4ed vocab=b205393d
+-/
 lemma not_collinear_EBH : ¬Collinear ℝ {cfg.E, cfg.B, cfg.H} := by
     have hEHA := cfg.sbtw_BHC.wbtw.collinear
     rw [Set.pair_comm, Set.insert_comm] at hEHA
@@ -1851,6 +2331,9 @@ lemma not_collinear_EBH : ¬Collinear ℝ {cfg.E, cfg.B, cfg.H} := by
     rw [oangle_rotate_sign]
     exact cfg.sphereOrder_BACE.sign_oangle₃₄₁_ne_zero
 
+/--
+@isnad1 id=eq.0h3v.s7.fc734291afbe from=translated src=- shape=67211b1a vocab=f1ca229a
+-/
 lemma oangle_LDE_eq_oangle_BHE : ∡ cfg.L cfg.D cfg.E = ∡ cfg.B cfg.H cfg.E := by
   symm
   apply EuclideanGeometry.oangle_eq_of_parallel
@@ -1872,6 +2355,9 @@ lemma oangle_LDE_eq_oangle_BHE : ∡ cfg.L cfg.D cfg.E = ∡ cfg.B cfg.H cfg.E :
       (by simp) (by simp) (by simp : cfg.H ∈ _) cfg.E_ne_D
     rw [affineSpan_pair_eq_of_right_mem_of_ne h cfg.E_ne_H.symm]
 
+/--
+@isnad1 id=eq.0h3v.s7.278c74b631a7 from=translated src=- shape=605182fd vocab=f1ca229a
+-/
 lemma oangle_ELD_eq_oangle_EBH : ∡ cfg.E cfg.L cfg.D = ∡ cfg.E cfg.B cfg.H := by
   symm
   apply EuclideanGeometry.oangle_eq_of_parallel
@@ -1894,6 +2380,9 @@ lemma oangle_ELD_eq_oangle_EBH : ∡ cfg.E cfg.L cfg.D = ∡ cfg.E cfg.B cfg.H :
     rw [affineSpan_pair_eq_of_right_mem_of_ne h cfg.H_ne_B]
     exact cfg.h_prll_D_BC.right
 
+/--
+@isnad1 id=lt.0h3v.s7.8aa5ab43ed07 from=translated src=- shape=812b1cfc vocab=7b7af665
+-/
 lemma BE_lt_LE : dist cfg.B cfg.E < dist cfg.L cfg.E := by
   have hBHE := cfg.not_collinear_EBH
   have hLDE : ¬Collinear ℝ {cfg.E, cfg.L, cfg.D} := by
@@ -1920,10 +2409,16 @@ lemma BE_lt_LE : dist cfg.B cfg.E < dist cfg.L cfg.E := by
   rw [dist_pos]
   exact cfg.H_ne_D
 
+/--
+@isnad1 id=not.0h3v.s7.0b63944709b1 from=translated src=- shape=b7e229d6 vocab=f04dffd7
+-/
 lemma not_wbtw_BLE : ¬ Wbtw ℝ cfg.B cfg.L cfg.E := by
   rw [← dist_lt_dist_add_dist_iff]
   apply lt_add_of_nonneg_of_lt (by positivity) cfg.BE_lt_LE
 
+/--
+@isnad1 id=lt.0h3v.s7.e1b3e4510593 from=translated src=- shape=dfc1f100 vocab=dbe5f381
+-/
 lemma LO_gt_Ω_radius
   : cfg.Ω.radius < dist cfg.L cfg.Ω.center := by
   have h := cfg.not_wbtw_BLE
@@ -1931,6 +2426,9 @@ lemma LO_gt_Ω_radius
   apply EuclideanGeometry.wbtw_of_collinear_of_dist_center_le_radius
     cfg.collinear_BLE cfg.B_in_Ω h cfg.E_in_Ω cfg.E_ne_B.symm
 
+/--
+@isnad1 id=ne.0h3v.s6.8c8384fc552d from=translated src=- shape=847f2eba vocab=f942ad86
+-/
 lemma L_ne_P : cfg.L ≠ cfg.P := by
   have h := cfg.LO_gt_Ω_radius
   contrapose! h
@@ -1939,6 +2437,9 @@ lemma L_ne_P : cfg.L ≠ cfg.P := by
   rw [EuclideanGeometry.mem_sphere] at h'
   rw [h, h']
 
+/--
+@isnad1 id=ne.0h3v.s6.d9ca9cb6adb8 from=translated src=- shape=847f2eba vocab=54e2df93
+-/
 lemma L_ne_B : cfg.L ≠ cfg.B := by
   have h := cfg.LO_gt_Ω_radius
   contrapose! h
@@ -1947,6 +2448,9 @@ lemma L_ne_B : cfg.L ≠ cfg.B := by
   rw [EuclideanGeometry.mem_sphere] at h'
   rw [h, h']
 
+/--
+@isnad1 id=collinea.0h3v.s7.7fe0ea8d601e from=translated src=- shape=154f386b vocab=1ab0b089
+-/
 lemma collinear_LPS : Collinear ℝ {cfg.L, cfg.P, cfg.S} := by
   rw [← EuclideanGeometry.oangle_sign_eq_zero_iff_collinear]
   rw [Real.Angle.sign_eq_zero_iff, ← Real.Angle.two_zsmul_eq_zero_iff]
@@ -1970,23 +2474,41 @@ lemma collinear_LPS : Collinear ℝ {cfg.L, cfg.P, cfg.S} := by
 
 noncomputable def F := Sphere.antipode V Pt cfg.Ω cfg.A
 
+/--
+@isnad1 id=mem.0h3v.s7.18a999b28f86 from=translated src=- shape=44fc90f9 vocab=c8588f6b
+-/
 lemma F_in_Ω : cfg.F ∈ cfg.Ω := by
   apply Sphere.antipode_mem_sphere
   exact cfg.A_in_Ω
 
+/--
+@isnad1 id=isdiamet.0h3v.s7.c6475328c742 from=translated src=- shape=d23841e8 vocab=1b7d04a1
+-/
 lemma isDiameter_AF : cfg.Ω.IsDiameter cfg.A cfg.F := by
   apply Sphere.antipode_isDiameter
   exact cfg.A_in_Ω
 
+/--
+@isnad1 id=sbtw.0h3v.s7.680b17f18c28 from=translated src=- shape=f11c336b vocab=7fca018f
+-/
 lemma sbtw_AOF : Sbtw ℝ cfg.A cfg.Ω.center cfg.F := by
   exact cfg.isDiameter_AF.sbtw cfg.Ω_radius_ne_zero
 
+/--
+@isnad1 id=ne.0h3v.s6.2bcbc468a51b from=translated src=- shape=847f2eba vocab=458100e5
+-/
 lemma F_ne_A : cfg.F ≠ cfg.A := by
   exact cfg.sbtw_AOF.left_ne_right.symm
 
+/--
+@isnad1 id=ne.0h3v.s7.ed779793419f from=translated src=- shape=4beb0c1c vocab=b5a0823c
+-/
 lemma F_ne_O : cfg.F ≠ cfg.Ω.center := by
   exact cfg.sbtw_AOF.ne_right.symm
 
+/--
+@isnad1 id=ne.0h3v.s6.258d29f24a10 from=translated src=- shape=847f2eba vocab=7b20d3ea
+-/
 lemma F_ne_B : cfg.F ≠ cfg.B := by
   have h := cfg.angle_ACB_acute
   contrapose! h
@@ -1996,6 +2518,9 @@ lemma F_ne_B : cfg.F ≠ cfg.B := by
   rw [EuclideanGeometry.Sphere.angle_eq_pi_div_two_iff_mem_sphere_of_isDiameter h']
   exact cfg.C_in_Ω
 
+/--
+@isnad1 id=ne.0h3v.s6.9438e4220df4 from=translated src=- shape=847f2eba vocab=c16b2499
+-/
 lemma F_ne_C : cfg.F ≠ cfg.C := by
   have h := cfg.angle_CBA_acute
   contrapose! h
@@ -2005,10 +2530,16 @@ lemma F_ne_C : cfg.F ≠ cfg.C := by
   rw [EuclideanGeometry.Sphere.angle_eq_pi_div_two_iff_mem_sphere_of_isDiameter h']
   exact cfg.B_in_Ω
 
+/--
+@isnad1 id=eq.0h3v.s7.5cb5b29f82c1 from=translated src=- shape=478d987d vocab=2b4c6266
+-/
 lemma angle_ASF_eq : ∠ cfg.A cfg.S cfg.F = Real.pi / 2 := by
   rw [EuclideanGeometry.Sphere.thales_theorem cfg.isDiameter_AF]
   exact cfg.h_S_Ω.right
 
+/--
+@isnad1 id=eq.0h3v.s8.570bee4cc6c4 from=translated src=- shape=fe03e2bf vocab=775c85b7
+-/
 lemma oangle_CAO_add_oangle_ABC : 2 • ∡ cfg.C cfg.A cfg.Ω.center + 2 • ∡ cfg.A cfg.B cfg.C = Real.pi := by
   apply Sphere.two_zsmul_oangle_center_add_two_zsmul_oangle_eq_pi
   · exact cfg.A_in_Ω
@@ -2018,12 +2549,18 @@ lemma oangle_CAO_add_oangle_ABC : 2 • ∡ cfg.C cfg.A cfg.Ω.center + 2 • �
   · exact cfg.B_ne_C
   · exact cfg.C_ne_A.symm
 
+/--
+@isnad1 id=lt.0h3v.s7.ff17cf245f82 from=translated src=- shape=85c7ea51 vocab=946df8ee
+-/
 lemma acute_angle_CAO : ∠ cfg.C cfg.A cfg.Ω.center < Real.pi / 2 := by
   rw [angle_eq_abs_oangle_toReal cfg.C_ne_A cfg.O_ne_A]
   apply Sphere.abs_oangle_center_right_toReal_lt_pi_div_two
   · exact cfg.A_in_Ω
   · exact cfg.C_in_Ω
 
+/--
+@isnad1 id=eq.0h3v.s7.d6323bddcdfc from=translated src=- shape=865e408a vocab=62283e29
+-/
 lemma angle_CAO_add_angle_ABC : ∠ cfg.C cfg.A cfg.Ω.center + ∠ cfg.A cfg.B cfg.C = Real.pi / 2 := by
   have h₁ := cfg.oangle_CAO_add_oangle_ABC
   have h₂ := cfg.acute_angle_CAO
@@ -2033,6 +2570,9 @@ lemma angle_CAO_add_angle_ABC : ∠ cfg.C cfg.A cfg.Ω.center + ∠ cfg.A cfg.B 
   rw [angle_eq_abs_oangle_toReal cfg.B_ne_A.symm cfg.B_ne_C.symm] at *
   exact aux₁₀ h₁ h₂ h₃
 
+/--
+@isnad1 id=eq.0h3v.s8.313196d67ef9 from=translated src=- shape=fe03e2bf vocab=775c85b7
+-/
 lemma oangle_BAO_add_oangle_ACB : 2 • ∡ cfg.B cfg.A cfg.Ω.center + 2 • ∡ cfg.A cfg.C cfg.B = Real.pi := by
   apply Sphere.two_zsmul_oangle_center_add_two_zsmul_oangle_eq_pi
   · exact cfg.A_in_Ω
@@ -2042,12 +2582,18 @@ lemma oangle_BAO_add_oangle_ACB : 2 • ∡ cfg.B cfg.A cfg.Ω.center + 2 • �
   · exact cfg.B_ne_C.symm
   · exact cfg.B_ne_A.symm
 
+/--
+@isnad1 id=lt.0h3v.s7.58b960d49930 from=translated src=- shape=85c7ea51 vocab=a523b741
+-/
 lemma acute_angle_BAO : ∠ cfg.B cfg.A cfg.Ω.center < Real.pi / 2 := by
   rw [angle_eq_abs_oangle_toReal cfg.B_ne_A cfg.O_ne_A]
   apply Sphere.abs_oangle_center_right_toReal_lt_pi_div_two
   · exact cfg.A_in_Ω
   · exact cfg.B_in_Ω
 
+/--
+@isnad1 id=eq.0h3v.s7.06f7294c15f1 from=translated src=- shape=865e408a vocab=62283e29
+-/
 lemma angle_BAO_add_angle_ACB : ∠ cfg.B cfg.A cfg.Ω.center + ∠ cfg.A cfg.C cfg.B = Real.pi / 2 := by
   have h₁ := cfg.oangle_BAO_add_oangle_ACB
   have h₂ := cfg.acute_angle_BAO
@@ -2056,6 +2602,9 @@ lemma angle_BAO_add_angle_ACB : ∠ cfg.B cfg.A cfg.Ω.center + ∠ cfg.A cfg.C 
   rw [angle_eq_abs_oangle_toReal cfg.C_ne_A.symm cfg.B_ne_C] at *
   exact aux₁₀ h₁ h₂ h₃
 
+/--
+@isnad1 id=eq.0h3v.s7.7193cb79b2ff from=translated src=- shape=b45fe039 vocab=7ace8fca
+-/
 lemma angle_BAO_add_angle_OAC_eq_angle_BAC :
   ∠ cfg.B cfg.A cfg.Ω.center + ∠ cfg.Ω.center cfg.A cfg.C = ∠ cfg.B cfg.A cfg.C := by
   have h₁ := cfg.angle_CAO_add_angle_ABC
@@ -2065,6 +2614,9 @@ lemma angle_BAO_add_angle_OAC_eq_angle_BAC :
   rw [h₁, h₂]
   linarith only [angle_add_angle_add_angle_eq_pi cfg.C cfg.B_ne_A.symm]
 
+/--
+@isnad1 id=ne.0h3v.s7.3b46ef5e48f6 from=translated src=- shape=f3806372 vocab=43d99b1b
+-/
 lemma sign_oangle_BAO_ne_zero : (∡ cfg.B cfg.A cfg.Ω.center).sign ≠ 0 := by
   rw [cfg.sbtw_AOF.oangle_eq_right]
   intro h
@@ -2076,6 +2628,9 @@ lemma sign_oangle_BAO_ne_zero : (∡ cfg.B cfg.A cfg.Ω.center).sign ≠ 0 := by
   · exact cfg.F_ne_A.symm
   · exact cfg.F_ne_B
 
+/--
+@isnad1 id=ne.0h3v.s7.93e89e90c40f from=translated src=- shape=2335d656 vocab=b0d696b9
+-/
 lemma sign_oangle_OAC_ne_zero : (∡ cfg.Ω.center cfg.A cfg.C).sign ≠ 0 := by
   rw [cfg.sbtw_AOF.oangle_eq_left]
   intro h
@@ -2087,6 +2642,9 @@ lemma sign_oangle_OAC_ne_zero : (∡ cfg.Ω.center cfg.A cfg.C).sign ≠ 0 := by
   · exact cfg.C_ne_A.symm
   · exact cfg.F_ne_C.symm
 
+/--
+@isnad1 id=eq.0h3v.s7.2560bea7435c from=translated src=- shape=9c3fe8bc vocab=71653a63
+-/
 lemma sign_oangle_BAF_eq_sign_oangle_FAC
   : (∡ cfg.B cfg.A cfg.F).sign = (∡ cfg.F cfg.A cfg.C).sign := by
   rw [← cfg.sbtw_AOF.oangle_eq_right, ← cfg.sbtw_AOF.oangle_eq_left]
@@ -2100,6 +2658,9 @@ lemma sign_oangle_BAF_eq_sign_oangle_FAC
   rw [add_comm] at h₁ h₂
   rw [aux₄ cfg.sign_oangle_OAC_ne_zero h_BAC h₁ h₂]
 
+/--
+@isnad1 id=sphereor.0h3v.s7.388dd4c9fcd5 from=translated src=- shape=302241f3 vocab=436e9f32
+-/
 lemma sphereOrder_BACF : SphereOrder V Pt cfg.B cfg.A cfg.C cfg.F := by
   apply SphereOrder.rotate
   constructor
@@ -2117,12 +2678,21 @@ lemma sphereOrder_BACF : SphereOrder V Pt cfg.B cfg.A cfg.C cfg.F := by
   · rw [← oangle_rotate_sign, cfg.sign_oangle_BAF_eq_sign_oangle_FAC]
     rw [← oangle_rotate_sign]
 
+/--
+@isnad1 id=sphereor.0h3v.s7.5299feab33be from=translated src=- shape=302241f3 vocab=6954e3aa
+-/
 lemma sphereOrder_ASCF : SphereOrder V Pt cfg.A cfg.S cfg.C cfg.F := by
   exact cfg.sphereOrder_BACF.symm.trans'' V Pt cfg.sphereOrder_BASC
 
+/--
+@isnad1 id=ne.0h3v.s6.f447f9fb7a72 from=translated src=- shape=847f2eba vocab=a883bed7
+-/
 lemma F_ne_S : cfg.F ≠ cfg.S := by
   exact cfg.sphereOrder_ASCF.P₂_ne_P₄.symm
 
+/--
+@isnad1 id=sphereor.0h3v.s7.e59457504a23 from=translated src=- shape=302241f3 vocab=09ee99a5
+-/
 lemma sphereOrder_ASFM : SphereOrder V Pt cfg.A cfg.S cfg.F cfg.M := by
   apply sphereOrder_of_sbtw_diag_inter V Pt _ cfg.S_ne_A.symm cfg.F_ne_S.symm cfg.sbtw_AOF cfg.sbtw_SOM
   rw [EuclideanGeometry.cospherical_iff_exists_sphere]
@@ -2135,12 +2705,21 @@ lemma sphereOrder_ASFM : SphereOrder V Pt cfg.A cfg.S cfg.F cfg.M := by
   · exact cfg.F_in_Ω
   · exact cfg.M_in_Ω
 
+/--
+@isnad1 id=sphereor.0h3v.s7.7769aeaf494a from=translated src=- shape=302241f3 vocab=84817f6a
+-/
 lemma sphereOrder_AFME : SphereOrder V Pt cfg.A cfg.F cfg.M cfg.E := by
   exact (cfg.sphereOrder_ASME.symm.trans V Pt cfg.sphereOrder_ASFM).rotate'
 
+/--
+@isnad1 id=ne.0h3v.s6.62aaef413154 from=translated src=- shape=847f2eba vocab=b742ba78
+-/
 lemma F_ne_E : cfg.F ≠ cfg.E := by
   exact cfg.sphereOrder_AFME.P₂_ne_P₄
 
+/--
+@isnad1 id=eq.0h3v.s7.9c1b565e95ed from=translated src=- shape=7bb68349 vocab=f138e4d1
+-/
 lemma oangle_BAE_eq_oangle_FAC : ∡ cfg.B cfg.A cfg.E = ∡ cfg.F cfg.A cfg.C := by
   rw [← cfg.sbtw_AOF.oangle_eq_left]
   apply oangle_eq_of_angle_eq_of_sign_eq
@@ -2153,6 +2732,9 @@ lemma oangle_BAE_eq_oangle_FAC : ∡ cfg.B cfg.A cfg.E = ∡ cfg.F cfg.A cfg.C :
     rw [cfg.sphereOrder_BACF.sign_oangle₁₂₃_eq_sign_oangle₂₃₄]
     rw [oangle_rotate_sign]
 
+/--
+@isnad1 id=eq.0h3v.s7.7249ce19b79a from=translated src=- shape=626fc73e vocab=bb03a761
+-/
 lemma oangle_SEF_eq_oangle_EFS : (2 : ℤ) • ∡ cfg.S cfg.E (F V Pt cfg) = (2 : ℤ) • ∡ cfg.E (F V Pt cfg) cfg.S := by
   rw [EuclideanGeometry.Sphere.two_zsmul_oangle_eq cfg.h_S_Ω.right cfg.E_in_Ω cfg.B_in_Ω cfg.F_in_Ω
     cfg.E_ne_S cfg.F_ne_E.symm cfg.S_ne_B.symm cfg.F_ne_B.symm]
@@ -2173,6 +2755,9 @@ lemma oangle_SEF_eq_oangle_EFS : (2 : ℤ) • ∡ cfg.S cfg.E (F V Pt cfg) = (2
 def K'_set := (cfg.prll_D_BC : Set Pt) ∩ (line[ℝ, cfg.S, cfg.F] : Set Pt)
 def K_set := diag_inter_set V Pt cfg.A cfg.S cfg.C cfg.F
 
+/--
+@isnad1 id=ne.1h4v.s7.5011aa175ef3 from=translated src=- shape=1e7f9235 vocab=9168f704
+-/
 lemma K'_ne_D {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   : K' ≠ cfg.D := by
   intro h
@@ -2195,6 +2780,9 @@ lemma K'_ne_D {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   · exact cfg.S_ne_B.symm
   · exact cfg.F_ne_S.symm
 
+/--
+@isnad1 id=eq.1h4v.s7.81edf7524395 from=translated src=- shape=49f6bf78 vocab=28001cb7
+-/
 lemma two_zsmul_oangle_ADK' {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   : (2 : ℤ) • ∡ cfg.A cfg.D K' = Real.pi := by
   have h_K'LD := hK'.left
@@ -2220,6 +2808,9 @@ lemma two_zsmul_oangle_ADK' {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   rw [← EuclideanGeometry.angle_eq_abs_oangle_toReal cfg.H_ne_A.symm cfg.H_ne_C.symm]
   exact cfg.angle_AHC_eq
 
+/--
+@isnad1 id=ne.1h4v.s7.74d2f105e152 from=translated src=- shape=1e7f9235 vocab=9fb5e6a7
+-/
 lemma K'_ne_A {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   : K' ≠ cfg.A := by
   have h := cfg.two_zsmul_oangle_ADK' V Pt hK'
@@ -2227,6 +2818,9 @@ lemma K'_ne_A {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   rw [h, oangle_self_left_right, smul_zero]
   exact Real.Angle.pi_ne_zero.symm
 
+/--
+@isnad1 id=ne.1h4v.s7.ddc541e9f66e from=translated src=- shape=1e7f9235 vocab=93e0d2e9
+-/
 lemma K'_ne_S {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   : K' ≠ cfg.S := by
   intro h
@@ -2249,6 +2843,9 @@ lemma K'_ne_S {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   · exact cfg.D_ne_B.symm
   · exact cfg.L_ne_D.symm
 
+/--
+@isnad1 id=cospheri.1h4v.s7.1a22d59e5bb6 from=translated src=- shape=8a8d3677 vocab=80ca1697
+-/
 lemma cospherical_DASK' {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   : Cospherical {cfg.A, cfg.D, cfg.S, K'} := by
   rw [K'_set, Set.mem_inter_iff] at hK'
@@ -2269,6 +2866,9 @@ lemma cospherical_DASK' {K' : Pt} (hK' : K' ∈ cfg.K'_set)
     rw [cfg.two_zsmul_oangle_ADK' V Pt hK']
     apply Real.Angle.pi_ne_zero
 
+/--
+@isnad1 id=mem.1h4v.s7.2271a66be121 from=translated src=- shape=46127e3d vocab=8c2208d7
+-/
 lemma K'_in_K_set {K' : Pt} (hK' : K' ∈ cfg.K'_set)
   : K' ∈ cfg.K_set := by
   rw [K_set, diag_inter_set, Set.mem_inter_iff]
@@ -2304,14 +2904,23 @@ lemma K'_in_K_set {K' : Pt} (hK' : K' ∈ cfg.K'_set)
     apply h_K'AC.mem_affineSpan_of_mem_of_ne (by simp) (by simp) (by simp) cfg.C_ne_A.symm
   · exact hK'.right
 
+/--
+@isnad1 id=sbtw.1h4v.s7.3857be2dae55 from=translated src=- shape=cd27c5f2 vocab=ccc29ae9
+-/
 lemma sbtw_AKC
     {K : Pt} (hK : K ∈ cfg.K_set) : Sbtw ℝ cfg.A K cfg.C := by
   exact cfg.sphereOrder_ASCF.diag_inter_sbtw V Pt hK
 
+/--
+@isnad1 id=lt.1h4v.s7.01f9da755c16 from=translated src=- shape=b507a3b3 vocab=fc236469
+-/
 lemma KO_lt_Ω_radius {K : Pt} (hK : K ∈ cfg.K_set)
   : dist K cfg.Ω.center < cfg.Ω.radius := by
   apply Sphere.dist_le_radius_of_sbtw V Pt (cfg.sbtw_AKC V Pt hK) cfg.A_in_Ω cfg.C_in_Ω
 
+/--
+@isnad1 id=ne.0h3v.s6.676f962bb299 from=translated src=- shape=847f2eba vocab=822fa43c
+-/
 lemma P_ne_F : cfg.P ≠ cfg.F := by
   have h := cfg.LO_gt_Ω_radius
   contrapose! h
@@ -2328,6 +2937,9 @@ lemma P_ne_F : cfg.P ≠ cfg.F := by
   apply cfg.K'_in_K_set at hL
   exact cfg.KO_lt_Ω_radius V Pt hL
 
+/--
+@isnad1 id=collinea.0h3v.s7.e6f971bb074d from=translated src=- shape=154f386b vocab=55d80ef3
+-/
 lemma collinear_PDF : Collinear ℝ {cfg.P, cfg.D, cfg.F} := by
   rw [Set.insert_comm]
   have h_LPS := cfg.collinear_LPS
@@ -2350,13 +2962,22 @@ lemma collinear_PDF : Collinear ℝ {cfg.P, cfg.D, cfg.F} := by
   rw [oangle_rev, smul_neg, neg_add_eq_sub, sub_eq_zero]
   exact cfg.oangle_SEF_eq_oangle_EFS
 
+/--
+@isnad1 id=sbtw.0h3v.s7.0b4d49f57e33 from=translated src=- shape=3584815b vocab=2dd9929f
+-/
 lemma sbtw_PDF : Sbtw ℝ cfg.P cfg.D cfg.F := by
   apply EuclideanGeometry.sbtw_of_collinear_of_dist_center_lt_radius
     cfg.collinear_PDF cfg.P_in_Ω cfg.DO_lt_Ω_radius cfg.F_in_Ω cfg.P_ne_F
 
+/--
+@isnad1 id=ne.0h3v.s6.f66f8afa2d4c from=translated src=- shape=847f2eba vocab=8770c35d
+-/
 lemma F_ne_D : cfg.F ≠ cfg.D := by
   exact cfg.sbtw_PDF.ne_right.symm
 
+/--
+@isnad1 id=sphereor.0h3v.s7.1c7524ee6ce8 from=translated src=- shape=302241f3 vocab=d8db8b13
+-/
 lemma sphereOrder_PAFE : SphereOrder V Pt cfg.P cfg.A cfg.F cfg.E := by
   apply SphereOrder.rotate'
   apply sphereOrder_of_sbtw_diag_inter V Pt _ cfg.F_ne_A.symm cfg.F_ne_E cfg.sbtw_ADE cfg.sbtw_PDF.symm
@@ -2370,39 +2991,69 @@ lemma sphereOrder_PAFE : SphereOrder V Pt cfg.P cfg.A cfg.F cfg.E := by
   · exact cfg.E_in_Ω
   · exact cfg.P_in_Ω
 
+/--
+@isnad1 id=ne.0h3v.s6.bed5611b59a9 from=translated src=- shape=847f2eba vocab=154621be
+-/
 lemma P_ne_A : cfg.P ≠ cfg.A := by
   exact cfg.sphereOrder_PAFE.P₁_ne_P₂
 
+/--
+@isnad1 id=sphereor.0h3v.s7.27221057da19 from=translated src=- shape=302241f3 vocab=4492e425
+-/
 lemma sphereOrder_PAFM : SphereOrder V Pt cfg.P cfg.A cfg.F cfg.M := by
   exact cfg.sphereOrder_PAFE.rotate'.trans' V Pt cfg.sphereOrder_AFME
 
+/--
+@isnad1 id=ne.0h3v.s6.c8a0663ba8f0 from=translated src=- shape=847f2eba vocab=66024f10
+-/
 lemma P_ne_M : cfg.P ≠ cfg.M := by
   exact cfg.sphereOrder_PAFM.P₁_ne_P₄
 
+/--
+@isnad1 id=sphereor.0h3v.s7.b8549abcf278 from=translated src=- shape=302241f3 vocab=659b8f2c
+-/
 lemma sphereOrder_PSFM : SphereOrder V Pt cfg.P cfg.S cfg.F cfg.M := by
   exact (cfg.sphereOrder_ASFM.trans' V Pt cfg.sphereOrder_PAFM.symm).rotate'
 
 def Z_set := diag_inter_set V Pt cfg.P cfg.S cfg.F cfg.M
 
+/--
+@isnad1 id=ex.0h3v.s6.019f14106c4c from=translated src=- shape=1f961c30 vocab=61cedca8
+-/
 lemma exists_Z : ∃ Z : Pt, Z ∈ cfg.Z_set := by
   exact cfg.sphereOrder_PSFM.exists_diag_inter
 
+/--
+@isnad1 id=sbtw.1h4v.s7.7d3469fb2f6a from=translated src=- shape=cd27c5f2 vocab=6936f287
+-/
 lemma sbtw_PZF {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Sbtw ℝ cfg.P Z cfg.F := by
   exact cfg.sphereOrder_PSFM.diag_inter_sbtw V Pt hZ
 
+/--
+@isnad1 id=ne.1h4v.s7.b371991640a1 from=translated src=- shape=1e7f9235 vocab=2ccdb358
+-/
 lemma Z_ne_F {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Z ≠ cfg.F := by
   exact (cfg.sbtw_PZF V Pt hZ).ne_right
 
+/--
+@isnad1 id=sbtw.1h4v.s7.4b5b3b7663a2 from=translated src=- shape=cd27c5f2 vocab=e657edf9
+-/
 lemma sbtw_SZM {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Sbtw ℝ cfg.S Z cfg.M := by
   exact cfg.sphereOrder_PSFM.diag_inter_sbtw' V Pt hZ
 
+/--
+@isnad1 id=ne.1h4v.s7.d71f5057253e from=translated src=- shape=1e7f9235 vocab=9f5dce84
+-/
 lemma Z_ne_S {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Z ≠ cfg.S := by
   exact (cfg.sbtw_SZM V Pt hZ).ne_left
 
+/--
+@isnad1 id=ne.1h4v.s7.ccffc759844b from=translated src=- shape=1e7f9235 vocab=285c471b
+-/
 lemma Z_ne_D {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Z ≠ cfg.D := by
   have h := cfg.sphereOrder_BASM.symm.sign_oangle₁₂₃_ne_zero
@@ -2411,6 +3062,9 @@ lemma Z_ne_D {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   rw [← (cfg.sbtw_SZM V Pt hZ).oangle_eq_right] at h
   exact (left_ne_right_of_oangle_sign_ne_zero h).symm
 
+/--
+@isnad1 id=ne.1h4v.s7.f0a82b7fefa4 from=translated src=- shape=25f9a4f8 vocab=2bdeb6db
+-/
 lemma Z_ne_O {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Z ≠ cfg.Ω.center := by
   have h := cfg.sphereOrder_PAFM.symm.sign_oangle₃₄₁_ne_zero
@@ -2419,6 +3073,9 @@ lemma Z_ne_O {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   rw [← (cfg.sbtw_PZF V Pt hZ).symm.oangle_eq_right] at h
   exact (left_ne_right_of_oangle_sign_ne_zero h).symm
 
+/--
+@isnad1 id=ne.1h4v.s7.dda0f6a084ad from=translated src=- shape=1e7f9235 vocab=411a3660
+-/
 lemma X_ne_D
     {X : Pt} (hX : X ∈ cfg.X_set) :
     X ≠ cfg.D := by
@@ -2428,6 +3085,9 @@ lemma X_ne_D
   rw [← (cfg.sbtw_AXM V Pt hX).oangle_eq_right] at h
   exact (left_ne_right_of_oangle_sign_ne_zero h).symm
 
+/--
+@isnad1 id=collinea.1h4v.s7.e4558e943edf from=translated src=- shape=6440d204 vocab=2109f0d3
+-/
 lemma collinear_SXD {X : Pt} (hX : X ∈ cfg.X_set)
   : Collinear ℝ {cfg.S, X, cfg.D} := by
   have hS := mem_affineSpan ℝ (by simp : cfg.S ∈ {cfg.S, cfg.B})
@@ -2437,6 +3097,9 @@ lemma collinear_SXD {X : Pt} (hX : X ∈ cfg.X_set)
     (by simp) (by simp) (by simp : cfg.D ∈ _) cfg.S_ne_B
   exact collinear_triple_of_mem_affineSpan_pair hS hX hD
 
+/--
+@isnad1 id=sbtw.1h4v.s7.15b2ebb70f9f from=translated src=- shape=cd27c5f2 vocab=a6902ce2
+-/
 lemma sbtw_SXD {X : Pt} (hX : X ∈ cfg.X_set)
   : Sbtw ℝ cfg.S X cfg.D := by
   rcases Collinear.sbtw_or_wbtw_or_wbtw V Pt (cfg.collinear_SXD V Pt hX) with (h'|(h'|h'))
@@ -2464,9 +3127,15 @@ lemma sbtw_SXD {X : Pt} (hX : X ∈ cfg.X_set)
     contrapose! h''
     exact cfg.sphereOrder_ASFM.rotate.sign_oangle₃₄₁_ne_zero
 
+/--
+@isnad1 id=ne.0h3v.s7.189b645de543 from=translated src=- shape=4beb0c1c vocab=903d1412
+-/
 lemma S_ne_O : cfg.S ≠ cfg.Ω.center := by
   exact cfg.sbtw_SOM.ne_left.symm
 
+/--
+@isnad1 id=collinea.1h4v.s7.9b462b9f0c7c from=translated src=- shape=e9eb5db6 vocab=b45a5154
+-/
 lemma collinear_SOZ {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Collinear ℝ {cfg.S, cfg.Ω.center, Z} := by
   have hS := mem_affineSpan ℝ (by simp : cfg.S ∈ {cfg.S, cfg.M})
@@ -2476,6 +3145,9 @@ lemma collinear_SOZ {Z : Pt} (hZ : Z ∈ cfg.Z_set)
     (by simp) (by simp) (by simp : Z ∈ _) cfg.S_ne_M
   exact collinear_triple_of_mem_affineSpan_pair hS hO hZ
 
+/--
+@isnad1 id=sbtw.1h4v.s7.c6182ef792a5 from=translated src=- shape=8215f0e4 vocab=e53b3450
+-/
 lemma sbtw_SOZ {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : Sbtw ℝ cfg.S cfg.Ω.center Z := by
   rcases Collinear.sbtw_or_wbtw_or_wbtw V Pt (cfg.collinear_SOZ V Pt hZ) with (h'|(h'|h'))
@@ -2504,6 +3176,9 @@ lemma sbtw_SOZ {Z : Pt} (hZ : Z ∈ cfg.Z_set)
     contrapose! h''
     exact cfg.sphereOrder_ASFM.sign_oangle₁₂₃_ne_zero
 
+/--
+@isnad1 id=eq.0h3v.s7.43cce5003165 from=translated src=- shape=073f6c8a vocab=e7a98b86
+-/
 lemma oangle_MAE_eq_oangle_AMS
   : ∡ cfg.M cfg.A cfg.E = ∡ cfg.A cfg.M cfg.S := by
   apply aux₆
@@ -2527,6 +3202,9 @@ lemma oangle_MAE_eq_oangle_AMS
     rw [cfg.oangle_BAM_eq_oangle_MAC]
     abel
 
+/--
+@isnad1 id=eq.1h4v.s7.7aaa463dc268 from=translated src=- shape=134a157b vocab=4443c1fb
+-/
 lemma DX_to_XS_eq_DA_to_MS {X : Pt} (hX : X ∈ cfg.X_set)
   : dist cfg.D X / dist X cfg.S = dist cfg.D cfg.A / dist cfg.M cfg.S := by
   have hXS : dist X cfg.S ≠ 0 := by
@@ -2565,11 +3243,17 @@ lemma DX_to_XS_eq_DA_to_MS {X : Pt} (hX : X ∈ cfg.X_set)
   rw [cfg.oangle_MAE_eq_oangle_AMS]
   ring
 
+/--
+@isnad1 id=parallel.0h3v.s8.08ac92831e24 from=translated src=- shape=399e1cab vocab=ec317cd9
+-/
 lemma AE_paralell_SM : line[ℝ, cfg.A, cfg.E] ∥ line[ℝ, cfg.S, cfg.M] := by
   rw [Set.pair_comm cfg.A cfg.E, Set.pair_comm cfg.S cfg.M]
   apply parallel_of_two_zsmul_oangle_eq V Pt cfg.h_E_ne_A cfg.M_ne_A.symm cfg.S_ne_M.symm
   rw [oangle_rev, oangle_MAE_eq_oangle_AMS, ← oangle_rev]
 
+/--
+@isnad1 id=eq.1h4v.s7.237073464fa7 from=translated src=- shape=fc8da00f vocab=01b4fc3c
+-/
 lemma oangle_OZF_eq_oangle_ADF {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : ∡ cfg.Ω.center Z cfg.F = ∡ cfg.A cfg.D cfg.F := by
   apply oangle_eq_of_parallel
@@ -2601,6 +3285,9 @@ lemma oangle_OZF_eq_oangle_ADF {Z : Pt} (hZ : Z ∈ cfg.Z_set)
       (by simp) (by simp) (by simp : Z ∈ _) cfg.P_ne_F.symm
     rw [affineSpan_pair_eq_of_right_mem_of_ne h₂ (cfg.Z_ne_F V Pt hZ)]
 
+/--
+@isnad1 id=eq.1h4v.s7.19673f724692 from=translated src=- shape=84837d39 vocab=9f3155fe
+-/
 lemma ZO_to_OS_eq_DA_to_MS {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : dist Z cfg.Ω.center / dist cfg.Ω.center cfg.S = dist cfg.D cfg.A / dist cfg.M cfg.S := by
   have hOS : dist cfg.Ω.center cfg.S ≠ 0 := by
@@ -2638,11 +3325,17 @@ lemma ZO_to_OS_eq_DA_to_MS {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   rw [cfg.isDiameter_SM.symm.dist_left_right]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s7.97ca0cd973cc from=translated src=- shape=f1977bab vocab=5c75ad53
+-/
 lemma DX_to_XS_eq_ZO_to_OS {X : Pt} (hX : X ∈ cfg.X_set)
   {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : dist cfg.D X / dist X cfg.S = dist Z cfg.Ω.center / dist cfg.Ω.center cfg.S := by
   rw [cfg.DX_to_XS_eq_DA_to_MS V Pt hX, cfg.ZO_to_OS_eq_DA_to_MS V Pt hZ]
 
+/--
+@isnad1 id=eq.2h5v.s8.03b6537fad8e from=translated src=- shape=47348b2f vocab=5c75ad53
+-/
 lemma DS_to_XS_eq_ZS_to_OS {X : Pt} (hX : X ∈ cfg.X_set)
   {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : dist cfg.D cfg.S / dist X cfg.S = dist Z cfg.S / dist cfg.Ω.center cfg.S := by
@@ -2657,6 +3350,9 @@ lemma DS_to_XS_eq_ZS_to_OS {X : Pt} (hX : X ∈ cfg.X_set)
   rw [add_div, add_div, div_self hOS, div_self hXS]
   rw [cfg.DX_to_XS_eq_ZO_to_OS V Pt hX hZ]
 
+/--
+@isnad1 id=eq.2h5v.s7.6ea284999c9c from=translated src=- shape=bed80138 vocab=5c75ad53
+-/
 lemma DZ_to_XO_eq_ZS_to_OS {X : Pt} (hX : X ∈ cfg.X_set)
   {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : dist cfg.D Z / dist X cfg.Ω.center = dist Z cfg.S / dist cfg.Ω.center cfg.S := by
@@ -2688,6 +3384,9 @@ lemma DZ_to_XO_eq_ZS_to_OS {X : Pt} (hX : X ∈ cfg.X_set)
   rw [h]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s7.1d50532d96e2 from=translated src=- shape=c03f926b vocab=73293692
+-/
 lemma angle_OXS_eq_angle_ZDS {X : Pt} (hX : X ∈ cfg.X_set)
   {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : ∠ cfg.Ω.center X cfg.S = ∠ Z cfg.D cfg.S := by
@@ -2732,6 +3431,9 @@ lemma angle_OXS_eq_angle_ZDS {X : Pt} (hX : X ∈ cfg.X_set)
   rw [h₁, h₂, h₃]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s7.a911cfdc8561 from=translated src=- shape=6f3a870b vocab=34df1e98
+-/
 lemma oangle_OXS_eq_oangle_ZDS {X : Pt} (hX : X ∈ cfg.X_set)
   {Z : Pt} (hZ : Z ∈ cfg.Z_set)
   : ∡ cfg.Ω.center X cfg.S = ∡ Z cfg.D cfg.S := by
@@ -2741,6 +3443,9 @@ lemma oangle_OXS_eq_oangle_ZDS {X : Pt} (hX : X ∈ cfg.X_set)
     rw [(cfg.sbtw_SXD V Pt hX).oangle_eq_left]
     rw [(cfg.sbtw_SOZ V Pt hZ).oangle_eq_right]
 
+/--
+@isnad1 id=parallel.1h4v.s8.21900d301689 from=translated src=- shape=b8eedbeb vocab=f2d9aa46
+-/
 lemma XO_paralell_FP {X : Pt} (hX : X ∈ cfg.X_set)
   : line[ℝ, X, cfg.Ω.center] ∥ line[ℝ, cfg.P, cfg.F] := by
   rcases cfg.exists_Z with ⟨Z, hZ⟩
@@ -2766,28 +3471,49 @@ lemma XO_paralell_FP {X : Pt} (hX : X ∈ cfg.X_set)
 
 def Y_set := diag_inter_set V Pt cfg.P cfg.A cfg.F cfg.M
 
+/--
+@isnad1 id=ex.0h3v.s6.e2a8bbca30d0 from=translated src=- shape=1f961c30 vocab=1d838864
+-/
 lemma exists_Y : ∃ Y : Pt, Y ∈ cfg.Y_set := by
   exact cfg.sphereOrder_PAFM.exists_diag_inter
 
+/--
+@isnad1 id=ne.1h4v.s7.cbb4cba6e90d from=translated src=- shape=1e7f9235 vocab=ed8ea419
+-/
 lemma Y_ne_P {Y : Pt} (hY : Y ∈ cfg.Y_set) : Y ≠ cfg.P := by
   exact cfg.sphereOrder_PAFM.diag_inter_ne_P₁ V Pt hY
 
+/--
+@isnad1 id=ne.1h4v.s7.fc142de04619 from=translated src=- shape=1e7f9235 vocab=63f8721a
+-/
 lemma Y_ne_A {Y : Pt} (hY : Y ∈ cfg.Y_set) : Y ≠ cfg.A := by
   rw [Y_set, diag_inter_set_rotate] at hY
   exact cfg.sphereOrder_PAFM.rotate.diag_inter_ne_P₁ V Pt hY
 
+/--
+@isnad1 id=ne.1h4v.s7.ab9190c70f7f from=translated src=- shape=1e7f9235 vocab=600b213d
+-/
 lemma Y_ne_F {Y : Pt} (hY : Y ∈ cfg.Y_set) : Y ≠ cfg.F := by
   rw [Y_set, diag_inter_set_rotate, diag_inter_set_rotate] at hY
   exact cfg.sphereOrder_PAFM.symm.diag_inter_ne_P₁ V Pt hY
 
+/--
+@isnad1 id=sbtw.1h4v.s7.6999da084e0c from=translated src=- shape=cd27c5f2 vocab=6e0b3ae0
+-/
 lemma sbtw_PYF {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : Sbtw ℝ cfg.P Y cfg.F := by
   exact cfg.sphereOrder_PAFM.diag_inter_sbtw V Pt hY
 
+/--
+@isnad1 id=sbtw.1h4v.s7.77b4ae458ca0 from=translated src=- shape=cd27c5f2 vocab=245e95d6
+-/
 lemma sbtw_AYM {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : Sbtw ℝ cfg.A Y cfg.M := by
   exact cfg.sphereOrder_PAFM.diag_inter_sbtw' V Pt hY
 
+/--
+@isnad1 id=eq.1h4v.s7.95d4f094c970 from=translated src=- shape=ecc83aaa vocab=2cb67531
+-/
 lemma angle_APY_eq {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : ∠ cfg.A cfg.P Y = Real.pi / 2 := by
   rw [angle_eq_abs_oangle_toReal cfg.P_ne_A.symm (cfg.Y_ne_P V Pt hY)]
@@ -2798,6 +3524,9 @@ lemma angle_APY_eq {Y : Pt} (hY : Y ∈ cfg.Y_set)
   rw [EuclideanGeometry.Sphere.angle_eq_pi_div_two_iff_mem_sphere_of_isDiameter cfg.isDiameter_AF]
   exact cfg.P_in_Ω
 
+/--
+@isnad1 id=collinea.2h5v.s7.33cda8e1d1c6 from=translated src=- shape=d65d81a1 vocab=a2e8d4e4
+-/
 lemma collinear_AXY {X : Pt} (hX : X ∈ cfg.X_set)
   {Y : Pt} (hY : Y ∈ cfg.Y_set)
   :  Collinear ℝ {cfg.A, X, Y} := by
@@ -2812,6 +3541,9 @@ lemma collinear_AXY {X : Pt} (hX : X ∈ cfg.X_set)
     simp
   exact collinear_triple_of_mem_affineSpan_pair hA hX hY
 
+/--
+@isnad1 id=not.1h4v.s7.53749b75aea7 from=translated src=- shape=664c56c3 vocab=f5d02ae1
+-/
 lemma not_collinear_AXO {X : Pt} (hX : X ∈ cfg.X_set)
   : ¬Collinear ℝ {cfg.A, X, cfg.Ω.center} := by
   rw [Set.insert_comm]
@@ -2821,6 +3553,9 @@ lemma not_collinear_AXO {X : Pt} (hX : X ∈ cfg.X_set)
   rw [oangle_rotate_sign]
   exact cfg.sphereOrder_ASFM.sign_oangle₃₄₁_ne_zero
 
+/--
+@isnad1 id=eq.2h5v.s7.e65cd655e90d from=translated src=- shape=7af60f41 vocab=4180e990
+-/
 lemma oangle_AXO_eq_oangle_AYF {X : Pt} (hX : X ∈ cfg.X_set)
   {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : ∡ cfg.A X cfg.Ω.center = ∡ cfg.A Y cfg.F := by
@@ -2844,6 +3579,9 @@ lemma oangle_AXO_eq_oangle_AYF {X : Pt} (hX : X ∈ cfg.X_set)
     rw [Set.pair_comm cfg.Ω.center X, Set.pair_comm cfg.F cfg.P]
     exact cfg.XO_paralell_FP V Pt hX
 
+/--
+@isnad1 id=eq.2h5v.s7.4b3cc3d8b33c from=translated src=- shape=3084da04 vocab=4180e990
+-/
 lemma oangle_XOA_eq_oangle_YFA {X : Pt} (hX : X ∈ cfg.X_set)
   {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : ∡ X cfg.Ω.center cfg.A = ∡ Y cfg.F cfg.A := by
@@ -2863,6 +3601,9 @@ lemma oangle_XOA_eq_oangle_YFA {X : Pt} (hX : X ∈ cfg.X_set)
       (by simp) (by simp) (by simp : cfg.Ω.center ∈ _) cfg.F_ne_A.symm
     rw [affineSpan_pair_eq_of_right_mem_of_ne h cfg.O_ne_A]
 
+/--
+@isnad1 id=eq.2h5v.s7.ab000eef1e55 from=translated src=- shape=bd2994b8 vocab=3e11a5b1
+-/
 lemma AX_eq_AY_div_two {X : Pt} (hX : X ∈ cfg.X_set)
   {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : dist cfg.A X = dist cfg.A Y / 2 := by
@@ -2888,6 +3629,9 @@ lemma AX_eq_AY_div_two {X : Pt} (hX : X ∈ cfg.X_set)
     exact cfg.A_in_Ω
   rw [h]
 
+/--
+@isnad1 id=sbtw.2h5v.s7.93ce54bf5421 from=translated src=- shape=8981f707 vocab=3942200c
+-/
 lemma sbtw_AXY {X : Pt} (hX : X ∈ cfg.X_set)
   {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : Sbtw ℝ cfg.A X Y := by
@@ -2916,6 +3660,9 @@ lemma sbtw_AXY {X : Pt} (hX : X ∈ cfg.X_set)
     rw [oangle_rotate_sign]
     exact cfg.sphereOrder_AFME.sign_oangle₃₄₁_ne_zero
 
+/--
+@isnad1 id=eq.2h5v.s7.d9c368c6553b from=translated src=- shape=3b61fc75 vocab=95cc5042
+-/
 lemma X_eq_midpoint_AY {X : Pt} (hX : X ∈ cfg.X_set)
   {Y : Pt} (hY : Y ∈ cfg.Y_set)
   : X = midpoint ℝ cfg.A Y := by
@@ -2927,6 +3674,9 @@ lemma X_eq_midpoint_AY {X : Pt} (hX : X ∈ cfg.X_set)
     rw [h']
     ring
 
+/--
+@isnad1 id=eq.1h4v.s7.dd28727dde54 from=translated src=- shape=7ffe3cf8 vocab=aee1b8f5
+-/
 lemma XP_eq_XA  {X : Pt} (hX : X ∈ cfg.X_set)
   : dist X cfg.P = dist X cfg.A := by
   rcases cfg.exists_Y with ⟨Y, hY⟩
@@ -2942,10 +3692,16 @@ lemma XP_eq_XA  {X : Pt} (hX : X ∈ cfg.X_set)
   rw [← EuclideanGeometry.mem_sphere']
   exact (EuclideanGeometry.Sphere.isDiameter_ofDiameter cfg.A Y).left_mem
 
+/--
+@isnad1 id=eq.1h4v.s7.dc74cecc5a3b from=translated src=- shape=0714edb3 vocab=5eee2a7d
+-/
 lemma oangle_XPA_eq_oangle_PAX {X : Pt} (hX : X ∈ cfg.X_set)
   : ∡ X cfg.P cfg.A  = ∡ cfg.P cfg.A X := by
   apply EuclideanGeometry.oangle_eq_oangle_of_dist_eq (cfg.XP_eq_XA V Pt hX)
 
+/--
+@isnad1 id=eq.0h3v.s7.fc6d376f8ff5 from=translated src=- shape=ff99a6ca vocab=38d11e7f
+-/
 lemma two_zsmul_angle_SPM_eq : (2 : ℤ) • ∡ cfg.S cfg.P cfg.M = Real.pi := by
   rw [Real.Angle.two_zsmul_eq_pi_iff]
   rw [← Real.Angle.abs_toReal_eq_pi_div_two_iff]
@@ -2953,6 +3709,9 @@ lemma two_zsmul_angle_SPM_eq : (2 : ℤ) • ∡ cfg.S cfg.P cfg.M = Real.pi := 
   rw [EuclideanGeometry.Sphere.thales_theorem cfg.isDiameter_SM]
   exact cfg.P_in_Ω
 
+/--
+@isnad1 id=eq.0h3v.s7.9e76c9e990e8 from=translated src=- shape=ff99a6ca vocab=39ab7fc1
+-/
 lemma two_zsmul_angle_APF_eq : (2 : ℤ) • ∡ cfg.A cfg.P cfg.F = Real.pi := by
   rw [Real.Angle.two_zsmul_eq_pi_iff]
   rw [← Real.Angle.abs_toReal_eq_pi_div_two_iff]
@@ -2960,6 +3719,9 @@ lemma two_zsmul_angle_APF_eq : (2 : ℤ) • ∡ cfg.A cfg.P cfg.F = Real.pi := 
   rw [EuclideanGeometry.Sphere.thales_theorem cfg.isDiameter_AF]
   exact cfg.P_in_Ω
 
+/--
+@isnad1 id=eq.1h4v.s7.e825895cb1fd from=translated src=- shape=1000617e vocab=9395d5aa
+-/
 lemma oangle_XPD_eq_oangle_PBD {X : Pt} (hX : X ∈ cfg.X_set)
   : (2 : ℤ) • ∡ X cfg.P cfg.D  = (2 : ℤ) • ∡ cfg.P cfg.B cfg.D := by
   rw [← oangle_add (cfg.P_ne_X V Pt hX).symm cfg.P_ne_A.symm cfg.P_ne_D.symm]
@@ -2979,11 +3741,17 @@ lemma oangle_XPD_eq_oangle_PBD {X : Pt} (hX : X ∈ cfg.X_set)
   rw [cfg.sbtw_PDF.oangle_eq_right, two_zsmul_angle_APF_eq]
   abel
 
+/--
+@isnad1 id=istangen.1h4v.s7.c413c53775cf from=translated src=- shape=a3917639 vocab=9b9a75d7
+-/
 lemma PX_isTangentAt_ω {X : Pt} (hX : X ∈ cfg.X_set)
   : Sphere.IsTangentAt cfg.ω cfg.P line[ℝ, cfg.P, X] := by
   apply Sphere.IsTangentAt_of_two_zsmul_oangle_eq V Pt cfg.P_in_ω cfg.D_in_ω cfg.B_in_ω
     cfg.P_ne_D cfg.h_P_ne_B cfg.D_ne_B (cfg.P_ne_X V Pt hX) (cfg.oangle_XPD_eq_oangle_PBD V Pt hX)
 
+/--
+@isnad1 id=mem.1h4v.s7.d3d8e818c478 from=translated src=- shape=0f129d92 vocab=8482ab84
+-/
 lemma X_in_tang_P_ω {X : Pt} (hX : X ∈ cfg.X_set)
   : X ∈ cfg.tang_P_ω := by
   have h' : finrank ℝ cfg.tang_P_ω.direction + 1 = finrank ℝ V := by
@@ -2997,6 +3765,9 @@ lemma X_in_tang_P_ω {X : Pt} (hX : X ∈ cfg.X_set)
   rw [h₁, ← h₂]
   exact right_mem_affineSpan_pair ℝ cfg.P X
 
+/--
+@isnad1 id=ex.0h3v.s8.643556083dd0 from=translated src=- shape=6a8ba07e vocab=c70ed1d0
+-/
 theorem result : ∃ X : Pt,
     X ∈ (cfg.tang_P_ω : Set Pt) ∩ line[ℝ, cfg.B, cfg.S]
     ∧ ∠ cfg.B cfg.A X = ∠ X cfg.A cfg.C

@@ -33,7 +33,9 @@ abbrev equality_cases {n : ℕ} (x : Fin n → ℝ) (lam : ℝ) : Prop :=
     (∀ k : Fin n, k ≠ i → k ≠ j → x k = 0) ∧ lam = 1 / Real.sqrt 2
 
 /-- The number of subsets of `s` containing a fixed sub-finset `t` is
-`2 ^ (s.card - t.card)`. -/
+`2 ^ (s.card - t.card)`.
+@isnad1 id=eq.1h3v.s6.8109a9e5bf93 from=translated src=- shape=b78d88dd vocab=1e3bfffa
+-/
 lemma card_powerset_filter_subset {α : Type*} [DecidableEq α] {s t : Finset α}
     (hst : t ⊆ s) :
     (s.powerset.filter (fun A => t ⊆ A)).card = 2 ^ (s.card - t.card) := by
@@ -62,7 +64,9 @@ lemma card_powerset_filter_subset {α : Type*} [DecidableEq α] {s t : Finset α
       exact (mem_sdiff.mp (hB ha)).2
 
 /-- Bridge between natural-number powers `2 ^ (n - k)` and integer powers
-`(2 : ℝ) ^ ((n : ℤ) - k)`. -/
+`(2 : ℝ) ^ ((n : ℤ) - k)`.
+@isnad1 id=eq.1h2v.s6.ceea5cb2f3f5 from=translated src=- shape=50238b2a vocab=1d764e89
+-/
 lemma two_pow_sub (n k : ℕ) (hk : k ≤ n) :
     ((2 ^ (n - k) : ℕ) : ℝ) = (2 : ℝ) ^ ((n : ℤ) - k) := by
   have h1 : (n : ℤ) - k = ((n - k : ℕ) : ℤ) := by
@@ -70,7 +74,9 @@ lemma two_pow_sub (n k : ℕ) (hk : k ≤ n) :
   rw [h1, zpow_natCast]
   norm_cast
 
-/-- Master identity: the sum of `S_A ^ 2` over all subsets `A` equals `2 ^ (n - 2)`. -/
+/-- Master identity: the sum of `S_A ^ 2` over all subsets `A` equals `2 ^ (n - 2)`.
+@isnad1 id=eq.3h2v.s7.6832d36afa33 from=translated src=- shape=574ab109 vocab=0e88bb93
+-/
 lemma sum_subsetSum_sq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
     (hsum : ∑ i, x i = 0) (hsq : ∑ i, x i ^ 2 = 1) :
     ∑ A ∈ univ.powerset, (∑ i ∈ A, x i) ^ 2 = (2 : ℝ) ^ ((n : ℤ) - 2) := by
@@ -174,7 +180,9 @@ lemma sum_subsetSum_sq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
         rw [hsq, mul_one]
 
 /-- Pairing each subset with its complement: the sum of `S_A ^ 2` over the subsets
-with positive sum equals `2 ^ (n - 3)`. -/
+with positive sum equals `2 ^ (n - 3)`.
+@isnad1 id=eq.3h2v.s7.1dc21a547a03 from=translated src=- shape=335b854f vocab=cebc02f6
+-/
 lemma sum_pos_subsetSum_sq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
     (hsum : ∑ i, x i = 0) (hsq : ∑ i, x i ^ 2 = 1) :
     ∑ A ∈ univ.powerset.filter (fun A => 0 < ∑ i ∈ A, x i), (∑ i ∈ A, x i) ^ 2 =
@@ -256,7 +264,9 @@ lemma sum_pos_subsetSum_sq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
   linarith [hmaster, h2]
 
 /-- Forward direction of the equality case: if equality holds, then every positive
-subset sum equals `λ`. -/
+subset sum equals `λ`.
+@isnad1 id=eq.6h4v.s8.67ad59935300 from=translated src=- shape=7d5b1291 vocab=eb09db68
+-/
 lemma subsetSum_eq_of_card_eq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
     (hsum : ∑ i, x i = 0) (hsq : ∑ i, x i ^ 2 = 1)
     (lam : ℝ) (hlam : 0 < lam)
@@ -327,7 +337,9 @@ lemma subsetSum_eq_of_card_eq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
     exact absurd hS (ne_of_gt hA0)
 
 /-- Forward direction of the equality case: if equality holds, then `x` is a
-permutation of `(1 / √2, -1 / √2, 0, ..., 0)` and `λ = 1 / √2`. -/
+permutation of `(1 / √2, -1 / √2, 0, ..., 0)` and `λ = 1 / √2`.
+@isnad1 id=equality.5h3v.s7.b75dc96cd117 from=translated src=- shape=292d80b9 vocab=6e23bcd9
+-/
 lemma equality_case_of_card_eq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
     (hsum : ∑ i, x i = 0) (hsq : ∑ i, x i ^ 2 = 1)
     (lam : ℝ) (hlam : 0 < lam)
@@ -453,7 +465,9 @@ lemma equality_case_of_card_eq {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ)
     hrest, hlam_val⟩
 
 /-- Backward direction of the equality case: if `x` is a permutation of
-`(1 / √2, -1 / √2, 0, ..., 0)` and `λ = 1 / √2`, then equality holds. -/
+`(1 / √2, -1 / √2, 0, ..., 0)` and `λ = 1 / √2`, then equality holds.
+@isnad1 id=eq.6h5v.s8.d430bc65200c from=translated src=- shape=aebd39b9 vocab=09f161a6
+-/
 lemma card_eq_of_equality_case {n : ℕ} (hn : 2 ≤ n) (x : Fin n → ℝ) (lam : ℝ)
     (i j : Fin n) (hij : i ≠ j) (hxi : x i = 1 / Real.sqrt 2)
     (hxj : x j = -(1 / Real.sqrt 2))

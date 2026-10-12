@@ -31,11 +31,17 @@ def u (n : ℕ) : ℚ := ∑i ∈ Finset.Icc 1 n, t i / (i + 1)
 -- based on solution from
 -- https://artofproblemsolving.com/wiki/index.php/1989_USAMO_Problems/Problem_1
 
+/--
+@isnad1 id=eq.0h2v.s6.1fd3adf23c93 from=translated src=- shape=a74fd927 vocab=232248ac
+-/
 theorem extract_one {n : ℕ} {f : ℕ → ℚ} :
     (Finset.Icc 1 (n + 1)).sum f = f (n + 1) + (Finset.Icc 1 n).sum f := by
   rw [← Finset.insert_Icc_right_eq_Icc_add_one (by simp)]
   rw [Finset.sum_insert (by simp)]
 
+/--
+@isnad1 id=eq.0h1v.s5.d70295b38c4f from=translated src=- shape=ff0fc902 vocab=d1a75992
+-/
 lemma l1 (n : ℕ) : t (n - 1) = n * s n - n := by
   induction n with
   | zero => simp [t]
@@ -50,6 +56,9 @@ lemma l1 (n : ℕ) : t (n - 1) = n * s n - n := by
         grind
       grind [t]
 
+/--
+@isnad1 id=eq.0h1v.s6.ca9051b154b3 from=translated src=- shape=0d677d0c vocab=beb7d577
+-/
 lemma l2 (n : ℕ) : u (n - 1) = (n + 1) * s n - 2 * n := by
   induction n with
   | zero => simp [u, t, s]

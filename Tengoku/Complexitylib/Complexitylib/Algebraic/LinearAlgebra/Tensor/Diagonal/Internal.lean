@@ -49,15 +49,24 @@ section Maps
 variable {β γ : Type*} [Fintype α] [DecidableEq α] [Fintype β] [DecidableEq β] [Fintype γ]
   [DecidableEq γ]
 
+/--
+@isnad1 id=eq.0h6v.s6.dc3c49fa744c from=translated src=- shape=21256b38 vocab=c56f10cd
+-/
 theorem map_selectSlices (c : α' → α) (T : Tensor3 α β γ) :
     map (selectSlices c) 1 1 T = T.subtensor c id id := by
   ext t j l
   simp [map, selectSlices, subtensor, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.0h8v.s6.859af979aca3 from=translated src=- shape=f17448d7 vocab=3c92084e
+-/
 theorem map_diagonal_apply (d : α → ℂ) (T : Tensor3 α β γ) (a : α) (j : β) (l : γ) :
     map (Matrix.diagonal d) (1 : Matrix β β ℂ) (1 : Matrix γ γ ℂ) T a j l = d a * T a j l := by
   simp [map, Matrix.diagonal_apply, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.1h7v.s7.d1fa74f6172f from=translated src=- shape=17968b93 vocab=1b69dcc1
+-/
 theorem map_selectSlices_map_diagonal (c : α' → α) (d : α → ℂ) (hd : ∀ t, d (c t) = 1)
     (T : Tensor3 α β γ) :
     map (selectSlices c) 1 1 (map (Matrix.diagonal d) (1 : Matrix β β ℂ) (1 : Matrix γ γ ℂ) T) =
@@ -68,6 +77,9 @@ theorem map_selectSlices_map_diagonal (c : α' → α) (d : α → ℂ) (hd : �
 
 end Maps
 
+/--
+@isnad1 id=eq.0h4v.s8.c5e1660f9f9a from=translated src=- shape=4934d0b5 vocab=f5f435f2
+-/
 theorem subtensor_lmTensor (k : ℕ) (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) {n : ℕ}
     (c : Fin n → Fin (2 * k + 1)) :
     (lmTensor k γ).subtensor c id id =
@@ -78,6 +90,9 @@ section Wedge
 
 variable [LinearOrder α]
 
+/--
+@isnad1 id=eq.2h5v.s5.ca56d35efc2b from=translated src=- shape=24966eed vocab=a308f10f
+-/
 theorem wedgeCoeff_eq_zero_of_ne {J I : Finset α} {t t' : α} (hJ : insert t I = J)
     (hne : t' ≠ t) : wedgeCoeff J I t' = 0 := by
   unfold wedgeCoeff
@@ -89,6 +104,9 @@ theorem wedgeCoeff_eq_zero_of_ne {J I : Finset α} {t t' : α} (hJ : insert t I 
     · exact absurd h ht'
   · rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.e6b073e4f27e from=translated src=- shape=8b930dfd vocab=6ede8451
+-/
 theorem wedgeCoeff_eq_zero_of_not_exists {J I : Finset α}
     (h : ¬ ∃ t, t ∉ I ∧ insert t I = J) (t : α) : wedgeCoeff J I t = 0 := by
   unfold wedgeCoeff
@@ -96,16 +114,25 @@ theorem wedgeCoeff_eq_zero_of_not_exists {J I : Finset α}
   · exact absurd ⟨t, h'⟩ h
   · rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.33b42ecee96c from=translated src=- shape=5c63be78 vocab=330cfe33
+-/
 theorem wedgeCoeff_of_insert {J I : Finset α} {t : α} (ht : t ∉ I) (hJ : insert t I = J) :
     wedgeCoeff J I t = (-1) ^ (I.filter (· < t)).card := by
   simp [wedgeCoeff, ht, hJ]
 
 variable [Fintype α]
 
+/--
+@isnad1 id=eq.1h5v.s6.32e9e4eec0a5 from=translated src=- shape=91589db3 vocab=a9d5b30d
+-/
 theorem sum_wedgeCoeff_mul_of_insert {J I : Finset α} {t : α} (hJ : insert t I = J)
     (F : α → ℂ) : ∑ t', wedgeCoeff J I t' * F t' = wedgeCoeff J I t * F t :=
   Fintype.sum_eq_single t fun t' hne => by rw [wedgeCoeff_eq_zero_of_ne hJ hne, zero_mul]
 
+/--
+@isnad1 id=eq.1h4v.s6.983def566d7e from=translated src=- shape=3f492815 vocab=1ab85d96
+-/
 theorem sum_wedgeCoeff_mul_of_not_exists {J I : Finset α}
     (h : ¬ ∃ t, t ∉ I ∧ insert t I = J) (F : α → ℂ) :
     ∑ t', wedgeCoeff J I t' * F t' = 0 :=
@@ -113,6 +140,9 @@ theorem sum_wedgeCoeff_mul_of_not_exists {J I : Finset α}
 
 end Wedge
 
+/--
+@isnad1 id=eq.0h9v.s7.4dd6feca1944 from=translated src=- shape=7f2ed715 vocab=519a66be
+-/
 theorem koszulFlattening_weightedShifts_apply [LinearOrder α] [Fintype α] {m p : ℕ} (o : α → ℤ)
     (g : α → Fin m → ℂ) (J : {J : Finset α // J.card = p + 1}) (ℓ : Fin m)
     (I : {I : Finset α // I.card = p}) (j : Fin m) :
@@ -121,7 +151,9 @@ theorem koszulFlattening_weightedShifts_apply [LinearOrder α] [Fintype α] {m p
   rfl
 
 /-- An entry of the Koszul flattening of weighted shifts in row `(J, ℓ)` and column `(I, j)`
-vanishes unless `ℓ = j + o t` for the element `t ∉ I` with `insert t I = J`. -/
+vanishes unless `ℓ = j + o t` for the element `t ∉ I` with `insert t I = J`.
+@isnad1 id=eq.1h9v.s7.d4a940087456 from=translated src=- shape=8818329b vocab=ab0ab676
+-/
 theorem koszulFlattening_weightedShifts_eq_zero [LinearOrder α] [Fintype α] {m p : ℕ}
     (o : α → ℤ) (g : α → Fin m → ℂ) (J : {J : Finset α // J.card = p + 1}) (ℓ : Fin m)
     (I : {I : Finset α // I.card = p}) (j : Fin m)
@@ -138,7 +170,9 @@ section Matching
 variable [Fintype α] [DecidableEq α]
 
 /-- Every `p`-subset of an `n`-set with `p < n` has at least `n - p` supersets of size `p + 1`
-in any family containing all of them. -/
+in any family containing all of them.
+@isnad1 id=le.1h4v.s8.cb0b03982486 from=translated src=- shape=9ac099ba vocab=344bc183
+-/
 theorem card_sub_le_card_filter_superset {p : ℕ} (I : {I : Finset α // I.card = p})
     (s : Finset {J : Finset α // J.card = p + 1}) (hs : ∀ J : {J : Finset α // J.card = p + 1},
       I.1 ⊆ J.1 → J ∈ s) :
@@ -161,7 +195,9 @@ theorem card_sub_le_card_filter_superset {p : ℕ} (I : {I : Finset α // I.card
     · exact absurd h' hx
 
 omit [Fintype α] in
-/-- A `(p + 1)`-set has `p + 1` subsets of size `p`. -/
+/-- A `(p + 1)`-set has `p + 1` subsets of size `p`.
+@isnad1 id=le.0h4v.s7.74c692984d2a from=translated src=- shape=3ef98e21 vocab=e9753b34
+-/
 theorem card_filter_subset_le {p : ℕ} (J : {J : Finset α // J.card = p + 1})
     (s : Finset {I : Finset α // I.card = p}) :
     (s.filter fun I => I.1 ⊆ J.1).card ≤ p + 1 := by
@@ -176,7 +212,9 @@ theorem card_filter_subset_le {p : ℕ} (J : {J : Finset α // J.card = p + 1})
 /-- **A perfect matching in the inclusion graph.** For `card α = 2p + 1` there is a bijection
 from the `p`-subsets to the `(p + 1)`-subsets of `α` sending each `I` to a superset of `I`. The
 inclusion graph is `(p + 1)`-regular on both sides, so Hall's condition holds by double
-counting. -/
+counting.
+@isnad1 id=ex.1h2v.s8.bbaa4940140d from=translated src=- shape=58f6ef40 vocab=31b09807
+-/
 theorem exists_equiv_subset {p : ℕ} (hα : Fintype.card α = 2 * p + 1) :
     ∃ e : {I : Finset α // I.card = p} ≃ {J : Finset α // J.card = p + 1},
       ∀ I, I.1 ⊆ (e I).1 := by
@@ -211,6 +249,9 @@ section Certificate
 noncomputable def insertedElt [Nonempty α] [DecidableEq α] (J I : Finset α) : α :=
   Classical.epsilon fun t => t ∉ I ∧ insert t I = J
 
+/--
+@isnad1 id=eq.2h4v.s5.ecc427c9eaee from=translated src=- shape=6f1f8834 vocab=7f52295c
+-/
 theorem insertedElt_eq [Nonempty α] [DecidableEq α] {J I : Finset α} {t : α} (ht : t ∉ I)
     (hJ : insert t I = J) : insertedElt J I = t := by
   unfold insertedElt
@@ -229,7 +270,9 @@ variable {p m : ℕ}
 pairwise distinct and differ by at most `D`, and let the weights be `2^{2^{e t j}}` with labels
 `e` injective on positions at distance at most `D`. For a bijection `σ` from the `p`-subsets to
 the `(p + 1)`-subsets with `I ⊆ σ I` and a shift `w`, the minor with rows
-`(σ I, w + ∑_{σ I} o)` and columns `(I, w + ∑_I o)` has nonzero determinant. -/
+`(σ I, w + ∑_{σ I} o)` and columns `(I, w + ∑_I o)` has nonzero determinant.
+@isnad1 id=ne.7h10v.s12.218e64ab8f7e from=translated src=- shape=87d573f2 vocab=290238b3
+-/
 theorem det_submatrix_shift_ne_zero (o : Fin (2 * p + 1) → ℤ)
     (g : Fin (2 * p + 1) → Fin m → ℂ) (e : Fin (2 * p + 1) → Fin m → ℕ)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, o t) {I | I.card = p})
@@ -300,7 +343,9 @@ theorem det_submatrix_shift_ne_zero (o : Fin (2 * p + 1) → ℤ)
 `det_submatrix_shift_ne_zero`, let `w : Q → ℤ` be pairwise distinct shifts whose positions
 `w q + ∑_K o` lie in `[0, m)` for all subsets `K` of size `p` or `p + 1`. The blocks of the
 shifts `w q` form a block-diagonal minor, so the Koszul flattening has rank at least
-`(2p+1).choose p * card Q`. -/
+`(2p+1).choose p * card Q`.
+@isnad1 id=le.6h8v.s10.2af836e508d3 from=translated src=- shape=8c4b5fdc vocab=3c4d5c03
+-/
 theorem choose_mul_card_le_rank_of_shifts (o : Fin (2 * p + 1) → ℤ)
     (g : Fin (2 * p + 1) → Fin m → ℂ) (e : Fin (2 * p + 1) → Fin m → ℕ)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, o t) {I | I.card = p})
@@ -336,7 +381,9 @@ theorem choose_mul_card_le_rank_of_shifts (o : Fin (2 * p + 1) → ℤ)
     exact det_submatrix_shift_ne_zero o g e ho hg D hD he σ hσ (w q) _ _
       (fun I => hpos q _ (Or.inr (σ I).2)) (fun I => hpos q _ (Or.inl I.2))
 
-/-- The difference of two `p`-subset sums is at most `subsetSumSpread p o`. -/
+/-- The difference of two `p`-subset sums is at most `subsetSumSpread p o`.
+@isnad1 id=le.2h5v.s6.083333c6e324 from=translated src=- shape=22df5462 vocab=565348e6
+-/
 theorem le_subsetSumSpread [Fintype α] (o : α → ℤ) {I I' : Finset α} (hI : I.card = p)
     (hI' : I'.card = p) : ∑ t ∈ I, o t - ∑ t ∈ I', o t ≤ subsetSumSpread p o := by
   have h := Finset.le_sup (f := fun II : Finset α × Finset α =>
@@ -352,7 +399,9 @@ theorem le_subsetSumSpread [Fintype α] (o : α → ℤ) {I I' : Finset α} (hI 
 `∑_{t ∈ K} o t` over a subset `K` of size `p` or `p + 1` lies in `[lo, lo + D]`, the `p`-subset
 sums are pairwise distinct, and the weights are `2^{2^{e t j}}` with labels `e` that are
 injective on positions at distance at most `subsetSumSpread p o`, then the Koszul flattening has
-rank at least `(2p+1).choose p * (m - D)`. -/
+rank at least `(2p+1).choose p * (m - D)`.
+@isnad1 id=le.4h7v.s10.5965bd2be42c from=translated src=- shape=d253c5e0 vocab=4c198848
+-/
 theorem choose_mul_le_rank_of_bounds (o : Fin (2 * p + 1) → ℤ) (g : Fin (2 * p + 1) → Fin m → ℂ)
     (e : Fin (2 * p + 1) → Fin m → ℕ)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, o t) {I | I.card = p})
@@ -369,6 +418,9 @@ theorem choose_mul_le_rank_of_bounds (o : Fin (2 * p + 1) → ℤ) (g : Fin (2 *
     (fun i K hK => by have := hlo K hK; have := i.2; constructor <;> omega)
   simpa using h
 
+/--
+@isnad1 id=le.2h5v.s6.d666b20977a7 from=translated src=- shape=7922a76d vocab=9db167b4
+-/
 theorem le_sumSpread [Fintype α] (o : α → ℤ) {K K' : Finset α}
     (hK : K.card = p ∨ K.card = p + 1) (hK' : K'.card = p ∨ K'.card = p + 1) :
     ∑ t ∈ K, o t - ∑ t ∈ K', o t ≤ sumSpread p o := by
@@ -380,7 +432,9 @@ theorem le_sumSpread [Fintype α] (o : α → ℤ) {K K' : Finset α}
     exact_mod_cast h
   omega
 
-/-- The sums over subsets of size `p` or `p + 1` lie in an interval of length `sumSpread p o`. -/
+/-- The sums over subsets of size `p` or `p + 1` lie in an interval of length `sumSpread p o`.
+@isnad1 id=ex.0h2v.s8.fa1a4b65b0af from=translated src=- shape=4b0114ed vocab=29219022
+-/
 theorem exists_bounds (o : Fin (2 * p + 1) → ℤ) :
     ∃ lo : ℤ, ∀ K : Finset (Fin (2 * p + 1)), K.card = p ∨ K.card = p + 1 →
       lo ≤ ∑ t ∈ K, o t ∧ ∑ t ∈ K, o t ≤ lo + sumSpread p o := by
@@ -395,7 +449,9 @@ theorem exists_bounds (o : Fin (2 * p + 1) → ℤ) :
   omega
 
 /-- The spread of the `p`-subset sums is at most the spread over subsets of size `p` or
-`p + 1`. -/
+`p + 1`.
+@isnad1 id=le.0h3v.s4.486646ac828d from=translated src=- shape=96ef92e7 vocab=6ccd4f91
+-/
 theorem subsetSumSpread_le_sumSpread [Fintype α] (o : α → ℤ) :
     subsetSumSpread p o ≤ sumSpread p o := by
   refine Finset.sup_le fun II hII => ?_
@@ -404,7 +460,9 @@ theorem subsetSumSpread_le_sumSpread [Fintype α] (o : α → ℤ) :
   have := le_sumSpread (p := p) o (Or.inl hI) (Or.inl hI')
   omega
 
-/-- **The single-cluster certificate.** -/
+/-- **The single-cluster certificate.**
+@isnad1 id=le.3h5v.s10.4067d40cdcd8 from=translated src=- shape=75b5f12f vocab=e93c6950
+-/
 theorem choose_mul_le_rank (o : Fin (2 * p + 1) → ℤ) (g : Fin (2 * p + 1) → Fin m → ℂ)
     (e : Fin (2 * p + 1) → Fin m → ℕ)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, o t) {I | I.card = p})
@@ -422,6 +480,9 @@ section Spread
 
 variable {p : ℕ}
 
+/--
+@isnad1 id=le.1h3v.s8.7eb166602005 from=translated src=- shape=3d7076f3 vocab=ef5d3c20
+-/
 theorem sum_sub_median_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o)
     (K : Finset (Fin (2 * p + 1))) :
     ∑ t ∈ K, (o t - o ⟨p, by omega⟩) ≤ p * (o (Fin.last (2 * p)) - o ⟨p, by omega⟩) := by
@@ -446,6 +507,9 @@ theorem sum_sub_median_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o)
     (show ((K.filter (r < ·)).card : ℤ) ≤ p by exact_mod_cast hcard) hnn
   linarith
 
+/--
+@isnad1 id=le.1h3v.s8.a3cdf30bce75 from=translated src=- shape=5475fc16 vocab=5ca12ca0
+-/
 theorem sum_median_sub_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o)
     (K : Finset (Fin (2 * p + 1))) :
     ∑ t ∈ K, (o ⟨p, by omega⟩ - o t) ≤ p * (o ⟨p, by omega⟩ - o 0) := by
@@ -470,7 +534,9 @@ theorem sum_median_sub_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o)
   linarith
 
 /-- For monotone offsets with median `r` and diameter at most `L`, the difference of two sums over
-subsets of size `p` or `p + 1` is at most `|r| + p L`. -/
+subsets of size `p` or `p + 1` is at most `|r| + p L`.
+@isnad1 id=le.4h5v.s9.6c1166bf091f from=translated src=- shape=02f806e3 vocab=df8c9aa2
+-/
 theorem sum_sub_sum_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : ℤ}
     (hL : o (Fin.last (2 * p)) - o 0 ≤ L) {K K' : Finset (Fin (2 * p + 1))}
     (hK : K.card = p ∨ K.card = p + 1) (hK' : K'.card = p ∨ K'.card = p + 1) :
@@ -492,7 +558,9 @@ theorem sum_sub_sum_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : ℤ}
     push_cast at h1 h2 <;> nlinarith
 
 /-- **Spread of a cluster.** For monotone offsets `o` with median `r = o p` and diameter
-`o (2p) - o 0 ≤ L`, the spread is at most `|r| + p L`. -/
+`o (2p) - o 0 ≤ L`, the spread is at most `|r| + p L`.
+@isnad1 id=le.2h3v.s8.a90b0094d60e from=translated src=- shape=8a592608 vocab=0fff636d
+-/
 theorem sumSpread_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : ℤ}
     (hL : o (Fin.last (2 * p)) - o 0 ≤ L) :
     (sumSpread p o : ℤ) ≤ |o ⟨p, by omega⟩| + p * L := by
@@ -509,19 +577,27 @@ theorem sumSpread_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : ℤ}
     exact_mod_cast hle
   omega
 
+/--
+@isnad1 id=monotone.1h3v.s8.20aafa2f8818 from=translated src=- shape=5d856b0d vocab=d22f613e
+-/
 theorem monotone_clusterOffsets {k : ℕ} {c : Fin (2 * p + 1) → Fin (2 * k + 1)}
     (hc : Monotone c) : Monotone (clusterOffsets k c) := fun a b hab => by
   have : (c a : ℕ) ≤ c b := hc hab
   simp only [clusterOffsets]
   omega
 
+/--
+@isnad1 id=le.2h4v.s9.591cdc94fa1a from=translated src=- shape=d97f963b vocab=37df1206
+-/
 theorem sumSpread_clusterOffsets_le {k : ℕ} (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (hc : Monotone c) {L : ℤ} (hL : (c (Fin.last (2 * p)) : ℤ) - c 0 ≤ L) :
     (sumSpread p (clusterOffsets k c) : ℤ) ≤ |(c ⟨p, by omega⟩ : ℤ) - k| + p * L :=
   sumSpread_le _ (monotone_clusterOffsets hc) (by simp only [clusterOffsets]; omega)
 
 /-- For monotone offsets with diameter at most `L`, two `p`-subset sums differ by at most
-`p L`: one is at most `p o (2p)`, the other at least `p o 0`. -/
+`p L`: one is at most `p o (2p)`, the other at least `p o 0`.
+@isnad1 id=le.4h5v.s8.3a581eb7b415 from=translated src=- shape=0a818e98 vocab=b74a95cb
+-/
 theorem sum_sub_sum_le_mul (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : ℤ}
     (hL : o (Fin.last (2 * p)) - o 0 ≤ L) {I I' : Finset (Fin (2 * p + 1))}
     (hI : I.card = p) (hI' : I'.card = p) :
@@ -537,7 +613,9 @@ theorem sum_sub_sum_le_mul (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : 
   linarith
 
 /-- **The `p`-subset spread of a cluster.** For monotone offsets with diameter
-`o (2p) - o 0 ≤ L`, the `p`-subset sums spread over at most `p L`, whatever the median. -/
+`o (2p) - o 0 ≤ L`, the `p`-subset sums spread over at most `p L`, whatever the median.
+@isnad1 id=le.2h3v.s8.167916324e94 from=translated src=- shape=b2aef167 vocab=b5781499
+-/
 theorem subsetSumSpread_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : ℤ}
     (hL : o (Fin.last (2 * p)) - o 0 ≤ L) : (subsetSumSpread p o : ℤ) ≤ p * L := by
   have hL0 : 0 ≤ L := by
@@ -552,6 +630,9 @@ theorem subsetSumSpread_le (o : Fin (2 * p + 1) → ℤ) (ho : Monotone o) {L : 
   have : ((subsetSumSpread p o : ℕ) : ℤ) ≤ (((p : ℤ) * L).toNat : ℤ) := by exact_mod_cast hle
   omega
 
+/--
+@isnad1 id=le.2h4v.s8.38deaa834d3d from=translated src=- shape=c2f8588f vocab=2f22ad39
+-/
 theorem subsetSumSpread_clusterOffsets_le {k : ℕ} (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (hc : Monotone c) {L : ℤ} (hL : (c (Fin.last (2 * p)) : ℤ) - c 0 ≤ L) :
     (subsetSumSpread p (clusterOffsets k c) : ℤ) ≤ p * L :=
@@ -565,6 +646,9 @@ variable {k p : ℕ}
 
 local notation "𝟙" => (1 : Matrix (Fin (2 * k + 1)) (Fin (2 * k + 1)) ℂ)
 
+/--
+@isnad1 id=le.3h5v.s11.6c5fbd807f7a from=translated src=- shape=68396f3b vocab=b4abb619
+-/
 theorem le_rank_lmTensor_cluster (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ)
     (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ) (hγ : ∀ a j, γ a j = 2 ^ 2 ^ e a j)
     (c : Fin (2 * p + 1) → Fin (2 * k + 1))
@@ -578,6 +662,9 @@ theorem le_rank_lmTensor_cluster (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → �
   rw [map_selectSlices, subtensor_lmTensor]
   exact choose_mul_le_rank _ _ (fun t j => e (c t) j) ho (fun t j => hγ _ _) he
 
+/--
+@isnad1 id=and.3h5v.s6.587f6a6f2366 from=translated src=- shape=780f99a7 vocab=304a85f3
+-/
 theorem code_injective {m a a' j j' : ℕ} (hj : j < m) (hj' : j' < m)
     (h : a * m + j = a' * m + j') : a = a' ∧ j = j' := by
   have hm : 0 < m := by omega
@@ -590,7 +677,9 @@ theorem code_injective {m a a' j j' : ℕ} (hj : j < m) (hj' : j' < m)
 
 /-- **Window labels on a cluster.** If the labels `e` separate positions whose slices differ by
 at most `L` and whose columns differ by at most `p L`, they separate the positions of a strictly
-monotone cluster of diameter at most `L` whose columns differ by at most `p L`. -/
+monotone cluster of diameter at most `L` whose columns differ by at most `p L`.
+@isnad1 id=and.5h9v.s10.86667a922a02 from=translated src=- shape=dbce765b vocab=8dafdd53
+-/
 theorem cluster_labels_of_window (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ) {L : ℕ}
     (he : ∀ a a' j j' : Fin (2 * k + 1), |(a : ℤ) - a'| ≤ L → |(j : ℤ) - j'| ≤ p * L →
       e a j = e a' j' → a = a' ∧ j = j')
@@ -606,7 +695,9 @@ theorem cluster_labels_of_window (e : Fin (2 * k + 1) → Fin (2 * k + 1) → �
   exact ⟨hc.injective hcc, hjj⟩
 
 /-- Window labels satisfy the label condition of the single-cluster certificate for every
-strictly monotone cluster of diameter at most `L`, whose `p`-subset spread is at most `p L`. -/
+strictly monotone cluster of diameter at most `L`, whose `p`-subset spread is at most `p L`.
+@isnad1 id=and.5h9v.s10.970e93fbef5c from=translated src=- shape=496db9c7 vocab=bb1e94d6
+-/
 theorem cluster_labels_of_window_subsetSumSpread (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ)
     {L : ℕ} (he : ∀ a a' j j' : Fin (2 * k + 1), |(a : ℤ) - a'| ≤ L → |(j : ℤ) - j'| ≤ p * L →
       e a j = e a' j' → a = a' ∧ j = j')
@@ -617,10 +708,16 @@ theorem cluster_labels_of_window_subsetSumSpread (e : Fin (2 * k + 1) → Fin (2
   cluster_labels_of_window e he hc hL t t' j j'
     (hj.trans (subsetSumSpread_clusterOffsets_le c hc.monotone hL)) h
 
+/--
+@isnad1 id=eq.0h3v.s7.5c1a9c5204c8 from=translated src=- shape=cc996e1a vocab=91ce5f2f
+-/
 theorem lmWeight_eq (a j : Fin (2 * k + 1)) :
     lmWeight k a j = 2 ^ 2 ^ ((a : ℕ) * (2 * k + 1) + j) := by
   simp [lmWeight]
 
+/--
+@isnad1 id=le.2h3v.s10.63417d85a3a1 from=translated src=- shape=66948d6f vocab=8abc5b20
+-/
 theorem le_rank_weightedLMTensor_cluster (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (hc : Function.Injective c)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t)
@@ -632,7 +729,9 @@ theorem le_rank_weightedLMTensor_cluster (c : Fin (2 * p + 1) → Fin (2 * k + 1
   obtain ⟨h1, h2⟩ := code_injective j.2 j'.2 h
   exact ⟨hc (Fin.ext h1), Fin.ext h2⟩
 
-/-- The Koszul bound for a tensor `T` whose cluster tensor is `map (selectSlices c) 1 1 T'`. -/
+/-- The Koszul bound for a tensor `T` whose cluster tensor is `map (selectSlices c) 1 1 T'`.
+@isnad1 id=le.0h4v.s10.333c35c2687d from=translated src=- shape=aaeed54d vocab=0c84bf52
+-/
 theorem rank_le_borderRank_mul (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (T : Tensor3 (Fin (2 * k + 1)) (Fin (2 * k + 1)) (Fin (2 * k + 1))) :
     (koszulFlattening p (map (selectSlices c) 𝟙 𝟙 T)).rank ≤ T.borderRank * (2 * p).choose p := by
@@ -640,12 +739,18 @@ theorem rank_le_borderRank_mul (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (borderRankLE_borderRank T)
   simpa using h
 
+/--
+@isnad1 id=le.1h5v.s10.018f958ba4aa from=translated src=- shape=7d8fe307 vocab=239523bf
+-/
 theorem rank_le_mul_of_borderRankLE (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     {T : Tensor3 (Fin (2 * k + 1)) (Fin (2 * k + 1)) (Fin (2 * k + 1))} {r : ℕ}
     (h : T.BorderRankLE r) :
     (koszulFlattening p (map (selectSlices c) 𝟙 𝟙 T)).rank ≤ r * (2 * p).choose p := by
   simpa using h.rank_koszulFlattening_map_le p (selectSlices c) 𝟙 𝟙
 
+/--
+@isnad1 id=le.4h6v.s10.3a1c6ede3cb4 from=translated src=- shape=b54ce7d7 vocab=95326c67
+-/
 theorem choose_mul_le_borderRank_mul_lmTensor (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ)
     (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ) (hγ : ∀ a j, γ a j = 2 ^ 2 ^ e a j)
     (c : Fin (2 * p + 1) → Fin (2 * k + 1))
@@ -661,6 +766,9 @@ theorem choose_mul_le_borderRank_mul_lmTensor (γ : Fin (2 * k + 1) → Fin (2 *
   rw [map_selectSlices_map_diagonal c d hd] at h
   exact (le_rank_lmTensor_cluster γ e hγ c ho he).trans h
 
+/--
+@isnad1 id=le.3h4v.s10.093cc5a5f2bc from=translated src=- shape=6de8eb2b vocab=c4354c34
+-/
 theorem choose_mul_le_borderRank_mul_weightedLMTensor (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (hc : Function.Injective c)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t)
@@ -672,6 +780,9 @@ theorem choose_mul_le_borderRank_mul_weightedLMTensor (c : Fin (2 * p + 1) → F
   rw [map_selectSlices_map_diagonal c d hd] at h
   exact (le_rank_weightedLMTensor_cluster c hc ho).trans h
 
+/--
+@isnad1 id=not.4h5v.s10.ba421be77daf from=translated src=- shape=b7f2e3ab vocab=1d11c869
+-/
 theorem not_borderRankLE_weightedLMTensor (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (hc : Function.Injective c)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t)

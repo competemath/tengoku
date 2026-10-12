@@ -22,7 +22,9 @@ divisible by a prime less than 17?
 
 namespace Usa1986P1
 
-/-- A prime less than `13` that is not `2` is one of `3, 5, 7, 11`. -/
+/-- A prime less than `13` that is not `2` is one of `3, 5, 7, 11`.
+@isnad1 id=or.3h1v.s5.d5130145432d from=translated src=- shape=27f85d18 vocab=96766dc4
+-/
 lemma prime_lt_thirteen_ne_two {p : ℕ} (hp : p.Prime) (h13 : p < 13) (h2 : p ≠ 2) :
     p = 3 ∨ p = 5 ∨ p = 7 ∨ p = 11 := by
   have h2le : 2 ≤ p := hp.two_le
@@ -45,6 +47,7 @@ it cannot happen that each of `a + 2 * t₁`, `a + 2 * t₂`, `a + 2 * t₃` is
 divisible by `7` or by `11` (two of them would share a prime, contradicting
 `eq_of_dvd`).  Hence, if none of them is divisible by `3` or `5`, one of them
 is divisible by none of `3, 5, 7, 11`.
+@isnad1 id=ex.9h4v.s8.cd42eef1ac3a from=translated src=- shape=3f20d635 vocab=8180703e
 -/
 lemma not_all_divisible_of_three (t₁ t₂ t₃ : ℕ) (a : ℕ)
     (h₁₂ : t₁ ≠ t₂) (h₁₃ : t₁ ≠ t₃) (h₂₃ : t₂ ≠ t₃)
@@ -80,6 +83,7 @@ one by `7` and at most one by `11`, so at most six of the seven numbers can be
 divisible by one of `3, 5, 7, 11`.  We check the finitely many cases for
 `a % 3` and `a % 5`: in each case three explicit indices avoid `3` and `5`,
 and `not_all_divisible_of_three` finishes.
+@isnad1 id=ex.0h1v.s7.a448f83aa32b from=translated src=- shape=d74ded62 vocab=8180703e
 -/
 lemma not_all_divisible (a : ℕ) :
     ∃ j < 7, ¬ 3 ∣ a + 2 * j ∧ ¬ 5 ∣ a + 2 * j ∧

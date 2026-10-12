@@ -26,6 +26,9 @@ namespace Imo2018P2
 abbrev P {n : ℕ} (a : ZMod n → ℝ) :=
   ∀ (i : ZMod n), a i * a (i + 1) + 1 = a (i + 2)
 
+/--
+@isnad1 id=ex.3h2v.s6.2661913db073 from=translated src=- shape=76c22820 vocab=7c0858fa
+-/
 lemma not_dvd_prime_exists_mod_inverse {n p : ℕ} [NeZero n]
     (pp : p.Prime) (hn : 1 < n) (h : ¬p ∣ n) :
     ∃ c : ZMod n, p * c = 1 := by
@@ -37,6 +40,9 @@ lemma not_dvd_prime_exists_mod_inverse {n p : ℕ} [NeZero n]
   rw [Nat.mod_eq_of_lt hn]
   exact hc.2
 
+/--
+@isnad1 id=ex.2h1v.s5.3cb68ac1661e from=translated src=- shape=7d4c4702 vocab=1f730d8c
+-/
 lemma mod_3_satisfies {n : ℕ} (hn : 3 ≤ n) (hd : 3 ∣ n) :
     ∃ a : ZMod n → ℝ, P a := by
   have : Fact (1 < n) := ⟨Nat.lt_of_add_left_lt hn⟩
@@ -65,6 +71,9 @@ lemma mod_3_satisfies {n : ℕ} (hn : 3 ≤ n) (hd : 3 ∣ n) :
     norm_num
   }
 
+/--
+@isnad1 id=eq.1h3v.s6.bd2d447e415a from=translated src=- shape=4acd6335 vocab=c81f5fe1
+-/
 lemma three_periodic {n : ℕ} [NeZero n] {i : ZMod n} {a : ZMod n → ℝ} (ha : P a)
     : a i = a (i + 3) := by
   have (i : ZMod n) : a (i + 2) ^ 2 - a (i + 2) = a i * a (i + 3) - a i := by
@@ -118,6 +127,9 @@ lemma three_periodic {n : ℕ} [NeZero n] {i : ZMod n} {a : ZMod n → ℝ} (ha 
   rw [eq_zero_of_pow_eq_zero this]
   norm_num
 
+/--
+@isnad1 id=dvd.2h1v.s5.1c201eaa3c2d from=translated src=- shape=992db209 vocab=1f730d8c
+-/
 lemma satisfies_is_mod_3 {n : ℕ} (hn : 3 ≤ n) (h : ∃ a : ZMod n → ℝ, P a) :
     3 ∣ n := by
   have n_gt_1 : 1 < n := Nat.lt_of_add_left_lt hn

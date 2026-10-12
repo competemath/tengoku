@@ -64,11 +64,17 @@ open scoped RealInnerProductSpace
 
 /-! ### Coordinates in the plane -/
 
+/--
+@isnad1 id=eq.2h2v.s7.789ddd5db817 from=translated src=- shape=11489ea2 vocab=40911cfc
+-/
 theorem Pt.ext {x y : Pt} (h0 : x 0 = y 0) (h1 : x 1 = y 1) : x = y := by
   apply WithLp.ofLp_injective (p := 2)
   funext i
   fin_cases i <;> assumption
 
+/--
+@isnad1 id=eq.0h2v.s9.d09759d00eb2 from=translated src=- shape=b9c7db3f vocab=96096486
+-/
 theorem inner_pt (n x : Pt) : ⟪n, x⟫ = n 0 * x 0 + n 1 * x 1 := by
   rw [PiLp.inner_apply, Fin.sum_univ_two, RCLike.inner_apply, RCLike.inner_apply]
   simp only [conj_trivial]
@@ -77,10 +83,19 @@ theorem inner_pt (n x : Pt) : ⟪n, x⟫ = n 0 * x 0 + n 1 * x 1 := by
 /-- Rotation by 90 degrees. -/
 def rot90 (v : Pt) : Pt := !₂[-(v 1), v 0]
 
+/--
+@isnad1 id=eq.0h1v.s7.59ca731b6f2a from=translated src=- shape=cd1f90c2 vocab=27ddefc4
+-/
 @[simp] theorem rot90_apply0 (v : Pt) : rot90 v 0 = -(v 1) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.796984a5f3b0 from=translated src=- shape=ac5f210b vocab=1a4791b9
+-/
 @[simp] theorem rot90_apply1 (v : Pt) : rot90 v 1 = v 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.0bf5da2ab57c from=translated src=- shape=2d3515e4 vocab=a56960f4
+-/
 theorem inner_rot90_self (v : Pt) : ⟪rot90 v, v⟫ = 0 := by
   rw [inner_pt, rot90_apply0, rot90_apply1]
   ring
@@ -88,17 +103,26 @@ theorem inner_rot90_self (v : Pt) : ⟪rot90 v, v⟫ = 0 := by
 /-- The first standard basis vector. -/
 def e₁ : Pt := !₂[1, 0]
 
+/--
+@isnad1 id=eq.0h1v.s7.52991b8bcf97 from=translated src=- shape=f8d056ab vocab=5096cc11
+-/
 theorem inner_e₁ (x : Pt) : ⟪e₁, x⟫ = x 0 := by
   rw [inner_pt]
   show 1 * x 0 + 0 * x 1 = x 0
   ring
 
+/--
+@isnad1 id=ne.0h0v.s6.354f30cf61bc from=translated src=- shape=ffdda526 vocab=b6bf7bf4
+-/
 theorem e₁_ne_zero : e₁ ≠ 0 := by
   intro h
   have h0 : e₁ 0 = (0 : Pt) 0 := by rw [h]
   have : (1 : ℝ) = 0 := h0
   norm_num at this
 
+/--
+@isnad1 id=ne.1h1v.s7.b35821763658 from=translated src=- shape=5aedd577 vocab=67b9e5bf
+-/
 theorem rot90_ne_zero {v : Pt} (hv : v ≠ 0) : rot90 v ≠ 0 := by
   intro h
   apply hv
@@ -131,6 +155,9 @@ theorem eq_smul_of_inner_rot90_eq_zero {v y : Pt} (hv : v ≠ 0)
 
 /-! ### Collinearity helpers -/
 
+/--
+@isnad1 id=collinea.1h4v.s9.9ae8aeab2c09 from=translated src=- shape=038d37ed vocab=2b3fa22b
+-/
 theorem collinear_triple_of_sub_eq_smul {z w x : Pt} (t : ℝ)
     (h : x - z = t • (w - z)) : Collinear ℝ {z, w, x} := by
   rw [collinear_iff_of_mem (Set.mem_insert z {w, x})]
@@ -140,11 +167,17 @@ theorem collinear_triple_of_sub_eq_smul {z w x : Pt} (t : ℝ)
   · exact ⟨1, by simp⟩
   · exact ⟨t, by rw [← h]; simp⟩
 
+/--
+@isnad1 id=collinea.2h3v.s9.1438e693793d from=translated src=- shape=aa6424f1 vocab=6685d3d4
+-/
 theorem collinear_of_inner_rot90_eq_zero {z w x : Pt} (hwz : w ≠ z)
     (h : ⟪rot90 (w - z), x - z⟫ = 0) : Collinear ℝ {z, w, x} := by
   obtain ⟨t, ht⟩ := eq_smul_of_inner_rot90_eq_zero (sub_ne_zero.mpr hwz) h
   exact collinear_triple_of_sub_eq_smul t ht
 
+/--
+@isnad1 id=collinea.2h2v.s11.d1288ef63f22 from=translated src=- shape=ad4e6b61 vocab=22776ae1
+-/
 theorem collinear_of_subset_line {s : Set Pt} {ℓ : AffineSubspace ℝ Pt}
     (hl : Module.finrank ℝ ℓ.direction = 1) (h : s ⊆ ℓ) : Collinear ℝ s := by
   rw [collinear_iff_rank_le_one]
@@ -166,8 +199,14 @@ def perp (n : Pt) (c : ℝ) : AffineSubspace ℝ Pt where
       inner_sub_right, h₁, h₂, h₃]
     ring
 
+/--
+@isnad1 id=iff.0h3v.s9.0f8ba4d7f483 from=translated src=- shape=a192abe1 vocab=a4ec2e25
+-/
 theorem mem_perp {n : Pt} {c : ℝ} {x : Pt} : x ∈ perp n c ↔ ⟪n, x⟫ = c := Iff.rfl
 
+/--
+@isnad1 id=eq.1h2v.s11.1e92704752eb from=translated src=- shape=1b9c304b vocab=e3ba86d5
+-/
 theorem direction_perp {n : Pt} (hn : n ≠ 0) (c : ℝ) :
     (perp n c).direction = LinearMap.ker (innerₛₗ ℝ n) := by
   have hnn : ⟪n, n⟫ ≠ 0 := inner_self_ne_zero.mpr hn
@@ -191,6 +230,9 @@ theorem direction_perp {n : Pt} (hn : n ≠ 0) (c : ℝ) :
     rw [mem_perp, inner_add_right, hv', zero_add]
     exact hx₀
 
+/--
+@isnad1 id=eq.1h2v.s10.413fef615deb from=translated src=- shape=7c89e449 vocab=99f87eed
+-/
 theorem finrank_direction_perp {n : Pt} (hn : n ≠ 0) (c : ℝ) :
     Module.finrank ℝ (perp n c).direction = 1 := by
   rw [direction_perp hn]
@@ -213,7 +255,9 @@ theorem finrank_direction_perp {n : Pt} (hn : n ≠ 0) (c : ℝ) :
 
 /-- The fundamental characterization: `x` and `y` are strictly on opposite sides
 of the line `{z | ⟪n, z⟫ = c}` iff their inner products with `n` strictly
-sandwich `c`. -/
+sandwich `c`.
+@isnad1 id=iff.1h5v.s10.1c5544455529 from=translated src=- shape=dedb9da7 vocab=598832bb
+-/
 theorem sOppSide_iff {ℓ : AffineSubspace ℝ Pt} {n : Pt} {c : ℝ}
     (hmem : ∀ z : Pt, z ∈ ℓ ↔ ⟪n, z⟫ = c) (x y : Pt) :
     ℓ.SOppSide x y ↔
@@ -285,7 +329,9 @@ theorem sOppSide_iff {ℓ : AffineSubspace ℝ Pt} {n : Pt} {c : ℝ}
     · exact (key y x hy hx).symm
 
 /-- Every one-dimensional affine subspace of the plane is the level set
-of a nonzero linear functional. -/
+of a nonzero linear functional.
+@isnad1 id=ex.1h1v.s11.72d0facba294 from=translated src=- shape=5e07200e vocab=24401979
+-/
 theorem exists_normal {ℓ : AffineSubspace ℝ Pt}
     (hl : Module.finrank ℝ ℓ.direction = 1) :
     ∃ (n : Pt) (c : ℝ), n ≠ 0 ∧ ∀ z : Pt, z ∈ ℓ ↔ ⟪n, z⟫ = c := by
@@ -332,7 +378,9 @@ def No3Col (S : Finset Pt) : Prop :=
 
 /-- Cut a subset `Z` of `S` off from the rest of `S` with a single line,
 given a linear functional whose values on `Z` all lie strictly below its
-values on `S \ Z`. -/
+values on `S \ Z`.
+@isnad1 id=ex.4h4v.s11.0ed85589bc0b from=translated src=- shape=4e6275f5 vocab=1588e299
+-/
 theorem exists_cut {S Z : Finset Pt} (hne : (S \ Z).Nonempty)
     {n : Pt} (hn : n ≠ 0) {t : ℝ} (hZ : ∀ p ∈ Z, ⟪n, p⟫ ≤ t)
     (hX : ∀ x ∈ S \ Z, t < ⟪n, x⟫) :
@@ -356,7 +404,9 @@ theorem exists_cut {S Z : Finset Pt} (hne : (S \ Z).Nonempty)
                   lt_of_lt_of_le hcm (hmle x hx)⟩
 
 /-- Cut a pair of points `{A, B}` of `S` off from the rest of `S` with two
-lines parallel to the segment `AB`. -/
+lines parallel to the segment `AB`.
+@isnad1 id=ex.5h3v.s12.f88d25e6b5b0 from=translated src=- shape=88a79938 vocab=1434889f
+-/
 theorem exists_strip {S : Finset Pt} (h3 : No3Col S) {A B : Pt}
     (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B)
     (hne : (S \ ({A, B} : Finset Pt)).Nonempty) :
@@ -424,7 +474,9 @@ theorem exists_strip {S : Finset Pt} (h3 : No3Col S) {A B : Pt}
       exact Or.inr ⟨by linarith, by rw [hv]; linarith⟩
 
 /-- Isolate an even-sized subset `C` of `S` into pairs, each pair confined
-to its own strip between two parallel lines. -/
+to its own strip between two parallel lines.
+@isnad1 id=ex.4h3v.s12.5f14eb3f72a2 from=translated src=- shape=716b87d9 vocab=52379ef7
+-/
 theorem pair_strips {S : Finset Pt} (h3 : No3Col S) (hcard : 4 ≤ S.card) :
     ∀ (m : ℕ) (C : Finset Pt), C ⊆ S → C.card = 2 * m →
     ∃ L : List (AffineSubspace ℝ Pt), L.length = 2 * m ∧
@@ -506,7 +558,9 @@ theorem pair_strips {S : Finset Pt} (h3 : No3Col S) (hcard : 4 ≤ S.card) :
 
 /-- The "tilting" trick: if all points of `S` other than `z` and `w` lie
 strictly on the positive side of the line through `z` and `w`, then there is
-a linear functional whose unique minimizer over `S` is `w`. -/
+a linear functional whose unique minimizer over `S` is `w`.
+@isnad1 id=ex.4h4v.s9.46eb5d632436 from=translated src=- shape=7117cc95 vocab=936bc397
+-/
 theorem mtrick {S : Finset Pt} {z w : Pt} (hzw : z ≠ w)
     {n₀ : Pt} (horth : ⟪n₀, w - z⟫ = 0)
     (hpos : ∀ x ∈ S, x ≠ z → x ≠ w → 0 < ⟪n₀, x - z⟫)
@@ -575,7 +629,9 @@ theorem mtrick {S : Finset Pt} {z w : Pt} (hzw : z ≠ w)
 
 /-- At the leftmost point `z` of `S` (assuming it is the unique leftmost
 point), there is another point `w` of `S` such that the line through `z` and
-`w` supports `S`: all other points are strictly on its positive side. -/
+`w` supports `S`: all other points are strictly on its positive side.
+@isnad1 id=ex.4h2v.s9.f3cf720ae326 from=translated src=- shape=5b11196e vocab=ca131677
+-/
 theorem exists_hull_edge {S : Finset Pt} (h3 : No3Col S) {z : Pt} (hz : z ∈ S)
     (hmin : ∀ x ∈ S, x ≠ z → z 0 < x 0) (hne : (S.erase z).Nonempty) :
     ∃ w ∈ S, w ≠ z ∧ ∃ n₀ : Pt, n₀ ≠ 0 ∧ ⟪n₀, w - z⟫ = 0 ∧
@@ -622,7 +678,9 @@ theorem exists_hull_edge {S : Finset Pt} (h3 : No3Col S) {z : Pt} (hz : z ∈ S)
 
 /-- Given a single line cutting a subset `Z` of one of the two color classes
 `C` off from the rest of the configuration, where `C \ Z` has 2012 elements,
-complete it to a good arrangement of 2013 lines using strips. -/
+complete it to a good arrangement of 2013 lines using strips.
+@isnad1 id=ex.6h4v.s12.0f6878c5e1cf from=translated src=- shape=c134986d vocab=6c7870bb
+-/
 theorem assemble (cfg : ColombianConfiguration)
     {C Z : Finset Pt} (hC : C = cfg.red ∨ C = cfg.blue) (hZC : Z ⊆ C)
     (hcards : (C \ Z).card = 2012)
@@ -691,7 +749,9 @@ theorem assemble (cfg : ColombianConfiguration)
     rw [hLlen] at hj
     exact ⟨⟨j, hj⟩, hℓ⟩
 
-/-- 2013 lines always suffice. -/
+/-- 2013 lines always suffice.
+@isnad1 id=ex.0h1v.s9.9f5c32a2fa07 from=translated src=- shape=397f7e58 vocab=2219ed8a
+-/
 theorem upper_bound (cfg : ColombianConfiguration) :
     ∃ lines : Fin 2013 → AffineSubspace ℝ Pt, GoodArrangement cfg lines := by
   set S := cfg.red ∪ cfg.blue with hS
@@ -929,19 +989,31 @@ theorem upper_bound (cfg : ColombianConfiguration) :
 /-- The angle of the `j`-th vertex of a regular 4027-gon. -/
 noncomputable def ang (j : ℕ) : ℝ := 2 * Real.pi * j / 4027
 
+/--
+@isnad1 id=le.0h1v.s3.4293da26b4e4 from=translated src=- shape=b9369acb vocab=26f64992
+-/
 theorem ang_nonneg (j : ℕ) : 0 ≤ ang j := by
   unfold ang
   positivity
 
+/--
+@isnad1 id=lt.1h2v.s4.cb5a3916fe82 from=translated src=- shape=d7721dd6 vocab=f2ac3ee1
+-/
 theorem ang_lt_ang {i j : ℕ} (h : i < j) : ang i < ang j := by
   unfold ang
   gcongr
 
+/--
+@isnad1 id=le.1h2v.s4.aa4f93ab3313 from=translated src=- shape=d7721dd6 vocab=26f64992
+-/
 theorem ang_le_ang {i j : ℕ} (h : i ≤ j) : ang i ≤ ang j := by
   rcases h.lt_or_eq with h' | h'
   · exact (ang_lt_ang h').le
   · rw [h']
 
+/--
+@isnad1 id=lt.1h1v.s5.3526f0ee75ff from=translated src=- shape=a0badfdf vocab=3b9f4805
+-/
 theorem ang_lt_two_pi {j : ℕ} (h : j < 4027) : ang j < 2 * Real.pi :=
   calc ang j < ang 4027 := ang_lt_ang h
     _ = 2 * Real.pi := by unfold ang; norm_num
@@ -949,14 +1021,26 @@ theorem ang_lt_two_pi {j : ℕ} (h : j < 4027) : ang j < 2 * Real.pi :=
 /-- The `j`-th vertex of a regular 4027-gon inscribed in the unit circle. -/
 noncomputable def pt (j : ℕ) : Pt := !₂[Real.cos (ang j), Real.sin (ang j)]
 
+/--
+@isnad1 id=eq.0h1v.s6.6c70ce288757 from=translated src=- shape=5f586289 vocab=970cf018
+-/
 @[simp] theorem pt_apply0 (j : ℕ) : pt j 0 = Real.cos (ang j) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.a2f7277c4b03 from=translated src=- shape=5f586289 vocab=15e6c00f
+-/
 @[simp] theorem pt_apply1 (j : ℕ) : pt j 1 = Real.sin (ang j) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.677fc77e5f0a from=translated src=- shape=f22b0704 vocab=57dba08c
+-/
 theorem inner_pt_eq (n : Pt) (j : ℕ) :
     ⟪n, pt j⟫ = n 0 * Real.cos (ang j) + n 1 * Real.sin (ang j) := by
   rw [inner_pt, pt_apply0, pt_apply1]
 
+/--
+@isnad1 id=eq.3h2v.s5.fb2e267ff03a from=translated src=- shape=68307f7b vocab=7ea8fbd7
+-/
 theorem pt_inj {i j : ℕ} (hi : i < 4027) (hj : j < 4027) (h : pt i = pt j) :
     i = j := by
   have h0 : pt i 0 = pt j 0 := by rw [h]
@@ -981,6 +1065,9 @@ theorem pt_inj {i j : ℕ} (hi : i < 4027) (hj : j < 4027) (h : pt i = pt j) :
   · exact heq
   · exact absurd hang.symm (ne_of_lt (ang_lt_ang hgt))
 
+/--
+@isnad1 id=eq.0h1v.s6.acebc2510653 from=translated src=- shape=45b57dd3 vocab=7640f145
+-/
 theorem dist_pt_zero (j : ℕ) : dist (pt j) (0 : Pt) = 1 := by
   rw [dist_zero_right, norm_eq_sqrt_real_inner]
   rw [show ⟪pt j, pt j⟫ = 1 by
@@ -996,6 +1083,9 @@ noncomputable def redPts : Finset Pt :=
 noncomputable def bluePts : Finset Pt :=
   (Finset.range 2014).image (fun i => pt (2 * i))
 
+/--
+@isnad1 id=eq.0h0v.s3.215627bddbb5 from=translated src=- shape=b3c4969c vocab=73753d7c
+-/
 theorem redPts_card : redPts.card = 2013 := by
   rw [redPts, Finset.card_image_of_injOn, Finset.card_range]
   intro a ha b hb hab
@@ -1003,6 +1093,9 @@ theorem redPts_card : redPts.card = 2013 := by
   have := pt_inj (by lia) (by lia) hab
   lia
 
+/--
+@isnad1 id=eq.0h0v.s3.de877e2669a9 from=translated src=- shape=b3c4969c vocab=4014b14c
+-/
 theorem bluePts_card : bluePts.card = 2014 := by
   rw [bluePts, Finset.card_image_of_injOn, Finset.card_range]
   intro a ha b hb hab
@@ -1010,6 +1103,9 @@ theorem bluePts_card : bluePts.card = 2014 := by
   have := pt_inj (by lia) (by lia) hab
   lia
 
+/--
+@isnad1 id=disjoint.0h0v.s3.a1486f7a53cd from=translated src=- shape=836e6cbb vocab=1039fcbb
+-/
 theorem red_blue_disjoint : Disjoint redPts bluePts := by
   rw [Finset.disjoint_left]
   intro p hp hq
@@ -1021,6 +1117,9 @@ theorem red_blue_disjoint : Disjoint redPts bluePts := by
   have := pt_inj (by lia) (by lia) hba
   lia
 
+/--
+@isnad1 id=ex.1h1v.s7.56e711ac9a7b from=translated src=- shape=2c3477d3 vocab=afdd2973
+-/
 theorem mem_pts {p : Pt} (hp : p ∈ redPts ∪ bluePts) : ∃ j < 4027, p = pt j := by
   rw [Finset.mem_union] at hp
   rcases hp with hp | hp
@@ -1055,7 +1154,9 @@ noncomputable def lowerCfg : ColombianConfiguration where
     exact hai hcol
 
 /-- A sinusoid `r ↦ n 0 * cos r + n 1 * sin r` with `n ≠ 0` takes any value at
-most twice on an interval shorter than a full period. -/
+most twice on an interval shorter than a full period.
+@isnad1 id=false.7h5v.s10.4ee065b3bb61 from=translated src=- shape=1d639f46 vocab=4fd0c64e
+-/
 theorem sinusoid_roots {n : Pt} (hn : n ≠ 0) {c : ℝ} {r₁ r₂ r₃ : ℝ}
     (h₁₂ : r₁ < r₂) (h₂₃ : r₂ < r₃) (hspan : r₃ - r₁ < 2 * Real.pi)
     (e₁ : n 0 * Real.cos r₁ + n 1 * Real.sin r₁ = c)
@@ -1100,7 +1201,9 @@ theorem sinusoid_roots {n : Pt} (hn : n ≠ 0) {c : ℝ} {r₁ r₂ r₃ : ℝ}
 
 /-- If a line `{x | ⟪n, x⟫ = c}` strictly separates the adjacent vertices
 `pt j` and `pt (j+1)`, then the sinusoid `r ↦ ⟪n, (cos r, sin r)⟫` takes the
-value `c` somewhere strictly between their angles. -/
+value `c` somewhere strictly between their angles.
+@isnad1 id=ex.1h3v.s9.f9f07afd1085 from=translated src=- shape=f0934142 vocab=4a5887bd
+-/
 theorem exists_root_pair {n : Pt} {c : ℝ} {j : ℕ}
     (h : ⟪n, pt j⟫ < c ∧ c < ⟪n, pt (j + 1)⟫ ∨
          ⟪n, pt (j + 1)⟫ < c ∧ c < ⟪n, pt j⟫) :
@@ -1115,7 +1218,9 @@ theorem exists_root_pair {n : Pt} {c : ℝ} {j : ℕ}
   · exact intermediate_value_Ioo' hlt.le hcont.continuousOn h
 
 /-- A single line strictly separates at most two of the 4026 adjacent vertex
-pairs of the regular 4027-gon. -/
+pairs of the regular 4027-gon.
+@isnad1 id=le.3h3v.s9.3dc30b5b8aaa from=translated src=- shape=9cfb6068 vocab=4d8cfd5c
+-/
 theorem seps_card_le_two {n : Pt} (hn : n ≠ 0) {c : ℝ} {s : Finset ℕ}
     (hs : ∀ j ∈ s, j < 4026)
     (hsep : ∀ j ∈ s, ⟪n, pt j⟫ < c ∧ c < ⟪n, pt (j + 1)⟫ ∨
@@ -1155,7 +1260,9 @@ theorem seps_card_le_two {n : Pt} (hn : n ≠ 0) {c : ℝ} {s : Finset ℕ}
 
 /-- No good arrangement for `lowerCfg` has fewer than 2013 lines: each of the
 4026 adjacent opposite-colored vertex pairs must be separated by some line, and
-each line separates at most two of them. -/
+each line separates at most two of them.
+@isnad1 id=le.1h2v.s8.3f5f08fc3b2e from=translated src=- shape=2adbda9a vocab=aa3a696f
+-/
 theorem lower_bound {k : ℕ} (lines : Fin k → AffineSubspace ℝ Pt)
     (h : GoodArrangement lowerCfg lines) : 2013 ≤ k := by
   obtain ⟨hdim, -, hsep⟩ := h

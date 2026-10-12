@@ -43,7 +43,9 @@ theorem eq_of_inverse_three {a b c : K} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c �
     · exact Or.inr (Or.inl (by simpa only [CharTwo.add_eq_zero] using h))
   · exact Or.inr (Or.inr (by simpa only [CharTwo.add_eq_zero] using h))
 
-/-- Inversion preserves ternary addition on at most four points of a binary field. -/
+/-- Inversion preserves ternary addition on at most four points of a binary field.
+@isnad1 id=le.1h2v.s7.2856c641a7e3 from=translated src=- shape=647224ac vocab=d236748c
+-/
 theorem card_le_four_of_inverse_affine (S : Finset K)
     (affine : ∀ a ∈ S, ∀ b ∈ S, ∀ c ∈ S,
       (a + b + c)⁻¹ = a⁻¹ + b⁻¹ + c⁻¹) : S.card ≤ 4 := by
@@ -83,7 +85,9 @@ theorem card_le_four_of_inverse_affine (S : Finset K)
     · exact (cb h.symm).elim
   exact (Finset.card_le_card sub).trans Finset.card_le_four
 
-/-- A binary field with more than four elements has an additive inversion defect. -/
+/-- A binary field with more than four elements has an additive inversion defect.
+@isnad1 id=ex.1h1v.s7.c8f3899c0139 from=translated src=- shape=211a40e5 vocab=fd0254e5
+-/
 theorem exists_inverse_add_defect [Fintype K] (large : 4 < Fintype.card K) :
     ∃ a b : K, (a + b)⁻¹ ≠ a⁻¹ + b⁻¹ := by
   by_contra absent

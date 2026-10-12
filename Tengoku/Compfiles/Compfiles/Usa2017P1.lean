@@ -25,6 +25,9 @@ def condition (a b : ℕ) : Prop :=
 
 def solution_set : Set (ℕ × ℕ) := { x | condition x.1 x.2 }
 
+/--
+@isnad1 id=modeq.1h2v.s6.d6de90c3a1e9 from=translated src=- shape=75465bd3 vocab=91cc838f
+-/
 lemma divisibility_helper {n k} : k = 3 ∨ k = 5 → (2 * n + k) ^ 2 ≡ 1 [MOD 4 * n + 8] := by
   intro H
   cases H
@@ -41,6 +44,9 @@ lemma divisibility_helper {n k} : k = 3 ∨ k = 5 → (2 * n + k) ^ 2 ≡ 1 [MOD
     rw [factorized]
     apply Nat.ModEq.modulus_mul_add
 
+/--
+@isnad1 id=dvd.0h1v.s7.b8bd36fcb0ea from=translated src=- shape=14789ca8 vocab=0eadfadb
+-/
 lemma build_condition_divisibility {n} : (2 * n + 3) + (2 * n + 5) ∣
                                          (2 * n + 3) ^ (2 * n + 5) + (2 * n + 5) ^ (2 * n + 3) := by
   set m : ℕ := 4 * n + 8
@@ -85,6 +91,9 @@ lemma build_condition_divisibility {n} : (2 * n + 3) + (2 * n + 5) ∣
 
   exact h_reduce.trans (h_sum_ab.trans h_ab0)
 
+/--
+@isnad1 id=conditio.0h1v.s5.aedcdb6163d9 from=translated src=- shape=e6bb8600 vocab=5d5c7e84
+-/
 lemma build_condition (n : ℕ) : condition (2 * n + 3) (2 * n + 5) := by
   have h0 : 2 * n + 5 = 2 * n + 3 + 2 := rfl
   have h1 : Nat.gcd (2 * n + 3) (2 * n + 5) = 1 := by

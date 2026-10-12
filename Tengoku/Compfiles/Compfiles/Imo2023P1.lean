@@ -29,7 +29,9 @@ abbrev Dividable (n : ℕ) :=
     ConsecutiveFactors n a b ∧ ConsecutiveFactors n b c
     → a ∣ b + c
 
-/-- Powers of distinct primes are never equal. -/
+/-- Powers of distinct primes are never equal.
+@isnad1 id=ne.5h4v.s6.87a894c2c4b3 from=translated src=- shape=12d0a0ab vocab=ec650652
+-/
 lemma PrimePow_ne {a b p q : ℕ} (p_prime : p.Prime) (q_prime : q.Prime) (p_ne_q : p ≠ q)
     (ha : ∃ k > 0, p ^ k = a) (hb : ∃ k > 0, q ^ k = b)
     : a ≠ b := by
@@ -43,11 +45,15 @@ lemma PrimePow_ne {a b p q : ℕ} (p_prime : p.Prime) (q_prime : q.Prime) (p_ne_
       Finsupp.single_eq_of_ne p_ne_q] at h
   exact k_ne_0.ne.symm h
 
-/-- If a number divides some non-zero number, it is also nonzero. -/
+/-- If a number divides some non-zero number, it is also nonzero.
+@isnad1 id=lt.2h2v.s4.f240324d5e44 from=translated src=- shape=a9ad1c7b vocab=78df7c39
+-/
 lemma dvd_ne_zero {a b : ℕ} (hb : b ≠ 0) (h : a ∣ b) : 0 < a :=
   Nat.zero_lt_of_ne_zero (fun ha => hb (zero_dvd_iff.mp (ha ▸ h)))
 
-/-- If a prime `p` divides `n`, then `n.factorization p ≠ 0`. -/
+/-- If a prime `p` divides `n`, then `n.factorization p ≠ 0`.
+@isnad1 id=ne.3h2v.s5.d9a8d9f521e2 from=translated src=- shape=cff4ec48 vocab=be2c779f
+-/
 lemma dvd_n_fact_ne_zero {n p : ℕ} (n_ne_0 : n ≠ 0) (p_prime : p.Prime) (p_dvd_n : p ∣ n)
     : n.factorization p ≠ 0 := by
   by_contra h
@@ -56,19 +62,25 @@ lemma dvd_n_fact_ne_zero {n p : ℕ} (n_ne_0 : n ≠ 0) (p_prime : p.Prime) (p_d
   · exact not_not_intro p_prime
   · exact not_not_intro p_dvd_n
 
-/-- Complementary factors are inversely ordered. -/
+/-- Complementary factors are inversely ordered.
+@isnad1 id=lt.3h4v.s5.fe3ecfae31db from=translated src=- shape=51c2ec9b vocab=315d0e5a
+-/
 lemma mul_cmp_compl {a b x y : ℕ} (hab : a < b) (hy : 0 < y)
     (h : a * x = b * y) : y < x :=
   Nat.lt_of_mul_lt_mul_left
     (h ▸ Nat.mul_lt_mul_of_pos_right hab hy)
 
-/-- Given prime `p`, the factorization of `p + 1` is `0` at `p`. -/
+/-- Given prime `p`, the factorization of `p + 1` is `0` at `p`.
+@isnad1 id=eq.1h1v.s5.3e41232dddd2 from=translated src=- shape=cdfd4683 vocab=d0fcb4c7
+-/
 theorem p_succ_fact_zero {p : ℕ} (hp : p.Prime)
     : (p + 1).factorization p = 0 := by
   apply Nat.factorization_eq_zero_of_not_dvd
   exact hp.not_dvd_one ∘ Nat.dvd_add_self_left.mp
 
-/-- If `p ^ e < c < p ^ (e + 1)`, then `∃ q` prime that divides `c`. -/
+/-- If `p ^ e < c < p ^ (e + 1)`, then `∃ q` prime that divides `c`.
+@isnad1 id=ex.3h3v.s6.928c8b6848fe from=translated src=- shape=0f234e6e vocab=5f1e44e2
+-/
 theorem not_pow_cons_factors_other_prime {p e c : ℕ} (hp : p.Prime)
     (c_gt_e : c > p ^ e) (c_lt_p_e_succ : c < p ^ (e + 1))
     : ∃ q ≠ p, q.Prime ∧ q ∣ c := by
@@ -100,7 +112,9 @@ theorem not_pow_cons_factors_other_prime {p e c : ℕ} (hp : p.Prime)
   exact Nat.le_lt_asymm gt_e lt_e_succ
 
 /-- The inverse factors of consecutive factors of `n` are themselves
- consecutive factors of `n`. -/
+ consecutive factors of `n`.
+@isnad1 id=consecut.4h5v.s5.56fc2fa2f550 from=translated src=- shape=22540d5d vocab=a240bcf4
+-/
 theorem inv_cons_factors {n a b x y : ℕ} (hn : 0 < n) (ha : n = a * x)
     (hb : n = b * y) (h : ConsecutiveFactors n a b)
     : ConsecutiveFactors n y x := by
@@ -125,14 +139,18 @@ theorem inv_cons_factors {n a b x y : ℕ} (hn : 0 < n) (ha : n = a * x)
     mul_cmp_compl y_lt_c (div_n_ne_0 hc) (hc ▸ hb.symm)
   ⟩
 
-/-- If `n.factorization p ≠ 0`, then `p` is prime. -/
+/-- If `n.factorization p ≠ 0`, then `p` is prime.
+@isnad1 id=prime.1h2v.s5.ada18ca62364 from=translated src=- shape=6c2e153a vocab=fe0ed161
+-/
 theorem factorization_prime {n p : ℕ} (h : n.factorization p ≠ 0) : p.Prime := by
   by_cases hp : p.Prime
   · exact hp
   · exact False.elim (h (Nat.factorization_eq_zero_of_not_prime n hp))
 
 /-- If `n` is not a prime power, then its `ordCompl[p]` with respect to any `p`
- is `> 1`. -/
+ is `> 1`.
+@isnad1 id=lt.2h2v.s6.d6da584e14ca from=translated src=- shape=4338f338 vocab=7bfb4a8d
+-/
 theorem ordCompl_of_non_prime_pow {n p : ℕ} (hn : 1 < n) (hp : ¬IsPrimePow n)
     : ordCompl[p] n > 1 := by
   -- Show by contradiction that if `ordCompl[p] n = 1`, then `n` is a prime
@@ -186,7 +204,9 @@ theorem ordCompl_of_non_prime_pow {n p : ℕ} (hn : 1 < n) (hp : ¬IsPrimePow n)
  smallest prime factor `q` is consecutive to `p` to some power `> 0`.
 
  This theorem is key to solving the `Dividable → PrimePower` direction of the
- problem. -/
+ problem.
+@isnad1 id=ex.2h1v.s6.134e83f04917 from=translated src=- shape=a3a72e88 vocab=1bb93ce7
+-/
 theorem minFac_cons_factor {n : ℕ} (hn : 1 < n) (h : ¬IsPrimePow n)
     : ∃ q e,
       q.Prime ∧ q ≠ n.minFac ∧
@@ -332,7 +352,9 @@ theorem minFac_cons_factor {n : ℕ} (hn : 1 < n) (h : ¬IsPrimePow n)
     apply (Nat.pow_le_pow_iff_right p_prime.one_lt).mpr
     exact d_e_gt_e_succ
 
-/-- The consecutive factors of prime powers of `p` are a factor `p` apart. -/
+/-- The consecutive factors of prime powers of `p` are a factor `p` apart.
+@isnad1 id=eq.3h4v.s5.b61f7d7b96af from=translated src=- shape=1705c1ad vocab=eda00171
+-/
 lemma PrimePow_cons_are_p_apart {x y p n : ℕ} (p_prime : p.Prime)
     (hn : ∃ k, 0 < k ∧ p ^ k = n) (h : ConsecutiveFactors n x y)
     : x * p = y := by
@@ -368,7 +390,9 @@ lemma PrimePow_cons_are_p_apart {x y p n : ℕ} (p_prime : p.Prime)
   rw [x_eq_p_exp, y_eq_p_exp, ← exp_eq]
   exact rfl
 
-/-- Proof that all prime powers are `Dividable`. -/
+/-- Proof that all prime powers are `Dividable`.
+@isnad1 id=and.1h1v.s4.ac57b50f9176 from=translated src=- shape=033f4ae2 vocab=efe27f30
+-/
 lemma PrimePow_is_dividable {n : ℕ} : IsPrimePow n → 1 < n ∧ Dividable n := by
   intro h
   refine ⟨h.one_lt, ?_⟩
@@ -381,7 +405,9 @@ lemma PrimePow_is_dividable {n : ℕ} : IsPrimePow n → 1 < n ∧ Dividable n :
   exists p + p ^ 2
   linarith
 
-/-- Proof that all `Dividable` numbers `> 1` are prime powers. -/
+/-- Proof that all `Dividable` numbers `> 1` are prime powers.
+@isnad1 id=isprimep.1h1v.s4.84ed197bcd1e from=translated src=- shape=84e61522 vocab=efe27f30
+-/
 lemma dividable_is_PrimePow {n : ℕ} (h : 1 < n ∧ Dividable n)
     : IsPrimePow n := by
   obtain ⟨n_gt_1, hd⟩ := h

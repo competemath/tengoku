@@ -75,12 +75,18 @@ inductive Reach (n : ℕ) : Board → Board → Prop
 moves. -/
 def Solvable (n : ℕ) : Prop := ∃ b, Step n ∅ b ∧ Reach n b ∅
 
+/--
+@isnad1 id=reach.2h4v.s4.cbad3640f7a6 from=translated src=- shape=31ac16df vocab=74ccb480
+-/
 lemma Reach.trans {n : ℕ} {b b' b'' : Board} (h₁ : Reach n b b') (h₂ : Reach n b' b'') :
     Reach n b b'' := by
   induction h₂ with
   | refl => exact h₁
   | tail _ hstep ih => exact Reach.tail ih hstep
 
+/--
+@isnad1 id=reach.1h3v.s3.e1d7e8cd8f37 from=translated src=- shape=1802f65d vocab=efa0596f
+-/
 lemma Reach.single {n : ℕ} {b b' : Board} (h : Step n b b') : Reach n b b' :=
   Reach.tail (Reach.refl b) h
 
@@ -110,22 +116,33 @@ def gains (a : ℕ → ℕ → ℕ) (n r c : ℕ) : ℕ :=
 def Support (a : ℕ → ℕ → ℕ) (n : ℕ) : Prop :=
   ∀ i j, n ≤ i + 1 ∨ n ≤ j + 1 → a i j = 0
 
+/--
+@isnad1 id=eq.0h3v.s4.41175501c9ab from=translated src=- shape=47a50531 vocab=4ff8df87
+-/
 @[simp]
 lemma gains_zero (n r c : ℕ) : gains (fun _ _ ↦ 0) n r c = 0 := by
   simp [gains]
 
+/--
+@isnad1 id=eq.0h5v.s5.ef31adfafb2c from=translated src=- shape=e80a9c0b vocab=4e96f59b
+-/
 lemma gains_add (a₁ a₂ : ℕ → ℕ → ℕ) (n r c : ℕ) :
     gains (fun i j ↦ a₁ i j + a₂ i j) n r c = gains a₁ n r c + gains a₂ n r c := by
   unfold gains
   split_ifs <;> ring
 
+/--
+@isnad1 id=support.2h3v.s5.af906f547d6a from=translated src=- shape=a9695ff7 vocab=8fbb75b6
+-/
 lemma Support.add {a₁ a₂ : ℕ → ℕ → ℕ} {n : ℕ} (h₁ : Support a₁ n) (h₂ : Support a₂ n) :
     Support (fun i j ↦ a₁ i j + a₂ i j) n := by
   intro i j h
   simp [h₁ i j h, h₂ i j h]
 
 /-- The gains coming from a single tromino placed at the legal anchor `(i, j)`
-are exactly the indicator function of its three cells. -/
+are exactly the indicator function of its three cells.
+@isnad1 id=eq.2h5v.s7.ff22a93bcb1a from=translated src=- shape=5a0f40f7 vocab=ea5ccd63
+-/
 lemma gains_single {n i j : ℕ} (hi : i + 1 < n) (hj : j + 1 < n) (r c : ℕ) :
     gains (fun x y ↦ if x = i ∧ y = j then 1 else 0) n r c =
       if (r, c) ∈ trominoCells i j then 1 else 0 := by
@@ -160,7 +177,9 @@ lemma gains_single {n i j : ℕ} (hi : i + 1 < n) (hj : j + 1 < n) (r c : ℕ) :
   split_ifs <;> lia
 
 /-- A single move, seen through the counting functions: the gains and losses of
-every cell can be expressed with suitable counts. -/
+every cell can be expressed with suitable counts.
+@isnad1 id=ex.1h3v.s7.156b229508f2 from=translated src=- shape=fb20b0b0 vocab=b09c93b2
+-/
 lemma extract_step {n : ℕ} {b b' : Board} (h : Step n b b') :
     ∃ (a : ℕ → ℕ → ℕ) (ρ γ : ℕ → ℕ), Support a n ∧ ∀ r c, r < n → c < n →
       gains a n r c + (if (r, c) ∈ b then 1 else 0) =
@@ -235,7 +254,9 @@ lemma extract_step {n : ℕ} {b b' : Board} (h : Step n b b') :
       · rw [ite_eq_right hb, ite_eq_right]
         exact fun h ↦ hb (Finset.mem_sdiff.1 h).1
 
-/-- A whole sequence of moves, seen through the counting functions. -/
+/-- A whole sequence of moves, seen through the counting functions.
+@isnad1 id=ex.1h3v.s7.5fb094767994 from=translated src=- shape=fb20b0b0 vocab=973a48e0
+-/
 lemma extract {n : ℕ} {b b' : Board} (h : Reach n b b') :
     ∃ (a : ℕ → ℕ → ℕ) (ρ γ : ℕ → ℕ), Support a n ∧ ∀ r c, r < n → c < n →
       gains a n r c + (if (r, c) ∈ b then 1 else 0) =
@@ -256,7 +277,9 @@ lemma extract {n : ℕ} {b b' : Board} (h : Reach n b b') :
     lia
 
 /-- In particular, a successful game yields the cell equations together with at
-least one tromino that was actually placed. -/
+least one tromino that was actually placed.
+@isnad1 id=ex.2h1v.s6.b1afb3b4977d from=translated src=- shape=48bbffb2 vocab=4e9794c4
+-/
 lemma extract_solvable {n : ℕ} (hn : 1 ≤ n) (h : Solvable n) :
     ∃ (a : ℕ → ℕ → ℕ) (ρ γ : ℕ → ℕ), Support a n ∧
       (∀ r c, r < n → c < n → gains a n r c = ρ r + γ c) ∧ ∃ i j : ℕ, 1 ≤ a i j := by
@@ -304,7 +327,9 @@ grid of points, which forces every tromino count to be zero — contradicting
 that at least one tromino was placed.
 -/
 
-/-- Shifting a sum by one, provided the boundary terms vanish. -/
+/-- Shifting a sum by one, provided the boundary terms vanish.
+@isnad1 id=eq.2h2v.s6.d09b03c8e90d from=translated src=- shape=166adabe vocab=eed6572a
+-/
 lemma sum_range_shift (f : ℕ → ℂ) (n : ℕ) (hf0 : f 0 = 0) (hfn : f n = 0) :
     ∑ i ∈ Finset.range n, f (i + 1) = ∑ r ∈ Finset.range n, f r := by
   have h1 := Finset.sum_range_succ' f n
@@ -315,7 +340,9 @@ lemma sum_range_shift (f : ℕ → ℂ) (n : ℕ) (hf0 : f 0 = 0) (hfn : f n = 0
 
 /-- The key identity: evaluated at `n`-th roots of unity `ζ, η ≠ 1`, the cell
 equations imply that `(1 + ζ + ζ * η)` times the tromino generating function
-vanishes. -/
+vanishes.
+@isnad1 id=eq.7h6v.s7.9516bcdabb7d from=translated src=- shape=d0ad7de6 vocab=5bb162e0
+-/
 lemma key_identity {n : ℕ} (hn : 2 ≤ n) {a : ℕ → ℕ → ℕ} {ρ γ : ℕ → ℕ}
     (hsupp : Support a n)
     (hcell : ∀ r c, r < n → c < n → gains a n r c = ρ r + γ c)
@@ -539,7 +566,9 @@ lemma key_identity {n : ℕ} (hn : 2 ≤ n) {a : ℕ → ℕ → ℕ} {ρ γ : �
   exact hside
 
 /-- If `3 ∤ n` and `ζ, η` are `n`-th roots of unity with `ζ ≠ 1`, then
-`1 + ζ + ζ * η ≠ 0`. -/
+`1 + ζ + ζ * η ≠ 0`.
+@isnad1 id=ne.5h3v.s6.b9943eb6a687 from=translated src=- shape=4eac04d5 vocab=f91e9319
+-/
 lemma one_add_ne_zero {n : ℕ} (hn : 2 ≤ n) (h3 : ¬ 3 ∣ n) {ζ η : ℂ}
     (hζ : ζ ^ n = 1) (hζ1 : ζ ≠ 1) (hη : η ^ n = 1) :
     1 + ζ + ζ * η ≠ 0 := by
@@ -610,7 +639,9 @@ lemma one_add_ne_zero {n : ℕ} (hn : 2 ≤ n) (h3 : ¬ 3 ∣ n) {ζ η : ℂ}
 
 /-- A polynomial of degree `< m` with coefficients coming from the tromino
 counts vanishes on the `m` points of the grid, hence is zero.  Applied twice,
-this shows that all tromino counts vanish. -/
+this shows that all tromino counts vanish.
+@isnad1 id=eq.3h4v.s7.2bd3bc9ce499 from=translated src=- shape=72813752 vocab=f7f50605
+-/
 lemma count_eq_zero {n : ℕ} (hn : 2 ≤ n) {a : ℕ → ℕ → ℕ}
     (hsupp : Support a n)
     (hP : ∀ ζ η : ℂ, ζ ^ n = 1 → ζ ≠ 1 → η ^ n = 1 → η ≠ 1 →
@@ -722,7 +753,9 @@ lemma count_eq_zero {n : ℕ} (hn : 2 ≤ n) {a : ℕ → ℕ → ℕ}
     exact Nat.cast_eq_zero.1 hc
   · exact hsupp i j (by lia)
 
-/-- The obstruction: the board cannot be emptied when `3 ∤ n`. -/
+/-- The obstruction: the board cannot be emptied when `3 ∤ n`.
+@isnad1 id=false.3h1v.s4.ac9cd34bd8d9 from=translated src=- shape=119f5def vocab=5d9864de
+-/
 lemma not_solvable_of_not_three_dvd {n : ℕ} (hn : 2 ≤ n) (h3 : ¬ 3 ∣ n) (h : Solvable n) :
     False := by
   obtain ⟨a, ρ, γ, hsupp, hcell, i₀, j₀, hpos⟩ := extract_solvable (by lia) h
@@ -758,7 +791,9 @@ empty.
 
 /-- Placing trominoes at a finset of anchors, one at a time: if every anchor is
 legal, the trominoes are pairwise disjoint, and all their cells are currently
-empty, then all of them can be placed in succession. -/
+empty, then all of them can be placed in succession.
+@isnad1 id=reach.3h5v.s8.efce93f38847 from=translated src=- shape=114c0f7d vocab=083ebeda
+-/
 lemma reach_place {n : ℕ} {ι : Type*} [DecidableEq ι] (s : Finset ι) (f : ι → ℕ × ℕ) :
     ∀ b : Board,
     (∀ i ∈ s, (f i).1 + 1 < n ∧ (f i).2 + 1 < n) →
@@ -793,7 +828,9 @@ lemma reach_place {n : ℕ} {ι : Type*} [DecidableEq ι] (s : Finset ι) (f : �
           (hfresh i (Finset.mem_insert_of_mem hi) c hc)
           (Finset.disjoint_left.1 hd hc))
 
-/-- Clearing full rows, one at a time. -/
+/-- Clearing full rows, one at a time.
+@isnad1 id=reach.1h3v.s6.63d71cd3e02f from=translated src=- shape=d1651e6d vocab=671aa7fc
+-/
 lemma reach_clearRows {n : ℕ} (s : Finset ℕ) :
     ∀ b : Board, (∀ r ∈ s, Finset.range n ×ˢ {r} ⊆ b) →
       Reach n b (b \ (Finset.range n ×ˢ s)) := by
@@ -827,7 +864,9 @@ lemma reach_clearRows {n : ℕ} (s : Finset ℕ) :
       have hrr : r = r' := h1.symm.trans h2
       exact hr (hrr.symm ▸ hr'))
 
-/-- Clearing full columns, one at a time. -/
+/-- Clearing full columns, one at a time.
+@isnad1 id=reach.1h3v.s6.ef54ca45e048 from=translated src=- shape=d13eeb77 vocab=671aa7fc
+-/
 lemma reach_clearCols {n : ℕ} (s : Finset ℕ) :
     ∀ b : Board, (∀ c ∈ s, {c} ×ˢ Finset.range n ⊆ b) →
       Reach n b (b \ (s ×ˢ Finset.range n)) := by
@@ -861,7 +900,9 @@ lemma reach_clearCols {n : ℕ} (s : Finset ℕ) :
       have hcc : c = c' := h1.symm.trans h2
       exact hc (hcc.symm ▸ hc'))
 
-/-- The construction: the board can be emptied whenever `3 ∣ n`. -/
+/-- The construction: the board can be emptied whenever `3 ∣ n`.
+@isnad1 id=solvable.2h1v.s4.d9687ec9194e from=translated src=- shape=57ceb874 vocab=5d9864de
+-/
 lemma solvable_of_three_dvd {n : ℕ} (hn : 2 ≤ n) (h3 : 3 ∣ n) : Solvable n := by
   obtain ⟨k, rfl⟩ := h3
   have hk : 1 ≤ k := by lia

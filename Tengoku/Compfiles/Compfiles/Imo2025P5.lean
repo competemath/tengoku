@@ -102,12 +102,17 @@ def ValidAt (c : ℝ) (x : ℕ → ℝ) (j : ℕ) : Prop :=
     (Even j → ∑ m ∈ range (j + 1), x m ≤ c * ((j : ℝ) + 1)) ∧
     (Odd j → ∑ m ∈ range (j + 1), x m ^ 2 ≤ (j : ℝ) + 1)
 
+/--
+@isnad1 id=eq.0h3v.s5.298629834ade from=translated src=- shape=6e31a4e0 vocab=5ecf7ef0
+-/
 lemma sum_Iic_coe (f : ℕ → ℝ) {n : ℕ} (i : Fin n) :
     ∑ j ∈ Finset.Iic i, f (j : ℕ) = ∑ m ∈ range ((i : ℕ) + 1), f m := by
   rw [Nat.range_succ_eq_Iic, ← Fin.map_valEmbedding_Iic, Finset.sum_map]
   rfl
 
-/-- `ValidSeq` for a length-`n` window of an infinite sequence, in terms of `ValidAt`. -/
+/-- `ValidSeq` for a length-`n` window of an infinite sequence, in terms of `ValidAt`.
+@isnad1 id=iff.0h3v.s5.29fd11dd1d65 from=translated src=- shape=4ad22aff vocab=1abc7c1e
+-/
 lemma validSeq_iff (c : ℝ) (x : ℕ → ℝ) (n : ℕ) :
     ValidSeq c (fun i : Fin n => x i) ↔ ∀ j < n, ValidAt c x j := by
   constructor
@@ -124,12 +129,17 @@ lemma validSeq_iff (c : ℝ) (x : ℕ → ℝ) (n : ℕ) :
     · rw [sum_Iic_coe (fun m => x m ^ 2) i]
       exact (h i i.isLt).2.2 ho
 
+/--
+@isnad1 id=eq.1h3v.s5.78a37d7d37be from=translated src=- shape=37f8aab0 vocab=1ac312cb
+-/
 lemma take_coe {n m : ℕ} (h : m ≤ n) (x : ℕ → ℝ) :
     Fin.take m h (fun i : Fin n => x i) = fun i : Fin m => x i := by
   funext i
   simp [Fin.take_apply]
 
-/-- `Wins` for a length-`n` window of an infinite sequence, in terms of `ValidAt`. -/
+/-- `Wins` for a length-`n` window of an infinite sequence, in terms of `ValidAt`.
+@isnad1 id=iff.0h4v.s6.9544429b88db from=translated src=- shape=38ad72b4 vocab=99127df8
+-/
 lemma wins_iff (c : ℝ) (p : ℕ) (x : ℕ → ℝ) (n : ℕ) :
     Wins c p (fun i : Fin n => x i) ↔
       ∃ j < n, j % 2 ≠ p ∧ (∀ m < j, ValidAt c x m) ∧ ¬ ValidAt c x j := by
@@ -166,6 +176,9 @@ lemma wins_iff (c : ℝ) (p : ℕ) (x : ℕ → ℝ) (n : ℕ) :
 def Strategy.playSeq (s : Strategy) (p : ℕ) (om : ℕ → ℝ) (j : ℕ) : ℝ :=
   s.play p om (j + 1) ⟨j, Nat.lt_succ_self j⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.480845e13d26 from=translated src=- shape=7568febe vocab=bc15437f
+-/
 lemma play_castLE (s : Strategy) (p : ℕ) (om : ℕ → ℝ) :
     ∀ (k j : ℕ) (h : j ≤ k) (i : Fin j), s.play p om k (Fin.castLE h i) = s.play p om j i := by
   intro k
@@ -188,6 +201,9 @@ lemma play_castLE (s : Strategy) (p : ℕ) (om : ℕ → ℝ) :
       have : Fin.castLE h i = i := by ext; simp
       rw [this]
 
+/--
+@isnad1 id=eq.0h4v.s4.89a29fd86ee1 from=translated src=- shape=03671aaf vocab=d0e0110f
+-/
 lemma play_eq_playSeq (s : Strategy) (p : ℕ) (om : ℕ → ℝ) (k : ℕ) :
     s.play p om k = fun i : Fin k => s.playSeq p om (i : ℕ) := by
   funext i
@@ -195,6 +211,9 @@ lemma play_eq_playSeq (s : Strategy) (p : ℕ) (om : ℕ → ℝ) (k : ℕ) :
   have h2 := play_castLE s p om k ((i : ℕ) + 1) h ⟨(i : ℕ), Nat.lt_succ_self _⟩
   rwa [show Fin.castLE h ⟨(i : ℕ), Nat.lt_succ_self _⟩ = i from Fin.ext rfl] at h2
 
+/--
+@isnad1 id=eq.0h4v.s6.25dc9be3a420 from=translated src=- shape=1aaa3e60 vocab=a950e912
+-/
 lemma playSeq_apply (s : Strategy) (p : ℕ) (om : ℕ → ℝ) (j : ℕ) :
     s.playSeq p om j =
       if j % 2 = p then s (fun i : Fin j => s.playSeq p om (i : ℕ)) else om j := by
@@ -210,6 +229,9 @@ def respSeq (s : Strategy) (p : ℕ) (r : Strategy) : ℕ → ℝ
   termination_by j => j
   decreasing_by all_goals exact i.isLt
 
+/--
+@isnad1 id=eq.0h4v.s4.6b8cbe2e6741 from=translated src=- shape=9e002ea7 vocab=4e715065
+-/
 lemma play_respSeq (s : Strategy) (p : ℕ) (r : Strategy) (k : ℕ) :
     s.play p (respSeq s p r) k = fun i : Fin k => respSeq s p r (i : ℕ) := by
   induction k with
@@ -230,16 +252,23 @@ lemma play_respSeq (s : Strategy) (p : ℕ) (r : Strategy) (k : ℕ) :
     · intro i
       rw [Fin.snoc_castSucc, Fin.val_castSucc]
 
-/-- A first invalid index exists as soon as any invalid index does. -/
+/-- A first invalid index exists as soon as any invalid index does.
+@isnad1 id=ex.1h2v.s5.de57276879f8 from=translated src=- shape=0f9810d0 vocab=1d2feca8
+-/
 lemma exists_first_invalid {c : ℝ} {x : ℕ → ℝ} (hex : ∃ j, ¬ ValidAt c x j) :
     ∃ j, (∀ m < j, ValidAt c x m) ∧ ¬ ValidAt c x j := by
   classical
   exact ⟨Nat.find hex, fun m hm => not_not.mp (Nat.find_min hex hm), Nat.find_spec hex⟩
 
-/-- If `0 ≤ b` and `a ^ 2 ≤ b ^ 2` then `a ≤ b`. -/
+/-- If `0 ≤ b` and `a ^ 2 ≤ b ^ 2` then `a ≤ b`.
+@isnad1 id=le.2h2v.s5.656282f4bfef from=translated src=- shape=695f6ced vocab=7ff6bede
+-/
 lemma le_of_sq_le_sq' {a b : ℝ} (hb : 0 ≤ b) (h : a ^ 2 ≤ b ^ 2) : a ≤ b := by
   nlinarith [sq_nonneg (a - b), sq_nonneg (a + b)]
 
+/--
+@isnad1 id=eq.0h2v.s6.562bac234f3d from=translated src=- shape=3a5cedb6 vocab=daf62469
+-/
 lemma sum_range_two_mul (f : ℕ → ℝ) (k : ℕ) :
     ∑ i ∈ range (2 * k), f i = ∑ i ∈ range k, (f (2 * i) + f (2 * i + 1)) := by
   induction k with
@@ -249,7 +278,9 @@ lemma sum_range_two_mul (f : ℕ → ℝ) (k : ℕ) :
     ring
 
 /-- Cauchy-Schwarz bound: if a sequence vanishes at even indices below `2 * k`, is
-nonnegative there, and its squares sum to at most `2 * k`, then its sum is at most `√2 * k`. -/
+nonnegative there, and its squares sum to at most `2 * k`, then its sum is at most `√2 * k`.
+@isnad1 id=le.2h2v.s7.4831d056e9ea from=translated src=- shape=ea0895e7 vocab=9cfd3381
+-/
 lemma sum_le_sqrt_two_mul (x : ℕ → ℝ) (k : ℕ)
     (h0 : ∀ i < 2 * k, Even i → x i = 0)
     (hQ : ∑ i ∈ range (2 * k), x i ^ 2 ≤ 2 * (k : ℝ)) :
@@ -280,7 +311,9 @@ lemma sum_le_sqrt_two_mul (x : ℕ → ℝ) (k : ℕ)
         apply mul_le_mul_of_nonneg_left hQ' (by positivity)
     _ = 2 * (k : ℝ) ^ 2 := by ring
 
-/-- If `a, b ≥ 0` and `a² + b² = 2` then `a + b ≥ √2`. -/
+/-- If `a, b ≥ 0` and `a² + b² = 2` then `a + b ≥ √2`.
+@isnad1 id=le.3h2v.s6.c7b973269010 from=translated src=- shape=6f91adb7 vocab=a02c13be
+-/
 lemma sqrt_two_le_add {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (h : a ^ 2 + b ^ 2 = 2) :
     Real.sqrt 2 ≤ a + b := by
   apply le_of_sq_le_sq' (by positivity)
@@ -294,7 +327,9 @@ is the greedy move `√(j + 1 - (sum of squares so far))`. -/
 
 /-- One round of greedy play when `c ≤ √2/2`, assuming the invariant after `2k` moves
 and the validity of Alice's move at index `2k`: Alice's move is at most `√2/2`, so Bazza's
-greedy reply at index `2k + 1` exists, and the squares of the pair sum to `2`. -/
+greedy reply at index `2k + 1` exists, and the squares of the pair sum to `2`.
+@isnad1 id=and.5h3v.s9.6234cfe7c299 from=translated src=- shape=536457e4 vocab=47b01432
+-/
 lemma bazza_step {c : ℝ} {x : ℕ → ℝ} (hc : c ≤ Real.sqrt 2 / 2) {k : ℕ}
     (hb : x (2 * k + 1) =
       Real.sqrt (((2 * k + 1 : ℕ) : ℝ) + 1 - ∑ i ∈ range (2 * k + 1), x i ^ 2))
@@ -323,7 +358,9 @@ lemma bazza_step {c : ℝ} {x : ℕ → ℝ} (hc : c ≤ Real.sqrt 2 / 2) {k : �
 
 /-- Invariant of greedy play when `c ≤ √2/2`: while all moves so far are valid, the sum of
 squares after Bazza's move at index `2k - 1` is exactly `2k`, and the plain sum is
-at least `√2 * k`. -/
+at least `√2 * k`.
+@isnad1 id=and.3h3v.s7.17ec0a3e6f4e from=translated src=- shape=039ff5e5 vocab=d83af317
+-/
 lemma bazza_invariant {c : ℝ} {x : ℕ → ℝ} (hc : c ≤ Real.sqrt 2 / 2)
     (hgreedy : ∀ j, Odd j → x j = Real.sqrt ((j : ℝ) + 1 - ∑ i ∈ range j, x i ^ 2)) :
     ∀ k : ℕ, (∀ m < 2 * k, ValidAt c x m) →
@@ -349,7 +386,9 @@ lemma bazza_invariant {c : ℝ} {x : ℕ → ℝ} (hc : c ≤ Real.sqrt 2 / 2)
       push_cast
       linarith
 
-/-- When `c ≤ √2/2` and Bazza plays greedily, no odd index is ever the first invalid one. -/
+/-- When `c ≤ √2/2` and Bazza plays greedily, no odd index is ever the first invalid one.
+@isnad1 id=validat.4h3v.s6.ad51b719e98b from=translated src=- shape=4a52cbe9 vocab=a5d2716d
+-/
 lemma bazza_validAt_odd {c : ℝ} {x : ℕ → ℝ} (hc : c ≤ Real.sqrt 2 / 2)
     (hgreedy : ∀ j, Odd j → x j = Real.sqrt ((j : ℝ) + 1 - ∑ i ∈ range j, x i ^ 2)) :
     ∀ j, Odd j → (∀ m < j, ValidAt c x m) → ValidAt c x j := by
@@ -375,7 +414,9 @@ noncomputable def bazzaStrategy : Strategy := fun k h => Real.sqrt ((k : ℝ) + 
 /-- The all-zeros strategy. -/
 def zeroStrategy : Strategy := fun _ _ => 0
 
-/-- If `c ≤ √2/2` then Alice has no winning strategy: Bazza survives greedy play forever. -/
+/-- If `c ≤ √2/2` then Alice has no winning strategy: Bazza survives greedy play forever.
+@isnad1 id=not.1h1v.s5.9a886190e07f from=translated src=- shape=e234e5ab vocab=55d1cc0a
+-/
 lemma alice_not_wins {c : ℝ} (hc : c ≤ Real.sqrt 2 / 2) :
     ¬ ∃ s : Strategy, s.Winning c 0 := by
   rintro ⟨s, hs⟩
@@ -390,7 +431,9 @@ lemma alice_not_wins {c : ℝ} (hc : c ≤ Real.sqrt 2 / 2) :
     rw [Fin.sum_univ_eq_sum_range (fun i => respSeq s 0 bazzaStrategy i ^ 2) j']
   exact hjbad (bazza_validAt_odd hc hgreedy j (Nat.odd_iff.mpr (by lia)) hjmin)
 
-/-- If `c < √2/2` then Bazza's greedy strategy wins. -/
+/-- If `c < √2/2` then Bazza's greedy strategy wins.
+@isnad1 id=ex.1h1v.s5.cd18f7401931 from=translated src=- shape=cb1ce27c vocab=44088c15
+-/
 lemma bazza_wins {c : ℝ} (hc : c < Real.sqrt 2 / 2) : ∃ s : Strategy, s.Winning c 1 := by
   refine ⟨bazzaStrategy, fun om => ?_⟩
   set x : ℕ → ℝ := bazzaStrategy.playSeq 1 om with hx
@@ -430,7 +473,9 @@ lemma bazza_wins {c : ℝ} (hc : c < Real.sqrt 2 / 2) : ∃ s : Strategy, s.Winn
 /-! ### Alice's side -/
 
 /-- The partial-sum bound coming from Cauchy-Schwarz, for play in which Alice has played
-all zeros so far. -/
+all zeros so far.
+@isnad1 id=le.2h3v.s6.f9223f8d9153 from=translated src=- shape=0c286895 vocab=7634b623
+-/
 lemma zeros_sum_le {c : ℝ} {x : ℕ → ℝ} (t : ℕ)
     (h0 : ∀ i < 2 * t, Even i → x i = 0)
     (hvalid : ∀ m < 2 * t, ValidAt c x m) :
@@ -445,7 +490,9 @@ lemma zeros_sum_le {c : ℝ} {x : ℕ → ℝ} (t : ℕ)
     linarith
 
 /-- If `c ≥ √2/2` and all of Alice's moves up to an even index `2 * t` are `0`, then
-her move at `2 * t` is valid. -/
+her move at `2 * t` is valid.
+@isnad1 id=validat.3h3v.s6.1a6640b41938 from=translated src=- shape=1995032b vocab=379b8a61
+-/
 lemma zeros_validAt_even {c : ℝ} {x : ℕ → ℝ} (hc : Real.sqrt 2 / 2 ≤ c) (t : ℕ)
     (h0 : ∀ i ≤ 2 * t, Even i → x i = 0)
     (hvalid : ∀ m < 2 * t, ValidAt c x m) :
@@ -465,7 +512,9 @@ lemma zeros_validAt_even {c : ℝ} {x : ℕ → ℝ} (hc : Real.sqrt 2 / 2 ≤ c
     lia
 
 /-- If `c ≥ √2/2` then Bazza has no winning strategy: Alice survives forever by
-playing all zeros. -/
+playing all zeros.
+@isnad1 id=not.1h1v.s5.c9f6336c90f1 from=translated src=- shape=35b93cf8 vocab=55d1cc0a
+-/
 lemma bazza_not_wins {c : ℝ} (hc : Real.sqrt 2 / 2 ≤ c) :
     ¬ ∃ s : Strategy, s.Winning c 1 := by
   rintro ⟨s, hs⟩
@@ -480,7 +529,9 @@ lemma bazza_not_wins {c : ℝ} (hc : Real.sqrt 2 / 2 ≤ c) :
   exact hjbad (zeros_validAt_even hc t (fun i _ hi => h0 i hi) hjmin)
 
 /-- If `c > √2/2` then Alice wins: she plays zeros until index `N`, then spends her whole
-linear budget, which by then exceeds `√(N + 2)`, so Bazza cannot answer. -/
+linear budget, which by then exceeds `√(N + 2)`, so Bazza cannot answer.
+@isnad1 id=ex.1h1v.s5.b24ba1036fdd from=translated src=- shape=ec015651 vocab=44088c15
+-/
 lemma alice_wins {c : ℝ} (hc : Real.sqrt 2 / 2 < c) : ∃ s : Strategy, s.Winning c 0 := by
   have hc0 : 0 < c := lt_trans (by positivity) hc
   have hε : 0 < c - Real.sqrt 2 / 2 := by linarith

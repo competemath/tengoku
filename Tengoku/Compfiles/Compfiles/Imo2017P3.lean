@@ -90,7 +90,9 @@ noncomputable section
 
 /-! ### Geometry: the phase lemma (following Evan Chen's notes) -/
 
-/-- Pythagoras in an orthonormal frame. -/
+/-- Pythagoras in an orthonormal frame.
+@isnad1 id=and.3h3v.s9.84a1c7304c5c from=translated src=- shape=53aaeb67 vocab=ed9c0ea6
+-/
 lemma norm_sq_frame (u w : Pt) (s : ℝ) (hu : ‖u‖ = 1) (hw : ‖w‖ = 1)
     (huw : ⟪u, w⟫_ℝ = 0) :
     ‖s • u + w‖ ^ 2 = s ^ 2 + 1 ∧ ‖s • u - w‖ ^ 2 = s ^ 2 + 1 := by
@@ -103,7 +105,9 @@ lemma norm_sq_frame (u w : Pt) (s : ℝ) (hu : ‖u‖ = 1) (hw : ‖w‖ = 1)
   · rw [norm_sub_sq_real, hns, h0, hw2]; ring
 
 /-- The analytic heart of the phase lemma: with `n ≥ 4d` steps, the
-squared distance grows by at least `1/2`. -/
+squared distance grows by at least `1/2`.
+@isnad1 id=le.6h5v.s8.e97c75ceb2cd from=translated src=- shape=692e4ad5 vocab=5df71cf7
+-/
 lemma core_ineq (n d h₁ h₂ s : ℝ) (hn : 1 ≤ n) (hd : 0 ≤ d) (hnd : 4 * d ≤ n)
     (hs : n - 1 / n ≤ s) (_hs' : s ≤ n) (hH : (h₁ + d) ^ 2 + h₂ ^ 2 ≤ n ^ 2) :
     d ^ 2 + 1 / 2 ≤ (h₁ - s) ^ 2 + h₂ ^ 2 + 1 := by
@@ -134,7 +138,9 @@ lemma core_ineq (n d h₁ h₂ s : ℝ) (hn : 1 ≤ n) (hd : 0 ≤ d) (hnd : 4 *
     nlinarith [sq_nonneg h₂, sq_nonneg (1 / n), hsq, e_t]
 
 /-- An orthonormal frame adapted to the pair `(a, b)`: `u` points from
-`b` to `a`. -/
+`b` to `a`.
+@isnad1 id=ex.0h2v.s9.498c7e868aa3 from=translated src=- shape=e5a43a44 vocab=09e8e1aa
+-/
 lemma frame_exists (a b : Pt) :
     ∃ u w : Pt, ‖u‖ = 1 ∧ ‖w‖ = 1 ∧ ⟪u, w⟫_ℝ = 0 ∧
       (∀ v : Pt, v = ⟪v, u⟫_ℝ • u + ⟪v, w⟫_ℝ • w) ∧ b = a - dist a b • u := by
@@ -199,7 +205,9 @@ lemma frame_exists (a b : Pt) :
 `b`, and the rabbit runs for `n ≥ 4 · dist a b` rounds to one of the two
 points `a + s • u ± w` (with `s ≈ n`), while the device reports points on
 the line, then the hunter, wherever it goes within `n` steps of `b`, ends
-at distance at least `√(dist a b² + 1/2)` from one of the two points. -/
+at distance at least `√(dist a b² + 1/2)` from one of the two points.
+@isnad1 id=le.10h7v.s10.1feee940ffea from=translated src=- shape=68a1e5a5 vocab=f09cedfd
+-/
 lemma phase_geom (a b H : Pt) (u w : Pt) (n s : ℝ)
     (hu : ‖u‖ = 1) (hw : ‖w‖ = 1) (huw : ⟪u, w⟫_ℝ = 0)
     (hspan : ∀ v : Pt, v = ⟪v, u⟫_ℝ • u + ⟪v, w⟫_ℝ • w)
@@ -258,7 +266,9 @@ lemma phase_geom (a b H : Pt) (u w : Pt) (n s : ℝ)
     le_max_of_le_left dist_nonneg
   exact (Real.sqrt_le_left hmaxnn).mpr hmax2
 
-/-- Bounds for `√(n² - 1)`. -/
+/-- Bounds for `√(n² - 1)`.
+@isnad1 id=and.1h1v.s6.ed43ecee9a39 from=translated src=- shape=1b564596 vocab=177add60
+-/
 lemma sqrt_est (n : ℝ) (hn : 1 ≤ n) : n - 1 / n ≤ Real.sqrt (n ^ 2 - 1) ∧
     Real.sqrt (n ^ 2 - 1) ≤ n := by
   have hn0 : (0:ℝ) < n := by linarith
@@ -379,16 +389,28 @@ def reports (σ : Strategy) (n : ℕ) : Pt :=
 
 /-! ### Verification -/
 
+/--
+@isnad1 id=lt.0h1v.s3.8a65b8f09bb7 from=translated src=- shape=8a62b088 vocab=2ce9ec79
+-/
 lemma phaseLen_pos (j : ℕ) : 0 < phaseLen j := by
   unfold phaseLen
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=le.0h1v.s3.c989144ff72b from=translated src=- shape=8a62b088 vocab=156c566c
+-/
 lemma phaseLen_ge (j : ℕ) : 400 ≤ phaseLen j := by
   unfold phaseLen
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.54169c289895 from=translated src=- shape=a3b61a71 vocab=99982667
+-/
 lemma startRound_succ (j : ℕ) : startRound (j + 1) = startRound j + phaseLen j := rfl
 
+/--
+@isnad1 id=strictmo.0h0v.s2.165441dab7b4 from=translated src=- shape=e3d48bcb vocab=e7c381b0
+-/
 lemma startRound_strictMono : StrictMono startRound := by
   apply strictMono_nat_of_lt_succ
   intro j
@@ -396,6 +418,9 @@ lemma startRound_strictMono : StrictMono startRound := by
   have := phaseLen_pos j
   lia
 
+/--
+@isnad1 id=eq.1h1v.s4.a2d9984595b3 from=translated src=- shape=f73398f2 vocab=bb60f701
+-/
 lemma startRound_eq_of_le (j : ℕ) (hj : j ≤ 20000) : startRound j = 400 * j := by
   induction j with
   | zero => rfl
@@ -405,10 +430,16 @@ lemma startRound_eq_of_le (j : ℕ) (hj : j ≤ 20000) : startRound j = 400 * j 
     simp only [phaseLen, ite_eq_right hk]
     ring
 
+/--
+@isnad1 id=eq.0h0v.s4.7ba7029a7a9a from=translated src=- shape=7ed1bc26 vocab=cfb796c4
+-/
 lemma startRound_two : startRound (20000 + 1) = 8003600 := by
   rw [startRound_succ, startRound_eq_of_le 20000 le_rfl]
   simp [phaseLen]
 
+/--
+@isnad1 id=eq.1h1v.s5.4c9184521bd2 from=translated src=- shape=b0e2616d vocab=5335638c
+-/
 lemma startRound_eq_of_ge (j : ℕ) (hj : 20001 ≤ j) :
     startRound j = 8003600 + 400 * (j - 20001) := by
   induction j, hj using Nat.le_induction with
@@ -419,14 +450,23 @@ lemma startRound_eq_of_ge (j : ℕ) (hj : 20001 ≤ j) :
     simp only [phaseLen, ite_eq_right hkn]
     lia
 
+/--
+@isnad1 id=eq.0h0v.s2.1803c34653b8 from=translated src=- shape=4b736592 vocab=358d2cd2
+-/
 lemma startRound_total : startRound totalPhases = totalRounds := by
   rw [startRound_eq_of_ge totalPhases (by norm_num [totalPhases])]
   norm_num [totalPhases, totalRounds]
 
+/--
+@isnad1 id=eq.0h1v.s6.8db96e2be710 from=translated src=- shape=4f222063 vocab=be6936ed
+-/
 lemma phaseOf_succ (n : ℕ) :
     phaseOf (n + 1) =
       if n + 1 < startRound (phaseOf n + 1) then phaseOf n else phaseOf n + 1 := rfl
 
+/--
+@isnad1 id=and.0h1v.s4.1ab3a71d94cf from=translated src=- shape=4c1f0c77 vocab=9ecb4a05
+-/
 lemma phaseOf_spec (n : ℕ) :
     startRound (phaseOf n) ≤ n ∧ n < startRound (phaseOf n + 1) := by
   induction n with
@@ -443,6 +483,9 @@ lemma phaseOf_spec (n : ℕ) :
       rw [startRound_succ]
       lia
 
+/--
+@isnad1 id=eq.2h2v.s5.b90d11367c52 from=translated src=- shape=3484e35b vocab=9ecb4a05
+-/
 lemma phaseOf_unique (j n : ℕ) (h₁ : startRound j ≤ n) (h₂ : n < startRound (j + 1)) :
     phaseOf n = j := by
   rcases phaseOf_spec n with ⟨g₁, g₂⟩
@@ -456,7 +499,9 @@ lemma phaseOf_unique (j n : ℕ) (h₁ : startRound j ≤ n) (h₂ : n < startRo
     lia
 
 /-- The hunter moves at most one list-element per round: chaining the
-validity condition over an appended list of reports. -/
+validity condition over an appended list of reports.
+@isnad1 id=le.1h3v.s6.6a791027afc5 from=translated src=- shape=82cd0710 vocab=15ee08fa
+-/
 lemma dist_strategy_append (σ : Strategy) (hσ : ValidStrategy σ) (L : List Pt)
     (l : List Pt) :
     dist (σ L) (σ (L ++ l)) ≤ (l.length : ℝ) := by
@@ -471,15 +516,27 @@ lemma dist_strategy_append (σ : Strategy) (hσ : ValidStrategy σ) (L : List Pt
     push_cast
     linarith
 
+/--
+@isnad1 id=eq.0h4v.s4.78d62ea3f370 from=translated src=- shape=6554bd84 vocab=e3d4df50
+-/
 lemma escReps_zero (a : Pt) (u : Pt) (t n : ℝ) : escReps a u t n 0 = a := by
   simp [escReps]
 
+/--
+@isnad1 id=eq.0h5v.s4.368b0add0d3f from=translated src=- shape=6d3cfd8d vocab=6007088e
+-/
 lemma escPath_zero (a : Pt) (u w : Pt) (t n : ℝ) : escPath a u w t n 0 = a := by
   simp [escPath]
 
+/--
+@isnad1 id=eq.0h5v.s4.a98aaa9fc4c2 from=translated src=- shape=6d3cfd8d vocab=eba0dbdf
+-/
 lemma escPathY_zero (a : Pt) (u w : Pt) (t n : ℝ) : escPathY a u w t n 0 = a := by
   simp [escPathY]
 
+/--
+@isnad1 id=eq.2h6v.s8.16202d02cb1a from=translated src=- shape=746ce49f vocab=ff222197
+-/
 lemma escPath_step (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n)
     (hvn : ‖t • u + w‖ = n) (k : ℕ) :
     dist (escPath a u w t n k) (escPath a u w t n (k + 1)) = 1 := by
@@ -490,6 +547,9 @@ lemma escPath_step (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n)
   rw [dist_comm, dist_eq_norm, e, norm_smul, Real.norm_eq_abs,
     abs_of_pos (one_div_pos.mpr hn), hvn, one_div_mul_cancel (ne_of_gt hn)]
 
+/--
+@isnad1 id=eq.2h6v.s8.d1e62525ea08 from=translated src=- shape=dd3bb416 vocab=5bafbb70
+-/
 lemma escPathY_step (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n)
     (hvn : ‖t • u - w‖ = n) (k : ℕ) :
     dist (escPathY a u w t n k) (escPathY a u w t n (k + 1)) = 1 := by
@@ -500,6 +560,9 @@ lemma escPathY_step (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n)
   rw [dist_comm, dist_eq_norm, e, norm_smul, Real.norm_eq_abs,
     abs_of_pos (one_div_pos.mpr hn), hvn, one_div_mul_cancel (ne_of_gt hn)]
 
+/--
+@isnad1 id=le.3h6v.s7.b55fab126ce0 from=translated src=- shape=0ec7574f vocab=f95fa15f
+-/
 lemma escReps_dist (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n) (hw : ‖w‖ = 1)
     (k : ℕ) (hk : (k : ℝ) ≤ n) :
     dist (escReps a u t n k) (escPath a u w t n k) ≤ 1 := by
@@ -511,6 +574,9 @@ lemma escReps_dist (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n) (hw : ‖w
     div_le_one hn]
   exact hk
 
+/--
+@isnad1 id=le.3h6v.s7.c094426a4fc2 from=translated src=- shape=0ec7574f vocab=a2d25330
+-/
 lemma escReps_distY (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n) (hw : ‖w‖ = 1)
     (k : ℕ) (hk : (k : ℝ) ≤ n) :
     dist (escReps a u t n k) (escPathY a u w t n k) ≤ 1 := by
@@ -522,15 +588,23 @@ lemma escReps_distY (a : Pt) (u w : Pt) (t n : ℝ) (hn : (0:ℝ) < n) (hw : ‖
     div_le_one hn]
   exact hk
 
+/--
+@isnad1 id=eq.1h5v.s7.c2866a351cdd from=translated src=- shape=cec60529 vocab=4925b9b3
+-/
 lemma escPath_end (a : Pt) (u w : Pt) (t : ℝ) (m : ℕ) (hm : (0:ℝ) < (m : ℝ)) :
     escPath a u w t (m : ℝ) m = a + (t • u + w) := by
   simp [escPath, div_self (ne_of_gt hm)]
 
+/--
+@isnad1 id=eq.1h5v.s7.add83d3df56e from=translated src=- shape=ca67a294 vocab=ca56fcfe
+-/
 lemma escPathY_end (a : Pt) (u w : Pt) (t : ℝ) (m : ℕ) (hm : (0:ℝ) < (m : ℝ)) :
     escPathY a u w t (m : ℝ) m = a + (t • u - w) := by
   simp [escPathY, div_self (ne_of_gt hm)]
 
-/-- Specification of one escape phase (with the frame made explicit). -/
+/-- Specification of one escape phase (with the frame made explicit).
+@isnad1 id=other.7h4v.s10.6e26eafd6f06 from=translated src=- shape=336d7196 vocab=af5f7e41
+-/
 lemma escStep_spec (σ : Strategy) (hσ : ValidStrategy σ) (s : PState) (u w : Pt)
     (hd : dist s.a (σ s.L) ≤ 100)
     (hu1 : ‖u‖ = 1) (hw1 : ‖w‖ = 1) (huw : ⟪u, w⟫_ℝ = 0)
@@ -620,7 +694,9 @@ lemma escStep_spec (σ : Strategy) (hσ : ValidStrategy σ) (s : PState) (u w : 
       rw [hend, dist_comm (s.a + (t • u - w)) H]
       exact hsq
 
-/-- Specification of one phase, escape case. -/
+/-- Specification of one phase, escape case.
+@isnad1 id=other.3h2v.s9.04a2b6a68694 from=translated src=- shape=ccd9aa28 vocab=14a8075f
+-/
 lemma phaseStep_spec_escape (σ : Strategy) (hσ : ValidStrategy σ) (s : PState)
     (hd : dist s.a (σ s.L) ≤ 100) (hj : s.j ≤ 20000) :
     let n := phaseLen s.j
@@ -636,12 +712,18 @@ lemma phaseStep_spec_escape (σ : Strategy) (hσ : ValidStrategy σ) (s : PState
   rw [dite_eq_left ⟨hd, hj⟩]
   exact escStep_spec σ hσ s _ _ hd hu1 hw1 huw hspan hb
 
+/--
+@isnad1 id=eq.0h4v.s8.4a3fd4558e81 from=translated src=- shape=68002dc3 vocab=5ee898e2
+-/
 lemma maintSeq_succ_fst (σ : Strategy) (a : Pt) (L : List Pt) (k : ℕ) :
     (maintSeq σ a L (k + 1)).1 =
       (maintSeq σ a L k).1 +
         (dist ((maintSeq σ a L k).1) (σ ((maintSeq σ a L k).2)))⁻¹ •
           ((maintSeq σ a L k).1 - σ ((maintSeq σ a L k).2)) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.e4a11d7ad533 from=translated src=- shape=ae9aa75c vocab=1f52bcb8
+-/
 lemma maintSeq_succ_snd (σ : Strategy) (a : Pt) (L : List Pt) (k : ℕ) :
     (maintSeq σ a L (k + 1)).2 =
       (maintSeq σ a L k).2 ++
@@ -650,7 +732,9 @@ lemma maintSeq_succ_snd (σ : Strategy) (a : Pt) (L : List Pt) (k : ℕ) :
             ((maintSeq σ a L k).1 - σ ((maintSeq σ a L k).2))] := rfl
 
 /-- Specification of the maintenance iteration: honest reports, unit
-steps, and the distance from the hunter never decreases. -/
+steps, and the distance from the hunter never decreases.
+@isnad1 id=and.2h4v.s8.c547d71d88d6 from=translated src=- shape=224cd389 vocab=721f36d0
+-/
 lemma maintSeq_spec (σ : Strategy) (hσ : ValidStrategy σ) (a : Pt) (L : List Pt)
     (hd : 100 ≤ dist a (σ L)) (k : ℕ) :
     (maintSeq σ a L k).2 =
@@ -723,7 +807,9 @@ lemma maintSeq_spec (σ : Strategy) (hσ : ValidStrategy σ) (a : Pt) (L : List 
         (σ ((maintSeq σ a L k).2))
       linarith
 
-/-- Specification of one phase, maintenance case. -/
+/-- Specification of one phase, maintenance case.
+@isnad1 id=other.3h2v.s9.71eb5f8a922d from=translated src=- shape=d1874701 vocab=f9a5470f
+-/
 lemma phaseStep_spec_maint (σ : Strategy) (hσ : ValidStrategy σ) (s : PState)
     (hd : 100 ≤ dist s.a (σ s.L))
     (hbr : ¬ (dist s.a (σ s.L) ≤ 100 ∧ s.j ≤ 20000)) :
@@ -745,6 +831,9 @@ lemma phaseStep_spec_maint (σ : Strategy) (hσ : ValidStrategy σ) (s : PState)
   intro k _ _
   simp [dist_self]
 
+/--
+@isnad1 id=eq.1h2v.s12.fcbaed77ee70 from=translated src=- shape=64368f72 vocab=5437d14e
+-/
 lemma phaseStep_escape_eq (σ : Strategy) (s : PState)
     (hbr : dist s.a (σ s.L) ≤ 100 ∧ s.j ≤ 20000) :
     phaseStep σ s = escStep σ s (Classical.choose (frame_exists s.a (σ s.L)))
@@ -752,6 +841,9 @@ lemma phaseStep_escape_eq (σ : Strategy) (s : PState)
   unfold phaseStep
   rw [dite_eq_left hbr]
 
+/--
+@isnad1 id=eq.0h2v.s3.72eae40b2f72 from=translated src=- shape=6021be03 vocab=2512905b
+-/
 lemma states_j (σ : Strategy) (j : ℕ) : (States σ j).j = j := by
   induction j with
   | zero => rfl
@@ -767,7 +859,9 @@ lemma states_j (σ : Strategy) (j : ℕ) : (States σ j).j = j := by
       dsimp only
       rw [ih]
 
-/-- The branch-independent part of the phase specification. -/
+/-- The branch-independent part of the phase specification.
+@isnad1 id=other.2h2v.s9.444ea91cd25f from=translated src=- shape=e9007639 vocab=f9a5470f
+-/
 lemma phaseStep_spec (σ : Strategy) (hσ : ValidStrategy σ) (s : PState)
     (hdm : ¬ (dist s.a (σ s.L) ≤ 100 ∧ s.j ≤ 20000) → 100 ≤ dist s.a (σ s.L)) :
     let n := phaseLen s.j
@@ -783,7 +877,9 @@ lemma phaseStep_spec (σ : Strategy) (hσ : ValidStrategy σ) (s : PState)
     exact ⟨a, b, c, d, e⟩
 
 /-- The invariant: after phase `j` the squared distance is at least
-`min 10000 (j/2)`, and after phase `20000` it exceeds `100`. -/
+`min 10000 (j/2)`, and after phase `20000` it exceeds `100`.
+@isnad1 id=and.1h2v.s7.c23fd5e05cc3 from=translated src=- shape=a790b84f vocab=6c9920c2
+-/
 lemma invariant (σ : Strategy) (hσ : ValidStrategy σ) (j : ℕ) :
     min 10000 ((j : ℝ) / 2) ≤ dist ((States σ j).a) (σ (States σ j).L) ^ 2 ∧
     (20000 < j → 100 < dist ((States σ j).a) (σ (States σ j).L)) := by
@@ -841,7 +937,9 @@ lemma invariant (σ : Strategy) (hσ : ValidStrategy σ) (j : ℕ) :
         rw [hsucc]
         exact lt_of_lt_of_le hd' hmono
 
-/-- The maintenance mode hypothesis is always satisfiable. -/
+/-- The maintenance mode hypothesis is always satisfiable.
+@isnad1 id=le.2h2v.s7.e8efd942e790 from=translated src=- shape=f745c119 vocab=5628290b
+-/
 lemma hdm_of (σ : Strategy) (hσ : ValidStrategy σ) (j : ℕ)
     (hbr : ¬ (dist (States σ j).a (σ (States σ j).L) ≤ 100 ∧ (States σ j).j ≤ 20000)) :
     100 ≤ dist (States σ j).a (σ (States σ j).L) := by
@@ -851,9 +949,15 @@ lemma hdm_of (σ : Strategy) (hσ : ValidStrategy σ) (j : ℕ)
   · have hj : 20000 < j := by have := states_j σ j; lia
     exact le_of_lt ((invariant σ hσ j).2 hj)
 
+/--
+@isnad1 id=eq.0h2v.s5.55d79096e85d from=translated src=- shape=3d39c0a2 vocab=90538633
+-/
 lemma reportList_succ (p : ℕ → Pt) (n : ℕ) :
     reportList p (n + 1) = reportList p n ++ [p (n + 1)] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.0b3a0cc33b59 from=translated src=- shape=88981c9b vocab=9b219f58
+-/
 lemma reportList_add (p : ℕ → Pt) (m c : ℕ) :
     reportList p (m + c) =
       reportList p m ++ List.ofFn (fun k : Fin c => p (m + (k : ℕ) + 1)) := by
@@ -866,6 +970,9 @@ lemma reportList_add (p : ℕ → Pt) (m c : ℕ) :
     rw [List.ofFn_succ', List.concat_eq_append]
     simp
 
+/--
+@isnad1 id=eq.1h2v.s4.be51fc6a3336 from=translated src=- shape=932e24d9 vocab=fc0ed056
+-/
 lemma reportList_eq (σ : Strategy) (hσ : ValidStrategy σ) (j : ℕ) :
     reportList (reports σ) (startRound j) = (States σ j).L := by
   induction j with
@@ -894,6 +1001,9 @@ lemma reportList_eq (σ : Strategy) (hσ : ValidStrategy σ) (j : ℕ) :
     rw [ite_eq_right hne, hpk, harg]
     rfl
 
+/--
+@isnad1 id=validrab.1h1v.s3.76e58aa9d000 from=translated src=- shape=58f8d12c vocab=926e176c
+-/
 lemma rabbit_valid (σ : Strategy) (hσ : ValidStrategy σ) : ValidRabbit (rabbit σ) := by
   refine ⟨?_, ?_⟩
   · have h1 : Paths σ 0 0 = (States σ 0).a :=
@@ -945,6 +1055,9 @@ lemma rabbit_valid (σ : Strategy) (hσ : ValidStrategy σ) : ValidRabbit (rabbi
       rw [e5, e1]
       exact hstep k hk
 
+/--
+@isnad1 id=validrep.1h1v.s3.37cd7f7e7cdd from=translated src=- shape=2b510e99 vocab=2fe73d1e
+-/
 lemma reports_valid (σ : Strategy) (hσ : ValidStrategy σ) :
     ValidReports (rabbit σ) (reports σ) := by
   intro n hn
@@ -1000,7 +1113,9 @@ lemma reports_valid (σ : Strategy) (hσ : ValidStrategy σ) :
 
 /-- The adversary wins: for every valid hunter strategy, the rabbit and
 the tracking device can force the distance after `10⁹` rounds to exceed
-`100`. -/
+`100`.
+@isnad1 id=ex.1h1v.s6.e7d455f04a6f from=translated src=- shape=22c46e0d vocab=95ba4400
+-/
 lemma adversary (σ : Strategy) (hσ : ValidStrategy σ) :
     ∃ A p : ℕ → Pt, ValidRabbit A ∧ ValidReports A p ∧
       100 < dist (A totalRounds) (hunterPos σ p totalRounds) := by

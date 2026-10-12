@@ -49,17 +49,23 @@ section Wedge
 
 variable [LinearOrder α] [Fintype α]
 
-/-- `u ∧ u ∧ X = 0`: the composite `Λ^p → Λ^{p+1} → Λ^{p+2}` of wedging with `u` vanishes. -/
+/-- `u ∧ u ∧ X = 0`: the composite `Λ^p → Λ^{p+1} → Λ^{p+2}` of wedging with `u` vanishes.
+@isnad1 id=eq.0h3v.s9.3c7f24122876 from=translated src=- shape=7ae92f6d vocab=dd1f3ba1
+-/
 theorem wedgeMatrix_mul_wedgeMatrix (p : ℕ) (u : α → ℂ) :
     wedgeMatrix (p + 1) u * wedgeMatrix p u = 0 :=
   Internal.wedgeMatrix_mul_wedgeMatrix p u
 
-/-- `X ↦ u ∧ X` on `Λ^p ℂ^α` has rank at most `(card α - 1).choose p`. -/
+/-- `X ↦ u ∧ X` on `Λ^p ℂ^α` has rank at most `(card α - 1).choose p`.
+@isnad1 id=le.0h3v.s6.1768882c639f from=translated src=- shape=cb183fc9 vocab=44ae2d22
+-/
 theorem rank_wedgeMatrix_le (p : ℕ) (u : α → ℂ) :
     (wedgeMatrix p u).rank ≤ (Fintype.card α - 1).choose p :=
   Internal.rank_wedgeMatrix_le p u
 
-/-- For `u ≠ 0`, `X ↦ u ∧ X` on `Λ^p ℂ^α` has rank exactly `(card α - 1).choose p`. -/
+/-- For `u ≠ 0`, `X ↦ u ∧ X` on `Λ^p ℂ^α` has rank exactly `(card α - 1).choose p`.
+@isnad1 id=eq.1h3v.s6.afe72ef2da2b from=translated src=- shape=95fe583e vocab=8d958047
+-/
 theorem rank_wedgeMatrix (p : ℕ) {u : α → ℂ} (hu : u ≠ 0) :
     (wedgeMatrix p u).rank = (Fintype.card α - 1).choose p := by
   obtain ⟨i₀, hi₀⟩ := Function.ne_iff.mp hu
@@ -73,66 +79,94 @@ variable [LinearOrder α] [Fintype α]
 
 /-- The entries of the Koszul flattening: the `((J, k), (I, j))` entry is
 `∑ i, wedgeCoeff J I i * T i j k`, the coefficient of `e_J ⊗ c_k` in
-`∑_{i,k} T i j k (a_i ∧ e_I) ⊗ c_k`. -/
+`∑_{i,k} T i j k (a_i ∧ e_I) ⊗ c_k`.
+@isnad1 id=eq.0h7v.s7.edd1095e022e from=translated src=- shape=d9c71209 vocab=96ef74c3
+-/
 theorem koszulFlattening_apply (p : ℕ) (T : Tensor3 α β γ)
     (Jk : {J : Finset α // J.card = p + 1} × γ) (Ij : {I : Finset α // I.card = p} × β) :
     koszulFlattening p T Jk Ij = ∑ i, wedgeCoeff Jk.1.1 Ij.1.1 i * T i Ij.2 Jk.2 :=
   rfl
 
 /-- For `p = 0` the Koszul flattening is the ordinary flattening `B^* → A ⊗ C`: its
-`(({i}, k), (∅, j))` entry is `T i j k`. -/
+`(({i}, k), (∅, j))` entry is `T i j k`.
+@isnad1 id=eq.0h7v.s7.2caa9e8a3151 from=translated src=- shape=9533c215 vocab=51dbdd6a
+-/
 theorem koszulFlattening_degree_zero_apply (T : Tensor3 α β γ) (i : α) (j : β) (k : γ) :
     koszulFlattening 0 T (⟨{i}, Finset.card_singleton i⟩, k) (⟨∅, Finset.card_empty⟩, j) =
       T i j k :=
   Internal.koszulFlattening_degree_zero_apply T i j k
 
+/--
+@isnad1 id=eq.0h6v.s8.9f0cb4691585 from=translated src=- shape=ca3dbb79 vocab=3c6b01fb
+-/
 theorem koszulFlattening_add (p : ℕ) (S T : Tensor3 α β γ) :
     koszulFlattening p (S + T) = koszulFlattening p S + koszulFlattening p T :=
   Internal.koszulFlattening_add p S T
 
+/--
+@isnad1 id=eq.0h4v.s7.9a9f3ebb79cb from=translated src=- shape=18888701 vocab=3c6b01fb
+-/
 theorem koszulFlattening_zero (p : ℕ) : koszulFlattening p (0 : Tensor3 α β γ) = 0 :=
   Internal.koszulFlattening_zero p
 
+/--
+@isnad1 id=eq.0h6v.s8.14d6a8ba9fed from=translated src=- shape=e86fad27 vocab=365034d4
+-/
 theorem koszulFlattening_smul (p : ℕ) (c : ℂ) (T : Tensor3 α β γ) :
     koszulFlattening p (c • T) = c • koszulFlattening p T :=
   Internal.koszulFlattening_smul p c T
 
+/--
+@isnad1 id=eq.0h7v.s7.b6fb83b02f19 from=translated src=- shape=79b7dada vocab=a4c83c43
+-/
 theorem koszulFlattening_sum (p : ℕ) {ι : Type*} (s : Finset ι) (T : ι → Tensor3 α β γ) :
     koszulFlattening p (∑ x ∈ s, T x) = ∑ x ∈ s, koszulFlattening p (T x) :=
   Internal.koszulFlattening_finset_sum p s T
 
-/-- The Koszul flattening depends continuously on the tensor. -/
+/-- The Koszul flattening depends continuously on the tensor.
+@isnad1 id=continuo.0h4v.s7.9dd478dc0af9 from=translated src=- shape=211ce032 vocab=afca146e
+-/
 theorem continuous_koszulFlattening (p : ℕ) :
     Continuous (koszulFlattening p : Tensor3 α β γ → Matrix _ _ ℂ) :=
   Internal.continuous_koszulFlattening p
 
 /-- The Koszul flattening of an outer product `u ⊗ v ⊗ w` has rank at most
-`(card α - 1).choose p`. -/
+`(card α - 1).choose p`.
+@isnad1 id=le.0h7v.s7.7fc06800ecb1 from=translated src=- shape=7761a11d vocab=0c7accfb
+-/
 theorem rank_koszulFlattening_outer_le [Fintype β] (p : ℕ) (u : α → ℂ) (v : β → ℂ)
     (w : γ → ℂ) : (koszulFlattening p (outer u v w)).rank ≤ (Fintype.card α - 1).choose p :=
   Internal.rank_koszulFlattening_outer_le p u v w
 
 /-- A tensor of rank at most `r` has Koszul flattening of rank at most
-`r * (card α - 1).choose p`. -/
+`r * (card α - 1).choose p`.
+@isnad1 id=le.1h6v.s7.87bda7e39d15 from=translated src=- shape=0b6cb847 vocab=2958ba87
+-/
 theorem RankLE.rank_koszulFlattening_le [Fintype β] (p : ℕ) {T : Tensor3 α β γ} {r : ℕ}
     (h : T.RankLE r) : (koszulFlattening p T).rank ≤ r * (Fintype.card α - 1).choose p :=
   Internal.rank_koszulFlattening_le_of_rankLE p h
 
 /-- A tensor of border rank at most `r` has Koszul flattening of rank at most
-`r * (card α - 1).choose p`. -/
+`r * (card α - 1).choose p`.
+@isnad1 id=le.1h6v.s7.4bcb6f960384 from=translated src=- shape=957682d1 vocab=fa4b0536
+-/
 theorem BorderRankLE.rank_koszulFlattening_le [Fintype β] [Fintype γ] (p : ℕ)
     {T : Tensor3 α β γ} {r : ℕ} (h : T.BorderRankLE r) :
     (koszulFlattening p T).rank ≤ r * (Fintype.card α - 1).choose p :=
   Internal.rank_koszulFlattening_le_of_borderRankLE p h
 
-/-- **The Koszul-flattening bound.** `rank T_A^{∧p} ≤ borderRank T * (card α - 1).choose p`. -/
+/-- **The Koszul-flattening bound.** `rank T_A^{∧p} ≤ borderRank T * (card α - 1).choose p`.
+@isnad1 id=le.0h5v.s7.5d7dc40f01bf from=translated src=- shape=8e51de40 vocab=f7800f77
+-/
 theorem rank_koszulFlattening_le_borderRank_mul [Fintype β] [Fintype γ] (p : ℕ)
     (T : Tensor3 α β γ) :
     (koszulFlattening p T).rank ≤ T.borderRank * (Fintype.card α - 1).choose p :=
   (borderRankLE_borderRank T).rank_koszulFlattening_le p
 
 /-- **The Koszul-flattening bound, contrapositive form.** If the Koszul flattening has rank
-greater than `r * (card α - 1).choose p`, then `T` does not have border rank at most `r`. -/
+greater than `r * (card α - 1).choose p`, then `T` does not have border rank at most `r`.
+@isnad1 id=not.1h6v.s7.5507245a68f1 from=translated src=- shape=83e08f95 vocab=141d91f6
+-/
 theorem not_borderRankLE_of_lt_rank_koszulFlattening [Fintype β] [Fintype γ] (p : ℕ)
     {T : Tensor3 α β γ} {r : ℕ}
     (h : r * (Fintype.card α - 1).choose p < (koszulFlattening p T).rank) :
@@ -140,7 +174,9 @@ theorem not_borderRankLE_of_lt_rank_koszulFlattening [Fintype β] [Fintype γ] (
   fun hT => absurd (hT.rank_koszulFlattening_le p) (Nat.not_le.mpr h)
 
 /-- If the Koszul flattening has rank greater than `r * (card α - 1).choose p`, then the border
-rank of `T` exceeds `r`. -/
+rank of `T` exceeds `r`.
+@isnad1 id=lt.1h6v.s7.239835debce9 from=translated src=- shape=49d225b0 vocab=9f7dec07
+-/
 theorem lt_borderRank_of_lt_rank_koszulFlattening [Fintype β] [Fintype γ] (p : ℕ)
     {T : Tensor3 α β γ} {r : ℕ}
     (h : r * (Fintype.card α - 1).choose p < (koszulFlattening p T).rank) :
@@ -154,7 +190,9 @@ end Flattening
 most `r`, then for all linear maps `X : ℂ^α → ℂ^α'`, `Y : ℂ^β → ℂ^β'`, `Z : ℂ^γ → ℂ^γ'` (for
 instance a projection of the first factor, a restriction to some of its slices, or a change of
 basis, with `Y` and `Z` the identity), the Koszul flattening of `(X ⊗ Y ⊗ Z) T` has rank at most
-`r * (card α' - 1).choose p`. -/
+`r * (card α' - 1).choose p`.
+@isnad1 id=le.1h12v.s7.bc5245c7510d from=translated src=- shape=cb52666a vocab=6c7aa6dd
+-/
 theorem BorderRankLE.rank_koszulFlattening_map_le {β' γ' : Type*} [Fintype α] [Fintype β]
     [Fintype γ] [LinearOrder α'] [Fintype α'] [Fintype β'] [Fintype γ'] (p : ℕ)
     (X : Matrix α' α ℂ) (Y : Matrix β' β ℂ) (Z : Matrix γ' γ ℂ) {T : Tensor3 α β γ} {r : ℕ}

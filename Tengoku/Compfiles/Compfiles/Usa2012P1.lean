@@ -43,7 +43,9 @@ def IsGood (n : ℕ) : Prop :=
 abbrev solution_set : Set ℕ := {n | 13 ≤ n}
 
 /-- For a sorted triple `x ≤ y ≤ z` of positive reals, failing to be the side lengths
-of an acute triangle implies `z ^ 2 ≥ x ^ 2 + y ^ 2`. -/
+of an acute triangle implies `z ^ 2 ≥ x ^ 2 + y ^ 2`.
+@isnad1 id=le.6h3v.s6.ae62d046fbb3 from=translated src=- shape=9164fb5f vocab=d09b235c
+-/
 lemma sq_add_sq_le_of_not_isAcuteTriple {x y z : ℝ}
     (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) (hxy : x ≤ y) (hyz : y ≤ z)
     (h : ¬ IsAcuteTriple x y z) : x ^ 2 + y ^ 2 ≤ z ^ 2 := by
@@ -62,7 +64,9 @@ lemma sq_add_sq_le_of_not_isAcuteTriple {x y z : ℝ}
     have h6 : 0 < x ^ 2 := pow_pos hx 2
     linarith
 
-/-- The Fibonacci numbers outgrow the squares from index 13 on. -/
+/-- The Fibonacci numbers outgrow the squares from index 13 on.
+@isnad1 id=lt.1h1v.s5.7f39dfca6b60 from=translated src=- shape=b8bdaa5a vocab=76e16f2f
+-/
 lemma sq_lt_fib {m : ℕ} (hm : 13 ≤ m) : m ^ 2 < Nat.fib m := by
   suffices h : m ^ 2 < Nat.fib m ∧ (m + 1) ^ 2 < Nat.fib (m + 1) from h.1
   induction m, hm using Nat.le_induction with
@@ -76,7 +80,9 @@ lemma sq_lt_fib {m : ℕ} (hm : 13 ≤ m) : m ^ 2 < Nat.fib m := by
 
 /-- If a monotone tuple of positive reals contains no three terms that are the side
 lengths of an acute triangle, then its squares grow at least as fast as the Fibonacci
-numbers: `b i ^ 2 ≥ F_{i+1} * b 0 ^ 2`. -/
+numbers: `b i ^ 2 ≥ F_{i+1} * b 0 ^ 2`.
+@isnad1 id=le.5h3v.s7.358d0c0cea0a from=translated src=- shape=fcd084a9 vocab=2fce14f6
+-/
 lemma fib_mul_sq_le {n : ℕ} {b : Fin n → ℝ} (hn : 0 < n)
     (hb_pos : ∀ i, 0 < b i) (hb_mono : Monotone b)
     (hsq : ∀ i j k : Fin n, i < j → j < k → b i ^ 2 + b j ^ 2 ≤ b k ^ 2) :
@@ -106,7 +112,9 @@ lemma fib_mul_sq_le {n : ℕ} {b : Fin n → ℝ} (hn : 0 < n)
     rw [hf, add_mul]
     linarith
 
-/-- Every `n ≥ 13` has the required property. -/
+/-- Every `n ≥ 13` has the required property.
+@isnad1 id=isgood.1h1v.s3.de3b5af72af6 from=translated src=- shape=2d2cffd0 vocab=a41bb87b
+-/
 lemma isGood_of_thirteen_le {n : ℕ} (hn : 13 ≤ n) : IsGood n := by
   intro a hpos hmax
   by_contra h
@@ -148,7 +156,9 @@ lemma isGood_of_thirteen_le {n : ℕ} (hn : 13 ≤ n) : IsGood n := by
 Fibonacci sequence. -/
 noncomputable def counterexSeq (n : ℕ) : Fin n → ℝ := fun i ↦ √(Nat.fib (i.val + 1) : ℝ)
 
-/-- No `n` with `3 ≤ n ≤ 12` has the required property. -/
+/-- No `n` with `3 ≤ n ≤ 12` has the required property.
+@isnad1 id=not.2h1v.s4.074e8024bb23 from=translated src=- shape=8d2519ec vocab=a41bb87b
+-/
 lemma not_isGood_of_le_twelve {n : ℕ} (h3 : 3 ≤ n) (h12 : n ≤ 12) : ¬ IsGood n := by
   have hfib12 : Nat.fib n ≤ n ^ 2 := by
     interval_cases n <;> decide

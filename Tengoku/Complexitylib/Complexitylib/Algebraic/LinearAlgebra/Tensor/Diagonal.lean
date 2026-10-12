@@ -83,18 +83,24 @@ section Maps
 
 variable [Fintype α] [DecidableEq α] [Fintype β] [DecidableEq β] [Fintype γ] [DecidableEq γ]
 
-/-- `selectSlices c` applied to the first factor keeps the slices `c t`. -/
+/-- `selectSlices c` applied to the first factor keeps the slices `c t`.
+@isnad1 id=eq.0h6v.s6.dc3c49fa744c from=translated src=- shape=21256b38 vocab=c56f10cd
+-/
 theorem map_selectSlices (c : α' → α) (T : Tensor3 α β γ) :
     map (selectSlices c) 1 1 T = T.subtensor c id id :=
   Internal.Diagonal.map_selectSlices c T
 
-/-- `diagonal d` applied to the first factor scales the slice `a` by `d a`. -/
+/-- `diagonal d` applied to the first factor scales the slice `a` by `d a`.
+@isnad1 id=eq.0h8v.s6.859af979aca3 from=translated src=- shape=f17448d7 vocab=3c92084e
+-/
 theorem map_diagonal_apply (d : α → ℂ) (T : Tensor3 α β γ) (a : α) (j : β) (l : γ) :
     map (Matrix.diagonal d) (1 : Matrix β β ℂ) (1 : Matrix γ γ ℂ) T a j l = d a * T a j l :=
   Internal.Diagonal.map_diagonal_apply d T a j l
 
 /-- Scaling slices by `d` and then keeping the slices `c t` gives the same tensor as keeping them
-directly, when `d (c t) = 1` for every `t`. -/
+directly, when `d (c t) = 1` for every `t`.
+@isnad1 id=eq.1h7v.s7.d1fa74f6172f from=translated src=- shape=17968b93 vocab=1b69dcc1
+-/
 theorem map_selectSlices_map_diagonal (c : α' → α) (d : α → ℂ) (hd : ∀ t, d (c t) = 1)
     (T : Tensor3 α β γ) :
     map (selectSlices c) 1 1 (map (Matrix.diagonal d) (1 : Matrix β β ℂ) (1 : Matrix γ γ ℂ) T) =
@@ -107,7 +113,9 @@ section Spread
 
 variable {p : ℕ}
 
-/-- The difference of two sums over subsets of size `p` or `p + 1` is at most the spread. -/
+/-- The difference of two sums over subsets of size `p` or `p + 1` is at most the spread.
+@isnad1 id=le.2h5v.s6.d666b20977a7 from=translated src=- shape=7922a76d vocab=9db167b4
+-/
 theorem sub_le_sumSpread [Fintype α] (o : α → ℤ) {K K' : Finset α}
     (hK : K.card = p ∨ K.card = p + 1) (hK' : K'.card = p ∨ K'.card = p + 1) :
     ∑ t ∈ K, o t - ∑ t ∈ K', o t ≤ sumSpread p o :=
@@ -115,24 +123,32 @@ theorem sub_le_sumSpread [Fintype α] (o : α → ℤ) {K K' : Finset α}
 
 /-- **The spread of a cluster of slices.** For a monotone cluster `c` with median slice
 `c p` (offset `c p - k`) and diameter `c (2p) - c 0 ≤ L`, the spread of its offsets is at most
-`|c p - k| + p L`. -/
+`|c p - k| + p L`.
+@isnad1 id=le.2h4v.s9.591cdc94fa1a from=translated src=- shape=d97f963b vocab=6fe26ebf
+-/
 theorem sumSpread_clusterOffsets_le {k : ℕ} (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (hc : Monotone c) {L : ℤ} (hL : (c (Fin.last (2 * p)) : ℤ) - c 0 ≤ L) :
     (sumSpread p (clusterOffsets k c) : ℤ) ≤ |(c ⟨p, by omega⟩ : ℤ) - k| + p * L :=
   Internal.Diagonal.sumSpread_clusterOffsets_le c hc hL
 
-/-- The difference of two `p`-subset sums is at most the `p`-subset spread. -/
+/-- The difference of two `p`-subset sums is at most the `p`-subset spread.
+@isnad1 id=le.2h5v.s6.083333c6e324 from=translated src=- shape=22df5462 vocab=565348e6
+-/
 theorem sub_le_subsetSumSpread [Fintype α] (o : α → ℤ) {I I' : Finset α} (hI : I.card = p)
     (hI' : I'.card = p) : ∑ t ∈ I, o t - ∑ t ∈ I', o t ≤ subsetSumSpread p o :=
   Internal.Diagonal.le_subsetSumSpread o hI hI'
 
-/-- The `p`-subset spread is at most the spread over subsets of size `p` or `p + 1`. -/
+/-- The `p`-subset spread is at most the spread over subsets of size `p` or `p + 1`.
+@isnad1 id=le.0h3v.s4.486646ac828d from=translated src=- shape=96ef92e7 vocab=6ccd4f91
+-/
 theorem subsetSumSpread_le_sumSpread [Fintype α] (o : α → ℤ) :
     subsetSumSpread p o ≤ sumSpread p o :=
   Internal.Diagonal.subsetSumSpread_le_sumSpread o
 
 /-- **The `p`-subset spread of a cluster of slices.** For a monotone cluster `c` with diameter
-`c (2p) - c 0 ≤ L`, the `p`-subset spread of its offsets is at most `p L`. -/
+`c (2p) - c 0 ≤ L`, the `p`-subset spread of its offsets is at most `p L`.
+@isnad1 id=le.2h4v.s8.38deaa834d3d from=translated src=- shape=c2f8588f vocab=2f22ad39
+-/
 theorem subsetSumSpread_clusterOffsets_le {k : ℕ} (c : Fin (2 * p + 1) → Fin (2 * k + 1))
     (hc : Monotone c) {L : ℤ} (hL : (c (Fin.last (2 * p)) : ℤ) - c 0 ≤ L) :
     (subsetSumSpread p (clusterOffsets k c) : ℤ) ≤ p * L :=
@@ -145,7 +161,9 @@ end Spread
 `g t j = 2^{2^{e t j}}` with labels `e` that are injective on positions whose columns differ
 by at most the `p`-subset spread `subsetSumSpread p o` (at most `sumSpread p o`). Then the
 Koszul flattening `T_A^{∧p}` of `weightedShifts o g` has rank at least
-`(2p+1).choose p * (m - sumSpread p o)`. -/
+`(2p+1).choose p * (m - sumSpread p o)`.
+@isnad1 id=le.3h5v.s10.4067d40cdcd8 from=translated src=- shape=75b5f12f vocab=e93c6950
+-/
 theorem choose_mul_le_rank_koszulFlattening_weightedShifts {p m : ℕ} (o : Fin (2 * p + 1) → ℤ)
     (g : Fin (2 * p + 1) → Fin m → ℂ) (e : Fin (2 * p + 1) → Fin m → ℕ)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, o t) {I | I.card = p})
@@ -165,7 +183,9 @@ variable {k p : ℕ}
 local notation "𝟙" => (1 : Matrix (Fin (2 * k + 1)) (Fin (2 * k + 1)) ℂ)
 
 /-- The cluster tensor of `T_k(γ)`: keeping the slices `c t` of `T_k(γ)` gives the weighted
-shifts with offsets `c t - k` and weights `γ (c t)`. -/
+shifts with offsets `c t - k` and weights `γ (c t)`.
+@isnad1 id=eq.0h4v.s9.f2c3daf76647 from=translated src=- shape=5a3ef7c4 vocab=922c3ded
+-/
 theorem map_selectSlices_lmTensor (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) {n : ℕ}
     (c : Fin n → Fin (2 * k + 1)) :
     map (selectSlices c) 𝟙 𝟙 (lmTensor k γ) =
@@ -173,7 +193,9 @@ theorem map_selectSlices_lmTensor (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → 
   rw [map_selectSlices]
   exact Internal.Diagonal.subtensor_lmTensor k γ c
 
-/-- The explicit weights are doubly exponential: `lmWeight k a j = 2^{2^{a (2k+1) + j}}`. -/
+/-- The explicit weights are doubly exponential: `lmWeight k a j = 2^{2^{a (2k+1) + j}}`.
+@isnad1 id=eq.0h3v.s7.5c1a9c5204c8 from=translated src=- shape=cc996e1a vocab=91ce5f2f
+-/
 theorem lmWeight_eq (a j : Fin (2 * k + 1)) :
     lmWeight k a j = 2 ^ 2 ^ ((a : ℕ) * (2 * k + 1) + j) :=
   Internal.Diagonal.lmWeight_eq a j
@@ -183,7 +205,9 @@ theorem lmWeight_eq (a j : Fin (2 * k + 1)) :
 `γ a j = 2^{2^{e a j}}` with labels `e (c t) j` injective on positions whose columns differ by
 at most the `p`-subset spread. Then the Koszul flattening of the cluster tensor
 `map (selectSlices c) 1 1 T_k(γ)` has rank at least
-`(2p+1).choose p * (2k + 1 - sumSpread p (clusterOffsets k c))`. -/
+`(2p+1).choose p * (2k + 1 - sumSpread p (clusterOffsets k c))`.
+@isnad1 id=le.3h5v.s11.6c5fbd807f7a from=translated src=- shape=68396f3b vocab=b4abb619
+-/
 theorem choose_mul_le_rank_koszulFlattening_lmTensor
     (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ)
     (hγ : ∀ a j, γ a j = 2 ^ 2 ^ e a j) (c : Fin (2 * p + 1) → Fin (2 * k + 1))
@@ -199,7 +223,9 @@ theorem choose_mul_le_rank_koszulFlattening_lmTensor
 /-- **The single-cluster Koszul certificate for the weighted Landsberg–Michałek tensor.** If
 `c` selects `2p + 1` distinct slices whose offsets `c t - k` have pairwise distinct `p`-subset
 sums, the Koszul flattening of the cluster tensor of `weightedLMTensor k` has rank at least
-`(2p+1).choose p * (2k + 1 - sumSpread p (clusterOffsets k c))`. -/
+`(2p+1).choose p * (2k + 1 - sumSpread p (clusterOffsets k c))`.
+@isnad1 id=le.2h3v.s10.63417d85a3a1 from=translated src=- shape=66948d6f vocab=8abc5b20
+-/
 theorem choose_mul_le_rank_koszulFlattening_weightedLMTensor
     (c : Fin (2 * p + 1) → Fin (2 * k + 1)) (hc : Function.Injective c)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t)
@@ -212,7 +238,9 @@ theorem choose_mul_le_rank_koszulFlattening_weightedLMTensor
 of `choose_mul_le_rank_koszulFlattening_lmTensor`, if `d (c t) = 1` for every `t` (for instance
 if `d` is the indicator of a set of slices containing the cluster), then
 `(2p+1).choose p * (2k + 1 - spread) ≤ borderRank ((diagonal d ⊗ 1 ⊗ 1) T_k(γ)) *
-(2p).choose p`. -/
+(2p).choose p`.
+@isnad1 id=le.4h6v.s10.3a1c6ede3cb4 from=translated src=- shape=b54ce7d7 vocab=95326c67
+-/
 theorem choose_mul_le_borderRank_mul_map_diagonal_lmTensor
     (γ : Fin (2 * k + 1) → Fin (2 * k + 1) → ℂ) (e : Fin (2 * k + 1) → Fin (2 * k + 1) → ℕ)
     (hγ : ∀ a j, γ a j = 2 ^ 2 ^ e a j) (c : Fin (2 * p + 1) → Fin (2 * k + 1))
@@ -230,7 +258,9 @@ theorem choose_mul_le_borderRank_mul_map_diagonal_lmTensor
 zeroed.** If `c` selects `2p + 1` distinct slices whose offsets have pairwise distinct
 `p`-subset sums and `d (c t) = 1` for every `t`, then
 `(2p+1).choose p * (2k + 1 - spread) ≤ borderRank ((diagonal d ⊗ 1 ⊗ 1) T) * (2p).choose p`
-for `T = weightedLMTensor k`. -/
+for `T = weightedLMTensor k`.
+@isnad1 id=le.3h4v.s10.093cc5a5f2bc from=translated src=- shape=6de8eb2b vocab=c4354c34
+-/
 theorem choose_mul_le_borderRank_mul_map_diagonal_weightedLMTensor
     (c : Fin (2 * p + 1) → Fin (2 * k + 1)) (hc : Function.Injective c)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t)
@@ -243,7 +273,9 @@ theorem choose_mul_le_borderRank_mul_map_diagonal_weightedLMTensor
 /-- **Border rank from one cluster, contrapositive form.** Under the hypotheses of
 `choose_mul_le_borderRank_mul_map_diagonal_weightedLMTensor`, if
 `r * (2p).choose p < (2p+1).choose p * (2k + 1 - spread)`, then
-`(diagonal d ⊗ 1 ⊗ 1) (weightedLMTensor k)` does not have border rank at most `r`. -/
+`(diagonal d ⊗ 1 ⊗ 1) (weightedLMTensor k)` does not have border rank at most `r`.
+@isnad1 id=not.4h5v.s10.ba421be77daf from=translated src=- shape=b7f2e3ab vocab=1d11c869
+-/
 theorem not_borderRankLE_map_diagonal_weightedLMTensor
     (c : Fin (2 * p + 1) → Fin (2 * k + 1)) (hc : Function.Injective c)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t)
@@ -256,7 +288,9 @@ theorem not_borderRankLE_map_diagonal_weightedLMTensor
 
 /-- **Border rank from one cluster, for the weighted Landsberg–Michałek tensor.** If `c` selects
 `2p + 1` distinct slices whose offsets have pairwise distinct `p`-subset sums, then
-`(2p+1).choose p * (2k + 1 - spread) ≤ borderRank (weightedLMTensor k) * (2p).choose p`. -/
+`(2p+1).choose p * (2k + 1 - spread) ≤ borderRank (weightedLMTensor k) * (2p).choose p`.
+@isnad1 id=le.2h3v.s9.464f580f869e from=translated src=- shape=3709bfa2 vocab=5f474d0f
+-/
 theorem choose_mul_le_borderRank_mul_weightedLMTensor
     (c : Fin (2 * p + 1) → Fin (2 * k + 1)) (hc : Function.Injective c)
     (ho : Set.InjOn (fun I : Finset (Fin (2 * p + 1)) => ∑ t ∈ I, clusterOffsets k c t)

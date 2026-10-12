@@ -37,6 +37,9 @@ private theorem mk_injectiveOn_reduced {F : Type*} [Field F]
     (Polynomial.modByMonic_eq_self_iff monic).mpr hf,
     (Polynomial.modByMonic_eq_self_iff monic).mpr hg] using reduced
 
+/--
+@isnad1 id=eq.2h7v.s10.a62683d1261d from=translated src=- shape=ae7eda85 vocab=14f22df4
+-/
 theorem substitutedSum_quotient_eval {F : Type*} [Field F] {h K m : Nat}
     (E : Polynomial F) (monic : E.Monic) (bound : K ≤ h ^ m)
     (p : Fin K → Polynomial F) (f : Polynomial F) :
@@ -53,6 +56,9 @@ theorem substitutedSum_quotient_eval {F : Type*} [Field F] {h K m : Nat}
     exact digitMonomial_pow (j.isLt.trans_le bound) (AdjoinRoot.mk E f)
   rw [monomial]
 
+/--
+@isnad1 id=lt.5h5v.s10.108c6569fcb0 from=translated src=- shape=682833ac vocab=6f8e4807
+-/
 theorem card_lt_of_quotient_polynomial_roots {F : Type*} [Field F] {K : Nat}
     (E : Polynomial F) (monic : E.Monic) (irreducible : Irreducible E)
     (p : Fin K → Polynomial F) (primitive : ∃ j, ¬ E ∣ p j)

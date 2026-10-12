@@ -24,6 +24,9 @@ with 1 ≤ i < j < k ≤ n.
 
 namespace Imo2004P4
 
+/--
+@isnad1 id=eq.0h4v.s7.dad87d8ec77c from=translated src=- shape=3c1797ca vocab=4bf5ecab
+-/
 lemma dist2 (x1 y1 x2 y2 : ℝ) :
     dist (!₂[x1, y1] : EuclideanSpace ℝ (Fin 2)) !₂[x2, y2]
       = Real.sqrt ((x1 - x2)^2 + (y1 - y2)^2) := by
@@ -31,7 +34,9 @@ lemma dist2 (x1 y1 x2 y2 : ℝ) :
   simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Real.dist_eq, sq_abs]
 
 /-- If `a`, `b`, `c` satisfy the strict triangle inequalities, then there is an
-(automatically nondegenerate) triangle in the plane with those side lengths. -/
+(automatically nondegenerate) triangle in the plane with those side lengths.
+@isnad1 id=ex.6h3v.s11.027d276a09cd from=translated src=- shape=2c302728 vocab=1d4dc674
+-/
 lemma exists_triangle {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hab : c < a + b) (hbc : a < b + c) (hca : b < c + a) :
     ∃ T : Affine.Triangle ℝ (EuclideanSpace ℝ (Fin 2)),
@@ -86,7 +91,9 @@ lemma exists_triangle {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
   · simpa using hd20
 
 /-- Cauchy–Schwarz / AM–HM: for positive reals indexed by a finset `s`,
-`(card s)² ≤ (∑ tᵢ)(∑ 1/tᵢ)`. -/
+`(card s)² ≤ (∑ tᵢ)(∑ 1/tᵢ)`.
+@isnad1 id=le.1h3v.s6.53161be90fec from=translated src=- shape=971002e1 vocab=6e5c9832
+-/
 lemma card_sq_le {n : ℕ} (s : Finset (Fin n)) (t : Fin n → ℝ) (ht : ∀ i ∈ s, 0 < t i) :
     (s.card : ℝ)^2 ≤ (∑ i ∈ s, t i) * (∑ i ∈ s, 1 / t i) := by
   have h := Finset.sum_sq_le_sum_mul_sum_of_sq_le_mul s (r := fun _ => (1:ℝ))
@@ -95,7 +102,9 @@ lemma card_sq_le {n : ℕ} (s : Finset (Fin n)) (t : Fin n → ℝ) (ht : ∀ i 
     (fun i hi => by rw [one_pow, mul_one_div, div_self (ht i hi).ne'])
   simpa using h
 
-/-- The heart of the problem: any three of the values satisfy the triangle inequality. -/
+/-- The heart of the problem: any three of the values satisfy the triangle inequality.
+@isnad1 id=lt.6h5v.s7.2ed0b89e6068 from=translated src=- shape=47261256 vocab=b84dbf50
+-/
 lemma key {n : ℕ} (hn : 3 ≤ n) (t : Fin n → ℝ) (ht : ∀ i, 0 < t i)
     (hsum : (∑ i, t i) * (∑ i, 1 / t i) < n ^ 2 + 1)
     (p q r : Fin n) (hpq : p ≠ q) (hpr : p ≠ r) (hqr : q ≠ r) :

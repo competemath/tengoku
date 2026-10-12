@@ -37,16 +37,25 @@ instance : Fintype Color where
   complete := fun x => by cases x <;> decide
 
 -- Seems like this maybe belongs in mathlib?
+/--
+@isnad1 id=eq.0h4v.s6.9b626eabbe16 from=translated src=- shape=1ad4c047 vocab=8312917f
+-/
 lemma Finset.subtype_union {α} (p : α → Prop) [DecidableEq α] [DecidablePred p] (s1 s2 : Finset α) :
     Finset.subtype p (s1 ∪ s2) = Finset.subtype p s1 ∪ Finset.subtype p s2 := by
   ext a; simp
 
+/--
+@isnad1 id=eq.0h3v.s5.5a7c274a2997 from=translated src=- shape=b1a50316 vocab=2a17b923
+-/
 lemma Finset.subtype_map_subtype {α : Type} {p : α → Prop} [DecidablePred p]
     (x : Finset {a : α // p a}) :
     Finset.subtype p (Finset.map (Function.Embedding.subtype p) x) = x := by
   ext ⟨y, hy⟩
   simp [hy]
 
+/--
+@isnad1 id=eq.0h2v.s6.b3ad4485f919 from=translated src=- shape=c40dcd4f vocab=3f9bd2ae
+-/
 lemma lemma1 {α : Type} [Fintype α] [DecidableEq α] (s : α) :
    Fintype.card {a : Finset α // s ∈ a} = Fintype.card {a : Finset α // s ∉ a} := by
   let b : {a : Finset α // s ∉ a} → {a : Finset α // s ∈ a} :=
@@ -64,6 +73,9 @@ lemma lemma1 {α : Type} [Fintype α] [DecidableEq α] (s : α) :
       simp [Finset.insert_erase hx, b]
   rw [Fintype.card_of_bijective hb]
 
+/--
+@isnad1 id=ex.2h3v.s6.06923f84342d from=translated src=- shape=eee9ada4 vocab=ee268a44
+-/
 lemma usa2002_p1_generalized
     {α : Type} [DecidableEq α] [Fintype α] (n : ℕ) (hs : Fintype.card α = n)
     (N : ℕ) (hN : N ≤ 2 ^ n) :

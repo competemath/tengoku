@@ -45,10 +45,15 @@ def ChoiceCount (n : ℕ) (color : ℕ × ℕ → Color) (coord : ℕ × ℕ →
     (∀ p ∈ s, color p = .blue) ∧
     ∀ p ∈ s, ∀ q ∈ s, coord p = coord q → p = q).card
 
+/--
+@isnad1 id=iff.0h1v.s3.50505ac45af5 from=translated src=- shape=1aab0512 vocab=d242458f
+-/
 lemma color_eq_blue_iff (c : Color) : c = .blue ↔ ¬ c = .red := by
   cases c <;> simp
 
-/-- A downward-closed finite set of naturals is an initial segment. -/
+/-- A downward-closed finite set of naturals is an initial segment.
+@isnad1 id=iff.1h2v.s5.0868cab52287 from=translated src=- shape=8fb77c0e vocab=c310cf37
+-/
 lemma downward_closed_iff_lt_card {S : Finset ℕ}
     (h : ∀ a b, a ≤ b → b ∈ S → a ∈ S) (y : ℕ) : y ∈ S ↔ y < S.card := by
   constructor
@@ -79,6 +84,9 @@ def blueCol (n : ℕ) (color : ℕ × ℕ → Color) (x : ℕ) : Finset ℕ :=
 def redCol (n : ℕ) (color : ℕ × ℕ → Color) (x : ℕ) : ℕ :=
   ((Finset.range (n - x)).filter fun y ↦ color (x, y) = .red).card
 
+/--
+@isnad1 id=eq.0h3v.s5.1e5e285003f4 from=translated src=- shape=c72fbee8 vocab=e84ddbab
+-/
 lemma card_blueCol (n : ℕ) (color : ℕ × ℕ → Color) (x : ℕ) :
     (blueCol n color x).card = n - x - redCol n color x := by
   have h1 : blueCol n color x =
@@ -88,6 +96,9 @@ lemma card_blueCol (n : ℕ) (color : ℕ × ℕ → Color) (x : ℕ) :
   rw [h1, Finset.card_sdiff, Finset.inter_eq_left.mpr (Finset.filter_subset _ _),
     Finset.card_range, redCol]
 
+/--
+@isnad1 id=le.0h3v.s4.46c9123ffb2c from=translated src=- shape=cdec57d7 vocab=28a19af8
+-/
 lemma redCol_le (n : ℕ) (color : ℕ × ℕ → Color) (x : ℕ) : redCol n color x ≤ n - x :=
   le_trans (Finset.card_filter_le _ _) (Finset.card_range _).le
 
@@ -97,6 +108,9 @@ variable {n : ℕ} {color : ℕ × ℕ → Color}
 
 include hcolor
 
+/--
+@isnad1 id=iff.2h4v.s6.764bcef69530 from=translated src=- shape=063ba294 vocab=15c2d2d1
+-/
 lemma red_iff {x y : ℕ} (hxy : x + y < n) :
     color (x, y) = .red ↔ y < redCol n color x := by
   have hdc : ∀ a b, a ≤ b →
@@ -109,6 +123,9 @@ lemma red_iff {x y : ℕ} (hxy : x + y < n) :
   rw [redCol, ← downward_closed_iff_lt_card hdc, Finset.mem_filter, Finset.mem_range]
   exact ⟨fun h ↦ ⟨hyn, h⟩, fun h ↦ h.2⟩
 
+/--
+@isnad1 id=antitone.1h2v.s6.1c0a182d0702 from=translated src=- shape=e76c2911 vocab=0ff4f9c5
+-/
 lemma redCol_antitone : Antitone (redCol n color) := by
   apply antitone_nat_of_succ_le
   intro x
@@ -117,7 +134,9 @@ lemma redCol_antitone : Antitone (redCol n color) := by
   rw [Finset.mem_filter, Finset.mem_range] at hy ⊢
   exact ⟨by lia, hcolor x y (x + 1) y (by lia) le_rfl (by lia) hy.2⟩
 
-/-- The red count in row `y` is the number of columns whose red count exceeds `y`. -/
+/-- The red count in row `y` is the number of columns whose red count exceeds `y`.
+@isnad1 id=eq.1h3v.s6.52fd05811a6a from=translated src=- shape=33d96242 vocab=2bf59b31
+-/
 lemma redCol_swap (y : ℕ) :
     redCol n (fun p ↦ color p.swap) y =
       ((Finset.range n).filter fun x ↦ y < redCol n color x).card := by
@@ -139,7 +158,9 @@ omit hcolor
 /-- The heart of the solution: if `f` is an antitone "red column count" function
 fitting under the staircase, then the product of blue column counts equals the
 product of blue row counts, where row red counts are given by the conjugate
-partition. Induction on `∑ f`, recoloring one corner red point at a time. -/
+partition. Induction on `∑ f`, recoloring one corner red point at a time.
+@isnad1 id=eq.3h3v.s6.b3fd047ef0ad from=translated src=- shape=ddfe1ee8 vocab=7631a9e9
+-/
 lemma key_prod (n : ℕ) : ∀ N : ℕ, ∀ f : ℕ → ℕ, (∑ x ∈ Finset.range n, f x = N) →
     Antitone f → (∀ x, f x ≤ n - x) →
     ∏ x ∈ Finset.range n, (n - x - f x) =
@@ -297,6 +318,9 @@ lemma key_prod (n : ℕ) : ∀ N : ℕ, ∀ f : ℕ → ℕ, (∑ x ∈ Finset.r
     congr 1
     lia
 
+/--
+@isnad1 id=eq.1h3v.s9.73569a983e18 from=translated src=- shape=8c23b985 vocab=8356d8b7
+-/
 lemma image_fst_eq {s : Finset (ℕ × ℕ)}
     (hs : s ∈ ((T n).powersetCard n).filter fun s ↦
       (∀ p ∈ s, color p = .blue) ∧ ∀ p ∈ s, ∀ q ∈ s, p.1 = q.1 → p = q) :
@@ -313,6 +337,9 @@ lemma image_fst_eq {s : Finset (ℕ × ℕ)}
   · rw [Finset.card_range, Finset.card_image_of_injOn fun p hp q hq h ↦ hinj p hp q hq h]
     lia
 
+/--
+@isnad1 id=existsun.2h4v.s9.fa54506f1485 from=translated src=- shape=72363102 vocab=4c3d16e7
+-/
 lemma exists_unique_fst {s : Finset (ℕ × ℕ)}
     (hs : s ∈ ((T n).powersetCard n).filter fun s ↦
       (∀ p ∈ s, color p = .blue) ∧ ∀ p ∈ s, ∀ q ∈ s, p.1 = q.1 → p = q)
@@ -327,7 +354,9 @@ lemma exists_unique_fst {s : Finset (ℕ × ℕ)}
   exact ⟨p, ⟨hp, hpx⟩, fun q ⟨hq, hqx⟩ ↦ hinj q hq p hp (by rw [hqx, hpx])⟩
 
 /-- A choice of n blue points with distinct x-coordinates amounts to a choice
-of one blue point in each column. -/
+of one blue point in each column.
+@isnad1 id=eq.0h2v.s4.0d2239972e7b from=translated src=- shape=608c5f96 vocab=598d9b82
+-/
 lemma choiceCount_fst (n : ℕ) (color : ℕ × ℕ → Color) :
     ChoiceCount n color Prod.fst = ∏ x ∈ Finset.range n, (blueCol n color x).card := by
   rw [ChoiceCount, ← Finset.card_pi]
@@ -424,7 +453,9 @@ lemma choiceCount_fst (n : ℕ) (color : ℕ × ℕ → Color) :
     · exact Finset.choose_mem (fun q : ℕ × ℕ ↦ q.1 = x) _ _
     · exact Finset.choose_property (fun q : ℕ × ℕ ↦ q.1 = x) _ _
 
-/-- Reflecting across the diagonal swaps the roles of the two coordinates. -/
+/-- Reflecting across the diagonal swaps the roles of the two coordinates.
+@isnad1 id=eq.0h2v.s4.ecae330a49b8 from=translated src=- shape=88725f48 vocab=cb243802
+-/
 lemma choiceCount_snd (n : ℕ) (color : ℕ × ℕ → Color) :
     ChoiceCount n color Prod.snd = ChoiceCount n (fun p ↦ color p.swap) Prod.fst := by
   rw [ChoiceCount, ChoiceCount]

@@ -63,15 +63,24 @@ namespace CirclePartition
 
 variable {m k : ℕ} (P : CirclePartition m k)
 
+/--
+@isnad1 id=iff.0h4v.s6.2d1e2c94dc2b from=translated src=- shape=cdf7baff vocab=ef770391
+-/
 lemma mem_arcSet {m : ℕ} {c : ZMod m} {l : ℕ} {x : ZMod m} :
     x ∈ arcSet c l ↔ ∃ t : ℕ, t < l ∧ c + (t : ZMod m) = x := by
   simp [arcSet]
 
+/--
+@isnad1 id=eq.3h3v.s6.866470f07995 from=translated src=- shape=74c6b532 vocab=158d18f4
+-/
 lemma natCast_injective_of_lt {m : ℕ} [NeZero m] {t₁ t₂ : ℕ} (h₁ : t₁ < m) (h₂ : t₂ < m)
     (h : (t₁ : ZMod m) = (t₂ : ZMod m)) : t₁ = t₂ := by
   rw [ZMod.natCast_eq_natCast_iff] at h
   rwa [Nat.ModEq, Nat.mod_eq_of_lt h₁, Nat.mod_eq_of_lt h₂] at h
 
+/--
+@isnad1 id=eq.1h3v.s4.7dd74903d04a from=translated src=- shape=676b5379 vocab=4e9612ff
+-/
 lemma arcSet_card {m : ℕ} [NeZero m] {c : ZMod m} {l : ℕ} (hl : l ≤ m) :
     (arcSet c l).card = l := by
   rw [arcSet, Finset.card_image_of_injOn, Finset.card_range]
@@ -80,6 +89,9 @@ lemma arcSet_card {m : ℕ} [NeZero m] {c : ZMod m} {l : ℕ} (hl : l ≤ m) :
   simp only [add_left_cancel_iff] at h
   exact natCast_injective_of_lt (by lia) (by lia) h
 
+/--
+@isnad1 id=eq.1h4v.s6.11aae2cfdf6f from=translated src=- shape=25529751 vocab=d109ba84
+-/
 lemma sum_arcSet {m : ℕ} [NeZero m] {c : ZMod m} {l : ℕ} (hl : l ≤ m) (w : ZMod m → ℝ) :
     ∑ x ∈ arcSet c l, w x = ∑ t ∈ Finset.range l, w (c + (t : ZMod m)) := by
   rw [arcSet, Finset.sum_image]
@@ -88,11 +100,17 @@ lemma sum_arcSet {m : ℕ} [NeZero m] {c : ZMod m} {l : ℕ} (hl : l ≤ m) (w :
   simp only [add_left_cancel_iff] at h
   exact natCast_injective_of_lt (by lia) (by lia) h
 
+/--
+@isnad1 id=eq.0h2v.s4.db44fcd512be from=translated src=- shape=4598e64b vocab=9cdc596a
+-/
 lemma arcSet_univ {m : ℕ} [NeZero m] {c : ZMod m} :
     arcSet c m = Finset.univ := by
   apply Finset.eq_univ_of_card
   rw [arcSet_card le_rfl, ZMod.card]
 
+/--
+@isnad1 id=lt.1h3v.s4.9ea41e8cc36e from=translated src=- shape=6072aa42 vocab=eb195e79
+-/
 lemma k_pos (P : CirclePartition m k) (hm : 0 < m) : 0 < k := by
   by_contra h
   push Not at h
@@ -109,17 +127,28 @@ lemma k_pos (P : CirclePartition m k) (hm : 0 < m) : 0 < k := by
 def offExt (hk : 0 < k) (a : ℕ) : ℕ :=
   ∑ i ∈ Finset.range a, P.len ⟨i % k, Nat.mod_lt i hk⟩
 
-/-- Helper: evaluating the periodic length at an explicitly given index. -/
+/-- Helper: evaluating the periodic length at an explicitly given index.
+@isnad1 id=eq.2h5v.s5.f86b5461eaec from=translated src=- shape=0367d8d9 vocab=6cf83628
+-/
 lemma len_congr (hk : 0 < k) {a : ℕ} {j : Fin k} (h : a % k = j.val) :
     P.len ⟨a % k, Nat.mod_lt a hk⟩ = P.len j :=
   congr_arg P.len (Fin.ext h)
 
+/--
+@isnad1 id=eq.1h3v.s5.c52eb2004b9c from=translated src=- shape=d91e091a vocab=db0aa821
+-/
 lemma offExt_zero (hk : 0 < k) : P.offExt hk 0 = 0 := by simp [offExt]
 
+/--
+@isnad1 id=eq.1h4v.s6.ec6db7c31dba from=translated src=- shape=3d5f37f4 vocab=c631b6c3
+-/
 lemma offExt_succ (hk : 0 < k) (a : ℕ) :
     P.offExt hk (a + 1) = P.offExt hk a + P.len ⟨a % k, Nat.mod_lt a hk⟩ := by
   simp [offExt, Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.1h4v.s5.e52d0f0b902b from=translated src=- shape=ad12e711 vocab=1fda7327
+-/
 lemma off_eq_offExt (hk : 0 < k) (i : Fin k) : P.off i = P.offExt hk i.val := by
   rw [off, offExt]
   apply Finset.sum_bij (fun a _ => a.val)
@@ -142,6 +171,9 @@ lemma off_eq_offExt (hk : 0 < k) (i : Fin k) : P.off i = P.offExt hk i.val := by
       lia
     exact (len_congr P hk (Nat.mod_eq_of_lt hlt)).symm
 
+/--
+@isnad1 id=eq.1h3v.s4.48055c764170 from=translated src=- shape=ca941a48 vocab=db0aa821
+-/
 lemma offExt_k (hk : 0 < k) : P.offExt hk k = m := by
   have h : ∑ i ∈ Finset.range k, P.len ⟨i % k, Nat.mod_lt i hk⟩ = ∑ i : Fin k, P.len i := by
     rw [← Fin.sum_univ_eq_sum_range (fun i => P.len ⟨i % k, Nat.mod_lt i hk⟩) k]
@@ -150,6 +182,9 @@ lemma offExt_k (hk : 0 < k) : P.offExt hk k = m := by
     exact len_congr P hk (Nat.mod_eq_of_lt i.isLt)
   rw [offExt, h, P.len_sum]
 
+/--
+@isnad1 id=eq.1h4v.s5.e844891d80ea from=translated src=- shape=64334edd vocab=8d4e3b4b
+-/
 lemma offExt_add_period (hk : 0 < k) (a : ℕ) :
     P.offExt hk (a + k) = P.offExt hk a + m := by
   induction a with
@@ -160,6 +195,9 @@ lemma offExt_add_period (hk : 0 < k) (a : ℕ) :
     rw [show a + 1 + k = (a + k) + 1 by lia, offExt_succ, e, ih, offExt_succ]
     ring
 
+/--
+@isnad1 id=le.2h5v.s5.c0dfde720773 from=translated src=- shape=f58b773d vocab=79ed605d
+-/
 lemma offExt_mono (hk : 0 < k) {a b : ℕ} (h : a ≤ b) : P.offExt hk a ≤ P.offExt hk b := by
   obtain ⟨c, rfl⟩ := Nat.exists_eq_add_of_le h
   induction c with
@@ -169,6 +207,9 @@ lemma offExt_mono (hk : 0 < k) {a b : ℕ} (h : a ≤ b) : P.offExt hk a ≤ P.o
     have hpos := P.len_pos ⟨(a + c) % k, Nat.mod_lt (a + c) hk⟩
     lia
 
+/--
+@isnad1 id=lt.1h4v.s5.e73220434a67 from=translated src=- shape=b66c5a0a vocab=8d4e3b4b
+-/
 lemma offExt_lt_succ (hk : 0 < k) (a : ℕ) : P.offExt hk a < P.offExt hk (a + 1) := by
   rw [offExt_succ]
   have := P.len_pos ⟨a % k, Nat.mod_lt a hk⟩
@@ -177,23 +218,38 @@ lemma offExt_lt_succ (hk : 0 < k) (a : ℕ) : P.offExt hk a < P.offExt hk (a + 1
 /-- The periodic weight function on `ℕ` associated to a score function. -/
 def perW (w : ZMod m → ℝ) (t : ℕ) : ℝ := w (P.base + (t : ZMod m))
 
+/--
+@isnad1 id=eq.0h5v.s5.fe14fc8df583 from=translated src=- shape=223949f2 vocab=f6cdfca0
+-/
 lemma perW_periodic (w : ZMod m → ℝ) (t : ℕ) : P.perW w (t + m) = P.perW w t := by
   rw [perW, perW, Nat.cast_add, ZMod.natCast_self, add_zero]
 
+/--
+@isnad1 id=eq.1h4v.s5.06b2296bceb5 from=translated src=- shape=3754dcf5 vocab=2e00c000
+-/
 lemma offExt_succ_fin (hk : 0 < k) (i : Fin k) :
     P.offExt hk (i.val + 1) = P.off i + P.len i := by
   rw [offExt_succ, off_eq_offExt P hk]
   congr 1
   exact len_congr P hk (Nat.mod_eq_of_lt i.isLt)
 
+/--
+@isnad1 id=le.1h4v.s5.a8b7b5c50434 from=translated src=- shape=5360d9bf vocab=841feb60
+-/
 lemma off_add_len_le (hk : 0 < k) (i : Fin k) : P.off i + P.len i ≤ m := by
   rw [← offExt_succ_fin P hk]
   have h := P.offExt_mono hk i.isLt
   rwa [offExt_k] at h
 
+/--
+@isnad1 id=le.1h4v.s4.f4a67153649e from=translated src=- shape=9e6e3214 vocab=55817f91
+-/
 lemma len_le (hk : 0 < k) (i : Fin k) : P.len i ≤ m :=
   le_trans (Nat.le_add_left _ _) (P.off_add_len_le hk i)
 
+/--
+@isnad1 id=strictmo.1h3v.s4.c08299ed625a from=translated src=- shape=c003d02f vocab=1c10ca37
+-/
 lemma offExt_strictMono (hk : 0 < k) : StrictMono (P.offExt hk) := by
   intro a b h
   obtain ⟨c, rfl⟩ := Nat.exists_eq_add_of_lt h
@@ -209,16 +265,24 @@ lemma offExt_strictMono (hk : 0 < k) : StrictMono (P.offExt hk) := by
     rw [show a + (c + 1) = a + c + 1 by lia] at h2 ⊢
     lia
 
+/--
+@isnad1 id=le.2h5v.s5.f6ba403fd582 from=translated src=- shape=7ce9ff08 vocab=e04545c2
+-/
 lemma off_le_off (hk : 0 < k) {i j : Fin k} (h : i ≤ j) : P.off i ≤ P.off j := by
   rw [off_eq_offExt, off_eq_offExt]
   exact P.offExt_mono hk (by rw [Fin.le_def] at h; exact h)
 
+/--
+@isnad1 id=le.2h5v.s6.a928513f1ff4 from=translated src=- shape=1f485649 vocab=841feb60
+-/
 lemma off_add_len_le_off (hk : 0 < k) {i j : Fin k} (h : i ≤ j) :
     P.off i + P.len i ≤ P.off j + P.len j := by
   rw [← offExt_succ_fin, ← offExt_succ_fin]
   exact P.offExt_mono hk (by rw [Fin.le_def] at h; lia)
 
-/-- Every position in `[0, m)` lies in a unique arc interval; existence part. -/
+/-- Every position in `[0, m)` lies in a unique arc interval; existence part.
+@isnad1 id=ex.2h3v.s6.7d2531344b24 from=translated src=- shape=b64dd59b vocab=110a7538
+-/
 lemma exists_Ico_of_mono {off : ℕ → ℕ} {K p : ℕ} (h0 : off 0 ≤ p) (hp : p < off K) :
     ∃ j < K, off j ≤ p ∧ p < off (j + 1) := by
   induction K with
@@ -232,11 +296,17 @@ lemma exists_Ico_of_mono {off : ℕ → ℕ} {K p : ℕ} (h0 : off 0 ≤ p) (hp 
 /-- The position of a point relative to the basepoint. -/
 def pos (x : ZMod m) : ℕ := (x - P.base).val
 
+/--
+@isnad1 id=eq.0h4v.s6.af3969f2d73e from=translated src=- shape=2bb463ea vocab=9e1165c7
+-/
 lemma base_add_pos [NeZero m] (x : ZMod m) :
     P.base + (P.pos x : ZMod m) = x := by
   rw [pos, ZMod.natCast_val, ZMod.cast_id]
   abel
 
+/--
+@isnad1 id=eq.2h5v.s6.fdffdd493e30 from=translated src=- shape=7c81e8c4 vocab=463879b8
+-/
 lemma pos_start_add (hk : 0 < k) [NeZero m] (i : Fin k) {t : ℕ} (ht : t < P.len i) :
     P.pos (P.start i + (t : ZMod m)) = P.off i + t := by
   have h1 : P.start i + (t : ZMod m) - P.base = ((P.off i + t : ℕ) : ZMod m) := by
@@ -246,6 +316,9 @@ lemma pos_start_add (hk : 0 < k) [NeZero m] (i : Fin k) {t : ℕ} (ht : t < P.le
     have := P.off_add_len_le hk i
     lia)]
 
+/--
+@isnad1 id=ex.1h4v.s5.c9fae136fad9 from=translated src=- shape=76150956 vocab=fb04c628
+-/
 lemma arcOf_cover (hk : 0 < k) [NeZero m] (x : ZMod m) :
     ∃ i : Fin k, x ∈ P.arcOf i := by
   obtain ⟨j, hjk, hj1, hj2⟩ := exists_Ico_of_mono (off := P.offExt hk) (K := k) (p := P.pos x)
@@ -265,6 +338,9 @@ lemma arcOf_cover (hk : 0 < k) [NeZero m] (x : ZMod m) :
     rw [← Nat.cast_add, Nat.add_sub_cancel' hj1']
   rw [start, add_assoc, e, base_add_pos]
 
+/--
+@isnad1 id=disjoint.2h5v.s5.b444c2ce8631 from=translated src=- shape=07c424fd vocab=5005fed3
+-/
 lemma arcOf_disjoint (hk : 0 < k) [NeZero m] {i j : Fin k} (h : i ≠ j) :
     Disjoint (P.arcOf i) (P.arcOf j) := by
   rw [Finset.disjoint_left]
@@ -286,6 +362,9 @@ lemma arcOf_disjoint (hk : 0 < k) [NeZero m] {i j : Fin k} (h : i ≠ j) :
       exact P.offExt_mono hk (by lia)
     lia
 
+/--
+@isnad1 id=eq.0h6v.s6.ba4819320e1a from=translated src=- shape=9278399c vocab=c1a25a65
+-/
 lemma perW_sum_shift (w : ZMod m → ℝ) (a s : ℕ) :
     ∑ t ∈ Finset.Ico (a + m) (a + m + s), P.perW w t = ∑ t ∈ Finset.Ico a (a + s), P.perW w t := by
   apply Finset.sum_bij (fun t _ => t - m)
@@ -303,6 +382,9 @@ lemma perW_sum_shift (w : ZMod m → ℝ) (a s : ℕ) :
     have e : t - m + m = t := by lia
     conv_lhs => rw [← e, perW_periodic]
 
+/--
+@isnad1 id=eq.0h7v.s6.2dfd6b1c7bf1 from=translated src=- shape=20fa3433 vocab=6fc6b7df
+-/
 lemma perW_sum_period (w : ZMod m → ℝ) (q a s : ℕ) :
     ∑ t ∈ Finset.Ico (a + q * m) (a + q * m + s), P.perW w t
       = ∑ t ∈ Finset.Ico a (a + s), P.perW w t := by
@@ -312,6 +394,9 @@ lemma perW_sum_period (w : ZMod m → ℝ) (q a s : ℕ) :
     rw [show a + (q + 1) * m = a + q * m + m by ring, perW_sum_shift]
     exact ih
 
+/--
+@isnad1 id=eq.1h5v.s6.13efb2756f74 from=translated src=- shape=0897213a vocab=cb9296fc
+-/
 lemma offExt_add_mul_period (hk : 0 < k) (a q : ℕ) :
     P.offExt hk (a + q * k) = P.offExt hk a + q * m := by
   induction q with
@@ -320,6 +405,9 @@ lemma offExt_add_mul_period (hk : 0 < k) (a q : ℕ) :
     rw [show a + (q + 1) * k = (a + q * k) + k by ring, offExt_add_period, ih]
     ring
 
+/--
+@isnad1 id=eq.2h5v.s6.09fcb53c7d6c from=translated src=- shape=14c17b6f vocab=eaf63849
+-/
 lemma offExt_eq_off_add_div (hk : 0 < k) (a : ℕ) {j : Fin k} (hj : a % k = j.val) :
     P.offExt hk a = P.off j + (a / k) * m := by
   conv_lhs => rw [← Nat.mod_add_div a k, Nat.mul_comm k (a / k)]
@@ -327,6 +415,9 @@ lemma offExt_eq_off_add_div (hk : 0 < k) (a : ℕ) {j : Fin k} (hj : a % k = j.v
   congr 1
   exact congr_arg (P.offExt hk) hj
 
+/--
+@isnad1 id=eq.1h5v.s6.989ca6b92e91 from=translated src=- shape=37582503 vocab=df6446c7
+-/
 lemma sum_arcOf (hk : 0 < k) [NeZero m] (i : Fin k) (w : ZMod m → ℝ) :
     ∑ x ∈ P.arcOf i, w x = ∑ t ∈ Finset.Ico (P.off i) (P.off i + P.len i), P.perW w t := by
   rw [arcOf, sum_arcSet (P.len_le hk i) w, Finset.sum_Ico_eq_sum_range,
@@ -335,18 +426,27 @@ lemma sum_arcOf (hk : 0 < k) [NeZero m] (i : Fin k) (w : ZMod m → ℝ) :
   intro t _
   rw [perW, start, Nat.cast_add, ← add_assoc]
 
+/--
+@isnad1 id=eq.2h6v.s6.41d32c7a11cc from=translated src=- shape=f2b55a12 vocab=99daedf6
+-/
 lemma sum_arcOf_ext (hk : 0 < k) [NeZero m] (a : ℕ) {j : Fin k} (hj : a % k = j.val)
     (w : ZMod m → ℝ) :
     ∑ t ∈ Finset.Ico (P.offExt hk a) (P.offExt hk a + P.len j), P.perW w t
       = ∑ x ∈ P.arcOf j, w x := by
   rw [offExt_eq_off_add_div P hk a hj, perW_sum_period, sum_arcOf P hk]
 
+/--
+@isnad1 id=le.1h6v.s5.4a78eccfec9a from=translated src=- shape=27112fc1 vocab=38119d40
+-/
 lemma perW_sum_nonneg (w : ZMod m → ℝ) (hnn : ∀ x, 0 ≤ w x) (a b : ℕ) :
     0 ≤ ∑ t ∈ Finset.Ico a b, P.perW w t := by
   apply Finset.sum_nonneg
   intro x _
   exact hnn _
 
+/--
+@isnad1 id=le.3h8v.s6.17ddeb8a9957 from=translated src=- shape=e61895fd vocab=38119d40
+-/
 lemma perW_sum_mono (w : ZMod m → ℝ) (hnn : ∀ x, 0 ≤ w x) {a b c d : ℕ}
     (h1 : c ≤ a) (h2 : b ≤ d) :
     ∑ t ∈ Finset.Ico a b, P.perW w t ≤ ∑ t ∈ Finset.Ico c d, P.perW w t := by
@@ -366,6 +466,9 @@ section NextD
 
 variable {m : ℕ} [NeZero m]
 
+/--
+@isnad1 id=ex.1h3v.s6.62c57c62df95 from=translated src=- shape=6f421335 vocab=e5158d35
+-/
 lemma exists_gap (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) :
     ∃ t : ℕ, 1 ≤ t ∧ t ≤ m ∧ x + (t : ZMod m) ∉ D := by
   obtain ⟨y, _, hy⟩ := Finset.exists_of_ssubset (Finset.ssubset_univ_iff.mpr hD)
@@ -387,10 +490,16 @@ lemma exists_gap (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) :
 noncomputable def gapSize (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) : ℕ :=
   Nat.find (exists_gap D hD x)
 
+/--
+@isnad1 id=and.1h3v.s6.008c6dc5176f from=translated src=- shape=2f98534c vocab=b0f4fb68
+-/
 lemma gapSize_spec (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) :
     1 ≤ gapSize D hD x ∧ gapSize D hD x ≤ m ∧ x + (gapSize D hD x : ZMod m) ∉ D :=
   Nat.find_spec (exists_gap D hD x)
 
+/--
+@isnad1 id=mem.3h4v.s6.ccdaf7a58f49 from=translated src=- shape=fd7ccbd0 vocab=0deadf7d
+-/
 lemma gapSize_mem (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) {s : ℕ}
     (h1 : 1 ≤ s) (h2 : s < gapSize D hD x) : x + (s : ZMod m) ∈ D := by
   have h := Nat.find_min (exists_gap D hD x) h2
@@ -402,10 +511,16 @@ lemma gapSize_mem (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) {s
 noncomputable def nextD (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) : ZMod m :=
   x + (gapSize D hD x : ZMod m)
 
+/--
+@isnad1 id=not.1h3v.s5.7d60fd7d125e from=translated src=- shape=cede750e vocab=aaa19e82
+-/
 lemma nextD_notMem (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) :
     nextD D hD x ∉ D :=
   (gapSize_spec D hD x).2.2
 
+/--
+@isnad1 id=eq.1h3v.s6.de8f12fa8bc7 from=translated src=- shape=40da28db vocab=aa06d93d
+-/
 lemma nextD_ne_univ (D : Finset (ZMod m)) (hD : D ≠ Finset.univ) (x : ZMod m) :
     nextD D hD x = x + (gapSize D hD x : ZMod m) := rfl
 
@@ -420,6 +535,9 @@ structure CircleEmb {m : ℕ} [NeZero m] {m' : ℕ} [NeZero m']
   notMem : ∀ i, φ i ∉ D
   cover : ∀ y, y ∉ D → ∃ i, φ i = y
 
+/--
+@isnad1 id=circleem.4h5v.s6.e7629a9517e4 from=translated src=- shape=766892b9 vocab=b52c32a4
+-/
 lemma CircleEmb.congr_D {m : ℕ} [NeZero m] {m' : ℕ} [NeZero m']
     {D₁ D₂ : Finset (ZMod m)} {hD₁ : D₁ ≠ Finset.univ} {hD₂ : D₂ ≠ Finset.univ}
     {φ : ZMod m' → ZMod m} (h : D₁ = D₂) (he : CircleEmb D₁ hD₁ φ) :
@@ -435,6 +553,9 @@ section SkipMap
 
 variable {m : ℕ} [NeZero m] {a₀ : ZMod m} {l : ℕ}
 
+/--
+@isnad1 id=injectiv.1h3v.s5.435c72fe688a from=translated src=- shape=1c1ecd5a vocab=91979d4e
+-/
 lemma skipMap_injective [NeZero (m - l)] (hl : l ≤ m) :
     Function.Injective (skipMap a₀ l) := by
   intro i₁ i₂ h
@@ -443,6 +564,9 @@ lemma skipMap_injective [NeZero (m - l)] (hl : l ≤ m) :
     (by have := ZMod.val_lt i₁; lia) (by have := ZMod.val_lt i₂; lia) h
   exact ZMod.val_injective _ hv
 
+/--
+@isnad1 id=not.1h4v.s6.35108ba8e7b0 from=translated src=- shape=e24ed06d vocab=54ec2248
+-/
 lemma skipMap_notMem [NeZero (m - l)] (hl : l ≤ m) (i : ZMod (m - l)) :
     skipMap a₀ l i ∉ arcSet a₀ l := by
   rw [mem_arcSet]
@@ -455,6 +579,9 @@ lemma skipMap_notMem [NeZero (m - l)] (hl : l ≤ m) (i : ZMod (m - l)) :
     (by have := ZMod.val_lt i; lia) (by have := ZMod.val_lt i; lia) h2
   lia
 
+/--
+@isnad1 id=ex.2h4v.s6.d665b31611a1 from=translated src=- shape=e85b1d28 vocab=54ec2248
+-/
 lemma skipMap_cover [NeZero (m - l)] (hl : l ≤ m) (y : ZMod m) (hy : y ∉ arcSet a₀ l) :
     ∃ i, skipMap a₀ l i = y := by
   have huy : a₀ + ((y - a₀).val : ZMod m) = y := by
@@ -477,17 +604,26 @@ lemma skipMap_cover [NeZero (m - l)] (hl : l ≤ m) (y : ZMod m) (hy : y ∉ arc
     exact ⟨(y - a₀).val, by have := ZMod.val_lt (y - a₀); lia, huy⟩
 
 omit [NeZero m] in
+/--
+@isnad1 id=eq.0h5v.s7.9bc53f421518 from=translated src=- shape=5070ed0c vocab=8cf04e7f
+-/
 lemma skipMap_add (i : ZMod (m - l)) (s : ℕ) :
     skipMap a₀ l i + (s : ZMod m) = a₀ + ((l + i.val + s : ℕ) : ZMod m) := by
   rw [skipMap, Nat.cast_add, Nat.cast_add]
   abel
 
 omit [NeZero m] in
+/--
+@isnad1 id=eq.0h4v.s6.b1c15e9cab7f from=translated src=- shape=9d1f79ab vocab=8cf04e7f
+-/
 lemma skipMap_eq (j : ZMod (m - l)) :
     skipMap a₀ l j = a₀ + ((l + j.val : ℕ) : ZMod m) := by
   rw [skipMap, Nat.cast_add, add_assoc]
 
 omit [NeZero m] in
+/--
+@isnad1 id=iff.1h5v.s6.9f78c01924c4 from=translated src=- shape=01d811ec vocab=5a9fdb27
+-/
 lemma mem_arcSet_iff (hl : l ≤ m) (u s : ℕ) :
     (a₀ + ((l + u + s : ℕ) : ZMod m)) ∈ arcSet a₀ l ↔ (l + u + s) % m < l := by
   rw [mem_arcSet]
@@ -503,6 +639,9 @@ lemma mem_arcSet_iff (hl : l ≤ m) (u s : ℕ) :
     rw [add_left_cancel_iff, ZMod.natCast_eq_natCast_iff]
     exact Nat.mod_modEq _ _
 
+/--
+@isnad1 id=eq.2h4v.s7.d43e73976f0a from=translated src=- shape=1dfdf0e0 vocab=72e06717
+-/
 lemma skipMap_next [NeZero (m - l)] (hl : l ≤ m) (hlD : arcSet a₀ l ≠ Finset.univ)
     (i : ZMod (m - l)) :
     skipMap a₀ l (i + 1) = nextD (arcSet a₀ l) hlD (skipMap a₀ l i) := by
@@ -565,7 +704,9 @@ lemma skipMap_next [NeZero (m - l)] (hl : l ≤ m) (hlD : arcSet a₀ l ≠ Fins
     have e2 : l + i.val + (l + 1) = m + l := by lia
     rw [e1, e2, Nat.ModEq, Nat.add_mod_left]
 
-/-- The circular embedding given by skipping a single arc. -/
+/-- The circular embedding given by skipping a single arc.
+@isnad1 id=circleem.2h3v.s6.4195133ea9ee from=translated src=- shape=d50d9016 vocab=69a3eac4
+-/
 lemma circleEmb_skipMap [NeZero (m - l)] (hl : l ≤ m) (hlD : arcSet a₀ l ≠ Finset.univ) :
     CircleEmb (arcSet a₀ l) hlD (skipMap a₀ l) where
   inj := skipMap_injective hl
@@ -573,6 +714,9 @@ lemma circleEmb_skipMap [NeZero (m - l)] (hl : l ≤ m) (hlD : arcSet a₀ l ≠
   notMem := fun i => skipMap_notMem hl i
   cover := fun y hy => skipMap_cover hl y hy
 
+/--
+@isnad1 id=iff.1h5v.s7.c15be395df89 from=translated src=- shape=2a34b2b5 vocab=9116dad5
+-/
 lemma mem_image_skipMap (D₂ : Finset (ZMod (m - l))) [NeZero (m - l)] (hl : l ≤ m)
     (z : ZMod (m - l)) :
     skipMap a₀ l z ∈ D₂.image (skipMap a₀ l) ↔ z ∈ D₂ := by
@@ -584,7 +728,9 @@ lemma mem_image_skipMap (D₂ : Finset (ZMod (m - l))) [NeZero (m - l)] (hl : l 
   · intro h
     exact ⟨z, h, rfl⟩
 
-/-- The intertwining lemma: skipping an arc commutes with the deleted successor. -/
+/-- The intertwining lemma: skipping an arc commutes with the deleted successor.
+@isnad1 id=eq.3h5v.s7.f7590ba1413a from=translated src=- shape=cb2f3beb vocab=05e1bc5d
+-/
 lemma skipMap_nextD [NeZero (m - l)] (hl : l ≤ m)
     (D₂ : Finset (ZMod (m - l))) (hD₂ : D₂ ≠ Finset.univ)
     (hD : arcSet a₀ l ∪ D₂.image (skipMap a₀ l) ≠ Finset.univ)
@@ -685,7 +831,9 @@ lemma skipMap_nextD [NeZero (m - l)] (hl : l ≤ m)
   conv_rhs => rw [nextD, hgap]
   exact hGL.symm
 
-/-- Composition of a circular embedding with `skipMap`. -/
+/-- Composition of a circular embedding with `skipMap`.
+@isnad1 id=circleem.4h6v.s7.e8c9ffcd9d26 from=translated src=- shape=62dc6bfe vocab=1ea65093
+-/
 lemma circleEmb_comp_skipMap {m : ℕ} [NeZero m] {a₀ : ZMod m} {l : ℕ} [NeZero (m - l)]
     (hl : l ≤ m) {m₂ : ℕ} [NeZero m₂] (D₂ : Finset (ZMod (m - l))) (hD₂ : D₂ ≠ Finset.univ)
     (ψ : ZMod m₂ → ZMod (m - l)) (hψ : CircleEmb D₂ hD₂ ψ)
@@ -711,7 +859,9 @@ lemma circleEmb_comp_skipMap {m : ℕ} [NeZero m] {a₀ : ZMod m} {l : ℕ} [NeZ
     obtain ⟨i, hi⟩ := hψ.cover x hx2
     exact ⟨i, by rw [Function.comp_apply, hi, hx]⟩
 
-/-- Factorization of a circular embedding through `skipMap`. -/
+/-- Factorization of a circular embedding through `skipMap`.
+@isnad1 id=ex.5h7v.s7.7268c8d60d31 from=translated src=- shape=76d11eea vocab=1ea65093
+-/
 lemma circleEmb_factor {m : ℕ} [NeZero m] {m' : ℕ} [NeZero m'] {a₀ : ZMod m} {l : ℕ}
     [NeZero (m - l)] (hl : l ≤ m)
     (D₂ : Finset (ZMod (m - l))) (hD₂ : D₂ ≠ Finset.univ)
@@ -758,7 +908,9 @@ lemma circleEmb_factor {m : ℕ} [NeZero m] {m' : ℕ} [NeZero m'] {a₀ : ZMod 
 
 end SkipMap
 
-/-- Transport of an arc disjoint from the skipped arc into the smaller circle. -/
+/-- Transport of an arc disjoint from the skipped arc into the smaller circle.
+@isnad1 id=ex.4h5v.s7.da15880c305f from=translated src=- shape=4c832151 vocab=d3ba31a6
+-/
 lemma transport_arc {m : ℕ} [NeZero m] {a₀ : ZMod m} {l : ℕ} [NeZero (m - l)]
     (hl1 : 1 ≤ l) (hl : l ≤ m) {c : ZMod m} {l₁ : ℕ} (hl₁ : 1 ≤ l₁)
     (hdisj : Disjoint (arcSet a₀ l) (arcSet c l₁)) :
@@ -829,7 +981,9 @@ lemma transport_arc {m : ℕ} [NeZero m] {a₀ : ZMod m} {l : ℕ} [NeZero (m - 
     rw [e2, skipMap, e]
 
 /-- Surgery: deleting a family of disjoint arcs yields a circular embedding of
-the complement, built by composing `skipMap`s. -/
+the complement, built by composing `skipMap`s.
+@isnad1 id=ex.4h4v.s7.0c2671a99cfc from=translated src=- shape=a3e1ac92 vocab=f5e7e2a7
+-/
 lemma surgeryMany {t : ℕ} :
     ∀ {m : ℕ} [NeZero m] (ca : Fin t → ZMod m) (la : Fin t → ℕ)
     (_hla1 : ∀ s, 1 ≤ la s) (_hlam : ∀ s, la s ≤ m)
@@ -941,11 +1095,17 @@ lemma surgeryMany {t : ℕ} :
     · rw [Fin.sum_univ_succ]
       lia
 
+/--
+@isnad1 id=eq.1h3v.s5.92178e4ad054 from=translated src=- shape=0dba6b78 vocab=ed7a6ed8
+-/
 lemma off_zero (hk : 0 < k) : P.off ⟨0, hk⟩ = 0 := by
   rw [off, Finset.filter_eq_empty_iff.mpr (fun j _ => by
     simp only [Fin.lt_def]
     lia), Finset.sum_empty]
 
+/--
+@isnad1 id=eq.1h4v.s6.38549d84af99 from=translated src=- shape=3effe7e8 vocab=b37451e4
+-/
 lemma off_succ (i : Fin k) (h : i.val + 1 < k) : P.off ⟨i.val + 1, h⟩ = P.off i + P.len i := by
   rw [off, off]
   have e : (Finset.univ.filter (· < ⟨i.val + 1, h⟩)) = (Finset.univ.filter (· < i)) ∪ {i} := by
@@ -970,7 +1130,9 @@ lemma off_succ (i : Fin k) (h : i.val + 1 < k) : P.off ⟨i.val + 1, h⟩ = P.of
   simp
 
 /-- The single-arc merge lemma: deleting an arc of value `< 1` from the circle
-yields a smaller circle with a partition into `k - 1` arcs of value `≥ 1`. -/
+yields a smaller circle with a partition into `k - 1` arcs of value `≥ 1`.
+@isnad1 id=ex.7h6v.s8.c0ecdf99f825 from=translated src=- shape=421445ad vocab=725a774c
+-/
 lemma mergeOne {m k : ℕ} [NeZero m] (P : CirclePartition m k) (hk : 0 < k) (hk2 : 2 ≤ k)
     (w : ZMod m → ℝ) (hnn : ∀ x, 0 ≤ w x)
     (hval : ∀ i, 1 ≤ ∑ x ∈ P.arcOf i, w x)
@@ -1359,9 +1521,15 @@ def cast {m a b : ℕ} (h : a = b) (P : CirclePartition m a) :
     simp only [Fin.cast_refl, id_eq]
     exact P.len_sum
 
+/--
+@isnad1 id=eq.1h5v.s5.39abfbfcc4fa from=translated src=- shape=f975cdc6 vocab=89c21f9d
+-/
 lemma circlePartition_cast_len {m a b : ℕ} (h : a = b) (P : CirclePartition m a) (i : Fin b) :
     (CirclePartition.cast h P).len i = P.len (Fin.cast h.symm i) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.ab036c7958f8 from=translated src=- shape=f975cdc6 vocab=b5067cc2
+-/
 lemma circlePartition_cast_off {m a b : ℕ} (h : a = b) (P : CirclePartition m a) (i : Fin b) :
     (CirclePartition.cast h P).off i = P.off (Fin.cast h.symm i) := by
   subst h
@@ -1371,6 +1539,9 @@ lemma circlePartition_cast_off {m a b : ℕ} (h : a = b) (P : CirclePartition m 
   intro j _
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.f653cc537fce from=translated src=- shape=4dbadf78 vocab=0784bf35
+-/
 lemma circlePartition_cast_arcOf {m a b : ℕ} (h : a = b) (P : CirclePartition m a) (i : Fin b) :
     (CirclePartition.cast h P).arcOf i = P.arcOf (Fin.cast h.symm i) := by
   have e1 : (CirclePartition.cast h P).start i = P.start (Fin.cast h.symm i) := by
@@ -1379,7 +1550,9 @@ lemma circlePartition_cast_arcOf {m a b : ℕ} (h : a = b) (P : CirclePartition 
   rw [arcOf, arcOf, e1, circlePartition_cast_len h P i]
 
 /-- The multi-arc merge lemma: deleting `t` disjoint arcs, each of value `< 1`,
-yields a smaller circle with a partition into `k - t` arcs of value `≥ 1`. -/
+yields a smaller circle with a partition into `k - t` arcs of value `≥ 1`.
+@isnad1 id=ex.10h9v.s8.d42e2895d774 from=translated src=- shape=fad88ee2 vocab=fad79ca7
+-/
 lemma mergeValues {t : ℕ} :
     ∀ {m k : ℕ} [NeZero m] (P : CirclePartition m k) (_hk : 0 < k)
     (ca : Fin t → ZMod m) (la : Fin t → ℕ) (w : ZMod m → ℝ)
@@ -1564,6 +1737,9 @@ lemma mergeValues {t : ℕ} :
       rw [Function.comp_apply, Function.comp_apply, Function.comp_apply,
         show skipMap (ca 0) (la 0) (φ' x) = φ x from congr_fun hφ'comp x]] at h1
 
+/--
+@isnad1 id=ex.0h4v.s7.3ef8c07c8229 from=translated src=- shape=97a0d72e vocab=59908748
+-/
 theorem hall_deficiency {n : ℕ} [NeZero n] (r : Fin n → Fin n → Prop) [DecidableRel r]
     (pip : Fin n) (hpip : ∀ j, r pip j) :
     ∃ (M T : Finset (Fin n)) (f : Fin n → Fin n),
@@ -1719,7 +1895,9 @@ theorem hall_deficiency {n : ℕ} [NeZero n] (r : Fin n → Fin n → Prop) [Dec
       have hsub : N p ⊆ B.biUnion N := Finset.subset_biUnion_of_mem N hpB
       exact hjY.2 (hsub hjNp)
 
-/-- The main theorem: USAMO 2025 Problem 6. -/
+/-- The main theorem: USAMO 2025 Problem 6.
+@isnad1 id=ex.4h3v.s7.e5770700a633 from=translated src=- shape=f2050669 vocab=12fa8c96
+-/
 theorem usa2025_p6_main (N : ℕ) (hN : 0 < N) : ∀ (m : ℕ) [NeZero m] (_hmn : N ≤ m)
     (like : Fin N → ZMod m → ℝ) (_hnn : ∀ p c, 0 ≤ like p c)
     (_hpart : ∀ p, ∃ P : CirclePartition m N, ∀ i, 1 ≤ ∑ x ∈ P.arcOf i, like p x),

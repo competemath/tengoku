@@ -70,11 +70,17 @@ abbrev solution : Set ℕ := { n | 9 ∣ n }
 def periodicColor {n : ℕ} (i j : Fin n) : Letter :=
   Fin.ofNat 3 ((i : ℕ) + (j : ℕ) / 3)
 
+/--
+@isnad1 id=eq.0h2v.s5.743de33f5984 from=translated src=- shape=3a5f7017 vocab=bb90c32e
+-/
 lemma row_eq_product {n : ℕ} (r : Fin n) : row r = {r} ×ˢ Finset.univ := by
   ext p
   rcases p with ⟨i, j⟩
   simp [row, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.da5fd18a92bf from=translated src=- shape=3308a5f6 vocab=2496d7ef
+-/
 lemma map_filter_periodicColor (r : Fin n) (c : Letter) :
     (Finset.univ.filter (fun j ↦ periodicColor r j = c)).map Fin.valEmbedding =
       (Finset.range n).filter (fun j ↦ Fin.ofNat 3 ((r : ℕ) + j / 3) = c) := by
@@ -87,12 +93,18 @@ lemma map_filter_periodicColor (r : Fin n) (c : Letter) :
   · rintro ⟨hj, hc⟩
     exact ⟨⟨j, hj⟩, hc, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.68025ff550f6 from=translated src=- shape=35d2f6ff vocab=2151037e
+-/
 lemma row_block_count (a : ℕ) (c : Letter) :
     ((Finset.range 9).filter (fun j ↦ Fin.ofNat 3 (a + j / 3) = c)).card = 3 := by
   have ha : a % 3 < 3 := Nat.mod_lt _ (by lia)
   interval_cases h : a % 3 <;> fin_cases c <;>
     norm_num [Fin.ofNat, Nat.add_mod, h] <;> decide
 
+/--
+@isnad1 id=eq.0h3v.s6.ce6072dd1438 from=translated src=- shape=65015918 vocab=7c463499
+-/
 lemma row_periodic_count (a : ℕ) (c : Letter) (k : ℕ) :
     ((Finset.range (9 * k)).filter
       (fun j ↦ Fin.ofNat 3 (a + j / 3) = c)).card = 3 * k := by
@@ -129,12 +141,18 @@ lemma row_periodic_count (a : ℕ) (c : Letter) (k : ℕ) :
       rw [hblock]
       lia
 
+/--
+@isnad1 id=eq.0h2v.s6.652c6f1e32f1 from=translated src=- shape=f483a0cc vocab=9232e98b
+-/
 lemma add_block_count (a : ℕ) (c : Letter) :
     ((Finset.range 3).filter (fun j ↦ Fin.ofNat 3 (a + j) = c)).card = 1 := by
   have ha : a % 3 < 3 := Nat.mod_lt _ (by lia)
   interval_cases h : a % 3 <;> fin_cases c <;>
     norm_num [Fin.ofNat, Nat.add_mod, h] <;> decide
 
+/--
+@isnad1 id=eq.0h3v.s6.6fd8e11c9cb3 from=translated src=- shape=ca588195 vocab=14db8f93
+-/
 lemma add_periodic_count (a : ℕ) (c : Letter) (k : ℕ) :
     ((Finset.range (3 * k)).filter
       (fun j ↦ Fin.ofNat 3 (a + j) = c)).card = k := by
@@ -168,11 +186,17 @@ lemma add_periodic_count (a : ℕ) (c : Letter) (k : ℕ) :
           _ = 1 := add_block_count a c
       rw [hblock]
 
+/--
+@isnad1 id=eq.0h2v.s5.318cc4d97442 from=translated src=- shape=91c6a402 vocab=f5c398fa
+-/
 lemma col_eq_product {n : ℕ} (k : Fin n) : col k = Finset.univ ×ˢ {k} := by
   ext p
   rcases p with ⟨i, j⟩
   simp [col, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.2b5da730614a from=translated src=- shape=59e73f8c vocab=2496d7ef
+-/
 lemma map_filter_periodicColor_col (k : Fin n) (c : Letter) :
     (Finset.univ.filter (fun i ↦ periodicColor i k = c)).map Fin.valEmbedding =
       (Finset.range n).filter (fun i ↦ Fin.ofNat 3 (i + (k : ℕ) / 3) = c) := by
@@ -185,6 +209,9 @@ lemma map_filter_periodicColor_col (k : Fin n) (c : Letter) :
   · rintro ⟨hi, hc⟩
     exact ⟨⟨i, hi⟩, hc, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.f075d092fbf2 from=translated src=- shape=5982b4d0 vocab=7b3faf87
+-/
 lemma diagSum_card_eq (n s : ℕ) :
     (diagSum (n := n) s).card = min n (s + 1) - (s + 1 - n) := calc
     (diagSum (n := n) s).card =
@@ -210,6 +237,9 @@ lemma diagSum_card_eq (n s : ℕ) :
         lia
     _ = min n (s + 1) - (s + 1 - n) := Nat.card_Ico _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.6ba359f73e57 from=translated src=- shape=30a4ebe7 vocab=95636215
+-/
 lemma diagSum_color_card_eq (n s : ℕ) (c : Letter) :
     ((diagSum (n := n) s).filter
         (fun p ↦ periodicColor p.1 p.2 = c)).card =
@@ -243,6 +273,9 @@ lemma diagSum_color_card_eq (n s : ℕ) (c : Letter) :
       lia
     · simpa [periodicColor, p] using hj.2
 
+/--
+@isnad1 id=eq.0h2v.s6.5e921368647d from=translated src=- shape=f2f6c38a vocab=a1488391
+-/
 lemma desc_block_count (a : ℕ) (c : Letter) :
     ((Finset.range 3).filter
       (fun j ↦ Fin.ofNat 3 (a + 3 - j) = c)).card = 1 := by
@@ -274,6 +307,9 @@ lemma desc_block_count (a : ℕ) (c : Letter) :
       interval_cases h : a % 3 <;> fin_cases c <;>
         norm_num [Fin.ofNat, h] <;> decide
 
+/--
+@isnad1 id=eq.1h2v.s6.44191edae768 from=translated src=- shape=a56a48a0 vocab=00307e4f
+-/
 lemma desc_block_count' (a : ℕ) (ha : 2 ≤ a) (c : Letter) :
     ((Finset.range 3).filter
       (fun j ↦ Fin.ofNat 3 (a - j) = c)).card = 1 := by
@@ -297,6 +333,9 @@ lemma desc_block_count' (a : ℕ) (ha : 2 ≤ a) (c : Letter) :
         exact ⟨hj, by rw [hcolor hj]; exact hc⟩
     _ = 1 := desc_block_count a c
 
+/--
+@isnad1 id=eq.1h4v.s7.1fa3a681bdb7 from=translated src=- shape=a90354e9 vocab=7a4ca37d
+-/
 lemma desc_periodic_count (A B : ℕ) (c : Letter) (k : ℕ) (hA : 3 * k ≤ A + 1) :
     ((Finset.range (3 * k)).filter
       (fun j ↦ Fin.ofNat 3 (A - j + B + j / 3) = c)).card = k := by
@@ -340,6 +379,9 @@ lemma desc_periodic_count (A B : ℕ) (c : Letter) (k : ℕ) (hA : 3 * k ≤ A +
           _ = 1 := desc_block_count' (A - 3 * k + B + k) hconst c
       rw [hblock]
 
+/--
+@isnad1 id=eq.0h2v.s4.4c58afb03ae9 from=translated src=- shape=d8e033e0 vocab=02b4840d
+-/
 lemma Ico_eq_map_range (a b : ℕ) :
     Finset.Ico a b = (Finset.range (b - a)).map (addLeftEmbedding a) := by
   ext x
@@ -351,6 +393,9 @@ lemma Ico_eq_map_range (a b : ℕ) :
   · rintro ⟨y, hy, rfl⟩
     lia
 
+/--
+@isnad1 id=balanced.2h2v.s5.041d6df0fafc from=translated src=- shape=8cf936a3 vocab=1d6cb10d
+-/
 lemma periodicColor_diagSum (n : ℕ) (h9 : 9 ∣ n) (s : ℕ)
     (hs : 3 ∣ (diagSum (n := n) s).card) :
     Balanced (periodicColor (n := n)) (diagSum (n := n) s) := by
@@ -406,6 +451,9 @@ lemma periodicColor_diagSum (n : ℕ) (h9 : 9 ∣ n) (s : ℕ)
     _ = q := desc_periodic_count (s - lo) (lo / 3) c q hbound
     _ = (3 * q) / 3 := by lia
 
+/--
+@isnad1 id=eq.0h2v.s4.cfd190346eb4 from=translated src=- shape=603075de vocab=12418a58
+-/
 lemma diagDiff_card_eq_nonneg (n δ : ℕ) :
     (diagDiff (n := n) (δ : ℤ)).card = n - δ := calc
     (diagDiff (n := n) (δ : ℤ)).card = (Finset.range (n - δ)).card := by
@@ -429,6 +477,9 @@ lemma diagDiff_card_eq_nonneg (n δ : ℕ) :
         simp [diagDiff, p]
     _ = n - δ := Finset.card_range _
 
+/--
+@isnad1 id=eq.0h2v.s4.ba258334fcf8 from=translated src=- shape=5a4b92ef vocab=aa659131
+-/
 lemma diagDiff_card_eq_neg (n δ : ℕ) :
     (diagDiff (n := n) (-(δ : ℤ))).card = n - δ := calc
     (diagDiff (n := n) (-(δ : ℤ))).card = (Finset.range (n - δ)).card := by
@@ -452,6 +503,9 @@ lemma diagDiff_card_eq_neg (n δ : ℕ) :
         simp [diagDiff, p]
     _ = n - δ := Finset.card_range _
 
+/--
+@isnad1 id=eq.0h3v.s7.7c69721ef4d1 from=translated src=- shape=fb37a39f vocab=0941b47e
+-/
 lemma diagDiff_color_card_eq_nonneg (n δ : ℕ) (c : Letter) :
     ((diagDiff (n := n) (δ : ℤ)).filter
         (fun p ↦ periodicColor p.1 p.2 = c)).card =
@@ -484,6 +538,9 @@ lemma diagDiff_color_card_eq_nonneg (n δ : ℕ) (c : Letter) :
     · simp [diagDiff, p]
     · simpa [periodicColor, p, Nat.add_assoc] using hj.2
 
+/--
+@isnad1 id=eq.0h3v.s7.1e02cc0db68f from=translated src=- shape=687c8513 vocab=e165dd40
+-/
 lemma diagDiff_color_card_eq_neg (n δ : ℕ) (c : Letter) :
     ((diagDiff (n := n) (-(δ : ℤ))).filter
         (fun p ↦ periodicColor p.1 p.2 = c)).card =
@@ -516,6 +573,9 @@ lemma diagDiff_color_card_eq_neg (n δ : ℕ) (c : Letter) :
     · simp [diagDiff, p]
     · simpa [periodicColor, p] using hi.2
 
+/--
+@isnad1 id=eq.0h3v.s6.e9e7518fc542 from=translated src=- shape=e0ff5a8e vocab=7c463499
+-/
 lemma asc_periodic_count (A : ℕ) (c : Letter) (k : ℕ) :
     ((Finset.range (3 * k)).filter
       (fun j ↦ Fin.ofNat 3 (A + j + j / 3) = c)).card = k := by
@@ -556,6 +616,9 @@ lemma asc_periodic_count (A : ℕ) (c : Letter) (k : ℕ) :
           _ = 1 := add_block_count (A + 4 * k) c
       rw [hblock]
 
+/--
+@isnad1 id=balanced.2h2v.s5.e5fa4e2e1922 from=translated src=- shape=114c2ac7 vocab=9761d710
+-/
 lemma periodicColor_diagDiff (n : ℕ) (h9 : 9 ∣ n) (d : ℤ)
     (hdcard : 3 ∣ (diagDiff (n := n) d).card) :
     Balanced (periodicColor (n := n)) (diagDiff (n := n) d) := by
@@ -610,6 +673,9 @@ lemma periodicColor_diagDiff (n : ℕ) (h9 : 9 ∣ n) (d : ℤ)
       _ = q := asc_periodic_count u c q
       _ = 3 * q / 3 := by lia
 
+/--
+@isnad1 id=balanced.1h2v.s4.968471c2b00e from=translated src=- shape=60fc6ea2 vocab=47c0b44c
+-/
 lemma periodicColor_row {n : ℕ} (r : Fin n) (h9 : 9 ∣ n) :
     Balanced periodicColor (row r) := by
   unfold Balanced
@@ -640,6 +706,9 @@ lemma periodicColor_row {n : ℕ} (r : Fin n) (h9 : 9 ∣ n) :
   rw [hdiv]
   exact row_periodic_count (r : ℕ) c k
 
+/--
+@isnad1 id=balanced.1h2v.s4.5a247589666a from=translated src=- shape=60fc6ea2 vocab=6dfc693c
+-/
 lemma periodicColor_col {n : ℕ} (k : Fin n) (h9 : 9 ∣ n) :
     Balanced periodicColor (col k) := by
   unfold Balanced
@@ -675,6 +744,9 @@ lemma periodicColor_col {n : ℕ} (k : Fin n) (h9 : 9 ∣ n) :
       simpa [Nat.add_comm] using hcount
     _ = 9 * q / 3 := by lia
 
+/--
+@isnad1 id=ex.1h1v.s4.adb79c32f2d7 from=translated src=- shape=05350ee9 vocab=9c42238b
+-/
 lemma exists_modTable_of_nine_dvd (n : ℕ) (h9 : 9 ∣ n) :
     ∃ f : Fin n → Fin n → Letter, MODTable f := by
   refine ⟨periodicColor, ?_⟩
@@ -683,6 +755,9 @@ lemma exists_modTable_of_nine_dvd (n : ℕ) (h9 : 9 ∣ n) :
     fun s hs ↦ periodicColor_diagSum n h9 s hs,
     fun d hd ↦ periodicColor_diagDiff n h9 d hd⟩
 
+/--
+@isnad1 id=dvd.1h3v.s5.b7159e607e6b from=translated src=- shape=369f327b vocab=5d06e53d
+-/
 lemma Balanced.three_dvd_card {f : Fin n → Fin n → Letter}
     {cells : Finset (Fin n × Fin n)} (h : Balanced f cells) : 3 ∣ cells.card := by
   have hsum := Finset.card_eq_sum_card_fiberwise
@@ -699,6 +774,9 @@ lemma Balanced.three_dvd_card {f : Fin n → Fin n → Letter}
       _ = 3 * (cells.card / 3) := by simp
   exact ⟨cells.card / 3, heq⟩
 
+/--
+@isnad1 id=balanced.2h6v.s7.8e2bd1dec9e8 from=translated src=- shape=738b2f7c vocab=0ee05bd3
+-/
 lemma balanced_of_fibers {κ : Type*} [DecidableEq κ]
     (f : Fin n → Fin n → Letter) (cells : Finset (Fin n × Fin n))
     (keys : Finset κ) (g : Fin n × Fin n → κ)
@@ -777,6 +855,9 @@ def vitalDiffKeys (k : ℕ) : Finset ℤ :=
       exact_mod_cast (sub_left_inj.mp h : (a : ℤ) = (b : ℤ))⟩).filter
       (fun d ↦ (3 : ℤ) ∣ d)
 
+/--
+@isnad1 id=eq.0h2v.s6.47bf9098dd7b from=translated src=- shape=f53cf0a4 vocab=3f988a2b
+-/
 lemma card_filter_grid {n : ℕ} (P : Fin n → Fin n → Prop) [DecidableRel P] :
     ((Finset.univ : Finset (Fin n × Fin n)).filter (fun p ↦ P p.1 p.2)).card =
       ∑ i : Fin n, ((Finset.univ : Finset (Fin n)).filter (P i)).card := by
@@ -801,6 +882,9 @@ lemma card_filter_grid {n : ℕ} (P : Fin n → Fin n → Prop) [DecidableRel P]
         simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hj
         exact ⟨(i, j), by simp [cells, hj], rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.d3c24d1d4217 from=translated src=- shape=3fc1110f vocab=0e138314
+-/
 lemma fin_add_count (k a : ℕ) (c : Letter) :
     ((Finset.univ : Finset (Fin (3 * k))).filter
       (fun j : Fin (3 * k) ↦ Fin.ofNat 3 (a + (j : ℕ)) = c)).card = k := by
@@ -819,17 +903,29 @@ lemma fin_add_count (k a : ℕ) (c : Letter) :
   rw [← Finset.card_map Fin.valEmbedding, hmap]
   exact add_periodic_count a c k
 
+/--
+@isnad1 id=eq.0h1v.s4.d41446a25035 from=translated src=- shape=2af00d28 vocab=8c97d65d
+-/
 lemma vitalIndices_card (k : ℕ) : (vitalIndices k).card = k := by
   simpa [vitalIndices] using fin_add_count k 0 (1 : Letter)
 
+/--
+@isnad1 id=eq.0h1v.s6.55e79daef571 from=translated src=- shape=5ad0c079 vocab=fa471818
+-/
 lemma vitalRowCells_card (k : ℕ) : (vitalRowCells k).card = 3 * k ^ 2 := by
   simp [vitalRowCells, vitalIndices_card]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.00ba3865c60c from=translated src=- shape=5ad0c079 vocab=51252bcf
+-/
 lemma vitalColCells_card (k : ℕ) : (vitalColCells k).card = 3 * k ^ 2 := by
   simp [vitalColCells, vitalIndices_card]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.8e4427776ec9 from=translated src=- shape=5ad0c079 vocab=72b4126e
+-/
 lemma vitalSumCells_card (k : ℕ) : (vitalSumCells k).card = 3 * k ^ 2 := by
   calc
     (vitalSumCells k).card = ∑ i : Fin (3 * k),
@@ -844,6 +940,9 @@ lemma vitalSumCells_card (k : ℕ) : (vitalSumCells k).card = 3 * k ^ 2 := by
       exact fin_add_count k (i : ℕ) 2
     _ = 3 * k ^ 2 := by simp; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.857e966f935a from=translated src=- shape=5ad0c079 vocab=0cbd77f4
+-/
 lemma vitalDiffCells_card (k : ℕ) : (vitalDiffCells k).card = 3 * k ^ 2 := by
   calc
     (vitalDiffCells k).card = ∑ i : Fin (3 * k),
@@ -858,6 +957,9 @@ lemma vitalDiffCells_card (k : ℕ) : (vitalDiffCells k).card = 3 * k ^ 2 := by
       simpa [eq_comm] using fin_add_count k 0 (Fin.ofNat 3 (i : ℕ))
     _ = 3 * k ^ 2 := by simp; ring
 
+/--
+@isnad1 id=dvd.1h2v.s6.2409ece572cb from=translated src=- shape=7d5c0294 vocab=02ecc140
+-/
 lemma three_dvd_diagSum_card (k s : ℕ) (hs : Fin.ofNat 3 s = 2) :
     3 ∣ (diagSum (n := 3 * k) s).card := by
   have hsmod : s % 3 = 2 := by
@@ -878,6 +980,9 @@ lemma three_dvd_diagSum_card (k s : ℕ) (hs : Fin.ofNat 3 s = 2) :
     rw [Nat.min_eq_left (by lia)]
     lia
 
+/--
+@isnad1 id=dvd.1h2v.s6.09ff42ff8bb9 from=translated src=- shape=3ee197a7 vocab=009439e0
+-/
 lemma three_dvd_diagDiff_card (k : ℕ) (d : ℤ) (hd : (3 : ℤ) ∣ d) :
     3 ∣ (diagDiff (n := 3 * k) d).card := by
   obtain ⟨z, hz⟩ := hd
@@ -901,6 +1006,9 @@ lemma three_dvd_diagDiff_card (k : ℕ) (d : ℤ) (hd : (3 : ℤ) ∣ d) :
     rw [hdneg, diagDiff_card_eq_neg, hδu]
     exact ⟨k - u, by lia⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.57e7e16217ed from=translated src=- shape=945a31f8 vocab=d6905f8c
+-/
 lemma finMod_eq_iff_three_dvd_sub (i j : ℕ) :
     Fin.ofNat 3 i = Fin.ofNat 3 j ↔ (3 : ℤ) ∣ (i : ℤ) - (j : ℤ) := by
   constructor
@@ -920,6 +1028,9 @@ lemma finMod_eq_iff_three_dvd_sub (i j : ℕ) :
     have hjmod := Nat.mod_lt j (by lia : 0 < 3)
     lia
 
+/--
+@isnad1 id=balanced.1h2v.s5.374145a2e342 from=translated src=- shape=117f96ec vocab=4183ee88
+-/
 lemma univ_balanced_of_rows {n : ℕ} (f : Fin n → Fin n → Letter)
     (hrows : ∀ r, Balanced f (row r)) :
     Balanced f (Finset.univ : Finset (Fin n × Fin n)) := by
@@ -928,6 +1039,9 @@ lemma univ_balanced_of_rows {n : ℕ} (f : Fin n → Fin n → Letter)
   · intro r _
     simpa [row] using hrows r
 
+/--
+@isnad1 id=balanced.1h2v.s6.4bce5ccde7cf from=translated src=- shape=809be1b4 vocab=5eada75d
+-/
 lemma vitalRowCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Letter)
     (hrows : ∀ r, Balanced f (row r)) :
     Balanced f (vitalRowCells k) := by
@@ -946,6 +1060,9 @@ lemma vitalRowCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Lett
     · intro hri
       exact ⟨hri ▸ hr, hri⟩
 
+/--
+@isnad1 id=balanced.1h2v.s6.475e60664fee from=translated src=- shape=809be1b4 vocab=59866b70
+-/
 lemma vitalColCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Letter)
     (hcols : ∀ j, Balanced f (col j)) :
     Balanced f (vitalColCells k) := by
@@ -964,6 +1081,9 @@ lemma vitalColCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Lett
     · intro hjl
       exact ⟨hjl ▸ hj, hjl⟩
 
+/--
+@isnad1 id=balanced.1h2v.s7.c3eb410f62a4 from=translated src=- shape=01e907e5 vocab=554ad170
+-/
 lemma vitalSumCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Letter)
     (hsums : ∀ s, 3 ∣ (diagSum (n := 3 * k) s).card → Balanced f (diagSum s)) :
     Balanced f (vitalSumCells k) := by
@@ -987,6 +1107,9 @@ lemma vitalSumCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Lett
       refine ⟨?_, hsum⟩
       simpa [hsum] using hs.2
 
+/--
+@isnad1 id=balanced.1h2v.s7.0902812d04ac from=translated src=- shape=669b5282 vocab=e7f6f14b
+-/
 lemma vitalDiffCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Letter)
     (hdiffs : ∀ d, 3 ∣ (diagDiff (n := 3 * k) d).card → Balanced f (diagDiff d)) :
     Balanced f (vitalDiffCells k) := by
@@ -1017,6 +1140,9 @@ lemma vitalDiffCells_balanced (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Let
       apply (finMod_eq_iff_three_dvd_sub (i : ℕ) (j : ℕ)).mpr
       simpa [hdiff] using hd.2
 
+/--
+@isnad1 id=dvd.2h2v.s5.4e81a9231cbe from=translated src=- shape=5de79a76 vocab=1f72cf70
+-/
 lemma three_dvd_of_modTable (n : ℕ) (hn : 0 < n)
     (f : Fin n → Fin n → Letter) (hf : MODTable f) : 3 ∣ n := by
   let r : Fin n := ⟨0, hn⟩
@@ -1024,6 +1150,9 @@ lemma three_dvd_of_modTable (n : ℕ) (hn : 0 < n)
   rw [row_eq_product] at h
   simpa using h
 
+/--
+@isnad1 id=eq.0h2v.s10.9ff5b28dc0a9 from=translated src=- shape=b6f9f0ed vocab=aca95990
+-/
 lemma vital_incidence_indicator (k : ℕ) (p : Fin (3 * k) × Fin (3 * k)) :
     (if p ∈ vitalRowCells k then 1 else 0) +
         (if p ∈ vitalColCells k then 1 else 0) +
@@ -1042,6 +1171,9 @@ lemma vital_incidence_indicator (k : ℕ) (p : Fin (3 * k) × Fin (3 * k)) :
   generalize hb : Fin.ofNat 3 (p.2 : ℕ) = b
   fin_cases a <;> fin_cases b <;> decide
 
+/--
+@isnad1 id=eq.0h4v.s7.7655620cb8f8 from=translated src=- shape=baacd9eb vocab=73910dcc
+-/
 lemma colorCount_eq_sum_indicator {n : ℕ} (f : Fin n → Fin n → Letter)
     (cells : Finset (Fin n × Fin n)) (c : Letter) :
     colorCount f cells c =
@@ -1050,6 +1182,9 @@ lemma colorCount_eq_sum_indicator {n : ℕ} (f : Fin n → Fin n → Letter)
   rw [Finset.card_eq_sum_ite (t := (Finset.univ : Finset (Fin n × Fin n))) (by simp)]
   simp only [Finset.mem_filter]
 
+/--
+@isnad1 id=eq.0h3v.s8.1bae2278ac6e from=translated src=- shape=ab9a491f vocab=9b1ea3b7
+-/
 lemma vital_color_count_identity (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → Letter)
     (c : Letter) :
     colorCount f (vitalRowCells k) c + colorCount f (vitalColCells k) c +
@@ -1065,6 +1200,9 @@ lemma vital_color_count_identity (k : ℕ) (f : Fin (3 * k) → Fin (3 * k) → 
     simpa using vital_incidence_indicator k p
   · simp [hc]
 
+/--
+@isnad1 id=eq.2h5v.s5.6090c6a84a2f from=translated src=- shape=c5a86774 vocab=8fad104f
+-/
 lemma colorCount_eq_of_balanced_card {n q : ℕ} (f : Fin n → Fin n → Letter)
     (cells : Finset (Fin n × Fin n)) (c : Letter) (hbalanced : Balanced f cells)
     (hcard : cells.card = 3 * q) : colorCount f cells c = q := by
@@ -1072,6 +1210,9 @@ lemma colorCount_eq_of_balanced_card {n q : ℕ} (f : Fin n → Fin n → Letter
   rw [hbalanced c, hcard]
   lia
 
+/--
+@isnad1 id=dvd.2h2v.s5.bf6d0f921308 from=translated src=- shape=5de79a76 vocab=1f72cf70
+-/
 lemma nine_dvd_of_modTable (n : ℕ) (hn : 0 < n)
     (f : Fin n → Fin n → Letter) (hf : MODTable f) : 9 ∣ n := by
   have hn3 := three_dvd_of_modTable n hn f hf

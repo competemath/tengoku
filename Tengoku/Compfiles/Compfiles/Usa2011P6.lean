@@ -26,7 +26,9 @@ namespace Usa2011P6
 
 /-- Double counting: for a predicate `p` on `t × u`, the sum over `a ∈ u` of the number
 of indices `i ∈ t` satisfying `p i a` equals the sum over `i ∈ t` of the number of
-elements `a ∈ u` satisfying `p i a`. -/
+elements `a ∈ u` satisfying `p i a`.
+@isnad1 id=eq.0h5v.s6.0fdcd0da5360 from=translated src=- shape=ba67b204 vocab=9155ba54
+-/
 lemma sum_card_filter_comm {ι α : Type*} {t : Finset ι} {u : Finset α}
     (p : ι → α → Prop) [∀ i a, Decidable (p i a)] :
     ∑ a ∈ u, (t.filter fun i ↦ p i a).card = ∑ i ∈ t, (u.filter fun a ↦ p i a).card := by
@@ -35,7 +37,9 @@ lemma sum_card_filter_comm {ι α : Type*} {t : Finset ι} {u : Finset α}
 
 /-- There are exactly 45 three-element subsets of an 11-element set containing a given
 element `i`: erasing `i` puts them in bijection with the 2-element subsets of the
-remaining 10 elements, and `Nat.choose 10 2 = 45`. -/
+remaining 10 elements, and `Nat.choose 10 2 = 45`.
+@isnad1 id=eq.0h1v.s6.56e7c22b18e3 from=translated src=- shape=edfd6c40 vocab=212270ee
+-/
 lemma card_powersetCard_filter_mem (i : Fin 11) :
     (((Finset.univ : Finset (Fin 11)).powersetCard 3).filter fun T ↦ i ∈ T).card = 45 := by
   have hbij : (((Finset.univ : Finset (Fin 11)).powersetCard 3).filter fun T ↦ i ∈ T).card
@@ -67,7 +71,9 @@ lemma card_powersetCard_filter_mem (i : Fin 11) :
 
 /-- There are exactly 9 three-element subsets of an 11-element set containing two given
 distinct elements `i` and `j`: erasing both puts them in bijection with the 1-element
-subsets of the remaining 9 elements, and `Nat.choose 9 1 = 9`. -/
+subsets of the remaining 9 elements, and `Nat.choose 9 1 = 9`.
+@isnad1 id=eq.1h2v.s8.5b498224fc28 from=translated src=- shape=0e403b0b vocab=212270ee
+-/
 lemma card_powersetCard_filter_mem₂ {i j : Fin 11} (hij : i ≠ j) :
     (((Finset.univ : Finset (Fin 11)).powersetCard 3).filter fun T ↦ i ∈ T ∧ j ∈ T).card
       = 9 := by
@@ -115,7 +121,9 @@ lemma card_powersetCard_filter_mem₂ {i j : Fin 11} (hij : i ≠ j) :
   decide
 
 /-- The sum of the multiplicities of the elements of the union equals the sum of the
-sizes of the eleven sets, `11 * 45 = 495`. -/
+sizes of the eleven sets, `11 * 45 = 495`.
+@isnad1 id=eq.1h2v.s7.f190d1a5151f from=translated src=- shape=f08ea22e vocab=82f05ce8
+-/
 lemma sum_multiplicity {α : Type*} [DecidableEq α] (As : Fin 11 → Finset α)
     (hcard : ∀ i, (As i).card = 45) :
     ∑ a ∈ Finset.univ.biUnion As, (Finset.univ.filter fun i ↦ a ∈ As i).card = 495 := by
@@ -136,7 +144,9 @@ lemma sum_multiplicity {α : Type*} [DecidableEq α] (As : Fin 11 → Finset α)
         rw [Finset.sum_const_nat fun i _ ↦ hcard i, Finset.card_univ, Fintype.card_fin]
 
 /-- The sum of the intersection sizes over all ordered pairs of indices equals
-`11 * 45 + 11 * 10 * 9 = 1485`. -/
+`11 * 45 + 11 * 10 * 9 = 1485`.
+@isnad1 id=eq.2h2v.s7.c31493cef8fa from=translated src=- shape=52c9baa6 vocab=0ba45c73
+-/
 lemma sum_inter_card {α : Type*} [DecidableEq α] (As : Fin 11 → Finset α)
     (hcard : ∀ i, (As i).card = 45)
     (hinter : ∀ i j, i ≠ j → (As i ∩ As j).card = 9) :
@@ -160,7 +170,9 @@ lemma sum_inter_card {α : Type*} [DecidableEq α] (As : Fin 11 → Finset α)
     hdiag, hoff]
 
 /-- The sum of the squares of the multiplicities equals the sum of the intersection
-sizes over all ordered pairs of indices. -/
+sizes over all ordered pairs of indices.
+@isnad1 id=eq.0h2v.s8.2a49573aa369 from=translated src=- shape=f23d158c vocab=400cbc6f
+-/
 lemma sum_sq_multiplicity_eq {α : Type*} [DecidableEq α] (As : Fin 11 → Finset α) :
     ∑ a ∈ Finset.univ.biUnion As, (Finset.univ.filter fun i ↦ a ∈ As i).card ^ 2
       = ∑ ij ∈ (Finset.univ : Finset (Fin 11)) ×ˢ Finset.univ,
@@ -193,7 +205,9 @@ lemma sum_sq_multiplicity_eq {α : Type*} [DecidableEq α] (As : Fin 11 → Fins
         Finset.sum_congr rfl fun ij _ ↦ by rw [hfilter_inter ij]
 
 /-- The sum of the squares of the multiplicities equals
-`11 * 45 + 11 * 10 * 9 = 1485`. -/
+`11 * 45 + 11 * 10 * 9 = 1485`.
+@isnad1 id=eq.2h2v.s7.fbb746c6edf1 from=translated src=- shape=07b107bf vocab=3d5224b7
+-/
 lemma sum_sq_multiplicity {α : Type*} [DecidableEq α] (As : Fin 11 → Finset α)
     (hcard : ∀ i, (As i).card = 45)
     (hinter : ∀ i j, i ≠ j → (As i ∩ As j).card = 9) :

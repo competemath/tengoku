@@ -25,7 +25,9 @@ open Finset SimpleGraph
 variable {n : ℕ} (G : SimpleGraph (Fin n)) [DecidableRel G.Adj]
 
 /-- In a triangle-free graph, no edge can have two distinct endpoints that are
-both adjacent to `P`: together with `P` they would form a triangle. -/
+both adjacent to `P`: together with `P` they would form a triangle.
+@isnad1 id=false.7h6v.s7.4004c87fedd8 from=translated src=- shape=aca67266 vocab=9b2d0b72
+-/
 lemma not_adj_and_adj_of_mem_edgeFinset (hG : G.CliqueFree 3) {P Q₁ Q₂ : Fin n}
     (hPQ₁ : G.Adj P Q₁) (hPQ₂ : G.Adj P Q₂) (hne : Q₁ ≠ Q₂)
     {e : Sym2 (Fin n)} (he : e ∈ G.edgeFinset) (h₁ : Q₁ ∈ e) (h₂ : Q₂ ∈ e) :
@@ -45,7 +47,9 @@ lemma not_adj_and_adj_of_mem_edgeFinset (hG : G.CliqueFree 3) {P Q₁ Q₂ : Fin
 /-- Double counting: the sum of the degrees of the neighbors of `P` equals the
 number of edges of `G` having an endpoint adjacent to `P`. Indeed, every edge
 incident to a neighbor `Q` of `P` has `Q` as its *unique* endpoint adjacent to
-`P`, since the graph is triangle-free. -/
+`P`, since the graph is triangle-free.
+@isnad1 id=eq.1h3v.s7.1fcb71c3c499 from=translated src=- shape=4916e2f9 vocab=dc9e278b
+-/
 lemma sum_degree_neighborFinset_eq_card (hG : G.CliqueFree 3) (P : Fin n) :
     ∑ Q ∈ G.neighborFinset P, G.degree Q
       = #(G.edgeFinset.filter fun e => ∃ v ∈ e, G.Adj P v) := by
@@ -75,7 +79,9 @@ lemma sum_degree_neighborFinset_eq_card (hG : G.CliqueFree 3) (P : Fin n) :
 
 /-- The edges of `G` split into those with no endpoint adjacent to `P` and
 those with a (unique) endpoint adjacent to `P`, counted in
-`sum_degree_neighborFinset_eq_card`. -/
+`sum_degree_neighborFinset_eq_card`.
+@isnad1 id=eq.1h3v.s8.a03dd35a1dbc from=translated src=- shape=2eef2fd3 vocab=e1d0d5b4
+-/
 lemma card_far_add_sum_degree (hG : G.CliqueFree 3) (P : Fin n) :
     #(G.edgeFinset.filter fun e => ∀ v ∈ e, ¬G.Adj P v)
       + ∑ Q ∈ G.neighborFinset P, G.degree Q = #G.edgeFinset := by
@@ -88,7 +94,9 @@ lemma card_far_add_sum_degree (hG : G.CliqueFree 3) (P : Fin n) :
   exact hcard
 
 /-- Summing `∑ Q ∈ N(P), deg Q` over all vertices `P` counts `deg Q` once for
-each neighbor of `Q`, giving the sum of the squares of the degrees. -/
+each neighbor of `Q`, giving the sum of the squares of the degrees.
+@isnad1 id=eq.0h2v.s7.25ae88c724c3 from=translated src=- shape=263a906d vocab=813300ea
+-/
 lemma sum_sum_degree_neighborFinset :
     ∑ P : Fin n, ∑ Q ∈ G.neighborFinset P, G.degree Q
       = ∑ Q : Fin n, (G.degree Q) ^ 2 := by

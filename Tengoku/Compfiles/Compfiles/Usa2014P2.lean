@@ -25,12 +25,18 @@ def P (f : ℤ → ℤ) :=
 
 abbrev S : Set (ℤ → ℤ) := {0, fun x ↦ x ^ 2}
 
+/--
+@isnad1 id=p.1h1v.s4.9be9c782b20d from=translated src=- shape=a3f99f5a vocab=f2ad584d
+-/
 lemma mpr {f : ℤ → ℤ} : f ∈ S → P f := by
   intro h x y hx
   rcases h with rfl | rfl
   · simp
   · grind
 
+/--
+@isnad1 id=ex.1h1v.s4.1acc3d38b437 from=translated src=- shape=59fbaa6c vocab=66d79d1e
+-/
 lemma exists_prime_and_not_dvd {n : ℤ} (hn : n ≠ 0) : ∃ p, Prime p ∧ ¬ p ∣ n := by
   obtain ⟨p, hp1, hp2⟩ := Nat.exists_infinite_primes (n.natAbs + 1)
   refine ⟨p, Nat.prime_iff_prime_int.mp hp2, ?_⟩

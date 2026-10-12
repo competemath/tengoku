@@ -25,7 +25,9 @@ namespace Usa2016P2
 open Finset
 open scoped Nat
 
-/-- If `F` is periodic with period `q`, then it is also periodic with period `a * q`. -/
+/-- If `F` is periodic with period `q`, then it is also periodic with period `a * q`.
+@isnad1 id=eq.1h4v.s5.6ad2a6198eb5 from=translated src=- shape=d673c6d0 vocab=5c386ba3
+-/
 lemma period_mul {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) = F j) (a j : ℕ) :
     F (j + a * q) = F j := by
   induction a with
@@ -35,7 +37,9 @@ lemma period_mul {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) = F j) (a j 
     rw [h, hF, ih]
 
 /-- The sum of a `q`-periodic function over `range (a * q)` splits into `a` copies of
-the full-period sum. -/
+the full-period sum.
+@isnad1 id=eq.1h3v.s6.bae80504bc3f from=translated src=- shape=5fc20c88 vocab=d17cb838
+-/
 lemma sum_range_period_mul {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) = F j) (a : ℕ) :
     ∑ j ∈ Finset.range (a * q), F j = a * ∑ i ∈ Finset.range q, F i := by
   induction a with
@@ -55,7 +59,9 @@ lemma sum_range_period_mul {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) = 
     ring
 
 /-- The sum of a `q`-periodic function over `range (a * q + b)` splits into full periods
-plus a remainder sum. -/
+plus a remainder sum.
+@isnad1 id=eq.1h4v.s6.1e566e47090a from=translated src=- shape=1e26a129 vocab=d17cb838
+-/
 lemma sum_range_period {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) = F j) (a b : ℕ) :
     ∑ j ∈ Finset.range (a * q + b), F j =
       a * (∑ i ∈ Finset.range q, F i) + ∑ i ∈ Finset.range b, F i := by
@@ -69,7 +75,9 @@ lemma sum_range_period {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) = F j)
     rw [add_comm (a * q) i, period_mul hF a i]
   rw [h3]
 
-/-- The sum of a `q`-periodic function over one full period is shift invariant. -/
+/-- The sum of a `q`-periodic function over one full period is shift invariant.
+@isnad1 id=eq.1h3v.s5.db74a4128dd0 from=translated src=- shape=57af2e16 vocab=8dc106cf
+-/
 lemma sum_range_period_shift {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) = F j) (b : ℕ) :
     ∑ i ∈ Finset.range q, F (i + b) = ∑ i ∈ Finset.range q, F i := by
   have step : ∀ {G : ℕ → ℕ}, (∀ j, G (j + q) = G j) →
@@ -95,7 +103,9 @@ lemma sum_range_period_shift {q : ℕ} {F : ℕ → ℕ} (hF : ∀ j, F (j + q) 
       _ = ∑ i ∈ Finset.range q, F i := step hF
 
 /-- For `b ≤ q` and `m ≤ q`, the sum of `i` over `range b` is at most the sum of
-`(i + m) % q`. -/
+`(i + m) % q`.
+@isnad1 id=le.2h3v.s5.7a4942d7a1e2 from=translated src=- shape=f0162bda vocab=64f34e04
+-/
 lemma sum_range_mod_add_ge {q b m : ℕ} (hb : b ≤ q) (hm : m ≤ q) :
     ∑ i ∈ Finset.range b, i ≤ ∑ i ∈ Finset.range b, (i + m) % q := by
   have key : ∀ i : ℕ, i < q → (((i + m) % q : ℕ) : ℤ) =
@@ -157,7 +167,9 @@ lemma sum_range_mod_add_ge {q b m : ℕ} (hb : b ≤ q) (hm : m ≤ q) :
   exact Nat.cast_le.mp hcast
 
 /-- The sum of the remainders of `0, 1, …, k-1` modulo `q` is at most the sum of the
-remainders of `n, n+1, …, n+k-1` modulo `q`. -/
+remainders of `n, n+1, …, n+k-1` modulo `q`.
+@isnad1 id=le.1h3v.s5.672bab8205c0 from=translated src=- shape=79d84973 vocab=6501b11c
+-/
 lemma sum_mod_le_sum_add_mod (k n q : ℕ) (hq : 0 < q) :
     ∑ j ∈ Finset.range k, j % q ≤ ∑ j ∈ Finset.range k, (j + n) % q := by
   have hk : k = k / q * q + k % q := by
@@ -206,7 +218,9 @@ lemma sum_mod_le_sum_add_mod (k n q : ℕ) (hq : 0 < q) :
     _ = ∑ j ∈ Finset.range k, (j + n) % q := RHS.symm
 
 /-- For each `q > 0`, `∑ j ∈ range k, (j + k) / q ≤ k ^ 2 / q + ∑ j ∈ range k, j / q`.
-This is the per-prime-power comparison in Legendre's formula for the problem. -/
+This is the per-prime-power comparison in Legendre's formula for the problem.
+@isnad1 id=le.1h2v.s6.7851943082aa from=translated src=- shape=61dd2267 vocab=6b5fdbfd
+-/
 lemma sum_add_div_le (k q : ℕ) (hq : 0 < q) :
     ∑ j ∈ Finset.range k, (j + k) / q ≤ k ^ 2 / q + ∑ j ∈ Finset.range k, j / q := by
   -- Cast to `ℤ` and use `q * (n / q) = n - n % q`.

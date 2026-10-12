@@ -27,6 +27,9 @@ universe u
 def PiecewiseConcaveOn (s : Finset ℝ) (f : ℝ → ℝ) :=
   (∀ l r : ℝ, l ≤ r → (∀ t ∈ s, t ≤ l ∨ r ≤ t) → ConcaveOn ℝ (Set.Icc l r) f)
 
+/--
+@isnad1 id=piecewis.2h4v.s5.5f9cd0baadf0 from=translated src=- shape=74a4f49e vocab=6a3069b1
+-/
 lemma piecewise_concave_add {s₁ s₂ : Finset ℝ} {f₁ f₂ : ℝ → ℝ}
     (h₁ : PiecewiseConcaveOn s₁ f₁) (h₂ : PiecewiseConcaveOn s₂ f₂)
     : PiecewiseConcaveOn (s₁ ∪ s₂) (f₁ + f₂) := by
@@ -43,6 +46,9 @@ lemma piecewise_concave_add {s₁ s₂ : Finset ℝ} {f₁ f₂ : ℝ → ℝ}
     apply Finset.mem_union_right
     exact ht
 
+/--
+@isnad1 id=piecewis.1h4v.s6.a7f034e9f20c from=translated src=- shape=6238bcb8 vocab=d218ddd1
+-/
 lemma piecewise_concave_sum {α : Type u} [DecidableEq α] (s : Finset α)
     (s' : α → Finset ℝ) (f' : α → ℝ → ℝ)
     (h : ∀ i ∈ s, PiecewiseConcaveOn (s' i) (f' i))
@@ -64,6 +70,9 @@ lemma piecewise_concave_sum {α : Type u} [DecidableEq α] (s : Finset α)
 def UnboundedAtPosInfinity (f : ℝ → ℝ) :=
   (∀ y : ℝ, ∃ x : ℝ, ∀ t : ℝ, x ≤ t → y ≤ f t)
 
+/--
+@isnad1 id=unbounde.2h2v.s5.75818871d7ef from=translated src=- shape=688438e4 vocab=ce825d2b
+-/
 lemma unbounded_at_pos_infinity_add {f₁ f₂ : ℝ → ℝ}
     (h₁ : UnboundedAtPosInfinity f₁) (h₂ : UnboundedAtPosInfinity f₂)
     : UnboundedAtPosInfinity (f₁ + f₂) := by
@@ -76,6 +85,9 @@ lemma unbounded_at_pos_infinity_add {f₁ f₂ : ℝ → ℝ}
   rw [(by ring : y = y / 2 + y / 2)]
   grind
 
+/--
+@isnad1 id=unbounde.2h3v.s5.5dac83929676 from=translated src=- shape=5e8828b4 vocab=28c6bb93
+-/
 lemma unbounded_at_pos_infinity_sum {α : Type u} (s : Finset α) (hs : s.Nonempty)
     (f' : α → ℝ → ℝ)
     (h : ∀ i ∈ s, UnboundedAtPosInfinity (f' i))
@@ -96,6 +108,9 @@ lemma unbounded_at_pos_infinity_sum {α : Type u} (s : Finset α) (hs : s.Nonemp
 def UnboundedAtNegInfinity (f : ℝ → ℝ) :=
   (∀ y : ℝ, ∃ x : ℝ, ∀ t : ℝ, t ≤ x → y ≤ f t)
 
+/--
+@isnad1 id=unbounde.2h2v.s5.e2a88dc8f84c from=translated src=- shape=688438e4 vocab=ceeca3a6
+-/
 lemma unbounded_at_neg_infinity_add {f₁ f₂ : ℝ → ℝ}
     (h₁ : UnboundedAtNegInfinity f₁) (h₂ : UnboundedAtNegInfinity f₂)
     : UnboundedAtNegInfinity (f₁ + f₂) := by
@@ -108,6 +123,9 @@ lemma unbounded_at_neg_infinity_add {f₁ f₂ : ℝ → ℝ}
   rw [(by ring : y = y / 2 + y / 2)]
   grind
 
+/--
+@isnad1 id=unbounde.2h3v.s5.db846f4df66b from=translated src=- shape=5e8828b4 vocab=6a1b180a
+-/
 lemma unbounded_at_neg_infinity_sum {α : Type u} (s : Finset α) (hs : s.Nonempty)
     (f' : α → ℝ → ℝ)
     (h : ∀ i ∈ s, UnboundedAtNegInfinity (f' i))
@@ -130,6 +148,9 @@ def PiecewiseConcavePlusOn (s : Finset ℝ) (f : ℝ → ℝ) :=
   ∧ UnboundedAtPosInfinity f
   ∧ UnboundedAtNegInfinity f
 
+/--
+@isnad1 id=piecewis.2h4v.s6.4c9cacb72d92 from=translated src=- shape=cba1fd5f vocab=191ca503
+-/
 lemma piecewise_concave_plus_sum {α : Type u} [DecidableEq α] (s : Finset α) (hs : s.Nonempty)
     (s' : α → Finset ℝ) (f' : α → ℝ → ℝ)
     (h : ∀ i ∈ s, PiecewiseConcavePlusOn (s' i) (f' i))
@@ -152,6 +173,9 @@ lemma piecewise_concave_plus_sum {α : Type u} [DecidableEq α] (s : Finset α) 
 def ExistsDecreaseOn (s : Finset ℝ) (f : ℝ → ℝ) :=
   ∀ t : ℝ, ∃ x ∈ s , f x ≤ f t
 
+/--
+@isnad1 id=existsde.1h2v.s3.8429d8f1d7cf from=translated src=- shape=4dae6d34 vocab=ba536195
+-/
 lemma exists_decrease_of_piecewise_concave_plus {s : Finset ℝ} {f : ℝ → ℝ}
     (h : PiecewiseConcavePlusOn s f) : ExistsDecreaseOn s f := by
   rcases h with ⟨h₁, h₂, h₃⟩
@@ -311,6 +335,9 @@ lemma exists_decrease_of_piecewise_concave_plus {s : Finset ℝ} {f : ℝ → �
 noncomputable def Finset.SumSqrtDist {α : Type u} (s : Finset α)
     (x : α → ℝ) (t : ℝ) := ∑ i ∈ s, √|x i - t|
 
+/--
+@isnad1 id=piecewis.0h1v.s4.9cff4d4a5279 from=translated src=- shape=a8d1c009 vocab=3efca018
+-/
 lemma piecewise_concave_sqrt_dist (x : ℝ) :
     PiecewiseConcaveOn {x} (fun t ↦ √|x - t|) := by
   intro l r hlr hlr'
@@ -393,6 +420,9 @@ lemma piecewise_concave_sqrt_dist (x : ℝ) :
     have h'' := Real.monotoneOn_rpow_Ici_of_exponent_nonneg (by norm_num : (0 : ℝ) ≤ 1 / 2)
     apply MonotoneOn.mono h'' hf
 
+/--
+@isnad1 id=unbounde.0h1v.s4.8ce1543765cc from=translated src=- shape=930a5fa4 vocab=e9f894c9
+-/
 lemma unbounded_at_pos_infinity_sqrt_dist (x : ℝ) :
     UnboundedAtPosInfinity (fun t ↦ √|x - t|) := by
   intro y
@@ -404,6 +434,9 @@ lemma unbounded_at_pos_infinity_sqrt_dist (x : ℝ) :
   rw [abs_sub_comm, abs_of_nonneg (le_trans (sq_nonneg _) ht)]
   exact ht
 
+/--
+@isnad1 id=unbounde.0h1v.s4.30e3212f02d0 from=translated src=- shape=930a5fa4 vocab=689fa583
+-/
 lemma unbounded_at_neg_infinity_sqrt_dist (x : ℝ) :
     UnboundedAtNegInfinity (fun t ↦ √|x - t|) := by
   intro y
@@ -415,6 +448,9 @@ lemma unbounded_at_neg_infinity_sqrt_dist (x : ℝ) :
   rw [abs_of_nonneg (le_trans (sq_nonneg _) ht)]
   exact ht
 
+/--
+@isnad1 id=piecewis.0h1v.s4.fe49bda8c9e2 from=translated src=- shape=a8d1c009 vocab=a5ee5eab
+-/
 lemma piecewise_concave_plus_sqrt_dist (x : ℝ) :
     PiecewiseConcavePlusOn {x} (fun t ↦ √|x - t|) := by
   rw [PiecewiseConcavePlusOn]
@@ -423,6 +459,9 @@ lemma piecewise_concave_plus_sqrt_dist (x : ℝ) :
   · exact unbounded_at_pos_infinity_sqrt_dist x
   · exact unbounded_at_neg_infinity_sqrt_dist x
 
+/--
+@isnad1 id=piecewis.1h3v.s4.351e080e6091 from=translated src=- shape=df389095 vocab=a2f711d6
+-/
 lemma piecewise_concave_plus_sum_sqrt_dist {α : Type u} [DecidableEq α] (s : Finset α) (hs : s.Nonempty) (x : α → ℝ) :
       PiecewiseConcavePlusOn (s.image x) (Finset.SumSqrtDist s x) := by
     have h' : ∀ i ∈ s, PiecewiseConcavePlusOn {x i} (fun t ↦ √|x i - t|) := by
@@ -436,11 +475,17 @@ lemma piecewise_concave_plus_sum_sqrt_dist {α : Type u} [DecidableEq α] (s : F
     rw [Finset.biUnion_singleton, hsum] at h
     exact h
 
+/--
+@isnad1 id=existsde.1h3v.s4.668c2fdb1e0f from=translated src=- shape=df389095 vocab=e00f49f6
+-/
 lemma exists_decrease_sum_sqrt_dist {α : Type u} [DecidableEq α] (s : Finset α) (hs : s.Nonempty) (x : α → ℝ) :
     ExistsDecreaseOn (s.image x) (Finset.SumSqrtDist s x) := by
   apply exists_decrease_of_piecewise_concave_plus
   exact piecewise_concave_plus_sum_sqrt_dist s hs x
 
+/--
+@isnad1 id=ex.1h3v.s6.35784287a43a from=translated src=- shape=dcf1ef3d vocab=09001622
+-/
 lemma exists_sum_sqrt_dist_le_sum_sqrt_dist {α : Type u} [DecidableEq α] (s : Finset α) (hs : s.Nonempty) (x : α → ℝ) :
   ∃ k ∈ s, ∑ i ∈ s, √|x i - x k| ≤ ∑ i ∈ s, √|x i| := by
   have h := exists_decrease_sum_sqrt_dist s hs x 0
@@ -453,6 +498,9 @@ lemma exists_sum_sqrt_dist_le_sum_sqrt_dist {α : Type u} [DecidableEq α] (s : 
   ring_nf at hxk
   exact hxk
 
+/--
+@isnad1 id=ex.1h3v.s7.c2225bbfce2b from=translated src=- shape=59a9c54b vocab=baf59cb2
+-/
 lemma decrease_sum {α : Type u} [DecidableEq α] (s : Finset α) (hs : s.Nonempty) (x : α → ℝ) :
   ∃ k ∈ s, ∃ l ∈ s, ∑ i ∈ s, ∑ j ∈ s, √|x i + x j - (x k + x l)| ≤ ∑ i ∈ s, ∑ j ∈ s, √|x i + x j| := by
   have h := exists_sum_sqrt_dist_le_sum_sqrt_dist (s ×ˢ s) (Finset.Nonempty.product hs hs) (fun (i,j) ↦ x i + x j)
@@ -465,6 +513,9 @@ lemma decrease_sum {α : Type u} [DecidableEq α] (s : Finset α) (hs : s.Nonemp
   rw [and_iff_right hkls.right]
   exact hkl
 
+/--
+@isnad1 id=le.0h3v.s6.8b4fc8f59846 from=translated src=- shape=c83cf3df vocab=c8689385
+-/
 theorem imo2021_p2_finset_version {α : Type u} [DecidableEq α] (s : Finset α) (x : α → ℝ) :
     ∑ i ∈ s, ∑ j ∈ s, √|x i - x j| ≤ ∑ i ∈ s, ∑ j ∈ s, √|x i + x j| := by
   induction' s using Finset.strongInductionOn with s h generalizing x

@@ -28,12 +28,24 @@ def shift (p x : ℕ) : ℕ := if x ∈ Finset.Icc 1 p then x % p + 1 else x
 `{1, ..., p}` are cyclically shifted and all other elements stay fixed. -/
 def shiftSet (p : ℕ) (A : Finset ℕ) : Finset ℕ := A.image (shift p)
 
+/--
+@isnad1 id=eq.0h2v.s4.35bba9a1331b from=translated src=- shape=313fe7c1 vocab=9f576bf0
+-/
 theorem shiftSet_eq (p : ℕ) (A : Finset ℕ) : shiftSet p A = A.image (shift p) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.869e044eeb0e from=translated src=- shape=0a0d82fd vocab=b9f2f493
+-/
 theorem shift_of_mem {p x : ℕ} (hx : x ∈ Finset.Icc 1 p) : shift p x = x % p + 1 := ite_eq_left hx
 
+/--
+@isnad1 id=eq.1h2v.s5.c44b644ad980 from=translated src=- shape=2ffe61b1 vocab=2f65477f
+-/
 theorem shift_of_not_mem {p x : ℕ} (hx : x ∉ Finset.Icc 1 p) : shift p x = x := ite_eq_right hx
 
+/--
+@isnad1 id=mem.2h2v.s5.06e35d09d5b9 from=translated src=- shape=b0edfe4d vocab=d1f83868
+-/
 theorem shift_mem_Icc {p x : ℕ} (hp : 0 < p) (hx : x ∈ Finset.Icc 1 p) :
     shift p x ∈ Finset.Icc 1 p := by
   have h : shift p x = x % p + 1 := ite_eq_left hx
@@ -42,6 +54,9 @@ theorem shift_mem_Icc {p x : ℕ} (hp : 0 < p) (hx : x ∈ Finset.Icc 1 p) :
   have hlt := Nat.mod_lt x hp
   lia
 
+/--
+@isnad1 id=iff.1h2v.s5.72998cd6e60e from=translated src=- shape=c1e3fc64 vocab=d1f83868
+-/
 theorem shift_mem_iff {p x : ℕ} (hp : 0 < p) :
     shift p x ∈ Finset.Icc 1 p ↔ x ∈ Finset.Icc 1 p := by
   constructor
@@ -51,6 +66,9 @@ theorem shift_mem_iff {p x : ℕ} (hp : 0 < p) :
       exact fun h ↦ absurd h hx
   · exact fun hx ↦ shift_mem_Icc hp hx
 
+/--
+@isnad1 id=injectiv.1h1v.s4.7187850abaef from=translated src=- shape=e217721d vocab=727970e1
+-/
 theorem shift_injective {p : ℕ} (hp : 0 < p) : Function.Injective (shift p) := by
   intro x y hxy
   by_cases hx : x ∈ Finset.Icc 1 p <;> by_cases hy : y ∈ Finset.Icc 1 p
@@ -95,6 +113,9 @@ theorem shift_injective {p : ℕ} (hp : 0 < p) : Function.Injective (shift p) :=
     rw [hxp, hyp] at hxy
     exact hxy
 
+/--
+@isnad1 id=eq.2h3v.s6.735517d0168f from=translated src=- shape=829f40ed vocab=47600cff
+-/
 theorem shift_iterate_mem_Icc {p : ℕ} (hp : 0 < p) {x : ℕ} (hx : x ∈ Finset.Icc 1 p) (k : ℕ) :
     (shift p)^[k] x = (x - 1 + k) % p + 1 := by
   induction k with
@@ -115,12 +136,18 @@ theorem shift_iterate_mem_Icc {p : ℕ} (hp : 0 < p) {x : ℕ} (hx : x ∈ Finse
     have hx' : 1 ≤ x := (Finset.mem_Icc.1 hx).1
     congr 1
 
+/--
+@isnad1 id=eq.1h3v.s5.216f827390e8 from=translated src=- shape=42690403 vocab=330da884
+-/
 theorem shift_iterate_not_mem {p : ℕ} {x : ℕ} (hx : x ∉ Finset.Icc 1 p) (k : ℕ) :
     (shift p)^[k] x = x := by
   induction k with
   | zero => rfl
   | succ k ih => rw [Function.iterate_succ_apply', ih]; exact ite_eq_right hx
 
+/--
+@isnad1 id=mem.2h3v.s6.c3802b62a0d5 from=translated src=- shape=91a218d5 vocab=7c20be03
+-/
 theorem shift_iterate_mem_Icc' {p : ℕ} (hp : 0 < p) {x : ℕ} (hx : x ∈ Finset.Icc 1 p) (k : ℕ) :
     (shift p)^[k] x ∈ Finset.Icc 1 p := by
   rw [shift_iterate_mem_Icc hp hx k]
@@ -128,6 +155,9 @@ theorem shift_iterate_mem_Icc' {p : ℕ} (hp : 0 < p) {x : ℕ} (hx : x ∈ Fins
   have hlt := Nat.mod_lt (x - 1 + k) hp
   lia
 
+/--
+@isnad1 id=eq.1h2v.s4.ffc640b06d60 from=translated src=- shape=cc0b2548 vocab=b915b656
+-/
 theorem shift_iterate_p {p : ℕ} (hp : 0 < p) (x : ℕ) : (shift p)^[p] x = x := by
   by_cases hx : x ∈ Finset.Icc 1 p
   · rw [shift_iterate_mem_Icc hp hx p]
@@ -135,6 +165,9 @@ theorem shift_iterate_p {p : ℕ} (hp : 0 < p) (x : ℕ) : (shift p)^[p] x = x :
     rw [Nat.add_mod_right, Nat.mod_eq_of_lt (by lia : x - 1 < p), Nat.sub_add_cancel hx.1]
   · exact shift_iterate_not_mem hx p
 
+/--
+@isnad1 id=eq.0h3v.s4.faa751a3b8a1 from=translated src=- shape=cc28f1c9 vocab=ef5f8501
+-/
 theorem shiftSet_iterate (p : ℕ) (A : Finset ℕ) (k : ℕ) :
     (shiftSet p)^[k] A = A.image ((shift p)^[k]) := by
   induction k with
@@ -144,14 +177,22 @@ theorem shiftSet_iterate (p : ℕ) (A : Finset ℕ) (k : ℕ) :
     show (A.image (shift p)^[k]).image (shift p) = A.image ((shift p) ∘ (shift p)^[k])
     rw [Finset.image_image]
 
+/--
+@isnad1 id=eq.1h2v.s4.e9dae936256d from=translated src=- shape=9d8b576d vocab=c74d6013
+-/
 theorem shiftSet_iterate_p {p : ℕ} (hp : 0 < p) (A : Finset ℕ) : (shiftSet p)^[p] A = A := by
   rw [shiftSet_iterate, show (shift p)^[p] = id from funext (shift_iterate_p hp), Finset.image_id]
 
+/--
+@isnad1 id=injectiv.1h1v.s4.456a420f8f27 from=translated src=- shape=6e31be85 vocab=fe301539
+-/
 theorem shiftSet_injective {p : ℕ} (hp : 0 < p) : Function.Injective (shiftSet p) :=
   Finset.image_injective (shift_injective hp)
 
 /-- The key congruence: shifting a set once increases its sum by the number of
-its elements lying in `{1, ..., p}`, modulo `p`. -/
+its elements lying in `{1, ..., p}`, modulo `p`.
+@isnad1 id=modeq.1h2v.s6.f7486829d678 from=translated src=- shape=60202623 vocab=f35cab01
+-/
 theorem sum_shiftSet {p : ℕ} (hp : 0 < p) (A : Finset ℕ) :
     ∑ x ∈ shiftSet p A, x ≡ ∑ x ∈ A, x + (A.filter (· ∈ Finset.Icc 1 p)).card [MOD p] := by
   rw [shiftSet_eq, Finset.sum_image (fun x _ y _ h ↦ shift_injective hp h),
@@ -177,6 +218,9 @@ theorem sum_shiftSet {p : ℕ} (hp : 0 < p) (A : Finset ℕ) :
   rw [e2] at h2
   exact h2
 
+/--
+@isnad1 id=eq.1h2v.s6.d930aabdc0f8 from=translated src=- shape=58927d42 vocab=962c02bf
+-/
 theorem low_card_shiftSet {p : ℕ} (hp : 0 < p) (A : Finset ℕ) :
     ((shiftSet p A).filter (· ∈ Finset.Icc 1 p)).card = (A.filter (· ∈ Finset.Icc 1 p)).card := by
   have h : (shiftSet p A).filter (· ∈ Finset.Icc 1 p) =
@@ -190,12 +234,18 @@ theorem low_card_shiftSet {p : ℕ} (hp : 0 < p) (A : Finset ℕ) :
       exact ⟨⟨x, hxA, rfl⟩, (shift_mem_iff hp).2 hxI⟩
   rw [h, Finset.card_image_of_injective _ (shift_injective hp)]
 
+/--
+@isnad1 id=eq.1h3v.s6.b88a60fecb31 from=translated src=- shape=3456f612 vocab=7ffeef09
+-/
 theorem low_card_shiftSet_iterate {p : ℕ} (hp : 0 < p) (A : Finset ℕ) (k : ℕ) :
     (((shiftSet p)^[k] A).filter (· ∈ Finset.Icc 1 p)).card = (A.filter (· ∈ Finset.Icc 1 p)).card := by
   induction k with
   | zero => rw [Function.iterate_zero, id_eq]
   | succ k ih => rw [Function.iterate_succ_apply', low_card_shiftSet hp, ih]
 
+/--
+@isnad1 id=modeq.1h3v.s6.79c594011733 from=translated src=- shape=26daf511 vocab=00e1eeab
+-/
 theorem sum_shiftSet_iterate {p : ℕ} (hp : 0 < p) (A : Finset ℕ) (i : ℕ) :
     ∑ x ∈ (shiftSet p)^[i] A, x ≡
       ∑ x ∈ A, x + i * (A.filter (· ∈ Finset.Icc 1 p)).card [MOD p] := by
@@ -217,6 +267,9 @@ theorem sum_shiftSet_iterate {p : ℕ} (hp : 0 < p) (A : Finset ℕ) (i : ℕ) :
     rw [e] at h2
     exact h2
 
+/--
+@isnad1 id=mem.2h3v.s6.6348787842c6 from=translated src=- shape=437769d4 vocab=d8ea1621
+-/
 theorem shiftSet_iterate_mem {p : ℕ} (hp : 0 < p) {A : Finset ℕ}
     (hA : A ∈ (Finset.Icc 1 (2 * p)).powersetCard p) (i : ℕ) :
     (shiftSet p)^[i] A ∈ (Finset.Icc 1 (2 * p)).powersetCard p := by
@@ -234,6 +287,9 @@ theorem shiftSet_iterate_mem {p : ℕ} (hp : 0 < p) {A : Finset ℕ}
       exact hsub hx
   · rw [Finset.card_image_of_injective _ (Function.Injective.iterate (shift_injective hp) i), hcard]
 
+/--
+@isnad1 id=eq.1h2v.s5.ea6f0ef8ba94 from=translated src=- shape=d3a4a1a0 vocab=6a5440ee
+-/
 theorem shiftSet_iterate_Icc_left {p : ℕ} (hp : 0 < p) (i : ℕ) :
     (shiftSet p)^[i] (Finset.Icc 1 p) = Finset.Icc 1 p := by
   rw [shiftSet_iterate]
@@ -245,6 +301,9 @@ theorem shiftSet_iterate_Icc_left {p : ℕ} (hp : 0 < p) (i : ℕ) :
     exact shift_iterate_mem_Icc' hp hx i
   exact Finset.eq_of_subset_of_card_le hsub (le_of_eq hcard.symm)
 
+/--
+@isnad1 id=eq.0h2v.s6.7a116b79f5b6 from=translated src=- shape=cee18606 vocab=81889ae3
+-/
 theorem shiftSet_iterate_Icc_right {p : ℕ} (i : ℕ) :
     (shiftSet p)^[i] (Finset.Icc (p + 1) (2 * p)) = Finset.Icc (p + 1) (2 * p) := by
   rw [shiftSet_iterate]
@@ -260,6 +319,9 @@ theorem shiftSet_iterate_Icc_right {p : ℕ} (i : ℕ) :
     rw [Finset.mem_Icc] at hy
     exact shift_iterate_not_mem (show y ∉ Finset.Icc 1 p by rw [Finset.mem_Icc]; lia) i
 
+/--
+@isnad1 id=mem.2h3v.s8.669dd019df23 from=translated src=- shape=9be1a935 vocab=addf7171
+-/
 theorem shiftSet_iterate_mem_U {p : ℕ} (hp : 0 < p) {A : Finset ℕ}
     (hA : A ∈ (Finset.Icc 1 (2 * p)).powersetCard p \
       {Finset.Icc 1 p, Finset.Icc (p + 1) (2 * p)}) (i : ℕ) :
@@ -278,7 +340,9 @@ theorem shiftSet_iterate_mem_U {p : ℕ} (hp : 0 < p) {A : Finset ℕ}
       (by rw [h, shiftSet_iterate_Icc_right i]))
 
 /-- If `A` is a `p`-element subset of `{1, ..., 2p}` different from the two
-"interval" subsets, then `A ∩ {1, ..., p}` has between `1` and `p - 1` elements. -/
+"interval" subsets, then `A ∩ {1, ..., p}` has between `1` and `p - 1` elements.
+@isnad1 id=and.2h2v.s8.1eff7540e5ef from=translated src=- shape=4714d591 vocab=c5f1eca6
+-/
 theorem low_card_bounds {p : ℕ} (hp : 0 < p) {A : Finset ℕ}
     (hA : A ∈ (Finset.Icc 1 (2 * p)).powersetCard p \
       {Finset.Icc 1 p, Finset.Icc (p + 1) (2 * p)}) :
@@ -318,7 +382,9 @@ theorem low_card_bounds {p : ℕ} (hp : 0 < p) {A : Finset ℕ}
   exact ⟨by lia, by lia⟩
 
 /-- For `A` as above, among the `p` sets `A, σ A, ..., σ^{p-1} A` exactly one has
-sum divisible by `p` (here `σ` is `shiftSet p`). -/
+sum divisible by `p` (here `σ` is `shiftSet p`).
+@isnad1 id=eq.2h2v.s7.89551a9c18f9 from=translated src=- shape=3b446e9d vocab=aea9017d
+-/
 theorem card_range_filter_eq_one {p : ℕ} (hp : p.Prime) {A : Finset ℕ}
     (hA : A ∈ (Finset.Icc 1 (2 * p)).powersetCard p \
       {Finset.Icc 1 p, Finset.Icc (p + 1) (2 * p)}) :
@@ -379,7 +445,9 @@ theorem card_range_filter_eq_one {p : ℕ} (hp : p.Prime) {A : Finset ℕ}
 
 /-- Shifting `i` times is a bijection on the good subsets, so for each fixed `i`
 the number of good `A` with `p ∣ ∑ σⁱ A` equals the number of good `B` with
-`p ∣ ∑ B`. -/
+`p ∣ ∑ B`.
+@isnad1 id=eq.2h2v.s8.2a73c56ea02b from=translated src=- shape=7faa1ec8 vocab=aea9017d
+-/
 theorem card_U_filter_eq {p : ℕ} (hp : p.Prime) (i : ℕ) (hi : i ∈ Finset.range p) :
     (((Finset.Icc 1 (2 * p)).powersetCard p \
         {Finset.Icc 1 p, Finset.Icc (p + 1) (2 * p)}).filter

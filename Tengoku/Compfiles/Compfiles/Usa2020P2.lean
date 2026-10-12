@@ -169,7 +169,9 @@ def yLayer : Beam n → Fin n
 
 /-- A one-dimensional propagation lemma: if a property of positions always
 propagates to the left and right neighbors (unless at the boundary), then it
-holds everywhere once it holds somewhere. -/
+holds everywhere once it holds somewhere.
+@isnad1 id=var.1h5v.s6.fe9c9b16a35b from=translated src=- shape=9be21cdf vocab=fb71ff09
+-/
 theorem fill1d {n : ℕ} (P : Fin n → Prop)
     (hP : ∀ i, P i → (i.val = 0 ∨ ∃ i', i'.val + 1 = i.val ∧ P i') ∧
       (i.val + 1 = n ∨ ∃ i', i'.val = i.val + 1 ∧ P i'))
@@ -214,7 +216,9 @@ theorem fill1d {n : ℕ} (P : Fin n → Prop)
       Fin.ext (show i₀.val - (i₀.val - i.val) = i.val by lia)
     rwa [e] at h2
 
-/-- An `xBeam` in a cube without `zBeam`s fills its whole row along `y`. -/
+/-- An `xBeam` in a cube without `zBeam`s fills its whole row along `y`.
+@isnad1 id=mem.3h5v.s6.6e72ac8cf5cf from=translated src=- shape=267a3e58 vocab=802efbd8
+-/
 theorem fill_xBeam_y {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hz : ∀ i j, zBeam i j ∉ S) {k j : Fin n} (h : xBeam j k ∈ S) (j' : Fin n) :
     xBeam j' k ∈ S :=
@@ -232,7 +236,9 @@ theorem fill_xBeam_y {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
         · exact absurd hj₂ (hz i' j₀))
     h j'
 
-/-- A `yBeam` in a cube without `zBeam`s fills its whole column along `x`. -/
+/-- A `yBeam` in a cube without `zBeam`s fills its whole column along `x`.
+@isnad1 id=mem.3h5v.s6.839fd8079ca3 from=translated src=- shape=53e187af vocab=60bf4b25
+-/
 theorem fill_yBeam_x {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hz : ∀ i j, zBeam i j ∉ S) {i k : Fin n} (h : yBeam i k ∈ S) (i' : Fin n) :
     yBeam i' k ∈ S :=
@@ -250,7 +256,9 @@ theorem fill_yBeam_x {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
         · exact absurd hi₂ (hz i₀ j₀))
     h i'
 
-/-- A `yBeam` in a cube without `xBeam`s fills its whole column along `z`. -/
+/-- A `yBeam` in a cube without `xBeam`s fills its whole column along `z`.
+@isnad1 id=mem.3h5v.s6.9924d071848d from=translated src=- shape=7581624e vocab=9359e5d7
+-/
 theorem fill_yBeam_z {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hx : ∀ j k, xBeam j k ∉ S) {i k : Fin n} (h : yBeam i k ∈ S) (k' : Fin n) :
     yBeam i k' ∈ S :=
@@ -268,7 +276,9 @@ theorem fill_yBeam_z {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
         · exact absurd hk₂ (hx j₀ k₀))
     h k'
 
-/-- An `xBeam` in a cube without `yBeam`s fills its whole row along `z`. -/
+/-- An `xBeam` in a cube without `yBeam`s fills its whole row along `z`.
+@isnad1 id=mem.3h5v.s6.ef2deac550a0 from=translated src=- shape=7581624e vocab=9359e5d7
+-/
 theorem fill_xBeam_z {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hy : ∀ i k, yBeam i k ∉ S) {j k : Fin n} (h : xBeam j k ∈ S) (k' : Fin n) :
     xBeam j k' ∈ S :=
@@ -286,7 +296,9 @@ theorem fill_xBeam_z {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
         · exact absurd hk₂ (hy i₀ k₀))
     h k'
 
-/-- A `zBeam` in a cube without `yBeam`s fills its whole row along `x`. -/
+/-- A `zBeam` in a cube without `yBeam`s fills its whole row along `x`.
+@isnad1 id=mem.3h5v.s6.d00fd028c5f5 from=translated src=- shape=53e187af vocab=60bf4b25
+-/
 theorem fill_zBeam_x {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hy : ∀ i k, yBeam i k ∉ S) {i j : Fin n} (h : zBeam i j ∈ S) (i' : Fin n) :
     zBeam i' j ∈ S :=
@@ -304,7 +316,9 @@ theorem fill_zBeam_x {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
         · exact absurd hi₂ (hy i₀ k₀))
     h i'
 
-/-- A `zBeam` in a cube without `xBeam`s fills its whole row along `y`. -/
+/-- A `zBeam` in a cube without `xBeam`s fills its whole row along `y`.
+@isnad1 id=mem.3h5v.s6.ffca71be0e9b from=translated src=- shape=7581624e vocab=802efbd8
+-/
 theorem fill_zBeam_y {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hx : ∀ j k, xBeam j k ∉ S) {i j : Fin n} (h : zBeam i j ∈ S) (j' : Fin n) :
     zBeam i j' ∈ S :=
@@ -334,6 +348,9 @@ def xFull (S : Finset (Beam n)) (i : Fin n) : Prop :=
 def yFull (S : Finset (Beam n)) (j : Fin n) : Prop :=
   ∀ k i, xBeam j k ∈ S ∨ zBeam i j ∈ S
 
+/--
+@isnad1 id=zfull.3h3v.s6.afa186aa9fef from=translated src=- shape=74e1dec0 vocab=9ae402d6
+-/
 theorem zFull_of_mem {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hz : ∀ i j, zBeam i j ∉ S) {b : Beam n} (hb : b ∈ S) : zFull S (zLayer b) := by
   cases b with
@@ -341,6 +358,9 @@ theorem zFull_of_mem {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
   | yBeam i k => exact fun i' j => Or.inr (fill_yBeam_x hS hz hb i')
   | zBeam i j => exact absurd hb (hz i j)
 
+/--
+@isnad1 id=xfull.3h3v.s6.94121f7b8442 from=translated src=- shape=74e1dec0 vocab=f2f2829a
+-/
 theorem xFull_of_mem {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hx : ∀ j k, xBeam j k ∉ S) {b : Beam n} (hb : b ∈ S) : xFull S (xLayer b) := by
   cases b with
@@ -348,6 +368,9 @@ theorem xFull_of_mem {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
   | yBeam i k => exact fun k' j => Or.inl (fill_yBeam_z hS hx hb k')
   | zBeam i j => exact fun k j' => Or.inr (fill_zBeam_y hS hx hb j')
 
+/--
+@isnad1 id=yfull.3h3v.s6.0163f5fc32bd from=translated src=- shape=74e1dec0 vocab=bc62150b
+-/
 theorem yFull_of_mem {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
     (hy : ∀ i k, yBeam i k ∉ S) {b : Beam n} (hb : b ∈ S) : yFull S (yLayer b) := by
   cases b with
@@ -355,6 +378,9 @@ theorem yFull_of_mem {n : ℕ} {S : Finset (Beam n)} (hS : Supp S)
   | yBeam i k => exact absurd hb (hy i k)
   | zBeam i j => exact fun k i' => Or.inr (fill_zBeam_x hS hy hb i')
 
+/--
+@isnad1 id=and.4h3v.s7.5ba12f8c1baf from=translated src=- shape=97f726d4 vocab=f9c6b7e9
+-/
 theorem zFull_step {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hz : ∀ i j, zBeam i j ∉ S) (k : Fin n) (hk : zFull S k) :
     (k.val = 0 ∨ ∃ k', k'.val + 1 = k.val ∧ zFull S k') ∧
@@ -381,6 +407,9 @@ theorem zFull_step {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
       · exact Or.inr ⟨k', hk'1, fun i j => Or.inr (fill_yBeam_x hS hz hk'2 i)⟩
       · exact Or.inr ⟨k', hk'1, fun i j => Or.inl (fill_xBeam_y hS hz hk'2 j)⟩
 
+/--
+@isnad1 id=and.4h3v.s7.502bb9da53c5 from=translated src=- shape=97f726d4 vocab=c56c6994
+-/
 theorem xFull_step {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hx : ∀ j k, xBeam j k ∉ S) (i : Fin n) (hi : xFull S i) :
     (i.val = 0 ∨ ∃ i', i'.val + 1 = i.val ∧ xFull S i') ∧
@@ -407,6 +436,9 @@ theorem xFull_step {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
       · exact Or.inr ⟨i', hi'1, fun k j => Or.inr (fill_zBeam_y hS hx hi'2 j)⟩
       · exact Or.inr ⟨i', hi'1, fun k j => Or.inl (fill_yBeam_z hS hx hi'2 k)⟩
 
+/--
+@isnad1 id=and.4h3v.s7.7eb8d0a9f27a from=translated src=- shape=97f726d4 vocab=50f96d28
+-/
 theorem yFull_step {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hy : ∀ i k, yBeam i k ∉ S) (j : Fin n) (hj : yFull S j) :
     (j.val = 0 ∨ ∃ j', j'.val + 1 = j.val ∧ yFull S j') ∧
@@ -433,24 +465,36 @@ theorem yFull_step {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
       · exact Or.inr ⟨j', hj'1, fun k i => Or.inr (fill_zBeam_x hS hy hj'2 i)⟩
       · exact Or.inr ⟨j', hj'1, fun k i => Or.inl (fill_xBeam_z hS hy hj'2 k)⟩
 
+/--
+@isnad1 id=zfull.4h3v.s5.8b3ae4d47786 from=translated src=- shape=7dde3f6c vocab=76838a3e
+-/
 theorem zFull_all {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hz : ∀ i j, zBeam i j ∉ S) (hne : S.Nonempty) : ∀ k, zFull S k := by
   obtain ⟨b, hb⟩ := hne
   exact fun k =>
     fill1d (zFull S) (fun i hi => zFull_step hn hS hz i hi) (zFull_of_mem hS hz hb) k
 
+/--
+@isnad1 id=xfull.4h3v.s5.cb23c4f10f86 from=translated src=- shape=7dde3f6c vocab=f920f68c
+-/
 theorem xFull_all {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hx : ∀ j k, xBeam j k ∉ S) (hne : S.Nonempty) : ∀ i, xFull S i := by
   obtain ⟨b, hb⟩ := hne
   exact fun i =>
     fill1d (xFull S) (fun a ha => xFull_step hn hS hx a ha) (xFull_of_mem hS hx hb) i
 
+/--
+@isnad1 id=yfull.4h3v.s5.8bd84cc49e70 from=translated src=- shape=7dde3f6c vocab=a7d19f6c
+-/
 theorem yFull_all {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hy : ∀ i k, yBeam i k ∉ S) (hne : S.Nonempty) : ∀ j, yFull S j := by
   obtain ⟨b, hb⟩ := hne
   exact fun j =>
     fill1d (yFull S) (fun a ha => yFull_step hn hS hy a ha) (yFull_of_mem hS hy hb) j
 
+/--
+@isnad1 id=le.3h3v.s6.996e8770ac6f from=translated src=- shape=886cbbf0 vocab=2d4ef72a
+-/
 theorem card_zLayer (_hn : 0 < n) {S : Finset (Beam n)}
     (_hz : ∀ i j, zBeam i j ∉ S) (k : Fin n) (hk : zFull S k) :
     n ≤ (S.filter fun b => zLayer b = k).card := by
@@ -482,6 +526,9 @@ theorem card_zLayer (_hn : 0 < n) {S : Finset (Beam n)}
             Finset.card_univ, Fintype.card_fin]
       _ ≤ (S.filter fun b => zLayer b = k).card := Finset.card_le_card hsub
 
+/--
+@isnad1 id=le.3h3v.s6.4002b0843c75 from=translated src=- shape=886cbbf0 vocab=c270ca6b
+-/
 theorem card_xLayer (_hn : 0 < n) {S : Finset (Beam n)}
     (_hx : ∀ j k, xBeam j k ∉ S) (i : Fin n) (hi : xFull S i) :
     n ≤ (S.filter fun b => xLayer b = i).card := by
@@ -513,6 +560,9 @@ theorem card_xLayer (_hn : 0 < n) {S : Finset (Beam n)}
             Finset.card_univ, Fintype.card_fin]
       _ ≤ (S.filter fun b => xLayer b = i).card := Finset.card_le_card hsub
 
+/--
+@isnad1 id=le.3h3v.s6.0926edeb0438 from=translated src=- shape=886cbbf0 vocab=d0d64f70
+-/
 theorem card_yLayer (_hn : 0 < n) {S : Finset (Beam n)}
     (_hy : ∀ i k, yBeam i k ∉ S) (j : Fin n) (hj : yFull S j) :
     n ≤ (S.filter fun b => yLayer b = j).card := by
@@ -544,7 +594,9 @@ theorem card_yLayer (_hn : 0 < n) {S : Finset (Beam n)}
             Finset.card_univ, Fintype.card_fin]
       _ ≤ (S.filter fun b => yLayer b = j).card := Finset.card_le_card hsub
 
-/-- If there are no `zBeam`s, every layer is filled and `n² ≤ S.card`. -/
+/-- If there are no `zBeam`s, every layer is filled and `n² ≤ S.card`.
+@isnad1 id=le.4h2v.s6.2a2c746a3ed3 from=translated src=- shape=a804386b vocab=cb58138d
+-/
 theorem card_ge_sq_of_no_zBeam {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hz : ∀ i j, zBeam i j ∉ S) (hne : S.Nonempty) : n * n ≤ S.card := by
   have hall : ∀ k : Fin n, zFull S k := zFull_all hn hS hz hne
@@ -555,7 +607,9 @@ theorem card_ge_sq_of_no_zBeam {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS 
   rw [← h2]
   exact Finset.sum_le_sum fun k _ => card_zLayer hn hz k (hall k)
 
-/-- If there are no `xBeam`s, every layer is filled and `n² ≤ S.card`. -/
+/-- If there are no `xBeam`s, every layer is filled and `n² ≤ S.card`.
+@isnad1 id=le.4h2v.s6.c6b3fbf3409e from=translated src=- shape=a804386b vocab=05861ff1
+-/
 theorem card_ge_sq_of_no_xBeam {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hx : ∀ j k, xBeam j k ∉ S) (hne : S.Nonempty) : n * n ≤ S.card := by
   have hall : ∀ i : Fin n, xFull S i := xFull_all hn hS hx hne
@@ -566,7 +620,9 @@ theorem card_ge_sq_of_no_xBeam {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS 
   rw [← h2]
   exact Finset.sum_le_sum fun i _ => card_xLayer hn hx i (hall i)
 
-/-- If there are no `yBeam`s, every layer is filled and `n² ≤ S.card`. -/
+/-- If there are no `yBeam`s, every layer is filled and `n² ≤ S.card`.
+@isnad1 id=le.4h2v.s6.80e4477a9868 from=translated src=- shape=a804386b vocab=739a99b4
+-/
 theorem card_ge_sq_of_no_yBeam {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hy : ∀ i k, yBeam i k ∉ S) (hne : S.Nonempty) : n * n ≤ S.card := by
   have hall : ∀ j : Fin n, yFull S j := yFull_all hn hS hy hne
@@ -577,6 +633,9 @@ theorem card_ge_sq_of_no_yBeam {n : ℕ} (hn : 0 < n) {S : Finset (Beam n)} (hS 
   rw [← h2]
   exact Finset.sum_le_sum fun j _ => card_yLayer hn hy j (hall j)
 
+/--
+@isnad1 id=eq.0h2v.s6.011f9aec10bd from=translated src=- shape=95137afe vocab=c96dc314
+-/
 theorem card_filter_ne_z {n : ℕ} (S : Finset (Beam n)) :
     (S.filter fun b => b.dir ≠ .Z).card =
       (S.filter fun b => b.dir = .X).card + (S.filter fun b => b.dir = .Y).card := by
@@ -593,6 +652,9 @@ theorem card_filter_ne_z {n : ℕ} (S : Finset (Beam n)) :
   intro b _
   cases h : b.dir <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s6.14ab6ebe43fb from=translated src=- shape=95137afe vocab=c96dc314
+-/
 theorem card_filter_ne_x {n : ℕ} (S : Finset (Beam n)) :
     (S.filter fun b => b.dir ≠ .X).card =
       (S.filter fun b => b.dir = .Y).card + (S.filter fun b => b.dir = .Z).card := by
@@ -609,6 +671,9 @@ theorem card_filter_ne_x {n : ℕ} (S : Finset (Beam n)) :
   intro b _
   cases h : b.dir <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s6.1f254d0435e6 from=translated src=- shape=95137afe vocab=c96dc314
+-/
 theorem card_filter_ne_y {n : ℕ} (S : Finset (Beam n)) :
     (S.filter fun b => b.dir ≠ .Y).card =
       (S.filter fun b => b.dir = .Z).card + (S.filter fun b => b.dir = .X).card := by
@@ -626,7 +691,9 @@ theorem card_filter_ne_y {n : ℕ} (S : Finset (Beam n)) :
   cases h : b.dir <;> simp
 
 /-- If some beam is not a `zBeam`, every `z`-layer contains an `xBeam` or a
-`yBeam`, hence `n ≤ Nx + Ny`. -/
+`yBeam`, hence `n ≤ Nx + Ny`.
+@isnad1 id=le.3h2v.s6.251ecfa02980 from=translated src=- shape=4199cb3a vocab=86fc4bee
+-/
 theorem n_le_of_mem_nonZ {n : ℕ} (_hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hxy : ∃ b ∈ S, b.dir ≠ .Z) :
     n ≤ (S.filter fun b => b.dir = .X).card + (S.filter fun b => b.dir = .Y).card := by
@@ -680,7 +747,9 @@ theorem n_le_of_mem_nonZ {n : ℕ} (_hn : 0 < n) {S : Finset (Beam n)} (hS : Sup
   rwa [card_filter_ne_z] at h2
 
 /-- If some beam is not an `xBeam`, every `x`-layer contains a `yBeam` or a
-`zBeam`, hence `n ≤ Ny + Nz`. -/
+`zBeam`, hence `n ≤ Ny + Nz`.
+@isnad1 id=le.3h2v.s6.f4e71d7bfb7f from=translated src=- shape=4199cb3a vocab=86fc4bee
+-/
 theorem n_le_of_mem_nonX {n : ℕ} (_hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hxy : ∃ b ∈ S, b.dir ≠ .X) :
     n ≤ (S.filter fun b => b.dir = .Y).card + (S.filter fun b => b.dir = .Z).card := by
@@ -734,7 +803,9 @@ theorem n_le_of_mem_nonX {n : ℕ} (_hn : 0 < n) {S : Finset (Beam n)} (hS : Sup
   rwa [card_filter_ne_x] at h2
 
 /-- If some beam is not a `yBeam`, every `y`-layer contains a `zBeam` or an
-`xBeam`, hence `n ≤ Nz + Nx`. -/
+`xBeam`, hence `n ≤ Nz + Nx`.
+@isnad1 id=le.3h2v.s6.4533edb0d75c from=translated src=- shape=4199cb3a vocab=86fc4bee
+-/
 theorem n_le_of_mem_nonY {n : ℕ} (_hn : 0 < n) {S : Finset (Beam n)} (hS : Supp S)
     (hxy : ∃ b ∈ S, b.dir ≠ .Y) :
     n ≤ (S.filter fun b => b.dir = .Z).card + (S.filter fun b => b.dir = .X).card := by
@@ -787,6 +858,9 @@ theorem n_le_of_mem_nonY {n : ℕ} (_hn : 0 < n) {S : Finset (Beam n)} (hS : Sup
         Finset.sum_le_sum fun j _ => hfiber j
   rwa [card_filter_ne_y] at h2
 
+/--
+@isnad1 id=eq.0h2v.s6.ac2e537b9687 from=translated src=- shape=5485bc8b vocab=c96dc314
+-/
 theorem card_eq_sum_dirs {n : ℕ} (S : Finset (Beam n)) :
     S.card = (S.filter fun b => b.dir = .X).card + (S.filter fun b => b.dir = .Y).card +
       (S.filter fun b => b.dir = .Z).card := by
@@ -816,7 +890,9 @@ theorem card_eq_sum_dirs {n : ℕ} (S : Finset (Beam n)) :
         rw [Finset.card_union_of_disjoint disj2, Finset.card_union_of_disjoint disj1]
 
 /-- The lower bound: any supported nonempty configuration has
-`3 * n ≤ 2 * S.card`. -/
+`3 * n ≤ 2 * S.card`.
+@isnad1 id=le.3h2v.s5.380c076698fe from=translated src=- shape=f077ca09 vocab=1f850f71
+-/
 theorem lower_bound {n : ℕ} (hn : 2 ≤ n) {S : Finset (Beam n)} (hS : Supp S)
     (hne : S.Nonempty) : 3 * n ≤ 2 * S.card := by
   have hn0 : 0 < n := by lia
@@ -869,21 +945,33 @@ def halfBeams : Finset (Beam 2020) := zPart ∪ yPart ∪ xPart
 
 /-! ### Membership helpers -/
 
+/--
+@isnad1 id=mem.1h1v.s6.19fa86f1e6db from=translated src=- shape=1d8c5dd3 vocab=a7e4e69a
+-/
 theorem mem_zPart (t : ℕ) (ht : t < 1010) :
     zBeam ⟨2 * t, by lia⟩ ⟨2 * t, by lia⟩ ∈ zPart := by
   rw [zPart, Finset.mem_image]
   exact ⟨⟨t, Finset.mem_range.mpr ht⟩, by simp, rfl⟩
 
+/--
+@isnad1 id=mem.1h1v.s6.7cfb88c80978 from=translated src=- shape=5a82450f vocab=a56f6bb5
+-/
 theorem mem_yPart (t : ℕ) (ht : t < 1010) :
     yBeam ⟨2 * t + 1, by lia⟩ ⟨2 * t, by lia⟩ ∈ yPart := by
   rw [yPart, Finset.mem_image]
   exact ⟨⟨t, Finset.mem_range.mpr ht⟩, by simp, rfl⟩
 
+/--
+@isnad1 id=mem.1h1v.s6.302b4682a26d from=translated src=- shape=1e640466 vocab=d6f1576b
+-/
 theorem mem_xPart (t : ℕ) (ht : t < 1010) :
     xBeam ⟨2 * t + 1, by lia⟩ ⟨2 * t + 1, by lia⟩ ∈ xPart := by
   rw [xPart, Finset.mem_image]
   exact ⟨⟨t, Finset.mem_range.mpr ht⟩, by simp, rfl⟩
 
+/--
+@isnad1 id=mem.1h1v.s6.f318a80e84fb from=translated src=- shape=1d8c5dd3 vocab=b898eced
+-/
 theorem mem_halfBeams_z (t : ℕ) (ht : t < 1010) :
     zBeam ⟨2 * t, by lia⟩ ⟨2 * t, by lia⟩ ∈ halfBeams := by
   rw [halfBeams]
@@ -891,6 +979,9 @@ theorem mem_halfBeams_z (t : ℕ) (ht : t < 1010) :
   apply Finset.mem_union_left
   exact mem_zPart t ht
 
+/--
+@isnad1 id=mem.1h1v.s6.d2407db08a05 from=translated src=- shape=5a82450f vocab=4a58f9ab
+-/
 theorem mem_halfBeams_y (t : ℕ) (ht : t < 1010) :
     yBeam ⟨2 * t + 1, by lia⟩ ⟨2 * t, by lia⟩ ∈ halfBeams := by
   rw [halfBeams]
@@ -898,12 +989,18 @@ theorem mem_halfBeams_y (t : ℕ) (ht : t < 1010) :
   apply Finset.mem_union_right
   exact mem_yPart t ht
 
+/--
+@isnad1 id=mem.1h1v.s6.11bf3a5307b3 from=translated src=- shape=1e640466 vocab=0d180387
+-/
 theorem mem_halfBeams_x (t : ℕ) (ht : t < 1010) :
     xBeam ⟨2 * t + 1, by lia⟩ ⟨2 * t + 1, by lia⟩ ∈ halfBeams := by
   rw [halfBeams]
   apply Finset.mem_union_right
   exact mem_xPart t ht
 
+/--
+@isnad1 id=ex.1h2v.s6.5a63e48f5deb from=translated src=- shape=cacf46d9 vocab=15ce9ecb
+-/
 theorem of_mem_halfBeams_z {i j : Fin 2020} (h : zBeam i j ∈ halfBeams) :
     ∃ t : ℕ, t < 1010 ∧ i.val = 2 * t ∧ j.val = 2 * t := by
   rw [halfBeams, Finset.mem_union, Finset.mem_union] at h
@@ -920,6 +1017,9 @@ theorem of_mem_halfBeams_z {i j : Fin 2020} (h : zBeam i j ∈ halfBeams) :
     obtain ⟨_a, -, ha⟩ := h
     cases ha
 
+/--
+@isnad1 id=ex.1h2v.s7.626e1d5de60d from=translated src=- shape=dfaa0095 vocab=5848067c
+-/
 theorem of_mem_halfBeams_y {i k : Fin 2020} (h : yBeam i k ∈ halfBeams) :
     ∃ t : ℕ, t < 1010 ∧ i.val = 2 * t + 1 ∧ k.val = 2 * t := by
   rw [halfBeams, Finset.mem_union, Finset.mem_union] at h
@@ -936,6 +1036,9 @@ theorem of_mem_halfBeams_y {i k : Fin 2020} (h : yBeam i k ∈ halfBeams) :
     obtain ⟨_a, -, ha⟩ := h
     cases ha
 
+/--
+@isnad1 id=ex.1h2v.s7.c7bb34a45a48 from=translated src=- shape=bf25b237 vocab=b25e7894
+-/
 theorem of_mem_halfBeams_x {j k : Fin 2020} (h : xBeam j k ∈ halfBeams) :
     ∃ t : ℕ, t < 1010 ∧ j.val = 2 * t + 1 ∧ k.val = 2 * t + 1 := by
   rw [halfBeams, Finset.mem_union, Finset.mem_union] at h
@@ -954,6 +1057,9 @@ theorem of_mem_halfBeams_x {j k : Fin 2020} (h : xBeam j k ∈ halfBeams) :
 
 /-! ### Cardinalities -/
 
+/--
+@isnad1 id=eq.0h0v.s3.6999eb4268ad from=translated src=- shape=415057c6 vocab=29ea7fdd
+-/
 theorem zPart_card : zPart.card = 1010 := by
   rw [zPart, Finset.card_image_of_injOn ?_, Finset.card_attach, Finset.card_range]
   intro a _ b _ h
@@ -961,6 +1067,9 @@ theorem zPart_card : zPart.card = 1010 := by
   have h3 : 2 * a.val = 2 * b.val := congrArg Fin.val h1
   exact Subtype.ext (by lia)
 
+/--
+@isnad1 id=eq.0h0v.s3.42940fba826d from=translated src=- shape=415057c6 vocab=c77dd1fb
+-/
 theorem yPart_card : yPart.card = 1010 := by
   rw [yPart, Finset.card_image_of_injOn ?_, Finset.card_attach, Finset.card_range]
   intro a _ b _ h
@@ -968,6 +1077,9 @@ theorem yPart_card : yPart.card = 1010 := by
   have h3 : 2 * a.val + 1 = 2 * b.val + 1 := congrArg Fin.val h1
   exact Subtype.ext (by lia)
 
+/--
+@isnad1 id=eq.0h0v.s3.445fd0ba295b from=translated src=- shape=415057c6 vocab=3d92fcaf
+-/
 theorem xPart_card : xPart.card = 1010 := by
   rw [xPart, Finset.card_image_of_injOn ?_, Finset.card_attach, Finset.card_range]
   intro a _ b _ h
@@ -975,6 +1087,9 @@ theorem xPart_card : xPart.card = 1010 := by
   have h3 : 2 * a.val + 1 = 2 * b.val + 1 := congrArg Fin.val h1
   exact Subtype.ext (by lia)
 
+/--
+@isnad1 id=eq.0h0v.s3.b52db53e8ef9 from=translated src=- shape=415057c6 vocab=8d758d94
+-/
 theorem halfBeams_card : halfBeams.card = 3030 := by
   have dzy : Disjoint zPart yPart := by
     rw [Finset.disjoint_left]
@@ -1004,12 +1119,18 @@ theorem halfBeams_card : halfBeams.card = 3030 := by
   rw [halfBeams, Finset.card_union_of_disjoint h, Finset.card_union_of_disjoint dzy,
     zPart_card, yPart_card, xPart_card]
 
+/--
+@isnad1 id=nonempty.0h0v.s3.37a895143f9d from=translated src=- shape=06f63001 vocab=9f03e8d2
+-/
 theorem halfBeams_nonempty : halfBeams.Nonempty := by
   rw [← Finset.card_pos, halfBeams_card]
   norm_num
 
 /-! ### Disjointness of the construction -/
 
+/--
+@isnad1 id=disjoint.0h0v.s2.3eec50ce82f6 from=translated src=- shape=cef8a6bf vocab=b6c40384
+-/
 theorem halfBeams_disjoint : DisjointBeams halfBeams := by
   intro b₁ hb₁ b₂ hb₂ ⟨x, y, z, h1, h2⟩
   rw [halfBeams, Finset.mem_union, Finset.mem_union] at hb₁ hb₂
@@ -1098,6 +1219,9 @@ theorem halfBeams_disjoint : DisjointBeams halfBeams := by
 
 /-! ### The support conditions -/
 
+/--
+@isnad1 id=supp.0h0v.s2.981a651c124e from=translated src=- shape=cef8a6bf vocab=d9987ae5
+-/
 theorem halfBeams_supp : Supp halfBeams := by
   refine ⟨?_, ?_, ?_⟩
   · -- `xBeam (2t+1, 2t+1)`

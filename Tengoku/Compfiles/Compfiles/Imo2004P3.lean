@@ -72,6 +72,9 @@ def lo (s : Finset (ℤ × ℤ)) : ℤ × ℤ :=
 /-- The "hole" (notch) of a hook: the centre cell of its bounding box. -/
 def hole (s : Finset (ℤ × ℤ)) : ℤ × ℤ := lo s + (1, 1)
 
+/--
+@isnad1 id=iff.0h3v.s6.a3d2d8fe4a67 from=translated src=- shape=78ddcf03 vocab=20ac5e56
+-/
 lemma mem_rect {m n : ℕ} {c : ℤ × ℤ} :
     c ∈ rect m n ↔ 0 ≤ c.1 ∧ c.1 < m ∧ 0 ≤ c.2 ∧ c.2 < n := by
   constructor
@@ -87,6 +90,9 @@ lemma mem_rect {m n : ℕ} {c : ℤ × ℤ} :
     · exact Int.toNat_lt (by lia) |>.mpr (by exact_mod_cast h4)
     · ext <;> simp [h1, h3]
 
+/--
+@isnad1 id=eq.0h2v.s4.e60a14b09492 from=translated src=- shape=cb5d9d78 vocab=d8429674
+-/
 lemma card_rect (m n : ℕ) : (rect m n).card = m * n := by
   have hinj : Function.Injective (fun p : ℕ × ℕ => ((p.1 : ℤ), (p.2 : ℤ))) := by
     rintro ⟨a1, b1⟩ ⟨a2, b2⟩ h
@@ -95,6 +101,9 @@ lemma card_rect (m n : ℕ) : (rect m n).card = m * n := by
   rw [rect, Finset.card_image_of_injective _ hinj, Finset.card_product,
     Finset.card_range, Finset.card_range]
 
+/--
+@isnad1 id=eq.1h1v.s5.0789d336247a from=translated src=- shape=4e8f5907 vocab=41a8bb74
+-/
 lemma lo_eq {s : Finset (ℤ × ℤ)} (hs : s.Nonempty) :
     lo s = ((s.image Prod.fst).min' (hs.image _), (s.image Prod.snd).min' (hs.image _)) := by
   have hget : ∀ (t : Finset ℤ) (ht : t.Nonempty), (t.min).getD 0 = t.min' ht := by
@@ -102,10 +111,16 @@ lemma lo_eq {s : Finset (ℤ × ℤ)} (hs : s.Nonempty) :
   rw [show lo s = (((s.image Prod.fst).min).getD 0, ((s.image Prod.snd).min).getD 0) from rfl,
     hget _ (hs.image _), hget _ (hs.image _)]
 
+/--
+@isnad1 id=eq.3h2v.s5.9d758681434c from=translated src=- shape=ecd5eed0 vocab=4d5b48b3
+-/
 lemma min'_of_eq {A B : Finset ℤ} (hA : A.Nonempty) (hB : B.Nonempty) (h : A = B) :
     A.min' hA = B.min' hB := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.830cc5ae9f5e from=translated src=- shape=4be7b53c vocab=35e6a80f
+-/
 lemma lo_translate {s : Finset (ℤ × ℤ)} (hs : s.Nonempty) (t : ℤ × ℤ) :
     lo (s.image (· + t)) = lo s + t := by
   have h1 : (s.image (· + t)).image Prod.fst = (s.image Prod.fst).image (· + t.1) := by
@@ -121,34 +136,56 @@ lemma lo_translate {s : Finset (ℤ × ℤ)} (hs : s.Nonempty) (t : ℤ × ℤ) 
     Finset.min'_image mono2 (s.image Prod.snd) ((hs.image Prod.snd).image _)]
   ext <;> rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.79d0bf840786 from=translated src=- shape=4be7b53c vocab=8a2af00a
+-/
 lemma hole_translate {s : Finset (ℤ × ℤ)} (hs : s.Nonempty) (t : ℤ × ℤ) :
     hole (s.image (· + t)) = hole s + t := by
   simp only [hole, lo_translate hs t, add_right_comm]
 
+/--
+@isnad1 id=and.2h2v.s6.aecf125c3456 from=translated src=- shape=9a6348d9 vocab=62e4adc2
+-/
 lemma shape_bounds : ∀ σ ∈ hookShapes, ∀ c ∈ σ,
     0 ≤ c.1 ∧ c.1 ≤ 2 ∧ 0 ≤ c.2 ∧ c.2 ≤ 2 := by
   decide
 
+/--
+@isnad1 id=and.1h1v.s7.4c695e8bb04a from=translated src=- shape=b3fe7d3e vocab=d78887a0
+-/
 lemma shape_extremes : ∀ σ ∈ hookShapes,
     (∃ c ∈ σ, c.1 = 0) ∧ (∃ c ∈ σ, c.1 = 2) ∧ (∃ c ∈ σ, c.2 = 0) ∧ (∃ c ∈ σ, c.2 = 2) := by
   decide
 
+/--
+@isnad1 id=eq.1h1v.s5.8c5ac72bceb7 from=translated src=- shape=9c86334e vocab=7f7fc5bf
+-/
 lemma hole_shape : ∀ σ ∈ hookShapes, hole σ = (1, 1) := by
   decide
 
+/--
+@isnad1 id=not.1h1v.s5.1375ddd3521f from=translated src=- shape=fc0a280f vocab=09b54787
+-/
 lemma hole_not_mem : ∀ σ ∈ hookShapes, hole σ ∉ σ := by
   decide
 
+/--
+@isnad1 id=eq.1h1v.s5.296e2766dbd1 from=translated src=- shape=e7b0da22 vocab=8fd3b398
+-/
 lemma card_hook : ∀ σ ∈ hookShapes, σ.card = 6 := by
   decide
 
-/-- Every hook orientation contains cells two apart in some row. -/
+/-- Every hook orientation contains cells two apart in some row.
+@isnad1 id=ne.1h1v.s7.0b4f258f1319 from=translated src=- shape=178a00aa vocab=665ab91e
+-/
 lemma hook_row3 : ∀ σ ∈ hookShapes,
     ((σ.filter fun c => c.2 = 0).image Prod.fst ∩
       (σ.filter fun c => c.2 = 2).image Prod.fst).card ≠ 0 := by
   decide
 
-/-- Every hook orientation contains cells two apart in some column. -/
+/-- Every hook orientation contains cells two apart in some column.
+@isnad1 id=ne.1h1v.s7.f949b827c2f0 from=translated src=- shape=178a00aa vocab=665ab91e
+-/
 lemma hook_col3 : ∀ σ ∈ hookShapes,
     ((σ.filter fun c => c.1 = 0).image Prod.snd ∩
       (σ.filter fun c => c.1 = 2).image Prod.snd).card ≠ 0 := by
@@ -159,7 +196,9 @@ the first one is covered by the second one, and moreover the hole of the
 second hook is either covered by the first hook or can be covered by a third
 hook disjoint from both (as must happen in any tiling of a rectangle). Then
 the hole of the second hook is covered by the first, and the union of the
-two hooks is one of the six tiles. (Checked case by case.) -/
+two hooks is one of the six tiles. (Checked case by case.)
+@isnad1 id=and.5h3v.s10.975c543ae770 from=translated src=- shape=437e8175 vocab=db6c362e
+-/
 lemma pair_check :
     ∀ σ₁ ∈ hookShapes, ∀ σ₂ ∈ hookShapes,
       ∀ t ∈ (σ₂.image fun c => (1, 1) - c),
@@ -174,8 +213,14 @@ lemma pair_check :
                 τ.image (· + (lo (σ₁ ∪ (σ₂.image (· + t))) - lo τ))).card := by
   decide +kernel
 
+/--
+@isnad1 id=tileable.0h0v.s3.551835c1c1ae from=translated src=- shape=8dfc6faa vocab=e7640a5c
+-/
 lemma tileable_empty : Tileable ∅ := ⟨∅, by simp, by simp, by simp⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.133b45feb9ed from=translated src=- shape=77a905e5 vocab=d49289b0
+-/
 lemma image_add_image (s : Finset (ℤ × ℤ)) (t u : ℤ × ℤ) :
     (s.image (· + t)).image (· + u) = s.image (· + (t + u)) := by
   rw [Finset.image_image]
@@ -183,6 +228,9 @@ lemma image_add_image (s : Finset (ℤ × ℤ)) (t u : ℤ × ℤ) :
   intro x _
   exact add_assoc x t u
 
+/--
+@isnad1 id=eq.0h2v.s7.f00334d1fe92 from=translated src=- shape=18063bfe vocab=17983eb7
+-/
 lemma image_swap_add (s : Finset (ℤ × ℤ)) (t : ℤ × ℤ) :
     (s.image (· + t)).image Prod.swap = (s.image Prod.swap).image (· + Prod.swap t) := by
   rw [Finset.image_image, Finset.image_image]
@@ -190,18 +238,26 @@ lemma image_swap_add (s : Finset (ℤ × ℤ)) (t : ℤ × ℤ) :
   intro x _
   rfl
 
+/--
+@isnad1 id=ishook.1h2v.s5.6bd668843847 from=translated src=- shape=55f76a57 vocab=781bfa24
+-/
 lemma isHook_translate {s : Finset (ℤ × ℤ)} (h : IsHook s) (u : ℤ × ℤ) :
     IsHook (s.image (· + u)) := by
   obtain ⟨σ, hσ, t, rfl⟩ := h
   exact ⟨σ, hσ, t + u, image_add_image σ t u⟩
 
 /-- The hook orientations are closed under transposition (which is one of
-the eight symmetries of the square). -/
+the eight symmetries of the square).
+@isnad1 id=lt.1h1v.s8.f905a4b4ac74 from=translated src=- shape=51db6783 vocab=a2bea6e5
+-/
 lemma hookShapes_swap : ∀ σ ∈ hookShapes,
     0 < (hookShapes.filter fun σ' =>
       σ.image Prod.swap = σ'.image (· + (lo (σ.image Prod.swap) - lo σ'))).card := by
   decide
 
+/--
+@isnad1 id=ishook.1h1v.s5.ed674d87a379 from=translated src=- shape=b58a19a7 vocab=d57761c5
+-/
 lemma isHook_swap {s : Finset (ℤ × ℤ)} (h : IsHook s) : IsHook (s.image Prod.swap) := by
   obtain ⟨σ, hσ, t, rfl⟩ := h
   have hc := hookShapes_swap σ hσ
@@ -216,6 +272,9 @@ lemma isHook_swap {s : Finset (ℤ × ℤ)} (h : IsHook s) : IsHook (s.image Pro
         conv_lhs => rw [hσ'eq]
     _ = σ'.image (· + ((lo (σ.image Prod.swap) - lo σ') + Prod.swap t)) := image_add_image _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s7.eda974a991d6 from=translated src=- shape=d1b53748 vocab=faa12d52
+-/
 lemma biUnion_image_translate (𝒯 : Finset (Finset (ℤ × ℤ))) (u : ℤ × ℤ) :
     (𝒯.image (fun H => H.image (· + u))).biUnion id = (𝒯.biUnion id).image (· + u) := by
   ext x
@@ -228,6 +287,9 @@ lemma biUnion_image_translate (𝒯 : Finset (Finset (ℤ × ℤ))) (u : ℤ × 
   · rintro ⟨x₀, ⟨H, hH, hx₀⟩, rfl⟩
     exact ⟨H.image (· + u), ⟨H, hH, rfl⟩, Finset.mem_image.mpr ⟨x₀, hx₀, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.7ec74652d9d0 from=translated src=- shape=ef6161ce vocab=a96091b3
+-/
 lemma biUnion_image_swap (𝒯 : Finset (Finset (ℤ × ℤ))) :
     (𝒯.image (fun H => H.image Prod.swap)).biUnion id = (𝒯.biUnion id).image Prod.swap := by
   ext x
@@ -240,6 +302,9 @@ lemma biUnion_image_swap (𝒯 : Finset (Finset (ℤ × ℤ))) :
   · rintro ⟨x₀, ⟨H, hH, hx₀⟩, rfl⟩
     exact ⟨H.image Prod.swap, ⟨H, hH, rfl⟩, Finset.mem_image.mpr ⟨x₀, hx₀, rfl⟩⟩
 
+/--
+@isnad1 id=tileable.1h2v.s5.d54e2b6c0e0a from=translated src=- shape=55f76a57 vocab=58e65171
+-/
 lemma tileable_translate {R : Finset (ℤ × ℤ)} (hR : Tileable R) (u : ℤ × ℤ) :
     Tileable (R.image (· + u)) := by
   obtain ⟨𝒯, hh, hd, hU⟩ := hR
@@ -263,6 +328,9 @@ lemma tileable_translate {R : Finset (ℤ × ℤ)} (hR : Tileable R) (u : ℤ ×
     exact hd12 ha (hab' ▸ hb)
   · rw [biUnion_image_translate, hU]
 
+/--
+@isnad1 id=tileable.3h2v.s5.83700f37803f from=translated src=- shape=be2b917c vocab=8b4b556e
+-/
 lemma tileable_union {R₁ R₂ : Finset (ℤ × ℤ)} (hd : Disjoint R₁ R₂)
     (h1 : Tileable R₁) (h2 : Tileable R₂) : Tileable (R₁ ∪ R₂) := by
   obtain ⟨𝒯₁, hh1, hd1, hU1⟩ := h1
@@ -284,10 +352,19 @@ lemma tileable_union {R₁ R₂ : Finset (ℤ × ℤ)} (hd : Disjoint R₁ R₂)
     · exact hd2 H₁ h1' H₂ h2' hne
   · rw [Finset.union_biUnion, ← hU1, ← hU2]
 
+/--
+@isnad1 id=eq.0h1v.s4.2c82d0d643ea from=translated src=- shape=be3ba13b vocab=5d91e39b
+-/
 lemma rect_zero_left (n : ℕ) : rect 0 n = ∅ := by simp [rect]
 
+/--
+@isnad1 id=eq.0h1v.s4.75ff71013e39 from=translated src=- shape=82d49b78 vocab=5d91e39b
+-/
 lemma rect_zero_right (m : ℕ) : rect m 0 = ∅ := by simp [rect]
 
+/--
+@isnad1 id=eq.0h3v.s6.1941bd09b21a from=translated src=- shape=3fea85fe vocab=e0063f9a
+-/
 lemma rect_add_rows (m₁ m₂ n : ℕ) :
     rect (m₁ + m₂) n = rect m₁ n ∪ (rect m₂ n).image (· + ((m₁ : ℤ), 0)) := by
   ext c
@@ -306,6 +383,9 @@ lemma rect_add_rows (m₁ m₂ n : ℕ) :
       rw [g1, g2]
       exact ⟨by lia, by lia, by lia, by lia⟩
 
+/--
+@isnad1 id=disjoint.0h3v.s6.b646f6a9d729 from=translated src=- shape=0cbe1ee8 vocab=ba55edfc
+-/
 lemma rect_add_rows_disjoint (m₁ m₂ n : ℕ) :
     Disjoint (rect m₁ n) ((rect m₂ n).image (· + ((m₁ : ℤ), 0))) := by
   rw [Finset.disjoint_left]
@@ -318,6 +398,9 @@ lemma rect_add_rows_disjoint (m₁ m₂ n : ℕ) :
   have ha0 : 0 ≤ a := hab.1
   lia
 
+/--
+@isnad1 id=eq.0h3v.s6.f123d4378d44 from=translated src=- shape=05f2923b vocab=e0063f9a
+-/
 lemma rect_add_cols (m n₁ n₂ : ℕ) :
     rect m (n₁ + n₂) = rect m n₁ ∪ (rect m n₂).image (· + (0, (n₁ : ℤ))) := by
   ext c
@@ -336,6 +419,9 @@ lemma rect_add_cols (m n₁ n₂ : ℕ) :
       rw [g1, g2]
       exact ⟨by lia, by lia, by lia, by lia⟩
 
+/--
+@isnad1 id=disjoint.0h3v.s6.ef144e843fd1 from=translated src=- shape=6cb5ef44 vocab=ba55edfc
+-/
 lemma rect_add_cols_disjoint (m n₁ n₂ : ℕ) :
     Disjoint (rect m n₁) ((rect m n₂).image (· + (0, (n₁ : ℤ)))) := by
   rw [Finset.disjoint_left]
@@ -348,6 +434,9 @@ lemma rect_add_cols_disjoint (m n₁ n₂ : ℕ) :
   have hb0 : 0 ≤ b := hab.2.2.1
   lia
 
+/--
+@isnad1 id=tileable.1h3v.s4.4475fd42ac54 from=translated src=- shape=2d52cdd0 vocab=bb942284
+-/
 lemma tileable_mul_rows {a n : ℕ} (h : Tileable (rect a n)) : ∀ k, Tileable (rect (k * a) n) := by
   intro k
   induction k with
@@ -356,6 +445,9 @@ lemma tileable_mul_rows {a n : ℕ} (h : Tileable (rect a n)) : ∀ k, Tileable 
       rw [Nat.succ_mul, rect_add_rows]
       exact tileable_union (rect_add_rows_disjoint _ _ _) ih (tileable_translate h _)
 
+/--
+@isnad1 id=tileable.1h3v.s4.0f39691a8326 from=translated src=- shape=e014f4a3 vocab=bb942284
+-/
 lemma tileable_mul_cols {a n : ℕ} (h : Tileable (rect a n)) : ∀ l, Tileable (rect a (l * n)) := by
   intro l
   induction l with
@@ -364,10 +456,16 @@ lemma tileable_mul_cols {a n : ℕ} (h : Tileable (rect a n)) : ∀ l, Tileable 
       rw [Nat.succ_mul, rect_add_cols]
       exact tileable_union (rect_add_cols_disjoint _ _ _) ih (tileable_translate h _)
 
+/--
+@isnad1 id=tileable.1h4v.s5.5b2acb3ee702 from=translated src=- shape=43449c6e vocab=bb942284
+-/
 lemma tileable_mul {a b : ℕ} (h : Tileable (rect a b)) (k l : ℕ) :
     Tileable (rect (k * a) (l * b)) :=
   tileable_mul_cols (tileable_mul_rows h k) l
 
+/--
+@isnad1 id=eq.0h2v.s5.1612cb4e1b57 from=translated src=- shape=97aac931 vocab=998eab6f
+-/
 lemma rect_transpose (m n : ℕ) : (rect m n).image Prod.swap = rect n m := by
   ext c
   simp only [Finset.mem_image, mem_rect]
@@ -377,6 +475,9 @@ lemma rect_transpose (m n : ℕ) : (rect m n).image Prod.swap = rect n m := by
   · rintro ⟨h0, h1, h2, h3⟩
     exact ⟨(c.2, c.1), ⟨h2, h3, h0, h1⟩, rfl⟩
 
+/--
+@isnad1 id=tileable.1h1v.s5.1d293317d1a3 from=translated src=- shape=b58a19a7 vocab=4026c4c8
+-/
 lemma tileable_swap {R : Finset (ℤ × ℤ)} (hR : Tileable R) : Tileable (R.image Prod.swap) := by
   obtain ⟨𝒯, hh, hd, hU⟩ := hR
   refine ⟨𝒯.image (fun H => H.image Prod.swap), ?_, ?_, ?_⟩
@@ -399,11 +500,16 @@ lemma tileable_swap {R : Finset (ℤ × ℤ)} (hR : Tileable R) : Tileable (R.im
     exact hd12 ha (hab' ▸ hb)
   · rw [biUnion_image_swap, hU]
 
+/--
+@isnad1 id=tileable.1h2v.s3.8442a2929ffe from=translated src=- shape=4fe79c9d vocab=82db8a78
+-/
 lemma tileable_transpose {m n : ℕ} (h : Tileable (rect m n)) : Tileable (rect n m) := by
   rw [← rect_transpose]
   exact tileable_swap h
 
-/-- Two hooks tile a `3 × 4` rectangle. -/
+/-- Two hooks tile a `3 × 4` rectangle.
+@isnad1 id=tileable.0h0v.s3.097a3d559a6a from=translated src=- shape=90d9b386 vocab=82db8a78
+-/
 lemma tileable_3_4 : Tileable (rect 3 4) := by
   have h1 : IsHook ({(0, 0), (0, 1), (0, 2), (1, 0), (1, 2), (2, 0)} : Finset (ℤ × ℤ)) := by
     refine ⟨{(0, 0), (0, 1), (0, 2), (1, 0), (1, 2), (2, 0)}, by decide, (0, 0), ?_⟩
@@ -419,7 +525,9 @@ lemma tileable_3_4 : Tileable (rect 3 4) := by
     fin_cases hH₁ <;> fin_cases hH₂ <;> first | contradiction | decide
   · decide
 
-/-- Every natural number other than `1, 2, 5` is a sum of `3`s and `4`s. -/
+/-- Every natural number other than `1, 2, 5` is a sum of `3`s and `4`s.
+@isnad1 id=ex.1h1v.s6.5548665de2dd from=translated src=- shape=024dfa8a vocab=5c386ba3
+-/
 lemma nat_3_4 {n : ℕ} (h : n ≠ 1 ∧ n ≠ 2 ∧ n ≠ 5) : ∃ a b, n = 3 * a + 4 * b := by
   have h3 : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by lia
   rcases h3 with h3 | h3 | h3
@@ -427,7 +535,9 @@ lemma nat_3_4 {n : ℕ} (h : n ≠ 1 ∧ n ≠ 2 ∧ n ≠ 5) : ∃ a b, n = 3 *
   · exact ⟨n / 3 - 1, 1, by lia⟩
   · exact ⟨n / 3 - 2, 2, by lia⟩
 
-/-- A `12 × n` rectangle with `n ∉ {1, 2, 5}` is tileable. -/
+/-- A `12 × n` rectangle with `n ∉ {1, 2, 5}` is tileable.
+@isnad1 id=tileable.1h2v.s5.1c490af3a117 from=translated src=- shape=6d2c80d6 vocab=bb942284
+-/
 lemma tileable_12j (j : ℕ) {n : ℕ} (h2 : n ≠ 1 ∧ n ≠ 2 ∧ n ≠ 5) :
     Tileable (rect (12 * j) n) := by
   obtain ⟨a, b, rfl⟩ := nat_3_4 h2
@@ -443,7 +553,9 @@ lemma tileable_12j (j : ℕ) {n : ℕ} (h2 : n ≠ 1 ∧ n ≠ 2 ∧ n ≠ 5) :
     rw [mul_comm j 12, mul_comm b 4] at h
     exact tileable_translate h _
 
-/-- Sufficiency: every rectangle satisfying the conditions is tileable. -/
+/-- Sufficiency: every rectangle satisfying the conditions is tileable.
+@isnad1 id=tileable.4h2v.s6.7e56ae387bec from=translated src=- shape=73595e0e vocab=65f4cffd
+-/
 lemma tileable_of_conditions {m n : ℕ}
     (h1 : m ≠ 1 ∧ m ≠ 2 ∧ m ≠ 5) (h2 : n ≠ 1 ∧ n ≠ 2 ∧ n ≠ 5)
     (h3 : 3 ∣ m ∨ 3 ∣ n) (h4 : 4 ∣ m ∨ 4 ∣ n) :
@@ -502,24 +614,39 @@ lemma tileable_of_conditions {m n : ℕ}
           rw [e]
           exact tileable_transpose (tileable_12j j h1)
 
+/--
+@isnad1 id=nonempty.1h1v.s5.1f9eb9e8fccd from=translated src=- shape=1cf8dd97 vocab=e071421f
+-/
 lemma shape_nonempty : ∀ σ ∈ hookShapes, σ.Nonempty := by
   intro σ hσ
   rw [← Finset.card_pos, card_hook σ hσ]
   norm_num
 
+/--
+@isnad1 id=nonempty.1h1v.s3.960962017f1a from=translated src=- shape=7a696591 vocab=09987a97
+-/
 lemma isHook_nonempty {s : Finset (ℤ × ℤ)} (h : IsHook s) : s.Nonempty := by
   obtain ⟨σ, hσ, t, rfl⟩ := h
   exact (shape_nonempty σ hσ).image _
 
+/--
+@isnad1 id=eq.1h1v.s4.518d9587dc64 from=translated src=- shape=f7a863c7 vocab=37955aef
+-/
 lemma isHook_card {s : Finset (ℤ × ℤ)} (h : IsHook s) : s.card = 6 := by
   obtain ⟨σ, hσ, t, rfl⟩ := h
   rw [Finset.card_image_of_injective _ (fun _ _ hab => add_right_cancel hab)]
   exact card_hook σ hσ
 
+/--
+@isnad1 id=eq.1h2v.s6.15d6a14cb6bc from=translated src=- shape=184964c0 vocab=87b345df
+-/
 lemma hole_image (σ : Finset (ℤ × ℤ)) (hσ : σ ∈ hookShapes) (t : ℤ × ℤ) :
     hole (σ.image (· + t)) = (1, 1) + t := by
   rw [hole_translate (shape_nonempty σ hσ) t, hole_shape σ hσ]
 
+/--
+@isnad1 id=not.1h1v.s5.5afc97c59ba1 from=translated src=- shape=550d36bc vocab=7e90e69d
+-/
 lemma hole_not_mem_of_hook {s : Finset (ℤ × ℤ)} (h : IsHook s) : hole s ∉ s := by
   obtain ⟨σ, hσ, t, rfl⟩ := h
   rw [hole_image σ hσ t]
@@ -532,6 +659,9 @@ lemma hole_not_mem_of_hook {s : Finset (ℤ × ℤ)} (h : IsHook s) : hole s ∉
   rw [hole_shape σ hσ] at hnm
   exact hnm hc
 
+/--
+@isnad1 id=mem.2h3v.s5.44cea12f31fc from=translated src=- shape=0d0ab260 vocab=d586b97f
+-/
 lemma hole_mem_rect_of_hook {m n : ℕ} {s : Finset (ℤ × ℤ)} (h : IsHook s)
     (hsub : s ⊆ rect m n) : hole s ∈ rect m n := by
   obtain ⟨σ, hσ, t, rfl⟩ := h
@@ -551,7 +681,9 @@ lemma hole_mem_rect_of_hook {m n : ℕ} {s : Finset (ℤ × ℤ)} (h : IsHook s)
 
 /-- The pairing lemma in its general form: in any tiling, the partner of a
 hook (the hook covering its hole) has its hole covered by the first hook,
-and the two hooks together form a tile. -/
+and the two hooks together form a tile.
+@isnad1 id=and.5h2v.s7.9bf6d8d9ded9 from=translated src=- shape=753f629e vocab=3339c971
+-/
 lemma pair_general {H₁ H₂ : Finset (ℤ × ℤ)} (h1 : IsHook H₁) (h2 : IsHook H₂)
     (hd : Disjoint H₁ H₂) (hh : hole H₁ ∈ H₂)
     (h3 : hole H₂ ∈ H₁ ∨ ∃ H₃ : Finset (ℤ × ℤ), IsHook H₃ ∧ Disjoint H₃ (H₁ ∪ H₂) ∧
@@ -649,7 +781,9 @@ lemma pair_general {H₁ H₂ : Finset (ℤ × ℤ)} (h1 : IsHook H₁) (h2 : Is
           image_add_image _ _ _
 
 /-- The main structural fact: any hook-tiling of a rectangle refines to a
-tiling by the six two-hook tiles. -/
+tiling by the six two-hook tiles.
+@isnad1 id=ex.1h2v.s7.76bc9f3d377a from=translated src=- shape=9493f36e vocab=9822ff43
+-/
 lemma tile_decomposition {m n : ℕ} (h : Tileable (rect m n)) :
     ∃ Tiles : Finset (Finset (ℤ × ℤ)),
       (∀ T ∈ Tiles, IsTile T ∧ T.card = 12) ∧
@@ -754,6 +888,9 @@ lemma tile_decomposition {m n : ℕ} (h : Tileable (rect m n)) :
       · exact ⟨H, hH, hx⟩
       · exact ⟨φ H, hφ1 H hH, hx⟩
 
+/--
+@isnad1 id=dvd.1h2v.s4.440f8fa170bd from=translated src=- shape=b3700543 vocab=2f6e7d09
+-/
 lemma twelve_dvd_of_tileable {m n : ℕ} (h : Tileable (rect m n)) : 12 ∣ m * n := by
   obtain ⟨Tiles, hT, hd, hU⟩ := tile_decomposition h
   have hc : (rect m n).card = ∑ T ∈ Tiles, T.card := by
@@ -763,12 +900,17 @@ lemma twelve_dvd_of_tileable {m n : ℕ} (h : Tileable (rect m n)) : 12 ∣ m * 
     Finset.sum_const, nsmul_eq_mul, Nat.cast_id] at hc
   exact ⟨Tiles.card, by rw [hc]; ring⟩
 
+/--
+@isnad1 id=or.1h2v.s4.1d24f4f98bff from=translated src=- shape=edb639d3 vocab=65f4cffd
+-/
 lemma three_dvd_of_tileable {m n : ℕ} (h : Tileable (rect m n)) : 3 ∣ m ∨ 3 ∣ n := by
   have h3 : 3 ∣ m * n := dvd_trans (by decide : 3 ∣ 12) (twelve_dvd_of_tileable h)
   exact (Nat.Prime.dvd_mul (by decide : Nat.Prime 3)).mp h3
 
 /-- On every tile, exactly one of the two parity counts (cells in columns
-divisible by four, cells in rows divisible by four) is odd. -/
+divisible by four, cells in rows divisible by four) is odd.
+@isnad1 id=eq.1h2v.s7.d1dfc8a695f5 from=translated src=- shape=796a2b21 vocab=edafc207
+-/
 lemma tile_parities : ∀ τ ∈ tileShapes, ∀ t : ℤ × ℤ,
     ((τ.image (· + t)).filter fun c => 4 ∣ c.2).card % 2 +
     ((τ.image (· + t)).filter fun c => 4 ∣ c.1).card % 2 = 1 := by
@@ -800,6 +942,9 @@ lemma tile_parities : ∀ τ ∈ tileShapes, ∀ t : ℤ × ℤ,
     rcases hk1 with hk1 | hk1 | hk1 | hk1 <;>
     rw [hk2, hk1] <;> decide
 
+/--
+@isnad1 id=eq.0h2v.s6.c2ce3fc1f406 from=translated src=- shape=a18372e2 vocab=b00be7e6
+-/
 lemma rect_filter_snd_card (m n : ℕ) :
     ((rect m n).filter fun c => 4 ∣ c.2).card =
       m * ((Finset.range n).filter fun j : ℕ => 4 ∣ (j : ℤ)).card := by
@@ -819,6 +964,9 @@ lemma rect_filter_snd_card (m n : ℕ) :
       exact ⟨⟨⟨a, b⟩, ⟨ha, hb⟩, rfl⟩, hp⟩
   rw [hdec, Finset.card_image_of_injective _ hinj, Finset.card_product, Finset.card_range]
 
+/--
+@isnad1 id=eq.0h2v.s6.69b05a204b81 from=translated src=- shape=4ab799fc vocab=975b1389
+-/
 lemma rect_filter_fst_card (m n : ℕ) :
     ((rect m n).filter fun c => 4 ∣ c.1).card =
       n * ((Finset.range m).filter fun j : ℕ => 4 ∣ (j : ℤ)).card := by
@@ -839,7 +987,9 @@ lemma rect_filter_fst_card (m n : ℕ) :
   rw [hdec, Finset.card_image_of_injective _ hinj, Finset.card_product, Finset.card_range,
     mul_comm]
 
-/-- If `4 ∣ a * b` but `4 ∤ a` and `4 ∤ b`, then `a ≡ b ≡ 2 (mod 4)`. -/
+/-- If `4 ∣ a * b` but `4 ∤ a` and `4 ∤ b`, then `a ≡ b ≡ 2 (mod 4)`.
+@isnad1 id=and.3h2v.s6.d35fbfefe681 from=translated src=- shape=a4a515ae vocab=74e83fd4
+-/
 lemma mod4_eq_two_of {a b : ℕ} (h4ab : 4 ∣ a * b) (h4a : ¬ 4 ∣ a) (h4b : ¬ 4 ∣ b) :
     a % 4 = 2 ∧ b % 4 = 2 := by
   have h2ab : 2 ∣ a * b := dvd_trans (by decide : 2 ∣ 4) h4ab
@@ -905,12 +1055,17 @@ lemma mod4_eq_two_of {a b : ℕ} (h4ab : 4 ∣ a * b) (h4a : ¬ 4 ∣ a) (h4b : 
     exact ⟨q, by ring⟩
   constructor <;> lia
 
-/-- Necessity of the divisibility condition on `4`. -/
+/-- Necessity of the divisibility condition on `4`.
+@isnad1 id=eq.1h2v.s7.138b3a65eb7b from=translated src=- shape=745c12c2 vocab=a36ab327
+-/
 lemma card_biUnion' {s : Finset (Finset (ℤ × ℤ))} {t : Finset (ℤ × ℤ) → Finset (ℤ × ℤ)}
     (h : ∀ x ∈ s, ∀ y ∈ s, x ≠ y → Disjoint (t x) (t y)) :
     (s.biUnion t).card = ∑ x ∈ s, (t x).card :=
   Finset.card_biUnion h
 
+/--
+@isnad1 id=or.1h2v.s4.3481ec2aa4b9 from=translated src=- shape=edb639d3 vocab=65f4cffd
+-/
 lemma four_dvd_of_tileable {m n : ℕ} (h : Tileable (rect m n)) : 4 ∣ m ∨ 4 ∣ n := by
   obtain ⟨Tiles, hT, hd, hU⟩ := tile_decomposition h
   by_contra hcon
@@ -996,7 +1151,9 @@ lemma four_dvd_of_tileable {m n : ℕ} (h : Tileable (rect m n)) : 4 ∣ m ∨ 4
   lia
 
 /-- A rectangle with a side of length at most `2` cannot be tiled (a hook
-spans three consecutive rows and three consecutive columns). -/
+spans three consecutive rows and three consecutive columns).
+@isnad1 id=not.3h2v.s5.fdbaeb0fca9d from=translated src=- shape=0b264011 vocab=62de518a
+-/
 lemma not_tileable_of_n_le_two {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hnle : n ≤ 2) :
     ¬ Tileable (rect m n) := by
   intro h
@@ -1036,18 +1193,29 @@ def cornerCell (τ₀ : Finset (ℤ × ℤ)) : ℤ × ℤ :=
   if (3, 0) ∉ τ₀ then (3, 0) else if (4, 0) ∉ τ₀ then (4, 0)
   else if (0, 2) ∉ τ₀ then (0, 2) else (0, 1)
 
+/--
+@isnad1 id=not.2h1v.s6.8ca0eebbcded from=translated src=- shape=d3ba794f vocab=f357b023
+-/
 lemma cornerCell_not_mem : ∀ τ₀ ∈ tileShapes, (0, 0) ∈ τ₀ → cornerCell τ₀ ∉ τ₀ := by
   decide
 
+/--
+@isnad1 id=le.1h1v.s5.24ad09d6c301 from=translated src=- shape=eabf746e vocab=196d5437
+-/
 lemma cornerCell_snd : ∀ τ₀ ∈ tileShapes, (cornerCell τ₀).2 ≤ 2 := by
   decide
 
+/--
+@isnad1 id=mem.1h1v.s7.fe25130b69d4 from=translated src=- shape=bd3758be vocab=b059e0f1
+-/
 lemma cornerCell_val : ∀ τ₀ ∈ tileShapes,
     cornerCell τ₀ ∈ ({(3, 0), (4, 0), (0, 2), (0, 1)} : Finset (ℤ × ℤ)) := by
   decide
 
 /-- The corner propagation check: no tile covering `cornerCell τ₀` within
-the bounds of a five-row strip is disjoint from the corner tile `τ₀`. -/
+the bounds of a five-row strip is disjoint from the corner tile `τ₀`.
+@isnad1 id=not.5h3v.s8.a3f4522c2b9c from=translated src=- shape=3722c016 vocab=8809f3bb
+-/
 lemma corner_check :
     ∀ τ₀ ∈ tileShapes, (0, 0) ∈ τ₀ →
       ∀ τ' ∈ tileShapes, ∀ v ∈ (τ'.image fun c => cornerCell τ₀ - c),
@@ -1055,14 +1223,22 @@ lemma corner_check :
         ¬ Disjoint (τ'.image (· + v)) τ₀ := by
   decide +kernel
 
+/--
+@isnad1 id=and.2h2v.s6.8a8dbdb688b0 from=translated src=- shape=9a6348d9 vocab=6770a988
+-/
 lemma tile_bounds : ∀ τ ∈ tileShapes, ∀ c ∈ τ,
     0 ≤ c.1 ∧ c.1 ≤ 3 ∧ 0 ≤ c.2 ∧ c.2 ≤ 3 := by
   decide
 
+/--
+@isnad1 id=and.1h1v.s6.332f1fc1f5eb from=translated src=- shape=ec35f322 vocab=fc6663a6
+-/
 lemma tile_min : ∀ τ ∈ tileShapes, (∃ c ∈ τ, c.1 = 0) ∧ (∃ c ∈ τ, c.2 = 0) := by
   decide
 
-/-- A `5 × n` rectangle cannot be tiled. -/
+/-- A `5 × n` rectangle cannot be tiled.
+@isnad1 id=not.1h1v.s4.3ecbf1eaa712 from=translated src=- shape=c9fd7475 vocab=af250853
+-/
 lemma not_tileable_5 (n : ℕ) (hn : 0 < n) : ¬ Tileable (rect 5 n) := by
   intro h
   have h12n : 12 ∣ n :=

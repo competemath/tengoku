@@ -32,10 +32,16 @@ def rowsToCells (p : Equiv.Perm (Fin N)) (s : Finset (Fin N)) : Finset (Cell N) 
       intro r t h
       exact Prod.ext_iff.mp h |>.1⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.9ef6fac32011 from=translated src=- shape=eaea5e59 vocab=162f2c93
+-/
 lemma rowsToCells_card (p : Equiv.Perm (Fin N)) (s : Finset (Fin N)) :
     (rowsToCells p s).card = s.card := by
   simp [rowsToCells]
 
+/--
+@isnad1 id=iff.0h4v.s6.036637ea63cd from=translated src=- shape=882f2450 vocab=96e09ef2
+-/
 lemma mem_rowsToCells {p : Equiv.Perm (Fin N)} {s : Finset (Fin N)} {x : Cell N} :
     x ∈ rowsToCells p s ↔ ∃ r ∈ s, x = (r, p r) := by
   constructor
@@ -46,6 +52,9 @@ lemma mem_rowsToCells {p : Equiv.Perm (Fin N)} {s : Finset (Fin N)} {x : Cell N}
   · rintro ⟨r, hr, rfl⟩
     simp [rowsToCells, hr]
 
+/--
+@isnad1 id=eq.2h6v.s6.6f43804ad9ae from=translated src=- shape=0d03e12f vocab=96e09ef2
+-/
 lemma rowsToCells_color {color : Cell N → Fin 2} {p : Equiv.Perm (Fin N)}
     {s : Finset (Fin N)} {c : Fin 2}
     (hs : ∀ r ∈ s, color (r, p r) = c) :
@@ -55,6 +64,9 @@ lemma rowsToCells_color {color : Cell N → Fin 2} {p : Equiv.Perm (Fin N)}
   rcases hx with ⟨r, hr, rfl⟩
   exact hs r hr
 
+/--
+@isnad1 id=and.3h6v.s7.e5ac40cdfd96 from=translated src=- shape=31069f2d vocab=b0bea12a
+-/
 lemma rowsToCells_no_conflict
     (p : Equiv.Perm (Fin N)) (s t : Finset (Fin N)) :
     ∀ x ∈ rowsToCells p s ∪ rowsToCells p t,
@@ -88,9 +100,15 @@ lemma rowsToCells_no_conflict
     have hrow : rx = ry := p.injective hsnd
     simp [hrow]
 
+/--
+@isnad1 id=iff.0h1v.s5.32cf98d6aa67 from=translated src=- shape=a99d14a3 vocab=00dd0f92
+-/
 lemma color_ne_zero_iff_eq_one (c : Fin 2) : c ≠ 0 ↔ c = 1 := by
   fin_cases c <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s6.a56236f3f8f4 from=translated src=- shape=62174890 vocab=953e4ab6
+-/
 lemma colorCount_zero_add_one (color : Cell N → Fin 2) (p : Equiv.Perm (Fin N)) :
     colorCount color 0 p + colorCount color 1 p = N := by
   rw [colorCount, colorCount]
@@ -102,6 +120,9 @@ lemma colorCount_zero_add_one (color : Cell N → Fin 2) (p : Equiv.Perm (Fin N)
   rw [h, Finset.card_filter_add_card_filter_not]
   simp
 
+/--
+@isnad1 id=iff.1h4v.s6.69e608c7cd40 from=translated src=- shape=69eb826c vocab=0688563e
+-/
 lemma colorCount_one_le_iff (color : Cell N → Fin 2) (p : Equiv.Perm (Fin N))
     {b : ℕ} (hb : b ≤ N) :
     b ≤ colorCount color 1 p ↔ colorCount color 0 p ≤ N - b := by
@@ -114,6 +135,9 @@ lemma colorCount_one_le_iff (color : Cell N → Fin 2) (p : Equiv.Perm (Fin N))
     lia
 
 -- Adjacent permutations in the transposition graph differ in at most two rows.
+/--
+@isnad1 id=le.0h5v.s6.d6912cfead1e from=translated src=- shape=2966fc5a vocab=c07049ae
+-/
 lemma colorCount_swap_le_add_two
     (color : Cell N → Fin 2) (p : Equiv.Perm (Fin N)) (x y : Fin N) :
     colorCount color 0 (p * Equiv.swap x y) ≤ colorCount color 0 p + 2 := by
@@ -138,6 +162,9 @@ lemma colorCount_swap_le_add_two
       gcongr
       exact card_le_two
 
+/--
+@isnad1 id=le.0h5v.s6.d9ca41b39e2e from=translated src=- shape=67cd6046 vocab=c07049ae
+-/
 lemma colorCount_swap_ge_sub_two
     (color : Cell N → Fin 2) (p : Equiv.Perm (Fin N)) (x y : Fin N) :
     colorCount color 0 p ≤ colorCount color 0 (p * Equiv.swap x y) + 2 := by
@@ -145,6 +172,9 @@ lemma colorCount_swap_ge_sub_two
     colorCount_swap_le_add_two color (p * Equiv.swap x y) x y
 
 -- Walking from a color-rich transversal to a color-poor one gives count a or a+1.
+/--
+@isnad1 id=ex.2h5v.s7.761ac8027355 from=translated src=- shape=d8459c72 vocab=588d98e4
+-/
 lemma exists_transversal_with_exact_or_succ_color_count
     (color : Cell N → Fin 2) (a : ℕ) (p q : Equiv.Perm (Fin N))
     (hp : a ≤ colorCount color 0 p)
@@ -195,6 +225,7 @@ def hallTargets (good : Cell N → Prop) [DecidablePred good]
 /--
 If Hall fails on rows `R`, then the rows outside `R` together with the
 neighboring columns of `R` form at most `k - 1` covering lines.
+@isnad1 id=le.1h4v.s7.432e9eead1c4 from=translated src=- shape=049af01e vocab=b3722439
 -/
 lemma line_count_le_of_hall_failure
     (good : Cell N → Prop) [DecidablePred good] {k : ℕ} {R : Finset (Fin N)}
@@ -252,7 +283,9 @@ lemma line_count_le_of_hall_failure
     lia
   lia
 
-/-- Any good cells covered by at most `k - 1` rows/columns number at most `(k - 1) * N`. -/
+/-- Any good cells covered by at most `k - 1` rows/columns number at most `(k - 1) * N`.
+@isnad1 id=le.1h4v.s6.320664f3c4f1 from=translated src=- shape=da829aff vocab=ed7b27c9
+-/
 lemma good_cells_card_le_of_neighbor_line_count
     (good : Cell N → Prop) [DecidablePred good] {k : ℕ} (R : Finset (Fin N))
     (hline : ((univ : Finset (Fin N)) \ R).card + (neighborCols good R).card ≤ k - 1) :
@@ -289,6 +322,9 @@ lemma good_cells_card_le_of_neighbor_line_count
       gcongr
 
 -- Hall step: more than (k-1)N good cells force a transversal with k good cells.
+/--
+@isnad1 id=ex.2h3v.s7.9da74511595f from=translated src=- shape=ccbf3d04 vocab=28b6e601
+-/
 lemma exists_transversal_with_many_good_cells
     (good : Cell N → Prop) [DecidablePred good] {k : ℕ}
     (hkN : k ≤ N)
@@ -366,7 +402,9 @@ lemma exists_transversal_with_many_good_cells
   have hp : p r = col rr := hp_ext rr
   simpa [hp] using hgood
 
-/-- The density hypotheses give a transversal with exactly `a` or `a+1` amber cells. -/
+/-- The density hypotheses give a transversal with exactly `a` or `a+1` amber cells.
+@isnad1 id=ex.4h3v.s9.c78d86c2fb59 from=translated src=- shape=44a284a8 vocab=8d508807
+-/
 lemma exists_intermediate_transversal_of_card_bounds
     (a b : ℕ)
     (ha : 0 < a)
@@ -423,7 +461,9 @@ lemma exists_intermediate_transversal_of_card_bounds
   -- Interpolate between those transversals until the amber count is a or a+1.
   simpa [N] using exists_transversal_with_exact_or_succ_color_count color a p0 p1 hp0 hp1_zero
 
-/-- A transversal with `a` or `a+1` amber cells contains the required amber/bronze choices. -/
+/-- A transversal with `a` or `a+1` amber cells contains the required amber/bronze choices.
+@isnad1 id=ex.1h4v.s10.125ff883c9f4 from=translated src=- shape=3c7f8471 vocab=f2e3e0ac
+-/
 lemma exists_cells_of_intermediate_transversal
     {a b : ℕ}
     (color : Cell (a + b + 1) → Fin 2)

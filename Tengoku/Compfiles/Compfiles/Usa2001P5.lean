@@ -28,8 +28,14 @@ membership in `S`. The shifty integers form a subgroup of `ℤ`, and the proof b
 shows that `1` is shifty, which forces `S = ℤ`. -/
 def Shifty (S : Set ℤ) (d : ℤ) : Prop := ∀ x : ℤ, x ∈ S ↔ x + d ∈ S
 
+/--
+@isnad1 id=shifty.0h1v.s3.7a3fc4ad0c9a from=translated src=- shape=7f5696a4 vocab=7ea15b41
+-/
 lemma shifty_zero (S : Set ℤ) : Shifty S 0 := fun x ↦ by simp
 
+/--
+@isnad1 id=shifty.1h2v.s3.a559df6f8e0e from=translated src=- shape=0fa8aeaf vocab=7b3e58b8
+-/
 lemma shifty_neg {S : Set ℤ} {d : ℤ} (h : Shifty S d) : Shifty S (-d) := by
   intro x
   have h' := h (x + -d)
@@ -37,6 +43,9 @@ lemma shifty_neg {S : Set ℤ} {d : ℤ} (h : Shifty S d) : Shifty S (-d) := by
   rw [e] at h'
   exact h'.symm
 
+/--
+@isnad1 id=shifty.2h3v.s4.30cc99f76cc2 from=translated src=- shape=26c66de5 vocab=3a28b84e
+-/
 lemma shifty_add {S : Set ℤ} {d e : ℤ} (hd : Shifty S d) (he : Shifty S e) :
     Shifty S (d + e) := by
   intro x
@@ -44,6 +53,9 @@ lemma shifty_add {S : Set ℤ} {d e : ℤ} (hd : Shifty S d) (he : Shifty S e) :
   rw [h_eq]
   exact (hd x).trans (he (x + d))
 
+/--
+@isnad1 id=shifty.1h3v.s4.26bb8a214068 from=translated src=- shape=e7b57304 vocab=4e4d8fce
+-/
 lemma shifty_nsmul {S : Set ℤ} {d : ℤ} (hd : Shifty S d) (n : ℕ) :
     Shifty S (n • d) := by
   induction n with
@@ -52,13 +64,18 @@ lemma shifty_nsmul {S : Set ℤ} {d : ℤ} (hd : Shifty S d) (n : ℕ) :
       rw [succ_nsmul]
       exact shifty_add ih hd
 
+/--
+@isnad1 id=shifty.1h3v.s4.5f73b1c78162 from=translated src=- shape=96bbf6bb vocab=c9aeb1a3
+-/
 lemma shifty_zsmul {S : Set ℤ} {d : ℤ} (hd : Shifty S d) (n : ℤ) :
     Shifty S (n • d) := by
   obtain ⟨m, rfl | rfl⟩ := Int.eq_nat_or_neg n
   · simpa using shifty_nsmul hd m
   · simpa using shifty_neg (shifty_nsmul hd m)
 
-/-- If `u` and `v` belong to `S`, then `v^2 - u^2` is shifty for `S`. -/
+/-- If `u` and `v` belong to `S`, then `v^2 - u^2` is shifty for `S`.
+@isnad1 id=shifty.3h3v.s6.aef96ed5376a from=translated src=- shape=113b7717 vocab=fec3a4f7
+-/
 lemma shifty_sq_sub_sq {S : Set ℤ} (hS : ∀ x ∈ S, ∀ y ∈ S, x^2 - y ∈ S)
     {u v : ℤ} (hu : u ∈ S) (hv : v ∈ S) : Shifty S (v^2 - u^2) := by
   intro x
@@ -75,7 +92,9 @@ lemma shifty_sq_sub_sq {S : Set ℤ} (hS : ∀ x ∈ S, ∀ y ∈ S, x^2 - y ∈
     rwa [e] at h2
 
 /-- The number-theoretic core: no prime divides all three of
-`a^2 - b^2`, `a^3 * (a - 2)` and `b^3 * (b - 2)`. -/
+`a^2 - b^2`, `a^3 * (a - 2)` and `b^3 * (b - 2)`.
+@isnad1 id=not.3h3v.s7.625a7bbb1b11 from=translated src=- shape=acb7ed6c vocab=d7f1fd6e
+-/
 lemma not_prime_dvd_three {a b : ℤ} (h1 : Int.gcd a b = 1)
     (h2 : Int.gcd (a - 2) (b - 2) = 1) {p : ℤ} (hp : Prime p) :
     ¬ (p ∣ a^2 - b^2 ∧ p ∣ a^3 * (a - 2) ∧ p ∣ b^3 * (b - 2)) := by
@@ -127,7 +146,9 @@ lemma not_prime_dvd_three {a b : ℤ} (h1 : Int.gcd a b = 1)
       exact hp.not_dvd_one hp1
 
 /-- The gcd of the three shifty integers `a^2 - b^2`, `a^3 * (a - 2)`,
-`b^3 * (b - 2)` is `1`. -/
+`b^3 * (b - 2)` is `1`.
+@isnad1 id=eq.2h2v.s7.37f87c811c9f from=translated src=- shape=e7f2a1cb vocab=333f3986
+-/
 lemma gcd_gcd_eq_one {a b : ℤ} (h1 : Int.gcd a b = 1)
     (h2 : Int.gcd (a - 2) (b - 2) = 1) :
     Int.gcd (↑(Int.gcd (a^2 - b^2) (a^3 * (a - 2)))) (b^3 * (b - 2)) = 1 := by
@@ -142,7 +163,9 @@ lemma gcd_gcd_eq_one {a b : ℤ} (h1 : Int.gcd a b = 1)
   have hpC : p ∣ b^3 * (b - 2) := dvd_trans hpd (Int.gcd_dvd_right _ _)
   exact not_prime_dvd_three h1 h2 hp ⟨hpA, hpB, hpC⟩
 
-/-- Bézout's identity for three integers whose gcd is `1`. -/
+/-- Bézout's identity for three integers whose gcd is `1`.
+@isnad1 id=ex.1h3v.s6.94b5b38234c7 from=translated src=- shape=c57fc822 vocab=6e5aa00e
+-/
 lemma bezout_three {A B C : ℤ} (h : Int.gcd (↑(Int.gcd A B)) C = 1) :
     ∃ m n r : ℤ, m * A + n * B + r * C = 1 := by
   set s := Int.gcdA A B with hs

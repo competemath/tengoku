@@ -57,6 +57,9 @@ variable {a : ℕ → ℤ} (ha : Condition a) {t : ℕ}
 
 section Pool
 
+/--
+@isnad1 id=ex.1h3v.s5.262f2836c85c from=translated src=- shape=fe50b06c vocab=66f4376e
+-/
 lemma exists_add_eq_of_mem_pool {z : ℤ} (hz : z ∈ pool a t) : ∃ u < t, u + a u = t + z := by
   induction t generalizing z with
   | zero => simp only [pool, Finset.notMem_empty] at hz
@@ -70,7 +73,9 @@ lemma exists_add_eq_of_mem_pool {z : ℤ} (hz : z ∈ pool a t) : ∃ u < t, u +
 
 include ha
 
-/-- The ball heights are always within `[0, 2014]`. -/
+/-- The ball heights are always within `[0, 2014]`.
+@isnad1 id=le.1h2v.s5.d1dfe200959c from=translated src=- shape=9ce8644e vocab=4082c05b
+-/
 lemma pool_subset_Icc : pool a t ⊆ Finset.Icc 0 2014 := by
   induction t with
   | zero => simp only [pool, Finset.empty_subset]
@@ -84,13 +89,18 @@ lemma pool_subset_Icc : pool a t ⊆ Finset.Icc 0 2014 := by
     · replace h₂ := ih h₂
       rw [Finset.mem_Icc] at h₂ ⊢; lia
 
+/--
+@isnad1 id=not.1h2v.s4.6e1405e5fe6d from=translated src=- shape=b4d8e82f vocab=33b36d83
+-/
 lemma not_mem_pool_self : a t ∉ pool a t := by
   by_contra h
   obtain ⟨u, lu, hu⟩ := exists_add_eq_of_mem_pool h
   exact lu.ne (ha.2 hu)
 
 /-- The number of balls stays unchanged if there is a ball with height 0 and increases by 1
-otherwise. -/
+otherwise.
+@isnad1 id=eq.1h2v.s6.3cc558f791ea from=translated src=- shape=da55181b vocab=bdec6514
+-/
 lemma card_pool : Finset.card (pool a (t + 1)) = Finset.card (pool a t) + if 0 ∈ pool a t then 0 else 1 := by
   have nms : a t ∉ (pool a t).erase 0 := by
     rw [Finset.mem_erase, not_and_or]; exact .inr (not_mem_pool_self ha)
@@ -99,12 +109,17 @@ lemma card_pool : Finset.card (pool a (t + 1)) = Finset.card (pool a t) + if 0 �
   · have := Finset.card_pos.mpr ⟨0, h⟩; lia
   · rfl
 
+/--
+@isnad1 id=monotone.1h1v.s4.1a7644b1b9c6 from=translated src=- shape=bee90935 vocab=b3078fe4
+-/
 lemma monotone_card_pool : Monotone fun t ↦ Finset.card (pool a t) := by
   refine monotone_nat_of_le_succ fun t ↦ ?_
   have := card_pool (t := t) ha; lia
 
 /-- There exists a point where the number of balls reaches a maximum (which follows from its
-monotonicity and boundedness). We take its coordinates for the problem's `b` and `N`. -/
+monotonicity and boundedness). We take its coordinates for the problem's `b` and `N`.
+@isnad1 id=ex.1h1v.s4.2652917e0c8d from=translated src=- shape=73b863f4 vocab=f2f3f7eb
+-/
 lemma exists_max_card_pool : ∃ b N, ∀ t ≥ N, Finset.card (pool a t) = b :=
   converges_of_monotone_of_bounded (monotone_card_pool ha)
     (fun t ↦ by simpa using Finset.card_le_card (pool_subset_Icc ha))
@@ -117,6 +132,9 @@ variable {b N : ℕ} (hbN : ∀ t ≥ N, Finset.card (pool a t) = b) (ht : t ≥
 
 include ha hbN
 
+/--
+@isnad1 id=lt.2h3v.s5.66e20de4759f from=translated src=- shape=dd1ef3e9 vocab=2a364f27
+-/
 lemma b_pos : 0 < b := by
   by_contra! h; rw [nonpos_iff_eq_zero] at h; subst h
   replace hbN : ∀ t, Finset.card (pool a t) = 0 := fun t ↦ by
@@ -129,13 +147,18 @@ lemma b_pos : 0 < b := by
   apply absurd (hbN 1); lia
 
 include ht in
+/--
+@isnad1 id=mem.3h4v.s5.f76d5a7e5484 from=translated src=- shape=8c18ddf3 vocab=9c15a20b
+-/
 lemma zero_mem_pool : 0 ∈ pool a t := by
   have := card_pool (t := t) ha
   have := hbN (t + 1) (by lia)
   simp_all
 
 include ht in
-/-- The key observation, one term of the telescoping sum for the problem's expression. -/
+/-- The key observation, one term of the telescoping sum for the problem's expression.
+@isnad1 id=eq.3h4v.s6.c8d46d208563 from=translated src=- shape=0d6a33d2 vocab=38530d84
+-/
 lemma sum_sub_sum_eq_sub : ∑ x ∈ pool a (t + 1), x - ∑ x ∈ pool a t, x = a t - b := by
   simp_rw [pool, Finset.sum_map, Equiv.coe_toEmbedding, Equiv.subRight_apply]
   have nms : a t ∉ (pool a t).erase 0 := by
@@ -144,7 +167,9 @@ lemma sum_sub_sum_eq_sub : ∑ x ∈ pool a (t + 1), x - ∑ x ∈ pool a t, x =
     nsmul_one, hbN _ ht]
   lia
 
-/-- The telescoping sum giving the part of the problem's expression within the modulus signs. -/
+/-- The telescoping sum giving the part of the problem's expression within the modulus signs.
+@isnad1 id=eq.4h5v.s6.fcbdca17087a from=translated src=- shape=48644bc1 vocab=0c37aaeb
+-/
 lemma sum_telescope {m n : ℕ} (hm : N ≤ m) (hn : m < n) :
     ∑ j ∈ Finset.Ico m n, (a j - b) = ∑ x ∈ pool a n, x - ∑ x ∈ pool a m, x := by
   induction n, hn using Nat.le_induction with
@@ -154,12 +179,18 @@ lemma sum_telescope {m n : ℕ} (hm : N ≤ m) (hn : m < n) :
     apply sub_add_sub_cancel'
 
 include ht in
+/--
+@isnad1 id=le.3h4v.s5.a0099299b638 from=translated src=- shape=9a0e3e1d vocab=337db6f9
+-/
 lemma le_sum_pool : ∑ i ∈ Finset.range b, (i : ℤ) ≤ ∑ x ∈ pool a t, x := by
   convert Finset.sum_range_le_sum fun x mx ↦ (Finset.mem_Icc.mp ((pool_subset_Icc ha) mx)).1
   · rw [hbN _ ht]
   · rw [zero_add]
 
 include ht in
+/--
+@isnad1 id=le.3h4v.s6.870f2d6a4b1b from=translated src=- shape=d9452ef3 vocab=a6d38b5d
+-/
 lemma sum_pool_le : ∑ x ∈ pool a t, x ≤ ∑ i ∈ Finset.range (b - 1), (2014 - i : ℤ) := by
   have zmp := zero_mem_pool ha hbN ht
   rw [← Finset.insert_erase zmp, Finset.sum_insert (Finset.notMem_erase _ _), zero_add]

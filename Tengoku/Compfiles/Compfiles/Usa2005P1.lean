@@ -40,29 +40,41 @@ distinct primes. -/
 abbrev SolutionSet : Set ℕ :=
   {n | 1 < n ∧ ¬ n.Prime ∧ ¬ ∃ p q : ℕ, p.Prime ∧ q.Prime ∧ p ≠ q ∧ n = p * q}
 
-/-- Numbers sharing a common factor `≥ 2` are not coprime. -/
+/-- Numbers sharing a common factor `≥ 2` are not coprime.
+@isnad1 id=r.3h3v.s4.577267df4bb9 from=translated src=- shape=9800f5a6 vocab=3270ec30
+-/
 lemma R_of_dvd_of_dvd {d a b : ℕ} (hd : 2 ≤ d) (ha : d ∣ a) (hb : d ∣ b) : R a b := by
   intro hc
   have h1 : d ∣ 1 := hc ▸ Nat.dvd_gcd ha hb
   have := Nat.le_of_dvd one_pos h1
   lia
 
-/-- If `2 ≤ a` and `a ∣ b`, then `a` and `b` are not coprime. -/
+/-- If `2 ≤ a` and `a ∣ b`, then `a` and `b` are not coprime.
+@isnad1 id=r.2h2v.s4.a6a710fbfb6d from=translated src=- shape=7f898ad5 vocab=3270ec30
+-/
 lemma R_of_dvd {a b : ℕ} (ha : 2 ≤ a) (hb : a ∣ b) : R a b :=
   R_of_dvd_of_dvd ha dvd_rfl hb
 
-/-- `R` transfers along divisibility on the left. -/
+/-- `R` transfers along divisibility on the left.
+@isnad1 id=r.2h3v.s4.af4d39f28941 from=translated src=- shape=b7ec0f6d vocab=6bf49a91
+-/
 lemma R_of_dvd_left {a b c : ℕ} (h : R a b) (hac : a ∣ c) : R c b :=
   fun hc => h (hc.coprime_dvd_left hac)
 
-/-- `R` transfers along divisibility on the right. -/
+/-- `R` transfers along divisibility on the right.
+@isnad1 id=r.2h3v.s4.eb0b67571dde from=translated src=- shape=847200ad vocab=6bf49a91
+-/
 lemma R_of_dvd_right {a b c : ℕ} (h : R a b) (hbc : b ∣ c) : R a c :=
   fun hc => h (hc.coprime_dvd_right hbc)
 
-/-- `R` is symmetric. -/
+/-- `R` is symmetric.
+@isnad1 id=r.1h2v.s3.ed79a858870f from=translated src=- shape=7e524d71 vocab=22f5bc2e
+-/
 lemma R_symm {a b : ℕ} (h : R a b) : R b a := fun hc => h hc.symm
 
-/-- Appending two chains gives a chain when the boundary elements are related. -/
+/-- Appending two chains gives a chain when the boundary elements are related.
+@isnad1 id=ischain.2h5v.s6.6fd388f6732b from=translated src=- shape=2fdc0bcb vocab=e9aaa3b6
+-/
 lemma isChain_append {α : Type*} {R' : α → α → Prop} : ∀ (l₁ l₂ : List α),
     l₁.IsChain R' → l₂.IsChain R' →
     (∀ a ∈ l₁.getLast?, ∀ b ∈ l₂.head?, R' a b) → (l₁ ++ l₂).IsChain R'
@@ -73,7 +85,9 @@ lemma isChain_append {α : Type*} {R' : α → α → Prop} : ∀ (l₁ l₂ : L
       .cons_cons (List.isChain_cons_cons.mp h₁).1
         (isChain_append (b :: s) l₂ (List.isChain_cons_cons.mp h₁).2 h₂ (by simpa using h))
 
-/-- A list whose elements are all divisible by some `r ≥ 2` is an `R`-chain. -/
+/-- A list whose elements are all divisible by some `r ≥ 2` is an `R`-chain.
+@isnad1 id=ischain.2h2v.s5.d00180362c4c from=translated src=- shape=8198d091 vocab=1794fd1b
+-/
 lemma isChain_of_forall_dvd {r : ℕ} (hr : 2 ≤ r) :
     ∀ {l : List ℕ}, (∀ x ∈ l, r ∣ x) → l.IsChain R
   | [], _ => .nil
@@ -87,11 +101,17 @@ def powChain (d q : ℕ) : ℕ → List ℕ
   | 0 => [d]
   | e + 1 => powChain d q e ++ [d * q ^ (e + 1)]
 
+/--
+@isnad1 id=ne.0h3v.s3.f47af272a08e from=translated src=- shape=d0251de7 vocab=c984c89c
+-/
 lemma powChain_ne_nil (d q e : ℕ) : powChain d q e ≠ [] := by
   induction e with
   | zero => simp [powChain]
   | succ e ih => simp [powChain, ih]
 
+/--
+@isnad1 id=iff.0h4v.s5.93bbeaaaf891 from=translated src=- shape=f1354dad vocab=32259bee
+-/
 @[simp] lemma mem_powChain {d q e x : ℕ} :
     x ∈ powChain d q e ↔ ∃ j ≤ e, x = d * q ^ j := by
   induction e with
@@ -107,17 +127,26 @@ lemma powChain_ne_nil (d q e : ℕ) : powChain d q e ≠ [] := by
       · exact Or.inr rfl
       · exact Or.inl ⟨j, Nat.lt_succ_iff.mp hj, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.a75767724116 from=translated src=- shape=1283f5d4 vocab=3f648c3c
+-/
 @[simp] lemma head?_powChain (d q e : ℕ) : (powChain d q e).head? = some d := by
   induction e with
   | zero => simp [powChain]
   | succ e ih => rw [powChain, List.head?_append, ih]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.1da8080c2245 from=translated src=- shape=737013f0 vocab=a2c416f2
+-/
 @[simp] lemma getLast?_powChain (d q e : ℕ) :
     (powChain d q e).getLast? = some (d * q ^ e) := by
   induction e with
   | zero => simp [powChain]
   | succ e ih => rw [powChain, List.getLast?_append]; simp
 
+/--
+@isnad1 id=ischain.1h3v.s4.25bef5552495 from=translated src=- shape=380c24cf vocab=5c3f3eab
+-/
 lemma isChain_powChain {d q : ℕ} (hd : 2 ≤ d) (e : ℕ) : (powChain d q e).IsChain R := by
   induction e with
   | zero => exact .singleton d
@@ -130,6 +159,9 @@ lemma isChain_powChain {d q : ℕ} (hd : 2 ≤ d) (e : ℕ) : (powChain d q e).I
         subst ha; subst hb
         exact R_of_dvd_of_dvd hd (dvd_mul_right d _) (dvd_mul_right d _))
 
+/--
+@isnad1 id=nodup.2h3v.s5.c6ad8c5dc13e from=translated src=- shape=c4c51749 vocab=6f7ebb88
+-/
 lemma nodup_powChain {d q : ℕ} (hd : 1 ≤ d) (hq : 2 ≤ q) (e : ℕ) :
     (powChain d q e).Nodup := by
   have key : ∀ j j' : ℕ, d * q ^ j = d * q ^ j' → j = j' := by
@@ -169,7 +201,9 @@ lemma eq_of_mul_pow_eq {m q : ℕ} (hq : q.Prime) (hqm : ¬ q ∣ m)
   subst hj
   exact ⟨Nat.mul_right_cancel (pow_pos hq.pos j) h, rfl⟩
 
-/-- Chains, heads and lasts of `flatMap (powChain · q e)` over a chain `l`. -/
+/-- Chains, heads and lasts of `flatMap (powChain · q e)` over a chain `l`.
+@isnad1 id=and.2h3v.s6.69fc511acccf from=translated src=- shape=6a11154d vocab=5075d543
+-/
 lemma isChain_flatMap_powChain {q e : ℕ} :
     ∀ {l : List ℕ}, l.IsChain R → (∀ x ∈ l, 2 ≤ x) →
       (l.flatMap (fun d => powChain d q e)).IsChain R ∧
@@ -202,7 +236,9 @@ lemma isChain_flatMap_powChain {q e : ℕ} :
 
 /-- **Key construction step**: if the divisors `> 1` of `m` admit a good
 circle and `q` is a prime not dividing `m`, then for any `e ≥ 1` the divisors
-`> 1` of `m * q^e` admit a good circle. -/
+`> 1` of `m * q^e` admit a good circle.
+@isnad1 id=goodcirc.8h4v.s7.d10f6d473d36 from=translated src=- shape=808384b9 vocab=b1b0701d
+-/
 lemma goodCircle_mul_prime_pow {m q : ℕ} (hq : q.Prime) (hqm : ¬ q ∣ m)
     {l : List ℕ} (hnodup : l.Nodup) (hl2 : 2 ≤ l.length)
     (hmem : ∀ d : ℕ, d ∈ l ↔ d ∣ m ∧ 1 < d)
@@ -509,7 +545,9 @@ lemma goodCircle_mul_prime_pow {m q : ℕ} (hq : q.Prime) (hqm : ¬ q ∣ m)
       (dvd_trans (dvd_mul_right d₂ q) (dvd_mul_right (d₂ * q) _)) dvd_rfl
 
 /-- The divisors `> 1` of a prime power `p ^ a` with `2 ≤ a` admit a good
-circle: any arrangement works, since every such divisor is divisible by `p`. -/
+circle: any arrangement works, since every such divisor is divisible by `p`.
+@isnad1 id=goodcirc.2h2v.s5.377c74d6733d from=translated src=- shape=94c0b8ab vocab=d04512cf
+-/
 lemma goodCircle_prime_pow {p : ℕ} (hp : p.Prime) {a : ℕ} (ha : 2 ≤ a) :
     GoodCircle (p ^ a) := by
   have hpa : p ^ a ≠ 0 := pow_ne_zero a hp.ne_zero
@@ -555,7 +593,9 @@ lemma goodCircle_prime_pow {p : ℕ} (hp : p.Prime) {a : ℕ} (ha : 2 ≤ a) :
       exact hrp' ▸ hrd
     exact R_of_dvd_of_dvd hp.two_le hxp hyp
 
-/-- A circle for a composite number has at least two elements. -/
+/-- A circle for a composite number has at least two elements.
+@isnad1 id=le.4h2v.s5.32e1d2448732 from=translated src=- shape=b5b7951c vocab=225d0e6e
+-/
 lemma two_le_length_of_composite_circle {n : ℕ} (hn : 1 < n) (hnp : ¬ n.Prime)
     {l : List ℕ} (hnodup : l.Nodup) (hmem : ∀ d : ℕ, d ∈ l ↔ d ∣ n ∧ 1 < d) :
     2 ≤ l.length := by
@@ -573,7 +613,9 @@ lemma two_le_length_of_composite_circle {n : ℕ} (hn : 1 < n) (hnp : ¬ n.Prime
   rwa [List.toFinset_card_of_nodup hnodup] at h2
 
 /-- If `m` has a prime factor whose exponent in `m` is at least `2`,
-then `m` is not a product of two distinct primes. -/
+then `m` is not a product of two distinct primes.
+@isnad1 id=not.2h2v.s6.68bab58c7cd9 from=translated src=- shape=a66b65f8 vocab=e86705e4
+-/
 lemma not_pq_of_factorization_ge_two {m p : ℕ} (_hp : p.Prime)
     (hp2 : 2 ≤ m.factorization p) :
     ¬ ∃ r s : ℕ, r.Prime ∧ s.Prime ∧ r ≠ s ∧ m = r * s := by
@@ -596,7 +638,9 @@ lemma not_pq_of_factorization_ge_two {m p : ℕ} (_hp : p.Prime)
   lia
 
 /-- If `m` has at least three distinct prime factors, then `m` is not a
-product of two distinct primes. -/
+product of two distinct primes.
+@isnad1 id=not.1h1v.s5.03754f33258a from=translated src=- shape=89c659c1 vocab=4f724fd3
+-/
 lemma not_pq_of_three_le_card {m : ℕ} (h3 : 3 ≤ m.primeFactors.card) :
     ¬ ∃ r s : ℕ, r.Prime ∧ s.Prime ∧ r ≠ s ∧ m = r * s := by
   rintro ⟨r, s, hr, hs, hrs, hrm⟩
@@ -610,7 +654,9 @@ lemma not_pq_of_three_le_card {m : ℕ} (h3 : 3 ≤ m.primeFactors.card) :
     · simp [Finset.card_pair h2]
   lia
 
-/-- For `a` non-zero and `b ≥ 2`, neither `a * b` nor `b * a` equals `a`. -/
+/-- For `a` non-zero and `b ≥ 2`, neither `a * b` nor `b * a` equals `a`.
+@isnad1 id=and.2h2v.s5.6651e057fdb2 from=translated src=- shape=d3121b85 vocab=af1afdf8
+-/
 lemma mul_ne_self {a b : ℕ} (ha : 0 < a) (hb : 2 ≤ b) : a * b ≠ a ∧ b * a ≠ a := by
   constructor
   · intro h
@@ -622,19 +668,25 @@ lemma mul_ne_self {a b : ℕ} (ha : 0 < a) (hb : 2 ≤ b) : a * b ≠ a ∧ b * 
     have h3 : 1 = b := Nat.mul_right_cancel ha h2
     lia
 
-/-- Cancelling a common positive factor on the right preserves inequality. -/
+/-- Cancelling a common positive factor on the right preserves inequality.
+@isnad1 id=ne.2h3v.s5.2b2d9ff04db6 from=translated src=- shape=7f578adf vocab=315d0e5a
+-/
 lemma mul_ne_mul_of_ne {a b c : ℕ} (ha : 0 < a) (h : b ≠ c) : b * a ≠ c * a := by
   intro h'
   exact h (Nat.mul_right_cancel ha h')
 
-/-- A prime cannot equal a product with another prime on the left. -/
+/-- A prime cannot equal a product with another prime on the left.
+@isnad1 id=ne.3h3v.s4.b402de3f7e99 from=translated src=- shape=ff7fe22e vocab=15e85a19
+-/
 lemma ne_of_prime_mul {a b c : ℕ} (ha : a.Prime) (hb : b.Prime) (h : a ≠ b) :
     a ≠ b * c := by
   intro h'
   exact h ((Nat.prime_dvd_prime_iff_eq hb ha).mp (h' ▸ dvd_mul_right b c)).symm
 
 /-- A prime cannot equal a product of three numbers when the first is a
-different prime. -/
+different prime.
+@isnad1 id=ne.3h4v.s5.9599d3d2a2e0 from=translated src=- shape=89d24ee0 vocab=15e85a19
+-/
 lemma ne_of_prime_mul_mul {a b : ℕ} (ha : a.Prime) (hb : b.Prime) (h : a ≠ b)
     (c d : ℕ) : a ≠ b * c * d := by
   intro h'
@@ -642,7 +694,9 @@ lemma ne_of_prime_mul_mul {a b : ℕ} (ha : a.Prime) (hb : b.Prime) (h : a ≠ b
   exact h ((Nat.prime_dvd_prime_iff_eq hb ha).mp hd).symm
 
 /-- For distinct primes `p` and `q`, the divisors of `p * q` greater than `1`
-are exactly `p`, `q` and `p * q`. -/
+are exactly `p`, `q` and `p * q`.
+@isnad1 id=or.4h3v.s5.25a3bb0759dc from=translated src=- shape=a0d8757d vocab=f0dba8db
+-/
 lemma dvd_mul_prime_prime {p q x : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hxdvd : x ∣ p * q) (hx1 : 1 < x) : x = p ∨ x = q ∨ x = p * q := by
   have hpq0 : p * q ≠ 0 := mul_ne_zero hp.ne_zero hq.ne_zero
@@ -658,7 +712,9 @@ lemma dvd_mul_prime_prime {p q x : ℕ} (hp : p.Prime) (hq : q.Prime)
   · exact Or.inr (Or.inr hax.symm)
 
 /-- For distinct primes `p q`, no circle exists: in any circle the coprime
-pair `p, q` would have to be adjacent. -/
+pair `p, q` would have to be adjacent.
+@isnad1 id=not.3h2v.s4.cc5e1133f4e3 from=translated src=- shape=1605d940 vocab=7d915f3e
+-/
 lemma not_goodCircle_mul {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) :
     ¬ GoodCircle (p * q) := by
   rintro ⟨l, hnodup, hlne, hmem, hchain, hwrap⟩
@@ -705,7 +761,9 @@ lemma not_goodCircle_mul {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ 
   · exact hpq rfl
 
 /-- For pairwise distinct primes `p q r`, the circle
-`[p*q, q, q*r, r, r*p, p, p*q*r]` works. -/
+`[p*q, q, q*r, r, r*p, p, p*q*r]` works.
+@isnad1 id=goodcirc.6h3v.s5.263152c9c3f0 from=translated src=- shape=6822984c vocab=7d915f3e
+-/
 lemma goodCircle_three_primes {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : r.Prime)
     (hpq : p ≠ q) (hqr : q ≠ r) (hpr : p ≠ r) :
     GoodCircle (p * q * r) := by
@@ -812,7 +870,9 @@ lemma goodCircle_three_primes {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : 
     exact R_of_dvd_of_dvd h1pq (dvd_mul_right _ _) dvd_rfl
 
 /-- **Main induction**: every composite `n` that is not a product of two
-distinct primes admits a good circle. -/
+distinct primes admits a good circle.
+@isnad1 id=goodcirc.4h2v.s5.e8111570a56a from=translated src=- shape=fc296931 vocab=690e1252
+-/
 lemma goodCircle_of_not_pq : ∀ (k : ℕ) (n : ℕ), n.primeFactors.card = k →
     1 < n → ¬ n.Prime →
     (¬ ∃ p q : ℕ, p.Prime ∧ q.Prime ∧ p ≠ q ∧ n = p * q) → GoodCircle n := by

@@ -48,31 +48,41 @@ def ValidCircle {k : ℕ} [NeZero k] (a : Fin k → ℕ) : Prop :=
 
 section Helpers
 
-/-- Consecutive integers are coprime. -/
+/-- Consecutive integers are coprime.
+@isnad1 id=coprime.0h1v.s4.12a8d2a0dbb1 from=translated src=- shape=5138ae5d vocab=d3c3398f
+-/
 lemma coprime_succ_self' (m : ℕ) : Nat.Coprime m (m + 1) := by
   rw [Nat.coprime_self_add_right]
   exact Nat.coprime_one_right m
 
-/-- `n + c` is coprime to its successor. -/
+/-- `n + c` is coprime to its successor.
+@isnad1 id=coprime.0h2v.s5.c961c29b622a from=translated src=- shape=eaaf990d vocab=d3c3398f
+-/
 lemma coprime_succ_gen (n c : ℕ) : Nat.Coprime (n + c) (n + (c + 1)) := by
   have e : n + (c + 1) = (n + c) + 1 := by ring
   rw [e]
   exact coprime_succ_self' _
 
 /-- If `p` is prime and does not divide `n + c`, then `n + c` and `n + c + p` are
-coprime (any common divisor divides their difference `p`). -/
+coprime (any common divisor divides their difference `p`).
+@isnad1 id=coprime.2h3v.s5.f1853b51aebf from=translated src=- shape=32a66d57 vocab=84418a99
+-/
 lemma coprime_add_prime_right {p : ℕ} (hp : p.Prime) {n c : ℕ} (h : ¬ p ∣ n + c) :
     Nat.Coprime (n + c) (n + (c + p)) := by
   have e : n + (c + p) = (n + c) + p := by ring
   rw [e, Nat.coprime_self_add_right, Nat.coprime_comm, hp.coprime_iff_not_dvd]
   exact h
 
-/-- The symmetric version of `coprime_add_prime_right`. -/
+/-- The symmetric version of `coprime_add_prime_right`.
+@isnad1 id=coprime.2h3v.s5.0ad4c083fde3 from=translated src=- shape=dba1ad12 vocab=84418a99
+-/
 lemma coprime_add_prime_left {p : ℕ} (hp : p.Prime) {n c : ℕ} (h : ¬ p ∣ n + c) :
     Nat.Coprime (n + (c + p)) (n + c) :=
   Nat.coprime_comm.mpr (coprime_add_prime_right hp h)
 
-/-- Two odd numbers at distance `2` are coprime. -/
+/-- Two odd numbers at distance `2` are coprime.
+@isnad1 id=coprime.1h2v.s5.9c13aee3c295 from=translated src=- shape=01fd0290 vocab=c59fcc0a
+-/
 lemma coprime_add_two {n c : ℕ} (h : ¬ 2 ∣ n + c) : Nat.Coprime (n + c) (n + (c + 2)) :=
   coprime_add_prime_right Nat.prime_two h
 
@@ -128,86 +138,142 @@ end Constructions
 
 section InjectivityBounds
 
+/--
+@isnad1 id=injectiv.0h0v.s3.f3a16afd9263 from=translated src=- shape=322a6ab4 vocab=655d50c4
+-/
 lemma offA1_injective : Function.Injective offA1 := fun _i _j h ↦ Fin.ext h
 
+/--
+@isnad1 id=injectiv.0h0v.s3.56fe06635ffa from=translated src=- shape=322a6ab4 vocab=61a53449
+-/
 lemma offA2_injective : Function.Injective offA2 :=
   fun _i _j h ↦ Fin.ext (Nat.add_right_cancel h)
 
+/--
+@isnad1 id=injectiv.0h0v.s3.1641121e33b0 from=translated src=- shape=322a6ab4 vocab=892a1fc1
+-/
 lemma offB1a_injective : Function.Injective offB1a := by
   intro i j h
   simp only [offB1a] at h
   apply Fin.ext
   (repeat' split at h) <;> lia
 
+/--
+@isnad1 id=injectiv.0h0v.s3.0289dad9374e from=translated src=- shape=322a6ab4 vocab=62e49342
+-/
 lemma offB1b_injective : Function.Injective offB1b := by
   intro i j h
   simp only [offB1b] at h
   apply Fin.ext
   (repeat' split at h) <;> lia
 
+/--
+@isnad1 id=injectiv.0h0v.s3.b766406c2124 from=translated src=- shape=322a6ab4 vocab=afd61c2f
+-/
 lemma offB2a_injective : Function.Injective offB2a := by
   intro i j h
   simp only [offB2a] at h
   apply Fin.ext
   (repeat' split at h) <;> lia
 
+/--
+@isnad1 id=injectiv.0h0v.s3.8235306594a9 from=translated src=- shape=322a6ab4 vocab=6204faf2
+-/
 lemma offB2b_injective : Function.Injective offB2b := by
   intro i j h
   simp only [offB2b] at h
   apply Fin.ext
   (repeat' split at h) <;> lia
 
-/-- Adding the same constant preserves injectivity. -/
+/-- Adding the same constant preserves injectivity.
+@isnad1 id=injectiv.1h3v.s5.9361914db8c9 from=translated src=- shape=ea682fbc vocab=eaac2ff9
+-/
 lemma injective_n_add {k : ℕ} {off : Fin k → ℕ} (h : Function.Injective off) (n : ℕ) :
     Function.Injective (fun i ↦ n + off i) :=
   fun _i _j h' ↦ h (Nat.add_left_cancel h')
 
+/--
+@isnad1 id=le.0h1v.s4.0e5a4736f42b from=translated src=- shape=b73a83c4 vocab=d2d3324f
+-/
 lemma offA1_le (i : Fin 14) : offA1 i ≤ 13 := by
   have := i.isLt
   simp only [offA1]
   lia
 
+/--
+@isnad1 id=le.0h1v.s4.cb9d3732f609 from=translated src=- shape=b73a83c4 vocab=d2d3324f
+-/
 lemma offA1_le32 (i : Fin 14) : offA1 i ≤ 32 := (offA1_le i).trans (by norm_num)
 
+/--
+@isnad1 id=le.0h1v.s4.bd0ffd1220d9 from=translated src=- shape=dfc00b87 vocab=b924371a
+-/
 lemma offA2_ge (i : Fin 14) : 19 ≤ offA2 i := by
   simp only [offA2]
   lia
 
+/--
+@isnad1 id=le.0h1v.s4.9710d03394a0 from=translated src=- shape=b73a83c4 vocab=b924371a
+-/
 lemma offA2_le32 (i : Fin 14) : offA2 i ≤ 32 := by
   have := i.isLt
   simp only [offA2]
   lia
 
+/--
+@isnad1 id=le.0h1v.s4.9eede9c0d612 from=translated src=- shape=dfc00b87 vocab=b0e3ce80
+-/
 lemma offB1a_ge (i : Fin 19) : 14 ≤ offB1a i := by
   simp only [offB1a]
   (repeat' split) <;> lia
 
+/--
+@isnad1 id=le.0h1v.s4.91d2bb63732a from=translated src=- shape=b73a83c4 vocab=b0e3ce80
+-/
 lemma offB1a_le32 (i : Fin 19) : offB1a i ≤ 32 := by
   have := i.isLt
   simp only [offB1a]
   (repeat' split) <;> lia
 
+/--
+@isnad1 id=le.0h1v.s4.0873ff5cbfb2 from=translated src=- shape=dfc00b87 vocab=37d9793b
+-/
 lemma offB1b_ge (i : Fin 19) : 14 ≤ offB1b i := by
   simp only [offB1b]
   (repeat' split) <;> lia
 
+/--
+@isnad1 id=le.0h1v.s4.7389c98b3404 from=translated src=- shape=b73a83c4 vocab=37d9793b
+-/
 lemma offB1b_le32 (i : Fin 19) : offB1b i ≤ 32 := by
   have := i.isLt
   simp only [offB1b]
   (repeat' split) <;> lia
 
+/--
+@isnad1 id=le.0h1v.s4.66a1b7f8e2b2 from=translated src=- shape=b73a83c4 vocab=f2757d67
+-/
 lemma offB2a_le18 (i : Fin 19) : offB2a i ≤ 18 := by
   have := i.isLt
   simp only [offB2a]
   (repeat' split) <;> lia
 
+/--
+@isnad1 id=le.0h1v.s4.6b9090f86a85 from=translated src=- shape=b73a83c4 vocab=f2757d67
+-/
 lemma offB2a_le32 (i : Fin 19) : offB2a i ≤ 32 := (offB2a_le18 i).trans (by norm_num)
 
+/--
+@isnad1 id=le.0h1v.s4.7991e6bdf086 from=translated src=- shape=b73a83c4 vocab=14bfb14c
+-/
 lemma offB2b_le18 (i : Fin 19) : offB2b i ≤ 18 := by
   have := i.isLt
   simp only [offB2b]
   (repeat' split) <;> lia
 
+/--
+@isnad1 id=le.0h1v.s4.0255fe7676a0 from=translated src=- shape=b73a83c4 vocab=14bfb14c
+-/
 lemma offB2b_le32 (i : Fin 19) : offB2b i ≤ 32 := (offB2b_le18 i).trans (by norm_num)
 
 end InjectivityBounds
@@ -215,7 +281,9 @@ end InjectivityBounds
 section Partition
 
 /-- If all offsets are at most `32`, the image of `fun i ↦ n + off i` lies in
-`Finset.Icc n (n + 32)`. -/
+`Finset.Icc n (n + 32)`.
+@isnad1 id=le.1h3v.s6.5296b7eecf8d from=translated src=- shape=3de401e7 vocab=6e73ce9c
+-/
 lemma image_add_off_subset_Icc {k : ℕ} (off : Fin k → ℕ) (h : ∀ i, off i ≤ 32) (n : ℕ) :
     Finset.univ.image (fun i ↦ n + off i) ⊆ Finset.Icc n (n + 32) := by
   intro x hx
@@ -227,7 +295,9 @@ lemma image_add_off_subset_Icc {k : ℕ} (off : Fin k → ℕ) (h : ∀ i, off i
   lia
 
 /-- If the offsets of two families are separated by a constant `c`, their images
-(after shifting by `n`) are disjoint. -/
+(after shifting by `n`) are disjoint.
+@isnad1 id=disjoint.2h6v.s6.6ce9caf329fe from=translated src=- shape=1b25cd8d vocab=39c813a5
+-/
 lemma disjoint_add_off {k l : ℕ} {off₁ : Fin k → ℕ} {off₂ : Fin l → ℕ} {c : ℕ}
     (h₁ : ∀ i, off₁ i ≤ c) (h₂ : ∀ j, c < off₂ j) (n : ℕ) :
     Disjoint (Finset.univ.image (fun i ↦ n + off₁ i))
@@ -243,7 +313,9 @@ lemma disjoint_add_off {k l : ℕ} {off₁ : Fin k → ℕ} {off₂ : Fin l → 
   lia
 
 /-- Two disjoint injective families of `14` and `19` elements inside the `33`-element
-set `Finset.Icc n (n + 32)` must cover it. -/
+set `Finset.Icc n (n + 32)` must cover it.
+@isnad1 id=eq.5h3v.s8.9d03b725fcf8 from=translated src=- shape=cbc9f4b0 vocab=3fa54dd6
+-/
 lemma image_union_eq_Icc {n : ℕ} {a : Fin 14 → ℕ} {b : Fin 19 → ℕ}
     (ha : Function.Injective a) (hb : Function.Injective b)
     (hsub₁ : Finset.univ.image a ⊆ Finset.Icc n (n + 32))
@@ -260,6 +332,9 @@ end Partition
 
 section ValidCircles
 
+/--
+@isnad1 id=validcir.1h1v.s4.9b755c887c56 from=translated src=- shape=1974b294 vocab=5ff6ef6f
+-/
 lemma validCircle_a1 (n : ℕ) (h13 : ¬ 13 ∣ n) : ValidCircle (a1 n) := by
   unfold ValidCircle
   intro i
@@ -273,6 +348,9 @@ lemma validCircle_a1 (n : ℕ) (h13 : ¬ 13 ∣ n) : ValidCircle (a1 n) := by
     rw [hv]
     exact coprime_succ_gen n i.val
 
+/--
+@isnad1 id=validcir.2h1v.s5.161d9f403d19 from=translated src=- shape=a3d562cc vocab=9065d55a
+-/
 lemma validCircle_b1a (n : ℕ) (hn : Odd n) (h17 : n % 17 ≠ 2) :
     ValidCircle (b1a n) := by
   unfold ValidCircle
@@ -302,6 +380,9 @@ lemma validCircle_b1a (n : ℕ) (hn : Odd n) (h17 : n % 17 ≠ 2) :
           ite_eq_right (by lia : ¬ i.val + 1 = 1)]
         exact coprime_succ_gen n (i.val + 14)
 
+/--
+@isnad1 id=validcir.2h1v.s5.90d3ac985f72 from=translated src=- shape=a3d562cc vocab=8df92b61
+-/
 lemma validCircle_b1b (n : ℕ) (hn : Odd n) (h17 : n % 17 = 2) :
     ValidCircle (b1b n) := by
   unfold ValidCircle
@@ -330,6 +411,9 @@ lemma validCircle_b1b (n : ℕ) (hn : Odd n) (h17 : n % 17 = 2) :
         ite_eq_left (by lia : i.val + 1 = 18)]
       exact (coprime_succ_gen n 31).symm
 
+/--
+@isnad1 id=validcir.1h1v.s4.a23cc86e25f1 from=translated src=- shape=400e5100 vocab=20ff6b02
+-/
 lemma validCircle_a2 (n : ℕ) (h13 : 13 ∣ n) : ValidCircle (a2 n) := by
   unfold ValidCircle
   intro i
@@ -343,6 +427,9 @@ lemma validCircle_a2 (n : ℕ) (h13 : 13 ∣ n) : ValidCircle (a2 n) := by
     rw [hv]
     exact coprime_succ_gen n (i.val + 19)
 
+/--
+@isnad1 id=validcir.2h1v.s5.ad7566bb3cd3 from=translated src=- shape=a3d562cc vocab=9ef17f26
+-/
 lemma validCircle_b2a (n : ℕ) (hn : Odd n) (h17 : n % 17 ≠ 16) :
     ValidCircle (b2a n) := by
   unfold ValidCircle
@@ -373,6 +460,9 @@ lemma validCircle_b2a (n : ℕ) (hn : Odd n) (h17 : n % 17 ≠ 16) :
           ite_eq_right (by lia : ¬ i.val + 1 = 1)]
         exact coprime_succ_gen n i.val
 
+/--
+@isnad1 id=validcir.2h1v.s5.17097ba998e2 from=translated src=- shape=a3d562cc vocab=7330939e
+-/
 lemma validCircle_b2b (n : ℕ) (hn : Odd n) (h17 : n % 17 = 16) :
     ValidCircle (b2b n) := by
   unfold ValidCircle
@@ -406,7 +496,9 @@ end ValidCircles
 
 section Cases
 
-/-- Case `13 ∤ n`, `n ≢ 2 [MOD 17]`. -/
+/-- Case `13 ∤ n`, `n ≢ 2 [MOD 17]`.
+@isnad1 id=ex.3h1v.s7.a6501f16fcba from=translated src=- shape=a5a65215 vocab=6dfed5b7
+-/
 lemma case1a (n : ℕ) (hn : Odd n) (h13 : ¬ 13 ∣ n) (h17 : n % 17 ≠ 2) :
     ∃ a : Fin 14 → ℕ, ∃ b : Fin 19 → ℕ,
       Function.Injective a ∧ Function.Injective b ∧
@@ -423,7 +515,9 @@ lemma case1a (n : ℕ) (hn : Odd n) (h13 : ¬ 13 ∣ n) (h17 : n % 17 ≠ 2) :
     image_union_eq_Icc hinj₁ hinj₂ hsub₁ hsub₂ hdisj,
     validCircle_a1 n h13, validCircle_b1a n hn h17⟩
 
-/-- Case `13 ∤ n`, `n ≡ 2 [MOD 17]`. -/
+/-- Case `13 ∤ n`, `n ≡ 2 [MOD 17]`.
+@isnad1 id=ex.3h1v.s7.bee6ed9fde9f from=translated src=- shape=32c8fe11 vocab=6dfed5b7
+-/
 lemma case1b (n : ℕ) (hn : Odd n) (h13 : ¬ 13 ∣ n) (h17 : n % 17 = 2) :
     ∃ a : Fin 14 → ℕ, ∃ b : Fin 19 → ℕ,
       Function.Injective a ∧ Function.Injective b ∧
@@ -440,7 +534,9 @@ lemma case1b (n : ℕ) (hn : Odd n) (h13 : ¬ 13 ∣ n) (h17 : n % 17 = 2) :
     image_union_eq_Icc hinj₁ hinj₂ hsub₁ hsub₂ hdisj,
     validCircle_a1 n h13, validCircle_b1b n hn h17⟩
 
-/-- Case `13 ∣ n`, `n ≢ 16 [MOD 17]`. -/
+/-- Case `13 ∣ n`, `n ≢ 16 [MOD 17]`.
+@isnad1 id=ex.3h1v.s7.2482cd5bf174 from=translated src=- shape=abc11197 vocab=6dfed5b7
+-/
 lemma case2a (n : ℕ) (hn : Odd n) (h13 : 13 ∣ n) (h17 : n % 17 ≠ 16) :
     ∃ a : Fin 14 → ℕ, ∃ b : Fin 19 → ℕ,
       Function.Injective a ∧ Function.Injective b ∧
@@ -457,7 +553,9 @@ lemma case2a (n : ℕ) (hn : Odd n) (h13 : 13 ∣ n) (h17 : n % 17 ≠ 16) :
     image_union_eq_Icc hinj₁ hinj₂ hsub₁ hsub₂ hdisj,
     validCircle_a2 n h13, validCircle_b2a n hn h17⟩
 
-/-- Case `13 ∣ n`, `n ≡ 16 [MOD 17]`. -/
+/-- Case `13 ∣ n`, `n ≡ 16 [MOD 17]`.
+@isnad1 id=ex.3h1v.s7.ea8907e87803 from=translated src=- shape=fcf77028 vocab=6dfed5b7
+-/
 lemma case2b (n : ℕ) (hn : Odd n) (h13 : 13 ∣ n) (h17 : n % 17 = 16) :
     ∃ a : Fin 14 → ℕ, ∃ b : Fin 19 → ℕ,
       Function.Injective a ∧ Function.Injective b ∧

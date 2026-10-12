@@ -46,6 +46,9 @@ variable {k : ℕ} {m : Fin (k + 2)}
 def S (k : ℕ) := {f : Equiv.Perm (Fin k) | ∀ n, (f n).castSucc ≤ n.succ}
 def S' (k : ℕ) (m : Fin (k + 2)) := {f | f ∈ S (k + 2) ∧ f 0 = m}
 
+/--
+@isnad1 id=ne.2h4v.s8.a5781c1cd257 from=translated src=- shape=5f417da4 vocab=d7bae1ff
+-/
 lemma g_nonzero_ne_m {g : Equiv.Perm (Fin (k + 2))}
     (hg : g ∈ (S' k m)) (n : Fin (k + 2)) (hn : n ≠ 0) : g n ≠ m := by
   contrapose! hn
@@ -78,6 +81,9 @@ def f_invFun (g : Equiv.Perm (Fin (k + 2))) (hg : g ∈ (S' k m)) (n : Fin (k + 
       simp only [← hg', Fin.castSucc_lt_succ_iff, le_refl]
     )
 
+/--
+@isnad1 id=leftinve.1h3v.s6.b85376775e97 from=translated src=- shape=6c3c8bd2 vocab=f56f9ead
+-/
 lemma f_left_inv (g : Equiv.Perm (Fin (k + 2))) (hg : g ∈ (S' k m)) :
     Function.LeftInverse (f_invFun g hg) (f_toFun g hg) := by
   intro n
@@ -93,6 +99,9 @@ lemma f_left_inv (g : Equiv.Perm (Fin (k + 2))) (hg : g ∈ (S' k m)) :
     push Not at hg'
     rwa [← Fin.lt_castPred_iff (Fin.ne_last_of_lt hg'), Fin.pred_lt_castPred_iff] at hg''
 
+/--
+@isnad1 id=rightinv.1h3v.s6.c57c60bc32e0 from=translated src=- shape=6c3c8bd2 vocab=79396168
+-/
 lemma f_right_inv (g : Equiv.Perm (Fin (k + 2))) (hg : g ∈ (S' k m)) :
     Function.RightInverse (f_invFun g hg) (f_toFun g hg) := by
   intro n
@@ -128,6 +137,9 @@ def f'_invFun (g : Equiv.Perm (Fin (k + 1))) (m : Fin (k + 2)) (n : Fin (k + 2))
     else
       (g.symm (n.pred (Fin.ne_zero_of_lt (lt_iff_le_and_ne.2 ⟨le_of_not_gt hn', Ne.symm hn⟩)))).succ
 
+/--
+@isnad1 id=leftinve.0h3v.s6.d2419bdf0d35 from=translated src=- shape=14a339b3 vocab=fd7b4659
+-/
 lemma f'_left_inv (g : Equiv.Perm (Fin (k + 1))) :
     Function.LeftInverse (f'_invFun g m) (f'_toFun g m) := by
   intro n
@@ -140,6 +152,9 @@ lemma f'_left_inv (g : Equiv.Perm (Fin (k + 1))) :
     push Not at hg
     simp only [hg, Fin.le_castSucc_iff.mp, ne_of_gt, reduceIte, not_lt_of_gt, reduceDIte]
 
+/--
+@isnad1 id=rightinv.0h3v.s6.d180ad767a04 from=translated src=- shape=14a339b3 vocab=e6e0da76
+-/
 lemma f'_right_inv (g : Equiv.Perm (Fin (k + 1))) :
     Function.RightInverse (f'_invFun g m) (f'_toFun g m) := by
   intro n
@@ -158,6 +173,9 @@ lemma f'_right_inv (g : Equiv.Perm (Fin (k + 1))) :
 def f' (m : Fin (k + 2)) (g : Equiv.Perm (Fin (k + 1))) :=
   Equiv.mk (f'_toFun g m) (f'_invFun g m) (f'_left_inv g) (f'_right_inv g)
 
+/--
+@isnad1 id=mem.2h3v.s7.01a35229af3d from=translated src=- shape=8d9cef93 vocab=9e05707a
+-/
 lemma f'_in_S'_k (hm : m ≤ 1) {g : Equiv.Perm (Fin (k + 1))} (hg : g ∈ S (k + 1)) :
     f' m g ∈ S' k m := by
   constructor
@@ -175,6 +193,9 @@ lemma f'_in_S'_k (hm : m ≤ 1) {g : Equiv.Perm (Fin (k + 1))} (hg : g ∈ S (k 
         rw [Fin.succ_pred]
   · simp [f', f'_toFun]
 
+/--
+@isnad1 id=eq.1h3v.s6.8a4b4e602d40 from=translated src=- shape=81a675ea vocab=d8344c35
+-/
 lemma f_f'_left_inv {g : Equiv.Perm (Fin (k + 2))} (hg : g ∈ S' k m) : f' m (f g hg) = g := by
   apply Equiv.ext
   intro x
@@ -188,6 +209,9 @@ lemma f_f'_left_inv {g : Equiv.Perm (Fin (k + 2))} (hg : g ∈ S' k m) : f' m (f
     push Not at *
     rwa [Fin.le_castSucc_pred_iff]
 
+/--
+@isnad1 id=eq.2h3v.s7.ef7c9d356316 from=translated src=- shape=7c1c5b91 vocab=53c12da0
+-/
 lemma f_f'_right_inv (hm : m ≤ 1) {g : Equiv.Perm (Fin (k + 1))} (hg : g ∈ S (k + 1)) :
     f (f' m g) (f'_in_S'_k hm hg) = g := by
   apply Equiv.ext
@@ -201,6 +225,9 @@ lemma f_f'_right_inv (hm : m ≤ 1) {g : Equiv.Perm (Fin (k + 1))} (hg : g ∈ S
     contrapose! hx
     rwa [Fin.castSucc_lt_iff_succ_le]
 
+/--
+@isnad1 id=eq.1h2v.s7.76b036a29a63 from=translated src=- shape=b86d2149 vocab=a51f478a
+-/
 lemma S'_k_card_eq_S_succ_k_card (hm : m ≤ 1) : (S' k m).ncard = (S (k + 1)).ncard := by
     apply Set.ncard_congr f
     · intro a ha
@@ -220,6 +247,9 @@ lemma S'_k_card_eq_S_succ_k_card (hm : m ≤ 1) : (S' k m).ncard = (S (k + 1)).n
     · intro b hb
       exact ⟨f' m b, ⟨f'_in_S'_k hm hb, f_f'_right_inv hm hb⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.a308a294ae0c from=translated src=- shape=9c23c065 vocab=d5cfaaf5
+-/
 lemma S_succ_succ_k_card_eq_two_mul_S_succ_k_card : (S (k + 2)).ncard = (S (k + 1)).ncard * 2 := by
     let S₁ := S' k 0
     let S₂ := S' k 1
@@ -249,6 +279,9 @@ lemma S_succ_succ_k_card_eq_two_mul_S_succ_k_card : (S (k + 2)).ncard = (S (k + 
       · obtain hx | hx := hx <;> exact hx.1
     rw [h4, Set.ncard_union_eq h3, h1, h2, mul_two]
 
+/--
+@isnad1 id=eq.0h1v.s5.ceef28e32fcf from=translated src=- shape=ff015c46 vocab=aef941cc
+-/
 lemma S_succ_k_card_eq_two_pow_k {k : ℕ} :
     (S (k + 1)).ncard = 2 ^ k := by
   induction k with

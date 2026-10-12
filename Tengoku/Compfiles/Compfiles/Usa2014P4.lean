@@ -73,30 +73,40 @@ def ACanWin (k : ℕ) : Prop := AForce k ∅
 every third cell is shaded. -/
 def shaded (c : Cell) : Prop := (c.1 - c.2) % 3 = 0
 
-/-- Membership in `offsets` as an explicit case distinction. -/
+/-- Membership in `offsets` as an explicit case distinction.
+@isnad1 id=iff.0h1v.s7.ecce3b7bfb85 from=translated src=- shape=16a1b14f vocab=cc12ef07
+-/
 lemma mem_offsets {v : Cell} :
     v ∈ offsets ↔ v = (1, 0) ∨ v = (-1, 0) ∨ v = (0, 1) ∨ v = (0, -1) ∨
       v = (1, -1) ∨ v = (-1, 1) := by
   unfold offsets
   simp only [Finset.mem_insert, Finset.mem_singleton]
 
-/-- Membership in `Dirs` as an explicit case distinction. -/
+/-- Membership in `Dirs` as an explicit case distinction.
+@isnad1 id=iff.0h1v.s6.240c05386e2a from=translated src=- shape=c2e0387c vocab=882b221d
+-/
 lemma mem_Dirs {v : Cell} : v ∈ Dirs ↔ v = (1, 0) ∨ v = (0, 1) ∨ v = (1, -1) := by
   unfold Dirs
   simp only [Finset.mem_insert, Finset.mem_singleton]
 
-/-- Adjacent cells are never both shaded: adjacent cells have different colors. -/
+/-- Adjacent cells are never both shaded: adjacent cells have different colors.
+@isnad1 id=not.1h2v.s3.26336dc7f30a from=translated src=- shape=d3381a12 vocab=e9289604
+-/
 lemma adj_not_both_shaded {c d : Cell} (h : Adj c d) : ¬ (shaded c ∧ shaded d) := by
   unfold Adj at h; rw [mem_offsets] at h; unfold shaded
   rcases h with h | h | h | h | h | h <;> obtain ⟨h1, h2⟩ := Prod.ext_iff.mp h <;> lia
 
-/-- The cells of a line are distinct. -/
+/-- The cells of a line are distinct.
+@isnad1 id=eq.2h4v.s5.1e553a80f0d1 from=translated src=- shape=2b9d83f2 vocab=1ebb6ac8
+-/
 lemma step_eq_of_eq {d : Cell} (hd : d ∈ Dirs) (p : Cell) {i j : ℕ}
     (h : step p d i = step p d j) : i = j := by
   rw [mem_Dirs] at hd; unfold step at h
   rcases hd with rfl | rfl | rfl <;> simp_all
 
-/-- Any six consecutive cells in a line contain two distinct shaded cells. -/
+/-- Any six consecutive cells in a line contain two distinct shaded cells.
+@isnad1 id=ex.1h2v.s6.30f8d8a04b6b from=translated src=- shape=8cb29987 vocab=61bcab16
+-/
 lemma two_shaded_of_line {d : Cell} (hd : d ∈ Dirs) (p : Cell) :
     ∃ i j : ℕ, i < 6 ∧ j < 6 ∧
       shaded (step p d i) ∧ shaded (step p d j) ∧ step p d i ≠ step p d j := by
@@ -119,7 +129,9 @@ lemma two_shaded_of_line {d : Cell} (hd : d ∈ Dirs) (p : Cell) :
     lia
 
 /-- Player `B` has a strategy preventing `A` from ever getting six consecutive
-cells in a line: `B` always removes a counter on a shaded cell. -/
+cells in a line: `B` always removes a counter on a shaded cell.
+@isnad1 id=not.0h0v.s2.4f8810a0aab8 from=translated src=- shape=8d7dbbf6 vocab=726da090
+-/
 theorem not_ACanWin_six : ¬ ACanWin 6 := by
   suffices key : ∀ s : Finset Cell, AForce 6 s → (∀ c ∈ s, ¬ shaded c) → False by
     exact fun h => key ∅ h (fun c hc => by simp at hc)
@@ -187,7 +199,9 @@ theorem not_ACanWin_six : ¬ ACanWin 6 := by
 
 /-! ### Transport of winning strategies along grid symmetries -/
 
-/-- A line traversed in the opposite direction is still a line. -/
+/-- A line traversed in the opposite direction is still a line.
+@isnad1 id=winning.2h4v.s5.26c38e1114f4 from=translated src=- shape=3fd11a11 vocab=95e21db1
+-/
 lemma winning_of_neg {k : ℕ} {s : Finset Cell} {d : Cell} (hd : d ∈ Dirs) {p : Cell}
     (h : ∀ i : ℕ, i < k → step p (-d) i ∈ s) : Winning k s := by
   rcases k with _ | k
@@ -202,7 +216,9 @@ lemma winning_of_neg {k : ℕ} {s : Finset Cell} {d : Cell} (hd : d ∈ Dirs) {p
     rw [e]
     exact h (k - i) (by lia)
 
-/-- Generic transport of `AForce` along a map preserving the game structure. -/
+/-- Generic transport of `AForce` along a map preserving the game structure.
+@isnad1 id=aforce.4h3v.s6.1883d79b8c6a from=translated src=- shape=31d67565 vocab=0f0ac7a4
+-/
 lemma AForce_image {k : ℕ} {φ : Cell → Cell} (hφ : Function.Injective φ)
     (hφ_adj : ∀ c d, Adj (φ c) (φ d) ↔ Adj c d)
     (hφ_win : ∀ s, Winning k s → Winning k (s.image φ))
@@ -248,6 +264,9 @@ lemma AForce_image {k : ℕ} {φ : Cell → Cell} (hφ : Function.Injective φ)
 /-- Rotation by 60 degrees about the origin. -/
 def rot (c : Cell) : Cell := (-c.2, c.1 + c.2)
 
+/--
+@isnad1 id=injectiv.0h0v.s2.00e536dd1aed from=translated src=- shape=e3d48bcb vocab=7f91f75c
+-/
 lemma rot_injective : Function.Injective rot := by
   intro c d h
   unfold rot at h
@@ -257,6 +276,9 @@ lemma rot_injective : Function.Injective rot := by
   have : c.1 = d.1 := by lia
   exact Prod.ext ‹_› ‹_›
 
+/--
+@isnad1 id=iff.0h2v.s3.e5b8bd35dc38 from=translated src=- shape=d33d5b76 vocab=20767991
+-/
 lemma adj_rot {c d : Cell} : Adj (rot c) (rot d) ↔ Adj c d := by
   have hset : offsets.image rot = offsets := by decide
   have hlin : ((rot d).1 - (rot c).1, (rot d).2 - (rot c).2)
@@ -273,9 +295,15 @@ lemma adj_rot {c d : Cell} : Adj (rot c) (rot d) ↔ Adj c d := by
     rw [← hset]
     exact Finset.mem_image.mpr ⟨_, h, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.eb91ee64b082 from=translated src=- shape=403df59b vocab=9997039d
+-/
 lemma step_rot (p d : Cell) (i : ℕ) : step (rot p) (rot d) i = rot (step p d i) := by
   rw [Prod.ext_iff]; unfold step rot; exact ⟨by ring, by ring⟩
 
+/--
+@isnad1 id=winning.1h2v.s4.49e428ec39ca from=translated src=- shape=997b0a1d vocab=be5bd5ae
+-/
 lemma winning_rot {k : ℕ} {s : Finset Cell} (h : Winning k s) : Winning k (s.image rot) := by
   obtain ⟨d, hd, p, hline⟩ := h
   rw [mem_Dirs] at hd
@@ -295,11 +323,16 @@ lemma winning_rot {k : ℕ} {s : Finset Cell} (h : Winning k s) : Winning k (s.i
     rw [h1, step_rot]
     exact Finset.mem_image.mpr ⟨_, hline i hi, rfl⟩
 
+/--
+@isnad1 id=aforce.1h2v.s4.d41c24927a93 from=translated src=- shape=997b0a1d vocab=c3e4f503
+-/
 lemma AForce_image_rot {k : ℕ} {s : Finset Cell} (h : AForce k s) :
     AForce k (s.image rot) :=
   AForce_image rot_injective (fun _ _ => adj_rot) (fun _ h => winning_rot h) h
 
-/-- Rotation by an arbitrary multiple of 60 degrees. -/
+/-- Rotation by an arbitrary multiple of 60 degrees.
+@isnad1 id=aforce.1h3v.s5.28e24a7ef620 from=translated src=- shape=d3bc3192 vocab=9f7bcd22
+-/
 lemma AForce_image_rotpow {k : ℕ} {s : Finset Cell} (j : ℕ) (h : AForce k s) :
     AForce k (s.image (rot^[j])) := by
   induction j with
@@ -311,12 +344,18 @@ lemma AForce_image_rotpow {k : ℕ} {s : Finset Cell} (j : ℕ) (h : AForce k s)
 /-- Translation by a fixed cell. -/
 def transl (t : Cell) (c : Cell) : Cell := (c.1 + t.1, c.2 + t.2)
 
+/--
+@isnad1 id=injectiv.0h1v.s2.d1fa69234956 from=translated src=- shape=f736e2c1 vocab=9b98c166
+-/
 lemma transl_injective (t : Cell) : Function.Injective (transl t) := by
   intro c d h
   unfold transl at h
   rw [Prod.ext_iff] at h ⊢
   lia
 
+/--
+@isnad1 id=iff.0h3v.s4.74f4637057ae from=translated src=- shape=a36aec33 vocab=e52a542a
+-/
 lemma adj_transl (t : Cell) {c d : Cell} : Adj (transl t c) (transl t d) ↔ Adj c d := by
   have hlin : ((transl t d).1 - (transl t c).1, (transl t d).2 - (transl t c).2)
       = (d.1 - c.1, d.2 - c.2) := by
@@ -324,15 +363,24 @@ lemma adj_transl (t : Cell) {c d : Cell} : Adj (transl t c) (transl t d) ↔ Adj
   unfold Adj
   rw [hlin]
 
+/--
+@isnad1 id=eq.0h4v.s4.31e5c0395453 from=translated src=- shape=d1765cbc vocab=e8ed32d2
+-/
 lemma step_transl (t p d : Cell) (i : ℕ) : step (transl t p) d i = transl t (step p d i) := by
   rw [Prod.ext_iff]; unfold step transl; exact ⟨by ring, by ring⟩
 
+/--
+@isnad1 id=winning.1h3v.s4.c9eacc7d14e1 from=translated src=- shape=67c97928 vocab=26837487
+-/
 lemma winning_transl {k : ℕ} (t : Cell) {s : Finset Cell} (h : Winning k s) :
     Winning k (s.image (transl t)) := by
   obtain ⟨d, hd, p, hline⟩ := h
   exact ⟨d, hd, transl t p, fun i hi => by
     rw [step_transl]; exact Finset.mem_image.mpr ⟨_, hline i hi, rfl⟩⟩
 
+/--
+@isnad1 id=aforce.1h3v.s4.abc375beb785 from=translated src=- shape=67c97928 vocab=8b6fb121
+-/
 lemma AForce_image_transl {k : ℕ} (t : Cell) {s : Finset Cell} (h : AForce k s) :
     AForce k (s.image (transl t)) :=
   AForce_image (transl_injective t) (fun _ _ => adj_transl t) (fun _ h => winning_transl t h) h
@@ -341,12 +389,18 @@ lemma AForce_image_transl {k : ℕ} (t : Cell) {s : Finset Cell} (h : AForce k s
 `y₀ = (4, 0)` of the strategy below. -/
 def mirror (c : Cell) : Cell := (5 - c.1, -c.2)
 
+/--
+@isnad1 id=injectiv.0h0v.s2.c21ad3c3d82c from=translated src=- shape=e3d48bcb vocab=05ce74f4
+-/
 lemma mirror_injective : Function.Injective mirror := by
   intro c d h
   unfold mirror at h
   rw [Prod.ext_iff] at h ⊢
   lia
 
+/--
+@isnad1 id=iff.0h2v.s3.6a9160758fe4 from=translated src=- shape=d33d5b76 vocab=256b0874
+-/
 lemma adj_mirror {c d : Cell} : Adj (mirror c) (mirror d) ↔ Adj c d := by
   have hset : offsets.image (fun v : Cell => (-v.1, -v.2)) = offsets := by decide
   have hlin : ((mirror d).1 - (mirror c).1, (mirror d).2 - (mirror c).2)
@@ -367,6 +421,9 @@ lemma adj_mirror {c d : Cell} : Adj (mirror c) (mirror d) ↔ Adj c d := by
     rw [← hset]
     exact Finset.mem_image.mpr ⟨_, h, rfl⟩
 
+/--
+@isnad1 id=winning.1h2v.s4.6b74c2d9d0fe from=translated src=- shape=997b0a1d vocab=39121852
+-/
 lemma winning_mirror {k : ℕ} {s : Finset Cell} (h : Winning k s) :
     Winning k (s.image mirror) := by
   obtain ⟨d, hd, p, hline⟩ := h
@@ -380,6 +437,9 @@ lemma winning_mirror {k : ℕ} {s : Finset Cell} (h : Winning k s) :
   rw [e]
   exact Finset.mem_image.mpr ⟨_, hline i hi, rfl⟩
 
+/--
+@isnad1 id=aforce.1h2v.s4.b1c20f115394 from=translated src=- shape=997b0a1d vocab=7dbeb066
+-/
 lemma AForce_image_mirror {k : ℕ} {s : Finset Cell} (h : AForce k s) :
     AForce k (s.image mirror) :=
   AForce_image mirror_injective (fun _ _ => adj_mirror) (fun _ h => winning_mirror h) h
@@ -407,7 +467,9 @@ def xSlots : Finset Cell := {(1, 1), (0, 1), (1, -1), (2, -1)}
 that the strategy fills one by one. -/
 def ySlots : Finset Cell := {(4, 1), (3, 1), (4, -1), (5, -1)}
 
-/-- Five consecutive cells on the first axis give a win. -/
+/-- Five consecutive cells on the first axis give a win.
+@isnad1 id=winning.5h2v.s7.42e2925e49d8 from=translated src=- shape=ba9cd277 vocab=52d9dc9e
+-/
 lemma winning_row0 (a : ℤ) {t : Finset Cell}
     (h0 : (a, 0) ∈ t) (h1 : (a + 1, 0) ∈ t) (h2 : (a + 2, 0) ∈ t)
     (h3 : (a + 3, 0) ∈ t) (h4 : (a + 4, 0) ∈ t) : Winning 5 t := by
@@ -420,7 +482,9 @@ lemma winning_row0 (a : ℤ) {t : Finset Cell}
   · exact h3
   · exact h4
 
-/-- The diagonal line through `(1, 1)` in direction `(1, -1)`. -/
+/-- The diagonal line through `(1, 1)` in direction `(1, -1)`.
+@isnad1 id=winning.5h1v.s7.0bf44a67f666 from=translated src=- shape=49d38854 vocab=c05ff1cb
+-/
 lemma winning_diag {t : Finset Cell}
     (h0 : (1, 1) ∈ t) (h1 : (2, 0) ∈ t) (h2 : (3, -1) ∈ t)
     (h3 : (4, -2) ∈ t) (h4 : (5, -3) ∈ t) : Winning 5 t := by
@@ -432,7 +496,9 @@ lemma winning_diag {t : Finset Cell}
   · exact h3
   · exact h4
 
-/-- Completing the first five cells of row 0 wins immediately. -/
+/-- Completing the first five cells of row 0 wins immediately.
+@isnad1 id=aforce.5h1v.s6.a3892251fcae from=translated src=- shape=b8bff080 vocab=08798f5d
+-/
 lemma win_now0 {s : Finset Cell} (h2 : (2, 0) ∉ s) (h3 : (3, 0) ∉ s)
     (h0 : (0, 0) ∈ s) (h1 : x₀ ∈ s) (h4 : y₀ ∈ s) : AForce 5 s := by
   apply AForce.of_win (s' := insert (2, 0) (insert (3, 0) s))
@@ -444,7 +510,9 @@ lemma win_now0 {s : Finset Cell} (h2 : (2, 0) ∉ s) (h3 : (3, 0) ∉ s)
     · exact Finset.mem_insert_of_mem (Finset.mem_insert_self _ _)
     · exact Finset.mem_insert_of_mem (Finset.mem_insert_of_mem h4)
 
-/-- Completing the cells `(1, 0)` to `(5, 0)` of row 0 wins immediately. -/
+/-- Completing the cells `(1, 0)` to `(5, 0)` of row 0 wins immediately.
+@isnad1 id=aforce.5h1v.s6.d47ed56a77b5 from=translated src=- shape=2a539d4b vocab=08798f5d
+-/
 lemma win_now1 {s : Finset Cell} (h2 : (2, 0) ∉ s) (h3 : (3, 0) ∉ s)
     (h1 : x₀ ∈ s) (h4 : y₀ ∈ s) (h5 : (5, 0) ∈ s) : AForce 5 s := by
   apply AForce.of_win (s' := insert (2, 0) (insert (3, 0) s))
@@ -457,7 +525,9 @@ lemma win_now1 {s : Finset Cell} (h2 : (2, 0) ∉ s) (h3 : (3, 0) ∉ s)
     · exact Finset.mem_insert_of_mem (Finset.mem_insert_of_mem h5)
 
 /-- The endgame position with `x₀` completely surrounded and filled: whatever
-counter `B` removes, `A` wins. -/
+counter `B` removes, `A` wins.
+@isnad1 id=aforce.2h2v.s7.117c19689b7f from=translated src=- shape=32578f73 vocab=87a4b160
+-/
 lemma endgame_x_Bturn (Ny : Finset Cell) (hNy : Ny ⊆ ySlots) :
     ∀ t, BMove ({(0, 0), (5, 0)} ∪ xSlots ∪ Ny ∪ {(2, 0), x₀, y₀}) t → AForce 5 t := by
   intro t ht
@@ -752,7 +822,9 @@ lemma endgame_x_Bturn (Ny : Finset Cell) (hNy : Ny ⊆ ySlots) :
       · exact Finset.mem_insert_self _ _
       · exact Finset.mem_insert_of_mem (Finset.mem_insert_self _ _)
 
-/-- The mirrored endgame with `y₀` completely surrounded and filled. -/
+/-- The mirrored endgame with `y₀` completely surrounded and filled.
+@isnad1 id=aforce.2h2v.s7.cfd1cff07295 from=translated src=- shape=32578f73 vocab=87a4b160
+-/
 lemma endgame_y_Bturn (Nx : Finset Cell) (hNx : Nx ⊆ xSlots) :
     ∀ t, BMove ({(0, 0), (5, 0)} ∪ ySlots ∪ Nx ∪ {(3, 0), x₀, y₀}) t → AForce 5 t := by
   intro t ht
@@ -786,7 +858,9 @@ set_option maxHeartbeats 3200000 in
 `A` can force a win.  `A` replaces the missing distinguished cell and fills one
 more of its neighbor slots each round; `B` must remove one of the two
 distinguished cells every round, so eventually one of them is completely
-surrounded and the endgame lemmas apply. -/
+surrounded and the endgame lemmas apply.
+@isnad1 id=aforce.4h4v.s7.6bdf103f51c4 from=translated src=- shape=64bc29d9 vocab=7e266005
+-/
 lemma midphase : ∀ n : ℕ, ∀ Nx Ny P : Finset Cell,
     (xSlots.card - Nx.card) + (ySlots.card - Ny.card) = n →
     Nx ⊆ xSlots → Ny ⊆ ySlots → (P = {x₀} ∨ P = {y₀}) →
@@ -1155,7 +1229,9 @@ lemma midphase : ∀ n : ℕ, ∀ Nx Ny P : Finset Cell,
             have hcard : (insert sx Nx).card = Nx.card + 1 := Finset.card_insert_of_notMem hsxNx
             lia
 /-- With counters on two adjacent cells of a line, `A` places the mirror pair
-two spaces down the same line, reaching the midgame invariant. -/
+two spaces down the same line, reaching the midgame invariant.
+@isnad1 id=aforce.0h0v.s5.cdd632826973 from=translated src=- shape=1a39d10a vocab=77b84581
+-/
 lemma canonical_pair : AForce 5 ({(0, 0), (1, 0)}) := by
   have m : AMove ({(0, 0), (1, 0)}) ({(0, 0), (1, 0), (4, 0), (5, 0)}) :=
     ⟨(4, 0), (5, 0), by decide, by decide, by decide, by decide, by decide⟩
@@ -1186,7 +1262,9 @@ lemma canonical_pair : AForce 5 ({(0, 0), (1, 0)}) := by
     apply win_now0 <;> decide
 
 /-- With two counters on adjacent cells, `A` wins (transport of the canonical
-configuration along a grid symmetry). -/
+configuration along a grid symmetry).
+@isnad1 id=aforce.2h2v.s5.be918993e841 from=translated src=- shape=82461e1b vocab=aae15e4c
+-/
 lemma adjacent_pair {P Q : Cell} (_hne : P ≠ Q) (hadj : Adj P Q) :
     AForce 5 ({P, Q}) := by
   unfold Adj at hadj
@@ -1215,7 +1293,9 @@ lemma adjacent_pair {P Q : Cell} (_hne : P ≠ Q) (hadj : Adj P Q) :
   exact AForce_image_transl P (AForce_image_rotpow j canonical_pair)
 
 /-- `A` wins for `k = 5`, following the official solution: after two rounds a
-pair of adjacent counters remains, from which the strategy above wins. -/
+pair of adjacent counters remains, from which the strategy above wins.
+@isnad1 id=acanwin.0h0v.s2.b2b363206fc4 from=translated src=- shape=e590c3e1 vocab=726da090
+-/
 theorem ACanWin_five : ACanWin 5 := by
   unfold ACanWin
   apply AForce.of_step (s' := ({(0, 0), (1, 0)} : Finset Cell))
@@ -1268,7 +1348,9 @@ theorem ACanWin_five : ACanWin 5 := by
           exact adjacent_pair (by decide) (by decide)
 
 /-- If `A` can force a win with target `l`, `A` can also force a win with any
-smaller target `k ≤ l` (a line of `l` consecutive cells contains a line of `k`). -/
+smaller target `k ≤ l` (a line of `l` consecutive cells contains a line of `k`).
+@isnad1 id=aforce.2h3v.s4.277be128fcc5 from=translated src=- shape=90204d42 vocab=f91b1039
+-/
 lemma AForce_mono {k l : ℕ} (hkl : k ≤ l) {s : Finset Cell} (h : AForce l s) :
     AForce k s := by
   induction h

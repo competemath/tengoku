@@ -32,17 +32,26 @@ def b : ℕ → ℕ
 | 1 => 7
 | n + 2 => 2 * b (n + 1) + 3 * b n
 
+/--
+@isnad1 id=and.0h1v.s5.cfbfca29f863 from=translated src=- shape=491a22b8 vocab=d8c6cb5d
+-/
 lemma b_mod_8_eq (n : ℕ) : (Even n → b n % 8 = 1) ∧ (Odd n → b n % 8 = 7) := by
   induction n using Nat.twoStepInduction with
   | zero => simp [b]
   | one => simp [b]
   | more k hk hk1 => constructor <;> intro _ <;> rw [b] <;> grind
 
+/--
+@isnad1 id=or.0h1v.s5.9b35dc4bc520 from=translated src=- shape=2c6bb6ec vocab=df0b19de
+-/
 lemma b_mod_8_mem (m : ℕ) : b m % 8 = 1 ∨ b m % 8 = 7 := by
   cases Nat.even_or_odd m with
   | inl h => left; exact (b_mod_8_eq m).1 h
   | inr h => right; exact (b_mod_8_eq m).2 h
 
+/--
+@isnad1 id=and.0h1v.s6.75167ef42728 from=translated src=- shape=600b420d vocab=0b889105
+-/
 lemma a_add_2_mod_8_eq (k : ℕ) : (Even k → a (k + 2) % 8 = 3) ∧ (Odd k → a (k + 2) % 8 = 5) := by
   induction k using Nat.twoStepInduction with
   | zero => simp [a]
@@ -60,6 +69,9 @@ lemma a_add_2_mod_8_eq (k : ℕ) : (Even k → a (k + 2) % 8 = 3) ∧ (Odd k →
   rw [a, Nat.add_mod, Nat.mul_mod]
   rw [hn1.1 he, hn.2 ho]
 
+/--
+@isnad1 id=or.0h1v.s6.d917631d24b7 from=translated src=- shape=81809955 vocab=6f03ceee
+-/
 lemma a_add_2_mod_8_mem (k : ℕ) : a (k + 2) % 8 = 3 ∨ a (k + 2) % 8 = 5 := by
   cases Nat.even_or_odd k with
   | inl h => left; exact (a_add_2_mod_8_eq k).1 h

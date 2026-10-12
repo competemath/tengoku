@@ -39,7 +39,9 @@ nonnegative entries and `-M` for the sum of the negative entries, one checks
 -/
 
 /-- If every value of `f` on `s` is nonpositive, then the sum of the squares is
-at most the square of the sum: the cross terms are nonnegative. -/
+at most the square of the sum: the cross terms are nonnegative.
+@isnad1 id=le.1h3v.s6.f7969b0949d6 from=translated src=- shape=55c49776 vocab=d94fab7e
+-/
 theorem sum_sq_le_sq_sum_of_nonpos {ι : Type*} (s : Finset ι) (f : ι → ℝ)
     (hf : ∀ i ∈ s, f i ≤ 0) :
     ∑ i ∈ s, f i ^ 2 ≤ (∑ i ∈ s, f i) ^ 2 := by

@@ -90,6 +90,9 @@ Rearranging gives the result.
 
 section
 
+/--
+@isnad1 id=iff.0h5v.s5.c39489e42d23 from=translated src=- shape=9e69dbfe vocab=edaa140a
+-/
 @[simp]
 theorem JudgePair.agree_iff_same_rating (p : JudgePair J) (c : C) :
     p.Agree r c ↔ (r c p.judge₁ ↔ r c p.judge₂) :=
@@ -102,15 +105,24 @@ def A : Finset (AgreedTriple C J) :=
   Finset.univ.filter @fun (a : AgreedTriple C J) =>
     (a.judgePair.Agree r a.contestant ∧ a.judgePair.Distinct)
 
+/--
+@isnad1 id=mem.1h4v.s6.96abae7ceaaf from=translated src=- shape=043ca40e vocab=f764b0a1
+-/
 theorem A_maps_to_offDiag_judgePair (a : AgreedTriple C J) :
     a ∈ A r → a.judgePair ∈ Finset.offDiag (@Finset.univ J _) := by simp [A, Finset.mem_offDiag]
 
+/--
+@isnad1 id=eq.0h4v.s7.61b00fb818f0 from=translated src=- shape=dc3bac9b vocab=862a5278
+-/
 theorem A_fibre_over_contestant (c : C) :
     (Finset.univ.filter fun p : JudgePair J => p.Agree r c ∧ p.Distinct) =
       ((A r).filter fun a : AgreedTriple C J => a.contestant = c).image Prod.snd := by
   ext p
   simp [A]
 
+/--
+@isnad1 id=eq.0h4v.s7.fa1866a99fef from=translated src=- shape=8f7f4127 vocab=5ffd3b1d
+-/
 theorem A_fibre_over_contestant_card (c : C) :
     (Finset.univ.filter fun p : JudgePair J => p.Agree r c ∧ p.Distinct).card =
       ((A r).filter fun a : AgreedTriple C J => a.contestant = c).card := by
@@ -119,6 +131,9 @@ theorem A_fibre_over_contestant_card (c : C) :
   unfold Set.InjOn AgreedTriple.contestant
   aesop
 
+/--
+@isnad1 id=eq.1h4v.s6.9fb3863e1bff from=translated src=- shape=37b98d2e vocab=a906767e
+-/
 theorem A_fibre_over_judgePair {p : JudgePair J} (h : p.Distinct) :
     agreedContestants r p = ((A r).filter fun a : AgreedTriple C J => a.judgePair = p).image
     AgreedTriple.contestant := by
@@ -126,6 +141,9 @@ theorem A_fibre_over_judgePair {p : JudgePair J} (h : p.Distinct) :
   · rw [Finset.mem_image]; refine ⟨⟨c, p⟩, ?_⟩; aesop
   · aesop
 
+/--
+@isnad1 id=eq.1h4v.s6.fd810d0ca430 from=translated src=- shape=448d9e5d vocab=03127a67
+-/
 theorem A_fibre_over_judgePair_card {p : JudgePair J} (h : p.Distinct) :
     (agreedContestants r p).card =
       ((A r).filter fun a : AgreedTriple C J => a.judgePair = p).card := by
@@ -134,6 +152,9 @@ theorem A_fibre_over_judgePair_card {p : JudgePair J} (h : p.Distinct) :
   unfold Set.InjOn AgreedTriple.judgePair
   aesop
 
+/--
+@isnad1 id=le.1h4v.s6.40a7f3085193 from=translated src=- shape=82b1aabc vocab=68c3d732
+-/
 theorem A_card_upper_bound {k : ℕ}
     (hk : ∀ p : JudgePair J, p.Distinct → (agreedContestants r p).card ≤ k) :
     (A r).card ≤ k * (Fintype.card J * Fintype.card J - Fintype.card J) := by
@@ -146,9 +167,15 @@ theorem A_card_upper_bound {k : ℕ}
 
 end
 
+/--
+@isnad1 id=eq.0h3v.s7.a521d13a9e05 from=translated src=- shape=bfc41e33 vocab=b1be4380
+-/
 theorem add_sq_add_sq_sub {α : Type*} [Ring α] (x y : α) :
     (x + y) * (x + y) + (x - y) * (x - y) = 2 * x * x + 2 * y * y := by noncomm_ring
 
+/--
+@isnad1 id=le.1h3v.s6.649c3cd4343c from=translated src=- shape=d5687926 vocab=f92a5456
+-/
 theorem norm_bound_of_odd_sum {x y z : ℤ} (h : x + y = 2 * z + 1) :
     2 * z * z + 2 * z + 1 ≤ x * x + y * y := by
   suffices 4 * z * z + 4 * z + 1 + 1 ≤ 2 * x * x + 2 * y * y by
@@ -162,6 +189,9 @@ section
 
 variable [Fintype J]
 
+/--
+@isnad1 id=le.1h5v.s7.4ddf8ca04951 from=translated src=- shape=e726cf13 vocab=547cbaad
+-/
 theorem judge_pairs_card_lower_bound {z : ℕ} (hJ : Fintype.card J = 2 * z + 1) (c : C) :
     2 * z * z + 2 * z + 1 ≤ (Finset.univ.filter fun p : JudgePair J => p.Agree r c).card := by
   let x := (Finset.univ.filter fun j => r c j).card
@@ -173,6 +203,9 @@ theorem judge_pairs_card_lower_bound {z : ℕ} (hJ : Fintype.card J = 2 * z + 1)
   suffices x + y = 2 * z + 1 by simp [← Int.natCast_add, this]
   rw [Finset.card_filter_add_card_filter_not, ← hJ]; rfl
 
+/--
+@isnad1 id=le.1h5v.s7.8f8edabcb686 from=translated src=- shape=b619852f vocab=a87fe623
+-/
 theorem distinct_judge_pairs_card_lower_bound {z : ℕ} (hJ : Fintype.card J = 2 * z + 1) (c : C) :
     2 * z * z ≤ (Finset.univ.filter fun p : JudgePair J => p.Agree r c ∧ p.Distinct).card := by
   let s := Finset.univ.filter fun p : JudgePair J => p.Agree r c
@@ -189,6 +222,9 @@ theorem distinct_judge_pairs_card_lower_bound {z : ℕ} (hJ : Fintype.card J = 2
   · rw [hst']; exact Nat.le_sub_of_add_le hs
   · apply Finset.sdiff_subset
 
+/--
+@isnad1 id=le.1h4v.s6.35c22667fa35 from=translated src=- shape=11eda7f9 vocab=000d579c
+-/
 theorem A_card_lower_bound [Fintype C] {z : ℕ} (hJ : Fintype.card J = 2 * z + 1) :
     2 * z * z * Fintype.card C ≤ (A r).card := by
   have h : ∀ a, a ∈ A r → Prod.fst a ∈ @Finset.univ C _ := by intros; apply Finset.mem_univ
@@ -199,6 +235,9 @@ theorem A_card_lower_bound [Fintype C] {z : ℕ} (hJ : Fintype.card J = 2 * z + 
 
 end
 
+/--
+@isnad1 id=iff.2h3v.s7.b9d5cad85a5e from=translated src=- shape=77e91f70 vocab=4f12df9d
+-/
 theorem clear_denominators {a b k : ℕ} (ha : 0 < a) (hb : 0 < b) :
     (b - 1 : ℚ) / (2 * b) ≤ k / a ↔ ((b : ℕ) - 1) * a ≤ k * (2 * b) := by
   rw [div_le_div_iff₀]

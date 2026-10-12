@@ -42,7 +42,9 @@ structure ConditionalWeightBound {X Y Z : Type*} [Fintype X] [Fintype Y]
   log_bound : -(Fintype.card X : ℝ) * cost ≤
     ∑ x, Real.log (weight (parent x) (key x))
 
-/-- A weight certificate and a bound on every fibre bound the number of inputs. -/
+/-- A weight certificate and a bound on every fibre bound the number of inputs.
+@isnad1 id=le.2h6v.s6.5e31d2889bfb from=translated src=- shape=966f46f1 vocab=d9aff61e
+-/
 theorem WeightBound.log_card_le {X Y : Type*} [Fintype X] [Nonempty X] [Fintype Y]
     {key : X → Y} {cost : ℝ} (bound : WeightBound key cost) {K : ℕ} (hK : 0 < K)
     (fibres : ∀ y, (Finset.univ.filter fun x => key x = y).card ≤ K) :

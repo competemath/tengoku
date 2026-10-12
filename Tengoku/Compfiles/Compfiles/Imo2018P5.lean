@@ -30,6 +30,9 @@ def S (a : ℕ → ℤ) (n : ℕ) : ℚ := ∑ i ∈ Finset.range n, (a i : ℚ)
 
 /- Difference of two consecutive sums: for `n ≥ 1`,
 `S (n+1) - S n = aₙ₋₁/aₙ + (aₙ - aₙ₋₁)/a₀`. -/
+/--
+@isnad1 id=eq.1h2v.s7.c32ce3abaf98 from=translated src=- shape=5396f8a2 vocab=e5a3ae30
+-/
 lemma S_sub (a : ℕ → ℤ) (n : ℕ) (hn : 1 ≤ n) :
     S a (n + 1) - S a n = (a (n - 1) : ℚ) / a n + ((a n : ℚ) - a (n - 1)) / a 0 := by
   have h1 : S a (n + 1) = (∑ i ∈ Finset.range n, (a i : ℚ) / a (i + 1)) + (a n : ℚ) / a 0 := by
@@ -60,6 +63,9 @@ lemma S_sub (a : ℕ → ℤ) (n : ℕ) (hn : 1 ≤ n) :
 
 /- The key per-step relation. If `S n` and `S (n+1)` are both integers, then there is an
 integer `k` (namely `a₀·aₙ₋₁/aₙ`) with `aₙ * k = a₀ * aₙ₋₁` and `a₀ ∣ k + aₙ - aₙ₋₁`. -/
+/--
+@isnad1 id=ex.4h3v.s7.4326073671c7 from=translated src=- shape=ea7ca5a1 vocab=c8ad67db
+-/
 lemma step (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ)
     (h : ∀ n, N ≤ n → ∃ z : ℤ, z = S a n) {n : ℕ} (hn : N ≤ n) (hn1 : 1 ≤ n) :
     ∃ k : ℤ, a n * k = a 0 * a (n - 1) ∧ a 0 ∣ k + a n - a (n - 1) := by
@@ -82,6 +88,9 @@ lemma step (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ)
 /- The valuation rule. For a prime `p`, write `α, κ, V, V'` for the `p`-adic valuations of
 `a₀, k, aₙ₋₁, aₙ` respectively, where `k` comes from `step`. Then:
 `κ < α` forces `V = κ` and `V' = α`; `κ = α` forces `V' = V`; `α < κ` forces `α ≤ V' < V`. -/
+/--
+@isnad1 id=and.4h4v.s8.0c9526dff170 from=translated src=- shape=db83398d vocab=b197578c
+-/
 lemma val_rule (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) {p : ℕ} (hp : p.Prime)
     {n : ℕ} {k : ℤ} (hk1 : a n * k = a 0 * a (n - 1)) (hk2 : a 0 ∣ k + a n - a (n - 1)) :
     (padicValInt p k < padicValInt p (a 0) →
@@ -205,6 +214,9 @@ lemma val_rule (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) {p : ℕ} (hp : p.Prime
 
 /- Boundedness: for `n ≥ N - 1` and every prime `p`,
 `v_p(aₙ) ≤ v_p(a₀) + v_p(a_{N-1})`, proved by induction using `val_rule`. -/
+/--
+@isnad1 id=le.5h4v.s6.4b60f75d2cd0 from=translated src=- shape=2621d47b vocab=7d49622a
+-/
 lemma bound (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ) (hN : 0 < N)
     (h : ∀ n, N ≤ n → ∃ z : ℤ, z = S a n)
     (n : ℕ) (hn : N - 1 ≤ n) (p : ℕ) (hp : p.Prime) :
@@ -225,6 +237,9 @@ lemma bound (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ) (hN : 0 < N)
       lia
 
 /- Divisibility form of the bound: `aₙ ∣ a₀ · a_{N-1}` for `n ≥ N - 1`. -/
+/--
+@isnad1 id=dvd.4h3v.s6.b5b529606cf7 from=translated src=- shape=5d6d80c7 vocab=781575fe
+-/
 lemma dvd_bound (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ) (hN : 0 < N)
     (h : ∀ n, N ≤ n → ∃ z : ℤ, z = S a n) (n : ℕ) (hn : N - 1 ≤ n) :
     a n ∣ a 0 * a (N - 1) := by
@@ -244,6 +259,9 @@ lemma dvd_bound (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ) (hN : 0 < N)
 
 /- No closed walk. If the sequence returns to the same value (`a n₁ = a n₂` with `n₁ < n₂`,
 `N ≤ n₁`), then it was constant on the whole interval `[n₁, n₂]`. -/
+/--
+@isnad1 id=eq.8h5v.s6.e1befc7d1dc0 from=translated src=- shape=aeceb98f vocab=e4258f30
+-/
 lemma walk_const (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ) (hN : 0 < N)
     (h : ∀ n, N ≤ n → ∃ z : ℤ, z = S a n)
     {n₁ n₂ : ℕ} (hn₁ : N ≤ n₁) (hlt : n₁ < n₂) (heq : a n₁ = a n₂)

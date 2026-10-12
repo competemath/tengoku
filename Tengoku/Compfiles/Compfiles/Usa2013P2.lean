@@ -95,7 +95,9 @@ def permEquiv {n : ℕ} (σ : Equiv.Perm (Fin 3)) (s t : Fin 3) :
     ext i
     simp [Function.comp_apply]
 
-/-- Swapping two column symbols does not change the counts. -/
+/-- Swapping two column symbols does not change the counts.
+@isnad1 id=eq.2h7v.s7.39936e05c7c9 from=translated src=- shape=40e4aeeb vocab=56d0cc5e
+-/
 theorem card_eq_swap {n : ℕ} (s t s' t' p q : Fin 3)
     (hs : Equiv.swap p q s = s') (ht : Equiv.swap p q t = t') :
     countCol n s t = countCol n s' t' := by
@@ -159,7 +161,9 @@ def dropLastEquiv {n : ℕ} (s t : Fin 3) :
     subst h1
     exact heq_of_eq (Subtype.ext h2)
 
-/-- The count recurrence obtained from `dropLastEquiv`. -/
+/-- The count recurrence obtained from `dropLastEquiv`.
+@isnad1 id=eq.0h3v.s7.8287b9bfd091 from=translated src=- shape=83292583 vocab=45165178
+-/
 theorem countCol_succ {n : ℕ} (s t : Fin 3) :
     countCol (n + 1) s t =
       ∑ r : Fin 3, Nat.card
@@ -167,21 +171,27 @@ theorem countCol_succ {n : ℕ} (s t : Fin 3) :
   unfold countCol
   rw [Nat.card_congr (dropLastEquiv s t), Nat.card_sigma]
 
-/-- Dropping a decidable side condition from a column count. -/
+/-- Dropping a decidable side condition from a column count.
+@isnad1 id=eq.1h4v.s6.6e1355060033 from=translated src=- shape=5b7f6f41 vocab=df33eb61
+-/
 theorem card_drop_ne {n : ℕ} (s r t : Fin 3) (h : r ≠ t) :
     Nat.card {c : ColSeq n // AdjDistinct c ∧ c 0 = s ∧ c (Fin.last n) = r ∧ r ≠ t} =
       countCol n s r :=
   Nat.card_congr (Equiv.subtypeEquivRight
     (fun _ => ⟨fun h' => ⟨h'.1, h'.2.1, h'.2.2.1⟩, fun h' => ⟨h'.1, h'.2.1, h'.2.2, h⟩⟩))
 
-/-- A column count with contradictory side conditions is zero. -/
+/-- A column count with contradictory side conditions is zero.
+@isnad1 id=eq.1h4v.s6.fc737b60e64f from=translated src=- shape=1b859fb5 vocab=56bbaba1
+-/
 theorem card_eq_zero_of_ne {n : ℕ} (s r t : Fin 3) (h : r = t) :
     Nat.card {c : ColSeq n // AdjDistinct c ∧ c 0 = s ∧ c (Fin.last n) = r ∧ r ≠ t} = 0 := by
   subst h
   rw [Nat.card_eq_fintype_card, Fintype.card_eq_zero_iff]
   exact ⟨fun c => c.2.2.2.2 rfl⟩
 
-/-- First recursion: `x_{n+1} = y_n + x_n`. -/
+/-- First recursion: `x_{n+1} = y_n + x_n`.
+@isnad1 id=eq.0h1v.s6.77c19aa55694 from=translated src=- shape=c25e5d93 vocab=253e8d76
+-/
 theorem x_succ (n : ℕ) : countCol (n + 1) 0 1 = countCol n 2 2 + countCol n 0 1 := by
   simp only [countCol_succ, Fin.sum_univ_three,
     card_drop_ne 0 0 1 (by decide), card_eq_zero_of_ne 0 1 1 rfl,
@@ -190,7 +200,9 @@ theorem x_succ (n : ℕ) : countCol (n + 1) 0 1 = countCol n 2 2 + countCol n 0 
     card_eq_swap 0 2 0 1 1 2 (by decide) (by decide)]
   ring
 
-/-- Second recursion: `y_{n+1} = 2 * x_n`. -/
+/-- Second recursion: `y_{n+1} = 2 * x_n`.
+@isnad1 id=eq.0h1v.s6.f5a71156d17f from=translated src=- shape=9a36947e vocab=10152ed4
+-/
 theorem y_succ (n : ℕ) : countCol (n + 1) 2 2 = 2 * countCol n 0 1 := by
   simp only [countCol_succ, Fin.sum_univ_three,
     card_drop_ne 2 0 2 (by decide), card_drop_ne 2 1 2 (by decide),
@@ -201,7 +213,9 @@ theorem y_succ (n : ℕ) : countCol (n + 1) 2 2 = 2 * countCol n 0 1 := by
   ring
 
 /-- Base value: there is no sequence starting with `u` and ending with `v` when
-`n = 0`. -/
+`n = 0`.
+@isnad1 id=eq.0h0v.s5.e46a4eaf2fae from=translated src=- shape=d698813e vocab=b9317a99
+-/
 theorem x_zero : countCol 0 0 1 = 0 := by
   unfold countCol
   rw [Nat.card_eq_fintype_card, Fintype.card_eq_zero_iff]
@@ -210,7 +224,9 @@ theorem x_zero : countCol 0 0 1 = 0 := by
     have h2 := c.2.2.2
     exact absurd (h1 ▸ (show c.1 0 = 1 from h2)) (by decide)⟩
 
-/-- Base value: exactly one sequence starts and ends with `w` when `n = 0`. -/
+/-- Base value: exactly one sequence starts and ends with `w` when `n = 0`.
+@isnad1 id=eq.0h0v.s5.3b96b182429e from=translated src=- shape=d698813e vocab=b9317a99
+-/
 theorem y_zero : countCol 0 2 2 = 1 := by
   have : Unique {c : ColSeq 0 // AdjDistinct c ∧ c 0 = 2 ∧ c (Fin.last 0) = 2} :=
     { default := ⟨fun _ => 2, fun i => i.elim0, rfl, rfl⟩
@@ -222,7 +238,9 @@ theorem y_zero : countCol 0 2 2 = 1 := by
   unfold countCol
   rw [Nat.card_eq_fintype_card, Fintype.card_unique]
 
-/-- The total number of sequences with fixed first column: `2 * x_n + y_n = 2^n`. -/
+/-- The total number of sequences with fixed first column: `2 * x_n + y_n = 2^n`.
+@isnad1 id=eq.0h1v.s6.504b5a802f0e from=translated src=- shape=ea4003e1 vocab=02de5573
+-/
 theorem two_x_add_y (n : ℕ) : 2 * countCol n 0 1 + countCol n 2 2 = 2 ^ n := by
   induction n with
   | zero => rw [x_zero, y_zero]; rfl
@@ -230,7 +248,9 @@ theorem two_x_add_y (n : ℕ) : 2 * countCol n 0 1 + countCol n 2 2 = 2 ^ n := b
     rw [x_succ, y_succ, pow_succ]
     lia
 
-/-- The key identity: `a_{n+1} + a_n = 2 ^ (n+1)`. -/
+/-- The key identity: `a_{n+1} + a_n = 2 ^ (n+1)`.
+@isnad1 id=eq.0h1v.s5.5a7d19edd11f from=translated src=- shape=3894b868 vocab=f9fdf24b
+-/
 theorem key (n : ℕ) : a (n + 1) + a n = 2 ^ (n + 1) := by
   have h := two_x_add_y n
   unfold a

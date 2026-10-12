@@ -30,7 +30,9 @@ inductive Writable (m n : ℕ) : ℚ → Prop
   | am {x y : ℚ} : Writable m n x → Writable m n y → Writable m n ((x + y) / 2)
   | hm {x y : ℚ} : Writable m n x → Writable m n y → Writable m n (2 * x * y / (x + y))
 
-/-- If `p ∣ a + b` and `p ∣ c + d`, then `a * d + b * c ≡ -2 * b * d (mod p)`. -/
+/-- If `p ∣ a + b` and `p ∣ c + d`, then `a * d + b * c ≡ -2 * b * d (mod p)`.
+@isnad1 id=modeq.2h5v.s6.c65c2835df1a from=translated src=- shape=caf89deb vocab=d4b12b55
+-/
 theorem sum_dvd_cong {p a b c d : ℤ} (hpab : p ∣ a + b) (hpcd : p ∣ c + d) :
     a * d + b * c ≡ -2 * b * d [ZMOD p] := by
   have hab : a ≡ -b [ZMOD p] := by
@@ -48,7 +50,9 @@ theorem sum_dvd_cong {p a b c d : ℤ} (hpab : p ∣ a + b) (hpcd : p ∣ c + d)
   exact h
 
 /-- If `p ∣ a * d + b * c` and `a * d + b * c ≡ -2 * b * d (mod p)`,
-then `p ∣ 2 * b * d`. -/
+then `p ∣ 2 * b * d`.
+@isnad1 id=dvd.2h5v.s6.d0dd566e3c52 from=translated src=- shape=7139457a vocab=d4b12b55
+-/
 theorem dvd_two_mul_mul_of_dvd {p a b c d : ℤ}
     (h : p ∣ a * d + b * c) (hcong : a * d + b * c ≡ -2 * b * d [ZMOD p]) :
     p ∣ 2 * b * d := by
@@ -57,7 +61,9 @@ theorem dvd_two_mul_mul_of_dvd {p a b c d : ℤ}
   rw [add_sub_cancel, neg_mul, neg_mul] at h3
   exact dvd_neg.mp h3
 
-/-- An odd prime dividing neither `b` nor `d` does not divide `2 * b * d`. -/
+/-- An odd prime dividing neither `b` nor `d` does not divide `2 * b * d`.
+@isnad1 id=not.4h3v.s6.842e3b543f4f from=translated src=- shape=51ba0df8 vocab=36814fc3
+-/
 theorem not_dvd_two_mul_mul {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) {b d : ℤ}
     (hpb : ¬(p : ℤ) ∣ b) (hpd : ¬(p : ℤ) ∣ d) : ¬(p : ℤ) ∣ 2 * b * d := by
   have hpZ : Prime (p : ℤ) := Nat.prime_iff_prime_int.mp hp
@@ -74,7 +80,9 @@ theorem not_dvd_two_mul_mul {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) {b d : ℤ}
 
 /-- The key invariant: if an odd prime `p` divides `m + n`, then every number that
 Evan can write has a representation `a / b` with `p ∣ a + b` and `p ∤ b`.
-(Equivalently, in lowest terms the value is `≡ -1 (mod p)`.) -/
+(Equivalently, in lowest terms the value is `≡ -1 (mod p)`.)
+@isnad1 id=ex.7h4v.s6.92499a398ad0 from=translated src=- shape=c7b5350a vocab=7533e38e
+-/
 theorem Writable.exists_rep {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hmn : m.Coprime n)
     {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) (hpd : p ∣ m + n)
     {x : ℚ} (hx : Writable m n x) :
@@ -143,7 +151,9 @@ theorem Writable.exists_rep {m n : ℕ} (hm : 0 < m) (hn : 0 < n) (hmn : m.Copri
       obtain ⟨t, ht⟩ := hpcd
       exact ⟨a * t + c * s, by linear_combination a * ht + c * hs⟩
 
-/-- Any natural number `≥ 2` that is not a power of two has an odd prime factor. -/
+/-- Any natural number `≥ 2` that is not a power of two has an odd prime factor.
+@isnad1 id=ex.2h1v.s5.ade8e110601f from=translated src=- shape=65a3df3f vocab=3bb9594a
+-/
 theorem exists_odd_prime_dvd {N : ℕ} (hN : 2 ≤ N) (h : ∀ k : ℕ, N ≠ 2 ^ k) :
     ∃ p : ℕ, p.Prime ∧ Odd p ∧ p ∣ N := by
   obtain ⟨e, t, ht, hNeq⟩ := Nat.exists_eq_two_pow_mul_odd (n := N) (by lia)
@@ -164,7 +174,9 @@ theorem exists_odd_prime_dvd {N : ℕ} (hN : 2 ≤ N) (h : ∀ k : ℕ, N ≠ 2 
   exact ⟨p, hp, hp.odd_of_ne_two hp2, hNeq ▸ dvd_mul_of_dvd_right hpt (2 ^ e)⟩
 
 /-- Any dyadic weighted average of two writable numbers is writable
-(using arithmetic means alone). -/
+(using arithmetic means alone).
+@isnad1 id=writable.3h7v.s6.64c663947fb1 from=translated src=- shape=3ec4f4a2 vocab=019ef003
+-/
 theorem writable_combo {m n : ℕ} (k : ℕ) :
     ∀ {a b : ℕ} {x y : ℚ}, a + b = 2 ^ k → Writable m n x → Writable m n y →
       Writable m n (((a : ℚ) * x + (b : ℚ) * y) / ((2 ^ k : ℕ) : ℚ)) := by

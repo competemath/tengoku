@@ -23,7 +23,9 @@ namespace Usa2007P3
 variable {α : Type*} [DecidableEq α]
 
 /-- Any finite set `S` with `k * n ≤ S.card` contains `k` pairwise disjoint
-`n`-element subsets (here `1 ≤ n`). -/
+`n`-element subsets (here `1 ≤ n`).
+@isnad1 id=ex.2h4v.s6.8806cc0b5c18 from=translated src=- shape=86089226 vocab=d156cb29
+-/
 lemma exists_disjoint_family {n : ℕ} (hn : 1 ≤ n) :
     ∀ k : ℕ, ∀ S : Finset α, k * n ≤ S.card →
       ∃ F : Finset (Finset α), F.card = k ∧ (∀ A ∈ F, A ⊆ S ∧ A.card = n) ∧
@@ -68,7 +70,9 @@ lemma exists_disjoint_family {n : ℕ} (hn : 1 ≤ n) :
 `n`-element subsets have the same color), then all `n`-element subsets of `S` have
 the same color: any two `n`-element sets can be joined by a chain in which
 consecutive sets differ in exactly one element, so induction on the size of the
-symmetric difference applies. -/
+symmetric difference applies.
+@isnad1 id=eq.6h7v.s7.95ae1b0ce7a1 from=translated src=- shape=12997a82 vocab=d67c3f55
+-/
 lemma color_eq (col : Finset α → Bool) {n : ℕ} {S : Finset α}
     (H : ∀ U : Finset α, U ⊆ S → U.card = n + 1 →
       ∀ A B : Finset α, A ⊆ U → B ⊆ U → A.card = n → B.card = n → col A = col B) :
@@ -127,7 +131,9 @@ lemma color_eq (col : Finset α → Bool) {n : ℕ} {S : Finset α}
 /-- The strengthened statement, proved by induction on `k`: if `S` has
 `k * (n + 1) - 1` elements and the `n`-element subsets of `S` are two-colored
 (by `col`), then one can find `k` pairwise disjoint `n`-element subsets of `S`
-having the same color. -/
+having the same color.
+@isnad1 id=ex.2h5v.s7.ba787cbfe93d from=translated src=- shape=055f8074 vocab=8c1014ed
+-/
 lemma main (col : Finset α → Bool) {n : ℕ} (hn : 1 ≤ n) :
     ∀ k : ℕ, ∀ S : Finset α, S.card = k * (n + 1) - 1 →
       ∃ F : Finset (Finset α), k ≤ F.card ∧ (∀ A ∈ F, A ⊆ S ∧ A.card = n) ∧

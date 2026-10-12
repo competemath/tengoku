@@ -25,6 +25,9 @@ unbounded. The problem's `bₙ` is `c a hu n + 1` (the 1-based index). -/
 noncomputable abbrev c (a : ℕ → ℕ) (hu : ∀ n, ∃ i, n ≤ a i) (n : ℕ) : ℕ :=
   Nat.find (hu n)
 
+/--
+@isnad1 id=iff.2h3v.s5.d892845e06bd from=translated src=- shape=60364fa2 vocab=9713c46f
+-/
 lemma find_iff {a : ℕ → ℕ} (hm : Monotone a) (hu : ∀ n, ∃ i, n ≤ a i) (i j : ℕ) :
     c a hu j ≤ i ↔ j ≤ a i := by
   constructor
@@ -34,7 +37,9 @@ lemma find_iff {a : ℕ → ℕ} (hm : Monotone a) (hu : ∀ n, ∃ i, n ≤ a i
     exact Nat.find_le h
 
 /-- `∑ j ∈ range 85, (if j < a i then 1 else 0)` counts the elements of `range (a i)`
-when `a i ≤ 85`. -/
+when `a i ≤ 85`.
+@isnad1 id=eq.1h2v.s5.12a45e67e7d8 from=translated src=- shape=81f2a216 vocab=c380ff2d
+-/
 lemma sum_indicator_left {a : ℕ → ℕ} {i : ℕ} (hi : a i ≤ 85) :
     ∑ j ∈ Finset.range 85, (if j < a i then 1 else 0) = a i := by
   rw [← Finset.card_filter]
@@ -47,7 +52,9 @@ lemma sum_indicator_left {a : ℕ → ℕ} {i : ℕ} (hi : a i ≤ 85) :
   rw [h, Finset.card_range]
 
 /-- `∑ i ∈ range 19, (if i < c a hu (j+1) then 1 else 0)` counts the elements of
-`range (c a hu (j+1))` when `c a hu (j+1) ≤ 18`. -/
+`range (c a hu (j+1))` when `c a hu (j+1) ≤ 18`.
+@isnad1 id=eq.2h2v.s6.484e718200d3 from=translated src=- shape=bb35be5a vocab=c7c6f975
+-/
 lemma sum_indicator_right {a : ℕ → ℕ} {hu : ∀ n, ∃ i, n ≤ a i} {j : ℕ}
     (hj : c a hu (j + 1) ≤ 18) :
     ∑ i ∈ Finset.range 19, (if i < c a hu (j + 1) then 1 else 0) = c a hu (j + 1) := by
@@ -64,7 +71,9 @@ lemma sum_indicator_right {a : ℕ → ℕ} {hu : ∀ n, ∃ i, n ≤ a i} {j : 
 /-- The key identity: the sum is *constant*. Double-count the pairs
 `(i, j) ∈ range 19 × range 85`: for each pair, exactly one of
 `j < a i` and `i < c a hu (j+1)` holds, so the two indicator sums add up to
-`19 * 85`; the extra `+ 1` in each `b` term contributes another `85`. -/
+`19 * 85`; the extra `+ 1` in each `b` term contributes another `85`.
+@isnad1 id=eq.3h1v.s6.b438bc1878f8 from=translated src=- shape=2bf9dc20 vocab=479ff20e
+-/
 lemma sum_eq (a : ℕ → ℕ) (hm : Monotone a) (hu : ∀ n, ∃ i, n ≤ a i)
     (h19 : a 18 = 85) :
     ∑ i ∈ Finset.range 19, a i + ∑ j ∈ Finset.range 85, (c a hu (j + 1) + 1) = 1700 := by

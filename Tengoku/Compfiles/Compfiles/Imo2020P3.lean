@@ -43,6 +43,9 @@ def mult (a b : E → V) (e : E) (x : V) : ℕ :=
   (if a e = x then 1 else 0) + (if b e = x then 1 else 0)
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.1h8v.s6.9169841b5197 from=translated src=- shape=138fb4fd vocab=90496d22
+-/
 lemma mult_conn {a b : E → V} {e : E} {v w : V} (h : conn a b e v w) (x : V) :
     mult a b e x = (if v = x then 1 else 0) + (if w = x then 1 else 0) := by
   rcases h with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
@@ -54,13 +57,18 @@ def slotCount (a b : E → V) (es : List E) (x : V) : ℕ :=
   (es.map (fun e => mult a b e x)).sum
 
 omit [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=ne.1h6v.s5.a4049861b7d1 from=translated src=- shape=6c76ef2f vocab=595d79cb
+-/
 lemma IsWalk.vs_ne_nil {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es) :
     vs ≠ [] := by
   cases h <;> simp
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
 /-- In any walk, the slot count at `x` equals twice the number of
-interior occurrences of `x`, plus the endpoint contributions. -/
+interior occurrences of `x`, plus the endpoint contributions.
+@isnad1 id=eq.2h7v.s7.a3e3f0396179 from=translated src=- shape=148c6f0a vocab=73b9d9e3
+-/
 lemma slotCount_eq {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es)
     (hne : es ≠ []) (x : V) :
     slotCount a b es x =
@@ -91,7 +99,9 @@ lemma slotCount_eq {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b v
       split_ifs <;> simp_all <;> lia
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
-/-- In a closed walk, the slot count at `x` is twice the number of occurrences of `x`. -/
+/-- In a closed walk, the slot count at `x` is twice the number of occurrences of `x`.
+@isnad1 id=eq.2h7v.s6.18fc5bcd9abd from=translated src=- shape=dd72ae6c vocab=bb9cf071
+-/
 lemma slotCount_closed {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es)
     (hc : vs.head? = vs.getLast?) (x : V) :
     slotCount a b es x = 2 * vs.dropLast.count x := by
@@ -124,7 +134,9 @@ lemma slotCount_closed {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a
         split_ifs <;> simp_all <;> lia
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
-/-- The alternating slot count along a walk, red at positions with parity `s`. -/
+/-- The alternating slot count along a walk, red at positions with parity `s`.
+@isnad1 id=eq.3h8v.s8.1c46c7bb1091 from=translated src=- shape=44c2daa1 vocab=4f89cd6f
+-/
 lemma altCount_eq {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es)
     (hne : es ≠ []) {s : ℕ} (hs : s ≤ 1) (x : V) :
     ((es.mapIdx fun i e => if s = i % 2 then mult a b e x else 0).sum) =
@@ -161,7 +173,9 @@ lemma altCount_eq {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
 /-- In a closed walk of even length, the alternating slot count at `x` equals the number of
-occurrences of `x` among the positions. -/
+occurrences of `x` among the positions.
+@isnad1 id=eq.3h7v.s6.8dfa16e24753 from=translated src=- shape=4fb28503 vocab=ce3f6e8c
+-/
 lemma altCount_closed {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es)
     (hc : vs.head? = vs.getLast?) (hL : Even es.length) (x : V) :
     ((es.mapIdx fun i e => if i % 2 = 0 then mult a b e x else 0).sum) =
@@ -193,6 +207,9 @@ lemma altCount_closed {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a 
         and_true, beq_iff_eq, Option.some.injEq]
 
 omit [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.1h6v.s5.347fb57a4f66 from=translated src=- shape=e6cbc9fd vocab=ea0f2372
+-/
 lemma IsWalk.length {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es) :
     vs.length = es.length + 1 := by
   induction h with
@@ -200,6 +217,9 @@ lemma IsWalk.length {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b 
   | cons _ _ ih => simp [List.length_cons, ih]
 
 omit [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=iswalk.3h8v.s6.7cb4f2fb55ab from=translated src=- shape=a7984412 vocab=61c532c3
+-/
 lemma IsWalk.append {a b : E → V} {vs ws : List V} {es fs : List E}
     (h₁ : IsWalk a b vs es) (h₂ : IsWalk a b ws fs)
     (h : vs.getLast? = ws.head?) : IsWalk a b (vs ++ ws.tail) (es ++ fs) := by
@@ -221,6 +241,9 @@ lemma IsWalk.append {a b : E → V} {vs ws : List V} {es fs : List E}
     exact IsWalk.cons hconn (ih h')
 
 omit [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=iswalk.1h7v.s5.5c78356a3761 from=translated src=- shape=88f5619f vocab=ccff5bd9
+-/
 lemma IsWalk.take {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es) (k : ℕ) :
     IsWalk a b (vs.take (k + 1)) (es.take k) := by
   induction h generalizing k with
@@ -240,6 +263,9 @@ lemma IsWalk.take {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs
       exact IsWalk.cons hconn (ih k)
 
 omit [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=iswalk.2h7v.s5.18d78e2548be from=translated src=- shape=d306f00c vocab=db35e0bd
+-/
 lemma IsWalk.drop {a b : E → V} {vs : List V} {es : List E} (h : IsWalk a b vs es) (k : ℕ)
     (hk : k ≤ es.length) : IsWalk a b (vs.drop k) (es.drop k) := by
   induction h generalizing k with
@@ -263,6 +289,9 @@ structure CTrail (a b : E → V) where
   closed : vs.head? = vs.getLast?
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h3v.s4.21fa651f3590 from=translated src=- shape=d1d53300 vocab=33edfc56
+-/
 lemma getLast?_drop_of_lt {l : List V} {k : ℕ} (h : k < l.length) :
     (l.drop k).getLast? = l.getLast? := by
   have h1 : l.drop k ≠ [] := by
@@ -273,6 +302,9 @@ lemma getLast?_drop_of_lt {l : List V} {k : ℕ} (h : k < l.length) :
   exact List.getLast_drop h1
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h3v.s5.0927f2cb48c3 from=translated src=- shape=5aa55343 vocab=2158b27f
+-/
 lemma head?_take_of_pos {l : List V} {k : ℕ} (h : 0 < k) : (l.take k).head? = l.head? := by
   cases l with
   | nil => simp
@@ -282,6 +314,9 @@ lemma head?_take_of_pos {l : List V} {k : ℕ} (h : 0 < k) : (l.take k).head? = 
     | succ k => simp
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h3v.s6.7f657f4270ad from=translated src=- shape=f33c3341 vocab=d528f38e
+-/
 lemma getLast?_take_succ {l : List V} {k : ℕ} (h : k + 1 ≤ l.length) :
     (l.take (k + 1)).getLast? = l[k]? := by
   have h1 : l.take (k + 1) ≠ [] := by
@@ -295,6 +330,9 @@ lemma getLast?_take_succ {l : List V} {k : ℕ} (h : k + 1 ≤ l.length) :
   exact (List.getElem?_eq_getElem (by lia)).symm
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h2v.s4.95b389dca60c from=translated src=- shape=1d2a1b30 vocab=94719ff7
+-/
 lemma getLast?_tail_of_ne {l : List V} (h : l.tail ≠ []) : l.tail.getLast? = l.getLast? := by
   cases l with
   | nil => simp at h
@@ -340,13 +378,18 @@ def CTrail.rotate {a b : E → V} (T : CTrail a b) (k : ℕ) (hk : k < T.es.leng
         List.getLast?_append_of_ne_nil _ hne2]
       rw [getLast?_tail_of_ne hne2, getLast?_take_succ (by lia)]
 
+/--
+@isnad1 id=eq.1h3v.s5.15f348278315 from=translated src=- shape=666702ea vocab=40544596
+-/
 lemma list_sum_eq_toFinset_sum {α : Type*} [DecidableEq α] {l : List α} (hn : l.Nodup)
     {f : α → ℕ} : (l.map f).sum = ∑ e ∈ l.toFinset, f e := by
   rw [Finset.sum_eq_multiset_sum, List.toFinset_val, List.dedup_eq_self.mpr hn,
     Multiset.map_coe, Multiset.sum_coe]
 
 omit [Fintype V] [DecidableEq V] [Fintype E] in
-/-- A maximal walk from `v` using only edges of `U`, with distinct edges. -/
+/-- A maximal walk from `v` using only edges of `U`, with distinct edges.
+@isnad1 id=ex.0h6v.s6.12b1752aaefb from=translated src=- shape=0ec51030 vocab=da551145
+-/
 lemma exists_max_walk (a b : E → V) (U : Finset E) (v : V) :
     ∃ vs es y, IsWalk a b vs es ∧ vs.head? = some v ∧ vs.getLast? = some y ∧ es.Nodup ∧
       (∀ e ∈ es, e ∈ U) ∧ (∀ e ∈ U, ∀ w, conn a b e y w → e ∈ es) := by
@@ -401,7 +444,9 @@ lemma exists_max_walk (a b : E → V) (U : Finset E) (v : V) :
     lia
 
 omit [Fintype V] [Fintype E] in
-/-- Any edge of `U` lies in a closed trail within `U`, provided all `U`-degrees are even. -/
+/-- Any edge of `U` lies in a closed trail within `U`, provided all `U`-degrees are even.
+@isnad1 id=ex.2h6v.s6.86b26abc4b13 from=translated src=- shape=10e0024e vocab=4d71012d
+-/
 lemma exists_closed_trail (a b : E → V) (U : Finset E)
     (hU : ∀ x, Even (∑ e ∈ U, mult a b e x)) (e₀ : E) (he₀ : e₀ ∈ U) :
     ∃ T : CTrail a b, (∀ e ∈ T.es, e ∈ U) ∧ T.es ≠ [] := by
@@ -446,7 +491,9 @@ lemma exists_closed_trail (a b : E → V) (U : Finset E)
   exact ⟨⟨vs, es, hnodup, hwalk, by rw [hhead, hlast, hclose]⟩, hsub, hne⟩
 
 omit [Fintype V] [Fintype E] in
-/-- Decompose an even-degree edge set into edge-disjoint closed trails. -/
+/-- Decompose an even-degree edge set into edge-disjoint closed trails.
+@isnad1 id=ex.1h5v.s8.4859af39c49f from=translated src=- shape=b045176f vocab=01f45cfa
+-/
 lemma decompose (a b : E → V) (U : Finset E) (hU : ∀ x, Even (∑ e ∈ U, mult a b e x)) :
     ∃ F : List (CTrail a b),
       (∀ T ∈ F, ∀ e ∈ T.es, e ∈ U) ∧
@@ -513,6 +560,9 @@ lemma decompose (a b : E → V) (U : Finset E) (hU : ∀ x, Even (∑ e ∈ U, m
         exact Finset.mem_sdiff.mp h1 |>.2 he
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.2h7v.s6.73accde25a09 from=translated src=- shape=f2b789af vocab=300c9bc5
+-/
 lemma CTrail.rotate_head? {a b : E → V} {v : V} (T : CTrail a b) (k : ℕ) (hk : k < T.es.length)
     (hv : T.vs[k]? = some v) : (T.rotate k hk).vs.head? = some v := by
   have hlen : T.vs.length = T.es.length + 1 := T.walk.length
@@ -522,6 +572,9 @@ lemma CTrail.rotate_head? {a b : E → V} {v : V} (T : CTrail a b) (k : ℕ) (hk
   exact hv
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.1h6v.s6.1fa28258a01a from=translated src=- shape=1b043ed6 vocab=c485e164
+-/
 lemma CTrail.rotate_es_toFinset {a b : E → V} (T : CTrail a b) (k : ℕ) (hk : k < T.es.length) :
     (T.rotate k hk).es.toFinset = T.es.toFinset := by
   show (T.es.rotate k).toFinset = T.es.toFinset
@@ -546,6 +599,9 @@ def CTrail.append {a b : E → V} {v : V} (T₁ T₂ : CTrail a b)
     · rw [List.getLast?_append_of_ne_nil _ ht, getLast?_tail_of_ne ht, ← T₂.closed, h₂]
 
 omit [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=ex.2h6v.s6.1bc2ecbc17ab from=translated src=- shape=39c76c5c vocab=8b36b8c6
+-/
 lemma CTrail.exists_rotate_index {a b : E → V} (T : CTrail a b) (hne : T.es ≠ []) {v : V}
     (hv : v ∈ T.vs) : ∃ k < T.es.length, T.vs[k]? = some v := by
   obtain ⟨⟨k, hkL⟩, hkv⟩ := List.get_of_mem hv
@@ -572,6 +628,9 @@ instance (a b : E → V) :
     Std.Symm (fun T₁ T₂ : CTrail a b => Disjoint T₁.es.toFinset T₂.es.toFinset) :=
   ⟨fun _ _ h => Disjoint.symm h⟩
 
+/--
+@isnad1 id=le.3h4v.s5.c57ad6a6a61b from=translated src=- shape=e4f2e6be vocab=e38d7be7
+-/
 lemma two_le_length {α : Type*} {l : List α} {a b : α} (ha : a ∈ l) (hb : b ∈ l)
     (hne : a ≠ b) : 2 ≤ l.length := by
   induction l generalizing a b with
@@ -591,7 +650,9 @@ lemma two_le_length {α : Type*} {l : List α} {a b : α} (ha : a ∈ l) (hb : b
         lia
 
 omit [Fintype V] [Fintype E] in
-/-- Merge trails sharing vertices until the family is vertex-disjoint. -/
+/-- Merge trails sharing vertices until the family is vertex-disjoint.
+@isnad1 id=ex.4h6v.s8.1feee3a3291f from=translated src=- shape=3d36fd35 vocab=9ed3499f
+-/
 lemma merge_disjoint (a b : E → V) :
     ∀ n : ℕ, ∀ F : List (CTrail a b), F.length = n →
     (∀ e, ∃ T ∈ F, e ∈ T.es) →
@@ -707,10 +768,16 @@ lemma merge_disjoint (a b : E → V) :
       · exact hshare ⟨F[i], List.getElem_mem hi, F[j], List.getElem_mem hj, hEq, v, hv1, hv2⟩
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h5v.s5.b1c62c482d31 from=translated src=- shape=0e310007 vocab=f2e387e5
+-/
 lemma mult_sum (a b : E → V) (e : E) : ∑ x : V, mult a b e x = 2 := by
   simp [mult, Finset.sum_add_distrib, Finset.sum_ite_eq]
 
 omit [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=and.2h7v.s5.fabc0a57fb83 from=translated src=- shape=f825c4bd vocab=c21a5b56
+-/
 lemma IsWalk.mem_vs_of_mem_es {a b : E → V} {vs : List V} {es : List E}
     (h : IsWalk a b vs es) {e : E} (he : e ∈ es) : a e ∈ vs ∧ b e ∈ vs := by
   induction h with
@@ -728,6 +795,9 @@ instance (a b : E → V) :
     Std.Symm (fun T₁ T₂ : CTrail a b => Disjoint T₁.vs.toFinset T₂.vs.toFinset) :=
   ⟨fun _ _ h => Disjoint.symm h⟩
 
+/--
+@isnad1 id=even.4h6v.s7.32d5ed7786cb from=translated src=- shape=65fab20b vocab=9279f4e6
+-/
 lemma even_length_of_mem {a b : E → V} (F : List (CTrail a b))
     (hcov : ∀ e, ∃ T ∈ F, e ∈ T.es)
     (hdjv : F.Pairwise (fun T₁ T₂ => Disjoint T₁.vs.toFinset T₂.vs.toFinset))
@@ -796,6 +866,9 @@ lemma even_length_of_mem {a b : E → V} (F : List (CTrail a b))
   exact ⟨T.vs.toFinset.card, by lia⟩
 
 omit [Fintype E] in
+/--
+@isnad1 id=eq.1h3v.s5.bc687642160d from=translated src=- shape=62aa784a vocab=f8cde11e
+-/
 lemma mapIdx_eq_map_idxOf {l : List E} (hn : l.Nodup) (g : ℕ → E → ℕ) :
     l.mapIdx g = l.map (fun e => g (l.idxOf e) e) := by
   induction l generalizing g with
@@ -814,7 +887,9 @@ lemma mapIdx_eq_map_idxOf {l : List E} (hn : l.Nodup) (g : ℕ → E → ℕ) :
     rw [List.idxOf_cons_ne _ hne.symm]
 
 /-- Every 4-regular pseudograph has a 2-factor: a 2-coloring of its edges such that
-every vertex sees exactly two half-edges of each color. -/
+every vertex sees exactly two half-edges of each color.
+@isnad1 id=ex.1h4v.s6.ab8d63d10b3b from=translated src=- shape=7e832c83 vocab=671330e7
+-/
 theorem two_factor (a b : E → V) (hdeg : ∀ x, (∑ e : E, mult a b e x) = 4) :
     ∃ red : E → Bool, ∀ x : V, (∑ e : E, if red e then mult a b e x else 0) = 2 := by
   obtain ⟨F, hFU, hFne, hFcov, hFdj⟩ :=
@@ -909,9 +984,15 @@ def apeb : Fin (2 * n) → Fin (4 * n) := fun k => ⟨k.val, by lia⟩
 /-- The heavier pebble of pair `k`. -/
 def bpeb : Fin (2 * n) → Fin (4 * n) := fun k => ⟨4 * n - 1 - k.val, by lia⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s5.7135713b2da9 from=translated src=- shape=be481fcd vocab=8fa4d19a
+-/
 lemma apeb_inj : Function.Injective (@apeb n) := fun k₁ k₂ h => by
   have h2 : (apeb k₁).val = (apeb k₂).val := Fin.ext_iff.mp h
   exact Fin.ext h2
+/--
+@isnad1 id=injectiv.0h1v.s5.9093b39d041f from=translated src=- shape=be481fcd vocab=baf468c2
+-/
 lemma bpeb_inj : Function.Injective (@bpeb n) := fun k₁ k₂ h => by
   have h2 : (bpeb k₁).val = (bpeb k₂).val := Fin.ext_iff.mp h
   have h3 : k₁.val = k₂.val := by
@@ -919,6 +1000,9 @@ lemma bpeb_inj : Function.Injective (@bpeb n) := fun k₁ k₂ h => by
     simp [bpeb] at h4
     lia
   exact Fin.ext h3
+/--
+@isnad1 id=ne.0h3v.s5.19dc50c0535f from=translated src=- shape=bfe8b891 vocab=99b78f37
+-/
 lemma apeb_ne_bpeb (k₁ k₂ : Fin (2 * n)) : apeb k₁ ≠ bpeb k₂ := by
   intro h
   have := Fin.ext_iff.mp h
@@ -929,15 +1013,24 @@ lemma apeb_ne_bpeb (k₁ k₂ : Fin (2 * n)) : apeb k₁ ≠ bpeb k₂ := by
 def pairOf : Fin (4 * n) → Fin (2 * n) := fun j =>
   if h : j.val < 2 * n then ⟨j.val, h⟩ else ⟨4 * n - 1 - j.val, by lia⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.53cdbf0e657c from=translated src=- shape=7cdfc94a vocab=f63baf18
+-/
 lemma pairOf_apeb (k : Fin (2 * n)) : pairOf (apeb k) = k := by
   show pairOf ⟨k.val, _⟩ = k
   rw [pairOf, dite_eq_left k.isLt]
 
+/--
+@isnad1 id=eq.0h2v.s5.31f4d9c7add4 from=translated src=- shape=7cdfc94a vocab=ce5d9a84
+-/
 lemma pairOf_bpeb (k : Fin (2 * n)) : pairOf (bpeb k) = k := by
   show pairOf ⟨4 * n - 1 - k.val, _⟩ = k
   rw [pairOf, dite_eq_right (by lia : ¬ (4 * n - 1 - k.val) < 2 * n)]
   exact Fin.ext (by simp; lia)
 
+/--
+@isnad1 id=or.0h2v.s5.a6d39734f297 from=translated src=- shape=0c2c0bd8 vocab=310e32dd
+-/
 lemma pairOf_mem_pair (j : Fin (4 * n)) : j = apeb (pairOf j) ∨ j = bpeb (pairOf j) := by
   by_cases hj : j.val < 2 * n
   · left
@@ -951,6 +1044,9 @@ lemma pairOf_mem_pair (j : Fin (4 * n)) : j = apeb (pairOf j) ∨ j = bpeb (pair
 def pgA : Fin (2 * n) → Fin n := fun k => c (apeb k)
 def pgB : Fin (2 * n) → Fin n := fun k => c (bpeb k)
 
+/--
+@isnad1 id=eq.0h1v.s8.8d027b8cf022 from=translated src=- shape=817bab38 vocab=cdb87f71
+-/
 lemma univ_eq_map_union :
     (Finset.univ : Finset (Fin (4 * n))) =
       (Finset.univ.map ⟨apeb, @apeb_inj n⟩) ∪ (Finset.univ.map ⟨bpeb, @bpeb_inj n⟩) := by
@@ -966,6 +1062,9 @@ lemma univ_eq_map_union :
       exact Fin.ext (by show 4 * n - 1 - (4 * n - 1 - j.val) = j.val; lia)
   · rintro (⟨k, -, rfl⟩ | ⟨k, -, rfl⟩) <;> simp
 
+/--
+@isnad1 id=disjoint.0h1v.s7.581b8b27e2f2 from=translated src=- shape=8ff5beec vocab=303728ad
+-/
 lemma disjoint_map_map :
     Disjoint (Finset.univ.map ⟨apeb, @apeb_inj n⟩) (Finset.univ.map ⟨bpeb, @bpeb_inj n⟩) := by
   rw [Finset.disjoint_left]
@@ -975,6 +1074,9 @@ lemma disjoint_map_map :
   obtain ⟨k₂, hk₂⟩ := hj2
   exact apeb_ne_bpeb k₁ k₂ hk₂.symm
 
+/--
+@isnad1 id=eq.1h3v.s7.981c25245e20 from=translated src=- shape=8e214e34 vocab=cee36771
+-/
 lemma pg_deg (h : ∀ i, #{j | c j = i} = 4) (x : Fin n) :
     (∑ e : Fin (2 * n), mult (pgA c) (pgB c) e x) = 4 := by
   rw [Finset.sum_congr rfl (fun e _ => by rw [mult, pgA, pgB]), Finset.sum_add_distrib]
@@ -984,6 +1086,9 @@ lemma pg_deg (h : ∀ i, #{j | c j = i} = 4) (x : Fin n) :
   simp only [Function.Embedding.coeFn_mk] at h4
   exact h4
 
+/--
+@isnad1 id=eq.0h2v.s8.5652590ed528 from=translated src=- shape=bb3dd6b9 vocab=5351add8
+-/
 lemma weight_sum (r : Fin (2 * n) → Bool) :
     ∑ j ∈ Finset.univ.filter (fun j => r (pairOf j) = true), (j.val + 1) =
       (Finset.univ.filter (fun e => r e = true)).card * (4 * n + 1) := by
@@ -1021,6 +1126,9 @@ lemma weight_sum (r : Fin (2 * n) → Bool) :
     lia
   rw [Finset.sum_congr rfl (fun k _ => hpair k), Finset.sum_const, nsmul_eq_mul, Nat.cast_id]
 
+/--
+@isnad1 id=eq.2h3v.s8.c9f89a7db6e7 from=translated src=- shape=5c07331f vocab=80360e40
+-/
 lemma red_card (_h : ∀ i, #{j | c j = i} = 4) (red : Fin (2 * n) → Bool)
     (hred : ∀ x : Fin n, (∑ e : Fin (2 * n), if red e then mult (pgA c) (pgB c) e x else 0) = 2) :
     (Finset.univ.filter (fun e => red e = true)).card = n := by
@@ -1041,6 +1149,9 @@ lemma red_card (_h : ∀ i, #{j | c j = i} = 4) (red : Fin (2 * n) → Bool)
       add_zero]
   lia
 
+/--
+@isnad1 id=eq.0h2v.s8.81bfd8b828c2 from=translated src=- shape=1113da64 vocab=dbcd0d46
+-/
 lemma compl_filter_pairOf (red : Fin (2 * n) → Bool) :
     (Finset.univ.filter (fun j => red (pairOf j) = true))ᶜ =
       Finset.univ.filter (fun j => (!red (pairOf j)) = true) := by

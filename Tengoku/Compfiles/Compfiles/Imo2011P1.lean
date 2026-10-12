@@ -30,9 +30,15 @@ abbrev SolutionSet : Set (Finset ℕ) :=
   { A | ∃ c : ℕ, 0 < c ∧
         (A = {c, 5 * c, 7 * c, 11 * c} ∨ A = {c, 11 * c, 19 * c, 29 * c}) }
 
+/--
+@isnad1 id=or.1h3v.s5.3abd411eff02 from=translated src=- shape=8d881d8d vocab=5bd64af7
+-/
 lemma mem_pair {x u v : ℕ} (h : x ∈ ({u, v} : Finset ℕ)) : x = u ∨ x = v := by
   simpa using h
 
+/--
+@isnad1 id=ne.1h4v.s5.8801c4b409ec from=translated src=- shape=4147ee8c vocab=dd74ab6d
+-/
 lemma pair_ne_pair {p q r s : ℕ} (h : (p ≠ r ∧ p ≠ s) ∨ (q ≠ r ∧ q ≠ s)) :
     ({p, q} : Finset ℕ) ≠ {r, s} := by
   intro he
@@ -46,15 +52,23 @@ lemma pair_ne_pair {p q r s : ℕ} (h : (p ≠ r ∧ p ≠ s) ∨ (q ≠ r ∧ q
     · exact h1 rfl
     · exact h2 rfl
 
-/-- A natural number strictly between `m` and `2 * m` is not divisible by `m`. -/
+/-- A natural number strictly between `m` and `2 * m` is not divisible by `m`.
+@isnad1 id=not.2h2v.s5.b173c02c8c7e from=translated src=- shape=1c9aa89f vocab=3f6bddb9
+-/
 lemma not_dvd_between {m s : ℕ} (h1 : m < s) (h2 : s < 2 * m) : ¬ m ∣ s := fun h ↦
   absurd (Nat.eq_of_dvd_of_lt_two_mul (by lia) h h2) (by lia)
 
+/--
+@isnad1 id=mem.3h3v.s6.1098b72db7f7 from=translated src=- shape=d72f4de2 vocab=7e1afc7c
+-/
 lemma pair_mem_powersetCard_two {A : Finset ℕ} {x y : ℕ}
     (hx : x ∈ A) (hy : y ∈ A) (hxy : x ≠ y) : ({x, y} : Finset ℕ) ∈ A.powersetCard 2 :=
   Finset.mem_powersetCard.mpr
     ⟨Finset.insert_subset hx (Finset.singleton_subset_iff.mpr hy), Finset.card_pair hxy⟩
 
+/--
+@isnad1 id=eq.3h4v.s6.9c93e26fa14d from=translated src=- shape=3974faa4 vocab=86336816
+-/
 lemma sum_four {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d) :
     ∑ x ∈ ({a, b, c, d} : Finset ℕ), x = a + b + c + d := by
   rw [Finset.sum_insert (by simp only [Finset.mem_insert, Finset.mem_singleton]; lia),
@@ -64,7 +78,9 @@ lemma sum_four {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d) :
   ring
 
 /-- The two-element subsets of `{a, b, c, d}` whose sum divides the total,
-viewed inside `pairCount`. -/
+viewed inside `pairCount`.
+@isnad1 id=le.3h4v.s8.a0164ac3c61c from=translated src=- shape=ef8a0d8b vocab=5d614781
+-/
 lemma filter_subset_target {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d) :
     ((({a, b, c, d} : Finset ℕ).powersetCard 2).filter
         fun p ↦ (∑ x ∈ p, x) ∣ ∑ x ∈ ({a, b, c, d} : Finset ℕ), x) ⊆
@@ -83,6 +99,9 @@ lemma filter_subset_target {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c 
   · rw [Finset.sum_pair (by lia : c ≠ d)] at hp2
     exact not_dvd_between (by lia) (by lia) hp2
 
+/--
+@isnad1 id=eq.3h4v.s7.738d87963e99 from=translated src=- shape=346ca4a5 vocab=95cbfc60
+-/
 lemma card_target {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d) :
     ((({a, b, c, d} : Finset ℕ).powersetCard 2) \
       {({b, d} : Finset ℕ), {c, d}}).card = 4 := by
@@ -103,12 +122,17 @@ lemma card_target {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d) :
   rw [hA4]
   decide
 
+/--
+@isnad1 id=le.3h4v.s6.df0cf69bb388 from=translated src=- shape=61329547 vocab=dcd5a13f
+-/
 lemma pairCount_le_four {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d) :
     pairCount {a, b, c, d} ≤ 4 := by
   rw [pairCount, ← card_target hab hbc hcd]
   exact Finset.card_le_card (filter_subset_target hab hbc hcd)
 
-/-- If the count is (at least) 4, then all four candidate pairs divide the sum. -/
+/-- If the count is (at least) 4, then all four candidate pairs divide the sum.
+@isnad1 id=and.4h4v.s7.b68f80b8904c from=translated src=- shape=9deec4e7 vocab=b14e56d2
+-/
 lemma dvds_of_four_le {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d)
     (h : 4 ≤ pairCount {a, b, c, d}) :
     (a + b ∣ a + b + c + d) ∧ (a + c ∣ a + b + c + d) ∧
@@ -140,7 +164,9 @@ lemma dvds_of_four_le {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d)
     hmem b c hbc (by simp) (by simp) (pair_ne_pair (Or.inr ⟨by lia, by lia⟩))
       (pair_ne_pair (Or.inl ⟨by lia, by lia⟩))⟩
 
-/-- If all four candidate pairs divide the sum, the count is exactly 4. -/
+/-- If all four candidate pairs divide the sum, the count is exactly 4.
+@isnad1 id=eq.7h4v.s7.8cfd595de2d0 from=translated src=- shape=f7b71308 vocab=528b12dc
+-/
 lemma pairCount_eq_four {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d)
     (h1 : a + b ∣ a + b + c + d) (h2 : a + c ∣ a + b + c + d)
     (h3 : a + d ∣ a + b + c + d) (h4 : b + c ∣ a + b + c + d) :
@@ -188,7 +214,9 @@ lemma pairCount_eq_four {a b c d : ℕ} (hab : a < b) (hbc : b < c) (hcd : c < d
     _ ≤ _ := Finset.card_le_card hgood
 
 /-- The heart of the solution: if all four candidate pairs divide the sum,
-then the quadruple is `(a, 5a, 7a, 11a)` or `(a, 11a, 19a, 29a)`. -/
+then the quadruple is `(a, 5a, 7a, 11a)` or `(a, 11a, 19a, 29a)`.
+@isnad1 id=or.7h4v.s8.e2f81d83e5b4 from=translated src=- shape=550ad6ba vocab=8180703e
+-/
 lemma classify {a b c d : ℕ} (ha : 0 < a) (hab : a < b) (hbc : b < c)
     (h1 : a + b ∣ a + b + c + d) (h2 : a + c ∣ a + b + c + d)
     (h3 : a + d ∣ a + b + c + d) (h4 : b + c ∣ a + b + c + d) :
@@ -247,7 +275,9 @@ lemma classify {a b c d : ℕ} (ha : 0 < a) (hab : a < b) (hbc : b < c)
   · exact Or.inl ⟨by lia, by lia, by lia⟩
   · exact Or.inr ⟨by lia, by lia, by lia⟩
 
-/-- Any 4-element finset of naturals can be listed in increasing order. -/
+/-- Any 4-element finset of naturals can be listed in increasing order.
+@isnad1 id=ex.1h1v.s6.4bda64dda6df from=translated src=- shape=e2768118 vocab=8052777c
+-/
 lemma exists_sorted_four {A : Finset ℕ} (hA : A.card = 4) :
     ∃ a b c d : ℕ, a < b ∧ b < c ∧ c < d ∧ A = {a, b, c, d} := by
   obtain ⟨a, b, c, d, hL⟩ : ∃ a b c d : ℕ, A.sort (· ≤ ·) = [a, b, c, d] := by

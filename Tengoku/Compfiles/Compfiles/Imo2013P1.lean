@@ -29,6 +29,9 @@ Adaptation of the solution found in https://www.imo-official.org/problems/IMO201
 We prove a slightly more general version where k does not need to be strictly positive.
 -/
 
+/--
+@isnad1 id=eq.0h3v.s6.aedaf142cd1b from=translated src=- shape=c9e88ed3 vocab=0a5ed6ac
+-/
 theorem prod_lemma (m : ℕ → ℕ+) (k : ℕ) (nm : ℕ+) :
     ∏ i ∈ Finset.range k, ((1 : ℚ) + 1 / ↑(if i < k then m i else nm)) =
       ∏ i ∈ Finset.range k, (1 + 1 / (m i : ℚ)) := by

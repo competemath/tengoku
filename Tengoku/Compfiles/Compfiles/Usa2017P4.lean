@@ -82,6 +82,9 @@ section GeometryLemmas
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=eq.0h3v.s6.ccf7612bec83 from=translated src=- shape=59bb891f vocab=6be343fa
+-/
 lemma cdist_if (a b : Fin m) :
     cdist a b = if a.val ≤ b.val then b.val - a.val else b.val + m - a.val := by
   show (b.val + m - a.val) % m = _
@@ -90,6 +93,9 @@ lemma cdist_if (a b : Fin m) :
     rw [e, Nat.add_mod_right, Nat.mod_eq_of_lt (by lia : b.val - a.val < m)]
   · exact Nat.mod_eq_of_lt (by lia)
 
+/--
+@isnad1 id=eq.0h3v.s4.6827a65f057b from=translated src=- shape=a1f2d8cb vocab=cc03480d
+-/
 lemma shift_cdist (a b : Fin m) : shift a (cdist a b) = b := by
   apply Fin.ext
   show (a.val + (b.val + m - a.val) % m) % m = b.val
@@ -107,20 +113,32 @@ lemma shift_cdist (a b : Fin m) : shift a (cdist a b) = b := by
       have e2 : a.val + (b.val + m - a.val) = b.val + m := by lia
       rw [e2, Nat.add_mod_right, Nat.mod_eq_of_lt b.isLt]
 
+/--
+@isnad1 id=eq.1h4v.s4.5a0836417f45 from=translated src=- shape=a083c8d7 vocab=3aa87263
+-/
 lemma cdist_left_inj {a b₁ b₂ : Fin m} (h : cdist a b₁ = cdist a b₂) : b₁ = b₂ := by
   rw [← shift_cdist a b₁, ← shift_cdist a b₂, h]
 
+/--
+@isnad1 id=lt.1h3v.s4.a16439a3f2a2 from=translated src=- shape=d9923d0f vocab=166520f8
+-/
 lemma cdist_pos {a b : Fin m} (h : a ≠ b) : 0 < cdist a b := by
   rw [cdist_if]
   have hab : a.val ≠ b.val := fun e => h (Fin.ext e)
   split_ifs with h2 <;> lia
 
+/--
+@isnad1 id=eq.1h4v.s5.e539f6752d39 from=translated src=- shape=85461c52 vocab=33957779
+-/
 lemma cdist_add_of_lt {a b e : Fin m} (h : cdist a b < cdist a e) :
     cdist a e = cdist a b + cdist b e := by
   simp only [cdist_if] at h ⊢
   have ha := a.isLt; have hb := b.isLt; have he := e.isLt
   split_ifs at h ⊢ <;> lia
 
+/--
+@isnad1 id=lt.2h4v.s5.fe5423b702b7 from=translated src=- shape=43a1f975 vocab=166520f8
+-/
 lemma arc_rotate {a b e : Fin m} (hab : a ≠ b) (h : cdist a b < cdist a e) :
     cdist b e < cdist b a := by
   simp only [cdist_if] at h ⊢
@@ -130,7 +148,9 @@ lemma arc_rotate {a b e : Fin m} (hab : a ≠ b) (h : cdist a b < cdist a e) :
 
 /-- Key fact for the swapping argument: if `p` lies on the open counterclockwise
 arc from `y` to `x`, then `wrap p y` and `wrap p x` differ by an amount that does
-not depend on `p`. -/
+not depend on `p`.
+@isnad1 id=eq.2h4v.s6.90cc25611dd0 from=translated src=- shape=d048a767 vocab=d6460d9e
+-/
 lemma wrap_eq_of_mem_arc {y x p : Fin m} (hpy : p ≠ y) (h : cdist y p < cdist y x) :
     wrap p y = wrap p x + (if y.val < x.val then 1 else 0) := by
   have hp0 : 0 < cdist y p := cdist_pos (Ne.symm hpy)
@@ -147,47 +167,72 @@ section ProcessLemmas
 
 variable {m : ℕ} (c : Fin m → Bool)
 
+/--
+@isnad1 id=iff.0h4v.s5.2a3e10f81468 from=translated src=- shape=9440c2c5 vocab=55224c0a
+-/
 lemma mem_avail {used : Finset (Fin m)} {b : Fin m} :
     b ∈ avail c used ↔ c b = false ∧ b ∉ used := by
   simp only [avail, Finset.mem_filter, Finset.mem_univ, true_and]
 
+/--
+@isnad1 id=eq.1h4v.s6.9a8a85aea9c2 from=translated src=- shape=3cced2b8 vocab=acd12672
+-/
 lemma nb_eq_choose {used : Finset (Fin m)} {r : Fin m} (h : (avail c used).Nonempty) :
     nb c used r = Classical.choose (Finset.exists_min_image (avail c used) (cdist r) h) :=
   dite_eq_left h
 
+/--
+@isnad1 id=mem.1h4v.s5.e2ace2b87bf1 from=translated src=- shape=fbc18022 vocab=3499c7ea
+-/
 lemma nb_mem {used : Finset (Fin m)} {r : Fin m} (h : (avail c used).Nonempty) :
     nb c used r ∈ avail c used := by
   rw [nb_eq_choose c h]
   exact (Classical.choose_spec (Finset.exists_min_image (avail c used) (cdist r) h)).1
 
+/--
+@isnad1 id=le.2h5v.s5.783ab0ce8788 from=translated src=- shape=530face0 vocab=6f9c31a9
+-/
 lemma nb_min {used : Finset (Fin m)} {r : Fin m} (h : (avail c used).Nonempty)
     {q : Fin m} (hq : q ∈ avail c used) :
     cdist r (nb c used r) ≤ cdist r q := by
   rw [nb_eq_choose c h]
   exact (Classical.choose_spec (Finset.exists_min_image (avail c used) (cdist r) h)).2 q hq
 
-/-- Uniqueness of the nearest available blue point. -/
+/-- Uniqueness of the nearest available blue point.
+@isnad1 id=eq.3h5v.s6.89a0284aa628 from=translated src=- shape=1e6e7979 vocab=6f9c31a9
+-/
 lemma nb_eq_of {used : Finset (Fin m)} {r b : Fin m} (h : (avail c used).Nonempty)
     (hb : b ∈ avail c used) (hmin : ∀ q ∈ avail c used, cdist r b ≤ cdist r q) :
     nb c used r = b :=
   cdist_left_inj (le_antisymm (nb_min c h hb) (hmin _ (nb_mem c h)))
 
+/--
+@isnad1 id=eq.0h4v.s5.b95951466028 from=translated src=- shape=4397a9d4 vocab=67163af1
+-/
 lemma avail_insert (b : Fin m) (used : Finset (Fin m)) :
     avail c (insert b used) = (avail c used).erase b := by
   ext x
   simp only [mem_avail, Finset.mem_erase, Finset.mem_insert, not_or]
   tauto
 
+/--
+@isnad1 id=eq.1h4v.s6.40dec38a0565 from=translated src=- shape=c4e3c847 vocab=0bbb0859
+-/
 lemma card_avail_insert {b : Fin m} {used : Finset (Fin m)} (hb : b ∈ avail c used) :
     (avail c (insert b used)).card = (avail c used).card - 1 := by
   rw [avail_insert, Finset.card_erase_of_mem hb]
 
+/--
+@isnad1 id=eq.0h5v.s6.6c9af60bac6d from=translated src=- shape=fe04c8a7 vocab=19fcb166
+-/
 lemma wraps_cons (r : Fin m) (rs : List (Fin m)) (used : Finset (Fin m)) :
     wraps c (r :: rs) used =
       wrap r (nb c used r) + wraps c rs (insert (nb c used r) used) := rfl
 
 /-- The heart of the proof: processing two consecutive red points in either order
-produces the same number of arcs through (1, 0) and the same set of used blue points. -/
+produces the same number of arcs through (1, 0) and the same set of used blue points.
+@isnad1 id=and.3h5v.s7.8f19eed3de05 from=translated src=- shape=f4135367 vocab=ae3a6c5c
+-/
 lemma wraps_swap_pair {r r' : Fin m} (hr : c r = true) (hr' : c r' = true)
     {used : Finset (Fin m)} (hcard : 2 ≤ (avail c used).card) :
     wrap r (nb c used r) + wrap r' (nb c (insert (nb c used r) used) r') =
@@ -319,7 +364,9 @@ lemma wraps_swap_pair {r r' : Fin m} (hr : c r = true) (hr' : c r' = true)
     exact ⟨Nat.add_comm _ _, Finset.insert_comm _ _ _⟩
 
 /-- The wrap count is invariant under permuting the processing order of the red
-points (given that enough blue points remain available at every step). -/
+points (given that enough blue points remain available at every step).
+@isnad1 id=eq.3h5v.s6.7e0f654fb6fb from=translated src=- shape=0c9a9d49 vocab=0d844854
+-/
 lemma wraps_perm {l₁ l₂ : List (Fin m)} (h : List.Perm l₁ l₂) :
     (∀ r ∈ l₁, c r = true) → ∀ used : Finset (Fin m),
       l₁.length ≤ (avail c used).card → wraps c l₁ used = wraps c l₂ used := by

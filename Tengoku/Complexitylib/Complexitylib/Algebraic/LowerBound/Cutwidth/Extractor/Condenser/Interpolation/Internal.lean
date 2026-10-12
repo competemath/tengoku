@@ -22,6 +22,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=ex.1h7v.s8.e3ebd5d69018 from=translated src=- shape=d14f084b vocab=4d4d258e
+-/
 theorem exists_polynomial_interpolant {F X : Type*} [Field F] {A K : Nat}
     (T : Finset X) (seed : X → F) (weight : X → Fin K → F)
     (budget : T.card < A * K) :

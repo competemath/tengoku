@@ -22,7 +22,9 @@ namespace Algebraic.Cutwidth.Aggregate.Geometry.Entropy
 open scoped BigOperators Classical
 open Finset
 
-/-- A finite logarithmic mean bound, derived from the tangent inequality for `log`. -/
+/-- A finite logarithmic mean bound, derived from the tangent inequality for `log`.
+@isnad1 id=le.3h3v.s6.8f7177d3ec69 from=translated src=- shape=323c2330 vocab=865773c2
+-/
 theorem sum_log_le_of_sum_le {X : Type*} [Fintype X] (f : X → ℝ)
     (positive : ∀ x, 0 < f x) {a : ℝ} (ha : 0 < a)
     (bound : ∑ x, f x ≤ Fintype.card X * a) :
@@ -44,12 +46,16 @@ noncomputable def biasSaving : ℝ := Real.log 2 - Real.binEntropy (1 / 4)
 noncomputable def bitWeight (biased : Bool) (rare value : Bool) : ℝ :=
   if biased then if value = rare then 1 / 4 else 3 / 4 else 1 / 2
 
-/-- Every one-bit outcome receives strictly positive weight. -/
+/-- Every one-bit outcome receives strictly positive weight.
+@isnad1 id=lt.0h3v.s4.45e6f637f30d from=translated src=- shape=1995cd38 vocab=3ca5a36c
+-/
 @[simp] theorem bitWeight_pos (biased rare value : Bool) : 0 < bitWeight biased rare value := by
   unfold bitWeight
   split_ifs <;> norm_num
 
-/-- The weights on both one-bit outcomes sum to one. -/
+/-- The weights on both one-bit outcomes sum to one.
+@isnad1 id=eq.0h2v.s4.ccf915c35f61 from=translated src=- shape=22600171 vocab=d480233b
+-/
 theorem sum_bitWeight (biased rare : Bool) : ∑ value, bitWeight biased rare value = 1 := by
   cases biased <;> cases rare <;> norm_num [Fintype.sum_bool, bitWeight]
 
@@ -58,19 +64,25 @@ noncomputable def messageWeight {ι : Type*} [Fintype ι]
     (biased : ι → Bool) (rare : ι → Bool) (message : ι → Bool) : ℝ :=
   ∏ i, bitWeight (biased i) (rare i) (message i)
 
-/-- Every full message receives strictly positive product weight. -/
+/-- Every full message receives strictly positive product weight.
+@isnad1 id=lt.0h4v.s5.da981ceddb51 from=translated src=- shape=8fd895d2 vocab=a460b4b3
+-/
 @[simp] theorem messageWeight_pos {ι : Type*} [Fintype ι]
     (biased rare message : ι → Bool) : 0 < messageWeight biased rare message :=
   Finset.prod_pos fun _ _ => bitWeight_pos _ _ _
 
-/-- The product weights form a probability mass on the message cube. -/
+/-- The product weights form a probability mass on the message cube.
+@isnad1 id=eq.0h3v.s5.5f2b84e04de9 from=translated src=- shape=8fb8006c vocab=24723098
+-/
 @[simp] theorem sum_messageWeight {ι : Type*} [Fintype ι]
     (biased rare : ι → Bool) : ∑ message, messageWeight biased rare message = 1 := by
   unfold messageWeight
   rw [← Fintype.prod_sum]
   exact Finset.prod_eq_one fun i _ => sum_bitWeight _ _
 
-/-- A key with fibres of size at most `K` pulls back a probability mass to mass at most `K`. -/
+/-- A key with fibres of size at most `K` pulls back a probability mass to mass at most `K`.
+@isnad1 id=le.3h5v.s6.c8b530245d01 from=translated src=- shape=8903773a vocab=5b4dd658
+-/
 theorem sum_weight_key_le {X T : Type*} [Fintype X] [Fintype T]
     (key : X → T) (weight : T → ℝ) (nonneg : ∀ t, 0 ≤ weight t)
     (mass : ∑ t, weight t = 1) {K : Nat}
@@ -93,11 +105,15 @@ theorem sum_weight_key_le {X T : Type*} [Fintype X] [Fintype T]
       mul_le_mul_of_nonneg_right (by exact_mod_cast fibres t) (nonneg t)
     _ = K := by rw [← Finset.mul_sum, mass, mul_one]
 
-/-- Bias gives a strictly positive saving over one unbiased bit. -/
+/-- Bias gives a strictly positive saving over one unbiased bit.
+@isnad1 id=lt.0h0v.s3.6ac86f6d7f93 from=translated src=- shape=ff3a10fc vocab=b703a542
+-/
 theorem biasSaving_pos : 0 < biasSaving := by
   exact sub_pos.mpr (Real.binEntropy_lt_log_two.mpr (by norm_num))
 
-/-- The total log weight of a biased coordinate is bounded using only its rare count. -/
+/-- The total log weight of a biased coordinate is bounded using only its rare count.
+@isnad1 id=le.1h4v.s7.a337d17fb225 from=translated src=- shape=719d612e vocab=95b23941
+-/
 theorem sum_log_bitWeight_ge {X : Type*} [Fintype X] (bit : X → Bool)
     (rare : Bool) (biased : Bool)
     (bias : biased = true →

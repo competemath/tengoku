@@ -29,9 +29,15 @@ variable {m : ℕ} {A C : Finset ℤ} {a : ℤ} {k : Fin m} {B : Fin m → Finse
 
 def incidenceCoeff (B : Fin m → Finset ℤ) (a : ℤ) (k : Fin m) : ℤ := if a ∈ B k then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.3d75c20dbc10 from=translated src=- shape=14b296d6 vocab=82729e74
+-/
 lemma term_mul_subset_indicator : t k * (if a ∈ B k then a else 0) =
     a * (incidenceCoeff B a k * t k) := by grind [incidenceCoeff]
 
+/--
+@isnad1 id=eq.3h4v.s6.fddbbdc41055 from=translated src=- shape=e437f618 vocab=896de6c5
+-/
 lemma small_coeffs_eq_zero_of_sum_pow_eq_zero (hm : 2 ≤ m) : ∀ n (c : Fin n → ℤ),
     (∀ i, |c i| < m) → (∑ i, c i * m ^ (i : ℕ) = 0) → ∀ i, c i = 0 := by
   intro n c hc hs i
@@ -62,12 +68,18 @@ lemma small_coeffs_eq_zero_of_sum_pow_eq_zero (hm : 2 ≤ m) : ∀ n (c : Fin n 
         | zero => contradiction
         | succ j => exact (ih (fun x : Fin n => c x.succ) (fun x => hc x.succ) hinner) j
 
+/--
+@isnad1 id=lt.3h3v.s6.373c8c8e26a6 from=translated src=- shape=87d343ae vocab=1f2e7ff5
+-/
 lemma card_pos_of_sum_powers (hm : 2 ≤ m) (hB : ∀ k, B k ⊆ A)
     (hs : ∀ k, ∑ b ∈ B k, b = m ^ (k.val + 1)) : 0 < A.card := by
   by_contra hA_not
   have hB0empty : B ⟨0, by lia⟩ = ∅ := by grind
   grind
 
+/--
+@isnad1 id=eq.1h2v.s7.2ed50c6e0544 from=translated src=- shape=081dbc98 vocab=4953dfad
+-/
 lemma subset_sum_eq_subtype_sum (hC : C ⊆ A) :
     (∑ a : A, if (a : ℤ) ∈ C then (a : ℤ) else 0) = ∑ c ∈ C, c := by
   have : (∑ a : A, if (a : ℤ) ∈ C then (a : ℤ) else 0) =
@@ -77,6 +89,9 @@ lemma subset_sum_eq_subtype_sum (hC : C ⊆ A) :
   congr 1
   grind
 
+/--
+@isnad1 id=ex.4h3v.s7.c6857743eab5 from=translated src=- shape=377d1f48 vocab=467bf449
+-/
 lemma siegel_incidence_relation (hm : 2 ≤ m) (hB : ∀ k, B k ⊆ A)
     (hs : ∀ k, ∑ b ∈ B k, b = m ^ (k.val + 1)) (hlt_two : 2 * A.card < m) :
     ∃ t : Fin m → ℤ, t ≠ 0 ∧ (∀ a : A, ∑ k, incidenceCoeff B a k * t k = 0) ∧
@@ -116,6 +131,9 @@ lemma siegel_incidence_relation (hm : 2 ≤ m) (hB : ∀ k, B k ⊆ A)
     exact_mod_cast htk_abs_real
   exact ⟨t, htne, hrel, hsmall⟩
 
+/--
+@isnad1 id=eq.3h4v.s7.b750c71d75bc from=translated src=- shape=b4db9af0 vocab=3600f03e
+-/
 lemma incidence_relation_gives_power_relation (hB : ∀ k, B k ⊆ A)
     (hs : ∀ k, ∑ b ∈ B k, b = m ^ (k.val + 1))
     (hrel : ∀ a : A, (∑ k, incidenceCoeff B a k * t k) = 0) :
@@ -132,6 +150,9 @@ lemma incidence_relation_gives_power_relation (hB : ∀ k, B k ⊆ A)
         exact sum_congr rfl fun a _ => by grind [hrel a]
       simpa [this]
 
+/--
+@isnad1 id=eq.3h2v.s7.47101d7d9971 from=translated src=- shape=d467fe98 vocab=65886999
+-/
 lemma small_relation_eq_zero (hm : 2 ≤ m) (hsmall : ∀ k : Fin m, |t k| < m)
     (hpoly : ∑ k, t k * m ^ (k.val + 1) = 0) : t = 0 := by
   have hpoly0 : ∑ k, t k * m ^ k.val = 0 := by

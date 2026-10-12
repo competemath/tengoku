@@ -29,7 +29,9 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- Evaluation of the quotient polynomial agrees with the class of the
-substituted interpolation sum. The exponent cap retains the actual `K`. -/
+substituted interpolation sum. The exponent cap retains the actual `K`.
+@isnad1 id=eq.2h7v.s10.a62683d1261d from=translated src=- shape=ae7eda85 vocab=14f22df4
+-/
 theorem substitutedSum_quotient_eval {F : Type*} [Field F] {h K m : Nat}
     (E : Polynomial F) (monic : E.Monic) (bound : K ≤ h ^ m)
     (p : Fin K → Polynomial F) (f : Polynomial F) :
@@ -38,7 +40,9 @@ theorem substitutedSum_quotient_eval {F : Type*} [Field F] {h K m : Nat}
   Internal.substitutedSum_quotient_eval E monic bound p f
 
 /-- A primitive coefficient family gives fewer than `K` distinct bounded-degree
-source polynomials at which its quotient polynomial vanishes. -/
+source polynomials at which its quotient polynomial vanishes.
+@isnad1 id=lt.5h5v.s10.108c6569fcb0 from=translated src=- shape=682833ac vocab=6f8e4807
+-/
 theorem card_lt_of_quotient_polynomial_roots {F : Type*} [Field F] {K : Nat}
     (E : Polynomial F) (monic : E.Monic) (irreducible : Irreducible E)
     (p : Fin K → Polynomial F) (primitive : ∃ j, ¬ E ∣ p j)

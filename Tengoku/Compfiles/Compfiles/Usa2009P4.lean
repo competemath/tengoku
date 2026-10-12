@@ -27,7 +27,9 @@ namespace Usa2009P4
 -- distinguished entries inside the Cauchy–Schwarz inequality.
 
 /-- Cross-paired Cauchy–Schwarz: for any two distinct indices `p` and `q`, the product
-`(∑ aᵢ)(∑ 1/aᵢ)` is bounded below by `(√(a p / a q) + √(a q / a p) + (n - 2))²`. -/
+`(∑ aᵢ)(∑ 1/aᵢ)` is bounded below by `(√(a p / a q) + √(a q / a p) + (n - 2))²`.
+@isnad1 id=le.2h4v.s7.a30d895a85fc from=translated src=- shape=532f0ef5 vocab=ca30fa5b
+-/
 lemma sum_mul_sum_inv_ge {n : ℕ} {a : Fin n → ℝ} (ha : ∀ i, 0 < a i)
     {p q : Fin n} (hpq : p ≠ q) :
     (√(a p / a q) + √(a q / a p) + ((n : ℝ) - 2)) ^ 2 ≤
@@ -92,7 +94,9 @@ lemma sum_mul_sum_inv_ge {n : ℕ} {a : Fin n → ℝ} (ha : ∀ i, 0 < a i)
         Finset.sum_mul_sq_le_sq_mul_sq _ _ _
     _ = (∑ i, a i) * (∑ i, (a i)⁻¹) := by rw [hsq1, hsq2]
 
-/-- Any entry is at most `4` times any other entry. -/
+/-- Any entry is at most `4` times any other entry.
+@isnad1 id=le.2h4v.s7.ed941b262016 from=translated src=- shape=2f93eab7 vocab=b84dbf50
+-/
 lemma entry_le_four_mul_entry {n : ℕ} {a : Fin n → ℝ} (ha : ∀ i, 0 < a i)
     (h : (∑ i, a i) * (∑ i, 1 / a i) ≤ ((n : ℝ) + 1 / 2) ^ 2) (p q : Fin n) :
     a p ≤ 4 * a q := by

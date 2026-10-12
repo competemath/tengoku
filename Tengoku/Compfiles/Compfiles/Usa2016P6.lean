@@ -97,20 +97,32 @@ moves against every legitimate wizard. -/
 def Winnable (n k : ℕ) : Prop :=
   ∃ m ≥ 1, ∃ σ : Strategy n, σ.Valid k ∧ ∀ W : Wizard n, W.Valid → (play σ W m).won
 
+/--
+@isnad1 id=eq.0h4v.s5.de567f4f77da from=translated src=- shape=d21987cb vocab=8e116018
+-/
 lemma play_succ {n : ℕ} (σ : Strategy n) (W : Wizard n) (m : ℕ) :
     play σ W (m + 1) = step σ W (play σ W m) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s4.c0c995cf331a from=translated src=- shape=774754a9 vocab=cf3c3936
+-/
 lemma step_of_won {n : ℕ} {σ : Strategy n} {W : Wizard n} {s : PlayState n}
     (h : s.won) : step σ W s = s := by
   unfold step
   rw [ite_eq_left h]
 
+/--
+@isnad1 id=eq.2h5v.s5.a3b3a4ea6c3b from=translated src=- shape=7bb65a66 vocab=500af675
+-/
 lemma won_mono {n : ℕ} {σ : Strategy n} {W : Wizard n} {t u : ℕ}
     (h : (play σ W t).won) (hu : t ≤ u) : (play σ W u).won := by
   induction hu with
   | refl => exact h
   | step _ ih => rw [play_succ, step_of_won ih, ih]
 
+/--
+@isnad1 id=eq.1h3v.s6.d98238b90673 from=translated src=- shape=f969f631 vocab=3663be67
+-/
 lemma image_eq_of_perm_fix {ι : Type*} [DecidableEq ι] {τ : Equiv.Perm ι}
     {Q : Finset ι} (h : ∀ i, i ∉ Q → τ i = i) : Q.image τ = Q := by
   ext x
@@ -134,6 +146,9 @@ lemma image_eq_of_perm_fix {ι : Type*} [DecidableEq ι] {τ : Equiv.Perm ι}
 def obsValues {n : ℕ} (o : Observation n) (s : Finset (Fin (2 * n))) : Finset (Fin n) :=
   s.biUnion fun i ↦ (o.2 i).toFinset
 
+/--
+@isnad1 id=eq.1h4v.s7.cba5e91d199e from=translated src=- shape=6ebbb1c1 vocab=b77cdea7
+-/
 lemma obsValues_eq_image {n : ℕ} {a : Arrangement n} {Q s : Finset (Fin (2 * n))}
     (hs : s ⊆ Q) : obsValues (Q, reveal a Q) s = s.image a := by
   ext ℓ
@@ -154,6 +169,9 @@ def window (n k j : ℕ) : Finset (Fin (2 * n)) :=
     (range k).attach.image fun ⟨t, ht⟩ ↦ ⟨j + t, by have : t < k := mem_range.1 ht; lia⟩
   else ∅
 
+/--
+@isnad1 id=eq.1h3v.s5.7c5d27a80bc2 from=translated src=- shape=7f57f852 vocab=66e45679
+-/
 lemma card_window {n k j : ℕ} (h : j + k ≤ 2 * n) : (window n k j).card = k := by
   rw [window, dite_eq_left h, card_image_of_injOn, card_attach, card_range]
   intro ⟨a, ha⟩ _ ⟨b, hb⟩ _ hab
@@ -162,6 +180,9 @@ lemma card_window {n k j : ℕ} (h : j + k ≤ 2 * n) : (window n k j).card = k 
   subst this
   rfl
 
+/--
+@isnad1 id=iff.1h4v.s7.7ace7e48559c from=translated src=- shape=c4743bc1 vocab=131ff8b0
+-/
 lemma mem_window {n k j : ℕ} (h : j + k ≤ 2 * n) {x : Fin (2 * n)} :
     x ∈ window n k j ↔ j ≤ x.val ∧ x.val < j + k := by
   rw [window, dite_eq_left h]
@@ -183,6 +204,9 @@ def midWindow (n k i : ℕ) : Finset (Fin (2 * n)) :=
       have : t < k - 1 := mem_range.1 ht; lia⟩
   else ∅
 
+/--
+@isnad1 id=eq.1h3v.s6.e0671e10b729 from=translated src=- shape=1b5e1727 vocab=e86761b5
+-/
 lemma card_midWindow {n k i : ℕ} (h : i + k ≤ 2 * n) : (midWindow n k i).card = k - 1 := by
   rw [midWindow, dite_eq_left h, card_image_of_injOn, card_attach, card_range]
   intro ⟨a, ha⟩ _ ⟨b, hb⟩ _ hab
@@ -191,6 +215,9 @@ lemma card_midWindow {n k i : ℕ} (h : i + k ≤ 2 * n) : (midWindow n k i).car
   subst this
   rfl
 
+/--
+@isnad1 id=iff.1h4v.s7.8d15877e16c3 from=translated src=- shape=de8056c5 vocab=df81ec77
+-/
 lemma mem_midWindow {n k i : ℕ} (h : i + k ≤ 2 * n) {x : Fin (2 * n)} :
     x ∈ midWindow n k i ↔ i < x.val ∧ x.val < i + k := by
   rw [midWindow, dite_eq_left h]
@@ -204,6 +231,9 @@ lemma mem_midWindow {n k i : ℕ} (h : i + k ≤ 2 * n) {x : Fin (2 * n)} :
     exact ⟨x.val - (i + 1), by rw [mem_range]; lia,
       Fin.ext (by simp only; lia)⟩
 
+/--
+@isnad1 id=le.1h3v.s6.788cf8a111c9 from=translated src=- shape=a3224fc9 vocab=e4b58272
+-/
 lemma midWindow_subset_window {n k i : ℕ} (h : i + k ≤ 2 * n) :
     midWindow n k i ⊆ window n k i := by
   intro x hx
@@ -211,6 +241,9 @@ lemma midWindow_subset_window {n k i : ℕ} (h : i + k ≤ 2 * n) :
   rw [mem_window h]
   lia
 
+/--
+@isnad1 id=le.2h3v.s7.bd30bfbef98a from=translated src=- shape=4a712ad0 vocab=e4b58272
+-/
 lemma midWindow_subset_window_succ {n k i : ℕ} (h : i + k ≤ 2 * n) (h' : i + 1 + k ≤ 2 * n) :
     midWindow n k i ⊆ window n k (i + 1) := by
   intro x hx
@@ -232,8 +265,14 @@ noncomputable def labelAt (n k : ℕ) [NeZero n] (hist : List (Observation n)) (
 def posOf (n k : ℕ) (p : Fin (2 * n - k)) : Fin (2 * n) :=
   ⟨p.val, lt_of_lt_of_le p.isLt (Nat.sub_le (2 * n) k)⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.44d2b147cc42 from=translated src=- shape=4189cbe0 vocab=ea6fba03
+-/
 lemma posOf_val (n k : ℕ) (p : Fin (2 * n - k)) : (posOf n k p).val = p.val := rfl
 
+/--
+@isnad1 id=ne.1h4v.s6.3ee89805ee80 from=translated src=- shape=48f3a48e vocab=a34832bf
+-/
 lemma posOf_ne {n k : ℕ} {p q : Fin (2 * n - k)} (h : p ≠ q) : posOf n k p ≠ posOf n k q := by
   intro e
   apply h
@@ -242,6 +281,9 @@ lemma posOf_ne {n k : ℕ} {p q : Fin (2 * n - k)} (h : p ≠ q) : posOf n k p �
   rw [posOf_val, posOf_val] at h2
   exact h2
 
+/--
+@isnad1 id=ex.3h4v.s8.7ec483282861 from=translated src=- shape=5caf4bd9 vocab=2a5cff4e
+-/
 lemma pairSet_exists {n k : ℕ} (hk : 2 ≤ k) (hkn : k ≤ n)
     {p q : Fin (2 * n - k)} (hpq : p ≠ q) :
     ∃ s : Finset (Fin (2 * n)), s.card = k ∧ posOf n k p ∈ s ∧ posOf n k q ∈ s := by
@@ -267,14 +309,23 @@ noncomputable def pairSet (n k : ℕ) (hk : 2 ≤ k) (hkn : k ≤ n)
     (p q : Fin (2 * n - k)) (hpq : p ≠ q) : Finset (Fin (2 * n)) :=
   (pairSet_exists hk hkn hpq).choose
 
+/--
+@isnad1 id=eq.3h4v.s6.146581013135 from=translated src=- shape=094fe151 vocab=a1674c13
+-/
 lemma pairSet_card {n k : ℕ} (hk : 2 ≤ k) (hkn : k ≤ n)
     {p q : Fin (2 * n - k)} (hpq : p ≠ q) : (pairSet n k hk hkn p q hpq).card = k :=
   (pairSet_exists hk hkn hpq).choose_spec.1
 
+/--
+@isnad1 id=mem.3h4v.s7.627ac5c357c1 from=translated src=- shape=32708c38 vocab=0618c133
+-/
 lemma posOf_mem_pairSet {n k : ℕ} (hk : 2 ≤ k) (hkn : k ≤ n)
     {p q : Fin (2 * n - k)} (hpq : p ≠ q) : posOf n k p ∈ pairSet n k hk hkn p q hpq :=
   (pairSet_exists hk hkn hpq).choose_spec.2.1
 
+/--
+@isnad1 id=mem.3h4v.s7.94666e96a096 from=translated src=- shape=068b47c3 vocab=0618c133
+-/
 lemma posOf_mem_pairSet' {n k : ℕ} (hk : 2 ≤ k) (hkn : k ≤ n)
     {p q : Fin (2 * n - k)} (hpq : p ≠ q) : posOf n k q ∈ pairSet n k hk hkn p q hpq :=
   (pairSet_exists hk hkn hpq).choose_spec.2.2
@@ -291,6 +342,9 @@ noncomputable def winStrat (n k : ℕ) [NeZero n] (hk : 2 ≤ k) (hkn : k ≤ n)
       pairSet n k hk hkn h₂.choose h₂.choose_spec.choose h₂.choose_spec.choose_spec.1
     else window n k 0
 
+/--
+@isnad1 id=valid.2h2v.s5.2602573a977b from=translated src=- shape=d2e88394 vocab=07750b0e
+-/
 lemma winStrat_valid (n k : ℕ) [NeZero n] (hk : 2 ≤ k) (hkn : k ≤ n) :
     (winStrat n k hk hkn).Valid k := by
   intro hist
@@ -305,6 +359,9 @@ lemma winStrat_valid (n k : ℕ) [NeZero n] (hk : 2 ≤ k) (hkn : k ≤ n) :
 noncomputable abbrev slideStrat (n k : ℕ) [NeZero n] (hk : 2 ≤ k) (hkn : k < n) : Strategy n :=
   winStrat n k hk (le_of_lt hkn)
 
+/--
+@isnad1 id=eq.1h4v.s8.fda3a171b840 from=translated src=- shape=24d67449 vocab=55417d2e
+-/
 lemma step_apply_of_not_won {n : ℕ} {σ : Strategy n} {W : Wizard n} {s : PlayState n}
     (hw : ¬ s.won) :
     step σ W s = if ((σ s.hist).image s.arr).card = (σ s.hist).card then
@@ -315,12 +372,18 @@ lemma step_apply_of_not_won {n : ℕ} {σ : Strategy n} {W : Wizard n} {s : Play
   unfold step
   rw [ite_eq_right hw]
 
+/--
+@isnad1 id=eq.3h3v.s6.db07341d1685 from=translated src=- shape=83cf1d7c vocab=ca538974
+-/
 lemma slideStrat_of_lt {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
     {hist : List (Observation n)} (h : hist.length + k ≤ 2 * n) :
     slideStrat n k hk hkn hist = window n k hist.length := by
   simp only [slideStrat, winStrat]
   rw [ite_eq_left h]
 
+/--
+@isnad1 id=eq.4h3v.s9.94e37659c3a6 from=translated src=- shape=dbc1f00c vocab=3a303356
+-/
 lemma slideStrat_of_ge {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
     {hist : List (Observation n)} (h : 2 * n < hist.length + k)
     (h₂ : ∃ p q : Fin (2 * n - k), p ≠ q ∧
@@ -331,7 +394,9 @@ lemma slideStrat_of_ge {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
   simp only [slideStrat, winStrat]
   rw [ite_eq_right (by lia), dite_eq_left h₂]
 
-/-- Facts about the play of the sliding strategy, while no win has occurred. -/
+/-- Facts about the play of the sliding strategy, while no win has occurred.
+@isnad1 id=and.5h4v.s8.2e6989ce30eb from=translated src=- shape=3a340e75 vocab=6da6ee7b
+-/
 lemma slide_play_facts {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
     (W : Wizard n) (_hW : W.Valid)
     (hM : ¬ (play (slideStrat n k hk hkn) W (2 * n - k + 1)).won)
@@ -387,7 +452,9 @@ lemma slide_play_facts {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
       · subst hj''
         exact hinj
 
-/-- The arrangement one step later, while no win has occurred. -/
+/-- The arrangement one step later, while no win has occurred.
+@isnad1 id=eq.5h4v.s8.e00d8e2599b6 from=translated src=- shape=0c37dfa6 vocab=ec356e41
+-/
 lemma slide_arr_step {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
     (W : Wizard n) (hW : W.Valid)
     (hM : ¬ (play (slideStrat n k hk hkn) W (2 * n - k + 1)).won)
@@ -409,7 +476,9 @@ lemma slide_arr_step {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
   rw [play_succ, step_apply_of_not_won (Bool.eq_false_iff.1 won_j), hQ,
     ite_eq_left (by rw [card_window hbj]; exact inj_j)]
 
-/-- Once determined, the label at position `x` never changes again. -/
+/-- Once determined, the label at position `x` never changes again.
+@isnad1 id=eq.7h5v.s8.df4950e53eec from=translated src=- shape=9e27e4eb vocab=26ce9e1d
+-/
 lemma slide_arr_frozen {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
     (W : Wizard n) (hW : W.Valid)
     (hM : ¬ (play (slideStrat n k hk hkn) W (2 * n - k + 1)).won)
@@ -434,7 +503,9 @@ lemma slide_arr_frozen {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
       rw [Function.comp_apply, hfix]
     rw [e1, ih (by lia)]
 
-/-- The label computed from the observations is the actual label. -/
+/-- The label computed from the observations is the actual label.
+@isnad1 id=eq.5h4v.s7.de954defc776 from=translated src=- shape=b95656ee vocab=b0ecada1
+-/
 lemma slide_labelAt_eq {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
     (W : Wizard n) (hW : W.Valid)
     (hM : ¬ (play (slideStrat n k hk hkn) W (2 * n - k + 1)).won)
@@ -531,7 +602,9 @@ lemma slide_labelAt_eq {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
   rw [hspec]
   exact hax.symm
 
-/-- The sliding strategy wins within `2n - k + 2` moves. -/
+/-- The sliding strategy wins within `2n - k + 2` moves.
+@isnad1 id=eq.3h3v.s6.48f37ed6f4d7 from=translated src=- shape=3906396b vocab=6272e606
+-/
 lemma slideStrat_wins {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
     (W : Wizard n) (hW : W.Valid) :
     (play (slideStrat n k hk hkn) W (2 * n - k + 2)).won := by
@@ -596,6 +669,9 @@ lemma slideStrat_wins {n k : ℕ} [NeZero n] (hk : 2 ≤ k) (hkn : k < n)
 
 /-! ## The wizard's evasive strategy for `k = n` -/
 
+/--
+@isnad1 id=ex.6h5v.s9.a486a10e8f88 from=translated src=- shape=8bab7c26 vocab=f6cddfe9
+-/
 lemma exists_perm_injOn {n : ℕ} (a : Fin (2 * n) → Fin n)
     (hvalid : ∀ ℓ : Fin n, (univ.filter fun i ↦ a i = ℓ).card = 2)
     {S Q : Finset (Fin (2 * n))} (hS : S.card = n) (hQ : Q.card = n)
@@ -806,12 +882,21 @@ complement onto the labels. -/
 noncomputable def initArr {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) : Arrangement n :=
   fun i ↦ if h : i ∈ σ [] then initEquiv₁ σ hσ ⟨i, h⟩ else initEquiv₂ σ hσ ⟨i, mem_compl.2 h⟩
 
+/--
+@isnad1 id=eq.2h3v.s9.6476360770e7 from=translated src=- shape=5c9e6fb2 vocab=0e38c38d
+-/
 lemma initArr_apply_of_mem {n : ℕ} {σ : Strategy n} {hσ : σ.Valid n} {i : Fin (2 * n)}
     (hi : i ∈ σ []) : initArr σ hσ i = initEquiv₁ σ hσ ⟨i, hi⟩ := dite_eq_left hi
 
+/--
+@isnad1 id=eq.2h3v.s10.0b25d9c5fa1b from=translated src=- shape=1a07508a vocab=2adf4d08
+-/
 lemma initArr_apply_of_notMem {n : ℕ} {σ : Strategy n} {hσ : σ.Valid n} {i : Fin (2 * n)}
     (hi : i ∉ σ []) : initArr σ hσ i = initEquiv₂ σ hσ ⟨i, mem_compl.2 hi⟩ := dite_eq_right hi
 
+/--
+@isnad1 id=valid.1h2v.s4.5a914415f5cc from=translated src=- shape=39034c9a vocab=cf6b8af6
+-/
 lemma initArr_valid {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) : (initArr σ hσ).Valid := by
   intro ℓ
   have hfiber : (univ.filter fun i ↦ initArr σ hσ i = ℓ) =
@@ -853,6 +938,9 @@ lemma initArr_valid {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) : (initArr σ
     rw [heq] at ha
     exact (mem_compl.1 ((initEquiv₂ σ hσ).symm ℓ).2) ha), card_singleton]
 
+/--
+@isnad1 id=and.1h2v.s7.629d48db18d0 from=translated src=- shape=6c140316 vocab=2766a694
+-/
 lemma initArr_injOn {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) :
     Set.InjOn (initArr σ hσ) ↑(σ []) ∧ Set.InjOn (initArr σ hσ) ↑(σ [])ᶜ := by
   constructor
@@ -884,9 +972,15 @@ noncomputable def wizArr {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n)
     (l : List (Observation n)) : Arrangement n :=
   wizArrAux σ hσ l.reverse
 
+/--
+@isnad1 id=eq.1h2v.s4.671ffe3a6afc from=translated src=- shape=b1b15dc3 vocab=c227ddf8
+-/
 lemma wizArr_nil {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) :
     wizArr σ hσ [] = initArr σ hσ := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.a6bcdaff7ebd from=translated src=- shape=f1c9eda2 vocab=147c8878
+-/
 lemma wizArr_append {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n)
     (l : List (Observation n)) (obs : Observation n) :
     wizArr σ hσ (l ++ [obs]) = wizArr σ hσ l ∘ permOf σ hσ l (wizArr σ hσ l) := by
@@ -898,6 +992,9 @@ noncomputable def evasiveWizard {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) :
   init := initArr σ hσ
   perm := fun l Q ↦ if Q = σ l then permOf σ hσ l (wizArr σ hσ l) else 1
 
+/--
+@isnad1 id=valid.1h2v.s4.016e56b37563 from=translated src=- shape=39034c9a vocab=bf8bed04
+-/
 lemma evasiveWizard_valid {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) :
     (evasiveWizard σ hσ).Valid := by
   refine ⟨initArr_valid σ hσ, ?_⟩
@@ -923,7 +1020,9 @@ noncomputable def evasiveHist {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) :
         (σ (evasiveHist σ hσ j)))]
 
 /-- The invariant maintained by the evasive wizard: the current arrangement is
-valid, and injective both on the last query and on the next query. -/
+valid, and injective both on the last query and on the next query.
+@isnad1 id=and.1h3v.s7.82444744a9dd from=translated src=- shape=5b35b226 vocab=810167b4
+-/
 lemma evasive_inv {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) (j : ℕ) :
     (wizArr σ hσ (evasiveHist σ hσ j)).Valid ∧
     Set.InjOn (wizArr σ hσ (evasiveHist σ hσ j)) ↑(σ ((evasiveHist σ hσ j).dropLast)) ∧
@@ -967,7 +1066,9 @@ lemma evasive_inv {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) (j : ℕ) :
       rw [← card_image_iff, himg, card_univ, Fintype.card_fin, hσ l]
     · exact hex.choose_spec.2
 
-/-- Playing against the evasive wizard, the player never wins. -/
+/-- Playing against the evasive wizard, the player never wins.
+@isnad1 id=eq.1h3v.s5.f807e5b11b4a from=translated src=- shape=702cf9b4 vocab=363fc448
+-/
 lemma evasive_play {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) (m : ℕ) :
     play σ (evasiveWizard σ hσ) m =
       { arr := wizArr σ hσ (evasiveHist σ hσ m)
@@ -988,7 +1089,9 @@ lemma evasive_play {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) (m : ℕ) :
     dsimp only
     rw [hperm, hhist, wizArr_append]
 
-/-- When `k = n`, no strategy can guarantee a win: the game is not winnable. -/
+/-- When `k = n`, no strategy can guarantee a win: the game is not winnable.
+@isnad1 id=ex.1h2v.s5.a40dbd1b5bd8 from=translated src=- shape=0de40796 vocab=bf1b1acc
+-/
 lemma not_winnable_of_eq {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) :
     ∃ W : Wizard n, W.Valid ∧ ∀ m, (play σ W m).won = false :=
   ⟨evasiveWizard σ hσ, evasiveWizard_valid σ hσ, fun m ↦ by rw [evasive_play σ hσ m]⟩

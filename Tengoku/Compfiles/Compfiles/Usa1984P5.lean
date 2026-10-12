@@ -43,7 +43,9 @@ for n = 2s+1 we get W = (-27)^(s+1), forcing 27^(s+1) = 2187, impossible since
 /-- The forward difference operator on real sequences. -/
 def fwdDiff (f : ℕ → ℝ) : ℕ → ℝ := fun n ↦ f (n + 1) - f n
 
-/-- The `m`-fold forward difference at `0` is the alternating binomial sum. -/
+/-- The `m`-fold forward difference at `0` is the alternating binomial sum.
+@isnad1 id=eq.0h2v.s6.2b5e2151bae6 from=translated src=- shape=b5046ab0 vocab=d17e147a
+-/
 lemma fwdDiff_iter_zero (m : ℕ) (f : ℕ → ℝ) :
     fwdDiff^[m] f 0 = ∑ j ∈ Finset.range (m + 1), (-1 : ℝ) ^ (m - j) * (m.choose j : ℝ) * f j := by
   induction m generalizing f with
@@ -112,7 +114,9 @@ lemma fwdDiff_iter_zero (m : ℕ) (f : ℕ → ℝ) :
     rw [Finset.sum_congr rfl gneg, Finset.sum_neg_distrib]
     ring
 
-/-- The `m`-fold forward difference of a polynomial of degree `< m` vanishes. -/
+/-- The `m`-fold forward difference of a polynomial of degree `< m` vanishes.
+@isnad1 id=eq.1h3v.s5.3c16a2068abf from=translated src=- shape=1178b08a vocab=0281aef0
+-/
 lemma poly_fwdDiff (m : ℕ) (P : ℝ[X]) (hP : P.natDegree < m) (k : ℕ) :
     fwdDiff^[m] (fun j ↦ P.eval (j : ℝ)) k = 0 := by
   induction m generalizing P with

@@ -27,7 +27,9 @@ def digitCount (t x d : ℕ) : ℕ :=
   ∑ i ∈ Finset.range t, (if (x / 10^i) % 10 = d then 1 else 0)
 
 /-- The `j`-th decimal digit of `x` only depends on `x % 10^(j+1)`, hence
-taking `x` modulo a higher power of `10` does not change that digit. -/
+taking `x` modulo a higher power of `10` does not change that digit.
+@isnad1 id=eq.1h3v.s6.7cd584628554 from=translated src=- shape=9c6a7959 vocab=b96b590a
+-/
 lemma mod_pow_div_mod (x j k : ℕ) (h : j + 1 ≤ k) :
     (x % 10^k) / 10^j % 10 = (x / 10^j) % 10 := by
   have e1 : (x % 10^k) / 10^j % 10 = ((x % 10^k) % 10^(j+1)) / 10^j := by
@@ -37,7 +39,9 @@ lemma mod_pow_div_mod (x j k : ℕ) (h : j + 1 ≤ k) :
     Nat.mod_mul_right_div_self]
 
 /-- Multiplication by `10` modulo `10^t - 1` rotates the (padded) `t`-digit
-representation of `x` by one place, so it preserves all digit counts. -/
+representation of `x` by one place, so it preserves all digit counts.
+@isnad1 id=eq.2h3v.s6.85d6621f3a04 from=translated src=- shape=436b9a3d vocab=d4c95425
+-/
 lemma digitCount_mul_ten_mod (t x d : ℕ) (ht : 0 < t) (hx : x < 10^t - 1) :
     digitCount t ((10 * x) % (10^t - 1)) d = digitCount t x d := by
   obtain ⟨t', rfl⟩ : ∃ t', t = t' + 1 := ⟨t - 1, (Nat.sub_add_cancel ht).symm⟩
@@ -102,7 +106,9 @@ lemma digitCount_mul_ten_mod (t x d : ℕ) (ht : 0 < t) (hx : x < 10^t - 1) :
   rw [Finset.sum_range_succ', Finset.sum_range_succ, hmod0term, hblastterm, hcongsum]
 
 /-- Iterating the one-place rotation: multiplication by `10^e` modulo
-`10^t - 1` preserves all digit counts. -/
+`10^t - 1` preserves all digit counts.
+@isnad1 id=eq.2h4v.s6.e83be2bf5169 from=translated src=- shape=e57ca355 vocab=d4c95425
+-/
 lemma digitCount_pow_ten_mul_mod (t : ℕ) (ht : 0 < t) (x e d : ℕ) (hx : x < 10^t - 1) :
     digitCount t ((10^e * x) % (10^t - 1)) d = digitCount t x d := by
   have hT : 0 < 10^t - 1 :=
@@ -118,7 +124,9 @@ lemma digitCount_pow_ten_mul_mod (t : ℕ) (ht : 0 < t) (x e d : ℕ) (hx : x < 
     rw [h1, digitCount_mul_ten_mod t _ d ht (Nat.mod_lt _ hT), ih]
 
 /-- For a nonzero digit `d`, the number of occurrences of `d` in the decimal
-representation of `x` equals `digitCount t x d` whenever `t` is large enough. -/
+representation of `x` equals `digitCount t x d` whenever `t` is large enough.
+@isnad1 id=eq.2h3v.s5.f53ed8a470e0 from=translated src=- shape=b1f6e9b2 vocab=f9e3d1f9
+-/
 lemma count_digits_eq_digitCount (x t d : ℕ) (hd : d ≠ 0) (hx : x < 10^t) :
     (Nat.digits 10 x).count d = digitCount t x d := by
   induction t generalizing x with
@@ -149,6 +157,9 @@ lemma count_digits_eq_digitCount (x t d : ℕ) (hd : d ≠ 0) (hx : x < 10^t) :
           = (if x % 10 = d then 1 else 0) by simp,
         ← hsum]
 
+/--
+@isnad1 id=le.0h1v.s5.410df46afbf6 from=translated src=- shape=0c72263b vocab=94889561
+-/
 lemma two_pow_ge_add_one (n : ℕ) : n + 1 ≤ 2 ^ n := by
   induction n with
   | zero => norm_num

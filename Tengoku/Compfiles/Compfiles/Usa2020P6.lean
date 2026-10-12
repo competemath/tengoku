@@ -44,7 +44,9 @@ by the rearrangement inequality, `max S = ∑ i, x i * y i` and
 
 /-- The fibers of the evaluation map `σ ↦ σ i` on `Perm (Fin n)` all have the same
 cardinality: left multiplication by `Equiv.swap a b` is a bijection between the fiber
-over `a` and the fiber over `b`. -/
+over `a` and the fiber over `b`.
+@isnad1 id=eq.0h4v.s7.c52678dfe282 from=translated src=- shape=5738dddf vocab=0fd8d8c0
+-/
 lemma card_fiber_eq {n : ℕ} (i a b : Fin n) :
     #(univ.filter fun σ : Equiv.Perm (Fin n) => σ i = a) =
     #(univ.filter fun σ : Equiv.Perm (Fin n) => σ i = b) := by
@@ -63,7 +65,9 @@ lemma card_fiber_eq {n : ℕ} (i a b : Fin n) :
     · show Equiv.swap a b * (Equiv.swap a b * τ) = τ
       rw [← mul_assoc, Equiv.swap_mul_self, one_mul]
 
-/-- Each fiber of the evaluation map `σ ↦ σ i` has cardinality `(n-1)!`. -/
+/-- Each fiber of the evaluation map `σ ↦ σ i` has cardinality `(n-1)!`.
+@isnad1 id=eq.1h3v.s6.f4d14cde2159 from=translated src=- shape=10ac715f vocab=661b0656
+-/
 lemma card_fiber {n : ℕ} (hn : 1 ≤ n) (i a : Fin n) :
     #(univ.filter fun σ : Equiv.Perm (Fin n) => σ i = a) = (n - 1)! := by
   have key : ∀ b : Fin n, #(univ.filter fun σ : Equiv.Perm (Fin n) => σ i = b) =
@@ -84,7 +88,9 @@ lemma card_fiber {n : ℕ} (hn : 1 ≤ n) (i a : Fin n) :
   rw [hfact] at hsum
   exact Nat.mul_left_cancel (by lia) hsum
 
-/-- Summing `f (σ i)` over all permutations gives `(n-1)!` times the sum of `f`. -/
+/-- Summing `f (σ i)` over all permutations gives `(n-1)!` times the sum of `f`.
+@isnad1 id=eq.1h3v.s6.823fed2a83a2 from=translated src=- shape=7431a2a1 vocab=0b72d834
+-/
 lemma sum_perm_apply {n : ℕ} (hn : 1 ≤ n) (i : Fin n) (f : Fin n → ℝ) :
     ∑ σ : Equiv.Perm (Fin n), f (σ i) = ((n - 1)! : ℝ) * ∑ a, f a := by
   calc ∑ σ : Equiv.Perm (Fin n), f (σ i)
@@ -99,7 +105,9 @@ lemma sum_perm_apply {n : ℕ} (hn : 1 ≤ n) (i : Fin n) (f : Fin n → ℝ) :
     _ = ((n - 1)! : ℝ) * ∑ a, f a := (Finset.mul_sum _ _ _).symm
 
 /-- The fibers of `σ ↦ (σ i, σ j)` over pairs `(a₁, b)` and `(a₂, b)` have the same
-cardinality, via left multiplication by `Equiv.swap a₁ a₂`. -/
+cardinality, via left multiplication by `Equiv.swap a₁ a₂`.
+@isnad1 id=eq.2h6v.s8.e2b782df3a86 from=translated src=- shape=122fa80b vocab=0fd8d8c0
+-/
 lemma card_fiber₂_eq {n : ℕ} (i j : Fin n) (b a₁ a₂ : Fin n) (h₁ : a₁ ≠ b) (h₂ : a₂ ≠ b) :
     #(univ.filter fun σ : Equiv.Perm (Fin n) => σ i = a₁ ∧ σ j = b) =
     #(univ.filter fun σ : Equiv.Perm (Fin n) => σ i = a₂ ∧ σ j = b) := by
@@ -125,7 +133,9 @@ lemma card_fiber₂_eq {n : ℕ} (i j : Fin n) (b a₁ a₂ : Fin n) (h₁ : a�
       rw [← mul_assoc, Equiv.swap_mul_self, one_mul]
 
 /-- Each fiber of `σ ↦ (σ i, σ j)` over a pair `(a, b)` with `a ≠ b` has
-cardinality `(n-2)!`. -/
+cardinality `(n-2)!`.
+@isnad1 id=eq.3h5v.s8.cd8095da8993 from=translated src=- shape=48ef1c37 vocab=661b0656
+-/
 lemma card_fiber₂ {n : ℕ} (hn : 2 ≤ n) (i j : Fin n) (hij : i ≠ j) (a b : Fin n)
     (hab : a ≠ b) :
     #(univ.filter fun σ : Equiv.Perm (Fin n) => σ i = a ∧ σ j = b) = (n - 2)! := by
@@ -168,7 +178,9 @@ lemma card_fiber₂ {n : ℕ} (hn : 2 ≤ n) (i j : Fin n) (hij : i ≠ j) (a b 
   rw [hfact] at htotal
   exact (Nat.mul_left_cancel (by lia) htotal).symm
 
-/-- Summing `g (σ i) (σ j)` over all permutations, for `i ≠ j`. -/
+/-- Summing `g (σ i) (σ j)` over all permutations, for `i ≠ j`.
+@isnad1 id=eq.2h4v.s7.b515d536e7c7 from=translated src=- shape=46d42e70 vocab=8c06b0a6
+-/
 lemma sum_perm_apply₂ {n : ℕ} (hn : 2 ≤ n) (i j : Fin n) (hij : i ≠ j) (g : Fin n → Fin n → ℝ) :
     ∑ σ : Equiv.Perm (Fin n), g (σ i) (σ j) =
       ((n - 2)! : ℝ) * ∑ a : Fin n, ∑ b ∈ univ.erase a, g a b := by
@@ -210,7 +222,9 @@ lemma sum_perm_apply₂ {n : ℕ} (hn : 2 ≤ n) (i j : Fin n) (hij : i ≠ j) (
           rw [hpair a b, card_fiber₂ hn i j hij a b (Ne.symm (Finset.mem_erase.1 hb).1)]
         rw [h2, ← Finset.mul_sum]
 
-/-- `∑ σ, S σ = 0` where `S σ = ∑ i, x i * y (σ i)`. -/
+/-- `∑ σ, S σ = 0` where `S σ = ∑ i, x i * y (σ i)`.
+@isnad1 id=eq.2h3v.s7.aaa32274bcd7 from=translated src=- shape=1ab6ee85 vocab=33450d70
+-/
 lemma sum_S_eq_zero {n : ℕ} (hn : 1 ≤ n) (x y : Fin n → ℝ) (hys : ∑ i, y i = 0) :
     ∑ σ : Equiv.Perm (Fin n), ∑ i, x i * y (σ i) = 0 := by
   rw [Finset.sum_comm]
@@ -219,7 +233,9 @@ lemma sum_S_eq_zero {n : ℕ} (hn : 1 ≤ n) (x y : Fin n → ℝ) (hys : ∑ i,
   show (∑ σ : Equiv.Perm (Fin n), x i * y (σ i)) = 0
   rw [← Finset.mul_sum, sum_perm_apply hn i y, hys, mul_zero, mul_zero]
 
-/-- The second moment `∑ σ, (S σ)² = (n-1)! + (n-2)!`. -/
+/-- The second moment `∑ σ, (S σ)² = (n-1)! + (n-2)!`.
+@isnad1 id=eq.5h3v.s8.b2bdb844ad25 from=translated src=- shape=e754e240 vocab=4efc8a95
+-/
 lemma sum_S_sq {n : ℕ} (hn : 2 ≤ n) (x y : Fin n → ℝ)
     (hxs : ∑ i, x i = 0) (hys : ∑ i, y i = 0)
     (hx2 : ∑ i, x i ^ 2 = 1) (hy2 : ∑ i, y i ^ 2 = 1) :
@@ -290,7 +306,9 @@ lemma sum_S_sq {n : ℕ} (hn : 2 ≤ n) (x y : Fin n → ℝ)
   rw [← Finset.mul_sum, hx2, mul_one]
 
 /-- The variance bound: if `S σ` lies in `[m, M]` for all `σ`, then
-`2/√(n-1) ≤ M - m`. -/
+`2/√(n-1) ≤ M - m`.
+@isnad1 id=le.7h5v.s8.345eeee1d2f2 from=translated src=- shape=60060767 vocab=8c464579
+-/
 lemma variance_bound {n : ℕ} (hn : 2 ≤ n) (x y : Fin n → ℝ)
     (hxs : ∑ i, x i = 0) (hys : ∑ i, y i = 0)
     (hx2 : ∑ i, x i ^ 2 = 1) (hy2 : ∑ i, y i ^ 2 = 1)
@@ -371,7 +389,9 @@ lemma variance_bound {n : ℕ} (hn : 2 ≤ n) (x y : Fin n → ℝ)
     linarith
   exact le_of_sq_le_sq h6 h7
 
-/-- A strictly monotone function `Fin m → ℕ` dominates the identity. -/
+/-- A strictly monotone function `Fin m → ℕ` dominates the identity.
+@isnad1 id=le.1h3v.s4.8ad8fcd62836 from=translated src=- shape=b251ae87 vocab=e50a9bf4
+-/
 lemma fin_strictMono_ge {m : ℕ} {g : Fin m → ℕ} (hg : StrictMono g) (j : Fin m) :
     j.val ≤ g j := by
   have h : ∀ v : ℕ, ∀ hv : v < m, v ≤ g ⟨v, hv⟩ := by
@@ -388,7 +408,9 @@ lemma fin_strictMono_ge {m : ℕ} {g : Fin m → ℕ} (hg : StrictMono g) (j : F
   rwa [Fin.eta j j.isLt] at h3
 
 /-- The sum of an antitone function over any finset is at most the sum over an initial
-segment of the same cardinality. -/
+segment of the same cardinality.
+@isnad1 id=le.3h4v.s6.629e43b1a7e7 from=translated src=- shape=6788dfa9 vocab=782f8ff9
+-/
 lemma topsum {n : ℕ} (y : Fin n → ℝ) (hy : Antitone y) (s : Finset (Fin n)) {m : ℕ}
     (hm : s.card = m) (hmn : m ≤ n) :
     ∑ i ∈ s, y i ≤ ∑ j : Fin m, y ⟨j.val, lt_of_lt_of_le j.isLt hmn⟩ := by
@@ -403,7 +425,9 @@ lemma topsum {n : ℕ} (y : Fin n → ℝ) (hy : Antitone y) (s : Finset (Fin n)
   exact fin_strictMono_ge (Fin.val_strictMono.comp (s.orderEmbOfFin hm).strictMono) j
 
 /-- The sum of a monotone function over any finset is at most the sum over a terminal
-segment of the same cardinality. -/
+segment of the same cardinality.
+@isnad1 id=le.3h4v.s6.698742718db8 from=translated src=- shape=bbc445d2 vocab=4607224b
+-/
 lemma topsum' {n : ℕ} (g : Fin n → ℝ) (hg : Monotone g) (s : Finset (Fin n)) {m : ℕ}
     (hm : s.card = m) (hmn : m ≤ n) :
     ∑ i ∈ s, g i ≤ ∑ j : Fin m, g (Fin.rev ⟨j.val, lt_of_lt_of_le j.isLt hmn⟩) := by
@@ -418,7 +442,9 @@ lemma topsum' {n : ℕ} (g : Fin n → ℝ) (hg : Monotone g) (s : Finset (Fin n
   exact h1
 
 /-- The sum of an antitone function over any finset is at least the sum over a terminal
-segment of the same cardinality. -/
+segment of the same cardinality.
+@isnad1 id=le.3h4v.s6.a4dac371d6b0 from=translated src=- shape=b5edad4f vocab=4d66ce9b
+-/
 lemma bottomsum {n : ℕ} (y : Fin n → ℝ) (hy : Antitone y) (s : Finset (Fin n)) {m : ℕ}
     (hm : s.card = m) (hmn : m ≤ n) :
     ∑ j : Fin m, y (Fin.rev ⟨j.val, lt_of_lt_of_le j.isLt hmn⟩) ≤ ∑ i ∈ s, y i := by
@@ -429,7 +455,9 @@ lemma bottomsum {n : ℕ} (y : Fin n → ℝ) (hy : Antitone y) (s : Finset (Fin
   exact h2
 
 /-- Summation by parts: if `z` has zero sum and nonnegative partial sums, and `x` is
-decreasing on `range n`, then `∑ x i * z i ≥ 0`. -/
+decreasing on `range n`, then `∑ x i * z i ≥ 0`.
+@isnad1 id=le.3h3v.s7.5202003a2e6c from=translated src=- shape=ca29a186 vocab=9b086eb1
+-/
 lemma abel_nonneg {n : ℕ} (x z : ℕ → ℝ)
     (hz : ∑ i ∈ Finset.range n, z i = 0)
     (hx : ∀ k : ℕ, k + 1 < n → 0 ≤ x k - x (k + 1))
@@ -501,7 +529,9 @@ lemma abel_nonneg {n : ℕ} (x z : ℕ → ℝ)
         rw [Finset.sum_congr rfl (fun k _ => mul_comm _ _)]
 
 /-- Rearrangement inequality (upper bound): for two decreasing sequences, the
-"identity" pairing maximizes `∑ x i * y (σ i)` over all permutations `σ`. -/
+"identity" pairing maximizes `∑ x i * y (σ i)` over all permutations `σ`.
+@isnad1 id=le.2h4v.s6.5002c1ec391a from=translated src=- shape=257ed89f vocab=5adc6275
+-/
 lemma rearr_upper {n : ℕ} (x y : Fin n → ℝ) (hx : Antitone x) (hy : Antitone y)
     (σ : Equiv.Perm (Fin n)) :
     ∑ i, x i * y (σ i) ≤ ∑ i, x i * y i := by
@@ -558,7 +588,9 @@ lemma rearr_upper {n : ℕ} (x y : Fin n → ℝ) (hx : Antitone x) (hy : Antito
   exact sub_nonneg.1 hab2
 
 /-- Rearrangement inequality (lower bound): for two decreasing sequences, the
-"reversed" pairing minimizes `∑ x i * y (σ i)` over all permutations `σ`. -/
+"reversed" pairing minimizes `∑ x i * y (σ i)` over all permutations `σ`.
+@isnad1 id=le.2h4v.s6.0a23a0f3799e from=translated src=- shape=19cb1086 vocab=cb690dfa
+-/
 lemma rearr_lower {n : ℕ} (x y : Fin n → ℝ) (hx : Antitone x) (hy : Antitone y)
     (σ : Equiv.Perm (Fin n)) :
     ∑ i, x i * y (Fin.rev i) ≤ ∑ i, x i * y (σ i) := by

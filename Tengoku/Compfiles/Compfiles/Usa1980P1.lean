@@ -39,14 +39,18 @@ the data of the first two objects and then reads off the true weight
 -/
 
 /-- The two objects have unequal weights, so the weights `A` and `B` that
-balance them from the left pan must differ. -/
+balance them from the left pan must differ.
+@isnad1 id=ne.3h6v.s5.2e921ddbfc0b from=translated src=- shape=e8f4ece1 vocab=02ba7218
+-/
 lemma ne_of_balance {A B h k x₁ x₂ : ℝ}
     (h1 : x₁ = h * A + k) (h3 : x₂ = h * B + k) (hne : x₁ ≠ x₂) :
     A ≠ B := by
   intro hAB
   exact hne (by rw [h1, h3, hAB])
 
-/-- Eliminating the true weights `x₁` and `x₂` gives `a - b = h ^ 2 * (A - B)`. -/
+/-- Eliminating the true weights `x₁` and `x₂` gives `a - b = h ^ 2 * (A - B)`.
+@isnad1 id=eq.4h8v.s7.9b2c04f1c681 from=translated src=- shape=5de2f5c5 vocab=3f072e55
+-/
 lemma h_sq {A a B b h k x₁ x₂ : ℝ}
     (h1 : x₁ = h * A + k) (h2 : a = h * x₁ + k)
     (h3 : x₂ = h * B + k) (h4 : b = h * x₂ + k) :
@@ -55,7 +59,9 @@ lemma h_sq {A a B b h k x₁ x₂ : ℝ}
   rw [h3] at h4
   linear_combination h4 - h2
 
-/-- The offset `k` is determined by `(h + 1) * k = a - h ^ 2 * A`. -/
+/-- The offset `k` is determined by `(h + 1) * k = a - h ^ 2 * A`.
+@isnad1 id=eq.2h5v.s6.100d2d2000e0 from=translated src=- shape=e6e34373 vocab=3f072e55
+-/
 lemma offset_eq {A a h k x₁ : ℝ}
     (h1 : x₁ = h * A + k) (h2 : a = h * x₁ + k) :
     (h + 1) * k = a - h ^ 2 * A := by

@@ -24,15 +24,24 @@ is integral for all positive integral $m$ and $n$.
 
 -- Solution adapted from Art of Problem Solving
 -- from https://leanprover.zulipchat.com/#narrow/channel/217875-Is-there-code-for-X.3F/topic/Sylvester-Schur.3A.20.20p-adic.20valuation/near/525085669
+/--
+@isnad1 id=eq.2h3v.s5.50c2fd4ab42c from=translated src=- shape=4a084db7 vocab=226faab3
+-/
 lemma Nat.Prime.multiplicity_factorial {p : ℕ} (hp : Prime p) {n b : ℕ} (h : log p n < b) :
   multiplicity p n.factorial = ∑ i ∈ Finset.Ico 1 b, n / p ^ i := by
   have := Nat.Prime.emultiplicity_factorial hp h
   rw [FiniteMultiplicity.emultiplicity_eq_multiplicity <| finiteMultiplicity_of_emultiplicity_eq_natCast this] at this
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h2v.s5.cd22b74f0089 from=translated src=- shape=289cedac vocab=be10af38
+-/
 lemma Int.intCast_add_floor (x : ℝ) (a: ℤ) : ⌊a + x⌋ = ⌊x⌋ + a := by
   simp [add_comm]
 
+/--
+@isnad1 id=eq.0h2v.s5.01f235afe73e from=translated src=- shape=0c2e4518 vocab=6c48df0b
+-/
 lemma Int.div_eq_floor {a b : ℕ} : (a / b: ℕ) = ⌊(a : ℝ) / b⌋ := by
   rw [Int.floor_div_natCast, Int.floor_natCast]
   norm_cast
@@ -40,12 +49,21 @@ lemma Int.div_eq_floor {a b : ℕ} : (a / b: ℕ) = ⌊(a : ℝ) / b⌋ := by
 @[reducible]
 noncomputable def trunCeil (x : ℝ) := ⌈x⌉ - 1
 
+/--
+@isnad1 id=le.1h2v.s4.4f58f2e20cb4 from=translated src=- shape=ee170020 vocab=f1220b1f
+-/
 lemma floor_le_trunCeil {a b : ℝ} (h : a < b) : ⌊a⌋ ≤ trunCeil b := by
   simpa using Int.floor_lt_ceil_of_lt h
 
+/--
+@isnad1 id=le.0h2v.s7.6b41ecb9808f from=translated src=- shape=2c96a915 vocab=45e3c539
+-/
 lemma cases (a b : Fin 5) : trunCeil ((3 * ↑↑a + ↑↑b + 4) / 5) + trunCeil ((3 * ↑↑b + ↑↑a + 4) / 5) ≤ ↑↑a + ↑↑b := by
   fin_cases a <;> fin_cases b <;> simp [trunCeil] <;> ring_nf <;> linarith
 
+/--
+@isnad1 id=le.0h2v.s7.f3af6058a4cd from=translated src=- shape=a2640afc vocab=6a27006e
+-/
 lemma h (x y : ℝ) : ⌊x⌋ + ⌊y⌋ + ⌊3*x + y⌋ + ⌊3*y + x⌋ ≤ ⌊5*x⌋ + ⌊5*y⌋ := by
   wlog h : ⌊x⌋ = 0 ∧ ⌊y⌋ = 0
   · have := this (Int.fract x) (Int.fract y) ⟨Int.floor_fract _, Int.floor_fract _⟩

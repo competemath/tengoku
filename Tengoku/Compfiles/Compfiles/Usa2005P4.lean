@@ -49,7 +49,9 @@ and `a + b = r`. -/
 def pairCount (n r : ℕ) : ℕ :=
   (((Finset.range (n + 1)) ×ˢ (Finset.range (n + 1))).filter fun p => p.1 + p.2 = r).card
 
-/-- The symmetry `(a, b) ↦ (n - a, n - b)` shows `pairCount n r = pairCount n (2 * n - r)`. -/
+/-- The symmetry `(a, b) ↦ (n - a, n - b)` shows `pairCount n r = pairCount n (2 * n - r)`.
+@isnad1 id=eq.1h2v.s5.6f783177f794 from=translated src=- shape=f9c1b23c vocab=eec4737a
+-/
 lemma pairCount_symm {n r : ℕ} (hr : r ≤ 2 * n) : pairCount n r = pairCount n (2 * n - r) := by
   unfold pairCount
   apply Finset.card_bij' (fun p _ => (n - p.1, n - p.2)) (fun p _ => (n - p.1, n - p.2))
@@ -71,7 +73,9 @@ lemma pairCount_symm {n r : ℕ} (hr : r ≤ 2 * n) : pairCount n r = pairCount 
     exact ⟨by lia, by lia⟩
 
 /-- The number of admissible 4-tuples is `∑ r, (pairCount n r)^2`: group the
-4-tuples according to the common value `r` of `k₁ + k₃ = k₂ + k₄`. -/
+4-tuples according to the common value `r` of `k₁ + k₃ = k₂ + k₄`.
+@isnad1 id=eq.0h1v.s6.88d58f17c2db from=translated src=- shape=aafd2c97 vocab=a7ef39b0
+-/
 lemma tuples_card_eq_sum (n : ℕ) :
     (tuples n).card = ∑ r ∈ Finset.range (2 * n + 1), (pairCount n r) ^ 2 := by
   have h1 : (tuples n).card =
@@ -120,7 +124,9 @@ lemma tuples_card_eq_sum (n : ℕ) :
   rw [hfib, Finset.card_product, pow_two]
   rfl
 
-/-- Three times the count equals `(n + 1) * (2 * n ^ 2 + 4 * n + 3)`. -/
+/-- Three times the count equals `(n + 1) * (2 * n ^ 2 + 4 * n + 3)`.
+@isnad1 id=eq.0h1v.s7.aba738a76068 from=translated src=- shape=b8535adf vocab=fa4996af
+-/
 lemma key_arith (n : ℕ) :
     3 * (2 * (∑ i ∈ Finset.range (n + 1), i ^ 2) + (n + 1) ^ 2) =
       (n + 1) * (2 * n ^ 2 + 4 * n + 3) := by

@@ -21,6 +21,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=ex.6h9v.s9.678cd3c43108 from=translated src=- shape=33489361 vocab=20e89767
+-/
 theorem exists_primitive_polynomialFamily {F X : Type*} [Field F] {A K : Nat}
     (E : Polynomial F) (monic : E.Monic) (positive : 0 < E.natDegree)
     (T : Finset X) (seed : X → F) (weight : X → Fin K → F)

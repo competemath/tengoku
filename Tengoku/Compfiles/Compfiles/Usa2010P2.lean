@@ -66,11 +66,17 @@ instance {n : ℕ} (e : Fin n ≃ ZMod n) (a b c : Fin n) : Decidable (StateA e 
 
 /-! ### Elementary facts about `ZMod.val` -/
 
+/--
+@isnad1 id=eq.1h1v.s5.3f4afe29243c from=translated src=- shape=6de869e0 vocab=d02c0a27
+-/
 lemma val_one' {n : ℕ} (hn : 2 ≤ n) : (1 : ZMod n).val = 1 := by
   have : NeZero n := ⟨by lia⟩
   rw [← Nat.cast_one]
   exact ZMod.val_natCast_of_lt (by lia)
 
+/--
+@isnad1 id=eq.1h1v.s6.d90863bde890 from=translated src=- shape=4ddf8aca vocab=5d069bd8
+-/
 lemma val_neg_one' {n : ℕ} (hn : 1 ≤ n) : (-1 : ZMod n).val = n - 1 := by
   have : NeZero n := ⟨by lia⟩
   have h : (-1 : ZMod n) = ((n - 1 : ℕ) : ZMod n) := by
@@ -78,6 +84,9 @@ lemma val_neg_one' {n : ℕ} (hn : 1 ≤ n) : (-1 : ZMod n).val = n - 1 := by
   rw [h]
   exact ZMod.val_natCast_of_lt (by lia)
 
+/--
+@isnad1 id=eq.2h2v.s7.9c6469f0b6b7 from=translated src=- shape=0fa492e7 vocab=dc12f9dc
+-/
 lemma val_add_one' {n : ℕ} (hn : 2 ≤ n) (x : ZMod n) (hx : x ≠ -1) :
     (x + 1).val = x.val + 1 := by
   have : NeZero n := ⟨by lia⟩
@@ -87,6 +96,9 @@ lemma val_add_one' {n : ℕ} (hn : 2 ≤ n) (x : ZMod n) (hx : x ≠ -1) :
     exact hx (ZMod.val_injective n (by rw [val_neg_one' (by lia : 1 ≤ n)]; lia))
   rw [ZMod.val_add, val_one' hn, Nat.mod_eq_of_lt (by lia)]
 
+/--
+@isnad1 id=eq.2h2v.s6.f75f714bf518 from=translated src=- shape=bdee7834 vocab=17d19e4a
+-/
 lemma val_sub_one' {n : ℕ} (hn : 1 ≤ n) (x : ZMod n) (hx : x ≠ 0) :
     (x - 1).val = x.val - 1 := by
   have : NeZero n := ⟨by lia⟩
@@ -98,11 +110,17 @@ lemma val_sub_one' {n : ℕ} (hn : 1 ≤ n) (x : ZMod n) (hx : x ≠ 0) :
     show x.val + (n - 1) = x.val - 1 + n by lia, Nat.add_mod_right,
     Nat.mod_eq_of_lt (by lia)]
 
+/--
+@isnad1 id=ne.1h4v.s6.f62161750e65 from=translated src=- shape=78ea0bbd vocab=9f17f4a0
+-/
 lemma val_sub_ne_of_ne {n : ℕ} [NeZero n] {q r s : ZMod n} (h : q ≠ r) :
     (q - s).val ≠ (r - s).val := by
   intro hbad
   exact h (sub_left_inj.mp (ZMod.val_injective n hbad))
 
+/--
+@isnad1 id=le.1h3v.s5.844f99d53e22 from=translated src=- shape=ad7d5c5f vocab=e6ad6bcf
+-/
 lemma val_sub_pos_of_ne {n : ℕ} [NeZero n] {q r : ZMod n} (h : q ≠ r) :
     1 ≤ (q - r).val := by
   have h1 : q - r ≠ 0 := sub_ne_zero_of_ne h
@@ -117,7 +135,9 @@ lemma eq_of_sub_eq_neg_one {n : ℕ} {q r : ZMod n} (h : q - r = -1) : r = q + 1
 /-! ### The cyclic-order state of a triple under one switch -/
 
 /-- L1: if `b` is directly behind `a`, then going backwards from `a` we meet
-`b` before any third student `c`. -/
+`b` before any third student `c`.
+@isnad1 id=statea.5h6v.s7.837338d255ff from=translated src=- shape=88d28844 vocab=3db2f42d
+-/
 lemma stateA_of_pair {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZMod n} {p : ZMod n}
     (hea : e a = p) (heb : e b = p + 1) (hac : a ≠ c) (hbc : b ≠ c) :
     StateA e a b c := by
@@ -139,7 +159,9 @@ lemma stateA_of_pair {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZMo
   rw [h1]
   exact h2
 
-/-- L2: if `b` is directly behind `c`, the triple is not in state A. -/
+/-- L2: if `b` is directly behind `c`, the triple is not in state A.
+@isnad1 id=not.4h6v.s7.26eb155ea907 from=translated src=- shape=beb55e60 vocab=3db2f42d
+-/
 lemma not_stateA_of_pair {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZMod n} {p : ZMod n}
     (hec : e c = p) (heb : e b = p + 1) (hab : a ≠ b) :
     ¬ StateA e a b c := by
@@ -156,7 +178,9 @@ lemma not_stateA_of_pair {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃
   unfold StateA at hA
   exact (not_lt_of_gt h) hA
 
-/-- L3: after `b` (behind) and `a` (front) switch, the triple is not in state A. -/
+/-- L3: after `b` (behind) and `a` (front) switch, the triple is not in state A.
+@isnad1 id=not.5h6v.s7.6d175ad28966 from=translated src=- shape=ef4166e6 vocab=08c1bf6b
+-/
 lemma not_stateA_swap {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZMod n} {p : ZMod n}
     (hea : e a = p) (heb : e b = p + 1) (hca : c ≠ a) (hcb : c ≠ b) :
     ¬ StateA (e.trans (Equiv.swap p (p + 1))) a b c := by
@@ -185,7 +209,9 @@ lemma not_stateA_swap {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZM
   have h7 : (e c - (p + 1)).val < n := ZMod.val_lt _
   lia
 
-/-- L4: after `b` (behind) and `c` (front) switch, the triple is in state A. -/
+/-- L4: after `b` (behind) and `c` (front) switch, the triple is in state A.
+@isnad1 id=statea.5h6v.s7.cf12464c9d5a from=translated src=- shape=bad35b06 vocab=08c1bf6b
+-/
 lemma stateA_swap {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZMod n} {p : ZMod n}
     (hec : e c = p) (heb : e b = p + 1) (hac : a ≠ c) (hab : a ≠ b) :
     StateA (e.trans (Equiv.swap p (p + 1))) a b c := by
@@ -211,7 +237,9 @@ lemma stateA_swap {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZMod n
   exact Nat.lt_succ_self _
 
 /-- L5: a permitted switch that involves neither the pair `(a, b)` nor the pair
-`(c, b)` preserves the cyclic-order state of the triple `{a, c, b}`. -/
+`(c, b)` preserves the cyclic-order state of the triple `{a, c, b}`.
+@isnad1 id=iff.7h6v.s9.a9f89281996d from=translated src=- shape=124c8ddc vocab=61671989
+-/
 lemma stateA_swap_iff {n : ℕ} (hn : 2 ≤ n) {a b c : Fin n} {e : Fin n ≃ ZMod n} {p : ZMod n}
     (hc : c.val = a.val + 1) (hab : a.val + 2 ≤ b.val) (hcb : c.val < b.val)
     (hleg : (e.symm p).val + 2 ≤ (e.symm (p + 1)).val)
@@ -432,7 +460,9 @@ tallest student).  Defined as a literal so that `(fsucc a h).val` is
 definitionally `a.val + 1`. -/
 def fsucc {n : ℕ} (a : Fin n) (h : a.val + 1 < n) : Fin n := ⟨a.val + 1, h⟩
 
-/-- Every recorded switch has front rank + 2 ≤ behind rank. -/
+/-- Every recorded switch has front rank + 2 ≤ behind rank.
+@isnad1 id=le.2h4v.s6.122d83f144dc from=translated src=- shape=75a17529 vocab=270acadc
+-/
 lemma evPairs_le {n : ℕ} {e : Fin n ≃ ZMod n} {ps : List (ZMod n)} (hL : Legal e ps) :
     ∀ pr ∈ evPairs e ps, pr.1.val + 2 ≤ pr.2.val := by
   induction ps generalizing e with
@@ -447,13 +477,18 @@ lemma evPairs_le {n : ℕ} {e : Fin n ≃ ZMod n} {ps : List (ZMod n)} (hL : Leg
       exact hfront
     · exact ih hrest pr h
 
-/-- Every recorded switch has front rank < behind rank. -/
+/-- Every recorded switch has front rank < behind rank.
+@isnad1 id=lt.2h4v.s6.f67864a5fe43 from=translated src=- shape=fccc4294 vocab=af91e79c
+-/
 lemma evPairs_lt {n : ℕ} {e : Fin n ≃ ZMod n} {ps : List (ZMod n)} (hL : Legal e ps) :
     ∀ pr ∈ evPairs e ps, pr.1 < pr.2 := by
   intro pr hmem
   have h := evPairs_le hL pr hmem
   exact Fin.lt_def.mpr (by lia)
 
+/--
+@isnad1 id=eq.0h3v.s4.f6dd4540b6de from=translated src=- shape=5af859d2 vocab=1ba71153
+-/
 lemma length_evPairs {n : ℕ} (e : Fin n ≃ ZMod n) (ps : List (ZMod n)) :
     (evPairs e ps).length = ps.length := by
   induction ps generalizing e with
@@ -461,7 +496,9 @@ lemma length_evPairs {n : ℕ} (e : Fin n ≃ ZMod n) (ps : List (ZMod n)) :
   | cons p ps ih => simp only [evPairs, List.length_cons, ih]
 
 /-- The length of a list of pairs with `fst < snd` equals the sum of the
-counts over all such pairs. -/
+counts over all such pairs.
+@isnad1 id=eq.1h2v.s7.1b7dfb1612e2 from=translated src=- shape=31a5882c vocab=cbb8f4fa
+-/
 lemma length_eq_sum_count {n : ℕ} (L : List (Fin n × Fin n))
     (hL : ∀ pr ∈ L, pr.1 < pr.2) :
     L.length = ∑ pr ∈ (Finset.univ.filter (fun pr : Fin n × Fin n => pr.1 < pr.2)),
@@ -504,7 +541,9 @@ switches of the pair `(a, b)` and those of the pair `(a+1, b)` alternate, and
 every switch of `(a, b)` after the first one is preceded by a switch of
 `(a+1, b)`.  Consequently the two displayed inequalities hold (the first
 conjunct applies when the initial cyclic-order state is A, the second when it
-is not). -/
+is not).
+@isnad1 id=and.4h5v.s8.01e3d4c663c9 from=translated src=- shape=0cdf1a02 vocab=4a1458e4
+-/
 lemma alternation {n : ℕ} (hn : 2 ≤ n) (a b : Fin n) (hab : a.val + 2 ≤ b.val)
     (ha : a.val + 1 < n) :
     ∀ (e : Fin n ≃ ZMod n) (ps : List (ZMod n)), Legal e ps →
@@ -601,7 +640,9 @@ lemma alternation {n : ℕ} (hn : 2 ≤ n) (a b : Fin n) (hab : a.val + 2 ≤ b.
 
 /-- The number of times a fixed pair of students `(a, b)` can switch is at
 most `b.val - a.val - 1`.  Proof by induction on the difference of the ranks,
-using the alternation lemma. -/
+using the alternation lemma.
+@isnad1 id=le.3h6v.s6.6e06922d5040 from=translated src=- shape=5da658e6 vocab=d1564efd
+-/
 lemma count_bound {n : ℕ} (hn : 2 ≤ n) (d : ℕ) :
     ∀ (a b : Fin n) (e : Fin n ≃ ZMod n) (ps : List (ZMod n)), Legal e ps →
       b.val - a.val = d → (evPairs e ps).count (a, b) ≤ d - 1 := by
@@ -636,12 +677,18 @@ lemma count_bound {n : ℕ} (hn : 2 ≤ n) (d : ℕ) :
       have h2 := ih (fsucc a ha) b e ps hL (by rw [hfs]; lia)
       lia
 
+/--
+@isnad1 id=eq.0h1v.s4.7c2fa31988d0 from=translated src=- shape=5cc5b1e1 vocab=fb1a3a28
+-/
 lemma sum_range_choose_two (n : ℕ) : ∑ k ∈ Finset.range n, k.choose 2 = n.choose 3 := by
   induction n with
   | zero => rfl
   | succ m ih =>
     rw [Finset.sum_range_succ, ih, Nat.choose_succ_succ', add_comm]
 
+/--
+@isnad1 id=eq.0h1v.s5.e80233bf39c1 from=translated src=- shape=2ae314fe vocab=1157a8f7
+-/
 lemma inner_sum (k : ℕ) : ∑ i ∈ Finset.range k, (k - i - 1) = k.choose 2 := by
   have e1 : ∑ i ∈ Finset.range k, (k - i - 1) = ∑ i ∈ Finset.range k, (k - 1 - i) := by
     apply Finset.sum_congr rfl
@@ -650,6 +697,9 @@ lemma inner_sum (k : ℕ) : ∑ i ∈ Finset.range k, (k - i - 1) = k.choose 2 :
   have e2 := Finset.sum_range_reflect (fun j : ℕ => j) k
   rw [e1, e2, Finset.sum_range_id, Nat.choose_two_right]
 
+/--
+@isnad1 id=eq.0h2v.s5.a5c1e2bae548 from=translated src=- shape=3abc477e vocab=ea1aa8f9
+-/
 lemma sum_Iio_val {n : ℕ} (b : Fin n) : ∑ a ∈ Finset.Iio b, (b.val - a.val - 1) = b.val.choose 2 := by
   rw [← inner_sum]
   have h1 : (Finset.Iio b).map Fin.valEmbedding = Finset.range b.val := by
@@ -660,6 +710,9 @@ lemma sum_Iio_val {n : ℕ} (b : Fin n) : ∑ a ∈ Finset.Iio b, (b.val - a.val
   intro a _
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.d3356bddd950 from=translated src=- shape=f1cdf7b0 vocab=56e992ef
+-/
 lemma pair_sum_choose3 {n : ℕ} :
     ∑ pr ∈ (Finset.univ.filter (fun pr : Fin n × Fin n => pr.1 < pr.2)),
       (pr.2.val - pr.1.val - 1) = n.choose 3 := by

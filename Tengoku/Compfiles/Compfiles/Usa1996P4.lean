@@ -44,6 +44,9 @@ abbrev GoodB {n : ℕ} (y : Fin n → Bool) : Prop :=
       (sget y (i : ℕ) = true ∧ sget y ((i : ℕ) + 1) = true ∧ sget y ((i : ℕ) + 2) = false ∧
         sget y ((i : ℕ) + 3) = false))
 
+/--
+@isnad1 id=eq.1h3v.s4.9a5f89ab983c from=translated src=- shape=cfa140d2 vocab=7e08ebdd
+-/
 theorem sget_lt {n : ℕ} (x : Fin n → Bool) {i : ℕ} (h : i < n) :
     sget x i = x ⟨i, h⟩ :=
   dite_eq_left h
@@ -63,19 +66,31 @@ differences are given by `x`. -/
 def build {n : ℕ} (x : Fin n → Bool) (c : Bool) : Fin (n + 1) → Bool :=
   fun i ↦ buildAux x c i.val
 
+/--
+@isnad1 id=eq.0h3v.s5.8d7fbafe7d92 from=translated src=- shape=75f348e5 vocab=d629255d
+-/
 theorem build_zero {n : ℕ} (x : Fin n → Bool) (c : Bool) :
     build x c 0 = c := by
   show buildAux x c 0 = c
   simp only [buildAux]
 
+/--
+@isnad1 id=eq.0h4v.s5.371d096f05c3 from=translated src=- shape=34887261 vocab=ee8613f1
+-/
 theorem buildAux_succ {n : ℕ} (x : Fin n → Bool) (c : Bool) (k : ℕ) :
     buildAux x c (k + 1) = xor (buildAux x c k) (sget x k) := by
   simp only [buildAux]
 
+/--
+@isnad1 id=eq.1h4v.s5.0676cb444b09 from=translated src=- shape=ad9d73a5 vocab=2195f57e
+-/
 theorem sget_build {n : ℕ} (x : Fin n → Bool) (c : Bool) {i : ℕ} (h : i < n + 1) :
     sget (build x c) i = buildAux x c i :=
   dite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s6.1400f3a0aff4 from=translated src=- shape=53fccf1c vocab=9c028a0b
+-/
 theorem sget_diff_build {n : ℕ} (x : Fin n → Bool) (c : Bool) :
     ∀ i : ℕ, i < n →
       xor (sget (build x c) i) (sget (build x c) (i + 1)) = sget x i := by
@@ -88,6 +103,9 @@ theorem sget_diff_build {n : ℕ} (x : Fin n → Bool) (c : Bool) :
   revert u v
   decide
 
+/--
+@isnad1 id=eq.1h3v.s6.9210a78fa9f5 from=translated src=- shape=0d24b821 vocab=c023d105
+-/
 theorem sget_diff {n : ℕ} (y : Fin (n + 1) → Bool) :
     ∀ i : ℕ, i < n → xor (sget y i) (sget y (i + 1)) = sget (diff y) i := by
   intro i hi
@@ -95,7 +113,9 @@ theorem sget_diff {n : ℕ} (y : Fin (n + 1) → Bool) :
   rfl
 
 /-- A block `0,0,1,1` or `1,1,0,0` in `y` at position `i` corresponds exactly to
-a block `0,1,0` in the difference sequence of `y` at position `i`. -/
+a block `0,1,0` in the difference sequence of `y` at position `i`.
+@isnad1 id=iff.2h4v.s8.d702258cc685 from=translated src=- shape=494510a3 vocab=b19501f1
+-/
 theorem pattern_transfer {n : ℕ} {y : Fin (n + 1) → Bool} {x : Fin n → Bool}
     (hxe : ∀ j : ℕ, j < n → xor (sget y j) (sget y (j + 1)) = sget x j)
     {i : ℕ} (hi : i + 3 < n + 1) :
@@ -118,6 +138,9 @@ theorem pattern_transfer {n : ℕ} {y : Fin (n + 1) → Bool} {x : Fin n → Boo
   revert a b d e a' b' d'
   decide
 
+/--
+@isnad1 id=goodb.1h3v.s4.aa260ed4b041 from=translated src=- shape=dd4b6843 vocab=b31e36a6
+-/
 theorem goodB_build {n : ℕ} {x : Fin n → Bool} {c : Bool} (hx : GoodA x) :
     GoodB (build x c) := by
   intro i hi hpat
@@ -128,6 +151,9 @@ theorem goodB_build {n : ℕ} {x : Fin n → Bool} {c : Bool} (hx : GoodA x) :
   have hn : (i : ℕ) < n := by lia
   exact hx ⟨(i : ℕ), hn⟩ (by show (i : ℕ) + 2 < n; lia) key
 
+/--
+@isnad1 id=gooda.1h2v.s5.90b6ff1bc412 from=translated src=- shape=0c257fb4 vocab=57da8261
+-/
 theorem goodA_diff {n : ℕ} {y : Fin (n + 1) → Bool} (hy : GoodB y) :
     GoodA (diff y) := by
   intro i hi hpat
@@ -140,12 +166,18 @@ theorem goodA_diff {n : ℕ} {y : Fin (n + 1) → Bool} (hy : GoodB y) :
   have hn : (i : ℕ) < n + 1 := by lia
   exact hy ⟨(i : ℕ), hn⟩ (by show (i : ℕ) + 3 < n + 1; lia) key
 
+/--
+@isnad1 id=eq.0h3v.s4.a0eb6e34fd04 from=translated src=- shape=d8636ef0 vocab=5247a40c
+-/
 theorem diff_build {n : ℕ} (x : Fin n → Bool) (c : Bool) :
     diff (build x c) = x := by
   funext i
   show xor (sget (build x c) i.val) (sget (build x c) (i.val + 1)) = x i
   rw [sget_diff_build x c i.val i.isLt, sget_lt x i.isLt]
 
+/--
+@isnad1 id=eq.0h2v.s6.86abad8be318 from=translated src=- shape=57640eea vocab=6c65f7f3
+-/
 theorem build_diff {n : ℕ} (y : Fin (n + 1) → Bool) :
     build (diff y) (y 0) = y := by
   funext i

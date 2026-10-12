@@ -117,12 +117,21 @@ def play : ℕ → Strategy → Strategy → Board → Bool → Outcome
 
 /-! ### Simple lemmas about `empties`, `letters` and updates -/
 
+/--
+@isnad1 id=iff.0h2v.s5.7a407735e869 from=translated src=- shape=a92ab141 vocab=1d1d5c71
+-/
 lemma mem_empties {b : Board} {x : ℕ} : x ∈ empties b ↔ x < 2000 ∧ b x = none := by
   simp [empties]
 
+/--
+@isnad1 id=iff.0h2v.s5.52292c46877a from=translated src=- shape=a92ab141 vocab=c97a7e5e
+-/
 lemma mem_letters {b : Board} {x : ℕ} : x ∈ letters b ↔ x < 2000 ∧ b x ≠ none := by
   simp [letters]
 
+/--
+@isnad1 id=eq.2h3v.s5.1a1218603d0e from=translated src=- shape=7ec0b07d vocab=c5e9270e
+-/
 lemma letters_update_card {b : Board} {x : ℕ} (hx : x < 2000) (hxe : b x = none) (l : Piece) :
     (letters (Function.update b x (some l))).card = (letters b).card + 1 := by
   have h1 : letters (Function.update b x (some l)) = insert x (letters b) := by
@@ -135,6 +144,9 @@ lemma letters_update_card {b : Board} {x : ℕ} (hx : x < 2000) (hxe : b x = non
     simp [letters, hxe]
   rw [h1, Finset.card_insert_of_notMem hxn]
 
+/--
+@isnad1 id=eq.2h3v.s5.a1f87c775006 from=translated src=- shape=7ec0b07d vocab=e3ff0d80
+-/
 lemma empties_update_card {b : Board} {x : ℕ} (hx : x < 2000) (hxe : b x = none) (l : Piece) :
     (empties (Function.update b x (some l))).card = (empties b).card - 1 := by
   have h1 : empties (Function.update b x (some l)) = (empties b).erase x := by
@@ -146,13 +158,21 @@ lemma empties_update_card {b : Board} {x : ℕ} (hx : x < 2000) (hxe : b x = non
   have hxm : x ∈ empties b := mem_empties.mpr ⟨hx, hxe⟩
   rw [h1, Finset.card_erase_of_mem hxm]
 
+/--
+@isnad1 id=ne.1h1v.s4.66fcc8df7abd from=translated src=- shape=4db91d89 vocab=0c214b6b
+-/
 lemma empties_ne_empty {b : Board} (h : (empties b).card ≠ 0) : empties b ≠ ∅ := by
   intro he; rw [he] at h; simp at h
 
+/--
+@isnad1 id=lt.1h1v.s4.f606c5a01d4d from=translated src=- shape=ea52821a vocab=8fab3c7a
+-/
 lemma empties_card_pos {b : Board} (h : empties b ≠ ∅) : 0 < (empties b).card :=
   Finset.card_pos.mpr (Finset.nonempty_of_ne_empty h)
 
-/-- A board with SOS has at least three occupied squares. -/
+/-- A board with SOS has at least three occupied squares.
+@isnad1 id=le.1h1v.s4.2d59025f3e19 from=translated src=- shape=b819d64b vocab=fd039f28
+-/
 lemma three_le_card_letters_of_hasSOS {b : Board} (h : HasSOS b) : 3 ≤ (letters b).card := by
   rcases h with ⟨i, hi, h0, h1, h2⟩
   rw [Finset.mem_range] at hi
@@ -168,7 +188,9 @@ lemma three_le_card_letters_of_hasSOS {b : Board} (h : HasSOS b) : 3 ≤ (letter
     Finset.card_singleton] at this
   exact this
 
-/-- A board with a trap has at least two occupied squares. -/
+/-- A board with a trap has at least two occupied squares.
+@isnad1 id=le.1h1v.s4.cc9ddf4b86ea from=translated src=- shape=b819d64b vocab=c114b1a8
+-/
 lemma two_le_card_letters_of_hasTrap {b : Board} (h : HasTrap b) : 2 ≤ (letters b).card := by
   rcases h with ⟨a, ha, h0, -, -, h3⟩
   rw [Finset.mem_range] at ha
@@ -182,12 +204,17 @@ lemma two_le_card_letters_of_hasTrap {b : Board} (h : HasTrap b) : 2 ≤ (letter
   rw [Finset.card_insert_of_notMem (by simp), Finset.card_singleton] at this
   exact this
 
-/-- On a threat-free board, no move can produce SOS (else that move would have won). -/
+/-- On a threat-free board, no move can produce SOS (else that move would have won).
+@isnad1 id=not.3h3v.s5.9c5f27955134 from=translated src=- shape=791ad81b vocab=da0f8b5d
+-/
 lemma not_hasSOS_update_of_threatFree {b : Board} (hTF : ThreatFree b) {x : ℕ}
     (hx : x < 2000) (hxe : b x = none) (l : Piece) :
     ¬ HasSOS (Function.update b x (some l)) :=
   fun hS => hTF ⟨x, Finset.mem_range.mpr hx, l, hxe, hS⟩
 
+/--
+@isnad1 id=bok.2h3v.s5.9e156861d09a from=translated src=- shape=a8a5d3fa vocab=03959655
+-/
 lemma bOK_update {b : Board} (hBOK : BOK b) {x : ℕ} (hx : x < 2000) (l : Piece) :
     BOK (Function.update b x (some l)) := by
   intro i hi
@@ -197,7 +224,9 @@ lemma bOK_update {b : Board} (hBOK : BOK b) {x : ℕ} (hx : x < 2000) (l : Piece
 
 /-- The shape of any immediate win created by playing letter `l₀` at square `x` of a
     threat-free board. The six alternatives correspond to the opponent's possible
-    winning replies; the first two are the replies to an O, the other four to an S. -/
+    winning replies; the first two are the replies to an O, the other four to an S.
+@isnad1 id=or.4h3v.s8.de3441ea3aa1 from=translated src=- shape=522bf3e0 vocab=96bcaf4e
+-/
 lemma threat_shapes {b : Board} (hTF : ThreatFree b) {x : ℕ}
     (hx : x < 2000) (hxe : b x = none) {l₀ : Piece}
     (h : HasThreat (Function.update b x (some l₀))) :
@@ -408,7 +437,9 @@ lemma threat_shapes {b : Board} (hTF : ThreatFree b) {x : ℕ}
           exact hb1
         · rw [Function.update_self]
 
-/-- The middle squares of a trap are losing squares. -/
+/-- The middle squares of a trap are losing squares.
+@isnad1 id=and.2h2v.s5.6e2631301301 from=translated src=- shape=d0f9af85 vocab=6450c931
+-/
 lemma trap_middle {b : Board} {a : ℕ} (ha : a < 1997) (h : TrapAt b a) :
     IsLosing b (a + 1) ∧ IsLosing b (a + 2) := by
   obtain ⟨h0, h1, h2, h3⟩ := h
@@ -458,7 +489,9 @@ lemma trap_middle {b : Board} {a : ℕ} (ha : a < 1997) (h : TrapAt b a) :
             Function.update_of_ne (by lia : a + 3 ≠ a + 2)]
           exact h3
 
-/-- A losing square of a threat-free board is the middle of a trap. -/
+/-- A losing square of a threat-free board is the middle of a trap.
+@isnad1 id=or.4h2v.s6.4bbca0f86356 from=translated src=- shape=b0b7ca35 vocab=3007ea4d
+-/
 lemma losing_char {b : Board} (hBOK : BOK b) (hTF : ThreatFree b) {x : ℕ}
     (hx : x < 2000) (hL : IsLosing b x) :
     (2 ≤ x ∧ x ≤ 1998 ∧ TrapAt b (x - 2)) ∨ (1 ≤ x ∧ x ≤ 1997 ∧ TrapAt b (x - 1)) := by
@@ -519,7 +552,9 @@ lemma losing_char {b : Board} (hBOK : BOK b) (hTF : ThreatFree b) {x : ℕ}
     · rw [hA2] at hB1; simp at hB1
     · rw [hA1] at hB1; simp at hB1
 
-/-- Middle pairs of distinct traps are disjoint. -/
+/-- Middle pairs of distinct traps are disjoint.
+@isnad1 id=disjoint.3h3v.s6.c9cf9cdefe8e from=translated src=- shape=b838bec5 vocab=15baabe0
+-/
 lemma trap_disjoint {b : Board} {a c : ℕ}
     (haT : TrapAt b a) (hcT : TrapAt b c) (hne : a ≠ c) :
     Disjoint ({a + 1, a + 2} : Finset ℕ) {c + 1, c + 2} := by
@@ -536,13 +571,21 @@ lemma trap_disjoint {b : Board} {a c : ℕ}
     rw [e] at g0; rw [h1] at g0; simp at g0
   · exact hne (by lia)
 
+/--
+@isnad1 id=iff.0h2v.s4.69424a456184 from=translated src=- shape=beb9f0a0 vocab=919f393f
+-/
 lemma mem_losing {b : Board} {x : ℕ} : x ∈ losing b ↔ x < 2000 ∧ IsLosing b x := by
   simp [losing]
 
+/--
+@isnad1 id=iff.0h2v.s4.85d0e0b20c3f from=translated src=- shape=beb9f0a0 vocab=a50e6152
+-/
 lemma mem_trapEnds {b : Board} {a : ℕ} : a ∈ trapEnds b ↔ a < 1997 ∧ TrapAt b a := by
   simp [trapEnds]
 
-/-- The losing squares are exactly the middle squares of the traps. -/
+/-- The losing squares are exactly the middle squares of the traps.
+@isnad1 id=eq.2h1v.s5.d3e1c9e69bab from=translated src=- shape=3d66a49d vocab=914958a0
+-/
 lemma losing_eq_biUnion {b : Board} (hBOK : BOK b) (hTF : ThreatFree b) :
     losing b = (trapEnds b).biUnion fun a => {a + 1, a + 2} := by
   ext x
@@ -559,7 +602,9 @@ lemma losing_eq_biUnion {b : Board} (hBOK : BOK b) (hTF : ThreatFree b) :
     · exact ⟨by lia, hmid.1⟩
     · exact ⟨by lia, hmid.2⟩
 
-/-- Losing squares come in pairs, hence there is an even number of them. -/
+/-- Losing squares come in pairs, hence there is an even number of them.
+@isnad1 id=even.2h1v.s3.d7a042429331 from=translated src=- shape=129d7a57 vocab=586a57de
+-/
 lemma even_card_losing {b : Board} (hBOK : BOK b) (hTF : ThreatFree b) :
     Even (losing b).card := by
   rw [losing_eq_biUnion hBOK hTF, Finset.card_biUnion]
@@ -584,7 +629,9 @@ instance (b : Board) (x : ℕ) (l : Piece) : Decidable (SafeMove b x l) := by
 
 /-- On a threat-free board with an odd number of empty squares, a safe move
     always exists: there are evenly many losing squares, so some empty square
-    is not losing (this is the heart of the pairing argument). -/
+    is not losing (this is the heart of the pairing argument).
+@isnad1 id=ex.3h1v.s5.d4d9bfca0d3a from=translated src=- shape=678424cf vocab=661ab44c
+-/
 lemma exists_safe_move {b : Board} (hBOK : BOK b) (hTF : ThreatFree b)
     (hodd : Odd (empties b).card) :
     ∃ x ∈ Finset.range 2000, ∃ l : Piece, SafeMove b x l := by
@@ -640,6 +687,9 @@ noncomputable def p2strat : Strategy := fun b =>
     (Classical.choose h₆, Piece.S)
   else (0, Piece.S)
 
+/--
+@isnad1 id=ex.1h1v.s5.4368333cffed from=translated src=- shape=e1d419cd vocab=5b8ac633
+-/
 lemma p2strat_threat {b : Board} (h : HasThreat b) :
     ∃ x l, (p2strat b).1 = x ∧ (p2strat b).2 = l ∧ x < 2000 ∧ b x = none ∧
       HasSOS (Function.update b x (some l)) := by
@@ -651,6 +701,9 @@ lemma p2strat_threat {b : Board} (h : HasThreat b) :
   rw [Finset.mem_range] at hs
   exact ⟨hs.1, hs2.1, hs2.2⟩
 
+/--
+@isnad1 id=ex.3h1v.s6.202bd17f374d from=translated src=- shape=30f1d8b8 vocab=82c3b837
+-/
 lemma p2strat_safe {b : Board} (hTF : ThreatFree b) (hT : HasTrap b)
     (h : ∃ x ∈ Finset.range 2000, ∃ l : Piece, SafeMove b x l) :
     ∃ x l, (p2strat b).1 = x ∧ (p2strat b).2 = l ∧ SafeMove b x l := by
@@ -660,6 +713,9 @@ lemma p2strat_safe {b : Board} (hTF : ThreatFree b) (hT : HasTrap b)
   have hs := Classical.choose_spec h
   exact Classical.choose_spec hs.2
 
+/--
+@isnad1 id=ex.3h1v.s6.60647f455bf0 from=translated src=- shape=d0f12b01 vocab=6356330b
+-/
 lemma p2strat_setup1 {b : Board} (hTF : ThreatFree b) (hNT : ¬ HasTrap b)
     (h1 : (letters b).card = 1) :
     ∃ a, letters b = {a} ∧ (p2strat b).1 = (if a < 1000 then 1500 else 500) ∧
@@ -668,6 +724,9 @@ lemma p2strat_setup1 {b : Board} (hTF : ThreatFree b) (hNT : ¬ HasTrap b)
   rw [dite_eq_right hTF, dite_eq_right hNT, dite_eq_left h1]
   exact ⟨_, Classical.choose_spec (Finset.card_eq_one.mp h1), rfl, rfl⟩
 
+/--
+@isnad1 id=ex.4h1v.s6.17627bbcd32e from=translated src=- shape=cfb6f689 vocab=c3f5983d
+-/
 lemma p2strat_setup2 {b : Board} (hTF : ThreatFree b) (hNT : ¬ HasTrap b)
     (h1 : (letters b).card ≠ 1) (h : ∃ t ∈ Finset.range 2000, SecondSetupOk b t) :
     ∃ t, (p2strat b).1 = t ∧ (p2strat b).2 = Piece.S ∧ t < 2000 ∧ SecondSetupOk b t := by
@@ -686,7 +745,9 @@ def Inv (b : Board) (t : Bool) : Prop :=
     (if t then Even (empties b).card ∧ 2 ≤ (empties b).card else Odd (empties b).card)
 
 /-- A trap survives any move that avoids its middle squares
-    (which are losing squares). -/
+    (which are losing squares).
+@isnad1 id=hastrap.4h3v.s5.d1dcc11fee16 from=translated src=- shape=9ee44ee6 vocab=66f7d257
+-/
 lemma hasTrap_update {b : Board} (hT : HasTrap b) {x : ℕ} (_hx : x < 2000) (hxe : b x = none)
     (hnl : ¬ IsLosing b x) (l : Piece) : HasTrap (Function.update b x (some l)) := by
   rcases hT with ⟨a, ha, hTa⟩
@@ -709,7 +770,9 @@ lemma hasTrap_update {b : Board} (hT : HasTrap b) {x : ℕ} (_hx : x < 2000) (hx
     Function.update_of_ne hxa2.symm, Function.update_of_ne hxa3.symm]
   exact hTa
 
-/-- The heart of the argument: from an invariant position the second player wins. -/
+/-- The heart of the argument: from an invariant position the second player wins.
+@isnad1 id=eq.2h4v.s5.27d36b7e8658 from=translated src=- shape=38c8571a vocab=a7e0b55b
+-/
 lemma main_induction (τ : Strategy) :
     ∀ fuel : ℕ, ∀ b : Board, ∀ t : Bool,
       (empties b).card + 1 ≤ fuel → Inv b t → play fuel τ p2strat b t = Outcome.p2 := by
@@ -791,7 +854,9 @@ lemma main_induction (τ : Strategy) :
       · rw [ite_eq_right hlegal]
 
 /-- A good second setup move exists after the second player's first move,
-    whatever the first player does (that is not immediately losing). -/
+    whatever the first player does (that is not immediately losing).
+@isnad1 id=ex.8h5v.s7.2ec0d91e7339 from=translated src=- shape=115bed38 vocab=98bee62c
+-/
 lemma exists_second_setup {q p r : ℕ} {lq lr : Piece}
     (_hq : q < 2000) (hp : p < 2000) (hr : r < 2000)
     (hpq : q + 500 ≤ p ∨ p + 500 ≤ q) (hp5 : p = 500 ∨ p = 1500)

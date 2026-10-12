@@ -19,13 +19,17 @@ arithmetic progression (whether consecutive or not).
 
 namespace Usa1973P5
 
-/-- Cubing a real cube root. -/
+/-- Cubing a real cube root.
+@isnad1 id=eq.1h1v.s6.2fac3d1fbae2 from=translated src=- shape=c1ac3f40 vocab=57a6a273
+-/
 lemma cbrt_cubed {x : ℝ} (hx : 0 ≤ x) : (x ^ ((1 : ℝ) / 3)) ^ 3 = x := by
   have e : (1 : ℝ) / 3 * ((3 : ℕ) : ℝ) = 1 := by norm_num
   rw [← Real.rpow_natCast, ← Real.rpow_mul hx, e, Real.rpow_one]
 
 /-- The prime `p` occurs with multiplicity exactly one in a product of three
-pairwise distinct primes `p`, `q`, `r`. -/
+pairwise distinct primes `p`, `q`, `r`.
+@isnad1 id=eq.5h3v.s6.d0293bbfc795 from=translated src=- shape=8be88e96 vocab=5bd59f70
+-/
 lemma factorization_pqr {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : r.Prime)
     (hpq : p ≠ q) (hpr : p ≠ r) : (p * q * r).factorization p = 1 := by
   have h : (p * q * r).factorization
@@ -39,7 +43,9 @@ lemma factorization_pqr {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : r.Prim
 
 /-- A product of three pairwise distinct primes times a nonzero cube is never a
 cube: comparing the exponent of `p` in the prime factorizations of both sides of
-`p * q * r * b ^ 3 = a ^ 3` would give `1 + 3k = 3j`. -/
+`p * q * r * b ^ 3 = a ^ 3` would give `1 + 3k = 3j`.
+@isnad1 id=ne.7h5v.s6.4d5a9aa00e08 from=translated src=- shape=0192a27b vocab=ce76ea3d
+-/
 lemma not_cube_mul_cube {p q r a b : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : r.Prime)
     (hpq : p ≠ q) (_hqr : q ≠ r) (hpr : p ≠ r) (hb : b ≠ 0) :
     p * q * r * b ^ 3 ≠ a ^ 3 := by
@@ -55,7 +61,9 @@ lemma not_cube_mul_cube {p q r a b : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : r.
 /-- The cube root of a product of three pairwise distinct primes is irrational:
 it cannot be written as a quotient of two integers. Indeed, from
 `∛(pqr) = A / B` we would get `p * q * r * B³ = A³` in `ℕ`, contradicting
-`not_cube_mul_cube`. -/
+`not_cube_mul_cube`.
+@isnad1 id=false.8h5v.s6.fa7e15cf6467 from=translated src=- shape=ad121780 vocab=00d34d69
+-/
 lemma cube_root_pqr_ne_rat {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : r.Prime)
     (hpq : p ≠ q) (hqr : q ≠ r) (hpr : p ≠ r) {A B : ℤ} (hB : B ≠ 0)
     (h : ((p * q * r : ℕ) : ℝ) ^ ((1 : ℝ) / 3) = (A : ℝ) / (B : ℝ)) : False := by
@@ -74,7 +82,9 @@ lemma cube_root_pqr_ne_rat {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hr : r.P
 
 /-- The algebraic heart of the argument. If `∛q = ∛p + m d` and `∛r = ∛p + n d`,
 then `n ∛q - m ∛r = (n - m) ∛p`; cubing that relation and regrouping expresses
-`3 m n (n - m) ∛p ∛q ∛r` as an integer polynomial in `p, q, r`. -/
+`3 m n (n - m) ∛p ∛q ∛r` as an integer polynomial in `p, q, r`.
+@isnad1 id=eq.1h5v.s8.937a4838aa57 from=translated src=- shape=ffc5d1b4 vocab=8badb5f9
+-/
 lemma key_algebra {x y z : ℝ} {m n : ℤ}
     (h1 : (n : ℝ) * y - (m : ℝ) * z = ((n - m : ℤ) : ℝ) * x) :
     3 * (n : ℝ) * (m : ℝ) * ((n - m : ℤ) : ℝ) * (y * z * x)

@@ -28,17 +28,25 @@ finite set of primes: `mulSeq P c j = ∏ r ∈ P, c r ^ (Nat.factorization j r)
 def mulSeq (P : Finset ℕ) (c : ℕ → ℤ) (j : ℕ) : ℤ :=
   ∏ r ∈ P, c r ^ (Nat.factorization j r)
 
+/--
+@isnad1 id=eq.2h4v.s5.188e181aa44f from=translated src=- shape=49987729 vocab=a79b6a2c
+-/
 lemma mulSeq_mul (P : Finset ℕ) (c : ℕ → ℤ) {u v : ℕ} (hu : u ≠ 0) (hv : v ≠ 0) :
     mulSeq P c (u * v) = mulSeq P c u * mulSeq P c v := by
   simp only [mulSeq, Nat.factorization_mul hu hv, Finsupp.add_apply, pow_add,
     Finset.prod_mul_distrib]
 
+/--
+@isnad1 id=ne.1h3v.s5.76d36ecd0f3e from=translated src=- shape=668ed43a vocab=5f88c898
+-/
 lemma mulSeq_ne_zero (P : Finset ℕ) (c : ℕ → ℤ) (hc : ∀ r ∈ P, c r ≠ 0) (j : ℕ) :
     mulSeq P c j ≠ 0 :=
   Finset.prod_ne_zero_iff.mpr fun r hr => pow_ne_zero _ (hc r hr)
 
 /-- If the sum `∑ j ∈ [1, n], j * a j` vanishes for a completely multiplicative
-sequence `a`, then `a` satisfies all the required identities. -/
+sequence `a`, then `a` satisfies all the required identities.
+@isnad1 id=eq.2h4v.s6.b6262c4d5629 from=translated src=- shape=48836ab7 vocab=bd6d234c
+-/
 lemma condition_of_sum_eq_zero {n : ℕ} {P : Finset ℕ} {c : ℕ → ℤ}
     (h : ∑ j ∈ Finset.Icc 1 n, (j : ℤ) * mulSeq P c j = 0) (k : ℕ) (hk : 1 ≤ k) :
     ∑ j ∈ Finset.Icc 1 n, (j : ℤ) * mulSeq P c (j * k) = 0 := by
@@ -55,7 +63,9 @@ lemma condition_of_sum_eq_zero {n : ℕ} {P : Finset ℕ} {c : ℕ → ℤ}
         rw [Finset.mul_sum]
     _ = 0 := by rw [h, mul_zero]
 
-/-- Bézout's identity, arranged so that both coefficients are nonzero. -/
+/-- Bézout's identity, arranged so that both coefficients are nonzero.
+@isnad1 id=ex.3h3v.s6.2a05feb2adc2 from=translated src=- shape=6f313a03 vocab=947e8d88
+-/
 lemma bezout_nonzero {A B c : ℤ} (hA : 0 < A) (hB : 0 < B) (h : IsCoprime A B) :
     ∃ x y : ℤ, x ≠ 0 ∧ y ≠ 0 ∧ A * x + B * y = c := by
   obtain ⟨u, v, huv⟩ := h
@@ -83,7 +93,9 @@ lemma bezout_nonzero {A B c : ℤ} (hA : 0 < A) (hB : 0 < B) (h : IsCoprime A B)
   rw [e, huv, mul_one]
 
 /-- The case `n = 2` is impossible: the relation `a k + 2 * a (2 * k) = 0`
-forces `2 ^ j ∣ a 1` for every `j`, so `a 1 = 0`. -/
+forces `2 ^ j ∣ a 1` for every `j`, so `a 1 = 0`.
+@isnad1 id=false.2h1v.s6.ba85ea3cc3fb from=translated src=- shape=6e1663de vocab=d54b6f4d
+-/
 lemma not_property_two {a : ℕ → ℤ} (ha : ∀ i, 1 ≤ i → a i ≠ 0)
     (h : ∀ k, 1 ≤ k → a k + 2 * a (2 * k) = 0) : False := by
   have key : ∀ j : ℕ, a 1 = (-2 : ℤ) ^ j * a (2 ^ j) := by
@@ -120,6 +132,9 @@ lemma not_property_two {a : ℕ → ℤ} (ha : ∀ i, 1 ≤ i → a i ≠ 0)
 everything else. -/
 def cfun (p q : ℕ) (x y : ℤ) (r : ℕ) : ℤ := if r = p then x else if r = q then y else 1
 
+/--
+@isnad1 id=eq.1h5v.s6.a94ba9aceadb from=translated src=- shape=f2d6737e vocab=99ed76cd
+-/
 lemma mulSeq_cfun_apply {p q : ℕ} {x y : ℤ} (hpq : p ≠ q) (j : ℕ) :
     mulSeq {p, q} (cfun p q x y) j
       = x ^ (Nat.factorization j p) * y ^ (Nat.factorization j q) := by
@@ -129,6 +144,9 @@ lemma mulSeq_cfun_apply {p q : ℕ} {x y : ℤ} (hpq : p ≠ q) (j : ℕ) :
   rw [mulSeq, Finset.prod_insert hmem, Finset.prod_singleton]
   simp [cfun, hpq.symm]
 
+/--
+@isnad1 id=eq.2h4v.s5.65910cd4a561 from=translated src=- shape=9d2a21a7 vocab=08282b33
+-/
 lemma mulSeq_cfun_p {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hplt : p < q) :
     mulSeq {p, q} (cfun p q x y) p = x := by
   have hpq : p ≠ q := ne_of_lt hplt
@@ -136,6 +154,9 @@ lemma mulSeq_cfun_p {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hplt : p < q) :
     Nat.factorization_eq_zero_of_not_dvd (Nat.not_dvd_of_pos_of_lt hp.pos hplt)]
   simp
 
+/--
+@isnad1 id=eq.5h4v.s6.79a755020928 from=translated src=- shape=d4155fa8 vocab=094fe279
+-/
 lemma mulSeq_cfun_2p {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.Prime) (hp5 : 5 ≤ p)
     (hq7 : 7 ≤ q) (hplt : p < q) :
     mulSeq {p, q} (cfun p q x y) (2 * p) = x := by
@@ -154,6 +175,9 @@ lemma mulSeq_cfun_2p {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.Prime) (hp5 
   rw [mulSeq_cfun_apply hpq, hfac1, hfac2]
   simp
 
+/--
+@isnad1 id=eq.5h4v.s6.9c64ed132302 from=translated src=- shape=d4155fa8 vocab=094fe279
+-/
 lemma mulSeq_cfun_3p {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.Prime) (hp5 : 5 ≤ p)
     (hq7 : 7 ≤ q) (hplt : p < q) :
     mulSeq {p, q} (cfun p q x y) (3 * p) = x := by
@@ -172,6 +196,9 @@ lemma mulSeq_cfun_3p {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.Prime) (hp5 
   rw [mulSeq_cfun_apply hpq, hfac1, hfac2]
   simp
 
+/--
+@isnad1 id=eq.3h4v.s5.2812bb8cda74 from=translated src=- shape=0e535a95 vocab=08282b33
+-/
 lemma mulSeq_cfun_q {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.Prime) (hplt : p < q) :
     mulSeq {p, q} (cfun p q x y) q = y := by
   have hpq : p ≠ q := ne_of_lt hplt
@@ -183,7 +210,9 @@ lemma mulSeq_cfun_q {p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.Prime) (hplt 
   simp
 
 /-- Terms `j * (a j - 1)` vanish when `j ∈ [1, n]` is none of `p, 2p, 3p, q`:
-such a `j` is divisible by neither `p` nor `q`, so `a j = 1`. -/
+such a `j` is divisible by neither `p` nor `q`, so `a j = 1`.
+@isnad1 id=eq.9h6v.s7.e4067463ca42 from=translated src=- shape=5b8c9653 vocab=8d0fee21
+-/
 lemma term_eq_zero {n p q j : ℕ} {x y : ℤ} (hplt : p < q)
     (h2q : n < 2 * q) (h4p : n < 4 * p) (hj1 : 1 ≤ j) (hjn : j ≤ n)
     (h1 : j ≠ p) (h2 : j ≠ 2 * p) (h3 : j ≠ 3 * p) (h4 : j ≠ q) :
@@ -216,7 +245,9 @@ lemma term_eq_zero {n p q j : ℕ} {x y : ℤ} (hplt : p < q)
   simp
 
 /-- The correction terms in `∑ j ∈ [1,n], j * (a j - 1)`: the only nonzero
-contributions come from `j ∈ {p, 2p, 3p, q} ∩ [1, n]`. -/
+contributions come from `j ∈ {p, 2p, 3p, q} ∩ [1, n]`.
+@isnad1 id=eq.9h5v.s8.607b8858f99b from=translated src=- shape=0fc2aafd vocab=c92b61e4
+-/
 lemma sum_mulSeq_cfun_sub_one {n p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.Prime)
     (hp5 : 5 ≤ p) (hq7 : 7 ≤ q) (hplt : p < q)
     (h2q : n < 2 * q) (h4p : n < 4 * p) (hpn : p ≤ n) (hqn : q ≤ n) :
@@ -309,7 +340,9 @@ lemma sum_mulSeq_cfun_sub_one {n p q : ℕ} {x y : ℤ} (hp : p.Prime) (hq : q.P
 
 /-- Construction for `9 ≤ n`: pick primes `p`, `q` via Bertrand's postulate with
 `⌈n/2⌉ < q ≤ 2⌈n/2⌉` and `(q-1)/2 < p ≤ q-1`, take `a r = 1` for primes `r ∉ {p, q}`,
-and choose nonzero `a p`, `a q` by Bézout so that `∑ j ∈ [1,n], j * a j = 0`. -/
+and choose nonzero `a p`, `a q` by Bézout so that `∑ j ∈ [1,n], j * a j = 0`.
+@isnad1 id=ex.1h1v.s6.bf6311e93428 from=translated src=- shape=54ff6ec1 vocab=31e64c89
+-/
 lemma exists_good_seq_of_nine_le {n : ℕ} (hn : 9 ≤ n) :
     ∃ a : ℕ → ℤ, (∀ i, 1 ≤ i → a i ≠ 0) ∧
       ∀ k, 1 ≤ k → ∑ j ∈ Finset.Icc 1 n, (j : ℤ) * a (j * k) = 0 := by
@@ -427,7 +460,9 @@ lemma exists_good_seq_of_nine_le {n : ℕ} (hn : 9 ≤ n) :
       ring)
 
 /-- The small cases `3 ≤ n ≤ 8`, each given by an explicit completely
-multiplicative sequence. -/
+multiplicative sequence.
+@isnad1 id=ex.2h3v.s7.f8d571d70dfc from=translated src=- shape=c908c044 vocab=05bd4c7b
+-/
 lemma small_case (n : ℕ) (P : Finset ℕ) (c : ℕ → ℤ) (hc : ∀ r ∈ P, c r ≠ 0)
     (hsum : ∑ j ∈ Finset.range n, (j + 1 : ℤ) * mulSeq P c (j + 1) = 0) :
     ∃ a : ℕ → ℤ, (∀ i, 1 ≤ i → a i ≠ 0) ∧

@@ -42,13 +42,17 @@ def Good (k : ℕ) : Prop :=
 
 abbrev solution : ℕ := 11
 
-/-- The identically zero function is essentially increasing. -/
+/-- The identically zero function is essentially increasing.
+@isnad1 id=essentia.0h0v.s4.d8bed87b2cc2 from=translated src=- shape=5465b5d1 vocab=5bd7ebde
+-/
 lemma essentiallyIncreasing_zero : EssentiallyIncreasing (0 : ℝ → ℝ) := by
   intro s t _ hs _
   exact (hs rfl).elim
 
 /-- If `k` functions suffice, then so do any `m ≥ k` functions,
-by padding with zero functions. -/
+by padding with zero functions.
+@isnad1 id=good.2h2v.s3.dcd563af1b9c from=translated src=- shape=8567d0ba vocab=d9312c24
+-/
 lemma Good.mono {k m : ℕ} (hkm : k ≤ m) (hk : Good k) : Good m := by
   intro x
   obtain ⟨f, hf, hsum⟩ := hk x
@@ -86,7 +90,9 @@ Following the official solution, take `xₙ = -(n + 1)`. For each `n` the
 support `S(n) = {i | fᵢ(n) ≠ 0}` is nonempty, and there are only
 `2¹⁰ - 1 = 1023 < 2022` nonempty subsets of a ten-element set, so two
 supports coincide, contradicting the essentially increasing condition
-because `x` is strictly decreasing. -/
+because `x` is strictly decreasing.
+@isnad1 id=not.0h0v.s2.36ce2ef27144 from=translated src=- shape=8d7dbbf6 vocab=df34f177
+-/
 lemma not_good_ten : ¬ Good 10 := by
   intro h
   obtain ⟨f, hf, hsum⟩ := h fun n => -((n.val : ℝ) + 1)
@@ -176,16 +182,28 @@ chosen larger than all values and all consecutive differences of `x`. -/
 `2^(ℓ-1) ≤ n < 2^ℓ`. -/
 def lvl (n : ℕ) : ℕ := Nat.log 2 n + 1
 
+/--
+@isnad1 id=le.0h1v.s3.d0dd9f1641ec from=translated src=- shape=8a62b088 vocab=b2d8c0ae
+-/
 lemma lvl_pos (n : ℕ) : 1 ≤ lvl n := Nat.le_add_left 1 _
 
+/--
+@isnad1 id=le.1h1v.s5.aef247369d2a from=translated src=- shape=e23f5cf7 vocab=86f491e8
+-/
 lemma pow_lvl_sub_one_le {n : ℕ} (hn : 1 ≤ n) : 2 ^ (lvl n - 1) ≤ n := by
   have e : lvl n - 1 = Nat.log 2 n := Nat.add_sub_cancel _ _
   rw [e]
   exact Nat.pow_log_le_self 2 (by lia)
 
+/--
+@isnad1 id=lt.0h1v.s4.a8cc4a9bed56 from=translated src=- shape=3dea6651 vocab=ded1a2a1
+-/
 lemma lt_pow_lvl (n : ℕ) : n < 2 ^ lvl n :=
   Nat.lt_pow_succ_log_self (by norm_num) n
 
+/--
+@isnad1 id=le.2h1v.s5.da21f7d3f009 from=translated src=- shape=6690a03d vocab=b2d8c0ae
+-/
 lemma lvl_le_of_le {n : ℕ} (h1 : 1 ≤ n) (h2 : n ≤ 2047) : lvl n ≤ 11 := by
   by_contra hc
   push Not at hc
@@ -197,11 +215,17 @@ lemma lvl_le_of_le {n : ℕ} (h1 : 1 ≤ n) (h2 : n ≤ 2047) : lvl n ≤ 11 := 
   norm_num at h4
   lia
 
+/--
+@isnad1 id=le.1h2v.s4.69a648aaaa47 from=translated src=- shape=6bee9d27 vocab=b2d8c0ae
+-/
 lemma lvl_mono {m n : ℕ} (h : m ≤ n) : lvl m ≤ lvl n := by
   have h' := Nat.log_mono_right (b := 2) h
   show Nat.log 2 m + 1 ≤ Nat.log 2 n + 1
   lia
 
+/--
+@isnad1 id=eq.2h2v.s6.70c446383f9b from=translated src=- shape=7ef2789c vocab=f9f1baff
+-/
 lemma lvl_eq_of_mem {m ℓ : ℕ} (h1 : 2 ^ (ℓ - 1) ≤ m) (h2 : m < 2 ^ ℓ) : lvl m = ℓ := by
   have hℓ : 1 ≤ ℓ := by
     by_contra hc
@@ -220,6 +244,9 @@ lemma lvl_eq_of_mem {m ℓ : ℕ} (h1 : 2 ^ (ℓ - 1) ≤ m) (h2 : m < 2 ^ ℓ) 
 /-- The complement of `n` inside its level. -/
 def cval (n : ℕ) : ℕ := 2 ^ lvl n - 1 - n
 
+/--
+@isnad1 id=lt.1h1v.s5.f3bd1b9bf32f from=translated src=- shape=c934beab vocab=bcd148cc
+-/
 lemma cval_lt {n : ℕ} (hn : 1 ≤ n) : cval n < 2 ^ (lvl n - 1) := by
   have h1 := pow_lvl_sub_one_le hn
   have h2 := lt_pow_lvl n
@@ -235,6 +262,9 @@ lemma cval_lt {n : ℕ} (hn : 1 ≤ n) : cval n < 2 ^ (lvl n - 1) := by
 def xe (x : Fin 2022 → ℝ) (m : ℕ) : ℝ :=
   if h : 1 ≤ m ∧ m ≤ 2022 then x ⟨m - 1, by lia⟩ else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.2a6de592a79e from=translated src=- shape=daba438d vocab=1fc7c5e0
+-/
 lemma xe_apply (x : Fin 2022 → ℝ) (n : Fin 2022) : xe x (n.val + 1) = x n := by
   have h : 1 ≤ n.val + 1 ∧ n.val + 1 ≤ 2022 :=
     ⟨Nat.le_add_left 1 n.val, Nat.succ_le_of_lt n.isLt⟩
@@ -247,12 +277,18 @@ of `xe`. -/
 noncomputable def Bnd (x : Fin 2022 → ℝ) : ℝ :=
   1 + ∑ m ∈ Finset.range 2050, (|xe x m| + |xe x (m + 1) - xe x m|)
 
+/--
+@isnad1 id=lt.0h1v.s4.d205e873c276 from=translated src=- shape=4d9b546e vocab=dbd912cf
+-/
 lemma Bnd_pos (x : Fin 2022 → ℝ) : 0 < Bnd x := by
   have h : (0:ℝ) ≤ ∑ m ∈ Finset.range 2050, (|xe x m| + |xe x (m + 1) - xe x m|) :=
     Finset.sum_nonneg fun m _ => add_nonneg (abs_nonneg _) (abs_nonneg _)
   have h2 : Bnd x = 1 + ∑ m ∈ Finset.range 2050, (|xe x m| + |xe x (m + 1) - xe x m|) := rfl
   linarith
 
+/--
+@isnad1 id=le.1h2v.s5.5f36283fd648 from=translated src=- shape=bac23a8f vocab=24ca23a4
+-/
 lemma abs_xe_le (x : Fin 2022 → ℝ) {m : ℕ} (hm : m ≤ 2047) : |xe x m| ≤ Bnd x - 1 := by
   have h := Finset.single_le_sum
     (f := fun m => |xe x m| + |xe x (m + 1) - xe x m|)
@@ -264,6 +300,9 @@ lemma abs_xe_le (x : Fin 2022 → ℝ) {m : ℕ} (hm : m ≤ 2047) : |xe x m| �
   have h2 : Bnd x = 1 + ∑ m ∈ Finset.range 2050, (|xe x m| + |xe x (m + 1) - xe x m|) := rfl
   linarith
 
+/--
+@isnad1 id=le.1h2v.s6.a6648cb9ad90 from=translated src=- shape=05f39bd7 vocab=79592905
+-/
 lemma abs_gap_le (x : Fin 2022 → ℝ) {m : ℕ} (hm : m ≤ 2047) :
     |xe x (m + 1) - xe x m| ≤ Bnd x - 1 := by
   have h := Finset.single_le_sum
@@ -286,32 +325,49 @@ noncomputable def gval (x : Fin 2022 → ℝ) (j n : ℕ) : ℝ :=
     (if j = lvl n - 1 then xe x n - (cval n : ℝ) * Bnd x else 0)
   else 0
 
+/--
+@isnad1 id=eq.1h3v.s7.3d8f878ae2f8 from=translated src=- shape=4bfac294 vocab=dea4eab4
+-/
 lemma gval_of_mem (x : Fin 2022 → ℝ) {j n : ℕ} (h : 1 ≤ n ∧ n ≤ 2047) :
     gval x j n =
       (if (cval n).testBit j = true then (2:ℝ) ^ j * Bnd x else 0) +
       (if j = lvl n - 1 then xe x n - (cval n : ℝ) * Bnd x else 0) :=
   ite_eq_left h
 
+/--
+@isnad1 id=eq.1h3v.s5.1e5ae902f2fa from=translated src=- shape=0c641e3c vocab=230554c8
+-/
 lemma gval_of_not_mem (x : Fin 2022 → ℝ) {j n : ℕ} (h : ¬ (1 ≤ n ∧ n ≤ 2047)) :
     gval x j n = 0 :=
   ite_eq_right h
 
+/--
+@isnad1 id=eq.2h2v.s5.e270e108b683 from=translated src=- shape=bcd60d2c vocab=60a4d65a
+-/
 lemma testBit_cval_eq_false_of_ge {j n : ℕ} (hn : 1 ≤ n) (h : lvl n - 1 ≤ j) :
     (cval n).testBit j = false :=
   Nat.testBit_eq_false_of_lt
     (lt_of_lt_of_le (cval_lt hn) (Nat.pow_le_pow_right (by norm_num) h))
 
+/--
+@isnad1 id=eq.1h2v.s5.8aca34f03178 from=translated src=- shape=ddb1a5e6 vocab=9f046d7c
+-/
 lemma if_testBit_false {tb : Bool} (h : tb = false) {a : ℝ} :
     (if tb = true then a else (0:ℝ)) = 0 :=
   ite_eq_right fun ht => Bool.false_ne_true (h.symm.trans ht)
 
+/--
+@isnad1 id=eq.1h2v.s4.69e927380dea from=translated src=- shape=bac9a13b vocab=6ee34434
+-/
 lemma if_testBit_true {tb : Bool} (h : tb = true) {a : ℝ} :
     (if tb = true then a else (0:ℝ)) = a :=
   ite_eq_left h
 
 /-- Within one level, the corrector values strictly increase from `m`
 to `m + 1`, because `Bnd x` dominates the consecutive differences
-of `xe`. -/
+of `xe`.
+@isnad1 id=le.4h3v.s7.e482068d6e3b from=translated src=- shape=ed21efdf vocab=728fffc2
+-/
 lemma gval_step_corrector (x : Fin 2022 → ℝ) {j m : ℕ}
     (hm : 1 ≤ m) (hjm : j = lvl m - 1) (hm1 : m + 1 ≤ 2 ^ lvl m - 1)
     (hm2 : m + 1 ≤ 2047) :
@@ -346,7 +402,9 @@ lemma gval_step_corrector (x : Fin 2022 → ℝ) {j m : ℕ}
   linarith
 
 /-- The constructed values are monotone at integer points (on their
-support); this is the heart of the essentially increasing property. -/
+support); this is the heart of the essentially increasing property.
+@isnad1 id=le.5h4v.s6.3280a917ac56 from=translated src=- shape=4d38832b vocab=230554c8
+-/
 lemma gval_mono (x : Fin 2022 → ℝ) {j ns nt : ℕ}
     (hns : 1 ≤ ns) (hle : ns ≤ nt) (htt : nt ≤ 2047)
     (hs : gval x j ns ≠ 0) (ht : gval x j nt ≠ 0) :
@@ -449,7 +507,9 @@ lemma gval_mono (x : Fin 2022 → ℝ) {j ns nt : ℕ}
           ite_eq_right (by lia : j ≠ lvl nt - 1), add_zero]
       rw [eL, eR]
 
-/-- Binary expansion: a natural number is the sum of its bit values. -/
+/-- Binary expansion: a natural number is the sum of its bit values.
+@isnad1 id=eq.1h2v.s6.cde0987c7ea6 from=translated src=- shape=7be1e764 vocab=c456f6b6
+-/
 lemma sum_range_testBit (c : ℕ) {L : ℕ} (h : c < 2 ^ L) :
     ∑ i ∈ Finset.range L, (if c.testBit i = true then 2 ^ i else 0) = c := by
   induction L generalizing c with
@@ -482,7 +542,9 @@ lemma sum_range_testBit (c : ℕ) {L : ℕ} (h : c < 2 ^ L) :
       rw [h0, add_comm]
       exact Nat.mod_add_div c 2
 
-/-- Real version of the binary expansion. -/
+/-- Real version of the binary expansion.
+@isnad1 id=eq.1h2v.s6.8503c0de37e0 from=translated src=- shape=a86db934 vocab=14818ea0
+-/
 lemma sum_range_testBit_real (c : ℕ) {L : ℕ} (h : c < 2 ^ L) :
     ∑ i ∈ Finset.range L, (if c.testBit i = true then (2:ℝ) ^ i else 0) = (c : ℝ) := by
   have h2 := sum_range_testBit c h
@@ -498,6 +560,9 @@ at the integers `1, …, 2047`. -/
 noncomputable def ffun (x : Fin 2022 → ℝ) (j : Fin 11) (t : ℝ) : ℝ :=
   if t = (Nat.floor t : ℝ) then gval x j.val (Nat.floor t) else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.c9c473e63b3e from=translated src=- shape=b798ee5b vocab=a428d6e3
+-/
 lemma ffun_apply_nat (x : Fin 2022 → ℝ) (j : Fin 11) (n : ℕ) :
     ffun x j (n : ℝ) = gval x j.val n := by
   show (if ((n : ℝ) = ((Nat.floor (n : ℝ)) : ℝ)) then gval x j.val (Nat.floor (n : ℝ)) else 0)
@@ -505,6 +570,9 @@ lemma ffun_apply_nat (x : Fin 2022 → ℝ) (j : Fin 11) (n : ℕ) :
   rw [Nat.floor_natCast]
   exact ite_eq_left rfl
 
+/--
+@isnad1 id=essentia.0h2v.s4.76dcbf174ced from=translated src=- shape=1bab9fab vocab=14222251
+-/
 lemma ess_incr_ffun (x : Fin 2022 → ℝ) (j : Fin 11) :
     EssentiallyIncreasing (ffun x j) := by
   intro s t hst hs ht
@@ -532,7 +600,9 @@ lemma ess_incr_ffun (x : Fin 2022 → ℝ) (j : Fin 11) :
   exact gval_mono x hbs.1 (Nat.floor_le_floor hst) hbt.2 hgs hgt
 
 /-- The sum identity: at every integer point `n ∈ [1, 2047]` the eleven
-constructed functions sum to the target value `xe x n`. -/
+constructed functions sum to the target value `xe x n`.
+@isnad1 id=eq.2h2v.s6.b271eb3a8bff from=translated src=- shape=3f8f80a3 vocab=b9d5ffb5
+-/
 lemma sum_ffun (x : Fin 2022 → ℝ) {n : ℕ} (h1 : 1 ≤ n) (h2 : n ≤ 2047) :
     ∑ j : Fin 11, ffun x j (n : ℝ) = xe x n := by
   rw [Finset.sum_congr rfl (fun (j : Fin 11) _ => ffun_apply_nat x j n)]
@@ -574,7 +644,9 @@ lemma sum_ffun (x : Fin 2022 → ℝ) {n : ℕ} (h1 : 1 ≤ n) (h2 : n ≤ 2047)
   ring
 
 /-- Eleven functions suffice: the explicit construction works for every
-choice of target values. -/
+choice of target values.
+@isnad1 id=good.0h0v.s2.17151ce4ba71 from=translated src=- shape=e590c3e1 vocab=df34f177
+-/
 lemma good_eleven : Good 11 := by
   intro x
   refine ⟨ffun x, ess_incr_ffun x, fun n => ?_⟩

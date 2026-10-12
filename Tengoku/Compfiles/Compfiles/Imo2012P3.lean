@@ -116,6 +116,9 @@ variable {N : ℕ}
 /-- The base of the weights used by A's counter-strategy. -/
 def weightBase : ℝ := 1.998
 
+/--
+@isnad1 id=lt.0h0v.s3.1d128d8a1a3e from=translated src=- shape=ff3a10fc vocab=705838df
+-/
 lemma one_lt_weightBase : (1 : ℝ) < weightBase := by norm_num [weightBase]
 
 /-- A's counterplay against `σ`: after each answer she records, for every
@@ -150,6 +153,9 @@ def aliceAns (σ : Strategy N) (t : ℕ) : Bool := (alicePlay σ (t + 1)).2.2
 /-- The total weight after `t` answers. -/
 def aliceWeight (σ : Strategy N) (t : ℕ) : ℝ := ∑ x, weightBase ^ (aliceStreak σ t x)
 
+/--
+@isnad1 id=eq.1h4v.s6.e6cb25b52d9d from=translated src=- shape=38136503 vocab=c7a3aefc
+-/
 lemma alicePlay_guess {σ : Strategy N} {t : ℕ} {X : Finset (Fin N)}
     (h : σ.move (aliceHist σ t) = Move.guess X) :
     alicePlay σ (t + 1) = (aliceStreak σ t, aliceHist σ t ++ [true], true) := by
@@ -158,11 +164,17 @@ lemma alicePlay_guess {σ : Strategy N} {t : ℕ} {X : Finset (Fin N)}
   rw [h']
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.e49e1698d994 from=translated src=- shape=300221d6 vocab=599a2925
+-/
 lemma aliceStreak_guess {σ : Strategy N} {t : ℕ} {X : Finset (Fin N)}
     (h : σ.move (aliceHist σ t) = Move.guess X) :
     aliceStreak σ (t + 1) = aliceStreak σ t := by
   rw [show aliceStreak σ (t + 1) = (alicePlay σ (t + 1)).1 from rfl, alicePlay_guess h]
 
+/--
+@isnad1 id=eq.1h4v.s8.9f362cae2af5 from=translated src=- shape=fba3b013 vocab=3a927da1
+-/
 lemma alicePlay_ask {σ : Strategy N} {t : ℕ} {S : Finset (Fin N)}
     (h : σ.move (aliceHist σ t) = Move.ask S) :
     alicePlay σ (t + 1) =
@@ -177,6 +189,9 @@ lemma alicePlay_ask {σ : Strategy N} {t : ℕ} {S : Finset (Fin N)}
   rw [h']
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2dde1329b525 from=translated src=- shape=7c689f76 vocab=b4ea5aee
+-/
 lemma aliceHist_succ {σ : Strategy N} (t : ℕ) :
     aliceHist σ (t + 1) = aliceHist σ t ++ [aliceAns σ t] := by
   cases h : σ.move (aliceHist σ t) with
@@ -188,6 +203,9 @@ lemma aliceHist_succ {σ : Strategy N} (t : ℕ) :
         show aliceAns σ t = (alicePlay σ (t + 1)).2.2 from rfl, alicePlay_ask h]
       split <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.2848a8a4d26c from=translated src=- shape=d6f7683e vocab=96b1ae48
+-/
 lemma aliceHist_eq_hist {σ : Strategy N} (t : ℕ) :
     aliceHist σ t = hist (aliceAns σ) t := by
   induction t with
@@ -195,7 +213,9 @@ lemma aliceHist_eq_hist {σ : Strategy N} (t : ℕ) :
   | succ t ih => rw [hist, ← ih]; exact aliceHist_succ t
 
 /-- At an ask-step, the new total weight is at most `weightBase / 2` times the
-old weight plus `N`. -/
+old weight plus `N`.
+@isnad1 id=le.1h4v.s6.162d92c55f9e from=translated src=- shape=790ee7c3 vocab=57f0821e
+-/
 lemma aliceWeight_step_ask {σ : Strategy N} {t : ℕ} {S : Finset (Fin N)}
     (h : σ.move (aliceHist σ t) = Move.ask S) :
     aliceWeight σ (t + 1) ≤ weightBase / 2 * aliceWeight σ t + N := by
@@ -257,7 +277,9 @@ lemma aliceWeight_step_ask {σ : Strategy N} {t : ℕ} {S : Finset (Fin N)}
     have h4 := hcard S
     linarith
 
-/-- The total weight never exceeds `1000 * N`. -/
+/-- The total weight never exceeds `1000 * N`.
+@isnad1 id=le.0h3v.s5.b1b08beb6566 from=translated src=- shape=84750632 vocab=9a3ece36
+-/
 lemma aliceWeight_le (σ : Strategy N) (t : ℕ) : aliceWeight σ t ≤ 1000 * N := by
   induction t with
   | zero =>
@@ -279,7 +301,9 @@ lemma aliceWeight_le (σ : Strategy N) (t : ℕ) : aliceWeight σ t ≤ 1000 * N
             (0 : ℝ) < weightBase / 2))
           linarith
 
-/-- No candidate's streak ever reaches `k + 1`, once `1000 * N < (1.998) ^ (k+1)`. -/
+/-- No candidate's streak ever reaches `k + 1`, once `1000 * N < (1.998) ^ (k+1)`.
+@isnad1 id=le.1h5v.s6.9c7bca0ff86e from=translated src=- shape=36c9f4f0 vocab=9c9d0bb5
+-/
 lemma aliceStreak_le (σ : Strategy N) {k : ℕ} (hWt : 1000 * (N : ℝ) < weightBase ^ (k + 1))
     (x : Fin N) (t : ℕ) :
     aliceStreak σ t x ≤ k := by
@@ -293,7 +317,9 @@ lemma aliceStreak_le (σ : Strategy N) {k : ℕ} (hWt : 1000 * (N : ℝ) < weigh
   have h3 := aliceWeight_le σ t
   linarith
 
-/-- If A's `i`-th answer is a lie for `x`, then `x`'s streak increases by one. -/
+/-- If A's `i`-th answer is a lie for `x`, then `x`'s streak increases by one.
+@isnad1 id=eq.1h4v.s5.43f9990fef5b from=translated src=- shape=4cd69af6 vocab=4fe31f76
+-/
 lemma alice_lie_streak {σ : Strategy N} {x : Fin N} {i : ℕ}
     (h : ¬ TruthfulAt σ x (aliceAns σ) i) :
     aliceStreak σ (i + 1) x = aliceStreak σ i x + 1 := by
@@ -329,7 +355,9 @@ lemma alice_lie_streak {σ : Strategy N} {x : Fin N} {i : ℕ}
     · simp [hx1]
 
 /-- A's answer sequence is consistent with every candidate at all times: among
-any `k + 1` consecutive answers, at least one is truthful for `x`. -/
+any `k + 1` consecutive answers, at least one is truthful for `x`.
+@isnad1 id=consiste.1h5v.s6.7ca2c1fe82c3 from=translated src=- shape=bf07ee8d vocab=90db9ebc
+-/
 lemma alice_consistent (σ : Strategy N) {k : ℕ}
     (hWt : 1000 * (N : ℝ) < weightBase ^ (k + 1))
     (x : Fin N) (T : ℕ) :
@@ -353,7 +381,9 @@ lemma alice_consistent (σ : Strategy N) {k : ℕ}
   have hbound := aliceStreak_le σ hWt x (t + (k + 1))
   lia
 
-/-- The weight bound needed at `N = n + 1` where `n = ⌈(1.99) ^ k⌉`. -/
+/-- The weight bound needed at `N = n + 1` where `n = ⌈(1.99) ^ k⌉`.
+@isnad1 id=lt.2h2v.s7.6bf7969dbd88 from=translated src=- shape=22759234 vocab=8a405344
+-/
 lemma aliceWeightBase_bound {k n : ℕ} (hn : n = ⌈(1.99 : ℝ) ^ k⌉₊)
     (h1000 : 1000 * ((1.99 : ℝ) ^ k + 2) < weightBase ^ (k + 1)) :
     1000 * ((n + 1 : ℕ) : ℝ) < weightBase ^ (k + 1) := by
@@ -368,7 +398,9 @@ lemma aliceWeightBase_bound {k n : ℕ} (hn : n = ⌈(1.99 : ℝ) ^ k⌉₊)
 
 /-- Under the weight bound, B has no winning strategy: A's counterplay is
 consistent with every candidate at all times, so B can never stop with a
-correct guess of size at most `n`. -/
+correct guess of size at most `n`.
+@isnad1 id=not.2h2v.s6.dd8f96442b40 from=translated src=- shape=4861cc5a vocab=7b5505a8
+-/
 lemma not_bobWins {k n : ℕ} (hWt : 1000 * ((n + 1 : ℕ) : ℝ) < weightBase ^ (k + 1))
     (hN : 1 ≤ n + 1) :
     ¬ BobWins k n (n + 1) := by
@@ -384,7 +416,9 @@ lemma not_bobWins {k n : ℕ} (hWt : 1000 * ((n + 1 : ℕ) : ℝ) < weightBase ^
   rw [Finset.card_univ, Fintype.card_fin] at hcard
   lia
 
-/-- Helper: `1 ≤ (1.99) ^ k`. -/
+/-- Helper: `1 ≤ (1.99) ^ k`.
+@isnad1 id=le.0h1v.s5.e03be2de0a3d from=translated src=- shape=5d5d853c vocab=0a4d55d6
+-/
 lemma one_le_pow_199 (k : ℕ) : (1 : ℝ) ≤ 1.99 ^ k := by
   induction k with
   | zero => norm_num
@@ -392,7 +426,9 @@ lemma one_le_pow_199 (k : ℕ) : (1 : ℝ) ≤ 1.99 ^ k := by
       rw [pow_succ]
       exact one_le_mul_of_one_le_of_one_le ih (by norm_num)
 
-/-- For all sufficiently large `k`, `1000 * ((1.99) ^ k + 2) < (1.998) ^ (k + 1)`. -/
+/-- For all sufficiently large `k`, `1000 * ((1.99) ^ k + 2) < (1.998) ^ (k + 1)`.
+@isnad1 id=ex.0h0v.s6.6c2b6d8d4ef6 from=translated src=- shape=db1b4354 vocab=1f4d59f1
+-/
 lemma exists_eventually_large :
     ∃ k₀ : ℕ, ∀ k ≥ k₀, 1000 * ((1.99 : ℝ) ^ k + 2) < weightBase ^ (k + 1) := by
   have h1 : (1 : ℝ) < 1.998 / 1.99 := by norm_num
@@ -453,6 +489,9 @@ structure BobState (N : ℕ) where
   pool : Finset (Fin N)
   phase : BobPhase
 
+/--
+@isnad1 id=iff.0h4v.s5.86b6b75c4b0d from=translated src=- shape=b9ec69fb vocab=483fc663
+-/
 lemma bobState_ext_iff {s : BobState N} {P : Finset (Fin N)} {ph : BobPhase} :
     s = ⟨P, ph⟩ ↔ s.pool = P ∧ s.phase = ph := by
   constructor
@@ -476,11 +515,16 @@ noncomputable def bobEmbedding (P : Finset (Fin N)) (h : 2 ^ k ≤ P.card) :
   ((Fintype.equivFin (Fin k → Bool)).trans (finCongr hcard)).toEmbedding.trans
     ((Fin.castLEEmb h).trans (P.orderIsoOfFin rfl).toOrderEmbedding.toEmbedding)
 
+/--
+@isnad1 id=mem.1h4v.s7.d37e0b7a7330 from=translated src=- shape=3e678f91 vocab=51193abc
+-/
 lemma bobEmbedding_mem (P : Finset (Fin N)) (h : 2 ^ k ≤ P.card) (p : Fin k → Bool) :
     (bobEmbedding P h p : Fin N) ∈ P :=
   (bobEmbedding P h p).2
 
-/-- There is an element of the pool outside the image of the bit patterns. -/
+/-- There is an element of the pool outside the image of the bit patterns.
+@isnad1 id=ex.1h3v.s7.0766226450a2 from=translated src=- shape=9b40116c vocab=42f57571
+-/
 lemma exists_special (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) :
     ∃ s ∈ P, ∀ p : Fin k → Bool, (bobEmbedding P (by lia) p : Fin N) ≠ s := by
   have h1 : 2 ^ k ≤ P.card := by lia
@@ -505,19 +549,31 @@ the pool outside the image of the bit patterns. -/
 noncomputable def bobSpecial (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) : Fin N :=
   (exists_special P h).choose
 
+/--
+@isnad1 id=mem.1h3v.s6.efb68095b3a0 from=translated src=- shape=debafe6d vocab=21f99808
+-/
 lemma bobSpecial_mem (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) : bobSpecial P h ∈ P :=
   (exists_special P h).choose_spec.1
 
+/--
+@isnad1 id=ne.1h4v.s7.5a25ce065c59 from=translated src=- shape=226c1827 vocab=b34cf5e0
+-/
 lemma bobSpecial_ne_embedding (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card)
     (p : Fin k → Bool) :
     (bobEmbedding P (by lia) p : Fin N) ≠ bobSpecial P h :=
   (exists_special P h).choose_spec.2 p
 
+/--
+@isnad1 id=eq.2h4v.s6.84fcf26f8420 from=translated src=- shape=449f07ea vocab=17ab9639
+-/
 lemma bobSpecial_congr {P Q : Finset (Fin N)} (hPQ : P = Q) (hP : 2 ^ k + 1 ≤ P.card) :
     bobSpecial P hP = bobSpecial Q (hPQ ▸ hP) := by
   subst hPQ
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.c2e518a0a613 from=translated src=- shape=3e5a8f30 vocab=f51c9513
+-/
 lemma bobEmbedding_congr {P Q : Finset (Fin N)} (hPQ : P = Q) (hP : 2 ^ k ≤ P.card)
     (p : Fin k → Bool) :
     (bobEmbedding P hP p : Fin N) = (bobEmbedding Q (hPQ ▸ hP) p : Fin N) := by
@@ -530,6 +586,9 @@ noncomputable def bitQuestion (P : Finset (Fin N)) (h : 2 ^ k ≤ P.card) (i : F
   (Finset.univ.filter (fun p : Fin k → Bool => p i = true)).image
     (fun p => (bobEmbedding P h p : Fin N))
 
+/--
+@isnad1 id=iff.1h5v.s7.abd232954331 from=translated src=- shape=8bd5d3b9 vocab=3d423b06
+-/
 lemma mem_bitQuestion (P : Finset (Fin N)) (h : 2 ^ k ≤ P.card) (i : Fin k)
     (p : Fin k → Bool) :
     ((bobEmbedding P h p : Fin N) ∈ bitQuestion P h i) ↔ p i = true := by
@@ -553,9 +612,15 @@ noncomputable def bobQuestion (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) :
   | BobPhase.bits _ bs =>
     if hb : bs.length < k then bitQuestion P (by lia) ⟨bs.length, hb⟩ else ∅
 
+/--
+@isnad1 id=eq.1h4v.s6.3bf73e36e572 from=translated src=- shape=9afc59db vocab=6f6845c6
+-/
 lemma bobQuestion_probe (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j : ℕ) :
     bobQuestion P h (BobPhase.probe j) = {bobSpecial P h} := rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.7e4410aafd0c from=translated src=- shape=f20c6085 vocab=617a09bf
+-/
 lemma bobQuestion_bits (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j : ℕ)
     (bs : List Bool) (hb : bs.length < k) :
     bobQuestion P h (BobPhase.bits j bs) = bitQuestion P (by lia) ⟨bs.length, hb⟩ := by
@@ -596,28 +661,46 @@ noncomputable def bobStrategy (k : ℕ) : Strategy N where
 def bobStateOf (N k : ℕ) (ans : ℕ → Bool) (t : ℕ) : BobState N :=
   (hist ans t).foldl (bobStep k) ⟨Finset.univ, BobPhase.probe 0⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.4d8b9bb9b643 from=translated src=- shape=ed4ca9b9 vocab=3ee5b8ab
+-/
 lemma bobStateOf_zero (ans : ℕ → Bool) :
     bobStateOf N k ans 0 = ⟨Finset.univ, BobPhase.probe 0⟩ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.ede5d450c281 from=translated src=- shape=cf89c8ed vocab=432ff611
+-/
 lemma bobStateOf_succ (ans : ℕ → Bool) (t : ℕ) :
     bobStateOf N k ans (t + 1) = bobStep k (bobStateOf N k ans t) (ans t) := by
   show (hist ans t ++ [ans t]).foldl (bobStep k) ⟨Finset.univ, BobPhase.probe 0⟩ = _
   rw [List.foldl_append]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.47036fa1ba07 from=translated src=- shape=808ac367 vocab=c44a49b5
+-/
 lemma bobStep_frozen (s : BobState N) (h : s.pool.card ≤ 2 ^ k) (a : Bool) :
     bobStep k s a = s := by
   unfold bobStep
   exact dite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s5.bba3953df143 from=translated src=- shape=5c1c9370 vocab=f7366598
+-/
 lemma bobStep_active (s : BobState N) (h : ¬ s.pool.card ≤ 2 ^ k) (a : Bool) :
     bobStep k s a = bobStepPhase (k := k) s.pool (by lia) s.phase a := by
   unfold bobStep
   exact dite_eq_right h
 
+/--
+@isnad1 id=eq.1h4v.s6.5b5221890508 from=translated src=- shape=e6f21958 vocab=5626730c
+-/
 lemma bobStepPhase_probe_true (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j : ℕ) :
     bobStepPhase P h (BobPhase.probe j) true = ⟨P, BobPhase.bits (j + 1) []⟩ := rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.7f9f9a651fba from=translated src=- shape=8b848eb1 vocab=dc6ba1fd
+-/
 lemma bobStepPhase_probe_false_eq (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j : ℕ)
     (hj : j = k) :
     bobStepPhase P h (BobPhase.probe j) false =
@@ -626,6 +709,9 @@ lemma bobStepPhase_probe_false_eq (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card
     else ⟨P, BobPhase.probe (j + 1)⟩) : BobState N) = _
   rw [ite_eq_left hj]
 
+/--
+@isnad1 id=eq.2h4v.s6.301b85b977d0 from=translated src=- shape=5c234512 vocab=37de538f
+-/
 lemma bobStepPhase_probe_false_lt (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j : ℕ)
     (hj : j ≠ k) :
     bobStepPhase P h (BobPhase.probe j) false = ⟨P, BobPhase.probe (j + 1)⟩ := by
@@ -633,6 +719,9 @@ lemma bobStepPhase_probe_false_lt (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card
     else ⟨P, BobPhase.probe (j + 1)⟩) : BobState N) = _
   rw [ite_eq_right hj]
 
+/--
+@isnad1 id=eq.2h6v.s8.7a7f595f1d2a from=translated src=- shape=37e78bbd vocab=b716000f
+-/
 lemma bobStepPhase_bits_complete (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j : ℕ)
     (bs : List Bool) (a : Bool) (hb : (bs ++ [a]).length = k) :
     bobStepPhase P h (BobPhase.bits j bs) a =
@@ -642,6 +731,9 @@ lemma bobStepPhase_bits_complete (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card)
   dsimp only
   rw [dite_eq_left hb]
 
+/--
+@isnad1 id=eq.2h6v.s6.f2b096a0d6c5 from=translated src=- shape=3ff0a7cf vocab=59223fa7
+-/
 lemma bobStepPhase_bits_cont (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j : ℕ)
     (bs : List Bool) (a : Bool) (hb : (bs ++ [a]).length ≠ k) :
     bobStepPhase P h (BobPhase.bits j bs) a = ⟨P, BobPhase.bits j (bs ++ [a])⟩ := by
@@ -649,6 +741,9 @@ lemma bobStepPhase_bits_cont (P : Finset (Fin N)) (h : 2 ^ k + 1 ≤ P.card) (j 
   dsimp only
   rw [dite_eq_right hb]
 
+/--
+@isnad1 id=eq.1h4v.s5.dea0ba67ed4d from=translated src=- shape=98237e2d vocab=bd762083
+-/
 lemma bobStrategy_move_guess {ans : ℕ → Bool} {t : ℕ}
     (h : (bobStateOf N k ans t).pool.card ≤ 2 ^ k) :
     (bobStrategy k).move (hist ans t) = Move.guess (bobStateOf N k ans t).pool := by
@@ -660,6 +755,9 @@ lemma bobStrategy_move_guess {ans : ℕ → Bool} {t : ℕ}
   dsimp only
   exact dite_eq_left h'
 
+/--
+@isnad1 id=eq.1h4v.s6.f365fd8c0a25 from=translated src=- shape=9c20b024 vocab=acec9080
+-/
 lemma bobStrategy_move_ask {ans : ℕ → Bool} {t : ℕ}
     (h : ¬ (bobStateOf N k ans t).pool.card ≤ 2 ^ k) :
     (bobStrategy k).move (hist ans t) =
@@ -673,6 +771,9 @@ lemma bobStrategy_move_ask {ans : ℕ → Bool} {t : ℕ}
   dsimp only
   exact dite_eq_right h'
 
+/--
+@isnad1 id=eq.3h5v.s7.ef871bfeb0dc from=translated src=- shape=b9f22fac vocab=fabf9f18
+-/
 lemma bobStrategy_move_ask_probe {ans : ℕ → Bool} {t : ℕ} {j : ℕ}
     (hstate : (bobStateOf N k ans t).phase = BobPhase.probe j)
     (hcard : ¬ (bobStateOf N k ans t).pool.card ≤ 2 ^ k)
@@ -681,6 +782,9 @@ lemma bobStrategy_move_ask_probe {ans : ℕ → Bool} {t : ℕ} {j : ℕ}
       Move.ask {bobSpecial (k := k) (bobStateOf N k ans t).pool h} := by
   rw [bobStrategy_move_ask hcard, hstate, bobQuestion_probe]
 
+/--
+@isnad1 id=eq.5h7v.s7.1efcbcfe9323 from=translated src=- shape=fb1efd90 vocab=f2f8249e
+-/
 lemma bobStrategy_move_ask_bits {ans : ℕ → Bool} {t : ℕ} {j : ℕ} {bs : List Bool}
     (hstate : (bobStateOf N k ans t).phase = BobPhase.bits j bs)
     (hcard : ¬ (bobStateOf N k ans t).pool.card ≤ 2 ^ k)
@@ -692,6 +796,9 @@ lemma bobStrategy_move_ask_bits {ans : ℕ → Bool} {t : ℕ} {j : ℕ} {bs : L
   rw [bobStrategy_move_ask hcard, hstate, bobQuestion_bits _ _ _ _ hbs']
   rw [show (⟨bs.length, hbs'⟩ : Fin k) = ⟨m, hbs⟩ from Fin.ext hm]
 
+/--
+@isnad1 id=le.0h4v.s4.259216ce7756 from=translated src=- shape=7cb2e97e vocab=28e863f7
+-/
 lemma bob_answers_le (ans : ℕ → Bool) (t : ℕ) :
     (bobStateOf N k ans t).phase.answers ≤ t := by
   induction t with
@@ -730,6 +837,9 @@ lemma bob_answers_le (ans : ℕ → Bool) (t : ℕ) :
           simp
           lia
 
+/--
+@isnad1 id=match1.1h4v.s6.9b30c69f35a8 from=translated src=- shape=27d2038b vocab=498f0d1c
+-/
 lemma bob_phase_inv (hk : 1 ≤ k) (ans : ℕ → Bool) (t : ℕ) :
     (match (bobStateOf N k ans t).phase with
     | BobPhase.probe j => j ≤ k
@@ -772,7 +882,9 @@ lemma bob_phase_inv (hk : 1 ≤ k) (ans : ℕ → Bool) (t : ℕ) :
           simp at hlen ⊢
           lia
 
-/-- Backward step, probe phase with `j ≥ 1`. -/
+/-- Backward step, probe phase with `j ≥ 1`.
+@isnad1 id=and.3h6v.s6.0819825c9b62 from=translated src=- shape=040c8fd3 vocab=02db0b15
+-/
 lemma bob_backward_probe {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)} {j : ℕ}
     (h : bobStateOf N k ans (t + 1) = ⟨P, BobPhase.probe j⟩)
     (hcard : ¬ P.card ≤ 2 ^ k) (hj : 1 ≤ j) :
@@ -813,7 +925,9 @@ lemma bob_backward_probe {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)} {j 
       · rw [bobStepPhase_bits_cont _ _ _ _ _ hlen] at hstep
         cases hstep
 
-/-- Backward step, bit phase with no bit answers yet. -/
+/-- Backward step, bit phase with no bit answers yet.
+@isnad1 id=and.2h6v.s6.72bf34a1de16 from=translated src=- shape=48e13bde vocab=5a8ed60a
+-/
 lemma bob_backward_bits_nil {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)} {j : ℕ}
     (h : bobStateOf N k ans (t + 1) = ⟨P, BobPhase.bits j []⟩)
     (hcard : ¬ P.card ≤ 2 ^ k) :
@@ -855,7 +969,9 @@ lemma bob_backward_bits_nil {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)} 
         have hl := congrArg List.length hbs
         simp [List.length_append] at hl
 
-/-- Backward step, bit phase with at least one bit answer. -/
+/-- Backward step, bit phase with at least one bit answer.
+@isnad1 id=and.2h8v.s6.d8f6919755f0 from=translated src=- shape=61f036e4 vocab=29617a51
+-/
 lemma bob_backward_bits_snoc {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)} {j : ℕ}
     {bs : List Bool} {b : Bool}
     (h : bobStateOf N k ans (t + 1) = ⟨P, BobPhase.bits j (bs ++ [b])⟩)
@@ -905,7 +1021,9 @@ lemma bob_backward_bits_snoc {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)}
         rw [bobState_ext_iff]
         exact ⟨rfl, hph⟩
 
-/-- Iterated backward step through a probe phase. -/
+/-- Iterated backward step through a probe phase.
+@isnad1 id=and.4h7v.s6.b0010b2634a3 from=translated src=- shape=19d1f521 vocab=625cdedb
+-/
 lemma bob_backward_probe_chain {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)} {j i : ℕ}
     (h : bobStateOf N k ans t = ⟨P, BobPhase.probe j⟩)
     (hcard : ¬ P.card ≤ 2 ^ k) (hi : i ≤ j) (ht : j ≤ t) :
@@ -921,7 +1039,9 @@ lemma bob_backward_probe_chain {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N
     rw [e]
     exact ⟨h2.1, fun _ => h2.2⟩
 
-/-- Iterated backward step through a bit phase. -/
+/-- Iterated backward step through a bit phase.
+@isnad1 id=and.4h8v.s7.9d8796dcf4a8 from=translated src=- shape=1c48fe9d vocab=1fd283fa
+-/
 lemma bob_backward_bits_chain {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)} {j : ℕ}
     {bs : List Bool} {i : ℕ}
     (h : bobStateOf N k ans t = ⟨P, BobPhase.bits j bs⟩)
@@ -946,7 +1066,9 @@ lemma bob_backward_bits_chain {ans : ℕ → Bool} {t : ℕ} {P : Finset (Fin N)
     exact ⟨h2.1, fun _ => h2.2⟩
 
 /-- The termination measure: while the pool has more than `2 ^ k` elements,
-`t` is bounded by `(2k+1) * (eliminated so far) + (answers in current round)`. -/
+`t` is bounded by `(2k+1) * (eliminated so far) + (answers in current round)`.
+@isnad1 id=le.2h4v.s6.edfcbfc816fd from=translated src=- shape=c115f4a1 vocab=8feffc69
+-/
 lemma bob_measure (hk : 1 ≤ k) (ans : ℕ → Bool) (t : ℕ)
     (hcard : ¬ (bobStateOf N k ans t).pool.card ≤ 2 ^ k) :
     t ≤ (2 * k + 1) * (N - (bobStateOf N k ans t).pool.card) +
@@ -1030,7 +1152,9 @@ lemma bob_measure (hk : 1 ≤ k) (ans : ℕ → Bool) (t : ℕ)
           simp
           lia
 
-/-- B's strategy always stops: the pool shrinks by one every `2k + 1` answers. -/
+/-- B's strategy always stops: the pool shrinks by one every `2k + 1` answers.
+@isnad1 id=ex.1h3v.s5.a0c8caa4149b from=translated src=- shape=59a62891 vocab=55ac6f45
+-/
 lemma bob_terminates (hk : 1 ≤ k) (ans : ℕ → Bool) :
     ∃ T X, (bobStrategy (N := N) k).move (hist ans T) = Move.guess X := by
   by_contra hnever
@@ -1067,7 +1191,9 @@ lemma bob_terminates (hk : 1 ≤ k) (ans : ℕ → Bool) :
   lia
 
 /-- The pool invariant: if the answers are consistent with `x` up to time `t`,
-then `x` is still in Bob's pool. -/
+then `x` is still in Bob's pool.
+@isnad1 id=mem.2h5v.s5.6027dead3b16 from=translated src=- shape=a97c0380 vocab=dd7b3e5a
+-/
 lemma bob_mem_pool (hk : 1 ≤ k) {x : Fin N} {ans : ℕ → Bool} {t : ℕ}
     (hcons : ConsistentUpTo k (bobStrategy k) x ans t) :
     x ∈ (bobStateOf N k ans t).pool := by
@@ -1250,7 +1376,9 @@ lemma bob_mem_pool (hk : 1 ≤ k) {x : Fin N} {ans : ℕ → Bool} {t : ℕ}
         · rw [bobStepPhase_bits_cont _ _ _ _ _ hlen]
           exact hx
 
-/-- B's strategy guarantees a win when `n ≥ 2 ^ k`. -/
+/-- B's strategy guarantees a win when `n ≥ 2 ^ k`.
+@isnad1 id=guarante.2h3v.s5.a9a0ec3631b4 from=translated src=- shape=cb8b5168 vocab=4d36ed89
+-/
 lemma bob_guaranteesWin (n : ℕ) (hk : 1 ≤ k) (hn : 2 ^ k ≤ n) :
     GuaranteesWin k n (bobStrategy (N := N) k) := by
   constructor

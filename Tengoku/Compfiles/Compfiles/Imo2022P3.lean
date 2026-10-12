@@ -41,14 +41,18 @@ integer `x`.  The problem uses positive `x`, but uniqueness of placements for th
 weaker (nonnegative) condition implies uniqueness for the stronger one. -/
 def good (k m n : ℕ) : Prop := ∃ x : ℕ, m * n = x ^ 2 + x + k
 
-/-- A product below `M ^ 2` that is good forces the witness `x` to be below `M`. -/
+/-- A product below `M ^ 2` that is good forces the witness `x` to be below `M`.
+@isnad1 id=lt.3h4v.s6.7c4ff2b799e3 from=translated src=- shape=43e4c045 vocab=195c7936
+-/
 lemma lt_of_good_of_lt {k M q x : ℕ} (hM : Nat.Prime M) (hq : q < M)
     (hx : M * q = x ^ 2 + x + k) : x < M := by
   have hM0 : 0 < M := hM.pos
   have h1 : M * q < M * M := Nat.mul_lt_mul_of_pos_left hq hM0
   nlinarith [hx, h1]
 
-/-- Two distinct roots of `T ^ 2 + T + k` below the prime `M` sum to `M - 1`. -/
+/-- Two distinct roots of `T ^ 2 + T + k` below the prime `M` sum to `M - 1`.
+@isnad1 id=eq.6h4v.s7.fe072e9a7ea4 from=translated src=- shape=3194b339 vocab=c0b40d37
+-/
 lemma add_eq_of_dvd_of_dvd {k M x y : ℕ} (hM : Nat.Prime M) (hxM : x < M) (hyM : y < M)
     (hxy : x ≠ y) (hx : M ∣ x ^ 2 + x + k) (hy : M ∣ y ^ 2 + y + k) :
     x + y + 1 = M := by
@@ -91,7 +95,9 @@ lemma add_eq_of_dvd_of_dvd {k M x y : ℕ} (hM : Nat.Prime M) (hxM : x < M) (hyM
     subst ht3
     simpa using ht
 
-/-- Vieta for the two roots: their product is congruent to `k` modulo `M`. -/
+/-- Vieta for the two roots: their product is congruent to `k` modulo `M`.
+@isnad1 id=and.6h6v.s7.1b2420e71526 from=translated src=- shape=8e095abb vocab=1bcdcb0b
+-/
 lemma dvd_sub_of_good_of_good {k M q r x y : ℕ} (hM : Nat.Prime M)
     (hq : q < M) (hr : r < M) (hqr : q ≠ r)
     (hx : M * q = x ^ 2 + x + k) (hy : M * r = y ^ 2 + y + k) :
@@ -126,7 +132,9 @@ lemma dvd_sub_of_good_of_good {k M q r x y : ℕ} (hM : Nat.Prime M)
   exact (ZMod.intCast_zmod_eq_zero_iff_dvd ((x * y : ℤ) - k) M).mp h6
 
 /-- The key multiplicativity lemma (Chen's Claim 2): if the prime `M` has two
-distinct smaller good partners `q` and `r`, then `q * r` is itself good. -/
+distinct smaller good partners `q` and `r`, then `q * r` is itself good.
+@isnad1 id=good.6h4v.s5.ece5eef8cb45 from=translated src=- shape=f995bdc5 vocab=d137f962
+-/
 lemma good_of_good_of_good {k M q r : ℕ} (hM : Nat.Prime M) (hq : q < M) (hr : r < M)
     (hqr : q ≠ r) (h1 : good k M q) (h2 : good k M r) : good k q r := by
   obtain ⟨x, hx⟩ := h1
@@ -165,7 +173,9 @@ lemma good_of_good_of_good {k M q r : ℕ} (hM : Nat.Prime M) (hq : q < M) (hr :
   exact_mod_cast h4.symm
 
 /-- A quadratic has at most two roots below a prime `M`: the set `T` of
-solutions `x < M` to `M ∣ x ^ 2 + x + k` has at most two elements. -/
+solutions `x < M` to `M ∣ x ^ 2 + x + k` has at most two elements.
+@isnad1 id=le.3h3v.s6.abb0365eabeb from=translated src=- shape=064dad89 vocab=65bd8731
+-/
 lemma card_roots_le_two {k M : ℕ} (hM : Nat.Prime M) (T : Finset ℕ)
     (hT1 : ∀ x ∈ T, x < M) (hT2 : ∀ x ∈ T, M ∣ x ^ 2 + x + k) : T.card ≤ 2 := by
   by_cases hT : T.Nonempty
@@ -208,7 +218,9 @@ lemma card_roots_le_two {k M : ℕ} (hM : Nat.Prime M) (T : Finset ℕ)
     simp
 
 /-- Chen's Claim 1: a prime `M` has at most two good partners below it
-inside any set of smaller numbers. -/
+inside any set of smaller numbers.
+@isnad1 id=le.2h3v.s5.a7d5e37b982c from=translated src=- shape=02c5fa8f vocab=d352ec95
+-/
 lemma card_good_le_two {k M : ℕ} (hM : Nat.Prime M) (S : Finset ℕ)
     [DecidablePred (good k M)] (hSM : ∀ q ∈ S, q < M) :
     (S.filter (good k M ·)).card ≤ 2 := by
@@ -236,25 +248,35 @@ lemma card_good_le_two {k M : ℕ} (hM : Nat.Prime M) (S : Finset ℕ)
     obtain ⟨q, hq, rfl⟩ := hx
     exact ⟨q, (hf q hq).symm⟩
 
-/-- `good` is symmetric in the two factors. -/
+/-- `good` is symmetric in the two factors.
+@isnad1 id=good.1h3v.s3.19f6657678d3 from=translated src=- shape=7289543a vocab=b1920367
+-/
 lemma good_comm {k m n : ℕ} (h : good k m n) : good k n m := by
   obtain ⟨x, hx⟩ := h
   exact ⟨x, by rw [mul_comm]; exact hx⟩
 
-/-- Injectivity of the `ZMod n` cast on `Fin n`. -/
+/-- Injectivity of the `ZMod n` cast on `Fin n`.
+@isnad1 id=eq.1h3v.s5.db38372e278a from=translated src=- shape=649e30ad vocab=61d6ffc8
+-/
 lemma zmod_inj {n : ℕ} {a b : Fin n} (h : (a.val : ZMod n) = b.val) : a = b := by
   rw [ZMod.natCast_eq_natCast_iff] at h
   exact Fin.ext (h.eq_of_lt_of_lt a.isLt b.isLt)
 
-/-- The `ZMod n` cast of a sum in `Fin n`. -/
+/-- The `ZMod n` cast of a sum in `Fin n`.
+@isnad1 id=eq.0h3v.s6.5ff0d081de84 from=translated src=- shape=5f1dd074 vocab=3b571f64
+-/
 lemma zmod_add {n : ℕ} (a b : Fin n) : ((a + b).val : ZMod n) = a.val + b.val := by
   rw [Fin.val_add, ZMod.natCast_mod, Nat.cast_add]
 
-/-- The `ZMod n` cast of `1 : Fin n`. -/
+/-- The `ZMod n` cast of `1 : Fin n`.
+@isnad1 id=eq.0h1v.s5.be392f367d65 from=translated src=- shape=2bd2ef4d vocab=6a983401
+-/
 lemma zmod_one {n : ℕ} [NeZero n] : ((1 : Fin n).val : ZMod n) = 1 := by
   rw [Fin.val_one' n, ZMod.natCast_mod, Nat.cast_one]
 
-/-- The `ZMod n` cast of `Fin.rev`. -/
+/-- The `ZMod n` cast of `Fin.rev`.
+@isnad1 id=eq.0h2v.s7.b3d610c38ecd from=translated src=- shape=e477df2c vocab=9966d7c7
+-/
 lemma zmod_rev {n : ℕ} [NeZero n] (j : Fin n) :
     ((Fin.rev j).val : ZMod n) = -1 - j.val := by
   have hrv : (Fin.rev j).val = n - (j.val + 1) := rfl
@@ -268,6 +290,9 @@ clockwise neighbor. -/
 def succPerm {S : Finset ℕ} (p : Fin #S ≃ S) : Equiv.Perm S :=
   (p.symm.trans (finRotate #S)).trans p
 
+/--
+@isnad1 id=eq.0h3v.s8.ee2435898ad0 from=translated src=- shape=bf84f336 vocab=c3b3f4c6
+-/
 lemma succPerm_apply {S : Finset ℕ} [NeZero #S] (p : Fin #S ≃ S) (j : Fin #S) :
     succPerm p (p j) = p (j + 1) := by
   simp [succPerm, finRotate_apply]
@@ -281,6 +306,9 @@ def ValidPerm (k : ℕ) {S : Finset ℕ} (σ : Equiv.Perm S) : Prop :=
 def ConnectedP {S : Finset ℕ} (σ : Equiv.Perm S) : Prop :=
   ∀ s t : S, ∃ m : ℕ, σ^[m] s = t
 
+/--
+@isnad1 id=validper.1h3v.s8.2ca63a1ddaa0 from=translated src=- shape=e24f3e13 vocab=949432ce
+-/
 lemma validPerm_succPerm {k : ℕ} {S : Finset ℕ} [NeZero #S] {p : Fin #S ≃ S}
     (hp : ∀ j, good k (p j : ℕ) (p (j + 1) : ℕ)) : ValidPerm k (succPerm p) := by
   intro s
@@ -289,7 +317,9 @@ lemma validPerm_succPerm {k : ℕ} {S : Finset ℕ} [NeZero #S] {p : Fin #S ≃ 
   have h := hp (p.symm s)
   rwa [Equiv.apply_symm_apply] at h
 
-/-- Iteration of a conjugated map. -/
+/-- Iteration of a conjugated map.
+@isnad1 id=eq.0h5v.s6.d92d0049226c from=translated src=- shape=aa006af5 vocab=a2e7203c
+-/
 lemma iterate_conj {α β : Type*} (c : α ≃ β) (τ : α → α) (m : ℕ) :
     (⇑c ∘ τ ∘ ⇑c.symm)^[m] = ⇑c ∘ τ^[m] ∘ ⇑c.symm := by
   induction m with
@@ -302,6 +332,9 @@ lemma iterate_conj {α β : Type*} (c : α ≃ β) (τ : α → α) (m : ℕ) :
     simp only [Function.comp_apply, Equiv.symm_apply_apply]
     rw [Function.iterate_succ_apply']
 
+/--
+@isnad1 id=eq.0h3v.s6.09926fdbdcc4 from=translated src=- shape=2a63d178 vocab=9fbc2266
+-/
 lemma iterate_finRotate {n : ℕ} [NeZero n] (m : ℕ) (j : Fin n) :
     (finRotate n)^[m] j = j + (m : Fin n) := by
   induction m with
@@ -312,6 +345,9 @@ lemma iterate_finRotate {n : ℕ} [NeZero n] (m : ℕ) (j : Fin n) :
     simp only [zmod_add, Fin.val_natCast, ZMod.natCast_mod, Nat.cast_add, Nat.cast_one]
     ring
 
+/--
+@isnad1 id=eq.0h4v.s8.6762ea78aea4 from=translated src=- shape=bf7e0d58 vocab=f12760d0
+-/
 lemma succPerm_iterate {S : Finset ℕ} [NeZero #S] (p : Fin #S ≃ S)
     (m : ℕ) (j : Fin #S) :
     (succPerm p)^[m] (p j) = p (j + (m : Fin #S)) := by
@@ -325,6 +361,9 @@ lemma succPerm_iterate {S : Finset ℕ} [NeZero #S] (p : Fin #S ≃ S)
   simp only [Function.comp_apply, Equiv.symm_apply_apply]
   rw [iterate_finRotate]
 
+/--
+@isnad1 id=connecte.1h2v.s5.99ad45c326e9 from=translated src=- shape=01f7165f vocab=06c1e8dd
+-/
 lemma connectedP_succPerm {S : Finset ℕ} (hne : S.Nonempty) (p : Fin #S ≃ S) :
     ConnectedP (succPerm p) := by
   have : NeZero #S := ⟨(Finset.card_pos.mpr hne).ne'⟩
@@ -340,7 +379,9 @@ lemma connectedP_succPerm {S : Finset ℕ} (hne : S.Nonempty) (p : Fin #S ≃ S)
   simp only [zmod_add, Fin.val_natCast, ZMod.natCast_mod, ZMod.natCast_zmod_val]
   ring
 
-/-- A permutation of `Fin n` commuting with `+ 1` is a rotation. -/
+/-- A permutation of `Fin n` commuting with `+ 1` is a rotation.
+@isnad1 id=eq.1h3v.s8.2503e8e8e837 from=translated src=- shape=66261069 vocab=6d0896ac
+-/
 lemma zmod_eq_of_add_key {n : ℕ} [NeZero n] (g : Equiv.Perm (Fin n))
     (key : ∀ j : Fin n, g (j + 1) = g j + 1) (j : Fin n) :
     ((g j).val : ZMod n) = ((g 0).val : ZMod n) + j.val := by
@@ -352,7 +393,9 @@ lemma zmod_eq_of_add_key {n : ℕ} [NeZero n] (g : Equiv.Perm (Fin n))
     simp only [zmod_add, zmod_one, ih, Fin.val_castSucc]
     ring
 
-/-- A permutation of `Fin n` anti-commuting with `+ 1` is a reflection. -/
+/-- A permutation of `Fin n` anti-commuting with `+ 1` is a reflection.
+@isnad1 id=eq.1h3v.s8.8a6e8de17f63 from=translated src=- shape=9eab412d vocab=479843c9
+-/
 lemma zmod_eq_of_sub_key {n : ℕ} [NeZero n] (g : Equiv.Perm (Fin n))
     (key : ∀ j : Fin n, g (j + 1) + 1 = g j) (j : Fin n) :
     ((g j).val : ZMod n) = ((g 0).val : ZMod n) - j.val := by
@@ -372,7 +415,9 @@ lemma zmod_eq_of_sub_key {n : ℕ} [NeZero n] (g : Equiv.Perm (Fin n))
     ring
 
 /-- If two placements have the same successor permutation, they differ by a
-rotation. -/
+rotation.
+@isnad1 id=ex.2h3v.s8.e3a0fae340cf from=translated src=- shape=9e463990 vocab=cdecbadc
+-/
 lemma rot_of_succPerm_eq {S : Finset ℕ} (hne : S.Nonempty) {p₁ p₂ : Fin #S ≃ S}
     (h : succPerm p₁ = succPerm p₂) :
     ∃ i, ∀ j, p₂ j = p₁ (j + i) := by
@@ -396,7 +441,9 @@ lemma rot_of_succPerm_eq {S : Finset ℕ} (hne : S.Nonempty) {p₁ p₂ : Fin #S
     _ = p₁ (j + g 0) := by rw [hfin]
 
 /-- If the successor permutation of one placement is the inverse of the other's,
-they differ by a reflection composed with a rotation. -/
+they differ by a reflection composed with a rotation.
+@isnad1 id=ex.2h3v.s8.0912532af452 from=translated src=- shape=6072f440 vocab=41586288
+-/
 lemma ref_of_succPerm_eq {S : Finset ℕ} (hne : S.Nonempty) {p₁ p₂ : Fin #S ≃ S}
     (h : succPerm p₁ = (succPerm p₂)⁻¹) :
     ∃ i, ∀ j, p₂ j = p₁ (Fin.rev j + i) := by
@@ -471,7 +518,9 @@ noncomputable def delPerm {S : Finset ℕ} (τ : Equiv.Perm S) (M : S) (hrM : τ
         else (τ ⟨s.1, Finset.mem_of_mem_erase s.2⟩).1, hfun s⟩ : (S.erase M)))
     (Finite.injective_iff_bijective.mp hinj)
 
-/-- The computation rule for `delPerm`. -/
+/-- The computation rule for `delPerm`.
+@isnad1 id=eq.1h4v.s10.68b5d3a7e9f4 from=translated src=- shape=a95c9bdc vocab=cbd967e5
+-/
 lemma delPerm_val {S : Finset ℕ} {τ : Equiv.Perm S} {M : S} {hrM : τ M ≠ M}
     (s : S.erase M) :
     (delPerm τ M hrM s).1
@@ -481,7 +530,9 @@ lemma delPerm_val {S : Finset ℕ} {τ : Equiv.Perm S} {M : S} {hrM : τ M ≠ M
   rw [Equiv.ofBijective_apply]
 
 /-- The deleted permutation stays valid: the one new edge is good by
-`good_of_good_of_good`. -/
+`good_of_good_of_good`.
+@isnad1 id=validper.8h4v.s10.eca14d41b6a2 from=translated src=- shape=c3b4ff11 vocab=1d312e44
+-/
 lemma validPerm_delPerm {k : ℕ} {S : Finset ℕ} {τ : Equiv.Perm S} {M : S}
     {hrM : τ M ≠ M} (hv : ValidPerm k τ)
     (hMprime : Nat.Prime M.1)
@@ -504,7 +555,9 @@ lemma validPerm_delPerm {k : ℕ} {S : Finset ℕ} {τ : Equiv.Perm S} {M : S}
   · rw [ite_eq_right h]
     exact hv ⟨s.1, Finset.mem_of_mem_erase s.2⟩
 
-/-- The deleted permutation stays connected (the "skip `M`" argument). -/
+/-- The deleted permutation stays connected (the "skip `M`" argument).
+@isnad1 id=connecte.2h3v.s7.0368c06b30ee from=translated src=- shape=d3ba8fb5 vocab=3100311c
+-/
 lemma connectedP_delPerm {S : Finset ℕ} {τ : Equiv.Perm S} {M : S}
     {hrM : τ M ≠ M} (hc : ConnectedP τ) :
     ConnectedP (delPerm τ M hrM) := by
@@ -603,13 +656,17 @@ lemma connectedP_delPerm {S : Finset ℕ} {τ : Equiv.Perm S} {M : S}
   exact P m0 s t hm0
 
 /-- If an orbit stays inside a set missing an element, the permutation is not
-connected. -/
+connected.
+@isnad1 id=false.3h5v.s8.8ccaf900ecbb from=translated src=- shape=693a8162 vocab=d7573a88
+-/
 lemma not_connectedP_of_orbit_subset {S : Finset ℕ} {σ : Equiv.Perm S} (hc : ConnectedP σ)
     {x : S} {T : Finset S} (hT : ∀ m, σ^[m] x ∈ T) {y : S} (hy : y ∉ T) : False := by
   obtain ⟨m, hm⟩ := hc x y
   exact hy (hm ▸ hT m)
 
-/-- Validity passes to the inverse permutation. -/
+/-- Validity passes to the inverse permutation.
+@isnad1 id=validper.1h3v.s6.ec5c8737d849 from=translated src=- shape=49db4a2c vocab=cef60713
+-/
 lemma validPerm_inv {k : ℕ} {S : Finset ℕ} {σ : Equiv.Perm S} (hv : ValidPerm k σ) :
     ValidPerm k σ⁻¹ := by
   intro s
@@ -618,7 +675,9 @@ lemma validPerm_inv {k : ℕ} {S : Finset ℕ} {σ : Equiv.Perm S} (hv : ValidPe
   rw [h2] at h
   exact good_comm h
 
-/-- Connectivity passes to the inverse permutation. -/
+/-- Connectivity passes to the inverse permutation.
+@isnad1 id=connecte.1h2v.s5.44d7931054a6 from=translated src=- shape=0b4e1f20 vocab=20b1f752
+-/
 lemma connectedP_inv {S : Finset ℕ} {σ : Equiv.Perm S} (hc : ConnectedP σ) :
     ConnectedP σ⁻¹ := by
   have hiter : ∀ m : ℕ, ∀ s t : S, (⇑(σ⁻¹))^[m] s = t ↔ σ^[m] t = s := by
@@ -636,7 +695,9 @@ lemma connectedP_inv {S : Finset ℕ} {σ : Equiv.Perm S} (hc : ConnectedP σ) :
   obtain ⟨m, hm⟩ := hc t s
   exact ⟨m, (hiter m s t).mpr hm⟩
 
-/-- A connected permutation on at least two elements has no fixed point. -/
+/-- A connected permutation on at least two elements has no fixed point.
+@isnad1 id=ne.2h3v.s7.09aba544171b from=translated src=- shape=636adc89 vocab=edeae404
+-/
 lemma ne_of_connectedP {S : Finset ℕ} {σ : Equiv.Perm S} (hc : ConnectedP σ)
     (h : 2 ≤ #S) (s : S) : σ s ≠ s := by
   intro hfix
@@ -654,7 +715,9 @@ lemma ne_of_connectedP {S : Finset ℕ} {σ : Equiv.Perm S} (hc : ConnectedP σ)
   exact hts hm.symm
 
 /-- The core uniqueness statement: two valid connected permutations of `S` are
-equal or inverse to each other.  Proved by strong induction on `#S`. -/
+equal or inverse to each other.  Proved by strong induction on `#S`.
+@isnad1 id=or.7h5v.s7.23eff8933a71 from=translated src=- shape=50cbe107 vocab=85922d8e
+-/
 lemma perm_unique {k : ℕ} (n : ℕ) :
     ∀ (S : Finset ℕ) (_ : #S = n) (_ : 1 ≤ #S) (_ : ∀ p ∈ S, Odd p ∧ Nat.Prime p)
     (σ₁ σ₂ : Equiv.Perm S), ValidPerm k σ₁ → ValidPerm k σ₂ →

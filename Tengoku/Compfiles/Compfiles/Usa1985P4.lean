@@ -39,18 +39,25 @@ def badPair (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (p : Fin n 
     Finset (Fin n) :=
   Finset.univ.filter fun X => mixedRel n G X p
 
+/--
+@isnad1 id=eq.0h3v.s5.cd9b4d3efdd3 from=translated src=- shape=d830172e vocab=7440727f
+-/
 lemma badPair_eq_bipartiteBelow (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj]
     (p : Fin n × Fin n) :
     badPair n G p = Finset.univ.bipartiteBelow (mixedRel n G) p := rfl
 
-/-- The neighbourhood of `X` does not contain `X`. -/
+/-- The neighbourhood of `X` does not contain `X`.
+@isnad1 id=le.0h3v.s6.be8efa061a14 from=translated src=- shape=1a1e3395 vocab=35e5a541
+-/
 lemma neighborFinset_subset_erase (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj]
     (X : Fin n) : G.neighborFinset X ⊆ Finset.univ.erase X := by
   intro Z hZ
   rw [SimpleGraph.mem_neighborFinset] at hZ
   exact Finset.mem_erase.mpr ⟨(SimpleGraph.Adj.ne hZ).symm, Finset.mem_univ Z⟩
 
-/-- The degree of a vertex is at most `n - 1`. -/
+/-- The degree of a vertex is at most `n - 1`.
+@isnad1 id=le.0h3v.s6.f7a82785b9ac from=translated src=- shape=d9616611 vocab=45bde0f0
+-/
 lemma degree_le (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (X : Fin n) :
     G.degree X ≤ n - 1 := by
   have h := Finset.card_le_card (neighborFinset_subset_erase n G X)
@@ -61,7 +68,9 @@ lemma degree_le (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (X : Fi
 /-- For a fixed vertex `X`, the number of ordered pairs `(Y, Z)` with `Y ≠ Z` such that
 `X` is joined to exactly one of `Y` and `Z` equals `2 * (d * (n - 1 - d))`, where
 `d = G.degree X`: choose which endpoint is adjacent to `X`, then choose that endpoint
-(a neighbour of `X`) and the other one (a non-neighbour different from `X`). -/
+(a neighbour of `X`) and the other one (a non-neighbour different from `X`).
+@isnad1 id=eq.0h3v.s7.72faa371dd43 from=translated src=- shape=d91a18fc vocab=21a60ce1
+-/
 lemma fiber_card (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (X : Fin n) :
     ((Finset.offDiag Finset.univ).bipartiteAbove (mixedRel n G) X).card =
       2 * (G.degree X * (n - 1 - G.degree X)) := by
@@ -135,7 +144,9 @@ lemma fiber_card (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (X : F
   ring
 
 /-- Double counting: summing the number of bad vertices over all ordered pairs
-`(Y, Z)` with `Y ≠ Z` equals the sum over vertices `X` of `2 * (d_X * (n - 1 - d_X))`. -/
+`(Y, Z)` with `Y ≠ Z` equals the sum over vertices `X` of `2 * (d_X * (n - 1 - d_X))`.
+@isnad1 id=eq.0h2v.s7.88f84504ad98 from=translated src=- shape=e72f0497 vocab=e8c52fc6
+-/
 lemma double_count (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] :
     (∑ p ∈ Finset.offDiag (Finset.univ : Finset (Fin n)), (badPair n G p).card) =
       ∑ X : Fin n, 2 * (G.degree X * (n - 1 - G.degree X)) := by
@@ -149,7 +160,9 @@ lemma double_count (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] :
         Finset.sum_congr rfl fun X _ => fiber_card n G X
 
 /-- Twice the total number of bad incidences is at most `n * (n - 1)^2`, since for each
-vertex `X` of degree `d` we have `4 * d * (n - 1 - d) ≤ (n - 1)^2` (AM-GM). -/
+vertex `X` of degree `d` we have `4 * d * (n - 1 - d) ≤ (n - 1)^2` (AM-GM).
+@isnad1 id=le.0h2v.s6.861878f71cb1 from=translated src=- shape=1e6a48a2 vocab=2aa456b3
+-/
 lemma two_mul_sum_badPair_le (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] :
     2 * (∑ p ∈ Finset.offDiag (Finset.univ : Finset (Fin n)), (badPair n G p).card) ≤
       n * (n - 1)^2 := by
@@ -169,7 +182,9 @@ lemma two_mul_sum_badPair_le (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G
         simp
 
 /-- Averaging: some ordered pair `(A, B)` with `A ≠ B` has at most `⌊(n - 1)/2⌋`
-bad remaining vertices. -/
+bad remaining vertices.
+@isnad1 id=ex.1h2v.s6.ac052821ebe2 from=translated src=- shape=e9405dc4 vocab=7f361087
+-/
 lemma exists_pair_le (n : ℕ) (hn : 2 < n) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] :
     ∃ p ∈ Finset.offDiag (Finset.univ : Finset (Fin n)),
       (badPair n G p).card ≤ (n - 1) / 2 := by
@@ -201,7 +216,9 @@ lemma exists_pair_le (n : ℕ) (hn : 2 < n) (G : SimpleGraph (Fin n)) [Decidable
   exact absurd chain (not_le_of_gt key)
 
 /-- The vertices joined to both or neither endpoint of `p` are the remaining vertices
-that are not bad; there are `(n - 2) - (#bad)` of them. -/
+that are not bad; there are `(n - 2) - (#bad)` of them.
+@isnad1 id=eq.1h3v.s8.fdab5c9f3899 from=translated src=- shape=cbaa791a vocab=3e4d3f77
+-/
 lemma answer_card (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (p : Fin n × Fin n)
     (hp : p ∈ Finset.offDiag (Finset.univ : Finset (Fin n))) :
     (Finset.univ.filter fun X => X ≠ p.1 ∧ X ≠ p.2 ∧ (G.Adj X p.1 ↔ G.Adj X p.2)).card =

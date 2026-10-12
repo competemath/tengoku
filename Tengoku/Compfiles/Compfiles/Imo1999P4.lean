@@ -19,12 +19,18 @@ a prime, n not exceeded 2p, and (p-1)ⁿ + 1 is divisible by of nᵖ⁻¹.
 
 namespace Imo1999P4
 
+/--
+@isnad1 id=ex.1h1v.s5.80ba436e82f8 from=translated src=- shape=82690663 vocab=eca7dd5f
+-/
 lemma exists_least_prime_factor {n : ℕ} (hn : n ≠ 1) :
     ∃ p : ℕ, p.Prime ∧ p ∣ n ∧ ∀ q : ℕ, q.Prime → q ∣ n → p ≤ q := by
   use Nat.minFac n, Nat.minFac_prime hn, Nat.minFac_dvd n
   intro q hq hqn
   exact Nat.minFac_le_of_dvd hq.two_le hqn
 
+/--
+@isnad1 id=le.3h3v.s5.0599729a3022 from=translated src=- shape=3a136353 vocab=c6ec5565
+-/
 lemma padicValNat_le_padicValNat_of_dvd {p a b : ℕ} (hb : b ≠ 0) (hp : p.Prime) (hab : a ∣ b) :
     padicValNat p a ≤ padicValNat p b := by
   have : Fact (Nat.Prime p) := Fact.mk hp
@@ -32,6 +38,9 @@ lemma padicValNat_le_padicValNat_of_dvd {p a b : ℕ} (hb : b ≠ 0) (hp : p.Pri
   apply dvd_trans _ hab
   exact pow_padicValNat_dvd
 
+/--
+@isnad1 id=dvd.5h3v.s6.06aa3800d2ff from=translated src=- shape=b52a39b0 vocab=b5fe6961
+-/
 lemma aux₁ {a p n : ℕ} (hp : p.Prime) (hp' : 2 < p) (hn : 0 < n)
     (hnp : (p - 1).Coprime n) (hpa: p ∣ a ^ n + 1) :
     p ∣ a + 1 := by
@@ -59,6 +68,9 @@ lemma aux₁ {a p n : ℕ} (hp : p.Prime) (hp' : 2 < p) (hn : 0 < n)
   simp_all only [orderOf_dvd_iff_pow_eq_one, sq_eq_one_iff]
   aesop
 
+/--
+@isnad1 id=coprime.2h2v.s5.66901ffa8126 from=translated src=- shape=caa0d715 vocab=66d94103
+-/
 lemma aux₂ {p n: ℕ} (hp : p.Prime) (hpn : ∀ q : ℕ, q.Prime → q ∣ n → p ≤ q) :
     (p - 1).Coprime n := by
   apply Nat.coprime_of_dvd'

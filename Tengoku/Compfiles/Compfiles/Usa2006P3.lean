@@ -49,16 +49,24 @@ def Pbound (f : ℤ[X]) (B : ℕ) : Prop :=
   ∀ n : ℕ, f.eval ((n : ℤ) ^ 2) ≠ 0 ∧
     ∀ q : ℕ, q.Prime → (q : ℤ) ∣ f.eval ((n : ℤ) ^ 2) → q ≤ 2 * n + B
 
+/--
+@isnad1 id=eq.1h1v.s4.de0b0fbb683f from=translated src=- shape=2039cfb7 vocab=2a0d3e58
+-/
 lemma gpd_eq_max' {m : ℤ} (h : m.natAbs.primeFactors.Nonempty) :
     gpd m = m.natAbs.primeFactors.max' h := by
   rw [gpd, ← Finset.coe_max', WithBot.unbotD_coe]
 
+/--
+@isnad1 id=eq.1h1v.s4.4e668e399973 from=translated src=- shape=9a58d64f vocab=245b2028
+-/
 lemma gpd_eq_one_of_not_nonempty {m : ℤ} (h : ¬ m.natAbs.primeFactors.Nonempty) :
     gpd m = 1 := by
   rw [Finset.not_nonempty_iff_eq_empty] at h
   rw [gpd, h, Finset.max_empty, WithBot.unbotD_bot]
 
-/-- The two formulations of the boundedness condition agree. -/
+/-- The two formulations of the boundedness condition agree.
+@isnad1 id=iff.0h1v.s3.15029a8bb00f from=translated src=- shape=df37c127 vocab=8582448c
+-/
 lemma bddCond_iff (f : ℤ[X]) : BddCond f ↔ ∃ B, Pbound f B := by
   constructor
   · rintro ⟨B, hB⟩
@@ -110,12 +118,18 @@ lemma bddCond_iff (f : ℤ[X]) : BddCond f ↔ ∃ B, Pbound f B := by
       have h3 : ((gpd (f.eval ((n : ℤ) ^ 2)) : ℕ) : ℤ) = 1 := by exact_mod_cast hgpd
       linarith [le_max_right (B : ℤ) 1]
 
+/--
+@isnad1 id=eq.0h1v.s4.50c06c9ba675 from=translated src=- shape=22588f5d vocab=912ba513
+-/
 lemma natAbs_list_prod (L : List ℤ) :
     (L.prod).natAbs = (L.map Int.natAbs).prod := by
   induction L with
   | nil => simp
   | cons a l ih => simp [List.prod_cons, Int.natAbs_mul, ih]
 
+/--
+@isnad1 id=ex.2h2v.s5.374494e3612f from=translated src=- shape=8e08d3d4 vocab=92b9c611
+-/
 lemma prime_dvd_list_prod {q : ℕ} (hq : q.Prime) (L : List ℕ)
     (h : q ∣ L.prod) : ∃ a ∈ L, q ∣ a := by
   induction L with
@@ -129,10 +143,16 @@ lemma prime_dvd_list_prod {q : ℕ} (hq : q.Prime) (L : List ℕ)
     · obtain ⟨a, ha, hd⟩ := ih h
       exact ⟨a, List.mem_cons_of_mem b ha, hd⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.441e31712cda from=translated src=- shape=f8ccebc0 vocab=280c6f14
+-/
 lemma eval_factor (a x : ℤ) :
     (C 4 * X - C (a ^ 2)).eval x = 4 * x - a ^ 2 := by
   simp [eval_sub, eval_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.6675bb29834d from=translated src=- shape=1c059fed vocab=79310819
+-/
 lemma eval_prod_factors (L : List ℤ) (x : ℤ) :
     ((L.map fun a ↦ C 4 * X - C (a ^ 2)).prod).eval x =
       (L.map fun a ↦ 4 * x - a ^ 2).prod := by
@@ -142,13 +162,22 @@ lemma eval_prod_factors (L : List ℤ) (x : ℤ) :
     rw [List.map_cons, List.prod_cons, List.map_cons, List.prod_cons, eval_mul, ih,
       eval_factor]
 
+/--
+@isnad1 id=eq.0h2v.s6.ee9b9990e244 from=translated src=- shape=991f1d7e vocab=fb2191f5
+-/
 lemma factor_eq (a n : ℤ) : 4 * n ^ 2 - a ^ 2 = (2 * n - a) * (2 * n + a) := by ring
 
+/--
+@isnad1 id=false.2h1v.s3.a8b017adc6ae from=translated src=- shape=cd74e527 vocab=3c6052ff
+-/
 lemma odd_ne_even {a : ℤ} (ho : Odd a) (he : Even a) : False := by
   obtain ⟨k, hk⟩ := ho
   obtain ⟨m, hm⟩ := he
   lia
 
+/--
+@isnad1 id=ne.1h2v.s6.5812e13a42d2 from=translated src=- shape=97246e2b vocab=9e4300a1
+-/
 lemma odd_sq_sub_four_mul_ne_zero {a : ℤ} (ha : Odd a) (n : ℤ) :
     4 * n ^ 2 - a ^ 2 ≠ 0 := by
   intro hzero
@@ -159,7 +188,9 @@ lemma odd_sq_sub_four_mul_ne_zero {a : ℤ} (ha : Odd a) (n : ℤ) :
   · exact odd_ne_even ha ⟨-n, by linarith⟩
 
 /-- The easy direction: every polynomial of the classified form satisfies
-the boundedness condition. -/
+the boundedness condition.
+@isnad1 id=ex.1h1v.s3.a8502f1dc07d from=translated src=- shape=19b9bd2f vocab=bf7c306e
+-/
 lemma pbound_of_classification (f : ℤ[X]) (h : Classification f) :
     ∃ B, Pbound f B := by
   obtain ⟨c, L, hc, ho, rfl⟩ := h
@@ -215,7 +246,9 @@ lemma pbound_of_classification (f : ℤ[X]) (h : Classification f) :
         lia
 
 /-- **Schur's theorem**: a nonconstant polynomial with integer coefficients
-takes some value divisible by a prime outside any given finite set of primes. -/
+takes some value divisible by a prime outside any given finite set of primes.
+@isnad1 id=ex.2h2v.s6.6983c78d8545 from=translated src=- shape=16bdfeaa vocab=9aefb079
+-/
 lemma schur (h : ℤ[X]) (hd : h.natDegree ≠ 0) (s : Finset ℕ) (hs : ∀ q ∈ s, q.Prime) :
     ∃ q : ℕ, q.Prime ∧ q ∉ s ∧ ∃ m : ℕ, (q : ℤ) ∣ h.eval (m : ℤ) := by
   by_cases hc0 : h.eval 0 = 0
@@ -368,6 +401,9 @@ lemma schur (h : ℤ[X]) (hd : h.natDegree ≠ 0) (s : Finset ℕ) (hs : ∀ q �
 def Fs (f : ℤ[X]) (t : ℤ) : ℤ :=
   ∑ i ∈ Finset.range (f.natDegree + 1), 4 ^ (f.natDegree - i) * f.coeff i * t ^ (2 * i)
 
+/--
+@isnad1 id=eq.0h2v.s6.186e606b697c from=translated src=- shape=3a0722cc vocab=fe0ea5be
+-/
 lemma Fs_two_mul (f : ℤ[X]) (t : ℤ) :
     Fs f (2 * t) = 4 ^ f.natDegree * f.eval (t ^ 2) := by
   rw [Fs, eval_eq_sum_range, Finset.mul_sum]
@@ -385,12 +421,18 @@ lemma Fs_two_mul (f : ℤ[X]) (t : ℤ) :
       = (4 ^ (f.natDegree - i) * 4 ^ i) * (f.coeff i * t ^ (2 * i)) := by ring
     _ = 4 ^ f.natDegree * (f.coeff i * t ^ (2 * i)) := by rw [e2]
 
+/--
+@isnad1 id=eq.0h2v.s4.05c5766f84a5 from=translated src=- shape=8454dad2 vocab=68e30b74
+-/
 lemma Fs_neg (f : ℤ[X]) (t : ℤ) : Fs f (-t) = Fs f t := by
   unfold Fs
   apply Finset.sum_congr rfl
   intro i _
   rw [Even.neg_pow ⟨i, two_mul i⟩ t]
 
+/--
+@isnad1 id=modeq.1h5v.s6.35f5d0035399 from=translated src=- shape=148af5ba vocab=1f1c65d5
+-/
 lemma intModEq_sum {ι : Type*} [DecidableEq ι] (s : Finset ι) {g₁ g₂ : ι → ℤ} {n : ℤ}
     (h : ∀ i ∈ s, g₁ i ≡ g₂ i [ZMOD n]) :
     (∑ i ∈ s, g₁ i) ≡ (∑ i ∈ s, g₂ i) [ZMOD n] := by
@@ -401,10 +443,16 @@ lemma intModEq_sum {ι : Type*} [DecidableEq ι] (s : Finset ι) {g₁ g₂ : ι
     exact Int.ModEq.add (h a (Finset.mem_insert_self a s))
       (ih fun i hi ↦ h i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=modeq.1h4v.s4.b15e2a31c7bc from=translated src=- shape=a20b756e vocab=4c51622b
+-/
 lemma Fs_modEq (f : ℤ[X]) {q : ℤ} {a b : ℤ} (h : a ≡ b [ZMOD q]) :
     Fs f a ≡ Fs f b [ZMOD q] :=
   intModEq_sum _ fun _ _ ↦ Int.ModEq.mul (Int.ModEq.refl _) (Int.ModEq.pow _ h)
 
+/--
+@isnad1 id=eq.0h2v.s6.914ab78cc72f from=translated src=- shape=787243b9 vocab=d6271a7f
+-/
 lemma Fs_cast (f : ℤ[X]) (a : ℤ) :
     (4 : ℚ) ^ f.natDegree * (f.map (Int.castRingHom ℚ)).eval ((a : ℚ) ^ 2 / 4) =
       ((Fs f a : ℤ) : ℚ) := by
@@ -426,6 +474,9 @@ lemma Fs_cast (f : ℤ[X]) (a : ℤ) :
   push_cast
   ring
 
+/--
+@isnad1 id=modeq.1h4v.s4.bd01e4239ea2 from=translated src=- shape=2ca59f80 vocab=010e8ce1
+-/
 lemma eval_modEq (f : ℤ[X]) {q : ℤ} {a b : ℤ} (h : a ≡ b [ZMOD q]) :
     f.eval a ≡ f.eval b [ZMOD q] := by
   induction f using Polynomial.induction_on with
@@ -440,7 +491,9 @@ lemma eval_modEq (f : ℤ[X]) {q : ℤ} {a b : ℤ} (h : a ≡ b [ZMOD q]) :
 root of the form `(2k+1)²/4` over `ℚ`. This is the heart of the proof:
 a large prime `q` dividing `f(n²)` forces `q = 2n + 2k + 1` with `k ≤ B`,
 and then `q` divides `Fs f (2k+1)`; since there are infinitely many such
-primes but only finitely many possible `k`, some `Fs f (2k+1)` vanishes. -/
+primes but only finitely many possible `k`, some `Fs f (2k+1)` vanishes.
+@isnad1 id=ex.2h2v.s6.dc1215c4d85e from=translated src=- shape=d01695b5 vocab=e0b85e30
+-/
 lemma exists_root_of_pbound (f : ℤ[X]) (hd : f.natDegree ≠ 0) (B : ℕ) (hB : Pbound f B) :
     ∃ k : ℕ, (f.map (Int.castRingHom ℚ)).eval (((2 * k + 1 : ℕ) : ℚ) ^ 2 / 4) = 0 := by
   by_contra hcon
@@ -563,19 +616,30 @@ lemma exists_root_of_pbound (f : ℤ[X]) (hd : f.natDegree ≠ 0) (B : ℕ) (hB 
     rwa [Int.natAbs_natCast] at h1
   exact hqs (Finset.mem_insert_of_mem hqmem)
 
+/--
+@isnad1 id=coprime.1h1v.s3.67bf51ac4cd9 from=translated src=- shape=eb37cbf7 vocab=685338c7
+-/
 lemma odd_nat_coprime_two {m : ℕ} (h : Odd m) : Nat.Coprime 2 m := by
   rw [Nat.prime_two.coprime_iff_not_dvd]
   rintro ⟨l, hl⟩
   obtain ⟨k, hk⟩ := h
   lia
 
+/--
+@isnad1 id=eq.0h1v.s7.c96e2f224520 from=translated src=- shape=84e92dfc vocab=ba33658a
+-/
 lemma coeff_factor_one (a : ℤ) : (C 4 * X - C (a ^ 2) : ℤ[X]).coeff 1 = 4 := by
   rw [coeff_sub, coeff_C_mul, coeff_X_one, coeff_C_succ, mul_one, sub_zero]
 
+/--
+@isnad1 id=eq.0h1v.s7.6841270eac34 from=translated src=- shape=61f17a6e vocab=c7217aa4
+-/
 lemma coeff_factor_zero (a : ℤ) : (C 4 * X - C (a ^ 2) : ℤ[X]).coeff 0 = -a ^ 2 := by
   rw [coeff_sub, coeff_C_mul, coeff_X_zero, coeff_C_zero, mul_zero, zero_sub]
 
-/-- `4X − a²` with `a` odd is a primitive polynomial over `ℤ`. -/
+/-- `4X − a²` with `a` odd is a primitive polynomial over `ℤ`.
+@isnad1 id=isprimit.1h1v.s7.7ae827a6ab74 from=translated src=- shape=6f43bc12 vocab=b0d57506
+-/
 lemma isPrimitive_factor {a : ℤ} (ha : Odd a) : (C 4 * X - C (a ^ 2)).IsPrimitive := by
   rw [isPrimitive_iff_isUnit_of_C_dvd]
   intro r hr
@@ -607,7 +671,9 @@ lemma isPrimitive_factor {a : ℤ} (ha : Odd a) : (C 4 * X - C (a ^ 2)).IsPrimit
     exact_mod_cast h
 
 /-- If `f` has the root `(2k+1)²/4` over `ℚ`, then `4X − (2k+1)²`
-divides `f` over `ℤ` (Gauss's lemma). -/
+divides `f` over `ℤ` (Gauss's lemma).
+@isnad1 id=dvd.1h2v.s8.47bbb8605e5e from=translated src=- shape=1371bc2d vocab=ae4f4cf9
+-/
 lemma factor_dvd_of_root (f : ℤ[X]) {k : ℕ}
     (hroot : (f.map (Int.castRingHom ℚ)).eval (((2 * k + 1 : ℕ) : ℚ) ^ 2 / 4) = 0) :
     (C 4 * X - C (((2 * k + 1 : ℕ) : ℤ) ^ 2)) ∣ f := by
@@ -638,7 +704,9 @@ lemma factor_dvd_of_root (f : ℤ[X]) {k : ℕ}
     exact hdvd
   exact hprim.dvd_of_fraction_map_dvd_fraction_map hdvdQ
 
-/-- The cofactor of a `4X − a²` factor still satisfies the prime bound. -/
+/-- The cofactor of a `4X − a²` factor still satisfies the prime bound.
+@isnad1 id=pbound.2h4v.s7.0fcc3d59c00d from=translated src=- shape=c605791b vocab=7147a138
+-/
 lemma pbound_of_mul_factor {f f₁ : ℤ[X]} {a : ℤ} (B : ℕ)
     (hf : f = (C 4 * X - C (a ^ 2)) * f₁) (hB : Pbound f B) : Pbound f₁ B := by
   intro n
@@ -650,7 +718,9 @@ lemma pbound_of_mul_factor {f f₁ : ℤ[X]} {a : ℤ} (B : ℕ)
 
 /-- The classification theorem, proved by strong induction on the degree:
 a nonconstant `f` satisfying the bound has a root `(2k+1)²/4`, hence a
-factor `4X − (2k+1)²`, and the cofactor has smaller degree. -/
+factor `4X − (2k+1)²`, and the cofactor has smaller degree.
+@isnad1 id=classifi.2h2v.s4.d7f3e7656ea6 from=translated src=- shape=5ca36683 vocab=aa4bcbdb
+-/
 lemma classification_of_pbound : ∀ d : ℕ, ∀ f : ℤ[X], f.natDegree = d →
     (∃ B, Pbound f B) → Classification f := by
   intro d
@@ -702,7 +772,9 @@ lemma classification_of_pbound : ∀ d : ℕ, ∀ f : ℤ[X], f.natDegree = d �
       rw [hf₁, List.map_cons, List.prod_cons]
       ring
 
-/-- The full classification, in the prime-bound formulation. -/
+/-- The full classification, in the prime-bound formulation.
+@isnad1 id=iff.0h1v.s3.3f0d01811412 from=translated src=- shape=929981bb vocab=bf7c306e
+-/
 lemma classification_iff_pbound (f : ℤ[X]) :
     (∃ B, Pbound f B) ↔ Classification f :=
   ⟨fun h ↦ classification_of_pbound f.natDegree f rfl h, pbound_of_classification f⟩

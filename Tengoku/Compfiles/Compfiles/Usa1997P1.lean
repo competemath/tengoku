@@ -40,14 +40,22 @@ noncomputable def seq (p : ℕ → ℕ) (x₀ : ℝ) : ℕ → ℝ
 for the rational numbers in the open interval (0, 1). -/
 abbrev solution_set : Set ℝ := Set.Ioo 0 1 ∩ Set.range ((↑) : ℚ → ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s4.b3e2765d6810 from=translated src=- shape=d8221217 vocab=3331684d
+-/
 lemma seq_zero (p : ℕ → ℕ) (x₀ : ℝ) : seq p x₀ 0 = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.fd5a1d43f97e from=translated src=- shape=8369bec6 vocab=5db76298
+-/
 lemma seq_succ (p : ℕ → ℕ) (x₀ : ℝ) (k : ℕ) :
     seq p x₀ (k + 1) =
       if seq p x₀ k = 0 then 0 else Int.fract ((p k : ℝ) / seq p x₀ k) := rfl
 
 /-- Shifting the starting value by one step is the same as shifting the
-sequence of numerators. -/
+sequence of numerators.
+@isnad1 id=eq.0h3v.s5.1567e3c5000d from=translated src=- shape=e2b35ec5 vocab=d4823560
+-/
 lemma seq_shift (p : ℕ → ℕ) (x₀ : ℝ) :
     ∀ k : ℕ, seq (fun n ↦ p (n + 1)) (seq p x₀ 1) k = seq p x₀ (k + 1)
   | 0 => rfl
@@ -58,7 +66,9 @@ lemma seq_shift (p : ℕ → ℕ) (x₀ : ℝ) :
 /-- First direction: starting from a positive rational `a / b`, the sequence
 reaches zero, because the numerator strictly decreases at each nonzero step.
 (The values `p k` only need to be positive integers; primality is irrelevant
-for this direction.) -/
+for this direction.)
+@isnad1 id=ex.3h3v.s6.b416f06774fd from=translated src=- shape=660ec587 vocab=eb4a90d5
+-/
 lemma terminates_of_rat :
     ∀ a : ℕ, 0 < a → ∀ p : ℕ → ℕ, (∀ k, 0 < p k) →
       ∀ b : ℕ, 0 < b → ∃ k, seq p ((a : ℝ) / b) k = 0 := by
@@ -87,7 +97,9 @@ lemma terminates_of_rat :
       exact hk
 
 /-- Second direction: if the term at step `k + 1` is rational, then so is the
-term at step `k`. -/
+term at step `k`.
+@isnad1 id=ex.2h3v.s5.1b9a39307d62 from=translated src=- shape=4d56213e vocab=27f603e8
+-/
 lemma rat_cast_of_seq_succ (p : ℕ → ℕ) (hp : ∀ k, 0 < p k) (x₀ : ℝ) (k : ℕ)
     (h : ∃ q : ℚ, seq p x₀ (k + 1) = (q : ℝ)) :
     ∃ q : ℚ, seq p x₀ k = (q : ℝ) := by
@@ -116,7 +128,9 @@ lemma rat_cast_of_seq_succ (p : ℕ → ℕ) (hp : ∀ k, 0 < p k) (x₀ : ℝ) 
     ring
 
 /-- If some term of the sequence is rational, then the starting value is
-rational (by downward induction). -/
+rational (by downward induction).
+@isnad1 id=ex.2h3v.s5.603b0f123e9e from=translated src=- shape=282ca621 vocab=904ce389
+-/
 lemma rat_cast_of_seq (p : ℕ → ℕ) (hp : ∀ k, 0 < p k) (x₀ : ℝ) :
     ∀ k : ℕ, (∃ q : ℚ, seq p x₀ k = (q : ℝ)) → ∃ q : ℚ, x₀ = (q : ℝ)
   | 0, h => h

@@ -49,7 +49,9 @@ Brownian motion.)
 -/
 
 /-- The key algebraic identity: the difference of the two min-terms of a pair
-of indices factors as a sign times a nonnegative min-kernel entry. -/
+of indices factors as a sign times a nonnegative min-kernel entry.
+@isnad1 id=eq.4h4v.s7.a1d361da26da from=translated src=- shape=44dbfe15 vocab=b5bb55dc
+-/
 theorem key_identity (a b c d : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (hd : 0 ≤ d) :
     min (a * d) (c * b) - min (a * c) (b * d) =
       (if b ≤ a then (1 : ℝ) else -1) * (if d ≤ c then (1 : ℝ) else -1) *
@@ -100,7 +102,9 @@ theorem key_identity (a b c d : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c
 
 /-- The min kernel `Kᵢⱼ = min (s i) (s j)` is positive semidefinite: its
 quadratic form is nonnegative for every real vector `z`. Proved by strong
-induction on the index set, peeling off an index where `s` is minimal. -/
+induction on the index set, peeling off an index where `s` is minimal.
+@isnad1 id=le.1h4v.s6.478d0d21de97 from=translated src=- shape=7bc0114c vocab=0837a221
+-/
 theorem min_kernel_nonneg {ι : Type*} [DecidableEq ι] (z : ι → ℝ) :
     ∀ (T : Finset ι) (s : ι → ℝ), (∀ i ∈ T, 0 ≤ s i) →
       0 ≤ ∑ i ∈ T, ∑ j ∈ T, z i * z j * min (s i) (s j) := by
@@ -175,7 +179,9 @@ theorem min_kernel_nonneg {ι : Type*} [DecidableEq ι] (z : ι → ℝ) :
 
 /-- The generalized min kernel `Mᵢⱼ = min (u i * w j) (u j * w i)`, with `u` and
 `w` nonnegative, is positive semidefinite. On the support of `w` it equals
-`w i * w j * min (u i / w i) (u j / w j)`, so this reduces to `min_kernel_nonneg`. -/
+`w i * w j * min (u i / w i) (u j / w j)`, so this reduces to `min_kernel_nonneg`.
+@isnad1 id=le.2h5v.s7.91801bb89d40 from=translated src=- shape=353748ca vocab=0837a221
+-/
 theorem kernel_nonneg {ι : Type*} [DecidableEq ι] (S : Finset ι) (u w z : ι → ℝ)
     (hu : ∀ i ∈ S, 0 ≤ u i) (hw : ∀ i ∈ S, 0 ≤ w i) :
     0 ≤ ∑ i ∈ S, ∑ j ∈ S, z i * z j * min (u i * w j) (u j * w i) := by

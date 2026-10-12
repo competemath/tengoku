@@ -30,6 +30,7 @@ This is the Vieta elimination step of the problem: writing the four roots
 of the quartic as `a, b, c, d` with `s = a + b` and `p = a * b`, the two
 remainder relations are exactly the third and fourth elementary symmetric
 relations between the roots.
+@isnad1 id=eq.2h2v.s8.6e5d1583494c from=translated src=- shape=57f48546 vocab=3f072e55
 -/
 lemma sextic_of_zero_remainder {s p : ℝ}
     (hr1 : s ^ 3 + s ^ 2 - 2 * p * s - p = 0)

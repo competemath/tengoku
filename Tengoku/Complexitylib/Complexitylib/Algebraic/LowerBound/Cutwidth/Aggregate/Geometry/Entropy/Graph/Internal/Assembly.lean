@@ -24,7 +24,9 @@ open scoped Classical
 
 variable {V E : Type*} [Fintype V] [DecidableEq V] [DecidableEq E]
 
-/-- Local zero-, one-, and two-parent kernels assemble into a joint edge-message weight. -/
+/-- Local zero-, one-, and two-parent kernels assemble into a joint edge-message weight.
+@isnad1 id=nonempty.0h7v.s8.69747bf606c1 from=translated src=- shape=5f44cbb0 vocab=1683ccde
+-/
 theorem exists_weightBound_tuple_of_local
     (seed : ∀ e : SignedEdge V, WeightBound e.eval (Real.binEntropy (1 / 4)))
     (one : ∀ e f : SignedEdge V,

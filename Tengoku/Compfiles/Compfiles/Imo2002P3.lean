@@ -27,10 +27,16 @@ namespace Imo2002P3
 section
 open Polynomial
 
+/--
+@isnad1 id=eq.1h1v.s6.241b7876d340 from=translated src=- shape=5821ca91 vocab=2792c19c
+-/
 lemma natDegree_numerpol {m : ℕ} (hm : 3 ≤ m) :
     (X ^ m + X - 1 : ℤ[X]).natDegree = m := by
   compute_degree <;> grind
 
+/--
+@isnad1 id=monic.1h1v.s6.877f52052f05 from=translated src=- shape=1f8459cf vocab=c8a1b0e8
+-/
 lemma monic_numerpol {m : ℕ} (hm : 3 ≤ m) :
     (X ^ m + X - 1 : ℤ[X]).Monic := by
   apply Monic.sub_of_left
@@ -43,10 +49,16 @@ lemma monic_numerpol {m : ℕ} (hm : 3 ≤ m) :
     · rw [degree_X_pow, degree_X, Nat.one_lt_cast]
       lia
 
+/--
+@isnad1 id=eq.1h1v.s7.7c426887c953 from=translated src=- shape=b91c12a9 vocab=2792c19c
+-/
 lemma natDegree_denompol {n : ℕ} (hn : 3 ≤ n) :
     (X ^ n + X ^ 2 - 1 : ℤ[X]).natDegree = n := by
   compute_degree <;> grind
 
+/--
+@isnad1 id=monic.1h1v.s7.7eb2f929fc00 from=translated src=- shape=2680fa2d vocab=c8a1b0e8
+-/
 lemma monic_denompol {n : ℕ} (hn : 3 ≤ n) :
     (X ^ n + X ^ 2 - 1 : ℤ[X]).Monic := by
   apply Monic.sub_of_left

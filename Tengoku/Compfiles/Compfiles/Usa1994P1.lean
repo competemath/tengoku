@@ -21,7 +21,9 @@ range bₙ, bₙ+1, bₙ+2, ... , bₙ₊₁-1.
 namespace Usa1994P1
 
 /-- If consecutive terms of `a` differ by more than one, then terms that are
-`k` indices apart differ by at least `2 * k`. -/
+`k` indices apart differ by at least `2 * k`.
+@isnad1 id=le.1h3v.s6.b45569f70993 from=translated src=- shape=7b7d50b5 vocab=923b6325
+-/
 lemma gap_lemma {a : ℕ → ℕ} (h : ∀ i, a i + 1 < a (i + 1)) (i k : ℕ) :
     a i + 2 * k ≤ a (i + k) := by
   induction k with
@@ -34,7 +36,9 @@ lemma gap_lemma {a : ℕ → ℕ} (h : ∀ i, a i + 1 < a (i + 1)) (i k : ℕ) :
         _ = a (i + (k + 1)) := by rw [Nat.add_assoc]
 
 /-- The sum of the first `n + 1` terms is at most
-`(n + 1) * (a n + 1) - (n + 1)^2`; we state it in an addition-only form. -/
+`(n + 1) * (a n + 1) - (n + 1)^2`; we state it in an addition-only form.
+@isnad1 id=le.1h2v.s7.e54f8f418036 from=translated src=- shape=d970186d vocab=b850a1bb
+-/
 lemma sum_bound {a : ℕ → ℕ} (h : ∀ i, a i + 1 < a (i + 1)) (n : ℕ) :
     (∑ i ∈ Finset.range (n + 1), a i) + (n + 1) * (n + 1) ≤
       (n + 1) * (a n + 1) := by
@@ -46,7 +50,9 @@ lemma sum_bound {a : ℕ → ℕ} (h : ∀ i, a i + 1 < a (i + 1)) (n : ℕ) :
       rw [Finset.sum_range_succ]
       nlinarith [ih, h2]
 
-/-- The key estimate: `4 * bₙ ≤ (aₙ + 1)²`. -/
+/-- The key estimate: `4 * bₙ ≤ (aₙ + 1)²`.
+@isnad1 id=le.1h2v.s6.1ca3e05acf4a from=translated src=- shape=5cc0bdac vocab=c8c50a15
+-/
 lemma key {a : ℕ → ℕ} (h : ∀ i, a i + 1 < a (i + 1)) (n : ℕ) :
     4 * (∑ i ∈ Finset.range (n + 1), a i) ≤ (a n + 1) ^ 2 := by
   have h2 := sum_bound h n

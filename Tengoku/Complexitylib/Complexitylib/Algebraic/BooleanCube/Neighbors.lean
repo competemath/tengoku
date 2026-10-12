@@ -32,20 +32,26 @@ variable [Fintype ι] [DecidableEq ι]
 /-- Flip one coordinate of a Boolean vertex. -/
 def flip (vertex : ι → Bool) (i : ι) : ι → Bool := Function.update vertex i (!(vertex i))
 
-/-- A single flip changes exactly one coordinate. -/
+/-- A single flip changes exactly one coordinate.
+@isnad1 id=eq.0h3v.s5.d86779851782 from=translated src=- shape=2673997b vocab=f48aaae1
+-/
 theorem hammingDist_flip (vertex : ι → Bool) (i : ι) : hammingDist vertex (flip vertex i) = 1 := by
   have support : Finset.univ.filter (fun j => vertex j ≠ flip vertex i j) = {i} := by
     ext j
     by_cases same : j = i <;> cases value : vertex i <;> simp [flip, same, value]
   simp [hammingDist, support]
 
-/-- A flipped vertex is different from the original vertex. -/
+/-- A flipped vertex is different from the original vertex.
+@isnad1 id=ne.0h3v.s4.a8a00da68085 from=translated src=- shape=4c355b3f vocab=492dcdbe
+-/
 theorem flip_ne (vertex : ι → Bool) (i : ι) : flip vertex i ≠ vertex := by
   intro equal
   have h := hammingDist_flip vertex i
   simp [equal] at h
 
-/-- Every neighbor is obtained by flipping a unique differing coordinate. -/
+/-- Every neighbor is obtained by flipping a unique differing coordinate.
+@isnad1 id=iff.0h3v.s5.3bca505e705f from=translated src=- shape=b5c6e2d0 vocab=54f71567
+-/
 theorem adjacent_iff_flip (left right : ι → Bool) :
     graph.Adj left right ↔ ∃ i, right = flip left i := by
   constructor
@@ -63,7 +69,9 @@ theorem adjacent_iff_flip (left right : ι → Bool) :
   · rintro ⟨i, rfl⟩
     exact hammingDist_flip left i
 
-/-- Flipping two different coordinates gives neighbors at mutual distance two. -/
+/-- Flipping two different coordinates gives neighbors at mutual distance two.
+@isnad1 id=eq.1h4v.s5.89e3a8bb1aab from=translated src=- shape=5fd41f07 vocab=f48aaae1
+-/
 theorem hammingDist_flip_flip (vertex : ι → Bool) {i j : ι} (different : i ≠ j) :
     hammingDist (flip vertex i) (flip vertex j) = 2 := by
   have support : Finset.univ.filter (fun k => flip vertex i k ≠ flip vertex j k) = {i, j} := by
@@ -72,7 +80,9 @@ theorem hammingDist_flip_flip (vertex : ι → Bool) {i j : ι} (different : i �
       cases hi : vertex i <;> cases hj : vertex j <;> simp_all [flip]
   simp [hammingDist, support, different]
 
-/-- Distinct neighbors of a Boolean vertex are never adjacent to each other. -/
+/-- Distinct neighbors of a Boolean vertex are never adjacent to each other.
+@isnad1 id=not.3h4v.s5.157b9338bc67 from=translated src=- shape=88989f21 vocab=37ae64f1
+-/
 theorem not_adjacent_of_common_neighbor {base left right : ι → Bool}
     (hl : graph.Adj base left) (hr : graph.Adj base right) (different : left ≠ right) :
     ¬graph.Adj left right := by
@@ -83,7 +93,9 @@ theorem not_adjacent_of_common_neighbor {base left right : ι → Bool}
   change hammingDist _ _ ≠ 1
   omega
 
-/-- Every clique in the Boolean cube has at most two vertices. -/
+/-- Every clique in the Boolean cube has at most two vertices.
+@isnad1 id=le.1h2v.s6.67d411fa8857 from=translated src=- shape=0c29bb69 vocab=d67f5999
+-/
 theorem card_le_two_of_pairwise_adjacent (vertices : Finset (ι → Bool))
     (clique : ∀ a ∈ vertices, ∀ b ∈ vertices, a ≠ b → graph.Adj a b) : vertices.card ≤ 2 := by
   by_contra large

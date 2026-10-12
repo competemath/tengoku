@@ -25,6 +25,9 @@ open Polynomial
 /-- A primitive fifth root of unity in `ℂ`. -/
 noncomputable abbrev ω : ℂ := Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (5 : ℂ)⁻¹)
 
+/--
+@isnad1 id=isprimit.0h0v.s3.bf40c96f0b38 from=translated src=- shape=aeae7466 vocab=46a8b1ba
+-/
 lemma isPrimitiveRoot_ω : IsPrimitiveRoot ω 5 := by
   have h := Complex.isPrimitiveRoot_exp_of_coprime 1 5 (by norm_num) (by decide)
   simpa using h

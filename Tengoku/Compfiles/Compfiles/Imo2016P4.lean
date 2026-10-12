@@ -32,9 +32,15 @@ abbrev Fragrant (s : Set ℕ+) : Prop :=
 
 abbrev P (n : ℕ) : ℕ := n^2 + n + 1
 
+/--
+@isnad1 id=injectiv.0h0v.s2.eb5fa51eef2f from=translated src=- shape=e3d48bcb vocab=dbab5f6c
+-/
 lemma P_inj : Function.Injective P :=
   StrictMono.injective <| strictMono_nat_of_lt_succ fun n ↦ by ring_nf; lia
 
+/--
+@isnad1 id=eq.0h2v.s5.f0b12de5ffe8 from=translated src=- shape=88fa5039 vocab=ff6829ec
+-/
 lemma ncard_set {a : ℕ} {b : ℕ+} : {p : ℕ+ | ∃ i : ℕ+, i ≤ b ∧ p = P (a + i)}.ncard = b := by
   have h : {p : ℕ+ | ∃ i : ℕ+, i ≤ b ∧ p = P (a + i)} =
       (fun i : ℕ+ ↦ (⟨P (a + i), by positivity⟩ : ℕ+)) '' Set.Icc 1 b := by
@@ -56,20 +62,31 @@ lemma ncard_set {a : ℕ} {b : ℕ+} : {p : ℕ+ | ∃ i : ℕ+, i ≤ b ∧ p =
     _ = (Finset.Icc 1 b).card := by rw [← Finset.coe_Icc, Set.ncard_coe_finset]
     _ = b := by rw [PNat.card_Icc]; simp
 
+/--
+@isnad1 id=not.0h1v.s3.a4cb0ee0ef5d from=translated src=- shape=4a9f68c3 vocab=921e690a
+-/
 lemma two_not_dvd_P (n : ℕ) : ¬ 2 ∣ P n := by
   have h : 2 ∣ n * (n + 1) := Even.two_dvd (Nat.even_mul_succ_self n)
   lia
 
+/--
+@isnad1 id=not.0h1v.s3.d6424996d618 from=translated src=- shape=4a9f68c3 vocab=921e690a
+-/
 lemma nine_not_dvd_P (n : ℕ) : ¬ 9 ∣ P n := by
   intro h
   obtain ⟨m, hm⟩ : ∃ m, n = 3 * m ∨ n = 3 * m + 1 ∨ n = 3 * m + 2 := ⟨n / 3, by lia⟩
   rcases hm with rfl | rfl | rfl <;> lia
 
+/--
+@isnad1 id=dvd.2h2v.s5.6f649e8d999a from=translated src=- shape=77dfa750 vocab=4a48335d
+-/
 lemma dvd_of_dvd_two_mul {g x : ℕ} (hg : ¬ 2 ∣ g) (h : g ∣ 2 * x) : g ∣ x :=
   ((Nat.Prime.coprime_iff_not_dvd Nat.prime_two).mpr hg).symm.dvd_of_dvd_mul_left h
 
 /-- A common divisor of `P (b + k)` and `P b` divides `c` whenever
-`P (b + k) - P b = 2 * c`, since values of `P` are odd. -/
+`P (b + k) - P b = 2 * c`, since values of `P` are odd.
+@isnad1 id=dvd.1h3v.s5.36ef3efb6470 from=translated src=- shape=1a1a91a0 vocab=bbe2036f
+-/
 lemma gcd_P_dvd_of_eq {b k c : ℕ} (h : P b + 2 * c = P (b + k)) :
     (P (b + k)).gcd (P b) ∣ c := by
   have hodd : ¬ 2 ∣ (P (b + k)).gcd (P b) :=
@@ -79,7 +96,9 @@ lemma gcd_P_dvd_of_eq {b k c : ℕ} (h : P b + 2 * c = P (b + k)) :
   exact Nat.gcd_dvd_left _ _
 
 /-- Adjacent values of `P` are coprime: a common divisor divides
-`(P (b+1) - P b) / 2 = b + 1`, hence divides `P b - b*(b+1) = 1`. -/
+`(P (b+1) - P b) / 2 = b + 1`, hence divides `P b - b*(b+1) = 1`.
+@isnad1 id=coprime.0h1v.s4.0e5eaca113b1 from=translated src=- shape=728c05ab vocab=244e1c3e
+-/
 lemma coprime_P_succ (b : ℕ) : Nat.Coprime (P (b + 1)) (P b) := by
   rw [Nat.coprime_iff_gcd_eq_one]
   have h1 : (P (b + 1)).gcd (P b) ∣ b + 1 := gcd_P_dvd_of_eq (by ring)
@@ -87,7 +106,9 @@ lemma coprime_P_succ (b : ℕ) : Nat.Coprime (P (b + 1)) (P b) := by
   rw [show b * (b + 1) + 1 = P b by ring]
   exact Nat.gcd_dvd_right _ _
 
-/-- The gcd of values of `P` at distance two divides 7. -/
+/-- The gcd of values of `P` at distance two divides 7.
+@isnad1 id=dvd.0h1v.s4.30ec95333cb2 from=translated src=- shape=fb8f8bae vocab=ff1c5a68
+-/
 lemma gcd_P_add_two_dvd (b : ℕ) : (P (b + 2)).gcd (P b) ∣ 7 := by
   set g := (P (b + 2)).gcd (P b) with hg
   have hg2 : g ∣ P b := Nat.gcd_dvd_right _ _
@@ -100,7 +121,9 @@ lemma gcd_P_add_two_dvd (b : ℕ) : (P (b + 2)).gcd (P b) ∣ 7 := by
   rw [show 4 * (2 * b + 3) = (8 * b + 5) + 7 by ring] at h3
   exact (Nat.dvd_add_right h2).mp h3
 
-/-- The gcd of values of `P` at distance three divides 3. -/
+/-- The gcd of values of `P` at distance three divides 3.
+@isnad1 id=dvd.0h1v.s4.6a8dc7f573bf from=translated src=- shape=fb8f8bae vocab=ff1c5a68
+-/
 lemma gcd_P_add_three_dvd (b : ℕ) : (P (b + 3)).gcd (P b) ∣ 3 := by
   set g := (P (b + 3)).gcd (P b) with hg
   have hg2 : g ∣ P b := Nat.gcd_dvd_right _ _
@@ -124,7 +147,9 @@ lemma gcd_P_add_three_dvd (b : ℕ) : (P (b + 3)).gcd (P b) ∣ 3 := by
   · exact absurd (by norm_num) h9
   · exact absurd (by norm_num) h9
 
-/-- If values of `P` at distance two have a common factor, that factor is 7. -/
+/-- If values of `P` at distance two have a common factor, that factor is 7.
+@isnad1 id=and.1h1v.s5.319bdd5fe4f6 from=translated src=- shape=bbbbaed5 vocab=439b9609
+-/
 lemma seven_dvd_P_of_not_coprime {b : ℕ} (h : ¬Nat.Coprime (P (b + 2)) (P b)) :
     7 ∣ P (b + 2) ∧ 7 ∣ P b := by
   rw [Nat.coprime_iff_gcd_eq_one] at h
@@ -132,7 +157,9 @@ lemma seven_dvd_P_of_not_coprime {b : ℕ} (h : ¬Nat.Coprime (P (b + 2)) (P b))
     ((Nat.dvd_prime (by norm_num)).mp (gcd_P_add_two_dvd b)).resolve_left h
   exact ⟨h7 ▸ Nat.gcd_dvd_left _ _, h7 ▸ Nat.gcd_dvd_right _ _⟩
 
-/-- If values of `P` at distance three have a common factor, that factor is 3. -/
+/-- If values of `P` at distance three have a common factor, that factor is 3.
+@isnad1 id=and.1h1v.s5.08a819edcb3b from=translated src=- shape=bbbbaed5 vocab=439b9609
+-/
 lemma three_dvd_P_of_not_coprime {b : ℕ} (h : ¬Nat.Coprime (P (b + 3)) (P b)) :
     3 ∣ P (b + 3) ∧ 3 ∣ P b := by
   rw [Nat.coprime_iff_gcd_eq_one] at h

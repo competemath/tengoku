@@ -65,6 +65,9 @@ def Ends (n : ℕ) (f : ℕ → ZMod 3) : Prop :=
   ∃ σ : Equiv.Perm (ZMod 3), f 1 = σ 0 ∧ f n = σ 1 ∧
     ∀ a, 2 ≤ a → a ≤ n - 1 → f a = σ 2
 
+/--
+@isnad1 id=ex.0h2v.s5.861c89a46e4f from=translated src=- shape=56d62ebc vocab=c87b9854
+-/
 lemma exists_third (x y : ZMod 3) : ∃ z, z ≠ x ∧ z ≠ y := by
   revert x y; decide
 
@@ -74,6 +77,9 @@ lemma eq_third {x y z w : ZMod 3} (hxy : x ≠ y) (hzx : z ≠ x) (hzy : z ≠ y
     decide
   exact h x y z w ⟨hxy, hzx, hzy, hwx, hwy⟩
 
+/--
+@isnad1 id=ex.3h3v.s8.2b4b6f4b820c from=translated src=- shape=a04cef7a vocab=5c6c4239
+-/
 lemma equiv_of_distinct {x y z : ZMod 3} (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) :
     ∃ σ : Equiv.Perm (ZMod 3), x = σ 0 ∧ y = σ 1 ∧ z = σ 2 := by
   have hinj : Function.Injective ![x, y, z] := by
@@ -82,16 +88,28 @@ lemma equiv_of_distinct {x y z : ZMod 3} (hxy : x ≠ y) (hxz : x ≠ z) (hyz : 
   refine ⟨Equiv.ofBijective ![x, y, z] (Finite.injective_iff_bijective.mp hinj),
     ?_, ?_, ?_⟩ <;> rfl
 
+/--
+@isnad1 id=or.0h1v.s7.5178b7552592 from=translated src=- shape=c488c7a3 vocab=c87b9854
+-/
 lemma tri (r : ZMod 3) : r = 0 ∨ r = 1 ∨ r = 2 := by
   revert r; decide
 
+/--
+@isnad1 id=or.3h4v.s7.1e77c69b9858 from=translated src=- shape=9166f1c0 vocab=014cf724
+-/
 lemma pair_eq_of_sum_aux : ∀ x y z w : ZMod 3, x ≠ y → z ≠ w → x + y = z + w →
     (x = z ∧ y = w) ∨ (x = w ∧ y = z) := by decide
 
+/--
+@isnad1 id=or.3h4v.s7.1e77c69b9858 from=translated src=- shape=9166f1c0 vocab=014cf724
+-/
 lemma pair_eq_of_sum {x y z w : ZMod 3} (hxy : x ≠ y) (hzw : z ≠ w)
     (h : x + y = z + w) : (x = z ∧ y = w) ∨ (x = w ∧ y = z) :=
   pair_eq_of_sum_aux x y z w hxy hzw h
 
+/--
+@isnad1 id=ne.1h2v.s7.ef3f7333640f from=translated src=- shape=a498aa35 vocab=e7dbe9e2
+-/
 lemma cast_ne_add_one_two (k : ℕ) {r : ℕ} (hr : r = 1 ∨ r = 2) :
     (k : ZMod 3) ≠ ((k + r : ℕ) : ZMod 3) := by
   rcases hr with rfl | rfl
@@ -105,7 +123,9 @@ lemma cast_ne_add_one_two (k : ℕ) {r : ℕ} (hr : r = 1 ∨ r = 2) :
     exact (by decide : (0 : ZMod 3) ≠ 2) (add_left_cancel h2)
 
 /-- If `n + 1` shares its box with another card, then a good placement of
-`1, ..., n + 1` restricts to a good placement of `1, ..., n`. -/
+`1, ..., n + 1` restricts to a good placement of `1, ..., n`.
+@isnad1 id=good.2h2v.s6.446ae70502b2 from=translated src=- shape=8029fa57 vocab=908bc61d
+-/
 lemma good_mono {n : ℕ} {f : ℕ → ZMod 3} (hf : Good (n + 1) f)
     (h : ∃ m, 1 ≤ m ∧ m ≤ n ∧ f m = f (n + 1)) : Good n f := by
   obtain ⟨m, hm1, hmn, hfm⟩ := h
@@ -121,7 +141,9 @@ lemma good_mono {n : ℕ} {f : ℕ → ZMod 3} (hf : Good (n + 1) f)
       hab hcd hsum
 
 /-- Case 1 of the induction step: `n + 1` is alone in its box. Then `1` is also
-alone, and we get an `Ends` placement. -/
+alone, and we get an `Ends` placement.
+@isnad1 id=ends.3h2v.s6.68bb563cad76 from=translated src=- shape=5507c7ce vocab=159d2edf
+-/
 lemma case_alone {n : ℕ} (hn : 3 ≤ n) {f : ℕ → ZMod 3} (hf : Good (n + 1) f)
     (halone : ∀ a, 1 ≤ a → a ≤ n → f a ≠ f (n + 1)) : Ends (n + 1) f := by
   have hn1 : 1 ≤ n := by lia
@@ -180,7 +202,9 @@ lemma case_alone {n : ℕ} (hn : 3 ≤ n) {f : ℕ → ZMod 3} (hf : Good (n + 1
   rw [← hσ2]; exact haz
 
 /-- Case 2a of the induction step: the restriction to `1, ..., n` is a mod-3
-placement; then `n + 1` must go into the box of its own residue. -/
+placement; then `n + 1` must go into the box of its own residue.
+@isnad1 id=mod3.3h2v.s5.bfc6e6f41f5c from=translated src=- shape=5e96d49c vocab=8b432f02
+-/
 lemma case_mod3 {n : ℕ} (hn : 3 ≤ n) {f : ℕ → ZMod 3} (hf : Good (n + 1) f)
     (hm : Mod3 n f) : Mod3 (n + 1) f := by
   obtain ⟨k, rfl⟩ : ∃ k, n = k + 2 := ⟨n - 2, by lia⟩
@@ -219,7 +243,9 @@ lemma case_mod3 {n : ℕ} (hn : 3 ≤ n) {f : ℕ → ZMod 3} (hf : Good (n + 1)
     exact key.trans fk
 
 /-- Case 2b of the induction step: the restriction to `1, ..., n` is an `Ends`
-placement with `4 ≤ n`; then there is no room for the card `n + 1`. -/
+placement with `4 ≤ n`; then there is no room for the card `n + 1`.
+@isnad1 id=false.3h2v.s5.29d326c1a473 from=translated src=- shape=1deff1bc vocab=159d2edf
+-/
 lemma case_ends {n : ℕ} (hn : 4 ≤ n) {f : ℕ → ZMod 3} (hf : Good (n + 1) f)
     (he : Ends n f) : False := by
   obtain ⟨σ, h0, h1, h2⟩ := he
@@ -253,7 +279,9 @@ lemma case_ends {n : ℕ} (hn : 4 ≤ n) {f : ℕ → ZMod 3} (hf : Good (n + 1)
     · rw [h0, h1] at hB2; exact s01 hB2
 
 /-- Base case: every good placement of `1, 2, 3` puts the three cards in
-three different boxes. -/
+three different boxes.
+@isnad1 id=ends.1h1v.s4.a7f9141a7ab5 from=translated src=- shape=cc57b3ae vocab=71ebaac6
+-/
 lemma base_case {f : ℕ → ZMod 3} (hf : Good 3 f) : Ends 3 f := by
   have d12 : f 1 ≠ f 2 := by
     intro h
@@ -284,7 +312,9 @@ lemma base_case {f : ℕ → ZMod 3} (hf : Good 3 f) : Ends 3 f := by
     have ha : a = 2 := by lia
     rw [ha]; exact h2⟩
 
-/-- For `n = 3` the two families coincide. -/
+/-- For `n = 3` the two families coincide.
+@isnad1 id=mod3.1h1v.s4.05cef27c87c2 from=translated src=- shape=cc57b3ae vocab=7d2f603b
+-/
 lemma ends3_mod3 {f : ℕ → ZMod 3} (he : Ends 3 f) : Mod3 3 f := by
   obtain ⟨σ, h0, h1, h2⟩ := he
   have hf2 : f 2 = σ 2 := h2 2 le_rfl (by norm_num)
@@ -299,7 +329,9 @@ lemma ends3_mod3 {f : ℕ → ZMod 3} (he : Ends 3 f) : Mod3 3 f := by
   · rw [ZMod.natCast_self]; exact t0
 
 /-- The classification: every good placement of `1, ..., n` (`3 ≤ n`) is either
-by residue mod 3 or an `Ends` placement. -/
+by residue mod 3 or an `Ends` placement.
+@isnad1 id=or.2h2v.s5.d000da74bc2e from=translated src=- shape=bce488db vocab=80630248
+-/
 lemma classify (n : ℕ) (hn : 3 ≤ n) (f : ℕ → ZMod 3) :
     Good n f → Mod3 n f ∨ Ends n f := by
   induction n, hn using Nat.le_induction with
@@ -342,7 +374,9 @@ def GoodPlacement (f : Fin 100 → ZMod 3) : Prop :=
     (f i = f k ∧ f j = f l) ∨ (f i = f l ∧ f j = f k)
 
 /-- Two pairs of distinct boxes leave the same third box unselected if and
-only if the two pairs of boxes coincide. -/
+only if the two pairs of boxes coincide.
+@isnad1 id=iff.2h4v.s7.a6fd1faeefe8 from=translated src=- shape=0894df44 vocab=c87b9854
+-/
 lemma third_box_iff_pair {x y z w : ZMod 3} (hxy : x ≠ y) (hzw : z ≠ w) :
     (∀ b : ZMod 3, (b ≠ x ∧ b ≠ y) ↔ (b ≠ z ∧ b ≠ w)) ↔
       (x = z ∧ y = w) ∨ (x = w ∧ y = z) := by
@@ -351,7 +385,9 @@ lemma third_box_iff_pair {x y z w : ZMod 3} (hxy : x ≠ y) (hzw : z ≠ w) :
 
 /-- The olympiad formulation of validity is equivalent to its combinatorial
 form: the sum of two cards drawn from two different boxes determines the
-third box iff equal sums force the two pairs of boxes to coincide. -/
+third box iff equal sums force the two pairs of boxes to coincide.
+@isnad1 id=iff.0h1v.s4.77ec020ea502 from=translated src=- shape=717a2ae9 vocab=81a1ee27
+-/
 lemma valid_iff_good (f : Fin 100 → ZMod 3) :
     ValidPlacement f ↔ GoodPlacement f := by
   constructor <;> rintro ⟨hsurj, h⟩ <;> refine ⟨hsurj, fun i j k l hij hkl hsum ↦ ?_⟩
@@ -366,13 +402,22 @@ lemma valid_iff_good (f : Fin 100 → ZMod 3) :
 def lift (g : Fin 100 → ZMod 3) (a : ℕ) : ZMod 3 :=
   if h : 1 ≤ a ∧ a ≤ 100 then g ⟨a - 1, by lia⟩ else 0
 
+/--
+@isnad1 id=eq.2h2v.s6.f455904608b2 from=translated src=- shape=32fe8140 vocab=37e51b79
+-/
 lemma lift_apply (g : Fin 100 → ZMod 3) {a : ℕ} (h1 : 1 ≤ a) (h2 : a ≤ 100) :
     lift g a = g ⟨a - 1, by lia⟩ := dite_eq_left ⟨h1, h2⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.57f0c3cdb201 from=translated src=- shape=668ce652 vocab=790ae9ae
+-/
 lemma lift_apply_fin (g : Fin 100 → ZMod 3) (i : Fin 100) : lift g (↑i + 1) = g i := by
   rw [lift_apply g (a := ↑i + 1) (by lia) (by lia)]
   exact congrArg g (Fin.ext (show (↑i : ℕ) + 1 - 1 = (i : ℕ) by lia))
 
+/--
+@isnad1 id=good.1h1v.s4.9e2834591ff2 from=translated src=- shape=888cea92 vocab=54642d88
+-/
 lemma lift_good {g : Fin 100 → ZMod 3} (hg : GoodPlacement g) : Good 100 (lift g) := by
   constructor
   · intro b
@@ -389,12 +434,21 @@ lemma lift_good {g : Fin 100 → ZMod 3} (hg : GoodPlacement g) : Good 100 (lift
 /-- The box of card `i` in an "ends" placement. -/
 def T (i : Fin 100) : ZMod 3 := if (i : ℕ) = 0 then 0 else if (i : ℕ) = 99 then 1 else 2
 
+/--
+@isnad1 id=eq.1h1v.s6.8eed4495e0bf from=translated src=- shape=a48af80e vocab=48248966
+-/
 lemma T_of_zero (i : Fin 100) (h : (i : ℕ) = 0) : T i = 0 := by
   unfold T; rw [ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h1v.s6.8eec528a3f2d from=translated src=- shape=a48af80e vocab=48248966
+-/
 lemma T_of_99 (i : Fin 100) (h : (i : ℕ) = 99) : T i = 1 := by
   unfold T; rw [ite_eq_right (by lia), ite_eq_left h]
 
+/--
+@isnad1 id=eq.2h1v.s6.d95435a9db4e from=translated src=- shape=39d5e4ac vocab=48248966
+-/
 lemma T_of_other (i : Fin 100) (h0 : (i : ℕ) ≠ 0) (h99 : (i : ℕ) ≠ 99) : T i = 2 := by
   unfold T; rw [ite_eq_right h0, ite_eq_right h99]
 
@@ -410,6 +464,9 @@ lemma eq_99_of_T {i : Fin 100} (h : T i = 1) : (i : ℕ) = 99 := by
   · rw [T_of_zero i h0] at h; exact absurd h (by decide)
   · rw [T_of_other i h0 h99] at h; exact absurd h (by decide)
 
+/--
+@isnad1 id=and.1h1v.s6.bd74335492c7 from=translated src=- shape=9a9d3032 vocab=48248966
+-/
 lemma ne_of_T2 {i : Fin 100} (h : T i = 2) : (i : ℕ) ≠ 0 ∧ (i : ℕ) ≠ 99 := by
   constructor
   · intro h0; rw [T_of_zero i h0] at h; exact absurd h (by decide)
@@ -419,14 +476,23 @@ lemma ne_of_T2 {i : Fin 100} (h : T i = 2) : (i : ℕ) ≠ 0 ∧ (i : ℕ) ≠ 9
 def mod3fun (σ : Equiv.Perm (ZMod 3)) : Fin 100 → ZMod 3 :=
   fun i ↦ σ (Nat.cast ((i : ℕ) + 1))
 
+/--
+@isnad1 id=eq.0h1v.s7.c9cc00a198fe from=translated src=- shape=272ddd5b vocab=b484d229
+-/
 lemma mod3fun_apply0 (σ : Equiv.Perm (ZMod 3)) : mod3fun σ 0 = σ 1 := by
   show σ (Nat.cast (((0 : Fin 100) : ℕ) + 1)) = σ 1
   rw [show ((0 : Fin 100) : ℕ) + 1 = 1 from rfl, Nat.cast_one]
 
+/--
+@isnad1 id=eq.0h1v.s7.7f7c82a445a7 from=translated src=- shape=272ddd5b vocab=b484d229
+-/
 lemma mod3fun_apply1 (σ : Equiv.Perm (ZMod 3)) : mod3fun σ 1 = σ 2 := by
   show σ (Nat.cast (((1 : Fin 100) : ℕ) + 1)) = σ 2
   rw [show ((1 : Fin 100) : ℕ) + 1 = 2 from rfl, Nat.cast_ofNat]
 
+/--
+@isnad1 id=eq.0h1v.s7.1e2bee21f776 from=translated src=- shape=272ddd5b vocab=b484d229
+-/
 lemma mod3fun_apply2 (σ : Equiv.Perm (ZMod 3)) : mod3fun σ 2 = σ 0 := by
   show σ (Nat.cast (((2 : Fin 100) : ℕ) + 1)) = σ 0
   rw [show ((2 : Fin 100) : ℕ) + 1 = 3 from rfl, ZMod.natCast_self]
@@ -434,18 +500,33 @@ lemma mod3fun_apply2 (σ : Equiv.Perm (ZMod 3)) : mod3fun σ 2 = σ 0 := by
 /-- The "ends" placements of the 100 cards. -/
 def endsfun (σ : Equiv.Perm (ZMod 3)) : Fin 100 → ZMod 3 := fun i ↦ σ (T i)
 
+/--
+@isnad1 id=eq.0h1v.s7.923934fc1459 from=translated src=- shape=272ddd5b vocab=30d3c195
+-/
 lemma endsfun_apply0 (σ : Equiv.Perm (ZMod 3)) : endsfun σ 0 = σ 0 := by
   show σ (T 0) = σ 0; rw [T_of_zero 0 rfl]
 
+/--
+@isnad1 id=eq.0h1v.s7.f10d59d66a8e from=translated src=- shape=272ddd5b vocab=30d3c195
+-/
 lemma endsfun_apply1 (σ : Equiv.Perm (ZMod 3)) : endsfun σ 1 = σ 2 := by
   show σ (T 1) = σ 2; rw [T_of_other 1 (by decide) (by decide)]
 
+/--
+@isnad1 id=eq.0h1v.s7.a68cbbf93ce6 from=translated src=- shape=272ddd5b vocab=30d3c195
+-/
 lemma endsfun_apply2 (σ : Equiv.Perm (ZMod 3)) : endsfun σ 2 = σ 2 := by
   show σ (T 2) = σ 2; rw [T_of_other 2 (by decide) (by decide)]
 
+/--
+@isnad1 id=eq.0h1v.s7.8d524ad6c408 from=translated src=- shape=272ddd5b vocab=30d3c195
+-/
 lemma endsfun_apply99 (σ : Equiv.Perm (ZMod 3)) : endsfun σ 99 = σ 1 := by
   show σ (T 99) = σ 1; rw [T_of_99 99 rfl]
 
+/--
+@isnad1 id=goodplac.0h1v.s3.e96e93eb4c23 from=translated src=- shape=cd67e276 vocab=b0acd6de
+-/
 lemma mod3fun_valid (σ : Equiv.Perm (ZMod 3)) : GoodPlacement (mod3fun σ) := by
   constructor
   · intro b
@@ -469,7 +550,9 @@ lemma mod3fun_valid (σ : Equiv.Perm (ZMod 3)) : GoodPlacement (mod3fun σ) := b
     · exact Or.inr ⟨congrArg σ h1, congrArg σ h2⟩
 
 /-- For a pair of indices from two different `T`-boxes, the sum determines
-the (unordered) pair of `T`-values. -/
+the (unordered) pair of `T`-values.
+@isnad1 id=or.1h2v.s9.5158052725e0 from=translated src=- shape=2a916f24 vocab=44da057b
+-/
 lemma bucket_of_ne {i j : Fin 100} (hij : T i ≠ T j) :
     (((T i = 0 ∧ T j = 1) ∨ (T i = 1 ∧ T j = 0)) ∧ (i : ℕ) + j = 99) ∨
     (((T i = 0 ∧ T j = 2) ∨ (T i = 2 ∧ T j = 0)) ∧ (i : ℕ) + j < 99) ∨
@@ -491,6 +574,9 @@ lemma bucket_of_ne {i j : Fin 100} (hij : T i ≠ T j) :
     obtain ⟨hi1, hi2⟩ := ne_of_T2 h2; have hj := eq_99_of_T k1; lia
   · exact absurd (h2.trans k2.symm) hij
 
+/--
+@isnad1 id=or.3h4v.s7.c6661f0ad134 from=translated src=- shape=491ea92f vocab=6e18e17b
+-/
 lemma ends_pair {i j k l : Fin 100} (hij : T i ≠ T j) (hkl : T k ≠ T l)
     (h : (i : ℕ) + j = (k : ℕ) + l) :
     (T i = T k ∧ T j = T l) ∨ (T i = T l ∧ T j = T k) := by
@@ -501,6 +587,9 @@ lemma ends_pair {i j k l : Fin 100} (hij : T i ≠ T j) (hkl : T k ≠ T l)
     | (rcases hp with ⟨h1, h2⟩ | ⟨h1, h2⟩ <;>
        rcases hq with ⟨h3, h4⟩ | ⟨h3, h4⟩ <;> simp_all)
 
+/--
+@isnad1 id=goodplac.0h1v.s3.1628c499ea07 from=translated src=- shape=cd67e276 vocab=caf0e6a6
+-/
 lemma endsfun_valid (σ : Equiv.Perm (ZMod 3)) : GoodPlacement (endsfun σ) := by
   constructor
   · intro b
@@ -516,7 +605,9 @@ lemma endsfun_valid (σ : Equiv.Perm (ZMod 3)) : GoodPlacement (endsfun σ) := b
     · exact Or.inl ⟨congrArg σ h1, congrArg σ h2⟩
     · exact Or.inr ⟨congrArg σ h1, congrArg σ h2⟩
 
-/-- Every valid placement is one of the twelve explicit placements. -/
+/-- Every valid placement is one of the twelve explicit placements.
+@isnad1 id=mem.1h1v.s7.0cf480c07c0a from=translated src=- shape=a7932761 vocab=63a79d1c
+-/
 lemma mem_solutions {g : Fin 100 → ZMod 3} (hg : GoodPlacement g) :
     g ∈ Set.range mod3fun ∪ Set.range endsfun := by
   rcases classify 100 (by norm_num) (lift g) (lift_good hg) with hmod | hends
@@ -549,6 +640,9 @@ lemma mem_solutions {g : Fin 100 → ZMod 3} (hg : GoodPlacement g) :
           exact h2 (↑i + 1) (by lia) (by lia)
         rw [hg2]; show σ (T i) = σ 2; rw [hTi]
 
+/--
+@isnad1 id=injectiv.0h0v.s4.3aad4a2e959c from=translated src=- shape=cd6b51ec vocab=8945ca56
+-/
 lemma mod3fun_injective : Function.Injective mod3fun := by
   intro σ τ h
   ext r
@@ -563,6 +657,9 @@ lemma mod3fun_injective : Function.Injective mod3fun := by
     rw [mod3fun_apply1, mod3fun_apply1] at h1
     exact h1
 
+/--
+@isnad1 id=injectiv.0h0v.s4.5c7fff29a7ff from=translated src=- shape=cd6b51ec vocab=de341d2e
+-/
 lemma endsfun_injective : Function.Injective endsfun := by
   intro σ τ h
   ext r
@@ -577,6 +674,9 @@ lemma endsfun_injective : Function.Injective endsfun := by
     rw [endsfun_apply1, endsfun_apply1] at h1
     exact h1
 
+/--
+@isnad1 id=disjoint.0h0v.s7.337e921ce0f3 from=translated src=- shape=080e98be vocab=f44b3f0c
+-/
 lemma disjoint_ranges : Disjoint (Set.range mod3fun) (Set.range endsfun) := by
   rw [Set.disjoint_iff]
   rintro g ⟨⟨σ, hσ⟩, ⟨τ, hτ⟩⟩
@@ -588,18 +688,30 @@ lemma disjoint_ranges : Disjoint (Set.range mod3fun) (Set.range endsfun) := by
   have hcon := σ.injective h20
   exact absurd hcon (by decide)
 
+/--
+@isnad1 id=eq.0h0v.s5.0d280682d983 from=translated src=- shape=120b6148 vocab=251c7c91
+-/
 lemma card_perm_zmod3 : Fintype.card (Equiv.Perm (ZMod 3)) = 6 := by
   have h : Nat.factorial 3 = 6 := rfl
   rw [Fintype.card_perm, ZMod.card, h]
 
+/--
+@isnad1 id=eq.0h0v.s5.611e044b6927 from=translated src=- shape=0f26c377 vocab=adabe98f
+-/
 lemma card_mod3fun_range : (Set.range mod3fun).ncard = 6 := by
   rw [← Set.image_univ, Set.ncard_image_of_injective Set.univ mod3fun_injective,
     Set.ncard_univ, Nat.card_eq_fintype_card, card_perm_zmod3]
 
+/--
+@isnad1 id=eq.0h0v.s5.7c708a813904 from=translated src=- shape=0f26c377 vocab=a3ea9397
+-/
 lemma card_endsfun_range : (Set.range endsfun).ncard = 6 := by
   rw [← Set.image_univ, Set.ncard_image_of_injective Set.univ endsfun_injective,
     Set.ncard_univ, Nat.card_eq_fintype_card, card_perm_zmod3]
 
+/--
+@isnad1 id=eq.0h0v.s5.9d0bfb343f90 from=translated src=- shape=1147820a vocab=40d2b09f
+-/
 lemma card_solutions : {g : Fin 100 → ZMod 3 | GoodPlacement g}.ncard = 12 := by
   have h12 : 6 + 6 = 12 := rfl
   have hset : {g : Fin 100 → ZMod 3 | GoodPlacement g} =
@@ -615,7 +727,9 @@ lemma card_solutions : {g : Fin 100 → ZMod 3 | GoodPlacement g}.ncard = 12 := 
     card_mod3fun_range, card_endsfun_range, h12]
 
 /-- The valid placements are exactly the good placements, so there are
-twelve of them. -/
+twelve of them.
+@isnad1 id=eq.0h0v.s5.d89454db5fdd from=translated src=- shape=1147820a vocab=ee001904
+-/
 lemma card_valid : {g : Fin 100 → ZMod 3 | ValidPlacement g}.ncard = 12 := by
   have hset : {g : Fin 100 → ZMod 3 | ValidPlacement g} =
       {g : Fin 100 → ZMod 3 | GoodPlacement g} :=

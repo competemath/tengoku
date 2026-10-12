@@ -27,7 +27,9 @@ abbrev numPartitions (n : ℕ) : ℕ := Fintype.card (Nat.Partition n)
 
 /-- The partitions of `n` containing `m` as a part are in bijection with the
 partitions of `n - m` (erase one occurrence of `m`), so there are
-`numPartitions (n - m)` of them. -/
+`numPartitions (n - m)` of them.
+@isnad1 id=eq.2h2v.s6.6d914e459f92 from=translated src=- shape=a2b5c383 vocab=db58d9e9
+-/
 lemma card_partitions_containing (n m : ℕ) (h1 : 1 ≤ m) (h2 : m ≤ n) :
     Fintype.card { p : Nat.Partition n // m ∈ p.parts } = numPartitions (n - m) :=
   Fintype.card_congr (Nat.Partition.partitionWithPartEquiv h1 h2)
@@ -35,7 +37,9 @@ lemma card_partitions_containing (n m : ℕ) (h1 : 1 ≤ m) (h2 : m ≤ n) :
 /-- `∑ f(p)`, where `f(p)` is the number of `1`s in `p`, satisfies the recurrence
 `F(n + 1) = F(n) + π(n)`: erasing a `1` is a bijection between the partitions of
 `n + 1` that contain a `1` and the partitions of `n`, and partitions of `n + 1`
-with no `1` contribute nothing to the sum. -/
+with no `1` contribute nothing to the sum.
+@isnad1 id=eq.0h1v.s6.78f7d3507c5c from=translated src=- shape=5829ac7f vocab=d1d04b95
+-/
 lemma sum_count_one_succ (n : ℕ) :
     ∑ p : Nat.Partition (n + 1), p.parts.count 1 =
       ∑ p : Nat.Partition n, p.parts.count 1 + numPartitions n := by
@@ -68,7 +72,9 @@ lemma sum_count_one_succ (n : ℕ) :
   simp [numPartitions]
 
 /-- Summing the number of `1`s over all partitions of `n` gives
-`π(0) + π(1) + ⋯ + π(n - 1)`. -/
+`π(0) + π(1) + ⋯ + π(n - 1)`.
+@isnad1 id=eq.0h1v.s5.c4e4a51dd374 from=translated src=- shape=2f404ceb vocab=6a221b36
+-/
 lemma sum_count_one (n : ℕ) :
     ∑ p : Nat.Partition n, p.parts.count 1 =
       ∑ k ∈ Finset.range n, numPartitions k := by
@@ -77,7 +83,9 @@ lemma sum_count_one (n : ℕ) :
   | succ n ih => rw [sum_count_one_succ, ih, Finset.sum_range_succ]
 
 /-- Summing the number of distinct parts over all partitions of `n` also gives
-`π(0) + π(1) + ⋯ + π(n - 1)`: count the pairs `(p, m)` with `m ∈ p` in two ways. -/
+`π(0) + π(1) + ⋯ + π(n - 1)`: count the pairs `(p, m)` with `m ∈ p` in two ways.
+@isnad1 id=eq.0h1v.s5.a03fd229e1e2 from=translated src=- shape=680f42ac vocab=9ea802e6
+-/
 lemma sum_distinct_parts (n : ℕ) :
     ∑ p : Nat.Partition n, p.parts.toFinset.card =
       ∑ k ∈ Finset.range n, numPartitions k := by

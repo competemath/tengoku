@@ -25,6 +25,9 @@ noncomputable def f (x : Fin 4 → ℝ) : ℝ :=
 def Conditions (x : Fin 4 → ℝ) : Prop :=
   0 ≤ x ∧ ∑ i, x i = 4
 
+/--
+@isnad1 id=ex.0h0v.s5.716c0bf2f7d0 from=translated src=- shape=93230dc4 vocab=a2c99c55
+-/
 lemma one_direction : ∃ x, Conditions x ∧ f x = 2 / 3 := by
   use fun | 0 => 2 | 1 => 2 | 2 => 0 | 3 => 0
   rw [Conditions, f]
@@ -32,6 +35,9 @@ lemma one_direction : ∃ x, Conditions x ∧ f x = 2 / 3 := by
   · rw [Pi.le_def]; intro i; fin_cases i <;> norm_num
   all_goals rw [Fin.sum_univ_four]; simp; norm_num
 
+/--
+@isnad1 id=le.1h1v.s5.3dd3f2173ff7 from=translated src=- shape=9d1605ab vocab=020bbd6f
+-/
 lemma other_direction {x} (hx : Conditions x) : 2 / 3 ≤ f x := by
   obtain ⟨h₁, h₂⟩ := hx
   have aux₁ {k : ℝ} (hk : 0 ≤ k) : 1 / 4 - k / 12 ≤ 1 / (k ^ 3 + 4) := by

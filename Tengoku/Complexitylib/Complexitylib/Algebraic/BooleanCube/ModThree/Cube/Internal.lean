@@ -27,7 +27,9 @@ private theorem bit_update (a z v : ZMod 2) :
   fin_cases a <;> fin_cases z <;> fin_cases v <;> decide
 
 omit [Fintype ι] in
-/-- A coordinate touched by a direction reads only that cube parameter. -/
+/-- A coordinate touched by a direction reads only that cube parameter.
+@isnad1 id=eq.2h6v.s10.b7509a9a1a7f from=translated src=- shape=fc51da6c vocab=faecbc27
+-/
 theorem cubeLinearMap_coordinate (v : J → ι → ZMod 2) (disjoint : DisjointDirections v)
     (z : J → ZMod 2) (j : J) (i : ι) (nonzero : v j i ≠ 0) :
     cubeLinearMap v z i = z j * v j i := by
@@ -41,7 +43,9 @@ theorem cubeLinearMap_coordinate (v : J → ι → ZMod 2) (disjoint : DisjointD
   · simp
 
 omit [Fintype ι] in
-/-- Disjoint nonzero directions give an injective affine cube. -/
+/-- Disjoint nonzero directions give an injective affine cube.
+@isnad1 id=injectiv.2h4v.s7.7e49bdcae555 from=translated src=- shape=b34a703b vocab=8d17197c
+-/
 theorem affineCube_injective (a : ι → ZMod 2) (v : J → ι → ZMod 2)
     (disjoint : DisjointDirections v) (nonzero : ∀ j, v j ≠ 0) :
     Function.Injective (affineCube a v) := by
@@ -53,7 +57,9 @@ theorem affineCube_injective (a : ι → ZMod 2) (v : J → ι → ZMod 2)
     cubeLinearMap_coordinate v disjoint w j i different] at coordinate
   exact mul_right_cancel₀ different coordinate
 
-/-- Full Hamming residue restricts to a signed affine sum on a disjoint cube. -/
+/-- Full Hamming residue restricts to a signed affine sum on a disjoint cube.
+@isnad1 id=eq.1h5v.s8.1938d5558544 from=translated src=- shape=2f1235d5 vocab=1ff50030
+-/
 theorem residue_affineCube (a : ι → ZMod 2) (v : J → ι → ZMod 2)
     (disjoint : DisjointDirections v) (z : J → ZMod 2) :
     residue (affineCube a v z) =

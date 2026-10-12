@@ -71,7 +71,9 @@ def probFirstBC (win : Player → Player → ℝ) : ℝ := probWinA win 4 .B .C 
 
 /-- Expanding the game tree when the first game is A against B: writing XbY for
 "X beats Y", A wins the series exactly via the outcome sequences
-AbB · AbC, AbB · CbA · BbC · AbB, and BbA · CbB · AbC · AbB. -/
+AbB · AbC, AbB · CbA · BbC · AbB, and BbA · CbB · AbC · AbB.
+@isnad1 id=eq.3h1v.s7.e2c1b7af956f from=translated src=- shape=d65b53f3 vocab=a06262c7
+-/
 lemma probFirstAB_eq (win : Player → Player → ℝ)
     (hBA : win .B .A = 1 - win .A .B) (hCA : win .C .A = 1 - win .A .C)
     (hCB : win .C .B = 1 - win .B .C) :
@@ -83,7 +85,9 @@ lemma probFirstAB_eq (win : Player → Player → ℝ)
 
 /-- Expanding the game tree when the first game is A against C: A wins the series
 exactly via the outcome sequences AbC · AbB, AbC · BbA · CbB · AbC, and
-CbA · BbC · AbB · AbC. -/
+CbA · BbC · AbB · AbC.
+@isnad1 id=eq.3h1v.s7.6adbc94e4a6e from=translated src=- shape=b480a93e vocab=a4034482
+-/
 lemma probFirstAC_eq (win : Player → Player → ℝ)
     (hBA : win .B .A = 1 - win .A .B) (hCA : win .C .A = 1 - win .A .C)
     (hCB : win .C .B = 1 - win .B .C) :
@@ -94,7 +98,9 @@ lemma probFirstAC_eq (win : Player → Player → ℝ)
   ring
 
 /-- Expanding the game tree when the first game is B against C: A wins the series
-exactly via the outcome sequences BbC · AbB · AbC and CbB · AbC · AbB. -/
+exactly via the outcome sequences BbC · AbB · AbC and CbB · AbC · AbB.
+@isnad1 id=eq.3h1v.s7.299653524ec9 from=translated src=- shape=21a049b3 vocab=13113669
+-/
 lemma probFirstBC_eq (win : Player → Player → ℝ)
     (hBA : win .B .A = 1 - win .A .B) (hCA : win .C .A = 1 - win .A .C)
     (hCB : win .C .B = 1 - win .B .C) :

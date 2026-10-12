@@ -51,19 +51,25 @@ def intCols (n i : ℕ) : Set (Cell n) := {c | 1 ≤ c.1.val ∧ c.1.val ≤ i �
 /-- The interior cells of column `k` in rows `n - r .. n - 1`. -/
 def colPart (n k r : ℕ) : Set (Cell n) := {c | c.1.val = k ∧ n - r ≤ c.2.val ∧ c.2.val < n}
 
-/-- Cell equality in terms of coordinate values. -/
+/-- Cell equality in terms of coordinate values.
+@isnad1 id=iff.2h4v.s7.7f5decc09c63 from=translated src=- shape=fdeae904 vocab=3be8e164
+-/
 lemma cell_ext {n : ℕ} {c : Cell n} {a b : ℕ} {ha : a < n + 1} {hb : b < n + 1} :
     c = (⟨a, ha⟩, ⟨b, hb⟩) ↔ c.1.val = a ∧ c.2.val = b :=
   ⟨fun h ↦ by rw [h]; exact ⟨rfl, rfl⟩,
    fun ⟨h1, h2⟩ ↦ Prod.ext_iff.mpr ⟨Fin.ext_iff.mpr h1, Fin.ext_iff.mpr h2⟩⟩
 
-/-- The only filling of the empty set of cells. -/
+/-- The only filling of the empty set of cells.
+@isnad1 id=eq.0h1v.s6.61b858088498 from=translated src=- shape=5a22b239 vocab=c1e075f3
+-/
 lemma fillings_empty (n : ℕ) : Fillings n (∅ : Set (Cell n)) = {fun _ ↦ ∅} := by
   ext S
   simp [Fillings, funext_iff]
 
 /-- Restricting a filling of `insert s D` to a filling of `D`
-by resetting the value at `s` to `∅`. -/
+by resetting the value at `s` to `∅`.
+@isnad1 id=mem.2h4v.s8.f8480b7c0c07 from=translated src=- shape=fdd1e9ce vocab=76bb6c4d
+-/
 lemma restrict_mem {n : ℕ} {D : Set (Cell n)} {s : Cell n} (hs : s ∉ D)
     {S : Cell n → Finset (Fin (2 * n))} (hS : S ∈ Fillings n (insert s D)) :
     Function.update S s ∅ ∈ Fillings n D := by
@@ -82,7 +88,9 @@ lemma restrict_mem {n : ℕ} {D : Set (Cell n)} {s : Cell n} (hs : s ∉ D)
     · rw [Function.update_of_ne hcs]
       exact hjunk c fun h ↦ hc (Set.mem_of_mem_insert_of_ne h hcs)
 
-/-- Extending a filling of `D` by an admissible value `X` at `s`. -/
+/-- Extending a filling of `D` by an admissible value `X` at `s`.
+@isnad1 id=mem.7h7v.s9.94dba3d36dda from=translated src=- shape=c0720beb vocab=3319a36a
+-/
 lemma extend_mem {n : ℕ} {D : Set (Cell n)} {s : Cell n} (hs : s ∉ D)
     {A C : (Cell n → Finset (Fin (2 * n))) → Finset (Fin (2 * n))}
     (hlo : ∀ f ∈ Fillings n D, ∀ d ∈ D, d ≤ s → f d ⊆ A f)
@@ -116,7 +124,9 @@ lemma extend_mem {n : ℕ} {D : Set (Cell n)} {s : Cell n} (hs : s ∉ D)
     exact hf.2.2 c fun hD ↦ hc (Set.mem_insert_of_mem s hD)
 
 /-- The sets between `A` and `C` with cardinality `t` are counted
-by a binomial coefficient. -/
+by a binomial coefficient.
+@isnad1 id=eq.2h4v.s6.af1c39cec013 from=translated src=- shape=ac5cfa5b vocab=50637671
+-/
 lemma card_between {α : Type*} [DecidableEq α] {A C : Finset α} (hAC : A ⊆ C)
     {t : ℕ} (hAt : A.card ≤ t) :
     Nat.card {X : Finset α // A ⊆ X ∧ X ⊆ C ∧ X.card = t} =
@@ -148,7 +158,9 @@ abbrev Fiber {n : ℕ} {D : Set (Cell n)}
   {X : Finset (Fin (2 * n)) // A f.1 ⊆ X ∧ X ⊆ C f.1 ∧ X.card = target s}
 
 /-- Adding one cell to the domain multiplies the number of fillings
-by a binomial coefficient. -/
+by a binomial coefficient.
+@isnad1 id=eq.9h7v.s10.0d229c05a346 from=translated src=- shape=a5538612 vocab=96082ebf
+-/
 lemma ncard_fillings_insert {n : ℕ} {D : Set (Cell n)} {s : Cell n} (hs : s ∉ D)
     {A C : (Cell n → Finset (Fin (2 * n))) → Finset (Fin (2 * n))}
     (hlo : ∀ f ∈ Fillings n D, ∀ d ∈ D, d ≤ s → f d ⊆ A f)
@@ -239,7 +251,9 @@ lemma ncard_fillings_insert {n : ℕ} {D : Set (Cell n)} {s : Cell n} (hs : s �
     _ = (c₀ - a₀).choose (target s - a₀) * (Fillings n D).ncard := mul_comm _ _
 
 /-- Counting the fillings of the leftmost column: after `j` steps there are
-`∏ i ∈ range j, (2 * n - i)` fillings. -/
+`∏ i ∈ range j, (2 * n - i)` fillings.
+@isnad1 id=eq.1h2v.s6.13248354d863 from=translated src=- shape=ba23cc3a vocab=ad7d45d1
+-/
 lemma stageA (n : ℕ) : ∀ j, j ≤ n →
     (Fillings n (colZero n j)).ncard = ∏ i ∈ Finset.range j, (2 * n - i) := by
   intro j
@@ -324,7 +338,9 @@ lemma stageA (n : ℕ) : ∀ j, j ≤ n →
       hcount, ih hj', Finset.prod_range_succ]
     ring
 
-/-- Counting the fillings of the left column together with the top row. -/
+/-- Counting the fillings of the left column together with the top row.
+@isnad1 id=eq.1h2v.s6.3adac12ba5c3 from=translated src=- shape=92d93650 vocab=3fab600b
+-/
 lemma stageB (n : ℕ) : ∀ i, i ≤ n →
     (Fillings n (colZero n n ∪ topRow n i)).ncard =
       (∏ j ∈ Finset.range i, (n - j)) * ∏ j ∈ Finset.range n, (2 * n - j) := by
@@ -400,7 +416,9 @@ lemma stageB (n : ℕ) : ∀ i, i ≤ n →
     ring
 
 /-- Filling the interior column `k + 1` from the top down: each of the
-`n` cells doubles the number of fillings. -/
+`n` cells doubles the number of fillings.
+@isnad1 id=eq.2h3v.s7.bbd03070b002 from=translated src=- shape=bb117fba vocab=b94763cb
+-/
 lemma stageC_inner (n : ℕ) : ∀ r, r ≤ n → ∀ k, k < n →
     (Fillings n (colZero n n ∪ topRow n n ∪ intCols n k ∪ colPart n (k + 1) r)).ncard =
       2 ^ r * (Fillings n (colZero n n ∪ topRow n n ∪ intCols n k)).ncard := by
@@ -503,7 +521,9 @@ lemma stageC_inner (n : ℕ) : ∀ r, r ≤ n → ∀ k, k < n →
     ring
 
 /-- Counting the fillings of everything except the right column
-of the grid. -/
+of the grid.
+@isnad1 id=eq.1h2v.s7.a10c7e9c843d from=translated src=- shape=06012ee3 vocab=18a011cd
+-/
 lemma stageC (n : ℕ) : ∀ k, k ≤ n →
     (Fillings n (colZero n n ∪ topRow n n ∪ intCols n k)).ncard =
       2 ^ (n * k) * ((∏ i ∈ Finset.range n, (n - i)) * ∏ j ∈ Finset.range n, (2 * n - j)) := by
@@ -529,6 +549,9 @@ lemma stageC (n : ℕ) : ∀ k, k ≤ n →
       Nat.mul_succ, pow_add]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s4.1c0d3a39ec44 from=translated src=- shape=415ab201 vocab=6abddb08
+-/
 theorem prod_range_self_sub (n : ℕ) :
     ∏ i ∈ Finset.range n, (n - i) = n ! := by
   rw [← Finset.prod_range_add_one_eq_factorial,
@@ -537,6 +560,9 @@ theorem prod_range_self_sub (n : ℕ) :
   rw [Finset.mem_range] at hj
   lia
 
+/--
+@isnad1 id=eq.0h1v.s6.8b268b078c2d from=translated src=- shape=5e7551d6 vocab=1b9f4e7d
+-/
 theorem prod_range_two_mul_sub_mul (n : ℕ) :
     (∏ j ∈ Finset.range n, (2 * n - j)) * (∏ i ∈ Finset.range n, (n - i)) = (2 * n) ! := by
   have h2 : ∏ j ∈ Finset.range n, (2 * n - j) = ∏ x ∈ Finset.range n, (n + x + 1) := by
@@ -553,7 +579,9 @@ theorem prod_range_two_mul_sub_mul (n : ℕ) :
   rw [prod_range_self_sub n, h2, ← Finset.prod_range_add_one_eq_factorial n, h3]
 
 /-- The full count: the number of valid configurations is
-`(2 * n)! * 2 ^ (n ^ 2)`. -/
+`(2 * n)! * 2 ^ (n ^ 2)`.
+@isnad1 id=eq.0h1v.s6.ca16a8aadb5d from=translated src=- shape=5fde5dfe vocab=4b7adbad
+-/
 lemma main_count (n : ℕ) : (Fillings n Set.univ).ncard = (2 * n)! * 2 ^ (n ^ 2) := by
   have huniv : (Set.univ : Set (Cell n)) = colZero n n ∪ topRow n n ∪ intCols n n := by
     ext c

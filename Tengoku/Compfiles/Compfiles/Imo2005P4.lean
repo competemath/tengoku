@@ -26,7 +26,9 @@ the sequence `a n` relative to an arbitrary prime.
 -/
 
 /-- Key lemma (a modular arithmetic calculation):  Given a prime `p` other than `2` or `3`, the
-`(p - 2)`th term of the sequence has `p` as a factor. -/
+`(p - 2)`th term of the sequence has `p` as a factor.
+@isnad1 id=dvd.3h1v.s5.360546810b9c from=translated src=- shape=64e63277 vocab=78357a58
+-/
 theorem find_specified_factor {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) :
     ↑p ∣ a (p - 2) := by
   -- Since `p` is neither `2` nor `3`, it is coprime with `2`, `3`, and `6`

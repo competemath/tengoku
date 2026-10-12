@@ -44,22 +44,34 @@ def prepend (N M : ℕ) (s₀ t₀ : Fin M) (g : Fin (2 * N) ↪o Fin M) (x : Fi
   else if h₁ : x.val = 1 then t₀
   else g ⟨x.val - 2, by lia⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.9b57eb9bbda0 from=translated src=- shape=f503ed1b vocab=df823042
+-/
 theorem prepend_zero (N M : ℕ) (s₀ t₀ : Fin M) (g : Fin (2 * N) ↪o Fin M)
     (h : 0 < 2 * N + 2) : prepend N M s₀ t₀ g ⟨0, h⟩ = s₀ := by
   unfold prepend
   exact dite_eq_left rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.9031043463bb from=translated src=- shape=f2c06d6b vocab=df823042
+-/
 theorem prepend_one (N M : ℕ) (s₀ t₀ : Fin M) (g : Fin (2 * N) ↪o Fin M)
     (h : 1 < 2 * N + 2) : prepend N M s₀ t₀ g ⟨1, h⟩ = t₀ := by
   unfold prepend
   rw [dite_eq_right (show ¬(1 : ℕ) = 0 by norm_num), dite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h6v.s8.d219753d1784 from=translated src=- shape=ce2b3194 vocab=54c7be2a
+-/
 theorem prepend_two (N M : ℕ) (s₀ t₀ : Fin M) (g : Fin (2 * N) ↪o Fin M)
     (x : Fin (2 * N + 2)) (hx : 2 ≤ x.val) :
     prepend N M s₀ t₀ g x = g ⟨x.val - 2, by lia⟩ := by
   unfold prepend
   rw [dite_eq_right (show ¬x.val = 0 by lia), dite_eq_right (show ¬x.val = 1 by lia)]
 
+/--
+@isnad1 id=strictmo.2h5v.s8.2cc68e19cdc6 from=translated src=- shape=fce83683 vocab=ab9c4e6a
+-/
 theorem prepend_strictMono (N M : ℕ) {s₀ t₀ : Fin M} (hst : s₀ < t₀)
     (g : Fin (2 * N) ↪o Fin M) (hg : ∀ j, t₀ < g j) :
     StrictMono (prepend N M s₀ t₀ g) := by
@@ -95,7 +107,9 @@ theorem prepend_strictMono (N M : ℕ) {s₀ t₀ : Fin M} (hst : s₀ < t₀)
 Given a row of `M` people coloured by `c : Fin M → Fin N`, every colour
 appearing at least `N + 1` times, one can select a subsequence of `2N`
 people containing exactly two people of each colour, and such that the two
-people of any given colour stand next to each other in the subsequence. -/
+people of any given colour stand next to each other in the subsequence.
+@isnad1 id=ex.1h3v.s9.e081d7d329fd from=translated src=- shape=9dc5d021 vocab=9d3f07ed
+-/
 theorem aux : ∀ (N M : ℕ) (c : Fin M → Fin N),
     (∀ k, N + 1 ≤ (univ.filter fun i ↦ c i = k).card) →
     ∃ f : Fin (2 * N) ↪o Fin M,
@@ -371,7 +385,9 @@ theorem aux : ∀ (N M : ℕ) (c : Fin M → Fin N),
                 lia
 
 /-- Colouring by height: `c i` is the index of the block of `N + 1`
-consecutive height ranks containing the player at position `i`. -/
+consecutive height ranks containing the player at position `i`.
+@isnad1 id=ex.2h2v.s11.44856f51ec36 from=translated src=- shape=e2daa5c6 vocab=068b360f
+-/
 theorem main_aux (N : ℕ) (hN : 1 ≤ N) (a : Fin (N * (N + 1)) → ℕ)
     (ha : Function.Injective a) :
     ∃ f : Fin (2 * N) ↪o Fin (N * (N + 1)), ∀ k : Fin N, ∀ i j : Fin (2 * N),

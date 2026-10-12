@@ -38,12 +38,18 @@ abbrev solution_value (n : ℕ+) : ℕ := 3 * n
 noncomputable def rootFactor (i : Fin 3) (x : ℝ) : MvPolynomial (Fin 3) ℝ :=
   MvPolynomial.X i - MvPolynomial.C x
 
+/--
+@isnad1 id=eq.0h2v.s5.2ed9361467be from=translated src=- shape=aa526448 vocab=a1cf954a
+-/
 lemma coeff_rootFactor (i : Fin 3) (x : ℝ) :
     MvPolynomial.coeff (Finsupp.single i 1) (rootFactor i x) = 1 := by
   simp [rootFactor, MvPolynomial.coeff_sub, MvPolynomial.coeff_C]
   intro h
   simpa using (DFunLike.congr (x := i) h rfl)
 
+/--
+@isnad1 id=eq.0h2v.s4.20517bb9e43e from=translated src=- shape=78065838 vocab=a91171a0
+-/
 lemma totalDegree_rootFactor (i : Fin 3) (x : ℝ) : (rootFactor i x).totalDegree = 1 := by
   apply le_antisymm
   · simpa [rootFactor] using MvPolynomial.totalDegree_sub_C_le (MvPolynomial.X i) x
@@ -55,6 +61,9 @@ noncomputable def rootPlane {n : ℕ} (i : Fin 3) (k : Fin n) : Plane where
   poly := rootFactor i ((k.val + 1 : ℕ) : ℝ)
   totalDegree_eq_one := totalDegree_rootFactor i _
 
+/--
+@isnad1 id=and.1h4v.s5.81460546d0aa from=translated src=- shape=15d0496f vocab=58690b16
+-/
 lemma rootFactor_inj {i j : Fin 3} {r s : ℝ} (h : rootFactor i r = rootFactor j s) : i = j ∧ r = s := by
   have hrs : r = s := by
     have heval := congrArg (fun P => MvPolynomial.eval (0 : Fin 3 → ℝ) P) h
@@ -67,6 +76,9 @@ lemma rootFactor_inj {i j : Fin 3} {r s : ℝ} (h : rootFactor i r = rootFactor 
     exact hij hcoeff.symm
   · exact hrs
 
+/--
+@isnad1 id=injectiv.0h1v.s5.e2e1a3258f72 from=translated src=- shape=dd3459a8 vocab=ce18fc58
+-/
 lemma rootPlane_injective {n : ℕ} : Function.Injective (fun p : Fin 3 × Fin n => rootPlane p.1 p.2) := by
   intro p q hpq
   obtain ⟨hij, hkl_val_succ⟩ := rootFactor_inj (congrArg Plane.poly hpq)
@@ -76,6 +88,9 @@ lemma rootPlane_injective {n : ℕ} : Function.Injective (fun p : Fin 3 × Fin n
 noncomputable def examplePlanes (n : ℕ) : Finset Plane :=
   Finset.univ.map ⟨fun p : Fin 3 × Fin n => rootPlane p.1 p.2, rootPlane_injective⟩
 
+/--
+@isnad1 id=ex.0h1v.s5.d81d1eb5140e from=translated src=- shape=e80f3daa vocab=6f89cdec
+-/
 lemma solution_example (n : ℕ+) : ∃ T : Finset Plane, IsAdmissible n T ∧ T.card = 3 * n := by
   refine ⟨examplePlanes n, ?_, by simp [examplePlanes]⟩
   constructor
@@ -98,6 +113,9 @@ lemma solution_example (n : ℕ+) : ∃ T : Finset Plane, IsAdmissible n T ∧ T
 
 noncomputable instance : DecidableEq Plane := Classical.decEq _
 
+/--
+@isnad1 id=eq.1h3v.s7.23b62c58f347 from=translated src=- shape=d6e8e298 vocab=883efba8
+-/
 lemma totalDegree_finset_prod_of_isDomain {ι : Type*} [DecidableEq ι]
     {s : Finset ι} {f : ι → MvPolynomial (Fin 3) ℝ} :
     (∀ i ∈ s, f i ≠ 0) → (∏ i ∈ s, f i).totalDegree = ∑ i ∈ s, (f i).totalDegree := by
@@ -110,24 +128,39 @@ lemma totalDegree_finset_prod_of_isDomain {ι : Type*} [DecidableEq ι]
 
 noncomputable def planeProduct (T : Finset Plane) : MvPolynomial (Fin 3) ℝ := ∏ P ∈ T, P.poly
 
+/--
+@isnad1 id=ne.0h1v.s6.874361f48408 from=translated src=- shape=e39b2a85 vocab=2d3a5497
+-/
 lemma Plane_ne_zero {P : Plane} : P.poly ≠ 0 := by
   by_contra
   have : (0 : MvPolynomial (Fin 3) ℝ).totalDegree = 1 := by rw [← this, P.totalDegree_eq_one]
   simp_all only [MvPolynomial.totalDegree_zero, zero_ne_one]
 
+/--
+@isnad1 id=eq.0h1v.s4.67acdeede537 from=translated src=- shape=913929b4 vocab=16e9c336
+-/
 lemma planeProduct_totalDegree (T : Finset Plane) : (planeProduct T).totalDegree = T.card := by
   rw [planeProduct, totalDegree_finset_prod_of_isDomain]
   · simp [Plane.totalDegree_eq_one]
   · exact fun P _ ↦ Plane_ne_zero
 
+/--
+@isnad1 id=ne.2h3v.s7.e8cfcca34831 from=translated src=- shape=e4b3f590 vocab=0d3a3346
+-/
 lemma origin_not_mem_admissible_plane {P : Plane} {T : Finset Plane} {n : ℕ+}
     (h_mem : P ∈ T) (h_admissible : IsAdmissible n T) : P.poly.eval 0 ≠ 0 := h_admissible.2 P h_mem
 
+/--
+@isnad1 id=ne.1h2v.s7.3ee94c088647 from=translated src=- shape=4073a34d vocab=5739964f
+-/
 lemma planeProduct_eval_zero_ne_zero {T : Finset Plane} {n : ℕ+} (h : IsAdmissible n T) :
     (planeProduct T).eval 0 ≠ 0 := by
   simp only [planeProduct, map_prod, Finset.prod_ne_zero_iff]
   exact fun _ hP ↦ origin_not_mem_admissible_plane hP h
 
+/--
+@isnad1 id=eq.2h3v.s8.7894fed7333e from=translated src=- shape=805afca0 vocab=bc7220bc
+-/
 lemma planeProduct_eval_eq_zero_of_mem {T : Finset Plane} {p : Point} {P : Plane}
     (hP : P ∈ T) (hp : P.poly.eval p = 0) : (planeProduct T).eval p = 0 := by
   simpa [planeProduct, map_prod] using Finset.prod_eq_zero hP hp
@@ -136,24 +169,39 @@ noncomputable def rootsInCoord (S : Fin 3 → Finset ℝ) (i : Fin 3) := ∏ x �
 
 noncomputable def PolyFromRoots (S : Fin 3 → Finset ℝ) := ∏ i : Fin 3, rootsInCoord S i
 
+/--
+@isnad1 id=ne.0h2v.s6.97953f0f1269 from=translated src=- shape=0341ade1 vocab=c8f8d66a
+-/
 lemma rootFactor_ne_zero (i : Fin 3) (x : ℝ) : rootFactor i x ≠ 0 :=
   fun hzero ↦ by simpa [hzero] using coeff_rootFactor i x
 
+/--
+@isnad1 id=eq.0h2v.s5.a8dfd2979ba0 from=translated src=- shape=221276e9 vocab=bf5f8bb8
+-/
 lemma totalDegree_rootsInCoord (S : Fin 3 → Finset ℝ) (i : Fin 3) :
     (rootsInCoord S i).totalDegree = (S i).card := by
   rw [rootsInCoord, totalDegree_finset_prod_of_isDomain]
   · simp [totalDegree_rootFactor]
   · exact fun x _ ↦ rootFactor_ne_zero i x
 
+/--
+@isnad1 id=ne.0h2v.s6.e16e2c66bc4b from=translated src=- shape=3ad8228c vocab=05f078a2
+-/
 lemma rootsInCoord_ne_zero (S : Fin 3 → Finset ℝ) (i : Fin 3) : rootsInCoord S i ≠ 0 :=
   (Finset.prod_ne_zero_iff).mpr (fun x _ => rootFactor_ne_zero i x)
 
+/--
+@isnad1 id=eq.1h2v.s6.4ee744bf670f from=translated src=- shape=0d4ffc2f vocab=bcba4687
+-/
 lemma totalDegree_PolyFromRoots {S : Fin 3 → Finset ℝ} {A : MvPolynomial (Fin 3) ℝ} :
     A = PolyFromRoots S → A.totalDegree = ∑ i, (S i).card := fun hA ↦ by
   rw [hA, PolyFromRoots, totalDegree_finset_prod_of_isDomain]
   · simp [totalDegree_rootsInCoord]
   · exact fun i _ ↦ rootsInCoord_ne_zero S i
 
+/--
+@isnad1 id=eq.2h4v.s8.5a53e121ac4d from=translated src=- shape=5fc9159f vocab=c9fce2c9
+-/
 lemma coeff_rootFactor_mul_top {p : MvPolynomial (Fin 3) ℝ} {t : Fin 3 →₀ ℕ}
     {i : Fin 3} {x : ℝ} (hpdeg : p.totalDegree = t.degree) (hpcoeff : p.coeff t = 1) :
     (rootFactor i x * p).coeff (t + Finsupp.single i 1) = 1 := by
@@ -163,6 +211,9 @@ lemma coeff_rootFactor_mul_top {p : MvPolynomial (Fin 3) ℝ} {t : Fin 3 →₀ 
     lia
   simp [rootFactor, sub_mul, MvPolynomial.coeff_sub, MvPolynomial.coeff_X_mul', hpcoeff, hC]
 
+/--
+@isnad1 id=eq.2h4v.s8.ab58329b4318 from=translated src=- shape=62356b44 vocab=01d8d761
+-/
 lemma coeff_rootFactorFinset_mul_top (s : Finset ℝ) (i : Fin 3)
     {p : MvPolynomial (Fin 3) ℝ} {t : Fin 3 →₀ ℕ}
     (hpdeg : p.totalDegree = t.degree) (hpcoeff : p.coeff t = 1) :
@@ -184,6 +235,9 @@ lemma coeff_rootFactorFinset_mul_top (s : Finset ℝ) (i : Fin 3)
       ext j
       simp [add_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s7.37d1382da620 from=translated src=- shape=199c0c19 vocab=d42fa403
+-/
 lemma coeff_rootsInCoordFinset_top (S : Fin 3 → Finset ℝ) (U : Finset (Fin 3)) :
     (∏ i ∈ U, rootsInCoord S i).coeff (∑ i ∈ U, Finsupp.single i (S i).card) = 1 := by
   induction U using Finset.induction_on with
@@ -197,6 +251,9 @@ lemma coeff_rootsInCoordFinset_top (S : Fin 3 → Finset ℝ) (U : Finset (Fin 3
       convert coeff_rootFactorFinset_mul_top (S i) i hprevdeg hT using 2
       grind only
 
+/--
+@isnad1 id=eq.2h3v.s6.204a79634bce from=translated src=- shape=1ca02c66 vocab=e3651bba
+-/
 lemma coeff_card {S : Fin 3 → Finset ℝ} {A : MvPolynomial (Fin 3) ℝ}
     {t : Fin 3 →₀ ℕ} (hA : A = PolyFromRoots S) (ht : ∀ i, t i = (S i).card) :
     A.coeff t = 1 := by
@@ -205,10 +262,16 @@ lemma coeff_card {S : Fin 3 → Finset ℝ} {A : MvPolynomial (Fin 3) ℝ}
   ext i
   fin_cases i <;> simp [Fin.sum_univ_three, ht]
 
+/--
+@isnad1 id=eq.1h3v.s7.ae9eeae46094 from=translated src=- shape=a5d18031 vocab=07812316
+-/
 lemma eval_rootsInCoord_eq_zero {S : Fin 3 → Finset ℝ} {p : Point} {i : Fin 3}
     (hi : p i ∈ S i) : (rootsInCoord S i).eval p = 0 := by
   simpa [rootsInCoord] using (Finset.prod_eq_zero hi (by simp [rootFactor]))
 
+/--
+@isnad1 id=eq.2h3v.s7.af293fd3c3b5 from=translated src=- shape=1379f741 vocab=d2def681
+-/
 lemma zeros {S : Fin 3 → Finset ℝ} {A : MvPolynomial (Fin 3) ℝ} :
     A = PolyFromRoots S → ∀ p, (∃ i, p i ∈ S i) → A.eval p = 0 := by
   intro hA p hp
@@ -218,6 +281,9 @@ lemma zeros {S : Fin 3 → Finset ℝ} {A : MvPolynomial (Fin 3) ℝ} :
 
 def positiveCoordSet (n : ℕ) : Finset ℝ := (Finset.Icc 1 n).map ⟨Nat.cast, Nat.cast_injective⟩
 
+/--
+@isnad1 id=mem.2h2v.s6.289f815369b0 from=translated src=- shape=f4b8eab8 vocab=5a444b8d
+-/
 lemma mem_S_of_mem_coordSet_of_ne_zero {n : ℕ} {p : Point}
     (hp : ∀ i : Fin 3, p i ∈ coordSet n) (hp_ne : p ≠ 0) : p ∈ S n := by
   refine ⟨hp, ?_⟩
@@ -230,6 +296,9 @@ lemma mem_S_of_mem_coordSet_of_ne_zero {n : ℕ} {p : Point}
   have h_ex : ∃ i ∈ Finset.univ, 0 < p i := ⟨j, Finset.mem_univ j, hpj_pos⟩
   fin_cases j <;> simp at hpj_pos <;> grind
 
+/--
+@isnad1 id=ex.1h2v.s8.0a0aaac90dcd from=translated src=- shape=2adfb77e vocab=35f6ebf0
+-/
 lemma exists_poly_of_IsAdmissible {n : ℕ+} {T : Finset Plane} (hT : IsAdmissible n T) :
     ∃ B : MvPolynomial (Fin 3) ℝ, B.totalDegree = T.card ∧ B.eval 0 ≠ 0 ∧ ∀ p ∈ S n, B.eval p = 0 := by
   refine ⟨planeProduct T, planeProduct_totalDegree T, planeProduct_eval_zero_ne_zero hT, ?_⟩
@@ -237,6 +306,9 @@ lemma exists_poly_of_IsAdmissible {n : ℕ+} {T : Finset Plane} (hT : IsAdmissib
   rcases hT.1 p hp with ⟨P, hP, hP_zero⟩
   exact planeProduct_eval_eq_zero_of_mem hP hP_zero
 
+/--
+@isnad1 id=le.2h2v.s8.1dba49e01e32 from=translated src=- shape=fd51cf2e vocab=63716037
+-/
 lemma min_total_degree {n : ℕ} {B : MvPolynomial (Fin 3) ℝ}
     (hB_origin : B.eval 0 ≠ 0) (hB_zero : ∀ p ∈ S n, B.eval p = 0) :
     3 * n ≤ B.totalDegree := by
@@ -303,6 +375,9 @@ lemma min_total_degree {n : ℕ} {B : MvPolynomial (Fin 3) ℝ}
 
   exact hP_eval_s_ne_zero (hP_zero s hs_grid)
 
+/--
+@isnad1 id=mem.0h1v.s5.33686a499b43 from=translated src=- shape=9c6c917c vocab=0354beb2
+-/
 lemma solution_lowerBounds (n : ℕ+) :
     solution_value n ∈ lowerBounds {k | ∃ T : Finset Plane, IsAdmissible n T ∧ T.card = k} := by
   simp [mem_lowerBounds, solution_value]

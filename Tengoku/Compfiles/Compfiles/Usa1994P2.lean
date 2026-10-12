@@ -73,13 +73,17 @@ def totalWeight (a : Config) : ℤ := ∑ i : ZMod 99, pairWeight (a i) (a (i + 
 invariance of `totalWeight`. If `x` differs from both `L` and `R` and `v`
 differs from all of `x`, `L` and `R`, then the two pairs through `x` and
 through `v` have the same total weight. (This forces `L = R`, and each side
-of the identity vanishes.) -/
+of the identity vanishes.)
+@isnad1 id=eq.1h4v.s6.cacb3e643c5a from=translated src=- shape=eaa2ad6d vocab=3c780763
+-/
 theorem pairWeight_local :
     ∀ L R x v : Val, (x ≠ L ∧ x ≠ R ∧ v ≠ x ∧ v ≠ L ∧ v ≠ R) →
       pairWeight L v - pairWeight L x + (pairWeight v R - pairWeight x R) = 0 := by
   decide
 
-/-- In `ZMod 99`, an index and its successor are distinct. -/
+/-- In `ZMod 99`, an index and its successor are distinct.
+@isnad1 id=ne.0h1v.s6.8caf5bbfc8ba from=translated src=- shape=411374f6 vocab=014cf724
+-/
 theorem succ_ne_self (n : ZMod 99) : n + 1 ≠ n := by
   intro h
   have h10 : (1 : ZMod 99) ≠ 0 := by decide
@@ -87,7 +91,9 @@ theorem succ_ne_self (n : ZMod 99) : n + 1 ≠ n := by
   rw [add_sub_cancel_left, sub_self] at h2
   exact h10 h2
 
-/-- In `ZMod 99`, an index and its predecessor are distinct. -/
+/-- In `ZMod 99`, an index and its predecessor are distinct.
+@isnad1 id=ne.0h1v.s7.88997e4b5434 from=translated src=- shape=411374f6 vocab=97446cb0
+-/
 theorem pred_ne_self (n : ZMod 99) : n - 1 ≠ n := by
   intro h
   have h10 : (1 : ZMod 99) ≠ 0 := by decide
@@ -96,7 +102,9 @@ theorem pred_ne_self (n : ZMod 99) : n - 1 ≠ n := by
   exact h10 (neg_eq_zero.mp h2)
 
 /-- A move preserves the property that every two consecutive values are
-distinct. -/
+distinct.
+@isnad1 id=ne.2h3v.s8.bbea171ae34d from=translated src=- shape=61cd578e vocab=7f99a41d
+-/
 theorem move_preserves_distinct {a b : Config} (hm : Move a b)
     (h : ∀ i, a i ≠ a (i + 1)) : ∀ i, b i ≠ b (i + 1) := by
   obtain ⟨n, v, _hvx, hvL, hvR, rfl⟩ := hm
@@ -113,7 +121,9 @@ theorem move_preserves_distinct {a b : Config} (hm : Move a b)
       exact h i
 
 /-- The total weight is invariant under allowed moves, provided the
-configuration has distinct consecutive values. -/
+configuration has distinct consecutive values.
+@isnad1 id=eq.2h2v.s7.23a331c93831 from=translated src=- shape=1a58454a vocab=280868e9
+-/
 theorem totalWeight_move {a b : Config} (hm : Move a b)
     (h : ∀ i, a i ≠ a (i + 1)) : totalWeight a = totalWeight b := by
   obtain ⟨n, v, hvx, hvL, hvR, rfl⟩ := hm
@@ -143,22 +153,30 @@ theorem totalWeight_move {a b : Config} (hm : Move a b)
   rw [Finset.sum_sub_distrib, sub_eq_zero] at hdiff
   exact hdiff.symm
 
-/-- In the initial configuration, consecutive values are distinct. -/
+/-- In the initial configuration, consecutive values are distinct.
+@isnad1 id=ne.0h1v.s6.a13a2930983a from=translated src=- shape=bd63cb0b vocab=ada70d85
+-/
 theorem initial_distinct : ∀ i : ZMod 99, initial i ≠ initial (i + 1) := by
   decide
 
 set_option maxRecDepth 8192 in
-/-- The total weight of the initial configuration is `3`. -/
+/-- The total weight of the initial configuration is `3`.
+@isnad1 id=eq.0h0v.s3.178f4595759d from=translated src=- shape=b0ae1d2b vocab=7966835f
+-/
 theorem totalWeight_initial : totalWeight initial = 3 := by
   decide
 
 set_option maxRecDepth 8192 in
-/-- The total weight of the target configuration with base `0` is `-3`. -/
+/-- The total weight of the target configuration with base `0` is `-3`.
+@isnad1 id=eq.0h0v.s5.6754892d0c6d from=translated src=- shape=510b8710 vocab=ce42b24b
+-/
 theorem totalWeight_target_zero : totalWeight (target 0) = -3 := by
   decide
 
 /-- Shifting the base index of the target configuration does not change the
-total weight: the sum is over a full cycle. -/
+total weight: the sum is over a full cycle.
+@isnad1 id=eq.0h1v.s5.499d2a6cc09e from=translated src=- shape=1b0461d1 vocab=dcaca9b1
+-/
 theorem totalWeight_target_eq (m : ZMod 99) :
     totalWeight (target m) = totalWeight (target 0) := by
   have hbij : Function.Bijective (· - m : ZMod 99 → ZMod 99) :=
@@ -179,7 +197,9 @@ theorem totalWeight_target_eq (m : ZMod 99) :
         rw [sub_zero, sub_zero]
 
 /-- Every reachable configuration has the same total weight as the initial
-configuration, and has distinct consecutive values. -/
+configuration, and has distinct consecutive values.
+@isnad1 id=and.1h1v.s7.d9e2021b8636 from=translated src=- shape=7e602195 vocab=89006c87
+-/
 theorem reachable_invariant {b : Config}
     (hr : Relation.ReflTransGen Move initial b) :
     totalWeight b = totalWeight initial ∧ ∀ i, b i ≠ b (i + 1) := by

@@ -29,6 +29,9 @@ def S := { l | ∃ a b m n : ℤ,
     16*a - 15*b = n^2 ∧
     l = min (m^2) (n^2) }
 
+/--
+@isnad1 id=iscoprim.2h2v.s4.d1c5bfe0b756 from=translated src=- shape=f6c32429 vocab=3ea2a049
+-/
 lemma coprime {n : ℤ} {p : ℕ} (hp : p.Prime) (h_not_dvd : ¬(p : ℤ) ∣ n) : IsCoprime ↑p n := by
   rw [Int.isCoprime_iff_nat_coprime]
   simp only [Int.natAbs_natCast]
@@ -36,6 +39,9 @@ lemma coprime {n : ℤ} {p : ℕ} (hp : p.Prime) (h_not_dvd : ¬(p : ℤ) ∣ n)
   contrapose! h_not_dvd
   exact Int.ofNat_dvd_left.mpr h_not_dvd
 
+/--
+@isnad1 id=false.3h2v.s5.57183ffb8905 from=translated src=- shape=e1468fcf vocab=c45dee16
+-/
 lemma false_of_zero_eqMod_pos {p a : ℕ} (h₁ : 0 ≡ a [ZMOD p]) (h₂ : 0 < a) (h₃ : a < p) : False := by
   have h_p_dvd_one := Int.modEq_zero_iff_dvd.mp h₁.symm
   have : p ≤ a := Nat.le_of_dvd h₂ (Int.ofNat_dvd.mp h_p_dvd_one)

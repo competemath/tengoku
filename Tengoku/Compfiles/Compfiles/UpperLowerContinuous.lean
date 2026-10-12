@@ -47,6 +47,7 @@ open Topology
   1. If x ∈ S, then we can find y > x such that [x, y) ⊆ S.
   2. If [x, y) ⊆ S, then y ∈ S.
  Then, given z ∈ S, we have [z, ∞) ⊆ S.
+@isnad1 id=le.3h2v.s6.66682140c4bf from=translated src=- shape=7ae2d484 vocab=43d24613
 -/
 lemma real_induction
     {S : Set ℝ}
@@ -114,6 +115,9 @@ lemma real_induction
 
   exact (not_le.mpr hwy) ((isGLB_iff_le_iff.mp h13 y).mpr h12)
 
+/--
+@isnad1 id=istopolo.0h0v.s2.64d2863287ed from=translated src=- shape=25b03439 vocab=570447d5
+-/
 lemma lower_basis :
     @TopologicalSpace.IsTopologicalBasis ℝ tₗ lower_intervals := by
   refine
@@ -136,6 +140,9 @@ lemma lower_basis :
       · exact ⟨x, x+1, rfl⟩
       · simp
 
+/--
+@isnad1 id=istopolo.0h0v.s2.e03cd78aab02 from=translated src=- shape=25b03439 vocab=cff25638
+-/
 lemma upper_basis :
     @TopologicalSpace.IsTopologicalBasis ℝ tᵤ upper_intervals := by
   refine
@@ -158,6 +165,9 @@ lemma upper_basis :
       · exact ⟨x-1, x, rfl⟩
       · simp
 
+/--
+@isnad1 id=istopolo.0h0v.s2.b909b752700c from=translated src=- shape=25b03439 vocab=7d73a971
+-/
 lemma open_basis :
     @TopologicalSpace.IsTopologicalBasis ℝ tₛ open_intervals := by
  refine
@@ -179,6 +189,9 @@ lemma open_basis :
      · exact ⟨x-1, x+1, rfl⟩
      · simp
 
+/--
+@isnad1 id=continuo.2h1v.s4.ef807a67a1d7 from=translated src=- shape=115bac25 vocab=56df0322
+-/
 lemma continuous_of_upper_lower_continuous
     (f : ℝ → ℝ)
     (huc : Continuous[tᵤ, tᵤ] f)
@@ -272,6 +285,9 @@ lemma continuous_of_upper_lower_continuous
        open_intervals open_basis).mpr h1
 
 -- [x, ∞) is open in tₗ
+/--
+@isnad1 id=isopen.0h1v.s3.30ac4520150c from=translated src=- shape=f05b3d2e vocab=17009986
+-/
 lemma infinite_interval_lower_open (x : ℝ) : IsOpen[tₗ] (Set.Ici x) := by
   rw [@TopologicalSpace.IsTopologicalBasis.isOpen_iff
           ℝ tₗ _ lower_intervals lower_basis]
@@ -290,6 +306,9 @@ lemma infinite_interval_lower_open (x : ℝ) : IsOpen[tₗ] (Set.Ici x) := by
       exact ha.trans hy.1
 
 -- (-∞, x) is open in tᵤ
+/--
+@isnad1 id=isopen.0h1v.s3.2be8aff4fc4e from=translated src=- shape=f05b3d2e vocab=ce6880ef
+-/
 lemma infinite_interval_upper_open (x : ℝ) : IsOpen[tᵤ] (Set.Iio x) := by
   -- in tᵤ, open sets are of the form (a, b].
   rw [@TopologicalSpace.IsTopologicalBasis.isOpen_iff
@@ -305,6 +324,9 @@ lemma infinite_interval_upper_open (x : ℝ) : IsOpen[tᵤ] (Set.Iio x) := by
     · intro y hy
       exact hy.2.trans_lt ha
 
+/--
+@isnad1 id=monotone.2h1v.s4.973872eff901 from=translated src=- shape=115bac25 vocab=21ecbd84
+-/
 theorem monotone_of_upper_lower_continuous
     (f : ℝ → ℝ)
     (huc : Continuous[tᵤ, tᵤ] f)

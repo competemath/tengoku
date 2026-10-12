@@ -20,11 +20,17 @@ namespace Usa1976P3
 
 abbrev solution_set : Set (ℤ × ℤ × ℤ) := { ⟨0, 0, 0⟩ }
 
+/--
+@isnad1 id=or.0h1v.s6.e397ed54c1bb from=translated src=- shape=f6d931a1 vocab=875f24ae
+-/
 lemma sq_emod_four (n : ℤ) : n^2 % 4 = 0 ∨ n^2 % 4 = 1 := by
   rcases Int.even_or_odd n with ⟨k, rfl⟩ | ⟨k, rfl⟩
   · left; grind
   right; grind
 
+/--
+@isnad1 id=and.1h3v.s6.1bd5b3a709ff from=translated src=- shape=11beecc1 vocab=94221c3e
+-/
 lemma even_of_sum_sq_emod_four_eq_zero (a b c : ℤ) (h : (a^2 + b^2 + c^2) % 4 = 0) :
     Even a ∧ Even b ∧ Even c := by
   have even_of_sq_zero : ∀ n : ℤ, n^2 % 4 = 0 → Even n := by
@@ -43,6 +49,9 @@ lemma even_of_sum_sq_emod_four_eq_zero (a b c : ℤ) (h : (a^2 + b^2 + c^2) % 4 
   · exact ⟨even_of_sq_zero a ha, even_of_sq_zero b hb, even_of_sq_zero c hc⟩
   all_goals grind
 
+/--
+@isnad1 id=and.1h3v.s7.b6406c15f7e5 from=translated src=- shape=0055ba5e vocab=372c97b6
+-/
 lemma even_of_sum_sq_eq_sq_mul_sq (a b c : ℤ) (h : a^2 + b^2 + c^2 = a^2 * b^2) :
     Even a ∧ Even b ∧ Even c := by
   have even_of_sq_zero : ∀ n : ℤ, n^2 % 4 = 0 → Even n := by
@@ -60,6 +69,9 @@ lemma even_of_sum_sq_eq_sq_mul_sq (a b c : ℤ) (h : a^2 + b^2 + c^2 = a^2 * b^2
   · exact ⟨even_of_sq_zero a ha, even_of_sq_zero b hb, even_of_sq_zero c hc⟩
   all_goals grind
 
+/--
+@isnad1 id=ex.1h4v.s8.87509186ba3f from=translated src=- shape=455970af vocab=85af4b90
+-/
 lemma descent_step (a b c : ℤ) (k : ℕ) (h : a^2 + b^2 + c^2 = (4:ℤ)^k * a^2 * b^2) :
     ∃ a' b' c', a = 2 * a' ∧ b = 2 * b' ∧ c = 2 * c' ∧
     a'^2 + b'^2 + c'^2 = (4:ℤ)^(k + 1) * a'^2 * b'^2 := by

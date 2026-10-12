@@ -44,7 +44,9 @@ namespace Multigraph
 variable {V E : Type} [Fintype V] [Fintype E] {G : Multigraph V E}
 
 omit [Fintype V] in
-/-- Every lower set of the order lifted from an injective key is a key prefix. -/
+/-- Every lower set of the order lifted from an injective key is a key prefix.
+@isnad1 id=ex.1h3v.s6.0891ecefca9f from=translated src=- shape=8462b845 vocab=e271476c
+-/
 theorem exists_forall_mem_iff_key_lt {key : V → Nat} (L : Finset V)
     (hL : ∀ a b, key b ≤ key a → a ∈ L → b ∈ L) : ∃ t, ∀ v, v ∈ L ↔ key v < t := by
   rcases L.eq_empty_or_nonempty with rfl | hne
@@ -53,7 +55,9 @@ theorem exists_forall_mem_iff_key_lt {key : V → Nat} (L : Finset V)
   refine ⟨key v₀ + 1, fun v => ⟨fun hv => Nat.lt_succ_of_le (hmax v hv), fun hv => ?_⟩⟩
   exact hL v₀ v (Nat.le_of_lt_succ hv) hv₀
 
-/-- Mixed-radix comparison against a threshold `q * N + r` with `i, r < N`. -/
+/-- Mixed-radix comparison against a threshold `q * N + r` with `i, r < N`.
+@isnad1 id=iff.2h5v.s6.263ec51d94ce from=translated src=- shape=38bd895d vocab=304a85f3
+-/
 theorem mixed_lt_iff {k i q r N : Nat} (hi : i < N) (hr : r < N) :
     k * N + i < q * N + r ↔ k < q ∨ (k = q ∧ i < r) := by
   constructor
@@ -70,7 +74,9 @@ theorem mixed_lt_iff {k i q r N : Nat} (hi : i < N) (hr : r < N) :
       omega
     · omega
 
-/-- `⌈log₂ N⌉` is at most `log₂ N + 1`. -/
+/-- `⌈log₂ N⌉` is at most `log₂ N + 1`.
+@isnad1 id=le.0h1v.s5.5aedf89b6d69 from=translated src=- shape=aa547793 vocab=9f6a3c2e
+-/
 theorem clog_le_logb_add_one (N : Nat) : (Nat.clog 2 N : ℝ) ≤ Real.logb 2 N + 1 := by
   rcases Nat.lt_or_ge 1 N with h | h
   · have hlow := Nat.pow_pred_clog_lt_self one_lt_two h
@@ -94,12 +100,21 @@ variable (c : Compression G)
 noncomputable def idx (v : V) : Nat :=
   (c.blockOf v).1.idxOf v
 
+/--
+@isnad1 id=lt.0h5v.s6.9a3bbc2b57d8 from=translated src=- shape=8e8ef26c vocab=d5315c73
+-/
 theorem idx_lt_length (v : V) : c.idx v < (c.blockOf v).1.length :=
   List.idxOf_lt_length_iff.mpr (c.mem_blockOf v)
 
+/--
+@isnad1 id=le.0h5v.s6.aed2fde49d41 from=translated src=- shape=36d2e226 vocab=6faea3cd
+-/
 theorem length_blockOf_le (v : V) : (c.blockOf v).1.length ≤ Fintype.card V :=
   (c.nodup _ (c.blockOf v).2).length_le_card
 
+/--
+@isnad1 id=lt.0h5v.s5.234029a5024f from=translated src=- shape=eb536066 vocab=b052b55a
+-/
 theorem idx_lt_card (v : V) : c.idx v < Fintype.card V :=
   (c.idx_lt_length v).trans_le (c.length_blockOf_le v)
 
@@ -113,6 +128,9 @@ theorem eq_of_blockOf_eq_of_idx_eq {v w : V} (hb : c.blockOf v = c.blockOf w)
 noncomputable def vertexKey (keyH : ↥c.blocks → Nat) (v : V) : Nat :=
   keyH (c.blockOf v) * Fintype.card V + c.idx v
 
+/--
+@isnad1 id=injectiv.1h5v.s6.7dfe663c22e2 from=translated src=- shape=2e4fa6cd vocab=e04e139a
+-/
 theorem vertexKey_injective {keyH : ↥c.blocks → Nat} (injH : Function.Injective keyH) :
     Function.Injective (c.vertexKey keyH) := by
   intro v w h
@@ -124,7 +142,9 @@ theorem vertexKey_injective {keyH : ↥c.blocks → Nat} (injH : Function.Inject
   rw [hb] at h
   omega
 
-/-- The cut of a union of whole blocks embeds into the quotient cut. -/
+/-- The cut of a union of whole blocks embeds into the quotient cut.
+@isnad1 id=le.1h5v.s8.eaa6a79f6dfc from=translated src=- shape=0be7cac2 vocab=a5e4c992
+-/
 theorem card_cut_blockUnion_le (final : ¬ c.Mergeable) (T : Finset ↥c.blocks) :
     (G.cut (Finset.univ.filter fun v => c.blockOf v ∈ T)).card ≤
       (c.quotient.cutFinset T).card := by
@@ -160,7 +180,9 @@ theorem card_cut_blockUnion_le (final : ¬ c.Mergeable) (T : Finset ↥c.blocks)
     exact Finset.card_le_one.mp (c.card_between_le_one final hne) e₁ (between_of e₁) e₂ h₂
   exact Finset.card_le_card_of_injOn φ maps inj
 
-/-- A prefix of one block, cut by position, has small boundary. -/
+/-- A prefix of one block, cut by position, has small boundary.
+@isnad1 id=le.0h6v.s8.119725e6d3ba from=translated src=- shape=d99014c8 vocab=9d6e1e32
+-/
 theorem card_cut_blockPrefix_le (B : ↥c.blocks) (r : Nat) :
     (G.cut (Finset.univ.filter fun v => c.blockOf v = B ∧ c.idx v < r)).card ≤
       3 * Nat.clog 2 (Fintype.card V) + 3 := by
@@ -191,7 +213,9 @@ theorem card_cut_blockPrefix_le (B : ↥c.blocks) (r : Nat) :
 
 /-- **Expansion.** A final compression with an injective block key whose
 quotient prefix cuts are at most `X` yields a vertex ordering whose lower-set
-cuts are at most `X + 3 ⌈log₂ N⌉ + 3`. -/
+cuts are at most `X + 3 ⌈log₂ N⌉ + 3`.
+@isnad1 id=ex.3h6v.s8.149a79d0293d from=translated src=- shape=bb3c93de vocab=40ae1f90
+-/
 theorem exists_linearOrder (final : ¬ c.Mergeable) (keyH : ↥c.blocks → Nat)
     (injH : Function.Injective keyH) {X : Nat}
     (hX : ∀ q, (c.quotient.cutFinset (Finset.univ.filter fun B => keyH B < q)).card ≤ X) :

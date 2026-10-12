@@ -47,14 +47,26 @@ def bSeq (p n : ℕ) : ℕ := Nat.ofDigits p (Nat.digits (p - 1) n)
 numbers it is the inverse of `bSeq p`. -/
 def phi (p m : ℕ) : ℕ := Nat.ofDigits (p - 1) (Nat.digits p m)
 
+/--
+@isnad1 id=eq.0h2v.s4.3c67c18c5f4a from=translated src=- shape=23430a1c vocab=f0578118
+-/
 lemma phi_def (p m : ℕ) : phi p m = Nat.ofDigits (p - 1) (Nat.digits p m) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.508ba3876f4b from=translated src=- shape=51047030 vocab=a7c70ae8
+-/
 lemma bSeq_def (p n : ℕ) : bSeq p n = Nat.ofDigits p (Nat.digits (p - 1) n) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.ddfcd442a59c from=translated src=- shape=2c8210cb vocab=632a61d8
+-/
 lemma ofDigits_cons_nat (b a : ℕ) (l : List ℕ) :
     Nat.ofDigits b (a :: l) = a + b * Nat.ofDigits b l := by
   simp only [Nat.ofDigits_cons]
 
+/--
+@isnad1 id=iff.1h2v.s5.9ff4e59e4605 from=translated src=- shape=ac314406 vocab=4fa7dd1b
+-/
 lemma ofDigits_eq_zero_iff {b : ℕ} (hb : b ≠ 0) (l : List ℕ) :
     Nat.ofDigits b l = 0 ↔ ∀ d ∈ l, d = 0 := by
   induction l with
@@ -69,6 +81,9 @@ lemma ofDigits_eq_zero_iff {b : ℕ} (hb : b ≠ 0) (l : List ℕ) :
       · rintro ⟨ha, hl⟩
         exact ⟨ha, Or.inr hl⟩
 
+/--
+@isnad1 id=lt.2h2v.s5.72478a419dfe from=translated src=- shape=618f5c01 vocab=7e9a1717
+-/
 lemma phi_pos {p : ℕ} (hp : 2 ≤ p) {m : ℕ} (hm : 0 < m) : 0 < phi p m := by
   rw [Nat.pos_iff_ne_zero] at hm ⊢
   intro h
@@ -80,7 +95,9 @@ lemma phi_pos {p : ℕ} (hp : 2 ≤ p) {m : ℕ} (hm : 0 < m) : 0 < phi p m := b
   rwa [Nat.ofDigits_digits] at h0
 
 /-- If every entry of `l` is `< b` and different from `c`, then every base-`b`
-digit of `Nat.ofDigits b l` is different from `c`. -/
+digit of `Nat.ofDigits b l` is different from `c`.
+@isnad1 id=ne.4h4v.s6.681afd82e717 from=translated src=- shape=3c68738a vocab=7d9379ae
+-/
 lemma digits_ofDigits_ne {b c : ℕ} (hb : 1 < b) :
     ∀ {l : List ℕ}, (∀ d ∈ l, d < b) → (∀ d ∈ l, d ≠ c) →
       ∀ d ∈ Nat.digits b (Nat.ofDigits b l), d ≠ c := by
@@ -110,7 +127,9 @@ lemma digits_ofDigits_ne {b c : ℕ} (hb : 1 < b) :
         · exact ih (fun e he => hlt e (List.mem_cons_of_mem a he))
             (fun e he => hne e (List.mem_cons_of_mem a he)) d hd'
 
-/-- The `k`-th digit of `m` in base `b` (with `0` padding). -/
+/-- The `k`-th digit of `m` in base `b` (with `0` padding).
+@isnad1 id=eq.1h3v.s5.4ada2bbb398b from=translated src=- shape=c3bf9aea vocab=1f8a1e7a
+-/
 lemma digits_getD {b : ℕ} (hb : 1 < b) (m k : ℕ) :
     (Nat.digits b m).getD k 0 = m / b ^ k % b := by
   induction k generalizing m with
@@ -124,6 +143,9 @@ lemma digits_getD {b : ℕ} (hb : 1 < b) (m k : ℕ) :
       · rw [Nat.digits_def' hb hm, List.getD_cons_succ, ih (m / b),
           Nat.div_div_eq_div_mul, ← pow_succ']
 
+/--
+@isnad1 id=mem.2h4v.s5.92318eda5132 from=translated src=- shape=ce3f1584 vocab=db449c0f
+-/
 lemma mem_digits_of_getD_ne_zero {b m k c : ℕ} (h : (Nat.digits b m).getD k 0 = c)
     (hc : c ≠ 0) : c ∈ Nat.digits b m := by
   have hk : k < (Nat.digits b m).length := by
@@ -136,7 +158,9 @@ lemma mem_digits_of_getD_ne_zero {b m k c : ℕ} (h : (Nat.digits b m).getD k 0 
   exact List.getElem_mem hk
 
 /-- Adding a multiple of `d = e * p^(k+1) + c * p^k` only affects the `k`-th
-base-`p` digit through `c` (no carries into that digit from below). -/
+base-`p` digit through `c` (no carries into that digit from below).
+@isnad1 id=eq.2h7v.s7.070d8e97930d from=translated src=- shape=80b1ab34 vocab=2308e4bc
+-/
 lemma digit_add_mul_eq {p : ℕ} (hp : 1 < p) {x d k c e : ℕ} (i : ℕ)
     (hd : d = e * p ^ (k + 1) + c * p ^ k) :
     (x + i * d) / p ^ k % p = (x / p ^ k % p + i * c) % p := by
@@ -175,6 +199,9 @@ lemma digit_add_mul_eq {p : ℕ} (hp : 1 < p) {x d k c e : ℕ} (i : ℕ)
   rw [hdiv, add_comm ((X + i * e + Q / p) * p) (Q % p), Nat.add_mul_mod_self_right,
     Nat.mod_eq_of_lt (Nat.mod_lt Q hp0)]
 
+/--
+@isnad1 id=eq.0h5v.s6.aa1c6318146b from=translated src=- shape=78bb6537 vocab=0a6bf3d5
+-/
 lemma ofDigits_map_add_mul {b c : ℕ} {g h : ℕ → ℕ} (l : List ℕ) :
     Nat.ofDigits b (l.map (fun d => g d + c * h d)) =
       Nat.ofDigits b (l.map g) + c * Nat.ofDigits b (l.map h) := by
@@ -187,7 +214,9 @@ lemma ofDigits_map_add_mul {b c : ℕ} {g h : ℕ → ℕ} (l : List ℕ) :
 
 /-- The key monotonicity fact: `phi` is strictly increasing on digit-free
 numbers. Proved by strong induction on the smaller number, comparing the
-least significant base-`p` digits. -/
+least significant base-`p` digits.
+@isnad1 id=lt.4h3v.s5.5a6281d89463 from=translated src=- shape=bd07f456 vocab=162a0d6f
+-/
 lemma phi_strictMono_on_digitFree {p : ℕ} (hp : 2 ≤ p) (x : ℕ) :
     ∀ y, DigitFree p x → DigitFree p y → x < y → phi p x < phi p y := by
   induction x using Nat.strong_induction_on with
@@ -231,7 +260,9 @@ lemma phi_strictMono_on_digitFree {p : ℕ} (hp : 2 ≤ p) (x : ℕ) :
       rw [hpx, hpy, h]
       lia
 
-/-- The base-`p` digits of `bSeq p n` are exactly the base-`(p-1)` digits of `n`. -/
+/-- The base-`p` digits of `bSeq p n` are exactly the base-`(p-1)` digits of `n`.
+@isnad1 id=eq.1h2v.s5.e82e0b643581 from=translated src=- shape=9918a57b vocab=1d7468eb
+-/
 lemma digits_bSeq {p : ℕ} (hp : 3 ≤ p) (n : ℕ) :
     Nat.digits p (bSeq p n) = Nat.digits (p - 1) n := by
   rw [bSeq_def]
@@ -244,15 +275,24 @@ lemma digits_bSeq {p : ℕ} (hp : 3 ≤ p) (n : ℕ) :
       exact (hne rfl).elim
     · exact Nat.getLast_digit_ne_zero _ hn
 
+/--
+@isnad1 id=eq.1h2v.s4.95c7a1412cc1 from=translated src=- shape=eb0f5b30 vocab=efdb0228
+-/
 lemma phi_bSeq {p : ℕ} (hp : 3 ≤ p) (n : ℕ) : phi p (bSeq p n) = n := by
   rw [phi_def, digits_bSeq hp n, Nat.ofDigits_digits]
 
+/--
+@isnad1 id=digitfre.1h2v.s4.b00eb349dd0b from=translated src=- shape=51f3754e vocab=4b65c64d
+-/
 lemma digitFree_bSeq {p : ℕ} (hp : 3 ≤ p) (n : ℕ) : DigitFree p (bSeq p n) := by
   intro d hd
   rw [digits_bSeq hp n] at hd
   have h := Nat.digits_lt_base (by lia : 1 < p - 1) hd
   lia
 
+/--
+@isnad1 id=eq.2h2v.s4.a47eb1534a5e from=translated src=- shape=74a5655b vocab=f9a5b729
+-/
 lemma bSeq_phi {p : ℕ} (hp : 3 ≤ p) {m : ℕ} (hm : DigitFree p m) : bSeq p (phi p m) = m := by
   rw [bSeq_def, phi_def,
     Nat.digits_ofDigits (p - 1) (by lia : 1 < p - 1) (Nat.digits p m)
@@ -267,6 +307,9 @@ lemma bSeq_phi {p : ℕ} (hp : 3 ≤ p) {m : ℕ} (hm : DigitFree p m) : bSeq p 
         · exact Nat.getLast_digit_ne_zero p h0),
     Nat.ofDigits_digits]
 
+/--
+@isnad1 id=strictmo.1h1v.s4.0852462e1e1a from=translated src=- shape=e217721d vocab=27f4d886
+-/
 lemma bSeq_strictMono {p : ℕ} (hp : 3 ≤ p) : StrictMono (bSeq p) := by
   intro m n hmn
   rcases lt_trichotomy (bSeq p m) (bSeq p n) with h | h | h
@@ -279,6 +322,9 @@ lemma bSeq_strictMono {p : ℕ} (hp : 3 ≤ p) : StrictMono (bSeq p) := by
     rw [phi_bSeq hp, phi_bSeq hp] at h2
     lia
 
+/--
+@isnad1 id=eq.2h2v.s5.43c208f3f543 from=translated src=- shape=dd695542 vocab=c62c24dc
+-/
 lemma bSeq_eq_self_of_lt {p : ℕ} (_hp : 3 ≤ p) {n : ℕ} (hn : n < p - 1) : bSeq p n = n := by
   rw [bSeq_def]
   rcases Nat.eq_zero_or_pos n with rfl | h0
@@ -290,7 +336,9 @@ lemma bSeq_eq_self_of_lt {p : ℕ} (_hp : 3 ≤ p) {n : ℕ} (hn : n < p - 1) : 
 progression of length `p`. If `x, x + d, …, x + (p-1) d` are all digit-free and
 `d > 0`, then looking at the least significant nonzero base-`p` digit of `d`,
 the `k`-th digits of the progression terms run through all residues mod `p`,
-so one of them equals `p - 1`: contradiction. -/
+so one of them equals `p - 1`: contradiction.
+@isnad1 id=ex.2h3v.s6.228396c04a28 from=translated src=- shape=cc6f8f75 vocab=d4d27b78
+-/
 lemma exists_mem_digits_pred {p : ℕ} (hp : p.Prime) {x d : ℕ} (hd : 0 < d) :
     ∃ i < p, p - 1 ∈ Nat.digits p (x + i * d) := by
   have hpp : 1 < p := hp.one_lt
@@ -334,7 +382,9 @@ lemma exists_mem_digits_pred {p : ℕ} (hp : p.Prime) {x d : ℕ} (hd : 0 < d) :
   exact mem_digits_of_getD_ne_zero hgetD (by lia)
 
 /-- If all candidate values are digit-free (here: values of `bSeq p`), there is
-no arithmetic progression of length `p`. -/
+no arithmetic progression of length `p`.
+@isnad1 id=not.3h4v.s5.e4ebdcc07f2b from=translated src=- shape=e083369c vocab=1d8f9e61
+-/
 lemma not_hasAp {p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p) {a : ℕ → ℕ} {n m : ℕ}
     (h : ∀ i ≤ n, (if i < n then a i else m) = bSeq p i) : ¬ HasAp a p n m := by
   rintro ⟨v, hvmono, hvle, x, d, hval⟩
@@ -371,7 +421,9 @@ lemma not_hasAp {p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p) {a : ℕ → ℕ} {n m 
 /-- The construction part: if `m < bSeq p n` has a base-`p` digit equal to
 `p - 1`, then reducing every such digit of `m` by `j` (for `j = p-1, …, 0`)
 gives an arithmetic progression of length `p` whose first `p - 1` terms are
-digit-free, hence equal to `a` at indices below `n`. -/
+digit-free, hence equal to `a` at indices below `n`.
+@isnad1 id=hasap.4h4v.s6.48e43fd19990 from=translated src=- shape=b738a16c vocab=255407c0
+-/
 lemma hasAp_of_mem_digits_pred {p : ℕ} (hp : 3 ≤ p) {a : ℕ → ℕ} {n m : ℕ}
     (IH : ∀ k < n, a k = bSeq p k) (hhi : m < bSeq p n)
     (hmem : p - 1 ∈ Nat.digits p m) : HasAp a p n m := by

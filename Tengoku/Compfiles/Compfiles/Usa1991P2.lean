@@ -22,19 +22,26 @@ namespace Usa1991P2
 
 open Finset
 
-/-- `{1, ..., n+1}` is `{1, ..., n}` with `n + 1` adjoined. -/
+/-- `{1, ..., n+1}` is `{1, ..., n}` with `n + 1` adjoined.
+@isnad1 id=eq.0h1v.s5.23e195454a2b from=translated src=- shape=a9e80491 vocab=4ff7170c
+-/
 lemma icc_one_succ (n : ℕ) : Icc 1 (n + 1) = insert (n + 1) (Icc 1 n) := by
   ext i
   simp only [mem_Icc, mem_insert]
   lia
 
+/--
+@isnad1 id=not.0h1v.s5.c64e5fe2b140 from=translated src=- shape=a1d47691 vocab=06425345
+-/
 lemma not_mem_icc_one (n : ℕ) : n + 1 ∉ Icc 1 n := by
   simp only [mem_Icc]
   lia
 
 /-- Splitting the quantity attached to `insert (n + 1) T` for `T ⊆ {1, ..., n}`:
 the sum of the elements increases by `n + 1` while the product is multiplied
-by `n + 1`. -/
+by `n + 1`.
+@isnad1 id=eq.1h2v.s7.b33b973b0909 from=translated src=- shape=5ad5390b vocab=7b540af9
+-/
 lemma sum_div_prod_insert (n : ℕ) {T : Finset ℕ} (hT : T ⊆ Icc 1 n) :
     (∑ i ∈ insert (n + 1) T, (i : ℚ)) / (∏ i ∈ insert (n + 1) T, (i : ℚ)) =
       (1 / (n + 1 : ℚ)) * ((∑ i ∈ T, (i : ℚ)) / (∏ i ∈ T, (i : ℚ))) +
@@ -52,7 +59,9 @@ lemma sum_div_prod_insert (n : ℕ) {T : Finset ℕ} (hT : T ⊆ Icc 1 n) :
   field_simp
   ring
 
-/-- The telescoping product `∏ (1 + 1/i) = n + 1`. -/
+/-- The telescoping product `∏ (1 + 1/i) = n + 1`.
+@isnad1 id=eq.0h1v.s5.1378ce5b5cf5 from=translated src=- shape=0d3b1176 vocab=1a47a5c6
+-/
 lemma prod_one_add_inv (n : ℕ) : ∏ i ∈ Icc 1 n, (1 + ((i : ℚ))⁻¹) = (n + 1 : ℚ) := by
   induction n with
   | zero => simp
@@ -63,7 +72,9 @@ lemma prod_one_add_inv (n : ℕ) : ∏ i ∈ Icc 1 n, (1 + ((i : ℚ))⁻¹) = (
     field_simp
 
 /-- The sum of `1 / ∏` over all subsets of `{1, ..., n}` (the empty set
-contributes `1`) telescopes to `n + 1`. -/
+contributes `1`) telescopes to `n + 1`.
+@isnad1 id=eq.0h1v.s5.7de505de9840 from=translated src=- shape=22f0b15c vocab=d9faffc8
+-/
 lemma sum_powerset_one_div_prod (n : ℕ) :
     ∑ T ∈ (Icc 1 n).powerset, (1 : ℚ) / (∏ i ∈ T, (i : ℚ)) = (n + 1 : ℚ) := by
   have h1 : ∑ T ∈ (Icc 1 n).powerset, (1 : ℚ) / (∏ i ∈ T, (i : ℚ)) =
@@ -73,7 +84,9 @@ lemma sum_powerset_one_div_prod (n : ℕ) :
   rw [h1, ← prod_one_add, prod_one_add_inv]
 
 /-- Induction step for the main sum: a subset of `{1, ..., n+1}` either is a
-subset of `{1, ..., n}` or has the form `insert (n+1) T` with `T ⊆ {1, ..., n}`. -/
+subset of `{1, ..., n}` or has the form `insert (n+1) T` with `T ⊆ {1, ..., n}`.
+@isnad1 id=eq.0h1v.s7.f3241cae2fd5 from=translated src=- shape=df9a2091 vocab=b8f9cee0
+-/
 lemma main_sum_succ (n : ℕ) :
     ∑ S ∈ (Icc 1 (n + 1)).powerset, (∑ i ∈ S, (i : ℚ)) / (∏ i ∈ S, (i : ℚ)) =
       (∑ S ∈ (Icc 1 n).powerset, (∑ i ∈ S, (i : ℚ)) / (∏ i ∈ S, (i : ℚ))) +

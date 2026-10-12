@@ -51,33 +51,47 @@ positions, this is the number of cards turned over to reach the second ace. -/
 def mid (S : Finset ℕ) : ℤ :=
   (∑ x ∈ S, (x : ℤ)) - (minD S : ℤ) - (maxD S : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s4.a36431d36bd5 from=translated src=- shape=64875f71 vocab=32e0ee11
+-/
 lemma card_aceSets (n : ℕ) : (aceSets n).card = n.choose 3 := by
   simp [aceSets, card_powersetCard]
 
+/--
+@isnad1 id=nonempty.1h2v.s4.fa56ab9664dc from=translated src=- shape=8d07ec4e vocab=cbeaa82b
+-/
 lemma nonempty_of_mem_aceSets {n : ℕ} {S : Finset ℕ} (hS : S ∈ aceSets n) :
     S.Nonempty := by
   have h3 : S.card = 3 := (mem_powersetCard.mp hS).2
   exact card_pos.mp (by lia)
 
-/-- A card in position `x ∈ {1, ..., n}` reflects to a position in `{1, ..., n}`. -/
+/-- A card in position `x ∈ {1, ..., n}` reflects to a position in `{1, ..., n}`.
+@isnad1 id=mem.1h2v.s5.55bed584287c from=translated src=- shape=08e3ee1e vocab=72b7c868
+-/
 lemma reflect_mem {n x : ℕ} (hx : x ∈ Icc 1 n) : reflect n x ∈ Icc 1 n := by
   rw [mem_Icc] at hx ⊢
   simp only [reflect]
   lia
 
-/-- Reflection is injective on positions that are at most `n`. -/
+/-- Reflection is injective on positions that are at most `n`.
+@isnad1 id=injon.0h1v.s4.8b7bcf5ec844 from=translated src=- shape=7c663c23 vocab=c297d501
+-/
 lemma reflect_injOn (n : ℕ) : Set.InjOn (reflect n) {x | x ≤ n} := by
   intro x hx y hy h
   simp only [Set.mem_ofPred_eq] at hx hy
   simp only [reflect] at h
   lia
 
-/-- Reflection is an involution on positions that are at most `n`. -/
+/-- Reflection is an involution on positions that are at most `n`.
+@isnad1 id=eq.1h2v.s4.a5fd1421e74d from=translated src=- shape=4508e6fb vocab=e35e30e4
+-/
 lemma reflect_reflect {n x : ℕ} (hx : x ≤ n) : reflect n (reflect n x) = x := by
   simp only [reflect]
   lia
 
-/-- The minimum of the reflected set is the reflection of the maximum. -/
+/-- The minimum of the reflected set is the reflection of the maximum.
+@isnad1 id=eq.2h2v.s6.a1d784e26a84 from=translated src=- shape=d53a3ae5 vocab=951b0f26
+-/
 lemma min_image_reflect {n : ℕ} {S : Finset ℕ} (hsub : S ⊆ Icc 1 n) (hne : S.Nonempty) :
     (minD (S.image (reflect n)) : ℤ) = (n : ℤ) + 1 - (maxD S : ℤ) := by
   have him : (S.image (reflect n)).Nonempty := image_nonempty.mpr hne
@@ -100,7 +114,9 @@ lemma min_image_reflect {n : ℕ} {S : Finset ℕ} (hsub : S ⊆ Icc 1 n) (hne :
   push_cast
   ring
 
-/-- The maximum of the reflected set is the reflection of the minimum. -/
+/-- The maximum of the reflected set is the reflection of the minimum.
+@isnad1 id=eq.2h2v.s6.0ae19d523f9a from=translated src=- shape=d53a3ae5 vocab=951b0f26
+-/
 lemma max_image_reflect {n : ℕ} {S : Finset ℕ} (hsub : S ⊆ Icc 1 n) (hne : S.Nonempty) :
     (maxD (S.image (reflect n)) : ℤ) = (n : ℤ) + 1 - (minD S : ℤ) := by
   have him : (S.image (reflect n)).Nonempty := image_nonempty.mpr hne
@@ -123,7 +139,9 @@ lemma max_image_reflect {n : ℕ} {S : Finset ℕ} (hsub : S ⊆ Icc 1 n) (hne :
   push_cast
   ring
 
-/-- The sum of the reflected set is `3 * (n + 1)` minus the sum of the set. -/
+/-- The sum of the reflected set is `3 * (n + 1)` minus the sum of the set.
+@isnad1 id=eq.2h2v.s6.b9fdc9c0a740 from=translated src=- shape=6a79b182 vocab=e87819c6
+-/
 lemma sum_image_reflect {n : ℕ} {S : Finset ℕ} (hsub : S ⊆ Icc 1 n) (hcard : S.card = 3) :
     (∑ y ∈ S.image (reflect n), (y : ℤ)) = 3 * ((n : ℤ) + 1) - ∑ x ∈ S, (x : ℤ) := by
   have hinj : Set.InjOn (reflect n) S :=
@@ -142,7 +160,9 @@ lemma sum_image_reflect {n : ℕ} {S : Finset ℕ} (hsub : S ⊆ Icc 1 n) (hcard
     norm_num
 
 /-- Reflecting every position turns the middle element `m` into `n + 1 - m`:
-this is the heart of the reflection argument. -/
+this is the heart of the reflection argument.
+@isnad1 id=eq.1h2v.s5.a56364400e5d from=translated src=- shape=977adfa0 vocab=6c1c5f01
+-/
 lemma mid_image_reflect {n : ℕ} {S : Finset ℕ} (hS : S ∈ aceSets n) :
     mid (S.image (reflect n)) = (n : ℤ) + 1 - mid S := by
   obtain ⟨hsub, hcard⟩ := mem_powersetCard.mp hS
@@ -151,7 +171,9 @@ lemma mid_image_reflect {n : ℕ} {S : Finset ℕ} (hS : S ∈ aceSets n) :
   rw [sum_image_reflect hsub hcard, min_image_reflect hsub hne, max_image_reflect hsub hne]
   ring
 
-/-- Reflecting the positions of the aces yields another valid set of positions. -/
+/-- Reflecting the positions of the aces yields another valid set of positions.
+@isnad1 id=mem.1h2v.s5.f2c92ed1275e from=translated src=- shape=958f1599 vocab=0086332d
+-/
 lemma image_mem_aceSets {n : ℕ} {S : Finset ℕ} (hS : S ∈ aceSets n) :
     S.image (reflect n) ∈ aceSets n := by
   obtain ⟨hsub, hcard⟩ := mem_powersetCard.mp hS
@@ -165,7 +187,9 @@ lemma image_mem_aceSets {n : ℕ} {S : Finset ℕ} (hS : S ∈ aceSets n) :
       ((reflect_injOn n).mono (fun x hx => (mem_Icc.mp (hsub hx)).2))]
     exact hcard
 
-/-- Reflection of position sets is an involution on the sample space. -/
+/-- Reflection of position sets is an involution on the sample space.
+@isnad1 id=eq.1h2v.s5.d6255c3ac889 from=translated src=- shape=275c8899 vocab=0086332d
+-/
 lemma image_image_reflect {n : ℕ} {S : Finset ℕ} (hS : S ∈ aceSets n) :
     (S.image (reflect n)).image (reflect n) = S := by
   obtain ⟨hsub, -⟩ := mem_powersetCard.mp hS
@@ -174,7 +198,9 @@ lemma image_image_reflect {n : ℕ} {S : Finset ℕ} (hS : S ∈ aceSets n) :
   · exact image_congr (fun x hx => reflect_reflect ((mem_Icc.mp (hsub hx)).2))
   · exact image_id'
 
-/-- Reflection of position sets is injective on the sample space. -/
+/-- Reflection of position sets is injective on the sample space.
+@isnad1 id=injon.0h1v.s4.c56eb9a29431 from=translated src=- shape=bf319790 vocab=04614d7c
+-/
 lemma image_reflect_injOn (n : ℕ) :
     Set.InjOn (fun S : Finset ℕ => S.image (reflect n)) (aceSets n) := by
   intro S₁ h₁ S₂ h₂ h
@@ -185,7 +211,9 @@ lemma image_reflect_injOn (n : ℕ) :
   rw [e2] at e1
   exact e1.symm
 
-/-- Reflecting the position sets permutes the sample space. -/
+/-- Reflecting the position sets permutes the sample space.
+@isnad1 id=eq.0h1v.s5.f18443f4c201 from=translated src=- shape=56b1862e vocab=6ed1e087
+-/
 lemma image_reflect_aceSets (n : ℕ) :
     (aceSets n).image (fun S => S.image (reflect n)) = aceSets n := by
   ext T
@@ -196,7 +224,9 @@ lemma image_reflect_aceSets (n : ℕ) :
   · intro hT
     exact ⟨T.image (reflect n), image_mem_aceSets hT, image_image_reflect hT⟩
 
-/-- Reindexing the sum over the sample space by reflection. -/
+/-- Reindexing the sum over the sample space by reflection.
+@isnad1 id=eq.0h1v.s5.7313b324b863 from=translated src=- shape=e10cd3f5 vocab=0914a147
+-/
 lemma sum_mid_image_reflect (n : ℕ) :
     ∑ S ∈ aceSets n, mid (S.image (reflect n)) = ∑ S ∈ aceSets n, mid S := by
   have h := (sum_image (f := mid) (image_reflect_injOn n)).symm
@@ -204,7 +234,9 @@ lemma sum_mid_image_reflect (n : ℕ) :
   exact h
 
 /-- Twice the total of the middle positions equals `(n + 1)` times the number
-of position sets: the average middle position is `(n + 1) / 2`. -/
+of position sets: the average middle position is `(n + 1) / 2`.
+@isnad1 id=eq.0h1v.s5.94fbec5cf76b from=translated src=- shape=297df0b0 vocab=8e83117f
+-/
 lemma two_mul_sum_mid (n : ℕ) :
     2 * (∑ S ∈ aceSets n, mid S) = (n.choose 3 : ℤ) * (n + 1) := by
   have h2 : ∑ S ∈ aceSets n, (mid S + mid (S.image (reflect n)))

@@ -25,20 +25,32 @@ def FE (f : ℝ → ℝ) : Prop :=
 -- Following https://web.evanchen.cc/exams/USAMO-2002-notes.pdf
 
 -- f(0)=0
+/--
+@isnad1 id=eq.1h1v.s4.162ffa84a1a6 from=translated src=- shape=18892e30 vocab=cd9c36ed
+-/
 lemma f_zero {f : ℝ → ℝ} (hf : FE f) : f 0 = 0 := by
   simpa using hf 0 0
 
 -- f(x^2) = xf(x)
+/--
+@isnad1 id=eq.1h2v.s5.dcb8d80886f1 from=translated src=- shape=d7c7f0f8 vocab=b6430aed
+-/
 lemma squarish {f : ℝ → ℝ} (hf : FE f) (x : ℝ) : f (x^2) = x * f x := by
   simpa [f_zero hf] using hf x 0
 
 -- f(x^2) = f(x^2)-f(y^2)
+/--
+@isnad1 id=eq.1h3v.s6.e291a8aec3b4 from=translated src=- shape=296bc1a6 vocab=204b0a76
+-/
 lemma square_additive {f : ℝ → ℝ} (hf : FE f) (x : ℝ) (y : ℝ)  :
     f (x^2 - y^2) = f (x^2) - f (y^2) := by
   simp [squarish hf]
   apply hf
 
 -- f is odd
+/--
+@isnad1 id=eq.1h2v.s4.5e897518683c from=translated src=- shape=a9b82267 vocab=91fb9d01
+-/
 lemma f_odd {f : ℝ → ℝ} (hf : FE f) (x : ℝ)  :
     -f x = f (-x) := by
   by_cases hx : x ≥ 0
@@ -49,12 +61,18 @@ lemma f_odd {f : ℝ → ℝ} (hf : FE f) (x : ℝ)  :
     simp_all [f_zero hf]
 
 -- f(x+y) = f(x)+f(y) with x,y ≥ 0 first
+/--
+@isnad1 id=eq.3h3v.s5.bc9d0201c1ec from=translated src=- shape=72fc4237 vocab=cdf27318
+-/
 lemma additive_pos {f : ℝ → ℝ} (hf : FE f) {x : ℝ} {y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y):
     f (x + y) = f x + f y := by
   have h := square_additive hf (Real.sqrt (x + y)) (Real.sqrt y)
   grind only [usr Real.sq_sqrt', = max_def]
 
 -- Now show Cauchy FE holds with x,y not necessarily positive (lots of cases)
+/--
+@isnad1 id=eq.1h3v.s5.9ab191f3d8f6 from=translated src=- shape=3c6d9fce vocab=4a8cd360
+-/
 lemma additive {f : ℝ → ℝ} (hf : FE f) (x : ℝ) (y : ℝ)  :
     f (x + y) = f x + f y := by
   wlog hwlog : x ≤ y generalizing x y with H
@@ -82,6 +100,9 @@ lemma additive {f : ℝ → ℝ} (hf : FE f) (x : ℝ) (y : ℝ)  :
       linarith
 
 -- Apply Cauchy four times to f
+/--
+@isnad1 id=eq.1h5v.s6.ceb8f380e77a from=translated src=- shape=ba8e02d8 vocab=4a8cd360
+-/
 lemma four_additive {f : ℝ → ℝ} (hf : FE f) (a : ℝ) (b : ℝ) (c : ℝ) (d : ℝ) :
     f (a + b + c + d) = f a + f b + f c + f d := by
   have h1 := additive hf (a+b+c) d
@@ -90,6 +111,9 @@ lemma four_additive {f : ℝ → ℝ} (hf : FE f) (a : ℝ) (b : ℝ) (c : ℝ) 
   linarith
 
 -- Show the FE implies f(x) = f(1)*x
+/--
+@isnad1 id=eq.1h2v.s4.b3391e4d83a6 from=translated src=- shape=3148032b vocab=36eb1d1e
+-/
 lemma main_proof {f : ℝ → ℝ} (hf : FE f) (x : ℝ)  :
     f x = f 1 * x := by
   have h := squarish hf (x+1)

@@ -42,12 +42,18 @@ assumption that all permutations satisfy $\frac{n+1}2 < |S(π)|$ must be false; 
 def S {n : ℕ} (x : Fin n → ℝ) (p : Equiv.Perm (Fin n)) : ℝ :=
   ∑ i, (i + 1) * x (p i)
 
+/--
+@isnad1 id=eq.4h3v.s7.4126dc107610 from=translated src=- shape=10b361bc vocab=6e8d0d86
+-/
 lemma sign_eq_of_abs_sub_le {a b c : ℝ} (ha : c / 2 < |a|) (hb : c / 2 < |b|) (hc : 0 < c)
     (hs : |a - b| ≤ c) : SignType.sign a = SignType.sign b := by
   rcases lt_trichotomy 0 a with ha' | rfl | ha' <;>
   rcases lt_trichotomy 0 b with hb' | rfl | hb' <;>
   simp_all [abs_of_pos, abs_of_neg, abs_le] <;> linarith
 
+/--
+@isnad1 id=lt.4h3v.s7.4fec57b77afc from=translated src=- shape=c4eced1d vocab=bc63da24
+-/
 lemma lt_abs_add_of_sign_eq {a b c : ℝ} (ha : c / 2 < |a|) (hb : c / 2 < |b|) (hc : 0 < c)
     (hs : SignType.sign a = SignType.sign b) : c < |a + b| := by
   rcases lt_trichotomy 0 a with ha' | rfl | ha' <;>
@@ -58,7 +64,9 @@ lemma lt_abs_add_of_sign_eq {a b c : ℝ} (ha : c / 2 < |a|) (hb : c / 2 < |b|) 
   · right; linarith
 
 /-- For fixed nonempty `x`, assuming the opposite of what is to be proven,
-the signs of `S x p` are all the same. -/
+the signs of `S x p` are all the same.
+@isnad1 id=eq.2h3v.s8.32c2d6b0a7b4 from=translated src=- shape=11af7cd6 vocab=19a54ac0
+-/
 lemma sign_eq_of_contra {n : ℕ}
     {x : Fin (n + 1) → ℝ} (hx₂ : ∀ i, |x i| ≤ ((n + 1 : ℕ) + 1) / 2)
     (h : ∀ (p : Equiv.Perm (Fin (n + 1))), ((n + 1 : ℕ) + 1) / 2 < |S x p|) :
@@ -88,6 +96,9 @@ lemma sign_eq_of_contra {n : ℕ}
         rw [abs_neg]; exact add_le_add (hx₂ _) (hx₂ _)
       _ = _ := add_halves _
 
+/--
+@isnad1 id=eq.1h2v.s6.17805528f595 from=translated src=- shape=8015f374 vocab=f1c699e5
+-/
 lemma S_one_add_S_revPerm {n : ℕ}
     {x : Fin n → ℝ} (hx₁ : |∑ i, x i| = 1) : |S x 1 + S x Fin.revPerm| = n + 1 := by
   nth_rw 2 [S]; rw [← Fin.revPerm.sum_comp _ _ (by simp)]

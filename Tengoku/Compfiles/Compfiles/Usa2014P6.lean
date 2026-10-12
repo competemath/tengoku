@@ -22,7 +22,9 @@ namespace Usa2014P6
 
 open Finset
 
-/-- Dyadic bound for harmonic sums: the sum of `1/(k+1)` for `k < 2^m - 1` is at most `m`. -/
+/-- Dyadic bound for harmonic sums: the sum of `1/(k+1)` for `k < 2^m - 1` is at most `m`.
+@isnad1 id=le.0h1v.s6.076a013acda5 from=translated src=- shape=d8efc2d3 vocab=fffb358c
+-/
 lemma sum_range_one_div_le_aux (m : ℕ) :
     ∑ k ∈ Finset.range (2 ^ m - 1), (1 : ℚ) / (k + 1) ≤ m := by
   induction m with
@@ -56,7 +58,9 @@ lemma sum_range_one_div_le_aux (m : ℕ) :
     rw [Nat.cast_add, Nat.cast_one]
     linarith [ih, hblock]
 
-/-- The harmonic sum `∑ k ∈ Icc 1 M, 1/k` is at most `Nat.clog 2 (M + 1)`. -/
+/-- The harmonic sum `∑ k ∈ Icc 1 M, 1/k` is at most `Nat.clog 2 (M + 1)`.
+@isnad1 id=le.0h1v.s5.6859b25aa82d from=translated src=- shape=c0a39387 vocab=b42d876f
+-/
 lemma sum_Icc_one_div_le_clog (M : ℕ) :
     ∑ k ∈ Finset.Icc 1 M, (1 : ℚ) / k ≤ Nat.clog 2 (M + 1) := by
   have hle : M + 1 ≤ 2 ^ Nat.clog 2 (M + 1) := Nat.le_pow_clog (by norm_num) (M + 1)
@@ -83,7 +87,9 @@ lemma sum_Icc_one_div_le_clog (M : ℕ) :
     _ ≤ Nat.clog 2 (M + 1) := sum_range_one_div_le_aux (Nat.clog 2 (M + 1))
 
 /-- The sum of `1/p^2` over the primes `p ≤ M` is bounded away from `1/2`
-(with room to spare for lower order terms). -/
+(with room to spare for lower order terms).
+@isnad1 id=le.1h1v.s6.2a934652cf0b from=translated src=- shape=f617d414 vocab=89ed0c1c
+-/
 lemma primesum_inv_sq_le (M : ℕ) (hM : 50 ≤ M) :
     ∑ p ∈ (Finset.range (M + 1)).filter Nat.Prime, (1 : ℚ) / p ^ 2 ≤ 47 / 100 := by
   have hsplit : ∑ p ∈ (Finset.range (M + 1)).filter Nat.Prime, (1 : ℚ) / p ^ 2
@@ -162,7 +168,9 @@ lemma primesum_inv_sq_le (M : ℕ) (hM : 50 ≤ M) :
   linarith [hP1, hL, hP2, htail]
 
 /-- The number of `i < N` with `p ∣ a + i` is at most `N / p + 1`, as a rational
-inequality. -/
+inequality.
+@isnad1 id=le.2h3v.s6.7b9e8a4bbf2c from=translated src=- shape=d3697fed vocab=fd7209da
+-/
 lemma card_filter_dvd_le (a N p : ℕ) (ha : 0 < a) (hp : 0 < p) :
     (((range N).filter (fun i => p ∣ a + i)).card : ℚ) ≤ (N : ℚ) / p + 1 := by
   have hbij : ((range N).filter (fun i => p ∣ a + i)).card =
@@ -232,7 +240,9 @@ lemma card_filter_dvd_le (a N p : ℕ) (ha : 0 < a) (hp : 0 < p) :
     ring
   linarith [hA, hB, hC.le]
 
-/-- Auxiliary exponential bound used in the estimate `100 * clog 2 (n^2) ≤ n`. -/
+/-- Auxiliary exponential bound used in the estimate `100 * clog 2 (n^2) ≤ n`.
+@isnad1 id=le.1h1v.s5.2f04a418691d from=translated src=- shape=b710a942 vocab=f96c6fce
+-/
 lemma two_hundred_mul_succ_le_pow (k : ℕ) (hk : 15 ≤ k) : 200 * (k + 1) ≤ 2 ^ k := by
   induction k, hk using Nat.le_induction with
   | base => norm_num
@@ -241,7 +251,9 @@ lemma two_hundred_mul_succ_le_pow (k : ℕ) (hk : 15 ≤ k) : 200 * (k + 1) ≤ 
     have h200 : 200 ≤ 2 ^ k := le_trans (by norm_num) ih
     lia
 
-/-- For `n ≥ 2^15` and `M + 1 ≤ n^2` we have `100 * Nat.clog 2 (M + 1) ≤ n`. -/
+/-- For `n ≥ 2^15` and `M + 1 ≤ n^2` we have `100 * Nat.clog 2 (M + 1) ≤ n`.
+@isnad1 id=le.2h2v.s6.c910535567d4 from=translated src=- shape=3871fc73 vocab=b1eaed18
+-/
 lemma hundred_clog_le (n M : ℕ) (hn : 2 ^ 15 ≤ n) (hM : M + 1 ≤ n ^ 2) :
     100 * Nat.clog 2 (M + 1) ≤ n := by
   have h2 : (1 : ℕ) < 2 := by norm_num
@@ -265,7 +277,9 @@ lemma hundred_clog_le (n M : ℕ) (hn : 2 ^ 15 ≤ n) (hM : M + 1 ≤ n ^ 2) :
   lia
 
 /-- The final numerical inequality: for `n ≥ 2^15`,
-`(n^2/1000)^((n+3)/2) > (n/65536)^n + n`. -/
+`(n^2/1000)^((n+3)/2) > (n/65536)^n + n`.
+@isnad1 id=lt.1h1v.s7.fab3d2016e1d from=translated src=- shape=4230b27d vocab=341180a7
+-/
 lemma pow_gt_final (n : ℕ) (hn : 2 ^ 15 ≤ n) :
     (1 / 65536 * (n : ℝ)) ^ n + n < ((n : ℝ) ^ 2 / 1000) ^ ((n + 3) / 2) := by
   have hnR : (2 : ℝ) ^ 15 ≤ (n : ℝ) := by exact_mod_cast hn
@@ -410,7 +424,9 @@ lemma pow_gt_final (n : ℕ) (hn : 2 ^ 15 ≤ n) :
 
 /-- The heart of the proof: for `n ≥ 2^15`, some `a + i` (and symmetrically some
 `b + j`) is divisible by more than `(n+1)/2` distinct primes exceeding `n^2/1000`,
-which forces `a` to be huge. -/
+which forces `a` to be huge.
+@isnad1 id=le.4h3v.s7.9f74115f969d from=translated src=- shape=12db88a4 vocab=40507a14
+-/
 lemma row_bound (a b n : ℕ) (ha : 0 < a) (hb : 0 < b) (hn : 2 ^ 15 ≤ n)
     (h : ∀ i ∈ range (n + 1), ∀ j ∈ range (n + 1), 1 < Nat.gcd (a + i) (b + j)) :
     ((n : ℝ) ^ 2 / 1000) ^ ((n + 3) / 2) ≤ (a : ℝ) + n := by

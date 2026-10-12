@@ -30,6 +30,9 @@ integer lies in one of these intervals, and uniqueness follows from
 injectivity.
 -/
 
+/--
+@isnad1 id=injectiv.1h1v.s5.3d1934ced7ad from=translated src=- shape=96c6b819 vocab=3cdfcc32
+-/
 lemma a_injective (a : ℕ → ℤ)
     (rem : ∀ n > 0, ((Finset.range n).image (fun i => a i % n)).card = n) :
     Function.Injective a := by
@@ -43,7 +46,9 @@ lemma a_injective (a : ℕ → ℤ)
     (Finset.mem_coe.mpr (Finset.mem_range.mpr (Nat.lt_succ_of_le (le_max_right i j))))
     (congrArg (· % (n : ℤ)) hij))
 
-/-- Any two of the first `n` terms differ by less than `n`. -/
+/-- Any two of the first `n` terms differ by less than `n`.
+@isnad1 id=lt.3h4v.s6.985b293e4e6f from=translated src=- shape=b1367225 vocab=4fa038d2
+-/
 lemma abs_sub_lt (a : ℕ → ℤ)
     (rem : ∀ n > 0, ((Finset.range n).image (fun i => a i % n)).card = n)
     {i j n : ℕ} (hi : i < n) (hj : j < n) : |a i - a j| < n := by
@@ -65,7 +70,9 @@ lemma abs_sub_lt (a : ℕ → ℤ)
     (Finset.mem_coe.mpr (Finset.mem_range.mpr (by lia))) hmod)
 
 /-- The first `n` terms form a set of `n` consecutive integers, so any
-integer sandwiched between two of them is itself one of them. -/
+integer sandwiched between two of them is itself one of them.
+@isnad1 id=ex.5h5v.s6.4ce5ac10d677 from=translated src=- shape=ac55e9a3 vocab=9624a20e
+-/
 lemma mem_of_between (a : ℕ → ℤ)
     (rem : ∀ n > 0, ((Finset.range n).image (fun i => a i % n)).card = n)
     {n : ℕ} {z : ℤ} {i j : ℕ} (hi : i < n) (hj : j < n)

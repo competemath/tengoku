@@ -29,9 +29,18 @@ noncomputable def f (a b c : ℝ) : ℝ := a^2 + b^2 + c^2 + a * b * c
 @[reducible]
 def g (a b c : ℝ) : ℝ := a * b + b * c + c * a - a * b * c
 
+/--
+@isnad1 id=eq.0h3v.s6.654229a5164f from=translated src=- shape=692bc188 vocab=a6146110
+-/
 theorem feq (a b c : ℝ) : f a b c = a^2 + b^2 + c^2 + a * b * c := rfl
+/--
+@isnad1 id=eq.0h3v.s6.89b70ede9a6e from=translated src=- shape=37963247 vocab=c1113064
+-/
 theorem geq (a b c : ℝ) : g a b c = a * b + b * c + c * a - a * b * c := rfl
 
+/--
+@isnad1 id=le.3h3v.s7.1083e3a0b6d8 from=translated src=- shape=2aa5ed22 vocab=d8e4d468
+-/
 lemma usa2001_p3_lemma (a b c : ℝ) (ha : 0 ≤ a)
     (h : a ^ 2 + b ^ 2 + c ^ 2 + a * b * c = 4)
     (hbc : (b - 1) * (c - 1) ≥ 0) :

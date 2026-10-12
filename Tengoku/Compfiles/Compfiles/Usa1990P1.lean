@@ -36,7 +36,9 @@ congruent to zero modulo ten. -/
 def extend (f : Fin 5 → ZMod 10) : Plate :=
   Fin.lastCases (-∑ i, f i) (fun i ↦ f i)
 
-/-- The digit sum of a plate built by `extend` is zero modulo ten. -/
+/-- The digit sum of a plate built by `extend` is zero modulo ten.
+@isnad1 id=eq.0h1v.s7.0e376a8f498e from=translated src=- shape=111091ee vocab=0b80d957
+-/
 theorem sum_extend (f : Fin 5 → ZMod 10) : ∑ j, extend f j = 0 := by
   rw [Fin.sum_univ_castSucc]
   unfold extend
@@ -44,7 +46,9 @@ theorem sum_extend (f : Fin 5 → ZMod 10) : ∑ j, extend f j = 0 := by
   simp only [Fin.lastCases_castSucc]
   exact add_neg_cancel _
 
-/-- The first five digits determine a plate built by `extend`. -/
+/-- The first five digits determine a plate built by `extend`.
+@isnad1 id=injectiv.0h0v.s4.3b7fd78064bf from=translated src=- shape=ccde90f4 vocab=d4090e65
+-/
 theorem extend_injective : Function.Injective extend := by
   intro f g h
   funext i
@@ -53,7 +57,9 @@ theorem extend_injective : Function.Injective extend := by
 
 /-- Two plates with the same digit sum modulo ten cannot differ in
 exactly one place; hence distinct plates of equal sum differ in at
-least two places. -/
+least two places.
+@isnad1 id=le.2h3v.s7.7c9d39c21793 from=translated src=- shape=e55130b1 vocab=2c402f67
+-/
 theorem hammingDist_ge_two_of_sum_eq {n : ℕ} {p q : Fin n → ZMod 10}
     (hsum : ∑ i, p i = ∑ i, q i) (hne : p ≠ q) :
     2 ≤ hammingDist p q := by
@@ -87,7 +93,9 @@ theorem hammingDist_ge_two_of_sum_eq {n : ℕ} {p q : Fin n → ZMod 10}
 /-- Upper bound: a valid collection of plates has at most `10 ^ 5`
 members. Indeed, two plates agreeing on the first five digits differ in
 at most one place, so the "first five digits" map is injective on any
-valid collection, whose codomain has size `10 ^ 5`. -/
+valid collection, whose codomain has size `10 ^ 5`.
+@isnad1 id=le.1h1v.s5.6e8032e4e07f from=translated src=- shape=ec4f148a vocab=e18f5ae6
+-/
 theorem card_le_of_valid {S : Finset Plate} (hS : IsValid S) :
     S.card ≤ 10 ^ 5 := by
   have hinj : Set.InjOn (fun p : Plate ↦ fun i : Fin 5 ↦ p (Fin.castSucc i)) S := by

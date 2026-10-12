@@ -48,13 +48,17 @@ def removeEdgesAt (G : Multigraph V E) (x : V) :
   fst e := G.fst e.1
   snd e := G.snd e.1
 
-/-- Walks avoiding `x` survive the removal of the edges at `x`. -/
+/-- Walks avoiding `x` survive the removal of the edges at `x`.
+@isnad1 id=isdirwal.2h7v.s6.3c1c2b348370 from=translated src=- shape=e54208ba vocab=4144fbd9
+-/
 theorem isDirWalk_removeEdgesAt {x : V} {p : List V} {u v : V} (hp : G.IsDirWalk p u v)
     (hx : ∀ z ∈ p, z ≠ x) : (removeEdgesAt G x).IsDirWalk p u v := by
   refine ⟨hp.1, hp.2.1, hp.2.2.imp_of_mem_imp fun a b ha hb ⟨e, he₁, he₂⟩ => ?_⟩
   exact ⟨⟨e, he₁ ▸ hx a ha, he₂ ▸ hx b hb⟩, he₁, he₂⟩
 
-/-- Removing edges does not increase in-degrees. -/
+/-- Removing edges does not increase in-degrees.
+@isnad1 id=le.0h5v.s7.408667d73992 from=translated src=- shape=8d640435 vocab=83b34f47
+-/
 theorem inDegree_removeEdgesAt_le [Fintype E] (x v : V) :
     (removeEdgesAt G x).inDegree v ≤ G.inDegree v := by
   unfold inDegree
@@ -63,12 +67,16 @@ theorem inDegree_removeEdgesAt_le [Fintype E] (x v : V) :
       simp only [Finset.coe_filter, Finset.mem_univ, true_and, Set.mem_ofPred_eq] at he ⊢
       exact he) Subtype.val_injective.injOn
 
-/-- Removing edges keeps a multigraph acyclic. -/
+/-- Removing edges keeps a multigraph acyclic.
+@isnad1 id=acyclic.1h4v.s5.c4c519bc707c from=translated src=- shape=6ce2fd50 vocab=9859ff25
+-/
 theorem acyclic_removeEdgesAt (hG : G.Acyclic) (x : V) : (removeEdgesAt G x).Acyclic := by
   obtain ⟨rank, hrank⟩ := hG
   exact ⟨rank, fun e => hrank e.1⟩
 
-/-- The edges kept and the edges at `x` partition the edges. -/
+/-- The edges kept and the edges at `x` partition the edges.
+@isnad1 id=eq.0h4v.s7.0b3a04a716d8 from=translated src=- shape=f8b0608d vocab=eddc8159
+-/
 theorem card_removeEdgesAt_add [Fintype E] (x : V) :
     Fintype.card {e : E // G.fst e ≠ x ∧ G.snd e ≠ x} +
       (Finset.univ.filter fun e => ¬ (G.fst e ≠ x ∧ G.snd e ≠ x)).card = Fintype.card E := by
@@ -76,7 +84,9 @@ theorem card_removeEdgesAt_add [Fintype E] (x : V) :
 
 /-! ### Walks and sources -/
 
-/-- Every vertex of a chain after its first is entered by an edge. -/
+/-- Every vertex of a chain after its first is entered by an edge.
+@isnad1 id=ex.2h6v.s5.c0a1c1a2506c from=translated src=- shape=d3a9bb62 vocab=31e18a37
+-/
 theorem exists_dirAdj_of_mem_tail :
     ∀ {u : V} {l : List V}, (u :: l).IsChain G.DirAdj → ∀ z ∈ l, ∃ y, G.DirAdj y z
   | _, [], _, z, hz => by simp at hz
@@ -86,13 +96,17 @@ theorem exists_dirAdj_of_mem_tail :
     · exact ⟨u, hc.1⟩
     · exact exists_dirAdj_of_mem_tail hc.2 z hz
 
-/-- A vertex entered by an edge has positive in-degree. -/
+/-- A vertex entered by an edge has positive in-degree.
+@isnad1 id=lt.1h5v.s5.b7b8378d123f from=translated src=- shape=31ad308a vocab=91e272d6
+-/
 theorem inDegree_pos_of_dirAdj [Fintype E] {y z : V} (h : G.DirAdj y z) : 0 < G.inDegree z := by
   obtain ⟨e, -, he⟩ := h
   exact Finset.card_pos.2 ⟨e, by simp [he]⟩
 
 /-- **Walks avoid sources.** A directed walk visits a vertex of in-degree zero only at its
-start. -/
+start.
+@isnad1 id=not.3h7v.s5.7e87a302058c from=translated src=- shape=7d08c537 vocab=e9a16e86
+-/
 theorem not_mem_of_inDegree_eq_zero [Fintype E] {p : List V} {u v x : V}
     (hp : G.IsDirWalk p u v) (hx : G.inDegree x = 0) (hux : u ≠ x) : x ∉ p := by
   obtain ⟨l, rfl, hc, -⟩ := exists_eq_cons_of_isDirWalk hp
@@ -104,7 +118,9 @@ theorem not_mem_of_inDegree_eq_zero [Fintype E] {p : List V} {u v x : V}
     omega
 
 /-- A directed walk from a vertex of in-degree zero to another vertex continues along an edge
-leaving it, and the rest of the walk avoids it. -/
+leaving it, and the rest of the walk avoids it.
+@isnad1 id=ex.3h6v.s6.513633900de2 from=translated src=- shape=a4a320ff vocab=4d592f2a
+-/
 theorem exists_tail_of_isDirWalk [Fintype E] {p : List V} {x v : V} (hp : G.IsDirWalk p x v)
     (hx : G.inDegree x = 0) (hxv : x ≠ v) :
     ∃ e q, G.fst e = x ∧ G.IsDirWalk q (G.snd e) v ∧ (∀ z ∈ q, z ∈ p) ∧ x ∉ q := by
@@ -130,13 +146,17 @@ section Steps
 
 variable [Fintype E] {n m : ℕ} {output : Fin m → V}
 
-/-- Removing the edges at a vertex keeps the inputs sources. -/
+/-- Removing the edges at a vertex keeps the inputs sources.
+@isnad1 id=eq.1h5v.s7.d85c1799cd44 from=translated src=- shape=d52f04fc vocab=70a4f6ec
+-/
 theorem inDegree_removeEdgesAt_eq_zero {x v : V} (hv : G.inDegree v = 0) :
     (removeEdgesAt G x).inDegree v = 0 :=
   Nat.eq_zero_of_le_zero ((inDegree_removeEdgesAt_le x v).trans hv.le)
 
 /-- **Dropping an input.** Removing the edges at a source input leaves a concentrator on the
-other inputs. -/
+other inputs.
+@isnad1 id=concentr.2h8v.s7.bcedea81d6d2 from=translated src=- shape=3cc416ae vocab=4e5af8e7
+-/
 theorem concentrator_drop {input : Fin (n + 1) → V} (h : G.Concentrator input output)
     (hsrc : ∀ i, G.inDegree (input i) = 0) (i₀ : Fin (n + 1)) :
     (removeEdgesAt G (input i₀)).Concentrator (fun j => input (i₀.succAbove j)) output where
@@ -161,7 +181,9 @@ theorem concentrator_drop {input : Fin (n + 1) → V} (h : G.Concentrator input 
 /-- **Contracting an input into its head.** Let the input `input i₀` be a source whose only
 edge `e₀` leads to a vertex `u` entered by no other edge, and let every other input be a
 source. Removing `e₀` and making `u` an input in place of `input i₀` leaves a concentrator,
-provided `m` inputs other than `input i₀` exist. -/
+provided `m` inputs other than `input i₀` exist.
+@isnad1 id=and.6h9v.s8.2a59803f4e1e from=translated src=- shape=72b29f1a vocab=add79f1c
+-/
 theorem concentrator_contract {input : Fin (n + 1) → V} (h : G.Concentrator input output)
     (hsrc : ∀ i, G.inDegree (input i) = 0) (hmn : m ≤ n) {i₀ : Fin (n + 1)} {e₀ : E}
     (he₀ : G.fst e₀ = input i₀) (hout : ∀ e, G.fst e = input i₀ → e = e₀)
@@ -255,7 +277,9 @@ theorem concentrator_contract {input : Fin (n + 1) → V} (h : G.Concentrator in
       exact inDegree_removeEdgesAt_eq_zero (hsrc i)
 
 /-- **Removing a dead vertex.** Removing the edges at a non-input vertex entered by no edge
-leaves a concentrator with the same inputs and outputs. -/
+leaves a concentrator with the same inputs and outputs.
+@isnad1 id=concentr.3h8v.s6.4e6ac6a67414 from=translated src=- shape=7d23b0e4 vocab=e9b1dbc4
+-/
 theorem concentrator_removeDead {input : Fin n → V} (h : G.Concentrator input output) {w : V}
     (hw : G.inDegree w = 0) (hwin : ∀ i, input i ≠ w) :
     (removeEdgesAt G w).Concentrator input output where
@@ -272,7 +296,9 @@ end Steps
 
 /-! ### Elimination -/
 
-/-- The head of the only edge leaving a source lies on every walk from it to another vertex. -/
+/-- The head of the only edge leaving a source lies on every walk from it to another vertex.
+@isnad1 id=mem.4h7v.s6.c8254bf993e7 from=translated src=- shape=c19b61f9 vocab=4d592f2a
+-/
 theorem snd_mem_of_isDirWalk [Fintype E] {p : List V} {x v : V} {e : E}
     (hp : G.IsDirWalk p x v) (hx : G.inDegree x = 0) (hxv : x ≠ v)
     (huniq : ∀ e', G.fst e' = x → e' = e) : G.snd e ∈ p := by
@@ -280,7 +306,9 @@ theorem snd_mem_of_isDirWalk [Fintype E] {p : List V} {x v : V} {e : E}
   rw [huniq e' he'] at hq
   exact hqsub _ (mem_of_isDirWalk_left hq)
 
-/-- An edge leaves a source input that reaches an output. -/
+/-- An edge leaves a source input that reaches an output.
+@isnad1 id=ex.3h8v.s6.60f9314b3b7a from=translated src=- shape=54529f87 vocab=2f16ce8e
+-/
 theorem exists_fst_eq_input [Fintype E] {n m : ℕ} {input : Fin n → V} {output : Fin m → V}
     (h : G.Concentrator input output) (hsrc : ∀ i, G.inDegree (input i) = 0) (hm : 1 ≤ m)
     (i : Fin n) : ∃ e, G.fst e = input i := by
@@ -291,7 +319,9 @@ theorem exists_fst_eq_input [Fintype E] {n m : ℕ} {input : Fin n → V} {outpu
 
 /-- **Elimination.** An acyclic `(n + 1, m)`-concentrator whose inputs are sources, with
 `2 ≤ m ≤ n`, turns into an acyclic `(n, m)`-concentrator on the same vertices and outputs, whose
-inputs are sources, with at least two fewer edges. -/
+inputs are sources, with at least two fewer edges.
+@isnad1 id=ex.6h8v.s7.25c365db8729 from=translated src=- shape=48d1201f vocab=f09e373e
+-/
 theorem exists_eliminate {m : ℕ} {output : Fin m → V} (hm : 2 ≤ m) :
     ∀ (k : ℕ) {E : Type} [Fintype E] (G : Multigraph V E) {n : ℕ} (input : Fin (n + 1) → V),
       Fintype.card E ≤ k → G.Concentrator input output → G.Acyclic →
@@ -405,7 +435,9 @@ theorem exists_eliminate {m : ℕ} {output : Fin m → V} (hm : 2 ≤ m) :
     exact ⟨E', inferInstance, G', input', hconc', hacyc', hsrc'', by omega⟩
 
 /-- **Repeated elimination.** Eliminating `j` inputs from an acyclic `(n, m)`-concentrator whose
-inputs are sources, with `2 ≤ m` and `m + j ≤ n`, removes at least `2 j` edges. -/
+inputs are sources, with `2 ≤ m` and `m + j ≤ n`, removes at least `2 j` edges.
+@isnad1 id=ex.5h8v.s7.260ad7223140 from=translated src=- shape=5513d11a vocab=599f078b
+-/
 theorem exists_eliminate_iter {m : ℕ} {output : Fin m → V} (hm : 2 ≤ m) :
     ∀ (j : ℕ) {E : Type} [Fintype E] (G : Multigraph V E) {n : ℕ} (input : Fin n → V),
       m + j ≤ n → G.Concentrator input output → G.Acyclic →
@@ -429,7 +461,9 @@ theorem exists_eliminate_iter {m : ℕ} {output : Fin m → V} (hm : 2 ≤ m) :
 
 /-! ### Acyclicity -/
 
-/-- Ranks increase along directed walks of positive length. -/
+/-- Ranks increase along directed walks of positive length.
+@isnad1 id=lt.2h6v.s5.7172e9eef884 from=translated src=- shape=054b7cad vocab=3ce8380a
+-/
 theorem rank_lt_of_transGen {rank : V → ℕ} (hrank : ∀ e, rank (G.fst e) < rank (G.snd e))
     {u v : V} (h : TransGen G.DirAdj u v) : rank u < rank v := by
   induction h with
@@ -442,7 +476,9 @@ theorem rank_lt_of_transGen {rank : V → ℕ} (hrank : ∀ e, rank (G.fst e) < 
 
 /-- **Acyclicity is the absence of directed cycles.** A finite multigraph has a vertex numbering
 increasing along every edge exactly when no vertex reaches itself along a directed walk of
-positive length. -/
+positive length.
+@isnad1 id=iff.0h3v.s4.e4f314066db5 from=translated src=- shape=a03a556e vocab=aa54b9d6
+-/
 theorem acyclic_iff_forall_not_transGen [Fintype V] :
     G.Acyclic ↔ ∀ v, ¬ TransGen G.DirAdj v v := by
   constructor
@@ -464,7 +500,9 @@ variable [Fintype V] [Fintype E] {n m : ℕ} {input : Fin n → V} {output : Fin
 
 /-- **The edge baseline for acyclic concentrators.** For `h = min(m, n - m)`, an acyclic
 `(n, m)`-concentrator with `M` edges whose inputs are sources, with `2 ≤ m < n`, has
-`2 n ≤ M + h + 1`. -/
+`2 n ≤ M + h + 1`.
+@isnad1 id=le.5h7v.s7.f875fae9906f from=translated src=- shape=4e4a0e25 vocab=cbcfb3ac
+-/
 theorem two_mul_le_card_add_min_of_acyclic (h : G.Concentrator input output)
     (hacyc : G.Acyclic) (hsrc : ∀ i, G.inDegree (input i) = 0) (hm : 2 ≤ m) (hmn : m < n) :
     2 * n ≤ Fintype.card E + min m (n - m) + 1 := by

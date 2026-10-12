@@ -71,16 +71,37 @@ def S : List ℕ → ℕ
   | [x] => x
   | x :: y :: rest => 2 * x + innerSum (y :: rest)
 
+/--
+@isnad1 id=eq.0h0v.s3.828550309b33 from=translated src=- shape=c15d4c7a vocab=2e7fea6f
+-/
 @[simp] theorem innerSum_nil : innerSum [] = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.d6b052011f12 from=translated src=- shape=3ae821ec vocab=6e8c35bb
+-/
 @[simp] theorem innerSum_singleton (x : ℕ) : innerSum [x] = 2 * x := rfl
+/--
+@isnad1 id=eq.0h3v.s5.2f97f8c9539d from=translated src=- shape=6428c514 vocab=66c9bc88
+-/
 @[simp] theorem innerSum_cons_cons (x y : ℕ) (rest : List ℕ) :
     innerSum (x :: y :: rest) = 4 * x + innerSum (y :: rest) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.36129f970387 from=translated src=- shape=c15d4c7a vocab=a52f4c4b
+-/
 @[simp] theorem S_nil : S [] = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s3.2bb0e7c19b0f from=translated src=- shape=5aa60faa vocab=8c5028c1
+-/
 @[simp] theorem S_singleton (x : ℕ) : S [x] = x := rfl
+/--
+@isnad1 id=eq.0h3v.s5.9d8f256b2fa1 from=translated src=- shape=b9e1b73c vocab=dc0f58f2
+-/
 @[simp] theorem S_cons_cons (x y : ℕ) (rest : List ℕ) :
     S (x :: y :: rest) = 2 * x + innerSum (y :: rest) := rfl
 
+/--
+@isnad1 id=le.0h1v.s4.4404ede26d2e from=translated src=- shape=5b2ecf72 vocab=029904c6
+-/
 theorem innerSum_le_four_mul_sum : ∀ l : List ℕ, innerSum l ≤ 4 * l.sum
   | [] => by simp
   | [x] => by simp; lia
@@ -89,7 +110,9 @@ theorem innerSum_le_four_mul_sum : ∀ l : List ℕ, innerSum l ≤ 4 * l.sum
       simp only [innerSum_cons_cons, List.sum_cons] at ih ⊢
       lia
 
-/-- The bound `S a` is always less than four times the sum of the row. -/
+/-- The bound `S a` is always less than four times the sum of the row.
+@isnad1 id=lt.2h1v.s5.0c60096d40b0 from=translated src=- shape=99ff56c1 vocab=baef2d92
+-/
 theorem S_lt_four_mul_sum : ∀ (a : List ℕ), a ≠ [] → (∀ x ∈ a, 0 < x) → S a < 4 * a.sum
   | [], h, _ => (h rfl).elim
   | [x], _, h => by
@@ -102,7 +125,9 @@ theorem S_lt_four_mul_sum : ∀ (a : List ℕ), a ≠ [] → (∀ x ∈ a, 0 < x
       simp only [S_cons_cons, List.sum_cons] at h1 ⊢
       lia
 
-/-- The last entry of a nonempty row, doubled, is at most `innerSum` of the row. -/
+/-- The last entry of a nonempty row, doubled, is at most `innerSum` of the row.
+@isnad1 id=le.0h2v.s5.4d183535f5c5 from=translated src=- shape=0f1fb9d8 vocab=beed46ef
+-/
 theorem two_mul_last_le_innerSum : ∀ (q : List ℕ) (y : ℕ), 2 * y ≤ innerSum (q ++ [y])
   | [], y => le_refl _
   | [x], y => by
@@ -115,7 +140,9 @@ theorem two_mul_last_le_innerSum : ∀ (q : List ℕ) (y : ℕ), 2 * y ≤ inner
       lia
 
 /-- The last entry of a row with at least two entries, doubled, is at most `S` of
-the row. -/
+the row.
+@isnad1 id=le.2h1v.s5.e76566e2e840 from=translated src=- shape=eb2e06bd vocab=7f1af30e
+-/
 theorem two_mul_getLast_le_S (a : List ℕ) (ha : 2 ≤ a.length) (h : a ≠ []) :
     2 * a.getLast h ≤ S a := by
   obtain ⟨x, l, rfl⟩ := List.exists_cons_of_ne_nil h
@@ -131,14 +158,18 @@ theorem two_mul_getLast_le_S (a : List ℕ) (ha : 2 ≤ a.length) (h : a ≠ [])
   lia
 
 /-- Expanding `innerSum` at the head of a nonempty tail: the head entry is counted
-with coefficient `4` in `innerSum` but with coefficient `2` in `S`. -/
+with coefficient `4` in `innerSum` but with coefficient `2` in `S`.
+@isnad1 id=eq.1h2v.s5.091fd192d0ca from=translated src=- shape=cd8a917d vocab=229a32fe
+-/
 theorem innerSum_cons (y : ℕ) (m : List ℕ) (hm : m ≠ []) :
     innerSum (y :: m) = S (y :: m) + 2 * y := by
   obtain ⟨z, rest, rfl⟩ := List.exists_cons_of_ne_nil hm
   simp only [innerSum_cons_cons, S_cons_cons]
   ring
 
-/-- Expanding `S` at the two leftmost entries of a row. -/
+/-- Expanding `S` at the two leftmost entries of a row.
+@isnad1 id=eq.1h4v.s6.5aa6574db534 from=translated src=- shape=ef18d048 vocab=5d45cd59
+-/
 theorem S_cons_cons_append (p₁ p₂ : ℕ) (p'' l : List ℕ) (h : p'' ++ l ≠ []) :
     S ((p₁ :: p₂ :: p'') ++ l) = 2 * p₁ + (S ((p₂ :: p'') ++ l) + 2 * p₂) := by
   rw [show (p₁ :: p₂ :: p'') ++ l = p₁ :: p₂ :: (p'' ++ l) from rfl,
@@ -146,7 +177,9 @@ theorem S_cons_cons_append (p₁ p₂ : ℕ) (p'' l : List ℕ) (h : p'' ++ l �
 
 /-- The overlap identity: if a row is decomposed as `p ++ x :: q` with both `p` and `q`
 nonempty (so `x` is a middle entry, counted with coefficient `4`), then its `S`-value
-is the sum of the `S`-values of the overlapping parts `p ++ [x]` and `x :: q`. -/
+is the sum of the `S`-values of the overlapping parts `p ++ [x]` and `x :: q`.
+@isnad1 id=eq.2h3v.s6.7b6c13a37860 from=translated src=- shape=0dc92817 vocab=65e48fce
+-/
 theorem S_append : ∀ (p q : List ℕ) (x : ℕ), p ≠ [] → q ≠ [] →
     S (p ++ x :: q) = S (p ++ [x]) + S (x :: q)
   | [], _, _, h, _ => (h rfl).elim
@@ -162,7 +195,9 @@ theorem S_append : ∀ (p q : List ℕ) (x : ℕ), p ≠ [] → q ≠ [] →
       ring
 
 /-- The key combinatorial step: any row with at least two entries can be cut into a
-nonempty prefix and a nonempty suffix whose `S`-values are both at most `S a / 2`. -/
+nonempty prefix and a nonempty suffix whose `S`-values are both at most `S a / 2`.
+@isnad1 id=ex.1h1v.s6.6ec832276481 from=translated src=- shape=20f024eb vocab=6a58aef4
+-/
 theorem exists_split (a : List ℕ) (ha : 2 ≤ a.length) :
     ∃ k, 1 ≤ k ∧ k < a.length ∧ 2 * S (a.take k) ≤ S a ∧ 2 * S (a.drop k) ≤ S a := by
   have hne : a ≠ [] := by rintro rfl; simp at ha
@@ -220,7 +255,9 @@ inductive Reduces : List ℕ → ℕ → Prop
   | append (u v : List ℕ) (x y z : ℕ) (hu : Reduces u x) (hv : Reduces v y)
       (hz : IsPow2 z) (hx : x < z) (hy : y < z) : Reduces (u ++ v) z
 
-/-- A number reachable from a row of powers of two is again a power of two. -/
+/-- A number reachable from a row of powers of two is again a power of two.
+@isnad1 id=ispow2.2h2v.s4.ea2174cda8b8 from=translated src=- shape=afae5f5f vocab=2abfbf9e
+-/
 theorem reduces_isPow2 {l : List ℕ} {m : ℕ} (h : Reduces l m)
     (hp : ∀ x ∈ l, IsPow2 x) : IsPow2 m := by
   induction h with
@@ -228,7 +265,9 @@ theorem reduces_isPow2 {l : List ℕ} {m : ℕ} (h : Reduces l m)
   | append u v x y z hu hv hz hx hy ihu ihv => exact hz
 
 /-- The main induction: every nonempty row of powers of two can be reduced to a
-single number which is at most `S` of the row. -/
+single number which is at most `S` of the row.
+@isnad1 id=ex.3h2v.s5.4358bc95008c from=translated src=- shape=9f6d9e06 vocab=762a9123
+-/
 theorem exists_reduces_le :
     ∀ n : ℕ, ∀ a : List ℕ, a.length = n → a ≠ [] → (∀ x ∈ a, IsPow2 x) →
       ∃ m, Reduces a m ∧ m ≤ S a := by
@@ -281,7 +320,9 @@ theorem exists_reduces_le :
           rw [hz, ← hmax]
           lia
 
-/-- Moves can also be performed with an additional row appended on the right. -/
+/-- Moves can also be performed with an additional row appended on the right.
+@isnad1 id=move.1h3v.s5.4ef056a53151 from=translated src=- shape=0880c6e7 vocab=850a3efc
+-/
 theorem Move.append_right {a b : List ℕ} (h : Move a b) (r : List ℕ) :
     Move (a ++ r) (b ++ r) := by
   obtain ⟨l, r', x, y, z, hz, hx, hy⟩ := h
@@ -289,7 +330,9 @@ theorem Move.append_right {a b : List ℕ} (h : Move a b) (r : List ℕ) :
     show (l ++ z :: r') ++ r = l ++ z :: (r' ++ r) by simp]
   exact Move.mk l (r' ++ r) x y z hz hx hy
 
-/-- Moves can also be performed with an additional row appended on the left. -/
+/-- Moves can also be performed with an additional row appended on the left.
+@isnad1 id=move.1h3v.s5.4f020abdc9c8 from=translated src=- shape=a94430c7 vocab=850a3efc
+-/
 theorem Move.append_left (l : List ℕ) {a b : List ℕ} (h : Move a b) :
     Move (l ++ a) (l ++ b) := by
   obtain ⟨l', r, x, y, z, hz, hx, hy⟩ := h
@@ -297,7 +340,9 @@ theorem Move.append_left (l : List ℕ) {a b : List ℕ} (h : Move a b) :
     show l ++ (l' ++ z :: r) = (l ++ l') ++ z :: r by simp]
   exact Move.mk (l ++ l') r x y z hz hx hy
 
-/-- Pushing a chain of moves through a context map. -/
+/-- Pushing a chain of moves through a context map.
+@isnad1 id=refltran.2h3v.s5.602660491f67 from=translated src=- shape=c8e88480 vocab=4cb061ea
+-/
 theorem reflTransGen_map (f : List ℕ → List ℕ)
     (hf : ∀ {s t : List ℕ}, Move s t → Move (f s) (f t)) {a b : List ℕ}
     (h : Relation.ReflTransGen Move a b) : Relation.ReflTransGen Move (f a) (f b) := by
@@ -306,7 +351,9 @@ theorem reflTransGen_map (f : List ℕ → List ℕ)
   | tail _ hbc ih => exact ih.trans (.single (hf hbc))
 
 /-- A `Reduces` derivation yields an actual sequence of legal moves: reduce the left
-block, then the right block, then combine the two remaining adjacent numbers. -/
+block, then the right block, then combine the two remaining adjacent numbers.
+@isnad1 id=refltran.1h2v.s4.64ab5cf87dca from=translated src=- shape=770d5417 vocab=c649469d
+-/
 theorem reduces_moves {a : List ℕ} {m : ℕ} (h : Reduces a m) :
     Relation.ReflTransGen Move a [m] := by
   induction h with
@@ -320,7 +367,9 @@ theorem reduces_moves {a : List ℕ} {m : ℕ} (h : Reduces a m) :
         .single (Move.mk [] [] x y z hz hx hy)
       exact step1.trans (step2.trans step3)
 
-/-- Powers of two are positive. -/
+/-- Powers of two are positive.
+@isnad1 id=lt.1h1v.s3.ea5bbc8c0d9c from=translated src=- shape=7d122e43 vocab=39af7369
+-/
 theorem IsPow2.pos {x : ℕ} (h : IsPow2 x) : 0 < x := by
   obtain ⟨k, rfl⟩ := h
   positivity

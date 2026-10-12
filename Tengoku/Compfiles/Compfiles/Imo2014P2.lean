@@ -34,13 +34,17 @@ def HasEmptySquare (σ : Equiv.Perm (Fin n)) (k : ℕ) : Prop :=
     ∀ i : Fin n, r ≤ (i : ℕ) → (i : ℕ) < r + k →
       ¬ (c ≤ (σ i : ℕ) ∧ (σ i : ℕ) < c + k)
 
-/-- An empty `k × k` square contains an empty `j × j` square whenever `j ≤ k`. -/
+/-- An empty `k × k` square contains an empty `j × j` square whenever `j ≤ k`.
+@isnad1 id=hasempty.2h4v.s4.ad14a18a5a9d from=translated src=- shape=0bb42380 vocab=c582a1e9
+-/
 lemma hasEmptySquare_mono {σ : Equiv.Perm (Fin n)} {j k : ℕ}
     (hjk : j ≤ k) (h : HasEmptySquare σ k) : HasEmptySquare σ j := by
   obtain ⟨r, c, hr, hc, hempty⟩ := h
   exact ⟨r, c, by lia, by lia, fun i hri hir hmem ↦ hempty i hri (by lia) ⟨hmem.1, by lia⟩⟩
 
-/-- `⌊√(n-1)⌋² < n ≤ (⌊√(n-1)⌋+1)²`. -/
+/-- `⌊√(n-1)⌋² < n ≤ (⌊√(n-1)⌋+1)²`.
+@isnad1 id=and.1h1v.s6.22d3151414b4 from=translated src=- shape=70a965a3 vocab=39880b83
+-/
 lemma sqrt_bounds (hn : 2 ≤ n) :
     Nat.sqrt (n - 1) * Nat.sqrt (n - 1) < n ∧
       n ≤ (Nat.sqrt (n - 1) + 1) * (Nat.sqrt (n - 1) + 1) := by
@@ -55,7 +59,9 @@ Following Evan Chen: let `R` be the rook in the top row, in column `col₀`, and
 stack `k` squares of size `k × k` directly below it. The `k` columns of that
 stack contain `k` rooks in total, but `R`'s rook sits at row `0`, above the
 stack — so the stack holds at most `k - 1` rooks among `k` disjoint squares,
-and one of them is empty. -/
+and one of them is empty.
+@isnad1 id=hasempty.1h2v.s5.1ac61fc774f3 from=translated src=- shape=e71a8fbe vocab=7d254356
+-/
 lemma exists_empty_square (hn : 2 ≤ n) (σ : Equiv.Perm (Fin n)) :
     HasEmptySquare σ (Nat.sqrt (n - 1)) := by
   set k := Nat.sqrt (n - 1) with hk_def
@@ -161,7 +167,9 @@ def HasRook {m : ℕ} (σ : Equiv.Perm (Fin m)) (K : ℕ) : Prop :=
 restricts (top-left, then completed arbitrarily) to one on any smaller `N × N`
 board. The key point: every `K × K` square of the `N × N` board lies inside
 `[0,N)²`, so its witnessing rook already has both coordinates `< N` and survives
-the restriction; the arbitrary completion only adds rooks. -/
+the restriction; the arbitrary completion only adds rooks.
+@isnad1 id=ex.2h4v.s5.3aa2bb0ed628 from=translated src=- shape=008137c6 vocab=b838d53f
+-/
 lemma covering_restrict {K M N : ℕ} (hNM : N ≤ M)
     (τ : Equiv.Perm (Fin M)) (hτ : HasRook τ K) :
     ∃ σ : Equiv.Perm (Fin N), HasRook σ K := by
@@ -207,7 +215,9 @@ lemma covering_restrict {K M N : ℕ} (hNM : N ≤ M)
     first | exact hc1 | exact hc2
 
 /-- Base case of the construction: the grid-transpose `i ↦ K·(i % K) + i / K` is
-a permutation of the `K² × K²` board placing a rook in every `K × K` square. -/
+a permutation of the `K² × K²` board placing a rook in every `K × K` square.
+@isnad1 id=ex.1h1v.s5.7033295ab53c from=translated src=- shape=f067df31 vocab=e23ac07b
+-/
 lemma transpose_covering (K : ℕ) (hK : 1 ≤ K) :
     ∃ τ : Equiv.Perm (Fin (K * K)), HasRook τ K := by
   have hKpos : 0 < K := hK
@@ -274,7 +284,9 @@ lemma transpose_covering (K : ℕ) (hK : 1 ≤ K) :
         · exact ⟨ra + 1, ca + 1, ⟨by lia, by lia⟩, ⟨by lia, by lia⟩, by lia⟩
 
 /-- Optimality (upper bound): some peaceful configuration has no empty
-`(⌊√(n-1)⌋+1) × (⌊√(n-1)⌋+1)` square. -/
+`(⌊√(n-1)⌋+1) × (⌊√(n-1)⌋+1)` square.
+@isnad1 id=ex.1h1v.s5.8792a7f6c6b6 from=translated src=- shape=feef3860 vocab=c0d1dbe9
+-/
 lemma exists_config_no_square (hn : 2 ≤ n) :
     ∃ σ : Equiv.Perm (Fin n), ¬ HasEmptySquare σ (Nat.sqrt (n - 1) + 1) := by
   set K := Nat.sqrt (n - 1) + 1 with hK_def

@@ -98,7 +98,9 @@ proves both the uniqueness in (a) and the invariance in (b), and identifies the
 terminal value explicitly.
 -/
 
-/-- Moves preserve the property that all entries are `≥ 1`. -/
+/-- Moves preserve the property that all entries are `≥ 1`.
+@isnad1 id=le.3h3v.s5.da77496f4fd1 from=translated src=- shape=483b95d1 vocab=cd6889de
+-/
 lemma move_ge_one {B B' : Board} (hmove : Move B B') (hB : ∀ a ∈ B, 1 ≤ a) :
     ∀ a ∈ B', 1 ≤ a := by
   obtain ⟨m, n, s, hm, hn, rfl, rfl⟩ := hmove
@@ -125,14 +127,18 @@ lemma move_ge_one {B B' : Board} (hmove : Move B B') (hB : ∀ a ∈ B, 1 ≤ a)
     exact Nat.div_pos hgl hg0
   · exact hB a (Multiset.mem_cons_of_mem (Multiset.mem_cons_of_mem ha))
 
-/-- Reachable boards have all entries `≥ 1`, provided the start board does. -/
+/-- Reachable boards have all entries `≥ 1`, provided the start board does.
+@isnad1 id=le.3h3v.s5.01cc5e56340f from=translated src=- shape=6fc529d8 vocab=8baa6b0c
+-/
 lemma ge_one_reachable {B₀ B : Board} (hge : ∀ a ∈ B₀, 1 ≤ a) (hreach : Reachable B₀ B) :
     ∀ a ∈ B, 1 ≤ a := by
   induction hreach with
   | refl => exact hge
   | tail _ hmove ih => exact move_ge_one hmove ih
 
-/-- A move always produces at least one entry `> 1`. -/
+/-- A move always produces at least one entry `> 1`.
+@isnad1 id=le.1h2v.s5.244ce75f05b3 from=translated src=- shape=a43dbb96 vocab=4adccb50
+-/
 lemma large_count_pos_of_move {B B' : Board} (hmove : Move B B') :
     1 ≤ (B'.filter fun a => 1 < a).card := by
   obtain ⟨m, n, s, hm, hn, rfl, rfl⟩ := hmove
@@ -164,7 +170,9 @@ lemma large_count_pos_of_move {B B' : Board} (hmove : Move B B') :
     exact card_pos_of_mem (Multiset.mem_filter.mpr
       ⟨Multiset.mem_cons_of_mem (Multiset.mem_cons_self _ _), hl⟩)
 
-/-- Reachable boards have at least one entry `> 1`, provided the start board does. -/
+/-- Reachable boards have at least one entry `> 1`, provided the start board does.
+@isnad1 id=le.2h2v.s6.c747fbf6937f from=translated src=- shape=d5f526fa vocab=2c068524
+-/
 lemma large_count_pos_of_reachable {B₀ B : Board}
     (h : 1 ≤ (B₀.filter fun a => 1 < a).card) (hreach : Reachable B₀ B) :
     1 ≤ (B.filter fun a => 1 < a).card := by
@@ -172,13 +180,17 @@ lemma large_count_pos_of_reachable {B₀ B : Board}
   | refl => exact h
   | tail _ hmove _ => exact large_count_pos_of_move hmove
 
-/-- `gcd(min a b, max a b - min a b) = gcd(a, b)`. -/
+/-- `gcd(min a b, max a b - min a b) = gcd(a, b)`.
+@isnad1 id=eq.0h2v.s5.8897f43f3a42 from=translated src=- shape=ee0f3006 vocab=69adce6d
+-/
 lemma gcd_min_sub_max (a b : ℕ) : Nat.gcd (min a b) (max a b - min a b) = Nat.gcd a b := by
   rcases le_total a b with h | h
   · rw [min_eq_left h, max_eq_right h, Nat.gcd_comm, Nat.gcd_sub_self_left h, Nat.gcd_comm]
   · rw [min_eq_right h, max_eq_left h, Nat.gcd_comm, Nat.gcd_sub_self_left h]
 
-/-- For a prime `p`, the quantity `gExp p` is preserved by a move. -/
+/-- For a prime `p`, the quantity `gExp p` is preserved by a move.
+@isnad1 id=eq.3h4v.s6.d058582f9f55 from=translated src=- shape=c50c5e6d vocab=e217af93
+-/
 lemma gExp_move {m n : ℕ} (hm : 1 < m) (hn : 1 < n) (s : Board) {p : ℕ} (hp : p.Prime) :
     gExp p (Nat.gcd m n ::ₘ (Nat.lcm m n / Nat.gcd m n) ::ₘ s) =
       gExp p (m ::ₘ n ::ₘ s) := by
@@ -220,7 +232,9 @@ lemma gExp_move {m n : ℕ} (hm : 1 < m) (hn : 1 < n) (s : Board) {p : ℕ} (hp 
       (Nat.gcd (padicValNat p n) (Multiset.map (fun a => padicValNat p a) s).gcd)
   rw [← Nat.gcd_assoc, gcd_min_sub_max, Nat.gcd_assoc]
 
-/-- `Mval` is invariant under a move, for boards whose remaining entries are `≥ 1`. -/
+/-- `Mval` is invariant under a move, for boards whose remaining entries are `≥ 1`.
+@isnad1 id=eq.3h3v.s6.a92821dc1c31 from=translated src=- shape=af895f67 vocab=3829e4b8
+-/
 lemma Mval_move {m n : ℕ} (hm : 1 < m) (hn : 1 < n) (s : Board) (hs : ∀ a ∈ s, 1 ≤ a) :
     Mval (Nat.gcd m n ::ₘ (Nat.lcm m n / Nat.gcd m n) ::ₘ s) = Mval (m ::ₘ n ::ₘ s) := by
   have hm0 : m ≠ 0 := by lia
@@ -253,7 +267,9 @@ lemma Mval_move {m n : ℕ} (hm : 1 < m) (hn : 1 < n) (s : Board) (hs : ∀ a �
   intro p hp
   rw [gExp_move hm hn s (Nat.prime_of_mem_primeFactors hp)]
 
-/-- `Mval` is invariant along any finite play. -/
+/-- `Mval` is invariant along any finite play.
+@isnad1 id=eq.2h2v.s5.72c99706af03 from=translated src=- shape=a00b6705 vocab=78304ce5
+-/
 lemma Mval_reachable {B₀ B : Board} (hge : ∀ a ∈ B₀, 1 ≤ a) (hreach : Reachable B₀ B) :
     Mval B = Mval B₀ := by
   induction hreach with
@@ -268,7 +284,9 @@ lemma Mval_reachable {B₀ B : Board} (hge : ∀ a ∈ B₀, 1 ≤ a) (hreach : 
     rw [hbe, Mval_move hm hn s hs, ← hbm]
     exact ih
 
-/-- On a terminal board with entries `≥ 1`, `Mval` equals the unique large entry. -/
+/-- On a terminal board with entries `≥ 1`, `Mval` equals the unique large entry.
+@isnad1 id=eq.4h2v.s5.1141f1d87ed4 from=translated src=- shape=e2b96498 vocab=861317bb
+-/
 lemma Mval_terminal {B' : Board} (hge : ∀ a ∈ B', 1 ≤ a) (huniq : HasUniqueLarge B')
     {M : ℕ} (hM : 1 < M) (hMem : M ∈ B') : Mval B' = M := by
   have hfilt : B'.filter (fun a => 1 < a) = {M} := by
@@ -311,7 +329,9 @@ lemma Mval_terminal {B' : Board} (hge : ∀ a ∈ B', 1 ≤ a) (huniq : HasUniqu
   rw [hgexp p hpp, Nat.factorization_def M hpp]
 
 /-- Any terminal board reachable from an initial board `B₀` has exactly one
-entry `> 1`. -/
+entry `> 1`.
+@isnad1 id=hasuniqu.3h2v.s4.1d4cbe5aca31 from=translated src=- shape=5b9a8300 vocab=d7940dc5
+-/
 lemma unique_large_of_reachable_terminal (B₀ : Board) (hB₀ : IsInitial B₀)
     (B' : Board) (hreach : Reachable B₀ B') (hterm : IsTerminal B') :
     HasUniqueLarge B' := by
@@ -323,7 +343,9 @@ lemma unique_large_of_reachable_terminal (B₀ : Board) (hB₀ : IsInitial B₀)
   exact le_antisymm hterm h1
 
 /-- Any entry `> 1` of a terminal board reachable from an initial board `B₀`
-equals `Mval B₀`. -/
+equals `Mval B₀`.
+@isnad1 id=eq.5h3v.s5.ad39c5a2bcef from=translated src=- shape=1d4ee0ba vocab=60def20b
+-/
 lemma large_mem_eq_Mval {B₀ B' : Board} (hB₀ : IsInitial B₀) (hreach : Reachable B₀ B')
     (hterm : IsTerminal B') {M : ℕ} (hM : 1 < M) (hMem : M ∈ B') : M = Mval B₀ := by
   have hge : ∀ a ∈ B', 1 ≤ a := ge_one_reachable (fun a ha => (hB₀.2 a ha).le) hreach

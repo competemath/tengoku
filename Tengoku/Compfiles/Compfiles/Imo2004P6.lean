@@ -26,6 +26,9 @@ abbrev SolutionSet : Set ℕ := {n | 0 < n ∧ ¬ 20 ∣ n}
 abbrev Alternating (n : Nat) : Prop :=
   0 < n ∧ (Nat.digits 10 n).IsChain (fun k l ↦ ¬ k ≡ l [MOD 2])
 
+/--
+@isnad1 id=not.1h1v.s3.4f39380dc146 from=translated src=- shape=c1538fc1 vocab=ce1440bb
+-/
 lemma not_alternating_of_dvd_twenty {M : ℕ} (h : 20 ∣ M) : ¬ Alternating M := by
   rintro ⟨hpos, hchain⟩
   obtain ⟨q, rfl⟩ := h
@@ -42,6 +45,9 @@ of the position, so that consecutive digits have different parity. -/
 def Nice (L : List ℕ) : Prop :=
   (∀ d ∈ L, d < 10) ∧ ∀ (i : ℕ) (h : i < L.length), L[i] % 2 = i % 2
 
+/--
+@isnad1 id=nice.3h2v.s5.18b6a3de1915 from=translated src=- shape=e0cb49a8 vocab=8b15330e
+-/
 lemma Nice.append {L M : List ℕ} (hL : Nice L) (hM : Nice M)
     (hlen : L.length % 2 = 0) : Nice (L ++ M) := by
   refine ⟨fun d hd ↦ ?_, fun i h ↦ ?_⟩
@@ -57,6 +63,9 @@ lemma Nice.append {L M : List ℕ} (hL : Nice L) (hM : Nice M)
       have := hM.2 (i - L.length) h'
       lia
 
+/--
+@isnad1 id=nice.3h2v.s6.f18b06abba97 from=translated src=- shape=f1365e15 vocab=1e9b8ee4
+-/
 lemma Nice.snoc {L : List ℕ} (hL : Nice L) {e : ℕ} (he : e < 10)
     (hp : e % 2 = L.length % 2) : Nice (L ++ [e]) := by
   refine ⟨fun d hd ↦ ?_, fun i h ↦ ?_⟩
@@ -72,6 +81,9 @@ lemma Nice.snoc {L : List ℕ} (hL : Nice L) {e : ℕ} (he : e < 10)
       rw [List.getElem_append_right hi, List.getElem_singleton]
       lia
 
+/--
+@isnad1 id=ischain.1h1v.s4.30c6ba1a98fb from=translated src=- shape=01becf35 vocab=db17d111
+-/
 lemma Nice.isChain {L : List ℕ} (hL : Nice L) :
     L.IsChain (fun k l ↦ ¬ k ≡ l [MOD 2]) := by
   rw [List.isChain_iff_getElem]
@@ -83,7 +95,9 @@ lemma Nice.isChain {L : List ℕ} (hL : Nice L) :
   lia
 
 /-- If `u` is coprime to `x` and `2 ≤ x`, then `u` divides some sum
-`1 + x + x ^ 2 + ⋯ + x ^ (t - 1)` with `0 < t`. -/
+`1 + x + x ^ 2 + ⋯ + x ^ (t - 1)` with `0 < t`.
+@isnad1 id=ex.2h2v.s5.e176b95ea48a from=translated src=- shape=c92ebc2f vocab=e66173cb
+-/
 lemma dvd_geom_sum {u x : ℕ} (hux : Nat.Coprime x u) (hx : 2 ≤ x) :
     ∃ t, 0 < t ∧ u ∣ ∑ i ∈ Finset.range t, x ^ i := by
   have hu0 : 0 < u := Nat.pos_of_ne_zero fun h ↦ by simp [h, Nat.Coprime] at hux; lia
@@ -101,6 +115,9 @@ lemma dvd_geom_sum {u x : ℕ} (hux : Nat.Coprime x u) (hx : 2 ≤ x) :
   rw [← geom_sum_mul_of_one_le (by lia : 1 ≤ x) (u * (x - 1)).totient] at h4
   exact (Nat.mul_dvd_mul_iff_right (by lia : 0 < x - 1)).mp h4
 
+/--
+@isnad1 id=and.2h2v.s7.8c8b4afb822b from=translated src=- shape=e0b887af vocab=b785e66f
+-/
 lemma nice_flatten_replicate {L : List ℕ} (hL : Nice L) (hlen : L.length % 2 = 0)
     (t : ℕ) :
     Nice ((List.replicate t L).flatten) ∧
@@ -118,7 +135,9 @@ lemma nice_flatten_replicate {L : List ℕ} (hL : Nice L) (hlen : L.length % 2 =
 
 /-- Repeating a `Nice` digit block of even length enough times produces an
 alternating multiple of `n * u`, where `n` divides the block and `u` is
-coprime to `10`. -/
+coprime to `10`.
+@isnad1 id=ex.6h3v.s6.37a588069732 from=translated src=- shape=1eebfaa2 vocab=de66ec8e
+-/
 lemma exists_alternating_multiple {n u : ℕ} (hu : Nat.Coprime u 10)
     (hnu : Nat.Coprime n u) {L : List ℕ} (hne : L ≠ [])
     (hlen : L.length % 2 = 0) (hnice : Nice L)
@@ -156,7 +175,9 @@ lemma exists_alternating_multiple {n u : ℕ} (hu : Nat.Coprime u 10)
 
 /-- Any `n` dividing `2 ^ i * 5 ^ j * u`, where `u` avoids `2` and `5` and
 some `Nice` block of even length is divisible by `2 ^ i * 5 ^ j`, has an
-alternating multiple. -/
+alternating multiple.
+@isnad1 id=ex.7h5v.s7.ad5f117e1138 from=translated src=- shape=e76f7dcc vocab=c68ec3b4
+-/
 lemma exists_alt_multiple_of_dvd {u n i j : ℕ} (hu2 : ¬ 2 ∣ u) (hu5 : ¬ 5 ∣ u)
     {L : List ℕ} (hne : L ≠ []) (hlen : L.length % 2 = 0) (hnice : Nice L)
     (hdvd : 2 ^ i * 5 ^ j ∣ Nat.ofDigits 10 L) (hn : n ∣ 2 ^ i * 5 ^ j * u) :
@@ -172,7 +193,9 @@ lemma exists_alt_multiple_of_dvd {u n i j : ℕ} (hu2 : ¬ 2 ∣ u) (hu5 : ¬ 5 
   exact ⟨M, hM, hn.trans hMdvd⟩
 
 /-- For every `k` there is a `Nice` digit block of length `2 * k + 2`
-divisible by `2 ^ (2 * k + 3)`. -/
+divisible by `2 ^ (2 * k + 3)`.
+@isnad1 id=ex.0h1v.s6.5f85a3f78dd3 from=translated src=- shape=2c79fc67 vocab=390ad6cd
+-/
 lemma two_block (k : ℕ) : ∃ L : List ℕ, L.length = 2 * k + 2 ∧ Nice L ∧
     2 ^ (2 * k + 3) ∣ Nat.ofDigits 10 L := by
   induction k with
@@ -220,11 +243,16 @@ lemma two_block (k : ℕ) : ∃ L : List ℕ, L.length = 2 * k + 2 ∧ Nice L �
       rw [heq, show 2 * (k + 1) + 3 = (2 * k + 2) + 3 by ring, pow_add]
       exact Nat.mul_dvd_mul_left _ key
 
+/--
+@isnad1 id=ex.4h3v.s6.bfac443d538f from=translated src=- shape=8bec298d vocab=e01edbb6
+-/
 lemma five_digit_choice : ∀ c < 5, 0 < c → ∀ m' < 5, ∀ s < 2,
     ∃ e ∈ Finset.range 10, e % 2 = s ∧ (m' + e * c) % 5 = 0 := by decide
 
 /-- For every `b` there is a `Nice` digit block of length `b + 1`
-divisible by `10 * 5 ^ b` (its bottom digit is `0`). -/
+divisible by `10 * 5 ^ b` (its bottom digit is `0`).
+@isnad1 id=ex.0h1v.s6.d9a8b0da6e7f from=translated src=- shape=8571f44f vocab=390ad6cd
+-/
 lemma five_block (b : ℕ) : ∃ L : List ℕ, L.length = b + 1 ∧ Nice L ∧
     10 * 5 ^ b ∣ Nat.ofDigits 10 L := by
   induction b with
@@ -258,6 +286,9 @@ lemma five_block (b : ℕ) : ∃ L : List ℕ, L.length = b + 1 ∧ Nice L ∧
     rw [heq, show 10 * 5 ^ (b + 1) = 10 * 5 ^ b * 5 by rw [pow_succ]; ring]
     exact Nat.mul_dvd_mul_left _ key
 
+/--
+@isnad1 id=ex.2h1v.s5.1863d5152401 from=translated src=- shape=4a821904 vocab=c42e9039
+-/
 lemma exists_alternating_multiple' {n : ℕ} (hn : 0 < n) (h20 : ¬ 20 ∣ n) :
     ∃ M, Alternating M ∧ n ∣ M := by
   by_cases h5 : 5 ∣ n

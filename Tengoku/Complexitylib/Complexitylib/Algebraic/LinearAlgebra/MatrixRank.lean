@@ -44,45 +44,61 @@ namespace Matrix
 variable {K : Type*} [Field K]
 variable {m n m' n' : Type*} [Fintype n]
 
-/-- Rank is subadditive. -/
+/-- Rank is subadditive.
+@isnad1 id=le.0h5v.s6.b68b5014b360 from=translated src=- shape=b52d9e7f vocab=5713282b
+-/
 theorem rank_add_le (A B : Matrix m n K) : (A + B).rank ≤ A.rank + B.rank :=
   Algebraic.MatrixRank.Internal.rank_add_le A B
 
-/-- The rank of a finite sum is at most the sum of the ranks. -/
+/-- The rank of a finite sum is at most the sum of the ranks.
+@isnad1 id=le.0h6v.s6.600aa8f1c516 from=translated src=- shape=dc19708a vocab=5b0f025d
+-/
 theorem rank_sum_le {ι : Type*} (s : Finset ι) (A : ι → Matrix m n K) :
     (∑ i ∈ s, A i).rank ≤ ∑ i ∈ s, (A i).rank :=
   Algebraic.MatrixRank.Internal.rank_sum_le s A
 
-/-- A square submatrix indexed by `ι` with nonzero determinant forces `card ι ≤ rank A`. -/
+/-- A square submatrix indexed by `ι` with nonzero determinant forces `card ι ≤ rank A`.
+@isnad1 id=le.1h7v.s6.17f62c19090c from=translated src=- shape=aaa11008 vocab=835d62f0
+-/
 theorem card_le_rank_of_det_submatrix_ne_zero {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix m n K) (f : ι → m) (g : ι → n) (h : (A.submatrix f g).det ≠ 0) :
     Fintype.card ι ≤ A.rank :=
   Algebraic.MatrixRank.Internal.card_le_rank_of_det_ne_zero A f g h
 
-/-- If `k ≤ rank A`, then some `k × k` minor of `A` is nonzero. -/
+/-- If `k ≤ rank A`, then some `k × k` minor of `A` is nonzero.
+@isnad1 id=ex.1h5v.s6.4dfbb5656619 from=translated src=- shape=23b54b22 vocab=88ed0d1a
+-/
 theorem exists_det_submatrix_ne_zero_of_le_rank [Fintype m] {k : ℕ} (A : Matrix m n K)
     (hk : k ≤ A.rank) : ∃ (f : Fin k → m) (g : Fin k → n), (A.submatrix f g).det ≠ 0 :=
   Algebraic.MatrixRank.Internal.exists_det_submatrix_ne_zero A hk
 
-/-- **Rank by minors.** `k ≤ rank A` if and only if some `k × k` minor of `A` is nonzero. -/
+/-- **Rank by minors.** `k ≤ rank A` if and only if some `k × k` minor of `A` is nonzero.
+@isnad1 id=iff.0h5v.s6.da29f4ed5bc5 from=translated src=- shape=a9681277 vocab=88ed0d1a
+-/
 theorem le_rank_iff_exists_det_submatrix_ne_zero [Fintype m] (A : Matrix m n K) (k : ℕ) :
     k ≤ A.rank ↔ ∃ (f : Fin k → m) (g : Fin k → n), (A.submatrix f g).det ≠ 0 :=
   ⟨exists_det_submatrix_ne_zero_of_le_rank A, fun ⟨f, g, h⟩ => by
     simpa using card_le_rank_of_det_submatrix_ne_zero A f g h⟩
 
 /-- **Rank by minors.** `rank A ≤ r` if and only if every `(r + 1) × (r + 1)` minor of `A`
-vanishes. -/
+vanishes.
+@isnad1 id=iff.0h5v.s7.469ec30b4ce1 from=translated src=- shape=74034bca vocab=786aa80a
+-/
 theorem rank_le_iff_forall_det_submatrix_eq_zero [Fintype m] (A : Matrix m n K) (r : ℕ) :
     A.rank ≤ r ↔
       ∀ (f : Fin (r + 1) → m) (g : Fin (r + 1) → n), (A.submatrix f g).det = 0 :=
   Algebraic.MatrixRank.Internal.rank_le_iff_forall_det_eq_zero A r
 
-/-- The matrices of rank at most `r` form a closed set. -/
+/-- The matrices of rank at most `r` form a closed set.
+@isnad1 id=isclosed.0h4v.s6.35e6f1e35ec9 from=translated src=- shape=ef1eccc0 vocab=782daf65
+-/
 theorem isClosed_setOf_rank_le [Fintype m] [TopologicalSpace K] [IsTopologicalRing K]
     [T1Space K] (r : ℕ) : IsClosed {A : Matrix m n K | A.rank ≤ r} :=
   Algebraic.MatrixRank.Internal.isClosed_setOf_rank_le r
 
-/-- **Lower semicontinuity of rank.** -/
+/-- **Lower semicontinuity of rank.**
+@isnad1 id=lowersem.0h3v.s5.ab34db0d7347 from=translated src=- shape=386d0277 vocab=be2430f7
+-/
 theorem lowerSemicontinuous_rank [Fintype m] [TopologicalSpace K] [IsTopologicalRing K]
     [T1Space K] : LowerSemicontinuous fun A : Matrix m n K => A.rank :=
   lowerSemicontinuous_iff_isClosed_preimage.mpr fun r => isClosed_setOf_rank_le r
@@ -92,13 +108,17 @@ section Blocks
 variable {m₁ m₂ n₁ n₂ : Type*} [Fintype m₁] [Fintype m₂] [Fintype n₁] [Fintype n₂]
 
 /-- The rank of a block upper-triangular matrix is at least the sum of the ranks of its diagonal
-blocks. -/
+blocks.
+@isnad1 id=le.0h8v.s6.09d0679eb726 from=translated src=- shape=4ba12d68 vocab=92a44495
+-/
 theorem rank_add_rank_le_rank_fromBlocks_zero₂₁ (A : Matrix m₁ n₁ K) (B : Matrix m₁ n₂ K)
     (D : Matrix m₂ n₂ K) : A.rank + D.rank ≤ (fromBlocks A B 0 D).rank :=
   Algebraic.MatrixRank.Internal.rank_add_rank_le_rank_fromBlocks_zero₂₁ A B D
 
 /-- The rank of a block lower-triangular matrix is at least the sum of the ranks of its diagonal
-blocks. -/
+blocks.
+@isnad1 id=le.0h8v.s6.d86c9cd139cb from=translated src=- shape=2858cf80 vocab=92a44495
+-/
 theorem rank_add_rank_le_rank_fromBlocks_zero₁₂ (A : Matrix m₁ n₁ K) (C : Matrix m₂ n₁ K)
     (D : Matrix m₂ n₂ K) : A.rank + D.rank ≤ (fromBlocks A 0 C D).rank :=
   Algebraic.MatrixRank.Internal.rank_add_rank_le_rank_fromBlocks_zero₁₂ A C D
@@ -107,7 +127,9 @@ end Blocks
 
 /-- **Deleting rows and columns.** Keeping the rows in the range of `f` and the columns in the
 range of `g` lowers the rank by at most the number of rows outside the range of `f` plus the
-number of columns outside the range of `g`. -/
+number of columns outside the range of `g`.
+@isnad1 id=le.0h8v.s6.7c7c139a33f4 from=translated src=- shape=4eca8ced vocab=3237c29b
+-/
 theorem rank_le_rank_submatrix_add [Fintype m] [Fintype m'] [Fintype n'] (A : Matrix m n K)
     (f : m' → m) (g : n' → n) :
     A.rank ≤ (A.submatrix f g).rank + Nat.card {i // i ∉ Set.range f} +
@@ -116,7 +138,9 @@ theorem rank_le_rank_submatrix_add [Fintype m] [Fintype m'] [Fintype n'] (A : Ma
 
 /-- **Deleting rows and columns**, for injective reindexings: deleting
 `card m - card m'` rows and `card n - card n'` columns lowers the rank by at most their total
-number. -/
+number.
+@isnad1 id=le.2h8v.s6.09a45e378470 from=translated src=- shape=c18e88ce vocab=529800df
+-/
 theorem rank_le_rank_submatrix_add_card_sub [Fintype m] [Fintype m'] [Fintype n']
     (A : Matrix m n K) {f : m' → m} {g : n' → n} (hf : Function.Injective f)
     (hg : Function.Injective g) :

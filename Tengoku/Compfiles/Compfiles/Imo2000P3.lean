@@ -59,36 +59,63 @@ section
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=bddabove.0h2v.s3.a3e3e1b0c874 from=translated src=- shape=7ef8c179 vocab=4de2af04
+-/
 lemma bddAbove_range (x : Fin n → ℝ) : BddAbove (Set.range x) :=
   Set.Finite.bddAbove (Set.finite_range x)
 
+/--
+@isnad1 id=bddbelow.0h2v.s3.7212802bf50a from=translated src=- shape=7ef8c179 vocab=58297bf8
+-/
 lemma bddBelow_range (x : Fin n → ℝ) : BddBelow (Set.range x) :=
   Set.Finite.bddBelow (Set.finite_range x)
 
+/--
+@isnad1 id=le.0h3v.s4.2789989c213b from=translated src=- shape=82f09790 vocab=aef0b44e
+-/
 lemma le_rightmost (x : Fin n → ℝ) (i : Fin n) : x i ≤ rightmost x :=
   le_ciSup (bddAbove_range x) i
 
+/--
+@isnad1 id=le.0h3v.s4.6d4fce511c02 from=translated src=- shape=2a5aec30 vocab=461e24c0
+-/
 lemma leftmost_le (x : Fin n → ℝ) (i : Fin n) : leftmost x ≤ x i :=
   ciInf_le (bddBelow_range x) i
 
+/--
+@isnad1 id=ex.0h2v.s4.d08da95dcca9 from=translated src=- shape=4edc1ff2 vocab=8ba5e1d7
+-/
 lemma exists_eq_rightmost [Nonempty (Fin n)] (x : Fin n → ℝ) :
     ∃ m, x m = rightmost x := by
   obtain ⟨m, -, hm⟩ := univ.exists_max_image x univ_nonempty
   exact ⟨m, le_antisymm (le_rightmost x m) (ciSup_le fun k => hm k (mem_univ k))⟩
 
+/--
+@isnad1 id=ex.0h2v.s4.eb7518a975b8 from=translated src=- shape=4edc1ff2 vocab=986f1437
+-/
 lemma exists_eq_leftmost [Nonempty (Fin n)] (x : Fin n → ℝ) :
     ∃ m, x m = leftmost x := by
   obtain ⟨m, -, hm⟩ := univ.exists_min_image x univ_nonempty
   exact ⟨m, le_antisymm (le_ciInf fun k => hm k (mem_univ k)) (leftmost_le x m)⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.bbc4ba04579f from=translated src=- shape=fdffadcc vocab=d0b73cfb
+-/
 lemma potential_eq (x : Fin n → ℝ) :
     potential x = (n : ℝ) * rightmost x - ∑ i, x i := by
   show ∑ i, (rightmost x - x i) = _
   rw [sum_sub_distrib, sum_const, card_univ, Fintype.card_fin, nsmul_eq_mul]
 
+/--
+@isnad1 id=le.0h2v.s4.4c6d73e16a51 from=translated src=- shape=42a2b5ba vocab=7c22a5f4
+-/
 lemma potential_nonneg (x : Fin n → ℝ) : 0 ≤ potential x :=
   sum_nonneg fun i _ => sub_nonneg.mpr (le_rightmost x i)
 
+/--
+@isnad1 id=ex.1h2v.s5.a39284aec2c0 from=translated src=- shape=5abd8c33 vocab=f571be63
+-/
 lemma exists_lt_rightmost (x : Fin n → ℝ) (h : 0 < potential x) :
     ∃ k, x k < rightmost x := by
   by_contra hcon
@@ -97,6 +124,9 @@ lemma exists_lt_rightmost (x : Fin n → ℝ) (h : 0 < potential x) :
     sum_eq_zero fun i _ => sub_eq_zero.mpr (le_antisymm (le_rightmost x i) (hcon i)).symm
   linarith
 
+/--
+@isnad1 id=lt.1h2v.s5.ef92428b6901 from=translated src=- shape=0b2b19e3 vocab=3529f948
+-/
 lemma potential_pos (x : Fin n → ℝ) (h : ∃ i j, x i ≠ x j) :
     0 < potential x := by
   obtain ⟨k, hk⟩ : ∃ k, x k < rightmost x := by
@@ -108,6 +138,9 @@ lemma potential_pos (x : Fin n → ℝ) (h : ∃ i j, x i ≠ x j) :
   exact sum_pos' (fun i _ => sub_nonneg.mpr (le_rightmost x i))
     ⟨k, mem_univ k, sub_pos.mpr hk⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.5ee1ff6a4833 from=translated src=- shape=e33a7003 vocab=fa2eb467
+-/
 lemma sum_update (x : Fin n → ℝ) (i : Fin n) (c : ℝ) :
     ∑ k, Function.update x i c k = ∑ k, x k + (c - x i) := by
   have h2 : ∑ k ∈ univ.erase i, Function.update x i c k = ∑ k ∈ univ.erase i, x k :=
@@ -118,6 +151,9 @@ lemma sum_update (x : Fin n → ℝ) (i : Fin n) (c : ℝ) :
   rw [Function.update_self] at h3
   linarith
 
+/--
+@isnad1 id=eq.1h4v.s5.a45c4a0bc374 from=translated src=- shape=92a3b7c4 vocab=134cc950
+-/
 lemma rightmost_update_of_le [Nonempty (Fin n)] (x : Fin n → ℝ) (i : Fin n) {c : ℝ}
     (hc : ∀ k, x k ≤ c) : rightmost (Function.update x i c) = c := by
   apply le_antisymm
@@ -133,7 +169,9 @@ lemma rightmost_update_of_le [Nonempty (Fin n)] (x : Fin n → ℝ) (i : Fin n) 
     exact h
 
 /-- The key inequality for the necessity direction: a single move decreases the potential
-by at least `(1 / lam - (n - 1))` times the amount by which the rightmost flea advances. -/
+by at least `(1 / lam - (n - 1))` times the amount by which the rightmost flea advances.
+@isnad1 id=le.3h4v.s6.29b12f45a767 from=translated src=- shape=701f3fe8 vocab=7b969d15
+-/
 lemma move_potential_bound (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam)
     {x y : Fin n → ℝ} (h : Move lam x y) :
     (1 / lam - ((n : ℝ) - 1)) * (rightmost y - rightmost x) ≤
@@ -199,7 +237,9 @@ lemma move_potential_bound (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam)
     rw [hr, hk0]
     linarith [hd]
 
-/-- The inequality of `move_potential_bound` telescopes along any sequence of moves. -/
+/-- The inequality of `move_potential_bound` telescopes along any sequence of moves.
+@isnad1 id=le.3h4v.s6.0ba4bfacff27 from=translated src=- shape=701f3fe8 vocab=169d2ab4
+-/
 lemma reachable_potential_bound (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam)
     {x y : Fin n → ℝ} (h : Reachable lam x y) :
     (1 / lam - ((n : ℝ) - 1)) * (rightmost y - rightmost x) ≤
@@ -212,7 +252,9 @@ lemma reachable_potential_bound (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam)
     linarith
 
 /-- Necessity: if `0 < lam < 1 / (n - 1)`, then the rightmost flea stays bounded, so the
-fleas cannot all be moved arbitrarily far to the right. -/
+fleas cannot all be moved arbitrarily far to the right.
+@isnad1 id=not.3h2v.s6.a340ab1f7a0e from=translated src=- shape=314a3662 vocab=8e9084b3
+-/
 lemma not_allRightOf_of_lt (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam)
     (hlt : lam < 1 / ((n : ℝ) - 1)) : ¬ AllRightOf (n := n) lam := by
   have : Nonempty (Fin n) := ⟨⟨0, by lia⟩⟩
@@ -250,7 +292,9 @@ lemma not_allRightOf_of_lt (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam)
 
 /-- One step of Woeginger's strategy: move the leftmost flea over the rightmost flea.
 The rightmost flea advances by at least `lam * potential x / (n - 1)`, and the potential
-does not decrease. -/
+does not decrease.
+@isnad1 id=ex.3h3v.s7.c1d281b6ae4d from=translated src=- shape=3bbfbb74 vocab=0a352add
+-/
 lemma strat_step (hn : 2 ≤ n) {lam : ℝ} (hlam : 1 / ((n : ℝ) - 1) ≤ lam)
     (x : Fin n → ℝ) (hp : 0 < potential x) :
     ∃ y, Move lam x y ∧
@@ -317,7 +361,9 @@ lemma strat_step (hn : 2 ≤ n) {lam : ℝ} (hlam : 1 / ((n : ℝ) - 1) ≤ lam)
     linarith
 
 /-- Phase 1 of the strategy: after `t` moves of `strat_step`, the rightmost flea has
-advanced by at least `t` times the fixed positive amount `lam * potential x / (n - 1)`. -/
+advanced by at least `t` times the fixed positive amount `lam * potential x / (n - 1)`.
+@isnad1 id=ex.3h4v.s7.f40d53ece42b from=translated src=- shape=d88506b8 vocab=016b5dc7
+-/
 lemma phase1 (hn : 2 ≤ n) {lam : ℝ} (hlam : 1 / ((n : ℝ) - 1) ≤ lam)
     (x : Fin n → ℝ) (hp : 0 < potential x) (t : ℕ) :
     ∃ y, Reachable lam x y ∧ potential x ≤ potential y ∧
@@ -340,7 +386,9 @@ lemma phase1 (hn : 2 ≤ n) {lam : ℝ} (hlam : 1 / ((n : ℝ) - 1) ≤ lam)
 
 /-- Phase 2 of the strategy: if the rightmost flea is already to the right of `M`, then
 one can move every remaining flea to the right of `M`, one at a time, by jumping it over
-the rightmost flea. -/
+the rightmost flea.
+@isnad1 id=ex.4h5v.s6.9bf881541919 from=translated src=- shape=570eec24 vocab=ccebd4ec
+-/
 lemma phase2 (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam) (M : ℝ) :
     ∀ m : ℕ, ∀ y : Fin n → ℝ, (univ.filter fun k => y k ≤ M).card ≤ m →
       M < rightmost y → ∃ z, Reachable lam y z ∧ ∀ l, M < z l := by
@@ -407,7 +455,9 @@ lemma phase2 (hn : 2 ≤ n) {lam : ℝ} (hlam : 0 < lam) (M : ℝ) :
 /-- Sufficiency: if `1 / (n - 1) ≤ lam`, then Woeginger's strategy (first move the
 rightmost flea far enough to the right by repeatedly jumping the leftmost flea over it,
 then jump every other flea over the rightmost flea) takes all fleas to the right of any
-given point `M`. -/
+given point `M`.
+@isnad1 id=allright.2h2v.s5.8257a7562f89 from=translated src=- shape=ac9b74a1 vocab=eaaf555b
+-/
 lemma allRightOf_of_ge (hn : 2 ≤ n) {lam : ℝ} (hlam : 1 / ((n : ℝ) - 1) ≤ lam) :
     AllRightOf (n := n) lam := by
   have : Nonempty (Fin n) := ⟨⟨0, by lia⟩⟩

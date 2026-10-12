@@ -39,7 +39,9 @@ The answer is: all even `k`.
   `S(n) ≡ p * S(M - 1) (mod p ^ e)`, and strong induction on `n` finishes the proof.
 -/
 
-/-- Split a sum over `range (p * M)` into `M` blocks of `p` consecutive terms. -/
+/-- Split a sum over `range (p * M)` into `M` blocks of `p` consecutive terms.
+@isnad1 id=eq.0h4v.s6.ba2e919da2af from=translated src=- shape=b438e5fe vocab=d361aece
+-/
 lemma sum_range_mul {M' : Type*} [AddCommMonoid M'] (f : ℕ → M') (p M : ℕ) :
     ∑ i ∈ range (p * M), f i = ∑ m ∈ range M, ∑ r ∈ range p, f (p * m + r) := by
   induction M with
@@ -47,7 +49,9 @@ lemma sum_range_mul {M' : Type*} [AddCommMonoid M'] (f : ℕ → M') (p M : ℕ)
   | succ M ih => rw [Nat.mul_succ, Finset.sum_range_add, ih, sum_range_succ]
 
 /-- The elements `j` of `range i` with `p ∣ j + 1` are exactly the numbers
-`p * (ℓ + 1) - 1` with `ℓ ∈ range (i / p)`. -/
+`p * (ℓ + 1) - 1` with `ℓ ∈ range (i / p)`.
+@isnad1 id=eq.1h2v.s6.4e69d7a85d9f from=translated src=- shape=1fabd3aa vocab=61660ff3
+-/
 lemma filter_dvd_succ_range (p i : ℕ) (hp : 0 < p) :
     (range i).filter (fun j => p ∣ j + 1)
       = (range (i / p)).image (fun ℓ => p * (ℓ + 1) - 1) := by
@@ -79,7 +83,9 @@ lemma filter_dvd_succ_range (p i : ℕ) (hp : 0 < p) :
     · lia
     · exact ⟨ℓ + 1, by lia⟩
 
-/-- The map `ℓ ↦ p * (ℓ + 1) - 1` is injective on `range M`. -/
+/-- The map `ℓ ↦ p * (ℓ + 1) - 1` is injective on `range M`.
+@isnad1 id=injon.1h2v.s5.3b4ac18779cb from=translated src=- shape=a9c69478 vocab=ba92980b
+-/
 lemma injOn_mul_succ_sub_one (p M : ℕ) (hp : 0 < p) :
     Set.InjOn (fun ℓ => p * (ℓ + 1) - 1) ↑(range M) := by
   intro a _ b _ hab
@@ -90,7 +96,9 @@ lemma injOn_mul_succ_sub_one (p M : ℕ) (hp : 0 < p) :
   have h4 := Nat.mul_left_cancel hp h3
   lia
 
-/-- There are exactly `i / p` elements `j < i` with `p ∣ j + 1`. -/
+/-- There are exactly `i / p` elements `j < i` with `p ∣ j + 1`.
+@isnad1 id=eq.1h2v.s6.491d94101de6 from=translated src=- shape=6266e24f vocab=f639ffc1
+-/
 lemma card_filter_dvd_succ_range (p i : ℕ) (hp : 0 < p) :
     ((range i).filter (fun j => p ∣ j + 1)).card = i / p := by
   rw [filter_dvd_succ_range p i hp, card_image_of_injOn (injOn_mul_succ_sub_one p (i / p) hp),
@@ -99,7 +107,9 @@ lemma card_filter_dvd_succ_range (p i : ℕ) (hp : 0 < p) :
 /-- Splitting `n.choose i * (i)! = ∏ j ∈ range i, (n - j)` into the factors with `p ∣ j + 1`
 and those with `p ∤ j + 1`, and cancelling the common factor `p ^ (i / p) * (i / p)!`,
 gives `n.choose i * P = (M - 1).choose (i / p) * R`, where `P = ∏ j, (j + 1)` and
-`R = ∏ j, (n - j)` are the products over the `j < i` with `p ∤ j + 1`. -/
+`R = ∏ j, (n - j)` are the products over the `j < i` with `p ∤ j + 1`.
+@isnad1 id=eq.3h4v.s7.976410301dc2 from=translated src=- shape=3c9a6161 vocab=e2bf1ee8
+-/
 lemma choose_mul_prod_filter_eq {p n M i : ℕ} (hp : 0 < p) (hM : p * M = n + 1) (hi : i ≤ n) :
     n.choose i * ∏ j ∈ (range i).filter (fun j => ¬ p ∣ j + 1), (j + 1)
       = (M - 1).choose (i / p) * ∏ j ∈ (range i).filter (fun j => ¬ p ∣ j + 1), (n - j) := by
@@ -161,7 +171,9 @@ lemma choose_mul_prod_filter_eq {p n M i : ℕ} (hp : 0 < p) (hM : p * M = n + 1
         by ring
 
 /-- The key congruence: if the prime power `p ^ e` divides `n + 1` and `p * M = n + 1`,
-then `n.choose i ≡ (-1) ^ (i - i / p) * (M - 1).choose (i / p)` modulo `p ^ e`. -/
+then `n.choose i ≡ (-1) ^ (i - i / p) * (M - 1).choose (i / p)` modulo `p ^ e`.
+@isnad1 id=eq.5h5v.s9.7659fc92df74 from=translated src=- shape=8b368a92 vocab=5d8b6650
+-/
 lemma choose_cast_zmod {p e n M i : ℕ} (hp : p.Prime) (he : 1 ≤ e) (hdvd : p ^ e ∣ n + 1)
     (hM : p * M = n + 1) (hi : i ≤ n) :
     ((n.choose i : ℕ) : ZMod (p ^ e))
@@ -216,7 +228,9 @@ lemma choose_cast_zmod {p e n M i : ℕ} (hp : p.Prime) (he : 1 ≤ e) (hdvd : p
 
 /-- Summing the key congruence over blocks of `p` consecutive indices: if `k` is even,
 `p ^ e ∣ n + 1` and `p * M = n + 1`, then
-`∑ i, (n.choose i) ^ k ≡ p * ∑ m, ((M - 1).choose m) ^ k` modulo `p ^ e`. -/
+`∑ i, (n.choose i) ^ k ≡ p * ∑ m, ((M - 1).choose m) ^ k` modulo `p ^ e`.
+@isnad1 id=modeq.5h5v.s7.4ef264b5c995 from=translated src=- shape=b78e101a vocab=4a879070
+-/
 lemma sum_modEq {p e n M k : ℕ} (hp : p.Prime) (he : 1 ≤ e) (hdvd : p ^ e ∣ n + 1)
     (hk : Even k) (hM : p * M = n + 1) :
     (∑ i ∈ range (n + 1), (n.choose i) ^ k)
@@ -261,7 +275,9 @@ lemma sum_modEq {p e n M k : ℕ} (hp : p.Prime) (he : 1 ≤ e) (hdvd : p ^ e �
 /-- Sufficiency: for even `k`, `n + 1` divides `∑ i ∈ range (n + 1), (n.choose i) ^ k`
 for every positive `n`. Proof by strong induction on `n`: for each prime `p` with `p ^ e`
 exactly dividing `n + 1`, `sum_modEq` reduces the claim modulo `p ^ e` to the induction
-hypothesis at `M - 1`, where `p * M = n + 1`. -/
+hypothesis at `M - 1`, where `p * M = n + 1`.
+@isnad1 id=dvd.2h2v.s6.ef2eb71ef318 from=translated src=- shape=20e5c01d vocab=f0edb354
+-/
 lemma dvd_sum_of_even {k : ℕ} (hk : Even k) (n : ℕ) :
     0 < n → (n + 1) ∣ ∑ i ∈ range (n + 1), (n.choose i) ^ k := by
   refine Nat.strong_induction_on n (fun n IH hn => ?_)
@@ -320,7 +336,9 @@ lemma dvd_sum_of_even {k : ℕ} (hk : Even k) (n : ℕ) :
     rw [h0]
     exact Nat.zero_le _
 
-/-- Necessity: taking `n = 2`, the divisibility `3 ∣ 2 + 2 ^ k` forces `k` to be even. -/
+/-- Necessity: taking `n = 2`, the divisibility `3 ∣ 2 + 2 ^ k` forces `k` to be even.
+@isnad1 id=even.1h1v.s6.c3c62c0e7a16 from=translated src=- shape=31a01f71 vocab=f0edb354
+-/
 lemma even_of_dvd {k : ℕ}
     (h : ∀ n : ℕ, 0 < n → (n + 1) ∣ ∑ i ∈ range (n + 1), (n.choose i) ^ k) :
     Even k := by

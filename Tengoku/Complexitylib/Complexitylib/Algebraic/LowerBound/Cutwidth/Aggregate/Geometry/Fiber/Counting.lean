@@ -23,34 +23,46 @@ namespace Algebraic.Cutwidth.Aggregate.Geometry.Fiber
 open Entropy
 open scoped BigOperators Classical
 
-/-- The false endpoint is the left input of the selected conjunction. -/
+/-- The false endpoint is the left input of the selected conjunction.
+@isnad1 id=eq.0h4v.s4.ffae64d7eaa8 from=translated src=- shape=d11f9cef vocab=4248ed92
+-/
 @[simp] theorem endpoint_false {E V : Type*} (edge : E → SignedEdge V) (e : E) :
     endpoint edge (e, false) = (edge e).left := rfl
 
-/-- The true endpoint is the right input of the selected conjunction. -/
+/-- The true endpoint is the right input of the selected conjunction.
+@isnad1 id=eq.0h4v.s4.1e11a517e650 from=translated src=- shape=d11f9cef vocab=66fcee49
+-/
 @[simp] theorem endpoint_true {E V : Type*} (edge : E → SignedEdge V) (e : E) :
     endpoint edge (e, true) = (edge e).right := rfl
 
-/-- Majority inputs make every selected signed conjunction false. -/
+/-- Majority inputs make every selected signed conjunction false.
+@isnad1 id=iff.0h4v.s5.9869d33c3bd3 from=translated src=- shape=6d43b834 vocab=76286266
+-/
 @[simp] theorem mem_majorityInputs {E V : Type*} [Fintype E] [Fintype V]
     (edge : E → SignedEdge V) (x : V → Bool) :
     x ∈ majorityInputs edge ↔ ∀ e, (edge e).eval x = false := by
   simp [majorityInputs]
 
-/-- Disjoint signed pairs occupy exactly two distinct coordinates per edge. -/
+/-- Disjoint signed pairs occupy exactly two distinct coordinates per edge.
+@isnad1 id=le.1h3v.s5.4bca7a36d9fb from=translated src=- shape=c7222fd2 vocab=2b65c795
+-/
 theorem two_mul_card_le {E V : Type*} [Fintype E] [Fintype V]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge)) :
     2 * Fintype.card E ≤ Fintype.card V := by
   simpa [Fintype.card_prod, Nat.mul_comm] using Fintype.card_le_of_injective _ disjoint
 
-/-- All majority outcomes of disjoint signed conjunctions occur on this many inputs. -/
+/-- All majority outcomes of disjoint signed conjunctions occur on this many inputs.
+@isnad1 id=eq.1h3v.s6.c474e1265551 from=translated src=- shape=21f18447 vocab=cb9c243d
+-/
 theorem card_majorityInputs {E V : Type*} [Fintype E] [Fintype V]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge)) :
     (majorityInputs edge).card =
       3 ^ Fintype.card E * 2 ^ (Fintype.card V - 2 * Fintype.card E) :=
   Internal.card_majorityInputs edge disjoint
 
-/-- A finite key with fibers of size at most `K` covers at most `|Y| * K` inputs. -/
+/-- A finite key with fibers of size at most `K` covers at most `|Y| * K` inputs.
+@isnad1 id=le.1h5v.s5.afa8352c0a0f from=translated src=- shape=d79fdc85 vocab=391251c6
+-/
 theorem card_le_mul_of_fibers {X Y : Type*} [Fintype Y]
     (inputs : Finset X) (key : X → Y) {K : ℕ}
     (fibers : ∀ y, (inputs.filter fun x => key x = y).card ≤ K) :
@@ -64,7 +76,9 @@ theorem card_le_mul_of_fibers {X Y : Type*} [Fintype Y]
     _ ≤ ∑ _y : Y, K := Finset.sum_le_sum fun y _ => fibers y
     _ = _ := by simp
 
-/-- Restricting to majority outcomes leaves the same finite-key fiber bound. -/
+/-- Restricting to majority outcomes leaves the same finite-key fiber bound.
+@isnad1 id=le.1h6v.s6.fc11500a1c03 from=translated src=- shape=9eb3204d vocab=894a7c8c
+-/
 theorem card_majorityInputs_le_mul_of_fibers {E V Y : Type*}
     [Fintype E] [Fintype V] [Fintype Y]
     (edge : E → SignedEdge V) (key : (V → Bool) → Y) {K : ℕ}
@@ -72,7 +86,9 @@ theorem card_majorityInputs_le_mul_of_fibers {E V Y : Type*}
     (majorityInputs edge).card ≤ Fintype.card Y * K :=
   card_le_mul_of_fibers _ key fibers
 
-/-- Exact majority counting and a fiber cap bound the residual message alphabet. -/
+/-- Exact majority counting and a fiber cap bound the residual message alphabet.
+@isnad1 id=le.2h6v.s7.d4feedc82db5 from=translated src=- shape=8880d2dc vocab=25c44b7f
+-/
 theorem majority_product_le_of_fibers {E V Y : Type*}
     [Fintype E] [Fintype V] [Fintype Y]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge))
@@ -83,7 +99,9 @@ theorem majority_product_le_of_fibers {E V Y : Type*}
   rw [← card_majorityInputs edge disjoint]
   exact card_majorityInputs_le_mul_of_fibers edge key fibers
 
-/-- The logarithmic count for an arbitrary finite residual message alphabet. -/
+/-- The logarithmic count for an arbitrary finite residual message alphabet.
+@isnad1 id=le.3h6v.s7.c07975761bb9 from=translated src=- shape=0443d4b0 vocab=b078e883
+-/
 theorem log_card_le_of_fibers {E V Y : Type*}
     [Fintype E] [Fintype V] [Fintype Y]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge))
@@ -105,7 +123,9 @@ theorem log_card_le_of_fibers {E V Y : Type*}
     Nat.cast_mul, Nat.cast_ofNat] at logs
   nlinarith
 
-/-- A residual Boolean key spends one bit per coordinate after majority selection. -/
+/-- A residual Boolean key spends one bit per coordinate after majority selection.
+@isnad1 id=le.3h6v.s7.389d5be5581c from=translated src=- shape=63771d98 vocab=69c1cdff
+-/
 theorem log_card_le_of_boolean_fibers {E V R : Type*}
     [Fintype E] [Fintype V] [Fintype R]
     (edge : E → SignedEdge V) (disjoint : Function.Injective (endpoint edge))

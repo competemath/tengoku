@@ -42,7 +42,9 @@ in common that were not hard for girls or boys. By condition 2 the result follow
 -/
 
 open Classical in
-/-- Every contestant solved at most five problems that were not easy for the other cohort. -/
+/-- Every contestant solved at most five problems that were not easy for the other cohort.
+@isnad1 id=le.3h5v.s6.1e3ab0aa3a23 from=translated src=- shape=ec76bda2 vocab=7886c83d
+-/
 lemma card_not_easy_le_five {α β : Type} [Fintype α]
     {β_solved : β → Finset ℕ} {α_solved : α → Finset ℕ}
     (hcard : 21 = Fintype.card α)
@@ -62,7 +64,9 @@ lemma card_not_easy_le_five {α β : Type} [Fintype α]
 
 open Classical in
 /-- There are at most 210 girl-boy pairs who solved some problem in common that was not easy for
-a fixed cohort. -/
+a fixed cohort.
+@isnad1 id=le.4h4v.s7.1c4c8af19bf2 from=translated src=- shape=ab31c9f4 vocab=c79e374b
+-/
 lemma card_not_easy_le_210 {α β : Type} [Fintype α] [Fintype β]
     (hcard_α : 21 = Fintype.card α)
     (hcard_β : 21 = Fintype.card β)

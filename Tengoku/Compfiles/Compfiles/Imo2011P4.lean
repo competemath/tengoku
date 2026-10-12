@@ -56,17 +56,28 @@ pan, except on the right pan at the very beginning). Hence the number of
 valid sequences satisfies `a (n+1) = (2n + 1) * a n`, so it is `(2n - 1)‼`.
 -/
 
+/--
+@isnad1 id=eq.0h0v.s3.44cec010570d from=translated src=- shape=1ac0e04f vocab=b2e5ca54
+-/
 @[simp] lemma balance_nil : Balance [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.243afe16c56e from=translated src=- shape=03907faa vocab=2dec077f
+-/
 @[simp] lemma balance_cons (p : ℕ × Bool) (l : List (ℕ × Bool)) :
     Balance (p :: l) = (if p.2 then (2 : ℤ) ^ p.1 else -((2 : ℤ) ^ p.1)) + Balance l := by
   simp [Balance]
 
+/--
+@isnad1 id=eq.0h2v.s5.513bacceea54 from=translated src=- shape=70394837 vocab=da034bc4
+-/
 @[simp] lemma balance_append (l₁ l₂ : List (ℕ × Bool)) :
     Balance (l₁ ++ l₂) = Balance l₁ + Balance l₂ := by
   simp [Balance, List.sum_append]
 
-/-- Doubling all weights doubles the imbalance. -/
+/-- Doubling all weights doubles the imbalance.
+@isnad1 id=eq.0h1v.s5.74110a65bedf from=translated src=- shape=ec6f8e10 vocab=4ad6972b
+-/
 lemma balance_map_succ (l : List (ℕ × Bool)) :
     Balance (l.map fun p : ℕ × Bool ↦ (p.1 + 1, p.2)) = 2 * Balance l := by
   induction l with
@@ -75,7 +86,9 @@ lemma balance_map_succ (l : List (ℕ × Bool)) :
     simp only [List.map_cons, balance_cons, ih]
     by_cases hp2 : p.2 = true <;> simp [hp2, pow_succ] <;> ring
 
-/-- Halving all weights halves the imbalance (all weights here are even). -/
+/-- Halving all weights halves the imbalance (all weights here are even).
+@isnad1 id=eq.1h1v.s6.ec45449f1cbb from=translated src=- shape=1ed3a7ca vocab=2a1fac0b
+-/
 lemma balance_map_pred (l : List (ℕ × Bool)) (h : ∀ p ∈ l, 1 ≤ p.1) :
     2 * Balance (l.map fun p : ℕ × Bool ↦ (p.1 - 1, p.2)) = Balance l := by
   induction l with
@@ -91,7 +104,9 @@ lemma balance_map_pred (l : List (ℕ × Bool)) (h : ∀ p ∈ l, 1 ≤ p.1) :
     by_cases hp2 : p.2 = true <;> simp [hp2, hpow]
 
 /-- Key nonzero fact: a nonempty signed sum of *distinct* powers of two is
-nonzero. -/
+nonzero.
+@isnad1 id=ne.2h1v.s5.e368596e3ce7 from=translated src=- shape=55a3fde3 vocab=0e061867
+-/
 lemma balance_ne_zero {l : List (ℕ × Bool)} (hne : l ≠ []) (hnd : (l.map Prod.fst).Nodup) :
     Balance l ≠ 0 := by
   -- Triangle inequality bound on the signed sum.
@@ -188,7 +203,9 @@ lemma balance_ne_zero {l : List (ℕ × Bool)} (hne : l ≠ []) (hnd : (l.map Pr
   intro hzero
   split at hzero <;> lia
 
-/-- A prefix of an append either lies in the first part or extends it. -/
+/-- A prefix of an append either lies in the first part or extends it.
+@isnad1 id=or.1h4v.s5.e214eb2c6704 from=translated src=- shape=0d1ad349 vocab=b2e856ff
+-/
 lemma prefix_append_cases {α : Type*} {pre X Y : List α} (h : pre <+: X ++ Y) :
     pre <+: X ∨ ∃ pre', pre = X ++ pre' ∧ pre' <+: Y := by
   obtain ⟨s, hs⟩ := h
@@ -196,12 +213,18 @@ lemma prefix_append_cases {α : Type*} {pre X Y : List α} (h : pre <+: X ++ Y) 
   · exact Or.inl ⟨a, hX.symm⟩
   · exact Or.inr ⟨a, hpre, ⟨s, hY.symm⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.1a21781ed9a1 from=translated src=- shape=8cd2c1fa vocab=e14c6491
+-/
 lemma map_down_map_up (l : List (ℕ × Bool)) :
     (l.map fun p : ℕ × Bool ↦ (p.1 + 1, p.2)).map (fun p : ℕ × Bool ↦ (p.1 - 1, p.2)) = l := by
   induction l with
   | nil => rfl
   | cons p l ih => simp_all
 
+/--
+@isnad1 id=eq.1h1v.s6.08115a736a53 from=translated src=- shape=d4448452 vocab=841a6659
+-/
 lemma map_up_map_down (l : List (ℕ × Bool)) (h : ∀ p ∈ l, 1 ≤ p.1) :
     (l.map fun p : ℕ × Bool ↦ (p.1 - 1, p.2)).map (fun p : ℕ × Bool ↦ (p.1 + 1, p.2)) = l := by
   induction l with
@@ -215,16 +238,25 @@ lemma map_up_map_down (l : List (ℕ × Bool)) (h : ∀ p ∈ l, 1 ≤ p.1) :
     have h1 : p.1 - 1 + 1 = p.1 := by lia
     rw [h1]
 
+/--
+@isnad1 id=eq.0h2v.s5.1148db33e7e5 from=translated src=- shape=c9855421 vocab=97520d9d
+-/
 lemma ways_length {n : ℕ} (w : Ways n) : w.1.length = n := by
   have h := List.Perm.length_eq w.2.1
   rwa [List.length_map, List.length_range] at h
 
+/--
+@isnad1 id=nodup.0h2v.s5.61d651b0cd30 from=translated src=- shape=c6471dfc vocab=503c6de2
+-/
 lemma ways_nodup {n : ℕ} (w : Ways n) : (w.1.map Prod.fst).Nodup :=
   (List.Perm.nodup_iff w.2.1).mpr List.nodup_range
 
 /-- The position of the weight `2^0` in a valid sequence. -/
 abbrev removeIdx {n : ℕ} (w : Ways (n + 1)) : ℕ := w.1.findIdx fun p ↦ p.1 == 0
 
+/--
+@isnad1 id=lt.0h2v.s6.0329242955c7 from=translated src=- shape=36b0e3e7 vocab=f5e3475e
+-/
 lemma ways_findIdx_lt {n : ℕ} (w : Ways (n + 1)) :
     (w.1.findIdx fun p ↦ p.1 == 0) < w.1.length := by
   rw [List.findIdx_lt_length]
@@ -237,13 +269,18 @@ lemma ways_findIdx_lt {n : ℕ} (w : Ways (n + 1)) :
 abbrev removePan {n : ℕ} (w : Ways (n + 1)) : Bool :=
   (w.1[(removeIdx w)]'(ways_findIdx_lt w)).2
 
+/--
+@isnad1 id=eq.0h2v.s7.36b06ecd9fe5 from=translated src=- shape=4039dd95 vocab=011c79de
+-/
 lemma ways_getElem_fst {n : ℕ} (w : Ways (n + 1)) :
     (w.1[(w.1.findIdx fun p ↦ p.1 == 0)]'(ways_findIdx_lt w)).1 = 0 := by
   have h := List.findIdx_getElem (p := fun p : ℕ × Bool ↦ p.1 == 0) (xs := w.1)
     (w := ways_findIdx_lt w)
   exact beq_iff_eq.mp h
 
-/-- A valid sequence splits around its `2^0` weight. -/
+/-- A valid sequence splits around its `2^0` weight.
+@isnad1 id=eq.0h2v.s7.1d233b69dc36 from=translated src=- shape=6fd63e37 vocab=445b7e7d
+-/
 lemma ways_split {n : ℕ} (w : Ways (n + 1)) :
     w.1 = w.1.take (removeIdx w) ++ (0, removePan w) :: w.1.drop (removeIdx w + 1) := by
   have helem : (w.1[(removeIdx w)]'(ways_findIdx_lt w)) = (0, removePan w) :=
@@ -252,7 +289,9 @@ lemma ways_split {n : ℕ} (w : Ways (n + 1)) :
   rw [← List.getElem_cons_drop (ways_findIdx_lt w)]
   rw [helem]
 
-/-- The weights before and after the `2^0` weight are all even. -/
+/-- The weights before and after the `2^0` weight are all even.
+@isnad1 id=and.0h2v.s7.2c3b52bd3c7f from=translated src=- shape=d9f382f0 vocab=2617711d
+-/
 lemma ways_fst_pos {n : ℕ} (w : Ways (n + 1)) :
     (∀ p ∈ w.1.take (removeIdx w), 1 ≤ p.1) ∧
     (∀ p ∈ w.1.drop (removeIdx w + 1), 1 ≤ p.1) := by
@@ -279,7 +318,9 @@ abbrev insertList (lr : List (ℕ × Bool)) (k : ℕ) (b : Bool) : List (ℕ × 
 /-- Removing the weight `2^0` and halving preserves validity: before the
 removed weight the imbalances are unchanged, and afterwards the (even)
 imbalance without the `±1` contribution can only drop by `1`, so it stays
-nonnegative. -/
+nonnegative.
+@isnad1 id=validseq.3h3v.s7.e9cea22ad34d from=translated src=- shape=6c9656e8 vocab=29310431
+-/
 lemma validSeq_remove {b : Bool} {l₁ l₂ : List (ℕ × Bool)}
     (hfst₁ : ∀ p ∈ l₁, 1 ≤ p.1) (hfst₂ : ∀ p ∈ l₂, 1 ≤ p.1)
     (hval : ValidSeq (l₁ ++ (0, b) :: l₂)) :
@@ -321,6 +362,9 @@ lemma validSeq_remove {b : Bool} {l₁ l₂ : List (ℕ × Bool)}
       cases b <;> simp
     lia
 
+/--
+@isnad1 id=perm.0h2v.s5.74bfd786f9e6 from=translated src=- shape=c38a5803 vocab=9bf02807
+-/
 lemma removeList_perm {n : ℕ} (w : Ways (n + 1)) :
     (removeList w).map Prod.fst ~ List.range n := by
   have hfst := ways_fst_pos w
@@ -353,6 +397,9 @@ lemma removeList_perm {n : ℕ} (w : Ways (n + 1)) :
         have h4 : ((fun x : ℕ ↦ x - 1) ∘ Nat.succ) = id := rfl
         rw [h4, List.map_id]
 
+/--
+@isnad1 id=validseq.0h2v.s4.510bc59f2164 from=translated src=- shape=0c1f3786 vocab=66a8b6e6
+-/
 lemma removeList_valid {n : ℕ} (w : Ways (n + 1)) : ValidSeq (removeList w) := by
   have hval : ValidSeq (w.1.take (removeIdx w) ++ (0, removePan w) :: w.1.drop (removeIdx w + 1)) := by
     rw [← ways_split w]; exact w.2.2
@@ -363,7 +410,9 @@ preserves validity: prefixes before the insertion point keep their
 (nonnegative, doubled) imbalance; later prefixes have imbalance
 `2d ± 1` with `d ≥ 0`, and when the new weight goes on the right pan the
 insertion is not at the beginning, so `d ≠ 0` (a nonempty signed sum of
-distinct powers of two), hence `d ≥ 1`. -/
+distinct powers of two), hence `d ≥ 1`.
+@isnad1 id=validseq.4h3v.s5.6de58f0681ed from=translated src=- shape=6ab3a37f vocab=818115f7
+-/
 lemma validSeq_insert {lr : List (ℕ × Bool)} (hnd : (lr.map Prod.fst).Nodup)
     (hval : ValidSeq lr) {k : ℕ} (hk : k ≤ lr.length) {b : Bool} (hb : b = false → 1 ≤ k) :
     ValidSeq (insertList lr k b) := by
@@ -423,6 +472,9 @@ lemma validSeq_insert {lr : List (ℕ × Bool)} (hnd : (lr.map Prod.fst).Nodup)
         simp at hpreB
         lia
 
+/--
+@isnad1 id=perm.1h4v.s5.d4a9c73e03ae from=translated src=- shape=9745a759 vocab=677c0dff
+-/
 lemma insertZero_perm {n : ℕ} {lr : List (ℕ × Bool)}
     (hperm : lr.map Prod.fst ~ List.range n) {k : ℕ} (b : Bool) :
     (insertList lr k b).map Prod.fst ~ List.range (n + 1) := by
@@ -451,7 +503,9 @@ lemma insertZero_perm {n : ℕ} {lr : List (ℕ × Bool)}
 abbrev IData (n : ℕ) : Type := Fin (n + 1) ⊕ Fin n
 
 /-- The weight `2^0` cannot be the first placement if it goes on the right
-pan. -/
+pan.
+@isnad1 id=le.1h2v.s5.b09eecb7da80 from=translated src=- shape=827a485b vocab=4819cab7
+-/
 lemma removePan_false_idx {n : ℕ} (w : Ways (n + 1)) (hp : removePan w = false) :
     1 ≤ removeIdx w := by
   by_contra h
@@ -495,13 +549,21 @@ def insertZeroWays {n : ℕ} (w : Ways n) (d : IData n) : Ways (n + 1) :=
       insertZero_perm w.2.1 false,
       validSeq_insert (ways_nodup w) w.2.2 (by have h := ways_length w; have := k.2; lia) (by simp)⟩)
 
+/--
+@isnad1 id=eq.0h3v.s7.cbaea7145fba from=translated src=- shape=800de473 vocab=0993e8d1
+-/
 @[simp] lemma insertZeroWays_inl_val {n : ℕ} (w : Ways n) (k : Fin (n + 1)) :
     (insertZeroWays w (Sum.inl k)).1 = insertList w.1 k.1 true := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.c41eab98ab77 from=translated src=- shape=420fd242 vocab=0be659c5
+-/
 @[simp] lemma insertZeroWays_inr_val {n : ℕ} (w : Ways n) (k : Fin n) :
     (insertZeroWays w (Sum.inr k)).1 = insertList w.1 (k.1 + 1) false := rfl
 
-/-- Removal followed by insertion reconstructs the original sequence. -/
+/-- Removal followed by insertion reconstructs the original sequence.
+@isnad1 id=eq.0h2v.s6.0db01fc9c9c0 from=translated src=- shape=323cac41 vocab=c3a47617
+-/
 lemma insertList_removeList {n : ℕ} (w : Ways (n + 1)) :
     insertList (removeList w) (removeIdx w) (removePan w) = w.1 := by
   have hfst := ways_fst_pos w
@@ -523,7 +585,9 @@ lemma insertList_removeList {n : ℕ} (w : Ways (n + 1)) :
   exact (ways_split w).symm
 
 /-- The element of an inserted list at the insertion position is the new
-`2^0` weight. -/
+`2^0` weight.
+@isnad1 id=eq.2h4v.s7.ad2e4c1b12d4 from=translated src=- shape=97efe7cd vocab=dc6ae0d1
+-/
 lemma insertList_getElem {n : ℕ} (w : Ways n) {k : ℕ} (hk : k ≤ w.1.length) (b : Bool)
     (h : k < (insertList w.1 k b).length) : (insertList w.1 k b)[k]'h = (0, b) := by
   unfold insertList
@@ -533,7 +597,9 @@ lemma insertList_getElem {n : ℕ} (w : Ways n) {k : ℕ} (hk : k ≤ w.1.length
   simp only [h2, List.getElem_cons_zero]
 
 /-- The position of the `2^0` weight in an inserted list is exactly the
-insertion position. -/
+insertion position.
+@isnad1 id=eq.1h4v.s6.0b3d336f96ea from=translated src=- shape=772ed671 vocab=cfea01c7
+-/
 lemma insertList_findIdx {n : ℕ} (w : Ways n) {k : ℕ} (hk : k ≤ w.1.length) (b : Bool) :
     (insertList w.1 k b).findIdx (fun p ↦ p.1 == 0) = k := by
   have hlen : (insertList w.1 k b).length = w.1.length + 1 := by
@@ -667,11 +733,17 @@ def stepEquiv (n : ℕ) : Ways (n + 1) ≃ Ways n × IData n where
         simp only [hidx]
         congr 1
 
+/--
+@isnad1 id=eq.0h1v.s5.6952c3a81807 from=translated src=- shape=de3fa9a7 vocab=3bb9b39d
+-/
 lemma card_idata (n : ℕ) : Nat.card (IData n) = 2 * n + 1 := by
   show Nat.card (Fin (n + 1) ⊕ Fin n) = 2 * n + 1
   rw [Nat.card_sum, Nat.card_fin, Nat.card_fin]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.1eb67ba0295f from=translated src=- shape=88d4f5c9 vocab=f80e7379
+-/
 lemma card_ways_zero : Nat.card (Ways 0) = 1 := by
   rw [Nat.card_eq_one_iff_unique]
   refine ⟨⟨fun a b ↦ Subtype.ext ?_⟩, ⟨⟨[], ?_, ?_⟩⟩⟩
@@ -690,11 +762,17 @@ lemma card_ways_zero : Nat.card (Ways 0) = 1 := by
     rw [hpre]
     exact le_rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.71a79742aac3 from=translated src=- shape=6515b604 vocab=80880c20
+-/
 lemma card_ways_succ (n : ℕ) :
     Nat.card (Ways (n + 1)) = (2 * n + 1) * Nat.card (Ways n) := by
   rw [Nat.card_congr (stepEquiv n), Nat.card_prod, card_idata]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.cfb0ba3446ce from=translated src=- shape=3877f3e1 vocab=4d6fb682
+-/
 lemma card_ways (n : ℕ) : Nat.card (Ways (n + 1)) = (2 * n + 1)‼ := by
   induction n with
   | zero => rw [card_ways_succ 0, card_ways_zero]; rfl

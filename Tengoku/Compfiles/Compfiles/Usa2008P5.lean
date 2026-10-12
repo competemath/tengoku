@@ -42,18 +42,27 @@ abbrev Step (r r' : Fin 3 → ℝ) : Prop :=
 /-- The weight of a coefficient vector: the sum of the absolute values. -/
 abbrev weight (a : Fin 3 → ℤ) : ℕ := ∑ l, (a l).natAbs
 
+/--
+@isnad1 id=eq.3h3v.s7.d27ec4b5faf7 from=translated src=- shape=af68271f vocab=aca77ed6
+-/
 lemma insert_eq_univ {i j k : Fin 3} (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
     ({i, j, k} : Finset (Fin 3)) = Finset.univ := by
   apply Finset.eq_univ_of_card
   rw [Finset.card_insert_of_notMem (by simp [hij, hik]),
     Finset.card_pair hjk, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.3h5v.s7.63e9a8fa83be from=translated src=- shape=8a07900b vocab=78f0b26c
+-/
 lemma sum3 {α : Type*} [AddCommMonoid α] {i j k : Fin 3}
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) (f : Fin 3 → α) :
     ∑ l, f l = f i + f j + f k := by
   rw [← insert_eq_univ hij hik hjk,
     Finset.sum_insert (by simp [hij, hik]), Finset.sum_pair hjk, add_assoc]
 
+/--
+@isnad1 id=eq.3h4v.s6.044695cfffec from=translated src=- shape=fbaa28b5 vocab=f0da365b
+-/
 lemma weight_eq_three {i j k : Fin 3} (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
     (a : Fin 3 → ℤ) :
     weight a = (a i).natAbs + (a j).natAbs + (a k).natAbs :=
@@ -62,7 +71,9 @@ lemma weight_eq_three {i j k : Fin 3} (hij : i ≠ j) (hik : i ≠ k) (hjk : j �
 /-- One step of the first phase of the strategy: if `r k ≤ r i`, we may erase
 `r i` writing `r i - r k`, and update the coefficients accordingly. The new
 coefficients still give a zero-sum relation, are not all zero, and their weight
-strictly decreases, provided that `(a k + a i).natAbs < (a k).natAbs`. -/
+strictly decreases, provided that `(a k + a i).natAbs < (a k).natAbs`.
+@isnad1 id=ex.8h5v.s8.d572f459da40 from=translated src=- shape=098c30f0 vocab=8803d8c3
+-/
 lemma move_lemma {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
     (hnn : ∀ l, 0 ≤ r l) (hle : r k ≤ r i)
@@ -98,7 +109,9 @@ lemma move_lemma {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
 
 /-- The first phase of the strategy, under the normalization `0 < a i` where
 `i` is the position of the largest number: there is always a legal move after
-which the weight of the coefficients strictly decreases. -/
+which the weight of the coefficients strictly decreases.
+@isnad1 id=ex.10h5v.s8.61ffcd6daf9f from=translated src=- shape=a41390be vocab=b2825f51
+-/
 lemma phase1_pos {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
     (hrj : r j < r i) (hrk : r k < r j) (hpos : ∀ l, 0 < r l)
@@ -231,7 +244,9 @@ lemma phase1_pos {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
       exact hdec3
 
 /-- The first phase of the strategy: as long as no coefficient is zero, there
-is a legal move after which the weight of the coefficients strictly decreases. -/
+is a legal move after which the weight of the coefficients strictly decreases.
+@isnad1 id=ex.10h5v.s8.1dae020cf78a from=translated src=- shape=d7fa6d5b vocab=b2825f51
+-/
 lemma phase1_core {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
     (hrj : r j < r i) (hrk : r k < r j) (hpos : ∀ l, 0 < r l)
@@ -258,7 +273,9 @@ lemma phase1_core {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
 /-- The subtractive Euclidean algorithm on one pair of positions. If the values
 at positions `i` and `j` are positive integer multiples `p * t` and `q * t` of a
 common positive real `t`, then by repeatedly erasing the larger of the two we
-can reach a board containing `0`. -/
+can reach a board containing `0`.
+@isnad1 id=ex.8h7v.s7.d4d1adcab79d from=translated src=- shape=9ca71b12 vocab=9f940cdc
+-/
 lemma euclid : ∀ n : ℕ, ∀ (r : Fin 3 → ℝ) (t : ℝ) (i j : Fin 3) (p q : ℕ),
     p + q = n → (∀ l, 0 ≤ r l) → 0 < t → i ≠ j → 0 < p → 0 < q →
     r i = (p : ℝ) * t → r j = (q : ℝ) * t →
@@ -325,7 +342,9 @@ lemma euclid : ∀ n : ℕ, ∀ (r : Fin 3 → ℝ) (t : ℝ) (i j : Fin 3) (p q
 
 /-- The second phase of the strategy: if some coefficient is zero, then the
 other two coefficients are nonzero and the corresponding numbers have a
-rational ratio, so the Euclidean algorithm finishes the game. -/
+rational ratio, so the Euclidean algorithm finishes the game.
+@isnad1 id=ex.7h5v.s8.59747a942fcc from=translated src=- shape=45189702 vocab=0b82a8a3
+-/
 lemma phase2 {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
     (hpos : ∀ l, 0 < r l) (ha : a ≠ 0) (hak : a k = 0)
@@ -410,7 +429,9 @@ lemma phase2 {r : Fin 3 → ℝ} {a : Fin 3 → ℤ} {i j k : Fin 3}
   exact euclid (q + p) r t i j q p rfl (fun l => (hpos l).le) htp hij hq0 hp0 hri_eq hpt.symm
 
 /-- The key lemma, proved by strong induction on the weight of the coefficient
-vector: one can always reach a board containing `0`. -/
+vector: one can always reach a board containing `0`.
+@isnad1 id=ex.4h3v.s7.51a625136ce6 from=translated src=- shape=54a8cbe1 vocab=1005b6f4
+-/
 lemma key : ∀ n : ℕ, ∀ (r : Fin 3 → ℝ) (a : Fin 3 → ℤ),
     weight a = n → (∀ l, 0 ≤ r l) → a ≠ 0 → (∑ l, (a l : ℝ) * r l) = 0 →
     ∃ r' : Fin 3 → ℝ, Relation.ReflTransGen Step r r' ∧ ∃ l, r' l = 0 := by

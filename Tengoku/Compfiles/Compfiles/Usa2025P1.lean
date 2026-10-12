@@ -23,7 +23,9 @@ namespace Usa2025P1
 /-- For odd `n` and `1 ≤ ℓ ≤ k`, the residue of `n ^ k` modulo `(2 * n) ^ ℓ`
 has the form `c * n ^ ℓ` for an odd `c` (so in particular `1 ≤ c`).
 In other words, the `ℓ` rightmost base-`(2 * n)` digits of `n ^ k` are the
-base-`(2 * n)` digits of `c * n ^ ℓ`. -/
+base-`(2 * n)` digits of `c * n ^ ℓ`.
+@isnad1 id=ex.3h3v.s6.6c89ae94fc89 from=translated src=- shape=a5af226e vocab=a836ab29
+-/
 lemma residue_mod {n k ℓ : ℕ} (hodd : Odd n) (hℓ1 : 1 ≤ ℓ) (hℓk : ℓ ≤ k) :
     ∃ c : ℕ, Odd c ∧ 1 ≤ c ∧ n ^ k % (2 * n) ^ ℓ = c * n ^ ℓ := by
   have hn0 : 0 < n := hodd.pos
@@ -55,7 +57,9 @@ lemma residue_mod {n k ℓ : ℕ} (hodd : Odd n) (hℓ1 : 1 ≤ ℓ) (hℓk : �
 
 /-- The `i`-th base-`b` digit of `m` (counting from the right, starting at `0`)
 equals `E / b ^ i`, where `E = m % b ^ (i + 1)` is the residue of `m` modulo
-the next power of `b`. -/
+the next power of `b`.
+@isnad1 id=eq.2h4v.s6.caa548664343 from=translated src=- shape=548943a8 vocab=23ed4244
+-/
 lemma digit_of_mod {m b E i : ℕ} (hb : 1 < b) (hm : m % b ^ (i + 1) = E) :
     m / b ^ i % b = E / b ^ i := by
   have hb0 : 0 < b := by lia

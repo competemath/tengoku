@@ -20,7 +20,9 @@ namespace Algebraic.Cutwidth.Aggregate
 
 open Filter
 
-/-- A sublinear rectangle threshold absorbs the finite one-way counting remainder. -/
+/-- A sublinear rectangle threshold absorbs the finite one-way counting remainder.
+@isnad1 id=eventual.3h3v.s7.9bb00d18de2d from=translated src=- shape=c1964e23 vocab=c9ed4248
+-/
 theorem eventually_lt_of_real_oneWayBound (K : Nat → Nat)
     (small : (fun n => Real.logb 2 (K n)) =o[atTop] (fun n => (n : ℝ)))
     (positive : ∀ᶠ n in atTop, 1 ≤ K n) (C : Nat) {ε : ℝ} (hε : 0 < ε) :
@@ -40,7 +42,9 @@ theorem eventually_lt_of_real_oneWayBound (K : Nat → Nat)
   simp only [zero_mul, zero_add] at hconstant
   linarith
 
-/-- The integer-capacity specialization of the one-way remainder estimate. -/
+/-- The integer-capacity specialization of the one-way remainder estimate.
+@isnad1 id=eventual.3h3v.s7.a9291eb5a41a from=translated src=- shape=abb98025 vocab=c9ed4248
+-/
 theorem eventually_lt_of_oneWayBound (K : Nat → Nat)
     (small : (fun n => Real.logb 2 (K n)) =o[atTop] (fun n => (n : ℝ)))
     (positive : ∀ᶠ n in atTop, 1 ≤ K n) (C : Nat) {ε : ℝ} (hε : 0 < ε) :

@@ -37,41 +37,61 @@ progression with common difference `d`. -/
 noncomputable def apPoly (k d : ℕ) : Polynomial ℤ :=
   ∏ i ∈ Finset.range k, (X + C ((i + 1) * d : ℤ))
 
+/--
+@isnad1 id=monic.0h2v.s3.5dc9174c3c3f from=translated src=- shape=215a98a0 vocab=2422df63
+-/
 lemma apPoly_monic (k d : ℕ) : (apPoly k d).Monic :=
   monic_prod_of_monic _ _ fun _ _ => monic_X_add_C _
 
+/--
+@isnad1 id=eq.0h2v.s3.92cd5e8b4bd8 from=translated src=- shape=aadcd40e vocab=0ce0845d
+-/
 lemma apPoly_natDegree (k d : ℕ) : (apPoly k d).natDegree = k := by
   rw [apPoly, natDegree_prod_of_monic _ _ (fun _ _ => monic_X_add_C _)]
   simp only [natDegree_X_add_C, Finset.sum_const, Finset.card_range, smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s4.2371d25c59f8 from=translated src=- shape=048b5bd6 vocab=0136e2f0
+-/
 lemma apPoly_degree (k d : ℕ) : (apPoly k d).degree = k := by
   rw [degree_eq_natDegree (apPoly_monic k d).ne_zero, apPoly_natDegree k d]
 
+/--
+@isnad1 id=le.1h2v.s6.9afe1ac7058e from=translated src=- shape=742eb246 vocab=fa016ba3
+-/
 lemma coeff_X_add_C_nonneg {c : ℤ} (hc : 0 ≤ c) (j : ℕ) :
     0 ≤ (X + C c : ℤ[X]).coeff j := by
   rw [coeff_add, coeff_X, coeff_C]
   split_ifs with h1 h2 h2 <;> simp_all
 
-/-- Coercion of a `ℕ+`-valued product to `ℤ`. -/
+/-- Coercion of a `ℕ+`-valued product to `ℤ`.
+@isnad1 id=eq.0h3v.s5.c318bed991c4 from=translated src=- shape=8928e32e vocab=3cb32e57
+-/
 lemma pnat_prod_coe {ι : Type*} (s : Finset ι) (f : ι → ℕ+) :
     ((∏ i ∈ s, f i : ℕ+) : ℤ) = ∏ i ∈ s, ((f i : ℕ+) : ℤ) := by
   norm_cast
 
-/-- Telescoping sum of consecutive differences over `ℤ`. -/
+/-- Telescoping sum of consecutive differences over `ℤ`.
+@isnad1 id=eq.0h2v.s5.cb61720f2239 from=translated src=- shape=d6f9b5db vocab=59f316b8
+-/
 lemma sum_range_sub_self {f : ℕ → ℤ} (n : ℕ) :
     ∑ i ∈ Finset.range n, (f (i + 1) - f i) = f n - f 0 := by
   induction n with
   | zero => simp
   | succ n ih => rw [Finset.sum_range_succ, ih]; ring
 
-/-- For naturals, `x ^ k ≤ y ^ k` implies `x ≤ y`. -/
+/-- For naturals, `x ^ k ≤ y ^ k` implies `x ≤ y`.
+@isnad1 id=le.2h3v.s5.6f146831fa6e from=translated src=- shape=b6f177c0 vocab=191dae4c
+-/
 lemma le_of_pow_le {x y k : ℕ} (hk : 0 < k) (h : x ^ k ≤ y ^ k) : x ≤ y := by
   by_cases h' : x ≤ y
   · exact h'
   · have h'' : y < x := lt_of_not_ge h'
     exact absurd h (not_le_of_gt (pow_lt_pow_left₀ h'' (Nat.zero_le y) (Nat.pos_iff_ne_zero.1 hk)))
 
-/-- First two terms of the binomial expansion bound the power below. -/
+/-- First two terms of the binomial expansion bound the power below.
+@isnad1 id=le.0h3v.s6.a387d6cbced3 from=translated src=- shape=0e498f2c vocab=f96c6fce
+-/
 lemma pow_ge_add_mul (x y n : ℕ) :
     x ^ (n + 1) + (n + 1) * x ^ n * y ≤ (x + y) ^ (n + 1) := by
   induction n with
@@ -87,7 +107,9 @@ lemma pow_ge_add_mul (x y n : ℕ) :
             exact Nat.le_add_right _ _
         _ ≤ (x + y) ^ (n + 1) * (x + y) := by gcongr
 
-/-- Expansion of `P.eval` for a monic `P` of degree `k`. -/
+/-- Expansion of `P.eval` for a monic `P` of degree `k`.
+@isnad1 id=eq.3h3v.s6.12400a0818c3 from=translated src=- shape=92bb2e70 vocab=3d207fd0
+-/
 lemma eval_eq {k : ℕ} (_hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (x : ℤ) :
     P.eval x = x ^ k + ∑ j ∈ Finset.range k, P.coeff j * x ^ j := by
@@ -99,7 +121,9 @@ lemma eval_eq {k : ℕ} (_hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     exact hmon.leadingCoeff
   rw [hlead, one_mul, add_comm]
 
-/-- `P.eval` is positive at positive integers. -/
+/-- `P.eval` is positive at positive integers.
+@isnad1 id=lt.5h3v.s6.93a13ef812b2 from=translated src=- shape=9a5bfbb4 vocab=ff10072c
+-/
 lemma eval_pos {k : ℕ} (_hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {x : ℤ} (hx : 0 < x) :
@@ -110,7 +134,9 @@ lemma eval_pos {k : ℕ} (_hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
   intro j hj
   exact mul_nonneg (hcoef j (Nat.le_of_lt (Finset.mem_range.1 hj))) (pow_nonneg hx.le j)
 
-/-- `P.eval` is strictly increasing on positive integers. -/
+/-- `P.eval` is strictly increasing on positive integers.
+@isnad1 id=lt.6h4v.s6.e37fabc735d9 from=translated src=- shape=afea346b vocab=ff10072c
+-/
 lemma eval_strictMono {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {x y : ℤ} (hx : 0 < x) (hxy : x < y) :
@@ -124,7 +150,9 @@ lemma eval_strictMono {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Mo
       (hcoef j (Nat.le_of_lt (Finset.mem_range.1 hj)))
 
 /-- The key recurrence obtained by dividing two consecutive instances of the
-functional equation: `a_{n+k+1}·P(a_n) = a_{n+1}·P(a_{n+1})`. -/
+functional equation: `a_{n+k+1}·P(a_n) = a_{n+1}·P(a_{n+1})`.
+@isnad1 id=eq.1h4v.s7.a5af269241c2 from=translated src=- shape=0af67781 vocab=3b989dfe
+-/
 lemma key_recurrence {k : ℕ} {P : Polynomial ℤ} {A : ℕ → ℕ}
     (hA : ∀ m : ℕ, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
     (m : ℕ) :
@@ -148,9 +176,14 @@ lemma key_recurrence {k : ℕ} {P : Polynomial ℤ} {A : ℕ → ℕ}
 /-- The sequence reindexed by `ℕ`: `seqA a m = a_{m+1}`. -/
 def seqA (a : ℕ+ → ℕ+) (m : ℕ) : ℕ := (a ⟨m + 1, Nat.succ_pos m⟩).val
 
+/--
+@isnad1 id=lt.0h2v.s4.023ac54fb0d9 from=translated src=- shape=160fe2e2 vocab=20263070
+-/
 lemma seqA_pos (a : ℕ+ → ℕ+) (m : ℕ) : 0 < seqA a m := (a _).pos
 
-/-- The functional equation restated for the `ℕ`-indexed sequence. -/
+/-- The functional equation restated for the `ℕ`-indexed sequence.
+@isnad1 id=eq.1h4v.s6.31434f836032 from=translated src=- shape=56161a2b vocab=9bc2428c
+-/
 lemma hA_of {k : ℕ} {P : Polynomial ℤ} {a : ℕ+ → ℕ+}
     (hP : ∀ n : ℕ+, P.eval ((a n) : ℤ) =
       ∏ i ∈ Finset.range k, a ⟨n + i + 1, Nat.succ_pos _⟩) (m : ℕ) :
@@ -162,11 +195,16 @@ lemma hA_of {k : ℕ} {P : Polynomial ℤ} {a : ℕ+ → ℕ+}
 /-- `Csum P k = Σ_{j<k} P.coeff j`, the total mass of the lower coefficients. -/
 def Csum (P : Polynomial ℤ) (k : ℕ) : ℤ := ∑ j ∈ Finset.range k, P.coeff j
 
+/--
+@isnad1 id=le.1h2v.s5.07a4b11c2bcb from=translated src=- shape=6db775b4 vocab=e683472b
+-/
 lemma Csum_nonneg {k : ℕ} {P : Polynomial ℤ} (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n) :
     0 ≤ Csum P k :=
   Finset.sum_nonneg fun j hj => hcoef j (Nat.le_of_lt (Finset.mem_range.1 hj))
 
-/-- Lower bound: `x ^ k ≤ P.eval x` for `x ≥ 1`. -/
+/-- Lower bound: `x ^ k ≤ P.eval x` for `x ≥ 1`.
+@isnad1 id=le.5h3v.s6.4d60a6d55a2e from=translated src=- shape=ef52956f vocab=03b26845
+-/
 lemma eval_lower {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {x : ℤ} (hx : 1 ≤ x) : x ^ k ≤ P.eval x := by
@@ -176,7 +214,9 @@ lemma eval_lower {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
   intro j hj
   exact mul_nonneg (hcoef j (Nat.le_of_lt (Finset.mem_range.1 hj))) (pow_nonneg (by lia) j)
 
-/-- Upper bound: `P.eval x ≤ x ^ k + C·x ^ (k-1)` for `x ≥ 1`. -/
+/-- Upper bound: `P.eval x ≤ x ^ k + C·x ^ (k-1)` for `x ≥ 1`.
+@isnad1 id=le.5h3v.s7.a7c539532f00 from=translated src=- shape=ce389e54 vocab=b4326da2
+-/
 lemma eval_upper {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {x : ℤ} (hx : 1 ≤ x) : P.eval x ≤ x ^ k + Csum P k * x ^ (k - 1) := by
@@ -190,7 +230,9 @@ lemma eval_upper {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
   exact mul_le_mul_of_nonneg_left (pow_le_pow_right₀ hx hj')
     (hcoef j (Nat.le_of_lt (Finset.mem_range.1 hj)))
 
-/-- Chaining one-step inequalities over an interval. -/
+/-- Chaining one-step inequalities over an interval.
+@isnad1 id=le.2h4v.s6.7fc2d9faf618 from=translated src=- shape=de9f84e4 vocab=110a7538
+-/
 lemma chain_le_nat {B : ℕ → ℕ} {a b : ℕ} (h : ∀ j, a ≤ j → j < b → B j ≤ B (j + 1)) :
     ∀ {t}, a + t ≤ b → B a ≤ B (a + t) := by
   intro t ht
@@ -202,7 +244,9 @@ lemma chain_le_nat {B : ℕ → ℕ} {a b : ℕ} (h : ∀ j, a ≤ j → j < b �
 
 /-- The sequence is non-decreasing. Proof: among all descent indices `n`
 (with `A (n+1) < A n`), take one with `A (n+1)` minimal; the key recurrence
-forces `A (n+k+1) < A (n+1)`, and chaining up to `n+k+1` contradicts minimality. -/
+forces `A (n+k+1) < A (n+1)`, and chaining up to `n+k+1` contradicts minimality.
+@isnad1 id=monotone.6h3v.s7.f1df3a2a35a2 from=translated src=- shape=986114fe vocab=b4c48e34
+-/
 lemma seq_monotone {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -271,7 +315,9 @@ lemma seq_monotone {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic
   rw [← add_assoc] at hchain
   exact absurd (hchain.trans_lt hestep) (lt_irrefl _)
 
-/-- Bounded consecutive differences: `A (m+1) ≤ A m + C` where `C = (Csum P k).toNat`. -/
+/-- Bounded consecutive differences: `A (m+1) ≤ A m + C` where `C = (Csum P k).toNat`.
+@isnad1 id=le.7h4v.s7.34d1b7ceb340 from=translated src=- shape=7f10f8e0 vocab=313635c5
+-/
 lemma diff_le {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -310,7 +356,9 @@ lemma diff_le {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     exact_mod_cast h9
   exact le_of_pow_le (by lia : 0 < k) (h1.trans h8)
 
-/-- The shifts `A (m+i) - A m` lie in `[0, i·C]`. -/
+/-- The shifts `A (m+i) - A m` lie in `[0, i·C]`.
+@isnad1 id=and.7h5v.s7.3947acc17a39 from=translated src=- shape=c9cfe999 vocab=dd691ea0
+-/
 lemma shift_bounds {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -335,22 +383,32 @@ lemma shift_bounds {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic
     rw [hC] at h
     linarith
 
-/-- A product of linear factors is monic. -/
+/-- A product of linear factors is monic.
+@isnad1 id=monic.0h2v.s6.9edf5a4f1613 from=translated src=- shape=1d455806 vocab=8b420db2
+-/
 lemma monic_prod_linear {σ : ℕ → ℤ} (s : Finset ℕ) :
     (∏ i ∈ s, (X + C (σ i))).Monic :=
   monic_prod_of_monic _ _ fun _ _ => monic_X_add_C _
 
+/--
+@isnad1 id=eq.0h2v.s6.bb0a2a3cede7 from=translated src=- shape=e7728503 vocab=46643ea1
+-/
 lemma natDegree_prod_linear {σ : ℕ → ℤ} (s : Finset ℕ) :
     (∏ i ∈ s, (X + C (σ i))).natDegree = s.card := by
   rw [natDegree_prod_of_monic _ _ (fun _ _ => monic_X_add_C _)]
   simp only [natDegree_X_add_C, Finset.sum_const, smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.58cdf9dbbec1 from=translated src=- shape=b3e6e1a6 vocab=ab877689
+-/
 lemma degree_prod_linear {σ : ℕ → ℤ} (s : Finset ℕ) :
     (∏ i ∈ s, (X + C (σ i))).degree = (s.card : WithBot ℕ) := by
   rw [degree_eq_natDegree (monic_prod_linear (σ := σ) s).ne_zero, natDegree_prod_linear]
 
 /-- Coefficients of a product of linear factors `X + C σᵢ` are bounded by
-`(1 + S) ^ (number of factors)` when every `|σᵢ| ≤ S`. -/
+`(1 + S) ^ (number of factors)` when every `|σᵢ| ≤ S`.
+@isnad1 id=le.2h4v.s7.85a9b4bec867 from=translated src=- shape=1f019231 vocab=1db75ce3
+-/
 lemma coeff_prod_linear_bound {S : ℤ} (hS : 0 ≤ S) (σ : ℕ → ℤ) :
     ∀ (s : Finset ℕ), (∀ i ∈ s, |σ i| ≤ S) →
       ∀ j : ℕ, |(∏ i ∈ s, (X + C (σ i))).coeff j| ≤ (1 + S) ^ s.card := by
@@ -388,6 +446,9 @@ lemma coeff_prod_linear_bound {S : ℤ} (hS : 0 ≤ S) (σ : ℕ → ℤ) :
 noncomputable def Fpoly (P : Polynomial ℤ) (A : ℕ → ℕ) (k m : ℕ) : Polynomial ℤ :=
   ∏ i ∈ Finset.range k, (X + C ((A (m + 1 + i) : ℤ) - A m)) - P
 
+/--
+@isnad1 id=eq.1h4v.s6.11cbcbcb9832 from=translated src=- shape=66dc2070 vocab=35fb7f74
+-/
 lemma Fpoly_eval {k : ℕ} {P : Polynomial ℤ} {A : ℕ → ℕ}
     (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
     (m : ℕ) : (Fpoly P A k m).eval (A m : ℤ) = 0 := by
@@ -400,6 +461,9 @@ lemma Fpoly_eval {k : ℕ} {P : Polynomial ℤ} {A : ℕ → ℕ}
     ring
   rw [h, hA m, sub_self]
 
+/--
+@isnad1 id=lt.3h4v.s6.f28221754104 from=translated src=- shape=ea2d288a vocab=6420e8ce
+-/
 lemma Fpoly_degree_lt {k : ℕ} (_hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (A : ℕ → ℕ) (m : ℕ) :
     (Fpoly P A k m).degree < k := by
@@ -415,6 +479,9 @@ lemma Fpoly_degree_lt {k : ℕ} (_hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.M
   rw [degree_prod_linear, Finset.card_range] at h4
   exact h4
 
+/--
+@isnad1 id=le.7h5v.s7.bf6a6f3b77a5 from=translated src=- shape=d2e3419b vocab=b380f200
+-/
 lemma Fpoly_coeff_bound {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -455,7 +522,9 @@ lemma Fpoly_coeff_bound {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.
     positivity
 
 /-- An integer root `x ≥ 1` of a nonzero integer polynomial is bounded by
-`natDegree × (coefficient bound)`. -/
+`natDegree × (coefficient bound)`.
+@isnad1 id=le.4h3v.s6.06324ef175b1 from=translated src=- shape=f6698e52 vocab=5b3e897c
+-/
 lemma root_bound {F : Polynomial ℤ} {B : ℤ} (hF : F ≠ 0) (hB : ∀ j, |F.coeff j| ≤ B)
     {x : ℤ} (hx : 1 ≤ x) (hFx : F.eval x = 0) : x ≤ F.natDegree * B := by
   have hB0 : 0 ≤ B := le_trans (abs_nonneg _) (hB 0)
@@ -522,7 +591,9 @@ lemma root_bound {F : Polynomial ℤ} {B : ℤ} (hF : F ≠ 0) (hB : ∀ j, |F.c
 
 /-- Once `A m` exceeds the root bound, `F_m` vanishes, and comparing the
 `X ^ (k-1)`-coefficients yields the key relation
-`Σ_{i<k} A (m+1+i) = k·A m + c_{k-1}`. -/
+`Σ_{i<k} A (m+1+i) = k·A m + c_{k-1}`.
+@isnad1 id=eq.9h5v.s8.f2d55ad00e8e from=translated src=- shape=5625156b vocab=9cec3547
+-/
 lemma eval_sum_eq {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -573,7 +644,9 @@ def Dif (A : ℕ → ℕ) (j : ℕ) : ℤ := (A (j + 1) : ℤ) - A j
 
 /-- Once `A m` exceeds the root bound, the difference `Dif A j` is eventually
 constant: the sum relation `Σ_{l<k} Dif A (j+1+l) = k · Dif A j` forces the
-maximal difference to propagate. -/
+maximal difference to propagate.
+@isnad1 id=ex.8h4v.s7.31da849b5291 from=translated src=- shape=4d150563 vocab=a42f35db
+-/
 lemma diff_eventually_const {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -646,6 +719,9 @@ lemma diff_eventually_const {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon 
     rw [← Nat.add_sub_of_le hj]
     exact hconst (j - m)⟩
 
+/--
+@isnad1 id=le.0h3v.s6.ab9cb039e3fb from=translated src=- shape=650db5f8 vocab=bef9c617
+-/
 lemma apPoly_coeff_nonneg_aux (d : ℕ) (s : Finset ℕ) (n : ℕ) :
     0 ≤ (∏ i ∈ s, (X + C ((i + 1) * d : ℤ))).coeff n := by
   induction s using Finset.induction generalizing n with
@@ -656,16 +732,24 @@ lemma apPoly_coeff_nonneg_aux (d : ℕ) (s : Finset ℕ) (n : ℕ) :
       rintro ⟨j, l⟩ -
       exact mul_nonneg (coeff_X_add_C_nonneg (Int.natCast_nonneg _) j) (ih l)
 
+/--
+@isnad1 id=le.0h3v.s4.12e79e41667f from=translated src=- shape=498355ec vocab=8da30d92
+-/
 lemma apPoly_coeff_nonneg (k d : ℕ) (n : ℕ) : 0 ≤ (apPoly k d).coeff n :=
   apPoly_coeff_nonneg_aux d _ n
 
+/--
+@isnad1 id=eq.0h3v.s5.ddc674a3ad80 from=translated src=- shape=b1d035e8 vocab=a612eba6
+-/
 lemma apPoly_eval (k d : ℕ) (x : ℤ) :
     (apPoly k d).eval x = ∏ i ∈ Finset.range k, (x + ((i + 1) * d : ℤ)) := by
   rw [apPoly, eval_prod]
   exact Finset.prod_congr rfl fun i _ => by rw [eval_add, eval_X, eval_C]
 
 /-- The bounded case: a bounded monotone sequence of naturals stabilizes, and
-the functional equation forces it to be constant. -/
+the functional equation forces it to be constant.
+@isnad1 id=ex.8h4v.s7.0c6c378fc39a from=translated src=- shape=695eac8b vocab=693fa347
+-/
 lemma backward_bounded {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -752,7 +836,9 @@ lemma backward_bounded {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.M
   exact ⟨V, 0, fun n => by rw [hfin n]; simp⟩
 
 /-- The unbounded case: once the sequence exceeds the root bound, it is an
-arithmetic progression. -/
+arithmetic progression.
+@isnad1 id=ex.8h4v.s7.cfc69067763d from=translated src=- shape=2bd4b067 vocab=62107d74
+-/
 lemma backward_unbounded {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))
@@ -930,7 +1016,9 @@ lemma backward_unbounded {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P
     exact_mod_cast h⟩
 
 /-- The backward direction: any sequence satisfying the functional equation is
-an arithmetic progression. -/
+an arithmetic progression.
+@isnad1 id=ex.6h3v.s7.7c327c703889 from=translated src=- shape=a6fcc04d vocab=5a8604cf
+-/
 lemma backward_main {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Monic)
     (hdeg : P.degree = k) (hcoef : ∀ n, n ≤ k → 0 ≤ P.coeff n)
     {A : ℕ → ℕ} (hA : ∀ m, P.eval (A m : ℤ) = ∏ i ∈ Finset.range k, (A (m + 1 + i) : ℤ))

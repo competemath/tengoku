@@ -22,11 +22,17 @@ open Nat
   Several lemmas might be useful, such as any natural number having at least one prime factor and any composite having at least two.
 -/
 
+/--
+@isnad1 id=eq.0h1v.s7.22db55b96d46 from=translated src=- shape=98dfd2d2 vocab=6278b6cd
+-/
 lemma factor_poly_an (t : ℕ) : t^7 + 1 = (t + 1) * ((t^6 - t^5) + (t^4 - t^3) + (t^2 - t) + 1) := by
   cases t
   · decide
   · grind [add_mul, Nat.mul_add, Nat.mul_sub]
 
+/--
+@isnad1 id=eq.0h1v.s7.87a7585ab324 from=translated src=- shape=2238d776 vocab=6278b6cd
+-/
 lemma factor_poly_bn (t : ℕ) : ((t^6 - t^5) + (t^4 - t^3) + (t^2 - t) + 1) = (t+1)^6 - (7*t)*(t^2+t+1)^2 := by
   cases t
   · decide

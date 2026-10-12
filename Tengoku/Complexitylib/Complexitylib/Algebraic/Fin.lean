@@ -17,7 +17,9 @@ Small order-theoretic facts about folds indexed by `Fin`.
 
 namespace Algebraic.Fin
 
-/-- Every folded value is at most the maximum accumulated by `Fin.foldl`. -/
+/-- Every folded value is at most the maximum accumulated by `Fin.foldl`.
+@isnad1 id=le.0h5v.s5.c16eb7daf1ca from=translated src=- shape=b9562660 vocab=af2df947
+-/
 theorem le_foldl_max [LinearOrder α]
     (values : Fin n → α)
     (initial : α)
@@ -33,7 +35,9 @@ theorem le_foldl_max [LinearOrder α]
         exact (ih (fun i => values i.castSucc) i).trans (le_max_left _ _)
 
 /-- A finite maximum is bounded above when its initial value and every folded
-value are bounded above. -/
+value are bounded above.
+@isnad1 id=le.2h5v.s6.4b2992ec33ff from=translated src=- shape=d41e36cc vocab=af2df947
+-/
 theorem foldl_max_le [LinearOrder α]
     (values : Fin n -> α)
     (initial bound : α)

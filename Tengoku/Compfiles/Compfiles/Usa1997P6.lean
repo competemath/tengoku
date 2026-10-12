@@ -33,6 +33,9 @@ for the pair `(m, s)`; if `m > n`, write `m = n + r` and combine
 `a m ≤ a n + a r + 1` with the induction hypothesis for the pair `(r, n)`.
 -/
 
+/--
+@isnad1 id=le.6h3v.s7.9ccb184c2b0e from=translated src=- shape=1f2e4d28 vocab=ebd7a482
+-/
 lemma key_ineq (a : ℕ → ℕ)
     (hlo : ∀ i j : ℕ, 1 ≤ i → 1 ≤ j → i + j ≤ 1997 → a i + a j ≤ a (i + j))
     (hhi : ∀ i j : ℕ, 1 ≤ i → 1 ≤ j → i + j ≤ 1997 → a (i + j) ≤ a i + a j + 1) :

@@ -90,15 +90,30 @@ def GH (n : ℕ) : List (ℤ × ℤ) → Prop
   | [p] => ¬ blue n p ∨ p.2 = 0
   | p :: q :: _ => ¬ blue n p ∨ (p.2 = 0 ∧ ¬ blue n q)
 
+/--
+@isnad1 id=eq.1h2v.s4.f6f7bca6f8a9 from=translated src=- shape=bdd03ca9 vocab=4023cf0e
+-/
 lemma chi_of_blue {n : ℕ} {p : ℤ × ℤ} (h : blue n p) : chi n p = 1 := ite_eq_left h
 
+/--
+@isnad1 id=eq.1h2v.s4.3d6f8ae5309d from=translated src=- shape=61a31622 vocab=be55f8eb
+-/
 lemma chi_of_not_blue {n : ℕ} {p : ℤ × ℤ} (h : ¬ blue n p) : chi n p = -1 := ite_eq_right h
 
+/--
+@isnad1 id=eq.0h3v.s5.699322c27d15 from=translated src=- shape=79dbb525 vocab=229f977b
+-/
 lemma sig_cons (n : ℕ) (p : ℤ × ℤ) (tl : List (ℤ × ℤ)) :
     sig n (p :: tl) = chi n p + sig n tl := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.d9e756ecaa68 from=translated src=- shape=c5ac6368 vocab=2980d5dc
+-/
 lemma sig_nil (n : ℕ) : sig n [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.8d483e1a3267 from=translated src=- shape=8cf38e8f vocab=9c12e2b6
+-/
 lemma b0_cons (n : ℕ) (p : ℤ × ℤ) (tl : List (ℤ × ℤ)) :
     b0 n (p :: tl) = (if blue n p ∧ p.2 = 0 then (1 : ℤ) else 0) + b0 n tl := by
   unfold b0
@@ -109,16 +124,28 @@ lemma b0_cons (n : ℕ) (p : ℤ × ℤ) (tl : List (ℤ × ℤ)) :
   · rw [ite_eq_right h, List.filter_cons_of_neg (by simp [h])]
     simp
 
+/--
+@isnad1 id=eq.0h1v.s3.b561004fcb60 from=translated src=- shape=c5ac6368 vocab=8b37b7ba
+-/
 lemma b0_nil (n : ℕ) : b0 n [] = 0 := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.a10d4e536c12 from=translated src=- shape=21776f62 vocab=5ba054fe
+-/
 lemma rowK_of_nonneg (n : ℕ) {y : ℤ} (hy : 0 ≤ y) : rowK n y = (n : ℤ) - 1 - y := by
   rw [show rowK n y = if 0 ≤ y then (n : ℤ) - 1 - y else (n : ℤ) + y from rfl, ite_eq_left hy]
 
+/--
+@isnad1 id=eq.1h2v.s5.bef7f63efb38 from=translated src=- shape=62e7a1b3 vocab=37eb41fb
+-/
 lemma rowK_of_neg (n : ℕ) {y : ℤ} (hy : ¬ 0 ≤ y) : rowK n y = (n : ℤ) + y := by
   rw [show rowK n y = if 0 ≤ y then (n : ℤ) - 1 - y else (n : ℤ) + y from rfl, ite_eq_right hy]
 
 /-! ## Geometry: membership of `S n` and the adjacency lemmas -/
 
+/--
+@isnad1 id=iff.0h2v.s6.2d96ad9a650d from=translated src=- shape=b72eb248 vocab=be050f6f
+-/
 lemma mem_S {n : ℕ} {p : ℤ × ℤ} :
     p ∈ S n ↔ 2 * |p.1| + |2 * p.2 + 1| < 2 * (n : ℤ) := by
   simp only [S]
@@ -156,13 +183,18 @@ lemma mem_S {n : ℕ} {p : ℤ × ℤ} :
       rw [Finset.mem_product, Finset.mem_Icc, Finset.mem_singleton]
       exact ⟨hk3, rfl⟩⟩
 
+/--
+@isnad1 id=le.1h2v.s6.449d89d8ad3d from=translated src=- shape=da8ff24c vocab=4215f32d
+-/
 lemma rowK_nonneg (n : ℕ) {y : ℤ} (hy : y ∈ Finset.Icc (-(n : ℤ)) ((n : ℤ) - 1)) :
     0 ≤ rowK n y := by
   rw [Finset.mem_Icc] at hy
   show 0 ≤ (if 0 ≤ y then (n : ℤ) - 1 - y else (n : ℤ) + y)
   split_ifs <;> lia
 
-/-- Adjacent points differ by a unit step in exactly one coordinate. -/
+/-- Adjacent points differ by a unit step in exactly one coordinate.
+@isnad1 id=or.1h2v.s6.74668a6c312b from=translated src=- shape=d8ef295f vocab=205ba89a
+-/
 lemma adj_cases {p q : ℤ × ℤ} (h : Adj p q) :
     (p.1 = q.1 ∧ (p.2 = q.2 + 1 ∨ p.2 = q.2 - 1)) ∨
       (p.2 = q.2 ∧ (p.1 = q.1 + 1 ∨ p.1 = q.1 - 1)) := by
@@ -171,7 +203,9 @@ lemma adj_cases {p q : ℤ × ℤ} (h : Adj p q) :
     rcases abs_cases (p.2 - q.2) with ⟨h2, h2'⟩ | ⟨h2, h2'⟩ <;> lia
 
 /-- Along an edge, `f` changes by `±2`, except for the vertical pairs crossing
-the axis `y = -1/2`, where it does not change. -/
+the axis `y = -1/2`, where it does not change.
+@isnad1 id=and.1h2v.s6.49d3cd987b6a from=translated src=- shape=8a56e0ec vocab=96906c84
+-/
 lemma f_diff {p q : ℤ × ℤ} (h : Adj p q) :
     |f p - f q| ≤ 2 ∧
       (f p = f q → p.1 = q.1 ∧ ((p.2 = 0 ∧ q.2 = -1) ∨ (p.2 = -1 ∧ q.2 = 0))) := by
@@ -241,7 +275,9 @@ lemma f_diff {p q : ℤ × ℤ} (h : Adj p q) :
       · rw [hfp, hfq, hy] at hfeq
         lia
 
-/-- Two adjacent blue points form a vertical pair crossing the axis. -/
+/-- Two adjacent blue points form a vertical pair crossing the axis.
+@isnad1 id=and.3h3v.s6.23b182f52943 from=translated src=- shape=7bd6b1c2 vocab=fe7d2abd
+-/
 lemma blue_adj {n : ℕ} {p q : ℤ × ℤ} (hadj : Adj p q) (hp : blue n p) (hq : blue n q) :
     p.1 = q.1 ∧ ((p.2 = 0 ∧ q.2 = -1) ∨ (p.2 = -1 ∧ q.2 = 0)) := by
   have hfe : f p = f q := by
@@ -254,7 +290,9 @@ lemma blue_adj {n : ℕ} {p q : ℤ × ℤ} (hadj : Adj p q) (hp : blue n p) (hq
 
 /-! ## Counting: the colour sum over `S n` and the count of blue axial points -/
 
-/-- The symmetric integer interval `[-K, K]` as a map of `range (2K+1)`. -/
+/-- The symmetric integer interval `[-K, K]` as a map of `range (2K+1)`.
+@isnad1 id=eq.0h1v.s6.97c623883956 from=translated src=- shape=c3ed1cfe vocab=76aad547
+-/
 lemma Icc_neg_eq_map (K : ℕ) :
     Finset.Icc (-(K : ℤ)) (K : ℤ) =
       (Finset.range (2 * K + 1)).map ⟨fun i : ℕ ↦ (i : ℤ) - (K : ℤ), by
@@ -271,6 +309,9 @@ lemma Icc_neg_eq_map (K : ℕ) :
   · rintro ⟨i, hi, rfl⟩
     constructor <;> lia
 
+/--
+@isnad1 id=eq.0h1v.s5.769545af96e8 from=translated src=- shape=a347ac7b vocab=fba91a2f
+-/
 lemma sum_range_neg_one (k : ℕ) : ∑ i ∈ Finset.range (2 * k + 1), (-1 : ℤ) ^ i = 1 := by
   induction k with
   | zero => simp
@@ -280,7 +321,9 @@ lemma sum_range_neg_one (k : ℕ) : ∑ i ∈ Finset.range (2 * k + 1), (-1 : �
     ring
 
 /-- The `±1` alternating sum over a symmetric interval equals `1` (each row of
-`S n` has one more blue point than red points). -/
+`S n` has one more blue point than red points).
+@isnad1 id=eq.1h2v.s6.409f2d537b71 from=translated src=- shape=a9dccc34 vocab=e508628b
+-/
 lemma row_sum (K : ℕ) (c : ℤ) (hc : Even (c - (K : ℤ))) :
     ∑ x ∈ Finset.Icc (-(K : ℤ)) (K : ℤ), (if Even (x + c) then (1 : ℤ) else -1) = 1 := by
   have hpar1 : ∀ i : ℕ, Even ((i : ℤ) - (K : ℤ) + c) ↔ Even (i : ℤ) := by
@@ -299,7 +342,9 @@ lemma row_sum (K : ℕ) (c : ℤ) (hc : Even (c - (K : ℤ))) :
   rw [Finset.sum_congr rfl (fun i _ ↦ if_congr (hpar1 i |>.trans (hpar2 i)) rfl rfl
     |>.trans (neg_one_pow_eq_ite).symm), sum_range_neg_one]
 
-/-- The colour of `(x, y)` as an explicit parity test. -/
+/-- The colour of `(x, y)` as an explicit parity test.
+@isnad1 id=eq.0h3v.s7.5675ae6178dd from=translated src=- shape=730d268b vocab=bbccd63a
+-/
 lemma chi_eq (n : ℕ) (x y : ℤ) :
     chi n (x, y) =
       if 0 ≤ y then (if Even (x + y + 1 - (n : ℤ)) then (1 : ℤ) else -1)
@@ -349,7 +394,9 @@ lemma chi_eq (n : ℕ) (x y : ℤ) :
         lia
       rw [ite_eq_right hne]
 
-/-- The colour sum over the row at height `y` equals `1`. -/
+/-- The colour sum over the row at height `y` equals `1`.
+@isnad1 id=eq.1h2v.s6.158341984bd1 from=translated src=- shape=1c0c80bf vocab=61e5475e
+-/
 lemma inner_sum (n : ℕ) (y : ℤ) (hy : y ∈ Finset.Icc (-(n : ℤ)) ((n : ℤ) - 1)) :
     ∑ p ∈ (Finset.Icc (-(rowK n y)) (rowK n y)) ×ˢ {y}, chi n p = 1 := by
   rw [Finset.sum_product]
@@ -381,7 +428,9 @@ lemma inner_sum (n : ℕ) (y : ℤ) (hy : y ∈ Finset.Icc (-(n : ℤ)) ((n : �
     rw [Finset.sum_congr rfl e]
     exact row_sum _ _ hc
 
-/-- There are `2n` more blue points than red points in `S n`. -/
+/-- There are `2n` more blue points than red points in `S n`.
+@isnad1 id=eq.0h1v.s5.a4982cbfc1de from=translated src=- shape=a19f0f0a vocab=fd7ee1b5
+-/
 lemma sum_chi (n : ℕ) : ∑ p ∈ S n, chi n p = 2 * (n : ℤ) := by
   simp only [S]
   rw [Finset.sum_biUnion (fun y hy z hz hyz ↦ by
@@ -399,7 +448,9 @@ lemma sum_chi (n : ℕ) : ∑ p ∈ S n, chi n p = 2 * (n : ℤ) := by
   rw [h1, nsmul_eq_mul, mul_one]
   norm_cast
 
-/-- Exactly `n` points of `S n` are blue and lie on the axis `y = 0`. -/
+/-- Exactly `n` points of `S n` are blue and lie on the axis `y = 0`.
+@isnad1 id=eq.0h1v.s6.0b42c3d134fe from=translated src=- shape=59a55162 vocab=799a0337
+-/
 lemma card_B0 (n : ℕ) :
     ((S n).filter (fun p ↦ blue n p ∧ p.2 = 0)).card = n := by
   have hf1 : ∀ p : ℤ × ℤ, p.2 = 0 → f p = 2 * p.1 + 1 := by
@@ -458,7 +509,9 @@ lemma card_B0 (n : ℕ) :
 /-- Every path's colour sum exceeds its number of blue axial points by at most
 one; moreover, if the path has a "good head" (`GH`), the sum is at most the
 count itself.  This packages the "cut at blue-blue pairs" argument: each unit
-of surplus is charged to a distinct blue point of the axis `y = 0`. -/
+of surplus is charged to a distinct blue point of the axis `y = 0`.
+@isnad1 id=and.2h2v.s5.3d86ae05a111 from=translated src=- shape=17a0d435 vocab=dd3c8bad
+-/
 lemma path_bound {n : ℕ} (P : List (ℤ × ℤ)) (hchain : P.IsChain Adj) (hnodup : P.Nodup) :
     sig n P ≤ b0 n P + 1 ∧ (GH n P → sig n P ≤ b0 n P) := by
   induction P with
@@ -560,6 +613,9 @@ lemma path_bound {n : ℕ} (P : List (ℤ × ℤ)) (hchain : P.IsChain Adj) (hno
 
 /-! ## List/Finset bridges -/
 
+/--
+@isnad1 id=eq.0h2v.s6.7062d7e77e44 from=translated src=- shape=640856ef vocab=3c9d116d
+-/
 lemma sum_map_flatten (L : List (List (ℤ × ℤ))) (g : ℤ × ℤ → ℤ) :
     (L.map (fun P ↦ (P.map g).sum)).sum = (L.flatten.map g).sum := by
   induction L with
@@ -568,6 +624,9 @@ lemma sum_map_flatten (L : List (List (ℤ × ℤ))) (g : ℤ × ℤ → ℤ) :
     simp only [List.map_cons, List.sum_cons, List.flatten_cons, List.map_append,
       List.sum_append, ih]
 
+/--
+@isnad1 id=eq.0h2v.s6.53012367d244 from=translated src=- shape=ca8b1e89 vocab=9842ba8e
+-/
 lemma sum_b0_flatten (L : List (List (ℤ × ℤ))) (pred : ℤ × ℤ → Bool) :
     (L.map (fun P ↦ ((P.filter pred).length : ℤ))).sum
       = ((L.flatten.filter pred).length : ℤ) := by
@@ -579,6 +638,9 @@ lemma sum_b0_flatten (L : List (List (ℤ × ℤ))) (pred : ℤ × ℤ → Bool)
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h2v.s6.e09d7ba27594 from=translated src=- shape=e8969a33 vocab=85d127c1
+-/
 lemma map_sum_add_one (l : List (List (ℤ × ℤ))) (g : List (ℤ × ℤ) → ℤ) :
     (l.map (fun P ↦ g P + 1)).sum = (l.map g).sum + (l.length : ℤ) := by
   induction l with

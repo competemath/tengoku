@@ -25,6 +25,9 @@ open Polynomial
 
 /- follows https://artofproblemsolving.com/wiki/index.php/1983_USAMO_Problems/Problem_2 -/
 /- vieta formulas for a and b only, done very similarly to `Usa2014P1.lean` -/
+/--
+@isnad1 id=and.1h6v.s10.6f11784b8270 from=translated src=- shape=bae569bb vocab=4b70686d
+-/
 lemma vieta {a b c d e : ℝ} {x : Fin 5 → ℝ}
   (hp: ((X - C (x 0)) * (X - C (x 1)) * (X - C (x 2)) * (X - C (x 3)) * (X - C (x 4))
     = X^5 + C a * X^4 + C b * X^3 + C c * X^2 + C d * X + C e)) :
@@ -39,6 +42,9 @@ lemma vieta {a b c d e : ℝ} {x : Fin 5 → ℝ}
   · apply_fun (derivative^[3] · |>.eval 0) at hp
     linear_combination ( norm := (simp; ring) ) - hp / 6
 
+/--
+@isnad1 id=le.1h6v.s10.647928f9bd60 from=translated src=- shape=2fdf8b63 vocab=d2b06bab
+-/
 theorem ineqs (a b c d e : ℝ) (x : Fin 5 → ℝ)
   (hp: ((X - C (x 0)) * (X - C (x 1)) * (X - C (x 2)) * (X - C (x 3)) * (X - C (x 4))
     = X^5 + C a * X^4 + C b * X^3 + C c * X^2 + C d * X + C e)) :
