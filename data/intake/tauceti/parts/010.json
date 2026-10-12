@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "0daa6fafdb657d5c913af30dffbe93d4f4b920ef6537a0b400aa73aa41ade39e",
+ "library": "tauceti",
+ "lint_mode": "proposed",
+ "modules": 297,
+ "part": 10,
+ "theorems": 4183
+}
