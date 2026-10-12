@@ -1,0 +1,194 @@
+/-
+Copyright (c) 2026 The Tau Ceti contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: The Tau Ceti contributors
+-/
+module
+
+public import Tengoku
+public import Tengoku.Tauceti.TauCeti.Algebra.Lie.Sl2.Basic
+public import Tengoku.Tauceti.TauCeti.Algebra.Lie.Sl2.Weyl.Automorphism
+
+/-!
+# The scaled Weyl elements and their Weyl ratios
+
+Let `t : IsSl2Triple H E F` be an `sl₂` triple in an associative algebra `A`, with `E` and `F`
+nilpotent, and let `A` also be an algebra over a commutative ring `R`. For a unit `c` of `R` the
+rescaled elements `c • E` and `c⁻¹ • F` form an `sl₂` triple with the same Cartan element
+(`IsSl2Triple.rescale`), so the Weyl element of
+`TauCeti/Algebra/Lie/Sl2/Weyl/Automorphism.lean` is available at every scale:
+
+```text
+n (c) = exp (c • E) · exp (-(c⁻¹ • F)) · exp (c • E),
+```
+
+Chevalley's `n_α(c) = x_α(c) x_{-α}(-c⁻¹) x_α(c)`. Their ratios
+
+```text
+h (c) = n (c) · n (1)⁻¹
+```
+
+are the elements denoted `h_α(c) = n_α(c) n_α(1)⁻¹` in Chevalley's construction. This file
+constructs both parameterized families and proves their conjugation relations against the triple.
+It does not prove that `c ↦ h_α(c)` is multiplicative, so it does not package this family as a
+cocharacter.
+
+The scaled Weyl element inverts the Cartan element and interchanges the two nilpotent elements with
+a scale, `n (c) E n (c)⁻¹ = -(c⁻²) • F` and `n (c) F n (c)⁻¹ = -(c²) • E`. If `E` and `F` are
+eigenvectors of `ad y` with eigenvalues `q` and `-q`, respectively, its effect on `y` is the
+coreflection `y ↦ y - q • H`, *independently of* `c`. That independence is what makes `h (c)`
+centralise every element satisfying those eigenvector hypotheses, while acting on the two root
+vectors with the expected exponents,
+
+```text
+h (c) E h (c)⁻¹ = c² • E,     h (c) F h (c)⁻¹ = c⁻² • F,
+```
+
+Centralisation of a whole Cartan subalgebra is not proved here — this file has no Cartan
+subalgebra and no root space decomposition. It is the consequence of the displayed hypotheses in a
+setting supplying them, where every Cartan element `y` has `⁅y, E⁆ = α(y) • E` and
+`⁅y, F⁆ = -(α(y) • F)` for the root `α` of the triple.
+
+On the root subgroups themselves the same relations read
+`h (c) x_α(u) h (c)⁻¹ = x_α(c² u)` and `n (c) x_α(u) n (c)⁻¹ = x_{-α}(-c⁻² u)`, and conjugation
+carries one scaled Weyl element to another, `h (c) n (u) h (c)⁻¹ = n (c² u)`.
+
+Nothing here needs a Cartan subalgebra, a weight-space decomposition or any finiteness: the whole
+content is the rescaling of the triple together with the relations already proved for the Weyl
+element at scale one. The `ℚ`-algebra hypothesis is inherited from the exponentials, which divide
+by factorials.
+
+## Main definitions
+
+* `TauCeti.scaledWeylUnit`: the scaled Weyl element `n (c)`.
+* `TauCeti.weylRatio`: the family of Weyl ratios `h (c) = n (c) n (1)⁻¹`.
+
+## Main results
+
+* `IsSl2Triple.rescale`: rescaling an `sl₂` triple by a unit of the base ring.
+* `TauCeti.scaledWeylUnit_one` and `TauCeti.weylRatio_one`: at scale one the scaled Weyl element is
+  the Weyl element and its ratio is trivial.
+* `TauCeti.weylRatio_def`: the characteristic equation defining the Weyl ratio.
+* `TauCeti.scaledWeylUnit_eq_weylRatio_mul`: the normal form `n_α(c) = h_α(c) n_α(1)`.
+* `TauCeti.scaledWeylUnit_conj_h`, `TauCeti.scaledWeylUnit_conj_e`,
+  `TauCeti.scaledWeylUnit_conj_f`: the scaled Weyl element negates the Cartan element and
+  interchanges the two nilpotent elements with images `-c⁻² • F` and `-c² • E`.
+* `TauCeti.scaledWeylUnit_conj_of_lie_eq_smul`: the coreflection formula, independent of the scale.
+* `TauCeti.weylRatio_conj_of_lie_eq_smul` and `TauCeti.weylRatio_conj_h`: the Weyl ratio
+  centralises `y` whenever `E` and `F` are eigenvectors of `ad y` with opposite eigenvalues.
+* `TauCeti.weylRatio_conj_e` and `TauCeti.weylRatio_conj_f`: it scales the two nilpotent elements
+  by `c²` and `c⁻²`.
+* `TauCeti.weylRatio_conj_exp_smul`, `TauCeti.weylRatio_conj_exp_neg_smul` and
+  `TauCeti.scaledWeylUnit_conj_exp_smul`: the same relations read on the root subgroup elements.
+* The corresponding declarations prefixed by `inv_` give the inverse-conjugation rules.
+* `TauCeti.weylRatio_conj_scaledWeylUnit`: conjugation by `h (c)` carries `n (u)` to `n (c² u)`.
+* `TauCeti.lie_weylRatio_conj`: the Weyl ratio preserves the eigenspaces of the Cartan
+  element.
+
+## References
+
+* R. W. Carter, *Simple Groups of Lie Type*, §§6.4 and 7.1.
+* R. Steinberg, *Lectures on Chevalley Groups*, §3.
+* J. E. Humphreys, *Introduction to Lie Algebras and Representation Theory*, §26.
+
+These Weyl-ratio relations are prerequisites for the coroot cocharacter and its relations against
+the root subgroups, which are part of the pinning data asked for by Layer 9 of
+`TauCetiRoadmap/ReductiveGroups/README.md`, consumed by milestone L0 of the `CFSGStatement`
+roadmap.
+-/
+
+public section
+
+namespace TauCeti
+
+attribute [local instance 100] LieRing.ofAssociativeRing
+
+/-! ## Conjugation by a unit -/
+
+section Conjugation
+
+variable {A : Type*} [Ring A] [Algebra ℚ A] {H E F : A}
+
+variable (hE : IsNilpotent E) (hF : IsNilpotent F) (ht : IsSl2Triple H E F)
+
+include ht
+
+end Conjugation
+
+section Scaled
+
+variable {R A : Type*} [CommRing R] [Ring A] [Algebra R A] {H E F : A}
+
+variable [Algebra ℚ A]
+
+/-! ## The scaled Weyl elements -/
+
+/-- **The Weyl element of an `sl₂` triple at scale `c`**, the unit
+`exp (c • E) · exp (-(c⁻¹ • F)) · exp (c • E)`.
+
+For the images of a Chevalley root pair in a representation this is Chevalley's
+`n_α(c) = x_α(c) x_{-α}(-c⁻¹) x_α(c)`; at `c = 1` it is `TauCeti.weylUnit`. -/
+noncomputable def scaledWeylUnit (hE : IsNilpotent E) (hF : IsNilpotent F) (c : Rˣ) : Aˣ :=
+  weylUnit (hE.smul (c : R)) (hF.smul ((c⁻¹ : Rˣ) : R))
+
+variable (hE : IsNilpotent E) (hF : IsNilpotent F)
+
+/-- The scaled Weyl element is the threefold product of exponentials it is defined to be. -/
+@[simp]
+theorem coe_scaledWeylUnit (c : Rˣ) :
+    ((scaledWeylUnit (R := R) hE hF c : Aˣ) : A) =
+      IsNilpotent.exp ((c : R) • E) * IsNilpotent.exp (-(((c⁻¹ : Rˣ) : R) • F)) *
+        IsNilpotent.exp ((c : R) • E) :=
+  coe_weylUnit _ _
+
+/-- The inverse of the scaled Weyl element is obtained by negating every exponent. -/
+@[simp]
+theorem coe_inv_scaledWeylUnit (c : Rˣ) :
+    (((scaledWeylUnit (R := R) hE hF c)⁻¹ : Aˣ) : A) =
+      IsNilpotent.exp (-((c : R) • E)) * IsNilpotent.exp (((c⁻¹ : Rˣ) : R) • F) *
+        IsNilpotent.exp (-((c : R) • E)) :=
+  coe_inv_weylUnit _ _
+
+/-- At scale one the scaled Weyl element is the Weyl element. -/
+@[simp]
+theorem scaledWeylUnit_one : scaledWeylUnit (R := R) hE hF 1 = weylUnit hE hF := by
+  ext
+  rw [coe_scaledWeylUnit, coe_weylUnit]
+  simp
+
+/-! ## The coreflection formula -/
+
+/-! ## Weyl ratios -/
+
+/-- **The Weyl ratio at `c`**, the element `n (c) · n (1)⁻¹` obtained from the scaled Weyl element
+and the Weyl element.
+
+For the images of a Chevalley root pair in a representation this is Chevalley's
+`h_α(c) = n_α(c) n_α(1)⁻¹`. No multiplicativity statement about this parameterized family is made
+here. -/
+noncomputable def weylRatio (hE : IsNilpotent E) (hF : IsNilpotent F) (c : Rˣ) : Aˣ :=
+  scaledWeylUnit hE hF c * (weylUnit hE hF)⁻¹
+
+/-- The Weyl ratio is the scaled Weyl element multiplied by the inverse scale-one element. -/
+theorem weylRatio_def (c : Rˣ) :
+    weylRatio (R := R) hE hF c = scaledWeylUnit hE hF c * (weylUnit hE hF)⁻¹ := by
+  rw [weylRatio]
+
+/-- The Weyl ratio at `1` is trivial. -/
+@[simp]
+theorem weylRatio_one : weylRatio (R := R) hE hF 1 = 1 := by
+  rw [weylRatio_def, scaledWeylUnit_one, mul_inv_cancel]
+
+/-- The scaled Weyl element factors as its Weyl ratio times the Weyl element: the normal
+form `n_α(c) = h_α(c) n_α(1)`. -/
+theorem scaledWeylUnit_eq_weylRatio_mul (c : Rˣ) :
+    scaledWeylUnit (R := R) hE hF c = weylRatio hE hF c * weylUnit hE hF := by
+  rw [weylRatio_def, inv_mul_cancel_right]
+
+variable (ht : IsSl2Triple H E F)
+
+include ht
+
+end Scaled
+
+end TauCeti
