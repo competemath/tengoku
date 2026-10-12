@@ -1,0 +1,151 @@
+/-
+Copyright (c) 2026 Monica Omar. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Monica Omar
+-/
+module
+
+public import Tengoku
+import Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Symm
+import Tengoku.LeanPool.LeanPool.Monlib4.Preq.RCLikeLe
+
+/-!
+
+# Some obvious basic properties on inner product space
+
+This files provides some useful and obvious results for linear maps and continuous linear maps.
+
+-/
+
+@[expose] public section
+
+theorem _root_.ext_inner_left_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
+    [InnerProductSpace 𝕜 E] (x y : E) :
+    x = y ↔ ∀ v : E, inner 𝕜 x v = inner 𝕜 y v := by
+  constructor
+  · simp_all
+  · rw [← sub_eq_zero, ← @inner_self_eq_zero 𝕜, inner_sub_left, sub_eq_zero]
+    intro h; exact h _
+
+theorem forall_inner_eq_zero_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
+    [InnerProductSpace 𝕜 E] (x : E) : (∀ y, inner 𝕜 x y = 0) ↔ x = 0 := by
+  refine ⟨fun h => ?_, fun h y => by rw [h, inner_zero_left]⟩
+  simpa [inner_self_eq_zero] using h x
+
+open RCLike ContinuousLinearMap
+open scoped InnerProductSpace
+
+variable {E : Type*} [NormedAddCommGroup E]
+
+/-- linear maps $p,q$ are equal if and only if
+  $\langle p x, x \rangle = \langle q x, x \rangle$ for any $x$. -/
+theorem LinearMap.ext_iff_inner_map [InnerProductSpace ℂ E] (p q : E →ₗ[ℂ] E) :
+    p = q ↔ ∀ x : E, inner ℂ (p x) x = inner ℂ (q x) x := by
+  constructor
+  · simp_all
+  · intro h
+    rw [← sub_eq_zero, ← inner_map_self_eq_zero]
+    simp_rw [LinearMap.sub_apply, inner_sub_left, h, sub_self, forall_const]
+
+/-- copy of `linear_map.ext_iff_inner_map` but for continuous linear maps -/
+theorem ContinuousLinearMap.ext_iff_inner_map [InnerProductSpace ℂ E] (p q : E →L[ℂ] E) :
+    p = q ↔ ∀ x : E, ⟪p x, x⟫_ℂ = ⟪q x, x⟫_ℂ := by
+  simp_rw [← ContinuousLinearMap.coe_coe, ← LinearMap.ext_iff_inner_map, coe_inj]
+
+/-- Self-adjoint linear operators $p,q$ are equal if and only if
+  $\langle p x, x \rangle_\mathbb{k} = \langle q x, x \rangle_\mathbb{k}$. -/
+theorem ContinuousLinearMap.IsSelfAdjoint.ext_iff_inner_map {E 𝕜 : Type _} [RCLike 𝕜]
+    [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E] {p q : E →L[𝕜] E}
+    (hp : IsSelfAdjoint p) (hq : IsSelfAdjoint q) :
+    p = q ↔ ∀ x : E, @inner 𝕜 _ _ (p x) x = @inner 𝕜 _ _ (q x) x := by
+  rw [← sub_eq_zero, ← IsSelfAdjoint.inner_map_self_eq_zero (hp.sub hq)]
+  simp_rw [sub_apply, inner_sub_left, sub_eq_zero]
+
+section RCLike
+
+variable {𝕜 : Type _} [RCLike 𝕜]
+
+local notation "⟪" x "," y "⟫" => @inner 𝕜 _ _ x y
+
+/-- the adjoint of a self-adjoint operator is self-adjoint -/
+theorem IsSelfAdjoint.adjoint [InnerProductSpace 𝕜 E] [CompleteSpace E] {a : E →L[𝕜] E}
+    (ha : IsSelfAdjoint a) : IsSelfAdjoint (adjoint a) :=
+  congr_arg star ha
+
+/-- for a self-adjoint operator $a$, we have $\langle a x, x \rangle_\mathbb{k}$ is real -/
+theorem IsSelfAdjoint.inner_re_eq {E : Type _} [NormedAddCommGroup E]
+    [InnerProductSpace 𝕜 E] [CompleteSpace E] {a : E →L[𝕜] E}
+    (ha : IsSelfAdjoint a) (x : E) :
+    (re ⟪a x,x⟫ : 𝕜) = ⟪a x,x⟫ := by
+  rcases@I_mul_I_ax 𝕜 _ with (h | _)
+  · rw [← re_add_im ⟪a x,x⟫]
+    simp_all
+  · simp_rw [← conj_eq_iff_re, inner_conj_symm]
+    have ha' := ha
+    simp_rw [isSelfAdjoint_iff',
+      ContinuousLinearMap.IsSelfAdjoint.ext_iff_inner_map ha.adjoint ha, adjoint_inner_left] at ha'
+    exact ha' x
+
+end RCLike
+
+/-- copy of `inner_map_self_eq_zero` for bounded linear maps -/
+theorem ContinuousLinearMap.inner_map_self_eq_zero [InnerProductSpace ℂ E] {p : E →L[ℂ] E} :
+    (∀ x : E, ⟪p x, x⟫_ℂ = 0) ↔ p = 0 := by
+  simp_rw [ContinuousLinearMap.ext_iff, ← ContinuousLinearMap.coe_coe,
+    ← LinearMap.ext_iff, ContinuousLinearMap.toLinearMap_zero]
+  exact @_root_.inner_map_self_eq_zero E _ _ _
+
+theorem LinearMap.adjoint_one' {K E : Type _} [RCLike K] [NormedAddCommGroup E]
+    [InnerProductSpace K E] [FiniteDimensional K E] : adjoint (1 : E →ₗ[K] E) = 1 :=
+  star_one _
+
+variable {𝕜 : Type*} [RCLike 𝕜]
+open scoped ComplexOrder
+lemma inner_self_nonneg' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
+    0 ≤ ⟪x, x⟫_𝕜 := by simp_rw [@RCLike.nonneg_def 𝕜, inner_self_nonneg, true_and, inner_self_im]
+
+lemma inner_self_nonpos' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
+    ⟪x, x⟫_𝕜 ≤ 0 ↔ x = 0 := by
+  simp_rw [@RCLike.nonpos_def 𝕜, re_inner_self_nonpos, inner_self_im, and_true]
+
+lemma _root_.isometry_iff_norm {E F : Type _} [SeminormedAddCommGroup E]
+  [SeminormedAddCommGroup F]
+  {e : Type*} [FunLike e E F]
+  [AddMonoidHomClass e E F]
+  (f : e) :
+  Isometry f ↔ ∀ x, ‖f x‖ = ‖x‖ := by
+  rw [isometry_iff_dist_eq]
+  simp_rw [dist_eq_norm, ← map_sub]
+  refine ⟨fun h x => by simpa using h x 0, fun h x y => h _⟩
+lemma _root_.isometry_iff_norm' {E F : Type _} [_root_.NormedAddCommGroup E]
+    [_root_.NormedAddCommGroup F] {e : Type*} [FunLike e E F]
+    [AddMonoidHomClass e E F] (f : e) :
+    Isometry f ↔ ∀ x, ‖f x‖ = ‖x‖ :=
+isometry_iff_norm _
+lemma _root_.isometry_iff_inner {R E F : Type _} [RCLike R]
+  [_root_.NormedAddCommGroup E] [_root_.NormedAddCommGroup F]
+  [_root_.InnerProductSpace R E] [_root_.InnerProductSpace R F]
+  {M : Type*} [FunLike M E F] [LinearMapClass M R E F]
+  (f : M) :
+  Isometry f ↔ ∀ x y, ⟪f x, f y⟫_R = ⟪x, y⟫_R := by
+  rw [isometry_iff_dist_eq]
+  simp_rw [dist_eq_norm, ← map_sub]
+  constructor
+  · simp_rw [inner_eq_sum_norm_sq_div_four, ← _root_.map_smul, ← map_add, ← map_sub]
+    intro h x y
+    have := fun x => h x 0
+    simp_rw [sub_zero] at this
+    simp_rw [this]
+  · intro h x y
+    simp_rw [@norm_eq_sqrt_re_inner R, h]
+lemma _root_.isometry_iff_inner_norm'
+  {R E F : Type _} [RCLike R] [_root_.NormedAddCommGroup E] [_root_.NormedAddCommGroup F]
+  [_root_.InnerProductSpace R E] [_root_.InnerProductSpace R F]
+  {M : Type*} [FunLike M E F] [LinearMapClass M R E F] (f : M) :
+  (∀ x, ‖f x‖ = ‖x‖) ↔ ∀ x y, ⟪f x, f y⟫_R = ⟪x, y⟫_R :=
+by rw [← isometry_iff_inner, isometry_iff_norm]
+
+lemma _root_.seminormedAddGroup_norm_eq_norm_NormedAddCommGroup
+  {E : Type _} [_root_.NormedAddCommGroup E] (x : E) :
+  @norm E SeminormedAddGroup.toNorm x = @norm E _root_.NormedAddCommGroup.toNorm x :=
+rfl
